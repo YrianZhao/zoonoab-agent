@@ -142,41 +142,47 @@ server {
 
 ## 📝 部署后配置
 
-### 语音识别环境变量
+### 语音识别配置
 
-语音控制模块在浏览器端录音，服务端转发到云端 ASR。API Key 只配置在部署平台环境变量里，不要写进代码或提交到 Git。
+语音控制模块在浏览器端录音，服务端转发到云端 ASR。页面输入框旁有一个很小的 `ASR` 按钮，点击后只显示三行：
 
-推荐 OpenAI 转写配置：
+```text
+Base URL
+API Key
+Model
+```
+
+建议填写 DeepSeek 兼容的音频转写网关地址，例如：
+
+```text
+Base URL: https://your-deepseek-asr-gateway.example.com/v1/audio/transcriptions
+API Key: 你的 DeepSeek 或兼容网关 Key
+Model: deepseek-v4-flash
+```
+
+安全说明：
+
+- API Key 不写入代码、不写入 Git、不写入 localStorage。
+- 页面提交后会立即清空 API Key 输入框。
+- 服务端只把 Key 保存在内存会话里，默认 2 小时过期；服务重启或页面刷新后需要重新填写。
+- 前端转写时只携带短期 session token，不会把 API Key 明文放进转写请求。
+
+也可以继续用部署平台环境变量配置固定服务端 ASR：
+
+```bash
+VOICE_ASR_PROVIDER=deepseek
+DEEPSEEK_API_KEY=你的 DeepSeek Key
+DEEPSEEK_ASR_BASE_URL=https://your-deepseek-asr-gateway.example.com/v1/audio/transcriptions
+VOICE_TRANSCRIBE_MODEL=deepseek-v4-flash
+```
+
+如果使用 OpenAI：
 
 ```bash
 VOICE_ASR_PROVIDER=openai
 OPENAI_API_KEY=你的 OpenAI API Key
 VOICE_TRANSCRIBE_MODEL=gpt-4o-transcribe
 ```
-
-也可以使用 OpenAI 兼容的音频转写网关：
-
-```bash
-VOICE_ASR_PROVIDER=compatible
-VOICE_ASR_API_KEY=你的兼容网关 Key
-VOICE_ASR_BASE_URL=https://your-gateway.example.com/v1/audio/transcriptions
-VOICE_TRANSCRIBE_MODEL=gpt-4o-transcribe
-```
-
-DeepSeek 说明：
-
-```bash
-VOICE_ASR_PROVIDER=deepseek
-DEEPSEEK_API_KEY=你的 DeepSeek API Key
-```
-
-DeepSeek 官方 API 当前主要是文本/聊天模型接口，没有标准音频转写端点。若使用 DeepSeek 兼容网关或自建转写服务，请额外设置：
-
-```bash
-DEEPSEEK_ASR_BASE_URL=https://your-deepseek-asr-gateway.example.com/v1/audio/transcriptions
-```
-
-如果只填写 `DEEPSEEK_API_KEY` 而没有兼容音频转写地址，语音接口会返回明确提示，不会静默失败。
 
 浏览器麦克风要求 HTTPS。线上 Railway/Render/Vercel 域名默认是 HTTPS；本地调试可使用 `http://localhost:8080`。
 

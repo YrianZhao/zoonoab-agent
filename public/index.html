@@ -580,6 +580,86 @@
             background: currentColor;
             flex-shrink: 0;
         }
+        .voice-settings-btn {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+            width: auto;
+            padding: 0 8px;
+            color: var(--text-muted);
+        }
+        .voice-settings-panel {
+            position: absolute;
+            right: 0;
+            top: calc(100% + 8px);
+            width: min(440px, calc(100vw - 48px));
+            display: none;
+            grid-template-columns: 1fr;
+            gap: 7px;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            background: rgba(255,255,255,0.98);
+            box-shadow: var(--shadow-lg);
+            backdrop-filter: blur(14px);
+            z-index: 35;
+        }
+        .voice-settings-panel.open { display: grid; }
+        .voice-settings-row { display: flex; align-items: center; gap: 7px; min-width: 0; }
+        .voice-settings-row label {
+            width: 62px;
+            flex-shrink: 0;
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .voice-settings-row input {
+            flex: 1;
+            min-width: 0;
+            height: 28px;
+            padding: 5px 8px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-family: inherit;
+            color: var(--text-primary);
+            background: var(--bg-page);
+            outline: none;
+        }
+        .voice-settings-row input:focus {
+            border-color: var(--brand-light);
+            background: white;
+        }
+        .voice-settings-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            padding-left: 69px;
+        }
+        .voice-settings-note {
+            min-width: 0;
+            color: var(--text-muted);
+            font-size: 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .voice-save-btn {
+            height: 28px;
+            padding: 0 10px;
+            border: none;
+            border-radius: var(--radius-sm);
+            background: var(--brand);
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .voice-save-btn:hover { background: var(--brand-dark); }
         .input-field {
             flex: 1; border: none; outline: none; font-size: 15px;
             color: var(--text-primary); resize: none;
@@ -3223,9 +3303,28 @@
                     <button class="input-icon-btn voice-btn" id="voiceBtn" onclick="toggleVoiceCapture()" title="按住空格或点击开始语音控制">
                         <i data-lucide="mic" style="width: 18px; height: 18px;"></i>
                     </button>
+                    <button class="input-icon-btn voice-settings-btn" id="voiceSettingsBtn" onclick="toggleVoiceSettings()" title="配置语音识别 API">ASR</button>
                     <div class="voice-status-pop" id="voiceStatusPop">
                         <span class="voice-dot"></span>
                         <span id="voiceStatusText">语音控制就绪</span>
+                    </div>
+                    <div class="voice-settings-panel" id="voiceSettingsPanel">
+                        <div class="voice-settings-row">
+                            <label for="voiceBaseUrlInput">Base URL</label>
+                            <input id="voiceBaseUrlInput" type="url" autocomplete="off" spellcheck="false" placeholder="https://api.deepseek.com/v1/audio/transcriptions">
+                        </div>
+                        <div class="voice-settings-row">
+                            <label for="voiceApiKeyInput">API Key</label>
+                            <input id="voiceApiKeyInput" type="password" autocomplete="off" spellcheck="false" placeholder="只保存在本次服务端内存会话">
+                        </div>
+                        <div class="voice-settings-row">
+                            <label for="voiceModelInput">Model</label>
+                            <input id="voiceModelInput" type="text" autocomplete="off" spellcheck="false" placeholder="deepseek-v4-flash">
+                        </div>
+                        <div class="voice-settings-actions">
+                            <span class="voice-settings-note" id="voiceSettingsNote">不明文存储，不写入浏览器本地存储。</span>
+                            <button class="voice-save-btn" onclick="saveVoiceSettings()">保存</button>
+                        </div>
                     </div>
                     <button class="input-icon-btn" id="cancelBtn" onclick="cancelTask()" style="display:none; color: var(--error);" title="Cancel Task">
                         <i data-lucide="square" style="width: 18px; height: 18px; fill: currentColor;"></i>
@@ -5558,6 +5657,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     let voiceState = 'idle';
     let voiceSpaceActive = false;
     let voiceCancelRequested = false;
+    let voiceSessionId = '';
 
     function isVoiceSupported() {
         return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder);
@@ -5575,6 +5675,71 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             if (MediaRecorder.isTypeSupported(type)) return type;
         }
         return '';
+    }
+
+    async function loadVoiceConfig() {
+        try {
+            const resp = await fetch('/api/voice/config');
+            const cfg = await resp.json();
+            const baseInput = document.getElementById('voiceBaseUrlInput');
+            const modelInput = document.getElementById('voiceModelInput');
+            const note = document.getElementById('voiceSettingsNote');
+            if (baseInput && cfg.baseUrl && !baseInput.value) baseInput.value = cfg.baseUrl;
+            if (modelInput && cfg.model && !modelInput.value) modelInput.value = cfg.model;
+            if (note) {
+                note.textContent = cfg.ready
+                    ? `${cfg.provider || 'ASR'} 已就绪 · ${cfg.model || ''}`
+                    : '填写后仅保存在本次服务端内存会话。';
+            }
+        } catch (err) {
+            console.warn('[Voice] Config check failed:', err);
+        }
+    }
+
+    function toggleVoiceSettings(force) {
+        const panel = document.getElementById('voiceSettingsPanel');
+        if (!panel) return;
+        const shouldOpen = typeof force === 'boolean' ? force : !panel.classList.contains('open');
+        panel.classList.toggle('open', shouldOpen);
+        if (shouldOpen) loadVoiceConfig();
+    }
+
+    async function saveVoiceSettings() {
+        const baseInput = document.getElementById('voiceBaseUrlInput');
+        const keyInput = document.getElementById('voiceApiKeyInput');
+        const modelInput = document.getElementById('voiceModelInput');
+        const note = document.getElementById('voiceSettingsNote');
+        const baseUrl = (baseInput?.value || '').trim();
+        const apiKey = (keyInput?.value || '').trim();
+        const model = (modelInput?.value || '').trim();
+        if (!baseUrl || !apiKey || !model) {
+            showToast('请填写 Base URL、API Key 和 Model', 'warning');
+            return;
+        }
+        try {
+            if (note) note.textContent = '正在保存到服务端内存...';
+            const resp = await fetch('/api/voice/session', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ baseUrl, apiKey, model })
+            });
+            const data = await resp.json().catch(() => ({}));
+            if (!resp.ok) {
+                const msg = data.message || 'ASR 配置保存失败';
+                showToast(msg, 'error');
+                if (note) note.textContent = msg;
+                return;
+            }
+            voiceSessionId = data.voiceSessionId || '';
+            if (keyInput) keyInput.value = '';
+            if (note) note.textContent = `${data.provider || 'ASR'} 已就绪 · ${data.model || model}`;
+            toggleVoiceSettings(false);
+            showToast('语音识别 API 已临时启用', 'success');
+        } catch (err) {
+            console.warn('[Voice] Save settings failed:', err);
+            showToast('ASR 配置保存失败', 'error');
+            if (note) note.textContent = '保存失败，请重试';
+        }
     }
 
     function updateVoiceUI(state, message) {
@@ -5684,9 +5849,11 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     async function transcribeVoiceBlob(audioBlob) {
         updateVoiceUI('processing', '正在识别语音...');
         try {
+            const headers = { 'Content-Type': audioBlob.type || 'audio/webm' };
+            if (voiceSessionId) headers['X-Voice-Session'] = voiceSessionId;
             const resp = await fetch('/api/voice/transcribe', {
                 method: 'POST',
-                headers: { 'Content-Type': audioBlob.type || 'audio/webm' },
+                headers,
                 body: audioBlob
             });
             const data = await resp.json().catch(() => ({}));
@@ -5888,6 +6055,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     function initVoiceShortcuts() {
         const btn = document.getElementById('voiceBtn');
         if (btn) btn.disabled = !isVoiceSupported();
+        loadVoiceConfig();
         if (!isVoiceSupported()) {
             if (btn) btn.title = '当前浏览器不支持语音录制';
             return;
@@ -5906,10 +6074,19 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             voiceSpaceActive = false;
             if (voiceState === 'listening') stopVoiceCapture();
         });
+        document.addEventListener('click', (e) => {
+            const panel = document.getElementById('voiceSettingsPanel');
+            const btnSettings = document.getElementById('voiceSettingsBtn');
+            if (!panel || !panel.classList.contains('open')) return;
+            if (panel.contains(e.target) || (btnSettings && btnSettings.contains(e.target))) return;
+            toggleVoiceSettings(false);
+        });
     }
 
     window.toggleVoiceCapture = toggleVoiceCapture;
     window.handleVoiceTranscript = handleVoiceTranscript;
+    window.toggleVoiceSettings = toggleVoiceSettings;
+    window.saveVoiceSettings = saveVoiceSettings;
 
     // ═══════════════ Utility Functions ═══════════════
     // renderMarkdown and inlineMarkdown are defined near the bottom of this script

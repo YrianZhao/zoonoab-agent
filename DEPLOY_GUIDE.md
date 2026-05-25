@@ -160,47 +160,50 @@ https://zoonoab-agent.vercel.app
 - [ ] 聊天功能正常工作
 - [ ] 3D 分子查看器正常加载
 - [ ] Demo 按钮可以运行演示流程
-- [ ] 已配置语音识别环境变量，点击麦克风可以完成转写
+- [ ] 已通过页面 `ASR` 按钮或环境变量配置语音识别，点击麦克风可以完成转写
 
 ---
 
 ## 🎙️ 语音控制配置
 
-语音模块用于大屏演示，浏览器录音后由服务端转发到云端 ASR。请在 Railway / Render / Vercel 的环境变量页面配置，不要把密钥写入代码。
+语音模块用于大屏演示，浏览器录音后由服务端转发到云端 ASR。页面输入框旁有一个低调的 `ASR` 按钮，点开只需要三行：
 
-### 推荐：OpenAI
+```text
+Base URL
+API Key
+Model
+```
+
+DeepSeek 兼容音频网关示例：
+
+```text
+Base URL: https://your-deepseek-asr-gateway.example.com/v1/audio/transcriptions
+API Key: 你的 DeepSeek 或兼容网关 Key
+Model: deepseek-v4-flash
+```
+
+安全策略：
+
+- API Key 不写入代码、不写入 Git、不写入浏览器 localStorage。
+- 保存后页面会立即清空 API Key 输入框。
+- 服务端只把 Key 保存在内存会话里，默认 2 小时过期；服务重启或页面刷新后需要重新填写。
+- 前端后续转写只发送短期 session token，不发送明文 API Key。
+
+也可以在 Railway / Render / Vercel 环境变量中配置固定 ASR：
+
+```bash
+VOICE_ASR_PROVIDER=deepseek
+DEEPSEEK_API_KEY=你的 DeepSeek Key
+DEEPSEEK_ASR_BASE_URL=https://your-deepseek-asr-gateway.example.com/v1/audio/transcriptions
+VOICE_TRANSCRIBE_MODEL=deepseek-v4-flash
+```
+
+如果使用 OpenAI：
 
 ```bash
 VOICE_ASR_PROVIDER=openai
 OPENAI_API_KEY=你的 OpenAI API Key
 VOICE_TRANSCRIBE_MODEL=gpt-4o-transcribe
-```
-
-### OpenAI 兼容音频转写网关
-
-如果你使用自己的网关或第三方兼容服务：
-
-```bash
-VOICE_ASR_PROVIDER=compatible
-VOICE_ASR_API_KEY=你的网关 Key
-VOICE_ASR_BASE_URL=https://your-gateway.example.com/v1/audio/transcriptions
-VOICE_TRANSCRIBE_MODEL=你的转写模型名
-```
-
-### DeepSeek
-
-DeepSeek 官方 API 当前没有标准音频转写端点。如果只配置：
-
-```bash
-VOICE_ASR_PROVIDER=deepseek
-DEEPSEEK_API_KEY=你的 DeepSeek API Key
-```
-
-服务端会返回“DeepSeek 暂不支持音频转写”的明确提示。若你有 DeepSeek 兼容的音频转写网关，请额外配置：
-
-```bash
-DEEPSEEK_ASR_BASE_URL=https://your-deepseek-asr-gateway.example.com/v1/audio/transcriptions
-VOICE_TRANSCRIBE_MODEL=你的转写模型名
 ```
 
 线上演示必须使用 HTTPS 域名才能稳定调用麦克风；本地调试可使用 `http://localhost:8080`。

@@ -15,7 +15,8 @@ const server = http.createServer(app);
 const wss = new WebSocketServer({ server });
 const VOICE_AUDIO_LIMIT = '8mb';
 const VOICE_AUDIO_LIMIT_BYTES = 8 * 1024 * 1024;
-const VOICE_ASR_PROVIDER = (process.env.VOICE_ASR_PROVIDER || 'openai').toLowerCase();
+const VOICE_SESSION_TTL_MS = 2 * 60 * 60 * 1000;
+const VOICE_ASR_PROVIDER = (process.env.VOICE_ASR_PROVIDER || 'deepseek').toLowerCase();
 const VOICE_TRANSCRIBE_MODEL = process.env.VOICE_TRANSCRIBE_MODEL ||
   (VOICE_ASR_PROVIDER === 'deepseek' ? 'deepseek-v4-flash' : 'gpt-4o-transcribe');
 const VOICE_DOMAIN_PROMPT = [
@@ -38,6 +39,7 @@ const voiceAudioParser = express.raw({
     return VOICE_AUDIO_TYPES.has(baseType);
   }
 });
+const voiceRuntimeConfigs = new Map();
 
 app.use(express.json({ limit: '1mb' }));
 app.use((req, res, next) => {
@@ -56,7 +58,54 @@ function audioFilenameForType(contentType) {
   return 'voice.webm';
 }
 
-function getVoiceProviderConfig() {
+function normalizeVoiceBaseUrl(rawUrl) {
+  const value = String(rawUrl || '').trim();
+  if (!value) return '';
+  let url;
+  try {
+    url = new URL(value);
+  } catch {
+    throw new Error('语音识别 Base URL 格式不正确。');
+  }
+  const isLocal = ['localhost', '127.0.0.1', '::1'].includes(url.hostname);
+  if (url.protocol !== 'https:' && !(isLocal && url.protocol === 'http:')) {
+    throw new Error('语音识别 Base URL 必须使用 HTTPS，本地调试可使用 localhost。');
+  }
+  const pathName = url.pathname.replace(/\/+$/, '');
+  if (!/\/audio\/transcriptions$/.test(pathName)) {
+    const base = pathName.endsWith('/v1') ? pathName : (pathName + '/v1');
+    url.pathname = (base + '/audio/transcriptions').replace(/\/{2,}/g, '/');
+  }
+  return url.toString();
+}
+
+function inferVoiceProvider(url) {
+  const host = String(url || '').toLowerCase();
+  if (host.includes('deepseek')) return 'deepseek';
+  if (host.includes('openai')) return 'openai';
+  return 'compatible';
+}
+
+function cleanupVoiceRuntimeConfigs() {
+  const now = Date.now();
+  for (const [id, cfg] of voiceRuntimeConfigs) {
+    if (!cfg.expiresAt || cfg.expiresAt <= now) voiceRuntimeConfigs.delete(id);
+  }
+}
+
+function getVoiceRuntimeConfig(req) {
+  cleanupVoiceRuntimeConfigs();
+  const id = String(req && req.headers && req.headers['x-voice-session'] || '').trim();
+  if (!id || !/^[0-9a-f-]{36}$/i.test(id)) return null;
+  const cfg = voiceRuntimeConfigs.get(id);
+  if (!cfg) return null;
+  cfg.lastUsedAt = Date.now();
+  return cfg;
+}
+
+function getVoiceProviderConfig(req) {
+  const runtimeConfig = getVoiceRuntimeConfig(req);
+  if (runtimeConfig) return runtimeConfig;
   if (VOICE_ASR_PROVIDER === 'openai') {
     return {
       provider: 'openai',
@@ -79,7 +128,7 @@ function getVoiceProviderConfig() {
     return {
       provider: 'deepseek',
       key: process.env.DEEPSEEK_API_KEY || process.env.VOICE_ASR_API_KEY,
-      url: process.env.DEEPSEEK_ASR_BASE_URL || '',
+      url: process.env.DEEPSEEK_ASR_BASE_URL ? normalizeVoiceBaseUrl(process.env.DEEPSEEK_ASR_BASE_URL) : '',
       model: VOICE_TRANSCRIBE_MODEL,
       supportsAudio: Boolean(process.env.DEEPSEEK_ASR_BASE_URL)
     };
@@ -117,8 +166,62 @@ app.get('/api/voice/config', (_, res) => {
     provider: providerConfig.provider,
     model: providerConfig.model,
     ready: Boolean(providerConfig.key && providerConfig.url && providerConfig.supportsAudio),
-    supportsAudio: providerConfig.supportsAudio
+    supportsAudio: providerConfig.supportsAudio,
+    baseUrl: providerConfig.url || '',
+    sessionTtlSeconds: Math.floor(VOICE_SESSION_TTL_MS / 1000)
   });
+});
+
+app.post('/api/voice/session', (req, res) => {
+  const body = req.body || {};
+  const apiKey = String(body.apiKey || '').trim();
+  const model = String(body.model || VOICE_TRANSCRIBE_MODEL).trim();
+  if (!apiKey) {
+    return res.status(400).json({ error: 'missing_api_key', message: '请填写语音识别 API Key。' });
+  }
+  if (!model || model.length > 120) {
+    return res.status(400).json({ error: 'invalid_model', message: '请填写有效的模型名称。' });
+  }
+  if (apiKey.length > 3000) {
+    return res.status(400).json({ error: 'api_key_too_long', message: 'API Key 过长。' });
+  }
+  let url;
+  try {
+    url = normalizeVoiceBaseUrl(body.baseUrl || process.env.DEEPSEEK_ASR_BASE_URL || process.env.VOICE_ASR_BASE_URL || '');
+  } catch (err) {
+    return res.status(400).json({ error: 'invalid_base_url', message: err.message || 'Base URL 无效。' });
+  }
+  if (!url) {
+    return res.status(400).json({ error: 'missing_base_url', message: '请填写语音识别 Base URL。' });
+  }
+  cleanupVoiceRuntimeConfigs();
+  const id = uuidv4();
+  const provider = inferVoiceProvider(url);
+  const now = Date.now();
+  voiceRuntimeConfigs.set(id, {
+    provider,
+    key: apiKey,
+    url,
+    model,
+    supportsAudio: true,
+    createdAt: now,
+    lastUsedAt: now,
+    expiresAt: now + VOICE_SESSION_TTL_MS
+  });
+  res.json({
+    voiceSessionId: id,
+    provider,
+    baseUrl: url,
+    model,
+    ready: true,
+    expiresInSeconds: Math.floor(VOICE_SESSION_TTL_MS / 1000)
+  });
+});
+
+app.delete('/api/voice/session', (req, res) => {
+  const id = String(req.headers['x-voice-session'] || '').trim();
+  if (id) voiceRuntimeConfigs.delete(id);
+  res.json({ ok: true });
 });
 
 app.post('/api/voice/transcribe', (req, res, next) => {
@@ -130,7 +233,7 @@ app.post('/api/voice/transcribe', (req, res, next) => {
     return res.status(400).json({ error: 'invalid_audio', message: '无法读取语音数据。' });
   });
 }, async (req, res) => {
-  const providerConfig = getVoiceProviderConfig();
+  const providerConfig = getVoiceProviderConfig(req);
   const audio = Buffer.isBuffer(req.body) ? req.body : Buffer.alloc(0);
   if (!audio.length) {
     return res.status(400).json({ error: 'empty_audio', message: '未收到语音数据。' });
