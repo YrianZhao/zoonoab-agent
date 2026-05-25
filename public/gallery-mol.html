@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3D Mol Thumb</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;background:#0D1117}
+#c{width:100%;height:100%;position:relative}canvas{width:100%!important;height:100%!important;display:block;outline:none}
+.ld{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#a5b4fc;font-size:12px;font-family:-apple-system,sans-serif;pointer-events:none}</style>
+<body>
+<div id="c"><div class="ld">Loading...</div></div>
+
+<!-- LOCAL 3Dmol (no CDN dependency) -->
+<script src="/lib/3Dmol-min.js"></script>
+<script>
+(function(){
+    // ══════ CDN Fallback chain ══════
+    var FALLBACKS = [
+        'https://unpkg.com/3dmol@2.1.1/build/3Dmol-noui.min.js',
+        'https://cdn.jsdelivr.net/npm/3dmol@2.1.1/build/3Dmol-noui.min.js'
+    ];
+    window.__3dmol_err = function(n) {
+        if (n < FALLBACKS.length) {
+            var s = document.createElement('script');
+            s.src = FALLBACKS[n];
+            s.onload = function() { window.__3dmol_ok = 1; init(); };
+            s.onerror = function() { window.__3dmol_err(n+1); };
+            document.head.appendChild(s);
+        } else {
+            document.querySelector('.ld').textContent = 'CDN failed';
+        }
+    };
+
+    // ══════ Init ══════
+    function init() {
+        if (typeof $3Dmol === 'undefined') return;
+        var params = new URLSearchParams(location.search);
+        var pdbUrl = params.get('pdb') || '';
+        var cA = params.get('chainA') || '#9CA3AF';
+        var cB = params.get('chainB') || '#60A5FA';
+
+        var container = document.getElementById('c');
+        var ld = container.querySelector('.ld');
+        var glv = $3Dmol.createViewer(container, { backgroundColor: '#0D1117' });
+        if (!glv) { ld.textContent = 'GL fail'; return; }
+
+        if (!pdbUrl) { ld.textContent = 'No URL'; return; }
+
+        // Multi-chain color palette (Click.mAb style: orange heavy, teal light)
+        var CHAIN_PALETTE = ['#FB923C','#2DD4BF','#818CF8','#34D399','#F472B6','#60A5FA'];
+
+        function applyChainColors(m) {
+            var chains = [];
+            m.selectedAtoms({}).forEach(function(a){ if(chains.indexOf(a.chain)<0) chains.push(a.chain); });
+            chains.sort();
+            if (chains.length === 1) {
+                glv.setStyle({}, {cartoon:{color: cB || '#FB923C'}});
+            } else {
+                chains.forEach(function(ch, i) {
+                    glv.setStyle({chain:ch},{cartoon:{color: CHAIN_PALETTE[i % CHAIN_PALETTE.length]}});
+                });
+            }
+        }
+
+        // Load PDB via fetch → full control
+        fetch(pdbUrl).then(function(r){return r.text();}).then(function(txt){
+            var m = glv.addModel(txt, 'pdb');
+            applyChainColors(m);
+            glv.render();
+            try{glv.zoomTo();}catch(e){}
+            if(ld)ld.style.display='none';
+            window.parent.postMessage({source:'gallery-mol',type:'ready',data:{}},'*');
+        }).catch(function(e){
+            console.warn('[thumb] fetch err:',e,'→ trying download');
+            $3Dmol.download(pdbUrl,{mimetype:'text/plain'},function(txt2){
+                var m = glv.addModel(txt2,'pdb');
+                applyChainColors(m);
+                glv.render();
+                try{glv.zoomTo();}catch(e2){}
+                if(ld)ld.style.display='none';
+                window.parent.postMessage({source:'gallery-mol',type:'ready',data:{}},'*');
+            });
+        });
+
+        setTimeout(function(){if(ld&&ld.style.display!=='none'){ld.style.display='none';}},20000);
+
+        window.addEventListener('message',function(e){
+            if(e.data&&e.data.type==='ping') e.source.postMessage({source:'gallery-mol',type:'pong',data:{}},'*');
+        });
+    }
+
+    // Start when $3Dmol is available
+    if (typeof $3Dmol !== 'undefined') init();
+    else { var t=setInterval(function(){if(typeof $3Dmol!=='undefined'){clearInterval(t);init();}},200); }
+})();
+</script>
+</body>
+</html>

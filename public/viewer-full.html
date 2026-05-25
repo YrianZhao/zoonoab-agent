@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Full 3D Viewer</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;background:#0D1117;font-family:-apple-system,sans-serif}
+.wrap{display:flex;flex-direction:column;width:100%;height:100%}
+.toolbar{display:flex;align-items:center;gap:10px;padding:9px 16px;
+  background:#161B27;border-bottom:1px solid rgba(255,255,255,0.1);
+  flex-shrink:0;flex-wrap:wrap;z-index:5}
+.tbg{font-size:10px;font-weight:700;color:rgba(255,255,255,0.3);letter-spacing:1px;text-transform:uppercase}
+.btns{display:flex;gap:3px}
+.btn{padding:4px 13px;border-radius:7px;border:1.5px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.65);
+  font-size:12px;font-weight:600;cursor:pointer;transition:all .15s;white-space:nowrap}
+.btn:hover{border-color:#FB923C;color:#FB923C;background:rgba(251,146,60,0.1)}
+.btn.active{background:#1D4ED8;color:#fff;border-color:#3B82F6;box-shadow:0 2px 8px rgba(59,130,246,.35)}
+.divider{width:1px;height:22px;background:rgba(255,255,255,0.1)}
+.actions{display:flex;gap:4px;margin-left:auto}
+.act{padding:5px 12px;border-radius:7px;border:1.5px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.65);
+  font-size:12px;font-weight:600;cursor:pointer;transition:all .15s}
+.act:hover{border-color:#2DD4BF;color:#2DD4BF;background:rgba(45,212,191,0.1)}
+.act.active{background:#EF4444;color:#fff;border-color:#EF4444}
+.vwrap{flex:1;position:relative;overflow:hidden}
+#vc{width:100%;height:100%;position:relative}
+canvas{width:100%!important;height:100%!important;display:block;outline:none}
+.hint{text-align:center;padding:7px 0;color:rgba(255,255,255,0.25);font-size:11px;flex-shrink:0;z-index:5;background:#0D1117;}
+.ld{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+   color:#FB923C;font-size:12px;letter-spacing:.5px;pointer-events:none;white-space:nowrap;z-index:3}
+</style>
+<body>
+<div class="wrap">
+  <div class="toolbar">
+    <span class="tbg">STYLE</span><div class="btns" id="sBtns"></div>
+    <div class="divider"></div>
+    <span class="tbg">COLOR</span><div class="btns" id="cBtns"></div>
+    <div class="actions" id="acts"></div>
+  </div>
+  <div class="vwrap"><div id="vc"><div class="ld">Loading...</div></div></div>
+  <div class="hint">Drag to rotate &middot; Scroll to zoom &middot; Right-drag to pan</div>
+</div>
+
+<script src="/lib/3Dmol-min.js"></script>
+<script>
+(function(){
+    var params = new URLSearchParams(location.search);
+    var pdbUrl = params.get('pdb') || '';
+
+    // ════ Colors ════
+    var AG_COLOR = '#FB923C';   // Heavy chain / Chain A → orange (Click.mAb style)
+    var AB_COLOR = '#2DD4BF';   // Light chain / other chains → teal (Click.mAb style)
+    var SF_COLOR = '#67E8F9';   // Surface → cyan
+
+    // ════ STATE (outer scope — all functions can see these) ════
+    var glv = null;
+    var currentStyle = 'cartoon';
+    var currentColor = 'ab-ag';
+    var isSpinning = false;
+    var _loaded = false;
+
+    // ════ Style defs ════
+    var STYLES = {
+        cartoon: 'cartoon',
+        stick:   'stick',
+        sphere:  'sphere',
+        line:    'line',
+        cross:   'cross',
+        surface: 'surface'
+    };
+
+    // ════ Color scheme implementations ════
+    //
+    // CRITICAL: For cartoon style, you CANNOT do separate setStyle calls like:
+    //   glv.setStyle({}, {cartoon:{}})
+    //   glv.setStyle({chain:'A'}, {color:'gray'})  ← DOES NOT WORK for cartoon!
+    //
+    // Instead, color must be embedded inside the cartoon spec itself.
+    //
+    var COLORS = {
+
+        // Ab/Ag: Chain A = gray antigen, all others = blue antibody
+        'ab-ag': function() {
+            if (!glv) return;
+
+            if (currentStyle === 'surface') {
+                // Surface mode: set underlying atom colors (surface picks up atom colors)
+                glv.setStyle({chain:'A'}, {color: AG_COLOR});
+                glv.setStyle({not:{chain:'A'}}, {color: AB_COLOR});
+                return;
+            }
+
+            // For non-surface styles: embed color INSIDE each style's spec
+            // This is CRITICAL — 3Dmol ignores top-level "color" for cartoon/stick etc.
+            switch(currentStyle){
+                case 'cartoon':
+                    glv.setStyle({chain:'A'}, {cartoon:{color: AG_COLOR}});
+                    glv.setStyle({not:{chain:'A'}}, {cartoon:{color: AB_COLOR}});
+                    break;
+                case 'stick':
+                    glv.setStyle({chain:'A'}, {stick:{radius:0.15, color: AG_COLOR}});
+                    glv.setStyle({not:{chain:'A'}}, {stick:{radius:0.15, color: AB_COLOR}});
+                    break;
+                case 'sphere':
+                    glv.setStyle({chain:'A'}, {sphere:{scale:0.35, color: AG_COLOR}});
+                    glv.setStyle({not:{chain:'A'}}, {sphere:{scale:0.35, color: AB_COLOR}});
+                    break;
+                case 'line':
+                    glv.setStyle({chain:'A'}, {line:{color: AG_COLOR}});
+                    glv.setStyle({not:{chain:'A'}}, {line:{color: AB_COLOR}});
+                    break;
+                case 'cross':
+                    glv.setStyle({chain:'A'}, {cross:{color: AG_COLOR}});
+                    glv.setStyle({not:{chain:'A'}}, {cross:{color: AB_COLOR}});
+                    break;
+                default:
+                    glv.setStyle({chain:'A'}, {cartoon:{color: AG_COLOR}});
+                    glv.setStyle({not:{chain:'A'}}, {cartoon:{color: AB_COLOR}});
+            }
+        },
+
+        // Chain: each chain gets its own auto-assigned color
+        'chain': function() {
+            if (!glv) return;
+            if (currentStyle === 'surface') {
+                glv.setStyle({}, {colorscheme: 'chain'});
+                return;
+            }
+            switch(currentStyle){
+                case 'cartoon': glv.setStyle({}, {cartoon:{colorscheme:'chain'}}); break;
+                case 'stick':   glv.setStyle({}, {stick:{radius:0.15, colorscheme:'chain'}}); break;
+                case 'sphere':  glv.setStyle({}, {sphere:{scale:0.35, colorscheme:'chain'}}); break;
+                case 'line':    glv.setStyle({}, {line:{colorscheme:'chain'}}); break;
+                case 'cross':   glv.setStyle({}, {cross:{colorscheme:'chain'}}); break;
+                default:        glv.setStyle({}, {cartoon:{colorscheme:'chain'}});
+            }
+        },
+
+        // Atom: color by atom type (CPK-like)
+        'atom': function() {
+            if (!glv) return;
+            if (currentStyle === 'surface') {
+                glv.setStyle({}, {});
+                return;
+            }
+            switch(currentStyle){
+                case 'cartoon': glv.setStyle({}, {cartoon:{colorscheme:'atomType'}}); break;
+                case 'stick':   glv.setStyle({}, {stick:{radius:0.15, colorscheme:'atomType'}}); break;
+                case 'sphere':  glv.setStyle({}, {sphere:{scale:0.35, colorscheme:'atomType'}}); break;
+                case 'line':    glv.setStyle({}, {line:{colorscheme:'atomType'}}); break;
+                case 'cross':   glv.setStyle({}, {cross:{colorscheme:'atomType'}}); break;
+                default:        glv.setStyle({}, {cartoon:{colorscheme:'atomType'}});
+            }
+        }
+    };
+
+    // ════ Helpers ════
+    function _getBaseSpec(styleName) {
+        switch(styleName){
+            case 'cartoon': return {cartoon:{}};
+            case 'stick':   return {stick:{radius:0.15}};
+            case 'sphere':  return {sphere:{scale:0.35}};
+            case 'line':    return {line:{}};
+            case 'cross':   return {cross:{}};
+            default:        return {cartoon:{}};
+        }
+    }
+
+    function _merge(a, b) {
+        var r = {};
+        for(var k in a) r[k] = typeof a[k]==='object' && !Array.isArray(a[k]) ? _merge(a[k],{}) : a[k];
+        for(var k in b) {
+            if(typeof b[k]==='object' && !Array.isArray(b[k]) && typeof r[k]==='object'){
+                r[k] = _merge(r[k],b[k]);
+            } else {
+                r[k] = b[k];
+            }
+        }
+        return r;
+    }
+
+    // ════ INIT ════
+    window.__vfInit = function init() {
+        if (typeof $3Dmol === 'undefined') return;
+
+        var container = document.getElementById('vc');
+        var ldEl = container.querySelector('.ld');
+        glv = $3Dmol.createViewer(container, {backgroundColor:'#0D1117'});
+        if (!glv) { ldEl.textContent='GL fail'; return; }
+
+        document.title = decodeURIComponent(params.get('title')||'') || 'Molecule';
+
+        // Style buttons
+        Object.keys(STYLES).forEach(function(n){
+            var b=document.createElement('button');
+            b.className='btn'+(n===currentStyle?' active':'');
+            b.textContent=n.charAt(0).toUpperCase()+n.slice(1);
+            b.dataset.v=n;
+            b.onclick=function(){doStyle(n);};
+            document.getElementById('sBtns').appendChild(b);
+        });
+
+        // Color buttons
+        ['ab-ag','chain','atom'].forEach(function(n){
+            var b=document.createElement('button');
+            b.className='btn'+(n===currentColor?' active':'');
+            b.textContent=n==='ab-ag'?'\u{1F7E8} Ab / Ag'
+                     :n==='chain'?'\u{1F441} Chain'
+                     :'\u{1F308} Atom';
+            b.dataset.v=n;
+            b.onclick=function(){doColor(n);};
+            document.getElementById('cBtns').appendChild(b);
+        });
+
+        // Action buttons
+        ['Spin','Reset','PNG'].forEach(function(n){
+            var b=document.createElement('button');b.className='act';b.textContent=n;
+            if(n==='Spin')b.id='spinB';
+            b.onclick=function(){if(n==='Spin')doSpin();else if(n==='Reset')doReset();else doPNG();};
+            document.getElementById('acts').appendChild(b);
+        });
+
+        load(pdbUrl, ldEl);
+
+        window.addEventListener('resize',function(){try{glv.resize();}catch(e){}});
+    }; // end __vfInit
+
+    // ════ LOAD ════
+    function load(url,ldEl){
+        if(!url){if(ldEl)ldEl.textContent='No URL';return;}
+        console.log('[VF] load '+url);
+        fetch(url).then(function(r){
+            if(!r.ok)throw new Error(r.status);
+            return r.text();
+        }).then(function(txt){
+            console.log('[VF] got '+txt.length+' chars');
+            glv.addModel(txt,'pdb');
+
+            // Remove water molecules (resname HOH/WAT) and杂原子 for cleaner view
+            try { glv.remove({or:[{resn:'HOH'},{resn:'WAT'}]}); } catch(e){}
+
+            apply();
+            setTimeout(center,200);setTimeout(center,700);
+            if(ldEl){ldEl.style.display='none';}
+            _loaded=true;
+            window.parent.postMessage({source:'viewer-full',type:'ready',data:{}},'*');
+        }).catch(function(err){
+            console.error('[VF] fetch err:',err,'→ fallback');
+            $3Dmol.download(url,{mimetype:'text/plain'},function(m){
+                glv.addModel(m,'pdb');
+                try{glv.remove({or:[{resn:'HOH'},{resn:'WAT'}]});}catch(e){}
+                apply();
+                setTimeout(center,300);setTimeout(center,800);
+                if(ldEl){ldEl.style.display='none';}
+                _loaded=true;
+                window.parent.postMessage({source:'viewer-full',type:'ready',data:{}},'*');
+            });
+            setTimeout(function(){if(ldEl&&ldEl.style.display!=='none'){ldEl.style.display='none';_loaded=true;}},15000);
+        });
+    }
+
+    // ════ CORE APPLY ════
+    function apply(){
+        if(!glv)return;
+        console.log('[VF] APPLY style='+currentStyle+' color='+currentColor);
+
+        try{
+            glv.removeAllSurfaces();
+
+            if(currentStyle==='surface'){
+                doSurface();
+            }else{
+                var cs=COLORS[currentColor];
+                if(cs)cs();
+                else{ /* fallback */ }
+            }
+        }catch(e){console.warn('[VF] apply err:',e);}
+
+        render();
+    }
+
+    function doSurface(){
+        // Step 1: Remove old surfaces
+        glv.removeAllSurfaces();
+
+        // Step 2: Hide internal skeleton (surface covers everything)
+        glv.setStyle({}, {line:{linewidth:0.5, opacity:0.03}});
+
+        var stype = null;
+        try { stype = $3Dmol.SurfaceType.MS; } catch(e) {}
+        if (!stype) try { stype = $3Dmol.SurfaceType.VDW; } catch(e) {}
+
+        if (!stype) {
+            // No surface API at all — fallback to stick
+            console.warn('[VF] no SurfaceType available');
+            glv.setStyle({}, {stick:{radius:0.12}});
+            var cs = COLORS[currentColor]; if(cs)cs();
+            render(); return;
+        }
+
+        // Step 3: Apply per-chain colored surfaces
+        // Chain A (antigen) → gray surface
+        try {
+            glv.addSurface(stype, {
+                opacity: 0.88,
+                color: AG_COLOR
+            }, {chain:'A'}, {});
+        } catch(e) {
+            console.warn('[VF] surface A err:', e);
+        }
+
+        // All other chains (antibody/VHH) → blue surface
+        try {
+            glv.addSurface(stype, {
+                opacity: 0.88,
+                color: AB_COLOR
+            }, {not:{chain:'A'}}, {});
+        } catch(e) {
+            console.warn('[VF] surface non-A err:', e);
+        }
+
+        // If color scheme is chain or atom, also apply for consistency
+        if (currentColor === 'chain') {
+            // For chain mode, we can't easily do multi-color surfaces,
+            // so keep the ab-ag split as best approximation
+        }
+    }
+
+    function render(){
+        if(!glv)return;
+        glv.render();
+        setTimeout(function(){try{glv.zoomTo();glv.render();}catch(e){}},180);
+    }
+    function center(){try{glv.zoomTo();glv.render();}catch(e){}}
+
+    // ════ PUBLIC ACTIONS ════
+    function doStyle(s){
+        currentStyle=s;
+        uiSync('style',s);
+        if(_loaded)apply();
+    }
+
+    function doColor(c){
+        currentColor=c;
+        uiSync('color',c);
+        if(_loaded)apply();
+    }
+
+    function uiSync(type,val){
+        var p=type==='style'?document.getElementById('sBtns'):document.getElementById('cBtns');
+        p.querySelectorAll('.btn').forEach(function(b){b.classList.toggle('active',b.dataset.v===val);});
+    }
+
+    function doSpin(){
+        isSpinning=!isSpinning;if(glv)glv.spin(isSpinning);
+        var sb=document.getElementById('spinB');if(sb)sb.classList.toggle('active',isSpinning);
+    }
+    function doReset(){if(glv){glv.zoomTo();glv.render();}setTimeout(function(){if(glv){glv.zoomTo();glv.render();}},400);}
+    function doPNG(){
+        try{var uri=glv.pngURI();var a=document.createElement('a');a.download='zoonoab-'+Date.now()+'.png';a.href=uri;a.click();
+        window.parent.postMessage({source:'viewer-full',type:'imageData',data:uri},'*');
+        }catch(e){console.error('[VF] png err:',e);}
+    }
+
+    // ════ POSTMESSAGE ════
+    window.addEventListener('message',function(e){
+        if(!e.data||e.data.source!=='zoonoab-gallery')return;
+        var d=e.data;
+        switch(d.type){
+            case 'setStyle':doStyle(d.data.name);break;
+            case 'setColor':doColor(d.data.mode);break;
+            case 'resetView':doReset();break;
+            case 'toggleSpin':
+                isSpinning=d.data.spin!==false;
+                if(glv)glv.spin(isSpinning);
+                var sb=document.getElementById('spinB');if(sb)sb.classList.toggle('active',isSpinning);
+                break;
+            case 'exportImage':doPNG();break;
+        }
+    });
+
+    // Auto start
+    if(typeof $3Dmol!=='undefined')__vfInit();
+    else var _ti=setInterval(function(){if(typeof $3Dmol!=='undefined'){clearInterval(_ti);__vfInit();}},200);
+
+})();
+</script>
+</body>
+</html>

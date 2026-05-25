@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>3Dmol Gallery Debug Test</title>
+<script src="https://3dmol.org/build/3Dmol-min.js"></script>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:system-ui; padding:20px; background:#f8fafc; }
+h2 { margin-bottom:16px; color:#333; }
+.row { display:flex; gap:20px; flex-wrap:wrap; }
+
+/* === Test A: Minimal container (no extra CSS) === */
+.card-a {
+    width:280px;
+    height:240px;
+    border:2px solid #6366f1;
+    border-radius:12px;
+    overflow:hidden;
+    background:#fff;
+}
+.card-a .label {
+    padding:8px 12px;
+    background:#eef2ff;
+    font-size:12px;
+    font-weight:600;
+    color:#4338ca;
+}
+
+/* === Test B: Container with position:relative + overflow:hidden === */
+.card-b {
+    width:280px;
+    height:240px;
+    border:2px solid #10b981;
+    border-radius:12px;
+    overflow:hidden;
+    position:relative;
+    background:#fff;
+}
+
+/* === Test C: Container with explicit viewer div inside === */
+.card-c {
+    width:280px;
+    height:240px;
+    border:2px solid #f59e0b;
+    border-radius:12px;
+    overflow:hidden;
+    background:#fff;
+}
+.viewer-c {
+    width:100%;
+    height:100%;
+}
+</style>
+</head>
+<body>
+
+<h2>3Dmol Gallery Debug — 3 Different Approaches</h2>
+<div class="row">
+
+<!-- Test A: Direct on container -->
+<div class="card-a">
+    <div class="label">A: Direct createViewer(container)</div>
+    <div id="viewerA"></div>
+</div>
+
+<!-- Test B: With position:relative -->
+<div class="card-b" id="containerB"></div>
+<span style="font-size:11px;color:#10b981;margin-top:4px;display:block;">B: pos:relative + overflow:hidden</span>
+
+<!-- Test C: Nested viewer div -->
+<div class="card-c">
+    <div id="viewerC" class="viewer-c"></div>
+</div>
+<span style="font-size:11px;color:#f59e0b;display:block;">C: Nested viewer div, width/height:100%</span>
+
+</div>
+
+<script>
+const PDB_URL = 'http://localhost:8080/api/pdb/local/4KC3_site1_1655576_binder-0_iptm-0.7953_complex.pdb';
+
+// ========== Test A ==========
+(function testA() {
+    const el = document.getElementById('viewerA');
+    // Make sure container has dimensions
+    el.style.width = '256px';
+    el.style.height = '196px';
+    
+    const vA = $3Dmol.createViewer(el, { backgroundColor: '#FFFFFF', antialias: true });
+    
+    console.log('[TestA] Viewer created, canvas:', el.querySelector('canvas') ? 'YES' : 'NO');
+    
+    fetch(PDB_URL).then(r => r.text()).then(data => {
+        const m = vA.addModel(data, 'pdb');
+        m.setStyle({}, { cartoon: {} });
+        vA.setStyle({ chain: 'A' }, { cartoon: { color: '#9CA3AF' } });
+        vA.setStyle({ chain: 'B' }, { cartoon: { color: '#60A5FA' } });
+        vA.zoomTo({ factor: -0.6 });
+        vA.render();
+        
+        const c = el.querySelector('canvas');
+        console.log('[TestA] Rendered! Canvas:', c ? `${c.width}x${c.height}` : 'NONE',
+                    'display:', c?.style.display, 'visibility:', c?.style.visibility,
+                    'opacity:', c?.style.opacity,
+                    'parent overflow:', getComputedStyle(el.parentElement).overflow);
+    }).catch(e => console.error('[TestA] Error:', e));
+})();
+
+// ========== Test B ==========
+(function testB() {
+    const el = document.getElementById('containerB');
+    el.style.width = '280px';
+    el.style.height = '200px';
+    
+    const vB = $3Dmol.createViewer(el, { backgroundColor: '#F0FDF4', antialias: true });
+    
+    console.log('[TestB] Viewer created, canvas:', el.querySelector('canvas') ? 'YES' : 'NO');
+    
+    fetch(PDB_URL).then(r => r.text()).then(data => {
+        const m = vB.addModel(data, 'pdb');
+        m.setStyle({}, { stick: { radius: 0.15 } });
+        vB.setStyle({ chain: 'A' }, { stick: { color: '#9CA3AF' } });
+        vB.setStyle({ chain: 'B' }, { stick: { color: '#60A5FA' } });
+        vB.zoomTo({ factor: -0.6 });
+        vB.render();
+        
+        const c = el.querySelector('canvas');
+        console.log('[TestB] Rendered! Canvas:', c ? `${c.width}x${c.height}` : 'NONE');
+    }).catch(e => console.error('[TestB] Error:', e));
+})();
+
+// ========== Test C ==========
+(function testC() {
+    const el = document.getElementById('viewerC');
+    const vC = $3Dmol.createViewer(el, { backgroundColor: '#FFFBEB', antialias: true });
+    
+    console.log('[TestC] Viewer created, canvas:', el.querySelector('canvas') ? 'YES' : 'NO');
+    
+    fetch(PDB_URL).then(r => r.text()).then(data => {
+        const m = vC.addModel(data, 'pdb');
+        m.setStyle({}, { sphere: {} });
+        vC.setStyle({ chain: 'A' }, { sphere: { color: '#9CA3AF' } });
+        vC.setStyle({ chain: 'B' }, { sphere: { color: '#60A5FA' } });
+        vC.zoomTo({ factor: -0.6 });
+        vC.render();
+        
+        const c = el.querySelector('canvas');
+        console.log('[TestC] Rendered! Canvas:', c ? `${c.width}x${c.height}` : 'NONE');
+    }).catch(e => console.error('[TestC] Error:', e));
+})();
+</script>
+
+</body>
+</html>
