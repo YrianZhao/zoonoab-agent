@@ -160,6 +160,50 @@ https://zoonoab-agent.vercel.app
 - [ ] 聊天功能正常工作
 - [ ] 3D 分子查看器正常加载
 - [ ] Demo 按钮可以运行演示流程
+- [ ] 已配置语音识别环境变量，点击麦克风可以完成转写
+
+---
+
+## 🎙️ 语音控制配置
+
+语音模块用于大屏演示，浏览器录音后由服务端转发到云端 ASR。请在 Railway / Render / Vercel 的环境变量页面配置，不要把密钥写入代码。
+
+### 推荐：OpenAI
+
+```bash
+VOICE_ASR_PROVIDER=openai
+OPENAI_API_KEY=你的 OpenAI API Key
+VOICE_TRANSCRIBE_MODEL=gpt-4o-transcribe
+```
+
+### OpenAI 兼容音频转写网关
+
+如果你使用自己的网关或第三方兼容服务：
+
+```bash
+VOICE_ASR_PROVIDER=compatible
+VOICE_ASR_API_KEY=你的网关 Key
+VOICE_ASR_BASE_URL=https://your-gateway.example.com/v1/audio/transcriptions
+VOICE_TRANSCRIBE_MODEL=你的转写模型名
+```
+
+### DeepSeek
+
+DeepSeek 官方 API 当前没有标准音频转写端点。如果只配置：
+
+```bash
+VOICE_ASR_PROVIDER=deepseek
+DEEPSEEK_API_KEY=你的 DeepSeek API Key
+```
+
+服务端会返回“DeepSeek 暂不支持音频转写”的明确提示。若你有 DeepSeek 兼容的音频转写网关，请额外配置：
+
+```bash
+DEEPSEEK_ASR_BASE_URL=https://your-deepseek-asr-gateway.example.com/v1/audio/transcriptions
+VOICE_TRANSCRIBE_MODEL=你的转写模型名
+```
+
+线上演示必须使用 HTTPS 域名才能稳定调用麦克风；本地调试可使用 `http://localhost:8080`。
 
 ---
 

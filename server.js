@@ -13,6 +13,31 @@ const { v4: uuidv4 } = require('uuid');
 const app = express();
 const server = http.createServer(app);
 const wss = new WebSocketServer({ server });
+const VOICE_AUDIO_LIMIT = '8mb';
+const VOICE_AUDIO_LIMIT_BYTES = 8 * 1024 * 1024;
+const VOICE_ASR_PROVIDER = (process.env.VOICE_ASR_PROVIDER || 'openai').toLowerCase();
+const VOICE_TRANSCRIBE_MODEL = process.env.VOICE_TRANSCRIBE_MODEL ||
+  (VOICE_ASR_PROVIDER === 'deepseek' ? 'deepseek-v4-flash' : 'gpt-4o-transcribe');
+const VOICE_DOMAIN_PROMPT = [
+  'ZoonoAb AI antibody design platform.',
+  'Common terms: IL-33, ST2, VHH, nanobody, Fab, PD-1, PD-L1, HER2, TNF, VEGF, CD3e, UniProt, Chai-1, ipTM, pLDDT, DockQ, PDB, CDR, CDR-H3.',
+  'The speaker may give Chinese or English demo control commands for molecular viewers and antibody workflows.'
+].join(' ');
+const VOICE_AUDIO_TYPES = new Set([
+  'audio/webm',
+  'audio/mp4',
+  'audio/mpeg',
+  'audio/wav',
+  'audio/x-wav',
+  'application/octet-stream'
+]);
+const voiceAudioParser = express.raw({
+  limit: VOICE_AUDIO_LIMIT,
+  type: (req) => {
+    const baseType = String(req.headers['content-type'] || '').split(';')[0].trim().toLowerCase();
+    return VOICE_AUDIO_TYPES.has(baseType);
+  }
+});
 
 app.use(express.json({ limit: '1mb' }));
 app.use((req, res, next) => {
@@ -21,6 +46,142 @@ app.use((req, res, next) => {
   res.setHeader('X-XSS-Protection', '1; mode=block');
   res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
   next();
+});
+
+function audioFilenameForType(contentType) {
+  const baseType = String(contentType || '').split(';')[0].trim().toLowerCase();
+  if (baseType === 'audio/mp4') return 'voice.mp4';
+  if (baseType === 'audio/mpeg') return 'voice.mp3';
+  if (baseType === 'audio/wav' || baseType === 'audio/x-wav') return 'voice.wav';
+  return 'voice.webm';
+}
+
+function getVoiceProviderConfig() {
+  if (VOICE_ASR_PROVIDER === 'openai') {
+    return {
+      provider: 'openai',
+      key: process.env.OPENAI_API_KEY || process.env.VOICE_ASR_API_KEY,
+      url: process.env.VOICE_ASR_BASE_URL || 'https://api.openai.com/v1/audio/transcriptions',
+      model: VOICE_TRANSCRIBE_MODEL,
+      supportsAudio: true
+    };
+  }
+  if (VOICE_ASR_PROVIDER === 'compatible') {
+    return {
+      provider: 'compatible',
+      key: process.env.VOICE_ASR_API_KEY || process.env.OPENAI_API_KEY,
+      url: process.env.VOICE_ASR_BASE_URL,
+      model: VOICE_TRANSCRIBE_MODEL,
+      supportsAudio: true
+    };
+  }
+  if (VOICE_ASR_PROVIDER === 'deepseek') {
+    return {
+      provider: 'deepseek',
+      key: process.env.DEEPSEEK_API_KEY || process.env.VOICE_ASR_API_KEY,
+      url: process.env.DEEPSEEK_ASR_BASE_URL || '',
+      model: VOICE_TRANSCRIBE_MODEL,
+      supportsAudio: Boolean(process.env.DEEPSEEK_ASR_BASE_URL)
+    };
+  }
+  return {
+    provider: VOICE_ASR_PROVIDER,
+    key: process.env.VOICE_ASR_API_KEY,
+    url: process.env.VOICE_ASR_BASE_URL,
+    model: VOICE_TRANSCRIBE_MODEL,
+    supportsAudio: true
+  };
+}
+
+function voiceProviderMissingKeyError(provider) {
+  if (provider === 'openai') return '服务端未配置 OPENAI_API_KEY。';
+  if (provider === 'deepseek') return '服务端未配置 DEEPSEEK_API_KEY。';
+  return '服务端未配置 VOICE_ASR_API_KEY。';
+}
+
+function parseProviderError(text) {
+  if (!text) return 'Audio transcription request failed';
+  try {
+    const parsed = JSON.parse(text);
+    return parsed && parsed.error && parsed.error.message
+      ? parsed.error.message
+      : 'Audio transcription request failed';
+  } catch {
+    return text.slice(0, 180);
+  }
+}
+
+app.get('/api/voice/config', (_, res) => {
+  const providerConfig = getVoiceProviderConfig();
+  res.json({
+    provider: providerConfig.provider,
+    model: providerConfig.model,
+    ready: Boolean(providerConfig.key && providerConfig.url && providerConfig.supportsAudio),
+    supportsAudio: providerConfig.supportsAudio
+  });
+});
+
+app.post('/api/voice/transcribe', (req, res, next) => {
+  voiceAudioParser(req, res, (err) => {
+    if (!err) return next();
+    if (err.type === 'entity.too.large') {
+      return res.status(413).json({ error: 'audio_too_large', message: '单段语音不能超过 8 MB。' });
+    }
+    return res.status(400).json({ error: 'invalid_audio', message: '无法读取语音数据。' });
+  });
+}, async (req, res) => {
+  const providerConfig = getVoiceProviderConfig();
+  const audio = Buffer.isBuffer(req.body) ? req.body : Buffer.alloc(0);
+  if (!audio.length) {
+    return res.status(400).json({ error: 'empty_audio', message: '未收到语音数据。' });
+  }
+  if (audio.length > VOICE_AUDIO_LIMIT_BYTES) {
+    return res.status(413).json({ error: 'audio_too_large', message: '单段语音不能超过 8 MB。' });
+  }
+  if (providerConfig.provider === 'deepseek' && !providerConfig.supportsAudio) {
+    return res.status(501).json({
+      error: 'deepseek_audio_unsupported',
+      message: 'DeepSeek 官方 API 当前未提供音频转写端点。请使用 VOICE_ASR_PROVIDER=openai，或配置 DEEPSEEK_ASR_BASE_URL 指向兼容的音频转写网关。'
+    });
+  }
+  if (!providerConfig.key) {
+    return res.status(503).json({ error: 'missing_asr_api_key', message: voiceProviderMissingKeyError(providerConfig.provider) });
+  }
+  if (!providerConfig.url) {
+    return res.status(503).json({ error: 'missing_asr_base_url', message: '服务端未配置语音识别接口地址。' });
+  }
+  if (typeof fetch !== 'function' || typeof FormData !== 'function' || typeof Blob !== 'function') {
+    return res.status(500).json({ error: 'runtime_unsupported', message: '当前 Node.js 运行时不支持原生 fetch/FormData/Blob。' });
+  }
+
+  const contentType = String(req.headers['content-type'] || 'audio/webm').split(';')[0].trim().toLowerCase() || 'audio/webm';
+  const fileType = VOICE_AUDIO_TYPES.has(contentType) && contentType !== 'application/octet-stream' ? contentType : 'audio/webm';
+  const form = new FormData();
+  form.append('file', new Blob([audio], { type: fileType }), audioFilenameForType(contentType));
+  form.append('model', providerConfig.model);
+  form.append('language', 'zh');
+  form.append('prompt', VOICE_DOMAIN_PROMPT);
+
+  try {
+    const upstream = await fetch(providerConfig.url, {
+      method: 'POST',
+      headers: { Authorization: 'Bearer ' + providerConfig.key },
+      body: form
+    });
+    const bodyText = await upstream.text();
+    if (!upstream.ok) {
+      const message = parseProviderError(bodyText);
+      console.error('[Voice] Transcription failed:', providerConfig.provider, upstream.status, message);
+      return res.status(502).json({ error: 'transcription_failed', provider: providerConfig.provider, message });
+    }
+    let data;
+    try { data = JSON.parse(bodyText); } catch { data = { text: bodyText }; }
+    const text = typeof data.text === 'string' ? data.text.trim() : '';
+    return res.json({ text, provider: providerConfig.provider, model: providerConfig.model });
+  } catch (err) {
+    console.error('[Voice] Transcription request error:', err && err.message ? err.message : err);
+    return res.status(502).json({ error: 'transcription_unavailable', provider: providerConfig.provider, message: '语音识别服务暂时不可用。' });
+  }
 });
 app.use(express.static(path.join(__dirname, 'public')));
 

@@ -532,6 +532,54 @@
             transition: var(--transition); flex-shrink: 0;
         }
         .input-icon-btn:hover { background: var(--gray-100); color: var(--text-primary); transform: translateY(-1px); box-shadow: var(--shadow-xs); }
+        .voice-btn.listening {
+            color: var(--error);
+            background: var(--error-light);
+            box-shadow: 0 0 0 4px rgba(239,68,68,0.12);
+            animation: voicePulse 1.2s ease-in-out infinite;
+        }
+        .voice-btn.processing {
+            color: var(--brand);
+            background: var(--brand-lighter);
+        }
+        @keyframes voicePulse {
+            0%, 100% { box-shadow: 0 0 0 4px rgba(239,68,68,0.12); }
+            50% { box-shadow: 0 0 0 9px rgba(239,68,68,0); }
+        }
+        .voice-status-pop {
+            position: absolute;
+            right: 58px;
+            bottom: calc(100% + 8px);
+            display: none;
+            align-items: center;
+            gap: 7px;
+            padding: 7px 11px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            background: rgba(255,255,255,0.96);
+            color: var(--text-secondary);
+            font-size: 12px;
+            font-weight: 600;
+            box-shadow: var(--shadow-md);
+            backdrop-filter: blur(12px);
+            z-index: 20;
+            max-width: min(360px, calc(100vw - 48px));
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .voice-status-pop.active { display: inline-flex; }
+        .voice-status-pop.listening { color: var(--error); border-color: rgba(239,68,68,0.2); background: rgba(254,242,242,0.98); }
+        .voice-status-pop.processing { color: var(--brand-dark); border-color: rgba(0,123,255,0.2); background: rgba(240,247,255,0.98); }
+        .voice-status-pop.success { color: #16A34A; border-color: rgba(34,197,94,0.2); background: rgba(240,253,244,0.98); }
+        .voice-status-pop.error { color: var(--error); border-color: rgba(239,68,68,0.2); background: rgba(254,242,242,0.98); }
+        .voice-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: currentColor;
+            flex-shrink: 0;
+        }
         .input-field {
             flex: 1; border: none; outline: none; font-size: 15px;
             color: var(--text-primary); resize: none;
@@ -3172,6 +3220,13 @@
                     <input type="file" id="fastaFileInput" accept=".fasta,.fa,.pdb,.txt" style="display:none;" onchange="handleFileUpload(event)">
                     <textarea class="input-field" id="userInput" placeholder="" rows="1"></textarea>
                     <span id="inputCharCount" style="display:none;position:absolute;bottom:6px;right:52px;font-size:10px;color:var(--text-secondary);pointer-events:none;user-select:none;z-index:2;"></span>
+                    <button class="input-icon-btn voice-btn" id="voiceBtn" onclick="toggleVoiceCapture()" title="按住空格或点击开始语音控制">
+                        <i data-lucide="mic" style="width: 18px; height: 18px;"></i>
+                    </button>
+                    <div class="voice-status-pop" id="voiceStatusPop">
+                        <span class="voice-dot"></span>
+                        <span id="voiceStatusText">语音控制就绪</span>
+                    </div>
                     <button class="input-icon-btn" id="cancelBtn" onclick="cancelTask()" style="display:none; color: var(--error);" title="Cancel Task">
                         <i data-lucide="square" style="width: 18px; height: 18px; fill: currentColor;"></i>
                     </button>
@@ -5491,6 +5546,370 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             runDemo(text);
         }
     }
+
+    // ═══════════════ Voice Control ═══════════════
+    const VOICE_MIN_MS = 500;
+    const VOICE_MAX_MS = 12000;
+    let voiceMediaRecorder = null;
+    let voiceStream = null;
+    let voiceChunks = [];
+    let voiceStartTime = 0;
+    let voiceStopTimer = null;
+    let voiceState = 'idle';
+    let voiceSpaceActive = false;
+    let voiceCancelRequested = false;
+
+    function isVoiceSupported() {
+        return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder);
+    }
+
+    function getVoiceMimeType() {
+        const candidates = [
+            'audio/webm;codecs=opus',
+            'audio/webm',
+            'audio/mp4',
+            'audio/wav'
+        ];
+        for (const type of candidates) {
+            if (!window.MediaRecorder || !MediaRecorder.isTypeSupported) return 'audio/webm';
+            if (MediaRecorder.isTypeSupported(type)) return type;
+        }
+        return '';
+    }
+
+    function updateVoiceUI(state, message) {
+        voiceState = state;
+        const btn = document.getElementById('voiceBtn');
+        const pop = document.getElementById('voiceStatusPop');
+        const text = document.getElementById('voiceStatusText');
+        if (btn) {
+            btn.classList.toggle('listening', state === 'listening');
+            btn.classList.toggle('processing', state === 'processing');
+            btn.setAttribute('aria-pressed', state === 'listening' ? 'true' : 'false');
+        }
+        if (pop && text) {
+            pop.className = 'voice-status-pop';
+            if (state !== 'idle') pop.classList.add('active', state);
+            text.textContent = message || '语音控制就绪';
+            if (state === 'success' || state === 'error') {
+                clearTimeout(pop._hideTimer);
+                pop._hideTimer = setTimeout(() => updateVoiceUI('idle'), 2400);
+            }
+        }
+    }
+
+    function stopVoiceStream() {
+        if (voiceStream) {
+            voiceStream.getTracks().forEach(track => track.stop());
+            voiceStream = null;
+        }
+    }
+
+    async function startVoiceCapture(source) {
+        if (voiceState === 'processing' || voiceState === 'listening') return;
+        if (!isVoiceSupported()) {
+            showToast('当前浏览器不支持语音录制，请使用 Chrome 或 Edge', 'error');
+            updateVoiceUI('error', '浏览器不支持语音录制');
+            return;
+        }
+        const mimeType = getVoiceMimeType();
+        if (!mimeType) {
+            showToast('当前浏览器不支持可用的录音格式', 'error');
+            updateVoiceUI('error', '录音格式不可用');
+            return;
+        }
+        try {
+            voiceCancelRequested = false;
+            voiceStream = await navigator.mediaDevices.getUserMedia({
+                audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true }
+            });
+            voiceChunks = [];
+            voiceMediaRecorder = new MediaRecorder(voiceStream, { mimeType });
+            voiceMediaRecorder.ondataavailable = (event) => {
+                if (event.data && event.data.size > 0) voiceChunks.push(event.data);
+            };
+            voiceMediaRecorder.onerror = () => {
+                updateVoiceUI('error', '录音失败，请重试');
+                stopVoiceStream();
+            };
+            voiceMediaRecorder.onstop = () => handleVoiceRecordingStop(mimeType);
+            voiceStartTime = Date.now();
+            voiceMediaRecorder.start();
+            updateVoiceUI('listening', source === 'space' ? '正在听，松开空格结束' : '正在听，再点一次结束');
+            voiceStopTimer = setTimeout(() => stopVoiceCapture(), VOICE_MAX_MS);
+        } catch (err) {
+            console.warn('[Voice] Microphone error:', err);
+            showToast('无法访问麦克风，请检查浏览器权限', 'error');
+            updateVoiceUI('error', '麦克风权限不可用');
+            stopVoiceStream();
+        }
+    }
+
+    function stopVoiceCapture(options = {}) {
+        clearTimeout(voiceStopTimer);
+        voiceStopTimer = null;
+        if (options.cancel) voiceCancelRequested = true;
+        if (voiceMediaRecorder && voiceMediaRecorder.state !== 'inactive') {
+            voiceMediaRecorder.stop();
+        } else {
+            stopVoiceStream();
+            updateVoiceUI('idle');
+        }
+    }
+
+    function toggleVoiceCapture() {
+        if (voiceState === 'listening') stopVoiceCapture();
+        else startVoiceCapture('button');
+    }
+
+    async function handleVoiceRecordingStop(mimeType) {
+        stopVoiceStream();
+        const elapsed = Date.now() - voiceStartTime;
+        const chunks = voiceChunks.slice();
+        voiceMediaRecorder = null;
+        voiceChunks = [];
+        if (voiceCancelRequested) {
+            updateVoiceUI('idle');
+            showToast('语音录制已取消', 'info');
+            return;
+        }
+        if (elapsed < VOICE_MIN_MS || !chunks.length) {
+            updateVoiceUI('idle');
+            return;
+        }
+        const audioBlob = new Blob(chunks, { type: mimeType || 'audio/webm' });
+        await transcribeVoiceBlob(audioBlob);
+    }
+
+    async function transcribeVoiceBlob(audioBlob) {
+        updateVoiceUI('processing', '正在识别语音...');
+        try {
+            const resp = await fetch('/api/voice/transcribe', {
+                method: 'POST',
+                headers: { 'Content-Type': audioBlob.type || 'audio/webm' },
+                body: audioBlob
+            });
+            const data = await resp.json().catch(() => ({}));
+            if (!resp.ok) {
+                const msg = data.message || '语音识别失败';
+                updateVoiceUI('error', msg);
+                showToast(msg, 'error');
+                return;
+            }
+            const text = (data.text || '').trim();
+            if (!text) {
+                updateVoiceUI('error', '没有识别到有效语音');
+                return;
+            }
+            updateVoiceUI('success', '识别到：' + text);
+            handleVoiceTranscript(text);
+        } catch (err) {
+            console.warn('[Voice] Transcription error:', err);
+            updateVoiceUI('error', '语音识别服务不可用');
+            showToast('语音识别服务不可用', 'error');
+        }
+    }
+
+    function normalizeVoiceCommand(text) {
+        return String(text || '')
+            .toLowerCase()
+            .replace(/[，。！？、；：,.!?;:]/g, ' ')
+            .replace(/\bpd\s*-?\s*l\s*-?\s*1\b/g, 'pd-l1')
+            .replace(/\bpd\s*-?\s*1\b/g, 'pd-1')
+            .replace(/\bil\s*-?\s*33\b/g, 'il-33')
+            .replace(/\s+/g, ' ')
+            .trim();
+    }
+
+    function voiceHas(cmd, patterns) {
+        return patterns.some(p => p instanceof RegExp ? p.test(cmd) : cmd.includes(p));
+    }
+
+    function runVoiceAction(label, fn) {
+        try {
+            fn();
+            showToast(label, 'success');
+            return true;
+        } catch (err) {
+            console.warn('[Voice] Command failed:', err);
+            showToast('语音指令执行失败', 'error');
+            return true;
+        }
+    }
+
+    function getOrdinalFromVoice(cmd) {
+        const map = [
+            ['第一个', 0], ['第一', 0], ['first', 0], ['one', 0],
+            ['第二个', 1], ['第二', 1], ['second', 1], ['two', 1],
+            ['第三个', 2], ['第三', 2], ['third', 2], ['three', 2],
+            ['第四个', 3], ['第四', 3], ['fourth', 3], ['four', 3],
+            ['第五个', 4], ['第五', 4], ['fifth', 4], ['five', 4]
+        ];
+        for (const [token, idx] of map) if (cmd.includes(token)) return idx;
+        const match = cmd.match(/(?:候选|binder|candidate)\s*(\d+)/);
+        if (match) return Math.max(0, parseInt(match[1], 10) - 1);
+        return null;
+    }
+
+    function ensureBinderAvailable() {
+        if (!binderDataList || !binderDataList.length) {
+            showToast('还没有可展示的候选结构', 'warning');
+            return false;
+        }
+        return true;
+    }
+
+    function openBinderByIndex(idx) {
+        if (!ensureBinderAvailable()) return;
+        const bounded = Math.max(0, Math.min(idx, binderDataList.length - 1));
+        selectBinder(bounded);
+        const meta = binderDataList[bounded] || {};
+        if (meta.id) openMolModal(meta.id, meta.name || meta.id);
+    }
+
+    function sendMolViewerCommand(type, data) {
+        if (!modalIframe || !molModalOpen) {
+            if (!ensureBinderAvailable()) return;
+            openBinderByIndex(activeBinderIdx || 0);
+            setTimeout(() => sendMolViewerCommand(type, data), 700);
+            return;
+        }
+        try {
+            modalIframe.contentWindow.postMessage({ source: 'zoonoab-gallery', type, data: data || {} }, '*');
+        } catch (err) {
+            console.warn('[Voice] Viewer command failed:', err);
+        }
+    }
+
+    function routeVoiceCommand(cmd, rawText) {
+        if (voiceHas(cmd, ['取消任务', '停止任务', 'cancel task'])) {
+            return runVoiceAction('已取消当前工作流', () => cancelTask());
+        }
+        if (voiceHas(cmd, ['关闭窗口', '关闭弹窗', 'close viewer', 'close modal', 'close window'])) {
+            return runVoiceAction('已关闭窗口', () => {
+                if (binderSpinTimer) closeBinderSpinModal();
+                else if (molModalOpen) closeMolModal();
+                else closeRightPanel();
+            });
+        }
+
+        if (voiceHas(cmd, ['下一个候选', 'next binder', 'next candidate'])) {
+            return runVoiceAction('已打开下一个候选', () => openBinderByIndex((activeBinderIdx || 0) + 1));
+        }
+        if (voiceHas(cmd, ['上一个候选', 'previous binder', 'prev binder', 'previous candidate'])) {
+            return runVoiceAction('已打开上一个候选', () => openBinderByIndex((activeBinderIdx || 0) - 1));
+        }
+        if (voiceHas(cmd, ['打开候选', '打开第', 'open binder', 'open candidate', 'show binder', 'show candidate'])) {
+            return runVoiceAction('已打开候选结构', () => openBinderByIndex(getOrdinalFromVoice(cmd) ?? activeBinderIdx ?? 0));
+        }
+        if (voiceHas(cmd, ['旋转分子', '开始旋转', 'spin molecule', 'start spin', 'rotate molecule'])) {
+            return runVoiceAction('分子开始旋转', () => sendMolViewerCommand('toggleSpin', { spin: true }));
+        }
+        if (voiceHas(cmd, ['停止旋转', 'stop spin', 'stop rotation'])) {
+            return runVoiceAction('已停止旋转', () => sendMolViewerCommand('toggleSpin', { spin: false }));
+        }
+        if (voiceHas(cmd, ['重置视图', '重置分子', 'reset view', 'reset molecule'])) {
+            return runVoiceAction('已重置视图', () => sendMolViewerCommand('resetView'));
+        }
+        if (voiceHas(cmd, ['导出图片', '导出 png', 'export image', 'export png', 'download image'])) {
+            return runVoiceAction('正在导出图片', () => sendMolViewerCommand('exportImage'));
+        }
+        const styleMap = [
+            { patterns: ['切换卡通', '卡通模式', 'cartoon view', 'cartoon mode'], style: 'cartoon', label: '已切换卡通视图' },
+            { patterns: ['棒状', '棍状', 'stick view', 'stick mode'], style: 'stick', label: '已切换棒状视图' },
+            { patterns: ['球状', 'sphere view', 'sphere mode'], style: 'sphere', label: '已切换球状视图' },
+            { patterns: ['表面', 'surface view', 'surface mode'], style: 'surface', label: '已切换表面视图' },
+            { patterns: ['线框', 'line view', 'line mode'], style: 'line', label: '已切换线框视图' }
+        ];
+        for (const item of styleMap) {
+            if (voiceHas(cmd, item.patterns)) {
+                return runVoiceAction(item.label, () => sendMolViewerCommand('setStyle', { name: item.style }));
+            }
+        }
+        const colorMap = [
+            { patterns: ['按链着色', 'chain color', 'color by chain'], mode: 'chain', label: '已按链着色' },
+            { patterns: ['按原子着色', 'atom color', 'color by atom'], mode: 'atom', label: '已按原子着色' },
+            { patterns: ['抗原抗体着色', '抗体抗原着色', 'ab ag', 'antibody antigen'], mode: 'ab-ag', label: '已切换抗原抗体着色' }
+        ];
+        for (const item of colorMap) {
+            if (voiceHas(cmd, item.patterns)) {
+                return runVoiceAction(item.label, () => sendMolViewerCommand('setColor', { mode: item.mode }));
+            }
+        }
+
+        if (voiceHas(cmd, ['打开设计', '打开聊天', '回到设计', 'open design', 'open chat'])) return runVoiceAction('已打开设计页', () => switchView('chat'));
+        if (voiceHas(cmd, ['打开批次', '打开结果', 'open batches', 'show results'])) return runVoiceAction('已打开批次结果', () => switchView('batches'));
+        if (voiceHas(cmd, ['打开任务', '显示任务', 'show tasks', 'open tasks'])) return runVoiceAction('已打开任务栏', () => { switchView('chat'); const s = document.getElementById('agentTasksSidebar'); if (s && !s.classList.contains('open')) toggleSidebar(); });
+        if (voiceHas(cmd, ['打开序列分析', '序列分析', 'open sequence analysis'])) return runVoiceAction('已打开序列分析', () => openAnalysisPanel('seq'));
+        if (voiceHas(cmd, ['打开结构分析', '结构分析', 'open structure analysis'])) return runVoiceAction('已打开结构分析', () => openAnalysisPanel('struct'));
+        if (voiceHas(cmd, ['打开团队', '团队协作', 'open team'])) return runVoiceAction('已打开团队协作', () => switchView('team'));
+        if (voiceHas(cmd, ['打开知识库', '知识库', 'open knowledge', 'knowledge base'])) return runVoiceAction('已打开知识库', () => switchView('kb'));
+        if (voiceHas(cmd, ['新会话', '新的会话', 'new session'])) return runVoiceAction('已创建新会话', () => resetChat());
+
+        const panelMap = [
+            { patterns: ['风险位点', 'risk site', 'risk analysis'], tab: 'risk', label: '已打开风险位点' },
+            { patterns: ['cdr 分析', 'cdr analysis', 'cdr annotation'], tab: 'cdr', label: '已打开 CDR 分析' },
+            { patterns: ['人源化', 'humanization'], tab: 'humanization', label: '已打开人源化' },
+            { patterns: ['亲和力成熟', 'affinity maturation'], tab: 'maturation', label: '已打开亲和力成熟' },
+            { patterns: ['理化性质', 'physicochemical'], tab: 'physicochemical', label: '已打开理化性质' },
+            { patterns: ['浓度换算', 'concentration'], tab: null, label: '正在进行浓度换算', quick: '浓度转换 100 nM' },
+            { patterns: ['uniprot 查询', 'uniprot 搜索', 'uniprot search'], tab: null, label: '正在查询 UniProt', quick: '查询 UniProt CD3' }
+        ];
+        for (const item of panelMap) {
+            if (voiceHas(cmd, item.patterns)) {
+                if (item.quick) return runVoiceAction(item.label, () => sendQuickMsg(item.quick));
+                return runVoiceAction(item.label, () => openRightPanel(item.tab));
+            }
+        }
+        return false;
+    }
+
+    function handleVoiceTranscript(text) {
+        const cmd = normalizeVoiceCommand(text);
+        if (!cmd) return;
+        if (routeVoiceCommand(cmd, text)) return;
+        const input = document.getElementById('userInput');
+        if (!input) return;
+        input.value = text;
+        input.dispatchEvent(new Event('input'));
+        if (isRunning) {
+            showToast('当前工作流正在运行，语音内容已填入输入框', 'warning');
+            return;
+        }
+        sendMessage();
+    }
+
+    function isTypingTarget(target) {
+        if (!target) return false;
+        const tag = (target.tagName || '').toLowerCase();
+        return tag === 'input' || tag === 'textarea' || tag === 'select' || tag === 'button' || target.isContentEditable;
+    }
+
+    function initVoiceShortcuts() {
+        const btn = document.getElementById('voiceBtn');
+        if (btn) btn.disabled = !isVoiceSupported();
+        if (!isVoiceSupported()) {
+            if (btn) btn.title = '当前浏览器不支持语音录制';
+            return;
+        }
+        document.addEventListener('keydown', (e) => {
+            if (e.code !== 'Space' || e.repeat || e.ctrlKey || e.metaKey || e.altKey || e.shiftKey) return;
+            if (isTypingTarget(e.target)) return;
+            if (voiceState === 'processing') return;
+            e.preventDefault();
+            voiceSpaceActive = true;
+            startVoiceCapture('space');
+        });
+        document.addEventListener('keyup', (e) => {
+            if (e.code !== 'Space' || !voiceSpaceActive) return;
+            e.preventDefault();
+            voiceSpaceActive = false;
+            if (voiceState === 'listening') stopVoiceCapture();
+        });
+    }
+
+    window.toggleVoiceCapture = toggleVoiceCapture;
+    window.handleVoiceTranscript = handleVoiceTranscript;
 
     // ═══════════════ Utility Functions ═══════════════
     // renderMarkdown and inlineMarkdown are defined near the bottom of this script
@@ -10024,6 +10443,7 @@ QVQLVESGGGLVQPGGSLRLSCAASGYIFSSNAMGWYRQAPGKQRELVAAISSGGSTYYADSVKGRFTISRDNAKTTLYL
                 sendMessage();
             }
         });
+        initVoiceShortcuts();
     });
 
     /* ═══════ MOLECULAR VIEWER MODAL ═══════ */
@@ -10174,6 +10594,10 @@ QVQLVESGGGLVQPGGSLRLSCAASGYIFSSNAMGWYRQAPGKQRELVAAISSGGSTYYADSVKGRFTISRDNAKTTLYL
     // Close on overlay click or Escape
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
+            if (voiceState === 'listening') {
+                stopVoiceCapture({ cancel: true });
+                return;
+            }
             // Close modals in priority order
             const scatter = document.getElementById('scatterModalOverlay');
             const compare = document.getElementById('compareModalOverlay');
