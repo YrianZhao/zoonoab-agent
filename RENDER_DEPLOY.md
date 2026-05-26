@@ -11,8 +11,8 @@
 
 ## 部署步骤
 
-1. 打开 Render Blueprint 创建页：
-   https://dashboard.render.com/blueprints/new
+1. 打开一键导入链接：
+   https://render.com/deploy?repo=https://github.com/YrianZhao/zoonoab-agent/tree/main
 2. 登录 Render，并授权连接 GitHub。
 3. 选择仓库 `YrianZhao/zoonoab-agent`。
 4. Blueprint path 保持默认的 `render.yaml`。
@@ -32,7 +32,7 @@ https://zoonoab-agent.onrender.com
 - Build Command: `npm ci`
 - Start Command: `npm start`
 - Health Check: `/api/health`
-- Auto Deploy: enabled
+- Auto Deploy: on every commit to `main`
 - Node version: `24.14.1`
 
 ## 验证
