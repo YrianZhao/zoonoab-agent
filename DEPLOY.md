@@ -142,38 +142,61 @@ server {
 
 ## 📝 部署后配置
 
-### 语音识别配置
+### 语音与聊天配置
 
-语音控制模块在浏览器端录音，服务端转发到云端 ASR。页面输入框旁有一个很小的 `ASR` 按钮，点击后只显示三行：
+语音控制模块在浏览器端录音，服务端转发到云端 ASR；未命中演示规则的问题会走独立的聊天兜底接口。打开知识库后，左侧栏“系统设置”里有 `语音配置` 页面，进入后分别填写两套 API：
 
 ```text
-Base URL
-API Key
-Model
+ASR Base URL
+ASR API Key
+ASR Model
+
+Chat Base URL
+Chat API Key
+Chat Model
 ```
 
-建议填写 DeepSeek 兼容的音频转写网关地址，例如：
+页面提供 `测试语音` 和 `测试聊天` 按钮。语音测试会用当前填写的 ASR Base URL、API Key 和 Model 发起一次实际音频转写请求；聊天测试会调用 chat/completions 类型接口确认小诺兜底问答可用。
+
+SiliconFlow / DeepSeek 兼容音频转写示例：
 
 ```text
-Base URL: https://your-deepseek-asr-gateway.example.com/v1/audio/transcriptions
-API Key: 你的 DeepSeek 或兼容网关 Key
-Model: deepseek-v4-flash
+ASR Base URL: https://api.siliconflow.cn/v1/audio/transcriptions
+ASR API Key: 你的 SiliconFlow API Key
+ASR Model: FunAudioLLM/SenseVoiceSmall
+```
+
+聊天兜底需要单独填写聊天模型接口，不能使用 `audio/transcriptions` 的语音模型作为聊天模型：
+
+```text
+Chat Base URL: https://api.deepseek.com/v1/chat/completions
+Chat API Key: 你的聊天模型 API Key
+Chat Model: deepseek-chat
 ```
 
 安全说明：
 
-- API Key 不写入代码、不写入 Git、不写入 localStorage。
+- 两套 API Key 都不写入代码、不写入 Git、不写入 localStorage。
 - 页面提交后会立即清空 API Key 输入框。
 - 服务端只把 Key 保存在内存会话里，默认 2 小时过期；服务重启或页面刷新后需要重新填写。
-- 前端转写时只携带短期 session token，不会把 API Key 明文放进转写请求。
+- 前端后续请求只携带短期 session token，不会把 API Key 明文放进转写或聊天请求。
+- 聊天兜底由服务端注入“小诺”系统提示，回答中不会主动暴露底层供应商或模型名称。
 
 也可以继续用部署平台环境变量配置固定服务端 ASR：
 
 ```bash
 VOICE_ASR_PROVIDER=deepseek
-DEEPSEEK_API_KEY=你的 DeepSeek Key
-DEEPSEEK_ASR_BASE_URL=https://your-deepseek-asr-gateway.example.com/v1/audio/transcriptions
-VOICE_TRANSCRIBE_MODEL=deepseek-v4-flash
+DEEPSEEK_API_KEY=你的 SiliconFlow 或兼容网关 Key
+DEEPSEEK_ASR_BASE_URL=https://api.siliconflow.cn/v1/audio/transcriptions
+VOICE_TRANSCRIBE_MODEL=FunAudioLLM/SenseVoiceSmall
+```
+
+固定聊天兜底接口：
+
+```bash
+VOICE_CHAT_BASE_URL=https://api.deepseek.com/v1/chat/completions
+VOICE_CHAT_API_KEY=你的聊天模型 API Key
+VOICE_CHAT_MODEL=deepseek-chat
 ```
 
 如果使用 OpenAI：
@@ -182,6 +205,8 @@ VOICE_TRANSCRIBE_MODEL=deepseek-v4-flash
 VOICE_ASR_PROVIDER=openai
 OPENAI_API_KEY=你的 OpenAI API Key
 VOICE_TRANSCRIBE_MODEL=gpt-4o-transcribe
+OPENAI_CHAT_API_KEY=你的 OpenAI API Key
+OPENAI_CHAT_MODEL=可用的聊天模型
 ```
 
 浏览器麦克风要求 HTTPS。线上 Railway/Render/Vercel 域名默认是 HTTPS；本地调试可使用 `http://localhost:8080`。

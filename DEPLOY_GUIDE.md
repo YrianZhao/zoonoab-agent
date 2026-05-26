@@ -164,38 +164,61 @@ https://zoonoab-agent.vercel.app
 
 ---
 
-## 🎙️ 语音控制配置
+## 🎙️ 语音与聊天配置
 
-语音模块用于大屏演示，浏览器录音后由服务端转发到云端 ASR。页面输入框旁有一个低调的 `ASR` 按钮，点开只需要三行：
+语音模块用于大屏演示，浏览器录音后由服务端转发到云端 ASR；未命中演示规则的问题由独立聊天模型兜底回答。打开知识库后，左侧栏“系统设置”里有 `语音配置` 页面，进入后分别填写两套 API：
 
 ```text
-Base URL
-API Key
-Model
+ASR Base URL
+ASR API Key
+ASR Model
+
+Chat Base URL
+Chat API Key
+Chat Model
 ```
 
-DeepSeek 兼容音频网关示例：
+页面提供 `测试语音` 和 `测试聊天` 按钮。语音测试会用当前填写的 ASR Base URL、API Key 和 Model 发起一次实际音频转写请求；聊天测试会调用 chat/completions 类型接口确认小诺兜底问答可用。
+
+SiliconFlow / DeepSeek 兼容音频转写示例：
 
 ```text
-Base URL: https://your-deepseek-asr-gateway.example.com/v1/audio/transcriptions
-API Key: 你的 DeepSeek 或兼容网关 Key
-Model: deepseek-v4-flash
+ASR Base URL: https://api.siliconflow.cn/v1/audio/transcriptions
+ASR API Key: 你的 SiliconFlow API Key
+ASR Model: FunAudioLLM/SenseVoiceSmall
+```
+
+聊天兜底需要单独填写聊天模型接口，不能使用 `audio/transcriptions` 的语音模型作为聊天模型：
+
+```text
+Chat Base URL: https://api.deepseek.com/v1/chat/completions
+Chat API Key: 你的聊天模型 API Key
+Chat Model: deepseek-chat
 ```
 
 安全策略：
 
-- API Key 不写入代码、不写入 Git、不写入浏览器 localStorage。
+- 两套 API Key 都不写入代码、不写入 Git、不写入浏览器 localStorage。
 - 保存后页面会立即清空 API Key 输入框。
 - 服务端只把 Key 保存在内存会话里，默认 2 小时过期；服务重启或页面刷新后需要重新填写。
-- 前端后续转写只发送短期 session token，不发送明文 API Key。
+- 前端后续请求只发送短期 session token，不发送明文 API Key。
+- 聊天兜底由服务端注入“小诺”系统提示，回答中不会主动暴露底层供应商或模型名称。
 
 也可以在 Railway / Render / Vercel 环境变量中配置固定 ASR：
 
 ```bash
 VOICE_ASR_PROVIDER=deepseek
-DEEPSEEK_API_KEY=你的 DeepSeek Key
-DEEPSEEK_ASR_BASE_URL=https://your-deepseek-asr-gateway.example.com/v1/audio/transcriptions
-VOICE_TRANSCRIBE_MODEL=deepseek-v4-flash
+DEEPSEEK_API_KEY=你的 SiliconFlow 或兼容网关 Key
+DEEPSEEK_ASR_BASE_URL=https://api.siliconflow.cn/v1/audio/transcriptions
+VOICE_TRANSCRIBE_MODEL=FunAudioLLM/SenseVoiceSmall
+```
+
+固定聊天兜底接口：
+
+```bash
+VOICE_CHAT_BASE_URL=https://api.deepseek.com/v1/chat/completions
+VOICE_CHAT_API_KEY=你的聊天模型 API Key
+VOICE_CHAT_MODEL=deepseek-chat
 ```
 
 如果使用 OpenAI：
@@ -204,6 +227,8 @@ VOICE_TRANSCRIBE_MODEL=deepseek-v4-flash
 VOICE_ASR_PROVIDER=openai
 OPENAI_API_KEY=你的 OpenAI API Key
 VOICE_TRANSCRIBE_MODEL=gpt-4o-transcribe
+OPENAI_CHAT_API_KEY=你的 OpenAI API Key
+OPENAI_CHAT_MODEL=可用的聊天模型
 ```
 
 线上演示必须使用 HTTPS 域名才能稳定调用麦克风；本地调试可使用 `http://localhost:8080`。

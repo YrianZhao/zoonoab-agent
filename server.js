@@ -19,11 +19,26 @@ const VOICE_SESSION_TTL_MS = 2 * 60 * 60 * 1000;
 const VOICE_ASR_PROVIDER = (process.env.VOICE_ASR_PROVIDER || 'deepseek').toLowerCase();
 const VOICE_TRANSCRIBE_MODEL = process.env.VOICE_TRANSCRIBE_MODEL ||
   (VOICE_ASR_PROVIDER === 'deepseek' ? 'deepseek-v4-flash' : 'gpt-4o-transcribe');
+const VOICE_CHAT_MODEL = process.env.VOICE_CHAT_MODEL ||
+  process.env.DEEPSEEK_CHAT_MODEL ||
+  process.env.OPENAI_CHAT_MODEL ||
+  'deepseek-chat';
 const VOICE_DOMAIN_PROMPT = [
   'ZoonoAb AI antibody design platform.',
   'Common terms: IL-33, ST2, VHH, nanobody, Fab, PD-1, PD-L1, HER2, TNF, VEGF, CD3e, UniProt, Chai-1, ipTM, pLDDT, DockQ, PDB, CDR, CDR-H3.',
   'The speaker may give Chinese or English demo control commands for molecular viewers and antibody workflows.'
 ].join(' ');
+const XIAONUO_FALLBACK_SYSTEM_PROMPT = [
+  '你是 ZoonoAb AI Antibody Designer 的语音与聊天助手“小诺”。',
+  '你的产品身份是：ZoonoAb 团队研发的抗体设计智能助手，面向抗体设计演示、靶点选择、候选结构展示和研发流程辅助。',
+  '必须遵守：',
+  '1. 不提及底层供应商、外部模型、API 服务、模型名称或推理来源；不要出现 OpenAI、DeepSeek、SiliconFlow、ChatGPT、GPT、Claude、Gemini 等名称。',
+  '2. 如果用户询问你是什么模型、谁开发的、是否调用某个外部模型，只回答：我是 ZoonoAb 团队研发的抗体设计智能助手小诺，面向抗体设计演示和研发流程辅助。',
+  '3. 回答要像公司自研产品助手：简洁、专业、偏研发演示，不闲聊，不暴露实现细节。',
+  '4. 所有抗体、结构、靶点和疾病相关内容都使用“AI 预测”“示范靶点”“需实验验证”等表述；不得承诺临床有效、真实生产、真实打印或真实实验完成。',
+  '5. 如果问题超出演示系统能力，给出保守解释，并引导到当前稳定演示路线：IL-33/ST2 VHH、PD-1/PD-L1 Fab、HER2、TNF、结构查看、风险位点、CDR 分析。',
+  '6. 对 3D 打印只说“准备可用于 3D 打印的 PDB/结构模型文件”，不要说已经发送到打印机。'
+].join('\n');
 const VOICE_AUDIO_TYPES = new Set([
   'audio/webm',
   'audio/mp4',
@@ -40,6 +55,7 @@ const voiceAudioParser = express.raw({
   }
 });
 const voiceRuntimeConfigs = new Map();
+const voiceChatRuntimeConfigs = new Map();
 
 app.use(express.json({ limit: '1mb' }));
 app.use((req, res, next) => {
@@ -79,9 +95,31 @@ function normalizeVoiceBaseUrl(rawUrl) {
   return url.toString();
 }
 
+function normalizeChatBaseUrl(rawUrl) {
+  const value = String(rawUrl || '').trim();
+  if (!value) return '';
+  let url;
+  try {
+    url = new URL(value);
+  } catch {
+    throw new Error('聊天模型 Base URL 格式不正确。');
+  }
+  const isLocal = ['localhost', '127.0.0.1', '::1'].includes(url.hostname);
+  if (url.protocol !== 'https:' && !(isLocal && url.protocol === 'http:')) {
+    throw new Error('聊天模型 Base URL 必须使用 HTTPS，本地调试可使用 localhost。');
+  }
+  const pathName = url.pathname.replace(/\/+$/, '');
+  if (!/\/chat\/completions$/.test(pathName)) {
+    const base = pathName.endsWith('/v1') ? pathName : (pathName + '/v1');
+    url.pathname = (base + '/chat/completions').replace(/\/{2,}/g, '/');
+  }
+  return url.toString();
+}
+
 function inferVoiceProvider(url) {
   const host = String(url || '').toLowerCase();
   if (host.includes('deepseek')) return 'deepseek';
+  if (host.includes('siliconflow')) return 'siliconflow';
   if (host.includes('openai')) return 'openai';
   return 'compatible';
 }
@@ -91,6 +129,9 @@ function cleanupVoiceRuntimeConfigs() {
   for (const [id, cfg] of voiceRuntimeConfigs) {
     if (!cfg.expiresAt || cfg.expiresAt <= now) voiceRuntimeConfigs.delete(id);
   }
+  for (const [id, cfg] of voiceChatRuntimeConfigs) {
+    if (!cfg.expiresAt || cfg.expiresAt <= now) voiceChatRuntimeConfigs.delete(id);
+  }
 }
 
 function getVoiceRuntimeConfig(req) {
@@ -98,6 +139,19 @@ function getVoiceRuntimeConfig(req) {
   const id = String(req && req.headers && req.headers['x-voice-session'] || '').trim();
   if (!id || !/^[0-9a-f-]{36}$/i.test(id)) return null;
   const cfg = voiceRuntimeConfigs.get(id);
+  if (!cfg) return null;
+  cfg.lastUsedAt = Date.now();
+  return cfg;
+}
+
+function getVoiceChatRuntimeConfig(reqOrId) {
+  cleanupVoiceRuntimeConfigs();
+  const rawId = typeof reqOrId === 'string'
+    ? reqOrId
+    : String(reqOrId && reqOrId.headers && reqOrId.headers['x-voice-chat-session'] || '').trim();
+  const id = String(rawId || '').trim();
+  if (!id || !/^[0-9a-f-]{36}$/i.test(id)) return null;
+  const cfg = voiceChatRuntimeConfigs.get(id);
   if (!cfg) return null;
   cfg.lastUsedAt = Date.now();
   return cfg;
@@ -142,9 +196,50 @@ function getVoiceProviderConfig(req) {
   };
 }
 
+function getVoiceChatProviderConfig(reqOrId) {
+  const runtimeConfig = getVoiceChatRuntimeConfig(reqOrId);
+  if (runtimeConfig) return runtimeConfig;
+
+  const deepseekKey = process.env.DEEPSEEK_CHAT_API_KEY || process.env.DEEPSEEK_API_KEY;
+  const openaiKey = process.env.OPENAI_CHAT_API_KEY || process.env.OPENAI_API_KEY;
+  const compatibleKey = process.env.VOICE_CHAT_API_KEY;
+  const explicitUrl = process.env.VOICE_CHAT_BASE_URL || process.env.DEEPSEEK_CHAT_BASE_URL || process.env.OPENAI_CHAT_BASE_URL;
+
+  if (explicitUrl || compatibleKey) {
+    return {
+      provider: inferVoiceProvider(explicitUrl || ''),
+      key: compatibleKey || deepseekKey || openaiKey,
+      url: explicitUrl ? normalizeChatBaseUrl(explicitUrl) : '',
+      model: VOICE_CHAT_MODEL
+    };
+  }
+  if (process.env.DEEPSEEK_API_KEY || process.env.DEEPSEEK_CHAT_API_KEY) {
+    return {
+      provider: 'deepseek',
+      key: deepseekKey,
+      url: 'https://api.deepseek.com/v1/chat/completions',
+      model: VOICE_CHAT_MODEL
+    };
+  }
+  if (process.env.OPENAI_API_KEY || process.env.OPENAI_CHAT_API_KEY) {
+    return {
+      provider: 'openai',
+      key: openaiKey,
+      url: 'https://api.openai.com/v1/chat/completions',
+      model: VOICE_CHAT_MODEL
+    };
+  }
+  return {
+    provider: 'local',
+    key: '',
+    url: '',
+    model: 'zoonoab-local-safe-fallback'
+  };
+}
+
 function voiceProviderMissingKeyError(provider) {
   if (provider === 'openai') return '服务端未配置 OPENAI_API_KEY。';
-  if (provider === 'deepseek') return '服务端未配置 DEEPSEEK_API_KEY。';
+  if (provider === 'deepseek' || provider === 'siliconflow') return '服务端未配置对应语音识别 API Key。';
   return '服务端未配置 VOICE_ASR_API_KEY。';
 }
 
@@ -160,43 +255,136 @@ function parseProviderError(text) {
   }
 }
 
-app.get('/api/voice/config', (_, res) => {
-  const providerConfig = getVoiceProviderConfig();
-  res.json({
-    provider: providerConfig.provider,
-    model: providerConfig.model,
-    ready: Boolean(providerConfig.key && providerConfig.url && providerConfig.supportsAudio),
-    supportsAudio: providerConfig.supportsAudio,
-    baseUrl: providerConfig.url || '',
-    sessionTtlSeconds: Math.floor(VOICE_SESSION_TTL_MS / 1000)
-  });
-});
+function sanitizeAssistantIdentity(text) {
+  const fallback = buildLocalFallbackAnswer('');
+  let out = String(text || '').trim();
+  if (!out) return fallback;
+  out = out
+    .replace(/\b(OpenAI|DeepSeek|SiliconFlow|ChatGPT|GPT-4o|GPT-4|GPT|Claude|Gemini)\b/gi, 'ZoonoAb')
+    .replace(/\b(FunAudioLLM\/SenseVoiceSmall|SenseVoiceSmall|deepseek-chat|deepseek-reasoner|gpt-[\w.-]+)\b/gi, 'ZoonoAb AI')
+    .replace(/我是由[^。.\n]+(开发|训练|提供)[。.]?/g, '我是 ZoonoAb 团队研发的抗体设计智能助手小诺。');
+  if (out.length > 2400) out = out.slice(0, 2400).replace(/\s+\S*$/, '') + '...';
+  return out;
+}
 
-app.post('/api/voice/session', (req, res) => {
-  const body = req.body || {};
-  const apiKey = String(body.apiKey || '').trim();
-  const model = String(body.model || VOICE_TRANSCRIBE_MODEL).trim();
+function buildLocalFallbackAnswer(text) {
+  const q = String(text || '').toLowerCase();
+  if (/你是谁|谁开发|什么模型|哪家模型|openai|deepseek|siliconflow|chatgpt|gpt|claude|gemini|model|模型/.test(q)) {
+    return '我是 ZoonoAb 团队研发的抗体设计智能助手小诺，面向抗体设计演示和研发流程辅助。';
+  }
+  if (/打印|3d\s*print|printer|print/.test(q)) {
+    return '可以。我会把结果表述为“准备可用于 3D 打印的 AI 预测结构模型文件”。当前演示不会直接连接真实打印机，生成的 PDB 结构仍需实验验证和工程复核。';
+  }
+  if (/哮喘|过敏|炎症|肿瘤|癌|乳腺癌|胃癌|自身免疫|类风湿|抗体|靶点|vhh|fab|her2|tnf|pd-1|pd-l1|il-33/i.test(q)) {
+    return '我可以按 ZoonoAb 演示流程协助梳理。当前稳定路线包括 IL-33/ST2 VHH、PD-1/PD-L1 Fab、HER2 和 TNF 方向；结果会以 AI 预测候选、结构文件和可视化分析呈现，后续仍需实验验证。';
+  }
+  return '我是 ZoonoAb 团队研发的抗体设计智能助手小诺。这个问题我可以先按演示场景给出研发级建议；如果需要进入稳定展示流程，可以直接说“从疾病出发设计一个抗体候选并生成结构模型”。';
+}
+
+function createSilentWavBuffer(durationMs = 500, sampleRate = 16000) {
+  const channels = 1;
+  const bytesPerSample = 2;
+  const sampleCount = Math.max(1, Math.floor(sampleRate * durationMs / 1000));
+  const dataSize = sampleCount * channels * bytesPerSample;
+  const buffer = Buffer.alloc(44 + dataSize);
+  buffer.write('RIFF', 0);
+  buffer.writeUInt32LE(36 + dataSize, 4);
+  buffer.write('WAVE', 8);
+  buffer.write('fmt ', 12);
+  buffer.writeUInt32LE(16, 16);
+  buffer.writeUInt16LE(1, 20);
+  buffer.writeUInt16LE(channels, 22);
+  buffer.writeUInt32LE(sampleRate, 24);
+  buffer.writeUInt32LE(sampleRate * channels * bytesPerSample, 28);
+  buffer.writeUInt16LE(channels * bytesPerSample, 32);
+  buffer.writeUInt16LE(bytesPerSample * 8, 34);
+  buffer.write('data', 36);
+  buffer.writeUInt32LE(dataSize, 40);
+  return buffer;
+}
+
+function readVoiceConfigPayload(body) {
+  const apiKey = String(body && body.apiKey || '').trim();
+  const model = String(body && body.model || VOICE_TRANSCRIBE_MODEL).trim();
   if (!apiKey) {
-    return res.status(400).json({ error: 'missing_api_key', message: '请填写语音识别 API Key。' });
+    return { error: { status: 400, body: { error: 'missing_api_key', message: '请填写语音识别 API Key。' } } };
   }
   if (!model || model.length > 120) {
-    return res.status(400).json({ error: 'invalid_model', message: '请填写有效的模型名称。' });
+    return { error: { status: 400, body: { error: 'invalid_model', message: '请填写有效的模型名称。' } } };
   }
   if (apiKey.length > 3000) {
-    return res.status(400).json({ error: 'api_key_too_long', message: 'API Key 过长。' });
+    return { error: { status: 400, body: { error: 'api_key_too_long', message: 'API Key 过长。' } } };
   }
   let url;
   try {
     url = normalizeVoiceBaseUrl(body.baseUrl || process.env.DEEPSEEK_ASR_BASE_URL || process.env.VOICE_ASR_BASE_URL || '');
   } catch (err) {
-    return res.status(400).json({ error: 'invalid_base_url', message: err.message || 'Base URL 无效。' });
+    return { error: { status: 400, body: { error: 'invalid_base_url', message: err.message || 'Base URL 无效。' } } };
   }
   if (!url) {
-    return res.status(400).json({ error: 'missing_base_url', message: '请填写语音识别 Base URL。' });
+    return { error: { status: 400, body: { error: 'missing_base_url', message: '请填写语音识别 Base URL。' } } };
   }
+  return { config: { apiKey, model, url, provider: inferVoiceProvider(url) } };
+}
+
+function readVoiceChatConfigPayload(body) {
+  const apiKey = String(body && body.apiKey || '').trim();
+  const model = String(body && body.model || VOICE_CHAT_MODEL).trim();
+  if (!apiKey) {
+    return { error: { status: 400, body: { error: 'missing_api_key', message: '请填写聊天模型 API Key。' } } };
+  }
+  if (!model || model.length > 120) {
+    return { error: { status: 400, body: { error: 'invalid_model', message: '请填写有效的聊天模型名称。' } } };
+  }
+  if (apiKey.length > 3000) {
+    return { error: { status: 400, body: { error: 'api_key_too_long', message: 'API Key 过长。' } } };
+  }
+  let url;
+  try {
+    url = normalizeChatBaseUrl(body.baseUrl || process.env.VOICE_CHAT_BASE_URL || process.env.DEEPSEEK_CHAT_BASE_URL || process.env.OPENAI_CHAT_BASE_URL || '');
+  } catch (err) {
+    return { error: { status: 400, body: { error: 'invalid_base_url', message: err.message || 'Base URL 无效。' } } };
+  }
+  if (!url) {
+    return { error: { status: 400, body: { error: 'missing_base_url', message: '请填写聊天模型 Base URL。' } } };
+  }
+  return { config: { apiKey, model, url, provider: inferVoiceProvider(url) } };
+}
+
+function publicProviderLabel(provider) {
+  if (provider === 'local') return '本地兜底';
+  return '兼容接口';
+}
+
+app.get('/api/voice/config', (_, res) => {
+  let providerConfig;
+  let chatConfig;
+  try { providerConfig = getVoiceProviderConfig(); }
+  catch { providerConfig = { provider: VOICE_ASR_PROVIDER, model: VOICE_TRANSCRIBE_MODEL, key: '', url: '', supportsAudio: false }; }
+  try { chatConfig = getVoiceChatProviderConfig(); }
+  catch { chatConfig = { provider: 'local', model: VOICE_CHAT_MODEL, key: '', url: '' }; }
+  res.json({
+    provider: publicProviderLabel(providerConfig.provider),
+    model: providerConfig.model,
+    ready: Boolean(providerConfig.key && providerConfig.url && providerConfig.supportsAudio),
+    supportsAudio: providerConfig.supportsAudio,
+    baseUrl: providerConfig.url || '',
+    chat: {
+      provider: publicProviderLabel(chatConfig.provider),
+      model: chatConfig.model,
+      ready: Boolean(chatConfig.key && chatConfig.url),
+      baseUrl: chatConfig.url || ''
+    },
+    sessionTtlSeconds: Math.floor(VOICE_SESSION_TTL_MS / 1000)
+  });
+});
+
+app.post('/api/voice/session', (req, res) => {
+  const parsed = readVoiceConfigPayload(req.body || {});
+  if (parsed.error) return res.status(parsed.error.status).json(parsed.error.body);
+  const { apiKey, model, url, provider } = parsed.config;
   cleanupVoiceRuntimeConfigs();
   const id = uuidv4();
-  const provider = inferVoiceProvider(url);
   const now = Date.now();
   voiceRuntimeConfigs.set(id, {
     provider,
@@ -210,7 +398,7 @@ app.post('/api/voice/session', (req, res) => {
   });
   res.json({
     voiceSessionId: id,
-    provider,
+    provider: publicProviderLabel(provider),
     baseUrl: url,
     model,
     ready: true,
@@ -218,10 +406,170 @@ app.post('/api/voice/session', (req, res) => {
   });
 });
 
+app.post('/api/voice/chat-session', (req, res) => {
+  const parsed = readVoiceChatConfigPayload(req.body || {});
+  if (parsed.error) return res.status(parsed.error.status).json(parsed.error.body);
+  const { apiKey, model, url, provider } = parsed.config;
+  cleanupVoiceRuntimeConfigs();
+  const id = uuidv4();
+  const now = Date.now();
+  voiceChatRuntimeConfigs.set(id, {
+    provider,
+    key: apiKey,
+    url,
+    model,
+    createdAt: now,
+    lastUsedAt: now,
+    expiresAt: now + VOICE_SESSION_TTL_MS
+  });
+  res.json({
+    voiceChatSessionId: id,
+    provider: publicProviderLabel(provider),
+    baseUrl: url,
+    model,
+    ready: true,
+    expiresInSeconds: Math.floor(VOICE_SESSION_TTL_MS / 1000)
+  });
+});
+
+app.post('/api/voice/test', async (req, res) => {
+  const parsed = readVoiceConfigPayload(req.body || {});
+  if (parsed.error) return res.status(parsed.error.status).json(parsed.error.body);
+  if (typeof fetch !== 'function' || typeof FormData !== 'function' || typeof Blob !== 'function') {
+    return res.status(500).json({ error: 'runtime_unsupported', message: '当前 Node.js 运行时不支持原生 fetch/FormData/Blob。' });
+  }
+
+  const { apiKey, model, url, provider } = parsed.config;
+  const form = new FormData();
+  form.append('file', new Blob([createSilentWavBuffer()], { type: 'audio/wav' }), 'asr-test.wav');
+  form.append('model', model);
+  form.append('language', 'zh');
+  form.append('prompt', VOICE_DOMAIN_PROMPT);
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 20_000);
+  try {
+    const upstream = await fetch(url, {
+      method: 'POST',
+      headers: { Authorization: 'Bearer ' + apiKey },
+      body: form,
+      signal: controller.signal
+    });
+    const bodyText = await upstream.text();
+    if (!upstream.ok) {
+      const message = parseProviderError(bodyText);
+      console.error('[Voice] Test failed:', publicProviderLabel(provider), upstream.status, message);
+      return res.status(502).json({ error: 'asr_test_failed', provider: publicProviderLabel(provider), upstreamStatus: upstream.status, message });
+    }
+    let data;
+    try { data = JSON.parse(bodyText); } catch { data = { text: bodyText }; }
+    return res.json({
+      ok: true,
+      provider: publicProviderLabel(provider),
+      model,
+      baseUrl: url,
+      text: typeof data.text === 'string' ? data.text.trim() : ''
+    });
+  } catch (err) {
+    const aborted = err && err.name === 'AbortError';
+    console.error('[Voice] Test request error:', err && err.message ? err.message : err);
+    return res.status(502).json({
+      error: aborted ? 'asr_test_timeout' : 'asr_test_unavailable',
+      provider: publicProviderLabel(provider),
+      message: aborted ? '测试请求超时，请检查网关是否可访问。' : '语音识别测试请求失败，请检查 Base URL 或网络。'
+    });
+  } finally {
+    clearTimeout(timeout);
+  }
+});
+
+async function requestFallbackChat(providerConfig, text, options = {}) {
+  if (!providerConfig || !providerConfig.key || !providerConfig.url) {
+    return { text: buildLocalFallbackAnswer(text), source: 'local' };
+  }
+  if (typeof fetch !== 'function') {
+    return { text: buildLocalFallbackAnswer(text), source: 'local' };
+  }
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), options.timeoutMs || 30_000);
+  try {
+    const upstream = await fetch(providerConfig.url, {
+      method: 'POST',
+      headers: {
+        Authorization: 'Bearer ' + providerConfig.key,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        model: providerConfig.model,
+        messages: [
+          { role: 'system', content: XIAONUO_FALLBACK_SYSTEM_PROMPT },
+          { role: 'user', content: String(text || '').slice(0, 4000) }
+        ],
+        temperature: 0.35,
+        max_tokens: options.maxTokens || 700
+      }),
+      signal: controller.signal
+    });
+    const bodyText = await upstream.text();
+    if (!upstream.ok) {
+      const message = parseProviderError(bodyText);
+      console.error('[VoiceChat] Chat request failed:', publicProviderLabel(providerConfig.provider), upstream.status, message);
+      return { text: buildLocalFallbackAnswer(text), source: 'local' };
+    }
+    let data;
+    try { data = JSON.parse(bodyText); } catch { data = {}; }
+    const content =
+      data && data.choices && data.choices[0] && data.choices[0].message && typeof data.choices[0].message.content === 'string'
+        ? data.choices[0].message.content
+        : (typeof data.output_text === 'string' ? data.output_text : '');
+    return { text: sanitizeAssistantIdentity(content || buildLocalFallbackAnswer(text)), source: 'remote' };
+  } catch (err) {
+    const aborted = err && err.name === 'AbortError';
+    console.error('[VoiceChat] Chat request error:', aborted ? 'timeout' : (err && err.message ? err.message : err));
+    return { text: buildLocalFallbackAnswer(text), source: 'local' };
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+app.post('/api/voice/chat-test', async (req, res) => {
+  const parsed = readVoiceChatConfigPayload(req.body || {});
+  if (parsed.error) return res.status(parsed.error.status).json(parsed.error.body);
+  const { apiKey, model, url, provider } = parsed.config;
+  const result = await requestFallbackChat(
+    { key: apiKey, model, url, provider },
+    '请用一句话回复“小诺连接就绪”。不要输出任何供应商或模型名称。',
+    { timeoutMs: 20_000, maxTokens: 80 }
+  );
+  return res.json({
+    ok: true,
+    provider: publicProviderLabel(provider),
+    model,
+    baseUrl: url,
+    text: result.text
+  });
+});
+
 app.delete('/api/voice/session', (req, res) => {
   const id = String(req.headers['x-voice-session'] || '').trim();
   if (id) voiceRuntimeConfigs.delete(id);
   res.json({ ok: true });
+});
+
+app.delete('/api/voice/chat-session', (req, res) => {
+  const id = String(req.headers['x-voice-chat-session'] || '').trim();
+  if (id) voiceChatRuntimeConfigs.delete(id);
+  res.json({ ok: true });
+});
+
+app.post('/api/voice/chat', async (req, res) => {
+  const text = String(req.body && req.body.text || '').trim();
+  if (!text) return res.status(400).json({ error: 'empty_text', message: '请输入问题。' });
+  if (text.length > 4000) return res.status(400).json({ error: 'text_too_long', message: '问题过长。' });
+  const providerConfig = getVoiceChatProviderConfig(req);
+  const result = await requestFallbackChat(providerConfig, text);
+  res.json({ text: result.text, ready: result.source === 'remote' });
 });
 
 app.post('/api/voice/transcribe', (req, res, next) => {
@@ -274,16 +622,16 @@ app.post('/api/voice/transcribe', (req, res, next) => {
     const bodyText = await upstream.text();
     if (!upstream.ok) {
       const message = parseProviderError(bodyText);
-      console.error('[Voice] Transcription failed:', providerConfig.provider, upstream.status, message);
-      return res.status(502).json({ error: 'transcription_failed', provider: providerConfig.provider, message });
+      console.error('[Voice] Transcription failed:', publicProviderLabel(providerConfig.provider), upstream.status, message);
+      return res.status(502).json({ error: 'transcription_failed', provider: publicProviderLabel(providerConfig.provider), message });
     }
     let data;
     try { data = JSON.parse(bodyText); } catch { data = { text: bodyText }; }
     const text = typeof data.text === 'string' ? data.text.trim() : '';
-    return res.json({ text, provider: providerConfig.provider, model: providerConfig.model });
+    return res.json({ text, provider: publicProviderLabel(providerConfig.provider), model: providerConfig.model });
   } catch (err) {
     console.error('[Voice] Transcription request error:', err && err.message ? err.message : err);
-    return res.status(502).json({ error: 'transcription_unavailable', provider: providerConfig.provider, message: '语音识别服务暂时不可用。' });
+    return res.status(502).json({ error: 'transcription_unavailable', provider: publicProviderLabel(providerConfig.provider), message: '语音识别服务暂时不可用。' });
   }
 });
 app.use(express.static(path.join(__dirname, 'public')));
@@ -1270,7 +1618,25 @@ function detectIntent(input) {
   if (/多序列比对|sequence.?align|msa\b|比对序列/.test(lower)) return 'msa';
   if (/相互作用分析|残基分析|interaction.?anal|plip/.test(lower)) return 'interaction';
   if (/风险位点|脱酰胺|氧化位点|聚集热点|risk.?site|liability.?scan|deamidat|oxidat/.test(lower)) return 'risk_site';
-  return 'design';
+  if (isDesignWorkflowRequest(input)) return 'design';
+  return 'fallback_chat';
+}
+
+function isDesignWorkflowRequest(input) {
+  const lower = String(input || '').toLowerCase();
+  if (!lower.trim()) return false;
+  const hasDesignVerb = /生成|设计|候选|抗体|靶向|阻断|从头设计|create|generate|design|candidate|antibody|targeting|binding|block/.test(lower);
+  const hasTarget = /\b(il-\d+[abr]?|tnf[α\-]?a?|pd-[l\d]+|vegf[a-z]?|her\d|egfr|cd\d+|pcsk9)\b/i.test(input);
+  const hasSpecificAbType = /vhh|nanobod|fab\b|scfv|igg|纳米抗体/i.test(input);
+  return hasDesignVerb && (hasTarget || hasSpecificAbType);
+}
+
+async function runFallbackChatWorkflow(ws, input, voiceChatSessionId) {
+  const send = data => { if (ws.readyState === 1) ws.send(JSON.stringify(data)); };
+  const providerConfig = getVoiceChatProviderConfig(voiceChatSessionId || '');
+  const result = await requestFallbackChat(providerConfig, input);
+  send({ type: 'agent_msg', text: result.text });
+  send({ type: 'chat_done' });
 }
 
 // ─── Capability Overview ────────────────────────────────────
@@ -1936,8 +2302,10 @@ wss.on('connection', ws => {
         interaction:         runInteractionAnalysis,
         risk_site:           runRiskSiteScan,
       };
-      const fn = handlers[intent] || runWorkflow;
-      fn(ws, msg.text)
+      const fn = intent === 'design'
+        ? runWorkflow
+        : (handlers[intent] || runFallbackChatWorkflow);
+      fn(ws, msg.text, msg.voiceChatSessionId)
         .catch(err => {
           if (err && err.isCancelled) return;
           console.error('[Server] Workflow error:', err);

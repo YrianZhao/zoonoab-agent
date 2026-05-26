@@ -580,86 +580,6 @@
             background: currentColor;
             flex-shrink: 0;
         }
-        .voice-settings-btn {
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.2px;
-            width: auto;
-            padding: 0 8px;
-            color: var(--text-muted);
-        }
-        .voice-settings-panel {
-            position: absolute;
-            right: 0;
-            top: calc(100% + 8px);
-            width: min(440px, calc(100vw - 48px));
-            display: none;
-            grid-template-columns: 1fr;
-            gap: 7px;
-            padding: 10px;
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
-            background: rgba(255,255,255,0.98);
-            box-shadow: var(--shadow-lg);
-            backdrop-filter: blur(14px);
-            z-index: 35;
-        }
-        .voice-settings-panel.open { display: grid; }
-        .voice-settings-row { display: flex; align-items: center; gap: 7px; min-width: 0; }
-        .voice-settings-row label {
-            width: 62px;
-            flex-shrink: 0;
-            font-size: 10px;
-            font-weight: 700;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-        }
-        .voice-settings-row input {
-            flex: 1;
-            min-width: 0;
-            height: 28px;
-            padding: 5px 8px;
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            font-size: 12px;
-            font-family: inherit;
-            color: var(--text-primary);
-            background: var(--bg-page);
-            outline: none;
-        }
-        .voice-settings-row input:focus {
-            border-color: var(--brand-light);
-            background: white;
-        }
-        .voice-settings-actions {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 8px;
-            padding-left: 69px;
-        }
-        .voice-settings-note {
-            min-width: 0;
-            color: var(--text-muted);
-            font-size: 10px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        .voice-save-btn {
-            height: 28px;
-            padding: 0 10px;
-            border: none;
-            border-radius: var(--radius-sm);
-            background: var(--brand);
-            color: white;
-            font-size: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            flex-shrink: 0;
-        }
-        .voice-save-btn:hover { background: var(--brand-dark); }
         .input-field {
             flex: 1; border: none; outline: none; font-size: 15px;
             color: var(--text-primary); resize: none;
@@ -3165,6 +3085,91 @@
         .kb-card-action.primary:hover { background: var(--brand-dark); }
         .kb-empty { text-align: center; padding: 60px 20px; color: var(--text-muted); grid-column: 1/-1; }
         .kb-empty-icon { font-size: 48px; margin-bottom: 12px; }
+        .kb-asr-view { display: none; flex: 1; overflow-y: auto; background: #FFFFFF; }
+        .kb-section.kb-asr-open .kb-main-topbar,
+        .kb-section.kb-asr-open .kb-main-stats,
+        .kb-section.kb-asr-open .kb-docs-area { display: none; }
+        .kb-section.kb-asr-open .kb-asr-view { display: block; }
+        .kb-asr-page { max-width: 860px; padding: 28px 32px 36px; }
+        .kb-asr-page-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; margin-bottom: 22px; padding-bottom: 18px; border-bottom: 1px solid var(--border); }
+        .kb-asr-page-title { font-size: 22px; font-weight: 750; color: var(--text-primary); margin-bottom: 6px; letter-spacing: 0; }
+        .kb-asr-page-sub { font-size: 13px; color: var(--text-secondary); line-height: 1.6; max-width: 620px; }
+        .kb-asr-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            min-height: 28px;
+            padding: 5px 10px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            background: var(--bg-page);
+            color: var(--text-muted);
+            font-size: 12px;
+            font-weight: 650;
+            white-space: nowrap;
+        }
+        .kb-asr-status.ready { border-color: rgba(34,197,94,0.28); background: rgba(240,253,244,0.95); color: #15803D; }
+        .kb-asr-status.error { border-color: rgba(239,68,68,0.26); background: rgba(254,242,242,0.95); color: var(--error); }
+        .kb-asr-status.testing { border-color: rgba(0,123,255,0.24); background: var(--brand-lighter); color: var(--brand-dark); }
+        .kb-asr-form { display: grid; gap: 18px; }
+        .kb-asr-field { display: grid; gap: 7px; }
+        .kb-asr-field label { font-size: 12px; font-weight: 750; color: var(--text-primary); }
+        .kb-asr-field input {
+            width: 100%;
+            box-sizing: border-box;
+            height: 42px;
+            padding: 9px 12px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            background: var(--bg-page);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 14px;
+            outline: none;
+            transition: var(--transition);
+        }
+        .kb-asr-field input:focus { border-color: var(--brand-light); background: white; box-shadow: 0 0 0 3px rgba(0,123,255,0.08); }
+        .kb-asr-help { color: var(--text-muted); font-size: 12px; line-height: 1.55; }
+        .kb-asr-actions { display: flex; align-items: center; gap: 10px; padding-top: 6px; flex-wrap: wrap; }
+        .kb-asr-primary-btn,
+        .kb-asr-secondary-btn {
+            height: 38px;
+            padding: 0 16px;
+            border-radius: var(--radius-md);
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            transition: var(--transition);
+            border: 1px solid var(--border);
+        }
+        .kb-asr-primary-btn { background: var(--brand); color: white; border-color: var(--brand); }
+        .kb-asr-primary-btn:hover { background: var(--brand-dark); border-color: var(--brand-dark); }
+        .kb-asr-secondary-btn { background: white; color: var(--text-secondary); }
+        .kb-asr-secondary-btn:hover { border-color: var(--brand-light); color: var(--brand); background: var(--brand-lighter); }
+        .kb-asr-primary-btn:disabled,
+        .kb-asr-secondary-btn:disabled { opacity: 0.58; cursor: not-allowed; transform: none; }
+        .kb-asr-result {
+            display: none;
+            margin-top: 8px;
+            padding: 12px 14px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            background: var(--bg-page);
+            color: var(--text-secondary);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        .kb-asr-result.success { display: block; border-color: rgba(34,197,94,0.28); background: rgba(240,253,244,0.95); color: #166534; }
+        .kb-asr-result.error { display: block; border-color: rgba(239,68,68,0.26); background: rgba(254,242,242,0.95); color: var(--error); }
+        .kb-api-block { border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 16px; background: #FAFBFC; }
+        .kb-api-block-title { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 760; color: var(--text-primary); margin-bottom: 4px; }
+        .kb-api-block-sub { font-size: 12px; line-height: 1.6; color: var(--text-muted); margin-bottom: 14px; }
+        .kb-api-grid { display: grid; gap: 12px; }
+        .kb-api-divider { height: 1px; background: var(--border); margin: 4px 0; }
         .kb-modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 300; display: none; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
         .kb-modal { background: white; border-radius: var(--radius-xl); padding: 28px; width: 520px; max-width: 95vw; box-shadow: 0 20px 60px rgba(0,0,0,0.15); }
         .kb-modal-title { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
@@ -3303,28 +3308,9 @@
                     <button class="input-icon-btn voice-btn" id="voiceBtn" onclick="toggleVoiceCapture()" title="按住空格或点击开始语音控制">
                         <i data-lucide="mic" style="width: 18px; height: 18px;"></i>
                     </button>
-                    <button class="input-icon-btn voice-settings-btn" id="voiceSettingsBtn" onclick="toggleVoiceSettings()" title="配置语音识别 API">ASR</button>
                     <div class="voice-status-pop" id="voiceStatusPop">
                         <span class="voice-dot"></span>
                         <span id="voiceStatusText">语音控制就绪</span>
-                    </div>
-                    <div class="voice-settings-panel" id="voiceSettingsPanel">
-                        <div class="voice-settings-row">
-                            <label for="voiceBaseUrlInput">Base URL</label>
-                            <input id="voiceBaseUrlInput" type="url" autocomplete="off" spellcheck="false" placeholder="https://api.deepseek.com/v1/audio/transcriptions">
-                        </div>
-                        <div class="voice-settings-row">
-                            <label for="voiceApiKeyInput">API Key</label>
-                            <input id="voiceApiKeyInput" type="password" autocomplete="off" spellcheck="false" placeholder="只保存在本次服务端内存会话">
-                        </div>
-                        <div class="voice-settings-row">
-                            <label for="voiceModelInput">Model</label>
-                            <input id="voiceModelInput" type="text" autocomplete="off" spellcheck="false" placeholder="deepseek-v4-flash">
-                        </div>
-                        <div class="voice-settings-actions">
-                            <span class="voice-settings-note" id="voiceSettingsNote">不明文存储，不写入浏览器本地存储。</span>
-                            <button class="voice-save-btn" onclick="saveVoiceSettings()">保存</button>
-                        </div>
                     </div>
                     <button class="input-icon-btn" id="cancelBtn" onclick="cancelTask()" style="display:none; color: var(--error);" title="Cancel Task">
                         <i data-lucide="square" style="width: 18px; height: 18px; fill: currentColor;"></i>
@@ -3564,6 +3550,11 @@
                         <div class="kb-tree-item" data-project="common" onclick="kbSelectProject(this,'common')">
                             <span>📚</span> 公共资料库 <span class="kb-tree-count">2</span>
                         </div>
+                        <div class="kb-tree-sep"></div>
+                        <div style="font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;padding:4px 10px 2px;">系统设置</div>
+                        <div class="kb-tree-item" id="kbAsrNavItem" onclick="openAsrSettingsPage()">
+                            <span>🎙️</span> 语音配置 <span class="kb-tree-count">API</span>
+                        </div>
                     </div>
                     <div class="kb-tree-footer">
                         <button class="kb-upload-btn" onclick="openKBUpload()">
@@ -3598,13 +3589,83 @@
                         <span class="kb-stat-text">AI 生成 <strong style="color:var(--brand);font-weight:700;">6</strong> 个</span>
                         <span class="kb-stat-text">· 总大小 <strong style="color:var(--text-secondary);font-weight:600;">55.4 MB</strong></span>
                     </div>
-                    <div class="kb-docs-area">
-                        <div class="kb-docs-grid" id="kbDocsGrid">
-                            <!-- Rendered by kbRender() -->
+                        <div class="kb-docs-area">
+                            <div class="kb-docs-grid" id="kbDocsGrid">
+                                <!-- Rendered by kbRender() -->
+                            </div>
+                        </div>
+                        <div class="kb-asr-view" id="kbAsrView">
+                            <div class="kb-asr-page">
+                                <div class="kb-asr-page-header">
+                                    <div>
+                                        <div class="kb-asr-page-title">语音与聊天 API 配置</div>
+                                        <div class="kb-asr-page-sub">语音模型只负责转写，聊天模型只负责无法映射到演示规则时的兜底回答。两个 Key 都只保存在服务端内存会话中，页面不会明文持久化。</div>
+                                    </div>
+                                    <div class="kb-asr-status" id="voiceSettingsNote">未配置</div>
+                                </div>
+                                <div class="kb-asr-form">
+                                    <div class="kb-api-block">
+                                        <div class="kb-api-block-title"><i data-lucide="mic" style="width:15px;height:15px;"></i>语音识别 API</div>
+                                        <div class="kb-api-block-sub">用于把麦克风音频转成文字。示例：SiliconFlow 转写端点 + FunAudioLLM/SenseVoiceSmall。</div>
+                                        <div class="kb-api-grid">
+                                            <div class="kb-asr-field">
+                                                <label for="voiceBaseUrlInput">ASR Base URL</label>
+                                                <input id="voiceBaseUrlInput" type="url" autocomplete="off" spellcheck="false" placeholder="https://api.siliconflow.cn/v1/audio/transcriptions">
+                                                <div class="kb-asr-help">需要指向兼容 OpenAI Audio Transcriptions 的端点；如果只填域名或 /v1，系统会自动补全 /audio/transcriptions。</div>
+                                            </div>
+                                            <div class="kb-asr-field">
+                                                <label for="voiceApiKeyInput">ASR API Key</label>
+                                                <input id="voiceApiKeyInput" type="password" autocomplete="off" spellcheck="false" placeholder="只保存在本次服务端内存会话">
+                                            </div>
+                                            <div class="kb-asr-field">
+                                                <label for="voiceModelInput">ASR Model</label>
+                                                <input id="voiceModelInput" type="text" autocomplete="off" spellcheck="false" placeholder="FunAudioLLM/SenseVoiceSmall">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="kb-api-block">
+                                        <div class="kb-api-block-title"><i data-lucide="message-square" style="width:15px;height:15px;"></i>聊天兜底 API</div>
+                                        <div class="kb-api-block-sub">用于回答没有命中演示规则的问题。请填写 chat/completions 类型的聊天模型，不要填写语音转写模型。</div>
+                                        <div class="kb-api-grid">
+                                            <div class="kb-asr-field">
+                                                <label for="voiceChatBaseUrlInput">Chat Base URL</label>
+                                                <input id="voiceChatBaseUrlInput" type="url" autocomplete="off" spellcheck="false" placeholder="https://api.deepseek.com/v1/chat/completions">
+                                                <div class="kb-asr-help">如果只填域名或 /v1，系统会自动补全 /chat/completions。</div>
+                                            </div>
+                                            <div class="kb-asr-field">
+                                                <label for="voiceChatApiKeyInput">Chat API Key</label>
+                                                <input id="voiceChatApiKeyInput" type="password" autocomplete="off" spellcheck="false" placeholder="只保存在本次服务端内存会话">
+                                            </div>
+                                            <div class="kb-asr-field">
+                                                <label for="voiceChatModelInput">Chat Model</label>
+                                                <input id="voiceChatModelInput" type="text" autocomplete="off" spellcheck="false" placeholder="deepseek-chat">
+                                                <div class="kb-asr-help">兜底回答会使用服务端内置“小诺”系统提示，不会在页面或回答中暴露供应商和模型名称。</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="kb-asr-actions">
+                                        <button class="kb-asr-secondary-btn" id="voiceTestBtn" onclick="testVoiceSettings()">
+                                            <i data-lucide="plug-zap" style="width:14px;height:14px;"></i> 测试语音
+                                        </button>
+                                        <button class="kb-asr-primary-btn" id="voiceSaveBtn" onclick="saveVoiceSettings()">
+                                            <i data-lucide="save" style="width:14px;height:14px;"></i> 保存语音
+                                        </button>
+                                        <button class="kb-asr-secondary-btn" id="voiceChatTestBtn" onclick="testVoiceChatSettings()">
+                                            <i data-lucide="messages-square" style="width:14px;height:14px;"></i> 测试聊天
+                                        </button>
+                                        <button class="kb-asr-primary-btn" id="voiceChatSaveBtn" onclick="saveVoiceChatSettings()">
+                                            <i data-lucide="save" style="width:14px;height:14px;"></i> 保存聊天
+                                        </button>
+                                        <button class="kb-asr-secondary-btn" onclick="closeAsrSettingsPage()">
+                                            返回知识库
+                                        </button>
+                                    </div>
+                                    <div class="kb-asr-result" id="voiceTestResult"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
             <!-- Upload Modal -->
             <div class="kb-modal-overlay" id="kbUploadModal">
@@ -4721,13 +4782,17 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         { id:12, name:'抗体工程学综述_NatureReviews_2025.pdf',      type:'pdf',   size:'18.5 MB', project:'common', projectName:'公共资料库',       author:'系统导入',  date:'2026-01-15', tags:['文献','综述'],            isAI:false, summary:'Nature Reviews Drug Discovery 2025年综述，涵盖AI辅助设计、双特异性抗体及ADC最新进展。' },
         { id:13, name:'VHH_CDR设计最佳实践手册_v5.pdf',            type:'pdf',   size:'3.2 MB',  project:'common', projectName:'公共资料库',       author:'科研部',    date:'2026-02-10', tags:['操作手册','VHH'],         isAI:false, summary:'内部SOP：VHH抗体CDR设计规范、风险位点评估标准及文库构建流程（第5版）。' },
     ];
-    let kbCurrentProject = 'all';
-    let kbCurrentType = 'all';
-    let kbSearchQuery = '';
+	    let kbCurrentProject = 'all';
+	    let kbCurrentType = 'all';
+	    let kbSearchQuery = '';
+	    let kbPreviousProjectBeforeAsr = 'all';
+	    let kbPreviousTypeBeforeAsr = 'all';
 
-    function kbRender() {
-        const grid = document.getElementById('kbDocsGrid');
-        if (!grid) return;
+	    function kbRender() {
+	        const kbSection = document.getElementById('kbSection');
+	        if (kbSection) kbSection.classList.remove('kb-asr-open');
+	        const grid = document.getElementById('kbDocsGrid');
+	        if (!grid) return;
         const q = kbSearchQuery.toLowerCase();
         const files = KB_FILES.filter(f => {
             if (kbCurrentProject !== 'all' && f.project !== kbCurrentProject) return false;
@@ -4772,12 +4837,14 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         lucide.createIcons();
     }
 
-    function kbSelectProject(el, project) {
-        kbCurrentProject = project;
-        document.querySelectorAll('.kb-tree-item').forEach(b => b.classList.remove('active'));
-        el.classList.add('active');
-        kbRender();
-    }
+	    function kbSelectProject(el, project) {
+	        kbCurrentProject = project;
+	        kbCurrentType = 'all';
+	        document.querySelectorAll('.kb-tree-item').forEach(b => b.classList.remove('active'));
+	        el.classList.add('active');
+	        document.querySelectorAll('.kb-type-btn').forEach((b, idx) => b.classList.toggle('active', idx === 0));
+	        kbRender();
+	    }
 
     function kbSetType(btn, type) {
         kbCurrentType = type;
@@ -4786,10 +4853,39 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         kbRender();
     }
 
-    function kbSearch(val) {
-        kbSearchQuery = val;
-        kbRender();
-    }
+	    function kbSearch(val) {
+	        kbSearchQuery = val;
+	        kbRender();
+	    }
+
+	    function openAsrSettingsPage() {
+	        const kbSection = document.getElementById('kbSection');
+	        if (kbSection && !kbSection.classList.contains('kb-asr-open')) {
+	            kbPreviousProjectBeforeAsr = kbCurrentProject;
+	            kbPreviousTypeBeforeAsr = kbCurrentType;
+	        }
+	        document.querySelectorAll('.kb-tree-item').forEach(b => b.classList.remove('active'));
+	        const item = document.getElementById('kbAsrNavItem');
+	        if (item) item.classList.add('active');
+	        if (kbSection) kbSection.classList.add('kb-asr-open');
+	        setVoiceTestResult('', '');
+	        loadVoiceConfig();
+	        lucide.createIcons();
+	    }
+
+	    function closeAsrSettingsPage() {
+	        const kbSection = document.getElementById('kbSection');
+	        if (kbSection) kbSection.classList.remove('kb-asr-open');
+	        kbCurrentProject = kbPreviousProjectBeforeAsr || 'all';
+	        kbCurrentType = kbPreviousTypeBeforeAsr || 'all';
+	        const activeProject = document.querySelector(`.kb-tree-item[data-project="${kbCurrentProject}"]`) || document.querySelector('.kb-tree-item[data-project="all"]');
+	        document.querySelectorAll('.kb-tree-item').forEach(b => b.classList.remove('active'));
+	        if (activeProject) activeProject.classList.add('active');
+	        document.querySelectorAll('.kb-type-btn').forEach(b => b.classList.remove('active'));
+	        const activeType = document.querySelector(`.kb-type-btn[onclick*="'${kbCurrentType}'"]`) || document.querySelector('.kb-type-btn');
+	        if (activeType) activeType.classList.add('active');
+	        kbRender();
+	    }
 
     function openKBUpload() {
         document.getElementById('kbUploadModal').style.display = 'flex';
@@ -5224,6 +5320,17 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 }));
                 break;
 
+            case 'chat_done':
+                enqueueOp(() => new Promise(resolve => {
+                    isRunning = false;
+                    hideTyping();
+                    document.getElementById('sendBtn').style.display = 'flex';
+                    document.getElementById('cancelBtn').style.display = 'none';
+                    const _inp = document.getElementById('userInput'); if (_inp) _inp.placeholder = t('placeholder');
+                    resolve();
+                }));
+                break;
+
             case 'done':
                 enqueueOp(() => new Promise(resolve => {
                     isRunning = false;
@@ -5618,17 +5725,18 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     // ═══════════════ Send Message ═══════════════
-    function sendMessage() {
+    function sendMessage(options = {}) {
         const input = document.getElementById('userInput');
         if (!input) return;
 
-        const text = input.value.trim();
+        const text = String(options.sendText ?? input.value).trim();
+        const displayText = String(options.displayText ?? text).trim();
         if (!text || isRunning) return;
         if (text.length > 2000) { showToast('输入内容过长，请不超过 2000 字符', 'error'); return; }
 
         document.getElementById('emptyState')?.remove();
         document.body.classList.add('chatting-mode');
-        appendUserMsg(text);
+        if (options.appendUser !== false) appendUserMsg(displayText || text);
         input.value = '';
         input.style.height = 'auto';
 
@@ -5640,7 +5748,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         showTyping();
 
         if (ws && ws.readyState === 1) {
-            ws.send(JSON.stringify({ type: 'user_msg', text }));
+            const payload = { type: 'user_msg', text };
+            if (voiceChatSessionId) payload.voiceChatSessionId = voiceChatSessionId;
+            ws.send(JSON.stringify(payload));
         } else {
             runDemo(text);
         }
@@ -5658,6 +5768,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     let voiceSpaceActive = false;
     let voiceCancelRequested = false;
     let voiceSessionId = '';
+    let voiceChatSessionId = '';
 
     function isVoiceSupported() {
         return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder);
@@ -5677,70 +5788,223 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         return '';
     }
 
-    async function loadVoiceConfig() {
-        try {
-            const resp = await fetch('/api/voice/config');
-            const cfg = await resp.json();
-            const baseInput = document.getElementById('voiceBaseUrlInput');
-            const modelInput = document.getElementById('voiceModelInput');
-            const note = document.getElementById('voiceSettingsNote');
-            if (baseInput && cfg.baseUrl && !baseInput.value) baseInput.value = cfg.baseUrl;
-            if (modelInput && cfg.model && !modelInput.value) modelInput.value = cfg.model;
-            if (note) {
-                note.textContent = cfg.ready
-                    ? `${cfg.provider || 'ASR'} 已就绪 · ${cfg.model || ''}`
-                    : '填写后仅保存在本次服务端内存会话。';
-            }
-        } catch (err) {
-            console.warn('[Voice] Config check failed:', err);
-        }
-    }
+	    async function loadVoiceConfig() {
+	        try {
+	            const resp = await fetch('/api/voice/config');
+	            const cfg = await resp.json();
+	            const baseInput = document.getElementById('voiceBaseUrlInput');
+	            const modelInput = document.getElementById('voiceModelInput');
+	            const chatBaseInput = document.getElementById('voiceChatBaseUrlInput');
+	            const chatModelInput = document.getElementById('voiceChatModelInput');
+	            if (baseInput && cfg.baseUrl && !baseInput.value) baseInput.value = cfg.baseUrl;
+	            if (modelInput && cfg.model && !modelInput.value) modelInput.value = cfg.model;
+	            if (chatBaseInput && cfg.chat?.baseUrl && !chatBaseInput.value) chatBaseInput.value = cfg.chat.baseUrl;
+	            if (chatModelInput && cfg.chat?.model && !chatModelInput.value) chatModelInput.value = cfg.chat.model;
+	            setVoiceSettingsStatus(
+	                cfg.ready || cfg.chat?.ready ? 'ready' : '',
+	                `语音${cfg.ready ? '已就绪' : '未配置'} · 聊天${cfg.chat?.ready ? '已就绪' : '未配置'}`
+	            );
+	        } catch (err) {
+	            console.warn('[Voice] Config check failed:', err);
+	            setVoiceSettingsStatus('error', '配置读取失败');
+	        }
+	    }
 
-    function toggleVoiceSettings(force) {
-        const panel = document.getElementById('voiceSettingsPanel');
-        if (!panel) return;
-        const shouldOpen = typeof force === 'boolean' ? force : !panel.classList.contains('open');
-        panel.classList.toggle('open', shouldOpen);
-        if (shouldOpen) loadVoiceConfig();
-    }
+	    function setVoiceSettingsStatus(state, text) {
+	        const note = document.getElementById('voiceSettingsNote');
+	        if (!note) return;
+	        note.className = 'kb-asr-status';
+	        if (state) note.classList.add(state);
+	        note.textContent = text || '未配置';
+	    }
 
-    async function saveVoiceSettings() {
-        const baseInput = document.getElementById('voiceBaseUrlInput');
-        const keyInput = document.getElementById('voiceApiKeyInput');
-        const modelInput = document.getElementById('voiceModelInput');
-        const note = document.getElementById('voiceSettingsNote');
-        const baseUrl = (baseInput?.value || '').trim();
-        const apiKey = (keyInput?.value || '').trim();
-        const model = (modelInput?.value || '').trim();
-        if (!baseUrl || !apiKey || !model) {
-            showToast('请填写 Base URL、API Key 和 Model', 'warning');
-            return;
-        }
-        try {
-            if (note) note.textContent = '正在保存到服务端内存...';
-            const resp = await fetch('/api/voice/session', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ baseUrl, apiKey, model })
-            });
-            const data = await resp.json().catch(() => ({}));
-            if (!resp.ok) {
-                const msg = data.message || 'ASR 配置保存失败';
-                showToast(msg, 'error');
-                if (note) note.textContent = msg;
-                return;
-            }
-            voiceSessionId = data.voiceSessionId || '';
-            if (keyInput) keyInput.value = '';
-            if (note) note.textContent = `${data.provider || 'ASR'} 已就绪 · ${data.model || model}`;
-            toggleVoiceSettings(false);
-            showToast('语音识别 API 已临时启用', 'success');
-        } catch (err) {
-            console.warn('[Voice] Save settings failed:', err);
-            showToast('ASR 配置保存失败', 'error');
-            if (note) note.textContent = '保存失败，请重试';
-        }
-    }
+	    function setVoiceTestResult(state, text) {
+	        const result = document.getElementById('voiceTestResult');
+	        if (!result) return;
+	        result.className = 'kb-asr-result';
+	        if (state) result.classList.add(state);
+	        result.textContent = text || '';
+	    }
+
+	    function readVoiceSettingsForm() {
+	        const baseInput = document.getElementById('voiceBaseUrlInput');
+	        const keyInput = document.getElementById('voiceApiKeyInput');
+	        const modelInput = document.getElementById('voiceModelInput');
+	        const baseUrl = (baseInput?.value || '').trim();
+	        const apiKey = (keyInput?.value || '').trim();
+	        const model = (modelInput?.value || '').trim();
+	        if (!baseUrl || !apiKey || !model) {
+	            showToast('请填写 Base URL、API Key 和 Model', 'warning');
+	            setVoiceTestResult('error', '请先填写 Base URL、API Key 和 Model。');
+	            return null;
+	        }
+	        return { baseUrl, apiKey, model, keyInput };
+	    }
+
+	    function readVoiceChatSettingsForm() {
+	        const baseInput = document.getElementById('voiceChatBaseUrlInput');
+	        const keyInput = document.getElementById('voiceChatApiKeyInput');
+	        const modelInput = document.getElementById('voiceChatModelInput');
+	        const baseUrl = (baseInput?.value || '').trim();
+	        const apiKey = (keyInput?.value || '').trim();
+	        const model = (modelInput?.value || '').trim();
+	        if (!baseUrl || !apiKey || !model) {
+	            showToast('请填写 Chat Base URL、API Key 和 Model', 'warning');
+	            setVoiceTestResult('error', '请先填写聊天兜底 API 的 Base URL、API Key 和 Model。');
+	            return null;
+	        }
+	        return { baseUrl, apiKey, model, keyInput };
+	    }
+
+	    async function testVoiceSettings() {
+	        const form = readVoiceSettingsForm();
+	        if (!form) return;
+	        const testBtn = document.getElementById('voiceTestBtn');
+	        const saveBtn = document.getElementById('voiceSaveBtn');
+	        try {
+	            if (testBtn) testBtn.disabled = true;
+	            if (saveBtn) saveBtn.disabled = true;
+	            setVoiceSettingsStatus('testing', '测试中');
+	            setVoiceTestResult('', '');
+	            const resp = await fetch('/api/voice/test', {
+	                method: 'POST',
+	                headers: { 'Content-Type': 'application/json' },
+	                body: JSON.stringify({ baseUrl: form.baseUrl, apiKey: form.apiKey, model: form.model })
+	            });
+	            const data = await resp.json().catch(() => ({}));
+	            if (!resp.ok) {
+	                const msg = data.message || 'ASR 测试失败';
+	                setVoiceSettingsStatus('error', '测试失败');
+	                setVoiceTestResult('error', msg);
+	                showToast(msg, 'error');
+	                return;
+	            }
+	            setVoiceSettingsStatus('ready', '语音测试通过');
+	            setVoiceTestResult('success', '语音识别测试成功。当前 ASR 接口已可用。');
+	            showToast('ASR 测试成功', 'success');
+	        } catch (err) {
+	            console.warn('[Voice] Test settings failed:', err);
+	            setVoiceSettingsStatus('error', '测试失败');
+	            setVoiceTestResult('error', 'ASR 测试请求失败，请检查网络或服务端日志。');
+	            showToast('ASR 测试请求失败', 'error');
+	        } finally {
+	            if (testBtn) testBtn.disabled = false;
+	            if (saveBtn) saveBtn.disabled = false;
+	        }
+	    }
+
+	    async function saveVoiceSettings() {
+	        const form = readVoiceSettingsForm();
+	        if (!form) return;
+	        const saveBtn = document.getElementById('voiceSaveBtn');
+	        const testBtn = document.getElementById('voiceTestBtn');
+	        try {
+	            if (saveBtn) saveBtn.disabled = true;
+	            if (testBtn) testBtn.disabled = true;
+	            setVoiceSettingsStatus('testing', '保存中');
+	            const resp = await fetch('/api/voice/session', {
+	                method: 'POST',
+	                headers: { 'Content-Type': 'application/json' },
+	                body: JSON.stringify({ baseUrl: form.baseUrl, apiKey: form.apiKey, model: form.model })
+	            });
+	            const data = await resp.json().catch(() => ({}));
+	            if (!resp.ok) {
+	                const msg = data.message || 'ASR 配置保存失败';
+	                showToast(msg, 'error');
+	                setVoiceSettingsStatus('error', '保存失败');
+	                setVoiceTestResult('error', msg);
+	                return;
+	            }
+	            voiceSessionId = data.voiceSessionId || '';
+	            if (form.keyInput) form.keyInput.value = '';
+	            setVoiceSettingsStatus('ready', '语音已就绪');
+	            setVoiceTestResult('success', `配置已保存到服务端内存会话，有效期约 ${Math.round((data.expiresInSeconds || 0) / 60)} 分钟。`);
+	            showToast('语音识别 API 已临时启用', 'success');
+	        } catch (err) {
+	            console.warn('[Voice] Save settings failed:', err);
+	            showToast('ASR 配置保存失败', 'error');
+	            setVoiceSettingsStatus('error', '保存失败');
+	            setVoiceTestResult('error', '保存失败，请重试。');
+	        } finally {
+	            if (saveBtn) saveBtn.disabled = false;
+	            if (testBtn) testBtn.disabled = false;
+	        }
+	    }
+
+	    async function testVoiceChatSettings() {
+	        const form = readVoiceChatSettingsForm();
+	        if (!form) return;
+	        const testBtn = document.getElementById('voiceChatTestBtn');
+	        const saveBtn = document.getElementById('voiceChatSaveBtn');
+	        try {
+	            if (testBtn) testBtn.disabled = true;
+	            if (saveBtn) saveBtn.disabled = true;
+	            setVoiceSettingsStatus('testing', '聊天测试中');
+	            setVoiceTestResult('', '');
+	            const resp = await fetch('/api/voice/chat-test', {
+	                method: 'POST',
+	                headers: { 'Content-Type': 'application/json' },
+	                body: JSON.stringify({ baseUrl: form.baseUrl, apiKey: form.apiKey, model: form.model })
+	            });
+	            const data = await resp.json().catch(() => ({}));
+	            if (!resp.ok) {
+	                const msg = data.message || '聊天模型测试失败';
+	                setVoiceSettingsStatus('error', '聊天测试失败');
+	                setVoiceTestResult('error', msg);
+	                showToast(msg, 'error');
+	                return;
+	            }
+	            setVoiceSettingsStatus('ready', '聊天测试通过');
+	            setVoiceTestResult('success', '聊天测试成功。小诺兜底问答已可用。');
+	            showToast('聊天兜底 API 测试成功', 'success');
+	        } catch (err) {
+	            console.warn('[Voice] Test chat settings failed:', err);
+	            setVoiceSettingsStatus('error', '聊天测试失败');
+	            setVoiceTestResult('error', '聊天测试请求失败，请检查网络或服务端日志。');
+	            showToast('聊天测试请求失败', 'error');
+	        } finally {
+	            if (testBtn) testBtn.disabled = false;
+	            if (saveBtn) saveBtn.disabled = false;
+	        }
+	    }
+
+	    async function saveVoiceChatSettings() {
+	        const form = readVoiceChatSettingsForm();
+	        if (!form) return;
+	        const saveBtn = document.getElementById('voiceChatSaveBtn');
+	        const testBtn = document.getElementById('voiceChatTestBtn');
+	        try {
+	            if (saveBtn) saveBtn.disabled = true;
+	            if (testBtn) testBtn.disabled = true;
+	            setVoiceSettingsStatus('testing', '聊天保存中');
+	            const resp = await fetch('/api/voice/chat-session', {
+	                method: 'POST',
+	                headers: { 'Content-Type': 'application/json' },
+	                body: JSON.stringify({ baseUrl: form.baseUrl, apiKey: form.apiKey, model: form.model })
+	            });
+	            const data = await resp.json().catch(() => ({}));
+	            if (!resp.ok) {
+	                const msg = data.message || '聊天配置保存失败';
+	                showToast(msg, 'error');
+	                setVoiceSettingsStatus('error', '聊天保存失败');
+	                setVoiceTestResult('error', msg);
+	                return;
+	            }
+	            voiceChatSessionId = data.voiceChatSessionId || '';
+	            if (form.keyInput) form.keyInput.value = '';
+	            setVoiceSettingsStatus('ready', '聊天已就绪');
+	            setVoiceTestResult('success', `聊天配置已保存到服务端内存会话，有效期约 ${Math.round((data.expiresInSeconds || 0) / 60)} 分钟。`);
+	            showToast('聊天兜底 API 已临时启用', 'success');
+	        } catch (err) {
+	            console.warn('[Voice] Save chat settings failed:', err);
+	            showToast('聊天配置保存失败', 'error');
+	            setVoiceSettingsStatus('error', '聊天保存失败');
+	            setVoiceTestResult('error', '聊天保存失败，请重试。');
+	        } finally {
+	            if (saveBtn) saveBtn.disabled = false;
+	            if (testBtn) testBtn.disabled = false;
+	        }
+	    }
 
     function updateVoiceUI(state, message) {
         voiceState = state;
@@ -5884,8 +6148,19 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             .replace(/\bpd\s*-?\s*l\s*-?\s*1\b/g, 'pd-l1')
             .replace(/\bpd\s*-?\s*1\b/g, 'pd-1')
             .replace(/\bil\s*-?\s*33\b/g, 'il-33')
+            .replace(/\bst\s*-?\s*2\b/g, 'st2')
+            .replace(/tnf[\s\-]?α/g, 'tnf')
             .replace(/\s+/g, ' ')
             .trim();
+    }
+
+    function stripXiaonuoWakeWord(text) {
+        const raw = String(text || '').trim();
+        const hasWake = /小诺同学|小诺小诺|小诺|hi\s+zoono|hey\s+zoono|xiao\s*nuo/i.test(raw);
+        const stripped = raw
+            .replace(/^(请)?\s*(小诺同学|小诺小诺|小诺|hi\s+zoono|hey\s+zoono|xiao\s*nuo)[，。！？、,\s]*/i, '')
+            .trim();
+        return { hasWake, text: stripped || raw };
     }
 
     function voiceHas(cmd, patterns) {
@@ -6031,19 +6306,147 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         return false;
     }
 
+    const XIAONUO_DEMO_ROUTES = [
+        {
+            id: 'il33-asthma',
+            patterns: ['过敏', '哮喘', '呼吸道炎症', '气道炎症', '过敏性疾病', '特应性皮炎', '炎症通路', 'il-33', 'st2', 'asthma', 'allergy', 'allergic', 'airway inflammation'],
+            title: '已理解您的需求',
+            disease: '过敏性哮喘 / 过敏炎症',
+            designType: 'VHH 候选抗体',
+            target: 'IL-33 / ST2 炎症通路',
+            output: '候选抗体序列、PDB 结构、可用于 3D 打印的结构模型文件',
+            prompt: '生成 15 个抗 IL-33 候选 VHH，阻断 IL-33/ST2 炎症通路'
+        },
+        {
+            id: 'pd1-oncology',
+            patterns: ['肿瘤免疫', '癌症免疫', '免疫治疗', '免疫检查点', 'pd-1', 'pd-l1', 'oncology', 'tumor immunotherapy', 'cancer immunotherapy', 'checkpoint'],
+            title: '已理解您的需求',
+            disease: '肿瘤免疫治疗',
+            designType: '免疫检查点 Fab 候选抗体',
+            target: 'PD-1 / PD-L1',
+            output: '候选 Fab、PDB 结构、3D 分子展示',
+            prompt: '设计 10 个阻断 PD-1/PD-L1 的 Fab'
+        },
+        {
+            id: 'her2-breast',
+            patterns: ['乳腺癌', '胃癌', 'her2 阳性', 'her2', 'breast cancer', 'gastric cancer'],
+            title: '已理解您的需求',
+            disease: 'HER2 相关肿瘤',
+            designType: 'HER2 候选抗体',
+            target: 'HER2',
+            output: '候选抗体序列、结构模型和相互作用分析',
+            prompt: '设计 15 个靶向 HER2 的 Fab'
+        },
+        {
+            id: 'tnf-autoimmune',
+            patterns: ['自身免疫', '类风湿', '风湿', '炎症因子', 'tnf', 'autoimmune', 'rheumatoid'],
+            title: '已理解您的需求',
+            disease: '自身免疫 / 类风湿炎症',
+            designType: 'TNF 候选抗体',
+            target: 'TNF',
+            output: '候选抗体序列、结构模型和风险位点分析',
+            prompt: '设计 15 个靶向 TNF 的 VHH'
+        },
+        {
+            id: 'default-demo',
+            patterns: ['完整演示', '自动选择靶点', '从疾病出发', '设计一个抗体', '设计抗体', '抗体模型', '结构模型', '打印', '3d 打印', '代表性抗体', 'demo', 'complete demo', 'design an antibody', 'print'],
+            title: '已选择快速演示路线',
+            disease: '过敏炎症示范路线',
+            designType: 'VHH 候选抗体',
+            target: 'IL-33 / ST2',
+            output: 'AI 预测候选、PDB 结构、可用于 3D 打印的结构模型文件',
+            prompt: '生成 15 个抗 IL-33 候选 VHH，阻断 IL-33/ST2 炎症通路'
+        }
+    ];
+
+    function routeXiaonuoDemoIntent(cmd, rawText) {
+        const route = XIAONUO_DEMO_ROUTES.find(item => voiceHas(cmd, item.patterns));
+        if (!route) return false;
+        const printNote = voiceHas(cmd, ['打印', '3d 打印', 'print'])
+            ? '\n\n**结构输出：** 将准备可用于 3D 打印的 AI 预测结构模型文件。'
+            : '';
+        const card = `## ${route.title}
+
+| 项目 | 结果 |
+|------|------|
+| 疾病方向 | ${route.disease} |
+| 设计类型 | ${route.designType} |
+| AI 推荐示范靶点 | ${route.target} |
+| 输出结果 | ${route.output} |
+| 状态 | AI 预测候选，需实验验证 |
+${printNote}
+
+ZoonoAb 正在启动抗体设计工作流...`;
+        appendAgentMsg(card);
+        showToast('小诺已匹配稳定演示路线', 'success');
+        const input = document.getElementById('userInput');
+        if (!input) return true;
+        input.value = route.prompt;
+        input.dispatchEvent(new Event('input'));
+        if (isRunning) {
+            showToast('当前工作流正在运行，已准备好下一条演示指令', 'warning');
+            return true;
+        }
+        sendMessage({ displayText: rawText, sendText: route.prompt, appendUser: false });
+        return true;
+    }
+
+    async function runVoiceFallbackChat(text) {
+        if (!text || isRunning) {
+            if (isRunning) showToast('当前工作流正在运行，语音内容已填入输入框', 'warning');
+            return;
+        }
+        document.getElementById('emptyState')?.remove();
+        document.body.classList.add('chatting-mode');
+        appendUserMsg(text);
+        isRunning = true;
+        document.getElementById('sendBtn').style.display = 'none';
+        document.getElementById('cancelBtn').style.display = 'flex';
+        const _inputEl = document.getElementById('userInput');
+        if (_inputEl) _inputEl.placeholder = '';
+        showTyping();
+        try {
+            const headers = { 'Content-Type': 'application/json' };
+            if (voiceChatSessionId) headers['X-Voice-Chat-Session'] = voiceChatSessionId;
+            const resp = await fetch('/api/voice/chat', {
+                method: 'POST',
+                headers,
+                body: JSON.stringify({ text })
+            });
+            const data = await resp.json().catch(() => ({}));
+            if (!resp.ok) throw new Error(data.message || '聊天兜底请求失败');
+            hideTyping();
+            appendAgentMsg(data.text || '我是 ZoonoAb 团队研发的抗体设计智能助手小诺。');
+        } catch (err) {
+            console.warn('[Voice] Fallback chat failed:', err);
+            hideTyping();
+            appendAgentMsg('我是 ZoonoAb 团队研发的抗体设计智能助手小诺。当前兜底聊天服务暂时不可用，但仍可继续使用抗体设计、结构查看和分析面板演示能力。');
+            showToast('聊天兜底暂时不可用', 'warning');
+        } finally {
+            isRunning = false;
+            document.getElementById('sendBtn').style.display = 'flex';
+            document.getElementById('cancelBtn').style.display = 'none';
+            const _inp = document.getElementById('userInput');
+            if (_inp) _inp.placeholder = t('placeholder');
+        }
+    }
+
     function handleVoiceTranscript(text) {
-        const cmd = normalizeVoiceCommand(text);
+        const wake = stripXiaonuoWakeWord(text);
+        const spokenText = wake.text || text;
+        const cmd = normalizeVoiceCommand(spokenText);
         if (!cmd) return;
         if (routeVoiceCommand(cmd, text)) return;
+        if (routeXiaonuoDemoIntent(cmd, spokenText)) return;
         const input = document.getElementById('userInput');
         if (!input) return;
-        input.value = text;
+        input.value = spokenText;
         input.dispatchEvent(new Event('input'));
         if (isRunning) {
             showToast('当前工作流正在运行，语音内容已填入输入框', 'warning');
             return;
         }
-        sendMessage();
+        runVoiceFallbackChat(spokenText);
     }
 
     function isTypingTarget(target) {
@@ -6074,19 +6477,16 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             voiceSpaceActive = false;
             if (voiceState === 'listening') stopVoiceCapture();
         });
-        document.addEventListener('click', (e) => {
-            const panel = document.getElementById('voiceSettingsPanel');
-            const btnSettings = document.getElementById('voiceSettingsBtn');
-            if (!panel || !panel.classList.contains('open')) return;
-            if (panel.contains(e.target) || (btnSettings && btnSettings.contains(e.target))) return;
-            toggleVoiceSettings(false);
-        });
-    }
+	    }
 
-    window.toggleVoiceCapture = toggleVoiceCapture;
-    window.handleVoiceTranscript = handleVoiceTranscript;
-    window.toggleVoiceSettings = toggleVoiceSettings;
-    window.saveVoiceSettings = saveVoiceSettings;
+	    window.toggleVoiceCapture = toggleVoiceCapture;
+	    window.handleVoiceTranscript = handleVoiceTranscript;
+	    window.openAsrSettingsPage = openAsrSettingsPage;
+	    window.closeAsrSettingsPage = closeAsrSettingsPage;
+	    window.testVoiceSettings = testVoiceSettings;
+	    window.saveVoiceSettings = saveVoiceSettings;
+	    window.testVoiceChatSettings = testVoiceChatSettings;
+	    window.saveVoiceChatSettings = saveVoiceChatSettings;
 
     // ═══════════════ Utility Functions ═══════════════
     // renderMarkdown and inlineMarkdown are defined near the bottom of this script
