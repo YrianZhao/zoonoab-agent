@@ -5757,10 +5757,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
     function submitQuickDesign() {
         const text = qdInstructionText();
+        const routeId = qdState.routeId;
         closeQuickDesign();
-        const inp = document.getElementById('userInput');
-        if (inp) { inp.value = text; inp.focus(); }
-        setTimeout(() => sendMessage(), 80);
+        sendQuickDesignWorkflow(text, routeId);
     }
 
     // ═══════════════ CONVERSATION HISTORY (localStorage) ═══════════════
@@ -6383,6 +6382,36 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     // ═══════════════ Send Message ═══════════════
+    function startChatRun(text) {
+        document.getElementById('emptyState')?.remove();
+        document.body.classList.add('chatting-mode');
+        appendUserMsg(text);
+
+        isRunning = true;
+        document.getElementById('sendBtn').style.display = 'none';
+        document.getElementById('cancelBtn').style.display = 'flex';
+        const _inputEl = document.getElementById('userInput');
+        if (_inputEl) _inputEl.placeholder = '';
+        showTyping();
+    }
+
+    function sendQuickDesignWorkflow(text, routeId) {
+        if (!text || isRunning) return;
+        startChatRun(text);
+        if (ws && ws.readyState === 1) {
+            ws.send(JSON.stringify({ type: 'quick_design', text, routeId }));
+        } else {
+            appendLog('[System] WebSocket 未连接，快速设计无法启动后端白名单工作流');
+            isRunning = false;
+            hideTyping();
+            document.getElementById('sendBtn').style.display = 'flex';
+            document.getElementById('cancelBtn').style.display = 'none';
+            const _inp = document.getElementById('userInput');
+            if (_inp) _inp.placeholder = t('placeholder');
+            showToast('后端连接未就绪，请等待连接后重试快速设计', 'error');
+        }
+    }
+
     function sendMessage() {
         const input = document.getElementById('userInput');
         if (!input) return;
@@ -6392,18 +6421,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (!text || isRunning) return;
         if (text.length > 2000) { showToast('输入内容过长，请不超过 2000 字符', 'error'); return; }
 
-        document.getElementById('emptyState')?.remove();
-        document.body.classList.add('chatting-mode');
-        appendUserMsg(text);
+        startChatRun(text);
         input.value = '';
         input.style.height = 'auto';
-
-        isRunning = true;
-        document.getElementById('sendBtn').style.display = 'none';
-        document.getElementById('cancelBtn').style.display = 'flex';
-        const _inputEl = document.getElementById('userInput');
-        if (_inputEl) _inputEl.placeholder = '';
-        showTyping();
 
         if (ws && ws.readyState === 1) {
             ws.send(JSON.stringify({ type: 'user_msg', text, voiceSessionId: voiceSessionId || '' }));

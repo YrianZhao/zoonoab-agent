@@ -1175,6 +1175,17 @@ function detectDemoRoute(input) {
   return null;
 }
 
+function getDemoRouteById(routeId) {
+  const id = String(routeId || '').trim();
+  return DEMO_ROUTE_RULES.find(rule => rule.id === id) || null;
+}
+
+function resolveQuickDesignRoute(msg) {
+  const explicitRoute = getDemoRouteById(msg && msg.routeId);
+  if (explicitRoute) return explicitRoute;
+  return detectDemoRoute(msg && msg.text) || DEMO_ROUTE_RULES[0];
+}
+
 function buildDemoInstruction(input, route) {
   const raw = String(input || '').trim();
   const asksPrint = /(打印|3d\s*打印|print|模型|纪念)/i.test(raw) || route.printable;
@@ -1983,6 +1994,52 @@ function detectIntent(input) {
   return 'assistant_chat';
 }
 
+function getWorkflowHandlers() {
+  return {
+    capability:          runCapabilityOverview,
+    epitope_prediction:  runEpitopePrediction,
+    chai1:               runChai1Prediction,
+    de_novo:             runDeNovoDesign,
+    affinity_maturation: runAffinityMaturationWF,
+    humanization:        runVHHHumanizationWF,
+    uniprot:             runUniProtSearch,
+    physicochemical:     runPhysicochemAnalysis,
+    concentration:       runConcentrationConversion,
+    msa:                 runMSAAlignment,
+    interaction:         runInteractionAnalysis,
+    risk_site:           runRiskSiteScan,
+  };
+}
+
+function resolveUserMessageRunner(msg, cleanText) {
+  const intent = detectIntent(cleanText);
+  const demoRoute = intent === 'design' ? detectDemoRoute(cleanText) : null;
+  const handlers = getWorkflowHandlers();
+  const runner = intent === 'assistant_chat'
+    ? ((socket, text) => runAssistantChat(socket, text, msg.voiceSessionId))
+    : (intent === 'design' && demoRoute ? ((socket, text) => runDemoRoutedWorkflow(socket, text, demoRoute)) : (handlers[intent] || runWorkflow));
+  return { intent, demoRoute, runner };
+}
+
+function runSocketTask(ws, sid, msg, buildRunner) {
+  const text = String(msg.text || '');
+  const sess = sessions.get(sid);
+  if (sess && sess.busy) {
+    ws.send(JSON.stringify({ type: 'error', text: '当前工作流正在运行，请等待完成后再发送新指令。' }));
+    return;
+  }
+  if (sess) { sess.busy = true; sess.cancelled = false; }
+  const cleanText = stripWakeWords(text);
+  const runner = buildRunner(cleanText || text);
+  runner(ws, cleanText || text)
+    .catch(err => {
+      if (err && err.isCancelled) return;
+      console.error('[Server] Workflow error:', err);
+      if (ws.readyState === 1) ws.send(JSON.stringify({ type: 'error', text: '工作流执行出错，请重试。' }));
+    })
+    .finally(() => { if (sess) { sess.busy = false; sess.cancelled = false; } });
+}
+
 // ─── Capability Overview ────────────────────────────────────
 async function runCapabilityOverview(ws, input) {
   const delay = ms => new Promise(r => setTimeout(r, ms));
@@ -2623,41 +2680,16 @@ wss.on('connection', ws => {
       return;
     }
 
+    if (msg.type === 'quick_design') {
+      if (!msg.text || typeof msg.text !== 'string' || msg.text.length > 4000) return;
+      const quickRoute = resolveQuickDesignRoute(msg);
+      runSocketTask(ws, sid, msg, () => ((socket, text) => runDemoRoutedWorkflow(socket, text || msg.text, quickRoute)));
+      return;
+    }
+
     if (msg.type === 'user_msg') {
       if (!msg.text || typeof msg.text !== 'string' || msg.text.length > 4000) return;
-      const sess = sessions.get(sid);
-      if (sess && sess.busy) {
-        ws.send(JSON.stringify({ type: 'error', text: '当前工作流正在运行，请等待完成后再发送新指令。' }));
-        return;
-      }
-      if (sess) { sess.busy = true; sess.cancelled = false; }
-      const cleanText = stripWakeWords(msg.text);
-      const intent = detectIntent(cleanText);
-      const demoRoute = intent === 'design' ? detectDemoRoute(cleanText) : null;
-      const handlers = {
-        capability:          runCapabilityOverview,
-        epitope_prediction:  runEpitopePrediction,
-        chai1:               runChai1Prediction,
-        de_novo:             runDeNovoDesign,
-        affinity_maturation: runAffinityMaturationWF,
-        humanization:        runVHHHumanizationWF,
-        uniprot:             runUniProtSearch,
-        physicochemical:     runPhysicochemAnalysis,
-        concentration:       runConcentrationConversion,
-        msa:                 runMSAAlignment,
-        interaction:         runInteractionAnalysis,
-        risk_site:           runRiskSiteScan,
-      };
-      const fn = intent === 'assistant_chat'
-        ? ((socket, text) => runAssistantChat(socket, text, msg.voiceSessionId))
-        : (intent === 'design' && demoRoute ? ((socket, text) => runDemoRoutedWorkflow(socket, text, demoRoute)) : (handlers[intent] || runWorkflow));
-      fn(ws, cleanText || msg.text)
-        .catch(err => {
-          if (err && err.isCancelled) return;
-          console.error('[Server] Workflow error:', err);
-          if (ws.readyState === 1) ws.send(JSON.stringify({ type: 'error', text: '工作流执行出错，请重试。' }));
-        })
-        .finally(() => { if (sess) { sess.busy = false; sess.cancelled = false; } });
+      runSocketTask(ws, sid, msg, (cleanText) => resolveUserMessageRunner(msg, cleanText).runner);
     }
   });
   ws.on('close', () => sessions.delete(sid));
