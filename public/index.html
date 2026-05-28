@@ -2329,6 +2329,147 @@
         }
         .qd-chip:hover { border-color: var(--brand-light); color: var(--brand-dark); background: var(--brand-lighter); }
         .qd-chip.active { border-color: var(--brand); color: var(--brand-dark); background: var(--brand-lighter); font-weight: 600; }
+        .qd-modal {
+            background: var(--bg-card); border-radius: 16px; box-shadow: 0 24px 60px rgba(0,0,0,0.18);
+            width: min(720px, 95vw); max-height: 90vh; overflow: hidden; position: relative;
+            display: flex; flex-direction: column;
+        }
+        .qd-modal-close {
+            position: absolute; top: 16px; right: 16px; background: none; border: none; cursor: pointer;
+            color: var(--text-muted); padding: 5px; border-radius: 6px; z-index: 2;
+            display: inline-flex; align-items: center; justify-content: center; transition: var(--transition);
+        }
+        .qd-modal-close:hover { background: var(--bg-light); color: var(--text-primary); }
+        .qd-modal-header {
+            padding: 24px 28px 18px; border-bottom: 1px solid var(--border-light);
+            background: linear-gradient(180deg, #FFFFFF 0%, #F8FBFF 100%);
+        }
+        .qd-header-main { display: flex; align-items: center; gap: 12px; padding-right: 28px; }
+        .qd-header-icon {
+            width: 38px; height: 38px; background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+            border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+            box-shadow: 0 8px 18px rgba(0,123,255,0.22);
+        }
+        .qd-header-title { font-size: 16px; font-weight: 750; color: var(--text-primary); line-height: 1.25; }
+        .qd-header-subtitle { font-size: 12px; color: var(--text-muted); margin-top: 3px; line-height: 1.4; }
+        .qd-progress-wrap { margin-top: 16px; }
+        .qd-progress-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 8px; }
+        .qd-progress-label { font-size: 11px; font-weight: 700; color: var(--brand-dark); }
+        .qd-progress-meta { font-size: 11px; color: var(--text-muted); font-weight: 600; }
+        .qd-progress-track { height: 6px; background: #E8EEF7; border-radius: 999px; overflow: hidden; }
+        .qd-progress-bar { height: 100%; width: 12.5%; background: linear-gradient(90deg, var(--brand), var(--brand-dark)); border-radius: inherit; transition: width 0.25s ease; }
+        .qd-step-dots { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 5px; margin-top: 9px; }
+        .qd-step-dot { height: 3px; border-radius: 999px; background: #D8E3F1; transition: var(--transition); }
+        .qd-step-dot.done { background: rgba(0,123,255,0.45); }
+        .qd-step-dot.active { background: var(--brand); }
+        .qd-modal-body { padding: 24px 28px 20px; overflow-y: auto; flex: 1; min-height: 0; }
+        .qd-step-kicker { font-size: 11px; color: var(--brand-dark); font-weight: 750; margin-bottom: 8px; }
+        .qd-step-title { font-size: 22px; line-height: 1.25; color: var(--text-primary); font-weight: 800; margin-bottom: 8px; letter-spacing: 0; }
+        .qd-step-subtitle { color: var(--text-secondary); font-size: 13px; line-height: 1.6; margin-bottom: 18px; max-width: 560px; }
+        .qd-intro-panel {
+            border: 1px solid var(--border-light); border-radius: 8px; padding: 16px;
+            background: linear-gradient(135deg, #F7FBFF 0%, #FFFFFF 62%);
+            display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center; margin: 8px 0 20px;
+        }
+        .qd-intro-route { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
+        .qd-route-pill {
+            display: inline-flex; align-items: center; gap: 5px; padding: 5px 9px; border-radius: 999px;
+            border: 1px solid rgba(0,123,255,0.18); background: rgba(0,123,255,0.06);
+            color: var(--brand-dark); font-size: 11px; font-weight: 700;
+        }
+        .qd-demo-orb {
+            width: 84px; height: 84px; border-radius: 50%; background:
+                radial-gradient(circle at 35% 35%, #FFFFFF 0 10%, rgba(255,255,255,0) 11%),
+                radial-gradient(circle at 60% 42%, rgba(0,123,255,0.25), rgba(0,123,255,0.02) 58%),
+                linear-gradient(135deg, rgba(0,123,255,0.18), rgba(34,197,94,0.16));
+            border: 1px solid rgba(0,123,255,0.14); position: relative; flex-shrink: 0;
+        }
+        .qd-demo-orb::before, .qd-demo-orb::after {
+            content: ''; position: absolute; border-radius: 999px; background: var(--brand);
+            box-shadow: 0 0 0 5px rgba(0,123,255,0.11);
+        }
+        .qd-demo-orb::before { width: 10px; height: 10px; left: 20px; top: 46px; }
+        .qd-demo-orb::after { width: 8px; height: 8px; right: 20px; top: 24px; background: #22C55E; box-shadow: 0 0 0 5px rgba(34,197,94,0.12); }
+        .qd-option-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 8px; }
+        .qd-option-grid.compact { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .qd-option-card {
+            border: 1.5px solid var(--border); border-radius: 8px; background: var(--bg-card);
+            padding: 13px 14px; text-align: left; cursor: pointer; font-family: inherit;
+            transition: var(--transition); min-height: 92px; display: flex; flex-direction: column; gap: 8px;
+        }
+        .qd-option-card:hover { border-color: var(--brand-light); background: #F7FBFF; transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+        .qd-option-card.selected { border-color: var(--brand); background: var(--brand-lighter); box-shadow: 0 0 0 3px rgba(0,123,255,0.08); }
+        .qd-option-card.recommended { border-color: rgba(0,123,255,0.32); }
+        .qd-option-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+        .qd-option-title { font-size: 14px; line-height: 1.35; color: var(--text-primary); font-weight: 750; }
+        .qd-option-desc { font-size: 12px; line-height: 1.45; color: var(--text-secondary); }
+        .qd-tag {
+            font-size: 10px; line-height: 1; padding: 4px 6px; border-radius: 999px;
+            background: rgba(0,123,255,0.1); color: var(--brand-dark); font-weight: 750; white-space: nowrap;
+        }
+        .qd-muted-action {
+            margin-top: 14px; color: var(--brand-dark); border: none; background: transparent; cursor: pointer;
+            font-size: 12px; font-weight: 700; font-family: inherit; padding: 4px 0; display: inline-flex; align-items: center; gap: 6px;
+        }
+        .qd-advanced-panel {
+            margin-top: 12px; border: 1px solid var(--border); border-radius: 8px; padding: 13px;
+            background: var(--bg-light);
+        }
+        .qd-field-label { font-size: 12px; font-weight: 700; color: var(--text-secondary); margin-bottom: 6px; display: block; }
+        .qd-input {
+            width: 100%; padding: 10px 12px; border: 1.5px solid var(--border); border-radius: 8px;
+            font-size: 13px; font-family: inherit; outline: none; color: var(--text-primary); background: var(--bg-card);
+            transition: var(--transition);
+        }
+        .qd-input:focus { border-color: var(--brand-light); box-shadow: 0 0 0 3px rgba(0,123,255,0.08); }
+        .qd-range { width: 100%; accent-color: var(--brand); cursor: pointer; }
+        .qd-range-meta { display: flex; justify-content: space-between; font-size: 10px; color: var(--text-muted); margin-top: 4px; }
+        .qd-summary-card {
+            border: 1px solid var(--border); border-radius: 8px; background: var(--bg-card); overflow: hidden; margin-bottom: 12px;
+        }
+        .qd-summary-row {
+            display: grid; grid-template-columns: 138px 1fr; gap: 10px; padding: 10px 13px;
+            border-bottom: 1px solid var(--border-light); align-items: center;
+        }
+        .qd-summary-row:last-child { border-bottom: none; }
+        .qd-summary-label { font-size: 12px; color: var(--text-muted); font-weight: 700; }
+        .qd-summary-value { font-size: 13px; color: var(--text-primary); font-weight: 700; line-height: 1.45; }
+        .qd-preview-box {
+            background: #F7FAFE; border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; margin-top: 12px;
+        }
+        .qd-preview-label { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 5px; }
+        .qd-preview-text { font-size: 13px; color: var(--text-primary); line-height: 1.65; word-break: break-word; }
+        .qd-modal-footer {
+            display: flex; align-items: center; justify-content: space-between; gap: 12px;
+            padding: 16px 28px 22px; border-top: 1px solid var(--border-light); background: #FFFFFF;
+        }
+        .qd-footer-left, .qd-footer-right { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .qd-btn {
+            border: 1.5px solid var(--border); border-radius: 8px; padding: 10px 14px; font-size: 13px;
+            font-weight: 750; font-family: inherit; cursor: pointer; transition: var(--transition);
+            display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 40px;
+            background: var(--bg-card); color: var(--text-secondary);
+        }
+        .qd-btn:hover { border-color: var(--brand-light); color: var(--brand-dark); background: var(--brand-lighter); }
+        .qd-btn.primary {
+            border-color: transparent; color: #FFFFFF; background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+            box-shadow: 0 8px 18px rgba(0,123,255,0.18);
+        }
+        .qd-btn.primary:hover { color: #FFFFFF; opacity: 0.92; }
+        .qd-btn.ghost { border-color: transparent; background: transparent; color: var(--text-muted); padding-left: 8px; padding-right: 8px; }
+        .qd-btn.ghost:hover { background: var(--bg-light); color: var(--text-primary); }
+        .qd-helper-note { font-size: 11px; color: var(--text-muted); line-height: 1.5; margin-top: 8px; }
+        @media (max-width: 640px) {
+            .qd-modal { width: min(96vw, 720px); max-height: 92vh; }
+            .qd-modal-header { padding: 22px 18px 16px; }
+            .qd-modal-body { padding: 20px 18px 18px; }
+            .qd-modal-footer { padding: 14px 18px 18px; flex-direction: column; align-items: stretch; }
+            .qd-footer-left, .qd-footer-right, .qd-btn { width: 100%; }
+            .qd-option-grid, .qd-option-grid.compact { grid-template-columns: 1fr; }
+            .qd-intro-panel { grid-template-columns: 1fr; }
+            .qd-demo-orb { display: none; }
+            .qd-summary-row { grid-template-columns: 1fr; gap: 3px; }
+        }
 
         /* Sequence compare highlight */
         .sequence-card.compare-selected { border: 1.5px solid var(--brand-light) !important; background: linear-gradient(135deg, #F0F7FF, var(--bg-card)); }
@@ -3958,77 +4099,31 @@
 
     <!-- ═══════════════ QUICK DESIGN MODAL ═══════════════ -->
     <div id="quickDesignOverlay" style="display:none;position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,0.45);backdrop-filter:blur(4px);align-items:center;justify-content:center;" onclick="if(event.target===this)closeQuickDesign()">
-        <div style="background:var(--bg-card);border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,0.18);width:min(520px,95vw);max-height:90vh;overflow-y:auto;padding:28px 28px 24px;position:relative;">
-            <button onclick="closeQuickDesign()" style="position:absolute;top:16px;right:16px;background:none;border:none;cursor:pointer;color:var(--text-muted);padding:4px;border-radius:6px;">
+        <div class="qd-modal" role="dialog" aria-modal="true" aria-labelledby="qdTitle">
+            <button class="qd-modal-close" onclick="closeQuickDesign()" aria-label="关闭快速设计">
                 <i data-lucide="x" style="width:18px;height:18px;"></i>
             </button>
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
-                <div style="width:36px;height:36px;background:linear-gradient(135deg,var(--brand),var(--brand-dark));border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                    <i data-lucide="wand-2" style="width:18px;height:18px;color:white;"></i>
-                </div>
-                <div>
-                    <div style="font-size:16px;font-weight:700;color:var(--text-primary);">快速设计</div>
-                    <div style="font-size:12px;color:var(--text-muted);">填写参数，AI 自动生成设计请求</div>
-                </div>
-            </div>
-
-            <div style="display:flex;flex-direction:column;gap:16px;">
-                <!-- Target -->
-                <div>
-                    <label style="font-size:12px;font-weight:600;color:var(--text-secondary);display:block;margin-bottom:6px;">靶点蛋白 <span style="color:var(--error);">*</span></label>
-                    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;" id="qdTargetChips">
-                        <button class="qd-chip active" onclick="qdSelectTarget(this,'IL-33')">IL-33</button>
-                        <button class="qd-chip" onclick="qdSelectTarget(this,'PD-L1')">PD-L1</button>
-                        <button class="qd-chip" onclick="qdSelectTarget(this,'VEGF')">VEGF</button>
-                        <button class="qd-chip" onclick="qdSelectTarget(this,'HER2')">HER2</button>
-                        <button class="qd-chip" onclick="qdSelectTarget(this,'CD3')">CD3</button>
-                        <button class="qd-chip" onclick="qdSelectTarget(this,'TNF')">TNF-α</button>
-                        <button class="qd-chip" onclick="qdSelectTarget(this,'PCSK9')">PCSK9</button>
-                    </div>
-                    <input id="qdTargetInput" type="text" placeholder="或输入自定义靶点，如 EGFR、CD20..." style="width:100%;padding:9px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;font-family:inherit;outline:none;color:var(--text-primary);background:var(--bg-page);" oninput="qdClearChips()" onfocus="this.style.borderColor='var(--brand-light)'" onblur="this.style.borderColor='var(--border)'">
-                </div>
-
-                <!-- Antibody Type + Count -->
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
-                    <div>
-                        <label style="font-size:12px;font-weight:600;color:var(--text-secondary);display:block;margin-bottom:6px;">抗体类型</label>
-                        <select id="qdAbType" style="width:100%;padding:9px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;font-family:inherit;outline:none;background:var(--bg-page);color:var(--text-primary);cursor:pointer;">
-                            <option value="VHH">VHH (纳米抗体)</option>
-                            <option value="IgG">IgG (全长抗体)</option>
-                            <option value="Fab">Fab 片段</option>
-                            <option value="scFv">scFv 单链抗体</option>
-                        </select>
+            <div class="qd-modal-header">
+                <div class="qd-header-main">
+                    <div class="qd-header-icon">
+                        <i data-lucide="wand-2" style="width:18px;height:18px;color:white;"></i>
                     </div>
                     <div>
-                        <label style="font-size:12px;font-weight:600;color:var(--text-secondary);display:block;margin-bottom:6px;">候选数量: <span id="qdCountDisplay" style="color:var(--brand);">15</span></label>
-                        <input id="qdCount" type="range" min="5" max="100" step="5" value="15" oninput="document.getElementById('qdCountDisplay').textContent=this.value" style="width:100%;accent-color:var(--brand);cursor:pointer;margin-top:6px;">
-                        <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text-muted);margin-top:2px;"><span>5</span><span>100</span></div>
+                        <div class="qd-header-title" id="qdTitle">开启您的第一款药物分子设计</div>
+                        <div class="qd-header-subtitle" id="qdHeaderSubtitle">选择一个疾病方向，AI 将引导您逐步生成抗体设计任务</div>
                     </div>
                 </div>
-
-                <!-- Epitope (optional) -->
-                <div>
-                    <label style="font-size:12px;font-weight:600;color:var(--text-secondary);display:block;margin-bottom:6px;">靶向表位 <span style="color:var(--text-muted);font-weight:400;">(选填)</span></label>
-                    <input id="qdEpitope" type="text" placeholder="如：Site-II β11-β12 界面，或留空自动选择最优表位" style="width:100%;padding:9px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;font-family:inherit;outline:none;color:var(--text-primary);background:var(--bg-page);" onfocus="this.style.borderColor='var(--brand-light)'" onblur="this.style.borderColor='var(--border)'">
+                <div class="qd-progress-wrap" id="qdProgressWrap">
+                    <div class="qd-progress-row">
+                        <span class="qd-progress-label" id="qdProgressLabel">Demo 引导流程</span>
+                        <span class="qd-progress-meta" id="qdProgressMeta">1/8</span>
+                    </div>
+                    <div class="qd-progress-track"><div class="qd-progress-bar" id="qdProgressBar"></div></div>
+                    <div class="qd-step-dots" id="qdStepDots"></div>
                 </div>
-
-                <!-- Block interaction (optional) -->
-                <div>
-                    <label style="font-size:12px;font-weight:600;color:var(--text-secondary);display:block;margin-bottom:6px;">阻断相互作用 <span style="color:var(--text-muted);font-weight:400;">(选填)</span></label>
-                    <input id="qdBlock" type="text" placeholder="如：ST2，阻断靶点/ST2 相互作用通路" style="width:100%;padding:9px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;font-family:inherit;outline:none;color:var(--text-primary);background:var(--bg-page);" onfocus="this.style.borderColor='var(--brand-light)'" onblur="this.style.borderColor='var(--border)'">
-                </div>
-
-                <!-- Preview -->
-                <div style="background:var(--bg-light);border:1px solid var(--border);border-radius:8px;padding:10px 14px;">
-                    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-muted);margin-bottom:4px;">生成的指令预览</div>
-                    <div id="qdPreview" style="font-size:13px;color:var(--text-primary);line-height:1.6;word-break:break-word;"></div>
-                </div>
-
-                <button onclick="submitQuickDesign()" style="width:100%;padding:13px;background:linear-gradient(135deg,var(--brand),var(--brand-dark));color:white;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:opacity 0.2s;" onmouseenter="this.style.opacity='0.9'" onmouseleave="this.style.opacity='1'">
-                    <i data-lucide="send" style="width:16px;height:16px;"></i>
-                    启动 AI 设计工作流
-                </button>
             </div>
+            <div class="qd-modal-body" id="qdStepBody"></div>
+            <div class="qd-modal-footer" id="qdFooter"></div>
         </div>
     </div>
 
@@ -5133,60 +5228,479 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     // ═══════════════ QUICK DESIGN PANEL ═══════════════
-    let _qdTarget = 'IL-33';
+    const QD_TOTAL_STEPS = 8;
+    const qdDiseaseOptions = [
+        { id: 'oncology', title: '肿瘤', desc: '用于识别或阻断肿瘤相关信号通路', recommended: true },
+        { id: 'immune', title: '自身免疫 / 炎症疾病', desc: '用于调节过度活跃的免疫和炎症反应' },
+        { id: 'metabolic', title: '代谢疾病', desc: '用于干预脂代谢、能量代谢或内分泌相关通路' },
+        { id: 'infectious', title: '感染性疾病', desc: '用于结合病原体相关蛋白或阻断感染过程' },
+        { id: 'cardio', title: '心血管疾病', desc: '用于调节血脂、血管炎症或凝血相关靶点' }
+    ];
+    const qdTargetOptions = {
+        oncology: [
+            { id: 'PD-L1', title: 'PD-L1', desc: '常见免疫检查点靶标，可用于肿瘤免疫治疗方向', recommended: true },
+            { id: 'HER2', title: 'HER2', desc: '乳腺癌、胃癌等方向的经典抗体药物靶点' },
+            { id: 'VEGF', title: 'VEGF', desc: '与肿瘤血管生成相关，常用于抗血管生成治疗策略' },
+            { id: 'EGFR', title: 'EGFR', desc: '多种实体瘤中常见的生长信号受体靶点' },
+            { id: 'CD3', title: 'CD3', desc: 'T 细胞表面靶点，常用于免疫细胞招募类设计' }
+        ],
+        immune: [
+            { id: 'IL-33', title: 'IL-33', desc: '炎症和过敏反应相关因子，适合抗炎演示路线', recommended: true },
+            { id: 'TNF-a', title: 'TNF-a', desc: '炎症疾病中的经典因子，可用于阻断炎症信号' },
+            { id: 'IL-6R', title: 'IL-6R', desc: '白细胞介素 6 受体，常见于免疫炎症调节方向' },
+            { id: 'CD20', title: 'CD20', desc: 'B 细胞相关靶点，可用于免疫细胞清除策略' }
+        ],
+        metabolic: [
+            { id: 'PCSK9', title: 'PCSK9', desc: '调节 LDL 胆固醇代谢的代表性蛋白', recommended: true },
+            { id: 'GLP-1R', title: 'GLP-1R', desc: '葡萄糖代谢和食欲调节相关受体' },
+            { id: 'FGF21', title: 'FGF21', desc: '与能量代谢、脂代谢调控相关的内分泌因子' }
+        ],
+        infectious: [
+            { id: 'Spike', title: 'Spike', desc: '病毒入侵宿主细胞相关表面蛋白示例', recommended: true },
+            { id: 'RSV-F', title: 'RSV-F', desc: '呼吸道合胞病毒融合蛋白，适合中和抗体方向' },
+            { id: 'HA', title: 'HA', desc: '流感病毒血凝素，可用于阻断病毒识别宿主细胞' }
+        ],
+        cardio: [
+            { id: 'PCSK9', title: 'PCSK9', desc: '降低 LDL 胆固醇相关的成熟抗体药物靶点', recommended: true },
+            { id: 'ANGPTL3', title: 'ANGPTL3', desc: '与血脂代谢和心血管风险调控相关' },
+            { id: 'IL-1B', title: 'IL-1B', desc: '与血管炎症反应相关的炎症因子' }
+        ]
+    };
+    const qdMechanismOptions = {
+        'PD-L1': [
+            { id: 'block-pd1-pdl1', title: '阻断 PD-1 / PD-L1 相互作用', desc: '阻止免疫检查点抑制信号，适合肿瘤免疫治疗展示', recommended: true, block: 'PD-1' },
+            { id: 'immune-recognition', title: '增强 T 细胞免疫识别', desc: '帮助免疫系统更有效识别肿瘤细胞' },
+            { id: 'high-affinity', title: '生成高亲和力结合抗体', desc: '优先优化结合能力、稳定性和可开发性' }
+        ],
+        'HER2': [
+            { id: 'block-growth', title: '阻断肿瘤生长信号', desc: '抑制 HER2 相关信号传导', recommended: true },
+            { id: 'cell-clearance', title: '诱导靶细胞清除', desc: '用于更接近治疗性抗体的展示故事' },
+            { id: 'high-affinity', title: '生成高亲和力结合抗体', desc: '优先找到稳定结合 HER2 的候选分子' }
+        ],
+        'VEGF': [
+            { id: 'block-ligand', title: '阻断配体结合', desc: '阻断 VEGF 相关血管生成信号', recommended: true },
+            { id: 'neutralize', title: '中和可溶性因子', desc: '减少目标因子与受体结合的机会' },
+            { id: 'detect-only', title: '仅结合检测，不干预功能', desc: '适合诊断或研究工具型分子展示' }
+        ],
+        'EGFR': [
+            { id: 'block-receptor', title: '阻断受体相互作用', desc: '干预受体激活和下游生长信号', recommended: true },
+            { id: 'cell-clearance', title: '诱导靶细胞清除', desc: '设计更接近治疗性抗体的作用模式' },
+            { id: 'high-affinity', title: '生成高亲和力结合抗体', desc: '优先优化结合能力和稳定性' }
+        ],
+        'CD3': [
+            { id: 'immune-recognition', title: '激活免疫识别', desc: '用于展示 T 细胞招募或双特异性设计思路', recommended: true },
+            { id: 'controlled-binding', title: '生成可控结合抗体', desc: '强调结合强度和安全窗口的平衡' },
+            { id: 'detect-only', title: '仅结合检测，不干预功能', desc: '适合流式或研究工具方向' }
+        ],
+        'IL-33': [
+            { id: 'block-st2', title: '阻断 IL-33 / ST2 相互作用', desc: '阻断炎症信号传递，适合过敏炎症展示路线', recommended: true, block: 'ST2' },
+            { id: 'neutralize', title: '中和可溶性因子', desc: '让抗体结合 IL-33 并降低其信号活性' },
+            { id: 'high-affinity', title: '生成高亲和力结合抗体', desc: '优先获得稳定结合 IL-33 的候选分子' }
+        ],
+        'TNF-a': [
+            { id: 'neutralize', title: '中和炎症因子', desc: '降低 TNF-a 介导的炎症信号', recommended: true },
+            { id: 'block-receptor', title: '阻断受体相互作用', desc: '减少 TNF-a 与受体结合的机会' },
+            { id: 'high-affinity', title: '生成高亲和力结合抗体', desc: '优先优化结合能力和可开发性' }
+        ],
+        'IL-6R': [
+            { id: 'block-ligand', title: '阻断配体结合', desc: '阻止 IL-6 信号通过受体传递', recommended: true, block: 'IL-6' },
+            { id: 'block-receptor', title: '阻断受体相互作用', desc: '抑制受体复合体形成' },
+            { id: 'high-affinity', title: '生成高亲和力结合抗体', desc: '优先获得稳定结合 IL-6R 的候选分子' }
+        ],
+        'CD20': [
+            { id: 'cell-clearance', title: '诱导靶细胞清除', desc: '面向 B 细胞相关疾病的治疗性抗体策略', recommended: true },
+            { id: 'high-affinity', title: '生成高亲和力结合抗体', desc: '优先优化结合和稳定性' },
+            { id: 'detect-only', title: '仅结合检测，不干预功能', desc: '适合研究和检测工具方向' }
+        ],
+        default: [
+            { id: 'block-ligand', title: '阻断配体结合', desc: '阻止目标蛋白与关键伙伴结合', recommended: true },
+            { id: 'block-receptor', title: '阻断受体相互作用', desc: '减少下游信号传递' },
+            { id: 'immune-recognition', title: '激活免疫识别', desc: '帮助免疫系统识别目标细胞' },
+            { id: 'cell-clearance', title: '诱导靶细胞清除', desc: '面向治疗性抗体的展示策略' },
+            { id: 'detect-only', title: '仅结合检测，不干预功能', desc: '适合检测或研究工具型分子' }
+        ]
+    };
+    const qdEpitopeOptions = [
+        { id: 'auto', title: '自动选择最优表位', desc: 'AI 综合结构暴露度、保守性和作用机制自动推荐', recommended: true },
+        { id: 'interface', title: '蛋白结合界面', desc: '优先识别与配体或受体相互作用的区域' },
+        { id: 'conserved', title: '保守结构区域', desc: '优先选择变异较少、结构稳定的区域' },
+        { id: 'loop', title: '暴露环区 / 柔性区域', desc: '优先选择更容易被抗体接触的表面区域' }
+    ];
+    const qdAntibodyOptions = [
+        { id: 'VHH', title: 'VHH 纳米抗体', desc: '体积小、稳定性高，适合快速筛选', recommended: true },
+        { id: 'scFv', title: 'scFv 单链抗体', desc: '结构紧凑，适合工程化改造' },
+        { id: 'IgG', title: 'IgG 全长抗体', desc: '更接近完整治疗性抗体形态' },
+        { id: 'Auto', title: '自动推荐', desc: '由 AI 根据靶点和展示目标选择分子类型' }
+    ];
+    const qdCountOptions = [
+        { id: 'fast', title: '快速体验：5 个', desc: '适合现场快速跑通流程', count: 5 },
+        { id: 'standard', title: '标准设计：15 个', desc: '兼顾速度和候选多样性，推荐 demo 路径', count: 15, recommended: true },
+        { id: 'deep', title: '深度探索：50 个', desc: '用于展示更大规模的候选探索', count: 50 },
+        { id: 'custom', title: '自定义', desc: '展开后可手动设置候选数量', count: 15 }
+    ];
+    let qdState = {};
+
+    function qdResetState() {
+        qdState = {
+            step: 0,
+            disease: 'oncology',
+            target: 'PD-L1',
+            customTarget: '',
+            mechanism: 'block-pd1-pdl1',
+            epitope: 'auto',
+            advancedEpitopeOpen: false,
+            advancedOpen: false,
+            advancedEpitope: '',
+            advancedBlock: '',
+            antibody: 'VHH',
+            countMode: 'standard',
+            count: 15
+        };
+    }
+
     function openQuickDesign() {
         const ov = document.getElementById('quickDesignOverlay');
         if (!ov) return;
+        qdResetState();
         ov.style.display = 'flex';
+        qdRender();
         lucide.createIcons({ nodes: [ov] });
-        qdUpdatePreview();
     }
     function closeQuickDesign() {
         const ov = document.getElementById('quickDesignOverlay');
         if (ov) ov.style.display = 'none';
     }
-    function qdSelectTarget(btn, val) {
-        _qdTarget = val;
-        document.querySelectorAll('#qdTargetChips .qd-chip').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        document.getElementById('qdTargetInput').value = '';
-        qdUpdatePreview();
+
+    function qdGetTargetList() {
+        return qdTargetOptions[qdState.disease] || qdTargetOptions.oncology;
     }
-    function qdClearChips() {
-        document.querySelectorAll('#qdTargetChips .qd-chip').forEach(b => b.classList.remove('active'));
-        _qdTarget = '';
-        qdUpdatePreview();
+    function qdFindOption(list, id) {
+        return list.find(item => item.id === id) || list[0];
     }
-    function qdUpdatePreview() {
-        const target = document.getElementById('qdTargetInput')?.value.trim() || _qdTarget || 'IL-33';
-        const abType = document.getElementById('qdAbType')?.value || 'VHH';
-        const count  = document.getElementById('qdCount')?.value || '15';
-        const epitope = document.getElementById('qdEpitope')?.value.trim() || '';
-        const block = document.getElementById('qdBlock')?.value.trim() || '';
-        let preview = `设计 ${count} 个靶向 ${target} 的 ${abType}`;
-        if (epitope) preview += `，聚焦表位区域：${epitope}`;
-        if (block) preview += `，阻断 ${target}/${block} 相互作用通路`;
-        const el = document.getElementById('qdPreview');
-        if (el) el.textContent = preview;
+    function qdEscHtml(value) {
+        return String(value ?? '').replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
     }
-    // Auto-update preview when form changes
-    document.addEventListener('change', e => {
-        if (['qdAbType','qdCount','qdXAxis'].includes(e.target.id)) qdUpdatePreview();
-    });
-    document.addEventListener('input', e => {
-        if (['qdTargetInput','qdEpitope','qdBlock','qdCount'].includes(e.target.id)) qdUpdatePreview();
-    });
+    function qdEscAttr(value) {
+        return qdEscHtml(value);
+    }
+    function qdTargetLabel() {
+        return qdState.customTarget.trim() || qdState.target || 'PD-L1';
+    }
+    function qdDiseaseLabel() {
+        return qdFindOption(qdDiseaseOptions, qdState.disease).title;
+    }
+    function qdUseCaseLabel() {
+        const target = qdTargetLabel();
+        if (qdState.disease === 'oncology' && (target === 'PD-L1' || target === 'CD3')) return '肿瘤免疫治疗';
+        return qdDiseaseLabel();
+    }
+    function qdMechanismList() {
+        return qdMechanismOptions[qdTargetLabel()] || qdMechanismOptions.default;
+    }
+    function qdMechanismOption() {
+        return qdFindOption(qdMechanismList(), qdState.mechanism);
+    }
+    function qdEpitopeOption() {
+        return qdFindOption(qdEpitopeOptions, qdState.epitope);
+    }
+    function qdAntibodyOption() {
+        return qdFindOption(qdAntibodyOptions, qdState.antibody);
+    }
+    function qdCountOption() {
+        return qdFindOption(qdCountOptions, qdState.countMode);
+    }
+    function qdAdvancedBlock() {
+        return qdState.advancedBlock.trim() || qdMechanismOption().block || '';
+    }
+    function qdInteractionLabel(target, block) {
+        return target === 'PD-L1' && block === 'PD-1' ? 'PD-1 / PD-L1' : `${target} / ${block}`;
+    }
+    function qdInstructionText() {
+        const disease = qdUseCaseLabel();
+        const target = qdTargetLabel();
+        const antibody = qdState.antibody === 'Auto' ? 'AI 自动推荐抗体类型' : qdAntibodyOption().title;
+        const mechanism = qdMechanismOption().title;
+        const epitope = qdState.advancedEpitope.trim();
+        const block = qdAdvancedBlock();
+        const interaction = block ? qdInteractionLabel(target, block) : '';
+        let epitopePhrase = '';
+        if (epitope) epitopePhrase = `优先识别${epitope}`;
+        else if (qdState.epitope === 'auto' && block) epitopePhrase = `优先识别 ${interaction} 相互作用界面`;
+        else if (qdState.epitope === 'auto') epitopePhrase = '由 AI 自动选择最优表位';
+        else epitopePhrase = `优先识别${qdEpitopeOption().title}`;
+        let text = `为${disease}场景设计 ${qdState.count} 个靶向 ${target} 的 ${antibody}候选分子，${epitopePhrase}`;
+        if (block && (epitope || qdState.epitope !== 'auto')) text += `，并阻断 ${interaction} 相互作用`;
+        else if (!block) text += `，实现${mechanism}`;
+        text += '，并优化结合能力、稳定性和可开发性。';
+        return text;
+    }
+    function qdOptionCards(options, selectedId, handler, compact = false) {
+        return `<div class="qd-option-grid${compact ? ' compact' : ''}">` + options.map(opt => `
+            <button class="qd-option-card${selectedId === opt.id ? ' selected' : ''}${opt.recommended ? ' recommended' : ''}" onclick="${handler}('${qdEscAttr(opt.id)}')">
+                <span class="qd-option-top">
+                    <span class="qd-option-title">${qdEscHtml(opt.title)}</span>
+                    ${opt.recommended ? '<span class="qd-tag">推荐</span>' : ''}
+                </span>
+                <span class="qd-option-desc">${qdEscHtml(opt.desc)}</span>
+            </button>
+        `).join('') + `</div>`;
+    }
+    function qdRenderHeader() {
+        const meta = document.getElementById('qdProgressMeta');
+        const bar = document.getElementById('qdProgressBar');
+        const dots = document.getElementById('qdStepDots');
+        const subtitle = document.getElementById('qdHeaderSubtitle');
+        const progressWrap = document.getElementById('qdProgressWrap');
+        if (!meta || !bar || !dots) return;
+        const step = qdState.step + 1;
+        meta.textContent = `${step}/${QD_TOTAL_STEPS}`;
+        bar.style.width = `${(step / QD_TOTAL_STEPS) * 100}%`;
+        dots.innerHTML = Array.from({ length: QD_TOTAL_STEPS }, (_, i) => `<span class="qd-step-dot${i < qdState.step ? ' done' : ''}${i === qdState.step ? ' active' : ''}"></span>`).join('');
+        if (subtitle) subtitle.textContent = qdState.step === 0 ? '选择一个疾病方向，AI 将引导您逐步生成抗体设计任务' : '每一步只需点击一个选择，复杂参数已默认收起';
+        if (progressWrap) progressWrap.style.display = 'block';
+    }
+    function qdRenderFooter() {
+        const footer = document.getElementById('qdFooter');
+        if (!footer) return;
+        const backBtn = qdState.step > 0 ? `<button class="qd-btn" onclick="qdBack()"><i data-lucide="arrow-left" style="width:15px;height:15px;"></i> 上一步</button>` : '';
+        const advancedBtn = qdState.step === 7 ? `<button class="qd-btn" onclick="qdToggleAdvanced()"><i data-lucide="sliders-horizontal" style="width:15px;height:15px;"></i> 切换高级参数</button>` : '';
+        const primary = qdState.step === 0
+            ? `<button class="qd-btn primary" onclick="qdNext()"><i data-lucide="play" style="width:15px;height:15px;"></i> 开始设计</button>`
+            : qdState.step === 7
+                ? `<button class="qd-btn primary" onclick="submitQuickDesign()"><i data-lucide="send" style="width:15px;height:15px;"></i> 启动 AI 分子设计</button>`
+                : `<button class="qd-btn primary" onclick="qdNext()">下一步 <i data-lucide="arrow-right" style="width:15px;height:15px;"></i></button>`;
+        footer.innerHTML = `<div class="qd-footer-left">${backBtn}${advancedBtn}</div><div class="qd-footer-right">${primary}</div>`;
+    }
+    function qdRender() {
+        qdRenderHeader();
+        qdRenderFooter();
+        const body = document.getElementById('qdStepBody');
+        if (!body) return;
+        const target = qdTargetLabel();
+        const customTargetPanel = `
+            <button class="qd-muted-action" onclick="qdToggleCustomTarget()">
+                <i data-lucide="${qdState.showCustomTarget ? 'chevron-up' : 'chevron-down'}" style="width:14px;height:14px;"></i>
+                我想输入其他靶点
+            </button>
+            ${qdState.showCustomTarget ? `
+                <div class="qd-advanced-panel">
+                    <label class="qd-field-label" for="qdCustomTargetInput">自定义靶点</label>
+                    <input class="qd-input" id="qdCustomTargetInput" value="${qdEscAttr(qdState.customTarget)}" placeholder="如 EGFR、CD20、PCSK9" oninput="qdSetCustomTarget(this.value)">
+                    <div class="qd-helper-note">用于内部演示时建议优先使用推荐靶点，保证故事线和后续结果稳定。</div>
+                </div>` : ''}
+        `;
+        const advancedEpitopePanel = `
+            <button class="qd-muted-action" onclick="qdToggleAdvancedEpitope()">
+                <i data-lucide="${qdState.advancedEpitopeOpen ? 'chevron-up' : 'chevron-down'}" style="width:14px;height:14px;"></i>
+                高级模式：填写精确表位
+            </button>
+            ${qdState.advancedEpitopeOpen ? `
+                <div class="qd-advanced-panel">
+                    <label class="qd-field-label" for="qdAdvancedEpitopeInput">精确表位区域</label>
+                    <input class="qd-input" id="qdAdvancedEpitopeInput" value="${qdEscAttr(qdState.advancedEpitope)}" placeholder="如 Site-II beta11-beta12 界面" oninput="qdSetAdvancedEpitope(this.value)">
+                    <div class="qd-helper-note">路演默认推荐自动选择最优表位，避免观众填写复杂位点编号。</div>
+                </div>` : ''}
+        `;
+        const summaryRows = [
+            ['疾病方向', qdDiseaseLabel()],
+            ['靶标蛋白', target],
+            ['作用机制', qdMechanismOption().title],
+            ['表位策略', qdState.advancedEpitope.trim() || qdEpitopeOption().title],
+            ['抗体类型', qdAntibodyOption().title],
+            ['候选数量', `${qdState.count} 个`]
+        ].map(row => `<div class="qd-summary-row"><div class="qd-summary-label">${qdEscHtml(row[0])}</div><div class="qd-summary-value">${qdEscHtml(row[1])}</div></div>`).join('');
+        const advancedFinalPanel = qdState.advancedOpen ? `
+            <div class="qd-advanced-panel">
+                <label class="qd-field-label" for="qdAdvancedBlockInput">阻断相互作用对象</label>
+                <input class="qd-input" id="qdAdvancedBlockInput" value="${qdEscAttr(qdState.advancedBlock)}" placeholder="如 PD-1、ST2；留空则使用推荐机制" oninput="qdSetAdvancedBlock(this.value)">
+                <div style="height:10px;"></div>
+                <label class="qd-field-label" for="qdAdvancedFinalEpitopeInput">精确表位区域</label>
+                <input class="qd-input" id="qdAdvancedFinalEpitopeInput" value="${qdEscAttr(qdState.advancedEpitope)}" placeholder="如 Site-II beta11-beta12 界面" oninput="qdSetAdvancedEpitope(this.value)">
+                <div style="height:10px;"></div>
+                <label class="qd-field-label" for="qdAdvancedCountInput">候选数量：<span style="color:var(--brand);">${qdState.count}</span> 个</label>
+                <input class="qd-range" id="qdAdvancedCountInput" type="range" min="5" max="100" step="5" value="${qdState.count}" oninput="qdSetCustomCount(this.value)">
+                <div class="qd-range-meta"><span>5</span><span>100</span></div>
+            </div>` : '';
+
+        if (qdState.step === 0) {
+            body.innerHTML = `
+                <div class="qd-step-kicker">Guided Demo</div>
+                <div class="qd-step-title">开启您的第一款药物分子设计</div>
+                <div class="qd-step-subtitle">选择一个疾病方向，AI 将引导您逐步生成抗体设计任务。您不需要了解靶点、表位或抗体工程参数，只需沿着推荐路径点击选择。</div>
+                <div class="qd-intro-panel">
+                    <div>
+                        <div class="qd-option-title">推荐展示路径已准备好</div>
+                        <div class="qd-option-desc" style="margin-top:6px;">适合路演、展会和产品展示：观众能看到真实的 AI 药物分子设计任务如何被逐步定义。</div>
+                        <div class="qd-intro-route">
+                            <span class="qd-route-pill">肿瘤</span>
+                            <span class="qd-route-pill">PD-L1</span>
+                            <span class="qd-route-pill">阻断 PD-1 / PD-L1</span>
+                            <span class="qd-route-pill">VHH</span>
+                            <span class="qd-route-pill">15 个候选</span>
+                        </div>
+                    </div>
+                    <div class="qd-demo-orb" aria-hidden="true"></div>
+                </div>
+            `;
+        } else if (qdState.step === 1) {
+            body.innerHTML = `
+                <div class="qd-step-kicker">第 2 步</div>
+                <div class="qd-step-title">您想开发针对哪类疾病的治疗分子？</div>
+                <div class="qd-step-subtitle">先从疾病方向开始，系统会自动收窄后续靶点和设计目标。</div>
+                ${qdOptionCards(qdDiseaseOptions, qdState.disease, 'qdSelectDisease')}
+            `;
+        } else if (qdState.step === 2) {
+            body.innerHTML = `
+                <div class="qd-step-kicker">第 3 步</div>
+                <div class="qd-step-title">请选择希望作用的靶标蛋白</div>
+                <div class="qd-step-subtitle">已根据“${qdEscHtml(qdDiseaseLabel())}”筛选出更适合展示的靶点。</div>
+                ${qdOptionCards(qdGetTargetList(), qdState.customTarget.trim() ? '' : qdState.target, 'qdSelectTarget')}
+                ${customTargetPanel}
+            `;
+        } else if (qdState.step === 3) {
+            body.innerHTML = `
+                <div class="qd-step-kicker">第 4 步</div>
+                <div class="qd-step-title">您希望这个分子实现什么作用？</div>
+                <div class="qd-step-subtitle">系统会根据 ${qdEscHtml(target)} 给出可理解的作用机制，推荐项可直接点击继续。</div>
+                ${qdOptionCards(qdMechanismList(), qdState.mechanism, 'qdSelectMechanism')}
+            `;
+        } else if (qdState.step === 4) {
+            body.innerHTML = `
+                <div class="qd-step-kicker">第 5 步</div>
+                <div class="qd-step-title">希望抗体优先识别哪个区域？</div>
+                <div class="qd-step-subtitle">默认由 AI 自动选择最优表位。只有高级用户才需要填写具体结构位点。</div>
+                ${qdOptionCards(qdEpitopeOptions, qdState.epitope, 'qdSelectEpitope')}
+                ${advancedEpitopePanel}
+            `;
+        } else if (qdState.step === 5) {
+            body.innerHTML = `
+                <div class="qd-step-kicker">第 6 步</div>
+                <div class="qd-step-title">请选择希望生成的抗体分子类型</div>
+                <div class="qd-step-subtitle">展示场景默认推荐 VHH 纳米抗体，适合快速生成候选并展示结构结果。</div>
+                ${qdOptionCards(qdAntibodyOptions, qdState.antibody, 'qdSelectAntibody')}
+            `;
+        } else if (qdState.step === 6) {
+            body.innerHTML = `
+                <div class="qd-step-kicker">第 7 步</div>
+                <div class="qd-step-title">希望 AI 生成多少个候选设计？</div>
+                <div class="qd-step-subtitle">用简单选项控制演示速度和探索深度。滑杆仅在自定义模式中展开。</div>
+                ${qdOptionCards(qdCountOptions, qdState.countMode, 'qdSelectCountMode')}
+                ${qdState.countMode === 'custom' ? `
+                    <div class="qd-advanced-panel">
+                        <label class="qd-field-label" for="qdCustomCount">自定义候选数量：<span style="color:var(--brand);">${qdState.count}</span> 个</label>
+                        <input class="qd-range" id="qdCustomCount" type="range" min="5" max="100" step="5" value="${qdState.count}" oninput="qdSetCustomCount(this.value)">
+                        <div class="qd-range-meta"><span>5</span><span>100</span></div>
+                    </div>` : ''}
+            `;
+        } else {
+            body.innerHTML = `
+                <div class="qd-step-kicker">第 8 步</div>
+                <div class="qd-step-title">设计任务已生成</div>
+                <div class="qd-step-subtitle">请确认任务摘要。启动后将把这条设计任务发送给 ZoonoAb 多 Agent 工作流。</div>
+                <div class="qd-summary-card">${summaryRows}</div>
+                <div class="qd-preview-box">
+                    <div class="qd-preview-label">生成的设计指令预览</div>
+                    <div class="qd-preview-text" id="qdPreview">${qdEscHtml(qdInstructionText())}</div>
+                </div>
+                ${advancedFinalPanel}
+            `;
+        }
+        lucide.createIcons({ nodes: document.getElementById('quickDesignOverlay') });
+    }
+    function qdNext() {
+        if (qdState.step < QD_TOTAL_STEPS - 1) {
+            qdState.step += 1;
+            qdRender();
+        }
+    }
+    function qdBack() {
+        if (qdState.step > 0) {
+            qdState.step -= 1;
+            qdRender();
+        }
+    }
+    function qdSelectDisease(id) {
+        qdState.disease = id;
+        const recommendedTarget = qdGetTargetList().find(t => t.recommended) || qdGetTargetList()[0];
+        qdState.target = recommendedTarget.id;
+        qdState.customTarget = '';
+        const recommendedMechanism = (qdMechanismOptions[qdState.target] || qdMechanismOptions.default).find(m => m.recommended) || qdMechanismOptions.default[0];
+        qdState.mechanism = recommendedMechanism.id;
+        qdState.step = 2;
+        qdRender();
+    }
+    function qdSelectTarget(id) {
+        qdState.target = id;
+        qdState.customTarget = '';
+        const recommendedMechanism = (qdMechanismOptions[id] || qdMechanismOptions.default).find(m => m.recommended) || qdMechanismOptions.default[0];
+        qdState.mechanism = recommendedMechanism.id;
+        qdState.step = 3;
+        qdRender();
+    }
+    function qdSelectMechanism(id) {
+        qdState.mechanism = id;
+        qdState.step = 4;
+        qdRender();
+    }
+    function qdSelectEpitope(id) {
+        qdState.epitope = id;
+        qdState.step = 5;
+        qdRender();
+    }
+    function qdSelectAntibody(id) {
+        qdState.antibody = id;
+        qdState.step = 6;
+        qdRender();
+    }
+    function qdSelectCountMode(id) {
+        const opt = qdFindOption(qdCountOptions, id);
+        qdState.countMode = id;
+        qdState.count = opt.count;
+        if (id !== 'custom') qdState.step = 7;
+        qdRender();
+    }
+    function qdToggleCustomTarget() {
+        qdState.showCustomTarget = !qdState.showCustomTarget;
+        qdRender();
+        setTimeout(() => document.getElementById('qdCustomTargetInput')?.focus(), 20);
+    }
+    function qdSetCustomTarget(value) {
+        qdState.customTarget = value;
+        if (value.trim()) {
+            const recommendedMechanism = qdMechanismOptions.default.find(m => m.recommended) || qdMechanismOptions.default[0];
+            qdState.mechanism = recommendedMechanism.id;
+        }
+    }
+    function qdToggleAdvancedEpitope() {
+        qdState.advancedEpitopeOpen = !qdState.advancedEpitopeOpen;
+        qdRender();
+        setTimeout(() => document.getElementById('qdAdvancedEpitopeInput')?.focus(), 20);
+    }
+    function qdSetAdvancedEpitope(value) {
+        qdState.advancedEpitope = value;
+        const preview = document.getElementById('qdPreview');
+        if (preview) preview.textContent = qdInstructionText();
+    }
+    function qdToggleAdvanced() {
+        qdState.advancedOpen = !qdState.advancedOpen;
+        qdRender();
+    }
+    function qdSetAdvancedBlock(value) {
+        qdState.advancedBlock = value;
+        const preview = document.getElementById('qdPreview');
+        if (preview) preview.textContent = qdInstructionText();
+    }
+    function qdSetCustomCount(value) {
+        qdState.count = Number(value) || 15;
+        if (qdState.step === 7) qdRender();
+        else {
+            const label = document.querySelector('label[for="qdCustomCount"] span');
+            if (label) label.textContent = qdState.count;
+        }
+    }
 
     function submitQuickDesign() {
-        const target = document.getElementById('qdTargetInput')?.value.trim() || _qdTarget || 'IL-33';
-        if (!target) { showToast('请填写或选择靶点', 'error'); return; }
-        const abType = document.getElementById('qdAbType')?.value || 'VHH';
-        const count  = document.getElementById('qdCount')?.value || '15';
-        const epitope = document.getElementById('qdEpitope')?.value.trim() || '';
-        const block = document.getElementById('qdBlock')?.value.trim() || '';
-        let text = `设计 ${count} 个靶向 ${target} 的 ${abType}`;
-        if (epitope) text += `，聚焦表位区域：${epitope}`;
-        if (block) text += `，阻断 ${target}/${block} 相互作用通路`;
+        const text = qdInstructionText();
         closeQuickDesign();
         const inp = document.getElementById('userInput');
         if (inp) { inp.value = text; inp.focus(); }
