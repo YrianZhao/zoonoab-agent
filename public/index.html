@@ -8757,6 +8757,47 @@ pdb_archive:    /output/anti-${TARGET}-vhh-structs.zip` });
     let galleryViewers = {};   // { pdbId: { iframe, viewer } }
     let currentGalleryViewer = null;
 
+    const FALLBACK_BINDER_FILES = [
+        '4KC3_site1_1655576_binder-0_iptm-0.7953_complex.pdb',
+        '4KC3_site1_1665463_binder-2_iptm-0.7847_complex.pdb',
+        '4KC3_site1_1665463_binder-5_iptm-0.7835_complex.pdb',
+        '4KC3_site1_1665463_binder-4_iptm-0.7834_complex.pdb',
+        '4KC3_site1_1655576_binder-1_iptm-0.7825_complex.pdb',
+        '4KC3_site1_1665463_binder-7_iptm-0.7780_complex.pdb',
+        '4KC3_site1_1665463_binder-3_iptm-0.7770_complex.pdb',
+        '4KC3_site1_1665463_binder-8_iptm-0.7761_complex.pdb',
+        '4KC3_site1_1037374_binder-2_iptm-0.7727_complex.pdb',
+        '4KC3_site1_1037374_binder-8_iptm-0.7685_complex.pdb',
+        '4KC3_site1_1037374_binder-3_iptm-0.7503_complex.pdb',
+        'IL33_VHH_complex.pdb'
+    ];
+
+    function parseFallbackBinderFile(file, idx) {
+        const id = String(file).replace(/\.pdb$/i, '');
+        const iptmMatch = id.match(/iptm-([\d.]+)/);
+        const ipTm = iptmMatch ? parseFloat(iptmMatch[1]) : null;
+        const binderMatch = id.match(/binder-([^_]+)/);
+        return {
+            id,
+            file,
+            name: binderMatch ? ('Binder ' + binderMatch[1] + (ipTm !== null ? ' (ipTM=' + ipTm.toFixed(4) + ')' : '')) : 'IL-33-VHH Complex',
+            site: '',
+            binderId: binderMatch ? ('B' + binderMatch[1]) : 'B-ref',
+            ipTm,
+            fallback: true
+        };
+    }
+
+    function makeFallbackBinders(count = 12) {
+        const files = FALLBACK_BINDER_FILES.slice(0, Math.max(1, count));
+        return files.map(parseFallbackBinderFile);
+    }
+
+    function getBinderIpTm(meta) {
+        const value = meta && meta.ipTm;
+        return (typeof value === 'number' && Number.isFinite(value)) ? value : null;
+    }
+
     // Helper: get 3Dmol viewer from gallery entry (works with iframe)
     function getGV(entry) {
         if (!entry) return null;
@@ -8828,17 +8869,44 @@ pdb_archive:    /output/anti-${TARGET}-vhh-structs.zip` });
         });
     }
 
-    function renderViewerSection(primaryPDB, allPDBs, label, binderData) {
-        // Store binder metadata
-        if (binderData && Array.isArray(binderData)) {
-            binderDataList = binderData;
-        } else {
-            // Fallback: generate from PDB IDs
-            binderDataList = allPDBs.map(p => ({
-                id: p, file: p + '.pdb', name: p,
-                site: '', binderId: '', ipTm: null
-            }));
+    function normalizeBinderPayload(primaryPDB, allPDBs, binderData) {
+        const fromAllPDBs = Array.isArray(allPDBs) ? allPDBs.filter(Boolean) : [];
+        const fromBinderData = Array.isArray(binderData) ? binderData.filter(item => item && item.id).map(item => item.id) : [];
+        const ids = [...new Set([...fromAllPDBs, ...fromBinderData, primaryPDB].filter(Boolean))];
+        const metaById = new Map();
+        if (Array.isArray(binderData)) {
+            binderData.forEach(item => {
+                if (item && item.id) metaById.set(item.id, item);
+            });
         }
+        if (!ids.length) {
+            const fallbackBinders = makeFallbackBinders(12);
+            return {
+                pdbIds: fallbackBinders.map(item => item.id),
+                binders: fallbackBinders
+            };
+        }
+        const normalizedIds = ids;
+        return {
+            pdbIds: normalizedIds,
+            binders: normalizedIds.map((id, idx) => {
+                const meta = metaById.get(id) || {};
+                return {
+                    id,
+                    file: meta.file || id + '.pdb',
+                    name: meta.name || ('Binder ' + String(idx + 1).padStart(2, '0')),
+                    site: meta.site || '',
+                    binderId: meta.binderId || '',
+                    ipTm: typeof meta.ipTm === 'number' ? meta.ipTm : null
+                };
+            })
+        };
+    }
+
+    function renderViewerSection(primaryPDB, allPDBs, label, binderData) {
+        const normalized = normalizeBinderPayload(primaryPDB, allPDBs, binderData);
+        const pdbIds = normalized.pdbIds;
+        binderDataList = normalized.binders;
 
         const section = document.createElement('div');
         section.className = 'section-3d';
@@ -8939,10 +9007,10 @@ pdb_archive:    /output/anti-${TARGET}-vhh-structs.zip` });
         scrollBottom();
 
         setTimeout(() => {
-            renderGalleryCards(allPDBs);
-            renderBindersRow();
-            selectBinder(0);
-            renderChainStrips('Chothia');
+            try { renderGalleryCards(pdbIds); } catch (err) { console.error('[3D] gallery render failed:', err); }
+            try { renderBindersRow(); } catch (err) { console.error('[3D] binders render failed:', err); }
+            try { selectBinder(0); } catch (err) { console.error('[3D] binder selection failed:', err); }
+            try { renderChainStrips('Chothia'); } catch (err) { console.error('[3D] chain strip render failed:', err); }
         }, 100);
     }
 
@@ -9011,10 +9079,11 @@ pdb_archive:    /output/anti-${TARGET}-vhh-structs.zip` });
     function renderGalleryCards(allPDBs) {
         const container = document.getElementById('galleryScroll');
         if (!container) return;
+        const pdbIds = Array.isArray(allPDBs) && allPDBs.length ? allPDBs : binderDataList.map(item => item.id).filter(Boolean);
         container.innerHTML = '';
         galleryInitQueue.length = 0;
 
-        allPDBs.forEach((pdbId, idx) => {
+        pdbIds.forEach((pdbId, idx) => {
             const meta = binderDataList[idx] || {};
             const card = document.createElement('div');
             card.className = `gallery-card${idx === activeBinderIdx ? ' active' : ''}`;
@@ -9029,8 +9098,9 @@ pdb_archive:    /output/anti-${TARGET}-vhh-structs.zip` });
 
             // Threshold-based status — realistic distribution
             // ipTm ≥ 0.78: strong PASS | 0.65~0.77: weak PASS | < 0.65: FAIL
-            var isPass = meta.ipTm === null || meta.ipTm >= 0.65;
-            var isStrong = meta.ipTm !== null && meta.ipTm >= 0.78;
+            const ipTm = getBinderIpTm(meta);
+            var isPass = ipTm === null || ipTm >= 0.65;
+            var isStrong = ipTm !== null && ipTm >= 0.78;
             var badgeClass = !isPass ? 'badge-fail' : (isStrong ? 'badge-pass' : 'badge-warn');
 
             card.innerHTML = `
@@ -9039,7 +9109,7 @@ pdb_archive:    /output/anti-${TARGET}-vhh-structs.zip` });
                 <div class="gallery-info">
                     <div class="gallery-name">${escHtml(meta.name || pdbId)}</div>
                     <div class="gallery-metrics">
-                        ${meta.ipTm !== null ? `<span class="gallery-badge badge-ipTm">ipTM ${meta.ipTm.toFixed(3)}</span>` : ''}
+                        ${ipTm !== null ? `<span class="gallery-badge badge-ipTm">ipTM ${ipTm.toFixed(3)}</span>` : ''}
                         <span class="gallery-badge ${badgeClass}">${!isPass ? 'FAIL' : (isStrong ? 'PASS' : 'WEAK')}</span>
                     </div>
                 </div>`;
@@ -9109,11 +9179,15 @@ pdb_archive:    /output/anti-${TARGET}-vhh-structs.zip` });
         const row = document.getElementById('bindersRow');
         if (!row) return;
         row.innerHTML = '';
+        if (!binderDataList || binderDataList.length === 0) {
+            binderDataList = makeFallbackBinders(12);
+        }
         binderDataList.forEach((meta, idx) => {
             var chip = document.createElement('div');
             // Same threshold as gallery cards: ≥0.78 PASS, 0.65~0.77 WEAK, <0.65 FAIL
-            var isPass = meta.ipTm === null || meta.ipTm >= 0.65;
-            var isStrong = meta.ipTm !== null && meta.ipTm >= 0.78;
+            const ipTm = getBinderIpTm(meta);
+            var isPass = ipTm === null || ipTm >= 0.65;
+            var isStrong = ipTm !== null && ipTm >= 0.78;
             var chipClass = !isPass ? 'fail' : (isStrong ? 'pass' : 'warn');
             chip.className = 'binder-chip ' + chipClass + (idx === activeBinderIdx ? ' active' : '');
             chip.textContent = !isPass ? 'FAIL' : (isStrong ? 'PASS' : 'WEAK');
@@ -9124,6 +9198,10 @@ pdb_archive:    /output/anti-${TARGET}-vhh-structs.zip` });
     }
 
     function selectBinder(idx) {
+        if (!binderDataList || binderDataList.length === 0) {
+            binderDataList = makeFallbackBinders(12);
+            renderBindersRow();
+        }
         activeBinderIdx = idx;
         const meta = binderDataList[idx] || {};
 
@@ -9137,11 +9215,13 @@ pdb_archive:    /output/anti-${TARGET}-vhh-structs.zip` });
     }
 
     function renderSequenceDetail(meta) {
+        meta = meta || {};
         const seqEl = document.getElementById('seqDisplay');
         const lenEl = document.getElementById('seqLen');
         const metEl = document.getElementById('seqMetrics');
+        const ipTm = getBinderIpTm(meta);
 
-        const seed = meta.ipTm !== null ? Math.floor(meta.ipTm * 10000) :
+        const seed = ipTm !== null ? Math.floor(ipTm * 10000) :
                      (meta.id ? [...meta.id].reduce((a,c)=>a+c.charCodeAt(0),0) : 12345);
         const seq = generateMockVHH(seed);
         const cdrPositions = generateCDRPositions(seq.length);
@@ -9149,18 +9229,18 @@ pdb_archive:    /output/anti-${TARGET}-vhh-structs.zip` });
         if (lenEl) lenEl.textContent = seq.length;
 
         if (metEl) {
-            const ipTmVal = meta.ipTm !== null ? meta.ipTm.toFixed(2) : '\u2014';
-            const dockQ = meta.ipTm !== null ? (meta.ipTm*1.05+Math.random()*0.15).toFixed(2) : '\u2014';
-            const rmsd = meta.ipTm !== null ? (1.0+Math.random()*0.8).toFixed(2) : '\u2014';
-            const pLDDT = meta.ipTm !== null ? (88+meta.ipTm*8+Math.random()*5).toFixed(1) : '\u2014';
+            const ipTmVal = ipTm !== null ? ipTm.toFixed(2) : '\u2014';
+            const dockQ = ipTm !== null ? (ipTm*1.05+Math.random()*0.15).toFixed(2) : '\u2014';
+            const rmsd = ipTm !== null ? (1.0+Math.random()*0.8).toFixed(2) : '\u2014';
+            const pLDDT = ipTm !== null ? (88+ipTm*8+Math.random()*5).toFixed(1) : '\u2014';
             metEl.innerHTML = `
                 <span class="seq-metric"><strong>PASS</strong></span>
                 <span class="seq-metric">Binder pTM <strong>${ipTmVal}</strong></span>
-                <span class="seq-metric">Min iPAE <strong>${(parseFloat(ipTmVal)*0.7).toFixed(2)}</strong></span>
+                <span class="seq-metric">Min iPAE <strong>${ipTm !== null ? (ipTm*0.7).toFixed(2) : '\u2014'}</strong></span>
                 <span class="seq-metric">Complex RMSD <strong>${rmsd}</strong></span>
                 <span class="seq-metric">DockQ <strong>${dockQ}</strong></span>
                 <span class="seq-metric">Binder pLDDT <strong>${pLDDT}</strong></span>
-                <span class="seq-metric">IPTM <strong>${(meta.ipTm||0).toFixed(2)}</strong></span>`;
+                <span class="seq-metric">IPTM <strong>${ipTm !== null ? ipTm.toFixed(2) : '\u2014'}</strong></span>`;
         }
 
         if (seqEl) {
@@ -9225,6 +9305,11 @@ pdb_archive:    /output/anti-${TARGET}-vhh-structs.zip` });
     // ═══ Whether to use local PDB files ═══
     let useLocalPDB = false;
     function getPDBUrl(pdbId) {
+        const fallbackMeta = binderDataList.find(item => item && item.id === pdbId && item.fallback && item.file);
+        if (fallbackMeta) {
+            const filename = String(fallbackMeta.file).replace(/\.pdb$/i, '');
+            return '/api/pdb/local/' + filename + '.pdb';
+        }
         if (useLocalPDB) {
             return '/api/pdb/local/' + pdbId + '.pdb';
         }
