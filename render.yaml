@@ -1,16 +1,37 @@
 services:
   - type: web
     name: zoonoab-agent
-    env: node
+    runtime: node
     plan: starter
-    buildCommand: npm install
+    buildCommand: npm ci
     startCommand: npm start
     healthCheckPath: /api/health
+    branch: main
     autoDeploy: true
     envVars:
       - key: NODE_ENV
         value: production
+      - key: NODE_VERSION
+        value: 20.19.2
+      - key: PORT
+        value: 10000
+      - key: VOICE_API_CONFIG_FILE
+        value: /var/data/voice-api-config.json
       - key: VOICE_ASR_PROVIDER
-        value: deepseek
+        value: compatible
+      - key: VOICE_ASR_BASE_URL
+        value: https://api.siliconflow.cn/v1/audio/transcriptions
+      - key: VOICE_ASR_API_KEY
+        sync: false
       - key: VOICE_TRANSCRIBE_MODEL
-        value: deepseek-v4-flash
+        value: FunAudioLLM/SenseVoiceSmall
+      - key: ASSISTANT_CHAT_BASE_URL
+        value: https://api.siliconflow.cn/v1/chat/completions
+      - key: ASSISTANT_CHAT_API_KEY
+        sync: false
+      - key: ASSISTANT_CHAT_MODEL
+        value: Qwen/Qwen3-32B
+    disk:
+      name: zoonoab-runtime
+      mountPath: /var/data
+      sizeGB: 1

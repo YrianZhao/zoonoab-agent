@@ -92,6 +92,7 @@
             -moz-osx-font-smoothing: grayscale;
             display: flex;
             flex-direction: column;
+            overflow-x: hidden;
         }
 
         /* ═══════════════ Header ═══════════════ */
@@ -238,7 +239,7 @@
         }
         .hero-title {
             font-size: 42px; font-weight: 800; margin-bottom: 12px;
-            color: var(--text-primary); letter-spacing: -1.2px; line-height: 1.15;
+            color: var(--text-primary); letter-spacing: 0; line-height: 1.15;
         }
         .hero-title span {
             background: linear-gradient(135deg, var(--brand), #4D9FFF);
@@ -542,6 +543,21 @@
             color: var(--brand);
             background: var(--brand-lighter);
         }
+        .wake-btn.active {
+            color: #16A34A;
+            background: var(--success-light);
+            box-shadow: 0 0 0 3px rgba(34,197,94,0.12);
+        }
+        .wake-btn.awake {
+            color: var(--brand-dark);
+            background: var(--brand-lighter);
+            box-shadow: 0 0 0 4px rgba(0,123,255,0.14);
+            animation: wakePulse 1.5s ease-in-out infinite;
+        }
+        @keyframes wakePulse {
+            0%, 100% { box-shadow: 0 0 0 4px rgba(0,123,255,0.14); }
+            50% { box-shadow: 0 0 0 10px rgba(0,123,255,0); }
+        }
         @keyframes voicePulse {
             0%, 100% { box-shadow: 0 0 0 4px rgba(239,68,68,0.12); }
             50% { box-shadow: 0 0 0 9px rgba(239,68,68,0); }
@@ -573,6 +589,8 @@
         .voice-status-pop.processing { color: var(--brand-dark); border-color: rgba(0,123,255,0.2); background: rgba(240,247,255,0.98); }
         .voice-status-pop.success { color: #16A34A; border-color: rgba(34,197,94,0.2); background: rgba(240,253,244,0.98); }
         .voice-status-pop.error { color: var(--error); border-color: rgba(239,68,68,0.2); background: rgba(254,242,242,0.98); }
+        .voice-status-pop.wake { color: #16A34A; border-color: rgba(34,197,94,0.24); background: rgba(240,253,244,0.98); }
+        .voice-status-pop.awake { color: var(--brand-dark); border-color: rgba(0,123,255,0.24); background: rgba(240,247,255,0.98); }
         .voice-dot {
             width: 8px;
             height: 8px;
@@ -583,28 +601,123 @@
         .voice-settings-btn {
             font-size: 11px;
             font-weight: 700;
-            letter-spacing: 0.2px;
-            width: auto;
-            padding: 0 8px;
+            letter-spacing: 0;
+            min-width: 42px;
+            height: 28px;
+            padding: 0 10px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            background: white;
             color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .voice-settings-btn:hover,
+        .voice-settings-btn.active {
+            border-color: var(--brand-light);
+            background: var(--brand-lighter);
+            color: var(--brand-dark);
         }
         .voice-settings-panel {
-            position: absolute;
-            right: 0;
-            top: calc(100% + 8px);
-            width: min(440px, calc(100vw - 48px));
+            position: fixed;
+            left: var(--voice-panel-left, 240px);
+            top: var(--voice-panel-top, 112px);
+            width: var(--voice-panel-width, min(680px, calc(100vw - 32px)));
+            max-height: var(--voice-panel-max-height, min(72vh, 680px));
+            overflow-y: auto;
+            overscroll-behavior: contain;
             display: none;
             grid-template-columns: 1fr;
-            gap: 7px;
-            padding: 10px;
+            gap: 12px;
+            padding: 16px;
             border: 1px solid var(--border);
             border-radius: var(--radius-md);
             background: rgba(255,255,255,0.98);
-            box-shadow: var(--shadow-lg);
-            backdrop-filter: blur(14px);
-            z-index: 35;
+            box-shadow: 0 24px 70px rgba(15,23,42,0.22), 0 0 0 1px rgba(15,23,42,0.04);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            z-index: 240;
+            opacity: 0;
+            transform: translateY(-4px) scale(0.98);
+            transform-origin: top left;
+            transition: opacity 0.16s ease, transform 0.16s ease;
         }
-        .voice-settings-panel.open { display: grid; }
+        .voice-settings-panel.open {
+            display: grid;
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        @media (max-width: 640px) {
+            .voice-settings-panel {
+                left: 12px;
+                right: 12px;
+                top: 76px;
+                width: calc(100vw - 24px);
+                max-height: calc(100vh - 96px);
+            }
+            .voice-settings-row {
+                align-items: stretch;
+                flex-direction: column;
+                gap: 4px;
+            }
+            .voice-settings-row label {
+                width: auto;
+            }
+            .voice-settings-actions {
+                align-items: stretch;
+                flex-direction: column;
+            }
+            .voice-settings-note {
+                white-space: normal;
+                line-height: 1.4;
+            }
+            .voice-save-btn {
+                width: 100%;
+            }
+            .voice-test-btn {
+                width: 100%;
+            }
+        }
+        .kb-tree-title-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+        .kb-tree-title-row .kb-tree-title {
+            margin-bottom: 0;
+        }
+        .kb-api-slot {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .voice-settings-group {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 7px;
+            min-width: 0;
+        }
+        .voice-settings-title {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            min-width: 0;
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+        .voice-settings-title i {
+            width: 13px;
+            height: 13px;
+            color: var(--brand);
+            flex-shrink: 0;
+        }
+        .voice-settings-divider {
+            height: 1px;
+            background: var(--border-light);
+        }
         .voice-settings-row { display: flex; align-items: center; gap: 7px; min-width: 0; }
         .voice-settings-row label {
             width: 62px;
@@ -637,7 +750,6 @@
             align-items: center;
             justify-content: space-between;
             gap: 8px;
-            padding-left: 69px;
         }
         .voice-settings-note {
             min-width: 0;
@@ -660,10 +772,33 @@
             flex-shrink: 0;
         }
         .voice-save-btn:hover { background: var(--brand-dark); }
+        .voice-test-btn {
+            height: 28px;
+            padding: 0 9px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            background: white;
+            color: var(--text-secondary);
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .voice-test-btn:hover {
+            border-color: var(--brand-light);
+            color: var(--brand-dark);
+            background: var(--brand-lighter);
+        }
+        .voice-test-btn:disabled,
+        .voice-save-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
         .input-field {
             flex: 1; border: none; outline: none; font-size: 15px;
             color: var(--text-primary); resize: none;
             min-height: 24px; max-height: 120px;
+            min-width: 0;
             font-family: inherit; line-height: 1.5;
             padding: 8px 0;
         }
@@ -686,6 +821,10 @@
             font-size: 13px; color: var(--text-secondary); cursor: pointer;
             transition: var(--transition);
             box-shadow: var(--shadow-sm);
+            max-width: 100%;
+            white-space: normal;
+            overflow-wrap: anywhere;
+            text-align: center;
         }
         .hint-chip:hover { border-color: var(--brand-light); color: var(--brand-dark); background: var(--brand-lighter); transform: translateY(-2px); box-shadow: var(--shadow-md); }
 
@@ -864,10 +1003,9 @@
             background: var(--bg-sidebar);
             border-right: 1px solid var(--border);
             box-shadow: 4px 0 20px rgba(0,90,200,0.07); z-index: 50;
-            display: flex; flex-direction: column;
-            transform: translateX(-100%); transition: transform var(--transition);
+            display: none; flex-direction: column;
         }
-        .agent-tasks-sidebar.open { transform: translateX(0); }
+        .agent-tasks-sidebar.open { display: flex; }
         .sidebar-header {
             display: flex; align-items: center; justify-content: space-between;
             padding: 16px 20px 14px; border-bottom: 1px solid var(--border);
@@ -1575,6 +1713,12 @@
             body { font-size: 14px; }
         }
 
+        @media (max-width: 900px) {
+            .header-actions { display: none; }
+            .header-tabs { margin-left: 10px; gap: 2px; }
+            .nav-tab { font-size: 13px; padding: 5px 9px; }
+        }
+
         /* ═══════════════ Mobile / small tablet ( ≤ 768px ) ═══════════════
            Sidebar switches from "push content" to "overlay drawer".            */
         @media (max-width: 768px) {
@@ -1637,7 +1781,8 @@
             .input-container { min-height: 50px; padding: 6px 12px; }
 
             /* ── Header: keep it on one tidy row ── */
-            .header { padding: 0 12px; height: 54px; }
+            .header { padding: 0 12px; height: 54px; overflow-x: auto; scrollbar-width: none; }
+            .header::-webkit-scrollbar { display: none; }
             .logo { font-size: 16px; gap: 7px; }
             .logo-icon { width: 28px; height: 28px; }
             .header-tabs { margin-left: 10px; gap: 2px; }
@@ -1645,10 +1790,12 @@
             .header-actions { gap: 5px; }
             .header-btn { padding: 6px 9px; font-size: 12px; }
             #wsStatusText { display: none; }
+            .header-btn-label,
+            #langLabel { display: none; }
 
             /* ── Typography scaling ── */
             .hero-section { padding: 24px 0 0; }
-            .hero-title { font-size: 26px; margin-bottom: 10px; }
+            .hero-title { font-size: 26px; margin-bottom: 10px; overflow-wrap: anywhere; }
             .hero-sub { font-size: 15px; }
             .message-content { font-size: 14px; line-height: 1.7; }
             .message-author { font-size: 13px; }
@@ -1700,7 +1847,8 @@
         /* ═══════════════ Small phones ( ≤ 480px ) ═══════════════ */
         @media (max-width: 480px) {
             .main-container { padding: 0 12px; }
-            .hero-title { font-size: 22px; }
+            .hero-title { font-size: 22px; max-width: 100%; }
+            .hero-title span { display: block; }
             .hero-sub { font-size: 14px; }
             .hero-features { grid-template-columns: 1fr; }
             .hero-stats { flex-wrap: wrap; }
@@ -1714,10 +1862,18 @@
             .nav-tab { font-size: 12px; padding: 5px 7px; }
             #navTasks .nav-tab-label { display: none; }   /* icon-only on tiny screens */
             .logo .logo-beta { display: none; }
+            .header-actions { display: none; }
+            .input-container { gap: 6px; padding: 6px 8px; }
+            .input-icon-btn { width: 30px; height: 30px; }
+            .voice-settings-btn { width: auto; min-width: 30px; padding: 0 4px; font-size: 10px; }
+            .input-submit { width: 36px; height: 36px; border-radius: var(--radius-md); }
+            .input-field { max-width: 100%; }
 
             .viewers-grid { grid-template-columns: 1fr; }
             .input-hints { gap: 6px; }
-            .hint-chip { font-size: 12px; padding: 6px 12px; }
+            .hint-chip { width: 100%; font-size: 12px; padding: 6px 12px; border-radius: var(--radius-md); }
+            .quick-actions-scrollable { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+            .quick-action-chip { justify-content: center; min-width: 0; white-space: normal; }
             .mol-modal {
                 width: 100vw; height: 100dvh; border-radius: 0;
             }
@@ -1795,10 +1951,9 @@
             position: fixed; right: 0; top: 57px; bottom: 0; width: 420px;
             background: #FAFBFC; border-left: 1px solid var(--border);
             box-shadow: -2px 0 16px rgba(0,0,0,0.06); z-index: 50;
-            display: flex; flex-direction: column;
-            transform: translateX(100%); transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+            display: none; flex-direction: column;
         }
-        .right-panel.open { transform: translateX(0); }
+        .right-panel.open { display: flex; }
         body.right-panel-open .main-container {
             max-width: 960px;
             margin-right: max(420px, calc(420px + (100vw - 420px - 960px) / 2));
@@ -2164,6 +2319,7 @@
             border-color: var(--brand-light); color: var(--brand-dark);
             background: var(--brand-lighter); transform: translateY(-2px);
             box-shadow: var(--shadow-md);
+        }
 
         /* ═══════════════ QUICK DESIGN CHIPS ═══════════════ */
         .qd-chip {
@@ -2899,11 +3055,14 @@
             width: 66.67vw; background: #FAFBFC;
             border-left: 1px solid var(--border);
             box-shadow: -6px 0 32px rgba(0,0,0,0.1);
-            z-index: 120; display: flex; flex-direction: column;
-            transform: translateX(100%);
-            transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 120; display: none; flex-direction: column;
+            transform: translateX(0);
+            pointer-events: none;
         }
-        .analysis-panel.open { transform: translateX(0); }
+        .analysis-panel.open {
+            display: flex;
+            pointer-events: auto;
+        }
         .analysis-panel-header {
             display: flex; align-items: center; justify-content: space-between;
             padding: 0 20px; height: 52px; background: white;
@@ -3112,7 +3271,7 @@
         body.kb-open .main-container { max-width: 100%; padding: 0; height: calc(100vh - 56px); overflow: hidden; margin: 0; }
         body.kb-open #kbSection { flex: 1; height: calc(100vh - 56px); }
         .kb-tree-panel { width: 220px; flex-shrink: 0; background: #F8FAFC; border-right: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; }
-        .kb-tree-header { padding: 14px 16px 12px; border-bottom: 1px solid var(--border); }
+        .kb-tree-header { position: relative; padding: 14px 16px 12px; border-bottom: 1px solid var(--border); }
         .kb-tree-title { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 10px; }
         .kb-storage-bar { background: #E2E8F0; border-radius: 4px; height: 4px; margin-bottom: 4px; }
         .kb-storage-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--brand), #7C3AED); width: 34%; }
@@ -3303,28 +3462,12 @@
                     <button class="input-icon-btn voice-btn" id="voiceBtn" onclick="toggleVoiceCapture()" title="按住空格或点击开始语音控制">
                         <i data-lucide="mic" style="width: 18px; height: 18px;"></i>
                     </button>
-                    <button class="input-icon-btn voice-settings-btn" id="voiceSettingsBtn" onclick="toggleVoiceSettings()" title="配置语音识别 API">ASR</button>
+                    <button class="input-icon-btn wake-btn" id="wakeBtn" onclick="toggleWakeListening()" title="开启小诺同学语音唤醒">
+                        <i data-lucide="radio" style="width: 18px; height: 18px;"></i>
+                    </button>
                     <div class="voice-status-pop" id="voiceStatusPop">
                         <span class="voice-dot"></span>
                         <span id="voiceStatusText">语音控制就绪</span>
-                    </div>
-                    <div class="voice-settings-panel" id="voiceSettingsPanel">
-                        <div class="voice-settings-row">
-                            <label for="voiceBaseUrlInput">Base URL</label>
-                            <input id="voiceBaseUrlInput" type="url" autocomplete="off" spellcheck="false" placeholder="https://api.deepseek.com/v1/audio/transcriptions">
-                        </div>
-                        <div class="voice-settings-row">
-                            <label for="voiceApiKeyInput">API Key</label>
-                            <input id="voiceApiKeyInput" type="password" autocomplete="off" spellcheck="false" placeholder="只保存在本次服务端内存会话">
-                        </div>
-                        <div class="voice-settings-row">
-                            <label for="voiceModelInput">Model</label>
-                            <input id="voiceModelInput" type="text" autocomplete="off" spellcheck="false" placeholder="deepseek-v4-flash">
-                        </div>
-                        <div class="voice-settings-actions">
-                            <span class="voice-settings-note" id="voiceSettingsNote">不明文存储，不写入浏览器本地存储。</span>
-                            <button class="voice-save-btn" onclick="saveVoiceSettings()">保存</button>
-                        </div>
                     </div>
                     <button class="input-icon-btn" id="cancelBtn" onclick="cancelTask()" style="display:none; color: var(--error);" title="Cancel Task">
                         <i data-lucide="square" style="width: 18px; height: 18px; fill: currentColor;"></i>
@@ -3334,10 +3477,11 @@
                     </button>
                 </div>
                 <div class="input-hints" id="inputHints">
-                    <span class="hint-chip" onclick="fillHint(this)">🧬 生成 15 个抗 IL-33 候选 VHH</span>
-                    <span class="hint-chip" onclick="fillHint(this)">🎯 设计 10 个阻断 PD-1/PD-L1 的 Fab</span>
-                    <span class="hint-chip" onclick="fillHint(this)">💊 设计20个靶向VEGF的纳米抗体</span>
-                    <span class="hint-chip" onclick="fillHint(this)">🔬 对 CD3e 表位进行从头抗体设计</span>
+                    <span class="hint-chip" onclick="fillHint(this)">小诺同学，帮我为过敏性哮喘设计一个抗体分子，并打印一个结构模型。</span>
+                    <span class="hint-chip" onclick="fillHint(this)">小诺同学，帮我做一个肿瘤免疫治疗方向的抗体设计演示。</span>
+                    <span class="hint-chip" onclick="fillHint(this)">小诺同学，请为乳腺癌相关疾病设计一个候选抗体。</span>
+                    <span class="hint-chip" onclick="fillHint(this)">小诺同学，请为类风湿方向做一个抗炎抗体设计演示。</span>
+                    <span class="hint-chip" onclick="fillHint(this)">小诺同学，请做一次完整的抗体设计演示。</span>
                 </div>
                 <!-- Quick workflow action chips -->
                 <div class="quick-actions-row" id="quickActionsRow">
@@ -3540,7 +3684,57 @@
                 <!-- Left: project tree -->
                 <div class="kb-tree-panel">
                     <div class="kb-tree-header">
-                        <div class="kb-tree-title">项目空间</div>
+                        <div class="kb-tree-title-row">
+                            <div class="kb-tree-title">项目空间</div>
+                            <button class="voice-settings-btn" id="voiceSettingsBtn" onclick="toggleVoiceSettings()" title="配置语音和兜底聊天 API">API</button>
+                        </div>
+                        <div class="kb-api-slot">
+                            <div class="voice-settings-panel" id="voiceSettingsPanel">
+                                <div class="voice-settings-group">
+                                    <div class="voice-settings-title">
+                                        <i data-lucide="mic"></i>
+                                        语音识别 ASR
+                                    </div>
+                                    <div class="voice-settings-row">
+                                        <label for="voiceBaseUrlInput">Base URL</label>
+                                        <input id="voiceBaseUrlInput" type="url" autocomplete="off" spellcheck="false" placeholder="https://api.siliconflow.cn/v1/audio/transcriptions">
+                                    </div>
+                                    <div class="voice-settings-row">
+                                        <label for="voiceApiKeyInput">API Key</label>
+                                        <input id="voiceApiKeyInput" type="password" autocomplete="off" spellcheck="false" placeholder="SiliconFlow 语音 Key">
+                                    </div>
+                                    <div class="voice-settings-row">
+                                        <label for="voiceModelInput">Model</label>
+                                        <input id="voiceModelInput" type="text" autocomplete="off" spellcheck="false" placeholder="FunAudioLLM/SenseVoiceSmall">
+                                    </div>
+                                </div>
+                                <div class="voice-settings-divider"></div>
+                                <div class="voice-settings-group">
+                                    <div class="voice-settings-title">
+                                        <i data-lucide="message-circle"></i>
+                                        兜底聊天 Chat
+                                    </div>
+                                    <div class="voice-settings-row">
+                                        <label for="chatBaseUrlInput">Base URL</label>
+                                        <input id="chatBaseUrlInput" type="url" autocomplete="off" spellcheck="false" placeholder="https://api.siliconflow.cn/v1/chat/completions">
+                                    </div>
+                                    <div class="voice-settings-row">
+                                        <label for="chatApiKeyInput">API Key</label>
+                                        <input id="chatApiKeyInput" type="password" autocomplete="off" spellcheck="false" placeholder="SiliconFlow 聊天 Key，可与语音 Key 相同">
+                                    </div>
+                                    <div class="voice-settings-row">
+                                        <label for="chatModelInput">Model</label>
+                                        <input id="chatModelInput" type="text" autocomplete="off" spellcheck="false" placeholder="Qwen/Qwen3-32B">
+                                    </div>
+                                </div>
+                                <div class="voice-settings-actions">
+                                    <span class="voice-settings-note" id="voiceSettingsNote">Key 不保存在浏览器；保存后写入后端私有配置。</span>
+                                    <button class="voice-test-btn" id="voiceAsrTestBtn" onclick="testVoiceAsrSettings()">测试语音</button>
+                                    <button class="voice-test-btn" id="voiceChatTestBtn" onclick="testVoiceChatSettings()">测试聊天</button>
+                                    <button class="voice-save-btn" onclick="saveVoiceSettings()">保存</button>
+                                </div>
+                            </div>
+                        </div>
                         <div class="kb-storage-bar"><div class="kb-storage-fill"></div></div>
                         <div class="kb-storage-text">已用 34.2 GB / 100 GB</div>
                     </div>
@@ -4673,6 +4867,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         batchesSection.style.display = view === 'batches' ? 'block' : 'none';
         if (teamSection) { teamSection.style.display = view === 'team' ? 'block' : 'none'; if (view === 'team') { const activeCh = document.querySelector('.team-channel-item.active'); teamSelectChannel(activeCh, teamActiveChannel); } }
         if (kbSection) { kbSection.style.display = view === 'kb' ? 'flex' : 'none'; if (view === 'kb') { document.body.classList.add('kb-open'); kbRender(); } else { document.body.classList.remove('kb-open'); } }
+        if (view !== 'kb') toggleVoiceSettings(false);
 
         if (view === 'chat') {
             if (sidebar.dataset.wasOpen === 'true') {
@@ -5622,7 +5817,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const input = document.getElementById('userInput');
         if (!input) return;
 
-        const text = input.value.trim();
+        let text = input.value.trim();
+        text = stripWakeWord(text) || text;
         if (!text || isRunning) return;
         if (text.length > 2000) { showToast('输入内容过长，请不超过 2000 字符', 'error'); return; }
 
@@ -5640,7 +5836,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         showTyping();
 
         if (ws && ws.readyState === 1) {
-            ws.send(JSON.stringify({ type: 'user_msg', text }));
+            ws.send(JSON.stringify({ type: 'user_msg', text, voiceSessionId: voiceSessionId || '' }));
         } else {
             runDemo(text);
         }
@@ -5649,6 +5845,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     // ═══════════════ Voice Control ═══════════════
     const VOICE_MIN_MS = 500;
     const VOICE_MAX_MS = 12000;
+    const WAKE_SEGMENT_MS = 3600;
+    const WAKE_AWAKE_WINDOW_MS = 12000;
+    const WAKE_WORDS = ['小诺同学', '小诺小诺'];
     let voiceMediaRecorder = null;
     let voiceStream = null;
     let voiceChunks = [];
@@ -5658,6 +5857,15 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     let voiceSpaceActive = false;
     let voiceCancelRequested = false;
     let voiceSessionId = '';
+    let wakeEnabled = false;
+    let wakeActiveCommand = false;
+    let wakeRecorder = null;
+    let wakeStream = null;
+    let wakeChunks = [];
+    let wakeSegmentTimer = null;
+    let wakeRestartTimer = null;
+    let wakeAwakeUntil = 0;
+    let wakeBusy = false;
 
     function isVoiceSupported() {
         return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder);
@@ -5681,15 +5889,33 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         try {
             const resp = await fetch('/api/voice/config');
             const cfg = await resp.json();
-            const baseInput = document.getElementById('voiceBaseUrlInput');
-            const modelInput = document.getElementById('voiceModelInput');
+            const voiceBaseInput = document.getElementById('voiceBaseUrlInput');
+            const voiceKeyInput = document.getElementById('voiceApiKeyInput');
+            const voiceModelInput = document.getElementById('voiceModelInput');
+            const chatBaseInput = document.getElementById('chatBaseUrlInput');
+            const chatKeyInput = document.getElementById('chatApiKeyInput');
+            const chatModelInput = document.getElementById('chatModelInput');
             const note = document.getElementById('voiceSettingsNote');
-            if (baseInput && cfg.baseUrl && !baseInput.value) baseInput.value = cfg.baseUrl;
-            if (modelInput && cfg.model && !modelInput.value) modelInput.value = cfg.model;
+            if (voiceBaseInput && cfg.baseUrl && !voiceBaseInput.value) voiceBaseInput.value = cfg.baseUrl;
+            if (voiceKeyInput) {
+                voiceKeyInput.value = '';
+                voiceKeyInput.placeholder = cfg.hasApiKey ? '已在后端保存，留空继续使用' : 'SiliconFlow 语音 Key';
+                voiceKeyInput.title = cfg.hasApiKey ? '真实 Key 已保存到后端，前端不回显；填写新 Key 后保存可覆盖。' : '填写语音识别 API Key';
+            }
+            if (voiceModelInput && cfg.ready && cfg.model && !voiceModelInput.value) voiceModelInput.value = cfg.model;
+            if (chatBaseInput && cfg.chat?.baseUrl && !chatBaseInput.value) chatBaseInput.value = cfg.chat.baseUrl;
+            if (chatKeyInput) {
+                chatKeyInput.value = '';
+                chatKeyInput.placeholder = cfg.chat?.hasApiKey ? '已在后端保存，留空继续使用' : 'SiliconFlow 聊天 Key，可与语音 Key 相同';
+                chatKeyInput.title = cfg.chat?.hasApiKey ? '真实 Key 已保存到后端，前端不回显；填写新 Key 后保存可覆盖。' : '填写兜底聊天 API Key';
+            }
+            if (chatModelInput && cfg.chat?.ready && cfg.chat?.model && !chatModelInput.value) chatModelInput.value = cfg.chat.model;
             if (note) {
-                note.textContent = cfg.ready
-                    ? `${cfg.provider || 'ASR'} 已就绪 · ${cfg.model || ''}`
-                    : '填写后仅保存在本次服务端内存会话。';
+                const voiceKeyState = cfg.hasApiKey ? 'Key 已在后端保存' : 'Key 待填写';
+                const chatKeyState = cfg.chat?.hasApiKey ? 'Key 已在后端保存' : 'Key 待填写';
+                const voiceState = cfg.ready ? `语音已就绪 · ${cfg.model || ''} · ${voiceKeyState}` : `语音待配置 · ${voiceKeyState}`;
+                const chatState = cfg.chat?.ready ? `聊天已就绪 · ${cfg.chat.model || ''} · ${chatKeyState}` : `聊天可选填 · ${chatKeyState}`;
+                note.textContent = `${voiceState} / ${chatState}；前端不回显真实 Key`;
             }
         } catch (err) {
             console.warn('[Voice] Config check failed:', err);
@@ -5698,46 +5924,232 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
     function toggleVoiceSettings(force) {
         const panel = document.getElementById('voiceSettingsPanel');
+        const btn = document.getElementById('voiceSettingsBtn');
         if (!panel) return;
         const shouldOpen = typeof force === 'boolean' ? force : !panel.classList.contains('open');
+        if (shouldOpen && btn) positionVoiceSettingsPanel(panel, btn);
         panel.classList.toggle('open', shouldOpen);
+        if (btn) btn.classList.toggle('active', shouldOpen);
         if (shouldOpen) loadVoiceConfig();
     }
 
-    async function saveVoiceSettings() {
-        const baseInput = document.getElementById('voiceBaseUrlInput');
-        const keyInput = document.getElementById('voiceApiKeyInput');
-        const modelInput = document.getElementById('voiceModelInput');
+    function positionVoiceSettingsPanel(panel, btn) {
+        const gap = 10;
+        const margin = 16;
+        const rect = btn.getBoundingClientRect();
+        const viewportWidth = window.innerWidth || document.documentElement.clientWidth || 1280;
+        const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 720;
+        const preferredWidth = Math.min(680, Math.max(560, viewportWidth - margin * 2));
+        const width = viewportWidth <= 640 ? viewportWidth - 24 : preferredWidth;
+        let left = viewportWidth <= 640 ? 12 : Math.min(Math.max(rect.left, margin), viewportWidth - width - margin);
+        let top = viewportWidth <= 640 ? 76 : rect.bottom + gap;
+        const maxHeight = Math.max(320, viewportHeight - top - margin);
+        if (viewportWidth > 640 && maxHeight < 360) {
+            top = Math.max(70, rect.top - 360 - gap);
+        }
+        panel.style.setProperty('--voice-panel-left', `${Math.round(left)}px`);
+        panel.style.setProperty('--voice-panel-top', `${Math.round(top)}px`);
+        panel.style.setProperty('--voice-panel-width', `${Math.round(width)}px`);
+        const panelMaxHeight = Math.min(Math.max(320, viewportHeight - top - margin), 680);
+        panel.style.setProperty('--voice-panel-max-height', `${Math.round(panelMaxHeight)}px`);
+    }
+
+    function collectVoiceSettings() {
+        const voiceBaseInput = document.getElementById('voiceBaseUrlInput');
+        const voiceKeyInput = document.getElementById('voiceApiKeyInput');
+        const voiceModelInput = document.getElementById('voiceModelInput');
+        const chatBaseInput = document.getElementById('chatBaseUrlInput');
+        const chatKeyInput = document.getElementById('chatApiKeyInput');
+        const chatModelInput = document.getElementById('chatModelInput');
+        return {
+            voiceBaseUrl: (voiceBaseInput?.value || '').trim(),
+            voiceApiKey: (voiceKeyInput?.value || '').trim(),
+            voiceModel: (voiceModelInput?.value || '').trim(),
+            chatBaseUrl: (chatBaseInput?.value || '').trim(),
+            chatApiKey: (chatKeyInput?.value || '').trim(),
+            chatModel: (chatModelInput?.value || '').trim()
+        };
+    }
+
+    function setVoiceSettingsButtonsBusy(busy, activeId) {
+        ['voiceAsrTestBtn', 'voiceChatTestBtn'].forEach(id => {
+            const btn = document.getElementById(id);
+            if (!btn) return;
+            btn.disabled = busy;
+            if (busy && id === activeId) {
+                btn.dataset.originalText = btn.textContent;
+                btn.textContent = '测试中...';
+            } else if (!busy && btn.dataset.originalText) {
+                btn.textContent = btn.dataset.originalText;
+                delete btn.dataset.originalText;
+            }
+        });
+    }
+
+    function makeSingleUseRecording(durationMs = 2200) {
+        return new Promise(async (resolve, reject) => {
+            if (!isVoiceSupported()) {
+                reject(new Error('当前浏览器不支持录音测试'));
+                return;
+            }
+            let stream;
+            let recorder;
+            const chunks = [];
+            try {
+                stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                const mimeType = getVoiceMimeType() || 'audio/webm';
+                recorder = new MediaRecorder(stream, mimeType ? { mimeType } : undefined);
+                recorder.ondataavailable = e => { if (e.data && e.data.size) chunks.push(e.data); };
+                recorder.onerror = () => reject(new Error('录音测试失败'));
+                recorder.onstop = () => {
+                    stream.getTracks().forEach(track => track.stop());
+                    if (!chunks.length) {
+                        reject(new Error('未录到测试音频'));
+                        return;
+                    }
+                    resolve(new Blob(chunks, { type: mimeType || 'audio/webm' }));
+                };
+                recorder.start();
+                setTimeout(() => {
+                    if (recorder && recorder.state === 'recording') recorder.stop();
+                }, durationMs);
+            } catch (err) {
+                if (stream) stream.getTracks().forEach(track => track.stop());
+                reject(err);
+            }
+        });
+    }
+
+    async function testVoiceAsrSettings() {
         const note = document.getElementById('voiceSettingsNote');
-        const baseUrl = (baseInput?.value || '').trim();
-        const apiKey = (keyInput?.value || '').trim();
-        const model = (modelInput?.value || '').trim();
-        if (!baseUrl || !apiKey || !model) {
-            showToast('请填写 Base URL、API Key 和 Model', 'warning');
+        const { voiceBaseUrl, voiceApiKey, voiceModel } = collectVoiceSettings();
+        if (!voiceBaseUrl || !voiceModel) {
+            showToast('请先填写语音识别 Base URL 和 Model', 'warning');
             return;
         }
         try {
-            if (note) note.textContent = '正在保存到服务端内存...';
+            setVoiceSettingsButtonsBusy(true, 'voiceAsrTestBtn');
+            if (note) note.textContent = '请说一句测试语音，正在录制约 2 秒...';
+            const audioBlob = await makeSingleUseRecording();
+            if (note) note.textContent = '正在测试语音识别接口...';
+            const headers = {
+                'Content-Type': audioBlob.type || 'audio/webm',
+                'X-Test-Voice-Base-Url': voiceBaseUrl,
+                'X-Test-Voice-Model': voiceModel
+            };
+            if (voiceApiKey) headers['X-Test-Voice-Api-Key'] = voiceApiKey;
+            const resp = await fetch('/api/voice/test/asr', {
+                method: 'POST',
+                headers,
+                body: audioBlob
+            });
+            const data = await resp.json().catch(() => ({}));
+            if (!resp.ok || !data.ok) {
+                const msg = data.message || '语音识别测试失败';
+                showToast(msg, 'error');
+                if (note) note.textContent = '语音识别测试失败：' + msg;
+                return;
+            }
+            const preview = data.textPreview ? ` · 识别：${data.textPreview}` : '';
+            if (note) note.textContent = `语音识别测试通过 · ${data.model || voiceModel}${preview}`;
+            showToast('语音识别接口测试通过', 'success');
+        } catch (err) {
+            const msg = err && err.message ? err.message : '语音识别测试失败';
+            showToast(msg, 'error');
+            if (note) note.textContent = msg;
+        } finally {
+            setVoiceSettingsButtonsBusy(false);
+        }
+    }
+
+    async function testVoiceChatSettings() {
+        const note = document.getElementById('voiceSettingsNote');
+        const { chatBaseUrl, chatApiKey, chatModel } = collectVoiceSettings();
+        if (!chatBaseUrl || !chatModel) {
+            showToast('请先填写兜底聊天 Base URL 和 Model', 'warning');
+            return;
+        }
+        try {
+            setVoiceSettingsButtonsBusy(true, 'voiceChatTestBtn');
+            if (note) note.textContent = '正在测试兜底聊天接口...';
+            const resp = await fetch('/api/voice/test/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat: { baseUrl: chatBaseUrl, apiKey: chatApiKey, model: chatModel }
+                })
+            });
+            const data = await resp.json().catch(() => ({}));
+            if (!resp.ok || !data.ok) {
+                const msg = data.message || '兜底聊天测试失败';
+                showToast(msg, 'error');
+                if (note) note.textContent = '兜底聊天测试失败：' + msg;
+                return;
+            }
+            const preview = data.replyPreview ? ` · 回复：${data.replyPreview}` : '';
+            if (note) note.textContent = `兜底聊天测试通过 · ${data.model || chatModel}${preview}`;
+            showToast('兜底聊天接口测试通过', 'success');
+        } catch (err) {
+            const msg = err && err.message ? err.message : '兜底聊天测试失败';
+            showToast(msg, 'error');
+            if (note) note.textContent = msg;
+        } finally {
+            setVoiceSettingsButtonsBusy(false);
+        }
+    }
+
+    async function saveVoiceSettings() {
+        const voiceKeyInput = document.getElementById('voiceApiKeyInput');
+        const chatKeyInput = document.getElementById('chatApiKeyInput');
+        const note = document.getElementById('voiceSettingsNote');
+        const { voiceBaseUrl, voiceApiKey, voiceModel, chatBaseUrl, chatApiKey, chatModel } = collectVoiceSettings();
+        if (!voiceBaseUrl || !voiceModel) {
+            showToast('请填写语音识别的 Base URL 和 Model；如果后端还没有保存 Key，需要同时填写 API Key', 'warning');
+            return;
+        }
+        const hasChatFields = !!(chatBaseUrl || chatApiKey || chatModel);
+        if (hasChatFields && !(chatBaseUrl && chatModel)) {
+            showToast('兜底聊天需要填写 Base URL 和 Model；如果后端还没有保存 Key，需要同时填写 API Key', 'warning');
+            return;
+        }
+        try {
+            if (note) note.textContent = '正在保存到后端私有配置...';
             const resp = await fetch('/api/voice/session', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ baseUrl, apiKey, model })
+                body: JSON.stringify({
+                    voice: { baseUrl: voiceBaseUrl, apiKey: voiceApiKey, model: voiceModel },
+                    chat: hasChatFields ? { baseUrl: chatBaseUrl, apiKey: chatApiKey, model: chatModel } : {}
+                })
             });
             const data = await resp.json().catch(() => ({}));
             if (!resp.ok) {
-                const msg = data.message || 'ASR 配置保存失败';
+                const msg = data.message || 'API 配置保存失败';
                 showToast(msg, 'error');
                 if (note) note.textContent = msg;
                 return;
             }
             voiceSessionId = data.voiceSessionId || '';
-            if (keyInput) keyInput.value = '';
-            if (note) note.textContent = `${data.provider || 'ASR'} 已就绪 · ${data.model || model}`;
+            if (voiceKeyInput) {
+                voiceKeyInput.value = '';
+                voiceKeyInput.placeholder = data.hasApiKey ? '已在后端保存，留空继续使用' : 'SiliconFlow 语音 Key';
+                voiceKeyInput.title = data.hasApiKey ? '真实 Key 已保存到后端，前端不回显；填写新 Key 后保存可覆盖。' : '填写语音识别 API Key';
+            }
+            if (chatKeyInput) {
+                chatKeyInput.value = '';
+                chatKeyInput.placeholder = data.chat?.hasApiKey ? '已在后端保存，留空继续使用' : 'SiliconFlow 聊天 Key，可与语音 Key 相同';
+                chatKeyInput.title = data.chat?.hasApiKey ? '真实 Key 已保存到后端，前端不回显；填写新 Key 后保存可覆盖。' : '填写兜底聊天 API Key';
+            }
+            if (note) {
+                const voiceText = `${data.provider || 'ASR'} 语音已就绪 · ${data.model || voiceModel}`;
+                const chatText = data.chat?.ready ? `${data.chat.provider || 'Chat'} 聊天已就绪 · ${data.chat.model || chatModel}` : '聊天未配置，将使用本地兜底话术';
+                note.textContent = `${voiceText} / ${chatText} · Key 已在后端私有保存，前端不回显`;
+            }
             toggleVoiceSettings(false);
-            showToast('语音识别 API 已临时启用', 'success');
+            showToast(data.chat?.ready ? '语音和兜底聊天 API 已保存到后端' : '语音识别 API 已保存到后端', 'success');
         } catch (err) {
             console.warn('[Voice] Save settings failed:', err);
-            showToast('ASR 配置保存失败', 'error');
+            showToast('API 配置保存失败', 'error');
             if (note) note.textContent = '保存失败，请重试';
         }
     }
@@ -5745,12 +6157,19 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     function updateVoiceUI(state, message) {
         voiceState = state;
         const btn = document.getElementById('voiceBtn');
+        const wakeBtn = document.getElementById('wakeBtn');
         const pop = document.getElementById('voiceStatusPop');
         const text = document.getElementById('voiceStatusText');
         if (btn) {
             btn.classList.toggle('listening', state === 'listening');
             btn.classList.toggle('processing', state === 'processing');
             btn.setAttribute('aria-pressed', state === 'listening' ? 'true' : 'false');
+        }
+        if (wakeBtn) {
+            wakeBtn.classList.toggle('active', wakeEnabled && !wakeActiveCommand);
+            wakeBtn.classList.toggle('awake', wakeActiveCommand);
+            wakeBtn.setAttribute('aria-pressed', wakeEnabled ? 'true' : 'false');
+            wakeBtn.title = wakeEnabled ? '小诺同学语音唤醒已开启' : '开启小诺同学语音唤醒';
         }
         if (pop && text) {
             pop.className = 'voice-status-pop';
@@ -5849,21 +6268,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     async function transcribeVoiceBlob(audioBlob) {
         updateVoiceUI('processing', '正在识别语音...');
         try {
-            const headers = { 'Content-Type': audioBlob.type || 'audio/webm' };
-            if (voiceSessionId) headers['X-Voice-Session'] = voiceSessionId;
-            const resp = await fetch('/api/voice/transcribe', {
-                method: 'POST',
-                headers,
-                body: audioBlob
-            });
-            const data = await resp.json().catch(() => ({}));
-            if (!resp.ok) {
-                const msg = data.message || '语音识别失败';
-                updateVoiceUI('error', msg);
-                showToast(msg, 'error');
-                return;
-            }
-            const text = (data.text || '').trim();
+            const text = await requestVoiceTranscription(audioBlob);
             if (!text) {
                 updateVoiceUI('error', '没有识别到有效语音');
                 return;
@@ -5875,6 +6280,24 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             updateVoiceUI('error', '语音识别服务不可用');
             showToast('语音识别服务不可用', 'error');
         }
+    }
+
+    async function requestVoiceTranscription(audioBlob) {
+        const headers = { 'Content-Type': audioBlob.type || 'audio/webm' };
+        if (voiceSessionId) headers['X-Voice-Session'] = voiceSessionId;
+        const resp = await fetch('/api/voice/transcribe', {
+            method: 'POST',
+            headers,
+            body: audioBlob
+        });
+        const data = await resp.json().catch(() => ({}));
+        if (!resp.ok) {
+            const msg = data.message || '语音识别失败';
+            const err = new Error(msg);
+            err.status = resp.status;
+            throw err;
+        }
+        return (data.text || '').trim();
     }
 
     function normalizeVoiceCommand(text) {
@@ -5890,6 +6313,20 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
     function voiceHas(cmd, patterns) {
         return patterns.some(p => p instanceof RegExp ? p.test(cmd) : cmd.includes(p));
+    }
+
+    function stripWakeWord(text) {
+        let value = String(text || '').trim();
+        WAKE_WORDS.forEach(word => {
+            const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            value = value.replace(new RegExp(escaped, 'ig'), ' ');
+        });
+        return value.replace(/[，。！？、；：,.!?;:]/g, ' ').replace(/\s+/g, ' ').trim();
+    }
+
+    function hasWakeWord(text) {
+        const cmd = normalizeVoiceCommand(text);
+        return WAKE_WORDS.some(word => cmd.includes(normalizeVoiceCommand(word)));
     }
 
     function runVoiceAction(label, fn) {
@@ -6046,6 +6483,143 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         sendMessage();
     }
 
+    function stopWakeListening(options = {}) {
+        wakeEnabled = false;
+        wakeActiveCommand = false;
+        wakeAwakeUntil = 0;
+        clearTimeout(wakeSegmentTimer);
+        clearTimeout(wakeRestartTimer);
+        wakeSegmentTimer = null;
+        wakeRestartTimer = null;
+        if (wakeRecorder && wakeRecorder.state !== 'inactive') {
+            try { wakeRecorder.stop(); } catch {}
+        }
+        wakeRecorder = null;
+        if (wakeStream) {
+            wakeStream.getTracks().forEach(track => track.stop());
+            wakeStream = null;
+        }
+        updateVoiceUI(options.silent ? 'idle' : 'success', options.message || '小诺同学语音唤醒已关闭');
+    }
+
+    async function startWakeListening() {
+        if (wakeEnabled || wakeBusy) return;
+        if (!isVoiceSupported()) {
+            showToast('当前浏览器不支持语音唤醒，请使用 Chrome 或 Edge', 'error');
+            updateVoiceUI('error', '浏览器不支持语音唤醒');
+            return;
+        }
+        const mimeType = getVoiceMimeType();
+        if (!mimeType) {
+            showToast('当前浏览器不支持可用的录音格式', 'error');
+            updateVoiceUI('error', '录音格式不可用');
+            return;
+        }
+        try {
+            wakeBusy = true;
+            wakeStream = await navigator.mediaDevices.getUserMedia({
+                audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true }
+            });
+            wakeEnabled = true;
+            wakeBusy = false;
+            updateVoiceUI('wake', '小诺同学待命中');
+            startWakeSegment();
+        } catch (err) {
+            wakeBusy = false;
+            console.warn('[Voice] Wake microphone error:', err);
+            showToast('无法访问麦克风，请检查浏览器权限', 'error');
+            updateVoiceUI('error', '麦克风权限不可用');
+            stopWakeListening({ silent: true });
+        }
+    }
+
+    function startWakeSegment() {
+        if (!wakeEnabled || !wakeStream) return;
+        if (wakeRecorder && wakeRecorder.state !== 'inactive') return;
+        const mimeType = getVoiceMimeType();
+        wakeChunks = [];
+        try {
+            wakeRecorder = new MediaRecorder(wakeStream, { mimeType });
+            wakeRecorder.ondataavailable = (event) => {
+                if (event.data && event.data.size > 0) wakeChunks.push(event.data);
+            };
+            wakeRecorder.onerror = () => {
+                console.warn('[Voice] Wake recorder error');
+                stopWakeListening({ message: '语音唤醒录音失败' });
+            };
+            wakeRecorder.onstop = () => handleWakeSegmentStop(mimeType);
+            wakeRecorder.start();
+            updateVoiceUI(wakeActiveCommand ? 'awake' : 'wake', wakeActiveCommand ? '小诺已唤醒，请说指令' : '小诺同学待命中');
+            wakeSegmentTimer = setTimeout(() => {
+                if (wakeRecorder && wakeRecorder.state !== 'inactive') wakeRecorder.stop();
+            }, wakeActiveCommand ? Math.min(VOICE_MAX_MS, WAKE_AWAKE_WINDOW_MS) : WAKE_SEGMENT_MS);
+        } catch (err) {
+            console.warn('[Voice] Wake segment failed:', err);
+            stopWakeListening({ message: '语音唤醒不可用' });
+        }
+    }
+
+    async function handleWakeSegmentStop(mimeType) {
+        clearTimeout(wakeSegmentTimer);
+        wakeSegmentTimer = null;
+        const chunks = wakeChunks.slice();
+        wakeChunks = [];
+        wakeRecorder = null;
+        if (!wakeEnabled || !chunks.length) {
+            if (wakeEnabled) scheduleWakeRestart(120);
+            return;
+        }
+        const blob = new Blob(chunks, { type: mimeType || 'audio/webm' });
+        try {
+            const text = await requestVoiceTranscription(blob);
+            processWakeTranscript(text);
+        } catch (err) {
+            console.warn('[Voice] Wake transcription error:', err);
+            updateVoiceUI('error', err.message || '语音唤醒识别失败');
+            if (wakeEnabled) scheduleWakeRestart(900);
+        }
+    }
+
+    function processWakeTranscript(text) {
+        const heard = String(text || '').trim();
+        if (!heard) {
+            scheduleWakeRestart(120);
+            return;
+        }
+        const woke = hasWakeWord(heard);
+        const inAwakeWindow = wakeActiveCommand || Date.now() < wakeAwakeUntil;
+        if (woke || inAwakeWindow) {
+            const command = stripWakeWord(heard);
+            wakeActiveCommand = true;
+            wakeAwakeUntil = Date.now() + WAKE_AWAKE_WINDOW_MS;
+            updateVoiceUI('awake', woke ? '小诺已唤醒' : '小诺正在听');
+            if (command && command.length >= 2) {
+                wakeActiveCommand = false;
+                wakeAwakeUntil = 0;
+                updateVoiceUI('success', '小诺收到：' + command);
+                handleVoiceTranscript(command);
+                scheduleWakeRestart(1200);
+                return;
+            }
+            scheduleWakeRestart(150);
+            return;
+        }
+        scheduleWakeRestart(120);
+    }
+
+    function scheduleWakeRestart(delay) {
+        clearTimeout(wakeRestartTimer);
+        if (!wakeEnabled) return;
+        wakeRestartTimer = setTimeout(() => {
+            if (wakeEnabled && (!wakeRecorder || wakeRecorder.state === 'inactive')) startWakeSegment();
+        }, delay || 120);
+    }
+
+    function toggleWakeListening() {
+        if (wakeEnabled || wakeBusy) stopWakeListening();
+        else startWakeListening();
+    }
+
     function isTypingTarget(target) {
         if (!target) return false;
         const tag = (target.tagName || '').toLowerCase();
@@ -6054,10 +6628,13 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
     function initVoiceShortcuts() {
         const btn = document.getElementById('voiceBtn');
+        const wakeBtn = document.getElementById('wakeBtn');
         if (btn) btn.disabled = !isVoiceSupported();
+        if (wakeBtn) wakeBtn.disabled = !isVoiceSupported();
         loadVoiceConfig();
         if (!isVoiceSupported()) {
             if (btn) btn.title = '当前浏览器不支持语音录制';
+            if (wakeBtn) wakeBtn.title = '当前浏览器不支持语音唤醒';
             return;
         }
         document.addEventListener('keydown', (e) => {
@@ -6081,12 +6658,25 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             if (panel.contains(e.target) || (btnSettings && btnSettings.contains(e.target))) return;
             toggleVoiceSettings(false);
         });
+        window.addEventListener('resize', () => {
+            const panel = document.getElementById('voiceSettingsPanel');
+            const btnSettings = document.getElementById('voiceSettingsBtn');
+            if (panel && btnSettings && panel.classList.contains('open')) positionVoiceSettingsPanel(panel, btnSettings);
+        });
+        window.addEventListener('scroll', () => {
+            const panel = document.getElementById('voiceSettingsPanel');
+            const btnSettings = document.getElementById('voiceSettingsBtn');
+            if (panel && btnSettings && panel.classList.contains('open')) positionVoiceSettingsPanel(panel, btnSettings);
+        }, true);
     }
 
     window.toggleVoiceCapture = toggleVoiceCapture;
     window.handleVoiceTranscript = handleVoiceTranscript;
     window.toggleVoiceSettings = toggleVoiceSettings;
     window.saveVoiceSettings = saveVoiceSettings;
+    window.testVoiceAsrSettings = testVoiceAsrSettings;
+    window.testVoiceChatSettings = testVoiceChatSettings;
+    window.toggleWakeListening = toggleWakeListening;
 
     // ═══════════════ Utility Functions ═══════════════
     // renderMarkdown and inlineMarkdown are defined near the bottom of this script
