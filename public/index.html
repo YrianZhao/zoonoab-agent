@@ -5229,41 +5229,64 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
     // ═══════════════ QUICK DESIGN PANEL ═══════════════
     const QD_TOTAL_STEPS = 8;
+    const qdDemoRoutes = {
+        allergic_asthma: {
+            disease: '过敏性哮喘',
+            systemUnderstanding: '过敏炎症通路',
+            target: 'IL-33',
+            blockTarget: 'ST2',
+            abType: 'VHH',
+            count: 15,
+            printable: true,
+            routeLabel: 'IL-33 / ST2 白名单路线',
+            triggerHint: '过敏性哮喘、IL-33、ST2'
+        },
+        tumor_immunotherapy: {
+            disease: '肿瘤免疫治疗',
+            systemUnderstanding: '免疫检查点通路',
+            target: 'PD-L1',
+            blockTarget: 'PD-1',
+            abType: 'Fab',
+            count: 10,
+            printable: true,
+            routeLabel: 'PD-1 / PD-L1 白名单路线',
+            triggerHint: '肿瘤免疫治疗、检查点、PD-1、PD-L1'
+        },
+        breast_cancer: {
+            disease: '乳腺癌相关疾病',
+            systemUnderstanding: 'HER2 相关肿瘤',
+            target: 'HER2',
+            blockTarget: null,
+            abType: 'Fab',
+            count: 10,
+            printable: true,
+            routeLabel: 'HER2 白名单路线',
+            triggerHint: '乳腺癌、HER2'
+        },
+        autoimmune_inflammation: {
+            disease: '自身免疫炎症',
+            systemUnderstanding: '炎症因子通路',
+            target: 'TNF',
+            blockTarget: null,
+            abType: 'Fab',
+            count: 10,
+            printable: false,
+            routeLabel: 'TNF 白名单路线',
+            triggerHint: '自身免疫、类风湿、TNF'
+        }
+    };
     const qdDiseaseOptions = [
-        { id: 'oncology', title: '肿瘤', desc: '用于识别或阻断肿瘤相关信号通路', recommended: true },
-        { id: 'immune', title: '自身免疫 / 炎症疾病', desc: '用于调节过度活跃的免疫和炎症反应' },
-        { id: 'metabolic', title: '代谢疾病', desc: '用于干预脂代谢、能量代谢或内分泌相关通路' },
-        { id: 'infectious', title: '感染性疾病', desc: '用于结合病原体相关蛋白或阻断感染过程' },
-        { id: 'cardio', title: '心血管疾病', desc: '用于调节血脂、血管炎症或凝血相关靶点' }
+        { id: 'oncology', title: '肿瘤', desc: '展示 PD-1/PD-L1 检查点或 HER2 经典肿瘤靶点', recommended: true },
+        { id: 'immune', title: '自身免疫 / 炎症疾病', desc: '展示 IL-33/ST2 或 TNF 炎症因子白名单路线' }
     ];
     const qdTargetOptions = {
         oncology: [
-            { id: 'PD-L1', title: 'PD-L1', desc: '常见免疫检查点靶标，可用于肿瘤免疫治疗方向', recommended: true },
-            { id: 'HER2', title: 'HER2', desc: '乳腺癌、胃癌等方向的经典抗体药物靶点' },
-            { id: 'VEGF', title: 'VEGF', desc: '与肿瘤血管生成相关，常用于抗血管生成治疗策略' },
-            { id: 'EGFR', title: 'EGFR', desc: '多种实体瘤中常见的生长信号受体靶点' },
-            { id: 'CD3', title: 'CD3', desc: 'T 细胞表面靶点，常用于免疫细胞招募类设计' }
+            { id: 'PD-L1', routeId: 'tumor_immunotherapy', title: 'PD-L1', desc: '免疫检查点靶标，触发 PD-1/PD-L1 肿瘤免疫治疗演示路线', recommended: true },
+            { id: 'HER2', routeId: 'breast_cancer', title: 'HER2', desc: '乳腺癌/胃癌相关经典抗体靶点，触发 HER2 演示路线' }
         ],
         immune: [
-            { id: 'IL-33', title: 'IL-33', desc: '炎症和过敏反应相关因子，适合抗炎演示路线', recommended: true },
-            { id: 'TNF-a', title: 'TNF-a', desc: '炎症疾病中的经典因子，可用于阻断炎症信号' },
-            { id: 'IL-6R', title: 'IL-6R', desc: '白细胞介素 6 受体，常见于免疫炎症调节方向' },
-            { id: 'CD20', title: 'CD20', desc: 'B 细胞相关靶点，可用于免疫细胞清除策略' }
-        ],
-        metabolic: [
-            { id: 'PCSK9', title: 'PCSK9', desc: '调节 LDL 胆固醇代谢的代表性蛋白', recommended: true },
-            { id: 'GLP-1R', title: 'GLP-1R', desc: '葡萄糖代谢和食欲调节相关受体' },
-            { id: 'FGF21', title: 'FGF21', desc: '与能量代谢、脂代谢调控相关的内分泌因子' }
-        ],
-        infectious: [
-            { id: 'Spike', title: 'Spike', desc: '病毒入侵宿主细胞相关表面蛋白示例', recommended: true },
-            { id: 'RSV-F', title: 'RSV-F', desc: '呼吸道合胞病毒融合蛋白，适合中和抗体方向' },
-            { id: 'HA', title: 'HA', desc: '流感病毒血凝素，可用于阻断病毒识别宿主细胞' }
-        ],
-        cardio: [
-            { id: 'PCSK9', title: 'PCSK9', desc: '降低 LDL 胆固醇相关的成熟抗体药物靶点', recommended: true },
-            { id: 'ANGPTL3', title: 'ANGPTL3', desc: '与血脂代谢和心血管风险调控相关' },
-            { id: 'IL-1B', title: 'IL-1B', desc: '与血管炎症反应相关的炎症因子' }
+            { id: 'IL-33', routeId: 'allergic_asthma', title: 'IL-33', desc: '过敏性哮喘和呼吸道炎症方向，触发 IL-33/ST2 演示路线', recommended: true },
+            { id: 'TNF', routeId: 'autoimmune_inflammation', title: 'TNF', desc: '类风湿/自身免疫炎症方向，触发 TNF 演示路线' }
         ]
     };
     const qdMechanismOptions = {
@@ -5277,40 +5300,15 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             { id: 'cell-clearance', title: '诱导靶细胞清除', desc: '用于更接近治疗性抗体的展示故事' },
             { id: 'high-affinity', title: '生成高亲和力结合抗体', desc: '优先找到稳定结合 HER2 的候选分子' }
         ],
-        'VEGF': [
-            { id: 'block-ligand', title: '阻断配体结合', desc: '阻断 VEGF 相关血管生成信号', recommended: true },
-            { id: 'neutralize', title: '中和可溶性因子', desc: '减少目标因子与受体结合的机会' },
-            { id: 'detect-only', title: '仅结合检测，不干预功能', desc: '适合诊断或研究工具型分子展示' }
-        ],
-        'EGFR': [
-            { id: 'block-receptor', title: '阻断受体相互作用', desc: '干预受体激活和下游生长信号', recommended: true },
-            { id: 'cell-clearance', title: '诱导靶细胞清除', desc: '设计更接近治疗性抗体的作用模式' },
-            { id: 'high-affinity', title: '生成高亲和力结合抗体', desc: '优先优化结合能力和稳定性' }
-        ],
-        'CD3': [
-            { id: 'immune-recognition', title: '激活免疫识别', desc: '用于展示 T 细胞招募或双特异性设计思路', recommended: true },
-            { id: 'controlled-binding', title: '生成可控结合抗体', desc: '强调结合强度和安全窗口的平衡' },
-            { id: 'detect-only', title: '仅结合检测，不干预功能', desc: '适合流式或研究工具方向' }
-        ],
         'IL-33': [
             { id: 'block-st2', title: '阻断 IL-33 / ST2 相互作用', desc: '阻断炎症信号传递，适合过敏炎症展示路线', recommended: true, block: 'ST2' },
             { id: 'neutralize', title: '中和可溶性因子', desc: '让抗体结合 IL-33 并降低其信号活性' },
             { id: 'high-affinity', title: '生成高亲和力结合抗体', desc: '优先获得稳定结合 IL-33 的候选分子' }
         ],
-        'TNF-a': [
-            { id: 'neutralize', title: '中和炎症因子', desc: '降低 TNF-a 介导的炎症信号', recommended: true },
-            { id: 'block-receptor', title: '阻断受体相互作用', desc: '减少 TNF-a 与受体结合的机会' },
+        'TNF': [
+            { id: 'neutralize', title: '中和 TNF 炎症因子', desc: '降低 TNF 介导的炎症信号，适合自身免疫炎症展示', recommended: true },
+            { id: 'block-receptor', title: '阻断 TNF 受体相互作用', desc: '减少 TNF 与 TNFR1/TNFR2 结合的机会' },
             { id: 'high-affinity', title: '生成高亲和力结合抗体', desc: '优先优化结合能力和可开发性' }
-        ],
-        'IL-6R': [
-            { id: 'block-ligand', title: '阻断配体结合', desc: '阻止 IL-6 信号通过受体传递', recommended: true, block: 'IL-6' },
-            { id: 'block-receptor', title: '阻断受体相互作用', desc: '抑制受体复合体形成' },
-            { id: 'high-affinity', title: '生成高亲和力结合抗体', desc: '优先获得稳定结合 IL-6R 的候选分子' }
-        ],
-        'CD20': [
-            { id: 'cell-clearance', title: '诱导靶细胞清除', desc: '面向 B 细胞相关疾病的治疗性抗体策略', recommended: true },
-            { id: 'high-affinity', title: '生成高亲和力结合抗体', desc: '优先优化结合和稳定性' },
-            { id: 'detect-only', title: '仅结合检测，不干预功能', desc: '适合研究和检测工具方向' }
         ],
         default: [
             { id: 'block-ligand', title: '阻断配体结合', desc: '阻止目标蛋白与关键伙伴结合', recommended: true },
@@ -5327,16 +5325,15 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         { id: 'loop', title: '暴露环区 / 柔性区域', desc: '优先选择更容易被抗体接触的表面区域' }
     ];
     const qdAntibodyOptions = [
-        { id: 'VHH', title: 'VHH 纳米抗体', desc: '体积小、稳定性高，适合快速筛选', recommended: true },
+        { id: 'VHH', title: 'VHH 纳米抗体', desc: '体积小、稳定性高，适合快速筛选' },
+        { id: 'Fab', title: 'Fab 抗体片段', desc: '后端白名单演示常用形式，适合结构展示和界面阻断', recommended: true },
         { id: 'scFv', title: 'scFv 单链抗体', desc: '结构紧凑，适合工程化改造' },
         { id: 'IgG', title: 'IgG 全长抗体', desc: '更接近完整治疗性抗体形态' },
         { id: 'Auto', title: '自动推荐', desc: '由 AI 根据靶点和展示目标选择分子类型' }
     ];
     const qdCountOptions = [
-        { id: 'fast', title: '快速体验：5 个', desc: '适合现场快速跑通流程', count: 5 },
-        { id: 'standard', title: '标准设计：15 个', desc: '兼顾速度和候选多样性，推荐 demo 路径', count: 15, recommended: true },
-        { id: 'deep', title: '深度探索：50 个', desc: '用于展示更大规模的候选探索', count: 50 },
-        { id: 'custom', title: '自定义', desc: '展开后可手动设置候选数量', count: 15 }
+        { id: 'route', title: '使用当前路线固定数量', desc: '与后端写死演示路线保持一致，保证结果口径稳定', count: null, recommended: true },
+        { id: 'custom', title: '高级模式：自定义数量', desc: '正式研发模式可开放滑杆；路演 demo 仍按白名单固定数量发送', count: null }
     ];
     let qdState = {};
 
@@ -5345,16 +5342,18 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             step: 0,
             disease: 'oncology',
             target: 'PD-L1',
+            routeId: 'tumor_immunotherapy',
             customTarget: '',
+            showCustomTarget: false,
             mechanism: 'block-pd1-pdl1',
             epitope: 'auto',
             advancedEpitopeOpen: false,
             advancedOpen: false,
             advancedEpitope: '',
             advancedBlock: '',
-            antibody: 'VHH',
-            countMode: 'standard',
-            count: 15
+            antibody: 'Fab',
+            countMode: 'route',
+            count: 10
         };
     }
 
@@ -5384,15 +5383,19 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         return qdEscHtml(value);
     }
     function qdTargetLabel() {
-        return qdState.customTarget.trim() || qdState.target || 'PD-L1';
+        return qdRoute().target;
+    }
+    function qdRoute() {
+        return qdDemoRoutes[qdState.routeId] || qdDemoRoutes.tumor_immunotherapy;
+    }
+    function qdTargetOption() {
+        return qdGetTargetList().find(item => item.id === qdState.target) || qdGetTargetList()[0];
     }
     function qdDiseaseLabel() {
-        return qdFindOption(qdDiseaseOptions, qdState.disease).title;
+        return qdRoute().disease;
     }
     function qdUseCaseLabel() {
-        const target = qdTargetLabel();
-        if (qdState.disease === 'oncology' && (target === 'PD-L1' || target === 'CD3')) return '肿瘤免疫治疗';
-        return qdDiseaseLabel();
+        return qdRoute().disease;
     }
     function qdMechanismList() {
         return qdMechanismOptions[qdTargetLabel()] || qdMechanismOptions.default;
@@ -5406,19 +5409,34 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     function qdAntibodyOption() {
         return qdFindOption(qdAntibodyOptions, qdState.antibody);
     }
+    function qdRouteAntibodyOptions() {
+        const route = qdRoute();
+        const routeOption = qdFindOption(qdAntibodyOptions, route.abType);
+        const autoOption = qdFindOption(qdAntibodyOptions, 'Auto');
+        return [
+            { ...routeOption, recommended: true, desc: route.abType === 'VHH' ? '当前 IL-33/ST2 白名单路线的后端固定抗体形式' : '当前白名单路线的后端固定抗体形式' },
+            { ...autoOption, recommended: false, desc: '保持与当前白名单路线一致，由系统自动使用固定形式' }
+        ];
+    }
+    function qdAntibodyLabel() {
+        const route = qdRoute();
+        const opt = qdFindOption(qdAntibodyOptions, qdState.antibody === 'Auto' ? route.abType : qdState.antibody);
+        return opt.title;
+    }
     function qdCountOption() {
         return qdFindOption(qdCountOptions, qdState.countMode);
     }
     function qdAdvancedBlock() {
-        return qdState.advancedBlock.trim() || qdMechanismOption().block || '';
+        return qdRoute().blockTarget || qdMechanismOption().block || '';
     }
     function qdInteractionLabel(target, block) {
         return target === 'PD-L1' && block === 'PD-1' ? 'PD-1 / PD-L1' : `${target} / ${block}`;
     }
     function qdInstructionText() {
+        const route = qdRoute();
         const disease = qdUseCaseLabel();
-        const target = qdTargetLabel();
-        const antibody = qdState.antibody === 'Auto' ? 'AI 自动推荐抗体类型' : qdAntibodyOption().title;
+        const target = route.target;
+        const antibody = qdState.antibody === 'Auto' ? route.abType : qdState.antibody;
         const mechanism = qdMechanismOption().title;
         const epitope = qdState.advancedEpitope.trim();
         const block = qdAdvancedBlock();
@@ -5428,11 +5446,32 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         else if (qdState.epitope === 'auto' && block) epitopePhrase = `优先识别 ${interaction} 相互作用界面`;
         else if (qdState.epitope === 'auto') epitopePhrase = '由 AI 自动选择最优表位';
         else epitopePhrase = `优先识别${qdEpitopeOption().title}`;
-        let text = `为${disease}场景设计 ${qdState.count} 个靶向 ${target} 的 ${antibody}候选分子，${epitopePhrase}`;
+        let text = `请启动抗体设计演示。疾病方向：${disease}。系统理解：${route.systemUnderstanding}。设计 ${qdState.count} 个靶向 ${target} 的 ${antibody}`;
         if (block && (epitope || qdState.epitope !== 'auto')) text += `，并阻断 ${interaction} 相互作用`;
-        else if (!block) text += `，实现${mechanism}`;
-        text += '，并优化结合能力、稳定性和可开发性。';
+        else if (block) text += `，阻断 ${target}/${block} 相互作用通路`;
+        else text += `，实现${mechanism}`;
+        text += `。${epitopePhrase}，并优化结合能力、稳定性和可开发性。`;
+        if (route.printable) text += '输出 PDB 结构，并准备可用于 3D 打印的结构模型。';
+        else text += '输出候选抗体结构和 PDB 文件。';
+        text += `演示路线：${route.routeLabel}。`;
         return text;
+    }
+    function qdSyncRouteDefaults(routeId) {
+        const route = qdDemoRoutes[routeId] || qdDemoRoutes.tumor_immunotherapy;
+        qdState.routeId = routeId;
+        qdState.target = route.target;
+        qdState.antibody = route.abType;
+        qdState.countMode = 'route';
+        qdState.count = route.count;
+        qdState.advancedBlock = '';
+        const recommendedMechanism = (qdMechanismOptions[route.target] || qdMechanismOptions.default).find(m => m.recommended) || qdMechanismOptions.default[0];
+        qdState.mechanism = recommendedMechanism.id;
+    }
+    function qdRouteAwareCountOptions() {
+        const route = qdRoute();
+        return qdCountOptions.map(opt => opt.id === 'route'
+            ? { ...opt, title: `推荐演示数量：${route.count} 个`, count: route.count }
+            : { ...opt, count: route.count });
     }
     function qdOptionCards(options, selectedId, handler, compact = false) {
         return `<div class="qd-option-grid${compact ? ' compact' : ''}">` + options.map(opt => `
@@ -5476,7 +5515,15 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         qdRenderFooter();
         const body = document.getElementById('qdStepBody');
         if (!body) return;
+        const route = qdRoute();
         const target = qdTargetLabel();
+        const targetHelpPanel = `
+            <div class="qd-advanced-panel">
+                <div class="qd-helper-note" style="margin-top:0;">
+                    当前快速设计只开放后端安全白名单路线：IL-33/ST2、PD-1/PD-L1、HER2、TNF。其他靶点需求会安全映射到代表性演示路线，路演模式不会直接发送非白名单靶点。
+                </div>
+            </div>
+        `;
         const customTargetPanel = `
             <button class="qd-muted-action" onclick="qdToggleCustomTarget()">
                 <i data-lucide="${qdState.showCustomTarget ? 'chevron-up' : 'chevron-down'}" style="width:14px;height:14px;"></i>
@@ -5484,9 +5531,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             </button>
             ${qdState.showCustomTarget ? `
                 <div class="qd-advanced-panel">
-                    <label class="qd-field-label" for="qdCustomTargetInput">自定义靶点</label>
-                    <input class="qd-input" id="qdCustomTargetInput" value="${qdEscAttr(qdState.customTarget)}" placeholder="如 EGFR、CD20、PCSK9" oninput="qdSetCustomTarget(this.value)">
-                    <div class="qd-helper-note">用于内部演示时建议优先使用推荐靶点，保证故事线和后续结果稳定。</div>
+                    <label class="qd-field-label" for="qdCustomTargetInput">其他靶点或疾病方向</label>
+                    <input class="qd-input" id="qdCustomTargetInput" value="${qdEscAttr(qdState.customTarget)}" placeholder="如 EGFR、IL-17、PCSK9" oninput="qdSetCustomTarget(this.value)">
+                    <div class="qd-helper-note">现场展示会把该需求映射到 IL-33/ST2 代表性演示路线，确保后端触发已准备好的安全工作流。</div>
+                    <button class="qd-btn primary" style="margin-top:12px;" onclick="qdUseRepresentativeRoute()">
+                        使用代表性演示路线
+                    </button>
                 </div>` : ''}
         `;
         const advancedEpitopePanel = `
@@ -5502,24 +5552,28 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 </div>` : ''}
         `;
         const summaryRows = [
+            ...(qdState.customTarget.trim() ? [['现场输入', `${qdState.customTarget.trim()}（已映射到 ${route.routeLabel}）`]] : []),
             ['疾病方向', qdDiseaseLabel()],
             ['靶标蛋白', target],
+            ['演示路线', route.routeLabel],
             ['作用机制', qdMechanismOption().title],
             ['表位策略', qdState.advancedEpitope.trim() || qdEpitopeOption().title],
-            ['抗体类型', qdAntibodyOption().title],
+            ['抗体类型', qdAntibodyLabel()],
             ['候选数量', `${qdState.count} 个`]
         ].map(row => `<div class="qd-summary-row"><div class="qd-summary-label">${qdEscHtml(row[0])}</div><div class="qd-summary-value">${qdEscHtml(row[1])}</div></div>`).join('');
         const advancedFinalPanel = qdState.advancedOpen ? `
-            <div class="qd-advanced-panel">
-                <label class="qd-field-label" for="qdAdvancedBlockInput">阻断相互作用对象</label>
-                <input class="qd-input" id="qdAdvancedBlockInput" value="${qdEscAttr(qdState.advancedBlock)}" placeholder="如 PD-1、ST2；留空则使用推荐机制" oninput="qdSetAdvancedBlock(this.value)">
+                <div class="qd-advanced-panel">
+                <label class="qd-field-label" for="qdAdvancedBlockInput">阻断相互作用对象（白名单固定）</label>
+                <input class="qd-input" id="qdAdvancedBlockInput" value="${qdEscAttr(qdAdvancedBlock() || '当前路线不设置固定阻断对象')}" readonly>
+                <div class="qd-helper-note">该字段跟随后端写死演示路线，默认不允许改成非白名单对象。</div>
                 <div style="height:10px;"></div>
                 <label class="qd-field-label" for="qdAdvancedFinalEpitopeInput">精确表位区域</label>
                 <input class="qd-input" id="qdAdvancedFinalEpitopeInput" value="${qdEscAttr(qdState.advancedEpitope)}" placeholder="如 Site-II beta11-beta12 界面" oninput="qdSetAdvancedEpitope(this.value)">
                 <div style="height:10px;"></div>
                 <label class="qd-field-label" for="qdAdvancedCountInput">候选数量：<span style="color:var(--brand);">${qdState.count}</span> 个</label>
-                <input class="qd-range" id="qdAdvancedCountInput" type="range" min="5" max="100" step="5" value="${qdState.count}" oninput="qdSetCustomCount(this.value)">
+                <input class="qd-range" id="qdAdvancedCountInput" type="range" min="5" max="100" step="5" value="${qdState.count}" disabled>
                 <div class="qd-range-meta"><span>5</span><span>100</span></div>
+                <div class="qd-helper-note">候选数量跟随当前白名单路线固定值，避免前端参数和后端写死工作流不一致。</div>
             </div>` : '';
 
         if (qdState.step === 0) {
@@ -5535,8 +5589,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                             <span class="qd-route-pill">肿瘤</span>
                             <span class="qd-route-pill">PD-L1</span>
                             <span class="qd-route-pill">阻断 PD-1 / PD-L1</span>
-                            <span class="qd-route-pill">VHH</span>
-                            <span class="qd-route-pill">15 个候选</span>
+                            <span class="qd-route-pill">Fab</span>
+                            <span class="qd-route-pill">10 个候选</span>
                         </div>
                     </div>
                     <div class="qd-demo-orb" aria-hidden="true"></div>
@@ -5553,8 +5607,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             body.innerHTML = `
                 <div class="qd-step-kicker">第 3 步</div>
                 <div class="qd-step-title">请选择希望作用的靶标蛋白</div>
-                <div class="qd-step-subtitle">已根据“${qdEscHtml(qdDiseaseLabel())}”筛选出更适合展示的靶点。</div>
-                ${qdOptionCards(qdGetTargetList(), qdState.customTarget.trim() ? '' : qdState.target, 'qdSelectTarget')}
+                <div class="qd-step-subtitle">这些靶点会直接映射到后端写死的安全演示工作流。</div>
+                ${qdOptionCards(qdGetTargetList(), qdState.target, 'qdSelectTarget')}
+                ${targetHelpPanel}
                 ${customTargetPanel}
             `;
         } else if (qdState.step === 3) {
@@ -5576,20 +5631,21 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             body.innerHTML = `
                 <div class="qd-step-kicker">第 6 步</div>
                 <div class="qd-step-title">请选择希望生成的抗体分子类型</div>
-                <div class="qd-step-subtitle">展示场景默认推荐 VHH 纳米抗体，适合快速生成候选并展示结构结果。</div>
-                ${qdOptionCards(qdAntibodyOptions, qdState.antibody, 'qdSelectAntibody')}
+                <div class="qd-step-subtitle">这里会保持与当前后端白名单工作流一致，确保弹窗选择和实际执行结果不打架。</div>
+                ${qdOptionCards(qdRouteAntibodyOptions(), qdState.antibody, 'qdSelectAntibody')}
             `;
         } else if (qdState.step === 6) {
             body.innerHTML = `
                 <div class="qd-step-kicker">第 7 步</div>
                 <div class="qd-step-title">希望 AI 生成多少个候选设计？</div>
-                <div class="qd-step-subtitle">用简单选项控制演示速度和探索深度。滑杆仅在自定义模式中展开。</div>
-                ${qdOptionCards(qdCountOptions, qdState.countMode, 'qdSelectCountMode')}
+                <div class="qd-step-subtitle">第一版演示路线已在后端固定候选数量，避免现场展示和工作流输出不一致。</div>
+                ${qdOptionCards(qdRouteAwareCountOptions(), qdState.countMode, 'qdSelectCountMode')}
                 ${qdState.countMode === 'custom' ? `
                     <div class="qd-advanced-panel">
-                        <label class="qd-field-label" for="qdCustomCount">自定义候选数量：<span style="color:var(--brand);">${qdState.count}</span> 个</label>
-                        <input class="qd-range" id="qdCustomCount" type="range" min="5" max="100" step="5" value="${qdState.count}" oninput="qdSetCustomCount(this.value)">
+                        <label class="qd-field-label" for="qdCustomCount">自定义候选数量（正式研发模式预留）</label>
+                        <input class="qd-range" id="qdCustomCount" type="range" min="5" max="100" step="5" value="${qdState.count}" disabled>
                         <div class="qd-range-meta"><span>5</span><span>100</span></div>
+                        <div class="qd-helper-note">当前路演 demo 会继续发送 ${route.count} 个候选，以稳定触发已准备好的后端演示工作流。</div>
                     </div>` : ''}
             `;
         } else {
@@ -5608,6 +5664,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         lucide.createIcons({ nodes: document.getElementById('quickDesignOverlay') });
     }
     function qdNext() {
+        if (qdState.step === 2 && qdState.customTarget.trim()) {
+            qdUseRepresentativeRoute();
+            return;
+        }
         if (qdState.step < QD_TOTAL_STEPS - 1) {
             qdState.step += 1;
             qdRender();
@@ -5621,19 +5681,18 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
     function qdSelectDisease(id) {
         qdState.disease = id;
-        const recommendedTarget = qdGetTargetList().find(t => t.recommended) || qdGetTargetList()[0];
-        qdState.target = recommendedTarget.id;
         qdState.customTarget = '';
-        const recommendedMechanism = (qdMechanismOptions[qdState.target] || qdMechanismOptions.default).find(m => m.recommended) || qdMechanismOptions.default[0];
-        qdState.mechanism = recommendedMechanism.id;
+        qdState.showCustomTarget = false;
+        const recommendedTarget = qdGetTargetList().find(t => t.recommended) || qdGetTargetList()[0];
+        qdSyncRouteDefaults(recommendedTarget.routeId);
         qdState.step = 2;
         qdRender();
     }
     function qdSelectTarget(id) {
-        qdState.target = id;
+        const targetOption = qdGetTargetList().find(item => item.id === id) || qdGetTargetList()[0];
         qdState.customTarget = '';
-        const recommendedMechanism = (qdMechanismOptions[id] || qdMechanismOptions.default).find(m => m.recommended) || qdMechanismOptions.default[0];
-        qdState.mechanism = recommendedMechanism.id;
+        qdState.showCustomTarget = false;
+        qdSyncRouteDefaults(targetOption.routeId);
         qdState.step = 3;
         qdRender();
     }
@@ -5653,7 +5712,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         qdRender();
     }
     function qdSelectCountMode(id) {
-        const opt = qdFindOption(qdCountOptions, id);
+        const opt = qdFindOption(qdRouteAwareCountOptions(), id);
         qdState.countMode = id;
         qdState.count = opt.count;
         if (id !== 'custom') qdState.step = 7;
@@ -5666,10 +5725,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
     function qdSetCustomTarget(value) {
         qdState.customTarget = value;
-        if (value.trim()) {
-            const recommendedMechanism = qdMechanismOptions.default.find(m => m.recommended) || qdMechanismOptions.default[0];
-            qdState.mechanism = recommendedMechanism.id;
-        }
+    }
+    function qdUseRepresentativeRoute() {
+        qdState.disease = 'immune';
+        qdSyncRouteDefaults('allergic_asthma');
+        qdState.step = 3;
+        qdRender();
     }
     function qdToggleAdvancedEpitope() {
         qdState.advancedEpitopeOpen = !qdState.advancedEpitopeOpen;
@@ -5685,13 +5746,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         qdState.advancedOpen = !qdState.advancedOpen;
         qdRender();
     }
-    function qdSetAdvancedBlock(value) {
-        qdState.advancedBlock = value;
-        const preview = document.getElementById('qdPreview');
-        if (preview) preview.textContent = qdInstructionText();
-    }
     function qdSetCustomCount(value) {
-        qdState.count = Number(value) || 15;
+        qdState.count = qdRoute().count;
         if (qdState.step === 7) qdRender();
         else {
             const label = document.querySelector('label[for="qdCustomCount"] span');
