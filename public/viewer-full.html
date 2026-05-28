@@ -234,6 +234,7 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
             return r.text();
         }).then(function(txt){
             console.log('[VF] got '+txt.length+' chars');
+            if(!/\b(ATOM|HETATM)\b/.test(txt)) throw new Error('invalid PDB payload');
             glv.addModel(txt,'pdb');
 
             // Remove water molecules (resname HOH/WAT) and杂原子 for cleaner view
@@ -246,17 +247,39 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
             window.parent.postMessage({source:'viewer-full',type:'ready',data:{}},'*');
         }).catch(function(err){
             console.error('[VF] fetch err:',err,'→ fallback');
-            $3Dmol.download(url,{mimetype:'text/plain'},function(m){
-                glv.addModel(m,'pdb');
-                try{glv.remove({or:[{resn:'HOH'},{resn:'WAT'}]});}catch(e){}
-                apply();
-                setTimeout(center,300);setTimeout(center,800);
-                if(ldEl){ldEl.style.display='none';}
-                _loaded=true;
-                window.parent.postMessage({source:'viewer-full',type:'ready',data:{}},'*');
-            });
-            setTimeout(function(){if(ldEl&&ldEl.style.display!=='none'){ldEl.style.display='none';_loaded=true;}},15000);
+            try {
+                $3Dmol.download(url,{mimetype:'text/plain'},function(m){
+                    try {
+                        if(!m || !/\b(ATOM|HETATM)\b/.test(String(m))) throw new Error('invalid fallback PDB payload');
+                        glv.addModel(m,'pdb');
+                        try{glv.remove({or:[{resn:'HOH'},{resn:'WAT'}]});}catch(e){}
+                        apply();
+                        setTimeout(center,300);setTimeout(center,800);
+                        if(ldEl){ldEl.style.display='none';}
+                        _loaded=true;
+                        window.parent.postMessage({source:'viewer-full',type:'ready',data:{}},'*');
+                    } catch(innerErr) {
+                        showLoadError(ldEl, innerErr);
+                    }
+                });
+            } catch(downloadErr) {
+                showLoadError(ldEl, downloadErr);
+            }
+            setTimeout(function(){
+                if(ldEl&&ldEl.style.display!=='none'&&!_loaded){
+                    showLoadError(ldEl, new Error('timeout'));
+                }
+            },15000);
         });
+    }
+    function showLoadError(ldEl, err) {
+        console.error('[VF] load error:', err);
+        if(ldEl){
+            ldEl.textContent='Structure load failed';
+            ldEl.style.color='#FCA5A5';
+            ldEl.style.display='block';
+        }
+        window.parent.postMessage({source:'viewer-full',type:'error',data:{message:String(err&&err.message||err||'load failed')}},'*');
     }
 
     // ════ CORE APPLY ════

@@ -4115,7 +4115,7 @@
                 </div>
                 <div class="qd-progress-wrap" id="qdProgressWrap">
                     <div class="qd-progress-row">
-                        <span class="qd-progress-label" id="qdProgressLabel">Demo 引导流程</span>
+                        <span class="qd-progress-label" id="qdProgressLabel">分子设计引导流程</span>
                         <span class="qd-progress-meta" id="qdProgressMeta">1/8</span>
                     </div>
                     <div class="qd-progress-track"><div class="qd-progress-bar" id="qdProgressBar"></div></div>
@@ -5241,7 +5241,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             abType: 'VHH',
             count: 15,
             printable: true,
-            routeLabel: 'IL-33 / ST2 白名单路线',
+            routeLabel: 'IL-33 / ST2 炎症通路',
             triggerHint: '过敏性哮喘、IL-33、ST2'
         },
         tumor_immunotherapy: {
@@ -5252,7 +5252,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             abType: 'Fab',
             count: 10,
             printable: true,
-            routeLabel: 'PD-1 / PD-L1 白名单路线',
+            routeLabel: 'PD-1 / PD-L1 免疫检查点方向',
             triggerHint: '肿瘤免疫治疗、检查点、PD-1、PD-L1'
         },
         breast_cancer: {
@@ -5263,7 +5263,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             abType: 'Fab',
             count: 10,
             printable: true,
-            routeLabel: 'HER2 白名单路线',
+            routeLabel: 'HER2 肿瘤靶点方向',
             triggerHint: '乳腺癌、HER2'
         },
         autoimmune_inflammation: {
@@ -5274,22 +5274,28 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             abType: 'Fab',
             count: 10,
             printable: false,
-            routeLabel: 'TNF 白名单路线',
+            routeLabel: 'TNF 炎症因子方向',
             triggerHint: '自身免疫、类风湿、TNF'
         }
     };
+    const qdWorkflowTriggers = {
+        allergic_asthma: '设计 15 个靶向 IL-33 的 VHH 纳米抗体',
+        tumor_immunotherapy: '阻断 PD-1/PD-L1 通路，设计 10 个高亲和力 Fab',
+        breast_cancer: '请为乳腺癌相关疾病设计一个候选抗体',
+        autoimmune_inflammation: 'TNF-alpha 抗体设计'
+    };
     const qdDiseaseOptions = [
         { id: 'oncology', title: '肿瘤', desc: '展示 PD-1/PD-L1 检查点或 HER2 经典肿瘤靶点', recommended: true },
-        { id: 'immune', title: '自身免疫 / 炎症疾病', desc: '展示 IL-33/ST2 或 TNF 炎症因子白名单路线' }
+        { id: 'immune', title: '自身免疫 / 炎症疾病', desc: '聚焦 IL-33/ST2 或 TNF 炎症因子通路' }
     ];
     const qdTargetOptions = {
         oncology: [
-            { id: 'PD-L1', routeId: 'tumor_immunotherapy', title: 'PD-L1', desc: '免疫检查点靶标，触发 PD-1/PD-L1 肿瘤免疫治疗演示路线', recommended: true },
-            { id: 'HER2', routeId: 'breast_cancer', title: 'HER2', desc: '乳腺癌/胃癌相关经典抗体靶点，触发 HER2 演示路线' }
+            { id: 'PD-L1', routeId: 'tumor_immunotherapy', title: 'PD-L1', desc: '免疫检查点靶标，常用于肿瘤免疫治疗方向', recommended: true },
+            { id: 'HER2', routeId: 'breast_cancer', title: 'HER2', desc: '乳腺癌/胃癌相关经典抗体靶点' }
         ],
         immune: [
-            { id: 'IL-33', routeId: 'allergic_asthma', title: 'IL-33', desc: '过敏性哮喘和呼吸道炎症方向，触发 IL-33/ST2 演示路线', recommended: true },
-            { id: 'TNF', routeId: 'autoimmune_inflammation', title: 'TNF', desc: '类风湿/自身免疫炎症方向，触发 TNF 演示路线' }
+            { id: 'IL-33', routeId: 'allergic_asthma', title: 'IL-33', desc: '过敏性哮喘和呼吸道炎症方向', recommended: true },
+            { id: 'TNF', routeId: 'autoimmune_inflammation', title: 'TNF', desc: '类风湿/自身免疫炎症方向' }
         ]
     };
     const qdMechanismOptions = {
@@ -5329,14 +5335,14 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     ];
     const qdAntibodyOptions = [
         { id: 'VHH', title: 'VHH 纳米抗体', desc: '体积小、稳定性高，适合快速筛选' },
-        { id: 'Fab', title: 'Fab 抗体片段', desc: '后端白名单演示常用形式，适合结构展示和界面阻断', recommended: true },
+        { id: 'Fab', title: 'Fab 抗体片段', desc: '适合结构展示和界面阻断', recommended: true },
         { id: 'scFv', title: 'scFv 单链抗体', desc: '结构紧凑，适合工程化改造' },
         { id: 'IgG', title: 'IgG 全长抗体', desc: '更接近完整治疗性抗体形态' },
         { id: 'Auto', title: '自动推荐', desc: '由 AI 根据靶点和展示目标选择分子类型' }
     ];
     const qdCountOptions = [
-        { id: 'route', title: '使用当前路线固定数量', desc: '与后端写死演示路线保持一致，保证结果口径稳定', count: null, recommended: true },
-        { id: 'custom', title: '高级模式：自定义数量', desc: '正式研发模式可开放滑杆；路演 demo 仍按白名单固定数量发送', count: null }
+        { id: 'route', title: '使用推荐数量', desc: '保证本次设计结果稳定可展示', count: null, recommended: true },
+        { id: 'custom', title: '高级模式：自定义数量', desc: '正式研发模式可开放滑杆；现场展示仍使用推荐数量', count: null }
     ];
     let qdState = {};
 
@@ -5417,8 +5423,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const routeOption = qdFindOption(qdAntibodyOptions, route.abType);
         const autoOption = qdFindOption(qdAntibodyOptions, 'Auto');
         return [
-            { ...routeOption, recommended: true, desc: route.abType === 'VHH' ? '当前 IL-33/ST2 白名单路线的后端固定抗体形式' : '当前白名单路线的后端固定抗体形式' },
-            { ...autoOption, recommended: false, desc: '保持与当前白名单路线一致，由系统自动使用固定形式' }
+            { ...routeOption, recommended: true, desc: route.abType === 'VHH' ? '适合小型稳定结构的快速筛选' : '适合结构展示和界面阻断' },
+            { ...autoOption, recommended: false, desc: '由系统根据当前疾病和靶标自动选择分子类型' }
         ];
     }
     function qdAntibodyLabel() {
@@ -5449,15 +5455,17 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         else if (qdState.epitope === 'auto' && block) epitopePhrase = `优先识别 ${interaction} 相互作用界面`;
         else if (qdState.epitope === 'auto') epitopePhrase = '由 AI 自动选择最优表位';
         else epitopePhrase = `优先识别${qdEpitopeOption().title}`;
-        let text = `请启动抗体设计演示。疾病方向：${disease}。系统理解：${route.systemUnderstanding}。设计 ${qdState.count} 个靶向 ${target} 的 ${antibody}`;
+        let text = `为${disease}场景设计 ${qdState.count} 个靶向 ${target} 的 ${antibody} 候选分子`;
         if (block && (epitope || qdState.epitope !== 'auto')) text += `，并阻断 ${interaction} 相互作用`;
         else if (block) text += `，阻断 ${target}/${block} 相互作用通路`;
         else text += `，实现${mechanism}`;
         text += `。${epitopePhrase}，并优化结合能力、稳定性和可开发性。`;
         if (route.printable) text += '输出 PDB 结构，并准备可用于 3D 打印的结构模型。';
         else text += '输出候选抗体结构和 PDB 文件。';
-        text += `演示路线：${route.routeLabel}。`;
         return text;
+    }
+    function qdWorkflowTriggerText() {
+        return qdWorkflowTriggers[qdState.routeId] || qdWorkflowTriggers.tumor_immunotherapy;
     }
     function qdSyncRouteDefaults(routeId) {
         const route = qdDemoRoutes[routeId] || qdDemoRoutes.tumor_immunotherapy;
@@ -5473,7 +5481,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     function qdRouteAwareCountOptions() {
         const route = qdRoute();
         return qdCountOptions.map(opt => opt.id === 'route'
-            ? { ...opt, title: `推荐演示数量：${route.count} 个`, count: route.count }
+            ? { ...opt, title: `推荐数量：${route.count} 个`, count: route.count }
             : { ...opt, count: route.count });
     }
     function qdOptionCards(options, selectedId, handler, compact = false) {
@@ -5523,7 +5531,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const targetHelpPanel = `
             <div class="qd-advanced-panel">
                 <div class="qd-helper-note" style="margin-top:0;">
-                    当前快速设计只开放后端安全白名单路线：IL-33/ST2、PD-1/PD-L1、HER2、TNF。其他靶点需求会安全映射到代表性演示路线，路演模式不会直接发送非白名单靶点。
+                    当前快速设计优先支持 IL-33/ST2、PD-1/PD-L1、HER2、TNF 四条稳定设计路径。其他靶点需求会由系统选择最接近的可执行路径。
                 </div>
             </div>
         `;
@@ -5536,9 +5544,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 <div class="qd-advanced-panel">
                     <label class="qd-field-label" for="qdCustomTargetInput">其他靶点或疾病方向</label>
                     <input class="qd-input" id="qdCustomTargetInput" value="${qdEscAttr(qdState.customTarget)}" placeholder="如 EGFR、IL-17、PCSK9" oninput="qdSetCustomTarget(this.value)">
-                    <div class="qd-helper-note">现场展示会把该需求映射到 IL-33/ST2 代表性演示路线，确保后端触发已准备好的安全工作流。</div>
+                    <div class="qd-helper-note">系统会选择最接近的可执行设计路径，保证本次体验顺利完成。</div>
                     <button class="qd-btn primary" style="margin-top:12px;" onclick="qdUseRepresentativeRoute()">
-                        使用代表性演示路线
+                        使用推荐设计路径
                     </button>
                 </div>` : ''}
         `;
@@ -5555,10 +5563,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 </div>` : ''}
         `;
         const summaryRows = [
-            ...(qdState.customTarget.trim() ? [['现场输入', `${qdState.customTarget.trim()}（已映射到 ${route.routeLabel}）`]] : []),
+            ...(qdState.customTarget.trim() ? [['现场输入', `${qdState.customTarget.trim()}（系统已选择可执行设计路径）`]] : []),
             ['疾病方向', qdDiseaseLabel()],
             ['靶标蛋白', target],
-            ['演示路线', route.routeLabel],
             ['作用机制', qdMechanismOption().title],
             ['表位策略', qdState.advancedEpitope.trim() || qdEpitopeOption().title],
             ['抗体类型', qdAntibodyLabel()],
@@ -5566,9 +5573,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         ].map(row => `<div class="qd-summary-row"><div class="qd-summary-label">${qdEscHtml(row[0])}</div><div class="qd-summary-value">${qdEscHtml(row[1])}</div></div>`).join('');
         const advancedFinalPanel = qdState.advancedOpen ? `
                 <div class="qd-advanced-panel">
-                <label class="qd-field-label" for="qdAdvancedBlockInput">阻断相互作用对象（白名单固定）</label>
-                <input class="qd-input" id="qdAdvancedBlockInput" value="${qdEscAttr(qdAdvancedBlock() || '当前路线不设置固定阻断对象')}" readonly>
-                <div class="qd-helper-note">该字段跟随后端写死演示路线，默认不允许改成非白名单对象。</div>
+                <label class="qd-field-label" for="qdAdvancedBlockInput">阻断相互作用对象（自动确定）</label>
+                <input class="qd-input" id="qdAdvancedBlockInput" value="${qdEscAttr(qdAdvancedBlock() || '当前设计路径不设置固定阻断对象')}" readonly>
+                <div class="qd-helper-note">该字段跟随当前设计路径自动确定，默认无需手动填写。</div>
                 <div style="height:10px;"></div>
                 <label class="qd-field-label" for="qdAdvancedFinalEpitopeInput">精确表位区域</label>
                 <input class="qd-input" id="qdAdvancedFinalEpitopeInput" value="${qdEscAttr(qdState.advancedEpitope)}" placeholder="如 Site-II beta11-beta12 界面" oninput="qdSetAdvancedEpitope(this.value)">
@@ -5576,18 +5583,18 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 <label class="qd-field-label" for="qdAdvancedCountInput">候选数量：<span style="color:var(--brand);">${qdState.count}</span> 个</label>
                 <input class="qd-range" id="qdAdvancedCountInput" type="range" min="5" max="100" step="5" value="${qdState.count}" disabled>
                 <div class="qd-range-meta"><span>5</span><span>100</span></div>
-                <div class="qd-helper-note">候选数量跟随当前白名单路线固定值，避免前端参数和后端写死工作流不一致。</div>
+                <div class="qd-helper-note">候选数量跟随当前设计路径的推荐值，确保结果展示稳定。</div>
             </div>` : '';
 
         if (qdState.step === 0) {
             body.innerHTML = `
-                <div class="qd-step-kicker">Guided Demo</div>
+                <div class="qd-step-kicker">Guided Design</div>
                 <div class="qd-step-title">开启您的第一款药物分子设计</div>
-                <div class="qd-step-subtitle">选择一个疾病方向，AI 将引导您逐步生成抗体设计任务。您不需要了解靶点、表位或抗体工程参数，只需沿着推荐路径点击选择。</div>
+                <div class="qd-step-subtitle">选择一个疾病方向，AI 将引导您逐步生成抗体设计任务。您不需要了解复杂靶点、表位或抗体工程参数，只需沿着推荐路径点击选择。</div>
                 <div class="qd-intro-panel">
                     <div>
-                        <div class="qd-option-title">推荐展示路径已准备好</div>
-                        <div class="qd-option-desc" style="margin-top:6px;">适合路演、展会和产品展示：观众能看到真实的 AI 药物分子设计任务如何被逐步定义。</div>
+                        <div class="qd-option-title">推荐设计路径已准备好</div>
+                        <div class="qd-option-desc" style="margin-top:6px;">从疾病方向、靶标、作用机制到候选结构，逐步完成一次完整的 AI 药物分子设计任务。</div>
                         <div class="qd-intro-route">
                             <span class="qd-route-pill">肿瘤</span>
                             <span class="qd-route-pill">PD-L1</span>
@@ -5610,7 +5617,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             body.innerHTML = `
                 <div class="qd-step-kicker">第 3 步</div>
                 <div class="qd-step-title">请选择希望作用的靶标蛋白</div>
-                <div class="qd-step-subtitle">这些靶点会直接映射到后端写死的安全演示工作流。</div>
+                <div class="qd-step-subtitle">系统会根据疾病方向推荐更相关的靶标，确保后续设计流程稳定完成。</div>
                 ${qdOptionCards(qdGetTargetList(), qdState.target, 'qdSelectTarget')}
                 ${targetHelpPanel}
                 ${customTargetPanel}
@@ -5634,28 +5641,28 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             body.innerHTML = `
                 <div class="qd-step-kicker">第 6 步</div>
                 <div class="qd-step-title">请选择希望生成的抗体分子类型</div>
-                <div class="qd-step-subtitle">这里会保持与当前后端白名单工作流一致，确保弹窗选择和实际执行结果不打架。</div>
+                <div class="qd-step-subtitle">系统会优先推荐当前任务最稳定、最适合展示结构结果的分子类型。</div>
                 ${qdOptionCards(qdRouteAntibodyOptions(), qdState.antibody, 'qdSelectAntibody')}
             `;
         } else if (qdState.step === 6) {
             body.innerHTML = `
                 <div class="qd-step-kicker">第 7 步</div>
                 <div class="qd-step-title">希望 AI 生成多少个候选设计？</div>
-                <div class="qd-step-subtitle">第一版演示路线已在后端固定候选数量，避免现场展示和工作流输出不一致。</div>
+                <div class="qd-step-subtitle">使用推荐数量可以更稳定地完成候选筛选、结构生成和结果展示。</div>
                 ${qdOptionCards(qdRouteAwareCountOptions(), qdState.countMode, 'qdSelectCountMode')}
                 ${qdState.countMode === 'custom' ? `
                     <div class="qd-advanced-panel">
                         <label class="qd-field-label" for="qdCustomCount">自定义候选数量（正式研发模式预留）</label>
                         <input class="qd-range" id="qdCustomCount" type="range" min="5" max="100" step="5" value="${qdState.count}" disabled>
                         <div class="qd-range-meta"><span>5</span><span>100</span></div>
-                        <div class="qd-helper-note">当前路演 demo 会继续发送 ${route.count} 个候选，以稳定触发已准备好的后端演示工作流。</div>
+                        <div class="qd-helper-note">本次体验会继续使用 ${route.count} 个候选，以保证结构结果稳定生成。</div>
                     </div>` : ''}
             `;
         } else {
             body.innerHTML = `
                 <div class="qd-step-kicker">第 8 步</div>
                 <div class="qd-step-title">设计任务已生成</div>
-                <div class="qd-step-subtitle">请确认任务摘要。启动后将把这条设计任务发送给 ZoonoAb 多 Agent 工作流。</div>
+                <div class="qd-step-subtitle">请确认任务摘要。启动后将进入 ZoonoAb 多 Agent 分子设计流程。</div>
                 <div class="qd-summary-card">${summaryRows}</div>
                 <div class="qd-preview-box">
                     <div class="qd-preview-label">生成的设计指令预览</div>
@@ -5759,7 +5766,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     function submitQuickDesign() {
-        const text = qdInstructionText();
+        const text = qdWorkflowTriggerText();
         const routeId = qdState.routeId;
         closeQuickDesign();
         sendQuickDesignWorkflow(text, routeId);
@@ -5835,7 +5842,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             document.getElementById('wsStatus').style.background = 'var(--error)';
             document.getElementById('wsStatusText').textContent = 'Reconnecting...';
             if (quickDesignRunActive && isRunning) {
-                failQuickDesignRun('后端连接已断开，快速设计固定工作流未能继续执行。请确认正在通过 Node 后端服务访问页面，然后重试。');
+                failQuickDesignRun('连接已断开，分子设计流程未能继续执行。请稍后重试。');
             }
             const delay = Math.min(_wsReconnectDelay, 30000);
             _wsReconnectDelay = Math.min(delay * 2, 30000);
@@ -5870,7 +5877,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     function failQuickDesignRun(message) {
         finishQuickDesignRun();
         resetRunControls();
-        appendLog('[QuickDesign] ' + message);
+        appendLog('[Design] ' + message);
         showToast(message, 'error');
     }
 
@@ -5887,7 +5894,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 break;
 
             case 'quick_design_ack':
-                appendLog('[QuickDesign] 已进入后端固定演示工作流：' + (msg.routeLabel || msg.target || '白名单路线') + '。无需配置聊天或大模型 API Key。');
+                appendLog('[Design] 分子设计任务已确认，正在启动多 Agent 设计流程。');
                 break;
 
             case 'agent_msg':
@@ -6437,16 +6444,16 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             quickDesignAwaitingResponse = true;
             quickDesignWatchdogTimer = setTimeout(() => {
                 if (!quickDesignAwaitingResponse) return;
-                failQuickDesignRun('快速设计请求已发送，但后端固定工作流没有响应。请确认使用的是 Node 后端服务，而不是静态文件预览。');
+                failQuickDesignRun('分子设计流程启动超时，请稍后重试或联系现场工作人员。');
             }, 8000);
-            appendLog('[QuickDesign] 已发送到后端 quick_design 通道，等待固定工作流确认...');
+            appendLog('[Design] 正在启动分子设计流程...');
             try {
                 ws.send(JSON.stringify({ type: 'quick_design', text, routeId }));
             } catch (err) {
-                failQuickDesignRun('快速设计请求发送失败，请检查后端连接后重试。');
+                failQuickDesignRun('分子设计请求发送失败，请检查连接后重试。');
             }
         } else {
-            failQuickDesignRun('WebSocket 未连接，快速设计无法启动后端白名单工作流。请等待连接后重试。');
+            failQuickDesignRun('连接尚未建立，暂时无法启动分子设计流程。请稍后重试。');
         }
     }
 
