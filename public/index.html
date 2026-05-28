@@ -4879,6 +4879,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     let currentStyle = 'cartoon';
     let currentColor = 'ab-ag';
     let starredSeqs = new Set();
+    let quickDesignAwaitingResponse = false;
+    let quickDesignRunActive = false;
+    let quickDesignWatchdogTimer = null;
 
     // ═══════════════ Message Queue (for ordered, typewriter-synced output) ═══════════════
     let msgQueue = [];
@@ -5831,6 +5834,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         ws.onclose = () => {
             document.getElementById('wsStatus').style.background = 'var(--error)';
             document.getElementById('wsStatusText').textContent = 'Reconnecting...';
+            if (quickDesignRunActive && isRunning) {
+                failQuickDesignRun('后端连接已断开，快速设计固定工作流未能继续执行。请确认正在通过 Node 后端服务访问页面，然后重试。');
+            }
             const delay = Math.min(_wsReconnectDelay, 30000);
             _wsReconnectDelay = Math.min(delay * 2, 30000);
             setTimeout(connectWS, delay);
@@ -5839,10 +5845,49 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         ws.onerror = () => ws.close();
     }
 
+    function clearQuickDesignWatchdog() {
+        if (quickDesignWatchdogTimer) {
+            clearTimeout(quickDesignWatchdogTimer);
+            quickDesignWatchdogTimer = null;
+        }
+        quickDesignAwaitingResponse = false;
+    }
+
+    function finishQuickDesignRun() {
+        clearQuickDesignWatchdog();
+        quickDesignRunActive = false;
+    }
+
+    function resetRunControls() {
+        isRunning = false;
+        hideTyping();
+        document.getElementById('sendBtn').style.display = 'flex';
+        document.getElementById('cancelBtn').style.display = 'none';
+        const _inp = document.getElementById('userInput');
+        if (_inp) _inp.placeholder = t('placeholder');
+    }
+
+    function failQuickDesignRun(message) {
+        finishQuickDesignRun();
+        resetRunControls();
+        appendLog('[QuickDesign] ' + message);
+        showToast(message, 'error');
+    }
+
+    function markQuickDesignBackendResponse(msg) {
+        if (!quickDesignAwaitingResponse || !msg || msg.type === 'connected') return;
+        clearQuickDesignWatchdog();
+    }
+
     function handleMsg(msg) {
+        markQuickDesignBackendResponse(msg);
         switch (msg.type) {
             case 'connected':
                 sessionId = msg.sessionId;
+                break;
+
+            case 'quick_design_ack':
+                appendLog('[QuickDesign] 已进入后端固定演示工作流：' + (msg.routeLabel || msg.target || '白名单路线') + '。无需配置聊天或大模型 API Key。');
                 break;
 
             case 'agent_msg':
@@ -5967,11 +6012,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
             case 'cancelled':
                 enqueueOp(() => new Promise(resolve => {
-                    isRunning = false;
-                    hideTyping();
-                    document.getElementById('sendBtn').style.display = 'flex';
-                    document.getElementById('cancelBtn').style.display = 'none';
-                    const _inp2 = document.getElementById('userInput'); if (_inp2) _inp2.placeholder = t('placeholder');
+                    finishQuickDesignRun();
+                    resetRunControls();
                     appendLog('[System] 服务端已确认取消');
                     resolve();
                 }));
@@ -5979,10 +6021,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
             case 'error':
                 enqueueOp(() => new Promise(resolve => {
-                    hideTyping();
-                    isRunning = false;
-                    document.getElementById('sendBtn').style.display = 'flex';
-                    document.getElementById('cancelBtn').style.display = 'none';
+                    finishQuickDesignRun();
+                    resetRunControls();
                     showToast(msg.text || '服务器错误，请重试', 'error');
                     resolve();
                 }));
@@ -5990,11 +6030,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
             case 'done':
                 enqueueOp(() => new Promise(resolve => {
-                    isRunning = false;
-                    hideTyping();
-                    document.getElementById('sendBtn').style.display = 'flex';
-                    document.getElementById('cancelBtn').style.display = 'none';
-                    const _inp = document.getElementById('userInput'); if (_inp) _inp.placeholder = t('placeholder');
+                    finishQuickDesignRun();
+                    resetRunControls();
                     showToast(t('Workflow complete!'), 'success');
                     // Save to conversation history
                     if (currentStats) {
@@ -6372,11 +6409,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (ws && ws.readyState === 1) {
             ws.send(JSON.stringify({ type: 'cancel' }));
         }
-        isRunning = false;
-        document.getElementById('sendBtn').style.display = 'flex';
-        document.getElementById('cancelBtn').style.display = 'none';
-        const _inp = document.getElementById('userInput'); if (_inp) _inp.placeholder = t('placeholder');
-        hideTyping();
+        finishQuickDesignRun();
+        resetRunControls();
         showToast('工作流已取消', 'warning');
         appendLog('[System] 工作流已取消');
     }
@@ -6399,16 +6433,20 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (!text || isRunning) return;
         startChatRun(text);
         if (ws && ws.readyState === 1) {
-            ws.send(JSON.stringify({ type: 'quick_design', text, routeId }));
+            quickDesignRunActive = true;
+            quickDesignAwaitingResponse = true;
+            quickDesignWatchdogTimer = setTimeout(() => {
+                if (!quickDesignAwaitingResponse) return;
+                failQuickDesignRun('快速设计请求已发送，但后端固定工作流没有响应。请确认使用的是 Node 后端服务，而不是静态文件预览。');
+            }, 8000);
+            appendLog('[QuickDesign] 已发送到后端 quick_design 通道，等待固定工作流确认...');
+            try {
+                ws.send(JSON.stringify({ type: 'quick_design', text, routeId }));
+            } catch (err) {
+                failQuickDesignRun('快速设计请求发送失败，请检查后端连接后重试。');
+            }
         } else {
-            appendLog('[System] WebSocket 未连接，快速设计无法启动后端白名单工作流');
-            isRunning = false;
-            hideTyping();
-            document.getElementById('sendBtn').style.display = 'flex';
-            document.getElementById('cancelBtn').style.display = 'none';
-            const _inp = document.getElementById('userInput');
-            if (_inp) _inp.placeholder = t('placeholder');
-            showToast('后端连接未就绪，请等待连接后重试快速设计', 'error');
+            failQuickDesignRun('WebSocket 未连接，快速设计无法启动后端白名单工作流。请等待连接后重试。');
         }
     }
 
@@ -11663,6 +11701,7 @@ pdb_archive:    /output/anti-${TARGET}-vhh-structs.zip` });
         currentResults = [];
         currentStats = null;
         starredSeqs.clear();
+        finishQuickDesignRun();
         isRunning = false;
         // Reset message queue
         msgQueue = [];

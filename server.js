@@ -1186,6 +1186,20 @@ function resolveQuickDesignRoute(msg) {
   return detectDemoRoute(msg && msg.text) || DEMO_ROUTE_RULES[0];
 }
 
+function quickDesignAck(route) {
+  return {
+    type: 'quick_design_ack',
+    routeId: route.id,
+    routeLabel: route.target + (route.blockTarget ? '/' + route.blockTarget : ''),
+    disease: route.disease,
+    target: route.target,
+    blockTarget: route.blockTarget || '',
+    abType: route.abType,
+    count: route.count,
+    workflow: 'demo_routed_workflow'
+  };
+}
+
 function buildDemoInstruction(input, route) {
   const raw = String(input || '').trim();
   const asksPrint = /(打印|3d\s*打印|print|模型|纪念)/i.test(raw) || route.printable;
@@ -2683,6 +2697,7 @@ wss.on('connection', ws => {
     if (msg.type === 'quick_design') {
       if (!msg.text || typeof msg.text !== 'string' || msg.text.length > 4000) return;
       const quickRoute = resolveQuickDesignRoute(msg);
+      if (ws.readyState === 1) ws.send(JSON.stringify(quickDesignAck(quickRoute)));
       runSocketTask(ws, sid, msg, () => ((socket, text) => runDemoRoutedWorkflow(socket, text || msg.text, quickRoute)));
       return;
     }
