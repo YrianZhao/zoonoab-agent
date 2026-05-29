@@ -13,52 +13,111 @@ import cgi
 import json
 import os
 import tempfile
+import threading
+import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from typing import Any, Dict, Tuple
+from typing import Any, Dict, Optional, Tuple
 
 MODEL_DIR = os.environ.get(
     "LOCAL_ASR_MODEL",
-    "iic/SenseVoiceSmall",
+    "iic/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch",
 )
-VAD_MODEL = os.environ.get("LOCAL_ASR_VAD_MODEL", "fsmn-vad")
-PUNC_MODEL = os.environ.get("LOCAL_ASR_PUNC_MODEL", "ct-punc")
+VAD_MODEL = os.environ.get("LOCAL_ASR_VAD_MODEL", "")
+PUNC_MODEL = os.environ.get("LOCAL_ASR_PUNC_MODEL", "")
 DEVICE = os.environ.get("LOCAL_ASR_DEVICE", "cpu")
+PRELOAD_MODEL = os.environ.get("LOCAL_ASR_PRELOAD", "1").lower() not in {"0", "false", "no", "off"}
 
 _MODEL = None
+_MODEL_LOCK = threading.Lock()
+_MODEL_STATUS = {
+    "state": "not_loaded",
+    "error": "",
+    "loadedAt": None,
+}
+
+
+def normalize_optional_model(value: str) -> Optional[str]:
+    normalized = str(value or "").strip()
+    if normalized.lower() in {"", "0", "false", "no", "none", "off"}:
+        return None
+    return normalized
+
+
+def set_model_status(state: str, error: str = "") -> None:
+    _MODEL_STATUS["state"] = state
+    _MODEL_STATUS["error"] = error
+    if state == "ready":
+        _MODEL_STATUS["loadedAt"] = time.time()
+
+
+def get_model_status() -> Dict[str, Any]:
+    return {
+        "state": _MODEL_STATUS["state"],
+        "ready": _MODEL_STATUS["state"] == "ready",
+        "error": _MODEL_STATUS["error"],
+        "loadedAt": _MODEL_STATUS["loadedAt"],
+    }
 
 
 def load_model():
     global _MODEL
     if _MODEL is not None:
         return _MODEL
-    try:
-        from funasr import AutoModel
-    except ImportError as exc:
-        raise RuntimeError(
-            "FunASR is not installed. Run `npm run asr:setup` first."
-        ) from exc
+    with _MODEL_LOCK:
+        if _MODEL is not None:
+            return _MODEL
+        set_model_status("loading")
+        try:
+            from funasr import AutoModel
+        except ImportError as exc:
+            set_model_status("error", "FunASR is not installed. Run `npm run asr:setup` first.")
+            raise RuntimeError(
+                "FunASR is not installed. Run `npm run asr:setup` first."
+            ) from exc
 
-    _MODEL = AutoModel(
-        model=MODEL_DIR,
-        vad_model=VAD_MODEL,
-        punc_model=PUNC_MODEL,
-        disable_update=True,
-        device=DEVICE,
-    )
-    return _MODEL
+        kwargs = {
+            "model": MODEL_DIR,
+            "disable_update": True,
+            "device": DEVICE,
+        }
+        vad_model = normalize_optional_model(VAD_MODEL)
+        punc_model = normalize_optional_model(PUNC_MODEL)
+        if vad_model:
+            kwargs["vad_model"] = vad_model
+        if punc_model:
+            kwargs["punc_model"] = punc_model
+
+        try:
+            _MODEL = AutoModel(**kwargs)
+            set_model_status("ready")
+            return _MODEL
+        except Exception as exc:
+            set_model_status("error", str(exc))
+            raise
+
+
+def preload_model() -> None:
+    try:
+        load_model()
+        print("[LocalASR] Model ready")
+    except Exception as exc:
+        print(f"[LocalASR] Model preload failed: {exc}")
 
 
 def transcribe_file(path: str) -> str:
     model = load_model()
-    result = model.generate(
-        input=path,
-        language="zh",
-        use_itn=True,
-        batch_size_s=60,
-        merge_vad=True,
-        merge_length_s=15,
-    )
+    kwargs = {
+        "input": path,
+        "use_itn": True,
+        "batch_size_s": 60,
+    }
+    if normalize_optional_model(VAD_MODEL):
+        kwargs.update({
+            "merge_vad": True,
+            "merge_length_s": 15,
+        })
+    result = model.generate(**kwargs)
     if not result:
         return ""
     if isinstance(result, list):
@@ -85,7 +144,7 @@ def parse_multipart(handler: BaseHTTPRequestHandler) -> Tuple[bytes, str]:
         },
     )
     file_item = form["file"] if "file" in form else None
-    if not file_item or not getattr(file_item, "file", None):
+    if file_item is None or not getattr(file_item, "file", None):
         raise ValueError("missing file field")
     filename = Path(getattr(file_item, "filename", "") or "voice.wav").name
     data = file_item.file.read()
@@ -111,13 +170,32 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_GET(self) -> None:
         if self.path.rstrip("/") == "/health":
-            self.send_json(200, {"ok": True, "provider": "local", "model": MODEL_DIR})
+            status = get_model_status()
+            self.send_json(200, {
+                "ok": True,
+                "provider": "local",
+                "model": MODEL_DIR,
+                "device": DEVICE,
+                "ready": status["ready"],
+                "state": status["state"],
+                "error": status["error"],
+            })
             return
         self.send_json(404, {"error": "not_found"})
 
     def do_POST(self) -> None:
         if self.path.split("?")[0] != "/v1/audio/transcriptions":
             self.send_json(404, {"error": "not_found"})
+            return
+        status = get_model_status()
+        if status["state"] == "loading":
+            self.send_json(503, {
+                "error": "local_asr_loading",
+                "message": "本机离线语音模型正在加载，首次启动或首次转写需要等待模型预热完成。",
+                "provider": "local",
+                "model": MODEL_DIR,
+                "state": status["state"],
+            })
             return
         try:
             audio, filename = parse_multipart(self)
@@ -142,10 +220,13 @@ def main() -> None:
     parser.add_argument("--host", default=os.environ.get("LOCAL_ASR_HOST", "127.0.0.1"))
     parser.add_argument("--port", type=int, default=int(os.environ.get("LOCAL_ASR_PORT", "8765")))
     args = parser.parse_args()
-    print(f"[LocalASR] Loading model: {MODEL_DIR} ({DEVICE})")
-    load_model()
     server = ThreadingHTTPServer((args.host, args.port), Handler)
     print(f"[LocalASR] Ready: http://{args.host}:{args.port}/v1/audio/transcriptions")
+    print(f"[LocalASR] Model: {MODEL_DIR} ({DEVICE})")
+    print(f"[LocalASR] VAD: {normalize_optional_model(VAD_MODEL) or 'off'}; punctuation: {normalize_optional_model(PUNC_MODEL) or 'off'}")
+    if PRELOAD_MODEL:
+        print("[LocalASR] Preloading model in background")
+        threading.Thread(target=preload_model, daemon=True).start()
     server.serve_forever()
 
 

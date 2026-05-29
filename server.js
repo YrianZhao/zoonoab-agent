@@ -19,7 +19,7 @@ const VOICE_SESSION_TTL_MS = 2 * 60 * 60 * 1000;
 const VOICE_ASR_PROVIDER = (process.env.VOICE_ASR_PROVIDER || 'local').toLowerCase();
 const LOCAL_ASR_BASE_URL = process.env.LOCAL_ASR_BASE_URL || 'http://127.0.0.1:8765/v1/audio/transcriptions';
 const VOICE_TRANSCRIBE_MODEL = process.env.VOICE_TRANSCRIBE_MODEL ||
-  (VOICE_ASR_PROVIDER === 'deepseek' ? 'deepseek-v4-flash' : (VOICE_ASR_PROVIDER === 'local' ? 'funasr-paraformer-zh' : 'gpt-4o-transcribe'));
+  (VOICE_ASR_PROVIDER === 'deepseek' ? 'deepseek-v4-flash' : (VOICE_ASR_PROVIDER === 'local' ? 'paraformer-zh' : 'gpt-4o-transcribe'));
 const ASSISTANT_CHAT_MODEL = process.env.ASSISTANT_CHAT_MODEL || process.env.DEEPSEEK_CHAT_MODEL || 'deepseek-chat';
 const ASSISTANT_CHAT_BASE_URL = process.env.ASSISTANT_CHAT_BASE_URL || process.env.DEEPSEEK_CHAT_BASE_URL || process.env.VOICE_CHAT_BASE_URL || '';
 const VOICE_API_CONFIG_FILE = process.env.VOICE_API_CONFIG_FILE || path.join(__dirname, '.runtime', 'voice-api-config.json');
@@ -249,9 +249,10 @@ function parseProviderError(text) {
   if (!text) return 'Audio transcription request failed';
   try {
     const parsed = JSON.parse(text);
-    return parsed && parsed.error && parsed.error.message
-      ? parsed.error.message
-      : 'Audio transcription request failed';
+    if (parsed && parsed.error && parsed.error.message) return parsed.error.message;
+    if (parsed && parsed.message) return parsed.message;
+    if (parsed && parsed.error) return typeof parsed.error === 'string' ? parsed.error : JSON.stringify(parsed.error).slice(0, 180);
+    return 'Audio transcription request failed';
   } catch {
     return text.slice(0, 180);
   }
@@ -396,7 +397,9 @@ async function transcribeAudioWithConfig(providerConfig, audio, contentType) {
       console.error('[Voice] Transcription failed:', providerConfig.provider, upstream.status, message);
       const err = new Error(message);
       err.status = 502;
-      err.apiError = 'transcription_failed';
+      err.apiError = isLocalVoiceProvider(providerConfig.provider) && upstream.status === 503
+        ? 'local_asr_loading'
+        : 'transcription_failed';
       err.provider = providerConfig.provider;
       throw err;
     }

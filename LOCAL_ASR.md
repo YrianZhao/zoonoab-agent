@@ -8,7 +8,8 @@
 npm run asr:setup
 ```
 
-这会安装 FunASR、ModelScope、PyTorch 和音频依赖。首次启动本地服务时会下载 `iic/SenseVoiceSmall`、`fsmn-vad` 和 `ct-punc` 模型。
+这会安装 FunASR、ModelScope、PyTorch 和音频依赖。首次启动本地服务时会下载 `iic/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch` 识别模型。
+依赖会安装到项目内 `.runtime/local-asr-venv`，不会写入仓库，也不会污染系统 Python。
 
 ## 启动本机离线 ASR
 
@@ -24,6 +25,8 @@ npm run asr:local
 http://127.0.0.1:8765/v1/audio/transcriptions
 ```
 
+服务启动后 `/health` 会立刻可用；识别模型会在后台预热。首次下载和加载完成后，再次启动会明显更快。
+
 再开另一个终端运行网页服务：
 
 ```bash
@@ -35,7 +38,13 @@ npm start
 ## 自定义模型或端口
 
 ```bash
-LOCAL_ASR_MODEL=iic/SenseVoiceSmall LOCAL_ASR_PORT=8765 npm run asr:local
+LOCAL_ASR_MODEL=iic/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch LOCAL_ASR_PORT=8765 npm run asr:local
+```
+
+默认针对现场短语音命令识别，不加载额外 VAD 和标点模型，避免首次启动额外下载约 1GB 标点权重。需要长音频切分或标点时可以手动开启：
+
+```bash
+LOCAL_ASR_VAD_MODEL=fsmn-vad LOCAL_ASR_PUNC_MODEL=ct-punc npm run asr:local
 ```
 
 后端也可以通过环境变量指向别的本地 ASR 服务：
@@ -47,5 +56,6 @@ VOICE_ASR_PROVIDER=local LOCAL_ASR_BASE_URL=http://127.0.0.1:8765/v1/audio/trans
 ## 常见问题
 
 - 页面提示“本机离线语音服务未启动”：先确认 `npm run asr:local` 正在运行。
+- 页面提示“本机离线语音模型正在加载”：等待首次模型下载或预热完成，不需要填写 API Key。
 - 首次启动慢：模型第一次下载和加载需要时间，之后会快很多。
 - 完全断网前：先联网完成 `npm run asr:setup` 和第一次 `npm run asr:local`，确保模型已缓存到本机。
