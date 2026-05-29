@@ -3838,15 +3838,15 @@
                                     </div>
                                     <div class="voice-settings-row">
                                         <label for="voiceBaseUrlInput">Base URL</label>
-                                        <input id="voiceBaseUrlInput" type="url" autocomplete="off" spellcheck="false" placeholder="https://api.siliconflow.cn/v1/audio/transcriptions">
+                                        <input id="voiceBaseUrlInput" type="url" autocomplete="off" spellcheck="false" placeholder="http://127.0.0.1:8765/v1/audio/transcriptions">
                                     </div>
                                     <div class="voice-settings-row">
                                         <label for="voiceApiKeyInput">API Key</label>
-                                        <input id="voiceApiKeyInput" type="password" autocomplete="off" spellcheck="false" placeholder="SiliconFlow 语音 Key">
+                                        <input id="voiceApiKeyInput" type="password" autocomplete="off" spellcheck="false" placeholder="本机离线模式无需 Key">
                                     </div>
                                     <div class="voice-settings-row">
                                         <label for="voiceModelInput">Model</label>
-                                        <input id="voiceModelInput" type="text" autocomplete="off" spellcheck="false" placeholder="FunAudioLLM/SenseVoiceSmall">
+                                        <input id="voiceModelInput" type="text" autocomplete="off" spellcheck="false" placeholder="funasr-paraformer-zh">
                                     </div>
                                 </div>
                                 <div class="voice-settings-divider"></div>
@@ -6378,6 +6378,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     let wakeRestartTimer = null;
     let wakeAwakeUntil = 0;
     let wakeBusy = false;
+    let voiceConfigState = { local: true, ready: true };
 
     function isVoiceSupported() {
         return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder);
@@ -6401,6 +6402,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         try {
             const resp = await fetch('/api/voice/config');
             const cfg = await resp.json();
+            voiceConfigState = cfg || voiceConfigState;
             const voiceBaseInput = document.getElementById('voiceBaseUrlInput');
             const voiceKeyInput = document.getElementById('voiceApiKeyInput');
             const voiceModelInput = document.getElementById('voiceModelInput');
@@ -6411,8 +6413,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             if (voiceBaseInput && cfg.baseUrl && !voiceBaseInput.value) voiceBaseInput.value = cfg.baseUrl;
             if (voiceKeyInput) {
                 voiceKeyInput.value = '';
-                voiceKeyInput.placeholder = cfg.hasApiKey ? '已在后端保存，留空继续使用' : 'SiliconFlow 语音 Key';
-                voiceKeyInput.title = cfg.hasApiKey ? '真实 Key 已保存到后端，前端不回显；填写新 Key 后保存可覆盖。' : '填写语音识别 API Key';
+                voiceKeyInput.placeholder = cfg.local ? '本机离线模式无需 Key' : (cfg.hasApiKey ? '已在后端保存，留空继续使用' : 'SiliconFlow 语音 Key');
+                voiceKeyInput.title = cfg.local ? '本机离线语音识别不需要 API Key。' : (cfg.hasApiKey ? '真实 Key 已保存到后端，前端不回显；填写新 Key 后保存可覆盖。' : '填写语音识别 API Key');
             }
             if (voiceModelInput && cfg.ready && cfg.model && !voiceModelInput.value) voiceModelInput.value = cfg.model;
             if (chatBaseInput && cfg.chat?.baseUrl && !chatBaseInput.value) chatBaseInput.value = cfg.chat.baseUrl;
@@ -6425,7 +6427,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             if (note) {
                 const voiceKeyState = cfg.hasApiKey ? 'Key 已在后端保存' : 'Key 待填写';
                 const chatKeyState = cfg.chat?.hasApiKey ? 'Key 已在后端保存' : 'Key 待填写';
-                const voiceState = cfg.ready ? `语音已就绪 · ${cfg.model || ''} · ${voiceKeyState}` : `语音待配置 · ${voiceKeyState}`;
+                const voiceState = cfg.local
+                    ? `本机离线语音 · ${cfg.model || ''} · 无需 Key`
+                    : (cfg.ready ? `语音已就绪 · ${cfg.model || ''} · ${voiceKeyState}` : `语音待配置 · ${voiceKeyState}`);
                 const chatState = cfg.chat?.ready ? `聊天已就绪 · ${cfg.chat.model || ''} · ${chatKeyState}` : `聊天可选填 · ${chatKeyState}`;
                 note.textContent = `${voiceState} / ${chatState}；前端不回显真实 Key`;
             }
@@ -6532,9 +6536,79 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         });
     }
 
+    function encodeWavFromFloat32(samples, sampleRate) {
+        const bytesPerSample = 2;
+        const buffer = new ArrayBuffer(44 + samples.length * bytesPerSample);
+        const view = new DataView(buffer);
+        const writeString = (offset, value) => {
+            for (let i = 0; i < value.length; i++) view.setUint8(offset + i, value.charCodeAt(i));
+        };
+        writeString(0, 'RIFF');
+        view.setUint32(4, 36 + samples.length * bytesPerSample, true);
+        writeString(8, 'WAVE');
+        writeString(12, 'fmt ');
+        view.setUint32(16, 16, true);
+        view.setUint16(20, 1, true);
+        view.setUint16(22, 1, true);
+        view.setUint32(24, sampleRate, true);
+        view.setUint32(28, sampleRate * bytesPerSample, true);
+        view.setUint16(32, bytesPerSample, true);
+        view.setUint16(34, 16, true);
+        writeString(36, 'data');
+        view.setUint32(40, samples.length * bytesPerSample, true);
+        let offset = 44;
+        for (let i = 0; i < samples.length; i++, offset += 2) {
+            const s = Math.max(-1, Math.min(1, samples[i]));
+            view.setInt16(offset, s < 0 ? s * 0x8000 : s * 0x7fff, true);
+        }
+        return new Blob([buffer], { type: 'audio/wav' });
+    }
+
+    async function makeWavRecording(durationMs = 2200) {
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+            throw new Error('当前浏览器不支持录音');
+        }
+        const stream = await navigator.mediaDevices.getUserMedia({
+            audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true }
+        });
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) {
+            stream.getTracks().forEach(track => track.stop());
+            throw new Error('当前浏览器不支持本地语音采集');
+        }
+        const ctx = new AudioCtx({ sampleRate: 16000 });
+        const source = ctx.createMediaStreamSource(stream);
+        const processor = ctx.createScriptProcessor(4096, 1, 1);
+        const chunks = [];
+        processor.onaudioprocess = (event) => {
+            chunks.push(new Float32Array(event.inputBuffer.getChannelData(0)));
+        };
+        source.connect(processor);
+        processor.connect(ctx.destination);
+        await new Promise(resolve => setTimeout(resolve, durationMs));
+        processor.disconnect();
+        source.disconnect();
+        stream.getTracks().forEach(track => track.stop());
+        await ctx.close();
+        const total = chunks.reduce((sum, chunk) => sum + chunk.length, 0);
+        const samples = new Float32Array(total);
+        let offset = 0;
+        for (const chunk of chunks) {
+            samples.set(chunk, offset);
+            offset += chunk.length;
+        }
+        if (!samples.length) throw new Error('未录到测试音频');
+        return encodeWavFromFloat32(samples, ctx.sampleRate || 16000);
+    }
+
+    function shouldUseWavCapture() {
+        return voiceConfigState?.local !== false;
+    }
+
     async function testVoiceAsrSettings() {
         const note = document.getElementById('voiceSettingsNote');
         const { voiceBaseUrl, voiceApiKey, voiceModel } = collectVoiceSettings();
+        const isLocal = /^https?:\/\/(127\.0\.0\.1|localhost|\[::1\]|::1)/i.test(voiceBaseUrl);
         if (!voiceBaseUrl || !voiceModel) {
             showToast('请先填写语音识别 Base URL 和 Model', 'warning');
             return;
@@ -6542,14 +6616,14 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         try {
             setVoiceSettingsButtonsBusy(true, 'voiceAsrTestBtn');
             if (note) note.textContent = '请说一句测试语音，正在录制约 2 秒...';
-            const audioBlob = await makeSingleUseRecording();
+            const audioBlob = isLocal ? await makeWavRecording() : await makeSingleUseRecording();
             if (note) note.textContent = '正在测试语音识别接口...';
             const headers = {
                 'Content-Type': audioBlob.type || 'audio/webm',
                 'X-Test-Voice-Base-Url': voiceBaseUrl,
                 'X-Test-Voice-Model': voiceModel
             };
-            if (voiceApiKey) headers['X-Test-Voice-Api-Key'] = voiceApiKey;
+            if (voiceApiKey && !isLocal) headers['X-Test-Voice-Api-Key'] = voiceApiKey;
             const resp = await fetch('/api/voice/test/asr', {
                 method: 'POST',
                 headers,
@@ -6615,6 +6689,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const chatKeyInput = document.getElementById('chatApiKeyInput');
         const note = document.getElementById('voiceSettingsNote');
         const { voiceBaseUrl, voiceApiKey, voiceModel, chatBaseUrl, chatApiKey, chatModel } = collectVoiceSettings();
+        const isLocalVoice = /^https?:\/\/(127\.0\.0\.1|localhost|\[::1\]|::1)/i.test(voiceBaseUrl);
         if (!voiceBaseUrl || !voiceModel) {
             showToast('请填写语音识别的 Base URL 和 Model；如果后端还没有保存 Key，需要同时填写 API Key', 'warning');
             return;
@@ -6630,7 +6705,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    voice: { baseUrl: voiceBaseUrl, apiKey: voiceApiKey, model: voiceModel },
+                    voice: { baseUrl: voiceBaseUrl, apiKey: isLocalVoice ? '' : voiceApiKey, model: voiceModel },
                     chat: hasChatFields ? { baseUrl: chatBaseUrl, apiKey: chatApiKey, model: chatModel } : {}
                 })
             });
@@ -6644,8 +6719,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             voiceSessionId = data.voiceSessionId || '';
             if (voiceKeyInput) {
                 voiceKeyInput.value = '';
-                voiceKeyInput.placeholder = data.hasApiKey ? '已在后端保存，留空继续使用' : 'SiliconFlow 语音 Key';
-                voiceKeyInput.title = data.hasApiKey ? '真实 Key 已保存到后端，前端不回显；填写新 Key 后保存可覆盖。' : '填写语音识别 API Key';
+                voiceKeyInput.placeholder = isLocalVoice ? '本机离线模式无需 Key' : (data.hasApiKey ? '已在后端保存，留空继续使用' : 'SiliconFlow 语音 Key');
+                voiceKeyInput.title = isLocalVoice ? '本机离线语音识别不需要 API Key。' : (data.hasApiKey ? '真实 Key 已保存到后端，前端不回显；填写新 Key 后保存可覆盖。' : '填写语音识别 API Key');
             }
             if (chatKeyInput) {
                 chatKeyInput.value = '';
@@ -6754,6 +6829,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
     async function startVoiceCapture(source) {
         if (voiceState === 'processing' || voiceState === 'listening') return;
+        if (shouldUseWavCapture()) {
+            return startVoiceCaptureWav(source);
+        }
         if (!isVoiceSupported()) {
             showToast('当前浏览器不支持语音录制，请使用 Chrome 或 Edge', 'error');
             updateVoiceUI('error', '浏览器不支持语音录制');
@@ -6789,6 +6867,104 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         } catch (err) {
             voiceCaptureSource = '';
             console.warn('[Voice] Microphone error:', err);
+            showToast('无法访问麦克风，请检查浏览器权限', 'error');
+            updateVoiceUI('error', '麦克风权限不可用');
+            stopVoiceStream();
+        }
+    }
+
+    async function startVoiceCaptureWav(source) {
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+            showToast('当前浏览器不支持语音录制，请使用 Chrome 或 Edge', 'error');
+            updateVoiceUI('error', '浏览器不支持语音录制');
+            return;
+        }
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) {
+            showToast('当前浏览器不支持本地语音采集', 'error');
+            updateVoiceUI('error', '本地语音采集不可用');
+            return;
+        }
+        try {
+            voiceCancelRequested = false;
+            voiceCaptureSource = source || 'button';
+            voiceStream = await navigator.mediaDevices.getUserMedia({
+                audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true }
+            });
+            const ctx = new AudioCtx({ sampleRate: 16000 });
+            voiceVadContext = ctx;
+            const audioSource = ctx.createMediaStreamSource(voiceStream);
+            const processor = ctx.createScriptProcessor(4096, 1, 1);
+            const chunks = [];
+            let speechDetected = false;
+            let lastSpeechAt = 0;
+            voiceStartTime = Date.now();
+            processor.onaudioprocess = (event) => {
+                if (voiceState !== 'listening') return;
+                const input = event.inputBuffer.getChannelData(0);
+                chunks.push(new Float32Array(input));
+                let sum = 0;
+                for (let i = 0; i < input.length; i++) sum += input[i] * input[i];
+                const rms = Math.sqrt(sum / input.length);
+                const now = Date.now();
+                if (rms >= VOICE_VAD_LEVEL) {
+                    speechDetected = true;
+                    lastSpeechAt = now;
+                }
+                if (source !== 'space' && speechDetected && now - lastSpeechAt >= VOICE_VAD_SILENCE_MS && now - voiceStartTime >= VOICE_MIN_MS) {
+                    stopVoiceCapture();
+                }
+            };
+            audioSource.connect(processor);
+            processor.connect(ctx.destination);
+            voiceMediaRecorder = {
+                state: 'recording',
+                stop: async () => {
+                    if (!voiceMediaRecorder || voiceMediaRecorder.state === 'inactive') return;
+                    voiceMediaRecorder.state = 'inactive';
+                    clearTimeout(voiceStopTimer);
+                    voiceStopTimer = null;
+                    try { processor.disconnect(); } catch {}
+                    try { audioSource.disconnect(); } catch {}
+                    stopVoiceStream();
+                    const captureSource = voiceCaptureSource;
+                    const elapsed = Date.now() - voiceStartTime;
+                    voiceCaptureSource = '';
+                    if (captureSource === 'wake') {
+                        wakeActiveCommand = false;
+                        wakeAwakeUntil = 0;
+                    }
+                    if (voiceCancelRequested) {
+                        voiceMediaRecorder = null;
+                        updateVoiceUI('idle');
+                        showToast('语音录制已取消', 'info');
+                        if (captureSource === 'wake' && wakeEnabled) scheduleWakeRestart(700);
+                        return;
+                    }
+                    if (elapsed < VOICE_MIN_MS || !chunks.length) {
+                        voiceMediaRecorder = null;
+                        updateVoiceUI('idle');
+                        if (captureSource === 'wake' && wakeEnabled) scheduleWakeRestart(700);
+                        return;
+                    }
+                    const total = chunks.reduce((sum, chunk) => sum + chunk.length, 0);
+                    const samples = new Float32Array(total);
+                    let offset = 0;
+                    for (const chunk of chunks) {
+                        samples.set(chunk, offset);
+                        offset += chunk.length;
+                    }
+                    const audioBlob = encodeWavFromFloat32(samples, ctx.sampleRate || 16000);
+                    voiceMediaRecorder = null;
+                    await transcribeVoiceBlob(audioBlob);
+                    if (captureSource === 'wake' && wakeEnabled) scheduleWakeRestart(1400);
+                }
+            };
+            updateVoiceUI('listening', source === 'space' ? '正在听，松开空格结束' : '正在听，说完自动处理');
+            voiceStopTimer = setTimeout(() => stopVoiceCapture(), VOICE_MAX_MS);
+        } catch (err) {
+            voiceCaptureSource = '';
+            console.warn('[Voice] Local microphone error:', err);
             showToast('无法访问麦克风，请检查浏览器权限', 'error');
             updateVoiceUI('error', '麦克风权限不可用');
             stopVoiceStream();
@@ -6853,8 +7029,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             handleVoiceTranscript(text);
         } catch (err) {
             console.warn('[Voice] Transcription error:', err);
-            updateVoiceUI('error', '语音识别服务不可用');
-            showToast('语音识别服务不可用', 'error');
+            const msg = err && err.message ? err.message : '语音识别服务不可用';
+            updateVoiceUI('error', msg);
+            showToast(msg, 'error');
         }
     }
 

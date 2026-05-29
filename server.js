@@ -16,9 +16,10 @@ const wss = new WebSocketServer({ server });
 const VOICE_AUDIO_LIMIT = '8mb';
 const VOICE_AUDIO_LIMIT_BYTES = 8 * 1024 * 1024;
 const VOICE_SESSION_TTL_MS = 2 * 60 * 60 * 1000;
-const VOICE_ASR_PROVIDER = (process.env.VOICE_ASR_PROVIDER || 'deepseek').toLowerCase();
+const VOICE_ASR_PROVIDER = (process.env.VOICE_ASR_PROVIDER || 'local').toLowerCase();
+const LOCAL_ASR_BASE_URL = process.env.LOCAL_ASR_BASE_URL || 'http://127.0.0.1:8765/v1/audio/transcriptions';
 const VOICE_TRANSCRIBE_MODEL = process.env.VOICE_TRANSCRIBE_MODEL ||
-  (VOICE_ASR_PROVIDER === 'deepseek' ? 'deepseek-v4-flash' : 'gpt-4o-transcribe');
+  (VOICE_ASR_PROVIDER === 'deepseek' ? 'deepseek-v4-flash' : (VOICE_ASR_PROVIDER === 'local' ? 'funasr-paraformer-zh' : 'gpt-4o-transcribe'));
 const ASSISTANT_CHAT_MODEL = process.env.ASSISTANT_CHAT_MODEL || process.env.DEEPSEEK_CHAT_MODEL || 'deepseek-chat';
 const ASSISTANT_CHAT_BASE_URL = process.env.ASSISTANT_CHAT_BASE_URL || process.env.DEEPSEEK_CHAT_BASE_URL || process.env.VOICE_CHAT_BASE_URL || '';
 const VOICE_API_CONFIG_FILE = process.env.VOICE_API_CONFIG_FILE || path.join(__dirname, '.runtime', 'voice-api-config.json');
@@ -86,10 +87,15 @@ function normalizeVoiceBaseUrl(rawUrl) {
 
 function inferVoiceProvider(url) {
   const host = String(url || '').toLowerCase();
+  if (host.includes('127.0.0.1') || host.includes('localhost') || host.includes('::1')) return 'local';
   if (host.includes('siliconflow')) return 'siliconflow';
   if (host.includes('deepseek')) return 'deepseek';
   if (host.includes('openai')) return 'openai';
   return 'compatible';
+}
+
+function isLocalVoiceProvider(provider) {
+  return ['local', 'offline', 'funasr'].includes(String(provider || '').toLowerCase());
 }
 
 function cloneApiConfigSection(section) {
@@ -100,10 +106,12 @@ function cloneApiConfigSection(section) {
 function sanitizePersistedVoiceConfig(raw) {
   if (!raw || typeof raw !== 'object') return null;
   const voice = raw.voice && typeof raw.voice === 'object' ? raw.voice : null;
-  if (!voice || !voice.key || !voice.url || !voice.model) return null;
+  if (!voice || !voice.url || !voice.model) return null;
+  const provider = String(voice.provider || inferVoiceProvider(voice.url)).trim() || 'compatible';
+  if (!isLocalVoiceProvider(provider) && !voice.key) return null;
   const sanitized = {
     voice: {
-      provider: String(voice.provider || inferVoiceProvider(voice.url)).trim() || 'compatible',
+      provider,
       key: String(voice.key || '').trim(),
       url: String(voice.url || '').trim(),
       model: String(voice.model || '').trim(),
@@ -185,6 +193,15 @@ function getVoiceProviderConfig(req) {
   if (runtimeConfig) return runtimeConfig.voice || runtimeConfig;
   const persistedConfig = loadPersistedVoiceConfig();
   if (persistedConfig && persistedConfig.voice) return cloneApiConfigSection(persistedConfig.voice);
+  if (isLocalVoiceProvider(VOICE_ASR_PROVIDER)) {
+    return {
+      provider: 'local',
+      key: '',
+      url: normalizeVoiceBaseUrl(process.env.VOICE_ASR_BASE_URL || LOCAL_ASR_BASE_URL),
+      model: VOICE_TRANSCRIBE_MODEL,
+      supportsAudio: true
+    };
+  }
   if (VOICE_ASR_PROVIDER === 'openai') {
     return {
       provider: 'openai',
@@ -222,6 +239,7 @@ function getVoiceProviderConfig(req) {
 }
 
 function voiceProviderMissingKeyError(provider) {
+  if (isLocalVoiceProvider(provider)) return '本机离线语音服务无需 API Key。';
   if (provider === 'openai') return '服务端未配置 OPENAI_API_KEY。';
   if (provider === 'deepseek') return '服务端未配置 DEEPSEEK_API_KEY。';
   return '服务端未配置 VOICE_ASR_API_KEY。';
@@ -244,9 +262,6 @@ function resolveVoiceInputConfig(voiceBody, persistedConfig = loadPersistedVoice
   const persistedVoice = persistedConfig && persistedConfig.voice ? persistedConfig.voice : null;
   const key = String(body.apiKey || persistedVoice?.key || '').trim();
   const model = String(body.model || persistedVoice?.model || VOICE_TRANSCRIBE_MODEL).trim();
-  if (!key) {
-    return { error: { status: 400, error: 'missing_voice_api_key', message: '请填写语音识别 API Key。' } };
-  }
   if (!model || model.length > 120) {
     return { error: { status: 400, error: 'invalid_voice_model', message: '请填写有效的语音识别模型名称。' } };
   }
@@ -262,9 +277,13 @@ function resolveVoiceInputConfig(voiceBody, persistedConfig = loadPersistedVoice
   if (!url) {
     return { error: { status: 400, error: 'missing_base_url', message: '请填写语音识别 Base URL。' } };
   }
+  const provider = inferVoiceProvider(url);
+  if (!key && !isLocalVoiceProvider(provider)) {
+    return { error: { status: 400, error: 'missing_voice_api_key', message: '请填写语音识别 API Key。' } };
+  }
   return {
     config: {
-      provider: inferVoiceProvider(url),
+      provider,
       key,
       url,
       model,
@@ -335,7 +354,7 @@ async function transcribeAudioWithConfig(providerConfig, audio, contentType) {
     err.provider = providerConfig.provider;
     throw err;
   }
-  if (!providerConfig.key) {
+  if (!providerConfig.key && !isLocalVoiceProvider(providerConfig.provider)) {
     const err = new Error(voiceProviderMissingKeyError(providerConfig.provider));
     err.status = 503;
     err.apiError = 'missing_asr_api_key';
@@ -368,7 +387,7 @@ async function transcribeAudioWithConfig(providerConfig, audio, contentType) {
   try {
     const upstream = await fetch(providerConfig.url, {
       method: 'POST',
-      headers: { Authorization: 'Bearer ' + providerConfig.key },
+      headers: providerConfig.key ? { Authorization: 'Bearer ' + providerConfig.key } : undefined,
       body: form
     });
     const bodyText = await upstream.text();
@@ -391,9 +410,11 @@ async function transcribeAudioWithConfig(providerConfig, audio, contentType) {
   } catch (err) {
     if (err && err.apiError) throw err;
     console.error('[Voice] Transcription request error:', err && err.message ? err.message : err);
-    const wrapped = new Error('语音识别服务暂时不可用。');
+    const wrapped = new Error(isLocalVoiceProvider(providerConfig.provider)
+      ? '本机离线语音服务未启动。请先运行 npm run asr:setup 完成首次安装，再运行 npm run asr:local。'
+      : '语音识别服务暂时不可用。');
     wrapped.status = 502;
-    wrapped.apiError = 'transcription_unavailable';
+    wrapped.apiError = isLocalVoiceProvider(providerConfig.provider) ? 'local_asr_unavailable' : 'transcription_unavailable';
     wrapped.provider = providerConfig.provider;
     throw wrapped;
   }
@@ -414,7 +435,8 @@ app.get('/api/voice/config', (_, res) => {
     provider: providerConfig.provider,
     model: providerConfig.model,
     hasApiKey: Boolean(providerConfig.key),
-    ready: Boolean(providerConfig.key && providerConfig.url && providerConfig.supportsAudio),
+    ready: Boolean((providerConfig.key || isLocalVoiceProvider(providerConfig.provider)) && providerConfig.url && providerConfig.supportsAudio),
+    local: isLocalVoiceProvider(providerConfig.provider),
     supportsAudio: providerConfig.supportsAudio,
     baseUrl: providerConfig.url || '',
     chat: {
