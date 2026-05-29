@@ -968,15 +968,18 @@ const LOCAL_PDB_DIR = path.join(__dirname, 'pdb');
 const PROJECT_ROOT = __dirname;
 app.get('/api/pdb/local/:filename', (req, res) => {
   const filename = req.params.filename;
-  if (!filename || !/^[A-Za-z0-9_\-]+\.pdb$/.test(filename)) {
+  if (!filename || filename.includes('..') || !/^[A-Za-z0-9][A-Za-z0-9_.-]*\.pdb$/.test(filename)) {
     return res.status(400).json({ error: 'Invalid filename' });
   }
-  let fp = path.join(LOCAL_PDB_DIR, filename);
-  const resolved1 = path.resolve(fp);
-  if (!resolved1.startsWith(path.resolve(LOCAL_PDB_DIR)) && !resolved1.startsWith(path.resolve(PROJECT_ROOT))) {
-    return res.status(400).json({ error: 'Invalid path' });
+  function safeLocalPath(rootDir) {
+    const root = path.resolve(rootDir);
+    const fp = path.resolve(root, filename);
+    const rel = path.relative(root, fp);
+    if (rel.startsWith('..') || path.isAbsolute(rel)) return '';
+    return fp;
   }
-  if (!fs.existsSync(fp)) fp = path.join(PROJECT_ROOT, filename);
+  let fp = safeLocalPath(LOCAL_PDB_DIR);
+  if (!fp || !fs.existsSync(fp)) fp = safeLocalPath(PROJECT_ROOT);
   if (!fs.existsSync(fp)) return res.status(404).json({ error: 'Not found' });
   res.setHeader('Content-Type', 'text/plain');
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -1076,7 +1079,7 @@ const DEMO_ROUTE_RULES = [
     abType: 'Fab',
     count: 10,
     printable: true,
-    displayStory: '以 HER2 经典抗体靶点为示范，生成候选 Fab/IgG 结构设计结果。',
+    displayStory: '围绕 HER2 经典抗体靶点，生成候选 Fab/IgG 结构设计结果。',
     keywords: ['乳腺癌', '胃癌', 'her2', 'erbb2', 'breast cancer', 'gastric cancer']
   },
   {
@@ -1088,7 +1091,7 @@ const DEMO_ROUTE_RULES = [
     abType: 'Fab',
     count: 10,
     printable: false,
-    displayStory: '以 TNF-alpha 炎症因子为示范，展示自身免疫疾病抗体候选设计。',
+    displayStory: '围绕 TNF-alpha 炎症因子，生成自身免疫疾病抗体候选设计。',
     keywords: ['自身免疫', '类风湿', '关节炎', '炎症', 'tnf', 'tnfα', 'tnf-alpha', 'autoimmune', 'rheumatoid']
   }
 ];
@@ -1144,11 +1147,11 @@ function buildRepresentativeDemoRoute(label, reason) {
   return {
     ...base,
     id: isUnsupportedDirection ? 'representative_demo' : 'default_demo',
-    disease: label || (isUnsupportedDirection ? '疾病方向需求' : '完整抗体设计演示'),
+    disease: label || (isUnsupportedDirection ? '疾病方向需求' : '完整抗体设计'),
     systemUnderstanding: isUnsupportedDirection
-      ? '为完整展示 ZoonoAb 从疾病到抗体结构的设计闭环，选择当前最适合演示的过敏炎症通路作为示范路线'
-      : '未指定明确白名单疾病，选择当前最稳定的过敏炎症示范路线',
-    displayStory: '选择 IL-33/ST2 作为代表性示范靶点，完整展示候选序列、PDB 结构和可用于后续 3D 打印的结构模型。'
+      ? '为完整完成从疾病到抗体结构的设计闭环，选择当前最合适的过敏炎症通路'
+      : '未指定明确疾病靶点，系统选择当前最稳定的过敏炎症设计路径',
+    displayStory: '选择 IL-33/ST2 作为代表性靶点，生成候选序列、PDB 结构和可用于后续 3D 打印的结构模型。'
   };
 }
 
@@ -1175,6 +1178,31 @@ function detectDemoRoute(input) {
   return null;
 }
 
+function getDemoRouteById(routeId) {
+  const id = String(routeId || '').trim();
+  return DEMO_ROUTE_RULES.find(rule => rule.id === id) || null;
+}
+
+function resolveQuickDesignRoute(msg) {
+  const explicitRoute = getDemoRouteById(msg && msg.routeId);
+  if (explicitRoute) return explicitRoute;
+  return detectDemoRoute(msg && msg.text) || DEMO_ROUTE_RULES[0];
+}
+
+function quickDesignAck(route) {
+  return {
+    type: 'quick_design_ack',
+    routeId: route.id,
+    routeLabel: route.target + (route.blockTarget ? '/' + route.blockTarget : ''),
+    disease: route.disease,
+    target: route.target,
+    blockTarget: route.blockTarget || '',
+    abType: route.abType,
+    count: route.count,
+    workflow: 'demo_routed_workflow'
+  };
+}
+
 function buildDemoInstruction(input, route) {
   const raw = String(input || '').trim();
   const asksPrint = /(打印|3d\s*打印|print|模型|纪念)/i.test(raw) || route.printable;
@@ -1199,11 +1227,11 @@ function demoRouteIntro(route, input) {
   return '已理解您的需求：\n\n' +
     '疾病方向：' + route.disease + '\n' +
     '设计类型：抗体候选分子\n' +
-    'AI 推荐示范靶点：' + route.target + (route.blockTarget ? ' / ' + route.blockTarget : '') + '\n' +
+    'AI 推荐靶点：' + route.target + (route.blockTarget ? ' / ' + route.blockTarget : '') + '\n' +
     '抗体形式：' + route.abType + '\n' +
     '系统理解：' + route.systemUnderstanding + blockLine + printLine + '\n\n' +
     'ZoonoAb 正在启动抗体设计工作流。' +
-    '\n\n专业提示：AI 推荐示范靶点用于产品演示，当前结果为 AI 预测候选，后续需实验验证。';
+    '\n\n专业提示：当前结果为 AI 预测候选，后续需结合实验验证。';
 }
 
 function normalizeChatBaseUrl(rawUrl) {
@@ -1304,7 +1332,7 @@ function localAssistantFallback(input) {
     return '我是小诺，ZoonoAb 自主研发的 AI 抗体设计助手。我的工作是把自然语言需求转成抗体设计、结构分析、序列分析和展示工作流，不会向您暴露底层工程组件。';
   }
   if (/怎么用|如何使用|能做什么|功能/.test(clean)) {
-    return '我是小诺，可以直接从疾病、靶点或展示目标出发协助您启动 ZoonoAb 工作流。例如您可以说：“小诺同学，帮我为过敏性哮喘设计一个抗体分子，并打印一个结构模型。”我会自动推荐示范靶点、启动多 Agent 设计流程，并输出候选结构。';
+    return '我是小诺，可以直接从疾病、靶点或设计目标出发协助您启动 ZoonoAb 工作流。例如您可以说：“小诺同学，帮我为过敏性哮喘设计一个抗体分子，并打印一个结构模型。”我会自动推荐靶点、启动多 Agent 设计流程，并输出候选结构。';
   }
   return '收到。我是 ZoonoAb 小诺。这个问题暂时不需要启动抗体设计工作流，我可以继续帮您解释平台能力、梳理展示话术，或把需求整理成适合执行的设计指令。';
 }
@@ -1983,6 +2011,52 @@ function detectIntent(input) {
   return 'assistant_chat';
 }
 
+function getWorkflowHandlers() {
+  return {
+    capability:          runCapabilityOverview,
+    epitope_prediction:  runEpitopePrediction,
+    chai1:               runChai1Prediction,
+    de_novo:             runDeNovoDesign,
+    affinity_maturation: runAffinityMaturationWF,
+    humanization:        runVHHHumanizationWF,
+    uniprot:             runUniProtSearch,
+    physicochemical:     runPhysicochemAnalysis,
+    concentration:       runConcentrationConversion,
+    msa:                 runMSAAlignment,
+    interaction:         runInteractionAnalysis,
+    risk_site:           runRiskSiteScan,
+  };
+}
+
+function resolveUserMessageRunner(msg, cleanText) {
+  const intent = detectIntent(cleanText);
+  const demoRoute = intent === 'design' ? detectDemoRoute(cleanText) : null;
+  const handlers = getWorkflowHandlers();
+  const runner = intent === 'assistant_chat'
+    ? ((socket, text) => runAssistantChat(socket, text, msg.voiceSessionId))
+    : (intent === 'design' && demoRoute ? ((socket, text) => runDemoRoutedWorkflow(socket, text, demoRoute)) : (handlers[intent] || runWorkflow));
+  return { intent, demoRoute, runner };
+}
+
+function runSocketTask(ws, sid, msg, buildRunner) {
+  const text = String(msg.text || '');
+  const sess = sessions.get(sid);
+  if (sess && sess.busy) {
+    ws.send(JSON.stringify({ type: 'error', text: '当前工作流正在运行，请等待完成后再发送新指令。' }));
+    return;
+  }
+  if (sess) { sess.busy = true; sess.cancelled = false; }
+  const cleanText = stripWakeWords(text);
+  const runner = buildRunner(cleanText || text);
+  runner(ws, cleanText || text)
+    .catch(err => {
+      if (err && err.isCancelled) return;
+      console.error('[Server] Workflow error:', err);
+      if (ws.readyState === 1) ws.send(JSON.stringify({ type: 'error', text: '工作流执行出错，请重试。' }));
+    })
+    .finally(() => { if (sess) { sess.busy = false; sess.cancelled = false; } });
+}
+
 // ─── Capability Overview ────────────────────────────────────
 async function runCapabilityOverview(ws, input) {
   const delay = ms => new Promise(r => setTimeout(r, ms));
@@ -2623,41 +2697,17 @@ wss.on('connection', ws => {
       return;
     }
 
+    if (msg.type === 'quick_design') {
+      if (!msg.text || typeof msg.text !== 'string' || msg.text.length > 4000) return;
+      const quickRoute = resolveQuickDesignRoute(msg);
+      if (ws.readyState === 1) ws.send(JSON.stringify(quickDesignAck(quickRoute)));
+      runSocketTask(ws, sid, msg, () => ((socket, text) => runDemoRoutedWorkflow(socket, text || msg.text, quickRoute)));
+      return;
+    }
+
     if (msg.type === 'user_msg') {
       if (!msg.text || typeof msg.text !== 'string' || msg.text.length > 4000) return;
-      const sess = sessions.get(sid);
-      if (sess && sess.busy) {
-        ws.send(JSON.stringify({ type: 'error', text: '当前工作流正在运行，请等待完成后再发送新指令。' }));
-        return;
-      }
-      if (sess) { sess.busy = true; sess.cancelled = false; }
-      const cleanText = stripWakeWords(msg.text);
-      const intent = detectIntent(cleanText);
-      const demoRoute = intent === 'design' ? detectDemoRoute(cleanText) : null;
-      const handlers = {
-        capability:          runCapabilityOverview,
-        epitope_prediction:  runEpitopePrediction,
-        chai1:               runChai1Prediction,
-        de_novo:             runDeNovoDesign,
-        affinity_maturation: runAffinityMaturationWF,
-        humanization:        runVHHHumanizationWF,
-        uniprot:             runUniProtSearch,
-        physicochemical:     runPhysicochemAnalysis,
-        concentration:       runConcentrationConversion,
-        msa:                 runMSAAlignment,
-        interaction:         runInteractionAnalysis,
-        risk_site:           runRiskSiteScan,
-      };
-      const fn = intent === 'assistant_chat'
-        ? ((socket, text) => runAssistantChat(socket, text, msg.voiceSessionId))
-        : (intent === 'design' && demoRoute ? ((socket, text) => runDemoRoutedWorkflow(socket, text, demoRoute)) : (handlers[intent] || runWorkflow));
-      fn(ws, cleanText || msg.text)
-        .catch(err => {
-          if (err && err.isCancelled) return;
-          console.error('[Server] Workflow error:', err);
-          if (ws.readyState === 1) ws.send(JSON.stringify({ type: 'error', text: '工作流执行出错，请重试。' }));
-        })
-        .finally(() => { if (sess) { sess.busy = false; sess.cancelled = false; } });
+      runSocketTask(ws, sid, msg, (cleanText) => resolveUserMessageRunner(msg, cleanText).runner);
     }
   });
   ws.on('close', () => sessions.delete(sid));
