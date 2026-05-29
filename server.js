@@ -2707,4 +2707,5 @@ process.on('uncaughtException', (err) => console.error('[Server] Uncaught except
 process.on('unhandledRejection', (reason) => console.error('[Server] Unhandled rejection:', reason));
 
 const PORT = process.env.PORT || 8080;
-server.listen(PORT, () => console.log('\n🧬  ZoonoAb running → http://localhost:' + PORT + '\n'));
+const HOST = process.env.HOST || '0.0.0.0';
+server.listen(PORT, HOST, () => console.log('\n🧬  ZoonoAb running -> http://' + HOST + ':' + PORT + '\n'));

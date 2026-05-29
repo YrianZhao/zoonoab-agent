@@ -7,12 +7,12 @@ services:
     startCommand: npm start
     healthCheckPath: /api/health
     branch: main
-    autoDeploy: true
+    autoDeployTrigger: commit
     envVars:
+      - key: NODE_VERSION
+        value: "20.19.2"
       - key: NODE_ENV
         value: production
-      - key: NODE_VERSION
-        value: 20.19.2
       - key: PORT
         value: 10000
       - key: VOICE_API_CONFIG_FILE
