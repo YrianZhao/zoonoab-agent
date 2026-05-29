@@ -648,6 +648,17 @@ app.post('/api/voice/transcribe', (req, res, next) => {
     });
   }
 });
+
+app.post('/api/voice/intent', (req, res) => {
+  const text = String(req.body && req.body.text || '').trim();
+  if (!text) {
+    return res.status(400).json({ error: 'empty_voice_text', message: '未收到语音文本。' });
+  }
+  if (text.length > 4000) {
+    return res.status(413).json({ error: 'voice_text_too_long', message: '语音文本过长。' });
+  }
+  return res.json(resolveVoiceAssistantIntent(text));
+});
 app.use(express.static(path.join(__dirname, 'public')));
 
 // ═══════════════════════════════════════════════════════════
@@ -1124,7 +1135,7 @@ function normalizeCommandText(input) {
 function stripWakeWords(input) {
   let text = String(input || '').trim();
   for (const pattern of WAKE_WORD_PATTERNS) text = text.replace(pattern, ' ');
-  return text.replace(/\s+/g, ' ').trim();
+  return text.replace(/[，。！？、；：,.!?;:]+/g, ' ').replace(/\s+/g, ' ').trim();
 }
 
 function containsAny(text, keywords) {
@@ -1141,17 +1152,21 @@ function getRepresentativeDemoDirection(input) {
   return '';
 }
 
+function getDefaultDemoRoute() {
+  return DEMO_ROUTE_RULES.find(rule => rule.id === 'tumor_immunotherapy') || DEMO_ROUTE_RULES[0];
+}
+
 function buildRepresentativeDemoRoute(label, reason) {
-  const base = DEMO_ROUTE_RULES[0];
+  const base = getDefaultDemoRoute();
   const isUnsupportedDirection = reason === 'unsupported_direction';
   return {
     ...base,
     id: isUnsupportedDirection ? 'representative_demo' : 'default_demo',
     disease: label || (isUnsupportedDirection ? '疾病方向需求' : '完整抗体设计'),
     systemUnderstanding: isUnsupportedDirection
-      ? '为完整完成从疾病到抗体结构的设计闭环，选择当前最合适的过敏炎症通路'
-      : '未指定明确疾病靶点，系统选择当前最稳定的过敏炎症设计路径',
-    displayStory: '选择 IL-33/ST2 作为代表性靶点，生成候选序列、PDB 结构和可用于后续 3D 打印的结构模型。'
+      ? '为完整完成从疾病到抗体结构的设计闭环，选择当前最合适的免疫治疗设计路径'
+      : '未指定明确疾病靶点，系统选择当前推荐的免疫检查点设计路径',
+    displayStory: base.displayStory
   };
 }
 
@@ -1186,7 +1201,7 @@ function getDemoRouteById(routeId) {
 function resolveQuickDesignRoute(msg) {
   const explicitRoute = getDemoRouteById(msg && msg.routeId);
   if (explicitRoute) return explicitRoute;
-  return detectDemoRoute(msg && msg.text) || DEMO_ROUTE_RULES[0];
+  return detectDemoRoute(msg && msg.text) || getDefaultDemoRoute();
 }
 
 function quickDesignAck(route) {
@@ -1200,6 +1215,64 @@ function quickDesignAck(route) {
     abType: route.abType,
     count: route.count,
     workflow: 'demo_routed_workflow'
+  };
+}
+
+function buildVoiceDesignPrompt(route, input) {
+  const raw = String(input || '').trim();
+  const countMatch = raw.match(/(\d+)\s*(个|条|pass|passing|候选)/i);
+  const count = countMatch ? Math.min(Math.max(parseInt(countMatch[1], 10), 1), 200) : route.count;
+  const affinity = /高亲和|high.?affinity|亲和力/.test(raw) ? '高亲和力' : '高亲和力';
+  if (route.id === 'tumor_immunotherapy') return '阻断 PD-1/PD-L1 通路，设计 ' + count + ' 个' + affinity + ' Fab';
+  if (route.id === 'allergic_asthma') return '阻断 IL-33/ST2 通路，设计 ' + count + ' 个' + affinity + ' VHH';
+  if (route.id === 'breast_cancer') return '靶向 HER2，设计 ' + count + ' 个' + affinity + ' Fab';
+  if (route.id === 'autoimmune_inflammation') return '靶向 TNF，设计 ' + count + ' 个' + affinity + ' Fab';
+  if (route.blockTarget) {
+    const pair = route.target === 'PD-L1' && route.blockTarget === 'PD-1'
+      ? 'PD-1/PD-L1'
+      : route.target + '/' + route.blockTarget;
+    return '阻断 ' + pair + ' 通路，设计 ' + count + ' 个' + affinity + ' ' + route.abType;
+  }
+  return '靶向 ' + route.target + '，设计 ' + count + ' 个' + affinity + ' ' + route.abType;
+}
+
+function publicDemoRoute(route) {
+  return {
+    routeId: route.id,
+    disease: route.disease,
+    target: route.target,
+    blockTarget: route.blockTarget || '',
+    abType: route.abType,
+    count: route.count,
+    label: route.target + (route.blockTarget ? '/' + route.blockTarget : '')
+  };
+}
+
+function resolveVoiceAssistantIntent(input) {
+  const cleanText = stripWakeWords(input) || String(input || '').trim();
+  const demoRoute = detectDemoRoute(cleanText);
+  if (demoRoute) {
+    return {
+      action: 'design',
+      intent: 'design',
+      text: buildVoiceDesignPrompt(demoRoute, cleanText),
+      route: publicDemoRoute(demoRoute)
+    };
+  }
+
+  const intent = detectIntent(cleanText);
+  if (intent !== 'assistant_chat') {
+    return {
+      action: 'workflow',
+      intent,
+      text: cleanText
+    };
+  }
+
+  return {
+    action: 'chat',
+    intent: 'assistant_chat',
+    text: cleanText
   };
 }
 
