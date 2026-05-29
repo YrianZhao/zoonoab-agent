@@ -2357,8 +2357,8 @@
         .qd-progress-label { font-size: 11px; font-weight: 700; color: var(--brand-dark); }
         .qd-progress-meta { font-size: 11px; color: var(--text-muted); font-weight: 600; }
         .qd-progress-track { height: 6px; background: #E8EEF7; border-radius: 999px; overflow: hidden; }
-        .qd-progress-bar { height: 100%; width: 12.5%; background: linear-gradient(90deg, var(--brand), var(--brand-dark)); border-radius: inherit; transition: width 0.25s ease; }
-        .qd-step-dots { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 5px; margin-top: 9px; }
+        .qd-progress-bar { height: 100%; width: 14.285%; background: linear-gradient(90deg, var(--brand), var(--brand-dark)); border-radius: inherit; transition: width 0.25s ease; }
+        .qd-step-dots { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 5px; margin-top: 9px; }
         .qd-step-dot { height: 3px; border-radius: 999px; background: #D8E3F1; transition: var(--transition); }
         .qd-step-dot.done { background: rgba(0,123,255,0.45); }
         .qd-step-dot.active { background: var(--brand); }
@@ -4116,7 +4116,7 @@
                 <div class="qd-progress-wrap" id="qdProgressWrap">
                     <div class="qd-progress-row">
                         <span class="qd-progress-label" id="qdProgressLabel">分子设计引导流程</span>
-                        <span class="qd-progress-meta" id="qdProgressMeta">1/8</span>
+                        <span class="qd-progress-meta" id="qdProgressMeta">1/7</span>
                     </div>
                     <div class="qd-progress-track"><div class="qd-progress-bar" id="qdProgressBar"></div></div>
                     <div class="qd-step-dots" id="qdStepDots"></div>
@@ -4883,6 +4883,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     let quickDesignRunActive = false;
     let quickDesignWatchdogTimer = null;
 
+    function refreshLucideIcons(options) {
+        if (window.lucide && typeof window.lucide.createIcons === 'function') {
+            window.lucide.createIcons(options);
+        }
+    }
+
     // ═══════════════ Message Queue (for ordered, typewriter-synced output) ═══════════════
     let msgQueue = [];
     let queueProcessing = false;
@@ -4983,7 +4989,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         }
         const navTasks = document.getElementById('navTasks');
         if (navTasks) navTasks.classList.toggle('panel-open', sidebar.classList.contains('open'));
-        lucide.createIcons();
+        refreshLucideIcons();
     }
 
     // ─── Quick message helper ───────────────────────────────
@@ -5062,7 +5068,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 </div>
             </div>
         `).join('');
-        lucide.createIcons();
+        refreshLucideIcons();
     }
 
     function kbSelectProject(el, project) {
@@ -5231,7 +5237,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     // ═══════════════ QUICK DESIGN PANEL ═══════════════
-    const QD_TOTAL_STEPS = 8;
+    const QD_TOTAL_STEPS = 7;
     const qdDemoRoutes = {
         allergic_asthma: {
             disease: '过敏性哮喘',
@@ -5340,10 +5346,6 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         { id: 'IgG', title: 'IgG 全长抗体', desc: '更接近完整治疗性抗体形态' },
         { id: 'Auto', title: '自动推荐', desc: '由 AI 根据靶点和展示目标选择分子类型' }
     ];
-    const qdCountOptions = [
-        { id: 'route', title: '使用推荐数量', desc: '保证本次设计结果稳定可展示', count: null, recommended: true },
-        { id: 'custom', title: '高级模式：自定义数量', desc: '正式研发模式可开放滑杆；现场展示仍使用推荐数量', count: null }
-    ];
     let qdState = {};
 
     function qdResetState() {
@@ -5352,16 +5354,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             disease: 'oncology',
             target: 'PD-L1',
             routeId: 'tumor_immunotherapy',
-            customTarget: '',
-            showCustomTarget: false,
             mechanism: 'block-pd1-pdl1',
             epitope: 'auto',
-            advancedEpitopeOpen: false,
-            advancedOpen: false,
-            advancedEpitope: '',
-            advancedBlock: '',
             antibody: 'Fab',
-            countMode: 'route',
             count: 10
         };
     }
@@ -5372,7 +5367,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         qdResetState();
         ov.style.display = 'flex';
         qdRender();
-        lucide.createIcons({ nodes: [ov] });
+        refreshLucideIcons({ nodes: [ov] });
     }
     function closeQuickDesign() {
         const ov = document.getElementById('quickDesignOverlay');
@@ -5432,9 +5427,6 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const opt = qdFindOption(qdAntibodyOptions, qdState.antibody === 'Auto' ? route.abType : qdState.antibody);
         return opt.title;
     }
-    function qdCountOption() {
-        return qdFindOption(qdCountOptions, qdState.countMode);
-    }
     function qdAdvancedBlock() {
         return qdRoute().blockTarget || qdMechanismOption().block || '';
     }
@@ -5447,16 +5439,14 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const target = route.target;
         const antibody = qdState.antibody === 'Auto' ? route.abType : qdState.antibody;
         const mechanism = qdMechanismOption().title;
-        const epitope = qdState.advancedEpitope.trim();
         const block = qdAdvancedBlock();
         const interaction = block ? qdInteractionLabel(target, block) : '';
         let epitopePhrase = '';
-        if (epitope) epitopePhrase = `优先识别${epitope}`;
-        else if (qdState.epitope === 'auto' && block) epitopePhrase = `优先识别 ${interaction} 相互作用界面`;
+        if (qdState.epitope === 'auto' && block) epitopePhrase = `优先识别 ${interaction} 相互作用界面`;
         else if (qdState.epitope === 'auto') epitopePhrase = '由 AI 自动选择最优表位';
         else epitopePhrase = `优先识别${qdEpitopeOption().title}`;
         let text = `为${disease}场景设计 ${qdState.count} 个靶向 ${target} 的 ${antibody} 候选分子`;
-        if (block && (epitope || qdState.epitope !== 'auto')) text += `，并阻断 ${interaction} 相互作用`;
+        if (block && qdState.epitope !== 'auto') text += `，并阻断 ${interaction} 相互作用`;
         else if (block) text += `，阻断 ${target}/${block} 相互作用通路`;
         else text += `，实现${mechanism}`;
         text += `。${epitopePhrase}，并优化结合能力、稳定性和可开发性。`;
@@ -5472,17 +5462,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         qdState.routeId = routeId;
         qdState.target = route.target;
         qdState.antibody = route.abType;
-        qdState.countMode = 'route';
         qdState.count = route.count;
-        qdState.advancedBlock = '';
+        qdState.epitope = 'auto';
         const recommendedMechanism = (qdMechanismOptions[route.target] || qdMechanismOptions.default).find(m => m.recommended) || qdMechanismOptions.default[0];
         qdState.mechanism = recommendedMechanism.id;
-    }
-    function qdRouteAwareCountOptions() {
-        const route = qdRoute();
-        return qdCountOptions.map(opt => opt.id === 'route'
-            ? { ...opt, title: `推荐数量：${route.count} 个`, count: route.count }
-            : { ...opt, count: route.count });
     }
     function qdOptionCards(options, selectedId, handler, compact = false) {
         return `<div class="qd-option-grid${compact ? ' compact' : ''}">` + options.map(opt => `
@@ -5506,20 +5489,19 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         meta.textContent = `${step}/${QD_TOTAL_STEPS}`;
         bar.style.width = `${(step / QD_TOTAL_STEPS) * 100}%`;
         dots.innerHTML = Array.from({ length: QD_TOTAL_STEPS }, (_, i) => `<span class="qd-step-dot${i < qdState.step ? ' done' : ''}${i === qdState.step ? ' active' : ''}"></span>`).join('');
-        if (subtitle) subtitle.textContent = qdState.step === 0 ? '选择一个疾病方向，AI 将引导您逐步生成抗体设计任务' : '每一步只需点击一个选择，复杂参数已默认收起';
+        if (subtitle) subtitle.textContent = qdState.step === 0 ? '选择一个疾病方向，AI 将引导您逐步生成抗体设计任务' : '每一步选择后点击下一步继续，复杂参数已默认收起';
         if (progressWrap) progressWrap.style.display = 'block';
     }
     function qdRenderFooter() {
         const footer = document.getElementById('qdFooter');
         if (!footer) return;
         const backBtn = qdState.step > 0 ? `<button class="qd-btn" onclick="qdBack()"><i data-lucide="arrow-left" style="width:15px;height:15px;"></i> 上一步</button>` : '';
-        const advancedBtn = qdState.step === 7 ? `<button class="qd-btn" onclick="qdToggleAdvanced()"><i data-lucide="sliders-horizontal" style="width:15px;height:15px;"></i> 切换高级参数</button>` : '';
         const primary = qdState.step === 0
             ? `<button class="qd-btn primary" onclick="qdNext()"><i data-lucide="play" style="width:15px;height:15px;"></i> 开始设计</button>`
-            : qdState.step === 7
+            : qdState.step === QD_TOTAL_STEPS - 1
                 ? `<button class="qd-btn primary" onclick="submitQuickDesign()"><i data-lucide="send" style="width:15px;height:15px;"></i> 启动 AI 分子设计</button>`
                 : `<button class="qd-btn primary" onclick="qdNext()">下一步 <i data-lucide="arrow-right" style="width:15px;height:15px;"></i></button>`;
-        footer.innerHTML = `<div class="qd-footer-left">${backBtn}${advancedBtn}</div><div class="qd-footer-right">${primary}</div>`;
+        footer.innerHTML = `<div class="qd-footer-left">${backBtn}</div><div class="qd-footer-right">${primary}</div>`;
     }
     function qdRender() {
         qdRenderHeader();
@@ -5531,60 +5513,18 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const targetHelpPanel = `
             <div class="qd-advanced-panel">
                 <div class="qd-helper-note" style="margin-top:0;">
-                    当前快速设计优先支持 IL-33/ST2、PD-1/PD-L1、HER2、TNF 四条稳定设计路径。其他靶点需求会由系统选择最接近的可执行路径。
+                    当前快速设计优先支持 IL-33/ST2、PD-1/PD-L1、HER2、TNF 四条稳定设计路径，确保后续流程稳定完成。
                 </div>
             </div>
         `;
-        const customTargetPanel = `
-            <button class="qd-muted-action" onclick="qdToggleCustomTarget()">
-                <i data-lucide="${qdState.showCustomTarget ? 'chevron-up' : 'chevron-down'}" style="width:14px;height:14px;"></i>
-                我想输入其他靶点
-            </button>
-            ${qdState.showCustomTarget ? `
-                <div class="qd-advanced-panel">
-                    <label class="qd-field-label" for="qdCustomTargetInput">其他靶点或疾病方向</label>
-                    <input class="qd-input" id="qdCustomTargetInput" value="${qdEscAttr(qdState.customTarget)}" placeholder="如 EGFR、IL-17、PCSK9" oninput="qdSetCustomTarget(this.value)">
-                    <div class="qd-helper-note">系统会选择最接近的可执行设计路径，保证本次体验顺利完成。</div>
-                    <button class="qd-btn primary" style="margin-top:12px;" onclick="qdUseRepresentativeRoute()">
-                        使用推荐设计路径
-                    </button>
-                </div>` : ''}
-        `;
-        const advancedEpitopePanel = `
-            <button class="qd-muted-action" onclick="qdToggleAdvancedEpitope()">
-                <i data-lucide="${qdState.advancedEpitopeOpen ? 'chevron-up' : 'chevron-down'}" style="width:14px;height:14px;"></i>
-                高级模式：填写精确表位
-            </button>
-            ${qdState.advancedEpitopeOpen ? `
-                <div class="qd-advanced-panel">
-                    <label class="qd-field-label" for="qdAdvancedEpitopeInput">精确表位区域</label>
-                    <input class="qd-input" id="qdAdvancedEpitopeInput" value="${qdEscAttr(qdState.advancedEpitope)}" placeholder="如 Site-II beta11-beta12 界面" oninput="qdSetAdvancedEpitope(this.value)">
-                    <div class="qd-helper-note">路演默认推荐自动选择最优表位，避免观众填写复杂位点编号。</div>
-                </div>` : ''}
-        `;
         const summaryRows = [
-            ...(qdState.customTarget.trim() ? [['现场输入', `${qdState.customTarget.trim()}（系统已选择可执行设计路径）`]] : []),
             ['疾病方向', qdDiseaseLabel()],
             ['靶标蛋白', target],
             ['作用机制', qdMechanismOption().title],
-            ['表位策略', qdState.advancedEpitope.trim() || qdEpitopeOption().title],
+            ['表位策略', qdEpitopeOption().title],
             ['抗体类型', qdAntibodyLabel()],
             ['候选数量', `${qdState.count} 个`]
         ].map(row => `<div class="qd-summary-row"><div class="qd-summary-label">${qdEscHtml(row[0])}</div><div class="qd-summary-value">${qdEscHtml(row[1])}</div></div>`).join('');
-        const advancedFinalPanel = qdState.advancedOpen ? `
-                <div class="qd-advanced-panel">
-                <label class="qd-field-label" for="qdAdvancedBlockInput">阻断相互作用对象（自动确定）</label>
-                <input class="qd-input" id="qdAdvancedBlockInput" value="${qdEscAttr(qdAdvancedBlock() || '当前设计路径不设置固定阻断对象')}" readonly>
-                <div class="qd-helper-note">该字段跟随当前设计路径自动确定，默认无需手动填写。</div>
-                <div style="height:10px;"></div>
-                <label class="qd-field-label" for="qdAdvancedFinalEpitopeInput">精确表位区域</label>
-                <input class="qd-input" id="qdAdvancedFinalEpitopeInput" value="${qdEscAttr(qdState.advancedEpitope)}" placeholder="如 Site-II beta11-beta12 界面" oninput="qdSetAdvancedEpitope(this.value)">
-                <div style="height:10px;"></div>
-                <label class="qd-field-label" for="qdAdvancedCountInput">候选数量：<span style="color:var(--brand);">${qdState.count}</span> 个</label>
-                <input class="qd-range" id="qdAdvancedCountInput" type="range" min="5" max="100" step="5" value="${qdState.count}" disabled>
-                <div class="qd-range-meta"><span>5</span><span>100</span></div>
-                <div class="qd-helper-note">候选数量跟随当前设计路径的推荐值，确保结果展示稳定。</div>
-            </div>` : '';
 
         if (qdState.step === 0) {
             body.innerHTML = `
@@ -5620,22 +5560,20 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 <div class="qd-step-subtitle">系统会根据疾病方向推荐更相关的靶标，确保后续设计流程稳定完成。</div>
                 ${qdOptionCards(qdGetTargetList(), qdState.target, 'qdSelectTarget')}
                 ${targetHelpPanel}
-                ${customTargetPanel}
             `;
         } else if (qdState.step === 3) {
             body.innerHTML = `
                 <div class="qd-step-kicker">第 4 步</div>
                 <div class="qd-step-title">您希望这个分子实现什么作用？</div>
-                <div class="qd-step-subtitle">系统会根据 ${qdEscHtml(target)} 给出可理解的作用机制，推荐项可直接点击继续。</div>
+                <div class="qd-step-subtitle">系统会根据 ${qdEscHtml(target)} 给出可理解的作用机制，选择后点击下一步继续。</div>
                 ${qdOptionCards(qdMechanismList(), qdState.mechanism, 'qdSelectMechanism')}
             `;
         } else if (qdState.step === 4) {
             body.innerHTML = `
                 <div class="qd-step-kicker">第 5 步</div>
                 <div class="qd-step-title">希望抗体优先识别哪个区域？</div>
-                <div class="qd-step-subtitle">默认由 AI 自动选择最优表位。只有高级用户才需要填写具体结构位点。</div>
+                <div class="qd-step-subtitle">默认由 AI 自动选择最优表位，不需要填写复杂结构位点。</div>
                 ${qdOptionCards(qdEpitopeOptions, qdState.epitope, 'qdSelectEpitope')}
-                ${advancedEpitopePanel}
             `;
         } else if (qdState.step === 5) {
             body.innerHTML = `
@@ -5644,23 +5582,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 <div class="qd-step-subtitle">系统会优先推荐当前任务最稳定、最适合展示结构结果的分子类型。</div>
                 ${qdOptionCards(qdRouteAntibodyOptions(), qdState.antibody, 'qdSelectAntibody')}
             `;
-        } else if (qdState.step === 6) {
-            body.innerHTML = `
-                <div class="qd-step-kicker">第 7 步</div>
-                <div class="qd-step-title">希望 AI 生成多少个候选设计？</div>
-                <div class="qd-step-subtitle">使用推荐数量可以更稳定地完成候选筛选、结构生成和结果展示。</div>
-                ${qdOptionCards(qdRouteAwareCountOptions(), qdState.countMode, 'qdSelectCountMode')}
-                ${qdState.countMode === 'custom' ? `
-                    <div class="qd-advanced-panel">
-                        <label class="qd-field-label" for="qdCustomCount">自定义候选数量（正式研发模式预留）</label>
-                        <input class="qd-range" id="qdCustomCount" type="range" min="5" max="100" step="5" value="${qdState.count}" disabled>
-                        <div class="qd-range-meta"><span>5</span><span>100</span></div>
-                        <div class="qd-helper-note">本次体验会继续使用 ${route.count} 个候选，以保证结构结果稳定生成。</div>
-                    </div>` : ''}
-            `;
         } else {
             body.innerHTML = `
-                <div class="qd-step-kicker">第 8 步</div>
+                <div class="qd-step-kicker">第 7 步</div>
                 <div class="qd-step-title">设计任务已生成</div>
                 <div class="qd-step-subtitle">请确认任务摘要。启动后将进入 ZoonoAb 多 Agent 分子设计流程。</div>
                 <div class="qd-summary-card">${summaryRows}</div>
@@ -5668,16 +5592,11 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                     <div class="qd-preview-label">生成的设计指令预览</div>
                     <div class="qd-preview-text" id="qdPreview">${qdEscHtml(qdInstructionText())}</div>
                 </div>
-                ${advancedFinalPanel}
             `;
         }
-        lucide.createIcons({ nodes: document.getElementById('quickDesignOverlay') });
+        refreshLucideIcons({ nodes: document.getElementById('quickDesignOverlay') });
     }
     function qdNext() {
-        if (qdState.step === 2 && qdState.customTarget.trim()) {
-            qdUseRepresentativeRoute();
-            return;
-        }
         if (qdState.step < QD_TOTAL_STEPS - 1) {
             qdState.step += 1;
             qdRender();
@@ -5691,78 +5610,26 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
     function qdSelectDisease(id) {
         qdState.disease = id;
-        qdState.customTarget = '';
-        qdState.showCustomTarget = false;
         const recommendedTarget = qdGetTargetList().find(t => t.recommended) || qdGetTargetList()[0];
         qdSyncRouteDefaults(recommendedTarget.routeId);
-        qdState.step = 2;
         qdRender();
     }
     function qdSelectTarget(id) {
         const targetOption = qdGetTargetList().find(item => item.id === id) || qdGetTargetList()[0];
-        qdState.customTarget = '';
-        qdState.showCustomTarget = false;
         qdSyncRouteDefaults(targetOption.routeId);
-        qdState.step = 3;
         qdRender();
     }
     function qdSelectMechanism(id) {
         qdState.mechanism = id;
-        qdState.step = 4;
         qdRender();
     }
     function qdSelectEpitope(id) {
         qdState.epitope = id;
-        qdState.step = 5;
         qdRender();
     }
     function qdSelectAntibody(id) {
         qdState.antibody = id;
-        qdState.step = 6;
         qdRender();
-    }
-    function qdSelectCountMode(id) {
-        const opt = qdFindOption(qdRouteAwareCountOptions(), id);
-        qdState.countMode = id;
-        qdState.count = opt.count;
-        if (id !== 'custom') qdState.step = 7;
-        qdRender();
-    }
-    function qdToggleCustomTarget() {
-        qdState.showCustomTarget = !qdState.showCustomTarget;
-        qdRender();
-        setTimeout(() => document.getElementById('qdCustomTargetInput')?.focus(), 20);
-    }
-    function qdSetCustomTarget(value) {
-        qdState.customTarget = value;
-    }
-    function qdUseRepresentativeRoute() {
-        qdState.disease = 'immune';
-        qdSyncRouteDefaults('allergic_asthma');
-        qdState.step = 3;
-        qdRender();
-    }
-    function qdToggleAdvancedEpitope() {
-        qdState.advancedEpitopeOpen = !qdState.advancedEpitopeOpen;
-        qdRender();
-        setTimeout(() => document.getElementById('qdAdvancedEpitopeInput')?.focus(), 20);
-    }
-    function qdSetAdvancedEpitope(value) {
-        qdState.advancedEpitope = value;
-        const preview = document.getElementById('qdPreview');
-        if (preview) preview.textContent = qdInstructionText();
-    }
-    function qdToggleAdvanced() {
-        qdState.advancedOpen = !qdState.advancedOpen;
-        qdRender();
-    }
-    function qdSetCustomCount(value) {
-        qdState.count = qdRoute().count;
-        if (qdState.step === 7) qdRender();
-        else {
-            const label = document.querySelector('label[for="qdCustomCount"] span');
-            if (label) label.textContent = qdState.count;
-        }
     }
 
     function submitQuickDesign() {
@@ -5911,7 +5778,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                         </div>
                         <div class="message-content" style="display:block;width:100%;min-height:1.65em;"></div>`;
                     getStream().appendChild(div);
-                    lucide.createIcons({ nodes: [div] });
+                    refreshLucideIcons({ nodes: [div] });
                     scrollBottom();
                     const contentEl = div.querySelector('.message-content');
                     typewriterEffect(msg.text, contentEl).then(resolve);
@@ -6168,7 +6035,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             <div class="capability-pane" id="cap-workflows"><div style="padding:4px 0;">${wfHtml}</div></div>`;
 
         stream.appendChild(card);
-        lucide.createIcons({ nodes: [card] });
+        refreshLucideIcons({ nodes: [card] });
         scrollBottom();
     }
 
@@ -6262,7 +6129,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             </div>`;
 
         stream.appendChild(card);
-        lucide.createIcons({ nodes: [card] });
+        refreshLucideIcons({ nodes: [card] });
         scrollBottom();
     }
 
@@ -6381,7 +6248,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 <span style="margin-left:auto;font-size:10px;font-weight:400;color:rgba(255,255,255,0.5);">ZoonoAb · ${new Date().toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'})}</span>
             </div>
             <div class="wf-result-body">${bodyHtml}</div>`;
-        lucide.createIcons({ nodes: [card] });
+        refreshLucideIcons({ nodes: [card] });
 
         stream.appendChild(card);
         scrollBottom();
@@ -7820,7 +7687,7 @@ pdb_archive:    /output/anti-${TARGET}-vhh-structs.zip` });
             </div>
             <div class="message-content">${escHtml(text)}</div>`;
         getStream().appendChild(div);
-        lucide.createIcons({ nodes: [div] });
+        refreshLucideIcons({ nodes: [div] });
         scrollBottom();
     }
 
@@ -7835,7 +7702,7 @@ pdb_archive:    /output/anti-${TARGET}-vhh-structs.zip` });
             </div>
             <div class="message-content">${renderMarkdown(markdown)}</div>`;
         getStream().appendChild(div);
-        lucide.createIcons({ nodes: [div] });
+        refreshLucideIcons({ nodes: [div] });
         scrollBottom();
     }
 
@@ -7902,7 +7769,7 @@ pdb_archive:    /output/anti-${TARGET}-vhh-structs.zip` });
             </div>`;
         }).join('');
             
-        lucide.createIcons({ nodes: [document.getElementById('sidebarTaskList')] });
+        refreshLucideIcons({ nodes: [document.getElementById('sidebarTaskList')] });
     }
 
     // Tool call
@@ -7956,7 +7823,7 @@ pdb_archive:    /output/anti-${TARGET}-vhh-structs.zip` });
                 <div class="tool-step-line"><div class="tool-step-dot"></div><span>Executing ${escHtml(tool)}…</span></div>
             </div>`;
         getStream().appendChild(div);
-        lucide.createIcons({ nodes: [div] });
+        refreshLucideIcons({ nodes: [div] });
         scrollBottom();
     }
 
@@ -7984,7 +7851,7 @@ pdb_archive:    /output/anti-${TARGET}-vhh-structs.zip` });
                 <div class="tool-result-text">${escHtml(preview)}</div>
             </div>`;
         getStream().appendChild(div);
-        lucide.createIcons({ nodes: [div] });
+        refreshLucideIcons({ nodes: [div] });
         scrollBottom();
     }
 
@@ -8003,7 +7870,7 @@ pdb_archive:    /output/anti-${TARGET}-vhh-structs.zip` });
                 </div>
                 <div class="subagent-list open" id="saList"></div>`;
             getStream().appendChild(subagentEl);
-            lucide.createIcons({ nodes: [subagentEl] });
+            refreshLucideIcons({ nodes: [subagentEl] });
         }
         const active = agents.filter(a => a.status === 'active').length;
         document.getElementById('saCount').textContent = t('active_count', {n: active});
@@ -8101,7 +7968,7 @@ pdb_archive:    /output/anti-${TARGET}-vhh-structs.zip` });
         html += '</div>';
         body.innerHTML = html;
         ov.style.display = 'flex';
-        lucide.createIcons({ nodes: [ov] });
+        refreshLucideIcons({ nodes: [ov] });
     }
     function closeCompareModal() {
         const ov = document.getElementById('compareModalOverlay');
@@ -8116,7 +7983,7 @@ pdb_archive:    /output/anti-${TARGET}-vhh-structs.zip` });
         ov.style.display = 'flex';
         const cnt = document.getElementById('scatterTotalCount');
         if (cnt) cnt.textContent = currentResults.length;
-        lucide.createIcons({ nodes: [ov] });
+        refreshLucideIcons({ nodes: [ov] });
         setTimeout(() => drawScatter(), 60);
     }
     function closeScatterModal() {
@@ -8260,7 +8127,7 @@ pdb_archive:    /output/anti-${TARGET}-vhh-structs.zip` });
             <div id="sequenceCards"></div>`;
 
         getStream().appendChild(section);
-        lucide.createIcons({ nodes: [section] });
+        refreshLucideIcons({ nodes: [section] });
         renderSequenceList(sequences);
         // Charts
         setTimeout(() => renderRadarChart(sequences.slice(0, 5)), 100);
@@ -8292,7 +8159,7 @@ pdb_archive:    /output/anti-${TARGET}-vhh-structs.zip` });
         <canvas id="radarCanvas" style="width:100%;max-width:440px;height:280px;display:block;margin:0 auto;"></canvas>
         <div id="radarLegend" style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:10px;"></div>`;
         cards.after(div);
-        lucide.createIcons({ nodes: [div] });
+        refreshLucideIcons({ nodes: [div] });
 
         setTimeout(() => {
             const canvas = document.getElementById('radarCanvas');
@@ -8626,7 +8493,7 @@ pdb_archive:    /output/anti-${TARGET}-vhh-structs.zip` });
             </div>`;
         }).join('');
 
-        lucide.createIcons({ nodes: [cards] });
+        refreshLucideIcons({ nodes: [cards] });
     }
 
     function metricHtml(label, value, threshold, lowerIsBetter = false) {
@@ -9003,7 +8870,7 @@ pdb_archive:    /output/anti-${TARGET}-vhh-structs.zip` });
             </div>`;
 
         getStream().appendChild(section);
-        lucide.createIcons({ nodes: [section] });
+        refreshLucideIcons({ nodes: [section] });
         scrollBottom();
 
         setTimeout(() => {
@@ -9808,7 +9675,7 @@ pdb_archive:    /output/anti-${TARGET}-vhh-structs.zip` });
         document.getElementById(panelId).classList.add('open');
         document.body.classList.add('analysis-open');
         document.getElementById(navId).classList.add('active');
-        lucide.createIcons({ nodes: [document.getElementById(panelId)] });
+        refreshLucideIcons({ nodes: [document.getElementById(panelId)] });
 
         if (type === 'struct') initMol3dViewer();
         if (type === 'seq') {
@@ -10073,7 +9940,7 @@ pdb_archive:    /output/anti-${TARGET}-vhh-structs.zip` });
                     <div class="team-msg-text">${m.text}${m.att ? `<div class="team-msg-attachment"><i data-lucide="file-text" style="width:12px;height:12px;"></i> ${m.att}</div>` : ''}</div>
                 </div>
             </div>`).join('');
-        lucide.createIcons({ nodes: [area] });
+        refreshLucideIcons({ nodes: [area] });
         area.scrollTop = area.scrollHeight;
     }
 
@@ -10272,7 +10139,7 @@ pdb_archive:    /output/anti-${TARGET}-vhh-structs.zip` });
             openRightPanel('cdr');
             setTimeout(() => closeRightPanel(), 100);
             res.innerHTML = renderSeqCDRHTML(seq);
-            lucide.createIcons({ nodes: [res] });
+            refreshLucideIcons({ nodes: [res] });
         }, 800);
     }
 
@@ -10358,7 +10225,7 @@ pdb_archive:    /output/anti-${TARGET}-vhh-structs.zip` });
         if (!seq) return;
         const res = document.getElementById('seqPhysResults');
         res.innerHTML = '<div style="color:var(--brand);font-size:12px;padding:8px 0;display:flex;align-items:center;gap:6px;"><i data-lucide="loader-2" style="width:14px;height:14px;animation:taskSpin 1s linear infinite;"></i> 计算理化参数...</div>';
-        lucide.createIcons({nodes:[res]});
+        refreshLucideIcons({nodes:[res]});
         setTimeout(() => {
             const mw = (seq.length * 110.5 / 1000).toFixed(1);
             const gravy = (Math.random() * 1.2 - 0.8).toFixed(3);
@@ -10536,7 +10403,7 @@ pdb_archive:    /output/anti-${TARGET}-vhh-structs.zip` });
                 </div>
                 <div id="maturationSimResult"></div>
             </div>`;
-        lucide.createIcons({ nodes: [el] });
+        refreshLucideIcons({ nodes: [el] });
         setTimeout(() => loadStructSubViewer('structMat3dBox', pdbId, 'default'), 60);
     }
 
@@ -10641,7 +10508,7 @@ pdb_archive:    /output/anti-${TARGET}-vhh-structs.zip` });
                     <button class="seq-run-btn" onclick="showToast('Chai-1 预测任务已提交','success')"><i data-lucide="play" style="width:13px;height:13px;"></i> 提交 Chai-1 预测</button>
                 </div>
             </div>`;
-        lucide.createIcons({ nodes: [el] });
+        refreshLucideIcons({ nodes: [el] });
         setTimeout(() => loadStructSubViewer('structPred3dBox', pdbId, 'spectrum'), 60);
     }
 
@@ -10774,7 +10641,7 @@ pdb_archive:    /output/anti-${TARGET}-vhh-structs.zip` });
     function toggleMol3dAI() {
         const ov = document.getElementById('mol3dAIOverlay');
         ov.classList.toggle('show');
-        lucide.createIcons({ nodes: [ov] });
+        refreshLucideIcons({ nodes: [ov] });
     }
     function mol3dAICmd(cmd) {
         document.getElementById('mol3dAIInput').value = cmd;
@@ -10862,7 +10729,7 @@ pdb_archive:    /output/anti-${TARGET}-vhh-structs.zip` });
             const el = document.getElementById(navMap[tab]);
             if (el) el.classList.add('active');
         }
-        lucide.createIcons({ nodes: [panel] });
+        refreshLucideIcons({ nodes: [panel] });
         // Auto-run if result not yet shown
         setTimeout(() => {
             if (tab === 'cdr' && document.getElementById('cdrResult').style.display === 'none') runCDRAnnotation();
@@ -11412,7 +11279,7 @@ pdb_archive:    /output/anti-${TARGET}-vhh-structs.zip` });
             document.getElementById('maturationResult').style.display = 'block';
             btn.disabled = false;
             btn.innerHTML = '<i data-lucide="zap" style="width:13px;height:13px;"></i> 重新分析';
-            lucide.createIcons({ nodes: [btn] });
+            refreshLucideIcons({ nodes: [btn] });
             showToast('亲和力成熟分析完成', 'success');
         }, 1800);
     }
@@ -11546,7 +11413,7 @@ pdb_archive:    /output/anti-${TARGET}-vhh-structs.zip` });
 
             btn.disabled = false;
             btn.innerHTML = '<i data-lucide="sparkles" style="width:13px;height:13px;"></i> 重新分析';
-            lucide.createIcons({ nodes: [btn] });
+            refreshLucideIcons({ nodes: [btn] });
             showToast('VHH 人源化分析完成 · 人源化得分 ' + finalScore + '%', 'success');
         }, 2000);
     }
@@ -11825,7 +11692,7 @@ pdb_archive:    /output/anti-${TARGET}-vhh-structs.zip` });
                 <div class="empty-state-icon"><i data-lucide="flask-conical" style="width: 48px; height: 48px;"></i></div>
                 <div class="empty-state-text" data-i18n="empty_state">Enter a design request above to start the workflow</div>
             </div>`;
-        lucide.createIcons();
+        refreshLucideIcons();
     }
 
     // ═══ Apply i18n to all [data-i18n] elements ═══
@@ -11856,7 +11723,7 @@ pdb_archive:    /output/anti-${TARGET}-vhh-structs.zip` });
     const DEMO_KD = '82 nM';
 
     document.addEventListener('DOMContentLoaded', () => {
-        lucide.createIcons();
+        refreshLucideIcons();
 
         // Apply translations
         applyI18N();
@@ -11969,7 +11836,7 @@ QVQLVESGGGLVQPGGSLRLSCAASGYIFSSNAMGWYRQAPGKQRELVAAISSGGSTYYADSVKGRFTISRDNAKTTLYL
         });
         molModalOpen = true;
         document.body.style.overflow = 'hidden';
-        lucide.createIcons({ nodes: [titleEl] });
+        refreshLucideIcons({ nodes: [titleEl] });
     }
 
     let molCloseTimer = null;
