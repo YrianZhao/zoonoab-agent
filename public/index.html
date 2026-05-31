@@ -745,6 +745,129 @@
             border-color: var(--brand-light);
             background: white;
         }
+        .voice-health-card {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+            padding: 10px;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-sm);
+            background: var(--bg-soft);
+            min-width: 0;
+        }
+        .voice-health-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            min-width: 0;
+        }
+        .voice-health-title {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            min-width: 0;
+            color: var(--text-primary);
+            font-size: 11px;
+            font-weight: 800;
+        }
+        .voice-health-title i {
+            width: 13px;
+            height: 13px;
+            color: var(--brand);
+            flex-shrink: 0;
+        }
+        .voice-health-badge {
+            flex-shrink: 0;
+            padding: 3px 7px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            background: white;
+            font-size: 10px;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+        .voice-health-badge.ready {
+            color: #15803D;
+            border-color: rgba(34,197,94,0.26);
+            background: rgba(240,253,244,0.98);
+        }
+        .voice-health-badge.loading,
+        .voice-health-badge.starting {
+            color: #B45309;
+            border-color: rgba(245,158,11,0.28);
+            background: rgba(255,251,235,0.98);
+        }
+        .voice-health-badge.error,
+        .voice-health-badge.not_installed,
+        .voice-health-badge.unavailable,
+        .voice-health-badge.timeout,
+        .voice-health-badge.misconfigured {
+            color: var(--error);
+            border-color: rgba(239,68,68,0.24);
+            background: rgba(254,242,242,0.98);
+        }
+        .voice-health-message {
+            min-width: 0;
+            color: var(--text-secondary);
+            font-size: 11px;
+            line-height: 1.45;
+        }
+        .voice-health-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 6px;
+        }
+        .voice-health-item {
+            min-width: 0;
+            padding: 7px 8px;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-sm);
+            background: white;
+        }
+        .voice-health-item span {
+            display: block;
+            color: var(--text-muted);
+            font-size: 9px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .voice-health-item strong {
+            display: block;
+            margin-top: 2px;
+            color: var(--text-primary);
+            font-size: 11px;
+            font-weight: 800;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .voice-level-wrap {
+            display: grid;
+            grid-template-columns: auto minmax(80px, 1fr) auto;
+            align-items: center;
+            gap: 7px;
+            min-width: 0;
+            color: var(--text-muted);
+            font-size: 10px;
+            font-weight: 800;
+        }
+        .voice-level-track {
+            height: 7px;
+            overflow: hidden;
+            border-radius: 999px;
+            background: var(--gray-100);
+        }
+        .voice-level-fill {
+            width: 0%;
+            height: 100%;
+            border-radius: inherit;
+            background: #22C55E;
+            transition: width 0.12s ease, background 0.12s ease;
+        }
+        .voice-level-fill.low { background: #F59E0B; }
         .voice-settings-actions {
             display: flex;
             align-items: center;
@@ -3838,15 +3961,48 @@
                                     </div>
                                     <div class="voice-settings-row">
                                         <label for="voiceBaseUrlInput">Base URL</label>
-                                        <input id="voiceBaseUrlInput" type="url" autocomplete="off" spellcheck="false" placeholder="https://api.siliconflow.cn/v1/audio/transcriptions">
+                                        <input id="voiceBaseUrlInput" type="url" autocomplete="off" spellcheck="false" placeholder="http://127.0.0.1:8765/v1/audio/transcriptions">
                                     </div>
                                     <div class="voice-settings-row">
                                         <label for="voiceApiKeyInput">API Key</label>
-                                        <input id="voiceApiKeyInput" type="password" autocomplete="off" spellcheck="false" placeholder="SiliconFlow 语音 Key">
+                                        <input id="voiceApiKeyInput" type="password" autocomplete="off" spellcheck="false" placeholder="本机离线模式无需 Key">
                                     </div>
                                     <div class="voice-settings-row">
                                         <label for="voiceModelInput">Model</label>
-                                        <input id="voiceModelInput" type="text" autocomplete="off" spellcheck="false" placeholder="FunAudioLLM/SenseVoiceSmall">
+                                        <input id="voiceModelInput" type="text" autocomplete="off" spellcheck="false" placeholder="paraformer-zh">
+                                    </div>
+                                    <div class="voice-health-card" id="voiceHealthCard">
+                                        <div class="voice-health-head">
+                                            <div class="voice-health-title">
+                                                <i data-lucide="activity"></i>
+                                                本机语音状态
+                                            </div>
+                                            <span class="voice-health-badge" id="voiceHealthBadge">检查中</span>
+                                        </div>
+                                        <div class="voice-health-message" id="voiceHealthMessage">正在检查语音链路...</div>
+                                        <div class="voice-health-grid">
+                                            <div class="voice-health-item">
+                                                <span>ASR</span>
+                                                <strong id="voiceHealthAsr">--</strong>
+                                            </div>
+                                            <div class="voice-health-item">
+                                                <span>Model</span>
+                                                <strong id="voiceHealthModel">--</strong>
+                                            </div>
+                                            <div class="voice-health-item">
+                                                <span>Wake</span>
+                                                <strong id="voiceHealthWake">未开启</strong>
+                                            </div>
+                                            <div class="voice-health-item">
+                                                <span>Mic</span>
+                                                <strong id="voiceHealthMic">待授权</strong>
+                                            </div>
+                                        </div>
+                                        <div class="voice-level-wrap">
+                                            <span>输入音量</span>
+                                            <div class="voice-level-track"><div class="voice-level-fill" id="voiceLevelFill"></div></div>
+                                            <span id="voiceLevelText">--</span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="voice-settings-divider"></div>
@@ -6348,14 +6504,28 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     // ═══════════════ Voice Control ═══════════════
     const VOICE_MIN_MS = 500;
     const VOICE_MAX_MS = 12000;
-    const WAKE_SEGMENT_MS = 3600;
+    const WAKE_SEGMENT_MS = 2800;
     const WAKE_AWAKE_WINDOW_MS = 12000;
-    const WAKE_WORDS = ['小诺同学', '小诺小诺'];
+    const WAKE_OVERLAP_MS = 700;
+    const LOCAL_ASR_SAMPLE_RATE = 16000;
+    const VOICE_VAD_POLL_MS = 120;
+    const VOICE_VAD_LEVEL = 0.018;
+    const VOICE_MIN_PEAK_RMS = 0.012;
+    const VOICE_MIN_SIGNAL_RMS = 0.006;
+    const VOICE_VAD_SILENCE_MS = 1100;
+    const WAKE_WORDS = ['小诺同学', '小诺小诺', '小诺', '晓诺同学', '晓诺', '小糯同学', '小糯'];
     let voiceMediaRecorder = null;
     let voiceStream = null;
     let voiceChunks = [];
     let voiceStartTime = 0;
     let voiceStopTimer = null;
+    let voiceVadTimer = null;
+    let voiceVadContext = null;
+    let voiceVadAnalyser = null;
+    let voiceVadData = null;
+    let voiceSpeechDetected = false;
+    let voiceLastSpeechAt = 0;
+    let voiceCaptureSource = '';
     let voiceState = 'idle';
     let voiceSpaceActive = false;
     let voiceCancelRequested = false;
@@ -6365,10 +6535,16 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     let wakeRecorder = null;
     let wakeStream = null;
     let wakeChunks = [];
+    let wakeWavController = null;
+    let wakeTailSamples = null;
     let wakeSegmentTimer = null;
     let wakeRestartTimer = null;
     let wakeAwakeUntil = 0;
     let wakeBusy = false;
+    let voiceConfigState = { local: true, ready: true };
+    let voiceHealthRefreshTimer = null;
+    let voiceMicState = '待授权';
+    let voiceLevelState = { rms: 0, peak: 0, lastAt: 0 };
 
     function isVoiceSupported() {
         return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder);
@@ -6388,10 +6564,140 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         return '';
     }
 
+    function clamp01(value) {
+        return Math.max(0, Math.min(1, Number(value) || 0));
+    }
+
+    function calculateSampleStats(samples) {
+        if (!samples || !samples.length) return { rms: 0, peak: 0, seconds: 0 };
+        let sum = 0;
+        let peak = 0;
+        for (let i = 0; i < samples.length; i++) {
+            const v = samples[i] || 0;
+            sum += v * v;
+            const abs = Math.abs(v);
+            if (abs > peak) peak = abs;
+        }
+        return {
+            rms: Math.sqrt(sum / samples.length),
+            peak,
+            seconds: samples.length / LOCAL_ASR_SAMPLE_RATE
+        };
+    }
+
+    function setVoiceMicState(label) {
+        voiceMicState = label || voiceMicState || '待授权';
+        renderVoiceHealth(voiceConfigState);
+    }
+
+    function setVoiceLevel(rms, peak) {
+        const nextRms = Math.max(0, Number(rms) || 0);
+        const nextPeak = Math.max(nextRms, Number(peak) || 0);
+        voiceLevelState = {
+            rms: nextRms,
+            peak: Math.max(voiceLevelState.peak * 0.82, nextPeak),
+            lastAt: Date.now()
+        };
+        const fill = document.getElementById('voiceLevelFill');
+        const text = document.getElementById('voiceLevelText');
+        if (!fill || !text) return;
+        const percent = Math.round(clamp01(nextRms / 0.08) * 100);
+        fill.style.width = `${percent}%`;
+        fill.classList.toggle('low', nextRms > 0 && nextRms < VOICE_MIN_SIGNAL_RMS);
+        text.textContent = nextRms > 0 ? `${percent}%` : '--';
+    }
+
+    function resetVoiceLevel() {
+        voiceLevelState = { rms: 0, peak: 0, lastAt: 0 };
+        setVoiceLevel(0, 0);
+    }
+
+    function normalizeHealthStatus(status) {
+        const value = String(status || '').toLowerCase();
+        if (value === 'ready') return 'ready';
+        if (value === 'loading') return 'loading';
+        if (value === 'not_installed') return 'not_installed';
+        if (value === 'timeout') return 'timeout';
+        if (value === 'error') return 'error';
+        if (value === 'misconfigured') return 'misconfigured';
+        if (value === 'unavailable' || value === 'disabled') return 'unavailable';
+        return value || 'checking';
+    }
+
+    function healthBadgeText(status) {
+        const normalized = normalizeHealthStatus(status);
+        if (normalized === 'ready') return '已就绪';
+        if (normalized === 'loading') return '加载中';
+        if (normalized === 'not_installed') return '未安装';
+        if (normalized === 'timeout') return '超时';
+        if (normalized === 'error') return '异常';
+        if (normalized === 'misconfigured') return '待配置';
+        if (normalized === 'unavailable') return '未就绪';
+        return '检查中';
+    }
+
+    function renderVoiceHealth(cfg) {
+        const badge = document.getElementById('voiceHealthBadge');
+        const message = document.getElementById('voiceHealthMessage');
+        const asr = document.getElementById('voiceHealthAsr');
+        const model = document.getElementById('voiceHealthModel');
+        const wake = document.getElementById('voiceHealthWake');
+        const mic = document.getElementById('voiceHealthMic');
+        if (!badge && !message && !asr && !model && !wake && !mic) return;
+        const state = normalizeHealthStatus(cfg?.healthStatus || cfg?.status || cfg?.localState || (cfg?.canTranscribe ? 'ready' : 'checking'));
+        if (badge) {
+            badge.className = `voice-health-badge ${state}`;
+            badge.textContent = healthBadgeText(state);
+        }
+        if (message) message.textContent = cfg?.healthMessage || cfg?.message || '正在检查语音链路...';
+        if (asr) {
+            const provider = cfg?.provider || 'local';
+            const label = cfg?.local ? '本机离线' : provider;
+            const ready = cfg?.canTranscribe || cfg?.localReady;
+            asr.textContent = `${label}${ready ? ' · ready' : ' · ' + healthBadgeText(state)}`;
+        }
+        if (model) model.textContent = cfg?.model || cfg?.localHealth?.model || '--';
+        if (wake) wake.textContent = wakeEnabled ? (wakeActiveCommand ? '已唤醒' : '监听中') : '未开启';
+        if (mic) mic.textContent = voiceMicState || '待授权';
+    }
+
+    async function refreshVoiceHealth(options = {}) {
+        try {
+            const autoStart = options.autoStart === false ? '0' : '1';
+            const resp = await fetch(`/api/voice/health?autostart=${autoStart}`);
+            const health = await resp.json().catch(() => ({}));
+            voiceConfigState = { ...voiceConfigState, ...health };
+            renderVoiceHealth(voiceConfigState);
+            return health;
+        } catch (err) {
+            console.warn('[Voice] Health check failed:', err);
+            voiceConfigState = { ...voiceConfigState, healthStatus: 'unavailable', healthMessage: '语音健康检查失败。' };
+            renderVoiceHealth(voiceConfigState);
+            return null;
+        }
+    }
+
+    function scheduleVoiceHealthRefresh(delay = 1200, options = {}) {
+        clearTimeout(voiceHealthRefreshTimer);
+        voiceHealthRefreshTimer = setTimeout(() => refreshVoiceHealth(options), delay);
+    }
+
+    function voiceAudioQualityError(stats, captureSource) {
+        if (!stats) return '未录到有效语音';
+        const isWake = captureSource === 'wake';
+        if (stats.seconds < 0.25) return isWake ? '' : '录音太短，请重新说一遍';
+        if (stats.peak < VOICE_MIN_PEAK_RMS || stats.rms < VOICE_MIN_SIGNAL_RMS) {
+            return isWake ? '' : '麦克风声音偏低，请靠近麦克风后重试';
+        }
+        return '';
+    }
+
     async function loadVoiceConfig() {
         try {
             const resp = await fetch('/api/voice/config');
             const cfg = await resp.json();
+            voiceConfigState = cfg || voiceConfigState;
+            renderVoiceHealth(voiceConfigState);
             const voiceBaseInput = document.getElementById('voiceBaseUrlInput');
             const voiceKeyInput = document.getElementById('voiceApiKeyInput');
             const voiceModelInput = document.getElementById('voiceModelInput');
@@ -6402,8 +6708,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             if (voiceBaseInput && cfg.baseUrl && !voiceBaseInput.value) voiceBaseInput.value = cfg.baseUrl;
             if (voiceKeyInput) {
                 voiceKeyInput.value = '';
-                voiceKeyInput.placeholder = cfg.hasApiKey ? '已安全保存，留空继续使用' : 'SiliconFlow 语音 Key';
-                voiceKeyInput.title = cfg.hasApiKey ? '真实 Key 已安全保存，前端不回显；填写新 Key 后保存可覆盖。' : '填写语音识别 API Key';
+                voiceKeyInput.placeholder = cfg.local ? '本机离线模式无需 Key' : (cfg.hasApiKey ? '已安全保存，留空继续使用' : 'SiliconFlow 语音 Key');
+                voiceKeyInput.title = cfg.local ? '本机离线语音识别不需要 API Key。' : (cfg.hasApiKey ? '真实 Key 已安全保存，前端不回显；填写新 Key 后保存可覆盖。' : '填写语音识别 API Key');
             }
             if (voiceModelInput && cfg.ready && cfg.model && !voiceModelInput.value) voiceModelInput.value = cfg.model;
             if (chatBaseInput && cfg.chat?.baseUrl && !chatBaseInput.value) chatBaseInput.value = cfg.chat.baseUrl;
@@ -6416,12 +6722,18 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             if (note) {
                 const voiceKeyState = cfg.hasApiKey ? 'Key 已安全保存' : 'Key 待填写';
                 const chatKeyState = cfg.chat?.hasApiKey ? 'Key 已安全保存' : 'Key 待填写';
-                const voiceState = cfg.ready ? `语音已就绪 · ${cfg.model || ''} · ${voiceKeyState}` : `语音待配置 · ${voiceKeyState}`;
+                const voiceState = cfg.local
+                    ? `本机离线语音 · ${cfg.model || ''} · ${cfg.healthMessage || '无需 Key'}`
+                    : (cfg.ready ? `语音已就绪 · ${cfg.model || ''} · ${voiceKeyState}` : `语音待配置 · ${voiceKeyState}`);
                 const chatState = cfg.chat?.ready ? `聊天已就绪 · ${cfg.chat.model || ''} · ${chatKeyState}` : `聊天可选填 · ${chatKeyState}`;
                 note.textContent = `${voiceState} / ${chatState}；前端不回显真实 Key`;
             }
+            if (cfg.local && !cfg.localReady && (cfg.localState === 'loading' || cfg.localState === 'unavailable' || cfg.localState === 'timeout')) {
+                scheduleVoiceHealthRefresh(2500);
+            }
         } catch (err) {
             console.warn('[Voice] Config check failed:', err);
+            renderVoiceHealth({ healthStatus: 'unavailable', healthMessage: '语音配置读取失败。' });
         }
     }
 
@@ -6433,7 +6745,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (shouldOpen && btn) positionVoiceSettingsPanel(panel, btn);
         panel.classList.toggle('open', shouldOpen);
         if (btn) btn.classList.toggle('active', shouldOpen);
-        if (shouldOpen) loadVoiceConfig();
+        if (shouldOpen) {
+            loadVoiceConfig();
+            refreshVoiceHealth({ autoStart: true });
+        }
     }
 
     function positionVoiceSettingsPanel(panel, btn) {
@@ -6499,7 +6814,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             let recorder;
             const chunks = [];
             try {
-                stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                stream = await navigator.mediaDevices.getUserMedia({ audio: getVoiceAudioConstraints() });
+                setVoiceMicState('已授权');
                 const mimeType = getVoiceMimeType() || 'audio/webm';
                 recorder = new MediaRecorder(stream, mimeType ? { mimeType } : undefined);
                 recorder.ondataavailable = e => { if (e.data && e.data.size) chunks.push(e.data); };
@@ -6518,14 +6834,156 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 }, durationMs);
             } catch (err) {
                 if (stream) stream.getTracks().forEach(track => track.stop());
+                setVoiceMicState('未授权');
                 reject(err);
             }
         });
     }
 
+    function resampleFloat32(samples, fromRate, toRate) {
+        if (!samples || !samples.length || !fromRate || fromRate === toRate) return samples;
+        const ratio = fromRate / toRate;
+        const newLength = Math.max(1, Math.round(samples.length / ratio));
+        const output = new Float32Array(newLength);
+        for (let i = 0; i < newLength; i++) {
+            const pos = i * ratio;
+            const idx = Math.floor(pos);
+            const frac = pos - idx;
+            const a = samples[idx] || 0;
+            const b = samples[Math.min(idx + 1, samples.length - 1)] || a;
+            output[i] = a + (b - a) * frac;
+        }
+        return output;
+    }
+
+    function trimAndNormalizeSamples(samples, sampleRate) {
+        if (!samples || !samples.length) return samples || new Float32Array(0);
+        const threshold = VOICE_VAD_LEVEL * 0.45;
+        const pad = Math.round(sampleRate * 0.18);
+        let start = 0;
+        let end = samples.length - 1;
+        while (start < samples.length && Math.abs(samples[start]) < threshold) start++;
+        while (end > start && Math.abs(samples[end]) < threshold) end--;
+        const trimStart = Math.max(0, start - pad);
+        const trimEnd = Math.min(samples.length, end + pad);
+        const trimmed = trimEnd > trimStart ? samples.slice(trimStart, trimEnd) : samples;
+        let peak = 0;
+        for (let i = 0; i < trimmed.length; i++) peak = Math.max(peak, Math.abs(trimmed[i]));
+        if (peak <= 0 || peak >= 0.88) return trimmed;
+        const gain = Math.min(3.2, 0.82 / peak);
+        const normalized = new Float32Array(trimmed.length);
+        for (let i = 0; i < trimmed.length; i++) normalized[i] = Math.max(-1, Math.min(1, trimmed[i] * gain));
+        return normalized;
+    }
+
+    function prepareLocalAsrSamples(samples, sampleRate, options = {}) {
+        const targetRate = options.targetRate || LOCAL_ASR_SAMPLE_RATE;
+        const resampled = resampleFloat32(samples, sampleRate || targetRate, targetRate);
+        return options.skipTrim ? resampled : trimAndNormalizeSamples(resampled, targetRate);
+    }
+
+    function encodeWavFromFloat32(samples, sampleRate) {
+        const bytesPerSample = 2;
+        const buffer = new ArrayBuffer(44 + samples.length * bytesPerSample);
+        const view = new DataView(buffer);
+        const writeString = (offset, value) => {
+            for (let i = 0; i < value.length; i++) view.setUint8(offset + i, value.charCodeAt(i));
+        };
+        writeString(0, 'RIFF');
+        view.setUint32(4, 36 + samples.length * bytesPerSample, true);
+        writeString(8, 'WAVE');
+        writeString(12, 'fmt ');
+        view.setUint32(16, 16, true);
+        view.setUint16(20, 1, true);
+        view.setUint16(22, 1, true);
+        view.setUint32(24, sampleRate, true);
+        view.setUint32(28, sampleRate * bytesPerSample, true);
+        view.setUint16(32, bytesPerSample, true);
+        view.setUint16(34, 16, true);
+        writeString(36, 'data');
+        view.setUint32(40, samples.length * bytesPerSample, true);
+        let offset = 44;
+        for (let i = 0; i < samples.length; i++, offset += 2) {
+            const s = Math.max(-1, Math.min(1, samples[i]));
+            view.setInt16(offset, s < 0 ? s * 0x8000 : s * 0x7fff, true);
+        }
+        return new Blob([buffer], { type: 'audio/wav' });
+    }
+
+    async function makeWavRecording(durationMs = 2200) {
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+            throw new Error('当前浏览器不支持录音');
+        }
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: getVoiceAudioConstraints() });
+        setVoiceMicState('已授权');
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) {
+            stream.getTracks().forEach(track => track.stop());
+            throw new Error('当前浏览器不支持本地语音采集');
+        }
+        const ctx = new AudioCtx({ sampleRate: LOCAL_ASR_SAMPLE_RATE });
+        const source = ctx.createMediaStreamSource(stream);
+        const processor = ctx.createScriptProcessor(4096, 1, 1);
+        const chunks = [];
+        let peakRms = 0;
+        resetVoiceLevel();
+        processor.onaudioprocess = (event) => {
+            const frame = new Float32Array(event.inputBuffer.getChannelData(0));
+            chunks.push(frame);
+            const stats = calculateSampleStats(frame);
+            peakRms = Math.max(peakRms, stats.rms);
+            setVoiceLevel(stats.rms, peakRms);
+        };
+        source.connect(processor);
+        processor.connect(ctx.destination);
+        await new Promise(resolve => setTimeout(resolve, durationMs));
+        processor.disconnect();
+        source.disconnect();
+        stream.getTracks().forEach(track => track.stop());
+        await ctx.close();
+        const samples = prepareLocalAsrSamples(concatFloat32(chunks), ctx.sampleRate || LOCAL_ASR_SAMPLE_RATE);
+        if (!samples.length) throw new Error('未录到测试音频');
+        const stats = calculateSampleStats(samples);
+        const qualityError = voiceAudioQualityError(stats, 'test');
+        if (qualityError) throw new Error(qualityError);
+        return encodeWavFromFloat32(samples, LOCAL_ASR_SAMPLE_RATE);
+    }
+
+    function shouldUseWavCapture() {
+        return voiceConfigState?.local !== false;
+    }
+
+    function getVoiceAudioConstraints() {
+        return {
+            echoCancellation: true,
+            noiseSuppression: true,
+            autoGainControl: true,
+            channelCount: 1
+        };
+    }
+
+    function concatFloat32(chunks) {
+        const total = chunks.reduce((sum, chunk) => sum + chunk.length, 0);
+        const samples = new Float32Array(total);
+        let offset = 0;
+        for (const chunk of chunks) {
+            samples.set(chunk, offset);
+            offset += chunk.length;
+        }
+        return samples;
+    }
+
+    function closeAudioContext(ctx) {
+        if (!ctx) return;
+        try {
+            if (ctx.state !== 'closed') ctx.close();
+        } catch {}
+    }
+
     async function testVoiceAsrSettings() {
         const note = document.getElementById('voiceSettingsNote');
         const { voiceBaseUrl, voiceApiKey, voiceModel } = collectVoiceSettings();
+        const isLocal = /^https?:\/\/(127\.0\.0\.1|localhost|\[::1\]|::1)/i.test(voiceBaseUrl);
         if (!voiceBaseUrl || !voiceModel) {
             showToast('请先填写语音识别 Base URL 和 Model', 'warning');
             return;
@@ -6533,14 +6991,14 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         try {
             setVoiceSettingsButtonsBusy(true, 'voiceAsrTestBtn');
             if (note) note.textContent = '请说一句测试语音，正在录制约 2 秒...';
-            const audioBlob = await makeSingleUseRecording();
+            const audioBlob = isLocal ? await makeWavRecording() : await makeSingleUseRecording();
             if (note) note.textContent = '正在测试语音识别接口...';
             const headers = {
                 'Content-Type': audioBlob.type || 'audio/webm',
                 'X-Test-Voice-Base-Url': voiceBaseUrl,
                 'X-Test-Voice-Model': voiceModel
             };
-            if (voiceApiKey) headers['X-Test-Voice-Api-Key'] = voiceApiKey;
+            if (voiceApiKey && !isLocal) headers['X-Test-Voice-Api-Key'] = voiceApiKey;
             const resp = await fetch('/api/voice/test/asr', {
                 method: 'POST',
                 headers,
@@ -6556,6 +7014,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             const preview = data.textPreview ? ` · 识别：${data.textPreview}` : '';
             if (note) note.textContent = `语音识别测试通过 · ${data.model || voiceModel}${preview}`;
             showToast('语音识别接口测试通过', 'success');
+            refreshVoiceHealth({ autoStart: true });
         } catch (err) {
             const msg = err && err.message ? err.message : '语音识别测试失败';
             showToast(msg, 'error');
@@ -6606,6 +7065,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const chatKeyInput = document.getElementById('chatApiKeyInput');
         const note = document.getElementById('voiceSettingsNote');
         const { voiceBaseUrl, voiceApiKey, voiceModel, chatBaseUrl, chatApiKey, chatModel } = collectVoiceSettings();
+        const isLocalVoice = /^https?:\/\/(127\.0\.0\.1|localhost|\[::1\]|::1)/i.test(voiceBaseUrl);
         if (!voiceBaseUrl || !voiceModel) {
             showToast('请填写语音识别的 Base URL 和 Model；如果尚未保存 Key，需要同时填写 API Key', 'warning');
             return;
@@ -6621,7 +7081,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    voice: { baseUrl: voiceBaseUrl, apiKey: voiceApiKey, model: voiceModel },
+                    voice: { baseUrl: voiceBaseUrl, apiKey: isLocalVoice ? '' : voiceApiKey, model: voiceModel },
                     chat: hasChatFields ? { baseUrl: chatBaseUrl, apiKey: chatApiKey, model: chatModel } : {}
                 })
             });
@@ -6633,10 +7093,11 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 return;
             }
             voiceSessionId = data.voiceSessionId || '';
+            loadVoiceConfig();
             if (voiceKeyInput) {
                 voiceKeyInput.value = '';
-                voiceKeyInput.placeholder = data.hasApiKey ? '已安全保存，留空继续使用' : 'SiliconFlow 语音 Key';
-                voiceKeyInput.title = data.hasApiKey ? '真实 Key 已安全保存，前端不回显；填写新 Key 后保存可覆盖。' : '填写语音识别 API Key';
+                voiceKeyInput.placeholder = isLocalVoice ? '本机离线模式无需 Key' : (data.hasApiKey ? '已安全保存，留空继续使用' : 'SiliconFlow 语音 Key');
+                voiceKeyInput.title = isLocalVoice ? '本机离线语音识别不需要 API Key。' : (data.hasApiKey ? '真实 Key 已安全保存，前端不回显；填写新 Key 后保存可覆盖。' : '填写语音识别 API Key');
             }
             if (chatKeyInput) {
                 chatKeyInput.value = '';
@@ -6674,6 +7135,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             wakeBtn.setAttribute('aria-pressed', wakeEnabled ? 'true' : 'false');
             wakeBtn.title = wakeEnabled ? '小诺同学语音唤醒已开启' : '开启小诺同学语音唤醒';
         }
+        renderVoiceHealth(voiceConfigState);
         if (pop && text) {
             pop.className = 'voice-status-pop';
             if (state !== 'idle') pop.classList.add('active', state);
@@ -6685,7 +7147,58 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         }
     }
 
+    function stopVoiceVad() {
+        clearInterval(voiceVadTimer);
+        voiceVadTimer = null;
+        voiceVadAnalyser = null;
+        voiceVadData = null;
+        if (voiceVadContext) {
+            try { voiceVadContext.close(); } catch {}
+            voiceVadContext = null;
+        }
+    }
+
+    function startVoiceVad(stream) {
+        stopVoiceVad();
+        if (!stream || !window.AudioContext && !window.webkitAudioContext) return;
+        try {
+            const AudioCtx = window.AudioContext || window.webkitAudioContext;
+            voiceVadContext = new AudioCtx();
+            const source = voiceVadContext.createMediaStreamSource(stream);
+            voiceVadAnalyser = voiceVadContext.createAnalyser();
+            voiceVadAnalyser.fftSize = 1024;
+            voiceVadAnalyser.smoothingTimeConstant = 0.15;
+            voiceVadData = new Uint8Array(voiceVadAnalyser.fftSize);
+            source.connect(voiceVadAnalyser);
+            voiceSpeechDetected = false;
+            voiceLastSpeechAt = 0;
+            voiceVadTimer = setInterval(() => {
+                if (voiceState !== 'listening' || !voiceVadAnalyser || !voiceVadData) return;
+                voiceVadAnalyser.getByteTimeDomainData(voiceVadData);
+                let sum = 0;
+                for (let i = 0; i < voiceVadData.length; i++) {
+                    const v = (voiceVadData[i] - 128) / 128;
+                    sum += v * v;
+                }
+                const rms = Math.sqrt(sum / voiceVadData.length);
+                const now = Date.now();
+                if (rms >= VOICE_VAD_LEVEL) {
+                    voiceSpeechDetected = true;
+                    voiceLastSpeechAt = now;
+                    return;
+                }
+                if (voiceSpeechDetected && now - voiceLastSpeechAt >= VOICE_VAD_SILENCE_MS && now - voiceStartTime >= VOICE_MIN_MS) {
+                    stopVoiceCapture();
+                }
+            }, VOICE_VAD_POLL_MS);
+        } catch (err) {
+            console.warn('[Voice] VAD unavailable:', err);
+            stopVoiceVad();
+        }
+    }
+
     function stopVoiceStream() {
+        stopVoiceVad();
         if (voiceStream) {
             voiceStream.getTracks().forEach(track => track.stop());
             voiceStream = null;
@@ -6694,6 +7207,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
     async function startVoiceCapture(source) {
         if (voiceState === 'processing' || voiceState === 'listening') return;
+        if (shouldUseWavCapture()) {
+            return startVoiceCaptureWav(source);
+        }
         if (!isVoiceSupported()) {
             showToast('当前浏览器不支持语音录制，请使用 Chrome 或 Edge', 'error');
             updateVoiceUI('error', '浏览器不支持语音录制');
@@ -6707,9 +7223,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         }
         try {
             voiceCancelRequested = false;
-            voiceStream = await navigator.mediaDevices.getUserMedia({
-                audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true }
-            });
+            voiceCaptureSource = source || 'button';
+            voiceStream = await navigator.mediaDevices.getUserMedia({ audio: getVoiceAudioConstraints() });
+            setVoiceMicState('已授权');
             voiceChunks = [];
             voiceMediaRecorder = new MediaRecorder(voiceStream, { mimeType });
             voiceMediaRecorder.ondataavailable = (event) => {
@@ -6722,10 +7238,121 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             voiceMediaRecorder.onstop = () => handleVoiceRecordingStop(mimeType);
             voiceStartTime = Date.now();
             voiceMediaRecorder.start();
-            updateVoiceUI('listening', source === 'space' ? '正在听，松开空格结束' : '正在听，再点一次结束');
+            if (source !== 'space') startVoiceVad(voiceStream);
+            updateVoiceUI('listening', source === 'space' ? '正在听，松开空格结束' : '正在听，说完自动处理');
             voiceStopTimer = setTimeout(() => stopVoiceCapture(), VOICE_MAX_MS);
         } catch (err) {
+            voiceCaptureSource = '';
             console.warn('[Voice] Microphone error:', err);
+            setVoiceMicState('未授权');
+            showToast('无法访问麦克风，请检查浏览器权限', 'error');
+            updateVoiceUI('error', '麦克风权限不可用');
+            stopVoiceStream();
+        }
+    }
+
+    async function startVoiceCaptureWav(source) {
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+            showToast('当前浏览器不支持语音录制，请使用 Chrome 或 Edge', 'error');
+            updateVoiceUI('error', '浏览器不支持语音录制');
+            return;
+        }
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) {
+            showToast('当前浏览器不支持本地语音采集', 'error');
+            updateVoiceUI('error', '本地语音采集不可用');
+            return;
+        }
+        try {
+            voiceCancelRequested = false;
+            voiceCaptureSource = source || 'button';
+            voiceStream = await navigator.mediaDevices.getUserMedia({ audio: getVoiceAudioConstraints() });
+            setVoiceMicState('已授权');
+            resetVoiceLevel();
+            const ctx = new AudioCtx({ sampleRate: LOCAL_ASR_SAMPLE_RATE });
+            voiceVadContext = ctx;
+            const audioSource = ctx.createMediaStreamSource(voiceStream);
+            const processor = ctx.createScriptProcessor(4096, 1, 1);
+            const chunks = [];
+            let speechDetected = false;
+            let lastSpeechAt = 0;
+            let peakRms = 0;
+            voiceStartTime = Date.now();
+            processor.onaudioprocess = (event) => {
+                if (voiceState !== 'listening') return;
+                const input = event.inputBuffer.getChannelData(0);
+                chunks.push(new Float32Array(input));
+                let sum = 0;
+                for (let i = 0; i < input.length; i++) sum += input[i] * input[i];
+                const rms = Math.sqrt(sum / input.length);
+                peakRms = Math.max(peakRms, rms);
+                setVoiceLevel(rms, peakRms);
+                const now = Date.now();
+                if (rms >= VOICE_VAD_LEVEL) {
+                    speechDetected = true;
+                    lastSpeechAt = now;
+                }
+                if (source !== 'space' && speechDetected && now - lastSpeechAt >= VOICE_VAD_SILENCE_MS && now - voiceStartTime >= VOICE_MIN_MS) {
+                    stopVoiceCapture();
+                }
+            };
+            audioSource.connect(processor);
+            processor.connect(ctx.destination);
+            voiceMediaRecorder = {
+                state: 'recording',
+                stop: async () => {
+                    if (!voiceMediaRecorder || voiceMediaRecorder.state === 'inactive') return;
+                    voiceMediaRecorder.state = 'inactive';
+                    clearTimeout(voiceStopTimer);
+                    voiceStopTimer = null;
+                    try { processor.disconnect(); } catch {}
+                    try { audioSource.disconnect(); } catch {}
+                    stopVoiceStream();
+                    closeAudioContext(ctx);
+                    const captureSource = voiceCaptureSource;
+                    const elapsed = Date.now() - voiceStartTime;
+                    voiceCaptureSource = '';
+                    if (captureSource === 'wake') {
+                        wakeActiveCommand = false;
+                        wakeAwakeUntil = 0;
+                    }
+                    if (voiceCancelRequested) {
+                        voiceMediaRecorder = null;
+                        updateVoiceUI('idle');
+                        showToast('语音录制已取消', 'info');
+                        if (captureSource === 'wake' && wakeEnabled) scheduleWakeRestart(700);
+                        return;
+                    }
+                    if (elapsed < VOICE_MIN_MS || !chunks.length) {
+                        voiceMediaRecorder = null;
+                        updateVoiceUI('idle');
+                        if (captureSource === 'wake' && wakeEnabled) scheduleWakeRestart(700);
+                        return;
+                    }
+                    const rawSamples = concatFloat32(chunks);
+                    const samples = prepareLocalAsrSamples(rawSamples, ctx.sampleRate || LOCAL_ASR_SAMPLE_RATE);
+                    const stats = calculateSampleStats(samples);
+                    stats.peak = Math.max(stats.peak, peakRms);
+                    const qualityError = voiceAudioQualityError(stats, captureSource);
+                    if (qualityError) {
+                        voiceMediaRecorder = null;
+                        updateVoiceUI('error', qualityError);
+                        showToast(qualityError, 'warning');
+                        if (captureSource === 'wake' && wakeEnabled) scheduleWakeRestart(700);
+                        return;
+                    }
+                    const audioBlob = encodeWavFromFloat32(samples, LOCAL_ASR_SAMPLE_RATE);
+                    voiceMediaRecorder = null;
+                    await transcribeVoiceBlob(audioBlob);
+                    if (captureSource === 'wake' && wakeEnabled) scheduleWakeRestart(1400);
+                }
+            };
+            updateVoiceUI('listening', source === 'space' ? '正在听，松开空格结束' : '正在听，说完自动处理');
+            voiceStopTimer = setTimeout(() => stopVoiceCapture(), VOICE_MAX_MS);
+        } catch (err) {
+            voiceCaptureSource = '';
+            console.warn('[Voice] Local microphone error:', err);
+            setVoiceMicState('未授权');
             showToast('无法访问麦克风，请检查浏览器权限', 'error');
             updateVoiceUI('error', '麦克风权限不可用');
             stopVoiceStream();
@@ -6735,6 +7362,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     function stopVoiceCapture(options = {}) {
         clearTimeout(voiceStopTimer);
         voiceStopTimer = null;
+        stopVoiceVad();
         if (options.cancel) voiceCancelRequested = true;
         if (voiceMediaRecorder && voiceMediaRecorder.state !== 'inactive') {
             voiceMediaRecorder.stop();
@@ -6751,21 +7379,30 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
     async function handleVoiceRecordingStop(mimeType) {
         stopVoiceStream();
+        const captureSource = voiceCaptureSource;
         const elapsed = Date.now() - voiceStartTime;
         const chunks = voiceChunks.slice();
         voiceMediaRecorder = null;
         voiceChunks = [];
+        voiceCaptureSource = '';
+        if (captureSource === 'wake') {
+            wakeActiveCommand = false;
+            wakeAwakeUntil = 0;
+        }
         if (voiceCancelRequested) {
             updateVoiceUI('idle');
             showToast('语音录制已取消', 'info');
+            if (captureSource === 'wake' && wakeEnabled) scheduleWakeRestart(700);
             return;
         }
         if (elapsed < VOICE_MIN_MS || !chunks.length) {
             updateVoiceUI('idle');
+            if (captureSource === 'wake' && wakeEnabled) scheduleWakeRestart(700);
             return;
         }
         const audioBlob = new Blob(chunks, { type: mimeType || 'audio/webm' });
         await transcribeVoiceBlob(audioBlob);
+        if (captureSource === 'wake' && wakeEnabled) scheduleWakeRestart(1400);
     }
 
     async function transcribeVoiceBlob(audioBlob) {
@@ -6780,8 +7417,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             handleVoiceTranscript(text);
         } catch (err) {
             console.warn('[Voice] Transcription error:', err);
-            updateVoiceUI('error', '语音识别服务不可用');
-            showToast('语音识别服务不可用', 'error');
+            const msg = err && err.message ? err.message : '语音识别服务不可用';
+            updateVoiceUI('error', msg);
+            showToast(msg, 'error');
+            if (/本机离线|local_asr|语音服务|模型|启动|加载/i.test(msg)) {
+                refreshVoiceHealth({ autoStart: true });
+            }
         }
     }
 
@@ -6801,6 +7442,21 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             throw err;
         }
         return (data.text || '').trim();
+    }
+
+    async function requestVoiceIntent(text) {
+        const resp = await fetch('/api/voice/intent', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text })
+        });
+        const data = await resp.json().catch(() => ({}));
+        if (!resp.ok) {
+            const err = new Error(data.message || '语音指令解析失败');
+            err.status = resp.status;
+            throw err;
+        }
+        return data;
     }
 
     function normalizeVoiceCommand(text) {
@@ -6824,12 +7480,74 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
             value = value.replace(new RegExp(escaped, 'ig'), ' ');
         });
+        value = value
+            .replace(/晓诺同学|晓诺|小糯同学|小糯|小诺同學/g, ' ')
+            .replace(/小\s*诺\s*同\s*学/g, ' ')
+            .replace(/小\s*诺/g, ' ');
         return value.replace(/[，。！？、；：,.!?;:]/g, ' ').replace(/\s+/g, ' ').trim();
     }
 
     function hasWakeWord(text) {
-        const cmd = normalizeVoiceCommand(text);
-        return WAKE_WORDS.some(word => cmd.includes(normalizeVoiceCommand(word)));
+        const cmd = normalizeWakeText(text);
+        if (!cmd) return false;
+        return cmd.includes('小诺同学') ||
+            cmd.includes('小诺小诺') ||
+            cmd === '小诺' ||
+            cmd.startsWith('小诺请') ||
+            cmd.startsWith('小诺帮') ||
+            cmd.startsWith('小诺打开') ||
+            cmd.startsWith('小诺设计') ||
+            /xiaonuo/.test(cmd);
+    }
+
+    function sendVoiceTextAsUserMessage(text) {
+        const input = document.getElementById('userInput');
+        if (!input) return;
+        input.value = text;
+        input.dispatchEvent(new Event('input'));
+        if (isRunning) {
+            showToast('当前工作流正在运行，语音内容已填入输入框', 'warning');
+            return;
+        }
+        sendMessage();
+    }
+
+    function startVoiceDesignIntent(intent) {
+        const route = intent && intent.route ? intent.route : {};
+        const text = intent.text || '阻断 PD-1/PD-L1 通路，设计 10 个高亲和力 Fab';
+        if (isRunning) {
+            const input = document.getElementById('userInput');
+            if (input) {
+                input.value = text;
+                input.dispatchEvent(new Event('input'));
+            }
+            showToast('当前工作流正在运行，语音设计请求已填入输入框', 'warning');
+            return;
+        }
+        updateVoiceUI('success', '启动设计：' + (route.label || route.target || '抗体候选'));
+        sendQuickDesignWorkflow(text, route.routeId || '');
+    }
+
+    function normalizeWakeText(text) {
+        return normalizeVoiceCommand(text)
+            .replace(/\s+/g, '')
+            .replace(/晓/g, '小')
+            .replace(/糯/g, '诺')
+            .replace(/挪/g, '诺')
+            .replace(/若/g, '诺')
+            .replace(/同學/g, '同学');
+    }
+
+    function handleResolvedVoiceIntent(intent, rawText) {
+        if (!intent || !intent.action) {
+            sendVoiceTextAsUserMessage(rawText);
+            return;
+        }
+        if (intent.action === 'design') {
+            startVoiceDesignIntent(intent);
+            return;
+        }
+        sendVoiceTextAsUserMessage(intent.text || rawText);
     }
 
     function runVoiceAction(label, fn) {
@@ -6971,45 +7689,18 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         return false;
     }
 
-    function getVoiceDesignRoute(cmd) {
-        if (!/(抗体|分子|靶向|设计|生成|候选|治疗|肿瘤|癌|炎症|哮喘|her2|tnf|pd-?1|pd-?l1|il-?33|antibody|design|candidate|immunotherapy|cancer)/i.test(cmd)) return null;
-        if (/(il\s*-?\s*33|st2|哮喘|过敏|allergy|asthma)/i.test(cmd)) {
-            return { routeId: 'allergic_asthma', text: qdWorkflowTriggers.allergic_asthma };
-        }
-        if (/(her\s*-?\s*2|erbb\s*-?\s*2|乳腺癌|胃癌|breast)/i.test(cmd)) {
-            return { routeId: 'breast_cancer', text: qdWorkflowTriggers.breast_cancer };
-        }
-        if (/(tnf|类风湿|自身免疫|关节炎|rheumatoid|autoimmune)/i.test(cmd)) {
-            return { routeId: 'autoimmune_inflammation', text: qdWorkflowTriggers.autoimmune_inflammation };
-        }
-        if (/(抗体|分子|靶向|设计|生成|候选|治疗|肿瘤|癌|检查点|pd-?1|pd-?l1|antibody|design|candidate|immunotherapy|cancer|checkpoint)/i.test(cmd)) {
-            return { routeId: 'tumor_immunotherapy', text: qdWorkflowTriggers.tumor_immunotherapy };
-        }
-        return null;
-    }
-
-    function handleVoiceTranscript(text) {
+    async function handleVoiceTranscript(text) {
         const cmd = normalizeVoiceCommand(text);
         if (!cmd) return;
         if (routeVoiceCommand(cmd, text)) return;
-        const designRoute = getVoiceDesignRoute(cmd);
-        if (designRoute) {
-            if (isRunning) {
-                showToast('当前工作流正在运行，已识别新的分子设计需求', 'warning');
-                return;
-            }
-            sendQuickDesignWorkflow(designRoute.text, designRoute.routeId);
-            return;
+        updateVoiceUI('processing', '正在理解指令...');
+        try {
+            const intent = await requestVoiceIntent(text);
+            handleResolvedVoiceIntent(intent, text);
+        } catch (err) {
+            console.warn('[Voice] Intent routing failed:', err);
+            sendVoiceTextAsUserMessage(text);
         }
-        const input = document.getElementById('userInput');
-        if (!input) return;
-        input.value = text;
-        input.dispatchEvent(new Event('input'));
-        if (isRunning) {
-            showToast('当前工作流正在运行，语音内容已填入输入框', 'warning');
-            return;
-        }
-        sendMessage();
     }
 
     function stopWakeListening(options = {}) {
@@ -7020,6 +7711,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         clearTimeout(wakeRestartTimer);
         wakeSegmentTimer = null;
         wakeRestartTimer = null;
+        if (wakeWavController && wakeWavController.state !== 'inactive') {
+            try { wakeWavController.stop(); } catch {}
+        }
+        resetVoiceLevel();
+        wakeWavController = null;
+        wakeTailSamples = null;
         if (wakeRecorder && wakeRecorder.state !== 'inactive') {
             try { wakeRecorder.stop(); } catch {}
         }
@@ -7028,7 +7725,64 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             wakeStream.getTracks().forEach(track => track.stop());
             wakeStream = null;
         }
+        renderVoiceHealth(voiceConfigState);
         updateVoiceUI(options.silent ? 'idle' : 'success', options.message || '小诺同学语音唤醒已关闭');
+    }
+
+    async function createWakeWavController() {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) throw new Error('当前浏览器不支持本地语音采集');
+        const ctx = new AudioCtx({ sampleRate: LOCAL_ASR_SAMPLE_RATE });
+        const source = ctx.createMediaStreamSource(wakeStream);
+        const processor = ctx.createScriptProcessor(4096, 1, 1);
+        const chunks = [];
+        let speechDetected = false;
+        let peakRms = 0;
+        processor.onaudioprocess = (event) => {
+            const input = event.inputBuffer.getChannelData(0);
+            const frame = new Float32Array(input);
+            chunks.push(frame);
+            let sum = 0;
+            for (let i = 0; i < frame.length; i++) sum += frame[i] * frame[i];
+            const rms = Math.sqrt(sum / frame.length);
+            peakRms = Math.max(peakRms, rms);
+            setVoiceLevel(rms, peakRms);
+            if (rms >= VOICE_VAD_LEVEL * 0.65) speechDetected = true;
+        };
+        source.connect(processor);
+        processor.connect(ctx.destination);
+        return {
+            state: 'recording',
+            stop: async () => {
+                if (!wakeWavController || wakeWavController.state === 'inactive') return;
+                wakeWavController.state = 'inactive';
+                try { processor.disconnect(); } catch {}
+                try { source.disconnect(); } catch {}
+                closeAudioContext(ctx);
+                const body = concatFloat32(chunks);
+                const previous = wakeTailSamples && wakeTailSamples.length ? wakeTailSamples : null;
+                const combined = previous ? concatFloat32([previous, body]) : body;
+                const prepared = prepareLocalAsrSamples(combined, ctx.sampleRate || LOCAL_ASR_SAMPLE_RATE, { skipTrim: true });
+                const stats = calculateSampleStats(prepared);
+                stats.peak = Math.max(stats.peak, peakRms);
+                const overlapCount = Math.min(combined.length, Math.round((ctx.sampleRate || LOCAL_ASR_SAMPLE_RATE) * WAKE_OVERLAP_MS / 1000));
+                wakeTailSamples = overlapCount > 0 ? combined.slice(combined.length - overlapCount) : null;
+                const minSamples = Math.round((ctx.sampleRate || LOCAL_ASR_SAMPLE_RATE) * 0.35);
+                const qualityError = voiceAudioQualityError(stats, 'wake');
+                if (!combined.length || combined.length < minSamples || qualityError || !speechDetected && peakRms < VOICE_VAD_LEVEL * 0.4) {
+                    await handleWakeSegmentStop(null, null);
+                    return;
+                }
+                await handleWakeSegmentStop(encodeWavFromFloat32(prepared, LOCAL_ASR_SAMPLE_RATE), 'audio/wav');
+            }
+        };
+    }
+
+    function startWakeCommandCapture() {
+        wakeActiveCommand = true;
+        wakeAwakeUntil = Date.now() + WAKE_AWAKE_WINDOW_MS;
+        updateVoiceUI('awake', '小诺已唤醒，请说指令');
+        startVoiceCapture('wake');
     }
 
     async function startWakeListening() {
@@ -7046,25 +7800,40 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         }
         try {
             wakeBusy = true;
-            wakeStream = await navigator.mediaDevices.getUserMedia({
-                audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true }
-            });
+            wakeStream = await navigator.mediaDevices.getUserMedia({ audio: getVoiceAudioConstraints() });
+            setVoiceMicState('已授权');
             wakeEnabled = true;
             wakeBusy = false;
             updateVoiceUI('wake', '小诺同学待命中');
+            refreshVoiceHealth({ autoStart: true });
             startWakeSegment();
         } catch (err) {
             wakeBusy = false;
             console.warn('[Voice] Wake microphone error:', err);
+            setVoiceMicState('未授权');
             showToast('无法访问麦克风，请检查浏览器权限', 'error');
             updateVoiceUI('error', '麦克风权限不可用');
             stopWakeListening({ silent: true });
         }
     }
 
-    function startWakeSegment() {
+    async function startWakeSegment() {
         if (!wakeEnabled || !wakeStream) return;
         if (wakeRecorder && wakeRecorder.state !== 'inactive') return;
+        if (wakeWavController && wakeWavController.state !== 'inactive') return;
+        if (shouldUseWavCapture()) {
+            try {
+                wakeWavController = await createWakeWavController();
+                updateVoiceUI(wakeActiveCommand ? 'awake' : 'wake', wakeActiveCommand ? '小诺已唤醒，请说指令' : '小诺同学待命中');
+                wakeSegmentTimer = setTimeout(() => {
+                    if (wakeWavController && wakeWavController.state !== 'inactive') wakeWavController.stop();
+                }, wakeActiveCommand ? Math.min(VOICE_MAX_MS, WAKE_AWAKE_WINDOW_MS) : WAKE_SEGMENT_MS);
+            } catch (err) {
+                console.warn('[Voice] Wake WAV segment failed:', err);
+                stopWakeListening({ message: '语音唤醒不可用' });
+            }
+            return;
+        }
         const mimeType = getVoiceMimeType();
         wakeChunks = [];
         try {
@@ -7088,23 +7857,29 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         }
     }
 
-    async function handleWakeSegmentStop(mimeType) {
+    async function handleWakeSegmentStop(audioOrMimeType, explicitMimeType) {
         clearTimeout(wakeSegmentTimer);
         wakeSegmentTimer = null;
-        const chunks = wakeChunks.slice();
+        let blob = audioOrMimeType instanceof Blob ? audioOrMimeType : null;
+        const mimeType = explicitMimeType || audioOrMimeType;
+        const chunks = blob ? [] : wakeChunks.slice();
         wakeChunks = [];
         wakeRecorder = null;
-        if (!wakeEnabled || !chunks.length) {
+        wakeWavController = null;
+        if (!wakeEnabled || (!blob && !chunks.length)) {
             if (wakeEnabled) scheduleWakeRestart(120);
             return;
         }
-        const blob = new Blob(chunks, { type: mimeType || 'audio/webm' });
+        if (!blob) blob = new Blob(chunks, { type: mimeType || 'audio/webm' });
         try {
             const text = await requestVoiceTranscription(blob);
             processWakeTranscript(text);
         } catch (err) {
             console.warn('[Voice] Wake transcription error:', err);
             updateVoiceUI('error', err.message || '语音唤醒识别失败');
+            if (/本机离线|local_asr|语音服务|模型|启动|加载/i.test(err.message || '')) {
+                refreshVoiceHealth({ autoStart: true });
+            }
             if (wakeEnabled) scheduleWakeRestart(900);
         }
     }
@@ -7116,12 +7891,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             return;
         }
         const woke = hasWakeWord(heard);
-        const inAwakeWindow = wakeActiveCommand || Date.now() < wakeAwakeUntil;
-        if (woke || inAwakeWindow) {
+        if (woke) {
             const command = stripWakeWord(heard);
-            wakeActiveCommand = true;
-            wakeAwakeUntil = Date.now() + WAKE_AWAKE_WINDOW_MS;
-            updateVoiceUI('awake', woke ? '小诺已唤醒' : '小诺正在听');
             if (command && command.length >= 2) {
                 wakeActiveCommand = false;
                 wakeAwakeUntil = 0;
@@ -7130,7 +7901,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 scheduleWakeRestart(1200);
                 return;
             }
-            scheduleWakeRestart(150);
+            startWakeCommandCapture();
+            scheduleWakeRestart(WAKE_AWAKE_WINDOW_MS + 600);
             return;
         }
         scheduleWakeRestart(120);
@@ -7160,10 +7932,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const wakeBtn = document.getElementById('wakeBtn');
         if (btn) btn.disabled = !isVoiceSupported();
         if (wakeBtn) wakeBtn.disabled = !isVoiceSupported();
+        renderVoiceHealth(voiceConfigState);
         loadVoiceConfig();
         if (!isVoiceSupported()) {
             if (btn) btn.title = '当前浏览器不支持语音录制';
             if (wakeBtn) wakeBtn.title = '当前浏览器不支持语音唤醒';
+            setVoiceMicState('浏览器不支持');
             return;
         }
         document.addEventListener('keydown', (e) => {

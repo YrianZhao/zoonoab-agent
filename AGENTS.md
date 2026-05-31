@@ -10,6 +10,11 @@
 快速设计必须在未配置语音、聊天或大模型 API Key 时仍可使用；后端接收 `quick_design` 后应立即返回工作流确认，前端应在无响应或断线时恢复操作状态并给出面向现场人员的清晰提示，避免现场展示卡在等待动画。
 固定四条快速设计路线的观众可见正文、日志、tool_call/tool_result 和 fallback 文案必须按路线 profile 生成：IL-33/ST2、PD-1/PD-L1、HER2、TNF 的疾病方向、靶点结构域、抗体背景、作用机制和表位策略不得互相混用。
 快速设计和断线 fallback 的可见 Agent 数量、设计阶段数、证据条目数应由展示层动态元信息生成；同一次运行内保持一致，连续运行可变化。UniProt/靶点注释必须来自当前路线 profile，不能混用固定编号或伪实时数据库检索文案。
+小诺同学语音链路应分层实现：前端录音/VAD 只负责采集和端点检测，ASR 只负责转写，后端 `/api/voice/intent` 先做确定性意图解析；命中抗体设计时必须返回固定 quick design 路线并由前端发送 WebSocket `quick_design`，不要让语音设计请求直接进入普通聊天兜底。
+小诺语音识别应优先使用本机离线 ASR sidecar：默认 `VOICE_ASR_PROVIDER=local`，地址 `http://127.0.0.1:8765/v1/audio/transcriptions`，启动命令 `npm run asr:local`，首次安装命令 `npm run asr:setup`；云端 ASR 只作为可选备用，不应成为现场 demo 的默认依赖。
+本机离线 ASR 依赖安装到项目内 `.runtime/local-asr-venv`，不要污染系统 Python；默认使用 Paraformer 中文识别模型处理前端 16k WAV 短命令，`fsmn-vad` 和 `ct-punc` 默认关闭，只有需要长音频切分或标点时才通过 `LOCAL_ASR_VAD_MODEL`、`LOCAL_ASR_PUNC_MODEL` 手动开启，避免首次启动额外下载大模型并拖慢现场 demo。
+网页后端在本机 local ASR 配置下应自动拉起 sidecar（可用 `LOCAL_ASR_AUTO_START=0` 关闭），前端普通语音和“小诺同学”唤醒监听都应发送 16k WAV；本机 ASR 应配置小诺、PD-1/PD-L1、IL-33/ST2、HER2、TNF、Fab/VHH 等领域热词，提高现场短命令识别稳定性。
+语音现场可用性需要可诊断：后端 `/api/voice/health` 应返回 ASR 安装状态、sidecar/模型状态、是否可转写和现场人员可读消息；前端 API 面板应展示该状态，并在录音/唤醒时显示麦克风授权与输入音量，低音量录音应先提示用户而不是直接送 ASR。
 本地 PDB 文件名可能包含小数点分数（例如 `iptm-0.7953`）；`/api/pdb/local/:filename` 需要在防目录穿越的前提下允许这种文件名，避免 Binders/3D viewer 弹窗因 PDB 请求 400 而空白。
 快速设计的 3D 展示可以对外使用 `PDL1-candidate-01.pdb` 这类产品化候选别名，由服务端内部映射到真实本地 PDB 文件；观众可见的候选名称和结构 URL 不应暴露本地 4KC3/IL33 文件名前缀，除非当前路线本身就是 IL-33/ST2。
 3D 结果区要对 `show_3d` 的 `binderData/allPDBs` 做前端归一化；如果后端 payload 为空或缺字段，必须用本地 4KC3/IL33 PDB 清单兜底渲染 Binders、Sequence、CDR strip 和结构缩略图，避免展会 demo 出现空白面板。

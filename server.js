@@ -8,6 +8,7 @@ const http = require('http');
 const https = require('https');
 const path = require('path');
 const fs = require('fs');
+const { spawn } = require('child_process');
 const { v4: uuidv4 } = require('uuid');
 
 const app = express();
@@ -16,9 +17,12 @@ const wss = new WebSocketServer({ server });
 const VOICE_AUDIO_LIMIT = '8mb';
 const VOICE_AUDIO_LIMIT_BYTES = 8 * 1024 * 1024;
 const VOICE_SESSION_TTL_MS = 2 * 60 * 60 * 1000;
-const VOICE_ASR_PROVIDER = (process.env.VOICE_ASR_PROVIDER || 'deepseek').toLowerCase();
+const VOICE_ASR_PROVIDER = (process.env.VOICE_ASR_PROVIDER || 'local').toLowerCase();
+const LOCAL_ASR_BASE_URL = process.env.LOCAL_ASR_BASE_URL || 'http://127.0.0.1:8765/v1/audio/transcriptions';
+const LOCAL_ASR_AUTO_START = process.env.LOCAL_ASR_AUTO_START !== '0';
+const LOCAL_ASR_START_COOLDOWN_MS = Number(process.env.LOCAL_ASR_START_COOLDOWN_MS || 5000);
 const VOICE_TRANSCRIBE_MODEL = process.env.VOICE_TRANSCRIBE_MODEL ||
-  (VOICE_ASR_PROVIDER === 'deepseek' ? 'deepseek-v4-flash' : 'gpt-4o-transcribe');
+  (VOICE_ASR_PROVIDER === 'deepseek' ? 'deepseek-v4-flash' : (VOICE_ASR_PROVIDER === 'local' ? 'paraformer-zh' : 'gpt-4o-transcribe'));
 const ASSISTANT_CHAT_MODEL = process.env.ASSISTANT_CHAT_MODEL || process.env.DEEPSEEK_CHAT_MODEL || 'deepseek-chat';
 const ASSISTANT_CHAT_BASE_URL = process.env.ASSISTANT_CHAT_BASE_URL || process.env.DEEPSEEK_CHAT_BASE_URL || process.env.VOICE_CHAT_BASE_URL || '';
 const VOICE_API_CONFIG_FILE = process.env.VOICE_API_CONFIG_FILE || path.join(__dirname, '.runtime', 'voice-api-config.json');
@@ -45,6 +49,34 @@ const voiceAudioParser = express.raw({
 const voiceRuntimeConfigs = new Map();
 let persistedVoiceConfigCache = null;
 let persistedVoiceConfigMtimeMs = 0;
+let localAsrProcess = null;
+let localAsrStarting = false;
+let localAsrLastStartAt = 0;
+
+function localAsrVenvPythonPath() {
+  return path.join(__dirname, '.runtime', 'local-asr-venv', 'bin', 'python');
+}
+
+function getLocalAsrInstallStatus() {
+  const scriptPath = path.join(__dirname, 'scripts', 'run_local_asr.sh');
+  const pythonPath = localAsrVenvPythonPath();
+  return {
+    scriptReady: fs.existsSync(scriptPath),
+    venvReady: fs.existsSync(pythonPath),
+    setupCommand: 'npm run asr:setup',
+    startCommand: 'npm run asr:local'
+  };
+}
+
+function getLocalAsrProcessState() {
+  const running = Boolean(localAsrProcess && !localAsrProcess.killed);
+  return {
+    managed: running,
+    starting: Boolean(localAsrStarting),
+    pid: running ? localAsrProcess.pid || null : null,
+    lastStartAt: localAsrLastStartAt || null
+  };
+}
 
 app.use(express.json({ limit: '1mb' }));
 app.use((req, res, next) => {
@@ -86,10 +118,240 @@ function normalizeVoiceBaseUrl(rawUrl) {
 
 function inferVoiceProvider(url) {
   const host = String(url || '').toLowerCase();
+  if (host.includes('127.0.0.1') || host.includes('localhost') || host.includes('::1')) return 'local';
   if (host.includes('siliconflow')) return 'siliconflow';
   if (host.includes('deepseek')) return 'deepseek';
   if (host.includes('openai')) return 'openai';
   return 'compatible';
+}
+
+function isLocalVoiceProvider(provider) {
+  return ['local', 'offline', 'funasr'].includes(String(provider || '').toLowerCase());
+}
+
+function isLoopbackVoiceUrl(rawUrl) {
+  try {
+    const url = new URL(rawUrl);
+    return url.protocol === 'http:' && ['localhost', '127.0.0.1', '::1'].includes(url.hostname);
+  } catch {
+    return false;
+  }
+}
+
+function localAsrHealthUrl(rawUrl) {
+  try {
+    const url = new URL(rawUrl || LOCAL_ASR_BASE_URL);
+    url.pathname = '/health';
+    url.search = '';
+    url.hash = '';
+    return url.toString();
+  } catch {
+    return '';
+  }
+}
+
+function localAsrSpawnAddress(rawUrl) {
+  try {
+    const url = new URL(rawUrl || LOCAL_ASR_BASE_URL);
+    const hostname = url.hostname === 'localhost' || url.hostname === '::1' ? '127.0.0.1' : url.hostname;
+    const port = url.port || '8765';
+    return { host: hostname, port };
+  } catch {
+    return { host: '127.0.0.1', port: '8765' };
+  }
+}
+
+async function fetchLocalAsrHealth(rawUrl, timeoutMs = 800) {
+  if (typeof fetch !== 'function') return { ok: false, state: 'unsupported', ready: false };
+  const healthUrl = localAsrHealthUrl(rawUrl);
+  if (!healthUrl) return { ok: false, state: 'invalid_url', ready: false };
+  const controller = typeof AbortController === 'function' ? new AbortController() : null;
+  const timeout = controller ? setTimeout(() => controller.abort(), timeoutMs) : null;
+  try {
+    const resp = await fetch(healthUrl, { signal: controller ? controller.signal : undefined });
+    const data = await resp.json().catch(() => ({}));
+    return {
+      ok: resp.ok && data && data.ok !== false,
+      ready: Boolean(data && data.ready),
+      state: String(data && data.state || (resp.ok ? 'ready' : 'unavailable')),
+      model: data && data.model || '',
+      device: data && data.device || '',
+      error: data && data.error || ''
+    };
+  } catch (err) {
+    return {
+      ok: false,
+      ready: false,
+      state: err && err.name === 'AbortError' ? 'timeout' : 'unavailable',
+      error: err && err.message ? err.message : ''
+    };
+  } finally {
+    if (timeout) clearTimeout(timeout);
+  }
+}
+
+function canAutoStartLocalAsr(providerConfig) {
+  if (!LOCAL_ASR_AUTO_START || !providerConfig) return false;
+  if (!isLocalVoiceProvider(providerConfig.provider)) return false;
+  if (!isLoopbackVoiceUrl(providerConfig.url)) return false;
+  const install = getLocalAsrInstallStatus();
+  return install.scriptReady;
+}
+
+function startLocalAsrIfNeeded(providerConfig, reason = 'voice') {
+  if (!canAutoStartLocalAsr(providerConfig)) return false;
+  const install = getLocalAsrInstallStatus();
+  if (!install.venvReady) return false;
+  if (localAsrProcess && !localAsrProcess.killed) return true;
+  const now = Date.now();
+  if (localAsrStarting || now - localAsrLastStartAt < LOCAL_ASR_START_COOLDOWN_MS) return true;
+  localAsrStarting = true;
+  localAsrLastStartAt = now;
+  const scriptPath = path.join(__dirname, 'scripts', 'run_local_asr.sh');
+  const localAddress = localAsrSpawnAddress(providerConfig.url);
+  console.log(`[Voice] Starting local ASR sidecar (${reason})...`);
+  const child = spawn('bash', [scriptPath], {
+    cwd: __dirname,
+    env: {
+      ...process.env,
+      LOCAL_ASR_HOST: process.env.LOCAL_ASR_HOST || localAddress.host,
+      LOCAL_ASR_PORT: process.env.LOCAL_ASR_PORT || localAddress.port
+    },
+    stdio: ['ignore', 'pipe', 'pipe']
+  });
+  localAsrProcess = child;
+  child.stdout.on('data', chunk => {
+    const text = String(chunk || '').trim();
+    if (text) console.log('[LocalASR]', text);
+  });
+  child.stderr.on('data', chunk => {
+    const text = String(chunk || '').trim();
+    if (text) console.warn('[LocalASR]', text);
+  });
+  child.on('spawn', () => { localAsrStarting = false; });
+  child.on('error', err => {
+    localAsrStarting = false;
+    if (localAsrProcess === child) localAsrProcess = null;
+    console.error('[Voice] Failed to start local ASR sidecar:', err && err.message ? err.message : err);
+  });
+  child.on('exit', (code, signal) => {
+    localAsrStarting = false;
+    if (localAsrProcess === child) localAsrProcess = null;
+    if (code !== 0 && signal !== 'SIGTERM') {
+      console.warn(`[Voice] Local ASR sidecar exited: code=${code} signal=${signal || ''}`);
+    }
+  });
+  return true;
+}
+
+async function ensureLocalAsrStarted(providerConfig, reason) {
+  if (!canAutoStartLocalAsr(providerConfig)) {
+    return { ok: false, started: false, state: 'disabled', ready: false };
+  }
+  const install = getLocalAsrInstallStatus();
+  if (!install.venvReady) {
+    return {
+      ok: false,
+      started: false,
+      state: 'not_installed',
+      ready: false,
+      error: `Local ASR environment is missing. Run: ${install.setupCommand}`
+    };
+  }
+  const before = await fetchLocalAsrHealth(providerConfig.url);
+  if (before.ok) return { ...before, started: false };
+  const started = startLocalAsrIfNeeded(providerConfig, reason);
+  return { ...before, started };
+}
+
+function makeVoiceHealthMessage({ providerConfig, install, localHealth, localAutoStartAvailable, canTranscribe }) {
+  if (!providerConfig || !providerConfig.url) {
+    return '语音识别地址未配置。';
+  }
+  if (!providerConfig.supportsAudio) {
+    return '当前语音识别提供方不支持音频转写。';
+  }
+  if (!isLocalVoiceProvider(providerConfig.provider)) {
+    if (!providerConfig.key) return voiceProviderMissingKeyError(providerConfig.provider);
+    return canTranscribe ? '云端语音识别配置已就绪。' : '云端语音识别配置待检查。';
+  }
+  if (localHealth && localHealth.ready) return '本机离线语音已就绪。';
+  if (!install.scriptReady || !install.venvReady) {
+    return `本机离线语音依赖未安装。请先运行 ${install.setupCommand}。`;
+  }
+  if (!isLoopbackVoiceUrl(providerConfig.url)) {
+    return '本机离线语音地址必须指向 localhost 或 127.0.0.1。';
+  }
+  if (!localAutoStartAvailable && LOCAL_ASR_AUTO_START) {
+    return '本机离线语音自动启动条件不满足，请手动运行 npm run asr:local。';
+  }
+  const state = localHealth && localHealth.state || '';
+  if (state === 'loading') return '本机离线语音模型正在加载，首次启动需要等待模型预热完成。';
+  if (state === 'timeout') return '本机离线语音服务响应超时，模型可能仍在加载。';
+  if (state === 'error') return localHealth.error ? `本机离线语音模型加载失败：${localHealth.error}` : '本机离线语音模型加载失败。';
+  if (localAsrStarting || localAsrProcess && !localAsrProcess.killed) return '本机离线语音服务正在启动，请稍后再试。';
+  if (!LOCAL_ASR_AUTO_START) return '本机离线语音自动启动已关闭，请运行 npm run asr:local。';
+  return '本机离线语音服务未就绪，系统会尝试自动启动。';
+}
+
+async function buildVoiceHealth(providerConfig = getVoiceProviderConfig(), options = {}) {
+  const local = isLocalVoiceProvider(providerConfig.provider);
+  const install = local ? getLocalAsrInstallStatus() : null;
+  const localAutoStartEligible = local ? canAutoStartLocalAsr(providerConfig) : false;
+  const localAutoStartAvailable = Boolean(localAutoStartEligible && install && install.venvReady);
+  let localHealth = null;
+  if (local) {
+    localHealth = options.autoStart
+      ? await ensureLocalAsrStarted(providerConfig, options.reason || 'health')
+      : await fetchLocalAsrHealth(providerConfig.url);
+    if (install && !install.venvReady && !(localHealth && localHealth.ok)) {
+      localHealth = {
+        ok: false,
+        ready: false,
+        state: 'not_installed',
+        started: false,
+        error: `Local ASR environment is missing. Run: ${install.setupCommand}`
+      };
+    }
+  }
+  const providerReady = Boolean((providerConfig.key || local) && providerConfig.url && providerConfig.supportsAudio);
+  const localReady = local ? Boolean(localHealth && localHealth.ready) : null;
+  const canTranscribe = providerReady && (!local || localReady);
+  const status = !providerReady
+    ? 'misconfigured'
+    : local
+      ? (localReady ? 'ready' : (localHealth && localHealth.state || 'unavailable'))
+      : (providerConfig.key ? 'ready' : 'missing_key');
+  const message = makeVoiceHealthMessage({
+    providerConfig,
+    install: install || {},
+    localHealth,
+    localAutoStartAvailable,
+    canTranscribe
+  });
+  return {
+    ok: providerReady,
+    status,
+    message,
+    canTranscribe,
+    provider: providerConfig.provider,
+    model: providerConfig.model,
+    baseUrl: providerConfig.url || '',
+    supportsAudio: providerConfig.supportsAudio,
+    hasApiKey: Boolean(providerConfig.key),
+    local,
+    localReady,
+    autoStartEnabled: LOCAL_ASR_AUTO_START,
+    autoStartAvailable: localAutoStartAvailable,
+    install,
+    localState: localHealth ? localHealth.state : '',
+    localHealth,
+    process: local ? getLocalAsrProcessState() : null,
+    audio: {
+      sampleRate: 16000,
+      format: local ? 'wav' : 'browser-default'
+    }
+  };
 }
 
 function cloneApiConfigSection(section) {
@@ -100,10 +362,12 @@ function cloneApiConfigSection(section) {
 function sanitizePersistedVoiceConfig(raw) {
   if (!raw || typeof raw !== 'object') return null;
   const voice = raw.voice && typeof raw.voice === 'object' ? raw.voice : null;
-  if (!voice || !voice.key || !voice.url || !voice.model) return null;
+  if (!voice || !voice.url || !voice.model) return null;
+  const provider = String(voice.provider || inferVoiceProvider(voice.url)).trim() || 'compatible';
+  if (!isLocalVoiceProvider(provider) && !voice.key) return null;
   const sanitized = {
     voice: {
-      provider: String(voice.provider || inferVoiceProvider(voice.url)).trim() || 'compatible',
+      provider,
       key: String(voice.key || '').trim(),
       url: String(voice.url || '').trim(),
       model: String(voice.model || '').trim(),
@@ -185,6 +449,15 @@ function getVoiceProviderConfig(req) {
   if (runtimeConfig) return runtimeConfig.voice || runtimeConfig;
   const persistedConfig = loadPersistedVoiceConfig();
   if (persistedConfig && persistedConfig.voice) return cloneApiConfigSection(persistedConfig.voice);
+  if (isLocalVoiceProvider(VOICE_ASR_PROVIDER)) {
+    return {
+      provider: 'local',
+      key: '',
+      url: normalizeVoiceBaseUrl(process.env.VOICE_ASR_BASE_URL || LOCAL_ASR_BASE_URL),
+      model: VOICE_TRANSCRIBE_MODEL,
+      supportsAudio: true
+    };
+  }
   if (VOICE_ASR_PROVIDER === 'openai') {
     return {
       provider: 'openai',
@@ -222,6 +495,7 @@ function getVoiceProviderConfig(req) {
 }
 
 function voiceProviderMissingKeyError(provider) {
+  if (isLocalVoiceProvider(provider)) return '本机离线语音服务无需 API Key。';
   if (provider === 'openai') return '服务端未配置 OPENAI_API_KEY。';
   if (provider === 'deepseek') return '服务端未配置 DEEPSEEK_API_KEY。';
   return '服务端未配置 VOICE_ASR_API_KEY。';
@@ -231,9 +505,10 @@ function parseProviderError(text) {
   if (!text) return 'Audio transcription request failed';
   try {
     const parsed = JSON.parse(text);
-    return parsed && parsed.error && parsed.error.message
-      ? parsed.error.message
-      : 'Audio transcription request failed';
+    if (parsed && parsed.error && parsed.error.message) return parsed.error.message;
+    if (parsed && parsed.message) return parsed.message;
+    if (parsed && parsed.error) return typeof parsed.error === 'string' ? parsed.error : JSON.stringify(parsed.error).slice(0, 180);
+    return 'Audio transcription request failed';
   } catch {
     return text.slice(0, 180);
   }
@@ -244,9 +519,6 @@ function resolveVoiceInputConfig(voiceBody, persistedConfig = loadPersistedVoice
   const persistedVoice = persistedConfig && persistedConfig.voice ? persistedConfig.voice : null;
   const key = String(body.apiKey || persistedVoice?.key || '').trim();
   const model = String(body.model || persistedVoice?.model || VOICE_TRANSCRIBE_MODEL).trim();
-  if (!key) {
-    return { error: { status: 400, error: 'missing_voice_api_key', message: '请填写语音识别 API Key。' } };
-  }
   if (!model || model.length > 120) {
     return { error: { status: 400, error: 'invalid_voice_model', message: '请填写有效的语音识别模型名称。' } };
   }
@@ -262,9 +534,13 @@ function resolveVoiceInputConfig(voiceBody, persistedConfig = loadPersistedVoice
   if (!url) {
     return { error: { status: 400, error: 'missing_base_url', message: '请填写语音识别 Base URL。' } };
   }
+  const provider = inferVoiceProvider(url);
+  if (!key && !isLocalVoiceProvider(provider)) {
+    return { error: { status: 400, error: 'missing_voice_api_key', message: '请填写语音识别 API Key。' } };
+  }
   return {
     config: {
-      provider: inferVoiceProvider(url),
+      provider,
       key,
       url,
       model,
@@ -335,7 +611,7 @@ async function transcribeAudioWithConfig(providerConfig, audio, contentType) {
     err.provider = providerConfig.provider;
     throw err;
   }
-  if (!providerConfig.key) {
+  if (!providerConfig.key && !isLocalVoiceProvider(providerConfig.provider)) {
     const err = new Error(voiceProviderMissingKeyError(providerConfig.provider));
     err.status = 503;
     err.apiError = 'missing_asr_api_key';
@@ -357,6 +633,10 @@ async function transcribeAudioWithConfig(providerConfig, audio, contentType) {
     throw err;
   }
 
+  if (canAutoStartLocalAsr(providerConfig)) {
+    await ensureLocalAsrStarted(providerConfig, 'transcribe');
+  }
+
   const baseContentType = String(contentType || 'audio/webm').split(';')[0].trim().toLowerCase() || 'audio/webm';
   const fileType = VOICE_AUDIO_TYPES.has(baseContentType) && baseContentType !== 'application/octet-stream' ? baseContentType : 'audio/webm';
   const form = new FormData();
@@ -368,7 +648,7 @@ async function transcribeAudioWithConfig(providerConfig, audio, contentType) {
   try {
     const upstream = await fetch(providerConfig.url, {
       method: 'POST',
-      headers: { Authorization: 'Bearer ' + providerConfig.key },
+      headers: providerConfig.key ? { Authorization: 'Bearer ' + providerConfig.key } : undefined,
       body: form
     });
     const bodyText = await upstream.text();
@@ -377,7 +657,9 @@ async function transcribeAudioWithConfig(providerConfig, audio, contentType) {
       console.error('[Voice] Transcription failed:', providerConfig.provider, upstream.status, message);
       const err = new Error(message);
       err.status = 502;
-      err.apiError = 'transcription_failed';
+      err.apiError = isLocalVoiceProvider(providerConfig.provider) && upstream.status === 503
+        ? 'local_asr_loading'
+        : 'transcription_failed';
       err.provider = providerConfig.provider;
       throw err;
     }
@@ -391,16 +673,23 @@ async function transcribeAudioWithConfig(providerConfig, audio, contentType) {
   } catch (err) {
     if (err && err.apiError) throw err;
     console.error('[Voice] Transcription request error:', err && err.message ? err.message : err);
-    const wrapped = new Error('语音识别服务暂时不可用。');
+    if (canAutoStartLocalAsr(providerConfig)) {
+      startLocalAsrIfNeeded(providerConfig, 'transcribe-error');
+    }
+    const wrapped = new Error(isLocalVoiceProvider(providerConfig.provider)
+      ? '本机离线语音正在启动或模型正在加载，请稍后再试。首次使用前请运行 npm run asr:setup 完成安装。'
+      : '语音识别服务暂时不可用。');
     wrapped.status = 502;
-    wrapped.apiError = 'transcription_unavailable';
+    wrapped.apiError = isLocalVoiceProvider(providerConfig.provider) ? 'local_asr_unavailable' : 'transcription_unavailable';
     wrapped.provider = providerConfig.provider;
     throw wrapped;
   }
 }
 
-app.get('/api/voice/config', (_, res) => {
+app.get('/api/voice/config', async (_, res) => {
   const providerConfig = getVoiceProviderConfig();
+  const health = await buildVoiceHealth(providerConfig, { autoStart: true, reason: 'config' });
+  const localHealth = health.localHealth || null;
   const chatConfig = getAssistantChatConfig();
   let chatReady = false;
   let chatUrl = '';
@@ -414,7 +703,19 @@ app.get('/api/voice/config', (_, res) => {
     provider: providerConfig.provider,
     model: providerConfig.model,
     hasApiKey: Boolean(providerConfig.key),
-    ready: Boolean(providerConfig.key && providerConfig.url && providerConfig.supportsAudio),
+    ready: Boolean((providerConfig.key || isLocalVoiceProvider(providerConfig.provider)) && providerConfig.url && providerConfig.supportsAudio),
+    local: isLocalVoiceProvider(providerConfig.provider),
+    autoStart: Boolean(localHealth && localHealth.started),
+    autoStartEnabled: health.autoStartEnabled,
+    autoStartAvailable: health.autoStartAvailable,
+    localState: localHealth ? localHealth.state : '',
+    localReady: localHealth ? localHealth.ready : null,
+    healthStatus: health.status,
+    healthMessage: health.message,
+    canTranscribe: health.canTranscribe,
+    localHealth,
+    process: health.process,
+    install: health.install,
     supportsAudio: providerConfig.supportsAudio,
     baseUrl: providerConfig.url || '',
     chat: {
@@ -428,6 +729,13 @@ app.get('/api/voice/config', (_, res) => {
     configExpiresInSeconds: null,
     sessionTtlSeconds: Math.floor(VOICE_SESSION_TTL_MS / 1000)
   });
+});
+
+app.get('/api/voice/health', async (req, res) => {
+  const autoStart = String(req.query && req.query.autostart || '1') !== '0';
+  const providerConfig = getVoiceProviderConfig(req);
+  const health = await buildVoiceHealth(providerConfig, { autoStart, reason: 'health' });
+  res.json(health);
 });
 
 app.post('/api/voice/session', (req, res) => {
@@ -647,6 +955,17 @@ app.post('/api/voice/transcribe', (req, res, next) => {
       message: err.message || '语音识别服务暂时不可用。'
     });
   }
+});
+
+app.post('/api/voice/intent', (req, res) => {
+  const text = String(req.body && req.body.text || '').trim();
+  if (!text) {
+    return res.status(400).json({ error: 'empty_voice_text', message: '未收到语音文本。' });
+  }
+  if (text.length > 4000) {
+    return res.status(413).json({ error: 'voice_text_too_long', message: '语音文本过长。' });
+  }
+  return res.json(resolveVoiceAssistantIntent(text));
 });
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -1353,7 +1672,12 @@ const DEMO_ROUTE_RULES = [
 
 const WAKE_WORD_PATTERNS = [
   /小诺同学/g,
-  /小诺小诺/g
+  /小诺小诺/g,
+  /晓诺同学/g,
+  /晓诺/g,
+  /小糯同学/g,
+  /小糯/g,
+  /小诺/g
 ];
 
 const REPRESENTATIVE_DEMO_DIRECTIONS = [
@@ -1371,6 +1695,12 @@ const REPRESENTATIVE_DEMO_DIRECTIONS = [
 function normalizeCommandText(input) {
   return String(input || '')
     .toLowerCase()
+    .replace(/pd[\s-]*one/g, 'pd-1')
+    .replace(/pd[\s-]*l[\s-]*one/g, 'pd-l1')
+    .replace(/pdl1/g, 'pd-l1')
+    .replace(/pd1/g, 'pd-1')
+    .replace(/晓诺|小糯|小挪|小若/g, '小诺')
+    .replace(/同學/g, '同学')
     .replace(/[，。！？、；：,.!?;:]/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
@@ -1379,7 +1709,7 @@ function normalizeCommandText(input) {
 function stripWakeWords(input) {
   let text = String(input || '').trim();
   for (const pattern of WAKE_WORD_PATTERNS) text = text.replace(pattern, ' ');
-  return text.replace(/\s+/g, ' ').trim();
+  return text.replace(/[，。！？、；：,.!?;:]+/g, ' ').replace(/\s+/g, ' ').trim();
 }
 
 function containsAny(text, keywords) {
@@ -1396,8 +1726,12 @@ function getRepresentativeDemoDirection(input) {
   return '';
 }
 
+function getDefaultDemoRoute() {
+  return DEMO_ROUTE_RULES.find(rule => rule.id === 'tumor_immunotherapy') || DEMO_ROUTE_RULES[0];
+}
+
 function buildRepresentativeDemoRoute(label, reason) {
-  const base = DEMO_ROUTE_RULES[1];
+  const base = getDefaultDemoRoute();
   const isUnsupportedDirection = reason === 'unsupported_direction';
   return {
     ...base,
@@ -1406,7 +1740,7 @@ function buildRepresentativeDemoRoute(label, reason) {
     systemUnderstanding: isUnsupportedDirection
       ? '为完整完成从疾病到抗体结构的设计闭环，选择当前最合适的免疫检查点设计路径'
       : '未指定明确疾病靶点，系统选择当前最稳定的免疫检查点设计路径',
-    displayStory: '围绕 PD-1/PD-L1 检查点通路，生成候选序列、PDB 结构和可用于后续展示的结构模型。'
+    displayStory: base.displayStory
   };
 }
 
@@ -1441,7 +1775,7 @@ function getDemoRouteById(routeId) {
 function resolveQuickDesignRoute(msg) {
   const explicitRoute = getDemoRouteById(msg && msg.routeId);
   if (explicitRoute) return explicitRoute;
-  return detectDemoRoute(msg && msg.text) || DEMO_ROUTE_RULES[1];
+  return detectDemoRoute(msg && msg.text) || getDefaultDemoRoute();
 }
 
 function quickDesignAck(route) {
@@ -1455,6 +1789,64 @@ function quickDesignAck(route) {
     abType: route.abType,
     count: route.count,
     workflow: 'molecular_design_workflow'
+  };
+}
+
+function buildVoiceDesignPrompt(route, input) {
+  const raw = String(input || '').trim();
+  const countMatch = raw.match(/(\d+)\s*(个|条|pass|passing|候选)/i);
+  const count = countMatch ? Math.min(Math.max(parseInt(countMatch[1], 10), 1), 200) : route.count;
+  const affinity = /高亲和|high.?affinity|亲和力/.test(raw) ? '高亲和力' : '高亲和力';
+  if (route.id === 'tumor_immunotherapy') return '阻断 PD-1/PD-L1 通路，设计 ' + count + ' 个' + affinity + ' Fab';
+  if (route.id === 'allergic_asthma') return '阻断 IL-33/ST2 通路，设计 ' + count + ' 个' + affinity + ' VHH';
+  if (route.id === 'breast_cancer') return '靶向 HER2，设计 ' + count + ' 个' + affinity + ' Fab';
+  if (route.id === 'autoimmune_inflammation') return '靶向 TNF，设计 ' + count + ' 个' + affinity + ' Fab';
+  if (route.blockTarget) {
+    const pair = route.target === 'PD-L1' && route.blockTarget === 'PD-1'
+      ? 'PD-1/PD-L1'
+      : route.target + '/' + route.blockTarget;
+    return '阻断 ' + pair + ' 通路，设计 ' + count + ' 个' + affinity + ' ' + route.abType;
+  }
+  return '靶向 ' + route.target + '，设计 ' + count + ' 个' + affinity + ' ' + route.abType;
+}
+
+function publicDemoRoute(route) {
+  return {
+    routeId: route.id,
+    disease: route.disease,
+    target: route.target,
+    blockTarget: route.blockTarget || '',
+    abType: route.abType,
+    count: route.count,
+    label: route.target + (route.blockTarget ? '/' + route.blockTarget : '')
+  };
+}
+
+function resolveVoiceAssistantIntent(input) {
+  const cleanText = stripWakeWords(input) || String(input || '').trim();
+  const demoRoute = detectDemoRoute(cleanText);
+  if (demoRoute) {
+    return {
+      action: 'design',
+      intent: 'design',
+      text: buildVoiceDesignPrompt(demoRoute, cleanText),
+      route: publicDemoRoute(demoRoute)
+    };
+  }
+
+  const intent = detectIntent(cleanText);
+  if (intent !== 'assistant_chat') {
+    return {
+      action: 'workflow',
+      intent,
+      text: cleanText
+    };
+  }
+
+  return {
+    action: 'chat',
+    intent: 'assistant_chat',
+    text: cleanText
   };
 }
 
@@ -2993,8 +3385,24 @@ app.post('/api/export/sequences', (req, res) => {
 
 app.get('/api/health', (_, res) => res.json({ ok: true, platform: 'ZoonoAb', sessions: sessions.size }));
 
+function stopManagedLocalAsr() {
+  if (localAsrProcess && !localAsrProcess.killed) {
+    try { localAsrProcess.kill('SIGTERM'); } catch {}
+  }
+  localAsrProcess = null;
+}
+
 process.on('SIGTERM', () => {
   console.log('[Server] SIGTERM received, shutting down gracefully...');
+  stopManagedLocalAsr();
+  wss.clients.forEach(c => c.close());
+  server.close(() => { console.log('[Server] HTTP server closed.'); process.exit(0); });
+  setTimeout(() => process.exit(1), 10_000);
+});
+
+process.on('SIGINT', () => {
+  console.log('[Server] SIGINT received, shutting down gracefully...');
+  stopManagedLocalAsr();
   wss.clients.forEach(c => c.close());
   server.close(() => { console.log('[Server] HTTP server closed.'); process.exit(0); });
   setTimeout(() => process.exit(1), 10_000);
