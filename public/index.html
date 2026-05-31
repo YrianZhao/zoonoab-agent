@@ -6347,12 +6347,14 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     // ═══════════════ Voice Control ═══════════════
     const VOICE_MIN_MS = 500;
     const VOICE_MAX_MS = 12000;
-    const WAKE_SEGMENT_MS = 3600;
+    const WAKE_SEGMENT_MS = 2800;
     const WAKE_AWAKE_WINDOW_MS = 12000;
+    const WAKE_OVERLAP_MS = 700;
+    const LOCAL_ASR_SAMPLE_RATE = 16000;
     const VOICE_VAD_POLL_MS = 120;
     const VOICE_VAD_LEVEL = 0.018;
     const VOICE_VAD_SILENCE_MS = 1100;
-    const WAKE_WORDS = ['小诺同学', '小诺小诺'];
+    const WAKE_WORDS = ['小诺同学', '小诺小诺', '小诺', '晓诺同学', '晓诺', '小糯同学', '小糯'];
     let voiceMediaRecorder = null;
     let voiceStream = null;
     let voiceChunks = [];
@@ -6374,6 +6376,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     let wakeRecorder = null;
     let wakeStream = null;
     let wakeChunks = [];
+    let wakeWavController = null;
+    let wakeTailSamples = null;
     let wakeSegmentTimer = null;
     let wakeRestartTimer = null;
     let wakeAwakeUntil = 0;
@@ -6512,7 +6516,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             let recorder;
             const chunks = [];
             try {
-                stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                stream = await navigator.mediaDevices.getUserMedia({ audio: getVoiceAudioConstraints() });
                 const mimeType = getVoiceMimeType() || 'audio/webm';
                 recorder = new MediaRecorder(stream, mimeType ? { mimeType } : undefined);
                 recorder.ondataavailable = e => { if (e.data && e.data.size) chunks.push(e.data); };
@@ -6534,6 +6538,48 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 reject(err);
             }
         });
+    }
+
+    function resampleFloat32(samples, fromRate, toRate) {
+        if (!samples || !samples.length || !fromRate || fromRate === toRate) return samples;
+        const ratio = fromRate / toRate;
+        const newLength = Math.max(1, Math.round(samples.length / ratio));
+        const output = new Float32Array(newLength);
+        for (let i = 0; i < newLength; i++) {
+            const pos = i * ratio;
+            const idx = Math.floor(pos);
+            const frac = pos - idx;
+            const a = samples[idx] || 0;
+            const b = samples[Math.min(idx + 1, samples.length - 1)] || a;
+            output[i] = a + (b - a) * frac;
+        }
+        return output;
+    }
+
+    function trimAndNormalizeSamples(samples, sampleRate) {
+        if (!samples || !samples.length) return samples || new Float32Array(0);
+        const threshold = VOICE_VAD_LEVEL * 0.45;
+        const pad = Math.round(sampleRate * 0.18);
+        let start = 0;
+        let end = samples.length - 1;
+        while (start < samples.length && Math.abs(samples[start]) < threshold) start++;
+        while (end > start && Math.abs(samples[end]) < threshold) end--;
+        const trimStart = Math.max(0, start - pad);
+        const trimEnd = Math.min(samples.length, end + pad);
+        const trimmed = trimEnd > trimStart ? samples.slice(trimStart, trimEnd) : samples;
+        let peak = 0;
+        for (let i = 0; i < trimmed.length; i++) peak = Math.max(peak, Math.abs(trimmed[i]));
+        if (peak <= 0 || peak >= 0.88) return trimmed;
+        const gain = Math.min(3.2, 0.82 / peak);
+        const normalized = new Float32Array(trimmed.length);
+        for (let i = 0; i < trimmed.length; i++) normalized[i] = Math.max(-1, Math.min(1, trimmed[i] * gain));
+        return normalized;
+    }
+
+    function prepareLocalAsrSamples(samples, sampleRate, options = {}) {
+        const targetRate = options.targetRate || LOCAL_ASR_SAMPLE_RATE;
+        const resampled = resampleFloat32(samples, sampleRate || targetRate, targetRate);
+        return options.skipTrim ? resampled : trimAndNormalizeSamples(resampled, targetRate);
     }
 
     function encodeWavFromFloat32(samples, sampleRate) {
@@ -6568,15 +6614,13 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
             throw new Error('当前浏览器不支持录音');
         }
-        const stream = await navigator.mediaDevices.getUserMedia({
-            audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true }
-        });
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: getVoiceAudioConstraints() });
         const AudioCtx = window.AudioContext || window.webkitAudioContext;
         if (!AudioCtx) {
             stream.getTracks().forEach(track => track.stop());
             throw new Error('当前浏览器不支持本地语音采集');
         }
-        const ctx = new AudioCtx({ sampleRate: 16000 });
+        const ctx = new AudioCtx({ sampleRate: LOCAL_ASR_SAMPLE_RATE });
         const source = ctx.createMediaStreamSource(stream);
         const processor = ctx.createScriptProcessor(4096, 1, 1);
         const chunks = [];
@@ -6590,6 +6634,25 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         source.disconnect();
         stream.getTracks().forEach(track => track.stop());
         await ctx.close();
+        const samples = prepareLocalAsrSamples(concatFloat32(chunks), ctx.sampleRate || LOCAL_ASR_SAMPLE_RATE);
+        if (!samples.length) throw new Error('未录到测试音频');
+        return encodeWavFromFloat32(samples, LOCAL_ASR_SAMPLE_RATE);
+    }
+
+    function shouldUseWavCapture() {
+        return voiceConfigState?.local !== false;
+    }
+
+    function getVoiceAudioConstraints() {
+        return {
+            echoCancellation: true,
+            noiseSuppression: true,
+            autoGainControl: true,
+            channelCount: 1
+        };
+    }
+
+    function concatFloat32(chunks) {
         const total = chunks.reduce((sum, chunk) => sum + chunk.length, 0);
         const samples = new Float32Array(total);
         let offset = 0;
@@ -6597,12 +6660,14 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             samples.set(chunk, offset);
             offset += chunk.length;
         }
-        if (!samples.length) throw new Error('未录到测试音频');
-        return encodeWavFromFloat32(samples, ctx.sampleRate || 16000);
+        return samples;
     }
 
-    function shouldUseWavCapture() {
-        return voiceConfigState?.local !== false;
+    function closeAudioContext(ctx) {
+        if (!ctx) return;
+        try {
+            if (ctx.state !== 'closed') ctx.close();
+        } catch {}
     }
 
     async function testVoiceAsrSettings() {
@@ -6846,9 +6911,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         try {
             voiceCancelRequested = false;
             voiceCaptureSource = source || 'button';
-            voiceStream = await navigator.mediaDevices.getUserMedia({
-                audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true }
-            });
+            voiceStream = await navigator.mediaDevices.getUserMedia({ audio: getVoiceAudioConstraints() });
             voiceChunks = [];
             voiceMediaRecorder = new MediaRecorder(voiceStream, { mimeType });
             voiceMediaRecorder.ondataavailable = (event) => {
@@ -6888,10 +6951,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         try {
             voiceCancelRequested = false;
             voiceCaptureSource = source || 'button';
-            voiceStream = await navigator.mediaDevices.getUserMedia({
-                audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true }
-            });
-            const ctx = new AudioCtx({ sampleRate: 16000 });
+            voiceStream = await navigator.mediaDevices.getUserMedia({ audio: getVoiceAudioConstraints() });
+            const ctx = new AudioCtx({ sampleRate: LOCAL_ASR_SAMPLE_RATE });
             voiceVadContext = ctx;
             const audioSource = ctx.createMediaStreamSource(voiceStream);
             const processor = ctx.createScriptProcessor(4096, 1, 1);
@@ -6947,14 +7008,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                         if (captureSource === 'wake' && wakeEnabled) scheduleWakeRestart(700);
                         return;
                     }
-                    const total = chunks.reduce((sum, chunk) => sum + chunk.length, 0);
-                    const samples = new Float32Array(total);
-                    let offset = 0;
-                    for (const chunk of chunks) {
-                        samples.set(chunk, offset);
-                        offset += chunk.length;
-                    }
-                    const audioBlob = encodeWavFromFloat32(samples, ctx.sampleRate || 16000);
+                    const samples = prepareLocalAsrSamples(concatFloat32(chunks), ctx.sampleRate || LOCAL_ASR_SAMPLE_RATE);
+                    const audioBlob = encodeWavFromFloat32(samples, LOCAL_ASR_SAMPLE_RATE);
                     voiceMediaRecorder = null;
                     await transcribeVoiceBlob(audioBlob);
                     if (captureSource === 'wake' && wakeEnabled) scheduleWakeRestart(1400);
@@ -7089,12 +7144,24 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
             value = value.replace(new RegExp(escaped, 'ig'), ' ');
         });
+        value = value
+            .replace(/晓诺同学|晓诺|小糯同学|小糯|小诺同學/g, ' ')
+            .replace(/小\s*诺\s*同\s*学/g, ' ')
+            .replace(/小\s*诺/g, ' ');
         return value.replace(/[，。！？、；：,.!?;:]/g, ' ').replace(/\s+/g, ' ').trim();
     }
 
     function hasWakeWord(text) {
-        const cmd = normalizeVoiceCommand(text);
-        return WAKE_WORDS.some(word => cmd.includes(normalizeVoiceCommand(word)));
+        const cmd = normalizeWakeText(text);
+        if (!cmd) return false;
+        return cmd.includes('小诺同学') ||
+            cmd.includes('小诺小诺') ||
+            cmd === '小诺' ||
+            cmd.startsWith('小诺请') ||
+            cmd.startsWith('小诺帮') ||
+            cmd.startsWith('小诺打开') ||
+            cmd.startsWith('小诺设计') ||
+            /xiaonuo/.test(cmd);
     }
 
     function sendVoiceTextAsUserMessage(text) {
@@ -7123,6 +7190,16 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         }
         updateVoiceUI('success', '启动设计：' + (route.label || route.target || '抗体候选'));
         sendQuickDesignWorkflow(text, route.routeId || '');
+    }
+
+    function normalizeWakeText(text) {
+        return normalizeVoiceCommand(text)
+            .replace(/\s+/g, '')
+            .replace(/晓/g, '小')
+            .replace(/糯/g, '诺')
+            .replace(/挪/g, '诺')
+            .replace(/若/g, '诺')
+            .replace(/同學/g, '同学');
     }
 
     function handleResolvedVoiceIntent(intent, rawText) {
@@ -7298,6 +7375,11 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         clearTimeout(wakeRestartTimer);
         wakeSegmentTimer = null;
         wakeRestartTimer = null;
+        if (wakeWavController && wakeWavController.state !== 'inactive') {
+            try { wakeWavController.stop(); } catch {}
+        }
+        wakeWavController = null;
+        wakeTailSamples = null;
         if (wakeRecorder && wakeRecorder.state !== 'inactive') {
             try { wakeRecorder.stop(); } catch {}
         }
@@ -7307,6 +7389,51 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             wakeStream = null;
         }
         updateVoiceUI(options.silent ? 'idle' : 'success', options.message || '小诺同学语音唤醒已关闭');
+    }
+
+    async function createWakeWavController() {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) throw new Error('当前浏览器不支持本地语音采集');
+        const ctx = new AudioCtx({ sampleRate: LOCAL_ASR_SAMPLE_RATE });
+        const source = ctx.createMediaStreamSource(wakeStream);
+        const processor = ctx.createScriptProcessor(4096, 1, 1);
+        const chunks = [];
+        let speechDetected = false;
+        let peakRms = 0;
+        processor.onaudioprocess = (event) => {
+            const input = event.inputBuffer.getChannelData(0);
+            const frame = new Float32Array(input);
+            chunks.push(frame);
+            let sum = 0;
+            for (let i = 0; i < frame.length; i++) sum += frame[i] * frame[i];
+            const rms = Math.sqrt(sum / frame.length);
+            peakRms = Math.max(peakRms, rms);
+            if (rms >= VOICE_VAD_LEVEL * 0.65) speechDetected = true;
+        };
+        source.connect(processor);
+        processor.connect(ctx.destination);
+        return {
+            state: 'recording',
+            stop: async () => {
+                if (!wakeWavController || wakeWavController.state === 'inactive') return;
+                wakeWavController.state = 'inactive';
+                try { processor.disconnect(); } catch {}
+                try { source.disconnect(); } catch {}
+                closeAudioContext(ctx);
+                const body = concatFloat32(chunks);
+                const previous = wakeTailSamples && wakeTailSamples.length ? wakeTailSamples : null;
+                const combined = previous ? concatFloat32([previous, body]) : body;
+                const prepared = prepareLocalAsrSamples(combined, ctx.sampleRate || LOCAL_ASR_SAMPLE_RATE, { skipTrim: true });
+                const overlapCount = Math.min(combined.length, Math.round((ctx.sampleRate || LOCAL_ASR_SAMPLE_RATE) * WAKE_OVERLAP_MS / 1000));
+                wakeTailSamples = overlapCount > 0 ? combined.slice(combined.length - overlapCount) : null;
+                const minSamples = Math.round((ctx.sampleRate || LOCAL_ASR_SAMPLE_RATE) * 0.35);
+                if (!combined.length || combined.length < minSamples || !speechDetected && peakRms < VOICE_VAD_LEVEL * 0.4) {
+                    await handleWakeSegmentStop(null, null);
+                    return;
+                }
+                await handleWakeSegmentStop(encodeWavFromFloat32(prepared, LOCAL_ASR_SAMPLE_RATE), 'audio/wav');
+            }
+        };
     }
 
     function startWakeCommandCapture() {
@@ -7331,9 +7458,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         }
         try {
             wakeBusy = true;
-            wakeStream = await navigator.mediaDevices.getUserMedia({
-                audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true }
-            });
+            wakeStream = await navigator.mediaDevices.getUserMedia({ audio: getVoiceAudioConstraints() });
             wakeEnabled = true;
             wakeBusy = false;
             updateVoiceUI('wake', '小诺同学待命中');
@@ -7347,9 +7472,23 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         }
     }
 
-    function startWakeSegment() {
+    async function startWakeSegment() {
         if (!wakeEnabled || !wakeStream) return;
         if (wakeRecorder && wakeRecorder.state !== 'inactive') return;
+        if (wakeWavController && wakeWavController.state !== 'inactive') return;
+        if (shouldUseWavCapture()) {
+            try {
+                wakeWavController = await createWakeWavController();
+                updateVoiceUI(wakeActiveCommand ? 'awake' : 'wake', wakeActiveCommand ? '小诺已唤醒，请说指令' : '小诺同学待命中');
+                wakeSegmentTimer = setTimeout(() => {
+                    if (wakeWavController && wakeWavController.state !== 'inactive') wakeWavController.stop();
+                }, wakeActiveCommand ? Math.min(VOICE_MAX_MS, WAKE_AWAKE_WINDOW_MS) : WAKE_SEGMENT_MS);
+            } catch (err) {
+                console.warn('[Voice] Wake WAV segment failed:', err);
+                stopWakeListening({ message: '语音唤醒不可用' });
+            }
+            return;
+        }
         const mimeType = getVoiceMimeType();
         wakeChunks = [];
         try {
@@ -7373,17 +7512,20 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         }
     }
 
-    async function handleWakeSegmentStop(mimeType) {
+    async function handleWakeSegmentStop(audioOrMimeType, explicitMimeType) {
         clearTimeout(wakeSegmentTimer);
         wakeSegmentTimer = null;
-        const chunks = wakeChunks.slice();
+        let blob = audioOrMimeType instanceof Blob ? audioOrMimeType : null;
+        const mimeType = explicitMimeType || audioOrMimeType;
+        const chunks = blob ? [] : wakeChunks.slice();
         wakeChunks = [];
         wakeRecorder = null;
-        if (!wakeEnabled || !chunks.length) {
+        wakeWavController = null;
+        if (!wakeEnabled || (!blob && !chunks.length)) {
             if (wakeEnabled) scheduleWakeRestart(120);
             return;
         }
-        const blob = new Blob(chunks, { type: mimeType || 'audio/webm' });
+        if (!blob) blob = new Blob(chunks, { type: mimeType || 'audio/webm' });
         try {
             const text = await requestVoiceTranscription(blob);
             processWakeTranscript(text);

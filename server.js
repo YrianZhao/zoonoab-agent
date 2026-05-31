@@ -8,6 +8,7 @@ const http = require('http');
 const https = require('https');
 const path = require('path');
 const fs = require('fs');
+const { spawn } = require('child_process');
 const { v4: uuidv4 } = require('uuid');
 
 const app = express();
@@ -18,6 +19,8 @@ const VOICE_AUDIO_LIMIT_BYTES = 8 * 1024 * 1024;
 const VOICE_SESSION_TTL_MS = 2 * 60 * 60 * 1000;
 const VOICE_ASR_PROVIDER = (process.env.VOICE_ASR_PROVIDER || 'local').toLowerCase();
 const LOCAL_ASR_BASE_URL = process.env.LOCAL_ASR_BASE_URL || 'http://127.0.0.1:8765/v1/audio/transcriptions';
+const LOCAL_ASR_AUTO_START = process.env.LOCAL_ASR_AUTO_START !== '0';
+const LOCAL_ASR_START_COOLDOWN_MS = Number(process.env.LOCAL_ASR_START_COOLDOWN_MS || 5000);
 const VOICE_TRANSCRIBE_MODEL = process.env.VOICE_TRANSCRIBE_MODEL ||
   (VOICE_ASR_PROVIDER === 'deepseek' ? 'deepseek-v4-flash' : (VOICE_ASR_PROVIDER === 'local' ? 'paraformer-zh' : 'gpt-4o-transcribe'));
 const ASSISTANT_CHAT_MODEL = process.env.ASSISTANT_CHAT_MODEL || process.env.DEEPSEEK_CHAT_MODEL || 'deepseek-chat';
@@ -46,6 +49,9 @@ const voiceAudioParser = express.raw({
 const voiceRuntimeConfigs = new Map();
 let persistedVoiceConfigCache = null;
 let persistedVoiceConfigMtimeMs = 0;
+let localAsrProcess = null;
+let localAsrStarting = false;
+let localAsrLastStartAt = 0;
 
 app.use(express.json({ limit: '1mb' }));
 app.use((req, res, next) => {
@@ -96,6 +102,127 @@ function inferVoiceProvider(url) {
 
 function isLocalVoiceProvider(provider) {
   return ['local', 'offline', 'funasr'].includes(String(provider || '').toLowerCase());
+}
+
+function isLoopbackVoiceUrl(rawUrl) {
+  try {
+    const url = new URL(rawUrl);
+    return url.protocol === 'http:' && ['localhost', '127.0.0.1', '::1'].includes(url.hostname);
+  } catch {
+    return false;
+  }
+}
+
+function localAsrHealthUrl(rawUrl) {
+  try {
+    const url = new URL(rawUrl || LOCAL_ASR_BASE_URL);
+    url.pathname = '/health';
+    url.search = '';
+    url.hash = '';
+    return url.toString();
+  } catch {
+    return '';
+  }
+}
+
+function localAsrSpawnAddress(rawUrl) {
+  try {
+    const url = new URL(rawUrl || LOCAL_ASR_BASE_URL);
+    const hostname = url.hostname === 'localhost' || url.hostname === '::1' ? '127.0.0.1' : url.hostname;
+    const port = url.port || '8765';
+    return { host: hostname, port };
+  } catch {
+    return { host: '127.0.0.1', port: '8765' };
+  }
+}
+
+async function fetchLocalAsrHealth(rawUrl, timeoutMs = 800) {
+  if (typeof fetch !== 'function') return { ok: false, state: 'unsupported', ready: false };
+  const healthUrl = localAsrHealthUrl(rawUrl);
+  if (!healthUrl) return { ok: false, state: 'invalid_url', ready: false };
+  const controller = typeof AbortController === 'function' ? new AbortController() : null;
+  const timeout = controller ? setTimeout(() => controller.abort(), timeoutMs) : null;
+  try {
+    const resp = await fetch(healthUrl, { signal: controller ? controller.signal : undefined });
+    const data = await resp.json().catch(() => ({}));
+    return {
+      ok: resp.ok && data && data.ok !== false,
+      ready: Boolean(data && data.ready),
+      state: String(data && data.state || (resp.ok ? 'ready' : 'unavailable')),
+      model: data && data.model || '',
+      error: data && data.error || ''
+    };
+  } catch (err) {
+    return {
+      ok: false,
+      ready: false,
+      state: err && err.name === 'AbortError' ? 'timeout' : 'unavailable',
+      error: err && err.message ? err.message : ''
+    };
+  } finally {
+    if (timeout) clearTimeout(timeout);
+  }
+}
+
+function canAutoStartLocalAsr(providerConfig) {
+  if (!LOCAL_ASR_AUTO_START || !providerConfig) return false;
+  if (!isLocalVoiceProvider(providerConfig.provider)) return false;
+  if (!isLoopbackVoiceUrl(providerConfig.url)) return false;
+  return fs.existsSync(path.join(__dirname, 'scripts', 'run_local_asr.sh'));
+}
+
+function startLocalAsrIfNeeded(providerConfig, reason = 'voice') {
+  if (!canAutoStartLocalAsr(providerConfig)) return false;
+  if (localAsrProcess && !localAsrProcess.killed) return true;
+  const now = Date.now();
+  if (localAsrStarting || now - localAsrLastStartAt < LOCAL_ASR_START_COOLDOWN_MS) return true;
+  localAsrStarting = true;
+  localAsrLastStartAt = now;
+  const scriptPath = path.join(__dirname, 'scripts', 'run_local_asr.sh');
+  const localAddress = localAsrSpawnAddress(providerConfig.url);
+  console.log(`[Voice] Starting local ASR sidecar (${reason})...`);
+  const child = spawn('bash', [scriptPath], {
+    cwd: __dirname,
+    env: {
+      ...process.env,
+      LOCAL_ASR_HOST: process.env.LOCAL_ASR_HOST || localAddress.host,
+      LOCAL_ASR_PORT: process.env.LOCAL_ASR_PORT || localAddress.port
+    },
+    stdio: ['ignore', 'pipe', 'pipe']
+  });
+  localAsrProcess = child;
+  child.stdout.on('data', chunk => {
+    const text = String(chunk || '').trim();
+    if (text) console.log('[LocalASR]', text);
+  });
+  child.stderr.on('data', chunk => {
+    const text = String(chunk || '').trim();
+    if (text) console.warn('[LocalASR]', text);
+  });
+  child.on('spawn', () => { localAsrStarting = false; });
+  child.on('error', err => {
+    localAsrStarting = false;
+    if (localAsrProcess === child) localAsrProcess = null;
+    console.error('[Voice] Failed to start local ASR sidecar:', err && err.message ? err.message : err);
+  });
+  child.on('exit', (code, signal) => {
+    localAsrStarting = false;
+    if (localAsrProcess === child) localAsrProcess = null;
+    if (code !== 0 && signal !== 'SIGTERM') {
+      console.warn(`[Voice] Local ASR sidecar exited: code=${code} signal=${signal || ''}`);
+    }
+  });
+  return true;
+}
+
+async function ensureLocalAsrStarted(providerConfig, reason) {
+  if (!canAutoStartLocalAsr(providerConfig)) {
+    return { ok: false, started: false, state: 'disabled', ready: false };
+  }
+  const before = await fetchLocalAsrHealth(providerConfig.url);
+  if (before.ok) return { ...before, started: false };
+  const started = startLocalAsrIfNeeded(providerConfig, reason);
+  return { ...before, started };
 }
 
 function cloneApiConfigSection(section) {
@@ -377,6 +504,10 @@ async function transcribeAudioWithConfig(providerConfig, audio, contentType) {
     throw err;
   }
 
+  if (canAutoStartLocalAsr(providerConfig)) {
+    await ensureLocalAsrStarted(providerConfig, 'transcribe');
+  }
+
   const baseContentType = String(contentType || 'audio/webm').split(';')[0].trim().toLowerCase() || 'audio/webm';
   const fileType = VOICE_AUDIO_TYPES.has(baseContentType) && baseContentType !== 'application/octet-stream' ? baseContentType : 'audio/webm';
   const form = new FormData();
@@ -413,8 +544,11 @@ async function transcribeAudioWithConfig(providerConfig, audio, contentType) {
   } catch (err) {
     if (err && err.apiError) throw err;
     console.error('[Voice] Transcription request error:', err && err.message ? err.message : err);
+    if (canAutoStartLocalAsr(providerConfig)) {
+      startLocalAsrIfNeeded(providerConfig, 'transcribe-error');
+    }
     const wrapped = new Error(isLocalVoiceProvider(providerConfig.provider)
-      ? '本机离线语音服务未启动。请先运行 npm run asr:setup 完成首次安装，再运行 npm run asr:local。'
+      ? '本机离线语音正在启动或模型正在加载，请稍后再试。首次使用前请运行 npm run asr:setup 完成安装。'
       : '语音识别服务暂时不可用。');
     wrapped.status = 502;
     wrapped.apiError = isLocalVoiceProvider(providerConfig.provider) ? 'local_asr_unavailable' : 'transcription_unavailable';
@@ -423,8 +557,11 @@ async function transcribeAudioWithConfig(providerConfig, audio, contentType) {
   }
 }
 
-app.get('/api/voice/config', (_, res) => {
+app.get('/api/voice/config', async (_, res) => {
   const providerConfig = getVoiceProviderConfig();
+  const localHealth = canAutoStartLocalAsr(providerConfig)
+    ? await ensureLocalAsrStarted(providerConfig, 'config')
+    : null;
   const chatConfig = getAssistantChatConfig();
   let chatReady = false;
   let chatUrl = '';
@@ -440,6 +577,9 @@ app.get('/api/voice/config', (_, res) => {
     hasApiKey: Boolean(providerConfig.key),
     ready: Boolean((providerConfig.key || isLocalVoiceProvider(providerConfig.provider)) && providerConfig.url && providerConfig.supportsAudio),
     local: isLocalVoiceProvider(providerConfig.provider),
+    autoStart: Boolean(localHealth && localHealth.started),
+    localState: localHealth ? localHealth.state : '',
+    localReady: localHealth ? localHealth.ready : null,
     supportsAudio: providerConfig.supportsAudio,
     baseUrl: providerConfig.url || '',
     chat: {
@@ -1134,7 +1274,12 @@ const DEMO_ROUTE_RULES = [
 
 const WAKE_WORD_PATTERNS = [
   /小诺同学/g,
-  /小诺小诺/g
+  /小诺小诺/g,
+  /晓诺同学/g,
+  /晓诺/g,
+  /小糯同学/g,
+  /小糯/g,
+  /小诺/g
 ];
 
 const REPRESENTATIVE_DEMO_DIRECTIONS = [
@@ -1152,6 +1297,12 @@ const REPRESENTATIVE_DEMO_DIRECTIONS = [
 function normalizeCommandText(input) {
   return String(input || '')
     .toLowerCase()
+    .replace(/pd[\s-]*one/g, 'pd-1')
+    .replace(/pd[\s-]*l[\s-]*one/g, 'pd-l1')
+    .replace(/pdl1/g, 'pd-l1')
+    .replace(/pd1/g, 'pd-1')
+    .replace(/晓诺|小糯|小挪|小若/g, '小诺')
+    .replace(/同學/g, '同学')
     .replace(/[，。！？、；：,.!?;:]/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
@@ -2844,8 +2995,24 @@ app.post('/api/export/sequences', (req, res) => {
 
 app.get('/api/health', (_, res) => res.json({ ok: true, platform: 'ZoonoAb', sessions: sessions.size }));
 
+function stopManagedLocalAsr() {
+  if (localAsrProcess && !localAsrProcess.killed) {
+    try { localAsrProcess.kill('SIGTERM'); } catch {}
+  }
+  localAsrProcess = null;
+}
+
 process.on('SIGTERM', () => {
   console.log('[Server] SIGTERM received, shutting down gracefully...');
+  stopManagedLocalAsr();
+  wss.clients.forEach(c => c.close());
+  server.close(() => { console.log('[Server] HTTP server closed.'); process.exit(0); });
+  setTimeout(() => process.exit(1), 10_000);
+});
+
+process.on('SIGINT', () => {
+  console.log('[Server] SIGINT received, shutting down gracefully...');
+  stopManagedLocalAsr();
   wss.clients.forEach(c => c.close());
   server.close(() => { console.log('[Server] HTTP server closed.'); process.exit(0); });
   setTimeout(() => process.exit(1), 10_000);

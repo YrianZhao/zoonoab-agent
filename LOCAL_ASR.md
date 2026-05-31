@@ -13,7 +13,7 @@ npm run asr:setup
 
 ## 启动本机离线 ASR
 
-开一个终端运行：
+默认情况下，`npm start` 会在网页读取语音配置或首次转写时自动启动本机 ASR sidecar。也可以手动开一个终端运行：
 
 ```bash
 npm run asr:local
@@ -27,13 +27,17 @@ http://127.0.0.1:8765/v1/audio/transcriptions
 
 服务启动后 `/health` 会立刻可用；识别模型会在后台预热。首次下载和加载完成后，再次启动会明显更快。
 
-再开另一个终端运行网页服务：
+运行网页服务：
 
 ```bash
 npm start
 ```
 
-网页默认会优先调用本机离线 ASR。API 面板里的语音识别默认地址也指向本机服务，本机模式不需要 API Key。
+网页默认会优先调用本机离线 ASR。API 面板里的语音识别默认地址也指向本机服务，本机模式不需要 API Key。需要禁用自动启动时可设置：
+
+```bash
+LOCAL_ASR_AUTO_START=0 npm start
+```
 
 ## 自定义模型或端口
 
@@ -47,6 +51,8 @@ LOCAL_ASR_MODEL=iic/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-p
 LOCAL_ASR_VAD_MODEL=fsmn-vad LOCAL_ASR_PUNC_MODEL=ct-punc npm run asr:local
 ```
 
+本机模式下，前端普通语音和“小诺同学”唤醒监听都会发送 16k WAV，避免浏览器 `webm/mp4` 在本机 FunASR 环境里依赖 ffmpeg。ASR sidecar 默认带抗体设计领域热词，可通过 `LOCAL_ASR_HOTWORDS` 覆盖。
+
 后端也可以通过环境变量指向别的本地 ASR 服务：
 
 ```bash
@@ -55,7 +61,7 @@ VOICE_ASR_PROVIDER=local LOCAL_ASR_BASE_URL=http://127.0.0.1:8765/v1/audio/trans
 
 ## 常见问题
 
-- 页面提示“本机离线语音服务未启动”：先确认 `npm run asr:local` 正在运行。
+- 页面提示“本机离线语音服务未启动”：先确认已经运行过 `npm run asr:setup`；默认 `npm start` 会自动尝试拉起本机 ASR，也可以手动运行 `npm run asr:local`。
 - 页面提示“本机离线语音模型正在加载”：等待首次模型下载或预热完成，不需要填写 API Key。
 - 首次启动慢：模型第一次下载和加载需要时间，之后会快很多。
 - 完全断网前：先联网完成 `npm run asr:setup` 和第一次 `npm run asr:local`，确保模型已缓存到本机。

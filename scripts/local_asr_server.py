@@ -27,6 +27,10 @@ VAD_MODEL = os.environ.get("LOCAL_ASR_VAD_MODEL", "")
 PUNC_MODEL = os.environ.get("LOCAL_ASR_PUNC_MODEL", "")
 DEVICE = os.environ.get("LOCAL_ASR_DEVICE", "cpu")
 PRELOAD_MODEL = os.environ.get("LOCAL_ASR_PRELOAD", "1").lower() not in {"0", "false", "no", "off"}
+HOTWORDS = os.environ.get(
+    "LOCAL_ASR_HOTWORDS",
+    "小诺同学 小诺小诺 小诺 PD-1 PD-L1 PDL1 IL-33 ST2 HER2 TNF Fab VHH 抗体 设计 候选 亲和力 阻断 通路 结构模型"
+)
 
 _MODEL = None
 _MODEL_LOCK = threading.Lock()
@@ -112,6 +116,8 @@ def transcribe_file(path: str) -> str:
         "use_itn": True,
         "batch_size_s": 60,
     }
+    if HOTWORDS.strip():
+        kwargs["hotword"] = HOTWORDS.strip()
     if normalize_optional_model(VAD_MODEL):
         kwargs.update({
             "merge_vad": True,
