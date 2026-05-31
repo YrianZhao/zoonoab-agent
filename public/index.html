@@ -8646,6 +8646,7 @@ ${fallbackTableRows(profile.rows)}
     let activeBinderIdx = 0;    // Currently selected binder
     let galleryViewers = {};   // { pdbId: { iframe, viewer } }
     let currentGalleryViewer = null;
+    let currentViewerSection = null;
 
     const FALLBACK_BINDER_FILES = [
         '4KC3_site1_1655576_binder-0_iptm-0.7953_complex.pdb',
@@ -8769,6 +8770,29 @@ ${fallbackTableRows(profile.rows)}
         });
     }
 
+    function findViewerElement(id) {
+        if (currentViewerSection && currentViewerSection.isConnected) {
+            if (currentViewerSection.id === id) return currentViewerSection;
+            const scoped = Array.from(currentViewerSection.querySelectorAll('[id]')).find(el => el.id === id);
+            if (scoped) return scoped;
+        }
+        return document.getElementById(id);
+    }
+
+    function getViewerRoot() {
+        return (currentViewerSection && currentViewerSection.isConnected) ? currentViewerSection : document;
+    }
+
+    function withViewerSection(section, fn) {
+        const previous = currentViewerSection;
+        currentViewerSection = section;
+        try {
+            return fn();
+        } finally {
+            currentViewerSection = previous && previous.isConnected ? previous : section;
+        }
+    }
+
     function normalizeBinderPayload(primaryPDB, allPDBs, binderData) {
         const fromAllPDBs = Array.isArray(allPDBs) ? allPDBs.filter(Boolean) : [];
         const fromBinderData = Array.isArray(binderData) ? binderData.filter(item => item && item.id).map(item => item.id) : [];
@@ -8807,10 +8831,14 @@ ${fallbackTableRows(profile.rows)}
         const normalized = normalizeBinderPayload(primaryPDB, allPDBs, binderData);
         const pdbIds = normalized.pdbIds;
         binderDataList = normalized.binders;
+        activeBinderIdx = 0;
+        galleryViewers = {};
+        currentGalleryViewer = null;
 
         const section = document.createElement('div');
         section.className = 'section-3d';
         section.id = 'section3d';
+        currentViewerSection = section;
 
         section.innerHTML = `
             <div class="viewer-header">
@@ -8906,12 +8934,12 @@ ${fallbackTableRows(profile.rows)}
         refreshLucideIcons({ nodes: [section] });
         scrollBottom();
 
-        setTimeout(() => {
+        setTimeout(() => withViewerSection(section, () => {
             try { renderGalleryCards(pdbIds); } catch (err) { console.error('[3D] gallery render failed:', err); }
             try { renderBindersRow(); } catch (err) { console.error('[3D] binders render failed:', err); }
             try { selectBinder(0); } catch (err) { console.error('[3D] binder selection failed:', err); }
             try { renderChainStrips('Chothia'); } catch (err) { console.error('[3D] chain strip render failed:', err); }
-        }, 100);
+        }), 100);
     }
 
     // ─── Chain Sequence Strip (Chothia / IMGT / Kabat / Martin) ───
@@ -8947,7 +8975,7 @@ ${fallbackTableRows(profile.rows)}
             { id: 'chainStripLight', chain: sc.L, clsPre: 'light' },
         ];
         for (const { id, chain, clsPre } of chains) {
-            const el = document.getElementById(id);
+            const el = findViewerElement(id);
             if (!el) continue;
             let html = '';
             const pct = (100 / chain.len).toFixed(4);
@@ -8977,7 +9005,7 @@ ${fallbackTableRows(profile.rows)}
     const galleryInitQueue = [];  // [{pdbId, idx, inited: false}]
 
     function renderGalleryCards(allPDBs) {
-        const container = document.getElementById('galleryScroll');
+        const container = findViewerElement('galleryScroll');
         if (!container) return;
         const pdbIds = Array.isArray(allPDBs) && allPDBs.length ? allPDBs : binderDataList.map(item => item.id).filter(Boolean);
         container.innerHTML = '';
@@ -9020,7 +9048,7 @@ ${fallbackTableRows(profile.rows)}
 
         // Initial lazy load + scroll observer
         lazyInitGalleryViewers();
-        const scrollEl = document.getElementById('galleryScroll');
+        const scrollEl = container;
         if (scrollEl && !scrollEl._lazyObserver) {
             scrollEl._lazyObserver = new IntersectionObserver((entries) => {
                 entries.forEach(e => {
@@ -9035,7 +9063,7 @@ ${fallbackTableRows(profile.rows)}
             }, { root: scrollEl, threshold: 0.1 });
             // Observe all cards
             setTimeout(() => {
-                document.querySelectorAll('.gallery-card').forEach(c => scrollEl._lazyObserver.observe(c));
+                container.querySelectorAll('.gallery-card').forEach(c => scrollEl._lazyObserver.observe(c));
             }, 50);
         }
     }
@@ -9052,7 +9080,7 @@ ${fallbackTableRows(profile.rows)}
     }
 
     function initGalleryViewer(pdbId, idx) {
-        var container = document.getElementById('galleryViewer-' + pdbId);
+        var container = findViewerElement('galleryViewer-' + pdbId);
         if (!container) { console.error('[Gallery] Container not found for ' + pdbId); return; }
 
         var url = getPDBUrl(pdbId);
@@ -9076,7 +9104,7 @@ ${fallbackTableRows(profile.rows)}
     }
 
     function renderBindersRow() {
-        const row = document.getElementById('bindersRow');
+        const row = findViewerElement('bindersRow');
         if (!row) return;
         row.innerHTML = '';
         if (!binderDataList || binderDataList.length === 0) {
@@ -9104,9 +9132,10 @@ ${fallbackTableRows(profile.rows)}
         }
         activeBinderIdx = idx;
         const meta = binderDataList[idx] || {};
+        const root = getViewerRoot();
 
-        document.querySelectorAll('.gallery-card').forEach((c, i) => c.classList.toggle('active', i === idx));
-        document.querySelectorAll('.binder-chip').forEach((c, i) => c.classList.toggle('active', i === idx));
+        root.querySelectorAll('.gallery-card').forEach((c, i) => c.classList.toggle('active', i === idx));
+        root.querySelectorAll('.binder-chip').forEach((c, i) => c.classList.toggle('active', i === idx));
 
         const pdbId = meta.id;
         currentGalleryViewer = (pdbId && galleryViewers[pdbId]) ? galleryViewers[pdbId] : null;
@@ -9116,9 +9145,9 @@ ${fallbackTableRows(profile.rows)}
 
     function renderSequenceDetail(meta) {
         meta = meta || {};
-        const seqEl = document.getElementById('seqDisplay');
-        const lenEl = document.getElementById('seqLen');
-        const metEl = document.getElementById('seqMetrics');
+        const seqEl = findViewerElement('seqDisplay');
+        const lenEl = findViewerElement('seqLen');
+        const metEl = findViewerElement('seqMetrics');
         const ipTm = getBinderIpTm(meta);
 
         const seed = ipTm !== null ? Math.floor(ipTm * 10000) :
@@ -9176,7 +9205,7 @@ ${fallbackTableRows(profile.rows)}
         showToast(t('Sequence toggled!'), 'success');
     }
     function copySequence() {
-        const text = document.getElementById('seqDisplay')?.textContent || '';
+        const text = findViewerElement('seqDisplay')?.textContent || '';
         navigator.clipboard.writeText(text.replace(/\s/g,'')).then(() => showToast('Sequence copied!', 'success'));
     }
     function toggleFilter() { showToast(t('Filter options coming soon'), 'info'); }
