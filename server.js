@@ -53,6 +53,31 @@ let localAsrProcess = null;
 let localAsrStarting = false;
 let localAsrLastStartAt = 0;
 
+function localAsrVenvPythonPath() {
+  return path.join(__dirname, '.runtime', 'local-asr-venv', 'bin', 'python');
+}
+
+function getLocalAsrInstallStatus() {
+  const scriptPath = path.join(__dirname, 'scripts', 'run_local_asr.sh');
+  const pythonPath = localAsrVenvPythonPath();
+  return {
+    scriptReady: fs.existsSync(scriptPath),
+    venvReady: fs.existsSync(pythonPath),
+    setupCommand: 'npm run asr:setup',
+    startCommand: 'npm run asr:local'
+  };
+}
+
+function getLocalAsrProcessState() {
+  const running = Boolean(localAsrProcess && !localAsrProcess.killed);
+  return {
+    managed: running,
+    starting: Boolean(localAsrStarting),
+    pid: running ? localAsrProcess.pid || null : null,
+    lastStartAt: localAsrLastStartAt || null
+  };
+}
+
 app.use(express.json({ limit: '1mb' }));
 app.use((req, res, next) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
@@ -150,6 +175,7 @@ async function fetchLocalAsrHealth(rawUrl, timeoutMs = 800) {
       ready: Boolean(data && data.ready),
       state: String(data && data.state || (resp.ok ? 'ready' : 'unavailable')),
       model: data && data.model || '',
+      device: data && data.device || '',
       error: data && data.error || ''
     };
   } catch (err) {
@@ -168,11 +194,14 @@ function canAutoStartLocalAsr(providerConfig) {
   if (!LOCAL_ASR_AUTO_START || !providerConfig) return false;
   if (!isLocalVoiceProvider(providerConfig.provider)) return false;
   if (!isLoopbackVoiceUrl(providerConfig.url)) return false;
-  return fs.existsSync(path.join(__dirname, 'scripts', 'run_local_asr.sh'));
+  const install = getLocalAsrInstallStatus();
+  return install.scriptReady;
 }
 
 function startLocalAsrIfNeeded(providerConfig, reason = 'voice') {
   if (!canAutoStartLocalAsr(providerConfig)) return false;
+  const install = getLocalAsrInstallStatus();
+  if (!install.venvReady) return false;
   if (localAsrProcess && !localAsrProcess.killed) return true;
   const now = Date.now();
   if (localAsrStarting || now - localAsrLastStartAt < LOCAL_ASR_START_COOLDOWN_MS) return true;
@@ -219,10 +248,110 @@ async function ensureLocalAsrStarted(providerConfig, reason) {
   if (!canAutoStartLocalAsr(providerConfig)) {
     return { ok: false, started: false, state: 'disabled', ready: false };
   }
+  const install = getLocalAsrInstallStatus();
+  if (!install.venvReady) {
+    return {
+      ok: false,
+      started: false,
+      state: 'not_installed',
+      ready: false,
+      error: `Local ASR environment is missing. Run: ${install.setupCommand}`
+    };
+  }
   const before = await fetchLocalAsrHealth(providerConfig.url);
   if (before.ok) return { ...before, started: false };
   const started = startLocalAsrIfNeeded(providerConfig, reason);
   return { ...before, started };
+}
+
+function makeVoiceHealthMessage({ providerConfig, install, localHealth, localAutoStartAvailable, canTranscribe }) {
+  if (!providerConfig || !providerConfig.url) {
+    return '语音识别地址未配置。';
+  }
+  if (!providerConfig.supportsAudio) {
+    return '当前语音识别提供方不支持音频转写。';
+  }
+  if (!isLocalVoiceProvider(providerConfig.provider)) {
+    if (!providerConfig.key) return voiceProviderMissingKeyError(providerConfig.provider);
+    return canTranscribe ? '云端语音识别配置已就绪。' : '云端语音识别配置待检查。';
+  }
+  if (localHealth && localHealth.ready) return '本机离线语音已就绪。';
+  if (!install.scriptReady || !install.venvReady) {
+    return `本机离线语音依赖未安装。请先运行 ${install.setupCommand}。`;
+  }
+  if (!isLoopbackVoiceUrl(providerConfig.url)) {
+    return '本机离线语音地址必须指向 localhost 或 127.0.0.1。';
+  }
+  if (!localAutoStartAvailable && LOCAL_ASR_AUTO_START) {
+    return '本机离线语音自动启动条件不满足，请手动运行 npm run asr:local。';
+  }
+  const state = localHealth && localHealth.state || '';
+  if (state === 'loading') return '本机离线语音模型正在加载，首次启动需要等待模型预热完成。';
+  if (state === 'timeout') return '本机离线语音服务响应超时，模型可能仍在加载。';
+  if (state === 'error') return localHealth.error ? `本机离线语音模型加载失败：${localHealth.error}` : '本机离线语音模型加载失败。';
+  if (localAsrStarting || localAsrProcess && !localAsrProcess.killed) return '本机离线语音服务正在启动，请稍后再试。';
+  if (!LOCAL_ASR_AUTO_START) return '本机离线语音自动启动已关闭，请运行 npm run asr:local。';
+  return '本机离线语音服务未就绪，系统会尝试自动启动。';
+}
+
+async function buildVoiceHealth(providerConfig = getVoiceProviderConfig(), options = {}) {
+  const local = isLocalVoiceProvider(providerConfig.provider);
+  const install = local ? getLocalAsrInstallStatus() : null;
+  const localAutoStartEligible = local ? canAutoStartLocalAsr(providerConfig) : false;
+  const localAutoStartAvailable = Boolean(localAutoStartEligible && install && install.venvReady);
+  let localHealth = null;
+  if (local) {
+    localHealth = options.autoStart
+      ? await ensureLocalAsrStarted(providerConfig, options.reason || 'health')
+      : await fetchLocalAsrHealth(providerConfig.url);
+    if (install && !install.venvReady && !(localHealth && localHealth.ok)) {
+      localHealth = {
+        ok: false,
+        ready: false,
+        state: 'not_installed',
+        started: false,
+        error: `Local ASR environment is missing. Run: ${install.setupCommand}`
+      };
+    }
+  }
+  const providerReady = Boolean((providerConfig.key || local) && providerConfig.url && providerConfig.supportsAudio);
+  const localReady = local ? Boolean(localHealth && localHealth.ready) : null;
+  const canTranscribe = providerReady && (!local || localReady);
+  const status = !providerReady
+    ? 'misconfigured'
+    : local
+      ? (localReady ? 'ready' : (localHealth && localHealth.state || 'unavailable'))
+      : (providerConfig.key ? 'ready' : 'missing_key');
+  const message = makeVoiceHealthMessage({
+    providerConfig,
+    install: install || {},
+    localHealth,
+    localAutoStartAvailable,
+    canTranscribe
+  });
+  return {
+    ok: providerReady,
+    status,
+    message,
+    canTranscribe,
+    provider: providerConfig.provider,
+    model: providerConfig.model,
+    baseUrl: providerConfig.url || '',
+    supportsAudio: providerConfig.supportsAudio,
+    hasApiKey: Boolean(providerConfig.key),
+    local,
+    localReady,
+    autoStartEnabled: LOCAL_ASR_AUTO_START,
+    autoStartAvailable: localAutoStartAvailable,
+    install,
+    localState: localHealth ? localHealth.state : '',
+    localHealth,
+    process: local ? getLocalAsrProcessState() : null,
+    audio: {
+      sampleRate: 16000,
+      format: local ? 'wav' : 'browser-default'
+    }
+  };
 }
 
 function cloneApiConfigSection(section) {
@@ -559,9 +688,8 @@ async function transcribeAudioWithConfig(providerConfig, audio, contentType) {
 
 app.get('/api/voice/config', async (_, res) => {
   const providerConfig = getVoiceProviderConfig();
-  const localHealth = canAutoStartLocalAsr(providerConfig)
-    ? await ensureLocalAsrStarted(providerConfig, 'config')
-    : null;
+  const health = await buildVoiceHealth(providerConfig, { autoStart: true, reason: 'config' });
+  const localHealth = health.localHealth || null;
   const chatConfig = getAssistantChatConfig();
   let chatReady = false;
   let chatUrl = '';
@@ -578,8 +706,16 @@ app.get('/api/voice/config', async (_, res) => {
     ready: Boolean((providerConfig.key || isLocalVoiceProvider(providerConfig.provider)) && providerConfig.url && providerConfig.supportsAudio),
     local: isLocalVoiceProvider(providerConfig.provider),
     autoStart: Boolean(localHealth && localHealth.started),
+    autoStartEnabled: health.autoStartEnabled,
+    autoStartAvailable: health.autoStartAvailable,
     localState: localHealth ? localHealth.state : '',
     localReady: localHealth ? localHealth.ready : null,
+    healthStatus: health.status,
+    healthMessage: health.message,
+    canTranscribe: health.canTranscribe,
+    localHealth,
+    process: health.process,
+    install: health.install,
     supportsAudio: providerConfig.supportsAudio,
     baseUrl: providerConfig.url || '',
     chat: {
@@ -593,6 +729,13 @@ app.get('/api/voice/config', async (_, res) => {
     configExpiresInSeconds: null,
     sessionTtlSeconds: Math.floor(VOICE_SESSION_TTL_MS / 1000)
   });
+});
+
+app.get('/api/voice/health', async (req, res) => {
+  const autoStart = String(req.query && req.query.autostart || '1') !== '0';
+  const providerConfig = getVoiceProviderConfig(req);
+  const health = await buildVoiceHealth(providerConfig, { autoStart, reason: 'health' });
+  res.json(health);
 });
 
 app.post('/api/voice/session', (req, res) => {
