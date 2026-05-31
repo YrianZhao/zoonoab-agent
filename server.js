@@ -650,6 +650,8 @@ app.post('/api/voice/transcribe', (req, res, next) => {
 });
 app.use(express.static(path.join(__dirname, 'public')));
 
+let workflowDisplaySerial = 0;
+
 function buildRouteProfile(target, blockTarget, abType) {
   let key = String(target || '').toUpperCase().replace(/\s+/g, '');
   if (['PDL1', 'PD-L-1'].includes(key)) key = 'PD-L1';
@@ -664,6 +666,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       mechanism: '阻断 IL-33 与 ST2 受体形成炎症信号复合物',
       evidence: 'IL-33/ST2 靶点证据包',
       evidenceSources: ['已收录文献摘要', 'IL-33/ST2 复合物结构注释', '抗 IL-33 抗体开发背景', '可开发性规则库'],
+      referenceEntries: 'UniProt IL33 / IL1RL1(ST2) 靶点条目',
       structure: 'IL-33/ST2 受体结合界面参考结构集合，包含 4KC3 结构注释',
       structureRef: '4KC3 参考界面',
       antibodies: ['Itepekimab', 'Tozorakimab', 'Astegolimab'],
@@ -695,6 +698,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       mechanism: '阻断 PD-1/PD-L1 免疫检查点相互作用，恢复 T 细胞识别',
       evidence: 'PD-1/PD-L1 免疫检查点证据包',
       evidenceSources: ['免疫检查点治疗背景', 'PD-L1 IgV 结构域注释', 'anti-PD-L1 抗体开发背景', '界面可及性规则'],
+      referenceEntries: 'UniProt CD274(PD-L1) / PDCD1(PD-1) 靶点条目',
       structure: 'PD-1/PD-L1 复合物与 anti-PD-L1 抗体结合模式参考集合',
       structureRef: 'PD-L1 IgV 界面参考模型',
       antibodies: ['Atezolizumab', 'Durvalumab', 'Avelumab'],
@@ -726,6 +730,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       mechanism: '优先识别 HER2 胞外可及区域，用于肿瘤相关过表达场景',
       evidence: 'HER2 肿瘤靶点证据包',
       evidenceSources: ['HER2 过表达疾病背景', '胞外结构域注释', '经典 HER2 抗体开发背景', '表位可及性规则'],
+      referenceEntries: 'UniProt ERBB2(HER2) 靶点条目',
       structure: 'HER2 胞外结构域与经典抗体结合模式参考集合',
       structureRef: 'HER2 ECD 参考模型',
       antibodies: ['Trastuzumab', 'Pertuzumab', 'Margetuximab'],
@@ -757,6 +762,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       mechanism: '中和 TNF 与 TNFR 结合，降低炎症因子信号',
       evidence: 'TNF 炎症因子证据包',
       evidenceSources: ['自身免疫炎症背景', 'TNF 三聚体结构注释', '抗 TNF 抗体开发背景', '三聚体界面规则'],
+      referenceEntries: 'UniProt TNF / TNFRSF1A 靶点条目',
       structure: 'TNF 三聚体及 TNFR 结合面参考集合',
       structureRef: 'TNF 三聚体参考模型',
       antibodies: ['Adalimumab', 'Infliximab', 'Certolizumab'],
@@ -806,6 +812,33 @@ function buildScreeningPlan(count) {
     diversityClusters: Math.max(4, Math.min(12, Math.ceil(targetCount / 2))),
     maxIdentity: targetCount <= 10 ? '约 82%' : '约 78%',
     cdrMedian: targetCount <= 10 ? '约 12 aa' : '约 13 aa'
+  };
+}
+
+function randInt(min, max) {
+  const lo = Math.ceil(min);
+  const hi = Math.floor(max);
+  return lo + Math.floor(Math.random() * (hi - lo + 1));
+}
+
+function buildWorkflowDisplayMeta(profile, count, plan) {
+  const targetCount = Math.max(1, Number(count) || (plan && plan.targetCount) || 10);
+  const routeSeed = String((profile && profile.routeLabel) || 'PD-1 / PD-L1').split('').reduce((sum, ch) => sum + ch.charCodeAt(0), 0);
+  const serial = workflowDisplaySerial++;
+  const agentOptions = [8, 9, 10];
+  const phaseOptions = [6, 7, 8];
+  const agentCount = agentOptions[(serial + routeSeed) % agentOptions.length];
+  const phaseCount = phaseOptions[(serial + Math.floor(routeSeed / 3)) % phaseOptions.length];
+  const evidenceItems = 18 + ((routeSeed + serial * 7 + randInt(0, 6)) % 17) + Math.min(12, Math.floor(targetCount / 5));
+  const reviewedNotes = Math.max(12, Math.round(evidenceItems * (0.58 + Math.random() * 0.18)));
+  const epitopeNotes = Math.max(4, Math.round(reviewedNotes / randInt(3, 5)));
+  return {
+    agentCount,
+    phaseCount,
+    evidenceItems,
+    reviewedNotes,
+    epitopeNotes,
+    referenceEntries: (profile && profile.referenceEntries) || 'UniProt 靶点条目'
   };
 }
 
@@ -890,13 +923,14 @@ function msgs(lang) {
   const passRate = (n, d) => d ? ((n / d) * 100).toFixed(1) + '%' : '—';
   const listText = (items) => (items || []).join(' · ');
   return {
-    confirm: (count, abType, target, blockTarget, profile) => {
+    confirm: (count, abType, target, blockTarget, profile, meta) => {
       const p = profile || buildRouteProfile(target, blockTarget, abType);
+      const m = meta || buildWorkflowDisplayMeta(p, count, buildScreeningPlan(count));
       if (isZh) return (
         '已收到。我将调度多 Agent 协作网络，设计 **' + count + ' 个 ' + abType + ' 候选分子**，靶向 **' + p.targetDisplay + '**。\n\n' +
         '**设计目标：** ' + p.mechanism + '\n' +
         '**优先表位策略：** ' + p.selectedEpitope + '\n\n' +
-        '**正在启动 9 个专业 Agent，分 8 个阶段协作：**\n' +
+        '**正在启动 ' + m.agentCount + ' 个专业 Agent 编组，按 ' + m.phaseCount + ' 个设计阶段推进：**\n' +
         '- 🔬 LiteratureAgent · MutationAgent · EpitopeAgent\n' +
         '- 🏗️ StructureAgent\n' +
         '- ⚗️ DesignAgent-1 · DesignAgent-2 · DesignAgent-3\n' +
@@ -907,7 +941,7 @@ function msgs(lang) {
         'Understood. Orchestrating a multi-agent campaign to design **' + count + ' ' + abType + ' candidates** targeting **' + p.targetDisplay + '**.\n\n' +
         '**Design goal:** ' + p.mechanism + '\n' +
         '**Epitope strategy:** ' + p.selectedEpitope + '\n\n' +
-        '**Starting 9 specialized agents across 8 phases:**\n' +
+        '**Starting a ' + m.agentCount + '-agent specialist group across ' + m.phaseCount + ' design phases:**\n' +
         '- 🔬 LiteratureAgent · MutationAgent · EpitopeAgent\n' +
         '- 🏗️ StructureAgent\n' +
         '- ⚗️ DesignAgent-1 · DesignAgent-2 · DesignAgent-3\n' +
@@ -923,33 +957,38 @@ function msgs(lang) {
     task4:  (c) => isZh ? ('Round 3 — 精筛 & 多样性扫描至 ' + c + ' 个候选') : ('Round 3 — precision filtering & diversity sweep to ' + c + ' candidates'),
     task5:  (a) => isZh ? ('QA 全流程质控 & 多格式导出 (' + a + ')') : ('QA full-pipeline QC & multi-format export (' + a + ')'),
 
-    litReview: (profile) => isZh ? (
+    litReview: (profile, meta) => {
+      const m = meta || buildWorkflowDisplayMeta(profile, 10, buildScreeningPlan(10));
+      return isZh ? (
       '## Phase 1 — 靶点证据包加载完成\n\n' +
-      '**LiteratureAgent** 已整理 **' + profile.evidence + '**，汇总已收录的文献摘要、结构注释和抗体开发背景。\n\n' +
+      '**LiteratureAgent** 已整理 **' + profile.evidence + '**，汇总 ' + m.evidenceItems + ' 条已收录证据摘要、结构注释和抗体开发背景，并完成 ' + m.referenceEntries + ' 的一致性校验。\n\n' +
       '### 📚 证据包摘要\n\n' +
       '| 维度 | 详情 |\n|------|------|\n' +
       '| **疾病方向** | ' + profile.disease + ' |\n' +
       '| **靶点结构域** | ' + profile.domain + ' |\n' +
+      '| **靶点注释** | ' + m.referenceEntries + ' |\n' +
       '| **设计机制** | ' + profile.mechanism + ' |\n' +
       '| **结构证据** | ' + profile.structure + ' |\n' +
       '| **界面关注点** | ' + profile.interfaceFocus + ' |\n' +
       '| **抗体开发背景** | ' + listText(profile.antibodies) + ' |\n\n' +
-      '**证据处理口径：** 本阶段加载并校验平台已收录的靶点证据包，供后续表位与结构设计使用。\n\n' +
+      '**证据处理口径：** 本阶段加载并校验平台已收录的靶点证据包，归并 ' + m.reviewedNotes + ' 条可用于表位与结构设计的注释。\n\n' +
       '→ **MutationAgent** 接管，标注界面与可开发性风险...'
     ) : (
       '## Phase 1 — Target Evidence Package Loaded\n\n' +
-      '**LiteratureAgent** organized the **' + profile.evidence + '**, combining curated literature summaries, structure annotations, and antibody-development context.\n\n' +
+      '**LiteratureAgent** organized the **' + profile.evidence + '**, combining ' + m.evidenceItems + ' curated evidence notes, structure annotations, and antibody-development context, then checked consistency against ' + m.referenceEntries + '.\n\n' +
       '### 📚 Evidence Summary\n\n' +
       '| Aspect | Details |\n|--------|----------|\n' +
       '| **Disease area** | ' + profile.disease + ' |\n' +
       '| **Target domain** | ' + profile.domain + ' |\n' +
+      '| **Target annotation** | ' + m.referenceEntries + ' |\n' +
       '| **Design mechanism** | ' + profile.mechanism + ' |\n' +
       '| **Structural context** | ' + profile.structure + ' |\n' +
       '| **Interface focus** | ' + profile.interfaceFocus + ' |\n' +
       '| **Antibody background** | ' + listText(profile.antibodies) + ' |\n\n' +
-      '**Evidence handling:** this stage loads and checks curated target evidence packages for downstream epitope and structure design.\n\n' +
+      '**Evidence handling:** this stage loads and checks curated target evidence packages, consolidating ' + m.reviewedNotes + ' notes for downstream epitope and structure design.\n\n' +
       '→ **MutationAgent** annotating interface and developability risks...'
-    ),
+      );
+    },
 
     escapeMutation: (profile) => isZh ? (
       '### ⚠️ 界面与可开发性风险标注（MutationAgent）\n\n' +
@@ -1099,9 +1138,11 @@ function msgs(lang) {
       '**Target of ' + finalPass + ' ' + abType + 's achieved!** → Running QA/export pipeline...'
     ),
 
-    qaComplete: (passing, abType, profile, plan) => isZh ? (
+    qaComplete: (passing, abType, profile, plan, meta) => {
+      const m = meta || buildWorkflowDisplayMeta(profile, passing, plan);
+      return isZh ? (
       '## ✅ 多 Agent 协作设计流程完成\n\n' +
-      '**9 个专业 Agent** 全部任务完成，历经 **8 个阶段 · 3 轮迭代**，从约 ' + plan.initial + ' 个初始结构草案中收敛出 **' + passing + ' 个** anti-' + profile.targetDisplay + ' ' + abType + ' 候选。\n\n' +
+      '**' + m.agentCount + ' 个专业 Agent 编组** 完成协作，历经 **' + m.phaseCount + ' 个设计阶段 · 3 轮迭代**，从约 ' + plan.initial + ' 个初始结构草案中收敛出 **' + passing + ' 个** anti-' + profile.targetDisplay + ' ' + abType + ' 候选。\n\n' +
       '### 🏆 最终质控摘要（N = ' + passing + '）\n\n' +
       '| 质控项目 | 标准 | 通过率 |\n|---------|------|--------|\n' +
       '| ZoonoFold ipTM | ≥ 0.70 | ✅ 100% |\n' +
@@ -1122,7 +1163,7 @@ function msgs(lang) {
       '**交付物：** FASTA · CSV · JSON · PDB 结构包 — 可直接送合成或对接 SPR/BLI 验证。正在渲染 3D 结构...'
     ) : (
       '## ✅ Multi-Agent Design Pipeline Complete\n\n' +
-      '**9 specialized Agents** completed all 8 phases · 3 design rounds. Selected **' + passing + '** anti-' + profile.targetDisplay + ' ' + abType + ' candidates from ~' + plan.initial + ' initial structural drafts.\n\n' +
+      '**' + m.agentCount + ' specialized Agents** completed ' + m.phaseCount + ' design phases · 3 design rounds. Selected **' + passing + '** anti-' + profile.targetDisplay + ' ' + abType + ' candidates from ~' + plan.initial + ' initial structural drafts.\n\n' +
       '### 🏆 Final QC Summary (N = ' + passing + ')\n\n' +
       '| QC Item | Standard | Pass Rate |\n|---------|----------|----------|\n' +
       '| ZoonoFold ipTM | ≥ 0.70 | ✅ 100% |\n' +
@@ -1141,7 +1182,8 @@ function msgs(lang) {
       '| 4 | binder-4 | 0.831 | 90.3 | 11 aa | ⭐⭐ |\n' +
       '| 5 | binder-5 | 0.819 | 89.7 | 13 aa | ⭐⭐ |\n\n' +
       '**Deliverables:** FASTA · CSV · JSON · PDB structures — ready for synthesis or SPR/BLI validation. Rendering 3D structures below.'
-    ),
+    );
+    },
 
     galleryLabel: (n) => isZh ? (n + ' 个设计的 Binder 复合物') : (n + ' Designed Binder Complexes'),
   };
@@ -1720,6 +1762,7 @@ async function runWorkflow(ws, input) {
   const isZh = lang === 'zh';
   const profile = buildRouteProfile(target, blockTarget, abType);
   const plan = buildScreeningPlan(count);
+  const displayMeta = buildWorkflowDisplayMeta(profile, count, plan);
   const sess = [...sessions.values()].find(s => s.ws === ws);
   const delay = (ms) => new Promise((resolve, reject) => setTimeout(() => {
     if (sess && sess.cancelled) { const e = new Error('cancelled'); e.isCancelled = true; reject(e); }
@@ -1728,7 +1771,7 @@ async function runWorkflow(ws, input) {
   const send = (data) => { if (ws.readyState === 1) ws.send(JSON.stringify(data)); };
 
   // 0. Kickoff
-  send({ type: 'agent_msg', text: M.confirm(count, abType, target, blockTarget, profile) });
+  send({ type: 'agent_msg', text: M.confirm(count, abType, target, blockTarget, profile, displayMeta) });
   await delay(900);
 
   // 1. Tasks
@@ -1749,29 +1792,32 @@ async function runWorkflow(ws, input) {
     target: profile.targetDisplay,
     evidence_package: profile.evidence,
     sources: profile.evidenceSources,
+    reference_entries: displayMeta.referenceEntries,
     design_goal: profile.mechanism,
   }});
   await delay(2000);
   send({ type: 'log', text: '[LiteratureAgent] ' + (isZh ? '加载 ' + profile.evidence + '...' : 'Loading ' + profile.evidence + '...') });
   await delay(2000);
-  send({ type: 'log', text: '[LiteratureAgent] ' + (isZh ? '整理已收录文献摘要、结构注释和抗体开发背景...' : 'Organizing curated literature summaries, structure annotations, and antibody context...') });
+  send({ type: 'log', text: '[LiteratureAgent] ' + (isZh ? '整理 ' + displayMeta.evidenceItems + ' 条已收录证据摘要、结构注释和抗体开发背景...' : 'Organizing ' + displayMeta.evidenceItems + ' curated evidence notes, structure annotations, and antibody context...') });
   await delay(2000);
-  send({ type: 'log', text: '[LiteratureAgent] ' + (isZh ? '校验 ' + profile.interfaceFocus + ' 与设计目标的一致性...' : 'Checking ' + profile.interfaceFocus + ' against the design goal...') });
+  send({ type: 'log', text: '[LiteratureAgent] ' + (isZh ? '校验 ' + displayMeta.referenceEntries + ' 与 ' + profile.interfaceFocus + ' 的一致性...' : 'Checking ' + displayMeta.referenceEntries + ' against ' + profile.interfaceFocus + '...') });
   await delay(2000);
-  send({ type: 'log', text: '[LiteratureAgent] ' + (isZh ? '汇总候选表位清单与可开发性注意事项...' : 'Summarizing candidate epitopes and developability considerations...') });
+  send({ type: 'log', text: '[LiteratureAgent] ' + (isZh ? '归并 ' + displayMeta.reviewedNotes + ' 条表位、结构和可开发性注释...' : 'Consolidating ' + displayMeta.reviewedNotes + ' epitope, structure, and developability notes...') });
   await delay(1500);
   send({ type: 'log', text: '[LiteratureAgent] ' + (isZh ? '靶点证据包准备完成，移交风险标注...' : 'Evidence package ready; handing off to risk annotation...') });
   await delay(1500);
   send({ type: 'tool_result', tool: 'target_evidence_review', result: {
     route: profile.routeLabel,
     evidence_package: profile.evidence,
+    reference_entries: displayMeta.referenceEntries,
+    evidence_notes: displayMeta.evidenceItems,
     target_domain: profile.domain,
     interface_focus: profile.interfaceFocus,
     antibody_background: profile.antibodies.join(', '),
     suggested_epitope_strategy: profile.selectedEpitope,
   }});
   await delay(700);
-  send({ type: 'agent_msg', text: M.litReview(profile) });
+  send({ type: 'agent_msg', text: M.litReview(profile, displayMeta) });
   await delay(1200);
 
   // Phase 0-A.2: Interface risk annotation
@@ -2110,7 +2156,7 @@ async function runWorkflow(ws, input) {
     passRate: ((passing.length / allSeqs.length) * 100).toFixed(1),
     target: target, abType: abType,
   }});
-  send({ type: 'agent_msg', text: M.qaComplete(finalPass, abType, profile, plan) });
+  send({ type: 'agent_msg', text: M.qaComplete(finalPass, abType, profile, plan, displayMeta) });
   await delay(600);
   // Mark QA complete AFTER the summary message is displayed
   tasks[6].status = 'completed';

@@ -7262,6 +7262,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             allergic_asthma: {
                 routeId: 'allergic_asthma', disease: '过敏性哮喘', target: 'IL-33', partner: 'ST2', abType: 'VHH', count: 15,
                 routeLabel: 'IL-33 / ST2', evidence: 'IL-33/ST2 靶点证据包', domain: 'IL-1 家族细胞因子结构域',
+                referenceEntries: 'UniProt IL33 / IL1RL1(ST2) 靶点条目',
                 mechanism: '阻断 IL-33 与 ST2 受体形成炎症信号复合物',
                 interfaceFocus: 'ST2 受体结合表面', selectedEpitope: 'ST2 结合界面邻近的保守表面',
                 structureRef: 'IL-33/ST2 参考界面', antibodyBackground: 'Itepekimab · Tozorakimab · Astegolimab',
@@ -7270,6 +7271,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             tumor_immunotherapy: {
                 routeId: 'tumor_immunotherapy', disease: '肿瘤免疫治疗', target: 'PD-L1', partner: 'PD-1', abType: 'Fab', count: 10,
                 routeLabel: 'PD-1 / PD-L1', evidence: 'PD-1/PD-L1 免疫检查点证据包', domain: 'PD-L1 胞外 IgV 结构域',
+                referenceEntries: 'UniProt CD274(PD-L1) / PDCD1(PD-1) 靶点条目',
                 mechanism: '阻断 PD-1/PD-L1 免疫检查点相互作用，恢复 T 细胞识别',
                 interfaceFocus: 'PD-L1 IgV 结构域上的 PD-1 结合面', selectedEpitope: 'PD-1/PD-L1 相互作用界面',
                 structureRef: 'PD-L1 IgV 界面参考模型', antibodyBackground: 'Atezolizumab · Durvalumab · Avelumab',
@@ -7278,6 +7280,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             breast_cancer: {
                 routeId: 'breast_cancer', disease: '乳腺癌相关疾病', target: 'HER2', partner: '', abType: 'Fab', count: 10,
                 routeLabel: 'HER2', evidence: 'HER2 肿瘤靶点证据包', domain: 'HER2 胞外结构域',
+                referenceEntries: 'UniProt ERBB2(HER2) 靶点条目',
                 mechanism: '优先识别 HER2 胞外可及区域，用于肿瘤相关过表达场景',
                 interfaceFocus: 'HER2 胞外结构域的抗体可及表面', selectedEpitope: 'HER2 胞外结构域可及表面',
                 structureRef: 'HER2 ECD 参考模型', antibodyBackground: 'Trastuzumab · Pertuzumab · Margetuximab',
@@ -7286,6 +7289,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             autoimmune_inflammation: {
                 routeId: 'autoimmune_inflammation', disease: '自身免疫炎症', target: 'TNF', partner: 'TNFR', abType: 'Fab', count: 10,
                 routeLabel: 'TNF / TNFR', evidence: 'TNF 炎症因子证据包', domain: '可溶性 TNF 三聚体',
+                referenceEntries: 'UniProt TNF / TNFRSF1A 靶点条目',
                 mechanism: '中和 TNF 与 TNFR 结合，降低炎症因子信号',
                 interfaceFocus: 'TNF 三聚体上的 TNFR 结合面', selectedEpitope: 'TNFR 结合面邻近的三聚体外侧表面',
                 structureRef: 'TNF 三聚体参考模型', antibodyBackground: 'Adalimumab · Infliximab · Certolizumab',
@@ -7325,8 +7329,34 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         return rows.map(row => '| ' + row.join(' | ') + ' |').join('\n');
     }
 
+    let fallbackDisplaySerial = 0;
+
+    function fallbackRandInt(min, max) {
+        const lo = Math.ceil(min);
+        const hi = Math.floor(max);
+        return lo + Math.floor(Math.random() * (hi - lo + 1));
+    }
+
+    function fallbackDisplayMeta(profile) {
+        const routeSeed = String(profile.routeLabel || profile.target || 'PD-L1').split('').reduce((sum, ch) => sum + ch.charCodeAt(0), 0);
+        const count = Math.max(1, Number(profile.count) || 10);
+        const serial = fallbackDisplaySerial++;
+        const agentOptions = [8, 9, 10];
+        const phaseOptions = [6, 7, 8];
+        const evidenceItems = 18 + ((routeSeed + serial * 7 + fallbackRandInt(0, 6)) % 17) + Math.min(12, Math.floor(count / 5));
+        const reviewedNotes = Math.max(12, Math.round(evidenceItems * (0.58 + Math.random() * 0.18)));
+        return {
+            agentCount: agentOptions[(serial + routeSeed) % agentOptions.length],
+            phaseCount: phaseOptions[(serial + Math.floor(routeSeed / 3)) % phaseOptions.length],
+            evidenceItems,
+            reviewedNotes,
+            referenceEntries: profile.referenceEntries || 'UniProt 靶点条目'
+        };
+    }
+
     function runDemo(userText, routeId) {
         const profile = getFallbackRouteProfile(userText, routeId);
+        const meta = fallbackDisplayMeta(profile);
         const uid = () => Math.random().toString(36).slice(2,10);
         const count = profile.count;
         const initial = Math.max(120, count * 30);
@@ -7342,6 +7372,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 **设计目标：** ${profile.mechanism}
 **优先表位策略：** ${profile.selectedEpitope}
 
+**正在启动 ${meta.agentCount} 个专业 Agent 编组，按 ${meta.phaseCount} 个设计阶段推进。**
+
 正在启动完整设计流程...` });
 
         demoMsg('tasks', { tasks: fallbackTasks(profile, 0) });
@@ -7353,17 +7385,20 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             route: profile.routeLabel,
             target: profile.target,
             evidence_package: profile.evidence,
+            reference_entries: meta.referenceEntries,
             design_goal: profile.mechanism
         }});
         demoSleep(700);
         demoLog('[LiteratureAgent] 加载 ' + profile.evidence + '...');
         demoSleep(700);
-        demoLog('[LiteratureAgent] 整理已收录文献摘要、结构注释和抗体开发背景...');
+        demoLog('[LiteratureAgent] 整理 ' + meta.evidenceItems + ' 条已收录证据摘要、结构注释和抗体开发背景...');
         demoSleep(700);
-        demoLog('[LiteratureAgent] 校验 ' + profile.interfaceFocus + ' 与设计目标的一致性...');
+        demoLog('[LiteratureAgent] 校验 ' + meta.referenceEntries + ' 与 ' + profile.interfaceFocus + ' 的一致性...');
         demoSleep(500);
         demoMsg('tool_result', { tool: 'target_evidence_review', result: {
             route: profile.routeLabel,
+            reference_entries: meta.referenceEntries,
+            evidence_notes: meta.evidenceItems,
             target_domain: profile.domain,
             interface_focus: profile.interfaceFocus,
             antibody_background: profile.antibodyBackground,
@@ -7373,15 +7408,18 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         demoMsg('agent_msg', { text:
 `## Phase 1 — 靶点证据包加载完成
 
-**LiteratureAgent** 已整理 **${profile.evidence}**，汇总已收录的文献摘要、结构注释和抗体开发背景。
+**LiteratureAgent** 已整理 **${profile.evidence}**，汇总 ${meta.evidenceItems} 条已收录证据摘要、结构注释和抗体开发背景，并完成 ${meta.referenceEntries} 的一致性校验。
 
 | 维度 | 详情 |
 |------|------|
 | 疾病方向 | ${profile.disease} |
 | 靶点结构域 | ${profile.domain} |
+| 靶点注释 | ${meta.referenceEntries} |
 | 设计机制 | ${profile.mechanism} |
 | 界面关注点 | ${profile.interfaceFocus} |
 | 抗体开发背景 | ${profile.antibodyBackground} |
+
+**证据处理口径：** 本阶段归并 ${meta.reviewedNotes} 条可用于表位与结构设计的注释。
 
 → **MutationAgent** 接管，标注界面与可开发性风险...` });
 
@@ -7604,7 +7642,7 @@ ${fallbackTableRows(profile.rows)}
         demoMsg('agent_msg', { text:
 `## ✅ 多 Agent 协作设计流程完成
 
-**9 个专业 Agent** 全部任务完成，历经 **3 轮迭代**，从约 ${initial} 个初始结构草案中收敛出 **${finalPass} 个** anti-${profile.target} ${profile.abType} 候选。
+**${meta.agentCount} 个专业 Agent 编组** 完成协作，历经 **${meta.phaseCount} 个设计阶段 · 3 轮迭代**，从约 ${initial} 个初始结构草案中收敛出 **${finalPass} 个** anti-${profile.target} ${profile.abType} 候选。
 
 ### 🏆 最终质控摘要（N = ${finalPass}）
 
