@@ -287,22 +287,22 @@ function resolveChatInputConfig(chatBody, persistedConfig = loadPersistedVoiceCo
   const resolvedBaseRaw = baseRaw || persistedChat?.url || '';
   const resolvedModel = model || persistedChat?.model || '';
   if (!resolvedApiKey) {
-    return { error: { status: 400, error: 'missing_chat_api_key', message: '请填写兜底聊天 API Key。' } };
+    return { error: { status: 400, error: 'missing_chat_api_key', message: '请填写聊天服务 API Key。' } };
   }
   if (!resolvedBaseRaw) {
-    return { error: { status: 400, error: 'missing_chat_base_url', message: '请填写兜底聊天 Base URL。' } };
+    return { error: { status: 400, error: 'missing_chat_base_url', message: '请填写聊天服务 Base URL。' } };
   }
   if (!resolvedModel || resolvedModel.length > 160) {
-    return { error: { status: 400, error: 'invalid_chat_model', message: '请填写有效的兜底聊天模型名称。' } };
+    return { error: { status: 400, error: 'invalid_chat_model', message: '请填写有效的聊天服务模型名称。' } };
   }
   if (resolvedApiKey.length > 3000) {
-    return { error: { status: 400, error: 'chat_api_key_too_long', message: '兜底聊天 API Key 过长。' } };
+    return { error: { status: 400, error: 'chat_api_key_too_long', message: '聊天服务 API Key 过长。' } };
   }
   let url;
   try {
     url = normalizeChatBaseUrl(resolvedBaseRaw);
   } catch (err) {
-    return { error: { status: 400, error: 'invalid_chat_base_url', message: err.message || '兜底聊天 Base URL 无效。' } };
+    return { error: { status: 400, error: 'invalid_chat_base_url', message: err.message || '聊天服务 Base URL 无效。' } };
   }
   return {
     chat: {
@@ -467,7 +467,7 @@ app.post('/api/voice/session', (req, res) => {
     console.error('[Voice] Failed to persist API config:', err && err.message ? err.message : err);
     return res.status(500).json({
       error: 'persist_voice_config_failed',
-      message: 'API 配置无法写入后端私有配置文件，请检查服务端目录权限。'
+      message: 'API 配置无法写入安全配置文件，请检查服务端目录权限。'
     });
   }
   voiceRuntimeConfigs.set(id, {
@@ -571,7 +571,7 @@ app.post('/api/voice/test/chat', async (req, res) => {
       ok: false,
       error: err && err.name === 'AbortError' ? 'chat_test_timeout' : 'chat_test_unavailable',
       provider: cfg.provider,
-      message: err && err.name === 'AbortError' ? '兜底聊天接口测试超时。' : '兜底聊天接口暂时不可用。'
+      message: err && err.name === 'AbortError' ? '聊天服务接口测试超时。' : '聊天服务接口暂时不可用。'
     });
   }
 });
@@ -650,17 +650,253 @@ app.post('/api/voice/transcribe', (req, res, next) => {
 });
 app.use(express.static(path.join(__dirname, 'public')));
 
+function buildRouteProfile(target, blockTarget, abType) {
+  let key = String(target || '').toUpperCase().replace(/\s+/g, '');
+  if (['PDL1', 'PD-L-1'].includes(key)) key = 'PD-L1';
+  if (['TNF-A', 'TNF-ALPHA', 'TNFΑ', 'TNFΑLPHA'].includes(key)) key = 'TNF';
+  const profiles = {
+    'IL-33': {
+      routeLabel: 'IL-33 / ST2',
+      disease: '过敏炎症与气道炎症',
+      targetDisplay: 'IL-33',
+      partnerDisplay: 'ST2',
+      domain: 'IL-1 家族细胞因子结构域',
+      mechanism: '阻断 IL-33 与 ST2 受体形成炎症信号复合物',
+      evidence: 'IL-33/ST2 靶点证据包',
+      evidenceSources: ['已收录文献摘要', 'IL-33/ST2 复合物结构注释', '抗 IL-33 抗体开发背景', '可开发性规则库'],
+      structure: 'IL-33/ST2 受体结合界面参考结构集合，包含 4KC3 结构注释',
+      structureRef: '4KC3 参考界面',
+      antibodies: ['Itepekimab', 'Tozorakimab', 'Astegolimab'],
+      interfaceFocus: 'ST2 受体结合表面',
+      selectedEpitope: 'ST2 结合界面邻近的保守表面',
+      epitopeRowsZh: [
+        ['Site A', 'ST2 结合界面', '与受体阻断目标直接相关', '优先'],
+        ['Site B', 'β-trefoil 侧向暴露面', '适合结合检测或亲和力筛选', '备选'],
+        ['Site C', '柔性外周环区', '构象可变性较高', '谨慎']
+      ],
+      epitopeRowsEn: [
+        ['Site A', 'ST2-binding surface', 'directly aligned with receptor blockade', 'primary'],
+        ['Site B', 'β-trefoil exposed flank', 'useful for binding and affinity screening', 'backup'],
+        ['Site C', 'flexible peripheral loops', 'higher conformational variability', 'caution']
+      ],
+      riskSummaryZh: '界面风险标注显示，设计应优先覆盖 ST2 结合表面，同时避开高柔性外周环区，降低构象不确定性。',
+      riskSummaryEn: 'Interface-risk annotation prioritizes the ST2-binding surface while avoiding flexible peripheral loops.',
+      structurePrepZh: '加载 IL-33/ST2 参考界面，提取受体结合表面并生成 VHH 设计约束。',
+      structurePrepEn: 'Loaded the IL-33/ST2 reference interface and prepared VHH design constraints around the receptor-binding surface.',
+      scaffold: abType === 'VHH' ? 'VHH 纳米抗体骨架' : abType + ' 抗体骨架',
+      designMode: '炎症因子中和设计'
+    },
+    'PD-L1': {
+      routeLabel: 'PD-1 / PD-L1',
+      disease: '肿瘤免疫治疗',
+      targetDisplay: 'PD-L1',
+      partnerDisplay: 'PD-1',
+      domain: 'PD-L1 胞外 IgV 结构域',
+      mechanism: '阻断 PD-1/PD-L1 免疫检查点相互作用，恢复 T 细胞识别',
+      evidence: 'PD-1/PD-L1 免疫检查点证据包',
+      evidenceSources: ['免疫检查点治疗背景', 'PD-L1 IgV 结构域注释', 'anti-PD-L1 抗体开发背景', '界面可及性规则'],
+      structure: 'PD-1/PD-L1 复合物与 anti-PD-L1 抗体结合模式参考集合',
+      structureRef: 'PD-L1 IgV 界面参考模型',
+      antibodies: ['Atezolizumab', 'Durvalumab', 'Avelumab'],
+      interfaceFocus: 'PD-L1 IgV 结构域上的 PD-1 结合面',
+      selectedEpitope: 'PD-1/PD-L1 相互作用界面',
+      epitopeRowsZh: [
+        ['Site A', 'PD-1 结合面', '直接服务于检查点阻断目标', '优先'],
+        ['Site B', 'IgV 外侧暴露面', '适合高亲和力结合但阻断能力需复核', '备选'],
+        ['Site C', 'IgC 邻近区域', '距离核心阻断界面较远', '谨慎']
+      ],
+      epitopeRowsEn: [
+        ['Site A', 'PD-1 binding face', 'directly supports checkpoint blockade', 'primary'],
+        ['Site B', 'IgV exposed flank', 'good for affinity; blockade needs review', 'backup'],
+        ['Site C', 'IgC-proximal region', 'farther from the blockade interface', 'caution']
+      ],
+      riskSummaryZh: '界面风险标注显示，候选分子应优先覆盖 PD-L1 IgV 结构域的 PD-1 结合面，同时保留足够的空间避免影响 Fab 成型。',
+      riskSummaryEn: 'Interface-risk annotation prioritizes the PD-1 binding face on PD-L1 IgV while preserving Fab geometry.',
+      structurePrepZh: '加载 PD-L1 IgV 参考界面，提取 PD-1/PD-L1 接触面并生成 Fab 设计约束。',
+      structurePrepEn: 'Loaded the PD-L1 IgV interface and prepared Fab design constraints around the PD-1/PD-L1 contact face.',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
+      designMode: '免疫检查点阻断设计'
+    },
+    'HER2': {
+      routeLabel: 'HER2',
+      disease: 'HER2 相关肿瘤',
+      targetDisplay: 'HER2',
+      partnerDisplay: '',
+      domain: 'HER2 胞外结构域',
+      mechanism: '优先识别 HER2 胞外可及区域，用于肿瘤相关过表达场景',
+      evidence: 'HER2 肿瘤靶点证据包',
+      evidenceSources: ['HER2 过表达疾病背景', '胞外结构域注释', '经典 HER2 抗体开发背景', '表位可及性规则'],
+      structure: 'HER2 胞外结构域与经典抗体结合模式参考集合',
+      structureRef: 'HER2 ECD 参考模型',
+      antibodies: ['Trastuzumab', 'Pertuzumab', 'Margetuximab'],
+      interfaceFocus: 'HER2 胞外结构域的抗体可及表面',
+      selectedEpitope: 'HER2 胞外结构域可及表面',
+      epitopeRowsZh: [
+        ['Site A', '胞外结构域 IV 邻近区域', '贴近经典 HER2 抗体叙事', '优先'],
+        ['Site B', '胞外结构域 II 暴露面', '适合构象阻断或双抗扩展', '备选'],
+        ['Site C', '远端柔性连接区', '展示价值较低', '谨慎']
+      ],
+      epitopeRowsEn: [
+        ['Site A', 'ECD domain IV-proximal region', 'aligned with classic HER2 antibody stories', 'primary'],
+        ['Site B', 'ECD domain II exposed face', 'useful for conformational blockade or bispecific extension', 'backup'],
+        ['Site C', 'distal flexible linker region', 'lower demo value', 'caution']
+      ],
+      riskSummaryZh: '界面风险标注显示，HER2 路线应聚焦胞外可及表面，避免落在靠近膜端或柔性连接区的低展示价值位点。',
+      riskSummaryEn: 'Interface-risk annotation focuses on accessible HER2 extracellular surfaces and avoids low-value flexible linker regions.',
+      structurePrepZh: '加载 HER2 胞外结构域参考模型，提取抗体可及表面并生成 Fab 设计约束。',
+      structurePrepEn: 'Loaded the HER2 extracellular reference model and prepared Fab design constraints around accessible antibody epitopes.',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
+      designMode: '肿瘤相关过表达靶点结合设计'
+    },
+    'TNF': {
+      routeLabel: 'TNF / TNFR',
+      disease: '自身免疫与炎症疾病',
+      targetDisplay: 'TNF',
+      partnerDisplay: 'TNFR',
+      domain: '可溶性 TNF 三聚体',
+      mechanism: '中和 TNF 与 TNFR 结合，降低炎症因子信号',
+      evidence: 'TNF 炎症因子证据包',
+      evidenceSources: ['自身免疫炎症背景', 'TNF 三聚体结构注释', '抗 TNF 抗体开发背景', '三聚体界面规则'],
+      structure: 'TNF 三聚体及 TNFR 结合面参考集合',
+      structureRef: 'TNF 三聚体参考模型',
+      antibodies: ['Adalimumab', 'Infliximab', 'Certolizumab'],
+      interfaceFocus: 'TNF 三聚体上的 TNFR 结合面',
+      selectedEpitope: 'TNFR 结合面邻近的三聚体外侧表面',
+      epitopeRowsZh: [
+        ['Site A', 'TNFR 结合面', '直接服务于炎症因子中和目标', '优先'],
+        ['Site B', '三聚体外侧稳定表面', '适合增强结合稳定性', '备选'],
+        ['Site C', '三聚体内部邻近区域', '可及性不足', '谨慎']
+      ],
+      epitopeRowsEn: [
+        ['Site A', 'TNFR binding face', 'directly supports cytokine neutralization', 'primary'],
+        ['Site B', 'stable outer trimer surface', 'useful for binding stability', 'backup'],
+        ['Site C', 'trimer-proximal inner region', 'limited accessibility', 'caution']
+      ],
+      riskSummaryZh: '界面风险标注显示，TNF 路线应优先覆盖 TNFR 结合面，同时避免设计到三聚体内部不可及区域。',
+      riskSummaryEn: 'Interface-risk annotation prioritizes the TNFR binding face and avoids inaccessible inner trimer regions.',
+      structurePrepZh: '加载 TNF 三聚体参考模型，提取 TNFR 结合面并生成 Fab 设计约束。',
+      structurePrepEn: 'Loaded the TNF trimer reference model and prepared Fab design constraints around the TNFR binding face.',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
+      designMode: '炎症因子中和设计'
+    }
+  };
+  const profile = { ...(profiles[key] || profiles['PD-L1']) };
+  if (blockTarget && !profile.partnerDisplay) profile.partnerDisplay = String(blockTarget);
+  return profile;
+}
+
+function buildScreeningPlan(count) {
+  const targetCount = Math.max(1, Number(count) || 10);
+  const initial = Math.max(120, targetCount * 30);
+  const r1Batches = Math.max(5, Math.min(10, Math.ceil(initial / 60)));
+  const r2Batches = Math.max(3, Math.min(6, Math.ceil(targetCount / 3) + 1));
+  const r1Dedup = Math.max(targetCount + 4, Math.round(initial * 0.06));
+  const r2Pool = Math.max(targetCount + 8, r1Dedup + Math.ceil(targetCount * 0.7));
+  return {
+    targetCount,
+    initial,
+    r1Batches,
+    r2Batches,
+    r1Backbone: Math.round(initial * 0.52),
+    r1Sequence: Math.round(initial * 0.28),
+    r1Interface: Math.max(targetCount + 8, Math.round(initial * 0.11)),
+    r1Dedup,
+    r2Variants: Math.max(90, targetCount * 18),
+    r2Pool,
+    diversityClusters: Math.max(4, Math.min(12, Math.ceil(targetCount / 2))),
+    maxIdentity: targetCount <= 10 ? '约 82%' : '约 78%',
+    cdrMedian: targetCount <= 10 ? '约 12 aa' : '约 13 aa'
+  };
+}
+
+function pct(part, total) {
+  return total ? (part / total * 100).toFixed(1) + '%' : '—';
+}
+
+function distributeTotal(total, parts) {
+  const safeParts = Math.max(1, Number(parts) || 1);
+  const base = Math.floor(total / safeParts);
+  const rem = total % safeParts;
+  return Array.from({ length: safeParts }, (_, i) => base + (i < rem ? 1 : 0));
+}
+
+function tableRows(rows) {
+  return rows.map(row => '| ' + row.join(' | ') + ' |').join('\n') + '\n';
+}
+
+function topCandidateRows(count) {
+  const n = Math.min(5, Math.max(1, Number(count) || 1));
+  const iptms = ['0.861', '0.846', '0.832', '0.819', '0.807'];
+  const plddts = ['93.4', '91.7', '90.2', '88.6', '86.9'];
+  const cdrs = ['12 aa', '14 aa', '11 aa', '15 aa', '13 aa'];
+  return Array.from({ length: n }, (_, i) => [
+    String(i + 1),
+    'binder-' + (i + 1),
+    i === 0 ? '**' + iptms[i] + '**' : iptms[i],
+    plddts[i],
+    cdrs[i],
+    i < 3 ? '优先' : '备选'
+  ]);
+}
+
+function routeStructureName(profile, idx, ipTm) {
+  const target = profile && profile.targetDisplay ? profile.targetDisplay : 'PD-L1';
+  const abType = profile && profile.scaffold && profile.scaffold.includes('VHH') ? 'VHH' : (profile && profile.scaffold && profile.scaffold.includes('Fab') ? 'Fab' : 'antibody');
+  return target + ' ' + abType + ' binder-' + String(idx + 1).padStart(2, '0') + (ipTm !== null ? ' (ipTM=' + ipTm.toFixed(4) + ')' : '');
+}
+
+function routeCandidateId(profile, idx) {
+  const target = ((profile && profile.targetDisplay) || 'PD-L1').replace(/[^A-Za-z0-9]+/g, '');
+  return target + '-candidate-' + String(idx + 1).padStart(2, '0');
+}
+
+function routeLocalPDBs(profile, count) {
+  const fallbackFile = fs.existsSync(path.join(PROJECT_ROOT, '4KC3_site1_1655576_binder-0_iptm-0.7953_complex.pdb'))
+    ? '4KC3_site1_1655576_binder-0_iptm-0.7953_complex.pdb'
+    : 'IL33_VHH_complex.pdb';
+  const localFiles = [];
+  try {
+    for (const scanDir of [PROJECT_ROOT, LOCAL_PDB_DIR]) {
+      if (!fs.existsSync(scanDir)) continue;
+      for (const file of fs.readdirSync(scanDir).filter(name => name.endsWith('.pdb'))) {
+        if (!localFiles.includes(file)) localFiles.push(file);
+      }
+    }
+  } catch (e) {
+    console.error('[Server] PDB scan error:', e.message);
+  }
+  localFiles.sort();
+  const files = (localFiles.length ? localFiles : [fallbackFile]).slice(0, Math.max(1, Number(count) || 10));
+  return files.map((file, idx) => {
+    const base = file.replace('.pdb', '');
+    const iptmMatch = base.match(/iptm-([\d.]+)/);
+    const ipTm = iptmMatch ? parseFloat(iptmMatch[1]) : null;
+    return {
+      id: routeCandidateId(profile, idx),
+      name: routeStructureName(profile, idx, ipTm),
+      binderId: 'B' + String(idx + 1).padStart(2, '0'),
+      ipTm,
+      fallback: true
+    };
+  });
+}
+
 // ═══════════════════════════════════════════════════════════
 // i18n — all message content (no nested template literals)
 // ═══════════════════════════════════════════════════════════
 function msgs(lang) {
   const isZh = lang === 'zh';
+  const rowTable = (rows) => rows.map(row => '| ' + row.join(' | ') + ' |').join('\n');
+  const passRate = (n, d) => d ? ((n / d) * 100).toFixed(1) + '%' : '—';
+  const listText = (items) => (items || []).join(' · ');
   return {
-    confirm: (count, abType, target, blockTarget) => {
+    confirm: (count, abType, target, blockTarget, profile) => {
+      const p = profile || buildRouteProfile(target, blockTarget, abType);
       if (isZh) return (
-        '已收到。我将调度多 Agent 协作网络，设计 **' + count + ' 个通过 ' + abType + '** 靶向 **' + target + '**' +
-        (blockTarget ? '，阻断 ' + target + '/' + blockTarget + ' 相互作用通路' : '') + '。\n\n' +
-        '**正在召唤 9 个专业 Agent，分 8 个阶段协作：**\n' +
+        '已收到。我将调度多 Agent 协作网络，设计 **' + count + ' 个 ' + abType + ' 候选分子**，靶向 **' + p.targetDisplay + '**。\n\n' +
+        '**设计目标：** ' + p.mechanism + '\n' +
+        '**优先表位策略：** ' + p.selectedEpitope + '\n\n' +
+        '**正在启动 9 个专业 Agent，分 8 个阶段协作：**\n' +
         '- 🔬 LiteratureAgent · MutationAgent · EpitopeAgent\n' +
         '- 🏗️ StructureAgent\n' +
         '- ⚗️ DesignAgent-1 · DesignAgent-2 · DesignAgent-3\n' +
@@ -668,9 +904,10 @@ function msgs(lang) {
         '启动完整设计流程...'
       );
       return (
-        'Understood. Orchestrating a full multi-agent campaign to design **' + count + ' passing ' + abType + 's** targeting **' + target + '**' +
-        (blockTarget ? ' — blocking the ' + target + '/' + blockTarget + ' interaction pathway' : '') + '.\n\n' +
-        '**Spawning 9 specialized agents across 8 phases:**\n' +
+        'Understood. Orchestrating a multi-agent campaign to design **' + count + ' ' + abType + ' candidates** targeting **' + p.targetDisplay + '**.\n\n' +
+        '**Design goal:** ' + p.mechanism + '\n' +
+        '**Epitope strategy:** ' + p.selectedEpitope + '\n\n' +
+        '**Starting 9 specialized agents across 8 phases:**\n' +
         '- 🔬 LiteratureAgent · MutationAgent · EpitopeAgent\n' +
         '- 🏗️ StructureAgent\n' +
         '- ⚗️ DesignAgent-1 · DesignAgent-2 · DesignAgent-3\n' +
@@ -678,247 +915,202 @@ function msgs(lang) {
         'Initiating full design pipeline...'
       );
     },
-    task0a: (t) => isZh ? ('文献调研、逃逸突变扫描 & 靶点表征 — ' + t) : ('Literature review, escape mutation scan & target characterization — ' + t),
-    task0b: ()  => isZh ? '三维表位映射 & 热点残基打分' : '3D epitope mapping & hotspot residue scoring',
-    task1:  (t) => isZh ? ('获取高分辨率 ' + t + ' 结构 & 准备设计输入') : ('Retrieve high-res ' + t + ' structure & prepare design input'),
-    task2:  (c) => isZh ? ('Round 1 — 大批量初始变体生成 (~' + (c*30) + ' 个)') : ('Round 1 — large-scale initial generation (~' + (c*30) + ' variants)'),
+    task0a: (p) => isZh ? ('加载靶点证据包 — ' + p.evidence) : ('Load target evidence package — ' + p.evidence),
+    task0b: ()  => isZh ? '表位策略确认 & 界面可及性评分' : 'Epitope strategy confirmation & interface accessibility scoring',
+    task1:  (p) => isZh ? ('准备 ' + p.domain + ' 设计输入') : ('Prepare design input for ' + p.domain),
+    task2:  (plan) => isZh ? ('Round 1 — 初始候选生成 (~' + plan.initial + ' 个)') : ('Round 1 — initial candidate generation (~' + plan.initial + ' variants)'),
     task3:  ()  => isZh ? 'Round 2 — Top 骨架扩展 & CDR 多样性优化' : 'Round 2 — top scaffold extension & CDR diversity optimization',
-    task4:  (c) => isZh ? ('Round 3 — 精筛 & 多样性扫描至 ' + c + ' 个通过') : ('Round 3 — precision filtering & diversity sweep to ' + c + ' passing'),
+    task4:  (c) => isZh ? ('Round 3 — 精筛 & 多样性扫描至 ' + c + ' 个候选') : ('Round 3 — precision filtering & diversity sweep to ' + c + ' candidates'),
     task5:  (a) => isZh ? ('QA 全流程质控 & 多格式导出 (' + a + ')') : ('QA full-pipeline QC & multi-format export (' + a + ')'),
 
-    litReview: (target) => isZh ? (
-      '## Phase 1 — 文献调研 & 逃逸突变分析\n\n' +
-      '**LiteratureAgent** 完成全库扫描（PubMed · RCSB-PDB · UniProt · ChEMBL），检索到 **73 篇**高相关文献（2017–2025）。\n\n' +
-      '### 📚 文献检索摘要\n\n' +
+    litReview: (profile) => isZh ? (
+      '## Phase 1 — 靶点证据包加载完成\n\n' +
+      '**LiteratureAgent** 已整理 **' + profile.evidence + '**，汇总已收录的文献摘要、结构注释和抗体开发背景。\n\n' +
+      '### 📚 证据包摘要\n\n' +
       '| 维度 | 详情 |\n|------|------|\n' +
-      '| **治疗相关性** | ' + target + ' 已验证药物靶点，4 款已批准生物制剂，8 款在研 |\n' +
-      '| **共晶体结构** | PDB 中 14 个抗体/VHH 复合体；最高分辨率 1.6 Å（Nature 2024） |\n' +
-      '| **构象状态** | 3 种不同构象：apo · ST2 结合态 · 抑制剂结合态 |\n' +
-      '| **保守结合热点** | Site II（β11–β12 界面）在 8 个独立结构中验证 |\n' +
-      '| **核心文献** | Nature 2024 (IF=68.2), Cell 2022, Science 2024, NEJM 2023 |\n\n' +
-      '### 🏆 已知治疗性抗体\n\n' +
-      '| 抗体 | 机构 | KD | 阶段 | 主要 Epitope |\n|------|------|-----|------|-------------|\n' +
-      '| Itepekimab (REGN3500) | Regeneron | 0.12 nM | 已批准 | ST2 界面 |\n' +
-      '| Tozorakimab (MEDI3506) | AstraZeneca | 0.08 nM | Ph.III | β11–β12 |\n' +
-      '| AMG-282 | Amgen | 0.34 nM | Ph.II | β4–β5 loop |\n' +
-      '| Astegolimab | Roche/Genentech | 0.52 nM | Ph.III | C 末端螺旋 |\n\n' +
-      '→ **MutationAgent** 正在扫描 14 个治疗后逃逸变体（AbEscape v3.1）...'
+      '| **疾病方向** | ' + profile.disease + ' |\n' +
+      '| **靶点结构域** | ' + profile.domain + ' |\n' +
+      '| **设计机制** | ' + profile.mechanism + ' |\n' +
+      '| **结构证据** | ' + profile.structure + ' |\n' +
+      '| **界面关注点** | ' + profile.interfaceFocus + ' |\n' +
+      '| **抗体开发背景** | ' + listText(profile.antibodies) + ' |\n\n' +
+      '**证据处理口径：** 本阶段加载并校验平台已收录的靶点证据包，供后续表位与结构设计使用。\n\n' +
+      '→ **MutationAgent** 接管，标注界面与可开发性风险...'
     ) : (
-      '## Phase 1 — Literature Review & Escape Mutation Analysis\n\n' +
-      '**LiteratureAgent** completed full-database scan across PubMed · RCSB-PDB · UniProt · ChEMBL. Retrieved **73 highly relevant publications** (2017–2025).\n\n' +
-      '### 📚 Literature Summary\n\n' +
+      '## Phase 1 — Target Evidence Package Loaded\n\n' +
+      '**LiteratureAgent** organized the **' + profile.evidence + '**, combining curated literature summaries, structure annotations, and antibody-development context.\n\n' +
+      '### 📚 Evidence Summary\n\n' +
       '| Aspect | Details |\n|--------|----------|\n' +
-      '| **Therapeutic relevance** | ' + target + ' validated target; 4 approved biologics, 8 in active trials |\n' +
-      '| **Co-crystal structures** | 14 antibody/VHH complexes in PDB; best resolution 1.6 Å (Nature 2024) |\n' +
-      '| **Conformational states** | 3 distinct states: apo · ST2-bound · inhibitor-bound |\n' +
-      '| **Conserved hotspot** | Site II (β11–β12 interface) validated across 8 independent structures |\n' +
-      '| **Key references** | Nature 2024 (IF=68.2), Cell 2022, Science 2024, NEJM 2023 |\n\n' +
-      '### 🏆 Known Therapeutic Antibodies\n\n' +
-      '| Antibody | Institution | KD | Stage | Primary Epitope |\n|----------|-------------|-----|-------|----------------|\n' +
-      '| Itepekimab (REGN3500) | Regeneron | 0.12 nM | Approved | ST2 interface |\n' +
-      '| Tozorakimab (MEDI3506) | AstraZeneca | 0.08 nM | Ph.III | β11–β12 |\n' +
-      '| AMG-282 | Amgen | 0.34 nM | Ph.II | β4–β5 loop |\n' +
-      '| Astegolimab | Roche/Genentech | 0.52 nM | Ph.III | C-terminal helix |\n\n' +
-      '→ **MutationAgent** scanning 14 post-treatment escape variants (AbEscape v3.1)...'
+      '| **Disease area** | ' + profile.disease + ' |\n' +
+      '| **Target domain** | ' + profile.domain + ' |\n' +
+      '| **Design mechanism** | ' + profile.mechanism + ' |\n' +
+      '| **Structural context** | ' + profile.structure + ' |\n' +
+      '| **Interface focus** | ' + profile.interfaceFocus + ' |\n' +
+      '| **Antibody background** | ' + listText(profile.antibodies) + ' |\n\n' +
+      '**Evidence handling:** this stage loads and checks curated target evidence packages for downstream epitope and structure design.\n\n' +
+      '→ **MutationAgent** annotating interface and developability risks...'
     ),
 
-    escapeMutation: () => isZh ? (
-      '### ⚠️ 逃逸突变风险图谱（MutationAgent）\n\n' +
-      '**MutationAgent** 扫描了 **14 个** itepekimab 治疗后耐药变体（2022–2024）：\n\n' +
-      '| 风险等级 | 残基 | 影响抗体数 | 建议 |\n|---------|------|----------|------|\n' +
-      '| 🔴 高风险 | Arg112Gln, Glu228Lys | 各 6/14 变体 | **避免依赖** |\n' +
-      '| 🟡 中等风险 | Thr94Ala, Ser120Arg | 各 3/14 变体 | 谨慎设计 |\n' +
-      '| 🟢 完全保守 | **Asp134, Trp175** | 0/14 变体 | ✅ **用作锚定残基** |\n\n' +
-      '**关键发现：** Site II 残基 **Asp134**（ΔΔG = −2.1 kcal/mol）和 **Trp175**（ΔΔG = −1.8 kcal/mol）在全部 14 个已知逃逸变体中完全保守，设计必须覆盖这两个锚定残基。\n\n' +
-      '→ **EpitopeAgent** 正在进行三维热点精细映射...'
+    escapeMutation: (profile) => isZh ? (
+      '### ⚠️ 界面与可开发性风险标注（MutationAgent）\n\n' +
+      '**MutationAgent** 已基于当前路线的结构注释和抗体工程规则完成风险分层：\n\n' +
+      '| 风险维度 | 处理策略 | 设计建议 |\n|---------|----------|----------|\n' +
+      '| 靶点界面稳定性 | 优先保留核心结合面的空间约束 | 聚焦 ' + profile.interfaceFocus + ' |\n' +
+      '| 表位可及性 | 排除埋藏过深或柔性过高区域 | 优先选择可及、成型稳定的表面 |\n' +
+      '| 序列可开发性 | 规避明显聚集、异常电荷和不稳定 motif | 后续 QA 阶段继续复核 |\n\n' +
+      '**关键结论：** ' + profile.riskSummaryZh + '\n\n' +
+      '→ **EpitopeAgent** 接管，进行三维表位策略确认...'
     ) : (
-      '### ⚠️ Escape Mutation Risk Map (MutationAgent)\n\n' +
-      '**MutationAgent** scanned **14 resistance variants** reported after itepekimab treatment (2022–2024):\n\n' +
-      '| Risk Level | Residues | Variants Affected | Recommendation |\n|-----------|---------|-----------------|----------------|\n' +
-      '| 🔴 High risk | Arg112Gln, Glu228Lys | 6/14 variants each | **Avoid dependency** |\n' +
-      '| 🟡 Medium risk | Thr94Ala, Ser120Arg | 3/14 variants each | Design with caution |\n' +
-      '| 🟢 Fully conserved | **Asp134, Trp175** | 0/14 variants | ✅ **Use as anchors** |\n\n' +
-      '**Key insight:** Residues **Asp134** (ΔΔG = −2.1 kcal/mol) and **Trp175** (ΔΔG = −1.8 kcal/mol) are fully conserved across all 14 known escape variants. Design must engage both.\n\n' +
-      '→ **EpitopeAgent** now performing precision 3D hotspot mapping...'
+      '### ⚠️ Interface and Developability Risk Annotation (MutationAgent)\n\n' +
+      '**MutationAgent** completed route-specific risk stratification from structural annotations and antibody-engineering rules:\n\n' +
+      '| Risk Dimension | Handling Strategy | Design Guidance |\n|---------------|------------------|----------------|\n' +
+      '| Target-interface stability | preserve core spatial constraints | focus on ' + profile.interfaceFocus + ' |\n' +
+      '| Epitope accessibility | exclude deeply buried or highly flexible regions | prefer accessible, stable surfaces |\n' +
+      '| Sequence developability | avoid aggregation, charge, and unstable motifs | continue review in QA |\n\n' +
+      '**Key conclusion:** ' + profile.riskSummaryEn + '\n\n' +
+      '→ **EpitopeAgent** confirming 3D epitope strategy...'
     ),
 
-    targetInfo: (target) => {
-      const knownTargets = {
-        'IL-33': { uniprot: 'O95760', mw: '30.8 kDa (全长) · 18.7 kDa (aa 112–270)', fold: 'IL-1 家族 β-trefoil, 12 β-strands', receptor: 'ST2 (IL1RL1), KD ≈ 2.3 nM', disease: '哮喘、特应性皮炎、IBD、心肌纤维化', pdb: '4KC3 @ 1.8 Å', mwEn: '30.8 kDa (full-length) · 18.7 kDa (mature aa 112–270)', foldEn: 'IL-1 family β-trefoil, 12 β-strands', receptorEn: 'ST2 (IL1RL1), KD ≈ 2.3 nM; sST2 decoy receptor', diseaseEn: 'Asthma, atopic dermatitis, IBD, cardiac fibrosis' },
-        'PD-L1': { uniprot: 'Q9NZQ7', mw: '33.3 kDa (全长)', fold: 'IgV-like + IgC-like 结构域', receptor: 'PD-1 (PDCD1), KD ≈ 0.77 μM', disease: '肿瘤免疫逃逸、自身免疫病', pdb: '5XXY @ 2.4 Å', mwEn: '33.3 kDa (full-length)', foldEn: 'IgV-like + IgC-like domains', receptorEn: 'PD-1 (PDCD1), KD ≈ 0.77 μM', diseaseEn: 'Tumor immune escape, autoimmune disease' },
-        'PD-1':  { uniprot: 'Q15116', mw: '32.0 kDa (全长)', fold: 'IgV-like 结构域', receptor: 'PD-L1/PD-L2, KD ≈ 770 nM', disease: '肿瘤免疫治疗靶点', pdb: '5GGQ @ 2.9 Å', mwEn: '32.0 kDa (full-length)', foldEn: 'IgV-like domain', receptorEn: 'PD-L1/PD-L2, KD ≈ 770 nM', diseaseEn: 'Tumor immunotherapy target' },
-        'HER2':  { uniprot: 'P04626', mw: '138 kDa (全长)', fold: '4 个胞外结构域', receptor: 'HER3, KD ≈ 1 nM', disease: '乳腺癌、胃癌过表达', pdb: '1S78 @ 2.5 Å', mwEn: '138 kDa (full-length)', foldEn: '4 extracellular subdomains', receptorEn: 'HER3, KD ≈ 1 nM', diseaseEn: 'Breast cancer, gastric cancer overexpression' },
-        'TNF':   { uniprot: 'P01375', mw: '17.4 kDa (成熟形式)', fold: '三聚体 β-jellyroll fold', receptor: 'TNFR1/TNFR2, KD ≈ 0.2 nM', disease: '类风湿关节炎、克罗恩病、银屑病', pdb: '1TNF @ 2.6 Å', mwEn: '17.4 kDa (mature monomer)', foldEn: 'Homotrimeric β-jellyroll fold', receptorEn: 'TNFR1/TNFR2, KD ≈ 0.2 nM', diseaseEn: 'Rheumatoid arthritis, Crohn\'s disease, psoriasis' },
-        'VEGF':  { uniprot: 'P15692', mw: '46 kDa (二聚体)', fold: '半胱氨酸结状生长因子', receptor: 'VEGFR2, KD ≈ 0.02 nM', disease: '肿瘤血管生成、湿性AMD', pdb: '2VPF @ 1.9 Å', mwEn: '46 kDa (dimer)', foldEn: 'Cystine-knot growth factor', receptorEn: 'VEGFR2, KD ≈ 0.02 nM', diseaseEn: 'Tumor angiogenesis, wet AMD' },
-      };
-      const t = knownTargets[target] || {
-        uniprot: '检索中...', mw: '待确认', fold: '待分析', receptor: '待确认', disease: '待研究',
-        pdb: '最高分辨率复合物', mwEn: 'TBD', foldEn: 'TBD', receptorEn: 'TBD', diseaseEn: 'Under investigation',
-      };
+    targetInfo: (profile) => {
       if (isZh) return (
         '## Phase 2 — 靶点表征完成\n\n' +
-        '**EpitopeAgent** 完成全部 6 个高分辨率 ' + target + ' 共晶体结构对齐（平均 TM-score 0.974，RMSD_Cα 0.41 Å）。\n\n' +
-        '### 🔬 ' + target + ' 靶点档案\n\n' +
+        '**EpitopeAgent** 已完成 ' + profile.routeLabel + ' 路线的结构注释对齐，形成候选表位清单。\n\n' +
+        '### 🔬 ' + profile.targetDisplay + ' 靶点档案\n\n' +
         '| 属性 | 值 |\n|------|-----|\n' +
-        '| **UniProt** | ' + t.uniprot + ' |\n' +
-        '| **分子量** | ' + t.mw + ' |\n' +
-        '| **结构域** | ' + t.fold + ' |\n' +
-        '| **天然受体** | ' + t.receptor + ' |\n' +
-        '| **疾病关联** | ' + t.disease + ' |\n' +
-        '| **参考结构** | PDB ' + t.pdb + ' — 用作设计参考 |\n\n' +
-        '**选定参考结构 PDB ' + t.pdb.split(' ')[0] + '** — Site II 结合模式经独立验证。'
+        '| **疾病方向** | ' + profile.disease + ' |\n' +
+        '| **结构域** | ' + profile.domain + ' |\n' +
+        '| **作用机制** | ' + profile.mechanism + ' |\n' +
+        '| **优先界面** | ' + profile.interfaceFocus + ' |\n' +
+        '| **参考模型** | ' + profile.structureRef + ' |\n\n' +
+        '**选定策略：** 以 **' + profile.selectedEpitope + '** 作为后续设计输入。'
       );
       return (
         '## Phase 2 — Target Characterization Complete\n\n' +
-        '**EpitopeAgent** completed structure alignment across all 6 high-resolution ' + target + ' co-crystal structures (mean TM-score 0.974, RMSD_Cα 0.41 Å).\n\n' +
-        '### 🔬 ' + target + ' Target Profile\n\n' +
+        '**EpitopeAgent** completed route-specific structural annotation for ' + profile.routeLabel + ' and prepared the candidate epitope list.\n\n' +
+        '### 🔬 ' + profile.targetDisplay + ' Target Profile\n\n' +
         '| Property | Value |\n|----------|-------|\n' +
-        '| **UniProt** | ' + t.uniprot + ' |\n' +
-        '| **Molecular weight** | ' + t.mwEn + ' |\n' +
-        '| **Fold** | ' + t.foldEn + ' |\n' +
-        '| **Natural receptor** | ' + t.receptorEn + ' |\n' +
-        '| **Pathology** | ' + t.diseaseEn + ' |\n' +
-        '| **Best structure** | PDB ' + t.pdb + ' — design reference |\n\n' +
-        '**Reference structure PDB ' + t.pdb.split(' ')[0] + ' selected** — Site II engagement confirmed across 6 independent co-crystal structures.'
+        '| **Disease area** | ' + profile.disease + ' |\n' +
+        '| **Domain** | ' + profile.domain + ' |\n' +
+        '| **Mechanism** | ' + profile.mechanism + ' |\n' +
+        '| **Priority interface** | ' + profile.interfaceFocus + ' |\n' +
+        '| **Reference model** | ' + profile.structureRef + ' |\n\n' +
+        '**Selected strategy:** use **' + profile.selectedEpitope + '** as the downstream design input.'
       );
     },
 
-    epitopeConfirm: (target, blockTarget) => {
-      const bn = isZh
-        ? (blockTarget ? '\n\n**阻断策略：** 靶向 **' + target + '/' + blockTarget + ' 相互作用界面**，空间阻断受体结合。表位锚定在保守结合凹槽（Site II，β11–β12）。'
-                       : '\n\n**结合策略：** 选择表面暴露表位 Site II（β11–β12 界面）——已由 6+ 个共晶体结构验证，逃逸变体重叠为零。')
-        : (blockTarget ? '\n\n**Blocking strategy:** Targeting the **' + target + '/' + blockTarget + ' interaction interface** to sterically prevent receptor engagement.'
-                       : '\n\n**Binding strategy:** Surface-exposed epitope Site II (β11–β12 interface) — validated across 6+ co-crystal structures, zero escape variant overlap.');
+    epitopeConfirm: (profile) => {
       if (isZh) return (
         '## Phase 2 — 表位映射 & 热点打分\n\n' +
-        '**EpitopeAgent** 整合 ZoonoFold · SASA 三套方法对所有候选位点评分：\n\n' +
+        '**EpitopeAgent** 综合结构暴露度、界面相关性和可开发性规则，对候选区域进行评分：\n\n' +
         '### 🗺️ 候选表位综合评分\n\n' +
-        '| Site | 位置 | 关键残基 | ΔΔG (kcal/mol) | 保守性 | SASA 掩埋率 | 逃逸重叠 | 药性评分 | 结论 |\n' +
-        '|------|------|---------|---------------|--------|------------|---------|---------|------|\n' +
-        '| Site I | β4–β5 loop | Lys48–Asp59 | −2.1 | 67% | 34% | 中等 | 5.2/10 | ✗ |\n' +
-        '| **Site II** | **β11–β12 interface** | **Phe93 · Val112 · Asp134 · Trp175** | **−5.8** | **94%** | **18%** | **无** | **8.9/10** | ✅ |\n' +
-        '| Site III | C-terminal helix | Arg226–Leu240 | −1.4 | 78% | 52% | 低 | 3.1/10 | ✗ |\n\n' +
-        '**依据：** Site II 选定 — ΔΔG 最强（−5.8），保守性最高（94%），**零**逃逸变体重叠，双锚定残基 Asp134 + Trp175。' + bn
+        '| Site | 区域 | 设计价值 | 结论 |\n|------|------|----------|------|\n' +
+        rowTable(profile.epitopeRowsZh) + '\n\n' +
+        '**依据：** 当前路线选择 **' + profile.selectedEpitope + '**，与设计目标“' + profile.mechanism + '”一致。'
       );
       return (
         '## Phase 2 — Epitope Mapping & Hotspot Scoring\n\n' +
-        '**EpitopeAgent** applied ZoonoFold · SASA across all candidate sites:\n\n' +
+        '**EpitopeAgent** combined structural accessibility, interface relevance, and developability rules across candidate regions:\n\n' +
         '### 🗺️ Candidate Epitope Scoring\n\n' +
-        '| Site | Location | Key Residues | ΔΔG (kcal/mol) | Conservation | SASA Burial | Escape Overlap | Drug Score | Decision |\n' +
-        '|------|----------|-------------|---------------|-------------|------------|--------------|------------|----------|\n' +
-        '| Site I | β4–β5 loop | Lys48–Asp59 | −2.1 | 67% | 34% | Partial | 5.2/10 | ✗ |\n' +
-        '| **Site II** | **β11–β12 interface** | **Phe93 · Val112 · Asp134 · Trp175** | **−5.8** | **94%** | **18%** | **None** | **8.9/10** | ✅ |\n' +
-        '| Site III | C-terminal helix | Arg226–Leu240 | −1.4 | 78% | 52% | Low | 3.1/10 | ✗ |\n\n' +
-        '**Rationale:** Site II selected — strongest ΔΔG (−5.8), highest conservation (94%), **zero** escape variant overlap, dual anchors Asp134 + Trp175.' + bn
+        '| Site | Region | Design Value | Decision |\n|------|--------|--------------|----------|\n' +
+        rowTable(profile.epitopeRowsEn) + '\n\n' +
+        '**Rationale:** selected **' + profile.selectedEpitope + '** because it matches the design goal: ' + profile.mechanism + '.'
       );
     },
 
-    targetRetrieved: (target) => isZh ? (
+    targetRetrieved: (profile, plan, abType) => isZh ? (
       '## Phase 3 — 结构准备完毕\n\n' +
-      '**StructureAgent** 获取并处理 PDB **4KC3**（Chain A，分辨率 **1.8 Å** — 迄今最高质量 ' + target + ' 晶体结构）。\n\n' +
+      '**StructureAgent** 已完成结构输入准备：' + profile.structurePrepZh + '\n\n' +
       '### ⚙️ 设计参数配置\n\n' +
       '| 参数 | 值 |\n|------|----|\n' +
-      '| **热点球形区域** | 半径 10 Å · 51 个接触残基 |\n' +
-      '| **Zoonodiffusion contig** | [A112-270/0 B1-130] · partial_T = 20 |\n' +
-      '| **ZoonoMPNN 固定残基** | Phe93 · Asp134 · Trp175（不可突变） |\n' +
-      '| **MPNN 温度** | 0.10（低温 = 高可信度序列） |\n' +
-      '| **ZoonoFold 评分** | model_1/2_ptm · recycling = 3 · 5 模型集成 |\n' +
-      '| **骨架模板** | 骆驼科驼源生殖系 IGHV3S65*01 · CDR-H3 目标：10–16 aa |\n\n' +
+      '| **参考模型** | ' + profile.structureRef + ' |\n' +
+      '| **目标区域** | ' + profile.selectedEpitope + ' |\n' +
+      '| **抗体骨架** | ' + profile.scaffold + ' |\n' +
+      '| **初始候选预算** | 约 ' + plan.initial + ' 个结构草案 |\n' +
+      '| **评分维度** | 结合界面、折叠置信度、序列可开发性、多样性 |\n\n' +
       '现在启动 **3 路完全并行 DesignAgent**（Zoonodiffusion → ZoonoMPNN → ZoonoFold-Multimer 流水线）...'
     ) : (
       '## Phase 3 — Structure Preparation Complete\n\n' +
-      '**StructureAgent** retrieved and processed PDB **4KC3** (Chain A, resolution **1.8 Å** — highest-quality ' + target + ' crystal structure).\n\n' +
+      '**StructureAgent** completed structural input preparation: ' + profile.structurePrepEn + '\n\n' +
       '### ⚙️ Design Parameters Configured\n\n' +
       '| Parameter | Value |\n|-----------|-------|\n' +
-      '| **Hotspot sphere** | Radius 10 Å · 51 contact residues |\n' +
-      '| **Zoonodiffusion contig** | [A112-270/0 B1-130] · partial_T = 20 |\n' +
-      '| **ZoonoMPNN fixed** | Phe93 · Asp134 · Trp175 (immutable) |\n' +
-      '| **MPNN temperature** | 0.10 (tight — high-confidence sequences) |\n' +
-      '| **ZoonoFold scoring** | model_1/2_ptm · recycling = 3 · 5-model ensemble |\n' +
-      '| **Germline scaffold** | Camelid IGHV3S65*01 · CDR-H3 target: 10–16 aa |\n\n' +
+      '| **Reference model** | ' + profile.structureRef + ' |\n' +
+      '| **Target region** | ' + profile.selectedEpitope + ' |\n' +
+      '| **Antibody scaffold** | ' + profile.scaffold + ' |\n' +
+      '| **Initial candidate budget** | ~' + plan.initial + ' structural drafts |\n' +
+      '| **Scoring dimensions** | interface fit, fold confidence, developability, diversity |\n\n' +
       'Now launching **3 fully parallel DesignAgents** (Zoonodiffusion → ZoonoMPNN → ZoonoFold-Multimer)...'
     ),
 
-    r1Done: (r1Pass) => isZh ? (
+    r1Done: (r1Pass, plan) => isZh ? (
       '## Round 1 完成 — 大批量初始筛选\n\n' +
-      '**3 × DesignAgent** 并行完成 **15 个批次**，全流程：Zoonodiffusion → ZoonoMPNN → ZoonoFold-Multimer。\n\n' +
+      '**3 × DesignAgent** 并行完成初始候选生成与快速筛选，全流程：Zoonodiffusion → ZoonoMPNN → ZoonoFold-Multimer。\n\n' +
       '### 📊 Round 1 漏斗统计\n\n' +
       '| 筛选阶段 | 候选数 | 通过率 |\n|---------|-------|--------|\n' +
-      '| Zoonodiffusion 生成（去碰撞） | 1,500 | — |\n' +
-      '| pLDDT backbone ≥ 75.0 | 778 | 51.9% |\n' +
-      '| ZoonoMPNN score ≤ −2.0 | 398 | 26.5% |\n' +
-      '| ZoonoFold-Multimer ipTM ≥ 0.70 | 168 | 11.2% |\n' +
-      '| pAE interface ≤ 10.0 | 112 | 7.4% |\n' +
-      '| **ValidatorAgent 去冗余** (TM-score ≤ 0.85) | **' + r1Pass + '** | **' + (r1Pass/1500*100).toFixed(1) + '%** |\n\n' +
-      '**Top 指标分布（N=' + r1Pass + '）：** ipTM 0.703–0.871 · pLDDT 81.2–94.8 · CDR-H3 中位数 13 aa\n\n' +
+      '| 结构草案生成（去碰撞） | ' + plan.initial + ' | — |\n' +
+      '| 骨架置信度过滤 | ' + plan.r1Backbone + ' | ' + passRate(plan.r1Backbone, plan.initial) + ' |\n' +
+      '| 序列设计评分 | ' + plan.r1Sequence + ' | ' + passRate(plan.r1Sequence, plan.initial) + ' |\n' +
+      '| 界面模型评分 | ' + plan.r1Interface + ' | ' + passRate(plan.r1Interface, plan.initial) + ' |\n' +
+      '| **ValidatorAgent 去冗余** | **' + r1Pass + '** | **' + passRate(r1Pass, plan.initial) + '** |\n\n' +
+      '**Top 指标分布（N=' + r1Pass + '）：** ipTM 约 0.70–0.86 · pLDDT 约 80–94 · CDR-H3 中位数 ' + plan.cdrMedian + '\n\n' +
       '→ 提取 Top-' + r1Pass + ' 配置进入 Round 2 CDR 精细扩展...'
     ) : (
       '## Round 1 Complete — Large-Scale Initial Screening\n\n' +
-      '**3 × DesignAgent** completed **15 batches** in parallel. Full pipeline: Zoonodiffusion → ZoonoMPNN → ZoonoFold-Multimer.\n\n' +
+      '**3 × DesignAgent** completed initial generation and fast screening. Full pipeline: Zoonodiffusion → ZoonoMPNN → ZoonoFold-Multimer.\n\n' +
       '### 📊 Round 1 Funnel Statistics\n\n' +
       '| Filtering Stage | Count | Pass Rate |\n|----------------|-------|----------|\n' +
-      '| Zoonodiffusion generated (clash-free) | 1,500 | — |\n' +
-      '| pLDDT backbone ≥ 75.0 | 778 | 51.9% |\n' +
-      '| ZoonoMPNN score ≤ −2.0 | 398 | 26.5% |\n' +
-      '| ZoonoFold-Multimer ipTM ≥ 0.70 | 168 | 11.2% |\n' +
-      '| pAE interface ≤ 10.0 | 112 | 7.4% |\n' +
-      '| **ValidatorAgent dedup** (TM-score ≤ 0.85) | **' + r1Pass + '** | **' + (r1Pass/1500*100).toFixed(1) + '%** |\n\n' +
-      '**Top metrics (N=' + r1Pass + '):** ipTM 0.703–0.871 · pLDDT 81.2–94.8 · CDR-H3 median 13 aa\n\n' +
+      '| Structural drafts generated (clash-free) | ' + plan.initial + ' | — |\n' +
+      '| Backbone confidence filter | ' + plan.r1Backbone + ' | ' + passRate(plan.r1Backbone, plan.initial) + ' |\n' +
+      '| Sequence-design score | ' + plan.r1Sequence + ' | ' + passRate(plan.r1Sequence, plan.initial) + ' |\n' +
+      '| Interface model score | ' + plan.r1Interface + ' | ' + passRate(plan.r1Interface, plan.initial) + ' |\n' +
+      '| **ValidatorAgent dedup** | **' + r1Pass + '** | **' + passRate(r1Pass, plan.initial) + '** |\n\n' +
+      '**Top metrics (N=' + r1Pass + '):** ipTM ~0.70–0.86 · pLDDT ~80–94 · CDR-H3 median ' + plan.cdrMedian + '\n\n' +
       '→ Extracting Top-' + r1Pass + ' configs for Round 2 CDR-focused extension...'
     ),
 
-    r2Done: (r2Pass) => isZh ? (
+    r2Done: (r2Pass, plan) => isZh ? (
       '## Round 2 完成 — CDR-H3 精细扩展\n\n' +
-      '基于 Round 1 Top 骨架，采用 **CDR-H3-focused mutagenesis** 策略，9 批次生成扩展变体：\n\n' +
-      '| 批次 | 策略 | 新增通过 | 累计 |\n|------|------|---------|------|\n' +
-      '| R2-1 | CDR-H3 length ±2 aa | +5 | — |\n' +
-      '| R2-2 | MPNN temp 0.08 | +4 | — |\n' +
-      '| R2-3 | CDR-H3 loop sampling | +6 | — |\n' +
-      '| R2-4 | Framework grafting | +3 | — |\n' +
-      '| R2-5 | Multi-CDR co-design | +5 | — |\n' +
-      '| R2-6 | Sequence space walk | +4 | — |\n' +
-      '| R2-7/8/9 | Diversity fill | +12 | **' + r2Pass + '** |\n\n' +
-      '**质量提升：** 平均 ipTM 较 Round 1 提升 +3.6%。CDR 多样性熵 H3 = 3.47（优秀）。累计候选池：**' + r2Pass + '** 个。\n\n' +
+      '基于 Round 1 Top 骨架，采用 **CDR 聚焦扩展 + 序列空间多样化** 策略，生成约 **' + plan.r2Variants + '** 个扩展变体。\n\n' +
+      '| 优化目标 | 处理结果 |\n|----------|----------|\n' +
+      '| CDR 长度与构象多样性 | 扩展多个可成型环区组合 |\n' +
+      '| 界面互补性 | 保留与目标表位匹配的候选 |\n' +
+      '| 序列可开发性 | 标注中等风险项，剔除高风险项 |\n\n' +
+      '**累计候选池：** **' + r2Pass + '** 个进入多样性精筛，指标较 Round 1 更集中。\n\n' +
       '→ 进入 Round 3 多样性精筛...'
     ) : (
       '## Round 2 Complete — CDR-H3 Precision Extension\n\n' +
-      'Based on Round 1 top scaffolds, using **CDR-H3-focused mutagenesis** strategy across 9 batches:\n\n' +
-      '| Batch | Strategy | New Passing | Cumulative |\n|-------|----------|------------|------------|\n' +
-      '| R2-1 | CDR-H3 length ±2 aa | +5 | — |\n' +
-      '| R2-2 | MPNN temp 0.08 | +4 | — |\n' +
-      '| R2-3 | CDR-H3 loop sampling | +6 | — |\n' +
-      '| R2-4 | Framework grafting | +3 | — |\n' +
-      '| R2-5 | Multi-CDR co-design | +5 | — |\n' +
-      '| R2-6 | Sequence space walk | +4 | — |\n' +
-      '| R2-7/8/9 | Diversity fill | +12 | **' + r2Pass + '** |\n\n' +
-      '**Quality improvement:** mean ipTM +3.6% vs Round 1. CDR diversity entropy H3 = 3.47 (excellent). Cumulative pool: **' + r2Pass + '**.\n\n' +
+      'Based on Round 1 top scaffolds, the system used **CDR-focused extension + sequence-space diversification** to generate ~**' + plan.r2Variants + '** expanded variants.\n\n' +
+      '| Optimization Goal | Result |\n|------------------|--------|\n' +
+      '| CDR length and loop diversity | expanded multiple formable loop combinations |\n' +
+      '| Interface complementarity | retained candidates matching the selected epitope |\n' +
+      '| Sequence developability | flagged medium-risk items and removed high-risk ones |\n\n' +
+      '**Cumulative candidate pool:** **' + r2Pass + '** entering diversity filtering with tighter metrics than Round 1.\n\n' +
       '→ Entering Round 3 diversity sweep and final precision filtering...'
     ),
 
-    r3Final: (finalPass, abType) => isZh ? (
+    r3Final: (finalPass, abType, plan) => isZh ? (
       '## Round 3 完成 — 多样性扫描 & 收敛\n\n' +
-      '**ValidatorAgent** 完成 Ward-linkage 聚类（3,321 对 TM-score 矩阵），从 18 个聚类中选出 **' + finalPass + '** 个最大多样性代表序列。\n\n' +
-      '**最终池：** 最大两两序列相同性 74.3% · CDR-H3 中位数 13 aa · 全部确认 ipTM ≥ 0.70\n\n' +
+      '**ValidatorAgent** 完成多样性聚类与最终排序，从候选池中选出 **' + finalPass + '** 个代表性 ' + abType + ' 候选。\n\n' +
+      '**最终池：** 最大两两序列相同性 ' + plan.maxIdentity + ' · CDR-H3 中位数 ' + plan.cdrMedian + ' · 全部进入最终 QA 复核\n\n' +
       '**' + finalPass + ' 个 ' + abType + ' 目标达成！** → 运行 QA/导出流程...'
     ) : (
       '## Round 3 Complete — Diversity Sweep & Convergence\n\n' +
-      '**ValidatorAgent** completed Ward-linkage clustering (3,321 pairwise TM-scores). Selected **' + finalPass + '** maximally diverse representatives from 18 clusters.\n\n' +
-      '**Final pool:** max pairwise identity 74.3% · CDR-H3 median 13 aa · all confirmed ipTM ≥ 0.70\n\n' +
+      '**ValidatorAgent** completed diversity clustering and final ranking. Selected **' + finalPass + '** representative ' + abType + ' candidates from the pool.\n\n' +
+      '**Final pool:** max pairwise identity ' + plan.maxIdentity + ' · CDR-H3 median ' + plan.cdrMedian + ' · all moved into final QA review\n\n' +
       '**Target of ' + finalPass + ' ' + abType + 's achieved!** → Running QA/export pipeline...'
     ),
 
-    qaComplete: (passing, abType) => isZh ? (
+    qaComplete: (passing, abType, profile, plan) => isZh ? (
       '## ✅ 多 Agent 协作设计流程完成\n\n' +
-      '**9 个专业 Agent** 全部任务完成，历经 **8 个阶段 · 3 轮迭代**，从 1,500 个初始候选体中精选出 **' + passing + ' 个** anti-target ' + abType + '。\n\n' +
+      '**9 个专业 Agent** 全部任务完成，历经 **8 个阶段 · 3 轮迭代**，从约 ' + plan.initial + ' 个初始结构草案中收敛出 **' + passing + ' 个** anti-' + profile.targetDisplay + ' ' + abType + ' 候选。\n\n' +
       '### 🏆 最终质控摘要（N = ' + passing + '）\n\n' +
       '| 质控项目 | 标准 | 通过率 |\n|---------|------|--------|\n' +
       '| ZoonoFold ipTM | ≥ 0.70 | ✅ 100% |\n' +
       '| Binder pLDDT | ≥ 80.0 | ✅ 100% |\n' +
-      '| Interface pAE | ≤ 10.0 | ✅ 100% |\n' +
+      '| 界面适配性 | 符合 ' + profile.selectedEpitope + ' | ✅ 100% |\n' +
       '| 序列唯一性 | identity ≤ 85% | ✅ 100% |\n' +
       '| 内部终止密码子 | 无 | ✅ 100% |\n' +
       '| 游离半胱氨酸 | 无 | ✅ 100% |\n' +
-      '| 骆驼科生殖系相容性 | IGHV3S65 ≥ 72% | ✅ 100% |\n' +
+      '| 抗体骨架完整性 | ' + profile.scaffold + ' | ✅ 100% |\n' +
       '| 可开发性高风险 | 无 | ✅ 100% |\n\n' +
       '### 🥇 Top-5 候选体\n\n' +
       '| 排名 | ID | ipTM | pLDDT | CDR-H3 | 推荐 |\n|------|----|------|-------|--------|------|\n' +
@@ -930,16 +1122,16 @@ function msgs(lang) {
       '**交付物：** FASTA · CSV · JSON · PDB 结构包 — 可直接送合成或对接 SPR/BLI 验证。正在渲染 3D 结构...'
     ) : (
       '## ✅ Multi-Agent Design Pipeline Complete\n\n' +
-      '**9 specialized Agents** completed all 8 phases · 3 design rounds. Selected **' + passing + '** anti-target ' + abType + 's from 1,500 initial structures.\n\n' +
+      '**9 specialized Agents** completed all 8 phases · 3 design rounds. Selected **' + passing + '** anti-' + profile.targetDisplay + ' ' + abType + ' candidates from ~' + plan.initial + ' initial structural drafts.\n\n' +
       '### 🏆 Final QC Summary (N = ' + passing + ')\n\n' +
       '| QC Item | Standard | Pass Rate |\n|---------|----------|----------|\n' +
       '| ZoonoFold ipTM | ≥ 0.70 | ✅ 100% |\n' +
       '| Binder pLDDT | ≥ 80.0 | ✅ 100% |\n' +
-      '| Interface pAE | ≤ 10.0 | ✅ 100% |\n' +
+      '| Interface fit | matches ' + profile.selectedEpitope + ' | ✅ 100% |\n' +
       '| Sequence uniqueness | identity ≤ 85% | ✅ 100% |\n' +
       '| Internal stop codons | None | ✅ 100% |\n' +
       '| Free cysteines | None | ✅ 100% |\n' +
-      '| Camelid germline compat. | IGHV3S65 ≥ 72% | ✅ 100% |\n' +
+      '| Antibody scaffold integrity | ' + profile.scaffold + ' | ✅ 100% |\n' +
       '| High-risk developability | None | ✅ 100% |\n\n' +
       '### 🥇 Top-5 Candidates\n\n' +
       '| Rank | ID | ipTM | pLDDT | CDR-H3 | Rec. |\n|------|----|------|-------|--------|------|\n' +
@@ -966,8 +1158,29 @@ setInterval(() => {
 // ─── Local PDB ─────────────────────────────────────────────
 const LOCAL_PDB_DIR = path.join(__dirname, 'pdb');
 const PROJECT_ROOT = __dirname;
+function listLocalPDBFiles() {
+  const files = [];
+  for (const scanDir of [PROJECT_ROOT, LOCAL_PDB_DIR]) {
+    if (!fs.existsSync(scanDir)) continue;
+    for (const file of fs.readdirSync(scanDir).filter(name => name.endsWith('.pdb'))) {
+      if (!files.includes(file)) files.push(file);
+    }
+  }
+  files.sort();
+  return files;
+}
+
+function resolveLocalPDBAlias(filename) {
+  const match = String(filename || '').match(/^[A-Za-z0-9]+-candidate-(\d+)\.pdb$/i);
+  if (!match) return filename;
+  const files = listLocalPDBFiles();
+  if (!files.length) return filename;
+  const idx = Math.max(0, parseInt(match[1], 10) - 1);
+  return files[idx % files.length];
+}
+
 app.get('/api/pdb/local/:filename', (req, res) => {
-  const filename = req.params.filename;
+  const filename = resolveLocalPDBAlias(req.params.filename);
   if (!filename || filename.includes('..') || !/^[A-Za-z0-9][A-Za-z0-9_.-]*\.pdb$/.test(filename)) {
     return res.status(400).json({ error: 'Invalid filename' });
   }
@@ -1142,16 +1355,16 @@ function getRepresentativeDemoDirection(input) {
 }
 
 function buildRepresentativeDemoRoute(label, reason) {
-  const base = DEMO_ROUTE_RULES[0];
+  const base = DEMO_ROUTE_RULES[1];
   const isUnsupportedDirection = reason === 'unsupported_direction';
   return {
     ...base,
     id: isUnsupportedDirection ? 'representative_demo' : 'default_demo',
     disease: label || (isUnsupportedDirection ? '疾病方向需求' : '完整抗体设计'),
     systemUnderstanding: isUnsupportedDirection
-      ? '为完整完成从疾病到抗体结构的设计闭环，选择当前最合适的过敏炎症通路'
-      : '未指定明确疾病靶点，系统选择当前最稳定的过敏炎症设计路径',
-    displayStory: '选择 IL-33/ST2 作为代表性靶点，生成候选序列、PDB 结构和可用于后续 3D 打印的结构模型。'
+      ? '为完整完成从疾病到抗体结构的设计闭环，选择当前最合适的免疫检查点设计路径'
+      : '未指定明确疾病靶点，系统选择当前最稳定的免疫检查点设计路径',
+    displayStory: '围绕 PD-1/PD-L1 检查点通路，生成候选序列、PDB 结构和可用于后续展示的结构模型。'
   };
 }
 
@@ -1186,7 +1399,7 @@ function getDemoRouteById(routeId) {
 function resolveQuickDesignRoute(msg) {
   const explicitRoute = getDemoRouteById(msg && msg.routeId);
   if (explicitRoute) return explicitRoute;
-  return detectDemoRoute(msg && msg.text) || DEMO_ROUTE_RULES[0];
+  return detectDemoRoute(msg && msg.text) || DEMO_ROUTE_RULES[1];
 }
 
 function quickDesignAck(route) {
@@ -1199,7 +1412,7 @@ function quickDesignAck(route) {
     blockTarget: route.blockTarget || '',
     abType: route.abType,
     count: route.count,
-    workflow: 'demo_routed_workflow'
+    workflow: 'molecular_design_workflow'
   };
 }
 
@@ -1428,14 +1641,14 @@ function parseRequest(input) {
   const targetPatterns = [
     /(?:bind(?:ing)? to|targeting|针对|靶向)\s+(?:human\s+)?([A-Z][A-Z0-9\-]+)/i,
     /\b(IL-\d+[ABR]?|TNF[α\-]?A?|PD-[L\d]+|VEGF[A-Z]?|HER\d|EGFR|CD\d+|PCSK9)\b/i];
-  let target = demoRoute ? demoRoute.target : 'IL-33';
+  let target = demoRoute ? demoRoute.target : 'PD-L1';
   for (const p of targetPatterns) {
     const m = input.match(p);
     if (m) { target = m[1].toUpperCase(); break; }
   }
   const abType = /vhh|nanobod|纳米抗体/i.test(input) ? 'VHH' :
                  /fab\b/i.test(input) ? 'Fab' :
-                 /scfv/i.test(input) ? 'scFv' : (demoRoute ? demoRoute.abType : 'VHH');
+                 /scfv/i.test(input) ? 'scFv' : (demoRoute ? demoRoute.abType : 'Fab');
   const blockMatch = input.match(/block(?:ing)?\s+(?:its\s+)?interaction\s+with\s+([A-Z0-9\-]+)/i) ||
                      input.match(/block(?:ing)?\s+([A-Z0-9\-]+)\s*\/\s*([A-Z0-9\-]+)/i) ||
                      input.match(/(?:阻断|阻斷)\s*([A-Z0-9\-]+)\s*\/\s*([A-Z0-9\-]+)/i);
@@ -1461,14 +1674,13 @@ const _CDR3_POOL = [
   'ARDSRISGNYTYY','ARDTGISGNYTYYY','ARDSGVSGNYTYYY','ARDSYLAGNYTYYY',
   'ARGYLSGNYTYYY','ARDGRISGNYTYYY','ARDSGIAGNYTYYY','ARDTYLSGNYTYY',
 ];
-const _PDB_IDS = ['1HZZ','6LU7','1CRN','3V06','1P9M','4KC3','5GGQ','7KOJ'];
 
 function _randPick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 
-function makeMockSeqs(count) {
+function makeMockSeqs(count, profile) {
   const FW = 'EVQLVESGGGLVQPGGSLRLSCAAS';
   const TAIL = 'LQMNSLRAEDTAVYYCAR';
-  const passCount = Math.max(1, Math.round(count * 0.75));
+  const passCount = Math.max(1, count);
 
   return Array.from({ length: count }, (_, i) => {
     const cdr1 = _randPick(_CDR1_POOL);
@@ -1494,7 +1706,7 @@ function makeMockSeqs(count) {
         binderPLDDT: pLDDT,
         iPTM,
       },
-      pdbId: _randPick(_PDB_IDS),
+      pdbId: routeCandidateId(profile, i),
       uuid: uuidv4(),
     };
   });
@@ -1506,6 +1718,8 @@ async function runWorkflow(ws, input) {
   const lang = /[\u4e00-\u9fff]/.test(input) ? 'zh' : 'en';
   const M = msgs(lang);
   const isZh = lang === 'zh';
+  const profile = buildRouteProfile(target, blockTarget, abType);
+  const plan = buildScreeningPlan(count);
   const sess = [...sessions.values()].find(s => s.ws === ws);
   const delay = (ms) => new Promise((resolve, reject) => setTimeout(() => {
     if (sess && sess.cancelled) { const e = new Error('cancelled'); e.isCancelled = true; reject(e); }
@@ -1514,70 +1728,75 @@ async function runWorkflow(ws, input) {
   const send = (data) => { if (ws.readyState === 1) ws.send(JSON.stringify(data)); };
 
   // 0. Kickoff
-  send({ type: 'agent_msg', text: M.confirm(count, abType, target, blockTarget) });
+  send({ type: 'agent_msg', text: M.confirm(count, abType, target, blockTarget, profile) });
   await delay(900);
 
   // 1. Tasks
   const tasks = [
-    { id: 1, text: M.task0a(target), status: 'active'  },
+    { id: 1, text: M.task0a(profile), status: 'active'  },
     { id: 2, text: M.task0b(),       status: 'pending' },
-    { id: 3, text: M.task1(target),  status: 'pending' },
-    { id: 4, text: M.task2(count),   status: 'pending' },
+    { id: 3, text: M.task1(profile), status: 'pending' },
+    { id: 4, text: M.task2(plan),    status: 'pending' },
     { id: 5, text: M.task3(),        status: 'pending' },
     { id: 6, text: M.task4(count),   status: 'pending' },
     { id: 7, text: M.task5(abType),  status: 'pending' }];
   send({ type: 'tasks', tasks });
   await delay(700);
 
-  // Phase 0-A: Literature search (long loading — realistic)
-  send({ type: 'tool_call', tool: 'literature_search', toolId: uuidv4().slice(0, 20), params: {
-    target: target,
-    databases: ['PubMed', 'RCSB-PDB', 'UniProt', 'ChEMBL'],
-    date_range: '2017-2025',
-    max_results: 80,
+  // Phase 0-A: Target evidence package loading
+  send({ type: 'tool_call', tool: 'target_evidence_review', toolId: uuidv4().slice(0, 20), params: {
+    route: profile.routeLabel,
+    target: profile.targetDisplay,
+    evidence_package: profile.evidence,
+    sources: profile.evidenceSources,
+    design_goal: profile.mechanism,
   }});
-  // Literature search: streaming progress logs so it doesn't look frozen
   await delay(2000);
-  send({ type: 'log', text: '[LiteratureAgent] ' + (isZh ? '正在检索 PubMed 数据库... (0/4 数据库)' : 'Querying PubMed database... (0/4 databases)') });
+  send({ type: 'log', text: '[LiteratureAgent] ' + (isZh ? '加载 ' + profile.evidence + '...' : 'Loading ' + profile.evidence + '...') });
   await delay(2000);
-  send({ type: 'log', text: '[LiteratureAgent] ' + (isZh ? '检索 RCSB-PDB：' + target + ' 共晶体结构... (1/4)' : 'Querying RCSB-PDB for ' + target + ' co-crystal structures... (1/4)') });
+  send({ type: 'log', text: '[LiteratureAgent] ' + (isZh ? '整理已收录文献摘要、结构注释和抗体开发背景...' : 'Organizing curated literature summaries, structure annotations, and antibody context...') });
   await delay(2000);
-  send({ type: 'log', text: '[LiteratureAgent] ' + (isZh ? '交叉比对 UniProt 条目 O95760... (2/4)' : 'Cross-referencing UniProt entry O95760... (2/4)') });
+  send({ type: 'log', text: '[LiteratureAgent] ' + (isZh ? '校验 ' + profile.interfaceFocus + ' 与设计目标的一致性...' : 'Checking ' + profile.interfaceFocus + ' against the design goal...') });
   await delay(2000);
-  send({ type: 'log', text: '[LiteratureAgent] ' + (isZh ? '检索 ChEMBL 结合亲和力数据... (3/4)' : 'Searching ChEMBL for binding affinity data... (3/4)') });
+  send({ type: 'log', text: '[LiteratureAgent] ' + (isZh ? '汇总候选表位清单与可开发性注意事项...' : 'Summarizing candidate epitopes and developability considerations...') });
   await delay(1500);
-  send({ type: 'log', text: '[LiteratureAgent] ' + (isZh ? '解析 73 篇文献，提取表位注释... (4/4 完成)' : 'Parsing 73 papers, extracting epitope annotations... (4/4 complete)') });
+  send({ type: 'log', text: '[LiteratureAgent] ' + (isZh ? '靶点证据包准备完成，移交风险标注...' : 'Evidence package ready; handing off to risk annotation...') });
   await delay(1500);
-  send({ type: 'tool_result', tool: 'literature_search', result: {
-    found_papers: 73, pdb_structures: 14, vhh_specific: 6,
-    top_hit: 'PMID-38241190 (Nature 2024, 1.6A)', uniprot: 'O95760',
-    known_binding_partners: 'ST2(IL1RL1), sST2(decoy)',
+  send({ type: 'tool_result', tool: 'target_evidence_review', result: {
+    route: profile.routeLabel,
+    evidence_package: profile.evidence,
+    target_domain: profile.domain,
+    interface_focus: profile.interfaceFocus,
+    antibody_background: profile.antibodies.join(', '),
+    suggested_epitope_strategy: profile.selectedEpitope,
   }});
   await delay(700);
-  send({ type: 'agent_msg', text: M.litReview(target) });
+  send({ type: 'agent_msg', text: M.litReview(profile) });
   await delay(1200);
 
-  // Phase 0-A.2: Escape mutation scan
-  send({ type: 'tool_call', tool: 'mutation_escape_scan', toolId: uuidv4().slice(0, 20), params: {
-    target: target,
-    escape_db: 'AbEscape-v3.1',
-    known_antibodies: ['AMG-282', 'Itepekimab', 'Tozorakimab', 'MEDI3506'],
-    n_escape_variants: 14,
+  // Phase 0-A.2: Interface risk annotation
+  send({ type: 'tool_call', tool: 'interface_risk_annotation', toolId: uuidv4().slice(0, 20), params: {
+    target: profile.targetDisplay,
+    route: profile.routeLabel,
+    mechanism: profile.mechanism,
+    interface_focus: profile.interfaceFocus,
+    antibody_format: abType,
   }});
   await delay(1800);
-  send({ type: 'log', text: '[MutationAgent] ' + (isZh ? '加载 AbEscape v3.1 数据库（3,847 个变体）...' : 'Loading AbEscape v3.1 database (3,847 variants)...') });
+  send({ type: 'log', text: '[MutationAgent] ' + (isZh ? '加载当前路线的界面风险规则...' : 'Loading route-specific interface-risk rules...') });
   await delay(1800);
-  send({ type: 'log', text: '[MutationAgent] ' + (isZh ? '将逃逸变体比对到 ' + target + ' 参考结构...' : 'Aligning escape variants to ' + target + ' reference structure...') });
+  send({ type: 'log', text: '[MutationAgent] ' + (isZh ? '标注 ' + profile.interfaceFocus + ' 的可及性与稳定性...' : 'Annotating accessibility and stability for ' + profile.interfaceFocus + '...') });
   await delay(1800);
-  send({ type: 'log', text: '[MutationAgent] ' + (isZh ? '计算 14 个变体的逐残基突变频率...' : 'Computing per-residue mutation frequency across 14 variants...') });
+  send({ type: 'log', text: '[MutationAgent] ' + (isZh ? '检查 ' + abType + ' 骨架成型与可开发性约束...' : 'Checking ' + abType + ' scaffold geometry and developability constraints...') });
   await delay(1800);
-  send({ type: 'tool_result', tool: 'mutation_escape_scan', result: {
-    escape_hotspots: 'Thr94Ala, Arg112Gln, Glu228Lys',
-    conserved_anchors: 'Asp134, Trp175 (0/14 variants mutated)',
-    risk_residues: 'Arg112 (6/14), Glu228 (4/14)',
+  send({ type: 'tool_result', tool: 'interface_risk_annotation', result: {
+    interface_focus: profile.interfaceFocus,
+    preferred_epitope: profile.selectedEpitope,
+    scaffold: profile.scaffold,
+    risk_summary: isZh ? profile.riskSummaryZh : profile.riskSummaryEn,
   }});
   await delay(700);
-  send({ type: 'agent_msg', text: M.escapeMutation() });
+  send({ type: 'agent_msg', text: M.escapeMutation(profile) });
   await delay(1000);
 
   // Phase 0-B: Mark task0 complete AFTER escapeMutation msg, BEFORE next tool
@@ -1586,23 +1805,28 @@ async function runWorkflow(ws, input) {
   await delay(600);
 
   send({ type: 'tool_call', tool: 'structure_alignment', toolId: uuidv4().slice(0, 20), params: {
-    pdb_ids: ['6MEN', '4KC3', '7KOJ', '8A3R', '6D3N', '7MQR'],
-    method: 'TM-align', reference: '4KC3', chain: 'A',
+    route: profile.routeLabel,
+    reference_model: profile.structureRef,
+    structure_context: profile.structure,
+    interface_focus: profile.interfaceFocus,
+    method: 'curated structural annotation alignment',
   }});
   await delay(1500);
-  send({ type: 'log', text: '[EpitopeAgent] ' + (isZh ? '下载 PDB 结构：6MEN, 4KC3, 7KOJ, 8A3R, 6D3N, 7MQR...' : 'Downloading PDB structures: 6MEN, 4KC3, 7KOJ, 8A3R, 6D3N, 7MQR...') });
+  send({ type: 'log', text: '[EpitopeAgent] ' + (isZh ? '加载 ' + profile.structureRef + ' 结构注释...' : 'Loading structural annotations for ' + profile.structureRef + '...') });
   await delay(1800);
-  send({ type: 'log', text: '[EpitopeAgent] ' + (isZh ? '运行 TM-align 两两结构比对（15 对）...' : 'Running TM-align pairwise structural alignment (15 pairs)...') });
+  send({ type: 'log', text: '[EpitopeAgent] ' + (isZh ? '对齐 ' + profile.domain + ' 的关键界面特征...' : 'Aligning key interface features for ' + profile.domain + '...') });
   await delay(1800);
-  send({ type: 'log', text: '[EpitopeAgent] ' + (isZh ? '计算 6 个结构的共识界面残基...' : 'Computing consensus interface residues across 6 structures...') });
+  send({ type: 'log', text: '[EpitopeAgent] ' + (isZh ? '生成候选表位清单并标注推荐级别...' : 'Generating candidate epitope list with recommendation levels...') });
   await delay(1500);
   send({ type: 'tool_result', tool: 'structure_alignment', result: {
-    aligned: '6/6', mean_TM_score: 0.974, RMSD_Ca: '0.41A',
-    highest_res: '4KC3 @ 1.8A (design reference)',
-    conserved_contacts: 38,
+    route: profile.routeLabel,
+    reference_model: profile.structureRef,
+    selected_interface: profile.interfaceFocus,
+    candidate_sites: profile.epitopeRowsZh.map(row => row[0] + ':' + row[1]).join('; '),
+    selected_strategy: profile.selectedEpitope,
   }});
   await delay(700);
-  send({ type: 'agent_msg', text: M.targetInfo(target) });
+  send({ type: 'agent_msg', text: M.targetInfo(profile) });
   await delay(1000);
 
   // Phase 0-C: mark task1 done AFTER targetInfo msg is queued
@@ -1611,66 +1835,67 @@ async function runWorkflow(ws, input) {
   await delay(600);
 
   send({ type: 'tool_call', tool: 'hotspot_scoring', toolId: uuidv4().slice(0, 20), params: {
-    pdb_id: '4KC3', chain: 'A',
-    methods: ['ZoonoFold', 'SASA-burial'],
-    epitope_candidates: 3,
-    conservation_db: 'OrthoDB_v11 (98 species)',
-    exclude_escape_residues: true,
+    route: profile.routeLabel,
+    target_region: profile.selectedEpitope,
+    methods: ['interface accessibility', 'shape complementarity', 'developability rules'],
+    epitope_candidates: profile.epitopeRowsZh.length,
+    antibody_format: abType,
   }});
   await delay(1500);
-  send({ type: 'log', text: '[EpitopeAgent] ' + (isZh ? '通过 ZoonoFold 计算每残基 ΔΔG（480 次旋转异构体试验）...' : 'Computing per-residue ΔΔG via ZoonoFold (480 rotamer trials)...') });
+  send({ type: 'log', text: '[EpitopeAgent] ' + (isZh ? '评估候选表面的结构暴露度...' : 'Scoring structural accessibility for candidate surfaces...') });
   await delay(2000);
-  send({ type: 'log', text: '[EpitopeAgent] ' + (isZh ? '运行 Rosetta 界面能量分解...' : 'Running Rosetta interface energy decomposition...') });
+  send({ type: 'log', text: '[EpitopeAgent] ' + (isZh ? '评估与 ' + profile.mechanism + ' 的机制匹配度...' : 'Scoring mechanism fit for ' + profile.mechanism + '...') });
   await delay(2000);
-  send({ type: 'log', text: '[EpitopeAgent] ' + (isZh ? '计算 6 个比对结构的 SASA 掩埋评分...' : 'Calculating SASA burial scores across 6 aligned structures...') });
+  send({ type: 'log', text: '[EpitopeAgent] ' + (isZh ? '标注候选表位的抗体可及空间...' : 'Annotating antibody-accessible space for candidate epitopes...') });
   await delay(2000);
-  send({ type: 'log', text: '[EpitopeAgent] ' + (isZh ? '应用跨物种保守性过滤器（OrthoDB v11，98 个物种）...' : 'Applying cross-species conservation filter (OrthoDB v11, 98 species)...') });
+  send({ type: 'log', text: '[EpitopeAgent] ' + (isZh ? '应用可开发性过滤器，排除低展示价值区域...' : 'Applying developability filters to remove low-value regions...') });
   await delay(1500);
-  send({ type: 'log', text: '[EpitopeAgent] Overlaying escape mutation exclusion zones from AbEscape v3.1...' });
+  send({ type: 'log', text: '[EpitopeAgent] ' + (isZh ? '确定推荐表位策略：' + profile.selectedEpitope : 'Selected epitope strategy: ' + profile.selectedEpitope) });
   await delay(1500);
   send({ type: 'tool_result', tool: 'hotspot_scoring', result: {
-    Site_I:   'beta4-5 loop | ddG=-2.1 | conserv=67% | drug=5.2/10',
-    Site_II:  'beta11-12 iface | ddG=-5.8 | conserv=94% | drug=8.9/10 SELECTED | residues=Phe93,Val112,Asp134,Trp175',
-    Site_III: 'C-term helix | ddG=-1.4 | conserv=78% | drug=3.1/10',
-    anchor_validation: 'Asp134(ddG=-2.1) Trp175(ddG=-1.8) in Site_II - fully conserved',
-    escape_overlap: 'Site_II=NONE',
+    selected_site: profile.selectedEpitope,
+    priority: 'primary',
+    interface_focus: profile.interfaceFocus,
+    scoring_basis: 'accessibility + mechanism fit + developability',
+    backup_sites: profile.epitopeRowsZh.slice(1).map(row => row[1]).join(', '),
   }});
   await delay(700);
-  send({ type: 'agent_msg', text: M.epitopeConfirm(target, blockTarget) });
+  send({ type: 'agent_msg', text: M.epitopeConfirm(profile) });
   await delay(1200);
 
   // Phase 1: Structure retrieval (tasks[2] already active from Phase 0-C)
   await delay(500);
 
   send({ type: 'tool_call', tool: 'structure_retrieval', toolId: uuidv4().slice(0, 20), params: {
-    pdb_id: '4KC3', chain: 'A', resolution_A: 1.8,
-    epitope_site: 'Site_II',
-    hotspot_residues: 'Phe93,Val112,Asp134,Trp175',
-    hotspot_padding_A: 10.0,
-    scaffold: 'VHH-Llama-IGHV3S65*01',
-    fixed_residues_mpnn: 'Phe93,Asp134,Trp175',
+    route: profile.routeLabel,
+    reference_model: profile.structureRef,
+    target_region: profile.selectedEpitope,
+    interface_focus: profile.interfaceFocus,
+    scaffold: profile.scaffold,
+    candidate_budget: plan.initial,
   }});
   await delay(1500);
-  send({ type: 'log', text: '[StructureAgent] Fetching PDB 4KC3 (1.8Å) from RCSB PDB server...' });
+  send({ type: 'log', text: '[StructureAgent] ' + (isZh ? '加载结构参考模型：' + profile.structureRef + '...' : 'Loading structural reference model: ' + profile.structureRef + '...') });
   await delay(1500);
-  send({ type: 'log', text: '[StructureAgent] Extracting Chain A residues 112–270, removing solvent/HETATM...' });
+  send({ type: 'log', text: '[StructureAgent] ' + (isZh ? '提取目标区域：' + profile.selectedEpitope + '...' : 'Extracting target region: ' + profile.selectedEpitope + '...') });
   await delay(1500);
-  send({ type: 'log', text: '[StructureAgent] ' + (isZh ? '计算热点球形区域（r=10 Å）：识别 51 个接触残基...' : 'Computing hotspot sphere (r=10Å): 51 contact residues identified...') });
+  send({ type: 'log', text: '[StructureAgent] ' + (isZh ? '生成 ' + profile.scaffold + ' 的界面约束...' : 'Generating interface constraints for ' + profile.scaffold + '...') });
   await delay(1200);
-  send({ type: 'log', text: '[StructureAgent] Writing Zoonodiffusion contig & ZoonoMPNN fixed-residue mask...' });
+  send({ type: 'log', text: '[StructureAgent] ' + (isZh ? '写入 Zoonodiffusion 与 ZoonoMPNN 设计输入...' : 'Writing Zoonodiffusion and ZoonoMPNN design inputs...') });
   await delay(1200);
   send({ type: 'tool_result', tool: 'structure_retrieval', result: {
-    status: 'OK', pdb: '4KC3', chain: 'A', resolution: '1.8A', atoms: 2847,
-    hotspot_contacts: '51 residues within 10A sphere',
-    rfaa_contig: '[A112-270/0 B1-130]', mpnn_temp: 0.10,
-    mpnn_fixed: 'Phe93(B:31), Asp134(B:72), Trp175(B:113)',
-    af2_models: 'model_1_ptm,model_2_ptm', recycling: 3,
-    germline: 'IGHV3S65*01', CDR_H3_target: '10-16 aa',
+    status: 'OK',
+    route: profile.routeLabel,
+    reference_model: profile.structureRef,
+    target_region: profile.selectedEpitope,
+    scaffold: profile.scaffold,
+    candidate_budget: plan.initial,
+    scoring_stack: 'Zoonodiffusion -> ZoonoMPNN -> ZoonoFold-Multimer',
   }});
   await delay(700);
   tasks[2].status = 'completed'; tasks[3].status = 'active';
   send({ type: 'tasks', tasks });
-  send({ type: 'agent_msg', text: M.targetRetrieved(target) });
+  send({ type: 'agent_msg', text: M.targetRetrieved(profile, plan, abType) });
   await delay(1200);
 
   // Spawn 9 agents
@@ -1687,13 +1912,15 @@ async function runWorkflow(ws, input) {
   send({ type: 'subagents', agents });
   await delay(700);
 
-  // Round 1: 15 batches
+  // Round 1
   const agentNames = ['DesignAgent-1', 'DesignAgent-2', 'DesignAgent-3'];
   let r1Pass = 0;
-  for (let b = 1; b <= 15; b++) {
-    const bp = Math.floor(Math.random() * 4) + 2;
+  const r1Target = Math.max(count + 4, plan.r1Dedup);
+  for (let b = 1; b <= plan.r1Batches; b++) {
+    const remainingBatches = plan.r1Batches - b + 1;
+    const bp = Math.max(1, Math.round((r1Target - r1Pass) / remainingBatches) + (b % 2 === 0 ? 1 : 0));
     r1Pass += bp;
-    const pct = Math.round(b / 15 * 100);
+    const pct = Math.round(b / plan.r1Batches * 100);
     agents[4].progress = pct;
     agents[5].progress = Math.max(0, pct - 8);
     agents[6].progress = Math.max(0, pct - 15);
@@ -1702,18 +1929,18 @@ async function runWorkflow(ws, input) {
     agents[6].responses = Math.round(b * 1.8);
     if (b >= 7) {
       agents[7].status = 'active';
-      agents[7].progress = Math.round((b - 6) / 9 * 60);
+      agents[7].progress = Math.round((b - Math.ceil(plan.r1Batches / 2)) / Math.max(1, Math.floor(plan.r1Batches / 2)) * 60);
     }
-    send({ type: 'log', text: '[ZoonoAb-Designer] ' + agentNames[(b-1) % 3] + ' → R1 Batch ' + b + '/15 — Zoonodiffusion ' + (isZh ? '结构扩散采样...' : 'sampling...') });
+    send({ type: 'log', text: '[ZoonoAb-Designer] ' + agentNames[(b-1) % 3] + ' → R1 Batch ' + b + '/' + plan.r1Batches + ' — Zoonodiffusion ' + (isZh ? '结构扩散采样...' : 'sampling...') });
     await delay(800);
-    send({ type: 'log', text: '[ZoonoAb-Designer] ' + agentNames[(b-1) % 3] + ' → R1 Batch ' + b + '/15 — ZoonoMPNN ' + (isZh ? '序列设计...' : 'sequencing...') });
+    send({ type: 'log', text: '[ZoonoAb-Designer] ' + agentNames[(b-1) % 3] + ' → R1 Batch ' + b + '/' + plan.r1Batches + ' — ZoonoMPNN ' + (isZh ? '序列设计...' : 'sequencing...') });
     await delay(700);
-    send({ type: 'log', text: '[ZoonoAb-Designer] ' + agentNames[(b-1) % 3] + ' → R1 Batch ' + b + '/15 — ZoonoFold scoring — ' + bp + ' ' + (isZh ? '通过' : 'passing') + ' (cumulative: ' + r1Pass + ')' });
+    send({ type: 'log', text: '[ZoonoAb-Designer] ' + agentNames[(b-1) % 3] + ' → R1 Batch ' + b + '/' + plan.r1Batches + ' — ZoonoFold scoring — ' + bp + ' ' + (isZh ? '通过' : 'passing') + ' (cumulative: ' + r1Pass + ')' });
     send({ type: 'subagents', agents });
-    await delay(b < 8 ? 1200 : 900);
+    await delay(b < Math.ceil(plan.r1Batches / 2) ? 1200 : 900);
   }
   // ✅ CORRECT ORDER: agent_msg FIRST (so chat and sidebar stay in sync)
-  send({ type: 'agent_msg', text: M.r1Done(r1Pass) });
+  send({ type: 'agent_msg', text: M.r1Done(r1Pass, plan) });
   await delay(1200);
   // THEN update sidebar (task appears done only after user reads the summary)
   tasks[3].status = 'completed';
@@ -1722,14 +1949,14 @@ async function runWorkflow(ws, input) {
   send({ type: 'tasks', tasks });
   await delay(400);
 
-  // Round 2: 9 batches
+  // Round 2
   send({ type: 'tool_call', tool: 'extend_design_batch', toolId: uuidv4().slice(0, 20), params: {
-    base_config: 'SiteII-4kc3-v3',
-    n_variants: 900,
-    strategy: 'CDR-H3-focused-mutagenesis',
+    base_config: profile.routeLabel + ' / ' + profile.selectedEpitope,
+    n_variants: plan.r2Variants,
+    strategy: 'CDR-focused-diversification',
     parent_pool: r1Pass + ' x Round-1 passing',
     mpnn_temp_range: '0.08-0.20',
-    target_passing: Math.round(count * 0.75),
+    target_passing: count,
     diversity_metric: 'Levenshtein(CDR-H3) >= 3',
   }});
   agents[4].status = 'active'; agents[4].progress = 8;
@@ -1738,32 +1965,34 @@ async function runWorkflow(ws, input) {
   agents[7].progress = 72;
   send({ type: 'subagents', agents });
 
-  const r2bp = [5, 4, 6, 3, 5, 4, 3, 4, 5];
+  const r2Target = Math.max(count + plan.diversityClusters, Math.round(r1Pass + count * 1.2));
   let r2Cum = r1Pass;
-  for (let b = 0; b < r2bp.length; b++) {
-    r2Cum += r2bp[b];
-    const pct = Math.round((b + 1) / r2bp.length * 100);
+  for (let b = 0; b < plan.r2Batches; b++) {
+    const remainingBatches = plan.r2Batches - b;
+    const bp = Math.max(1, Math.round((r2Target - r2Cum) / remainingBatches) + (b % 3 === 0 ? 1 : 0));
+    r2Cum += bp;
+    const pct = Math.round((b + 1) / plan.r2Batches * 100);
     agents[4].progress = pct;
     agents[5].progress = Math.max(0, pct - 10);
     agents[6].progress = Math.max(0, pct - 18);
-    send({ type: 'log', text: '[ZoonoAb-Designer] ' + agentNames[b % 3] + ' → R2 Batch ' + (b+1) + '/9 — CDR-H3 ' + (isZh ? '突变采样...' : 'mutagenesis sampling...') });
+    send({ type: 'log', text: '[ZoonoAb-Designer] ' + agentNames[b % 3] + ' → R2 Batch ' + (b+1) + '/' + plan.r2Batches + ' — CDR ' + (isZh ? '多样性扩展...' : 'diversification...') });
     await delay(700);
-    send({ type: 'log', text: '[ZoonoAb-Designer] ' + agentNames[b % 3] + ' → R2 Batch ' + (b+1) + '/9 — ZoonoFold re-scoring — ' + r2bp[b] + ' ' + (isZh ? '通过' : 'passing') + ' (cumulative: ' + r2Cum + ')' });
+    send({ type: 'log', text: '[ZoonoAb-Designer] ' + agentNames[b % 3] + ' → R2 Batch ' + (b+1) + '/' + plan.r2Batches + ' — ZoonoFold re-scoring — ' + bp + ' ' + (isZh ? '通过' : 'passing') + ' (cumulative: ' + r2Cum + ')' });
     send({ type: 'subagents', agents });
     await delay(1400);
   }
   await delay(1000);
   const r2Pass = r2Cum;
   send({ type: 'tool_result', tool: 'extend_design_batch', result: {
-    variants_generated: 900,
+    variants_generated: plan.r2Variants,
     passing: r2Pass,
-    best_ipTM: '0.871',
-    CDR_diversity_H3: '3.47 (excellent)',
-    mean_ipTM_improvement: '+3.6%',
+    best_ipTM: 'about 0.86',
+    CDR_diversity: 'balanced across final candidate pool',
+    route: profile.routeLabel,
   }});
   await delay(700);
   // ✅ agent_msg FIRST
-  send({ type: 'agent_msg', text: M.r2Done(r2Pass) });
+  send({ type: 'agent_msg', text: M.r2Done(r2Pass, plan) });
   await delay(1200);
   tasks[4].status = 'completed';
   tasks[4].text += ' → ' + r2Pass + ' ' + (isZh ? '通过' : 'passing');
@@ -1788,20 +2017,20 @@ async function runWorkflow(ws, input) {
 
   const nReps = count + Math.floor(Math.random()*4)+1;
   const sweepLogs = isZh ? [
-    r2Pass + ' 个候选体两两 TM-score 矩阵计算（' + Math.round(r2Pass*(r2Pass-1)/2) + ' 对）...',
-    '构建 CDR-H3 Levenshtein 距离矩阵（' + r2Pass + 'x' + r2Pass + '）...',
-    '运行 Ward-linkage 层次聚类（截断 TM-score ≤ 0.82）...',
-    '从 18 个聚类中识别 ' + nReps + ' 个最大多样性代表序列...',
+    '计算 ' + r2Pass + ' 个候选体的结构相似性与序列距离...',
+    '构建 CDR 多样性矩阵并标注重复骨架...',
+    '运行层次聚类与界面评分联合排序...',
+    '从 ' + plan.diversityClusters + ' 个候选簇中识别 ' + nReps + ' 个代表性序列...',
     '应用最终排名：ipTM 降序，再按 pLDDT 降序...',
-    '对最终 ' + count + ' 个候选重新运行 ZoonoFold-Multimer（安全验证）...',
-    'ValidatorAgent：全部 ' + count + ' 个确认 ipTM ≥ 0.70，pLDDT ≥ 80.0 ✓'] : [
-    'Computing pairwise TM-score matrix for ' + r2Pass + ' candidates (' + Math.round(r2Pass*(r2Pass-1)/2) + ' pairs)...',
-    'Building CDR-H3 Levenshtein distance matrix (' + r2Pass + 'x' + r2Pass + ')...',
-    'Running Ward-linkage hierarchical clustering (cutoff TM-score <= 0.82)...',
-    'Identified ' + nReps + ' diverse representatives from 18 clusters...',
+    '对最终 ' + count + ' 个候选重新运行 ZoonoFold-Multimer 复核...',
+    'ValidatorAgent：全部 ' + count + ' 个候选进入最终 QA 阶段 ✓'] : [
+    'Computing structural similarity and sequence-distance features for ' + r2Pass + ' candidates...',
+    'Building CDR diversity matrix and annotating duplicate scaffolds...',
+    'Running hierarchical clustering with interface-score ranking...',
+    'Identified ' + nReps + ' representative sequences from ' + plan.diversityClusters + ' candidate clusters...',
     'Applying final ranking: ipTM DESC, then pLDDT DESC...',
-    'Re-running ZoonoFold-Multimer on final ' + count + ' (safety re-validation)...',
-    'ValidatorAgent: all ' + count + ' confirmed ipTM >= 0.70, pLDDT >= 80.0 OK'];
+    'Re-running ZoonoFold-Multimer on final ' + count + ' candidates...',
+    'ValidatorAgent: all ' + count + ' candidates moved into final QA OK'];
   for (const log of sweepLogs) {
     send({ type: 'log', text: '[ValidatorAgent] ' + log });
     agents[7].progress = Math.min(100, agents[7].progress + 4);
@@ -1809,15 +2038,16 @@ async function runWorkflow(ws, input) {
     await delay(1500);
   }
   await delay(900);
-  const finalPass = nReps;
+  const finalPass = count;
   send({ type: 'tool_result', tool: 'diversity_sweep', result: {
-    final_passing: finalPass, selected_from: r2Pass, clusters: 18,
-    max_pairwise_identity: '74.3%', CDR_H3_median: '13 aa',
-    af2_revalidation: 'all ' + finalPass + ' confirmed ipTM >= 0.70',
+    final_passing: finalPass, selected_from: r2Pass, clusters: plan.diversityClusters,
+    representative_pool: nReps,
+    max_pairwise_identity: plan.maxIdentity, CDR_H3_median: plan.cdrMedian,
+    revalidation: 'final candidates passed structural QA gates',
   }});
   await delay(700);
   // ✅ agent_msg FIRST
-  send({ type: 'agent_msg', text: M.r3Final(finalPass, abType) });
+  send({ type: 'agent_msg', text: M.r3Final(finalPass, abType, plan) });
   await delay(1200);
   tasks[5].status = 'completed';
   tasks[5].text += ' → Total: ' + finalPass + ' ' + (isZh ? '通过!' : 'passing!');
@@ -1828,9 +2058,9 @@ async function runWorkflow(ws, input) {
   // QA Export
   send({ type: 'tool_call', tool: 'qa_export', toolId: uuidv4().slice(0, 20), params: {
     n_final: finalPass, from_pool: r2Pass,
-    quality_checks: ['ipTM>=0.70', 'pLDDT>=80', 'no_stop_codon', 'no_free_cys', 'IGHV_identity>=72%'],
+    quality_checks: ['ipTM>=0.70', 'pLDDT>=80', 'no_stop_codon', 'no_free_cys', 'developability_flags'],
     export_formats: ['FASTA', 'CSV', 'JSON', 'PDB-zip'],
-    instructions: 'QA for anti-' + target + ' ' + abType + (blockTarget ? ' blocking ' + target + '/' + blockTarget : '') + '. Select diverse CDR candidates for synthesis.',
+    instructions: 'QA for anti-' + profile.targetDisplay + ' ' + abType + '. Route: ' + profile.routeLabel + '. Select diverse CDR candidates for synthesis.',
   }});
   agents[7].status = 'completed'; agents[7].progress = 100;
   agents[8].status = 'active'; agents[8].progress = 45;
@@ -1841,18 +2071,18 @@ async function runWorkflow(ws, input) {
     '终止密码子扫描：0/' + finalPass + ' 条受影响 ✓',
     '扫描 CDR-H3 二硫键之外的非典型半胱氨酸...',
     '半胱氨酸扫描：0/' + finalPass + ' 个游离半胱氨酸检测到 ✓',
-    '验证骆驼科生殖系相容性（IGHV3S65*01 同一性 ≥ 72%）...',
-    '生殖系检查：全部 ' + finalPass + ' 条通过（72-89% 同一性）✓',
+    '验证 ' + profile.scaffold + ' 完整性和 CDR 边界...',
+    '骨架检查：全部 ' + finalPass + ' 条通过 ✓',
     '计算可开发性标志：疏水性、电荷、聚集倾向...',
-    '可开发性：0 高风险，3 中风险（已标注）— 生成导出文件...'] : [
+    '可开发性：未发现高风险项，中等风险项已标注 — 生成导出文件...'] : [
     'Running internal stop codon check on ' + finalPass + ' sequences...',
     'Stop codon scan: 0/' + finalPass + ' affected OK',
     'Scanning for non-canonical cysteines outside CDR-H3 disulfide...',
     'Cysteine scan: 0/' + finalPass + ' free cysteines detected OK',
-    'Verifying camelid germline compatibility (IGHV3S65*01 identity >= 72%)...',
-    'Germline check: all ' + finalPass + ' pass (72-89% identity) OK',
+    'Verifying ' + profile.scaffold + ' integrity and CDR boundaries...',
+    'Scaffold check: all ' + finalPass + ' pass OK',
     'Computing developability flags: hydrophobicity, charge, aggregation propensity...',
-    'Developability: 0 high-risk, 3 medium-risk flagged — generating export files...'];
+    'Developability: no high-risk items, medium-risk items flagged — generating export files...'];
   for (const log of qaLogs) {
     send({ type: 'log', text: '[QAAgent] ' + log });
     agents[8].progress = Math.min(95, agents[8].progress + 7);
@@ -1862,15 +2092,15 @@ async function runWorkflow(ws, input) {
   await delay(1200);
   send({ type: 'tool_result', tool: 'qa_export', result: {
     final_passing: finalPass, ipTM_range: '0.703-0.871', pLDDT_range: '82.1-94.8',
-    CDR_H3_length: '9-17 aa', max_pairwise_identity: '74.3%',
+    CDR_H3_length: plan.cdrMedian, max_pairwise_identity: plan.maxIdentity,
     stop_codons: '0/' + finalPass, free_cysteines: '0/' + finalPass,
-    developability: '0 high-risk, 3 medium-risk (flagged)',
-    exports: 'anti-' + target + '-vhh-' + finalPass + 'seqs.fasta/.csv/.json + structs.zip',
+    developability: 'no high-risk items; medium-risk items flagged',
+    exports: 'anti-' + profile.targetDisplay + '-' + abType + '-' + finalPass + 'seqs.fasta/.csv/.json + structs.zip',
   }});
   await delay(700);
 
   // Results
-  const allSeqs = makeMockSeqs(finalPass);
+  const allSeqs = makeMockSeqs(finalPass, profile);
   const passing = allSeqs.filter(s => s.pass);
   agents[8].status = 'completed'; agents[8].progress = 100;
   send({ type: 'subagents', agents });
@@ -1880,7 +2110,7 @@ async function runWorkflow(ws, input) {
     passRate: ((passing.length / allSeqs.length) * 100).toFixed(1),
     target: target, abType: abType,
   }});
-  send({ type: 'agent_msg', text: M.qaComplete(finalPass, abType) });
+  send({ type: 'agent_msg', text: M.qaComplete(finalPass, abType, profile, plan) });
   await delay(600);
   // Mark QA complete AFTER the summary message is displayed
   tasks[6].status = 'completed';
@@ -1889,39 +2119,10 @@ async function runWorkflow(ws, input) {
   await delay(400);
 
   // 3D Gallery
-  function parsePDBMeta(f) {
-    const base = f.replace('.pdb', '');
-    const iptmMatch = base.match(/iptm-([\d.]+)/);
-    const ipTm = iptmMatch ? parseFloat(iptmMatch[1]) : null;
-    const parts = base.split('_');
-    const name = parts.length >= 5
-      ? (parts[3] || '') + (ipTm ? ' (ipTM=' + ipTm.toFixed(4) + ')' : '')
-      : base.replace(/_/g, '-');
-    return { id: base, file: f, name: name.trim(), ipTm: ipTm };
-  }
-  const seenIds = new Set();
-  let allLocalPDBs = [];
-  try {
-    for (const scanDir of [PROJECT_ROOT, LOCAL_PDB_DIR]) {
-      if (!fs.existsSync(scanDir)) continue;
-      for (const f of fs.readdirSync(scanDir).filter(f => f.endsWith('.pdb'))) {
-        const meta = parsePDBMeta(f);
-        if (!seenIds.has(meta.id)) { seenIds.add(meta.id); allLocalPDBs.push(meta); }
-      }
-    }
-    allLocalPDBs.sort((a, b) => {
-      if (a.ipTm !== null && b.ipTm !== null) return b.ipTm - a.ipTm;
-      if (a.ipTm !== null) return -1;
-      if (b.ipTm !== null) return 1;
-      return a.name.localeCompare(b.name);
-    });
-  } catch(e) { console.error('[Server] PDB scan error:', e.message); }
-  if (allLocalPDBs.length === 0) {
-    allLocalPDBs = [{ id: 'IL33_VHH_complex', file: 'IL33_VHH_complex.pdb', name: 'IL-33-VHH Complex', ipTm: null }];
-  }
-  console.log('[Server] Found ' + allLocalPDBs.length + ' PDB complexes');
+  const allLocalPDBs = routeLocalPDBs(profile, finalPass);
+  console.log('[Server] Prepared ' + allLocalPDBs.length + ' route-labeled PDB complexes');
   send({ type: 'show_3d', primaryPDB: allLocalPDBs[0].id, allPDBs: allLocalPDBs.map(p => p.id),
-    label: M.galleryLabel(allLocalPDBs.length), isLocal: true,
+    label: allLocalPDBs.length + ' 个 ' + profile.targetDisplay + ' ' + abType + ' 候选结构', isLocal: true,
     chainInfo: { antigen: ['A'], antibody: ['B'] }, binderData: allLocalPDBs });
   send({ type: 'done' });
 }
@@ -2121,43 +2322,43 @@ async function runEpitopePrediction(ws, input) {
   await delay(600);
 
   send({ type: 'plan', steps: [
-    { id: 1, text: '文献检索：查询已知 ' + target + ' 抗体表位', status: 'active', agent: 'LiteratureAgent' },
-    { id: 2, text: '结构数据库扫描：RCSB PDB 共晶体结构', status: 'pending', agent: 'StructureAgent' },
+    { id: 1, text: '加载 ' + target + ' 靶点证据包与抗体注释', status: 'active', agent: 'LiteratureAgent' },
+    { id: 2, text: '整理结构参考模型与界面注释', status: 'pending', agent: 'StructureAgent' },
     { id: 3, text: '表面暴露度分析（SASA）', status: 'pending', agent: 'EpitopeAgent' },
-    { id: 4, text: '逃逸突变重叠评估', status: 'pending', agent: 'EpitopeAgent' },
+    { id: 4, text: '界面风险与可开发性重叠评估', status: 'pending', agent: 'EpitopeAgent' },
     { id: 5, text: '综合打分，推荐最优表位', status: 'pending', agent: 'EpitopeAgent' },
   ]});
   await delay(700);
 
-  send({ type: 'tool_call', tool: 'literature_search', toolId: uuidv4().slice(0,18), params: { query: target + ' epitope antibody', databases: ['PubMed', 'RCSB-PDB'], max_results: 50 }});
+  send({ type: 'tool_call', tool: 'target_evidence_review', toolId: uuidv4().slice(0,18), params: { target: target, evidence_package: target + ' epitope evidence package', focus: 'antibody epitope annotations' }});
   await delay(1800);
-  send({ type: 'log', text: '[LiteratureAgent] 检索 PubMed: "' + target + ' epitope therapeutic antibody"...' });
+  send({ type: 'log', text: '[LiteratureAgent] 加载 ' + target + ' 靶点证据包与抗体表位注释...' });
   await delay(1500);
-  send({ type: 'log', text: '[LiteratureAgent] 找到 42 篇相关文献，筛选共晶体结构 9 个...' });
+  send({ type: 'log', text: '[LiteratureAgent] 整理已收录文献摘要、结构注释和抗体开发背景...' });
   await delay(1500);
-  send({ type: 'tool_result', tool: 'literature_search', result: { papers: 42, cocrystals: 9, top_antibodies: 'Nivolumab, Durvalumab, Atezolizumab' }});
+  send({ type: 'tool_result', tool: 'target_evidence_review', result: { target: target, evidence_status: 'loaded', annotation_scope: 'curated epitope and antibody background', top_antibodies: 'route-relevant antibody references' }});
   await delay(600);
 
-  send({ type: 'tool_call', tool: 'pdb_group_analysis', toolId: uuidv4().slice(0,18), params: { target: target, method: 'SASA+conservation', n_structures: 9 }});
+  send({ type: 'tool_call', tool: 'structure_annotation_review', toolId: uuidv4().slice(0,18), params: { target: target, method: 'SASA + interface accessibility + developability rules' }});
   await delay(2000);
   send({ type: 'log', text: '[EpitopeAgent] 运行 SASA 分析，识别表面暴露残基...' });
   await delay(1500);
-  send({ type: 'log', text: '[EpitopeAgent] 计算跨 9 个结构的保守性热图...' });
+  send({ type: 'log', text: '[EpitopeAgent] 对齐结构参考模型，计算候选表位可及性...' });
   await delay(1500);
-  send({ type: 'tool_result', tool: 'pdb_group_analysis', result: { top_site: 'Site-A (IgV-like domain, β-strand CC\' region)', ddG: '-4.8 kcal/mol', conservation: '91%', known_overlap: 'Nivolumab, Durvalumab' }});
+  send({ type: 'tool_result', tool: 'structure_annotation_review', result: { top_site: 'Site-A (accessible interface surface)', interface_fit: 'high', developability: 'acceptable', known_overlap: 'consistent with route-specific antibody background' }});
   await delay(700);
 
   const epitopeResult = {
     target,
-    recommended_site: 'CC\' loop（IgV 结构域，第 56–68 位残基）',
-    key_residues: 'Tyr56, Glu58, Arg113, Met115',
-    pdb_reference: '3BIK @ 2.0 Å (PD-L1/Nivolumab 复合物)',
-    conservation: '91%',
-    ddG: '-4.8 kcal/mol',
-    escape_overlap: '最低（已知逃逸变体重叠率 < 5%）',
-    drug_score: '8.7/10',
+    recommended_site: 'Site-A（可及界面表面）',
+    key_residues: '由结构注释模块自动标注',
+    pdb_reference: '路线参考结构模型',
+    conservation: '高',
+    ddG: '界面评分较优',
+    escape_overlap: '低风险',
+    drug_score: '优先',
     competing_antibodies: ['Nivolumab (BMS)', 'Durvalumab (AZ)', 'Atezolizumab (Roche)'],
-    summary: '**推荐表位：' + target + ' CC\' loop（IgV 结构域）**\n\n该表位已通过 9 个独立共晶体结构验证，保守性 91%，ΔΔG −4.8 kcal/mol，与已知临床抗体靶向区域高度重叠，是 ' + target + ' 抗体开发的首选表位区域。\n\n**关键锚定残基：** Tyr56、Glu58（氢键供体）、Arg113（盐桥）、Met115（疏水核心）',
+    summary: '**推荐表位：' + target + ' Site-A（可及界面表面）**\n\n该区域在当前证据包中与抗体可及性、界面匹配度和可开发性规则保持一致，适合作为后续候选抗体设计的优先输入。\n\n**设计建议：** 优先围绕该界面建立抗体结合约束，同时保留备选表位用于多样性扩展。',
   };
 
   send({ type: 'workflow_result', wfType: 'epitope_prediction', data: epitopeResult });

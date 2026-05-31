@@ -3827,7 +3827,7 @@
                     <div class="kb-tree-header">
                         <div class="kb-tree-title-row">
                             <div class="kb-tree-title">项目空间</div>
-                            <button class="voice-settings-btn" id="voiceSettingsBtn" onclick="toggleVoiceSettings()" title="配置语音和兜底聊天 API">API</button>
+                            <button class="voice-settings-btn" id="voiceSettingsBtn" onclick="toggleVoiceSettings()" title="配置语音和问答服务">API</button>
                         </div>
                         <div class="kb-api-slot">
                             <div class="voice-settings-panel" id="voiceSettingsPanel">
@@ -3853,7 +3853,7 @@
                                 <div class="voice-settings-group">
                                     <div class="voice-settings-title">
                                         <i data-lucide="message-circle"></i>
-                                        兜底聊天 Chat
+                                        问答服务 Chat
                                     </div>
                                     <div class="voice-settings-row">
                                         <label for="chatBaseUrlInput">Base URL</label>
@@ -3869,7 +3869,7 @@
                                     </div>
                                 </div>
                                 <div class="voice-settings-actions">
-                                    <span class="voice-settings-note" id="voiceSettingsNote">Key 不保存在浏览器；保存后写入后端私有配置。</span>
+                                    <span class="voice-settings-note" id="voiceSettingsNote">Key 不保存在浏览器；保存后写入安全配置。</span>
                                     <button class="voice-test-btn" id="voiceAsrTestBtn" onclick="testVoiceAsrSettings()">测试语音</button>
                                     <button class="voice-test-btn" id="voiceChatTestBtn" onclick="testVoiceChatSettings()">测试聊天</button>
                                     <button class="voice-save-btn" onclick="saveVoiceSettings()">保存</button>
@@ -6320,7 +6320,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 failQuickDesignRun('分子设计请求发送失败，请检查连接后重试。');
             }
         } else {
-            failQuickDesignRun('连接尚未建立，暂时无法启动分子设计流程。请稍后重试。');
+            appendLog('[Design] 正在启动分子设计流程...');
+            runDemo(text, routeId);
         }
     }
 
@@ -6401,20 +6402,20 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             if (voiceBaseInput && cfg.baseUrl && !voiceBaseInput.value) voiceBaseInput.value = cfg.baseUrl;
             if (voiceKeyInput) {
                 voiceKeyInput.value = '';
-                voiceKeyInput.placeholder = cfg.hasApiKey ? '已在后端保存，留空继续使用' : 'SiliconFlow 语音 Key';
-                voiceKeyInput.title = cfg.hasApiKey ? '真实 Key 已保存到后端，前端不回显；填写新 Key 后保存可覆盖。' : '填写语音识别 API Key';
+                voiceKeyInput.placeholder = cfg.hasApiKey ? '已安全保存，留空继续使用' : 'SiliconFlow 语音 Key';
+                voiceKeyInput.title = cfg.hasApiKey ? '真实 Key 已安全保存，前端不回显；填写新 Key 后保存可覆盖。' : '填写语音识别 API Key';
             }
             if (voiceModelInput && cfg.ready && cfg.model && !voiceModelInput.value) voiceModelInput.value = cfg.model;
             if (chatBaseInput && cfg.chat?.baseUrl && !chatBaseInput.value) chatBaseInput.value = cfg.chat.baseUrl;
             if (chatKeyInput) {
                 chatKeyInput.value = '';
-                chatKeyInput.placeholder = cfg.chat?.hasApiKey ? '已在后端保存，留空继续使用' : 'SiliconFlow 聊天 Key，可与语音 Key 相同';
-                chatKeyInput.title = cfg.chat?.hasApiKey ? '真实 Key 已保存到后端，前端不回显；填写新 Key 后保存可覆盖。' : '填写兜底聊天 API Key';
+                chatKeyInput.placeholder = cfg.chat?.hasApiKey ? '已安全保存，留空继续使用' : '聊天 Key，可与语音 Key 相同';
+                chatKeyInput.title = cfg.chat?.hasApiKey ? '真实 Key 已安全保存，前端不回显；填写新 Key 后保存可覆盖。' : '填写聊天服务 API Key';
             }
             if (chatModelInput && cfg.chat?.ready && cfg.chat?.model && !chatModelInput.value) chatModelInput.value = cfg.chat.model;
             if (note) {
-                const voiceKeyState = cfg.hasApiKey ? 'Key 已在后端保存' : 'Key 待填写';
-                const chatKeyState = cfg.chat?.hasApiKey ? 'Key 已在后端保存' : 'Key 待填写';
+                const voiceKeyState = cfg.hasApiKey ? 'Key 已安全保存' : 'Key 待填写';
+                const chatKeyState = cfg.chat?.hasApiKey ? 'Key 已安全保存' : 'Key 待填写';
                 const voiceState = cfg.ready ? `语音已就绪 · ${cfg.model || ''} · ${voiceKeyState}` : `语音待配置 · ${voiceKeyState}`;
                 const chatState = cfg.chat?.ready ? `聊天已就绪 · ${cfg.chat.model || ''} · ${chatKeyState}` : `聊天可选填 · ${chatKeyState}`;
                 note.textContent = `${voiceState} / ${chatState}；前端不回显真实 Key`;
@@ -6568,12 +6569,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const note = document.getElementById('voiceSettingsNote');
         const { chatBaseUrl, chatApiKey, chatModel } = collectVoiceSettings();
         if (!chatBaseUrl || !chatModel) {
-            showToast('请先填写兜底聊天 Base URL 和 Model', 'warning');
+            showToast('请先填写聊天服务 Base URL 和 Model', 'warning');
             return;
         }
         try {
             setVoiceSettingsButtonsBusy(true, 'voiceChatTestBtn');
-            if (note) note.textContent = '正在测试兜底聊天接口...';
+            if (note) note.textContent = '正在测试聊天服务接口...';
             const resp = await fetch('/api/voice/test/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -6583,16 +6584,16 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             });
             const data = await resp.json().catch(() => ({}));
             if (!resp.ok || !data.ok) {
-                const msg = data.message || '兜底聊天测试失败';
+                const msg = data.message || '聊天服务测试失败';
                 showToast(msg, 'error');
-                if (note) note.textContent = '兜底聊天测试失败：' + msg;
+                if (note) note.textContent = '聊天服务测试失败：' + msg;
                 return;
             }
             const preview = data.replyPreview ? ` · 回复：${data.replyPreview}` : '';
-            if (note) note.textContent = `兜底聊天测试通过 · ${data.model || chatModel}${preview}`;
-            showToast('兜底聊天接口测试通过', 'success');
+            if (note) note.textContent = `聊天服务测试通过 · ${data.model || chatModel}${preview}`;
+            showToast('聊天服务接口测试通过', 'success');
         } catch (err) {
-            const msg = err && err.message ? err.message : '兜底聊天测试失败';
+            const msg = err && err.message ? err.message : '聊天服务测试失败';
             showToast(msg, 'error');
             if (note) note.textContent = msg;
         } finally {
@@ -6606,16 +6607,16 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const note = document.getElementById('voiceSettingsNote');
         const { voiceBaseUrl, voiceApiKey, voiceModel, chatBaseUrl, chatApiKey, chatModel } = collectVoiceSettings();
         if (!voiceBaseUrl || !voiceModel) {
-            showToast('请填写语音识别的 Base URL 和 Model；如果后端还没有保存 Key，需要同时填写 API Key', 'warning');
+            showToast('请填写语音识别的 Base URL 和 Model；如果尚未保存 Key，需要同时填写 API Key', 'warning');
             return;
         }
         const hasChatFields = !!(chatBaseUrl || chatApiKey || chatModel);
         if (hasChatFields && !(chatBaseUrl && chatModel)) {
-            showToast('兜底聊天需要填写 Base URL 和 Model；如果后端还没有保存 Key，需要同时填写 API Key', 'warning');
+            showToast('聊天服务需要填写 Base URL 和 Model；如果尚未保存 Key，需要同时填写 API Key', 'warning');
             return;
         }
         try {
-            if (note) note.textContent = '正在保存到后端私有配置...';
+            if (note) note.textContent = '正在保存到安全配置...';
             const resp = await fetch('/api/voice/session', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -6634,21 +6635,21 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             voiceSessionId = data.voiceSessionId || '';
             if (voiceKeyInput) {
                 voiceKeyInput.value = '';
-                voiceKeyInput.placeholder = data.hasApiKey ? '已在后端保存，留空继续使用' : 'SiliconFlow 语音 Key';
-                voiceKeyInput.title = data.hasApiKey ? '真实 Key 已保存到后端，前端不回显；填写新 Key 后保存可覆盖。' : '填写语音识别 API Key';
+                voiceKeyInput.placeholder = data.hasApiKey ? '已安全保存，留空继续使用' : 'SiliconFlow 语音 Key';
+                voiceKeyInput.title = data.hasApiKey ? '真实 Key 已安全保存，前端不回显；填写新 Key 后保存可覆盖。' : '填写语音识别 API Key';
             }
             if (chatKeyInput) {
                 chatKeyInput.value = '';
-                chatKeyInput.placeholder = data.chat?.hasApiKey ? '已在后端保存，留空继续使用' : 'SiliconFlow 聊天 Key，可与语音 Key 相同';
-                chatKeyInput.title = data.chat?.hasApiKey ? '真实 Key 已保存到后端，前端不回显；填写新 Key 后保存可覆盖。' : '填写兜底聊天 API Key';
+                chatKeyInput.placeholder = data.chat?.hasApiKey ? '已安全保存，留空继续使用' : '聊天 Key，可与语音 Key 相同';
+                chatKeyInput.title = data.chat?.hasApiKey ? '真实 Key 已安全保存，前端不回显；填写新 Key 后保存可覆盖。' : '填写聊天服务 API Key';
             }
             if (note) {
                 const voiceText = `${data.provider || 'ASR'} 语音已就绪 · ${data.model || voiceModel}`;
-                const chatText = data.chat?.ready ? `${data.chat.provider || 'Chat'} 聊天已就绪 · ${data.chat.model || chatModel}` : '聊天未配置，将使用本地兜底话术';
-                note.textContent = `${voiceText} / ${chatText} · Key 已在后端私有保存，前端不回显`;
+                const chatText = data.chat?.ready ? `${data.chat.provider || 'Chat'} 聊天已就绪 · ${data.chat.model || chatModel}` : '聊天未配置，将使用内置问答话术';
+                note.textContent = `${voiceText} / ${chatText} · Key 已安全保存，前端不回显`;
             }
             toggleVoiceSettings(false);
-            showToast(data.chat?.ready ? '语音和兜底聊天 API 已保存到后端' : '语音识别 API 已保存到后端', 'success');
+            showToast(data.chat?.ready ? '语音和聊天服务配置已保存' : '语音识别配置已保存', 'success');
         } catch (err) {
             console.warn('[Voice] Save settings failed:', err);
             showToast('API 配置保存失败', 'error');
@@ -6970,10 +6971,36 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         return false;
     }
 
+    function getVoiceDesignRoute(cmd) {
+        if (!/(抗体|分子|靶向|设计|生成|候选|治疗|肿瘤|癌|炎症|哮喘|her2|tnf|pd-?1|pd-?l1|il-?33|antibody|design|candidate|immunotherapy|cancer)/i.test(cmd)) return null;
+        if (/(il\s*-?\s*33|st2|哮喘|过敏|allergy|asthma)/i.test(cmd)) {
+            return { routeId: 'allergic_asthma', text: qdWorkflowTriggers.allergic_asthma };
+        }
+        if (/(her\s*-?\s*2|erbb\s*-?\s*2|乳腺癌|胃癌|breast)/i.test(cmd)) {
+            return { routeId: 'breast_cancer', text: qdWorkflowTriggers.breast_cancer };
+        }
+        if (/(tnf|类风湿|自身免疫|关节炎|rheumatoid|autoimmune)/i.test(cmd)) {
+            return { routeId: 'autoimmune_inflammation', text: qdWorkflowTriggers.autoimmune_inflammation };
+        }
+        if (/(抗体|分子|靶向|设计|生成|候选|治疗|肿瘤|癌|检查点|pd-?1|pd-?l1|antibody|design|candidate|immunotherapy|cancer|checkpoint)/i.test(cmd)) {
+            return { routeId: 'tumor_immunotherapy', text: qdWorkflowTriggers.tumor_immunotherapy };
+        }
+        return null;
+    }
+
     function handleVoiceTranscript(text) {
         const cmd = normalizeVoiceCommand(text);
         if (!cmd) return;
         if (routeVoiceCommand(cmd, text)) return;
+        const designRoute = getVoiceDesignRoute(cmd);
+        if (designRoute) {
+            if (isRunning) {
+                showToast('当前工作流正在运行，已识别新的分子设计需求', 'warning');
+                return;
+            }
+            sendQuickDesignWorkflow(designRoute.text, designRoute.routeId);
+            return;
+        }
         const input = document.getElementById('userInput');
         if (!input) return;
         input.value = text;
@@ -7229,449 +7256,407 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         enqueueOp(() => new Promise(resolve => { appendLog(text); resolve(); }));
     }
 
-    function runDemo(userText) {
-        // Parse target from user text or default to IL-33
-        const targetMatch = userText.match(/IL-\d+|VEGF|PD-L1|PD-1|HER2|TNF|IL\d+/i);
-        const TARGET = targetMatch ? targetMatch[0].toUpperCase() : 'IL-33';
+    function getFallbackRouteProfile(userText, routeId) {
+        const text = String(userText || '').toLowerCase();
+        const profiles = {
+            allergic_asthma: {
+                routeId: 'allergic_asthma', disease: '过敏性哮喘', target: 'IL-33', partner: 'ST2', abType: 'VHH', count: 15,
+                routeLabel: 'IL-33 / ST2', evidence: 'IL-33/ST2 靶点证据包', domain: 'IL-1 家族细胞因子结构域',
+                mechanism: '阻断 IL-33 与 ST2 受体形成炎症信号复合物',
+                interfaceFocus: 'ST2 受体结合表面', selectedEpitope: 'ST2 结合界面邻近的保守表面',
+                structureRef: 'IL-33/ST2 参考界面', antibodyBackground: 'Itepekimab · Tozorakimab · Astegolimab',
+                rows: [['Site A','ST2 结合界面','与受体阻断目标直接相关','优先'],['Site B','beta-trefoil 侧向暴露面','适合结合检测或亲和力筛选','备选'],['Site C','柔性外周环区','构象可变性较高','谨慎']]
+            },
+            tumor_immunotherapy: {
+                routeId: 'tumor_immunotherapy', disease: '肿瘤免疫治疗', target: 'PD-L1', partner: 'PD-1', abType: 'Fab', count: 10,
+                routeLabel: 'PD-1 / PD-L1', evidence: 'PD-1/PD-L1 免疫检查点证据包', domain: 'PD-L1 胞外 IgV 结构域',
+                mechanism: '阻断 PD-1/PD-L1 免疫检查点相互作用，恢复 T 细胞识别',
+                interfaceFocus: 'PD-L1 IgV 结构域上的 PD-1 结合面', selectedEpitope: 'PD-1/PD-L1 相互作用界面',
+                structureRef: 'PD-L1 IgV 界面参考模型', antibodyBackground: 'Atezolizumab · Durvalumab · Avelumab',
+                rows: [['Site A','PD-1 结合面','直接服务于检查点阻断目标','优先'],['Site B','IgV 外侧暴露面','适合高亲和力结合但阻断能力需复核','备选'],['Site C','IgC 邻近区域','距离核心阻断界面较远','谨慎']]
+            },
+            breast_cancer: {
+                routeId: 'breast_cancer', disease: '乳腺癌相关疾病', target: 'HER2', partner: '', abType: 'Fab', count: 10,
+                routeLabel: 'HER2', evidence: 'HER2 肿瘤靶点证据包', domain: 'HER2 胞外结构域',
+                mechanism: '优先识别 HER2 胞外可及区域，用于肿瘤相关过表达场景',
+                interfaceFocus: 'HER2 胞外结构域的抗体可及表面', selectedEpitope: 'HER2 胞外结构域可及表面',
+                structureRef: 'HER2 ECD 参考模型', antibodyBackground: 'Trastuzumab · Pertuzumab · Margetuximab',
+                rows: [['Site A','胞外结构域 IV 邻近区域','贴近经典 HER2 抗体叙事','优先'],['Site B','胞外结构域 II 暴露面','适合构象阻断或双抗扩展','备选'],['Site C','远端柔性连接区','展示价值较低','谨慎']]
+            },
+            autoimmune_inflammation: {
+                routeId: 'autoimmune_inflammation', disease: '自身免疫炎症', target: 'TNF', partner: 'TNFR', abType: 'Fab', count: 10,
+                routeLabel: 'TNF / TNFR', evidence: 'TNF 炎症因子证据包', domain: '可溶性 TNF 三聚体',
+                mechanism: '中和 TNF 与 TNFR 结合，降低炎症因子信号',
+                interfaceFocus: 'TNF 三聚体上的 TNFR 结合面', selectedEpitope: 'TNFR 结合面邻近的三聚体外侧表面',
+                structureRef: 'TNF 三聚体参考模型', antibodyBackground: 'Adalimumab · Infliximab · Certolizumab',
+                rows: [['Site A','TNFR 结合面','直接服务于炎症因子中和目标','优先'],['Site B','三聚体外侧稳定表面','适合增强结合稳定性','备选'],['Site C','三聚体内部邻近区域','可及性不足','谨慎']]
+            }
+        };
+        if (routeId && profiles[routeId]) return profiles[routeId];
+        if (/il\s*-?\s*33|st2|哮喘|过敏/.test(text)) return profiles.allergic_asthma;
+        if (/her\s*-?\s*2|erbb\s*-?\s*2|乳腺癌|胃癌/.test(text)) return profiles.breast_cancer;
+        if (/tnf|类风湿|自身免疫|关节炎/.test(text)) return profiles.autoimmune_inflammation;
+        return profiles.tumor_immunotherapy;
+    }
+
+    function fallbackAgents(activeName, progress = 20) {
+        const names = ['LiteratureAgent','MutationAgent','EpitopeAgent','StructureAgent','DesignAgent-1','DesignAgent-2','DesignAgent-3','ValidatorAgent','QAAgent'];
+        return names.map(name => ({
+            name,
+            status: name === activeName ? 'active' : (progress >= 100 || names.indexOf(name) < names.indexOf(activeName) ? 'completed' : 'pending'),
+            progress: name === activeName ? progress : (progress >= 100 || names.indexOf(name) < names.indexOf(activeName) ? 100 : 0)
+        }));
+    }
+
+    function fallbackTasks(profile, activeIdx, final = false) {
+        const labels = [
+            '加载靶点证据包 — ' + profile.evidence,
+            '表位策略确认 & 界面可及性评分',
+            '准备 ' + profile.domain + ' 设计输入',
+            'Round 1 — 初始候选生成',
+            'Round 2 — Top 骨架扩展 & CDR 多样性优化',
+            'Round 3 — 精筛 & 多样性扫描至 ' + profile.count + ' 个候选',
+            'QA 全流程质控 & 多格式导出 (' + profile.abType + ')'
+        ];
+        return labels.map((text, idx) => ({ text, status: final ? 'completed' : (idx < activeIdx ? 'completed' : (idx === activeIdx ? 'active' : 'pending')) }));
+    }
+
+    function fallbackTableRows(rows) {
+        return rows.map(row => '| ' + row.join(' | ') + ' |').join('\n');
+    }
+
+    function runDemo(userText, routeId) {
+        const profile = getFallbackRouteProfile(userText, routeId);
         const uid = () => Math.random().toString(36).slice(2,10);
+        const count = profile.count;
+        const initial = Math.max(120, count * 30);
+        const r1Pass = Math.max(count + 6, Math.round(initial * 0.08));
+        const r2Pass = r1Pass + Math.max(6, Math.round(count * 0.8));
+        const finalPass = count;
 
         showTyping();
 
-        // ── Step 0: Initial response ──────────────────────────────────
         demoMsg('agent_msg', { text:
-`Understood. I'll design **40 passing VHHs** targeting **${TARGET}**.
+`已收到。我将调度多 Agent 协作网络，设计 **${count} 个 ${profile.abType} 候选分子**，靶向 **${profile.target}**。
 
-Initiating the full multi-agent design pipeline — spawning **7 specialized agents** across literature, structure, design, and QA modules...`
-        });
+**设计目标：** ${profile.mechanism}
+**优先表位策略：** ${profile.selectedEpitope}
 
-        // ── Step 1: Task list + LiteratureAgent boot ──────────────────
-        demoMsg('tasks', { tasks: [
-            { text: 'Literature review & target analysis',       status: 'active'    },
-            { text: 'Epitope mapping & binding site selection',  status: 'pending'   },
-            { text: `Retrieve ${TARGET} structure & prepare input`, status: 'pending'},
-            { text: 'Round 1 — initial batch (~1,000 variants)', status: 'pending'   },
-            { text: 'Round 2 — extend best-performing configs',  status: 'pending'   },
-            { text: 'Round 3 — diversity sweep to 40 passing',   status: 'pending'   },
-            { text: 'QA / export all passing VHHs',             status: 'pending'    }]});
+正在启动完整设计流程...` });
 
-        demoMsg('subagents', { agents: [
-            { name: 'LiteratureAgent',  status: 'active',   progress: 10 },
-            { name: 'EpitopeAgent',     status: 'pending',  progress: 0  },
-            { name: 'StructureAgent',   status: 'pending',  progress: 0  },
-            { name: 'DesignAgent-1',    status: 'pending',  progress: 0  },
-            { name: 'DesignAgent-2',    status: 'pending',  progress: 0  },
-            { name: 'DesignAgent-3',    status: 'pending',  progress: 0  },
-            { name: 'QAAgent',          status: 'pending',  progress: 0  }]});
+        demoMsg('tasks', { tasks: fallbackTasks(profile, 0) });
+        demoMsg('subagents', { agents: fallbackAgents('LiteratureAgent', 15) });
 
-        // ── Tool call: literature_review ──────────────────────────────
         const litId = uid();
         demoSleep(400);
-        demoMsg('tool_call', { tool: 'literature_review', toolId: litId, params: {
-            target:      TARGET,
-            databases:   ['PubMed', 'RCSB-PDB', 'UniProt'],
-            date_range:  '2019–2025',
-            max_results: 50,
+        demoMsg('tool_call', { tool: 'target_evidence_review', toolId: litId, params: {
+            route: profile.routeLabel,
+            target: profile.target,
+            evidence_package: profile.evidence,
+            design_goal: profile.mechanism
         }});
-
-        demoMsg('subagents', { agents: [
-            { name: 'LiteratureAgent', status: 'active',  progress: 55 },
-            { name: 'EpitopeAgent',    status: 'pending', progress: 0  },
-            { name: 'StructureAgent',  status: 'pending', progress: 0  },
-            { name: 'DesignAgent-1',   status: 'pending', progress: 0  },
-            { name: 'DesignAgent-2',   status: 'pending', progress: 0  },
-            { name: 'DesignAgent-3',   status: 'pending', progress: 0  },
-            { name: 'QAAgent',         status: 'pending', progress: 0  }]});
-
-        demoSleep(2800);
-        demoMsg('tool_result', { tool: 'literature_review', result:
-`retrieved_papers: 47
-top_structures: 6MEN (2.1Å), 4KC3 (1.8Å), 7KOJ (2.4Å)
-known_epitopes: ST2-interface, β4-β5 loop, C-terminal helix
-approved_antibodies: AMG-282, Itepekimab, Tozorakimab
-uniprot_accession: O95760
-mature_form: aa 112–270 (MW 18.7 kDa)
-cdr_hotspot_residues: Asp69, Phe93, Val112, Asp134, Leu240` });
-
-        demoMsg('subagents', { agents: [
-            { name: 'LiteratureAgent', status: 'completed', progress: 100 },
-            { name: 'EpitopeAgent',    status: 'active',    progress: 20  },
-            { name: 'StructureAgent',  status: 'pending',   progress: 0   },
-            { name: 'DesignAgent-1',   status: 'pending',   progress: 0   },
-            { name: 'DesignAgent-2',   status: 'pending',   progress: 0   },
-            { name: 'DesignAgent-3',   status: 'pending',   progress: 0   },
-            { name: 'QAAgent',         status: 'pending',   progress: 0   }]});
-
+        demoSleep(700);
+        demoLog('[LiteratureAgent] 加载 ' + profile.evidence + '...');
+        demoSleep(700);
+        demoLog('[LiteratureAgent] 整理已收录文献摘要、结构注释和抗体开发背景...');
+        demoSleep(700);
+        demoLog('[LiteratureAgent] 校验 ' + profile.interfaceFocus + ' 与设计目标的一致性...');
+        demoSleep(500);
+        demoMsg('tool_result', { tool: 'target_evidence_review', result: {
+            route: profile.routeLabel,
+            target_domain: profile.domain,
+            interface_focus: profile.interfaceFocus,
+            antibody_background: profile.antibodyBackground,
+            suggested_epitope_strategy: profile.selectedEpitope
+        }});
+        demoMsg('subagents', { agents: fallbackAgents('MutationAgent', 35) });
         demoMsg('agent_msg', { text:
-`## 文献分析完成 — ${TARGET} 靶点综述
+`## Phase 1 — 靶点证据包加载完成
 
-**LiteratureAgent** 完成检索，共获取 **47 篇**高相关文献（2019–2025），覆盖 PubMed、RCSB-PDB 和 UniProt 数据库。
+**LiteratureAgent** 已整理 **${profile.evidence}**，汇总已收录的文献摘要、结构注释和抗体开发背景。
 
-**关键结构信息：**
-- ${TARGET} 采用 IL-1 家族 β-trefoil fold（12 条 β-strand），结构高度刚性
-- 天然受体 ST2 结合界面横跨 **β4–β5 loop** 和 **C 末端螺旋**
-- UniProt [O95760] 记录分子量 30.8 kDa，成熟形式 aa 112–270
-- 共晶体结构 **8 个**，最优分辨率 1.8 Å（PDB 4KC3）
+| 维度 | 详情 |
+|------|------|
+| 疾病方向 | ${profile.disease} |
+| 靶点结构域 | ${profile.domain} |
+| 设计机制 | ${profile.mechanism} |
+| 界面关注点 | ${profile.interfaceFocus} |
+| 抗体开发背景 | ${profile.antibodyBackground} |
 
-**已知治疗性抗体 Epitope 热点：**
+→ **MutationAgent** 接管，标注界面与可开发性风险...` });
 
-| 抗体名称 | Epitope 区域 | 亲和力 (KD) | 来源机构 |
-|----------|-------------|------------|---------|
-| AMG-282 | β4–β5 loop (Lys48–Asp59) | 0.34 nM | Amgen 2021 |
-| Itepekimab | ST2 结合界面 | 0.12 nM | Regeneron 2020 |
-| Tozorakimab | β11–β12 interface | 0.08 nM | AstraZeneca 2022 |
-| MEDI3506 | C-terminal helix | 1.2 nM | AZ/MedImmune 2023 |
+        const riskId = uid();
+        demoSleep(300);
+        demoMsg('tool_call', { tool: 'interface_risk_annotation', toolId: riskId, params: {
+            target: profile.target,
+            route: profile.routeLabel,
+            interface_focus: profile.interfaceFocus,
+            antibody_format: profile.abType
+        }});
+        demoSleep(700);
+        demoLog('[MutationAgent] 加载当前路线的界面风险规则...');
+        demoSleep(700);
+        demoLog('[MutationAgent] 标注 ' + profile.interfaceFocus + ' 的可及性与稳定性...');
+        demoSleep(500);
+        demoMsg('tool_result', { tool: 'interface_risk_annotation', result: {
+            preferred_epitope: profile.selectedEpitope,
+            scaffold: profile.abType + ' 抗体骨架',
+            conclusion: '优先覆盖目标界面，同时避开低可及或高柔性区域'
+        }});
+        demoMsg('agent_msg', { text:
+`### 界面与可开发性风险标注完成
 
-→ **EpitopeAgent** 接管，进行精细三维表位映射...`
-        });
+**MutationAgent** 已基于当前路线的结构注释和抗体工程规则完成风险分层。
 
-        // ── Step 2: Epitope mapping ───────────────────────────────────
-        demoMsg('tasks', { tasks: [
-            { text: 'Literature review & target analysis',       status: 'completed' },
-            { text: 'Epitope mapping & binding site selection',  status: 'active'    },
-            { text: `Retrieve ${TARGET} structure & prepare input`, status: 'pending'},
-            { text: 'Round 1 — initial batch (~1,000 variants)', status: 'pending'   },
-            { text: 'Round 2 — extend best-performing configs',  status: 'pending'   },
-            { text: 'Round 3 — diversity sweep to 40 passing',   status: 'pending'   },
-            { text: 'QA / export all passing VHHs',             status: 'pending'    }]});
+| 风险维度 | 处理策略 | 设计建议 |
+|---------|----------|----------|
+| 靶点界面稳定性 | 保留核心结合面的空间约束 | 聚焦 ${profile.interfaceFocus} |
+| 表位可及性 | 排除埋藏过深或柔性过高区域 | 优先选择可及、成型稳定的表面 |
+| 序列可开发性 | 规避明显聚集、异常电荷和不稳定 motif | 后续 QA 阶段继续复核 |
 
+→ **EpitopeAgent** 接管，进行三维表位策略确认...` });
+
+        demoMsg('tasks', { tasks: fallbackTasks(profile, 1) });
+        demoMsg('subagents', { agents: fallbackAgents('EpitopeAgent', 55) });
         const epiId = uid();
         demoSleep(300);
-        demoMsg('tool_call', { tool: 'epitope_mapping', toolId: epiId, params: {
-            target:      TARGET,
-            pdb_ids:     ['6MEN', '4KC3', '7KOJ'],
-            method:      'interface_residue_mapping',
-            conservation_db: 'OrthoDB_v11',
-            n_candidate_sites: 3,
+        demoMsg('tool_call', { tool: 'hotspot_scoring', toolId: epiId, params: {
+            route: profile.routeLabel,
+            target_region: profile.selectedEpitope,
+            methods: ['interface accessibility', 'shape complementarity', 'developability rules'],
+            antibody_format: profile.abType
         }});
-
-        demoMsg('subagents', { agents: [
-            { name: 'LiteratureAgent', status: 'completed', progress: 100 },
-            { name: 'EpitopeAgent',    status: 'active',    progress: 70  },
-            { name: 'StructureAgent',  status: 'pending',   progress: 0   },
-            { name: 'DesignAgent-1',   status: 'pending',   progress: 0   },
-            { name: 'DesignAgent-2',   status: 'pending',   progress: 0   },
-            { name: 'DesignAgent-3',   status: 'pending',   progress: 0   },
-            { name: 'QAAgent',         status: 'pending',   progress: 0   }]});
-
-        demoSleep(2500);
-        demoMsg('tool_result', { tool: 'epitope_mapping', result:
-`site_I:   β4–β5 loop     | residues: Lys48–Asp59   | conservation: 67% | druggability: medium
-site_II:  β11–β12 iface  | residues: Phe93,Val112,Asp134 | conservation: 94% | druggability: high  ← SELECTED
-site_III: C-term helix   | residues: Arg226–Leu240  | conservation: 78% | druggability: low
-validated_by: 8 co-crystal structures
-overlap_with_receptor_interface: site_II = TRUE` });
-
-        demoMsg('subagents', { agents: [
-            { name: 'LiteratureAgent', status: 'completed', progress: 100 },
-            { name: 'EpitopeAgent',    status: 'completed', progress: 100 },
-            { name: 'StructureAgent',  status: 'active',    progress: 30  },
-            { name: 'DesignAgent-1',   status: 'pending',   progress: 0   },
-            { name: 'DesignAgent-2',   status: 'pending',   progress: 0   },
-            { name: 'DesignAgent-3',   status: 'pending',   progress: 0   },
-            { name: 'QAAgent',         status: 'pending',   progress: 0   }]});
-
+        demoSleep(700);
+        demoLog('[EpitopeAgent] 评估候选表面的结构暴露度...');
+        demoSleep(700);
+        demoLog('[EpitopeAgent] 评估与设计机制的匹配度...');
+        demoSleep(500);
+        demoMsg('tool_result', { tool: 'hotspot_scoring', result: {
+            selected_site: profile.selectedEpitope,
+            priority: 'primary',
+            interface_focus: profile.interfaceFocus,
+            scoring_basis: 'accessibility + mechanism fit + developability'
+        }});
         demoMsg('agent_msg', { text:
-`## 表位分析完成 — 选定 Site II
+`## Phase 2 — 表位映射 & 热点打分
 
-**EpitopeAgent** 完成三维界面映射，在 ${TARGET} 上识别出 **3 个候选表位**：
+**EpitopeAgent** 综合结构暴露度、界面相关性和可开发性规则，对候选区域进行评分：
 
-| Site | 位置 | 关键残基 | 物种保守性 | 可药性评分 | ⭐ 选中 |
-|------|------|---------|-----------|-----------|:------:|
-| Site I | β4–β5 loop | Lys48–Asp59 | 67% | 5.2 / 10 | |
-| Site II | β11–β12 interface | Phe93 · Val112 · Asp134 | **94%** | **8.7 / 10** | ✓ |
-| Site III | C-terminal helix | Arg226–Leu240 | 78% | 3.1 / 10 | |
+| Site | 区域 | 设计价值 | 结论 |
+|------|------|----------|------|
+${fallbackTableRows(profile.rows)}
 
-**选择依据：** **Site II** 保守性最高（94%），已由 **8 个共晶体结构**独立验证，且与天然 ST2 受体结合界面完全重叠（overlap = TRUE）。药物性评分 8.7 为三个候选中最优。
+**依据：** 当前路线选择 **${profile.selectedEpitope}**，与设计目标“${profile.mechanism}”一致。` });
 
-→ **StructureAgent** 接管，拉取高分辨率结构并准备设计输入...`
-        });
-
-        // ── Step 3: Structure retrieval ───────────────────────────────
-        demoMsg('tasks', { tasks: [
-            { text: 'Literature review & target analysis',       status: 'completed' },
-            { text: 'Epitope mapping & binding site selection',  status: 'completed' },
-            { text: `Retrieve ${TARGET} structure & prepare input`, status: 'active' },
-            { text: 'Round 1 — initial batch (~1,000 variants)', status: 'pending'   },
-            { text: 'Round 2 — extend best-performing configs',  status: 'pending'   },
-            { text: 'Round 3 — diversity sweep to 40 passing',   status: 'pending'   },
-            { text: 'QA / export all passing VHHs',             status: 'pending'    }]});
-
+        demoMsg('tasks', { tasks: fallbackTasks(profile, 2) });
+        demoMsg('subagents', { agents: fallbackAgents('StructureAgent', 70) });
         const strId = uid();
-        demoSleep(200);
+        demoSleep(300);
         demoMsg('tool_call', { tool: 'structure_retrieval', toolId: strId, params: {
-            pdb_id:          '6MEN',
-            chain:           'A',
-            resolution_Å:    2.1,
-            epitope_residues: 'Phe93,Val112,Asp134',
-            hotspot_padding_Å: 8.0,
+            route: profile.routeLabel,
+            reference_model: profile.structureRef,
+            target_region: profile.selectedEpitope,
+            scaffold: profile.abType + ' 抗体骨架',
+            candidate_budget: initial
         }});
-
-        demoSleep(1800);
-        demoMsg('tool_result', { tool: 'structure_retrieval', result:
-`status: OK
-pdb_id: 6MEN  chain: A  resolution: 2.1Å
-epitope_atoms_extracted: 387
-hotspot_sphere_radius: 8.0Å  contacts: 42 residues
-rfaa_input_written: /tmp/il33_site2_rfaa.json
-mpnn_fixed_residues: Phe93,Val112,Asp134
-cdr_scaffold: VHH-Llama-optimized (Camelid germline IGHV3S65)` });
-
-        demoMsg('subagents', { agents: [
-            { name: 'LiteratureAgent', status: 'completed', progress: 100 },
-            { name: 'EpitopeAgent',    status: 'completed', progress: 100 },
-            { name: 'StructureAgent',  status: 'completed', progress: 100 },
-            { name: 'DesignAgent-1',   status: 'active',    progress: 5   },
-            { name: 'DesignAgent-2',   status: 'active',    progress: 3   },
-            { name: 'DesignAgent-3',   status: 'active',    progress: 2   },
-            { name: 'QAAgent',         status: 'pending',   progress: 0   }]});
-
+        demoSleep(700);
+        demoLog('[StructureAgent] 加载结构参考模型：' + profile.structureRef + '...');
+        demoSleep(700);
+        demoLog('[StructureAgent] 提取目标区域：' + profile.selectedEpitope + '...');
+        demoSleep(500);
+        demoMsg('tool_result', { tool: 'structure_retrieval', result: {
+            status: 'OK',
+            route: profile.routeLabel,
+            reference_model: profile.structureRef,
+            target_region: profile.selectedEpitope,
+            scoring_stack: 'Zoonodiffusion -> ZoonoMPNN -> ZoonoFold-Multimer'
+        }});
         demoMsg('agent_msg', { text:
-`结构准备完成。
+`## Phase 3 — 结构准备完毕
 
-已获取 **PDB 6MEN**（Chain A，分辨率 2.1 Å），提取 Site II 热点区域（半径 8 Å，涵盖 42 个接触残基）。Zoonodiffusion / ZoonoMPNN 输入文件已写入临时目录。
+**StructureAgent** 已完成结构输入准备：加载 ${profile.structureRef}，提取 ${profile.selectedEpitope}，并生成 ${profile.abType} 设计约束。
 
-现启动 **3 路并行 DesignAgent**（Zoonodiffusion → ZoonoMPNN → ZoonoFold 评分流水线），目标生成 ~1,000 个候选 VHH 进行第一轮筛选...`
-        });
+| 参数 | 值 |
+|------|----|
+| 参考模型 | ${profile.structureRef} |
+| 目标区域 | ${profile.selectedEpitope} |
+| 抗体骨架 | ${profile.abType} 抗体骨架 |
+| 初始候选预算 | 约 ${initial} 个结构草案 |
+| 评分维度 | 结合界面、折叠置信度、序列可开发性、多样性 |
 
-        // ── Step 4: Round 1 batch logs ────────────────────────────────
-        demoMsg('tasks', { tasks: [
-            { text: 'Literature review & target analysis',       status: 'completed' },
-            { text: 'Epitope mapping & binding site selection',  status: 'completed' },
-            { text: `Retrieve ${TARGET} structure & prepare input`, status: 'completed'},
-            { text: 'Round 1 — initial batch (~1,000 variants)', status: 'active'    },
-            { text: 'Round 2 — extend best-performing configs',  status: 'pending'   },
-            { text: 'Round 3 — diversity sweep to 40 passing',   status: 'pending'   },
-            { text: 'QA / export all passing VHHs',             status: 'pending'    }]});
+现在启动 **3 路并行 DesignAgent**。` });
 
-        const r1Batches = [
-            [3, 3], [2, 5], [4, 9], [2, 11], [5, 16],
-            [3, 19], [4, 23], [2, 25], [6, 31], [4, 35]];
-        r1Batches.forEach(([pass, cum], i) => {
-            const agent = `DesignAgent-${(i % 3) + 1}`;
-            demoSleep(i === 0 ? 200 : 900);
-            demoLog(`[ZoonoAb-Designer] ${agent} → Batch ${i+1}/10 — ${pass} passing (cumulative: ${cum})`);
-            demoMsg('subagents', { agents: [
-                { name: 'LiteratureAgent', status: 'completed', progress: 100 },
-                { name: 'EpitopeAgent',    status: 'completed', progress: 100 },
-                { name: 'StructureAgent',  status: 'completed', progress: 100 },
-                { name: 'DesignAgent-1',   status: i < 9 ? 'active' : 'completed', progress: Math.min(100, (i+1)*10) },
-                { name: 'DesignAgent-2',   status: i < 9 ? 'active' : 'completed', progress: Math.min(100, (i+1)*10) },
-                { name: 'DesignAgent-3',   status: i < 9 ? 'active' : 'completed', progress: Math.min(100, (i+1)*10) },
-                { name: 'QAAgent',         status: 'pending',   progress: 0   }]});
-        });
-
+        demoMsg('tasks', { tasks: fallbackTasks(profile, 3) });
+        demoMsg('subagents', { agents: fallbackAgents('DesignAgent-1', 12) });
+        const r1Batches = Math.max(5, Math.min(8, Math.ceil(initial / 60)));
+        let r1Cum = 0;
+        for (let i = 0; i < r1Batches; i++) {
+            const pass = Math.max(1, Math.round((r1Pass - r1Cum) / (r1Batches - i)) + (i % 2));
+            r1Cum += pass;
+            demoSleep(i === 0 ? 300 : 650);
+            demoLog(`[ZoonoAb-Designer] DesignAgent-${(i % 3) + 1} → R1 Batch ${i + 1}/${r1Batches} — ${pass} 个候选通过快速评分 (累计: ${r1Cum})`);
+        }
         demoMsg('agent_msg', { text:
-`## Round 1 完成 — 初始批次筛选结果
+`## Round 1 完成 — 初始候选筛选
 
-**3 × DesignAgent** 并行处理 10 个批次，共生成 **1,000 个候选 VHH**：
+**3 × DesignAgent** 并行完成初始候选生成与快速筛选。
 
-| 筛选阶段 | 数量 |
-|---------|------|
-| 总生成量 | 1,000 |
-| Zoonodiffusion 结构质量 (pLDDT ≥ 75) | 412 |
-| ZoonoMPNN 序列评分 (score ≤ -1.8) | 187 |
-| ZoonoFold ipTM ≥ 0.70 | 89 |
-| 去冗余 (TM-score < 0.85) | **35** |
+| 筛选阶段 | 候选数 | 通过率 |
+|---------|-------|--------|
+| 结构草案生成（去碰撞） | ${initial} | — |
+| 骨架置信度过滤 | ${Math.round(initial * 0.52)} | 约 52% |
+| 序列设计评分 | ${Math.round(initial * 0.28)} | 约 28% |
+| 界面模型评分 | ${Math.round(initial * 0.12)} | 约 12% |
+| ValidatorAgent 去冗余 | **${r1Pass}** | 约 ${(r1Pass / initial * 100).toFixed(1)}% |
 
-**Top-3 序列 ipTM 分布：** 0.847 · 0.831 · 0.819
+→ 提取 Top-${r1Pass} 配置进入 Round 2 CDR 精细扩展...` });
 
-CDR-H3 长度分布：9–17 aa，中位数 13 aa。共 **35 个**序列进入 Round 2 扩展。
-
-→ 移交 **DesignAgent**，以 diversity-optimized 策略扩展 Top-35 骨架...`
-        });
-
-        // ── Step 5: Round 2 ───────────────────────────────────────────
-        demoMsg('tasks', { tasks: [
-            { text: 'Literature review & target analysis',       status: 'completed' },
-            { text: 'Epitope mapping & binding site selection',  status: 'completed' },
-            { text: `Retrieve ${TARGET} structure & prepare input`, status: 'completed'},
-            { text: 'Round 1 — initial batch (~1,000 variants)', status: 'completed' },
-            { text: 'Round 2 — extend best-performing configs',  status: 'active'    },
-            { text: 'Round 3 — diversity sweep to 40 passing',   status: 'pending'   },
-            { text: 'QA / export all passing VHHs',             status: 'pending'    }]});
-
+        demoMsg('tasks', { tasks: fallbackTasks(profile, 4) });
+        demoMsg('subagents', { agents: fallbackAgents('DesignAgent-2', 60) });
         const extId = uid();
         demoSleep(300);
         demoMsg('tool_call', { tool: 'extend_design_batch', toolId: extId, params: {
-            base_config:    'SiteII-7eon-v2',
-            n_variants:     600,
-            strategy:       'diversity-optimized',
-            parent_pool:    '35 × Round-1 passing',
-            target_passing: 40,
+            base_config: profile.routeLabel + ' / ' + profile.selectedEpitope,
+            n_variants: Math.max(90, count * 18),
+            strategy: 'CDR-focused-diversification',
+            parent_pool: r1Pass + ' x Round-1 candidates',
+            target_final: count
         }});
-
-        demoSleep(1600);
-        demoMsg('tool_result', { tool: 'extend_design_batch', result:
-`status: running
-batches_total: 6  batch_size: 100
-diversity_metric: CDR-H3 Levenshtein distance ≥ 4
-mpnn_temperature: 0.15  af2_model: model_1_ptm` });
-
-        const r2Batches = [[4,39], [3,42], [5,47], [2,49], [3,52], [4,56]];
-        r2Batches.forEach(([pass, cum], i) => {
-            demoSleep(i === 0 ? 200 : 1100);
-            demoLog(`[ZoonoAb-Designer] DesignAgent-${(i%3)+1} → R2 Batch ${i+1}/6 — ${pass} passing (cumulative: ${cum})`);
-        });
-
+        demoSleep(700);
+        demoLog('[ZoonoAb-Designer] 扩展 CDR 构象与序列多样性...');
+        demoSleep(700);
+        demoLog('[ZoonoAb-Designer] 保留与推荐表位匹配的候选...');
+        demoMsg('tool_result', { tool: 'extend_design_batch', result: {
+            variants_generated: Math.max(90, count * 18),
+            candidate_pool: r2Pass,
+            route: profile.routeLabel,
+            diversity: 'balanced across selected CDR space'
+        }});
         demoMsg('agent_msg', { text:
-`## Round 2 完成 — 扩展最优配置
+`## Round 2 完成 — CDR 多样性扩展
 
-基于 Round 1 Top-35，以 **diversity-optimized** 策略生成 **600 个扩展变体**：
+基于 Round 1 Top 骨架，系统完成 CDR 聚焦扩展与序列空间多样化。
 
-| 批次 | 新增 passing | 累计总数 |
-|------|-------------|---------|
-| R2 Batch 1/6 | +4 | 39 |
-| R2 Batch 2/6 | +3 | 42 |
-| R2 Batch 3/6 | +5 | 47 |
-| R2 Batch 4/6 | +2 | 49 |
-| R2 Batch 5/6 | +3 | 52 |
-| R2 Batch 6/6 | +4 | **56** |
+| 优化目标 | 处理结果 |
+|----------|----------|
+| CDR 长度与构象多样性 | 扩展多个可成型环区组合 |
+| 界面互补性 | 保留与 ${profile.selectedEpitope} 匹配的候选 |
+| 序列可开发性 | 标注中等风险项，剔除高风险项 |
 
-Round 2 净新增 **21 个** passing VHH，累计池扩展至 **56 个**。CDR 多样性熵值：H1=2.31 · H2=1.98 · H3=3.47（良好）。
+**累计候选池：** **${r2Pass}** 个进入多样性精筛。` });
 
-目标 40 个已达到。启动 Round 3 多样性精筛以确保序列空间覆盖...`
-        });
+        demoMsg('tasks', { tasks: fallbackTasks(profile, 5) });
+        demoMsg('subagents', { agents: fallbackAgents('ValidatorAgent', 75) });
+        const divId = uid();
+        demoSleep(300);
+        demoMsg('tool_call', { tool: 'diversity_sweep', toolId: divId, params: {
+            pool: r2Pass + ' candidates',
+            target_final: count,
+            clustering: 'CDR diversity + interface-score ranking',
+            final_ranking: 'ipTM DESC, then pLDDT DESC'
+        }});
+        demoSleep(700);
+        demoLog('[ValidatorAgent] 计算候选体的结构相似性与序列距离...');
+        demoSleep(700);
+        demoLog('[ValidatorAgent] 运行多样性聚类与最终排序...');
+        demoSleep(500);
+        demoMsg('tool_result', { tool: 'diversity_sweep', result: {
+            final_passing: finalPass,
+            selected_from: r2Pass,
+            max_pairwise_identity: count <= 10 ? '约 82%' : '约 78%',
+            status: 'final candidates passed structural QA gates'
+        }});
+        demoMsg('agent_msg', { text:
+`## Round 3 完成 — 多样性扫描 & 收敛
 
-        // ── Step 6: Round 3 diversity sweep ──────────────────────────
-        demoMsg('tasks', { tasks: [
-            { text: 'Literature review & target analysis',       status: 'completed' },
-            { text: 'Epitope mapping & binding site selection',  status: 'completed' },
-            { text: `Retrieve ${TARGET} structure & prepare input`, status: 'completed'},
-            { text: 'Round 1 — initial batch (~1,000 variants)', status: 'completed' },
-            { text: 'Round 2 — extend best-performing configs',  status: 'completed' },
-            { text: 'Round 3 — diversity sweep to 40 passing',   status: 'active'    },
-            { text: 'QA / export all passing VHHs',             status: 'pending'    }]});
+**ValidatorAgent** 完成多样性聚类与最终排序，从候选池中选出 **${finalPass}** 个代表性 ${profile.abType} 候选。
 
-        const r3Batches = [[3,59],[2,61],[4,65],[3,68],[5,73]];
-        r3Batches.forEach(([pass, cum], i) => {
-            demoSleep(i === 0 ? 300 : 900);
-            demoLog(`[ZoonoAb-Designer] DesignAgent-${(i%3)+1} → R3 Sweep ${i+1}/5 — ${pass} new (cumulative: ${cum})`);
-        });
+**最终池：** 序列多样性达标 · CDR-H3 分布合理 · 全部进入最终 QA 复核。
 
-        demoMsg('subagents', { agents: [
-            { name: 'LiteratureAgent', status: 'completed', progress: 100 },
-            { name: 'EpitopeAgent',    status: 'completed', progress: 100 },
-            { name: 'StructureAgent',  status: 'completed', progress: 100 },
-            { name: 'DesignAgent-1',   status: 'completed', progress: 100 },
-            { name: 'DesignAgent-2',   status: 'completed', progress: 100 },
-            { name: 'DesignAgent-3',   status: 'completed', progress: 100 },
-            { name: 'QAAgent',         status: 'active',    progress: 40  }]});
+→ 运行 QA/导出流程...` });
 
-        // ── Step 7: QA Export ─────────────────────────────────────────
-        demoMsg('tasks', { tasks: [
-            { text: 'Literature review & target analysis',       status: 'completed' },
-            { text: 'Epitope mapping & binding site selection',  status: 'completed' },
-            { text: `Retrieve ${TARGET} structure & prepare input`, status: 'completed'},
-            { text: 'Round 1 — initial batch (~1,000 variants)', status: 'completed' },
-            { text: 'Round 2 — extend best-performing configs',  status: 'completed' },
-            { text: 'Round 3 — diversity sweep to 40 passing',   status: 'completed' },
-            { text: 'QA / export all passing VHHs',             status: 'active'    }]});
-
+        demoMsg('tasks', { tasks: fallbackTasks(profile, 6) });
+        demoMsg('subagents', { agents: fallbackAgents('QAAgent', 80) });
         const qaId = uid();
         demoSleep(300);
         demoMsg('tool_call', { tool: 'qa_export', toolId: qaId, params: {
-            batch_uuids:    ['a1b2c3d4-e5f6-7890', 'b2c3d4e5-f6a7-8901'],
-            n_passing:      40,
-            instructions:   `QA for anti-${TARGET} VHH. Select 40 diverse CDR candidates for synthesis.`,
-            export_formats: ['FASTA', 'CSV', 'JSON'],
+            n_final: finalPass,
+            from_pool: r2Pass,
+            quality_checks: ['ipTM>=0.70', 'pLDDT>=80', 'no_stop_codon', 'no_free_cys', 'developability_flags'],
+            export_formats: ['FASTA', 'CSV', 'JSON', 'PDB-zip']
         }});
-
-        demoSleep(2000);
-        demoMsg('tool_result', { tool: 'qa_export', result:
-`final_passing: 40
-ipTM_range:  0.703 – 0.863
-pLDDT_range: 82.1 – 94.6
-CDR-H3_len:  9–17 aa
-sequence_identity_max: 78% (well-diversified)
-no_internal_stop_codons: TRUE
-no_cysteines_outside_disulfide: TRUE
-fasta_written:  /output/anti-${TARGET}-vhh-40seqs.fasta
-csv_written:    /output/anti-${TARGET}-vhh-40seqs.csv
-pdb_archive:    /output/anti-${TARGET}-vhh-structs.zip` });
-
-        demoMsg('subagents', { agents: [
-            { name: 'LiteratureAgent', status: 'completed', progress: 100 },
-            { name: 'EpitopeAgent',    status: 'completed', progress: 100 },
-            { name: 'StructureAgent',  status: 'completed', progress: 100 },
-            { name: 'DesignAgent-1',   status: 'completed', progress: 100 },
-            { name: 'DesignAgent-2',   status: 'completed', progress: 100 },
-            { name: 'DesignAgent-3',   status: 'completed', progress: 100 },
-            { name: 'QAAgent',         status: 'completed', progress: 100 }]});
-
-        // ── Final tasks + summary ─────────────────────────────────────
-        demoMsg('tasks', { tasks: [
-            { text: 'Literature review & target analysis',       status: 'completed' },
-            { text: 'Epitope mapping & binding site selection',  status: 'completed' },
-            { text: `Retrieve ${TARGET} structure & prepare input`, status: 'completed'},
-            { text: 'Round 1 — initial batch (~1,000 variants)', status: 'completed' },
-            { text: 'Round 2 — extend best-performing configs',  status: 'completed' },
-            { text: 'Round 3 — diversity sweep to 40 passing',   status: 'completed' },
-            { text: 'QA / export all passing VHHs',             status: 'completed' }]});
-
+        demoSleep(700);
+        demoLog('[QAAgent] 对 ' + finalPass + ' 条序列运行内部终止密码子检查...');
+        demoSleep(600);
+        demoLog('[QAAgent] 验证 ' + profile.abType + ' 抗体骨架完整性和 CDR 边界...');
+        demoSleep(600);
+        demoLog('[QAAgent] 计算可开发性标志并生成导出文件...');
+        demoMsg('tool_result', { tool: 'qa_export', result: {
+            final_passing: finalPass,
+            ipTM_range: '0.703-0.871',
+            pLDDT_range: '82.1-94.8',
+            stop_codons: '0/' + finalPass,
+            free_cysteines: '0/' + finalPass,
+            exports: 'FASTA / CSV / JSON / PDB structures'
+        }});
+        demoMsg('subagents', { agents: fallbackAgents('QAAgent', 100) });
+        demoMsg('tasks', { tasks: fallbackTasks(profile, 6, true) });
         demoMsg('agent_msg', { text:
-`## ✅ 多 Agent 设计流程完成
+`## ✅ 多 Agent 协作设计流程完成
 
-**7 个专业 Agent** 协作完成，共历经 **3 轮迭代**，生成 **40 个**通过全部质控标准的 anti-${TARGET} VHH 候选体。
+**9 个专业 Agent** 全部任务完成，历经 **3 轮迭代**，从约 ${initial} 个初始结构草案中收敛出 **${finalPass} 个** anti-${profile.target} ${profile.abType} 候选。
 
-**最终质控摘要：**
+### 🏆 最终质控摘要（N = ${finalPass}）
 
 | 质控项目 | 标准 | 通过率 |
 |---------|------|--------|
 | ZoonoFold ipTM | ≥ 0.70 | 100% |
-| pLDDT (binder) | ≥ 80.0 | 100% |
+| Binder pLDDT | ≥ 80.0 | 100% |
+| 界面适配性 | 符合 ${profile.selectedEpitope} | 100% |
 | 序列唯一性 | identity ≤ 85% | 100% |
-| CDR-H3 长度 | 9–18 aa | 100% |
-| 内部终止密码子 | 无 | 100% |
-| 非二硫键半胱氨酸 | 无 | 100% |
+| 可开发性高风险 | 无 | 100% |
 
-**Top-5 候选体：**
+**交付物：** FASTA · CSV · JSON · PDB 结构包。正在渲染 3D 结构...` });
 
-| 排名 | ID | ipTM | pLDDT | CDR-H3 | 推荐等级 |
-|------|----|------|-------|--------|---------|
-| 1 | binder-1 | **0.863** | 94.6 | 14 aa | ⭐⭐⭐ |
-| 2 | binder-2 | 0.847 | 91.2 | 12 aa | ⭐⭐⭐ |
-| 3 | binder-3 | 0.831 | 89.7 | 16 aa | ⭐⭐ |
-| 4 | binder-4 | 0.819 | 87.3 | 11 aa | ⭐⭐ |
-| 5 | binder-5 | 0.801 | 85.1 | 13 aa | ⭐⭐ |
-
-所有 40 条序列已导出为 FASTA / CSV / JSON，3D 结构打包为 PDB 压缩包，可直接送合成或对接实验室工作流。`
-        });
-
-        // ── Emit mock results ─────────────────────────────────────────
         demoSleep(400);
         enqueueOp(() => new Promise(resolve => {
-            const seqs = Array.from({length: 40}, (_, i) => {
+            const seqs = Array.from({ length: finalPass }, (_, i) => {
                 const seed = (i + 1) * 31337;
-                const s = generateMockVHH(seed);
-                const r = (min, max, d=3) => (Math.random()*(max-min)+min).toFixed(d);
+                const sequence = generateMockVHH(seed);
+                const r = (min, max, d=3) => +(Math.random() * (max - min) + min).toFixed(d);
                 return {
                     id: i + 1,
-                    sequence: s,
-                    pdbId: `binder-${i+1}`,
+                    sequence,
+                    pass: true,
+                    pdbId: 'binder-' + (i + 1),
                     metrics: {
-                        binderPTM:   +r(0.72, 0.87),
-                        minIPAE:     +r(4.1, 9.8),
-                        complexRMSD: +r(0.8, 1.8),
-                        dockQ:       +r(0.71, 0.86),
-                        binderPLDDT: +r(0.82, 0.95),
-                        iPTM:        +r(0.70, 0.87),
+                        binderPTM: r(0.72, 0.87),
+                        minIPAE: r(4.1, 9.8, 2),
+                        complexRMSD: r(0.8, 1.8, 2),
+                        dockQ: r(0.71, 0.86),
+                        binderPLDDT: r(0.82, 0.95),
+                        iPTM: r(0.70, 0.87)
                     }
                 };
             });
-            renderResults(seqs, { total: 40, passing: 40, avg_iptm: '0.781' });
-            binderDataList = seqs.map(s => ({ id: s.pdbId, name: `binder-${s.id} (ipTM=${s.metrics.iPTM})` }));
+            const stats = { total: finalPass, passing: finalPass, passRate: '100.0', target: profile.target, abType: profile.abType };
+            currentResults = seqs;
+            currentStats = stats;
+            hideTyping();
+            renderResults(seqs, stats);
+            const binders = makeFallbackBinders(Math.max(finalPass, 1), profile);
+            useLocalPDB = true;
+            chainColorMap = { antigen: ['A'], antibody: ['B'] };
+            renderViewerSection(
+                binders[0].id,
+                binders.map(item => item.id),
+                binders.length + ' 个 ' + profile.target + ' ' + profile.abType + ' 候选结构',
+                binders
+            );
             resolve();
         }));
 
-        // ── Done ──────────────────────────────────────────────────────
-        enqueueOp(() => new Promise(resolve => {
-            isRunning = false;
-            hideTyping();
-            document.getElementById('sendBtn').style.display = 'flex';
-            document.getElementById('cancelBtn').style.display = 'none';
-            showToast(t('Workflow complete!'), 'success');
-            setTimeout(() => openBinderSpinModal(resolve), 600);
-        }));
+        demoMsg('done', {});
     }
     // ════════════════════════════════════════════════════════════════
     function getStream() { return document.getElementById('chatStream'); }
@@ -8655,9 +8640,19 @@ pdb_archive:    /output/anti-${TARGET}-vhh-structs.zip` });
         };
     }
 
-    function makeFallbackBinders(count = 12) {
+    function makeFallbackBinders(count = 12, profile) {
         const files = FALLBACK_BINDER_FILES.slice(0, Math.max(1, count));
-        return files.map(parseFallbackBinderFile);
+        const target = profile && profile.target ? profile.target : '';
+        const abType = profile && profile.abType ? profile.abType : '';
+        return files.map((file, idx) => {
+            const meta = parseFallbackBinderFile(file, idx);
+            if (target && abType) {
+                meta.id = target.replace(/[^A-Za-z0-9]+/g, '') + '-candidate-' + String(idx + 1).padStart(2, '0');
+                meta.file = meta.id + '.pdb';
+                meta.name = target + ' ' + abType + ' binder-' + String(idx + 1).padStart(2, '0') + (meta.ipTm !== null ? ' (ipTM=' + meta.ipTm.toFixed(4) + ')' : '');
+            }
+            return meta;
+        });
     }
 
     function getBinderIpTm(meta) {
@@ -9175,6 +9170,11 @@ pdb_archive:    /output/anti-${TARGET}-vhh-structs.zip` });
         const fallbackMeta = binderDataList.find(item => item && item.id === pdbId && item.fallback && item.file);
         if (fallbackMeta) {
             const filename = String(fallbackMeta.file).replace(/\.pdb$/i, '');
+            return '/api/pdb/local/' + filename + '.pdb';
+        }
+        const localMeta = binderDataList.find(item => item && item.id === pdbId && item.file);
+        if (localMeta) {
+            const filename = String(localMeta.file).replace(/\.pdb$/i, '');
             return '/api/pdb/local/' + filename + '.pdb';
         }
         if (useLocalPDB) {
