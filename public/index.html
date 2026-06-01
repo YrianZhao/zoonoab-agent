@@ -2454,7 +2454,7 @@
         .qd-chip.active { border-color: var(--brand); color: var(--brand-dark); background: var(--brand-lighter); font-weight: 600; }
         .qd-modal {
             background: var(--bg-card); border-radius: 16px; box-shadow: 0 24px 60px rgba(0,0,0,0.18);
-            width: min(720px, 95vw); max-height: 90vh; overflow: hidden; position: relative;
+            width: min(720px, 95vw); height: min(720px, calc(100vh - 48px)); overflow: hidden; position: relative;
             display: flex; flex-direction: column;
         }
         .qd-modal-close {
@@ -2466,6 +2466,7 @@
         .qd-modal-header {
             padding: 24px 28px 18px; border-bottom: 1px solid var(--border-light);
             background: linear-gradient(180deg, #FFFFFF 0%, #F8FBFF 100%);
+            flex: 0 0 auto;
         }
         .qd-header-main { display: flex; align-items: center; gap: 12px; padding-right: 28px; }
         .qd-header-icon {
@@ -2485,7 +2486,7 @@
         .qd-step-dot { height: 3px; border-radius: 999px; background: #D8E3F1; transition: var(--transition); }
         .qd-step-dot.done { background: rgba(0,123,255,0.45); }
         .qd-step-dot.active { background: var(--brand); }
-        .qd-modal-body { padding: 24px 28px 20px; overflow-y: auto; flex: 1; min-height: 0; }
+        .qd-modal-body { padding: 24px 28px 20px; overflow-y: auto; flex: 1 1 auto; min-height: 0; }
         .qd-step-kicker { font-size: 11px; color: var(--brand-dark); font-weight: 750; margin-bottom: 8px; }
         .qd-step-title { font-size: 22px; line-height: 1.25; color: var(--text-primary); font-weight: 800; margin-bottom: 8px; letter-spacing: 0; }
         .qd-step-subtitle { color: var(--text-secondary); font-size: 13px; line-height: 1.6; margin-bottom: 18px; max-width: 560px; }
@@ -2565,6 +2566,7 @@
         .qd-modal-footer {
             display: flex; align-items: center; justify-content: space-between; gap: 12px;
             padding: 16px 28px 22px; border-top: 1px solid var(--border-light); background: #FFFFFF;
+            flex: 0 0 auto; min-height: 81px; box-sizing: border-box;
         }
         .qd-footer-left, .qd-footer-right { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
         .qd-btn {
@@ -2577,16 +2579,17 @@
         .qd-btn.primary {
             border-color: transparent; color: #FFFFFF; background: linear-gradient(135deg, var(--brand), var(--brand-dark));
             box-shadow: 0 8px 18px rgba(0,123,255,0.18);
+            width: 172px; white-space: nowrap;
         }
         .qd-btn.primary:hover { color: #FFFFFF; opacity: 0.92; }
         .qd-btn.ghost { border-color: transparent; background: transparent; color: var(--text-muted); padding-left: 8px; padding-right: 8px; }
         .qd-btn.ghost:hover { background: var(--bg-light); color: var(--text-primary); }
         .qd-helper-note { font-size: 11px; color: var(--text-muted); line-height: 1.5; margin-top: 8px; }
         @media (max-width: 640px) {
-            .qd-modal { width: min(96vw, 720px); max-height: 92vh; }
+            .qd-modal { width: min(96vw, 720px); height: min(720px, calc(100vh - 24px)); }
             .qd-modal-header { padding: 22px 18px 16px; }
             .qd-modal-body { padding: 20px 18px 18px; }
-            .qd-modal-footer { padding: 14px 18px 18px; flex-direction: column; align-items: stretch; }
+            .qd-modal-footer { padding: 14px 18px 18px; flex-direction: column; align-items: stretch; min-height: 128px; }
             .qd-footer-left, .qd-footer-right, .qd-btn { width: 100%; }
             .qd-option-grid, .qd-option-grid.compact { grid-template-columns: 1fr; }
             .qd-intro-panel { grid-template-columns: 1fr; }
@@ -4254,7 +4257,7 @@
     <div class="sidebar-backdrop" id="sidebarBackdrop" onclick="toggleSidebar()"></div>
 
     <!-- ═══════════════ QUICK DESIGN MODAL ═══════════════ -->
-    <div id="quickDesignOverlay" style="display:none;position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,0.45);backdrop-filter:blur(4px);align-items:center;justify-content:center;" onclick="if(event.target===this)closeQuickDesign()">
+    <div id="quickDesignOverlay" style="display:none;position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,0.45);backdrop-filter:blur(4px);align-items:center;justify-content:center;">
         <div class="qd-modal" role="dialog" aria-modal="true" aria-labelledby="qdTitle">
             <button class="qd-modal-close" onclick="closeQuickDesign()" aria-label="关闭快速设计">
                 <i data-lucide="x" style="width:18px;height:18px;"></i>
