@@ -18,13 +18,27 @@ services:
       - key: VOICE_API_CONFIG_FILE
         value: /var/data/voice-api-config.json
       - key: VOICE_ASR_PROVIDER
-        value: compatible
+        value: local
       - key: VOICE_ASR_BASE_URL
-        value: https://api.siliconflow.cn/v1/audio/transcriptions
-      - key: VOICE_ASR_API_KEY
-        sync: false
+        value: http://127.0.0.1:8765/v1/audio/transcriptions
       - key: VOICE_TRANSCRIBE_MODEL
-        value: FunAudioLLM/SenseVoiceSmall
+        value: paraformer-zh
+      - key: LOCAL_ASR_AUTO_START
+        value: "1"
+      - key: LOCAL_ASR_BOOTSTRAP
+        value: "1"
+      - key: LOCAL_ASR_VENV_DIR
+        value: /var/data/local-asr-venv
+      - key: LOCAL_ASR_CACHE_DIR
+        value: /var/data/local-asr-cache
+      - key: MODELSCOPE_CACHE
+        value: /var/data/local-asr-cache/modelscope
+      - key: HF_HOME
+        value: /var/data/local-asr-cache/huggingface
+      - key: TORCH_HOME
+        value: /var/data/local-asr-cache/torch
+      - key: PIP_CACHE_DIR
+        value: /var/data/local-asr-cache/pip
       - key: ASSISTANT_CHAT_BASE_URL
         value: https://api.siliconflow.cn/v1/chat/completions
       - key: ASSISTANT_CHAT_API_KEY
@@ -34,4 +48,4 @@ services:
     disk:
       name: zoonoab-runtime
       mountPath: /var/data
-      sizeGB: 1
+      sizeGB: 10

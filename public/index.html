@@ -762,6 +762,12 @@
             gap: 8px;
             min-width: 0;
         }
+        .voice-health-actions {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+        }
         .voice-health-title {
             display: flex;
             align-items: center;
@@ -788,12 +794,40 @@
             font-weight: 800;
             line-height: 1.2;
         }
+        .voice-health-start-btn {
+            height: 24px;
+            padding: 0 8px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            background: white;
+            color: var(--text-secondary);
+            font-size: 10px;
+            font-weight: 800;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: var(--transition);
+        }
+        .voice-health-start-btn:hover {
+            border-color: var(--brand-light);
+            color: var(--brand-dark);
+            background: var(--brand-lighter);
+        }
+        .voice-health-start-btn.primary {
+            border-color: var(--brand);
+            color: #FFFFFF;
+            background: var(--brand);
+        }
+        .voice-health-start-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.62;
+        }
         .voice-health-badge.ready {
             color: #15803D;
             border-color: rgba(34,197,94,0.26);
             background: rgba(240,253,244,0.98);
         }
         .voice-health-badge.loading,
+        .voice-health-badge.installing,
         .voice-health-badge.starting {
             color: #B45309;
             border-color: rgba(245,158,11,0.28);
@@ -3980,7 +4014,10 @@
                                                 <i data-lucide="activity"></i>
                                                 本机语音状态
                                             </div>
-                                            <span class="voice-health-badge" id="voiceHealthBadge">检查中</span>
+                                            <div class="voice-health-actions">
+                                                <button class="voice-health-start-btn" id="voiceLocalAsrStartBtn" onclick="startLocalAsrFromPanel()">启动离线语音</button>
+                                                <span class="voice-health-badge" id="voiceHealthBadge">检查中</span>
+                                            </div>
                                         </div>
                                         <div class="voice-health-message" id="voiceHealthMessage">正在检查语音链路...</div>
                                         <div class="voice-health-grid">
@@ -6548,6 +6585,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     let wakeBusy = false;
     let voiceConfigState = { local: true, ready: true };
     let voiceHealthRefreshTimer = null;
+    let voiceLocalAsrStarting = false;
     let voiceMicState = '待授权';
     let voiceLevelState = { rms: 0, peak: 0, lastAt: 0 };
 
@@ -6621,6 +6659,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const value = String(status || '').toLowerCase();
         if (value === 'ready') return 'ready';
         if (value === 'loading') return 'loading';
+        if (value === 'installing') return 'installing';
+        if (value === 'starting') return 'starting';
         if (value === 'not_installed') return 'not_installed';
         if (value === 'timeout') return 'timeout';
         if (value === 'error') return 'error';
@@ -6633,6 +6673,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const normalized = normalizeHealthStatus(status);
         if (normalized === 'ready') return '已就绪';
         if (normalized === 'loading') return '加载中';
+        if (normalized === 'installing') return '准备中';
+        if (normalized === 'starting') return '启动中';
         if (normalized === 'not_installed') return '未安装';
         if (normalized === 'timeout') return '超时';
         if (normalized === 'error') return '异常';
@@ -6648,8 +6690,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const model = document.getElementById('voiceHealthModel');
         const wake = document.getElementById('voiceHealthWake');
         const mic = document.getElementById('voiceHealthMic');
-        if (!badge && !message && !asr && !model && !wake && !mic) return;
+        const startBtn = document.getElementById('voiceLocalAsrStartBtn');
+        if (!badge && !message && !asr && !model && !wake && !mic && !startBtn) return;
         const state = normalizeHealthStatus(cfg?.healthStatus || cfg?.status || cfg?.localState || (cfg?.canTranscribe ? 'ready' : 'checking'));
+        const local = cfg?.local !== false;
+        const ready = Boolean(cfg?.canTranscribe || cfg?.localReady);
+        const canStart = Boolean(local && !ready && (cfg?.manualStartAvailable || cfg?.autoStartAvailable || cfg?.install?.canBootstrap || cfg?.install?.venvReady));
         if (badge) {
             badge.className = `voice-health-badge ${state}`;
             badge.textContent = healthBadgeText(state);
@@ -6657,13 +6703,36 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (message) message.textContent = cfg?.healthMessage || cfg?.message || '正在检查语音链路...';
         if (asr) {
             const provider = cfg?.provider || 'local';
-            const label = cfg?.local ? '本机离线' : provider;
-            const ready = cfg?.canTranscribe || cfg?.localReady;
+            const label = local ? '本机离线' : provider;
             asr.textContent = `${label}${ready ? ' · ready' : ' · ' + healthBadgeText(state)}`;
         }
         if (model) model.textContent = cfg?.model || cfg?.localHealth?.model || '--';
         if (wake) wake.textContent = wakeEnabled ? (wakeActiveCommand ? '已唤醒' : '监听中') : '未开启';
         if (mic) mic.textContent = voiceMicState || '待授权';
+        if (startBtn) {
+            startBtn.style.display = local ? 'inline-flex' : 'none';
+            startBtn.classList.toggle('primary', voiceLocalAsrStarting || canStart);
+            startBtn.disabled = voiceLocalAsrStarting || (!ready && !canStart);
+            if (voiceLocalAsrStarting) {
+                startBtn.textContent = '启动中...';
+                startBtn.title = '正在启动本机离线语音服务';
+            } else if (ready) {
+                startBtn.textContent = '刷新';
+                startBtn.title = '重新检查本机离线语音状态';
+            } else if (canStart) {
+                const inProgress = ['installing', 'starting', 'loading'].includes(state);
+                startBtn.textContent = state === 'installing' ? '准备中' : (inProgress ? '启动中' : '启动离线语音');
+                startBtn.title = inProgress
+                    ? '本机离线语音正在准备或加载，点击可重新检查状态'
+                    : '启动或恢复本机离线语音服务';
+            } else if (state === 'not_installed') {
+                startBtn.textContent = '需安装';
+                startBtn.title = '请先运行 npm run asr:setup，或开启自动准备环境';
+            } else {
+                startBtn.textContent = '刷新';
+                startBtn.title = '重新检查语音状态';
+            }
+        }
     }
 
     async function refreshVoiceHealth(options = {}) {
@@ -6673,6 +6742,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             const health = await resp.json().catch(() => ({}));
             voiceConfigState = { ...voiceConfigState, ...health };
             renderVoiceHealth(voiceConfigState);
+            maybeScheduleVoiceHealthRefresh(health);
             return health;
         } catch (err) {
             console.warn('[Voice] Health check failed:', err);
@@ -6685,6 +6755,57 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     function scheduleVoiceHealthRefresh(delay = 1200, options = {}) {
         clearTimeout(voiceHealthRefreshTimer);
         voiceHealthRefreshTimer = setTimeout(() => refreshVoiceHealth(options), delay);
+    }
+
+    function maybeScheduleVoiceHealthRefresh(health = voiceConfigState) {
+        if (!health || !health.local || health.localReady || health.canTranscribe) return;
+        const state = normalizeHealthStatus(health.localState || health.status || health.healthStatus);
+        if (['installing', 'starting', 'loading', 'unavailable', 'timeout'].includes(state) || health.process?.managed || health.process?.starting) {
+            scheduleVoiceHealthRefresh(state === 'installing' ? 5000 : 2500, { autoStart: true });
+        }
+    }
+
+    async function startLocalAsrFromPanel() {
+        if (voiceLocalAsrStarting) return;
+        const note = document.getElementById('voiceSettingsNote');
+        const alreadyReady = Boolean(voiceConfigState?.canTranscribe || voiceConfigState?.localReady);
+        if (alreadyReady) {
+            await refreshVoiceHealth({ autoStart: true });
+            return;
+        }
+        try {
+            voiceLocalAsrStarting = true;
+            renderVoiceHealth(voiceConfigState);
+            if (note) note.textContent = '正在启动本机离线语音服务...';
+            const resp = await fetch('/api/voice/local-asr/start', { method: 'POST' });
+            const data = await resp.json().catch(() => ({}));
+            if (!resp.ok || data.ok === false) {
+                const msg = data.message || '本机离线语音启动失败';
+                showToast(msg, resp.status === 409 ? 'warning' : 'error');
+                if (note) note.textContent = msg;
+                voiceConfigState = { ...voiceConfigState, ...data, healthStatus: data.status || data.error || 'unavailable', healthMessage: msg };
+                renderVoiceHealth(voiceConfigState);
+                return;
+            }
+            voiceConfigState = { ...voiceConfigState, ...data };
+            renderVoiceHealth(voiceConfigState);
+            if (data.canTranscribe || data.localReady) {
+                if (note) note.textContent = '本机离线语音已就绪。';
+                showToast('本机离线语音已就绪', 'success');
+            } else {
+                const msg = data.message || '本机离线语音正在启动或加载模型，请稍后再试。';
+                if (note) note.textContent = msg;
+                showToast(msg, 'info');
+                maybeScheduleVoiceHealthRefresh(data);
+            }
+        } catch (err) {
+            const msg = err && err.message ? err.message : '本机离线语音启动失败';
+            showToast(msg, 'error');
+            if (note) note.textContent = msg;
+        } finally {
+            voiceLocalAsrStarting = false;
+            renderVoiceHealth(voiceConfigState);
+        }
     }
 
     function voiceAudioQualityError(stats, captureSource) {
@@ -6733,9 +6854,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 const chatState = cfg.chat?.ready ? `聊天已就绪 · ${cfg.chat.model || ''} · ${chatKeyState}` : `聊天可选填 · ${chatKeyState}`;
                 note.textContent = `${voiceState} / ${chatState}；前端不回显真实 Key`;
             }
-            if (cfg.local && !cfg.localReady && (cfg.localState === 'loading' || cfg.localState === 'unavailable' || cfg.localState === 'timeout')) {
-                scheduleVoiceHealthRefresh(2500);
-            }
+            maybeScheduleVoiceHealthRefresh(cfg);
         } catch (err) {
             console.warn('[Voice] Config check failed:', err);
             renderVoiceHealth({ healthStatus: 'unavailable', healthMessage: '语音配置读取失败。' });
@@ -7939,6 +8058,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (wakeBtn) wakeBtn.disabled = !isVoiceSupported();
         renderVoiceHealth(voiceConfigState);
         loadVoiceConfig();
+        refreshVoiceHealth({ autoStart: true });
         if (!isVoiceSupported()) {
             if (btn) btn.title = '当前浏览器不支持语音录制';
             if (wakeBtn) wakeBtn.title = '当前浏览器不支持语音唤醒';
