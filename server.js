@@ -2101,7 +2101,7 @@ function localAssistantFallback(input) {
   if (/怎么用|如何使用|能做什么|功能/.test(clean)) {
     return '我是小诺，可以直接从疾病、靶点或设计目标出发协助您启动 ZoonoAb 工作流。例如您可以说：“小诺同学，帮我为过敏性哮喘设计一个抗体分子，并打印一个结构模型。”我会自动推荐靶点、启动多 Agent 设计流程，并输出候选结构。';
   }
-  return '收到。我是 ZoonoAb 小诺。这个问题暂时不需要启动抗体设计工作流，我可以继续帮您解释平台能力、梳理展示话术，或把需求整理成适合执行的设计指令。';
+  return '收到。我是 ZoonoAb 小诺。这个问题暂时不需要启动抗体设计工作流，我可以继续帮您解释平台能力，或把需求整理成适合执行的设计指令。';
 }
 
 async function askAssistantModel(input, voiceSessionId) {

@@ -3788,7 +3788,7 @@
                     <input type="file" id="fastaFileInput" accept=".fasta,.fa,.pdb,.txt" style="display:none;" onchange="handleFileUpload(event)">
                     <textarea class="input-field" id="userInput" placeholder="" rows="1"></textarea>
                     <span id="inputCharCount" style="display:none;position:absolute;bottom:6px;right:52px;font-size:10px;color:var(--text-secondary);pointer-events:none;user-select:none;z-index:2;"></span>
-                    <button class="input-icon-btn voice-btn" id="voiceBtn" onclick="toggleVoiceCapture()" title="按住空格或点击开始语音控制">
+                    <button class="input-icon-btn voice-btn" id="voiceBtn" onclick="toggleVoiceCapture()" title="按住空格或点击开始语音输入">
                         <i data-lucide="mic" style="width: 18px; height: 18px;"></i>
                     </button>
                     <button class="input-icon-btn wake-btn" id="wakeBtn" onclick="toggleWakeListening()" title="开启小诺同学语音唤醒">
@@ -7435,6 +7435,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         }
     }
 
+    function getVoiceListeningMessage(source) {
+        if (source === 'space') return '正在听，松开空格后转成文字';
+        if (source === 'wake') return '小诺已唤醒，请说指令';
+        return '正在听，说完转成文字';
+    }
+
     async function startVoiceCapture(source) {
         if (voiceState === 'processing' || voiceState === 'listening') return;
         if (shouldUseWavCapture()) {
@@ -7469,7 +7475,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             voiceStartTime = Date.now();
             voiceMediaRecorder.start();
             if (source !== 'space') startVoiceVad(voiceStream);
-            updateVoiceUI('listening', source === 'space' ? '正在听，松开空格结束' : '正在听，说完自动处理');
+            updateVoiceUI('listening', getVoiceListeningMessage(source));
             voiceStopTimer = setTimeout(() => stopVoiceCapture(), VOICE_MAX_MS);
         } catch (err) {
             voiceCaptureSource = '';
@@ -7573,11 +7579,11 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                     }
                     const audioBlob = encodeWavFromFloat32(samples, LOCAL_ASR_SAMPLE_RATE);
                     voiceMediaRecorder = null;
-                    await transcribeVoiceBlob(audioBlob);
+                    await transcribeVoiceBlob(audioBlob, { source: captureSource });
                     if (captureSource === 'wake' && wakeEnabled) scheduleWakeRestart(1400);
                 }
             };
-            updateVoiceUI('listening', source === 'space' ? '正在听，松开空格结束' : '正在听，说完自动处理');
+            updateVoiceUI('listening', getVoiceListeningMessage(source));
             voiceStopTimer = setTimeout(() => stopVoiceCapture(), VOICE_MAX_MS);
         } catch (err) {
             voiceCaptureSource = '';
@@ -7631,11 +7637,11 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             return;
         }
         const audioBlob = new Blob(chunks, { type: mimeType || 'audio/webm' });
-        await transcribeVoiceBlob(audioBlob);
+        await transcribeVoiceBlob(audioBlob, { source: captureSource });
         if (captureSource === 'wake' && wakeEnabled) scheduleWakeRestart(1400);
     }
 
-    async function transcribeVoiceBlob(audioBlob) {
+    async function transcribeVoiceBlob(audioBlob, options = {}) {
         updateVoiceUI('processing', '正在识别语音...');
         try {
             const text = await requestVoiceTranscription(audioBlob);
@@ -7643,8 +7649,13 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 updateVoiceUI('error', '没有识别到有效语音');
                 return;
             }
-            updateVoiceUI('success', '识别到：' + text);
-            handleVoiceTranscript(text);
+            if (options.source === 'wake') {
+                updateVoiceUI('success', '小诺收到：' + text);
+                handleVoiceTranscript(text);
+                return;
+            }
+            fillVoiceTranscriptInput(text);
+            updateVoiceUI('success', '已转成文字，请确认后发送');
         } catch (err) {
             console.warn('[Voice] Transcription error:', err);
             const msg = err && err.message ? err.message : '语音识别服务不可用';
@@ -7730,11 +7741,28 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             /xiaonuo/.test(cmd);
     }
 
-    function sendVoiceTextAsUserMessage(text) {
+    function fillVoiceTranscriptInput(text, options = {}) {
         const input = document.getElementById('userInput');
-        if (!input) return;
-        input.value = text;
+        if (!input) return false;
+        input.value = String(text || '').trim();
         input.dispatchEvent(new Event('input'));
+        try {
+            input.focus({ preventScroll: true });
+        } catch (err) {
+            input.focus();
+        }
+        try {
+            const end = input.value.length;
+            input.setSelectionRange(end, end);
+        } catch (err) {}
+        if (options.toast !== false) {
+            showToast(options.message || '语音已转成文字，请确认后发送', options.level || 'info');
+        }
+        return true;
+    }
+
+    function sendVoiceTextAsUserMessage(text) {
+        if (!fillVoiceTranscriptInput(text, { toast: false })) return;
         if (isRunning) {
             showToast('当前工作流正在运行，语音内容已填入输入框', 'warning');
             return;
