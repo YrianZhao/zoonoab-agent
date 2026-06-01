@@ -1711,6 +1711,15 @@ const REPRESENTATIVE_DEMO_DIRECTIONS = [
   { label: '神经退行性疾病方向需求', keywords: ['阿尔茨海默', '老年痴呆', 'alzheimer'] }
 ];
 
+const NON_BIOMEDICAL_CONTEXT_PATTERNS = [
+  /(电脑|计算机|手机|iphone|安卓|windows|macos|mac|浏览器|edge|chrome|网络|wifi|路由器|服务器|网站|数据库|硬盘|文件|u盘|邮箱|微信|账号|软件|程序|代码|app|应用|操作系统).{0,18}(病毒|中毒|木马|勒索|恶意软件|被黑|黑客|入侵|网络攻击|钓鱼)/,
+  /(病毒|中毒|木马|勒索|恶意软件|被黑|黑客|入侵|网络攻击|钓鱼).{0,18}(电脑|计算机|手机|iphone|安卓|windows|macos|mac|浏览器|edge|chrome|网络|wifi|路由器|服务器|网站|数据库|硬盘|文件|u盘|邮箱|微信|账号|软件|程序|代码|app|应用|操作系统)/,
+  /电脑中病毒|计算机病毒|手机中病毒|系统中毒|杀毒|杀软|防火墙|勒索软件|木马病毒|malware|ransomware|trojan|computer virus|cybersecurity|cyber security|hacked|phishing/
+];
+
+const NON_BIOMEDICAL_TOPIC_PATTERN = /电脑|计算机|手机|iphone|安卓|windows|macos|mac|浏览器|edge|chrome|网络|wifi|路由器|服务器|网站|数据库|硬盘|文件|u盘|邮箱|微信|账号|软件|程序|代码|app|应用|操作系统|黑客|木马|勒索软件|恶意软件|杀毒|防火墙|cybersecurity|cyber security|computer|phone|browser|server|database|malware|ransomware|trojan|phishing|hacked/;
+const BIOMEDICAL_CONTEXT_PATTERN = /抗原|靶点|表位|蛋白|细胞|受体|配体|通路|疾病|治疗|肿瘤|癌|哮喘|过敏|炎症|自身免疫|类风湿|关节炎|感染|病原|细菌|真菌|新冠|流感|hiv|乙肝|病毒感染|pd-1|pd-l1|il-33|st2|her2|erbb2|tnf|egfr|vegf|cd3|cd20|bcma|抗体药|疫苗|免疫|biolog|biomedical|therapeutic|tumou?r|cancer|asthma|allergy|inflammation|autoimmune|infection|pathogen|bacteria|fungal|viral infection|antigen|target|epitope|protein|receptor|ligand|immune|vaccine/;
+
 function normalizeCommandText(input) {
   return String(input || '')
     .toLowerCase()
@@ -1734,6 +1743,12 @@ function stripWakeWords(input) {
 function containsAny(text, keywords) {
   const lower = normalizeCommandText(text);
   return keywords.some(k => lower.includes(String(k).toLowerCase()));
+}
+
+function hasNonBiomedicalContext(input) {
+  const lower = normalizeCommandText(input);
+  if (NON_BIOMEDICAL_CONTEXT_PATTERNS.some(pattern => pattern.test(lower))) return true;
+  return NON_BIOMEDICAL_TOPIC_PATTERN.test(lower) && !BIOMEDICAL_CONTEXT_PATTERN.test(lower);
 }
 
 function getRepresentativeDemoDirection(input) {
@@ -1766,6 +1781,7 @@ function buildRepresentativeDemoRoute(label, reason) {
 function detectDemoRoute(input) {
   const normalized = normalizeCommandText(input);
   if (!normalized) return null;
+  if (hasNonBiomedicalContext(normalized)) return null;
 
   const representativeLabel = getRepresentativeDemoDirection(normalized);
   if (representativeLabel) return buildRepresentativeDemoRoute(representativeLabel, 'unsupported_direction');
