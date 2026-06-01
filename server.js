@@ -54,6 +54,8 @@ let persistedVoiceConfigMtimeMs = 0;
 let localAsrProcess = null;
 let localAsrStarting = false;
 let localAsrLastStartAt = 0;
+let localAsrLastExit = null;
+const localAsrRecentLogs = [];
 
 const WORKFLOW_SKIP_SETTLE_MS = Number(process.env.WORKFLOW_SKIP_SETTLE_MS || 1100);
 const WORKFLOW_SKIP_DELAY_MS = Number(process.env.WORKFLOW_SKIP_DELAY_MS || 80);
@@ -163,8 +165,20 @@ function getLocalAsrProcessState() {
     managed: running,
     starting: Boolean(localAsrStarting),
     pid: running ? localAsrProcess.pid || null : null,
-    lastStartAt: localAsrLastStartAt || null
+    lastStartAt: localAsrLastStartAt || null,
+    lastExit: localAsrLastExit
   };
+}
+
+function rememberLocalAsrLog(stream, text) {
+  const normalized = String(text || '').replace(/\s+/g, ' ').trim();
+  if (!normalized) return;
+  localAsrRecentLogs.push({
+    at: Date.now(),
+    stream,
+    text: normalized.slice(-800)
+  });
+  while (localAsrRecentLogs.length > 16) localAsrRecentLogs.shift();
 }
 
 app.use(express.json({ limit: '1mb' }));
@@ -304,6 +318,8 @@ function startLocalAsrIfNeeded(providerConfig, reason = 'voice', options = {}) {
   const scriptPath = path.join(__dirname, 'scripts', 'run_local_asr.sh');
   const localAddress = localAsrSpawnAddress(providerConfig.url);
   console.log(`[Voice] Starting local ASR sidecar (${reason})...`);
+  localAsrLastExit = null;
+  rememberLocalAsrLog('event', `Starting local ASR sidecar (${reason})`);
   const child = spawn('bash', [scriptPath], {
     cwd: __dirname,
     env: {
@@ -323,21 +339,28 @@ function startLocalAsrIfNeeded(providerConfig, reason = 'voice', options = {}) {
   localAsrProcess = child;
   child.stdout.on('data', chunk => {
     const text = String(chunk || '').trim();
+    rememberLocalAsrLog('stdout', text);
     if (text) console.log('[LocalASR]', text);
   });
   child.stderr.on('data', chunk => {
     const text = String(chunk || '').trim();
+    rememberLocalAsrLog('stderr', text);
     if (text) console.warn('[LocalASR]', text);
   });
   child.on('spawn', () => { localAsrStarting = false; });
   child.on('error', err => {
     localAsrStarting = false;
     if (localAsrProcess === child) localAsrProcess = null;
-    console.error('[Voice] Failed to start local ASR sidecar:', err && err.message ? err.message : err);
+    const message = err && err.message ? err.message : String(err || '');
+    localAsrLastExit = { at: Date.now(), error: message };
+    rememberLocalAsrLog('error', message);
+    console.error('[Voice] Failed to start local ASR sidecar:', message);
   });
   child.on('exit', (code, signal) => {
     localAsrStarting = false;
     if (localAsrProcess === child) localAsrProcess = null;
+    localAsrLastExit = { at: Date.now(), code, signal: signal || '' };
+    rememberLocalAsrLog('event', `Local ASR sidecar exited: code=${code} signal=${signal || ''}`);
     if (code !== 0 && signal !== 'SIGTERM') {
       console.warn(`[Voice] Local ASR sidecar exited: code=${code} signal=${signal || ''}`);
     }
@@ -513,7 +536,10 @@ async function buildVoiceHealth(providerConfig = getVoiceProviderConfig(), optio
       ),
       expectedDataDir: IS_RENDER_RUNTIME ? RENDER_DATA_DIR : '',
       venvDir: LOCAL_ASR_VENV_DIR,
-      cacheDir: LOCAL_ASR_CACHE_DIR
+      cacheDir: LOCAL_ASR_CACHE_DIR,
+      lastStartAt: localAsrLastStartAt || null,
+      lastExit: localAsrLastExit,
+      recentLogs: localAsrRecentLogs.slice(-8)
     } : {
       buildVersion: APP_BUILD_VERSION
     },
