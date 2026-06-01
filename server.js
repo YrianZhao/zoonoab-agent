@@ -17,13 +17,11 @@ const wss = new WebSocketServer({ server });
 const VOICE_AUDIO_LIMIT = '8mb';
 const VOICE_AUDIO_LIMIT_BYTES = 8 * 1024 * 1024;
 const VOICE_SESSION_TTL_MS = 2 * 60 * 60 * 1000;
-const VOICE_ASR_PROVIDER = (process.env.VOICE_ASR_PROVIDER || 'local').toLowerCase();
 const LOCAL_ASR_BASE_URL = process.env.LOCAL_ASR_BASE_URL || 'http://127.0.0.1:8765/v1/audio/transcriptions';
 const LOCAL_ASR_AUTO_START = process.env.LOCAL_ASR_AUTO_START !== '0';
 const LOCAL_ASR_BOOTSTRAP = process.env.LOCAL_ASR_BOOTSTRAP !== '0';
 const LOCAL_ASR_START_COOLDOWN_MS = Number(process.env.LOCAL_ASR_START_COOLDOWN_MS || 5000);
-const VOICE_TRANSCRIBE_MODEL = process.env.VOICE_TRANSCRIBE_MODEL ||
-  (VOICE_ASR_PROVIDER === 'deepseek' ? 'deepseek-v4-flash' : (VOICE_ASR_PROVIDER === 'local' ? 'paraformer-zh' : 'gpt-4o-transcribe'));
+const VOICE_TRANSCRIBE_MODEL = process.env.VOICE_TRANSCRIBE_MODEL || 'paraformer-zh';
 const ASSISTANT_CHAT_MODEL = process.env.ASSISTANT_CHAT_MODEL || process.env.DEEPSEEK_CHAT_MODEL || 'deepseek-chat';
 const ASSISTANT_CHAT_BASE_URL = process.env.ASSISTANT_CHAT_BASE_URL || process.env.DEEPSEEK_CHAT_BASE_URL || process.env.VOICE_CHAT_BASE_URL || '';
 const VOICE_API_CONFIG_FILE = process.env.VOICE_API_CONFIG_FILE || path.join(__dirname, '.runtime', 'voice-api-config.json');
@@ -443,18 +441,8 @@ function cloneApiConfigSection(section) {
 
 function sanitizePersistedVoiceConfig(raw) {
   if (!raw || typeof raw !== 'object') return null;
-  const voice = raw.voice && typeof raw.voice === 'object' ? raw.voice : null;
-  if (!voice || !voice.url || !voice.model) return null;
-  const provider = String(voice.provider || inferVoiceProvider(voice.url)).trim() || 'compatible';
-  if (!isLocalVoiceProvider(provider) && !voice.key) return null;
   const sanitized = {
-    voice: {
-      provider,
-      key: String(voice.key || '').trim(),
-      url: String(voice.url || '').trim(),
-      model: String(voice.model || '').trim(),
-      supportsAudio: voice.supportsAudio !== false
-    },
+    voice: getDefaultLocalVoiceConfig(),
     chat: null,
     updatedAt: Number(raw.updatedAt || 0) || Date.now()
   };
@@ -468,6 +456,16 @@ function sanitizePersistedVoiceConfig(raw) {
     };
   }
   return sanitized;
+}
+
+function getDefaultLocalVoiceConfig() {
+  return {
+    provider: 'local',
+    key: '',
+    url: normalizeVoiceBaseUrl(LOCAL_ASR_BASE_URL),
+    model: VOICE_TRANSCRIBE_MODEL,
+    supportsAudio: true
+  };
 }
 
 function loadPersistedVoiceConfig() {
@@ -528,59 +526,15 @@ function getVoiceRuntimeConfig(req) {
 
 function getVoiceProviderConfig(req) {
   const runtimeConfig = getVoiceRuntimeConfig(req);
-  if (runtimeConfig) return runtimeConfig.voice || runtimeConfig;
-  if (isLocalVoiceProvider(VOICE_ASR_PROVIDER)) {
-    return {
-      provider: 'local',
-      key: '',
-      url: normalizeVoiceBaseUrl(process.env.VOICE_ASR_BASE_URL || LOCAL_ASR_BASE_URL),
-      model: VOICE_TRANSCRIBE_MODEL,
-      supportsAudio: true
-    };
-  }
-  const persistedConfig = loadPersistedVoiceConfig();
-  if (persistedConfig && persistedConfig.voice) return cloneApiConfigSection(persistedConfig.voice);
-  if (VOICE_ASR_PROVIDER === 'openai') {
-    return {
-      provider: 'openai',
-      key: process.env.OPENAI_API_KEY || process.env.VOICE_ASR_API_KEY,
-      url: process.env.VOICE_ASR_BASE_URL || 'https://api.openai.com/v1/audio/transcriptions',
-      model: VOICE_TRANSCRIBE_MODEL,
-      supportsAudio: true
-    };
-  }
-  if (VOICE_ASR_PROVIDER === 'compatible') {
-    return {
-      provider: 'compatible',
-      key: process.env.VOICE_ASR_API_KEY || process.env.OPENAI_API_KEY,
-      url: process.env.VOICE_ASR_BASE_URL,
-      model: VOICE_TRANSCRIBE_MODEL,
-      supportsAudio: true
-    };
-  }
-  if (VOICE_ASR_PROVIDER === 'deepseek') {
-    return {
-      provider: 'deepseek',
-      key: process.env.DEEPSEEK_API_KEY || process.env.VOICE_ASR_API_KEY,
-      url: process.env.DEEPSEEK_ASR_BASE_URL ? normalizeVoiceBaseUrl(process.env.DEEPSEEK_ASR_BASE_URL) : '',
-      model: VOICE_TRANSCRIBE_MODEL,
-      supportsAudio: Boolean(process.env.DEEPSEEK_ASR_BASE_URL)
-    };
-  }
-  return {
-    provider: VOICE_ASR_PROVIDER,
-    key: process.env.VOICE_ASR_API_KEY,
-    url: process.env.VOICE_ASR_BASE_URL,
-    model: VOICE_TRANSCRIBE_MODEL,
-    supportsAudio: true
-  };
+  if (runtimeConfig && runtimeConfig.voice) return runtimeConfig.voice;
+  return getDefaultLocalVoiceConfig();
 }
 
 function voiceProviderMissingKeyError(provider) {
   if (isLocalVoiceProvider(provider)) return '本机离线语音服务无需 API Key。';
   if (provider === 'openai') return '服务端未配置 OPENAI_API_KEY。';
   if (provider === 'deepseek') return '服务端未配置 DEEPSEEK_API_KEY。';
-  return '服务端未配置 VOICE_ASR_API_KEY。';
+  return '当前版本不支持云端语音识别 API，请使用本机语音服务。';
 }
 
 function parseProviderError(text) {
@@ -594,41 +548,6 @@ function parseProviderError(text) {
   } catch {
     return text.slice(0, 180);
   }
-}
-
-function resolveVoiceInputConfig(voiceBody, persistedConfig = loadPersistedVoiceConfig()) {
-  const body = voiceBody && typeof voiceBody === 'object' ? voiceBody : {};
-  const persistedVoice = persistedConfig && persistedConfig.voice ? persistedConfig.voice : null;
-  const key = String(body.apiKey || persistedVoice?.key || '').trim();
-  const model = String(body.model || persistedVoice?.model || VOICE_TRANSCRIBE_MODEL).trim();
-  if (!model || model.length > 120) {
-    return { error: { status: 400, error: 'invalid_voice_model', message: '请填写有效的语音识别模型名称。' } };
-  }
-  if (key.length > 3000) {
-    return { error: { status: 400, error: 'voice_api_key_too_long', message: '语音识别 API Key 过长。' } };
-  }
-  let url;
-  try {
-    url = normalizeVoiceBaseUrl(body.baseUrl || persistedVoice?.url || process.env.DEEPSEEK_ASR_BASE_URL || process.env.VOICE_ASR_BASE_URL || '');
-  } catch (err) {
-    return { error: { status: 400, error: 'invalid_voice_base_url', message: err.message || '语音识别 Base URL 无效。' } };
-  }
-  if (!url) {
-    return { error: { status: 400, error: 'missing_base_url', message: '请填写语音识别 Base URL。' } };
-  }
-  const provider = inferVoiceProvider(url);
-  if (!key && !isLocalVoiceProvider(provider)) {
-    return { error: { status: 400, error: 'missing_voice_api_key', message: '请填写语音识别 API Key。' } };
-  }
-  return {
-    config: {
-      provider,
-      key,
-      url,
-      model,
-      supportsAudio: true
-    }
-  };
 }
 
 function resolveChatInputConfig(chatBody, persistedConfig = loadPersistedVoiceConfig(), options = {}) {
@@ -860,17 +779,9 @@ app.post('/api/voice/local-asr/start', async (req, res) => {
 
 app.post('/api/voice/session', (req, res) => {
   const body = req.body || {};
-  const voiceBody = body.voice && typeof body.voice === 'object' ? body.voice : body;
   const chatBody = body.chat && typeof body.chat === 'object' ? body.chat : {};
   const persistedBeforeSave = loadPersistedVoiceConfig();
-  const voiceResolved = resolveVoiceInputConfig(voiceBody, persistedBeforeSave);
-  if (voiceResolved.error) {
-    return res.status(voiceResolved.error.status).json({
-      error: voiceResolved.error.error,
-      message: voiceResolved.error.message
-    });
-  }
-  const voiceConfig = voiceResolved.config;
+  const voiceConfig = getDefaultLocalVoiceConfig();
 
   const chatResolved = resolveChatInputConfig(chatBody, persistedBeforeSave, { preserveExisting: true });
   if (chatResolved.error) {
@@ -1013,19 +924,7 @@ app.post('/api/voice/test/asr', (req, res, next) => {
     return res.status(400).json({ ok: false, error: 'invalid_audio', message: '无法读取语音数据。' });
   });
 }, async (req, res) => {
-  const voiceBody = {
-    baseUrl: req.headers['x-test-voice-base-url'],
-    apiKey: req.headers['x-test-voice-api-key'],
-    model: req.headers['x-test-voice-model']
-  };
-  const resolved = resolveVoiceInputConfig(voiceBody);
-  if (resolved.error) {
-    return res.status(resolved.error.status).json({
-      ok: false,
-      error: resolved.error.error,
-      message: resolved.error.message
-    });
-  }
+  const providerConfig = getVoiceProviderConfig(req);
   const audio = Buffer.isBuffer(req.body) ? req.body : Buffer.alloc(0);
   if (!audio.length) {
     return res.status(400).json({ ok: false, error: 'empty_audio', message: '未收到语音数据。' });
@@ -1034,12 +933,12 @@ app.post('/api/voice/test/asr', (req, res, next) => {
     return res.status(413).json({ ok: false, error: 'audio_too_large', message: '单段语音不能超过 8 MB。' });
   }
   try {
-    const result = await transcribeAudioWithConfig(resolved.config, audio, req.headers['content-type']);
+    const result = await transcribeAudioWithConfig(providerConfig, audio, req.headers['content-type']);
     return res.json({
       ok: true,
       provider: result.provider,
       model: result.model,
-      baseUrl: resolved.config.url,
+      baseUrl: providerConfig.url,
       textPreview: String(result.text || '').slice(0, 120)
     });
   } catch (err) {
