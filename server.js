@@ -17,14 +17,17 @@ const wss = new WebSocketServer({ server });
 const VOICE_AUDIO_LIMIT = '8mb';
 const VOICE_AUDIO_LIMIT_BYTES = 8 * 1024 * 1024;
 const VOICE_SESSION_TTL_MS = 2 * 60 * 60 * 1000;
+const DEFAULT_LOCAL_TRANSCRIBE_MODEL = 'paraformer-zh';
+const IS_RENDER_RUNTIME = Boolean(process.env.RENDER || process.env.RENDER_SERVICE_ID || process.env.RENDER_EXTERNAL_HOSTNAME);
+const RENDER_DATA_DIR = process.env.RENDER_DATA_DIR || '/var/data';
 const LOCAL_ASR_BASE_URL = process.env.LOCAL_ASR_BASE_URL || 'http://127.0.0.1:8765/v1/audio/transcriptions';
 const LOCAL_ASR_AUTO_START = process.env.LOCAL_ASR_AUTO_START !== '0';
 const LOCAL_ASR_BOOTSTRAP = process.env.LOCAL_ASR_BOOTSTRAP !== '0';
 const LOCAL_ASR_START_COOLDOWN_MS = Number(process.env.LOCAL_ASR_START_COOLDOWN_MS || 5000);
-const VOICE_TRANSCRIBE_MODEL = process.env.VOICE_TRANSCRIBE_MODEL || 'paraformer-zh';
 const ASSISTANT_CHAT_MODEL = process.env.ASSISTANT_CHAT_MODEL || process.env.DEEPSEEK_CHAT_MODEL || 'deepseek-chat';
 const ASSISTANT_CHAT_BASE_URL = process.env.ASSISTANT_CHAT_BASE_URL || process.env.DEEPSEEK_CHAT_BASE_URL || process.env.VOICE_CHAT_BASE_URL || '';
 const VOICE_API_CONFIG_FILE = process.env.VOICE_API_CONFIG_FILE || path.join(__dirname, '.runtime', 'voice-api-config.json');
+const APP_BUILD_VERSION = readAppBuildVersion();
 const VOICE_DOMAIN_PROMPT = [
   'ZoonoAb AI antibody design platform.',
   'Common terms: IL-33, ST2, VHH, nanobody, Fab, PD-1, PD-L1, HER2, TNF, VEGF, CD3e, UniProt, Chai-1, ipTM, pLDDT, DockQ, PDB, CDR, CDR-H3.',
@@ -55,10 +58,78 @@ let localAsrLastStartAt = 0;
 const WORKFLOW_SKIP_SETTLE_MS = Number(process.env.WORKFLOW_SKIP_SETTLE_MS || 1100);
 const WORKFLOW_SKIP_DELAY_MS = Number(process.env.WORKFLOW_SKIP_DELAY_MS || 80);
 
+function readAppBuildVersion() {
+  try {
+    const html = fs.readFileSync(path.join(__dirname, 'public', 'index.html'), 'utf8');
+    const match = html.match(/APP_BUILD_VERSION\s*=\s*['"](\d+)['"]/);
+    return match ? match[1] : '';
+  } catch {
+    return '';
+  }
+}
+
+function resolveProjectPath(rawPath) {
+  const value = String(rawPath || '').trim();
+  if (!value) return '';
+  return path.isAbsolute(value) ? value : path.join(__dirname, value);
+}
+
+function isRenderEphemeralRuntimePath(rawPath) {
+  if (!IS_RENDER_RUNTIME || !rawPath) return false;
+  const resolved = path.resolve(rawPath);
+  const repoRuntimeDir = path.resolve(path.join(__dirname, '.runtime'));
+  return resolved === repoRuntimeDir
+    || resolved.startsWith(repoRuntimeDir + path.sep)
+    || resolved === '/opt/render/project/src/.runtime'
+    || resolved.startsWith('/opt/render/project/src/.runtime/');
+}
+
+function resolveLocalAsrRuntimeDir(envName, leafName) {
+  const configured = String(process.env[envName] || '').trim();
+  const fallback = IS_RENDER_RUNTIME
+    ? path.join(RENDER_DATA_DIR, leafName)
+    : path.join('.runtime', leafName);
+  const resolved = resolveProjectPath(configured || fallback);
+  if (IS_RENDER_RUNTIME && (!configured || isRenderEphemeralRuntimePath(resolved))) {
+    return path.join(RENDER_DATA_DIR, leafName);
+  }
+  return resolved;
+}
+
+const LOCAL_ASR_VENV_DIR = resolveLocalAsrRuntimeDir('LOCAL_ASR_VENV_DIR', 'local-asr-venv');
+const LOCAL_ASR_CACHE_DIR = resolveLocalAsrRuntimeDir('LOCAL_ASR_CACHE_DIR', 'local-asr-cache');
+
+function resolveLocalAsrCacheEnv(envName, leafName) {
+  const configured = String(process.env[envName] || '').trim();
+  const fallback = path.join(LOCAL_ASR_CACHE_DIR, leafName);
+  const resolved = resolveProjectPath(configured || fallback);
+  if (IS_RENDER_RUNTIME && (!configured || isRenderEphemeralRuntimePath(resolved))) {
+    return fallback;
+  }
+  return resolved;
+}
+
+const LOCAL_ASR_MODELSCOPE_CACHE = resolveLocalAsrCacheEnv('MODELSCOPE_CACHE', 'modelscope');
+const LOCAL_ASR_HF_HOME = resolveLocalAsrCacheEnv('HF_HOME', 'huggingface');
+const LOCAL_ASR_TORCH_HOME = resolveLocalAsrCacheEnv('TORCH_HOME', 'torch');
+const LOCAL_ASR_PIP_CACHE_DIR = resolveLocalAsrCacheEnv('PIP_CACHE_DIR', 'pip');
+
+function isCloudAsrModelName(model) {
+  return /funaudiollm|sensevoice|whisper|siliconflow|openai|deepseek|qwen|gpt/i.test(String(model || ''));
+}
+
+function resolveVoiceTranscribeModel() {
+  const configured = String(process.env.VOICE_TRANSCRIBE_MODEL || '').trim();
+  if (!configured || isCloudAsrModelName(configured)) return DEFAULT_LOCAL_TRANSCRIBE_MODEL;
+  return configured;
+}
+
+const RAW_VOICE_TRANSCRIBE_MODEL = String(process.env.VOICE_TRANSCRIBE_MODEL || '').trim();
+const VOICE_TRANSCRIBE_MODEL = resolveVoiceTranscribeModel();
+const VOICE_TRANSCRIBE_MODEL_SANITIZED = Boolean(RAW_VOICE_TRANSCRIBE_MODEL && RAW_VOICE_TRANSCRIBE_MODEL !== VOICE_TRANSCRIBE_MODEL);
+
 function localAsrVenvPythonPath() {
-  const configuredDir = process.env.LOCAL_ASR_VENV_DIR || path.join('.runtime', 'local-asr-venv');
-  const venvDir = path.isAbsolute(configuredDir) ? configuredDir : path.join(__dirname, configuredDir);
-  return path.join(venvDir, 'bin', 'python');
+  return path.join(LOCAL_ASR_VENV_DIR, 'bin', 'python');
 }
 
 function getLocalAsrInstallStatus() {
@@ -76,6 +147,7 @@ function getLocalAsrInstallStatus() {
     canBootstrap: Boolean(LOCAL_ASR_BOOTSTRAP && setupReady),
     bootstrapEnabled: LOCAL_ASR_BOOTSTRAP,
     venvDir,
+    cacheDir: LOCAL_ASR_CACHE_DIR,
     setupCommand: 'npm run asr:setup',
     startCommand: 'npm run asr:local'
   };
@@ -237,7 +309,14 @@ function startLocalAsrIfNeeded(providerConfig, reason = 'voice', options = {}) {
     env: {
       ...process.env,
       LOCAL_ASR_HOST: process.env.LOCAL_ASR_HOST || localAddress.host,
-      LOCAL_ASR_PORT: process.env.LOCAL_ASR_PORT || localAddress.port
+      LOCAL_ASR_PORT: process.env.LOCAL_ASR_PORT || localAddress.port,
+      LOCAL_ASR_VENV_DIR,
+      LOCAL_ASR_CACHE_DIR,
+      MODELSCOPE_CACHE: LOCAL_ASR_MODELSCOPE_CACHE,
+      HF_HOME: LOCAL_ASR_HF_HOME,
+      TORCH_HOME: LOCAL_ASR_TORCH_HOME,
+      PIP_CACHE_DIR: LOCAL_ASR_PIP_CACHE_DIR,
+      VOICE_TRANSCRIBE_MODEL
     },
     stdio: ['ignore', 'pipe', 'pipe']
   });
@@ -423,6 +502,21 @@ async function buildVoiceHealth(providerConfig = getVoiceProviderConfig(), optio
     autoStartEnabled: LOCAL_ASR_AUTO_START,
     autoStartAvailable: localAutoStartAvailable,
     manualStartAvailable: localManualStartAvailable,
+    diagnostics: local ? {
+      buildVersion: APP_BUILD_VERSION,
+      render: IS_RENDER_RUNTIME,
+      modelSanitized: VOICE_TRANSCRIBE_MODEL_SANITIZED,
+      configuredModel: VOICE_TRANSCRIBE_MODEL_SANITIZED ? RAW_VOICE_TRANSCRIBE_MODEL : '',
+      persistentRuntime: !IS_RENDER_RUNTIME || (
+        LOCAL_ASR_VENV_DIR.startsWith(RENDER_DATA_DIR + path.sep)
+        && LOCAL_ASR_CACHE_DIR.startsWith(RENDER_DATA_DIR + path.sep)
+      ),
+      expectedDataDir: IS_RENDER_RUNTIME ? RENDER_DATA_DIR : '',
+      venvDir: LOCAL_ASR_VENV_DIR,
+      cacheDir: LOCAL_ASR_CACHE_DIR
+    } : {
+      buildVersion: APP_BUILD_VERSION
+    },
     install,
     localState: visibleLocalState,
     localHealth,
@@ -3567,7 +3661,12 @@ app.post('/api/export/sequences', (req, res) => {
   return res.json({ platform: 'ZoonoAb', exported_at: new Date().toISOString(), count: sequences.length, sequences });
 });
 
-app.get('/api/health', (_, res) => res.json({ ok: true, platform: 'ZoonoAb', sessions: sessions.size }));
+app.get('/api/health', (_, res) => res.json({
+  ok: true,
+  platform: 'ZoonoAb',
+  sessions: sessions.size,
+  version: APP_BUILD_VERSION || null
+}));
 
 function stopManagedLocalAsr() {
   if (localAsrProcess && !localAsrProcess.killed) {
