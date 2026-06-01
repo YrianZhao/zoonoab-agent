@@ -10,6 +10,8 @@ from __future__ import annotations
 
 import argparse
 import cgi
+from email.parser import BytesParser
+from email.policy import default as email_policy
 import json
 import os
 import tempfile
@@ -194,21 +196,24 @@ def parse_multipart(handler: BaseHTTPRequestHandler) -> Tuple[bytes, str]:
     boundary = params.get("boundary")
     if not boundary:
         raise ValueError("missing multipart boundary")
-
-    form = cgi.FieldStorage(
-        fp=handler.rfile,
-        headers=handler.headers,
-        environ={
-            "REQUEST_METHOD": "POST",
-            "CONTENT_TYPE": content_type,
-            "CONTENT_LENGTH": handler.headers.get("Content-Length", "0"),
-        },
+    content_length = int(handler.headers.get("Content-Length", "0") or "0")
+    if content_length <= 0:
+        raise ValueError("missing content length")
+    raw_body = handler.rfile.read(content_length)
+    message = BytesParser(policy=email_policy).parsebytes(
+        b"Content-Type: " + content_type.encode("utf-8") + b"\r\n"
+        + b"MIME-Version: 1.0\r\n\r\n"
+        + raw_body
     )
-    file_item = form["file"] if "file" in form else None
-    if file_item is None or not getattr(file_item, "file", None):
+    file_part = None
+    for part in message.iter_parts():
+        if part.get_param("name", header="content-disposition") == "file":
+            file_part = part
+            break
+    if file_part is None:
         raise ValueError("missing file field")
-    filename = Path(getattr(file_item, "filename", "") or "voice.wav").name
-    data = file_item.file.read()
+    filename = Path(file_part.get_filename() or "voice.wav").name
+    data = file_part.get_payload(decode=True) or b""
     if not data:
         raise ValueError("empty audio")
     return data, filename
