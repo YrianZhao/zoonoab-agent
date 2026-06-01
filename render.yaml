@@ -2,11 +2,12 @@ services:
   - type: web
     name: zoonoab-agent
     runtime: node
-    plan: starter
+    plan: pro
     buildCommand: npm ci
     startCommand: npm start
     healthCheckPath: /api/health
-    branch: main
+    maxShutdownDelaySeconds: 120
+    branch: codex/voice-assistant-demo-20260528
     autoDeploy: true
     envVars:
       - key: NODE_ENV
@@ -27,10 +28,20 @@ services:
         value: "1"
       - key: LOCAL_ASR_BOOTSTRAP
         value: "1"
+      - key: LOCAL_ASR_PRELOAD
+        value: "1"
+      - key: LOCAL_ASR_DEVICE
+        value: cpu
       - key: LOCAL_ASR_VENV_DIR
         value: /var/data/local-asr-venv
       - key: LOCAL_ASR_CACHE_DIR
         value: /var/data/local-asr-cache
+      - key: LOCAL_ASR_TORCH_INDEX_URL
+        value: https://download.pytorch.org/whl/cpu
+      - key: PYTHONUNBUFFERED
+        value: "1"
+      - key: PIP_DISABLE_PIP_VERSION_CHECK
+        value: "1"
       - key: MODELSCOPE_CACHE
         value: /var/data/local-asr-cache/modelscope
       - key: HF_HOME
@@ -48,4 +59,4 @@ services:
     disk:
       name: zoonoab-runtime
       mountPath: /var/data
-      sizeGB: 10
+      sizeGB: 20

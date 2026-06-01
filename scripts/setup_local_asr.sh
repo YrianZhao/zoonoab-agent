@@ -26,6 +26,11 @@ if [ ! -d "$VENV_DIR" ]; then
 fi
 
 "$VENV_DIR/bin/python" -m pip install --upgrade pip setuptools wheel
-"$VENV_DIR/bin/python" -m pip install --upgrade --no-compile funasr modelscope torch torchaudio
+if [ -n "${LOCAL_ASR_TORCH_INDEX_URL:-}" ]; then
+  "$VENV_DIR/bin/python" -m pip install --upgrade --no-compile --index-url "$LOCAL_ASR_TORCH_INDEX_URL" torch torchaudio
+  "$VENV_DIR/bin/python" -m pip install --upgrade --no-compile funasr modelscope
+else
+  "$VENV_DIR/bin/python" -m pip install --upgrade --no-compile funasr modelscope torch torchaudio
+fi
 
 echo "Local ASR environment is ready: $VENV_DIR"
