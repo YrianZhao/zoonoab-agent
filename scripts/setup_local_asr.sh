@@ -5,6 +5,7 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 VENV_DIR="${LOCAL_ASR_VENV_DIR:-$ROOT_DIR/.runtime/local-asr-venv}"
 PYTHON_BIN="${PYTHON_BIN:-python3}"
 LOCAL_ASR_CACHE_DIR="${LOCAL_ASR_CACHE_DIR:-$ROOT_DIR/.runtime/local-asr-cache}"
+LOCAL_ASR_TORCH_INDEX_URL="${LOCAL_ASR_TORCH_INDEX_URL:-https://download.pytorch.org/whl/cpu}"
 
 if [[ "$VENV_DIR" != /* ]]; then
   VENV_DIR="$ROOT_DIR/$VENV_DIR"
@@ -26,7 +27,7 @@ if [ ! -d "$VENV_DIR" ]; then
 fi
 
 "$VENV_DIR/bin/python" -m pip install --upgrade pip setuptools wheel
-if [ -n "${LOCAL_ASR_TORCH_INDEX_URL:-}" ]; then
+if [ -n "$LOCAL_ASR_TORCH_INDEX_URL" ]; then
   "$VENV_DIR/bin/python" -m pip install --upgrade --no-compile --index-url "$LOCAL_ASR_TORCH_INDEX_URL" torch torchaudio
   "$VENV_DIR/bin/python" -m pip install --upgrade --no-compile funasr modelscope
 else

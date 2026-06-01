@@ -24,6 +24,7 @@ const LOCAL_ASR_BASE_URL = process.env.LOCAL_ASR_BASE_URL || 'http://127.0.0.1:8
 const LOCAL_ASR_AUTO_START = process.env.LOCAL_ASR_AUTO_START !== '0';
 const LOCAL_ASR_BOOTSTRAP = process.env.LOCAL_ASR_BOOTSTRAP !== '0';
 const LOCAL_ASR_START_COOLDOWN_MS = Number(process.env.LOCAL_ASR_START_COOLDOWN_MS || 5000);
+const LOCAL_ASR_TORCH_INDEX_URL = process.env.LOCAL_ASR_TORCH_INDEX_URL || 'https://download.pytorch.org/whl/cpu';
 const ASSISTANT_CHAT_MODEL = process.env.ASSISTANT_CHAT_MODEL || process.env.DEEPSEEK_CHAT_MODEL || 'deepseek-chat';
 const ASSISTANT_CHAT_BASE_URL = process.env.ASSISTANT_CHAT_BASE_URL || process.env.DEEPSEEK_CHAT_BASE_URL || process.env.VOICE_CHAT_BASE_URL || '';
 const VOICE_API_CONFIG_FILE = process.env.VOICE_API_CONFIG_FILE || path.join(__dirname, '.runtime', 'voice-api-config.json');
@@ -379,6 +380,7 @@ function startLocalAsrIfNeeded(providerConfig, reason = 'voice', options = {}) {
       HF_HOME: LOCAL_ASR_HF_HOME,
       TORCH_HOME: LOCAL_ASR_TORCH_HOME,
       PIP_CACHE_DIR: LOCAL_ASR_PIP_CACHE_DIR,
+      LOCAL_ASR_TORCH_INDEX_URL,
       VOICE_TRANSCRIBE_MODEL
     },
     stdio: ['ignore', 'pipe', 'pipe']

@@ -31,6 +31,7 @@ Render 部署使用仓库根目录的 `render.yaml` Blueprint：Web Service 名�
 Render Dashboard 中如果残留旧的云端语音识别配置，例如 `VOICE_TRANSCRIBE_MODEL=FunAudioLLM/SenseVoiceSmall`，后端应在本地 ASR 模式下忽略它并使用 `paraformer-zh`；`/api/health` 和 `/api/voice/health` 应暴露当前构建版本和本地 ASR 诊断信息，便于判断线上是否已经部署到最新版本。
 Render 本地 ASR 启动失败时，`/api/voice/health` 应暴露最近一次 sidecar 启动事件、退出码和截断后的 stdout/stderr 摘要，便于在没有 Dashboard 日志权限时定位 Python、pip、磁盘或模型下载问题；诊断信息不得包含密钥。
 Render 上应优先使用 `/var/data` 持久磁盘运行本地 ASR；如果运行时发现 `/var/data` 不可写，后端可以临时退回项目内 `.runtime` 目录以保证语音功能可启动，但健康诊断必须标明 `persistentRuntime=false` 和 fallback 原因，后续仍应修复 Render 磁盘挂载。
+Render 和 Linux 服务器上的本地 ASR 安装默认必须使用 CPU-only PyTorch 源 `https://download.pytorch.org/whl/cpu`，避免安装 CUDA/NVIDIA 依赖导致部署过慢、磁盘不足或启动失败；只有明确需要 GPU 时才覆盖 `LOCAL_ASR_TORCH_INDEX_URL`。
 
 本机临时公网 demo 可用 tmux 保活：在 `zoonoab-agent` 中启动 `tmux new-session -d -s zoonoab-demo-server -c /home/ajifang/zoonoab/zoonoab-agent 'PORT=8080 /home/ajifang/zoonoab/zoonoab-agent/.tools/node-v20.19.2-linux-x64/bin/node server.js 2>&1 | tee -a .runtime/logs/server-8080.log'`，再启动 `tmux new-session -d -s zoonoab-demo-tunnel -c /home/ajifang/zoonoab/zoonoab-agent '/home/ajifang/zoonoab/zoonoab-agent/.tools/node-v20.19.2-linux-x64/bin/node node_modules/localtunnel/bin/lt.js --port 8080 --local-host 127.0.0.1 --subdomain zoonoab-demo-ajifang 2>&1 | tee -a .runtime/logs/localtunnel-8080.log'`。若后台环境找不到 `node`，优先使用项目内 `.tools/node-v20.19.2-linux-x64/bin/node` 绝对路径；检查状态用 `tmux list-sessions`、`curl http://127.0.0.1:8080/api/health` 和 `curl https://zoonoab-demo-ajifang.loca.lt/api/health`。
 
