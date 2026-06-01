@@ -6,6 +6,9 @@ VENV_DIR="${LOCAL_ASR_VENV_DIR:-$ROOT_DIR/.runtime/local-asr-venv}"
 PYTHON_BIN="${PYTHON_BIN:-python3}"
 LOCAL_ASR_CACHE_DIR="${LOCAL_ASR_CACHE_DIR:-$ROOT_DIR/.runtime/local-asr-cache}"
 LOCAL_ASR_TORCH_INDEX_URL="${LOCAL_ASR_TORCH_INDEX_URL:-https://download.pytorch.org/whl/cpu}"
+LOCAL_ASR_ENGINE="${LOCAL_ASR_ENGINE:-funasr}"
+LOCAL_ASR_MODEL="${LOCAL_ASR_MODEL:-}"
+LOCAL_ASR_VOSK_MODEL_URL="${LOCAL_ASR_VOSK_MODEL_URL:-https://alphacephei.com/vosk/models/vosk-model-small-cn-0.22.zip}"
 
 if [[ "$VENV_DIR" != /* ]]; then
   VENV_DIR="$ROOT_DIR/$VENV_DIR"
@@ -27,11 +30,14 @@ if [ ! -d "$VENV_DIR" ]; then
 fi
 
 "$VENV_DIR/bin/python" -m pip install --upgrade pip setuptools wheel
-if [ -n "$LOCAL_ASR_TORCH_INDEX_URL" ]; then
+if [ "$LOCAL_ASR_ENGINE" = "vosk" ]; then
+  "$VENV_DIR/bin/python" -m pip install --upgrade --no-compile vosk
+  "$VENV_DIR/bin/python" "$ROOT_DIR/scripts/prepare_vosk_model.py"
+elif [ -n "$LOCAL_ASR_TORCH_INDEX_URL" ]; then
   "$VENV_DIR/bin/python" -m pip install --upgrade --no-compile --index-url "$LOCAL_ASR_TORCH_INDEX_URL" torch torchaudio
   "$VENV_DIR/bin/python" -m pip install --upgrade --no-compile funasr modelscope
 else
   "$VENV_DIR/bin/python" -m pip install --upgrade --no-compile funasr modelscope torch torchaudio
 fi
 
-echo "Local ASR environment is ready: $VENV_DIR"
+echo "Local ASR environment is ready: $VENV_DIR ($LOCAL_ASR_ENGINE ${LOCAL_ASR_MODEL:-default})"

@@ -15,13 +15,16 @@ import os
 import tempfile
 import threading
 import time
+import wave
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import Any, Dict, Optional, Tuple
 
+ROOT_DIR = Path(__file__).resolve().parent.parent
+ENGINE = os.environ.get("LOCAL_ASR_ENGINE", "funasr").strip().lower() or "funasr"
 MODEL_DIR = os.environ.get(
     "LOCAL_ASR_MODEL",
-    "iic/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch",
+    "vosk-model-small-cn-0.22" if ENGINE == "vosk" else "iic/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch",
 )
 VAD_MODEL = os.environ.get("LOCAL_ASR_VAD_MODEL", "")
 PUNC_MODEL = os.environ.get("LOCAL_ASR_PUNC_MODEL", "")
@@ -72,6 +75,30 @@ def load_model():
         if _MODEL is not None:
             return _MODEL
         set_model_status("loading")
+        if ENGINE == "vosk":
+            try:
+                from vosk import Model
+            except ImportError as exc:
+                set_model_status("error", "Vosk is not installed. Run `npm run asr:setup` first.")
+                raise RuntimeError(
+                    "Vosk is not installed. Run `npm run asr:setup` first."
+                ) from exc
+
+            model_path = Path(MODEL_DIR)
+            if not model_path.is_absolute():
+                cache_dir = Path(os.environ.get("LOCAL_ASR_CACHE_DIR", ROOT_DIR / ".runtime" / "local-asr-cache"))
+                model_path = cache_dir / "vosk" / MODEL_DIR
+            if not model_path.exists():
+                set_model_status("error", f"Vosk model is missing: {model_path}. Run `npm run asr:setup` first.")
+                raise RuntimeError(f"Vosk model is missing: {model_path}. Run `npm run asr:setup` first.")
+            try:
+                _MODEL = Model(str(model_path))
+                set_model_status("ready")
+                return _MODEL
+            except Exception as exc:
+                set_model_status("error", str(exc))
+                raise
+
         try:
             from funasr import AutoModel
         except ImportError as exc:
@@ -111,6 +138,34 @@ def preload_model() -> None:
 
 def transcribe_file(path: str) -> str:
     model = load_model()
+    if ENGINE == "vosk":
+        from vosk import KaldiRecognizer
+
+        parts = []
+        with wave.open(path, "rb") as wav:
+            if wav.getnchannels() != 1 or wav.getsampwidth() != 2:
+                raise RuntimeError("Vosk expects 16-bit mono WAV audio.")
+            rec = KaldiRecognizer(model, wav.getframerate())
+            rec.SetWords(False)
+            while True:
+                data = wav.readframes(4000)
+                if not data:
+                    break
+                if rec.AcceptWaveform(data):
+                    try:
+                        item = json.loads(rec.Result())
+                        if item.get("text"):
+                            parts.append(str(item["text"]))
+                    except Exception:
+                        pass
+            try:
+                final = json.loads(rec.FinalResult())
+                if final.get("text"):
+                    parts.append(str(final["text"]))
+            except Exception:
+                pass
+        return "".join(parts).replace(" ", "").strip()
+
     kwargs = {
         "input": path,
         "use_itn": True,
@@ -180,6 +235,7 @@ class Handler(BaseHTTPRequestHandler):
             self.send_json(200, {
                 "ok": True,
                 "provider": "local",
+                "engine": ENGINE,
                 "model": MODEL_DIR,
                 "device": DEVICE,
                 "ready": status["ready"],
@@ -199,6 +255,7 @@ class Handler(BaseHTTPRequestHandler):
                 "error": "local_asr_loading",
                 "message": "本机离线语音模型正在加载，首次启动或首次转写需要等待模型预热完成。",
                 "provider": "local",
+                "engine": ENGINE,
                 "model": MODEL_DIR,
                 "state": status["state"],
             })
@@ -216,7 +273,7 @@ class Handler(BaseHTTPRequestHandler):
                     os.unlink(tmp_path)
                 except OSError:
                     pass
-            self.send_json(200, {"text": text, "provider": "local", "model": MODEL_DIR})
+            self.send_json(200, {"text": text, "provider": "local", "engine": ENGINE, "model": MODEL_DIR})
         except Exception as exc:
             self.send_json(500, {"error": "local_asr_failed", "message": str(exc)})
 
@@ -228,7 +285,7 @@ def main() -> None:
     args = parser.parse_args()
     server = ThreadingHTTPServer((args.host, args.port), Handler)
     print(f"[LocalASR] Ready: http://{args.host}:{args.port}/v1/audio/transcriptions")
-    print(f"[LocalASR] Model: {MODEL_DIR} ({DEVICE})")
+    print(f"[LocalASR] Engine: {ENGINE}; model: {MODEL_DIR} ({DEVICE})")
     print(f"[LocalASR] VAD: {normalize_optional_model(VAD_MODEL) or 'off'}; punctuation: {normalize_optional_model(PUNC_MODEL) or 'off'}")
     if PRELOAD_MODEL:
         print("[LocalASR] Preloading model in background")

@@ -21,7 +21,13 @@ services:
       - key: LOCAL_ASR_BASE_URL
         value: http://127.0.0.1:8765/v1/audio/transcriptions
       - key: VOICE_TRANSCRIBE_MODEL
-        value: paraformer-zh
+        value: vosk-small-cn-0.22
+      - key: LOCAL_ASR_ENGINE
+        value: vosk
+      - key: LOCAL_ASR_MODEL
+        value: vosk-model-small-cn-0.22
+      - key: LOCAL_ASR_VOSK_MODEL_URL
+        value: https://alphacephei.com/vosk/models/vosk-model-small-cn-0.22.zip
       - key: LOCAL_ASR_AUTO_START
         value: "1"
       - key: LOCAL_ASR_BOOTSTRAP

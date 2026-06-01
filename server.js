@@ -18,9 +18,15 @@ const VOICE_AUDIO_LIMIT = '8mb';
 const VOICE_AUDIO_LIMIT_BYTES = 8 * 1024 * 1024;
 const VOICE_SESSION_TTL_MS = 2 * 60 * 60 * 1000;
 const DEFAULT_LOCAL_TRANSCRIBE_MODEL = 'paraformer-zh';
+const DEFAULT_RENDER_TRANSCRIBE_MODEL = 'vosk-small-cn-0.22';
 const IS_RENDER_RUNTIME = Boolean(process.env.RENDER || process.env.RENDER_SERVICE_ID || process.env.RENDER_EXTERNAL_HOSTNAME);
 const RENDER_DATA_DIR = process.env.RENDER_DATA_DIR || '/var/data';
 const LOCAL_ASR_BASE_URL = process.env.LOCAL_ASR_BASE_URL || 'http://127.0.0.1:8765/v1/audio/transcriptions';
+const LOCAL_ASR_ENGINE = String(process.env.LOCAL_ASR_ENGINE || (IS_RENDER_RUNTIME ? 'vosk' : 'funasr')).trim().toLowerCase();
+const LOCAL_ASR_MODEL = String(process.env.LOCAL_ASR_MODEL || (LOCAL_ASR_ENGINE === 'vosk'
+  ? 'vosk-model-small-cn-0.22'
+  : 'iic/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch')).trim();
+const LOCAL_ASR_VOSK_MODEL_URL = process.env.LOCAL_ASR_VOSK_MODEL_URL || 'https://alphacephei.com/vosk/models/vosk-model-small-cn-0.22.zip';
 const LOCAL_ASR_AUTO_START = process.env.LOCAL_ASR_AUTO_START !== '0';
 const LOCAL_ASR_BOOTSTRAP = process.env.LOCAL_ASR_BOOTSTRAP !== '0';
 const LOCAL_ASR_START_COOLDOWN_MS = Number(process.env.LOCAL_ASR_START_COOLDOWN_MS || 5000);
@@ -170,6 +176,9 @@ function isCloudAsrModelName(model) {
 
 function resolveVoiceTranscribeModel() {
   const configured = String(process.env.VOICE_TRANSCRIBE_MODEL || '').trim();
+  if (LOCAL_ASR_ENGINE === 'vosk' && (!configured || configured === DEFAULT_LOCAL_TRANSCRIBE_MODEL || isCloudAsrModelName(configured))) {
+    return DEFAULT_RENDER_TRANSCRIBE_MODEL;
+  }
   if (!configured || isCloudAsrModelName(configured)) return DEFAULT_LOCAL_TRANSCRIBE_MODEL;
   return configured;
 }
@@ -374,6 +383,9 @@ function startLocalAsrIfNeeded(providerConfig, reason = 'voice', options = {}) {
       ...process.env,
       LOCAL_ASR_HOST: process.env.LOCAL_ASR_HOST || localAddress.host,
       LOCAL_ASR_PORT: process.env.LOCAL_ASR_PORT || localAddress.port,
+      LOCAL_ASR_ENGINE,
+      LOCAL_ASR_MODEL,
+      LOCAL_ASR_VOSK_MODEL_URL,
       LOCAL_ASR_VENV_DIR,
       LOCAL_ASR_CACHE_DIR,
       MODELSCOPE_CACHE: LOCAL_ASR_MODELSCOPE_CACHE,
@@ -579,6 +591,8 @@ async function buildVoiceHealth(providerConfig = getVoiceProviderConfig(), optio
       render: IS_RENDER_RUNTIME,
       modelSanitized: VOICE_TRANSCRIBE_MODEL_SANITIZED,
       configuredModel: VOICE_TRANSCRIBE_MODEL_SANITIZED ? RAW_VOICE_TRANSCRIBE_MODEL : '',
+      engine: LOCAL_ASR_ENGINE,
+      localModel: LOCAL_ASR_MODEL,
       persistentRuntime: !IS_RENDER_RUNTIME || (
         LOCAL_ASR_VENV_DIR.startsWith(RENDER_DATA_DIR + path.sep)
         && LOCAL_ASR_CACHE_DIR.startsWith(RENDER_DATA_DIR + path.sep)
