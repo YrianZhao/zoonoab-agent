@@ -533,6 +533,34 @@
             transition: var(--transition); flex-shrink: 0;
         }
         .input-icon-btn:hover { background: var(--gray-100); color: var(--text-primary); transform: translateY(-1px); box-shadow: var(--shadow-xs); }
+        .skip-thinking-btn {
+            width: auto;
+            min-width: 92px;
+            padding: 0 10px;
+            gap: 6px;
+            border: 1px solid rgba(0,123,255,0.18);
+            background: var(--brand-lighter);
+            color: var(--brand-dark);
+            font-size: 12px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+        .skip-thinking-btn:hover {
+            border-color: var(--brand-light);
+            background: #FFFFFF;
+            color: var(--brand-dark);
+        }
+        .skip-thinking-btn.pending {
+            color: #B45309;
+            border-color: rgba(245,158,11,0.28);
+            background: rgba(255,251,235,0.98);
+        }
+        .skip-thinking-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.66;
+            transform: none;
+            box-shadow: none;
+        }
         .voice-btn.listening {
             color: var(--error);
             background: var(--error-light);
@@ -3766,6 +3794,10 @@
                     <button class="input-icon-btn wake-btn" id="wakeBtn" onclick="toggleWakeListening()" title="开启小诺同学语音唤醒">
                         <i data-lucide="radio" style="width: 18px; height: 18px;"></i>
                     </button>
+                    <button class="input-icon-btn skip-thinking-btn" id="skipThinkingBtn" onclick="skipThinking()" style="display:none;" title="跳过当前阶段的思考展示">
+                        <i data-lucide="fast-forward" style="width:15px;height:15px;"></i>
+                        <span>跳过思考</span>
+                    </button>
                     <div class="voice-status-pop" id="voiceStatusPop">
                         <span class="voice-dot"></span>
                         <span id="voiceStatusText">语音控制就绪</span>
@@ -5080,6 +5112,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     let quickDesignAwaitingResponse = false;
     let quickDesignRunActive = false;
     let quickDesignWatchdogTimer = null;
+    let skipThinkingRequested = false;
+    let demoSkipRequested = false;
+    let demoSkipSettled = false;
 
     function refreshLucideIcons(options) {
         if (window.lucide && typeof window.lucide.createIcons === 'function') {
@@ -5096,6 +5131,11 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (!queueProcessing) drainQueue();
     }
 
+    function clearQueuedThinkingOps() {
+        if (!Array.isArray(msgQueue) || msgQueue.length === 0) return;
+        msgQueue = msgQueue.filter(op => !op || !op.skipOnThinkingSkip);
+    }
+
     async function drainQueue() {
         queueProcessing = true;
         while (msgQueue.length > 0) {
@@ -5103,6 +5143,29 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             try { await op(); } catch(e) { console.warn('[Queue] op error:', e); }
         }
         queueProcessing = false;
+    }
+
+    function setSkipThinkingButtonState(state) {
+        const btn = document.getElementById('skipThinkingBtn');
+        if (!btn) return;
+        const label = btn.querySelector('span');
+        btn.classList.toggle('pending', state === 'pending');
+        btn.disabled = state === 'pending';
+        if (label) label.textContent = state === 'pending' ? '跳过中' : '跳过思考';
+        btn.title = state === 'pending' ? '正在收束当前阶段' : '跳过当前阶段的思考展示';
+    }
+
+    function setRunControlsActive(active) {
+        document.getElementById('sendBtn').style.display = active ? 'none' : 'flex';
+        document.getElementById('cancelBtn').style.display = active ? 'flex' : 'none';
+        const skipBtn = document.getElementById('skipThinkingBtn');
+        if (skipBtn) skipBtn.style.display = active ? 'inline-flex' : 'none';
+        if (!active) {
+            skipThinkingRequested = false;
+            demoSkipRequested = false;
+            demoSkipSettled = false;
+            setSkipThinkingButtonState('idle');
+        }
     }
 
     // Typewriter effect for agent messages
@@ -5124,10 +5187,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
             function tick() {
                 if (pos < totalLen) {
-                    pos = Math.min(pos + charsPerTick, totalLen);
+                    const accelerated = skipThinkingRequested || demoSkipSettled;
+                    const step = accelerated ? Math.max(charsPerTick * 10, Math.ceil(totalLen / 6)) : charsPerTick;
+                    pos = Math.min(pos + step, totalLen);
                     contentEl.innerHTML = renderMarkdown(rawText.slice(0, pos)) + '<span class="typing-cursor"></span>';
                     scrollBottom();
-                    setTimeout(tick, tickMs);
+                    setTimeout(tick, accelerated ? 8 : tickMs);
                 } else {
                     contentEl.innerHTML = renderMarkdown(markdown);
                     contentEl.style.minHeight = '';
@@ -5933,8 +5998,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     function resetRunControls() {
         isRunning = false;
         hideTyping();
-        document.getElementById('sendBtn').style.display = 'flex';
-        document.getElementById('cancelBtn').style.display = 'none';
+        setRunControlsActive(false);
         const _inp = document.getElementById('userInput');
         if (_inp) _inp.placeholder = t('placeholder');
     }
@@ -5960,6 +6024,20 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
             case 'quick_design_ack':
                 appendLog('[Design] 分子设计任务已确认，正在启动多 Agent 设计流程。');
+                break;
+
+            case 'skip_thinking_ack':
+                skipThinkingRequested = true;
+                setSkipThinkingButtonState('pending');
+                showTyping();
+                appendLog('[System] ' + (msg.stage ? `正在收束「${msg.stage}」...` : '正在收束当前阶段...'));
+                break;
+
+            case 'thinking_skipped':
+                skipThinkingRequested = false;
+                setSkipThinkingButtonState('idle');
+                appendLog('[System] ' + (msg.message || '已跳过当前阶段的思考展示。'));
+                showTyping();
                 break;
 
             case 'agent_msg':
@@ -6487,6 +6565,32 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         appendLog('[System] 工作流已取消');
     }
 
+    function skipThinking() {
+        if (!isRunning || skipThinkingRequested) return;
+        skipThinkingRequested = true;
+        setSkipThinkingButtonState('pending');
+        showTyping();
+        appendLog('[System] 正在收束当前阶段，将跳过后续思考展示...');
+        if (ws && ws.readyState === 1) {
+            try {
+                ws.send(JSON.stringify({ type: 'skip_thinking' }));
+            } catch (err) {
+                skipThinkingRequested = false;
+                setSkipThinkingButtonState('idle');
+                showToast('跳过思考请求发送失败', 'error');
+            }
+        } else {
+            demoSkipRequested = true;
+            setTimeout(() => {
+                demoSkipSettled = true;
+                skipThinkingRequested = false;
+                setSkipThinkingButtonState('idle');
+                appendLog('[System] 已跳过当前阶段的思考展示，继续输出阶段结果。');
+                setTimeout(() => { demoSkipSettled = false; }, 4500);
+            }, 1100);
+        }
+    }
+
     // ═══════════════ Send Message ═══════════════
     function startChatRun(text) {
         document.getElementById('emptyState')?.remove();
@@ -6494,8 +6598,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         appendUserMsg(text);
 
         isRunning = true;
-        document.getElementById('sendBtn').style.display = 'none';
-        document.getElementById('cancelBtn').style.display = 'flex';
+        skipThinkingRequested = false;
+        demoSkipRequested = false;
+        demoSkipSettled = false;
+        setRunControlsActive(true);
         const _inputEl = document.getElementById('userInput');
         if (_inputEl) _inputEl.placeholder = '';
         showTyping();
@@ -8122,7 +8228,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     // Fires when backend WS is unavailable — simulates a full multi-agent VHH design run
 
     function demoSleep(ms) {
-        enqueueOp(() => new Promise(r => setTimeout(r, ms)));
+        const op = () => new Promise(r => setTimeout(r, demoSkipSettled ? Math.min(80, ms) : ms));
+        op.skipOnThinkingSkip = true;
+        enqueueOp(op);
     }
 
     function demoMsg(type, payload) {
@@ -8152,7 +8260,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     function demoLog(text) {
-        enqueueOp(() => new Promise(resolve => { appendLog(text); resolve(); }));
+        const op = () => new Promise(resolve => { appendLog(text); resolve(); });
+        op.skipOnThinkingSkip = true;
+        enqueueOp(op);
     }
 
     function getFallbackRouteProfile(userText, routeId) {
@@ -12708,13 +12818,12 @@ ${fallbackTableRows(profile.rows)}
         starredSeqs.clear();
         finishQuickDesignRun();
         isRunning = false;
+        setRunControlsActive(false);
         // Reset message queue
         msgQueue = [];
         queueProcessing = false;
         // Close binder spin modal if open
         closeBinderSpinModal();
-        document.getElementById('sendBtn').style.display = 'flex';
-        document.getElementById('cancelBtn').style.display = 'none';
         const _inp = document.getElementById('userInput'); if (_inp) _inp.placeholder = t('placeholder');
         
         // Reset sidebar

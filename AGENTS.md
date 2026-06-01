@@ -11,6 +11,7 @@
 快速设计必须在未配置语音、聊天或大模型 API Key 时仍可使用；后端接收 `quick_design` 后应立即返回工作流确认，前端应在无响应或断线时恢复操作状态并给出面向现场人员的清晰提示，避免现场展示卡在等待动画。
 固定四条快速设计路线的观众可见正文、日志、tool_call/tool_result 和 fallback 文案必须按路线 profile 生成：IL-33/ST2、PD-1/PD-L1、HER2、TNF 的疾病方向、靶点结构域、抗体背景、作用机制和表位策略不得互相混用。
 快速设计和断线 fallback 的可见 Agent 数量、设计阶段数、证据条目数应由展示层动态元信息生成；同一次运行内保持一致，连续运行可变化。UniProt/靶点注释必须来自当前路线 profile，不能混用固定编号或伪实时数据库检索文案。
+工作流展示支持“跳过思考”按钮：点击后只能跳过当前阶段的冗长思考/日志展示，并在短暂收束提示后输出该阶段结果；不得取消工作流，也不得直接跳到最终结果。连续点击应能分别跳过后续阶段，并保证最终 `done`、结果区和 3D 展示正常渲染。
 小诺同学语音链路应分层实现：前端录音/VAD 只负责采集和端点检测，ASR 只负责转写，后端 `/api/voice/intent` 先做确定性意图解析；命中抗体设计时必须返回固定 quick design 路线并由前端发送 WebSocket `quick_design`，不要让语音设计请求直接进入普通聊天兜底。
 小诺语音识别应优先使用本机离线 ASR sidecar：默认 `VOICE_ASR_PROVIDER=local`，地址 `http://127.0.0.1:8765/v1/audio/transcriptions`，启动命令 `npm run asr:local`，首次安装命令 `npm run asr:setup`；云端 ASR 只作为可选备用，不应成为现场 demo 的默认依赖。
 本机离线 ASR 依赖安装到项目内 `.runtime/local-asr-venv`，不要污染系统 Python；默认使用 Paraformer 中文识别模型处理前端 16k WAV 短命令，`fsmn-vad` 和 `ct-punc` 默认关闭，只有需要长音频切分或标点时才通过 `LOCAL_ASR_VAD_MODEL`、`LOCAL_ASR_PUNC_MODEL` 手动开启，避免首次启动额外下载大模型并拖慢现场 demo。
