@@ -5031,6 +5031,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     let isRunning = false;
     let currentResults = [];
     let currentStats = null;
+    let resultsRenderSerial = 0;
+    let activeResultsSection = null;
     let isSpinning = false;
     let currentStyle = 'cartoon';
     let currentColor = 'ab-ag';
@@ -8696,29 +8698,91 @@ ${fallbackTableRows(profile.rows)}
 
     // ═══════════════ SEQUENCE COMPARE ═══════════════
     let compareSet = new Set();
+    function getResultsRoot(fromEl) {
+        const rooted = fromEl && typeof fromEl.closest === 'function'
+            ? fromEl.closest('.results-section')
+            : null;
+        if (rooted) return rooted;
+        if (fromEl && fromEl.classList && fromEl.classList.contains('results-section')) return fromEl;
+        if (activeResultsSection && activeResultsSection.isConnected) return activeResultsSection;
+        const sections = document.querySelectorAll('.results-section');
+        return sections.length ? sections[sections.length - 1] : null;
+    }
+
+    function resultRole(root, role) {
+        return root ? root.querySelector(`[data-role="${role}"]`) : null;
+    }
+
+    function getResultsCompareSet(root) {
+        if (!root) return compareSet;
+        if (!root.__compareSet) root.__compareSet = new Set();
+        return root.__compareSet;
+    }
+
+    function activateResultsRoot(root) {
+        if (!root) return;
+        activeResultsSection = root;
+        if (root.__results) currentResults = root.__results;
+        if (root.__stats) currentStats = root.__stats;
+        compareSet = getResultsCompareSet(root);
+    }
+
+    function getResultsData(root) {
+        return (root && Array.isArray(root.__results)) ? root.__results : (currentResults || []);
+    }
+
+    function getFilteredResults(root) {
+        const seqs = [...getResultsData(root)];
+        const sortEl = resultRole(root, 'sort-select');
+        const countEl = resultRole(root, 'count-select');
+        const key = sortEl ? sortEl.value : 'id';
+        const desc = key !== 'complexRMSD' && key !== 'id';
+        const sorted = seqs.sort((a, b) => {
+            const va = key === 'id' ? a.id : a.metrics[key];
+            const vb = key === 'id' ? b.id : b.metrics[key];
+            return desc ? vb - va : va - vb;
+        });
+        const n = countEl ? parseInt(countEl.value, 10) : 0;
+        return n > 0 ? sorted.slice(0, n) : sorted;
+    }
+
     function toggleCompare(id, cb) {
-        if (cb.checked) { compareSet.add(id); } else { compareSet.delete(id); }
-        const bar = document.getElementById('compareBar');
-        const card = document.getElementById('card-' + id);
+        const root = getResultsRoot(cb);
+        activateResultsRoot(root);
+        const selected = getResultsCompareSet(root);
+        if (cb.checked) { selected.add(id); } else { selected.delete(id); }
+        compareSet = selected;
+        const bar = resultRole(root, 'compare-bar');
+        const card = root ? root.querySelector(`.sequence-card[data-card-id="${id}"]`) : null;
         if (card) card.classList.toggle('compare-selected', cb.checked);
-        if (compareSet.size > 0) {
+        if (selected.size > 0) {
             if (bar) { bar.style.display = 'flex'; }
-            const cnt = document.getElementById('compareCount');
-            if (cnt) cnt.textContent = '已选 ' + compareSet.size + ' 条' + (compareSet.size < 2 ? ' (至少选 2 条)' : '');
+            const cnt = resultRole(root, 'compare-count');
+            if (cnt) cnt.textContent = '已选 ' + selected.size + ' 条' + (selected.size < 2 ? ' (至少选 2 条)' : '');
         } else {
             if (bar) bar.style.display = 'none';
         }
     }
-    function clearCompare() {
-        compareSet.clear();
-        document.getElementById('compareBar').style.display = 'none';
-        document.querySelectorAll('.sequence-card input[type=checkbox]').forEach(cb => { cb.checked = false; });
-        document.querySelectorAll('.sequence-card.compare-selected').forEach(c => c.classList.remove('compare-selected'));
+    function clearCompare(trigger) {
+        const root = getResultsRoot(trigger);
+        activateResultsRoot(root);
+        const selected = getResultsCompareSet(root);
+        selected.clear();
+        compareSet = selected;
+        const bar = resultRole(root, 'compare-bar');
+        if (bar) bar.style.display = 'none';
+        if (!root) return;
+        root.querySelectorAll('.sequence-card input[type=checkbox]').forEach(cb => { cb.checked = false; });
+        root.querySelectorAll('.sequence-card.compare-selected').forEach(c => c.classList.remove('compare-selected'));
     }
-    function openCompareModal() {
-        if (compareSet.size < 2) { showToast('请至少选择 2 条序列进行对比', 'error'); return; }
-        const ids = [...compareSet];
-        const seqs = ids.map(id => currentResults.find(s => s.id === id)).filter(Boolean);
+    function openCompareModal(trigger) {
+        const root = getResultsRoot(trigger);
+        activateResultsRoot(root);
+        const selected = getResultsCompareSet(root);
+        if (selected.size < 2) { showToast('请至少选择 2 条序列进行对比', 'error'); return; }
+        const sourceResults = getResultsData(root);
+        const ids = [...selected];
+        const seqs = ids.map(id => sourceResults.find(s => s.id === id)).filter(Boolean);
         if (seqs.length < 2) { showToast('序列数据不足', 'error'); return; }
         const ov = document.getElementById('compareModalOverlay');
         if (!ov) return;
@@ -8853,7 +8917,11 @@ ${fallbackTableRows(profile.rows)}
     function renderResults(sequences, stats) {
         const section = document.createElement('div');
         section.className = 'results-section';
-        section.id = 'resultsSection';
+        section.dataset.resultsId = 'results-' + (++resultsRenderSerial);
+        section.__results = sequences;
+        section.__stats = stats;
+        section.__compareSet = new Set();
+        activateResultsRoot(section);
 
         // Compute aggregate metrics
         const _top = sequences.slice(0, Math.min(10, sequences.length));
@@ -8897,15 +8965,15 @@ ${fallbackTableRows(profile.rows)}
                     <div style="font-size:9px;color:var(--brand-dark);opacity:0.6;">Top-${Math.min(10,sequences.length)} 均值</div>
                 </div>
             </div>
-            <div id="compareBar" style="display:none;padding:8px 14px;background:linear-gradient(135deg,var(--brand-lighter),#EEF6FF);border:1.5px solid var(--brand-light);border-radius:8px;margin-bottom:8px;align-items:center;gap:10px;font-size:12px;color:var(--brand-dark);">
+            <div data-role="compare-bar" style="display:none;padding:8px 14px;background:linear-gradient(135deg,var(--brand-lighter),#EEF6FF);border:1.5px solid var(--brand-light);border-radius:8px;margin-bottom:8px;align-items:center;gap:10px;font-size:12px;color:var(--brand-dark);">
                 <i data-lucide="git-compare" style="width:14px;height:14px;"></i>
-                <span id="compareCount">已选 0 条</span>
-                <button onclick="openCompareModal()" style="margin-left:auto;padding:5px 12px;background:var(--brand);color:white;border:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;">对比分析</button>
-                <button onclick="clearCompare()" style="padding:5px 10px;background:none;border:1.5px solid var(--border);border-radius:6px;font-size:11px;cursor:pointer;color:var(--text-secondary);">清除</button>
+                <span data-role="compare-count">已选 0 条</span>
+                <button onclick="openCompareModal(this)" style="margin-left:auto;padding:5px 12px;background:var(--brand);color:white;border:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;">对比分析</button>
+                <button onclick="clearCompare(this)" style="padding:5px 10px;background:none;border:1.5px solid var(--border);border-radius:6px;font-size:11px;cursor:pointer;color:var(--text-secondary);">清除</button>
             </div>
             <div class="filter-bar">
                 <span class="filter-label">` + t('Sort by:') + `</span>
-                <select class="filter-select" id="sortSelect" onchange="sortSequences()">
+                <select class="filter-select" data-role="sort-select" onchange="sortSequences(this)">
                     <option value="id">ID</option>
                     <option value="dockQ">DockQ ↓</option>
                     <option value="binderPTM">Binder pTM ↓</option>
@@ -8914,22 +8982,22 @@ ${fallbackTableRows(profile.rows)}
                     <option value="complexRMSD">RMSD ↑</option>
                 </select>
                 <span class="filter-label" style="margin-left:8px;">` + t('Show:') + `</span>
-                <select class="filter-select" id="countSelect" onchange="limitSequences()">
+                <select class="filter-select" data-role="count-select" onchange="limitSequences(this)">
                     <option value="10">Top 10</option>
                     <option value="20">Top 20</option>
                     <option value="0">All (${sequences.length})</option>
                 </select>
             </div>
-            <div class="binders-strip" id="bindersStrip"></div>
-            <div id="sequenceCards"></div>`;
+            <div class="binders-strip" data-role="binders-strip"></div>
+            <div data-role="sequence-cards"></div>`;
 
         getStream().appendChild(section);
         refreshLucideIcons({ nodes: [section] });
-        renderSequenceList(sequences);
+        renderSequenceList(sequences, section);
         // Charts
-        setTimeout(() => renderRadarChart(sequences.slice(0, 5)), 100);
-        setTimeout(() => renderMetricHistogram(sequences), 200);
-        setTimeout(() => renderCDRComposition(sequences.slice(0, 8)), 300);
+        setTimeout(() => renderRadarChart(sequences.slice(0, 5), section), 100);
+        setTimeout(() => renderMetricHistogram(sequences, section), 200);
+        setTimeout(() => renderCDRComposition(sequences.slice(0, 8), section), 300);
         scrollBottom();
         if (sequences && sequences.length > 0 && sequences[0].seq) {
             autoPopulateRightPanel(sequences[0].seq);
@@ -8937,29 +9005,32 @@ ${fallbackTableRows(profile.rows)}
     }
 
     // ─── Radar / Spider Chart ───────────────────────────────
-    function renderRadarChart(seqs) {
+    function renderRadarChart(seqs, root = activeResultsSection) {
         if (!seqs || seqs.length === 0) return;
+        root = getResultsRoot(root);
+        activateResultsRoot(root);
         // Add radar section after sequenceCards
-        const cards = document.getElementById('sequenceCards');
+        const cards = resultRole(root, 'sequence-cards');
         if (!cards) return;
-        const existing = document.getElementById('radarSection');
+        const existing = resultRole(root, 'radar-section');
         if (existing) existing.remove();
 
         const div = document.createElement('div');
-        div.id = 'radarSection';
         div.className = 'radar-section';
+        div.dataset.role = 'radar-section';
         div.innerHTML = `<div class="radar-header">
             <i data-lucide="radar" style="width:14px;height:14px;color:var(--brand);"></i>
             Top ${seqs.length} 序列指标雷达图
             <span style="font-size:10px;font-weight:400;color:var(--text-muted);margin-left:4px;">· 越靠外越优</span>
         </div>
-        <canvas id="radarCanvas" style="width:100%;max-width:440px;height:280px;display:block;margin:0 auto;"></canvas>
-        <div id="radarLegend" style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:10px;"></div>`;
+        <canvas data-role="radar-canvas" style="width:100%;max-width:440px;height:280px;display:block;margin:0 auto;"></canvas>
+        <div data-role="radar-legend" style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:10px;"></div>`;
         cards.after(div);
         refreshLucideIcons({ nodes: [div] });
 
         setTimeout(() => {
-            const canvas = document.getElementById('radarCanvas');
+            if (!div.isConnected) return;
+            const canvas = resultRole(root, 'radar-canvas');
             if (!canvas) return;
             const W = canvas.offsetWidth || 440;
             const H = 280;
@@ -9009,7 +9080,7 @@ ${fallbackTableRows(profile.rows)}
             }
 
             const colors = ['#3B82F6','#10B981','#F59E0B','#EF4444','#8B5CF6'];
-            const legend = document.getElementById('radarLegend');
+            const legend = resultRole(root, 'radar-legend');
             if (legend) legend.innerHTML = '';
 
             seqs.forEach((s, si) => {
@@ -9040,23 +9111,25 @@ ${fallbackTableRows(profile.rows)}
     }
 
     // ─── Metric Distribution Histogram ─────────────────────────
-    function renderMetricHistogram(seqs) {
+    function renderMetricHistogram(seqs, root = activeResultsSection) {
         if (!seqs || seqs.length < 3) return;
-        const container = document.getElementById('radarSection');
+        root = getResultsRoot(root);
+        activateResultsRoot(root);
+        const container = resultRole(root, 'radar-section');
         if (!container) return;
-        const existing = document.getElementById('histogramSection');
+        const existing = resultRole(root, 'histogram-section');
         if (existing) existing.remove();
 
         const div = document.createElement('div');
-        div.id = 'histogramSection';
+        div.dataset.role = 'histogram-section';
         div.style.cssText = 'margin-top:14px;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;box-shadow:var(--shadow-sm);';
         div.innerHTML = `<div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2"><rect x="3" y="12" width="4" height="9"/><rect x="10" y="7" width="4" height="14"/><rect x="17" y="3" width="4" height="18"/></svg>
             <span style="font-size:12px;font-weight:700;color:var(--text-primary);">指标分布直方图</span>
-            <div style="margin-left:auto;display:flex;gap:6px;" id="histMetricBtns"></div>
+            <div style="margin-left:auto;display:flex;gap:6px;" data-role="hist-metric-btns"></div>
         </div>
-        <canvas id="histogramCanvas" style="width:100%;height:150px;display:block;"></canvas>
-        <div id="histogramStats" style="display:flex;gap:16px;margin-top:10px;flex-wrap:wrap;"></div>`;
+        <canvas data-role="histogram-canvas" style="width:100%;height:150px;display:block;"></canvas>
+        <div data-role="histogram-stats" style="display:flex;gap:16px;margin-top:10px;flex-wrap:wrap;"></div>`;
         container.after(div);
 
         const metrics = [
@@ -9067,7 +9140,8 @@ ${fallbackTableRows(profile.rows)}
         ];
         let activeMetric = metrics[0];
 
-        const btnContainer = document.getElementById('histMetricBtns');
+        const btnContainer = resultRole(root, 'hist-metric-btns');
+        if (!btnContainer) return;
         metrics.forEach(m => {
             const btn = document.createElement('button');
             btn.textContent = m.label;
@@ -9086,7 +9160,8 @@ ${fallbackTableRows(profile.rows)}
         });
 
         function drawHistogram(m) {
-            const canvas = document.getElementById('histogramCanvas');
+            if (!div.isConnected) return;
+            const canvas = resultRole(root, 'histogram-canvas');
             if (!canvas) return;
             const W = canvas.offsetWidth || 500;
             const H = 150;
@@ -9150,7 +9225,7 @@ ${fallbackTableRows(profile.rows)}
             });
 
             // Stats
-            const statsEl = document.getElementById('histogramStats');
+            const statsEl = resultRole(root, 'histogram-stats');
             if (statsEl) statsEl.innerHTML = [
                 { l: 'N', v: vals.length },
                 { l: 'Mean', v: mean.toFixed(3) },
@@ -9163,15 +9238,17 @@ ${fallbackTableRows(profile.rows)}
     }
 
     // ─── CDR Composition Bar Chart ──────────────────────────────
-    function renderCDRComposition(seqs) {
+    function renderCDRComposition(seqs, root = activeResultsSection) {
         if (!seqs || seqs.length < 2) return;
-        const histEl = document.getElementById('histogramSection');
+        root = getResultsRoot(root);
+        activateResultsRoot(root);
+        const histEl = resultRole(root, 'histogram-section');
         if (!histEl) return;
-        const existing = document.getElementById('cdrCompSection');
+        const existing = resultRole(root, 'cdr-comp-section');
         if (existing) existing.remove();
 
         const div = document.createElement('div');
-        div.id = 'cdrCompSection';
+        div.dataset.role = 'cdr-comp-section';
         div.style.cssText = 'margin-top:14px;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;box-shadow:var(--shadow-sm);';
 
         const AA_GROUPS = {
@@ -9231,26 +9308,32 @@ ${fallbackTableRows(profile.rows)}
         histEl.after(div);
     }
 
-    function renderSequenceList(seqs) {
-        const strip = document.getElementById('bindersStrip');
-        const cards = document.getElementById('sequenceCards');
+    function renderSequenceList(seqs, root = activeResultsSection) {
+        root = getResultsRoot(root);
+        activateResultsRoot(root);
+        const strip = resultRole(root, 'binders-strip');
+        const cards = resultRole(root, 'sequence-cards');
         if (!strip || !cards) return;
         // Reset compare state on new render
-        compareSet.clear();
-        const bar = document.getElementById('compareBar');
+        const selected = getResultsCompareSet(root);
+        selected.clear();
+        compareSet = selected;
+        const bar = resultRole(root, 'compare-bar');
         if (bar) bar.style.display = 'none';
+        const cnt = resultRole(root, 'compare-count');
+        if (cnt) cnt.textContent = '已选 0 条';
 
         strip.innerHTML = seqs.map((s, i) =>
-            `<div class="binder-chip${i === 0 ? ' active' : ''}" onclick="scrollToCard(${s.id})">#${s.id}</div>`
+            `<div class="binder-chip${i === 0 ? ' active' : ''}" onclick="scrollToCard(${s.id}, this)">#${s.id}</div>`
         ).join('');
 
         cards.innerHTML = seqs.map(s => {
             const m = s.metrics;
             const seqHtml = highlightSeq(s.sequence);
             const starred = starredSeqs.has(s.id);
-            const checked = compareSet.has(s.id);
+            const checked = selected.has(s.id);
             return `
-            <div class="sequence-card${checked?' compare-selected':''}" id="card-${s.id}">
+            <div class="sequence-card${checked?' compare-selected':''}" data-card-id="${s.id}">
                 <div class="sequence-header">
                     <label style="display:flex;align-items:center;cursor:pointer;margin-right:6px;" title="加入对比">
                         <input type="checkbox" ${checked?'checked':''} onchange="toggleCompare(${s.id},this)" style="width:14px;height:14px;accent-color:var(--brand);cursor:pointer;">
@@ -9266,7 +9349,7 @@ ${fallbackTableRows(profile.rows)}
                         ${metricHtml('IPTM', m.iPTM, 0.82)}
                     </div>
                     <div class="sequence-actions">
-                        <button class="icon-btn${starred ? ' starred' : ''}" title="Star" onclick="toggleStar(${s.id})">
+                        <button class="icon-btn${starred ? ' starred' : ''}" title="Star" onclick="toggleResultStar(${s.id}, this)">
                             <i data-lucide="${starred ? 'star-off' : 'star'}" style="width:13px;height:13px;"></i>
                         </button>
                         <button class="icon-btn" title="Copy sequence" onclick="copySeq('${s.sequence}')">
@@ -9349,34 +9432,33 @@ ${fallbackTableRows(profile.rows)}
         return html;
     }
 
-    function sortSequences() {
-        const key = document.getElementById('sortSelect').value;
-        const desc = key !== 'complexRMSD' && key !== 'id';
-        const sorted = [...currentResults].sort((a, b) => {
-            const va = key === 'id' ? a.id : a.metrics[key];
-            const vb = key === 'id' ? b.id : b.metrics[key];
-            return desc ? vb - va : va - vb;
-        });
-        renderSequenceList(sorted);
+    function sortSequences(control) {
+        const root = getResultsRoot(control);
+        activateResultsRoot(root);
+        renderSequenceList(getFilteredResults(root), root);
     }
 
-    function limitSequences() {
-        const n = parseInt(document.getElementById('countSelect').value);
-        const sorted = [...currentResults].sort((a, b) => b.metrics.dockQ - a.metrics.dockQ);
-        renderSequenceList(n > 0 ? sorted.slice(0, n) : sorted);
+    function limitSequences(control) {
+        const root = getResultsRoot(control);
+        activateResultsRoot(root);
+        renderSequenceList(getFilteredResults(root), root);
     }
 
-    function scrollToCard(id) {
-        document.querySelectorAll('.binder-chip').forEach(c => c.classList.remove('active'));
-        event.target.classList.add('active');
-        const card = document.getElementById(`card-${id}`);
+    function scrollToCard(id, chipEl) {
+        const root = getResultsRoot(chipEl);
+        activateResultsRoot(root);
+        if (root) root.querySelectorAll('.binder-chip').forEach(c => c.classList.remove('active'));
+        if (chipEl) chipEl.classList.add('active');
+        const card = root ? root.querySelector(`.sequence-card[data-card-id="${id}"]`) : null;
         if (card) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 
-    function toggleStar(id) {
+    function toggleResultStar(id, trigger) {
+        const root = getResultsRoot(trigger);
+        activateResultsRoot(root);
         if (starredSeqs.has(id)) starredSeqs.delete(id);
         else starredSeqs.add(id);
-        sortSequences(); // re-render
+        renderSequenceList(getFilteredResults(root), root);
         showToast(starredSeqs.has(id) ? t('#{id} starred', {id: id}) : t('#{id} unstarred', {id: id}), 'success');
     }
 
