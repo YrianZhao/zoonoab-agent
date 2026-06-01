@@ -86,16 +86,53 @@ function isRenderEphemeralRuntimePath(rawPath) {
     || resolved.startsWith('/opt/render/project/src/.runtime/');
 }
 
+const localAsrRuntimeFallbacks = [];
+
+function checkWritableRuntimePath(runtimePath, options = {}) {
+  const shouldCreateTarget = options.createTarget !== false;
+  const target = shouldCreateTarget ? runtimePath : path.dirname(runtimePath);
+  try {
+    fs.mkdirSync(target, { recursive: true });
+    fs.accessSync(target, fs.constants.W_OK);
+    return { ok: true };
+  } catch (err) {
+    return {
+      ok: false,
+      error: err && err.message ? err.message : String(err || '')
+    };
+  }
+}
+
+function rememberLocalAsrRuntimeFallback(envName, preferred, fallback, error) {
+  localAsrRuntimeFallbacks.push({
+    env: envName,
+    preferred,
+    fallback,
+    error: String(error || '').slice(0, 240)
+  });
+}
+
 function resolveLocalAsrRuntimeDir(envName, leafName) {
   const configured = String(process.env[envName] || '').trim();
   const fallback = IS_RENDER_RUNTIME
     ? path.join(RENDER_DATA_DIR, leafName)
     : path.join('.runtime', leafName);
   const resolved = resolveProjectPath(configured || fallback);
-  if (IS_RENDER_RUNTIME && (!configured || isRenderEphemeralRuntimePath(resolved))) {
-    return path.join(RENDER_DATA_DIR, leafName);
+  const preferred = IS_RENDER_RUNTIME && (!configured || isRenderEphemeralRuntimePath(resolved))
+    ? path.join(RENDER_DATA_DIR, leafName)
+    : resolved;
+  if (IS_RENDER_RUNTIME) {
+    const writable = checkWritableRuntimePath(preferred, { createTarget: envName !== 'LOCAL_ASR_VENV_DIR' });
+    if (!writable.ok) {
+      const ephemeralFallback = path.join(__dirname, '.runtime', leafName);
+      const fallbackWritable = checkWritableRuntimePath(ephemeralFallback, { createTarget: envName !== 'LOCAL_ASR_VENV_DIR' });
+      if (fallbackWritable.ok) {
+        rememberLocalAsrRuntimeFallback(envName, preferred, ephemeralFallback, writable.error);
+        return ephemeralFallback;
+      }
+    }
   }
-  return resolved;
+  return preferred;
 }
 
 const LOCAL_ASR_VENV_DIR = resolveLocalAsrRuntimeDir('LOCAL_ASR_VENV_DIR', 'local-asr-venv');
@@ -107,6 +144,16 @@ function resolveLocalAsrCacheEnv(envName, leafName) {
   const resolved = resolveProjectPath(configured || fallback);
   if (IS_RENDER_RUNTIME && (!configured || isRenderEphemeralRuntimePath(resolved))) {
     return fallback;
+  }
+  if (IS_RENDER_RUNTIME) {
+    const writable = checkWritableRuntimePath(resolved);
+    if (!writable.ok) {
+      const fallbackWritable = checkWritableRuntimePath(fallback);
+      if (fallbackWritable.ok) {
+        rememberLocalAsrRuntimeFallback(envName, resolved, fallback, writable.error);
+        return fallback;
+      }
+    }
   }
   return resolved;
 }
@@ -534,6 +581,7 @@ async function buildVoiceHealth(providerConfig = getVoiceProviderConfig(), optio
         LOCAL_ASR_VENV_DIR.startsWith(RENDER_DATA_DIR + path.sep)
         && LOCAL_ASR_CACHE_DIR.startsWith(RENDER_DATA_DIR + path.sep)
       ),
+      runtimeFallbacks: localAsrRuntimeFallbacks,
       expectedDataDir: IS_RENDER_RUNTIME ? RENDER_DATA_DIR : '',
       venvDir: LOCAL_ASR_VENV_DIR,
       cacheDir: LOCAL_ASR_CACHE_DIR,
