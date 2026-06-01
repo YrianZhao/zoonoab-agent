@@ -1833,6 +1833,26 @@
         }
         .empty-state-icon { margin-bottom: 16px; opacity: 0.4; }
         .empty-state-text { font-size: 14px; }
+        .build-version {
+            position: fixed;
+            left: 50%;
+            bottom: 15px;
+            transform: translateX(-50%);
+            z-index: 50;
+            font-family: var(--mono-font-family);
+            font-size: 10px;
+            line-height: 1;
+            letter-spacing: 0;
+            color: rgba(100, 116, 139, 0.45);
+            user-select: none;
+            pointer-events: none;
+        }
+        body.chatting-mode .build-version,
+        body.kb-open .build-version,
+        body.sidebar-open .build-version,
+        body.analysis-open .build-version {
+            display: none;
+        }
 
         /* ═══════════════ Typing Cursor ═══════════════ */
         .typing-cursor {
@@ -3850,6 +3870,7 @@
                 <div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>
             </div>
         </section>
+        <div class="build-version" id="buildVersion" aria-hidden="true"></div>
 
         <!-- Team Collaboration Section -->
         <section class="team-section" id="teamSection" style="display:none;">
@@ -4927,6 +4948,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
+    const APP_BUILD_VERSION = '78140629';
+
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
     var I18N = {
@@ -12811,6 +12834,11 @@ ${fallbackTableRows(profile.rows)}
         document.documentElement.lang = LANG === 'zh' ? 'zh-CN' : 'en';
     }
 
+    function renderBuildVersion() {
+        const el = document.getElementById('buildVersion');
+        if (el) el.textContent = APP_BUILD_VERSION;
+    }
+
     // ═══════════════ Init ═══════════════
     // ═══ DEMO VHH SEQUENCE (Ozoralizumab-based anti-TNFα VHH, published sequence) ═══
     const DEMO_VHH_SEQ = 'EVQLVESGGGLVQPGGSLRLSCAASGFTFSSYAMSWVRQAPGKGLEWVSAISGSGGSTYYADSVKGRFTISRDNSKNTLYLQMNSLRAEDTAVYYCAKVSYLSTASSLDYWGQGTLVTVSS';
@@ -12818,6 +12846,7 @@ ${fallbackTableRows(profile.rows)}
 
     document.addEventListener('DOMContentLoaded', () => {
         refreshLucideIcons();
+        renderBuildVersion();
 
         // Apply translations
         applyI18N();
