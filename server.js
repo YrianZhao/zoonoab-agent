@@ -1795,6 +1795,57 @@ function routeCandidateId(profile, idx) {
   return target + '-candidate-' + String(idx + 1).padStart(2, '0');
 }
 
+function stableSeed(input) {
+  return String(input || '').split('').reduce((sum, ch) => ((sum * 31) + ch.charCodeAt(0)) >>> 0, 2166136261);
+}
+
+function seededPick(pool, seed, offset) {
+  if (!Array.isArray(pool) || !pool.length) return '';
+  return pool[(seed + offset * 17) % pool.length];
+}
+
+function routeDisplaySequence(profile, idx) {
+  const target = (profile && profile.targetDisplay) || 'PD-L1';
+  const seed = stableSeed(target + ':' + idx);
+  const cdr1 = seededPick(_CDR1_POOL, seed, 1);
+  const cdr2 = seededPick(_CDR2_POOL, seed, 2);
+  const cdr3 = seededPick(_CDR3_POOL, seed, 3);
+  return 'EVQLVESGGGLVQPGGSLRLSCAAS' + cdr1 + cdr2 + 'LQMNSLRAEDTAVYYCAR' + cdr3 + 'WGQGTQVTVSS';
+}
+
+function buildRoute3DMeta(profile, idx, file, ipTm) {
+  const target = (profile && profile.targetDisplay) || 'PD-L1';
+  const safeIpTm = typeof ipTm === 'number' && !Number.isNaN(ipTm)
+    ? ipTm
+    : +(0.82 - Math.min(idx, 9) * 0.012).toFixed(4);
+  const sequence = routeDisplaySequence(profile, idx);
+  const cdr3Len = Math.max(10, Math.min(18, 12 + (stableSeed(target + idx) % 6)));
+  const routeLabel = (profile && profile.routeLabel) || target;
+  const abFormat = profile && profile.scaffold && profile.scaffold.includes('VHH') ? 'VHH' : 'Fab';
+  return {
+    id: routeCandidateId(profile, idx),
+    file,
+    name: routeStructureName(profile, idx, safeIpTm),
+    candidateLabel: target + '-' + abFormat + '-' + String(idx + 1).padStart(2, '0'),
+    binderId: 'B' + String(idx + 1).padStart(2, '0'),
+    routeId: (profile && profile.routeId) || routeLabel.replace(/[^A-Za-z0-9]+/g, '-').replace(/^-|-$/g, '').toLowerCase(),
+    routeLabel,
+    disease: (profile && profile.disease) || '',
+    targetDisplay: target,
+    partnerDisplay: (profile && profile.partnerDisplay) || '',
+    domain: (profile && profile.domain) || '',
+    mechanism: (profile && profile.mechanism) || '',
+    selectedEpitope: (profile && profile.selectedEpitope) || '',
+    structureRef: (profile && profile.structureRef) || '',
+    interfaceFocus: (profile && profile.interfaceFocus) || '',
+    sequence,
+    cdrSummary: 'CDR-H3 ' + cdr3Len + ' aa · ' + ((profile && profile.selectedEpitope) || '目标表位') + ' 匹配',
+    developability: safeIpTm >= 0.78 ? '低风险 · 可进入合成评估' : '中等风险 · 建议复核界面电荷',
+    ipTm: safeIpTm,
+    fallback: true
+  };
+}
+
 function routeLocalPDBs(profile, count) {
   const fallbackFile = fs.existsSync(path.join(PROJECT_ROOT, '4KC3_site1_1655576_binder-0_iptm-0.7953_complex.pdb'))
     ? '4KC3_site1_1655576_binder-0_iptm-0.7953_complex.pdb'
@@ -1811,18 +1862,14 @@ function routeLocalPDBs(profile, count) {
     console.error('[Server] PDB scan error:', e.message);
   }
   localFiles.sort();
-  const files = (localFiles.length ? localFiles : [fallbackFile]).slice(0, Math.max(1, Number(count) || 10));
+  const sourceFiles = localFiles.length ? localFiles : [fallbackFile];
+  const targetCount = Math.max(1, Number(count) || 10);
+  const files = Array.from({ length: targetCount }, (_, idx) => sourceFiles[idx % sourceFiles.length]);
   return files.map((file, idx) => {
     const base = file.replace('.pdb', '');
     const iptmMatch = base.match(/iptm-([\d.]+)/);
     const ipTm = iptmMatch ? parseFloat(iptmMatch[1]) : null;
-    return {
-      id: routeCandidateId(profile, idx),
-      name: routeStructureName(profile, idx, ipTm),
-      binderId: 'B' + String(idx + 1).padStart(2, '0'),
-      ipTm,
-      fallback: true
-    };
+    return buildRoute3DMeta(profile, idx, file, ipTm);
   });
 }
 
@@ -2831,11 +2878,11 @@ async function runDemoRoutedWorkflow(ws, input, route) {
   markWorkflowStage(sess, '设计意图确认');
   send({ type: 'agent_msg', text: demoRouteIntro(route, input) });
   await delay(800);
-  await runWorkflow(ws, buildDemoInstruction(input, route));
+  await runWorkflow(ws, buildDemoInstruction(input, route), route);
 }
 
-function parseRequest(input) {
-  const demoRoute = detectDemoRoute(input);
+function parseRequest(input, forcedRoute) {
+  const demoRoute = forcedRoute || detectDemoRoute(input);
   const countMatch = input.match(/(\d+)\s*(个|条|pass|passing)/i) ||
                      input.match(/(?:generate|design|create|make)\s+(\d+)/i) ||
                      input.match(/设计\s*(\d+)/) ||
@@ -2890,12 +2937,11 @@ function findSessionBySocket(ws) {
 function markWorkflowStage(sess, stage) {
   if (!sess) return;
   sess.workflowStage = stage || '';
-  sess.skipThinking = false;
-  sess.skipThinkingNotified = false;
 }
 
 function consumeWorkflowSkip(sess) {
   if (!sess || !sess.skipThinking) return false;
+  if (sess.fastForwardWorkflow) return true;
   sess.skipThinking = false;
   sess.skipThinkingNotified = false;
   return true;
@@ -2904,6 +2950,7 @@ function consumeWorkflowSkip(sess) {
 function workflowDelay(ws, sess, ms, options = {}) {
   const normalMs = Number(ms) || 0;
   const settleMs = Number(options.settleMs || WORKFLOW_SKIP_SETTLE_MS);
+  const fastMs = Number(options.fastMs || 40);
   return new Promise((resolve, reject) => {
     let done = false;
     const finish = () => {
@@ -2924,7 +2971,7 @@ function workflowDelay(ws, sess, ms, options = {}) {
     };
     let skipApplied = false;
     const applySkip = () => {
-      if (done || !sess || !sess.skipThinking) return;
+      if (done || !sess || !sess.skipThinking && !sess.fastForwardWorkflow) return;
       if (skipApplied) return;
       skipApplied = true;
       if (!sess.skipThinkingNotified && ws && ws.readyState === 1) {
@@ -2932,13 +2979,15 @@ function workflowDelay(ws, sess, ms, options = {}) {
         ws.send(JSON.stringify({
           type: 'thinking_skipped',
           stage: sess.workflowStage || '',
-          message: '已跳过当前阶段的推理展示，正在整理阶段结果。'
+          message: sess.fastForwardWorkflow
+            ? '已进入快速展示模式，后续流程将加速输出。'
+            : '已跳过当前阶段的推理展示，正在整理阶段结果。'
         }));
       }
       clearTimeout(timer);
-      timer = setTimeout(finish, settleMs);
+      timer = setTimeout(finish, sess.fastForwardWorkflow ? Math.min(fastMs, normalMs) : settleMs);
     };
-    let timer = setTimeout(finish, normalMs);
+    let timer = setTimeout(finish, sess && sess.fastForwardWorkflow ? Math.min(fastMs, normalMs) : normalMs);
     const poll = setInterval(() => {
       if (sess && sess.cancelled) return failCancelled();
       applySkip();
@@ -2983,12 +3032,14 @@ function makeMockSeqs(count, profile) {
 }
 
 // ─── Main Workflow ──────────────────────────────────────────
-async function runWorkflow(ws, input) {
-  const { count, target, abType, blockTarget } = parseRequest(input);
+async function runWorkflow(ws, input, forcedRoute) {
+  const { count, target, abType, blockTarget } = parseRequest(input, forcedRoute);
   const lang = /[\u4e00-\u9fff]/.test(input) ? 'zh' : 'en';
   const M = msgs(lang);
   const isZh = lang === 'zh';
   const profile = buildRouteProfile(target, blockTarget, abType);
+  const demoRouteForProfile = forcedRoute || detectDemoRoute(input);
+  profile.routeId = demoRouteForProfile && demoRouteForProfile.id ? demoRouteForProfile.id : '';
   const plan = buildScreeningPlan(count);
   const displayMeta = buildWorkflowDisplayMeta(profile, count, plan);
   const sess = findSessionBySocket(ws);
@@ -3591,6 +3642,7 @@ function runSocketTask(ws, sid, msg, buildRunner) {
     sess.cancelled = false;
     sess.skipThinking = false;
     sess.skipThinkingNotified = false;
+    sess.fastForwardWorkflow = false;
     sess.workflowStage = '';
   }
   const cleanText = stripWakeWords(text);
@@ -3601,7 +3653,16 @@ function runSocketTask(ws, sid, msg, buildRunner) {
       console.error('[Server] Workflow error:', err);
       if (ws.readyState === 1) ws.send(JSON.stringify({ type: 'error', text: '工作流执行出错，请重试。' }));
     })
-    .finally(() => { if (sess) { sess.busy = false; sess.cancelled = false; sess.skipThinking = false; sess.skipThinkingNotified = false; sess.workflowStage = ''; } });
+    .finally(() => {
+      if (sess) {
+        sess.busy = false;
+        sess.cancelled = false;
+        sess.skipThinking = false;
+        sess.skipThinkingNotified = false;
+        sess.fastForwardWorkflow = false;
+        sess.workflowStage = '';
+      }
+    });
 }
 
 // ─── Capability Overview ────────────────────────────────────
@@ -4240,6 +4301,7 @@ wss.on('connection', ws => {
     if (msg.type === 'cancel') {
       const sess = sessions.get(sid);
       if (sess && sess.busy) sess.cancelled = true;
+      if (sess) sess.fastForwardWorkflow = false;
       if (ws.readyState === 1) ws.send(JSON.stringify({ type: 'cancelled' }));
       return;
     }
@@ -4248,12 +4310,13 @@ wss.on('connection', ws => {
       const sess = sessions.get(sid);
       if (!sess || !sess.busy) return;
       sess.skipThinking = true;
+      sess.fastForwardWorkflow = true;
       sess.skipThinkingNotified = false;
       if (ws.readyState === 1) {
         ws.send(JSON.stringify({
           type: 'skip_thinking_ack',
           stage: sess.workflowStage || '',
-          message: '正在收束当前阶段，将跳过后续思考展示。'
+          message: '正在收束当前阶段，后续流程将进入快速展示。'
         }));
       }
       return;

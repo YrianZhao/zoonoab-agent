@@ -13,7 +13,7 @@
 快速设计必须在未配置语音、聊天或大模型 API Key 时仍可使用；后端接收 `quick_design` 后应立即返回工作流确认，前端应在无响应或断线时恢复操作状态并给出面向现场人员的清晰提示，避免现场展示卡在等待动画。
 快速设计路线的观众可见正文、日志、tool_call/tool_result 和 fallback 文案必须按当前路线 profile 生成；不同疾病入口和靶点的疾病方向、靶点结构域、抗体背景、作用机制和表位策略不得互相混用。
 快速设计和断线 fallback 的可见 Agent 数量、设计阶段数、证据条目数应由展示层动态元信息生成；同一次运行内保持一致，连续运行可变化。UniProt/靶点注释必须来自当前路线 profile，不能混用固定编号或伪实时数据库检索文案。
-工作流展示支持“跳过思考”按钮：点击后只能跳过当前阶段的冗长思考/日志展示，并在短暂收束提示后输出该阶段结果；不得取消工作流，也不得直接跳到最终结果。连续点击应能分别跳过后续阶段，并保证最终 `done`、结果区和 3D 展示正常渲染。
+工作流展示支持“跳过思考”按钮：点击后应让当前整次工作流进入快速展示模式，压缩后续服务端延迟、前端打字和断线 fallback 延迟，目标在 30 秒内展示到最终结果和 3D 结构；不得取消工作流，也不得直接跳到最终结果。快速模式只影响当前运行，`done`、取消、错误或新任务开始时必须重置。
 小诺同学语音链路应分层实现：前端录音/VAD 只负责采集和端点检测，ASR 只负责转写，后端 `/api/voice/intent` 先做确定性意图解析；命中抗体设计时必须返回固定 quick design 路线并由前端发送 WebSocket `quick_design`，不要让语音设计请求直接进入普通聊天兜底。
 小诺语音识别只使用本机/服务器本地 ASR sidecar：默认地址 `LOCAL_ASR_BASE_URL=http://127.0.0.1:8765/v1/audio/transcriptions`，启动命令 `npm run asr:local`，首次安装命令 `npm run asr:setup`；前端 API 面板不得展示或要求填写云端语音识别 Base URL、API Key 或 Model。
 本机离线 ASR 依赖安装到项目内 `.runtime/local-asr-venv`，不要污染系统 Python；默认使用 Paraformer 中文识别模型处理前端 16k WAV 短命令，`fsmn-vad` 和 `ct-punc` 默认关闭，只有需要长音频切分或标点时才通过 `LOCAL_ASR_VAD_MODEL`、`LOCAL_ASR_PUNC_MODEL` 手动开启，避免首次启动额外下载大模型并拖慢现场 demo。
@@ -22,6 +22,8 @@
 普通语音按钮只负责把识别结果填入输入框并等待用户手动发送；不得在转写完成后自动发送聊天或启动设计工作流。只有“小诺同学”语音唤醒模式可以继续自动执行明确的语音控制、页面操作或 quick design 路线。
 本地 PDB 文件名可能包含小数点分数（例如 `iptm-0.7953`）；`/api/pdb/local/:filename` 需要在防目录穿越的前提下允许这种文件名，避免 Binders/3D viewer 弹窗因 PDB 请求 400 而空白。
 快速设计的 3D 展示可以对外使用 `PDL1-candidate-01.pdb` 这类产品化候选别名，由服务端内部映射到真实本地 PDB 文件；观众可见的候选名称和结构 URL 不应暴露本地 4KC3/IL33 文件名前缀，除非当前路线本身就是 IL-33/ST2。
+快速设计结束后自动打开的 3D 弹窗应全屏常驻展示：不得自动倒计时关闭，点击遮罩不得关闭，只保留显式关闭按钮和 Esc 作为人工出口；打开弹窗不能阻塞工作流队列或运行状态复位。
+快速设计 3D 展示的 `binderData` 必须携带真实本地 PDB `file` 以及路线化展示元信息（routeId、疾病方向、靶点、机制、表位策略、候选名称、序列/CDR/可开发性摘要），前端 Sequence、Gallery 和弹窗标题应优先使用当前 route/profile 字段，缺字段时才使用本地 PDB fallback。
 3D 结果区要对 `show_3d` 的 `binderData/allPDBs` 做前端归一化；如果后端 payload 为空或缺字段，必须用本地 4KC3/IL33 PDB 清单兜底渲染 Binders、Sequence、CDR strip 和结构缩略图，避免展会 demo 出现空白面板。
 连续多次渲染 3D 结果时，前端必须按当前 `.section-3d` 作用域查找 Binders、Sequence、Gallery、Chain strip 等固定 id 元素，并重置 `galleryViewers`、`currentGalleryViewer`、`activeBinderIdx`，避免 `document.getElementById` 命中旧结果卡片导致新结果空白。
 连续多次渲染 `Designed Binders` 结果区时，前端必须按当前 `.results-section` 作用域使用 `data-role`/scoped selectors 查找序列列表、雷达图、直方图、CDR 组成图和对比栏；不要在重复结果区内使用全局重复 id 或 `document.getElementById` 查找这些节点。

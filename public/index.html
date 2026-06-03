@@ -1205,7 +1205,7 @@
             transition: var(--transition);
         }
         .sidebar-close:hover { background: var(--gray-100); color: var(--text-primary); }
-        .sidebar-content { flex: 1; overflow-y: auto; padding: 14px 14px; display: flex; flex-direction: column; gap: 6px; }
+        .sidebar-content { flex: 1; min-height: 0; overflow-y: auto; padding: 14px 14px; display: flex; flex-direction: column; gap: 6px; }
         .sidebar-content::-webkit-scrollbar { width: 3px; }
         .sidebar-content::-webkit-scrollbar-track { background: transparent; }
         .sidebar-content::-webkit-scrollbar-thumb { background: var(--gray-300); border-radius: 2px; }
@@ -2110,8 +2110,8 @@
             backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
         }
         .mol-modal {
-            width: min(92vw, 900px); height: min(88vh, 700px);
-            background: var(--bg-card); border-radius: var(--radius-xl);
+            width: 100vw; height: 100dvh; max-width: none; max-height: none;
+            background: var(--bg-card); border-radius: 0;
             box-shadow: 0 32px 80px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.08);
             overflow: hidden; display: flex; flex-direction: column;
             transform: scale(0.92) translateY(24px);
@@ -2145,7 +2145,7 @@
             background: var(--gray-100); color: var(--text-primary);
         }
         .mol-modal-body {
-            flex: 1; position: relative; overflow: hidden;
+            flex: 1; min-height: 0; height: 100%; position: relative; overflow: hidden;
         }
         .mol-modal-body iframe {
             width: 100%; height: 100%; border: none; display: block;
@@ -2752,6 +2752,8 @@
             border-top: 1px solid var(--border);
             padding: 12px 14px;
             flex-shrink: 0;
+            min-height: 0;
+            max-height: 282px;
             background: linear-gradient(180deg, rgba(0,123,255,0.02) 0%, rgba(0,123,255,0.04) 100%);
         }
         .project-history-title {
@@ -2761,7 +2763,11 @@
         }
         .project-history-title button { color: var(--brand) !important; }
         .project-history-title button:hover { color: var(--brand-dark, #0057CC) !important; }
-        .project-history-list { display: flex; flex-direction: column; gap: 2px; }
+        .project-history-list {
+            display: flex; flex-direction: column; gap: 2px;
+            max-height: 220px; overflow-y: auto; overscroll-behavior: contain;
+            padding-right: 2px;
+        }
         .project-history-item {
             display: flex; align-items: center; gap: 8px;
             padding: 7px 10px; border-radius: 6px;
@@ -4948,7 +4954,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78141224';
+    const APP_BUILD_VERSION = '78141225';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -5125,6 +5131,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     let skipThinkingRequested = false;
     let demoSkipRequested = false;
     let demoSkipSettled = false;
+    let workflowFastForward = false;
 
     function refreshLucideIcons(options) {
         if (window.lucide && typeof window.lucide.createIcons === 'function') {
@@ -5146,6 +5153,11 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         msgQueue = msgQueue.filter(op => !op || !op.skipOnThinkingSkip);
     }
 
+    function setWorkflowFastForward(active) {
+        workflowFastForward = Boolean(active);
+        document.body.classList.toggle('workflow-fast-forward', workflowFastForward);
+    }
+
     async function drainQueue() {
         queueProcessing = true;
         while (msgQueue.length > 0) {
@@ -5162,7 +5174,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         btn.classList.toggle('pending', state === 'pending');
         btn.disabled = state === 'pending';
         if (label) label.textContent = state === 'pending' ? '跳过中' : '跳过思考';
-        btn.title = state === 'pending' ? '正在收束当前阶段' : '跳过当前阶段的思考展示';
+        btn.title = state === 'pending' ? '正在切换快速展示' : '加速当前工作流展示';
     }
 
     function setRunControlsActive(active) {
@@ -5174,6 +5186,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             skipThinkingRequested = false;
             demoSkipRequested = false;
             demoSkipSettled = false;
+            setWorkflowFastForward(false);
             setSkipThinkingButtonState('idle');
         }
     }
@@ -5197,12 +5210,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
             function tick() {
                 if (pos < totalLen) {
-                    const accelerated = skipThinkingRequested || demoSkipSettled;
-                    const step = accelerated ? Math.max(charsPerTick * 10, Math.ceil(totalLen / 6)) : charsPerTick;
+                    const accelerated = workflowFastForward || document.body.classList.contains('workflow-fast-forward') || skipThinkingRequested || demoSkipSettled;
+                    const step = accelerated ? totalLen : charsPerTick;
                     pos = Math.min(pos + step, totalLen);
                     contentEl.innerHTML = renderMarkdown(rawText.slice(0, pos)) + '<span class="typing-cursor"></span>';
                     scrollBottom();
-                    setTimeout(tick, accelerated ? 8 : tickMs);
+                    setTimeout(tick, accelerated ? 1 : tickMs);
                 } else {
                     contentEl.innerHTML = renderMarkdown(markdown);
                     contentEl.style.minHeight = '';
@@ -6261,15 +6274,17 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
             case 'skip_thinking_ack':
                 skipThinkingRequested = true;
+                setWorkflowFastForward(true);
                 setSkipThinkingButtonState('pending');
                 showTyping();
-                appendLog('[System] ' + (msg.stage ? `正在收束「${msg.stage}」...` : '正在收束当前阶段...'));
+                appendLog('[System] ' + (msg.message || (msg.stage ? `正在收束「${msg.stage}」，后续流程将加速展示...` : '正在收束当前阶段，后续流程将加速展示...')));
                 break;
 
             case 'thinking_skipped':
+                setWorkflowFastForward(true);
                 skipThinkingRequested = false;
                 setSkipThinkingButtonState('idle');
-                appendLog('[System] ' + (msg.message || '已跳过当前阶段的思考展示。'));
+                appendLog('[System] ' + (msg.message || '已进入快速展示模式。'));
                 showTyping();
                 break;
 
@@ -6396,6 +6411,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             case 'cancelled':
                 enqueueOp(() => new Promise(resolve => {
                     finishQuickDesignRun();
+                    setWorkflowFastForward(false);
                     resetRunControls();
                     appendLog('[System] 服务端已确认取消');
                     resolve();
@@ -6405,6 +6421,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             case 'error':
                 enqueueOp(() => new Promise(resolve => {
                     finishQuickDesignRun();
+                    setWorkflowFastForward(false);
                     resetRunControls();
                     showToast(msg.text || '服务器错误，请重试', 'error');
                     resolve();
@@ -6458,7 +6475,11 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                         }, 3000);
                     }
 
-                    scrollToBottomThen(() => openBinderSpinModal(resolve));
+                    scrollToBottomThen(() => {
+                        openBinderSpinModal();
+                        setWorkflowFastForward(false);
+                        resolve();
+                    });
                 }));
                 break;
         }
@@ -6792,6 +6813,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (ws && ws.readyState === 1) {
             ws.send(JSON.stringify({ type: 'cancel' }));
         }
+        setWorkflowFastForward(false);
         finishQuickDesignRun();
         resetRunControls();
         showToast('工作流已取消', 'warning');
@@ -6801,14 +6823,16 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     function skipThinking() {
         if (!isRunning || skipThinkingRequested) return;
         skipThinkingRequested = true;
+        setWorkflowFastForward(true);
         setSkipThinkingButtonState('pending');
         showTyping();
-        appendLog('[System] 正在收束当前阶段，将跳过后续思考展示...');
+        appendLog('[System] 正在收束当前阶段，后续流程将进入快速展示...');
         if (ws && ws.readyState === 1) {
             try {
                 ws.send(JSON.stringify({ type: 'skip_thinking' }));
             } catch (err) {
                 skipThinkingRequested = false;
+                setWorkflowFastForward(false);
                 setSkipThinkingButtonState('idle');
                 showToast('跳过思考请求发送失败', 'error');
             }
@@ -6818,8 +6842,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 demoSkipSettled = true;
                 skipThinkingRequested = false;
                 setSkipThinkingButtonState('idle');
-                appendLog('[System] 已跳过当前阶段的思考展示，继续输出阶段结果。');
-                setTimeout(() => { demoSkipSettled = false; }, 4500);
+                appendLog('[System] 已进入快速展示模式，后续流程将加速输出。');
             }, 1100);
         }
     }
@@ -6834,6 +6857,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         skipThinkingRequested = false;
         demoSkipRequested = false;
         demoSkipSettled = false;
+        setWorkflowFastForward(false);
         setRunControlsActive(true);
         const _inputEl = document.getElementById('userInput');
         if (_inputEl) _inputEl.placeholder = '';
@@ -8413,7 +8437,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     // Fires when backend WS is unavailable — simulates a full multi-agent VHH design run
 
     function demoSleep(ms) {
-        const op = () => new Promise(r => setTimeout(r, demoSkipSettled ? Math.min(80, ms) : ms));
+        const op = () => new Promise(r => setTimeout(r, workflowFastForward || demoSkipSettled ? Math.min(50, ms) : ms));
         op.skipOnThinkingSkip = true;
         enqueueOp(op);
     }
@@ -10082,20 +10106,35 @@ ${fallbackTableRows(profile.rows)}
         };
     }
 
-    function makeFallbackBinders(count = 12, profile) {
-        const files = FALLBACK_BINDER_FILES.slice(0, Math.max(1, count));
-        const target = profile && profile.target ? profile.target : '';
-        const abType = profile && profile.abType ? profile.abType : '';
-        return files.map((file, idx) => {
-            const meta = parseFallbackBinderFile(file, idx);
-            if (target && abType) {
-                meta.id = target.replace(/[^A-Za-z0-9]+/g, '') + '-candidate-' + String(idx + 1).padStart(2, '0');
-                meta.file = meta.id + '.pdb';
-                meta.name = target + ' ' + abType + ' binder-' + String(idx + 1).padStart(2, '0') + (meta.ipTm !== null ? ' (ipTM=' + meta.ipTm.toFixed(4) + ')' : '');
-            }
-            return meta;
-        });
-    }
+	    function makeFallbackBinders(count = 12, profile) {
+	        const targetCount = Math.max(1, count);
+	        const files = Array.from({ length: targetCount }, (_, idx) => FALLBACK_BINDER_FILES[idx % FALLBACK_BINDER_FILES.length]);
+	        const target = profile && profile.target ? profile.target : '';
+	        const abType = profile && profile.abType ? profile.abType : '';
+	        return files.map((file, idx) => {
+	            const meta = parseFallbackBinderFile(file, idx);
+	            if (target && abType) {
+	                meta.id = target.replace(/[^A-Za-z0-9]+/g, '') + '-candidate-' + String(idx + 1).padStart(2, '0');
+	                meta.file = file;
+	                meta.name = target + ' ' + abType + ' binder-' + String(idx + 1).padStart(2, '0') + (meta.ipTm !== null ? ' (ipTM=' + meta.ipTm.toFixed(4) + ')' : '');
+	                meta.candidateLabel = target + '-' + abType + '-' + String(idx + 1).padStart(2, '0');
+	                meta.routeId = profile.routeId || '';
+	                meta.routeLabel = profile.routeLabel || target;
+	                meta.disease = profile.disease || '';
+	                meta.targetDisplay = target;
+	                meta.partnerDisplay = profile.partner || '';
+	                meta.domain = profile.domain || '';
+	                meta.mechanism = profile.mechanism || '';
+	                meta.selectedEpitope = profile.selectedEpitope || '';
+	                meta.structureRef = profile.structureRef || '';
+	                meta.interfaceFocus = profile.interfaceFocus || '';
+	                meta.sequence = generateMockVHH((idx + 1) * 31337);
+	                meta.cdrSummary = 'CDR-H3 ' + (12 + idx % 5) + ' aa · ' + (profile.selectedEpitope || '目标表位') + ' 匹配';
+	                meta.developability = idx < 7 ? '低风险 · 可进入合成评估' : '中等风险 · 建议复核界面电荷';
+	            }
+	            return meta;
+	        });
+	    }
 
     function getBinderIpTm(meta) {
         const value = meta && meta.ipTm;
@@ -10214,19 +10253,34 @@ ${fallbackTableRows(profile.rows)}
             };
         }
         const normalizedIds = ids;
-        return {
-            pdbIds: normalizedIds,
-            binders: normalizedIds.map((id, idx) => {
-                const meta = metaById.get(id) || {};
-                return {
-                    id,
-                    file: meta.file || id + '.pdb',
-                    name: meta.name || ('Binder ' + String(idx + 1).padStart(2, '0')),
-                    site: meta.site || '',
-                    binderId: meta.binderId || '',
-                    ipTm: typeof meta.ipTm === 'number' ? meta.ipTm : null
-                };
-            })
+	        return {
+	            pdbIds: normalizedIds,
+	            binders: normalizedIds.map((id, idx) => {
+	                const meta = metaById.get(id) || {};
+	                return {
+	                    ...meta,
+	                    id,
+	                    file: meta.file || id + '.pdb',
+	                    name: meta.name || ('Binder ' + String(idx + 1).padStart(2, '0')),
+	                    candidateLabel: meta.candidateLabel || meta.name || ('Binder ' + String(idx + 1).padStart(2, '0')),
+	                    routeId: meta.routeId || '',
+	                    routeLabel: meta.routeLabel || '',
+	                    disease: meta.disease || '',
+	                    targetDisplay: meta.targetDisplay || '',
+	                    partnerDisplay: meta.partnerDisplay || '',
+	                    domain: meta.domain || '',
+	                    mechanism: meta.mechanism || '',
+	                    selectedEpitope: meta.selectedEpitope || '',
+	                    structureRef: meta.structureRef || '',
+	                    interfaceFocus: meta.interfaceFocus || '',
+	                    sequence: meta.sequence || '',
+	                    cdrSummary: meta.cdrSummary || '',
+	                    developability: meta.developability || '',
+	                    site: meta.site || '',
+	                    binderId: meta.binderId || '',
+	                    ipTm: typeof meta.ipTm === 'number' ? meta.ipTm : null
+	                };
+	            })
         };
     }
 
@@ -10434,16 +10488,17 @@ ${fallbackTableRows(profile.rows)}
             var isStrong = ipTm !== null && ipTm >= 0.78;
             var badgeClass = !isPass ? 'badge-fail' : (isStrong ? 'badge-pass' : 'badge-warn');
 
-            card.innerHTML = `
-                <div class="gallery-viewer" id="galleryViewer-${pdbId}">
-                </div>
-                <div class="gallery-info">
-                    <div class="gallery-name">${escHtml(meta.name || pdbId)}</div>
-                    <div class="gallery-metrics">
-                        ${ipTm !== null ? `<span class="gallery-badge badge-ipTm">ipTM ${ipTm.toFixed(3)}</span>` : ''}
-                        <span class="gallery-badge ${badgeClass}">${!isPass ? 'FAIL' : (isStrong ? 'PASS' : 'WEAK')}</span>
-                    </div>
-                </div>`;
+	            card.innerHTML = `
+	                <div class="gallery-viewer" id="galleryViewer-${pdbId}">
+	                </div>
+	                <div class="gallery-info">
+	                    <div class="gallery-name">${escHtml(meta.candidateLabel || meta.name || pdbId)}</div>
+	                    <div class="gallery-metrics">
+	                        ${meta.targetDisplay ? `<span class="gallery-badge badge-ipTm">${escHtml(meta.targetDisplay)}</span>` : ''}
+	                        ${ipTm !== null ? `<span class="gallery-badge badge-ipTm">ipTM ${ipTm.toFixed(3)}</span>` : ''}
+	                        <span class="gallery-badge ${badgeClass}">${!isPass ? 'FAIL' : (isStrong ? 'PASS' : 'WEAK')}</span>
+	                    </div>
+	                </div>`;
             container.appendChild(card);
 
             galleryInitQueue.push({ pdbId, idx, inited: false });
@@ -10555,7 +10610,8 @@ ${fallbackTableRows(profile.rows)}
 
         const seed = ipTm !== null ? Math.floor(ipTm * 10000) :
                      (meta.id ? [...meta.id].reduce((a,c)=>a+c.charCodeAt(0),0) : 12345);
-        const seq = generateMockVHH(seed);
+        const providedSeq = typeof meta.sequence === 'string' ? meta.sequence.replace(/[^A-Za-z]/g, '').toUpperCase() : '';
+        const seq = providedSeq || generateMockVHH(seed);
         const cdrPositions = generateCDRPositions(seq.length);
 
         if (lenEl) lenEl.textContent = seq.length;
@@ -10567,12 +10623,17 @@ ${fallbackTableRows(profile.rows)}
             const pLDDT = ipTm !== null ? (88+ipTm*8+Math.random()*5).toFixed(1) : '\u2014';
             metEl.innerHTML = `
                 <span class="seq-metric"><strong>PASS</strong></span>
+                ${meta.targetDisplay ? `<span class="seq-metric">Target <strong>${escHtml(meta.targetDisplay)}</strong></span>` : ''}
+                ${meta.disease ? `<span class="seq-metric">Disease <strong>${escHtml(meta.disease)}</strong></span>` : ''}
+                ${meta.cdrSummary ? `<span class="seq-metric">CDR <strong>${escHtml(meta.cdrSummary)}</strong></span>` : ''}
                 <span class="seq-metric">Binder pTM <strong>${ipTmVal}</strong></span>
                 <span class="seq-metric">Min iPAE <strong>${ipTm !== null ? (ipTm*0.7).toFixed(2) : '\u2014'}</strong></span>
                 <span class="seq-metric">Complex RMSD <strong>${rmsd}</strong></span>
                 <span class="seq-metric">DockQ <strong>${dockQ}</strong></span>
                 <span class="seq-metric">Binder pLDDT <strong>${pLDDT}</strong></span>
-                <span class="seq-metric">IPTM <strong>${ipTm !== null ? ipTm.toFixed(2) : '\u2014'}</strong></span>`;
+                <span class="seq-metric">IPTM <strong>${ipTm !== null ? ipTm.toFixed(2) : '\u2014'}</strong></span>
+                ${meta.selectedEpitope ? `<span class="seq-metric">Epitope <strong>${escHtml(meta.selectedEpitope)}</strong></span>` : ''}
+                ${meta.developability ? `<span class="seq-metric">Developability <strong>${escHtml(meta.developability)}</strong></span>` : ''}`;
         }
 
         if (seqEl) {
@@ -13319,6 +13380,8 @@ QVQLVESGGGLVQPGGSLRLSCAASGYIFSSNAMGWYRQAPGKQRELVAAISSGGSTYYADSVKGRFTISRDNAKTTLYL
     function closeMolModal() {
         const overlay = document.getElementById('molModalOverlay');
         const bodyEl = document.getElementById('molModalBody');
+        const badge = document.getElementById('autoSpinBadge');
+        if (badge) badge.remove();
         if (overlay) overlay.classList.remove('open');
         clearTimeout(molCloseTimer);
         molCloseTimer = setTimeout(() => {
@@ -13344,29 +13407,19 @@ QVQLVESGGGLVQPGGSLRLSCAASGYIFSSNAMGWYRQAPGKQRELVAAISSGGSTYYADSVKGRFTISRDNAKTTLYL
         molCloseTimer = null;
 
         // Open modal
-        openMolModal(meta.id, meta.name || meta.id);
+        openMolModal(meta.id, meta.candidateLabel || meta.name || meta.id);
 
-        // Add countdown badge
+        // Add persistent spin badge
         setTimeout(() => {
             const titleEl = document.getElementById('molModalTitle');
             if (titleEl && !document.getElementById('autoSpinBadge')) {
                 const badge = document.createElement('span');
                 badge.id = 'autoSpinBadge';
                 badge.style.cssText = 'margin-left:12px;font-size:11px;font-weight:700;padding:3px 11px;border-radius:999px;background:rgba(0,123,255,0.15);color:var(--brand);border:1px solid rgba(0,123,255,0.35);letter-spacing:0.3px;vertical-align:middle;';
-                badge.textContent = '⟳ AUTO SPIN · 5s';
+                badge.textContent = 'AUTO SPIN';
                 titleEl.appendChild(badge);
             }
         }, 80);
-
-        // Countdown
-        let remaining = 5;
-        if (binderSpinCountInterval) clearInterval(binderSpinCountInterval);
-        binderSpinCountInterval = setInterval(() => {
-            remaining--;
-            const badge = document.getElementById('autoSpinBadge');
-            if (badge) badge.textContent = remaining > 0 ? `⟳ AUTO SPIN · ${remaining}s` : '⟳ Closing…';
-            if (remaining <= 0) clearInterval(binderSpinCountInterval);
-        }, 1000);
 
         // Click the Spin button once the iframe finishes loading
         // Use a single onload listener — no polling, no postMessage flooding
@@ -13401,16 +13454,9 @@ QVQLVESGGGLVQPGGSLRLSCAASGYIFSSNAMGWYRQAPGKQRELVAAISSGGSTYYADSVKGRFTISRDNAKTTLYL
             }
         }, 50);
 
-        // Auto-close after 5s
         if (binderSpinTimer) clearTimeout(binderSpinTimer);
-        binderSpinTimer = setTimeout(() => {
-            clearInterval(binderSpinCountInterval);
-            clearInterval(waitForIframe);
-            const badge = document.getElementById('autoSpinBadge');
-            if (badge) badge.remove();
-            closeMolModal();
-            if (onCloseCb) onCloseCb();
-        }, 5000);
+        binderSpinTimer = null;
+        if (onCloseCb) setTimeout(onCloseCb, 120);
     }
 
     function closeBinderSpinModal() {
@@ -13450,7 +13496,7 @@ QVQLVESGGGLVQPGGSLRLSCAASGYIFSSNAMGWYRQAPGKQRELVAAISSGGSTYYADSVKGRFTISRDNAKTTLYL
     </script>
 
     <!-- Molecular Viewer Modal (reused for auto-spin on done) -->
-    <div class="mol-modal-overlay" id="molModalOverlay" onclick="if(event.target===this){ if(binderSpinTimer) closeBinderSpinModal(); else closeMolModal(); }">
+	    <div class="mol-modal-overlay" id="molModalOverlay">
         <div class="mol-modal">
             <div class="mol-modal-header">
                 <div class="mol-modal-title" id="molModalTitle"><i data-lucide="box" style="width:18px;height:18px;color:#6B5BFF;"></i> Molecule Viewer</div>
