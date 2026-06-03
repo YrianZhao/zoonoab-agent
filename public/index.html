@@ -3820,7 +3820,7 @@
                     <button class="input-icon-btn wake-btn" id="wakeBtn" onclick="toggleWakeListening()" title="开启小诺同学语音唤醒">
                         <i data-lucide="radio" style="width: 18px; height: 18px;"></i>
                     </button>
-                    <button class="input-icon-btn skip-thinking-btn" id="skipThinkingBtn" onclick="skipThinking()" style="display:none;" title="跳过当前阶段的思考展示">
+                    <button class="input-icon-btn skip-thinking-btn" id="skipThinkingBtn" onclick="skipThinking()" style="display:none;" title="进入快速思考模式">
                         <i data-lucide="fast-forward" style="width:15px;height:15px;"></i>
                         <span>跳过思考</span>
                     </button>
@@ -4954,7 +4954,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78141226';
+    const APP_BUILD_VERSION = '78141227';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -5174,7 +5174,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         btn.classList.toggle('pending', state === 'pending');
         btn.disabled = state === 'pending';
         if (label) label.textContent = state === 'pending' ? '跳过中' : '跳过思考';
-        btn.title = state === 'pending' ? '正在切换快速展示' : '加速当前工作流展示';
+        btn.title = state === 'pending' ? '正在切换快速思考' : '加速当前工作流思考';
     }
 
     function setRunControlsActive(active) {
@@ -6272,14 +6272,14 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 setWorkflowFastForward(true);
                 setSkipThinkingButtonState('pending');
                 showTyping();
-                appendLog('[System] ' + (msg.message || (msg.stage ? `正在收束「${msg.stage}」，后续流程将加速展示...` : '正在收束当前阶段，后续流程将加速展示...')));
+                appendLog('[System] ' + (msg.message || (msg.stage ? `正在收束「${msg.stage}」，后续流程将进入快速思考...` : '正在收束当前阶段，后续流程将进入快速思考...')));
                 break;
 
             case 'thinking_skipped':
                 setWorkflowFastForward(true);
                 skipThinkingRequested = false;
                 setSkipThinkingButtonState('idle');
-                appendLog('[System] ' + (msg.message || '已进入快速展示模式。'));
+                appendLog('[System] ' + (msg.message || '已进入跳过思考模式，后续流程将快速思考。'));
                 showTyping();
                 break;
 
@@ -6821,7 +6821,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         setWorkflowFastForward(true);
         setSkipThinkingButtonState('pending');
         showTyping();
-        appendLog('[System] 正在收束当前阶段，后续流程将进入快速展示...');
+        appendLog('[System] 正在收束当前阶段，后续流程将进入快速思考...');
         if (ws && ws.readyState === 1) {
             try {
                 ws.send(JSON.stringify({ type: 'skip_thinking' }));
@@ -6837,7 +6837,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 demoSkipSettled = true;
                 skipThinkingRequested = false;
                 setSkipThinkingButtonState('idle');
-                appendLog('[System] 已进入快速展示模式，后续流程将加速输出。');
+                appendLog('[System] 已进入跳过思考模式，后续流程将快速思考。');
             }, 1100);
         }
     }

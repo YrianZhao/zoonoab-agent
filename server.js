@@ -65,8 +65,7 @@ let localAsrLastExit = null;
 const localAsrRecentLogs = [];
 
 const WORKFLOW_SKIP_SETTLE_MS = Number(process.env.WORKFLOW_SKIP_SETTLE_MS || 1100);
-const WORKFLOW_SKIP_DELAY_MS = Number(process.env.WORKFLOW_SKIP_DELAY_MS || 80);
-const WORKFLOW_FAST_DELAY_MS = Number(process.env.WORKFLOW_FAST_DELAY_MS || 650);
+const WORKFLOW_FAST_DELAY_MS = Number(process.env.WORKFLOW_FAST_DELAY_MS || 300);
 
 function readAppBuildVersion() {
   try {
@@ -2940,14 +2939,6 @@ function markWorkflowStage(sess, stage) {
   sess.workflowStage = stage || '';
 }
 
-function consumeWorkflowSkip(sess) {
-  if (!sess || !sess.skipThinking) return false;
-  if (sess.fastForwardWorkflow) return true;
-  sess.skipThinking = false;
-  sess.skipThinkingNotified = false;
-  return true;
-}
-
 function workflowDelay(ws, sess, ms, options = {}) {
   const normalMs = Number(ms) || 0;
   const settleMs = Number(options.settleMs || WORKFLOW_SKIP_SETTLE_MS);
@@ -2980,9 +2971,7 @@ function workflowDelay(ws, sess, ms, options = {}) {
         ws.send(JSON.stringify({
           type: 'thinking_skipped',
           stage: sess.workflowStage || '',
-          message: sess.fastForwardWorkflow
-            ? '已进入快速展示模式，后续流程将加速输出。'
-            : '已跳过当前阶段的推理展示，正在整理阶段结果。'
+          message: '已进入跳过思考模式，后续流程将快速思考。'
         }));
       }
       clearTimeout(timer);
@@ -3075,19 +3064,15 @@ async function runWorkflow(ws, input, forcedRoute) {
     design_goal: profile.mechanism,
   }});
   await delay(2000);
-  if (consumeWorkflowSkip(sess)) {
-    send({ type: 'log', text: '[LiteratureAgent] ' + (isZh ? '已跳过证据包细节展示，保留关键摘要进入下一步。' : 'Skipped detailed evidence display; keeping key summary for the next step.') });
-  } else {
-    send({ type: 'log', text: '[LiteratureAgent] ' + (isZh ? '加载 ' + profile.evidence + '...' : 'Loading ' + profile.evidence + '...') });
-    await delay(2000);
-    send({ type: 'log', text: '[LiteratureAgent] ' + (isZh ? '整理 ' + displayMeta.evidenceItems + ' 条已收录证据摘要、结构注释和抗体开发背景...' : 'Organizing ' + displayMeta.evidenceItems + ' curated evidence notes, structure annotations, and antibody context...') });
-    await delay(2000);
-    send({ type: 'log', text: '[LiteratureAgent] ' + (isZh ? '校验 ' + displayMeta.referenceEntries + ' 与 ' + profile.interfaceFocus + ' 的一致性...' : 'Checking ' + displayMeta.referenceEntries + ' against ' + profile.interfaceFocus + '...') });
-    await delay(2000);
-    send({ type: 'log', text: '[LiteratureAgent] ' + (isZh ? '归并 ' + displayMeta.reviewedNotes + ' 条表位、结构和可开发性注释...' : 'Consolidating ' + displayMeta.reviewedNotes + ' epitope, structure, and developability notes...') });
-    await delay(1500);
-    send({ type: 'log', text: '[LiteratureAgent] ' + (isZh ? '靶点证据包准备完成，移交风险标注...' : 'Evidence package ready; handing off to risk annotation...') });
-  }
+  send({ type: 'log', text: '[LiteratureAgent] ' + (isZh ? '加载 ' + profile.evidence + '...' : 'Loading ' + profile.evidence + '...') });
+  await delay(2000);
+  send({ type: 'log', text: '[LiteratureAgent] ' + (isZh ? '整理 ' + displayMeta.evidenceItems + ' 条已收录证据摘要、结构注释和抗体开发背景...' : 'Organizing ' + displayMeta.evidenceItems + ' curated evidence notes, structure annotations, and antibody context...') });
+  await delay(2000);
+  send({ type: 'log', text: '[LiteratureAgent] ' + (isZh ? '校验 ' + displayMeta.referenceEntries + ' 与 ' + profile.interfaceFocus + ' 的一致性...' : 'Checking ' + displayMeta.referenceEntries + ' against ' + profile.interfaceFocus + '...') });
+  await delay(2000);
+  send({ type: 'log', text: '[LiteratureAgent] ' + (isZh ? '归并 ' + displayMeta.reviewedNotes + ' 条表位、结构和可开发性注释...' : 'Consolidating ' + displayMeta.reviewedNotes + ' epitope, structure, and developability notes...') });
+  await delay(1500);
+  send({ type: 'log', text: '[LiteratureAgent] ' + (isZh ? '靶点证据包准备完成，移交风险标注...' : 'Evidence package ready; handing off to risk annotation...') });
   await delay(1500);
   send({ type: 'tool_result', tool: 'target_evidence_review', result: {
     route: profile.routeLabel,
@@ -3113,15 +3098,11 @@ async function runWorkflow(ws, input, forcedRoute) {
     antibody_format: abType,
   }});
   await delay(1800);
-  if (consumeWorkflowSkip(sess)) {
-    send({ type: 'log', text: '[MutationAgent] ' + (isZh ? '已跳过风险规则展开展示，直接输出分层结论。' : 'Skipped detailed risk-rule display; emitting stratification summary.') });
-  } else {
-    send({ type: 'log', text: '[MutationAgent] ' + (isZh ? '加载当前路线的界面风险规则...' : 'Loading route-specific interface-risk rules...') });
-    await delay(1800);
-    send({ type: 'log', text: '[MutationAgent] ' + (isZh ? '标注 ' + profile.interfaceFocus + ' 的可及性与稳定性...' : 'Annotating accessibility and stability for ' + profile.interfaceFocus + '...') });
-    await delay(1800);
-    send({ type: 'log', text: '[MutationAgent] ' + (isZh ? '检查 ' + abType + ' 骨架成型与可开发性约束...' : 'Checking ' + abType + ' scaffold geometry and developability constraints...') });
-  }
+  send({ type: 'log', text: '[MutationAgent] ' + (isZh ? '加载当前路线的界面风险规则...' : 'Loading route-specific interface-risk rules...') });
+  await delay(1800);
+  send({ type: 'log', text: '[MutationAgent] ' + (isZh ? '标注 ' + profile.interfaceFocus + ' 的可及性与稳定性...' : 'Annotating accessibility and stability for ' + profile.interfaceFocus + '...') });
+  await delay(1800);
+  send({ type: 'log', text: '[MutationAgent] ' + (isZh ? '检查 ' + abType + ' 骨架成型与可开发性约束...' : 'Checking ' + abType + ' scaffold geometry and developability constraints...') });
   await delay(1800);
   send({ type: 'tool_result', tool: 'interface_risk_annotation', result: {
     interface_focus: profile.interfaceFocus,
@@ -3147,15 +3128,11 @@ async function runWorkflow(ws, input, forcedRoute) {
     method: 'curated structural annotation alignment',
   }});
   await delay(1500);
-  if (consumeWorkflowSkip(sess)) {
-    send({ type: 'log', text: '[EpitopeAgent] ' + (isZh ? '已跳过结构对齐细节展示，保留候选表位排序结果。' : 'Skipped alignment detail display; preserving ranked epitope candidates.') });
-  } else {
-    send({ type: 'log', text: '[EpitopeAgent] ' + (isZh ? '加载 ' + profile.structureRef + ' 结构注释...' : 'Loading structural annotations for ' + profile.structureRef + '...') });
-    await delay(1800);
-    send({ type: 'log', text: '[EpitopeAgent] ' + (isZh ? '对齐 ' + profile.domain + ' 的关键界面特征...' : 'Aligning key interface features for ' + profile.domain + '...') });
-    await delay(1800);
-    send({ type: 'log', text: '[EpitopeAgent] ' + (isZh ? '生成候选表位清单并标注推荐级别...' : 'Generating candidate epitope list with recommendation levels...') });
-  }
+  send({ type: 'log', text: '[EpitopeAgent] ' + (isZh ? '加载 ' + profile.structureRef + ' 结构注释...' : 'Loading structural annotations for ' + profile.structureRef + '...') });
+  await delay(1800);
+  send({ type: 'log', text: '[EpitopeAgent] ' + (isZh ? '对齐 ' + profile.domain + ' 的关键界面特征...' : 'Aligning key interface features for ' + profile.domain + '...') });
+  await delay(1800);
+  send({ type: 'log', text: '[EpitopeAgent] ' + (isZh ? '生成候选表位清单并标注推荐级别...' : 'Generating candidate epitope list with recommendation levels...') });
   await delay(1500);
   send({ type: 'tool_result', tool: 'structure_alignment', result: {
     route: profile.routeLabel,
@@ -3182,19 +3159,15 @@ async function runWorkflow(ws, input, forcedRoute) {
     antibody_format: abType,
   }});
   await delay(1500);
-  if (consumeWorkflowSkip(sess)) {
-    send({ type: 'log', text: '[EpitopeAgent] ' + (isZh ? '已跳过热点评分过程展示，直接锁定推荐表位策略。' : 'Skipped hotspot scoring detail display; locking selected epitope strategy.') });
-  } else {
-    send({ type: 'log', text: '[EpitopeAgent] ' + (isZh ? '评估候选表面的结构暴露度...' : 'Scoring structural accessibility for candidate surfaces...') });
-    await delay(2000);
-    send({ type: 'log', text: '[EpitopeAgent] ' + (isZh ? '评估与 ' + profile.mechanism + ' 的机制匹配度...' : 'Scoring mechanism fit for ' + profile.mechanism + '...') });
-    await delay(2000);
-    send({ type: 'log', text: '[EpitopeAgent] ' + (isZh ? '标注候选表位的抗体可及空间...' : 'Annotating antibody-accessible space for candidate epitopes...') });
-    await delay(2000);
-    send({ type: 'log', text: '[EpitopeAgent] ' + (isZh ? '应用可开发性过滤器，排除低展示价值区域...' : 'Applying developability filters to remove low-value regions...') });
-    await delay(1500);
-    send({ type: 'log', text: '[EpitopeAgent] ' + (isZh ? '确定推荐表位策略：' + profile.selectedEpitope : 'Selected epitope strategy: ' + profile.selectedEpitope) });
-  }
+  send({ type: 'log', text: '[EpitopeAgent] ' + (isZh ? '评估候选表面的结构暴露度...' : 'Scoring structural accessibility for candidate surfaces...') });
+  await delay(2000);
+  send({ type: 'log', text: '[EpitopeAgent] ' + (isZh ? '评估与 ' + profile.mechanism + ' 的机制匹配度...' : 'Scoring mechanism fit for ' + profile.mechanism + '...') });
+  await delay(2000);
+  send({ type: 'log', text: '[EpitopeAgent] ' + (isZh ? '标注候选表位的抗体可及空间...' : 'Annotating antibody-accessible space for candidate epitopes...') });
+  await delay(2000);
+  send({ type: 'log', text: '[EpitopeAgent] ' + (isZh ? '应用可开发性过滤器，排除低展示价值区域...' : 'Applying developability filters to remove low-value regions...') });
+  await delay(1500);
+  send({ type: 'log', text: '[EpitopeAgent] ' + (isZh ? '确定推荐表位策略：' + profile.selectedEpitope : 'Selected epitope strategy: ' + profile.selectedEpitope) });
   await delay(1500);
   send({ type: 'tool_result', tool: 'hotspot_scoring', result: {
     selected_site: profile.selectedEpitope,
@@ -3220,17 +3193,13 @@ async function runWorkflow(ws, input, forcedRoute) {
     candidate_budget: plan.initial,
   }});
   await delay(1500);
-  if (consumeWorkflowSkip(sess)) {
-    send({ type: 'log', text: '[StructureAgent] ' + (isZh ? '已跳过结构准备细节展示，设计输入已就绪。' : 'Skipped structure-preparation detail display; design input is ready.') });
-  } else {
-    send({ type: 'log', text: '[StructureAgent] ' + (isZh ? '加载结构参考模型：' + profile.structureRef + '...' : 'Loading structural reference model: ' + profile.structureRef + '...') });
-    await delay(1500);
-    send({ type: 'log', text: '[StructureAgent] ' + (isZh ? '提取目标区域：' + profile.selectedEpitope + '...' : 'Extracting target region: ' + profile.selectedEpitope + '...') });
-    await delay(1500);
-    send({ type: 'log', text: '[StructureAgent] ' + (isZh ? '生成 ' + profile.scaffold + ' 的界面约束...' : 'Generating interface constraints for ' + profile.scaffold + '...') });
-    await delay(1200);
-    send({ type: 'log', text: '[StructureAgent] ' + (isZh ? '写入 Zoonodiffusion 与 ZoonoMPNN 设计输入...' : 'Writing Zoonodiffusion and ZoonoMPNN design inputs...') });
-  }
+  send({ type: 'log', text: '[StructureAgent] ' + (isZh ? '加载结构参考模型：' + profile.structureRef + '...' : 'Loading structural reference model: ' + profile.structureRef + '...') });
+  await delay(1500);
+  send({ type: 'log', text: '[StructureAgent] ' + (isZh ? '提取目标区域：' + profile.selectedEpitope + '...' : 'Extracting target region: ' + profile.selectedEpitope + '...') });
+  await delay(1500);
+  send({ type: 'log', text: '[StructureAgent] ' + (isZh ? '生成 ' + profile.scaffold + ' 的界面约束...' : 'Generating interface constraints for ' + profile.scaffold + '...') });
+  await delay(1200);
+  send({ type: 'log', text: '[StructureAgent] ' + (isZh ? '写入 Zoonodiffusion 与 ZoonoMPNN 设计输入...' : 'Writing Zoonodiffusion and ZoonoMPNN design inputs...') });
   await delay(1200);
   send({ type: 'tool_result', tool: 'structure_retrieval', result: {
     status: 'OK',
@@ -3266,7 +3235,6 @@ async function runWorkflow(ws, input, forcedRoute) {
   const agentNames = ['DesignAgent-1', 'DesignAgent-2', 'DesignAgent-3'];
   let r1Pass = 0;
   const r1Target = Math.max(count + 4, plan.r1Dedup);
-  let r1Skipped = false;
   for (let b = 1; b <= plan.r1Batches; b++) {
     const remainingBatches = plan.r1Batches - b + 1;
     const bp = Math.max(1, Math.round((r1Target - r1Pass) / remainingBatches) + (b % 2 === 0 ? 1 : 0));
@@ -3282,18 +3250,6 @@ async function runWorkflow(ws, input, forcedRoute) {
       agents[7].status = 'active';
       agents[7].progress = Math.round((b - Math.ceil(plan.r1Batches / 2)) / Math.max(1, Math.floor(plan.r1Batches / 2)) * 60);
     }
-    if (consumeWorkflowSkip(sess)) {
-      r1Skipped = true;
-      r1Pass = r1Target;
-      agents[4].progress = 100;
-      agents[5].progress = 100;
-      agents[6].progress = 100;
-      agents[7].status = 'active';
-      agents[7].progress = Math.max(agents[7].progress || 0, 60);
-      send({ type: 'log', text: '[ZoonoAb-Designer] ' + (isZh ? '已跳过 Round 1 批次展示，保留快速评分通过池。' : 'Skipped Round 1 batch display; preserving fast-scored passing pool.') });
-      send({ type: 'subagents', agents });
-      break;
-    }
     send({ type: 'log', text: '[ZoonoAb-Designer] ' + agentNames[(b-1) % 3] + ' → R1 Batch ' + b + '/' + plan.r1Batches + ' — Zoonodiffusion ' + (isZh ? '结构扩散采样...' : 'sampling...') });
     await delay(800);
     send({ type: 'log', text: '[ZoonoAb-Designer] ' + agentNames[(b-1) % 3] + ' → R1 Batch ' + b + '/' + plan.r1Batches + ' — ZoonoMPNN ' + (isZh ? '序列设计...' : 'sequencing...') });
@@ -3302,7 +3258,6 @@ async function runWorkflow(ws, input, forcedRoute) {
     send({ type: 'subagents', agents });
     await delay(b < Math.ceil(plan.r1Batches / 2) ? 1200 : 900);
   }
-  if (r1Skipped) await delay(WORKFLOW_SKIP_DELAY_MS);
   // ✅ CORRECT ORDER: agent_msg FIRST (so chat and sidebar stay in sync)
   send({ type: 'agent_msg', text: M.r1Done(r1Pass, plan) });
   await delay(1200);
@@ -3332,7 +3287,6 @@ async function runWorkflow(ws, input, forcedRoute) {
 
   const r2Target = Math.max(count + plan.diversityClusters, Math.round(r1Pass + count * 1.2));
   let r2Cum = r1Pass;
-  let r2Skipped = false;
   for (let b = 0; b < plan.r2Batches; b++) {
     const remainingBatches = plan.r2Batches - b;
     const bp = Math.max(1, Math.round((r2Target - r2Cum) / remainingBatches) + (b % 3 === 0 ? 1 : 0));
@@ -3341,23 +3295,12 @@ async function runWorkflow(ws, input, forcedRoute) {
     agents[4].progress = pct;
     agents[5].progress = Math.max(0, pct - 10);
     agents[6].progress = Math.max(0, pct - 18);
-    if (consumeWorkflowSkip(sess)) {
-      r2Skipped = true;
-      r2Cum = r2Target;
-      agents[4].progress = 100;
-      agents[5].progress = 100;
-      agents[6].progress = 100;
-      send({ type: 'log', text: '[ZoonoAb-Designer] ' + (isZh ? '已跳过 Round 2 扩展批次展示，候选池已完成收敛。' : 'Skipped Round 2 expansion display; candidate pool has converged.') });
-      send({ type: 'subagents', agents });
-      break;
-    }
     send({ type: 'log', text: '[ZoonoAb-Designer] ' + agentNames[b % 3] + ' → R2 Batch ' + (b+1) + '/' + plan.r2Batches + ' — CDR ' + (isZh ? '多样性扩展...' : 'diversification...') });
     await delay(700);
     send({ type: 'log', text: '[ZoonoAb-Designer] ' + agentNames[b % 3] + ' → R2 Batch ' + (b+1) + '/' + plan.r2Batches + ' — ZoonoFold re-scoring — ' + bp + ' ' + (isZh ? '通过' : 'passing') + ' (cumulative: ' + r2Cum + ')' });
     send({ type: 'subagents', agents });
     await delay(1400);
   }
-  if (r2Skipped) await delay(WORKFLOW_SKIP_DELAY_MS);
   await delay(1000);
   const r2Pass = r2Cum;
   send({ type: 'tool_result', tool: 'extend_design_batch', result: {
@@ -3410,12 +3353,6 @@ async function runWorkflow(ws, input, forcedRoute) {
     'Re-running ZoonoFold-Multimer on final ' + count + ' candidates...',
     'ValidatorAgent: all ' + count + ' candidates moved into final QA OK'];
   for (const log of sweepLogs) {
-    if (consumeWorkflowSkip(sess)) {
-      agents[7].progress = 100;
-      send({ type: 'log', text: '[ValidatorAgent] ' + (isZh ? '已跳过多样性扫描过程展示，最终代表序列已选定。' : 'Skipped diversity-sweep display; final representatives selected.') });
-      send({ type: 'subagents', agents });
-      break;
-    }
     send({ type: 'log', text: '[ValidatorAgent] ' + log });
     agents[7].progress = Math.min(100, agents[7].progress + 4);
     send({ type: 'subagents', agents });
@@ -3469,12 +3406,6 @@ async function runWorkflow(ws, input, forcedRoute) {
     'Computing developability flags: hydrophobicity, charge, aggregation propensity...',
     'Developability: no high-risk items, medium-risk items flagged — generating export files...'];
   for (const log of qaLogs) {
-    if (consumeWorkflowSkip(sess)) {
-      agents[8].progress = 95;
-      send({ type: 'log', text: '[QAAgent] ' + (isZh ? '已跳过 QA 过程展示，直接生成质控摘要和导出结果。' : 'Skipped QA detail display; generating summary and exports.') });
-      send({ type: 'subagents', agents });
-      break;
-    }
     send({ type: 'log', text: '[QAAgent] ' + log });
     agents[8].progress = Math.min(95, agents[8].progress + 7);
     send({ type: 'subagents', agents });
@@ -4317,7 +4248,7 @@ wss.on('connection', ws => {
         ws.send(JSON.stringify({
           type: 'skip_thinking_ack',
           stage: sess.workflowStage || '',
-          message: '正在收束当前阶段，后续流程将进入快速展示。'
+          message: '正在收束当前阶段，后续流程将进入快速思考。'
         }));
       }
       return;
