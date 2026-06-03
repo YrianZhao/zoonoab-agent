@@ -2135,10 +2135,10 @@
         }
         .mol-modal-title i { color: var(--brand); }
         .mol-modal-close {
-            width: 32px; height: 32px; border-radius: var(--radius-full); border: none;
+            width: 48px; height: 48px; border-radius: 12px; border: none;
             background: transparent; color: var(--text-muted); cursor: pointer;
             display: flex; align-items: center; justify-content: center;
-            font-size: 18px; line-height: 1;
+            font-size: 30px; line-height: 1;
             transition: var(--transition);
         }
         .mol-modal-close:hover {
@@ -2747,30 +2747,32 @@
         }
         .plan-duration { font-size: 11px; color: var(--text-muted); font-family: var(--mono-font-family); }
 
-        /* ═══════════════ PROJECT HISTORY SIDEBAR (bottom section) ═══════════════ */
+        /* ═══════════════ PROJECT HISTORY (knowledge base sidebar) ═══════════════ */
         .project-history-section {
             border-top: 1px solid var(--border);
-            padding: 12px 14px;
+            padding: 10px 8px 0;
             flex-shrink: 0;
             min-height: 0;
-            max-height: 282px;
-            background: linear-gradient(180deg, rgba(0,123,255,0.02) 0%, rgba(0,123,255,0.04) 100%);
+            max-height: 220px;
+            background: transparent;
+            margin-top: 8px;
         }
         .project-history-title {
             font-size: 10px; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 0.8px; color: var(--text-muted); margin-bottom: 8px;
+            letter-spacing: 0.06em; color: var(--text-muted); margin-bottom: 6px;
             display: flex; align-items: center; justify-content: space-between;
+            padding: 0 2px;
         }
         .project-history-title button { color: var(--brand) !important; }
         .project-history-title button:hover { color: var(--brand-dark, #0057CC) !important; }
         .project-history-list {
             display: flex; flex-direction: column; gap: 2px;
-            max-height: 220px; overflow-y: auto; overscroll-behavior: contain;
+            max-height: 168px; overflow-y: auto; overscroll-behavior: contain;
             padding-right: 2px;
         }
         .project-history-item {
             display: flex; align-items: center; gap: 8px;
-            padding: 7px 10px; border-radius: 6px;
+            padding: 6px 8px; border-radius: var(--radius-md);
             cursor: pointer; transition: var(--transition);
             font-size: 12px; color: var(--text-secondary);
         }
@@ -4141,6 +4143,15 @@
                         <div class="kb-tree-item" data-project="common" onclick="kbSelectProject(this,'common')">
                             <span>📚</span> 公共资料库 <span class="kb-tree-count">2</span>
                         </div>
+                        <div class="project-history-section" id="projectHistorySection">
+                            <div class="project-history-title">
+                                <span><i data-lucide="history" style="width:10px;height:10px;vertical-align:middle;margin-right:4px;"></i> 历史会话</span>
+                                <button style="background:none;border:none;font-size:10px;color:var(--brand);cursor:pointer;font-weight:600;" onclick="clearProjectHistory()">清除</button>
+                            </div>
+                            <div class="project-history-list" id="projectHistoryList">
+                                <div style="padding:10px 8px;font-size:11px;color:var(--text-muted);">暂无历史记录</div>
+                            </div>
+                        </div>
                     </div>
                     <div class="kb-tree-footer">
                         <button class="kb-upload-btn" onclick="openKBUpload()">
@@ -4322,16 +4333,6 @@
             <div class="empty-state" style="padding: 40px 20px;">
                 <div class="empty-state-icon" style="color:var(--text-muted);"><i data-lucide="inbox" style="width: 32px; height: 32px;"></i></div>
                 <div class="empty-state-text" style="font-size: 12px; color:var(--text-muted);">暂无进行中的任务</div>
-            </div>
-        </div>
-        <!-- Project History at bottom of left sidebar -->
-        <div class="project-history-section" id="projectHistorySection">
-            <div class="project-history-title">
-                <span><i data-lucide="history" style="width:10px;height:10px;vertical-align:middle;margin-right:4px;"></i> 历史会话</span>
-                <button style="background:none;border:none;font-size:10px;color:var(--brand);cursor:pointer;font-weight:600;" onclick="clearProjectHistory()">清除</button>
-            </div>
-            <div class="project-history-list" id="projectHistoryList">
-                <div style="padding:10px 12px;font-size:11px;color:var(--text-muted);">暂无历史记录</div>
             </div>
         </div>
     </div>
@@ -4954,7 +4955,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78141227';
+    const APP_BUILD_VERSION = '78141228';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -6161,6 +6162,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     function clearProjectHistory() {
         localStorage.removeItem(_HIST_KEY);
         renderProjectHistory();
+        showToast('历史记录已清除');
     }
     function getRelTime(ts) {
         const d = Date.now() - ts;
@@ -6174,7 +6176,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (!list) return;
         const history = loadHistory();
         if (!history.length) {
-            list.innerHTML = '<div style="padding:10px 12px;font-size:11px;color:var(--text-muted);">暂无历史记录</div>';
+            list.innerHTML = '<div style="padding:10px 8px;font-size:11px;color:var(--text-muted);">暂无历史记录</div>';
             return;
         }
         list.innerHTML = history.map((h, i) => {
@@ -6277,8 +6279,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
             case 'thinking_skipped':
                 setWorkflowFastForward(true);
-                skipThinkingRequested = false;
-                setSkipThinkingButtonState('idle');
+                skipThinkingRequested = true;
+                setSkipThinkingButtonState('pending');
                 appendLog('[System] ' + (msg.message || '已进入跳过思考模式，后续流程将快速思考。'));
                 showTyping();
                 break;
@@ -6835,8 +6837,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             demoSkipRequested = true;
             setTimeout(() => {
                 demoSkipSettled = true;
-                skipThinkingRequested = false;
-                setSkipThinkingButtonState('idle');
+                skipThinkingRequested = true;
+                setSkipThinkingButtonState('pending');
                 appendLog('[System] 已进入跳过思考模式，后续流程将快速思考。');
             }, 1100);
         }
@@ -13132,13 +13134,6 @@ ${fallbackTableRows(profile.rows)}
                 <div style="margin-top:8px;font-size:11px;color:var(--text-muted);">PDB: ${escHtml(pdbId)} · PLIP v2.3 · 截断距离 4.5 Å</div>`;
             showToast('相互作用分析完成', 'success');
         }, 1500);
-    }
-
-    // ═══════════════ PROJECT HISTORY ═══════════════
-    function clearProjectHistory() {
-        document.getElementById('projectHistoryList').innerHTML =
-            '<div style="font-size:11px;color:rgba(255,255,255,0.25);padding:8px 10px;">暂无历史记录</div>';
-        showToast('历史记录已清除');
     }
 
     let notifOpen = false;
