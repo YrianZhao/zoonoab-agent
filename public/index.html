@@ -2536,7 +2536,7 @@
         .qd-chip.active { border-color: var(--brand); color: var(--brand-dark); background: var(--brand-lighter); font-weight: 600; }
         .qd-modal {
             background: var(--bg-card); border-radius: 16px; box-shadow: 0 24px 60px rgba(0,0,0,0.18);
-            width: min(720px, 95vw); height: min(720px, calc(100vh - 48px)); overflow: hidden; position: relative;
+            width: min(860px, 95vw); height: min(720px, calc(100vh - 48px)); overflow: hidden; position: relative;
             display: flex; flex-direction: column;
         }
         .qd-modal-close {
@@ -2557,7 +2557,7 @@
             box-shadow: 0 8px 18px rgba(0,123,255,0.22);
         }
         .qd-header-title { font-size: 16px; font-weight: 750; color: var(--text-primary); line-height: 1.25; }
-        .qd-header-subtitle { font-size: 12px; color: var(--text-muted); margin-top: 3px; line-height: 1.4; }
+        .qd-header-subtitle { display: none; font-size: 12px; color: var(--text-muted); margin-top: 3px; line-height: 1.4; }
         .qd-progress-wrap { margin-top: 16px; }
         .qd-progress-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 8px; }
         .qd-progress-label { font-size: 11px; font-weight: 700; color: var(--brand-dark); }
@@ -2600,8 +2600,8 @@
         .qd-option-grid.compact { grid-template-columns: repeat(3, minmax(0, 1fr)); }
         .qd-option-card {
             border: 1.5px solid var(--border); border-radius: 8px; background: var(--bg-card);
-            padding: 13px 14px; text-align: left; cursor: pointer; font-family: inherit;
-            transition: var(--transition); min-height: 92px; display: flex; flex-direction: column; gap: 8px;
+            padding: 12px 13px; text-align: left; cursor: pointer; font-family: inherit;
+            transition: var(--transition); min-height: 86px; display: flex; flex-direction: column; gap: 8px;
         }
         .qd-option-card:hover { border-color: var(--brand-light); background: #F7FBFF; transform: translateY(-1px); box-shadow: var(--shadow-sm); }
         .qd-option-card.selected { border-color: var(--brand); background: var(--brand-lighter); box-shadow: 0 0 0 3px rgba(0,123,255,0.08); }
@@ -4948,7 +4948,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78141223';
+    const APP_BUILD_VERSION = '78141224';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -5513,7 +5513,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     const QD_TOTAL_STEPS = 7;
     const qdDemoRoutes = {
         allergic_asthma: {
-            disease: '过敏性哮喘',
+            disease: '过敏 / 呼吸道炎症',
             systemUnderstanding: '过敏炎症通路',
             target: 'IL-33',
             blockTarget: 'ST2',
@@ -5522,6 +5522,17 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             printable: true,
             routeLabel: 'IL-33 / ST2 炎症通路',
             triggerHint: '过敏性哮喘、IL-33、ST2'
+        },
+        allergic_tslp: {
+            disease: '过敏 / 呼吸道炎症',
+            systemUnderstanding: '上皮炎症启动通路',
+            target: 'TSLP',
+            blockTarget: 'TSLPR',
+            abType: 'Fab',
+            count: 10,
+            printable: true,
+            routeLabel: 'TSLP / TSLPR 上皮炎症方向',
+            triggerHint: '哮喘、TSLP、上皮炎症'
         },
         tumor_immunotherapy: {
             disease: '肿瘤免疫治疗',
@@ -5545,6 +5556,28 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             routeLabel: 'HER2 肿瘤靶点方向',
             triggerHint: '乳腺癌、HER2'
         },
+        solid_tumor_egfr: {
+            disease: 'EGFR 相关实体瘤',
+            systemUnderstanding: '肿瘤生长信号通路',
+            target: 'EGFR',
+            blockTarget: null,
+            abType: 'Fab',
+            count: 10,
+            printable: true,
+            routeLabel: 'EGFR 实体瘤靶点方向',
+            triggerHint: '实体瘤、EGFR'
+        },
+        angiogenesis_oncology: {
+            disease: '肿瘤血管生成相关疾病',
+            systemUnderstanding: '血管生成调控通路',
+            target: 'VEGF-A',
+            blockTarget: 'VEGFR',
+            abType: 'Fab',
+            count: 10,
+            printable: true,
+            routeLabel: 'VEGF-A / VEGFR 血管生成方向',
+            triggerHint: '肿瘤血管生成、VEGF-A'
+        },
         autoimmune_inflammation: {
             disease: '自身免疫炎症',
             systemUnderstanding: '炎症因子通路',
@@ -5555,26 +5588,174 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             printable: false,
             routeLabel: 'TNF 炎症因子方向',
             triggerHint: '自身免疫、类风湿、TNF'
+        },
+        autoimmune_il17: {
+            disease: '自身免疫 / 炎症疾病',
+            systemUnderstanding: 'IL-17 炎症轴',
+            target: 'IL-17A',
+            blockTarget: null,
+            abType: 'Fab',
+            count: 10,
+            printable: false,
+            routeLabel: 'IL-17A 炎症轴方向',
+            triggerHint: '银屑病、IL-17A'
+        },
+        autoimmune_il23: {
+            disease: '自身免疫 / 炎症疾病',
+            systemUnderstanding: 'IL-23 炎症轴',
+            target: 'IL-23',
+            blockTarget: null,
+            abType: 'Fab',
+            count: 10,
+            printable: false,
+            routeLabel: 'IL-23 炎症轴方向',
+            triggerHint: '炎症性肠病、银屑病、IL-23'
+        },
+        infectious_rsv: {
+            disease: '感染性疾病',
+            systemUnderstanding: '病毒入侵阻断通路',
+            target: 'RSV F',
+            blockTarget: null,
+            abType: 'Fab',
+            count: 10,
+            printable: true,
+            routeLabel: 'RSV F 融合蛋白方向',
+            triggerHint: 'RSV、呼吸道病毒、F 蛋白'
+        },
+        infectious_covid: {
+            disease: '感染性疾病',
+            systemUnderstanding: '病毒受体结合阻断通路',
+            target: 'SARS-CoV-2 RBD',
+            blockTarget: 'ACE2',
+            abType: 'Fab',
+            count: 10,
+            printable: true,
+            routeLabel: 'SARS-CoV-2 RBD / ACE2 方向',
+            triggerHint: '新冠、RBD、ACE2'
+        },
+        infectious_flu: {
+            disease: '感染性疾病',
+            systemUnderstanding: '病毒表面抗原中和通路',
+            target: 'Influenza HA',
+            blockTarget: null,
+            abType: 'Fab',
+            count: 10,
+            printable: true,
+            routeLabel: 'Influenza HA 中和方向',
+            triggerHint: '流感、HA、血凝素'
+        },
+        cardio_pcsk9: {
+            disease: '心血管 / 血脂疾病',
+            systemUnderstanding: 'LDL-C 调控通路',
+            target: 'PCSK9',
+            blockTarget: 'LDLR',
+            abType: 'Fab',
+            count: 10,
+            printable: true,
+            routeLabel: 'PCSK9 / LDLR 血脂调控方向',
+            triggerHint: '高胆固醇、PCSK9、LDL-C'
+        },
+        cardio_angptl3: {
+            disease: '心血管 / 血脂疾病',
+            systemUnderstanding: '甘油三酯与脂质代谢通路',
+            target: 'ANGPTL3',
+            blockTarget: null,
+            abType: 'Fab',
+            count: 10,
+            printable: true,
+            routeLabel: 'ANGPTL3 脂质代谢方向',
+            triggerHint: '血脂、ANGPTL3'
+        },
+        cardio_il1b: {
+            disease: '心血管 / 血脂疾病',
+            systemUnderstanding: '炎症性心血管风险通路',
+            target: 'IL-1β',
+            blockTarget: null,
+            abType: 'Fab',
+            count: 10,
+            printable: false,
+            routeLabel: 'IL-1β 炎症风险方向',
+            triggerHint: '炎症性心血管风险、IL-1β'
+        },
+        metabolic_angptl3: {
+            disease: '代谢 / 脂质代谢疾病',
+            systemUnderstanding: '脂质代谢调控通路',
+            target: 'ANGPTL3',
+            blockTarget: null,
+            abType: 'Fab',
+            count: 10,
+            printable: true,
+            routeLabel: 'ANGPTL3 脂质代谢方向',
+            triggerHint: '脂质代谢、ANGPTL3'
+        },
+        metabolic_gipr: {
+            disease: '代谢 / 脂质代谢疾病',
+            systemUnderstanding: '肠促胰岛素受体调控通路',
+            target: 'GIPR',
+            blockTarget: null,
+            abType: 'Fab',
+            count: 10,
+            printable: false,
+            routeLabel: 'GIPR 代谢调控方向',
+            triggerHint: '代谢疾病、GIPR'
         }
     };
     const qdWorkflowTriggers = {
         allergic_asthma: '设计 15 个靶向 IL-33 的 VHH 纳米抗体',
+        allergic_tslp: '阻断 TSLP/TSLPR 上皮炎症通路，设计 10 个高亲和力 Fab',
         tumor_immunotherapy: '阻断 PD-1/PD-L1 通路，设计 10 个高亲和力 Fab',
         breast_cancer: '请为乳腺癌相关疾病设计一个候选抗体',
-        autoimmune_inflammation: 'TNF-alpha 抗体设计'
+        solid_tumor_egfr: '靶向 EGFR，设计 10 个高亲和力 Fab',
+        angiogenesis_oncology: '中和 VEGF-A，设计 10 个高亲和力 Fab',
+        autoimmune_inflammation: 'TNF-alpha 抗体设计',
+        autoimmune_il17: '中和 IL-17A 炎症因子，设计 10 个高亲和力 Fab',
+        autoimmune_il23: '中和 IL-23 炎症因子，设计 10 个高亲和力 Fab',
+        infectious_rsv: '阻断 RSV F 蛋白介导的病毒入侵，设计 10 个高亲和力 Fab',
+        infectious_covid: '阻断 SARS-CoV-2 RBD/ACE2 结合，设计 10 个高亲和力 Fab',
+        infectious_flu: '靶向流感 HA 蛋白，设计 10 个中和 Fab',
+        cardio_pcsk9: '靶向 PCSK9，设计 10 个高亲和力 Fab',
+        cardio_angptl3: '靶向 ANGPTL3，设计 10 个高亲和力 Fab',
+        cardio_il1b: '中和 IL-1β 炎症因子，设计 10 个高亲和力 Fab',
+        metabolic_angptl3: '靶向 ANGPTL3，设计 10 个高亲和力 Fab',
+        metabolic_gipr: '靶向 GIPR，设计 10 个高亲和力 Fab'
     };
     const qdDiseaseOptions = [
-        { id: 'oncology', title: '肿瘤', desc: '展示 PD-1/PD-L1 检查点或 HER2 经典肿瘤靶点', recommended: true },
-        { id: 'immune', title: '自身免疫 / 炎症疾病', desc: '聚焦 IL-33/ST2 或 TNF 炎症因子通路' }
+        { id: 'oncology', title: '肿瘤', desc: 'PD-L1、HER2、EGFR、VEGF-A 等肿瘤相关靶点', recommended: true },
+        { id: 'immune', title: '自身免疫 / 炎症疾病', desc: 'TNF、IL-17A、IL-23 等炎症轴靶点' },
+        { id: 'allergy', title: '过敏 / 呼吸道炎症', desc: 'IL-33、TSLP 等气道炎症相关靶点' },
+        { id: 'infection', title: '感染性疾病', desc: 'RSV F、SARS-CoV-2 RBD、流感 HA 等抗原' },
+        { id: 'cardio', title: '心血管 / 血脂疾病', desc: 'PCSK9、ANGPTL3、IL-1β 等心血管相关靶点' },
+        { id: 'metabolic', title: '代谢 / 脂质代谢疾病', desc: 'ANGPTL3、GIPR 等代谢调控靶点' }
     ];
     const qdTargetOptions = {
         oncology: [
             { id: 'PD-L1', routeId: 'tumor_immunotherapy', title: 'PD-L1', desc: '免疫检查点靶标，常用于肿瘤免疫治疗方向', recommended: true },
-            { id: 'HER2', routeId: 'breast_cancer', title: 'HER2', desc: '乳腺癌/胃癌相关经典抗体靶点' }
+            { id: 'HER2', routeId: 'breast_cancer', title: 'HER2', desc: '乳腺癌/胃癌相关经典抗体靶点' },
+            { id: 'EGFR', routeId: 'solid_tumor_egfr', title: 'EGFR', desc: '实体瘤生长信号相关受体靶点' },
+            { id: 'VEGF-A', routeId: 'angiogenesis_oncology', title: 'VEGF-A', desc: '肿瘤血管生成相关可溶性因子' }
         ],
         immune: [
+            { id: 'TNF', routeId: 'autoimmune_inflammation', title: 'TNF', desc: '类风湿/自身免疫炎症方向', recommended: true },
+            { id: 'IL-17A', routeId: 'autoimmune_il17', title: 'IL-17A', desc: '银屑病等炎症轴相关靶点' },
+            { id: 'IL-23', routeId: 'autoimmune_il23', title: 'IL-23', desc: '炎症性肠病和银屑病相关靶点' }
+        ],
+        allergy: [
             { id: 'IL-33', routeId: 'allergic_asthma', title: 'IL-33', desc: '过敏性哮喘和呼吸道炎症方向', recommended: true },
-            { id: 'TNF', routeId: 'autoimmune_inflammation', title: 'TNF', desc: '类风湿/自身免疫炎症方向' }
+            { id: 'TSLP', routeId: 'allergic_tslp', title: 'TSLP', desc: '上皮来源炎症启动因子' }
+        ],
+        infection: [
+            { id: 'RSV F', routeId: 'infectious_rsv', title: 'RSV F', desc: '呼吸道合胞病毒融合蛋白', recommended: true },
+            { id: 'SARS-CoV-2 RBD', routeId: 'infectious_covid', title: 'SARS-CoV-2 RBD', desc: '冠状病毒受体结合结构域' },
+            { id: 'Influenza HA', routeId: 'infectious_flu', title: 'Influenza HA', desc: '流感病毒血凝素表面抗原' }
+        ],
+        cardio: [
+            { id: 'PCSK9', routeId: 'cardio_pcsk9', title: 'PCSK9', desc: 'LDL-C 调控与血脂管理相关靶点', recommended: true },
+            { id: 'ANGPTL3', routeId: 'cardio_angptl3', title: 'ANGPTL3', desc: '甘油三酯和脂质代谢相关靶点' },
+            { id: 'IL-1β', routeId: 'cardio_il1b', title: 'IL-1β', desc: '炎症性心血管风险相关因子' }
+        ],
+        metabolic: [
+            { id: 'ANGPTL3', routeId: 'metabolic_angptl3', title: 'ANGPTL3', desc: '脂质代谢和高脂血症相关靶点', recommended: true },
+            { id: 'GIPR', routeId: 'metabolic_gipr', title: 'GIPR', desc: '代谢调控与肠促胰岛素受体方向' }
         ]
     };
     const qdMechanismOptions = {
@@ -5588,15 +5769,75 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             { id: 'cell-clearance', title: '诱导靶细胞清除', desc: '用于更接近治疗性抗体的展示故事' },
             { id: 'high-affinity', title: '生成高亲和力结合抗体', desc: '优先找到稳定结合 HER2 的候选分子' }
         ],
+        'EGFR': [
+            { id: 'block-growth', title: '阻断 EGFR 生长信号', desc: '降低受体介导的增殖信号', recommended: true },
+            { id: 'cell-clearance', title: '诱导靶细胞清除', desc: '用于实体瘤治疗性抗体展示' },
+            { id: 'high-affinity', title: '生成高亲和力结合抗体', desc: '优先优化 EGFR 结合能力和稳定性' }
+        ],
+        'VEGF-A': [
+            { id: 'neutralize', title: '中和 VEGF-A 血管生成信号', desc: '降低 VEGF-A 与 VEGFR 结合机会', recommended: true, block: 'VEGFR' },
+            { id: 'block-receptor', title: '阻断 VEGFR 相互作用', desc: '减少血管生成相关下游信号' },
+            { id: 'high-affinity', title: '生成高亲和力结合抗体', desc: '优先获得稳定中和候选分子' }
+        ],
         'IL-33': [
             { id: 'block-st2', title: '阻断 IL-33 / ST2 相互作用', desc: '阻断炎症信号传递，适合过敏炎症展示路线', recommended: true, block: 'ST2' },
             { id: 'neutralize', title: '中和可溶性因子', desc: '让抗体结合 IL-33 并降低其信号活性' },
             { id: 'high-affinity', title: '生成高亲和力结合抗体', desc: '优先获得稳定结合 IL-33 的候选分子' }
         ],
+        'TSLP': [
+            { id: 'block-tslpr', title: '阻断 TSLP / TSLPR 相互作用', desc: '降低上皮炎症启动信号', recommended: true, block: 'TSLPR' },
+            { id: 'neutralize', title: '中和上皮来源炎症因子', desc: '让抗体结合 TSLP 并降低信号活性' },
+            { id: 'high-affinity', title: '生成高亲和力结合抗体', desc: '优先获得稳定结合 TSLP 的候选分子' }
+        ],
         'TNF': [
             { id: 'neutralize', title: '中和 TNF 炎症因子', desc: '降低 TNF 介导的炎症信号，适合自身免疫炎症展示', recommended: true },
             { id: 'block-receptor', title: '阻断 TNF 受体相互作用', desc: '减少 TNF 与 TNFR1/TNFR2 结合的机会' },
             { id: 'high-affinity', title: '生成高亲和力结合抗体', desc: '优先优化结合能力和可开发性' }
+        ],
+        'IL-17A': [
+            { id: 'neutralize', title: '中和 IL-17A 炎症因子', desc: '降低 IL-17A 介导的炎症放大信号', recommended: true },
+            { id: 'block-receptor', title: '阻断 IL-17 受体相互作用', desc: '减少 IL-17A 与受体结合机会' },
+            { id: 'high-affinity', title: '生成高亲和力结合抗体', desc: '优先优化结合能力和可开发性' }
+        ],
+        'IL-23': [
+            { id: 'neutralize', title: '中和 IL-23 炎症因子', desc: '降低 IL-23/Th17 炎症轴活性', recommended: true },
+            { id: 'block-subunit', title: '识别 IL-23 特异结构域', desc: '优先覆盖 IL-23 特异性可及区域' },
+            { id: 'high-affinity', title: '生成高亲和力结合抗体', desc: '优先优化结合能力和可开发性' }
+        ],
+        'RSV F': [
+            { id: 'block-fusion', title: '阻断病毒融合过程', desc: '优先识别融合蛋白关键构象区域', recommended: true },
+            { id: 'neutralize', title: '中和病毒表面抗原', desc: '降低病毒进入宿主细胞的机会' },
+            { id: 'high-affinity', title: '生成高亲和力结合抗体', desc: '优先优化抗原结合能力和稳定性' }
+        ],
+        'SARS-CoV-2 RBD': [
+            { id: 'block-ace2', title: '阻断 RBD / ACE2 结合', desc: '降低病毒受体结合和入侵机会', recommended: true, block: 'ACE2' },
+            { id: 'neutralize', title: '中和受体结合结构域', desc: '优先覆盖 RBD 可及中和表位' },
+            { id: 'high-affinity', title: '生成高亲和力结合抗体', desc: '优先优化抗原结合能力和稳定性' }
+        ],
+        'Influenza HA': [
+            { id: 'neutralize-ha', title: '中和流感 HA 表面抗原', desc: '降低病毒识别和进入宿主细胞的机会', recommended: true },
+            { id: 'conserved-stem', title: '优先识别保守茎部区域', desc: '用于更宽谱的中和抗体展示故事' },
+            { id: 'high-affinity', title: '生成高亲和力结合抗体', desc: '优先优化抗原结合能力和稳定性' }
+        ],
+        'PCSK9': [
+            { id: 'block-ldlr', title: '阻断 PCSK9 / LDLR 相互作用', desc: '帮助维持 LDLR 回收和 LDL-C 清除', recommended: true, block: 'LDLR' },
+            { id: 'neutralize', title: '中和 PCSK9 功能界面', desc: '降低 PCSK9 对 LDLR 的影响' },
+            { id: 'high-affinity', title: '生成高亲和力结合抗体', desc: '优先优化结合能力和可开发性' }
+        ],
+        'ANGPTL3': [
+            { id: 'neutralize', title: '中和 ANGPTL3 脂质代谢信号', desc: '降低 ANGPTL3 介导的脂质代谢抑制作用', recommended: true },
+            { id: 'functional-domain', title: '识别功能结构域', desc: '优先覆盖与脂质代谢调控相关区域' },
+            { id: 'high-affinity', title: '生成高亲和力结合抗体', desc: '优先优化结合能力和可开发性' }
+        ],
+        'IL-1β': [
+            { id: 'neutralize', title: '中和 IL-1β 炎症因子', desc: '降低炎症放大和心血管炎症风险信号', recommended: true },
+            { id: 'block-receptor', title: '阻断 IL-1 受体相互作用', desc: '减少 IL-1β 与受体结合机会' },
+            { id: 'high-affinity', title: '生成高亲和力结合抗体', desc: '优先优化结合能力和可开发性' }
+        ],
+        'GIPR': [
+            { id: 'modulate-receptor', title: '调节 GIPR 受体信号', desc: '围绕代谢调控场景生成结合候选', recommended: true },
+            { id: 'high-affinity', title: '生成高亲和力结合抗体', desc: '优先优化 GIPR 结合能力和稳定性' },
+            { id: 'developability', title: '强化可开发性筛选', desc: '优先获得更适合后续工程化的候选分子' }
         ],
         default: [
             { id: 'block-ligand', title: '阻断配体结合', desc: '阻止目标蛋白与关键伙伴结合', recommended: true },
@@ -5755,14 +5996,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const meta = document.getElementById('qdProgressMeta');
         const bar = document.getElementById('qdProgressBar');
         const dots = document.getElementById('qdStepDots');
-        const subtitle = document.getElementById('qdHeaderSubtitle');
         const progressWrap = document.getElementById('qdProgressWrap');
         if (!meta || !bar || !dots) return;
         const step = qdState.step + 1;
         meta.textContent = `${step}/${QD_TOTAL_STEPS}`;
         bar.style.width = `${(step / QD_TOTAL_STEPS) * 100}%`;
         dots.innerHTML = Array.from({ length: QD_TOTAL_STEPS }, (_, i) => `<span class="qd-step-dot${i < qdState.step ? ' done' : ''}${i === qdState.step ? ' active' : ''}"></span>`).join('');
-        if (subtitle) subtitle.textContent = qdState.step === 0 ? '选择一个疾病方向，AI 将引导您逐步生成抗体设计任务' : '每一步选择后点击下一步继续，复杂参数已默认收起';
         if (progressWrap) progressWrap.style.display = 'block';
     }
     function qdRenderFooter() {
@@ -5783,13 +6022,6 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (!body) return;
         const route = qdRoute();
         const target = qdTargetLabel();
-        const targetHelpPanel = `
-            <div class="qd-advanced-panel">
-                <div class="qd-helper-note" style="margin-top:0;">
-                    当前快速设计优先支持 IL-33/ST2、PD-1/PD-L1、HER2、TNF 四条稳定设计路径，确保后续流程稳定完成。
-                </div>
-            </div>
-        `;
         const summaryRows = [
             ['疾病方向', qdDiseaseLabel()],
             ['靶标蛋白', target],
@@ -5803,11 +6035,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             body.innerHTML = `
                 <div class="qd-step-kicker">Guided Design</div>
                 <div class="qd-step-title">开启您的第一款药物分子设计</div>
-                <div class="qd-step-subtitle">选择一个疾病方向，AI 将引导您逐步生成抗体设计任务。您不需要了解复杂靶点、表位或抗体工程参数，只需沿着推荐路径点击选择。</div>
                 <div class="qd-intro-panel">
                     <div>
                         <div class="qd-option-title">推荐设计路径已准备好</div>
-                        <div class="qd-option-desc" style="margin-top:6px;">从疾病方向、靶标、作用机制到候选结构，逐步完成一次完整的 AI 药物分子设计任务。</div>
                         <div class="qd-intro-route">
                             <span class="qd-route-pill">肿瘤</span>
                             <span class="qd-route-pill">PD-L1</span>
@@ -5823,43 +6053,36 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             body.innerHTML = `
                 <div class="qd-step-kicker">第 2 步</div>
                 <div class="qd-step-title">您想开发针对哪类疾病的治疗分子？</div>
-                <div class="qd-step-subtitle">先从疾病方向开始，系统会自动收窄后续靶点和设计目标。</div>
-                ${qdOptionCards(qdDiseaseOptions, qdState.disease, 'qdSelectDisease')}
+                ${qdOptionCards(qdDiseaseOptions, qdState.disease, 'qdSelectDisease', true)}
             `;
         } else if (qdState.step === 2) {
             body.innerHTML = `
                 <div class="qd-step-kicker">第 3 步</div>
                 <div class="qd-step-title">请选择希望作用的靶标蛋白</div>
-                <div class="qd-step-subtitle">系统会根据疾病方向推荐更相关的靶标，确保后续设计流程稳定完成。</div>
                 ${qdOptionCards(qdGetTargetList(), qdState.target, 'qdSelectTarget')}
-                ${targetHelpPanel}
             `;
         } else if (qdState.step === 3) {
             body.innerHTML = `
                 <div class="qd-step-kicker">第 4 步</div>
                 <div class="qd-step-title">您希望这个分子实现什么作用？</div>
-                <div class="qd-step-subtitle">系统会根据 ${qdEscHtml(target)} 给出可理解的作用机制，选择后点击下一步继续。</div>
                 ${qdOptionCards(qdMechanismList(), qdState.mechanism, 'qdSelectMechanism')}
             `;
         } else if (qdState.step === 4) {
             body.innerHTML = `
                 <div class="qd-step-kicker">第 5 步</div>
                 <div class="qd-step-title">希望抗体优先识别哪个区域？</div>
-                <div class="qd-step-subtitle">默认由 AI 自动选择最优表位，不需要填写复杂结构位点。</div>
                 ${qdOptionCards(qdEpitopeOptions, qdState.epitope, 'qdSelectEpitope')}
             `;
         } else if (qdState.step === 5) {
             body.innerHTML = `
                 <div class="qd-step-kicker">第 6 步</div>
                 <div class="qd-step-title">请选择希望生成的抗体分子类型</div>
-                <div class="qd-step-subtitle">系统会优先推荐当前任务最稳定、最适合展示结构结果的分子类型。</div>
                 ${qdOptionCards(qdRouteAntibodyOptions(), qdState.antibody, 'qdSelectAntibody')}
             `;
         } else {
             body.innerHTML = `
                 <div class="qd-step-kicker">第 7 步</div>
                 <div class="qd-step-title">设计任务已生成</div>
-                <div class="qd-step-subtitle">请确认任务摘要。启动后将进入 ZoonoAb 多 Agent 分子设计流程。</div>
                 <div class="qd-summary-card">${summaryRows}</div>
                 <div class="qd-preview-box">
                     <div class="qd-preview-label">生成的设计指令预览</div>
@@ -8231,13 +8454,22 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const text = String(userText || '').toLowerCase();
         const profiles = {
             allergic_asthma: {
-                routeId: 'allergic_asthma', disease: '过敏性哮喘', target: 'IL-33', partner: 'ST2', abType: 'VHH', count: 15,
+                routeId: 'allergic_asthma', disease: '过敏 / 呼吸道炎症', target: 'IL-33', partner: 'ST2', abType: 'VHH', count: 15,
                 routeLabel: 'IL-33 / ST2', evidence: 'IL-33/ST2 靶点证据包', domain: 'IL-1 家族细胞因子结构域',
                 referenceEntries: 'UniProt IL33 / IL1RL1(ST2) 靶点条目',
                 mechanism: '阻断 IL-33 与 ST2 受体形成炎症信号复合物',
                 interfaceFocus: 'ST2 受体结合表面', selectedEpitope: 'ST2 结合界面邻近的保守表面',
                 structureRef: 'IL-33/ST2 参考界面', antibodyBackground: 'Itepekimab · Tozorakimab · Astegolimab',
                 rows: [['Site A','ST2 结合界面','与受体阻断目标直接相关','优先'],['Site B','beta-trefoil 侧向暴露面','适合结合检测或亲和力筛选','备选'],['Site C','柔性外周环区','构象可变性较高','谨慎']]
+            },
+            allergic_tslp: {
+                routeId: 'allergic_tslp', disease: '过敏 / 呼吸道炎症', target: 'TSLP', partner: 'TSLPR', abType: 'Fab', count: 10,
+                routeLabel: 'TSLP / TSLPR', evidence: 'TSLP/TSLPR 上皮炎症证据包', domain: '上皮来源细胞因子结构域',
+                referenceEntries: 'UniProt TSLP / CRLF2(TSLPR) 靶点条目',
+                mechanism: '阻断 TSLP 与 TSLPR 受体复合物形成，降低上皮炎症启动信号',
+                interfaceFocus: 'TSLP 上的 TSLPR 结合表面', selectedEpitope: 'TSLPR 结合界面邻近的可及表面',
+                structureRef: 'TSLP/TSLPR 参考界面', antibodyBackground: 'Tezepelumab',
+                rows: [['Site A','TSLPR 结合界面','直接服务于上皮炎症信号阻断目标','优先'],['Site B','细胞因子外侧暴露面','适合增强稳定结合','备选'],['Site C','柔性末端区域','构象不确定性较高','谨慎']]
             },
             tumor_immunotherapy: {
                 routeId: 'tumor_immunotherapy', disease: '肿瘤免疫治疗', target: 'PD-L1', partner: 'PD-1', abType: 'Fab', count: 10,
@@ -8257,20 +8489,140 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 structureRef: 'HER2 ECD 参考模型', antibodyBackground: 'Trastuzumab · Pertuzumab · Margetuximab',
                 rows: [['Site A','胞外结构域 IV 邻近区域','贴近经典 HER2 抗体叙事','优先'],['Site B','胞外结构域 II 暴露面','适合构象阻断或双抗扩展','备选'],['Site C','远端柔性连接区','展示价值较低','谨慎']]
             },
+            solid_tumor_egfr: {
+                routeId: 'solid_tumor_egfr', disease: 'EGFR 相关实体瘤', target: 'EGFR', partner: '', abType: 'Fab', count: 10,
+                routeLabel: 'EGFR', evidence: 'EGFR 实体瘤靶点证据包', domain: 'EGFR 胞外受体结构域',
+                referenceEntries: 'UniProt EGFR 靶点条目',
+                mechanism: '识别 EGFR 胞外可及区域，用于阻断或调节肿瘤生长信号',
+                interfaceFocus: 'EGFR 胞外结构域的抗体可及表面', selectedEpitope: 'EGFR 胞外结构域配体结合邻近区域',
+                structureRef: 'EGFR ECD 参考模型', antibodyBackground: 'Cetuximab · Panitumumab · Necitumumab',
+                rows: [['Site A','配体结合邻近区域','贴近 EGFR 生长信号阻断目标','优先'],['Site B','胞外结构域外侧暴露面','适合高亲和力结合','备选'],['Site C','近膜柔性区域','展示价值较低','谨慎']]
+            },
+            angiogenesis_oncology: {
+                routeId: 'angiogenesis_oncology', disease: '肿瘤血管生成相关疾病', target: 'VEGF-A', partner: 'VEGFR', abType: 'Fab', count: 10,
+                routeLabel: 'VEGF-A / VEGFR', evidence: 'VEGF-A 血管生成证据包', domain: 'VEGF-A 血管生成因子结构域',
+                referenceEntries: 'UniProt VEGFA / KDR(VEGFR2) 靶点条目',
+                mechanism: '中和 VEGF-A 与 VEGFR 结合，降低血管生成信号',
+                interfaceFocus: 'VEGF-A 上的 VEGFR 结合面', selectedEpitope: 'VEGFR 结合面邻近的外侧可及表面',
+                structureRef: 'VEGF-A 参考模型', antibodyBackground: 'Bevacizumab · Ranibizumab',
+                rows: [['Site A','VEGFR 结合面','直接服务于血管生成信号中和目标','优先'],['Site B','二聚体外侧稳定表面','适合增强结合稳定性','备选'],['Site C','二聚体内部邻近区域','可及性不足','谨慎']]
+            },
             autoimmune_inflammation: {
-                routeId: 'autoimmune_inflammation', disease: '自身免疫炎症', target: 'TNF', partner: 'TNFR', abType: 'Fab', count: 10,
+                routeId: 'autoimmune_inflammation', disease: '自身免疫 / 炎症疾病', target: 'TNF', partner: 'TNFR', abType: 'Fab', count: 10,
                 routeLabel: 'TNF / TNFR', evidence: 'TNF 炎症因子证据包', domain: '可溶性 TNF 三聚体',
                 referenceEntries: 'UniProt TNF / TNFRSF1A 靶点条目',
                 mechanism: '中和 TNF 与 TNFR 结合，降低炎症因子信号',
                 interfaceFocus: 'TNF 三聚体上的 TNFR 结合面', selectedEpitope: 'TNFR 结合面邻近的三聚体外侧表面',
                 structureRef: 'TNF 三聚体参考模型', antibodyBackground: 'Adalimumab · Infliximab · Certolizumab',
                 rows: [['Site A','TNFR 结合面','直接服务于炎症因子中和目标','优先'],['Site B','三聚体外侧稳定表面','适合增强结合稳定性','备选'],['Site C','三聚体内部邻近区域','可及性不足','谨慎']]
+            },
+            autoimmune_il17: {
+                routeId: 'autoimmune_il17', disease: '自身免疫 / 炎症疾病', target: 'IL-17A', partner: 'IL-17R', abType: 'Fab', count: 10,
+                routeLabel: 'IL-17A', evidence: 'IL-17A 炎症轴证据包', domain: 'IL-17A 炎症因子二聚体',
+                referenceEntries: 'UniProt IL17A / IL17RA 靶点条目',
+                mechanism: '中和 IL-17A 炎症因子，降低 IL-17 炎症轴信号',
+                interfaceFocus: 'IL-17A 二聚体上的受体结合邻近表面', selectedEpitope: 'IL-17R 结合界面邻近的外侧可及表面',
+                structureRef: 'IL-17A 二聚体参考模型', antibodyBackground: 'Secukinumab · Ixekizumab · Bimekizumab',
+                rows: [['Site A','受体结合邻近面','直接服务于 IL-17 炎症轴中和目标','优先'],['Site B','二聚体外侧稳定表面','适合增强结合稳定性','备选'],['Site C','二聚体内部区域','可及性不足','谨慎']]
+            },
+            autoimmune_il23: {
+                routeId: 'autoimmune_il23', disease: '自身免疫 / 炎症疾病', target: 'IL-23', partner: 'IL-23R', abType: 'Fab', count: 10,
+                routeLabel: 'IL-23', evidence: 'IL-23 炎症轴证据包', domain: 'IL-23 p19/p40 细胞因子复合物',
+                referenceEntries: 'UniProt IL23A / IL12B / IL23R 靶点条目',
+                mechanism: '中和 IL-23 炎症因子，降低 IL-23/Th17 炎症轴活性',
+                interfaceFocus: 'IL-23 p19 特异亚基及受体结合邻近区域', selectedEpitope: 'IL-23 p19 特异性可及表面',
+                structureRef: 'IL-23 复合物参考模型', antibodyBackground: 'Guselkumab · Risankizumab · Ustekinumab',
+                rows: [['Site A','p19 特异可及表面','贴近 IL-23 特异性中和目标','优先'],['Site B','受体结合邻近区域','适合增强功能阻断叙事','备选'],['Site C','p40 共享区域','特异性需复核','谨慎']]
+            },
+            infectious_rsv: {
+                routeId: 'infectious_rsv', disease: '感染性疾病', target: 'RSV F', partner: '', abType: 'Fab', count: 10,
+                routeLabel: 'RSV F', evidence: 'RSV F 病毒入侵证据包', domain: 'RSV 融合蛋白预融合构象表面',
+                referenceEntries: 'UniProt RSV F 靶点条目',
+                mechanism: '识别 RSV F 融合蛋白关键构象表面，降低病毒融合和入侵机会',
+                interfaceFocus: 'RSV F 预融合构象上的保守中和表面', selectedEpitope: '预融合 F 蛋白保守中和表位',
+                structureRef: 'RSV F 预融合构象参考模型', antibodyBackground: 'Nirsevimab · Palivizumab',
+                rows: [['Site A','预融合保守表位','直接服务于病毒融合阻断目标','优先'],['Site B','外侧暴露面','适合高亲和力结合','备选'],['Site C','构象转换区域','稳定性需复核','谨慎']]
+            },
+            infectious_covid: {
+                routeId: 'infectious_covid', disease: '感染性疾病', target: 'SARS-CoV-2 RBD', partner: 'ACE2', abType: 'Fab', count: 10,
+                routeLabel: 'SARS-CoV-2 RBD / ACE2', evidence: 'SARS-CoV-2 RBD 中和证据包', domain: 'Spike 受体结合结构域',
+                referenceEntries: 'UniProt Spike / ACE2 靶点条目',
+                mechanism: '阻断 SARS-CoV-2 RBD 与 ACE2 结合，降低病毒受体结合和入侵机会',
+                interfaceFocus: 'RBD 上的 ACE2 结合面及邻近可及区域', selectedEpitope: 'RBD/ACE2 相互作用界面邻近中和表位',
+                structureRef: 'RBD/ACE2 界面参考模型', antibodyBackground: 'Sotrovimab · Bebtelovimab · Casirivimab',
+                rows: [['Site A','ACE2 结合面','直接服务于受体结合阻断目标','优先'],['Site B','RBD 外侧保守面','适合中和抗体展示','备选'],['Site C','高变异环区','变异风险较高','谨慎']]
+            },
+            infectious_flu: {
+                routeId: 'infectious_flu', disease: '感染性疾病', target: 'Influenza HA', partner: '', abType: 'Fab', count: 10,
+                routeLabel: 'Influenza HA', evidence: 'Influenza HA 中和证据包', domain: '流感血凝素表面抗原',
+                referenceEntries: 'UniProt Influenza HA 靶点条目',
+                mechanism: '识别流感 HA 表面抗原，降低病毒识别和进入宿主细胞的机会',
+                interfaceFocus: 'HA 表面抗原上的保守中和表位', selectedEpitope: 'HA 保守茎部或头部邻近中和表面',
+                structureRef: 'Influenza HA 参考模型', antibodyBackground: 'MEDI8852 · CR6261 · FI6',
+                rows: [['Site A','保守茎部区域','适合广谱中和展示','优先'],['Site B','头部可及表面','适合高亲和力结合','备选'],['Site C','高变异头部环区','变异风险较高','谨慎']]
+            },
+            cardio_pcsk9: {
+                routeId: 'cardio_pcsk9', disease: '心血管 / 血脂疾病', target: 'PCSK9', partner: 'LDLR', abType: 'Fab', count: 10,
+                routeLabel: 'PCSK9 / LDLR', evidence: 'PCSK9 血脂调控证据包', domain: 'PCSK9 催化结构域与 LDLR 结合区域',
+                referenceEntries: 'UniProt PCSK9 / LDLR 靶点条目',
+                mechanism: '阻断 PCSK9 与 LDLR 相互作用，帮助维持 LDLR 回收和 LDL-C 清除',
+                interfaceFocus: 'PCSK9 上的 LDLR 结合邻近表面', selectedEpitope: 'LDLR 结合界面邻近的可及表面',
+                structureRef: 'PCSK9/LDLR 界面参考模型', antibodyBackground: 'Alirocumab · Evolocumab',
+                rows: [['Site A','LDLR 结合面','直接服务于 LDL-C 调控展示目标','优先'],['Site B','催化结构域外侧表面','适合增强结合稳定性','备选'],['Site C','柔性末端区域','构象不确定性较高','谨慎']]
+            },
+            cardio_angptl3: {
+                routeId: 'cardio_angptl3', disease: '心血管 / 血脂疾病', target: 'ANGPTL3', partner: '', abType: 'Fab', count: 10,
+                routeLabel: 'ANGPTL3', evidence: 'ANGPTL3 脂质代谢证据包', domain: 'ANGPTL3 血管生成素样蛋白结构域',
+                referenceEntries: 'UniProt ANGPTL3 靶点条目',
+                mechanism: '中和 ANGPTL3 脂质代谢调控信号，面向高脂血症与脂质代谢场景',
+                interfaceFocus: 'ANGPTL3 功能结构域的抗体可及表面', selectedEpitope: 'ANGPTL3 脂质代谢功能相关可及表面',
+                structureRef: 'ANGPTL3 功能结构域参考模型', antibodyBackground: 'Evinacumab',
+                rows: [['Site A','功能结构域可及面','贴近脂质代谢调控展示目标','优先'],['Site B','外侧稳定表面','适合增强结合稳定性','备选'],['Site C','柔性连接区域','构象不确定性较高','谨慎']]
+            },
+            cardio_il1b: {
+                routeId: 'cardio_il1b', disease: '心血管 / 炎症风险相关疾病', target: 'IL-1β', partner: 'IL-1R', abType: 'Fab', count: 10,
+                routeLabel: 'IL-1β', evidence: 'IL-1β 炎症风险证据包', domain: 'IL-1 家族炎症因子结构域',
+                referenceEntries: 'UniProt IL1B / IL1R1 靶点条目',
+                mechanism: '中和 IL-1β 炎症因子，降低炎症放大和心血管炎症风险信号',
+                interfaceFocus: 'IL-1β 上的 IL-1R 结合邻近表面', selectedEpitope: 'IL-1R 结合界面邻近的可及表面',
+                structureRef: 'IL-1β 参考模型', antibodyBackground: 'Canakinumab',
+                rows: [['Site A','IL-1R 结合邻近面','直接服务于炎症因子中和目标','优先'],['Site B','细胞因子外侧稳定表面','适合增强结合稳定性','备选'],['Site C','柔性外周环区','构象可变性较高','谨慎']]
+            },
+            metabolic_angptl3: {
+                routeId: 'metabolic_angptl3', disease: '代谢 / 脂质代谢疾病', target: 'ANGPTL3', partner: '', abType: 'Fab', count: 10,
+                routeLabel: 'ANGPTL3', evidence: 'ANGPTL3 脂质代谢证据包', domain: 'ANGPTL3 血管生成素样蛋白结构域',
+                referenceEntries: 'UniProt ANGPTL3 靶点条目',
+                mechanism: '中和 ANGPTL3 脂质代谢调控信号，面向高脂血症与脂质代谢场景',
+                interfaceFocus: 'ANGPTL3 功能结构域的抗体可及表面', selectedEpitope: 'ANGPTL3 脂质代谢功能相关可及表面',
+                structureRef: 'ANGPTL3 功能结构域参考模型', antibodyBackground: 'Evinacumab',
+                rows: [['Site A','功能结构域可及面','贴近脂质代谢调控展示目标','优先'],['Site B','外侧稳定表面','适合增强结合稳定性','备选'],['Site C','柔性连接区域','构象不确定性较高','谨慎']]
+            },
+            metabolic_gipr: {
+                routeId: 'metabolic_gipr', disease: '代谢 / 脂质代谢疾病', target: 'GIPR', partner: '', abType: 'Fab', count: 10,
+                routeLabel: 'GIPR', evidence: 'GIPR 代谢调控证据包', domain: 'GIPR 胞外受体结构域',
+                referenceEntries: 'UniProt GIPR 靶点条目',
+                mechanism: '识别 GIPR 胞外可及区域，面向代谢调控场景生成结合候选',
+                interfaceFocus: 'GIPR 胞外结构域的抗体可及表面', selectedEpitope: 'GIPR 胞外结构域稳定可及表面',
+                structureRef: 'GIPR ECD 参考模型', antibodyBackground: 'GIPR-targeting discovery antibodies',
+                rows: [['Site A','胞外结构域稳定表面','适合代谢调控结合候选展示','优先'],['Site B','配体邻近可及面','适合功能调节叙事','备选'],['Site C','跨膜邻近柔性区域','展示价值较低','谨慎']]
             }
         };
         if (routeId && profiles[routeId]) return profiles[routeId];
         if (/il\s*-?\s*33|st2|哮喘|过敏/.test(text)) return profiles.allergic_asthma;
+        if (/tslp|tslpr/.test(text)) return profiles.allergic_tslp;
         if (/her\s*-?\s*2|erbb\s*-?\s*2|乳腺癌|胃癌/.test(text)) return profiles.breast_cancer;
+        if (/egfr|实体瘤/.test(text)) return profiles.solid_tumor_egfr;
+        if (/vegf|血管生成/.test(text)) return profiles.angiogenesis_oncology;
         if (/tnf|类风湿|自身免疫|关节炎/.test(text)) return profiles.autoimmune_inflammation;
+        if (/il\s*-?\s*17|银屑病/.test(text)) return profiles.autoimmune_il17;
+        if (/il\s*-?\s*23|炎症性肠病|克罗恩/.test(text)) return profiles.autoimmune_il23;
+        if (/rsv|呼吸道合胞/.test(text)) return profiles.infectious_rsv;
+        if (/sars|covid|新冠|rbd|ace2/.test(text)) return profiles.infectious_covid;
+        if (/influenza|流感|ha|血凝素/.test(text)) return profiles.infectious_flu;
+        if (/pcsk9|ldlr|胆固醇|ldl/.test(text)) return profiles.cardio_pcsk9;
+        if (/angptl3|脂质代谢|高脂血症/.test(text)) return profiles.metabolic_angptl3;
+        if (/il\s*-?\s*1|il1b|心血管炎症/.test(text)) return profiles.cardio_il1b;
+        if (/gipr|肠促胰岛素/.test(text)) return profiles.metabolic_gipr;
         return profiles.tumor_immunotherapy;
     }
 

@@ -1178,6 +1178,12 @@ function buildRouteProfile(target, blockTarget, abType) {
   let key = String(target || '').toUpperCase().replace(/\s+/g, '');
   if (['PDL1', 'PD-L-1'].includes(key)) key = 'PD-L1';
   if (['TNF-A', 'TNF-ALPHA', 'TNFΑ', 'TNFΑLPHA'].includes(key)) key = 'TNF';
+  if (['VEGFA', 'VEGF-A'].includes(key)) key = 'VEGF-A';
+  if (['IL17A', 'IL-17-A'].includes(key)) key = 'IL-17A';
+  if (['IL1B', 'IL-1B', 'IL-1Β'].includes(key)) key = 'IL-1β';
+  if (['RSVF', 'RSV-F'].includes(key)) key = 'RSV F';
+  if (['SARS-COV-2RBD', 'SARSCOV2RBD', 'SARS-COV-2-RBD', 'RBD'].includes(key)) key = 'SARS-CoV-2 RBD';
+  if (['INFLUENZAHA', 'INFLUENZA-HA', 'FLUHA', 'HA'].includes(key)) key = 'Influenza HA';
   const profiles = {
     'IL-33': {
       routeLabel: 'IL-33 / ST2',
@@ -1210,6 +1216,38 @@ function buildRouteProfile(target, blockTarget, abType) {
       structurePrepEn: 'Loaded the IL-33/ST2 reference interface and prepared VHH design constraints around the receptor-binding surface.',
       scaffold: abType === 'VHH' ? 'VHH 纳米抗体骨架' : abType + ' 抗体骨架',
       designMode: '炎症因子中和设计'
+    },
+    'TSLP': {
+      routeLabel: 'TSLP / TSLPR',
+      disease: '过敏 / 呼吸道炎症',
+      targetDisplay: 'TSLP',
+      partnerDisplay: 'TSLPR',
+      domain: '上皮来源细胞因子结构域',
+      mechanism: '阻断 TSLP 与 TSLPR 受体复合物形成，降低上皮炎症启动信号',
+      evidence: 'TSLP/TSLPR 上皮炎症证据包',
+      evidenceSources: ['重度哮喘治疗背景', 'TSLP 细胞因子结构注释', '抗 TSLP 抗体开发背景', '受体结合界面规则'],
+      referenceEntries: 'UniProt TSLP / CRLF2(TSLPR) 靶点条目',
+      structure: 'TSLP 与 TSLPR 受体结合界面参考集合',
+      structureRef: 'TSLP/TSLPR 参考界面',
+      antibodies: ['Tezepelumab'],
+      interfaceFocus: 'TSLP 上的 TSLPR 结合表面',
+      selectedEpitope: 'TSLPR 结合界面邻近的可及表面',
+      epitopeRowsZh: [
+        ['Site A', 'TSLPR 结合界面', '直接服务于上皮炎症信号阻断目标', '优先'],
+        ['Site B', '细胞因子外侧暴露面', '适合增强稳定结合', '备选'],
+        ['Site C', '柔性末端区域', '构象不确定性较高', '谨慎']
+      ],
+      epitopeRowsEn: [
+        ['Site A', 'TSLPR-binding surface', 'directly supports epithelial inflammation blockade', 'primary'],
+        ['Site B', 'cytokine exposed flank', 'useful for stable binding', 'backup'],
+        ['Site C', 'flexible terminal region', 'higher conformational uncertainty', 'caution']
+      ],
+      riskSummaryZh: '界面风险标注显示，TSLP 路线应优先覆盖 TSLPR 结合面，同时避开柔性末端区域。',
+      riskSummaryEn: 'Interface-risk annotation prioritizes the TSLPR-binding face while avoiding flexible termini.',
+      structurePrepZh: '加载 TSLP/TSLPR 参考界面，提取受体结合面并生成 Fab 设计约束。',
+      structurePrepEn: 'Loaded the TSLP/TSLPR reference interface and prepared Fab design constraints around the receptor-binding surface.',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
+      designMode: '上皮炎症因子中和设计'
     },
     'PD-L1': {
       routeLabel: 'PD-1 / PD-L1',
@@ -1275,6 +1313,70 @@ function buildRouteProfile(target, blockTarget, abType) {
       scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '肿瘤相关过表达靶点结合设计'
     },
+    'EGFR': {
+      routeLabel: 'EGFR',
+      disease: 'EGFR 相关实体瘤',
+      targetDisplay: 'EGFR',
+      partnerDisplay: '',
+      domain: 'EGFR 胞外受体结构域',
+      mechanism: '识别 EGFR 胞外可及区域，用于阻断或调节肿瘤生长信号',
+      evidence: 'EGFR 实体瘤靶点证据包',
+      evidenceSources: ['实体瘤治疗背景', 'EGFR 胞外结构域注释', '抗 EGFR 抗体开发背景', '受体可及性规则'],
+      referenceEntries: 'UniProt EGFR 靶点条目',
+      structure: 'EGFR 胞外结构域与经典抗体结合模式参考集合',
+      structureRef: 'EGFR ECD 参考模型',
+      antibodies: ['Cetuximab', 'Panitumumab', 'Necitumumab'],
+      interfaceFocus: 'EGFR 胞外结构域的抗体可及表面',
+      selectedEpitope: 'EGFR 胞外结构域配体结合邻近区域',
+      epitopeRowsZh: [
+        ['Site A', '配体结合邻近区域', '贴近 EGFR 生长信号阻断目标', '优先'],
+        ['Site B', '胞外结构域外侧暴露面', '适合高亲和力结合', '备选'],
+        ['Site C', '近膜柔性区域', '展示价值较低', '谨慎']
+      ],
+      epitopeRowsEn: [
+        ['Site A', 'ligand-proximal region', 'aligned with EGFR growth-signal blockade', 'primary'],
+        ['Site B', 'ECD exposed flank', 'useful for high-affinity binding', 'backup'],
+        ['Site C', 'membrane-proximal flexible region', 'lower demo value', 'caution']
+      ],
+      riskSummaryZh: '界面风险标注显示，EGFR 路线应聚焦胞外可及表面，避免靠近膜端的柔性区域。',
+      riskSummaryEn: 'Interface-risk annotation focuses EGFR design on accessible extracellular surfaces and avoids flexible membrane-proximal regions.',
+      structurePrepZh: '加载 EGFR 胞外结构域参考模型，提取配体结合邻近可及表面并生成 Fab 设计约束。',
+      structurePrepEn: 'Loaded the EGFR extracellular reference model and prepared Fab constraints around ligand-proximal accessible surfaces.',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
+      designMode: '肿瘤受体信号调节设计'
+    },
+    'VEGF-A': {
+      routeLabel: 'VEGF-A / VEGFR',
+      disease: '肿瘤血管生成相关疾病',
+      targetDisplay: 'VEGF-A',
+      partnerDisplay: 'VEGFR',
+      domain: 'VEGF-A 血管生成因子结构域',
+      mechanism: '中和 VEGF-A 与 VEGFR 结合，降低血管生成信号',
+      evidence: 'VEGF-A 血管生成证据包',
+      evidenceSources: ['肿瘤血管生成背景', 'VEGF-A 结构注释', '抗 VEGF 抗体开发背景', '受体结合界面规则'],
+      referenceEntries: 'UniProt VEGFA / KDR(VEGFR2) 靶点条目',
+      structure: 'VEGF-A 二聚体与 VEGFR 结合面参考集合',
+      structureRef: 'VEGF-A 参考模型',
+      antibodies: ['Bevacizumab', 'Ranibizumab'],
+      interfaceFocus: 'VEGF-A 上的 VEGFR 结合面',
+      selectedEpitope: 'VEGFR 结合面邻近的外侧可及表面',
+      epitopeRowsZh: [
+        ['Site A', 'VEGFR 结合面', '直接服务于血管生成信号中和目标', '优先'],
+        ['Site B', '二聚体外侧稳定表面', '适合增强结合稳定性', '备选'],
+        ['Site C', '二聚体内部邻近区域', '可及性不足', '谨慎']
+      ],
+      epitopeRowsEn: [
+        ['Site A', 'VEGFR-binding face', 'directly supports angiogenesis blockade', 'primary'],
+        ['Site B', 'stable outer dimer surface', 'useful for binding stability', 'backup'],
+        ['Site C', 'inner dimer-proximal region', 'limited accessibility', 'caution']
+      ],
+      riskSummaryZh: '界面风险标注显示，VEGF-A 路线应优先覆盖 VEGFR 结合面，同时避免二聚体内部不可及区域。',
+      riskSummaryEn: 'Interface-risk annotation prioritizes the VEGFR-binding face and avoids inaccessible inner dimer regions.',
+      structurePrepZh: '加载 VEGF-A 参考模型，提取 VEGFR 结合面并生成 Fab 设计约束。',
+      structurePrepEn: 'Loaded the VEGF-A reference model and prepared Fab design constraints around the VEGFR-binding face.',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
+      designMode: '血管生成因子中和设计'
+    },
     'TNF': {
       routeLabel: 'TNF / TNFR',
       disease: '自身免疫与炎症疾病',
@@ -1306,6 +1408,294 @@ function buildRouteProfile(target, blockTarget, abType) {
       structurePrepEn: 'Loaded the TNF trimer reference model and prepared Fab design constraints around the TNFR binding face.',
       scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '炎症因子中和设计'
+    },
+    'IL-17A': {
+      routeLabel: 'IL-17A',
+      disease: '自身免疫 / 炎症疾病',
+      targetDisplay: 'IL-17A',
+      partnerDisplay: 'IL-17R',
+      domain: 'IL-17A 炎症因子二聚体',
+      mechanism: '中和 IL-17A 炎症因子，降低 IL-17 炎症轴信号',
+      evidence: 'IL-17A 炎症轴证据包',
+      evidenceSources: ['银屑病治疗背景', 'IL-17A 结构注释', '抗 IL-17 抗体开发背景', '二聚体界面规则'],
+      referenceEntries: 'UniProt IL17A / IL17RA 靶点条目',
+      structure: 'IL-17A 二聚体及 IL-17R 结合面参考集合',
+      structureRef: 'IL-17A 二聚体参考模型',
+      antibodies: ['Secukinumab', 'Ixekizumab', 'Bimekizumab'],
+      interfaceFocus: 'IL-17A 二聚体上的受体结合邻近表面',
+      selectedEpitope: 'IL-17R 结合界面邻近的外侧可及表面',
+      epitopeRowsZh: [
+        ['Site A', '受体结合邻近面', '直接服务于 IL-17 炎症轴中和目标', '优先'],
+        ['Site B', '二聚体外侧稳定表面', '适合增强结合稳定性', '备选'],
+        ['Site C', '二聚体内部区域', '可及性不足', '谨慎']
+      ],
+      epitopeRowsEn: [
+        ['Site A', 'receptor-proximal face', 'directly supports IL-17 axis neutralization', 'primary'],
+        ['Site B', 'stable outer dimer surface', 'useful for binding stability', 'backup'],
+        ['Site C', 'inner dimer region', 'limited accessibility', 'caution']
+      ],
+      riskSummaryZh: '界面风险标注显示，IL-17A 路线应优先覆盖受体结合邻近面，同时避免二聚体内部不可及区域。',
+      riskSummaryEn: 'Interface-risk annotation prioritizes receptor-proximal surfaces and avoids inaccessible inner dimer regions.',
+      structurePrepZh: '加载 IL-17A 二聚体参考模型，提取受体结合邻近表面并生成 Fab 设计约束。',
+      structurePrepEn: 'Loaded the IL-17A dimer reference model and prepared Fab constraints around receptor-proximal surfaces.',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
+      designMode: '炎症轴中和设计'
+    },
+    'IL-23': {
+      routeLabel: 'IL-23',
+      disease: '自身免疫 / 炎症疾病',
+      targetDisplay: 'IL-23',
+      partnerDisplay: 'IL-23R',
+      domain: 'IL-23 p19/p40 细胞因子复合物',
+      mechanism: '中和 IL-23 炎症因子，降低 IL-23/Th17 炎症轴活性',
+      evidence: 'IL-23 炎症轴证据包',
+      evidenceSources: ['炎症性肠病与银屑病背景', 'IL-23 结构注释', '抗 IL-23 抗体开发背景', '亚基特异性规则'],
+      referenceEntries: 'UniProt IL23A / IL12B / IL23R 靶点条目',
+      structure: 'IL-23 复合物及 IL-23R 结合区域参考集合',
+      structureRef: 'IL-23 复合物参考模型',
+      antibodies: ['Guselkumab', 'Risankizumab', 'Ustekinumab'],
+      interfaceFocus: 'IL-23 p19 特异亚基及受体结合邻近区域',
+      selectedEpitope: 'IL-23 p19 特异性可及表面',
+      epitopeRowsZh: [
+        ['Site A', 'p19 特异可及表面', '贴近 IL-23 特异性中和目标', '优先'],
+        ['Site B', '受体结合邻近区域', '适合增强功能阻断叙事', '备选'],
+        ['Site C', 'p40 共享区域', '特异性需复核', '谨慎']
+      ],
+      epitopeRowsEn: [
+        ['Site A', 'p19-specific accessible surface', 'aligned with IL-23-specific neutralization', 'primary'],
+        ['Site B', 'receptor-proximal region', 'useful for functional blockade', 'backup'],
+        ['Site C', 'shared p40 region', 'specificity needs review', 'caution']
+      ],
+      riskSummaryZh: '界面风险标注显示，IL-23 路线应优先覆盖 p19 特异性可及表面，减少与共享 p40 区域混淆。',
+      riskSummaryEn: 'Interface-risk annotation prioritizes p19-specific accessible surfaces and reduces ambiguity around shared p40 regions.',
+      structurePrepZh: '加载 IL-23 复合物参考模型，提取 p19 特异性可及表面并生成 Fab 设计约束。',
+      structurePrepEn: 'Loaded the IL-23 complex reference model and prepared Fab constraints around p19-specific accessible surfaces.',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
+      designMode: '炎症轴中和设计'
+    },
+    'RSV F': {
+      routeLabel: 'RSV F',
+      disease: '感染性疾病',
+      targetDisplay: 'RSV F',
+      partnerDisplay: '',
+      domain: 'RSV 融合蛋白预融合构象表面',
+      mechanism: '识别 RSV F 融合蛋白关键构象表面，降低病毒融合和入侵机会',
+      evidence: 'RSV F 病毒入侵证据包',
+      evidenceSources: ['RSV 预防抗体背景', 'F 蛋白预融合构象注释', '中和抗体开发背景', '保守表位规则'],
+      referenceEntries: 'UniProt RSV F 靶点条目',
+      structure: 'RSV F 预融合构象与中和抗体结合模式参考集合',
+      structureRef: 'RSV F 预融合构象参考模型',
+      antibodies: ['Nirsevimab', 'Palivizumab'],
+      interfaceFocus: 'RSV F 预融合构象上的保守中和表面',
+      selectedEpitope: '预融合 F 蛋白保守中和表位',
+      epitopeRowsZh: [
+        ['Site A', '预融合保守表位', '直接服务于病毒融合阻断目标', '优先'],
+        ['Site B', '外侧暴露面', '适合高亲和力结合', '备选'],
+        ['Site C', '构象转换区域', '稳定性需复核', '谨慎']
+      ],
+      epitopeRowsEn: [
+        ['Site A', 'prefusion conserved epitope', 'directly supports fusion blockade', 'primary'],
+        ['Site B', 'outer exposed surface', 'useful for high-affinity binding', 'backup'],
+        ['Site C', 'conformational transition region', 'stability needs review', 'caution']
+      ],
+      riskSummaryZh: '界面风险标注显示，RSV F 路线应优先覆盖预融合构象的保守中和表位，同时避开构象转换不稳定区域。',
+      riskSummaryEn: 'Interface-risk annotation prioritizes conserved prefusion neutralizing epitopes and avoids unstable transition regions.',
+      structurePrepZh: '加载 RSV F 预融合构象参考模型，提取保守中和表位并生成 Fab 设计约束。',
+      structurePrepEn: 'Loaded the RSV F prefusion reference model and prepared Fab constraints around conserved neutralizing epitopes.',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
+      designMode: '病毒入侵中和设计'
+    },
+    'SARS-CoV-2 RBD': {
+      routeLabel: 'SARS-CoV-2 RBD / ACE2',
+      disease: '感染性疾病',
+      targetDisplay: 'SARS-CoV-2 RBD',
+      partnerDisplay: 'ACE2',
+      domain: 'Spike 受体结合结构域',
+      mechanism: '阻断 SARS-CoV-2 RBD 与 ACE2 结合，降低病毒受体结合和入侵机会',
+      evidence: 'SARS-CoV-2 RBD 中和证据包',
+      evidenceSources: ['冠状病毒中和抗体背景', 'RBD 结构注释', '抗 RBD 抗体开发背景', 'ACE2 结合界面规则'],
+      referenceEntries: 'UniProt Spike / ACE2 靶点条目',
+      structure: 'Spike RBD 与 ACE2 结合界面及中和抗体模式参考集合',
+      structureRef: 'RBD/ACE2 界面参考模型',
+      antibodies: ['Sotrovimab', 'Bebtelovimab', 'Casirivimab'],
+      interfaceFocus: 'RBD 上的 ACE2 结合面及邻近可及区域',
+      selectedEpitope: 'RBD/ACE2 相互作用界面邻近中和表位',
+      epitopeRowsZh: [
+        ['Site A', 'ACE2 结合面', '直接服务于受体结合阻断目标', '优先'],
+        ['Site B', 'RBD 外侧保守面', '适合中和抗体展示', '备选'],
+        ['Site C', '高变异环区', '变异风险较高', '谨慎']
+      ],
+      epitopeRowsEn: [
+        ['Site A', 'ACE2-binding face', 'directly supports receptor-binding blockade', 'primary'],
+        ['Site B', 'RBD conserved flank', 'useful for neutralizing-antibody display', 'backup'],
+        ['Site C', 'high-variation loop', 'higher mutation risk', 'caution']
+      ],
+      riskSummaryZh: '界面风险标注显示，RBD 路线应优先覆盖 ACE2 结合面及邻近保守表面，同时规避高变异环区。',
+      riskSummaryEn: 'Interface-risk annotation prioritizes the ACE2-binding face and nearby conserved surfaces while avoiding high-variation loops.',
+      structurePrepZh: '加载 RBD/ACE2 参考界面，提取受体结合面并生成 Fab 设计约束。',
+      structurePrepEn: 'Loaded the RBD/ACE2 reference interface and prepared Fab constraints around the receptor-binding face.',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
+      designMode: '病毒受体结合阻断设计'
+    },
+    'Influenza HA': {
+      routeLabel: 'Influenza HA',
+      disease: '感染性疾病',
+      targetDisplay: 'Influenza HA',
+      partnerDisplay: '',
+      domain: '流感血凝素表面抗原',
+      mechanism: '识别流感 HA 表面抗原，降低病毒识别和进入宿主细胞的机会',
+      evidence: 'Influenza HA 中和证据包',
+      evidenceSources: ['流感中和抗体背景', 'HA 头部/茎部结构注释', '广谱抗体开发背景', '保守表位规则'],
+      referenceEntries: 'UniProt Influenza HA 靶点条目',
+      structure: '流感 HA 头部和茎部中和表位参考集合',
+      structureRef: 'Influenza HA 参考模型',
+      antibodies: ['MEDI8852', 'CR6261', 'FI6'],
+      interfaceFocus: 'HA 表面抗原上的保守中和表位',
+      selectedEpitope: 'HA 保守茎部或头部邻近中和表面',
+      epitopeRowsZh: [
+        ['Site A', '保守茎部区域', '适合广谱中和展示', '优先'],
+        ['Site B', '头部可及表面', '适合高亲和力结合', '备选'],
+        ['Site C', '高变异头部环区', '变异风险较高', '谨慎']
+      ],
+      epitopeRowsEn: [
+        ['Site A', 'conserved stem region', 'useful for broad neutralization display', 'primary'],
+        ['Site B', 'head accessible surface', 'useful for high-affinity binding', 'backup'],
+        ['Site C', 'high-variation head loop', 'higher mutation risk', 'caution']
+      ],
+      riskSummaryZh: '界面风险标注显示，流感 HA 路线应优先覆盖保守茎部或稳定可及表面，减少高变异头部环区风险。',
+      riskSummaryEn: 'Interface-risk annotation prioritizes conserved stem or stable accessible surfaces and reduces high-variation head-loop risk.',
+      structurePrepZh: '加载 Influenza HA 参考模型，提取保守中和表面并生成 Fab 设计约束。',
+      structurePrepEn: 'Loaded the Influenza HA reference model and prepared Fab constraints around conserved neutralizing surfaces.',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
+      designMode: '病毒表面抗原中和设计'
+    },
+    'PCSK9': {
+      routeLabel: 'PCSK9 / LDLR',
+      disease: '心血管 / 血脂疾病',
+      targetDisplay: 'PCSK9',
+      partnerDisplay: 'LDLR',
+      domain: 'PCSK9 催化结构域与 LDLR 结合区域',
+      mechanism: '阻断 PCSK9 与 LDLR 相互作用，帮助维持 LDLR 回收和 LDL-C 清除',
+      evidence: 'PCSK9 血脂调控证据包',
+      evidenceSources: ['高胆固醇治疗背景', 'PCSK9 结构注释', '抗 PCSK9 抗体开发背景', 'LDLR 结合界面规则'],
+      referenceEntries: 'UniProt PCSK9 / LDLR 靶点条目',
+      structure: 'PCSK9 与 LDLR 结合界面及抗体结合模式参考集合',
+      structureRef: 'PCSK9/LDLR 界面参考模型',
+      antibodies: ['Alirocumab', 'Evolocumab'],
+      interfaceFocus: 'PCSK9 上的 LDLR 结合邻近表面',
+      selectedEpitope: 'LDLR 结合界面邻近的可及表面',
+      epitopeRowsZh: [
+        ['Site A', 'LDLR 结合面', '直接服务于 LDL-C 调控展示目标', '优先'],
+        ['Site B', '催化结构域外侧表面', '适合增强结合稳定性', '备选'],
+        ['Site C', '柔性末端区域', '构象不确定性较高', '谨慎']
+      ],
+      epitopeRowsEn: [
+        ['Site A', 'LDLR-binding face', 'directly supports LDL-C regulation story', 'primary'],
+        ['Site B', 'catalytic-domain exposed flank', 'useful for binding stability', 'backup'],
+        ['Site C', 'flexible terminal region', 'higher conformational uncertainty', 'caution']
+      ],
+      riskSummaryZh: '界面风险标注显示，PCSK9 路线应优先覆盖 LDLR 结合邻近表面，同时避开柔性末端区域。',
+      riskSummaryEn: 'Interface-risk annotation prioritizes the LDLR-binding surface and avoids flexible termini.',
+      structurePrepZh: '加载 PCSK9/LDLR 参考界面，提取 LDLR 结合邻近表面并生成 Fab 设计约束。',
+      structurePrepEn: 'Loaded the PCSK9/LDLR reference interface and prepared Fab constraints around LDLR-proximal surfaces.',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
+      designMode: '血脂调控靶点结合设计'
+    },
+    'ANGPTL3': {
+      routeLabel: 'ANGPTL3',
+      disease: '代谢 / 脂质代谢疾病',
+      targetDisplay: 'ANGPTL3',
+      partnerDisplay: '',
+      domain: 'ANGPTL3 血管生成素样蛋白结构域',
+      mechanism: '中和 ANGPTL3 脂质代谢调控信号，面向高脂血症与脂质代谢场景',
+      evidence: 'ANGPTL3 脂质代谢证据包',
+      evidenceSources: ['遗传性高脂血症背景', 'ANGPTL3 结构注释', '抗 ANGPTL3 抗体开发背景', '功能结构域规则'],
+      referenceEntries: 'UniProt ANGPTL3 靶点条目',
+      structure: 'ANGPTL3 功能结构域与中和抗体设计参考集合',
+      structureRef: 'ANGPTL3 功能结构域参考模型',
+      antibodies: ['Evinacumab'],
+      interfaceFocus: 'ANGPTL3 功能结构域的抗体可及表面',
+      selectedEpitope: 'ANGPTL3 脂质代谢功能相关可及表面',
+      epitopeRowsZh: [
+        ['Site A', '功能结构域可及面', '贴近脂质代谢调控展示目标', '优先'],
+        ['Site B', '外侧稳定表面', '适合增强结合稳定性', '备选'],
+        ['Site C', '柔性连接区域', '构象不确定性较高', '谨慎']
+      ],
+      epitopeRowsEn: [
+        ['Site A', 'functional-domain accessible face', 'aligned with lipid-metabolism modulation', 'primary'],
+        ['Site B', 'stable outer surface', 'useful for binding stability', 'backup'],
+        ['Site C', 'flexible linker region', 'higher conformational uncertainty', 'caution']
+      ],
+      riskSummaryZh: '界面风险标注显示，ANGPTL3 路线应优先覆盖功能结构域可及表面，同时避开柔性连接区域。',
+      riskSummaryEn: 'Interface-risk annotation prioritizes accessible functional-domain surfaces and avoids flexible linker regions.',
+      structurePrepZh: '加载 ANGPTL3 功能结构域参考模型，提取脂质代谢相关可及表面并生成 Fab 设计约束。',
+      structurePrepEn: 'Loaded the ANGPTL3 functional-domain reference model and prepared Fab constraints around lipid-metabolism-relevant accessible surfaces.',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
+      designMode: '脂质代谢靶点中和设计'
+    },
+    'IL-1β': {
+      routeLabel: 'IL-1β',
+      disease: '心血管 / 炎症风险相关疾病',
+      targetDisplay: 'IL-1β',
+      partnerDisplay: 'IL-1R',
+      domain: 'IL-1 家族炎症因子结构域',
+      mechanism: '中和 IL-1β 炎症因子，降低炎症放大和心血管炎症风险信号',
+      evidence: 'IL-1β 炎症风险证据包',
+      evidenceSources: ['炎症性心血管风险背景', 'IL-1β 结构注释', '抗 IL-1β 抗体开发背景', '受体结合界面规则'],
+      referenceEntries: 'UniProt IL1B / IL1R1 靶点条目',
+      structure: 'IL-1β 与 IL-1R 结合面及中和抗体模式参考集合',
+      structureRef: 'IL-1β 参考模型',
+      antibodies: ['Canakinumab'],
+      interfaceFocus: 'IL-1β 上的 IL-1R 结合邻近表面',
+      selectedEpitope: 'IL-1R 结合界面邻近的可及表面',
+      epitopeRowsZh: [
+        ['Site A', 'IL-1R 结合邻近面', '直接服务于炎症因子中和目标', '优先'],
+        ['Site B', '细胞因子外侧稳定表面', '适合增强结合稳定性', '备选'],
+        ['Site C', '柔性外周环区', '构象可变性较高', '谨慎']
+      ],
+      epitopeRowsEn: [
+        ['Site A', 'IL-1R-proximal face', 'directly supports cytokine neutralization', 'primary'],
+        ['Site B', 'stable cytokine flank', 'useful for binding stability', 'backup'],
+        ['Site C', 'flexible peripheral loop', 'higher conformational variability', 'caution']
+      ],
+      riskSummaryZh: '界面风险标注显示，IL-1β 路线应优先覆盖受体结合邻近面，同时避开高柔性外周环区。',
+      riskSummaryEn: 'Interface-risk annotation prioritizes receptor-proximal surfaces and avoids flexible peripheral loops.',
+      structurePrepZh: '加载 IL-1β 参考模型，提取 IL-1R 结合邻近表面并生成 Fab 设计约束。',
+      structurePrepEn: 'Loaded the IL-1β reference model and prepared Fab constraints around IL-1R-proximal surfaces.',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
+      designMode: '炎症因子中和设计'
+    },
+    'GIPR': {
+      routeLabel: 'GIPR',
+      disease: '代谢 / 脂质代谢疾病',
+      targetDisplay: 'GIPR',
+      partnerDisplay: '',
+      domain: 'GIPR 胞外受体结构域',
+      mechanism: '识别 GIPR 胞外可及区域，面向代谢调控场景生成结合候选',
+      evidence: 'GIPR 代谢调控证据包',
+      evidenceSources: ['代谢疾病研究背景', 'GIPR 胞外结构域注释', '受体抗体设计背景', 'GPCR 胞外表位规则'],
+      referenceEntries: 'UniProt GIPR 靶点条目',
+      structure: 'GIPR 胞外结构域与受体调控抗体设计参考集合',
+      structureRef: 'GIPR ECD 参考模型',
+      antibodies: ['GIPR-targeting discovery antibodies'],
+      interfaceFocus: 'GIPR 胞外结构域的抗体可及表面',
+      selectedEpitope: 'GIPR 胞外结构域稳定可及表面',
+      epitopeRowsZh: [
+        ['Site A', '胞外结构域稳定表面', '适合代谢调控结合候选展示', '优先'],
+        ['Site B', '配体邻近可及面', '适合功能调节叙事', '备选'],
+        ['Site C', '跨膜邻近柔性区域', '展示价值较低', '谨慎']
+      ],
+      epitopeRowsEn: [
+        ['Site A', 'stable ECD surface', 'useful for metabolic-modulation binder display', 'primary'],
+        ['Site B', 'ligand-proximal accessible face', 'useful for functional-modulation story', 'backup'],
+        ['Site C', 'transmembrane-proximal flexible region', 'lower demo value', 'caution']
+      ],
+      riskSummaryZh: '界面风险标注显示，GIPR 路线应优先覆盖胞外结构域稳定可及表面，避免跨膜邻近柔性区域。',
+      riskSummaryEn: 'Interface-risk annotation prioritizes stable extracellular accessible surfaces and avoids transmembrane-proximal flexible regions.',
+      structurePrepZh: '加载 GIPR 胞外结构域参考模型，提取稳定可及表面并生成 Fab 设计约束。',
+      structurePrepEn: 'Loaded the GIPR extracellular reference model and prepared Fab constraints around stable accessible surfaces.',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
+      designMode: '代谢受体结合设计'
     }
   };
   const profile = { ...(profiles[key] || profiles['PD-L1']) };
@@ -1825,7 +2215,7 @@ app.post('/api/export/sequences', (req, res) => {
 const DEMO_ROUTE_RULES = [
   {
     id: 'allergic_asthma',
-    disease: '过敏性哮喘',
+    disease: '过敏 / 呼吸道炎症',
     systemUnderstanding: '过敏炎症通路',
     target: 'IL-33',
     blockTarget: 'ST2',
@@ -1834,6 +2224,18 @@ const DEMO_ROUTE_RULES = [
     printable: true,
     displayStory: '阻断 IL-33/ST2 炎症信号，生成适合展示和后续 3D 打印的小型 VHH 结构模型。',
     keywords: ['过敏', '哮喘', '呼吸道炎症', '气道炎症', '过敏性疾病', '炎症性哮喘', 'asthma', 'allergy', 'allergic']
+  },
+  {
+    id: 'allergic_tslp',
+    disease: '过敏 / 呼吸道炎症',
+    systemUnderstanding: '上皮炎症启动通路',
+    target: 'TSLP',
+    blockTarget: 'TSLPR',
+    abType: 'Fab',
+    count: 10,
+    printable: true,
+    displayStory: '围绕 TSLP/TSLPR 上皮炎症启动通路，生成过敏和气道炎症方向抗体候选结构。',
+    keywords: ['tslp', 'tslpr', '上皮炎症', '重度哮喘', '气道炎症']
   },
   {
     id: 'tumor_immunotherapy',
@@ -1860,8 +2262,32 @@ const DEMO_ROUTE_RULES = [
     keywords: ['乳腺癌', '胃癌', 'her2', 'erbb2', 'breast cancer', 'gastric cancer']
   },
   {
+    id: 'solid_tumor_egfr',
+    disease: 'EGFR 相关实体瘤',
+    systemUnderstanding: '肿瘤生长信号通路',
+    target: 'EGFR',
+    blockTarget: null,
+    abType: 'Fab',
+    count: 10,
+    printable: true,
+    displayStory: '围绕 EGFR 胞外可及区域，生成实体瘤方向抗体候选结构。',
+    keywords: ['egfr', '实体瘤', '肺癌', '结直肠癌', '头颈癌', 'solid tumor', 'lung cancer', 'colorectal']
+  },
+  {
+    id: 'angiogenesis_oncology',
+    disease: '肿瘤血管生成相关疾病',
+    systemUnderstanding: '血管生成调控通路',
+    target: 'VEGF-A',
+    blockTarget: 'VEGFR',
+    abType: 'Fab',
+    count: 10,
+    printable: true,
+    displayStory: '围绕 VEGF-A/VEGFR 血管生成信号，生成肿瘤血管生成方向抗体候选结构。',
+    keywords: ['vegf', 'vegf-a', 'vegfa', '血管生成', 'angiogenesis']
+  },
+  {
     id: 'autoimmune_inflammation',
-    disease: '自身免疫炎症',
+    disease: '自身免疫 / 炎症疾病',
     systemUnderstanding: '炎症因子通路',
     target: 'TNF',
     blockTarget: null,
@@ -1870,6 +2296,126 @@ const DEMO_ROUTE_RULES = [
     printable: false,
     displayStory: '围绕 TNF-alpha 炎症因子，生成自身免疫疾病抗体候选设计。',
     keywords: ['自身免疫', '类风湿', '关节炎', '炎症', 'tnf', 'tnfα', 'tnf-alpha', 'autoimmune', 'rheumatoid']
+  },
+  {
+    id: 'autoimmune_il17',
+    disease: '自身免疫 / 炎症疾病',
+    systemUnderstanding: 'IL-17 炎症轴',
+    target: 'IL-17A',
+    blockTarget: null,
+    abType: 'Fab',
+    count: 10,
+    printable: false,
+    displayStory: '围绕 IL-17A 炎症轴，生成银屑病等自身免疫炎症方向抗体候选设计。',
+    keywords: ['il17', 'il-17', 'il 17', 'il17a', 'il-17a', '银屑病', 'psoriasis']
+  },
+  {
+    id: 'autoimmune_il23',
+    disease: '自身免疫 / 炎症疾病',
+    systemUnderstanding: 'IL-23 炎症轴',
+    target: 'IL-23',
+    blockTarget: null,
+    abType: 'Fab',
+    count: 10,
+    printable: false,
+    displayStory: '围绕 IL-23/Th17 炎症轴，生成炎症性肠病和银屑病方向抗体候选设计。',
+    keywords: ['il23', 'il-23', 'il 23', '炎症性肠病', '克罗恩', '溃疡性结肠炎', 'ibd', 'crohn']
+  },
+  {
+    id: 'infectious_rsv',
+    disease: '感染性疾病',
+    systemUnderstanding: '病毒入侵阻断通路',
+    target: 'RSV F',
+    blockTarget: null,
+    abType: 'Fab',
+    count: 10,
+    printable: true,
+    displayStory: '围绕 RSV F 融合蛋白，生成呼吸道病毒中和抗体候选结构。',
+    keywords: ['rsv', '呼吸道合胞病毒', '融合蛋白', 'f蛋白', 'f protein']
+  },
+  {
+    id: 'infectious_covid',
+    disease: '感染性疾病',
+    systemUnderstanding: '病毒受体结合阻断通路',
+    target: 'SARS-CoV-2 RBD',
+    blockTarget: 'ACE2',
+    abType: 'Fab',
+    count: 10,
+    printable: true,
+    displayStory: '围绕 SARS-CoV-2 RBD/ACE2 结合界面，生成病毒受体结合阻断抗体候选结构。',
+    keywords: ['新冠', '冠状病毒', 'sars-cov-2', 'covid', 'rbd', 'ace2']
+  },
+  {
+    id: 'infectious_flu',
+    disease: '感染性疾病',
+    systemUnderstanding: '病毒表面抗原中和通路',
+    target: 'Influenza HA',
+    blockTarget: null,
+    abType: 'Fab',
+    count: 10,
+    printable: true,
+    displayStory: '围绕流感 HA 表面抗原，生成病毒中和抗体候选结构。',
+    keywords: ['流感', 'influenza', 'ha', '血凝素', 'hemagglutinin']
+  },
+  {
+    id: 'cardio_pcsk9',
+    disease: '心血管 / 血脂疾病',
+    systemUnderstanding: 'LDL-C 调控通路',
+    target: 'PCSK9',
+    blockTarget: 'LDLR',
+    abType: 'Fab',
+    count: 10,
+    printable: true,
+    displayStory: '围绕 PCSK9/LDLR 血脂调控通路，生成心血管和高胆固醇方向抗体候选结构。',
+    keywords: ['pcsk9', 'ldlr', 'ldl-c', 'ldl', '心血管', '血脂', '高胆固醇', 'cholesterol']
+  },
+  {
+    id: 'cardio_angptl3',
+    disease: '心血管 / 血脂疾病',
+    systemUnderstanding: '甘油三酯与脂质代谢通路',
+    target: 'ANGPTL3',
+    blockTarget: null,
+    abType: 'Fab',
+    count: 10,
+    printable: true,
+    displayStory: '围绕 ANGPTL3 脂质代谢调控通路，生成血脂疾病方向抗体候选结构。',
+    keywords: ['angptl3', '甘油三酯', '脂质代谢', 'triglyceride', 'lipid']
+  },
+  {
+    id: 'cardio_il1b',
+    disease: '心血管 / 血脂疾病',
+    systemUnderstanding: '炎症性心血管风险通路',
+    target: 'IL-1β',
+    blockTarget: null,
+    abType: 'Fab',
+    count: 10,
+    printable: false,
+    displayStory: '围绕 IL-1β 炎症放大信号，生成炎症性心血管风险方向抗体候选设计。',
+    keywords: ['il1b', 'il-1b', 'il-1β', 'il-1 beta', '心血管炎症', '炎症风险']
+  },
+  {
+    id: 'metabolic_angptl3',
+    disease: '代谢 / 脂质代谢疾病',
+    systemUnderstanding: '脂质代谢调控通路',
+    target: 'ANGPTL3',
+    blockTarget: null,
+    abType: 'Fab',
+    count: 10,
+    printable: true,
+    displayStory: '围绕 ANGPTL3 脂质代谢调控通路，生成代谢疾病方向抗体候选结构。',
+    keywords: ['代谢', '脂质代谢', '高脂血症', 'angptl3', 'metabolic', 'lipid metabolism']
+  },
+  {
+    id: 'metabolic_gipr',
+    disease: '代谢 / 脂质代谢疾病',
+    systemUnderstanding: '肠促胰岛素受体调控通路',
+    target: 'GIPR',
+    blockTarget: null,
+    abType: 'Fab',
+    count: 10,
+    printable: false,
+    displayStory: '围绕 GIPR 胞外可及区域，生成代谢调控方向抗体候选设计。',
+    keywords: ['gipr', 'gip receptor', '肠促胰岛素', '代谢调控']
   }
 ];
 
@@ -1967,17 +2513,24 @@ function detectDemoRoute(input) {
   if (!normalized) return null;
   if (hasNonBiomedicalContext(normalized)) return null;
 
-  const representativeLabel = getRepresentativeDemoDirection(normalized);
-  if (representativeLabel) return buildRepresentativeDemoRoute(representativeLabel, 'unsupported_direction');
+  if (/angptl3/.test(normalized) && /(代谢|脂质代谢|metabolic|lipid metabolism)/.test(normalized)) {
+    return DEMO_ROUTE_RULES.find(rule => rule.id === 'metabolic_angptl3') || getDefaultDemoRoute();
+  }
+  if (/angptl3/.test(normalized) && /(心血管|血脂|胆固醇|cardio|cholesterol|triglyceride)/.test(normalized)) {
+    return DEMO_ROUTE_RULES.find(rule => rule.id === 'cardio_angptl3') || getDefaultDemoRoute();
+  }
 
   for (const rule of DEMO_ROUTE_RULES) {
     if (containsAny(normalized, rule.keywords)) return rule;
   }
 
-  if (/il\s*-?\s*33|st2|il1rl1/.test(normalized)) return DEMO_ROUTE_RULES[0];
-  if (/pd\s*-?\s*l?\s*-?\s*1|programmed death|检查点/.test(normalized)) return DEMO_ROUTE_RULES[1];
-  if (/her\s*-?\s*2|erbb\s*-?\s*2/.test(normalized)) return DEMO_ROUTE_RULES[2];
-  if (/tnf/.test(normalized)) return DEMO_ROUTE_RULES[3];
+  const representativeLabel = getRepresentativeDemoDirection(normalized);
+  if (representativeLabel) return buildRepresentativeDemoRoute(representativeLabel, 'unsupported_direction');
+
+  if (/il\s*-?\s*33|st2|il1rl1/.test(normalized)) return DEMO_ROUTE_RULES.find(rule => rule.id === 'allergic_asthma') || DEMO_ROUTE_RULES[0];
+  if (/pd\s*-?\s*l?\s*-?\s*1|programmed death|检查点/.test(normalized)) return DEMO_ROUTE_RULES.find(rule => rule.id === 'tumor_immunotherapy') || getDefaultDemoRoute();
+  if (/her\s*-?\s*2|erbb\s*-?\s*2/.test(normalized)) return DEMO_ROUTE_RULES.find(rule => rule.id === 'breast_cancer') || getDefaultDemoRoute();
+  if (/tnf/.test(normalized)) return DEMO_ROUTE_RULES.find(rule => rule.id === 'autoimmune_inflammation') || getDefaultDemoRoute();
 
   if (/(设计|生成|做|来一个|演示|打印|结构模型|候选).*(抗体|分子|模型)|抗体.*(设计|生成|演示|打印|模型)|antibody.*(design|generate|demo)|design.*antibody/.test(normalized)) {
     return buildRepresentativeDemoRoute('完整抗体设计演示', 'default_demo');
@@ -2290,12 +2843,14 @@ function parseRequest(input) {
                      input.match(/(\d+)/);
   const count = Math.min(Math.max(countMatch ? parseInt(countMatch[1]) : (demoRoute ? demoRoute.count : 40), 1), 200);
   const targetPatterns = [
-    /(?:bind(?:ing)? to|targeting|针对|靶向)\s+(?:human\s+)?([A-Z][A-Z0-9\-]+)/i,
-    /\b(IL-\d+[ABR]?|TNF[α\-]?A?|PD-[L\d]+|VEGF[A-Z]?|HER\d|EGFR|CD\d+|PCSK9)\b/i];
+    /(?:bind(?:ing)? to|targeting|针对|靶向)\s+(?:human\s+)?(SARS-CoV-2\s+RBD|Influenza\s+HA|RSV\s+F|IL-17A|IL-23|IL-1β|IL-1B|VEGF-A|ANGPTL3|PCSK9|TSLP|GIPR|EGFR|HER2|PD-L1|TNF)/i,
+    /\b(SARS-CoV-2\s+RBD|Influenza\s+HA|RSV\s+F|IL-17A|IL-23|IL-1β|IL-1B|VEGF-A|ANGPTL3|PCSK9|TSLP|GIPR|EGFR|HER2|PD-L1|TNF[α\-]?A?)\b/i];
   let target = demoRoute ? demoRoute.target : 'PD-L1';
-  for (const p of targetPatterns) {
-    const m = input.match(p);
-    if (m) { target = m[1].toUpperCase(); break; }
+  if (!demoRoute) {
+    for (const p of targetPatterns) {
+      const m = input.match(p);
+      if (m) { target = m[1].toUpperCase(); break; }
+    }
   }
   const abType = /vhh|nanobod|纳米抗体/i.test(input) ? 'VHH' :
                  /fab\b/i.test(input) ? 'Fab' :
