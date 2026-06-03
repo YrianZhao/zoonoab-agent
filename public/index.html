@@ -2563,8 +2563,8 @@
         .qd-progress-label { font-size: 11px; font-weight: 700; color: var(--brand-dark); }
         .qd-progress-meta { font-size: 11px; color: var(--text-muted); font-weight: 600; }
         .qd-progress-track { height: 6px; background: #E8EEF7; border-radius: 999px; overflow: hidden; }
-        .qd-progress-bar { height: 100%; width: 14.285%; background: linear-gradient(90deg, var(--brand), var(--brand-dark)); border-radius: inherit; transition: width 0.25s ease; }
-        .qd-step-dots { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 5px; margin-top: 9px; }
+        .qd-progress-bar { height: 100%; width: 16.666%; background: linear-gradient(90deg, var(--brand), var(--brand-dark)); border-radius: inherit; transition: width 0.25s ease; }
+        .qd-step-dots { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 5px; margin-top: 9px; }
         .qd-step-dot { height: 3px; border-radius: 999px; background: #D8E3F1; transition: var(--transition); }
         .qd-step-dot.done { background: rgba(0,123,255,0.45); }
         .qd-step-dot.active { background: var(--brand); }
@@ -4358,7 +4358,7 @@
                 <div class="qd-progress-wrap" id="qdProgressWrap">
                     <div class="qd-progress-row">
                         <span class="qd-progress-label" id="qdProgressLabel">分子设计引导流程</span>
-                        <span class="qd-progress-meta" id="qdProgressMeta">1/7</span>
+                        <span class="qd-progress-meta" id="qdProgressMeta">1/6</span>
                     </div>
                     <div class="qd-progress-track"><div class="qd-progress-bar" id="qdProgressBar"></div></div>
                     <div class="qd-step-dots" id="qdStepDots"></div>
@@ -4954,7 +4954,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78141225';
+    const APP_BUILD_VERSION = '78141226';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -5211,11 +5211,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             function tick() {
                 if (pos < totalLen) {
                     const accelerated = workflowFastForward || document.body.classList.contains('workflow-fast-forward') || skipThinkingRequested || demoSkipSettled;
-                    const step = accelerated ? totalLen : charsPerTick;
+                    const acceleratedStep = Math.max(charsPerTick * 6, Math.ceil(totalLen / 18), 8);
+                    const step = accelerated ? acceleratedStep : charsPerTick;
                     pos = Math.min(pos + step, totalLen);
                     contentEl.innerHTML = renderMarkdown(rawText.slice(0, pos)) + '<span class="typing-cursor"></span>';
                     scrollBottom();
-                    setTimeout(tick, accelerated ? 1 : tickMs);
+                    setTimeout(tick, accelerated ? 12 : tickMs);
                 } else {
                     contentEl.innerHTML = renderMarkdown(markdown);
                     contentEl.style.minHeight = '';
@@ -5523,7 +5524,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     // ═══════════════ QUICK DESIGN PANEL ═══════════════
-    const QD_TOTAL_STEPS = 7;
+    const QD_TOTAL_STEPS = 6;
     const qdDemoRoutes = {
         allergic_asthma: {
             disease: '过敏 / 呼吸道炎症',
@@ -6086,15 +6087,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 <div class="qd-step-title">希望抗体优先识别哪个区域？</div>
                 ${qdOptionCards(qdEpitopeOptions, qdState.epitope, 'qdSelectEpitope')}
             `;
-        } else if (qdState.step === 5) {
-            body.innerHTML = `
-                <div class="qd-step-kicker">第 6 步</div>
-                <div class="qd-step-title">请选择希望生成的抗体分子类型</div>
-                ${qdOptionCards(qdRouteAntibodyOptions(), qdState.antibody, 'qdSelectAntibody')}
-            `;
         } else {
             body.innerHTML = `
-                <div class="qd-step-kicker">第 7 步</div>
+                <div class="qd-step-kicker">第 6 步</div>
                 <div class="qd-step-title">设计任务已生成</div>
                 <div class="qd-summary-card">${summaryRows}</div>
                 <div class="qd-preview-box">
@@ -8437,7 +8432,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     // Fires when backend WS is unavailable — simulates a full multi-agent VHH design run
 
     function demoSleep(ms) {
-        const op = () => new Promise(r => setTimeout(r, workflowFastForward || demoSkipSettled ? Math.min(50, ms) : ms));
+        const op = () => new Promise(r => setTimeout(r, workflowFastForward || demoSkipSettled ? Math.min(650, ms) : ms));
         op.skipOnThinkingSkip = true;
         enqueueOp(op);
     }

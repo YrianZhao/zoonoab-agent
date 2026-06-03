@@ -66,6 +66,7 @@ const localAsrRecentLogs = [];
 
 const WORKFLOW_SKIP_SETTLE_MS = Number(process.env.WORKFLOW_SKIP_SETTLE_MS || 1100);
 const WORKFLOW_SKIP_DELAY_MS = Number(process.env.WORKFLOW_SKIP_DELAY_MS || 80);
+const WORKFLOW_FAST_DELAY_MS = Number(process.env.WORKFLOW_FAST_DELAY_MS || 650);
 
 function readAppBuildVersion() {
   try {
@@ -2950,7 +2951,7 @@ function consumeWorkflowSkip(sess) {
 function workflowDelay(ws, sess, ms, options = {}) {
   const normalMs = Number(ms) || 0;
   const settleMs = Number(options.settleMs || WORKFLOW_SKIP_SETTLE_MS);
-  const fastMs = Number(options.fastMs || 40);
+  const fastMs = Number(options.fastMs || WORKFLOW_FAST_DELAY_MS);
   return new Promise((resolve, reject) => {
     let done = false;
     const finish = () => {
