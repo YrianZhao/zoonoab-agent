@@ -45,8 +45,8 @@
 
         if (!pdbUrl) { ld.textContent = 'No URL'; return; }
 
-        // Multi-chain color palette (Click.mAb style: orange heavy, teal light)
-        var CHAIN_PALETTE = ['#FB923C','#2DD4BF','#818CF8','#34D399','#F472B6','#60A5FA'];
+        // Route colors: first chain is antigen, remaining chains are antibody by default.
+        var CHAIN_PALETTE = [cA || '#FB923C', cB || '#2DD4BF', '#818CF8', '#34D399', '#F472B6', '#60A5FA'];
 
         function applyChainColors(m) {
             var chains = [];
@@ -56,7 +56,7 @@
                 glv.setStyle({}, {cartoon:{color: cB || '#FB923C'}});
             } else {
                 chains.forEach(function(ch, i) {
-                    glv.setStyle({chain:ch},{cartoon:{color: CHAIN_PALETTE[i % CHAIN_PALETTE.length]}});
+                    glv.setStyle({chain:ch},{cartoon:{color: i === 0 ? (cA || CHAIN_PALETTE[0]) : (cB || CHAIN_PALETTE[i % CHAIN_PALETTE.length])}});
                 });
             }
         }

@@ -48,8 +48,8 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
     var pdbUrl = params.get('pdb') || '';
 
     // ════ Colors ════
-    var AG_COLOR = '#FB923C';   // Heavy chain / Chain A → orange (Click.mAb style)
-    var AB_COLOR = '#2DD4BF';   // Light chain / other chains → teal (Click.mAb style)
+    var AG_COLOR = params.get('chainA') || '#FB923C';   // Antigen / Chain A
+    var AB_COLOR = params.get('chainB') || '#2DD4BF';   // Antibody / other chains
     var SF_COLOR = '#67E8F9';   // Surface → cyan
 
     // ════ STATE (outer scope — all functions can see these) ════

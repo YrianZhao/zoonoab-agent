@@ -27,6 +27,7 @@
 快速设计的 3D 展示可以对外使用 `PDL1-candidate-01.pdb` 这类产品化候选别名，由服务端内部映射到真实本地 PDB 文件；观众可见的候选名称和结构 URL 不应暴露本地 4KC3/IL33 文件名前缀，除非当前路线本身就是 IL-33/ST2。
 快速设计结束后自动打开的 3D 弹窗应全屏常驻展示：不得自动倒计时关闭，点击遮罩不得关闭，只保留显式关闭按钮和 Esc 作为人工出口；打开弹窗不能阻塞工作流队列或运行状态复位。
 快速设计 3D 展示的 `binderData` 必须携带真实本地 PDB `file` 以及路线化展示元信息（routeId、疾病方向、靶点、机制、表位策略、候选名称、序列/CDR/可开发性摘要），前端 Sequence、Gallery 和弹窗标题应优先使用当前 route/profile 字段，缺字段时才使用本地 PDB fallback。
+快速设计每条 route/profile 都应有稳定的 3D 展示预设，包括产品化 PDB 候选别名、真实本地 PDB 映射顺序、结构标题、结构类型说明、可视化摘要和抗原/抗体颜色；新增快速设计路线时必须同步补齐该 route 的 3D 预设，保证最终 3D 结果与前序疾病、靶点和机制一致。
 3D 结果区要对 `show_3d` 的 `binderData/allPDBs` 做前端归一化；如果后端 payload 为空或缺字段，必须用本地 4KC3/IL33 PDB 清单兜底渲染 Binders、Sequence、CDR strip 和结构缩略图，避免展会 demo 出现空白面板。
 连续多次渲染 3D 结果时，前端必须按当前 `.section-3d` 作用域查找 Binders、Sequence、Gallery、Chain strip 等固定 id 元素，并重置 `galleryViewers`、`currentGalleryViewer`、`activeBinderIdx`，避免 `document.getElementById` 命中旧结果卡片导致新结果空白。
 连续多次渲染 `Designed Binders` 结果区时，前端必须按当前 `.results-section` 作用域使用 `data-role`/scoped selectors 查找序列列表、雷达图、直方图、CDR 组成图和对比栏；不要在重复结果区内使用全局重复 id 或 `document.getElementById` 查找这些节点。

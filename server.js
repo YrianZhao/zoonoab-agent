@@ -1795,6 +1795,194 @@ function routeCandidateId(profile, idx) {
   return target + '-candidate-' + String(idx + 1).padStart(2, '0');
 }
 
+const LOCAL_3D_PDB_FILES = [
+  '4KC3_site1_1655576_binder-0_iptm-0.7953_complex.pdb',
+  '4KC3_site1_1655576_binder-1_iptm-0.7825_complex.pdb',
+  '4KC3_site1_1665463_binder-2_iptm-0.7847_complex.pdb',
+  '4KC3_site1_1665463_binder-3_iptm-0.7770_complex.pdb',
+  '4KC3_site1_1665463_binder-4_iptm-0.7834_complex.pdb',
+  '4KC3_site1_1665463_binder-5_iptm-0.7835_complex.pdb',
+  '4KC3_site1_1665463_binder-7_iptm-0.7780_complex.pdb',
+  '4KC3_site1_1665463_binder-8_iptm-0.7761_complex.pdb',
+  '4KC3_site1_1037374_binder-2_iptm-0.7727_complex.pdb',
+  '4KC3_site1_1037374_binder-3_iptm-0.7503_complex.pdb',
+  '4KC3_site1_1037374_binder-8_iptm-0.7685_complex.pdb',
+  'IL33_VHH_complex.pdb'
+];
+
+const ROUTE_3D_PRESETS = {
+  allergic_asthma: {
+    aliasPrefix: 'IL33-VHH',
+    title: 'IL-33/ST2 VHH 受体界面阻断构象',
+    structureFamily: 'IL-1 家族细胞因子 · VHH 小型结合体',
+    visualSummary: '重点呈现 VHH 覆盖 ST2 结合面的紧凑构象。',
+    antigenColor: '#F59E0B',
+    antibodyColor: '#14B8A6',
+    order: [11, 0, 2, 5, 1, 4, 7, 3, 6, 8, 9, 10],
+    ipTmBias: 0.006
+  },
+  allergic_tslp: {
+    aliasPrefix: 'TSLP-Fab',
+    title: 'TSLP/TSLPR Fab 上皮炎症界面阻断构象',
+    structureFamily: '上皮来源细胞因子 · Fab 阻断候选',
+    visualSummary: '展示 Fab 覆盖 TSLPR 结合面并保留外侧稳定接触。',
+    antigenColor: '#F97316',
+    antibodyColor: '#0EA5E9',
+    order: [1, 4, 7, 0, 3, 6, 9, 2, 5, 8, 10, 11],
+    ipTmBias: 0.002
+  },
+  tumor_immunotherapy: {
+    aliasPrefix: 'PDL1-Fab',
+    title: 'PD-L1 Fab 免疫检查点阻断构象',
+    structureFamily: '免疫检查点 IgV 结构域 · Fab 候选',
+    visualSummary: '突出 Fab 对 PD-1/PD-L1 接触面的空间覆盖。',
+    antigenColor: '#60A5FA',
+    antibodyColor: '#F472B6',
+    order: [0, 2, 5, 1, 4, 7, 3, 6, 8, 9, 10, 11],
+    ipTmBias: 0.010
+  },
+  breast_cancer: {
+    aliasPrefix: 'HER2-Fab',
+    title: 'HER2 Fab 胞外结构域结合构象',
+    structureFamily: 'HER2 胞外结构域 · 肿瘤靶点 Fab',
+    visualSummary: '呈现 Fab 贴合 HER2 胞外可及表面并形成稳定 CDR 接触。',
+    antigenColor: '#EC4899',
+    antibodyColor: '#38BDF8',
+    order: [2, 5, 8, 1, 4, 7, 0, 3, 6, 9, 10, 11],
+    ipTmBias: 0.004
+  },
+  solid_tumor_egfr: {
+    aliasPrefix: 'EGFR-Fab',
+    title: 'EGFR Fab 配体邻近表面结合构象',
+    structureFamily: 'EGFR 胞外受体结构域 · Fab 候选',
+    visualSummary: '展示 Fab 识别 EGFR 配体结合邻近区域的构象布局。',
+    antigenColor: '#8B5CF6',
+    antibodyColor: '#34D399',
+    order: [3, 6, 9, 0, 2, 5, 8, 1, 4, 7, 10, 11],
+    ipTmBias: 0.001
+  },
+  angiogenesis_oncology: {
+    aliasPrefix: 'VEGFA-Fab',
+    title: 'VEGF-A Fab 血管生成信号中和构象',
+    structureFamily: '血管生成因子 · Fab 中和候选',
+    visualSummary: '强调 Fab 对 VEGFR 结合面邻近可及表面的稳定覆盖。',
+    antigenColor: '#22C55E',
+    antibodyColor: '#A855F7',
+    order: [4, 7, 10, 1, 3, 6, 9, 0, 2, 5, 8, 11],
+    ipTmBias: 0.003
+  },
+  autoimmune_inflammation: {
+    aliasPrefix: 'TNF-Fab',
+    title: 'TNF Fab 炎症因子中和构象',
+    structureFamily: 'TNF 炎症因子 · Fab 中和候选',
+    visualSummary: '展示 Fab 覆盖 TNFR 结合邻近外侧表面的候选构象。',
+    antigenColor: '#EF4444',
+    antibodyColor: '#2DD4BF',
+    order: [5, 8, 0, 2, 4, 7, 10, 1, 3, 6, 9, 11],
+    ipTmBias: 0.000
+  },
+  autoimmune_il17: {
+    aliasPrefix: 'IL17A-Fab',
+    title: 'IL-17A Fab 炎症轴中和构象',
+    structureFamily: 'IL-17A 炎症因子 · Fab 候选',
+    visualSummary: '突出 Fab 对 IL-17R 结合邻近面的 CDR 覆盖。',
+    antigenColor: '#F43F5E',
+    antibodyColor: '#06B6D4',
+    order: [6, 9, 1, 3, 5, 8, 0, 2, 4, 7, 10, 11],
+    ipTmBias: 0.005
+  },
+  autoimmune_il23: {
+    aliasPrefix: 'IL23-Fab',
+    title: 'IL-23 Fab Th17 炎症轴中和构象',
+    structureFamily: 'IL-23 炎症轴 · Fab 候选',
+    visualSummary: '展示 Fab 聚焦 IL-23 特异亚基可及面的稳定结合构象。',
+    antigenColor: '#D946EF',
+    antibodyColor: '#22D3EE',
+    order: [7, 10, 2, 4, 6, 9, 1, 3, 5, 8, 0, 11],
+    ipTmBias: 0.001
+  },
+  infectious_rsv: {
+    aliasPrefix: 'RSVF-Fab',
+    title: 'RSV F Fab 病毒融合阻断构象',
+    structureFamily: '病毒融合蛋白 · 中和 Fab 候选',
+    visualSummary: '呈现 Fab 锁定 RSV F 融合前关键构象表面。',
+    antigenColor: '#0EA5E9',
+    antibodyColor: '#F97316',
+    order: [8, 0, 3, 6, 9, 1, 4, 7, 10, 2, 5, 11],
+    ipTmBias: 0.007
+  },
+  infectious_covid: {
+    aliasPrefix: 'SC2RBD-Fab',
+    title: 'SARS-CoV-2 RBD Fab 受体结合阻断构象',
+    structureFamily: '病毒受体结合结构域 · 中和 Fab 候选',
+    visualSummary: '展示 Fab 覆盖 RBD/ACE2 结合邻近可及面。',
+    antigenColor: '#0284C7',
+    antibodyColor: '#F59E0B',
+    order: [9, 1, 4, 7, 10, 2, 5, 8, 0, 3, 6, 11],
+    ipTmBias: 0.004
+  },
+  infectious_flu: {
+    aliasPrefix: 'FluHA-Fab',
+    title: 'Influenza HA Fab 保守中和表位构象',
+    structureFamily: '流感表面抗原 · 广谱中和 Fab 候选',
+    visualSummary: '突出 Fab 对 HA 保守中和表面的稳定接触。',
+    antigenColor: '#0891B2',
+    antibodyColor: '#FB7185',
+    order: [10, 2, 5, 8, 0, 3, 6, 9, 1, 4, 7, 11],
+    ipTmBias: 0.002
+  },
+  cardio_pcsk9: {
+    aliasPrefix: 'PCSK9-Fab',
+    title: 'PCSK9 Fab LDLR 结合界面阻断构象',
+    structureFamily: '血脂调控靶点 · Fab 阻断候选',
+    visualSummary: '展示 Fab 围绕 PCSK9/LDLR 接触面形成稳定结合。',
+    antigenColor: '#2563EB',
+    antibodyColor: '#84CC16',
+    order: [1, 5, 9, 0, 4, 8, 2, 6, 10, 3, 7, 11],
+    ipTmBias: 0.006
+  },
+  cardio_angptl3: {
+    aliasPrefix: 'ANGPTL3-CV-Fab',
+    title: 'ANGPTL3 Fab 血脂调控中和构象',
+    structureFamily: '脂质代谢调控靶点 · 心血管 Fab 候选',
+    visualSummary: '呈现 Fab 覆盖 ANGPTL3 功能结构域可及面的构象。',
+    antigenColor: '#16A34A',
+    antibodyColor: '#818CF8',
+    order: [2, 6, 10, 1, 5, 9, 0, 4, 8, 3, 7, 11],
+    ipTmBias: 0.003
+  },
+  cardio_il1b: {
+    aliasPrefix: 'IL1B-Fab',
+    title: 'IL-1β Fab 炎症风险中和构象',
+    structureFamily: 'IL-1 家族炎症因子 · Fab 候选',
+    visualSummary: '展示 Fab 覆盖 IL-1R 结合邻近面的候选构象。',
+    antigenColor: '#DC2626',
+    antibodyColor: '#38BDF8',
+    order: [3, 7, 0, 2, 6, 10, 1, 5, 9, 4, 8, 11],
+    ipTmBias: 0.000
+  },
+  metabolic_angptl3: {
+    aliasPrefix: 'ANGPTL3-Met-Fab',
+    title: 'ANGPTL3 Fab 脂质代谢调控构象',
+    structureFamily: '脂质代谢调控靶点 · 代谢 Fab 候选',
+    visualSummary: '突出 Fab 对 ANGPTL3 脂质代谢相关可及面的稳定覆盖。',
+    antigenColor: '#65A30D',
+    antibodyColor: '#7C3AED',
+    order: [4, 8, 1, 3, 7, 0, 2, 6, 10, 5, 9, 11],
+    ipTmBias: 0.004
+  },
+  metabolic_gipr: {
+    aliasPrefix: 'GIPR-Fab',
+    title: 'GIPR Fab 胞外受体结合构象',
+    structureFamily: '代谢受体胞外结构域 · Fab 候选',
+    visualSummary: '展示 Fab 识别 GIPR 胞外稳定可及表面的结合构象。',
+    antigenColor: '#0F766E',
+    antibodyColor: '#F472B6',
+    order: [5, 9, 2, 4, 8, 1, 3, 7, 0, 6, 10, 11],
+    ipTmBias: 0.001
+  }
+};
+
 function stableSeed(input) {
   return String(input || '').split('').reduce((sum, ch) => ((sum * 31) + ch.charCodeAt(0)) >>> 0, 2166136261);
 }
@@ -1813,18 +2001,93 @@ function routeDisplaySequence(profile, idx) {
   return 'EVQLVESGGGLVQPGGSLRLSCAAS' + cdr1 + cdr2 + 'LQMNSLRAEDTAVYYCAR' + cdr3 + 'WGQGTQVTVSS';
 }
 
-function buildRoute3DMeta(profile, idx, file, ipTm) {
+function getRoute3DPreset(profile) {
+  const routeId = profile && profile.routeId;
+  if (routeId && ROUTE_3D_PRESETS[routeId]) return ROUTE_3D_PRESETS[routeId];
+  const target = (profile && profile.targetDisplay) || '';
+  const disease = (profile && profile.disease) || '';
+  if (target === 'ANGPTL3' && /心血管|血脂/.test(disease)) return ROUTE_3D_PRESETS.cardio_angptl3;
+  if (target === 'ANGPTL3') return ROUTE_3D_PRESETS.metabolic_angptl3;
+  const targetPresetMap = {
+    'IL-33': 'allergic_asthma',
+    TSLP: 'allergic_tslp',
+    'PD-L1': 'tumor_immunotherapy',
+    HER2: 'breast_cancer',
+    EGFR: 'solid_tumor_egfr',
+    'VEGF-A': 'angiogenesis_oncology',
+    TNF: 'autoimmune_inflammation',
+    'IL-17A': 'autoimmune_il17',
+    'IL-23': 'autoimmune_il23',
+    'RSV F': 'infectious_rsv',
+    'SARS-CoV-2 RBD': 'infectious_covid',
+    'Influenza HA': 'infectious_flu',
+    PCSK9: 'cardio_pcsk9',
+    'IL-1β': 'cardio_il1b',
+    GIPR: 'metabolic_gipr'
+  };
+  const presetKey = targetPresetMap[target];
+  return presetKey ? ROUTE_3D_PRESETS[presetKey] : null;
+}
+
+function routeAliasPrefix(profile, preset) {
+  if (preset && preset.aliasPrefix) return preset.aliasPrefix;
+  const target = ((profile && profile.targetDisplay) || 'PDL1').replace(/[^A-Za-z0-9]+/g, '');
+  const abFormat = profile && profile.scaffold && profile.scaffold.includes('VHH') ? 'VHH' : 'Fab';
+  return target + '-' + abFormat;
+}
+
+function routeDisplayFile(profile, preset, idx) {
+  return routeAliasPrefix(profile, preset) + '-' + String(idx + 1).padStart(2, '0') + '.pdb';
+}
+
+function extractIpTmFromFile(file) {
+  const base = String(file || '').replace(/\.pdb$/i, '');
+  const iptmMatch = base.match(/iptm-([\d.]+)/);
+  return iptmMatch ? parseFloat(iptmMatch[1]) : null;
+}
+
+function routeVisualColors(preset) {
+  return {
+    antigen: preset && preset.antigenColor ? preset.antigenColor : '#9CA3AF',
+    antibody: preset && preset.antibodyColor ? preset.antibodyColor : '#60A5FA'
+  };
+}
+
+function orderPDBFilesForPreset(preset, availableFiles) {
+  const source = Array.isArray(availableFiles) && availableFiles.length ? availableFiles : [];
+  const orderedFiles = [];
+  if (preset && Array.isArray(preset.order)) {
+    for (const fileIdx of preset.order) {
+      const file = LOCAL_3D_PDB_FILES[fileIdx];
+      if (file && source.includes(file) && !orderedFiles.includes(file)) orderedFiles.push(file);
+    }
+  }
+  for (const file of LOCAL_3D_PDB_FILES) {
+    if (source.includes(file) && !orderedFiles.includes(file)) orderedFiles.push(file);
+  }
+  for (const file of source) {
+    if (!orderedFiles.includes(file)) orderedFiles.push(file);
+  }
+  return orderedFiles;
+}
+
+function buildRoute3DMeta(profile, idx, file, ipTm, preset) {
   const target = (profile && profile.targetDisplay) || 'PD-L1';
-  const safeIpTm = typeof ipTm === 'number' && !Number.isNaN(ipTm)
-    ? ipTm
-    : +(0.82 - Math.min(idx, 9) * 0.012).toFixed(4);
+  const presetBias = preset && typeof preset.ipTmBias === 'number' ? preset.ipTmBias : 0;
+  const rawIpTm = typeof ipTm === 'number' && !Number.isNaN(ipTm)
+    ? ipTm + presetBias - (idx % 4) * 0.0015
+    : 0.82 + presetBias - Math.min(idx, 9) * 0.012;
+  const safeIpTm = +Math.max(0.68, Math.min(0.895, rawIpTm)).toFixed(4);
   const sequence = routeDisplaySequence(profile, idx);
   const cdr3Len = Math.max(10, Math.min(18, 12 + (stableSeed(target + idx) % 6)));
   const routeLabel = (profile && profile.routeLabel) || target;
   const abFormat = profile && profile.scaffold && profile.scaffold.includes('VHH') ? 'VHH' : 'Fab';
+  const displayFile = routeDisplayFile(profile, preset, idx);
+  const visualColors = routeVisualColors(preset);
   return {
     id: routeCandidateId(profile, idx),
     file,
+    displayFile,
     name: routeStructureName(profile, idx, safeIpTm),
     candidateLabel: target + '-' + abFormat + '-' + String(idx + 1).padStart(2, '0'),
     binderId: 'B' + String(idx + 1).padStart(2, '0'),
@@ -1838,6 +2101,10 @@ function buildRoute3DMeta(profile, idx, file, ipTm) {
     selectedEpitope: (profile && profile.selectedEpitope) || '',
     structureRef: (profile && profile.structureRef) || '',
     interfaceFocus: (profile && profile.interfaceFocus) || '',
+    structureTitle: preset && preset.title ? preset.title : routeLabel + ' 候选结构',
+    structureFamily: preset && preset.structureFamily ? preset.structureFamily : (profile && profile.domain) || '',
+    visualSummary: preset && preset.visualSummary ? preset.visualSummary : (profile && profile.structurePrepZh) || '',
+    visualColors,
     sequence,
     cdrSummary: 'CDR-H3 ' + cdr3Len + ' aa · ' + ((profile && profile.selectedEpitope) || '目标表位') + ' 匹配',
     developability: safeIpTm >= 0.78 ? '低风险 · 可进入合成评估' : '中等风险 · 建议复核界面电荷',
@@ -1862,14 +2129,14 @@ function routeLocalPDBs(profile, count) {
     console.error('[Server] PDB scan error:', e.message);
   }
   localFiles.sort();
-  const sourceFiles = localFiles.length ? localFiles : [fallbackFile];
+  const availableFiles = localFiles.length ? localFiles : [fallbackFile];
+  const preset = getRoute3DPreset(profile);
+  const orderedFiles = orderPDBFilesForPreset(preset, availableFiles);
+  const sourceFiles = orderedFiles.length ? orderedFiles : [fallbackFile];
   const targetCount = Math.max(1, Number(count) || 10);
   const files = Array.from({ length: targetCount }, (_, idx) => sourceFiles[idx % sourceFiles.length]);
   return files.map((file, idx) => {
-    const base = file.replace('.pdb', '');
-    const iptmMatch = base.match(/iptm-([\d.]+)/);
-    const ipTm = iptmMatch ? parseFloat(iptmMatch[1]) : null;
-    return buildRoute3DMeta(profile, idx, file, ipTm);
+    return buildRoute3DMeta(profile, idx, file, extractIpTmFromFile(file), preset);
   });
 }
 
@@ -2172,11 +2439,21 @@ function listLocalPDBFiles() {
 }
 
 function resolveLocalPDBAlias(filename) {
-  const match = String(filename || '').match(/^[A-Za-z0-9]+-candidate-(\d+)\.pdb$/i);
-  if (!match) return filename;
+  const requested = String(filename || '');
   const files = listLocalPDBFiles();
-  if (!files.length) return filename;
-  const idx = Math.max(0, parseInt(match[1], 10) - 1);
+  if (!files.length) return requested;
+  for (const preset of Object.values(ROUTE_3D_PRESETS)) {
+    if (!preset || !preset.aliasPrefix) continue;
+    const safePrefix = preset.aliasPrefix.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const aliasMatch = requested.match(new RegExp('^' + safePrefix + '-(\\d+)\\.pdb$', 'i'));
+    if (!aliasMatch) continue;
+    const idx = Math.max(0, parseInt(aliasMatch[1], 10) - 1);
+    const orderedFiles = orderPDBFilesForPreset(preset, files);
+    return orderedFiles[idx % orderedFiles.length];
+  }
+  const candidateMatch = requested.match(/^[A-Za-z0-9]+-candidate-(\d+)\.pdb$/i);
+  if (!candidateMatch) return requested;
+  const idx = Math.max(0, parseInt(candidateMatch[1], 10) - 1);
   return files[idx % files.length];
 }
 
@@ -3442,10 +3719,11 @@ async function runWorkflow(ws, input, forcedRoute) {
 
   // 3D Gallery
   const allLocalPDBs = routeLocalPDBs(profile, finalPass);
+  const route3DColors = allLocalPDBs[0] && allLocalPDBs[0].visualColors ? allLocalPDBs[0].visualColors : routeVisualColors(getRoute3DPreset(profile));
   console.log('[Server] Prepared ' + allLocalPDBs.length + ' route-labeled PDB complexes');
   send({ type: 'show_3d', primaryPDB: allLocalPDBs[0].id, allPDBs: allLocalPDBs.map(p => p.id),
     label: allLocalPDBs.length + ' 个 ' + profile.targetDisplay + ' ' + abType + ' 候选结构', isLocal: true,
-    chainInfo: { antigen: ['A'], antibody: ['B'] }, binderData: allLocalPDBs });
+    chainInfo: { antigen: ['A'], antibody: ['B'], colors: route3DColors }, binderData: allLocalPDBs });
   markWorkflowStage(sess, '');
   send({ type: 'done' });
 }
