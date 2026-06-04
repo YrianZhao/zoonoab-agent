@@ -2071,6 +2071,11 @@ function orderPDBFilesForPreset(preset, availableFiles) {
   return orderedFiles;
 }
 
+function localPDBFileExists(filename) {
+  if (!filename || filename.includes('..') || !/^[A-Za-z0-9][A-Za-z0-9_.-]*\.pdb$/.test(filename)) return false;
+  return fs.existsSync(path.join(LOCAL_PDB_DIR, filename)) || fs.existsSync(path.join(PROJECT_ROOT, filename));
+}
+
 function buildRoute3DMeta(profile, idx, file, ipTm, preset) {
   const target = (profile && profile.targetDisplay) || 'PD-L1';
   const presetBias = preset && typeof preset.ipTmBias === 'number' ? preset.ipTmBias : 0;
@@ -2082,7 +2087,9 @@ function buildRoute3DMeta(profile, idx, file, ipTm, preset) {
   const cdr3Len = Math.max(10, Math.min(18, 12 + (stableSeed(target + idx) % 6)));
   const routeLabel = (profile && profile.routeLabel) || target;
   const abFormat = profile && profile.scaffold && profile.scaffold.includes('VHH') ? 'VHH' : 'Fab';
-  const displayFile = routeDisplayFile(profile, preset, idx);
+  const aliasPrefix = routeAliasPrefix(profile, preset);
+  const staticPreset = file.startsWith(aliasPrefix + '-') && localPDBFileExists(file);
+  const displayFile = staticPreset ? file : '';
   const visualColors = routeVisualColors(preset);
   return {
     id: routeCandidateId(profile, idx),
@@ -2109,7 +2116,7 @@ function buildRoute3DMeta(profile, idx, file, ipTm, preset) {
     cdrSummary: 'CDR-H3 ' + cdr3Len + ' aa · ' + ((profile && profile.selectedEpitope) || '目标表位') + ' 匹配',
     developability: safeIpTm >= 0.78 ? '低风险 · 可进入合成评估' : '中等风险 · 建议复核界面电荷',
     ipTm: safeIpTm,
-    fallback: true
+    fallback: !staticPreset
   };
 }
 
@@ -2131,10 +2138,22 @@ function routeLocalPDBs(profile, count) {
   localFiles.sort();
   const availableFiles = localFiles.length ? localFiles : [fallbackFile];
   const preset = getRoute3DPreset(profile);
+  const staticPresetFiles = [];
+  if (preset) {
+    const aliasPrefix = routeAliasPrefix(profile, preset);
+    const maxPresetCandidates = Math.max(30, Number(count) || 10);
+    for (let idx = 0; idx < maxPresetCandidates; idx++) {
+      const staticFile = aliasPrefix + '-' + String(idx + 1).padStart(2, '0') + '.pdb';
+      if (localPDBFileExists(staticFile)) staticPresetFiles.push(staticFile);
+    }
+  }
   const orderedFiles = orderPDBFilesForPreset(preset, availableFiles);
   const sourceFiles = orderedFiles.length ? orderedFiles : [fallbackFile];
   const targetCount = Math.max(1, Number(count) || 10);
-  const files = Array.from({ length: targetCount }, (_, idx) => sourceFiles[idx % sourceFiles.length]);
+  const files = Array.from({ length: targetCount }, (_, idx) => {
+    if (staticPresetFiles.length) return staticPresetFiles[idx % staticPresetFiles.length];
+    return sourceFiles[idx % sourceFiles.length];
+  });
   return files.map((file, idx) => {
     return buildRoute3DMeta(profile, idx, file, extractIpTmFromFile(file), preset);
   });
@@ -2440,6 +2459,7 @@ function listLocalPDBFiles() {
 
 function resolveLocalPDBAlias(filename) {
   const requested = String(filename || '');
+  if (localPDBFileExists(requested)) return requested;
   const files = listLocalPDBFiles();
   if (!files.length) return requested;
   for (const preset of Object.values(ROUTE_3D_PRESETS)) {

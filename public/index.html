@@ -4964,7 +4964,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78141229';
+    const APP_BUILD_VERSION = '78141230';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -10151,16 +10151,16 @@ ${fallbackTableRows(profile.rows)}
 	    function makeFallbackBinders(count = 12, profile) {
 	        const targetCount = Math.max(1, count);
 	        const preset = getFallback3DPreset(profile);
-	        const sourceFiles = fallbackOrderedFiles(preset);
-	        const files = Array.from({ length: targetCount }, (_, idx) => sourceFiles[idx % sourceFiles.length]);
 	        const target = profile && profile.target ? profile.target : '';
 	        const abType = profile && profile.abType ? profile.abType : '';
+	        const presetPrefix = preset.aliasPrefix || (target.replace(/[^A-Za-z0-9]+/g, '') + '-' + abType);
+	        const files = Array.from({ length: targetCount }, (_, idx) => presetPrefix + '-' + String(idx + 1).padStart(2, '0') + '.pdb');
 	        return files.map((file, idx) => {
 	            const meta = parseFallbackBinderFile(file, idx);
 	            if (target && abType) {
 	                meta.id = target.replace(/[^A-Za-z0-9]+/g, '') + '-candidate-' + String(idx + 1).padStart(2, '0');
 	                meta.file = file;
-	                meta.displayFile = (preset.aliasPrefix || (target.replace(/[^A-Za-z0-9]+/g, '') + '-' + abType)) + '-' + String(idx + 1).padStart(2, '0') + '.pdb';
+	                meta.displayFile = file;
 	                meta.name = target + ' ' + abType + ' binder-' + String(idx + 1).padStart(2, '0') + (meta.ipTm !== null ? ' (ipTM=' + meta.ipTm.toFixed(4) + ')' : '');
 	                meta.candidateLabel = target + '-' + abType + '-' + String(idx + 1).padStart(2, '0');
 	                meta.routeId = profile.routeId || '';
