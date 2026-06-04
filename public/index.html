@@ -626,6 +626,252 @@
             background: currentColor;
             flex-shrink: 0;
         }
+        .voice-assistant-card {
+            position: absolute;
+            right: 0;
+            bottom: calc(100% + 14px);
+            width: min(360px, calc(100vw - 32px));
+            display: none;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            padding: 14px 15px 15px;
+            border: 1px solid rgba(15,23,42,0.08);
+            border-radius: 18px;
+            background:
+                radial-gradient(90% 70% at 12% 8%, rgba(0,123,255,0.10), transparent 58%),
+                radial-gradient(75% 65% at 92% 100%, rgba(20,184,166,0.12), transparent 62%),
+                rgba(255,255,255,0.92);
+            color: var(--text-primary);
+            box-shadow: 0 24px 60px rgba(15,23,42,0.18), 0 0 0 1px rgba(255,255,255,0.7) inset;
+            backdrop-filter: blur(18px) saturate(1.3);
+            -webkit-backdrop-filter: blur(18px) saturate(1.3);
+            z-index: 95;
+            opacity: 0;
+            transform: translateY(10px) scale(0.98);
+            transform-origin: bottom right;
+            pointer-events: none;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            overflow: hidden;
+        }
+        .voice-assistant-card.visible {
+            display: grid;
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+        .voice-assistant-card.listening,
+        .voice-assistant-card.awake {
+            border-color: rgba(0,123,255,0.18);
+            box-shadow: 0 26px 70px rgba(0,123,255,0.18), 0 0 0 1px rgba(255,255,255,0.75) inset;
+        }
+        .voice-assistant-card.error {
+            border-color: rgba(239,68,68,0.18);
+            background:
+                radial-gradient(90% 70% at 12% 8%, rgba(239,68,68,0.10), transparent 58%),
+                rgba(255,255,255,0.94);
+        }
+        .voice-card-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            min-width: 0;
+        }
+        .voice-card-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            min-width: 0;
+            padding: 5px 10px 5px 8px;
+            border: 1px solid rgba(0,123,255,0.12);
+            border-radius: 999px;
+            background: rgba(240,247,255,0.82);
+            color: var(--brand-dark);
+            font-size: 12px;
+            font-weight: 800;
+        }
+        .voice-card-status span:last-child {
+            min-width: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .voice-card-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: currentColor;
+            box-shadow: 0 0 0 5px rgba(0,123,255,0.10);
+            flex-shrink: 0;
+        }
+        .voice-card-close {
+            width: 30px;
+            height: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(15,23,42,0.08);
+            border-radius: 999px;
+            background: rgba(255,255,255,0.72);
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+        .voice-card-close:hover {
+            color: var(--error);
+            border-color: rgba(239,68,68,0.22);
+            background: rgba(254,242,242,0.96);
+        }
+        .voice-visual-area {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 118px;
+            isolation: isolate;
+        }
+        .voice-visual-ring {
+            position: absolute;
+            width: 96px;
+            height: 96px;
+            border-radius: 999px;
+            border: 1px solid rgba(0,123,255,0.18);
+            opacity: 0;
+            transform: scale(0.78);
+            pointer-events: none;
+        }
+        .voice-assistant-card.listening .voice-visual-ring,
+        .voice-assistant-card.awake .voice-visual-ring {
+            animation: voiceVisualRing 2.2s ease-out infinite;
+        }
+        .voice-visual-ring.r2 { animation-delay: 0.72s !important; }
+        .voice-visual-ring.r3 { animation-delay: 1.44s !important; }
+        .voice-visual-core {
+            --voice-level: 0;
+            position: relative;
+            width: 78px;
+            height: 78px;
+            border-radius: 999px;
+            background:
+                radial-gradient(circle at 34% 28%, rgba(255,255,255,0.96), rgba(255,255,255,0) 38%),
+                radial-gradient(circle at 70% 76%, rgba(20,184,166,0.82), rgba(20,184,166,0) 52%),
+                radial-gradient(circle at 50% 50%, #4F8DFF 18%, #005EC8 74%);
+            box-shadow: 0 16px 38px rgba(0,94,200,0.34), inset 0 -8px 18px rgba(15,23,42,0.28), inset 0 8px 18px rgba(255,255,255,0.26);
+            transform: scale(calc(1 + var(--voice-level) * 0.24));
+            transition: transform 0.08s ease-out, filter 0.18s ease, box-shadow 0.18s ease;
+            z-index: 2;
+        }
+        .voice-visual-core::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: inherit;
+            background: conic-gradient(from 0deg, rgba(255,255,255,0), rgba(255,255,255,0.62), rgba(20,184,166,0.42), rgba(255,255,255,0), rgba(0,123,255,0.42), rgba(255,255,255,0));
+            mix-blend-mode: screen;
+            opacity: 0.62;
+            animation: voiceCoreSweep 6s linear infinite;
+        }
+        .voice-visual-core::after {
+            content: '';
+            position: absolute;
+            inset: 24%;
+            border-radius: inherit;
+            background: radial-gradient(circle at 40% 36%, rgba(255,255,255,0.88), rgba(255,255,255,0.06) 70%);
+            opacity: 0.88;
+            animation: voiceCoreBreathe 3.2s ease-in-out infinite;
+        }
+        .voice-assistant-card.processing .voice-visual-core {
+            filter: hue-rotate(-34deg) saturate(1.25) brightness(1.08);
+            animation: voiceCoreThinking 1.25s ease-in-out infinite;
+        }
+        .voice-assistant-card.success .voice-visual-core {
+            filter: hue-rotate(48deg) saturate(1.18) brightness(1.08);
+        }
+        .voice-assistant-card.error .voice-visual-core {
+            filter: hue-rotate(140deg) saturate(1.22) brightness(1.02);
+        }
+        .voice-wave-bars {
+            position: absolute;
+            left: 50%;
+            bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            width: 170px;
+            height: 36px;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+        .voice-wave-bar {
+            width: 5px;
+            height: 9px;
+            border-radius: 999px;
+            background: linear-gradient(180deg, rgba(0,123,255,0.92), rgba(20,184,166,0.68));
+            opacity: 0.62;
+            transition: height 0.08s ease-out, opacity 0.12s ease;
+        }
+        .voice-assistant-card.listening .voice-wave-bar,
+        .voice-assistant-card.awake .voice-wave-bar {
+            opacity: 0.9;
+        }
+        .voice-card-text {
+            min-height: 21px;
+            color: var(--text-secondary);
+            font-size: 13px;
+            line-height: 1.55;
+            text-align: center;
+            word-break: break-word;
+        }
+        .voice-card-log {
+            display: none;
+            grid-template-columns: 1fr;
+            gap: 6px;
+            max-height: 120px;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            padding: 2px;
+        }
+        .voice-card-log.active { display: grid; }
+        .voice-log-row {
+            display: flex;
+            min-width: 0;
+        }
+        .voice-log-row.user { justify-content: flex-end; }
+        .voice-log-row.system { justify-content: flex-start; }
+        .voice-log-bubble {
+            max-width: 82%;
+            padding: 6px 9px;
+            border-radius: 12px;
+            background: rgba(15,23,42,0.06);
+            color: var(--text-secondary);
+            font-size: 12px;
+            line-height: 1.45;
+            word-break: break-word;
+        }
+        .voice-log-row.user .voice-log-bubble {
+            background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+        .voice-log-row.system .voice-log-bubble {
+            border: 1px solid rgba(15,23,42,0.06);
+            border-bottom-left-radius: 4px;
+        }
+        @keyframes voiceVisualRing {
+            0% { opacity: 0.46; transform: scale(0.72); }
+            100% { opacity: 0; transform: scale(1.82); }
+        }
+        @keyframes voiceCoreSweep { to { transform: rotate(360deg); } }
+        @keyframes voiceCoreBreathe {
+            0%, 100% { transform: scale(0.92); opacity: 0.72; }
+            50% { transform: scale(1.06); opacity: 1; }
+        }
+        @keyframes voiceCoreThinking {
+            0%, 100% { transform: scale(calc(1 + var(--voice-level) * 0.18)); }
+            50% { transform: scale(calc(1.05 + var(--voice-level) * 0.18)); }
+        }
         .voice-settings-btn {
             font-size: 11px;
             font-weight: 700;
@@ -676,6 +922,13 @@
             transform: translateY(0) scale(1);
         }
         @media (max-width: 640px) {
+            .voice-assistant-card {
+                left: 12px;
+                right: 12px;
+                width: auto;
+                bottom: calc(100% + 10px);
+                border-radius: 16px;
+            }
             .voice-settings-panel {
                 left: 12px;
                 right: 12px;
@@ -3875,6 +4128,36 @@
                         <span class="voice-dot"></span>
                         <span id="voiceStatusText">语音控制就绪</span>
                     </div>
+                    <div class="voice-assistant-card" id="voiceAssistantCard" aria-live="polite">
+                        <div class="voice-card-head">
+                            <div class="voice-card-status">
+                                <span class="voice-card-dot"></span>
+                                <span id="voiceAssistantStatus">小诺同学待命</span>
+                            </div>
+                            <button class="voice-card-close" type="button" onclick="hideVoiceAssistantCard()" title="收起语音面板" aria-label="收起语音面板">
+                                <i data-lucide="x" style="width:15px;height:15px;"></i>
+                            </button>
+                        </div>
+                        <div class="voice-card-log" id="voiceAssistantLog"></div>
+                        <div class="voice-visual-area">
+                            <span class="voice-visual-ring r1"></span>
+                            <span class="voice-visual-ring r2"></span>
+                            <span class="voice-visual-ring r3"></span>
+                            <div class="voice-visual-core" id="voiceVisualCore"></div>
+                            <div class="voice-wave-bars" id="voiceWaveBars">
+                                <span class="voice-wave-bar"></span>
+                                <span class="voice-wave-bar"></span>
+                                <span class="voice-wave-bar"></span>
+                                <span class="voice-wave-bar"></span>
+                                <span class="voice-wave-bar"></span>
+                                <span class="voice-wave-bar"></span>
+                                <span class="voice-wave-bar"></span>
+                                <span class="voice-wave-bar"></span>
+                                <span class="voice-wave-bar"></span>
+                            </div>
+                        </div>
+                        <div class="voice-card-text" id="voiceAssistantText">语音控制就绪</div>
+                    </div>
                     <button class="input-icon-btn" id="cancelBtn" onclick="cancelTask()" style="display:none; color: var(--error);" title="Cancel Task">
                         <i data-lucide="square" style="width: 18px; height: 18px; fill: currentColor;"></i>
                     </button>
@@ -5000,7 +5283,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78141232';
+    const APP_BUILD_VERSION = '78141233';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -6951,7 +7234,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     // ═══════════════ Voice Control ═══════════════
     const VOICE_MIN_MS = 500;
     const VOICE_MAX_MS = 12000;
-    const WAKE_SEGMENT_MS = 2800;
+    const WAKE_SEGMENT_MS = 1800;
     const WAKE_AWAKE_WINDOW_MS = 12000;
     const WAKE_OVERLAP_MS = 700;
     const LOCAL_ASR_SAMPLE_RATE = 16000;
@@ -6959,8 +7242,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     const VOICE_VAD_LEVEL = 0.018;
     const VOICE_MIN_PEAK_RMS = 0.012;
     const VOICE_MIN_SIGNAL_RMS = 0.006;
-    const VOICE_VAD_SILENCE_MS = 1100;
-    const WAKE_WORDS = ['小诺同学', '小诺小诺', '小诺', '晓诺同学', '晓诺', '小糯同学', '小糯'];
+    const VOICE_VAD_SILENCE_MS = 760;
+    const WAKE_WORDS = ['小诺同学', '小诺小诺', '你好小诺', '嗨小诺', '小诺', '晓诺同学', '晓诺', '小糯同学', '小糯', '小喏', '小挪', '小若'];
     let voiceMediaRecorder = null;
     let voiceStream = null;
     let voiceChunks = [];
@@ -6986,6 +7269,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     let wakeTailSamples = null;
     let wakeSegmentTimer = null;
     let wakeRestartTimer = null;
+    let wakeBrowserRecognizer = null;
+    let wakeBrowserRestartTimer = null;
+    let wakeDetectorMode = '';
+    let wakeBrowserErrorCount = 0;
     let wakeAwakeUntil = 0;
     let wakeBusy = false;
     let voiceConfigState = { local: true, ready: true };
@@ -6993,9 +7280,15 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     let voiceLocalAsrStarting = false;
     let voiceMicState = '待授权';
     let voiceLevelState = { rms: 0, peak: 0, lastAt: 0 };
+    let voiceCardHideTimer = null;
+    let voiceCardManuallyHidden = false;
 
     function isVoiceSupported() {
-        return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder);
+        return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && (window.MediaRecorder || window.AudioContext || window.webkitAudioContext));
+    }
+
+    function isBrowserWakeSupported() {
+        return !!(window.SpeechRecognition || window.webkitSpeechRecognition);
     }
 
     function getVoiceMimeType() {
@@ -7053,11 +7346,90 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         fill.style.width = `${percent}%`;
         fill.classList.toggle('low', nextRms > 0 && nextRms < VOICE_MIN_SIGNAL_RMS);
         text.textContent = nextRms > 0 ? `${percent}%` : '--';
+        updateVoiceVisualLevel(nextRms, voiceLevelState.peak);
     }
 
     function resetVoiceLevel() {
         voiceLevelState = { rms: 0, peak: 0, lastAt: 0 };
         setVoiceLevel(0, 0);
+    }
+
+    function updateVoiceVisualLevel(rms, peak) {
+        const level = clamp01(Math.max(rms || 0, (peak || 0) * 0.45) / 0.075);
+        const core = document.getElementById('voiceVisualCore');
+        if (core) core.style.setProperty('--voice-level', level.toFixed(2));
+        const bars = Array.from(document.querySelectorAll('#voiceWaveBars .voice-wave-bar'));
+        if (!bars.length) return;
+        const phase = Date.now() / 170;
+        bars.forEach((bar, idx) => {
+            const wave = 0.48 + Math.abs(Math.sin(phase + idx * 0.82)) * 0.52;
+            const height = Math.round(8 + level * wave * 27);
+            bar.style.height = `${height}px`;
+            bar.style.opacity = `${0.36 + level * 0.58}`;
+        });
+    }
+
+    function voiceStatusLabel(state) {
+        if (state === 'listening') return '正在聆听';
+        if (state === 'processing') return '正在识别';
+        if (state === 'wake') return wakeDetectorMode === 'browser' ? '免提唤醒中' : '本地唤醒中';
+        if (state === 'awake') return '小诺已唤醒';
+        if (state === 'success') return '已完成';
+        if (state === 'error') return '需要处理';
+        return '小诺同学待命';
+    }
+
+    function showVoiceAssistantCard(options = {}) {
+        const card = document.getElementById('voiceAssistantCard');
+        if (!card) return;
+        if (options.force) voiceCardManuallyHidden = false;
+        if (voiceCardManuallyHidden && !options.force) return;
+        clearTimeout(voiceCardHideTimer);
+        card.classList.add('visible');
+    }
+
+    function hideVoiceAssistantCard(options = {}) {
+        const card = document.getElementById('voiceAssistantCard');
+        if (!card) return;
+        if (!options.auto) voiceCardManuallyHidden = true;
+        clearTimeout(voiceCardHideTimer);
+        card.classList.remove('visible');
+    }
+
+    function scheduleVoiceAssistantHide(delay = 2600) {
+        clearTimeout(voiceCardHideTimer);
+        voiceCardHideTimer = setTimeout(() => {
+            if (!wakeEnabled && voiceState === 'idle') hideVoiceAssistantCard({ auto: true });
+        }, delay);
+    }
+
+    function renderVoiceAssistantCard(state, message) {
+        const card = document.getElementById('voiceAssistantCard');
+        if (!card) return;
+        card.className = 'voice-assistant-card';
+        if (state && state !== 'idle') card.classList.add(state);
+        if (state !== 'idle' || wakeEnabled) showVoiceAssistantCard({ force: state === 'listening' || state === 'awake' || state === 'processing' || state === 'wake' });
+        const status = document.getElementById('voiceAssistantStatus');
+        const text = document.getElementById('voiceAssistantText');
+        if (status) status.textContent = voiceStatusLabel(state);
+        if (text) text.textContent = message || (wakeEnabled ? '小诺同学待命中' : '语音控制就绪');
+        updateVoiceVisualLevel(voiceLevelState.rms, voiceLevelState.peak);
+    }
+
+    function pushVoiceAssistantLog(role, text) {
+        const log = document.getElementById('voiceAssistantLog');
+        const value = String(text || '').trim();
+        if (!log || !value) return;
+        log.classList.add('active');
+        const row = document.createElement('div');
+        row.className = `voice-log-row ${role === 'user' ? 'user' : 'system'}`;
+        const bubble = document.createElement('div');
+        bubble.className = 'voice-log-bubble';
+        bubble.textContent = value;
+        row.appendChild(bubble);
+        log.appendChild(row);
+        while (log.children.length > 8) log.removeChild(log.firstChild);
+        log.scrollTop = log.scrollHeight;
     }
 
     function normalizeHealthStatus(status) {
@@ -7578,6 +7950,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const wakeBtn = document.getElementById('wakeBtn');
         const pop = document.getElementById('voiceStatusPop');
         const text = document.getElementById('voiceStatusText');
+        renderVoiceAssistantCard(state, message);
         if (btn) {
             btn.classList.toggle('listening', state === 'listening');
             btn.classList.toggle('processing', state === 'processing');
@@ -7587,7 +7960,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             wakeBtn.classList.toggle('active', wakeEnabled && !wakeActiveCommand);
             wakeBtn.classList.toggle('awake', wakeActiveCommand);
             wakeBtn.setAttribute('aria-pressed', wakeEnabled ? 'true' : 'false');
-            wakeBtn.title = wakeEnabled ? '小诺同学语音唤醒已开启' : '开启小诺同学语音唤醒';
+            wakeBtn.title = wakeEnabled
+                ? (wakeDetectorMode === 'browser' ? '小诺同学免提唤醒已开启' : '小诺同学本地唤醒已开启')
+                : '开启小诺同学语音唤醒';
         }
         renderVoiceHealth(voiceConfigState);
         if (pop && text) {
@@ -7596,9 +7971,13 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             text.textContent = message || '语音控制就绪';
             if (state === 'success' || state === 'error') {
                 clearTimeout(pop._hideTimer);
-                pop._hideTimer = setTimeout(() => updateVoiceUI('idle'), 2400);
+                pop._hideTimer = setTimeout(() => {
+                    updateVoiceUI(wakeEnabled ? 'wake' : 'idle', wakeEnabled ? '小诺同学待命中' : '');
+                    if (!wakeEnabled) scheduleVoiceAssistantHide(200);
+                }, 2400);
             }
         }
+        if (state === 'idle' && !wakeEnabled) scheduleVoiceAssistantHide(300);
     }
 
     function stopVoiceVad() {
@@ -7659,6 +8038,30 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         }
     }
 
+    function resumeWakeListeningAfterCommand(delay = 900) {
+        if (!wakeEnabled) return;
+        clearTimeout(wakeRestartTimer);
+        clearTimeout(wakeBrowserRestartTimer);
+        wakeRestartTimer = setTimeout(() => {
+            if (!wakeEnabled || wakeActiveCommand || voiceState === 'listening' || voiceState === 'processing') return;
+            if (wakeDetectorMode === 'browser') {
+                startBrowserWakeRecognition();
+                return;
+            }
+            if (wakeDetectorMode === 'local') {
+                if (wakeStream) scheduleWakeRestart(120);
+                else startLocalWakeListening();
+                return;
+            }
+            if (isBrowserWakeSupported()) {
+                wakeDetectorMode = 'browser';
+                startBrowserWakeRecognition();
+                return;
+            }
+            startLocalWakeListening();
+        }, delay);
+    }
+
     function getVoiceListeningMessage(source) {
         if (source === 'space') return '正在听，松开空格后转成文字';
         if (source === 'wake') return '小诺已唤醒，请说指令';
@@ -7667,6 +8070,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
     async function startVoiceCapture(source) {
         if (voiceState === 'processing' || voiceState === 'listening') return;
+        if (source !== 'wake' && wakeEnabled) {
+            stopBrowserWakeRecognition();
+            pauseLocalWakeCapture();
+        }
         if (shouldUseWavCapture()) {
             return startVoiceCaptureWav(source);
         }
@@ -7708,6 +8115,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             showToast('无法访问麦克风，请检查浏览器权限', 'error');
             updateVoiceUI('error', '麦克风权限不可用');
             stopVoiceStream();
+            if (wakeEnabled) resumeWakeListeningAfterCommand(700);
         }
     }
 
@@ -7716,6 +8124,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             showToast('当前浏览器不支持语音录制，请使用 Chrome 或 Edge', 'error');
             updateVoiceUI('error', '浏览器不支持语音录制');
             return;
+        }
+        if (source !== 'wake' && wakeEnabled) {
+            stopBrowserWakeRecognition();
+            pauseLocalWakeCapture();
         }
         const AudioCtx = window.AudioContext || window.webkitAudioContext;
         if (!AudioCtx) {
@@ -7780,13 +8192,13 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                         voiceMediaRecorder = null;
                         updateVoiceUI('idle');
                         showToast('语音录制已取消', 'info');
-                        if (captureSource === 'wake' && wakeEnabled) scheduleWakeRestart(700);
+                        if (captureSource === 'wake' && wakeEnabled) resumeWakeListeningAfterCommand(700);
                         return;
                     }
                     if (elapsed < VOICE_MIN_MS || !chunks.length) {
                         voiceMediaRecorder = null;
                         updateVoiceUI('idle');
-                        if (captureSource === 'wake' && wakeEnabled) scheduleWakeRestart(700);
+                        if (captureSource === 'wake' && wakeEnabled) resumeWakeListeningAfterCommand(700);
                         return;
                     }
                     const rawSamples = concatFloat32(chunks);
@@ -7798,13 +8210,13 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                         voiceMediaRecorder = null;
                         updateVoiceUI('error', qualityError);
                         showToast(qualityError, 'warning');
-                        if (captureSource === 'wake' && wakeEnabled) scheduleWakeRestart(700);
+                        if (captureSource === 'wake' && wakeEnabled) resumeWakeListeningAfterCommand(700);
                         return;
                     }
                     const audioBlob = encodeWavFromFloat32(samples, LOCAL_ASR_SAMPLE_RATE);
                     voiceMediaRecorder = null;
                     await transcribeVoiceBlob(audioBlob, { source: captureSource });
-                    if (captureSource === 'wake' && wakeEnabled) scheduleWakeRestart(1400);
+                    if (wakeEnabled) resumeWakeListeningAfterCommand(captureSource === 'wake' ? 1400 : 700);
                 }
             };
             updateVoiceUI('listening', getVoiceListeningMessage(source));
@@ -7816,6 +8228,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             showToast('无法访问麦克风，请检查浏览器权限', 'error');
             updateVoiceUI('error', '麦克风权限不可用');
             stopVoiceStream();
+            if (wakeEnabled) resumeWakeListeningAfterCommand(700);
         }
     }
 
@@ -7829,6 +8242,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         } else {
             stopVoiceStream();
             updateVoiceUI('idle');
+            if (wakeEnabled) resumeWakeListeningAfterCommand(500);
         }
     }
 
@@ -7852,17 +8266,17 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (voiceCancelRequested) {
             updateVoiceUI('idle');
             showToast('语音录制已取消', 'info');
-            if (captureSource === 'wake' && wakeEnabled) scheduleWakeRestart(700);
+            if (captureSource === 'wake' && wakeEnabled) resumeWakeListeningAfterCommand(700);
             return;
         }
         if (elapsed < VOICE_MIN_MS || !chunks.length) {
             updateVoiceUI('idle');
-            if (captureSource === 'wake' && wakeEnabled) scheduleWakeRestart(700);
+            if (captureSource === 'wake' && wakeEnabled) resumeWakeListeningAfterCommand(700);
             return;
         }
         const audioBlob = new Blob(chunks, { type: mimeType || 'audio/webm' });
         await transcribeVoiceBlob(audioBlob, { source: captureSource });
-        if (captureSource === 'wake' && wakeEnabled) scheduleWakeRestart(1400);
+        if (wakeEnabled) resumeWakeListeningAfterCommand(captureSource === 'wake' ? 1400 : 700);
     }
 
     async function transcribeVoiceBlob(audioBlob, options = {}) {
@@ -7878,6 +8292,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 handleVoiceTranscript(text);
                 return;
             }
+            pushVoiceAssistantLog('user', text);
             fillVoiceTranscriptInput(text);
             updateVoiceUI('success', '已转成文字，请确认后发送');
         } catch (err) {
@@ -7888,6 +8303,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             if (/本机离线|local_asr|语音服务|模型|启动|加载/i.test(msg)) {
                 refreshVoiceHealth({ autoStart: true });
             }
+            if (options.source === 'wake' && wakeEnabled) resumeWakeListeningAfterCommand(900);
         }
     }
 
@@ -7955,9 +8371,13 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     function hasWakeWord(text) {
         const cmd = normalizeWakeText(text);
         if (!cmd) return false;
-        return cmd.includes('小诺同学') ||
+        const wakeAliases = WAKE_WORDS.map(word => normalizeWakeText(word)).filter(Boolean);
+        return wakeAliases.some(word => cmd.includes(word)) ||
+            cmd.includes('小诺同学') ||
             cmd.includes('小诺小诺') ||
             cmd === '小诺' ||
+            cmd.includes('你好小诺') ||
+            cmd.includes('嗨小诺') ||
             cmd.startsWith('小诺请') ||
             cmd.startsWith('小诺帮') ||
             cmd.startsWith('小诺打开') ||
@@ -8007,6 +8427,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             return;
         }
         updateVoiceUI('success', '启动设计：' + (route.label || route.target || '抗体候选'));
+        pushVoiceAssistantLog('system', '启动设计：' + (route.label || route.target || '抗体候选'));
         sendQuickDesignWorkflow(text, route.routeId || '');
     }
 
@@ -8036,10 +8457,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         try {
             fn();
             showToast(label, 'success');
+            pushVoiceAssistantLog('system', label);
             return true;
         } catch (err) {
             console.warn('[Voice] Command failed:', err);
             showToast('语音指令执行失败', 'error');
+            pushVoiceAssistantLog('system', '语音指令执行失败');
             return true;
         }
     }
@@ -8174,6 +8597,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     async function handleVoiceTranscript(text) {
         const cmd = normalizeVoiceCommand(text);
         if (!cmd) return;
+        pushVoiceAssistantLog('user', stripWakeWord(text) || text);
         if (routeVoiceCommand(cmd, text)) return;
         updateVoiceUI('processing', '正在理解指令...');
         try {
@@ -8181,7 +8605,119 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             handleResolvedVoiceIntent(intent, text);
         } catch (err) {
             console.warn('[Voice] Intent routing failed:', err);
+            pushVoiceAssistantLog('system', '未匹配到直接指令，已转入文字输入。');
             sendVoiceTextAsUserMessage(text);
+        }
+    }
+
+    function stopBrowserWakeRecognition(options = {}) {
+        clearTimeout(wakeBrowserRestartTimer);
+        wakeBrowserRestartTimer = null;
+        if (wakeBrowserRecognizer) {
+            try {
+                wakeBrowserRecognizer.onresult = null;
+                wakeBrowserRecognizer.onerror = null;
+                wakeBrowserRecognizer.onend = null;
+                wakeBrowserRecognizer.abort();
+            } catch (err) {}
+            wakeBrowserRecognizer = null;
+        }
+        if (options.resetMode && wakeDetectorMode === 'browser') wakeDetectorMode = '';
+    }
+
+    function pauseLocalWakeCapture() {
+        clearTimeout(wakeSegmentTimer);
+        wakeSegmentTimer = null;
+        if (wakeWavController && wakeWavController.state !== 'inactive') {
+            try {
+                if (typeof wakeWavController.abort === 'function') wakeWavController.abort();
+                else wakeWavController.state = 'inactive';
+            } catch {}
+        }
+        wakeWavController = null;
+        if (wakeRecorder && wakeRecorder.state !== 'inactive') {
+            try { wakeRecorder.ondataavailable = null; wakeRecorder.onerror = null; wakeRecorder.onstop = null; wakeRecorder.stop(); } catch {}
+        }
+        wakeRecorder = null;
+        wakeChunks = [];
+        if (wakeStream) {
+            wakeStream.getTracks().forEach(track => track.stop());
+            wakeStream = null;
+        }
+        resetVoiceLevel();
+    }
+
+    function scheduleBrowserWakeRestart(delay = 420) {
+        clearTimeout(wakeBrowserRestartTimer);
+        if (!wakeEnabled || wakeDetectorMode !== 'browser') return;
+        wakeBrowserRestartTimer = setTimeout(() => {
+            if (wakeEnabled && wakeDetectorMode === 'browser' && !wakeActiveCommand && voiceState !== 'listening' && voiceState !== 'processing') {
+                startBrowserWakeRecognition();
+            }
+        }, delay);
+    }
+
+    function startBrowserWakeRecognition() {
+        if (!wakeEnabled || wakeDetectorMode !== 'browser' || wakeActiveCommand) return false;
+        if (voiceState === 'listening' || voiceState === 'processing') return false;
+        if (!isBrowserWakeSupported()) return false;
+        if (wakeBrowserRecognizer) return true;
+        const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const rec = new SR();
+        rec.lang = 'zh-CN';
+        rec.continuous = true;
+        rec.interimResults = true;
+        rec.maxAlternatives = 3;
+        rec.onresult = (event) => {
+            for (let i = event.resultIndex; i < event.results.length; i++) {
+                const result = event.results[i];
+                for (let j = 0; j < result.length; j++) {
+                    const heard = (result[j] && result[j].transcript || '').trim();
+                    if (!heard || !hasWakeWord(heard)) continue;
+                    wakeBrowserErrorCount = 0;
+                    stopBrowserWakeRecognition();
+                    voiceCardManuallyHidden = false;
+                    showVoiceAssistantCard({ force: true });
+                    pushVoiceAssistantLog('system', '已唤醒，请说指令。');
+                    showToast('小诺同学已唤醒', 'success');
+                    startWakeCommandCapture();
+                    return;
+                }
+            }
+        };
+        rec.onerror = (event) => {
+            const error = event && event.error ? event.error : '';
+            if (error === 'not-allowed' || error === 'service-not-allowed') {
+                wakeEnabled = false;
+                wakeBusy = false;
+                stopBrowserWakeRecognition({ resetMode: true });
+                setVoiceMicState('未授权');
+                updateVoiceUI('error', '麦克风权限不可用');
+                showToast('无法访问麦克风，请检查浏览器权限', 'error');
+                return;
+            }
+            wakeBrowserErrorCount += 1;
+            if (wakeBrowserErrorCount >= 3 && isVoiceSupported()) {
+                stopBrowserWakeRecognition({ resetMode: true });
+                startLocalWakeListening();
+            }
+        };
+        rec.onend = () => {
+            wakeBrowserRecognizer = null;
+            if (wakeEnabled && wakeDetectorMode === 'browser' && !wakeActiveCommand) {
+                scheduleBrowserWakeRestart(420);
+            }
+        };
+        try {
+            rec.start();
+            wakeBrowserRecognizer = rec;
+            wakeBrowserErrorCount = 0;
+            updateVoiceUI('wake', '小诺同学免提唤醒中');
+            return true;
+        } catch (err) {
+            wakeBrowserRecognizer = null;
+            wakeBrowserErrorCount += 1;
+            return false;
         }
     }
 
@@ -8193,20 +8729,11 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         clearTimeout(wakeRestartTimer);
         wakeSegmentTimer = null;
         wakeRestartTimer = null;
-        if (wakeWavController && wakeWavController.state !== 'inactive') {
-            try { wakeWavController.stop(); } catch {}
-        }
-        resetVoiceLevel();
-        wakeWavController = null;
+        stopBrowserWakeRecognition({ resetMode: true });
+        wakeBrowserErrorCount = 0;
+        pauseLocalWakeCapture();
         wakeTailSamples = null;
-        if (wakeRecorder && wakeRecorder.state !== 'inactive') {
-            try { wakeRecorder.stop(); } catch {}
-        }
-        wakeRecorder = null;
-        if (wakeStream) {
-            wakeStream.getTracks().forEach(track => track.stop());
-            wakeStream = null;
-        }
+        wakeDetectorMode = '';
         renderVoiceHealth(voiceConfigState);
         updateVoiceUI(options.silent ? 'idle' : 'success', options.message || '小诺同学语音唤醒已关闭');
     }
@@ -8220,6 +8747,14 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const chunks = [];
         let speechDetected = false;
         let peakRms = 0;
+        let cleaned = false;
+        const cleanup = () => {
+            if (cleaned) return;
+            cleaned = true;
+            try { processor.disconnect(); } catch {}
+            try { source.disconnect(); } catch {}
+            closeAudioContext(ctx);
+        };
         processor.onaudioprocess = (event) => {
             const input = event.inputBuffer.getChannelData(0);
             const frame = new Float32Array(input);
@@ -8233,14 +8768,17 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         };
         source.connect(processor);
         processor.connect(ctx.destination);
-        return {
+        const controller = {
             state: 'recording',
+            abort: () => {
+                if (controller.state === 'inactive') return;
+                controller.state = 'inactive';
+                cleanup();
+            },
             stop: async () => {
-                if (!wakeWavController || wakeWavController.state === 'inactive') return;
-                wakeWavController.state = 'inactive';
-                try { processor.disconnect(); } catch {}
-                try { source.disconnect(); } catch {}
-                closeAudioContext(ctx);
+                if (controller.state === 'inactive') return;
+                controller.state = 'inactive';
+                cleanup();
                 const body = concatFloat32(chunks);
                 const previous = wakeTailSamples && wakeTailSamples.length ? wakeTailSamples : null;
                 const combined = previous ? concatFloat32([previous, body]) : body;
@@ -8258,9 +8796,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 await handleWakeSegmentStop(encodeWavFromFloat32(prepared, LOCAL_ASR_SAMPLE_RATE), 'audio/wav');
             }
         };
+        return controller;
     }
 
     function startWakeCommandCapture() {
+        stopBrowserWakeRecognition();
+        pauseLocalWakeCapture();
         wakeActiveCommand = true;
         wakeAwakeUntil = Date.now() + WAKE_AWAKE_WINDOW_MS;
         updateVoiceUI('awake', '小诺已唤醒，请说指令');
@@ -8269,24 +8810,60 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
     async function startWakeListening() {
         if (wakeEnabled || wakeBusy) return;
-        if (!isVoiceSupported()) {
+        if (!isVoiceSupported() && !isBrowserWakeSupported()) {
             showToast('当前浏览器不支持语音唤醒，请使用 Chrome 或 Edge', 'error');
             updateVoiceUI('error', '浏览器不支持语音唤醒');
             return;
         }
-        const mimeType = getVoiceMimeType();
-        if (!mimeType) {
-            showToast('当前浏览器不支持可用的录音格式', 'error');
-            updateVoiceUI('error', '录音格式不可用');
+        try {
+            wakeBusy = true;
+            wakeEnabled = true;
+            wakeActiveCommand = false;
+            wakeAwakeUntil = 0;
+            wakeTailSamples = null;
+            voiceCardManuallyHidden = false;
+            showVoiceAssistantCard({ force: true });
+            refreshVoiceHealth({ autoStart: true });
+            if (isBrowserWakeSupported()) {
+                wakeDetectorMode = 'browser';
+                wakeBusy = false;
+                if (startBrowserWakeRecognition()) return;
+                stopBrowserWakeRecognition({ resetMode: true });
+            }
+            await startLocalWakeListening();
+        } catch (err) {
+            wakeBusy = false;
+            console.warn('[Voice] Wake start error:', err);
+            stopWakeListening({ silent: true });
+            updateVoiceUI('error', '语音唤醒不可用');
+        }
+    }
+
+    async function startLocalWakeListening() {
+        if (!wakeEnabled) wakeEnabled = true;
+        if (!isVoiceSupported()) {
+            showToast('当前浏览器不支持本地语音唤醒，请使用 Chrome 或 Edge', 'error');
+            updateVoiceUI('error', '浏览器不支持语音唤醒');
+            stopWakeListening({ silent: true });
             return;
+        }
+        if (!shouldUseWavCapture()) {
+            const mimeType = getVoiceMimeType();
+            if (!mimeType) {
+                showToast('当前浏览器不支持可用的录音格式', 'error');
+                updateVoiceUI('error', '录音格式不可用');
+                stopWakeListening({ silent: true });
+                return;
+            }
         }
         try {
             wakeBusy = true;
             wakeStream = await navigator.mediaDevices.getUserMedia({ audio: getVoiceAudioConstraints() });
             setVoiceMicState('已授权');
+            wakeDetectorMode = 'local';
             wakeEnabled = true;
             wakeBusy = false;
-            updateVoiceUI('wake', '小诺同学待命中');
+            updateVoiceUI('wake', '小诺同学本地唤醒中');
             refreshVoiceHealth({ autoStart: true });
             startWakeSegment();
         } catch (err) {
@@ -8342,6 +8919,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     async function handleWakeSegmentStop(audioOrMimeType, explicitMimeType) {
         clearTimeout(wakeSegmentTimer);
         wakeSegmentTimer = null;
+        if (wakeDetectorMode === 'browser') return;
         let blob = audioOrMimeType instanceof Blob ? audioOrMimeType : null;
         const mimeType = explicitMimeType || audioOrMimeType;
         const chunks = blob ? [] : wakeChunks.slice();
@@ -8380,11 +8958,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 wakeAwakeUntil = 0;
                 updateVoiceUI('success', '小诺收到：' + command);
                 handleVoiceTranscript(command);
-                scheduleWakeRestart(1200);
+                resumeWakeListeningAfterCommand(1200);
                 return;
             }
             startWakeCommandCapture();
-            scheduleWakeRestart(WAKE_AWAKE_WINDOW_MS + 600);
             return;
         }
         scheduleWakeRestart(120);
@@ -8462,6 +9039,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     window.saveVoiceSettings = saveVoiceSettings;
     window.testVoiceChatSettings = testVoiceChatSettings;
     window.toggleWakeListening = toggleWakeListening;
+    window.hideVoiceAssistantCard = hideVoiceAssistantCard;
 
     // ═══════════════ Utility Functions ═══════════════
     // renderMarkdown and inlineMarkdown are defined near the bottom of this script
