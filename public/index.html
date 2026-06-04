@@ -1503,6 +1503,24 @@
         }
         .viewer-title { font-weight: 700; font-size: 14px; display: flex; align-items: center; gap: 8px; }
         .viewer-actions { display: flex; gap: 6px; }
+        .viewer-route-summary {
+            display: flex; flex-wrap: wrap; gap: 8px;
+            margin: -4px 0 14px 0;
+        }
+        .viewer-route-note {
+            display: inline-flex; align-items: center; gap: 5px;
+            max-width: 100%;
+            padding: 5px 10px;
+            border-radius: var(--radius-full);
+            background: var(--gray-100);
+            color: var(--text-secondary);
+            font-size: 11px;
+            line-height: 1.35;
+        }
+        .viewer-route-note strong {
+            color: var(--text-primary);
+            font-weight: 700;
+        }
         .viewer-container {
             background: var(--bg-dark); /* Dark background for 3D viewer */
             border: 1px solid var(--border);
@@ -2140,9 +2158,27 @@
         }
         .mol-modal-title {
             font-size: 14px; font-weight: 700; color: var(--text-primary);
+            display: flex; flex-direction: column; align-items: flex-start; gap: 4px;
+            min-width: 0; flex: 1;
+        }
+        .mol-modal-title-main {
             display: flex; align-items: center; gap: 8px;
+            max-width: 100%;
+        }
+        .mol-modal-title-main span {
+            overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
         }
         .mol-modal-title i { color: var(--brand); }
+        .mol-modal-subtitle {
+            max-width: min(1120px, calc(100vw - 120px));
+            color: var(--text-secondary);
+            font-size: 11px;
+            font-weight: 500;
+            line-height: 1.4;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
         .mol-modal-close {
             width: 48px; height: 48px; border-radius: 12px; border: none;
             background: transparent; color: var(--text-muted); cursor: pointer;
@@ -4964,7 +5000,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78141230';
+    const APP_BUILD_VERSION = '78141232';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -9037,7 +9073,11 @@ ${fallbackTableRows(profile.rows)}
             renderResults(seqs, stats);
             const binders = makeFallbackBinders(Math.max(finalPass, 1), profile);
             useLocalPDB = true;
-            chainColorMap = { antigen: ['A'], antibody: ['B'], colors: binders[0] && binders[0].visualColors ? binders[0].visualColors : null };
+            chainColorMap = {
+                antigen: binders[0] && binders[0].antigenChains ? binders[0].antigenChains : ['A'],
+                antibody: binders[0] && binders[0].antibodyChains ? binders[0].antibodyChains : ['B'],
+                colors: binders[0] && binders[0].visualColors ? binders[0].visualColors : null
+            };
             renderViewerSection(
                 binders[0].id,
                 binders.map(item => item.id),
@@ -10097,23 +10137,23 @@ ${fallbackTableRows(profile.rows)}
     ];
 
     const FALLBACK_3D_PRESETS = {
-        allergic_asthma: { aliasPrefix: 'IL33-VHH', structureTitle: 'IL-33/ST2 VHH 受体界面阻断构象', structureFamily: 'IL-1 家族细胞因子 · VHH 小型结合体', visualSummary: '重点呈现 VHH 覆盖 ST2 结合面的紧凑构象。', visualColors: { antigen: '#F59E0B', antibody: '#14B8A6' }, order: [11,0,2,5,1,4,7,3,6,8,9,10] },
-        allergic_tslp: { aliasPrefix: 'TSLP-Fab', structureTitle: 'TSLP/TSLPR Fab 上皮炎症界面阻断构象', structureFamily: '上皮来源细胞因子 · Fab 阻断候选', visualSummary: '展示 Fab 覆盖 TSLPR 结合面并保留外侧稳定接触。', visualColors: { antigen: '#F97316', antibody: '#0EA5E9' }, order: [1,4,7,0,3,6,9,2,5,8,10,11] },
-        tumor_immunotherapy: { aliasPrefix: 'PDL1-Fab', structureTitle: 'PD-L1 Fab 免疫检查点阻断构象', structureFamily: '免疫检查点 IgV 结构域 · Fab 候选', visualSummary: '突出 Fab 对 PD-1/PD-L1 接触面的空间覆盖。', visualColors: { antigen: '#60A5FA', antibody: '#F472B6' }, order: [0,2,5,1,4,7,3,6,8,9,10,11] },
-        breast_cancer: { aliasPrefix: 'HER2-Fab', structureTitle: 'HER2 Fab 胞外结构域结合构象', structureFamily: 'HER2 胞外结构域 · 肿瘤靶点 Fab', visualSummary: '呈现 Fab 贴合 HER2 胞外可及表面并形成稳定 CDR 接触。', visualColors: { antigen: '#EC4899', antibody: '#38BDF8' }, order: [2,5,8,1,4,7,0,3,6,9,10,11] },
-        solid_tumor_egfr: { aliasPrefix: 'EGFR-Fab', structureTitle: 'EGFR Fab 配体邻近表面结合构象', structureFamily: 'EGFR 胞外受体结构域 · Fab 候选', visualSummary: '展示 Fab 识别 EGFR 配体结合邻近区域的构象布局。', visualColors: { antigen: '#8B5CF6', antibody: '#34D399' }, order: [3,6,9,0,2,5,8,1,4,7,10,11] },
-        angiogenesis_oncology: { aliasPrefix: 'VEGFA-Fab', structureTitle: 'VEGF-A Fab 血管生成信号中和构象', structureFamily: '血管生成因子 · Fab 中和候选', visualSummary: '强调 Fab 对 VEGFR 结合面邻近可及表面的稳定覆盖。', visualColors: { antigen: '#22C55E', antibody: '#A855F7' }, order: [4,7,10,1,3,6,9,0,2,5,8,11] },
-        autoimmune_inflammation: { aliasPrefix: 'TNF-Fab', structureTitle: 'TNF Fab 炎症因子中和构象', structureFamily: 'TNF 炎症因子 · Fab 中和候选', visualSummary: '展示 Fab 覆盖 TNFR 结合邻近外侧表面的候选构象。', visualColors: { antigen: '#EF4444', antibody: '#2DD4BF' }, order: [5,8,0,2,4,7,10,1,3,6,9,11] },
-        autoimmune_il17: { aliasPrefix: 'IL17A-Fab', structureTitle: 'IL-17A Fab 炎症轴中和构象', structureFamily: 'IL-17A 炎症因子 · Fab 候选', visualSummary: '突出 Fab 对 IL-17R 结合邻近面的 CDR 覆盖。', visualColors: { antigen: '#F43F5E', antibody: '#06B6D4' }, order: [6,9,1,3,5,8,0,2,4,7,10,11] },
-        autoimmune_il23: { aliasPrefix: 'IL23-Fab', structureTitle: 'IL-23 Fab Th17 炎症轴中和构象', structureFamily: 'IL-23 炎症轴 · Fab 候选', visualSummary: '展示 Fab 聚焦 IL-23 特异亚基可及面的稳定结合构象。', visualColors: { antigen: '#D946EF', antibody: '#22D3EE' }, order: [7,10,2,4,6,9,1,3,5,8,0,11] },
-        infectious_rsv: { aliasPrefix: 'RSVF-Fab', structureTitle: 'RSV F Fab 病毒融合阻断构象', structureFamily: '病毒融合蛋白 · 中和 Fab 候选', visualSummary: '呈现 Fab 锁定 RSV F 融合前关键构象表面。', visualColors: { antigen: '#0EA5E9', antibody: '#F97316' }, order: [8,0,3,6,9,1,4,7,10,2,5,11] },
-        infectious_covid: { aliasPrefix: 'SC2RBD-Fab', structureTitle: 'SARS-CoV-2 RBD Fab 受体结合阻断构象', structureFamily: '病毒受体结合结构域 · 中和 Fab 候选', visualSummary: '展示 Fab 覆盖 RBD/ACE2 结合邻近可及面。', visualColors: { antigen: '#0284C7', antibody: '#F59E0B' }, order: [9,1,4,7,10,2,5,8,0,3,6,11] },
-        infectious_flu: { aliasPrefix: 'FluHA-Fab', structureTitle: 'Influenza HA Fab 保守中和表位构象', structureFamily: '流感表面抗原 · 广谱中和 Fab 候选', visualSummary: '突出 Fab 对 HA 保守中和表面的稳定接触。', visualColors: { antigen: '#0891B2', antibody: '#FB7185' }, order: [10,2,5,8,0,3,6,9,1,4,7,11] },
-        cardio_pcsk9: { aliasPrefix: 'PCSK9-Fab', structureTitle: 'PCSK9 Fab LDLR 结合界面阻断构象', structureFamily: '血脂调控靶点 · Fab 阻断候选', visualSummary: '展示 Fab 围绕 PCSK9/LDLR 接触面形成稳定结合。', visualColors: { antigen: '#2563EB', antibody: '#84CC16' }, order: [1,5,9,0,4,8,2,6,10,3,7,11] },
-        cardio_angptl3: { aliasPrefix: 'ANGPTL3-CV-Fab', structureTitle: 'ANGPTL3 Fab 血脂调控中和构象', structureFamily: '脂质代谢调控靶点 · 心血管 Fab 候选', visualSummary: '呈现 Fab 覆盖 ANGPTL3 功能结构域可及面的构象。', visualColors: { antigen: '#16A34A', antibody: '#818CF8' }, order: [2,6,10,1,5,9,0,4,8,3,7,11] },
-        cardio_il1b: { aliasPrefix: 'IL1B-Fab', structureTitle: 'IL-1β Fab 炎症风险中和构象', structureFamily: 'IL-1 家族炎症因子 · Fab 候选', visualSummary: '展示 Fab 覆盖 IL-1R 结合邻近面的候选构象。', visualColors: { antigen: '#DC2626', antibody: '#38BDF8' }, order: [3,7,0,2,6,10,1,5,9,4,8,11] },
-        metabolic_angptl3: { aliasPrefix: 'ANGPTL3-Met-Fab', structureTitle: 'ANGPTL3 Fab 脂质代谢调控构象', structureFamily: '脂质代谢调控靶点 · 代谢 Fab 候选', visualSummary: '突出 Fab 对 ANGPTL3 脂质代谢相关可及面的稳定覆盖。', visualColors: { antigen: '#65A30D', antibody: '#7C3AED' }, order: [4,8,1,3,7,0,2,6,10,5,9,11] },
-        metabolic_gipr: { aliasPrefix: 'GIPR-Fab', structureTitle: 'GIPR Fab 胞外受体结合构象', structureFamily: '代谢受体胞外结构域 · Fab 候选', visualSummary: '展示 Fab 识别 GIPR 胞外稳定可及表面的结合构象。', visualColors: { antigen: '#0F766E', antibody: '#F472B6' }, order: [5,9,2,4,8,1,3,7,0,6,10,11] }
+        allergic_asthma: { aliasPrefix: 'IL33-VHH', structureTitle: 'IL-33/ST2 VHH 受体界面阻断构象', structureFamily: 'IL-1 家族细胞因子 · VHH 小型结合体', visualSummary: '重点呈现 VHH 覆盖 ST2 结合面的紧凑构象。', structuralBasis: 'RCSB 4KC3 IL-33/ST2 受体复合体 + 本地 VHH 展示支架', antigenChains: ['A','D'], antibodyChains: ['B'], visualColors: { antigen: '#F59E0B', antibody: '#14B8A6' }, order: [11,0,2,5,1,4,7,3,6,8,9,10] },
+        allergic_tslp: { aliasPrefix: 'TSLP-Fab', structureTitle: 'TSLP/TSLPR Fab 上皮炎症界面阻断构象', structureFamily: '上皮来源细胞因子 · Fab 阻断候选', visualSummary: '展示 Fab 覆盖 TSLPR 结合面并保留外侧稳定接触。', structuralBasis: 'RCSB 5J13 TSLP / tezepelumab Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#F97316', antibody: '#0EA5E9' }, order: [1,4,7,0,3,6,9,2,5,8,10,11] },
+        tumor_immunotherapy: { aliasPrefix: 'PDL1-Fab', structureTitle: 'PD-L1 Fab 免疫检查点阻断构象', structureFamily: '免疫检查点 IgV 结构域 · Fab 候选', visualSummary: '突出 Fab 对 PD-1/PD-L1 接触面的空间覆盖。', structuralBasis: 'RCSB 5X8L PD-L1 / atezolizumab Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#60A5FA', antibody: '#F472B6' }, order: [0,2,5,1,4,7,3,6,8,9,10,11] },
+        breast_cancer: { aliasPrefix: 'HER2-Fab', structureTitle: 'HER2 Fab 胞外结构域结合构象', structureFamily: 'HER2 胞外结构域 · 肿瘤靶点 Fab', visualSummary: '呈现 Fab 贴合 HER2 胞外可及表面并形成稳定 CDR 接触。', structuralBasis: 'RCSB 1N8Z HER2 胞外结构域 / trastuzumab Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#EC4899', antibody: '#38BDF8' }, order: [2,5,8,1,4,7,0,3,6,9,10,11] },
+        solid_tumor_egfr: { aliasPrefix: 'EGFR-Fab', structureTitle: 'EGFR Fab 配体邻近表面结合构象', structureFamily: 'EGFR 胞外受体结构域 · Fab 候选', visualSummary: '展示 Fab 识别 EGFR 配体结合邻近区域的构象布局。', structuralBasis: 'RCSB 1YY9 EGFR 胞外结构域 / cetuximab Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#8B5CF6', antibody: '#34D399' }, order: [3,6,9,0,2,5,8,1,4,7,10,11] },
+        angiogenesis_oncology: { aliasPrefix: 'VEGFA-Fab', structureTitle: 'VEGF-A Fab 血管生成信号中和构象', structureFamily: '血管生成因子 · Fab 中和候选', visualSummary: '强调 Fab 对 VEGFR 结合面邻近可及表面的稳定覆盖。', structuralBasis: 'RCSB 1BJ1 VEGF-A / 中和 Fab 复合体', antigenChains: ['A','D'], antibodyChains: ['B','C'], visualColors: { antigen: '#22C55E', antibody: '#A855F7' }, order: [4,7,10,1,3,6,9,0,2,5,8,11] },
+        autoimmune_inflammation: { aliasPrefix: 'TNF-Fab', structureTitle: 'TNF Fab 炎症因子中和构象', structureFamily: 'TNF 炎症因子 · Fab 中和候选', visualSummary: '展示 Fab 覆盖 TNFR 结合邻近外侧表面的候选构象。', structuralBasis: 'RCSB 3WD5 TNF alpha / adalimumab Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#EF4444', antibody: '#2DD4BF' }, order: [5,8,0,2,4,7,10,1,3,6,9,11] },
+        autoimmune_il17: { aliasPrefix: 'IL17A-Fab', structureTitle: 'IL-17A Fab 炎症轴中和构象', structureFamily: 'IL-17A 炎症因子 · Fab 候选', visualSummary: '突出 Fab 对 IL-17R 结合邻近面的 CDR 覆盖。', structuralBasis: 'RCSB 9SG2 IL-17A / ixekizumab Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#F43F5E', antibody: '#06B6D4' }, order: [6,9,1,3,5,8,0,2,4,7,10,11] },
+        autoimmune_il23: { aliasPrefix: 'IL23-Fab', structureTitle: 'IL-23 Fab Th17 炎症轴中和构象', structureFamily: 'IL-23 炎症轴 · Fab 候选', visualSummary: '展示 Fab 聚焦 IL-23 特异亚基可及面的稳定结合构象。', structuralBasis: 'RCSB 3D85 IL-23 / neutralizing Fab 复合体', antigenChains: ['A','D'], antibodyChains: ['B','C'], visualColors: { antigen: '#D946EF', antibody: '#22D3EE' }, order: [7,10,2,4,6,9,1,3,5,8,0,11] },
+        infectious_rsv: { aliasPrefix: 'RSVF-Fab', structureTitle: 'RSV F Fab 病毒融合阻断构象', structureFamily: '病毒融合蛋白 · 中和 Fab 候选', visualSummary: '呈现 Fab 锁定 RSV F 融合前关键构象表面。', structuralBasis: 'RCSB 5W23 RSV F prefusion trimer / 5C4 Fab 复合体', antigenChains: ['A','D','E'], antibodyChains: ['B','C'], visualColors: { antigen: '#0EA5E9', antibody: '#F97316' }, order: [8,0,3,6,9,1,4,7,10,2,5,11] },
+        infectious_covid: { aliasPrefix: 'SC2RBD-Fab', structureTitle: 'SARS-CoV-2 RBD Fab 受体结合阻断构象', structureFamily: '病毒受体结合结构域 · 中和 Fab 候选', visualSummary: '展示 Fab 覆盖 RBD/ACE2 结合邻近可及面。', structuralBasis: 'RCSB 6XDG SARS-CoV-2 RBD / REGN10933 Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#0284C7', antibody: '#F59E0B' }, order: [9,1,4,7,10,2,5,8,0,3,6,11] },
+        infectious_flu: { aliasPrefix: 'FluHA-Fab', structureTitle: 'Influenza HA Fab 保守中和表位构象', structureFamily: '流感表面抗原 · 广谱中和 Fab 候选', visualSummary: '突出 Fab 对 HA 保守中和表面的稳定接触。', structuralBasis: 'RCSB 3GBM influenza HA / broadly neutralizing Fab CR6261 复合体', antigenChains: ['A','D'], antibodyChains: ['B','C'], visualColors: { antigen: '#0891B2', antibody: '#FB7185' }, order: [10,2,5,8,0,3,6,9,1,4,7,11] },
+        cardio_pcsk9: { aliasPrefix: 'PCSK9-Fab', structureTitle: 'PCSK9 Fab LDLR 结合界面阻断构象', structureFamily: '血脂调控靶点 · Fab 阻断候选', visualSummary: '展示 Fab 围绕 PCSK9/LDLR 接触面形成稳定结合。', structuralBasis: 'RCSB 3SQO PCSK9 / J16 Fab 复合体', antigenChains: ['A','D'], antibodyChains: ['B','C'], visualColors: { antigen: '#2563EB', antibody: '#84CC16' }, order: [1,5,9,0,4,8,2,6,10,3,7,11] },
+        cardio_angptl3: { aliasPrefix: 'ANGPTL3-CV-Fab', structureTitle: 'ANGPTL3 Fab 血脂调控中和构象', structureFamily: '脂质代谢调控靶点 · 心血管 Fab 候选', visualSummary: '呈现 Fab 覆盖 ANGPTL3 功能结构域可及面的构象。', structuralBasis: 'RCSB 6EUA ANGPTL3 真实靶点结构 + 代表 Fab 展示支架', antigenChains: ['A','D','E'], antibodyChains: ['B','C'], visualColors: { antigen: '#16A34A', antibody: '#818CF8' }, order: [2,6,10,1,5,9,0,4,8,3,7,11] },
+        cardio_il1b: { aliasPrefix: 'IL1B-Fab', structureTitle: 'IL-1β Fab 炎症风险中和构象', structureFamily: 'IL-1 家族炎症因子 · Fab 候选', visualSummary: '展示 Fab 覆盖 IL-1R 结合邻近面的候选构象。', structuralBasis: 'RCSB 5BVP IL-1 beta / canakinumab Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#DC2626', antibody: '#38BDF8' }, order: [3,7,0,2,6,10,1,5,9,4,8,11] },
+        metabolic_angptl3: { aliasPrefix: 'ANGPTL3-Met-Fab', structureTitle: 'ANGPTL3 Fab 脂质代谢调控构象', structureFamily: '脂质代谢调控靶点 · 代谢 Fab 候选', visualSummary: '突出 Fab 对 ANGPTL3 脂质代谢相关可及面的稳定覆盖。', structuralBasis: 'RCSB 6EUA ANGPTL3 真实靶点结构 + 代表 Fab 展示支架', antigenChains: ['A','D','E'], antibodyChains: ['B','C'], visualColors: { antigen: '#65A30D', antibody: '#7C3AED' }, order: [4,8,1,3,7,0,2,6,10,5,9,11] },
+        metabolic_gipr: { aliasPrefix: 'GIPR-Fab', structureTitle: 'GIPR Fab 胞外受体结合构象', structureFamily: '代谢受体胞外结构域 · Fab 候选', visualSummary: '展示 Fab 识别 GIPR 胞外稳定可及表面的结合构象。', structuralBasis: 'RCSB 7DTY GIPR/GIP 真实受体结构 + 代表 Fab 展示支架', antigenChains: ['A','D'], antibodyChains: ['B','C'], visualColors: { antigen: '#0F766E', antibody: '#F472B6' }, order: [5,9,2,4,8,1,3,7,0,6,10,11] }
     };
 
     function getFallback3DPreset(profile) {
@@ -10176,6 +10216,9 @@ ${fallbackTableRows(profile.rows)}
 	                meta.structureTitle = preset.structureTitle || '';
 	                meta.structureFamily = preset.structureFamily || profile.domain || '';
 	                meta.visualSummary = preset.visualSummary || '';
+	                meta.structuralBasis = preset.structuralBasis || '';
+	                meta.antigenChains = preset.antigenChains || ['A'];
+	                meta.antibodyChains = preset.antibodyChains || ['B'];
 	                meta.visualColors = preset.visualColors || null;
 	                meta.sequence = generateMockVHH((idx + 1) * 31337);
 	                meta.cdrSummary = 'CDR-H3 ' + (12 + idx % 5) + ' aa · ' + (profile.selectedEpitope || '目标表位') + ' 匹配';
@@ -10205,9 +10248,13 @@ ${fallbackTableRows(profile.rows)}
     function buildMoleculeFrameUrl(basePath, pdbId, title) {
         const meta = getBinderMetaById(pdbId) || {};
         const colors = getBinderVisualColors(meta);
+        const antigenChains = Array.isArray(meta.antigenChains) && meta.antigenChains.length ? meta.antigenChains : ['A'];
+        const antibodyChains = Array.isArray(meta.antibodyChains) && meta.antibodyChains.length ? meta.antibodyChains : ['B'];
         let url = basePath + '?pdb=' + encodeURIComponent(getPDBUrl(pdbId));
         url += '&chainA=' + encodeURIComponent(colors.antigen);
         url += '&chainB=' + encodeURIComponent(colors.antibody);
+        url += '&antigenChains=' + encodeURIComponent(antigenChains.join(','));
+        url += '&antibodyChains=' + encodeURIComponent(antibodyChains.join(','));
         if (title) url += '&title=' + encodeURIComponent(title);
         return url;
     }
@@ -10348,6 +10395,9 @@ ${fallbackTableRows(profile.rows)}
 	                    structureTitle: meta.structureTitle || '',
 	                    structureFamily: meta.structureFamily || '',
 	                    visualSummary: meta.visualSummary || '',
+	                    structuralBasis: meta.structuralBasis || '',
+	                    antigenChains: Array.isArray(meta.antigenChains) && meta.antigenChains.length ? meta.antigenChains : ['A'],
+	                    antibodyChains: Array.isArray(meta.antibodyChains) && meta.antibodyChains.length ? meta.antibodyChains : ['B'],
 	                    visualColors: meta.visualColors || null,
 	                    sequence: meta.sequence || '',
 	                    cdrSummary: meta.cdrSummary || '',
@@ -10367,6 +10417,17 @@ ${fallbackTableRows(profile.rows)}
         activeBinderIdx = 0;
         galleryViewers = {};
         currentGalleryViewer = null;
+        const routeMeta = binderDataList[0] || {};
+        const routeSummaryItems = [
+            routeMeta.disease ? ['疾病方向', routeMeta.disease] : null,
+            routeMeta.targetDisplay ? ['靶点', routeMeta.targetDisplay] : null,
+            routeMeta.mechanism ? ['作用机制', routeMeta.mechanism] : null,
+            routeMeta.selectedEpitope ? ['表位策略', routeMeta.selectedEpitope] : null,
+            routeMeta.structuralBasis ? ['结构依据', routeMeta.structuralBasis] : null
+        ].filter(Boolean);
+        const routeSummaryHtml = routeSummaryItems.length
+            ? `<div class="viewer-route-summary">${routeSummaryItems.map(item => `<span class="viewer-route-note"><strong>${escHtml(item[0])}</strong>${escHtml(item[1])}</span>`).join('')}</div>`
+            : '';
 
         const section = document.createElement('div');
         section.className = 'section-3d';
@@ -10385,6 +10446,7 @@ ${fallbackTableRows(profile.rows)}
                     <button class="action-btn-sm" onclick="shareGallery()"><i data-lucide="share-2" style="width:12px;height:12px;"></i> Share</button>
                 </div>
             </div>
+            ${routeSummaryHtml}
 
             <!-- Chain Sequence Strip (Click.mAb style) -->
             <div class="viewer-container" style="margin-bottom:10px;">
@@ -10702,6 +10764,8 @@ ${fallbackTableRows(profile.rows)}
                 ${meta.targetDisplay ? `<span class="seq-metric">Target <strong>${escHtml(meta.targetDisplay)}</strong></span>` : ''}
                 ${meta.disease ? `<span class="seq-metric">Disease <strong>${escHtml(meta.disease)}</strong></span>` : ''}
                 ${meta.structureFamily ? `<span class="seq-metric">Structure <strong>${escHtml(meta.structureFamily)}</strong></span>` : ''}
+                ${meta.mechanism ? `<span class="seq-metric">Mechanism <strong>${escHtml(meta.mechanism)}</strong></span>` : ''}
+                ${meta.structuralBasis ? `<span class="seq-metric">Basis <strong>${escHtml(meta.structuralBasis)}</strong></span>` : ''}
                 ${meta.cdrSummary ? `<span class="seq-metric">CDR <strong>${escHtml(meta.cdrSummary)}</strong></span>` : ''}
                 <span class="seq-metric">Binder pTM <strong>${ipTmVal}</strong></span>
                 <span class="seq-metric">Min iPAE <strong>${ipTm !== null ? (ipTm*0.7).toFixed(2) : '\u2014'}</strong></span>
@@ -13430,7 +13494,16 @@ QVQLVESGGGLVQPGGSLRLSCAASGYIFSSNAMGWYRQAPGKQRELVAAISSGGSTYYADSVKGRFTISRDNAKTTLYL
         const displayTitle = meta.structureTitle
             ? meta.structureTitle + ' · ' + (meta.candidateLabel || name || pdbId)
             : (name || meta.candidateLabel || pdbId);
-        if (titleEl) titleEl.innerHTML = '<i data-lucide="box" style="width:18px;height:18px;color:#6B5BFF;"></i> ' + escHtml(displayTitle);
+        const subtitleParts = [
+            meta.disease || '',
+            meta.targetDisplay ? '靶点：' + meta.targetDisplay : '',
+            meta.mechanism || '',
+            meta.structuralBasis ? '结构依据：' + meta.structuralBasis : ''
+        ].filter(Boolean);
+        if (titleEl) {
+            titleEl.innerHTML = '<div class="mol-modal-title-main"><i data-lucide="box" style="width:18px;height:18px;color:#6B5BFF;"></i><span>' + escHtml(displayTitle) + '</span></div>' +
+                (subtitleParts.length ? '<div class="mol-modal-subtitle">' + escHtml(subtitleParts.join(' · ')) + '</div>' : '');
+        }
 
         // Build viewer-full URL
         const vfUrl = buildMoleculeFrameUrl('/viewer-full.html', pdbId, displayTitle);

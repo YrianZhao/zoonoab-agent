@@ -51,6 +51,28 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
     var AG_COLOR = params.get('chainA') || '#FB923C';   // Antigen / Chain A
     var AB_COLOR = params.get('chainB') || '#2DD4BF';   // Antibody / other chains
     var SF_COLOR = '#67E8F9';   // Surface → cyan
+    function parseChains(value, fallback) {
+        var arr = String(value || '').split(',').map(function(s){ return s.trim(); }).filter(Boolean);
+        return arr.length ? arr : fallback;
+    }
+    var AG_CHAINS = parseChains(params.get('antigenChains'), ['A']);
+    var AB_CHAINS = parseChains(params.get('antibodyChains'), ['B']);
+    function selectorForChains(chains) {
+        return chains.length === 1 ? {chain: chains[0]} : {or: chains.map(function(ch){ return {chain: ch}; })};
+    }
+    function antibodySelector() {
+        return AB_CHAINS.length ? selectorForChains(AB_CHAINS) : {not: selectorForChains(AG_CHAINS)};
+    }
+    function applyByStyle(selector, color) {
+        switch(currentStyle){
+            case 'cartoon': glv.setStyle(selector, {cartoon:{color: color}}); break;
+            case 'stick': glv.setStyle(selector, {stick:{radius:0.15, color: color}}); break;
+            case 'sphere': glv.setStyle(selector, {sphere:{scale:0.35, color: color}}); break;
+            case 'line': glv.setStyle(selector, {line:{color: color}}); break;
+            case 'cross': glv.setStyle(selector, {cross:{color: color}}); break;
+            default: glv.setStyle(selector, {cartoon:{color: color}});
+        }
+    }
 
     // ════ STATE (outer scope — all functions can see these) ════
     var glv = null;
@@ -79,44 +101,21 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
     //
     var COLORS = {
 
-        // Ab/Ag: Chain A = gray antigen, all others = blue antibody
+        // Ab/Ag: route-provided antigen chains vs antibody/scaffold chains.
         'ab-ag': function() {
             if (!glv) return;
 
             if (currentStyle === 'surface') {
                 // Surface mode: set underlying atom colors (surface picks up atom colors)
-                glv.setStyle({chain:'A'}, {color: AG_COLOR});
-                glv.setStyle({not:{chain:'A'}}, {color: AB_COLOR});
+                glv.setStyle(selectorForChains(AG_CHAINS), {color: AG_COLOR});
+                glv.setStyle(antibodySelector(), {color: AB_COLOR});
                 return;
             }
 
             // For non-surface styles: embed color INSIDE each style's spec
             // This is CRITICAL — 3Dmol ignores top-level "color" for cartoon/stick etc.
-            switch(currentStyle){
-                case 'cartoon':
-                    glv.setStyle({chain:'A'}, {cartoon:{color: AG_COLOR}});
-                    glv.setStyle({not:{chain:'A'}}, {cartoon:{color: AB_COLOR}});
-                    break;
-                case 'stick':
-                    glv.setStyle({chain:'A'}, {stick:{radius:0.15, color: AG_COLOR}});
-                    glv.setStyle({not:{chain:'A'}}, {stick:{radius:0.15, color: AB_COLOR}});
-                    break;
-                case 'sphere':
-                    glv.setStyle({chain:'A'}, {sphere:{scale:0.35, color: AG_COLOR}});
-                    glv.setStyle({not:{chain:'A'}}, {sphere:{scale:0.35, color: AB_COLOR}});
-                    break;
-                case 'line':
-                    glv.setStyle({chain:'A'}, {line:{color: AG_COLOR}});
-                    glv.setStyle({not:{chain:'A'}}, {line:{color: AB_COLOR}});
-                    break;
-                case 'cross':
-                    glv.setStyle({chain:'A'}, {cross:{color: AG_COLOR}});
-                    glv.setStyle({not:{chain:'A'}}, {cross:{color: AB_COLOR}});
-                    break;
-                default:
-                    glv.setStyle({chain:'A'}, {cartoon:{color: AG_COLOR}});
-                    glv.setStyle({not:{chain:'A'}}, {cartoon:{color: AB_COLOR}});
-            }
+            applyByStyle(selectorForChains(AG_CHAINS), AG_COLOR);
+            applyByStyle(antibodySelector(), AB_COLOR);
         },
 
         // Chain: each chain gets its own auto-assigned color
@@ -321,25 +320,23 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
             render(); return;
         }
 
-        // Step 3: Apply per-chain colored surfaces
-        // Chain A (antigen) → gray surface
+        // Step 3: Apply route-provided antigen/antibody surfaces.
         try {
             glv.addSurface(stype, {
                 opacity: 0.88,
                 color: AG_COLOR
-            }, {chain:'A'}, {});
+            }, selectorForChains(AG_CHAINS), {});
         } catch(e) {
-            console.warn('[VF] surface A err:', e);
+            console.warn('[VF] surface antigen err:', e);
         }
 
-        // All other chains (antibody/VHH) → blue surface
         try {
             glv.addSurface(stype, {
                 opacity: 0.88,
                 color: AB_COLOR
-            }, {not:{chain:'A'}}, {});
+            }, antibodySelector(), {});
         } catch(e) {
-            console.warn('[VF] surface non-A err:', e);
+            console.warn('[VF] surface antibody err:', e);
         }
 
         // If color scheme is chain or atom, also apply for consistency

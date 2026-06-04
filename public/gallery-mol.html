@@ -37,6 +37,12 @@
         var pdbUrl = params.get('pdb') || '';
         var cA = params.get('chainA') || '#9CA3AF';
         var cB = params.get('chainB') || '#60A5FA';
+        function parseChains(value, fallback) {
+            var arr = String(value || '').split(',').map(function(s){ return s.trim(); }).filter(Boolean);
+            return arr.length ? arr : fallback;
+        }
+        var antigenChains = parseChains(params.get('antigenChains'), ['A']);
+        var antibodyChains = parseChains(params.get('antibodyChains'), ['B']);
 
         var container = document.getElementById('c');
         var ld = container.querySelector('.ld');
@@ -45,7 +51,7 @@
 
         if (!pdbUrl) { ld.textContent = 'No URL'; return; }
 
-        // Route colors: first chain is antigen, remaining chains are antibody by default.
+        // Route colors: use role-specific chains supplied by the workflow payload.
         var CHAIN_PALETTE = [cA || '#FB923C', cB || '#2DD4BF', '#818CF8', '#34D399', '#F472B6', '#60A5FA'];
 
         function applyChainColors(m) {
@@ -56,7 +62,12 @@
                 glv.setStyle({}, {cartoon:{color: cB || '#FB923C'}});
             } else {
                 chains.forEach(function(ch, i) {
-                    glv.setStyle({chain:ch},{cartoon:{color: i === 0 ? (cA || CHAIN_PALETTE[0]) : (cB || CHAIN_PALETTE[i % CHAIN_PALETTE.length])}});
+                    var isAntigen = antigenChains.indexOf(ch) >= 0;
+                    var isAntibody = antibodyChains.indexOf(ch) >= 0;
+                    var color = isAntigen ? (cA || CHAIN_PALETTE[0])
+                        : isAntibody ? (cB || CHAIN_PALETTE[1])
+                        : CHAIN_PALETTE[i % CHAIN_PALETTE.length];
+                    glv.setStyle({chain:ch},{cartoon:{color: color}});
                 });
             }
         }

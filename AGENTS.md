@@ -29,6 +29,8 @@
 快速设计 3D 展示的 `binderData` 必须携带真实本地 PDB `file` 以及路线化展示元信息（routeId、疾病方向、靶点、机制、表位策略、候选名称、序列/CDR/可开发性摘要），前端 Sequence、Gallery 和弹窗标题应优先使用当前 route/profile 字段，缺字段时才使用本地 PDB fallback。
 快速设计每条 route/profile 都应有稳定的 3D 展示预设，包括产品化 PDB 候选别名、真实本地 PDB 映射顺序、结构标题、结构类型说明、可视化摘要和抗原/抗体颜色；新增快速设计路线时必须同步补齐该 route 的 3D 预设，保证最终 3D 结果与前序疾病、靶点和机制一致。
 快速设计 3D 预设结构应提前生成并保存在本地 `pdb/` 目录，工作流结束时只调用对应静态 PDB 文件，不在展示阶段实时计算、重排或把同一结构临时改名；Fab 路线应优先使用能明显呈现多链 Fab 复合体的预设结构，VHH 路线使用对应 VHH 复合体预设。
+快速设计 3D 预设应优先基于对应疾病靶点的真实公开 PDB 结构或抗原-抗体复合体模板生成；没有完全匹配抗体复合体时，才使用真实靶点结构加代表 Fab/VHH 展示支架。生成文件和 `binderData` 必须保留结构来源说明、抗原链集合和抗体链集合，viewer 应按这些链集合上色，不得继续假设只有 A/B 两条链。
+快速设计 3D 结果区和全屏弹窗应展示当前路线的疾病方向、靶点、作用机制、表位策略和结构依据，让观众能看出 3D 结构与前序快速设计目标的对应关系。
 3D 结果区要对 `show_3d` 的 `binderData/allPDBs` 做前端归一化；如果后端 payload 为空或缺字段，必须用本地 4KC3/IL33 PDB 清单兜底渲染 Binders、Sequence、CDR strip 和结构缩略图，避免展会 demo 出现空白面板。
 连续多次渲染 3D 结果时，前端必须按当前 `.section-3d` 作用域查找 Binders、Sequence、Gallery、Chain strip 等固定 id 元素，并重置 `galleryViewers`、`currentGalleryViewer`、`activeBinderIdx`，避免 `document.getElementById` 命中旧结果卡片导致新结果空白。
 连续多次渲染 `Designed Binders` 结果区时，前端必须按当前 `.results-section` 作用域使用 `data-role`/scoped selectors 查找序列列表、雷达图、直方图、CDR 组成图和对比栏；不要在重复结果区内使用全局重复 id 或 `document.getElementById` 查找这些节点。

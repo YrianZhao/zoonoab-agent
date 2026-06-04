@@ -1816,6 +1816,9 @@ const ROUTE_3D_PRESETS = {
     title: 'IL-33/ST2 VHH 受体界面阻断构象',
     structureFamily: 'IL-1 家族细胞因子 · VHH 小型结合体',
     visualSummary: '重点呈现 VHH 覆盖 ST2 结合面的紧凑构象。',
+    structuralBasis: 'RCSB 4KC3 IL-33/ST2 受体复合体 + 本地 VHH 展示支架',
+    antigenChains: ['A', 'D'],
+    antibodyChains: ['B'],
     antigenColor: '#F59E0B',
     antibodyColor: '#14B8A6',
     order: [11, 0, 2, 5, 1, 4, 7, 3, 6, 8, 9, 10],
@@ -1826,6 +1829,9 @@ const ROUTE_3D_PRESETS = {
     title: 'TSLP/TSLPR Fab 上皮炎症界面阻断构象',
     structureFamily: '上皮来源细胞因子 · Fab 阻断候选',
     visualSummary: '展示 Fab 覆盖 TSLPR 结合面并保留外侧稳定接触。',
+    structuralBasis: 'RCSB 5J13 TSLP / tezepelumab Fab 复合体',
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C'],
     antigenColor: '#F97316',
     antibodyColor: '#0EA5E9',
     order: [1, 4, 7, 0, 3, 6, 9, 2, 5, 8, 10, 11],
@@ -1836,6 +1842,9 @@ const ROUTE_3D_PRESETS = {
     title: 'PD-L1 Fab 免疫检查点阻断构象',
     structureFamily: '免疫检查点 IgV 结构域 · Fab 候选',
     visualSummary: '突出 Fab 对 PD-1/PD-L1 接触面的空间覆盖。',
+    structuralBasis: 'RCSB 5X8L PD-L1 / atezolizumab Fab 复合体',
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C'],
     antigenColor: '#60A5FA',
     antibodyColor: '#F472B6',
     order: [0, 2, 5, 1, 4, 7, 3, 6, 8, 9, 10, 11],
@@ -1846,6 +1855,9 @@ const ROUTE_3D_PRESETS = {
     title: 'HER2 Fab 胞外结构域结合构象',
     structureFamily: 'HER2 胞外结构域 · 肿瘤靶点 Fab',
     visualSummary: '呈现 Fab 贴合 HER2 胞外可及表面并形成稳定 CDR 接触。',
+    structuralBasis: 'RCSB 1N8Z HER2 胞外结构域 / trastuzumab Fab 复合体',
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C'],
     antigenColor: '#EC4899',
     antibodyColor: '#38BDF8',
     order: [2, 5, 8, 1, 4, 7, 0, 3, 6, 9, 10, 11],
@@ -1856,6 +1868,9 @@ const ROUTE_3D_PRESETS = {
     title: 'EGFR Fab 配体邻近表面结合构象',
     structureFamily: 'EGFR 胞外受体结构域 · Fab 候选',
     visualSummary: '展示 Fab 识别 EGFR 配体结合邻近区域的构象布局。',
+    structuralBasis: 'RCSB 1YY9 EGFR 胞外结构域 / cetuximab Fab 复合体',
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C'],
     antigenColor: '#8B5CF6',
     antibodyColor: '#34D399',
     order: [3, 6, 9, 0, 2, 5, 8, 1, 4, 7, 10, 11],
@@ -1866,6 +1881,9 @@ const ROUTE_3D_PRESETS = {
     title: 'VEGF-A Fab 血管生成信号中和构象',
     structureFamily: '血管生成因子 · Fab 中和候选',
     visualSummary: '强调 Fab 对 VEGFR 结合面邻近可及表面的稳定覆盖。',
+    structuralBasis: 'RCSB 1BJ1 VEGF-A / 中和 Fab 复合体',
+    antigenChains: ['A', 'D'],
+    antibodyChains: ['B', 'C'],
     antigenColor: '#22C55E',
     antibodyColor: '#A855F7',
     order: [4, 7, 10, 1, 3, 6, 9, 0, 2, 5, 8, 11],
@@ -1876,6 +1894,9 @@ const ROUTE_3D_PRESETS = {
     title: 'TNF Fab 炎症因子中和构象',
     structureFamily: 'TNF 炎症因子 · Fab 中和候选',
     visualSummary: '展示 Fab 覆盖 TNFR 结合邻近外侧表面的候选构象。',
+    structuralBasis: 'RCSB 3WD5 TNF alpha / adalimumab Fab 复合体',
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C'],
     antigenColor: '#EF4444',
     antibodyColor: '#2DD4BF',
     order: [5, 8, 0, 2, 4, 7, 10, 1, 3, 6, 9, 11],
@@ -1886,6 +1907,9 @@ const ROUTE_3D_PRESETS = {
     title: 'IL-17A Fab 炎症轴中和构象',
     structureFamily: 'IL-17A 炎症因子 · Fab 候选',
     visualSummary: '突出 Fab 对 IL-17R 结合邻近面的 CDR 覆盖。',
+    structuralBasis: 'RCSB 9SG2 IL-17A / ixekizumab Fab 复合体',
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C'],
     antigenColor: '#F43F5E',
     antibodyColor: '#06B6D4',
     order: [6, 9, 1, 3, 5, 8, 0, 2, 4, 7, 10, 11],
@@ -1896,6 +1920,9 @@ const ROUTE_3D_PRESETS = {
     title: 'IL-23 Fab Th17 炎症轴中和构象',
     structureFamily: 'IL-23 炎症轴 · Fab 候选',
     visualSummary: '展示 Fab 聚焦 IL-23 特异亚基可及面的稳定结合构象。',
+    structuralBasis: 'RCSB 3D85 IL-23 / neutralizing Fab 复合体',
+    antigenChains: ['A', 'D'],
+    antibodyChains: ['B', 'C'],
     antigenColor: '#D946EF',
     antibodyColor: '#22D3EE',
     order: [7, 10, 2, 4, 6, 9, 1, 3, 5, 8, 0, 11],
@@ -1906,6 +1933,9 @@ const ROUTE_3D_PRESETS = {
     title: 'RSV F Fab 病毒融合阻断构象',
     structureFamily: '病毒融合蛋白 · 中和 Fab 候选',
     visualSummary: '呈现 Fab 锁定 RSV F 融合前关键构象表面。',
+    structuralBasis: 'RCSB 5W23 RSV F prefusion trimer / 5C4 Fab 复合体',
+    antigenChains: ['A', 'D', 'E'],
+    antibodyChains: ['B', 'C'],
     antigenColor: '#0EA5E9',
     antibodyColor: '#F97316',
     order: [8, 0, 3, 6, 9, 1, 4, 7, 10, 2, 5, 11],
@@ -1916,6 +1946,9 @@ const ROUTE_3D_PRESETS = {
     title: 'SARS-CoV-2 RBD Fab 受体结合阻断构象',
     structureFamily: '病毒受体结合结构域 · 中和 Fab 候选',
     visualSummary: '展示 Fab 覆盖 RBD/ACE2 结合邻近可及面。',
+    structuralBasis: 'RCSB 6XDG SARS-CoV-2 RBD / REGN10933 Fab 复合体',
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C'],
     antigenColor: '#0284C7',
     antibodyColor: '#F59E0B',
     order: [9, 1, 4, 7, 10, 2, 5, 8, 0, 3, 6, 11],
@@ -1926,6 +1959,9 @@ const ROUTE_3D_PRESETS = {
     title: 'Influenza HA Fab 保守中和表位构象',
     structureFamily: '流感表面抗原 · 广谱中和 Fab 候选',
     visualSummary: '突出 Fab 对 HA 保守中和表面的稳定接触。',
+    structuralBasis: 'RCSB 3GBM influenza HA / broadly neutralizing Fab CR6261 复合体',
+    antigenChains: ['A', 'D'],
+    antibodyChains: ['B', 'C'],
     antigenColor: '#0891B2',
     antibodyColor: '#FB7185',
     order: [10, 2, 5, 8, 0, 3, 6, 9, 1, 4, 7, 11],
@@ -1936,6 +1972,9 @@ const ROUTE_3D_PRESETS = {
     title: 'PCSK9 Fab LDLR 结合界面阻断构象',
     structureFamily: '血脂调控靶点 · Fab 阻断候选',
     visualSummary: '展示 Fab 围绕 PCSK9/LDLR 接触面形成稳定结合。',
+    structuralBasis: 'RCSB 3SQO PCSK9 / J16 Fab 复合体',
+    antigenChains: ['A', 'D'],
+    antibodyChains: ['B', 'C'],
     antigenColor: '#2563EB',
     antibodyColor: '#84CC16',
     order: [1, 5, 9, 0, 4, 8, 2, 6, 10, 3, 7, 11],
@@ -1946,6 +1985,9 @@ const ROUTE_3D_PRESETS = {
     title: 'ANGPTL3 Fab 血脂调控中和构象',
     structureFamily: '脂质代谢调控靶点 · 心血管 Fab 候选',
     visualSummary: '呈现 Fab 覆盖 ANGPTL3 功能结构域可及面的构象。',
+    structuralBasis: 'RCSB 6EUA ANGPTL3 真实靶点结构 + 代表 Fab 展示支架',
+    antigenChains: ['A', 'D', 'E'],
+    antibodyChains: ['B', 'C'],
     antigenColor: '#16A34A',
     antibodyColor: '#818CF8',
     order: [2, 6, 10, 1, 5, 9, 0, 4, 8, 3, 7, 11],
@@ -1956,6 +1998,9 @@ const ROUTE_3D_PRESETS = {
     title: 'IL-1β Fab 炎症风险中和构象',
     structureFamily: 'IL-1 家族炎症因子 · Fab 候选',
     visualSummary: '展示 Fab 覆盖 IL-1R 结合邻近面的候选构象。',
+    structuralBasis: 'RCSB 5BVP IL-1 beta / canakinumab Fab 复合体',
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C'],
     antigenColor: '#DC2626',
     antibodyColor: '#38BDF8',
     order: [3, 7, 0, 2, 6, 10, 1, 5, 9, 4, 8, 11],
@@ -1966,6 +2011,9 @@ const ROUTE_3D_PRESETS = {
     title: 'ANGPTL3 Fab 脂质代谢调控构象',
     structureFamily: '脂质代谢调控靶点 · 代谢 Fab 候选',
     visualSummary: '突出 Fab 对 ANGPTL3 脂质代谢相关可及面的稳定覆盖。',
+    structuralBasis: 'RCSB 6EUA ANGPTL3 真实靶点结构 + 代表 Fab 展示支架',
+    antigenChains: ['A', 'D', 'E'],
+    antibodyChains: ['B', 'C'],
     antigenColor: '#65A30D',
     antibodyColor: '#7C3AED',
     order: [4, 8, 1, 3, 7, 0, 2, 6, 10, 5, 9, 11],
@@ -1976,6 +2024,9 @@ const ROUTE_3D_PRESETS = {
     title: 'GIPR Fab 胞外受体结合构象',
     structureFamily: '代谢受体胞外结构域 · Fab 候选',
     visualSummary: '展示 Fab 识别 GIPR 胞外稳定可及表面的结合构象。',
+    structuralBasis: 'RCSB 7DTY GIPR/GIP 真实受体结构 + 代表 Fab 展示支架',
+    antigenChains: ['A', 'D'],
+    antibodyChains: ['B', 'C'],
     antigenColor: '#0F766E',
     antibodyColor: '#F472B6',
     order: [5, 9, 2, 4, 8, 1, 3, 7, 0, 6, 10, 11],
@@ -2053,6 +2104,13 @@ function routeVisualColors(preset) {
   };
 }
 
+function routeChainInfo(preset) {
+  return {
+    antigen: preset && Array.isArray(preset.antigenChains) && preset.antigenChains.length ? preset.antigenChains : ['A'],
+    antibody: preset && Array.isArray(preset.antibodyChains) && preset.antibodyChains.length ? preset.antibodyChains : ['B']
+  };
+}
+
 function orderPDBFilesForPreset(preset, availableFiles) {
   const source = Array.isArray(availableFiles) && availableFiles.length ? availableFiles : [];
   const orderedFiles = [];
@@ -2091,6 +2149,7 @@ function buildRoute3DMeta(profile, idx, file, ipTm, preset) {
   const staticPreset = file.startsWith(aliasPrefix + '-') && localPDBFileExists(file);
   const displayFile = staticPreset ? file : '';
   const visualColors = routeVisualColors(preset);
+  const chainInfo = routeChainInfo(preset);
   return {
     id: routeCandidateId(profile, idx),
     file,
@@ -2111,6 +2170,9 @@ function buildRoute3DMeta(profile, idx, file, ipTm, preset) {
     structureTitle: preset && preset.title ? preset.title : routeLabel + ' 候选结构',
     structureFamily: preset && preset.structureFamily ? preset.structureFamily : (profile && profile.domain) || '',
     visualSummary: preset && preset.visualSummary ? preset.visualSummary : (profile && profile.structurePrepZh) || '',
+    structuralBasis: preset && preset.structuralBasis ? preset.structuralBasis : '',
+    antigenChains: chainInfo.antigen,
+    antibodyChains: chainInfo.antibody,
     visualColors,
     sequence,
     cdrSummary: 'CDR-H3 ' + cdr3Len + ' aa · ' + ((profile && profile.selectedEpitope) || '目标表位') + ' 匹配',
@@ -2495,7 +2557,16 @@ app.get('/api/pdb/local/:filename', (req, res) => {
   res.setHeader('Content-Type', 'text/plain');
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Content-Disposition', 'attachment; filename="' + filename + '"');
-  fs.createReadStream(fp).pipe(res);
+  const stream = fs.createReadStream(fp);
+  stream.on('error', (err) => {
+    console.error('[PDB] local stream error:', err && err.message ? err.message : err);
+    if (!res.headersSent) {
+      res.status(500).json({ error: 'PDB read failed' });
+    } else {
+      res.destroy(err);
+    }
+  });
+  stream.pipe(res);
 });
 
 // ─── PDB Proxy ──────────────────────────────────────────────
@@ -3739,11 +3810,15 @@ async function runWorkflow(ws, input, forcedRoute) {
 
   // 3D Gallery
   const allLocalPDBs = routeLocalPDBs(profile, finalPass);
-  const route3DColors = allLocalPDBs[0] && allLocalPDBs[0].visualColors ? allLocalPDBs[0].visualColors : routeVisualColors(getRoute3DPreset(profile));
+  const routePreset = getRoute3DPreset(profile);
+  const route3DColors = allLocalPDBs[0] && allLocalPDBs[0].visualColors ? allLocalPDBs[0].visualColors : routeVisualColors(routePreset);
+  const routeChains = allLocalPDBs[0] && allLocalPDBs[0].antigenChains
+    ? { antigen: allLocalPDBs[0].antigenChains, antibody: allLocalPDBs[0].antibodyChains || ['B'] }
+    : routeChainInfo(routePreset);
   console.log('[Server] Prepared ' + allLocalPDBs.length + ' route-labeled PDB complexes');
   send({ type: 'show_3d', primaryPDB: allLocalPDBs[0].id, allPDBs: allLocalPDBs.map(p => p.id),
     label: allLocalPDBs.length + ' 个 ' + profile.targetDisplay + ' ' + abType + ' 候选结构', isLocal: true,
-    chainInfo: { antigen: ['A'], antibody: ['B'], colors: route3DColors }, binderData: allLocalPDBs });
+    chainInfo: { antigen: routeChains.antigen, antibody: routeChains.antibody, colors: route3DColors }, binderData: allLocalPDBs });
   markWorkflowStage(sess, '');
   send({ type: 'done' });
 }
