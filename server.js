@@ -6,6 +6,7 @@ const express = require('express');
 const { WebSocketServer } = require('ws');
 const http = require('http');
 const https = require('https');
+const os = require('os');
 const path = require('path');
 const fs = require('fs');
 const { spawn } = require('child_process');
@@ -75,6 +76,27 @@ function readAppBuildVersion() {
   } catch {
     return '';
   }
+}
+
+function encodePcm16Wav(pcmBuffer, sampleRate = 16000, channels = 1, bitsPerSample = 16) {
+  const pcm = Buffer.isBuffer(pcmBuffer) ? pcmBuffer : Buffer.from(pcmBuffer || []);
+  const header = Buffer.alloc(44);
+  const byteRate = sampleRate * channels * bitsPerSample / 8;
+  const blockAlign = channels * bitsPerSample / 8;
+  header.write('RIFF', 0);
+  header.writeUInt32LE(36 + pcm.length, 4);
+  header.write('WAVE', 8);
+  header.write('fmt ', 12);
+  header.writeUInt32LE(16, 16);
+  header.writeUInt16LE(1, 20);
+  header.writeUInt16LE(channels, 22);
+  header.writeUInt32LE(sampleRate, 24);
+  header.writeUInt32LE(byteRate, 28);
+  header.writeUInt16LE(blockAlign, 32);
+  header.writeUInt16LE(bitsPerSample, 34);
+  header.write('data', 36);
+  header.writeUInt32LE(pcm.length, 40);
+  return Buffer.concat([header, pcm]);
 }
 
 function resolveProjectPath(rawPath) {
@@ -1169,6 +1191,83 @@ app.post('/api/voice/intent', (req, res) => {
     return res.status(413).json({ error: 'voice_text_too_long', message: '语音文本过长。' });
   }
   return res.json(resolveVoiceAssistantIntent(text));
+});
+
+app.post('/api/voice-intent', (req, res) => {
+  const text = String(req.body && req.body.text || '').trim();
+  if (!text) {
+    return res.status(400).json({ error: 'empty_voice_text', message: '未收到语音文本。' });
+  }
+  if (text.length > 4000) {
+    return res.status(413).json({ error: 'voice_text_too_long', message: '语音文本过长。' });
+  }
+  return res.json(buildVoiceUiIntent(text, req.body || {}));
+});
+
+async function macosSayToBuffer(text) {
+  const tmpBase = path.join(os.tmpdir(), 'zoonoab-tts-' + uuidv4());
+  const aiffFile = tmpBase + '.aiff';
+  const wavFile = tmpBase + '.wav';
+  try {
+    await new Promise((resolve, reject) => {
+      const proc = spawn('/usr/bin/say', ['-v', 'Tingting', '-o', aiffFile, String(text || '').slice(0, 500)]);
+      proc.on('error', reject);
+      proc.on('close', (code) => code === 0 ? resolve() : reject(new Error('say exit ' + code)));
+    });
+    await new Promise((resolve, reject) => {
+      const proc = spawn('/usr/bin/afconvert', ['-f', 'WAVE', '-d', 'LEI16@22050', aiffFile, wavFile]);
+      proc.on('error', reject);
+      proc.on('close', (code) => code === 0 ? resolve() : reject(new Error('afconvert exit ' + code)));
+    });
+    return fs.readFileSync(wavFile);
+  } finally {
+    try { fs.unlinkSync(aiffFile); } catch {}
+    try { fs.unlinkSync(wavFile); } catch {}
+  }
+}
+
+async function synthesizeLocalTts(text) {
+  const trimmed = String(text || '').trim();
+  if (!trimmed) throw new Error('empty_tts_text');
+  if (process.platform === 'darwin') {
+    return {
+      contentType: 'audio/wav',
+      buffer: await macosSayToBuffer(trimmed)
+    };
+  }
+  throw new Error('local_tts_unavailable');
+}
+
+app.post('/api/tts', async (req, res) => {
+  const text = String(req.body && req.body.text || '').trim();
+  if (!text || text.length > 1000) {
+    return res.status(400).json({ error: 'invalid_text', message: '语音播报文本无效。' });
+  }
+  try {
+    const result = await synthesizeLocalTts(text);
+    res.setHeader('Content-Type', result.contentType);
+    res.setHeader('Cache-Control', 'no-store');
+    return res.end(result.buffer);
+  } catch (err) {
+    console.error('[TTS] Synthesis failed:', err && err.message ? err.message : err);
+    return res.status(503).json({ error: 'tts_unavailable', message: '语音播报暂时不可用。' });
+  }
+});
+
+app.get('/api/tts-stream', async (req, res) => {
+  const text = String(req.query && req.query.text || '').trim();
+  if (!text || text.length > 1000) {
+    return res.status(400).json({ error: 'invalid_text', message: '语音播报文本无效。' });
+  }
+  try {
+    const result = await synthesizeLocalTts(text);
+    res.setHeader('Content-Type', result.contentType);
+    res.setHeader('Cache-Control', 'no-store');
+    return res.end(result.buffer);
+  } catch (err) {
+    console.error('[TTS] Stream synthesis failed:', err && err.message ? err.message : err);
+    return res.status(503).json({ error: 'tts_stream_unavailable', message: '流式语音播报暂时不可用。' });
+  }
 });
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -2498,6 +2597,7 @@ function msgs(lang) {
 
 // ─── Sessions ──────────────────────────────────────────────
 const sessions = new Map();
+const asrSessions = new Map();
 setInterval(() => {
   for (const [sid, sess] of sessions) {
     if (sess.ws.readyState !== 1) sessions.delete(sid);
@@ -3037,6 +3137,116 @@ function resolveVoiceAssistantIntent(input) {
   };
 }
 
+function buildVoiceUiIntent(input, options = {}) {
+  const rawText = String(input || '').trim();
+  const text = stripWakeWords(rawText) || rawText;
+  const lower = text.toLowerCase();
+  const replyText = (value) => String(value || '').trim().slice(0, 24);
+  const spokenText = (value) => String(value || '').trim().slice(0, 80);
+  const simple = (action, spoken, reply, extra = {}) => ({
+    action,
+    confidence: 0.95,
+    spoken: spokenText(spoken),
+    reply: replyText(reply || spoken),
+    ...extra
+  });
+  const routeAction = (action, patterns, spoken, reply) => {
+    if (patterns.some((pattern) => pattern instanceof RegExp ? pattern.test(lower) : lower.includes(pattern))) {
+      return simple(action, spoken, reply);
+    }
+    return null;
+  };
+
+  const directMap = [
+    ['stop_voice', ['关闭语音', '停止语音', '关闭助手'], '好的，已关闭语音助手', '已关闭'],
+    ['voice_help', ['语音帮助', '有哪些命令', '帮助'], '好的，我来展示语音帮助', '帮助'],
+    ['fullscreen', ['全屏', '全屏模式', '退出全屏'], '好的，切换全屏', '全屏'],
+    ['close_panels', ['关闭面板', '收起面板', '关闭分析', '关闭弹窗', '关闭窗口', '退出'], '好的，已关闭当前面板', '已关闭'],
+    ['rotate', ['开始旋转', '旋转', '旋转分子'], '好的，开始旋转', '旋转'],
+    ['stop_rotate', ['停止旋转', '停转'], '好的，已停止旋转', '停止'],
+    ['zoom_in', ['放大', '拉近', '放大视图'], '好的，放大视图', '放大'],
+    ['zoom_out', ['缩小', '拉远', '缩小视图'], '好的，缩小视图', '缩小'],
+    ['reset_view', ['重置视图', '重置分子', '复位', '归位'], '好的，重置视图', '重置'],
+    ['open_seq_panel', ['打开序列分析', '序列分析', '序列工作台'], '好的，打开序列分析', '序列分析'],
+    ['open_struct_panel', ['打开结构分析', '结构分析', '结构工作台'], '好的，打开结构分析', '结构分析'],
+    ['nav_design', ['设计界面', '打开设计', '打开聊天', '回到设计'], '好的，回到设计页', '设计页'],
+    ['nav_batches', ['查看批次', '批次列表', '实验批次', '打开批次'], '好的，打开批次列表', '批次'],
+    ['nav_team', ['查看团队', '团队协作', '打开团队'], '好的，打开团队协作', '团队'],
+    ['nav_kb', ['知识库', '查看知识库', '文献库', '打开知识库'], '好的，打开知识库', '知识库'],
+    ['new_design', ['快速设计', '新建设计', '新设计', '新建项目'], '好的，打开快速设计', '快速设计'],
+    ['new_batch', ['新建批次', '创建批次'], '好的，新建批次', '新建批次'],
+    ['kb_upload', ['上传文献', '上传文件', '上传知识'], '好的，打开上传文献', '上传文献'],
+    ['open_cdr', ['打开cdr', 'cdr分析', 'cdr注释', '互补决定区'], '好的，打开 CDR 分析', 'CDR'],
+    ['open_risk', ['打开风险', '风险分析', '风险评估', '风险位点'], '好的，打开风险分析', '风险'],
+    ['open_humanization', ['打开人源化', '人源化分析', '人源化'], '好的，打开人源化', '人源化'],
+    ['open_msa', ['打开比对', '多序列比对', '序列比对', 'msa'], '好的，打开多序列比对', '比对'],
+    ['open_phys', ['打开理化', '理化性质', '物化性质'], '好的，打开理化分析', '理化'],
+    ['open_maturation', ['打开亲和力', '亲和力成熟', '成熟分析'], '好的，打开亲和力成熟', '亲和力'],
+    ['open_interaction', ['打开互作', '相互作用分析', '互作分析'], '好的，打开相互作用分析', '互作'],
+    ['open_epitope', ['打开表位', '表位预测', '表位分析'], '好的，打开表位预测', '表位'],
+    ['open_structpred', ['打开结构预测', '结构预测', '预测结构'], '好的，打开结构预测', '结构预测'],
+    ['open_3d_editor', ['打开3d', '3d结构', '三维结构', '3d编辑器', '结构可视化'], '好的，打开 3D 编辑器', '3D'],
+    ['run_cdr', ['运行cdr', '执行cdr', '跑cdr', '运行cdr注释'], '好的，运行 CDR 注释', '运行CDR'],
+    ['run_risk', ['运行风险', '风险扫描', '分析风险', '运行风险分析'], '好的，运行风险分析', '运行风险'],
+    ['run_humanization', ['运行人源化', '执行人源化', '开始人源化'], '好的，运行人源化分析', '运行人源化'],
+    ['run_msa', ['运行比对', '运行序列比对', '执行msa', '开始比对'], '好的，运行多序列比对', '运行比对'],
+    ['run_phys', ['计算理化', '运行理化', '理化计算', '物化计算'], '好的，计算理化性质', '计算理化'],
+    ['run_maturation', ['运行亲和力', '亲和力成熟分析', '开始成熟', '突变扫描'], '好的，运行亲和力成熟', '运行亲和力'],
+    ['run_interaction', ['运行互作', '分析互作', '运行相互作用', '分析相互作用'], '好的，运行相互作用分析', '运行互作'],
+    ['mol3d_cdr3', ['高亮cdr-h3', '高亮cdrh3', '显示cdr3'], '好的，高亮 CDR-H3', '高亮CDR3'],
+    ['mol3d_all_cdr', ['高亮所有cdr', '显示所有cdr', '高亮cdr'], '好的，高亮所有 CDR', '高亮CDR'],
+    ['mol3d_binding', ['聚焦结合位点', '聚焦位点', '显示结合位点'], '好的，聚焦结合位点', '聚焦位点'],
+    ['mol3d_cartoon', ['卡通模式', '卡通显示'], '好的，切换卡通模式', '卡通模式'],
+    ['mol3d_stick', ['球棍模式', '球棍显示'], '好的，切换球棍模式', '球棍模式'],
+    ['mol3d_surface', ['显示表面', '表面模式'], '好的，显示表面', '显示表面'],
+    ['mol3d_reset_color', ['重置颜色', '恢复颜色', '清除颜色'], '好的，重置颜色', '重置颜色'],
+  ];
+  for (const [action, patterns, spoken, reply] of directMap) {
+    const hit = routeAction(action, patterns, spoken, reply);
+    if (hit) return hit;
+  }
+
+  const routeIntent = resolveVoiceAssistantIntent(text);
+  if (routeIntent && routeIntent.action === 'design') {
+    const params = routeIntent.route ? {
+      routeId: routeIntent.route.routeId,
+      target: routeIntent.route.target,
+      blockTarget: routeIntent.route.blockTarget || '',
+      abType: routeIntent.route.abType,
+      count: routeIntent.route.count
+    } : {};
+    const targetLabel = params.target || '抗体';
+    return {
+      action: 'start_design',
+      confidence: 0.98,
+      spoken: spokenText('好，开始设计 ' + targetLabel + ' 抗体'),
+      reply: replyText('开始设计'),
+      params
+    };
+  }
+
+  if (detectIntent(text) !== 'assistant_chat') {
+    const resolved = resolveVoiceAssistantIntent(text);
+    return {
+      action: 'qa_answer',
+      confidence: 0.74,
+      spoken: spokenText('好的，我来为你处理这个请求'),
+      reply: replyText('处理中'),
+      params: {
+        workflowIntent: resolved.intent || '',
+        text: resolved.text || text
+      }
+    };
+  }
+
+  return {
+    action: 'qa_answer',
+    confidence: 0.7,
+    spoken: spokenText('好的，我来回答'),
+    reply: replyText('回答中')
+  };
+}
+
 function buildDemoInstruction(input, route) {
   const raw = String(input || '').trim();
   const asksPrint = /(打印|3d\s*打印|print|模型|纪念)/i.test(raw) || route.printable;
@@ -3228,6 +3438,10 @@ async function runAssistantChat(ws, input, voiceSessionId) {
   const send = data => { if (ws.readyState === 1) ws.send(JSON.stringify(data)); };
   await delay(900 + Math.floor(Math.random() * 650));
   const answer = await askAssistantModel(input, voiceSessionId);
+  const sess = findSessionBySocket(ws);
+  if (sess && sess.fromVoice && answer) {
+    send({ type: 'voice_say', text: answer.slice(0, 220) });
+  }
   send({ type: 'agent_msg', text: answer });
   await delay(300);
   send({ type: 'chips', chips: [
@@ -3949,6 +4163,7 @@ function runSocketTask(ws, sid, msg, buildRunner) {
     sess.skipThinkingNotified = false;
     sess.fastForwardWorkflow = false;
     sess.workflowStage = '';
+    sess.fromVoice = Boolean(msg && msg.voice);
   }
   const cleanText = stripWakeWords(text);
   const runner = buildRunner(cleanText || text);
@@ -3966,6 +4181,7 @@ function runSocketTask(ws, sid, msg, buildRunner) {
         sess.skipThinkingNotified = false;
         sess.fastForwardWorkflow = false;
         sess.workflowStage = '';
+        sess.fromVoice = false;
       }
     });
 }
@@ -4598,7 +4814,19 @@ wss.on('connection', ws => {
   const sid = uuidv4();
   sessions.set(sid, { ws, busy: false, cancelled: false });
   ws.send(JSON.stringify({ type: 'connected', sessionId: sid }));
-  ws.on('message', raw => {
+  ws.on('message', async (raw, isBinary) => {
+    if (isBinary) {
+      const asrState = asrSessions.get(sid);
+      if (!asrState) return;
+      try {
+        const buffer = Buffer.isBuffer(raw) ? raw : Buffer.from(raw);
+        if (!buffer.length) return;
+        asrState.chunks.push(buffer);
+      } catch (err) {
+        console.error('[Voice] ASR binary receive failed:', err && err.message ? err.message : err);
+      }
+      return;
+    }
     if (raw.length > 8192) return;
     let msg;
     try { msg = JSON.parse(raw); } catch { return; }
@@ -4635,12 +4863,53 @@ wss.on('connection', ws => {
       return;
     }
 
+    if (msg.type === 'asr_start') {
+      asrSessions.set(sid, { chunks: [], format: 'pcm16le-16k' });
+      if (ws.readyState === 1) {
+        ws.send(JSON.stringify({ type: 'asr_ready' }));
+      }
+      return;
+    }
+
+    if (msg.type === 'asr_stop') {
+      const state = asrSessions.get(sid);
+      if (!state) {
+        if (ws.readyState === 1) ws.send(JSON.stringify({ type: 'asr_done' }));
+        return;
+      }
+      asrSessions.delete(sid);
+      try {
+        const rawAudio = Buffer.concat(state.chunks || []);
+        const audio = state.format === 'pcm16le-16k' ? encodePcm16Wav(rawAudio, 16000, 1, 16) : rawAudio;
+        if (!audio.length) {
+          if (ws.readyState === 1) ws.send(JSON.stringify({ type: 'asr_done' }));
+          return;
+        }
+        const providerConfig = getVoiceProviderConfig();
+        const result = await transcribeAudioWithConfig(providerConfig, audio, 'audio/wav');
+        const text = String(result && result.text || '').trim();
+        if (text && ws.readyState === 1) {
+          ws.send(JSON.stringify({ type: 'asr_text', text, final: true }));
+        }
+        if (ws.readyState === 1) ws.send(JSON.stringify({ type: 'asr_done' }));
+      } catch (err) {
+        console.error('[Voice] ASR stop failed:', err && err.message ? err.message : err);
+        if (ws.readyState === 1) {
+          ws.send(JSON.stringify({ type: 'asr_error', message: err && err.message ? err.message : '语音识别失败' }));
+        }
+      }
+      return;
+    }
+
     if (msg.type === 'user_msg') {
       if (!msg.text || typeof msg.text !== 'string' || msg.text.length > 4000) return;
       runSocketTask(ws, sid, msg, (cleanText) => resolveUserMessageRunner(msg, cleanText).runner);
     }
   });
-  ws.on('close', () => sessions.delete(sid));
+  ws.on('close', () => {
+    sessions.delete(sid);
+    asrSessions.delete(sid);
+  });
 });
 
 // ─── Export API ─────────────────────────────────────────────

@@ -4336,9 +4336,9 @@
                     <div class="kb-tree-header">
                         <div class="kb-tree-title-row">
                             <div class="kb-tree-title">项目空间</div>
-                            <button class="voice-settings-btn" id="voiceSettingsBtn" onclick="toggleVoiceSettings()" title="配置语音和问答服务">API</button>
+                            <button class="voice-settings-btn" id="voiceSettingsBtn" onclick="toggleVoiceSettings()" title="配置语音和问答服务" style="display:none;" aria-hidden="true">API</button>
                         </div>
-                        <div class="kb-api-slot">
+                        <div class="kb-api-slot" style="display:none;" aria-hidden="true">
                             <div class="voice-settings-panel" id="voiceSettingsPanel">
                                 <div class="voice-settings-group">
                                     <div class="voice-settings-title">
@@ -5243,7 +5243,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78141234';
+    const APP_BUILD_VERSION = '78141235';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -6548,6 +6548,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
     function handleMsg(msg) {
         markQuickDesignBackendResponse(msg);
+        if (typeof window.voiceControlHandleWsMessage === 'function' && window.voiceControlHandleWsMessage(msg)) {
+            return;
+        }
         switch (msg.type) {
             case 'connected':
                 sessionId = msg.sessionId;
@@ -7171,7 +7174,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         }
     }
 
-    function sendMessage() {
+    function sendMessage(options = {}) {
         const input = document.getElementById('userInput');
         if (!input) return;
 
@@ -7185,7 +7188,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         input.style.height = 'auto';
 
         if (ws && ws.readyState === 1) {
-            ws.send(JSON.stringify({ type: 'user_msg', text, voiceSessionId: voiceSessionId || '' }));
+            ws.send(JSON.stringify({
+                type: 'user_msg',
+                text,
+                voiceSessionId: voiceSessionId || '',
+                voice: Boolean(options.voice)
+            }));
         } else {
             runDemo(text);
         }
@@ -14404,7 +14412,6 @@ QVQLVESGGGLVQPGGSLRLSCAASGYIFSSNAMGWYRQAPGKQRELVAAISSGGSTYYADSVKGRFTISRDNAKTTLYL
                 sendMessage();
             }
         });
-        initVoiceShortcuts();
     });
 
     /* ═══════ MOLECULAR VIEWER MODAL ═══════ */
@@ -14576,6 +14583,7 @@ QVQLVESGGGLVQPGGSLRLSCAASGYIFSSNAMGWYRQAPGKQRELVAAISSGGSTYYADSVKGRFTISRDNAKTTLYL
         }
     });
     </script>
+    <script src="/voice-control.js"></script>
 
     <!-- Molecular Viewer Modal (reused for auto-spin on done) -->
 	    <div class="mol-modal-overlay" id="molModalOverlay">
