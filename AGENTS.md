@@ -20,6 +20,7 @@
 小诺同学语音链路应分层实现：前端录音/VAD 只负责采集和端点检测，ASR 只负责转写，后端 `/api/voice/intent` 先做确定性意图解析；命中抗体设计时必须返回固定 quick design 路线并由前端发送 WebSocket `quick_design`，不要让语音设计请求直接进入普通聊天兜底。
 小诺语音识别只使用本机/服务器本地 ASR sidecar：默认地址 `LOCAL_ASR_BASE_URL=http://127.0.0.1:8765/v1/audio/transcriptions`，启动命令 `npm run asr:local`，首次安装命令 `npm run asr:setup`；前端 API 面板不得展示或要求填写云端语音识别 Base URL、API Key 或 Model。
 浏览器 `SpeechRecognition` 只能作为“小诺同学”唤醒词检测层使用，命令内容仍必须通过本地 16k WAV ASR 转写并交给 `/api/voice/intent` 解析；普通语音输入、小诺唤醒监听和唤醒后的命令录音必须互斥且幂等，避免重复会话抢占麦克风。
+语音前端 UI 可以采用悬浮麦克风按钮、悬浮免提开关和底部语音卡片的展示形态，但底层不得接入参考项目里基于大模型自由分类的 `/api/voice-intent` 路由；所有语音设计请求仍必须复用当前项目的 `/api/voice/intent`、`detectDemoRoute`、`detectIntent` 和 quick design route/profile 映射，避免“设计抗体”误触发错误 workflow。
 本机离线 ASR 依赖安装到项目内 `.runtime/local-asr-venv`，不要污染系统 Python；默认使用 Paraformer 中文识别模型处理前端 16k WAV 短命令，`fsmn-vad` 和 `ct-punc` 默认关闭，只有需要长音频切分或标点时才通过 `LOCAL_ASR_VAD_MODEL`、`LOCAL_ASR_PUNC_MODEL` 手动开启，避免首次启动额外下载大模型并拖慢现场 demo。
 网页后端在本机 local ASR 配置下应自动拉起 sidecar（可用 `LOCAL_ASR_AUTO_START=0` 关闭），前端普通语音和“小诺同学”唤醒监听都应发送 16k WAV；本机 ASR 应配置小诺、PD-1/PD-L1、IL-33/ST2、HER2、TNF、Fab/VHH 等领域热词，提高现场短命令识别稳定性。
 语音现场可用性需要可诊断：后端 `/api/voice/health` 应返回 ASR 安装状态、sidecar/模型状态、是否可转写和现场人员可读消息；前端 API 面板应展示该状态，并在录音/唤醒时显示麦克风授权、实时输入音量和声波/状态反馈，低音量录音应先提示用户而不是直接送 ASR。
