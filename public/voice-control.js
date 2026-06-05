@@ -87,6 +87,13 @@
     let _asrProcessor      = null;    // ScriptProcessorNode
     let _asrMicStream      = null;    // MediaStream for ASR capture
     let _asrInterimText    = '';      // current interim transcript from Paraformer
+    let _asrSpeechStarted  = false;
+    let _asrLastSpeechAt   = 0;
+    let _asrSegmentStartedAt = 0;
+    let _asrListenStartedAt = 0;
+    let _asrPeakRms        = 0;
+    let _asrFinishPending  = false;
+    let _asrPreRoll        = [];
     let _wakeEnabled       = false;   // hands-free wake-word listening (opt-in)
     let _wakeRecog         = null;    // separate background recognizer for the wake phrase
     let _wakeRestartTimer  = null;
@@ -109,6 +116,13 @@
     // mic (imperfect echo-cancellation), false-triggers an interrupt, un-pauses the mic mid-TTS
     // and causes an echo loop. Manual interrupt (tap card / Esc / click) stays available.
     const _VAD_BARGE_ENABLED = false;
+    const _ASR_START_RMS      = 0.010;
+    const _ASR_CONTINUE_RMS   = 0.006;
+    const _ASR_SILENCE_MS     = 950;
+    const _ASR_MAX_SEGMENT_MS = 9000;
+    const _ASR_IDLE_HINT_MS   = 12000;
+    const _ASR_MIN_SEGMENT_MS = 450;
+    const _ASR_PREROLL_CHUNKS = 3;
     const _voiceStats      = { heard: 0, qaFast: 0, nlu: 0, commands: 0, errors: 0 };  // lightweight telemetry (window._voiceStats)
     if (typeof window !== 'undefined') window._voiceStats = _voiceStats;
 
@@ -281,6 +295,42 @@
         const s = (t || '').trim();
         if (s.length < 5) return false;
         return /(什么|怎么|为什么|为何|如何|区别|差异|哪些|哪个|是不是|能不能|可不可以|有没有|意思|原理|作用|怎样|吗|呢|\?|？)/.test(s);
+    }
+
+    function _voiceCommonAnswer(text) {
+        const s = (text || '').replace(/\s+/g, '').toLowerCase();
+        const has = (...parts) => parts.some(p => s.includes(String(p).replace(/\s+/g, '').toLowerCase()));
+        if (has('你是谁', '小诺是谁', '你叫什么')) {
+            return '我是小诺，ZoonoAb 的语音助手。你可以让我打开页面、运行分析、启动快速设计，也可以直接问抗体工程相关问题。';
+        }
+        if (has('你能做什么', '有哪些功能', '可以做什么')) {
+            return '我可以语音控制快速设计、序列分析、结构分析、3D 展示和知识库，也可以解释 CDR、靶点、抗体类型和演示结果。';
+        }
+        if (has('什么是cdr', 'cdr是什么', '互补决定区')) {
+            return 'CDR 是抗体直接接触抗原的关键环区，决定大部分结合特异性。快速设计会重点优化 CDR，尤其是 CDR-H3 的长度、疏水性和风险位点。';
+        }
+        if (has('vhh和fab', 'fab和vhh', '纳米抗体和fab', 'vhh区别', 'fab区别')) {
+            return 'VHH 是单域纳米抗体，分子小、稳定性好、适合深入口袋表位；Fab 保留重链和轻链可变区，更接近经典抗体片段，展示和开发路径更常见。';
+        }
+        if (has('什么是pd-l1', 'pdl1是什么', 'pd-l1是什么', 'pd1pdl1')) {
+            return 'PD-L1 是肿瘤免疫检查点配体，和 T 细胞 PD-1 结合后会抑制免疫反应。阻断 PD-1/PD-L1 通路是肿瘤免疫治疗中的经典抗体设计方向。';
+        }
+        if (has('il-33是什么', 'il33是什么', 'st2是什么')) {
+            return 'IL-33 是 IL-1 家族细胞因子，通过 ST2 受体驱动二型炎症，常见于哮喘、特应性皮炎等炎症疾病方向。';
+        }
+        if (has('怎么开始快速设计', '如何开始快速设计', '快速设计怎么用')) {
+            return '你可以说“开始快速设计”，我会打开向导；也可以直接说“帮我做一个 PD-L1 抗体设计演示”，系统会进入对应工作流。';
+        }
+        if (has('怎么跳过思考', '跳过思考是什么', '快速思考')) {
+            return '工作流运行时点击“跳过思考”，后续日志内容不会减少，只会按更快节奏完整展示，适合现场演示。';
+        }
+        if (has('怎么看3d', '打开3d', '三维结构怎么看', '3d结果')) {
+            return '设计完成后会自动打开全屏 3D 结构。你也可以说“旋转”“放大”“高亮 CDR-H3”来控制当前结构展示。';
+        }
+        if (has('为什么没有反应', '听不见', '没听见', '语音没反应')) {
+            return '请确认浏览器允许麦克风权限，并靠近麦克风说完整一句话。语音卡片的波纹会随音量变化，说完停顿一秒后我会自动识别。';
+        }
+        return '';
     }
 
     // ── Persona: varied acknowledgments & greetings (小诺) ──
@@ -571,6 +621,17 @@
         _voicePushTranscript('user', text);
         updateVoiceBar({ heard: text, response: '理解中…', thinking: true });
         _voiceStats.heard++;
+
+        const commonAnswer = _voiceCommonAnswer(text);
+        if (commonAnswer) {
+            _voiceStats.qaFast++;
+            updateVoiceBar({ heard: text, response: commonAnswer });
+            _voicePushTranscript('ai', commonAnswer);
+            speakVoiceStreaming(commonAnswer);
+            _voiceProcessing = false;
+            _voiceDrainQueue();
+            return;
+        }
 
         // Fast-path: clear natural-language questions go straight to the agent,
         // skipping the /api/voice-intent round-trip (≈1-2s latency saved).
@@ -1282,6 +1343,10 @@
         b.innerHTML = (_wakeEnabled ? '🟢' : '💤') + ' 免提';
     }
 
+    function _voiceSessionId() {
+        return (typeof window !== 'undefined' && window.voiceSessionId) ? window.voiceSessionId : '';
+    }
+
     function startVoiceControl() {
         if (_voiceActive) return;   // idempotent — repeated wake triggers must not start a 2nd session
         _stopWakeWord();  // assistant takes over the mic
@@ -1303,7 +1368,7 @@
         // Try DashScope Paraformer first; fall back to Web Speech API on error
         if (ws && ws.readyState === 1) {
             _asrDashscope = true;
-            ws.send(JSON.stringify({ type: 'asr_start' }));
+            ws.send(JSON.stringify({ type: 'asr_start', voiceSessionId: _voiceSessionId() }));
             // asr_ready → _asrBeginCapture(); asr_error → _startWebSpeechASR() fallback
         } else {
             _asrDashscope = false;
@@ -1312,9 +1377,49 @@
     }
 
     // ── DashScope Paraformer: begin PCM capture after server says ready ──
+    function _asrCalcRms(samples) {
+        if (!samples || !samples.length) return 0;
+        let sum = 0;
+        for (let i = 0; i < samples.length; i++) sum += samples[i] * samples[i];
+        return Math.sqrt(sum / samples.length);
+    }
+
+    function _asrResetSegmentState() {
+        _asrSpeechStarted = false;
+        _asrLastSpeechAt = 0;
+        _asrSegmentStartedAt = 0;
+        _asrListenStartedAt = Date.now();
+        _asrPeakRms = 0;
+        _asrFinishPending = false;
+        _asrPreRoll = [];
+    }
+
+    function _asrFinishSegment(reason) {
+        if (_asrFinishPending) return;
+        _asrFinishPending = true;
+        const now = Date.now();
+        const duration = _asrSegmentStartedAt ? now - _asrSegmentStartedAt : 0;
+        const shouldSubmit = reason === 'stop' || reason === 'max' || (_asrSpeechStarted && duration >= _ASR_MIN_SEGMENT_MS);
+        _asrCleanup();
+        if (shouldSubmit && ws && ws.readyState === 1) {
+            document.getElementById('voiceCtrlBtn')?.classList.add('thinking');
+            _voiceSetState('thinking', '正在识别语音...');
+            ws.send(JSON.stringify({ type: 'asr_stop' }));
+        } else {
+            _asrResetSegmentState();
+            if (_voiceActive && _asrDashscope && reason !== 'stop') {
+                if (ws && ws.readyState === 1) ws.send(JSON.stringify({ type: 'asr_stop' }));
+            }
+        }
+    }
+
     function _asrBeginCapture() {
         if (!_asrDashscope || !_voiceActive) return;
-        navigator.mediaDevices.getUserMedia({ audio: true, video: false })
+        _asrResetSegmentState();
+        navigator.mediaDevices.getUserMedia({
+            audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true, channelCount: 1 },
+            video: false
+        })
             .then(stream => {
                 if (!_voiceActive) { stream.getTracks().forEach(t => t.stop()); return; }
                 _asrMicStream = stream;
@@ -1324,14 +1429,48 @@
                 // bufferSize 4096 → ~256 ms per chunk at 16kHz
                 _asrProcessor = _asrAudioCtx.createScriptProcessor(4096, 1, 1);
                 _asrProcessor.onaudioprocess = (e) => {
-                    if (_voicePausedForTTS || !_voiceActive || !_asrDashscope) return;
+                    if (_asrFinishPending || _voicePausedForTTS || !_voiceActive || !_asrDashscope) return;
                     if (!ws || ws.readyState !== 1) return;
                     const f32 = e.inputBuffer.getChannelData(0);
+                    const rms = _asrCalcRms(f32);
+                    const now = Date.now();
+                    _asrPeakRms = Math.max(_asrPeakRms, rms);
+                    const orb = document.getElementById('voiceSiriOrb');
+                    if (orb && orb.classList.contains('listening')) {
+                        orb.style.setProperty('--lvl', Math.min(1, rms * 26).toFixed(2));
+                    }
                     const pcm = new Int16Array(f32.length);
                     for (let i = 0; i < f32.length; i++) {
                         pcm[i] = Math.max(-32768, Math.min(32767, Math.round(f32[i] * 32767)));
                     }
-                    ws.send(pcm.buffer);
+                    const pcmBuffer = pcm.buffer.slice(0);
+                    if (!_asrSpeechStarted) {
+                        _asrPreRoll.push(pcmBuffer);
+                        while (_asrPreRoll.length > _ASR_PREROLL_CHUNKS) _asrPreRoll.shift();
+                        if (rms >= _ASR_START_RMS) {
+                            _asrSpeechStarted = true;
+                            _asrSegmentStartedAt = now;
+                            _asrLastSpeechAt = now;
+                            _voiceSetState('interim', '我听到了，请继续说...');
+                            _asrPreRoll.forEach(buf => { if (ws && ws.readyState === 1) ws.send(buf); });
+                            _asrPreRoll = [];
+                        } else if (now - _asrListenStartedAt > _ASR_IDLE_HINT_MS) {
+                            _asrListenStartedAt = now;
+                            _voiceSetState('listening', '没有听到清晰声音，请靠近麦克风说话...');
+                        } else {
+                            return;
+                        }
+                    } else if (rms >= _ASR_CONTINUE_RMS) {
+                        _asrLastSpeechAt = now;
+                    }
+                    ws.send(pcmBuffer);
+                    if (_asrSpeechStarted && now - _asrSegmentStartedAt >= _ASR_MAX_SEGMENT_MS) {
+                        _asrFinishSegment('max');
+                        return;
+                    }
+                    if (_asrSpeechStarted && _asrLastSpeechAt && now - _asrLastSpeechAt >= _ASR_SILENCE_MS) {
+                        _asrFinishSegment('silence');
+                    }
                 };
                 src.connect(_asrProcessor);
                 _asrProcessor.connect(_asrAudioCtx.destination);
@@ -1354,7 +1493,8 @@
         _asrCleanup();
         setTimeout(() => {
             if (_asrDashscope && _voiceActive && ws && ws.readyState === 1) {
-                ws.send(JSON.stringify({ type: 'asr_start' }));
+                _asrResetSegmentState();
+                ws.send(JSON.stringify({ type: 'asr_start', voiceSessionId: _voiceSessionId() }));
             }
         }, 500);
     }
@@ -1428,8 +1568,9 @@
         // DashScope ASR cleanup
         if (_asrDashscope) {
             _asrDashscope = false;
+            const shouldStopAsr = !_asrFinishPending;
             _asrCleanup();
-            if (ws && ws.readyState === 1) ws.send(JSON.stringify({ type: 'asr_stop' }));
+            if (shouldStopAsr && ws && ws.readyState === 1) ws.send(JSON.stringify({ type: 'asr_stop' }));
         }
         const btn  = document.getElementById('voiceCtrlBtn');
         const ring = document.getElementById('voicePulseRing');
@@ -1519,6 +1660,7 @@
                     _asrInterimText = msg.text || '';
                     _voiceSetState('interim', msg.text || '');
                     if (msg.final && msg.text) {
+                        _asrFinishPending = false;
                         _asrInterimText = '';
                         document.getElementById('voiceCtrlBtn')?.classList.add('thinking');
                         processVoiceText([msg.text]).finally(() => {
@@ -1530,6 +1672,12 @@
                 return false;
             case 'asr_done':
                 if (_asrDashscope && _voiceActive) {
+                    document.getElementById('voiceCtrlBtn')?.classList.remove('thinking');
+                    if (_asrFinishPending && !_asrInterimText) {
+                        _voiceSetState('response', '没有听清，请再说一遍');
+                    }
+                    _asrFinishPending = false;
+                    _asrInterimText = '';
                     _asrRestartSession();
                     return true;
                 }

@@ -9,14 +9,35 @@ const https = require('https');
 const os = require('os');
 const path = require('path');
 const fs = require('fs');
-const { spawn } = require('child_process');
+const { spawn, spawnSync } = require('child_process');
 const { v4: uuidv4 } = require('uuid');
+let MsEdgeTTS = null;
+let EDGE_OUTPUT_FORMAT = null;
+let edgeTtsLastError = '';
+let edgeTtsLastFailedAt = 0;
+try {
+  const edgeTts = require('msedge-tts');
+  MsEdgeTTS = edgeTts.MsEdgeTTS;
+  EDGE_OUTPUT_FORMAT = edgeTts.OUTPUT_FORMAT;
+  if (MsEdgeTTS && MsEdgeTTS.getSynthUrl && !MsEdgeTTS.__zoonoabPatched) {
+    const originalGetSynthUrl = MsEdgeTTS.getSynthUrl.bind(MsEdgeTTS);
+    const edgeGecVersion = process.env.EDGE_TTS_GEC_VERSION || '1-148.0.3967.83';
+    MsEdgeTTS.getSynthUrl = async function patchedGetSynthUrl() {
+      const url = await originalGetSynthUrl();
+      return String(url).replace(/Sec-MS-GEC-Version=[\d.\-]+/, 'Sec-MS-GEC-Version=' + edgeGecVersion);
+    };
+    MsEdgeTTS.__zoonoabPatched = true;
+  }
+} catch (err) {
+  console.warn('[TTS] msedge-tts unavailable:', err && err.message ? err.message : err);
+}
 
 const app = express();
 const server = http.createServer(app);
 const wss = new WebSocketServer({ server });
 const VOICE_AUDIO_LIMIT = '8mb';
 const VOICE_AUDIO_LIMIT_BYTES = 8 * 1024 * 1024;
+const VOICE_WS_AUDIO_LIMIT_BYTES = Math.min(VOICE_AUDIO_LIMIT_BYTES, 384 * 1024);
 const VOICE_SESSION_TTL_MS = 2 * 60 * 60 * 1000;
 const DEFAULT_LOCAL_TRANSCRIBE_MODEL = 'paraformer-zh';
 const DEFAULT_RENDER_TRANSCRIBE_MODEL = 'vosk-small-cn-0.22';
@@ -35,6 +56,10 @@ const LOCAL_ASR_TORCH_INDEX_URL = process.env.LOCAL_ASR_TORCH_INDEX_URL || 'http
 const ASSISTANT_CHAT_MODEL = process.env.ASSISTANT_CHAT_MODEL || process.env.DEEPSEEK_CHAT_MODEL || 'deepseek-chat';
 const ASSISTANT_CHAT_BASE_URL = process.env.ASSISTANT_CHAT_BASE_URL || process.env.DEEPSEEK_CHAT_BASE_URL || process.env.VOICE_CHAT_BASE_URL || '';
 const VOICE_API_CONFIG_FILE = process.env.VOICE_API_CONFIG_FILE || path.join(__dirname, '.runtime', 'voice-api-config.json');
+const LOCAL_TTS_PROVIDER = String(process.env.LOCAL_TTS_PROVIDER || 'edge').trim().toLowerCase();
+const LOCAL_TTS_EDGE_VOICE = process.env.LOCAL_TTS_EDGE_VOICE || process.env.EDGE_TTS_VOICE || 'zh-CN-XiaomoNeural';
+const LOCAL_TTS_MACOS_RATE = String(process.env.LOCAL_TTS_MACOS_RATE || '185').trim();
+const LOCAL_TTS_EDGE_RETRY_MS = Math.max(30_000, Number(process.env.LOCAL_TTS_EDGE_RETRY_MS || 10 * 60 * 1000) || 10 * 60 * 1000);
 const APP_BUILD_VERSION = readAppBuildVersion();
 const VOICE_DOMAIN_PROMPT = [
   'ZoonoAb AI antibody design platform.',
@@ -45,6 +70,7 @@ const VOICE_AUDIO_TYPES = new Set([
   'audio/webm',
   'audio/mp4',
   'audio/mpeg',
+  'audio/mp3',
   'audio/wav',
   'audio/x-wav',
   'application/octet-stream'
@@ -272,7 +298,7 @@ app.use((req, res, next) => {
 function audioFilenameForType(contentType) {
   const baseType = String(contentType || '').split(';')[0].trim().toLowerCase();
   if (baseType === 'audio/mp4') return 'voice.mp4';
-  if (baseType === 'audio/mpeg') return 'voice.mp3';
+  if (baseType === 'audio/mpeg' || baseType === 'audio/mp3') return 'voice.mp3';
   if (baseType === 'audio/wav' || baseType === 'audio/x-wav') return 'voice.wav';
   return 'voice.webm';
 }
@@ -302,13 +328,15 @@ function inferVoiceProvider(url) {
   const host = String(url || '').toLowerCase();
   if (host.includes('127.0.0.1') || host.includes('localhost') || host.includes('::1')) return 'local';
   if (host.includes('siliconflow')) return 'siliconflow';
+  if (host.includes('teleai') || host.includes('telespeech')) return 'teleai';
+  if (host.includes('dashscope') || host.includes('aliyuncs')) return 'dashscope';
   if (host.includes('deepseek')) return 'deepseek';
   if (host.includes('openai')) return 'openai';
   return 'compatible';
 }
 
 function isLocalVoiceProvider(provider) {
-  return ['local', 'offline', 'funasr'].includes(String(provider || '').toLowerCase());
+  return ['local', 'offline', 'funasr', 'vosk'].includes(String(provider || '').toLowerCase());
 }
 
 function isLoopbackVoiceUrl(rawUrl) {
@@ -645,10 +673,49 @@ function cloneApiConfigSection(section) {
   return { ...section };
 }
 
+function normalizeProviderName(value, fallback = 'compatible') {
+  const raw = String(value || '').trim().toLowerCase();
+  if (!raw) return fallback;
+  if (['local', 'offline', 'funasr', 'vosk'].includes(raw)) return 'local';
+  if (raw.includes('silicon')) return 'siliconflow';
+  if (raw.includes('teleai') || raw.includes('telespeech')) return 'teleai';
+  if (raw.includes('dashscope') || raw.includes('aliyun') || raw.includes('qwen')) return 'dashscope';
+  if (raw.includes('openai')) return 'openai';
+  if (raw.includes('deepseek')) return 'deepseek';
+  return raw.replace(/[^a-z0-9_-]/g, '').slice(0, 40) || fallback;
+}
+
+function sanitizePersistedAsrConfig(asr) {
+  const defaultConfig = getDefaultLocalVoiceConfig();
+  if (!asr || typeof asr !== 'object') return defaultConfig;
+  const mode = String(asr.mode || asr.provider || '').trim().toLowerCase();
+  const rawProvider = normalizeProviderName(asr.provider || mode || inferVoiceProvider(asr.url || ''));
+  const provider = ['local', 'offline', 'funasr', 'vosk'].includes(rawProvider) ? 'local' : rawProvider;
+  if (provider === 'local') return defaultConfig;
+  const key = String(asr.key || '').trim();
+  const rawUrl = String(asr.url || '').trim();
+  const model = String(asr.model || '').trim();
+  if (!key || !rawUrl || !model) return defaultConfig;
+  let url;
+  try {
+    url = normalizeVoiceBaseUrl(rawUrl);
+  } catch {
+    return defaultConfig;
+  }
+  return {
+    provider: provider || inferVoiceProvider(url) || 'compatible',
+    key,
+    url,
+    model: model.slice(0, 180),
+    supportsAudio: true
+  };
+}
+
 function sanitizePersistedVoiceConfig(raw) {
   if (!raw || typeof raw !== 'object') return null;
+  const rawVoice = raw.voice && typeof raw.voice === 'object' ? raw.voice : null;
   const sanitized = {
-    voice: getDefaultLocalVoiceConfig(),
+    voice: sanitizePersistedAsrConfig(raw.asr && typeof raw.asr === 'object' ? raw.asr : rawVoice),
     chat: null,
     updatedAt: Number(raw.updatedAt || 0) || Date.now()
   };
@@ -733,6 +800,8 @@ function getVoiceRuntimeConfig(req) {
 function getVoiceProviderConfig(req) {
   const runtimeConfig = getVoiceRuntimeConfig(req);
   if (runtimeConfig && runtimeConfig.voice) return runtimeConfig.voice;
+  const persisted = loadPersistedVoiceConfig();
+  if (persisted && persisted.voice) return persisted.voice;
   return getDefaultLocalVoiceConfig();
 }
 
@@ -740,7 +809,9 @@ function voiceProviderMissingKeyError(provider) {
   if (isLocalVoiceProvider(provider)) return '本机离线语音服务无需 API Key。';
   if (provider === 'openai') return '服务端未配置 OPENAI_API_KEY。';
   if (provider === 'deepseek') return '服务端未配置 DEEPSEEK_API_KEY。';
-  return '当前版本不支持云端语音识别 API，请使用本机语音服务。';
+  if (provider === 'siliconflow') return '请填写 SiliconFlow 语音识别 API Key。';
+  if (provider === 'teleai') return '请填写 TeleAI/TeleSpeechASR 语音识别 API Key。';
+  return '请填写语音识别 API Key。';
 }
 
 function parseProviderError(text) {
@@ -793,6 +864,60 @@ function resolveChatInputConfig(chatBody, persistedConfig = loadPersistedVoiceCo
       key: resolvedApiKey,
       url,
       model: resolvedModel
+    },
+    hasAnyField
+  };
+}
+
+function resolveVoiceInputConfig(asrBody, persistedConfig = loadPersistedVoiceConfig(), options = {}) {
+  const body = asrBody && typeof asrBody === 'object' ? asrBody : {};
+  const persistedVoice = persistedConfig && persistedConfig.voice ? persistedConfig.voice : null;
+  const mode = String(body.mode || body.provider || '').trim().toLowerCase();
+  const baseRaw = String(body.baseUrl || body.url || '').trim();
+  const apiKey = String(body.apiKey || body.key || '').trim();
+  const model = String(body.model || '').trim();
+  const providerRaw = String(body.provider || '').trim();
+  const wantsLocal = mode === 'local' || providerRaw === 'local' || providerRaw === 'offline';
+  const hasAnyField = Boolean(mode || baseRaw || apiKey || model || providerRaw);
+  if (!hasAnyField && !options.required) {
+    return {
+      voice: options.preserveExisting ? (cloneApiConfigSection(persistedVoice) || getDefaultLocalVoiceConfig()) : getDefaultLocalVoiceConfig(),
+      hasAnyField: false
+    };
+  }
+  if (wantsLocal || (!hasAnyField && options.defaultLocal)) {
+    return { voice: getDefaultLocalVoiceConfig(), hasAnyField };
+  }
+  const priorCloud = persistedVoice && !isLocalVoiceProvider(persistedVoice.provider) ? persistedVoice : null;
+  const resolvedBaseRaw = baseRaw || priorCloud?.url || '';
+  const resolvedModel = model || priorCloud?.model || '';
+  const resolvedApiKey = apiKey || priorCloud?.key || '';
+  const provider = normalizeProviderName(providerRaw || mode || inferVoiceProvider(resolvedBaseRaw), 'compatible');
+  if (!resolvedBaseRaw) {
+    return { error: { status: 400, error: 'missing_voice_base_url', message: '请填写语音识别 Base URL。' } };
+  }
+  if (!resolvedModel || resolvedModel.length > 180) {
+    return { error: { status: 400, error: 'invalid_voice_model', message: '请填写有效的语音识别 Model。' } };
+  }
+  if (!resolvedApiKey) {
+    return { error: { status: 400, error: 'missing_voice_api_key', message: voiceProviderMissingKeyError(provider) } };
+  }
+  if (resolvedApiKey.length > 3000) {
+    return { error: { status: 400, error: 'voice_api_key_too_long', message: '语音识别 API Key 过长。' } };
+  }
+  let url;
+  try {
+    url = normalizeVoiceBaseUrl(resolvedBaseRaw);
+  } catch (err) {
+    return { error: { status: 400, error: 'invalid_voice_base_url', message: err.message || '语音识别 Base URL 无效。' } };
+  }
+  return {
+    voice: {
+      provider: provider || inferVoiceProvider(url),
+      key: resolvedApiKey,
+      url,
+      model: resolvedModel,
+      supportsAudio: true
     },
     hasAnyField
   };
@@ -985,9 +1110,19 @@ app.post('/api/voice/local-asr/start', async (req, res) => {
 
 app.post('/api/voice/session', (req, res) => {
   const body = req.body || {};
+  const asrBody = body.voice && typeof body.voice === 'object'
+    ? body.voice
+    : (body.asr && typeof body.asr === 'object' ? body.asr : {});
   const chatBody = body.chat && typeof body.chat === 'object' ? body.chat : {};
   const persistedBeforeSave = loadPersistedVoiceConfig();
-  const voiceConfig = getDefaultLocalVoiceConfig();
+  const voiceResolved = resolveVoiceInputConfig(asrBody, persistedBeforeSave, { preserveExisting: true, defaultLocal: true });
+  if (voiceResolved.error) {
+    return res.status(voiceResolved.error.status).json({
+      error: voiceResolved.error.error,
+      message: voiceResolved.error.message
+    });
+  }
+  const voiceConfig = voiceResolved.voice || getDefaultLocalVoiceConfig();
 
   const chatResolved = resolveChatInputConfig(chatBody, persistedBeforeSave, { preserveExisting: true });
   if (chatResolved.error) {
@@ -1027,6 +1162,8 @@ app.post('/api/voice/session', (req, res) => {
     provider: voiceConfig.provider,
     baseUrl: voiceConfig.url,
     model: voiceConfig.model,
+    hasApiKey: Boolean(voiceConfig.key),
+    local: isLocalVoiceProvider(voiceConfig.provider),
     chat: chat ? {
       provider: chat.provider,
       baseUrl: chat.url,
@@ -1153,6 +1290,50 @@ app.post('/api/voice/test/asr', (req, res, next) => {
   }
 });
 
+app.post('/api/voice/test/asr-config', (req, res, next) => {
+  voiceAudioParser(req, res, (err) => {
+    if (!err) return next();
+    if (err.type === 'entity.too.large') {
+      return res.status(413).json({ ok: false, error: 'audio_too_large', message: '单段语音不能超过 8 MB。' });
+    }
+    return res.status(400).json({ ok: false, error: 'invalid_audio', message: '无法读取语音数据。' });
+  });
+}, async (req, res) => {
+  const resolved = resolveVoiceInputConfig({
+    provider: req.headers['x-voice-provider'] || '',
+    baseUrl: req.headers['x-voice-base-url'] || '',
+    apiKey: req.headers['x-voice-api-key'] || '',
+    model: req.headers['x-voice-model'] || ''
+  }, loadPersistedVoiceConfig(), { preserveExisting: true });
+  if (resolved.error) {
+    return res.status(resolved.error.status).json({
+      ok: false,
+      error: resolved.error.error,
+      message: resolved.error.message
+    });
+  }
+  const audio = Buffer.isBuffer(req.body) ? req.body : Buffer.alloc(0);
+  if (!audio.length) {
+    return res.status(400).json({ ok: false, error: 'empty_audio', message: '未收到语音数据。' });
+  }
+  if (audio.length > VOICE_AUDIO_LIMIT_BYTES) {
+    return res.status(413).json({ ok: false, error: 'audio_too_large', message: '单段语音不能超过 8 MB。' });
+  }
+  try {
+    const result = await transcribeAudioWithConfig(resolved.voice, audio, req.headers['content-type']);
+    return res.json({
+      ok: true,
+      provider: result.provider,
+      model: result.model,
+      baseUrl: resolved.voice.url,
+      textPreview: String(result.text || '').slice(0, 120)
+    });
+  } catch (err) {
+    const shaped = makeApiTestError(err);
+    return res.status(shaped.status).json(shaped.body);
+  }
+});
+
 app.post('/api/voice/transcribe', (req, res, next) => {
   voiceAudioParser(req, res, (err) => {
     if (!err) return next();
@@ -1204,13 +1385,60 @@ app.post('/api/voice-intent', (req, res) => {
   return res.json(buildVoiceUiIntent(text, req.body || {}));
 });
 
-async function macosSayToBuffer(text) {
+function pickMacosVoice() {
+  const configured = String(process.env.LOCAL_TTS_VOICE || process.env.MACOS_TTS_VOICE || '').trim();
+  if (configured) return configured;
+  if (process.platform !== 'darwin') return 'Tingting';
+  const preferred = [
+    'Flo (中文（中国大陆）)',
+    'Eddy (中文（中国大陆）)',
+    'Tingting',
+    'Meijia',
+    'Sin-ji'
+  ];
+  try {
+    const out = spawnSync('/usr/bin/say', ['-v', '?'], { encoding: 'utf8', timeout: 3000 });
+    const list = String(out.stdout || '');
+    return preferred.find((voice) => list.includes(voice)) || 'Tingting';
+  } catch {
+    return 'Tingting';
+  }
+}
+
+async function edgeTtsToBuffer(text) {
+  if (!MsEdgeTTS || !EDGE_OUTPUT_FORMAT) throw new Error('edge_tts_unavailable');
+  const tts = new MsEdgeTTS();
+  await tts.setMetadata(
+    LOCAL_TTS_EDGE_VOICE,
+    EDGE_OUTPUT_FORMAT.AUDIO_24KHZ_48KBITRATE_MONO_MP3
+  );
+  const { audioStream } = tts.toStream(String(text || '').slice(0, 800));
+  const chunks = [];
+  await new Promise((resolve, reject) => {
+    let settled = false;
+    const done = () => {
+      if (settled) return;
+      settled = true;
+      resolve();
+    };
+    audioStream.on('data', (chunk) => chunks.push(Buffer.from(chunk)));
+    audioStream.on('end', done);
+    audioStream.on('close', done);
+    audioStream.on('error', reject);
+  });
+  const buffer = Buffer.concat(chunks);
+  if (buffer.length < 800) throw new Error('edge_tts_empty_audio');
+  return buffer;
+}
+
+async function macosSayToBuffer(text, voice = pickMacosVoice()) {
   const tmpBase = path.join(os.tmpdir(), 'zoonoab-tts-' + uuidv4());
   const aiffFile = tmpBase + '.aiff';
   const wavFile = tmpBase + '.wav';
   try {
     await new Promise((resolve, reject) => {
-      const proc = spawn('/usr/bin/say', ['-v', 'Tingting', '-o', aiffFile, String(text || '').slice(0, 500)]);
+      const args = ['-v', voice, '-r', LOCAL_TTS_MACOS_RATE, '-o', aiffFile, String(text || '').slice(0, 500)];
+      const proc = spawn('/usr/bin/say', args);
       proc.on('error', reject);
       proc.on('close', (code) => code === 0 ? resolve() : reject(new Error('say exit ' + code)));
     });
@@ -1229,14 +1457,62 @@ async function macosSayToBuffer(text) {
 async function synthesizeLocalTts(text) {
   const trimmed = String(text || '').trim();
   if (!trimmed) throw new Error('empty_tts_text');
+  const edgeCoolingDown = edgeTtsLastFailedAt && Date.now() - edgeTtsLastFailedAt < LOCAL_TTS_EDGE_RETRY_MS;
+  if (LOCAL_TTS_PROVIDER !== 'macos' && LOCAL_TTS_PROVIDER !== 'say' && !edgeCoolingDown) {
+    try {
+      const edgeResult = {
+        contentType: 'audio/mpeg',
+        provider: 'edge',
+        voice: LOCAL_TTS_EDGE_VOICE,
+        buffer: await edgeTtsToBuffer(trimmed)
+      };
+      edgeTtsLastError = '';
+      edgeTtsLastFailedAt = 0;
+      return edgeResult;
+    } catch (err) {
+      edgeTtsLastError = err && err.message ? err.message : String(err || '');
+      edgeTtsLastFailedAt = Date.now();
+      console.warn('[TTS] Edge Neural fallback:', edgeTtsLastError);
+    }
+  }
   if (process.platform === 'darwin') {
+    const voice = pickMacosVoice();
     return {
       contentType: 'audio/wav',
-      buffer: await macosSayToBuffer(trimmed)
+      provider: 'macos',
+      voice,
+      buffer: await macosSayToBuffer(trimmed, voice)
     };
   }
   throw new Error('local_tts_unavailable');
 }
+
+app.get('/api/tts/health', async (_, res) => {
+  const edgeRetryAfterMs = edgeTtsLastFailedAt
+    ? Math.max(0, LOCAL_TTS_EDGE_RETRY_MS - (Date.now() - edgeTtsLastFailedAt))
+    : 0;
+  const macosAvailable = process.platform === 'darwin';
+  const edgeAvailable = Boolean(MsEdgeTTS && !edgeRetryAfterMs);
+  res.json({
+    ok: Boolean(edgeAvailable || macosAvailable),
+    preferredProvider: LOCAL_TTS_PROVIDER === 'macos' || LOCAL_TTS_PROVIDER === 'say'
+      ? (macosAvailable ? 'macos' : 'none')
+      : (edgeAvailable ? 'edge' : (macosAvailable ? 'macos' : 'none')),
+    edge: {
+      installed: Boolean(MsEdgeTTS),
+      available: edgeAvailable,
+      voice: LOCAL_TTS_EDGE_VOICE,
+      source: 'msedge-tts',
+      runtimeProbeRequired: true,
+      lastError: edgeTtsLastError,
+      retryAfterMs: edgeRetryAfterMs
+    },
+    macos: {
+      available: macosAvailable,
+      voice: macosAvailable ? pickMacosVoice() : ''
+    }
+  });
+});
 
 app.post('/api/tts', async (req, res) => {
   const text = String(req.body && req.body.text || '').trim();
@@ -4821,6 +5097,14 @@ wss.on('connection', ws => {
       try {
         const buffer = Buffer.isBuffer(raw) ? raw : Buffer.from(raw);
         if (!buffer.length) return;
+        asrState.bytes = (asrState.bytes || 0) + buffer.length;
+        if (asrState.bytes > VOICE_WS_AUDIO_LIMIT_BYTES) {
+          asrSessions.delete(sid);
+          if (ws.readyState === 1) {
+            ws.send(JSON.stringify({ type: 'asr_error', message: '单段语音过长，请分成更短的句子。' }));
+          }
+          return;
+        }
         asrState.chunks.push(buffer);
       } catch (err) {
         console.error('[Voice] ASR binary receive failed:', err && err.message ? err.message : err);
@@ -4864,7 +5148,12 @@ wss.on('connection', ws => {
     }
 
     if (msg.type === 'asr_start') {
-      asrSessions.set(sid, { chunks: [], format: 'pcm16le-16k' });
+      asrSessions.set(sid, {
+        chunks: [],
+        bytes: 0,
+        format: 'pcm16le-16k',
+        voiceSessionId: typeof msg.voiceSessionId === 'string' ? msg.voiceSessionId : ''
+      });
       if (ws.readyState === 1) {
         ws.send(JSON.stringify({ type: 'asr_ready' }));
       }
@@ -4885,7 +5174,9 @@ wss.on('connection', ws => {
           if (ws.readyState === 1) ws.send(JSON.stringify({ type: 'asr_done' }));
           return;
         }
-        const providerConfig = getVoiceProviderConfig();
+        const providerConfig = state.voiceSessionId
+          ? getVoiceProviderConfig({ headers: { 'x-voice-session': state.voiceSessionId } })
+          : getVoiceProviderConfig();
         const result = await transcribeAudioWithConfig(providerConfig, audio, 'audio/wav');
         const text = String(result && result.text || '').trim();
         if (text && ws.readyState === 1) {

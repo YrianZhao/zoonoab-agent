@@ -18,7 +18,10 @@
 历史会话列表归属于知识库侧栏，应放在“公共资料库”入口下方；不要放回 Agent Tasks 任务侧栏底部，避免任务展示区被历史记录占用。
 快速设计向导不展示抗体分子类型选择步骤；抗体类型必须跟随当前 route/profile 默认值，并只在最终摘要、工作流文案和结果区中展示。
 小诺同学语音链路应分层实现：前端录音/VAD 只负责采集和端点检测，ASR 只负责转写，后端 `/api/voice/intent` 先做确定性意图解析；命中抗体设计时必须返回固定 quick design 路线并由前端发送 WebSocket `quick_design`，不要让语音设计请求直接进入普通聊天兜底。
-小诺语音识别只使用本机/服务器本地 ASR sidecar：默认地址 `LOCAL_ASR_BASE_URL=http://127.0.0.1:8765/v1/audio/transcriptions`，启动命令 `npm run asr:local`，首次安装命令 `npm run asr:setup`；前端 API 面板不得展示或要求填写云端语音识别 Base URL、API Key 或 Model。
+小诺语音识别默认使用本机/服务器本地 ASR sidecar：默认地址 `LOCAL_ASR_BASE_URL=http://127.0.0.1:8765/v1/audio/transcriptions`，启动命令 `npm run asr:local`，首次安装命令 `npm run asr:setup`；同时允许在知识库侧栏“语音 API 设置”中配置 OpenAI 兼容的云端 ASR，例如 SiliconFlow `https://api.siliconflow.cn/v1/audio/transcriptions` 搭配 `FunAudioLLM/SenseVoiceSmall` 或 `TeleAI/TeleSpeechASR`。
+语音 ASR API 配置必须由后端持久化到安全运行配置文件，前端只显示 `hasApiKey`/“已保存”状态，不得明文回显 Key；保存后普通语音录入、小诺唤醒后的 WebSocket ASR、测试语音接口都必须使用当前持久 ASR 配置，未配置云端 ASR 时才回退本机离线 ASR。
+悬浮语音助手的 WebSocket PCM 流必须有客户端 VAD/端点检测：检测到用户开始说话后才推送有效音频，停顿后自动发送 `asr_stop`，并限制单段时长和后端缓存大小；不得依赖用户手动关闭语音助手才触发转写。
+语音播报 TTS 应优先使用免 Key 的 `msedge-tts` Edge Neural 中文音色，失败时再回退 macOS `say` 或其他本地兜底；云端高质量 TTS 只能作为可选增强，不得成为现场语音功能的前置条件。
 浏览器 `SpeechRecognition` 只能作为“小诺同学”唤醒词检测层使用，命令内容仍必须通过本地 16k WAV ASR 转写并交给 `/api/voice/intent` 解析；普通语音输入、小诺唤醒监听和唤醒后的命令录音必须互斥且幂等，避免重复会话抢占麦克风。
 语音前端 UI 可以采用悬浮麦克风按钮、悬浮免提开关和底部语音卡片的展示形态，但底层不得接入参考项目里基于大模型自由分类的 `/api/voice-intent` 路由；所有语音设计请求仍必须复用当前项目的 `/api/voice/intent`、`detectDemoRoute`、`detectIntent` 和 quick design route/profile 映射，避免“设计抗体”误触发错误 workflow。
 若直接采用参考项目的悬浮语音 UI，必须将参考前端的 `start_design`、问答发送和 WebSocket ASR 消息处理改接到当前项目链路：设计请求走 `sendQuickDesignWorkflow(routeId)`，语音问答通过 `user_msg` 携带 `voice: true`，本地 ASR 二进制流按 16k PCM/WAV 兼容处理；不要把参考项目的鉴权、知识库或自由问答路由代码整体拼接进当前页面脚本。

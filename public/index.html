@@ -1022,9 +1022,59 @@
             background: var(--bg-page);
             outline: none;
         }
+        .voice-settings-row select {
+            flex: 1;
+            min-width: 0;
+            height: 28px;
+            padding: 5px 8px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-family: inherit;
+            color: var(--text-primary);
+            background: var(--bg-page);
+            outline: none;
+        }
         .voice-settings-row input:focus {
             border-color: var(--brand-light);
             background: white;
+        }
+        .voice-settings-row select:focus {
+            border-color: var(--brand-light);
+            background: white;
+        }
+        .voice-settings-hint {
+            font-size: 10.5px;
+            line-height: 1.45;
+            color: var(--text-muted);
+            padding: 2px 0 0 69px;
+        }
+        .kb-voice-api-entry {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            margin: 4px 0 6px;
+            padding: 8px 10px;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-sm);
+            background: rgba(37,99,235,0.04);
+            color: var(--text-secondary);
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .kb-voice-api-entry:hover {
+            border-color: var(--brand-light);
+            background: var(--brand-lighter);
+            color: var(--brand-dark);
+        }
+        .kb-voice-api-entry span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            min-width: 0;
         }
         .voice-health-card {
             display: grid;
@@ -4336,20 +4386,42 @@
                     <div class="kb-tree-header">
                         <div class="kb-tree-title-row">
                             <div class="kb-tree-title">项目空间</div>
-                            <button class="voice-settings-btn" id="voiceSettingsBtn" onclick="toggleVoiceSettings()" title="配置语音和问答服务" style="display:none;" aria-hidden="true">API</button>
+                            <button class="voice-settings-btn" id="voiceSettingsBtn" onclick="toggleVoiceSettings()" title="配置语音和问答服务">API</button>
                         </div>
-                        <div class="kb-api-slot" style="display:none;" aria-hidden="true">
+                        <div class="kb-api-slot">
                             <div class="voice-settings-panel" id="voiceSettingsPanel">
                                 <div class="voice-settings-group">
                                     <div class="voice-settings-title">
                                         <i data-lucide="mic"></i>
-                                        本机语音识别
+                                        语音识别 ASR
                                     </div>
+                                    <div class="voice-settings-row">
+                                        <label for="voiceProviderSelect">服务</label>
+                                        <select id="voiceProviderSelect" onchange="applyVoiceProviderPreset(this.value)">
+                                            <option value="local">本机离线 ASR</option>
+                                            <option value="siliconflow-sensevoice">SiliconFlow · SenseVoiceSmall</option>
+                                            <option value="siliconflow-teleai">SiliconFlow · TeleSpeechASR</option>
+                                            <option value="custom">自定义兼容接口</option>
+                                        </select>
+                                    </div>
+                                    <div class="voice-settings-row">
+                                        <label for="voiceBaseUrlInput">Base URL</label>
+                                        <input id="voiceBaseUrlInput" type="url" autocomplete="off" spellcheck="false" placeholder="https://api.siliconflow.cn/v1/audio/transcriptions">
+                                    </div>
+                                    <div class="voice-settings-row">
+                                        <label for="voiceApiKeyInput">API Key</label>
+                                        <input id="voiceApiKeyInput" type="password" autocomplete="off" spellcheck="false" placeholder="语音识别 Key">
+                                    </div>
+                                    <div class="voice-settings-row">
+                                        <label for="voiceModelInput">Model</label>
+                                        <input id="voiceModelInput" type="text" autocomplete="off" spellcheck="false" placeholder="FunAudioLLM/SenseVoiceSmall">
+                                    </div>
+                                    <div class="voice-settings-hint">Base URL 支持 OpenAI 兼容转写接口；只填域名或 /v1 时会自动补全 /audio/transcriptions。</div>
                                     <div class="voice-health-card" id="voiceHealthCard">
                                         <div class="voice-health-head">
                                             <div class="voice-health-title">
                                                 <i data-lucide="activity"></i>
-                                                本机语音状态
+                                                语音链路状态
                                             </div>
                                             <div class="voice-health-actions">
                                                 <button class="voice-health-start-btn" id="voiceLocalAsrStartBtn" onclick="startLocalAsrFromPanel()">启动离线语音</button>
@@ -4402,7 +4474,8 @@
                                     </div>
                                 </div>
                                 <div class="voice-settings-actions">
-                                    <span class="voice-settings-note" id="voiceSettingsNote">语音识别使用本机服务；聊天 Key 保存后写入安全配置。</span>
+                                    <span class="voice-settings-note" id="voiceSettingsNote">语音识别可使用本机服务或兼容 API；Key 保存后写入安全配置。</span>
+                                    <button class="voice-test-btn" id="voiceAsrTestBtn" onclick="testVoiceAsrSettings()">测试语音</button>
                                     <button class="voice-test-btn" id="voiceChatTestBtn" onclick="testVoiceChatSettings()">测试聊天</button>
                                     <button class="voice-save-btn" onclick="saveVoiceSettings()">保存</button>
                                 </div>
@@ -4431,6 +4504,10 @@
                         <div class="kb-tree-item" data-project="common" onclick="kbSelectProject(this,'common')">
                             <span>📚</span> 公共资料库 <span class="kb-tree-count">2</span>
                         </div>
+                        <button class="kb-voice-api-entry" type="button" onclick="toggleVoiceSettings(true)">
+                            <span><i data-lucide="mic-2" style="width:12px;height:12px;"></i> 语音 API 设置</span>
+                            <i data-lucide="chevron-right" style="width:12px;height:12px;"></i>
+                        </button>
                         <div class="project-history-section" id="projectHistorySection">
                             <div class="project-history-title">
                                 <span><i data-lucide="history" style="width:10px;height:10px;vertical-align:middle;margin-right:4px;"></i> 历史会话</span>
@@ -5243,7 +5320,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78141235';
+    const APP_BUILD_VERSION = '78141236';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -7250,6 +7327,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     let voiceLevelState = { rms: 0, peak: 0, lastAt: 0 };
     let voiceCardHideTimer = null;
     let voiceCardManuallyHidden = false;
+    window.voiceSessionId = voiceSessionId;
 
     function isVoiceSupported() {
         return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && (window.MediaRecorder || window.AudioContext || window.webkitAudioContext));
@@ -7958,10 +8036,32 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             const cfg = await resp.json();
             voiceConfigState = cfg || voiceConfigState;
             renderVoiceHealth(voiceConfigState);
+            const voiceProviderSelect = document.getElementById('voiceProviderSelect');
+            const voiceBaseInput = document.getElementById('voiceBaseUrlInput');
+            const voiceKeyInput = document.getElementById('voiceApiKeyInput');
+            const voiceModelInput = document.getElementById('voiceModelInput');
             const chatBaseInput = document.getElementById('chatBaseUrlInput');
             const chatKeyInput = document.getElementById('chatApiKeyInput');
             const chatModelInput = document.getElementById('chatModelInput');
             const note = document.getElementById('voiceSettingsNote');
+            const voicePreset = inferVoicePresetFromConfig(cfg);
+            if (voiceProviderSelect) voiceProviderSelect.value = voicePreset;
+            if (voiceBaseInput) {
+                voiceBaseInput.value = cfg.local === false && cfg.baseUrl ? cfg.baseUrl : '';
+                voiceBaseInput.disabled = voicePreset === 'local';
+            }
+            if (voiceKeyInput) {
+                voiceKeyInput.value = '';
+                voiceKeyInput.disabled = voicePreset === 'local';
+                voiceKeyInput.placeholder = voicePreset === 'local'
+                    ? '本机离线无需 Key'
+                    : (cfg.hasApiKey ? '已安全保存，留空继续使用' : '语音识别 Key');
+                voiceKeyInput.title = cfg.hasApiKey ? '真实 Key 已安全保存，前端不回显；填写新 Key 后保存可覆盖。' : '填写语音识别 API Key';
+            }
+            if (voiceModelInput) {
+                voiceModelInput.value = cfg.local === false && cfg.model ? cfg.model : '';
+                voiceModelInput.disabled = voicePreset === 'local';
+            }
             if (chatBaseInput && cfg.chat?.baseUrl && !chatBaseInput.value) chatBaseInput.value = cfg.chat.baseUrl;
             if (chatKeyInput) {
                 chatKeyInput.value = '';
@@ -7970,8 +8070,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             }
             if (chatModelInput && cfg.chat?.ready && cfg.chat?.model && !chatModelInput.value) chatModelInput.value = cfg.chat.model;
             if (note) {
+                const voiceKeyState = cfg.hasApiKey ? 'Key 已安全保存' : (cfg.local === false ? 'Key 待填写' : '无需 Key');
                 const chatKeyState = cfg.chat?.hasApiKey ? 'Key 已安全保存' : 'Key 待填写';
-                const voiceState = `本机语音 · ${cfg.model || ''} · ${cfg.healthMessage || '无需语音 API Key'}`;
+                const voiceLabel = cfg.local === false ? (cfg.provider || 'compatible') : '本机语音';
+                const voiceState = `${voiceLabel} · ${cfg.model || ''} · ${voiceKeyState} · ${cfg.healthMessage || ''}`;
                 const chatState = cfg.chat?.ready ? `聊天已就绪 · ${cfg.chat.model || ''} · ${chatKeyState}` : `聊天可选填 · ${chatKeyState}`;
                 note.textContent = `${voiceState} / ${chatState}；前端不回显真实 Key`;
             }
@@ -8018,10 +8120,21 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     function collectVoiceSettings() {
+        const voiceProviderSelect = document.getElementById('voiceProviderSelect');
+        const voiceBaseInput = document.getElementById('voiceBaseUrlInput');
+        const voiceKeyInput = document.getElementById('voiceApiKeyInput');
+        const voiceModelInput = document.getElementById('voiceModelInput');
         const chatBaseInput = document.getElementById('chatBaseUrlInput');
         const chatKeyInput = document.getElementById('chatApiKeyInput');
         const chatModelInput = document.getElementById('chatModelInput');
+        const voicePreset = voiceProviderSelect?.value || 'local';
+        const voiceProvider = (VOICE_ASR_PRESETS[voicePreset]?.provider || voicePreset || 'local').trim();
         return {
+            voicePreset,
+            voiceProvider,
+            voiceBaseUrl: (voiceBaseInput?.value || '').trim(),
+            voiceApiKey: (voiceKeyInput?.value || '').trim(),
+            voiceModel: (voiceModelInput?.value || '').trim(),
             chatBaseUrl: (chatBaseInput?.value || '').trim(),
             chatApiKey: (chatKeyInput?.value || '').trim(),
             chatModel: (chatModelInput?.value || '').trim()
@@ -8029,7 +8142,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     function setVoiceSettingsButtonsBusy(busy, activeId) {
-        ['voiceChatTestBtn'].forEach(id => {
+        ['voiceAsrTestBtn', 'voiceChatTestBtn'].forEach(id => {
             const btn = document.getElementById(id);
             if (!btn) return;
             btn.disabled = busy;
@@ -8189,7 +8302,62 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     function shouldUseWavCapture() {
-        return voiceConfigState?.local !== false;
+        return true;
+    }
+
+    const VOICE_ASR_PRESETS = {
+        local: {
+            provider: 'local',
+            baseUrl: '',
+            model: ''
+        },
+        'siliconflow-sensevoice': {
+            provider: 'siliconflow',
+            baseUrl: 'https://api.siliconflow.cn/v1/audio/transcriptions',
+            model: 'FunAudioLLM/SenseVoiceSmall'
+        },
+        'siliconflow-teleai': {
+            provider: 'siliconflow',
+            baseUrl: 'https://api.siliconflow.cn/v1/audio/transcriptions',
+            model: 'TeleAI/TeleSpeechASR'
+        },
+        custom: {
+            provider: 'compatible',
+            baseUrl: '',
+            model: ''
+        }
+    };
+
+    function inferVoicePresetFromConfig(cfg = voiceConfigState) {
+        if (!cfg || cfg.local !== false || cfg.provider === 'local') return 'local';
+        const model = String(cfg.model || '');
+        const base = String(cfg.baseUrl || '');
+        if (/siliconflow/i.test(base) && model === 'FunAudioLLM/SenseVoiceSmall') return 'siliconflow-sensevoice';
+        if (/siliconflow/i.test(base) && model === 'TeleAI/TeleSpeechASR') return 'siliconflow-teleai';
+        return 'custom';
+    }
+
+    function applyVoiceProviderPreset(value) {
+        const preset = VOICE_ASR_PRESETS[value] || VOICE_ASR_PRESETS.custom;
+        const baseInput = document.getElementById('voiceBaseUrlInput');
+        const modelInput = document.getElementById('voiceModelInput');
+        const keyInput = document.getElementById('voiceApiKeyInput');
+        const isLocal = value === 'local';
+        if (baseInput) {
+            if (!isLocal && preset.baseUrl) baseInput.value = preset.baseUrl;
+            if (isLocal) baseInput.value = '';
+            baseInput.disabled = isLocal;
+        }
+        if (modelInput) {
+            if (!isLocal && preset.model) modelInput.value = preset.model;
+            if (isLocal) modelInput.value = '';
+            modelInput.disabled = isLocal;
+        }
+        if (keyInput) {
+            if (isLocal) keyInput.value = '';
+            keyInput.disabled = isLocal;
+            keyInput.placeholder = isLocal ? '本机离线无需 Key' : (voiceConfigState?.hasApiKey ? '已安全保存，留空继续使用' : '语音识别 Key');
+        }
     }
 
     function getVoiceAudioConstraints() {
@@ -8255,21 +8423,75 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         }
     }
 
+    async function testVoiceAsrSettings() {
+        const note = document.getElementById('voiceSettingsNote');
+        const settings = collectVoiceSettings();
+        if (settings.voicePreset !== 'local' && (!settings.voiceBaseUrl || !settings.voiceModel)) {
+            showToast('请先填写语音识别 Base URL 和 Model', 'warning');
+            return;
+        }
+        try {
+            setVoiceSettingsButtonsBusy(true, 'voiceAsrTestBtn');
+            if (note) note.textContent = '请对着麦克风说一句测试语音...';
+            const audioBlob = await makeWavRecording(2200);
+            if (note) note.textContent = '正在测试语音识别接口...';
+            const headers = { 'Content-Type': audioBlob.type || 'audio/wav' };
+            if (settings.voicePreset !== 'local') {
+                headers['X-Voice-Provider'] = settings.voiceProvider || 'compatible';
+                headers['X-Voice-Base-Url'] = settings.voiceBaseUrl;
+                headers['X-Voice-Api-Key'] = settings.voiceApiKey;
+                headers['X-Voice-Model'] = settings.voiceModel;
+            } else {
+                headers['X-Voice-Provider'] = 'local';
+            }
+            const resp = await fetch('/api/voice/test/asr-config', {
+                method: 'POST',
+                headers,
+                body: audioBlob
+            });
+            const data = await resp.json().catch(() => ({}));
+            if (!resp.ok || !data.ok) {
+                const msg = data.message || '语音识别测试失败';
+                showToast(msg, 'error');
+                if (note) note.textContent = '语音识别测试失败：' + msg;
+                return;
+            }
+            const preview = data.textPreview ? ` · 识别：${data.textPreview}` : '';
+            if (note) note.textContent = `语音识别测试通过 · ${data.model || settings.voiceModel || voiceConfigState.model || ''}${preview}`;
+            showToast('语音识别接口测试通过', 'success');
+        } catch (err) {
+            const msg = err && err.message ? err.message : '语音识别测试失败';
+            showToast(msg, 'error');
+            if (note) note.textContent = msg;
+        } finally {
+            setVoiceSettingsButtonsBusy(false);
+        }
+    }
+
     async function saveVoiceSettings() {
+        const voiceKeyInput = document.getElementById('voiceApiKeyInput');
         const chatKeyInput = document.getElementById('chatApiKeyInput');
         const note = document.getElementById('voiceSettingsNote');
-        const { chatBaseUrl, chatApiKey, chatModel } = collectVoiceSettings();
+        const { voicePreset, voiceProvider, voiceBaseUrl, voiceApiKey, voiceModel, chatBaseUrl, chatApiKey, chatModel } = collectVoiceSettings();
+        const usingLocalVoice = voicePreset === 'local';
         const hasChatFields = !!(chatBaseUrl || chatApiKey || chatModel);
+        if (!usingLocalVoice && !(voiceBaseUrl && voiceModel)) {
+            showToast('云端语音识别需要填写 Base URL 和 Model；如果尚未保存 Key，需要同时填写 API Key', 'warning');
+            return;
+        }
         if (hasChatFields && !(chatBaseUrl && chatModel)) {
             showToast('聊天服务需要填写 Base URL 和 Model；如果尚未保存 Key，需要同时填写 API Key', 'warning');
             return;
         }
         try {
-            if (note) note.textContent = '正在保存聊天服务配置...';
+            if (note) note.textContent = '正在保存语音和问答服务配置...';
             const resp = await fetch('/api/voice/session', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
+                    voice: usingLocalVoice
+                        ? { mode: 'local', provider: 'local' }
+                        : { provider: voiceProvider || 'compatible', baseUrl: voiceBaseUrl, apiKey: voiceApiKey, model: voiceModel },
                     chat: hasChatFields ? { baseUrl: chatBaseUrl, apiKey: chatApiKey, model: chatModel } : {}
                 })
             });
@@ -8281,19 +8503,27 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 return;
             }
             voiceSessionId = data.voiceSessionId || '';
+            window.voiceSessionId = voiceSessionId;
             loadVoiceConfig();
+            if (voiceKeyInput) {
+                voiceKeyInput.value = '';
+                voiceKeyInput.placeholder = data.local ? '本机离线无需 Key' : (data.hasApiKey ? '已安全保存，留空继续使用' : '语音识别 Key');
+                voiceKeyInput.title = data.hasApiKey ? '真实 Key 已安全保存，前端不回显；填写新 Key 后保存可覆盖。' : '填写语音识别 API Key';
+            }
             if (chatKeyInput) {
                 chatKeyInput.value = '';
                 chatKeyInput.placeholder = data.chat?.hasApiKey ? '已安全保存，留空继续使用' : '聊天服务 Key';
                 chatKeyInput.title = data.chat?.hasApiKey ? '真实 Key 已安全保存，前端不回显；填写新 Key 后保存可覆盖。' : '填写聊天服务 API Key';
             }
             if (note) {
-                const voiceText = `${data.provider || 'local'} 本机语音 · ${data.model || 'paraformer-zh'}`;
+                const voiceText = data.local
+                    ? `${data.provider || 'local'} 本机语音 · ${data.model || 'paraformer-zh'}`
+                    : `${data.provider || 'compatible'} 语音识别已就绪 · ${data.model || voiceModel}`;
                 const chatText = data.chat?.ready ? `${data.chat.provider || 'Chat'} 聊天已就绪 · ${data.chat.model || chatModel}` : '聊天未配置，将使用内置问答话术';
                 note.textContent = `${voiceText} / ${chatText} · 前端不回显真实 Key`;
             }
             toggleVoiceSettings(false);
-            showToast(data.chat?.ready ? '聊天服务配置已保存' : '本机语音配置已生效', 'success');
+            showToast(data.local ? '本机语音配置已生效' : '语音识别 API 配置已保存', 'success');
         } catch (err) {
             console.warn('[Voice] Save settings failed:', err);
             showToast('API 配置保存失败', 'error');
