@@ -6,67 +6,7 @@
     // Fallback: keyword matching when API unavailable
     // =====================================================================
 
-    // Keyword fallback — used when API is unreachable
-    // ALL function names verified against actual codebase
-    const VOICE_COMMANDS = [
-        // Navigation
-        { patterns: ['设计','设计抗体','抗体设计','开始设计','设计界面'], action: () => { const b=document.getElementById('batchesSection'),t=document.getElementById('teamSection'),k=document.getElementById('kbSection'); if(b?.style.display!=='none'||t?.style.display!=='none'||k?.style.display!=='none') switchView('chat'); }, label: '切换到设计界面' },
-        { patterns: ['批次','批次列表','查看批次','实验批次'],              action: () => switchView('batches'),  label: '切换到批次列表' },
-        { patterns: ['团队','团队协作','查看团队'],                         action: () => switchView('team'),     label: '切换到团队协作' },
-        { patterns: ['知识库','查看知识库','文献库'],                       action: () => switchView('kb'),       label: '切换到知识库' },
-        // Left panels
-        { patterns: ['序列分析','分析序列','打开序列工作台'],               action: () => openAnalysisPanel('seq'),    label: '打开序列分析' },
-        { patterns: ['结构分析','分析结构','打开结构工作台'],               action: () => openAnalysisPanel('struct'), label: '打开结构分析' },
-        // Seq panel tabs
-        { patterns: ['CDR','CDR注释','CDR分析','互补决定区'],               action: () => _voiceOpenTab('cdr','cdr',null), label: 'CDR分析' },
-        { patterns: ['风险','风险分析','风险评估','免疫原性','安全性'],      action: () => _voiceOpenTab('risk','risk',null), label: '打开风险分析' },
-        { patterns: ['人源化','VHH人源化','人源化分析','人源化改造'],        action: () => _voiceOpenTab('humanization','humanization',null), label: '打开人源化' },
-        { patterns: ['多序列','序列比对','MSA','多序列比对'],               action: () => _voiceOpenTab('msa','msa',null), label: '打开多序列比对' },
-        { patterns: ['物化','理化','物化性质','理化性质','物理化学','理化分析'], action: () => _voiceOpenTab('physicochemical','physicochemical',null), label: '打开理化分析' },
-        // Struct panel tabs
-        { patterns: ['3D','3D编辑','三维','三维结构','3D结构','结构可视化','3D编辑器'], action: () => { openAnalysisPanel('struct'); setTimeout(()=>switchApt('struct','viewer3d'),150); }, label: '打开3D编辑器' },
-        { patterns: ['亲和力','亲和力成熟','成熟','成熟分析','成熟优化','亲和力优化'], action: () => _voiceOpenTab('maturation','maturation','maturation'), label: '打开亲和力成熟' },
-        { patterns: ['表位','表位预测','表位分析','抗原表位','结合表位'],    action: () => { openAnalysisPanel('struct'); setTimeout(()=>switchApt('struct','epitope'),150); }, label: '打开表位预测' },
-        { patterns: ['结构预测','预测结构','ZoonoFold','蛋白折叠','折叠预测'], action: () => { openAnalysisPanel('struct'); setTimeout(()=>switchApt('struct','structpred'),150); }, label: '打开结构预测' },
-        { patterns: ['相互作用','互作','互作分析','蛋白互作'],              action: () => _voiceOpenTab('interaction',null,'interaction'), label: '打开互作分析' },
-        // Close
-        { patterns: ['关闭面板','收起面板','关闭分析'],                     action: () => { if(activeAnalysisPanel) closeAnalysisPanel(activeAnalysisPanel); closeRightPanel(); }, label: '关闭分析面板' },
-        { patterns: ['关闭','关闭弹窗','退出'],                             action: () => {
-            ['batchDetailOverlay','teamSettingsOverlay','teamSearchOverlay','teamInviteOverlay','kbPreviewOverlay'].forEach(id=>{const el=document.getElementById(id);if(el)el.remove();});
-            const mo=document.getElementById('molModalOverlay'); if(mo) mo.style.display='none';
-            if(activeAnalysisPanel) closeAnalysisPanel(activeAnalysisPanel); closeRightPanel();
-        }, label: '关闭当前弹窗' },
-        // 3D viewer
-        { patterns: ['放大','放大视图','拉近'],   action: () => { if(currentMol3dViewer) currentMol3dViewer.zoom(1.3,500); },  label: '放大3D视图' },
-        { patterns: ['缩小','缩小视图','拉远'],   action: () => { if(currentMol3dViewer) currentMol3dViewer.zoom(0.77,500); }, label: '缩小3D视图' },
-        { patterns: ['重置视图','复位','归位'],   action: () => { if(currentMol3dViewer){try{currentMol3dViewer.zoomTo();}catch(e){}currentMol3dViewer.render();} }, label: '重置3D视图' },
-        { patterns: ['旋转','开始旋转'],          action: () => { if(currentMol3dViewer) currentMol3dViewer.spin('y',1); },    label: '旋转3D模型' },
-        { patterns: ['停止旋转'],                 action: () => { if(currentMol3dViewer) currentMol3dViewer.spin(false); },   label: '停止旋转' },
-        // Actions
-        { patterns: ['快速设计','新建设计','新建项目'],  action: () => openQuickDesign(),                label: '快速设计' },
-        { patterns: ['新建批次','创建批次'],             action: () => { if (typeof openNewBatchModal === 'function') openNewBatchModal(); },              label: '新建批次' },
-        { patterns: ['上传文献','上传知识','知识上传'],  action: () => openKBUpload(),                   label: '上传知识库文献' },
-        // Run analysis actions
-        { patterns: ['运行CDR','运行CDR注释','CDR注释','跑CDR','执行CDR'], action: () => _voiceRunAnalysis(() => _voiceOpenTab('cdr','cdr',null), 'runCDRAnnotation', 'runSeqCDR'), label: '打开CDR分析' },
-        { patterns: ['运行风险','分析风险','风险扫描','扫描风险','运行风险分析'], action: () => _voiceRunAnalysis(() => _voiceOpenTab('risk','risk',null), 'runRiskAnalysis', 'runSeqRisk'), label: '打开风险分析' },
-        { patterns: ['运行人源化','执行人源化','开始人源化','人源化分析开始'], action: () => _voiceRunAnalysis(() => _voiceOpenTab('humanization','humanization',null), 'runVHHHumanization', 'runSeqHum'), label: '打开人源化分析' },
-        { patterns: ['运行比对','运行序列比对','执行MSA','开始比对'], action: () => _voiceRunAnalysis(() => _voiceOpenTab('msa','msa',null), 'runMSAAlignment', 'runSeqMSA'), label: '打开多序列比对' },
-        { patterns: ['计算理化','运行理化','理化计算','物化计算','计算物化'], action: () => _voiceRunAnalysis(() => _voiceOpenTab('physicochemical','physicochemical',null), 'runPhysicochemicalAnalysis', 'runSeqPhys'), label: '打开理化性质' },
-        { patterns: ['运行亲和力','亲和力成熟分析','开始成熟','突变扫描'], action: () => _voiceRunAnalysis(() => _voiceOpenTab('maturation','maturation','maturation'), 'runAffinityMaturation', 'runMaturationSim'), label: '打开亲和力成熟' },
-        { patterns: ['运行互作','分析互作','运行相互作用','分析相互作用'], action: () => _voiceRunAnalysis(() => _voiceOpenTab('interaction',null,'interaction'), 'runInteractionAnalysisPanel', null), label: '打开相互作用分析' },
-        // 3D viewer commands
-        { patterns: ['高亮CDR-H3','高亮CDRH3','显示CDR3'], action: () => { if(typeof mol3dAICmd==='function') mol3dAICmd('高亮 CDR-H3'); }, label: '高亮CDR-H3' },
-        { patterns: ['高亮所有CDR','显示所有CDR','高亮CDR'], action: () => { if(typeof mol3dAICmd==='function') mol3dAICmd('高亮所有CDR'); }, label: '高亮所有CDR' },
-        { patterns: ['聚焦结合位点','聚焦位点','显示结合位点'], action: () => { if(typeof mol3dAICmd==='function') mol3dAICmd('聚焦结合位点'); }, label: '聚焦结合位点' },
-        { patterns: ['卡通模式','卡通显示'], action: () => { if(typeof mol3dAICmd==='function') mol3dAICmd('卡通模式'); }, label: '卡通模式' },
-        { patterns: ['球棍模式','球棍显示'], action: () => { if(typeof mol3dAICmd==='function') mol3dAICmd('球棍模式'); }, label: '球棍模式' },
-        { patterns: ['显示表面','表面模式'], action: () => { if(typeof mol3dAICmd==='function') mol3dAICmd('显示表面'); }, label: '显示表面' },
-        { patterns: ['重置颜色','恢复颜色','清除颜色'], action: () => { if(typeof mol3dAICmd==='function') mol3dAICmd('重置颜色'); }, label: '重置颜色' },
-        { patterns: ['全屏','全屏模式'],                 action: () => { if(!document.fullscreenElement) document.documentElement.requestFullscreen(); else document.exitFullscreen(); }, label: '切换全屏' },
-        // Voice
-        { patterns: ['关闭语音','停止语音','关闭助手'], action: () => stopVoiceControl(), label: '关闭语音助手' },
-        { patterns: ['帮助','语音帮助','有哪些命令'],   action: () => showVoiceHelp(),    label: '显示帮助' },
-    ];
+    const VOICE_COMMANDS = [];
 
     let _voiceRecog        = null;
     let _voiceActive       = false;
@@ -98,6 +38,7 @@
     let _wakeRecog         = null;    // separate background recognizer for the wake phrase
     let _wakeRestartTimer  = null;
     let _audioUnlocked     = false;   // HTMLMediaElement autoplay unlocked via a user gesture
+    let _voiceMeterStream  = null;    // meter mic stream for live level + barge-in
 
     // Unlock <audio> autoplay during a real click — so wake-word (gesture-less) activation can
     // still play CosyVoice TTS instead of falling back to the robotic browser voice.
@@ -111,18 +52,20 @@
             if (p && p.catch) p.catch(() => {});
         } catch(e) {}
     }
-    let _bargeFrames       = 0;       // sustained-speech counter for VAD barge-in
-    // VAD auto-barge-in is OFF by default: with room speakers the AI's own TTS leaks into the
-    // mic (imperfect echo-cancellation), false-triggers an interrupt, un-pauses the mic mid-TTS
-    // and causes an echo loop. Manual interrupt (tap card / Esc / click) stays available.
-    const _VAD_BARGE_ENABLED = false;
-    const _ASR_START_RMS      = 0.010;
-    const _ASR_CONTINUE_RMS   = 0.006;
-    const _ASR_SILENCE_MS     = 950;
-    const _ASR_MAX_SEGMENT_MS = 9000;
+    let _bargeFrames       = 0;       // sustained-speech counter for meter barge-in
+    let _asrBargeFrames    = 0;       // sustained-speech counter for local-ASR barge-in
+    // Barge-in is required for现场语音：用户开口应立即打断小诺播报并进入聆听。
+    const _VAD_BARGE_ENABLED = true;
+    const _ASR_START_RMS      = 0.014;
+    const _ASR_CONTINUE_RMS   = 0.008;
+    const _ASR_BARGE_RMS      = 0.017;
+    const _ASR_BARGE_FRAMES   = 4;
+    const _ASR_SILENCE_MS     = 940;
+    const _ASR_MAX_SEGMENT_MS = 8000;
     const _ASR_IDLE_HINT_MS   = 12000;
-    const _ASR_MIN_SEGMENT_MS = 450;
-    const _ASR_PREROLL_CHUNKS = 3;
+    const _ASR_MIN_SEGMENT_MS = 300;
+    const _ASR_PREROLL_CHUNKS = 6;
+    const _TTS_RESUME_DELAY_MS = 120;
     const _voiceStats      = { heard: 0, qaFast: 0, nlu: 0, commands: 0, errors: 0 };  // lightweight telemetry (window._voiceStats)
     if (typeof window !== 'undefined') window._voiceStats = _voiceStats;
 
@@ -152,12 +95,11 @@
         if (_voiceRecog) { try { _voiceRecog.abort(); } catch(e) {} }
 
         const resumeMic = () => {
-            // Settle delay: don't reopen the mic the instant TTS ends — avoids capturing the
-            // speaker's trailing audio / room reverb as a phantom command (echo guard).
+            // Short settle delay keeps reactions fast while still avoiding obvious speaker tail.
             setTimeout(() => {
                 _voicePausedForTTS = false;
                 if (_voiceActive && !_asrDashscope && _voiceRecog) { try { _voiceRecog.start(); } catch(e) {} }
-            }, 350);
+            }, _TTS_RESUME_DELAY_MS);
         };
 
         // Machine-voice fallback REMOVED — if CosyVoice can't play we stay silent (text is on screen).
@@ -254,13 +196,13 @@
         if (barge) barge.style.display = 'none';
 
         // Resume mic — unless a newer utterance has already taken over (avoids resume-mid-speech race).
-        // 350ms settle delay so the speaker's trailing audio/reverb isn't captured as a phantom command.
+        // Short settle delay so the next command is picked up quickly after TTS ends.
         if (!_ttsCurrentAudio) {
             setTimeout(() => {
                 if (_ttsCurrentAudio) return;            // a newer utterance started — let it own the mic
                 _voicePausedForTTS = false;
                 if (_voiceActive && !_asrDashscope && _voiceRecog) { try { _voiceRecog.start(); } catch(e) {} }
-            }, 350);
+            }, _TTS_RESUME_DELAY_MS);
         }
     }
 
@@ -285,77 +227,24 @@
     }
 
     function _voiceCommonAnswer(text) {
-        const s = (text || '').replace(/\s+/g, '').toLowerCase();
-        const has = (...parts) => parts.some(p => s.includes(String(p).replace(/\s+/g, '').toLowerCase()));
-        if (has('你是谁', '小诺是谁', '你叫什么')) {
-            return '我是小诺，ZoonoAb 的语音助手。你可以和我语音聊天，也可以让我打开快速设计并按向导选择疾病、靶标、机制和表位。';
-        }
-        if (has('你能做什么', '有哪些功能', '可以做什么')) {
-            return '我可以回答抗体工程问题，打开快速设计向导，控制页面和 3D 展示。普通语音聊天不会直接启动任何工作流。';
-        }
-        if (has('什么是cdr', 'cdr是什么', '互补决定区')) {
-            return 'CDR 是抗体直接接触抗原的关键环区，决定大部分结合特异性。快速设计会重点优化 CDR，尤其是 CDR-H3 的长度、疏水性和风险位点。';
-        }
-        if (has('vhh和fab', 'fab和vhh', '纳米抗体和fab', 'vhh区别', 'fab区别')) {
-            return 'VHH 是单域纳米抗体，分子小、稳定性好、适合深入口袋表位；Fab 保留重链和轻链可变区，更接近经典抗体片段，展示和开发路径更常见。';
-        }
-        if (has('什么是pd-l1', 'pdl1是什么', 'pd-l1是什么', 'pd1pdl1')) {
-            return 'PD-L1 是肿瘤免疫检查点配体，和 T 细胞 PD-1 结合后会抑制免疫反应。阻断 PD-1/PD-L1 通路是肿瘤免疫治疗中的经典抗体设计方向。';
-        }
-        if (has('il-33是什么', 'il33是什么', 'st2是什么')) {
-            return 'IL-33 是 IL-1 家族细胞因子，通过 ST2 受体驱动二型炎症，常见于哮喘、特应性皮炎等炎症疾病方向。';
-        }
-        if (has('怎么开始快速设计', '如何开始快速设计', '快速设计怎么用')) {
-            return '你可以说“小诺，打开快速设计”，看到弹窗后说“开始设计”。我会依次询问疾病方向、靶标蛋白、作用机制和表位策略，最后确认后再启动设计。';
-        }
-        if (has('怎么跳过思考', '跳过思考是什么', '快速思考')) {
-            return '工作流运行时点击“跳过思考”，后续日志内容不会减少，只会按更快节奏完整展示，适合现场演示。';
-        }
-        if (has('怎么看3d', '打开3d', '三维结构怎么看', '3d结果')) {
-            return '设计完成后会自动打开全屏 3D 结构。你也可以说“旋转”“放大”“高亮 CDR-H3”来控制当前结构展示。';
-        }
-        if (has('为什么没有反应', '听不见', '没听见', '语音没反应')) {
-            return '请确认浏览器允许麦克风权限，并靠近麦克风说完整一句话。语音卡片的波纹会随音量变化，说完停顿一秒后我会自动识别。';
-        }
         return '';
     }
 
     // ── Persona: varied acknowledgments & greetings (小诺) ──
     const _VOICE_ACKS      = ['好的，正在分析', '收到，我看看', '稍等，马上为你查', '好嘞，正在处理', '明白，分析中'];
-    const _VOICE_GREETINGS = ['你好，我是小诺，请讲', '小诺在，请说', '我在听，有什么可以帮你', '小诺为你服务，请说'];
+    const _VOICE_GREETINGS = ['小诺在，请说“打开快速设计”', '我在听，可语音控制快速设计', '请说“小诺，打开快速设计”'];
     const _voiceAck      = () => _VOICE_ACKS[Math.floor(Math.random() * _VOICE_ACKS.length)];
     const _voiceGreeting = () => _VOICE_GREETINGS[Math.floor(Math.random() * _VOICE_GREETINGS.length)];
 
     // ── Voice Q&A → real chat agent (rich answer + streamed spoken reply) ──
     let _voiceAgentTimer = null;
     function _voiceAskAgent(question) {
-        // Bring the chat view forward if user is on another section
-        const b = document.getElementById('batchesSection'),
-              tm = document.getElementById('teamSection'),
-              k = document.getElementById('kbSection');
-        if (b?.style.display !== 'none' || tm?.style.display !== 'none' || k?.style.display !== 'none') switchView('chat');
-
-        updateVoiceBar({ heard: question, response: '正在为你生成详细回答…', thinking: true });
-        try { speakVoice(_voiceAck()); } catch(e) {}
-
-        // If an answer is already streaming, cancel it first so the new question isn't blocked
-        const wasRunning = isRunning;
-        if (wasRunning && typeof cancelTask === 'function') cancelTask();
-        setTimeout(() => {
-            if (!ws || ws.readyState !== 1) {
-                const inp = document.getElementById('userInput');
-                if (!inp) return;
-                inp.value = question;
-                if (typeof sendMessage === 'function') sendMessage({ voice: true, voiceChatOnly: true });
-                return;
-            }
-            if (typeof startChatRun === 'function') startChatRun(question);
-            ws.send(JSON.stringify({ type: 'user_msg', text: question, voice: true, voiceChatOnly: true }));
-        }, wasRunning ? 650 : 220);
-
-        // Safety: if no voice_say arrives (e.g. AI offline), revert card to listening
+        const msg = '语音当前只用于快速设计。请说“小诺，打开快速设计”。';
+        updateVoiceBar({ heard: question, response: msg });
+        _voicePushTranscript('ai', msg);
+        speakVoice(msg);
         clearTimeout(_voiceAgentTimer);
-        _voiceAgentTimer = setTimeout(() => { if (_voiceActive) _voiceSetState('listening'); }, 18000);
+        _voiceAgentTimer = setTimeout(() => { if (_voiceActive) _voiceSetState('listening'); }, 2200);
     }
 
     // ── Context-aware tab opener ──
@@ -375,81 +264,19 @@
     // ── Action dispatcher: action name → JS function ──
     // All function names verified against actual codebase definitions.
     const VOICE_ACTION_MAP = {
-        // Navigation
-        nav_design:        () => { const b=document.getElementById('batchesSection'),t=document.getElementById('teamSection'),k=document.getElementById('kbSection'); if(b?.style.display!=='none'||t?.style.display!=='none'||k?.style.display!=='none') switchView('chat'); },
-        nav_batches:       () => switchView('batches'),
-        nav_team:          () => switchView('team'),
-        nav_kb:            () => switchView('kb'),
-        // Left analysis panels
-        open_seq_panel:    () => openAnalysisPanel('seq'),
-        open_struct_panel: () => openAnalysisPanel('struct'),
-        // Close all panels/modals
-        close_panels:      () => {
-            if (activeAnalysisPanel) closeAnalysisPanel(activeAnalysisPanel);
-            closeRightPanel();
-            ['batchDetailOverlay','teamSettingsOverlay','teamSearchOverlay','teamInviteOverlay','kbPreviewOverlay'].forEach(id => { const el = document.getElementById(id); if(el) el.remove(); });
-            const mo = document.getElementById('molModalOverlay'); if(mo) mo.style.display = 'none';
+        start_design: () => {
+            if (typeof window.handleQuickDesignVoiceCommand === 'function') {
+                window.handleQuickDesignVoiceCommand('小诺，打开快速设计');
+            }
         },
-        // Seq panel tabs / right panel tabs (context-aware)
-        open_cdr:          () => _voiceOpenTab('cdr',             'cdr',            null),
-        open_humanization: () => _voiceOpenTab('humanization',    'humanization',   null),
-        open_risk:         () => _voiceOpenTab('risk',            'risk',           null),
-        open_phys:         () => _voiceOpenTab('physicochemical', 'physicochemical',null),
-        open_msa:          () => _voiceOpenTab('msa',             'msa',            null),
-        open_interaction:  () => _voiceOpenTab('interaction',     null,             'interaction'),
-        // Struct panel tabs
-        open_3d_editor:    () => { openAnalysisPanel('struct'); setTimeout(() => switchApt('struct','viewer3d'),   150); },
-        open_maturation:   () => _voiceOpenTab('maturation', 'maturation', 'maturation'),
-        open_epitope:      () => { openAnalysisPanel('struct'); setTimeout(() => switchApt('struct','epitope'),    150); },
-        open_structpred:   () => { openAnalysisPanel('struct'); setTimeout(() => switchApt('struct','structpred'), 150); },
-        zoom_in:           () => { if(currentMol3dViewer) currentMol3dViewer.zoom(1.3, 500); },
-        zoom_out:          () => { if(currentMol3dViewer) currentMol3dViewer.zoom(0.77, 500); },
-        reset_view:        () => { if(currentMol3dViewer) { try{currentMol3dViewer.zoomTo();}catch(e){} currentMol3dViewer.render(); } },
-        rotate:            () => { if(currentMol3dViewer) currentMol3dViewer.spin('y', 1); },
-        stop_rotate:       () => { if(currentMol3dViewer) currentMol3dViewer.spin(false); },
-        new_design:        () => openQuickDesign(),
-        fullscreen:        () => { if(!document.fullscreenElement) document.documentElement.requestFullscreen(); else document.exitFullscreen(); },
-        voice_help:        () => showVoiceHelp(),
-        stop_voice:        () => stopVoiceControl(),
-        start_design:      (params) => {
-            const batchesVisible = document.getElementById('batchesSection')?.style.display !== 'none';
-            const teamVisible    = document.getElementById('teamSection')?.style.display !== 'none';
-            const kbVisible      = document.getElementById('kbSection')?.style.display !== 'none';
-            if (batchesVisible || teamVisible || kbVisible) switchView('chat');
-            if (typeof openQuickDesign === 'function') openQuickDesign();
-            showToast('已打开快速设计，请按向导确认后再启动。', 'info');
+        new_design: () => {
+            if (typeof window.handleQuickDesignVoiceCommand === 'function') {
+                window.handleQuickDesignVoiceCommand('小诺，打开快速设计');
+            }
         },
-        // Q&A — handled before reaching VOICE_ACTION_MAP, but define as no-op fallback
-        qa_answer:         () => {},
-        // Additional navigation/utility
-        new_batch:         () => { if (typeof openNewBatchModal === 'function') openNewBatchModal(); },
-        kb_upload:         () => openKBUpload(),
-        new_design:        () => openQuickDesign(),
-        fullscreen:        () => { if(!document.fullscreenElement) document.documentElement.requestFullscreen(); else document.exitFullscreen(); },
-        voice_help:        () => showVoiceHelp(),
-        stop_voice:        () => stopVoiceControl(),
-        // 3D viewer controls
-        zoom_in:           () => { if(currentMol3dViewer) currentMol3dViewer.zoom(1.3, 500); },
-        zoom_out:          () => { if(currentMol3dViewer) currentMol3dViewer.zoom(0.77, 500); },
-        reset_view:        () => { if(currentMol3dViewer){try{currentMol3dViewer.zoomTo();}catch(e){}currentMol3dViewer.render();} },
-        rotate:            () => { if(currentMol3dViewer) currentMol3dViewer.spin('y', 1); },
-        stop_rotate:       () => { if(currentMol3dViewer) currentMol3dViewer.spin(false); },
-        // 3D visual commands
-        mol3d_cdr3:        () => { if(typeof mol3dAICmd==='function') mol3dAICmd('高亮 CDR-H3'); },
-        mol3d_all_cdr:     () => { if(typeof mol3dAICmd==='function') mol3dAICmd('高亮所有CDR'); },
-        mol3d_binding:     () => { if(typeof mol3dAICmd==='function') mol3dAICmd('聚焦结合位点'); },
-        mol3d_cartoon:     () => { if(typeof mol3dAICmd==='function') mol3dAICmd('卡通模式'); },
-        mol3d_stick:       () => { if(typeof mol3dAICmd==='function') mol3dAICmd('球棍模式'); },
-        mol3d_surface:     () => { if(typeof mol3dAICmd==='function') mol3dAICmd('显示表面'); },
-        mol3d_reset_color: () => { if(typeof mol3dAICmd==='function') mol3dAICmd('重置颜色'); },
-        // ── Run analysis actions (open panel/tab first, then execute) ──
-        run_cdr:           () => _voiceRunAnalysis(() => _voiceOpenTab('cdr','cdr',null),                           'runCDRAnnotation',          'runSeqCDR'),
-        run_risk:          () => _voiceRunAnalysis(() => _voiceOpenTab('risk','risk',null),                         'runRiskAnalysis',            'runSeqRisk'),
-        run_humanization:  () => _voiceRunAnalysis(() => _voiceOpenTab('humanization','humanization',null),         'runVHHHumanization',         'runSeqHum'),
-        run_msa:           () => _voiceRunAnalysis(() => _voiceOpenTab('msa','msa',null),                           'runMSAAlignment',            'runSeqMSA'),
-        run_phys:          () => _voiceRunAnalysis(() => _voiceOpenTab('physicochemical','physicochemical',null),   'runPhysicochemicalAnalysis', 'runSeqPhys'),
-        run_maturation:    () => _voiceRunAnalysis(() => _voiceOpenTab('maturation','maturation','maturation'),     'runAffinityMaturation',      'runMaturationSim'),
-        run_interaction:   () => _voiceRunAnalysis(() => _voiceOpenTab('interaction',null,'interaction'),           'runInteractionAnalysisPanel', null),
+        voice_help: () => showVoiceHelp(),
+        stop_voice: () => stopVoiceControl(),
+        qa_answer: () => _voiceAskAgent('')
     };
 
     function _getCurrentContext() {
@@ -587,17 +414,19 @@
     }
 
     async function processVoiceText(alts) {
+        if (_voiceIsSpeaking && _voiceIsSpeaking()) {
+            _voiceStopSpeaking({ bargeIn: true, source: 'asr-final' });
+        }
         // ── Command queue: if already processing, enqueue and return ──
         if (_voiceProcessing) { _voiceQueue.push(alts); return; }
         _voiceProcessing = true;
 
         // Apply biotech term corrections to all recognition alternatives
         const text = _applyBiotechCorrections(alts[0]);
-        const correctedAlts = alts.map(_applyBiotechCorrections);
         _voiceHistory.push(text);
         if (_voiceHistory.length > 5) _voiceHistory.shift();
         _voicePushTranscript('user', text);
-        updateVoiceBar({ heard: text, response: '理解中…', thinking: true });
+        updateVoiceBar({ heard: text, response: '匹配快速设计指令…', thinking: true });
         _voiceStats.heard++;
 
         if (typeof window.handleQuickDesignVoiceCommand === 'function') {
@@ -614,116 +443,10 @@
             }
         }
 
-        const commonAnswer = _voiceCommonAnswer(text);
-        if (commonAnswer) {
-            _voiceStats.qaFast++;
-            updateVoiceBar({ heard: text, response: commonAnswer });
-            _voicePushTranscript('ai', commonAnswer);
-            speakVoiceStreaming(commonAnswer);
-            _voiceProcessing = false;
-            _voiceDrainQueue();
-            return;
-        }
-
-        // Fast-path: clear natural-language questions go straight to the agent,
-        // skipping the /api/voice-intent round-trip (≈1-2s latency saved).
-        if (_looksLikeQuestion(text) && !_looksLikeCommand(text)) {
-            _voiceStats.qaFast++;
-            _voiceAskAgent(text);
-            _voiceProcessing = false;
-            _voiceDrainQueue();
-            return;
-        }
-
-        try {
-            _voiceStats.nlu++;
-            const resp = await fetch('/api/voice-intent', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    text,
-                    context: _getCurrentContext(),
-                    history: _voiceHistory.slice(0, -1),
-                    selectedSeq: _getCurrentSeqContext(),
-                    lastResult: _getLastResultContext(),
-                }),
-                signal: AbortSignal.timeout(9000),
-            });
-            const intent = await resp.json();
-            _voiceApiOk = true;
-
-            // ── qa_answer: route to the real chat agent for a rich, streamed answer ──
-            if (intent.action === 'qa_answer') {
-                _voiceAskAgent(text);
-                _voiceProcessing = false;
-                _voiceDrainQueue();
-                return;
-            }
-
-            // ── Low-confidence: ask for confirmation ──
-            if (intent.confidence < 0.6 && intent.action !== 'unknown' && VOICE_ACTION_MAP[intent.action]) {
-                _voiceShowConfirm(text, intent);
-                _voiceProcessing = false;
-                _voiceDrainQueue();
-                return;
-            }
-
-            if (intent.fallback || intent.action === 'unknown' || !VOICE_ACTION_MAP[intent.action]) {
-                const msg = intent.spoken || intent.reply || '我不太明白，请换个说法试试';
-                updateVoiceBar({ heard: text, response: msg });
-                _voicePushTranscript('ai', msg);
-                speakVoice(msg);
-                _voiceProcessing = false;
-                _voiceDrainQueue();
-                return;
-            }
-
-            const spoken = intent.spoken || intent.reply || '好的';
-            updateVoiceBar({ heard: text, response: spoken });
-            _voicePushTranscript('ai', spoken);
-            speakVoice(spoken);
-            _voiceStats.commands++;
-
-            // Compound command: NLU may return steps:[action1, action2, ...] for "先X再Y / 然后…"
-            const steps = Array.isArray(intent.steps)
-                ? intent.steps.filter(a => typeof a === 'string' && VOICE_ACTION_MAP[a])
-                : null;
-            if (steps && steps.length > 1) {
-                steps.forEach((a, i) => setTimeout(() => {
-                    try { VOICE_ACTION_MAP[a](intent.params); _voiceFlashActive(); } catch(e) {}
-                }, 200 + i * 1400));  // sequence with spacing so each panel/animation settles
-                setTimeout(() => _voiceShowSuggestions(steps[steps.length - 1]), 200 + steps.length * 1400);
-            } else {
-                const intentAction = intent.action;
-                setTimeout(() => {
-                    try {
-                        VOICE_ACTION_MAP[intentAction](intent.params);
-                        setTimeout(() => { _voiceVerifyExecution(intentAction, text); _voiceFlashActive(); }, 800);
-                        setTimeout(() => _voiceShowSuggestions(intentAction), 1200);
-                    } catch(e) {
-                        _voiceSetState('response', '执行时出错，请重试');
-                    }
-                }, 100);
-            }
-
-        } catch(e) {
-            _voiceApiOk = false;
-            _voiceStats.errors++;
-            // Offline fallback — keyword matching (use corrected alts)
-            for (const cmd of VOICE_COMMANDS) {
-                if (cmd.patterns.some(p => correctedAlts.some(t => t.includes(p)))) {
-                    const msg = '离线模式：' + cmd.label;
-                    speakVoice('好的，' + cmd.label);
-                    updateVoiceBar({ heard: text, response: msg });
-                    try { cmd.action(); } catch(ex) {}
-                    _voiceProcessing = false;
-                    _voiceDrainQueue();
-                    return;
-                }
-            }
-            updateVoiceBar({ heard: text, response: '网络不可用，未匹配到操作' });
-            speakVoice('网络连接失败，请检查网络后重试');
-        }
+        const msg = '语音当前只用于快速设计。请说“小诺，打开快速设计”。';
+        updateVoiceBar({ heard: text, response: msg });
+        _voicePushTranscript('ai', msg);
+        _voiceStats.errors++;
         _voiceProcessing = false;
         _voiceDrainQueue();
     }
@@ -731,7 +454,7 @@
     function _voiceDrainQueue() {
         if (_voiceQueue.length > 0) {
             const next = _voiceQueue.shift();
-            setTimeout(() => processVoiceText(next), 200);
+            setTimeout(() => processVoiceText(next), 60);
         }
     }
 
@@ -833,8 +556,9 @@
             _voiceAudioCtx.createMediaStreamSource(stream).connect(_voiceAnalyser);
             const data = new Uint8Array(_voiceAnalyser.frequencyBinCount);
             const barIdxs = [2, 5, 8, 11, 14, 17, 20]; // freq bins for 7 bars
-            const BARGE_LEVEL = 92;   // avg byte level (0-255) to count as user speech
-            const BARGE_FRAMES = 14;  // sustained frames (~230ms) before interrupting
+            _voiceMeterStream = stream;
+            const BARGE_LEVEL = 86;   // avg byte level (0-255) to count as user speech
+            const BARGE_FRAMES = 7;   // sustained frames (~115ms) before interrupting
             function tick() {
                 if (!_voiceActive) return;
                 _voiceAnalyser.getByteFrequencyData(data);
@@ -851,7 +575,10 @@
                     const avg = sum / barIdxs.length;
                     if (avg > BARGE_LEVEL) {
                         _bargeFrames++;
-                        if (_bargeFrames >= BARGE_FRAMES) { _bargeFrames = 0; _voiceStopSpeaking(); }
+                        if (_bargeFrames >= BARGE_FRAMES) {
+                            _bargeFrames = 0;
+                            _voiceRequestBargeIn('meter');
+                        }
                     } else {
                         _bargeFrames = Math.max(0, _bargeFrames - 2);
                     }
@@ -867,6 +594,7 @@
     function _voiceStopAudioMeter() {
         if (_voiceLevelRaf) { cancelAnimationFrame(_voiceLevelRaf); _voiceLevelRaf = null; }
         if (_voiceAudioCtx) { try { _voiceAudioCtx.close(); } catch(e){} _voiceAudioCtx = null; }
+        if (_voiceMeterStream) { _voiceMeterStream.getTracks().forEach(t => t.stop()); _voiceMeterStream = null; }
         _voiceAnalyser = null;
     }
 
@@ -877,7 +605,7 @@
 
     function voiceToggleMute() {
         _voiceMuted = !_voiceMuted;
-        if (_voiceMuted) window.speechSynthesis && window.speechSynthesis.cancel();
+        if (_voiceMuted) _voiceStopSpeaking({ source: 'mute' });
         const muteBtn = document.getElementById('voiceSiriMute');
         if (muteBtn) muteBtn.textContent = _voiceMuted ? '🔇' : '🔊';
         showToast(_voiceMuted ? '语音已静音' : '语音已开启', 'info');
@@ -941,21 +669,17 @@
 
     // Show proactive suggestion chips in voice card (Siri-like next-action hints)
     const _NEXT_SUGGESTIONS = {
-        run_cdr:          [{ label:'运行人源化', cmd:'运行人源化' }, { label:'运行风险分析', cmd:'运行风险' }],
-        run_risk:         [{ label:'运行人源化', cmd:'运行人源化' }, { label:'计算理化', cmd:'计算理化性质' }],
-        run_humanization: [{ label:'计算理化', cmd:'计算理化性质' }, { label:'多序列比对', cmd:'运行比对' }],
-        run_phys:         [{ label:'运行CDR', cmd:'运行CDR注释' }, { label:'运行人源化', cmd:'运行人源化' }],
-        run_maturation:   [{ label:'人源化分析', cmd:'运行人源化' }, { label:'理化分析', cmd:'计算理化性质' }],
-        run_msa:          [{ label:'运行CDR', cmd:'运行CDR注释' }, { label:'理化分析', cmd:'计算理化性质' }],
-        start_design:     [{ label:'打开快速设计', cmd:'打开快速设计' }, { label:'查看序列', cmd:'打开序列分析' }],
-        nav_kb:           [{ label:'AI检索', cmd:'搜索文献' }, { label:'上传文献', cmd:'上传文献' }],
+        start_design: [
+            { label:'开始设计', cmd:'开始设计' },
+            { label:'选择 PD-L1', cmd:'PD-L1' }
+        ],
     };
 
     // Starter prompts shown right when voice opens — so clients know what they can say
     function _voiceShowStarters() {
         const el = document.getElementById('voiceSiriSuggest');
         if (!el) return;
-        const starters = ['打开快速设计', '什么是 CDR', 'IL-33 是什么靶点', '打开序列分析'];
+        const starters = ['打开快速设计', '开始设计', '肿瘤', 'PD-L1'];
         el.style.display = 'block';
         el.innerHTML = `<span style="font-size:10px;color:#64748b;display:block;margin-bottom:6px;">🎙️ 试试说（也可点击）：</span>` +
             starters.map(s => `<button onclick="processVoiceText(['${s}'])" style="margin:3px 3px;padding:5px 11px;background:rgba(37,99,235,0.08);border:1px solid rgba(37,99,235,0.2);border-radius:14px;color:#2563EB;font-size:11px;font-weight:600;cursor:pointer;">${s}</button>`).join('');
@@ -999,25 +723,31 @@
                (window.speechSynthesis && window.speechSynthesis.speaking);
     }
 
-    function _voiceStopSpeaking() {
-        _ttsQueue = [];
-        if (_ttsCurrentAudio) { try { _ttsCurrentAudio.pause(); } catch(e){} _ttsCurrentAudio = null; }
-        if (window.speechSynthesis) window.speechSynthesis.cancel();
-        // Unblock any chunk awaiting in speakVoiceStreaming
-        if (_ttsResolveCurrent) { const r = _ttsResolveCurrent; _ttsResolveCurrent = null; r(); }
+    function _voiceRequestBargeIn(source = 'vad') {
+        if (!_VAD_BARGE_ENABLED || !_voicePausedForTTS || !_voiceIsSpeaking()) return false;
+        _voiceStopSpeaking({ bargeIn: true, source });
+        return true;
+    }
+
+    function _voiceStopSpeaking(opts = {}) {
+        _stopCurrentTTS();
+        _bargeFrames = 0;
+        _asrBargeFrames = 0;
         const barge = document.getElementById('voiceSiriBarge');
         if (barge) barge.style.display = 'none';
-        // Resume listening
         _voicePausedForTTS = false;
         if (_voiceActive && !_asrDashscope && _voiceRecog) {
             try { _voiceRecog.start(); } catch(e) {}
         }
-        if (_voiceActive) _voiceSetState('listening');
+        if (_voiceActive && _asrDashscope && !_asrProcessor && !_asrFinishPending && ws && ws.readyState === 1) {
+            _asrRestartSession();
+        }
+        if (_voiceActive) _voiceSetState('listening', opts.bargeIn ? '我在听，请继续说...' : undefined);
     }
 
     // Click on the wave/text area: interrupt if speaking, otherwise no-op
     function _voiceWaveClick() {
-        if (_voiceIsSpeaking()) _voiceStopSpeaking();
+        if (_voiceIsSpeaking()) _voiceStopSpeaking({ source: 'manual' });
     }
 
     // ── Visual linkage: briefly highlight the panel a voice command affected ──
@@ -1043,7 +773,7 @@
 
     function initVoiceControlUI() {
         console.log('%c[ZoonoAb] 语音构建 voice-fix-v8 · 浅色磨砂 + 灵动语音球 · ' + new Date().toISOString().slice(0,16), 'color:#2563EB;font-weight:700');
-        if (document.getElementById('voiceCtrlBtn')) return;
+        if (document.getElementById('voiceCtrlBtn') || document.getElementById('voiceBtn')) return;
 
         // Floating mic button (bottom-right, gradient like 小爱同学)
         const btn = document.createElement('button');
@@ -1058,7 +788,8 @@
             cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center',
             boxShadow:'0 4px 20px rgba(99,102,241,0.5)', transition:'all 0.25s cubic-bezier(0.34,1.56,0.64,1)',
         });
-        btn.addEventListener('click', toggleVoiceControl);
+        btn.setAttribute('onclick', 'toggleVoiceControl()');
+        btn.querySelector('svg')?.style.setProperty('pointer-events', 'none');
         document.body.appendChild(btn);
 
         // Hands-free wake-word toggle (small pill above the mic button)
@@ -1073,7 +804,7 @@
             transition:'all 0.2s ease', whiteSpace:'nowrap',
         });
         wake.innerHTML = '💤 免提';
-        wake.addEventListener('click', toggleWakeWord);
+        wake.setAttribute('onclick', 'toggleWakeWord()');
         document.body.appendChild(wake);
 
         // Restore hands-free preference
@@ -1105,7 +836,7 @@
                 </div>
             </div>
             <div id="voiceSiriText" onclick="_voiceWaveClick()" style="font-size:14px;min-height:22px;text-align:center;color:#94a3b8;font-style:italic;line-height:1.55;word-break:break-word;">请说话…</div>
-            <div id="voiceSiriBarge" style="display:none;margin-top:8px;text-align:center;font-size:11px;color:#64748b;cursor:pointer;" onclick="_voiceStopSpeaking()">⏸ 点击声波或按 Esc 打断</div>
+            <div id="voiceSiriBarge" style="display:none;margin-top:8px;text-align:center;font-size:11px;color:#64748b;cursor:pointer;" onclick="_voiceStopSpeaking()">⏸ 直接开口、点击声波或按 Esc 打断</div>
             <div id="voiceSiriSuggest" style="display:none;margin-top:10px;text-align:center;"></div>
         `;
         Object.assign(card.style, {
@@ -1215,14 +946,72 @@
                 #voiceSiriOrb.speaking .vorb-sheen { animation-duration:3s; }
                 @keyframes voiceFlashAnim { 0%{box-shadow:0 0 0 0 rgba(124,58,237,0.55), inset 0 0 0 2px rgba(124,58,237,0.6);} 100%{box-shadow:0 0 0 14px rgba(124,58,237,0), inset 0 0 0 2px rgba(124,58,237,0);} }
                 .voice-flash { animation:voiceFlashAnim 1.3s ease-out; }
-                #voiceCtrlBtn:hover { transform:scale(1.12)!important; }
-                #voiceCtrlBtn { animation: vorbIdle 3.8s ease-in-out infinite; }
+                @keyframes voiceBtnGlow { 0%,100%{ box-shadow:0 4px 20px rgba(99,102,241,0.5); filter:brightness(1); } 50%{ box-shadow:0 6px 26px rgba(99,102,241,0.68); filter:brightness(1.05); } }
+                #voiceCtrlBtn:hover { filter:brightness(1.08)!important; box-shadow:0 6px 28px rgba(99,102,241,0.68)!important; }
+                #voiceCtrlBtn { animation: voiceBtnGlow 3.8s ease-in-out infinite; }
                 #voiceCtrlBtn.active { background:linear-gradient(135deg,#7C3AED,#2563EB)!important; box-shadow:0 6px 28px rgba(124,58,237,0.7), 0 0 24px 4px rgba(37,99,235,0.5)!important; animation:none!important; }
                 #voiceCtrlBtn.thinking { background:linear-gradient(135deg,#D97706,#F59E0B)!important; box-shadow:0 4px 20px rgba(245,158,11,0.6)!important; }
                 :fullscreen #voiceCtrlBtn, :-webkit-full-screen #voiceCtrlBtn { bottom:24px!important; right:24px!important; z-index:2147483640!important; }
                 :fullscreen #voiceWakeToggle, :-webkit-full-screen #voiceWakeToggle { bottom:84px!important; right:24px!important; z-index:2147483640!important; }
                 :fullscreen #voiceSiriCard, :-webkit-full-screen #voiceSiriCard { bottom:90px!important; z-index:2147483641!important; }
                 :fullscreen #voicePulseRing, :-webkit-full-screen #voicePulseRing { bottom:20px!important; right:20px!important; z-index:2147483639!important; }
+                body.quick-design-open #voiceCtrlBtn {
+                    right: 18px!important;
+                    bottom: 24px!important;
+                    width: 48px!important;
+                    height: 48px!important;
+                    opacity: 0.9!important;
+                    z-index: 3003!important;
+                }
+                body.quick-design-open #voiceWakeToggle {
+                    right: 74px!important;
+                    bottom: 34px!important;
+                    z-index: 3003!important;
+                }
+                body.quick-design-open #voiceSiriCard {
+                    left: auto!important;
+                    right: max(18px, calc((100vw - min(760px, calc(100vw - 32px))) / 2 - 270px))!important;
+                    bottom: 118px!important;
+                    width: 238px!important;
+                    padding: 12px!important;
+                    border-radius: 16px!important;
+                    z-index: 3002!important;
+                }
+                body.quick-design-open #voiceSiriCard #voiceSiriOrbWrap {
+                    transform: scale(0.54);
+                    height: 56px!important;
+                    margin: -10px auto!important;
+                }
+                body.quick-design-open #voiceSiriCard #voiceSiriLog { max-height: 82px!important; }
+                body.quick-design-open #voiceSiriCard #voiceSiriText { font-size: 12px!important; line-height: 1.45!important; }
+                body.quick-design-open #voicePulseRing { right: 12px!important; bottom: 18px!important; z-index: 3001!important; }
+                @media (min-width: 641px) and (max-width: 1099px) {
+                    body.quick-design-open #voiceSiriCard {
+                        right: 14px!important;
+                        top: 86px!important;
+                        bottom: auto!important;
+                        width: 172px!important;
+                        padding: 9px 10px!important;
+                    }
+                    body.quick-design-open #voiceSiriCard #voiceSiriOrbWrap,
+                    body.quick-design-open #voiceSiriCard #voiceSiriLog,
+                    body.quick-design-open #voiceSiriCard #voiceSiriSuggest { display:none!important; }
+                    body.quick-design-open #voiceSiriCard #voiceSiriText {
+                        text-align:left!important;
+                        font-size:11px!important;
+                    }
+                }
+                @media (min-width: 1100px) and (max-width: 1240px) {
+                    body.quick-design-open #voiceSiriCard {
+                        right: 16px!important;
+                        width: 188px!important;
+                        padding: 10px 11px 12px!important;
+                    }
+                    body.quick-design-open #voiceSiriCard #voiceSiriOrbWrap {
+                        display:none!important;
+                    }
+                    body.quick-design-open #voiceSiriCard #voiceSiriLog { max-height: 56px!important; }
+                }
                 @media (max-width: 640px) {
                     body.chatting-mode:not(.quick-design-open) #voiceCtrlBtn {
                         right: 16px!important;
@@ -1255,8 +1044,23 @@
                         opacity: 0.9!important;
                     }
                     body.quick-design-open #voiceSiriCard {
-                        bottom: calc(190px + env(safe-area-inset-bottom))!important;
-                        width: calc(100vw - 24px)!important;
+                        right: 12px!important;
+                        top: calc(18px + env(safe-area-inset-top))!important;
+                        bottom: auto!important;
+                        width: min(156px, calc(100vw - 24px))!important;
+                        padding: 7px 8px!important;
+                    }
+                    body.quick-design-open #voiceSiriCard #voiceSiriOrbWrap,
+                    body.quick-design-open #voiceSiriCard #voiceSiriLog,
+                    body.quick-design-open #voiceSiriCard #voiceSiriSuggest,
+                    body.quick-design-open #voiceSiriCard .vbtn { display:none!important; }
+                    body.quick-design-open #voiceSiriCard #voiceSiriText {
+                        text-align:left!important;
+                        font-size:10.5px!important;
+                        line-height:1.25!important;
+                        min-height:0!important;
+                        max-height:28px!important;
+                        overflow:hidden!important;
                     }
                     body.quick-design-open #voicePulseRing {
                         right: 10px!important;
@@ -1276,7 +1080,7 @@
         document.addEventListener('keydown', (e) => {
             if (e.code === 'Escape' && _voiceActive && _voiceIsSpeaking()) {
                 e.preventDefault();
-                _voiceStopSpeaking();
+                _voiceStopSpeaking({ source: 'escape' });
                 return;
             }
             if (e.code === 'Space' && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA' && !e.target.isContentEditable) {
@@ -1426,6 +1230,7 @@
         _asrPeakRms = 0;
         _asrFinishPending = false;
         _asrPreRoll = [];
+        _asrBargeFrames = 0;
     }
 
     function _asrFinishSegment(reason) {
@@ -1460,10 +1265,10 @@
                 // 16 kHz AudioContext so ScriptProcessor output is already 16-bit PCM at the right rate
                 _asrAudioCtx = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 16000 });
                 const src = _asrAudioCtx.createMediaStreamSource(stream);
-                // bufferSize 4096 → ~256 ms per chunk at 16kHz
-                _asrProcessor = _asrAudioCtx.createScriptProcessor(4096, 1, 1);
+                // 2048 samples keeps barge-in responsive while staying stable on mobile browsers.
+                _asrProcessor = _asrAudioCtx.createScriptProcessor(2048, 1, 1);
                 _asrProcessor.onaudioprocess = (e) => {
-                    if (_asrFinishPending || _voicePausedForTTS || !_voiceActive || !_asrDashscope) return;
+                    if (_asrFinishPending || !_voiceActive || !_asrDashscope) return;
                     if (!ws || ws.readyState !== 1) return;
                     const f32 = e.inputBuffer.getChannelData(0);
                     const rms = _asrCalcRms(f32);
@@ -1478,6 +1283,31 @@
                         pcm[i] = Math.max(-32768, Math.min(32767, Math.round(f32[i] * 32767)));
                     }
                     const pcmBuffer = pcm.buffer.slice(0);
+                    let currentBufferSent = false;
+
+                    if (_voicePausedForTTS) {
+                        _asrPreRoll.push(pcmBuffer);
+                        while (_asrPreRoll.length > _ASR_PREROLL_CHUNKS) _asrPreRoll.shift();
+                        if (_VAD_BARGE_ENABLED && _voiceIsSpeaking && _voiceIsSpeaking() && rms >= _ASR_BARGE_RMS) {
+                            _asrBargeFrames++;
+                            if (_asrBargeFrames >= _ASR_BARGE_FRAMES && _voiceRequestBargeIn('asr')) {
+                                _asrBargeFrames = 0;
+                                _asrSpeechStarted = true;
+                                _asrSegmentStartedAt = now;
+                                _asrLastSpeechAt = now;
+                                _voiceSetState('interim', '我在听，请继续说...');
+                                _asrPreRoll.forEach(buf => { if (ws && ws.readyState === 1) ws.send(buf); });
+                                currentBufferSent = true;
+                                _asrPreRoll = [];
+                            } else {
+                                return;
+                            }
+                        } else {
+                            _asrBargeFrames = Math.max(0, _asrBargeFrames - 1);
+                            return;
+                        }
+                    }
+
                     if (!_asrSpeechStarted) {
                         _asrPreRoll.push(pcmBuffer);
                         while (_asrPreRoll.length > _ASR_PREROLL_CHUNKS) _asrPreRoll.shift();
@@ -1487,6 +1317,7 @@
                             _asrLastSpeechAt = now;
                             _voiceSetState('interim', '我听到了，请继续说...');
                             _asrPreRoll.forEach(buf => { if (ws && ws.readyState === 1) ws.send(buf); });
+                            currentBufferSent = true;
                             _asrPreRoll = [];
                         } else if (now - _asrListenStartedAt > _ASR_IDLE_HINT_MS) {
                             _asrListenStartedAt = now;
@@ -1496,8 +1327,9 @@
                         }
                     } else if (rms >= _ASR_CONTINUE_RMS) {
                         _asrLastSpeechAt = now;
+                        _asrBargeFrames = 0;
                     }
-                    ws.send(pcmBuffer);
+                    if (!currentBufferSent) ws.send(pcmBuffer);
                     if (_asrSpeechStarted && now - _asrSegmentStartedAt >= _ASR_MAX_SEGMENT_MS) {
                         _asrFinishSegment('max');
                         return;
@@ -1530,7 +1362,7 @@
                 _asrResetSegmentState();
                 ws.send(JSON.stringify({ type: 'asr_start', voiceSessionId: _voiceSessionId() }));
             }
-        }, 500);
+        }, 160);
     }
 
     // ── Web Speech API fallback ──
@@ -1591,9 +1423,7 @@
         _voiceQueue = [];
         _voiceProcessing = false;
         clearTimeout(_voiceAgentTimer);
-        _ttsQueue = [];
-        if (_ttsCurrentAudio) { try { _ttsCurrentAudio.pause(); } catch(e){} _ttsCurrentAudio = null; }
-        if (_ttsResolveCurrent) { const r = _ttsResolveCurrent; _ttsResolveCurrent = null; r(); }
+        _stopCurrentTTS();
         const _bargeEl = document.getElementById('voiceSiriBarge'); if (_bargeEl) _bargeEl.style.display = 'none';
         const _logEl = document.getElementById('voiceSiriLog'); if (_logEl) { _logEl.innerHTML = ''; _logEl.style.display = 'none'; }
         if (_voiceRecog) { try { _voiceRecog.stop(); } catch(e){} _voiceRecog = null; }
@@ -1629,12 +1459,8 @@
         });
         const groups = [
             { title: '🧬 快速设计向导', cmds: ['打开快速设计','开始设计','肿瘤','PD-L1','启动 AI 分子设计'] },
-            { title: '🔬 打开分析面板', cmds: ['CDR分析','人源化','风险分析','理化性质','多序列比对','亲和力成熟'] },
-            { title: '📂 打开面板（说功能名即可）', cmds: ['CDR分析','人源化','风险评估','物化性质','多序列比对','亲和力成熟','相互作用'] },
-            { title: '🗺️ 页面导航', cmds: ['设计界面','查看批次','查看团队','查看知识库'] },
-            { title: '🔮 3D视图', cmds: ['放大','缩小','重置视图','旋转','停止旋转','卡通模式','高亮CDR'] },
-            { title: '💬 智能问答（直接提问）', cmds: ['什么是CDR','VHH和普通抗体有什么区别','人源化是什么意思','上次结果是什么'] },
-            { title: '🔧 其他', cmds: ['新建设计','上传文献','全屏','关闭语音'] },
+            { title: '当前步骤选项', cmds: ['自身免疫','过敏','感染','HER2','EGFR','VEGF-A','自动选择表位'] },
+            { title: '向导控制', cmds: ['下一步','上一步','关闭快速设计','关闭语音'] },
         ];
         const rows = groups.map(g => `
             <div style="margin-bottom:16px;">
@@ -1650,17 +1476,13 @@
                     <button onclick="document.getElementById('voiceHelpOverlay').remove()" style="background:none;border:none;font-size:20px;cursor:pointer;color:var(--text-muted);line-height:1;">&times;</button>
                 </div>
                 <div style="margin-bottom:16px;padding:10px 14px;background:var(--bg-light);border-radius:10px;font-size:12px;color:var(--text-secondary);">
-                    说关键词即可触发页面控制，支持智能问答（"什么是CDR？"）和快速设计向导（"打开快速设计"）。普通语音聊天不会直接启动工作流；只有在快速设计最后确认页说"启动 AI 分子设计"才会开始设计。提问会在对话区生成完整回答并语音播报，<b>说话时点卡片或按 Esc 可打断</b>。开启右下角 <b>"💤 免提"</b> 后，直接说 <b>"小诺"</b> 即可免提唤醒。
+                    当前语音只用于快速设计向导控制，不会把识别内容写入主输入框、聊天区或普通工作流。只有在快速设计最后确认页说"启动 AI 分子设计"才会开始设计。<b>小诺说话时直接开口、点卡片或按 Esc 可打断</b>。开启右下角 <b>"💤 免提"</b> 后，直接说 <b>"小诺"</b> 即可免提唤醒。
                 </div>
                 ${rows}
             </div>`;
         ov.addEventListener('click', e => { if(e.target === ov) ov.remove(); });
         document.body.appendChild(ov);
     }
-
-    // Initialize UI on page load
-    document.addEventListener('DOMContentLoaded', initVoiceControlUI);
-    if (document.readyState !== 'loading') initVoiceControlUI();
 
     function openNewBatchModal() {
         switchView('chat');
@@ -1730,4 +1552,18 @@
         }
     }
 
+    window.processVoiceText = processVoiceText;
+    window.voiceToggleMute = voiceToggleMute;
+    window.toggleVoiceControl = toggleVoiceControl;
+    window.toggleWakeWord = toggleWakeWord;
+    window.startVoiceControl = startVoiceControl;
+    window.stopVoiceControl = stopVoiceControl;
+    window.showVoiceHelp = showVoiceHelp;
+    window._voiceStopSpeaking = _voiceStopSpeaking;
+    window._voiceWaveClick = _voiceWaveClick;
     window.voiceControlHandleWsMessage = voiceControlHandleWsMessage;
+
+    // Initialize only after all global handlers are exposed. The voice card uses inline
+    // handlers for a few controls, so exposing them first keeps manual interrupt reliable.
+    document.addEventListener('DOMContentLoaded', initVoiceControlUI);
+    if (document.readyState !== 'loading') initVoiceControlUI();

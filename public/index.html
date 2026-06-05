@@ -3055,6 +3055,82 @@
         .qd-btn.ghost { border-color: transparent; background: transparent; color: var(--text-muted); padding-left: 8px; padding-right: 8px; }
         .qd-btn.ghost:hover { background: var(--bg-light); color: var(--text-primary); }
         .qd-helper-note { font-size: 11px; color: var(--text-muted); line-height: 1.5; margin-top: 8px; }
+        body.quick-design-open #voiceAssistantCard {
+            left: auto !important;
+            right: max(18px, calc((100vw - min(760px, calc(100vw - 32px))) / 2 - 270px)) !important;
+            bottom: 118px !important;
+            width: 238px !important;
+            padding: 12px 12px 14px !important;
+            border-radius: 16px !important;
+            transform: translateY(10px) !important;
+            z-index: 3002 !important;
+        }
+        body.quick-design-open #voiceAssistantCard.visible { transform: translateY(0) !important; }
+        body.quick-design-open #voiceAssistantCard .voice-visual-area { height: 52px; margin: 2px 0 8px; }
+        body.quick-design-open #voiceAssistantCard .voice-visual-core {
+            width: 42px; height: 42px;
+            transform: scale(calc(1 + var(--voice-level) * 0.18));
+        }
+        body.quick-design-open #voiceAssistantCard .voice-visual-ring { width: 42px; height: 42px; }
+        body.quick-design-open #voiceAssistantCard .voice-wave-bars { display: none; }
+        body.quick-design-open #voiceAssistantCard .voice-card-log { max-height: 82px; }
+        body.quick-design-open #voiceAssistantCard .voice-card-text { font-size: 12px; line-height: 1.45; }
+        body.quick-design-open #voiceStatusPop {
+            right: max(18px, calc((100vw - min(760px, calc(100vw - 32px))) / 2 - 270px)) !important;
+            bottom: 86px !important;
+            z-index: 3002 !important;
+        }
+        @media (min-width: 1120px) {
+            body.quick-design-open #quickDesignOverlay {
+                justify-content: flex-start !important;
+                padding-left: max(16px, calc((100vw - 1100px) / 2)) !important;
+                padding-right: 292px !important;
+                box-sizing: border-box;
+            }
+        }
+        @media (min-width: 1100px) and (max-width: 1240px) {
+            body.quick-design-open #quickDesignOverlay {
+                padding-left: 14px !important;
+                padding-right: 222px !important;
+            }
+            body.quick-design-open .qd-modal {
+                width: min(820px, calc(100vw - 250px)) !important;
+            }
+            body.quick-design-open #voiceAssistantCard {
+                right: 16px !important;
+                width: 188px !important;
+                padding: 10px 11px 12px !important;
+            }
+            body.quick-design-open #voiceAssistantCard .voice-visual-area {
+                height: 0 !important;
+                margin: 0 !important;
+                overflow: hidden !important;
+            }
+            body.quick-design-open #voiceAssistantCard .voice-card-log { max-height: 56px !important; }
+            body.quick-design-open #voiceStatusPop { right: 16px !important; }
+        }
+        @media (min-width: 641px) and (max-width: 1099px) {
+            body.quick-design-open #voiceAssistantCard {
+                right: 14px !important;
+                top: 86px !important;
+                bottom: auto !important;
+                width: 172px !important;
+                padding: 9px 10px !important;
+                border-radius: 14px !important;
+            }
+            body.quick-design-open #voiceAssistantCard .voice-visual-area {
+                height: 0 !important;
+                margin: 0 !important;
+                overflow: hidden !important;
+            }
+            body.quick-design-open #voiceAssistantCard .voice-card-log { display: none !important; }
+            body.quick-design-open #voiceAssistantCard .voice-card-text {
+                font-size: 11px !important;
+                line-height: 1.4 !important;
+                text-align: left !important;
+            }
+            body.quick-design-open #voiceStatusPop { display: none !important; }
+        }
         @media (max-width: 640px) {
             #quickDesignOverlay { align-items: stretch !important; justify-content: center !important; padding: 10px 10px calc(10px + env(safe-area-inset-bottom)); }
             .qd-modal { width: 100%; height: calc(100dvh - 20px - env(safe-area-inset-bottom)); max-height: none; border-radius: 12px; }
@@ -3077,6 +3153,30 @@
             .qd-intro-panel { grid-template-columns: 1fr; }
             .qd-demo-orb { display: none; }
             .qd-summary-row { grid-template-columns: 1fr; gap: 3px; }
+            body.quick-design-open #voiceAssistantCard {
+                left: auto !important;
+                right: 12px !important;
+                top: calc(18px + env(safe-area-inset-top)) !important;
+                bottom: auto !important;
+                width: min(156px, calc(100vw - 24px)) !important;
+                padding: 7px 8px !important;
+                border-radius: 14px !important;
+            }
+            body.quick-design-open #voiceAssistantCard .voice-card-head { margin-bottom: 0; }
+            body.quick-design-open #voiceAssistantCard .voice-card-status { padding: 4px 8px; font-size: 11px; }
+            body.quick-design-open #voiceAssistantCard .voice-card-close { display: none !important; }
+            body.quick-design-open #voiceAssistantCard .voice-visual-area { height: 0; margin: 0; overflow: hidden; }
+            body.quick-design-open #voiceAssistantCard .voice-card-log { display: none !important; }
+            body.quick-design-open #voiceAssistantCard .voice-card-text {
+                font-size: 10.5px;
+                line-height: 1.25;
+                min-height: 0;
+                max-height: 28px;
+                overflow: hidden;
+                margin-top: 4px;
+                text-align: left;
+            }
+            body.quick-design-open #voiceStatusPop { display: none !important; }
         }
 
         /* Sequence compare highlight */
@@ -5371,7 +5471,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78145902';
+    const APP_BUILD_VERSION = '78145937';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -6589,19 +6689,21 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             .replace(/七/g, '7')
             .replace(/八/g, '8')
             .replace(/九/g, '9')
-            .replace(/\bher\s*two\b/g, 'her2')
-            .replace(/\bher\s*2\b/g, 'her2')
-            .replace(/\bpd\s*-\s*1\b/g, 'pd1')
-            .replace(/\bp\s*d\s*1\b/g, 'pd1')
-            .replace(/\bpd\s*l\s*1\b/g, 'pdl1')
-            .replace(/\bpd\s*-\s*l\s*1\b/g, 'pdl1')
-            .replace(/\bp\s*d\s*l\s*1\b/g, 'pdl1')
-            .replace(/\bvegf\s*a\b/g, 'vegfa')
-            .replace(/\bv\s*e\s*g\s*f\s*a?\b/g, 'vegfa')
-            .replace(/\bp\s*c\s*s\s*k\s*9\b/g, 'pcsk9')
-            .replace(/\bi\s*l\s*17\s*a?\b/g, 'il17a')
-            .replace(/\bi\s*l\s*23\b/g, 'il23')
-            .replace(/\bi\s*l\s*33\b/g, 'il33')
+            .replace(/her\s*[- ]?\s*(two|2)/g, 'her2')
+            .replace(/p\s*d\s*[- ]?\s*l\s*[- ]?\s*(1|一|幺|壹)/g, 'pdl1')
+            .replace(/p\s*d\s*[- ]?\s*(1|一|幺|壹)/g, 'pd1')
+            .replace(/p\s*d\s*l\s*(1|一|幺|壹)/g, 'pdl1')
+            .replace(/pd\s*l\s*(1|一|幺|壹)/g, 'pdl1')
+            .replace(/pd\s*[- ]?\s*l\s*[- ]?\s*(1|一|幺|壹)/g, 'pdl1')
+            .replace(/pd\s*[- ]?\s*(1|一|幺|壹)/g, 'pd1')
+            .replace(/皮\s*迪\s*艾?勒?\s*(1|一|幺|壹)/g, 'pdl1')
+            .replace(/皮\s*迪\s*(1|一|幺|壹)/g, 'pd1')
+            .replace(/vegf\s*a/g, 'vegfa')
+            .replace(/v\s*e\s*g\s*f\s*a?/g, 'vegfa')
+            .replace(/p\s*c\s*s\s*k\s*9/g, 'pcsk9')
+            .replace(/i\s*l\s*17\s*a?/g, 'il17a')
+            .replace(/i\s*l\s*23/g, 'il23')
+            .replace(/i\s*l\s*33/g, 'il33')
             .replace(/[-_/]/g, '')
             .replace(/\s+/g, ' ')
             .trim();
@@ -6613,6 +6715,66 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
     function qdVoiceHasAny(compact, aliases) {
         return aliases.some(alias => compact.includes(qdVoiceCompact(alias)));
+    }
+
+    function qdVoiceAliasList(group, id) {
+        const bucket = qdVoiceAliases[group] || [];
+        const item = bucket.find(entry => entry.id === id);
+        return item && Array.isArray(item.aliases) ? item.aliases : [];
+    }
+
+    function qdVoiceOverlapScore(a, b) {
+        if (!a || !b) return 0;
+        const aa = Array.from(new Set(a.split('')));
+        let hit = 0;
+        aa.forEach(ch => { if (b.includes(ch)) hit += 1; });
+        return hit / Math.max(aa.length, Array.from(new Set(b.split(''))).length, 1);
+    }
+
+    function qdVoiceOptionPhrases(option, group) {
+        const phrases = [option.id, option.title, option.desc, ...qdVoiceAliasList(group, option.id)];
+        if (group === 'target' && option.routeId && qdDemoRoutes[option.routeId]) {
+            const route = qdDemoRoutes[option.routeId];
+            phrases.push(route.target, route.blockTarget, route.routeLabel, route.triggerHint, route.disease, route.systemUnderstanding);
+        }
+        if (group === 'mechanism') {
+            const route = qdRoute();
+            phrases.push(route.target, route.blockTarget, route.routeLabel, route.triggerHint);
+        }
+        return phrases.filter(Boolean);
+    }
+
+    function qdVoiceScoreOption(compact, option, group) {
+        let score = option.recommended ? 2 : 0;
+        if (group === 'target' && option.id === 'PD-L1' && /pdl?1|检查点|免疫检查/.test(compact)) score += 160;
+        if (group === 'target' && option.id === 'PD-L1' && /pd1/.test(compact) && !/her2|egfr|vegf/.test(compact)) score += 48;
+        if (group === 'target' && option.id === 'HER2' && /her2|乳腺|胃癌/.test(compact)) score += 130;
+        if (group === 'target' && option.id === 'EGFR' && /egfr|实体瘤|生长信号/.test(compact)) score += 130;
+        if (group === 'target' && option.id === 'VEGF-A' && /vegfa?|血管生成/.test(compact)) score += 130;
+        for (const phrase of qdVoiceOptionPhrases(option, group)) {
+            const token = qdVoiceCompact(phrase);
+            if (!token) continue;
+            if (compact === token) score += 120 + token.length;
+            else if (compact.includes(token)) score += 72 + token.length;
+            else if (token.includes(compact) && compact.length >= 2) score += 48 + compact.length;
+            else if (compact.length >= 2 && token.length >= 2) score += qdVoiceOverlapScore(compact, token) * Math.min(24, token.length);
+        }
+        return score;
+    }
+
+    function qdVoiceBestOption(rawText, options, group) {
+        const compact = qdVoiceCompact(rawText);
+        if (!compact || !Array.isArray(options) || !options.length) return null;
+        let best = null;
+        let bestScore = -Infinity;
+        options.forEach(option => {
+            const score = qdVoiceScoreOption(compact, option, group);
+            if (score > bestScore) {
+                best = option;
+                bestScore = score;
+            }
+        });
+        return best || options.find(option => option.recommended) || options[0];
     }
 
     const qdVoiceAliases = {
@@ -6674,38 +6836,28 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const compact = qdVoiceCompact(rawText);
         if (!compact) return null;
         if (qdState.step === 1) {
-            const hit = qdVoiceAliases.disease.find(item => qdVoiceHasAny(compact, item.aliases));
-            if (hit && qdDiseaseOptions.some(opt => opt.id === hit.id)) {
-                qdSelectDisease(hit.id);
-                const option = qdDiseaseOptions.find(opt => opt.id === hit.id);
-                return { label: `已选择${option ? option.title : hit.id}`, step: 1, option: option || null };
-            }
+            const option = qdVoiceBestOption(rawText, qdDiseaseOptions, 'disease');
+            if (!option) return null;
+            qdSelectDisease(option.id);
+            return { label: `已选择${option.title || option.id}`, step: 1, option };
         }
         if (qdState.step === 2) {
-            const visibleIds = qdGetTargetList().map(item => item.id);
-            const hit = qdVoiceAliases.target.find(item => visibleIds.includes(item.id) && qdVoiceHasAny(compact, item.aliases));
-            if (hit) {
-                qdSelectTarget(hit.id);
-                const option = qdGetTargetList().find(opt => opt.id === hit.id);
-                return { label: `已选择${option ? option.title : hit.id}`, step: 2, option: option || null };
-            }
+            const option = qdVoiceBestOption(rawText, qdGetTargetList(), 'target');
+            if (!option) return null;
+            qdSelectTarget(option.id);
+            return { label: `已选择${option.title || option.id}`, step: 2, option };
         }
         if (qdState.step === 3) {
-            const visibleIds = qdMechanismList().map(item => item.id);
-            const hit = qdVoiceAliases.mechanism.find(item => visibleIds.includes(item.id) && qdVoiceHasAny(compact, item.aliases));
-            if (hit) {
-                qdSelectMechanism(hit.id);
-                const option = qdMechanismList().find(opt => opt.id === hit.id);
-                return { label: `已选择${option ? option.title : hit.id}`, step: 3, option: option || null };
-            }
+            const option = qdVoiceBestOption(rawText, qdMechanismList(), 'mechanism');
+            if (!option) return null;
+            qdSelectMechanism(option.id);
+            return { label: `已选择${option.title || option.id}`, step: 3, option };
         }
         if (qdState.step === 4) {
-            const hit = qdVoiceAliases.epitope.find(item => qdVoiceHasAny(compact, item.aliases));
-            if (hit && qdEpitopeOptions.some(opt => opt.id === hit.id)) {
-                qdSelectEpitope(hit.id);
-                const option = qdEpitopeOptions.find(opt => opt.id === hit.id);
-                return { label: `已选择${option ? option.title : hit.id}`, step: 4, option: option || null };
-            }
+            const option = qdVoiceBestOption(rawText, qdEpitopeOptions, 'epitope');
+            if (!option) return null;
+            qdSelectEpitope(option.id);
+            return { label: `已选择${option.title || option.id}`, step: 4, option };
         }
         return null;
     }
@@ -7581,17 +7733,17 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     // ═══════════════ Voice Control ═══════════════
-    const VOICE_MIN_MS = 500;
+    const VOICE_MIN_MS = 760;
     const VOICE_MAX_MS = 12000;
     const WAKE_SEGMENT_MS = 1800;
     const WAKE_AWAKE_WINDOW_MS = 12000;
     const WAKE_OVERLAP_MS = 700;
     const LOCAL_ASR_SAMPLE_RATE = 16000;
     const VOICE_VAD_POLL_MS = 120;
-    const VOICE_VAD_LEVEL = 0.018;
-    const VOICE_MIN_PEAK_RMS = 0.012;
-    const VOICE_MIN_SIGNAL_RMS = 0.006;
-    const VOICE_VAD_SILENCE_MS = 760;
+    const VOICE_VAD_LEVEL = 0.032;
+    const VOICE_MIN_PEAK_RMS = 0.024;
+    const VOICE_MIN_SIGNAL_RMS = 0.013;
+    const VOICE_VAD_SILENCE_MS = 1040;
     const WAKE_WORDS = ['小诺同学', '小诺小诺', '你好小诺', '嗨小诺', '小诺', '晓诺同学', '晓诺', '小糯同学', '小糯', '小喏', '小挪', '小若'];
     let voiceMediaRecorder = null;
     let voiceStream = null;
@@ -8061,7 +8213,29 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                         bottom: calc(184px + env(safe-area-inset-bottom));
                     }
                     body.quick-design-open #voiceAssistantCard {
-                        bottom: calc(190px + env(safe-area-inset-bottom));
+                        right: 12px !important;
+                        top: calc(18px + env(safe-area-inset-top)) !important;
+                        bottom: auto !important;
+                        width: min(156px, calc(100vw - 24px)) !important;
+                        padding: 7px 8px !important;
+                        border-radius: 14px !important;
+                        max-height: 68px !important;
+                        overflow: hidden !important;
+                    }
+                    body.quick-design-open #voiceAssistantCard .voice-card-head { margin-bottom: 0 !important; }
+                    body.quick-design-open #voiceAssistantCard .voice-card-close,
+                    body.quick-design-open #voiceAssistantCard .voice-card-log,
+                    body.quick-design-open #voiceAssistantCard .voice-visual-area,
+                    body.quick-design-open #voiceAssistantCard .voice-wave-bars,
+                    body.quick-design-open #voiceStatusPop { display: none !important; }
+                    body.quick-design-open #voiceAssistantCard .voice-card-text {
+                        min-height: 0 !important;
+                        max-height: 28px !important;
+                        margin-top: 4px !important;
+                        font-size: 10.5px !important;
+                        line-height: 1.25 !important;
+                        text-align: left !important;
+                        overflow: hidden !important;
                     }
                 }
             `;
@@ -8072,8 +8246,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         btn.className = 'input-icon-btn voice-btn';
         btn.id = 'voiceBtn';
         btn.type = 'button';
-        btn.title = '点击开始语音输入';
-        btn.setAttribute('aria-label', '点击开始语音输入');
+        btn.title = '点击开始快速设计语音控制';
+        btn.setAttribute('aria-label', '点击开始快速设计语音控制');
         btn.onclick = () => toggleVoiceCapture();
         btn.innerHTML = '<i data-lucide="mic" style="width:22px;height:22px;"></i>';
         document.body.appendChild(btn);
@@ -8195,15 +8369,20 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     let voiceAssistantAudio = null;
-    function voiceAssistantSpeak(text) {
-        const value = String(text || '').trim();
-        if (!value || typeof Audio === 'undefined') return;
+    function stopVoiceAssistantSpeech() {
         try {
             if (voiceAssistantAudio) {
                 voiceAssistantAudio.pause();
                 voiceAssistantAudio.src = '';
                 voiceAssistantAudio = null;
             }
+        } catch (err) {}
+    }
+    function voiceAssistantSpeak(text) {
+        const value = String(text || '').trim();
+        if (!value || typeof Audio === 'undefined') return;
+        try {
+            stopVoiceAssistantSpeech();
             const audio = new Audio('/api/tts-stream?text=' + encodeURIComponent(value.slice(0, 800)));
             voiceAssistantAudio = audio;
             audio.onended = () => { if (voiceAssistantAudio === audio) voiceAssistantAudio = null; };
@@ -9022,6 +9201,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 const rms = Math.sqrt(sum / voiceVadData.length);
                 const now = Date.now();
                 if (rms >= VOICE_VAD_LEVEL) {
+                    stopVoiceAssistantSpeech();
                     voiceSpeechDetected = true;
                     voiceLastSpeechAt = now;
                     return;
@@ -9069,13 +9249,14 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     function getVoiceListeningMessage(source) {
-        if (source === 'space') return '正在听，松开空格后转成文字';
+        if (source === 'space') return '正在听，松开空格后识别指令';
         if (source === 'wake') return '小诺已唤醒，请说指令';
-        return '正在听，说完转成文字';
+        return '正在听快速设计指令';
     }
 
     async function startVoiceCapture(source) {
         if (voiceState === 'processing' || voiceState === 'listening') return;
+        stopVoiceAssistantSpeech();
         if (source !== 'wake' && wakeEnabled) {
             stopBrowserWakeRecognition();
             pauseLocalWakeCapture();
@@ -9130,6 +9311,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     async function startVoiceCaptureWav(source) {
+        stopVoiceAssistantSpeech();
         if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
             showToast('当前浏览器不支持语音录制，请使用 Chrome 或 Edge', 'error');
             updateVoiceUI('error', '浏览器不支持语音录制');
@@ -9171,6 +9353,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 setVoiceLevel(rms, peakRms);
                 const now = Date.now();
                 if (rms >= VOICE_VAD_LEVEL) {
+                    stopVoiceAssistantSpeech();
                     speechDetected = true;
                     lastSpeechAt = now;
                 }
@@ -9303,8 +9486,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 return;
             }
             pushVoiceAssistantLog('user', text);
-            fillVoiceTranscriptInput(text);
-            updateVoiceUI('success', '已转成文字，请确认后发送');
+            handleVoiceTranscript(text);
         } catch (err) {
             console.warn('[Voice] Transcription error:', err);
             const msg = err && err.message ? err.message : '语音识别服务不可用';
@@ -9396,113 +9578,24 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     function fillVoiceTranscriptInput(text, options = {}) {
-        const input = document.getElementById('userInput');
-        if (!input) return false;
-        input.value = String(text || '').trim();
-        input.dispatchEvent(new Event('input'));
-        try {
-            input.focus({ preventScroll: true });
-        } catch (err) {
-            input.focus();
-        }
-        try {
-            const end = input.value.length;
-            input.setSelectionRange(end, end);
-        } catch (err) {}
-        if (options.toast !== false) {
-            showToast(options.message || '语音已转成文字，请确认后发送', options.level || 'info');
-        }
-        return true;
+        const msg = isQuickDesignOpen()
+            ? '语音当前只用于快速设计，请直接说当前步骤中的选项。'
+            : '语音当前只用于快速设计。请说“小诺，打开快速设计”。';
+        pushVoiceAssistantLog('system', msg);
+        updateVoiceUI('success', msg);
+        if (options.speak !== false) voiceAssistantSpeak(msg);
+        return false;
     }
 
     function sendVoiceTextAsUserMessage(text) {
-        if (!fillVoiceTranscriptInput(text, { toast: false })) return;
-        if (isRunning) {
-            showToast('当前工作流正在运行，语音内容已填入输入框', 'warning');
-            return;
-        }
-        sendMessage();
+        fillVoiceTranscriptInput(text, { toast: false });
     }
 
     function sendVoiceChatMessage(text) {
-        const value = stripWakeWord(text) || String(text || '').trim();
-        if (!value) return;
-        if (isRunning) {
-            fillVoiceTranscriptInput(value, { toast: false });
-            showToast('当前工作流正在运行，语音内容已填入输入框', 'warning');
-            return;
-        }
-        const input = document.getElementById('userInput');
-        if (!input) return;
-        switchView('chat');
-        input.value = value;
-        input.dispatchEvent(new Event('input'));
-        sendMessage({ voice: true, voiceChatOnly: true });
+        fillVoiceTranscriptInput(text, { toast: false });
     }
 
     function voiceCommonAnswer(text) {
-        const s = String(text || '').replace(/\s+/g, '').toLowerCase();
-        const has = (...parts) => parts.some(part => s.includes(String(part).replace(/\s+/g, '').toLowerCase()));
-        if (has('你是谁', '小诺是谁', '你叫什么')) {
-            return '我是 ZoonoAb 小诺，可以陪您语音聊天，也可以按您的口令操作快速设计向导。';
-        }
-        if (has('zoonoab是什么', 'zoonoab是做什么的', '这个平台是什么', '平台介绍')) {
-            return 'ZoonoAb 是面向抗体和治疗分子设计的展示平台，可以把疾病方向、靶标、作用机制和结构结果串成一套可视化设计流程。';
-        }
-        if (has('你能做什么', '有哪些功能', '可以做什么')) {
-            return '我现在主要负责两件事：回答抗体工程相关问题，以及在快速设计弹窗里按语音口令帮您选择疾病、靶标、机制和表位。普通语音聊天不会直接启动工作流。';
-        }
-        if (has('怎么开始快速设计', '如何开始快速设计', '快速设计怎么用')) {
-            return '您可以先说“小诺，打开快速设计”，看到弹窗后再说“开始设计”。我会依次询问疾病方向、靶标蛋白、作用机制和表位策略，最后确认后再启动设计。';
-        }
-        if (has('为什么先选疾病', '为什么要选疾病', '先选疾病再选靶点')) {
-            return '先选择疾病方向，是为了限定可用靶标和作用机制，避免把肿瘤、炎症、感染或代谢疾病的设计路线混在一起。';
-        }
-        if (has('什么是cdr', 'cdr是什么', '互补决定区')) {
-            return 'CDR 是抗体直接接触抗原的关键环区，通常决定结合特异性和亲和力，快速设计会重点优化 CDR-H3。';
-        }
-        if (has('cdr-h3是什么', '什么是cdr-h3', 'cdrh3是什么')) {
-            return 'CDR-H3 是重链第三互补决定区，常位于抗体结合界面的核心位置，也是从头设计和亲和力优化时最重要的区域之一。';
-        }
-        if (has('vhh和fab', 'fab和vhh', '纳米抗体和fab', 'vhh区别', 'fab区别')) {
-            return 'VHH 是单域纳米抗体，结构小且稳定；Fab 保留重链和轻链可变区，更接近经典抗体片段，适合结构展示和阻断界面设计。';
-        }
-        if (has('什么是pd-l1', 'pdl1是什么', 'pd-l1是什么', 'pd1pdl1')) {
-            return 'PD-L1 是免疫检查点配体，它和 PD-1 结合后会抑制 T 细胞活性。阻断 PD-1/PD-L1 是肿瘤免疫治疗的经典抗体方向。';
-        }
-        if (has('pd-1是什么', 'pd1是什么')) {
-            return 'PD-1 是 T 细胞表面的免疫检查点受体。它与 PD-L1 结合后会降低 T 细胞活性，因此阻断这条通路可以帮助恢复抗肿瘤免疫反应。';
-        }
-        if (has('il-33是什么', 'il33是什么', 'st2是什么')) {
-            return 'IL-33 是驱动二型炎症的细胞因子，常通过 ST2 受体放大哮喘和过敏炎症信号。';
-        }
-        if (has('her2是什么', '什么是her2')) {
-            return 'HER2 是肿瘤相关受体酪氨酸激酶，在部分乳腺癌和胃癌中过度表达，是经典治疗性抗体靶点。';
-        }
-        if (has('tnf是什么', '什么是tnf')) {
-            return 'TNF 是重要炎症因子，和类风湿关节炎等自身免疫炎症疾病密切相关，中和 TNF 是成熟的抗炎抗体策略。';
-        }
-        if (has('什么是表位', '表位是什么', '抗原表位')) {
-            return '表位是抗体实际识别和结合的抗原区域。快速设计会结合结构暴露度、相互作用界面和保守性来选择更合适的表位。';
-        }
-        if (has('什么是pdb', 'pdb是什么', '3d结构', '三维结构')) {
-            return 'PDB 是蛋白质三维结构文件格式。设计完成后，页面会用 PDB 结构展示候选分子和靶标的空间关系。';
-        }
-        if (has('什么是可开发性', '可开发性是什么', '开发性')) {
-            return '可开发性关注候选分子能否稳定表达、纯化、保存和成药。常见指标包括聚集风险、极端电荷、疏水热点、稳定性和潜在修饰风险。';
-        }
-        if (has('为什么是10个', '为什么设计10个', '候选数量', '几个候选')) {
-            return '现场快速设计默认输出 10 个候选，是为了兼顾展示节奏、候选多样性和后续 3D 结构展示的清晰度。不同路线也可以固定为适合该靶点的候选数量。';
-        }
-        if (has('离线识别', '模型加载', '语音加载', '正在启动离线语音')) {
-            return '离线识别第一次启动需要加载本地模型，通常稍等片刻即可。语音面板会显示当前状态，变为已就绪后再说完整指令。';
-        }
-        if (has('为什么没有反应', '听不见', '没听见', '语音没反应')) {
-            return '请确认浏览器允许麦克风权限，并靠近麦克风说完整一句话。语音面板会显示音量和离线识别状态，模型加载时请稍后再说一次。';
-        }
-        if (has('麦克风权限', '无法访问麦克风', '麦克风打不开')) {
-            return '请在浏览器地址栏允许麦克风权限，并确认没有其他录音软件占用麦克风。授权后可以重新点击语音按钮或开启小诺唤醒。';
-        }
         return '';
     }
 
@@ -9511,11 +9604,6 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (!answer) return false;
         pushVoiceAssistantLog('system', answer);
         updateVoiceUI('success', answer);
-        if (!isRunning) {
-            switchView('chat');
-            appendUserMsg(question);
-            appendAgentMsg(answer);
-        }
         voiceAssistantSpeak(answer);
         return true;
     }
@@ -9531,7 +9619,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     function handleResolvedVoiceIntent(intent, rawText) {
-        sendVoiceChatMessage(rawText);
+        const msg = '语音当前只用于快速设计。请说“小诺，打开快速设计”。';
+        pushVoiceAssistantLog('system', msg);
+        updateVoiceUI('success', msg);
+        voiceAssistantSpeak(msg);
     }
 
     function runVoiceAction(label, fn) {
@@ -9595,104 +9686,21 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     function routeVoiceCommand(cmd, rawText) {
         const qdVoiceResult = handleQuickDesignVoiceCommand(rawText || cmd);
         if (qdVoiceResult && qdVoiceResult.handled) return true;
-        if (voiceHas(cmd, ['取消任务', '停止任务', 'cancel task'])) {
-            return runVoiceAction('已取消当前工作流', () => cancelTask());
-        }
-        if (voiceHas(cmd, ['关闭窗口', '关闭弹窗', 'close viewer', 'close modal', 'close window'])) {
-            return runVoiceAction('已关闭窗口', () => {
-                if (binderSpinTimer) closeBinderSpinModal();
-                else if (molModalOpen) closeMolModal();
-                else closeRightPanel();
-            });
-        }
-
-        if (voiceHas(cmd, ['下一个候选', 'next binder', 'next candidate'])) {
-            return runVoiceAction('已打开下一个候选', () => openBinderByIndex((activeBinderIdx || 0) + 1));
-        }
-        if (voiceHas(cmd, ['上一个候选', 'previous binder', 'prev binder', 'previous candidate'])) {
-            return runVoiceAction('已打开上一个候选', () => openBinderByIndex((activeBinderIdx || 0) - 1));
-        }
-        if (voiceHas(cmd, ['打开候选', '打开第', 'open binder', 'open candidate', 'show binder', 'show candidate'])) {
-            return runVoiceAction('已打开候选结构', () => openBinderByIndex(getOrdinalFromVoice(cmd) ?? activeBinderIdx ?? 0));
-        }
-        if (voiceHas(cmd, ['旋转分子', '开始旋转', 'spin molecule', 'start spin', 'rotate molecule'])) {
-            return runVoiceAction('分子开始旋转', () => sendMolViewerCommand('toggleSpin', { spin: true }));
-        }
-        if (voiceHas(cmd, ['停止旋转', 'stop spin', 'stop rotation'])) {
-            return runVoiceAction('已停止旋转', () => sendMolViewerCommand('toggleSpin', { spin: false }));
-        }
-        if (voiceHas(cmd, ['重置视图', '重置分子', 'reset view', 'reset molecule'])) {
-            return runVoiceAction('已重置视图', () => sendMolViewerCommand('resetView'));
-        }
-        if (voiceHas(cmd, ['导出图片', '导出 png', 'export image', 'export png', 'download image'])) {
-            return runVoiceAction('正在导出图片', () => sendMolViewerCommand('exportImage'));
-        }
-        const styleMap = [
-            { patterns: ['切换卡通', '卡通模式', 'cartoon view', 'cartoon mode'], style: 'cartoon', label: '已切换卡通视图' },
-            { patterns: ['棒状', '棍状', 'stick view', 'stick mode'], style: 'stick', label: '已切换棒状视图' },
-            { patterns: ['球状', 'sphere view', 'sphere mode'], style: 'sphere', label: '已切换球状视图' },
-            { patterns: ['表面', 'surface view', 'surface mode'], style: 'surface', label: '已切换表面视图' },
-            { patterns: ['线框', 'line view', 'line mode'], style: 'line', label: '已切换线框视图' }
-        ];
-        for (const item of styleMap) {
-            if (voiceHas(cmd, item.patterns)) {
-                return runVoiceAction(item.label, () => sendMolViewerCommand('setStyle', { name: item.style }));
-            }
-        }
-        const colorMap = [
-            { patterns: ['按链着色', 'chain color', 'color by chain'], mode: 'chain', label: '已按链着色' },
-            { patterns: ['按原子着色', 'atom color', 'color by atom'], mode: 'atom', label: '已按原子着色' },
-            { patterns: ['抗原抗体着色', '抗体抗原着色', 'ab ag', 'antibody antigen'], mode: 'ab-ag', label: '已切换抗原抗体着色' }
-        ];
-        for (const item of colorMap) {
-            if (voiceHas(cmd, item.patterns)) {
-                return runVoiceAction(item.label, () => sendMolViewerCommand('setColor', { mode: item.mode }));
-            }
-        }
-
-        if (voiceHas(cmd, ['打开设计', '打开聊天', '回到设计', 'open design', 'open chat'])) return runVoiceAction('已打开设计页', () => switchView('chat'));
-        if (voiceHas(cmd, ['打开批次', '打开结果', 'open batches', 'show results'])) return runVoiceAction('已打开批次结果', () => switchView('batches'));
-        if (voiceHas(cmd, ['打开任务', '显示任务', 'show tasks', 'open tasks'])) return runVoiceAction('已打开任务栏', () => { switchView('chat'); const s = document.getElementById('agentTasksSidebar'); if (s && !s.classList.contains('open')) toggleSidebar(); });
-        if (voiceHas(cmd, ['打开序列分析', '序列分析', 'open sequence analysis'])) return runVoiceAction('已打开序列分析', () => openAnalysisPanel('seq'));
-        if (voiceHas(cmd, ['打开结构分析', '结构分析', 'open structure analysis'])) return runVoiceAction('已打开结构分析', () => openAnalysisPanel('struct'));
-        if (voiceHas(cmd, ['打开团队', '团队协作', 'open team'])) return runVoiceAction('已打开团队协作', () => switchView('team'));
-        if (voiceHas(cmd, ['打开知识库', '知识库', 'open knowledge', 'knowledge base'])) return runVoiceAction('已打开知识库', () => switchView('kb'));
-        if (voiceHas(cmd, ['新会话', '新的会话', 'new session'])) return runVoiceAction('已创建新会话', () => resetChat());
-
-        const panelMap = [
-            { patterns: ['风险位点', 'risk site', 'risk analysis'], tab: 'risk', label: '已打开风险位点' },
-            { patterns: ['cdr 分析', 'cdr analysis', 'cdr annotation'], tab: 'cdr', label: '已打开 CDR 分析' },
-            { patterns: ['人源化', 'humanization'], tab: 'humanization', label: '已打开人源化' },
-            { patterns: ['亲和力成熟', 'affinity maturation'], tab: 'maturation', label: '已打开亲和力成熟' },
-            { patterns: ['理化性质', 'physicochemical'], tab: 'physicochemical', label: '已打开理化性质' },
-            { patterns: ['浓度换算', 'concentration'], tab: null, label: '语音聊天不会直接运行浓度换算，请在输入框确认后发送。' },
-            { patterns: ['uniprot 查询', 'uniprot 搜索', 'uniprot search'], tab: null, label: '语音聊天不会直接查询 UniProt，请在输入框确认后发送。' }
-        ];
-        for (const item of panelMap) {
-            if (voiceHas(cmd, item.patterns)) {
-                if (!item.tab) return runVoiceAction(item.label, () => fillVoiceTranscriptInput(rawText || cmd, { message: item.label, level: 'info' }));
-                return runVoiceAction(item.label, () => openRightPanel(item.tab));
-            }
-        }
         return false;
     }
 
     async function handleVoiceTranscript(text) {
+        stopVoiceAssistantSpeech();
         const cmd = normalizeVoiceCommand(text);
         if (!cmd) return;
         pushVoiceAssistantLog('user', stripWakeWord(text) || text);
         if (routeVoiceCommand(cmd, text)) return;
-        const commonAnswer = voiceCommonAnswer(text);
-        if (commonAnswer && answerVoiceCommonQuestion(text, commonAnswer)) return;
-        updateVoiceUI('processing', '正在理解指令...');
-        try {
-            const intent = await requestVoiceIntent(text);
-            handleResolvedVoiceIntent(intent, text);
-        } catch (err) {
-            console.warn('[Voice] Intent routing failed:', err);
-            pushVoiceAssistantLog('system', '未匹配到直接指令，已进入对话。');
-            sendVoiceChatMessage(text);
-        }
+        const msg = isQuickDesignOpen()
+            ? '请说当前步骤中的一个选项，例如 PD-L1，或说“下一步”。'
+            : '语音当前只用于快速设计。请说“小诺，打开快速设计”。';
+        pushVoiceAssistantLog('system', msg);
+        updateVoiceUI('success', msg);
+        voiceAssistantSpeak(msg);
     }
 
     function stopBrowserWakeRecognition(options = {}) {
@@ -9885,6 +9893,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     function startWakeCommandCapture() {
+        stopVoiceAssistantSpeech();
         stopBrowserWakeRecognition();
         pauseLocalWakeCapture();
         wakeActiveCommand = true;
@@ -15079,6 +15088,9 @@ ${fallbackTableRows(profile.rows)}
 
         // Load persistent conversation history
         renderProjectHistory();
+
+        // Initialize the current Quick Design voice controls before the legacy voice bundle runs.
+        initVoiceShortcuts();
 
         // Rotating placeholder hints
         const placeholders = [

@@ -17,22 +17,23 @@
 “跳过思考”在同一次工作流中只能点击一次；进入快速思考后按钮必须保持“跳过中”禁用状态直到本次运行结束，避免现场重复点击。
 历史会话列表归属于知识库侧栏，应放在“公共资料库”入口下方；不要放回 Agent Tasks 任务侧栏底部，避免任务展示区被历史记录占用。
 快速设计向导不展示抗体分子类型选择步骤；抗体类型必须跟随当前 route/profile 默认值，并只在最终摘要、工作流文案和结果区中展示。
-小诺同学语音链路应分层实现：前端录音/VAD 只负责采集和端点检测，ASR 只负责转写，后端 `/api/voice/intent` 只做确定性界面控制和兼容诊断；普通语音里的抗体设计自然语言请求不得直接返回 `start_design` 或发送 WebSocket `quick_design`，应作为 `voiceChatOnly` 聊天处理。
+小诺同学语音链路应分层实现：前端录音/VAD 只负责采集和端点检测，ASR 只负责转写，语音识别结果当前仅用于快速设计向导控制；未命中快速设计命令时只在语音面板提示，不得写入主输入框、不得追加主聊天气泡、不得发送 `user_msg` 或启动任何普通工作流。
 小诺语音识别默认使用本机/服务器本地 ASR sidecar：默认地址 `LOCAL_ASR_BASE_URL=http://127.0.0.1:8765/v1/audio/transcriptions`，启动命令 `npm run asr:local`，首次安装命令 `npm run asr:setup`；同时允许在知识库侧栏“语音 API 设置”中配置 OpenAI 兼容的云端 ASR，例如 SiliconFlow `https://api.siliconflow.cn/v1/audio/transcriptions` 搭配 `FunAudioLLM/SenseVoiceSmall` 或 `TeleAI/TeleSpeechASR`。
 语音 ASR API 配置必须由后端持久化到安全运行配置文件，前端只显示 `hasApiKey`/“已保存”状态，不得明文回显 Key；保存后普通语音录入、小诺唤醒后的 WebSocket ASR、测试语音接口都必须使用当前持久 ASR 配置，未配置云端 ASR 时才回退本机离线 ASR。
 悬浮语音助手的 WebSocket PCM 流必须有客户端 VAD/端点检测：检测到用户开始说话后才推送有效音频，停顿后自动发送 `asr_stop`，并限制单段时长和后端缓存大小；不得依赖用户手动关闭语音助手才触发转写。
 语音播报 TTS 应优先使用参考项目同款 DashScope CosyVoice `cosyvoice-v2` / `longxiaoxia_v2`（可用 `QWEN_API_KEY` 或 `DASHSCOPE_API_KEY`），无 Key 或失败时回退免 Key Edge Neural `zh-CN-XiaomoNeural` 并使用偏快语速，再回退 Python `edge-tts` CLI、macOS `say` 或其他本地兜底；云端高质量 TTS 只能作为可选增强，不得成为现场语音功能的前置条件。
 TTS 只对播报文本做发音归一化，不改变页面展示文字；至少应将 `ZoonoAb`/`ZoonoAB`/`zoonoab` 读作 `zoono A B`，并将 `PD-L1`、`PD-1`、`CDR-H3` 等靶点和结构术语拆成更稳定的朗读形式。
 浏览器 `SpeechRecognition` 只能作为“小诺同学”唤醒词检测层使用，命令内容仍必须通过本地 16k WAV ASR 转写并交给 `/api/voice/intent` 解析；普通语音输入、小诺唤醒监听和唤醒后的命令录音必须互斥且幂等，避免重复会话抢占麦克风。
-语音前端 UI 可以采用悬浮麦克风按钮、悬浮免提开关和底部语音卡片的展示形态，但底层不得接入参考项目里基于大模型自由分类的 `/api/voice-intent` 路由；普通语音设计请求只能进入 `voiceChatOnly` 聊天，避免“设计抗体”误触发错误 workflow。
-若直接采用参考项目的悬浮语音 UI，必须将参考前端的 `start_design`、问答发送和 WebSocket ASR 消息处理改接到当前项目链路：普通语音问答通过 `user_msg` 携带 `voice:true` 与 `voiceChatOnly:true`，只有快速设计向导最终确认页才允许调用 `sendQuickDesignWorkflow(routeId)`；本地 ASR 二进制流按 16k PCM/WAV 兼容处理；不要把参考项目的鉴权、知识库或自由问答路由代码整体拼接进当前页面脚本。
+语音前端 UI 可以采用悬浮麦克风按钮、悬浮免提开关和底部语音卡片的展示形态，但底层不得接入参考项目里基于大模型自由分类的 `/api/voice-intent` 路由；普通语音设计请求和普通问答都不得进入聊天或 workflow，避免“设计抗体”误触发错误 workflow。
+若直接采用参考项目的悬浮语音 UI，必须将参考前端的 `start_design`、问答发送和 WebSocket ASR 消息处理改接到当前项目链路：只有快速设计向导最终确认页才允许调用 `sendQuickDesignWorkflow(routeId)`；本地 ASR 二进制流按 16k PCM/WAV 兼容处理；不要把参考项目的鉴权、知识库或自由问答路由代码整体拼接进当前页面脚本。
 本机离线 ASR 依赖安装到项目内 `.runtime/local-asr-venv`，不要污染系统 Python；默认使用 Paraformer 中文识别模型处理前端 16k WAV 短命令，`fsmn-vad` 和 `ct-punc` 默认关闭，只有需要长音频切分或标点时才通过 `LOCAL_ASR_VAD_MODEL`、`LOCAL_ASR_PUNC_MODEL` 手动开启，避免首次启动额外下载大模型并拖慢现场 demo。
 网页后端在本机 local ASR 配置下应自动拉起 sidecar（可用 `LOCAL_ASR_AUTO_START=0` 关闭），前端普通语音和“小诺同学”唤醒监听都应发送 16k WAV；本机 ASR 应配置小诺、PD-1/PD-L1、IL-33/ST2、HER2、TNF、Fab/VHH 等领域热词，提高现场短命令识别稳定性。
 语音现场可用性需要可诊断：后端 `/api/voice/health` 应返回 ASR 安装状态、sidecar/模型状态、是否可转写和现场人员可读消息；前端 API 面板应展示该状态，并在录音/唤醒时显示麦克风授权、实时输入音量和声波/状态反馈，低音量录音应先提示用户而不是直接送 ASR。
 没有云端语音识别 Key 时，前端不得禁用普通语音按钮或“小诺同学”唤醒入口；应默认使用本机/服务器本地 ASR，必要时触发健康检查或启动 sidecar，并显示“正在启动离线语音 / 模型加载中 / 需安装依赖”等现场可读状态，而不是要求先填写 Key。
-普通语音按钮只负责把识别结果填入输入框并等待用户手动发送；不得在转写完成后自动发送聊天或启动设计工作流。只有“小诺同学”语音唤醒模式可以继续自动执行明确的语音控制和页面操作；小诺唤醒态的普通问答应直接在主聊天区追加用户语音气泡并发送 `user_msg` with `voice:true` and `voiceChatOnly:true`，后端必须跳过 `detectIntent` 工作流路由并只走聊天兜底。
+普通语音按钮和“小诺同学”唤醒模式当前都只允许控制快速设计向导；普通语音识别结果不得填入主输入框、不得等待手动发送、不得自动发送聊天或启动设计工作流。快速设计最终确认页的明确启动语是唯一允许的语音工作流入口。
 小诺语音不得从普通自然语言设计请求直接启动任何 workflow 或 quick design；只有用户先用语音打开快速设计弹窗、按向导完成当前步骤，并在最终确认页明确说“启动 AI 分子设计/启动分子设计/确认启动”等确认语时，前端才允许发送 WebSocket `quick_design`。
 小诺控制快速设计应优先走前端确定性命令路由：打开/关闭快速设计、开始设计、下一步、上一步、最终确认启动，以及按当前步骤可见选项做疾病、靶点、机制、表位的模糊匹配；鼠标点击选项卡片仍只选中/高亮，语音向导命中当前步骤选项后可自动进入下一步并播报下一步问题。该控制链路不得使用大模型自由分类来决定 quick design route。
+快速设计语音选项匹配必须按当前步骤可见卡片做确定性模糊打分，并选择最可能选项；不得因为别名未完全命中而不选择，尤其 `PD-L1`、`HER2`、`EGFR`、`VEGF-A` 等靶点短命令必须稳定命中当前可见选项。
 本地 PDB 文件名可能包含小数点分数（例如 `iptm-0.7953`）；`/api/pdb/local/:filename` 需要在防目录穿越的前提下允许这种文件名，避免 Binders/3D viewer 弹窗因 PDB 请求 400 而空白。
 快速设计的 3D 展示可以对外使用 `PDL1-candidate-01.pdb` 这类产品化候选别名，由服务端内部映射到真实本地 PDB 文件；观众可见的候选名称和结构 URL 不应暴露本地 4KC3/IL33 文件名前缀，除非当前路线本身就是 IL-33/ST2。
 快速设计结束后自动打开的 3D 弹窗应全屏常驻展示：不得自动倒计时关闭，点击遮罩不得关闭，只保留显式关闭按钮和 Esc 作为人工出口；打开弹窗不能阻塞工作流队列或运行状态复位。
@@ -56,3 +57,4 @@ Render 上默认使用轻量离线 Vosk 中文小模型 `vosk-model-small-cn-0.2
 本机临时公网 demo 可用 tmux 保活：在 `zoonoab-agent` 中启动 `tmux new-session -d -s zoonoab-demo-server -c /home/ajifang/zoonoab/zoonoab-agent 'PORT=8080 /home/ajifang/zoonoab/zoonoab-agent/.tools/node-v20.19.2-linux-x64/bin/node server.js 2>&1 | tee -a .runtime/logs/server-8080.log'`，再启动 `tmux new-session -d -s zoonoab-demo-tunnel -c /home/ajifang/zoonoab/zoonoab-agent '/home/ajifang/zoonoab/zoonoab-agent/.tools/node-v20.19.2-linux-x64/bin/node node_modules/localtunnel/bin/lt.js --port 8080 --local-host 127.0.0.1 --subdomain zoonoab-demo-ajifang 2>&1 | tee -a .runtime/logs/localtunnel-8080.log'`。若后台环境找不到 `node`，优先使用项目内 `.tools/node-v20.19.2-linux-x64/bin/node` 绝对路径；检查状态用 `tmux list-sessions`、`curl http://127.0.0.1:8080/api/health` 和 `curl https://zoonoab-demo-ajifang.loca.lt/api/health`。
 
 GitHub 推送权限应使用仓库级 Deploy Key，并在本仓库本地 Git 配置中指定对应 SSH key；不要使用账号级 SSH key 扩大访问范围，也不要把私钥提交到仓库。
+小诺语音默认必须支持 barge-in：用户开口应立即打断当前 TTS 播报并恢复 ASR 聆听；调参时优先保证现场响应灵敏。
