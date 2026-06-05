@@ -60,9 +60,9 @@ const LOCAL_ASR_TORCH_INDEX_URL = process.env.LOCAL_ASR_TORCH_INDEX_URL || 'http
 const ASSISTANT_CHAT_MODEL = process.env.ASSISTANT_CHAT_MODEL || process.env.DEEPSEEK_CHAT_MODEL || 'deepseek-chat';
 const ASSISTANT_CHAT_BASE_URL = process.env.ASSISTANT_CHAT_BASE_URL || process.env.DEEPSEEK_CHAT_BASE_URL || process.env.VOICE_CHAT_BASE_URL || '';
 const VOICE_API_CONFIG_FILE = process.env.VOICE_API_CONFIG_FILE || path.join(__dirname, '.runtime', 'voice-api-config.json');
-const LOCAL_TTS_PROVIDER = String(process.env.LOCAL_TTS_PROVIDER || 'auto').trim().toLowerCase();
-const LOCAL_TTS_EDGE_VOICE = process.env.LOCAL_TTS_EDGE_VOICE || process.env.EDGE_TTS_VOICE || 'zh-CN-XiaomoNeural';
-const LOCAL_TTS_EDGE_RATE = String(process.env.LOCAL_TTS_EDGE_RATE || process.env.EDGE_TTS_RATE || '+18%').trim();
+const LOCAL_TTS_PROVIDER = String(process.env.LOCAL_TTS_PROVIDER || 'edge').trim().toLowerCase();
+const LOCAL_TTS_EDGE_VOICE = process.env.LOCAL_TTS_EDGE_VOICE || process.env.EDGE_TTS_VOICE || 'zh-CN-XiaoxiaoNeural';
+const LOCAL_TTS_EDGE_RATE = String(process.env.LOCAL_TTS_EDGE_RATE || process.env.EDGE_TTS_RATE || '+35%').trim();
 const LOCAL_TTS_EDGE_TIMEOUT_MS = Math.max(2500, Number(process.env.LOCAL_TTS_EDGE_TIMEOUT_MS || 7000) || 7000);
 const LOCAL_TTS_MACOS_RATE = String(process.env.LOCAL_TTS_MACOS_RATE || '185').trim();
 const LOCAL_TTS_EDGE_RETRY_MS = Math.max(30_000, Number(process.env.LOCAL_TTS_EDGE_RETRY_MS || 10 * 60 * 1000) || 10 * 60 * 1000);
@@ -534,51 +534,47 @@ function makeVoiceHealthMessage({ providerConfig, install, localHealth, localAut
     if (!providerConfig.key) return voiceProviderMissingKeyError(providerConfig.provider);
     return canTranscribe ? '云端语音识别配置已就绪。' : '云端语音识别配置待检查。';
   }
-  if (localHealth && localHealth.ready) return '本机离线语音已就绪。';
+  if (localHealth && localHealth.ready) return '语音控制已就绪。';
   const processState = getLocalAsrProcessState();
   if (!install.scriptReady) {
-    return '本机离线语音启动脚本缺失，请检查项目文件。';
+    return '语音控制服务暂时不可用，请检查项目文件。';
   }
   if (!install.venvReady && processState.managed) {
-    return '本机离线语音正在首次自动准备依赖，完成后会继续加载模型。';
+    return '语音控制正在准备，请稍后再试。';
   }
   if (!install.venvReady && install.canBootstrap) {
-    return '本机离线语音依赖尚未准备完成，系统会自动安装并启动。';
+    return '语音控制正在准备，请稍后再试。';
   }
-  if (!install.venvReady) {
-    return `本机离线语音依赖未安装。请先运行 ${install.setupCommand}。`;
-  }
+  if (!install.venvReady) return '语音控制暂未就绪，请联系现场工作人员检查配置。';
   if (!isLoopbackVoiceUrl(providerConfig.url)) {
-    return '本机离线语音地址必须指向 localhost 或 127.0.0.1。';
+    return '语音控制地址配置异常，请检查服务地址。';
   }
   if (!localAutoStartAvailable && LOCAL_ASR_AUTO_START) {
-    return '本机离线语音自动启动条件不满足，请手动运行 npm run asr:local。';
+    return '语音控制自动启动条件不满足，请手动运行 npm run asr:local。';
   }
   const state = localHealth && localHealth.state || '';
-  if (state === 'installing') return '本机离线语音正在首次自动准备依赖，完成后会继续加载模型。';
-  if (state === 'starting') return '本机离线语音服务正在启动，请稍后再试。';
-  if (state === 'loading') return '本机离线语音模型正在加载，首次启动需要等待模型预热完成。';
-  if (state === 'timeout') return '本机离线语音服务响应超时，模型可能仍在加载。';
-  if (state === 'error') return localHealth.error ? `本机离线语音模型加载失败：${localHealth.error}` : '本机离线语音模型加载失败。';
-  if (localAsrStarting || localAsrProcess && !localAsrProcess.killed) return '本机离线语音服务正在启动，请稍后再试。';
-  if (!LOCAL_ASR_AUTO_START && localManualStartAvailable) return '本机离线语音自动启动已关闭，可点击“启动离线语音”。';
-  if (!LOCAL_ASR_AUTO_START) return '本机离线语音自动启动已关闭，请运行 npm run asr:local。';
-  return '本机离线语音服务未就绪，系统会尝试自动启动。';
+  if (state === 'installing') return '语音控制正在准备，请稍后再试。';
+  if (state === 'starting') return '语音控制正在启动，请稍后再试。';
+  if (state === 'loading') return '语音控制正在准备，请稍后再试。';
+  if (state === 'timeout') return '语音控制响应超时，请稍后再试。';
+  if (state === 'error') return localHealth.error ? `语音控制初始化失败：${localHealth.error}` : '语音控制初始化失败。';
+  if (localAsrStarting || localAsrProcess && !localAsrProcess.killed) return '语音控制正在启动，请稍后再试。';
+  if (!LOCAL_ASR_AUTO_START && localManualStartAvailable) return '语音控制自动启动已关闭，可点击“启动语音控制”。';
+  if (!LOCAL_ASR_AUTO_START) return '语音控制自动启动已关闭，请运行 npm run asr:local。';
+  return '语音控制未就绪，系统会尝试自动启动。';
 }
 
 function localAsrUnavailableMessage() {
   const install = getLocalAsrInstallStatus();
   const processState = getLocalAsrProcessState();
   if (!install.venvReady && (install.canBootstrap || processState.managed)) {
-    return '本机离线语音正在首次自动准备依赖或加载模型，请稍后再试。';
+    return '语音控制正在准备，请稍后再试。';
   }
-  if (!install.venvReady) {
-    return `本机离线语音依赖未安装。请先运行 ${install.setupCommand}。`;
-  }
+  if (!install.venvReady) return '语音控制暂未就绪，请联系现场工作人员检查配置。';
   if (processState.managed || processState.starting) {
-    return '本机离线语音正在启动或模型正在加载，请稍后再试。';
+    return '语音控制正在启动，请稍后再试。';
   }
-  return '本机离线语音服务暂时不可用，系统会尝试自动启动；也可以在 API 面板点击“启动离线语音”。';
+  return '语音控制暂时不可用，系统会尝试自动启动；也可以在 API 面板点击“启动语音控制”。';
 }
 
 async function buildVoiceHealth(providerConfig = getVoiceProviderConfig(), options = {}) {
@@ -818,7 +814,7 @@ function getVoiceProviderConfig(req) {
 }
 
 function voiceProviderMissingKeyError(provider) {
-  if (isLocalVoiceProvider(provider)) return '本机离线语音服务无需 API Key。';
+  if (isLocalVoiceProvider(provider)) return '语音控制无需 API Key。';
   if (provider === 'openai') return '服务端未配置 OPENAI_API_KEY。';
   if (provider === 'deepseek') return '服务端未配置 DEEPSEEK_API_KEY。';
   if (provider === 'siliconflow') return '请填写 SiliconFlow 语音识别 API Key。';
@@ -1032,7 +1028,7 @@ async function transcribeAudioWithConfig(providerConfig, audio, contentType) {
 
 app.get('/api/voice/config', async (_, res) => {
   const providerConfig = getVoiceProviderConfig();
-  const health = await buildVoiceHealth(providerConfig, { autoStart: true, reason: 'config' });
+  const health = await buildVoiceHealth(providerConfig, { autoStart: false, reason: 'config' });
   const localHealth = health.localHealth || null;
   const chatConfig = getAssistantChatConfig();
   let chatReady = false;
@@ -1089,14 +1085,14 @@ app.post('/api/voice/local-asr/start', async (req, res) => {
     return res.status(400).json({
       ok: false,
       error: 'not_local_asr',
-      message: '当前语音识别不是本机离线模式。'
+      message: '当前语音识别不是本地语音控制模式。'
     });
   }
   if (!canManageLocalAsr(providerConfig)) {
     return res.status(400).json({
       ok: false,
       error: 'local_asr_not_manageable',
-      message: '本机离线语音地址必须指向 localhost 或 127.0.0.1。'
+      message: '语音控制地址必须指向 localhost 或 127.0.0.1。'
     });
   }
   const install = getLocalAsrInstallStatus();
@@ -1104,7 +1100,7 @@ app.post('/api/voice/local-asr/start', async (req, res) => {
     return res.status(409).json({
       ok: false,
       error: 'local_asr_not_installed',
-      message: `本机离线语音依赖未安装。请先运行 ${install.setupCommand}。`,
+      message: '语音控制暂未就绪，请联系现场工作人员检查配置。',
       install
     });
   }
@@ -1434,7 +1430,7 @@ function cosyVoiceApiKey() {
 
 function cosyVoiceAvailable() {
   if (!cosyVoiceApiKey()) return false;
-  if (LOCAL_TTS_PROVIDER === 'edge' || LOCAL_TTS_PROVIDER === 'macos' || LOCAL_TTS_PROVIDER === 'say') return false;
+  if (LOCAL_TTS_PROVIDER !== 'cosyvoice' && LOCAL_TTS_PROVIDER !== 'dashscope') return false;
   return !(cosyVoiceLastFailedAt && Date.now() - cosyVoiceLastFailedAt < COSYVOICE_TTS_RETRY_MS);
 }
 
@@ -1884,7 +1880,7 @@ app.get('/api/tts/health', async (_, res) => {
   const edgeRuntimeProbe = !edgeRetryAfterMs ? await probeEdgeNeuralTts() : edgeTtsHealthProbe;
   const edgeAvailable = Boolean(((edgeRuntimeProbe && edgeRuntimeProbe.available) || edgeCliInstalled) && !edgeRetryAfterMs);
   const cosyConfigured = Boolean(cosyVoiceApiKey());
-  const cosyAvailableNow = Boolean(cosyConfigured && !cosyRetryAfterMs && LOCAL_TTS_PROVIDER !== 'edge' && LOCAL_TTS_PROVIDER !== 'macos' && LOCAL_TTS_PROVIDER !== 'say');
+  const cosyAvailableNow = Boolean(cosyConfigured && !cosyRetryAfterMs && (LOCAL_TTS_PROVIDER === 'cosyvoice' || LOCAL_TTS_PROVIDER === 'dashscope'));
   res.json({
     ok: Boolean(cosyAvailableNow || edgeAvailable || macosAvailable),
     preferredProvider: LOCAL_TTS_PROVIDER === 'macos' || LOCAL_TTS_PROVIDER === 'say'

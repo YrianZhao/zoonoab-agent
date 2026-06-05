@@ -778,7 +778,6 @@
             background: conic-gradient(from 0deg, rgba(255,255,255,0), rgba(255,255,255,0.62), rgba(20,184,166,0.42), rgba(255,255,255,0), rgba(0,123,255,0.42), rgba(255,255,255,0));
             mix-blend-mode: screen;
             opacity: 0.62;
-            animation: voiceCoreSweep 6s linear infinite;
         }
         .voice-visual-core::after {
             content: '';
@@ -791,7 +790,6 @@
         }
         .voice-assistant-card.processing .voice-visual-core {
             filter: hue-rotate(-34deg) saturate(1.25) brightness(1.08);
-            animation: voiceCoreThinking 1.25s ease-in-out infinite;
         }
         .voice-assistant-card.success .voice-visual-core {
             filter: hue-rotate(48deg) saturate(1.18) brightness(1.08);
@@ -871,14 +869,9 @@
             0% { opacity: 0.46; transform: scale(0.72); }
             100% { opacity: 0; transform: scale(1.82); }
         }
-        @keyframes voiceCoreSweep { to { transform: rotate(360deg); } }
         @keyframes voiceCoreBreathe {
             0%, 100% { transform: scale(0.92); opacity: 0.72; }
             50% { transform: scale(1.06); opacity: 1; }
-        }
-        @keyframes voiceCoreThinking {
-            0%, 100% { transform: scale(calc(1 + var(--voice-level) * 0.18)); }
-            50% { transform: scale(calc(1.05 + var(--voice-level) * 0.18)); }
         }
         .voice-settings-btn {
             font-size: 11px;
@@ -3056,28 +3049,37 @@
         .qd-btn.ghost:hover { background: var(--bg-light); color: var(--text-primary); }
         .qd-helper-note { font-size: 11px; color: var(--text-muted); line-height: 1.5; margin-top: 8px; }
         body.quick-design-open #voiceAssistantCard {
-            left: auto !important;
-            right: max(18px, calc((100vw - min(760px, calc(100vw - 32px))) / 2 - 270px)) !important;
-            bottom: 118px !important;
-            width: 238px !important;
-            padding: 12px 12px 14px !important;
-            border-radius: 16px !important;
-            transform: translateY(10px) !important;
+            left: var(--voice-dock-left, auto) !important;
+            right: var(--voice-dock-right, 22px) !important;
+            top: var(--voice-dock-top, auto) !important;
+            bottom: var(--voice-dock-bottom, 96px) !important;
+            width: 176px !important;
+            padding: 8px 10px !important;
+            border-radius: 14px !important;
+            transform: translateY(8px) !important;
             z-index: 3002 !important;
+            max-height: 82px !important;
         }
         body.quick-design-open #voiceAssistantCard.visible { transform: translateY(0) !important; }
-        body.quick-design-open #voiceAssistantCard .voice-visual-area { height: 52px; margin: 2px 0 8px; }
-        body.quick-design-open #voiceAssistantCard .voice-visual-core {
-            width: 42px; height: 42px;
-            transform: scale(calc(1 + var(--voice-level) * 0.18));
-        }
-        body.quick-design-open #voiceAssistantCard .voice-visual-ring { width: 42px; height: 42px; }
+        body.quick-design-open #voiceAssistantCard .voice-card-head { margin-bottom: 0 !important; }
+        body.quick-design-open #voiceAssistantCard .voice-card-status { padding: 4px 8px !important; font-size: 11px !important; max-width: 100%; }
+        body.quick-design-open #voiceAssistantCard .voice-card-close,
+        body.quick-design-open #voiceAssistantCard .voice-visual-area,
+        body.quick-design-open #voiceAssistantCard .voice-visual-core,
+        body.quick-design-open #voiceAssistantCard .voice-visual-ring { display: none !important; }
         body.quick-design-open #voiceAssistantCard .voice-wave-bars { display: none; }
-        body.quick-design-open #voiceAssistantCard .voice-card-log { max-height: 82px; }
-        body.quick-design-open #voiceAssistantCard .voice-card-text { font-size: 12px; line-height: 1.45; }
+        body.quick-design-open #voiceAssistantCard .voice-card-log { display: none !important; }
+        body.quick-design-open #voiceAssistantCard .voice-card-text {
+            font-size: 11px !important;
+            line-height: 1.35 !important;
+            text-align: left !important;
+            min-height: 0 !important;
+            max-height: 30px !important;
+            overflow: hidden !important;
+            margin-top: 4px !important;
+        }
         body.quick-design-open #voiceStatusPop {
-            right: max(18px, calc((100vw - min(760px, calc(100vw - 32px))) / 2 - 270px)) !important;
-            bottom: 86px !important;
+            display: none !important;
             z-index: 3002 !important;
         }
         @media (min-width: 1120px) {
@@ -3097,33 +3099,20 @@
                 width: min(820px, calc(100vw - 250px)) !important;
             }
             body.quick-design-open #voiceAssistantCard {
-                right: 16px !important;
-                width: 188px !important;
-                padding: 10px 11px 12px !important;
+                width: 166px !important;
+                padding: 8px 10px !important;
             }
-            body.quick-design-open #voiceAssistantCard .voice-visual-area {
-                height: 0 !important;
-                margin: 0 !important;
-                overflow: hidden !important;
-            }
-            body.quick-design-open #voiceAssistantCard .voice-card-log { max-height: 56px !important; }
             body.quick-design-open #voiceStatusPop { right: 16px !important; }
         }
         @media (min-width: 641px) and (max-width: 1099px) {
             body.quick-design-open #voiceAssistantCard {
-                right: 14px !important;
-                top: 86px !important;
-                bottom: auto !important;
+                right: 12px !important;
+                top: auto !important;
+                bottom: calc(84px + env(safe-area-inset-bottom)) !important;
                 width: 172px !important;
                 padding: 9px 10px !important;
                 border-radius: 14px !important;
             }
-            body.quick-design-open #voiceAssistantCard .voice-visual-area {
-                height: 0 !important;
-                margin: 0 !important;
-                overflow: hidden !important;
-            }
-            body.quick-design-open #voiceAssistantCard .voice-card-log { display: none !important; }
             body.quick-design-open #voiceAssistantCard .voice-card-text {
                 font-size: 11px !important;
                 line-height: 1.4 !important;
@@ -3156,8 +3145,8 @@
             body.quick-design-open #voiceAssistantCard {
                 left: auto !important;
                 right: 12px !important;
-                top: calc(18px + env(safe-area-inset-top)) !important;
-                bottom: auto !important;
+                top: auto !important;
+                bottom: calc(84px + env(safe-area-inset-bottom)) !important;
                 width: min(156px, calc(100vw - 24px)) !important;
                 padding: 7px 8px !important;
                 border-radius: 14px !important;
@@ -4549,7 +4538,7 @@
                                     <div class="voice-settings-row">
                                         <label for="voiceProviderSelect">服务</label>
                                         <select id="voiceProviderSelect" onchange="applyVoiceProviderPreset(this.value)">
-                                            <option value="local">本机离线 ASR</option>
+                                            <option value="local">语音控制识别</option>
                                             <option value="siliconflow-sensevoice">SiliconFlow · SenseVoiceSmall</option>
                                             <option value="siliconflow-teleai">SiliconFlow · TeleSpeechASR</option>
                                             <option value="custom">自定义兼容接口</option>
@@ -4575,7 +4564,7 @@
                                                 语音链路状态
                                             </div>
                                             <div class="voice-health-actions">
-                                                <button class="voice-health-start-btn" id="voiceLocalAsrStartBtn" onclick="startLocalAsrFromPanel()">启动离线语音</button>
+                                                <button class="voice-health-start-btn" id="voiceLocalAsrStartBtn" onclick="startLocalAsrFromPanel()">启动语音控制</button>
                                                 <span class="voice-health-badge" id="voiceHealthBadge">检查中</span>
                                             </div>
                                         </div>
@@ -5471,7 +5460,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78145937';
+    const APP_BUILD_VERSION = '78146013';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -6415,6 +6404,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         ov.style.display = 'flex';
         document.body.classList.add('quick-design-open');
         qdRender();
+        if (typeof autoPlaceVoiceForQuickDesign === 'function') autoPlaceVoiceForQuickDesign();
         refreshLucideIcons({ nodes: [ov] });
     }
     function closeQuickDesign() {
@@ -6422,6 +6412,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (ov) ov.style.display = 'none';
         document.body.classList.remove('quick-design-open');
         qdVoiceWizardActive = false;
+        if (typeof stopQuickDesignContinuousVoice === 'function') stopQuickDesignContinuousVoice();
+        if (typeof loadFloatingVoicePosition === 'function') loadFloatingVoicePosition();
     }
 
     function qdGetTargetList() {
@@ -6863,11 +6855,11 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     function qdVoiceStepPrompt(step = qdState.step) {
-        if (step === 1) return '您想开发针对哪类疾病的治疗分子？';
-        if (step === 2) return '请选择希望作用的靶标蛋白';
-        if (step === 3) return '您希望这个分子实现什么作用？';
-        if (step === 4) return '希望抗体优先识别哪个区域？';
-        if (step === QD_TOTAL_STEPS - 1) return '设计任务已生成。确认后可以说，启动 AI 分子设计。';
+        if (step === 1) return '请选择疾病方向。';
+        if (step === 2) return '请选择靶标蛋白。';
+        if (step === 3) return '请选择作用机制。';
+        if (step === 4) return '请选择表位策略。';
+        if (step === QD_TOTAL_STEPS - 1) return '已生成任务。确认后说，启动 AI 分子设计。';
         return '';
     }
 
@@ -6885,6 +6877,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const text = stripWakeWord(rawText) || String(rawText || '').trim();
         const compact = qdVoiceCompact(text);
         if (!compact) return false;
+        const woke = hasWakeWord(rawText || '') || options.source === 'wake' || options.source === 'quick-design';
         const wantsOpen = qdVoiceHasAny(compact, ['打开快速设计', '开启快速设计', '新建设计', '新建项目']);
         const wantsStartWizard = qdVoiceHasAny(compact, ['开始设计', '进入设计', '开始向导', '进入向导', '开始分子设计']);
         const wantsNext = qdVoiceHasAny(compact, ['下一步', '往下', '继续', '然后下一步', '下一个']);
@@ -6901,15 +6894,18 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
         if (!isQuickDesignOpen()) {
             if (!wantsOpen) return false;
+            if (options.requireWakeToOpen && !woke) return false;
             switchView('chat');
             openQuickDesign();
             qdVoiceWizardActive = true;
+            quickDesignPromptListenDelay(360);
             return feedback('已打开快速设计。请说，开始设计。');
         }
 
         if (wantsOpen) {
             qdVoiceWizardActive = true;
             const prompt = qdState.step === 0 ? '已打开快速设计。请说，开始设计。' : (qdVoiceStepPrompt(qdState.step) || '已进入快速设计语音向导。');
+            quickDesignPromptListenDelay(360);
             return feedback(prompt);
         }
 
@@ -6921,11 +6917,14 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (wantsBack) {
             qdBack();
             const prompt = qdVoiceStepPrompt(qdState.step);
-            return feedback(prompt ? `已返回上一步。${prompt}` : '已返回上一步');
+            quickDesignPromptListenDelay(360);
+            return feedback(prompt ? `已返回。${prompt}` : '已返回上一步');
         }
         if (qdState.step === 0) {
             if (wantsStartWizard || wantsNext) {
+                qdVoiceWizardActive = true;
                 qdNext();
+                quickDesignPromptListenDelay(360);
                 return feedback(qdVoiceWizardActive ? qdVoiceStepPrompt(qdState.step) : '已进入疾病选择');
             }
             if (wantsSubmit) {
@@ -6947,11 +6946,14 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         }
         const selected = qdVoiceSelectVisibleOption(text);
         if (selected) {
+            qdVoiceWizardActive = true;
+            quickDesignPromptListenDelay(360);
             return feedback(qdVoiceAdvanceAfterSelection(selected));
         }
         if (wantsNext) {
             qdNext();
             const prompt = qdVoiceStepPrompt(qdState.step);
+            quickDesignPromptListenDelay(360);
             return feedback(prompt || '已进入下一步');
         }
         return false;
@@ -7783,6 +7785,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     let voiceLevelState = { rms: 0, peak: 0, lastAt: 0 };
     let voiceCardHideTimer = null;
     let voiceCardManuallyHidden = false;
+    let voiceContinuousTimer = null;
+    let voiceDragState = null;
     window.voiceSessionId = voiceSessionId;
 
     function isVoiceSupported() {
@@ -7871,6 +7875,140 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         });
     }
 
+    function setRootStyleProp(name, value) {
+        document.documentElement.style.setProperty(name, value);
+    }
+
+    function clearRootStyleProp(name) {
+        document.documentElement.style.removeProperty(name);
+    }
+
+    function setFloatingVoicePosition(x, y, options = {}) {
+        const btnSize = options.compact ? 46 : 58;
+        const margin = 10;
+        const maxX = Math.max(margin, window.innerWidth - btnSize - margin);
+        const maxY = Math.max(margin, window.innerHeight - btnSize - margin);
+        const left = Math.round(Math.max(margin, Math.min(maxX, Number(x) || maxX)));
+        const top = Math.round(Math.max(margin, Math.min(maxY, Number(y) || maxY)));
+        const right = Math.max(margin, window.innerWidth - left - btnSize);
+        const bottom = Math.max(margin, window.innerHeight - top - btnSize);
+        const quickOpen = document.body.classList.contains('quick-design-open');
+        const dockWidth = window.innerWidth <= 640 ? Math.min(156, window.innerWidth - 24) : (quickOpen ? 150 : 176);
+        setRootStyleProp('--voice-btn-left', `${left}px`);
+        setRootStyleProp('--voice-btn-top', `${top}px`);
+        setRootStyleProp('--voice-btn-right', 'auto');
+        setRootStyleProp('--voice-btn-bottom', 'auto');
+        setRootStyleProp('--wake-btn-left', `${Math.max(margin, left - 14)}px`);
+        setRootStyleProp('--wake-btn-top', `${Math.max(margin, top - 38)}px`);
+        setRootStyleProp('--wake-btn-right', 'auto');
+        setRootStyleProp('--wake-btn-bottom', 'auto');
+        setRootStyleProp('--voice-pop-left', `${Math.max(margin, Math.min(left, window.innerWidth - 220))}px`);
+        setRootStyleProp('--voice-pop-top', `${Math.max(margin, top - 76)}px`);
+        setRootStyleProp('--voice-pop-right', 'auto');
+        setRootStyleProp('--voice-pop-bottom', 'auto');
+        const cardLeft = Math.max(margin, Math.min(left - dockWidth + btnSize, window.innerWidth - dockWidth - margin));
+        const cardTop = Math.max(margin, quickOpen ? top - 72 : top - 98);
+        setRootStyleProp('--voice-card-left', `${cardLeft}px`);
+        setRootStyleProp('--voice-card-top', `${cardTop}px`);
+        setRootStyleProp('--voice-card-right', 'auto');
+        setRootStyleProp('--voice-card-bottom', 'auto');
+        setRootStyleProp('--voice-card-transform', 'translateY(0)');
+        setRootStyleProp('--voice-card-transform-hidden', 'translateY(12px)');
+        if (quickOpen) {
+            setRootStyleProp('--voice-dock-left', `${cardLeft}px`);
+            setRootStyleProp('--voice-dock-top', `${cardTop}px`);
+            setRootStyleProp('--voice-dock-right', 'auto');
+            setRootStyleProp('--voice-dock-bottom', 'auto');
+        } else {
+            setRootStyleProp('--voice-dock-right', `${right}px`);
+            setRootStyleProp('--voice-dock-bottom', `${Math.max(margin, bottom + btnSize + 12)}px`);
+            setRootStyleProp('--voice-dock-top', 'auto');
+            setRootStyleProp('--voice-dock-left', 'auto');
+        }
+    }
+
+    function clearFloatingVoicePosition() {
+        [
+            '--voice-btn-left', '--voice-btn-top', '--voice-btn-right', '--voice-btn-bottom',
+            '--wake-btn-left', '--wake-btn-top', '--wake-btn-right', '--wake-btn-bottom',
+            '--voice-pop-left', '--voice-pop-top', '--voice-pop-right', '--voice-pop-bottom',
+            '--voice-card-left', '--voice-card-top', '--voice-card-right', '--voice-card-bottom',
+            '--voice-card-transform', '--voice-card-transform-hidden',
+            '--voice-dock-left', '--voice-dock-right', '--voice-dock-top', '--voice-dock-bottom'
+        ].forEach(clearRootStyleProp);
+    }
+
+    function loadFloatingVoicePosition() {
+        try {
+            const saved = JSON.parse(localStorage.getItem('zoonoab_voice_mic_position') || 'null');
+            if (!saved || saved.manual !== true) return false;
+            setFloatingVoicePosition(saved.left, saved.top, { compact: document.body.classList.contains('quick-design-open') });
+            return true;
+        } catch {
+            return false;
+        }
+    }
+
+    function saveFloatingVoicePosition(left, top) {
+        try {
+            localStorage.setItem('zoonoab_voice_mic_position', JSON.stringify({ manual: true, left: Math.round(left), top: Math.round(top) }));
+        } catch {}
+    }
+
+    function autoPlaceVoiceForQuickDesign() {
+        if (loadFloatingVoicePosition()) return;
+        const compact = window.innerWidth <= 640;
+        const btnSize = compact ? 46 : 58;
+        const left = window.innerWidth - btnSize - (compact ? 14 : 22);
+        let top = window.innerHeight - btnSize - (compact ? 86 : 22);
+        const footer = document.getElementById('qdFooter');
+        if (footer) {
+            const footerRect = footer.getBoundingClientRect();
+            if (footerRect && footerRect.height) {
+                const aboveFooter = footerRect.top - btnSize - (compact ? 12 : 16);
+                top = Math.min(top, aboveFooter);
+            }
+        }
+        top = Math.max(compact ? 94 : 12, top);
+        setFloatingVoicePosition(left, top, { compact: true });
+    }
+
+    function initVoiceButtonDrag(btn) {
+        if (!btn || btn._voiceDragReady) return;
+        btn._voiceDragReady = true;
+        const onPointerMove = (event) => {
+            if (!voiceDragState) return;
+            const dx = event.clientX - voiceDragState.startX;
+            const dy = event.clientY - voiceDragState.startY;
+            if (Math.abs(dx) + Math.abs(dy) > 4) voiceDragState.moved = true;
+            setFloatingVoicePosition(voiceDragState.left + dx, voiceDragState.top + dy, { compact: document.body.classList.contains('quick-design-open') });
+        };
+        const onPointerUp = (event) => {
+            if (!voiceDragState) return;
+            document.removeEventListener('pointermove', onPointerMove);
+            document.removeEventListener('pointerup', onPointerUp);
+            btn.classList.remove('dragging');
+            const rect = btn.getBoundingClientRect();
+            saveFloatingVoicePosition(rect.left, rect.top);
+            if (voiceDragState.moved) {
+                event.preventDefault();
+                event.stopPropagation();
+                btn._skipNextClick = true;
+                setTimeout(() => { btn._skipNextClick = false; }, 250);
+            }
+            voiceDragState = null;
+        };
+        btn.addEventListener('pointerdown', (event) => {
+            if (event.button !== undefined && event.button !== 0) return;
+            const rect = btn.getBoundingClientRect();
+            voiceDragState = { startX: event.clientX, startY: event.clientY, left: rect.left, top: rect.top, moved: false };
+            btn.classList.add('dragging');
+            try { btn.setPointerCapture(event.pointerId); } catch {}
+            document.addEventListener('pointermove', onPointerMove);
+            document.addEventListener('pointerup', onPointerUp);
+        });
+    }
+
     function initPresentationVoiceUI() {
         if (document.getElementById('voiceBtn')) return;
         if (!document.getElementById('voicePresentationStyle')) {
@@ -7879,8 +8017,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             style.textContent = `
                 #voiceBtn {
                     position: fixed;
-                    right: 24px;
-                    bottom: 24px;
+                    right: var(--voice-btn-right, 24px);
+                    bottom: var(--voice-btn-bottom, 24px);
+                    left: var(--voice-btn-left, auto);
+                    top: var(--voice-btn-top, auto);
                     z-index: 9998;
                     width: 58px;
                     height: 58px;
@@ -7893,8 +8033,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                     color: #fff;
                     box-shadow: 0 10px 28px rgba(37, 99, 235, 0.34), 0 0 0 1px rgba(255,255,255,0.2) inset;
                     cursor: pointer;
+                    touch-action: none;
                     transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
                 }
+                #voiceBtn.dragging { transition: none; cursor: grabbing; }
                 #voiceBtn:hover { transform: scale(1.08); }
                 #voiceBtn.listening {
                     filter: brightness(1.08);
@@ -7906,8 +8048,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 }
                 #wakeBtn {
                     position: fixed;
-                    right: 24px;
-                    bottom: 92px;
+                    right: var(--wake-btn-right, 24px);
+                    bottom: var(--wake-btn-bottom, 92px);
+                    left: var(--wake-btn-left, auto);
+                    top: var(--wake-btn-top, auto);
                     z-index: 9998;
                     min-width: 72px;
                     height: 30px;
@@ -7935,8 +8079,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 }
                 #voiceStatusPop {
                     position: fixed;
-                    right: 24px;
-                    bottom: 160px;
+                    right: var(--voice-pop-right, 24px);
+                    bottom: var(--voice-pop-bottom, 160px);
+                    left: var(--voice-pop-left, auto);
+                    top: var(--voice-pop-top, auto);
                     z-index: 9997;
                     display: flex;
                     align-items: center;
@@ -7983,9 +8129,11 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 }
                 #voiceAssistantCard {
                     position: fixed;
-                    left: 50%;
-                    bottom: 94px;
-                    transform: translateX(-50%) translateY(16px);
+                    left: var(--voice-card-left, 50%);
+                    right: var(--voice-card-right, auto);
+                    top: var(--voice-card-top, auto);
+                    bottom: var(--voice-card-bottom, 94px);
+                    transform: var(--voice-card-transform-hidden, translateX(-50%) translateY(16px));
                     z-index: 9999;
                     width: min(360px, calc(100vw - 32px));
                     padding: 16px 18px 18px;
@@ -8005,7 +8153,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 #voiceAssistantCard.visible {
                     opacity: 1;
                     pointer-events: auto;
-                    transform: translateX(-50%) translateY(0);
+                    transform: var(--voice-card-transform, translateX(-50%) translateY(0));
                 }
                 #voiceAssistantCard::before {
                     content: '';
@@ -8019,9 +8167,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
                     -webkit-mask-composite: xor;
                     mask-composite: exclude;
-                    animation: voiceCardBorder 8s linear infinite;
                 }
-                @keyframes voiceCardBorder { to { transform: rotate(360deg); } }
                 .voice-card-head {
                     position: relative;
                     z-index: 1;
@@ -8188,21 +8334,21 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                     word-break: break-word;
                 }
                 @media (max-width: 640px) {
-                    #voiceBtn { right: 16px; bottom: 16px; }
-                    #wakeBtn { right: 16px; bottom: 84px; }
-                    #voiceStatusPop { right: 16px; bottom: 152px; max-width: calc(100vw - 32px); }
-                    #voiceAssistantCard { bottom: 84px; width: calc(100vw - 24px); }
+                    #voiceBtn { right: var(--voice-btn-right, 16px); bottom: var(--voice-btn-bottom, 16px); }
+                    #wakeBtn { right: var(--wake-btn-right, 16px); bottom: var(--wake-btn-bottom, 84px); }
+                    #voiceStatusPop { right: var(--voice-pop-right, 16px); bottom: var(--voice-pop-bottom, 152px); max-width: calc(100vw - 32px); }
+                    #voiceAssistantCard { bottom: var(--voice-card-bottom, 84px); width: calc(100vw - 24px); }
                     body.quick-design-open #voiceBtn {
-                        right: 14px;
-                        bottom: calc(128px + env(safe-area-inset-bottom));
+                        right: var(--voice-btn-right, 14px);
+                        bottom: var(--voice-btn-bottom, calc(128px + env(safe-area-inset-bottom)));
                         width: 46px;
                         height: 46px;
                         opacity: 0.9;
                         box-shadow: 0 8px 22px rgba(37, 99, 235, 0.26), 0 0 0 1px rgba(255,255,255,0.2) inset;
                     }
                     body.quick-design-open #wakeBtn {
-                        right: 66px;
-                        bottom: calc(136px + env(safe-area-inset-bottom));
+                        right: var(--wake-btn-right, 66px);
+                        bottom: var(--wake-btn-bottom, calc(136px + env(safe-area-inset-bottom)));
                         height: 28px;
                         min-width: 58px;
                         padding: 0 10px;
@@ -8213,9 +8359,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                         bottom: calc(184px + env(safe-area-inset-bottom));
                     }
                     body.quick-design-open #voiceAssistantCard {
-                        right: 12px !important;
-                        top: calc(18px + env(safe-area-inset-top)) !important;
-                        bottom: auto !important;
+                        right: var(--voice-dock-right, 12px) !important;
+                        top: var(--voice-dock-top, auto) !important;
+                        bottom: var(--voice-dock-bottom, calc(84px + env(safe-area-inset-bottom))) !important;
                         width: min(156px, calc(100vw - 24px)) !important;
                         padding: 7px 8px !important;
                         border-radius: 14px !important;
@@ -8248,9 +8394,13 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         btn.type = 'button';
         btn.title = '点击开始快速设计语音控制';
         btn.setAttribute('aria-label', '点击开始快速设计语音控制');
-        btn.onclick = () => toggleVoiceCapture();
+        btn.onclick = () => {
+            if (btn._skipNextClick) return;
+            toggleVoiceCapture();
+        };
         btn.innerHTML = '<i data-lucide="mic" style="width:22px;height:22px;"></i>';
         document.body.appendChild(btn);
+        initVoiceButtonDrag(btn);
 
         const wakeBtn = document.createElement('button');
         wakeBtn.className = 'input-icon-btn wake-btn';
@@ -8302,6 +8452,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             <div class="voice-card-text" id="voiceAssistantText">语音控制就绪</div>
         `;
         document.body.appendChild(card);
+        loadFloatingVoicePosition();
         lucide.createIcons({ nodes: [btn, card] });
     }
 
@@ -8385,9 +8536,13 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             stopVoiceAssistantSpeech();
             const audio = new Audio('/api/tts-stream?text=' + encodeURIComponent(value.slice(0, 800)));
             voiceAssistantAudio = audio;
-            audio.onended = () => { if (voiceAssistantAudio === audio) voiceAssistantAudio = null; };
-            audio.onerror = () => { if (voiceAssistantAudio === audio) voiceAssistantAudio = null; };
-            audio.play().catch(() => { if (voiceAssistantAudio === audio) voiceAssistantAudio = null; });
+            const done = () => {
+                if (voiceAssistantAudio === audio) voiceAssistantAudio = null;
+                scheduleQuickDesignContinuousListen();
+            };
+            audio.onended = done;
+            audio.onerror = done;
+            audio.play().catch(done);
         } catch (err) {}
     }
 
@@ -8408,7 +8563,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     function healthBadgeText(status) {
         const normalized = normalizeHealthStatus(status);
         if (normalized === 'ready') return '已就绪';
-        if (normalized === 'loading') return '加载中';
+        if (normalized === 'loading') return '准备中';
         if (normalized === 'installing') return '准备中';
         if (normalized === 'starting') return '启动中';
         if (normalized === 'not_installed') return '未安装';
@@ -8439,8 +8594,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (message) message.textContent = cfg?.healthMessage || cfg?.message || '正在检查语音链路...';
         if (asr) {
             const provider = cfg?.provider || 'local';
-            const label = local ? '本机离线' : provider;
-            asr.textContent = `${label}${ready ? ' · ready' : ' · ' + healthBadgeText(state)}`;
+            const label = local ? '语音控制' : provider;
+            asr.textContent = `${label}${ready ? ' · 已就绪' : ' · ' + healthBadgeText(state)}`;
         }
         if (model) model.textContent = cfg?.model || cfg?.localHealth?.model || '--';
         if (wake) wake.textContent = wakeEnabled ? (wakeActiveCommand ? '已唤醒' : '监听中') : '未开启';
@@ -8451,19 +8606,19 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             startBtn.disabled = voiceLocalAsrStarting || (!ready && !canStart);
             if (voiceLocalAsrStarting) {
                 startBtn.textContent = '启动中...';
-                startBtn.title = '正在启动本机离线语音服务';
+                startBtn.title = '正在启动语音控制服务';
             } else if (ready) {
                 startBtn.textContent = '刷新';
-                startBtn.title = '重新检查本机离线语音状态';
+                startBtn.title = '重新检查语音控制状态';
             } else if (canStart) {
                 const inProgress = ['installing', 'starting', 'loading'].includes(state);
-                startBtn.textContent = state === 'installing' ? '准备中' : (inProgress ? '启动中' : '启动离线语音');
+                startBtn.textContent = state === 'installing' ? '准备中' : (inProgress ? '启动中' : '启动语音控制');
                 startBtn.title = inProgress
-                    ? '本机离线语音正在准备或加载，点击可重新检查状态'
-                    : '启动或恢复本机离线语音服务';
+                    ? '语音控制正在准备，点击可重新检查状态'
+                    : '启动或恢复语音控制服务';
             } else if (state === 'not_installed') {
-                startBtn.textContent = '需安装';
-                startBtn.title = '请先运行 npm run asr:setup，或开启自动准备环境';
+                startBtn.textContent = '待配置';
+                startBtn.title = '请联系现场工作人员检查语音控制配置';
             } else {
                 startBtn.textContent = '刷新';
                 startBtn.title = '重新检查语音状态';
@@ -8478,7 +8633,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             const health = await resp.json().catch(() => ({}));
             voiceConfigState = { ...voiceConfigState, ...health };
             renderVoiceHealth(voiceConfigState);
-            maybeScheduleVoiceHealthRefresh(health);
+            maybeScheduleVoiceHealthRefresh(health, options);
             return health;
         } catch (err) {
             console.warn('[Voice] Health check failed:', err);
@@ -8493,11 +8648,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         voiceHealthRefreshTimer = setTimeout(() => refreshVoiceHealth(options), delay);
     }
 
-    function maybeScheduleVoiceHealthRefresh(health = voiceConfigState) {
+    function maybeScheduleVoiceHealthRefresh(health = voiceConfigState, options = {}) {
         if (!health || !health.local || health.localReady || health.canTranscribe) return;
+        if (options.autoStart === false && !(health.process?.managed || health.process?.starting)) return;
         const state = normalizeHealthStatus(health.localState || health.status || health.healthStatus);
         if (['installing', 'starting', 'loading', 'unavailable', 'timeout'].includes(state) || health.process?.managed || health.process?.starting) {
-            scheduleVoiceHealthRefresh(state === 'installing' ? 5000 : 2500, { autoStart: true });
+            scheduleVoiceHealthRefresh(state === 'installing' ? 5000 : 2500, { autoStart: options.autoStart !== false });
         }
     }
 
@@ -8509,14 +8665,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
     function voiceStartupMessage(health = voiceConfigState) {
         const state = normalizeHealthStatus(health?.localState || health?.status || health?.healthStatus);
-        if (state === 'not_installed') {
-            return health?.message || health?.healthMessage || '本机离线语音依赖未安装，请先运行 npm run asr:setup。';
-        }
+        if (state === 'not_installed') return '语音控制暂未就绪，请联系现场工作人员检查配置。';
         if (['installing', 'starting', 'loading'].includes(state) || health?.process?.managed || health?.process?.starting) {
-            return health?.message || health?.healthMessage || '本机离线语音正在启动或加载模型，请稍后再说一次。';
+            return health?.message || health?.healthMessage || '语音控制正在准备，请稍后再说一次。';
         }
         if (health?.message || health?.healthMessage) return health.message || health.healthMessage;
-        return '正在启动本机离线语音，请稍后再说一次。';
+        return '语音控制正在准备，请稍后再说一次。';
     }
 
     async function forceStartLocalAsrForCapture(source) {
@@ -8533,10 +8687,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 healthMessage: data.message || data.healthMessage || voiceConfigState.healthMessage
             };
             renderVoiceHealth(voiceConfigState);
-            maybeScheduleVoiceHealthRefresh(voiceConfigState);
+            maybeScheduleVoiceHealthRefresh(voiceConfigState, { autoStart: true });
             return voiceConfigState;
         } catch (err) {
-            const msg = err && err.message ? err.message : '本机离线语音启动失败';
+            const msg = err && err.message ? err.message : '语音控制启动失败';
             voiceConfigState = { ...voiceConfigState, healthStatus: 'unavailable', healthMessage: msg };
             renderVoiceHealth(voiceConfigState);
             return voiceConfigState;
@@ -8559,7 +8713,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             return false;
         }
         const sourceLabel = source === 'wake' || source === 'wake-listen' ? '小诺语音' : '语音输入';
-        updateVoiceUI('processing', `${sourceLabel}正在启动离线识别...`);
+        updateVoiceUI('processing', `${sourceLabel}正在准备...`);
         health = await refreshVoiceHealth({ autoStart: true });
         if (voiceHealthReady(health)) return true;
         const canStart = Boolean(health?.manualStartAvailable || health?.autoStartAvailable || health?.install?.canBootstrap || health?.install?.venvReady);
@@ -8570,7 +8724,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const msg = voiceStartupMessage(health);
         updateVoiceUI('processing', msg);
         showToast(msg, normalizeHealthStatus(health?.localState || health?.status || health?.healthStatus) === 'not_installed' ? 'warning' : 'info');
-        maybeScheduleVoiceHealthRefresh(health);
+        maybeScheduleVoiceHealthRefresh(health, { autoStart: true });
         return false;
     }
 
@@ -8585,11 +8739,11 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         try {
             voiceLocalAsrStarting = true;
             renderVoiceHealth(voiceConfigState);
-            if (note) note.textContent = '正在启动本机离线语音服务...';
+            if (note) note.textContent = '正在启动语音控制服务...';
             const resp = await fetch('/api/voice/local-asr/start', { method: 'POST' });
             const data = await resp.json().catch(() => ({}));
             if (!resp.ok || data.ok === false) {
-                const msg = data.message || '本机离线语音启动失败';
+                const msg = data.message || '语音控制启动失败';
                 showToast(msg, resp.status === 409 ? 'warning' : 'error');
                 if (note) note.textContent = msg;
                 voiceConfigState = { ...voiceConfigState, ...data, healthStatus: data.status || data.error || 'unavailable', healthMessage: msg };
@@ -8599,16 +8753,16 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             voiceConfigState = { ...voiceConfigState, ...data };
             renderVoiceHealth(voiceConfigState);
             if (data.canTranscribe || data.localReady) {
-                if (note) note.textContent = '本机离线语音已就绪。';
-                showToast('本机离线语音已就绪', 'success');
+                if (note) note.textContent = '语音控制已就绪。';
+                showToast('语音控制已就绪', 'success');
             } else {
-                const msg = data.message || '本机离线语音正在启动或加载模型，请稍后再试。';
+                const msg = data.message || '语音控制正在准备，请稍后再试。';
                 if (note) note.textContent = msg;
                 showToast(msg, 'info');
-                maybeScheduleVoiceHealthRefresh(data);
+                maybeScheduleVoiceHealthRefresh(data, { autoStart: true });
             }
         } catch (err) {
-            const msg = err && err.message ? err.message : '本机离线语音启动失败';
+            const msg = err && err.message ? err.message : '语音控制启动失败';
             showToast(msg, 'error');
             if (note) note.textContent = msg;
         } finally {
@@ -8651,7 +8805,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 voiceKeyInput.value = '';
                 voiceKeyInput.disabled = voicePreset === 'local';
                 voiceKeyInput.placeholder = voicePreset === 'local'
-                    ? '本机离线无需 Key'
+                    ? '本地识别无需 Key'
                     : (cfg.hasApiKey ? '已安全保存，留空继续使用' : '语音识别 Key');
                 voiceKeyInput.title = cfg.hasApiKey ? '真实 Key 已安全保存，前端不回显；填写新 Key 后保存可覆盖。' : '填写语音识别 API Key';
             }
@@ -8669,12 +8823,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             if (note) {
                 const voiceKeyState = cfg.hasApiKey ? 'Key 已安全保存' : (cfg.local === false ? 'Key 待填写' : '无需 Key');
                 const chatKeyState = cfg.chat?.hasApiKey ? 'Key 已安全保存' : 'Key 待填写';
-                const voiceLabel = cfg.local === false ? (cfg.provider || 'compatible') : '本机语音';
+                const voiceLabel = cfg.local === false ? (cfg.provider || 'compatible') : '语音控制';
                 const voiceState = `${voiceLabel} · ${cfg.model || ''} · ${voiceKeyState} · ${cfg.healthMessage || ''}`;
                 const chatState = cfg.chat?.ready ? `聊天已就绪 · ${cfg.chat.model || ''} · ${chatKeyState}` : `聊天可选填 · ${chatKeyState}`;
                 note.textContent = `${voiceState} / ${chatState}；前端不回显真实 Key`;
             }
-            maybeScheduleVoiceHealthRefresh(cfg);
+            maybeScheduleVoiceHealthRefresh(cfg, { autoStart: false });
         } catch (err) {
             console.warn('[Voice] Config check failed:', err);
             renderVoiceHealth({ healthStatus: 'unavailable', healthMessage: '语音配置读取失败。' });
@@ -8691,7 +8845,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (btn) btn.classList.toggle('active', shouldOpen);
         if (shouldOpen) {
             loadVoiceConfig();
-            refreshVoiceHealth({ autoStart: true });
+            refreshVoiceHealth({ autoStart: false });
         }
     }
 
@@ -8953,7 +9107,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (keyInput) {
             if (isLocal) keyInput.value = '';
             keyInput.disabled = isLocal;
-            keyInput.placeholder = isLocal ? '本机离线无需 Key' : (voiceConfigState?.hasApiKey ? '已安全保存，留空继续使用' : '语音识别 Key');
+            keyInput.placeholder = isLocal ? '本地识别无需 Key' : (voiceConfigState?.hasApiKey ? '已安全保存，留空继续使用' : '语音识别 Key');
         }
     }
 
@@ -9104,7 +9258,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             loadVoiceConfig();
             if (voiceKeyInput) {
                 voiceKeyInput.value = '';
-                voiceKeyInput.placeholder = data.local ? '本机离线无需 Key' : (data.hasApiKey ? '已安全保存，留空继续使用' : '语音识别 Key');
+                voiceKeyInput.placeholder = data.local ? '本地识别无需 Key' : (data.hasApiKey ? '已安全保存，留空继续使用' : '语音识别 Key');
                 voiceKeyInput.title = data.hasApiKey ? '真实 Key 已安全保存，前端不回显；填写新 Key 后保存可覆盖。' : '填写语音识别 API Key';
             }
             if (chatKeyInput) {
@@ -9114,13 +9268,13 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             }
             if (note) {
                 const voiceText = data.local
-                    ? `${data.provider || 'local'} 本机语音 · ${data.model || 'paraformer-zh'}`
+                    ? `语音控制已就绪 · ${data.model || 'paraformer-zh'}`
                     : `${data.provider || 'compatible'} 语音识别已就绪 · ${data.model || voiceModel}`;
                 const chatText = data.chat?.ready ? `${data.chat.provider || 'Chat'} 聊天已就绪 · ${data.chat.model || chatModel}` : '聊天未配置，将使用内置问答话术';
                 note.textContent = `${voiceText} / ${chatText} · 前端不回显真实 Key`;
             }
             toggleVoiceSettings(false);
-            showToast(data.local ? '本机语音配置已生效' : '语音识别 API 配置已保存', 'success');
+            showToast(data.local ? '语音控制配置已生效' : '语音识别 API 配置已保存', 'success');
         } catch (err) {
             console.warn('[Voice] Save settings failed:', err);
             showToast('API 配置保存失败', 'error');
@@ -9251,7 +9405,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     function getVoiceListeningMessage(source) {
         if (source === 'space') return '正在听，松开空格后识别指令';
         if (source === 'wake') return '小诺已唤醒，请说指令';
-        return '正在听快速设计指令';
+        if (source === 'quick-design') return '请直接说当前选项';
+        return '正在听网站控制指令';
     }
 
     async function startVoiceCapture(source) {
@@ -9409,7 +9564,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                     const audioBlob = encodeWavFromFloat32(samples, LOCAL_ASR_SAMPLE_RATE);
                     voiceMediaRecorder = null;
                     await transcribeVoiceBlob(audioBlob, { source: captureSource });
-                    if (wakeEnabled) resumeWakeListeningAfterCommand(captureSource === 'wake' ? 1400 : 700);
+            if (shouldKeepQuickDesignListening()) scheduleQuickDesignContinuousListen(340);
+            else if (wakeEnabled) resumeWakeListeningAfterCommand(captureSource === 'wake' ? 1400 : 700);
                 }
             };
             updateVoiceUI('listening', getVoiceListeningMessage(source));
@@ -9437,6 +9593,30 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             updateVoiceUI('idle');
             if (wakeEnabled) resumeWakeListeningAfterCommand(500);
         }
+    }
+
+    function shouldKeepQuickDesignListening() {
+        return Boolean(isQuickDesignOpen() && qdVoiceWizardActive && voiceState !== 'listening' && voiceState !== 'processing');
+    }
+
+    function quickDesignPromptListenDelay(delay = 260) {
+        if (!shouldKeepQuickDesignListening()) return;
+        const promptDelay = voiceAssistantAudio ? Math.min(Math.max(180, delay), 520) : delay;
+        scheduleQuickDesignContinuousListen(promptDelay);
+    }
+
+    function stopQuickDesignContinuousVoice() {
+        clearTimeout(voiceContinuousTimer);
+        voiceContinuousTimer = null;
+    }
+
+    function scheduleQuickDesignContinuousListen(delay = 260) {
+        stopQuickDesignContinuousVoice();
+        if (!shouldKeepQuickDesignListening()) return;
+        voiceContinuousTimer = setTimeout(() => {
+            if (!shouldKeepQuickDesignListening()) return;
+            startVoiceCapture('quick-design');
+        }, delay);
     }
 
     function toggleVoiceCapture() {
@@ -9469,7 +9649,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         }
         const audioBlob = new Blob(chunks, { type: mimeType || 'audio/webm' });
         await transcribeVoiceBlob(audioBlob, { source: captureSource });
-        if (wakeEnabled) resumeWakeListeningAfterCommand(captureSource === 'wake' ? 1400 : 700);
+        if (shouldKeepQuickDesignListening()) scheduleQuickDesignContinuousListen(340);
+        else if (wakeEnabled) resumeWakeListeningAfterCommand(captureSource === 'wake' ? 1400 : 700);
     }
 
     async function transcribeVoiceBlob(audioBlob, options = {}) {
@@ -9482,17 +9663,17 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             }
             if (options.source === 'wake') {
                 updateVoiceUI('success', '小诺收到：' + text);
-                handleVoiceTranscript(text);
+                handleVoiceTranscript(text, { source: 'wake' });
                 return;
             }
             pushVoiceAssistantLog('user', text);
-            handleVoiceTranscript(text);
+            handleVoiceTranscript(text, { source: options.source || '' });
         } catch (err) {
             console.warn('[Voice] Transcription error:', err);
             const msg = err && err.message ? err.message : '语音识别服务不可用';
             updateVoiceUI('error', msg);
             showToast(msg, 'error');
-            if (/本机离线|local_asr|语音服务|模型|启动|加载/i.test(msg)) {
+            if (/语音控制|local_asr|语音服务|模型|启动|准备|加载/i.test(msg)) {
                 refreshVoiceHealth({ autoStart: true });
             }
             if (options.source === 'wake' && wakeEnabled) resumeWakeListeningAfterCommand(900);
@@ -9579,8 +9760,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
     function fillVoiceTranscriptInput(text, options = {}) {
         const msg = isQuickDesignOpen()
-            ? '语音当前只用于快速设计，请直接说当前步骤中的选项。'
-            : '语音当前只用于快速设计。请说“小诺，打开快速设计”。';
+            ? '请直接说当前步骤中的选项，或说“下一步”。'
+            : '我可以控制网站功能。请先说“你好小诺，打开快速设计”。';
         pushVoiceAssistantLog('system', msg);
         updateVoiceUI('success', msg);
         if (options.speak !== false) voiceAssistantSpeak(msg);
@@ -9596,8 +9777,29 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     function voiceCommonAnswer(text) {
+        const raw = String(text || '').trim();
+        const compact = normalizeVoiceCommand(stripWakeWord(raw) || raw).replace(/\s+/g, '');
+        if (!compact) return '';
+        const hasAny = (...tokens) => tokens.some(token => compact.includes(normalizeVoiceCommand(token).replace(/\s+/g, '')));
+        if (hasAny('你好', '在吗', '小诺在吗', '嗨')) return '我在。你可以让我打开快速设计、打开序列分析，或者询问这个网站的功能。';
+        if (hasAny('你是谁', '小诺是谁', '介绍一下你')) return '我是小诺，负责帮助你用语音控制 ZoonoAb 页面，并回答平台功能相关的问题。';
+        if (hasAny('zoonoab是什么', '这个网站是什么', '平台是什么')) return 'ZoonoAb 是一个抗体与治疗分子设计展示平台，包含快速设计、序列分析、结构分析、知识库和 3D 结果展示。';
+        if (hasAny('能做什么', '有什么功能', '网站功能', '平台功能')) return '这个网站可以做快速分子设计、抗体序列分析、结构分析、候选结果展示和知识库资料管理。语音目前主要用于打开和控制这些页面功能。';
+        if (hasAny('快速设计怎么用', '快速设计是什么', '怎么快速设计')) return '快速设计按向导完成：先选择疾病方向，再选择靶标蛋白、作用机制和表位策略，最后确认启动 AI 分子设计。';
+        if (hasAny('为什么先选疾病', '先选疾病', '疾病再选靶点')) return '先选疾病方向可以限定治疗场景，再选靶点时系统会只展示更符合该场景的路线。';
+        if (hasAny('序列分析', '打开序列', '序列能做什么')) return '序列分析可以做 CDR 注释、风险位点扫描、人源化、多序列比对和理化性质分析。你也可以说“你好小诺，打开序列分析”。';
+        if (hasAny('结构分析', '打开结构', '三维结构', '3d结构')) return '结构分析可以查看 3D 分子结构，并支持亲和力成熟、表位预测、结构预测和相互作用分析。';
+        if (hasAny('知识库', '资料库')) return '知识库用于管理项目资料、结构文件、序列文件、报告和实验相关文档。';
+        if (hasAny('pd-l1', 'pdl1', 'pd1')) return 'PD-L1 是肿瘤免疫检查点靶点之一，快速设计默认路线会围绕 PD-1 和 PD-L1 相互作用界面生成 Fab 候选。';
+        if (hasAny('her2')) return 'HER2 是常见肿瘤靶点，平台可以围绕 HER2 胞外结构域生成 Fab 候选。';
+        if (hasAny('il33', 'st2')) return 'IL-33 和 ST2 是过敏与炎症场景中的重要通路，平台可展示针对 IL-33/ST2 界面的抗体设计路线。';
+        if (hasAny('tnf')) return 'TNF 是自身免疫和炎症疾病中的经典靶点，平台支持中和 TNF 功能的设计路线展示。';
+        if (hasAny('fab', 'vhh')) return 'Fab 更适合展示经典抗体片段结构，VHH 更小、更稳定，适合纳米抗体路线。快速设计会根据路线自动选择。';
+        if (hasAny('cdrh3', 'cdr-h3', 'cdr')) return 'CDR 是抗体结合抗原的关键区域，其中 CDR-H3 通常对结合特异性影响很大。';
+        if (hasAny('表位')) return '表位是抗体希望识别的抗原区域。快速设计可以自动选择最优表位，也可以偏向相互作用界面、保守区域或暴露环区。';
         return '';
     }
+    window.voiceCommonAnswer = voiceCommonAnswer;
 
     function answerVoiceCommonQuestion(rawText, answer) {
         const question = stripWakeWord(rawText) || String(rawText || '').trim();
@@ -9619,7 +9821,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     function handleResolvedVoiceIntent(intent, rawText) {
-        const msg = '语音当前只用于快速设计。请说“小诺，打开快速设计”。';
+        const msg = '我可以控制网站功能。请先说“你好小诺，打开快速设计”，或询问平台功能。';
         pushVoiceAssistantLog('system', msg);
         updateVoiceUI('success', msg);
         voiceAssistantSpeak(msg);
@@ -9683,21 +9885,46 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         }
     }
 
-    function routeVoiceCommand(cmd, rawText) {
-        const qdVoiceResult = handleQuickDesignVoiceCommand(rawText || cmd);
+    function routeVoiceCommand(cmd, rawText, options = {}) {
+        const qdVoiceResult = handleQuickDesignVoiceCommand(rawText || cmd, {
+            requireWakeToOpen: true,
+            source: options.source || ''
+        });
         if (qdVoiceResult && qdVoiceResult.handled) return true;
+        if (!isQuickDesignOpen()) {
+            if (voiceHas(cmd, ['打开序列分析', '打开序列', '序列分析', '打开序列页面'])) {
+                if (!hasWakeWord(rawText || cmd) && options.source !== 'wake') return false;
+                runVoiceAction('已打开序列分析', () => {
+                    switchView('chat');
+                    if (activeAnalysisPanel !== 'seq') openAnalysisPanel('seq');
+                });
+                voiceAssistantSpeak('已打开序列分析');
+                return true;
+            }
+            if (voiceHas(cmd, ['打开结构分析', '打开结构', '结构分析', '打开3d', '打开三维'])) {
+                if (!hasWakeWord(rawText || cmd) && options.source !== 'wake') return false;
+                runVoiceAction('已打开结构分析', () => {
+                    switchView('chat');
+                    if (activeAnalysisPanel !== 'struct') openAnalysisPanel('struct');
+                });
+                voiceAssistantSpeak('已打开结构分析');
+                return true;
+            }
+        }
         return false;
     }
 
-    async function handleVoiceTranscript(text) {
+    async function handleVoiceTranscript(text, options = {}) {
         stopVoiceAssistantSpeech();
         const cmd = normalizeVoiceCommand(text);
         if (!cmd) return;
         pushVoiceAssistantLog('user', stripWakeWord(text) || text);
-        if (routeVoiceCommand(cmd, text)) return;
+        if (routeVoiceCommand(cmd, text, options)) return;
+        const answer = voiceCommonAnswer(text);
+        if (answerVoiceCommonQuestion(text, answer)) return;
         const msg = isQuickDesignOpen()
             ? '请说当前步骤中的一个选项，例如 PD-L1，或说“下一步”。'
-            : '语音当前只用于快速设计。请说“小诺，打开快速设计”。';
+            : '我可以控制网站已有功能。请说“你好小诺，打开快速设计”，或问我平台能做什么。';
         pushVoiceAssistantLog('system', msg);
         updateVoiceUI('success', msg);
         voiceAssistantSpeak(msg);
@@ -10037,7 +10264,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         } catch (err) {
             console.warn('[Voice] Wake transcription error:', err);
             updateVoiceUI('error', err.message || '语音唤醒识别失败');
-            if (/本机离线|local_asr|语音服务|模型|启动|加载/i.test(err.message || '')) {
+            if (/语音控制|local_asr|语音服务|模型|启动|准备|加载/i.test(err.message || '')) {
                 refreshVoiceHealth({ autoStart: true });
             }
             if (wakeEnabled) scheduleWakeRestart(900);
@@ -10057,7 +10284,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 wakeActiveCommand = false;
                 wakeAwakeUntil = 0;
                 updateVoiceUI('success', '小诺收到：' + command);
-                handleVoiceTranscript(command);
+                handleVoiceTranscript(command, { source: 'wake' });
                 resumeWakeListeningAfterCommand(1200);
                 return;
             }
@@ -10094,7 +10321,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (wakeBtn) wakeBtn.disabled = !isVoiceSupported();
         renderVoiceHealth(voiceConfigState);
         loadVoiceConfig();
-        refreshVoiceHealth({ autoStart: true });
+        refreshVoiceHealth({ autoStart: false });
         if (!isVoiceSupported()) {
             if (btn) btn.title = '当前浏览器不支持语音录制';
             if (wakeBtn) wakeBtn.title = '当前浏览器不支持语音唤醒';

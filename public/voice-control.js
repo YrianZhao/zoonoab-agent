@@ -227,19 +227,26 @@
     }
 
     function _voiceCommonAnswer(text) {
+        if (typeof window.voiceCommonAnswer === 'function') return window.voiceCommonAnswer(text);
+        const s = String(text || '').replace(/\s+/g, '');
+        if (/你好|在吗|嗨/.test(s)) return '我在。你可以让我打开快速设计、打开序列分析，或者询问网站功能。';
+        if (/能做什么|网站功能|平台功能/.test(s)) return '这个网站可以做快速分子设计、序列分析、结构分析、知识库资料管理和 3D 结果展示。';
+        if (/快速设计/.test(s)) return '快速设计会按向导选择疾病方向、靶标蛋白、作用机制和表位策略，最后确认启动 AI 分子设计。';
+        if (/序列分析|打开序列/.test(s)) return '序列分析可以做 CDR 注释、风险位点扫描、人源化、多序列比对和理化性质分析。';
+        if (/结构分析|三维|3d/i.test(s)) return '结构分析可以查看 3D 分子结构，并支持表位预测、结构预测和相互作用分析。';
         return '';
     }
 
     // ── Persona: varied acknowledgments & greetings (小诺) ──
     const _VOICE_ACKS      = ['好的，正在分析', '收到，我看看', '稍等，马上为你查', '好嘞，正在处理', '明白，分析中'];
-    const _VOICE_GREETINGS = ['小诺在，请说“打开快速设计”', '我在听，可语音控制快速设计', '请说“小诺，打开快速设计”'];
+    const _VOICE_GREETINGS = ['我在。可以说“打开快速设计”', '我在听，可以控制网站功能', '请说“打开快速设计”或“打开序列分析”'];
     const _voiceAck      = () => _VOICE_ACKS[Math.floor(Math.random() * _VOICE_ACKS.length)];
     const _voiceGreeting = () => _VOICE_GREETINGS[Math.floor(Math.random() * _VOICE_GREETINGS.length)];
 
     // ── Voice Q&A → real chat agent (rich answer + streamed spoken reply) ──
     let _voiceAgentTimer = null;
     function _voiceAskAgent(question) {
-        const msg = '语音当前只用于快速设计。请说“小诺，打开快速设计”。';
+        const msg = _voiceCommonAnswer(question) || '我可以控制网站已有功能。请说“打开快速设计”，或问我平台能做什么。';
         updateVoiceBar({ heard: question, response: msg });
         _voicePushTranscript('ai', msg);
         speakVoice(msg);
@@ -266,12 +273,12 @@
     const VOICE_ACTION_MAP = {
         start_design: () => {
             if (typeof window.handleQuickDesignVoiceCommand === 'function') {
-                window.handleQuickDesignVoiceCommand('小诺，打开快速设计');
+                window.handleQuickDesignVoiceCommand('小诺，打开快速设计', { requireWakeToOpen: true, source: 'wake' });
             }
         },
         new_design: () => {
             if (typeof window.handleQuickDesignVoiceCommand === 'function') {
-                window.handleQuickDesignVoiceCommand('小诺，打开快速设计');
+                window.handleQuickDesignVoiceCommand('小诺，打开快速设计', { requireWakeToOpen: true, source: 'wake' });
             }
         },
         voice_help: () => showVoiceHelp(),
@@ -430,7 +437,13 @@
         _voiceStats.heard++;
 
         if (typeof window.handleQuickDesignVoiceCommand === 'function') {
-            const qdResult = window.handleQuickDesignVoiceCommand(text, { speak: false });
+            const quickDesignOpen = typeof window.isQuickDesignOpen === 'function' && window.isQuickDesignOpen();
+            const hasWake = /小\s*诺|晓\s*诺|小糯|小喏|你好\s*小/.test(text);
+            const qdResult = window.handleQuickDesignVoiceCommand(text, {
+                speak: false,
+                requireWakeToOpen: !quickDesignOpen,
+                source: quickDesignOpen ? 'quick-design' : (hasWake ? 'wake' : '')
+            });
             if (qdResult && qdResult.handled) {
                 const reply = qdResult.label || '已处理快速设计指令';
                 _voiceStats.commands++;
@@ -443,9 +456,11 @@
             }
         }
 
-        const msg = '语音当前只用于快速设计。请说“小诺，打开快速设计”。';
+        const localAnswer = _voiceCommonAnswer(text);
+        const msg = localAnswer || '我可以控制网站已有功能。请说“打开快速设计”，或问我平台能做什么。';
         updateVoiceBar({ heard: text, response: msg });
         _voicePushTranscript('ai', msg);
+        if (localAnswer) speakVoice(localAnswer);
         _voiceStats.errors++;
         _voiceProcessing = false;
         _voiceDrainQueue();
@@ -886,10 +901,8 @@
                     background: conic-gradient(from var(--vangle), rgba(37,99,235,0.55), rgba(124,58,237,0.5) 30%, rgba(45,212,191,0.55) 60%, rgba(37,99,235,0.55));
                     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
                     -webkit-mask-composite: xor; mask-composite: exclude;
-                    animation: vBorder 8s linear infinite;
                 }
                 @keyframes vAurora { 0%{background-position:0% 0%,100% 100%,50% 0%,0 0} 100%{background-position:38% 26%,62% 74%,22% 46%,0 0} }
-                @keyframes vBorder { to { --vangle: 360deg; } }
                 /* light glassy circular control buttons */
                 #voiceSiriCard .vbtn { width:30px; height:30px; border-radius:50%; border:1px solid rgba(15,23,42,0.08); background:rgba(15,23,42,0.05); color:#475569; font-size:13px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.18s ease; }
                 #voiceSiriCard .vbtn:hover { background:rgba(37,99,235,0.12); color:#2563EB; transform:scale(1.1); box-shadow:0 0 14px rgba(37,99,235,0.3); }
@@ -910,7 +923,7 @@
                 #voiceSiriOrb .vorb-sheen {
                     position:absolute; inset:-2px; border-radius:50%;
                     background: conic-gradient(from 0deg, rgba(255,255,255,0) 0deg, rgba(255,255,255,0.55) 70deg, rgba(45,212,191,0.5) 150deg, rgba(255,255,255,0) 220deg, rgba(124,58,237,0.5) 300deg, rgba(255,255,255,0) 360deg);
-                    mix-blend-mode: screen; opacity:0.6; animation: vorbSpin 7s linear infinite;
+                    mix-blend-mode: screen; opacity:0.6;
                 }
                 #voiceSiriOrb .vorb-core {
                     position:absolute; inset:24%; border-radius:50%;
@@ -925,25 +938,24 @@
                     position:absolute; width:84px; height:84px; border-radius:50%;
                     border:1.5px solid rgba(96,165,250,0.5); opacity:0; pointer-events:none;
                 }
-                @keyframes vorbSpin    { to { transform: rotate(360deg); } }
                 @keyframes vorbBreathe { 0%,100%{ transform:scale(0.92); opacity:0.7 } 50%{ transform:scale(1.06); opacity:1 } }
                 @keyframes vorbIdle    { 0%,100%{ transform:scale(1) } 50%{ transform:scale(1.045) } }
                 @keyframes vorbPulse   { 0%,100%{ transform:scale(1) } 50%{ transform:scale(1.11) } }
                 @keyframes vorbRipple  { 0%{ transform:scale(0.7); opacity:0.55 } 100%{ transform:scale(2.1); opacity:0 } }
                 /* state: idle — gentle breathing */
-                #voiceSiriOrb.idle { animation: vorbIdle 3.6s ease-in-out infinite; }
+                #voiceSiriOrb.idle { animation: none; }
                 /* state: listening — brighter, faster sheen, reactive scale + ripples */
                 #voiceSiriOrb.listening { filter:brightness(1.12) saturate(1.15); }
-                #voiceSiriOrb.listening .vorb-sheen { animation-duration:4.5s; opacity:0.8; }
+                #voiceSiriOrb.listening .vorb-sheen { opacity:0.8; }
                 #voiceSiriOrbWrap.on .vorb-ripple  { animation: vorbRipple 2.4s ease-out infinite; }
                 #voiceSiriOrbWrap.on .vorb-ripple2 { animation-delay:0.8s; }
                 #voiceSiriOrbWrap.on .vorb-ripple3 { animation-delay:1.6s; }
                 /* state: thinking — amber shimmer, fast spin */
-                #voiceSiriOrb.thinking { filter:hue-rotate(-35deg) brightness(1.1) saturate(1.3); animation: vorbIdle 1.4s ease-in-out infinite; }
-                #voiceSiriOrb.thinking .vorb-sheen { animation-duration:1.8s; opacity:0.95; }
+                #voiceSiriOrb.thinking { filter:hue-rotate(-35deg) brightness(1.1) saturate(1.3); animation: none; }
+                #voiceSiriOrb.thinking .vorb-sheen { opacity:0.95; }
                 /* state: speaking — teal pulse */
                 #voiceSiriOrb.speaking { filter:hue-rotate(15deg) brightness(1.15); animation: vorbPulse 0.85s ease-in-out infinite; }
-                #voiceSiriOrb.speaking .vorb-sheen { animation-duration:3s; }
+                #voiceSiriOrb.speaking .vorb-sheen { opacity:0.82; }
                 @keyframes voiceFlashAnim { 0%{box-shadow:0 0 0 0 rgba(124,58,237,0.55), inset 0 0 0 2px rgba(124,58,237,0.6);} 100%{box-shadow:0 0 0 14px rgba(124,58,237,0), inset 0 0 0 2px rgba(124,58,237,0);} }
                 .voice-flash { animation:voiceFlashAnim 1.3s ease-out; }
                 @keyframes voiceBtnGlow { 0%,100%{ box-shadow:0 4px 20px rgba(99,102,241,0.5); filter:brightness(1); } 50%{ box-shadow:0 6px 26px rgba(99,102,241,0.68); filter:brightness(1.05); } }
@@ -970,28 +982,37 @@
                 }
                 body.quick-design-open #voiceSiriCard {
                     left: auto!important;
-                    right: max(18px, calc((100vw - min(760px, calc(100vw - 32px))) / 2 - 270px))!important;
-                    bottom: 118px!important;
-                    width: 238px!important;
-                    padding: 12px!important;
-                    border-radius: 16px!important;
+                    right: 18px!important;
+                    bottom: 82px!important;
+                    width: 156px!important;
+                    max-height: 68px!important;
+                    padding: 8px 9px!important;
+                    border-radius: 14px!important;
+                    overflow: hidden!important;
                     z-index: 3002!important;
                 }
                 body.quick-design-open #voiceSiriCard #voiceSiriOrbWrap {
-                    transform: scale(0.54);
-                    height: 56px!important;
-                    margin: -10px auto!important;
+                    display: none!important;
                 }
-                body.quick-design-open #voiceSiriCard #voiceSiriLog { max-height: 82px!important; }
-                body.quick-design-open #voiceSiriCard #voiceSiriText { font-size: 12px!important; line-height: 1.45!important; }
+                body.quick-design-open #voiceSiriCard #voiceSiriLog,
+                body.quick-design-open #voiceSiriCard #voiceSiriSuggest,
+                body.quick-design-open #voiceSiriCard .vbtn { display:none!important; }
+                body.quick-design-open #voiceSiriCard #voiceSiriText {
+                    font-size: 11px!important;
+                    line-height: 1.3!important;
+                    text-align:left!important;
+                    min-height:0!important;
+                    max-height:28px!important;
+                    overflow:hidden!important;
+                }
                 body.quick-design-open #voicePulseRing { right: 12px!important; bottom: 18px!important; z-index: 3001!important; }
                 @media (min-width: 641px) and (max-width: 1099px) {
                     body.quick-design-open #voiceSiriCard {
                         right: 14px!important;
-                        top: 86px!important;
-                        bottom: auto!important;
-                        width: 172px!important;
-                        padding: 9px 10px!important;
+                        top: auto!important;
+                        bottom: calc(82px + env(safe-area-inset-bottom))!important;
+                        width: 156px!important;
+                        padding: 7px 8px!important;
                     }
                     body.quick-design-open #voiceSiriCard #voiceSiriOrbWrap,
                     body.quick-design-open #voiceSiriCard #voiceSiriLog,
@@ -1045,8 +1066,8 @@
                     }
                     body.quick-design-open #voiceSiriCard {
                         right: 12px!important;
-                        top: calc(18px + env(safe-area-inset-top))!important;
-                        bottom: auto!important;
+                        top: auto!important;
+                        bottom: calc(82px + env(safe-area-inset-bottom))!important;
                         width: min(156px, calc(100vw - 24px))!important;
                         padding: 7px 8px!important;
                     }
@@ -1476,7 +1497,7 @@
                     <button onclick="document.getElementById('voiceHelpOverlay').remove()" style="background:none;border:none;font-size:20px;cursor:pointer;color:var(--text-muted);line-height:1;">&times;</button>
                 </div>
                 <div style="margin-bottom:16px;padding:10px 14px;background:var(--bg-light);border-radius:10px;font-size:12px;color:var(--text-secondary);">
-                    当前语音只用于快速设计向导控制，不会把识别内容写入主输入框、聊天区或普通工作流。只有在快速设计最后确认页说"启动 AI 分子设计"才会开始设计。<b>小诺说话时直接开口、点卡片或按 Esc 可打断</b>。开启右下角 <b>"💤 免提"</b> 后，直接说 <b>"小诺"</b> 即可免提唤醒。
+                    当前语音用于网站功能控制和站内问答，不会把识别内容写入主输入框、聊天区或普通工作流。只有在快速设计最后确认页说"启动 AI 分子设计"才会开始设计。<b>小诺说话时直接开口、点卡片或按 Esc 可打断</b>。开启右下角 <b>"💤 免提"</b> 后，直接说 <b>"小诺"</b> 即可免提唤醒。
                 </div>
                 ${rows}
             </div>`;
