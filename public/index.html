@@ -5320,7 +5320,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78141237';
+    const APP_BUILD_VERSION = '78145655';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -6241,6 +6241,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         { id: 'Auto', title: '自动推荐', desc: '由 AI 根据靶点和展示目标选择分子类型' }
     ];
     let qdState = {};
+    let qdVoiceWizardActive = false;
 
     function qdResetState() {
         qdState = {
@@ -6259,6 +6260,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const ov = document.getElementById('quickDesignOverlay');
         if (!ov) return;
         qdResetState();
+        qdVoiceWizardActive = false;
         ov.style.display = 'flex';
         qdRender();
         refreshLucideIcons({ nodes: [ov] });
@@ -6266,6 +6268,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     function closeQuickDesign() {
         const ov = document.getElementById('quickDesignOverlay');
         if (ov) ov.style.display = 'none';
+        qdVoiceWizardActive = false;
     }
 
     function qdGetTargetList() {
@@ -6535,6 +6538,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             .replace(/九/g, '9')
             .replace(/\bher\s*two\b/g, 'her2')
             .replace(/\bher\s*2\b/g, 'her2')
+            .replace(/\bpd\s*-\s*1\b/g, 'pd1')
+            .replace(/\bp\s*d\s*1\b/g, 'pd1')
             .replace(/\bpd\s*l\s*1\b/g, 'pdl1')
             .replace(/\bpd\s*-\s*l\s*1\b/g, 'pdl1')
             .replace(/\bp\s*d\s*l\s*1\b/g, 'pdl1')
@@ -6544,6 +6549,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             .replace(/\bi\s*l\s*17\s*a?\b/g, 'il17a')
             .replace(/\bi\s*l\s*23\b/g, 'il23')
             .replace(/\bi\s*l\s*33\b/g, 'il33')
+            .replace(/[-_/]/g, '')
             .replace(/\s+/g, ' ')
             .trim();
     }
@@ -6619,7 +6625,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             if (hit && qdDiseaseOptions.some(opt => opt.id === hit.id)) {
                 qdSelectDisease(hit.id);
                 const option = qdDiseaseOptions.find(opt => opt.id === hit.id);
-                return `已选择${option ? option.title : hit.id}`;
+                return { label: `已选择${option ? option.title : hit.id}`, step: 1, option: option || null };
             }
         }
         if (qdState.step === 2) {
@@ -6627,7 +6633,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             const hit = qdVoiceAliases.target.find(item => visibleIds.includes(item.id) && qdVoiceHasAny(compact, item.aliases));
             if (hit) {
                 qdSelectTarget(hit.id);
-                return `已选择${hit.id}`;
+                const option = qdGetTargetList().find(opt => opt.id === hit.id);
+                return { label: `已选择${option ? option.title : hit.id}`, step: 2, option: option || null };
             }
         }
         if (qdState.step === 3) {
@@ -6636,7 +6643,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             if (hit) {
                 qdSelectMechanism(hit.id);
                 const option = qdMechanismList().find(opt => opt.id === hit.id);
-                return `已选择${option ? option.title : hit.id}`;
+                return { label: `已选择${option ? option.title : hit.id}`, step: 3, option: option || null };
             }
         }
         if (qdState.step === 4) {
@@ -6644,25 +6651,45 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             if (hit && qdEpitopeOptions.some(opt => opt.id === hit.id)) {
                 qdSelectEpitope(hit.id);
                 const option = qdEpitopeOptions.find(opt => opt.id === hit.id);
-                return `已选择${option ? option.title : hit.id}`;
+                return { label: `已选择${option ? option.title : hit.id}`, step: 4, option: option || null };
             }
         }
         return null;
+    }
+
+    function qdVoiceStepPrompt(step = qdState.step) {
+        if (step === 1) return '您想开发针对哪类疾病的治疗分子？';
+        if (step === 2) return '请选择希望作用的靶标蛋白';
+        if (step === 3) return '您希望这个分子实现什么作用？';
+        if (step === 4) return '希望抗体优先识别哪个区域？';
+        if (step === QD_TOTAL_STEPS - 1) return '设计任务已生成。确认后可以说，启动 AI 分子设计。';
+        return '';
+    }
+
+    function qdVoiceAdvanceAfterSelection(selection) {
+        if (!selection || typeof selection.step !== 'number') return '';
+        if (selection.step >= 1 && selection.step <= 4 && qdState.step < QD_TOTAL_STEPS - 1) {
+            qdNext();
+            const prompt = qdVoiceWizardActive ? qdVoiceStepPrompt(qdState.step) : '';
+            return prompt ? `${selection.label}。${prompt}` : `${selection.label}，已进入下一步`;
+        }
+        return selection.label;
     }
 
     function handleQuickDesignVoiceCommand(rawText, options = {}) {
         const text = stripWakeWord(rawText) || String(rawText || '').trim();
         const compact = qdVoiceCompact(text);
         if (!compact) return false;
-        const wantsOpen = qdVoiceHasAny(compact, ['打开快速设计', '开启快速设计', '开始快速设计', '新建设计', '新建项目', '快速设计']);
+        const wantsOpen = qdVoiceHasAny(compact, ['打开快速设计', '开启快速设计', '新建设计', '新建项目']);
+        const wantsStartWizard = qdVoiceHasAny(compact, ['开始设计', '进入设计', '开始向导', '进入向导', '开始分子设计']);
         const wantsNext = qdVoiceHasAny(compact, ['下一步', '往下', '继续', '然后下一步', '下一个']);
         const wantsBack = qdVoiceHasAny(compact, ['上一步', '返回上一页', '返回', '往回']);
-        const wantsSubmit = qdVoiceHasAny(compact, ['启动设计', '开始设计', '提交', '提交设计', '运行设计']);
+        const wantsSubmit = qdVoiceHasAny(compact, ['启动ai分子设计', '启动分子设计', '启动设计', '开始生成', '确认启动', '开始运行', '提交设计', '运行设计']);
         const wantsClose = qdVoiceHasAny(compact, ['关闭快速设计', '退出快速设计', '取消快速设计', '关闭', '退出']);
-        const feedback = (msg) => {
-            showToast(msg, 'success');
+        const feedback = (msg, level = 'success') => {
+            showToast(msg, level);
             pushVoiceAssistantLog('system', msg);
-            updateVoiceUI('success', msg);
+            updateVoiceUI(level === 'warning' ? 'processing' : 'success', msg);
             if (options.speak !== false) voiceAssistantSpeak(msg);
             return { handled: true, label: msg };
         };
@@ -6671,7 +6698,14 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             if (!wantsOpen) return false;
             switchView('chat');
             openQuickDesign();
-            return feedback('已打开快速设计');
+            qdVoiceWizardActive = true;
+            return feedback('已打开快速设计。请说，开始设计。');
+        }
+
+        if (wantsOpen) {
+            qdVoiceWizardActive = true;
+            const prompt = qdState.step === 0 ? '已打开快速设计。请说，开始设计。' : (qdVoiceStepPrompt(qdState.step) || '已进入快速设计语音向导。');
+            return feedback(prompt);
         }
 
         if (wantsClose) {
@@ -6679,24 +6713,41 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             return feedback('已关闭快速设计');
         }
 
-        let selectedLabel = qdVoiceSelectVisibleOption(text);
         if (wantsBack) {
             qdBack();
-            return feedback('已返回上一步');
+            const prompt = qdVoiceStepPrompt(qdState.step);
+            return feedback(prompt ? `已返回上一步。${prompt}` : '已返回上一步');
+        }
+        if (qdState.step === 0) {
+            if (wantsStartWizard || wantsNext) {
+                qdNext();
+                return feedback(qdVoiceWizardActive ? qdVoiceStepPrompt(qdState.step) : '已进入疾病选择');
+            }
+            if (wantsSubmit) {
+                return feedback('请先说“开始设计”，完成向导后再启动 AI 分子设计。', 'warning');
+            }
+            return false;
         }
         if (wantsSubmit) {
-            const route = qdRoute();
-            const msg = `已启动${route.target}设计`;
-            submitQuickDesign();
-            return feedback(msg);
+            if (!qdVoiceWizardActive) {
+                return feedback('请先说“小诺，打开快速设计”，按语音向导完成后再启动 AI 分子设计。', 'warning');
+            }
+            if (qdState.step === QD_TOTAL_STEPS - 1) {
+                const route = qdRoute();
+                const msg = `已启动${route.target}分子设计`;
+                submitQuickDesign();
+                return feedback(msg);
+            }
+            return feedback('请先完成当前步骤，到最后确认页后再启动 AI 分子设计。', 'warning');
+        }
+        const selected = qdVoiceSelectVisibleOption(text);
+        if (selected) {
+            return feedback(qdVoiceAdvanceAfterSelection(selected));
         }
         if (wantsNext) {
             qdNext();
-            const msg = selectedLabel ? `${selectedLabel}，已进入下一步` : '已进入下一步';
-            return feedback(msg);
-        }
-        if (selectedLabel) {
-            return feedback(selectedLabel);
+            const prompt = qdVoiceStepPrompt(qdState.step);
+            return feedback(prompt || '已进入下一步');
         }
         return false;
     }
@@ -7468,7 +7519,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 type: 'user_msg',
                 text,
                 voiceSessionId: voiceSessionId || '',
-                voice: Boolean(options.voice)
+                voice: Boolean(options.voice),
+                voiceChatOnly: Boolean(options.voiceChatOnly)
             }));
         } else {
             runDemo(text);
@@ -9309,23 +9361,32 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         switchView('chat');
         input.value = value;
         input.dispatchEvent(new Event('input'));
-        sendMessage({ voice: true });
+        sendMessage({ voice: true, voiceChatOnly: true });
     }
 
     function voiceCommonAnswer(text) {
         const s = String(text || '').replace(/\s+/g, '').toLowerCase();
         const has = (...parts) => parts.some(part => s.includes(String(part).replace(/\s+/g, '').toLowerCase()));
         if (has('你是谁', '小诺是谁', '你叫什么')) {
-            return '我是 ZoonoAb 小诺，负责语音控制快速设计、结构展示和抗体工程问答。';
+            return '我是 ZoonoAb 小诺，可以陪您语音聊天，也可以按您的口令操作快速设计向导。';
+        }
+        if (has('zoonoab是什么', 'zoonoab是做什么的', '这个平台是什么', '平台介绍')) {
+            return 'ZoonoAb 是面向抗体和治疗分子设计的展示平台，可以把疾病方向、靶标、作用机制和结构结果串成一套可视化设计流程。';
         }
         if (has('你能做什么', '有哪些功能', '可以做什么')) {
-            return '我可以打开快速设计，帮你选择疾病、靶点、机制和表位，也可以控制 3D 结构展示，回答抗体工程相关问题。';
+            return '我现在主要负责两件事：回答抗体工程相关问题，以及在快速设计弹窗里按语音口令帮您选择疾病、靶标、机制和表位。普通语音聊天不会直接启动工作流。';
         }
         if (has('怎么开始快速设计', '如何开始快速设计', '快速设计怎么用')) {
-            return '你可以说“打开快速设计”，然后说疾病方向、靶点名称、下一步和启动设计，我会按向导帮你操作。';
+            return '您可以先说“小诺，打开快速设计”，看到弹窗后再说“开始设计”。我会依次询问疾病方向、靶标蛋白、作用机制和表位策略，最后确认后再启动设计。';
+        }
+        if (has('为什么先选疾病', '为什么要选疾病', '先选疾病再选靶点')) {
+            return '先选择疾病方向，是为了限定可用靶标和作用机制，避免把肿瘤、炎症、感染或代谢疾病的设计路线混在一起。';
         }
         if (has('什么是cdr', 'cdr是什么', '互补决定区')) {
             return 'CDR 是抗体直接接触抗原的关键环区，通常决定结合特异性和亲和力，快速设计会重点优化 CDR-H3。';
+        }
+        if (has('cdr-h3是什么', '什么是cdr-h3', 'cdrh3是什么')) {
+            return 'CDR-H3 是重链第三互补决定区，常位于抗体结合界面的核心位置，也是从头设计和亲和力优化时最重要的区域之一。';
         }
         if (has('vhh和fab', 'fab和vhh', '纳米抗体和fab', 'vhh区别', 'fab区别')) {
             return 'VHH 是单域纳米抗体，结构小且稳定；Fab 保留重链和轻链可变区，更接近经典抗体片段，适合结构展示和阻断界面设计。';
@@ -9333,11 +9394,38 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (has('什么是pd-l1', 'pdl1是什么', 'pd-l1是什么', 'pd1pdl1')) {
             return 'PD-L1 是免疫检查点配体，它和 PD-1 结合后会抑制 T 细胞活性。阻断 PD-1/PD-L1 是肿瘤免疫治疗的经典抗体方向。';
         }
+        if (has('pd-1是什么', 'pd1是什么')) {
+            return 'PD-1 是 T 细胞表面的免疫检查点受体。它与 PD-L1 结合后会降低 T 细胞活性，因此阻断这条通路可以帮助恢复抗肿瘤免疫反应。';
+        }
         if (has('il-33是什么', 'il33是什么', 'st2是什么')) {
             return 'IL-33 是驱动二型炎症的细胞因子，常通过 ST2 受体放大哮喘和过敏炎症信号。';
         }
+        if (has('her2是什么', '什么是her2')) {
+            return 'HER2 是肿瘤相关受体酪氨酸激酶，在部分乳腺癌和胃癌中过度表达，是经典治疗性抗体靶点。';
+        }
+        if (has('tnf是什么', '什么是tnf')) {
+            return 'TNF 是重要炎症因子，和类风湿关节炎等自身免疫炎症疾病密切相关，中和 TNF 是成熟的抗炎抗体策略。';
+        }
+        if (has('什么是表位', '表位是什么', '抗原表位')) {
+            return '表位是抗体实际识别和结合的抗原区域。快速设计会结合结构暴露度、相互作用界面和保守性来选择更合适的表位。';
+        }
+        if (has('什么是pdb', 'pdb是什么', '3d结构', '三维结构')) {
+            return 'PDB 是蛋白质三维结构文件格式。设计完成后，页面会用 PDB 结构展示候选分子和靶标的空间关系。';
+        }
+        if (has('什么是可开发性', '可开发性是什么', '开发性')) {
+            return '可开发性关注候选分子能否稳定表达、纯化、保存和成药。常见指标包括聚集风险、极端电荷、疏水热点、稳定性和潜在修饰风险。';
+        }
+        if (has('为什么是10个', '为什么设计10个', '候选数量', '几个候选')) {
+            return '现场快速设计默认输出 10 个候选，是为了兼顾展示节奏、候选多样性和后续 3D 结构展示的清晰度。不同路线也可以固定为适合该靶点的候选数量。';
+        }
+        if (has('离线识别', '模型加载', '语音加载', '正在启动离线语音')) {
+            return '离线识别第一次启动需要加载本地模型，通常稍等片刻即可。语音面板会显示当前状态，变为已就绪后再说完整指令。';
+        }
         if (has('为什么没有反应', '听不见', '没听见', '语音没反应')) {
             return '请确认浏览器允许麦克风权限，并靠近麦克风说完整一句话。语音面板会显示音量和离线识别状态，模型加载时请稍后再说一次。';
+        }
+        if (has('麦克风权限', '无法访问麦克风', '麦克风打不开')) {
+            return '请在浏览器地址栏允许麦克风权限，并确认没有其他录音软件占用麦克风。授权后可以重新点击语音按钮或开启小诺唤醒。';
         }
         return '';
     }
@@ -9356,23 +9444,6 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         return true;
     }
 
-    function startVoiceDesignIntent(intent) {
-        const route = intent && intent.route ? intent.route : {};
-        const text = intent.text || '阻断 PD-1/PD-L1 通路，设计 10 个高亲和力 Fab';
-        if (isRunning) {
-            const input = document.getElementById('userInput');
-            if (input) {
-                input.value = text;
-                input.dispatchEvent(new Event('input'));
-            }
-            showToast('当前工作流正在运行，语音设计请求已填入输入框', 'warning');
-            return;
-        }
-        updateVoiceUI('success', '启动设计：' + (route.label || route.target || '抗体候选'));
-        pushVoiceAssistantLog('system', '启动设计：' + (route.label || route.target || '抗体候选'));
-        sendQuickDesignWorkflow(text, route.routeId || '');
-    }
-
     function normalizeWakeText(text) {
         return normalizeVoiceCommand(text)
             .replace(/\s+/g, '')
@@ -9384,15 +9455,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     function handleResolvedVoiceIntent(intent, rawText) {
-        if (!intent || !intent.action) {
-            sendVoiceChatMessage(rawText);
-            return;
-        }
-        if (intent.action === 'design') {
-            startVoiceDesignIntent(intent);
-            return;
-        }
-        sendVoiceChatMessage(intent.text || rawText);
+        sendVoiceChatMessage(rawText);
     }
 
     function runVoiceAction(label, fn) {
@@ -9526,12 +9589,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             { patterns: ['人源化', 'humanization'], tab: 'humanization', label: '已打开人源化' },
             { patterns: ['亲和力成熟', 'affinity maturation'], tab: 'maturation', label: '已打开亲和力成熟' },
             { patterns: ['理化性质', 'physicochemical'], tab: 'physicochemical', label: '已打开理化性质' },
-            { patterns: ['浓度换算', 'concentration'], tab: null, label: '正在进行浓度换算', quick: '浓度转换 100 nM' },
-            { patterns: ['uniprot 查询', 'uniprot 搜索', 'uniprot search'], tab: null, label: '正在查询 UniProt', quick: '查询 UniProt CD3' }
+            { patterns: ['浓度换算', 'concentration'], tab: null, label: '语音聊天不会直接运行浓度换算，请在输入框确认后发送。' },
+            { patterns: ['uniprot 查询', 'uniprot 搜索', 'uniprot search'], tab: null, label: '语音聊天不会直接查询 UniProt，请在输入框确认后发送。' }
         ];
         for (const item of panelMap) {
             if (voiceHas(cmd, item.patterns)) {
-                if (item.quick) return runVoiceAction(item.label, () => sendQuickMsg(item.quick));
+                if (!item.tab) return runVoiceAction(item.label, () => fillVoiceTranscriptInput(rawText || cmd, { message: item.label, level: 'info' }));
                 return runVoiceAction(item.label, () => openRightPanel(item.tab));
             }
         }

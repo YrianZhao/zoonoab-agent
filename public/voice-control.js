@@ -47,13 +47,13 @@
         { patterns: ['新建批次','创建批次'],             action: () => { if (typeof openNewBatchModal === 'function') openNewBatchModal(); },              label: '新建批次' },
         { patterns: ['上传文献','上传知识','知识上传'],  action: () => openKBUpload(),                   label: '上传知识库文献' },
         // Run analysis actions
-        { patterns: ['运行CDR','运行CDR注释','CDR注释','跑CDR','执行CDR'], action: () => _voiceRunAnalysis(() => _voiceOpenTab('cdr','cdr',null), 'runCDRAnnotation', 'runSeqCDR'), label: '运行CDR注释' },
-        { patterns: ['运行风险','分析风险','风险扫描','扫描风险','运行风险分析'], action: () => _voiceRunAnalysis(() => _voiceOpenTab('risk','risk',null), 'runRiskAnalysis', 'runSeqRisk'), label: '运行风险分析' },
-        { patterns: ['运行人源化','执行人源化','开始人源化','人源化分析开始'], action: () => _voiceRunAnalysis(() => _voiceOpenTab('humanization','humanization',null), 'runVHHHumanization', 'runSeqHum'), label: '执行人源化分析' },
-        { patterns: ['运行比对','运行序列比对','执行MSA','开始比对'], action: () => _voiceRunAnalysis(() => _voiceOpenTab('msa','msa',null), 'runMSAAlignment', 'runSeqMSA'), label: '运行多序列比对' },
-        { patterns: ['计算理化','运行理化','理化计算','物化计算','计算物化'], action: () => _voiceRunAnalysis(() => _voiceOpenTab('physicochemical','physicochemical',null), 'runPhysicochemicalAnalysis', 'runSeqPhys'), label: '计算理化性质' },
-        { patterns: ['运行亲和力','亲和力成熟分析','开始成熟','突变扫描'], action: () => _voiceRunAnalysis(() => _voiceOpenTab('maturation','maturation','maturation'), 'runAffinityMaturation', 'runMaturationSim'), label: '运行亲和力成熟' },
-        { patterns: ['运行互作','分析互作','运行相互作用','分析相互作用'], action: () => _voiceRunAnalysis(() => _voiceOpenTab('interaction',null,'interaction'), 'runInteractionAnalysisPanel', null), label: '运行相互作用分析' },
+        { patterns: ['运行CDR','运行CDR注释','CDR注释','跑CDR','执行CDR'], action: () => _voiceRunAnalysis(() => _voiceOpenTab('cdr','cdr',null), 'runCDRAnnotation', 'runSeqCDR'), label: '打开CDR分析' },
+        { patterns: ['运行风险','分析风险','风险扫描','扫描风险','运行风险分析'], action: () => _voiceRunAnalysis(() => _voiceOpenTab('risk','risk',null), 'runRiskAnalysis', 'runSeqRisk'), label: '打开风险分析' },
+        { patterns: ['运行人源化','执行人源化','开始人源化','人源化分析开始'], action: () => _voiceRunAnalysis(() => _voiceOpenTab('humanization','humanization',null), 'runVHHHumanization', 'runSeqHum'), label: '打开人源化分析' },
+        { patterns: ['运行比对','运行序列比对','执行MSA','开始比对'], action: () => _voiceRunAnalysis(() => _voiceOpenTab('msa','msa',null), 'runMSAAlignment', 'runSeqMSA'), label: '打开多序列比对' },
+        { patterns: ['计算理化','运行理化','理化计算','物化计算','计算物化'], action: () => _voiceRunAnalysis(() => _voiceOpenTab('physicochemical','physicochemical',null), 'runPhysicochemicalAnalysis', 'runSeqPhys'), label: '打开理化性质' },
+        { patterns: ['运行亲和力','亲和力成熟分析','开始成熟','突变扫描'], action: () => _voiceRunAnalysis(() => _voiceOpenTab('maturation','maturation','maturation'), 'runAffinityMaturation', 'runMaturationSim'), label: '打开亲和力成熟' },
+        { patterns: ['运行互作','分析互作','运行相互作用','分析相互作用'], action: () => _voiceRunAnalysis(() => _voiceOpenTab('interaction',null,'interaction'), 'runInteractionAnalysisPanel', null), label: '打开相互作用分析' },
         // 3D viewer commands
         { patterns: ['高亮CDR-H3','高亮CDRH3','显示CDR3'], action: () => { if(typeof mol3dAICmd==='function') mol3dAICmd('高亮 CDR-H3'); }, label: '高亮CDR-H3' },
         { patterns: ['高亮所有CDR','显示所有CDR','高亮CDR'], action: () => { if(typeof mol3dAICmd==='function') mol3dAICmd('高亮所有CDR'); }, label: '高亮所有CDR' },
@@ -269,20 +269,7 @@
     // Picks fn2 when seq panel is active (different DOM elements), fn1 otherwise.
     function _voiceRunAnalysis(openFn, fn1, fn2) {
         try { openFn(); } catch(e) {}
-        setTimeout(() => {
-            try {
-                const useSeq = (activeAnalysisPanel === 'seq');
-                let f = null;
-                if (useSeq && fn2 && typeof window[fn2] === 'function') {
-                    f = window[fn2];
-                } else if (typeof window[fn1] === 'function') {
-                    f = window[fn1];
-                } else if (fn2 && typeof window[fn2] === 'function') {
-                    f = window[fn2];
-                }
-                if (f) f();
-            } catch(e) {}
-        }, 600);
+        showToast('语音已打开对应分析面板；运行分析请手动确认。', 'info');
     }
 
     // ── Natural-language heuristics: route obvious questions straight to the agent ──
@@ -301,10 +288,10 @@
         const s = (text || '').replace(/\s+/g, '').toLowerCase();
         const has = (...parts) => parts.some(p => s.includes(String(p).replace(/\s+/g, '').toLowerCase()));
         if (has('你是谁', '小诺是谁', '你叫什么')) {
-            return '我是小诺，ZoonoAb 的语音助手。你可以让我打开页面、运行分析、启动快速设计，也可以直接问抗体工程相关问题。';
+            return '我是小诺，ZoonoAb 的语音助手。你可以和我语音聊天，也可以让我打开快速设计并按向导选择疾病、靶标、机制和表位。';
         }
         if (has('你能做什么', '有哪些功能', '可以做什么')) {
-            return '我可以语音控制快速设计、序列分析、结构分析、3D 展示和知识库，也可以解释 CDR、靶点、抗体类型和演示结果。';
+            return '我可以回答抗体工程问题，打开快速设计向导，控制页面和 3D 展示。普通语音聊天不会直接启动任何工作流。';
         }
         if (has('什么是cdr', 'cdr是什么', '互补决定区')) {
             return 'CDR 是抗体直接接触抗原的关键环区，决定大部分结合特异性。快速设计会重点优化 CDR，尤其是 CDR-H3 的长度、疏水性和风险位点。';
@@ -319,7 +306,7 @@
             return 'IL-33 是 IL-1 家族细胞因子，通过 ST2 受体驱动二型炎症，常见于哮喘、特应性皮炎等炎症疾病方向。';
         }
         if (has('怎么开始快速设计', '如何开始快速设计', '快速设计怎么用')) {
-            return '你可以说“开始快速设计”，我会打开向导；也可以直接说“帮我做一个 PD-L1 抗体设计演示”，系统会进入对应工作流。';
+            return '你可以说“小诺，打开快速设计”，看到弹窗后说“开始设计”。我会依次询问疾病方向、靶标蛋白、作用机制和表位策略，最后确认后再启动设计。';
         }
         if (has('怎么跳过思考', '跳过思考是什么', '快速思考')) {
             return '工作流运行时点击“跳过思考”，后续日志内容不会减少，只会按更快节奏完整展示，适合现场演示。';
@@ -359,11 +346,11 @@
                 const inp = document.getElementById('userInput');
                 if (!inp) return;
                 inp.value = question;
-                if (typeof sendMessage === 'function') sendMessage({ voice: true });
+                if (typeof sendMessage === 'function') sendMessage({ voice: true, voiceChatOnly: true });
                 return;
             }
             if (typeof startChatRun === 'function') startChatRun(question);
-            ws.send(JSON.stringify({ type: 'user_msg', text: question, voice: true }));
+            ws.send(JSON.stringify({ type: 'user_msg', text: question, voice: true, voiceChatOnly: true }));
         }, wasRunning ? 650 : 220);
 
         // Safety: if no voice_say arrives (e.g. AI offline), revert card to listening
@@ -429,17 +416,8 @@
             const teamVisible    = document.getElementById('teamSection')?.style.display !== 'none';
             const kbVisible      = document.getElementById('kbSection')?.style.display !== 'none';
             if (batchesVisible || teamVisible || kbVisible) switchView('chat');
-
-            const routeId = (params && params.routeId) ? params.routeId : '';
-            const target = (params && params.target) ? params.target : 'PD-L1';
-            const count = (params && params.count) ? params.count : 10;
-            const abType = (params && params.abType) ? params.abType : 'Fab';
-            const workflowText = (routeId && typeof qdWorkflowTriggers === 'object' && qdWorkflowTriggers[routeId])
-                ? qdWorkflowTriggers[routeId]
-                : `设计 ${count} 个针对 ${target} 的 ${abType} 抗体`;
-            if (typeof sendQuickDesignWorkflow === 'function') {
-                sendQuickDesignWorkflow(workflowText, routeId);
-            }
+            if (typeof openQuickDesign === 'function') openQuickDesign();
+            showToast('已打开快速设计，请按向导确认后再启动。', 'info');
         },
         // Q&A — handled before reaching VOICE_ACTION_MAP, but define as no-op fallback
         qa_answer:         () => {},
@@ -969,7 +947,7 @@
         run_phys:         [{ label:'运行CDR', cmd:'运行CDR注释' }, { label:'运行人源化', cmd:'运行人源化' }],
         run_maturation:   [{ label:'人源化分析', cmd:'运行人源化' }, { label:'理化分析', cmd:'计算理化性质' }],
         run_msa:          [{ label:'运行CDR', cmd:'运行CDR注释' }, { label:'理化分析', cmd:'计算理化性质' }],
-        start_design:     [{ label:'查看序列', cmd:'打开序列分析' }, { label:'CDR注释', cmd:'运行CDR注释' }],
+        start_design:     [{ label:'打开快速设计', cmd:'打开快速设计' }, { label:'查看序列', cmd:'打开序列分析' }],
         nav_kb:           [{ label:'AI检索', cmd:'搜索文献' }, { label:'上传文献', cmd:'上传文献' }],
     };
 
@@ -977,7 +955,7 @@
     function _voiceShowStarters() {
         const el = document.getElementById('voiceSiriSuggest');
         if (!el) return;
-        const starters = ['什么是 CDR', 'IL-33 是什么靶点', '设计 15 个抗 IL-33 的 VHH', '打开序列分析'];
+        const starters = ['打开快速设计', '什么是 CDR', 'IL-33 是什么靶点', '打开序列分析'];
         el.style.display = 'block';
         el.innerHTML = `<span style="font-size:10px;color:#64748b;display:block;margin-bottom:6px;">🎙️ 试试说（也可点击）：</span>` +
             starters.map(s => `<button onclick="processVoiceText(['${s}'])" style="margin:3px 3px;padding:5px 11px;background:rgba(37,99,235,0.08);border:1px solid rgba(37,99,235,0.2);border-radius:14px;color:#2563EB;font-size:11px;font-weight:600;cursor:pointer;">${s}</button>`).join('');
@@ -1608,8 +1586,8 @@
             display:'flex',alignItems:'center',justifyContent:'center',backdropFilter:'blur(4px)'
         });
         const groups = [
-            { title: '🧬 AI 抗体设计', cmds: ['设计15个针对IL-33的VHH','设计10个PD-1纳米抗体'] },
-            { title: '🔬 执行分析（说"运行/执行/跑"）', cmds: ['运行CDR注释','运行人源化','运行风险分析','计算理化性质','运行比对','突变扫描'] },
+            { title: '🧬 快速设计向导', cmds: ['打开快速设计','开始设计','肿瘤','PD-L1','启动 AI 分子设计'] },
+            { title: '🔬 打开分析面板', cmds: ['CDR分析','人源化','风险分析','理化性质','多序列比对','亲和力成熟'] },
             { title: '📂 打开面板（说功能名即可）', cmds: ['CDR分析','人源化','风险评估','物化性质','多序列比对','亲和力成熟','相互作用'] },
             { title: '🗺️ 页面导航', cmds: ['设计界面','查看批次','查看团队','查看知识库'] },
             { title: '🔮 3D视图', cmds: ['放大','缩小','重置视图','旋转','停止旋转','卡通模式','高亮CDR'] },
@@ -1630,7 +1608,7 @@
                     <button onclick="document.getElementById('voiceHelpOverlay').remove()" style="background:none;border:none;font-size:20px;cursor:pointer;color:var(--text-muted);line-height:1;">&times;</button>
                 </div>
                 <div style="margin-bottom:16px;padding:10px 14px;background:var(--bg-light);border-radius:10px;font-size:12px;color:var(--text-secondary);">
-                    说关键词即可触发功能，支持智能问答（"什么是CDR？"）、设计指令（"设计20个IL-33 VHH"）、执行分析（"运行CDR注释"）。分析完成后会自动播报结果，并提示下一步建议。提问会在对话区生成完整图文回答并语音播报，<b>说话时点卡片或按 Esc 可打断</b>。开启右下角 <b>"💤 免提"</b> 后，直接说 <b>"小诺"</b> 即可免提唤醒。
+                    说关键词即可触发页面控制，支持智能问答（"什么是CDR？"）和快速设计向导（"打开快速设计"）。普通语音聊天不会直接启动工作流；只有在快速设计最后确认页说"启动 AI 分子设计"才会开始设计。提问会在对话区生成完整回答并语音播报，<b>说话时点卡片或按 Esc 可打断</b>。开启右下角 <b>"💤 免提"</b> 后，直接说 <b>"小诺"</b> 即可免提唤醒。
                 </div>
                 ${rows}
             </div>`;

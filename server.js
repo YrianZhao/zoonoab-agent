@@ -16,6 +16,9 @@ let EDGE_OUTPUT_FORMAT = null;
 let edgeTtsLastError = '';
 let edgeTtsLastFailedAt = 0;
 let edgeTtsCliLastError = '';
+let edgeTtsHealthProbe = { checkedAt: 0, available: false, error: '' };
+let cosyVoiceLastError = '';
+let cosyVoiceLastFailedAt = 0;
 try {
   const edgeTts = require('msedge-tts');
   MsEdgeTTS = edgeTts.MsEdgeTTS;
@@ -57,12 +60,18 @@ const LOCAL_ASR_TORCH_INDEX_URL = process.env.LOCAL_ASR_TORCH_INDEX_URL || 'http
 const ASSISTANT_CHAT_MODEL = process.env.ASSISTANT_CHAT_MODEL || process.env.DEEPSEEK_CHAT_MODEL || 'deepseek-chat';
 const ASSISTANT_CHAT_BASE_URL = process.env.ASSISTANT_CHAT_BASE_URL || process.env.DEEPSEEK_CHAT_BASE_URL || process.env.VOICE_CHAT_BASE_URL || '';
 const VOICE_API_CONFIG_FILE = process.env.VOICE_API_CONFIG_FILE || path.join(__dirname, '.runtime', 'voice-api-config.json');
-const LOCAL_TTS_PROVIDER = String(process.env.LOCAL_TTS_PROVIDER || 'edge').trim().toLowerCase();
-const LOCAL_TTS_EDGE_VOICE = process.env.LOCAL_TTS_EDGE_VOICE || process.env.EDGE_TTS_VOICE || 'zh-CN-XiaoxiaoNeural';
-const LOCAL_TTS_EDGE_RATE = String(process.env.LOCAL_TTS_EDGE_RATE || process.env.EDGE_TTS_RATE || '+8%').trim();
+const LOCAL_TTS_PROVIDER = String(process.env.LOCAL_TTS_PROVIDER || 'auto').trim().toLowerCase();
+const LOCAL_TTS_EDGE_VOICE = process.env.LOCAL_TTS_EDGE_VOICE || process.env.EDGE_TTS_VOICE || 'zh-CN-XiaomoNeural';
+const LOCAL_TTS_EDGE_RATE = String(process.env.LOCAL_TTS_EDGE_RATE || process.env.EDGE_TTS_RATE || '+18%').trim();
 const LOCAL_TTS_EDGE_TIMEOUT_MS = Math.max(2500, Number(process.env.LOCAL_TTS_EDGE_TIMEOUT_MS || 7000) || 7000);
 const LOCAL_TTS_MACOS_RATE = String(process.env.LOCAL_TTS_MACOS_RATE || '185').trim();
 const LOCAL_TTS_EDGE_RETRY_MS = Math.max(30_000, Number(process.env.LOCAL_TTS_EDGE_RETRY_MS || 10 * 60 * 1000) || 10 * 60 * 1000);
+const LOCAL_TTS_HEALTH_PROBE_MS = Math.max(30_000, Number(process.env.LOCAL_TTS_HEALTH_PROBE_MS || 5 * 60 * 1000) || 5 * 60 * 1000);
+const COSYVOICE_TTS_MODEL = process.env.COSYVOICE_TTS_MODEL || process.env.DASHSCOPE_TTS_MODEL || 'cosyvoice-v2';
+const COSYVOICE_TTS_VOICE = process.env.COSYVOICE_TTS_VOICE || process.env.DASHSCOPE_TTS_VOICE || 'longxiaoxia_v2';
+const COSYVOICE_TTS_SAMPLE_RATE = Number(process.env.COSYVOICE_TTS_SAMPLE_RATE || 22050) || 22050;
+const COSYVOICE_TTS_TIMEOUT_MS = Math.max(3500, Number(process.env.COSYVOICE_TTS_TIMEOUT_MS || 12000) || 12000);
+const COSYVOICE_TTS_RETRY_MS = Math.max(30_000, Number(process.env.COSYVOICE_TTS_RETRY_MS || 5 * 60 * 1000) || 5 * 60 * 1000);
 const APP_BUILD_VERSION = readAppBuildVersion();
 const VOICE_DOMAIN_PROMPT = [
   'ZoonoAb AI antibody design platform.',
@@ -1419,6 +1428,168 @@ function normalizeTtsTextForSpeech(text) {
     .replace(/CDR\s+H\s*3/gi, 'C D R H 3');
 }
 
+function cosyVoiceApiKey() {
+  return String(process.env.DASHSCOPE_API_KEY || process.env.QWEN_API_KEY || '').trim();
+}
+
+function cosyVoiceAvailable() {
+  if (!cosyVoiceApiKey()) return false;
+  if (LOCAL_TTS_PROVIDER === 'edge' || LOCAL_TTS_PROVIDER === 'macos' || LOCAL_TTS_PROVIDER === 'say') return false;
+  return !(cosyVoiceLastFailedAt && Date.now() - cosyVoiceLastFailedAt < COSYVOICE_TTS_RETRY_MS);
+}
+
+function httpsJsonRequest(hostname, pathName, headers, body, timeoutMs = COSYVOICE_TTS_TIMEOUT_MS) {
+  return new Promise((resolve, reject) => {
+    const req = https.request({
+      hostname,
+      path: pathName,
+      method: body ? 'POST' : 'GET',
+      headers: body
+        ? { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body), ...headers }
+        : headers
+    }, (resp) => {
+      const chunks = [];
+      resp.on('data', (chunk) => chunks.push(Buffer.from(chunk)));
+      resp.on('end', () => resolve({ statusCode: resp.statusCode, body: Buffer.concat(chunks) }));
+    });
+    req.on('error', reject);
+    req.setTimeout(timeoutMs, () => {
+      req.destroy(new Error('https_request_timeout'));
+    });
+    if (body) req.write(body);
+    req.end();
+  });
+}
+
+async function streamCosyVoiceTtsToResponse(text, res, collector) {
+  const apiKey = cosyVoiceApiKey();
+  if (!apiKey) throw new Error('cosyvoice_key_missing');
+  const WsLib = require('ws');
+  return new Promise((resolve, reject) => {
+    const taskId = uuidv4();
+    const upstream = new WsLib('wss://dashscope.aliyuncs.com/api-ws/v1/inference/', {
+      headers: { Authorization: 'Bearer ' + apiKey }
+    });
+    let headersSent = false;
+    let bytes = 0;
+    let finished = false;
+    const timer = setTimeout(() => fail(new Error('cosyvoice_stream_timeout')), COSYVOICE_TTS_TIMEOUT_MS);
+    const ensureHeaders = () => {
+      if (!headersSent && !res.headersSent) {
+        res.setHeader('Content-Type', 'audio/mpeg');
+        res.setHeader('Cache-Control', 'no-store');
+        res.setHeader('X-TTS-Provider', 'cosyvoice');
+        headersSent = true;
+      }
+    };
+    const done = () => {
+      if (finished) return;
+      finished = true;
+      clearTimeout(timer);
+      try { upstream.close(); } catch {}
+      resolve(bytes);
+    };
+    const fail = (err) => {
+      if (finished) return;
+      finished = true;
+      clearTimeout(timer);
+      try { upstream.close(); } catch {}
+      reject(err);
+    };
+    res.on('close', () => {
+      if (!finished) {
+        finished = true;
+        clearTimeout(timer);
+        try { upstream.close(); } catch {}
+      }
+    });
+    upstream.on('open', () => {
+      upstream.send(JSON.stringify({
+        header: { action: 'run-task', task_id: taskId, streaming: 'duplex' },
+        payload: {
+          task_group: 'audio',
+          task: 'tts',
+          function: 'SpeechSynthesizer',
+          model: COSYVOICE_TTS_MODEL,
+          parameters: { voice: COSYVOICE_TTS_VOICE, format: 'mp3', sample_rate: COSYVOICE_TTS_SAMPLE_RATE },
+          input: {}
+        }
+      }));
+    });
+    upstream.on('message', (data, isBinary) => {
+      if (isBinary) {
+        ensureHeaders();
+        bytes += data.length;
+        if (collector) collector.push(Buffer.from(data));
+        try { res.write(data); } catch {}
+        return;
+      }
+      let msg;
+      try { msg = JSON.parse(data.toString()); } catch { return; }
+      const event = msg.header && msg.header.event;
+      if (event === 'task-started') {
+        upstream.send(JSON.stringify({
+          header: { action: 'continue-task', task_id: taskId, streaming: 'duplex' },
+          payload: { input: { text: String(text || '').slice(0, 800) } }
+        }));
+        upstream.send(JSON.stringify({
+          header: { action: 'finish-task', task_id: taskId, streaming: 'duplex' },
+          payload: { input: {} }
+        }));
+      } else if (event === 'task-finished') {
+        if (!res.writableEnded) res.end();
+        done();
+      } else if (event === 'task-failed') {
+        fail(new Error((msg.header && msg.header.error_message) || 'cosyvoice_task_failed'));
+      }
+    });
+    upstream.on('error', fail);
+  });
+}
+
+async function cosyVoiceTtsToBuffer(text) {
+  const apiKey = cosyVoiceApiKey();
+  if (!apiKey) throw new Error('cosyvoice_key_missing');
+  const body = JSON.stringify({
+    model: COSYVOICE_TTS_MODEL,
+    input: { text: String(text || '').slice(0, 800), voice: COSYVOICE_TTS_VOICE },
+    parameters: { format: 'mp3', sample_rate: COSYVOICE_TTS_SAMPLE_RATE }
+  });
+  const createdRaw = await httpsJsonRequest(
+    'dashscope.aliyuncs.com',
+    '/api/v1/services/aigc/text2audio/audio-synthesis-job',
+    { Authorization: 'Bearer ' + apiKey, 'X-DashScope-Async': 'enable' },
+    body
+  );
+  if (createdRaw.statusCode < 200 || createdRaw.statusCode >= 300) {
+    throw new Error('cosyvoice_create_' + createdRaw.statusCode + ': ' + createdRaw.body.toString('utf8').slice(0, 160));
+  }
+  const created = JSON.parse(createdRaw.body.toString('utf8') || '{}');
+  const taskId = created && created.output && created.output.task_id;
+  if (!taskId) throw new Error('cosyvoice_no_task_id');
+  for (let i = 0; i < 14; i++) {
+    await new Promise((resolve) => setTimeout(resolve, 600));
+    const pollRaw = await httpsJsonRequest(
+      'dashscope.aliyuncs.com',
+      '/api/v1/services/aigc/text2audio/audio-synthesis-job/' + encodeURIComponent(taskId),
+      { Authorization: 'Bearer ' + apiKey },
+      null
+    );
+    const poll = JSON.parse(pollRaw.body.toString('utf8') || '{}');
+    const status = poll && poll.output && poll.output.task_status;
+    if (status === 'SUCCEEDED') {
+      const audioUrl = poll.output.audio_url;
+      if (!audioUrl) throw new Error('cosyvoice_no_audio_url');
+      const url = new URL(audioUrl);
+      const audioRaw = await httpsJsonRequest(url.hostname, url.pathname + (url.search || ''), {}, null, COSYVOICE_TTS_TIMEOUT_MS);
+      if (audioRaw.body.length < 800) throw new Error('cosyvoice_empty_audio');
+      return audioRaw.body;
+    }
+    if (status === 'FAILED') throw new Error('cosyvoice_failed');
+  }
+  throw new Error('cosyvoice_poll_timeout');
+}
+
 async function edgeTtsToBuffer(text) {
   if (!MsEdgeTTS || !EDGE_OUTPUT_FORMAT) throw new Error('edge_tts_unavailable');
   const tts = new MsEdgeTTS();
@@ -1426,7 +1597,7 @@ async function edgeTtsToBuffer(text) {
     LOCAL_TTS_EDGE_VOICE,
     EDGE_OUTPUT_FORMAT.AUDIO_24KHZ_48KBITRATE_MONO_MP3
   );
-  const { audioStream } = tts.toStream(String(text || '').slice(0, 800));
+  const { audioStream } = tts.toStream(String(text || '').slice(0, 800), { rate: LOCAL_TTS_EDGE_RATE });
   const chunks = [];
   await new Promise((resolve, reject) => {
     let settled = false;
@@ -1565,6 +1736,34 @@ async function edgeTtsCliToBuffer(text) {
   throw new Error(edgeTtsCliLastError || 'edge_tts_cli_unavailable');
 }
 
+async function probeEdgeNeuralTts() {
+  if (!MsEdgeTTS || !EDGE_OUTPUT_FORMAT) {
+    edgeTtsHealthProbe = { checkedAt: Date.now(), available: false, error: 'edge_tts_unavailable' };
+    return edgeTtsHealthProbe;
+  }
+  if (edgeTtsHealthProbe.checkedAt && Date.now() - edgeTtsHealthProbe.checkedAt < LOCAL_TTS_HEALTH_PROBE_MS) {
+    return edgeTtsHealthProbe;
+  }
+  try {
+    const buffer = await edgeTtsToBuffer('小诺');
+    edgeTtsHealthProbe = {
+      checkedAt: Date.now(),
+      available: buffer.length >= 800,
+      error: buffer.length >= 800 ? '' : 'edge_tts_empty_audio'
+    };
+  } catch (err) {
+    edgeTtsHealthProbe = {
+      checkedAt: Date.now(),
+      available: false,
+      error: err && err.message ? err.message : String(err || '')
+    };
+  }
+  if (!edgeTtsHealthProbe.available) {
+    edgeTtsLastError = edgeTtsHealthProbe.error;
+  }
+  return edgeTtsHealthProbe;
+}
+
 function edgeTtsCliCandidateInstalled(candidate) {
   if (!candidate || !candidate.command) return false;
   if (candidate.label === 'edge-tts-bin') {
@@ -1605,6 +1804,23 @@ async function macosSayToBuffer(text, voice = pickMacosVoice()) {
 async function synthesizeLocalTts(text) {
   const trimmed = normalizeTtsTextForSpeech(text).trim();
   if (!trimmed) throw new Error('empty_tts_text');
+  if (cosyVoiceAvailable()) {
+    try {
+      const cosyResult = {
+        contentType: 'audio/mpeg',
+        provider: 'cosyvoice',
+        voice: COSYVOICE_TTS_VOICE,
+        buffer: await cosyVoiceTtsToBuffer(trimmed)
+      };
+      cosyVoiceLastError = '';
+      cosyVoiceLastFailedAt = 0;
+      return cosyResult;
+    } catch (err) {
+      cosyVoiceLastError = err && err.message ? err.message : String(err || '');
+      cosyVoiceLastFailedAt = Date.now();
+      console.warn('[TTS] CosyVoice fallback:', cosyVoiceLastError);
+    }
+  }
   const edgeCoolingDown = edgeTtsLastFailedAt && Date.now() - edgeTtsLastFailedAt < LOCAL_TTS_EDGE_RETRY_MS;
   if (LOCAL_TTS_PROVIDER !== 'macos' && LOCAL_TTS_PROVIDER !== 'say' && !edgeCoolingDown) {
     try {
@@ -1651,6 +1867,9 @@ async function synthesizeLocalTts(text) {
 }
 
 app.get('/api/tts/health', async (_, res) => {
+  const cosyRetryAfterMs = cosyVoiceLastFailedAt
+    ? Math.max(0, COSYVOICE_TTS_RETRY_MS - (Date.now() - cosyVoiceLastFailedAt))
+    : 0;
   const edgeRetryAfterMs = edgeTtsLastFailedAt
     ? Math.max(0, LOCAL_TTS_EDGE_RETRY_MS - (Date.now() - edgeTtsLastFailedAt))
     : 0;
@@ -1662,21 +1881,36 @@ app.get('/api/tts/health', async (_, res) => {
     installed: edgeTtsCliCandidateInstalled(candidate)
   }));
   const edgeCliInstalled = edgeCliProbe.some(candidate => candidate.installed);
-  const edgeAvailable = Boolean((MsEdgeTTS || edgeCliInstalled) && !edgeRetryAfterMs);
+  const edgeRuntimeProbe = !edgeRetryAfterMs ? await probeEdgeNeuralTts() : edgeTtsHealthProbe;
+  const edgeAvailable = Boolean(((edgeRuntimeProbe && edgeRuntimeProbe.available) || edgeCliInstalled) && !edgeRetryAfterMs);
+  const cosyConfigured = Boolean(cosyVoiceApiKey());
+  const cosyAvailableNow = Boolean(cosyConfigured && !cosyRetryAfterMs && LOCAL_TTS_PROVIDER !== 'edge' && LOCAL_TTS_PROVIDER !== 'macos' && LOCAL_TTS_PROVIDER !== 'say');
   res.json({
-    ok: Boolean(edgeAvailable || macosAvailable),
+    ok: Boolean(cosyAvailableNow || edgeAvailable || macosAvailable),
     preferredProvider: LOCAL_TTS_PROVIDER === 'macos' || LOCAL_TTS_PROVIDER === 'say'
       ? (macosAvailable ? 'macos' : 'none')
-      : (edgeAvailable ? 'edge-neural' : (macosAvailable ? 'macos' : 'none')),
+      : (cosyAvailableNow ? 'cosyvoice' : (edgeAvailable ? 'edge-neural' : (macosAvailable ? 'macos' : 'none'))),
+    configuredProvider: LOCAL_TTS_PROVIDER,
     rate: LOCAL_TTS_EDGE_RATE,
     pronunciationNormalization: true,
+    cosyvoice: {
+      configured: cosyConfigured,
+      available: cosyAvailableNow,
+      model: COSYVOICE_TTS_MODEL,
+      voice: COSYVOICE_TTS_VOICE,
+      sampleRate: COSYVOICE_TTS_SAMPLE_RATE,
+      source: 'DashScope CosyVoice',
+      lastError: cosyVoiceLastError,
+      retryAfterMs: cosyRetryAfterMs
+    },
     edge: {
       installed: Boolean(MsEdgeTTS),
-      available: Boolean(MsEdgeTTS && !edgeRetryAfterMs),
+      available: Boolean(edgeRuntimeProbe && edgeRuntimeProbe.available && !edgeRetryAfterMs),
       voice: LOCAL_TTS_EDGE_VOICE,
       source: 'msedge-tts',
-      runtimeProbeRequired: true,
-      lastError: edgeTtsLastError,
+      runtimeProbeRequired: false,
+      lastError: (edgeRuntimeProbe && edgeRuntimeProbe.error) || edgeTtsLastError,
+      lastCheckedAt: edgeRuntimeProbe && edgeRuntimeProbe.checkedAt ? new Date(edgeRuntimeProbe.checkedAt).toISOString() : '',
       retryAfterMs: edgeRetryAfterMs
     },
     edgeCli: {
@@ -1704,6 +1938,7 @@ app.post('/api/tts', async (req, res) => {
     const result = await synthesizeLocalTts(normalizeTtsTextForSpeech(text));
     res.setHeader('Content-Type', result.contentType);
     res.setHeader('Cache-Control', 'no-store');
+    res.setHeader('X-TTS-Provider', result.provider || 'local');
     return res.end(result.buffer);
   } catch (err) {
     console.error('[TTS] Synthesis failed:', err && err.message ? err.message : err);
@@ -1716,10 +1951,32 @@ app.get('/api/tts-stream', async (req, res) => {
   if (!text || text.length > 1000) {
     return res.status(400).json({ error: 'invalid_text', message: '语音播报文本无效。' });
   }
+  const normalized = normalizeTtsTextForSpeech(text);
+  if (cosyVoiceAvailable()) {
+    try {
+      const bytes = await streamCosyVoiceTtsToResponse(normalized, res);
+      if (bytes > 0) {
+        cosyVoiceLastError = '';
+        cosyVoiceLastFailedAt = 0;
+        if (!res.writableEnded) res.end();
+        return;
+      }
+      throw new Error('cosyvoice_empty_stream');
+    } catch (err) {
+      cosyVoiceLastError = err && err.message ? err.message : String(err || '');
+      cosyVoiceLastFailedAt = Date.now();
+      console.warn('[TTS] CosyVoice stream fallback:', cosyVoiceLastError);
+      if (res.headersSent) {
+        if (!res.writableEnded) res.end();
+        return;
+      }
+    }
+  }
   try {
-    const result = await synthesizeLocalTts(normalizeTtsTextForSpeech(text));
+    const result = await synthesizeLocalTts(normalized);
     res.setHeader('Content-Type', result.contentType);
     res.setHeader('Cache-Control', 'no-store');
+    res.setHeader('X-TTS-Provider', result.provider || 'local');
     return res.end(result.buffer);
   } catch (err) {
     console.error('[TTS] Stream synthesis failed:', err && err.message ? err.message : err);
@@ -3665,20 +3922,14 @@ function buildVoiceUiIntent(input, options = {}) {
 
   const routeIntent = resolveVoiceAssistantIntent(text);
   if (routeIntent && routeIntent.action === 'design') {
-    const params = routeIntent.route ? {
-      routeId: routeIntent.route.routeId,
-      target: routeIntent.route.target,
-      blockTarget: routeIntent.route.blockTarget || '',
-      abType: routeIntent.route.abType,
-      count: routeIntent.route.count
-    } : {};
-    const targetLabel = params.target || '抗体';
     return {
-      action: 'start_design',
-      confidence: 0.98,
-      spoken: spokenText('好，开始设计 ' + targetLabel + ' 抗体'),
-      reply: replyText('开始设计'),
-      params
+      action: 'qa_answer',
+      confidence: 0.82,
+      spoken: spokenText('普通语音聊天不会直接启动设计，请先打开快速设计向导。'),
+      reply: replyText('进入聊天'),
+      params: {
+        text
+      }
     };
   }
 
@@ -4597,6 +4848,13 @@ function getWorkflowHandlers() {
 }
 
 function resolveUserMessageRunner(msg, cleanText) {
+  if (msg && msg.voiceChatOnly) {
+    return {
+      intent: 'assistant_chat',
+      demoRoute: null,
+      runner: (socket, text) => runAssistantChat(socket, text, msg.voiceSessionId)
+    };
+  }
   const intent = detectIntent(cleanText);
   const demoRoute = intent === 'design' ? detectDemoRoute(cleanText) : null;
   const handlers = getWorkflowHandlers();
