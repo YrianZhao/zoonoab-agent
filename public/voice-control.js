@@ -1223,6 +1223,48 @@
                 :fullscreen #voiceWakeToggle, :-webkit-full-screen #voiceWakeToggle { bottom:84px!important; right:24px!important; z-index:2147483640!important; }
                 :fullscreen #voiceSiriCard, :-webkit-full-screen #voiceSiriCard { bottom:90px!important; z-index:2147483641!important; }
                 :fullscreen #voicePulseRing, :-webkit-full-screen #voicePulseRing { bottom:20px!important; right:20px!important; z-index:2147483639!important; }
+                @media (max-width: 640px) {
+                    body.chatting-mode:not(.quick-design-open) #voiceCtrlBtn {
+                        right: 16px!important;
+                        bottom: calc(128px + env(safe-area-inset-bottom))!important;
+                    }
+                    body.chatting-mode:not(.quick-design-open) #voiceWakeToggle {
+                        right: 16px!important;
+                        bottom: calc(188px + env(safe-area-inset-bottom))!important;
+                    }
+                    body.chatting-mode:not(.quick-design-open) #voiceSiriCard {
+                        bottom: calc(188px + env(safe-area-inset-bottom))!important;
+                        width: calc(100vw - 24px)!important;
+                    }
+                    body.chatting-mode:not(.quick-design-open) #voicePulseRing {
+                        right: 12px!important;
+                        bottom: calc(124px + env(safe-area-inset-bottom))!important;
+                    }
+                    body.quick-design-open #voiceCtrlBtn {
+                        right: 14px!important;
+                        bottom: calc(128px + env(safe-area-inset-bottom))!important;
+                        width: 46px!important;
+                        height: 46px!important;
+                        opacity: 0.9!important;
+                    }
+                    body.quick-design-open #voiceWakeToggle {
+                        right: 64px!important;
+                        bottom: calc(136px + env(safe-area-inset-bottom))!important;
+                        padding: 4px 10px!important;
+                        min-width: 58px!important;
+                        opacity: 0.9!important;
+                    }
+                    body.quick-design-open #voiceSiriCard {
+                        bottom: calc(190px + env(safe-area-inset-bottom))!important;
+                        width: calc(100vw - 24px)!important;
+                    }
+                    body.quick-design-open #voicePulseRing {
+                        right: 10px!important;
+                        bottom: calc(122px + env(safe-area-inset-bottom))!important;
+                        width: 56px!important;
+                        height: 56px!important;
+                    }
+                }
             `;
             document.head.appendChild(s);
         }
