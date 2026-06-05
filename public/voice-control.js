@@ -359,7 +359,7 @@
                 const inp = document.getElementById('userInput');
                 if (!inp) return;
                 inp.value = question;
-                if (typeof sendMessage === 'function') sendMessage();
+                if (typeof sendMessage === 'function') sendMessage({ voice: true });
                 return;
             }
             if (typeof startChatRun === 'function') startChatRun(question);
@@ -621,6 +621,20 @@
         _voicePushTranscript('user', text);
         updateVoiceBar({ heard: text, response: '理解中…', thinking: true });
         _voiceStats.heard++;
+
+        if (typeof window.handleQuickDesignVoiceCommand === 'function') {
+            const qdResult = window.handleQuickDesignVoiceCommand(text, { speak: false });
+            if (qdResult && qdResult.handled) {
+                const reply = qdResult.label || '已处理快速设计指令';
+                _voiceStats.commands++;
+                updateVoiceBar({ heard: text, response: reply });
+                _voicePushTranscript('ai', reply);
+                speakVoice(reply);
+                _voiceProcessing = false;
+                _voiceDrainQueue();
+                return;
+            }
+        }
 
         const commonAnswer = _voiceCommonAnswer(text);
         if (commonAnswer) {

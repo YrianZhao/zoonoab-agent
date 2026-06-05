@@ -15,6 +15,7 @@ let MsEdgeTTS = null;
 let EDGE_OUTPUT_FORMAT = null;
 let edgeTtsLastError = '';
 let edgeTtsLastFailedAt = 0;
+let edgeTtsCliLastError = '';
 try {
   const edgeTts = require('msedge-tts');
   MsEdgeTTS = edgeTts.MsEdgeTTS;
@@ -57,14 +58,16 @@ const ASSISTANT_CHAT_MODEL = process.env.ASSISTANT_CHAT_MODEL || process.env.DEE
 const ASSISTANT_CHAT_BASE_URL = process.env.ASSISTANT_CHAT_BASE_URL || process.env.DEEPSEEK_CHAT_BASE_URL || process.env.VOICE_CHAT_BASE_URL || '';
 const VOICE_API_CONFIG_FILE = process.env.VOICE_API_CONFIG_FILE || path.join(__dirname, '.runtime', 'voice-api-config.json');
 const LOCAL_TTS_PROVIDER = String(process.env.LOCAL_TTS_PROVIDER || 'edge').trim().toLowerCase();
-const LOCAL_TTS_EDGE_VOICE = process.env.LOCAL_TTS_EDGE_VOICE || process.env.EDGE_TTS_VOICE || 'zh-CN-XiaomoNeural';
+const LOCAL_TTS_EDGE_VOICE = process.env.LOCAL_TTS_EDGE_VOICE || process.env.EDGE_TTS_VOICE || 'zh-CN-XiaoxiaoNeural';
+const LOCAL_TTS_EDGE_RATE = String(process.env.LOCAL_TTS_EDGE_RATE || process.env.EDGE_TTS_RATE || '+8%').trim();
+const LOCAL_TTS_EDGE_TIMEOUT_MS = Math.max(2500, Number(process.env.LOCAL_TTS_EDGE_TIMEOUT_MS || 7000) || 7000);
 const LOCAL_TTS_MACOS_RATE = String(process.env.LOCAL_TTS_MACOS_RATE || '185').trim();
 const LOCAL_TTS_EDGE_RETRY_MS = Math.max(30_000, Number(process.env.LOCAL_TTS_EDGE_RETRY_MS || 10 * 60 * 1000) || 10 * 60 * 1000);
 const APP_BUILD_VERSION = readAppBuildVersion();
 const VOICE_DOMAIN_PROMPT = [
   'ZoonoAb AI antibody design platform.',
-  'Common terms: IL-33, ST2, VHH, nanobody, Fab, PD-1, PD-L1, HER2, TNF, VEGF, CD3e, UniProt, Chai-1, ipTM, pLDDT, DockQ, PDB, CDR, CDR-H3.',
-  'The speaker may give Chinese or English demo control commands for molecular viewers and antibody workflows.'
+  'Common terms: IL-33, ST2, VHH, nanobody, Fab, PD-1, PD-L1, HER2, EGFR, VEGF-A, TNF, IL-17A, IL-23, TSLP, RSV F, RBD, HA, PCSK9, ANGPTL3, GIPR, CD3e, UniProt, Chai-1, ipTM, pLDDT, DockQ, PDB, CDR, CDR-H3.',
+  'The speaker may give Chinese or English demo control commands for Quick Design, next step, previous step, submit design, molecular viewers and antibody workflows.'
 ].join(' ');
 const VOICE_AUDIO_TYPES = new Set([
   'audio/webm',
@@ -1405,6 +1408,17 @@ function pickMacosVoice() {
   }
 }
 
+function normalizeTtsTextForSpeech(text) {
+  return String(text || '')
+    .replace(/\bZoono\s*AB\b/gi, 'zoono A B')
+    .replace(/\bZoono\s*Ab\b/gi, 'zoono A B')
+    .replace(/\bzoonoab\b/gi, 'zoono A B')
+    .replace(/PD\s*-\s*L\s*1/gi, 'P D L 1')
+    .replace(/PD\s*-\s*1/gi, 'P D 1')
+    .replace(/CDR\s*-\s*H\s*3/gi, 'C D R H 3')
+    .replace(/CDR\s+H\s*3/gi, 'C D R H 3');
+}
+
 async function edgeTtsToBuffer(text) {
   if (!MsEdgeTTS || !EDGE_OUTPUT_FORMAT) throw new Error('edge_tts_unavailable');
   const tts = new MsEdgeTTS();
@@ -1416,19 +1430,153 @@ async function edgeTtsToBuffer(text) {
   const chunks = [];
   await new Promise((resolve, reject) => {
     let settled = false;
+    const timer = setTimeout(() => {
+      if (settled) return;
+      settled = true;
+      try { audioStream.destroy(); } catch {}
+      reject(new Error('edge_tts_timeout'));
+    }, LOCAL_TTS_EDGE_TIMEOUT_MS);
     const done = () => {
       if (settled) return;
       settled = true;
+      clearTimeout(timer);
       resolve();
     };
     audioStream.on('data', (chunk) => chunks.push(Buffer.from(chunk)));
     audioStream.on('end', done);
     audioStream.on('close', done);
-    audioStream.on('error', reject);
+    audioStream.on('error', (err) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      reject(err);
+    });
   });
   const buffer = Buffer.concat(chunks);
   if (buffer.length < 800) throw new Error('edge_tts_empty_audio');
   return buffer;
+}
+
+function edgeTtsCliCandidates() {
+  const candidates = [];
+  const configured = String(process.env.EDGE_TTS_BIN || process.env.LOCAL_TTS_EDGE_BIN || '').trim();
+  if (configured) {
+    candidates.push({
+      label: 'edge-tts-bin',
+      command: configured,
+      args: (text, outFile) => [
+        '--voice', LOCAL_TTS_EDGE_VOICE,
+        '--rate', LOCAL_TTS_EDGE_RATE,
+        '--text', text,
+        '--write-media', outFile
+      ]
+    });
+  }
+  const venvPython = localAsrVenvPythonPath();
+  if (fs.existsSync(venvPython)) {
+    candidates.push({
+      label: 'python-edge-tts-venv',
+      command: venvPython,
+      args: (text, outFile) => [
+        '-m', 'edge_tts',
+        '--voice', LOCAL_TTS_EDGE_VOICE,
+        '--rate', LOCAL_TTS_EDGE_RATE,
+        '--text', text,
+        '--write-media', outFile
+      ]
+    });
+  }
+  candidates.push({
+    label: 'python-edge-tts-system',
+    command: process.env.PYTHON_BIN || 'python3',
+    args: (text, outFile) => [
+      '-m', 'edge_tts',
+      '--voice', LOCAL_TTS_EDGE_VOICE,
+      '--rate', LOCAL_TTS_EDGE_RATE,
+      '--text', text,
+      '--write-media', outFile
+    ]
+  });
+  return candidates;
+}
+
+function runEdgeTtsCliCandidate(candidate, text) {
+  const tmpBase = path.join(os.tmpdir(), 'zoonoab-edge-tts-' + uuidv4());
+  const outFile = tmpBase + '.mp3';
+  return new Promise((resolve, reject) => {
+    let settled = false;
+    let timer = null;
+    let stderr = '';
+    const finish = (err, buffer) => {
+      if (settled) return;
+      settled = true;
+      if (timer) clearTimeout(timer);
+      try { fs.unlinkSync(outFile); } catch {}
+      if (err) reject(err);
+      else resolve(buffer);
+    };
+    let proc;
+    try {
+      proc = spawn(candidate.command, candidate.args(String(text || '').slice(0, 800), outFile), {
+        stdio: ['ignore', 'ignore', 'pipe']
+      });
+    } catch (err) {
+      finish(err);
+      return;
+    }
+    timer = setTimeout(() => {
+      try { proc.kill('SIGKILL'); } catch {}
+      finish(new Error(candidate.label + '_timeout'));
+    }, LOCAL_TTS_EDGE_TIMEOUT_MS);
+    proc.stderr.on('data', (chunk) => {
+      stderr = (stderr + String(chunk || '')).slice(-1200);
+    });
+    proc.on('error', finish);
+    proc.on('close', (code) => {
+      if (settled) return;
+      if (code !== 0) {
+        finish(new Error(candidate.label + '_exit_' + code + (stderr ? ': ' + stderr.slice(0, 240) : '')));
+        return;
+      }
+      try {
+        const buffer = fs.readFileSync(outFile);
+        if (buffer.length < 800) {
+          finish(new Error(candidate.label + '_empty_audio'));
+          return;
+        }
+        finish(null, buffer);
+      } catch (err) {
+        finish(err);
+      }
+    });
+  });
+}
+
+async function edgeTtsCliToBuffer(text) {
+  const errors = [];
+  for (const candidate of edgeTtsCliCandidates()) {
+    try {
+      return await runEdgeTtsCliCandidate(candidate, text);
+    } catch (err) {
+      errors.push(candidate.label + ': ' + (err && err.message ? err.message : String(err || '')));
+    }
+  }
+  edgeTtsCliLastError = errors.join(' | ').slice(0, 500);
+  throw new Error(edgeTtsCliLastError || 'edge_tts_cli_unavailable');
+}
+
+function edgeTtsCliCandidateInstalled(candidate) {
+  if (!candidate || !candidate.command) return false;
+  if (candidate.label === 'edge-tts-bin') {
+    if (candidate.command.includes(path.sep)) return fs.existsSync(candidate.command);
+    const probe = spawnSync(candidate.command, ['--version'], { stdio: 'ignore', timeout: 1200 });
+    return probe.status === 0;
+  }
+  if (candidate.label && candidate.label.startsWith('python-edge-tts')) {
+    const probe = spawnSync(candidate.command, ['-c', 'import edge_tts'], { stdio: 'ignore', timeout: 1200 });
+    return probe.status === 0;
+  }
+  return false;
 }
 
 async function macosSayToBuffer(text, voice = pickMacosVoice()) {
@@ -1455,7 +1603,7 @@ async function macosSayToBuffer(text, voice = pickMacosVoice()) {
 }
 
 async function synthesizeLocalTts(text) {
-  const trimmed = String(text || '').trim();
+  const trimmed = normalizeTtsTextForSpeech(text).trim();
   if (!trimmed) throw new Error('empty_tts_text');
   const edgeCoolingDown = edgeTtsLastFailedAt && Date.now() - edgeTtsLastFailedAt < LOCAL_TTS_EDGE_RETRY_MS;
   if (LOCAL_TTS_PROVIDER !== 'macos' && LOCAL_TTS_PROVIDER !== 'say' && !edgeCoolingDown) {
@@ -1471,8 +1619,23 @@ async function synthesizeLocalTts(text) {
       return edgeResult;
     } catch (err) {
       edgeTtsLastError = err && err.message ? err.message : String(err || '');
-      edgeTtsLastFailedAt = Date.now();
       console.warn('[TTS] Edge Neural fallback:', edgeTtsLastError);
+    }
+    try {
+      const edgeCliResult = {
+        contentType: 'audio/mpeg',
+        provider: 'edge-cli',
+        voice: LOCAL_TTS_EDGE_VOICE,
+        buffer: await edgeTtsCliToBuffer(trimmed)
+      };
+      edgeTtsLastError = '';
+      edgeTtsCliLastError = '';
+      edgeTtsLastFailedAt = 0;
+      return edgeCliResult;
+    } catch (err) {
+      edgeTtsCliLastError = err && err.message ? err.message : String(err || '');
+      edgeTtsLastFailedAt = Date.now();
+      console.warn('[TTS] Edge CLI fallback:', edgeTtsCliLastError);
     }
   }
   if (process.platform === 'darwin') {
@@ -1492,20 +1655,38 @@ app.get('/api/tts/health', async (_, res) => {
     ? Math.max(0, LOCAL_TTS_EDGE_RETRY_MS - (Date.now() - edgeTtsLastFailedAt))
     : 0;
   const macosAvailable = process.platform === 'darwin';
-  const edgeAvailable = Boolean(MsEdgeTTS && !edgeRetryAfterMs);
+  const edgeCliCandidates = edgeTtsCliCandidates();
+  const edgeCliProbe = edgeCliCandidates.map(candidate => ({
+    label: candidate.label,
+    command: candidate.command,
+    installed: edgeTtsCliCandidateInstalled(candidate)
+  }));
+  const edgeCliInstalled = edgeCliProbe.some(candidate => candidate.installed);
+  const edgeAvailable = Boolean((MsEdgeTTS || edgeCliInstalled) && !edgeRetryAfterMs);
   res.json({
     ok: Boolean(edgeAvailable || macosAvailable),
     preferredProvider: LOCAL_TTS_PROVIDER === 'macos' || LOCAL_TTS_PROVIDER === 'say'
       ? (macosAvailable ? 'macos' : 'none')
-      : (edgeAvailable ? 'edge' : (macosAvailable ? 'macos' : 'none')),
+      : (edgeAvailable ? 'edge-neural' : (macosAvailable ? 'macos' : 'none')),
+    rate: LOCAL_TTS_EDGE_RATE,
+    pronunciationNormalization: true,
     edge: {
       installed: Boolean(MsEdgeTTS),
-      available: edgeAvailable,
+      available: Boolean(MsEdgeTTS && !edgeRetryAfterMs),
       voice: LOCAL_TTS_EDGE_VOICE,
       source: 'msedge-tts',
       runtimeProbeRequired: true,
       lastError: edgeTtsLastError,
       retryAfterMs: edgeRetryAfterMs
+    },
+    edgeCli: {
+      installed: edgeCliInstalled,
+      available: Boolean(edgeCliInstalled && !edgeRetryAfterMs),
+      voice: LOCAL_TTS_EDGE_VOICE,
+      source: 'python edge-tts',
+      timeoutMs: LOCAL_TTS_EDGE_TIMEOUT_MS,
+      lastError: edgeTtsCliLastError,
+      candidates: edgeCliProbe
     },
     macos: {
       available: macosAvailable,
@@ -1520,7 +1701,7 @@ app.post('/api/tts', async (req, res) => {
     return res.status(400).json({ error: 'invalid_text', message: '语音播报文本无效。' });
   }
   try {
-    const result = await synthesizeLocalTts(text);
+    const result = await synthesizeLocalTts(normalizeTtsTextForSpeech(text));
     res.setHeader('Content-Type', result.contentType);
     res.setHeader('Cache-Control', 'no-store');
     return res.end(result.buffer);
@@ -1536,7 +1717,7 @@ app.get('/api/tts-stream', async (req, res) => {
     return res.status(400).json({ error: 'invalid_text', message: '语音播报文本无效。' });
   }
   try {
-    const result = await synthesizeLocalTts(text);
+    const result = await synthesizeLocalTts(normalizeTtsTextForSpeech(text));
     res.setHeader('Content-Type', result.contentType);
     res.setHeader('Cache-Control', 'no-store');
     return res.end(result.buffer);

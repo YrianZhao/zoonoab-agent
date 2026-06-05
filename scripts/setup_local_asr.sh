@@ -31,13 +31,13 @@ fi
 
 "$VENV_DIR/bin/python" -m pip install --upgrade pip setuptools wheel
 if [ "$LOCAL_ASR_ENGINE" = "vosk" ]; then
-  "$VENV_DIR/bin/python" -m pip install --upgrade --no-compile vosk
+  "$VENV_DIR/bin/python" -m pip install --upgrade --no-compile vosk edge-tts
   "$VENV_DIR/bin/python" "$ROOT_DIR/scripts/prepare_vosk_model.py"
 elif [ -n "$LOCAL_ASR_TORCH_INDEX_URL" ]; then
   "$VENV_DIR/bin/python" -m pip install --upgrade --no-compile --index-url "$LOCAL_ASR_TORCH_INDEX_URL" torch torchaudio
-  "$VENV_DIR/bin/python" -m pip install --upgrade --no-compile funasr modelscope
+  "$VENV_DIR/bin/python" -m pip install --upgrade --no-compile funasr modelscope edge-tts
 else
-  "$VENV_DIR/bin/python" -m pip install --upgrade --no-compile funasr modelscope torch torchaudio
+  "$VENV_DIR/bin/python" -m pip install --upgrade --no-compile funasr modelscope torch torchaudio edge-tts
 fi
 
 echo "Local ASR environment is ready: $VENV_DIR ($LOCAL_ASR_ENGINE ${LOCAL_ASR_MODEL:-default})"

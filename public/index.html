@@ -5320,7 +5320,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78141236';
+    const APP_BUILD_VERSION = '78141237';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -6509,6 +6509,198 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         sendQuickDesignWorkflow(text, routeId);
     }
 
+    function isQuickDesignOpen() {
+        const ov = document.getElementById('quickDesignOverlay');
+        return Boolean(ov && ov.style.display === 'flex');
+    }
+
+    function qdVoiceNormalize(text) {
+        return String(text || '')
+            .toLowerCase()
+            .replace(/[，。！？、；：,.!?;:]/g, ' ')
+            .replace(/\s+/g, ' ')
+            .replace(/晓/g, '小')
+            .replace(/糯|喏|挪|若/g, '诺')
+            .replace(/二十三/g, '23')
+            .replace(/三十三/g, '33')
+            .replace(/十七/g, '17')
+            .replace(/一/g, '1')
+            .replace(/二|两/g, '2')
+            .replace(/三/g, '3')
+            .replace(/四/g, '4')
+            .replace(/五/g, '5')
+            .replace(/六/g, '6')
+            .replace(/七/g, '7')
+            .replace(/八/g, '8')
+            .replace(/九/g, '9')
+            .replace(/\bher\s*two\b/g, 'her2')
+            .replace(/\bher\s*2\b/g, 'her2')
+            .replace(/\bpd\s*l\s*1\b/g, 'pdl1')
+            .replace(/\bpd\s*-\s*l\s*1\b/g, 'pdl1')
+            .replace(/\bp\s*d\s*l\s*1\b/g, 'pdl1')
+            .replace(/\bvegf\s*a\b/g, 'vegfa')
+            .replace(/\bv\s*e\s*g\s*f\s*a?\b/g, 'vegfa')
+            .replace(/\bp\s*c\s*s\s*k\s*9\b/g, 'pcsk9')
+            .replace(/\bi\s*l\s*17\s*a?\b/g, 'il17a')
+            .replace(/\bi\s*l\s*23\b/g, 'il23')
+            .replace(/\bi\s*l\s*33\b/g, 'il33')
+            .replace(/\s+/g, ' ')
+            .trim();
+    }
+
+    function qdVoiceCompact(text) {
+        return qdVoiceNormalize(text).replace(/\s+/g, '');
+    }
+
+    function qdVoiceHasAny(compact, aliases) {
+        return aliases.some(alias => compact.includes(qdVoiceCompact(alias)));
+    }
+
+    const qdVoiceAliases = {
+        disease: [
+            { id: 'oncology', aliases: ['肿瘤', '癌症', '肿瘤免疫', '癌', 'oncology', 'cancer'] },
+            { id: 'immune', aliases: ['自身免疫', '自免', '炎症疾病', '炎症', '类风湿', '银屑病', '免疫炎症'] },
+            { id: 'allergy', aliases: ['过敏', '哮喘', '呼吸道炎症', '气道炎症', '过敏性疾病'] },
+            { id: 'infection', aliases: ['感染', '感染性疾病', '病毒', '呼吸道病毒', '新冠', '流感', 'rsv'] },
+            { id: 'cardio', aliases: ['心血管', '血脂', '胆固醇', '高胆固醇', 'ldlc', 'ldl', '降脂'] },
+            { id: 'metabolic', aliases: ['代谢', '代谢疾病', '脂质代谢', '糖代谢', '肥胖', 'gipr'] }
+        ],
+        target: [
+            { id: 'PD-L1', aliases: ['pd-l1', 'pdl1', 'p d l 1', 'pdl一', 'pd l1', '检查点'] },
+            { id: 'HER2', aliases: ['her2', 'her two', 'h e r 2', '乳腺癌'] },
+            { id: 'EGFR', aliases: ['egfr', 'e g f r', '实体瘤'] },
+            { id: 'VEGF-A', aliases: ['vegf-a', 'vegfa', 'vegf', 'v e g f', '血管生成'] },
+            { id: 'TNF', aliases: ['tnf', 'tnf alpha', '类风湿'] },
+            { id: 'IL-17A', aliases: ['il-17a', 'il17a', 'il17', 'il十七', '银屑病'] },
+            { id: 'IL-23', aliases: ['il-23', 'il23', 'il二十三', '炎症性肠病'] },
+            { id: 'IL-33', aliases: ['il-33', 'il33', 'il三十三', 'st2'] },
+            { id: 'TSLP', aliases: ['tslp', '上皮炎症'] },
+            { id: 'RSV F', aliases: ['rsv f', 'rsv', '呼吸道合胞病毒', '融合蛋白'] },
+            { id: 'SARS-CoV-2 RBD', aliases: ['sars cov 2 rbd', 'rbd', '新冠', 'ace2', '冠状病毒'] },
+            { id: 'Influenza HA', aliases: ['influenza ha', 'ha', '流感', '血凝素'] },
+            { id: 'PCSK9', aliases: ['pcsk9', 'pcsk九', 'p c s k 9', '胆固醇'] },
+            { id: 'ANGPTL3', aliases: ['angptl3', 'angptl三', '甘油三酯', '脂质代谢'] },
+            { id: 'IL-1β', aliases: ['il-1β', 'il1b', 'il一β', 'il 1 beta', '心血管炎症'] },
+            { id: 'GIPR', aliases: ['gipr', 'g i p r', '肠促胰岛素'] }
+        ],
+        mechanism: [
+            { id: 'block-pd1-pdl1', aliases: ['阻断pd1pdl1', 'pd1pdl1', '检查点阻断'] },
+            { id: 'block-growth', aliases: ['阻断生长', '生长信号', '肿瘤生长'] },
+            { id: 'cell-clearance', aliases: ['细胞清除', '清除细胞', '诱导清除'] },
+            { id: 'neutralize', aliases: ['中和', '中和抗原', '中和因子', '中和功能'] },
+            { id: 'block-receptor', aliases: ['阻断受体', '受体结合', '受体相互作用'] },
+            { id: 'block-fusion', aliases: ['阻断融合', '病毒融合', '融合过程'] },
+            { id: 'block-ace2', aliases: ['阻断ace2', 'rbdace2', '受体结合结构域'] },
+            { id: 'neutralize-ha', aliases: ['中和ha', '中和流感', '表面抗原'] },
+            { id: 'conserved-stem', aliases: ['保守茎部', '茎部区域', '宽谱'] },
+            { id: 'block-ldlr', aliases: ['阻断ldlr', 'ldlr', '低密度脂蛋白受体'] },
+            { id: 'functional-domain', aliases: ['功能结构域', '功能域'] },
+            { id: 'modulate-receptor', aliases: ['调节受体', '调节gipr', '受体信号'] },
+            { id: 'developability', aliases: ['可开发性', '强化可开发性'] },
+            { id: 'block-st2', aliases: ['阻断st2', 'ilst2', 'il33st2'] },
+            { id: 'block-tslpr', aliases: ['阻断tslpr', 'tslptslpr'] },
+            { id: 'block-subunit', aliases: ['特异结构域', '特异亚基'] },
+            { id: 'block-receptor', aliases: ['阻断相互作用'] },
+            { id: 'high-affinity', aliases: ['高亲和力', '亲和力', '高亲和'] }
+        ],
+        epitope: [
+            { id: 'auto', aliases: ['自动选择', '自动', '最优表位', '推荐表位'] },
+            { id: 'interface', aliases: ['结合界面', '蛋白结合界面', '相互作用界面', '受体界面'] },
+            { id: 'conserved', aliases: ['保守区域', '保守结构', '保守位点'] },
+            { id: 'loop', aliases: ['暴露环区', '柔性区域', '环区', '暴露区域'] }
+        ]
+    };
+
+    function qdVoiceSelectVisibleOption(rawText) {
+        const compact = qdVoiceCompact(rawText);
+        if (!compact) return null;
+        if (qdState.step === 1) {
+            const hit = qdVoiceAliases.disease.find(item => qdVoiceHasAny(compact, item.aliases));
+            if (hit && qdDiseaseOptions.some(opt => opt.id === hit.id)) {
+                qdSelectDisease(hit.id);
+                const option = qdDiseaseOptions.find(opt => opt.id === hit.id);
+                return `已选择${option ? option.title : hit.id}`;
+            }
+        }
+        if (qdState.step === 2) {
+            const visibleIds = qdGetTargetList().map(item => item.id);
+            const hit = qdVoiceAliases.target.find(item => visibleIds.includes(item.id) && qdVoiceHasAny(compact, item.aliases));
+            if (hit) {
+                qdSelectTarget(hit.id);
+                return `已选择${hit.id}`;
+            }
+        }
+        if (qdState.step === 3) {
+            const visibleIds = qdMechanismList().map(item => item.id);
+            const hit = qdVoiceAliases.mechanism.find(item => visibleIds.includes(item.id) && qdVoiceHasAny(compact, item.aliases));
+            if (hit) {
+                qdSelectMechanism(hit.id);
+                const option = qdMechanismList().find(opt => opt.id === hit.id);
+                return `已选择${option ? option.title : hit.id}`;
+            }
+        }
+        if (qdState.step === 4) {
+            const hit = qdVoiceAliases.epitope.find(item => qdVoiceHasAny(compact, item.aliases));
+            if (hit && qdEpitopeOptions.some(opt => opt.id === hit.id)) {
+                qdSelectEpitope(hit.id);
+                const option = qdEpitopeOptions.find(opt => opt.id === hit.id);
+                return `已选择${option ? option.title : hit.id}`;
+            }
+        }
+        return null;
+    }
+
+    function handleQuickDesignVoiceCommand(rawText, options = {}) {
+        const text = stripWakeWord(rawText) || String(rawText || '').trim();
+        const compact = qdVoiceCompact(text);
+        if (!compact) return false;
+        const wantsOpen = qdVoiceHasAny(compact, ['打开快速设计', '开启快速设计', '开始快速设计', '新建设计', '新建项目', '快速设计']);
+        const wantsNext = qdVoiceHasAny(compact, ['下一步', '往下', '继续', '然后下一步', '下一个']);
+        const wantsBack = qdVoiceHasAny(compact, ['上一步', '返回上一页', '返回', '往回']);
+        const wantsSubmit = qdVoiceHasAny(compact, ['启动设计', '开始设计', '提交', '提交设计', '运行设计']);
+        const wantsClose = qdVoiceHasAny(compact, ['关闭快速设计', '退出快速设计', '取消快速设计', '关闭', '退出']);
+        const feedback = (msg) => {
+            showToast(msg, 'success');
+            pushVoiceAssistantLog('system', msg);
+            updateVoiceUI('success', msg);
+            if (options.speak !== false) voiceAssistantSpeak(msg);
+            return { handled: true, label: msg };
+        };
+
+        if (!isQuickDesignOpen()) {
+            if (!wantsOpen) return false;
+            switchView('chat');
+            openQuickDesign();
+            return feedback('已打开快速设计');
+        }
+
+        if (wantsClose) {
+            closeQuickDesign();
+            return feedback('已关闭快速设计');
+        }
+
+        let selectedLabel = qdVoiceSelectVisibleOption(text);
+        if (wantsBack) {
+            qdBack();
+            return feedback('已返回上一步');
+        }
+        if (wantsSubmit) {
+            const route = qdRoute();
+            const msg = `已启动${route.target}设计`;
+            submitQuickDesign();
+            return feedback(msg);
+        }
+        if (wantsNext) {
+            qdNext();
+            const msg = selectedLabel ? `${selectedLabel}，已进入下一步` : '已进入下一步';
+            return feedback(msg);
+        }
+        if (selectedLabel) {
+            return feedback(selectedLabel);
+        }
+        return false;
+    }
+
     // ═══════════════ CONVERSATION HISTORY (localStorage) ═══════════════
     const _HIST_KEY = 'zoonoab_history_v2';
     const _HIST_MAX = 30;
@@ -6629,6 +6821,13 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             return;
         }
         switch (msg.type) {
+            case 'voice_say':
+                if (wakeEnabled && msg.text) {
+                    pushVoiceAssistantLog('system', msg.text);
+                    voiceAssistantSpeak(msg.text);
+                }
+                break;
+
             case 'connected':
                 sessionId = msg.sessionId;
                 break;
@@ -7867,6 +8066,24 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         log.scrollTop = log.scrollHeight;
     }
 
+    let voiceAssistantAudio = null;
+    function voiceAssistantSpeak(text) {
+        const value = String(text || '').trim();
+        if (!value || typeof Audio === 'undefined') return;
+        try {
+            if (voiceAssistantAudio) {
+                voiceAssistantAudio.pause();
+                voiceAssistantAudio.src = '';
+                voiceAssistantAudio = null;
+            }
+            const audio = new Audio('/api/tts-stream?text=' + encodeURIComponent(value.slice(0, 800)));
+            voiceAssistantAudio = audio;
+            audio.onended = () => { if (voiceAssistantAudio === audio) voiceAssistantAudio = null; };
+            audio.onerror = () => { if (voiceAssistantAudio === audio) voiceAssistantAudio = null; };
+            audio.play().catch(() => { if (voiceAssistantAudio === audio) voiceAssistantAudio = null; });
+        } catch (err) {}
+    }
+
     function normalizeHealthStatus(status) {
         const value = String(status || '').toLowerCase();
         if (value === 'ready') return 'ready';
@@ -7975,6 +8192,79 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (['installing', 'starting', 'loading', 'unavailable', 'timeout'].includes(state) || health.process?.managed || health.process?.starting) {
             scheduleVoiceHealthRefresh(state === 'installing' ? 5000 : 2500, { autoStart: true });
         }
+    }
+
+    function voiceHealthReady(cfg = voiceConfigState) {
+        if (!cfg) return false;
+        if (cfg.local === false) return Boolean(cfg.canTranscribe || cfg.ready || (cfg.hasApiKey && cfg.supportsAudio !== false));
+        return Boolean(cfg.canTranscribe || cfg.localReady || cfg.status === 'ready' || cfg.healthStatus === 'ready');
+    }
+
+    function voiceStartupMessage(health = voiceConfigState) {
+        const state = normalizeHealthStatus(health?.localState || health?.status || health?.healthStatus);
+        if (state === 'not_installed') {
+            return health?.message || health?.healthMessage || '本机离线语音依赖未安装，请先运行 npm run asr:setup。';
+        }
+        if (['installing', 'starting', 'loading'].includes(state) || health?.process?.managed || health?.process?.starting) {
+            return health?.message || health?.healthMessage || '本机离线语音正在启动或加载模型，请稍后再说一次。';
+        }
+        if (health?.message || health?.healthMessage) return health.message || health.healthMessage;
+        return '正在启动本机离线语音，请稍后再说一次。';
+    }
+
+    async function forceStartLocalAsrForCapture(source) {
+        if (voiceLocalAsrStarting) return voiceConfigState;
+        try {
+            voiceLocalAsrStarting = true;
+            renderVoiceHealth(voiceConfigState);
+            const resp = await fetch('/api/voice/local-asr/start', { method: 'POST' });
+            const data = await resp.json().catch(() => ({}));
+            voiceConfigState = {
+                ...voiceConfigState,
+                ...data,
+                healthStatus: data.status || data.healthStatus || data.error || voiceConfigState.healthStatus,
+                healthMessage: data.message || data.healthMessage || voiceConfigState.healthMessage
+            };
+            renderVoiceHealth(voiceConfigState);
+            maybeScheduleVoiceHealthRefresh(voiceConfigState);
+            return voiceConfigState;
+        } catch (err) {
+            const msg = err && err.message ? err.message : '本机离线语音启动失败';
+            voiceConfigState = { ...voiceConfigState, healthStatus: 'unavailable', healthMessage: msg };
+            renderVoiceHealth(voiceConfigState);
+            return voiceConfigState;
+        } finally {
+            voiceLocalAsrStarting = false;
+            renderVoiceHealth(voiceConfigState);
+        }
+    }
+
+    async function ensureVoiceCaptureReady(source = 'button') {
+        if (!isVoiceSupported()) return false;
+        let health = voiceConfigState;
+        if (voiceHealthReady(health)) return true;
+        if (health?.local === false) {
+            health = await refreshVoiceHealth({ autoStart: true });
+            if (voiceHealthReady(health)) return true;
+            const msg = health?.message || health?.healthMessage || '语音识别服务暂时不可用。';
+            updateVoiceUI('error', msg);
+            showToast(msg, 'warning');
+            return false;
+        }
+        const sourceLabel = source === 'wake' || source === 'wake-listen' ? '小诺语音' : '语音输入';
+        updateVoiceUI('processing', `${sourceLabel}正在启动离线识别...`);
+        health = await refreshVoiceHealth({ autoStart: true });
+        if (voiceHealthReady(health)) return true;
+        const canStart = Boolean(health?.manualStartAvailable || health?.autoStartAvailable || health?.install?.canBootstrap || health?.install?.venvReady);
+        if (canStart) {
+            health = await forceStartLocalAsrForCapture(source);
+            if (voiceHealthReady(health)) return true;
+        }
+        const msg = voiceStartupMessage(health);
+        updateVoiceUI('processing', msg);
+        showToast(msg, normalizeHealthStatus(health?.localState || health?.status || health?.healthStatus) === 'not_installed' ? 'warning' : 'info');
+        maybeScheduleVoiceHealthRefresh(health);
+        return false;
     }
 
     async function startLocalAsrFromPanel() {
@@ -8662,6 +8952,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             stopBrowserWakeRecognition();
             pauseLocalWakeCapture();
         }
+        if (!(await ensureVoiceCaptureReady(source))) {
+            if (wakeEnabled) resumeWakeListeningAfterCommand(1000);
+            return;
+        }
         if (shouldUseWavCapture()) {
             return startVoiceCaptureWav(source);
         }
@@ -9002,6 +9296,66 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         sendMessage();
     }
 
+    function sendVoiceChatMessage(text) {
+        const value = stripWakeWord(text) || String(text || '').trim();
+        if (!value) return;
+        if (isRunning) {
+            fillVoiceTranscriptInput(value, { toast: false });
+            showToast('当前工作流正在运行，语音内容已填入输入框', 'warning');
+            return;
+        }
+        const input = document.getElementById('userInput');
+        if (!input) return;
+        switchView('chat');
+        input.value = value;
+        input.dispatchEvent(new Event('input'));
+        sendMessage({ voice: true });
+    }
+
+    function voiceCommonAnswer(text) {
+        const s = String(text || '').replace(/\s+/g, '').toLowerCase();
+        const has = (...parts) => parts.some(part => s.includes(String(part).replace(/\s+/g, '').toLowerCase()));
+        if (has('你是谁', '小诺是谁', '你叫什么')) {
+            return '我是 ZoonoAb 小诺，负责语音控制快速设计、结构展示和抗体工程问答。';
+        }
+        if (has('你能做什么', '有哪些功能', '可以做什么')) {
+            return '我可以打开快速设计，帮你选择疾病、靶点、机制和表位，也可以控制 3D 结构展示，回答抗体工程相关问题。';
+        }
+        if (has('怎么开始快速设计', '如何开始快速设计', '快速设计怎么用')) {
+            return '你可以说“打开快速设计”，然后说疾病方向、靶点名称、下一步和启动设计，我会按向导帮你操作。';
+        }
+        if (has('什么是cdr', 'cdr是什么', '互补决定区')) {
+            return 'CDR 是抗体直接接触抗原的关键环区，通常决定结合特异性和亲和力，快速设计会重点优化 CDR-H3。';
+        }
+        if (has('vhh和fab', 'fab和vhh', '纳米抗体和fab', 'vhh区别', 'fab区别')) {
+            return 'VHH 是单域纳米抗体，结构小且稳定；Fab 保留重链和轻链可变区，更接近经典抗体片段，适合结构展示和阻断界面设计。';
+        }
+        if (has('什么是pd-l1', 'pdl1是什么', 'pd-l1是什么', 'pd1pdl1')) {
+            return 'PD-L1 是免疫检查点配体，它和 PD-1 结合后会抑制 T 细胞活性。阻断 PD-1/PD-L1 是肿瘤免疫治疗的经典抗体方向。';
+        }
+        if (has('il-33是什么', 'il33是什么', 'st2是什么')) {
+            return 'IL-33 是驱动二型炎症的细胞因子，常通过 ST2 受体放大哮喘和过敏炎症信号。';
+        }
+        if (has('为什么没有反应', '听不见', '没听见', '语音没反应')) {
+            return '请确认浏览器允许麦克风权限，并靠近麦克风说完整一句话。语音面板会显示音量和离线识别状态，模型加载时请稍后再说一次。';
+        }
+        return '';
+    }
+
+    function answerVoiceCommonQuestion(rawText, answer) {
+        const question = stripWakeWord(rawText) || String(rawText || '').trim();
+        if (!answer) return false;
+        pushVoiceAssistantLog('system', answer);
+        updateVoiceUI('success', answer);
+        if (!isRunning) {
+            switchView('chat');
+            appendUserMsg(question);
+            appendAgentMsg(answer);
+        }
+        voiceAssistantSpeak(answer);
+        return true;
+    }
+
     function startVoiceDesignIntent(intent) {
         const route = intent && intent.route ? intent.route : {};
         const text = intent.text || '阻断 PD-1/PD-L1 通路，设计 10 个高亲和力 Fab';
@@ -9031,14 +9385,14 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
     function handleResolvedVoiceIntent(intent, rawText) {
         if (!intent || !intent.action) {
-            sendVoiceTextAsUserMessage(rawText);
+            sendVoiceChatMessage(rawText);
             return;
         }
         if (intent.action === 'design') {
             startVoiceDesignIntent(intent);
             return;
         }
-        sendVoiceTextAsUserMessage(intent.text || rawText);
+        sendVoiceChatMessage(intent.text || rawText);
     }
 
     function runVoiceAction(label, fn) {
@@ -9100,6 +9454,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     function routeVoiceCommand(cmd, rawText) {
+        const qdVoiceResult = handleQuickDesignVoiceCommand(rawText || cmd);
+        if (qdVoiceResult && qdVoiceResult.handled) return true;
         if (voiceHas(cmd, ['取消任务', '停止任务', 'cancel task'])) {
             return runVoiceAction('已取消当前工作流', () => cancelTask());
         }
@@ -9187,14 +9543,16 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (!cmd) return;
         pushVoiceAssistantLog('user', stripWakeWord(text) || text);
         if (routeVoiceCommand(cmd, text)) return;
+        const commonAnswer = voiceCommonAnswer(text);
+        if (commonAnswer && answerVoiceCommonQuestion(text, commonAnswer)) return;
         updateVoiceUI('processing', '正在理解指令...');
         try {
             const intent = await requestVoiceIntent(text);
             handleResolvedVoiceIntent(intent, text);
         } catch (err) {
             console.warn('[Voice] Intent routing failed:', err);
-            pushVoiceAssistantLog('system', '未匹配到直接指令，已转入文字输入。');
-            sendVoiceTextAsUserMessage(text);
+            pushVoiceAssistantLog('system', '未匹配到直接指令，已进入对话。');
+            sendVoiceChatMessage(text);
         }
     }
 
@@ -9401,6 +9759,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (!isVoiceSupported() && !isBrowserWakeSupported()) {
             showToast('当前浏览器不支持语音唤醒，请使用 Chrome 或 Edge', 'error');
             updateVoiceUI('error', '浏览器不支持语音唤醒');
+            return;
+        }
+        if (!(await ensureVoiceCaptureReady('wake-listen'))) {
+            showVoiceAssistantCard({ force: true });
+            wakeEnabled = false;
+            wakeBusy = false;
             return;
         }
         try {
@@ -9630,6 +9994,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     window.testVoiceChatSettings = testVoiceChatSettings;
     window.toggleWakeListening = toggleWakeListening;
     window.hideVoiceAssistantCard = hideVoiceAssistantCard;
+    window.handleQuickDesignVoiceCommand = handleQuickDesignVoiceCommand;
+    window.isQuickDesignOpen = isQuickDesignOpen;
 
     // ═══════════════ Utility Functions ═══════════════
     // renderMarkdown and inlineMarkdown are defined near the bottom of this script

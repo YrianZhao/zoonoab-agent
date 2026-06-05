@@ -34,7 +34,10 @@ DEVICE = os.environ.get("LOCAL_ASR_DEVICE", "cpu")
 PRELOAD_MODEL = os.environ.get("LOCAL_ASR_PRELOAD", "1").lower() not in {"0", "false", "no", "off"}
 HOTWORDS = os.environ.get(
     "LOCAL_ASR_HOTWORDS",
-    "小诺同学 小诺小诺 小诺 PD-1 PD-L1 PDL1 IL-33 ST2 HER2 TNF Fab VHH 抗体 设计 候选 亲和力 阻断 通路 结构模型"
+    "小诺同学 小诺小诺 小诺 快速设计 打开快速设计 开启快速设计 新建设计 下一步 上一步 返回 启动设计 开始设计 提交 关闭 退出 "
+    "肿瘤 癌症 自身免疫 炎症 过敏 哮喘 感染 病毒 心血管 血脂 代谢 脂质代谢 "
+    "PD-1 PD-L1 PDL1 HER2 EGFR VEGF VEGF-A TNF IL-17A IL17 IL-23 IL23 IL-33 IL33 TSLP RSV RSV F RBD HA PCSK9 ANGPTL3 GIPR IL-1β ST2 "
+    "Fab VHH 抗体 设计 候选 亲和力 高亲和力 阻断 中和 受体结合 生长信号 细胞清除 保守区域 功能结构域 结合界面 暴露环区 柔性区域 通路 结构模型"
 )
 
 _MODEL = None
