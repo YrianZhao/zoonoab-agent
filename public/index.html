@@ -3083,7 +3083,7 @@
             z-index: 3002 !important;
         }
         @media (min-width: 1120px) {
-            body.quick-design-open #quickDesignOverlay {
+            body.quick-design-voice-open #quickDesignOverlay {
                 justify-content: flex-start !important;
                 padding-left: max(16px, calc((100vw - 1100px) / 2)) !important;
                 padding-right: 292px !important;
@@ -3091,11 +3091,11 @@
             }
         }
         @media (min-width: 1100px) and (max-width: 1240px) {
-            body.quick-design-open #quickDesignOverlay {
+            body.quick-design-voice-open #quickDesignOverlay {
                 padding-left: 14px !important;
                 padding-right: 222px !important;
             }
-            body.quick-design-open .qd-modal {
+            body.quick-design-voice-open .qd-modal {
                 width: min(820px, calc(100vw - 250px)) !important;
             }
             body.quick-design-open #voiceAssistantCard {
@@ -4316,11 +4316,11 @@
                     </button>
                 </div>
                 <div class="input-hints" id="inputHints">
-                    <span class="hint-chip" onclick="fillHint(this)">小诺同学，帮我为过敏性哮喘设计一个抗体分子，并打印一个结构模型。</span>
-                    <span class="hint-chip" onclick="fillHint(this)">小诺同学，帮我做一个肿瘤免疫治疗方向的抗体设计演示。</span>
-                    <span class="hint-chip" onclick="fillHint(this)">小诺同学，请为乳腺癌相关疾病设计一个候选抗体。</span>
-                    <span class="hint-chip" onclick="fillHint(this)">小诺同学，请为类风湿方向做一个抗炎抗体设计演示。</span>
-                    <span class="hint-chip" onclick="fillHint(this)">小诺同学，请做一次完整的抗体设计演示。</span>
+                    <span class="hint-chip" onclick="sendHintWorkflow(this)">小诺同学，帮我为过敏性哮喘设计一个抗体分子，并打印一个结构模型。</span>
+                    <span class="hint-chip" onclick="sendHintWorkflow(this)">小诺同学，帮我做一个肿瘤免疫治疗方向的抗体设计演示。</span>
+                    <span class="hint-chip" onclick="sendHintWorkflow(this)">小诺同学，请为乳腺癌相关疾病设计一个候选抗体。</span>
+                    <span class="hint-chip" onclick="sendHintWorkflow(this)">小诺同学，请为类风湿方向做一个抗炎抗体设计演示。</span>
+                    <span class="hint-chip" onclick="sendHintWorkflow(this)">小诺同学，请做一次完整的抗体设计演示。</span>
                 </div>
                 <!-- Quick workflow action chips -->
                 <div class="quick-actions-row" id="quickActionsRow">
@@ -5460,7 +5460,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146013';
+    const APP_BUILD_VERSION = '78146014';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -6396,21 +6396,24 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         };
     }
 
-    function openQuickDesign() {
+    function openQuickDesign(options = {}) {
         const ov = document.getElementById('quickDesignOverlay');
         if (!ov) return;
         qdResetState();
-        qdVoiceWizardActive = false;
+        const voiceOpened = Boolean(options.voice);
+        qdVoiceWizardActive = voiceOpened;
         ov.style.display = 'flex';
         document.body.classList.add('quick-design-open');
+        document.body.classList.toggle('quick-design-voice-open', voiceOpened);
         qdRender();
-        if (typeof autoPlaceVoiceForQuickDesign === 'function') autoPlaceVoiceForQuickDesign();
+        if (voiceOpened && typeof autoPlaceVoiceForQuickDesign === 'function') autoPlaceVoiceForQuickDesign();
         refreshLucideIcons({ nodes: [ov] });
     }
     function closeQuickDesign() {
         const ov = document.getElementById('quickDesignOverlay');
         if (ov) ov.style.display = 'none';
         document.body.classList.remove('quick-design-open');
+        document.body.classList.remove('quick-design-voice-open');
         qdVoiceWizardActive = false;
         if (typeof stopQuickDesignContinuousVoice === 'function') stopQuickDesignContinuousVoice();
         if (typeof loadFloatingVoicePosition === 'function') loadFloatingVoicePosition();
@@ -6896,14 +6899,15 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             if (!wantsOpen) return false;
             if (options.requireWakeToOpen && !woke) return false;
             switchView('chat');
-            openQuickDesign();
-            qdVoiceWizardActive = true;
+            openQuickDesign({ voice: true });
             quickDesignPromptListenDelay(360);
             return feedback('已打开快速设计。请说，开始设计。');
         }
 
         if (wantsOpen) {
             qdVoiceWizardActive = true;
+            document.body.classList.add('quick-design-voice-open');
+            if (typeof autoPlaceVoiceForQuickDesign === 'function') autoPlaceVoiceForQuickDesign();
             const prompt = qdState.step === 0 ? '已打开快速设计。请说，开始设计。' : (qdVoiceStepPrompt(qdState.step) || '已进入快速设计语音向导。');
             quickDesignPromptListenDelay(360);
             return feedback(prompt);
@@ -7312,6 +7316,18 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         document.getElementById('userInput').focus();
     }
 
+    function sendHintWorkflow(el) {
+        const text = (el && el.textContent ? el.textContent : '').trim();
+        if (!text || isRunning) return;
+        switchView('chat');
+        const input = document.getElementById('userInput');
+        if (input) {
+            input.value = '';
+            input.style.height = 'auto';
+        }
+        sendMessage({ text });
+    }
+
     // ═══════════════ CAPABILITY OVERVIEW ═══════════════
     function renderCapabilityOverview(toolSections, workflows) {
         const stream = getStream();
@@ -7712,7 +7728,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const input = document.getElementById('userInput');
         if (!input) return;
 
-        let text = input.value.trim();
+        let text = typeof options.text === 'string' ? options.text.trim() : input.value.trim();
         text = stripWakeWord(text) || text;
         if (!text || isRunning) return;
         if (text.length > 2000) { showToast('输入内容过长，请不超过 2000 字符', 'error'); return; }
