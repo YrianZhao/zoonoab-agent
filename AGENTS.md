@@ -68,3 +68,7 @@ GitHub 推送权限应使用仓库级 Deploy Key，并在本仓库本地 Git 配
 普通麦克风按钮录音后应支持模糊页面控制命令，例如“打开快速设计”可以直接打开快速设计；只有后台免手动唤醒监听才要求先说“小诺同学”。
 语音“唤醒”按钮应固定在页面左下角，按钮文案使用“唤醒”而不是“免提”；点击后应让小诺同学直接进入已唤醒/可接收指令状态。
 悬浮语音面板展开时必须按当前视口边界夹紧位置，无论麦克风拖到左下角、右下角或其他边缘，都不得超出整体页面可见区域。
+
+阿里云低成本部署优先使用 Linux ECS 或轻量应用服务器直跑当前 Node 单体服务，使用 nginx 反向代理 `PORT`，并保留 WebSocket `Upgrade`/`Connection` 转发；长期稳定运行语音能力时最低建议 2 vCPU / 2 GiB / 40 GB。
+阿里云部署时不要依赖 `.env` 自动加载；`server.js` 直接读取系统环境变量，必须通过 `systemd`、PM2 ecosystem 或启动命令显式注入 `PORT`、`ASSISTANT_CHAT_*`、`LOCAL_ASR_*`、`VOICE_API_CONFIG_FILE`、`LOCAL_TTS_PROVIDER` 等变量。
+阿里云部署的本地 ASR/TTS 运行目录应落在持久化路径，例如 `/var/data` 或项目内 `.runtime`；CPU 机器默认优先 `LOCAL_ASR_ENGINE=vosk`、`VOICE_TRANSCRIBE_MODEL=vosk-small-cn-0.22`，并继续使用 CPU-only PyTorch 源 `https://download.pytorch.org/whl/cpu`。
