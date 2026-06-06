@@ -5467,7 +5467,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146015';
+    const APP_BUILD_VERSION = '78146016';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -6955,7 +6955,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
         if (!isQuickDesignOpen()) {
             if (!wantsOpen) return false;
-            if (options.requireWakeToOpen && !woke) return false;
+            if (options.requireWakeToOpen && !woke && options.source !== 'button') return false;
             switchView('chat');
             openQuickDesign({ voice: true });
             qdEnableVoiceWizard({ dock: true });
@@ -7958,21 +7958,28 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const right = Math.max(margin, window.innerWidth - left - btnSize);
         const bottom = Math.max(margin, window.innerHeight - top - btnSize);
         const quickOpen = document.body.classList.contains('quick-design-open');
-        const dockWidth = window.innerWidth <= 640 ? Math.min(156, window.innerWidth - 24) : (quickOpen ? 150 : 176);
+        const isMobile = window.innerWidth <= 640;
+        const dockWidth = isMobile ? Math.min(156, window.innerWidth - 24) : (quickOpen ? 150 : 176);
+        const cardWidth = isMobile ? Math.max(240, window.innerWidth - 24) : Math.min(360, window.innerWidth - 32);
+        const cardHeight = quickOpen ? (isMobile ? 68 : 82) : 340;
+        const clamp = (value, min, max) => Math.max(min, Math.min(Math.max(min, max), value));
         setRootStyleProp('--voice-btn-left', `${left}px`);
         setRootStyleProp('--voice-btn-top', `${top}px`);
         setRootStyleProp('--voice-btn-right', 'auto');
         setRootStyleProp('--voice-btn-bottom', 'auto');
-        setRootStyleProp('--wake-btn-left', `${Math.max(margin, left - 14)}px`);
-        setRootStyleProp('--wake-btn-top', `${Math.max(margin, top - 38)}px`);
+        setRootStyleProp('--wake-btn-left', `${margin + 12}px`);
+        setRootStyleProp('--wake-btn-top', 'auto');
         setRootStyleProp('--wake-btn-right', 'auto');
-        setRootStyleProp('--wake-btn-bottom', 'auto');
-        setRootStyleProp('--voice-pop-left', `${Math.max(margin, Math.min(left, window.innerWidth - 220))}px`);
-        setRootStyleProp('--voice-pop-top', `${Math.max(margin, top - 76)}px`);
+        setRootStyleProp('--wake-btn-bottom', `${Math.max(margin, 24)}px`);
+        setRootStyleProp('--voice-pop-left', `${clamp(left, margin, window.innerWidth - 220 - margin)}px`);
+        setRootStyleProp('--voice-pop-top', `${clamp(top - 76, margin, window.innerHeight - 44 - margin)}px`);
         setRootStyleProp('--voice-pop-right', 'auto');
         setRootStyleProp('--voice-pop-bottom', 'auto');
-        const cardLeft = Math.max(margin, Math.min(left - dockWidth + btnSize, window.innerWidth - dockWidth - margin));
-        const cardTop = Math.max(margin, quickOpen ? top - 72 : top - 98);
+        const cardLeft = quickOpen
+            ? clamp(left - dockWidth + btnSize, margin, window.innerWidth - dockWidth - margin)
+            : clamp(left + btnSize / 2 - cardWidth / 2, margin, window.innerWidth - cardWidth - margin);
+        const preferredTop = quickOpen ? top - 72 : (top < window.innerHeight / 2 ? top + btnSize + 12 : top - cardHeight - 12);
+        const cardTop = clamp(preferredTop, margin, window.innerHeight - cardHeight - margin);
         setRootStyleProp('--voice-card-left', `${cardLeft}px`);
         setRootStyleProp('--voice-card-top', `${cardTop}px`);
         setRootStyleProp('--voice-card-right', 'auto');
@@ -8113,9 +8120,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 }
                 #wakeBtn {
                     position: fixed;
-                    right: var(--wake-btn-right, 24px);
-                    bottom: var(--wake-btn-bottom, 92px);
-                    left: var(--wake-btn-left, auto);
+                    left: var(--wake-btn-left, 22px);
+                    bottom: var(--wake-btn-bottom, 24px);
+                    right: var(--wake-btn-right, auto);
                     top: var(--wake-btn-top, auto);
                     z-index: 9998;
                     min-width: 72px;
@@ -8400,7 +8407,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 }
                 @media (max-width: 640px) {
                     #voiceBtn { right: var(--voice-btn-right, 16px); bottom: var(--voice-btn-bottom, 16px); }
-                    #wakeBtn { right: var(--wake-btn-right, 16px); bottom: var(--wake-btn-bottom, 84px); }
+                    #wakeBtn { left: var(--wake-btn-left, 14px); bottom: var(--wake-btn-bottom, 16px); }
                     #voiceStatusPop { right: var(--voice-pop-right, 16px); bottom: var(--voice-pop-bottom, 152px); max-width: calc(100vw - 32px); }
                     #voiceAssistantCard { bottom: var(--voice-card-bottom, 84px); width: calc(100vw - 24px); }
                     body.quick-design-open #voiceBtn {
@@ -8412,8 +8419,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                         box-shadow: 0 8px 22px rgba(37, 99, 235, 0.26), 0 0 0 1px rgba(255,255,255,0.2) inset;
                     }
                     body.quick-design-open #wakeBtn {
-                        right: var(--wake-btn-right, 66px);
-                        bottom: var(--wake-btn-bottom, calc(136px + env(safe-area-inset-bottom)));
+                        left: var(--wake-btn-left, 14px);
+                        bottom: var(--wake-btn-bottom, calc(16px + env(safe-area-inset-bottom)));
                         height: 28px;
                         min-width: 58px;
                         padding: 0 10px;
@@ -8471,9 +8478,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         wakeBtn.className = 'input-icon-btn wake-btn';
         wakeBtn.id = 'wakeBtn';
         wakeBtn.type = 'button';
-        wakeBtn.title = '开启小诺同学语音唤醒';
-        wakeBtn.onclick = () => toggleWakeListening();
-        wakeBtn.textContent = '免提';
+        wakeBtn.title = '唤醒小诺同学';
+        wakeBtn.onclick = () => wakeAssistantNow();
+        wakeBtn.textContent = '唤醒';
         document.body.appendChild(wakeBtn);
 
         const pop = document.createElement('div');
@@ -8524,7 +8531,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     function voiceStatusLabel(state) {
         if (state === 'listening') return '正在聆听';
         if (state === 'processing') return '正在识别';
-        if (state === 'wake') return wakeDetectorMode === 'browser' ? '免提唤醒中' : '本地唤醒中';
+        if (state === 'wake') return '小诺待命中';
         if (state === 'awake') return '小诺已唤醒';
         if (state === 'success') return '已完成';
         if (state === 'error') return '需要处理';
@@ -9363,10 +9370,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             wakeBtn.classList.toggle('active', wakeEnabled && !wakeActiveCommand);
             wakeBtn.classList.toggle('awake', wakeActiveCommand);
             wakeBtn.setAttribute('aria-pressed', wakeEnabled ? 'true' : 'false');
-            wakeBtn.textContent = wakeActiveCommand ? '已唤醒' : (wakeEnabled ? '免提中' : '免提');
+            wakeBtn.textContent = wakeActiveCommand ? '已唤醒' : (wakeEnabled ? '唤醒中' : '唤醒');
             wakeBtn.title = wakeEnabled
-                ? (wakeDetectorMode === 'browser' ? '小诺同学免提唤醒已开启' : '小诺同学本地唤醒已开启')
-                : '开启小诺同学语音唤醒';
+                ? '小诺同学已处于唤醒状态'
+                : '唤醒小诺同学';
         }
         renderVoiceHealth(voiceConfigState);
         if (pop && text) {
@@ -9940,7 +9947,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     function routeVoiceCommand(cmd, rawText, options = {}) {
         const qdVoiceResult = handleQuickDesignVoiceCommand(rawText || cmd, {
             requireWakeToOpen: true,
-            source: options.source || ''
+            source: options.source || 'button'
         });
         if (qdVoiceResult && qdVoiceResult.handled) return true;
         if (!isQuickDesignOpen()) {
@@ -10179,6 +10186,20 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         wakeAwakeUntil = Date.now() + WAKE_AWAKE_WINDOW_MS;
         updateVoiceUI('awake', '小诺已唤醒，请说指令');
         startVoiceCapture('wake');
+    }
+
+    async function wakeAssistantNow() {
+        if (voiceState === 'listening') return;
+        if (wakeBusy) return;
+        voiceCardManuallyHidden = false;
+        showVoiceAssistantCard({ force: true });
+        if (!wakeEnabled) {
+            if (!(await ensureVoiceCaptureReady('wake-listen'))) return;
+            wakeEnabled = true;
+            wakeDetectorMode = isBrowserWakeSupported() ? 'browser' : (isVoiceSupported() ? 'local' : '');
+            refreshVoiceHealth({ autoStart: true });
+        }
+        startWakeCommandCapture();
     }
 
     async function startWakeListening() {

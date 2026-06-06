@@ -807,18 +807,18 @@
         btn.querySelector('svg')?.style.setProperty('pointer-events', 'none');
         document.body.appendChild(btn);
 
-        // Hands-free wake-word toggle (small pill above the mic button)
+        // Wake toggle fallback for pages that do not use the main voice UI.
         const wake = document.createElement('button');
         wake.id = 'voiceWakeToggle';
         Object.assign(wake.style, {
-            position:'fixed', bottom:'84px', right:'24px', zIndex:'9998',
+            position:'fixed', bottom:'24px', left:'22px', zIndex:'9998',
             padding:'5px 11px', borderRadius:'14px', border:'none',
             background:'rgba(30,41,59,0.85)', color:'rgba(255,255,255,0.7)',
             fontSize:'11px', fontWeight:'600', cursor:'pointer',
             boxShadow:'0 2px 10px rgba(0,0,0,0.25)', backdropFilter:'blur(8px)',
             transition:'all 0.2s ease', whiteSpace:'nowrap',
         });
-        wake.innerHTML = '💤 免提';
+        wake.innerHTML = '唤醒';
         wake.setAttribute('onclick', 'toggleWakeWord()');
         document.body.appendChild(wake);
 
@@ -1185,10 +1185,10 @@
         try { localStorage.setItem('zoo_wake', _wakeEnabled ? '1' : '0'); } catch(e){}
         _updateWakeBtn();
         if (_wakeEnabled) {
-            showToast('免提模式已开启 — 说“小诺同学”即可唤醒', 'success');
+            showToast('唤醒模式已开启 — 说“小诺同学”即可唤醒', 'success');
             if (!_voiceActive) _startWakeWord();
         } else {
-            showToast('免提模式已关闭', 'info');
+            showToast('唤醒模式已关闭', 'info');
             _stopWakeWord();
         }
     }
@@ -1198,8 +1198,8 @@
         if (!b) return;
         b.style.background = _wakeEnabled ? 'linear-gradient(135deg,#10B981,#059669)' : 'rgba(30,41,59,0.85)';
         b.style.color = _wakeEnabled ? 'white' : 'rgba(255,255,255,0.7)';
-        b.title = _wakeEnabled ? '免提唤醒：开（说“小诺同学”唤醒）— 点击关闭' : '免提唤醒：关 — 点击开启，之后说“小诺同学”即可免提唤醒';
-        b.innerHTML = (_wakeEnabled ? '🟢' : '💤') + ' 免提';
+        b.title = _wakeEnabled ? '唤醒：开（说“小诺同学”唤醒）— 点击关闭' : '唤醒：关 — 点击开启，之后说“小诺同学”即可唤醒';
+        b.innerHTML = (_wakeEnabled ? '已唤醒' : '唤醒');
     }
 
     function _voiceSessionId() {
@@ -1497,7 +1497,7 @@
                     <button onclick="document.getElementById('voiceHelpOverlay').remove()" style="background:none;border:none;font-size:20px;cursor:pointer;color:var(--text-muted);line-height:1;">&times;</button>
                 </div>
                 <div style="margin-bottom:16px;padding:10px 14px;background:var(--bg-light);border-radius:10px;font-size:12px;color:var(--text-secondary);">
-                    当前语音用于网站功能控制和站内问答，不会把识别内容写入主输入框、聊天区或普通工作流。只有在快速设计最后确认页说"启动 AI 分子设计"才会开始设计。<b>小诺说话时直接开口、点卡片或按 Esc 可打断</b>。开启右下角 <b>"💤 免提"</b> 后，直接说 <b>"小诺同学"</b> 即可免提唤醒。
+                    当前语音用于网站功能控制和站内问答，不会把识别内容写入主输入框、聊天区或普通工作流。只有在快速设计最后确认页说"启动 AI 分子设计"才会开始设计。<b>小诺说话时直接开口、点卡片或按 Esc 可打断</b>。点击左下角 <b>"唤醒"</b> 后，直接说指令即可控制页面。
                 </div>
                 ${rows}
             </div>`;
