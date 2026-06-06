@@ -2986,6 +2986,13 @@
         }
         .qd-option-card:hover { border-color: var(--brand-light); background: #F7FBFF; transform: translateY(-1px); box-shadow: var(--shadow-sm); }
         .qd-option-card.selected { border-color: var(--brand); background: var(--brand-lighter); box-shadow: 0 0 0 3px rgba(0,123,255,0.08); }
+        .qd-option-card.voice-confirm { animation: qdVoiceConfirm 1.1s ease both; }
+        @keyframes qdVoiceConfirm {
+            0% { box-shadow: 0 0 0 0 rgba(0,123,255,0.00); transform: translateY(0); }
+            24% { box-shadow: 0 0 0 5px rgba(0,123,255,0.14), 0 10px 22px rgba(0,123,255,0.14); transform: translateY(-1px); }
+            68% { box-shadow: 0 0 0 4px rgba(0,123,255,0.12), 0 8px 18px rgba(0,123,255,0.10); transform: translateY(0); }
+            100% { box-shadow: 0 0 0 3px rgba(0,123,255,0.08); transform: translateY(0); }
+        }
         .qd-option-card.recommended { border-color: rgba(0,123,255,0.32); }
         .qd-option-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
         .qd-option-title { font-size: 14px; line-height: 1.35; color: var(--text-primary); font-weight: 750; }
@@ -5460,7 +5467,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146014';
+    const APP_BUILD_VERSION = '78146015';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -6382,8 +6389,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     ];
     let qdState = {};
     let qdVoiceWizardActive = false;
+    let qdVoiceConfirm = null;
+    let qdVoiceTransitioning = false;
 
     function qdResetState() {
+        qdVoiceConfirm = null;
+        qdVoiceTransitioning = false;
         qdState = {
             step: 0,
             disease: 'oncology',
@@ -6415,6 +6426,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         document.body.classList.remove('quick-design-open');
         document.body.classList.remove('quick-design-voice-open');
         qdVoiceWizardActive = false;
+        qdVoiceTransitioning = false;
         if (typeof stopQuickDesignContinuousVoice === 'function') stopQuickDesignContinuousVoice();
         if (typeof loadFloatingVoicePosition === 'function') loadFloatingVoicePosition();
     }
@@ -6514,7 +6526,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
     function qdOptionCards(options, selectedId, handler, compact = false) {
         return `<div class="qd-option-grid${compact ? ' compact' : ''}">` + options.map(opt => `
-            <button class="qd-option-card${selectedId === opt.id ? ' selected' : ''}${opt.recommended ? ' recommended' : ''}" onclick="${handler}('${qdEscAttr(opt.id)}')">
+            <button class="qd-option-card${selectedId === opt.id ? ' selected' : ''}${opt.recommended ? ' recommended' : ''}${qdVoiceConfirm && qdVoiceConfirm.step === qdState.step && qdVoiceConfirm.id === opt.id ? ' voice-confirm' : ''}" onclick="${handler}('${qdEscAttr(opt.id)}')">
                 <span class="qd-option-top">
                     <span class="qd-option-title">${qdEscHtml(opt.title)}</span>
                     ${opt.recommended ? '<span class="qd-tag">推荐</span>' : ''}
@@ -6617,16 +6629,24 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         }
         refreshLucideIcons({ nodes: document.getElementById('quickDesignOverlay') });
     }
-    function qdNext() {
+    function qdNext(options = {}) {
         if (qdState.step < QD_TOTAL_STEPS - 1) {
             qdState.step += 1;
             qdRender();
+            if (options.announcePrompt) {
+                qdEnableVoiceWizard({ dock: Boolean(options.dock) });
+                qdAnnounceCurrentStep();
+            }
         }
     }
-    function qdBack() {
+    function qdBack(options = {}) {
         if (qdState.step > 0) {
             qdState.step -= 1;
             qdRender();
+            if (options.announcePrompt) {
+                qdEnableVoiceWizard({ dock: Boolean(options.dock) });
+                qdAnnounceCurrentStep('已返回。');
+            }
         }
     }
     function qdSelectDisease(id) {
@@ -6650,6 +6670,11 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
     function qdSelectAntibody(id) {
         qdState.antibody = id;
+        qdRender();
+    }
+
+    function qdVoiceMarkConfirmed(step, id) {
+        qdVoiceConfirm = { step, id: String(id || '') };
         qdRender();
     }
 
@@ -6834,44 +6859,77 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             const option = qdVoiceBestOption(rawText, qdDiseaseOptions, 'disease');
             if (!option) return null;
             qdSelectDisease(option.id);
+            qdVoiceMarkConfirmed(1, option.id);
             return { label: `已选择${option.title || option.id}`, step: 1, option };
         }
         if (qdState.step === 2) {
             const option = qdVoiceBestOption(rawText, qdGetTargetList(), 'target');
             if (!option) return null;
             qdSelectTarget(option.id);
+            qdVoiceMarkConfirmed(2, option.id);
             return { label: `已选择${option.title || option.id}`, step: 2, option };
         }
         if (qdState.step === 3) {
             const option = qdVoiceBestOption(rawText, qdMechanismList(), 'mechanism');
             if (!option) return null;
             qdSelectMechanism(option.id);
+            qdVoiceMarkConfirmed(3, option.id);
             return { label: `已选择${option.title || option.id}`, step: 3, option };
         }
         if (qdState.step === 4) {
             const option = qdVoiceBestOption(rawText, qdEpitopeOptions, 'epitope');
             if (!option) return null;
             qdSelectEpitope(option.id);
+            qdVoiceMarkConfirmed(4, option.id);
             return { label: `已选择${option.title || option.id}`, step: 4, option };
         }
         return null;
     }
 
+    function qdEnableVoiceWizard(options = {}) {
+        qdVoiceWizardActive = true;
+        if (options.dock) {
+            document.body.classList.add('quick-design-voice-open');
+            if (typeof autoPlaceVoiceForQuickDesign === 'function') autoPlaceVoiceForQuickDesign();
+        }
+    }
+
     function qdVoiceStepPrompt(step = qdState.step) {
-        if (step === 1) return '请选择疾病方向。';
-        if (step === 2) return '请选择靶标蛋白。';
-        if (step === 3) return '请选择作用机制。';
-        if (step === 4) return '请选择表位策略。';
-        if (step === QD_TOTAL_STEPS - 1) return '已生成任务。确认后说，启动 AI 分子设计。';
+        if (step === 0) return '请说，开始设计。';
+        if (step === 1) return '您想开发针对哪类疾病的治疗分子？';
+        if (step === 2) return '请选择希望作用的靶标蛋白。';
+        if (step === 3) return '您希望这个分子实现什么作用？';
+        if (step === 4) return '希望抗体优先识别哪个区域？';
+        if (step === QD_TOTAL_STEPS - 1) return '设计任务已生成。确认后请说，启动 AI 分子设计。';
         return '';
     }
 
-    function qdVoiceAdvanceAfterSelection(selection) {
+    function qdAnnounceCurrentStep(prefix = '') {
+        if (!isQuickDesignOpen() || !qdVoiceWizardActive) return;
+        const prompt = qdVoiceStepPrompt(qdState.step);
+        if (!prompt) return;
+        const msg = prefix ? `${prefix}${prompt}` : prompt;
+        pushVoiceAssistantLog('system', msg);
+        updateVoiceUI('success', msg);
+        voiceAssistantSpeak(msg);
+    }
+
+    function qdVoiceAdvanceAfterSelection(selection, options = {}) {
         if (!selection || typeof selection.step !== 'number') return '';
         if (selection.step >= 1 && selection.step <= 4 && qdState.step < QD_TOTAL_STEPS - 1) {
-            qdNext();
-            const prompt = qdVoiceWizardActive ? qdVoiceStepPrompt(qdState.step) : '';
-            return prompt ? `${selection.label}。${prompt}` : `${selection.label}，已进入下一步`;
+            qdVoiceTransitioning = true;
+            setTimeout(() => {
+                if (!isQuickDesignOpen()) return;
+                if (qdState.step !== selection.step) {
+                    qdVoiceConfirm = null;
+                    qdVoiceTransitioning = false;
+                    return;
+                }
+                qdVoiceConfirm = null;
+                qdVoiceTransitioning = false;
+                qdNext({ announcePrompt: true, dock: Boolean(options.dock) });
+            }, 1250);
+            return `${selection.label}。`;
         }
         return selection.label;
     }
@@ -6900,16 +6958,13 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             if (options.requireWakeToOpen && !woke) return false;
             switchView('chat');
             openQuickDesign({ voice: true });
-            quickDesignPromptListenDelay(360);
+            qdEnableVoiceWizard({ dock: true });
             return feedback('已打开快速设计。请说，开始设计。');
         }
 
         if (wantsOpen) {
-            qdVoiceWizardActive = true;
-            document.body.classList.add('quick-design-voice-open');
-            if (typeof autoPlaceVoiceForQuickDesign === 'function') autoPlaceVoiceForQuickDesign();
+            qdEnableVoiceWizard({ dock: true });
             const prompt = qdState.step === 0 ? '已打开快速设计。请说，开始设计。' : (qdVoiceStepPrompt(qdState.step) || '已进入快速设计语音向导。');
-            quickDesignPromptListenDelay(360);
             return feedback(prompt);
         }
 
@@ -6919,17 +6974,14 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         }
 
         if (wantsBack) {
-            qdBack();
-            const prompt = qdVoiceStepPrompt(qdState.step);
-            quickDesignPromptListenDelay(360);
-            return feedback(prompt ? `已返回。${prompt}` : '已返回上一步');
+            qdBack({ announcePrompt: true });
+            return { handled: true, label: '已返回上一步' };
         }
         if (qdState.step === 0) {
             if (wantsStartWizard || wantsNext) {
-                qdVoiceWizardActive = true;
-                qdNext();
-                quickDesignPromptListenDelay(360);
-                return feedback(qdVoiceWizardActive ? qdVoiceStepPrompt(qdState.step) : '已进入疾病选择');
+                qdEnableVoiceWizard({ dock: false });
+                qdNext({ announcePrompt: true });
+                return { handled: true, label: qdVoiceStepPrompt(qdState.step) || '已进入疾病选择' };
             }
             if (wantsSubmit) {
                 return feedback('请先说“开始设计”，完成向导后再启动 AI 分子设计。', 'warning');
@@ -6938,7 +6990,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         }
         if (wantsSubmit) {
             if (!qdVoiceWizardActive) {
-                return feedback('请先说“小诺，打开快速设计”，按语音向导完成后再启动 AI 分子设计。', 'warning');
+                return feedback('请先说“小诺同学，打开快速设计”，按语音向导完成后再启动 AI 分子设计。', 'warning');
             }
             if (qdState.step === QD_TOTAL_STEPS - 1) {
                 const route = qdRoute();
@@ -6950,15 +7002,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         }
         const selected = qdVoiceSelectVisibleOption(text);
         if (selected) {
-            qdVoiceWizardActive = true;
-            quickDesignPromptListenDelay(360);
-            return feedback(qdVoiceAdvanceAfterSelection(selected));
+            qdEnableVoiceWizard({ dock: false });
+            return feedback(qdVoiceAdvanceAfterSelection(selected, { dock: false }));
         }
         if (wantsNext) {
-            qdNext();
-            const prompt = qdVoiceStepPrompt(qdState.step);
-            quickDesignPromptListenDelay(360);
-            return feedback(prompt || '已进入下一步');
+            qdNext({ announcePrompt: true });
+            return { handled: true, label: qdVoiceStepPrompt(qdState.step) || '已进入下一步' };
         }
         return false;
     }
@@ -7762,7 +7811,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     const VOICE_MIN_PEAK_RMS = 0.024;
     const VOICE_MIN_SIGNAL_RMS = 0.013;
     const VOICE_VAD_SILENCE_MS = 1040;
-    const WAKE_WORDS = ['小诺同学', '小诺小诺', '你好小诺', '嗨小诺', '小诺', '晓诺同学', '晓诺', '小糯同学', '小糯', '小喏', '小挪', '小若'];
+    const WAKE_WORDS = ['小诺同学'];
     let voiceMediaRecorder = null;
     let voiceStream = null;
     let voiceChunks = [];
@@ -9612,7 +9661,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     function shouldKeepQuickDesignListening() {
-        return Boolean(isQuickDesignOpen() && qdVoiceWizardActive && voiceState !== 'listening' && voiceState !== 'processing');
+        return Boolean(isQuickDesignOpen() && qdVoiceWizardActive && !qdVoiceTransitioning && voiceState !== 'listening' && voiceState !== 'processing');
     }
 
     function quickDesignPromptListenDelay(delay = 260) {
@@ -9750,10 +9799,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
             value = value.replace(new RegExp(escaped, 'ig'), ' ');
         });
-        value = value
-            .replace(/晓诺同学|晓诺|小糯同学|小糯|小诺同學/g, ' ')
-            .replace(/小\s*诺\s*同\s*学/g, ' ')
-            .replace(/小\s*诺/g, ' ');
+        value = value.replace(/小\s*诺\s*同\s*学|小诺同學/g, ' ');
         return value.replace(/[，。！？、；：,.!?;:]/g, ' ').replace(/\s+/g, ' ').trim();
     }
 
@@ -9761,23 +9807,13 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const cmd = normalizeWakeText(text);
         if (!cmd) return false;
         const wakeAliases = WAKE_WORDS.map(word => normalizeWakeText(word)).filter(Boolean);
-        return wakeAliases.some(word => cmd.includes(word)) ||
-            cmd.includes('小诺同学') ||
-            cmd.includes('小诺小诺') ||
-            cmd === '小诺' ||
-            cmd.includes('你好小诺') ||
-            cmd.includes('嗨小诺') ||
-            cmd.startsWith('小诺请') ||
-            cmd.startsWith('小诺帮') ||
-            cmd.startsWith('小诺打开') ||
-            cmd.startsWith('小诺设计') ||
-            /xiaonuo/.test(cmd);
+        return wakeAliases.some(word => cmd.includes(word)) || cmd.includes('小诺同学');
     }
 
     function fillVoiceTranscriptInput(text, options = {}) {
         const msg = isQuickDesignOpen()
             ? '请直接说当前步骤中的选项，或说“下一步”。'
-            : '我可以控制网站功能。请先说“你好小诺，打开快速设计”。';
+            : '我可以控制网站功能。请先说“小诺同学，打开快速设计”。';
         pushVoiceAssistantLog('system', msg);
         updateVoiceUI('success', msg);
         if (options.speak !== false) voiceAssistantSpeak(msg);
@@ -9803,7 +9839,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (hasAny('能做什么', '有什么功能', '网站功能', '平台功能')) return '这个网站可以做快速分子设计、抗体序列分析、结构分析、候选结果展示和知识库资料管理。语音目前主要用于打开和控制这些页面功能。';
         if (hasAny('快速设计怎么用', '快速设计是什么', '怎么快速设计')) return '快速设计按向导完成：先选择疾病方向，再选择靶标蛋白、作用机制和表位策略，最后确认启动 AI 分子设计。';
         if (hasAny('为什么先选疾病', '先选疾病', '疾病再选靶点')) return '先选疾病方向可以限定治疗场景，再选靶点时系统会只展示更符合该场景的路线。';
-        if (hasAny('序列分析', '打开序列', '序列能做什么')) return '序列分析可以做 CDR 注释、风险位点扫描、人源化、多序列比对和理化性质分析。你也可以说“你好小诺，打开序列分析”。';
+        if (hasAny('序列分析', '打开序列', '序列能做什么')) return '序列分析可以做 CDR 注释、风险位点扫描、人源化、多序列比对和理化性质分析。你也可以说“小诺同学，打开序列分析”。';
         if (hasAny('结构分析', '打开结构', '三维结构', '3d结构')) return '结构分析可以查看 3D 分子结构，并支持亲和力成熟、表位预测、结构预测和相互作用分析。';
         if (hasAny('知识库', '资料库')) return '知识库用于管理项目资料、结构文件、序列文件、报告和实验相关文档。';
         if (hasAny('pd-l1', 'pdl1', 'pd1')) return 'PD-L1 是肿瘤免疫检查点靶点之一，快速设计默认路线会围绕 PD-1 和 PD-L1 相互作用界面生成 Fab 候选。';
@@ -9837,7 +9873,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     function handleResolvedVoiceIntent(intent, rawText) {
-        const msg = '我可以控制网站功能。请先说“你好小诺，打开快速设计”，或询问平台功能。';
+        const msg = '我可以控制网站功能。请先说“小诺同学，打开快速设计”，或询问平台功能。';
         pushVoiceAssistantLog('system', msg);
         updateVoiceUI('success', msg);
         voiceAssistantSpeak(msg);
@@ -9940,7 +9976,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (answerVoiceCommonQuestion(text, answer)) return;
         const msg = isQuickDesignOpen()
             ? '请说当前步骤中的一个选项，例如 PD-L1，或说“下一步”。'
-            : '我可以控制网站已有功能。请说“你好小诺，打开快速设计”，或问我平台能做什么。';
+            : '我可以控制网站已有功能。请说“小诺同学，打开快速设计”，或问我平台能做什么。';
         pushVoiceAssistantLog('system', msg);
         updateVoiceUI('success', msg);
         voiceAssistantSpeak(msg);

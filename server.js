@@ -3645,13 +3645,7 @@ const DEMO_ROUTE_RULES = [
 ];
 
 const WAKE_WORD_PATTERNS = [
-  /小诺同学/g,
-  /小诺小诺/g,
-  /晓诺同学/g,
-  /晓诺/g,
-  /小糯同学/g,
-  /小糯/g,
-  /小诺/g
+  /小诺同学/g
 ];
 
 const REPRESENTATIVE_DEMO_DIRECTIONS = [

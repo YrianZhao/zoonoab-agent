@@ -273,12 +273,12 @@
     const VOICE_ACTION_MAP = {
         start_design: () => {
             if (typeof window.handleQuickDesignVoiceCommand === 'function') {
-                window.handleQuickDesignVoiceCommand('小诺，打开快速设计', { requireWakeToOpen: true, source: 'wake' });
+                window.handleQuickDesignVoiceCommand('小诺同学，打开快速设计', { requireWakeToOpen: true, source: 'wake' });
             }
         },
         new_design: () => {
             if (typeof window.handleQuickDesignVoiceCommand === 'function') {
-                window.handleQuickDesignVoiceCommand('小诺，打开快速设计', { requireWakeToOpen: true, source: 'wake' });
+                window.handleQuickDesignVoiceCommand('小诺同学，打开快速设计', { requireWakeToOpen: true, source: 'wake' });
             }
         },
         voice_help: () => showVoiceHelp(),
@@ -438,7 +438,7 @@
 
         if (typeof window.handleQuickDesignVoiceCommand === 'function') {
             const quickDesignOpen = typeof window.isQuickDesignOpen === 'function' && window.isQuickDesignOpen();
-            const hasWake = /小\s*诺|晓\s*诺|小糯|小喏|你好\s*小/.test(text);
+            const hasWake = /小\s*诺\s*同\s*学/.test(text);
             const qdResult = window.handleQuickDesignVoiceCommand(text, {
                 speak: false,
                 requireWakeToOpen: !quickDesignOpen,
@@ -1132,8 +1132,8 @@
         else startVoiceControl();
     }
 
-    // ── Wake word (opt-in hands-free): say "小诺" to activate the assistant ──
-    const _WAKE_PHRASES = ['小诺','你好小诺','小诺同学','嗨小诺','小喏','小糯','晓诺'];
+    // ── Wake word (opt-in hands-free): say "小诺同学" to activate the assistant ──
+    const _WAKE_PHRASES = ['小诺同学'];
     function _wakeMatched(t) {
         const s = (t || '').replace(/\s/g, '');
         return _WAKE_PHRASES.some(p => s.includes(p));
@@ -1185,7 +1185,7 @@
         try { localStorage.setItem('zoo_wake', _wakeEnabled ? '1' : '0'); } catch(e){}
         _updateWakeBtn();
         if (_wakeEnabled) {
-            showToast('免提模式已开启 — 说"小诺"即可唤醒', 'success');
+            showToast('免提模式已开启 — 说“小诺同学”即可唤醒', 'success');
             if (!_voiceActive) _startWakeWord();
         } else {
             showToast('免提模式已关闭', 'info');
@@ -1198,7 +1198,7 @@
         if (!b) return;
         b.style.background = _wakeEnabled ? 'linear-gradient(135deg,#10B981,#059669)' : 'rgba(30,41,59,0.85)';
         b.style.color = _wakeEnabled ? 'white' : 'rgba(255,255,255,0.7)';
-        b.title = _wakeEnabled ? '免提唤醒：开（说"小诺"唤醒）— 点击关闭' : '免提唤醒：关 — 点击开启，之后说"小诺"即可免提唤醒';
+        b.title = _wakeEnabled ? '免提唤醒：开（说“小诺同学”唤醒）— 点击关闭' : '免提唤醒：关 — 点击开启，之后说“小诺同学”即可免提唤醒';
         b.innerHTML = (_wakeEnabled ? '🟢' : '💤') + ' 免提';
     }
 
@@ -1497,7 +1497,7 @@
                     <button onclick="document.getElementById('voiceHelpOverlay').remove()" style="background:none;border:none;font-size:20px;cursor:pointer;color:var(--text-muted);line-height:1;">&times;</button>
                 </div>
                 <div style="margin-bottom:16px;padding:10px 14px;background:var(--bg-light);border-radius:10px;font-size:12px;color:var(--text-secondary);">
-                    当前语音用于网站功能控制和站内问答，不会把识别内容写入主输入框、聊天区或普通工作流。只有在快速设计最后确认页说"启动 AI 分子设计"才会开始设计。<b>小诺说话时直接开口、点卡片或按 Esc 可打断</b>。开启右下角 <b>"💤 免提"</b> 后，直接说 <b>"小诺"</b> 即可免提唤醒。
+                    当前语音用于网站功能控制和站内问答，不会把识别内容写入主输入框、聊天区或普通工作流。只有在快速设计最后确认页说"启动 AI 分子设计"才会开始设计。<b>小诺说话时直接开口、点卡片或按 Esc 可打断</b>。开启右下角 <b>"💤 免提"</b> 后，直接说 <b>"小诺同学"</b> 即可免提唤醒。
                 </div>
                 ${rows}
             </div>`;
