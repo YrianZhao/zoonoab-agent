@@ -5385,7 +5385,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146019';
+    const APP_BUILD_VERSION = '78146020';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -9414,7 +9414,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const text = document.getElementById('voiceStatusText');
         renderVoiceAssistantCard(state, message);
         if (btn) {
-            btn.classList.toggle('listening', state === 'listening');
+            btn.classList.toggle('listening', state === 'listening' || state === 'wake' || state === 'awake');
             btn.classList.toggle('processing', state === 'processing');
             btn.setAttribute('aria-pressed', state === 'listening' ? 'true' : 'false');
         }
@@ -9539,8 +9539,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         updateVoiceUI('awake', '我在');
         voiceAssistantSpeak('我在');
         setTimeout(() => {
+            wakeActiveCommand = false;
+            wakeAwakeUntil = 0;
             if (!wakeEnabled || isQuickDesignOpen()) return;
-            startWakeCommandCapture();
+            resumeWakeListeningAfterCommand(80);
         }, 520);
     }
 
@@ -10134,20 +10136,23 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 const result = event.results[i];
                 for (let j = 0; j < result.length; j++) {
                     const heard = (result[j] && result[j].transcript || '').trim();
-                    if (!heard || !hasWakeWord(heard)) continue;
+                    if (!heard) continue;
                     wakeBrowserErrorCount = 0;
                     stopBrowserWakeRecognition();
                     voiceCardManuallyHidden = false;
                     showVoiceAssistantCard({ force: true });
-                    const command = stripWakeWord(heard);
+                    const hasWake = hasWakeWord(heard);
+                    const command = hasWake ? stripWakeWord(heard) : heard;
                     if (command && command.length >= 2) {
                         wakeActiveCommand = false;
                         wakeAwakeUntil = 0;
                         updateVoiceUI('success', '小诺收到：' + command);
                         handleVoiceTranscript(command, { source: 'wake' });
                         if (!shouldKeepQuickDesignListening()) resumeWakeListeningAfterCommand(1200);
-                    } else {
+                    } else if (hasWake) {
                         acknowledgeWakeOnly();
+                    } else {
+                        resumeWakeListeningAfterCommand(300);
                     }
                     return;
                 }
@@ -10280,17 +10285,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     async function wakeAssistantNow() {
-        if (voiceState === 'listening') return;
-        if (wakeBusy) return;
-        voiceCardManuallyHidden = false;
-        showVoiceAssistantCard({ force: true });
-        if (!wakeEnabled) {
-            if (!(await ensureVoiceCaptureReady('wake-listen'))) return;
-            wakeEnabled = true;
-            wakeDetectorMode = isBrowserWakeSupported() ? 'browser' : (isVoiceSupported() ? 'local' : '');
-            refreshVoiceHealth({ autoStart: true });
-        }
-        startWakeCommandCapture();
+        await startWakeListening();
     }
 
     async function startWakeListening() {
@@ -10315,13 +10310,16 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             voiceCardManuallyHidden = false;
             showVoiceAssistantCard({ force: true });
             refreshVoiceHealth({ autoStart: true });
-            if (isBrowserWakeSupported()) {
-                wakeDetectorMode = 'browser';
-                wakeBusy = false;
-                if (startBrowserWakeRecognition()) return;
-                stopBrowserWakeRecognition({ resetMode: true });
+            if (isVoiceSupported()) {
+                await startLocalWakeListening();
+                return;
             }
-            await startLocalWakeListening();
+            wakeDetectorMode = 'browser';
+            wakeBusy = false;
+            if (!startBrowserWakeRecognition()) {
+                stopBrowserWakeRecognition({ resetMode: true });
+                updateVoiceUI('error', '语音唤醒不可用');
+            }
         } catch (err) {
             wakeBusy = false;
             console.warn('[Voice] Wake start error:', err);
@@ -10442,16 +10440,16 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             return;
         }
         const woke = hasWakeWord(heard);
+        const command = woke ? stripWakeWord(heard) : heard;
+        if (command && command.length >= 2) {
+            wakeActiveCommand = false;
+            wakeAwakeUntil = 0;
+            updateVoiceUI('success', '小诺收到：' + command);
+            handleVoiceTranscript(command, { source: 'wake' });
+            if (!shouldKeepQuickDesignListening()) resumeWakeListeningAfterCommand(1200);
+            return;
+        }
         if (woke) {
-            const command = stripWakeWord(heard);
-            if (command && command.length >= 2) {
-                wakeActiveCommand = false;
-                wakeAwakeUntil = 0;
-                updateVoiceUI('success', '小诺收到：' + command);
-                handleVoiceTranscript(command, { source: 'wake' });
-                if (!shouldKeepQuickDesignListening()) resumeWakeListeningAfterCommand(1200);
-                return;
-            }
             acknowledgeWakeOnly();
             return;
         }
