@@ -1,7 +1,7 @@
 // =====================================================================
     // VOICE CONTROL — ZoonoAb Presentation Mode  v2
     // STT:  Web Speech API  (free, Chrome/Edge built-in)
-    // NLU:  Gemini 1.5 Flash via /api/voice-intent  (free tier, backend)
+    // Legacy compatibility bundle. The page-owned voice controller is authoritative.
     // TTS:  Web Speech Synthesis API  (free, all browsers)
     // Fallback: keyword matching when API unavailable
     // =====================================================================
@@ -421,6 +421,11 @@
     }
 
     async function processVoiceText(alts) {
+        if (window.__zoonoabMainVoiceReady && typeof window.handleVoiceTranscript === 'function') {
+            const text = _applyBiotechCorrections((alts && alts[0]) || '');
+            if (text) window.handleVoiceTranscript(text, { source: (typeof window.isQuickDesignOpen === 'function' && window.isQuickDesignOpen()) ? 'quick-design' : 'wake' });
+            return;
+        }
         if (_voiceIsSpeaking && _voiceIsSpeaking()) {
             _voiceStopSpeaking({ bargeIn: true, source: 'asr-final' });
         }
@@ -787,6 +792,10 @@
     }
 
     function initVoiceControlUI() {
+        if (window.__zoonoabMainVoiceReady) {
+            console.info('[ZoonoAb] Legacy voice bundle skipped; main voice controller is active.');
+            return;
+        }
         console.log('%c[ZoonoAb] 语音构建 voice-fix-v8 · 浅色磨砂 + 灵动语音球 · ' + new Date().toISOString().slice(0,16), 'color:#2563EB;font-weight:700');
         if (document.getElementById('voiceCtrlBtn') || document.getElementById('voiceBtn')) return;
 

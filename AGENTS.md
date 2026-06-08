@@ -3,7 +3,7 @@
 重大功能修改完成并验证通过后，创建一个本地 Git commit 作为回滚点，并推送当前工作分支到 GitHub 远端。
 本项目每次完成任何文件修改后，都必须创建本地 Git commit，并推送当前工作分支到 GitHub 远端；不得只停留在本地提交或未提交状态。
 每次完成会影响网页展示、交互、后端行为或部署行为的功能修改时，必须同步更新 `public/index.html` 中的 `APP_BUILD_VERSION` 纯数字版本号；版本号不得包含日期或语义化文字，方便现场通过页面底部标识确认是否已更新到目标版本。
-提交前排除运行环境、日志、PID、密钥和后端私有配置文件，例如 `.node/`、`.tools/`、`.server.log`、`.server.pid`、`.runtime/`。
+提交前排除运行环境、日志、PID、密钥和后端私有配置文件，例如 `.node/`、`.tools/`、`.server.log`、`.server.pid`、`.runtime/`、`.playwright-cli/`、`output/`、`.runtime-codex-server.log`。
 
 快速设计弹窗面向路演、展会和产品展示，应保持 guided demo/wizard 体验，而不是一次性专家参数表。快速设计 UI 和聊天可见内容不得暴露“白名单、后端、写死、固定工作流、quick_design、演示路线、大模型 API”等内部实现词；观众只应看到正式的分子设计流程话术。
 快速设计必须映射到已准备好的 route/profile；默认推荐路径为：肿瘤 → PD-L1 → 阻断 PD-1/PD-L1 → 自动选择表位 → Fab → 10 个候选。新增疾病入口或靶点时，必须同步更新前端 `qdDemoRoutes/qdTargetOptions/qdMechanismOptions/qdWorkflowTriggers`、后端 `DEMO_ROUTE_RULES/buildRouteProfile`、前端断线 fallback profile，并保持疾病方向、靶点结构域、抗体背景、作用机制、表位策略和 WebSocket `quick_design` routeId 一致。提交给系统时使用固定触发句，例如默认 PD-L1 路径发送“阻断 PD-1/PD-L1 通路，设计 10 个高亲和力 Fab”，而不是发送弹窗生成的长参数说明。

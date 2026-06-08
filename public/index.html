@@ -5467,7 +5467,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146016';
+    const APP_BUILD_VERSION = '78146017';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -6391,6 +6391,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     let qdVoiceWizardActive = false;
     let qdVoiceConfirm = null;
     let qdVoiceTransitioning = false;
+    let qdVoiceLastHandledAt = 0;
 
     function qdResetState() {
         qdVoiceConfirm = null;
@@ -6426,6 +6427,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         document.body.classList.remove('quick-design-open');
         document.body.classList.remove('quick-design-voice-open');
         qdVoiceWizardActive = false;
+        qdVoiceConfirm = null;
         qdVoiceTransitioning = false;
         if (typeof stopQuickDesignContinuousVoice === 'function') stopQuickDesignContinuousVoice();
         if (typeof loadFloatingVoicePosition === 'function') loadFloatingVoicePosition();
@@ -6697,6 +6699,13 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             .replace(/\s+/g, ' ')
             .replace(/晓/g, '小')
             .replace(/糯|喏|挪|若/g, '诺')
+            .replace(/肿留|仲瘤|中瘤|肿流/g, '肿瘤')
+            .replace(/爱症|癌证|癌正/g, '癌症')
+            .replace(/皮\s*迪\s*艾?\s*勒?\s*(一|1|幺|壹)/g, 'pdl1')
+            .replace(/皮\s*迪\s*艾?\s*了\s*(一|1|幺|壹)/g, 'pdl1')
+            .replace(/批\s*迪\s*艾?\s*勒?\s*(一|1|幺|壹)/g, 'pdl1')
+            .replace(/p\s*迪\s*艾?\s*勒?\s*(一|1|幺|壹)/g, 'pdl1')
+            .replace(/p\s*d\s*艾?\s*勒?\s*(一|1|幺|壹)/g, 'pdl1')
             .replace(/二十三/g, '23')
             .replace(/三十三/g, '33')
             .replace(/十七/g, '17')
@@ -6716,7 +6725,6 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             .replace(/pd\s*l\s*(1|一|幺|壹)/g, 'pdl1')
             .replace(/pd\s*[- ]?\s*l\s*[- ]?\s*(1|一|幺|壹)/g, 'pdl1')
             .replace(/pd\s*[- ]?\s*(1|一|幺|壹)/g, 'pd1')
-            .replace(/皮\s*迪\s*艾?勒?\s*(1|一|幺|壹)/g, 'pdl1')
             .replace(/皮\s*迪\s*(1|一|幺|壹)/g, 'pd1')
             .replace(/vegf\s*a/g, 'vegfa')
             .replace(/v\s*e\s*g\s*f\s*a?/g, 'vegfa')
@@ -6766,11 +6774,26 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
     function qdVoiceScoreOption(compact, option, group) {
         let score = option.recommended ? 2 : 0;
+        if (group === 'disease' && option.id === 'oncology' && /肿瘤|癌症|癌|肿瘤免疫|恶性|肿留|中瘤|仲瘤/.test(compact)) score += 150;
+        if (group === 'disease' && option.id === 'immune' && /自身免疫|自免|炎症|类风湿|银屑病/.test(compact)) score += 130;
+        if (group === 'disease' && option.id === 'allergy' && /过敏|哮喘|气道|呼吸道/.test(compact)) score += 130;
+        if (group === 'disease' && option.id === 'infection' && /感染|病毒|新冠|流感|rsv/.test(compact)) score += 130;
+        if (group === 'disease' && option.id === 'cardio' && /心血管|血脂|胆固醇|降脂/.test(compact)) score += 130;
+        if (group === 'disease' && option.id === 'metabolic' && /代谢|肥胖|糖|gipr/.test(compact)) score += 130;
         if (group === 'target' && option.id === 'PD-L1' && /pdl?1|检查点|免疫检查/.test(compact)) score += 160;
         if (group === 'target' && option.id === 'PD-L1' && /pd1/.test(compact) && !/her2|egfr|vegf/.test(compact)) score += 48;
         if (group === 'target' && option.id === 'HER2' && /her2|乳腺|胃癌/.test(compact)) score += 130;
         if (group === 'target' && option.id === 'EGFR' && /egfr|实体瘤|生长信号/.test(compact)) score += 130;
         if (group === 'target' && option.id === 'VEGF-A' && /vegfa?|血管生成/.test(compact)) score += 130;
+        if (group === 'mechanism' && option.id === 'block-pd1-pdl1' && /阻断|检查点|pd1|pdl1|通路/.test(compact)) score += 155;
+        if (group === 'mechanism' && option.id === 'neutralize' && /中和|降低|抑制/.test(compact)) score += 130;
+        if (group === 'mechanism' && option.id === 'high-affinity' && /高亲和|亲和力|结合能力/.test(compact)) score += 125;
+        if (group === 'mechanism' && option.id === 'cell-clearance' && /清除|杀伤|细胞清除/.test(compact)) score += 125;
+        if (group === 'mechanism' && option.id === 'block-growth' && /生长|增殖|生长信号/.test(compact)) score += 125;
+        if (group === 'epitope' && option.id === 'auto' && /自动|最优|推荐|默认|系统选/.test(compact)) score += 150;
+        if (group === 'epitope' && option.id === 'interface' && /界面|结合界面|相互作用|受体界面/.test(compact)) score += 135;
+        if (group === 'epitope' && option.id === 'conserved' && /保守|稳定|保守区域/.test(compact)) score += 130;
+        if (group === 'epitope' && option.id === 'loop' && /环区|柔性|暴露/.test(compact)) score += 130;
         for (const phrase of qdVoiceOptionPhrases(option, group)) {
             const token = qdVoiceCompact(phrase);
             if (!token) continue;
@@ -6795,6 +6818,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             }
         });
         return best || options.find(option => option.recommended) || options[0];
+    }
+
+    function qdVoiceCommitSelection(step, id, applySelection) {
+        qdVoiceConfirm = { step, id: String(id || '') };
+        if (typeof applySelection === 'function') applySelection();
+        qdRender();
     }
 
     const qdVoiceAliases = {
@@ -6858,29 +6887,32 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (qdState.step === 1) {
             const option = qdVoiceBestOption(rawText, qdDiseaseOptions, 'disease');
             if (!option) return null;
-            qdSelectDisease(option.id);
-            qdVoiceMarkConfirmed(1, option.id);
+            qdVoiceCommitSelection(1, option.id, () => {
+                qdState.disease = option.id;
+                const recommendedTarget = qdGetTargetList().find(t => t.recommended) || qdGetTargetList()[0];
+                qdSyncRouteDefaults(recommendedTarget.routeId);
+            });
             return { label: `已选择${option.title || option.id}`, step: 1, option };
         }
         if (qdState.step === 2) {
             const option = qdVoiceBestOption(rawText, qdGetTargetList(), 'target');
             if (!option) return null;
-            qdSelectTarget(option.id);
-            qdVoiceMarkConfirmed(2, option.id);
+            qdVoiceCommitSelection(2, option.id, () => {
+                const targetOption = qdGetTargetList().find(item => item.id === option.id) || qdGetTargetList()[0];
+                qdSyncRouteDefaults(targetOption.routeId);
+            });
             return { label: `已选择${option.title || option.id}`, step: 2, option };
         }
         if (qdState.step === 3) {
             const option = qdVoiceBestOption(rawText, qdMechanismList(), 'mechanism');
             if (!option) return null;
-            qdSelectMechanism(option.id);
-            qdVoiceMarkConfirmed(3, option.id);
+            qdVoiceCommitSelection(3, option.id, () => { qdState.mechanism = option.id; });
             return { label: `已选择${option.title || option.id}`, step: 3, option };
         }
         if (qdState.step === 4) {
             const option = qdVoiceBestOption(rawText, qdEpitopeOptions, 'epitope');
             if (!option) return null;
-            qdSelectEpitope(option.id);
-            qdVoiceMarkConfirmed(4, option.id);
+            qdVoiceCommitSelection(4, option.id, () => { qdState.epitope = option.id; });
             return { label: `已选择${option.title || option.id}`, step: 4, option };
         }
         return null;
@@ -6914,6 +6946,17 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         voiceAssistantSpeak(msg);
     }
 
+    function qdPromptAndKeepListening(msg, level = 'success', options = {}) {
+        const value = String(msg || '').trim();
+        if (!value) return { handled: true, label: '' };
+        if (options.toast !== false) showToast(value, level);
+        pushVoiceAssistantLog('system', value);
+        updateVoiceUI(level === 'warning' ? 'processing' : 'success', value);
+        if (options.speak !== false) voiceAssistantSpeak(value);
+        else scheduleQuickDesignContinuousListen(220);
+        return { handled: true, label: value };
+    }
+
     function qdVoiceAdvanceAfterSelection(selection, options = {}) {
         if (!selection || typeof selection.step !== 'number') return '';
         if (selection.step >= 1 && selection.step <= 4 && qdState.step < QD_TOTAL_STEPS - 1) {
@@ -6935,6 +6978,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     function handleQuickDesignVoiceCommand(rawText, options = {}) {
+        qdVoiceLastHandledAt = Date.now();
         const text = stripWakeWord(rawText) || String(rawText || '').trim();
         const compact = qdVoiceCompact(text);
         if (!compact) return false;
@@ -6946,11 +6990,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const wantsSubmit = qdVoiceHasAny(compact, ['启动ai分子设计', '启动分子设计', '启动设计', '开始生成', '确认启动', '开始运行', '提交设计', '运行设计']);
         const wantsClose = qdVoiceHasAny(compact, ['关闭快速设计', '退出快速设计', '取消快速设计', '关闭', '退出']);
         const feedback = (msg, level = 'success') => {
-            showToast(msg, level);
-            pushVoiceAssistantLog('system', msg);
-            updateVoiceUI(level === 'warning' ? 'processing' : 'success', msg);
-            if (options.speak !== false) voiceAssistantSpeak(msg);
-            return { handled: true, label: msg };
+            return qdPromptAndKeepListening(msg, level, { speak: options.speak !== false });
         };
 
         if (!isQuickDesignOpen()) {
@@ -6959,18 +6999,18 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             switchView('chat');
             openQuickDesign({ voice: true });
             qdEnableVoiceWizard({ dock: true });
-            return feedback('已打开快速设计。请说，开始设计。');
+            return feedback('开启您的第一款药物分子设计。请说，开始设计。');
         }
 
         if (wantsOpen) {
             qdEnableVoiceWizard({ dock: true });
-            const prompt = qdState.step === 0 ? '已打开快速设计。请说，开始设计。' : (qdVoiceStepPrompt(qdState.step) || '已进入快速设计语音向导。');
+            const prompt = qdState.step === 0 ? '开启您的第一款药物分子设计。请说，开始设计。' : (qdVoiceStepPrompt(qdState.step) || '已进入快速设计语音向导。');
             return feedback(prompt);
         }
 
         if (wantsClose) {
             closeQuickDesign();
-            return feedback('已关闭快速设计');
+            return { handled: true, label: '已关闭快速设计' };
         }
 
         if (wantsBack) {
@@ -7009,7 +7049,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             qdNext({ announcePrompt: true });
             return { handled: true, label: qdVoiceStepPrompt(qdState.step) || '已进入下一步' };
         }
-        return false;
+        qdEnableVoiceWizard({ dock: false });
+        return feedback('请说当前步骤中的一个选项。', 'warning');
     }
 
     // ═══════════════ CONVERSATION HISTORY (localStorage) ═══════════════
@@ -8595,6 +8636,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     function stopVoiceAssistantSpeech() {
         try {
             if (voiceAssistantAudio) {
+                voiceAssistantAudio.onended = null;
+                voiceAssistantAudio.onerror = null;
                 voiceAssistantAudio.pause();
                 voiceAssistantAudio.src = '';
                 voiceAssistantAudio = null;
@@ -8603,8 +8646,13 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
     function voiceAssistantSpeak(text) {
         const value = String(text || '').trim();
-        if (!value || typeof Audio === 'undefined') return;
+        if (!value) return;
+        if (typeof Audio === 'undefined') {
+            scheduleQuickDesignContinuousListen(420);
+            return;
+        }
         try {
+            stopQuickDesignContinuousVoice();
             stopVoiceAssistantSpeech();
             const audio = new Audio('/api/tts-stream?text=' + encodeURIComponent(value.slice(0, 800)));
             voiceAssistantAudio = audio;
@@ -8615,7 +8663,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             audio.onended = done;
             audio.onerror = done;
             audio.play().catch(done);
-        } catch (err) {}
+        } catch (err) {
+            scheduleQuickDesignContinuousListen(420);
+        }
     }
 
     function normalizeHealthStatus(status) {
@@ -9489,6 +9539,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             pauseLocalWakeCapture();
         }
         if (!(await ensureVoiceCaptureReady(source))) {
+            if (shouldKeepQuickDesignListening()) scheduleQuickDesignContinuousListen(900);
             if (wakeEnabled) resumeWakeListeningAfterCommand(1000);
             return;
         }
@@ -9498,12 +9549,14 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (!isVoiceSupported()) {
             showToast('当前浏览器不支持语音录制，请使用 Chrome 或 Edge', 'error');
             updateVoiceUI('error', '浏览器不支持语音录制');
+            if (shouldKeepQuickDesignListening()) scheduleQuickDesignContinuousListen(1200);
             return;
         }
         const mimeType = getVoiceMimeType();
         if (!mimeType) {
             showToast('当前浏览器不支持可用的录音格式', 'error');
             updateVoiceUI('error', '录音格式不可用');
+            if (shouldKeepQuickDesignListening()) scheduleQuickDesignContinuousListen(1200);
             return;
         }
         try {
@@ -9533,15 +9586,18 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             showToast('无法访问麦克风，请检查浏览器权限', 'error');
             updateVoiceUI('error', '麦克风权限不可用');
             stopVoiceStream();
+            if (shouldKeepQuickDesignListening()) scheduleQuickDesignContinuousListen(1200);
             if (wakeEnabled) resumeWakeListeningAfterCommand(700);
         }
     }
 
     async function startVoiceCaptureWav(source) {
+        if (voiceState === 'processing' || voiceState === 'listening') return;
         stopVoiceAssistantSpeech();
         if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
             showToast('当前浏览器不支持语音录制，请使用 Chrome 或 Edge', 'error');
             updateVoiceUI('error', '浏览器不支持语音录制');
+            if (shouldKeepQuickDesignListening()) scheduleQuickDesignContinuousListen(1200);
             return;
         }
         if (source !== 'wake' && wakeEnabled) {
@@ -9552,6 +9608,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (!AudioCtx) {
             showToast('当前浏览器不支持本地语音采集', 'error');
             updateVoiceUI('error', '本地语音采集不可用');
+            if (shouldKeepQuickDesignListening()) scheduleQuickDesignContinuousListen(1200);
             return;
         }
         try {
@@ -9612,12 +9669,14 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                         voiceMediaRecorder = null;
                         updateVoiceUI('idle');
                         showToast('语音录制已取消', 'info');
+                        if (shouldKeepQuickDesignListening()) scheduleQuickDesignContinuousListen(500);
                         if (captureSource === 'wake' && wakeEnabled) resumeWakeListeningAfterCommand(700);
                         return;
                     }
                     if (elapsed < VOICE_MIN_MS || !chunks.length) {
                         voiceMediaRecorder = null;
                         updateVoiceUI('idle');
+                        if (shouldKeepQuickDesignListening()) scheduleQuickDesignContinuousListen(360);
                         if (captureSource === 'wake' && wakeEnabled) resumeWakeListeningAfterCommand(700);
                         return;
                     }
@@ -9630,6 +9689,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                         voiceMediaRecorder = null;
                         updateVoiceUI('error', qualityError);
                         showToast(qualityError, 'warning');
+                        if (shouldKeepQuickDesignListening()) scheduleQuickDesignContinuousListen(900);
                         if (captureSource === 'wake' && wakeEnabled) resumeWakeListeningAfterCommand(700);
                         return;
                     }
@@ -9649,6 +9709,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             showToast('无法访问麦克风，请检查浏览器权限', 'error');
             updateVoiceUI('error', '麦克风权限不可用');
             stopVoiceStream();
+            if (shouldKeepQuickDesignListening()) scheduleQuickDesignContinuousListen(1200);
             if (wakeEnabled) resumeWakeListeningAfterCommand(700);
         }
     }
@@ -9668,7 +9729,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     function shouldKeepQuickDesignListening() {
-        return Boolean(isQuickDesignOpen() && qdVoiceWizardActive && !qdVoiceTransitioning && voiceState !== 'listening' && voiceState !== 'processing');
+        return Boolean(isQuickDesignOpen() && qdVoiceWizardActive && !qdVoiceTransitioning && !voiceAssistantAudio && voiceState !== 'listening' && voiceState !== 'processing');
     }
 
     function quickDesignPromptListenDelay(delay = 260) {
@@ -9711,11 +9772,13 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (voiceCancelRequested) {
             updateVoiceUI('idle');
             showToast('语音录制已取消', 'info');
+            if (shouldKeepQuickDesignListening()) scheduleQuickDesignContinuousListen(500);
             if (captureSource === 'wake' && wakeEnabled) resumeWakeListeningAfterCommand(700);
             return;
         }
         if (elapsed < VOICE_MIN_MS || !chunks.length) {
             updateVoiceUI('idle');
+            if (shouldKeepQuickDesignListening()) scheduleQuickDesignContinuousListen(360);
             if (captureSource === 'wake' && wakeEnabled) resumeWakeListeningAfterCommand(700);
             return;
         }
@@ -9731,6 +9794,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             const text = await requestVoiceTranscription(audioBlob);
             if (!text) {
                 updateVoiceUI('error', '没有识别到有效语音');
+                if (shouldKeepQuickDesignListening()) scheduleQuickDesignContinuousListen(700);
                 return;
             }
             if (options.source === 'wake') {
@@ -9748,6 +9812,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             if (/语音控制|local_asr|语音服务|模型|启动|准备|加载/i.test(msg)) {
                 refreshVoiceHealth({ autoStart: true });
             }
+            if (shouldKeepQuickDesignListening()) scheduleQuickDesignContinuousListen(1000);
             if (options.source === 'wake' && wakeEnabled) resumeWakeListeningAfterCommand(900);
         }
     }
@@ -10358,7 +10423,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 wakeAwakeUntil = 0;
                 updateVoiceUI('success', '小诺收到：' + command);
                 handleVoiceTranscript(command, { source: 'wake' });
-                resumeWakeListeningAfterCommand(1200);
+                if (!shouldKeepQuickDesignListening()) resumeWakeListeningAfterCommand(1200);
                 return;
             }
             startWakeCommandCapture();
@@ -10444,6 +10509,19 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     window.hideVoiceAssistantCard = hideVoiceAssistantCard;
     window.handleQuickDesignVoiceCommand = handleQuickDesignVoiceCommand;
     window.isQuickDesignOpen = isQuickDesignOpen;
+    window.__zoonoabMainVoiceReady = true;
+    window.__getQuickDesignVoiceState = () => ({
+        open: isQuickDesignOpen(),
+        state: { ...qdState },
+        qdVoiceWizardActive,
+        qdVoiceConfirm: qdVoiceConfirm ? { ...qdVoiceConfirm } : null,
+        qdVoiceTransitioning,
+        voiceState,
+        hasVoiceAssistantAudio: Boolean(voiceAssistantAudio),
+        hasContinuousTimer: Boolean(voiceContinuousTimer),
+        lastHandledAt: qdVoiceLastHandledAt,
+        bodyClasses: document.body.className
+    });
 
     // ═══════════════ Utility Functions ═══════════════
     // renderMarkdown and inlineMarkdown are defined near the bottom of this script
