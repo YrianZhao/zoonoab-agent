@@ -5385,7 +5385,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146026';
+    const APP_BUILD_VERSION = '78146027';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -6902,10 +6902,16 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (!value) return { handled: true, label: '' };
         if (options.toast !== false) showToast(value, level);
         pushVoiceAssistantLog('system', value);
-        updateVoiceUI(level === 'warning' ? 'processing' : 'success', value);
+        updateVoiceUI('success', value);
         if (options.speak !== false) voiceAssistantSpeak(value);
         else scheduleQuickDesignContinuousListen(220);
         return { handled: true, label: value };
+    }
+
+    function qdVoiceDidNotHear(options = {}) {
+        if (!isQuickDesignOpen() || !qdVoiceWizardActive || qdVoiceTransitioning) return;
+        voiceCaptureSource = '';
+        qdPromptAndKeepListening('小诺没有听清，请您再说一遍。', 'success', options);
     }
 
     function qdVoiceAdvanceAfterSelection(selection, options = {}) {
@@ -7005,7 +7011,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             return { handled: true, label: qdVoiceStepPrompt(qdState.step) || '已进入下一步' };
         }
         qdEnableVoiceWizard({ dock: false });
-        return feedback('请说当前步骤中的一个选项。', 'warning');
+        return feedback('小诺没有听清，请您再说一遍。', 'success');
     }
 
     // ═══════════════ CONVERSATION HISTORY (localStorage) ═══════════════
@@ -7798,6 +7804,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     // ═══════════════ Voice Control ═══════════════
     const VOICE_MIN_MS = 760;
     const VOICE_MAX_MS = 12000;
+    const QUICK_DESIGN_VOICE_MAX_MS = 6500;
     const WAKE_SEGMENT_MS = 7000;
     const WAKE_AWAKE_WINDOW_MS = 12000;
     const WAKE_OVERLAP_MS = 700;
@@ -9422,6 +9429,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const pop = document.getElementById('voiceStatusPop');
         const text = document.getElementById('voiceStatusText');
         renderVoiceAssistantCard(state, message);
+        if (pop && state !== 'success' && state !== 'error') {
+            clearTimeout(pop._hideTimer);
+            pop._hideTimer = null;
+        }
         if (btn) {
             btn.classList.toggle('listening', state === 'listening' || state === 'wake' || state === 'awake');
             btn.classList.toggle('processing', state === 'processing');
@@ -9444,6 +9455,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             if (state === 'success' || state === 'error') {
                 clearTimeout(pop._hideTimer);
                 pop._hideTimer = setTimeout(() => {
+                    if (voiceState !== state) return;
                     updateVoiceUI(wakeEnabled ? 'wake' : 'idle', wakeEnabled ? '小诺同学待命中' : '');
                     if (!wakeEnabled) scheduleVoiceAssistantHide(200);
                 }, 2400);
@@ -9541,6 +9553,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         return '正在听网站控制指令';
     }
 
+    function getVoiceMaxMs(source) {
+        return source === 'quick-design' ? QUICK_DESIGN_VOICE_MAX_MS : VOICE_MAX_MS;
+    }
+
     function acknowledgeWakeOnly() {
         wakeActiveCommand = true;
         wakeAwakeUntil = Date.now() + WAKE_AWAKE_WINDOW_MS;
@@ -9604,7 +9620,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             voiceMediaRecorder.start();
             if (source !== 'space') startVoiceVad(voiceStream);
             updateVoiceUI('listening', getVoiceListeningMessage(source));
-            voiceStopTimer = setTimeout(() => stopVoiceCapture(), VOICE_MAX_MS);
+            voiceStopTimer = setTimeout(() => stopVoiceCapture(), getVoiceMaxMs(source));
         } catch (err) {
             voiceCaptureSource = '';
             console.warn('[Voice] Microphone error:', err);
@@ -9702,8 +9718,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                     }
                     if (elapsed < VOICE_MIN_MS || !chunks.length) {
                         voiceMediaRecorder = null;
-                        updateVoiceUI('idle');
-                        if (shouldKeepQuickDesignListening()) scheduleQuickDesignContinuousListen(360);
+                        if (captureSource === 'quick-design' && isQuickDesignOpen() && qdVoiceWizardActive) {
+                            qdVoiceDidNotHear();
+                        } else {
+                            updateVoiceUI('idle');
+                            if (shouldKeepQuickDesignListening()) scheduleQuickDesignContinuousListen(360);
+                        }
                         if (captureSource === 'wake' && wakeEnabled) resumeWakeListeningAfterCommand(700);
                         return;
                     }
@@ -9714,21 +9734,25 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                     const qualityError = voiceAudioQualityError(stats, captureSource);
                     if (qualityError) {
                         voiceMediaRecorder = null;
-                        updateVoiceUI('error', qualityError);
-                        showToast(qualityError, 'warning');
-                        if (shouldKeepQuickDesignListening()) scheduleQuickDesignContinuousListen(900);
+                        if (captureSource === 'quick-design' && isQuickDesignOpen() && qdVoiceWizardActive) {
+                            qdVoiceDidNotHear();
+                        } else {
+                            updateVoiceUI('error', qualityError);
+                            showToast(qualityError, 'warning');
+                            if (shouldKeepQuickDesignListening()) scheduleQuickDesignContinuousListen(900);
+                        }
                         if (captureSource === 'wake' && wakeEnabled) resumeWakeListeningAfterCommand(700);
                         return;
                     }
                     const audioBlob = encodeWavFromFloat32(samples, LOCAL_ASR_SAMPLE_RATE);
                     voiceMediaRecorder = null;
                     await transcribeVoiceBlob(audioBlob, { source: captureSource });
-            if (shouldKeepQuickDesignListening()) scheduleQuickDesignContinuousListen(340);
-            else if (wakeEnabled) resumeWakeListeningAfterCommand(captureSource === 'wake' ? 1400 : 700);
+                    if (shouldKeepQuickDesignListening()) scheduleQuickDesignContinuousListen(340);
+                    else if (wakeEnabled) resumeWakeListeningAfterCommand(captureSource === 'wake' ? 1400 : 700);
                 }
             };
             updateVoiceUI('listening', getVoiceListeningMessage(source));
-            voiceStopTimer = setTimeout(() => stopVoiceCapture(), VOICE_MAX_MS);
+            voiceStopTimer = setTimeout(() => stopVoiceCapture(), getVoiceMaxMs(source));
         } catch (err) {
             voiceCaptureSource = '';
             console.warn('[Voice] Local microphone error:', err);
@@ -9805,8 +9829,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             return;
         }
         if (elapsed < VOICE_MIN_MS || !chunks.length) {
-            updateVoiceUI('idle');
-            if (shouldKeepQuickDesignListening()) scheduleQuickDesignContinuousListen(360);
+            if (captureSource === 'quick-design' && isQuickDesignOpen() && qdVoiceWizardActive) {
+                qdVoiceDidNotHear();
+            } else {
+                updateVoiceUI('idle');
+                if (shouldKeepQuickDesignListening()) scheduleQuickDesignContinuousListen(360);
+            }
             if (captureSource === 'wake' && wakeEnabled) resumeWakeListeningAfterCommand(700);
             return;
         }
@@ -9819,10 +9847,14 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     async function transcribeVoiceBlob(audioBlob, options = {}) {
         updateVoiceUI('processing', '正在识别语音...');
         try {
-            const text = await requestVoiceTranscription(audioBlob);
+            const text = await requestVoiceTranscription(audioBlob, { timeoutMs: options.source === 'quick-design' ? 4500 : 8000 });
             if (!text) {
-                updateVoiceUI('error', '没有识别到有效语音');
-                if (shouldKeepQuickDesignListening()) scheduleQuickDesignContinuousListen(700);
+                if (options.source === 'quick-design' && isQuickDesignOpen() && qdVoiceWizardActive) {
+                    qdVoiceDidNotHear();
+                } else {
+                    updateVoiceUI('error', '没有识别到有效语音');
+                    if (shouldKeepQuickDesignListening()) scheduleQuickDesignContinuousListen(700);
+                }
                 return;
             }
             if (options.source === 'wake') {
@@ -9835,8 +9867,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         } catch (err) {
             console.warn('[Voice] Transcription error:', err);
             const msg = err && err.message ? err.message : '语音识别服务不可用';
-            updateVoiceUI('error', msg);
-            showToast(msg, 'error');
+            if (options.source === 'quick-design' && isQuickDesignOpen() && qdVoiceWizardActive) {
+                qdVoiceDidNotHear();
+            } else {
+                updateVoiceUI('error', msg);
+                showToast(msg, 'error');
+            }
             if (/语音控制|local_asr|语音服务|模型|启动|准备|加载/i.test(msg)) {
                 refreshVoiceHealth({ autoStart: true });
             }
@@ -9845,13 +9881,22 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         }
     }
 
-    async function requestVoiceTranscription(audioBlob) {
+    async function requestVoiceTranscription(audioBlob, options = {}) {
         const headers = { 'Content-Type': audioBlob.type || 'audio/webm' };
         if (voiceSessionId) headers['X-Voice-Session'] = voiceSessionId;
+        const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+        const timeoutMs = Math.max(2500, Number(options.timeoutMs) || 8000);
+        const timer = controller ? setTimeout(() => controller.abort(), timeoutMs) : null;
         const resp = await fetch('/api/voice/transcribe', {
             method: 'POST',
             headers,
-            body: audioBlob
+            body: audioBlob,
+            signal: controller ? controller.signal : undefined
+        }).catch((err) => {
+            if (err && err.name === 'AbortError') throw new Error('语音识别超时');
+            throw err;
+        }).finally(() => {
+            if (timer) clearTimeout(timer);
         });
         const data = await resp.json().catch(() => ({}));
         if (!resp.ok) {
