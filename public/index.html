@@ -5385,7 +5385,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146021';
+    const APP_BUILD_VERSION = '78146022';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -6736,7 +6736,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
     function qdVoiceBestOption(rawText, options, group) {
         const compact = qdVoiceCompact(rawText);
-        if (!compact || !Array.isArray(options) || !options.length) return null;
+        if (!compact || !Array.isArray(options) || !options.length || !qdVoiceHasSelectableSignal(compact)) return null;
         let best = null;
         let bestScore = -Infinity;
         options.forEach(option => {
@@ -6746,7 +6746,16 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 bestScore = score;
             }
         });
-        return best || options.find(option => option.recommended) || options[0];
+        const threshold = group === 'target' ? 42 : 48;
+        return best && bestScore >= threshold ? best : null;
+    }
+
+    function qdVoiceHasSelectableSignal(compact) {
+        if (!compact) return false;
+        if (/^(嗯+|啊+|呃+|额+|哦+|喂+|哈+|诶+|唉+|哎+|这个|那个|选择|选项|下一项|不知道|没有|没说话|静音|杂音|噪音)$/.test(compact)) return false;
+        if (/^[a-z0-9]+$/i.test(compact)) return compact.length >= 2;
+        const meaningful = compact.replace(/[a-z0-9]/gi, '').replace(/[嗯啊呃额哦喂哈诶唉哎了的呢吗吧呀嘛]/g, '');
+        return meaningful.length >= 2 || /pd1|pdl1|her2|egfr|vegfa|tnf|il17a|il23|il33|tslp|rsv|rbd|pcsk9|gipr/i.test(compact);
     }
 
     function qdVoiceCommitSelection(step, id, applySelection) {

@@ -1422,7 +1422,13 @@ function normalizeTtsTextForSpeech(text) {
     .replace(/PD\s*-\s*1/gi, 'P D 1')
     .replace(/CDR\s*-\s*H\s*3/gi, 'C D R H 3')
     .replace(/CDR\s+H\s*3/gi, 'C D R H 3')
-    .replace(/分子/g, '分 子');
+    .replace(/AI\s*分子设计/gi, 'A I 药物设计')
+    .replace(/分子设计/g, '药物设计')
+    .replace(/候选分子/g, '候选物')
+    .replace(/治疗分子/g, '治疗药物')
+    .replace(/这个分子/g, '这个药物')
+    .replace(/抗体分子/g, '抗体')
+    .replace(/分子/g, '药物');
 }
 
 function cosyVoiceApiKey() {
