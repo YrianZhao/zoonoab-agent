@@ -5385,7 +5385,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146018';
+    const APP_BUILD_VERSION = '78146019';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -6310,10 +6310,13 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     let qdVoiceConfirm = null;
     let qdVoiceTransitioning = false;
     let qdVoiceLastHandledAt = 0;
+    let qdAutoSubmitTimer = null;
 
     function qdResetState() {
         qdVoiceConfirm = null;
         qdVoiceTransitioning = false;
+        clearTimeout(qdAutoSubmitTimer);
+        qdAutoSubmitTimer = null;
         qdState = {
             step: 0,
             disease: 'oncology',
@@ -6347,6 +6350,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         qdVoiceWizardActive = false;
         qdVoiceConfirm = null;
         qdVoiceTransitioning = false;
+        clearTimeout(qdAutoSubmitTimer);
+        qdAutoSubmitTimer = null;
         if (typeof stopQuickDesignContinuousVoice === 'function') stopQuickDesignContinuousVoice();
         if (typeof loadFloatingVoicePosition === 'function') loadFloatingVoicePosition();
     }
@@ -6693,11 +6698,17 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     function qdVoiceScoreOption(compact, option, group) {
         let score = option.recommended ? 2 : 0;
         if (group === 'disease' && option.id === 'oncology' && /肿瘤|癌症|癌|肿瘤免疫|恶性|肿留|中瘤|仲瘤/.test(compact)) score += 150;
+        if (group === 'disease' && option.id === 'oncology' && /pdl1|pd1|her2|egfr|vegfa|肿瘤相关|肿瘤靶点|相关靶点/.test(compact)) score += 150;
         if (group === 'disease' && option.id === 'immune' && /自身免疫|自免|炎症|类风湿|银屑病/.test(compact)) score += 130;
+        if (group === 'disease' && option.id === 'immune' && /tnf|il17a|il23|炎症轴|炎症轴靶点/.test(compact)) score += 145;
         if (group === 'disease' && option.id === 'allergy' && /过敏|哮喘|气道|呼吸道/.test(compact)) score += 130;
+        if (group === 'disease' && option.id === 'allergy' && /il33|tslp|气道炎症|气道炎症相关/.test(compact)) score += 145;
         if (group === 'disease' && option.id === 'infection' && /感染|病毒|新冠|流感|rsv/.test(compact)) score += 130;
+        if (group === 'disease' && option.id === 'infection' && /rsvf|sarscov2rbd|流感ha|抗原/.test(compact)) score += 145;
         if (group === 'disease' && option.id === 'cardio' && /心血管|血脂|胆固醇|降脂/.test(compact)) score += 130;
+        if (group === 'disease' && option.id === 'cardio' && /pcsk9|angptl3|il1β|il1b|心血管相关/.test(compact)) score += 145;
         if (group === 'disease' && option.id === 'metabolic' && /代谢|肥胖|糖|gipr/.test(compact)) score += 130;
+        if (group === 'disease' && option.id === 'metabolic' && /angptl3|gipr|代谢调控|脂质代谢/.test(compact)) score += 145;
         if (group === 'target' && option.id === 'PD-L1' && /pdl?1|检查点|免疫检查/.test(compact)) score += 160;
         if (group === 'target' && option.id === 'PD-L1' && /pd1/.test(compact) && !/her2|egfr|vegf/.test(compact)) score += 48;
         if (group === 'target' && option.id === 'HER2' && /her2|乳腺|胃癌/.test(compact)) score += 130;
@@ -6810,7 +6821,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 const recommendedTarget = qdGetTargetList().find(t => t.recommended) || qdGetTargetList()[0];
                 qdSyncRouteDefaults(recommendedTarget.routeId);
             });
-            return { label: `已选择${option.title || option.id}`, step: 1, option };
+            return { label: option.title || option.id, step: 1, option };
         }
         if (qdState.step === 2) {
             const option = qdVoiceBestOption(rawText, qdGetTargetList(), 'target');
@@ -6819,19 +6830,19 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 const targetOption = qdGetTargetList().find(item => item.id === option.id) || qdGetTargetList()[0];
                 qdSyncRouteDefaults(targetOption.routeId);
             });
-            return { label: `已选择${option.title || option.id}`, step: 2, option };
+            return { label: option.title || option.id, step: 2, option };
         }
         if (qdState.step === 3) {
             const option = qdVoiceBestOption(rawText, qdMechanismList(), 'mechanism');
             if (!option) return null;
             qdVoiceCommitSelection(3, option.id, () => { qdState.mechanism = option.id; });
-            return { label: `已选择${option.title || option.id}`, step: 3, option };
+            return { label: option.title || option.id, step: 3, option };
         }
         if (qdState.step === 4) {
             const option = qdVoiceBestOption(rawText, qdEpitopeOptions, 'epitope');
             if (!option) return null;
             qdVoiceCommitSelection(4, option.id, () => { qdState.epitope = option.id; });
-            return { label: `已选择${option.title || option.id}`, step: 4, option };
+            return { label: option.title || option.id, step: 4, option };
         }
         return null;
     }
@@ -6849,8 +6860,18 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (step === 2) return '请选择希望作用的靶标蛋白。';
         if (step === 3) return '您希望这个分子实现什么作用？';
         if (step === 4) return '希望抗体优先识别哪个区域？';
-        if (step === QD_TOTAL_STEPS - 1) return '设计任务已生成。确认后请说，启动 AI 分子设计。';
+        if (step === QD_TOTAL_STEPS - 1) return '设计任务已生成。启动 AI 分子设计。';
         return '';
+    }
+
+    function qdScheduleAutoSubmit(delay = 120) {
+        clearTimeout(qdAutoSubmitTimer);
+        if (!isQuickDesignOpen() || !qdVoiceWizardActive || qdState.step !== QD_TOTAL_STEPS - 1) return;
+        qdAutoSubmitTimer = setTimeout(() => {
+            qdAutoSubmitTimer = null;
+            if (!isQuickDesignOpen() || qdState.step !== QD_TOTAL_STEPS - 1) return;
+            submitQuickDesign();
+        }, delay);
     }
 
     function qdAnnounceCurrentStep(prefix = '') {
@@ -6860,7 +6881,11 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const msg = prefix ? `${prefix}${prompt}` : prompt;
         pushVoiceAssistantLog('system', msg);
         updateVoiceUI('success', msg);
-        voiceAssistantSpeak(msg);
+        if (qdState.step === QD_TOTAL_STEPS - 1) {
+            voiceAssistantSpeak(msg, { onDone: () => qdScheduleAutoSubmit() });
+        } else {
+            voiceAssistantSpeak(msg);
+        }
     }
 
     function qdPromptAndKeepListening(msg, level = 'success', options = {}) {
@@ -6878,18 +6903,21 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (!selection || typeof selection.step !== 'number') return '';
         if (selection.step >= 1 && selection.step <= 4 && qdState.step < QD_TOTAL_STEPS - 1) {
             qdVoiceTransitioning = true;
-            setTimeout(() => {
+            whenVoiceAssistantSpeechDone(() => {
                 if (!isQuickDesignOpen()) return;
                 if (qdState.step !== selection.step) {
                     qdVoiceConfirm = null;
                     qdVoiceTransitioning = false;
                     return;
                 }
-                qdVoiceConfirm = null;
-                qdVoiceTransitioning = false;
-                qdNext({ announcePrompt: true, dock: Boolean(options.dock) });
-            }, 1250);
-            return `${selection.label}。`;
+                setTimeout(() => {
+                    if (!isQuickDesignOpen() || qdState.step !== selection.step) return;
+                    qdVoiceConfirm = null;
+                    qdVoiceTransitioning = false;
+                    qdNext({ announcePrompt: true, dock: Boolean(options.dock) });
+                }, 80);
+            });
+            return '';
         }
         return selection.label;
     }
@@ -6960,7 +6988,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const selected = qdVoiceSelectVisibleOption(text);
         if (selected) {
             qdEnableVoiceWizard({ dock: false });
-            return feedback(qdVoiceAdvanceAfterSelection(selected, { dock: false }));
+            const msg = qdVoiceAdvanceAfterSelection(selected, { dock: false });
+            return { handled: true, label: msg || selected.label || '' };
         }
         if (wantsNext) {
             qdNext({ announcePrompt: true });
@@ -8079,13 +8108,18 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 #voiceBtn.dragging { transition: none; cursor: grabbing; }
                 #voiceBtn:hover { transform: scale(1.08); }
                 #voiceBtn.listening {
-                    filter: brightness(1.08);
-                    box-shadow: 0 18px 48px rgba(124, 58, 237, 0.38), 0 0 28px rgba(37, 99, 235, 0.36), inset 0 1px 14px rgba(255,255,255,0.48);
+                    background:
+                        radial-gradient(circle at 30% 24%, rgba(255,255,255,0.94), rgba(255,255,255,0.18) 28%, transparent 44%),
+                        radial-gradient(circle at 72% 78%, rgba(251,191,36,0.86), transparent 54%),
+                        linear-gradient(135deg, rgba(245,158,11,0.9), rgba(250,204,21,0.72));
+                    filter: brightness(1.12) saturate(1.18);
+                    box-shadow: 0 18px 48px rgba(245, 158, 11, 0.42), 0 0 30px rgba(250,204,21,0.42), inset 0 1px 14px rgba(255,255,255,0.5);
                 }
                 #voiceBtn.listening::before,
                 #voiceBtn.listening::after {
                     animation: voiceOrbRipple 1.8s ease-out infinite;
                     opacity: 1;
+                    border-color: rgba(250,204,21,0.55);
                 }
                 #voiceBtn.processing {
                     background:
@@ -8565,6 +8599,25 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     let voiceAssistantAudio = null;
+    let voiceAssistantDoneCallbacks = [];
+
+    function runVoiceAssistantDoneCallbacks() {
+        const callbacks = voiceAssistantDoneCallbacks.slice();
+        voiceAssistantDoneCallbacks = [];
+        callbacks.forEach(cb => {
+            try { cb(); } catch (err) { console.warn('[Voice] Speech completion callback failed:', err); }
+        });
+    }
+
+    function whenVoiceAssistantSpeechDone(callback) {
+        if (typeof callback !== 'function') return;
+        if (!voiceAssistantAudio) {
+            callback();
+            return;
+        }
+        voiceAssistantDoneCallbacks.push(callback);
+    }
+
     function stopVoiceAssistantSpeech() {
         try {
             if (voiceAssistantAudio) {
@@ -8575,13 +8628,15 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 voiceAssistantAudio = null;
             }
         } catch (err) {}
+        voiceAssistantDoneCallbacks = [];
         const btn = document.getElementById('voiceBtn');
         if (btn) btn.classList.remove('speaking');
     }
-    function voiceAssistantSpeak(text) {
+    function voiceAssistantSpeak(text, options = {}) {
         const value = String(text || '').trim();
         if (!value) return;
         if (typeof Audio === 'undefined') {
+            if (typeof options.onDone === 'function') options.onDone();
             scheduleQuickDesignContinuousListen(420);
             return;
         }
@@ -8592,10 +8647,15 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             voiceAssistantAudio = audio;
             const btn = document.getElementById('voiceBtn');
             if (btn) btn.classList.add('speaking');
+            let settled = false;
             const done = () => {
+                if (settled) return;
+                settled = true;
                 if (voiceAssistantAudio === audio) voiceAssistantAudio = null;
                 const currentBtn = document.getElementById('voiceBtn');
                 if (currentBtn) currentBtn.classList.remove('speaking');
+                if (typeof options.onDone === 'function') options.onDone();
+                runVoiceAssistantDoneCallbacks();
                 scheduleQuickDesignContinuousListen();
             };
             audio.onended = done;
@@ -8605,6 +8665,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         } catch (err) {
             const btn = document.getElementById('voiceBtn');
             if (btn) btn.classList.remove('speaking');
+            if (typeof options.onDone === 'function') options.onDone();
             scheduleQuickDesignContinuousListen(420);
         }
     }
@@ -9418,10 +9479,6 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 const rms = Math.sqrt(sum / voiceVadData.length);
                 const now = Date.now();
                 if (rms >= VOICE_VAD_LEVEL) {
-                    if (voiceAssistantAudio) {
-                        voiceSpeechStartedDuringTts = true;
-                        stopVoiceAssistantSpeech();
-                    }
                     voiceSpeechDetected = true;
                     voiceLastSpeechAt = now;
                     return;
@@ -9597,10 +9654,6 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 setVoiceLevel(rms, peakRms);
                 const now = Date.now();
                 if (rms >= VOICE_VAD_LEVEL) {
-                    if (voiceAssistantAudio) {
-                        voiceSpeechStartedDuringTts = true;
-                        stopVoiceAssistantSpeech();
-                    }
                     speechDetected = true;
                     lastSpeechAt = now;
                 }
@@ -10003,7 +10056,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     async function handleVoiceTranscript(text, options = {}) {
-        stopVoiceAssistantSpeech();
+        if (!(options.source === 'quick-design' && voiceAssistantAudio)) stopVoiceAssistantSpeech();
         const cmd = normalizeVoiceCommand(text);
         if (!cmd) return;
         pushVoiceAssistantLog('user', stripWakeWord(text) || text);
