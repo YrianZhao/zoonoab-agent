@@ -1426,8 +1426,7 @@ function normalizeTtsTextForSpeech(text) {
 
 function normalizeTtsTextForEdge(text) {
   return normalizeTtsTextForSpeech(text)
-    .replace(/分子设计/g, '分、子设计')
-    .replace(/分子/g, '分、子');
+    .replace(/分子/g, '分\u200b子');
 }
 
 function cosyVoiceApiKey() {
