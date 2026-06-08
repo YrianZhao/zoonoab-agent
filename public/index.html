@@ -3056,75 +3056,16 @@
         .qd-btn.ghost:hover { background: var(--bg-light); color: var(--text-primary); }
         .qd-helper-note { font-size: 11px; color: var(--text-muted); line-height: 1.5; margin-top: 8px; }
         body.quick-design-open #voiceAssistantCard {
-            left: var(--voice-dock-left, auto) !important;
-            right: var(--voice-dock-right, 22px) !important;
-            top: var(--voice-dock-top, auto) !important;
-            bottom: var(--voice-dock-bottom, 96px) !important;
-            width: 176px !important;
-            padding: 8px 10px !important;
-            border-radius: 14px !important;
-            transform: translateY(8px) !important;
-            z-index: 3002 !important;
-            max-height: 82px !important;
-        }
-        body.quick-design-open #voiceAssistantCard.visible { transform: translateY(0) !important; }
-        body.quick-design-open #voiceAssistantCard .voice-card-head { margin-bottom: 0 !important; }
-        body.quick-design-open #voiceAssistantCard .voice-card-status { padding: 4px 8px !important; font-size: 11px !important; max-width: 100%; }
-        body.quick-design-open #voiceAssistantCard .voice-card-close,
-        body.quick-design-open #voiceAssistantCard .voice-visual-area,
-        body.quick-design-open #voiceAssistantCard .voice-visual-core,
-        body.quick-design-open #voiceAssistantCard .voice-visual-ring { display: none !important; }
-        body.quick-design-open #voiceAssistantCard .voice-wave-bars { display: none; }
-        body.quick-design-open #voiceAssistantCard .voice-card-log { display: none !important; }
-        body.quick-design-open #voiceAssistantCard .voice-card-text {
-            font-size: 11px !important;
-            line-height: 1.35 !important;
-            text-align: left !important;
-            min-height: 0 !important;
-            max-height: 30px !important;
-            overflow: hidden !important;
-            margin-top: 4px !important;
+            display: none !important;
         }
         body.quick-design-open #voiceStatusPop {
             display: none !important;
             z-index: 3002 !important;
         }
-        @media (min-width: 1120px) {
-            body.quick-design-voice-open #quickDesignOverlay {
-                justify-content: flex-start !important;
-                padding-left: max(16px, calc((100vw - 1100px) / 2)) !important;
-                padding-right: 292px !important;
-                box-sizing: border-box;
-            }
-        }
         @media (min-width: 1100px) and (max-width: 1240px) {
-            body.quick-design-voice-open #quickDesignOverlay {
-                padding-left: 14px !important;
-                padding-right: 222px !important;
-            }
-            body.quick-design-voice-open .qd-modal {
-                width: min(820px, calc(100vw - 250px)) !important;
-            }
-            body.quick-design-open #voiceAssistantCard {
-                width: 166px !important;
-                padding: 8px 10px !important;
-            }
             body.quick-design-open #voiceStatusPop { right: 16px !important; }
         }
         @media (min-width: 641px) and (max-width: 1099px) {
-            body.quick-design-open #voiceAssistantCard {
-                right: 12px !important;
-                top: auto !important;
-                bottom: calc(84px + env(safe-area-inset-bottom)) !important;
-                width: 172px !important;
-                padding: 9px 10px !important;
-                border-radius: 14px !important;
-            }
-            body.quick-design-open #voiceAssistantCard .voice-card-text {
-                font-size: 11px !important;
-                line-height: 1.4 !important;
-                text-align: left !important;
-            }
             body.quick-design-open #voiceStatusPop { display: none !important; }
         }
         @media (max-width: 640px) {
@@ -3149,29 +3090,6 @@
             .qd-intro-panel { grid-template-columns: 1fr; }
             .qd-demo-orb { display: none; }
             .qd-summary-row { grid-template-columns: 1fr; gap: 3px; }
-            body.quick-design-open #voiceAssistantCard {
-                left: auto !important;
-                right: 12px !important;
-                top: auto !important;
-                bottom: calc(84px + env(safe-area-inset-bottom)) !important;
-                width: min(156px, calc(100vw - 24px)) !important;
-                padding: 7px 8px !important;
-                border-radius: 14px !important;
-            }
-            body.quick-design-open #voiceAssistantCard .voice-card-head { margin-bottom: 0; }
-            body.quick-design-open #voiceAssistantCard .voice-card-status { padding: 4px 8px; font-size: 11px; }
-            body.quick-design-open #voiceAssistantCard .voice-card-close { display: none !important; }
-            body.quick-design-open #voiceAssistantCard .voice-visual-area { height: 0; margin: 0; overflow: hidden; }
-            body.quick-design-open #voiceAssistantCard .voice-card-log { display: none !important; }
-            body.quick-design-open #voiceAssistantCard .voice-card-text {
-                font-size: 10.5px;
-                line-height: 1.25;
-                min-height: 0;
-                max-height: 28px;
-                overflow: hidden;
-                margin-top: 4px;
-                text-align: left;
-            }
             body.quick-design-open #voiceStatusPop { display: none !important; }
         }
 
@@ -5467,7 +5385,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146017';
+    const APP_BUILD_VERSION = '78146018';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -6416,7 +6334,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         qdVoiceWizardActive = voiceOpened;
         ov.style.display = 'flex';
         document.body.classList.add('quick-design-open');
-        document.body.classList.toggle('quick-design-voice-open', voiceOpened);
+        document.body.classList.remove('quick-design-voice-open');
         qdRender();
         if (voiceOpened && typeof autoPlaceVoiceForQuickDesign === 'function') autoPlaceVoiceForQuickDesign();
         refreshLucideIcons({ nodes: [ov] });
@@ -6921,7 +6839,6 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     function qdEnableVoiceWizard(options = {}) {
         qdVoiceWizardActive = true;
         if (options.dock) {
-            document.body.classList.add('quick-design-voice-open');
             if (typeof autoPlaceVoiceForQuickDesign === 'function') autoPlaceVoiceForQuickDesign();
         }
     }
@@ -7892,6 +7809,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     let voiceCardHideTimer = null;
     let voiceCardManuallyHidden = false;
     let voiceContinuousTimer = null;
+    let voiceSpeechStartedDuringTts = false;
     let voiceDragState = null;
     window.voiceSessionId = voiceSessionId;
 
@@ -8000,9 +7918,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const bottom = Math.max(margin, window.innerHeight - top - btnSize);
         const quickOpen = document.body.classList.contains('quick-design-open');
         const isMobile = window.innerWidth <= 640;
-        const dockWidth = isMobile ? Math.min(156, window.innerWidth - 24) : (quickOpen ? 150 : 176);
         const cardWidth = isMobile ? Math.max(240, window.innerWidth - 24) : Math.min(360, window.innerWidth - 32);
-        const cardHeight = quickOpen ? (isMobile ? 68 : 82) : 340;
+        const cardHeight = 340;
         const clamp = (value, min, max) => Math.max(min, Math.min(Math.max(min, max), value));
         setRootStyleProp('--voice-btn-left', `${left}px`);
         setRootStyleProp('--voice-btn-top', `${top}px`);
@@ -8016,10 +7933,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         setRootStyleProp('--voice-pop-top', `${clamp(top - 76, margin, window.innerHeight - 44 - margin)}px`);
         setRootStyleProp('--voice-pop-right', 'auto');
         setRootStyleProp('--voice-pop-bottom', 'auto');
-        const cardLeft = quickOpen
-            ? clamp(left - dockWidth + btnSize, margin, window.innerWidth - dockWidth - margin)
-            : clamp(left + btnSize / 2 - cardWidth / 2, margin, window.innerWidth - cardWidth - margin);
-        const preferredTop = quickOpen ? top - 72 : (top < window.innerHeight / 2 ? top + btnSize + 12 : top - cardHeight - 12);
+        const cardLeft = clamp(left + btnSize / 2 - cardWidth / 2, margin, window.innerWidth - cardWidth - margin);
+        const preferredTop = top < window.innerHeight / 2 ? top + btnSize + 12 : top - cardHeight - 12;
         const cardTop = clamp(preferredTop, margin, window.innerHeight - cardHeight - margin);
         setRootStyleProp('--voice-card-left', `${cardLeft}px`);
         setRootStyleProp('--voice-card-top', `${cardTop}px`);
@@ -8027,17 +7942,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         setRootStyleProp('--voice-card-bottom', 'auto');
         setRootStyleProp('--voice-card-transform', 'translateY(0)');
         setRootStyleProp('--voice-card-transform-hidden', 'translateY(12px)');
-        if (quickOpen) {
-            setRootStyleProp('--voice-dock-left', `${cardLeft}px`);
-            setRootStyleProp('--voice-dock-top', `${cardTop}px`);
-            setRootStyleProp('--voice-dock-right', 'auto');
-            setRootStyleProp('--voice-dock-bottom', 'auto');
-        } else {
-            setRootStyleProp('--voice-dock-right', `${right}px`);
-            setRootStyleProp('--voice-dock-bottom', `${Math.max(margin, bottom + btnSize + 12)}px`);
-            setRootStyleProp('--voice-dock-top', 'auto');
-            setRootStyleProp('--voice-dock-left', 'auto');
-        }
+        setRootStyleProp('--voice-dock-right', `${right}px`);
+        setRootStyleProp('--voice-dock-bottom', `${Math.max(margin, bottom + btnSize + 12)}px`);
+        setRootStyleProp('--voice-dock-top', 'auto');
+        setRootStyleProp('--voice-dock-left', 'auto');
     }
 
     function clearFloatingVoicePosition() {
@@ -8071,7 +7979,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     function autoPlaceVoiceForQuickDesign() {
         if (loadFloatingVoicePosition()) return;
         const compact = window.innerWidth <= 640;
-        const btnSize = compact ? 46 : 58;
+        const btnSize = compact ? 52 : 62;
         const left = window.innerWidth - btnSize - (compact ? 14 : 22);
         let top = window.innerHeight - btnSize - (compact ? 86 : 22);
         const footer = document.getElementById('qdFooter');
@@ -8135,29 +8043,75 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                     left: var(--voice-btn-left, auto);
                     top: var(--voice-btn-top, auto);
                     z-index: 9998;
-                    width: 58px;
-                    height: 58px;
-                    border: none;
+                    width: 62px;
+                    height: 62px;
+                    border: 1px solid rgba(255,255,255,0.42);
                     border-radius: 50%;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    background: linear-gradient(135deg, #2563EB 0%, #7C3AED 100%);
+                    background:
+                        radial-gradient(circle at 30% 24%, rgba(255,255,255,0.95), rgba(255,255,255,0.18) 26%, transparent 42%),
+                        radial-gradient(circle at 70% 78%, rgba(45,212,191,0.72), transparent 52%),
+                        linear-gradient(135deg, rgba(37,99,235,0.72), rgba(124,58,237,0.62));
                     color: #fff;
-                    box-shadow: 0 10px 28px rgba(37, 99, 235, 0.34), 0 0 0 1px rgba(255,255,255,0.2) inset;
+                    box-shadow: 0 18px 42px rgba(37, 99, 235, 0.28), 0 0 34px rgba(124,58,237,0.24), inset 0 1px 12px rgba(255,255,255,0.42);
+                    backdrop-filter: blur(18px) saturate(1.5);
                     cursor: pointer;
                     touch-action: none;
-                    transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+                    overflow: hidden;
+                    transition: transform .2s ease, box-shadow .2s ease, filter .2s ease, opacity .2s ease;
+                }
+                #voiceBtn::before,
+                #voiceBtn::after {
+                    content: '';
+                    position: absolute;
+                    inset: -5px;
+                    border-radius: inherit;
+                    pointer-events: none;
+                    opacity: 0;
+                    border: 1px solid rgba(96,165,250,0.45);
+                }
+                #voiceBtn::after {
+                    inset: -12px;
+                    border-color: rgba(45,212,191,0.28);
                 }
                 #voiceBtn.dragging { transition: none; cursor: grabbing; }
                 #voiceBtn:hover { transform: scale(1.08); }
                 #voiceBtn.listening {
                     filter: brightness(1.08);
-                    box-shadow: 0 12px 34px rgba(124, 58, 237, 0.44), 0 0 18px rgba(37, 99, 235, 0.38);
+                    box-shadow: 0 18px 48px rgba(124, 58, 237, 0.38), 0 0 28px rgba(37, 99, 235, 0.36), inset 0 1px 14px rgba(255,255,255,0.48);
+                }
+                #voiceBtn.listening::before,
+                #voiceBtn.listening::after {
+                    animation: voiceOrbRipple 1.8s ease-out infinite;
+                    opacity: 1;
                 }
                 #voiceBtn.processing {
-                    background: linear-gradient(135deg, #D97706 0%, #F59E0B 100%);
-                    box-shadow: 0 12px 32px rgba(245, 158, 11, 0.38);
+                    background:
+                        radial-gradient(circle at 30% 24%, rgba(255,255,255,0.9), rgba(255,255,255,0.14) 28%, transparent 44%),
+                        radial-gradient(circle at 70% 78%, rgba(251,191,36,0.68), transparent 52%),
+                        linear-gradient(135deg, rgba(217,119,6,0.78), rgba(124,58,237,0.58));
+                    box-shadow: 0 14px 38px rgba(245, 158, 11, 0.3), 0 0 26px rgba(124,58,237,0.24);
+                }
+                #voiceBtn.speaking {
+                    animation: voiceOrbSpeak 0.48s ease-in-out infinite;
+                    filter: brightness(1.12) saturate(1.15);
+                }
+                #voiceBtn.speaking::before,
+                #voiceBtn.speaking::after {
+                    animation: voiceOrbRipple 1.35s ease-out infinite;
+                    opacity: 1;
+                }
+                @keyframes voiceOrbRipple {
+                    0% { transform: scale(0.82); opacity: 0.62; }
+                    100% { transform: scale(1.36); opacity: 0; }
+                }
+                @keyframes voiceOrbSpeak {
+                    0%, 100% { transform: translate3d(0,0,0) scale(1); }
+                    25% { transform: translate3d(0.5px,-0.8px,0) scale(1.035); }
+                    50% { transform: translate3d(-0.8px,0.5px,0) scale(0.985); }
+                    75% { transform: translate3d(0.7px,0.8px,0) scale(1.025); }
                 }
                 #wakeBtn {
                     position: fixed;
@@ -8454,10 +8408,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                     body.quick-design-open #voiceBtn {
                         right: var(--voice-btn-right, 14px);
                         bottom: var(--voice-btn-bottom, calc(128px + env(safe-area-inset-bottom)));
-                        width: 46px;
-                        height: 46px;
-                        opacity: 0.9;
-                        box-shadow: 0 8px 22px rgba(37, 99, 235, 0.26), 0 0 0 1px rgba(255,255,255,0.2) inset;
+                        width: 52px;
+                        height: 52px;
+                        opacity: 0.92;
+                        box-shadow: 0 10px 26px rgba(37, 99, 235, 0.24), 0 0 22px rgba(124,58,237,0.18), inset 0 1px 10px rgba(255,255,255,0.38);
                     }
                     body.quick-design-open #wakeBtn {
                         left: var(--wake-btn-left, 14px);
@@ -8472,30 +8426,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                         bottom: calc(184px + env(safe-area-inset-bottom));
                     }
                     body.quick-design-open #voiceAssistantCard {
-                        right: var(--voice-dock-right, 12px) !important;
-                        top: var(--voice-dock-top, auto) !important;
-                        bottom: var(--voice-dock-bottom, calc(84px + env(safe-area-inset-bottom))) !important;
-                        width: min(156px, calc(100vw - 24px)) !important;
-                        padding: 7px 8px !important;
-                        border-radius: 14px !important;
-                        max-height: 68px !important;
-                        overflow: hidden !important;
+                        display: none !important;
                     }
-                    body.quick-design-open #voiceAssistantCard .voice-card-head { margin-bottom: 0 !important; }
-                    body.quick-design-open #voiceAssistantCard .voice-card-close,
-                    body.quick-design-open #voiceAssistantCard .voice-card-log,
-                    body.quick-design-open #voiceAssistantCard .voice-visual-area,
-                    body.quick-design-open #voiceAssistantCard .voice-wave-bars,
                     body.quick-design-open #voiceStatusPop { display: none !important; }
-                    body.quick-design-open #voiceAssistantCard .voice-card-text {
-                        min-height: 0 !important;
-                        max-height: 28px !important;
-                        margin-top: 4px !important;
-                        font-size: 10.5px !important;
-                        line-height: 1.25 !important;
-                        text-align: left !important;
-                        overflow: hidden !important;
-                    }
                 }
             `;
             document.head.appendChild(style);
@@ -8520,7 +8453,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         wakeBtn.id = 'wakeBtn';
         wakeBtn.type = 'button';
         wakeBtn.title = '唤醒小诺同学';
-        wakeBtn.onclick = () => wakeAssistantNow();
+        wakeBtn.onclick = () => toggleWakeListening();
         wakeBtn.textContent = '唤醒';
         document.body.appendChild(wakeBtn);
 
@@ -8585,7 +8518,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (options.force) voiceCardManuallyHidden = false;
         if (voiceCardManuallyHidden && !options.force) return;
         clearTimeout(voiceCardHideTimer);
-        card.classList.add('visible');
+        if (options.inline) card.classList.add('visible');
     }
 
     function hideVoiceAssistantCard(options = {}) {
@@ -8608,7 +8541,6 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (!card) return;
         card.className = 'voice-assistant-card';
         if (state && state !== 'idle') card.classList.add(state);
-        if (state !== 'idle' || wakeEnabled) showVoiceAssistantCard({ force: state === 'listening' || state === 'awake' || state === 'processing' || state === 'wake' });
         const status = document.getElementById('voiceAssistantStatus');
         const text = document.getElementById('voiceAssistantText');
         if (status) status.textContent = voiceStatusLabel(state);
@@ -8643,6 +8575,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 voiceAssistantAudio = null;
             }
         } catch (err) {}
+        const btn = document.getElementById('voiceBtn');
+        if (btn) btn.classList.remove('speaking');
     }
     function voiceAssistantSpeak(text) {
         const value = String(text || '').trim();
@@ -8656,14 +8590,21 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             stopVoiceAssistantSpeech();
             const audio = new Audio('/api/tts-stream?text=' + encodeURIComponent(value.slice(0, 800)));
             voiceAssistantAudio = audio;
+            const btn = document.getElementById('voiceBtn');
+            if (btn) btn.classList.add('speaking');
             const done = () => {
                 if (voiceAssistantAudio === audio) voiceAssistantAudio = null;
+                const currentBtn = document.getElementById('voiceBtn');
+                if (currentBtn) currentBtn.classList.remove('speaking');
                 scheduleQuickDesignContinuousListen();
             };
             audio.onended = done;
             audio.onerror = done;
+            if (isQuickDesignOpen() && qdVoiceWizardActive) scheduleQuickDesignContinuousListen(180, { allowDuringSpeech: true });
             audio.play().catch(done);
         } catch (err) {
+            const btn = document.getElementById('voiceBtn');
+            if (btn) btn.classList.remove('speaking');
             scheduleQuickDesignContinuousListen(420);
         }
     }
@@ -9420,9 +9361,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             wakeBtn.classList.toggle('active', wakeEnabled && !wakeActiveCommand);
             wakeBtn.classList.toggle('awake', wakeActiveCommand);
             wakeBtn.setAttribute('aria-pressed', wakeEnabled ? 'true' : 'false');
-            wakeBtn.textContent = wakeActiveCommand ? '已唤醒' : (wakeEnabled ? '唤醒中' : '唤醒');
+            wakeBtn.textContent = wakeEnabled ? '关闭唤醒' : '唤醒';
             wakeBtn.title = wakeEnabled
-                ? '小诺同学已处于唤醒状态'
+                ? '关闭小诺同学唤醒'
                 : '唤醒小诺同学';
         }
         renderVoiceHealth(voiceConfigState);
@@ -9477,7 +9418,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 const rms = Math.sqrt(sum / voiceVadData.length);
                 const now = Date.now();
                 if (rms >= VOICE_VAD_LEVEL) {
-                    stopVoiceAssistantSpeech();
+                    if (voiceAssistantAudio) {
+                        voiceSpeechStartedDuringTts = true;
+                        stopVoiceAssistantSpeech();
+                    }
                     voiceSpeechDetected = true;
                     voiceLastSpeechAt = now;
                     return;
@@ -9531,9 +9475,23 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         return '正在听网站控制指令';
     }
 
+    function acknowledgeWakeOnly() {
+        wakeActiveCommand = true;
+        wakeAwakeUntil = Date.now() + WAKE_AWAKE_WINDOW_MS;
+        pushVoiceAssistantLog('system', '我在');
+        updateVoiceUI('awake', '我在');
+        voiceAssistantSpeak('我在');
+        setTimeout(() => {
+            if (!wakeEnabled || isQuickDesignOpen()) return;
+            startWakeCommandCapture();
+        }, 520);
+    }
+
     async function startVoiceCapture(source) {
         if (voiceState === 'processing' || voiceState === 'listening') return;
-        stopVoiceAssistantSpeech();
+        const preserveSpeech = source === 'quick-design' && Boolean(voiceAssistantAudio);
+        voiceSpeechStartedDuringTts = false;
+        if (!preserveSpeech) stopVoiceAssistantSpeech();
         if (source !== 'wake' && wakeEnabled) {
             stopBrowserWakeRecognition();
             pauseLocalWakeCapture();
@@ -9593,7 +9551,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
     async function startVoiceCaptureWav(source) {
         if (voiceState === 'processing' || voiceState === 'listening') return;
-        stopVoiceAssistantSpeech();
+        const preserveSpeech = source === 'quick-design' && Boolean(voiceAssistantAudio);
+        voiceSpeechStartedDuringTts = false;
+        if (!preserveSpeech) stopVoiceAssistantSpeech();
         if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
             showToast('当前浏览器不支持语音录制，请使用 Chrome 或 Edge', 'error');
             updateVoiceUI('error', '浏览器不支持语音录制');
@@ -9637,7 +9597,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 setVoiceLevel(rms, peakRms);
                 const now = Date.now();
                 if (rms >= VOICE_VAD_LEVEL) {
-                    stopVoiceAssistantSpeech();
+                    if (voiceAssistantAudio) {
+                        voiceSpeechStartedDuringTts = true;
+                        stopVoiceAssistantSpeech();
+                    }
                     speechDetected = true;
                     lastSpeechAt = now;
                 }
@@ -9728,8 +9691,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         }
     }
 
-    function shouldKeepQuickDesignListening() {
-        return Boolean(isQuickDesignOpen() && qdVoiceWizardActive && !qdVoiceTransitioning && !voiceAssistantAudio && voiceState !== 'listening' && voiceState !== 'processing');
+    function shouldKeepQuickDesignListening(options = {}) {
+        const allowDuringSpeech = Boolean(options.allowDuringSpeech);
+        return Boolean(isQuickDesignOpen() && qdVoiceWizardActive && !qdVoiceTransitioning && (allowDuringSpeech || !voiceAssistantAudio) && voiceState !== 'listening' && voiceState !== 'processing');
     }
 
     function quickDesignPromptListenDelay(delay = 260) {
@@ -9743,11 +9707,11 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         voiceContinuousTimer = null;
     }
 
-    function scheduleQuickDesignContinuousListen(delay = 260) {
+    function scheduleQuickDesignContinuousListen(delay = 260, options = {}) {
         stopQuickDesignContinuousVoice();
-        if (!shouldKeepQuickDesignListening()) return;
+        if (!shouldKeepQuickDesignListening(options)) return;
         voiceContinuousTimer = setTimeout(() => {
-            if (!shouldKeepQuickDesignListening()) return;
+            if (!shouldKeepQuickDesignListening(options)) return;
             startVoiceCapture('quick-design');
         }, delay);
     }
@@ -10011,7 +9975,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
     function routeVoiceCommand(cmd, rawText, options = {}) {
         const qdVoiceResult = handleQuickDesignVoiceCommand(rawText || cmd, {
-            requireWakeToOpen: true,
+            requireWakeToOpen: options.source !== 'button' && !wakeEnabled,
             source: options.source || 'button'
         });
         if (qdVoiceResult && qdVoiceResult.handled) return true;
@@ -10122,9 +10086,16 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                     stopBrowserWakeRecognition();
                     voiceCardManuallyHidden = false;
                     showVoiceAssistantCard({ force: true });
-                    pushVoiceAssistantLog('system', '已唤醒，请说指令。');
-                    showToast('小诺同学已唤醒', 'success');
-                    startWakeCommandCapture();
+                    const command = stripWakeWord(heard);
+                    if (command && command.length >= 2) {
+                        wakeActiveCommand = false;
+                        wakeAwakeUntil = 0;
+                        updateVoiceUI('success', '小诺收到：' + command);
+                        handleVoiceTranscript(command, { source: 'wake' });
+                        if (!shouldKeepQuickDesignListening()) resumeWakeListeningAfterCommand(1200);
+                    } else {
+                        acknowledgeWakeOnly();
+                    }
                     return;
                 }
             }
@@ -10169,6 +10140,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         wakeEnabled = false;
         wakeActiveCommand = false;
         wakeAwakeUntil = 0;
+        if (voiceState === 'listening' && voiceCaptureSource === 'wake') stopVoiceCapture({ cancel: true });
+        stopVoiceAssistantSpeech();
         clearTimeout(wakeSegmentTimer);
         clearTimeout(wakeRestartTimer);
         wakeSegmentTimer = null;
@@ -10426,7 +10399,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 if (!shouldKeepQuickDesignListening()) resumeWakeListeningAfterCommand(1200);
                 return;
             }
-            startWakeCommandCapture();
+            acknowledgeWakeOnly();
             return;
         }
         scheduleWakeRestart(120);
@@ -10442,7 +10415,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
     function toggleWakeListening() {
         if (wakeEnabled || wakeBusy) stopWakeListening();
-        else startWakeListening();
+        else wakeAssistantNow();
     }
 
     function isTypingTarget(target) {
@@ -10518,7 +10491,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         qdVoiceTransitioning,
         voiceState,
         hasVoiceAssistantAudio: Boolean(voiceAssistantAudio),
+        voiceSpeaking: Boolean(document.getElementById('voiceBtn')?.classList.contains('speaking')),
         hasContinuousTimer: Boolean(voiceContinuousTimer),
+        wakeEnabled,
+        wakeActiveCommand,
         lastHandledAt: qdVoiceLastHandledAt,
         bodyClasses: document.body.className
     });
