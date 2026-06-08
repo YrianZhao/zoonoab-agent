@@ -5385,7 +5385,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146025';
+    const APP_BUILD_VERSION = '78146026';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -10072,15 +10072,20 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const cmd = normalizeVoiceCommand(text);
         if (!cmd) return;
         pushVoiceAssistantLog('user', stripWakeWord(text) || text);
-        if (routeVoiceCommand(cmd, text, options)) return;
+        if (routeVoiceCommand(cmd, text, options)) return true;
         const answer = voiceCommonAnswer(text);
-        if (answerVoiceCommonQuestion(text, answer)) return;
+        if (answerVoiceCommonQuestion(text, answer)) return true;
+        if (options.source === 'wake') {
+            updateVoiceUI('wake', '小诺同学待命中');
+            return false;
+        }
         const msg = isQuickDesignOpen()
             ? '请说当前步骤中的一个选项，例如 PD-L1，或说“下一步”。'
             : '我可以控制网站已有功能。请说“小诺同学，打开快速设计”，或问我平台能做什么。';
         pushVoiceAssistantLog('system', msg);
         updateVoiceUI('success', msg);
         voiceAssistantSpeak(msg);
+        return false;
     }
 
     function stopBrowserWakeRecognition(options = {}) {
@@ -10238,6 +10243,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const chunks = [];
         let speechDetected = false;
         let peakRms = 0;
+        let lastSpeechAt = 0;
+        const segmentStartAt = Date.now();
         let cleaned = false;
         const cleanup = () => {
             if (cleaned) return;
@@ -10253,9 +10260,16 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             let sum = 0;
             for (let i = 0; i < frame.length; i++) sum += frame[i] * frame[i];
             const rms = Math.sqrt(sum / frame.length);
+            const now = Date.now();
             peakRms = Math.max(peakRms, rms);
             setVoiceLevel(rms, peakRms);
-            if (rms >= VOICE_VAD_LEVEL * 0.65) speechDetected = true;
+            if (rms >= VOICE_VAD_LEVEL * 0.65) {
+                speechDetected = true;
+                lastSpeechAt = now;
+            }
+            if (speechDetected && now - lastSpeechAt >= VOICE_VAD_SILENCE_MS && now - segmentStartAt >= VOICE_MIN_MS) {
+                controller.stop();
+            }
         };
         source.connect(processor);
         processor.connect(ctx.destination);
@@ -10461,8 +10475,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             wakeActiveCommand = false;
             wakeAwakeUntil = 0;
             updateVoiceUI('success', '小诺收到：' + command);
-            handleVoiceTranscript(command, { source: 'wake' });
-            if (!shouldKeepQuickDesignListening()) resumeWakeListeningAfterCommand(1200);
+            Promise.resolve(handleVoiceTranscript(command, { source: 'wake' })).then((handled) => {
+                if (!shouldKeepQuickDesignListening()) resumeWakeListeningAfterCommand(handled === false ? 120 : 900);
+            });
             return;
         }
         if (woke) {
