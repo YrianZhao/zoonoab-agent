@@ -5385,7 +5385,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146020';
+    const APP_BUILD_VERSION = '78146021';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -6915,7 +6915,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                     qdVoiceConfirm = null;
                     qdVoiceTransitioning = false;
                     qdNext({ announcePrompt: true, dock: Boolean(options.dock) });
-                }, 80);
+                }, 1250);
             });
             return '';
         }
@@ -7789,7 +7789,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     // ═══════════════ Voice Control ═══════════════
     const VOICE_MIN_MS = 760;
     const VOICE_MAX_MS = 12000;
-    const WAKE_SEGMENT_MS = 1800;
+    const WAKE_SEGMENT_MS = 3600;
     const WAKE_AWAKE_WINDOW_MS = 12000;
     const WAKE_OVERLAP_MS = 700;
     const LOCAL_ASR_SAMPLE_RATE = 16000;
@@ -10058,6 +10058,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     async function handleVoiceTranscript(text, options = {}) {
+        if (options.source === 'quick-design' && (!isQuickDesignOpen() || !qdVoiceWizardActive)) return;
         if (!(options.source === 'quick-design' && voiceAssistantAudio)) stopVoiceAssistantSpeech();
         const cmd = normalizeVoiceCommand(text);
         if (!cmd) return;
@@ -10198,7 +10199,13 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         wakeEnabled = false;
         wakeActiveCommand = false;
         wakeAwakeUntil = 0;
-        if (voiceState === 'listening' && voiceCaptureSource === 'wake') stopVoiceCapture({ cancel: true });
+        if (isQuickDesignOpen()) {
+            qdVoiceWizardActive = false;
+            qdVoiceTransitioning = false;
+            qdVoiceConfirm = null;
+            if (typeof stopQuickDesignContinuousVoice === 'function') stopQuickDesignContinuousVoice();
+        }
+        if (voiceState === 'listening' && (voiceCaptureSource === 'wake' || voiceCaptureSource === 'quick-design')) stopVoiceCapture({ cancel: true });
         stopVoiceAssistantSpeech();
         clearTimeout(wakeSegmentTimer);
         clearTimeout(wakeRestartTimer);

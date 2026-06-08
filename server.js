@@ -1421,7 +1421,8 @@ function normalizeTtsTextForSpeech(text) {
     .replace(/PD\s*-\s*L\s*1/gi, 'P D L 1')
     .replace(/PD\s*-\s*1/gi, 'P D 1')
     .replace(/CDR\s*-\s*H\s*3/gi, 'C D R H 3')
-    .replace(/CDR\s+H\s*3/gi, 'C D R H 3');
+    .replace(/CDR\s+H\s*3/gi, 'C D R H 3')
+    .replace(/分子/g, '分 子');
 }
 
 function cosyVoiceApiKey() {
