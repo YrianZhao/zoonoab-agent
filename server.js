@@ -1421,14 +1421,13 @@ function normalizeTtsTextForSpeech(text) {
     .replace(/PD\s*-\s*L\s*1/gi, 'P D L 1')
     .replace(/PD\s*-\s*1/gi, 'P D 1')
     .replace(/CDR\s*-\s*H\s*3/gi, 'C D R H 3')
-    .replace(/CDR\s+H\s*3/gi, 'C D R H 3')
-    .replace(/AI\s*分子设计/gi, 'A I 药物设计')
-    .replace(/分子设计/g, '药物设计')
-    .replace(/候选分子/g, '候选物')
-    .replace(/治疗分子/g, '治疗药物')
-    .replace(/这个分子/g, '这个药物')
-    .replace(/抗体分子/g, '抗体')
-    .replace(/分子/g, '药物');
+    .replace(/CDR\s+H\s*3/gi, 'C D R H 3');
+}
+
+function normalizeTtsTextForEdge(text) {
+  return normalizeTtsTextForSpeech(text)
+    .replace(/分子设计/g, '分、子设计')
+    .replace(/分子/g, '分、子');
 }
 
 function cosyVoiceApiKey() {
@@ -1600,7 +1599,8 @@ async function edgeTtsToBuffer(text) {
     LOCAL_TTS_EDGE_VOICE,
     EDGE_OUTPUT_FORMAT.AUDIO_24KHZ_48KBITRATE_MONO_MP3
   );
-  const { audioStream } = tts.toStream(String(text || '').slice(0, 800), { rate: LOCAL_TTS_EDGE_RATE });
+  const edgeText = normalizeTtsTextForEdge(String(text || '').slice(0, 800));
+  const { audioStream } = tts.toStream(edgeText, { rate: LOCAL_TTS_EDGE_RATE });
   const chunks = [];
   await new Promise((resolve, reject) => {
     let settled = false;
