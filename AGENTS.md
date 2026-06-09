@@ -72,3 +72,4 @@ GitHub 推送权限应使用仓库级 Deploy Key，并在本仓库本地 Git 配
 阿里云低成本部署优先使用 Linux ECS 或轻量应用服务器直跑当前 Node 单体服务，使用 nginx 反向代理 `PORT`，并保留 WebSocket `Upgrade`/`Connection` 转发；长期稳定运行语音能力时最低建议 2 vCPU / 2 GiB / 40 GB。
 阿里云部署时不要依赖 `.env` 自动加载；`server.js` 直接读取系统环境变量，必须通过 `systemd`、PM2 ecosystem 或启动命令显式注入 `PORT`、`ASSISTANT_CHAT_*`、`LOCAL_ASR_*`、`VOICE_API_CONFIG_FILE`、`LOCAL_TTS_PROVIDER` 等变量。
 阿里云部署的本地 ASR/TTS 运行目录应落在持久化路径，例如 `/var/data` 或项目内 `.runtime`；CPU 机器默认优先 `LOCAL_ASR_ENGINE=vosk`、`VOICE_TRANSCRIBE_MODEL=vosk-small-cn-0.22`，并继续使用 CPU-only PyTorch 源 `https://download.pytorch.org/whl/cpu`。
+阿里云 ECS `47.121.139.140` 后续更新项目时，默认使用本地打包上传而不是服务器直接 `git pull`，因为服务器直连 GitHub 曾出现 TLS 卡住；流程为本地提交并推送后执行 `git archive --format=tar.gz --output=/tmp/zoonoab-agent.tar.gz HEAD`，再 `scp -i ~/.ssh/id_ed25519 /tmp/zoonoab-agent.tar.gz root@47.121.139.140:/tmp/zoonoab-agent.tar.gz`，服务器解包到 `/opt/zoonoab-agent.new`、运行 `npm ci`、替换 `/opt/zoonoab-agent` 并 `systemctl restart zoonoab`。
