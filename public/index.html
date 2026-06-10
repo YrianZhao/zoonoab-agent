@@ -5385,7 +5385,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146030';
+    const APP_BUILD_VERSION = '78146031';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -7827,13 +7827,18 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     const VOICE_MIN_MS = 760;
     const VOICE_MAX_MS = 12000;
     const QUICK_DESIGN_VOICE_WAIT_MS = 7000;
-    const QUICK_DESIGN_VOICE_AFTER_SPEECH_MS = 18000;
+    const QUICK_DESIGN_VOICE_AFTER_SPEECH_MS = 7000;
+    const QUICK_DESIGN_VOICE_ABSOLUTE_MAX_MS = 10000;
+    const QUICK_DESIGN_VOICE_NOISE_SAMPLE_MS = 420;
+    const QUICK_DESIGN_VOICE_SPEECH_CONFIRM_MS = 240;
     const WAKE_SEGMENT_MS = 7000;
     const WAKE_AWAKE_WINDOW_MS = 12000;
     const WAKE_OVERLAP_MS = 700;
     const LOCAL_ASR_SAMPLE_RATE = 16000;
     const VOICE_VAD_POLL_MS = 120;
     const VOICE_VAD_LEVEL = 0.032;
+    const QUICK_DESIGN_VOICE_NOISE_MULTIPLIER = 2.6;
+    const QUICK_DESIGN_VOICE_MAX_DYNAMIC_VAD = 0.075;
     const VOICE_MIN_PEAK_RMS = 0.024;
     const VOICE_MIN_SIGNAL_RMS = 0.013;
     const VOICE_VAD_SILENCE_MS = 1040;
@@ -9504,14 +9509,19 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         try {
             const AudioCtx = window.AudioContext || window.webkitAudioContext;
             voiceVadContext = new AudioCtx();
-            const source = voiceVadContext.createMediaStreamSource(stream);
+            const audioSource = voiceVadContext.createMediaStreamSource(stream);
             voiceVadAnalyser = voiceVadContext.createAnalyser();
             voiceVadAnalyser.fftSize = 1024;
             voiceVadAnalyser.smoothingTimeConstant = 0.15;
             voiceVadData = new Uint8Array(voiceVadAnalyser.fftSize);
-            source.connect(voiceVadAnalyser);
+            audioSource.connect(voiceVadAnalyser);
             voiceSpeechDetected = false;
             voiceLastSpeechAt = 0;
+            const isQuickDesign = source === 'quick-design';
+            let noiseTotal = 0;
+            let noiseFrames = 0;
+            let noiseFloor = 0;
+            let speechCandidateSince = 0;
             voiceVadTimer = setInterval(() => {
                 if (voiceState !== 'listening' || !voiceVadAnalyser || !voiceVadData) return;
                 voiceVadAnalyser.getByteTimeDomainData(voiceVadData);
@@ -9522,12 +9532,30 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 }
                 const rms = Math.sqrt(sum / voiceVadData.length);
                 const now = Date.now();
-                if (rms >= VOICE_VAD_LEVEL) {
-                    if (source === 'quick-design' || !voiceSpeechDetected) armVoiceStopTimer(getVoiceAfterSpeechMaxMs(source));
-                    voiceSpeechDetected = true;
-                    voiceLastSpeechAt = now;
+                if (isQuickDesign && !voiceSpeechDetected && now - voiceStartTime <= QUICK_DESIGN_VOICE_NOISE_SAMPLE_MS) {
+                    noiseTotal += rms;
+                    noiseFrames += 1;
+                    noiseFloor = noiseTotal / noiseFrames;
                     return;
                 }
+                const threshold = isQuickDesign ? getQuickDesignVoiceVadThreshold(noiseFloor) : VOICE_VAD_LEVEL;
+                if (rms >= threshold) {
+                    if (isQuickDesign) {
+                        if (!speechCandidateSince) speechCandidateSince = now;
+                        armVoiceStopTimerForSource(source, getVoiceAfterSpeechMaxMs(source));
+                        if (!voiceSpeechDetected && now - speechCandidateSince >= QUICK_DESIGN_VOICE_SPEECH_CONFIRM_MS) {
+                            voiceSpeechDetected = true;
+                            voiceLastSpeechAt = now;
+                        }
+                        if (voiceSpeechDetected) voiceLastSpeechAt = now;
+                    } else {
+                        if (!voiceSpeechDetected) armVoiceStopTimer(getVoiceAfterSpeechMaxMs(source));
+                        voiceSpeechDetected = true;
+                        voiceLastSpeechAt = now;
+                    }
+                    return;
+                }
+                speechCandidateSince = 0;
                 if (voiceSpeechDetected && now - voiceLastSpeechAt >= VOICE_VAD_SILENCE_MS && now - voiceStartTime >= VOICE_MIN_MS) {
                     stopVoiceCapture();
                 }
@@ -9585,9 +9613,24 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         return source === 'quick-design' ? QUICK_DESIGN_VOICE_AFTER_SPEECH_MS : getVoiceInitialMaxMs(source);
     }
 
+    function getQuickDesignVoiceVadThreshold(noiseFloor = 0) {
+        const dynamic = Number(noiseFloor || 0) * QUICK_DESIGN_VOICE_NOISE_MULTIPLIER;
+        return Math.min(Math.max(VOICE_VAD_LEVEL * 0.85, dynamic), QUICK_DESIGN_VOICE_MAX_DYNAMIC_VAD);
+    }
+
     function armVoiceStopTimer(delay) {
         clearTimeout(voiceStopTimer);
         voiceStopTimer = setTimeout(() => stopVoiceCapture(), delay);
+    }
+
+    function armVoiceStopTimerForSource(source, delay) {
+        if (source !== 'quick-design') {
+            armVoiceStopTimer(delay);
+            return;
+        }
+        const elapsed = Date.now() - voiceStartTime;
+        const remaining = QUICK_DESIGN_VOICE_ABSOLUTE_MAX_MS - elapsed;
+        armVoiceStopTimer(Math.max(VOICE_MIN_MS, Math.min(delay, remaining)));
     }
 
     function acknowledgeWakeOnly() {
@@ -9653,7 +9696,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             voiceMediaRecorder.start();
             if (source !== 'space') startVoiceVad(voiceStream, source);
             updateVoiceUI('listening', getVoiceListeningMessage(source));
-            armVoiceStopTimer(getVoiceInitialMaxMs(source));
+            armVoiceStopTimerForSource(source, getVoiceInitialMaxMs(source));
         } catch (err) {
             voiceCaptureSource = '';
             console.warn('[Voice] Microphone error:', err);
@@ -9702,6 +9745,11 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             let speechDetected = false;
             let lastSpeechAt = 0;
             let peakRms = 0;
+            const isQuickDesign = source === 'quick-design';
+            let noiseTotal = 0;
+            let noiseFrames = 0;
+            let noiseFloor = 0;
+            let speechCandidateSince = 0;
             voiceStartTime = Date.now();
             processor.onaudioprocess = (event) => {
                 if (voiceState !== 'listening') return;
@@ -9713,10 +9761,29 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 peakRms = Math.max(peakRms, rms);
                 setVoiceLevel(rms, peakRms);
                 const now = Date.now();
-                if (rms >= VOICE_VAD_LEVEL) {
-                    if (source === 'quick-design' || !speechDetected) armVoiceStopTimer(getVoiceAfterSpeechMaxMs(source));
-                    speechDetected = true;
-                    lastSpeechAt = now;
+                if (isQuickDesign && !speechDetected && now - voiceStartTime <= QUICK_DESIGN_VOICE_NOISE_SAMPLE_MS) {
+                    noiseTotal += rms;
+                    noiseFrames += 1;
+                    noiseFloor = noiseTotal / noiseFrames;
+                    return;
+                }
+                const threshold = isQuickDesign ? getQuickDesignVoiceVadThreshold(noiseFloor) : VOICE_VAD_LEVEL;
+                if (rms >= threshold) {
+                    if (isQuickDesign) {
+                        if (!speechCandidateSince) speechCandidateSince = now;
+                        armVoiceStopTimerForSource(source, getVoiceAfterSpeechMaxMs(source));
+                        if (!speechDetected && now - speechCandidateSince >= QUICK_DESIGN_VOICE_SPEECH_CONFIRM_MS) {
+                            speechDetected = true;
+                            lastSpeechAt = now;
+                        }
+                        if (speechDetected) lastSpeechAt = now;
+                    } else {
+                        if (!speechDetected) armVoiceStopTimer(getVoiceAfterSpeechMaxMs(source));
+                        speechDetected = true;
+                        lastSpeechAt = now;
+                    }
+                } else {
+                    speechCandidateSince = 0;
                 }
                 if (source !== 'space' && speechDetected && now - lastSpeechAt >= VOICE_VAD_SILENCE_MS && now - voiceStartTime >= VOICE_MIN_MS) {
                     stopVoiceCapture();
@@ -9761,6 +9828,11 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                         if (captureSource === 'wake' && wakeEnabled) resumeWakeListeningAfterCommand(700);
                         return;
                     }
+                    if (captureSource === 'quick-design' && isQuickDesignOpen() && qdVoiceWizardActive && !speechDetected) {
+                        voiceMediaRecorder = null;
+                        qdVoiceDidNotHear();
+                        return;
+                    }
                     const rawSamples = concatFloat32(chunks);
                     const samples = prepareLocalAsrSamples(rawSamples, ctx.sampleRate || LOCAL_ASR_SAMPLE_RATE);
                     const stats = calculateSampleStats(samples);
@@ -9786,7 +9858,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 }
             };
             updateVoiceUI('listening', getVoiceListeningMessage(source));
-            armVoiceStopTimer(getVoiceInitialMaxMs(source));
+            armVoiceStopTimerForSource(source, getVoiceInitialMaxMs(source));
         } catch (err) {
             voiceCaptureSource = '';
             console.warn('[Voice] Local microphone error:', err);
@@ -9870,6 +9942,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 if (shouldKeepQuickDesignListening()) scheduleQuickDesignContinuousListen(360);
             }
             if (captureSource === 'wake' && wakeEnabled) resumeWakeListeningAfterCommand(700);
+            return;
+        }
+        if (captureSource === 'quick-design' && isQuickDesignOpen() && qdVoiceWizardActive && !voiceSpeechDetected) {
+            qdVoiceDidNotHear();
             return;
         }
         const audioBlob = new Blob(chunks, { type: mimeType || 'audio/webm' });
