@@ -5385,7 +5385,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146028';
+    const APP_BUILD_VERSION = '78146029';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -6310,11 +6310,14 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     let qdVoiceConfirm = null;
     let qdVoiceTransitioning = false;
     let qdVoiceLastHandledAt = 0;
+    let qdVoiceLastUnclearAt = 0;
     let qdAutoSubmitTimer = null;
+    const QD_VOICE_UNCLEAR_REPEAT_MS = 4200;
 
     function qdResetState() {
         qdVoiceConfirm = null;
         qdVoiceTransitioning = false;
+        qdVoiceLastUnclearAt = 0;
         clearTimeout(qdAutoSubmitTimer);
         qdAutoSubmitTimer = null;
         qdState = {
@@ -6909,9 +6912,18 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     function qdVoiceDidNotHear(options = {}) {
-        if (!isQuickDesignOpen() || !qdVoiceWizardActive || qdVoiceTransitioning) return;
+        if (!isQuickDesignOpen() || !qdVoiceWizardActive || qdVoiceTransitioning) return { handled: true, label: '' };
+        const now = Date.now();
+        const recentlyPrompted = qdVoiceLastUnclearAt && now - qdVoiceLastUnclearAt < QD_VOICE_UNCLEAR_REPEAT_MS;
+        qdVoiceLastUnclearAt = now;
         voiceCaptureSource = '';
-        qdPromptAndKeepListening('小诺没有听清，请您再说一遍。', 'success', options);
+        if (recentlyPrompted && options.force !== true) {
+            const msg = '请直接说当前选项';
+            updateVoiceUI('success', msg);
+            scheduleQuickDesignContinuousListen(260, { allowDuringSpeech: true });
+            return { handled: true, label: msg };
+        }
+        return qdPromptAndKeepListening('小诺没有听清，请您再说一遍。', 'success', options);
     }
 
     function qdVoiceAdvanceAfterSelection(selection, options = {}) {
@@ -7011,7 +7023,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             return { handled: true, label: qdVoiceStepPrompt(qdState.step) || '已进入下一步' };
         }
         qdEnableVoiceWizard({ dock: false });
-        return feedback('小诺没有听清，请您再说一遍。', 'success');
+        return qdVoiceDidNotHear({ speak: options.speak !== false });
     }
 
     // ═══════════════ CONVERSATION HISTORY (localStorage) ═══════════════
