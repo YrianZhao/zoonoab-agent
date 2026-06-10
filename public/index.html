@@ -5385,7 +5385,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146027';
+    const APP_BUILD_VERSION = '78146028';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -7804,7 +7804,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     // ═══════════════ Voice Control ═══════════════
     const VOICE_MIN_MS = 760;
     const VOICE_MAX_MS = 12000;
-    const QUICK_DESIGN_VOICE_MAX_MS = 6500;
+    const QUICK_DESIGN_VOICE_WAIT_MS = 7000;
+    const QUICK_DESIGN_VOICE_AFTER_SPEECH_MS = 18000;
     const WAKE_SEGMENT_MS = 7000;
     const WAKE_AWAKE_WINDOW_MS = 12000;
     const WAKE_OVERLAP_MS = 700;
@@ -9475,7 +9476,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         }
     }
 
-    function startVoiceVad(stream) {
+    function startVoiceVad(stream, source = '') {
         stopVoiceVad();
         if (!stream || !window.AudioContext && !window.webkitAudioContext) return;
         try {
@@ -9500,6 +9501,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 const rms = Math.sqrt(sum / voiceVadData.length);
                 const now = Date.now();
                 if (rms >= VOICE_VAD_LEVEL) {
+                    if (source === 'quick-design' || !voiceSpeechDetected) armVoiceStopTimer(getVoiceAfterSpeechMaxMs(source));
                     voiceSpeechDetected = true;
                     voiceLastSpeechAt = now;
                     return;
@@ -9553,8 +9555,17 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         return '正在听网站控制指令';
     }
 
-    function getVoiceMaxMs(source) {
-        return source === 'quick-design' ? QUICK_DESIGN_VOICE_MAX_MS : VOICE_MAX_MS;
+    function getVoiceInitialMaxMs(source) {
+        return source === 'quick-design' ? QUICK_DESIGN_VOICE_WAIT_MS : VOICE_MAX_MS;
+    }
+
+    function getVoiceAfterSpeechMaxMs(source) {
+        return source === 'quick-design' ? QUICK_DESIGN_VOICE_AFTER_SPEECH_MS : getVoiceInitialMaxMs(source);
+    }
+
+    function armVoiceStopTimer(delay) {
+        clearTimeout(voiceStopTimer);
+        voiceStopTimer = setTimeout(() => stopVoiceCapture(), delay);
     }
 
     function acknowledgeWakeOnly() {
@@ -9618,9 +9629,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             voiceMediaRecorder.onstop = () => handleVoiceRecordingStop(mimeType);
             voiceStartTime = Date.now();
             voiceMediaRecorder.start();
-            if (source !== 'space') startVoiceVad(voiceStream);
+            if (source !== 'space') startVoiceVad(voiceStream, source);
             updateVoiceUI('listening', getVoiceListeningMessage(source));
-            voiceStopTimer = setTimeout(() => stopVoiceCapture(), getVoiceMaxMs(source));
+            armVoiceStopTimer(getVoiceInitialMaxMs(source));
         } catch (err) {
             voiceCaptureSource = '';
             console.warn('[Voice] Microphone error:', err);
@@ -9681,6 +9692,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 setVoiceLevel(rms, peakRms);
                 const now = Date.now();
                 if (rms >= VOICE_VAD_LEVEL) {
+                    if (source === 'quick-design' || !speechDetected) armVoiceStopTimer(getVoiceAfterSpeechMaxMs(source));
                     speechDetected = true;
                     lastSpeechAt = now;
                 }
@@ -9752,7 +9764,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 }
             };
             updateVoiceUI('listening', getVoiceListeningMessage(source));
-            voiceStopTimer = setTimeout(() => stopVoiceCapture(), getVoiceMaxMs(source));
+            armVoiceStopTimer(getVoiceInitialMaxMs(source));
         } catch (err) {
             voiceCaptureSource = '';
             console.warn('[Voice] Local microphone error:', err);
