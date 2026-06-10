@@ -5385,7 +5385,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146029';
+    const APP_BUILD_VERSION = '78146030';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -6311,13 +6311,21 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     let qdVoiceTransitioning = false;
     let qdVoiceLastHandledAt = 0;
     let qdVoiceLastUnclearAt = 0;
+    let qdVoiceUnclearPromptIndex = 0;
     let qdAutoSubmitTimer = null;
     const QD_VOICE_UNCLEAR_REPEAT_MS = 4200;
+    const QD_VOICE_UNCLEAR_PROMPTS = [
+        '小诺没有听清，请您再说一遍。',
+        '刚才没有听清，请您再说一次。',
+        '这句识别不太清楚，请直接说当前选项。',
+        '我还没听准，请再说一遍当前步骤的选项。'
+    ];
 
     function qdResetState() {
         qdVoiceConfirm = null;
         qdVoiceTransitioning = false;
         qdVoiceLastUnclearAt = 0;
+        qdVoiceUnclearPromptIndex = 0;
         clearTimeout(qdAutoSubmitTimer);
         qdAutoSubmitTimer = null;
         qdState = {
@@ -6923,7 +6931,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             scheduleQuickDesignContinuousListen(260, { allowDuringSpeech: true });
             return { handled: true, label: msg };
         }
-        return qdPromptAndKeepListening('小诺没有听清，请您再说一遍。', 'success', options);
+        const prompt = QD_VOICE_UNCLEAR_PROMPTS[qdVoiceUnclearPromptIndex % QD_VOICE_UNCLEAR_PROMPTS.length];
+        qdVoiceUnclearPromptIndex += 1;
+        return qdPromptAndKeepListening(prompt, 'success', options);
     }
 
     function qdVoiceAdvanceAfterSelection(selection, options = {}) {
