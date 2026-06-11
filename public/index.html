@@ -2619,7 +2619,7 @@
             z-index: 10000;
             background: rgba(15, 17, 27, 0);
             backdrop-filter: blur(0px); -webkit-backdrop-filter: blur(0px);
-            display: flex; align-items: center; justify-content: center;
+            display: none; align-items: center; justify-content: center;
             opacity: 0; pointer-events: none;
             transition:
                 opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
@@ -2627,6 +2627,7 @@
                 backdrop-filter 0.45s cubic-bezier(0.22, 1, 0.36, 1);
         }
         .mol-modal-overlay.open {
+            display: flex;
             opacity: 1; pointer-events: auto;
             background: rgba(15, 17, 27, 0.65);
             backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
@@ -5589,7 +5590,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146035';
+    const APP_BUILD_VERSION = '78146037';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -6826,7 +6827,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     function submitQuickDesign() {
-        if (quickDesignActive) return;
+        if (isRunning || quickDesignRunActive) return;
         qdAutoSubmitArmed = false;
         const text = qdWorkflowTriggerText();
         const routeId = qdState.routeId;
@@ -16039,6 +16040,9 @@ QVQLVESGGGLVQPGGSLRLSCAASGYIFSSNAMGWYRQAPGKQRELVAAISSGGSTYYADSVKGRFTISRDNAKTTLYL
             bodyEl.appendChild(modalIframe);
         }
 
+        clearTimeout(molCloseTimer);
+        molCloseTimer = null;
+        overlay.style.display = 'flex';
         // Use rAF so browser paints the initial state (opacity:0, scale:0.92) before transition starts
         requestAnimationFrame(() => {
             requestAnimationFrame(() => {
@@ -16060,6 +16064,7 @@ QVQLVESGGGLVQPGGSLRLSCAASGYIFSSNAMGWYRQAPGKQRELVAAISSGGSTYYADSVKGRFTISRDNAKTTLYL
         if (overlay) overlay.classList.remove('open');
         clearTimeout(molCloseTimer);
         molCloseTimer = setTimeout(() => {
+            if (overlay) overlay.style.display = 'none';
             if (bodyEl) bodyEl.innerHTML = '';
             modalIframe = null;
             molCloseTimer = null;
