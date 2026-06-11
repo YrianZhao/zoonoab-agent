@@ -80,9 +80,9 @@
             --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
             /* Desktop layout */
-            --content-max-width: 880px;
-            --tasks-sidebar-width: 320px;
-            --tasks-sidebar-width-tablet: 292px;
+            --content-max-width: 760px;
+            --tasks-sidebar-width: 280px;
+            --tasks-sidebar-width-tablet: 264px;
         }
 
         body {
@@ -139,6 +139,12 @@
             display: flex; align-items: center; gap: 3px; white-space: nowrap; flex: 0 0 auto;
         }
         .header-actions { display: flex; gap: 8px; align-items: center; }
+        .top-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 0 0 auto;
+        }
         .header-btn {
             padding: 7px 14px; border: 1px solid var(--border);
             background: var(--bg-card); border-radius: var(--radius-sm);
@@ -151,6 +157,30 @@
             color: var(--brand-dark);
             box-shadow: var(--shadow-xs);
             transform: translateY(-1px);
+        }
+        .new-session-btn {
+            width: 38px;
+            height: 38px;
+            padding: 0;
+            justify-content: center;
+            color: var(--text-primary);
+            border-color: transparent;
+            background: transparent;
+            border-radius: var(--radius-md);
+        }
+        .new-session-icon-ring {
+            width: 24px;
+            height: 24px;
+            border: 1.5px dashed currentColor;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .new-session-btn:hover {
+            border-color: var(--border);
+            background: var(--gray-100);
+            color: var(--text-primary);
         }
         .status-dot {
             width: 8px; height: 8px; border-radius: var(--radius-full); background: var(--success);
@@ -239,7 +269,7 @@
         #navTasks.panel-open { background: var(--brand-lighter); color: var(--brand-dark); }
 
         .header .header-tabs,
-        .header .header-actions {
+        .header > .header-actions {
             display: none;
         }
 
@@ -1503,12 +1533,64 @@
             box-shadow: 4px 0 20px rgba(0,90,200,0.07); z-index: 50;
             display: flex; flex-direction: column;
         }
+        .agent-tasks-sidebar:not(.open) { display: none; }
         .agent-tasks-sidebar.open { display: flex; }
+        .sidebar-open-btn {
+            position: fixed;
+            left: 14px;
+            top: 68px;
+            width: 34px;
+            height: 34px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            background: rgba(255,255,255,0.92);
+            color: var(--text-secondary);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 80;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+        .sidebar-open-btn:hover {
+            background: var(--gray-100);
+            color: var(--text-primary);
+            transform: translateY(-1px);
+        }
+        body:not(.sidebar-open) .sidebar-open-btn { display: flex; }
         .sidebar-main-menu {
             display: flex; flex-direction: column; gap: 4px;
             padding: 12px;
             border-bottom: 1px solid var(--border);
             background: rgba(255,255,255,0.72);
+        }
+        .sidebar-top-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            padding: 0 2px 8px;
+        }
+        .sidebar-brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 0;
+            color: var(--brand-dark);
+            font-weight: 800;
+            font-size: 14px;
+        }
+        .sidebar-brand-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            background: linear-gradient(135deg,var(--brand),var(--brand-dark));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 auto;
         }
         .sidebar-main-menu .header-tabs {
             margin-left: 0;
@@ -1583,7 +1665,7 @@
         .sidebar-title-sub { font-size: 11px; font-weight: 400; color: var(--text-muted); margin-left: 4px; }
         .sidebar-close {
             background: transparent; border: none; color: var(--text-muted);
-            cursor: pointer; display: none; align-items: center; justify-content: center;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
             width: 28px; height: 28px; border-radius: var(--radius-sm);
             transition: var(--transition);
         }
@@ -2244,11 +2326,7 @@
         .empty-state-icon { margin-bottom: 16px; opacity: 0.4; }
         .empty-state-text { font-size: 14px; }
         .build-version {
-            position: fixed;
-            left: 50%;
-            bottom: 15px;
-            transform: translateX(-50%);
-            z-index: 50;
+            margin-top: 10px;
             font-family: var(--mono-font-family);
             font-size: 10px;
             line-height: 1;
@@ -2256,10 +2334,11 @@
             color: rgba(100, 116, 139, 0.45);
             user-select: none;
             pointer-events: none;
+            text-align: center;
         }
-        body.chatting-mode .build-version,
-        body.kb-open .build-version,
-        body.analysis-open .build-version {
+        body.chatting-mode #emptyState .build-version,
+        body.kb-open #emptyState .build-version,
+        body.analysis-open #emptyState .build-version {
             display: none;
         }
 
@@ -4214,6 +4293,13 @@
                 AI Antibody Platform
             </span>
         </div>
+        <div class="top-header-actions">
+            <button class="header-btn new-session-btn" onclick="resetChat()" title="New Session" aria-label="New Session">
+                <span class="new-session-icon-ring">
+                    <i data-lucide="pen-line" style="width:13px;height:13px;"></i>
+                </span>
+            </button>
+        </div>
     </header>
 
     <main class="main-container">
@@ -4261,11 +4347,11 @@
                     </button>
                 </div>
                 <div class="input-hints" id="inputHints">
-                    <span class="hint-chip" onclick="sendHintWorkflow(this)">小诺同学，帮我为过敏性哮喘设计一个抗体分子，并打印一个结构模型。</span>
-                    <span class="hint-chip" onclick="sendHintWorkflow(this)">小诺同学，帮我做一个肿瘤免疫治疗方向的抗体设计演示。</span>
-                    <span class="hint-chip" onclick="sendHintWorkflow(this)">小诺同学，请为乳腺癌相关疾病设计一个候选抗体。</span>
-                    <span class="hint-chip" onclick="sendHintWorkflow(this)">小诺同学，请为类风湿方向做一个抗炎抗体设计演示。</span>
-                    <span class="hint-chip" onclick="sendHintWorkflow(this)">小诺同学，请做一次完整的抗体设计演示。</span>
+                    <span class="hint-chip" onclick="sendHintWorkflow(this)">小诺同学，帮我为过敏性哮喘设计一个抗体分子，并打印一个结构模型</span>
+                    <span class="hint-chip" onclick="sendHintWorkflow(this)">小诺同学，帮我做一个肿瘤免疫治疗方向的抗体设计</span>
+                    <span class="hint-chip" onclick="sendHintWorkflow(this)">小诺同学，请为乳腺癌相关疾病设计一个候选抗体</span>
+                    <span class="hint-chip" onclick="sendHintWorkflow(this)">小诺同学，请为类风湿方向做一个抗炎抗体设计</span>
+                    <span class="hint-chip" onclick="sendHintWorkflow(this)">小诺同学，请做一次完整的抗体设计</span>
                 </div>
                 <!-- Quick workflow action chips -->
                 <div class="quick-actions-row" id="quickActionsRow">
@@ -4295,14 +4381,13 @@
                 <div class="empty-state" id="emptyState">
                     <div class="empty-state-icon"><i data-lucide="flask-conical" style="width: 48px; height: 48px;"></i></div>
                     <div class="empty-state-text" data-i18n="empty_state">Enter a design request above to start the workflow</div>
+                    <div class="build-version" id="buildVersion" aria-hidden="true"></div>
                 </div>
             </div>
             <div class="typing-indicator" id="typingIndicator">
                 <div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>
             </div>
         </section>
-        <div class="build-version" id="buildVersion" aria-hidden="true"></div>
-
         <!-- Team Collaboration Section -->
         <section class="team-section" id="teamSection" style="display:none;">
             <div class="team-layout">
@@ -4759,6 +4844,15 @@
     <!-- Agent Tasks Sidebar -->
     <div class="agent-tasks-sidebar" id="agentTasksSidebar">
         <div class="sidebar-main-menu">
+            <div class="sidebar-top-row">
+                <div class="sidebar-brand">
+                    <span class="sidebar-brand-icon"><i data-lucide="dna" style="width:13px;height:13px;"></i></span>
+                    <span>ZoonoAb</span>
+                </div>
+                <button class="sidebar-close" onclick="toggleSidebar()" title="隐藏侧边栏" aria-label="隐藏侧边栏">
+                    <i data-lucide="panel-left-close" style="width:17px;height:17px;"></i>
+                </button>
+            </div>
             <div class="header-tabs">
                 <button class="nav-tab active" id="navChat" onclick="switchView('chat')"><i data-lucide="sparkles" style="width:15px;height:15px;"></i> Design</button>
                 <button class="nav-tab" id="navBatches" onclick="switchView('batches')"><i data-lucide="layers" style="width:15px;height:15px;"></i> Batches</button>
@@ -4789,7 +4883,6 @@
                     <div style="font-size:10px;color:var(--text-muted);font-weight:400;">AI Antibody Design</div>
                 </div>
             </div>
-            <button class="sidebar-close" onclick="toggleSidebar()"><i data-lucide="x" style="width:16px;height:16px;"></i></button>
         </div>
         <!-- New task section label -->
         <div class="sidebar-section-label">当前任务</div>
@@ -4820,9 +4913,6 @@
                 <button class="header-btn" id="langBtn" onclick="switchLang(LANG==='en'?'zh':'en')">
                     <i data-lucide="globe" style="width:14px;height:14px;"></i> <span id="langLabel">中文</span>
                 </button>
-                <button class="header-btn" onclick="resetChat()">
-                    <i data-lucide="plus" style="width: 14px; height: 14px;"></i> <span class="header-btn-label">New Session</span>
-                </button>
                 <div class="notif-panel" id="notifPanel" style="display:none;">
                     <div class="notif-panel-header">
                         <span class="notif-panel-title">通知</span>
@@ -4850,6 +4940,10 @@
             </div>
         </div>
     </div>
+
+    <button class="sidebar-open-btn" id="sidebarOpenBtn" onclick="toggleSidebar()" title="显示侧边栏" aria-label="显示侧边栏">
+        <i data-lucide="panel-left-open" style="width:17px;height:17px;"></i>
+    </button>
 
     <!-- Sidebar backdrop — dims content when the drawer is open on small screens -->
     <div class="sidebar-backdrop" id="sidebarBackdrop" onclick="toggleSidebar()"></div>
@@ -5469,7 +5563,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146033';
+    const APP_BUILD_VERSION = '78146034';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -5775,18 +5869,20 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (kbSection) { kbSection.style.display = view === 'kb' ? 'flex' : 'none'; if (view === 'kb') { document.body.classList.add('kb-open'); kbRender(); } else { document.body.classList.remove('kb-open'); } }
         if (view !== 'kb') toggleVoiceSettings(false);
 
-        if (view === 'chat') {
-            if (sidebar.dataset.wasOpen === 'true') {
-                sidebar.classList.add('open');
-                document.body.classList.add('sidebar-open');
-            }
-        } else {
-            if (sidebar.classList.contains('open')) {
-                sidebar.dataset.wasOpen = 'true';
-                sidebar.classList.remove('open');
-                document.body.classList.remove('sidebar-open');
+        if (window.innerWidth <= 768) {
+            if (view === 'chat') {
+                if (sidebar.dataset.wasOpen === 'true') {
+                    sidebar.classList.add('open');
+                    document.body.classList.add('sidebar-open');
+                }
             } else {
-                sidebar.dataset.wasOpen = 'false';
+                if (sidebar.classList.contains('open')) {
+                    sidebar.dataset.wasOpen = 'true';
+                    sidebar.classList.remove('open');
+                    document.body.classList.remove('sidebar-open');
+                } else {
+                    sidebar.dataset.wasOpen = 'false';
+                }
             }
         }
         const navTasks = document.getElementById('navTasks');
@@ -11508,11 +11604,12 @@ ${fallbackTableRows(profile.rows)}
         const sidebar = document.getElementById('agentTasksSidebar');
         if (!sidebar) return;
         if (window.innerWidth > 768) {
-            sidebar.classList.add('open');
-            document.body.classList.add('sidebar-open');
+            const isOpen = sidebar.classList.toggle('open');
+            document.body.classList.toggle('sidebar-open', isOpen);
+            sidebar.dataset.userCollapsed = isOpen ? 'false' : 'true';
             delete sidebar.dataset.mobileOpened;
             const navTasks = document.getElementById('navTasks');
-            if (navTasks) navTasks.classList.add('panel-open');
+            if (navTasks) navTasks.classList.toggle('panel-open', isOpen);
             return;
         }
         const isOpen = sidebar.classList.toggle('open');
@@ -11526,6 +11623,7 @@ ${fallbackTableRows(profile.rows)}
     function updateTaskList(tasks) {
         const sidebar = document.getElementById('agentTasksSidebar');
         if (!sidebar.classList.contains('open')) {
+            if (window.innerWidth > 768) sidebar.dataset.userCollapsed = 'false';
             toggleSidebar();
         }
 
@@ -15743,7 +15841,9 @@ ${fallbackTableRows(profile.rows)}
             <div class="empty-state" id="emptyState">
                 <div class="empty-state-icon"><i data-lucide="flask-conical" style="width: 48px; height: 48px;"></i></div>
                 <div class="empty-state-text" data-i18n="empty_state">Enter a design request above to start the workflow</div>
+                <div class="build-version" id="buildVersion" aria-hidden="true"></div>
             </div>`;
+        renderBuildVersion();
         refreshLucideIcons();
     }
 
@@ -15778,8 +15878,10 @@ ${fallbackTableRows(profile.rows)}
         const sidebar = document.getElementById('agentTasksSidebar');
         if (!sidebar) return;
         if (window.innerWidth > 768) {
-            sidebar.classList.add('open');
-            document.body.classList.add('sidebar-open');
+            const shouldOpen = sidebar.dataset.userCollapsed !== 'true';
+            sidebar.classList.toggle('open', shouldOpen);
+            document.body.classList.toggle('sidebar-open', shouldOpen);
+            delete sidebar.dataset.mobileOpened;
         } else if (!sidebar.dataset.mobileOpened) {
             sidebar.classList.remove('open');
             document.body.classList.remove('sidebar-open');
