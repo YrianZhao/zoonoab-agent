@@ -81,8 +81,8 @@
 
             /* Desktop layout */
             --content-max-width: 880px;
-            --tasks-sidebar-width: 280px;
-            --tasks-sidebar-width-tablet: 260px;
+            --tasks-sidebar-width: 320px;
+            --tasks-sidebar-width-tablet: 292px;
         }
 
         body {
@@ -237,6 +237,11 @@
         /* "Open sidebar" action tab — icon + label */
         #navTasks { display: inline-flex; align-items: center; gap: 6px; }
         #navTasks.panel-open { background: var(--brand-lighter); color: var(--brand-dark); }
+
+        .header .header-tabs,
+        .header .header-actions {
+            display: none;
+        }
 
         /* ═══════════════ Hero / Input ═══════════════ */
         .hero-section {
@@ -1496,9 +1501,79 @@
             background: var(--bg-sidebar);
             border-right: 1px solid var(--border);
             box-shadow: 4px 0 20px rgba(0,90,200,0.07); z-index: 50;
-            display: none; flex-direction: column;
+            display: flex; flex-direction: column;
         }
         .agent-tasks-sidebar.open { display: flex; }
+        .sidebar-main-menu {
+            display: flex; flex-direction: column; gap: 4px;
+            padding: 12px;
+            border-bottom: 1px solid var(--border);
+            background: rgba(255,255,255,0.72);
+        }
+        .sidebar-main-menu .header-tabs {
+            margin-left: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            width: 100%;
+        }
+        .sidebar-main-menu .nav-tab {
+            width: 100%;
+            justify-content: flex-start;
+            padding: 10px 12px;
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            font-weight: 650;
+            color: var(--text-secondary);
+        }
+        .sidebar-main-menu .nav-tab.active,
+        .sidebar-main-menu .nav-tab.panel-open {
+            background: var(--brand-lighter);
+            color: var(--brand-dark);
+            box-shadow: none;
+        }
+        .sidebar-main-menu #navTasks {
+            display: none;
+        }
+        .sidebar-utility-menu {
+            position: relative;
+            margin-top: auto;
+            padding: 12px;
+            border-top: 1px solid var(--border);
+            background: rgba(255,255,255,0.78);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .sidebar-utility-menu .header-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 8px;
+            width: 100%;
+        }
+        .sidebar-status-line {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 10px;
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+        .sidebar-utility-menu .header-btn {
+            width: 100%;
+            justify-content: flex-start;
+            padding: 9px 11px;
+            border-radius: var(--radius-md);
+            background: #FFFFFF;
+        }
+        .sidebar-utility-menu .notif-panel {
+            left: 12px;
+            right: 12px;
+            top: auto;
+            bottom: 58px;
+            width: auto;
+        }
         .sidebar-header {
             display: flex; align-items: center; justify-content: space-between;
             padding: 16px 20px 14px; border-bottom: 1px solid var(--border);
@@ -1508,7 +1583,7 @@
         .sidebar-title-sub { font-size: 11px; font-weight: 400; color: var(--text-muted); margin-left: 4px; }
         .sidebar-close {
             background: transparent; border: none; color: var(--text-muted);
-            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; display: none; align-items: center; justify-content: center;
             width: 28px; height: 28px; border-radius: var(--radius-sm);
             transition: var(--transition);
         }
@@ -2184,7 +2259,6 @@
         }
         body.chatting-mode .build-version,
         body.kb-open .build-version,
-        body.sidebar-open .build-version,
         body.analysis-open .build-version {
             display: none;
         }
@@ -2254,7 +2328,6 @@
         }
 
         @media (max-width: 900px) {
-            .header-actions { display: none; }
             .header-tabs { margin-left: 10px; gap: 2px; }
             .nav-tab { font-size: 13px; padding: 5px 9px; }
         }
@@ -2296,7 +2369,10 @@
                 width: min(86vw, 360px);
                 z-index: 200;            /* above the header */
                 box-shadow: 4px 0 28px rgba(0,0,0,0.22);
+                display: none;
             }
+            .agent-tasks-sidebar.open { display: flex; }
+            .sidebar-close { display: flex; }
             /* Show the dimming backdrop whenever the drawer is open */
             body.sidebar-open .sidebar-backdrop {
                 opacity: 1;
@@ -4137,67 +4213,7 @@
                 <span style="width:4px;height:4px;border-radius:50%;background:var(--success);display:inline-block;"></span>
                 AI Antibody Platform
             </span>
-            <div class="header-tabs">
-                <button class="nav-tab active" id="navChat" onclick="switchView('chat')">Design</button>
-                <button class="nav-tab" id="navBatches" onclick="switchView('batches')">Batches</button>
-                <button class="nav-tab" id="navTasks" onclick="toggleSidebar()" title="Agent Tasks">
-                    <i data-lucide="panel-left-open" style="width:15px;height:15px;"></i>
-                </button>
-                <button class="nav-tab" id="navSeqAnalysis" onclick="openAnalysisPanel('seq')" title="序列分析">
-                    <i data-lucide="dna" style="width:13px;height:13px;"></i> 序列分析
-                </button>
-                <button class="nav-tab" id="navStructAnalysis" onclick="openAnalysisPanel('struct')" title="结构分析">
-                    <i data-lucide="box" style="width:13px;height:13px;"></i> 结构分析
-                </button>
-                <button class="nav-tab" id="navTeam" onclick="switchView('team')" title="Team Collaboration">
-                    <i data-lucide="users-2" style="width:13px;height:13px;"></i> 团队协作
-                </button>
-                <button class="nav-tab" id="navKB" onclick="switchView('kb')" title="Knowledge Base">
-                    <i data-lucide="library" style="width:13px;height:13px;"></i> 知识库
-                </button>
-            </div>
         </div>
-        <div class="header-actions">
-            <span style="font-size: 12px; color: var(--text-muted); display: flex; align-items: center;">
-                <span class="status-dot" id="wsStatus"></span>
-                <span id="wsStatusText" data-i18n="Connected">Connected</span>
-            </span>
-            <button class="header-btn notif-btn" id="notifBtn" onclick="toggleNotifPanel()" title="通知" style="position:relative;padding:7px 10px;">
-                <i data-lucide="bell" style="width:14px;height:14px;"></i>
-                <span class="notif-badge" id="notifBadge">3</span>
-            </button>
-            <button class="header-btn" id="langBtn" onclick="switchLang(LANG==='en'?'zh':'en')">
-                <i data-lucide="globe" style="width:14px;height:14px;"></i> <span id="langLabel">中文</span>
-            </button>
-            <button class="header-btn" onclick="resetChat()">
-                <i data-lucide="plus" style="width: 14px; height: 14px;"></i> <span class="header-btn-label">New Session</span>
-            </button>
-            <!-- Notification Dropdown (inside header-actions for correct positioning) -->
-            <div class="notif-panel" id="notifPanel" style="display:none;">
-            <div class="notif-panel-header">
-                <span class="notif-panel-title">通知</span>
-                <button onclick="clearNotifs()" style="background:none;border:none;font-size:11px;color:var(--brand);cursor:pointer;font-weight:600;">全部标记已读</button>
-            </div>
-            <div class="notif-list">
-                <div class="notif-item unread">
-                    <div class="notif-icon" style="background:rgba(34,197,94,0.1);color:#16A34A;"><i data-lucide="check-circle" style="width:14px;height:14px;"></i></div>
-                    <div class="notif-body">
-                        <div class="notif-title">亲和力成熟任务完成</div>
-                        <div class="notif-sub">IL-33 VHH 候选序列已生成，共 12 个突变体</div>
-                        <div class="notif-time">5 分钟前</div>
-                    </div>
-                </div>
-                <div class="notif-item unread">
-                    <div class="notif-icon" style="background:rgba(0,123,255,0.1);color:var(--brand);"><i data-lucide="flask-conical" style="width:14px;height:14px;"></i></div>
-                    <div class="notif-body">
-                        <div class="notif-title">Chai-1 结构预测完成</div>
-                        <div class="notif-sub">5 个模型集成完成，最佳 ipTM = 0.87</div>
-                        <div class="notif-time">23 分钟前</div>
-                    </div>
-                </div>
-            </div>
-            </div><!-- end notif-panel -->
-        </div><!-- end header-actions -->
     </header>
 
     <main class="main-container">
@@ -4742,6 +4758,27 @@
 
     <!-- Agent Tasks Sidebar -->
     <div class="agent-tasks-sidebar" id="agentTasksSidebar">
+        <div class="sidebar-main-menu">
+            <div class="header-tabs">
+                <button class="nav-tab active" id="navChat" onclick="switchView('chat')"><i data-lucide="sparkles" style="width:15px;height:15px;"></i> Design</button>
+                <button class="nav-tab" id="navBatches" onclick="switchView('batches')"><i data-lucide="layers" style="width:15px;height:15px;"></i> Batches</button>
+                <button class="nav-tab" id="navTasks" onclick="toggleSidebar()" title="Agent Tasks">
+                    <i data-lucide="panel-left-open" style="width:15px;height:15px;"></i> Agent Tasks
+                </button>
+                <button class="nav-tab" id="navSeqAnalysis" onclick="openAnalysisPanel('seq')" title="序列分析">
+                    <i data-lucide="dna" style="width:15px;height:15px;"></i> 序列分析
+                </button>
+                <button class="nav-tab" id="navStructAnalysis" onclick="openAnalysisPanel('struct')" title="结构分析">
+                    <i data-lucide="box" style="width:15px;height:15px;"></i> 结构分析
+                </button>
+                <button class="nav-tab" id="navTeam" onclick="switchView('team')" title="Team Collaboration">
+                    <i data-lucide="users-2" style="width:15px;height:15px;"></i> 团队协作
+                </button>
+                <button class="nav-tab" id="navKB" onclick="switchView('kb')" title="Knowledge Base">
+                    <i data-lucide="library" style="width:15px;height:15px;"></i> 知识库
+                </button>
+            </div>
+        </div>
         <div class="sidebar-header">
             <div class="sidebar-title">
                 <div style="width:26px;height:26px;background:linear-gradient(135deg,var(--brand),var(--brand-dark));border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
@@ -4767,6 +4804,49 @@
             <div class="empty-state" style="padding: 40px 20px;">
                 <div class="empty-state-icon" style="color:var(--text-muted);"><i data-lucide="inbox" style="width: 32px; height: 32px;"></i></div>
                 <div class="empty-state-text" style="font-size: 12px; color:var(--text-muted);">暂无进行中的任务</div>
+            </div>
+        </div>
+        <div class="sidebar-utility-menu">
+            <div class="header-actions">
+                <span class="sidebar-status-line">
+                    <span class="status-dot" id="wsStatus"></span>
+                    <span id="wsStatusText" data-i18n="Connected">Connected</span>
+                </span>
+                <button class="header-btn notif-btn" id="notifBtn" onclick="toggleNotifPanel()" title="通知" style="position:relative;">
+                    <i data-lucide="bell" style="width:14px;height:14px;"></i>
+                    <span>通知</span>
+                    <span class="notif-badge" id="notifBadge">3</span>
+                </button>
+                <button class="header-btn" id="langBtn" onclick="switchLang(LANG==='en'?'zh':'en')">
+                    <i data-lucide="globe" style="width:14px;height:14px;"></i> <span id="langLabel">中文</span>
+                </button>
+                <button class="header-btn" onclick="resetChat()">
+                    <i data-lucide="plus" style="width: 14px; height: 14px;"></i> <span class="header-btn-label">New Session</span>
+                </button>
+                <div class="notif-panel" id="notifPanel" style="display:none;">
+                    <div class="notif-panel-header">
+                        <span class="notif-panel-title">通知</span>
+                        <button onclick="clearNotifs()" style="background:none;border:none;font-size:11px;color:var(--brand);cursor:pointer;font-weight:600;">全部标记已读</button>
+                    </div>
+                    <div class="notif-list">
+                        <div class="notif-item unread">
+                            <div class="notif-icon" style="background:rgba(34,197,94,0.1);color:#16A34A;"><i data-lucide="check-circle" style="width:14px;height:14px;"></i></div>
+                            <div class="notif-body">
+                                <div class="notif-title">亲和力成熟任务完成</div>
+                                <div class="notif-sub">IL-33 VHH 候选序列已生成，共 12 个突变体</div>
+                                <div class="notif-time">5 分钟前</div>
+                            </div>
+                        </div>
+                        <div class="notif-item unread">
+                            <div class="notif-icon" style="background:rgba(0,123,255,0.1);color:var(--brand);"><i data-lucide="flask-conical" style="width:14px;height:14px;"></i></div>
+                            <div class="notif-body">
+                                <div class="notif-title">Chai-1 结构预测完成</div>
+                                <div class="notif-sub">5 个模型集成完成，最佳 ipTM = 0.87</div>
+                                <div class="notif-time">23 分钟前</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -5389,7 +5469,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146032';
+    const APP_BUILD_VERSION = '78146033';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -6317,7 +6397,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     let qdVoiceLastUnclearAt = 0;
     let qdVoiceUnclearPromptIndex = 0;
     let qdAutoSubmitTimer = null;
+    let qdAutoSubmitArmed = false;
     const QD_VOICE_UNCLEAR_REPEAT_MS = 4200;
+    const QD_VOICE_RELISTEN_DELAY_MS = 1150;
+    const QD_VOICE_RELISTEN_AFTER_SHORT_MS = 900;
     const QD_VOICE_UNCLEAR_PROMPTS = [
         '小诺没有听清，请您再说一遍。',
         '刚才没有听清，请您再说一次。',
@@ -6332,6 +6415,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         qdVoiceUnclearPromptIndex = 0;
         clearTimeout(qdAutoSubmitTimer);
         qdAutoSubmitTimer = null;
+        qdAutoSubmitArmed = false;
         qdState = {
             step: 0,
             disease: 'oncology',
@@ -6367,6 +6451,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         qdVoiceTransitioning = false;
         clearTimeout(qdAutoSubmitTimer);
         qdAutoSubmitTimer = null;
+        qdAutoSubmitArmed = false;
         if (typeof stopQuickDesignContinuousVoice === 'function') stopQuickDesignContinuousVoice();
         if (typeof loadFloatingVoicePosition === 'function') loadFloatingVoicePosition();
     }
@@ -6619,6 +6704,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     function submitQuickDesign() {
+        if (quickDesignActive) return;
+        qdAutoSubmitArmed = false;
         const text = qdWorkflowTriggerText();
         const routeId = qdState.routeId;
         closeQuickDesign();
@@ -6884,15 +6971,17 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (step === 2) return '请选择希望作用的靶标蛋白。';
         if (step === 3) return '您希望这个分子实现什么作用？';
         if (step === 4) return '希望抗体优先识别哪个区域？';
-        if (step === QD_TOTAL_STEPS - 1) return '设计任务已生成。启动 AI 分子设计。';
+        if (step === QD_TOTAL_STEPS - 1) return '开始分子设计';
         return '';
     }
 
-    function qdScheduleAutoSubmit(delay = 120) {
+    function qdScheduleAutoSubmit(delay = 180) {
         clearTimeout(qdAutoSubmitTimer);
         if (!isQuickDesignOpen() || !qdVoiceWizardActive || qdState.step !== QD_TOTAL_STEPS - 1) return;
+        qdAutoSubmitArmed = true;
         qdAutoSubmitTimer = setTimeout(() => {
             qdAutoSubmitTimer = null;
+            qdAutoSubmitArmed = false;
             if (!isQuickDesignOpen() || qdState.step !== QD_TOTAL_STEPS - 1) return;
             submitQuickDesign();
         }, delay);
@@ -6906,9 +6995,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         pushVoiceAssistantLog('system', msg);
         updateVoiceUI('success', msg);
         if (qdState.step === QD_TOTAL_STEPS - 1) {
-            voiceAssistantSpeak(msg, { onDone: () => qdScheduleAutoSubmit() });
+            voiceAssistantSpeak(msg, { onDone: () => qdScheduleAutoSubmit(), suppressListen: true });
         } else {
-            voiceAssistantSpeak(msg);
+            voiceAssistantSpeak(msg, { listenDelay: QD_VOICE_RELISTEN_DELAY_MS });
         }
     }
 
@@ -6918,8 +7007,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (options.toast !== false) showToast(value, level);
         pushVoiceAssistantLog('system', value);
         updateVoiceUI('success', value);
-        if (options.speak !== false) voiceAssistantSpeak(value);
-        else scheduleQuickDesignContinuousListen(220);
+        if (options.speak !== false) voiceAssistantSpeak(value, { listenDelay: options.listenDelay || QD_VOICE_RELISTEN_DELAY_MS });
+        else scheduleQuickDesignContinuousListen(QD_VOICE_RELISTEN_AFTER_SHORT_MS);
         return { handled: true, label: value };
     }
 
@@ -6932,7 +7021,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (recentlyPrompted && options.force !== true) {
             const msg = '请直接说当前选项';
             updateVoiceUI('success', msg);
-            scheduleQuickDesignContinuousListen(260, { allowDuringSpeech: true });
+            scheduleQuickDesignContinuousListen(QD_VOICE_RELISTEN_AFTER_SHORT_MS, { allowDuringSpeech: true });
             return { handled: true, label: msg };
         }
         const prompt = QD_VOICE_UNCLEAR_PROMPTS[qdVoiceUnclearPromptIndex % QD_VOICE_UNCLEAR_PROMPTS.length];
@@ -7018,12 +7107,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             if (!qdVoiceWizardActive) {
                 return feedback('请先说“小诺同学，打开快速设计”，按语音向导完成后再启动 AI 分子设计。', 'warning');
             }
-            if (qdState.step === QD_TOTAL_STEPS - 1) {
-                const route = qdRoute();
-                const msg = `已启动${route.target}分子设计`;
-                submitQuickDesign();
-                return feedback(msg);
-            }
+            if (qdState.step === QD_TOTAL_STEPS - 1) return { handled: true, label: '开始分子设计' };
             return feedback('请先完成当前步骤，到最后确认页后再启动 AI 分子设计。', 'warning');
         }
         const selected = qdVoiceSelectVisibleOption(text);
@@ -8704,17 +8788,22 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 if (currentBtn) currentBtn.classList.remove('speaking');
                 if (typeof options.onDone === 'function') options.onDone();
                 runVoiceAssistantDoneCallbacks();
-                scheduleQuickDesignContinuousListen();
+                if (!options.suppressListen) {
+                    const listenDelay = Number.isFinite(Number(options.listenDelay)) ? Number(options.listenDelay) : QD_VOICE_RELISTEN_DELAY_MS;
+                    scheduleQuickDesignContinuousListen(listenDelay);
+                }
             };
             audio.onended = done;
             audio.onerror = done;
-            if (isQuickDesignOpen() && qdVoiceWizardActive) scheduleQuickDesignContinuousListen(180, { allowDuringSpeech: true });
+            if (isQuickDesignOpen() && qdVoiceWizardActive && !options.suppressBargeIn) {
+                scheduleQuickDesignContinuousListen(QD_VOICE_RELISTEN_AFTER_SHORT_MS, { allowDuringSpeech: true });
+            }
             audio.play().catch(done);
         } catch (err) {
             const btn = document.getElementById('voiceBtn');
             if (btn) btn.classList.remove('speaking');
             if (typeof options.onDone === 'function') options.onDone();
-            scheduleQuickDesignContinuousListen(420);
+            if (!options.suppressListen) scheduleQuickDesignContinuousListen(options.listenDelay || QD_VOICE_RELISTEN_DELAY_MS);
         }
     }
 
@@ -9896,7 +9985,11 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
     function quickDesignPromptListenDelay(delay = 260) {
         if (!shouldKeepQuickDesignListening()) return;
-        const promptDelay = voiceAssistantAudio ? Math.min(Math.max(180, delay), 520) : delay;
+        const promptDelay = Math.max(delay, QD_VOICE_RELISTEN_DELAY_MS);
+        if (voiceAssistantAudio) {
+            whenVoiceAssistantSpeechDone(() => scheduleQuickDesignContinuousListen(promptDelay));
+            return;
+        }
         scheduleQuickDesignContinuousListen(promptDelay);
     }
 
@@ -9908,10 +10001,11 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     function scheduleQuickDesignContinuousListen(delay = 260, options = {}) {
         stopQuickDesignContinuousVoice();
         if (!shouldKeepQuickDesignListening(options)) return;
+        const listenDelay = Math.max(Number(delay) || 0, options.allowDuringSpeech ? QD_VOICE_RELISTEN_AFTER_SHORT_MS : 0);
         voiceContinuousTimer = setTimeout(() => {
             if (!shouldKeepQuickDesignListening(options)) return;
             startVoiceCapture('quick-design');
-        }, delay);
+        }, listenDelay);
     }
 
     function toggleVoiceCapture() {
@@ -11412,7 +11506,17 @@ ${fallbackTableRows(profile.rows)}
 
     function toggleSidebar() {
         const sidebar = document.getElementById('agentTasksSidebar');
+        if (!sidebar) return;
+        if (window.innerWidth > 768) {
+            sidebar.classList.add('open');
+            document.body.classList.add('sidebar-open');
+            delete sidebar.dataset.mobileOpened;
+            const navTasks = document.getElementById('navTasks');
+            if (navTasks) navTasks.classList.add('panel-open');
+            return;
+        }
         const isOpen = sidebar.classList.toggle('open');
+        sidebar.dataset.mobileOpened = isOpen ? 'true' : '';
         document.body.classList.toggle('sidebar-open', isOpen);
         const navTasks = document.getElementById('navTasks');
         if (navTasks) navTasks.classList.toggle('panel-open', isOpen);
@@ -15620,8 +15724,9 @@ ${fallbackTableRows(profile.rows)}
         
         // Reset sidebar
         const sidebar = document.getElementById('agentTasksSidebar');
-        if (sidebar && sidebar.classList.contains('open')) {
-            toggleSidebar();
+        if (sidebar && window.innerWidth > 768 && !sidebar.classList.contains('open')) {
+            sidebar.classList.add('open');
+            document.body.classList.add('sidebar-open');
         }
         document.getElementById('sidebarProgressContainer').style.display = 'none';
         document.getElementById('sidebarTaskList').innerHTML = `
@@ -15669,6 +15774,20 @@ ${fallbackTableRows(profile.rows)}
         if (el) el.textContent = APP_BUILD_VERSION;
     }
 
+    function syncSidebarLayout() {
+        const sidebar = document.getElementById('agentTasksSidebar');
+        if (!sidebar) return;
+        if (window.innerWidth > 768) {
+            sidebar.classList.add('open');
+            document.body.classList.add('sidebar-open');
+        } else if (!sidebar.dataset.mobileOpened) {
+            sidebar.classList.remove('open');
+            document.body.classList.remove('sidebar-open');
+        }
+        const navTasks = document.getElementById('navTasks');
+        if (navTasks) navTasks.classList.toggle('panel-open', sidebar.classList.contains('open'));
+    }
+
     // ═══════════════ Init ═══════════════
     // ═══ DEMO VHH SEQUENCE (Ozoralizumab-based anti-TNFα VHH, published sequence) ═══
     const DEMO_VHH_SEQ = 'EVQLVESGGGLVQPGGSLRLSCAASGFTFSSYAMSWVRQAPGKGLEWVSAISGSGGSTYYADSVKGRFTISRDNSKNTLYLQMNSLRAEDTAVYYCAKVSYLSTASSLDYWGQGTLVTVSS';
@@ -15677,6 +15796,8 @@ ${fallbackTableRows(profile.rows)}
     document.addEventListener('DOMContentLoaded', () => {
         refreshLucideIcons();
         renderBuildVersion();
+        syncSidebarLayout();
+        window.addEventListener('resize', syncSidebarLayout);
 
         // Apply translations
         applyI18N();
