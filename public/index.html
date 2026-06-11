@@ -78,6 +78,11 @@
 
             /* Transitions */
             --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+            /* Desktop layout */
+            --content-max-width: 880px;
+            --tasks-sidebar-width: 280px;
+            --tasks-sidebar-width-tablet: 260px;
         }
 
         body {
@@ -160,9 +165,9 @@
         /* ═══════════════ Main Container ═══════════════ */
         .main-container {
             width: 100%;
-            max-width: 1100px;
+            max-width: var(--content-max-width);
             margin: 0 auto;
-            padding: 0 32px;
+            padding: 0 24px;
             transition: margin-left 0.3s ease;
             flex-grow: 1;
             display: flex;
@@ -177,30 +182,29 @@
            This precisely centers 900px within (100vw - 340px). */
         body.sidebar-open .main-container {
             width: auto;
-            max-width: 960px;
-            margin-left: max(400px, calc(400px + (100vw - 400px - 1100px) / 2));
-            margin-right: max(0px, calc((100vw - 400px - 1100px) / 2));
+            max-width: var(--content-max-width);
+            margin-left: max(var(--tasks-sidebar-width), calc(var(--tasks-sidebar-width) + (100vw - var(--tasks-sidebar-width) - var(--content-max-width)) / 2));
+            margin-right: max(0px, calc((100vw - var(--tasks-sidebar-width) - var(--content-max-width)) / 2));
         }
 
         /* Input bar mirrors same centering */
         body.sidebar-open.chatting-mode .input-wrapper {
-            left: calc(400px + (100vw - 400px) / 2);
+            left: calc(var(--tasks-sidebar-width) + (100vw - var(--tasks-sidebar-width)) / 2);
             transform: translateX(-50%);
             right: auto;
-            max-width: min(1100px, calc(100vw - 400px - 40px));
+            max-width: min(var(--content-max-width), calc(100vw - var(--tasks-sidebar-width) - 40px));
         }
         body:not(.sidebar-open).chatting-mode .input-wrapper {
-            max-width: 1100px;
+            max-width: var(--content-max-width);
         }
         @media (max-width: 1100px) {
-            .agent-tasks-sidebar { width: 320px; }
             body.sidebar-open .main-container {
-                margin-left: max(320px, calc(320px + (100vw - 320px - 960px) / 2));
-                margin-right: max(0px, calc((100vw - 320px - 960px) / 2));
+                margin-left: max(var(--tasks-sidebar-width-tablet), calc(var(--tasks-sidebar-width-tablet) + (100vw - var(--tasks-sidebar-width-tablet) - var(--content-max-width)) / 2));
+                margin-right: max(0px, calc((100vw - var(--tasks-sidebar-width-tablet) - var(--content-max-width)) / 2));
             }
             body.sidebar-open.chatting-mode .input-wrapper {
-                left: calc(320px + (100vw - 320px) / 2);
-                max-width: calc(100vw - 320px - 32px);
+                left: calc(var(--tasks-sidebar-width-tablet) + (100vw - var(--tasks-sidebar-width-tablet)) / 2);
+                max-width: min(var(--content-max-width), calc(100vw - var(--tasks-sidebar-width-tablet) - 32px));
             }
         }
         .initial-center-group {
@@ -497,7 +501,7 @@
         .hw-desc { font-size: 10px; color: var(--text-muted); }
         .hw-arrow { color: var(--text-muted); font-size: 16px; flex-shrink: 0; padding: 0 4px; }
         .input-wrapper {
-            max-width: 960px; margin: 0 auto; position: relative; width: 100%;
+            max-width: var(--content-max-width); margin: 0 auto; position: relative; width: 100%;
             margin-top: 32px;
         }
         .input-actions-bar {
@@ -1343,10 +1347,10 @@
             left: 50%;
             transform: translateX(-50%);
             width: calc(100% - 48px);
-            max-width: 960px;
+            max-width: var(--content-max-width);
             z-index: 100;
             background: linear-gradient(to top, var(--bg-page) 80%, transparent);
-            padding: 40px 32px 32px;
+            padding: 40px 24px 32px;
         }
         body.chatting-mode .input-actions-bar {
             display: flex;
@@ -1488,7 +1492,7 @@
 
         /* ═══════════════ Agent Tasks Sidebar — LEFT (Light) ═══════════════ */
         .agent-tasks-sidebar {
-            position: fixed; left: 0; top: 57px; bottom: 0; width: 400px;
+            position: fixed; left: 0; top: 57px; bottom: 0; width: var(--tasks-sidebar-width);
             background: var(--bg-sidebar);
             border-right: 1px solid var(--border);
             box-shadow: 4px 0 20px rgba(0,90,200,0.07); z-index: 50;
@@ -5385,7 +5389,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146031';
+    const APP_BUILD_VERSION = '78146032';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');

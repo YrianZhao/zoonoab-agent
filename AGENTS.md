@@ -2,6 +2,7 @@
 
 重大功能修改完成并验证通过后，创建一个本地 Git commit 作为回滚点，并推送当前工作分支到 GitHub 远端。
 本项目每次完成任何文件修改后，都必须创建本地 Git commit，并推送当前工作分支到 GitHub 远端；不得只停留在本地提交或未提交状态。
+本项目每次完成任何文件修改后，都必须部署到正式站点 `https://zoonoab.xyz/`，并通过健康接口或页面底部构建版本确认线上已更新。
 每次完成会影响网页展示、交互、后端行为或部署行为的功能修改时，必须同步更新 `public/index.html` 中的 `APP_BUILD_VERSION` 纯数字版本号；版本号不得包含日期或语义化文字，方便现场通过页面底部标识确认是否已更新到目标版本。
 提交前排除运行环境、日志、PID、密钥和后端私有配置文件，例如 `.node/`、`.tools/`、`.server.log`、`.server.pid`、`.runtime/`、`.playwright-cli/`、`output/`、`.runtime-codex-server.log`。
 
