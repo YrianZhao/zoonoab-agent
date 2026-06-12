@@ -104,12 +104,12 @@
         .header {
             background: rgba(255,255,255,0.94);
             border-bottom: 1px solid var(--border);
-            padding: 0 24px;
+            padding: 0 18px;
             height: 56px;
             display: flex;
             align-items: center;
             justify-content: flex-start;
-            gap: 18px;
+            gap: 12px;
             position: sticky;
             top: 0;
             z-index: 150;
@@ -143,7 +143,7 @@
         .top-header-actions {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             flex: 0 0 auto;
             position: relative;
             min-width: 0;
@@ -152,13 +152,13 @@
         .header-utility-group {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             min-width: 0;
         }
         .header-btn {
-            padding: 7px 14px; border: 1px solid var(--border);
+            padding: 6px 11px; border: 1px solid var(--border);
             background: var(--bg-card); border-radius: var(--radius-sm);
-            font-size: 14px; color: var(--text-secondary); cursor: pointer;
+            font-size: 13px; color: var(--text-secondary); cursor: pointer;
             display: flex; align-items: center; gap: 5px;
             transition: var(--transition);
         }
@@ -169,11 +169,11 @@
             transform: translateY(-1px);
         }
         .header-status-line {
-            height: 38px;
+            height: 34px;
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            padding: 0 11px;
+            padding: 0 9px;
             border: 1px solid var(--border);
             border-radius: var(--radius-md);
             background: var(--bg-card);
@@ -183,17 +183,17 @@
             box-shadow: var(--shadow-xs);
         }
         .top-header-actions .header-btn {
-            height: 38px;
+            height: 34px;
             border-radius: var(--radius-md);
         }
         .top-header-actions .notif-btn,
         .top-header-actions #langBtn {
-            padding: 0 11px;
+            padding: 0 9px;
         }
         .header-wake-btn {
-            min-width: 64px;
+            min-width: 56px;
             justify-content: center;
-            padding: 0 13px;
+            padding: 0 10px;
             font-weight: 700;
             color: var(--brand-dark);
             border-color: rgba(0, 123, 255, 0.2);
@@ -215,8 +215,8 @@
         }
         .new-session-btn {
             width: auto;
-            height: 38px;
-            padding: 0 13px;
+            height: 34px;
+            padding: 0 11px;
             justify-content: center;
             color: var(--text-primary);
             border-color: var(--border);
@@ -309,8 +309,8 @@
         }
         .header-tabs::-webkit-scrollbar { display: none; }
         .nav-tab {
-            padding: 6px 12px; background: transparent; border: none;
-            border-radius: var(--radius-sm); font-size: 14px; font-weight: 500;
+            padding: 6px 10px; background: transparent; border: none;
+            border-radius: var(--radius-sm); font-size: 13px; font-weight: 500;
             color: var(--text-secondary); cursor: pointer; transition: var(--transition);
             display: inline-flex; align-items: center; justify-content: center; gap: 5px;
             white-space: nowrap; flex: 0 0 auto; line-height: 1.2;
@@ -2365,6 +2365,28 @@
             body { font-size: 14px; }
         }
 
+        @media (max-width: 1380px) {
+            .header { padding: 0 14px; gap: 8px; }
+            .logo { gap: 7px; }
+            .logo-subtitle { display: none; }
+            .header-tabs { gap: 2px; }
+            .nav-tab { font-size: 13px; padding: 5px 8px; }
+            .top-header-actions { gap: 4px; }
+            .header-utility-group { gap: 4px; }
+            .header-status-line { height: 32px; padding: 0 8px; }
+            .top-header-actions .header-btn { height: 32px; }
+            .top-header-actions .notif-btn,
+            .top-header-actions #langBtn { padding: 0 8px; }
+            .header-wake-btn { min-width: 52px; padding: 0 9px; }
+            .new-session-btn { padding: 0 10px; }
+            #langLabel { display: none; }
+        }
+
+        @media (max-width: 1220px) {
+            .new-session-label { display: none; }
+            .new-session-btn { width: 34px; padding: 0; }
+        }
+
         @media (max-width: 900px) {
             .header-tabs { margin-left: 10px; gap: 2px; }
             .nav-tab { font-size: 13px; padding: 5px 9px; }
@@ -3207,7 +3229,7 @@
             z-index: 3002 !important;
         }
         body.quick-design-open .sidebar-open-btn {
-            z-index: 3003;
+            display: none !important;
         }
         body.quick-design-open .agent-tasks-sidebar.open {
             z-index: 3003;
@@ -3217,7 +3239,7 @@
                 transition: left 0.3s ease, right 0.3s ease;
             }
             body.sidebar-open #quickDesignOverlay {
-                left: var(--tasks-sidebar-width) !important;
+                left: 0 !important;
                 right: 0 !important;
                 width: auto !important;
             }
@@ -3229,7 +3251,7 @@
         }
         @media (min-width: 769px) and (max-width: 1100px) {
             body.sidebar-open #quickDesignOverlay {
-                left: var(--tasks-sidebar-width-tablet) !important;
+                left: 0 !important;
             }
         }
         @media (min-width: 1100px) and (max-width: 1240px) {
@@ -5569,7 +5591,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146039';
+    const APP_BUILD_VERSION = '78146040';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -7953,6 +7975,17 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         document.getElementById('emptyState')?.remove();
         document.body.classList.add('chatting-mode');
         appendUserMsg(text);
+        const sidebar = document.getElementById('agentTasksSidebar');
+        if (sidebar) {
+            delete sidebar.dataset.workflowAutoOpened;
+            delete sidebar.dataset.workflowUserCollapsed;
+            if (sidebar.dataset.userCollapsed !== 'true') {
+                sidebar.classList.remove('open');
+                document.body.classList.remove('sidebar-open');
+                const navTasks = document.getElementById('navTasks');
+                if (navTasks) navTasks.classList.remove('panel-open');
+            }
+        }
 
         isRunning = true;
         skipThinkingRequested = false;
@@ -11616,6 +11649,7 @@ ${fallbackTableRows(profile.rows)}
             const isOpen = sidebar.classList.toggle('open');
             document.body.classList.toggle('sidebar-open', isOpen);
             sidebar.dataset.userCollapsed = isOpen ? 'false' : 'true';
+            if (!isOpen && sidebar.dataset.workflowAutoOpened === 'true') sidebar.dataset.workflowUserCollapsed = 'true';
             delete sidebar.dataset.mobileOpened;
             const navTasks = document.getElementById('navTasks');
             if (navTasks) navTasks.classList.toggle('panel-open', isOpen);
@@ -11624,18 +11658,31 @@ ${fallbackTableRows(profile.rows)}
         }
         const isOpen = sidebar.classList.toggle('open');
         sidebar.dataset.mobileOpened = isOpen ? 'true' : '';
+        if (!isOpen && sidebar.dataset.workflowAutoOpened === 'true') sidebar.dataset.workflowUserCollapsed = 'true';
         document.body.classList.toggle('sidebar-open', isOpen);
         const navTasks = document.getElementById('navTasks');
         if (navTasks) navTasks.classList.toggle('panel-open', isOpen);
         requestAnimationFrame(() => window.dispatchEvent(new Event('resize')));
     }
 
+    function openSidebarForWorkflow() {
+        const sidebar = document.getElementById('agentTasksSidebar');
+        if (!sidebar || sidebar.dataset.workflowUserCollapsed === 'true') return;
+        if (!sidebar.classList.contains('open')) {
+            sidebar.classList.add('open');
+            document.body.classList.add('sidebar-open');
+            if (window.innerWidth <= 768) sidebar.dataset.mobileOpened = 'true';
+            const navTasks = document.getElementById('navTasks');
+            if (navTasks) navTasks.classList.add('panel-open');
+            requestAnimationFrame(() => window.dispatchEvent(new Event('resize')));
+        }
+        sidebar.dataset.workflowAutoOpened = 'true';
+    }
+
     // Task list (update in sidebar)
     function updateTaskList(tasks) {
         const sidebar = document.getElementById('agentTasksSidebar');
-        if (window.innerWidth <= 768 && sidebar && !sidebar.classList.contains('open')) {
-            toggleSidebar();
-        }
+        if (sidebar && Array.isArray(tasks) && tasks.length) openSidebarForWorkflow();
 
         const completed = tasks.filter(t => t.status === 'completed').length;
         const pct = Math.round((completed / tasks.length) * 100);
@@ -15836,6 +15883,15 @@ ${fallbackTableRows(profile.rows)}
                 <div class="empty-state-icon"><i data-lucide="inbox" style="width: 32px; height: 32px;"></i></div>
                 <div class="empty-state-text" style="font-size: 13px;">No active tasks</div>
             </div>`;
+        const sidebar = document.getElementById('agentTasksSidebar');
+        if (sidebar) {
+            delete sidebar.dataset.workflowAutoOpened;
+            delete sidebar.dataset.workflowUserCollapsed;
+            sidebar.classList.remove('open');
+            document.body.classList.remove('sidebar-open');
+            const navTasks = document.getElementById('navTasks');
+            if (navTasks) navTasks.classList.remove('panel-open');
+        }
 
         // Clean up all gallery viewers
         Object.values(galleryViewers).forEach(gv => { /* 3Dmol viewers cleaned by DOM removal */ });
@@ -15882,7 +15938,7 @@ ${fallbackTableRows(profile.rows)}
         const sidebar = document.getElementById('agentTasksSidebar');
         if (!sidebar) return;
         if (window.innerWidth > 768) {
-            const shouldOpen = sidebar.dataset.userCollapsed !== 'true';
+            const shouldOpen = sidebar.dataset.workflowAutoOpened === 'true' && sidebar.dataset.userCollapsed !== 'true';
             sidebar.classList.toggle('open', shouldOpen);
             document.body.classList.toggle('sidebar-open', shouldOpen);
             delete sidebar.dataset.mobileOpened;
