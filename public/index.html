@@ -108,7 +108,8 @@
             height: 56px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: flex-start;
+            gap: 18px;
             position: sticky;
             top: 0;
             z-index: 150;
@@ -122,7 +123,7 @@
             display: flex; align-items: center; gap: 10px;
             font-size: 20px; font-weight: 700; color: var(--brand-dark);
             letter-spacing: -0.3px;
-            min-width: 0; flex: 1 1 auto;
+            min-width: 0; flex: 0 0 auto;
         }
         .logo-icon {
             width: 32px; height: 32px;
@@ -146,6 +147,7 @@
             flex: 0 0 auto;
             position: relative;
             min-width: 0;
+            margin-left: auto;
         }
         .header-utility-group {
             display: flex;
@@ -212,23 +214,15 @@
             color: #5B21B6;
         }
         .new-session-btn {
-            width: 38px;
+            width: auto;
             height: 38px;
-            padding: 0;
+            padding: 0 13px;
             justify-content: center;
             color: var(--text-primary);
-            border-color: transparent;
-            background: transparent;
+            border-color: var(--border);
+            background: var(--bg-card);
             border-radius: var(--radius-md);
-        }
-        .new-session-icon-ring {
-            width: 24px;
-            height: 24px;
-            border: 1.5px dashed currentColor;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-weight: 600;
         }
         .new-session-btn:hover {
             border-color: var(--border);
@@ -302,7 +296,18 @@
             margin-top: auto; 
             padding-bottom: 40px;
         }
-        .header-tabs { margin-left: 24px; display: flex; gap: 4px; min-width: 0; }
+        .header-tabs {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            min-width: 0;
+            flex: 1 1 auto;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+        .header-tabs::-webkit-scrollbar { display: none; }
         .nav-tab {
             padding: 6px 12px; background: transparent; border: none;
             border-radius: var(--radius-sm); font-size: 14px; font-weight: 500;
@@ -322,10 +327,7 @@
         #navTasks { display: inline-flex; align-items: center; gap: 6px; }
         #navTasks.panel-open { background: var(--brand-lighter); color: var(--brand-dark); }
 
-        .header .header-tabs,
-        .header > .header-actions {
-            display: none;
-        }
+        .top-header-actions .notif-btn .header-btn-label { display: none; }
 
         /* ═══════════════ Hero / Input ═══════════════ */
         .hero-section {
@@ -1613,64 +1615,6 @@
             transform: translateY(-1px);
         }
         body:not(.sidebar-open) .sidebar-open-btn { display: flex; }
-        .sidebar-main-menu {
-            display: flex; flex-direction: column; gap: 4px;
-            padding: 12px;
-            border-bottom: 1px solid var(--border);
-            background: rgba(255,255,255,0.72);
-        }
-        .sidebar-top-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 8px;
-            padding: 0 2px 8px;
-        }
-        .sidebar-brand {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            min-width: 0;
-            color: var(--brand-dark);
-            font-weight: 800;
-            font-size: 14px;
-        }
-        .sidebar-brand-icon {
-            width: 24px;
-            height: 24px;
-            border-radius: 6px;
-            background: linear-gradient(135deg,var(--brand),var(--brand-dark));
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex: 0 0 auto;
-        }
-        .sidebar-main-menu .header-tabs {
-            margin-left: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            width: 100%;
-        }
-        .sidebar-main-menu .nav-tab {
-            width: 100%;
-            justify-content: flex-start;
-            padding: 10px 12px;
-            border-radius: var(--radius-md);
-            font-size: 14px;
-            font-weight: 650;
-            color: var(--text-secondary);
-        }
-        .sidebar-main-menu .nav-tab.active,
-        .sidebar-main-menu .nav-tab.panel-open {
-            background: var(--brand-lighter);
-            color: var(--brand-dark);
-            box-shadow: none;
-        }
-        .sidebar-main-menu #navTasks {
-            display: none;
-        }
         .sidebar-header {
             display: flex; align-items: center; justify-content: space-between;
             padding: 16px 20px 14px; border-bottom: 1px solid var(--border);
@@ -2492,7 +2436,7 @@
 
             /* ── Header: fixed brand area plus scrollable navigation ── */
             .header { padding: 0 12px; height: 54px; overflow: hidden; gap: 8px; }
-            .logo { font-size: 16px; gap: 7px; flex: 1 1 auto; width: 100%; overflow: hidden; }
+            .logo { font-size: 16px; gap: 7px; flex: 0 0 auto; width: auto; overflow: hidden; }
             .logo-icon { width: 28px; height: 28px; }
             .logo-subtitle { display: none; }
             .header-tabs {
@@ -2504,7 +2448,7 @@
             .nav-tab { font-size: 13px; padding: 6px 9px; min-height: 30px; }
             .header-actions { gap: 5px; }
             .header-btn { padding: 6px 9px; font-size: 12px; }
-            .top-header-actions { gap: 5px; }
+            .top-header-actions { gap: 5px; margin-left: 0; }
             .header-utility-group { gap: 5px; }
             .header-status-line {
                 width: 30px;
@@ -2528,6 +2472,7 @@
                 min-width: 48px !important;
                 padding: 0 9px !important;
             }
+            .new-session-label { display: none; }
             #wsStatusText { display: none; }
             .header-btn-label,
             #langLabel { display: none; }
@@ -2622,7 +2567,7 @@
             #langLabel { display: none; }
             .header-btn { padding: 6px; }
             .header { padding: 0 10px; }
-            .logo { flex: 1 1 auto; width: 100%; max-width: none; }
+            .logo { flex: 0 0 auto; width: auto; max-width: none; }
             .logo > span:first-of-type { display: none; }
             .header-tabs { margin-left: 4px; flex: 1 1 auto; }
             .nav-tab { font-size: 12px; padding: 6px 8px; min-height: 30px; }
@@ -4363,6 +4308,25 @@
                 AI Antibody Platform
             </span>
         </div>
+        <nav class="header-tabs" aria-label="主导航">
+            <button class="nav-tab active" id="navChat" onclick="switchView('chat')"><i data-lucide="sparkles" style="width:15px;height:15px;"></i> Design</button>
+            <button class="nav-tab" id="navBatches" onclick="switchView('batches')"><i data-lucide="layers" style="width:15px;height:15px;"></i> Batches</button>
+            <button class="nav-tab" id="navTasks" onclick="toggleSidebar()" title="Agent Tasks">
+                <i data-lucide="panel-left-open" style="width:15px;height:15px;"></i> <span class="nav-tab-label">Agent Tasks</span>
+            </button>
+            <button class="nav-tab" id="navSeqAnalysis" onclick="openAnalysisPanel('seq')" title="序列分析">
+                <i data-lucide="dna" style="width:15px;height:15px;"></i> 序列分析
+            </button>
+            <button class="nav-tab" id="navStructAnalysis" onclick="openAnalysisPanel('struct')" title="结构分析">
+                <i data-lucide="box" style="width:15px;height:15px;"></i> 结构分析
+            </button>
+            <button class="nav-tab" id="navTeam" onclick="switchView('team')" title="Team Collaboration">
+                <i data-lucide="users-2" style="width:15px;height:15px;"></i> 团队协作
+            </button>
+            <button class="nav-tab" id="navKB" onclick="switchView('kb')" title="Knowledge Base">
+                <i data-lucide="library" style="width:15px;height:15px;"></i> 知识库
+            </button>
+        </nav>
         <div class="top-header-actions">
             <div class="header-utility-group" aria-label="状态和语音控制">
                 <span class="header-status-line" title="WebSocket 状态">
@@ -4405,9 +4369,8 @@
                 </div>
             </div>
             <button class="header-btn new-session-btn" onclick="resetChat()" title="New Session" aria-label="New Session">
-                <span class="new-session-icon-ring">
-                    <i data-lucide="pen-line" style="width:13px;height:13px;"></i>
-                </span>
+                <i data-lucide="plus" style="width:15px;height:15px;"></i>
+                <span class="new-session-label">New Session</span>
             </button>
         </div>
     </header>
@@ -4953,36 +4916,6 @@
 
     <!-- Agent Tasks Sidebar -->
     <div class="agent-tasks-sidebar" id="agentTasksSidebar">
-        <div class="sidebar-main-menu">
-            <div class="sidebar-top-row">
-                <div class="sidebar-brand">
-                    <span class="sidebar-brand-icon"><i data-lucide="dna" style="width:13px;height:13px;"></i></span>
-                    <span>ZoonoAb</span>
-                </div>
-                <button class="sidebar-close" onclick="toggleSidebar()" title="隐藏侧边栏" aria-label="隐藏侧边栏">
-                    <i data-lucide="panel-left-close" style="width:17px;height:17px;"></i>
-                </button>
-            </div>
-            <div class="header-tabs">
-                <button class="nav-tab active" id="navChat" onclick="switchView('chat')"><i data-lucide="sparkles" style="width:15px;height:15px;"></i> Design</button>
-                <button class="nav-tab" id="navBatches" onclick="switchView('batches')"><i data-lucide="layers" style="width:15px;height:15px;"></i> Batches</button>
-                <button class="nav-tab" id="navTasks" onclick="toggleSidebar()" title="Agent Tasks">
-                    <i data-lucide="panel-left-open" style="width:15px;height:15px;"></i> Agent Tasks
-                </button>
-                <button class="nav-tab" id="navSeqAnalysis" onclick="openAnalysisPanel('seq')" title="序列分析">
-                    <i data-lucide="dna" style="width:15px;height:15px;"></i> 序列分析
-                </button>
-                <button class="nav-tab" id="navStructAnalysis" onclick="openAnalysisPanel('struct')" title="结构分析">
-                    <i data-lucide="box" style="width:15px;height:15px;"></i> 结构分析
-                </button>
-                <button class="nav-tab" id="navTeam" onclick="switchView('team')" title="Team Collaboration">
-                    <i data-lucide="users-2" style="width:15px;height:15px;"></i> 团队协作
-                </button>
-                <button class="nav-tab" id="navKB" onclick="switchView('kb')" title="Knowledge Base">
-                    <i data-lucide="library" style="width:15px;height:15px;"></i> 知识库
-                </button>
-            </div>
-        </div>
         <div class="sidebar-header">
             <div class="sidebar-title">
                 <div style="width:26px;height:26px;background:linear-gradient(135deg,var(--brand),var(--brand-dark));border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
@@ -4993,6 +4926,9 @@
                     <div style="font-size:10px;color:var(--text-muted);font-weight:400;">AI Antibody Design</div>
                 </div>
             </div>
+            <button class="sidebar-close" onclick="toggleSidebar()" title="隐藏侧边栏" aria-label="隐藏侧边栏">
+                <i data-lucide="x" style="width:17px;height:17px;"></i>
+            </button>
         </div>
         <!-- New task section label -->
         <div class="sidebar-section-label">当前任务</div>
@@ -5633,7 +5569,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146038';
+    const APP_BUILD_VERSION = '78146039';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
