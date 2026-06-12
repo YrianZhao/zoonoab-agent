@@ -1591,30 +1591,6 @@
         }
         .agent-tasks-sidebar:not(.open) { display: none; }
         .agent-tasks-sidebar.open { display: flex; }
-        .sidebar-open-btn {
-            position: fixed;
-            left: 14px;
-            top: 68px;
-            width: 34px;
-            height: 34px;
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
-            background: rgba(255,255,255,0.92);
-            color: var(--text-secondary);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 80;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-        }
-        .sidebar-open-btn:hover {
-            background: var(--gray-100);
-            color: var(--text-primary);
-            transform: translateY(-1px);
-        }
-        body:not(.sidebar-open) .sidebar-open-btn { display: flex; }
         .sidebar-header {
             display: flex; align-items: center; justify-content: space-between;
             padding: 16px 20px 14px; border-bottom: 1px solid var(--border);
@@ -3227,9 +3203,6 @@
         body.quick-design-open #voiceStatusPop {
             display: none !important;
             z-index: 3002 !important;
-        }
-        body.quick-design-open .sidebar-open-btn {
-            display: none !important;
         }
         body.quick-design-open .agent-tasks-sidebar.open {
             z-index: 3003;
@@ -4969,10 +4942,6 @@
         </div>
     </div>
 
-    <button class="sidebar-open-btn" id="sidebarOpenBtn" onclick="toggleSidebar()" title="显示侧边栏" aria-label="显示侧边栏">
-        <i data-lucide="panel-left-open" style="width:17px;height:17px;"></i>
-    </button>
-
     <!-- Sidebar backdrop — dims content when the drawer is open on small screens -->
     <div class="sidebar-backdrop" id="sidebarBackdrop" onclick="toggleSidebar()"></div>
 
@@ -5591,7 +5560,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146040';
+    const APP_BUILD_VERSION = '78146041';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -15938,7 +15907,7 @@ ${fallbackTableRows(profile.rows)}
         const sidebar = document.getElementById('agentTasksSidebar');
         if (!sidebar) return;
         if (window.innerWidth > 768) {
-            const shouldOpen = sidebar.dataset.workflowAutoOpened === 'true' && sidebar.dataset.userCollapsed !== 'true';
+            const shouldOpen = sidebar.classList.contains('open');
             sidebar.classList.toggle('open', shouldOpen);
             document.body.classList.toggle('sidebar-open', shouldOpen);
             delete sidebar.dataset.mobileOpened;
