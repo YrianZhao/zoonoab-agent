@@ -144,6 +144,14 @@
             align-items: center;
             gap: 8px;
             flex: 0 0 auto;
+            position: relative;
+            min-width: 0;
+        }
+        .header-utility-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 0;
         }
         .header-btn {
             padding: 7px 14px; border: 1px solid var(--border);
@@ -157,6 +165,51 @@
             color: var(--brand-dark);
             box-shadow: var(--shadow-xs);
             transform: translateY(-1px);
+        }
+        .header-status-line {
+            height: 38px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 0 11px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            background: var(--bg-card);
+            color: var(--text-muted);
+            font-size: 12px;
+            white-space: nowrap;
+            box-shadow: var(--shadow-xs);
+        }
+        .top-header-actions .header-btn {
+            height: 38px;
+            border-radius: var(--radius-md);
+        }
+        .top-header-actions .notif-btn,
+        .top-header-actions #langBtn {
+            padding: 0 11px;
+        }
+        .header-wake-btn {
+            min-width: 64px;
+            justify-content: center;
+            padding: 0 13px;
+            font-weight: 700;
+            color: var(--brand-dark);
+            border-color: rgba(0, 123, 255, 0.2);
+            background: var(--brand-lighter);
+        }
+        .header-wake-btn:hover {
+            background: rgba(0,123,255,0.12);
+            color: var(--brand-dark);
+        }
+        .header-wake-btn.active {
+            border-color: rgba(16, 185, 129, 0.35);
+            background: rgba(16, 185, 129, 0.12);
+            color: #047857;
+        }
+        .header-wake-btn.awake {
+            border-color: rgba(124, 58, 237, 0.35);
+            background: rgba(124, 58, 237, 0.12);
+            color: #5B21B6;
         }
         .new-session-btn {
             width: 38px;
@@ -184,8 +237,9 @@
         }
         .status-dot {
             width: 8px; height: 8px; border-radius: var(--radius-full); background: var(--success);
-            display: inline-block; margin-right: 4px;
+            display: inline-block; margin-right: 0;
             animation: statusPulse 2s ease-in-out infinite;
+            flex: 0 0 auto;
         }
         @keyframes statusPulse {
             0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.4); }
@@ -1617,45 +1671,6 @@
         .sidebar-main-menu #navTasks {
             display: none;
         }
-        .sidebar-utility-menu {
-            position: relative;
-            margin-top: auto;
-            padding: 12px;
-            border-top: 1px solid var(--border);
-            background: rgba(255,255,255,0.78);
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        .sidebar-utility-menu .header-actions {
-            display: flex;
-            flex-direction: column;
-            align-items: stretch;
-            gap: 8px;
-            width: 100%;
-        }
-        .sidebar-status-line {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            padding: 8px 10px;
-            color: var(--text-muted);
-            font-size: 12px;
-        }
-        .sidebar-utility-menu .header-btn {
-            width: 100%;
-            justify-content: flex-start;
-            padding: 9px 11px;
-            border-radius: var(--radius-md);
-            background: #FFFFFF;
-        }
-        .sidebar-utility-menu .notif-panel {
-            left: 12px;
-            right: 12px;
-            top: auto;
-            bottom: 58px;
-            width: auto;
-        }
         .sidebar-header {
             display: flex; align-items: center; justify-content: space-between;
             padding: 16px 20px 14px; border-bottom: 1px solid var(--border);
@@ -2489,6 +2504,30 @@
             .nav-tab { font-size: 13px; padding: 6px 9px; min-height: 30px; }
             .header-actions { gap: 5px; }
             .header-btn { padding: 6px 9px; font-size: 12px; }
+            .top-header-actions { gap: 5px; }
+            .header-utility-group { gap: 5px; }
+            .header-status-line {
+                width: 30px;
+                height: 34px;
+                justify-content: center;
+                padding: 0;
+            }
+            .top-header-actions .header-btn {
+                width: 34px;
+                height: 34px;
+                min-width: 34px;
+                padding: 0;
+                justify-content: center;
+            }
+            .top-header-actions .notif-panel {
+                right: 0;
+                width: min(340px, calc(100vw - 24px));
+            }
+            .header-wake-btn {
+                width: auto !important;
+                min-width: 48px !important;
+                padding: 0 9px !important;
+            }
             #wsStatusText { display: none; }
             .header-btn-label,
             #langLabel { display: none; }
@@ -3576,6 +3615,10 @@
             box-shadow: var(--shadow-xl); z-index: 200; overflow: hidden;
             animation: dropIn 0.2s ease;
         }
+        .top-header-actions .notif-panel {
+            top: 46px;
+            right: 46px;
+        }
         @keyframes dropIn {
             from { opacity: 0; transform: translateY(-8px); }
             to { opacity: 1; transform: translateY(0); }
@@ -4321,6 +4364,46 @@
             </span>
         </div>
         <div class="top-header-actions">
+            <div class="header-utility-group" aria-label="状态和语音控制">
+                <span class="header-status-line" title="WebSocket 状态">
+                    <span class="status-dot" id="wsStatus"></span>
+                    <span id="wsStatusText" data-i18n="Connected">Connected</span>
+                </span>
+                <button class="header-btn notif-btn" id="notifBtn" onclick="toggleNotifPanel()" title="通知" aria-label="通知" style="position:relative;">
+                    <i data-lucide="bell" style="width:14px;height:14px;"></i>
+                    <span class="header-btn-label">通知</span>
+                    <span class="notif-badge" id="notifBadge">3</span>
+                </button>
+                <button class="header-btn" id="langBtn" onclick="switchLang(LANG==='en'?'zh':'en')" title="切换语言" aria-label="切换语言">
+                    <i data-lucide="globe" style="width:14px;height:14px;"></i>
+                    <span id="langLabel">中文</span>
+                </button>
+                <button class="header-btn header-wake-btn" id="wakeBtn" type="button" onclick="toggleWakeListening()" title="唤醒小诺同学" aria-label="唤醒小诺同学" aria-pressed="false">唤醒</button>
+                <div class="notif-panel" id="notifPanel" style="display:none;">
+                    <div class="notif-panel-header">
+                        <span class="notif-panel-title">通知</span>
+                        <button onclick="clearNotifs()" style="background:none;border:none;font-size:11px;color:var(--brand);cursor:pointer;font-weight:600;">全部标记已读</button>
+                    </div>
+                    <div class="notif-list">
+                        <div class="notif-item unread">
+                            <div class="notif-icon" style="background:rgba(34,197,94,0.1);color:#16A34A;"><i data-lucide="check-circle" style="width:14px;height:14px;"></i></div>
+                            <div class="notif-body">
+                                <div class="notif-title">亲和力成熟任务完成</div>
+                                <div class="notif-sub">IL-33 VHH 候选序列已生成，共 12 个突变体</div>
+                                <div class="notif-time">5 分钟前</div>
+                            </div>
+                        </div>
+                        <div class="notif-item unread">
+                            <div class="notif-icon" style="background:rgba(0,123,255,0.1);color:var(--brand);"><i data-lucide="flask-conical" style="width:14px;height:14px;"></i></div>
+                            <div class="notif-body">
+                                <div class="notif-title">Chai-1 结构预测完成</div>
+                                <div class="notif-sub">5 个模型集成完成，最佳 ipTM = 0.87</div>
+                                <div class="notif-time">23 分钟前</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <button class="header-btn new-session-btn" onclick="resetChat()" title="New Session" aria-label="New Session">
                 <span class="new-session-icon-ring">
                     <i data-lucide="pen-line" style="width:13px;height:13px;"></i>
@@ -4924,46 +5007,6 @@
             <div class="empty-state" style="padding: 40px 20px;">
                 <div class="empty-state-icon" style="color:var(--text-muted);"><i data-lucide="inbox" style="width: 32px; height: 32px;"></i></div>
                 <div class="empty-state-text" style="font-size: 12px; color:var(--text-muted);">暂无进行中的任务</div>
-            </div>
-        </div>
-        <div class="sidebar-utility-menu">
-            <div class="header-actions">
-                <span class="sidebar-status-line">
-                    <span class="status-dot" id="wsStatus"></span>
-                    <span id="wsStatusText" data-i18n="Connected">Connected</span>
-                </span>
-                <button class="header-btn notif-btn" id="notifBtn" onclick="toggleNotifPanel()" title="通知" style="position:relative;">
-                    <i data-lucide="bell" style="width:14px;height:14px;"></i>
-                    <span>通知</span>
-                    <span class="notif-badge" id="notifBadge">3</span>
-                </button>
-                <button class="header-btn" id="langBtn" onclick="switchLang(LANG==='en'?'zh':'en')">
-                    <i data-lucide="globe" style="width:14px;height:14px;"></i> <span id="langLabel">中文</span>
-                </button>
-                <div class="notif-panel" id="notifPanel" style="display:none;">
-                    <div class="notif-panel-header">
-                        <span class="notif-panel-title">通知</span>
-                        <button onclick="clearNotifs()" style="background:none;border:none;font-size:11px;color:var(--brand);cursor:pointer;font-weight:600;">全部标记已读</button>
-                    </div>
-                    <div class="notif-list">
-                        <div class="notif-item unread">
-                            <div class="notif-icon" style="background:rgba(34,197,94,0.1);color:#16A34A;"><i data-lucide="check-circle" style="width:14px;height:14px;"></i></div>
-                            <div class="notif-body">
-                                <div class="notif-title">亲和力成熟任务完成</div>
-                                <div class="notif-sub">IL-33 VHH 候选序列已生成，共 12 个突变体</div>
-                                <div class="notif-time">5 分钟前</div>
-                            </div>
-                        </div>
-                        <div class="notif-item unread">
-                            <div class="notif-icon" style="background:rgba(0,123,255,0.1);color:var(--brand);"><i data-lucide="flask-conical" style="width:14px;height:14px;"></i></div>
-                            <div class="notif-body">
-                                <div class="notif-title">Chai-1 结构预测完成</div>
-                                <div class="notif-sub">5 个模型集成完成，最佳 ipTM = 0.87</div>
-                                <div class="notif-time">23 分钟前</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -5590,7 +5633,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146037';
+    const APP_BUILD_VERSION = '78146038';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -8402,7 +8445,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                     50% { transform: translate3d(-0.8px,0.5px,0) scale(0.985); }
                     75% { transform: translate3d(0.7px,0.8px,0) scale(1.025); }
                 }
-                #wakeBtn {
+                #wakeBtn.wake-btn-floating {
                     position: fixed;
                     left: var(--wake-btn-left, 22px);
                     bottom: var(--wake-btn-bottom, 24px);
@@ -8424,12 +8467,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                     cursor: pointer;
                     transition: transform .2s ease, background .2s ease, color .2s ease;
                 }
-                #wakeBtn:hover { transform: translateY(-1px); }
-                #wakeBtn.active {
+                #wakeBtn.wake-btn-floating:hover { transform: translateY(-1px); }
+                #wakeBtn.wake-btn-floating.active {
                     background: linear-gradient(135deg, #10B981 0%, #059669 100%);
                     color: #fff;
                 }
-                #wakeBtn.awake {
+                #wakeBtn.wake-btn-floating.awake {
                     background: linear-gradient(135deg, #7C3AED 0%, #2563EB 100%);
                     color: #fff;
                 }
@@ -8691,7 +8734,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 }
                 @media (max-width: 640px) {
                     #voiceBtn { right: var(--voice-btn-right, 16px); bottom: var(--voice-btn-bottom, 16px); }
-                    #wakeBtn { left: var(--wake-btn-left, 14px); bottom: var(--wake-btn-bottom, 16px); }
+                    #wakeBtn.wake-btn-floating { left: var(--wake-btn-left, 14px); bottom: var(--wake-btn-bottom, 16px); }
                     #voiceStatusPop { right: var(--voice-pop-right, 16px); bottom: var(--voice-pop-bottom, 152px); max-width: calc(100vw - 32px); }
                     #voiceAssistantCard { bottom: var(--voice-card-bottom, 84px); width: calc(100vw - 24px); }
                     body.quick-design-open #voiceBtn {
@@ -8702,7 +8745,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                         opacity: 0.92;
                         box-shadow: 0 10px 26px rgba(37, 99, 235, 0.24), 0 0 22px rgba(124,58,237,0.18), inset 0 1px 10px rgba(255,255,255,0.38);
                     }
-                    body.quick-design-open #wakeBtn {
+                    body.quick-design-open #wakeBtn.wake-btn-floating {
                         left: var(--wake-btn-left, 14px);
                         bottom: var(--wake-btn-bottom, calc(16px + env(safe-area-inset-bottom)));
                         height: 28px;
@@ -8737,14 +8780,17 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         document.body.appendChild(btn);
         initVoiceButtonDrag(btn);
 
-        const wakeBtn = document.createElement('button');
-        wakeBtn.className = 'input-icon-btn wake-btn';
-        wakeBtn.id = 'wakeBtn';
-        wakeBtn.type = 'button';
-        wakeBtn.title = '唤醒小诺同学';
-        wakeBtn.onclick = () => toggleWakeListening();
-        wakeBtn.textContent = '唤醒';
-        document.body.appendChild(wakeBtn);
+        let wakeBtn = document.getElementById('wakeBtn');
+        if (!wakeBtn) {
+            wakeBtn = document.createElement('button');
+            wakeBtn.className = 'input-icon-btn wake-btn wake-btn-floating';
+            wakeBtn.id = 'wakeBtn';
+            wakeBtn.type = 'button';
+            wakeBtn.title = '唤醒小诺同学';
+            wakeBtn.onclick = () => toggleWakeListening();
+            wakeBtn.textContent = '唤醒';
+            document.body.appendChild(wakeBtn);
+        }
 
         const pop = document.createElement('div');
         pop.className = 'voice-status-pop';
