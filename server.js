@@ -3716,7 +3716,17 @@ function stripWakeWords(input) {
 
 function containsAny(text, keywords) {
   const lower = normalizeCommandText(text);
-  return keywords.some(k => lower.includes(String(k).toLowerCase()));
+  return keywords.some((keyword) => keywordMatchesNormalizedText(lower, keyword));
+}
+
+function keywordMatchesNormalizedText(normalizedText, keyword) {
+  const value = String(keyword || '').toLowerCase().trim();
+  if (!value) return false;
+  if (/^[a-z0-9][a-z0-9-]{0,2}$/.test(value)) {
+    const escaped = value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    return new RegExp('(^|\\s)' + escaped + '(\\s|$)', 'i').test(normalizedText);
+  }
+  return normalizedText.includes(value);
 }
 
 function hasNonBiomedicalContext(input) {
@@ -4918,8 +4928,11 @@ function canRunLocalWorkflowIntent(intent, input, demoRoute) {
   if (!intent || intent === 'assistant_chat') return false;
   const text = String(input || '').trim();
   if (!text) return false;
-  if (intent === 'capability') return true;
-  if (intent === 'design') return Boolean(demoRoute && isPreparedDemoRoute(demoRoute));
+  if (intent === 'capability') return false;
+  if (intent === 'design') {
+    const designRequest = extractDesignRequest(text);
+    return Boolean(demoRoute && isPreparedDemoRoute(demoRoute) && designRequest.isDesignRequest);
+  }
   if (intent === 'epitope_prediction') return Boolean(extractNamedTargetForLocalWorkflow(text));
   if (intent === 'uniprot') return Boolean(extractNamedTargetForLocalWorkflow(text));
   if (intent === 'chai1') return hasProteinSequenceInput(text, 15);

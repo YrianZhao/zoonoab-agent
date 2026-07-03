@@ -135,6 +135,40 @@ test('server does not replace unsupported disease requests with representative l
   assert.equal(data.demoRoute, null);
 });
 
+test('server does not treat ordinary English words containing ha as influenza HA', async () => {
+  const query = encodeURIComponent('how much has the dow changed today');
+  const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/user-routing?text=' + query);
+  assert.equal(res.status, 200);
+  const data = await res.json();
+
+  assert.equal(data.intent, 'assistant_chat');
+  assert.equal(data.localWorkflowAllowed, false);
+  assert.equal(data.demoRoute, null);
+});
+
+test('server does not launch prepared disease routes for biomedical QA without design intent', async () => {
+  const query = encodeURIComponent('Multidisciplinary breast cancer clinics. Do they work?');
+  const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/user-routing?text=' + query);
+  assert.equal(res.status, 200);
+  const data = await res.json();
+
+  assert.equal(data.intent, 'assistant_chat');
+  assert.equal(data.localWorkflowAllowed, false);
+  assert.equal(data.demoRoute, null);
+});
+
+test('server answers broad capability questions through assistant chat instead of local workflow display', async () => {
+  const query = encodeURIComponent('what can you do for me');
+  const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/user-routing?text=' + query);
+  assert.equal(res.status, 200);
+  const data = await res.json();
+
+  assert.equal(data.detectedIntent, 'capability');
+  assert.equal(data.intent, 'assistant_chat');
+  assert.equal(data.localWorkflowAllowed, false);
+  assert.equal(data.runner, 'assistant_chat');
+});
+
 test('server persists OpenAI-compatible chat config without returning the raw key', async () => {
   const saveResp = await fetch('http://127.0.0.1:' + PORT + '/api/voice/session', {
     method: 'POST',
