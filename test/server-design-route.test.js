@@ -1,8 +1,14 @@
 const assert = require('assert/strict');
 const { spawn } = require('child_process');
+const fs = require('fs');
+const http = require('http');
+const os = require('os');
+const path = require('path');
 const test = require('node:test');
 
 const PORT = 19081;
+const MOCK_CHAT_PORT = 19082;
+const CONFIG_PATH = path.join(os.tmpdir(), 'zoonoab-test-voice-config-' + PORT + '.json');
 let serverProcess;
 
 async function waitForHealth() {
@@ -18,12 +24,14 @@ async function waitForHealth() {
 }
 
 test.before(async () => {
+  try { fs.unlinkSync(CONFIG_PATH); } catch {}
   serverProcess = spawn(process.execPath, ['server.js'], {
     cwd: process.cwd(),
     env: {
       ...process.env,
       NODE_ENV: 'test',
       PORT: String(PORT),
+      VOICE_API_CONFIG_FILE: CONFIG_PATH,
       LOCAL_ASR_AUTO_START: '0'
     },
     stdio: ['ignore', 'pipe', 'pipe']
@@ -35,6 +43,7 @@ test.after(async () => {
   if (!serverProcess || serverProcess.killed) return;
   serverProcess.kill('SIGTERM');
   await new Promise(resolve => serverProcess.once('exit', resolve));
+  try { fs.unlinkSync(CONFIG_PATH); } catch {}
 });
 
 test('server design route preserves unknown user target across route, parse, and profile', async () => {
@@ -62,4 +71,163 @@ test('server keeps non-biomedical virus wording out of design workflow', async (
 
   assert.equal(data.intent, 'assistant_chat');
   assert.equal(data.route, null);
+});
+
+test('server routes ordinary non-workflow questions to assistant chat only', async () => {
+  const query = encodeURIComponent('今天天气怎么样');
+  const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/user-routing?text=' + query);
+  assert.equal(res.status, 200);
+  const data = await res.json();
+
+  assert.equal(data.intent, 'assistant_chat');
+  assert.equal(data.localWorkflowAllowed, false);
+  assert.equal(data.runner, 'assistant_chat');
+  assert.equal(data.demoRoute, null);
+});
+
+test('server refuses ambiguous local workflow commands that would otherwise use fake defaults', async () => {
+  const query = encodeURIComponent('帮我做一下表位预测');
+  const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/user-routing?text=' + query);
+  assert.equal(res.status, 200);
+  const data = await res.json();
+
+  assert.equal(data.detectedIntent, 'epitope_prediction');
+  assert.equal(data.intent, 'assistant_chat');
+  assert.equal(data.localWorkflowAllowed, false);
+  assert.equal(data.runner, 'assistant_chat');
+});
+
+test('server allows local workflow only when user gives a concrete design target', async () => {
+  const query = encodeURIComponent('设计10个烟草花叶病毒的抗体');
+  const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/user-routing?text=' + query);
+  assert.equal(res.status, 200);
+  const data = await res.json();
+
+  assert.equal(data.intent, 'design');
+  assert.equal(data.localWorkflowAllowed, true);
+  assert.equal(data.runner, 'local_workflow');
+  assert.equal(data.demoRoute.target, '烟草花叶病毒');
+});
+
+test('server allows prepared disease routes without replacing them with generic defaults', async () => {
+  const query = encodeURIComponent('乳腺癌方向设计10个抗体');
+  const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/user-routing?text=' + query);
+  assert.equal(res.status, 200);
+  const data = await res.json();
+
+  assert.equal(data.intent, 'design');
+  assert.equal(data.localWorkflowAllowed, true);
+  assert.equal(data.runner, 'local_workflow');
+  assert.equal(data.demoRoute.routeId || data.demoRoute.id, 'breast_cancer');
+  assert.equal(data.demoRoute.target, 'HER2');
+});
+
+test('server does not replace unsupported disease requests with representative local targets', async () => {
+  const query = encodeURIComponent('给阿尔茨海默设计10个抗体');
+  const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/user-routing?text=' + query);
+  assert.equal(res.status, 200);
+  const data = await res.json();
+
+  assert.equal(data.detectedIntent, 'design');
+  assert.equal(data.intent, 'assistant_chat');
+  assert.equal(data.localWorkflowAllowed, false);
+  assert.equal(data.runner, 'assistant_chat');
+  assert.equal(data.demoRoute, null);
+});
+
+test('server persists OpenAI-compatible chat config without returning the raw key', async () => {
+  const saveResp = await fetch('http://127.0.0.1:' + PORT + '/api/voice/session', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      voice: { mode: 'local', provider: 'local' },
+      chat: {
+        baseUrl: 'https://api.siliconflow.cn/v1',
+        apiKey: 'sk-test-secret-value',
+        model: 'Qwen/Qwen3-32B'
+      }
+    })
+  });
+  assert.equal(saveResp.status, 200);
+  const saveData = await saveResp.json();
+  const serializedSave = JSON.stringify(saveData);
+
+  assert.equal(saveData.chat.ready, true);
+  assert.equal(saveData.chat.hasApiKey, true);
+  assert.equal(saveData.chat.baseUrl, 'https://api.siliconflow.cn/v1/chat/completions');
+  assert.equal(saveData.chat.model, 'Qwen/Qwen3-32B');
+  assert.doesNotMatch(serializedSave, /sk-test-secret-value/);
+
+  const configResp = await fetch('http://127.0.0.1:' + PORT + '/api/voice/config');
+  assert.equal(configResp.status, 200);
+  const configData = await configResp.json();
+  const serializedConfig = JSON.stringify(configData);
+
+  assert.equal(configData.chat.ready, true);
+  assert.equal(configData.chat.hasApiKey, true);
+  assert.equal(configData.chat.baseUrl, 'https://api.siliconflow.cn/v1/chat/completions');
+  assert.equal(configData.chat.model, 'Qwen/Qwen3-32B');
+  assert.doesNotMatch(serializedConfig, /sk-test-secret-value/);
+
+  const persisted = JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf8'));
+  assert.equal(persisted.chat.key, 'sk-test-secret-value');
+  assert.equal(persisted.chat.url, 'https://api.siliconflow.cn/v1/chat/completions');
+});
+
+test('assistant model calls include ZoonoAb persona prompt and hide provider names in replies', async () => {
+  let captured = null;
+  const mockServer = http.createServer((req, res) => {
+    let body = '';
+    req.setEncoding('utf8');
+    req.on('data', chunk => { body += chunk; });
+    req.on('end', () => {
+      captured = {
+        method: req.method,
+        url: req.url,
+        authorization: req.headers.authorization || '',
+        body: JSON.parse(body || '{}')
+      };
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify({
+        choices: [
+          { message: { content: '我是 OpenAI GPT 模型，但会协助回答。' } }
+        ]
+      }));
+    });
+  });
+
+  await new Promise(resolve => mockServer.listen(MOCK_CHAT_PORT, '127.0.0.1', resolve));
+  try {
+    const saveResp = await fetch('http://127.0.0.1:' + PORT + '/api/voice/session', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        voice: { mode: 'local', provider: 'local' },
+        chat: {
+          baseUrl: 'http://127.0.0.1:' + MOCK_CHAT_PORT + '/v1',
+          apiKey: 'sk-mock-chat-secret',
+          model: 'mock-chat-model'
+        }
+      })
+    });
+    assert.equal(saveResp.status, 200);
+
+    const answerResp = await fetch('http://127.0.0.1:' + PORT + '/api/debug/assistant-answer?text=' + encodeURIComponent('你是谁'));
+    assert.equal(answerResp.status, 200);
+    const answerData = await answerResp.json();
+
+    assert.equal(captured.method, 'POST');
+    assert.equal(captured.url, '/v1/chat/completions');
+    assert.equal(captured.authorization, 'Bearer sk-mock-chat-secret');
+    assert.equal(captured.body.model, 'mock-chat-model');
+    assert.match(captured.body.messages[0].content, /ZoonoAb/);
+    assert.match(captured.body.messages[0].content, /溯本源/);
+    assert.match(captured.body.messages[0].content, /小诺/);
+    assert.match(captured.body.messages[0].content, /不要透露|不得透露/);
+    assert.match(captured.body.messages[0].content, /本地工作流|工作流/);
+    assert.doesNotMatch(answerData.answer, /OpenAI|GPT|mock-chat-model|sk-mock-chat-secret/i);
+    assert.match(answerData.answer, /ZoonoAb|小诺/);
+  } finally {
+    await new Promise(resolve => mockServer.close(resolve));
+  }
 });

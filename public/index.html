@@ -4699,6 +4699,14 @@
                                         问答服务 Chat
                                     </div>
                                     <div class="voice-settings-row">
+                                        <label for="chatProviderSelect">服务</label>
+                                        <select id="chatProviderSelect" onchange="applyChatProviderPreset(this.value)">
+                                            <option value="siliconflow">SiliconFlow 兼容接口</option>
+                                            <option value="openai">OpenAI 兼容接口</option>
+                                            <option value="custom">自定义兼容接口</option>
+                                        </select>
+                                    </div>
+                                    <div class="voice-settings-row">
                                         <label for="chatBaseUrlInput">Base URL</label>
                                         <input id="chatBaseUrlInput" type="url" autocomplete="off" spellcheck="false" placeholder="https://api.siliconflow.cn/v1/chat/completions">
                                     </div>
@@ -4710,6 +4718,7 @@
                                         <label for="chatModelInput">Model</label>
                                         <input id="chatModelInput" type="text" autocomplete="off" spellcheck="false" placeholder="Qwen/Qwen3-32B">
                                     </div>
+                                    <div class="voice-settings-hint">支持 SiliconFlow、OpenAI 或其他 OpenAI 兼容聊天接口；Key 保存后只保存在服务端。</div>
                                 </div>
                                 <div class="voice-settings-actions">
                                     <span class="voice-settings-note" id="voiceSettingsNote">语音识别可使用本机服务或兼容 API；Key 保存后写入安全配置。</span>
@@ -5560,7 +5569,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146042';
+    const APP_BUILD_VERSION = '78146043';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -9159,12 +9168,14 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             const voiceBaseInput = document.getElementById('voiceBaseUrlInput');
             const voiceKeyInput = document.getElementById('voiceApiKeyInput');
             const voiceModelInput = document.getElementById('voiceModelInput');
+            const chatProviderSelect = document.getElementById('chatProviderSelect');
             const chatBaseInput = document.getElementById('chatBaseUrlInput');
             const chatKeyInput = document.getElementById('chatApiKeyInput');
             const chatModelInput = document.getElementById('chatModelInput');
             const note = document.getElementById('voiceSettingsNote');
             const voicePreset = inferVoicePresetFromConfig(cfg);
             if (voiceProviderSelect) voiceProviderSelect.value = voicePreset;
+            if (chatProviderSelect) chatProviderSelect.value = inferChatPresetFromConfig(cfg);
             if (voiceBaseInput) {
                 voiceBaseInput.value = cfg.local === false && cfg.baseUrl ? cfg.baseUrl : '';
                 voiceBaseInput.disabled = voicePreset === 'local';
@@ -9187,7 +9198,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 chatKeyInput.placeholder = cfg.chat?.hasApiKey ? '已安全保存，留空继续使用' : '聊天服务 Key';
                 chatKeyInput.title = cfg.chat?.hasApiKey ? '真实 Key 已安全保存，前端不回显；填写新 Key 后保存可覆盖。' : '填写聊天服务 API Key';
             }
-            if (chatModelInput && cfg.chat?.ready && cfg.chat?.model && !chatModelInput.value) chatModelInput.value = cfg.chat.model;
+            if (chatModelInput && cfg.chat?.model && !chatModelInput.value) chatModelInput.value = cfg.chat.model;
             if (note) {
                 const voiceKeyState = cfg.hasApiKey ? 'Key 已安全保存' : (cfg.local === false ? 'Key 待填写' : '无需 Key');
                 const chatKeyState = cfg.chat?.hasApiKey ? 'Key 已安全保存' : 'Key 待填写';
@@ -9447,12 +9458,37 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         }
     };
 
+    const CHAT_SERVICE_PRESETS = {
+        siliconflow: {
+            provider: 'siliconflow',
+            baseUrl: 'https://api.siliconflow.cn/v1/chat/completions',
+            model: 'Qwen/Qwen3-32B'
+        },
+        openai: {
+            provider: 'openai',
+            baseUrl: 'https://api.openai.com/v1/chat/completions',
+            model: 'gpt-4o-mini'
+        },
+        custom: {
+            provider: 'compatible',
+            baseUrl: '',
+            model: ''
+        }
+    };
+
     function inferVoicePresetFromConfig(cfg = voiceConfigState) {
         if (!cfg || cfg.local !== false || cfg.provider === 'local') return 'local';
         const model = String(cfg.model || '');
         const base = String(cfg.baseUrl || '');
         if (/siliconflow/i.test(base) && model === 'FunAudioLLM/SenseVoiceSmall') return 'siliconflow-sensevoice';
         if (/siliconflow/i.test(base) && model === 'TeleAI/TeleSpeechASR') return 'siliconflow-teleai';
+        return 'custom';
+    }
+
+    function inferChatPresetFromConfig(cfg = voiceConfigState) {
+        const base = String(cfg?.chat?.baseUrl || '');
+        if (/siliconflow/i.test(base)) return 'siliconflow';
+        if (/api\.openai\.com/i.test(base)) return 'openai';
         return 'custom';
     }
 
@@ -9476,6 +9512,19 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             if (isLocal) keyInput.value = '';
             keyInput.disabled = isLocal;
             keyInput.placeholder = isLocal ? '本地识别无需 Key' : (voiceConfigState?.hasApiKey ? '已安全保存，留空继续使用' : '语音识别 Key');
+        }
+    }
+
+    function applyChatProviderPreset(value) {
+        const preset = CHAT_SERVICE_PRESETS[value] || CHAT_SERVICE_PRESETS.custom;
+        const baseInput = document.getElementById('chatBaseUrlInput');
+        const modelInput = document.getElementById('chatModelInput');
+        const keyInput = document.getElementById('chatApiKeyInput');
+        if (baseInput && preset.baseUrl) baseInput.value = preset.baseUrl;
+        if (modelInput && preset.model) modelInput.value = preset.model;
+        if (keyInput) {
+            keyInput.value = '';
+            keyInput.placeholder = voiceConfigState?.chat?.hasApiKey ? '已安全保存，留空继续使用' : '聊天服务 Key';
         }
     }
 
@@ -10920,6 +10969,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     window.toggleVoiceSettings = toggleVoiceSettings;
     window.saveVoiceSettings = saveVoiceSettings;
     window.testVoiceChatSettings = testVoiceChatSettings;
+    window.testVoiceAsrSettings = testVoiceAsrSettings;
+    window.applyVoiceProviderPreset = applyVoiceProviderPreset;
+    window.applyChatProviderPreset = applyChatProviderPreset;
+    window.startLocalAsrFromPanel = startLocalAsrFromPanel;
     window.toggleWakeListening = toggleWakeListening;
     window.hideVoiceAssistantCard = hideVoiceAssistantCard;
     window.handleQuickDesignVoiceCommand = handleQuickDesignVoiceCommand;
