@@ -11,6 +11,12 @@ const path = require('path');
 const fs = require('fs');
 const { spawn, spawnSync } = require('child_process');
 const { v4: uuidv4 } = require('uuid');
+const {
+  extractDesignRequest,
+  buildDynamicDemoRoute,
+  buildGenericTargetProfile,
+  shouldSuppressDesignWorkflow
+} = require('./lib/design-routing');
 let MsEdgeTTS = null;
 let EDGE_OUTPUT_FORMAT = null;
 let edgeTtsLastError = '';
@@ -2512,7 +2518,9 @@ function buildRouteProfile(target, blockTarget, abType) {
       designMode: '代谢受体结合设计'
     }
   };
-  const profile = { ...(profiles[key] || profiles['PD-L1']) };
+  const profile = profiles[key]
+    ? { ...profiles[key] }
+    : buildGenericTargetProfile(target, blockTarget, abType);
   if (blockTarget && !profile.partnerDisplay) profile.partnerDisplay = String(blockTarget);
   return profile;
 }
@@ -2605,7 +2613,8 @@ function routeStructureName(profile, idx, ipTm) {
 }
 
 function routeCandidateId(profile, idx) {
-  const target = ((profile && profile.targetDisplay) || 'PD-L1').replace(/[^A-Za-z0-9]+/g, '');
+  let target = ((profile && profile.targetDisplay) || 'PD-L1').replace(/[^A-Za-z0-9]+/g, '');
+  if (!target) target = 'Target' + stableSeed(profile && profile.targetDisplay || 'custom').toString(36);
   return target + '-candidate-' + String(idx + 1).padStart(2, '0');
 }
 
@@ -2896,7 +2905,8 @@ function getRoute3DPreset(profile) {
 
 function routeAliasPrefix(profile, preset) {
   if (preset && preset.aliasPrefix) return preset.aliasPrefix;
-  const target = ((profile && profile.targetDisplay) || 'PDL1').replace(/[^A-Za-z0-9]+/g, '');
+  let target = ((profile && profile.targetDisplay) || 'PDL1').replace(/[^A-Za-z0-9]+/g, '');
+  if (!target) target = 'Target' + stableSeed(profile && profile.targetDisplay || 'custom').toString(36);
   const abFormat = profile && profile.scaffold && profile.scaffold.includes('VHH') ? 'VHH' : 'Fab';
   return target + '-' + abFormat;
 }
@@ -3665,15 +3675,6 @@ const REPRESENTATIVE_DEMO_DIRECTIONS = [
   { label: '神经退行性疾病方向需求', keywords: ['阿尔茨海默', '老年痴呆', 'alzheimer'] }
 ];
 
-const NON_BIOMEDICAL_CONTEXT_PATTERNS = [
-  /(电脑|计算机|手机|iphone|安卓|windows|macos|mac|浏览器|edge|chrome|网络|wifi|路由器|服务器|网站|数据库|硬盘|文件|u盘|邮箱|微信|账号|软件|程序|代码|app|应用|操作系统).{0,18}(病毒|中毒|木马|勒索|恶意软件|被黑|黑客|入侵|网络攻击|钓鱼)/,
-  /(病毒|中毒|木马|勒索|恶意软件|被黑|黑客|入侵|网络攻击|钓鱼).{0,18}(电脑|计算机|手机|iphone|安卓|windows|macos|mac|浏览器|edge|chrome|网络|wifi|路由器|服务器|网站|数据库|硬盘|文件|u盘|邮箱|微信|账号|软件|程序|代码|app|应用|操作系统)/,
-  /电脑中病毒|计算机病毒|手机中病毒|系统中毒|杀毒|杀软|防火墙|勒索软件|木马病毒|malware|ransomware|trojan|computer virus|cybersecurity|cyber security|hacked|phishing/
-];
-
-const NON_BIOMEDICAL_TOPIC_PATTERN = /电脑|计算机|手机|iphone|安卓|windows|macos|mac|浏览器|edge|chrome|网络|wifi|路由器|服务器|网站|数据库|硬盘|文件|u盘|邮箱|微信|账号|软件|程序|代码|app|应用|操作系统|黑客|木马|勒索软件|恶意软件|杀毒|防火墙|cybersecurity|cyber security|computer|phone|browser|server|database|malware|ransomware|trojan|phishing|hacked/;
-const BIOMEDICAL_CONTEXT_PATTERN = /抗原|靶点|表位|蛋白|细胞|受体|配体|通路|疾病|治疗|肿瘤|癌|哮喘|过敏|炎症|自身免疫|类风湿|关节炎|感染|病原|细菌|真菌|新冠|流感|hiv|乙肝|病毒感染|pd-1|pd-l1|il-33|st2|her2|erbb2|tnf|egfr|vegf|cd3|cd20|bcma|抗体药|疫苗|免疫|biolog|biomedical|therapeutic|tumou?r|cancer|asthma|allergy|inflammation|autoimmune|infection|pathogen|bacteria|fungal|viral infection|antigen|target|epitope|protein|receptor|ligand|immune|vaccine/;
-
 function normalizeCommandText(input) {
   return String(input || '')
     .toLowerCase()
@@ -3700,9 +3701,7 @@ function containsAny(text, keywords) {
 }
 
 function hasNonBiomedicalContext(input) {
-  const lower = normalizeCommandText(input);
-  if (NON_BIOMEDICAL_CONTEXT_PATTERNS.some(pattern => pattern.test(lower))) return true;
-  return NON_BIOMEDICAL_TOPIC_PATTERN.test(lower) && !BIOMEDICAL_CONTEXT_PATTERN.test(lower);
+  return shouldSuppressDesignWorkflow(input);
 }
 
 function getRepresentativeDemoDirection(input) {
@@ -3736,6 +3735,7 @@ function detectDemoRoute(input) {
   const normalized = normalizeCommandText(input);
   if (!normalized) return null;
   if (hasNonBiomedicalContext(normalized)) return null;
+  const designRequest = extractDesignRequest(input);
 
   if (/angptl3/.test(normalized) && /(代谢|脂质代谢|metabolic|lipid metabolism)/.test(normalized)) {
     return DEMO_ROUTE_RULES.find(rule => rule.id === 'metabolic_angptl3') || getDefaultDemoRoute();
@@ -3756,6 +3756,11 @@ function detectDemoRoute(input) {
   if (/her\s*-?\s*2|erbb\s*-?\s*2/.test(normalized)) return DEMO_ROUTE_RULES.find(rule => rule.id === 'breast_cancer') || getDefaultDemoRoute();
   if (/tnf/.test(normalized)) return DEMO_ROUTE_RULES.find(rule => rule.id === 'autoimmune_inflammation') || getDefaultDemoRoute();
 
+  if (designRequest.isDesignRequest && designRequest.target) {
+    const dynamicRoute = buildDynamicDemoRoute(input);
+    if (dynamicRoute) return dynamicRoute;
+  }
+
   if (/(设计|生成|做|来一个|演示|打印|结构模型|候选).*(抗体|分子|模型)|抗体.*(设计|生成|演示|打印|模型)|antibody.*(design|generate|demo)|design.*antibody/.test(normalized)) {
     return buildRepresentativeDemoRoute('完整抗体设计演示', 'default_demo');
   }
@@ -3771,7 +3776,8 @@ function getDemoRouteById(routeId) {
 function resolveQuickDesignRoute(msg) {
   const explicitRoute = getDemoRouteById(msg && msg.routeId);
   if (explicitRoute) return explicitRoute;
-  return detectDemoRoute(msg && msg.text) || getDefaultDemoRoute();
+  const detected = detectDemoRoute(msg && msg.text);
+  return detected || getDefaultDemoRoute();
 }
 
 function quickDesignAck(route) {
@@ -3972,11 +3978,11 @@ function demoRouteIntro(route, input) {
     ? '\n阻断策略：' + route.target + '/' + route.blockTarget + ' 相互作用界面'
     : '';
   return '已理解您的需求：\n\n' +
-    '疾病方向：' + route.disease + '\n' +
-    '设计类型：抗体候选分子\n' +
-    'AI 推荐靶点：' + route.target + (route.blockTarget ? ' / ' + route.blockTarget : '') + '\n' +
-    '抗体形式：' + route.abType + '\n' +
-    '系统理解：' + route.systemUnderstanding + blockLine + printLine + '\n\n' +
+  '疾病方向：' + route.disease + '\n' +
+  '设计类型：抗体候选分子\n' +
+    (route.dynamic ? '目标抗原：' : 'AI 推荐靶点：') + route.target + (route.blockTarget ? ' / ' + route.blockTarget : '') + '\n' +
+  '抗体形式：' + route.abType + '\n' +
+  '系统理解：' + route.systemUnderstanding + blockLine + printLine + '\n\n' +
     'ZoonoAb 正在启动抗体设计工作流。' +
     '\n\n专业提示：当前结果为 AI 预测候选，后续需结合实验验证。';
 }
@@ -4168,31 +4174,39 @@ async function runDemoRoutedWorkflow(ws, input, route) {
 
 function parseRequest(input, forcedRoute) {
   const demoRoute = forcedRoute || detectDemoRoute(input);
+  const designRequest = extractDesignRequest(input);
   const countMatch = input.match(/(\d+)\s*(个|条|pass|passing)/i) ||
                      input.match(/(?:generate|design|create|make)\s+(\d+)/i) ||
                      input.match(/设计\s*(\d+)/) ||
                      input.match(/(\d+)\s*(?:anti[-\s]|candidate|passing|vhh|nanobod)/i) ||
                      input.match(/(\d+)/);
-  const count = Math.min(Math.max(countMatch ? parseInt(countMatch[1]) : (demoRoute ? demoRoute.count : 40), 1), 200);
+  const routeIsDynamic = Boolean(demoRoute && demoRoute.dynamic);
+  const count = routeIsDynamic && designRequest.isDesignRequest
+    ? designRequest.count
+    : Math.min(Math.max(countMatch ? parseInt(countMatch[1]) : (demoRoute ? demoRoute.count : 40), 1), 200);
   const targetPatterns = [
     /(?:bind(?:ing)? to|targeting|针对|靶向)\s+(?:human\s+)?(SARS-CoV-2\s+RBD|Influenza\s+HA|RSV\s+F|IL-17A|IL-23|IL-1β|IL-1B|VEGF-A|ANGPTL3|PCSK9|TSLP|GIPR|EGFR|HER2|PD-L1|TNF)/i,
     /\b(SARS-CoV-2\s+RBD|Influenza\s+HA|RSV\s+F|IL-17A|IL-23|IL-1β|IL-1B|VEGF-A|ANGPTL3|PCSK9|TSLP|GIPR|EGFR|HER2|PD-L1|TNF[α\-]?A?)\b/i];
-  let target = demoRoute ? demoRoute.target : 'PD-L1';
+  let target = demoRoute ? demoRoute.target : (designRequest.target || 'PD-L1');
   if (!demoRoute) {
     for (const p of targetPatterns) {
       const m = input.match(p);
       if (m) { target = m[1].toUpperCase(); break; }
     }
   }
-  const abType = /vhh|nanobod|纳米抗体/i.test(input) ? 'VHH' :
+  const abType = routeIsDynamic && designRequest.isDesignRequest ? designRequest.abType :
+                 /vhh|nanobod|纳米抗体/i.test(input) ? 'VHH' :
                  /fab\b/i.test(input) ? 'Fab' :
                  /scfv/i.test(input) ? 'scFv' : (demoRoute ? demoRoute.abType : 'Fab');
   const blockMatch = input.match(/block(?:ing)?\s+(?:its\s+)?interaction\s+with\s+([A-Z0-9\-]+)/i) ||
                      input.match(/block(?:ing)?\s+([A-Z0-9\-]+)\s*\/\s*([A-Z0-9\-]+)/i) ||
                      input.match(/(?:阻断|阻斷)\s*([A-Z0-9\-]+)\s*\/\s*([A-Z0-9\-]+)/i);
-  const blockTarget = blockMatch
-    ? (blockMatch[2] ? blockMatch[2].toUpperCase() : blockMatch[1].toUpperCase())
-    : (demoRoute ? demoRoute.blockTarget : null);
+  let blockTarget = demoRoute ? demoRoute.blockTarget : null;
+  if (routeIsDynamic && designRequest.isDesignRequest) {
+    blockTarget = designRequest.blockTarget;
+  } else if (blockMatch) {
+    blockTarget = blockMatch[2] ? blockMatch[2].toUpperCase() : blockMatch[1].toUpperCase();
+  }
   return { count, target, abType, blockTarget };
 }
 
@@ -5674,6 +5688,22 @@ app.get('/api/health', (_, res) => res.json({
   sessions: sessions.size,
   version: APP_BUILD_VERSION || null
 }));
+
+if (process.env.NODE_ENV === 'test') {
+  app.get('/api/debug/design-route', (req, res) => {
+    const text = String(req.query.text || '');
+    const route = detectDemoRoute(text);
+    const parsed = parseRequest(text, route || undefined);
+    const profile = buildRouteProfile(parsed.target, parsed.blockTarget, parsed.abType);
+    if (route && route.id) profile.routeId = route.id;
+    res.json({
+      intent: detectIntent(text),
+      route,
+      parsed,
+      profile
+    });
+  });
+}
 
 function stopManagedLocalAsr() {
   if (localAsrProcess && !localAsrProcess.killed) {
