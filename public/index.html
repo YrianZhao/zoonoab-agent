@@ -5598,7 +5598,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146047';
+    const APP_BUILD_VERSION = '78146048';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -5776,6 +5776,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     let demoSkipRequested = false;
     let demoSkipSettled = false;
     let workflowFastForward = false;
+    let currentRunHas3D = false;
 
     function refreshLucideIcons(options) {
         if (window.lucide && typeof window.lucide.createIcons === 'function') {
@@ -7357,6 +7358,19 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (_inp) _inp.placeholder = t('placeholder');
     }
 
+    function resetCurrentRun3DState() {
+        currentRunHas3D = false;
+    }
+
+    function markCurrentRunHas3D() {
+        currentRunHas3D = true;
+    }
+
+    function maybeOpenBinderSpinModalForCurrentRun() {
+        if (!currentRunHas3D) return;
+        openBinderSpinModal();
+    }
+
     function failQuickDesignRun(message) {
         finishQuickDesignRun();
         resetRunControls();
@@ -7479,6 +7493,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 break;
 
             case 'show_3d':
+                markCurrentRunHas3D();
                 if (msg.isLocal) useLocalPDB = true;
                 if (msg.chainInfo) chainColorMap = msg.chainInfo;
                 enqueueOp(() => new Promise(resolve => {
@@ -7594,8 +7609,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                     }
 
                     scrollToBottomThen(() => {
-                        openBinderSpinModal();
+                        maybeOpenBinderSpinModalForCurrentRun();
                         setWorkflowFastForward(false);
+                        resetCurrentRun3DState();
                         resolve();
                     });
                 }));
@@ -7995,6 +8011,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         }
 
         isRunning = true;
+        resetCurrentRun3DState();
         skipThinkingRequested = false;
         demoSkipRequested = false;
         demoSkipSettled = false;
@@ -16017,6 +16034,7 @@ ${fallbackTableRows(profile.rows)}
         currentStats = null;
         starredSeqs.clear();
         finishQuickDesignRun();
+        resetCurrentRun3DState();
         isRunning = false;
         setRunControlsActive(false);
         // Reset message queue
