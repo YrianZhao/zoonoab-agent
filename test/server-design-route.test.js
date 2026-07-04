@@ -11,6 +11,12 @@ const MOCK_CHAT_PORT = 19082;
 const CONFIG_PATH = path.join(os.tmpdir(), 'zoonoab-test-voice-config-' + PORT + '.json');
 let serverProcess;
 
+function listenOnLocalhost(server) {
+  return new Promise(resolve => {
+    server.listen(0, '127.0.0.1', () => resolve(server.address().port));
+  });
+}
+
 async function waitForHealth() {
   const deadline = Date.now() + 8000;
   while (Date.now() < deadline) {
@@ -206,6 +212,108 @@ test('server persists OpenAI-compatible chat config without returning the raw ke
   const persisted = JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf8'));
   assert.equal(persisted.chat.key, 'sk-test-secret-value');
   assert.equal(persisted.chat.url, 'https://api.siliconflow.cn/v1/chat/completions');
+});
+
+test('server detects chat models from an OpenAI-compatible model list endpoint', async () => {
+  let captured = null;
+  const mockServer = http.createServer((req, res) => {
+    captured = {
+      method: req.method,
+      url: req.url,
+      authorization: req.headers.authorization || ''
+    };
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({
+      data: [
+        { id: 'Qwen/Qwen3-32B' },
+        { id: 'deepseek-ai/DeepSeek-V3' }
+      ]
+    }));
+  });
+
+  const modelPort = await listenOnLocalhost(mockServer);
+  try {
+    const resp = await fetch('http://127.0.0.1:' + PORT + '/api/voice/models/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat: {
+          baseUrl: 'http://127.0.0.1:' + modelPort + '/v1/chat/completions',
+          apiKey: 'sk-model-secret'
+        }
+      })
+    });
+    assert.equal(resp.status, 200);
+    const data = await resp.json();
+    const serialized = JSON.stringify(data);
+
+    assert.equal(captured.method, 'GET');
+    assert.equal(captured.url, '/v1/models');
+    assert.equal(captured.authorization, 'Bearer sk-model-secret');
+    assert.equal(data.ok, true);
+    assert.equal(data.baseUrl, 'http://127.0.0.1:' + modelPort + '/v1/chat/completions');
+    assert.deepEqual(data.models.map(model => model.id), ['Qwen/Qwen3-32B', 'deepseek-ai/DeepSeek-V3']);
+    assert.doesNotMatch(serialized, /sk-model-secret/);
+  } finally {
+    await new Promise(resolve => mockServer.close(resolve));
+  }
+});
+
+test('server detects chat models with a persisted key when the key field is left blank', async () => {
+  let captured = null;
+  const mockServer = http.createServer((req, res) => {
+    captured = {
+      method: req.method,
+      url: req.url,
+      authorization: req.headers.authorization || ''
+    };
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({
+      models: [
+        { name: 'persisted-chat-model' },
+        'fallback-string-model'
+      ]
+    }));
+  });
+
+  const modelPort = await listenOnLocalhost(mockServer);
+  try {
+    const saveResp = await fetch('http://127.0.0.1:' + PORT + '/api/voice/session', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        voice: { mode: 'local', provider: 'local' },
+        chat: {
+          baseUrl: 'http://127.0.0.1:' + modelPort + '/v1',
+          apiKey: 'sk-persisted-model-secret',
+          model: 'persisted-chat-model'
+        }
+      })
+    });
+    assert.equal(saveResp.status, 200);
+
+    const resp = await fetch('http://127.0.0.1:' + PORT + '/api/voice/models/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat: {
+          baseUrl: 'http://127.0.0.1:' + modelPort + '/v1',
+          apiKey: ''
+        }
+      })
+    });
+    assert.equal(resp.status, 200);
+    const data = await resp.json();
+    const serialized = JSON.stringify(data);
+
+    assert.equal(captured.method, 'GET');
+    assert.equal(captured.url, '/v1/models');
+    assert.equal(captured.authorization, 'Bearer sk-persisted-model-secret');
+    assert.deepEqual(data.models.map(model => model.id), ['persisted-chat-model', 'fallback-string-model']);
+    assert.doesNotMatch(serialized, /sk-persisted-model-secret/);
+  } finally {
+    await new Promise(resolve => mockServer.close(resolve));
+  }
 });
 
 test('assistant model calls include ZoonoAb persona prompt and hide provider names in replies', async () => {

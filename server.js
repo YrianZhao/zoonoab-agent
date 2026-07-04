@@ -902,6 +902,86 @@ function resolveChatInputConfig(chatBody, persistedConfig = loadPersistedVoiceCo
   };
 }
 
+function normalizeChatModelsUrl(rawUrl) {
+  const value = String(rawUrl || '').trim();
+  if (!value) return '';
+  let url;
+  try {
+    url = new URL(value);
+  } catch {
+    throw new Error('助手问答 Base URL 格式不正确。');
+  }
+  const isLocal = ['localhost', '127.0.0.1', '::1'].includes(url.hostname);
+  if (url.protocol !== 'https:' && !(isLocal && url.protocol === 'http:')) {
+    throw new Error('助手问答 Base URL 必须使用 HTTPS，本地调试可使用 localhost。');
+  }
+  const pathName = url.pathname.replace(/\/+$/, '');
+  if (/\/chat\/completions$/i.test(pathName)) {
+    url.pathname = pathName.replace(/\/chat\/completions$/i, '/models');
+  } else if (!/\/models$/i.test(pathName)) {
+    const base = pathName.endsWith('/v1') ? pathName : (pathName + '/v1');
+    url.pathname = (base + '/models').replace(/\/{2,}/g, '/');
+  }
+  return url.toString();
+}
+
+function resolveChatModelListInputConfig(chatBody, persistedConfig = loadPersistedVoiceConfig()) {
+  const body = chatBody && typeof chatBody === 'object' ? chatBody : {};
+  const persistedChat = persistedConfig && persistedConfig.chat ? persistedConfig.chat : null;
+  const apiKey = String(body.apiKey || '').trim();
+  const baseRaw = String(body.baseUrl || '').trim();
+  const resolvedApiKey = apiKey || persistedChat?.key || '';
+  const resolvedBaseRaw = baseRaw || persistedChat?.url || '';
+  if (!resolvedApiKey) {
+    return { error: { status: 400, error: 'missing_chat_api_key', message: '请填写聊天服务 API Key，或先保存后再检测模型。' } };
+  }
+  if (!resolvedBaseRaw) {
+    return { error: { status: 400, error: 'missing_chat_base_url', message: '请填写聊天服务 Base URL。' } };
+  }
+  if (resolvedApiKey.length > 3000) {
+    return { error: { status: 400, error: 'chat_api_key_too_long', message: '聊天服务 API Key 过长。' } };
+  }
+  let chatUrl;
+  let modelsUrl;
+  try {
+    chatUrl = normalizeChatBaseUrl(resolvedBaseRaw);
+    modelsUrl = normalizeChatModelsUrl(resolvedBaseRaw);
+  } catch (err) {
+    return { error: { status: 400, error: 'invalid_chat_base_url', message: err.message || '聊天服务 Base URL 无效。' } };
+  }
+  return {
+    chat: {
+      provider: inferVoiceProvider(chatUrl),
+      key: resolvedApiKey,
+      url: chatUrl,
+      modelsUrl
+    }
+  };
+}
+
+function extractChatModels(payload) {
+  const source = Array.isArray(payload)
+    ? payload
+    : (Array.isArray(payload && payload.data)
+      ? payload.data
+      : (Array.isArray(payload && payload.models) ? payload.models : []));
+  const seen = new Set();
+  const models = [];
+  for (const item of source) {
+    const id = typeof item === 'string'
+      ? item.trim()
+      : String(item && (item.id || item.name || item.model || item.model_id) || '').trim();
+    if (!id || seen.has(id)) continue;
+    seen.add(id);
+    models.push({
+      id,
+      name: typeof item === 'object' && item && item.name && item.name !== id ? String(item.name).trim() : id
+    });
+    if (models.length >= 500) break;
+  }
+  return models;
+}
+
 function resolveVoiceInputConfig(asrBody, persistedConfig = loadPersistedVoiceConfig(), options = {}) {
   const body = asrBody && typeof asrBody === 'object' ? asrBody : {};
   const persistedVoice = persistedConfig && persistedConfig.voice ? persistedConfig.voice : null;
@@ -1222,6 +1302,67 @@ app.delete('/api/voice/session', (req, res) => {
   const id = String(req.headers['x-voice-session'] || '').trim();
   if (id) voiceRuntimeConfigs.delete(id);
   res.json({ ok: true });
+});
+
+app.post('/api/voice/models/chat', async (req, res) => {
+  const body = req.body || {};
+  const chatBody = body.chat && typeof body.chat === 'object' ? body.chat : body;
+  const resolved = resolveChatModelListInputConfig(chatBody, loadPersistedVoiceConfig());
+  if (resolved.error) {
+    return res.status(resolved.error.status).json({
+      ok: false,
+      error: resolved.error.error,
+      message: resolved.error.message
+    });
+  }
+  const cfg = resolved.chat;
+  if (typeof fetch !== 'function') {
+    return res.status(500).json({ ok: false, error: 'runtime_unsupported', message: '当前 Node.js 运行时不支持原生 fetch。' });
+  }
+  const controller = typeof AbortController === 'function' ? new AbortController() : null;
+  const timeout = controller ? setTimeout(() => controller.abort(), 9000) : null;
+  try {
+    const upstream = await fetch(cfg.modelsUrl, {
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + cfg.key,
+        Accept: 'application/json'
+      },
+      signal: controller ? controller.signal : undefined
+    });
+    if (timeout) clearTimeout(timeout);
+    const text = await upstream.text();
+    if (!upstream.ok) {
+      const message = parseProviderError(text);
+      console.error('[Voice] Chat model list failed:', cfg.provider, upstream.status, message);
+      return res.status(502).json({ ok: false, error: 'chat_model_list_failed', provider: cfg.provider, message });
+    }
+    let data;
+    try { data = JSON.parse(text); } catch {
+      return res.status(502).json({ ok: false, error: 'invalid_chat_model_list', provider: cfg.provider, message: '模型列表返回格式无法识别。' });
+    }
+    const models = extractChatModels(data);
+    if (!models.length) {
+      return res.status(502).json({ ok: false, error: 'empty_chat_model_list', provider: cfg.provider, message: '未检测到可用模型。' });
+    }
+    return res.json({
+      ok: true,
+      provider: cfg.provider,
+      baseUrl: cfg.url,
+      modelsUrl: cfg.modelsUrl,
+      models,
+      count: models.length
+    });
+  } catch (err) {
+    if (timeout) clearTimeout(timeout);
+    console.error('[Voice] Chat model list error:', cfg.provider, err && err.message ? err.message : err);
+    return res.status(502).json({
+      ok: false,
+      error: err && err.name === 'AbortError' ? 'chat_model_list_timeout' : 'chat_model_list_unavailable',
+      provider: cfg.provider,
+      message: err && err.name === 'AbortError' ? '模型列表检测超时。' : '模型列表暂时无法检测。'
+    });
+  }
 });
 
 app.post('/api/voice/test/chat', async (req, res) => {

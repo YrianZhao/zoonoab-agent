@@ -1040,6 +1040,10 @@
             .voice-settings-row label {
                 width: auto;
             }
+            .voice-model-row-control {
+                align-items: stretch;
+                flex-direction: column;
+            }
             .voice-settings-actions {
                 align-items: stretch;
                 flex-direction: column;
@@ -1138,6 +1142,26 @@
         .voice-settings-row select:focus {
             border-color: var(--brand-light);
             background: white;
+        }
+        .voice-model-row-control {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            flex: 1;
+            min-width: 0;
+        }
+        .voice-model-row-control select {
+            min-width: 0;
+        }
+        .voice-model-detect-btn {
+            min-width: 72px;
+            white-space: nowrap;
+        }
+        @media (max-width: 640px) {
+            .voice-model-row-control {
+                align-items: stretch;
+                flex-direction: column;
+            }
         }
         .voice-settings-hint {
             font-size: 10.5px;
@@ -4716,15 +4740,20 @@
                                     </div>
                                     <div class="voice-settings-row">
                                         <label for="chatModelInput">Model</label>
-                                        <input id="chatModelInput" type="text" autocomplete="off" spellcheck="false" placeholder="Qwen/Qwen3-32B">
+                                        <div class="voice-model-row-control">
+                                            <select id="chatModelInput" aria-label="聊天模型">
+                                                <option value="">先检测模型列表</option>
+                                            </select>
+                                            <button class="voice-test-btn voice-model-detect-btn" id="voiceChatModelsBtn" onclick="detectChatModels()" data-busy-text="检测中...">检测模型</button>
+                                        </div>
                                     </div>
-                                    <div class="voice-settings-hint">支持 SiliconFlow、OpenAI 或其他 OpenAI 兼容聊天接口；Key 保存后只保存在服务端。</div>
+                                    <div class="voice-settings-hint">支持 SiliconFlow、OpenAI 或其他 OpenAI 兼容聊天接口；填写 Key 和地址后可检测模型列表，Key 保存后只保存在服务端。</div>
                                 </div>
                                 <div class="voice-settings-actions">
                                     <span class="voice-settings-note" id="voiceSettingsNote">语音识别可使用本机服务或兼容 API；Key 保存后写入安全配置。</span>
                                     <button class="voice-test-btn" id="voiceAsrTestBtn" onclick="testVoiceAsrSettings()">测试语音</button>
                                     <button class="voice-test-btn" id="voiceChatTestBtn" onclick="testVoiceChatSettings()">测试聊天</button>
-                                    <button class="voice-save-btn" onclick="saveVoiceSettings()">保存</button>
+                                    <button class="voice-save-btn" id="voiceSettingsSaveBtn" onclick="saveVoiceSettings()" data-busy-text="保存中...">保存</button>
                                 </div>
                             </div>
                         </div>
@@ -5569,7 +5598,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146044';
+    const APP_BUILD_VERSION = '78146045';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -9198,7 +9227,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 chatKeyInput.placeholder = cfg.chat?.hasApiKey ? '已安全保存，留空继续使用' : '聊天服务 Key';
                 chatKeyInput.title = cfg.chat?.hasApiKey ? '真实 Key 已安全保存，前端不回显；填写新 Key 后保存可覆盖。' : '填写聊天服务 API Key';
             }
-            if (chatModelInput && cfg.chat?.model && !chatModelInput.value) chatModelInput.value = cfg.chat.model;
+            if (chatModelInput && cfg.chat?.model) setChatModelOptions([cfg.chat.model], cfg.chat.model, '使用已保存模型');
             if (note) {
                 const voiceKeyState = cfg.hasApiKey ? 'Key 已安全保存' : (cfg.local === false ? 'Key 待填写' : '无需 Key');
                 const chatKeyState = cfg.chat?.hasApiKey ? 'Key 已安全保存' : 'Key 待填写';
@@ -9272,13 +9301,13 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     function setVoiceSettingsButtonsBusy(busy, activeId) {
-        ['voiceAsrTestBtn', 'voiceChatTestBtn'].forEach(id => {
+        ['voiceAsrTestBtn', 'voiceChatTestBtn', 'voiceChatModelsBtn', 'voiceSettingsSaveBtn'].forEach(id => {
             const btn = document.getElementById(id);
             if (!btn) return;
             btn.disabled = busy;
             if (busy && id === activeId) {
                 btn.dataset.originalText = btn.textContent;
-                btn.textContent = '测试中...';
+                btn.textContent = btn.dataset.busyText || (id === 'voiceSettingsSaveBtn' ? '保存中...' : (id === 'voiceChatModelsBtn' ? '检测中...' : '测试中...'));
             } else if (!busy && btn.dataset.originalText) {
                 btn.textContent = btn.dataset.originalText;
                 delete btn.dataset.originalText;
@@ -9521,10 +9550,104 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const modelInput = document.getElementById('chatModelInput');
         const keyInput = document.getElementById('chatApiKeyInput');
         if (baseInput && preset.baseUrl) baseInput.value = preset.baseUrl;
-        if (modelInput && preset.model) modelInput.value = preset.model;
+        if (modelInput) {
+            const selectedModel = preset.model || voiceConfigState?.chat?.model || '';
+            setChatModelOptions(selectedModel ? [selectedModel] : [], selectedModel, selectedModel ? '使用推荐模型' : '先检测模型列表');
+        }
         if (keyInput) {
             keyInput.value = '';
             keyInput.placeholder = voiceConfigState?.chat?.hasApiKey ? '已安全保存，留空继续使用' : '聊天服务 Key';
+        }
+    }
+
+    function normalizeChatModelOptions(models) {
+        const seen = new Set();
+        return (Array.isArray(models) ? models : [])
+            .map(model => {
+                const id = typeof model === 'string'
+                    ? model
+                    : String(model && (model.id || model.name || model.model) || '').trim();
+                if (!id || seen.has(id)) return null;
+                seen.add(id);
+                return {
+                    id,
+                    name: typeof model === 'object' && model && model.name ? String(model.name).trim() : id
+                };
+            })
+            .filter(Boolean);
+    }
+
+    function setChatModelOptions(models, selected = '', placeholder = '先检测模型列表') {
+        const select = document.getElementById('chatModelInput');
+        if (!select) return;
+        const normalized = normalizeChatModelOptions(models);
+        const current = selected || select.value || '';
+        select.innerHTML = '';
+        const placeholderOption = document.createElement('option');
+        placeholderOption.value = '';
+        placeholderOption.textContent = placeholder;
+        select.appendChild(placeholderOption);
+        normalized.forEach(model => {
+            const option = document.createElement('option');
+            option.value = model.id;
+            option.textContent = model.name && model.name !== model.id ? `${model.id} · ${model.name}` : model.id;
+            select.appendChild(option);
+        });
+        const hasCurrent = normalized.some(model => model.id === current);
+        if (current && hasCurrent) {
+            select.value = current;
+        } else if (!current && normalized.length) {
+            select.value = normalized[0].id;
+        } else if (current && !hasCurrent) {
+            const option = document.createElement('option');
+            option.value = current;
+            option.textContent = current;
+            select.appendChild(option);
+            select.value = current;
+        } else {
+            select.value = '';
+        }
+    }
+
+    async function detectChatModels() {
+        const note = document.getElementById('voiceSettingsNote');
+        const { chatBaseUrl, chatApiKey, chatModel } = collectVoiceSettings();
+        if (!chatBaseUrl) {
+            showToast('请先填写聊天服务 Base URL', 'warning');
+            return;
+        }
+        if (!chatApiKey && !voiceConfigState?.chat?.hasApiKey) {
+            showToast('请先填写聊天服务 API Key，或保存已有 Key 后再检测', 'warning');
+            return;
+        }
+        try {
+            setVoiceSettingsButtonsBusy(true, 'voiceChatModelsBtn');
+            if (note) note.textContent = '正在检测可用模型列表...';
+            const resp = await fetch('/api/voice/models/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat: { baseUrl: chatBaseUrl, apiKey: chatApiKey }
+                })
+            });
+            const data = await resp.json().catch(() => ({}));
+            if (!resp.ok || !data.ok) {
+                const msg = data.message || '模型列表检测失败';
+                showToast(msg, 'error');
+                if (note) note.textContent = '模型列表检测失败：' + msg;
+                return;
+            }
+            const models = normalizeChatModelOptions(data.models || []);
+            const selected = models.some(model => model.id === chatModel) ? chatModel : (models[0]?.id || '');
+            setChatModelOptions(models, selected, '选择聊天模型');
+            if (note) note.textContent = `检测到 ${models.length} 个模型 · 已选择 ${selected || '未选择'}`;
+            showToast('模型列表检测完成', 'success');
+        } catch (err) {
+            const msg = err && err.message ? err.message : '模型列表检测失败';
+            showToast(msg, 'error');
+            if (note) note.textContent = msg;
+        } finally {
+            setVoiceSettingsButtonsBusy(false);
         }
     }
 
@@ -9652,6 +9775,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             return;
         }
         try {
+            setVoiceSettingsButtonsBusy(true, 'voiceSettingsSaveBtn');
             if (note) note.textContent = '正在保存语音和问答服务配置...';
             const resp = await fetch('/api/voice/session', {
                 method: 'POST',
@@ -9696,6 +9820,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             console.warn('[Voice] Save settings failed:', err);
             showToast('API 配置保存失败', 'error');
             if (note) note.textContent = '保存失败，请重试';
+        } finally {
+            setVoiceSettingsButtonsBusy(false);
         }
     }
 
@@ -10968,6 +11094,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     window.handleVoiceTranscript = handleVoiceTranscript;
     window.toggleVoiceSettings = toggleVoiceSettings;
     window.saveVoiceSettings = saveVoiceSettings;
+    window.detectChatModels = detectChatModels;
     window.testVoiceChatSettings = testVoiceChatSettings;
     window.testVoiceAsrSettings = testVoiceAsrSettings;
     window.applyVoiceProviderPreset = applyVoiceProviderPreset;
