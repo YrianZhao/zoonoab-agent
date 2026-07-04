@@ -4331,13 +4331,6 @@ async function runAssistantChat(ws, input, voiceSessionId) {
     send({ type: 'voice_say', text: answer.slice(0, 220) });
   }
   send({ type: 'agent_msg', text: answer });
-  await delay(300);
-  send({ type: 'chips', chips: [
-    { label: '启动抗体设计演示', icon: 'wand-2' },
-    { label: '从疾病自动选择靶点', icon: 'target' },
-    { label: '生成可打印结构模型', icon: 'box' },
-    { label: '查看平台能力', icon: 'sparkles' }
-  ]});
   send({ type: 'done' });
 }
 

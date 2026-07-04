@@ -5,6 +5,7 @@ const http = require('http');
 const os = require('os');
 const path = require('path');
 const test = require('node:test');
+const WebSocket = require('ws');
 
 const PORT = 19081;
 const MOCK_CHAT_PORT = 19082;
@@ -27,6 +28,35 @@ async function waitForHealth() {
     await new Promise(resolve => setTimeout(resolve, 150));
   }
   throw new Error('server did not become healthy');
+}
+
+function collectUserMessageStream(text) {
+  return new Promise((resolve, reject) => {
+    const ws = new WebSocket('ws://127.0.0.1:' + PORT);
+    const messages = [];
+    const timer = setTimeout(() => {
+      try { ws.close(); } catch {}
+      reject(new Error('timed out waiting for websocket done message'));
+    }, 8000);
+
+    ws.on('open', () => {
+      ws.send(JSON.stringify({ type: 'user_msg', text }));
+    });
+    ws.on('message', raw => {
+      let msg;
+      try { msg = JSON.parse(String(raw)); } catch { return; }
+      messages.push(msg);
+      if (msg.type === 'done') {
+        clearTimeout(timer);
+        ws.close();
+        resolve(messages);
+      }
+    });
+    ws.on('error', err => {
+      clearTimeout(timer);
+      reject(err);
+    });
+  });
 }
 
 test.before(async () => {
@@ -89,6 +119,17 @@ test('server routes ordinary non-workflow questions to assistant chat only', asy
   assert.equal(data.localWorkflowAllowed, false);
   assert.equal(data.runner, 'assistant_chat');
   assert.equal(data.demoRoute, null);
+});
+
+test('assistant chat replies do not append recommendation chips', async () => {
+  const messages = await collectUserMessageStream('今天天气是什么设计抗体');
+  const chipMessages = messages.filter(msg => msg.type === 'chips');
+  const serialized = JSON.stringify(messages);
+
+  assert.equal(chipMessages.length, 0);
+  assert.doesNotMatch(serialized, /启动抗体设计演示|从疾病自动选择靶点|生成可打印结构模型|查看平台能力/);
+  assert.equal(messages.some(msg => msg.type === 'agent_msg'), true);
+  assert.equal(messages[messages.length - 1].type, 'done');
 });
 
 test('server refuses ambiguous local workflow commands that would otherwise use fake defaults', async () => {
