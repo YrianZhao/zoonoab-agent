@@ -53,17 +53,17 @@ test('suppresses non-biomedical computer virus requests', () => {
   assert.equal(extractDesignRequest('电脑病毒设计抗体').isDesignRequest, false);
 });
 
-test('does not treat disease areas as dynamic antigen targets', () => {
+test('cleans disease-area wording before using it as a dynamic target', () => {
   const obesity = extractDesignRequest('设计一个针对肥胖的抗体');
   assert.equal(obesity.isDesignRequest, true);
-  assert.equal(obesity.target, '');
-  assert.equal(obesity.hasExplicitTarget, false);
-  assert.equal(buildDynamicDemoRoute('设计一个针对肥胖的抗体'), null);
+  assert.equal(obesity.target, '肥胖');
+  assert.equal(obesity.hasExplicitTarget, true);
+  assert.equal(buildDynamicDemoRoute('设计一个针对肥胖的抗体').target, '肥胖');
 
   const diabetes = extractDesignRequest('帮我设计10个针对糖尿病的抗体');
   assert.equal(diabetes.isDesignRequest, true);
-  assert.equal(diabetes.target, '');
-  assert.equal(diabetes.hasExplicitTarget, false);
+  assert.equal(diabetes.target, '糖尿病');
+  assert.equal(diabetes.hasExplicitTarget, true);
 });
 
 test('keeps explicit targets inside disease-area requests', () => {

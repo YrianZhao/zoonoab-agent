@@ -3815,7 +3815,7 @@ const DEMO_ROUTE_RULES = [
     count: 10,
     printable: false,
     displayStory: '围绕 GIPR 胞外可及区域，生成代谢调控方向抗体候选设计。',
-    keywords: ['gipr', 'gip receptor', '肠促胰岛素', '代谢调控', '肥胖', '减重', '超重', 'obesity', 'weight loss']
+    keywords: ['gipr', 'gip receptor', '肠促胰岛素', '代谢调控']
   }
 ];
 
@@ -3909,9 +3909,6 @@ function detectDemoRoute(input) {
 
   if (/angptl3/.test(normalized) && /(代谢|脂质代谢|metabolic|lipid metabolism)/.test(normalized)) {
     return DEMO_ROUTE_RULES.find(rule => rule.id === 'metabolic_angptl3') || getDefaultDemoRoute();
-  }
-  if (/(gipr|gip receptor|肠促胰岛素|肥胖|减重|超重|obesity|weight loss)/.test(normalized) && /(代谢|肥胖|减重|超重|gipr|gip receptor|肠促胰岛素|obesity|weight loss|metabolic)/.test(normalized)) {
-    return DEMO_ROUTE_RULES.find(rule => rule.id === 'metabolic_gipr') || getDefaultDemoRoute();
   }
   if (/angptl3/.test(normalized) && /(心血管|血脂|胆固醇|cardio|cholesterol|triglyceride)/.test(normalized)) {
     return DEMO_ROUTE_RULES.find(rule => rule.id === 'cardio_angptl3') || getDefaultDemoRoute();

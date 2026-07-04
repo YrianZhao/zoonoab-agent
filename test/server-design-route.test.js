@@ -141,7 +141,7 @@ test('server does not replace unsupported disease requests with representative l
   assert.equal(data.demoRoute, null);
 });
 
-test('server routes obesity disease-area design requests to the prepared GIPR profile', async () => {
+test('server keeps obesity as the clean user target without the leading phrase', async () => {
   const query = encodeURIComponent('帮我设计10个针对肥胖的抗体');
   const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/user-routing?text=' + query);
   assert.equal(res.status, 200);
@@ -151,12 +151,13 @@ test('server routes obesity disease-area design requests to the prepared GIPR pr
   assert.equal(data.intent, 'design');
   assert.equal(data.localWorkflowAllowed, true);
   assert.equal(data.runner, 'local_workflow');
-  assert.equal(data.demoRoute.id, 'metabolic_gipr');
-  assert.equal(data.demoRoute.target, 'GIPR');
+  assert.equal(data.demoRoute.target, '肥胖');
+  assert.equal(data.demoRoute.dynamic, true);
   assert.doesNotMatch(serialized, /一个针对肥胖/);
+  assert.doesNotMatch(serialized, /GIPR/);
 });
 
-test('server design route never renders obesity disease text as a target field', async () => {
+test('server design route renders obesity as the clean target field', async () => {
   const query = encodeURIComponent('设计一个针对肥胖的抗体');
   const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/design-route?text=' + query);
   assert.equal(res.status, 200);
@@ -164,26 +165,26 @@ test('server design route never renders obesity disease text as a target field',
   const serialized = JSON.stringify(data);
 
   assert.equal(data.intent, 'design');
-  assert.equal(data.route.id, 'metabolic_gipr');
-  assert.equal(data.route.target, 'GIPR');
-  assert.equal(data.parsed.target, 'GIPR');
-  assert.equal(data.profile.targetDisplay, 'GIPR');
-  assert.match(data.profile.mechanism, /GIPR/);
-  assert.doesNotMatch(serialized, /一个针对肥胖|target":"肥胖|目标“肥胖/);
+  assert.equal(data.route.target, '肥胖');
+  assert.equal(data.route.dynamic, true);
+  assert.equal(data.parsed.target, '肥胖');
+  assert.equal(data.profile.targetDisplay, '肥胖');
+  assert.match(data.profile.mechanism, /肥胖/);
+  assert.doesNotMatch(serialized, /一个针对肥胖|GIPR/);
 });
 
-test('server does not start local workflow when disease area has no prepared target', async () => {
+test('server keeps diabetes as the clean user target without the leading phrase', async () => {
   const query = encodeURIComponent('帮我设计10个针对糖尿病的抗体');
   const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/user-routing?text=' + query);
   assert.equal(res.status, 200);
   const data = await res.json();
   const serialized = JSON.stringify(data);
 
-  assert.equal(data.detectedIntent, 'design');
-  assert.equal(data.intent, 'assistant_chat');
-  assert.equal(data.localWorkflowAllowed, false);
-  assert.equal(data.runner, 'assistant_chat');
-  assert.equal(data.demoRoute, null);
+  assert.equal(data.intent, 'design');
+  assert.equal(data.localWorkflowAllowed, true);
+  assert.equal(data.runner, 'local_workflow');
+  assert.equal(data.demoRoute.target, '糖尿病');
+  assert.equal(data.demoRoute.dynamic, true);
   assert.doesNotMatch(serialized, /一个针对糖尿病|针对糖尿病/);
 });
 
