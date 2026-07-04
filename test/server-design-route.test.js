@@ -141,6 +141,52 @@ test('server does not replace unsupported disease requests with representative l
   assert.equal(data.demoRoute, null);
 });
 
+test('server routes obesity disease-area design requests to the prepared GIPR profile', async () => {
+  const query = encodeURIComponent('帮我设计10个针对肥胖的抗体');
+  const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/user-routing?text=' + query);
+  assert.equal(res.status, 200);
+  const data = await res.json();
+  const serialized = JSON.stringify(data);
+
+  assert.equal(data.intent, 'design');
+  assert.equal(data.localWorkflowAllowed, true);
+  assert.equal(data.runner, 'local_workflow');
+  assert.equal(data.demoRoute.id, 'metabolic_gipr');
+  assert.equal(data.demoRoute.target, 'GIPR');
+  assert.doesNotMatch(serialized, /一个针对肥胖/);
+});
+
+test('server design route never renders obesity disease text as a target field', async () => {
+  const query = encodeURIComponent('设计一个针对肥胖的抗体');
+  const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/design-route?text=' + query);
+  assert.equal(res.status, 200);
+  const data = await res.json();
+  const serialized = JSON.stringify(data);
+
+  assert.equal(data.intent, 'design');
+  assert.equal(data.route.id, 'metabolic_gipr');
+  assert.equal(data.route.target, 'GIPR');
+  assert.equal(data.parsed.target, 'GIPR');
+  assert.equal(data.profile.targetDisplay, 'GIPR');
+  assert.match(data.profile.mechanism, /GIPR/);
+  assert.doesNotMatch(serialized, /一个针对肥胖|target":"肥胖|目标“肥胖/);
+});
+
+test('server does not start local workflow when disease area has no prepared target', async () => {
+  const query = encodeURIComponent('帮我设计10个针对糖尿病的抗体');
+  const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/user-routing?text=' + query);
+  assert.equal(res.status, 200);
+  const data = await res.json();
+  const serialized = JSON.stringify(data);
+
+  assert.equal(data.detectedIntent, 'design');
+  assert.equal(data.intent, 'assistant_chat');
+  assert.equal(data.localWorkflowAllowed, false);
+  assert.equal(data.runner, 'assistant_chat');
+  assert.equal(data.demoRoute, null);
+  assert.doesNotMatch(serialized, /一个针对糖尿病|针对糖尿病/);
+});
+
 test('server does not treat ordinary English words containing ha as influenza HA', async () => {
   const query = encodeURIComponent('how much has the dow changed today');
   const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/user-routing?text=' + query);
