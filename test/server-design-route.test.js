@@ -543,6 +543,18 @@ test('target resolver rejects disease-shaped pseudo targets from the model', asy
   }
 });
 
+test('target resolver fallback keeps implicit pathogen requests on a related antigen', async () => {
+  const messages = await collectUserMessageStream('设计10个烟草花叶病毒的抗体', {
+    timeoutMs: 12000,
+    stopWhen: (msg) => msg.type === 'tool_call' && msg.tool === 'target_evidence_review'
+  });
+  const serialized = JSON.stringify(messages);
+  const evidenceCall = messages.find(msg => msg.type === 'tool_call' && msg.tool === 'target_evidence_review');
+
+  assert.match(evidenceCall.params.target, /TMV coat protein|烟草花叶病毒/);
+  assert.doesNotMatch(serialized, /PD-L1|CD274|IL-33|ST2/);
+});
+
 test('server routes diabetes indication requests through target resolution', async () => {
   const query = encodeURIComponent('帮我设计10个针对糖尿病的抗体');
   const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/user-routing?text=' + query);

@@ -4459,14 +4459,25 @@ function normalizeTargetResolution(data, indication) {
 
 function builtinTargetResolution(indication) {
   const key = Object.keys(BUILTIN_DISEASE_TARGET_RESOLVERS).find(item => indication.includes(item) || item.includes(indication));
-  const base = key ? BUILTIN_DISEASE_TARGET_RESOLVERS[key] : {
-    selectedTarget: 'PD-L1',
-    selectedGene: 'CD274',
-    designLabel: 'INDICATION-1',
-    confidence: 0.45,
-    reason: indication + ' 更像疾病方向而不是单一抗原靶点。当前未能完成在线靶点解析，系统选择已验证展示链路中的 PD-L1 作为代表靶点；建议后续补充明确靶点后再执行真实研发设计。',
-    candidates: [{ target: 'PD-L1', gene: 'CD274', rationale: '稳定展示路线兜底靶点。' }]
-  };
+  const text = String(indication || '').trim();
+  const base = key ? BUILTIN_DISEASE_TARGET_RESOLVERS[key] : (/烟草花叶病毒|tobacco mosaic|tmv/i.test(text) ? {
+    selectedTarget: 'TMV coat protein',
+    selectedGene: 'CP',
+    designLabel: 'TMV-CP-1',
+    confidence: 0.62,
+    reason: '未能完成在线靶点解析时，系统保留用户指定的烟草花叶病毒方向，并选择衣壳蛋白作为代表抗原入口。',
+    candidates: [
+      { target: 'TMV coat protein', gene: 'CP', rationale: '烟草花叶病毒颗粒表面的主要结构蛋白，适合作为抗体识别入口。' },
+      { target: 'TMV virion surface', gene: '', rationale: '完整病毒颗粒表面可作为检测型抗体设计方向。' }
+    ]
+  } : {
+    selectedTarget: text || '用户指定目标',
+    selectedGene: '',
+    designLabel: 'CUSTOM-1',
+    confidence: 0.4,
+    reason: '当前未能完成在线靶点解析，系统保留用户输入的设计对象作为本轮工作流目标，避免替换成无关靶点。',
+    candidates: [{ target: text || '用户指定目标', gene: '', rationale: '来自用户原始抗体设计需求。' }]
+  });
   return normalizeTargetResolution({ ...base, disease: indication }, indication);
 }
 
