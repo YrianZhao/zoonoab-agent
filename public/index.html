@@ -1819,6 +1819,47 @@
             0%, 60%, 100% { transform: translateY(0); }
             30% { transform: translateY(-6px); }
         }
+        .assistant-thinking-indicator {
+            display: none;
+            align-items: center;
+            gap: 10px;
+            margin: -2px 0 16px 34px;
+            min-height: 28px;
+            color: var(--text-secondary);
+            font-size: 12px;
+            line-height: 1.4;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .assistant-thinking-indicator.active { display: flex; }
+        .assistant-thinking-spinner {
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(0, 123, 255, 0.16);
+            border-top-color: var(--brand);
+            border-radius: var(--radius-full);
+            flex: 0 0 auto;
+            animation: assistantThinkingSpin 0.82s linear infinite;
+        }
+        .assistant-thinking-text {
+            min-width: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .assistant-thinking-cursor {
+            display: inline-block;
+            width: 6px;
+            color: var(--brand);
+            animation: assistantThinkingCursor 0.9s steps(1, end) infinite;
+        }
+        @keyframes assistantThinkingSpin {
+            to { transform: rotate(360deg); }
+        }
+        @keyframes assistantThinkingCursor {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
 
         /* ═══════════════ Results Section ═══════════════ */
         .results-section {
@@ -4476,6 +4517,10 @@
                     <div class="build-version" id="buildVersion" aria-hidden="true"></div>
                 </div>
             </div>
+            <div class="assistant-thinking-indicator" id="assistantThinkingIndicator" aria-live="polite">
+                <span class="assistant-thinking-spinner" aria-hidden="true"></span>
+                <span class="assistant-thinking-text" id="assistantThinkingText"></span>
+            </div>
             <div class="typing-indicator" id="typingIndicator">
                 <div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>
             </div>
@@ -5598,7 +5643,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146056';
+    const APP_BUILD_VERSION = '78146057';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -7352,6 +7397,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
     function resetRunControls() {
         isRunning = false;
+        stopAssistantThinking();
         hideTyping();
         setRunControlsActive(false);
         const _inp = document.getElementById('userInput');
@@ -7420,7 +7466,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 showTyping();
                 break;
 
+            case 'assistant_thinking':
+                startAssistantThinking(msg);
+                break;
+
             case 'agent_msg':
+                stopAssistantThinking();
                 enqueueOp(() => new Promise(resolve => {
                     hideTyping(); // inside queue — runs in proper order
                     const div = document.createElement('div');
@@ -7543,6 +7594,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
             case 'cancelled':
                 enqueueOp(() => new Promise(resolve => {
+                    stopAssistantThinking();
                     finishQuickDesignRun();
                     setWorkflowFastForward(false);
                     resetRunControls();
@@ -7553,6 +7605,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
             case 'error':
                 enqueueOp(() => new Promise(resolve => {
+                    stopAssistantThinking();
                     finishQuickDesignRun();
                     setWorkflowFastForward(false);
                     resetRunControls();
@@ -7563,6 +7616,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
             case 'done':
                 enqueueOp(() => new Promise(resolve => {
+                    stopAssistantThinking();
                     finishQuickDesignRun();
                     resetRunControls();
                     showToast(t('Workflow complete!'), 'success');
@@ -14006,6 +14060,88 @@ ${fallbackTableRows(profile.rows)}
 
     function scrollBottom() {
         window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }
+
+    let assistantThinkingTimer = null;
+    let assistantThinkingTypingTimer = null;
+    let assistantThinkingStep = 0;
+    let assistantThinkingActive = false;
+
+    function normalizeAssistantThinkingTopic(topic) {
+        const raw = String(topic || '').replace(/\s+/g, ' ').trim();
+        if (!raw) return 'the request';
+        if (/[\u4e00-\u9fff]/.test(raw)) {
+            if (/天气|气温|下雨/.test(raw)) return 'weather context';
+            if (/能力|功能|平台|介绍/.test(raw)) return 'platform capabilities';
+            if (/抗体|靶点|抗原|表位|蛋白/.test(raw)) return 'biomedical design intent';
+            return 'the user request';
+        }
+        return raw.replace(/[^A-Za-z0-9\s\-_/]/g, '').trim().slice(0, 48) || 'the request';
+    }
+
+    function buildAssistantThinkingLines(topic) {
+        const safeTopic = normalizeAssistantThinkingTopic(topic);
+        return [
+            `Reading the user's ${safeTopic}...`,
+            'Mapping intent to ZoonoAb response boundaries...',
+            `Checking context signals around ${safeTopic}...`,
+            'Preparing a concise, product-safe answer...',
+            'Waiting for the model response stream...'
+        ];
+    }
+
+    function typeAssistantThinkingLine(text) {
+        const textEl = document.getElementById('assistantThinkingText');
+        if (!textEl) return;
+        if (assistantThinkingTypingTimer) clearInterval(assistantThinkingTypingTimer);
+        let pos = 0;
+        assistantThinkingTypingTimer = setInterval(() => {
+            if (!assistantThinkingActive) {
+                clearInterval(assistantThinkingTypingTimer);
+                assistantThinkingTypingTimer = null;
+                return;
+            }
+            pos += 1;
+            textEl.innerHTML = escHtml(text.slice(0, pos)) + '<span class="assistant-thinking-cursor">|</span>';
+            if (pos >= text.length) {
+                clearInterval(assistantThinkingTypingTimer);
+                assistantThinkingTypingTimer = null;
+            }
+        }, 22);
+    }
+
+    function startAssistantThinking(msg = {}) {
+        const box = document.getElementById('assistantThinkingIndicator');
+        if (!box) return;
+        const lines = buildAssistantThinkingLines(msg.topic || '');
+        assistantThinkingActive = true;
+        assistantThinkingStep = 0;
+        box.classList.add('active');
+        if (assistantThinkingTimer) clearInterval(assistantThinkingTimer);
+        const renderNext = () => {
+            if (!assistantThinkingActive) return;
+            typeAssistantThinkingLine(lines[assistantThinkingStep % lines.length]);
+            assistantThinkingStep += 1;
+        };
+        renderNext();
+        assistantThinkingTimer = setInterval(renderNext, 1850);
+        scrollBottom();
+    }
+
+    function stopAssistantThinking() {
+        assistantThinkingActive = false;
+        if (assistantThinkingTimer) {
+            clearInterval(assistantThinkingTimer);
+            assistantThinkingTimer = null;
+        }
+        if (assistantThinkingTypingTimer) {
+            clearInterval(assistantThinkingTypingTimer);
+            assistantThinkingTypingTimer = null;
+        }
+        const box = document.getElementById('assistantThinkingIndicator');
+        const textEl = document.getElementById('assistantThinkingText');
+        if (box) box.classList.remove('active');
+        if (textEl) textEl.textContent = '';
     }
 
     function showTyping() {

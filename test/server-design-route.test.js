@@ -152,6 +152,19 @@ test('assistant chat replies do not append recommendation chips', async () => {
   assert.equal(messages[messages.length - 1].type, 'done');
 });
 
+test('assistant chat emits a transient thinking indicator before the final reply', async () => {
+  const messages = await collectUserMessageStream('今天天气怎么样');
+  const firstBusinessMessage = messages.find(msg => msg.type !== 'connected');
+  const thinkingMessages = messages.filter(msg => msg.type === 'assistant_thinking');
+
+  assert.equal(firstBusinessMessage.type, 'assistant_thinking');
+  assert.equal(thinkingMessages.length, 1);
+  assert.equal(thinkingMessages[0].active, true);
+  assert.match(thinkingMessages[0].topic, /天气|weather/i);
+  assert.equal(messages.some(msg => msg.type === 'agent_msg'), true);
+  assert.equal(messages[messages.length - 1].type, 'done');
+});
+
 test('server refuses ambiguous local workflow commands that would otherwise use fake defaults', async () => {
   const query = encodeURIComponent('帮我做一下表位预测');
   const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/user-routing?text=' + query);

@@ -4600,9 +4600,23 @@ function targetResolutionIntro(route) {
     '\n\n接下来将基于该靶点启动 ZoonoAb 抗体候选设计流程。';
 }
 
+function buildAssistantThinkingTopic(input) {
+  const text = String(input || '').trim();
+  if (!text) return 'the request';
+  if (/天气|气温|下雨|weather|temperature|rain/i.test(text)) return 'weather context';
+  if (/能力|功能|介绍|平台|zoonoab|what can|capabilit/i.test(text)) return 'platform capabilities';
+  if (/抗体|靶点|抗原|表位|蛋白|antibody|target|antigen|epitope|protein/i.test(text)) return 'biomedical design intent';
+  const cleaned = text
+    .replace(/[^\u4e00-\u9fffA-Za-z0-9\s\-_/]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+  return cleaned.slice(0, 48) || 'the request';
+}
+
 async function runAssistantChat(ws, input, voiceSessionId) {
   const delay = ms => new Promise(r => setTimeout(r, ms));
   const send = data => { if (ws.readyState === 1) ws.send(JSON.stringify(data)); };
+  send({ type: 'assistant_thinking', active: true, topic: buildAssistantThinkingTopic(input) });
   await delay(900 + Math.floor(Math.random() * 650));
   const answer = await askAssistantModel(input, voiceSessionId);
   const sess = findSessionBySocket(ws);
