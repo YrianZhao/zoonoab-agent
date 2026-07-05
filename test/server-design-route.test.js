@@ -295,6 +295,7 @@ test('disease design requests resolve a real target before launching the workflo
     assert.equal(captured.url, '/v1/chat/completions');
     assert.equal(captured.authorization, 'Bearer test-target-resolver-secret');
     assert.equal(captured.body.model, 'mock-target-resolver');
+    assert.deepEqual(captured.body.response_format, { type: 'json_object' });
     assert.match(captured.body.messages[0].content, /靶点解析|疾病方向|JSON/);
     assert.match(captured.body.messages[1].content, /设计一个针对肥胖的抗体/);
     assert.match(agentTexts[0], /肥胖|OBESITY-1|Activin E|Myostatin|INHBE|GDF8/);
