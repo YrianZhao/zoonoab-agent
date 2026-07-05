@@ -377,6 +377,67 @@ test('target resolver accepts provider reasoning JSON when message content is em
   }
 });
 
+test('target resolver rejects disease-shaped pseudo targets from the model', async () => {
+  const mockServer = http.createServer((req, res) => {
+    req.resume();
+    req.on('end', () => {
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify({
+        choices: [
+          {
+            message: {
+              content: JSON.stringify({
+                inputType: 'disease_indication',
+                disease: '肥胖',
+                selectedTarget: '肥胖表面抗原',
+                selectedGene: '',
+                designLabel: 'BAD-OBESITY',
+                confidence: 0.95,
+                reason: '错误地把疾病短语包装成抗原。',
+                candidates: [
+                  { target: '肥胖抗原可及区域', gene: '', rationale: '伪靶点。' }
+                ]
+              })
+            }
+          }
+        ]
+      }));
+    });
+  });
+
+  await new Promise(resolve => mockServer.listen(MOCK_CHAT_PORT, '127.0.0.1', resolve));
+  try {
+    const saveResp = await fetch('http://127.0.0.1:' + PORT + '/api/voice/session', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        voice: { mode: 'local', provider: 'local' },
+        chat: {
+          baseUrl: 'http://127.0.0.1:' + MOCK_CHAT_PORT + '/v1',
+          apiKey: 'test-pseudo-target-secret',
+          model: 'mock-pseudo-target'
+        }
+      })
+    });
+    assert.equal(saveResp.status, 200);
+    const saved = await saveResp.json();
+
+    const messages = await collectUserMessageStream('设计一个针对肥胖的抗体', {
+      timeoutMs: 12000,
+      voiceSessionId: saved.voiceSessionId,
+      stopWhen: (msg) => msg.type === 'tool_call' && msg.tool === 'target_evidence_review'
+    });
+    const serialized = JSON.stringify(messages);
+    const evidenceCall = messages.find(msg => msg.type === 'tool_call' && msg.tool === 'target_evidence_review');
+
+    assert.equal(evidenceCall.params.target, 'Activin E/Myostatin');
+    assert.match(serialized, /Activin E \/ Myostatin|OBESITY-1/);
+    assert.doesNotMatch(serialized, /肥胖\s*(?:表面|目标)?抗原|肥胖\s*代表性目标结构约束|肥胖\s*抗原可及|BAD-OBESITY/);
+  } finally {
+    await new Promise(resolve => mockServer.close(resolve));
+  }
+});
+
 test('server routes diabetes indication requests through target resolution', async () => {
   const query = encodeURIComponent('帮我设计10个针对糖尿病的抗体');
   const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/user-routing?text=' + query);

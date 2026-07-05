@@ -4419,12 +4419,24 @@ function normalizeResolverTarget(value) {
     .slice(0, 80);
 }
 
+function isInvalidResolvedDiseaseTarget(target, indication) {
+  const value = String(target || '').trim();
+  const disease = String(indication || '').trim();
+  if (!value || !disease) return !value;
+  if (isDiseaseIndication(value) && value === disease) return true;
+  if (!value.includes(disease)) return false;
+  const pseudoPattern = /(表面|目标|代表性|结构|约束|抗原|可及|区域|相关|治疗|疾病|适应症|方向|通路)/;
+  if (pseudoPattern.test(value)) return true;
+  if (!/[A-Za-z0-9]/.test(value)) return true;
+  return false;
+}
+
 function normalizeTargetResolution(data, indication) {
   const source = data && typeof data === 'object' ? data : {};
   const selectedTarget = normalizeResolverTarget(source.selectedTarget || source.target || source.selected_target);
   const selectedGene = normalizeResolverTarget(source.selectedGene || source.gene || source.selected_gene);
   if (!selectedTarget) return null;
-  if (isDiseaseIndication(selectedTarget) && selectedTarget === indication) return null;
+  if (isInvalidResolvedDiseaseTarget(selectedTarget, indication)) return null;
   const candidates = Array.isArray(source.candidates) ? source.candidates.slice(0, 5).map(item => ({
     target: normalizeResolverTarget(item && (item.target || item.name)),
     gene: normalizeResolverTarget(item && item.gene),
