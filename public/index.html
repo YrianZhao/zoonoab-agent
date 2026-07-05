@@ -5640,7 +5640,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146058';
+    const APP_BUILD_VERSION = '78146059';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -12910,9 +12910,25 @@ ${fallbackTableRows(profile.rows)}
     };
 
     function getFallback3DPreset(profile) {
-        return profile && profile.routeId && FALLBACK_3D_PRESETS[profile.routeId]
-            ? FALLBACK_3D_PRESETS[profile.routeId]
-            : FALLBACK_3D_PRESETS.tumor_immunotherapy;
+        if (profile && profile.routeId && FALLBACK_3D_PRESETS[profile.routeId]) return FALLBACK_3D_PRESETS[profile.routeId];
+        const target = String(profile && profile.target || '').toLowerCase();
+        if (/influenza|流感|血凝素|\bha\b/.test(target)) return FALLBACK_3D_PRESETS.infectious_flu;
+        if (/her\s*-?\s*2|erbb2/.test(target)) return FALLBACK_3D_PRESETS.breast_cancer;
+        if (/pd\s*-?\s*l\s*-?\s*1|pdl1/.test(target)) return FALLBACK_3D_PRESETS.tumor_immunotherapy;
+        if (/egfr/.test(target)) return FALLBACK_3D_PRESETS.solid_tumor_egfr;
+        if (/vegf/.test(target)) return FALLBACK_3D_PRESETS.angiogenesis_oncology;
+        if (/tnf/.test(target)) return FALLBACK_3D_PRESETS.autoimmune_inflammation;
+        if (/rsv|合胞/.test(target)) return FALLBACK_3D_PRESETS.infectious_rsv;
+        if (/sars|cov|rbd|新冠/.test(target)) return FALLBACK_3D_PRESETS.infectious_covid;
+        if (/vhh|纳米抗体/i.test(String(profile && profile.abType || ''))) return FALLBACK_3D_PRESETS.allergic_asthma;
+        const values = Object.values(FALLBACK_3D_PRESETS);
+        const seedText = [profile && profile.target, profile && profile.disease, profile && profile.abType].filter(Boolean).join('|') || 'generic';
+        let seed = 2166136261;
+        for (let i = 0; i < seedText.length; i++) {
+            seed ^= seedText.charCodeAt(i);
+            seed = Math.imul(seed, 16777619) >>> 0;
+        }
+        return values[seed % values.length] || FALLBACK_3D_PRESETS.tumor_immunotherapy;
     }
 
     function fallbackOrderedFiles(preset) {

@@ -3067,11 +3067,71 @@ function getRoute3DPreset(profile) {
   return presetKey ? ROUTE_3D_PRESETS[presetKey] : null;
 }
 
+const GENERIC_3D_MODEL_PRESETS = [
+  'PDL1-Fab',
+  'HER2-Fab',
+  'EGFR-Fab',
+  'VEGFA-Fab',
+  'TNF-Fab',
+  'IL17A-Fab',
+  'IL23-Fab',
+  'RSVF-Fab',
+  'SC2RBD-Fab',
+  'FluHA-Fab',
+  'PCSK9-Fab',
+  'ANGPTL3-CV-Fab',
+  'ANGPTL3-Met-Fab',
+  'GIPR-Fab',
+  'TSLP-Fab',
+  'IL1B-Fab'
+];
+const GENERIC_3D_VHH_PRESETS = ['IL33-VHH'];
+
+function antibodyFormatForProfile(profile) {
+  const scaffold = String(profile && profile.scaffold || '');
+  if (/VHH|纳米抗体/i.test(scaffold)) return 'VHH';
+  if (/scFv/i.test(scaffold)) return 'scFv';
+  if (/IgG|全长/i.test(scaffold)) return 'IgG';
+  return 'Fab';
+}
+
+function filesForAliasPrefix(aliasPrefix) {
+  const files = [];
+  if (!aliasPrefix) return files;
+  const maxPresetCandidates = 30;
+  for (let idx = 0; idx < maxPresetCandidates; idx++) {
+    const staticFile = aliasPrefix + '-' + String(idx + 1).padStart(2, '0') + '.pdb';
+    if (localPDBFileExists(staticFile)) files.push(staticFile);
+  }
+  return files;
+}
+
+function genericDisplayModelFiles(profile, count) {
+  const abFormat = antibodyFormatForProfile(profile);
+  const pool = abFormat === 'VHH' ? GENERIC_3D_VHH_PRESETS : GENERIC_3D_MODEL_PRESETS;
+  const seedText = [
+    profile && profile.targetDisplay,
+    profile && profile.routeLabel,
+    profile && profile.disease,
+    abFormat
+  ].filter(Boolean).join('|') || 'generic';
+  const targetCount = Math.max(1, Number(count) || 10);
+  let offset = stableSeed(seedText) % Math.max(1, pool.length);
+  for (let attempt = 0; attempt < pool.length; attempt++) {
+    const aliasPrefix = pool[(offset + attempt) % pool.length];
+    const files = filesForAliasPrefix(aliasPrefix);
+    if (!files.length) continue;
+    const candidateOffset = Math.floor(stableSeed(seedText + ':' + aliasPrefix) / 7) % files.length;
+    return Array.from({ length: targetCount }, (_, idx) => files[(candidateOffset + idx) % files.length]);
+  }
+  return [];
+}
+
 function routeAliasPrefix(profile, preset) {
   if (preset && preset.aliasPrefix) return preset.aliasPrefix;
   let target = ((profile && profile.targetDisplay) || 'PDL1').replace(/[^A-Za-z0-9]+/g, '');
   if (!target) target = 'Target' + stableSeed(profile && profile.targetDisplay || 'custom').toString(36);
-  const abFormat = profile && profile.scaffold && profile.scaffold.includes('VHH') ? 'VHH' : 'Fab';
+  const abFormat = antibodyFormatForProfile(profile) === 'VHH' ? 'VHH' : 'Fab';
   return target + '-' + abFormat;
 }
 
@@ -3132,7 +3192,7 @@ function buildRoute3DMeta(profile, idx, file, ipTm, preset) {
   const sequence = routeDisplaySequence(profile, idx);
   const cdr3Len = Math.max(10, Math.min(18, 12 + (stableSeed(target + idx) % 6)));
   const routeLabel = (profile && profile.routeLabel) || target;
-  const abFormat = profile && profile.scaffold && profile.scaffold.includes('VHH') ? 'VHH' : 'Fab';
+  const abFormat = antibodyFormatForProfile(profile);
   const aliasPrefix = routeAliasPrefix(profile, preset);
   const staticPreset = file.startsWith(aliasPrefix + '-') && localPDBFileExists(file);
   const displayFile = staticPreset ? file : '';
@@ -3158,9 +3218,10 @@ function buildRoute3DMeta(profile, idx, file, ipTm, preset) {
     structureTitle: preset && preset.title ? preset.title : routeLabel + ' 候选结构',
     structureFamily: preset && preset.structureFamily ? preset.structureFamily : (profile && profile.domain) || '',
     visualSummary: preset && preset.visualSummary ? preset.visualSummary : (profile && profile.structurePrepZh) || '',
-    structuralBasis: preset && preset.structuralBasis ? preset.structuralBasis : '',
+    structuralBasis: preset && preset.structuralBasis ? preset.structuralBasis : ((profile && profile.structuralBasis) || '本地代表性抗体-抗原结构模型，用于展示当前候选分子的三维构象。'),
     antigenChains: chainInfo.antigen,
     antibodyChains: chainInfo.antibody,
+    antibodyFormat: abFormat,
     visualColors,
     sequence,
     cdrSummary: 'CDR-H3 ' + cdr3Len + ' aa · ' + ((profile && profile.selectedEpitope) || '目标表位') + ' 匹配',
@@ -3191,14 +3252,11 @@ function routeLocalPDBs(profile, count) {
   const staticPresetFiles = [];
   if (preset) {
     const aliasPrefix = routeAliasPrefix(profile, preset);
-    const maxPresetCandidates = Math.max(30, Number(count) || 10);
-    for (let idx = 0; idx < maxPresetCandidates; idx++) {
-      const staticFile = aliasPrefix + '-' + String(idx + 1).padStart(2, '0') + '.pdb';
-      if (localPDBFileExists(staticFile)) staticPresetFiles.push(staticFile);
-    }
+    staticPresetFiles.push(...filesForAliasPrefix(aliasPrefix));
   }
   const orderedFiles = orderPDBFilesForPreset(preset, availableFiles);
-  const sourceFiles = orderedFiles.length ? orderedFiles : [fallbackFile];
+  const genericFiles = preset ? [] : genericDisplayModelFiles(profile, count);
+  const sourceFiles = genericFiles.length ? genericFiles : (orderedFiles.length ? orderedFiles : [fallbackFile]);
   const targetCount = Math.max(1, Number(count) || 10);
   const files = Array.from({ length: targetCount }, (_, idx) => {
     if (staticPresetFiles.length) return staticPresetFiles[idx % staticPresetFiles.length];
@@ -6279,13 +6337,24 @@ if (process.env.NODE_ENV === 'test') {
       ? buildRouteProfile(parsed.target, parsed.blockTarget, parsed.abType)
       : null;
     if (profile && route && route.id) profile.routeId = route.id;
+    const previewProfile = profile || (designRequest.isDesignRequest && designRequest.target && !isDiseaseIndication(designRequest.target)
+      ? buildRouteProfile(designRequest.target, designRequest.blockTarget, designRequest.abType)
+      : null);
+    if (previewProfile && !previewProfile.routeId && route && route.id) previewProfile.routeId = route.id;
+    const threeDBinders = previewProfile ? routeLocalPDBs(previewProfile, parsed.count || designRequest.count || 10) : [];
     res.json({
       intent: requiresTargetResolution ? 'design' : detectIntent(text),
       route,
       parsed,
       diseaseIndication,
       requiresTargetResolution,
-      profile
+      profile,
+      threeDPreview: previewProfile ? {
+        primaryPDB: threeDBinders[0] ? threeDBinders[0].id : '',
+        files: threeDBinders.map(item => item.file),
+        displayFiles: threeDBinders.map(item => item.displayFile).filter(Boolean),
+        binders: threeDBinders
+      } : null
     });
   });
 

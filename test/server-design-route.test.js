@@ -119,6 +119,35 @@ test('server design route preserves explicitly declared unknown targets across r
   assert.doesNotMatch(serialized, /IL-33|ST2|PD-L1|CD274|4KC3/);
 });
 
+test('server previews distinct 3D model files for different design targets and antibody formats', async () => {
+  const requests = [
+    { text: '针对流感HA血凝素设计10个抗体', expectedPrefix: /^FluHA-Fab-/ },
+    { text: '设计10个针对PD-L1的Fab', expectedPrefix: /^PDL1-Fab-/ },
+    { text: '设计10个抗体，靶点是烟草花叶病毒', expectedNotPrefix: /^PDL1-Fab-/ },
+    { text: '设计10个纳米抗体，靶点是烟草花叶病毒', expectedNotPrefix: /^PDL1-Fab-/ }
+  ];
+  const previews = [];
+
+  for (const item of requests) {
+    const query = encodeURIComponent(item.text);
+    const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/design-route?text=' + query);
+    assert.equal(res.status, 200);
+    const data = await res.json();
+    const firstFile = data.threeDPreview && data.threeDPreview.binders && data.threeDPreview.binders[0]
+      ? data.threeDPreview.binders[0].file
+      : '';
+    assert.ok(firstFile, item.text + ' should preview a local 3D model file');
+    if (item.expectedPrefix) assert.match(firstFile, item.expectedPrefix);
+    if (item.expectedNotPrefix) assert.doesNotMatch(firstFile, item.expectedNotPrefix);
+    previews.push({ ...item, data, firstFile });
+  }
+
+  assert.notEqual(previews[0].firstFile, previews[1].firstFile);
+  assert.notEqual(previews[2].firstFile, previews[3].firstFile);
+  assert.equal(previews[2].data.threeDPreview.binders[0].antibodyFormat, 'Fab');
+  assert.equal(previews[3].data.threeDPreview.binders[0].antibodyFormat, 'VHH');
+});
+
 test('server keeps non-biomedical virus wording out of design workflow', async () => {
   const query = encodeURIComponent('电脑病毒设计抗体');
   const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/design-route?text=' + query);

@@ -74,3 +74,11 @@ test('keeps explicit targets inside disease-area requests', () => {
   assert.equal(parsed.count, 10);
   assert.equal(parsed.hasExplicitTarget, true);
 });
+
+test('cleans spoken target wording that places the design count after the pathogen name', () => {
+  const parsed = extractDesignRequest('针对蓝耳病毒设计10个抗体');
+
+  assert.equal(parsed.isDesignRequest, true);
+  assert.equal(parsed.target, '蓝耳病毒');
+  assert.equal(parsed.count, 10);
+});
