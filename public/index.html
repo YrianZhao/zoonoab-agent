@@ -1823,7 +1823,7 @@
             display: none;
             align-items: center;
             gap: 10px;
-            margin: -2px 0 16px 34px;
+            margin: 0 0 16px 34px;
             min-height: 28px;
             color: var(--text-secondary);
             font-size: 12px;
@@ -1831,6 +1831,7 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            animation: msgIn 0.28s ease;
         }
         .assistant-thinking-indicator.active { display: flex; }
         .assistant-thinking-spinner {
@@ -4517,10 +4518,6 @@
                     <div class="build-version" id="buildVersion" aria-hidden="true"></div>
                 </div>
             </div>
-            <div class="assistant-thinking-indicator" id="assistantThinkingIndicator" aria-live="polite">
-                <span class="assistant-thinking-spinner" aria-hidden="true"></span>
-                <span class="assistant-thinking-text" id="assistantThinkingText"></span>
-            </div>
             <div class="typing-indicator" id="typingIndicator">
                 <div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>
             </div>
@@ -5643,7 +5640,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146057';
+    const APP_BUILD_VERSION = '78146058';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -14111,8 +14108,15 @@ ${fallbackTableRows(profile.rows)}
     }
 
     function startAssistantThinking(msg = {}) {
-        const box = document.getElementById('assistantThinkingIndicator');
-        if (!box) return;
+        let box = document.getElementById('assistantThinkingIndicator');
+        if (!box) {
+            box = document.createElement('div');
+            box.className = 'assistant-thinking-indicator';
+            box.id = 'assistantThinkingIndicator';
+            box.setAttribute('aria-live', 'polite');
+            box.innerHTML = '<span class="assistant-thinking-spinner" aria-hidden="true"></span><span class="assistant-thinking-text" id="assistantThinkingText"></span>';
+            getStream().appendChild(box);
+        }
         const lines = buildAssistantThinkingLines(msg.topic || '');
         assistantThinkingActive = true;
         assistantThinkingStep = 0;
@@ -14140,7 +14144,7 @@ ${fallbackTableRows(profile.rows)}
         }
         const box = document.getElementById('assistantThinkingIndicator');
         const textEl = document.getElementById('assistantThinkingText');
-        if (box) box.classList.remove('active');
+        if (box) box.remove();
         if (textEl) textEl.textContent = '';
     }
 

@@ -4649,6 +4649,7 @@ async function runResolvedDiseaseDesign(ws, input, voiceSessionId) {
   const indication = extractDiseaseIndication(input) || parsed.target || String(input || '').trim();
   if (!parsed.isDesignRequest || !indication) return runAssistantChat(ws, input, voiceSessionId);
   markWorkflowStage(sess, '靶点解析');
+  send({ type: 'assistant_thinking', active: true, topic: buildAssistantThinkingTopic(input) });
   send({ type: 'log', text: '[TargetAgent] 正在解析可进入抗体设计的具体靶点...' });
   const resolution = await resolveDiseaseTargetWithModel(input, indication, voiceSessionId);
   const route = buildResolvedTargetRoute(input, null, resolution, parsed);

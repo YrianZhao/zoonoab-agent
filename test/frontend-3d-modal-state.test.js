@@ -62,7 +62,8 @@ test('assistant thinking indicator starts on model wait and stops before final o
   const doneCase = extractSwitchCase(html, "case 'done':");
   const errorCase = extractSwitchCase(html, "case 'error':");
 
-  assert.match(html, /id="assistantThinkingIndicator"/);
+  assert.match(html, /box\.id\s*=\s*['"]assistantThinkingIndicator['"]/);
+  assert.match(html, /getStream\(\)\.appendChild\(box\)/);
   assert.match(html, /function\s+startAssistantThinking\s*\(/);
   assert.match(html, /function\s+stopAssistantThinking\s*\(/);
   assert.match(thinkingCase, /startAssistantThinking\(msg\)/);

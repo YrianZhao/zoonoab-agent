@@ -413,10 +413,15 @@ test('implicit pathogen target requests call the model before launching the work
     const serialized = JSON.stringify(messages);
     const agentTexts = messages.filter(msg => msg.type === 'agent_msg').map(msg => msg.text || '');
     const evidenceCall = messages.find(msg => msg.type === 'tool_call' && msg.tool === 'target_evidence_review');
+    const firstBusinessMessage = messages.find(msg => msg.type !== 'connected');
+    const thinkingMessages = messages.filter(msg => msg.type === 'assistant_thinking');
 
     assert.equal(captured.method, 'POST');
     assert.equal(captured.body.model, 'mock-pathogen-target');
     assert.match(captured.body.messages[0].content, /烟草花叶病毒|抗体设计需求|靶点解析/);
+    assert.equal(firstBusinessMessage.type, 'assistant_thinking');
+    assert.equal(thinkingMessages.length, 1);
+    assert.match(thinkingMessages[0].topic, /biomedical design intent/i);
     assert.match(agentTexts[0], /烟草花叶病毒|TMV coat protein|TMV-CP-1|CP/);
     assert.equal(evidenceCall.params.target, 'TMV coat protein');
     assert.match(serialized, /TMV coat protein|TMV-CP-1/);
