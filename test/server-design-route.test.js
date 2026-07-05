@@ -87,8 +87,22 @@ test.after(async () => {
   try { fs.unlinkSync(CONFIG_PATH); } catch {}
 });
 
-test('server design route preserves unknown user target across route, parse, and profile', async () => {
+test('server design route sends implicit unknown targets to target resolution', async () => {
   const query = encodeURIComponent('设计10个烟草花叶病毒的抗体');
+  const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/design-route?text=' + query);
+  assert.equal(res.status, 200);
+  const data = await res.json();
+  const serialized = JSON.stringify(data);
+
+  assert.equal(data.intent, 'design');
+  assert.equal(data.route, null);
+  assert.equal(data.requiresTargetResolution, true);
+  assert.equal(data.parsed.target, '烟草花叶病毒');
+  assert.doesNotMatch(serialized, /IL-33|ST2|4KC3/);
+});
+
+test('server design route preserves explicitly declared unknown targets across route, parse, and profile', async () => {
+  const query = encodeURIComponent('设计10个抗体，靶点是烟草花叶病毒');
   const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/design-route?text=' + query);
   assert.equal(res.status, 200);
   const data = await res.json();
@@ -149,7 +163,7 @@ test('server refuses ambiguous local workflow commands that would otherwise use 
   assert.equal(data.runner, 'assistant_chat');
 });
 
-test('server allows local workflow only when user gives a concrete design target', async () => {
+test('server routes implicit target design requests through target resolution', async () => {
   const query = encodeURIComponent('设计10个烟草花叶病毒的抗体');
   const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/user-routing?text=' + query);
   assert.equal(res.status, 200);
@@ -157,12 +171,13 @@ test('server allows local workflow only when user gives a concrete design target
 
   assert.equal(data.intent, 'design');
   assert.equal(data.localWorkflowAllowed, true);
-  assert.equal(data.runner, 'local_workflow');
-  assert.equal(data.demoRoute.target, '烟草花叶病毒');
+  assert.equal(data.runner, 'target_resolution_workflow');
+  assert.equal(data.requiresTargetResolution, true);
+  assert.equal(data.demoRoute, null);
 });
 
-test('server allows prepared disease routes without replacing them with generic defaults', async () => {
-  const query = encodeURIComponent('乳腺癌方向设计10个抗体');
+test('server allows direct local workflow when the target is explicitly declared', async () => {
+  const query = encodeURIComponent('设计10个抗体，靶点是烟草花叶病毒');
   const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/user-routing?text=' + query);
   assert.equal(res.status, 200);
   const data = await res.json();
@@ -170,20 +185,34 @@ test('server allows prepared disease routes without replacing them with generic 
   assert.equal(data.intent, 'design');
   assert.equal(data.localWorkflowAllowed, true);
   assert.equal(data.runner, 'local_workflow');
-  assert.equal(data.demoRoute.routeId || data.demoRoute.id, 'breast_cancer');
-  assert.equal(data.demoRoute.target, 'HER2');
+  assert.equal(data.requiresTargetResolution, false);
+  assert.equal(data.demoRoute.target, '烟草花叶病毒');
 });
 
-test('server does not replace unsupported disease requests with representative local targets', async () => {
+test('server routes prepared disease wording through target resolution unless target is explicit', async () => {
+  const query = encodeURIComponent('乳腺癌方向设计10个抗体');
+  const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/user-routing?text=' + query);
+  assert.equal(res.status, 200);
+  const data = await res.json();
+
+  assert.equal(data.intent, 'design');
+  assert.equal(data.localWorkflowAllowed, true);
+  assert.equal(data.runner, 'target_resolution_workflow');
+  assert.equal(data.requiresTargetResolution, true);
+  assert.equal(data.demoRoute, null);
+});
+
+test('server routes unsupported disease requests through target resolution', async () => {
   const query = encodeURIComponent('给阿尔茨海默设计10个抗体');
   const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/user-routing?text=' + query);
   assert.equal(res.status, 200);
   const data = await res.json();
 
-  assert.equal(data.detectedIntent, 'design');
-  assert.equal(data.intent, 'assistant_chat');
-  assert.equal(data.localWorkflowAllowed, false);
-  assert.equal(data.runner, 'assistant_chat');
+  assert.equal(data.detectedIntent, 'assistant_chat');
+  assert.equal(data.intent, 'design');
+  assert.equal(data.localWorkflowAllowed, true);
+  assert.equal(data.runner, 'target_resolution_workflow');
+  assert.equal(data.requiresTargetResolution, true);
   assert.equal(data.demoRoute, null);
 });
 
@@ -302,6 +331,81 @@ test('disease design requests resolve a real target before launching the workflo
     assert.equal(evidenceCall.params.target, 'Activin E/Myostatin');
     assert.match(serialized, /Activin E \/ Myostatin|INHBE \/ GDF8/);
     assert.doesNotMatch(serialized, /肥胖\s*(?:表面|目标)?抗原|肥胖\s*代表性目标结构约束|肥胖\s*抗原可及/);
+  } finally {
+    await new Promise(resolve => mockServer.close(resolve));
+  }
+});
+
+test('implicit pathogen target requests call the model before launching the workflow', async () => {
+  let captured = null;
+  const mockServer = http.createServer((req, res) => {
+    let body = '';
+    req.setEncoding('utf8');
+    req.on('data', chunk => { body += chunk; });
+    req.on('end', () => {
+      captured = {
+        method: req.method,
+        url: req.url,
+        authorization: req.headers.authorization || '',
+        body: JSON.parse(body || '{}')
+      };
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify({
+        choices: [
+          {
+            message: {
+              content: JSON.stringify({
+                inputType: 'pathogen_antigen',
+                disease: '植物病毒抗原识别方向',
+                selectedTarget: 'TMV coat protein',
+                selectedGene: 'CP',
+                designLabel: 'TMV-CP-1',
+                confidence: 0.82,
+                reason: '烟草花叶病毒抗体设计更适合围绕衣壳蛋白抗原表面展开。',
+                candidates: [
+                  { target: 'TMV coat protein', gene: 'CP', rationale: '病毒颗粒表面主要结构蛋白。' }
+                ]
+              })
+            }
+          }
+        ]
+      }));
+    });
+  });
+
+  await new Promise(resolve => mockServer.listen(MOCK_CHAT_PORT, '127.0.0.1', resolve));
+  try {
+    const saveResp = await fetch('http://127.0.0.1:' + PORT + '/api/voice/session', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        voice: { mode: 'local', provider: 'local' },
+        chat: {
+          baseUrl: 'http://127.0.0.1:' + MOCK_CHAT_PORT + '/v1',
+          apiKey: 'test-pathogen-target-secret',
+          model: 'mock-pathogen-target'
+        }
+      })
+    });
+    assert.equal(saveResp.status, 200);
+    const saved = await saveResp.json();
+
+    const messages = await collectUserMessageStream('设计10个烟草花叶病毒的抗体', {
+      timeoutMs: 12000,
+      voiceSessionId: saved.voiceSessionId,
+      stopWhen: (msg) => msg.type === 'tool_call' && msg.tool === 'target_evidence_review'
+    });
+    const serialized = JSON.stringify(messages);
+    const agentTexts = messages.filter(msg => msg.type === 'agent_msg').map(msg => msg.text || '');
+    const evidenceCall = messages.find(msg => msg.type === 'tool_call' && msg.tool === 'target_evidence_review');
+
+    assert.equal(captured.method, 'POST');
+    assert.equal(captured.body.model, 'mock-pathogen-target');
+    assert.match(captured.body.messages[0].content, /烟草花叶病毒|抗体设计需求|靶点解析/);
+    assert.match(agentTexts[0], /烟草花叶病毒|TMV coat protein|TMV-CP-1|CP/);
+    assert.equal(evidenceCall.params.target, 'TMV coat protein');
+    assert.match(serialized, /TMV coat protein|TMV-CP-1/);
+    assert.doesNotMatch(serialized, /IL-33|ST2|PD-L1|CD274/);
   } finally {
     await new Promise(resolve => mockServer.close(resolve));
   }

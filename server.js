@@ -14,6 +14,7 @@ const { v4: uuidv4 } = require('uuid');
 const {
   extractDesignRequest,
   extractDiseaseIndication,
+  extractExplicitTargetDeclaration,
   isDiseaseIndication,
   buildDynamicDemoRoute,
   buildGenericTargetProfile,
@@ -3947,6 +3948,11 @@ function detectDemoRoute(input) {
   if (hasNonBiomedicalContext(normalized)) return null;
   const designRequest = extractDesignRequest(input);
   const diseaseIndication = extractDiseaseIndication(input);
+  const explicitTarget = extractExplicitTargetDeclaration(input);
+
+  if (designRequest.isDesignRequest && !explicitTarget) {
+    return null;
+  }
 
   if (/angptl3/.test(normalized) && /(代谢|脂质代谢|metabolic|lipid metabolism)/.test(normalized)) {
     return DEMO_ROUTE_RULES.find(rule => rule.id === 'metabolic_angptl3') || getDefaultDemoRoute();
@@ -4207,10 +4213,7 @@ function shouldResolveDesignTargetBeforeWorkflow(input, routing) {
   if (!text || shouldSuppressDesignWorkflow(text)) return false;
   const parsed = extractDesignRequest(text);
   if (!parsed.isDesignRequest) return false;
-  const indication = extractDiseaseIndication(text) || (parsed.target && isDiseaseIndication(parsed.target) ? parsed.target : '');
-  if (!indication) return false;
-  if (parsed.target && !isDiseaseIndication(parsed.target)) return false;
-  if (routing && routing.localWorkflowAllowed && routing.demoRoute && !routing.demoRoute.dynamic) return false;
+  if (extractExplicitTargetDeclaration(text)) return false;
   return true;
 }
 
@@ -4469,8 +4472,9 @@ function builtinTargetResolution(indication) {
 
 function buildTargetResolverPrompt(indication, input) {
   return [
-    '你是 ZoonoAb 的疾病到抗体靶点解析器。任务：把用户的疾病/适应症设计需求解析成可以进入抗体设计工作流的真实抗原/蛋白靶点。',
-    '可以使用你的内置知识进行判断；如果你具备搜索/检索能力，也可以综合最新公开信息。不要把疾病名本身当作抗原，不要输出“肥胖表面抗原”这类伪靶点。',
+    '你是 ZoonoAb 的抗体设计靶点解析器。任务：把用户的自然语言抗体设计需求解析成可以进入抗体设计工作流的真实抗原/蛋白靶点。',
+    '可以使用你的内置知识进行快速判断；如果用户给的是疾病/适应症，不要把疾病名本身当作抗原，不要输出“肥胖表面抗原”这类伪靶点。',
+    '如果用户给的是病原体、病毒或生物材料名称，请优先解析到最适合抗体识别的具体表面抗原、衣壳蛋白、包膜蛋白或核心蛋白。',
     '如果搜索或知识中出现 OBESITY-1 这类编号，请把它放入 designLabel；真正进入工作流的 selectedTarget 必须是蛋白、受体、细胞因子、通路靶点或抗原名称。',
     '只输出 JSON，不要输出 Markdown。字段：inputType, disease, selectedTarget, selectedGene, designLabel, confidence, reason, candidates。',
     'candidates 是数组，每项包含 target, gene, rationale。reason 用中文，面向展会观众说明为什么选择该靶点。',
@@ -4595,10 +4599,10 @@ async function runResolvedDiseaseDesign(ws, input, voiceSessionId) {
   const sess = findSessionBySocket(ws);
   const delay = (ms) => workflowDelay(ws, sess, ms);
   const parsed = extractDesignRequest(input);
-  const indication = extractDiseaseIndication(input) || (parsed.target && isDiseaseIndication(parsed.target) ? parsed.target : '');
-  if (!indication) return runAssistantChat(ws, input, voiceSessionId);
+  const indication = extractDiseaseIndication(input) || parsed.target || String(input || '').trim();
+  if (!parsed.isDesignRequest || !indication) return runAssistantChat(ws, input, voiceSessionId);
   markWorkflowStage(sess, '靶点解析');
-  send({ type: 'log', text: '[TargetAgent] 识别到疾病/适应症方向，正在解析可进入抗体设计的具体靶点...' });
+  send({ type: 'log', text: '[TargetAgent] 正在解析可进入抗体设计的具体靶点...' });
   const resolution = await resolveDiseaseTargetWithModel(input, indication, voiceSessionId);
   const route = buildResolvedTargetRoute(input, null, resolution, parsed);
   await delay(400);
@@ -6222,7 +6226,7 @@ if (process.env.NODE_ENV === 'test') {
     const parsed = parseRequest(text, route || undefined);
     const diseaseIndication = extractDiseaseIndication(text) || (parsed.target && isDiseaseIndication(parsed.target) ? parsed.target : '');
     const designRequest = extractDesignRequest(text);
-    const requiresTargetResolution = Boolean(designRequest.isDesignRequest && diseaseIndication && (!route || !route.dynamic) && (!designRequest.target || isDiseaseIndication(designRequest.target)));
+    const requiresTargetResolution = shouldResolveDesignTargetBeforeWorkflow(text, resolveUserRouting(text));
     const profile = !requiresTargetResolution && (route || parsed.target)
       ? buildRouteProfile(parsed.target, parsed.blockTarget, parsed.abType)
       : null;
