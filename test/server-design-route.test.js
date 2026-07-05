@@ -72,7 +72,8 @@ test.before(async () => {
       NODE_ENV: 'test',
       PORT: String(PORT),
       VOICE_API_CONFIG_FILE: CONFIG_PATH,
-      LOCAL_ASR_AUTO_START: '0'
+      LOCAL_ASR_AUTO_START: '0',
+      TARGET_RESOLVER_TIMEOUT_MS: '4000'
     },
     stdio: ['ignore', 'pipe', 'pipe']
   });
@@ -273,7 +274,7 @@ test('disease design requests resolve a real target before launching the workflo
         voice: { mode: 'local', provider: 'local' },
         chat: {
           baseUrl: 'http://127.0.0.1:' + MOCK_CHAT_PORT + '/v1',
-          apiKey: 'sk-target-resolver-secret',
+          apiKey: 'test-target-resolver-secret',
           model: 'mock-target-resolver'
         }
       })
@@ -292,7 +293,7 @@ test('disease design requests resolve a real target before launching the workflo
 
     assert.equal(captured.method, 'POST');
     assert.equal(captured.url, '/v1/chat/completions');
-    assert.equal(captured.authorization, 'Bearer sk-target-resolver-secret');
+    assert.equal(captured.authorization, 'Bearer test-target-resolver-secret');
     assert.equal(captured.body.model, 'mock-target-resolver');
     assert.match(captured.body.messages[0].content, /靶点解析|疾病方向|JSON/);
     assert.match(captured.body.messages[1].content, /设计一个针对肥胖的抗体/);
@@ -300,6 +301,77 @@ test('disease design requests resolve a real target before launching the workflo
     assert.equal(evidenceCall.params.target, 'Activin E/Myostatin');
     assert.match(serialized, /Activin E \/ Myostatin|INHBE \/ GDF8/);
     assert.doesNotMatch(serialized, /肥胖\s*(?:表面|目标)?抗原|肥胖\s*代表性目标结构约束|肥胖\s*抗原可及/);
+  } finally {
+    await new Promise(resolve => mockServer.close(resolve));
+  }
+});
+
+test('target resolver accepts provider reasoning JSON when message content is empty', async () => {
+  let captured = null;
+  const mockServer = http.createServer((req, res) => {
+    let body = '';
+    req.setEncoding('utf8');
+    req.on('data', chunk => { body += chunk; });
+    req.on('end', () => {
+      captured = {
+        method: req.method,
+        url: req.url,
+        authorization: req.headers.authorization || '',
+        body: JSON.parse(body || '{}')
+      };
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify({
+        choices: [
+          {
+            message: {
+              content: '',
+              reasoning_content: JSON.stringify({
+                inputType: 'disease_indication',
+                disease: '肥胖',
+                selectedTarget: 'Leptin receptor',
+                selectedGene: 'LEPR',
+                designLabel: 'OBESITY-LLM',
+                confidence: 0.81,
+                reason: '模型将肥胖方向解析为可进入抗体设计的 Leptin receptor 靶点。',
+                candidates: [
+                  { target: 'Leptin receptor', gene: 'LEPR', rationale: '食欲和能量稳态相关受体。' }
+                ]
+              })
+            }
+          }
+        ]
+      }));
+    });
+  });
+
+  await new Promise(resolve => mockServer.listen(MOCK_CHAT_PORT, '127.0.0.1', resolve));
+  try {
+    const saveResp = await fetch('http://127.0.0.1:' + PORT + '/api/voice/session', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        voice: { mode: 'local', provider: 'local' },
+        chat: {
+          baseUrl: 'http://127.0.0.1:' + MOCK_CHAT_PORT + '/v1',
+          apiKey: 'test-reasoning-json-secret',
+          model: 'mock-reasoning-json'
+        }
+      })
+    });
+    assert.equal(saveResp.status, 200);
+    const saved = await saveResp.json();
+
+    const messages = await collectUserMessageStream('设计一个针对肥胖的抗体', {
+      timeoutMs: 12000,
+      voiceSessionId: saved.voiceSessionId,
+      stopWhen: (msg) => msg.type === 'tool_call' && msg.tool === 'target_evidence_review'
+    });
+    const agentTexts = messages.filter(msg => msg.type === 'agent_msg').map(msg => msg.text || '');
+    const evidenceCall = messages.find(msg => msg.type === 'tool_call' && msg.tool === 'target_evidence_review');
+
+    assert.equal(captured.body.model, 'mock-reasoning-json');
+    assert.match(agentTexts[0], /OBESITY-LLM|Leptin receptor|LEPR/);
+    assert.equal(evidenceCall.params.target, 'Leptin receptor');
   } finally {
     await new Promise(resolve => mockServer.close(resolve));
   }

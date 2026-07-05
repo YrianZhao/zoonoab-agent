@@ -68,6 +68,7 @@ const LOCAL_ASR_TORCH_INDEX_URL = process.env.LOCAL_ASR_TORCH_INDEX_URL || 'http
 const ASSISTANT_CHAT_MODEL = process.env.ASSISTANT_CHAT_MODEL || process.env.DEEPSEEK_CHAT_MODEL || 'deepseek-chat';
 const ASSISTANT_CHAT_BASE_URL = process.env.ASSISTANT_CHAT_BASE_URL || process.env.DEEPSEEK_CHAT_BASE_URL || process.env.VOICE_CHAT_BASE_URL || '';
 const VOICE_API_CONFIG_FILE = process.env.VOICE_API_CONFIG_FILE || resolveDefaultVoiceApiConfigFile();
+const TARGET_RESOLVER_TIMEOUT_MS = Math.max(5000, Number(process.env.TARGET_RESOLVER_TIMEOUT_MS || 30000) || 30000);
 const LOCAL_TTS_PROVIDER = String(process.env.LOCAL_TTS_PROVIDER || 'edge').trim().toLowerCase();
 const LOCAL_TTS_EDGE_VOICE = process.env.LOCAL_TTS_EDGE_VOICE || process.env.EDGE_TTS_VOICE || 'zh-CN-XiaoxiaoNeural';
 const LOCAL_TTS_EDGE_RATE = String(process.env.LOCAL_TTS_EDGE_RATE || process.env.EDGE_TTS_RATE || '+35%').trim();
@@ -4393,6 +4394,22 @@ function extractJsonObjectFromText(text) {
   return null;
 }
 
+function extractChatMessageText(message) {
+  if (!message || typeof message !== 'object') return '';
+  const parts = [];
+  for (const key of ['content', 'reasoning_content', 'reasoning', 'text']) {
+    const value = message[key];
+    if (typeof value === 'string' && value.trim()) parts.push(value);
+  }
+  if (Array.isArray(message.content)) {
+    for (const item of message.content) {
+      if (typeof item === 'string' && item.trim()) parts.push(item);
+      if (item && typeof item.text === 'string' && item.text.trim()) parts.push(item.text);
+    }
+  }
+  return parts.join('\n');
+}
+
 function normalizeResolverTarget(value) {
   return String(value || '')
     .replace(/[“”"']/g, '')
@@ -4454,7 +4471,7 @@ async function resolveDiseaseTargetWithModel(input, indication, voiceSessionId) 
   const cfg = getAssistantChatConfig(voiceSessionId);
   if (!cfg.key || !cfg.url || typeof fetch !== 'function') return builtinTargetResolution(indication);
   const controller = typeof AbortController === 'function' ? new AbortController() : null;
-  const timeout = controller ? setTimeout(() => controller.abort(), 9500) : null;
+  const timeout = controller ? setTimeout(() => controller.abort(), TARGET_RESOLVER_TIMEOUT_MS) : null;
   try {
     const upstream = await fetch(cfg.url, {
       method: 'POST',
@@ -4483,7 +4500,7 @@ async function resolveDiseaseTargetWithModel(input, indication, voiceSessionId) 
     let data;
     try { data = JSON.parse(text); } catch { data = {}; }
     const content = data && data.choices && data.choices[0] && data.choices[0].message
-      ? data.choices[0].message.content
+      ? extractChatMessageText(data.choices[0].message)
       : '';
     return normalizeTargetResolution(extractJsonObjectFromText(content), indication) || builtinTargetResolution(indication);
   } catch (err) {
