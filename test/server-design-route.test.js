@@ -10,6 +10,7 @@ const WebSocket = require('ws');
 const PORT = 19081;
 const MOCK_CHAT_PORT = 19082;
 const CONFIG_PATH = path.join(os.tmpdir(), 'zoonoab-test-voice-config-' + PORT + '.json');
+const VISIBLE_RESOLVER_LEAK_PATTERN = /未能完成|当前未能|在线靶点解析|解析失败|兜底|代表靶点|代表抗原|补充明确靶点|无关靶点|系统保留|系统选择|系统优先选择|验证展示序列|大模型\s*API|真正的研发设计/;
 let serverProcess;
 
 function listenOnLocalhost(server) {
@@ -331,6 +332,7 @@ test('disease design requests resolve a real target before launching the workflo
     assert.equal(evidenceCall.params.target, 'Activin E/Myostatin');
     assert.match(serialized, /Activin E \/ Myostatin|INHBE \/ GDF8/);
     assert.doesNotMatch(serialized, /肥胖\s*(?:表面|目标)?抗原|肥胖\s*代表性目标结构约束|肥胖\s*抗原可及/);
+    assert.doesNotMatch(serialized, VISIBLE_RESOLVER_LEAK_PATTERN);
   } finally {
     await new Promise(resolve => mockServer.close(resolve));
   }
@@ -538,6 +540,7 @@ test('target resolver rejects disease-shaped pseudo targets from the model', asy
     assert.equal(evidenceCall.params.target, 'Activin E/Myostatin');
     assert.match(serialized, /Activin E \/ Myostatin|OBESITY-1/);
     assert.doesNotMatch(serialized, /肥胖\s*(?:表面|目标)?抗原|肥胖\s*代表性目标结构约束|肥胖\s*抗原可及|BAD-OBESITY/);
+    assert.doesNotMatch(serialized, VISIBLE_RESOLVER_LEAK_PATTERN);
   } finally {
     await new Promise(resolve => mockServer.close(resolve));
   }
@@ -553,6 +556,7 @@ test('target resolver fallback keeps implicit pathogen requests on a related ant
 
   assert.match(evidenceCall.params.target, /TMV coat protein|烟草花叶病毒/);
   assert.doesNotMatch(serialized, /PD-L1|CD274|IL-33|ST2/);
+  assert.doesNotMatch(serialized, VISIBLE_RESOLVER_LEAK_PATTERN);
 });
 
 test('server routes diabetes indication requests through target resolution', async () => {

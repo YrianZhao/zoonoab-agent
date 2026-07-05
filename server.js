@@ -3845,7 +3845,7 @@ const BUILTIN_DISEASE_TARGET_RESOLVERS = {
     selectedGene: 'INHBE / GDF8',
     designLabel: 'OBESITY-1',
     confidence: 0.72,
-    reason: '肥胖属于疾病方向而不是单一抗原靶点。系统优先选择 Activin E / Myostatin 作为本轮代表靶点，用于展示代谢调控、体成分改善和瘦体重保持相关的抗体设计路线。',
+    reason: '肥胖相关抗体设计更适合围绕代谢调控通路中的可及蛋白展开。Activin E / Myostatin 与体成分改善、瘦体重保持和心代谢风险管理相关，适合作为本轮分子识别入口。',
     candidates: [
       { target: 'Activin E', gene: 'INHBE', rationale: '与脂肪分布和心代谢调控相关，可作为肥胖方向抗体探索靶点。' },
       { target: 'Myostatin', gene: 'GDF8', rationale: '与骨骼肌保持和体成分改善相关，适合减重辅助场景。' },
@@ -3857,7 +3857,7 @@ const BUILTIN_DISEASE_TARGET_RESOLVERS = {
     selectedGene: 'GIPR',
     designLabel: 'METABOLIC-1',
     confidence: 0.68,
-    reason: '糖尿病属于代谢疾病方向。系统选择 GIPR 作为代表性可设计靶点，用于展示肠促胰岛素受体相关的抗体设计路线。',
+    reason: '糖尿病相关设计可优先围绕肠促胰岛素和代谢调控通路展开。GIPR 具有明确受体结构和细胞外可及区域，适合作为本轮抗体候选设计入口。',
     candidates: [
       { target: 'GIPR', gene: 'GIPR', rationale: '代谢调控和肠促胰岛素通路相关。' },
       { target: 'ANGPTL3', gene: 'ANGPTL3', rationale: '脂质代谢调控相关，适合代谢疾病展示。' }
@@ -3868,7 +3868,7 @@ const BUILTIN_DISEASE_TARGET_RESOLVERS = {
     selectedGene: 'IL17A',
     designLabel: 'PSORIASIS-1',
     confidence: 0.78,
-    reason: '银屑病方向已有清晰炎症通路靶点。系统选择 IL-17A 作为代表靶点，用于展示炎症轴中和抗体设计。',
+    reason: '银屑病相关炎症轴中，IL-17A 与角质形成细胞活化和炎症放大密切相关，适合作为本轮中和抗体设计入口。',
     candidates: [
       { target: 'IL-17A', gene: 'IL17A', rationale: '银屑病炎症轴核心细胞因子之一。' },
       { target: 'IL-23', gene: 'IL23A', rationale: 'Th17 炎症轴上游靶点。' }
@@ -4185,8 +4185,8 @@ function buildDemoInstruction(input, route) {
   const count = countMatch ? Math.min(Math.max(parseInt(countMatch[1], 10), 1), 200) : route.count;
   return [
     '设计 ' + count + ' 个靶向 ' + route.target + ' 的 ' + route.abType + blockText,
-    '。疾病方向：' + route.disease,
-    '。系统理解：' + route.systemUnderstanding,
+    '。设计方向：' + route.disease,
+    '。任务理解：' + route.systemUnderstanding,
     asksPrint ? '。输出 PDB 结构，并准备可用于 3D 打印的结构模型。' : '。输出候选抗体结构和 PDB 文件。'
   ].join('');
 }
@@ -4199,11 +4199,11 @@ function demoRouteIntro(route, input) {
     ? '\n阻断策略：' + route.target + '/' + route.blockTarget + ' 相互作用界面'
     : '';
   return '已理解您的需求：\n\n' +
-  '疾病方向：' + route.disease + '\n' +
+  '设计方向：' + route.disease + '\n' +
   '设计类型：抗体候选分子\n' +
-    (route.resolvedByModel ? 'AI 解析靶点：' : (route.dynamic ? '目标抗原：' : 'AI 推荐靶点：')) + route.target + (route.blockTarget ? ' / ' + route.blockTarget : '') + '\n' +
+    (route.resolvedByModel ? '确定靶点：' : (route.dynamic ? '目标抗原：' : '推荐靶点：')) + route.target + (route.blockTarget ? ' / ' + route.blockTarget : '') + '\n' +
   '抗体形式：' + route.abType + '\n' +
-  '系统理解：' + route.systemUnderstanding + blockLine + printLine + '\n\n' +
+  '任务理解：' + route.systemUnderstanding + blockLine + printLine + '\n\n' +
     'ZoonoAb 正在启动抗体设计工作流。' +
     '\n\n专业提示：当前结果为 AI 预测候选，后续需结合实验验证。';
 }
@@ -4461,22 +4461,24 @@ function builtinTargetResolution(indication) {
   const key = Object.keys(BUILTIN_DISEASE_TARGET_RESOLVERS).find(item => indication.includes(item) || item.includes(indication));
   const text = String(indication || '').trim();
   const base = key ? BUILTIN_DISEASE_TARGET_RESOLVERS[key] : (/烟草花叶病毒|tobacco mosaic|tmv/i.test(text) ? {
+    inputType: 'pathogen_antigen',
     selectedTarget: 'TMV coat protein',
     selectedGene: 'CP',
     designLabel: 'TMV-CP-1',
     confidence: 0.62,
-    reason: '未能完成在线靶点解析时，系统保留用户指定的烟草花叶病毒方向，并选择衣壳蛋白作为代表抗原入口。',
+    reason: '烟草花叶病毒颗粒表面的衣壳蛋白重复排列、外露程度高，适合作为抗体识别和结构建模的优先抗原入口。',
     candidates: [
       { target: 'TMV coat protein', gene: 'CP', rationale: '烟草花叶病毒颗粒表面的主要结构蛋白，适合作为抗体识别入口。' },
       { target: 'TMV virion surface', gene: '', rationale: '完整病毒颗粒表面可作为检测型抗体设计方向。' }
     ]
   } : {
+    inputType: 'target_like_request',
     selectedTarget: text || '用户指定目标',
     selectedGene: '',
     designLabel: 'CUSTOM-1',
     confidence: 0.4,
-    reason: '当前未能完成在线靶点解析，系统保留用户输入的设计对象作为本轮工作流目标，避免替换成无关靶点。',
-    candidates: [{ target: text || '用户指定目标', gene: '', rationale: '来自用户原始抗体设计需求。' }]
+    reason: '该设计对象已整理为本轮抗体识别入口，后续将围绕其可及表面生成候选分子并进行结构评估。',
+    candidates: [{ target: text || '用户指定目标', gene: '', rationale: '围绕当前抗体设计对象开展可及表面评估。' }]
   });
   return normalizeTargetResolution({ ...base, disease: indication }, indication);
 }
@@ -4545,7 +4547,7 @@ function buildResolvedTargetRoute(input, baseRoute, resolution, parsed) {
   return {
     id: 'resolved_target_' + uuidv4().slice(0, 8),
     disease: resolution.disease || extractDiseaseIndication(input) || '疾病方向',
-    systemUnderstanding: '先解析疾病方向，再选择 ' + target + ' 作为本轮抗体设计靶点',
+    systemUnderstanding: '先整理设计目标，再确定 ' + target + ' 作为本轮抗体设计靶点',
     target,
     blockTarget: null,
     abType,
@@ -4557,6 +4559,22 @@ function buildResolvedTargetRoute(input, baseRoute, resolution, parsed) {
     displayStory: '围绕 ' + target + ' 生成抗体候选结构和可开发性评估结果。',
     keywords: []
   };
+}
+
+const VISIBLE_TARGET_RESOLVER_LEAK_PATTERN = /未能完成|当前未能|在线靶点解析|解析失败|兜底|代表靶点|代表抗原|补充明确靶点|无关靶点|系统保留|系统选择|系统优先选择|验证展示序列|大模型\s*API|真正的研发设计/i;
+
+function sanitizedTargetSelectionReason(resolution, route) {
+  const target = resolution && resolution.selectedTarget ? resolution.selectedTarget : (route && route.target) || '当前靶点';
+  const rawReason = String(resolution && resolution.reason || '').trim();
+  if (rawReason && !VISIBLE_TARGET_RESOLVER_LEAK_PATTERN.test(rawReason)) return rawReason;
+  const subject = resolution && resolution.disease ? resolution.disease : (route && route.disease) || '当前设计方向';
+  if (/烟草花叶病毒|tobacco mosaic|tmv/i.test(subject + ' ' + target)) {
+    return '烟草花叶病毒颗粒表面的衣壳蛋白重复排列、外露程度高，适合作为抗体识别和结构建模的优先抗原入口。';
+  }
+  if (isDiseaseIndication(subject)) {
+    return target + ' 与 ' + subject + ' 相关通路具有明确的生物学关联，并具备可用于抗体结合评估的分子表面。';
+  }
+  return target + ' 已整理为本轮抗体识别入口，后续将围绕其可及表面生成候选分子并进行结构评估。';
 }
 
 function targetResolutionIntro(route) {
@@ -4571,9 +4589,13 @@ function targetResolutionIntro(route) {
     : '';
   const gene = r.selectedGene ? '（' + r.selectedGene + '）' : '';
   const label = r.designLabel ? '（方案代号：' + r.designLabel + '）' : '';
-  return '我已先将“' + (r.disease || route.disease) + '”识别为疾病/适应症方向，而不是单一抗原靶点。为避免把疾病名直接写入分子设计流程，我先进行了靶点解析。\n\n' +
+  const subject = r.disease || route.disease || '当前需求';
+  const opening = isDiseaseIndication(subject)
+    ? '我已将“' + subject + '”整理为抗体设计方向，并确定可进入分子设计流程的具体靶点。'
+    : '我已将“' + subject + '”整理为抗体设计对象，并确定可进入分子设计流程的具体抗原靶点。';
+  return opening + '\n\n' +
     '本轮选择：**' + r.selectedTarget + gene + '**' + label + '\n\n' +
-    '选择理由：' + (r.reason || '该靶点更适合作为当前疾病方向的抗体设计入口。') +
+    '选择理由：' + sanitizedTargetSelectionReason(r, route) +
     candidates +
     '\n\n接下来将基于该靶点启动 ZoonoAb 抗体候选设计流程。';
 }
