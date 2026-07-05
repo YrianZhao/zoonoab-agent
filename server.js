@@ -13,6 +13,8 @@ const { spawn, spawnSync } = require('child_process');
 const { v4: uuidv4 } = require('uuid');
 const {
   extractDesignRequest,
+  extractDiseaseIndication,
+  isDiseaseIndication,
   buildDynamicDemoRoute,
   buildGenericTargetProfile,
   shouldSuppressDesignWorkflow
@@ -3835,6 +3837,43 @@ const REPRESENTATIVE_DEMO_DIRECTIONS = [
   { label: '神经退行性疾病方向需求', keywords: ['阿尔茨海默', '老年痴呆', 'alzheimer'] }
 ];
 
+const BUILTIN_DISEASE_TARGET_RESOLVERS = {
+  '肥胖': {
+    selectedTarget: 'Activin E / Myostatin',
+    selectedGene: 'INHBE / GDF8',
+    designLabel: 'OBESITY-1',
+    confidence: 0.72,
+    reason: '肥胖属于疾病方向而不是单一抗原靶点。系统优先选择 Activin E / Myostatin 作为本轮代表靶点，用于展示代谢调控、体成分改善和瘦体重保持相关的抗体设计路线。',
+    candidates: [
+      { target: 'Activin E', gene: 'INHBE', rationale: '与脂肪分布和心代谢调控相关，可作为肥胖方向抗体探索靶点。' },
+      { target: 'Myostatin', gene: 'GDF8', rationale: '与骨骼肌保持和体成分改善相关，适合减重辅助场景。' },
+      { target: 'ActRIIA / ActRIIB', gene: 'ACVR2A / ACVR2B', rationale: 'activin/myostatin 通路受体，存在抗体阻断研究基础。' }
+    ]
+  },
+  '糖尿病': {
+    selectedTarget: 'GIPR',
+    selectedGene: 'GIPR',
+    designLabel: 'METABOLIC-1',
+    confidence: 0.68,
+    reason: '糖尿病属于代谢疾病方向。系统选择 GIPR 作为代表性可设计靶点，用于展示肠促胰岛素受体相关的抗体设计路线。',
+    candidates: [
+      { target: 'GIPR', gene: 'GIPR', rationale: '代谢调控和肠促胰岛素通路相关。' },
+      { target: 'ANGPTL3', gene: 'ANGPTL3', rationale: '脂质代谢调控相关，适合代谢疾病展示。' }
+    ]
+  },
+  '银屑病': {
+    selectedTarget: 'IL-17A',
+    selectedGene: 'IL17A',
+    designLabel: 'PSORIASIS-1',
+    confidence: 0.78,
+    reason: '银屑病方向已有清晰炎症通路靶点。系统选择 IL-17A 作为代表靶点，用于展示炎症轴中和抗体设计。',
+    candidates: [
+      { target: 'IL-17A', gene: 'IL17A', rationale: '银屑病炎症轴核心细胞因子之一。' },
+      { target: 'IL-23', gene: 'IL23A', rationale: 'Th17 炎症轴上游靶点。' }
+    ]
+  }
+};
+
 function normalizeCommandText(input) {
   return String(input || '')
     .toLowerCase()
@@ -3906,6 +3945,7 @@ function detectDemoRoute(input) {
   if (!normalized) return null;
   if (hasNonBiomedicalContext(normalized)) return null;
   const designRequest = extractDesignRequest(input);
+  const diseaseIndication = extractDiseaseIndication(input);
 
   if (/angptl3/.test(normalized) && /(代谢|脂质代谢|metabolic|lipid metabolism)/.test(normalized)) {
     return DEMO_ROUTE_RULES.find(rule => rule.id === 'metabolic_angptl3') || getDefaultDemoRoute();
@@ -3926,9 +3966,13 @@ function detectDemoRoute(input) {
   if (/her\s*-?\s*2|erbb\s*-?\s*2/.test(normalized)) return DEMO_ROUTE_RULES.find(rule => rule.id === 'breast_cancer') || getDefaultDemoRoute();
   if (/tnf/.test(normalized)) return DEMO_ROUTE_RULES.find(rule => rule.id === 'autoimmune_inflammation') || getDefaultDemoRoute();
 
-  if (designRequest.isDesignRequest && designRequest.target) {
+  if (designRequest.isDesignRequest && designRequest.target && !isDiseaseIndication(designRequest.target)) {
     const dynamicRoute = buildDynamicDemoRoute(input);
     if (dynamicRoute) return dynamicRoute;
+  }
+
+  if (designRequest.isDesignRequest && diseaseIndication) {
+    return null;
   }
 
   if (/(设计|生成|做|来一个|演示|打印|结构模型|候选).*(抗体|分子|模型)|抗体.*(设计|生成|演示|打印|模型)|antibody.*(design|generate|demo)|design.*antibody/.test(normalized)) {
@@ -4150,11 +4194,23 @@ function demoRouteIntro(route, input) {
   return '已理解您的需求：\n\n' +
   '疾病方向：' + route.disease + '\n' +
   '设计类型：抗体候选分子\n' +
-    (route.dynamic ? '目标抗原：' : 'AI 推荐靶点：') + route.target + (route.blockTarget ? ' / ' + route.blockTarget : '') + '\n' +
+    (route.resolvedByModel ? 'AI 解析靶点：' : (route.dynamic ? '目标抗原：' : 'AI 推荐靶点：')) + route.target + (route.blockTarget ? ' / ' + route.blockTarget : '') + '\n' +
   '抗体形式：' + route.abType + '\n' +
   '系统理解：' + route.systemUnderstanding + blockLine + printLine + '\n\n' +
     'ZoonoAb 正在启动抗体设计工作流。' +
     '\n\n专业提示：当前结果为 AI 预测候选，后续需结合实验验证。';
+}
+
+function shouldResolveDesignTargetBeforeWorkflow(input, routing) {
+  const text = String(input || '').trim();
+  if (!text || shouldSuppressDesignWorkflow(text)) return false;
+  const parsed = extractDesignRequest(text);
+  if (!parsed.isDesignRequest) return false;
+  const indication = extractDiseaseIndication(text) || (parsed.target && isDiseaseIndication(parsed.target) ? parsed.target : '');
+  if (!indication) return false;
+  if (parsed.target && !isDiseaseIndication(parsed.target)) return false;
+  if (routing && routing.localWorkflowAllowed && routing.demoRoute && !routing.demoRoute.dynamic) return false;
+  return true;
 }
 
 function normalizeChatBaseUrl(rawUrl) {
@@ -4321,6 +4377,162 @@ async function askAssistantModel(input, voiceSessionId) {
   }
 }
 
+function extractJsonObjectFromText(text) {
+  const raw = String(text || '').trim();
+  if (!raw) return null;
+  try { return JSON.parse(raw); } catch {}
+  const fenced = raw.match(/```(?:json)?\s*([\s\S]*?)```/i);
+  if (fenced) {
+    try { return JSON.parse(fenced[1]); } catch {}
+  }
+  const start = raw.indexOf('{');
+  const end = raw.lastIndexOf('}');
+  if (start >= 0 && end > start) {
+    try { return JSON.parse(raw.slice(start, end + 1)); } catch {}
+  }
+  return null;
+}
+
+function normalizeResolverTarget(value) {
+  return String(value || '')
+    .replace(/[“”"']/g, '')
+    .replace(/\s*\/\s*/g, ' / ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, 80);
+}
+
+function normalizeTargetResolution(data, indication) {
+  const source = data && typeof data === 'object' ? data : {};
+  const selectedTarget = normalizeResolverTarget(source.selectedTarget || source.target || source.selected_target);
+  const selectedGene = normalizeResolverTarget(source.selectedGene || source.gene || source.selected_gene);
+  if (!selectedTarget) return null;
+  if (isDiseaseIndication(selectedTarget) && selectedTarget === indication) return null;
+  const candidates = Array.isArray(source.candidates) ? source.candidates.slice(0, 5).map(item => ({
+    target: normalizeResolverTarget(item && (item.target || item.name)),
+    gene: normalizeResolverTarget(item && item.gene),
+    rationale: String(item && (item.rationale || item.reason || '') || '').trim().slice(0, 220)
+  })).filter(item => item.target) : [];
+  return {
+    inputType: String(source.inputType || source.input_type || 'disease_indication'),
+    disease: normalizeResolverTarget(source.disease || indication),
+    selectedTarget,
+    selectedGene,
+    designLabel: normalizeResolverTarget(source.designLabel || source.design_label || indication + '-1'),
+    confidence: Math.max(0, Math.min(1, Number(source.confidence) || 0.6)),
+    reason: String(source.reason || source.rationale || '').trim().slice(0, 520),
+    candidates
+  };
+}
+
+function builtinTargetResolution(indication) {
+  const key = Object.keys(BUILTIN_DISEASE_TARGET_RESOLVERS).find(item => indication.includes(item) || item.includes(indication));
+  const base = key ? BUILTIN_DISEASE_TARGET_RESOLVERS[key] : {
+    selectedTarget: 'PD-L1',
+    selectedGene: 'CD274',
+    designLabel: 'INDICATION-1',
+    confidence: 0.45,
+    reason: indication + ' 更像疾病方向而不是单一抗原靶点。当前未能完成在线靶点解析，系统选择已验证展示链路中的 PD-L1 作为代表靶点；建议后续补充明确靶点后再执行真实研发设计。',
+    candidates: [{ target: 'PD-L1', gene: 'CD274', rationale: '稳定展示路线兜底靶点。' }]
+  };
+  return normalizeTargetResolution({ ...base, disease: indication }, indication);
+}
+
+function buildTargetResolverPrompt(indication, input) {
+  return [
+    '你是 ZoonoAb 的疾病到抗体靶点解析器。任务：把用户的疾病/适应症设计需求解析成可以进入抗体设计工作流的真实抗原/蛋白靶点。',
+    '可以使用你的内置知识进行判断；如果你具备搜索/检索能力，也可以综合最新公开信息。不要把疾病名本身当作抗原，不要输出“肥胖表面抗原”这类伪靶点。',
+    '如果搜索或知识中出现 OBESITY-1 这类编号，请把它放入 designLabel；真正进入工作流的 selectedTarget 必须是蛋白、受体、细胞因子、通路靶点或抗原名称。',
+    '只输出 JSON，不要输出 Markdown。字段：inputType, disease, selectedTarget, selectedGene, designLabel, confidence, reason, candidates。',
+    'candidates 是数组，每项包含 target, gene, rationale。reason 用中文，面向展会观众说明为什么选择该靶点。',
+    '用户原始需求：' + String(input || '').slice(0, 500),
+    '识别到的疾病/适应症：' + indication
+  ].join('\n');
+}
+
+async function resolveDiseaseTargetWithModel(input, indication, voiceSessionId) {
+  const cfg = getAssistantChatConfig(voiceSessionId);
+  if (!cfg.key || !cfg.url || typeof fetch !== 'function') return builtinTargetResolution(indication);
+  const controller = typeof AbortController === 'function' ? new AbortController() : null;
+  const timeout = controller ? setTimeout(() => controller.abort(), 9500) : null;
+  try {
+    const upstream = await fetch(cfg.url, {
+      method: 'POST',
+      headers: {
+        Authorization: 'Bearer ' + cfg.key,
+        'Content-Type': 'application/json'
+      },
+      signal: controller ? controller.signal : undefined,
+      body: JSON.stringify({
+        model: cfg.model,
+        messages: [
+          { role: 'system', content: buildTargetResolverPrompt(indication, input) },
+          { role: 'user', content: String(input || '').slice(0, 2000) }
+        ],
+        temperature: 0.2,
+        max_tokens: 720,
+        stream: false
+      })
+    });
+    if (timeout) clearTimeout(timeout);
+    const text = await upstream.text();
+    if (!upstream.ok) {
+      console.error('[TargetResolver] request failed:', upstream.status, parseProviderError(text));
+      return builtinTargetResolution(indication);
+    }
+    let data;
+    try { data = JSON.parse(text); } catch { data = {}; }
+    const content = data && data.choices && data.choices[0] && data.choices[0].message
+      ? data.choices[0].message.content
+      : '';
+    return normalizeTargetResolution(extractJsonObjectFromText(content), indication) || builtinTargetResolution(indication);
+  } catch (err) {
+    if (timeout) clearTimeout(timeout);
+    console.error('[TargetResolver] error:', err && err.message ? err.message : err);
+    return builtinTargetResolution(indication);
+  }
+}
+
+function buildResolvedTargetRoute(input, baseRoute, resolution, parsed) {
+  const count = parsed && parsed.count ? parsed.count : (baseRoute && baseRoute.count) || 10;
+  const abType = parsed && parsed.abType ? parsed.abType : (baseRoute && baseRoute.abType) || 'Fab';
+  const target = resolution.selectedTarget;
+  return {
+    id: 'resolved_target_' + uuidv4().slice(0, 8),
+    disease: resolution.disease || extractDiseaseIndication(input) || '疾病方向',
+    systemUnderstanding: '先解析疾病方向，再选择 ' + target + ' 作为本轮抗体设计靶点',
+    target,
+    blockTarget: null,
+    abType,
+    count,
+    printable: true,
+    dynamic: true,
+    resolvedByModel: true,
+    targetResolution: resolution,
+    displayStory: '围绕 ' + target + ' 生成抗体候选结构和可开发性评估结果。',
+    keywords: []
+  };
+}
+
+function targetResolutionIntro(route) {
+  const r = route && route.targetResolution ? route.targetResolution : null;
+  if (!r) return '';
+  const candidates = Array.isArray(r.candidates) && r.candidates.length
+    ? '\n\n候选靶点评估：\n' + r.candidates.slice(0, 3).map((item, idx) => {
+      const gene = item.gene ? ' / ' + item.gene : '';
+      const rationale = item.rationale ? '：' + item.rationale : '';
+      return String(idx + 1) + '. ' + item.target + gene + rationale;
+    }).join('\n')
+    : '';
+  const gene = r.selectedGene ? '（' + r.selectedGene + '）' : '';
+  const label = r.designLabel ? '（方案代号：' + r.designLabel + '）' : '';
+  return '我已先将“' + (r.disease || route.disease) + '”识别为疾病/适应症方向，而不是单一抗原靶点。为避免把疾病名直接写入分子设计流程，我先进行了靶点解析。\n\n' +
+    '本轮选择：**' + r.selectedTarget + gene + '**' + label + '\n\n' +
+    '选择理由：' + (r.reason || '该靶点更适合作为当前疾病方向的抗体设计入口。') +
+    candidates +
+    '\n\n接下来将基于该靶点启动 ZoonoAb 抗体候选设计流程。';
+}
+
 async function runAssistantChat(ws, input, voiceSessionId) {
   const delay = ms => new Promise(r => setTimeout(r, ms));
   const send = data => { if (ws.readyState === 1) ws.send(JSON.stringify(data)); };
@@ -4339,9 +4551,28 @@ async function runDemoRoutedWorkflow(ws, input, route) {
   const sess = findSessionBySocket(ws);
   const delay = (ms) => workflowDelay(ws, sess, ms);
   markWorkflowStage(sess, '设计意图确认');
+  if (route && route.targetResolution) {
+    send({ type: 'agent_msg', text: targetResolutionIntro(route) });
+    await delay(700);
+  }
   send({ type: 'agent_msg', text: demoRouteIntro(route, input) });
   await delay(800);
   await runWorkflow(ws, buildDemoInstruction(input, route), route);
+}
+
+async function runResolvedDiseaseDesign(ws, input, voiceSessionId) {
+  const send = data => { if (ws.readyState === 1) ws.send(JSON.stringify(data)); };
+  const sess = findSessionBySocket(ws);
+  const delay = (ms) => workflowDelay(ws, sess, ms);
+  const parsed = extractDesignRequest(input);
+  const indication = extractDiseaseIndication(input) || (parsed.target && isDiseaseIndication(parsed.target) ? parsed.target : '');
+  if (!indication) return runAssistantChat(ws, input, voiceSessionId);
+  markWorkflowStage(sess, '靶点解析');
+  send({ type: 'log', text: '[TargetAgent] 识别到疾病/适应症方向，正在解析可进入抗体设计的具体靶点...' });
+  const resolution = await resolveDiseaseTargetWithModel(input, indication, voiceSessionId);
+  const route = buildResolvedTargetRoute(input, null, resolution, parsed);
+  await delay(400);
+  await runDemoRoutedWorkflow(ws, input, route);
 }
 
 function parseRequest(input, forcedRoute) {
@@ -5119,6 +5350,16 @@ function resolveUserMessageRunner(msg, cleanText) {
     };
   }
   const routing = resolveUserRouting(cleanText);
+  if (shouldResolveDesignTargetBeforeWorkflow(cleanText, routing)) {
+    return {
+      ...routing,
+      detectedIntent: 'design',
+      intent: 'design',
+      localWorkflowAllowed: true,
+      demoRoute: null,
+      runner: (socket, text) => runResolvedDiseaseDesign(socket, text, msg.voiceSessionId)
+    };
+  }
   const intent = routing.intent;
   const demoRoute = routing.demoRoute;
   const handlers = getWorkflowHandlers();
@@ -5949,12 +6190,19 @@ if (process.env.NODE_ENV === 'test') {
     const text = String(req.query.text || '');
     const route = detectDemoRoute(text);
     const parsed = parseRequest(text, route || undefined);
-    const profile = buildRouteProfile(parsed.target, parsed.blockTarget, parsed.abType);
-    if (route && route.id) profile.routeId = route.id;
+    const diseaseIndication = extractDiseaseIndication(text) || (parsed.target && isDiseaseIndication(parsed.target) ? parsed.target : '');
+    const designRequest = extractDesignRequest(text);
+    const requiresTargetResolution = Boolean(designRequest.isDesignRequest && diseaseIndication && (!route || !route.dynamic) && (!designRequest.target || isDiseaseIndication(designRequest.target)));
+    const profile = !requiresTargetResolution && (route || parsed.target)
+      ? buildRouteProfile(parsed.target, parsed.blockTarget, parsed.abType)
+      : null;
+    if (profile && route && route.id) profile.routeId = route.id;
     res.json({
-      intent: detectIntent(text),
+      intent: requiresTargetResolution ? 'design' : detectIntent(text),
       route,
       parsed,
+      diseaseIndication,
+      requiresTargetResolution,
       profile
     });
   });
@@ -5962,9 +6210,14 @@ if (process.env.NODE_ENV === 'test') {
   app.get('/api/debug/user-routing', (req, res) => {
     const text = String(req.query.text || '');
     const routing = resolveUserRouting(text);
+    const requiresTargetResolution = shouldResolveDesignTargetBeforeWorkflow(text, routing);
     res.json({
       ...routing,
-      runner: routing.intent === 'assistant_chat' ? 'assistant_chat' : 'local_workflow'
+      intent: requiresTargetResolution ? 'design' : routing.intent,
+      localWorkflowAllowed: requiresTargetResolution ? true : routing.localWorkflowAllowed,
+      requiresTargetResolution,
+      diseaseIndication: extractDiseaseIndication(text),
+      runner: requiresTargetResolution ? 'target_resolution_workflow' : (routing.intent === 'assistant_chat' ? 'assistant_chat' : 'local_workflow')
     });
   });
 

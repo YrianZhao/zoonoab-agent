@@ -30,23 +30,27 @@ async function waitForHealth() {
   throw new Error('server did not become healthy');
 }
 
-function collectUserMessageStream(text) {
+function collectUserMessageStream(text, options = {}) {
   return new Promise((resolve, reject) => {
     const ws = new WebSocket('ws://127.0.0.1:' + PORT);
     const messages = [];
     const timer = setTimeout(() => {
       try { ws.close(); } catch {}
       reject(new Error('timed out waiting for websocket done message'));
-    }, 8000);
+    }, options.timeoutMs || 8000);
 
     ws.on('open', () => {
-      ws.send(JSON.stringify({ type: 'user_msg', text }));
+      ws.send(JSON.stringify({
+        type: 'user_msg',
+        text,
+        ...(options.voiceSessionId ? { voiceSessionId: options.voiceSessionId } : {})
+      }));
     });
     ws.on('message', raw => {
       let msg;
       try { msg = JSON.parse(String(raw)); } catch { return; }
       messages.push(msg);
-      if (msg.type === 'done') {
+      if ((typeof options.stopWhen === 'function' && options.stopWhen(msg, messages)) || msg.type === 'done') {
         clearTimeout(timer);
         ws.close();
         resolve(messages);
@@ -182,23 +186,33 @@ test('server does not replace unsupported disease requests with representative l
   assert.equal(data.demoRoute, null);
 });
 
-test('server keeps obesity as the clean user target without the leading phrase', async () => {
+test('server routes obesity indication requests through target resolution instead of direct disease target', async () => {
   const query = encodeURIComponent('帮我设计10个针对肥胖的抗体');
   const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/user-routing?text=' + query);
   assert.equal(res.status, 200);
   const data = await res.json();
-  const serialized = JSON.stringify(data);
 
   assert.equal(data.intent, 'design');
   assert.equal(data.localWorkflowAllowed, true);
-  assert.equal(data.runner, 'local_workflow');
-  assert.equal(data.demoRoute.target, '肥胖');
-  assert.equal(data.demoRoute.dynamic, true);
-  assert.doesNotMatch(serialized, /一个针对肥胖/);
-  assert.doesNotMatch(serialized, /GIPR/);
+  assert.equal(data.runner, 'target_resolution_workflow');
+  assert.equal(data.requiresTargetResolution, true);
+  assert.equal(data.diseaseIndication, '肥胖');
 });
 
-test('server design route renders obesity as the clean target field', async () => {
+test('server routes compact obesity antibody wording through target resolution', async () => {
+  const query = encodeURIComponent('设计一个肥胖抗体');
+  const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/user-routing?text=' + query);
+  assert.equal(res.status, 200);
+  const data = await res.json();
+
+  assert.equal(data.intent, 'design');
+  assert.equal(data.localWorkflowAllowed, true);
+  assert.equal(data.runner, 'target_resolution_workflow');
+  assert.equal(data.requiresTargetResolution, true);
+  assert.equal(data.diseaseIndication, '肥胖');
+});
+
+test('server design route does not render obesity as a direct antigen target', async () => {
   const query = encodeURIComponent('设计一个针对肥胖的抗体');
   const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/design-route?text=' + query);
   assert.equal(res.status, 200);
@@ -206,27 +220,102 @@ test('server design route renders obesity as the clean target field', async () =
   const serialized = JSON.stringify(data);
 
   assert.equal(data.intent, 'design');
-  assert.equal(data.route.target, '肥胖');
-  assert.equal(data.route.dynamic, true);
+  assert.equal(data.route, null);
   assert.equal(data.parsed.target, '肥胖');
-  assert.equal(data.profile.targetDisplay, '肥胖');
-  assert.match(data.profile.mechanism, /肥胖/);
-  assert.doesNotMatch(serialized, /一个针对肥胖|GIPR/);
+  assert.equal(data.diseaseIndication, '肥胖');
+  assert.doesNotMatch(serialized, /肥胖\s*(?:表面|目标)?抗原|肥胖\s*代表性目标结构约束|肥胖\s*抗原可及/);
 });
 
-test('server keeps diabetes as the clean user target without the leading phrase', async () => {
+test('disease design requests resolve a real target before launching the workflow', async () => {
+  let captured = null;
+  const mockServer = http.createServer((req, res) => {
+    let body = '';
+    req.setEncoding('utf8');
+    req.on('data', chunk => { body += chunk; });
+    req.on('end', () => {
+      captured = {
+        method: req.method,
+        url: req.url,
+        authorization: req.headers.authorization || '',
+        body: JSON.parse(body || '{}')
+      };
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify({
+        choices: [
+          {
+            message: {
+              content: JSON.stringify({
+                inputType: 'disease_indication',
+                disease: '肥胖',
+                selectedTarget: 'Activin E / Myostatin',
+                selectedGene: 'INHBE / GDF8',
+                designLabel: 'OBESITY-1',
+                confidence: 0.88,
+                reason: '肥胖方向更适合先解析到可设计抗体靶点。Activin E / Myostatin 与代谢调控、体重管理和瘦体重保持相关，适合作为本轮抗体设计代表靶点。',
+                candidates: [
+                  { target: 'Activin E', gene: 'INHBE', rationale: '脂肪分布和心代谢调控相关' },
+                  { target: 'Myostatin', gene: 'GDF8', rationale: '骨骼肌保持和体成分改善相关' }
+                ]
+              })
+            }
+          }
+        ]
+      }));
+    });
+  });
+
+  await new Promise(resolve => mockServer.listen(MOCK_CHAT_PORT, '127.0.0.1', resolve));
+  try {
+    const saveResp = await fetch('http://127.0.0.1:' + PORT + '/api/voice/session', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        voice: { mode: 'local', provider: 'local' },
+        chat: {
+          baseUrl: 'http://127.0.0.1:' + MOCK_CHAT_PORT + '/v1',
+          apiKey: 'sk-target-resolver-secret',
+          model: 'mock-target-resolver'
+        }
+      })
+    });
+    assert.equal(saveResp.status, 200);
+    const saved = await saveResp.json();
+
+    const messages = await collectUserMessageStream('设计一个针对肥胖的抗体', {
+      timeoutMs: 12000,
+      voiceSessionId: saved.voiceSessionId,
+      stopWhen: (msg) => msg.type === 'tool_call' && msg.tool === 'target_evidence_review'
+    });
+    const serialized = JSON.stringify(messages);
+    const agentTexts = messages.filter(msg => msg.type === 'agent_msg').map(msg => msg.text || '');
+    const evidenceCall = messages.find(msg => msg.type === 'tool_call' && msg.tool === 'target_evidence_review');
+
+    assert.equal(captured.method, 'POST');
+    assert.equal(captured.url, '/v1/chat/completions');
+    assert.equal(captured.authorization, 'Bearer sk-target-resolver-secret');
+    assert.equal(captured.body.model, 'mock-target-resolver');
+    assert.match(captured.body.messages[0].content, /靶点解析|疾病方向|JSON/);
+    assert.match(captured.body.messages[1].content, /设计一个针对肥胖的抗体/);
+    assert.match(agentTexts[0], /肥胖|OBESITY-1|Activin E|Myostatin|INHBE|GDF8/);
+    assert.equal(evidenceCall.params.target, 'Activin E/Myostatin');
+    assert.match(serialized, /Activin E \/ Myostatin|INHBE \/ GDF8/);
+    assert.doesNotMatch(serialized, /肥胖\s*(?:表面|目标)?抗原|肥胖\s*代表性目标结构约束|肥胖\s*抗原可及/);
+  } finally {
+    await new Promise(resolve => mockServer.close(resolve));
+  }
+});
+
+test('server routes diabetes indication requests through target resolution', async () => {
   const query = encodeURIComponent('帮我设计10个针对糖尿病的抗体');
   const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/user-routing?text=' + query);
   assert.equal(res.status, 200);
   const data = await res.json();
-  const serialized = JSON.stringify(data);
 
   assert.equal(data.intent, 'design');
   assert.equal(data.localWorkflowAllowed, true);
-  assert.equal(data.runner, 'local_workflow');
-  assert.equal(data.demoRoute.target, '糖尿病');
-  assert.equal(data.demoRoute.dynamic, true);
-  assert.doesNotMatch(serialized, /一个针对糖尿病|针对糖尿病/);
+  assert.equal(data.runner, 'target_resolution_workflow');
+  assert.equal(data.requiresTargetResolution, true);
+  assert.equal(data.diseaseIndication, '糖尿病');
 });
 
 test('server does not treat ordinary English words containing ha as influenza HA', async () => {
