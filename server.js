@@ -70,6 +70,8 @@ const LOCAL_ASR_TORCH_INDEX_URL = process.env.LOCAL_ASR_TORCH_INDEX_URL || 'http
 const ASSISTANT_CHAT_MODEL = process.env.ASSISTANT_CHAT_MODEL || process.env.DEEPSEEK_CHAT_MODEL || 'deepseek-chat';
 const ASSISTANT_CHAT_BASE_URL = process.env.ASSISTANT_CHAT_BASE_URL || process.env.DEEPSEEK_CHAT_BASE_URL || process.env.VOICE_CHAT_BASE_URL || '';
 const VOICE_API_CONFIG_FILE = process.env.VOICE_API_CONFIG_FILE || resolveDefaultVoiceApiConfigFile();
+const WORKFLOW_REJECTION_LOG_FILE = process.env.WORKFLOW_REJECTION_LOG_FILE || resolveDefaultWorkflowRejectionLogFile();
+const WORKFLOW_REJECTION_LOG_MAX_LINES = Math.max(50, Number(process.env.WORKFLOW_REJECTION_LOG_MAX_LINES || 500) || 500);
 const TARGET_RESOLVER_TIMEOUT_MS = Math.max(5000, Number(process.env.TARGET_RESOLVER_TIMEOUT_MS || 45000) || 45000);
 const LOCAL_TTS_PROVIDER = String(process.env.LOCAL_TTS_PROVIDER || 'edge').trim().toLowerCase();
 const LOCAL_TTS_EDGE_VOICE = process.env.LOCAL_TTS_EDGE_VOICE || process.env.EDGE_TTS_VOICE || 'zh-CN-XiaoxiaoNeural';
@@ -169,6 +171,20 @@ function resolveDefaultVoiceApiConfigFile() {
     return persistentFile;
   } catch (err) {
     console.warn('[Voice] Persistent API config directory unavailable, falling back to project runtime:', err && err.message ? err.message : err);
+    return projectRuntimeFile;
+  }
+}
+
+function resolveDefaultWorkflowRejectionLogFile() {
+  const projectRuntimeFile = path.join(__dirname, '.runtime', 'workflow-rejection-logs.jsonl');
+  if (!IS_RENDER_RUNTIME) return projectRuntimeFile;
+  const persistentDir = path.join(RENDER_DATA_DIR || '/var/data', 'zoonoab');
+  try {
+    fs.mkdirSync(persistentDir, { recursive: true, mode: 0o700 });
+    fs.accessSync(persistentDir, fs.constants.W_OK);
+    return path.join(persistentDir, 'workflow-rejection-logs.jsonl');
+  } catch (err) {
+    console.warn('[WorkflowLog] Persistent log directory unavailable, falling back to project runtime:', err && err.message ? err.message : err);
     return projectRuntimeFile;
   }
 }
@@ -326,6 +342,98 @@ function rememberLocalAsrLog(stream, text) {
     text: normalized.slice(-800)
   });
   while (localAsrRecentLogs.length > 16) localAsrRecentLogs.shift();
+}
+
+function sanitizeWorkflowLogText(input, maxLength = 800) {
+  return String(input || '')
+    .replace(/[\u0000-\u001F\u007F]/g, ' ')
+    .replace(/\bsk-[A-Za-z0-9_-]{8,}\b/g, '[已隐藏]')
+    .replace(/\bBearer\s+[A-Za-z0-9._-]{8,}\b/ig, 'Bearer [已隐藏]')
+    .replace(/((?:api[_-]?key|token|password|密码|密钥)\s*[:=：]\s*)\S+/ig, '$1[已隐藏]')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, maxLength);
+}
+
+function explainWorkflowRejection(routing, input) {
+  const detectedIntent = routing && routing.detectedIntent ? routing.detectedIntent : 'assistant_chat';
+  const text = String(input || '');
+  if (!text.trim()) return '输入内容为空，未进入设计流程。';
+  if (shouldSuppressDesignWorkflow(text)) return '内容缺少生物医学设计上下文，未进入设计流程。';
+  if (detectedIntent === 'assistant_chat') return '未识别到需要执行的本地设计或分析任务。';
+  if (detectedIntent === 'capability') return '这是平台能力咨询，按助手问答处理。';
+  if (detectedIntent === 'design') return '设计任务信息不完整，未确认可执行的疾病方向或目标抗原。';
+  if (detectedIntent === 'epitope_prediction' || detectedIntent === 'uniprot' || detectedIntent === 'de_novo') {
+    return '缺少明确目标抗原或靶点，未进入设计流程。';
+  }
+  if (detectedIntent === 'chai1' || detectedIntent === 'affinity_maturation' || detectedIntent === 'humanization' || detectedIntent === 'physicochemical' || detectedIntent === 'risk_site') {
+    return '缺少可用于分析的蛋白序列，未进入设计流程。';
+  }
+  if (detectedIntent === 'concentration') return '缺少可换算的浓度或分子量信息，未进入设计流程。';
+  if (detectedIntent === 'msa') return '缺少可比对的多条序列，未进入设计流程。';
+  if (detectedIntent === 'interaction') return '缺少可识别的 PDB 结构信息，未进入设计流程。';
+  return '当前信息不足以启动本地设计流程，已按助手问答处理。';
+}
+
+function shouldRecordWorkflowRejection(routing, input) {
+  if (!routing || routing.intent !== 'assistant_chat' || routing.localWorkflowAllowed) return false;
+  const text = String(input || '').trim();
+  if (!text) return false;
+  if (routing.detectedIntent && routing.detectedIntent !== 'assistant_chat') return true;
+  return /设计|生成|开发|构建|筛选|工作流|分析|预测|查询|抗体|靶点|抗原|表位|蛋白|design|workflow|predict|analy/i.test(text);
+}
+
+function readWorkflowRejectionLogs(limit = 50) {
+  const safeLimit = Math.min(Math.max(Number(limit) || 50, 1), 200);
+  try {
+    if (!fs.existsSync(WORKFLOW_REJECTION_LOG_FILE)) return [];
+    const content = fs.readFileSync(WORKFLOW_REJECTION_LOG_FILE, 'utf8');
+    const lines = content.split(/\r?\n/).filter(Boolean).slice(-safeLimit);
+    const logs = [];
+    for (const line of lines) {
+      try {
+        const parsed = JSON.parse(line);
+        if (parsed && parsed.input) logs.push(parsed);
+      } catch {}
+    }
+    return logs.reverse();
+  } catch (err) {
+    console.error('[WorkflowLog] Failed to read logs:', err && err.message ? err.message : err);
+    return [];
+  }
+}
+
+function pruneWorkflowRejectionLogFile() {
+  try {
+    if (!fs.existsSync(WORKFLOW_REJECTION_LOG_FILE)) return;
+    const content = fs.readFileSync(WORKFLOW_REJECTION_LOG_FILE, 'utf8');
+    const lines = content.split(/\r?\n/).filter(Boolean);
+    if (lines.length <= WORKFLOW_REJECTION_LOG_MAX_LINES) return;
+    fs.writeFileSync(WORKFLOW_REJECTION_LOG_FILE, lines.slice(-WORKFLOW_REJECTION_LOG_MAX_LINES).join('\n') + '\n', { mode: 0o600 });
+  } catch (err) {
+    console.error('[WorkflowLog] Failed to prune logs:', err && err.message ? err.message : err);
+  }
+}
+
+function recordWorkflowRejection(routing, input, meta = {}) {
+  if (!shouldRecordWorkflowRejection(routing, input)) return;
+  const entry = {
+    id: uuidv4(),
+    at: new Date().toISOString(),
+    input: sanitizeWorkflowLogText(input),
+    detectedIntent: sanitizeWorkflowLogText(routing.detectedIntent || 'assistant_chat', 80),
+    finalIntent: sanitizeWorkflowLogText(routing.intent || 'assistant_chat', 80),
+    localWorkflowAllowed: Boolean(routing.localWorkflowAllowed),
+    runner: sanitizeWorkflowLogText(meta.runner || 'assistant_chat', 80),
+    reason: explainWorkflowRejection(routing, input)
+  };
+  try {
+    fs.mkdirSync(path.dirname(WORKFLOW_REJECTION_LOG_FILE), { recursive: true, mode: 0o700 });
+    fs.appendFileSync(WORKFLOW_REJECTION_LOG_FILE, JSON.stringify(entry) + '\n', { mode: 0o600 });
+    pruneWorkflowRejectionLogFile();
+  } catch (err) {
+    console.error('[WorkflowLog] Failed to record rejection:', err && err.message ? err.message : err);
+  }
 }
 
 app.use(express.json({ limit: '1mb' }));
@@ -6314,7 +6422,13 @@ wss.on('connection', ws => {
 
     if (msg.type === 'user_msg') {
       if (!msg.text || typeof msg.text !== 'string' || msg.text.length > 4000) return;
-      runSocketTask(ws, sid, msg, (cleanText) => resolveUserMessageRunner(msg, cleanText).runner);
+      runSocketTask(ws, sid, msg, (cleanText) => {
+        const resolved = resolveUserMessageRunner(msg, cleanText);
+        recordWorkflowRejection(resolved, cleanText, {
+          runner: resolved.intent === 'assistant_chat' ? 'assistant_chat' : 'local_workflow'
+        });
+        return resolved.runner;
+      });
     }
   });
   ws.on('close', () => {
@@ -6352,6 +6466,16 @@ app.post('/api/export/sequences', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   res.setHeader('Content-Disposition', 'attachment; filename="zoonoab_sequences.json"');
   return res.json({ platform: 'ZoonoAb', exported_at: new Date().toISOString(), count: sequences.length, sequences });
+});
+
+app.get('/api/workflow-rejection-logs', (req, res) => {
+  const limit = Math.min(Math.max(Number(req.query.limit || 50) || 50, 1), 200);
+  const logs = readWorkflowRejectionLogs(limit);
+  res.json({
+    ok: true,
+    count: logs.length,
+    logs
+  });
 });
 
 app.get('/api/health', (_, res) => res.json({

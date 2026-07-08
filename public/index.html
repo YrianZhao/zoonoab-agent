@@ -4327,6 +4327,8 @@
         .kb-card-action:hover { border-color: var(--brand-light); color: var(--brand); background: var(--brand-lighter); }
         .kb-card-action.primary { background: var(--brand); color: white; border-color: var(--brand); margin-left: auto; }
         .kb-card-action.primary:hover { background: var(--brand-dark); }
+        .kb-log-btn { margin-left: auto; padding: 5px 12px; border: 1px solid var(--border); background: white; border-radius: var(--radius-md); font-size: 12px; font-weight: 600; color: var(--text-secondary); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: var(--transition); white-space: nowrap; }
+        .kb-log-btn:hover { border-color: var(--brand-light); background: var(--brand-lighter); color: var(--brand-dark); transform: translateY(-1px); box-shadow: var(--shadow-xs); }
         .kb-empty { text-align: center; padding: 60px 20px; color: var(--text-muted); grid-column: 1/-1; }
         .kb-empty-icon { font-size: 48px; margin-bottom: 12px; }
         .kb-modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 300; display: none; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
@@ -4356,6 +4358,21 @@
         .kb-qa-input { flex: 1; padding: 9px 14px; border: 1px solid var(--border); border-radius: var(--radius-xl); font-size: 13px; font-family: inherit; outline: none; }
         .kb-qa-input:focus { border-color: var(--brand-light); }
         .kb-qa-send { padding: 9px 18px; background: var(--brand); color: white; border: none; border-radius: var(--radius-xl); font-size: 13px; font-weight: 600; cursor: pointer; }
+        .kb-log-modal-inner { width: 760px; max-width: 94vw; max-height: 82vh; display: flex; flex-direction: column; padding: 0; overflow: hidden; }
+        .kb-log-header { padding: 18px 20px 14px; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; }
+        .kb-log-title-row { display: flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 800; color: var(--text-primary); }
+        .kb-log-title-row i { width: 17px; height: 17px; color: var(--brand); }
+        .kb-log-sub { font-size: 12px; color: var(--text-muted); margin-top: 5px; line-height: 1.6; }
+        .kb-log-close { width: 30px; height: 30px; border: 1px solid var(--border); background: white; color: var(--text-muted); border-radius: var(--radius-md); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
+        .kb-log-close:hover { color: var(--text-primary); border-color: var(--brand-light); background: var(--brand-lighter); }
+        .kb-log-list { padding: 14px 20px 18px; overflow-y: auto; background: #FAFBFC; display: flex; flex-direction: column; gap: 10px; min-height: 220px; }
+        .kb-log-entry { background: white; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 12px 14px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 14px; }
+        .kb-log-input { font-size: 13px; font-weight: 700; color: var(--text-primary); line-height: 1.55; word-break: break-word; }
+        .kb-log-time { font-size: 11px; color: var(--text-muted); white-space: nowrap; }
+        .kb-log-reason { grid-column: 1 / -1; font-size: 12px; color: var(--text-secondary); line-height: 1.55; }
+        .kb-log-meta { grid-column: 1 / -1; display: flex; gap: 6px; flex-wrap: wrap; }
+        .kb-log-pill { padding: 2px 7px; border-radius: var(--radius-full); background: var(--bg-page); border: 1px solid var(--border); color: var(--text-muted); font-size: 10px; font-weight: 700; }
+        .kb-log-state { padding: 28px 20px; text-align: center; color: var(--text-muted); font-size: 13px; line-height: 1.7; }
     </style>
 <body>
     <!-- Header -->
@@ -4857,6 +4874,10 @@
                             <button class="kb-type-btn" onclick="kbSetType(this,'pdb')">PDB</button>
                             <button class="kb-type-btn" onclick="kbSetType(this,'img')">图片</button>
                         </div>
+                        <button class="kb-log-btn" type="button" onclick="openWorkflowDecisionLog()" title="查看未进入设计流程的输入记录">
+                            <i data-lucide="file-clock" style="width:13px;height:13px;"></i>
+                            判定日志
+                        </button>
                         <select class="kb-sort-select" onchange="kbRender()">
                             <option value="date">最新上传</option>
                             <option value="name">文件名</option>
@@ -4873,6 +4894,27 @@
                         <div class="kb-docs-grid" id="kbDocsGrid">
                             <!-- Rendered by kbRender() -->
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Workflow Decision Log Modal -->
+            <div class="kb-modal-overlay" id="workflowDecisionLogModal">
+                <div class="kb-modal kb-log-modal-inner" role="dialog" aria-modal="true" aria-labelledby="workflowDecisionLogTitle">
+                    <div class="kb-log-header">
+                        <div>
+                            <div class="kb-log-title-row" id="workflowDecisionLogTitle">
+                                <i data-lucide="file-clock"></i>
+                                判定日志
+                            </div>
+                            <div class="kb-log-sub">记录用户输入中未进入设计流程的请求，便于复盘规则边界和补充指令。</div>
+                        </div>
+                        <button class="kb-log-close" type="button" onclick="closeWorkflowDecisionLog()" title="关闭">
+                            <i data-lucide="x" style="width:15px;height:15px;"></i>
+                        </button>
+                    </div>
+                    <div class="kb-log-list" id="workflowDecisionLogList">
+                        <div class="kb-log-state">正在加载记录...</div>
                     </div>
                 </div>
             </div>
@@ -5640,7 +5682,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146062';
+    const APP_BUILD_VERSION = '78146063';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -6064,6 +6106,65 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     function kbSearch(val) {
         kbSearchQuery = val;
         kbRender();
+    }
+
+    function formatDecisionLogTime(value) {
+        const date = new Date(value);
+        if (Number.isNaN(date.getTime())) return '--';
+        return date.toLocaleString('zh-CN', {
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+    }
+
+    function renderWorkflowDecisionLogs(logs) {
+        const list = document.getElementById('workflowDecisionLogList');
+        if (!list) return;
+        if (!Array.isArray(logs) || logs.length === 0) {
+            list.innerHTML = '<div class="kb-log-state">暂无记录。用户输入未进入设计流程时，会自动出现在这里。</div>';
+            return;
+        }
+        list.innerHTML = logs.map(item => `
+            <div class="kb-log-entry">
+                <div class="kb-log-input">${escHtml(item.input || '')}</div>
+                <div class="kb-log-time">${escHtml(formatDecisionLogTime(item.at))}</div>
+                <div class="kb-log-reason">${escHtml(item.reason || '当前信息不足以启动设计流程。')}</div>
+                <div class="kb-log-meta">
+                    <span class="kb-log-pill">识别：${escHtml(item.detectedIntent || 'assistant_chat')}</span>
+                    <span class="kb-log-pill">处理：${escHtml(item.finalIntent || 'assistant_chat')}</span>
+                    <span class="kb-log-pill">状态：未进入设计流程</span>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    async function loadWorkflowDecisionLogs() {
+        const list = document.getElementById('workflowDecisionLogList');
+        if (list) list.innerHTML = '<div class="kb-log-state">正在加载记录...</div>';
+        try {
+            const resp = await fetch('/api/workflow-rejection-logs?limit=80');
+            if (!resp.ok) throw new Error('HTTP ' + resp.status);
+            const data = await resp.json();
+            renderWorkflowDecisionLogs(data.logs || []);
+        } catch (err) {
+            if (list) list.innerHTML = '<div class="kb-log-state">暂时无法读取记录，请稍后再试。</div>';
+            showToast('判定日志读取失败', 'error');
+        }
+    }
+
+    function openWorkflowDecisionLog() {
+        const modal = document.getElementById('workflowDecisionLogModal');
+        if (!modal) return;
+        modal.style.display = 'flex';
+        refreshLucideIcons({ nodes: [modal] });
+        loadWorkflowDecisionLogs();
+    }
+
+    function closeWorkflowDecisionLog() {
+        const modal = document.getElementById('workflowDecisionLogModal');
+        if (modal) modal.style.display = 'none';
     }
 
     function openKBUpload() {

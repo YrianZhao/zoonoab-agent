@@ -10,6 +10,7 @@ const WebSocket = require('ws');
 const PORT = 19081;
 const MOCK_CHAT_PORT = 19082;
 const CONFIG_PATH = path.join(os.tmpdir(), 'zoonoab-test-voice-config-' + PORT + '.json');
+const REJECTION_LOG_PATH = path.join(os.tmpdir(), 'zoonoab-test-workflow-rejections-' + PORT + '.jsonl');
 const VISIBLE_RESOLVER_LEAK_PATTERN = /未能完成|当前未能|在线靶点解析|解析失败|兜底|代表靶点|代表抗原|补充明确靶点|无关靶点|系统保留|系统选择|系统优先选择|验证展示序列|大模型\s*API|真正的研发设计/;
 let serverProcess;
 
@@ -66,6 +67,7 @@ function collectUserMessageStream(text, options = {}) {
 
 test.before(async () => {
   try { fs.unlinkSync(CONFIG_PATH); } catch {}
+  try { fs.unlinkSync(REJECTION_LOG_PATH); } catch {}
   serverProcess = spawn(process.execPath, ['server.js'], {
     cwd: process.cwd(),
     env: {
@@ -73,6 +75,7 @@ test.before(async () => {
       NODE_ENV: 'test',
       PORT: String(PORT),
       VOICE_API_CONFIG_FILE: CONFIG_PATH,
+      WORKFLOW_REJECTION_LOG_FILE: REJECTION_LOG_PATH,
       LOCAL_ASR_AUTO_START: '0',
       TARGET_RESOLVER_TIMEOUT_MS: '4000'
     },
@@ -86,6 +89,7 @@ test.after(async () => {
   serverProcess.kill('SIGTERM');
   await new Promise(resolve => serverProcess.once('exit', resolve));
   try { fs.unlinkSync(CONFIG_PATH); } catch {}
+  try { fs.unlinkSync(REJECTION_LOG_PATH); } catch {}
 });
 
 test('server design route sends implicit unknown targets to target resolution', async () => {
@@ -246,6 +250,23 @@ test('server refuses ambiguous local workflow commands that would otherwise use 
   assert.equal(data.intent, 'assistant_chat');
   assert.equal(data.localWorkflowAllowed, false);
   assert.equal(data.runner, 'assistant_chat');
+});
+
+test('server records user inputs that are routed away from local workflows', async () => {
+  const text = '帮我做一下表位预测';
+  await collectUserMessageStream(text);
+
+  const res = await fetch('http://127.0.0.1:' + PORT + '/api/workflow-rejection-logs?limit=5');
+  assert.equal(res.status, 200);
+  const data = await res.json();
+  const entry = data.logs.find(item => item.input === text);
+
+  assert.ok(entry, 'expected rejected workflow input to be recorded');
+  assert.equal(entry.detectedIntent, 'epitope_prediction');
+  assert.equal(entry.finalIntent, 'assistant_chat');
+  assert.equal(entry.localWorkflowAllowed, false);
+  assert.match(entry.reason, /靶点|目标/);
+  assert.doesNotMatch(JSON.stringify(entry), /quick_design|白名单|写死|大模型 API/);
 });
 
 test('server routes implicit target design requests through target resolution', async () => {
