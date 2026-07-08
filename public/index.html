@@ -5698,7 +5698,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146069';
+    const APP_BUILD_VERSION = '78146070';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -14431,6 +14431,37 @@ ${fallbackTableRows(profile.rows)}
 
     let seqMol3dSpinInterval = null;
     let seqMol3dViewer = null;
+    const seqMolPdbTextCache = new Map();
+    const seqMolPdbRequestCache = new Map();
+
+    function fetchSeqMolPdbText(pdbId) {
+        const key = String(pdbId || '').trim().toUpperCase();
+        if (!key) return Promise.reject(new Error('Missing PDB ID'));
+        if (seqMolPdbTextCache.has(key)) return Promise.resolve(seqMolPdbTextCache.get(key));
+        if (seqMolPdbRequestCache.has(key)) return seqMolPdbRequestCache.get(key);
+        const request = fetch('/api/pdb/' + key, { cache: 'force-cache' })
+            .then(r => {
+                if (!r.ok) throw new Error('PDB request failed: ' + r.status);
+                return r.text();
+            })
+            .then(txt => {
+                seqMolPdbTextCache.set(key, txt);
+                seqMolPdbRequestCache.delete(key);
+                return txt;
+            })
+            .catch(err => {
+                seqMolPdbRequestCache.delete(key);
+                throw err;
+            });
+        seqMolPdbRequestCache.set(key, request);
+        return request;
+    }
+
+    function preloadSeqMol3dPreview(mol) {
+        const d = SEQ_MOL_DATA[mol];
+        if (!d || !d.pdbId) return;
+        fetchSeqMolPdbText(d.pdbId).catch(() => {});
+    }
 
     function renderSeqMolViz(mol) {
         const el = document.getElementById('seqMolViz');
@@ -14515,7 +14546,7 @@ ${fallbackTableRows(profile.rows)}
         if (!box || typeof $3Dmol === 'undefined') return;
         const viewer = $3Dmol.createViewer(box, { backgroundColor: '#0D1117' });
         seqMol3dViewer = viewer;
-        fetch('/api/pdb/' + pdbId).then(r => r.text()).then(txt => {
+        fetchSeqMolPdbText(pdbId).then(txt => {
             if (seqMol3dViewer !== viewer) return; // stale
             const model = viewer.addModel(txt, 'pdb');
             const chains = [];
@@ -16475,6 +16506,13 @@ ${fallbackTableRows(profile.rows)}
         setInterval(rotatePlaceholder, 4000);
 
         connectWS();
+
+        const preloadDefaultSeqMolPreview = () => preloadSeqMol3dPreview('nivolumab');
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(preloadDefaultSeqMolPreview, { timeout: 2000 });
+        } else {
+            setTimeout(preloadDefaultSeqMolPreview, 800);
+        }
 
         // Pre-fill demo VHH sequence in all right-panel inputs
         const seqInputs = ['cdrSeqInput','riskSeqInput','matSeqInput','humSeqInput','physSeqInput'];

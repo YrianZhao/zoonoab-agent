@@ -86,6 +86,10 @@ const COSYVOICE_TTS_SAMPLE_RATE = Number(process.env.COSYVOICE_TTS_SAMPLE_RATE |
 const COSYVOICE_TTS_TIMEOUT_MS = Math.max(3500, Number(process.env.COSYVOICE_TTS_TIMEOUT_MS || 12000) || 12000);
 const COSYVOICE_TTS_RETRY_MS = Math.max(30_000, Number(process.env.COSYVOICE_TTS_RETRY_MS || 5 * 60 * 1000) || 5 * 60 * 1000);
 const APP_BUILD_VERSION = readAppBuildVersion();
+const PDB_CACHE_TTL_MS = Math.max(60_000, Number(process.env.PDB_CACHE_TTL_MS || 6 * 60 * 60 * 1000) || 6 * 60 * 60 * 1000);
+const PDB_BROWSER_CACHE_MAX_AGE = Math.max(60, Math.floor(PDB_CACHE_TTL_MS / 1000));
+const PDB_CACHE_MAX_ENTRIES = Math.max(8, Number(process.env.PDB_CACHE_MAX_ENTRIES || 32) || 32);
+const pdbResponseCache = new Map();
 const VOICE_DOMAIN_PROMPT = [
   'ZoonoAb AI antibody design platform.',
   'Common terms: IL-33, ST2, VHH, nanobody, Fab, PD-1, PD-L1, HER2, EGFR, VEGF-A, TNF, IL-17A, IL-23, TSLP, RSV F, RBD, HA, PCSK9, ANGPTL3, GIPR, CD3e, UniProt, Chai-1, ipTM, pLDDT, DockQ, PDB, CDR, CDR-H3.',
@@ -3741,19 +3745,55 @@ app.get('/api/pdb/:pdbId', (req, res) => {
   const raw = req.params.pdbId;
   if (!/^[A-Za-z0-9]{4}$/.test(raw)) return res.status(400).json({ error: 'Invalid PDB ID' });
   const pdbId = raw.toUpperCase();
-  res.setHeader('Content-Type', 'text/plain');
+  const now = Date.now();
+  const cached = pdbResponseCache.get(pdbId);
+  res.setHeader('Content-Type', 'text/plain; charset=utf-8');
   res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Cache-Control', 'public, max-age=' + PDB_BROWSER_CACHE_MAX_AGE);
+  if (cached && cached.expiresAt > now && cached.text) {
+    res.setHeader('Content-Disposition', 'attachment; filename="' + pdbId + '.pdb"');
+    res.setHeader('X-ZoonoAb-PDB-Cache', 'HIT');
+    return res.send(cached.text);
+  }
+  if (cached) pdbResponseCache.delete(pdbId);
+  res.setHeader('X-ZoonoAb-PDB-Cache', 'MISS');
+  let requestTimedOut = false;
+  const sendError = (status, error) => {
+    if (!res.headersSent) res.status(status).json({ error });
+  };
   const req2 = https.get('https://files.rcsb.org/download/' + pdbId + '.pdb', (remote) => {
     if (remote.statusCode === 200) {
       res.setHeader('Content-Disposition', 'attachment; filename="' + pdbId + '.pdb"');
-      remote.pipe(res);
+      let body = '';
+      remote.setEncoding('utf8');
+      remote.on('data', chunk => { body += chunk; });
+      remote.on('end', () => {
+        if (requestTimedOut) return;
+        if (!body) return sendError(502, 'Empty PDB response');
+        pdbResponseCache.set(pdbId, { text: body, expiresAt: Date.now() + PDB_CACHE_TTL_MS });
+        while (pdbResponseCache.size > PDB_CACHE_MAX_ENTRIES) {
+          const oldestKey = pdbResponseCache.keys().next().value;
+          if (!oldestKey) break;
+          pdbResponseCache.delete(oldestKey);
+        }
+        res.send(body);
+      });
+      remote.on('error', () => {
+        if (!requestTimedOut) sendError(502, 'RCSB fetch failed');
+      });
     } else if (remote.statusCode === 302 && remote.headers.location) {
       res.redirect(remote.headers.location);
     } else {
-      res.status(404).json({ error: 'PDB not found' });
+      sendError(404, 'PDB not found');
     }
-  }).on('error', () => res.status(502).json({ error: 'RCSB fetch failed' }));
-  req2.setTimeout(15000, () => { req2.destroy(); res.status(504).json({ error: 'RCSB timeout' }); });
+  }).on('error', () => {
+    if (!requestTimedOut) sendError(502, 'RCSB fetch failed');
+  });
+  req2.setTimeout(15000, () => {
+    requestTimedOut = true;
+    req2.destroy();
+    sendError(504, 'RCSB timeout');
+  });
 });
 
 // ─── Export API ─────────────────────────────────────────────
