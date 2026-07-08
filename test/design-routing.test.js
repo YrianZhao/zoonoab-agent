@@ -57,6 +57,7 @@ test('cleans disease-area wording before using it as a dynamic target', () => {
   const obesity = extractDesignRequest('设计一个针对肥胖的抗体');
   assert.equal(obesity.isDesignRequest, true);
   assert.equal(obesity.target, '肥胖');
+  assert.equal(obesity.count, 1);
   assert.equal(obesity.hasExplicitTarget, true);
   assert.equal(buildDynamicDemoRoute('设计一个针对肥胖的抗体').target, '肥胖');
 
@@ -81,4 +82,15 @@ test('cleans spoken target wording that places the design count after the pathog
   assert.equal(parsed.isDesignRequest, true);
   assert.equal(parsed.target, '蓝耳病毒');
   assert.equal(parsed.count, 10);
+});
+
+test('understands spoken Chinese candidate counts for one and ten antibodies', () => {
+  const one = extractDesignRequest('针对 PD-L1 生成一支抗体');
+  assert.equal(one.isDesignRequest, true);
+  assert.equal(one.count, 1);
+  assert.equal(buildDynamicDemoRoute('针对流感 HA 血凝素设计一个抗体').count, 1);
+
+  const ten = extractDesignRequest('针对 HER2 生成十个候选抗体');
+  assert.equal(ten.isDesignRequest, true);
+  assert.equal(ten.count, 10);
 });

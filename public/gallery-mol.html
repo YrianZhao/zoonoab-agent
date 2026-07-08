@@ -37,6 +37,7 @@
         var pdbUrl = params.get('pdb') || '';
         var cA = params.get('chainA') || '#9CA3AF';
         var cB = params.get('chainB') || '#60A5FA';
+        var poseSeed = parseInt(params.get('poseSeed') || '0', 10) || 0;
         function parseChains(value, fallback) {
             var arr = String(value || '').split(',').map(function(s){ return s.trim(); }).filter(Boolean);
             return arr.length ? arr : fallback;
@@ -72,12 +73,26 @@
             }
         }
 
+        function applyViewerPose() {
+            try{glv.zoomTo();}catch(e){}
+            try{
+                var y = 24 + (poseSeed * 37 % 170);
+                var x = -42 + (poseSeed * 19 % 86);
+                var z = -18 + (poseSeed * 11 % 42);
+                var zoom = 0.94 + ((poseSeed % 7) * 0.025);
+                glv.rotate(y, 'y');
+                glv.rotate(x, 'x');
+                glv.rotate(z, 'z');
+                glv.zoom(zoom);
+            }catch(e2){}
+            try{glv.render();}catch(e3){}
+        }
+
         // Load PDB via fetch → full control
         fetch(pdbUrl).then(function(r){return r.text();}).then(function(txt){
             var m = glv.addModel(txt, 'pdb');
             applyChainColors(m);
-            glv.render();
-            try{glv.zoomTo();}catch(e){}
+            applyViewerPose();
             if(ld)ld.style.display='none';
             window.parent.postMessage({source:'gallery-mol',type:'ready',data:{}},'*');
         }).catch(function(e){
@@ -85,8 +100,7 @@
             $3Dmol.download(pdbUrl,{mimetype:'text/plain'},function(txt2){
                 var m = glv.addModel(txt2,'pdb');
                 applyChainColors(m);
-                glv.render();
-                try{glv.zoomTo();}catch(e2){}
+                applyViewerPose();
                 if(ld)ld.style.display='none';
                 window.parent.postMessage({source:'gallery-mol',type:'ready',data:{}},'*');
             });

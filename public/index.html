@@ -5640,7 +5640,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146059';
+    const APP_BUILD_VERSION = '78146060';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -12972,6 +12972,7 @@ ${fallbackTableRows(profile.rows)}
 	                meta.displayFile = file;
 	                meta.name = target + ' ' + abType + ' binder-' + String(idx + 1).padStart(2, '0') + (meta.ipTm !== null ? ' (ipTM=' + meta.ipTm.toFixed(4) + ')' : '');
 	                meta.candidateLabel = target + '-' + abType + '-' + String(idx + 1).padStart(2, '0');
+	                meta.viewerPoseSeed = stableViewerPoseSeed([profile.routeId || '', target, file, idx + 1].join('|'));
 	                meta.routeId = profile.routeId || '';
 	                meta.routeLabel = profile.routeLabel || target;
 	                meta.disease = profile.disease || '';
@@ -13014,16 +13015,38 @@ ${fallbackTableRows(profile.rows)}
         return binderDataList.find(item => item && item.id === pdbId) || null;
     }
 
-    function buildMoleculeFrameUrl(basePath, pdbId, title) {
+    function stableViewerPoseSeed(value) {
+        const text = String(value || '');
+        let hash = 2166136261;
+        for (let i = 0; i < text.length; i++) {
+            hash ^= text.charCodeAt(i);
+            hash = Math.imul(hash, 16777619) >>> 0;
+        }
+        return hash % 100000;
+    }
+
+    function buildMoleculeFrameUrl(basePath, pdbId, title, candidateIndex) {
         const meta = getBinderMetaById(pdbId) || {};
         const colors = getBinderVisualColors(meta);
         const antigenChains = Array.isArray(meta.antigenChains) && meta.antigenChains.length ? meta.antigenChains : ['A'];
         const antibodyChains = Array.isArray(meta.antibodyChains) && meta.antibodyChains.length ? meta.antibodyChains : ['B'];
+        const idx = Number.isFinite(candidateIndex) ? candidateIndex : binderDataList.findIndex(item => item && item.id === pdbId);
+        const seedSource = [
+            meta.viewerPoseSeed,
+            meta.routeId,
+            meta.targetDisplay,
+            meta.candidateLabel || meta.name || pdbId,
+            idx >= 0 ? idx + 1 : ''
+        ].filter(value => value !== undefined && value !== null && value !== '').join('|');
+        const viewerPoseSeed = Number.isFinite(Number(meta.viewerPoseSeed))
+            ? Number(meta.viewerPoseSeed)
+            : stableViewerPoseSeed(seedSource || pdbId);
         let url = basePath + '?pdb=' + encodeURIComponent(getPDBUrl(pdbId));
         url += '&chainA=' + encodeURIComponent(colors.antigen);
         url += '&chainB=' + encodeURIComponent(colors.antibody);
         url += '&antigenChains=' + encodeURIComponent(antigenChains.join(','));
         url += '&antibodyChains=' + encodeURIComponent(antibodyChains.join(','));
+        url += '&poseSeed=' + encodeURIComponent(String(viewerPoseSeed));
         if (title) url += '&title=' + encodeURIComponent(title);
         return url;
     }
@@ -13453,7 +13476,7 @@ ${fallbackTableRows(profile.rows)}
 
         var iframe = document.createElement('iframe');
         iframe.style.cssText = 'width:100%;height:100%;border:none;display:block;allow-scripts;pointer-events:none;';
-        iframe.src = buildMoleculeFrameUrl('/gallery-mol.html', pdbId);
+        iframe.src = buildMoleculeFrameUrl('/gallery-mol.html', pdbId, null, idx);
         container.appendChild(iframe);
 
         galleryViewers[pdbId] = { iframe: iframe, viewer: null };

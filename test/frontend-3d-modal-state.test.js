@@ -71,3 +71,17 @@ test('assistant thinking indicator starts on model wait and stops before final o
   assert.match(doneCase, /stopAssistantThinking\(\)/);
   assert.match(errorCase, /stopAssistantThinking\(\)/);
 });
+
+test('candidate gallery thumbnails receive deterministic per-candidate pose seeds', () => {
+  const frameUrlFunction = extractFunction(html, 'function buildMoleculeFrameUrl');
+  const initGalleryViewer = extractFunction(html, 'function initGalleryViewer');
+  const galleryHtml = fs.readFileSync(path.join(__dirname, '..', 'public', 'gallery-mol.html'), 'utf8');
+
+  assert.match(frameUrlFunction, /poseSeed/);
+  assert.match(frameUrlFunction, /viewerPoseSeed/);
+  assert.match(initGalleryViewer, /idx/);
+  assert.match(initGalleryViewer, /buildMoleculeFrameUrl\('\/gallery-mol\.html',\s*pdbId,\s*[^,]+,\s*idx\)/);
+  assert.match(galleryHtml, /params\.get\('poseSeed'\)/);
+  assert.match(galleryHtml, /applyViewerPose/);
+  assert.match(galleryHtml, /glv\.rotate/);
+});

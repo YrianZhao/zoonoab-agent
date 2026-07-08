@@ -148,6 +148,26 @@ test('server previews distinct 3D model files for different design targets and a
   assert.equal(previews[3].data.threeDPreview.binders[0].antibodyFormat, 'VHH');
 });
 
+test('server preview count follows spoken Chinese candidate count for preset routes', async () => {
+  const oneQuery = encodeURIComponent('针对 PD-L1 设计一个高亲和力 Fab');
+  const oneRes = await fetch('http://127.0.0.1:' + PORT + '/api/debug/design-route?text=' + oneQuery);
+  assert.equal(oneRes.status, 200);
+  const one = await oneRes.json();
+  assert.equal(one.parsed.count, 1);
+  assert.equal(one.threeDPreview.binders.length, 1);
+  assert.equal(one.threeDPreview.files.length, 1);
+
+  const tenQuery = encodeURIComponent('针对 PD-L1 设计十个高亲和力 Fab');
+  const tenRes = await fetch('http://127.0.0.1:' + PORT + '/api/debug/design-route?text=' + tenQuery);
+  assert.equal(tenRes.status, 200);
+  const ten = await tenRes.json();
+  assert.equal(ten.parsed.count, 10);
+  assert.equal(ten.threeDPreview.binders.length, 10);
+  const poseSeeds = ten.threeDPreview.binders.map(item => item.viewerPoseSeed);
+  assert.equal(new Set(poseSeeds).size, 10);
+  assert.ok(poseSeeds.every(Number.isFinite));
+});
+
 test('server keeps non-biomedical virus wording out of design workflow', async () => {
   const query = encodeURIComponent('电脑病毒设计抗体');
   const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/design-route?text=' + query);

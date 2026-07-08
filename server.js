@@ -16,6 +16,7 @@ const {
   extractDiseaseIndication,
   extractExplicitTargetDeclaration,
   isDiseaseIndication,
+  parseDesignCount,
   buildDynamicDemoRoute,
   buildGenericTargetProfile,
   shouldSuppressDesignWorkflow
@@ -3025,6 +3026,12 @@ function stableSeed(input) {
   return String(input || '').split('').reduce((sum, ch) => ((sum * 31) + ch.charCodeAt(0)) >>> 0, 2166136261);
 }
 
+function routeViewerPoseSeed(profile, idx, file) {
+  const target = (profile && profile.targetDisplay) || '';
+  const route = (profile && profile.routeLabel) || (profile && profile.routeId) || '';
+  return stableSeed([route, target, file, idx + 1].join('|')) % 100000;
+}
+
 function seededPick(pool, seed, offset) {
   if (!Array.isArray(pool) || !pool.length) return '';
   return pool[(seed + offset * 17) % pool.length];
@@ -3205,6 +3212,7 @@ function buildRoute3DMeta(profile, idx, file, ipTm, preset) {
     name: routeStructureName(profile, idx, safeIpTm),
     candidateLabel: target + '-' + abFormat + '-' + String(idx + 1).padStart(2, '0'),
     binderId: 'B' + String(idx + 1).padStart(2, '0'),
+    viewerPoseSeed: routeViewerPoseSeed(profile, idx, file),
     routeId: (profile && profile.routeId) || routeLabel.replace(/[^A-Za-z0-9]+/g, '-').replace(/^-|-$/g, '').toLowerCase(),
     routeLabel,
     disease: (profile && profile.disease) || '',
@@ -4075,8 +4083,7 @@ function quickDesignAck(route) {
 
 function buildVoiceDesignPrompt(route, input) {
   const raw = String(input || '').trim();
-  const countMatch = raw.match(/(\d+)\s*(个|条|pass|passing|候选)/i);
-  const count = countMatch ? Math.min(Math.max(parseInt(countMatch[1], 10), 1), 200) : route.count;
+  const count = parseDesignCount(raw, route.count);
   const affinity = /高亲和|high.?affinity|亲和力/.test(raw) ? '高亲和力' : '高亲和力';
   if (route.id === 'tumor_immunotherapy') return '阻断 PD-1/PD-L1 通路，设计 ' + count + ' 个' + affinity + ' Fab';
   if (route.id === 'allergic_asthma') return '阻断 IL-33/ST2 通路，设计 ' + count + ' 个' + affinity + ' VHH';
@@ -4239,8 +4246,7 @@ function buildDemoInstruction(input, route) {
   const raw = String(input || '').trim();
   const asksPrint = /(打印|3d\s*打印|print|模型|纪念)/i.test(raw) || route.printable;
   const blockText = route.blockTarget ? '，阻断 ' + route.target + '/' + route.blockTarget + ' 相互作用通路' : '';
-  const countMatch = raw.match(/(\d+)\s*(个|条|pass|passing|候选)/i);
-  const count = countMatch ? Math.min(Math.max(parseInt(countMatch[1], 10), 1), 200) : route.count;
+  const count = parseDesignCount(raw, route.count);
   return [
     '设计 ' + count + ' 个靶向 ' + route.target + ' 的 ' + route.abType + blockText,
     '。设计方向：' + route.disease,
@@ -4718,15 +4724,11 @@ async function runResolvedDiseaseDesign(ws, input, voiceSessionId) {
 function parseRequest(input, forcedRoute) {
   const demoRoute = forcedRoute || detectDemoRoute(input);
   const designRequest = extractDesignRequest(input);
-  const countMatch = input.match(/(\d+)\s*(个|条|pass|passing)/i) ||
-                     input.match(/(?:generate|design|create|make)\s+(\d+)/i) ||
-                     input.match(/设计\s*(\d+)/) ||
-                     input.match(/(\d+)\s*(?:anti[-\s]|candidate|passing|vhh|nanobod)/i) ||
-                     input.match(/(\d+)/);
   const routeIsDynamic = Boolean(demoRoute && demoRoute.dynamic);
+  const fallbackCount = demoRoute ? demoRoute.count : 40;
   const count = routeIsDynamic && designRequest.isDesignRequest
     ? designRequest.count
-    : Math.min(Math.max(countMatch ? parseInt(countMatch[1]) : (demoRoute ? demoRoute.count : 40), 1), 200);
+    : parseDesignCount(input, fallbackCount);
   const targetPatterns = [
     /(?:bind(?:ing)? to|targeting|针对|靶向)\s+(?:human\s+)?(SARS-CoV-2\s+RBD|Influenza\s+HA|RSV\s+F|IL-17A|IL-23|IL-1β|IL-1B|VEGF-A|ANGPTL3|PCSK9|TSLP|GIPR|EGFR|HER2|PD-L1|TNF)/i,
     /\b(SARS-CoV-2\s+RBD|Influenza\s+HA|RSV\s+F|IL-17A|IL-23|IL-1β|IL-1B|VEGF-A|ANGPTL3|PCSK9|TSLP|GIPR|EGFR|HER2|PD-L1|TNF[α\-]?A?)\b/i];
