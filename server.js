@@ -3153,12 +3153,12 @@ const ROUTE_3D_PRESETS = {
     ipTmBias: 0.006
   },
   cardio_angptl3: {
-    aliasPrefix: 'PCSK9-Fab',
+    aliasPrefix: 'ANGPTL3-CV-Fab',
     title: 'ANGPTL3 Fab 血脂调控中和构象',
     structureFamily: '脂质代谢调控靶点 · 心血管 Fab 候选',
-    visualSummary: '使用本地真实抗原-Fab 接触复合体作为代表性展示支架，避免展示无接触的分离结构。',
-    structuralBasis: '本地代表性抗原-Fab 接触复合体；ANGPTL3 候选标签和设计摘要来自当前路线。',
-    antigenChains: ['A', 'D'],
+    visualSummary: '呈现真实 ANGPTL3 功能结构域与 Fab 候选参考构象。',
+    structuralBasis: 'RCSB 6EUA ANGPTL3 真实靶点结构 + Fab 候选参考姿态',
+    antigenChains: ['A', 'D', 'E'],
     antibodyChains: ['B', 'C'],
     interfaceDetail: false,
     antigenColor: '#16A34A',
@@ -3180,12 +3180,12 @@ const ROUTE_3D_PRESETS = {
     ipTmBias: 0.000
   },
   metabolic_angptl3: {
-    aliasPrefix: 'PCSK9-Fab',
+    aliasPrefix: 'ANGPTL3-Met-Fab',
     title: 'ANGPTL3 Fab 脂质代谢调控构象',
     structureFamily: '脂质代谢调控靶点 · 代谢 Fab 候选',
-    visualSummary: '使用本地真实抗原-Fab 接触复合体作为代表性展示支架，避免展示无接触的分离结构。',
-    structuralBasis: '本地代表性抗原-Fab 接触复合体；ANGPTL3 候选标签和设计摘要来自当前路线。',
-    antigenChains: ['A', 'D'],
+    visualSummary: '突出真实 ANGPTL3 脂质代谢相关结构域与 Fab 候选参考构象。',
+    structuralBasis: 'RCSB 6EUA ANGPTL3 真实靶点结构 + Fab 候选参考姿态',
+    antigenChains: ['A', 'D', 'E'],
     antibodyChains: ['B', 'C'],
     interfaceDetail: false,
     antigenColor: '#65A30D',

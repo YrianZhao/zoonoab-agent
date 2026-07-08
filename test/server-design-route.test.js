@@ -301,12 +301,13 @@ test('server marks interface detail availability according to real-complex evide
   const angptl3 = await angptl3Res.json();
   const angptl3Binder = angptl3.threeDPreview.binders[0];
 
-  assert.match(angptl3Binder.file, /\.pdb$/);
-  assert.doesNotMatch(angptl3Binder.file, /^ANGPTL3-CV-Fab-|^ANGPTL3-Met-Fab-/);
-  assert.match(angptl3Binder.structuralBasis, /representative|代表性|本地/);
+  assert.match(angptl3Binder.file, /^ANGPTL3-(?:CV|Met)-Fab-\d+\.pdb$/);
+  assert.match(angptl3Binder.displayFile, /^ANGPTL3-(?:CV|Met)-Fab-\d+\.pdb$/);
+  assert.doesNotMatch(angptl3Binder.file, /^PCSK9-Fab-/);
+  assert.match(angptl3Binder.structuralBasis, /ANGPTL3|6EUA|真实靶点结构/);
   assert.equal(angptl3Binder.interfaceDetail, false);
-  assert.ok(Array.isArray(angptl3Binder.antigenChains) && angptl3Binder.antigenChains.length >= 1);
-  assert.ok(Array.isArray(angptl3Binder.antibodyChains) && angptl3Binder.antibodyChains.length >= 1);
+  assert.deepEqual(angptl3Binder.antigenChains, ['A', 'D', 'E']);
+  assert.deepEqual(angptl3Binder.antibodyChains, ['B', 'C']);
 });
 
 test('server keeps non-biomedical virus wording out of design workflow', async () => {
