@@ -32,6 +32,117 @@ const MULTIMER_ROUTE_EXPECTATIONS = [
   }
 ];
 
+const COMMON_REAL_COMPLEX_EXPECTATIONS = [
+  {
+    prefix: 'PD1-Fab',
+    basis: /RCSB 5WT9 PD-1 \/ nivolumab Fab complex/,
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C']
+  },
+  {
+    prefix: 'CTLA4-Fab',
+    basis: /RCSB 6RP8 CTLA-4 \/ ipilimumab Fab complex/,
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C']
+  },
+  {
+    prefix: 'CD20-Fab',
+    basis: /RCSB 6VJA CD20 \/ rituximab Fab complex/,
+    antigenChains: ['A', 'D'],
+    antibodyChains: ['B', 'C', 'F', 'G']
+  },
+  {
+    prefix: 'CD19-Fab',
+    basis: /RCSB 6AL5 CD19 \/ B43 Fab complex/,
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C']
+  },
+  {
+    prefix: 'CD3-Fab',
+    basis: /RCSB 1SY6 CD3 gamma-epsilon \/ OKT3 Fab complex/,
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C']
+  },
+  {
+    prefix: 'C5-Fab',
+    basis: /RCSB 5I5K complement C5 \/ eculizumab variable-domain antibody complex/,
+    antigenChains: ['A', 'D'],
+    antibodyChains: ['B', 'C', 'F', 'G']
+  },
+  {
+    prefix: 'IL6R-Fab',
+    basis: /RCSB 8J6F IL-6R alpha \/ tocilizumab Fab complex/,
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C']
+  },
+  {
+    prefix: 'IL4RA-Fab',
+    basis: /RCSB 6WGL IL-4 receptor alpha \/ dupilumab Fab complex/,
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C']
+  },
+  {
+    prefix: 'CD25-Fab',
+    basis: /RCSB 3NFP IL-2RA\(CD25\) \/ daclizumab Fab complex/,
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C']
+  },
+  {
+    prefix: 'CD38-Fab',
+    basis: /RCSB 7DUO CD38 \/ daratumumab Fab complex/,
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C']
+  },
+  {
+    prefix: 'TIGIT-Fab',
+    basis: /RCSB 8VTD TIGIT \/ vibostolimab Fab complex/,
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C']
+  },
+  {
+    prefix: 'CD47-Fab',
+    basis: /RCSB 8ZCA CD47 \/ hu1C8 Fab complex/,
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C']
+  },
+  {
+    prefix: 'LAG3-Fab',
+    basis: /RCSB 8SO3 LAG-3 \/ favezelimab Fab complex/,
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C']
+  },
+  {
+    prefix: 'TROP2-Fab',
+    basis: /RCSB 9PI9 TROP-2 dimer \/ sacituzumab Fab complex/,
+    antigenChains: ['A', 'D'],
+    antibodyChains: ['B', 'C', 'F', 'G']
+  },
+  {
+    prefix: 'BCMA-Fab',
+    basis: /RCSB 9MQO BCMA \/ CA10V2 Fab complex/,
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C']
+  },
+  {
+    prefix: 'IgE-Fab',
+    basis: /RCSB 5G64 IgE-Fc \/ anti-IgE Fab complex/,
+    antigenChains: ['A', 'D'],
+    antibodyChains: ['B', 'C', 'F', 'G']
+  },
+  {
+    prefix: 'CGRPR-Fab',
+    basis: /RCSB 6UMG CGRP receptor ECD \/ erenumab Fab complex/,
+    antigenChains: ['A', 'D'],
+    antibodyChains: ['B', 'C']
+  },
+  {
+    prefix: 'FluNA-Fab',
+    basis: /RCSB 1NCD influenza N9 neuraminidase \/ NC41 Fab complex/,
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C']
+  }
+];
+
 function escapeRegExp(value) {
   return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
@@ -297,5 +408,29 @@ test('A-grade local complex presets have real source remarks and visible antigen
     assert.ok(antibodyChains.length >= 1, prefix + ' should mark antibody chains');
     assert.ok(contacts.contactPairs >= 50, prefix + ' should expose a visible antigen-antibody interface');
     assert.ok(contacts.minDistance >= 1.2 && contacts.minDistance <= 3.5, prefix + ' should have plausible closest antigen-antibody contact');
+  }
+});
+
+test('common real antigen-antibody library covers high-frequency user targets with verified chain roles', () => {
+  for (const item of COMMON_REAL_COMPLEX_EXPECTATIONS) {
+    const filename = path.join('pdb', item.prefix + '-01.pdb');
+    const text = readPdbText(filename);
+    const atoms = parsePdbAtoms(filename);
+    const antigenChains = remarkChains(text, 904);
+    const antibodyChains = remarkChains(text, 905);
+    const counts = chainAtomCounts(atoms);
+    const contacts = crossRoleContactSummary(atoms, antigenChains, antibodyChains);
+
+    assert.match(text, item.basis, item.prefix + ' should keep the verified public structure source');
+    assert.deepEqual(antigenChains, item.antigenChains, item.prefix + ' should mark the real antigen chain set');
+    assert.deepEqual(antibodyChains, item.antibodyChains, item.prefix + ' should mark the real antibody chain set');
+    for (const chain of item.antigenChains) {
+      assert.ok((counts.get(chain) || 0) > 50, item.prefix + ' antigen chain ' + chain + ' should contain visible atoms');
+    }
+    for (const chain of item.antibodyChains) {
+      assert.ok((counts.get(chain) || 0) > 800, item.prefix + ' antibody chain ' + chain + ' should contain a visible Fab chain');
+    }
+    assert.ok(contacts.contactPairs >= 50, item.prefix + ' should expose a visible antigen-antibody interface');
+    assert.ok(contacts.minDistance >= 1.2 && contacts.minDistance <= 3.5, item.prefix + ' should have a plausible closest antigen-antibody contact');
   }
 });

@@ -2346,8 +2346,25 @@ let workflowDisplaySerial = 0;
 function buildRouteProfile(target, blockTarget, abType) {
   let key = String(target || '').toUpperCase().replace(/\s+/g, '');
   if (['PDL1', 'PD-L-1'].includes(key)) key = 'PD-L1';
+  if (['PD1', 'PD-ONE'].includes(key)) key = 'PD-1';
+  if (['CTLA4', 'CTLA-4', 'CD152'].includes(key)) key = 'CTLA-4';
   if (['TNF-A', 'TNF-ALPHA', 'TNFΑ', 'TNFΑLPHA'].includes(key)) key = 'TNF';
   if (['VEGFA', 'VEGF-A'].includes(key)) key = 'VEGF-A';
+  if (['CD20', 'MS4A1'].includes(key)) key = 'CD20';
+  if (['CD19'].includes(key)) key = 'CD19';
+  if (['CD3', 'CD3E', 'CD3EPSILON'].includes(key)) key = 'CD3';
+  if (['C5', 'COMPLEMENTC5'].includes(key)) key = 'C5';
+  if (['IL6R', 'IL-6R', 'CD126'].includes(key)) key = 'IL-6R';
+  if (['IL4RA', 'IL-4RA', 'IL-4RΑ', 'IL4RΑ', 'CD124'].includes(key)) key = 'IL-4Rα';
+  if (['CD25', 'IL2RA', 'IL-2RA'].includes(key)) key = 'CD25';
+  if (['CD38'].includes(key)) key = 'CD38';
+  if (['TIGIT'].includes(key)) key = 'TIGIT';
+  if (['CD47'].includes(key)) key = 'CD47';
+  if (['LAG3', 'LAG-3'].includes(key)) key = 'LAG-3';
+  if (['TROP2', 'TROP-2', 'TACSTD2'].includes(key)) key = 'TROP-2';
+  if (['BCMA', 'TNFRSF17', 'CD269'].includes(key)) key = 'BCMA';
+  if (['IGE'].includes(key)) key = 'IgE';
+  if (['CGRPRECEPTOR', 'CGRPR', 'CALCRL'].includes(key)) key = 'CGRP receptor';
   if (['IL17A', 'IL-17-A'].includes(key)) key = 'IL-17A';
   if (['IL1B', 'IL-1B', 'IL-1Β'].includes(key)) key = 'IL-1β';
   if (['RSVF', 'RSV-F'].includes(key)) key = 'RSV F';
@@ -3022,6 +3039,210 @@ const ROUTE_3D_PRESETS = {
     order: [0, 2, 5, 1, 4, 7, 3, 6, 8, 9, 10, 11],
     ipTmBias: 0.010
   },
+  checkpoint_pd1: {
+    aliasPrefix: 'PD1-Fab',
+    title: 'PD-1 Fab 免疫检查点结合构象',
+    structureFamily: '免疫检查点受体 IgV 结构域 · Fab 候选',
+    visualSummary: '展示 nivolumab Fab 识别 PD-1 胞外结构域的真实复合物界面。',
+    structuralBasis: 'RCSB 5WT9 PD-1 / nivolumab Fab complex',
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C'],
+    antigenColor: '#38BDF8',
+    antibodyColor: '#F472B6',
+    ipTmBias: 0.009
+  },
+  checkpoint_ctla4: {
+    aliasPrefix: 'CTLA4-Fab',
+    title: 'CTLA-4 Fab 免疫检查点结合构象',
+    structureFamily: '免疫检查点受体 · Fab 候选',
+    visualSummary: '展示 ipilimumab Fab 贴合 CTLA-4 胞外结构域的真实抗原-抗体复合物。',
+    structuralBasis: 'RCSB 6RP8 CTLA-4 / ipilimumab Fab complex',
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C'],
+    antigenColor: '#22C55E',
+    antibodyColor: '#A855F7',
+    ipTmBias: 0.005
+  },
+  heme_cd20: {
+    aliasPrefix: 'CD20-Fab',
+    title: 'CD20 Fab B 细胞表面抗原结合构象',
+    structureFamily: 'B 细胞表面抗原 · Fab 候选',
+    visualSummary: '保留 CD20 双链跨膜区外露构象，并展示 rituximab Fab 的真实结合姿态。',
+    structuralBasis: 'RCSB 6VJA CD20 / rituximab Fab complex',
+    antigenChains: ['A', 'D'],
+    antibodyChains: ['B', 'C', 'F', 'G'],
+    antigenColor: '#2563EB',
+    antibodyColor: '#F97316',
+    ipTmBias: 0.006
+  },
+  heme_cd19: {
+    aliasPrefix: 'CD19-Fab',
+    title: 'CD19 Fab B 细胞抗原结合构象',
+    structureFamily: 'B 细胞表面抗原 · Fab 候选',
+    visualSummary: '展示 B43 Fab 与 CD19 胞外结构域的真实结合界面。',
+    structuralBasis: 'RCSB 6AL5 CD19 / B43 Fab complex',
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C'],
+    antigenColor: '#0EA5E9',
+    antibodyColor: '#F59E0B',
+    ipTmBias: 0.004
+  },
+  immune_cd3: {
+    aliasPrefix: 'CD3-Fab',
+    title: 'CD3 Fab T 细胞受体复合体结合构象',
+    structureFamily: 'T 细胞 CD3 复合体 · Fab 候选',
+    visualSummary: '展示 OKT3 Fab 识别 CD3 gamma-epsilon 胞外结构域的真实复合物界面。',
+    structuralBasis: 'RCSB 1SY6 CD3 gamma-epsilon / OKT3 Fab complex',
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C'],
+    antigenColor: '#14B8A6',
+    antibodyColor: '#F43F5E',
+    ipTmBias: 0.003
+  },
+  complement_c5: {
+    aliasPrefix: 'C5-Fab',
+    title: 'Complement C5 抗体结合构象',
+    structureFamily: '补体通路蛋白 · 抗体候选',
+    visualSummary: '保留 complement C5 多结构域形状，并展示 eculizumab 可变区抗体复合体界面。',
+    structuralBasis: 'RCSB 5I5K complement C5 / eculizumab variable-domain antibody complex',
+    antigenChains: ['A', 'D'],
+    antibodyChains: ['B', 'C', 'F', 'G'],
+    antigenColor: '#16A34A',
+    antibodyColor: '#6366F1',
+    ipTmBias: 0.007
+  },
+  inflammation_il6r: {
+    aliasPrefix: 'IL6R-Fab',
+    title: 'IL-6R Fab 炎症受体阻断构象',
+    structureFamily: '炎症细胞因子受体 · Fab 候选',
+    visualSummary: '展示 tocilizumab Fab 识别 IL-6R alpha 胞外结构域的真实结合界面。',
+    structuralBasis: 'RCSB 8J6F IL-6R alpha / tocilizumab Fab complex',
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C'],
+    antigenColor: '#DC2626',
+    antibodyColor: '#38BDF8',
+    ipTmBias: 0.004
+  },
+  allergic_il4ra: {
+    aliasPrefix: 'IL4RA-Fab',
+    title: 'IL-4Rα Fab 过敏炎症受体结合构象',
+    structureFamily: '过敏炎症受体 · Fab 候选',
+    visualSummary: '展示 dupilumab Fab 识别 IL-4 receptor alpha 的真实复合物界面。',
+    structuralBasis: 'RCSB 6WGL IL-4 receptor alpha / dupilumab Fab complex',
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C'],
+    antigenColor: '#F97316',
+    antibodyColor: '#0EA5E9',
+    ipTmBias: 0.002
+  },
+  immune_cd25: {
+    aliasPrefix: 'CD25-Fab',
+    title: 'CD25 Fab IL-2Rα 结合构象',
+    structureFamily: '免疫调节受体 · Fab 候选',
+    visualSummary: '展示 daclizumab Fab 与 IL-2RA(CD25) 胞外结构域的真实复合物界面。',
+    structuralBasis: 'RCSB 3NFP IL-2RA(CD25) / daclizumab Fab complex',
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C'],
+    antigenColor: '#8B5CF6',
+    antibodyColor: '#34D399',
+    ipTmBias: 0.002
+  },
+  heme_cd38: {
+    aliasPrefix: 'CD38-Fab',
+    title: 'CD38 Fab 血液肿瘤靶点结合构象',
+    structureFamily: '血液肿瘤表面抗原 · Fab 候选',
+    visualSummary: '展示 daratumumab Fab 识别 CD38 胞外结构域的真实抗原-抗体界面。',
+    structuralBasis: 'RCSB 7DUO CD38 / daratumumab Fab complex',
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C'],
+    antigenColor: '#7C3AED',
+    antibodyColor: '#2DD4BF',
+    ipTmBias: 0.003
+  },
+  checkpoint_tigit: {
+    aliasPrefix: 'TIGIT-Fab',
+    title: 'TIGIT Fab 免疫检查点结合构象',
+    structureFamily: '免疫检查点受体 · Fab 候选',
+    visualSummary: '展示 vibostolimab Fab 与 TIGIT 胞外 Ig 结构域的真实结合界面。',
+    structuralBasis: 'RCSB 8VTD TIGIT / vibostolimab Fab complex',
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C'],
+    antigenColor: '#0F766E',
+    antibodyColor: '#FB7185',
+    ipTmBias: 0.004
+  },
+  checkpoint_cd47: {
+    aliasPrefix: 'CD47-Fab',
+    title: 'CD47 Fab 先天免疫检查点结合构象',
+    structureFamily: '细胞表面免疫调节抗原 · Fab 候选',
+    visualSummary: '展示 hu1C8 Fab 识别 CD47 胞外结构域的真实复合物界面。',
+    structuralBasis: 'RCSB 8ZCA CD47 / hu1C8 Fab complex',
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C'],
+    antigenColor: '#059669',
+    antibodyColor: '#F59E0B',
+    ipTmBias: 0.003
+  },
+  checkpoint_lag3: {
+    aliasPrefix: 'LAG3-Fab',
+    title: 'LAG-3 Fab 免疫检查点结合构象',
+    structureFamily: '免疫检查点受体 · Fab 候选',
+    visualSummary: '展示 favezelimab Fab 与 LAG-3 胞外结构域的真实抗原-抗体界面。',
+    structuralBasis: 'RCSB 8SO3 LAG-3 / favezelimab Fab complex',
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C'],
+    antigenColor: '#0891B2',
+    antibodyColor: '#A855F7',
+    ipTmBias: 0.004
+  },
+  solid_tumor_trop2: {
+    aliasPrefix: 'TROP2-Fab',
+    title: 'TROP-2 Fab 肿瘤表面抗原结合构象',
+    structureFamily: '实体瘤表面抗原 · Fab 候选',
+    visualSummary: '保留 TROP-2 二聚体形状，并展示 sacituzumab Fab 的真实结合姿态。',
+    structuralBasis: 'RCSB 9PI9 TROP-2 dimer / sacituzumab Fab complex',
+    antigenChains: ['A', 'D'],
+    antibodyChains: ['B', 'C', 'F', 'G'],
+    antigenColor: '#EC4899',
+    antibodyColor: '#38BDF8',
+    ipTmBias: 0.005
+  },
+  heme_bcma: {
+    aliasPrefix: 'BCMA-Fab',
+    title: 'BCMA Fab 浆细胞靶点结合构象',
+    structureFamily: 'B 细胞成熟抗原 · Fab 候选',
+    visualSummary: '展示 CA10V2 Fab 识别 BCMA 胞外 N 端结构域的真实复合物界面。',
+    structuralBasis: 'RCSB 9MQO BCMA / CA10V2 Fab complex',
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C'],
+    antigenColor: '#2563EB',
+    antibodyColor: '#F97316',
+    ipTmBias: 0.003
+  },
+  allergic_ige: {
+    aliasPrefix: 'IgE-Fab',
+    title: 'IgE-Fc Fab 过敏通路结合构象',
+    structureFamily: '免疫球蛋白 E Fc · Fab 候选',
+    visualSummary: '保留 IgE-Fc 双链形状，并展示 anti-IgE Fab 的真实结合姿态。',
+    structuralBasis: 'RCSB 5G64 IgE-Fc / anti-IgE Fab complex',
+    antigenChains: ['A', 'D'],
+    antibodyChains: ['B', 'C', 'F', 'G'],
+    antigenColor: '#F59E0B',
+    antibodyColor: '#0EA5E9',
+    ipTmBias: 0.002
+  },
+  migraine_cgrpr: {
+    aliasPrefix: 'CGRPR-Fab',
+    title: 'CGRP receptor Fab 偏头痛靶点结合构象',
+    structureFamily: 'CGRP 受体胞外复合物 · Fab 候选',
+    visualSummary: '展示 erenumab Fab 识别 CGRP receptor/RAMP1 胞外复合物的真实结合界面。',
+    structuralBasis: 'RCSB 6UMG CGRP receptor ECD / erenumab Fab complex',
+    antigenChains: ['A', 'D'],
+    antibodyChains: ['B', 'C'],
+    antigenColor: '#0F766E',
+    antibodyColor: '#F472B6',
+    ipTmBias: 0.002
+  },
   breast_cancer: {
     aliasPrefix: 'HER2-Fab',
     title: 'HER2 Fab 胞外结构域结合构象',
@@ -3139,6 +3360,18 @@ const ROUTE_3D_PRESETS = {
     order: [10, 2, 5, 8, 0, 3, 6, 9, 1, 4, 7, 11],
     ipTmBias: 0.002
   },
+  infectious_flu_na: {
+    aliasPrefix: 'FluNA-Fab',
+    title: 'Influenza NA Fab 神经氨酸酶结合构象',
+    structureFamily: '流感神经氨酸酶 · 中和 Fab 候选',
+    visualSummary: '展示 NC41 Fab 识别 influenza N9 neuraminidase 的真实抗原-抗体复合物界面。',
+    structuralBasis: 'RCSB 1NCD influenza N9 neuraminidase / NC41 Fab complex',
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C'],
+    antigenColor: '#06B6D4',
+    antibodyColor: '#F97316',
+    ipTmBias: 0.002
+  },
   cardio_pcsk9: {
     aliasPrefix: 'PCSK9-Fab',
     title: 'PCSK9 Fab LDLR 结合界面阻断构象',
@@ -3243,6 +3476,23 @@ function getRoute3DPreset(profile) {
     'IL-33': 'allergic_asthma',
     TSLP: 'allergic_tslp',
     'PD-L1': 'tumor_immunotherapy',
+    'PD-1': 'checkpoint_pd1',
+    'CTLA-4': 'checkpoint_ctla4',
+    CD20: 'heme_cd20',
+    CD19: 'heme_cd19',
+    CD3: 'immune_cd3',
+    C5: 'complement_c5',
+    'IL-6R': 'inflammation_il6r',
+    'IL-4Rα': 'allergic_il4ra',
+    CD25: 'immune_cd25',
+    CD38: 'heme_cd38',
+    TIGIT: 'checkpoint_tigit',
+    CD47: 'checkpoint_cd47',
+    'LAG-3': 'checkpoint_lag3',
+    'TROP-2': 'solid_tumor_trop2',
+    BCMA: 'heme_bcma',
+    IgE: 'allergic_ige',
+    'CGRP receptor': 'migraine_cgrpr',
     HER2: 'breast_cancer',
     EGFR: 'solid_tumor_egfr',
     'VEGF-A': 'angiogenesis_oncology',
@@ -3252,6 +3502,7 @@ function getRoute3DPreset(profile) {
     'RSV F': 'infectious_rsv',
     'SARS-CoV-2 RBD': 'infectious_covid',
     'Influenza HA': 'infectious_flu',
+    'Influenza NA': 'infectious_flu_na',
     PCSK9: 'cardio_pcsk9',
     'IL-1β': 'cardio_il1b',
     GIPR: 'metabolic_gipr'
@@ -3260,11 +3511,34 @@ function getRoute3DPreset(profile) {
   return presetKey ? ROUTE_3D_PRESETS[presetKey] : null;
 }
 
+function hasPrepared3DPresetForTarget(target, blockTarget, abType) {
+  if (!target || isDiseaseIndication(target)) return false;
+  const profile = buildRouteProfile(target, blockTarget, abType || 'Fab');
+  return Boolean(getRoute3DPreset(profile));
+}
+
 const GENERIC_3D_MODEL_PRESETS = [
   'IL33-Fab',
   'PDL1-Fab',
+  'PD1-Fab',
+  'CTLA4-Fab',
   'HER2-Fab',
   'EGFR-Fab',
+  'CD20-Fab',
+  'CD19-Fab',
+  'CD3-Fab',
+  'C5-Fab',
+  'IL6R-Fab',
+  'IL4RA-Fab',
+  'CD25-Fab',
+  'CD38-Fab',
+  'TIGIT-Fab',
+  'CD47-Fab',
+  'LAG3-Fab',
+  'TROP2-Fab',
+  'BCMA-Fab',
+  'IgE-Fab',
+  'CGRPR-Fab',
   'VEGFA-Fab',
   'TNF-Fab',
   'IL17A-Fab',
@@ -3272,6 +3546,7 @@ const GENERIC_3D_MODEL_PRESETS = [
   'RSVF-Fab',
   'SC2RBD-Fab',
   'FluHA-Fab',
+  'FluNA-Fab',
   'PCSK9-Fab',
   'GIPR-Fab',
   'TSLP-Fab',
@@ -4383,7 +4658,7 @@ function detectDemoRoute(input) {
   const diseaseIndication = extractDiseaseIndication(input);
   const explicitTarget = extractExplicitTargetDeclaration(input);
 
-  if (designRequest.isDesignRequest && !explicitTarget) {
+  if (designRequest.isDesignRequest && !explicitTarget && !hasPrepared3DPresetForTarget(designRequest.target, designRequest.blockTarget, designRequest.abType)) {
     return null;
   }
 
@@ -4395,16 +4670,9 @@ function detectDemoRoute(input) {
   }
 
   for (const rule of DEMO_ROUTE_RULES) {
+    if (rule.id === 'infectious_flu' && designRequest.target === 'Influenza NA') continue;
     if (containsAny(normalized, rule.keywords)) return rule;
   }
-
-  const representativeLabel = getRepresentativeDemoDirection(normalized);
-  if (representativeLabel) return buildRepresentativeDemoRoute(representativeLabel, 'unsupported_direction');
-
-  if (/il\s*-?\s*33|st2|il1rl1/.test(normalized)) return DEMO_ROUTE_RULES.find(rule => rule.id === 'allergic_asthma') || DEMO_ROUTE_RULES[0];
-  if (/pd\s*-?\s*l?\s*-?\s*1|programmed death|检查点/.test(normalized)) return DEMO_ROUTE_RULES.find(rule => rule.id === 'tumor_immunotherapy') || getDefaultDemoRoute();
-  if (/her\s*-?\s*2|erbb\s*-?\s*2/.test(normalized)) return DEMO_ROUTE_RULES.find(rule => rule.id === 'breast_cancer') || getDefaultDemoRoute();
-  if (/tnf/.test(normalized)) return DEMO_ROUTE_RULES.find(rule => rule.id === 'autoimmune_inflammation') || getDefaultDemoRoute();
 
   if (designRequest.isDesignRequest && designRequest.target && !isDiseaseIndication(designRequest.target)) {
     const dynamicRoute = buildDynamicDemoRoute(input);
@@ -4414,6 +4682,14 @@ function detectDemoRoute(input) {
   if (designRequest.isDesignRequest && diseaseIndication) {
     return null;
   }
+
+  const representativeLabel = getRepresentativeDemoDirection(normalized);
+  if (representativeLabel) return buildRepresentativeDemoRoute(representativeLabel, 'unsupported_direction');
+
+  if (/il\s*-?\s*33|st2|il1rl1/.test(normalized)) return DEMO_ROUTE_RULES.find(rule => rule.id === 'allergic_asthma') || DEMO_ROUTE_RULES[0];
+  if (/pd\s*-?\s*l\s*-?\s*1|pdl1|programmed death ligand|pd\s*-?\s*1\s*\/\s*pd\s*-?\s*l\s*-?\s*1|pd\s*-?\s*l\s*-?\s*1\s*\/\s*pd\s*-?\s*1|检查点/.test(normalized)) return DEMO_ROUTE_RULES.find(rule => rule.id === 'tumor_immunotherapy') || getDefaultDemoRoute();
+  if (/her\s*-?\s*2|erbb\s*-?\s*2/.test(normalized)) return DEMO_ROUTE_RULES.find(rule => rule.id === 'breast_cancer') || getDefaultDemoRoute();
+  if (/tnf/.test(normalized)) return DEMO_ROUTE_RULES.find(rule => rule.id === 'autoimmune_inflammation') || getDefaultDemoRoute();
 
   if (/(设计|生成|做|来一个|演示|打印|结构模型|候选).*(抗体|分子|药物|治疗分子|模型)|(?:抗体|药物|治疗分子).*(设计|生成|演示|打印|模型)|(?:antibody|drug|medicine|therapeutic).*(design|generate|demo)|design.*(?:antibody|drug|medicine|therapeutic)/.test(normalized)) {
     return buildRepresentativeDemoRoute('完整抗体设计演示', 'default_demo');
@@ -4647,6 +4923,10 @@ function shouldResolveDesignTargetBeforeWorkflow(input, routing) {
   if (!parsed.isDesignRequest && !modelDesign) return false;
   if (modelDesign) return true;
   if (extractExplicitTargetDeclaration(text)) return false;
+  if (parsed.target && !isDiseaseIndication(parsed.target)) {
+    const profile = buildRouteProfile(parsed.target, parsed.blockTarget, parsed.abType);
+    if (getRoute3DPreset(profile)) return false;
+  }
   return true;
 }
 
@@ -5220,8 +5500,8 @@ function parseRequest(input, forcedRoute) {
     ? designRequest.count
     : parseDesignCount(input, fallbackCount);
   const targetPatterns = [
-    /(?:bind(?:ing)? to|targeting|针对|靶向)\s+(?:human\s+)?(SARS-CoV-2\s+RBD|Influenza\s+HA|RSV\s+F|IL-17A|IL-23|IL-1β|IL-1B|VEGF-A|ANGPTL3|PCSK9|TSLP|GIPR|EGFR|HER2|PD-L1|TNF)/i,
-    /\b(SARS-CoV-2\s+RBD|Influenza\s+HA|RSV\s+F|IL-17A|IL-23|IL-1β|IL-1B|VEGF-A|ANGPTL3|PCSK9|TSLP|GIPR|EGFR|HER2|PD-L1|TNF[α\-]?A?)\b/i];
+    /(?:bind(?:ing)? to|targeting|针对|靶向)\s+(?:human\s+)?(SARS-CoV-2\s+RBD|Influenza\s+HA|RSV\s+F|CGRP\s+receptor|IL-17A|IL-23|IL-1β|IL-1B|IL-6R|IL-4Rα|IL-4RA|VEGF-A|ANGPTL3|PCSK9|CTLA-4|TROP-2|LAG-3|TSLP|GIPR|EGFR|HER2|PD-L1|PD-1|CD20|CD19|CD3|CD25|CD38|CD47|BCMA|TIGIT|IgE|C5|TNF)/i,
+    /\b(SARS-CoV-2\s+RBD|Influenza\s+HA|RSV\s+F|CGRP\s+receptor|IL-17A|IL-23|IL-1β|IL-1B|IL-6R|IL-4Rα|IL-4RA|VEGF-A|ANGPTL3|PCSK9|CTLA-4|TROP-2|LAG-3|TSLP|GIPR|EGFR|HER2|PD-L1|PD-1|CD20|CD19|CD3|CD25|CD38|CD47|BCMA|TIGIT|IgE|C5|TNF[α\-]?A?)\b/i];
   let target = demoRoute ? demoRoute.target : (designRequest.target || 'PD-L1');
   if (!demoRoute) {
     for (const p of targetPatterns) {
@@ -5871,6 +6151,7 @@ function detectIntent(input) {
   if (/多序列比对|sequence.?align|msa\b|比对序列/.test(lower)) return 'msa';
   if (/相互作用分析|残基分析|interaction.?anal|plip/.test(lower)) return 'interaction';
   if (/风险位点|脱酰胺|氧化位点|聚集热点|risk.?site|liability.?scan|deamidat|oxidat/.test(lower)) return 'risk_site';
+  if (extractDesignRequest(input).isDesignRequest) return 'design';
   if (detectDemoRoute(input)) return 'design';
   return 'assistant_chat';
 }
@@ -5929,7 +6210,7 @@ function canRunLocalWorkflowIntent(intent, input, demoRoute) {
   if (intent === 'capability') return false;
   if (intent === 'design') {
     const designRequest = extractDesignRequest(text);
-    return Boolean(demoRoute && isPreparedDemoRoute(demoRoute) && designRequest.isDesignRequest);
+    return Boolean(demoRoute && designRequest.isDesignRequest && (isPreparedDemoRoute(demoRoute) || hasPrepared3DPresetForTarget(demoRoute.target, demoRoute.blockTarget, demoRoute.abType)));
   }
   if (intent === 'epitope_prediction') return Boolean(extractNamedTargetForLocalWorkflow(text));
   if (intent === 'uniprot') return Boolean(extractNamedTargetForLocalWorkflow(text));

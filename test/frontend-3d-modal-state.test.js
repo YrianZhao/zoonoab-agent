@@ -76,11 +76,16 @@ test('workflow auto-scroll only follows while the page is pinned near the bottom
   const scrollBottom = extractFunction(html, 'function scrollBottom');
 
   assert.match(html, /const\s+AUTO_SCROLL_BOTTOM_THRESHOLD\s*=/);
+  assert.match(html, /const\s+AUTO_SCROLL_FOLLOW_SETTLE_MS\s*=/);
   assert.match(html, /let\s+autoScrollPinnedToBottom\s*=/);
+  assert.match(html, /let\s+autoScrollFollowUntil\s*=/);
   assert.match(html, /function\s+isPageNearBottom\s*\(/);
   assert.match(html, /function\s+captureAutoScrollState\s*\(/);
+  assert.match(html, /function\s+extendAutoScrollFollowWindow\s*\(/);
+  assert.match(html, /function\s+shouldFollowAutoScroll\s*\(/);
   assert.match(scrollBottom, /autoScrollPinnedToBottom/);
-  assert.match(scrollBottom, /isPageNearBottom\(\)/);
+  assert.match(scrollBottom, /shouldFollowAutoScroll/);
+  assert.match(scrollBottom, /extendAutoScrollFollowWindow/);
   assert.match(scrollBottom, /return\s+false/);
   assert.match(scrollBottom, /window\.scrollTo/);
   assert.doesNotMatch(
@@ -88,6 +93,23 @@ test('workflow auto-scroll only follows while the page is pinned near the bottom
     /function\s+scrollBottom\s*\(\)\s*{\s*window\.scrollTo/s,
     'scrollBottom must not unconditionally move the page'
   );
+});
+
+test('workflow auto-scroll observes content growth while pinned and cancels when user scrolls away', () => {
+  assert.match(html, /function\s+handleAutoScrollContentGrowth\s*\(/);
+  assert.match(html, /new\s+ResizeObserver\s*\(\s*handleAutoScrollContentGrowth\s*\)/);
+  assert.match(html, /autoScrollResizeObserver\.observe\(document\.body\)/);
+
+  const growthHandler = extractFunction(html, 'function handleAutoScrollContentGrowth');
+  assert.match(growthHandler, /autoScrollPinnedToBottom/);
+  assert.match(growthHandler, /autoScrollFollowUntil/);
+  assert.match(growthHandler, /Date\.now\(\)\s*<=\s*autoScrollFollowUntil/);
+  assert.match(growthHandler, /scrollBottom\(\{\s*behavior:\s*'auto'/);
+
+  const scrollHandlerStart = html.indexOf("window.addEventListener('scroll'");
+  assert.notEqual(scrollHandlerStart, -1, 'scroll event handler should exist');
+  const scrollHandler = html.slice(scrollHandlerStart, html.indexOf('}, { passive: true });', scrollHandlerStart));
+  assert.match(scrollHandler, /autoScrollFollowUntil\s*=\s*0/);
 });
 
 test('final workflow modal preparation does not force page scrolling when the user has scrolled away', () => {

@@ -114,8 +114,9 @@ test('server routes shorthand flu NA monoclonal sequence requests to design work
 
   assert.equal(data.intent, 'design');
   assert.equal(data.localWorkflowAllowed, true);
-  assert.equal(data.runner, 'target_resolution_workflow');
-  assert.equal(data.requiresTargetResolution, true);
+  assert.equal(data.runner, 'local_workflow');
+  assert.equal(data.requiresTargetResolution, false);
+  assert.equal(data.demoRoute.target, 'Influenza NA');
 });
 
 test('server can let the chat model route terse monoclonal slang into workflow', async () => {
@@ -221,6 +222,45 @@ test('server previews distinct 3D model files for different design targets and a
   assert.equal(previews[3].data.threeDPreview.binders[0].antibodyFormat, 'VHH');
 });
 
+test('server previews curated real complexes for common explicit antigen targets', async () => {
+  const requests = [
+    { text: '设计10个针对PD-1的Fab', expectedTarget: 'PD-1', expectedPrefix: /^PD1-Fab-/ },
+    { text: '设计10个针对CTLA-4的抗体', expectedTarget: 'CTLA-4', expectedPrefix: /^CTLA4-Fab-/ },
+    { text: '设计10个针对CD20的Fab', expectedTarget: 'CD20', expectedPrefix: /^CD20-Fab-/ },
+    { text: '设计10个针对CD19的Fab', expectedTarget: 'CD19', expectedPrefix: /^CD19-Fab-/ },
+    { text: '设计10个针对CD3的Fab', expectedTarget: 'CD3', expectedPrefix: /^CD3-Fab-/ },
+    { text: '设计10个针对C5的Fab', expectedTarget: 'C5', expectedPrefix: /^C5-Fab-/ },
+    { text: '设计10个针对IL-6R的Fab', expectedTarget: 'IL-6R', expectedPrefix: /^IL6R-Fab-/ },
+    { text: '设计10个针对IL-4Rα的Fab', expectedTarget: 'IL-4Rα', expectedPrefix: /^IL4RA-Fab-/ },
+    { text: '设计10个针对CD25的Fab', expectedTarget: 'CD25', expectedPrefix: /^CD25-Fab-/ },
+    { text: '设计10个针对CD38的Fab', expectedTarget: 'CD38', expectedPrefix: /^CD38-Fab-/ },
+    { text: '设计10个针对TIGIT的Fab', expectedTarget: 'TIGIT', expectedPrefix: /^TIGIT-Fab-/ },
+    { text: '设计10个针对CD47的Fab', expectedTarget: 'CD47', expectedPrefix: /^CD47-Fab-/ },
+    { text: '设计10个针对LAG-3的Fab', expectedTarget: 'LAG-3', expectedPrefix: /^LAG3-Fab-/ },
+    { text: '设计10个针对TROP-2的Fab', expectedTarget: 'TROP-2', expectedPrefix: /^TROP2-Fab-/ },
+    { text: '设计10个针对BCMA的Fab', expectedTarget: 'BCMA', expectedPrefix: /^BCMA-Fab-/ },
+    { text: '设计10个针对IgE的Fab', expectedTarget: 'IgE', expectedPrefix: /^IgE-Fab-/ },
+    { text: '设计10个针对CGRP receptor的Fab', expectedTarget: 'CGRP receptor', expectedPrefix: /^CGRPR-Fab-/ },
+    { text: '设计10个针对流感NA的Fab', expectedTarget: 'Influenza NA', expectedPrefix: /^FluNA-Fab-/ }
+  ];
+
+  for (const item of requests) {
+    const query = encodeURIComponent(item.text);
+    const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/design-route?text=' + query);
+    assert.equal(res.status, 200);
+    const data = await res.json();
+    const firstBinder = data.threeDPreview && data.threeDPreview.binders && data.threeDPreview.binders[0];
+
+    assert.ok(firstBinder, item.text + ' should preview a local 3D model');
+    assert.equal(data.profile && data.profile.targetDisplay, item.expectedTarget, item.text + ' should keep the explicit target in the preview profile');
+    assert.match(firstBinder.file, item.expectedPrefix);
+    assert.match(firstBinder.structuralBasis, /RCSB /);
+    assert.equal(firstBinder.fallback, false);
+    assert.ok(Array.isArray(firstBinder.antigenChains) && firstBinder.antigenChains.length >= 1);
+    assert.ok(Array.isArray(firstBinder.antibodyChains) && firstBinder.antibodyChains.length >= 2);
+  }
+});
+
 test('generic target previews avoid local display structures without antigen-antibody contact', async () => {
   const query = encodeURIComponent('设计10个具有结合活性的流感NA单抗序列');
   const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/design-route?text=' + query);
@@ -234,8 +274,9 @@ test('generic target previews avoid local display structures without antigen-ant
   assert.ok(files.every(file => !/^ANGPTL3-/.test(file)), 'generic Influenza NA previews should not borrow non-contact ANGPTL3 display structures');
   assert.ok(data.threeDPreview.binders.every(item => Array.isArray(item.antigenChains) && item.antigenChains.length >= 1));
   assert.ok(data.threeDPreview.binders.every(item => Array.isArray(item.antibodyChains) && item.antibodyChains.length >= 1));
-  assert.deepEqual(firstBinder.antigenChains, ['E'], 'generic Flu NA should show only the antigen chain that contacts the representative Fab');
-  assert.deepEqual(firstBinder.sourceAntigenChains, ['A', 'D', 'E'], 'generic Flu NA should retain the full source antigen chain set as metadata');
+  assert.match(firstBinder.file, /^FluNA-Fab-/);
+  assert.deepEqual(firstBinder.antigenChains, ['A'], 'Flu NA should show the neuraminidase antigen chain from the real NA-Fab complex');
+  assert.deepEqual(firstBinder.sourceAntigenChains, ['A']);
   assert.deepEqual(firstBinder.antibodyChains, ['B', 'C']);
   assert.deepEqual(firstBinder.sourceAntibodyChains, ['B', 'C']);
 });
@@ -470,7 +511,7 @@ test('server routes unsupported disease requests through target resolution', asy
   assert.equal(res.status, 200);
   const data = await res.json();
 
-  assert.equal(data.detectedIntent, 'assistant_chat');
+  assert.equal(data.detectedIntent, 'design');
   assert.equal(data.intent, 'design');
   assert.equal(data.localWorkflowAllowed, true);
   assert.equal(data.runner, 'target_resolution_workflow');
@@ -876,8 +917,9 @@ test('server routes drug molecule design wording through molecular design workfl
 
   assert.equal(targetData.intent, 'design');
   assert.equal(targetData.localWorkflowAllowed, true);
-  assert.equal(targetData.runner, 'target_resolution_workflow');
-  assert.equal(targetData.requiresTargetResolution, true);
+  assert.equal(targetData.runner, 'local_workflow');
+  assert.equal(targetData.requiresTargetResolution, false);
+  assert.equal(targetData.demoRoute.target, 'Influenza NA');
 
   const diseaseQuery = encodeURIComponent('帮我为过敏性哮喘设计一款药物');
   const diseaseRes = await fetch('http://127.0.0.1:' + PORT + '/api/debug/user-routing?text=' + diseaseQuery);

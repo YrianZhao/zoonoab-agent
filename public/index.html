@@ -5851,7 +5851,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146077';
+    const APP_BUILD_VERSION = '78146078';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -13695,6 +13695,23 @@ ${fallbackTableRows(profile.rows)}
         generic_vhh: { aliasPrefix: 'IL33-VHH', structureTitle: 'VHH 小型抗体展示构象', structureFamily: 'VHH 小型结合体 · 通用展示候选', visualSummary: '用于未命中常见靶点时的 VHH 结构展示。', structuralBasis: '本地 VHH 展示结构，用于分布外靶点的候选可视化', antigenChains: ['A','D'], antibodyChains: ['B'], visualColors: { antigen: '#F59E0B', antibody: '#14B8A6' }, order: [11,0,2,5,1,4,7,3,6,8,9,10] },
         allergic_tslp: { aliasPrefix: 'TSLP-Fab', structureTitle: 'TSLP/TSLPR Fab 上皮炎症界面阻断构象', structureFamily: '上皮来源细胞因子 · Fab 阻断候选', visualSummary: '展示 Fab 覆盖 TSLPR 结合面并保留外侧稳定接触。', structuralBasis: 'RCSB 5J13 TSLP / tezepelumab Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#F97316', antibody: '#0EA5E9' }, order: [1,4,7,0,3,6,9,2,5,8,10,11] },
         tumor_immunotherapy: { aliasPrefix: 'PDL1-Fab', structureTitle: 'PD-L1 Fab 免疫检查点阻断构象', structureFamily: '免疫检查点 IgV 结构域 · Fab 候选', visualSummary: '突出 Fab 对 PD-1/PD-L1 接触面的空间覆盖。', structuralBasis: 'RCSB 5X8L PD-L1 / atezolizumab Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#60A5FA', antibody: '#F472B6' }, order: [0,2,5,1,4,7,3,6,8,9,10,11] },
+        checkpoint_pd1: { aliasPrefix: 'PD1-Fab', structureTitle: 'PD-1 Fab 免疫检查点结合构象', structureFamily: '免疫检查点受体 IgV 结构域 · Fab 候选', visualSummary: '展示 nivolumab Fab 识别 PD-1 胞外结构域的真实复合物界面。', structuralBasis: 'RCSB 5WT9 PD-1 / nivolumab Fab complex', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#38BDF8', antibody: '#F472B6' } },
+        checkpoint_ctla4: { aliasPrefix: 'CTLA4-Fab', structureTitle: 'CTLA-4 Fab 免疫检查点结合构象', structureFamily: '免疫检查点受体 · Fab 候选', visualSummary: '展示 ipilimumab Fab 贴合 CTLA-4 胞外结构域的真实抗原-抗体复合物。', structuralBasis: 'RCSB 6RP8 CTLA-4 / ipilimumab Fab complex', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#22C55E', antibody: '#A855F7' } },
+        heme_cd20: { aliasPrefix: 'CD20-Fab', structureTitle: 'CD20 Fab B 细胞表面抗原结合构象', structureFamily: 'B 细胞表面抗原 · Fab 候选', visualSummary: '保留 CD20 双链跨膜区外露构象，并展示 rituximab Fab 的真实结合姿态。', structuralBasis: 'RCSB 6VJA CD20 / rituximab Fab complex', antigenChains: ['A','D'], antibodyChains: ['B','C','F','G'], visualColors: { antigen: '#2563EB', antibody: '#F97316' } },
+        heme_cd19: { aliasPrefix: 'CD19-Fab', structureTitle: 'CD19 Fab B 细胞抗原结合构象', structureFamily: 'B 细胞表面抗原 · Fab 候选', visualSummary: '展示 B43 Fab 与 CD19 胞外结构域的真实结合界面。', structuralBasis: 'RCSB 6AL5 CD19 / B43 Fab complex', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#0EA5E9', antibody: '#F59E0B' } },
+        immune_cd3: { aliasPrefix: 'CD3-Fab', structureTitle: 'CD3 Fab T 细胞受体复合体结合构象', structureFamily: 'T 细胞 CD3 复合体 · Fab 候选', visualSummary: '展示 OKT3 Fab 识别 CD3 gamma-epsilon 胞外结构域的真实复合物界面。', structuralBasis: 'RCSB 1SY6 CD3 gamma-epsilon / OKT3 Fab complex', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#14B8A6', antibody: '#F43F5E' } },
+        complement_c5: { aliasPrefix: 'C5-Fab', structureTitle: 'Complement C5 抗体结合构象', structureFamily: '补体通路蛋白 · 抗体候选', visualSummary: '保留 complement C5 多结构域形状，并展示 eculizumab 可变区抗体复合体界面。', structuralBasis: 'RCSB 5I5K complement C5 / eculizumab variable-domain antibody complex', antigenChains: ['A','D'], antibodyChains: ['B','C','F','G'], visualColors: { antigen: '#16A34A', antibody: '#6366F1' } },
+        inflammation_il6r: { aliasPrefix: 'IL6R-Fab', structureTitle: 'IL-6R Fab 炎症受体阻断构象', structureFamily: '炎症细胞因子受体 · Fab 候选', visualSummary: '展示 tocilizumab Fab 识别 IL-6R alpha 胞外结构域的真实结合界面。', structuralBasis: 'RCSB 8J6F IL-6R alpha / tocilizumab Fab complex', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#DC2626', antibody: '#38BDF8' } },
+        allergic_il4ra: { aliasPrefix: 'IL4RA-Fab', structureTitle: 'IL-4Rα Fab 过敏炎症受体结合构象', structureFamily: '过敏炎症受体 · Fab 候选', visualSummary: '展示 dupilumab Fab 识别 IL-4 receptor alpha 的真实复合物界面。', structuralBasis: 'RCSB 6WGL IL-4 receptor alpha / dupilumab Fab complex', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#F97316', antibody: '#0EA5E9' } },
+        immune_cd25: { aliasPrefix: 'CD25-Fab', structureTitle: 'CD25 Fab IL-2Rα 结合构象', structureFamily: '免疫调节受体 · Fab 候选', visualSummary: '展示 daclizumab Fab 与 IL-2RA(CD25) 胞外结构域的真实复合物界面。', structuralBasis: 'RCSB 3NFP IL-2RA(CD25) / daclizumab Fab complex', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#8B5CF6', antibody: '#34D399' } },
+        heme_cd38: { aliasPrefix: 'CD38-Fab', structureTitle: 'CD38 Fab 血液肿瘤靶点结合构象', structureFamily: '血液肿瘤表面抗原 · Fab 候选', visualSummary: '展示 daratumumab Fab 识别 CD38 胞外结构域的真实抗原-抗体界面。', structuralBasis: 'RCSB 7DUO CD38 / daratumumab Fab complex', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#7C3AED', antibody: '#2DD4BF' } },
+        checkpoint_tigit: { aliasPrefix: 'TIGIT-Fab', structureTitle: 'TIGIT Fab 免疫检查点结合构象', structureFamily: '免疫检查点受体 · Fab 候选', visualSummary: '展示 vibostolimab Fab 与 TIGIT 胞外 Ig 结构域的真实结合界面。', structuralBasis: 'RCSB 8VTD TIGIT / vibostolimab Fab complex', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#0F766E', antibody: '#FB7185' } },
+        checkpoint_cd47: { aliasPrefix: 'CD47-Fab', structureTitle: 'CD47 Fab 先天免疫检查点结合构象', structureFamily: '细胞表面免疫调节抗原 · Fab 候选', visualSummary: '展示 hu1C8 Fab 识别 CD47 胞外结构域的真实复合物界面。', structuralBasis: 'RCSB 8ZCA CD47 / hu1C8 Fab complex', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#059669', antibody: '#F59E0B' } },
+        checkpoint_lag3: { aliasPrefix: 'LAG3-Fab', structureTitle: 'LAG-3 Fab 免疫检查点结合构象', structureFamily: '免疫检查点受体 · Fab 候选', visualSummary: '展示 favezelimab Fab 与 LAG-3 胞外结构域的真实抗原-抗体界面。', structuralBasis: 'RCSB 8SO3 LAG-3 / favezelimab Fab complex', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#0891B2', antibody: '#A855F7' } },
+        solid_tumor_trop2: { aliasPrefix: 'TROP2-Fab', structureTitle: 'TROP-2 Fab 肿瘤表面抗原结合构象', structureFamily: '实体瘤表面抗原 · Fab 候选', visualSummary: '保留 TROP-2 二聚体形状，并展示 sacituzumab Fab 的真实结合姿态。', structuralBasis: 'RCSB 9PI9 TROP-2 dimer / sacituzumab Fab complex', antigenChains: ['A','D'], antibodyChains: ['B','C','F','G'], visualColors: { antigen: '#EC4899', antibody: '#38BDF8' } },
+        heme_bcma: { aliasPrefix: 'BCMA-Fab', structureTitle: 'BCMA Fab 浆细胞靶点结合构象', structureFamily: 'B 细胞成熟抗原 · Fab 候选', visualSummary: '展示 CA10V2 Fab 识别 BCMA 胞外 N 端结构域的真实复合物界面。', structuralBasis: 'RCSB 9MQO BCMA / CA10V2 Fab complex', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#2563EB', antibody: '#F97316' } },
+        allergic_ige: { aliasPrefix: 'IgE-Fab', structureTitle: 'IgE-Fc Fab 过敏通路结合构象', structureFamily: '免疫球蛋白 E Fc · Fab 候选', visualSummary: '保留 IgE-Fc 双链形状，并展示 anti-IgE Fab 的真实结合姿态。', structuralBasis: 'RCSB 5G64 IgE-Fc / anti-IgE Fab complex', antigenChains: ['A','D'], antibodyChains: ['B','C','F','G'], visualColors: { antigen: '#F59E0B', antibody: '#0EA5E9' } },
+        migraine_cgrpr: { aliasPrefix: 'CGRPR-Fab', structureTitle: 'CGRP receptor Fab 偏头痛靶点结合构象', structureFamily: 'CGRP 受体胞外复合物 · Fab 候选', visualSummary: '展示 erenumab Fab 识别 CGRP receptor/RAMP1 胞外复合物的真实结合界面。', structuralBasis: 'RCSB 6UMG CGRP receptor ECD / erenumab Fab complex', antigenChains: ['A','D'], antibodyChains: ['B','C'], visualColors: { antigen: '#0F766E', antibody: '#F472B6' } },
         breast_cancer: { aliasPrefix: 'HER2-Fab', structureTitle: 'HER2 Fab 胞外结构域结合构象', structureFamily: 'HER2 胞外结构域 · 肿瘤靶点 Fab', visualSummary: '呈现 Fab 贴合 HER2 胞外可及表面并形成稳定 CDR 接触。', structuralBasis: 'RCSB 1N8Z HER2 胞外结构域 / trastuzumab Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#EC4899', antibody: '#38BDF8' }, order: [2,5,8,1,4,7,0,3,6,9,10,11] },
         solid_tumor_egfr: { aliasPrefix: 'EGFR-Fab', structureTitle: 'EGFR Fab 配体邻近表面结合构象', structureFamily: 'EGFR 胞外受体结构域 · Fab 候选', visualSummary: '展示 Fab 识别 EGFR 配体结合邻近区域的构象布局。', structuralBasis: 'RCSB 1YY9 EGFR 胞外结构域 / cetuximab Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#8B5CF6', antibody: '#34D399' }, order: [3,6,9,0,2,5,8,1,4,7,10,11] },
         angiogenesis_oncology: { aliasPrefix: 'VEGFA-Fab', structureTitle: 'VEGF-A Fab 血管生成信号中和构象', structureFamily: '血管生成因子 · Fab 中和候选', visualSummary: '强调 Fab 对 VEGFR 结合面邻近可及表面的稳定覆盖。', structuralBasis: 'RCSB 1BJ1 VEGF-A / 中和 Fab 复合体', antigenChains: ['A','D'], antibodyChains: ['B','C'], visualColors: { antigen: '#22C55E', antibody: '#A855F7' }, order: [4,7,10,1,3,6,9,0,2,5,8,11] },
@@ -13704,6 +13721,7 @@ ${fallbackTableRows(profile.rows)}
         infectious_rsv: { aliasPrefix: 'RSVF-Fab', structureTitle: 'RSV F Fab 病毒融合阻断构象', structureFamily: '病毒融合蛋白 · 中和 Fab 候选', visualSummary: '呈现 Fab 锁定 RSV F 融合前关键构象表面。', structuralBasis: 'RCSB 5W23 RSV F prefusion trimer / 5C4 Fab 复合体', antigenChains: ['A','D','E'], antibodyChains: ['B','C'], visualColors: { antigen: '#0EA5E9', antibody: '#F97316' }, order: [8,0,3,6,9,1,4,7,10,2,5,11] },
         infectious_covid: { aliasPrefix: 'SC2RBD-Fab', structureTitle: 'SARS-CoV-2 RBD Fab 受体结合阻断构象', structureFamily: '病毒受体结合结构域 · 中和 Fab 候选', visualSummary: '展示 Fab 覆盖 RBD/ACE2 结合邻近可及面。', structuralBasis: 'RCSB 6XDG SARS-CoV-2 RBD / REGN10933 Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#0284C7', antibody: '#F59E0B' }, order: [9,1,4,7,10,2,5,8,0,3,6,11] },
         infectious_flu: { aliasPrefix: 'FluHA-Fab', structureTitle: 'Influenza HA Fab 保守中和表位构象', structureFamily: '流感表面抗原 · 广谱中和 Fab 候选', visualSummary: '保留 HA 三聚体 biological assembly，并突出 Fab 对保守中和表面的稳定接触。', structuralBasis: 'RCSB 3GBM influenza HA trimer biological assembly / CR6261 Fab complex', antigenChains: ['A','D','E','F','G','H'], antibodyChains: ['B','C'], visualColors: { antigen: '#0891B2', antibody: '#FB7185' }, order: [10,2,5,8,0,3,6,9,1,4,7,11] },
+        infectious_flu_na: { aliasPrefix: 'FluNA-Fab', structureTitle: 'Influenza NA Fab 神经氨酸酶结合构象', structureFamily: '流感神经氨酸酶 · 中和 Fab 候选', visualSummary: '展示 NC41 Fab 识别 influenza N9 neuraminidase 的真实抗原-抗体复合物界面。', structuralBasis: 'RCSB 1NCD influenza N9 neuraminidase / NC41 Fab complex', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#06B6D4', antibody: '#F97316' } },
         cardio_pcsk9: { aliasPrefix: 'PCSK9-Fab', structureTitle: 'PCSK9 Fab LDLR 结合界面阻断构象', structureFamily: '血脂调控靶点 · Fab 阻断候选', visualSummary: '展示 Fab 围绕 PCSK9/LDLR 接触面形成稳定结合。', structuralBasis: 'RCSB 3SQO PCSK9 / J16 Fab 复合体', antigenChains: ['A','D'], antibodyChains: ['B','C'], visualColors: { antigen: '#2563EB', antibody: '#84CC16' }, order: [1,5,9,0,4,8,2,6,10,3,7,11] },
         cardio_angptl3: { aliasPrefix: 'ANGPTL3-CV-Fab', structureTitle: 'ANGPTL3 Fab 血脂调控中和构象', structureFamily: '脂质代谢调控靶点 · 心血管 Fab 候选', visualSummary: '呈现真实 ANGPTL3 功能结构域与 Fab 候选参考构象。', structuralBasis: 'RCSB 6EUA ANGPTL3 真实靶点结构 + Fab 候选参考姿态', interfaceDetail: false, antigenChains: ['A','D','E'], antibodyChains: ['B','C'], visualColors: { antigen: '#16A34A', antibody: '#818CF8' }, order: [2,6,10,1,5,9,0,4,8,3,7,11] },
         cardio_il1b: { aliasPrefix: 'IL1B-Fab', structureTitle: 'IL-1β Fab 炎症风险中和构象', structureFamily: 'IL-1 家族炎症因子 · Fab 候选', visualSummary: '展示 Fab 覆盖 IL-1R 结合邻近面的候选构象。', structuralBasis: 'RCSB 5BVP IL-1 beta / canakinumab Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#DC2626', antibody: '#38BDF8' }, order: [3,7,0,2,6,10,1,5,9,4,8,11] },
@@ -13714,6 +13732,24 @@ ${fallbackTableRows(profile.rows)}
     function getFallback3DPreset(profile) {
         if (profile && profile.routeId && FALLBACK_3D_PRESETS[profile.routeId]) return FALLBACK_3D_PRESETS[profile.routeId];
         const target = String(profile && profile.target || '').toLowerCase();
+        if (/influenza\s*(?:na|neuraminidase)|流感\s*(?:na|神经氨酸酶)/.test(target)) return FALLBACK_3D_PRESETS.infectious_flu_na;
+        if (/pd\s*-?\s*1|pd1/.test(target) && !/pd\s*-?\s*l\s*-?\s*1|pdl1/.test(target)) return FALLBACK_3D_PRESETS.checkpoint_pd1;
+        if (/ctla\s*-?\s*4|cd152/.test(target)) return FALLBACK_3D_PRESETS.checkpoint_ctla4;
+        if (/cd\s*-?\s*20|ms4a1/.test(target)) return FALLBACK_3D_PRESETS.heme_cd20;
+        if (/cd\s*-?\s*19/.test(target)) return FALLBACK_3D_PRESETS.heme_cd19;
+        if (/cd\s*-?\s*3(?:e|epsilon|ε)?/.test(target)) return FALLBACK_3D_PRESETS.immune_cd3;
+        if (/(?:^|\b)c\s*-?\s*5\b|complement\s+c5|补体\s*c5/.test(target)) return FALLBACK_3D_PRESETS.complement_c5;
+        if (/il\s*-?\s*6\s*-?\s*r|il6r|cd126/.test(target)) return FALLBACK_3D_PRESETS.inflammation_il6r;
+        if (/il\s*-?\s*4\s*-?\s*r(?:a|α|alpha)?|il4ra|cd124/.test(target)) return FALLBACK_3D_PRESETS.allergic_il4ra;
+        if (/cd\s*-?\s*25|il\s*-?\s*2\s*-?\s*ra|il2ra/.test(target)) return FALLBACK_3D_PRESETS.immune_cd25;
+        if (/cd\s*-?\s*38/.test(target)) return FALLBACK_3D_PRESETS.heme_cd38;
+        if (/tigit/.test(target)) return FALLBACK_3D_PRESETS.checkpoint_tigit;
+        if (/cd\s*-?\s*47/.test(target)) return FALLBACK_3D_PRESETS.checkpoint_cd47;
+        if (/lag\s*-?\s*3|lag3/.test(target)) return FALLBACK_3D_PRESETS.checkpoint_lag3;
+        if (/trop\s*-?\s*2|tacstd2/.test(target)) return FALLBACK_3D_PRESETS.solid_tumor_trop2;
+        if (/bcma|tnfrsf17|cd269/.test(target)) return FALLBACK_3D_PRESETS.heme_bcma;
+        if (/\bige\b|免疫球蛋白\s*e/.test(target)) return FALLBACK_3D_PRESETS.allergic_ige;
+        if (/cgrp\s*receptor|cgrpr|calcrl/.test(target)) return FALLBACK_3D_PRESETS.migraine_cgrpr;
         if (/influenza|流感|血凝素|\bha\b/.test(target)) return FALLBACK_3D_PRESETS.infectious_flu;
         if (/her\s*-?\s*2|erbb2/.test(target)) return FALLBACK_3D_PRESETS.breast_cancer;
         if (/pd\s*-?\s*l\s*-?\s*1|pdl1/.test(target)) return FALLBACK_3D_PRESETS.tumor_immunotherapy;
@@ -14953,7 +14989,10 @@ ${fallbackTableRows(profile.rows)}
     }
 
     const AUTO_SCROLL_BOTTOM_THRESHOLD = 120;
+    const AUTO_SCROLL_FOLLOW_SETTLE_MS = 900;
     let autoScrollPinnedToBottom = true;
+    let autoScrollFollowUntil = 0;
+    let autoScrollResizeTick = 0;
 
     function getDocumentScrollHeight() {
         const doc = document.documentElement;
@@ -14973,34 +15012,62 @@ ${fallbackTableRows(profile.rows)}
 
     function captureAutoScrollState() {
         autoScrollPinnedToBottom = isPageNearBottom();
+        if (autoScrollPinnedToBottom) extendAutoScrollFollowWindow();
         return { wasAtBottom: autoScrollPinnedToBottom };
+    }
+
+    function extendAutoScrollFollowWindow() {
+        autoScrollFollowUntil = Date.now() + AUTO_SCROLL_FOLLOW_SETTLE_MS;
+    }
+
+    function shouldFollowAutoScroll(options) {
+        options = options || {};
+        if (options.force) return true;
+        const currentlyAtBottom = isPageNearBottom();
+        const hasCapturedState = Object.prototype.hasOwnProperty.call(options, 'wasAtBottom');
+        if (hasCapturedState) return options.wasAtBottom === true && autoScrollPinnedToBottom;
+        return autoScrollPinnedToBottom || currentlyAtBottom || Date.now() <= autoScrollFollowUntil;
     }
 
     function scrollBottom(options) {
         options = options || {};
-        const force = Boolean(options.force);
-        const currentlyAtBottom = isPageNearBottom();
-        const hasCapturedState = Object.prototype.hasOwnProperty.call(options, 'wasAtBottom');
-        const shouldFollow = force || (
-            hasCapturedState
-                ? options.wasAtBottom === true && autoScrollPinnedToBottom
-                : (autoScrollPinnedToBottom || currentlyAtBottom)
-        );
+        const shouldFollow = shouldFollowAutoScroll(options);
         if (!shouldFollow) {
             autoScrollPinnedToBottom = false;
             return false;
         }
         autoScrollPinnedToBottom = true;
+        extendAutoScrollFollowWindow();
         window.scrollTo({ top: getDocumentScrollHeight(), behavior: options.behavior || 'smooth' });
         return true;
     }
 
+    function handleAutoScrollContentGrowth() {
+        const withinFollowWindow = Date.now() <= autoScrollFollowUntil;
+        if (!autoScrollPinnedToBottom && !withinFollowWindow) return;
+        if (autoScrollResizeTick) return;
+        autoScrollResizeTick = window.requestAnimationFrame(() => {
+            autoScrollResizeTick = 0;
+            const stillWithinFollowWindow = Date.now() <= autoScrollFollowUntil;
+            if (!autoScrollPinnedToBottom && !stillWithinFollowWindow) return;
+            scrollBottom({ behavior: 'auto' });
+        });
+    }
+
+    if ('ResizeObserver' in window) {
+        const autoScrollResizeObserver = new ResizeObserver(handleAutoScrollContentGrowth);
+        autoScrollResizeObserver.observe(document.body);
+    }
+
     window.addEventListener('scroll', () => {
         autoScrollPinnedToBottom = isPageNearBottom();
+        if (!autoScrollPinnedToBottom) autoScrollFollowUntil = 0;
+        else extendAutoScrollFollowWindow();
     }, { passive: true });
 
     window.addEventListener('resize', () => {
         autoScrollPinnedToBottom = isPageNearBottom();
+        if (autoScrollPinnedToBottom) scrollBottom({ behavior: 'auto' });
     });
 
     let assistantThinkingTimer = null;
