@@ -817,6 +817,22 @@ test('target resolver fallback keeps allergic asthma ten-candidate workflows on 
   assert.doesNotMatch(serialized, VISIBLE_RESOLVER_LEAK_PATTERN);
 });
 
+test('target resolver fallback handles myocarditis disease requests without startup failure', async () => {
+  const messages = await collectUserMessageStream('帮我设计心肌炎抗体', {
+    timeoutMs: 12000,
+    stopWhen: (msg) => msg.type === 'error' || (msg.type === 'tool_call' && msg.tool === 'target_evidence_review')
+  });
+  const serialized = JSON.stringify(messages);
+  const errorMessage = messages.find(msg => msg.type === 'error');
+  const evidenceCall = messages.find(msg => msg.type === 'tool_call' && msg.tool === 'target_evidence_review');
+
+  assert.equal(errorMessage, undefined);
+  assert.ok(evidenceCall, 'myocarditis design request should reach target evidence review instead of erroring');
+  assert.match(evidenceCall.params.target, /IL-1β|IL-1B|TNF|IL-6/i);
+  assert.doesNotMatch(serialized, /工作流执行出错|Cannot read properties|心肌炎表面抗原|心肌炎代表性目标结构约束/);
+  assert.doesNotMatch(serialized, VISIBLE_RESOLVER_LEAK_PATTERN);
+});
+
 test('server routes diabetes indication requests through target resolution', async () => {
   const query = encodeURIComponent('帮我设计10个针对糖尿病的抗体');
   const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/user-routing?text=' + query);

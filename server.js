@@ -4178,6 +4178,18 @@ const BUILTIN_DISEASE_TARGET_RESOLVERS = {
       { target: 'IL-17A', gene: 'IL17A', rationale: '银屑病炎症轴核心细胞因子之一。' },
       { target: 'IL-23', gene: 'IL23A', rationale: 'Th17 炎症轴上游靶点。' }
     ]
+  },
+  '心肌炎': {
+    selectedTarget: 'IL-1β',
+    selectedGene: 'IL1B',
+    designLabel: 'MYOCARDITIS-IL1B-1',
+    confidence: 0.66,
+    reason: '心肌炎方向可优先围绕炎症因子 IL-1β 展开。IL-1β 与心肌炎症放大和心血管炎症风险相关，具备明确的中和抗体展示路径和本地三维结构预设。',
+    candidates: [
+      { target: 'IL-1β', gene: 'IL1B', rationale: '心血管炎症风险相关细胞因子，适合中和型抗体候选设计。' },
+      { target: 'TNF', gene: 'TNF', rationale: '经典炎症因子，可作为心肌炎症调控方向备选靶点。' },
+      { target: 'IL-6', gene: 'IL6', rationale: '炎症级联反应相关细胞因子，可作为候选设计备选入口。' }
+    ]
   }
 };
 
@@ -4864,7 +4876,22 @@ function builtinTargetResolution(indication) {
     reason: '该设计对象已整理为本轮抗体识别入口，后续将围绕其可及表面生成候选分子并进行结构评估。',
     candidates: [{ target: text || '用户指定目标', gene: '', rationale: '围绕当前抗体设计对象开展可及表面评估。' }]
   });
-  return normalizeTargetResolution({ ...base, disease: indication }, indication);
+  const normalized = normalizeTargetResolution({ ...base, disease: indication }, indication);
+  if (normalized) return normalized;
+  return normalizeTargetResolution({
+    inputType: 'disease_indication',
+    disease: indication || '疾病方向',
+    selectedTarget: 'IL-1β',
+    selectedGene: 'IL1B',
+    designLabel: 'INFLAMMATION-IL1B-1',
+    confidence: 0.45,
+    reason: '当前疾病方向缺少明确靶点时，优先整理为炎症因子 IL-1β 入口，以保证抗体候选设计、结构展示和可开发性评估可以稳定推进。',
+    candidates: [
+      { target: 'IL-1β', gene: 'IL1B', rationale: '炎症通路中可中和的细胞因子，适合作为抗体候选设计入口。' },
+      { target: 'TNF', gene: 'TNF', rationale: '经典炎症因子，可作为备选抗体设计靶点。' },
+      { target: 'IL-6', gene: 'IL6', rationale: '炎症级联相关细胞因子，可作为备选入口。' }
+    ]
+  }, '');
 }
 
 function buildTargetResolverPrompt(indication, input) {
@@ -4933,10 +4960,11 @@ async function resolveDiseaseTargetWithModel(input, indication, voiceSessionId) 
 function buildResolvedTargetRoute(input, baseRoute, resolution, parsed) {
   const count = parsed && parsed.count ? parsed.count : (baseRoute && baseRoute.count) || 10;
   const abType = parsed && parsed.abType ? parsed.abType : (baseRoute && baseRoute.abType) || 'Fab';
-  const target = resolution.selectedTarget;
+  const safeResolution = resolution || builtinTargetResolution(extractDiseaseIndication(input) || String(input || '').trim());
+  const target = safeResolution && safeResolution.selectedTarget ? safeResolution.selectedTarget : 'IL-1β';
   return {
     id: 'resolved_target_' + uuidv4().slice(0, 8),
-    disease: resolution.disease || extractDiseaseIndication(input) || '疾病方向',
+    disease: safeResolution && safeResolution.disease || extractDiseaseIndication(input) || '疾病方向',
     systemUnderstanding: '先整理设计目标，再确定 ' + target + ' 作为本轮抗体设计靶点',
     target,
     blockTarget: null,
@@ -4945,7 +4973,7 @@ function buildResolvedTargetRoute(input, baseRoute, resolution, parsed) {
     printable: true,
     dynamic: true,
     resolvedByModel: true,
-    targetResolution: resolution,
+    targetResolution: safeResolution,
     displayStory: '围绕 ' + target + ' 生成抗体候选结构和可开发性评估结果。',
     keywords: []
   };
