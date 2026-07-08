@@ -81,6 +81,7 @@
 
             /* Desktop layout */
             --content-max-width: 760px;
+            --team-content-max-width: 1120px;
             --tasks-sidebar-width: 280px;
             --tasks-sidebar-width-tablet: 264px;
         }
@@ -275,6 +276,17 @@
         body:not(.sidebar-open).chatting-mode .input-wrapper {
             max-width: var(--content-max-width);
         }
+        body.team-open .main-container {
+            max-width: min(var(--team-content-max-width), calc(100vw - 96px));
+            padding-top: 0;
+            padding-bottom: 28px;
+        }
+        body.sidebar-open.team-open .main-container {
+            width: auto;
+            max-width: min(var(--team-content-max-width), calc(100vw - var(--tasks-sidebar-width) - 48px));
+            margin-left: max(var(--tasks-sidebar-width), calc(var(--tasks-sidebar-width) + (100vw - var(--tasks-sidebar-width) - var(--team-content-max-width)) / 2));
+            margin-right: max(24px, calc((100vw - var(--tasks-sidebar-width) - var(--team-content-max-width)) / 2));
+        }
         @media (max-width: 1100px) {
             body.sidebar-open .main-container {
                 margin-left: max(var(--tasks-sidebar-width-tablet), calc(var(--tasks-sidebar-width-tablet) + (100vw - var(--tasks-sidebar-width-tablet) - var(--content-max-width)) / 2));
@@ -283,6 +295,11 @@
             body.sidebar-open.chatting-mode .input-wrapper {
                 left: calc(var(--tasks-sidebar-width-tablet) + (100vw - var(--tasks-sidebar-width-tablet)) / 2);
                 max-width: min(var(--content-max-width), calc(100vw - var(--tasks-sidebar-width-tablet) - 32px));
+            }
+            body.sidebar-open.team-open .main-container {
+                max-width: min(var(--team-content-max-width), calc(100vw - var(--tasks-sidebar-width-tablet) - 32px));
+                margin-left: max(var(--tasks-sidebar-width-tablet), calc(var(--tasks-sidebar-width-tablet) + (100vw - var(--tasks-sidebar-width-tablet) - var(--team-content-max-width)) / 2));
+                margin-right: max(16px, calc((100vw - var(--tasks-sidebar-width-tablet) - var(--team-content-max-width)) / 2));
             }
         }
         .initial-center-group {
@@ -3971,7 +3988,7 @@
             padding: 0 0 40px; width: 100%;
         }
         .team-layout {
-            display: flex; gap: 20px; width: 100%; height: calc(100vh - 120px); min-height: 500px;
+            display: flex; gap: 20px; width: 100%; height: calc(100vh - 112px); min-height: 560px;
         }
         .team-sidebar {
             width: 260px; flex-shrink: 0;
@@ -4033,6 +4050,40 @@
         .team-msg-time { font-size: 11px; color: var(--text-muted); }
         .team-msg-text { font-size: 13px; color: var(--text-primary); line-height: 1.6; }
         .team-msg-attachment { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: var(--bg-light); border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 11px; color: var(--text-secondary); margin-top: 6px; }
+
+        @media (max-width: 768px) {
+            body.team-open .main-container {
+                width: 100%;
+                max-width: 100%;
+                padding: 0 16px 24px;
+                margin-left: 0;
+                margin-right: 0;
+            }
+            .team-section { padding-bottom: 24px; }
+            .team-layout {
+                flex-direction: column;
+                height: auto;
+                min-height: 0;
+                gap: 12px;
+            }
+            .team-sidebar {
+                width: 100%;
+                max-height: 42vh;
+                overflow-y: auto;
+            }
+            .team-main {
+                min-height: 560px;
+            }
+            .team-main-header {
+                align-items: flex-start;
+                gap: 12px;
+                flex-direction: column;
+            }
+            .team-quick-actions {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 14px;
+            }
+        }
 
         /* ═══════════════ KNOWLEDGE BASE ═══════════════ */
         .kb-section { width: 100%; }
@@ -4594,19 +4645,19 @@
                         <div class="team-sidebar-section-title">团队成员 (4)</div>
                         <div class="team-member-item">
                             <div class="team-member-avatar" style="background:#007BFF;">王</div>
-                            <span>王 博士 <span style="font-size:9px;color:var(--success);">● 在线</span></span>
+                            <span>王博士 <span style="font-size:9px;color:var(--success);">● 在线</span></span>
                         </div>
                         <div class="team-member-item">
                             <div class="team-member-avatar" style="background:#22C55E;">许</div>
-                            <span>许 博士 (我) <span style="font-size:9px;color:var(--success);">● 在线</span></span>
+                            <span>许博士 (我) <span style="font-size:9px;color:var(--success);">● 在线</span></span>
                         </div>
                         <div class="team-member-item">
                             <div class="team-member-avatar" style="background:#7C3AED;">陈</div>
-                            <span>陈 博士</span>
+                            <span>陈博士</span>
                         </div>
                         <div class="team-member-item">
                             <div class="team-member-avatar" style="background:#F59E0B;">李</div>
-                            <span>李 博士</span>
+                            <span>李博士</span>
                         </div>
                     </div>
                 </div>
@@ -4658,17 +4709,17 @@
                             <div class="team-member-avatar team-msg-avatar" style="background:#007BFF;">王</div>
                             <div class="team-msg-body">
                                 <div class="team-msg-meta">
-                                    <span class="team-msg-name">王 博士</span>
+                                    <span class="team-msg-name">王博士</span>
                                     <span class="team-msg-time">今天 09:32</span>
                                 </div>
-                                <div class="team-msg-text">许 博士，你看一下他们这个视频 demo，也可以上他们的网站看看 click.mab，想想怎么复刻他们的展示功能（但是要跟我们的本底风格 match，并且我相信我们更高级）他们的模型我们都有，只是没展示出来，会很可惜，现在需要把这些功能都展示到前端</div>
+                                <div class="team-msg-text">许博士，你看一下他们这个视频 demo，也可以上他们的网站看看 click.mab，想想怎么复刻他们的展示功能（但是要跟我们的本底风格 match，并且我相信我们更高级）他们的模型我们都有，只是没展示出来，会很可惜，现在需要把这些功能都展示到前端</div>
                             </div>
                         </div>
                         <div class="team-msg">
                             <div class="team-member-avatar team-msg-avatar" style="background:#22C55E;">许</div>
                             <div class="team-msg-body">
                                 <div class="team-msg-meta">
-                                    <span class="team-msg-name">许 博士</span>
+                                    <span class="team-msg-name">许博士</span>
                                     <span class="team-msg-time">今天 09:45</span>
                                 </div>
                                 <div class="team-msg-text">明白了！我来把 Click.mAb 的所有展示功能都集成到 ZoonoAb 里，同时保持我们自己的风格。已经开始分析他们的功能模块了。</div>
@@ -4678,7 +4729,7 @@
                             <div class="team-member-avatar team-msg-avatar" style="background:#7C3AED;">陈</div>
                             <div class="team-msg-body">
                                 <div class="team-msg-meta">
-                                    <span class="team-msg-name">陈 博士</span>
+                                    <span class="team-msg-name">陈博士</span>
                                     <span class="team-msg-time">今天 10:15</span>
                                 </div>
                                 <div class="team-msg-text">人源化结果出来了，humVHH-3 的 Germinality Index 达到 94%，可以推进到下一步验证。
@@ -4693,7 +4744,7 @@
                             <div class="team-member-avatar team-msg-avatar" style="background:#F59E0B;">李</div>
                             <div class="team-msg-body">
                                 <div class="team-msg-meta">
-                                    <span class="team-msg-name">李 博士</span>
+                                    <span class="team-msg-name">李博士</span>
                                     <span class="team-msg-time">今天 11:02</span>
                                 </div>
                                 <div class="team-msg-text">收到！我这边 SPR 验证实验安排在下周三。同时帮忙看一下 IL-33 的 CDR 注释结果，主要关注 CDR-H3 区域的风险位点。</div>
@@ -5694,7 +5745,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146066';
+    const APP_BUILD_VERSION = '78146067';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -5993,6 +6044,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
         const initialGroup = document.querySelector('.initial-center-group');
         const isChat = view === 'chat';
+        document.body.classList.toggle('team-open', view === 'team');
         chatSection.style.display = isChat ? 'block' : 'none';
         heroSection.style.display = isChat ? 'block' : 'none';
         if (initialGroup) initialGroup.style.display = isChat ? '' : 'none';
@@ -6036,17 +6088,17 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
     // ─── Knowledge Base ─────────────────────────────────────
     const KB_FILES = [
-        { id:1,  name:'IL33_临床靶点分析报告_2026Q1.pdf',        type:'pdf',   size:'4.2 MB',  project:'il33',   projectName:'IL-33 项目',       author:'王 博士',      date:'2026-04-15', tags:['临床报告','靶点分析'],    isAI:false, summary:'IL-33/ST2信号通路系统综述，涵盖适应症分析、竞品格局及抗体开发策略建议。' },
-        { id:2,  name:'IL33_Fab_De-novo设计方案_v3.docx',         type:'doc',   size:'1.8 MB',  project:'il33',   projectName:'IL-33 项目',       author:'许 博士',      date:'2026-05-10', tags:['设计方案','Fab'],         isAI:false, summary:'Fab抗体从头设计技术方案，含三轮迭代CDR设计策略及预期亲和力目标（KD < 1 nM）。' },
+        { id:1,  name:'IL33_临床靶点分析报告_2026Q1.pdf',        type:'pdf',   size:'4.2 MB',  project:'il33',   projectName:'IL-33 项目',       author:'王博士',      date:'2026-04-15', tags:['临床报告','靶点分析'],    isAI:false, summary:'IL-33/ST2信号通路系统综述，涵盖适应症分析、竞品格局及抗体开发策略建议。' },
+        { id:2,  name:'IL33_Fab_De-novo设计方案_v3.docx',         type:'doc',   size:'1.8 MB',  project:'il33',   projectName:'IL-33 项目',       author:'许博士',      date:'2026-05-10', tags:['设计方案','Fab'],         isAI:false, summary:'Fab抗体从头设计技术方案，含三轮迭代CDR设计策略及预期亲和力目标（KD < 1 nM）。' },
         { id:3,  name:'anti-IL33-Fab-15seqs.fasta',               type:'fasta', size:'156 KB',  project:'il33',   projectName:'IL-33 项目',       author:'ZoonoAb AI',date:'2026-05-21', tags:['序列','Fab'],             isAI:true,  summary:'15条优选Fab候选序列，从头设计工作流输出，预测平均KD < 5 nM，多样性指数 0.82。' },
         { id:4,  name:'IL33_Fab_complex_9X0J.pdb',                 type:'pdb',   size:'1.2 MB',  project:'il33',   projectName:'IL-33 项目',       author:'ZoonoAb AI',date:'2026-05-20', tags:['结构','RCSB'],          isAI:true,  summary:'基于9X0J真实IL-33/Tozorakimab Fab复合物的候选展示结构，呈现Fab与IL-33表面的结合构象。' },
-        { id:5,  name:'PD1_竞品分析_Nivolumab_Pembrolizumab.pdf', type:'pdf',   size:'8.1 MB',  project:'pd1',    projectName:'PD-1/PD-L1 项目',  author:'李 博士',  date:'2026-04-30', tags:['竞品分析','PD-1'],        isAI:false, summary:'Nivolumab与Pembrolizumab专利到期分析、序列对比及市场份额预测，含开发窗口评估。' },
-        { id:6,  name:'PD-L1_表位图谱数据集.xlsx',                type:'csv',   size:'3.4 MB',  project:'pd1',    projectName:'PD-1/PD-L1 项目',  author:'陈 博士',    date:'2026-05-05', tags:['表位','实验数据'],        isAI:false, summary:'SPR和BioLayer干涉仪测定PD-L1表位结合数据，72条抗体完整KD、kon、koff记录。' },
+        { id:5,  name:'PD1_竞品分析_Nivolumab_Pembrolizumab.pdf', type:'pdf',   size:'8.1 MB',  project:'pd1',    projectName:'PD-1/PD-L1 项目',  author:'李博士',  date:'2026-04-30', tags:['竞品分析','PD-1'],        isAI:false, summary:'Nivolumab与Pembrolizumab专利到期分析、序列对比及市场份额预测，含开发窗口评估。' },
+        { id:6,  name:'PD-L1_表位图谱数据集.xlsx',                type:'csv',   size:'3.4 MB',  project:'pd1',    projectName:'PD-1/PD-L1 项目',  author:'陈博士',    date:'2026-05-05', tags:['表位','实验数据'],        isAI:false, summary:'SPR和BioLayer干涉仪测定PD-L1表位结合数据，72条抗体完整KD、kon、koff记录。' },
         { id:7,  name:'Nivolumab_CDR_风险位点分析.png',            type:'img',   size:'892 KB',  project:'pd1',    projectName:'PD-1/PD-L1 项目',  author:'ZoonoAb AI',date:'2026-05-18', tags:['风险分析','CDR'],         isAI:true,  summary:'Nivolumab重链CDR脱酰胺、色氨酸氧化及聚集热点可视化，标注8个中高风险位点。' },
         { id:8,  name:'PD1_humanization_results.csv',              type:'csv',   size:'24 KB',   project:'pd1',    projectName:'PD-1/PD-L1 项目',  author:'ZoonoAb AI',date:'2026-05-19', tags:['人源化'],                 isAI:true,  summary:'鼠源PD-1抗体人源化结果，12个候选序列人源化评分、OASis指数及预测稳定性数据。' },
         { id:9,  name:'HER2_抗体药物市场调研报告_2026.pdf',        type:'pdf',   size:'12.3 MB', project:'her2',   projectName:'HER2 项目',        author:'研发部',    date:'2026-03-20', tags:['市场调研','商业'],        isAI:false, summary:'HER2靶向抗体药物全球市场规模预测（2026-2032）、主要玩家格局分析及进入策略建议。' },
         { id:10, name:'HER2_Trastuzumab_相互作用分析.pdb',          type:'pdb',   size:'2.1 MB',  project:'her2',   projectName:'HER2 项目',        author:'ZoonoAb AI',date:'2026-05-15', tags:['相互作用','PLIP'],        isAI:true,  summary:'PLIP分析Trastuzumab-HER2复合物，18个氢键、3个疏水接触，接触面积 1,240 Å²。' },
-        { id:11, name:'HER2靶向抗体序列数据库_v2.fasta',            type:'fasta', size:'520 KB',  project:'her2',   projectName:'HER2 项目',        author:'李 博士',  date:'2026-05-01', tags:['序列','数据库'],          isAI:false, summary:'收录148条HER2靶向抗体序列（含Trastuzumab、Pertuzumab变体），用于多序列比对基准。' },
+        { id:11, name:'HER2靶向抗体序列数据库_v2.fasta',            type:'fasta', size:'520 KB',  project:'her2',   projectName:'HER2 项目',        author:'李博士',  date:'2026-05-01', tags:['序列','数据库'],          isAI:false, summary:'收录148条HER2靶向抗体序列（含Trastuzumab、Pertuzumab变体），用于多序列比对基准。' },
         { id:12, name:'抗体工程学综述_NatureReviews_2025.pdf',      type:'pdf',   size:'18.5 MB', project:'common', projectName:'公共资料库',       author:'系统导入',  date:'2026-01-15', tags:['文献','综述'],            isAI:false, summary:'Nature Reviews Drug Discovery 2025年综述，涵盖AI辅助设计、双特异性抗体及ADC最新进展。' },
         { id:13, name:'VHH_CDR设计最佳实践手册_v5.pdf',            type:'pdf',   size:'3.2 MB',  project:'common', projectName:'公共资料库',       author:'科研部',    date:'2026-02-10', tags:['操作手册','VHH'],         isAI:false, summary:'内部SOP：VHH抗体CDR设计规范、风险位点评估标准及文库构建流程（第5版）。' },
     ];
@@ -14550,51 +14602,51 @@ ${fallbackTableRows(profile.rows)}
             name: '抗体设计讨论', icon: 'hash', color: '#22C55E', memberCount: 4,
             placeholder: '发送消息到 #抗体设计讨论...',
             messages: [
-                { user: '王 博士', av: '王', color: '#007BFF', time: '09:32', text: '许 博士，你看一下他们这个视频 demo，也可以上他们的网站看看 click.mab，想想怎么复刻他们的展示功能（但要跟我们的本底风格 match）他们的模型我们都有，只是没展示出来，会很可惜。', att: null },
-                { user: '许 博士', av: '许', color: '#22C55E', time: '09:45', text: '明白了！我来把 Click.mAb 的所有展示功能都集成到 ZoonoAb 里，同时保持我们自己的风格。已经开始分析他们的功能模块了。', att: null },
-                { user: '陈 博士', av: '陈', color: '#7C3AED', time: '10:15', text: '人源化结果出来了，humVHH-3 的 Germinality Index 达到 94%，可以推进到下一步验证。', att: 'humanization_results_humVHH-3.csv' },
-                { user: '李 博士', av: '李', color: '#F59E0B', time: '11:02', text: '收到！我这边 SPR 验证实验安排在下周三。同时帮忙看一下 IL-33 的 CDR 注释结果，主要关注 CDR-H3 区域的风险位点。', att: null },
+                { user: '王博士', av: '王', color: '#007BFF', time: '09:32', text: '许博士，你看一下他们这个视频 demo，也可以上他们的网站看看 click.mab，想想怎么复刻他们的展示功能（但要跟我们的本底风格 match）他们的模型我们都有，只是没展示出来，会很可惜。', att: null },
+                { user: '许博士', av: '许', color: '#22C55E', time: '09:45', text: '明白了！我来把 Click.mAb 的所有展示功能都集成到 ZoonoAb 里，同时保持我们自己的风格。已经开始分析他们的功能模块了。', att: null },
+                { user: '陈博士', av: '陈', color: '#7C3AED', time: '10:15', text: '人源化结果出来了，humVHH-3 的 Germinality Index 达到 94%，可以推进到下一步验证。', att: 'humanization_results_humVHH-3.csv' },
+                { user: '李博士', av: '李', color: '#F59E0B', time: '11:02', text: '收到！我这边 SPR 验证实验安排在下周三。同时帮忙看一下 IL-33 的 CDR 注释结果，主要关注 CDR-H3 区域的风险位点。', att: null },
             ]
         },
         il33: {
             name: 'IL-33 项目', icon: 'hash', color: '#3B82F6', memberCount: 3,
             placeholder: '发送消息到 #IL-33 项目...',
             messages: [
-                { user: '陈 博士', av: '陈', color: '#7C3AED', time: '08:15', text: 'IL-33 靶点的表位预测已完成，主要热点区域集中在 helix-1 和 β-sheet 界面。建议聚焦 Site-A 进行候选设计。', att: null },
-                { user: '王 博士', av: '王', color: '#007BFF', time: '08:30', text: '好，基于 Site-A 开始做从头设计，目标是 KD < 1 nM。许 博士你这边进展怎么样？', att: null },
-                { user: '许 博士', av: '许', color: '#22C55E', time: '08:55', text: 'Chai-1 预测了 30 个候选序列，已按 pLDDT 排序，前 10 个结构上看起来很稳定，已上传到知识库。', att: 'chai1_candidates_top10.csv' },
+                { user: '陈博士', av: '陈', color: '#7C3AED', time: '08:15', text: 'IL-33 靶点的表位预测已完成，主要热点区域集中在 helix-1 和 β-sheet 界面。建议聚焦 Site-A 进行候选设计。', att: null },
+                { user: '王博士', av: '王', color: '#007BFF', time: '08:30', text: '好，基于 Site-A 开始做从头设计，目标是 KD < 1 nM。许博士你这边进展怎么样？', att: null },
+                { user: '许博士', av: '许', color: '#22C55E', time: '08:55', text: 'Chai-1 预测了 30 个候选序列，已按 pLDDT 排序，前 10 个结构上看起来很稳定，已上传到知识库。', att: 'chai1_candidates_top10.csv' },
             ]
         },
         pdl1: {
             name: 'PD-L1 Campaign', icon: 'hash', color: '#7C3AED', memberCount: 4,
             placeholder: '发送消息到 #PD-L1 Campaign...',
             messages: [
-                { user: '王 博士', av: '王', color: '#007BFF', time: '昨天 16:22', text: 'PD-L1 竞品分析：Atezolizumab KD = 0.42 nM，Durvalumab KD = 0.05 nM。我们的目标定在 < 0.1 nM。', att: null },
-                { user: '李 博士', av: '李', color: '#F59E0B', time: '昨天 17:05', text: 'SPR 数据出来了！候选 VHH-7 的 kon = 2.3×10⁵ M⁻¹s⁻¹，koff = 8.1×10⁻⁶ s⁻¹，KD ≈ 35 pM，超过目标！', att: 'SPR_VHH7_raw.csv' },
-                { user: '陈 博士', av: '陈', color: '#7C3AED', time: '昨天 17:30', text: 'VHH-7 人源化已完成，GI = 96.2%，建议推进到中试阶段。', att: null },
+                { user: '王博士', av: '王', color: '#007BFF', time: '昨天 16:22', text: 'PD-L1 竞品分析：Atezolizumab KD = 0.42 nM，Durvalumab KD = 0.05 nM。我们的目标定在 < 0.1 nM。', att: null },
+                { user: '李博士', av: '李', color: '#F59E0B', time: '昨天 17:05', text: 'SPR 数据出来了！候选 VHH-7 的 kon = 2.3×10⁵ M⁻¹s⁻¹，koff = 8.1×10⁻⁶ s⁻¹，KD ≈ 35 pM，超过目标！', att: 'SPR_VHH7_raw.csv' },
+                { user: '陈博士', av: '陈', color: '#7C3AED', time: '昨天 17:30', text: 'VHH-7 人源化已完成，GI = 96.2%，建议推进到中试阶段。', att: null },
             ]
         },
         results: {
             name: '实验结果', icon: 'hash', color: '#F59E0B', memberCount: 4,
             placeholder: '发送消息到 #实验结果...',
             messages: [
-                { user: '李 博士', av: '李', color: '#F59E0B', time: '07:00', text: '本周 SPR 批次结果汇总：共测试 12 个候选，3 个 KD < 1 nM，通过初筛。', att: 'SPR_weekly_summary.xlsx' },
-                { user: '陈 博士', av: '陈', color: '#7C3AED', time: '07:45', text: 'ELISA 确认 VHH-3 和 VHH-7 高特异性，与人 IL-33 结合，与鼠 IL-33 无交叉反应。', att: null },
-                { user: '王 博士', av: '王', color: '#007BFF', time: '08:10', text: '非常好！这两个候选都进入下一轮。李 博士安排一下细胞水平的功能实验。', att: null },
+                { user: '李博士', av: '李', color: '#F59E0B', time: '07:00', text: '本周 SPR 批次结果汇总：共测试 12 个候选，3 个 KD < 1 nM，通过初筛。', att: 'SPR_weekly_summary.xlsx' },
+                { user: '陈博士', av: '陈', color: '#7C3AED', time: '07:45', text: 'ELISA 确认 VHH-3 和 VHH-7 高特异性，与人 IL-33 结合，与鼠 IL-33 无交叉反应。', att: null },
+                { user: '王博士', av: '王', color: '#007BFF', time: '08:10', text: '非常好！这两个候选都进入下一轮。李博士安排一下细胞水平的功能实验。', att: null },
             ]
         },
         myChat: {
             name: '我的对话', icon: 'message-circle', color: '#9CA3AF', memberCount: 1,
             placeholder: '记录笔记...',
             messages: [
-                { user: '许 博士', av: '许', color: '#22C55E', time: '昨天 22:10', text: '备忘：明天找王 博士确认 CDR-H3 风险位点的处理方案，以及 humanization round 2 时间节点。', att: null },
+                { user: '许博士', av: '许', color: '#22C55E', time: '昨天 22:10', text: '备忘：明天找王博士确认 CDR-H3 风险位点的处理方案，以及 humanization round 2 时间节点。', att: null },
             ]
         },
         myDesigns: {
             name: '我的设计', icon: 'folder', color: '#9CA3AF', memberCount: 1,
             placeholder: '记录设计思路...',
             messages: [
-                { user: '许 博士', av: '许', color: '#22C55E', time: '今天 09:10', text: '当前活跃项目：1) IL-33 Fab 候选 top-10，2) PD-L1 亲和力成熟版本，3) HER2 双特异性草案。', att: null },
+                { user: '许博士', av: '许', color: '#22C55E', time: '今天 09:10', text: '当前活跃项目：1) IL-33 Fab 候选 top-10，2) PD-L1 亲和力成熟版本，3) HER2 双特异性草案。', att: null },
             ]
         }
     };
@@ -14639,15 +14691,15 @@ ${fallbackTableRows(profile.rows)}
             <div class="team-msg">
                 <div class="team-member-avatar team-msg-avatar" style="background:#22C55E;">许</div>
                 <div class="team-msg-body">
-                    <div class="team-msg-meta"><span class="team-msg-name">许 博士 (我)</span><span class="team-msg-time">今天 ${t}</span></div>
+                    <div class="team-msg-meta"><span class="team-msg-name">许博士 (我)</span><span class="team-msg-time">今天 ${t}</span></div>
                     <div class="team-msg-text">${text}</div>
                 </div>
             </div>`);
         area.scrollTop = area.scrollHeight;
         if (teamActiveChannel !== 'myChat' && teamActiveChannel !== 'myDesigns') {
             const responders = [
-                { user: '陈 博士', av: '陈', color: '#7C3AED', replies: ['收到，我这边跟进一下。', '好的，数据我来整理。', '明白，稍后给你反馈分析结果。', '已记录，推进中。'] },
-                { user: '王 博士', av: '王', color: '#007BFF', replies: ['继续推进', '好，按照这个方向走', '等你的结果报告', '没问题，下午碰一下'] },
+                { user: '陈博士', av: '陈', color: '#7C3AED', replies: ['收到，我这边跟进一下。', '好的，数据我来整理。', '明白，稍后给你反馈分析结果。', '已记录，推进中。'] },
+                { user: '王博士', av: '王', color: '#007BFF', replies: ['继续推进', '好，按照这个方向走', '等你的结果报告', '没问题，下午碰一下'] },
             ];
             const r = responders[Math.floor(Math.random() * responders.length)];
             const reply = r.replies[Math.floor(Math.random() * r.replies.length)];
