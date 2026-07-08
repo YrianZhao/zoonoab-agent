@@ -49,6 +49,15 @@ test('keeps known biomedical targets extractable for preset profiles', () => {
   assert.equal(parsed.abType, 'Fab');
 });
 
+test('understands shorthand monoclonal antibody sequence requests', () => {
+  const parsed = extractDesignRequest('设计 10 个具有结合活性的流感 NA 单抗序列');
+
+  assert.equal(parsed.isDesignRequest, true);
+  assert.equal(parsed.target, 'Influenza NA');
+  assert.equal(parsed.count, 10);
+  assert.equal(parsed.abType, 'mAb');
+});
+
 test('suppresses non-biomedical computer virus requests', () => {
   assert.equal(shouldSuppressDesignWorkflow('电脑病毒设计抗体'), true);
   assert.equal(extractDesignRequest('电脑病毒设计抗体').isDesignRequest, false);

@@ -2,7 +2,7 @@
 
 重大功能修改完成并验证通过后，创建一个本地 Git commit 作为回滚点，并推送当前工作分支到 GitHub 远端。
 本项目每次完成任何文件修改后，都必须创建本地 Git commit，并推送当前工作分支到 GitHub 远端；不得只停留在本地提交或未提交状态。
-本项目每次完成任何文件修改后，都必须部署到正式站点 `https://zoonoab.xyz/`，并通过健康接口或页面底部构建版本确认线上已更新。
+本项目每次完成任何文件修改后，不要自动打包上传服务器或部署正式站点；应保持本地或临时验证程序继续运行，不要主动关闭，并向用户提供可验证的访问链接和健康检查链接。只有用户明确要求“打包上传”或“部署到服务器”时，才执行服务器打包上传、重启和正式站点验证流程。
 每次完成会影响网页展示、交互、后端行为或部署行为的功能修改时，必须同步更新 `public/index.html` 中的 `APP_BUILD_VERSION` 纯数字版本号；版本号不得包含日期或语义化文字，方便现场通过页面底部标识确认是否已更新到目标版本。
 提交前排除运行环境、日志、PID、密钥和后端私有配置文件，例如 `.node/`、`.tools/`、`.server.log`、`.server.pid`、`.runtime/`、`.playwright-cli/`、`output/`、`.runtime-codex-server.log`。
 
@@ -76,7 +76,7 @@ GitHub 推送权限应使用仓库级 Deploy Key，并在本仓库本地 Git 配
 阿里云低成本部署优先使用 Linux ECS 或轻量应用服务器直跑当前 Node 单体服务，使用 nginx 反向代理 `PORT`，并保留 WebSocket `Upgrade`/`Connection` 转发；长期稳定运行语音能力时最低建议 2 vCPU / 2 GiB / 40 GB。
 阿里云部署时不要依赖 `.env` 自动加载；`server.js` 直接读取系统环境变量，必须通过 `systemd`、PM2 ecosystem 或启动命令显式注入 `PORT`、`ASSISTANT_CHAT_*`、`LOCAL_ASR_*`、`VOICE_API_CONFIG_FILE`、`LOCAL_TTS_PROVIDER` 等变量。
 阿里云部署的本地 ASR/TTS 运行目录应落在持久化路径，例如 `/var/data` 或项目内 `.runtime`；CPU 机器默认优先 `LOCAL_ASR_ENGINE=vosk`、`VOICE_TRANSCRIBE_MODEL=vosk-small-cn-0.22`，并继续使用 CPU-only PyTorch 源 `https://download.pytorch.org/whl/cpu`。
-阿里云 ECS `47.121.139.140` 后续更新项目时，默认使用本地打包上传而不是服务器直接 `git pull`，因为服务器直连 GitHub 曾出现 TLS 卡住；流程为本地提交并推送后执行 `git archive --format=tar.gz --output=/tmp/zoonoab-agent.tar.gz HEAD`，再 `scp -i ~/.ssh/id_ed25519 /tmp/zoonoab-agent.tar.gz root@47.121.139.140:/tmp/zoonoab-agent.tar.gz`，服务器解包到 `/opt/zoonoab-agent.new`、运行 `npm ci`、替换 `/opt/zoonoab-agent` 并 `systemctl restart zoonoab`。
+阿里云 ECS `47.121.139.140` 后续更新项目时，只有在用户明确要求“打包上传”或“部署到服务器”后，才使用本地打包上传而不是服务器直接 `git pull`，因为服务器直连 GitHub 曾出现 TLS 卡住；流程为本地提交并推送后执行 `git archive --format=tar.gz --output=/tmp/zoonoab-agent.tar.gz HEAD`，再 `scp -i ~/.ssh/id_ed25519 /tmp/zoonoab-agent.tar.gz root@47.121.139.140:/tmp/zoonoab-agent.tar.gz`，服务器解包到 `/opt/zoonoab-agent.new`、运行 `npm ci`、替换 `/opt/zoonoab-agent` 并 `systemctl restart zoonoab`。
 阿里云 ECS 上本地 Vosk 模型如果从官方源下载卡住，应在本地先下载完整 `vosk-model-small-cn-0.22.zip`（可使用 Hugging Face `rhasspy/vosk-models` 镜像），再上传到服务器 `/var/data/zoonoab/local-asr-cache/downloads/vosk-model-small-cn-0.22.zip`，解压到 `/var/data/zoonoab/local-asr-cache/vosk/vosk-model-small-cn-0.22`，目录内必须包含 `conf/` 和 `am/`；完成后重启 `zoonoab` 并确认 `/api/voice/health` 返回 `status=ready`、`canTranscribe=true`。
 阿里云中国内地节点要获得和本地一致的浏览器麦克风体验，必须使用浏览器信任的 HTTPS；`http://47.121.139.140` 可打开网页但通常无法稳定使用麦克风。正式方案是域名实名认证、ICP 备案、A 记录指向 `47.121.139.140`、nginx 配置 `server_name`、申请 HTTPS 证书并使用 `https://域名` 访问。
 阿里云 ECS 正式域名为 `zoonoab.xyz`，同时配置 `www.zoonoab.xyz`；DNS A 记录均指向 `47.121.139.140`，nginx `server_name` 包含这两个域名，HTTPS 使用 Certbot/Let's Encrypt 证书 `/etc/letsencrypt/live/zoonoab.xyz/fullchain.pem` 和 `/etc/letsencrypt/live/zoonoab.xyz/privkey.pem`，HTTP 应 301 跳转到 HTTPS。域名部署后用 `https://zoonoab.xyz/api/health` 和 `https://zoonoab.xyz/api/voice/health` 验证网页版本和语音状态。
