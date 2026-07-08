@@ -850,6 +850,7 @@ async function buildVoiceHealth(providerConfig = getVoiceProviderConfig(), optio
     canTranscribe,
     provider: providerConfig.provider,
     model: providerConfig.model,
+    buildVersion: APP_BUILD_VERSION,
     baseUrl: providerConfig.url || '',
     supportsAudio: providerConfig.supportsAudio,
     hasApiKey: Boolean(providerConfig.key),

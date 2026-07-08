@@ -119,6 +119,17 @@ test('server routes shorthand flu NA monoclonal sequence requests to design work
   assert.equal(data.demoRoute.target, 'Influenza NA');
 });
 
+test('voice health exposes the current build version at the top level', async () => {
+  const html = fs.readFileSync(path.join(process.cwd(), 'public/index.html'), 'utf8');
+  const buildVersion = html.match(/APP_BUILD_VERSION\s*=\s*'(\d+)'/)[1];
+  const res = await fetch('http://127.0.0.1:' + PORT + '/api/voice/health?autostart=0');
+  assert.equal(res.status, 200);
+  const data = await res.json();
+
+  assert.equal(data.buildVersion, buildVersion);
+  assert.equal(data.diagnostics && data.diagnostics.buildVersion, buildVersion);
+});
+
 test('server can let the chat model route terse monoclonal slang into workflow', async () => {
   const captured = [];
   const mockServer = http.createServer((req, res) => {
