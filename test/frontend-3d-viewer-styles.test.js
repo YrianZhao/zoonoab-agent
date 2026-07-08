@@ -78,3 +78,24 @@ test('3D viewers expose an antigen and antibody color legend', () => {
   assert.match(viewerFullHtml, /抗原/);
   assert.match(viewerFullHtml, /抗体/);
 });
+
+test('embedded and full 3D viewers hide chains outside the selected antigen-antibody pair in product display modes', () => {
+  const galleryHtml = fs.readFileSync(path.join(ROOT, 'public', 'gallery-mol.html'), 'utf8');
+  const galleryApplyChainColors = extractFunction(galleryHtml, 'function applyChainColors(m)');
+  const galleryInit = extractFunction(galleryHtml, 'function init()');
+  const fullAntibodySelector = extractFunction(viewerFullHtml, 'function antibodySelector()');
+  const fullAbAgColor = viewerFullHtml.slice(
+    viewerFullHtml.indexOf("'ab-ag': function()"),
+    viewerFullHtml.indexOf("// Chain: product display keeps the same two role colors")
+  );
+
+  assert.match(galleryInit, /visibleChains/);
+  assert.match(galleryApplyChainColors, /hiddenChains/);
+  assert.match(galleryApplyChainColors, /glv\.setStyle\(\{chain:ch\},\s*\{\}\)/);
+  assert.doesNotMatch(galleryApplyChainColors, /CHAIN_PALETTE\[i\s*%\s*CHAIN_PALETTE\.length\]/);
+
+  assert.match(viewerFullHtml, /function\s+visibleSelector\(\)/);
+  assert.match(fullAntibodySelector, /selectorForChains\(AB_CHAINS\)/);
+  assert.doesNotMatch(fullAntibodySelector, /\{not:\s*selectorForChains\(AG_CHAINS\)\}/);
+  assert.match(fullAbAgColor, /glv\.setStyle\(\{not:\s*visibleSelector\(\)\},\s*\{\}\)/);
+});

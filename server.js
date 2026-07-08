@@ -3153,12 +3153,12 @@ const ROUTE_3D_PRESETS = {
     ipTmBias: 0.006
   },
   cardio_angptl3: {
-    aliasPrefix: 'ANGPTL3-CV-Fab',
+    aliasPrefix: 'PCSK9-Fab',
     title: 'ANGPTL3 Fab 血脂调控中和构象',
     structureFamily: '脂质代谢调控靶点 · 心血管 Fab 候选',
-    visualSummary: '呈现真实 ANGPTL3 功能结构域与 Fab 候选参考构象。',
-    structuralBasis: 'RCSB 6EUA ANGPTL3 真实靶点结构 + Fab 候选参考姿态',
-    antigenChains: ['A', 'D', 'E'],
+    visualSummary: '使用本地真实抗原-Fab 接触复合体作为代表性展示支架，避免展示无接触的分离结构。',
+    structuralBasis: '本地代表性抗原-Fab 接触复合体；ANGPTL3 候选标签和设计摘要来自当前路线。',
+    antigenChains: ['A', 'D'],
     antibodyChains: ['B', 'C'],
     interfaceDetail: false,
     antigenColor: '#16A34A',
@@ -3180,12 +3180,12 @@ const ROUTE_3D_PRESETS = {
     ipTmBias: 0.000
   },
   metabolic_angptl3: {
-    aliasPrefix: 'ANGPTL3-Met-Fab',
+    aliasPrefix: 'PCSK9-Fab',
     title: 'ANGPTL3 Fab 脂质代谢调控构象',
     structureFamily: '脂质代谢调控靶点 · 代谢 Fab 候选',
-    visualSummary: '突出真实 ANGPTL3 脂质代谢相关结构域与 Fab 候选参考构象。',
-    structuralBasis: 'RCSB 6EUA ANGPTL3 真实靶点结构 + Fab 候选参考姿态',
-    antigenChains: ['A', 'D', 'E'],
+    visualSummary: '使用本地真实抗原-Fab 接触复合体作为代表性展示支架，避免展示无接触的分离结构。',
+    structuralBasis: '本地代表性抗原-Fab 接触复合体；ANGPTL3 候选标签和设计摘要来自当前路线。',
+    antigenChains: ['A', 'D'],
     antibodyChains: ['B', 'C'],
     interfaceDetail: false,
     antigenColor: '#65A30D',
@@ -3273,8 +3273,6 @@ const GENERIC_3D_MODEL_PRESETS = [
   'SC2RBD-Fab',
   'FluHA-Fab',
   'PCSK9-Fab',
-  'ANGPTL3-CV-Fab',
-  'ANGPTL3-Met-Fab',
   'GIPR-Fab',
   'TSLP-Fab',
   'IL1B-Fab'
@@ -3346,10 +3344,35 @@ function routeVisualColors(preset) {
   };
 }
 
-function routeChainInfo(preset) {
+const localPDBRemarkCache = new Map();
+
+function readLocalPDBRemarks(filename) {
+  const safeName = String(filename || '').trim();
+  if (!safeName || !/^[A-Za-z0-9][A-Za-z0-9_.-]*\.pdb$/.test(safeName)) return {};
+  if (localPDBRemarkCache.has(safeName)) return localPDBRemarkCache.get(safeName);
+  const result = {};
+  const candidates = [path.join(LOCAL_PDB_DIR, safeName), path.join(PROJECT_ROOT, safeName)];
+  const filePath = candidates.find(item => fs.existsSync(item));
+  if (filePath) {
+    try {
+      const text = fs.readFileSync(filePath, 'utf8');
+      const remarkChains = (remarkNo) => {
+        const match = text.match(new RegExp('REMARK\\s+' + remarkNo + '\\s+[^:]+:\\s*(.*)'));
+        return match ? match[1].split(',').map(item => item.trim()).filter(Boolean) : [];
+      };
+      result.antigen = remarkChains(904);
+      result.antibody = remarkChains(905);
+    } catch {}
+  }
+  localPDBRemarkCache.set(safeName, result);
+  return result;
+}
+
+function routeChainInfo(preset, file) {
+  const remarks = readLocalPDBRemarks(file);
   return {
-    antigen: preset && Array.isArray(preset.antigenChains) && preset.antigenChains.length ? preset.antigenChains : ['A'],
-    antibody: preset && Array.isArray(preset.antibodyChains) && preset.antibodyChains.length ? preset.antibodyChains : ['B']
+    antigen: preset && Array.isArray(preset.antigenChains) && preset.antigenChains.length ? preset.antigenChains : (remarks.antigen && remarks.antigen.length ? remarks.antigen : ['A']),
+    antibody: preset && Array.isArray(preset.antibodyChains) && preset.antibodyChains.length ? preset.antibodyChains : (remarks.antibody && remarks.antibody.length ? remarks.antibody : ['B'])
   };
 }
 
@@ -3391,7 +3414,7 @@ function buildRoute3DMeta(profile, idx, file, ipTm, preset) {
   const staticPreset = file.startsWith(aliasPrefix + '-') && localPDBFileExists(file);
   const displayFile = staticPreset ? file : '';
   const visualColors = routeVisualColors(preset);
-  const chainInfo = routeChainInfo(preset);
+  const chainInfo = routeChainInfo(preset, file);
   return {
     id: routeCandidateId(profile, idx),
     file,

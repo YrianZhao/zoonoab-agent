@@ -145,6 +145,38 @@ test('static route preset PDBs avoid cross-chain hard clashes', () => {
   }
 });
 
+test('default display library only contains local complexes with visible antigen-antibody contacts', () => {
+  const displayPrefixes = [
+    'IL33-Fab',
+    'TSLP-Fab',
+    'PDL1-Fab',
+    'HER2-Fab',
+    'EGFR-Fab',
+    'VEGFA-Fab',
+    'TNF-Fab',
+    'IL17A-Fab',
+    'IL23-Fab',
+    'RSVF-Fab',
+    'SC2RBD-Fab',
+    'FluHA-Fab',
+    'PCSK9-Fab',
+    'IL1B-Fab',
+    'GIPR-Fab'
+  ];
+
+  for (const prefix of displayPrefixes) {
+    for (let idx = 1; idx <= 10; idx++) {
+      const filename = path.join('pdb', prefix + '-' + String(idx).padStart(2, '0') + '.pdb');
+      const text = readPdbText(filename);
+      const atoms = parsePdbAtoms(filename);
+      const contacts = crossRoleContactSummary(atoms, remarkChains(text, 904), remarkChains(text, 905));
+
+      assert.ok(contacts.contactPairs >= 50, filename + ' should expose a visible antigen-antibody interface');
+      assert.ok(contacts.minDistance >= 1.2 && contacts.minDistance <= 3.5, filename + ' should have a plausible closest antigen-antibody contact');
+    }
+  }
+});
+
 test('A-grade local complex presets have real source remarks and visible antigen-antibody interfaces', () => {
   const realComplexPrefixes = [
     'IL33-Fab',

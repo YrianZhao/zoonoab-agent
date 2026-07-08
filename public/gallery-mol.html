@@ -44,6 +44,9 @@
         }
         var antigenChains = parseChains(params.get('antigenChains'), ['A']);
         var antibodyChains = parseChains(params.get('antibodyChains'), ['B']);
+        var visibleChains = antigenChains.concat(antibodyChains).filter(function(ch, idx, arr) {
+            return ch && arr.indexOf(ch) === idx;
+        });
 
         var container = document.getElementById('c');
         var ld = container.querySelector('.ld');
@@ -52,25 +55,24 @@
 
         if (!pdbUrl) { ld.textContent = 'No URL'; return; }
 
-        // Route colors: use role-specific chains supplied by the workflow payload.
-        var CHAIN_PALETTE = [cA || '#FB923C', cB || '#2DD4BF', '#818CF8', '#34D399', '#F472B6', '#60A5FA'];
-
         function applyChainColors(m) {
             var chains = [];
             m.selectedAtoms({}).forEach(function(a){ if(chains.indexOf(a.chain)<0) chains.push(a.chain); });
             chains.sort();
-            if (chains.length === 1) {
-                glv.setStyle({}, {cartoon:{color: cB || '#FB923C'}});
-            } else {
-                chains.forEach(function(ch, i) {
-                    var isAntigen = antigenChains.indexOf(ch) >= 0;
-                    var isAntibody = antibodyChains.indexOf(ch) >= 0;
-                    var color = isAntigen ? (cA || CHAIN_PALETTE[0])
-                        : isAntibody ? (cB || CHAIN_PALETTE[1])
-                        : CHAIN_PALETTE[i % CHAIN_PALETTE.length];
-                    glv.setStyle({chain:ch},{cartoon:{color: color}});
-                });
-            }
+            if (!visibleChains.length && chains.length) visibleChains = [chains[0]];
+            var hiddenChains = [];
+            chains.forEach(function(ch) {
+                var isAntigen = antigenChains.indexOf(ch) >= 0;
+                var isAntibody = antibodyChains.indexOf(ch) >= 0;
+                if (isAntigen) {
+                    glv.setStyle({chain:ch},{cartoon:{color: cA || '#FB923C'}});
+                } else if (isAntibody || (visibleChains.length === 1 && visibleChains[0] === ch)) {
+                    glv.setStyle({chain:ch},{cartoon:{color: cB || '#2DD4BF'}});
+                } else {
+                    hiddenChains.push(ch);
+                    glv.setStyle({chain:ch}, {});
+                }
+            });
         }
 
         function applyViewerPose() {

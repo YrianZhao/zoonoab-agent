@@ -82,11 +82,18 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
     }
     var AG_CHAINS = parseChains(params.get('antigenChains'), ['A']);
     var AB_CHAINS = parseChains(params.get('antibodyChains'), ['B']);
+    var VISIBLE_CHAINS = AG_CHAINS.concat(AB_CHAINS).filter(function(ch, idx, arr) {
+        return ch && arr.indexOf(ch) === idx;
+    });
     function selectorForChains(chains) {
         return chains.length === 1 ? {chain: chains[0]} : {or: chains.map(function(ch){ return {chain: ch}; })};
     }
+    function visibleSelector() {
+        return selectorForChains(VISIBLE_CHAINS.length ? VISIBLE_CHAINS : AG_CHAINS.concat(AB_CHAINS));
+    }
     function antibodySelector() {
-        return AB_CHAINS.length ? selectorForChains(AB_CHAINS) : {not: selectorForChains(AG_CHAINS)};
+        if (AB_CHAINS.length) return selectorForChains(AB_CHAINS);
+        return selectorForChains(VISIBLE_CHAINS);
     }
     function normalizeStyle(s) {
         s = String(s || 'cartoon').toLowerCase();
@@ -136,33 +143,32 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
             if (!glv) return;
 
             if (currentStyle === 'surface') {
+                glv.setStyle({not: visibleSelector()}, {});
                 // Surface mode: set underlying atom colors (surface picks up atom colors)
                 glv.setStyle(selectorForChains(AG_CHAINS), {color: AG_COLOR});
                 glv.setStyle(antibodySelector(), {color: AB_COLOR});
                 return;
             }
 
+            glv.setStyle({not: visibleSelector()}, {});
             // For non-surface styles: embed color INSIDE each style's spec
             // This is CRITICAL — 3Dmol ignores top-level "color" for cartoon/stick etc.
             applyByStyle(selectorForChains(AG_CHAINS), AG_COLOR);
             applyByStyle(antibodySelector(), AB_COLOR);
         },
 
-        // Chain: each chain gets its own auto-assigned color
+        // Chain: product display keeps the same two role colors and hides non-selected chains.
         'chain': function() {
             if (!glv) return;
             if (currentStyle === 'surface') {
-                glv.setStyle({}, {colorscheme: 'chain'});
+                glv.setStyle({not: visibleSelector()}, {});
+                glv.setStyle(selectorForChains(AG_CHAINS), {color: AG_COLOR});
+                glv.setStyle(antibodySelector(), {color: AB_COLOR});
                 return;
             }
-            switch(currentStyle){
-                case 'cartoon': glv.setStyle({}, {cartoon:{colorscheme:'chain'}}); break;
-                case 'interface': glv.setStyle({}, {cartoon:{colorscheme:'chain'}}); break;
-                case 'sphere':  glv.setStyle({}, {sphere:{scale:0.35, colorscheme:'chain'}}); break;
-                case 'line':    glv.setStyle({}, {line:{colorscheme:'chain'}}); break;
-                case 'cross':   glv.setStyle({}, {cross:{colorscheme:'chain'}}); break;
-                default:        glv.setStyle({}, {cartoon:{colorscheme:'chain'}});
-            }
+            glv.setStyle({not: visibleSelector()}, {});
+            applyByStyle(selectorForChains(AG_CHAINS), AG_COLOR);
+            applyByStyle(antibodySelector(), AB_COLOR);
         },
 
         // Atom: color by atom type (CPK-like)
@@ -235,7 +241,7 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
             var b=document.createElement('button');
             b.className='btn'+(n===currentColor?' active':'');
             b.textContent=n==='ab-ag'?'\u{1F7E8} Ab / Ag'
-                     :n==='chain'?'\u{1F441} Chain'
+                     :n==='chain'?'\u{1F441} Role'
                      :'\u{1F308} Atom';
             b.dataset.v=n;
             b.onclick=function(){doColor(n);};
@@ -341,7 +347,8 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
         glv.removeAllSurfaces();
 
         // Step 2: Hide internal skeleton (surface covers everything)
-        glv.setStyle({}, {line:{linewidth:0.5, opacity:0.03}});
+        glv.setStyle(visibleSelector(), {line:{linewidth:0.5, opacity:0.03}});
+        glv.setStyle({not: visibleSelector()}, {});
 
         var stype = null;
         try { stype = $3Dmol.SurfaceType.MS; } catch(e) {}
@@ -383,6 +390,7 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
         glv.removeAllSurfaces();
         applyByStyle(selectorForChains(AG_CHAINS), AG_COLOR);
         applyByStyle(antibodySelector(), AB_COLOR);
+        glv.setStyle({not: visibleSelector()}, {});
 
         var agSelector = selectorForChains(AG_CHAINS);
         var abSelector = antibodySelector();

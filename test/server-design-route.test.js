@@ -221,6 +221,20 @@ test('server previews distinct 3D model files for different design targets and a
   assert.equal(previews[3].data.threeDPreview.binders[0].antibodyFormat, 'VHH');
 });
 
+test('generic target previews avoid local display structures without antigen-antibody contact', async () => {
+  const query = encodeURIComponent('设计10个具有结合活性的流感NA单抗序列');
+  const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/design-route?text=' + query);
+  assert.equal(res.status, 200);
+  const data = await res.json();
+  const files = data.threeDPreview.files;
+
+  assert.equal(data.parsed.target, 'Influenza NA');
+  assert.ok(files.length >= 10);
+  assert.ok(files.every(file => !/^ANGPTL3-/.test(file)), 'generic Influenza NA previews should not borrow non-contact ANGPTL3 display structures');
+  assert.ok(data.threeDPreview.binders.every(item => Array.isArray(item.antigenChains) && item.antigenChains.length >= 1));
+  assert.ok(data.threeDPreview.binders.every(item => Array.isArray(item.antibodyChains) && item.antibodyChains.length >= 1));
+});
+
 test('server preview count follows spoken Chinese candidate count for preset routes', async () => {
   const oneQuery = encodeURIComponent('针对 PD-L1 设计一个高亲和力 Fab');
   const oneRes = await fetch('http://127.0.0.1:' + PORT + '/api/debug/design-route?text=' + oneQuery);
@@ -282,10 +296,12 @@ test('server marks interface detail availability according to real-complex evide
   const angptl3 = await angptl3Res.json();
   const angptl3Binder = angptl3.threeDPreview.binders[0];
 
-  assert.match(angptl3Binder.file, /^ANGPTL3-/);
-  assert.match(angptl3Binder.structuralBasis, /6EUA|真实靶点结构/);
+  assert.match(angptl3Binder.file, /\.pdb$/);
+  assert.doesNotMatch(angptl3Binder.file, /^ANGPTL3-CV-Fab-|^ANGPTL3-Met-Fab-/);
+  assert.match(angptl3Binder.structuralBasis, /representative|代表性|本地/);
   assert.equal(angptl3Binder.interfaceDetail, false);
-  assert.deepEqual(angptl3Binder.antigenChains, ['A', 'D', 'E']);
+  assert.ok(Array.isArray(angptl3Binder.antigenChains) && angptl3Binder.antigenChains.length >= 1);
+  assert.ok(Array.isArray(angptl3Binder.antibodyChains) && angptl3Binder.antibodyChains.length >= 1);
 });
 
 test('server keeps non-biomedical virus wording out of design workflow', async () => {
