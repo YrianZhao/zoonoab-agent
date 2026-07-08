@@ -71,7 +71,7 @@ const ASSISTANT_CHAT_MODEL = process.env.ASSISTANT_CHAT_MODEL || process.env.DEE
 const ASSISTANT_CHAT_BASE_URL = process.env.ASSISTANT_CHAT_BASE_URL || process.env.DEEPSEEK_CHAT_BASE_URL || process.env.VOICE_CHAT_BASE_URL || '';
 const VOICE_API_CONFIG_FILE = process.env.VOICE_API_CONFIG_FILE || resolveDefaultVoiceApiConfigFile();
 const WORKFLOW_REJECTION_LOG_FILE = process.env.WORKFLOW_REJECTION_LOG_FILE || resolveDefaultWorkflowRejectionLogFile();
-const WORKFLOW_REJECTION_LOG_MAX_LINES = Math.max(50, Number(process.env.WORKFLOW_REJECTION_LOG_MAX_LINES || 500) || 500);
+const QUESTION_ROUTING_LOG_MAX_LINES = Math.max(50, Number(process.env.QUESTION_ROUTING_LOG_MAX_LINES || process.env.WORKFLOW_REJECTION_LOG_MAX_LINES || 500) || 500);
 const TARGET_RESOLVER_TIMEOUT_MS = Math.max(5000, Number(process.env.TARGET_RESOLVER_TIMEOUT_MS || 45000) || 45000);
 const LOCAL_TTS_PROVIDER = String(process.env.LOCAL_TTS_PROVIDER || 'edge').trim().toLowerCase();
 const LOCAL_TTS_EDGE_VOICE = process.env.LOCAL_TTS_EDGE_VOICE || process.env.EDGE_TTS_VOICE || 'zh-CN-XiaoxiaoNeural';
@@ -176,13 +176,13 @@ function resolveDefaultVoiceApiConfigFile() {
 }
 
 function resolveDefaultWorkflowRejectionLogFile() {
-  const projectRuntimeFile = path.join(__dirname, '.runtime', 'workflow-rejection-logs.jsonl');
+  const projectRuntimeFile = path.join(__dirname, '.runtime', 'question-routing-logs.jsonl');
   if (!IS_RENDER_RUNTIME) return projectRuntimeFile;
   const persistentDir = path.join(RENDER_DATA_DIR || '/var/data', 'zoonoab');
   try {
     fs.mkdirSync(persistentDir, { recursive: true, mode: 0o700 });
     fs.accessSync(persistentDir, fs.constants.W_OK);
-    return path.join(persistentDir, 'workflow-rejection-logs.jsonl');
+    return path.join(persistentDir, 'question-routing-logs.jsonl');
   } catch (err) {
     console.warn('[WorkflowLog] Persistent log directory unavailable, falling back to project runtime:', err && err.message ? err.message : err);
     return projectRuntimeFile;
@@ -375,48 +375,108 @@ function explainWorkflowRejection(routing, input) {
   return '当前信息不足以启动本地设计流程，已按助手问答处理。';
 }
 
-function shouldRecordWorkflowRejection(routing, input) {
-  if (!routing || routing.intent !== 'assistant_chat' || routing.localWorkflowAllowed) return false;
-  const text = String(input || '').trim();
-  if (!text) return false;
-  if (routing.detectedIntent && routing.detectedIntent !== 'assistant_chat') return true;
-  return /设计|生成|开发|构建|筛选|工作流|分析|预测|查询|抗体|靶点|抗原|表位|蛋白|design|workflow|predict|analy/i.test(text);
+function classifyQuestionRouting(routing) {
+  if (!routing) {
+    return {
+      status: 'workflow_rejected',
+      workflowStarted: false,
+      label: '未进入设计流程'
+    };
+  }
+  const workflowStarted = Boolean(routing.intent && routing.intent !== 'assistant_chat' && routing.localWorkflowAllowed);
+  return {
+    status: workflowStarted ? 'workflow_started' : 'workflow_rejected',
+    workflowStarted,
+    label: workflowStarted ? '已进入设计流程' : '未进入设计流程'
+  };
 }
 
-function readWorkflowRejectionLogs(limit = 50) {
+function explainQuestionRouting(routing, input) {
+  const classification = classifyQuestionRouting(routing);
+  if (!classification.workflowStarted) return explainWorkflowRejection(routing, input);
+  const finalIntent = routing && routing.intent ? routing.intent : '';
+  if (finalIntent === 'design') return '已识别为抗体设计请求，进入分子设计流程。';
+  if (finalIntent === 'epitope_prediction') return '已识别明确靶点，进入表位预测流程。';
+  if (finalIntent === 'uniprot') return '已识别明确靶点，进入蛋白检索流程。';
+  if (finalIntent === 'chai1') return '已识别蛋白序列，进入结构预测流程。';
+  if (finalIntent === 'de_novo') return '已识别明确靶点，进入从头设计流程。';
+  if (finalIntent === 'affinity_maturation') return '已识别抗体序列，进入亲和力成熟流程。';
+  if (finalIntent === 'humanization') return '已识别抗体序列，进入人源化流程。';
+  if (finalIntent === 'physicochemical') return '已识别蛋白序列，进入理化性质分析流程。';
+  if (finalIntent === 'concentration') return '已识别浓度参数，进入浓度换算流程。';
+  if (finalIntent === 'msa') return '已识别多条序列，进入多序列比对流程。';
+  if (finalIntent === 'interaction') return '已识别结构信息，进入相互作用分析流程。';
+  if (finalIntent === 'risk_site') return '已识别蛋白序列，进入风险位点扫描流程。';
+  return '已识别可执行任务，进入本地流程。';
+}
+
+function shouldRecordQuestionRouting(routing, input) {
+  if (!routing) return false;
+  const text = String(input || '').trim();
+  if (!text) return false;
+  return true;
+}
+
+function normalizeQuestionRoutingLogEntry(parsed) {
+  if (!parsed || !parsed.input) return null;
+  const workflowStarted = typeof parsed.workflowStarted === 'boolean'
+    ? parsed.workflowStarted
+    : Boolean(parsed.status === 'workflow_started' || (parsed.finalIntent && parsed.finalIntent !== 'assistant_chat' && parsed.localWorkflowAllowed));
+  return {
+    ...parsed,
+    status: parsed.status || (workflowStarted ? 'workflow_started' : 'workflow_rejected'),
+    workflowStarted,
+    statusLabel: parsed.statusLabel || (workflowStarted ? '已进入设计流程' : '未进入设计流程')
+  };
+}
+
+function filterQuestionRoutingLogs(logs, status) {
+  const normalized = String(status || 'all').trim();
+  if (!normalized || normalized === 'all') return logs;
+  if (normalized === 'workflow_started') return logs.filter(item => item.status === 'workflow_started' || item.workflowStarted === true);
+  if (normalized === 'workflow_rejected') return logs.filter(item => item.status === 'workflow_rejected' || item.workflowStarted === false);
+  return logs;
+}
+
+function readQuestionRoutingLogs(limit = 50, options = {}) {
   const safeLimit = Math.min(Math.max(Number(limit) || 50, 1), 200);
   try {
     if (!fs.existsSync(WORKFLOW_REJECTION_LOG_FILE)) return [];
     const content = fs.readFileSync(WORKFLOW_REJECTION_LOG_FILE, 'utf8');
-    const lines = content.split(/\r?\n/).filter(Boolean).slice(-safeLimit);
+    const lines = content.split(/\r?\n/).filter(Boolean).slice(-(Math.max(safeLimit, 200)));
     const logs = [];
     for (const line of lines) {
       try {
-        const parsed = JSON.parse(line);
-        if (parsed && parsed.input) logs.push(parsed);
+        const entry = normalizeQuestionRoutingLogEntry(JSON.parse(line));
+        if (entry) logs.push(entry);
       } catch {}
     }
-    return logs.reverse();
+    return filterQuestionRoutingLogs(logs.reverse(), options.status).slice(0, safeLimit);
   } catch (err) {
     console.error('[WorkflowLog] Failed to read logs:', err && err.message ? err.message : err);
     return [];
   }
 }
 
-function pruneWorkflowRejectionLogFile() {
+function readWorkflowRejectionLogs(limit = 50) {
+  return readQuestionRoutingLogs(limit, { status: 'workflow_rejected' });
+}
+
+function pruneQuestionRoutingLogFile() {
   try {
     if (!fs.existsSync(WORKFLOW_REJECTION_LOG_FILE)) return;
     const content = fs.readFileSync(WORKFLOW_REJECTION_LOG_FILE, 'utf8');
     const lines = content.split(/\r?\n/).filter(Boolean);
-    if (lines.length <= WORKFLOW_REJECTION_LOG_MAX_LINES) return;
-    fs.writeFileSync(WORKFLOW_REJECTION_LOG_FILE, lines.slice(-WORKFLOW_REJECTION_LOG_MAX_LINES).join('\n') + '\n', { mode: 0o600 });
+    if (lines.length <= QUESTION_ROUTING_LOG_MAX_LINES) return;
+    fs.writeFileSync(WORKFLOW_REJECTION_LOG_FILE, lines.slice(-QUESTION_ROUTING_LOG_MAX_LINES).join('\n') + '\n', { mode: 0o600 });
   } catch (err) {
     console.error('[WorkflowLog] Failed to prune logs:', err && err.message ? err.message : err);
   }
 }
 
-function recordWorkflowRejection(routing, input, meta = {}) {
-  if (!shouldRecordWorkflowRejection(routing, input)) return;
+function recordQuestionRouting(routing, input, meta = {}) {
+  if (!shouldRecordQuestionRouting(routing, input)) return;
+  const classification = classifyQuestionRouting(routing);
   const entry = {
     id: uuidv4(),
     at: new Date().toISOString(),
@@ -424,13 +484,16 @@ function recordWorkflowRejection(routing, input, meta = {}) {
     detectedIntent: sanitizeWorkflowLogText(routing.detectedIntent || 'assistant_chat', 80),
     finalIntent: sanitizeWorkflowLogText(routing.intent || 'assistant_chat', 80),
     localWorkflowAllowed: Boolean(routing.localWorkflowAllowed),
-    runner: sanitizeWorkflowLogText(meta.runner || 'assistant_chat', 80),
-    reason: explainWorkflowRejection(routing, input)
+    workflowStarted: classification.workflowStarted,
+    status: classification.status,
+    statusLabel: classification.label,
+    runner: sanitizeWorkflowLogText(meta.runner || (classification.workflowStarted ? 'local_workflow' : 'assistant_chat'), 80),
+    reason: explainQuestionRouting(routing, input)
   };
   try {
     fs.mkdirSync(path.dirname(WORKFLOW_REJECTION_LOG_FILE), { recursive: true, mode: 0o700 });
     fs.appendFileSync(WORKFLOW_REJECTION_LOG_FILE, JSON.stringify(entry) + '\n', { mode: 0o600 });
-    pruneWorkflowRejectionLogFile();
+    pruneQuestionRoutingLogFile();
   } catch (err) {
     console.error('[WorkflowLog] Failed to record rejection:', err && err.message ? err.message : err);
   }
@@ -6427,7 +6490,7 @@ wss.on('connection', ws => {
       if (!msg.text || typeof msg.text !== 'string' || msg.text.length > 4000) return;
       runSocketTask(ws, sid, msg, (cleanText) => {
         const resolved = resolveUserMessageRunner(msg, cleanText);
-        recordWorkflowRejection(resolved, cleanText, {
+        recordQuestionRouting(resolved, cleanText, {
           runner: resolved.intent === 'assistant_chat' ? 'assistant_chat' : 'local_workflow'
         });
         return resolved.runner;
@@ -6476,6 +6539,18 @@ app.get('/api/workflow-rejection-logs', (req, res) => {
   const logs = readWorkflowRejectionLogs(limit);
   res.json({
     ok: true,
+    count: logs.length,
+    logs
+  });
+});
+
+app.get('/api/question-routing-logs', (req, res) => {
+  const limit = Math.min(Math.max(Number(req.query.limit || 50) || 50, 1), 200);
+  const status = String(req.query.status || 'all').trim();
+  const logs = readQuestionRoutingLogs(limit, { status });
+  res.json({
+    ok: true,
+    status: status || 'all',
     count: logs.length,
     logs
   });

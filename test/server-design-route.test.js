@@ -10,7 +10,7 @@ const WebSocket = require('ws');
 const PORT = 19081;
 const MOCK_CHAT_PORT = 19082;
 const CONFIG_PATH = path.join(os.tmpdir(), 'zoonoab-test-voice-config-' + PORT + '.json');
-const REJECTION_LOG_PATH = path.join(os.tmpdir(), 'zoonoab-test-workflow-rejections-' + PORT + '.jsonl');
+const QUESTION_LOG_PATH = path.join(os.tmpdir(), 'zoonoab-test-question-routing-' + PORT + '.jsonl');
 const VISIBLE_RESOLVER_LEAK_PATTERN = /未能完成|当前未能|在线靶点解析|解析失败|兜底|代表靶点|代表抗原|补充明确靶点|无关靶点|系统保留|系统选择|系统优先选择|验证展示序列|大模型\s*API|真正的研发设计/;
 let serverProcess;
 
@@ -67,7 +67,7 @@ function collectUserMessageStream(text, options = {}) {
 
 test.before(async () => {
   try { fs.unlinkSync(CONFIG_PATH); } catch {}
-  try { fs.unlinkSync(REJECTION_LOG_PATH); } catch {}
+  try { fs.unlinkSync(QUESTION_LOG_PATH); } catch {}
   serverProcess = spawn(process.execPath, ['server.js'], {
     cwd: process.cwd(),
     env: {
@@ -75,7 +75,7 @@ test.before(async () => {
       NODE_ENV: 'test',
       PORT: String(PORT),
       VOICE_API_CONFIG_FILE: CONFIG_PATH,
-      WORKFLOW_REJECTION_LOG_FILE: REJECTION_LOG_PATH,
+      WORKFLOW_REJECTION_LOG_FILE: QUESTION_LOG_PATH,
       LOCAL_ASR_AUTO_START: '0',
       TARGET_RESOLVER_TIMEOUT_MS: '4000'
     },
@@ -89,7 +89,7 @@ test.after(async () => {
   serverProcess.kill('SIGTERM');
   await new Promise(resolve => serverProcess.once('exit', resolve));
   try { fs.unlinkSync(CONFIG_PATH); } catch {}
-  try { fs.unlinkSync(REJECTION_LOG_PATH); } catch {}
+  try { fs.unlinkSync(QUESTION_LOG_PATH); } catch {}
 });
 
 test('server design route sends implicit unknown targets to target resolution', async () => {
@@ -292,6 +292,46 @@ test('server records user inputs that are routed away from local workflows', asy
   assert.equal(entry.localWorkflowAllowed, false);
   assert.match(entry.reason, /靶点|目标/);
   assert.doesNotMatch(JSON.stringify(entry), /quick_design|白名单|写死|大模型 API/);
+});
+
+test('server records all user questions and classifies workflow routing', async () => {
+  const acceptedText = '设计10个针对PD-L1的Fab';
+  const rejectedText = '帮我做一下表位预测';
+  await collectUserMessageStream(acceptedText, {
+    stopWhen: (msg, messages) => (
+      msg.type === 'quick_design_ack' ||
+      messages.some(item => item.type === 'agent_msg' && /正在启动抗体设计工作流/.test(item.text || ''))
+    ),
+    timeoutMs: 5000
+  });
+  await collectUserMessageStream(rejectedText);
+
+  const allResp = await fetch('http://127.0.0.1:' + PORT + '/api/question-routing-logs?limit=20');
+  assert.equal(allResp.status, 200);
+  const allData = await allResp.json();
+  const accepted = allData.logs.find(item => item.input === acceptedText);
+  const rejected = allData.logs.find(item => item.input === rejectedText);
+
+  assert.ok(accepted, 'expected workflow-routed input to be recorded');
+  assert.ok(rejected, 'expected rejected input to be recorded');
+  assert.equal(accepted.status, 'workflow_started');
+  assert.equal(accepted.workflowStarted, true);
+  assert.equal(accepted.finalIntent, 'design');
+  assert.equal(rejected.status, 'workflow_rejected');
+  assert.equal(rejected.workflowStarted, false);
+  assert.equal(rejected.finalIntent, 'assistant_chat');
+
+  const workflowResp = await fetch('http://127.0.0.1:' + PORT + '/api/question-routing-logs?status=workflow_started&limit=20');
+  assert.equal(workflowResp.status, 200);
+  const workflowData = await workflowResp.json();
+  assert.ok(workflowData.logs.some(item => item.input === acceptedText));
+  assert.equal(workflowData.logs.some(item => item.input === rejectedText), false);
+
+  const rejectedResp = await fetch('http://127.0.0.1:' + PORT + '/api/question-routing-logs?status=workflow_rejected&limit=20');
+  assert.equal(rejectedResp.status, 200);
+  const rejectedData = await rejectedResp.json();
+  assert.ok(rejectedData.logs.some(item => item.input === rejectedText));
+  assert.equal(rejectedData.logs.some(item => item.input === acceptedText), false);
 });
 
 test('server routes implicit target design requests through target resolution', async () => {

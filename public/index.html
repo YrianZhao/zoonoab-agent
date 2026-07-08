@@ -4384,6 +4384,12 @@
         .kb-log-reason { grid-column: 1 / -1; font-size: 12px; color: var(--text-secondary); line-height: 1.55; }
         .kb-log-meta { grid-column: 1 / -1; display: flex; gap: 6px; flex-wrap: wrap; }
         .kb-log-pill { padding: 2px 7px; border-radius: var(--radius-full); background: var(--bg-page); border: 1px solid var(--border); color: var(--text-muted); font-size: 10px; font-weight: 700; }
+        .kb-log-status { display: inline-flex; align-items: center; gap: 5px; padding: 3px 8px; border-radius: var(--radius-full); font-size: 10px; font-weight: 800; white-space: nowrap; }
+        .kb-log-status.started { background: #DCFCE7; color: #15803D; border: 1px solid #86EFAC; }
+        .kb-log-status.rejected { background: #FEF3C7; color: #B45309; border: 1px solid #FDE68A; }
+        .kb-log-tabs { padding: 10px 20px; border-bottom: 1px solid var(--border); display: flex; gap: 6px; background: white; }
+        .kb-log-tab { padding: 5px 11px; border: 1px solid var(--border); background: white; color: var(--text-secondary); border-radius: var(--radius-full); font-size: 12px; font-weight: 700; cursor: pointer; transition: var(--transition); }
+        .kb-log-tab.active, .kb-log-tab:hover { border-color: var(--brand-light); background: var(--brand-lighter); color: var(--brand-dark); }
         .kb-log-state { padding: 28px 20px; text-align: center; color: var(--text-muted); font-size: 13px; line-height: 1.7; }
     </style>
 <body>
@@ -4886,9 +4892,9 @@
                             <button class="kb-type-btn" onclick="kbSetType(this,'pdb')">PDB</button>
                             <button class="kb-type-btn" onclick="kbSetType(this,'img')">图片</button>
                         </div>
-                        <button class="kb-log-btn" type="button" onclick="openWorkflowDecisionLog()" title="查看未进入设计流程的输入记录">
+                        <button class="kb-log-btn" type="button" onclick="openWorkflowDecisionLog()" title="查看用户问题与流程判定记录">
                             <i data-lucide="file-clock" style="width:13px;height:13px;"></i>
-                            判定日志
+                            问题日志
                         </button>
                         <select class="kb-sort-select" onchange="kbRender()">
                             <option value="date">最新上传</option>
@@ -4917,13 +4923,18 @@
                         <div>
                             <div class="kb-log-title-row" id="workflowDecisionLogTitle">
                                 <i data-lucide="file-clock"></i>
-                                判定日志
+                                问题日志
                             </div>
-                            <div class="kb-log-sub">记录用户输入中未进入设计流程的请求，便于复盘规则边界和补充指令。</div>
+                            <div class="kb-log-sub">记录用户提出的问题，并区分已进入设计流程和未进入设计流程的请求。</div>
                         </div>
                         <button class="kb-log-close" type="button" onclick="closeWorkflowDecisionLog()" title="关闭">
                             <i data-lucide="x" style="width:15px;height:15px;"></i>
                         </button>
+                    </div>
+                    <div class="kb-log-tabs">
+                        <button class="kb-log-tab active" type="button" data-status="all" onclick="setWorkflowDecisionLogStatus(this,'all')">全部</button>
+                        <button class="kb-log-tab" type="button" data-status="workflow_started" onclick="setWorkflowDecisionLogStatus(this,'workflow_started')">已进入流程</button>
+                        <button class="kb-log-tab" type="button" data-status="workflow_rejected" onclick="setWorkflowDecisionLogStatus(this,'workflow_rejected')">未进入流程</button>
                     </div>
                     <div class="kb-log-list" id="workflowDecisionLogList">
                         <div class="kb-log-state">正在加载记录...</div>
@@ -5694,7 +5705,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146066';
+    const APP_BUILD_VERSION = '78146067';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -6131,22 +6142,35 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         });
     }
 
+    let workflowDecisionLogStatus = 'all';
+
+    function workflowDecisionStatusClass(item) {
+        return item && item.workflowStarted ? 'started' : 'rejected';
+    }
+
+    function workflowDecisionStatusLabel(item) {
+        return item && item.workflowStarted ? '已进入流程' : '未进入流程';
+    }
+
     function renderWorkflowDecisionLogs(logs) {
         const list = document.getElementById('workflowDecisionLogList');
         if (!list) return;
         if (!Array.isArray(logs) || logs.length === 0) {
-            list.innerHTML = '<div class="kb-log-state">暂无记录。用户输入未进入设计流程时，会自动出现在这里。</div>';
+            list.innerHTML = '<div class="kb-log-state">暂无记录。用户提出问题后，会自动出现在这里。</div>';
             return;
         }
         list.innerHTML = logs.map(item => `
             <div class="kb-log-entry">
                 <div class="kb-log-input">${escHtml(item.input || '')}</div>
-                <div class="kb-log-time">${escHtml(formatDecisionLogTime(item.at))}</div>
+                <div class="kb-log-time">
+                    <span class="kb-log-status ${workflowDecisionStatusClass(item)}">${workflowDecisionStatusLabel(item)}</span>
+                    ${escHtml(formatDecisionLogTime(item.at))}
+                </div>
                 <div class="kb-log-reason">${escHtml(item.reason || '当前信息不足以启动设计流程。')}</div>
                 <div class="kb-log-meta">
                     <span class="kb-log-pill">识别：${escHtml(item.detectedIntent || 'assistant_chat')}</span>
                     <span class="kb-log-pill">处理：${escHtml(item.finalIntent || 'assistant_chat')}</span>
-                    <span class="kb-log-pill">状态：未进入设计流程</span>
+                    <span class="kb-log-pill">状态：${workflowDecisionStatusLabel(item)}</span>
                 </div>
             </div>
         `).join('');
@@ -6156,20 +6180,29 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const list = document.getElementById('workflowDecisionLogList');
         if (list) list.innerHTML = '<div class="kb-log-state">正在加载记录...</div>';
         try {
-            const resp = await fetch('/api/workflow-rejection-logs?limit=80');
+            const resp = await fetch('/api/question-routing-logs?limit=80&status=' + encodeURIComponent(workflowDecisionLogStatus));
             if (!resp.ok) throw new Error('HTTP ' + resp.status);
             const data = await resp.json();
             renderWorkflowDecisionLogs(data.logs || []);
         } catch (err) {
             if (list) list.innerHTML = '<div class="kb-log-state">暂时无法读取记录，请稍后再试。</div>';
-            showToast('判定日志读取失败', 'error');
+            showToast('问题日志读取失败', 'error');
         }
+    }
+
+    function setWorkflowDecisionLogStatus(btn, status) {
+        workflowDecisionLogStatus = status || 'all';
+        document.querySelectorAll('.kb-log-tab').forEach(tab => tab.classList.remove('active'));
+        if (btn) btn.classList.add('active');
+        loadWorkflowDecisionLogs();
     }
 
     function openWorkflowDecisionLog() {
         const modal = document.getElementById('workflowDecisionLogModal');
         if (!modal) return;
         modal.style.display = 'flex';
+        workflowDecisionLogStatus = 'all';
+        document.querySelectorAll('.kb-log-tab').forEach(tab => tab.classList.toggle('active', tab.dataset.status === 'all'));
         refreshLucideIcons({ nodes: [modal] });
         loadWorkflowDecisionLogs();
     }
