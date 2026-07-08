@@ -4247,7 +4247,7 @@ function detectDemoRoute(input) {
     return null;
   }
 
-  if (/(设计|生成|做|来一个|演示|打印|结构模型|候选).*(抗体|分子|模型)|抗体.*(设计|生成|演示|打印|模型)|antibody.*(design|generate|demo)|design.*antibody/.test(normalized)) {
+  if (/(设计|生成|做|来一个|演示|打印|结构模型|候选).*(抗体|分子|药物|治疗分子|模型)|(?:抗体|药物|治疗分子).*(设计|生成|演示|打印|模型)|(?:antibody|drug|medicine|therapeutic).*(design|generate|demo)|design.*(?:antibody|drug|medicine|therapeutic)/.test(normalized)) {
     return buildRepresentativeDemoRoute('完整抗体设计演示', 'default_demo');
   }
 
@@ -4652,10 +4652,11 @@ function buildWorkflowIntentPrompt() {
     '任务：判断用户输入是否应启动抗体/分子设计工作流。',
     '只输出一行 JSON。不要 Markdown。不要解释。不要 reason。不要自然语言。',
     '输出格式只能是：{"i":"design|chat","n":数字或null,"t":"靶点或对象","a":"抗体类型或空字符串"}',
-    'i=design：用户表达设计、生成、筛选、开发、获得、制备抗体、单抗、单克隆抗体、mAb、Fab、VHH、纳米抗体、scFv、binder、候选分子、结合序列、候选序列或抗体序列。',
+    'i=design：用户表达设计、生成、筛选、开发、获得、制备抗体、单抗、单克隆抗体、mAb、Fab、VHH、纳米抗体、scFv、binder、药物、药物分子、治疗分子、候选分子、结合序列、候选序列或抗体序列。',
     '用户可能使用口语、简称、黑话或不完整表达，也要理解语义；例如“流感NA单抗序列”“烟草花叶病毒来十个单抗”。',
     'i=chat：普通问答、天气、时间、平台说明、使用方法、概念解释，或电脑、手机、服务器、账号、黑客、木马、勒索软件、网络安全等非生物/IT 场景。',
     '示例：设计10个具有结合活性的流感NA单抗序列 -> {"i":"design","n":10,"t":"流感NA","a":"mAb"}',
+    '示例：帮我为过敏性哮喘设计一款药物 -> {"i":"design","n":1,"t":"过敏性哮喘","a":"Fab"}',
     '示例：烟草花叶病毒来十个单抗 -> {"i":"design","n":10,"t":"烟草花叶病毒","a":"mAb"}',
     '示例：电脑病毒怎么清理，帮我设计抗体 -> {"i":"chat","n":null,"t":"","a":""}'
   ].join('\n');
@@ -4829,9 +4830,9 @@ function builtinTargetResolution(indication) {
 function buildTargetResolverPrompt(indication, input) {
   return [
     '你是 ZoonoAb 的抗体设计靶点解析器。',
-    '任务：根据用户自然语言，选择一个最适合进入抗体设计工作流的真实抗原、蛋白、受体、细胞因子、病毒表面蛋白、衣壳蛋白或通路靶点。',
-    '只输出一行 JSON。不要 Markdown。不要解释。不要输出 reason。不要输出 candidates。不要输出“靶点是”“推荐为”这类自然语言。',
-    '输出格式只能是：{"selectedTarget":"靶点名称"}',
+    '任务：根据用户自然语言，选择一个最适合进入抗体/分子设计工作流的真实抗原、蛋白、受体、细胞因子、病毒表面蛋白、衣壳蛋白或通路靶点。',
+    '只输出一行 JSON。不要 Markdown。不要输出“靶点是”“推荐为”这类自然语言。',
+    '输出格式：{"selectedTarget":"靶点名称","selectedGene":"基因名或空","designLabel":"短方案代号","reason":"为什么这个靶点适合本轮分子设计","candidates":[{"target":"候选靶点","gene":"基因名或空","rationale":"一句候选理由"}]}',
     '如果用户已经明确给出靶点，直接标准化输出该靶点。',
     '如果用户给的是疾病/适应症，输出适合抗体设计展示的代表性真实蛋白靶点，不要把疾病名本身当抗原。',
     '如果用户给的是病原体、病毒或生物材料，输出最适合抗体识别的具体表面抗原、衣壳蛋白、包膜蛋白或核心蛋白。',
@@ -4915,15 +4916,27 @@ const VISIBLE_TARGET_RESOLVER_LEAK_PATTERN = /未能完成|当前未能|在线�
 function sanitizedTargetSelectionReason(resolution, route) {
   const target = resolution && resolution.selectedTarget ? resolution.selectedTarget : (route && route.target) || '当前靶点';
   const rawReason = String(resolution && resolution.reason || '').trim();
-  if (rawReason && !VISIBLE_TARGET_RESOLVER_LEAK_PATTERN.test(rawReason)) return rawReason;
   const subject = resolution && resolution.disease ? resolution.disease : (route && route.disease) || '当前设计方向';
-  if (/烟草花叶病毒|tobacco mosaic|tmv/i.test(subject + ' ' + target)) {
-    return '烟草花叶病毒颗粒表面的衣壳蛋白重复排列、外露程度高，适合作为抗体识别和结构建模的优先抗原入口。';
-  }
-  if (isDiseaseIndication(subject)) {
-    return target + ' 与 ' + subject + ' 相关通路具有明确的生物学关联，并具备可用于抗体结合评估的分子表面。';
-  }
-  return target + ' 已整理为本轮抗体识别入口，后续将围绕其可及表面生成候选分子并进行结构评估。';
+  const cleanReason = rawReason && !VISIBLE_TARGET_RESOLVER_LEAK_PATTERN.test(rawReason) ? rawReason : '';
+  const candidates = Array.isArray(resolution && resolution.candidates) ? resolution.candidates.filter(item => item && item.target) : [];
+  const candidateNames = candidates.slice(0, 3).map(item => item.target).filter(Boolean).join('、');
+  const baseReason = cleanReason || (function() {
+    if (/烟草花叶病毒|tobacco mosaic|tmv/i.test(subject + ' ' + target)) {
+      return '烟草花叶病毒颗粒表面的衣壳蛋白重复排列、外露程度高，适合作为抗体识别和结构建模的优先抗原入口。';
+    }
+    if (isDiseaseIndication(subject)) {
+      return target + ' 与 ' + subject + ' 相关通路具有明确的生物学关联，并具备可用于抗体结合评估的分子表面。';
+    }
+    return target + ' 已整理为本轮分子识别入口，后续将围绕其可及表面生成候选分子并进行结构评估。';
+  })();
+  const mechanismText = isDiseaseIndication(subject)
+    ? '从疾病机制看，该靶点与“' + subject + '”的炎症、代谢或免疫调控轴存在可解释关联，适合作为本轮设计入口。'
+    : '从设计对象看，该靶点可以被整理为明确的抗原或蛋白识别入口，便于后续建立候选分子的结合约束。';
+  const surfaceText = target + ' 具备可讨论的外露结构域或表面区域，可用于开展抗原可及性、表位优先级和候选结合姿态评估。';
+  const candidateText = candidateNames
+    ? '同时比较了 ' + candidateNames + ' 等候选入口后，本轮优先选择 ' + target + '，以保证后续序列、结构和界面评估保持一致。'
+    : '本轮优先选择 ' + target + '，以保证后续序列、结构和界面评估保持一致。';
+  return [baseReason, mechanismText, surfaceText, candidateText].join(' ');
 }
 
 function targetResolutionIntro(route) {

@@ -830,6 +830,44 @@ test('server routes diabetes indication requests through target resolution', asy
   assert.equal(data.diseaseIndication, '糖尿病');
 });
 
+test('server routes drug molecule design wording through molecular design workflow', async () => {
+  const targetQuery = encodeURIComponent('帮我设计10个针对流感 NA 的药物分子');
+  const targetRes = await fetch('http://127.0.0.1:' + PORT + '/api/debug/user-routing?text=' + targetQuery);
+  assert.equal(targetRes.status, 200);
+  const targetData = await targetRes.json();
+
+  assert.equal(targetData.intent, 'design');
+  assert.equal(targetData.localWorkflowAllowed, true);
+  assert.equal(targetData.runner, 'target_resolution_workflow');
+  assert.equal(targetData.requiresTargetResolution, true);
+
+  const diseaseQuery = encodeURIComponent('帮我为过敏性哮喘设计一款药物');
+  const diseaseRes = await fetch('http://127.0.0.1:' + PORT + '/api/debug/user-routing?text=' + diseaseQuery);
+  assert.equal(diseaseRes.status, 200);
+  const diseaseData = await diseaseRes.json();
+
+  assert.equal(diseaseData.intent, 'design');
+  assert.equal(diseaseData.localWorkflowAllowed, true);
+  assert.equal(diseaseData.runner, 'target_resolution_workflow');
+  assert.equal(diseaseData.requiresTargetResolution, true);
+  assert.equal(diseaseData.diseaseIndication, '过敏性哮喘');
+});
+
+test('target resolver explanation remains rich for drug molecule design requests', async () => {
+  const messages = await collectUserMessageStream('帮我为过敏性哮喘设计一款药物', {
+    timeoutMs: 12000,
+    stopWhen: (msg) => msg.type === 'tool_call' && msg.tool === 'target_evidence_review'
+  });
+  const agentTexts = messages.filter(msg => msg.type === 'agent_msg').map(msg => msg.text || '');
+  const intro = agentTexts[0] || '';
+
+  assert.match(intro, /本轮选择|选择理由|候选靶点评估/);
+  assert.match(intro, /生物学关联|可及|结构评估|候选分子/);
+  assert.match(intro, /IL-33|TSLP|IL-5/);
+  assert.ok(intro.length > 260, 'target resolver visible explanation should not collapse to a short template');
+  assert.doesNotMatch(intro, VISIBLE_RESOLVER_LEAK_PATTERN);
+});
+
 test('server does not treat ordinary English words containing ha as influenza HA', async () => {
   const query = encodeURIComponent('how much has the dow changed today');
   const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/user-routing?text=' + query);

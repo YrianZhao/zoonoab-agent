@@ -113,3 +113,16 @@ test('treats allergic asthma ten-candidate wording as a disease indication, not 
   assert.equal(parsed.target, '过敏性哮喘');
   assert.equal(extractDiseaseIndication('帮我为过敏性哮喘设计十个抗体分子'), '过敏性哮喘');
 });
+
+test('treats drug molecule wording as a molecular design request', () => {
+  const targetDrug = extractDesignRequest('帮我设计10个针对流感 NA 的药物分子');
+  assert.equal(targetDrug.isDesignRequest, true);
+  assert.equal(targetDrug.target, 'Influenza NA');
+  assert.equal(targetDrug.count, 10);
+
+  const diseaseDrug = extractDesignRequest('帮我为过敏性哮喘设计一款药物');
+  assert.equal(diseaseDrug.isDesignRequest, true);
+  assert.equal(diseaseDrug.target, '过敏性哮喘');
+  assert.equal(diseaseDrug.count, 1);
+  assert.equal(extractDiseaseIndication('帮我为过敏性哮喘设计一款药物'), '过敏性哮喘');
+});
