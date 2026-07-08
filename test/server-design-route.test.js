@@ -227,12 +227,17 @@ test('generic target previews avoid local display structures without antigen-ant
   assert.equal(res.status, 200);
   const data = await res.json();
   const files = data.threeDPreview.files;
+  const firstBinder = data.threeDPreview.binders[0];
 
   assert.equal(data.parsed.target, 'Influenza NA');
   assert.ok(files.length >= 10);
   assert.ok(files.every(file => !/^ANGPTL3-/.test(file)), 'generic Influenza NA previews should not borrow non-contact ANGPTL3 display structures');
   assert.ok(data.threeDPreview.binders.every(item => Array.isArray(item.antigenChains) && item.antigenChains.length >= 1));
   assert.ok(data.threeDPreview.binders.every(item => Array.isArray(item.antibodyChains) && item.antibodyChains.length >= 1));
+  assert.deepEqual(firstBinder.antigenChains, ['E'], 'generic Flu NA should show only the antigen chain that contacts the representative Fab');
+  assert.deepEqual(firstBinder.sourceAntigenChains, ['A', 'D', 'E'], 'generic Flu NA should retain the full source antigen chain set as metadata');
+  assert.deepEqual(firstBinder.antibodyChains, ['B', 'C']);
+  assert.deepEqual(firstBinder.sourceAntibodyChains, ['B', 'C']);
 });
 
 test('server preview count follows spoken Chinese candidate count for preset routes', async () => {

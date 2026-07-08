@@ -3345,6 +3345,7 @@ function routeVisualColors(preset) {
 }
 
 const localPDBRemarkCache = new Map();
+const localPDBContactChainCache = new Map();
 
 function readLocalPDBRemarks(filename) {
   const safeName = String(filename || '').trim();
@@ -3370,10 +3371,92 @@ function readLocalPDBRemarks(filename) {
 
 function routeChainInfo(preset, file) {
   const remarks = readLocalPDBRemarks(file);
-  return {
+  const sourceInfo = {
     antigen: preset && Array.isArray(preset.antigenChains) && preset.antigenChains.length ? preset.antigenChains : (remarks.antigen && remarks.antigen.length ? remarks.antigen : ['A']),
     antibody: preset && Array.isArray(preset.antibodyChains) && preset.antibodyChains.length ? preset.antibodyChains : (remarks.antibody && remarks.antibody.length ? remarks.antibody : ['B'])
   };
+  const displayInfo = selectContactDisplayChains(file, sourceInfo.antigen, sourceInfo.antibody);
+  return {
+    antigen: displayInfo.antigen,
+    antibody: displayInfo.antibody,
+    sourceAntigen: sourceInfo.antigen,
+    sourceAntibody: sourceInfo.antibody
+  };
+}
+
+function selectContactDisplayChains(filename, antigenChains, antibodyChains) {
+  const sourceAntigen = Array.isArray(antigenChains) && antigenChains.length ? antigenChains : ['A'];
+  const sourceAntibody = Array.isArray(antibodyChains) && antibodyChains.length ? antibodyChains : ['B'];
+  const safeName = String(filename || '').trim();
+  const cacheKey = safeName + '|' + sourceAntigen.join(',') + '|' + sourceAntibody.join(',');
+  if (localPDBContactChainCache.has(cacheKey)) return localPDBContactChainCache.get(cacheKey);
+
+  const fallback = { antigen: sourceAntigen, antibody: sourceAntibody };
+  if (!safeName || !/^[A-Za-z0-9][A-Za-z0-9_.-]*\.pdb$/.test(safeName)) {
+    localPDBContactChainCache.set(cacheKey, fallback);
+    return fallback;
+  }
+
+  const candidates = [path.join(LOCAL_PDB_DIR, safeName), path.join(PROJECT_ROOT, safeName)];
+  const filePath = candidates.find(item => fs.existsSync(item));
+  if (!filePath) {
+    localPDBContactChainCache.set(cacheKey, fallback);
+    return fallback;
+  }
+
+  try {
+    const atomsByChain = new Map();
+    const lines = fs.readFileSync(filePath, 'utf8').split(/\r?\n/);
+    for (const line of lines) {
+      if (!line.startsWith('ATOM')) continue;
+      const chain = line[21] || ' ';
+      if (!sourceAntigen.includes(chain) && !sourceAntibody.includes(chain)) continue;
+      const atom = {
+        x: parseFloat(line.slice(30, 38)),
+        y: parseFloat(line.slice(38, 46)),
+        z: parseFloat(line.slice(46, 54))
+      };
+      if (!Number.isFinite(atom.x) || !Number.isFinite(atom.y) || !Number.isFinite(atom.z)) continue;
+      if (!atomsByChain.has(chain)) atomsByChain.set(chain, []);
+      atomsByChain.get(chain).push(atom);
+    }
+
+    const contactThresholdSq = 4.5 * 4.5;
+    const rows = [];
+    for (const antigen of sourceAntigen) {
+      let minDistanceSq = Infinity;
+      let contactPairs = 0;
+      const antigenAtoms = atomsByChain.get(antigen) || [];
+      for (const antibody of sourceAntibody) {
+        const antibodyAtoms = atomsByChain.get(antibody) || [];
+        for (const a of antigenAtoms) {
+          for (const b of antibodyAtoms) {
+            const distSq = ((a.x - b.x) ** 2) + ((a.y - b.y) ** 2) + ((a.z - b.z) ** 2);
+            if (distSq < minDistanceSq) minDistanceSq = distSq;
+            if (distSq <= contactThresholdSq) contactPairs += 1;
+          }
+        }
+      }
+      rows.push({ antigen, contactPairs, minDistanceSq });
+    }
+
+    const contactRows = rows
+      .filter(row => row.contactPairs > 0)
+      .sort((a, b) => (b.contactPairs - a.contactPairs) || (a.minDistanceSq - b.minDistanceSq));
+    if (!contactRows.length) {
+      localPDBContactChainCache.set(cacheKey, fallback);
+      return fallback;
+    }
+
+    const selectedAntigen = [contactRows[0].antigen];
+    const result = { antigen: selectedAntigen, antibody: sourceAntibody };
+    localPDBContactChainCache.set(cacheKey, result);
+    return result;
+  } catch (err) {
+    console.warn('[PDB] contact-chain selection failed for ' + safeName + ':', err && err.message ? err.message : err);
+    localPDBContactChainCache.set(cacheKey, fallback);
+    return fallback;
+  }
 }
 
 function orderPDBFilesForPreset(preset, availableFiles) {
@@ -3440,6 +3523,8 @@ function buildRoute3DMeta(profile, idx, file, ipTm, preset) {
     interfaceDetail: !(preset && preset.interfaceDetail === false),
     antigenChains: chainInfo.antigen,
     antibodyChains: chainInfo.antibody,
+    sourceAntigenChains: chainInfo.sourceAntigen,
+    sourceAntibodyChains: chainInfo.sourceAntibody,
     antibodyFormat: abFormat,
     visualColors,
     sequence,

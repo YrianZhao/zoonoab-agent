@@ -5851,7 +5851,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146074';
+    const APP_BUILD_VERSION = '78146075';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -13851,7 +13851,7 @@ ${fallbackTableRows(profile.rows)}
             <span class="viewer-role-item">
                 <span class="viewer-role-swatch" style="background:${escHtml(item.color)}"></span>
                 <span><strong>${escHtml(item.role)}</strong> ${escHtml(item.label)}</span>
-                <span class="viewer-role-chains">Chains ${escHtml(item.chains.join(','))}</span>
+                <span class="viewer-role-chains">展示链 ${escHtml(item.chains.join(','))}</span>
             </span>`).join('')}</div>`;
     }
 
@@ -13891,8 +13891,8 @@ ${fallbackTableRows(profile.rows)}
         url += '&antigenChains=' + encodeURIComponent(antigenChains.join(','));
         url += '&antibodyChains=' + encodeURIComponent(antibodyChains.join(','));
         const legend = getRoleLegend(meta);
-        url += '&antigenLabel=' + encodeURIComponent(legend.antigen.role + '：' + legend.antigen.label + ' · Chains ' + legend.antigen.chains.join(','));
-        url += '&antibodyLabel=' + encodeURIComponent(legend.antibody.role + '：' + legend.antibody.label + ' · Chains ' + legend.antibody.chains.join(','));
+        url += '&antigenLabel=' + encodeURIComponent(legend.antigen.role + '：' + legend.antigen.label + ' · 展示链 ' + legend.antigen.chains.join(','));
+        url += '&antibodyLabel=' + encodeURIComponent(legend.antibody.role + '：' + legend.antibody.label + ' · 展示链 ' + legend.antibody.chains.join(','));
         url += '&poseSeed=' + encodeURIComponent(String(viewerPoseSeed));
         if (title) url += '&title=' + encodeURIComponent(title);
         return url;
@@ -14038,6 +14038,8 @@ ${fallbackTableRows(profile.rows)}
 	                    interfaceDetail: meta.interfaceDetail !== false,
 	                    antigenChains: Array.isArray(meta.antigenChains) && meta.antigenChains.length ? meta.antigenChains : ['A'],
 	                    antibodyChains: Array.isArray(meta.antibodyChains) && meta.antibodyChains.length ? meta.antibodyChains : ['B'],
+	                    sourceAntigenChains: Array.isArray(meta.sourceAntigenChains) && meta.sourceAntigenChains.length ? meta.sourceAntigenChains : (Array.isArray(meta.antigenChains) && meta.antigenChains.length ? meta.antigenChains : ['A']),
+	                    sourceAntibodyChains: Array.isArray(meta.sourceAntibodyChains) && meta.sourceAntibodyChains.length ? meta.sourceAntibodyChains : (Array.isArray(meta.antibodyChains) && meta.antibodyChains.length ? meta.antibodyChains : ['B']),
 	                    visualColors: meta.visualColors || null,
 	                    sequence: meta.sequence || '',
 	                    cdrSummary: meta.cdrSummary || '',
