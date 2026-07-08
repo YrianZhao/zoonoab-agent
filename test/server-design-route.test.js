@@ -106,6 +106,75 @@ test('server design route sends implicit unknown targets to target resolution', 
   assert.doesNotMatch(serialized, /IL-33|ST2|4KC3/);
 });
 
+test('server routes shorthand flu NA monoclonal sequence requests to design workflow', async () => {
+  const query = encodeURIComponent('设计 10 个具有结合活性的流感 NA 单抗序列');
+  const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/user-routing?text=' + query);
+  assert.equal(res.status, 200);
+  const data = await res.json();
+
+  assert.equal(data.intent, 'design');
+  assert.equal(data.localWorkflowAllowed, true);
+  assert.equal(data.runner, 'target_resolution_workflow');
+  assert.equal(data.requiresTargetResolution, true);
+});
+
+test('server can let the chat model route terse monoclonal slang into workflow', async () => {
+  const captured = [];
+  const mockServer = http.createServer((req, res) => {
+    let body = '';
+    req.setEncoding('utf8');
+    req.on('data', chunk => { body += chunk; });
+    req.on('end', () => {
+      const parsedBody = JSON.parse(body || '{}');
+      captured.push(parsedBody);
+      const systemPrompt = parsedBody.messages && parsedBody.messages[0]
+        ? String(parsedBody.messages[0].content || '')
+        : '';
+      const content = /请求路由器/.test(systemPrompt)
+        ? '{"i":"design","n":10,"t":"烟草花叶病毒","a":"mAb"}'
+        : '{"selectedTarget":"TMV coat protein"}';
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify({ choices: [{ message: { content } }] }));
+    });
+  });
+
+  await new Promise(resolve => mockServer.listen(MOCK_CHAT_PORT, '127.0.0.1', resolve));
+  try {
+    const saveResp = await fetch('http://127.0.0.1:' + PORT + '/api/voice/session', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        voice: { mode: 'local', provider: 'local' },
+        chat: {
+          baseUrl: 'http://127.0.0.1:' + MOCK_CHAT_PORT + '/v1',
+          apiKey: 'test-intent-router-secret',
+          model: 'mock-intent-router'
+        }
+      })
+    });
+    assert.equal(saveResp.status, 200);
+    const saved = await saveResp.json();
+
+    const messages = await collectUserMessageStream('烟草花叶病毒来十个单抗', {
+      timeoutMs: 12000,
+      voiceSessionId: saved.voiceSessionId,
+      stopWhen: (msg) => msg.type === 'tool_call' && msg.tool === 'target_evidence_review'
+    });
+    const evidenceCall = messages.find(msg => msg.type === 'tool_call' && msg.tool === 'target_evidence_review');
+
+    assert.ok(evidenceCall, 'model-routed slang request should enter target-resolution workflow');
+    assert.equal(evidenceCall.params.target, 'TMV coat protein');
+    assert.equal(captured.length, 2);
+    assert.match(captured[0].messages[0].content, /请求路由器/);
+    assert.deepEqual(captured[0].response_format, { type: 'json_object' });
+    assert.ok(captured[0].max_tokens <= 80);
+    assert.match(captured[1].messages[0].content, /只输出一行 JSON/);
+    assert.ok(captured[1].max_tokens <= 80);
+  } finally {
+    await new Promise(resolve => mockServer.close(resolve));
+  }
+});
+
 test('server design route preserves explicitly declared unknown targets across route, parse, and profile', async () => {
   const query = encodeURIComponent('设计10个抗体，靶点是烟草花叶病毒');
   const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/design-route?text=' + query);
