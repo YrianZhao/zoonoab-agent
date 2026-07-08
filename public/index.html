@@ -3485,6 +3485,47 @@
         }
         .project-history-item .proj-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
         .project-history-item .proj-time { font-size: 10px; color: var(--text-muted); flex-shrink: 0; }
+        .kb-history-entry {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            margin: 4px 0 6px;
+            padding: 8px 10px;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-sm);
+            background: rgba(0,123,255,0.04);
+            color: var(--text-secondary);
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .kb-history-entry:hover,
+        .kb-history-entry.active {
+            border-color: var(--brand-light);
+            background: var(--brand-lighter);
+            color: var(--brand-dark);
+        }
+        .kb-history-entry-main {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            min-width: 0;
+        }
+        .kb-history-count {
+            min-width: 18px;
+            height: 18px;
+            padding: 0 6px;
+            border-radius: var(--radius-full);
+            background: rgba(0,123,255,0.12);
+            color: var(--brand-dark);
+            font-size: 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
 
         /* ═══════════════ MULTI-SCHEME CDR BLOCK BARS ═══════════════ */
         .cdr-scheme-bars { margin-top: 14px; }
@@ -4454,6 +4495,55 @@
         .kb-log-tab { padding: 5px 11px; border: 1px solid var(--border); background: white; color: var(--text-secondary); border-radius: var(--radius-full); font-size: 12px; font-weight: 700; cursor: pointer; transition: var(--transition); }
         .kb-log-tab.active, .kb-log-tab:hover { border-color: var(--brand-light); background: var(--brand-lighter); color: var(--brand-dark); }
         .kb-log-state { padding: 28px 20px; text-align: center; color: var(--text-muted); font-size: 13px; line-height: 1.7; }
+        .kb-history-panel { display: none; flex: 1; min-height: 0; overflow: hidden; background: #FAFBFC; }
+        .kb-history-layout { display: grid; grid-template-columns: minmax(280px, 360px) minmax(0, 1fr); width: 100%; min-height: 0; height: 100%; }
+        .kb-history-list-pane { border-right: 1px solid var(--border); background: white; display: flex; flex-direction: column; min-width: 0; min-height: 0; }
+        .kb-history-list-head { padding: 16px 18px 12px; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+        .kb-history-title { font-size: 17px; font-weight: 800; color: var(--text-primary); display: flex; align-items: center; gap: 8px; }
+        .kb-history-sub { margin-top: 4px; font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+        .kb-history-clear { padding: 5px 10px; border: 1px solid var(--border); background: white; border-radius: var(--radius-md); font-size: 12px; font-weight: 700; color: var(--text-secondary); cursor: pointer; white-space: nowrap; }
+        .kb-history-clear:hover { border-color: var(--brand-light); background: var(--brand-lighter); color: var(--brand-dark); }
+        .kb-history-list { flex: 1; overflow-y: auto; padding: 10px; display: flex; flex-direction: column; gap: 8px; min-height: 0; }
+        .kb-history-row { border: 1px solid var(--border); background: white; border-radius: var(--radius-lg); padding: 12px; cursor: pointer; transition: var(--transition); }
+        .kb-history-row:hover,
+        .kb-history-row.active { border-color: var(--brand-light); box-shadow: 0 4px 16px rgba(0,123,255,0.08); background: var(--brand-lighter); }
+        .kb-history-row-title { font-size: 13px; font-weight: 800; color: var(--text-primary); line-height: 1.45; margin-bottom: 6px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .kb-history-row-meta { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; font-size: 10px; color: var(--text-muted); }
+        .kb-history-pill { display: inline-flex; align-items: center; gap: 4px; border: 1px solid var(--border); background: white; border-radius: var(--radius-full); padding: 2px 7px; font-size: 10px; font-weight: 700; color: var(--text-secondary); }
+        .kb-history-pill.model { border-color: rgba(0,123,255,0.18); background: rgba(0,123,255,0.07); color: var(--brand-dark); }
+        .kb-history-pill.done { border-color: rgba(34,197,94,0.25); background: rgba(34,197,94,0.08); color: #15803D; }
+        .kb-history-detail { min-width: 0; overflow-y: auto; padding: 18px 20px 24px; }
+        .kb-history-empty { padding: 56px 20px; text-align: center; color: var(--text-muted); font-size: 13px; line-height: 1.7; }
+        .kb-history-detail-head { background: white; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 16px 18px; margin-bottom: 14px; }
+        .kb-history-detail-title { font-size: 18px; font-weight: 850; color: var(--text-primary); line-height: 1.45; margin-bottom: 8px; }
+        .kb-history-detail-meta { display: flex; gap: 7px; flex-wrap: wrap; align-items: center; }
+        .kb-history-section-title { font-size: 12px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin: 18px 0 8px; display: flex; align-items: center; gap: 7px; }
+        .kb-history-output-list { display: flex; flex-direction: column; gap: 8px; }
+        .kb-history-output { background: white; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 12px 14px; font-size: 13px; line-height: 1.7; color: var(--text-primary); }
+        .kb-history-output.user { border-left: 3px solid var(--brand); }
+        .kb-history-output.assistant { border-left: 3px solid #22C55E; }
+        .kb-history-output.log { background: #0D1117; color: #D1FAE5; border-color: rgba(255,255,255,0.08); font-family: var(--mono-font-family); font-size: 12px; }
+        .kb-history-output.tool_call,
+        .kb-history-output.tool_result { border-left: 3px solid #8B5CF6; }
+        .kb-history-output-label { display: block; font-size: 10px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 5px; }
+        .kb-history-output.log .kb-history-output-label { color: rgba(209,250,229,0.65); }
+        .kb-history-result-card,
+        .kb-history-model-card { background: white; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 14px; margin-bottom: 10px; }
+        .kb-history-result-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(108px, 1fr)); gap: 8px; margin-top: 10px; }
+        .kb-history-stat { background: var(--bg-page); border-radius: var(--radius-md); padding: 8px 10px; }
+        .kb-history-stat-label { font-size: 10px; color: var(--text-muted); font-weight: 700; margin-bottom: 2px; }
+        .kb-history-stat-value { font-size: 14px; color: var(--text-primary); font-weight: 800; word-break: break-word; }
+        .kb-history-model-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+        .kb-history-model-name { font-size: 14px; font-weight: 800; color: var(--text-primary); line-height: 1.4; }
+        .kb-history-model-sub { margin-top: 3px; font-size: 12px; color: var(--text-muted); line-height: 1.45; }
+        .kb-history-model-actions { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+        .kb-history-action { border: 1px solid var(--brand-light); background: var(--brand); color: white; border-radius: var(--radius-md); padding: 6px 10px; font-size: 12px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; }
+        .kb-history-action.secondary { background: white; color: var(--brand-dark); }
+        .kb-history-model-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(128px, 1fr)); gap: 8px; }
+        @media (max-width: 900px) {
+            .kb-history-layout { grid-template-columns: 1fr; }
+            .kb-history-list-pane { max-height: 42vh; border-right: none; border-bottom: 1px solid var(--border); }
+        }
     </style>
 <body>
     <!-- Header -->
@@ -4890,6 +4980,10 @@
                         <div class="kb-tree-item" data-project="common" onclick="kbSelectProject(this,'common')">
                             <span>📚</span> 公共资料库 <span class="kb-tree-count">2</span>
                         </div>
+                        <button class="kb-history-entry" id="kbHistoryEntry" type="button" onclick="openHistoryPanel()">
+                            <span class="kb-history-entry-main"><i data-lucide="history" style="width:13px;height:13px;"></i> 历史记录</span>
+                            <span class="kb-history-count" id="kbHistoryCount">0</span>
+                        </button>
                         <button class="kb-voice-api-entry" type="button" onclick="toggleVoiceSettings(true)">
                             <span><i data-lucide="mic-2" style="width:12px;height:12px;"></i> 语音 API 设置</span>
                             <i data-lucide="chevron-right" style="width:12px;height:12px;"></i>
@@ -4944,6 +5038,25 @@
                     <div class="kb-docs-area">
                         <div class="kb-docs-grid" id="kbDocsGrid">
                             <!-- Rendered by kbRender() -->
+                        </div>
+                    </div>
+                    <div class="kb-history-panel" id="kbHistoryPanel">
+                        <div class="kb-history-layout">
+                            <div class="kb-history-list-pane">
+                                <div class="kb-history-list-head">
+                                    <div>
+                                        <div class="kb-history-title"><i data-lucide="history" style="width:16px;height:16px;color:var(--brand);"></i> 历史记录</div>
+                                        <div class="kb-history-sub">保存已输出内容、结果摘要和展示过的结构模型。</div>
+                                    </div>
+                                    <button class="kb-history-clear" type="button" onclick="clearProjectHistory()">清除</button>
+                                </div>
+                                <div class="kb-history-list" id="kbHistoryList">
+                                    <div class="kb-history-empty">暂无历史记录。</div>
+                                </div>
+                            </div>
+                            <div class="kb-history-detail" id="kbHistoryDetail">
+                                <div class="kb-history-empty">选择左侧记录查看完整输出。</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -5738,7 +5851,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146073';
+    const APP_BUILD_VERSION = '78146074';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -6102,6 +6215,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     let kbSearchQuery = '';
 
     function kbRender() {
+        if (kbCurrentProject === 'history') {
+            setKBHistoryMode(true);
+            renderHistoryPanel(activeHistorySelectedId);
+            return;
+        }
+        setKBHistoryMode(false);
         const grid = document.getElementById('kbDocsGrid');
         if (!grid) return;
         const q = kbSearchQuery.toLowerCase();
@@ -6150,6 +6269,11 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
     function kbSelectProject(el, project) {
         kbCurrentProject = project;
+        if (project === 'history') {
+            openHistoryPanel();
+            return;
+        }
+        setKBHistoryMode(false);
         document.querySelectorAll('.kb-tree-item').forEach(b => b.classList.remove('active'));
         el.classList.add('active');
         kbRender();
@@ -6157,6 +6281,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
     function kbSetType(btn, type) {
         kbCurrentType = type;
+        if (kbCurrentProject === 'history') {
+            kbCurrentProject = 'all';
+            setKBHistoryMode(false);
+        }
         document.querySelectorAll('.kb-type-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         kbRender();
@@ -6164,6 +6292,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
     function kbSearch(val) {
         kbSearchQuery = val;
+        if (kbCurrentProject === 'history') {
+            kbCurrentProject = 'all';
+            setKBHistoryMode(false);
+        }
         kbRender();
     }
 
@@ -7482,24 +7614,246 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
     // ═══════════════ CONVERSATION HISTORY (localStorage) ═══════════════
     const _HIST_KEY = 'zoonoab_history_v2';
-    const _HIST_MAX = 30;
+    const _HIST_MAX = 50;
+    const _HIST_EVENT_MAX = 220;
+    const _HIST_MODEL_MAX = 60;
     const _DOT_COLORS = ['#22C55E','rgba(0,123,255,0.75)','rgba(139,92,246,0.75)','rgba(245,158,11,0.75)','rgba(239,68,68,0.75)','rgba(20,184,166,0.75)'];
+    let activeHistoryRun = null;
+    let activeHistorySelectedId = null;
+
+    function historyId() {
+        return 'hist-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 8);
+    }
+
+    function truncateHistoryText(value, max = 12000) {
+        const text = value === undefined || value === null ? '' : String(value);
+        return text.length > max ? text.slice(0, max - 1) + '…' : text;
+    }
+
+    function historyJsonClone(value, maxText = 3000) {
+        if (value === undefined || value === null) return value;
+        try {
+            return JSON.parse(JSON.stringify(value, (key, val) => {
+                if (typeof val === 'function') return undefined;
+                if (typeof Element !== 'undefined' && val instanceof Element) return undefined;
+                if (typeof val === 'string') return truncateHistoryText(val, maxText);
+                return val;
+            }));
+        } catch {
+            return truncateHistoryText(String(value), maxText);
+        }
+    }
+
+    function compactHistorySequence(seq) {
+        const metrics = seq && seq.metrics ? historyJsonClone(seq.metrics, 600) : {};
+        const sequence = seq && (seq.sequence || seq.seq) ? truncateHistoryText(seq.sequence || seq.seq, 1600) : '';
+        return {
+            id: seq && seq.id !== undefined ? seq.id : '',
+            name: seq && (seq.name || seq.candidateLabel) ? (seq.name || seq.candidateLabel) : '',
+            sequence,
+            pass: Boolean(seq && seq.pass),
+            pdbId: seq && seq.pdbId ? seq.pdbId : '',
+            metrics
+        };
+    }
+
+    function compactHistoryBinder(meta) {
+        meta = meta || {};
+        return {
+            id: meta.id || '',
+            file: meta.file || '',
+            displayFile: meta.displayFile || '',
+            name: meta.name || '',
+            candidateLabel: meta.candidateLabel || '',
+            routeId: meta.routeId || '',
+            routeLabel: meta.routeLabel || '',
+            disease: meta.disease || '',
+            targetDisplay: meta.targetDisplay || '',
+            partnerDisplay: meta.partnerDisplay || '',
+            domain: meta.domain || '',
+            mechanism: meta.mechanism || '',
+            selectedEpitope: meta.selectedEpitope || '',
+            structureRef: meta.structureRef || '',
+            interfaceFocus: meta.interfaceFocus || '',
+            structureTitle: meta.structureTitle || '',
+            structureFamily: meta.structureFamily || '',
+            visualSummary: meta.visualSummary || '',
+            structuralBasis: meta.structuralBasis || '',
+            interfaceDetail: meta.interfaceDetail !== false,
+            antigenChains: Array.isArray(meta.antigenChains) ? meta.antigenChains.slice(0, 12) : [],
+            antibodyChains: Array.isArray(meta.antibodyChains) ? meta.antibodyChains.slice(0, 12) : [],
+            visualColors: meta.visualColors ? historyJsonClone(meta.visualColors, 120) : null,
+            sequence: meta.sequence ? truncateHistoryText(meta.sequence, 1800) : '',
+            cdrSummary: meta.cdrSummary || '',
+            developability: meta.developability || '',
+            site: meta.site || '',
+            binderId: meta.binderId || '',
+            ipTm: typeof meta.ipTm === 'number' ? meta.ipTm : null,
+            fallback: Boolean(meta.fallback)
+        };
+    }
+
+    function makeHistoryTitle(text, stats) {
+        if (stats && (stats.target || stats.abType || stats.passing)) {
+            return '分子设计 · ' + [stats.target || '抗体', stats.abType || '', stats.passing ? (stats.passing + ' 个候选') : ''].filter(Boolean).join(' · ');
+        }
+        const clean = String(text || '').replace(/\s+/g, ' ').trim();
+        return clean ? truncateHistoryText(clean, 52) : '未命名设计记录';
+    }
+
+    function normalizeHistoryRecord(entry, idx = 0) {
+        const ts = entry && (entry.ts || entry.createdAt || entry.updatedAt) ? (entry.ts || entry.createdAt || entry.updatedAt) : Date.now();
+        const events = Array.isArray(entry && entry.events) ? entry.events : [];
+        const messages = Array.isArray(entry && entry.messages) ? entry.messages : [];
+        const models3d = Array.isArray(entry && entry.models3d) ? entry.models3d : [];
+        const results = Array.isArray(entry && entry.results) ? entry.results : [];
+        return {
+            id: (entry && entry.id) || ('legacy-' + ts + '-' + idx),
+            schemaVersion: (entry && entry.schemaVersion) || 1,
+            title: (entry && (entry.title || entry.label)) || makeHistoryTitle(entry && entry.input),
+            input: (entry && entry.input) || (messages.find(m => m && m.role === 'user') || {}).text || '',
+            status: (entry && entry.status) || 'completed',
+            ts,
+            updatedAt: (entry && entry.updatedAt) || ts,
+            routeId: (entry && entry.routeId) || '',
+            routeLabel: (entry && entry.routeLabel) || '',
+            messages,
+            events,
+            results,
+            models3d,
+            stats: (entry && entry.stats) || null
+        };
+    }
 
     function loadHistory() {
-        try { return JSON.parse(localStorage.getItem(_HIST_KEY) || '[]'); } catch { return []; }
+        try {
+            const raw = JSON.parse(localStorage.getItem(_HIST_KEY) || '[]');
+            return Array.isArray(raw) ? raw : [];
+        } catch {
+            return [];
+        }
     }
+
+    function loadHistoryRecords() {
+        return loadHistory().map((entry, idx) => normalizeHistoryRecord(entry, idx));
+    }
+
     function saveHistory(entry) {
-        const h = loadHistory();
-        h.unshift(entry);
+        if (!entry) return;
+        const record = normalizeHistoryRecord(entry);
+        const h = loadHistory().filter(item => item && item.id !== record.id);
+        h.unshift(record);
         if (h.length > _HIST_MAX) h.length = _HIST_MAX;
         try { localStorage.setItem(_HIST_KEY, JSON.stringify(h)); } catch {}
         renderProjectHistory();
+        if (kbCurrentProject === 'history') renderHistoryPanel(record.id);
     }
+
     function clearProjectHistory() {
         localStorage.removeItem(_HIST_KEY);
+        activeHistorySelectedId = null;
         renderProjectHistory();
+        renderHistoryPanel();
         showToast('历史记录已清除');
     }
+
+    function startHistoryRun(text, meta = {}) {
+        activeHistoryRun = {
+            id: historyId(),
+            schemaVersion: 2,
+            title: makeHistoryTitle(text),
+            input: truncateHistoryText(text, 2000),
+            status: 'running',
+            ts: Date.now(),
+            updatedAt: Date.now(),
+            routeId: meta.routeId || '',
+            routeLabel: meta.routeLabel || '',
+            messages: [],
+            events: [],
+            results: [],
+            models3d: [],
+            stats: null
+        };
+        recordHistoryEvent('user', { text });
+    }
+
+    function recordHistoryEvent(type, payload = {}) {
+        if (!activeHistoryRun) return;
+        const now = Date.now();
+        const event = {
+            type,
+            ts: now,
+            text: payload.text !== undefined ? truncateHistoryText(payload.text, 12000) : '',
+            tool: payload.tool || '',
+            toolId: payload.toolId || '',
+            params: payload.params !== undefined ? historyJsonClone(payload.params, 2000) : undefined,
+            result: payload.result !== undefined ? historyJsonClone(payload.result, 3000) : undefined,
+            data: payload.data !== undefined ? historyJsonClone(payload.data, 2000) : undefined
+        };
+        activeHistoryRun.events.push(event);
+        if (type === 'user' || type === 'assistant') {
+            activeHistoryRun.messages.push({
+                role: type === 'user' ? 'user' : 'assistant',
+                text: event.text,
+                ts: now
+            });
+        }
+        if (activeHistoryRun.events.length > _HIST_EVENT_MAX) {
+            activeHistoryRun.events = activeHistoryRun.events.slice(-_HIST_EVENT_MAX);
+        }
+        activeHistoryRun.updatedAt = now;
+    }
+
+    function recordHistoryResults(sequences, stats) {
+        if (!activeHistoryRun) return;
+        const now = Date.now();
+        const result = {
+            ts: now,
+            stats: historyJsonClone(stats || {}, 600),
+            total: Array.isArray(sequences) ? sequences.length : 0,
+            sequences: Array.isArray(sequences) ? sequences.slice(0, 80).map(compactHistorySequence) : []
+        };
+        activeHistoryRun.stats = result.stats;
+        activeHistoryRun.title = makeHistoryTitle(activeHistoryRun.input, stats || {});
+        activeHistoryRun.results = [result];
+        activeHistoryRun.updatedAt = now;
+    }
+
+    function recordHistory3D(primaryPDB, allPDBs, label, binderData, extra = {}) {
+        if (!activeHistoryRun) return;
+        const normalized = normalizeBinderPayload(primaryPDB, allPDBs, binderData);
+        const pdbIds = normalized.pdbIds.slice(0, _HIST_MODEL_MAX);
+        const binders = normalized.binders.slice(0, _HIST_MODEL_MAX).map(compactHistoryBinder);
+        const key = [primaryPDB || '', pdbIds.join('|'), label || ''].join('::');
+        const section = {
+            ts: Date.now(),
+            key,
+            primaryPDB: primaryPDB || (pdbIds[0] || ''),
+            allPDBs: pdbIds,
+            label: label || primaryPDB || '3D 结构',
+            binderData: binders,
+            modelCount: binders.length || pdbIds.length,
+            isLocal: Boolean(extra && extra.isLocal),
+            chainInfo: extra && extra.chainInfo ? historyJsonClone(extra.chainInfo, 300) : null
+        };
+        const existingIdx = activeHistoryRun.models3d.findIndex(item => item && item.key === key);
+        if (existingIdx >= 0) activeHistoryRun.models3d[existingIdx] = section;
+        else activeHistoryRun.models3d.push(section);
+        activeHistoryRun.updatedAt = Date.now();
+    }
+
+    function finalizeHistoryRun(status = 'completed') {
+        if (!activeHistoryRun) return;
+        activeHistoryRun.status = status;
+        activeHistoryRun.updatedAt = Date.now();
+        if (!activeHistoryRun.events.length && !activeHistoryRun.results.length && !activeHistoryRun.models3d.length) {
+            activeHistoryRun = null;
+            return;
+        }
+        saveHistory(activeHistoryRun);
+        activeHistoryRun = null;
+    }
+
     function getRelTime(ts) {
         const d = Date.now() - ts;
         if (d < 60000) return '刚刚';
@@ -7507,23 +7861,259 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (d < 86400000) return Math.round(d/3600000) + '小时前';
         return Math.round(d/86400000) + '天前';
     }
+
+    function formatHistoryTime(ts) {
+        const date = new Date(ts || Date.now());
+        if (Number.isNaN(date.getTime())) return '--';
+        return date.toLocaleString('zh-CN', { month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit' });
+    }
+
+    function historyStatusLabel(status) {
+        return status === 'cancelled' ? '已取消' : status === 'error' ? '异常结束' : status === 'interrupted' ? '已中断' : status === 'running' ? '运行中' : '已完成';
+    }
+
+    function escJsString(value) {
+        return String(value || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/\n/g, '\\n').replace(/\r/g, '');
+    }
+
+    function historyTextHtml(text, markdown = false) {
+        const value = truncateHistoryText(text || '', 12000);
+        return markdown ? renderMarkdown(value) : escHtml(value).replace(/\n/g, '<br>');
+    }
+
+    function historyValuePreview(value, max = 1800) {
+        if (value === undefined || value === null || value === '') return '';
+        if (typeof value === 'string') return truncateHistoryText(value, max);
+        try { return truncateHistoryText(JSON.stringify(value, null, 2), max); } catch { return truncateHistoryText(String(value), max); }
+    }
+
+    function historyStructuredEventHtml(event) {
+        const data = event && event.data;
+        if (event.type === 'tasks' && Array.isArray(data)) {
+            return data.slice(0, 18).map((task, idx) => {
+                const status = task && task.status ? task.status : 'pending';
+                const text = task && task.text ? task.text : ('任务 ' + (idx + 1));
+                return `<span class="kb-history-pill ${status === 'completed' ? 'done' : ''}">${escHtml(status)} · ${escHtml(text)}</span>`;
+            }).join(' ');
+        }
+        if (event.type === 'subagents' && Array.isArray(data)) {
+            return data.slice(0, 18).map(agent => {
+                const name = agent && (agent.name || agent.id || agent.role) ? (agent.name || agent.id || agent.role) : 'Agent';
+                const progress = agent && agent.progress !== undefined ? (' · ' + agent.progress + '%') : '';
+                const status = agent && agent.status ? (' · ' + agent.status) : '';
+                return `<span class="kb-history-pill model">${escHtml(name + progress + status)}</span>`;
+            }).join(' ');
+        }
+        if (event.type === 'plan' && Array.isArray(data)) {
+            return data.slice(0, 20).map((step, idx) => {
+                const status = step && step.status ? step.status : 'pending';
+                const text = step && step.text ? step.text : ('步骤 ' + (idx + 1));
+                return `<span class="kb-history-pill ${status === 'done' || status === 'completed' ? 'done' : ''}">${escHtml(status)} · ${escHtml(text)}</span>`;
+            }).join(' ');
+        }
+        if (event.type === 'workflow_result' && data) {
+            return `<strong>${escHtml(data.wfType || '流程结果')}</strong><br>${historyTextHtml(historyValuePreview(data.result), false)}`;
+        }
+        return historyTextHtml(historyValuePreview(data), false);
+    }
+
     function renderProjectHistory() {
         const list = document.getElementById('projectHistoryList');
+        const countEl = document.getElementById('kbHistoryCount');
+        const history = loadHistoryRecords();
+        if (countEl) countEl.textContent = history.length;
         if (!list) return;
-        const history = loadHistory();
         if (!history.length) {
             list.innerHTML = '<div style="padding:10px 8px;font-size:11px;color:var(--text-muted);">暂无历史记录</div>';
             return;
         }
-        list.innerHTML = history.map((h, i) => {
+        list.innerHTML = history.slice(0, 8).map((h, i) => {
             const dot = _DOT_COLORS[i % _DOT_COLORS.length];
             const time = h.ts ? getRelTime(h.ts) : '';
-            return `<div class="project-history-item" title="${escHtml(h.label||'')}">
+            const modelCount = h.models3d.reduce((sum, item) => sum + (item.modelCount || 0), 0);
+            return `<div class="project-history-item" title="${escHtml(h.title||'')}" onclick="openHistoryPanel('${escJsString(h.id)}')">
                 <div class="proj-dot" style="background:${dot};"></div>
-                <span class="proj-name">${escHtml(h.label||'未知任务')}</span>
+                <span class="proj-name">${escHtml(h.title||'未知任务')}${modelCount ? ` · ${modelCount} 结构` : ''}</span>
                 <span class="proj-time">${escHtml(time)}</span>
             </div>`;
         }).join('');
+    }
+
+    function setKBHistoryMode(active) {
+        const panel = document.getElementById('kbHistoryPanel');
+        const docsArea = document.querySelector('#kbSection .kb-docs-area');
+        const topbar = document.querySelector('#kbSection .kb-main-topbar');
+        const stats = document.querySelector('#kbSection .kb-main-stats');
+        const entry = document.getElementById('kbHistoryEntry');
+        if (panel) panel.style.display = active ? 'flex' : 'none';
+        if (docsArea) docsArea.style.display = active ? 'none' : 'block';
+        if (topbar) topbar.style.display = active ? 'none' : 'flex';
+        if (stats) stats.style.display = active ? 'none' : 'flex';
+        if (entry) entry.classList.toggle('active', active);
+    }
+
+    function openHistoryPanel(recordId) {
+        const kbSection = document.getElementById('kbSection');
+        if (kbSection && kbSection.style.display === 'none') switchView('kb');
+        kbCurrentProject = 'history';
+        document.querySelectorAll('.kb-tree-item').forEach(b => b.classList.remove('active'));
+        setKBHistoryMode(true);
+        renderHistoryPanel(recordId || activeHistorySelectedId);
+        refreshLucideIcons({ nodes: [document.getElementById('kbHistoryPanel'), document.getElementById('kbHistoryEntry')].filter(Boolean) });
+    }
+
+    function renderHistoryPanel(recordId) {
+        const list = document.getElementById('kbHistoryList');
+        const detail = document.getElementById('kbHistoryDetail');
+        if (!list || !detail) return;
+        const records = loadHistoryRecords();
+        const countEl = document.getElementById('kbHistoryCount');
+        if (countEl) countEl.textContent = records.length;
+        if (!records.length) {
+            list.innerHTML = '<div class="kb-history-empty">暂无历史记录。完成一次设计后，会在这里保存输出内容和结构模型。</div>';
+            detail.innerHTML = '<div class="kb-history-empty">暂无可查看记录。</div>';
+            return;
+        }
+        const selected = records.find(item => item.id === recordId) || records[0];
+        activeHistorySelectedId = selected.id;
+        list.innerHTML = records.map(item => {
+            const outputCount = (item.events || []).filter(e => e.type !== 'user').length;
+            const modelCount = (item.models3d || []).reduce((sum, section) => sum + (section.modelCount || 0), 0);
+            return `<div class="kb-history-row${item.id === selected.id ? ' active' : ''}" data-history-id="${escHtml(item.id)}" onclick="openHistoryDetail('${escJsString(item.id)}')">
+                <div class="kb-history-row-title">${escHtml(item.title || '未命名设计记录')}</div>
+                <div class="kb-history-row-meta">
+                    <span>${escHtml(formatHistoryTime(item.ts))}</span>
+                    <span class="kb-history-pill done">${escHtml(historyStatusLabel(item.status))}</span>
+                    <span class="kb-history-pill">${outputCount} 条输出</span>
+                    <span class="kb-history-pill model">${modelCount} 个结构</span>
+                </div>
+            </div>`;
+        }).join('');
+        openHistoryDetail(selected.id);
+    }
+
+    function openHistoryDetail(recordId) {
+        const records = loadHistoryRecords();
+        const record = records.find(item => item.id === recordId);
+        const detail = document.getElementById('kbHistoryDetail');
+        if (!record || !detail) return;
+        activeHistorySelectedId = record.id;
+        document.querySelectorAll('.kb-history-row').forEach(row => row.classList.toggle('active', row.dataset.historyId === record.id));
+        detail.innerHTML = renderHistoryDetail(record);
+        refreshLucideIcons({ nodes: [detail] });
+    }
+
+    function renderHistoryDetail(record) {
+        const outputEvents = (record.events || []).filter(event => event && event.type);
+        const modelCount = (record.models3d || []).reduce((sum, section) => sum + (section.modelCount || 0), 0);
+        const outputsHtml = outputEvents.length ? outputEvents.map(event => {
+            const cls = event.type;
+            const labelMap = { user:'输入', assistant:'输出', log:'进度', tool_call:'工具调用', tool_result:'工具结果', plan:'计划', workflow_result:'流程结果' };
+            let body = '';
+            if (event.type === 'assistant') body = historyTextHtml(event.text, true);
+            else if (event.type === 'tool_call') body = `<strong>${escHtml(event.tool || '工具')}</strong>${event.toolId ? ` · ${escHtml(event.toolId)}` : ''}<br>${historyTextHtml(historyValuePreview(event.params), false)}`;
+            else if (event.type === 'tool_result') body = `<strong>${escHtml(event.tool || '工具')}</strong><br>${historyTextHtml(historyValuePreview(event.result), false)}`;
+            else if (['tasks','subagents','plan','workflow_result'].includes(event.type)) body = historyStructuredEventHtml(event);
+            else body = historyTextHtml(event.text || historyValuePreview(event.data), false);
+            return `<div class="kb-history-output ${escHtml(cls)}">
+                <span class="kb-history-output-label">${escHtml(labelMap[event.type] || event.type)} · ${escHtml(formatHistoryTime(event.ts))}</span>
+                ${body || '<span style="color:var(--text-muted);">无内容</span>'}
+            </div>`;
+        }).join('') : '<div class="kb-history-empty">这条记录没有可显示的输出内容。</div>';
+        return `
+            <div class="kb-history-detail-head">
+                <div class="kb-history-detail-title">${escHtml(record.title || '未命名设计记录')}</div>
+                <div class="kb-history-detail-meta">
+                    <span class="kb-history-pill done">${escHtml(historyStatusLabel(record.status))}</span>
+                    <span class="kb-history-pill">${escHtml(formatHistoryTime(record.ts))}</span>
+                    <span class="kb-history-pill">${outputEvents.length} 条输出</span>
+                    <span class="kb-history-pill model">${modelCount} 个结构模型</span>
+                </div>
+                ${record.input ? `<div style="margin-top:12px;font-size:13px;line-height:1.7;color:var(--text-secondary);">${historyTextHtml(record.input, false)}</div>` : ''}
+            </div>
+            ${renderHistoryResults(record)}
+            ${renderHistoryModels(record)}
+            <div class="kb-history-section-title"><i data-lucide="message-square-text" style="width:14px;height:14px;"></i> 输出内容</div>
+            <div class="kb-history-output-list">${outputsHtml}</div>`;
+    }
+
+    function renderHistoryResults(record) {
+        const result = record && record.results && record.results[0];
+        if (!result) return '';
+        const stats = result.stats || {};
+        const statEntries = [
+            ['靶点', stats.target || ''],
+            ['抗体类型', stats.abType || ''],
+            ['候选数', stats.total || result.total || ''],
+            ['通过数', stats.passing || ''],
+            ['通过率', stats.passRate !== undefined ? String(stats.passRate) + '%' : '']
+        ].filter(item => item[1] !== undefined && item[1] !== null && item[1] !== '');
+        const seqs = Array.isArray(result.sequences) ? result.sequences.slice(0, 8) : [];
+        return `<div class="kb-history-section-title"><i data-lucide="flask-conical" style="width:14px;height:14px;"></i> 结果摘要</div>
+            <div class="kb-history-result-card">
+                <div class="kb-history-result-grid">
+                    ${statEntries.map(([label, value]) => `<div class="kb-history-stat"><div class="kb-history-stat-label">${escHtml(label)}</div><div class="kb-history-stat-value">${escHtml(value)}</div></div>`).join('')}
+                </div>
+                ${seqs.length ? `<div style="margin-top:12px;display:flex;flex-direction:column;gap:6px;">${seqs.map(seq => `
+                    <div style="font-size:12px;line-height:1.55;color:var(--text-secondary);background:var(--bg-page);border-radius:var(--radius-md);padding:8px 10px;">
+                        <strong style="color:var(--text-primary);">候选 ${escHtml(seq.id || '')}</strong>
+                        ${seq.pass ? '<span class="kb-history-pill done" style="margin-left:6px;">PASS</span>' : '<span class="kb-history-pill" style="margin-left:6px;">REVIEW</span>'}
+                        ${seq.pdbId ? `<span class="kb-history-pill model" style="margin-left:4px;">${escHtml(seq.pdbId)}</span>` : ''}
+                        ${seq.sequence ? `<div style="margin-top:4px;font-family:var(--mono-font-family);font-size:11px;word-break:break-all;">${escHtml(truncateHistoryText(seq.sequence, 180))}</div>` : ''}
+                    </div>`).join('')}</div>` : ''}
+            </div>`;
+    }
+
+    function renderHistoryModels(record) {
+        const sections = record && Array.isArray(record.models3d) ? record.models3d : [];
+        if (!sections.length) return '';
+        return `<div class="kb-history-section-title"><i data-lucide="box" style="width:14px;height:14px;"></i> 结构模型</div>
+            ${sections.map((section, sectionIdx) => `
+                <div class="kb-history-model-card">
+                    <div class="kb-history-model-head">
+                        <div>
+                            <div class="kb-history-model-name">${escHtml(section.label || section.primaryPDB || '3D 结构')}</div>
+                            <div class="kb-history-model-sub">${section.modelCount || 0} 个候选结构 · 主结构 ${escHtml(section.primaryPDB || '--')}</div>
+                        </div>
+                        <div class="kb-history-model-actions">
+                            <button class="kb-history-action" type="button" onclick="restoreHistory3D('${escJsString(record.id)}', ${sectionIdx})"><i data-lucide="rotate-ccw" style="width:13px;height:13px;"></i> 恢复 3D</button>
+                        </div>
+                    </div>
+                    <div class="kb-history-model-grid">
+                        ${(section.binderData || []).map((model, modelIdx) => `
+                            <div class="kb-history-stat">
+                                <div class="kb-history-stat-label">${escHtml(model.candidateLabel || model.name || model.id || ('模型 ' + (modelIdx + 1)))}</div>
+                                <div class="kb-history-stat-value" style="font-size:12px;">${escHtml(model.displayFile || model.file || model.id || '--')}</div>
+                                <div style="margin-top:5px;display:flex;gap:4px;flex-wrap:wrap;">
+                                    ${model.targetDisplay ? `<span class="kb-history-pill model">${escHtml(model.targetDisplay)}</span>` : ''}
+                                    ${model.ipTm !== null && model.ipTm !== undefined ? `<span class="kb-history-pill">ipTM ${Number(model.ipTm).toFixed(3)}</span>` : ''}
+                                    ${model.antigenChains && model.antigenChains.length ? `<span class="kb-history-pill">Ag ${escHtml(model.antigenChains.join(','))}</span>` : ''}
+                                    ${model.antibodyChains && model.antibodyChains.length ? `<span class="kb-history-pill">Ab ${escHtml(model.antibodyChains.join(','))}</span>` : ''}
+                                </div>
+                            </div>`).join('')}
+                    </div>
+                </div>`).join('')}`;
+    }
+
+    function restoreHistory3D(recordId, sectionIdx = 0) {
+        const record = loadHistoryRecords().find(item => item.id === recordId);
+        const section = record && record.models3d ? record.models3d[sectionIdx] : null;
+        if (!section) {
+            showToast('未找到结构记录', 'error');
+            return;
+        }
+        switchView('chat');
+        document.getElementById('emptyState')?.remove();
+        document.body.classList.add('chatting-mode');
+        useLocalPDB = true;
+        const first = section.binderData && section.binderData[0] ? section.binderData[0] : {};
+        chainColorMap = section.chainInfo || {
+            antigen: first.antigenChains && first.antigenChains.length ? first.antigenChains : ['A'],
+            antibody: first.antibodyChains && first.antibodyChains.length ? first.antibodyChains : ['B'],
+            colors: first.visualColors || null
+        };
+        renderViewerSection(section.primaryPDB, section.allPDBs, section.label, section.binderData);
+        showToast('已恢复历史结构展示', 'success');
     }
 
     // ═══════════════ WebSocket ═══════════════
@@ -7600,6 +8190,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         finishQuickDesignRun();
         resetRunControls();
         appendLog('[Design] ' + message);
+        finalizeHistoryRun('error');
         showToast(message, 'error');
     }
 
@@ -7650,6 +8241,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 break;
 
             case 'agent_msg':
+                recordHistoryEvent('assistant', { text: msg.text || '' });
                 stopAssistantThinking();
                 enqueueOp(() => new Promise(resolve => {
                     hideTyping(); // inside queue — runs in proper order
@@ -7674,10 +8266,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
             case 'log':
                 // Logs are immediate — they stream as batch-progress one-by-one
-                appendLog(msg.text);
+                recordHistoryEvent('log', { text: msg.text || '' });
+                appendLog(msg.text, { recordHistory: false });
                 break;
 
             case 'tasks':
+                recordHistoryEvent('tasks', { data: msg.tasks || [] });
                 // Queued — sidebar only updates after current typewriter finishes
                 enqueueOp(() => new Promise(resolve => {
                     updateTaskList(msg.tasks);
@@ -7686,6 +8280,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 break;
 
             case 'tool_call':
+                recordHistoryEvent('tool_call', { tool: msg.tool, toolId: msg.toolId, params: msg.params });
                 // Queued — must appear after preceding text finishes
                 enqueueOp(() => new Promise(resolve => {
                     hideTyping();
@@ -7695,6 +8290,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 break;
 
             case 'tool_result':
+                recordHistoryEvent('tool_result', { tool: msg.tool, result: msg.result });
                 // Queued — follows tool_call in order
                 enqueueOp(() => new Promise(resolve => {
                     hideTyping();
@@ -7706,6 +8302,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 break;
 
             case 'subagents':
+                recordHistoryEvent('subagents', { data: msg.agents || [] });
                 // Queued — stays in sync with text
                 enqueueOp(() => new Promise(resolve => {
                     updateSubagents(msg.agents);
@@ -7716,6 +8313,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             case 'results':
                 currentResults = msg.sequences;
                 currentStats = msg.stats;
+                recordHistoryResults(msg.sequences, msg.stats);
                 hideTyping();
                 enqueueOp(() => new Promise(resolve => {
                     renderResults(msg.sequences, msg.stats);
@@ -7727,6 +8325,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 markCurrentRunHas3D();
                 if (msg.isLocal) useLocalPDB = true;
                 if (msg.chainInfo) chainColorMap = msg.chainInfo;
+                recordHistory3D(msg.primaryPDB, msg.allPDBs, msg.label, msg.binderData, { isLocal: msg.isLocal, chainInfo: msg.chainInfo });
                 enqueueOp(() => new Promise(resolve => {
                     renderViewerSection(msg.primaryPDB, msg.allPDBs, msg.label, msg.binderData);
                     resolve();
@@ -7742,6 +8341,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 break;
 
             case 'plan':
+                recordHistoryEvent('plan', { data: msg.steps || [] });
                 enqueueOp(() => new Promise(resolve => {
                     hideTyping();
                     renderPlanCard(msg.steps);
@@ -7758,6 +8358,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 break;
 
             case 'workflow_result':
+                recordHistoryEvent('workflow_result', { data: { wfType: msg.wfType, result: msg.data } });
                 enqueueOp(() => new Promise(resolve => {
                     hideTyping();
                     renderWorkflowResult(msg.wfType, msg.data);
@@ -7779,6 +8380,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                     setWorkflowFastForward(false);
                     resetRunControls();
                     appendLog('[System] 服务端已确认取消');
+                    finalizeHistoryRun('cancelled');
                     resolve();
                 }));
                 break;
@@ -7790,6 +8392,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                     setWorkflowFastForward(false);
                     resetRunControls();
                     showToast(msg.text || '服务器错误，请重试', 'error');
+                    if (msg.text) recordHistoryEvent('log', { text: '[Error] ' + msg.text });
+                    finalizeHistoryRun('error');
                     resolve();
                 }));
                 break;
@@ -7800,11 +8404,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                     finishQuickDesignRun();
                     resetRunControls();
                     showToast(t('Workflow complete!'), 'success');
-                    // Save to conversation history
-                    if (currentStats) {
-                        const label = '🧬 ' + (currentStats.target||'抗体') + ' ' + (currentStats.abType||'') + ' × ' + (currentStats.passing||'');
-                        saveHistory({ label, ts: Date.now() });
-                    }
+                    finalizeHistoryRun('completed');
 
                     // Scroll to bottom, then wait for scroll to settle,
                     // then open the modal so user sees the full result state first.
@@ -8203,6 +8803,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         resetRunControls();
         showToast('工作流已取消', 'warning');
         appendLog('[System] 工作流已取消');
+        finalizeHistoryRun('cancelled');
     }
 
     function skipThinking() {
@@ -8236,6 +8837,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     function startChatRun(text) {
         document.getElementById('emptyState')?.remove();
         document.body.classList.add('chatting-mode');
+        startHistoryRun(text);
         appendUserMsg(text);
         const sidebar = document.getElementById('agentTasksSidebar');
         if (sidebar) {
@@ -8264,6 +8866,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     function sendQuickDesignWorkflow(text, routeId) {
         if (!text || isRunning) return;
         startChatRun(text);
+        if (activeHistoryRun && routeId) activeHistoryRun.routeId = routeId;
         if (ws && ws.readyState === 1) {
             quickDesignRunActive = true;
             quickDesignAwaitingResponse = true;
@@ -11401,6 +12004,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     function demoMsg(type, payload) {
         // Push into queue for agent_msg (typewriter); immediate for others
         if (type === 'agent_msg') {
+            recordHistoryEvent('assistant', { text: payload && payload.text ? payload.text : '' });
             enqueueOp(() => new Promise(resolve => {
                 const div = document.createElement('div');
                 div.className = 'chat-message';
@@ -11983,6 +12587,7 @@ ${fallbackTableRows(profile.rows)}
             const stats = { total: finalPass, passing: finalPass, passRate: '100.0', target: profile.target, abType: profile.abType };
             currentResults = seqs;
             currentStats = stats;
+            recordHistoryResults(seqs, stats);
             hideTyping();
             renderResults(seqs, stats);
             const binders = makeFallbackBinders(Math.max(finalPass, 1), profile);
@@ -11992,6 +12597,13 @@ ${fallbackTableRows(profile.rows)}
                 antibody: binders[0] && binders[0].antibodyChains ? binders[0].antibodyChains : ['B'],
                 colors: binders[0] && binders[0].visualColors ? binders[0].visualColors : null
             };
+            recordHistory3D(
+                binders[0].id,
+                binders.map(item => item.id),
+                binders.length + ' 个 ' + profile.target + ' ' + profile.abType + ' 候选结构',
+                binders,
+                { isLocal: true, chainInfo: chainColorMap }
+            );
             renderViewerSection(
                 binders[0].id,
                 binders.map(item => item.id),
@@ -12036,7 +12648,8 @@ ${fallbackTableRows(profile.rows)}
         scrollBottom();
     }
 
-    function appendLog(text) {
+    function appendLog(text, options = {}) {
+        if (options.recordHistory !== false) recordHistoryEvent('log', { text });
         const div = document.createElement('div');
         div.className = 'log-line';
         const tagMatch = text.match(/^\[([^\]]+)\]/);
