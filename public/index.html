@@ -4517,6 +4517,8 @@
         .kb-history-detail-head { background: white; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 16px 18px; margin-bottom: 14px; }
         .kb-history-detail-title { font-size: 18px; font-weight: 850; color: var(--text-primary); line-height: 1.45; margin-bottom: 8px; }
         .kb-history-detail-meta { display: flex; gap: 7px; flex-wrap: wrap; align-items: center; }
+        .kb-history-question-card { background: white; border: 1px solid var(--border); border-left: 3px solid var(--brand); border-radius: var(--radius-lg); padding: 14px 16px; margin-bottom: 12px; }
+        .kb-history-question-text { color: var(--text-primary); font-size: 14px; line-height: 1.75; white-space: normal; word-break: break-word; }
         .kb-history-section-title { font-size: 12px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin: 18px 0 8px; display: flex; align-items: center; gap: 7px; }
         .kb-history-output-list { display: flex; flex-direction: column; gap: 8px; }
         .kb-history-output { background: white; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 12px 14px; font-size: 13px; line-height: 1.7; color: var(--text-primary); }
@@ -4540,6 +4542,8 @@
         .kb-history-action { border: 1px solid var(--brand-light); background: var(--brand); color: white; border-radius: var(--radius-md); padding: 6px 10px; font-size: 12px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; }
         .kb-history-action.secondary { background: white; color: var(--brand-dark); }
         .kb-history-model-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(128px, 1fr)); gap: 8px; }
+        .kb-history-model-summary { margin: 8px 0 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+        .kb-history-model-card .kb-history-action { margin-top: 8px; }
         @media (max-width: 900px) {
             .kb-history-layout { grid-template-columns: 1fr; }
             .kb-history-list-pane { max-height: 42vh; border-right: none; border-bottom: 1px solid var(--border); }
@@ -5851,7 +5855,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146078';
+    const APP_BUILD_VERSION = '78146079';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -7615,8 +7619,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     // ═══════════════ CONVERSATION HISTORY (localStorage) ═══════════════
     const _HIST_KEY = 'zoonoab_history_v2';
     const _HIST_MAX = 50;
-    const _HIST_EVENT_MAX = 220;
     const _HIST_MODEL_MAX = 60;
+    const _HIST_TEXT_MAX = 200000;
+    const _HIST_JSON_TEXT_MAX = 80000;
     const _DOT_COLORS = ['#22C55E','rgba(0,123,255,0.75)','rgba(139,92,246,0.75)','rgba(245,158,11,0.75)','rgba(239,68,68,0.75)','rgba(20,184,166,0.75)'];
     let activeHistoryRun = null;
     let activeHistorySelectedId = null;
@@ -7628,6 +7633,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     function truncateHistoryText(value, max = 12000) {
         const text = value === undefined || value === null ? '' : String(value);
         return text.length > max ? text.slice(0, max - 1) + '…' : text;
+    }
+
+    function historyFullText(value) {
+        return truncateHistoryText(value, _HIST_TEXT_MAX);
     }
 
     function historyJsonClone(value, maxText = 3000) {
@@ -7642,6 +7651,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         } catch {
             return truncateHistoryText(String(value), maxText);
         }
+    }
+
+    function historyFullJsonClone(value) {
+        return historyJsonClone(value, _HIST_JSON_TEXT_MAX);
     }
 
     function compactHistorySequence(seq) {
@@ -7744,7 +7757,17 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const h = loadHistory().filter(item => item && item.id !== record.id);
         h.unshift(record);
         if (h.length > _HIST_MAX) h.length = _HIST_MAX;
-        try { localStorage.setItem(_HIST_KEY, JSON.stringify(h)); } catch {}
+        try {
+            localStorage.setItem(_HIST_KEY, JSON.stringify(h));
+        } catch {
+            while (h.length > 1) {
+                h.pop();
+                try {
+                    localStorage.setItem(_HIST_KEY, JSON.stringify(h));
+                    break;
+                } catch {}
+            }
+        }
         renderProjectHistory();
         if (kbCurrentProject === 'history') renderHistoryPanel(record.id);
     }
@@ -7762,7 +7785,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             id: historyId(),
             schemaVersion: 2,
             title: makeHistoryTitle(text),
-            input: truncateHistoryText(text, 2000),
+            input: historyFullText(text),
             status: 'running',
             ts: Date.now(),
             updatedAt: Date.now(),
@@ -7783,12 +7806,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const event = {
             type,
             ts: now,
-            text: payload.text !== undefined ? truncateHistoryText(payload.text, 12000) : '',
+            text: payload.text !== undefined ? historyFullText(payload.text) : '',
             tool: payload.tool || '',
             toolId: payload.toolId || '',
-            params: payload.params !== undefined ? historyJsonClone(payload.params, 2000) : undefined,
-            result: payload.result !== undefined ? historyJsonClone(payload.result, 3000) : undefined,
-            data: payload.data !== undefined ? historyJsonClone(payload.data, 2000) : undefined
+            params: payload.params !== undefined ? historyFullJsonClone(payload.params) : undefined,
+            result: payload.result !== undefined ? historyFullJsonClone(payload.result) : undefined,
+            data: payload.data !== undefined ? historyFullJsonClone(payload.data) : undefined
         };
         activeHistoryRun.events.push(event);
         if (type === 'user' || type === 'assistant') {
@@ -7797,9 +7820,6 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 text: event.text,
                 ts: now
             });
-        }
-        if (activeHistoryRun.events.length > _HIST_EVENT_MAX) {
-            activeHistoryRun.events = activeHistoryRun.events.slice(-_HIST_EVENT_MAX);
         }
         activeHistoryRun.updatedAt = now;
     }
@@ -7877,11 +7897,11 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     function historyTextHtml(text, markdown = false) {
-        const value = truncateHistoryText(text || '', 12000);
+        const value = text === undefined || text === null ? '' : String(text);
         return markdown ? renderMarkdown(value) : escHtml(value).replace(/\n/g, '<br>');
     }
 
-    function historyValuePreview(value, max = 1800) {
+    function historyValuePreview(value, max = _HIST_JSON_TEXT_MAX) {
         if (value === undefined || value === null || value === '') return '';
         if (typeof value === 'string') return truncateHistoryText(value, max);
         try { return truncateHistoryText(JSON.stringify(value, null, 2), max); } catch { return truncateHistoryText(String(value), max); }
@@ -8004,11 +8024,11 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     function renderHistoryDetail(record) {
-        const outputEvents = (record.events || []).filter(event => event && event.type);
+        const outputEvents = (record.events || []).filter(event => event && event.type !== 'user');
         const modelCount = (record.models3d || []).reduce((sum, section) => sum + (section.modelCount || 0), 0);
         const outputsHtml = outputEvents.length ? outputEvents.map(event => {
             const cls = event.type;
-            const labelMap = { user:'输入', assistant:'输出', log:'进度', tool_call:'工具调用', tool_result:'工具结果', plan:'计划', workflow_result:'流程结果' };
+            const labelMap = { assistant:'模型回复', log:'进度', tool_call:'工具调用', tool_result:'工具结果', tasks:'任务列表', subagents:'Agent 状态', plan:'计划', workflow_result:'流程结果' };
             let body = '';
             if (event.type === 'assistant') body = historyTextHtml(event.text, true);
             else if (event.type === 'tool_call') body = `<strong>${escHtml(event.tool || '工具')}</strong>${event.toolId ? ` · ${escHtml(event.toolId)}` : ''}<br>${historyTextHtml(historyValuePreview(event.params), false)}`;
@@ -8029,11 +8049,14 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                     <span class="kb-history-pill">${outputEvents.length} 条输出</span>
                     <span class="kb-history-pill model">${modelCount} 个结构模型</span>
                 </div>
-                ${record.input ? `<div style="margin-top:12px;font-size:13px;line-height:1.7;color:var(--text-secondary);">${historyTextHtml(record.input, false)}</div>` : ''}
+            </div>
+            <div class="kb-history-section-title"><i data-lucide="user-round" style="width:14px;height:14px;"></i> 用户问题</div>
+            <div class="kb-history-question-card">
+                <div class="kb-history-question-text">${record.input ? historyTextHtml(record.input, false) : '<span style="color:var(--text-muted);">未记录用户输入。</span>'}</div>
             </div>
             ${renderHistoryResults(record)}
             ${renderHistoryModels(record)}
-            <div class="kb-history-section-title"><i data-lucide="message-square-text" style="width:14px;height:14px;"></i> 输出内容</div>
+            <div class="kb-history-section-title"><i data-lucide="message-square-text" style="width:14px;height:14px;"></i> 模型 / 工作流完整输出</div>
             <div class="kb-history-output-list">${outputsHtml}</div>`;
     }
 
@@ -8075,10 +8098,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                             <div class="kb-history-model-name">${escHtml(section.label || section.primaryPDB || '3D 结构')}</div>
                             <div class="kb-history-model-sub">${section.modelCount || 0} 个候选结构 · 主结构 ${escHtml(section.primaryPDB || '--')}</div>
                         </div>
-                        <div class="kb-history-model-actions">
-                            <button class="kb-history-action" type="button" onclick="restoreHistory3D('${escJsString(record.id)}', ${sectionIdx})"><i data-lucide="rotate-ccw" style="width:13px;height:13px;"></i> 恢复 3D</button>
-                        </div>
                     </div>
+                    ${renderHistoryModelRouteSummary(section)}
                     <div class="kb-history-model-grid">
                         ${(section.binderData || []).map((model, modelIdx) => `
                             <div class="kb-history-stat">
@@ -8090,30 +8111,106 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                                     ${model.antigenChains && model.antigenChains.length ? `<span class="kb-history-pill">Ag ${escHtml(model.antigenChains.join(','))}</span>` : ''}
                                     ${model.antibodyChains && model.antibodyChains.length ? `<span class="kb-history-pill">Ab ${escHtml(model.antibodyChains.join(','))}</span>` : ''}
                                 </div>
+                                <button class="kb-history-action secondary" type="button" onclick="openHistory3D('${escJsString(record.id)}', ${sectionIdx}, ${modelIdx})"><i data-lucide="box" style="width:13px;height:13px;"></i> 查看结构</button>
                             </div>`).join('')}
                     </div>
                 </div>`).join('')}`;
     }
 
-    function restoreHistory3D(recordId, sectionIdx = 0) {
+    function renderHistoryModelRouteSummary(section) {
+        const first = section && section.binderData && section.binderData[0] ? section.binderData[0] : {};
+        const items = [
+            first.disease ? ['疾病方向', first.disease] : null,
+            first.targetDisplay ? ['靶点', first.targetDisplay] : null,
+            first.mechanism ? ['作用机制', first.mechanism] : null,
+            first.selectedEpitope ? ['表位策略', first.selectedEpitope] : null,
+            first.structuralBasis ? ['结构依据', first.structuralBasis] : null
+        ].filter(Boolean);
+        if (!items.length) return '';
+        return `<div class="kb-history-model-summary">${items.map(([label, value]) => `<span class="kb-history-pill model">${escHtml(label)} · ${escHtml(value)}</span>`).join('')}</div>`;
+    }
+
+    function getHistoryPDBUrl(model, pdbId) {
+        const meta = model || {};
+        if (meta.displayFile) {
+            const displayName = String(meta.displayFile).replace(/\.pdb$/i, '');
+            return '/api/pdb/local/' + displayName + '.pdb';
+        }
+        if (meta.file) {
+            const filename = String(meta.file).replace(/\.pdb$/i, '');
+            return '/api/pdb/local/' + filename + '.pdb';
+        }
+        return '/api/pdb/local/' + String(pdbId || '').replace(/\.pdb$/i, '') + '.pdb';
+    }
+
+    function buildHistoryMoleculeFrameUrl(section, model, modelIdx, title) {
+        const meta = model || {};
+        const pdbId = meta.id || (section && section.primaryPDB) || '';
+        const colors = getBinderVisualColors(meta);
+        const antigenChains = Array.isArray(meta.antigenChains) && meta.antigenChains.length ? meta.antigenChains : ['A'];
+        const antibodyChains = Array.isArray(meta.antibodyChains) && meta.antibodyChains.length ? meta.antibodyChains : ['B'];
+        const legend = getRoleLegend(meta);
+        const seedSource = [
+            meta.viewerPoseSeed,
+            meta.routeId,
+            meta.targetDisplay,
+            meta.candidateLabel || meta.name || pdbId,
+            Number.isFinite(modelIdx) ? modelIdx + 1 : ''
+        ].filter(value => value !== undefined && value !== null && value !== '').join('|');
+        const viewerPoseSeed = Number.isFinite(Number(meta.viewerPoseSeed))
+            ? Number(meta.viewerPoseSeed)
+            : stableViewerPoseSeed(seedSource || pdbId);
+        let url = '/viewer-full.html?pdb=' + encodeURIComponent(getHistoryPDBUrl(meta, pdbId));
+        url += '&chainA=' + encodeURIComponent(colors.antigen);
+        url += '&chainB=' + encodeURIComponent(colors.antibody);
+        url += '&antigenChains=' + encodeURIComponent(antigenChains.join(','));
+        url += '&antibodyChains=' + encodeURIComponent(antibodyChains.join(','));
+        url += '&antigenLabel=' + encodeURIComponent(legend.antigen.role + '：' + legend.antigen.label + ' · 展示链 ' + legend.antigen.chains.join(','));
+        url += '&antibodyLabel=' + encodeURIComponent(legend.antibody.role + '：' + legend.antibody.label + ' · 展示链 ' + legend.antibody.chains.join(','));
+        url += '&poseSeed=' + encodeURIComponent(String(viewerPoseSeed));
+        if (title) url += '&title=' + encodeURIComponent(title);
+        return url;
+    }
+
+    function openHistory3D(recordId, sectionIdx = 0, modelIdx = 0) {
         const record = loadHistoryRecords().find(item => item.id === recordId);
         const section = record && record.models3d ? record.models3d[sectionIdx] : null;
-        if (!section) {
+        const model = section && section.binderData ? section.binderData[modelIdx] : null;
+        if (!section || !model) {
             showToast('未找到结构记录', 'error');
             return;
         }
-        switchView('chat');
-        document.getElementById('emptyState')?.remove();
-        document.body.classList.add('chatting-mode');
-        useLocalPDB = true;
-        const first = section.binderData && section.binderData[0] ? section.binderData[0] : {};
-        chainColorMap = section.chainInfo || {
-            antigen: first.antigenChains && first.antigenChains.length ? first.antigenChains : ['A'],
-            antibody: first.antibodyChains && first.antibodyChains.length ? first.antibodyChains : ['B'],
-            colors: first.visualColors || null
-        };
-        renderViewerSection(section.primaryPDB, section.allPDBs, section.label, section.binderData);
-        showToast('已恢复历史结构展示', 'success');
+        const overlay = document.getElementById('molModalOverlay');
+        const titleEl = document.getElementById('molModalTitle');
+        const bodyEl = document.getElementById('molModalBody');
+        if (!overlay || !bodyEl) return;
+        const displayTitle = model.structureTitle
+            ? model.structureTitle + ' · ' + (model.candidateLabel || model.name || model.id || section.primaryPDB)
+            : (model.candidateLabel || model.name || model.id || section.label || '历史结构');
+        const subtitleParts = [
+            model.disease || '',
+            model.targetDisplay ? '靶点：' + model.targetDisplay : '',
+            model.mechanism || '',
+            model.selectedEpitope ? '表位策略：' + model.selectedEpitope : '',
+            model.structuralBasis ? '结构依据：' + model.structuralBasis : ''
+        ].filter(Boolean);
+        if (titleEl) {
+            titleEl.innerHTML = '<div class="mol-modal-title-main"><i data-lucide="box" style="width:18px;height:18px;color:#6B5BFF;"></i><span>' + escHtml(displayTitle) + '</span></div>' +
+                (subtitleParts.length ? '<div class="mol-modal-subtitle">' + escHtml(subtitleParts.join(' · ')) + '</div>' : '');
+        }
+        bodyEl.innerHTML = '';
+        modalIframe = document.createElement('iframe');
+        modalIframe.src = buildHistoryMoleculeFrameUrl(section, model, modelIdx, displayTitle);
+        modalIframe.style.cssText = 'width:100%;height:100%;border:none;display:block;';
+        bodyEl.appendChild(modalIframe);
+        clearTimeout(molCloseTimer);
+        molCloseTimer = null;
+        overlay.style.display = 'flex';
+        requestAnimationFrame(() => requestAnimationFrame(() => overlay.classList.add('open')));
+        molModalOpen = true;
+        modalPdbId = model.id || section.primaryPDB || null;
+        document.body.style.overflow = 'hidden';
+        refreshLucideIcons({ nodes: [titleEl] });
     }
 
     // ═══════════════ WebSocket ═══════════════

@@ -8,7 +8,21 @@ const html = fs.readFileSync(path.join(__dirname, '..', 'public', 'index.html'),
 function extractFunction(source, signature) {
   const start = source.indexOf(signature);
   assert.notEqual(start, -1, signature + ' should exist');
-  const braceStart = source.indexOf('{', start);
+  const parenStart = source.indexOf('(', start);
+  assert.notEqual(parenStart, -1, signature + ' should have parameters');
+  let parenDepth = 0;
+  let parenEnd = -1;
+  for (let i = parenStart; i < source.length; i++) {
+    const ch = source[i];
+    if (ch === '(') parenDepth++;
+    if (ch === ')') parenDepth--;
+    if (parenDepth === 0) {
+      parenEnd = i;
+      break;
+    }
+  }
+  assert.notEqual(parenEnd, -1, signature + ' parameters should close');
+  const braceStart = source.indexOf('{', parenEnd);
   assert.notEqual(braceStart, -1, signature + ' should have a body');
   let depth = 0;
   for (let i = braceStart; i < source.length; i++) {
@@ -22,6 +36,7 @@ function extractFunction(source, signature) {
 
 test('workflow history stores full visible output and shown 3D model metadata', () => {
   assert.match(html, /let\s+activeHistoryRun\s*=\s*null/);
+  assert.match(html, /function\s+historyFullText\s*\(/);
   assert.match(html, /function\s+startHistoryRun\s*\(/);
   assert.match(html, /function\s+recordHistoryEvent\s*\(/);
   assert.match(html, /function\s+recordHistoryResults\s*\(/);
@@ -44,6 +59,47 @@ test('workflow history stores full visible output and shown 3D model metadata', 
 
   const demoMsg = extractFunction(html, 'function demoMsg');
   assert.match(demoMsg, /recordHistoryEvent\('assistant'/);
+});
+
+test('workflow history keeps full transcript text instead of summary-sized snippets', () => {
+  const startHistoryRun = extractFunction(html, 'function startHistoryRun');
+  const recordHistoryEvent = extractFunction(html, 'function recordHistoryEvent');
+  const historyTextHtml = extractFunction(html, 'function historyTextHtml');
+
+  assert.match(startHistoryRun, /input:\s*historyFullText\(text\)/);
+  assert.match(recordHistoryEvent, /text:\s*payload\.text\s*!==\s*undefined\s*\?\s*historyFullText\(payload\.text\)\s*:/);
+  assert.match(recordHistoryEvent, /historyFullJsonClone\(payload\.params\)/);
+  assert.match(recordHistoryEvent, /historyFullJsonClone\(payload\.result\)/);
+  assert.match(recordHistoryEvent, /historyFullJsonClone\(payload\.data\)/);
+  assert.doesNotMatch(recordHistoryEvent, /truncateHistoryText\(payload\.text,\s*12000\)/);
+  assert.doesNotMatch(recordHistoryEvent, /historyJsonClone\(payload\.result,\s*3000\)/);
+  assert.doesNotMatch(recordHistoryEvent, /events\.slice\(-?_HIST_EVENT_MAX\)/);
+  assert.doesNotMatch(html, /_HIST_EVENT_MAX/);
+  assert.doesNotMatch(historyTextHtml, /truncateHistoryText/);
+});
+
+test('history detail presents the user question and read-only workflow transcript', () => {
+  const renderHistoryDetail = extractFunction(html, 'function renderHistoryDetail');
+
+  assert.match(renderHistoryDetail, /用户问题/);
+  assert.match(renderHistoryDetail, /模型 \/ 工作流完整输出/);
+  assert.match(renderHistoryDetail, /outputEvents\s*=\s*\(record\.events\s*\|\|\s*\[\]\)\.filter\(event\s*=>\s*event\s*&&\s*event\.type\s*!==\s*'user'\)/);
+});
+
+test('history 3D model viewing is read-only and does not restore into the live workflow', () => {
+  assert.match(html, /function\s+openHistory3D\s*\(/);
+
+  const renderHistoryModels = extractFunction(html, 'function renderHistoryModels');
+  assert.match(renderHistoryModels, /openHistory3D\('/);
+  assert.doesNotMatch(renderHistoryModels, /restoreHistory3D/);
+
+  const openHistory3D = extractFunction(html, 'function openHistory3D');
+  assert.match(openHistory3D, /buildHistoryMoleculeFrameUrl/);
+  assert.doesNotMatch(openHistory3D, /switchView\('chat'\)/);
+  assert.doesNotMatch(openHistory3D, /renderViewerSection/);
+  assert.doesNotMatch(openHistory3D, /binderDataList\s*=/);
+  assert.doesNotMatch(openHistory3D, /useLocalPDB\s*=/);
+  assert.doesNotMatch(openHistory3D, /getStream\(\)\.appendChild/);
 });
 
 test('knowledge base exposes history as a separate public-library entry with detail view', () => {
