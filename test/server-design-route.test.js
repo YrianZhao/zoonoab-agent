@@ -896,6 +896,100 @@ test('target resolver fallback handles myocarditis disease requests without star
   assert.doesNotMatch(serialized, VISIBLE_RESOLVER_LEAK_PATTERN);
 });
 
+test('tumor immunotherapy disease requests call the target resolver model before workflow launch', async () => {
+  const captured = [];
+  const mockServer = http.createServer((req, res) => {
+    let body = '';
+    req.setEncoding('utf8');
+    req.on('data', chunk => { body += chunk; });
+    req.on('end', () => {
+      const parsedBody = JSON.parse(body || '{}');
+      captured.push(parsedBody);
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify({
+        choices: [
+          {
+            message: {
+              content: JSON.stringify({
+                inputType: 'disease_indication',
+                disease: '肿瘤免疫治疗',
+                selectedTarget: 'PD-L1',
+                selectedGene: 'CD274',
+                designLabel: 'ONCOLOGY-PDL1-1',
+                confidence: 0.91,
+                reason: '肿瘤免疫治疗方向可优先围绕 PD-1/PD-L1 免疫检查点通路展开。PD-L1 具有明确胞外 IgV 结构域、抗体开发背景和本地三维结构预设，适合进入阻断型 Fab 候选设计。',
+                candidates: [
+                  { target: 'PD-L1', gene: 'CD274', rationale: '免疫检查点配体，适合展示阻断 PD-1/PD-L1 相互作用的抗体设计。' },
+                  { target: 'PD-1', gene: 'PDCD1', rationale: 'T 细胞抑制性受体，可作为检查点通路备选入口。' },
+                  { target: 'CTLA-4', gene: 'CTLA4', rationale: '经典免疫检查点靶点，可作为备选展示方向。' }
+                ]
+              })
+            }
+          }
+        ]
+      }));
+    });
+  });
+
+  await new Promise(resolve => mockServer.listen(MOCK_CHAT_PORT, '127.0.0.1', resolve));
+  try {
+    const saveResp = await fetch('http://127.0.0.1:' + PORT + '/api/voice/session', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        voice: { mode: 'local', provider: 'local' },
+        chat: {
+          baseUrl: 'http://127.0.0.1:' + MOCK_CHAT_PORT + '/v1',
+          apiKey: 'test-tumor-target-resolver-secret',
+          model: 'mock-tumor-target-resolver'
+        }
+      })
+    });
+    assert.equal(saveResp.status, 200);
+    const saved = await saveResp.json();
+
+    const messages = await collectUserMessageStream('帮我做一个肿瘤免疫治疗方向的抗体设计', {
+      timeoutMs: 12000,
+      voiceSessionId: saved.voiceSessionId,
+      stopWhen: (msg) => msg.type === 'tool_call' && msg.tool === 'target_evidence_review'
+    });
+    const serialized = JSON.stringify(messages);
+    const agentTexts = messages.filter(msg => msg.type === 'agent_msg').map(msg => msg.text || '');
+    const evidenceCall = messages.find(msg => msg.type === 'tool_call' && msg.tool === 'target_evidence_review');
+
+    assert.equal(captured.length, 2, 'tumor immunotherapy disease request should call intent routing and then target resolution');
+    assert.match(captured[0].messages[0].content, /请求路由器/);
+    assert.equal(captured[1].model, 'mock-tumor-target-resolver');
+    assert.deepEqual(captured[1].response_format, { type: 'json_object' });
+    assert.match(captured[1].messages[0].content, /肿瘤免疫治疗|PD-L1|CD274|JSON/);
+    assert.match(captured[1].messages[1].content, /肿瘤免疫治疗方向/);
+    assert.match(agentTexts[0], /肿瘤免疫治疗|PD-L1|CD274|ONCOLOGY-PDL1-1/);
+    assert.equal(evidenceCall.params.target, 'PD-L1');
+    assert.match(evidenceCall.params.evidence_package, /PD-1\/PD-L1|免疫检查点/);
+    assert.doesNotMatch(serialized, /IL-1β|IL1B|INFLAMMATION-IL1B/);
+    assert.doesNotMatch(serialized, VISIBLE_RESOLVER_LEAK_PATTERN);
+  } finally {
+    await new Promise(resolve => mockServer.close(resolve));
+  }
+});
+
+test('tumor immunotherapy target resolver fallback uses PD-L1 instead of inflammation defaults', async () => {
+  const messages = await collectUserMessageStream('帮我做一个肿瘤免疫治疗方向的抗体设计', {
+    timeoutMs: 12000,
+    stopWhen: (msg) => msg.type === 'tool_call' && msg.tool === 'target_evidence_review'
+  });
+  const serialized = JSON.stringify(messages);
+  const agentTexts = messages.filter(msg => msg.type === 'agent_msg').map(msg => msg.text || '');
+  const evidenceCall = messages.find(msg => msg.type === 'tool_call' && msg.tool === 'target_evidence_review');
+
+  assert.ok(evidenceCall, 'tumor immunotherapy request should reach target evidence review');
+  assert.equal(evidenceCall.params.target, 'PD-L1');
+  assert.match(agentTexts[0], /肿瘤免疫治疗|PD-L1|CD274|ONCOLOGY-PDL1-1/);
+  assert.match(serialized, /PD-1\/PD-L1|免疫检查点|CD274/);
+  assert.doesNotMatch(serialized, /IL-1β|IL1B|INFLAMMATION-IL1B/);
+  assert.doesNotMatch(serialized, VISIBLE_RESOLVER_LEAK_PATTERN);
+});
+
 test('server routes diabetes indication requests through target resolution', async () => {
   const query = encodeURIComponent('帮我设计10个针对糖尿病的抗体');
   const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/user-routing?text=' + query);

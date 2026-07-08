@@ -4512,7 +4512,24 @@ const REPRESENTATIVE_DEMO_DIRECTIONS = [
   { label: '神经退行性疾病方向需求', keywords: ['阿尔茨海默', '老年痴呆', 'alzheimer'] }
 ];
 
+const TUMOR_IMMUNOTHERAPY_TARGET_RESOLUTION = {
+  selectedTarget: 'PD-L1',
+  selectedGene: 'CD274',
+  designLabel: 'ONCOLOGY-PDL1-1',
+  confidence: 0.86,
+  reason: '肿瘤免疫治疗方向可优先围绕 PD-1/PD-L1 免疫检查点通路展开。PD-L1 具有明确的胞外 IgV 结构域、抗体开发背景和本地三维结构预设，适合进入阻断型 Fab 候选设计。',
+  candidates: [
+    { target: 'PD-L1', gene: 'CD274', rationale: '免疫检查点配体，适合展示阻断 PD-1/PD-L1 相互作用的抗体设计。' },
+    { target: 'PD-1', gene: 'PDCD1', rationale: 'T 细胞抑制性受体，可作为检查点通路备选入口。' },
+    { target: 'CTLA-4', gene: 'CTLA4', rationale: '经典免疫检查点靶点，可作为备选展示方向。' }
+  ]
+};
+
 const BUILTIN_DISEASE_TARGET_RESOLVERS = {
+  '肿瘤免疫治疗': TUMOR_IMMUNOTHERAPY_TARGET_RESOLUTION,
+  '肿瘤免疫': TUMOR_IMMUNOTHERAPY_TARGET_RESOLUTION,
+  '癌症免疫治疗': TUMOR_IMMUNOTHERAPY_TARGET_RESOLUTION,
+  '癌症免疫': TUMOR_IMMUNOTHERAPY_TARGET_RESOLUTION,
   '过敏性哮喘': {
     selectedTarget: 'IL-33',
     selectedGene: 'IL33',
@@ -5303,6 +5320,8 @@ function buildTargetResolverPrompt(indication, input) {
     '示例：设计10个烟草花叶病毒抗体 -> {"selectedTarget":"TMV coat protein"}',
     '示例：设计10个具有结合活性的流感NA单抗序列 -> {"selectedTarget":"Influenza neuraminidase"}',
     '示例：乳腺癌方向设计10个抗体 -> {"selectedTarget":"HER2"}',
+    '示例：帮我做一个肿瘤免疫治疗方向的抗体设计 -> {"selectedTarget":"PD-L1","selectedGene":"CD274","designLabel":"ONCOLOGY-PDL1-1"}',
+    '示例：癌症免疫治疗方向抗体设计 -> {"selectedTarget":"PD-L1","selectedGene":"CD274","designLabel":"ONCOLOGY-PDL1-1"}',
     '示例：阻断PD-1/PD-L1通路，设计10个Fab -> {"selectedTarget":"PD-L1"}',
     '用户原始需求：' + String(input || '').slice(0, 500),
     '识别到的疾病/适应症：' + indication
@@ -5358,12 +5377,22 @@ function buildResolvedTargetRoute(input, baseRoute, resolution, parsed) {
   const abType = parsed && parsed.abType ? parsed.abType : (baseRoute && baseRoute.abType) || 'Fab';
   const safeResolution = resolution || builtinTargetResolution(extractDiseaseIndication(input) || String(input || '').trim());
   const target = safeResolution && safeResolution.selectedTarget ? safeResolution.selectedTarget : 'IL-1β';
+  const targetText = String(target || '');
+  const contextText = [
+    input,
+    safeResolution && safeResolution.disease,
+    safeResolution && safeResolution.reason,
+    safeResolution && safeResolution.designLabel
+  ].filter(Boolean).join(' ');
+  const resolvedBlockTarget = targetText === 'PD-L1' && /肿瘤|癌|免疫治疗|PD-1|PD-L1|checkpoint/i.test(contextText)
+    ? 'PD-1'
+    : (baseRoute && baseRoute.blockTarget) || (parsed && parsed.blockTarget) || null;
   return {
     id: 'resolved_target_' + uuidv4().slice(0, 8),
     disease: safeResolution && safeResolution.disease || extractDiseaseIndication(input) || '疾病方向',
     systemUnderstanding: '先整理设计目标，再确定 ' + target + ' 作为本轮抗体设计靶点',
     target,
-    blockTarget: null,
+    blockTarget: resolvedBlockTarget,
     abType,
     count,
     printable: true,
