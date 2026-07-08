@@ -4414,7 +4414,7 @@
                             <div class="notif-icon" style="background:rgba(34,197,94,0.1);color:#16A34A;"><i data-lucide="check-circle" style="width:14px;height:14px;"></i></div>
                             <div class="notif-body">
                                 <div class="notif-title">亲和力成熟任务完成</div>
-                                <div class="notif-sub">IL-33 VHH 候选序列已生成，共 12 个突变体</div>
+                                <div class="notif-sub">IL-33 Fab 候选序列已生成，共 12 个突变体</div>
                                 <div class="notif-time">5 分钟前</div>
                             </div>
                         </div>
@@ -4950,11 +4950,11 @@
                     </div>
                     <div class="batch-card-body">
                         <div class="batch-target"><strong>Target:</strong> IL-33</div>
-                        <div class="batch-desc">Generate 15 anti-IL-33 candidate VHHs</div>
+                        <div class="batch-desc">Generate 15 anti-IL-33 candidate Fabs</div>
                         <div class="batch-stats">
                             <span class="batch-stat">Total: 42</span>
                             <span class="batch-stat">Passing: <strong style="color:var(--success);">15</strong></span>
-                            <span class="batch-stat">Type: VHH</span>
+                            <span class="batch-stat">Type: Fab</span>
                         </div>
                     </div>
                     <div class="batch-card-footer">
@@ -5232,7 +5232,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                     <div class="mol-chip" onclick="selectStructMol(this,'1N8Z')"><div class="mol-chip-dot" style="background:#818CF8;"></div>Trastuzumab (HER2)</div>
                     <div class="mol-chip" onclick="selectStructMol(this,'1BJ1')"><div class="mol-chip-dot" style="background:#34D399;"></div>Bevacizumab (VEGF)</div>
                     <div class="mol-chip" onclick="selectStructMol(this,'1YY9')"><div class="mol-chip-dot" style="background:#F472B6;"></div>Cetuximab (EGFR)</div>
-                    <div class="mol-chip" onclick="selectStructMol(this,'local_il33')"><div class="mol-chip-dot" style="background:#FCD34D;"></div>IL-33 VHH (本地)</div>
+                    <div class="mol-chip" onclick="selectStructMol(this,'local_il33')"><div class="mol-chip-dot" style="background:#FCD34D;"></div>IL-33 Fab (9WWH)</div>
                     <div class="mol-chip" onclick="selectStructMol(this,'custom')"><div class="mol-chip-dot" style="background:#9CA3AF;"></div>上传 PDB</div>
                 </div>
             </div>
@@ -5640,7 +5640,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146061';
+    const APP_BUILD_VERSION = '78146062';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -5655,7 +5655,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             'hero_subtitle': 'Describe your antibody design requirements. The agent will retrieve target structures, design binders through iterative rounds, and deliver lab-ready sequences with 3D visualizations.',
             'placeholder': 'e.g. Design 40 passing VHHs that bind to human IL-6 and block its interaction with IL-6R...',
             // Hints
-            'hint1': 'Generate 15 anti-IL-33 candidate VHHs',
+            'hint1': 'Generate 15 anti-IL-33 candidate Fabs',
             'hint2': 'Design 10 Fabs blocking PD-1/PD-L1',
             'hint3': 'Design 20 nanobodies targeting VEGF',
             'hint4': 'Design 50 scFvs binding HER2',
@@ -5722,7 +5722,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             'hero_subtitle': '\u63cf\u8ff0\u60a8\u7684\u6297\u4f53\u8bbe\u8ba1\u9700\u6c42\u3002Agent \u5c06\u68c0\u7d22\u9776\u70b9\u7ed3\u6784\u3001\u901a\u8fc7\u591a\u8f6e\u8fed\u4ee3\u8bbe\u8ba1 binder\uff0c\u5e76\u4ea4\u4ed8\u53ef\u76f4\u63a5\u7528\u4e8e\u5b9e\u9a8c\u5ba4\u7684\u5e8f\u5217\u53ca 3D \u53ef\u89c6\u5316\u3002',
             'placeholder': '\u793a\u4f8b\uff1a\u8bbe\u8ba1 40 \u4e2a passing \u7684 VHH\uff0c\u7ed5\u5411 human IL-6 \u5e76\u963b\u65ad\u5176\u4e0e IL-6R \u7684\u76f8\u4e92\u4f5c\u7528...',
             // Hints
-            'hint1': '\u751f\u6210 15 \u4e2a\u6297 IL-33 \u5019\u9009 VHH',
+            'hint1': '\u751f\u6210 15 \u4e2a\u6297 IL-33 \u5019\u9009 Fab',
             'hint2': '\u8bbe\u8ba1 10 \u4e2a\u963b\u65ad PD-1/PD-L1 \u7684 Fab',
             'hint3': '\u8bbe\u8ba1 20 \u4e2a\u9488\u5bf9 VEGF \u7684\u7eb3\u7c73\u6297\u4f53',
             'hint4': '\u8bbe\u8ba1 50 \u4e2a\u7ed8\u5411 HER2 \u7684 scFv',
@@ -5982,10 +5982,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
     // ─── Knowledge Base ─────────────────────────────────────
     const KB_FILES = [
-        { id:1,  name:'IL33_临床靶点分析报告_2026Q1.pdf',        type:'pdf',   size:'4.2 MB',  project:'il33',   projectName:'IL-33 项目',       author:'王 博士',      date:'2026-04-15', tags:['临床报告','靶点分析'],    isAI:false, summary:'IL-33/ST2信号通路系统综述，涵盖适应症分析、竞品格局及VHH抗体开发策略建议。' },
-        { id:2,  name:'IL33_VHH_De-novo设计方案_v3.docx',         type:'doc',   size:'1.8 MB',  project:'il33',   projectName:'IL-33 项目',       author:'许 博士',      date:'2026-05-10', tags:['设计方案','VHH'],         isAI:false, summary:'VHH抗体从头设计技术方案，含三轮迭代CDR设计策略及预期亲和力目标（KD < 1 nM）。' },
-        { id:3,  name:'anti-IL33-VHH-15seqs.fasta',               type:'fasta', size:'156 KB',  project:'il33',   projectName:'IL-33 项目',       author:'ZoonoAb AI',date:'2026-05-21', tags:['序列','VHH'],             isAI:true,  summary:'15条优选VHH候选序列，从头设计工作流输出，预测平均KD < 5 nM，多样性指数 0.82。' },
-        { id:4,  name:'IL33_VHH_complex_best.pdb',                 type:'pdb',   size:'1.2 MB',  project:'il33',   projectName:'IL-33 项目',       author:'ZoonoAb AI',date:'2026-05-20', tags:['结构','Chai-1'],          isAI:true,  summary:'Chai-1预测最优VHH-IL33复合物三维结构，CDR-H3接触面积 842 Å²，置信度 pLDDT 86.4。' },
+        { id:1,  name:'IL33_临床靶点分析报告_2026Q1.pdf',        type:'pdf',   size:'4.2 MB',  project:'il33',   projectName:'IL-33 项目',       author:'王 博士',      date:'2026-04-15', tags:['临床报告','靶点分析'],    isAI:false, summary:'IL-33/ST2信号通路系统综述，涵盖适应症分析、竞品格局及抗体开发策略建议。' },
+        { id:2,  name:'IL33_Fab_De-novo设计方案_v3.docx',         type:'doc',   size:'1.8 MB',  project:'il33',   projectName:'IL-33 项目',       author:'许 博士',      date:'2026-05-10', tags:['设计方案','Fab'],         isAI:false, summary:'Fab抗体从头设计技术方案，含三轮迭代CDR设计策略及预期亲和力目标（KD < 1 nM）。' },
+        { id:3,  name:'anti-IL33-Fab-15seqs.fasta',               type:'fasta', size:'156 KB',  project:'il33',   projectName:'IL-33 项目',       author:'ZoonoAb AI',date:'2026-05-21', tags:['序列','Fab'],             isAI:true,  summary:'15条优选Fab候选序列，从头设计工作流输出，预测平均KD < 5 nM，多样性指数 0.82。' },
+        { id:4,  name:'IL33_Fab_complex_9WWH.pdb',                 type:'pdb',   size:'1.2 MB',  project:'il33',   projectName:'IL-33 项目',       author:'ZoonoAb AI',date:'2026-05-20', tags:['结构','RCSB'],          isAI:true,  summary:'基于9WWH真实IL-33/Tozorakimab Fab复合物的候选展示结构，呈现Fab与IL-33表面的结合构象。' },
         { id:5,  name:'PD1_竞品分析_Nivolumab_Pembrolizumab.pdf', type:'pdf',   size:'8.1 MB',  project:'pd1',    projectName:'PD-1/PD-L1 项目',  author:'李 博士',  date:'2026-04-30', tags:['竞品分析','PD-1'],        isAI:false, summary:'Nivolumab与Pembrolizumab专利到期分析、序列对比及市场份额预测，含开发窗口评估。' },
         { id:6,  name:'PD-L1_表位图谱数据集.xlsx',                type:'csv',   size:'3.4 MB',  project:'pd1',    projectName:'PD-1/PD-L1 项目',  author:'陈 博士',    date:'2026-05-05', tags:['表位','实验数据'],        isAI:false, summary:'SPR和BioLayer干涉仪测定PD-L1表位结合数据，72条抗体完整KD、kon、koff记录。' },
         { id:7,  name:'Nivolumab_CDR_风险位点分析.png',            type:'img',   size:'892 KB',  project:'pd1',    projectName:'PD-1/PD-L1 项目',  author:'ZoonoAb AI',date:'2026-05-18', tags:['风险分析','CDR'],         isAI:true,  summary:'Nivolumab重链CDR脱酰胺、色氨酸氧化及聚集热点可视化，标注8个中高风险位点。' },
@@ -6220,7 +6220,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             systemUnderstanding: '过敏炎症通路',
             target: 'IL-33',
             blockTarget: 'ST2',
-            abType: 'VHH',
+            abType: 'Fab',
             count: 15,
             printable: true,
             routeLabel: 'IL-33 / ST2 炎症通路',
@@ -6404,7 +6404,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         }
     };
     const qdWorkflowTriggers = {
-        allergic_asthma: '设计 15 个靶向 IL-33 的 VHH 纳米抗体',
+        allergic_asthma: '阻断 IL-33/ST2 通路，设计 15 个高亲和力 Fab',
         allergic_tslp: '阻断 TSLP/TSLPR 上皮炎症通路，设计 10 个高亲和力 Fab',
         tumor_immunotherapy: '阻断 PD-1/PD-L1 通路，设计 10 个高亲和力 Fab',
         breast_cancer: '请为乳腺癌相关疾病设计一个候选抗体',
@@ -7702,7 +7702,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             'UniProt 批量获取': `showToast('UniProt 批量获取已启动','info')`,
             '结构域注释':       `sendQuickMsg('分析 IL-33 蛋白质结构域')`,
             'AlphaFold 结构获取': `openAnalysisPanel('struct');setTimeout(()=>switchApt('struct','structpred'),120)`,
-            'PDB 信息查询':     `sendQuickMsg('查询 PDB 4KC3 结构信息')`,
+            'PDB 信息查询':     `sendQuickMsg('查询 PDB 9WWH 结构信息')`,
             'PDB 序列解析':     `openAnalysisPanel('struct');setTimeout(()=>switchApt('struct','viewer3d'),120)`,
             'PDB 批量群组分析': `showToast('PDB 批量分析启动中...','info')`,
             'RMSD 计算':        `openAnalysisPanel('struct');setTimeout(()=>switchApt('struct','interaction'),120)`,
@@ -11246,12 +11246,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const text = String(userText || '').toLowerCase();
         const profiles = {
             allergic_asthma: {
-                routeId: 'allergic_asthma', disease: '过敏 / 呼吸道炎症', target: 'IL-33', partner: 'ST2', abType: 'VHH', count: 15,
+                routeId: 'allergic_asthma', disease: '过敏 / 呼吸道炎症', target: 'IL-33', partner: 'ST2', abType: 'Fab', count: 15,
                 routeLabel: 'IL-33 / ST2', evidence: 'IL-33/ST2 靶点证据包', domain: 'IL-1 家族细胞因子结构域',
                 referenceEntries: 'UniProt IL33 / IL1RL1(ST2) 靶点条目',
                 mechanism: '阻断 IL-33 与 ST2 受体形成炎症信号复合物',
                 interfaceFocus: 'ST2 受体结合表面', selectedEpitope: 'ST2 结合界面邻近的保守表面',
-                structureRef: 'IL-33/ST2 参考界面', antibodyBackground: 'Itepekimab · Tozorakimab · Astegolimab',
+                structureRef: '9WWH IL-33/Tozorakimab Fab 复合物', antibodyBackground: 'Itepekimab · Tozorakimab · Astegolimab',
                 rows: [['Site A','ST2 结合界面','与受体阻断目标直接相关','优先'],['Site B','beta-trefoil 侧向暴露面','适合结合检测或亲和力筛选','备选'],['Site C','柔性外周环区','构象可变性较高','谨慎']]
             },
             allergic_tslp: {
@@ -12890,7 +12890,8 @@ ${fallbackTableRows(profile.rows)}
     ];
 
     const FALLBACK_3D_PRESETS = {
-        allergic_asthma: { aliasPrefix: 'IL33-VHH', structureTitle: 'IL-33/ST2 VHH 受体界面阻断构象', structureFamily: 'IL-1 家族细胞因子 · VHH 小型结合体', visualSummary: '重点呈现 VHH 覆盖 ST2 结合面的紧凑构象。', structuralBasis: 'RCSB 4KC3 IL-33/ST2 受体复合体 + 本地 VHH 展示支架', antigenChains: ['A','D'], antibodyChains: ['B'], visualColors: { antigen: '#F59E0B', antibody: '#14B8A6' }, order: [11,0,2,5,1,4,7,3,6,8,9,10] },
+        allergic_asthma: { aliasPrefix: 'IL33-Fab', structureTitle: 'IL-33 Fab 炎症信号阻断构象', structureFamily: 'IL-1 家族细胞因子 · Fab 中和候选', visualSummary: '展示 Tozorakimab Fab 贴合 IL-33 表面形成稳定抗体-抗原复合物。', structuralBasis: 'RCSB 9WWH IL-33 / Tozorakimab Fab 二元复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#F59E0B', antibody: '#0EA5E9' }, order: [0,2,5,1,4,7,3,6,8,9,10,11] },
+        generic_vhh: { aliasPrefix: 'IL33-VHH', structureTitle: 'VHH 小型抗体展示构象', structureFamily: 'VHH 小型结合体 · 通用展示候选', visualSummary: '用于未命中常见靶点时的 VHH 结构展示。', structuralBasis: '本地 VHH 展示结构，用于分布外靶点的候选可视化', antigenChains: ['A','D'], antibodyChains: ['B'], visualColors: { antigen: '#F59E0B', antibody: '#14B8A6' }, order: [11,0,2,5,1,4,7,3,6,8,9,10] },
         allergic_tslp: { aliasPrefix: 'TSLP-Fab', structureTitle: 'TSLP/TSLPR Fab 上皮炎症界面阻断构象', structureFamily: '上皮来源细胞因子 · Fab 阻断候选', visualSummary: '展示 Fab 覆盖 TSLPR 结合面并保留外侧稳定接触。', structuralBasis: 'RCSB 5J13 TSLP / tezepelumab Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#F97316', antibody: '#0EA5E9' }, order: [1,4,7,0,3,6,9,2,5,8,10,11] },
         tumor_immunotherapy: { aliasPrefix: 'PDL1-Fab', structureTitle: 'PD-L1 Fab 免疫检查点阻断构象', structureFamily: '免疫检查点 IgV 结构域 · Fab 候选', visualSummary: '突出 Fab 对 PD-1/PD-L1 接触面的空间覆盖。', structuralBasis: 'RCSB 5X8L PD-L1 / atezolizumab Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#60A5FA', antibody: '#F472B6' }, order: [0,2,5,1,4,7,3,6,8,9,10,11] },
         breast_cancer: { aliasPrefix: 'HER2-Fab', structureTitle: 'HER2 Fab 胞外结构域结合构象', structureFamily: 'HER2 胞外结构域 · 肿瘤靶点 Fab', visualSummary: '呈现 Fab 贴合 HER2 胞外可及表面并形成稳定 CDR 接触。', structuralBasis: 'RCSB 1N8Z HER2 胞外结构域 / trastuzumab Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#EC4899', antibody: '#38BDF8' }, order: [2,5,8,1,4,7,0,3,6,9,10,11] },
@@ -12920,7 +12921,7 @@ ${fallbackTableRows(profile.rows)}
         if (/tnf/.test(target)) return FALLBACK_3D_PRESETS.autoimmune_inflammation;
         if (/rsv|合胞/.test(target)) return FALLBACK_3D_PRESETS.infectious_rsv;
         if (/sars|cov|rbd|新冠/.test(target)) return FALLBACK_3D_PRESETS.infectious_covid;
-        if (/vhh|纳米抗体/i.test(String(profile && profile.abType || ''))) return FALLBACK_3D_PRESETS.allergic_asthma;
+        if (/vhh|纳米抗体/i.test(String(profile && profile.abType || ''))) return FALLBACK_3D_PRESETS.generic_vhh;
         const values = Object.values(FALLBACK_3D_PRESETS);
         const seedText = [profile && profile.target, profile && profile.disease, profile && profile.abType].filter(Boolean).join('|') || 'generic';
         let seed = 2166136261;
@@ -14472,7 +14473,7 @@ ${fallbackTableRows(profile.rows)}
             name: '我的设计', icon: 'folder', color: '#9CA3AF', memberCount: 1,
             placeholder: '记录设计思路...',
             messages: [
-                { user: '许 博士', av: '许', color: '#22C55E', time: '今天 09:10', text: '当前活跃项目：1) IL-33 VHH 候选 top-10，2) PD-L1 亲和力成熟版本，3) HER2 双特异性草案。', att: null },
+                { user: '许 博士', av: '许', color: '#22C55E', time: '今天 09:10', text: '当前活跃项目：1) IL-33 Fab 候选 top-10，2) PD-L1 亲和力成熟版本，3) HER2 双特异性草案。', att: null },
             ]
         }
     };
@@ -14650,15 +14651,15 @@ ${fallbackTableRows(profile.rows)}
             iptm:[0.852,0.844,0.838,0.829,0.817], ptm:[0.88,0.85,0.83,0.81,0.78],
             contacts:[{ab:'G100(H)',ag:'N380',type:'氢键',dist:'2.8 Å',en:'-4.9'},{ab:'Y35(H)',ag:'D384',type:'氢键',dist:'3.0 Å',en:'-4.1'},{ab:'W52(H)',ag:'K421',type:'π-π堆叠',dist:'3.6 Å',en:'-3.8'},{ab:'S104(H)',ag:'N418',type:'氢键',dist:'2.9 Å',en:'-4.3'},{ab:'Y32(L)',ag:'Q441',type:'氢键',dist:'3.1 Å',en:'-3.0'}],
             totalDG:'-20.1', contactArea:'1,470', hbonds:15, hydrophobic:10, pipi:3, saltBridge:3 },
-        'local_il33': { name:'IL-33 VHH', target:'IL-33', type:'VHH', color:'#FCD34D', kd:'1.2 nM',
-            seqH:'EVQLVESGGGLVQAGGSLRLSCAASGRTFSSYDMGWFRQAPGKEREFVAAISWSGGSTYYADSVKGRFTISRDNAKNTVYLQMNSLKPEDTAVYYCA',
+        'local_il33': { name:'IL-33 Fab', target:'IL-33', type:'Fab', color:'#FCD34D', kd:'1.2 nM',
+            seqH:'EVQLVESGGGLVQPGGSLRLSCAASGFTFSSYAMSWVRQAPGKGLEWVSAISGSGGSTYYADSVKGRFTISRDNSKNTLYLQMNSLRAEDTAVYYCAR',
             cdrH:[[26,33],[51,58],[93,104]], hotspots:{28:'m',32:'h',54:'m',97:'h',102:'m'},
-            ddgMuts:[['D32N','CDR1',2.7,'h'],['Y97F','CDR3',2.3,'h'],['A54V','CDR2',1.6,'m'],['R102K','CDR3',1.1,'m'],['G28S','CDR1',0.7,'l']],
+            ddgMuts:[['Y97F','CDR-H3',2.6,'h'],['S32A','CDR-H1',2.1,'h'],['Y54F','CDR-H2',1.5,'m'],['R102K','CDR-H3',1.2,'m'],['G28S','CDR-H1',0.7,'l']],
             epitopeRes:[{pos:82,aa:'K',score:0.91,site:'Site-A'},{pos:86,aa:'L',score:0.88,site:'Site-A'},{pos:89,aa:'N',score:0.83,site:'Site-B'},{pos:91,aa:'L',score:0.75,site:'Site-B'},{pos:95,aa:'R',score:0.64,site:'Site-C'},{pos:12,aa:'T',score:0.42,site:'Site-D'}],
-            epitopeSites:[{name:'IL-33 核心结合域',score:'0.91',color:'#EF4444',res:'K82/L86',overlap:'ST2 界面'},{name:'β-trefoil fold',score:'0.83',color:'#F97316',res:'N89/L91',overlap:'已验证'},{name:'C端 Loop',score:'0.64',color:'#EAB308',res:'R95',overlap:'Partial'},{name:'N端',score:'0.42',color:'#6B7280',res:'T12',overlap:'Novel'}],
+            epitopeSites:[{name:'IL-33 Fab 结合面',score:'0.91',color:'#EF4444',res:'K82/L86',overlap:'9WWH核心'},{name:'β-trefoil 外侧面',score:'0.83',color:'#F97316',res:'N89/L91',overlap:'Tozorakimab'},{name:'C端 Loop',score:'0.64',color:'#EAB308',res:'R95',overlap:'Partial'},{name:'N端',score:'0.42',color:'#6B7280',res:'T12',overlap:'Novel'}],
             iptm:[0.871,0.865,0.858,0.849,0.835], ptm:[0.90,0.87,0.85,0.83,0.80],
-            contacts:[{ab:'D32(CDR1)',ag:'K82',type:'盐桥',dist:'2.9 Å',en:'-5.8'},{ab:'Y97(CDR3)',ag:'L86',type:'疏水',dist:'3.7 Å',en:'-3.4'},{ab:'A54(CDR2)',ag:'N89',type:'氢键',dist:'3.1 Å',en:'-3.9'},{ab:'R102(CDR3)',ag:'L91',type:'氢键',dist:'2.8 Å',en:'-4.6'},{ab:'G28(CDR1)',ag:'R95',type:'氢键',dist:'3.0 Å',en:'-3.2'}],
-            totalDG:'-20.9', contactArea:'820', hbonds:11, hydrophobic:6, pipi:2, saltBridge:3 },
+            contacts:[{ab:'S32(H)',ag:'K82',type:'氢键',dist:'2.9 Å',en:'-4.8'},{ab:'Y97(H)',ag:'L86',type:'疏水',dist:'3.7 Å',en:'-3.4'},{ab:'Y54(H)',ag:'N89',type:'氢键',dist:'3.1 Å',en:'-3.9'},{ab:'R102(H)',ag:'L91',type:'氢键',dist:'2.8 Å',en:'-4.6'},{ab:'Y32(L)',ag:'R95',type:'氢键',dist:'3.0 Å',en:'-3.2'}],
+            totalDG:'-21.4', contactArea:'1,430', hbonds:14, hydrophobic:9, pipi:2, saltBridge:2 },
     };
     let currentStructPdbId = '5GGQ';
 
@@ -14667,7 +14668,7 @@ ${fallbackTableRows(profile.rows)}
         el.classList.add('active');
         currentStructPdbId = pdbId;
         // Update main 3D viewer
-        if (pdbId === 'local_il33') loadMol3dLocal('IL33_VHH_complex.pdb');
+        if (pdbId === 'local_il33') loadMol3dLocal('IL33-Fab-01.pdb');
         else if (pdbId !== 'custom') loadMol3d(pdbId);
         else { showToast('请上传 PDB 文件', 'info'); return; }
         renderMol3dRiskChips(pdbId);
@@ -14863,7 +14864,7 @@ ${fallbackTableRows(profile.rows)}
         const box = document.getElementById(boxId);
         if (!box || typeof $3Dmol === 'undefined') return;
         const viewer = $3Dmol.createViewer(box, { backgroundColor: '#0D1117' });
-        const fetchUrl = pdbId === 'local_il33' ? '/api/pdb/local/IL33_VHH_complex.pdb' : '/api/pdb/' + pdbId;
+        const fetchUrl = pdbId === 'local_il33' ? '/api/pdb/local/IL33-Fab-01.pdb' : '/api/pdb/' + pdbId;
         fetch(fetchUrl).then(r => r.text()).then(txt => {
             const model = viewer.addModel(txt, 'pdb');
             const chains = [];
@@ -16318,7 +16319,7 @@ ${fallbackTableRows(profile.rows)}
 
         // Rotating placeholder hints
         const placeholders = [
-            '设计 15 个靶向 IL-33 的 VHH 纳米抗体…',
+            '设计 15 个靶向 IL-33 的 Fab 抗体…',
             '阻断 PD-1/PD-L1 通路，设计 10 个高亲和力 Fab…',
             '对 VEGF 进行表位预测，推荐最优靶向区域…',
             '分析 HER2 VHH 序列的风险位点和脱酰胺热点…',

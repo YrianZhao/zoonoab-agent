@@ -168,6 +168,28 @@ test('server preview count follows spoken Chinese candidate count for preset rou
   assert.ok(poseSeeds.every(Number.isFinite));
 });
 
+test('allergic asthma route previews real IL-33 Fab structure presets', async () => {
+  const query = encodeURIComponent('帮我为过敏性哮喘设计十个抗体分子，靶点是 IL-33');
+  const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/design-route?text=' + query);
+  assert.equal(res.status, 200);
+  const data = await res.json();
+  const preview = data.threeDPreview;
+  const firstBinder = preview && preview.binders && preview.binders[0];
+  const serialized = JSON.stringify(preview);
+
+  assert.equal(data.parsed.count, 10);
+  assert.equal(data.route.id, 'allergic_asthma');
+  assert.equal(data.route.abType, 'Fab');
+  assert.match(data.profile.scaffold, /Fab/);
+  assert.equal(preview.binders.length, 10);
+  assert.match(firstBinder.file, /^IL33-Fab-01\.pdb$/);
+  assert.equal(firstBinder.antibodyFormat, 'Fab');
+  assert.deepEqual(firstBinder.antigenChains, ['A']);
+  assert.deepEqual(firstBinder.antibodyChains, ['B', 'C']);
+  assert.match(firstBinder.structuralBasis, /9WWH|Tozorakimab Fab/);
+  assert.doesNotMatch(serialized, /IL33-VHH|本地 VHH 展示支架|4KC3/);
+});
+
 test('server keeps non-biomedical virus wording out of design workflow', async () => {
   const query = encodeURIComponent('电脑病毒设计抗体');
   const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/design-route?text=' + query);

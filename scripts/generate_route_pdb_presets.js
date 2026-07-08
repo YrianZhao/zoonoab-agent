@@ -10,21 +10,18 @@ const TEMPLATE_DIR = path.join(ROOT, 'pdb_templates');
 const ROUTES = [
   {
     id: 'allergic_asthma',
-    aliasPrefix: 'IL33-VHH',
+    aliasPrefix: 'IL33-Fab',
     target: 'IL-33',
     count: 15,
-    format: 'VHH',
-    template: '4KC3',
-    sourceLabel: 'RCSB 4KC3 IL-33/ST2 receptor complex with local VHH display scaffold',
-    antigen: [{ from: 'A', to: 'A' }, { from: 'B', to: 'D' }],
-    scaffoldTemplate: 'IL33_VHH_complex',
-    scaffold: [{ from: 'B', to: 'B' }],
-    attach: [-0.82, 0.48, 0.28],
-    distance: 27,
-    rotate: [18, -26, 32],
-    jitter: 1.1,
-    antigenChains: ['A', 'D'],
-    antibodyChains: ['B']
+    format: 'Fab',
+    template: '9WWH',
+    sourceLabel: 'RCSB 9WWH IL-33 / Tozorakimab Fab binary complex',
+    antigen: [{ from: 'C', to: 'A' }],
+    antibody: [{ from: 'H', to: 'B' }, { from: 'L', to: 'C' }],
+    preserveComplex: true,
+    jitter: 0,
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C']
   },
   {
     id: 'allergic_tslp',
@@ -419,6 +416,16 @@ function buildStaticComplex(route, idx) {
 
   out.push(...transformMappedAtoms(antigenMapped, sceneCenter, serialState));
 
+  if (route.preserveComplex) {
+    const antibodyMapped = route.antibody && route.antibody.length ? mappedAtoms(route.template, route.antibody) : [];
+    const scaffoldMapped = route.scaffoldTemplate && route.scaffold && route.scaffold.length
+      ? mappedAtoms(route.scaffoldTemplate, route.scaffold)
+      : [];
+    out.push(...transformMappedAtoms(antibodyMapped, sceneCenter, serialState));
+    out.push(...transformMappedAtoms(scaffoldMapped, sceneCenter, serialState));
+    return buildPdbText(route, idx, out);
+  }
+
   const jitter = routeJitter(route, idx);
   if (route.antibody && route.antibody.length) {
     const antibodyMapped = mappedAtoms(route.template, route.antibody);
@@ -448,9 +455,14 @@ function buildStaticComplex(route, idx) {
     }));
   }
 
+  return buildPdbText(route, idx, out);
+}
+
+function buildPdbText(route, idx, atomLines) {
   return [
     'HEADER    ZOONOAB ROUTE PRESET ' + route.aliasPrefix,
     'REMARK 900 STATIC ROUTE PRESET: ' + route.id,
+    'REMARK 900 CANDIDATE INDEX: ' + String(idx + 1).padStart(2, '0'),
     'REMARK 901 TARGET: ' + route.target,
     'REMARK 902 FORMAT: ' + route.format,
     'REMARK 903 STRUCTURAL BASIS: ' + route.sourceLabel,
@@ -458,7 +470,7 @@ function buildStaticComplex(route, idx) {
     'REMARK 905 ANTIBODY CHAINS: ' + route.antibodyChains.join(','),
     'REMARK 906 STATIC DISPLAY ONLY; NOT A CLAIM OF CLINICAL ACTIVITY',
     'MODEL        1',
-    ...out,
+    ...atomLines,
     'ENDMDL',
     'END',
     ''
@@ -468,7 +480,15 @@ function buildStaticComplex(route, idx) {
 fs.mkdirSync(OUT_DIR, { recursive: true });
 
 let written = 0;
-for (const route of ROUTES) {
+const routeFilter = String(process.env.ROUTE_FILTER || process.env.ROUTE_ID || process.argv[2] || '').trim();
+const selectedRoutes = routeFilter
+  ? ROUTES.filter(route => route.id === routeFilter || route.aliasPrefix === routeFilter)
+  : ROUTES;
+if (routeFilter && !selectedRoutes.length) {
+  throw new Error('No route matched filter ' + routeFilter);
+}
+
+for (const route of selectedRoutes) {
   for (let idx = 0; idx < route.count; idx++) {
     const filename = route.aliasPrefix + '-' + String(idx + 1).padStart(2, '0') + '.pdb';
     const out = buildStaticComplex(route, idx);

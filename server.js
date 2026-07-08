@@ -2178,10 +2178,10 @@ function buildRouteProfile(target, blockTarget, abType) {
       domain: 'IL-1 家族细胞因子结构域',
       mechanism: '阻断 IL-33 与 ST2 受体形成炎症信号复合物',
       evidence: 'IL-33/ST2 靶点证据包',
-      evidenceSources: ['已收录文献摘要', 'IL-33/ST2 复合物结构注释', '抗 IL-33 抗体开发背景', '可开发性规则库'],
+      evidenceSources: ['已收录文献摘要', 'IL-33 抗体复合物结构注释', '抗 IL-33 抗体开发背景', '可开发性规则库'],
       referenceEntries: 'UniProt IL33 / IL1RL1(ST2) 靶点条目',
-      structure: 'IL-33/ST2 受体结合界面参考结构集合，包含 4KC3 结构注释',
-      structureRef: '4KC3 参考界面',
+      structure: 'IL-33 与临床抗体 Fab 复合物参考结构集合，包含 9WWH 结构注释',
+      structureRef: '9WWH IL-33/Tozorakimab Fab 复合物',
       antibodies: ['Itepekimab', 'Tozorakimab', 'Astegolimab'],
       interfaceFocus: 'ST2 受体结合表面',
       selectedEpitope: 'ST2 结合界面邻近的保守表面',
@@ -2197,9 +2197,9 @@ function buildRouteProfile(target, blockTarget, abType) {
       ],
       riskSummaryZh: '界面风险标注显示，设计应优先覆盖 ST2 结合表面，同时避开高柔性外周环区，降低构象不确定性。',
       riskSummaryEn: 'Interface-risk annotation prioritizes the ST2-binding surface while avoiding flexible peripheral loops.',
-      structurePrepZh: '加载 IL-33/ST2 参考界面，提取受体结合表面并生成 VHH 设计约束。',
-      structurePrepEn: 'Loaded the IL-33/ST2 reference interface and prepared VHH design constraints around the receptor-binding surface.',
-      scaffold: abType === 'VHH' ? 'VHH 纳米抗体骨架' : abType + ' 抗体骨架',
+      structurePrepZh: '加载 IL-33/Tozorakimab Fab 复合物参考结构，提取受体结合邻近表面并生成 Fab 设计约束。',
+      structurePrepEn: 'Loaded the IL-33/Tozorakimab Fab reference complex and prepared Fab design constraints around the receptor-binding surface.',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '炎症因子中和设计'
     },
     'TSLP': {
@@ -2800,16 +2800,16 @@ const LOCAL_3D_PDB_FILES = [
 
 const ROUTE_3D_PRESETS = {
   allergic_asthma: {
-    aliasPrefix: 'IL33-VHH',
-    title: 'IL-33/ST2 VHH 受体界面阻断构象',
-    structureFamily: 'IL-1 家族细胞因子 · VHH 小型结合体',
-    visualSummary: '重点呈现 VHH 覆盖 ST2 结合面的紧凑构象。',
-    structuralBasis: 'RCSB 4KC3 IL-33/ST2 受体复合体 + 本地 VHH 展示支架',
-    antigenChains: ['A', 'D'],
-    antibodyChains: ['B'],
+    aliasPrefix: 'IL33-Fab',
+    title: 'IL-33 Fab 炎症信号阻断构象',
+    structureFamily: 'IL-1 家族细胞因子 · Fab 中和候选',
+    visualSummary: '展示 Tozorakimab Fab 贴合 IL-33 表面形成稳定抗体-抗原复合物。',
+    structuralBasis: 'RCSB 9WWH IL-33 / Tozorakimab Fab 二元复合体',
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C'],
     antigenColor: '#F59E0B',
-    antibodyColor: '#14B8A6',
-    order: [11, 0, 2, 5, 1, 4, 7, 3, 6, 8, 9, 10],
+    antibodyColor: '#0EA5E9',
+    order: [0, 2, 5, 1, 4, 7, 3, 6, 8, 9, 10, 11],
     ipTmBias: 0.006
   },
   allergic_tslp: {
@@ -3075,6 +3075,7 @@ function getRoute3DPreset(profile) {
 }
 
 const GENERIC_3D_MODEL_PRESETS = [
+  'IL33-Fab',
   'PDL1-Fab',
   'HER2-Fab',
   'EGFR-Fab',
@@ -3689,10 +3690,10 @@ const DEMO_ROUTE_RULES = [
     systemUnderstanding: '过敏炎症通路',
     target: 'IL-33',
     blockTarget: 'ST2',
-    abType: 'VHH',
+    abType: 'Fab',
     count: 15,
     printable: true,
-    displayStory: '阻断 IL-33/ST2 炎症信号，生成适合展示和后续 3D 打印的小型 VHH 结构模型。',
+    displayStory: '阻断 IL-33/ST2 炎症信号，生成适合展示和后续结构评估的 Fab 候选模型。',
     keywords: ['过敏', '哮喘', '呼吸道炎症', '气道炎症', '过敏性疾病', '炎症性哮喘', 'asthma', 'allergy', 'allergic']
   },
   {
@@ -4109,7 +4110,7 @@ function buildVoiceDesignPrompt(route, input) {
   const count = parseDesignCount(raw, route.count);
   const affinity = /高亲和|high.?affinity|亲和力/.test(raw) ? '高亲和力' : '高亲和力';
   if (route.id === 'tumor_immunotherapy') return '阻断 PD-1/PD-L1 通路，设计 ' + count + ' 个' + affinity + ' Fab';
-  if (route.id === 'allergic_asthma') return '阻断 IL-33/ST2 通路，设计 ' + count + ' 个' + affinity + ' VHH';
+  if (route.id === 'allergic_asthma') return '阻断 IL-33/ST2 通路，设计 ' + count + ' 个' + affinity + ' Fab';
   if (route.id === 'breast_cancer') return '靶向 HER2，设计 ' + count + ' 个' + affinity + ' Fab';
   if (route.id === 'autoimmune_inflammation') return '靶向 TNF，设计 ' + count + ' 个' + affinity + ' Fab';
   if (route.blockTarget) {
@@ -5789,10 +5790,20 @@ async function runDeNovoDesign(ws, input) {
   ]});
   await delay(600);
 
-  send({ type: 'show_3d', primaryPDB: 'IL33_VHH_complex', allPDBs: ['IL33_VHH_complex'],
+  send({ type: 'show_3d', primaryPDB: 'IL33-Fab-01', allPDBs: ['IL33-Fab-01'],
     label: target + ' 靶点结构预览', isLocal: true,
-    chainInfo: { antigen: ['A'], antibody: ['B'] },
-    binderData: [{ id: 'IL33_VHH_complex', file: 'IL33_VHH_complex.pdb', name: target + ' 靶点结构', ipTm: null }]
+    chainInfo: { antigen: ['A'], antibody: ['B', 'C'] },
+    binderData: [{
+      id: 'IL33-Fab-01',
+      file: 'IL33-Fab-01.pdb',
+      name: target + ' Fab 结构',
+      targetDisplay: target,
+      antibodyFormat: 'Fab',
+      structuralBasis: 'RCSB 9WWH IL-33 / Tozorakimab Fab 二元复合体',
+      antigenChains: ['A'],
+      antibodyChains: ['B', 'C'],
+      ipTm: null
+    }]
   });
   await delay(400);
 
