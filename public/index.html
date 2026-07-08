@@ -1987,6 +1987,35 @@
             color: var(--text-primary);
             font-weight: 700;
         }
+        .viewer-role-legend {
+            display: flex; flex-wrap: wrap; gap: 8px;
+            margin: -4px 0 14px 0;
+        }
+        .viewer-role-item {
+            display: inline-flex; align-items: center; gap: 8px;
+            max-width: 100%;
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            font-size: 11px;
+            line-height: 1.35;
+            box-shadow: var(--shadow-xs);
+        }
+        .viewer-role-swatch {
+            width: 11px; height: 11px;
+            border-radius: var(--radius-full);
+            border: 1px solid rgba(17, 24, 39, 0.18);
+            flex: 0 0 auto;
+        }
+        .viewer-role-item strong {
+            color: var(--text-primary);
+            font-weight: 800;
+        }
+        .viewer-role-chains {
+            color: var(--text-muted);
+        }
         .viewer-container {
             background: var(--bg-dark); /* Dark background for 3D viewer */
             border: 1px solid var(--border);
@@ -5705,7 +5734,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146068';
+    const APP_BUILD_VERSION = '78146069';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -13151,12 +13180,53 @@ ${fallbackTableRows(profile.rows)}
         return (typeof value === 'number' && Number.isFinite(value)) ? value : null;
     }
 
+    function safeViewerColor(value, fallback) {
+        const text = String(value || '').trim();
+        return /^#(?:[0-9A-Fa-f]{3}|[0-9A-Fa-f]{4}|[0-9A-Fa-f]{6}|[0-9A-Fa-f]{8})$/.test(text)
+            ? text
+            : fallback;
+    }
+
     function getBinderVisualColors(meta) {
         const colors = meta && meta.visualColors ? meta.visualColors : {};
         return {
-            antigen: colors.antigen || '#FB923C',
-            antibody: colors.antibody || '#2DD4BF'
+            antigen: safeViewerColor(colors.antigen, '#FB923C'),
+            antibody: safeViewerColor(colors.antibody, '#2DD4BF')
         };
+    }
+
+    function getRoleLegend(meta) {
+        meta = meta || {};
+        const colors = getBinderVisualColors(meta);
+        const antigenChains = Array.isArray(meta.antigenChains) && meta.antigenChains.length ? meta.antigenChains : ['A'];
+        const antibodyChains = Array.isArray(meta.antibodyChains) && meta.antibodyChains.length ? meta.antibodyChains : ['B'];
+        const targetLabel = meta.targetDisplay || meta.routeLabel || 'Target antigen';
+        const antibodyFormat = meta.antibodyFormat || (/VHH/i.test(String(meta.structureFamily || meta.candidateLabel || '')) ? 'VHH' : 'Fab');
+        return {
+            antigen: {
+                role: '抗原',
+                label: targetLabel,
+                color: colors.antigen,
+                chains: antigenChains
+            },
+            antibody: {
+                role: '抗体',
+                label: antibodyFormat + ' 候选',
+                color: colors.antibody,
+                chains: antibodyChains
+            }
+        };
+    }
+
+    function buildRoleLegendHtml(meta) {
+        const legend = getRoleLegend(meta);
+        const items = [legend.antigen, legend.antibody];
+        return `<div class="viewer-role-legend" aria-label="抗原和抗体颜色图例">${items.map(item => `
+            <span class="viewer-role-item">
+                <span class="viewer-role-swatch" style="background:${escHtml(item.color)}"></span>
+                <span><strong>${escHtml(item.role)}</strong> ${escHtml(item.label)}</span>
+                <span class="viewer-role-chains">Chains ${escHtml(item.chains.join(','))}</span>
+            </span>`).join('')}</div>`;
     }
 
     function getBinderMetaById(pdbId) {
@@ -13194,6 +13264,9 @@ ${fallbackTableRows(profile.rows)}
         url += '&chainB=' + encodeURIComponent(colors.antibody);
         url += '&antigenChains=' + encodeURIComponent(antigenChains.join(','));
         url += '&antibodyChains=' + encodeURIComponent(antibodyChains.join(','));
+        const legend = getRoleLegend(meta);
+        url += '&antigenLabel=' + encodeURIComponent(legend.antigen.role + '：' + legend.antigen.label + ' · Chains ' + legend.antigen.chains.join(','));
+        url += '&antibodyLabel=' + encodeURIComponent(legend.antibody.role + '：' + legend.antibody.label + ' · Chains ' + legend.antibody.chains.join(','));
         url += '&poseSeed=' + encodeURIComponent(String(viewerPoseSeed));
         if (title) url += '&title=' + encodeURIComponent(title);
         return url;
@@ -13369,6 +13442,7 @@ ${fallbackTableRows(profile.rows)}
         const routeSummaryHtml = routeSummaryItems.length
             ? `<div class="viewer-route-summary">${routeSummaryItems.map(item => `<span class="viewer-route-note"><strong>${escHtml(item[0])}</strong>${escHtml(item[1])}</span>`).join('')}</div>`
             : '';
+        const roleLegendHtml = buildRoleLegendHtml(routeMeta);
 
         const section = document.createElement('div');
         section.className = 'section-3d';
@@ -13388,6 +13462,7 @@ ${fallbackTableRows(profile.rows)}
                 </div>
             </div>
             ${routeSummaryHtml}
+            ${roleLegendHtml}
 
             <!-- Chain Sequence Strip (Click.mAb style) -->
             <div class="viewer-container" style="margin-bottom:10px;">

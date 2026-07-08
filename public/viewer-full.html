@@ -25,6 +25,10 @@ html,body{width:100%;height:100%;overflow:hidden;background:#0D1117;font-family:
 .vwrap{flex:1;position:relative;overflow:hidden}
 #vc{width:100%;height:100%;position:relative}
 canvas{width:100%!important;height:100%!important;display:block;outline:none}
+.vf-role-legend{position:absolute;left:14px;bottom:14px;z-index:4;display:flex;flex-wrap:wrap;gap:8px;max-width:calc(100% - 28px);pointer-events:none}
+.vf-role-item{display:inline-flex;align-items:center;gap:8px;max-width:100%;padding:7px 10px;border:1px solid rgba(255,255,255,0.14);border-radius:8px;background:rgba(13,17,23,0.78);color:rgba(255,255,255,0.78);font-size:12px;line-height:1.35;backdrop-filter:blur(8px)}
+.vf-role-swatch{width:11px;height:11px;border-radius:999px;border:1px solid rgba(255,255,255,0.35);flex:0 0 auto}
+.vf-role-item strong{color:#fff;font-weight:800}
 .hint{text-align:center;padding:7px 0;color:rgba(255,255,255,0.25);font-size:11px;flex-shrink:0;z-index:5;background:#0D1117;}
 .ld{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
    color:#FB923C;font-size:12px;letter-spacing:.5px;pointer-events:none;white-space:nowrap;z-index:3}
@@ -37,7 +41,7 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
     <span class="tbg">COLOR</span><div class="btns" id="cBtns"></div>
     <div class="actions" id="acts"></div>
   </div>
-  <div class="vwrap"><div id="vc"><div class="ld">Loading...</div></div></div>
+  <div class="vwrap"><div id="vc"><div class="ld">Loading...</div></div><div id="roleLegend" class="vf-role-legend"></div></div>
   <div class="hint">Drag to rotate &middot; Scroll to zoom &middot; Right-drag to pan</div>
 </div>
 
@@ -48,9 +52,30 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
     var pdbUrl = params.get('pdb') || '';
 
     // ════ Colors ════
-    var AG_COLOR = params.get('chainA') || '#FB923C';   // Antigen / Chain A
-    var AB_COLOR = params.get('chainB') || '#2DD4BF';   // Antibody / other chains
+    function safeViewerColor(value, fallback) {
+        var text = String(value || '').trim();
+        return /^#(?:[0-9A-Fa-f]{3}|[0-9A-Fa-f]{4}|[0-9A-Fa-f]{6}|[0-9A-Fa-f]{8})$/.test(text) ? text : fallback;
+    }
+    var AG_COLOR = safeViewerColor(params.get('chainA'), '#FB923C');   // Antigen / Chain A
+    var AB_COLOR = safeViewerColor(params.get('chainB'), '#2DD4BF');   // Antibody / other chains
     var SF_COLOR = '#67E8F9';   // Surface → cyan
+    var AG_LABEL = params.get('antigenLabel') || '抗原：Target antigen · Chains A';
+    var AB_LABEL = params.get('antibodyLabel') || '抗体：Fab 候选 · Chains B';
+    function escHtmlText(value) {
+        return String(value == null ? '' : value)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+    }
+    function renderRoleLegend() {
+        var el = document.getElementById('roleLegend');
+        if (!el) return;
+        el.innerHTML =
+            '<span class="vf-role-item"><span class="vf-role-swatch" style="background:' + escHtmlText(AG_COLOR) + '"></span><strong>抗原</strong><span>' + escHtmlText(AG_LABEL.replace(/^抗原[:：]\\s*/, '')) + '</span></span>' +
+            '<span class="vf-role-item"><span class="vf-role-swatch" style="background:' + escHtmlText(AB_COLOR) + '"></span><strong>抗体</strong><span>' + escHtmlText(AB_LABEL.replace(/^抗体[:：]\\s*/, '')) + '</span></span>';
+    }
     function parseChains(value, fallback) {
         var arr = String(value || '').split(',').map(function(s){ return s.trim(); }).filter(Boolean);
         return arr.length ? arr : fallback;
@@ -193,6 +218,7 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
         if (!glv) { ldEl.textContent='GL fail'; return; }
 
         document.title = decodeURIComponent(params.get('title')||'') || 'Molecule';
+        renderRoleLegend();
 
         // Style buttons
         Object.keys(STYLES).forEach(function(n){

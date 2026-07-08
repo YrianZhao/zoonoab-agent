@@ -57,3 +57,24 @@ test('stick rendering is reserved for an explicit interface detail mode', () => 
   const doSurfaceFunction = extractFunction(viewerFullHtml, 'function doSurface()');
   assert.doesNotMatch(doSurfaceFunction, /stick\s*:/);
 });
+
+test('3D viewers expose an antigen and antibody color legend', () => {
+  assert.match(indexHtml, /function\s+buildRoleLegendHtml\(/);
+  assert.match(indexHtml, /function\s+safeViewerColor\(/);
+  assert.match(indexHtml, /viewer-role-legend/);
+  assert.match(indexHtml, /viewer-role-swatch/);
+  assert.match(indexHtml, /抗原/);
+  assert.match(indexHtml, /抗体/);
+
+  const frameUrlFunction = extractFunction(indexHtml, 'function buildMoleculeFrameUrl(basePath, pdbId, title, candidateIndex)');
+  assert.match(frameUrlFunction, /antigenLabel/);
+  assert.match(frameUrlFunction, /antibodyLabel/);
+
+  assert.match(viewerFullHtml, /function\s+renderRoleLegend\(/);
+  assert.match(viewerFullHtml, /function\s+safeViewerColor\(/);
+  assert.match(viewerFullHtml, /safeViewerColor\(params\.get\('chainA'\),\s*'#FB923C'\)/);
+  assert.match(viewerFullHtml, /safeViewerColor\(params\.get\('chainB'\),\s*'#2DD4BF'\)/);
+  assert.match(viewerFullHtml, /vf-role-legend/);
+  assert.match(viewerFullHtml, /抗原/);
+  assert.match(viewerFullHtml, /抗体/);
+});
