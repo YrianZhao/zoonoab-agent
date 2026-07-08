@@ -3906,6 +3906,29 @@ const REPRESENTATIVE_DEMO_DIRECTIONS = [
 ];
 
 const BUILTIN_DISEASE_TARGET_RESOLVERS = {
+  '过敏性哮喘': {
+    selectedTarget: 'IL-33',
+    selectedGene: 'IL33',
+    designLabel: 'ASTHMA-IL33-1',
+    confidence: 0.76,
+    reason: '过敏性哮喘方向可优先围绕上皮来源炎症因子 IL-33 展开。IL-33 与 ST2 受体通路参与 2 型炎症放大，具有明确可展示的阻断机制和本地三维结构路线。',
+    candidates: [
+      { target: 'IL-33', gene: 'IL33', rationale: '上皮损伤后释放的 alarmin，IL-33/ST2 通路是过敏炎症展示中的清晰阻断轴。' },
+      { target: 'TSLP', gene: 'TSLP', rationale: '上皮炎症启动因子，适合作为哮喘相关抗体候选设计备选靶点。' },
+      { target: 'IL-5', gene: 'IL5', rationale: '嗜酸性粒细胞炎症相关细胞因子，可作为 2 型炎症方向备选。' }
+    ]
+  },
+  '哮喘': {
+    selectedTarget: 'IL-33',
+    selectedGene: 'IL33',
+    designLabel: 'ASTHMA-IL33-1',
+    confidence: 0.74,
+    reason: '哮喘相关抗体设计可优先围绕 IL-33/ST2 上皮炎症通路展开，该通路适合展示阻断型抗体候选结构。',
+    candidates: [
+      { target: 'IL-33', gene: 'IL33', rationale: 'IL-33/ST2 通路与过敏炎症放大相关，适合作为本轮设计入口。' },
+      { target: 'TSLP', gene: 'TSLP', rationale: '上皮炎症启动因子，可作为备选抗体靶点。' }
+    ]
+  },
   '肥胖': {
     selectedTarget: 'Activin E / Myostatin',
     selectedGene: 'INHBE / GDF8',

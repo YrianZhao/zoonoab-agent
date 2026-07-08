@@ -3,6 +3,7 @@ const test = require('node:test');
 
 const {
   extractDesignRequest,
+  extractDiseaseIndication,
   buildDynamicDemoRoute,
   buildGenericTargetProfile,
   shouldSuppressDesignWorkflow
@@ -93,4 +94,13 @@ test('understands spoken Chinese candidate counts for one and ten antibodies', (
   const ten = extractDesignRequest('针对 HER2 生成十个候选抗体');
   assert.equal(ten.isDesignRequest, true);
   assert.equal(ten.count, 10);
+});
+
+test('treats allergic asthma ten-candidate wording as a disease indication, not a numeric target', () => {
+  const parsed = extractDesignRequest('帮我为过敏性哮喘设计十个抗体分子');
+
+  assert.equal(parsed.isDesignRequest, true);
+  assert.equal(parsed.count, 10);
+  assert.equal(parsed.target, '过敏性哮喘');
+  assert.equal(extractDiseaseIndication('帮我为过敏性哮喘设计十个抗体分子'), '过敏性哮喘');
 });

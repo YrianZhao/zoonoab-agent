@@ -626,6 +626,20 @@ test('target resolver fallback keeps implicit pathogen requests on a related ant
   assert.doesNotMatch(serialized, VISIBLE_RESOLVER_LEAK_PATTERN);
 });
 
+test('target resolver fallback keeps allergic asthma ten-candidate workflows on a prepared target', async () => {
+  const messages = await collectUserMessageStream('帮我为过敏性哮喘设计十个抗体分子', {
+    timeoutMs: 12000,
+    stopWhen: (msg) => msg.type === 'tool_call' && msg.tool === 'target_evidence_review'
+  });
+  const serialized = JSON.stringify(messages);
+  const evidenceCall = messages.find(msg => msg.type === 'tool_call' && msg.tool === 'target_evidence_review');
+
+  assert.ok(evidenceCall, 'workflow should reach target evidence review instead of erroring');
+  assert.match(evidenceCall.params.target, /IL-33|TSLP/);
+  assert.doesNotMatch(serialized, /工作流执行出错|Cannot read properties/);
+  assert.doesNotMatch(serialized, VISIBLE_RESOLVER_LEAK_PATTERN);
+});
+
 test('server routes diabetes indication requests through target resolution', async () => {
   const query = encodeURIComponent('帮我设计10个针对糖尿病的抗体');
   const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/user-routing?text=' + query);
