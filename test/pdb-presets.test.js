@@ -5,6 +5,37 @@ const test = require('node:test');
 
 const ROOT = path.resolve(__dirname, '..');
 
+const MULTIMER_ROUTE_EXPECTATIONS = [
+  {
+    routeId: 'autoimmune_inflammation',
+    file: 'pdb/TNF-Fab-01.pdb',
+    basis: /RCSB 5WUX TNF alpha trimer \/ certolizumab Fab complex/,
+    basisText: 'RCSB 5WUX TNF alpha trimer / certolizumab Fab complex',
+    antigenChains: ['A', 'D', 'E'],
+    antibodyChains: ['B', 'C']
+  },
+  {
+    routeId: 'autoimmune_il17',
+    file: 'pdb/IL17A-Fab-01.pdb',
+    basis: /RCSB 2VXS IL-17A dimer \/ neutralizing Fab complex/,
+    basisText: 'RCSB 2VXS IL-17A dimer / neutralizing Fab complex',
+    antigenChains: ['A', 'D'],
+    antibodyChains: ['B', 'C', 'F', 'G']
+  },
+  {
+    routeId: 'infectious_flu',
+    file: 'pdb/FluHA-Fab-01.pdb',
+    basis: /RCSB 3GBM influenza HA trimer biological assembly \/ CR6261 Fab complex/,
+    basisText: 'RCSB 3GBM influenza HA trimer biological assembly / CR6261 Fab complex',
+    antigenChains: ['A', 'D', 'E', 'F', 'G', 'H'],
+    antibodyChains: ['B', 'C']
+  }
+];
+
+function escapeRegExp(value) {
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
 function parsePdbAtoms(filename) {
   const file = path.join(ROOT, filename);
   assert.ok(fs.existsSync(file), filename + ' should exist');
@@ -129,6 +160,63 @@ test('GIPR metabolic preset uses a real GIPR ECD Fab complex interface', () => {
   assert.match(text, /RCSB 4HJ0 human GIPR ECD \/ GIPG013 Fab complex/);
   assert.ok(contacts.contactPairs >= 80, 'GIPR-Fab-01 should expose a visible antigen-Fab interface');
   assert.ok(contacts.minDistance >= 1.2 && contacts.minDistance <= 3.5, 'GIPR-Fab-01 should have a plausible closest antigen-Fab contact');
+});
+
+test('multimeric antigen presets preserve their public biological shapes', () => {
+  for (const item of MULTIMER_ROUTE_EXPECTATIONS) {
+    const text = readPdbText(item.file);
+    const atoms = parsePdbAtoms(item.file);
+    const antigenChains = remarkChains(text, 904);
+    const antibodyChains = remarkChains(text, 905);
+    const counts = chainAtomCounts(atoms);
+    const contacts = crossRoleContactSummary(atoms, antigenChains, antibodyChains);
+
+    assert.match(text, item.basis);
+    assert.deepEqual(antigenChains, item.antigenChains, item.file + ' should expose all antigen chains required for the target shape');
+    for (const chain of item.antigenChains) {
+      assert.ok((counts.get(chain) || 0) > 500, item.file + ' antigen chain ' + chain + ' should contain a visible protein chain');
+    }
+    assert.ok(contacts.contactPairs >= 50, item.file + ' should keep a visible antigen-Fab interface');
+  }
+});
+
+test('multimeric antigen metadata stays aligned across backend and frontend fallbacks', () => {
+  const serverSource = fs.readFileSync(path.join(ROOT, 'server.js'), 'utf8');
+  const frontendSource = fs.readFileSync(path.join(ROOT, 'public/index.html'), 'utf8');
+
+  for (const item of MULTIMER_ROUTE_EXPECTATIONS) {
+    const backendAntigens = item.antigenChains.map(chain => "'" + chain + "'").join(', ');
+    const backendAntibodies = item.antibodyChains.map(chain => "'" + chain + "'").join(', ');
+    const frontendAntigens = item.antigenChains.map(chain => "'" + chain + "'").join(',');
+    const frontendAntibodies = item.antibodyChains.map(chain => "'" + chain + "'").join(',');
+    const basisPattern = escapeRegExp(item.basisText);
+
+    assert.match(
+      serverSource,
+      new RegExp(`${item.routeId}: \\{[\\s\\S]*structuralBasis: '${basisPattern}'`)
+    );
+    assert.match(
+      serverSource,
+      new RegExp(item.routeId + ': \\{[\\s\\S]*antigenChains: \\[' + escapeRegExp(backendAntigens) + '\\]')
+    );
+    assert.match(
+      serverSource,
+      new RegExp(item.routeId + ': \\{[\\s\\S]*antibodyChains: \\[' + escapeRegExp(backendAntibodies) + '\\]')
+    );
+
+    assert.match(
+      frontendSource,
+      new RegExp(`${item.routeId}: \\{[\\s\\S]*structuralBasis: '${basisPattern}'`)
+    );
+    assert.match(
+      frontendSource,
+      new RegExp(item.routeId + ': \\{[\\s\\S]*antigenChains: \\[' + escapeRegExp(frontendAntigens) + '\\]')
+    );
+    assert.match(
+      frontendSource,
+      new RegExp(item.routeId + ': \\{[\\s\\S]*antibodyChains: \\[' + escapeRegExp(frontendAntibodies) + '\\]')
+    );
+  }
 });
 
 test('static route preset PDBs avoid cross-chain hard clashes', () => {

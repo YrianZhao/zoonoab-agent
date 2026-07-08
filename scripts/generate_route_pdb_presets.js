@@ -98,12 +98,12 @@ const ROUTES = [
     target: 'TNF',
     count: 10,
     format: 'Fab',
-    template: '3WD5',
-    sourceLabel: 'RCSB 3WD5 TNF alpha / adalimumab Fab complex',
-    antigen: [{ from: 'A', to: 'A' }],
+    template: '5WUX',
+    sourceLabel: 'RCSB 5WUX TNF alpha trimer / certolizumab Fab complex',
+    antigen: [{ from: 'E', to: 'A' }, { from: 'F', to: 'D' }, { from: 'G', to: 'E' }],
     antibody: [{ from: 'H', to: 'B' }, { from: 'L', to: 'C' }],
-    jitter: 0.85,
-    antigenChains: ['A'],
+    jitter: 0.55,
+    antigenChains: ['A', 'D', 'E'],
     antibodyChains: ['B', 'C']
   },
   {
@@ -112,13 +112,13 @@ const ROUTES = [
     target: 'IL-17A',
     count: 10,
     format: 'Fab',
-    template: '9SG2',
-    sourceLabel: 'RCSB 9SG2 IL-17A / ixekizumab Fab complex',
-    antigen: [{ from: 'A', to: 'A' }],
-    antibody: [{ from: 'H', to: 'B' }, { from: 'L', to: 'C' }],
-    jitter: 0.8,
-    antigenChains: ['A'],
-    antibodyChains: ['B', 'C']
+    template: '2VXS',
+    sourceLabel: 'RCSB 2VXS IL-17A dimer / neutralizing Fab complex',
+    antigen: [{ from: 'C', to: 'A' }, { from: 'D', to: 'D' }],
+    antibody: [{ from: 'J', to: 'B' }, { from: 'N', to: 'C' }, { from: 'K', to: 'F' }, { from: 'O', to: 'G' }],
+    jitter: 0.5,
+    antigenChains: ['A', 'D'],
+    antibodyChains: ['B', 'C', 'F', 'G']
   },
   {
     id: 'autoimmune_il23',
@@ -169,11 +169,15 @@ const ROUTES = [
     count: 10,
     format: 'Fab',
     template: '3GBM',
-    sourceLabel: 'RCSB 3GBM influenza HA / broadly neutralizing Fab CR6261 complex',
-    antigen: [{ from: 'A', to: 'A' }, { from: 'B', to: 'D' }],
+    sourceLabel: 'RCSB 3GBM influenza HA trimer biological assembly / CR6261 Fab complex',
+    antigen: [
+      { from: 'A', to: 'A', biomt: 0 }, { from: 'B', to: 'D', biomt: 0 },
+      { from: 'A', to: 'E', biomt: 1 }, { from: 'B', to: 'F', biomt: 1 },
+      { from: 'A', to: 'G', biomt: 2 }, { from: 'B', to: 'H', biomt: 2 }
+    ],
     antibody: [{ from: 'H', to: 'B' }, { from: 'L', to: 'C' }],
     jitter: 0.65,
-    antigenChains: ['A', 'D'],
+    antigenChains: ['A', 'D', 'E', 'F', 'G', 'H'],
     antibodyChains: ['B', 'C']
   },
   {
@@ -307,6 +311,15 @@ function rotateEuler(v, ax, ay, az) {
   return out;
 }
 
+function applyMatrixTransform(xyz, matrix) {
+  if (!Array.isArray(matrix) || matrix.length !== 3) return xyz;
+  return [
+    (Number(matrix[0][0]) || 0) * xyz[0] + (Number(matrix[0][1]) || 0) * xyz[1] + (Number(matrix[0][2]) || 0) * xyz[2] + (Number(matrix[0][3]) || 0),
+    (Number(matrix[1][0]) || 0) * xyz[0] + (Number(matrix[1][1]) || 0) * xyz[1] + (Number(matrix[1][2]) || 0) * xyz[2] + (Number(matrix[1][3]) || 0),
+    (Number(matrix[2][0]) || 0) * xyz[0] + (Number(matrix[2][1]) || 0) * xyz[1] + (Number(matrix[2][2]) || 0) * xyz[2] + (Number(matrix[2][3]) || 0)
+  ];
+}
+
 function centerOf(atoms) {
   if (!atoms.length) return [0, 0, 0];
   const sum = atoms.reduce((acc, atom) => add(acc, atom.xyz), [0, 0, 0]);
@@ -323,6 +336,7 @@ function templatePath(templateId) {
 }
 
 const atomCache = new Map();
+const biomtCache = new Map();
 function parseAtoms(templateId) {
   const file = templatePath(templateId);
   if (atomCache.has(file)) return atomCache.get(file);
@@ -341,6 +355,34 @@ function parseAtoms(templateId) {
     .filter(atom => atom.xyz.every(Number.isFinite));
   atomCache.set(file, atoms);
   return atoms;
+}
+
+function parseBiomtTransforms(templateId) {
+  const file = templatePath(templateId);
+  if (biomtCache.has(file)) return biomtCache.get(file);
+  const transforms = [];
+  const lines = fs.readFileSync(file, 'utf8').split(/\r?\n/);
+  for (const line of lines) {
+    const match = line.match(/^REMARK 350\s+BIOMT([123])\s+(\d+)\s+(-?\d+\.\d+)\s+(-?\d+\.\d+)\s+(-?\d+\.\d+)\s+(-?\d+\.\d+)/);
+    if (!match) continue;
+    const row = Number(match[1]) - 1;
+    const idx = Number(match[2]) - 1;
+    if (!transforms[idx]) transforms[idx] = [];
+    transforms[idx][row] = [
+      Number(match[3]),
+      Number(match[4]),
+      Number(match[5]),
+      Number(match[6])
+    ];
+  }
+  const complete = transforms.filter(matrix => matrix && matrix.length === 3);
+  biomtCache.set(file, complete);
+  return complete;
+}
+
+function mappedAtomXyz(item, templateId) {
+  const transform = item.transform || (Number.isInteger(item.biomt) ? parseBiomtTransforms(templateId)[item.biomt] : null);
+  return applyMatrixTransform(item.atom.xyz, transform);
 }
 
 function formatCoord(value) {
@@ -369,7 +411,7 @@ function mappedAtoms(templateId, mappings) {
     if (!chainAtoms.length) {
       throw new Error('Template ' + templateId + ' missing chain ' + map.from);
     }
-    chainAtoms.forEach(atom => out.push({ atom, to: map.to }));
+    chainAtoms.forEach(atom => out.push({ atom, to: map.to, transform: map.transform, biomt: map.biomt }));
   }
   return out;
 }
@@ -391,8 +433,9 @@ function routeJitter(route, idx) {
 function transformMappedAtoms(mapped, sceneCenter, serialState, options) {
   const lines = [];
   for (const item of mapped) {
-    let xyz = sub(item.atom.xyz, sceneCenter);
-    if (options && options.center) xyz = sub(item.atom.xyz, options.center);
+    const sourceXyz = options && options.templateId ? mappedAtomXyz(item, options.templateId) : item.atom.xyz;
+    let xyz = sub(sourceXyz, sceneCenter);
+    if (options && options.center) xyz = sub(sourceXyz, options.center);
     if (options && options.rotate) xyz = rotateEuler(xyz, options.rotate[0], options.rotate[1], options.rotate[2]);
     if (options && options.axis) xyz = rotateAxis(xyz, options.axis, options.angle || 0);
     if (options && options.shift) xyz = add(xyz, options.shift);
@@ -404,12 +447,12 @@ function transformMappedAtoms(mapped, sceneCenter, serialState, options) {
 
 function buildStaticComplex(route, idx) {
   const antigenMapped = mappedAtoms(route.template, route.antigen);
-  const antigenAtoms = antigenMapped.map(item => item.atom);
+  const antigenAtoms = antigenMapped.map(item => ({ xyz: mappedAtomXyz(item, route.template) }));
   const sceneCenter = centerOf(antigenAtoms);
   const serialState = { value: 1 };
   const out = [];
 
-  out.push(...transformMappedAtoms(antigenMapped, sceneCenter, serialState));
+  out.push(...transformMappedAtoms(antigenMapped, sceneCenter, serialState, { templateId: route.template }));
 
   if (route.preserveComplex) {
     const antibodyMapped = route.antibody && route.antibody.length ? mappedAtoms(route.template, route.antibody) : [];
