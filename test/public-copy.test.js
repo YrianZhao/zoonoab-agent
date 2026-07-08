@@ -18,3 +18,11 @@ test('gives the team collaboration view a full workspace width', () => {
   assert.match(html, /body\.team-open\s+\.main-container/);
   assert.match(html, /document\.body\.classList\.toggle\('team-open',\s*view === 'team'\)/);
 });
+
+test('does not show AI assistant quick actions in the team collaboration view', () => {
+  const html = fs.readFileSync(publicIndexPath, 'utf8');
+
+  assert.doesNotMatch(html, /AI 助手快捷入口/);
+  assert.doesNotMatch(html, /class="team-quick-actions"/);
+  assert.doesNotMatch(html, /class="team-quick-btn"/);
+});

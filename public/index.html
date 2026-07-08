@@ -4028,19 +4028,6 @@
         .team-main { flex: 1; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; display: flex; flex-direction: column; }
         .team-main-header { padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
         .team-main-title { font-size: 15px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
-        .team-quick-actions {
-            display: grid; grid-template-columns: repeat(3,1fr); gap: 10px;
-            padding: 20px;
-        }
-        .team-quick-btn {
-            padding: 14px 12px; border: 1px solid var(--border);
-            background: var(--bg-light); border-radius: var(--radius-md);
-            display: flex; flex-direction: column; align-items: center; gap: 8px;
-            cursor: pointer; transition: var(--transition); font-size: 12px;
-            color: var(--text-secondary); font-weight: 600; text-align: center;
-        }
-        .team-quick-btn:hover { border-color: var(--brand-light); background: var(--brand-lighter); color: var(--brand-dark); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
-        .team-quick-btn-icon { width: 36px; height: 36px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; background: var(--brand-lighter); color: var(--brand); }
         .team-chat-area { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 16px; }
         .team-msg { display: flex; gap: 10px; align-items: flex-start; }
         .team-msg-avatar { width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: white; }
@@ -4078,10 +4065,6 @@
                 align-items: flex-start;
                 gap: 12px;
                 flex-direction: column;
-            }
-            .team-quick-actions {
-                grid-template-columns: repeat(2, 1fr);
-                padding: 14px;
             }
         }
 
@@ -4671,36 +4654,6 @@
                         <div style="display:flex;gap:8px;">
                             <button class="header-btn" onclick="showToast('搜索功能即将上线', 'info')"><i data-lucide="search" style="width:13px;height:13px;"></i> 搜索</button>
                             <button class="header-btn" onclick="showToast('成员管理即将上线', 'info')"><i data-lucide="user-plus" style="width:13px;height:13px;"></i> 邀请</button>
-                        </div>
-                    </div>
-                    <!-- Quick AI actions -->
-                    <div style="padding:16px 20px;border-bottom:1px solid var(--border-light);background:var(--bg-light);">
-                        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;color:var(--text-muted);margin-bottom:10px;">AI 助手快捷入口</div>
-                        <div class="team-quick-actions">
-                            <button class="team-quick-btn" onclick="switchView('chat'); setTimeout(()=>sendQuickMsg('表位预测 IL-33'),100)">
-                                <div class="team-quick-btn-icon"><i data-lucide="target" style="width:18px;height:18px;"></i></div>
-                                预测表位
-                            </button>
-                            <button class="team-quick-btn" onclick="switchView('chat'); setTimeout(()=>openRightPanel('risk'),100)">
-                                <div class="team-quick-btn-icon"><i data-lucide="shield-alert" style="width:18px;height:18px;"></i></div>
-                                分析风险
-                            </button>
-                            <button class="team-quick-btn" onclick="switchView('chat'); setTimeout(()=>openRightPanel('cdr'),100)">
-                                <div class="team-quick-btn-icon"><i data-lucide="dna" style="width:18px;height:18px;"></i></div>
-                                探索结构
-                            </button>
-                            <button class="team-quick-btn" onclick="switchView('chat'); setTimeout(()=>sendQuickMsg('从头设计 IL-6 VHH 30个'),100)">
-                                <div class="team-quick-btn-icon"><i data-lucide="wand-2" style="width:18px;height:18px;"></i></div>
-                                从头设计
-                            </button>
-                            <button class="team-quick-btn" onclick="switchView('chat'); setTimeout(()=>sendQuickMsg('VHH 人源化'),100)">
-                                <div class="team-quick-btn-icon"><i data-lucide="users" style="width:18px;height:18px;"></i></div>
-                                VHH 人源化
-                            </button>
-                            <button class="team-quick-btn" onclick="switchView('kb')">
-                                <div class="team-quick-btn-icon"><i data-lucide="library" style="width:18px;height:18px;"></i></div>
-                                查看知识库
-                            </button>
                         </div>
                     </div>
                     <!-- Chat messages -->
@@ -5745,7 +5698,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146067';
+    const APP_BUILD_VERSION = '78146069';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
