@@ -123,6 +123,14 @@ const localAsrRecentLogs = [];
 
 const WORKFLOW_SKIP_SETTLE_MS = Number(process.env.WORKFLOW_SKIP_SETTLE_MS || 1100);
 const WORKFLOW_FAST_DELAY_MS = Number(process.env.WORKFLOW_FAST_DELAY_MS || 300);
+const WORKFLOW_DELAY_SCALE = Math.max(0.2, Math.min(1, Number(process.env.WORKFLOW_DELAY_SCALE || 0.55) || 0.55));
+const WORKFLOW_MIN_DELAY_MS = Math.max(80, Number(process.env.WORKFLOW_MIN_DELAY_MS || 160) || 160);
+
+function scaledWorkflowDelayMs(ms) {
+  const requestedMs = Number(ms) || 0;
+  if (requestedMs <= 0) return 0;
+  return Math.max(WORKFLOW_MIN_DELAY_MS, Math.round(requestedMs * WORKFLOW_DELAY_SCALE));
+}
 
 function readAppBuildVersion() {
   try {
@@ -5157,8 +5165,9 @@ function markWorkflowStage(sess, stage) {
   sess.workflowStage = stage || '';
 }
 
-function workflowDelay(ws, sess, ms, options = {}) {
-  const normalMs = Number(ms) || 0;
+function workflowDelay(ws, sess, ms, options) {
+  options = options || {};
+  const normalMs = scaledWorkflowDelayMs(ms);
   const settleMs = Number(options.settleMs || WORKFLOW_SKIP_SETTLE_MS);
   const fastMs = Number(options.fastMs || WORKFLOW_FAST_DELAY_MS);
   return new Promise((resolve, reject) => {
@@ -5193,7 +5202,7 @@ function workflowDelay(ws, sess, ms, options = {}) {
         }));
       }
       clearTimeout(timer);
-      timer = setTimeout(finish, sess.fastForwardWorkflow ? Math.min(fastMs, normalMs) : settleMs);
+      timer = setTimeout(finish, sess.fastForwardWorkflow ? Math.min(fastMs, normalMs) : Math.min(settleMs, normalMs));
     };
     let timer = setTimeout(finish, sess && sess.fastForwardWorkflow ? Math.min(fastMs, normalMs) : normalMs);
     const poll = setInterval(() => {

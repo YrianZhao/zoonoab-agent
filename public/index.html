@@ -5738,7 +5738,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146071';
+    const APP_BUILD_VERSION = '78146072';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -5976,8 +5976,13 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         }
     }
 
+    const TYPEWRITER_TICK_MS = 12;
+    const TYPEWRITER_TARGET_MIN_MS = 360;
+    const TYPEWRITER_TARGET_MAX_MS = 2200;
+    const TYPEWRITER_MS_PER_CHAR = 2;
+
     // Typewriter effect for agent messages
-    function typewriterEffect(markdown, contentEl) {
+    function typewriterEffect(markdown, contentEl, autoScroll = captureAutoScrollState()) {
         return new Promise(resolve => {
             contentEl.style.display = 'block';
             contentEl.style.width = '100%';
@@ -5986,11 +5991,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             const rawText = markdown;
             const totalLen = rawText.length;
 
-            // Fast like real AI: target 2-4s for typical messages
-            // Use 20ms tick, chars per tick scales with length
-            const tickMs = 18;
-            const targetMs = Math.min(3800, Math.max(800, totalLen * 4));
-            const charsPerTick = Math.max(2, Math.ceil(totalLen / (targetMs / tickMs)));
+            const targetMs = Math.min(TYPEWRITER_TARGET_MAX_MS, Math.max(TYPEWRITER_TARGET_MIN_MS, totalLen * TYPEWRITER_MS_PER_CHAR));
+            const charsPerTick = Math.max(3, Math.ceil(totalLen / (targetMs / TYPEWRITER_TICK_MS)));
             let pos = 0;
 
             function tick() {
@@ -6000,12 +6002,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                     const step = accelerated ? acceleratedStep : charsPerTick;
                     pos = Math.min(pos + step, totalLen);
                     contentEl.innerHTML = renderMarkdown(rawText.slice(0, pos)) + '<span class="typing-cursor"></span>';
-                    scrollBottom();
-                    setTimeout(tick, accelerated ? 12 : tickMs);
+                    scrollBottom(autoScroll);
+                    setTimeout(tick, accelerated ? 10 : TYPEWRITER_TICK_MS);
                 } else {
                     contentEl.innerHTML = renderMarkdown(markdown);
                     contentEl.style.minHeight = '';
-                    scrollBottom();
+                    scrollBottom(autoScroll);
                     resolve();
                 }
             }
@@ -7651,6 +7653,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 stopAssistantThinking();
                 enqueueOp(() => new Promise(resolve => {
                     hideTyping(); // inside queue — runs in proper order
+                    const autoScroll = captureAutoScrollState();
                     const div = document.createElement('div');
                     div.className = 'chat-message';
                     div.style.cssText = 'width:100%;display:block;min-width:0;';
@@ -7663,9 +7666,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                         <div class="message-content" style="display:block;width:100%;min-height:1.65em;"></div>`;
                     getStream().appendChild(div);
                     refreshLucideIcons({ nodes: [div] });
-                    scrollBottom();
+                    scrollBottom(autoScroll);
                     const contentEl = div.querySelector('.message-content');
-                    typewriterEffect(msg.text, contentEl).then(resolve);
+                    typewriterEffect(msg.text, contentEl, autoScroll).then(resolve);
                 }));
                 break;
 
@@ -7806,15 +7809,20 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                     // Scroll to bottom, then wait for scroll to settle,
                     // then open the modal so user sees the full result state first.
                     function scrollToBottomThen(cb) {
+                        const autoScroll = captureAutoScrollState();
+                        if (!autoScroll.wasAtBottom) {
+                            cb();
+                            return;
+                        }
                         let called = false;
                         function once(delay) {
                             if (called) return;
                             called = true;
-                            window.scrollTo({ top: document.body.scrollHeight, behavior: 'instant' });
+                            scrollBottom({ ...autoScroll, behavior: 'instant' });
                             setTimeout(cb, delay);
                         }
 
-                        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+                        scrollBottom({ ...autoScroll, behavior: 'smooth' });
 
                         let lastY = -1;
                         let stableCount = 0;
@@ -14329,9 +14337,56 @@ ${fallbackTableRows(profile.rows)}
         return new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
     }
 
-    function scrollBottom() {
-        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    const AUTO_SCROLL_BOTTOM_THRESHOLD = 120;
+    let autoScrollPinnedToBottom = true;
+
+    function getDocumentScrollHeight() {
+        const doc = document.documentElement;
+        return Math.max(
+            document.body ? document.body.scrollHeight : 0,
+            doc ? doc.scrollHeight : 0
+        );
     }
+
+    function isPageNearBottom() {
+        const doc = document.documentElement;
+        const scrollTop = window.scrollY || (doc && doc.scrollTop) || (document.body && document.body.scrollTop) || 0;
+        const viewportHeight = window.innerHeight || (doc && doc.clientHeight) || 0;
+        const scrollHeight = getDocumentScrollHeight();
+        return scrollHeight - (scrollTop + viewportHeight) <= AUTO_SCROLL_BOTTOM_THRESHOLD;
+    }
+
+    function captureAutoScrollState() {
+        autoScrollPinnedToBottom = isPageNearBottom();
+        return { wasAtBottom: autoScrollPinnedToBottom };
+    }
+
+    function scrollBottom(options) {
+        options = options || {};
+        const force = Boolean(options.force);
+        const currentlyAtBottom = isPageNearBottom();
+        const hasCapturedState = Object.prototype.hasOwnProperty.call(options, 'wasAtBottom');
+        const shouldFollow = force || (
+            hasCapturedState
+                ? options.wasAtBottom === true && autoScrollPinnedToBottom
+                : (autoScrollPinnedToBottom || currentlyAtBottom)
+        );
+        if (!shouldFollow) {
+            autoScrollPinnedToBottom = false;
+            return false;
+        }
+        autoScrollPinnedToBottom = true;
+        window.scrollTo({ top: getDocumentScrollHeight(), behavior: options.behavior || 'smooth' });
+        return true;
+    }
+
+    window.addEventListener('scroll', () => {
+        autoScrollPinnedToBottom = isPageNearBottom();
+    }, { passive: true });
+
+    window.addEventListener('resize', () => {
+        autoScrollPinnedToBottom = isPageNearBottom();
+    });
 
     let assistantThinkingTimer = null;
     let assistantThinkingTypingTimer = null;

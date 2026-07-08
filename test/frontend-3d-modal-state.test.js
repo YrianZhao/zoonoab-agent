@@ -72,6 +72,47 @@ test('assistant thinking indicator starts on model wait and stops before final o
   assert.match(errorCase, /stopAssistantThinking\(\)/);
 });
 
+test('workflow auto-scroll only follows while the page is pinned near the bottom', () => {
+  const scrollBottom = extractFunction(html, 'function scrollBottom');
+
+  assert.match(html, /const\s+AUTO_SCROLL_BOTTOM_THRESHOLD\s*=/);
+  assert.match(html, /let\s+autoScrollPinnedToBottom\s*=/);
+  assert.match(html, /function\s+isPageNearBottom\s*\(/);
+  assert.match(html, /function\s+captureAutoScrollState\s*\(/);
+  assert.match(scrollBottom, /autoScrollPinnedToBottom/);
+  assert.match(scrollBottom, /isPageNearBottom\(\)/);
+  assert.match(scrollBottom, /return\s+false/);
+  assert.match(scrollBottom, /window\.scrollTo/);
+  assert.doesNotMatch(
+    scrollBottom,
+    /function\s+scrollBottom\s*\(\)\s*{\s*window\.scrollTo/s,
+    'scrollBottom must not unconditionally move the page'
+  );
+});
+
+test('final workflow modal preparation does not force page scrolling when the user has scrolled away', () => {
+  const doneCase = extractSwitchCase(html, "case 'done':");
+  const scrollToBottomThen = extractFunction(doneCase, 'function scrollToBottomThen');
+
+  assert.match(scrollToBottomThen, /captureAutoScrollState\(\)/);
+  assert.match(scrollToBottomThen, /if\s*\(\s*!autoScroll\.wasAtBottom\s*\)/);
+  assert.match(scrollToBottomThen, /cb\(\)/);
+});
+
+test('agent message typewriter uses faster explicit timing constants', () => {
+  const typewriter = extractFunction(html, 'function typewriterEffect');
+
+  assert.match(html, /const\s+TYPEWRITER_TICK_MS\s*=\s*12/);
+  assert.match(html, /const\s+TYPEWRITER_TARGET_MIN_MS\s*=\s*360/);
+  assert.match(html, /const\s+TYPEWRITER_TARGET_MAX_MS\s*=\s*2200/);
+  assert.match(html, /const\s+TYPEWRITER_MS_PER_CHAR\s*=\s*2/);
+  assert.match(typewriter, /TYPEWRITER_TICK_MS/);
+  assert.match(typewriter, /TYPEWRITER_TARGET_MAX_MS/);
+  assert.match(typewriter, /TYPEWRITER_TARGET_MIN_MS/);
+  assert.match(typewriter, /TYPEWRITER_MS_PER_CHAR/);
+  assert.doesNotMatch(typewriter, /target\s+2-4s/, 'stale slower timing comment should be removed');
+});
+
 test('candidate gallery thumbnails receive deterministic per-candidate pose seeds', () => {
   const frameUrlFunction = extractFunction(html, 'function buildMoleculeFrameUrl');
   const initGalleryViewer = extractFunction(html, 'function initGalleryViewer');
