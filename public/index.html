@@ -2227,6 +2227,18 @@
             display: inline-flex; align-items: center; gap: 4px;
         }
         .panel-opt:hover { border-color: var(--brand-light); color: var(--brand-dark); box-shadow: var(--shadow-xs); transform: translateY(-1px); }
+        .panel-opt:disabled,
+        .panel-opt.disabled {
+            opacity: 0.42;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        .panel-opt:disabled:hover,
+        .panel-opt.disabled:hover {
+            border-color: var(--border);
+            color: var(--text-secondary);
+        }
         .color-dot {
             width: 8px; height: 8px; border-radius: var(--radius-full); display: inline-block; flex-shrink: 0;
         }
@@ -5274,7 +5286,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                     <div class="mol-chip" onclick="selectStructMol(this,'1N8Z')"><div class="mol-chip-dot" style="background:#818CF8;"></div>Trastuzumab (HER2)</div>
                     <div class="mol-chip" onclick="selectStructMol(this,'1BJ1')"><div class="mol-chip-dot" style="background:#34D399;"></div>Bevacizumab (VEGF)</div>
                     <div class="mol-chip" onclick="selectStructMol(this,'1YY9')"><div class="mol-chip-dot" style="background:#F472B6;"></div>Cetuximab (EGFR)</div>
-                    <div class="mol-chip" onclick="selectStructMol(this,'local_il33')"><div class="mol-chip-dot" style="background:#FCD34D;"></div>IL-33 Fab (9WWH)</div>
+                    <div class="mol-chip" onclick="selectStructMol(this,'local_il33')"><div class="mol-chip-dot" style="background:#FCD34D;"></div>IL-33 Fab (9X0J)</div>
                     <div class="mol-chip" onclick="selectStructMol(this,'custom')"><div class="mol-chip-dot" style="background:#9CA3AF;"></div>上传 PDB</div>
                 </div>
             </div>
@@ -5313,7 +5325,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                             <button class="mol3d-tb-btn" title="放大" onclick="mol3dZoomIn()"><i data-lucide="zoom-in" style="width:13px;height:13px;"></i></button>
                             <button class="mol3d-tb-btn" title="缩小" onclick="mol3dZoomOut()"><i data-lucide="zoom-out" style="width:13px;height:13px;"></i></button>
                             <button class="mol3d-tb-btn" title="卡通模式" onclick="mol3dStyle('cartoon')"><i data-lucide="layers" style="width:13px;height:13px;"></i></button>
-                            <button class="mol3d-tb-btn" title="球棍模式" onclick="mol3dStyle('sphere')"><i data-lucide="circle" style="width:13px;height:13px;"></i></button>
+                            <button class="mol3d-tb-btn" title="空间填充模式" onclick="mol3dStyle('sphere')"><i data-lucide="circle" style="width:13px;height:13px;"></i></button>
                             <button class="mol3d-tb-btn" title="表面模式" onclick="mol3dStyle('surface')"><i data-lucide="globe" style="width:13px;height:13px;"></i></button>
                         </div>
                         <!-- AI chat overlay -->
@@ -5322,7 +5334,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                             <div style="font-size:11px;color:rgba(255,255,255,0.6);line-height:1.6;margin-bottom:8px;">
                                 我可以帮你：<br>
                                 · 🎨 高亮 CDR 区域（CDR-H3、CDR-L1 等）<br>
-                                · 🔄 切换渲染模式（球棍、卡通、表面、空间填充）<br>
+                                · 🔄 切换渲染模式（卡通、表面、空间填充）<br>
                                 · ✏️ 为残基、链或 CDR 区域着色<br>
                                 · 👁️ 显示/隐藏水分子、配体<br>
                                 · 🔍 聚焦定位到指定残基
@@ -5331,7 +5343,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                             <div class="mol3d-ai-chips" style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px;">
                                 <span class="mol3d-ai-chip" onclick="mol3dAICmd('高亮 CDR-H3')">高亮 CDR-H3</span>
                                 <span class="mol3d-ai-chip" onclick="mol3dAICmd('高亮所有CDR')">高亮所有CDR</span>
-                                <span class="mol3d-ai-chip" onclick="mol3dAICmd('球棍模式')">球棍模式</span>
+                                <span class="mol3d-ai-chip" onclick="mol3dAICmd('空间填充模式')">空间填充模式</span>
                                 <span class="mol3d-ai-chip" onclick="mol3dAICmd('卡通模式')">卡通模式</span>
                                 <span class="mol3d-ai-chip" onclick="mol3dAICmd('显示表面')">显示表面</span>
                                 <span class="mol3d-ai-chip" onclick="mol3dAICmd('重置颜色')">重置颜色</span>
@@ -5682,7 +5694,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146063';
+    const APP_BUILD_VERSION = '78146066';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -6027,7 +6039,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         { id:1,  name:'IL33_临床靶点分析报告_2026Q1.pdf',        type:'pdf',   size:'4.2 MB',  project:'il33',   projectName:'IL-33 项目',       author:'王 博士',      date:'2026-04-15', tags:['临床报告','靶点分析'],    isAI:false, summary:'IL-33/ST2信号通路系统综述，涵盖适应症分析、竞品格局及抗体开发策略建议。' },
         { id:2,  name:'IL33_Fab_De-novo设计方案_v3.docx',         type:'doc',   size:'1.8 MB',  project:'il33',   projectName:'IL-33 项目',       author:'许 博士',      date:'2026-05-10', tags:['设计方案','Fab'],         isAI:false, summary:'Fab抗体从头设计技术方案，含三轮迭代CDR设计策略及预期亲和力目标（KD < 1 nM）。' },
         { id:3,  name:'anti-IL33-Fab-15seqs.fasta',               type:'fasta', size:'156 KB',  project:'il33',   projectName:'IL-33 项目',       author:'ZoonoAb AI',date:'2026-05-21', tags:['序列','Fab'],             isAI:true,  summary:'15条优选Fab候选序列，从头设计工作流输出，预测平均KD < 5 nM，多样性指数 0.82。' },
-        { id:4,  name:'IL33_Fab_complex_9WWH.pdb',                 type:'pdb',   size:'1.2 MB',  project:'il33',   projectName:'IL-33 项目',       author:'ZoonoAb AI',date:'2026-05-20', tags:['结构','RCSB'],          isAI:true,  summary:'基于9WWH真实IL-33/Tozorakimab Fab复合物的候选展示结构，呈现Fab与IL-33表面的结合构象。' },
+        { id:4,  name:'IL33_Fab_complex_9X0J.pdb',                 type:'pdb',   size:'1.2 MB',  project:'il33',   projectName:'IL-33 项目',       author:'ZoonoAb AI',date:'2026-05-20', tags:['结构','RCSB'],          isAI:true,  summary:'基于9X0J真实IL-33/Tozorakimab Fab复合物的候选展示结构，呈现Fab与IL-33表面的结合构象。' },
         { id:5,  name:'PD1_竞品分析_Nivolumab_Pembrolizumab.pdf', type:'pdf',   size:'8.1 MB',  project:'pd1',    projectName:'PD-1/PD-L1 项目',  author:'李 博士',  date:'2026-04-30', tags:['竞品分析','PD-1'],        isAI:false, summary:'Nivolumab与Pembrolizumab专利到期分析、序列对比及市场份额预测，含开发窗口评估。' },
         { id:6,  name:'PD-L1_表位图谱数据集.xlsx',                type:'csv',   size:'3.4 MB',  project:'pd1',    projectName:'PD-1/PD-L1 项目',  author:'陈 博士',    date:'2026-05-05', tags:['表位','实验数据'],        isAI:false, summary:'SPR和BioLayer干涉仪测定PD-L1表位结合数据，72条抗体完整KD、kon、koff记录。' },
         { id:7,  name:'Nivolumab_CDR_风险位点分析.png',            type:'img',   size:'892 KB',  project:'pd1',    projectName:'PD-1/PD-L1 项目',  author:'ZoonoAb AI',date:'2026-05-18', tags:['风险分析','CDR'],         isAI:true,  summary:'Nivolumab重链CDR脱酰胺、色氨酸氧化及聚集热点可视化，标注8个中高风险位点。' },
@@ -7803,7 +7815,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             'UniProt 批量获取': `showToast('UniProt 批量获取已启动','info')`,
             '结构域注释':       `sendQuickMsg('分析 IL-33 蛋白质结构域')`,
             'AlphaFold 结构获取': `openAnalysisPanel('struct');setTimeout(()=>switchApt('struct','structpred'),120)`,
-            'PDB 信息查询':     `sendQuickMsg('查询 PDB 9WWH 结构信息')`,
+            'PDB 信息查询':     `sendQuickMsg('查询 PDB 9X0J 结构信息')`,
             'PDB 序列解析':     `openAnalysisPanel('struct');setTimeout(()=>switchApt('struct','viewer3d'),120)`,
             'PDB 批量群组分析': `showToast('PDB 批量分析启动中...','info')`,
             'RMSD 计算':        `openAnalysisPanel('struct');setTimeout(()=>switchApt('struct','interaction'),120)`,
@@ -11352,7 +11364,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 referenceEntries: 'UniProt IL33 / IL1RL1(ST2) 靶点条目',
                 mechanism: '阻断 IL-33 与 ST2 受体形成炎症信号复合物',
                 interfaceFocus: 'ST2 受体结合表面', selectedEpitope: 'ST2 结合界面邻近的保守表面',
-                structureRef: '9WWH IL-33/Tozorakimab Fab 复合物', antibodyBackground: 'Itepekimab · Tozorakimab · Astegolimab',
+                structureRef: '9X0J IL-33/Tozorakimab Fab 复合物', antibodyBackground: 'Itepekimab · Tozorakimab · Astegolimab',
                 rows: [['Site A','ST2 结合界面','与受体阻断目标直接相关','优先'],['Site B','beta-trefoil 侧向暴露面','适合结合检测或亲和力筛选','备选'],['Site C','柔性外周环区','构象可变性较高','谨慎']]
             },
             allergic_tslp: {
@@ -12991,7 +13003,7 @@ ${fallbackTableRows(profile.rows)}
     ];
 
     const FALLBACK_3D_PRESETS = {
-        allergic_asthma: { aliasPrefix: 'IL33-Fab', structureTitle: 'IL-33 Fab 炎症信号阻断构象', structureFamily: 'IL-1 家族细胞因子 · Fab 中和候选', visualSummary: '展示 Tozorakimab Fab 贴合 IL-33 表面形成稳定抗体-抗原复合物。', structuralBasis: 'RCSB 9WWH IL-33 / Tozorakimab Fab 二元复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#F59E0B', antibody: '#0EA5E9' }, order: [0,2,5,1,4,7,3,6,8,9,10,11] },
+        allergic_asthma: { aliasPrefix: 'IL33-Fab', structureTitle: 'IL-33 Fab 炎症信号阻断构象', structureFamily: 'IL-1 家族细胞因子 · Fab 中和候选', visualSummary: '展示 Tozorakimab Fab 贴合 IL-33 表面形成稳定抗体-抗原复合物。', structuralBasis: 'RCSB 9X0J IL-33 / Tozorakimab Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#F59E0B', antibody: '#0EA5E9' }, order: [0,2,5,1,4,7,3,6,8,9,10,11] },
         generic_vhh: { aliasPrefix: 'IL33-VHH', structureTitle: 'VHH 小型抗体展示构象', structureFamily: 'VHH 小型结合体 · 通用展示候选', visualSummary: '用于未命中常见靶点时的 VHH 结构展示。', structuralBasis: '本地 VHH 展示结构，用于分布外靶点的候选可视化', antigenChains: ['A','D'], antibodyChains: ['B'], visualColors: { antigen: '#F59E0B', antibody: '#14B8A6' }, order: [11,0,2,5,1,4,7,3,6,8,9,10] },
         allergic_tslp: { aliasPrefix: 'TSLP-Fab', structureTitle: 'TSLP/TSLPR Fab 上皮炎症界面阻断构象', structureFamily: '上皮来源细胞因子 · Fab 阻断候选', visualSummary: '展示 Fab 覆盖 TSLPR 结合面并保留外侧稳定接触。', structuralBasis: 'RCSB 5J13 TSLP / tezepelumab Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#F97316', antibody: '#0EA5E9' }, order: [1,4,7,0,3,6,9,2,5,8,10,11] },
         tumor_immunotherapy: { aliasPrefix: 'PDL1-Fab', structureTitle: 'PD-L1 Fab 免疫检查点阻断构象', structureFamily: '免疫检查点 IgV 结构域 · Fab 候选', visualSummary: '突出 Fab 对 PD-1/PD-L1 接触面的空间覆盖。', structuralBasis: 'RCSB 5X8L PD-L1 / atezolizumab Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#60A5FA', antibody: '#F472B6' }, order: [0,2,5,1,4,7,3,6,8,9,10,11] },
@@ -13005,10 +13017,10 @@ ${fallbackTableRows(profile.rows)}
         infectious_covid: { aliasPrefix: 'SC2RBD-Fab', structureTitle: 'SARS-CoV-2 RBD Fab 受体结合阻断构象', structureFamily: '病毒受体结合结构域 · 中和 Fab 候选', visualSummary: '展示 Fab 覆盖 RBD/ACE2 结合邻近可及面。', structuralBasis: 'RCSB 6XDG SARS-CoV-2 RBD / REGN10933 Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#0284C7', antibody: '#F59E0B' }, order: [9,1,4,7,10,2,5,8,0,3,6,11] },
         infectious_flu: { aliasPrefix: 'FluHA-Fab', structureTitle: 'Influenza HA Fab 保守中和表位构象', structureFamily: '流感表面抗原 · 广谱中和 Fab 候选', visualSummary: '突出 Fab 对 HA 保守中和表面的稳定接触。', structuralBasis: 'RCSB 3GBM influenza HA / broadly neutralizing Fab CR6261 复合体', antigenChains: ['A','D'], antibodyChains: ['B','C'], visualColors: { antigen: '#0891B2', antibody: '#FB7185' }, order: [10,2,5,8,0,3,6,9,1,4,7,11] },
         cardio_pcsk9: { aliasPrefix: 'PCSK9-Fab', structureTitle: 'PCSK9 Fab LDLR 结合界面阻断构象', structureFamily: '血脂调控靶点 · Fab 阻断候选', visualSummary: '展示 Fab 围绕 PCSK9/LDLR 接触面形成稳定结合。', structuralBasis: 'RCSB 3SQO PCSK9 / J16 Fab 复合体', antigenChains: ['A','D'], antibodyChains: ['B','C'], visualColors: { antigen: '#2563EB', antibody: '#84CC16' }, order: [1,5,9,0,4,8,2,6,10,3,7,11] },
-        cardio_angptl3: { aliasPrefix: 'ANGPTL3-CV-Fab', structureTitle: 'ANGPTL3 Fab 血脂调控中和构象', structureFamily: '脂质代谢调控靶点 · 心血管 Fab 候选', visualSummary: '呈现 Fab 覆盖 ANGPTL3 功能结构域可及面的构象。', structuralBasis: 'RCSB 6EUA ANGPTL3 真实靶点结构 + 代表 Fab 展示支架', antigenChains: ['A','D','E'], antibodyChains: ['B','C'], visualColors: { antigen: '#16A34A', antibody: '#818CF8' }, order: [2,6,10,1,5,9,0,4,8,3,7,11] },
+        cardio_angptl3: { aliasPrefix: 'ANGPTL3-CV-Fab', structureTitle: 'ANGPTL3 Fab 血脂调控中和构象', structureFamily: '脂质代谢调控靶点 · 心血管 Fab 候选', visualSummary: '呈现真实 ANGPTL3 功能结构域与 Fab 候选参考构象。', structuralBasis: 'RCSB 6EUA ANGPTL3 真实靶点结构 + Fab 候选参考姿态', interfaceDetail: false, antigenChains: ['A','D','E'], antibodyChains: ['B','C'], visualColors: { antigen: '#16A34A', antibody: '#818CF8' }, order: [2,6,10,1,5,9,0,4,8,3,7,11] },
         cardio_il1b: { aliasPrefix: 'IL1B-Fab', structureTitle: 'IL-1β Fab 炎症风险中和构象', structureFamily: 'IL-1 家族炎症因子 · Fab 候选', visualSummary: '展示 Fab 覆盖 IL-1R 结合邻近面的候选构象。', structuralBasis: 'RCSB 5BVP IL-1 beta / canakinumab Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#DC2626', antibody: '#38BDF8' }, order: [3,7,0,2,6,10,1,5,9,4,8,11] },
-        metabolic_angptl3: { aliasPrefix: 'ANGPTL3-Met-Fab', structureTitle: 'ANGPTL3 Fab 脂质代谢调控构象', structureFamily: '脂质代谢调控靶点 · 代谢 Fab 候选', visualSummary: '突出 Fab 对 ANGPTL3 脂质代谢相关可及面的稳定覆盖。', structuralBasis: 'RCSB 6EUA ANGPTL3 真实靶点结构 + 代表 Fab 展示支架', antigenChains: ['A','D','E'], antibodyChains: ['B','C'], visualColors: { antigen: '#65A30D', antibody: '#7C3AED' }, order: [4,8,1,3,7,0,2,6,10,5,9,11] },
-        metabolic_gipr: { aliasPrefix: 'GIPR-Fab', structureTitle: 'GIPR Fab 胞外受体结合构象', structureFamily: '代谢受体胞外结构域 · Fab 候选', visualSummary: '展示 Fab 识别 GIPR 胞外稳定可及表面的结合构象。', structuralBasis: 'RCSB 7DTY GIPR/GIP 真实受体结构 + 代表 Fab 展示支架', antigenChains: ['A','D'], antibodyChains: ['B','C'], visualColors: { antigen: '#0F766E', antibody: '#F472B6' }, order: [5,9,2,4,8,1,3,7,0,6,10,11] }
+        metabolic_angptl3: { aliasPrefix: 'ANGPTL3-Met-Fab', structureTitle: 'ANGPTL3 Fab 脂质代谢调控构象', structureFamily: '脂质代谢调控靶点 · 代谢 Fab 候选', visualSummary: '突出真实 ANGPTL3 脂质代谢相关结构域与 Fab 候选参考构象。', structuralBasis: 'RCSB 6EUA ANGPTL3 真实靶点结构 + Fab 候选参考姿态', interfaceDetail: false, antigenChains: ['A','D','E'], antibodyChains: ['B','C'], visualColors: { antigen: '#65A30D', antibody: '#7C3AED' }, order: [4,8,1,3,7,0,2,6,10,5,9,11] },
+        metabolic_gipr: { aliasPrefix: 'GIPR-Fab', structureTitle: 'GIPR Fab 胞外受体结合构象', structureFamily: '代谢受体胞外结构域 · Fab 候选', visualSummary: '展示 GIPG013 Fab 识别 GIPR 胞外结构域的真实复合物界面。', structuralBasis: 'RCSB 4HJ0 human GIPR ECD / GIPG013 Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#0F766E', antibody: '#F472B6' }, order: [5,9,2,4,8,1,3,7,0,6,10,11] }
     };
 
     function getFallback3DPreset(profile) {
@@ -13089,6 +13101,7 @@ ${fallbackTableRows(profile.rows)}
 	                meta.structureFamily = preset.structureFamily || profile.domain || '';
 	                meta.visualSummary = preset.visualSummary || '';
 	                meta.structuralBasis = preset.structuralBasis || '';
+	                meta.interfaceDetail = preset.interfaceDetail !== false;
 	                meta.antigenChains = preset.antigenChains || ['A'];
 	                meta.antibodyChains = preset.antibodyChains || ['B'];
 	                meta.visualColors = preset.visualColors || null;
@@ -13290,6 +13303,7 @@ ${fallbackTableRows(profile.rows)}
 	                    structureFamily: meta.structureFamily || '',
 	                    visualSummary: meta.visualSummary || '',
 	                    structuralBasis: meta.structuralBasis || '',
+	                    interfaceDetail: meta.interfaceDetail !== false,
 	                    antigenChains: Array.isArray(meta.antigenChains) && meta.antigenChains.length ? meta.antigenChains : ['A'],
 	                    antibodyChains: Array.isArray(meta.antibodyChains) && meta.antibodyChains.length ? meta.antibodyChains : ['B'],
 	                    visualColors: meta.visualColors || null,
@@ -13374,7 +13388,7 @@ ${fallbackTableRows(profile.rows)}
                     <div class="panel-title">Style</div>
                     <div class="panel-options">
                         <button class="panel-opt active" onclick="setStyle('cartoon',this)">Cartoon</button>
-                        <button class="panel-opt" onclick="setStyle('stick',this)">Stick</button>
+                        <button class="panel-opt${routeMeta.interfaceDetail === false ? ' disabled' : ''}" ${routeMeta.interfaceDetail === false ? 'disabled title="当前结构使用真实抗原参考构象，界面细节仅在真实复合物模板中开放"' : ''} onclick="setStyle('interface',this)">Interface</button>
                         <button class="panel-opt" onclick="setStyle('sphere',this)">Sphere</button>
                         <button class="panel-opt" onclick="setStyle('surface',this)">Surface</button>
                         <button class="panel-opt" onclick="setStyle('cross',this)">Cross</button>
@@ -13768,7 +13782,7 @@ ${fallbackTableRows(profile.rows)}
             return null;
         }
         switch (s) {
-            case 'stick':   return { stick:   { color: hexColor, radius: 0.12 } };
+            case 'interface': return { cartoon: { color: hexColor } };
             case 'sphere':  return { sphere:  { color: hexColor } };
             case 'cross':   return { cross:   { color: hexColor, linewidth: 2 } };
             default:        return { cartoon: { color: hexColor } };
@@ -13944,7 +13958,7 @@ ${fallbackTableRows(profile.rows)}
                     v.setStyle({ ss: 's' }, { cartoon: { color: ss.l } });
                     v.setStyle({ ss: 'l' }, { cartoon: { color: ss.c } });
                     break;
-                case 'stick':   v.setStyle({}, { stick:   { colorscheme: 'ssJmol', radius: 0.12 } }); break;
+                case 'interface': v.setStyle({}, { cartoon: { color: ss.h } }); break;
                 case 'sphere':  v.setStyle({}, { sphere:  { colorscheme: 'ssJmol' } }); break;
                 default:        v.setStyle({}, { cartoon: { color: ss.h } });
             }
@@ -13956,7 +13970,7 @@ ${fallbackTableRows(profile.rows)}
         let style = {};
         switch (currentStyle) {
             case 'cartoon': style = { cartoon: { colorscheme: currentColor } }; break;
-            case 'stick':   style = { stick:   { colorscheme: currentColor, radius: 0.12 } }; break;
+            case 'interface': style = { cartoon: { colorscheme: currentColor } }; break;
             case 'sphere':  style = { sphere:  { colorscheme: currentColor } }; break;
             case 'cross':   style = { cross:   { colorscheme: currentColor, linewidth: 2 } }; break;
             default:        style = { cartoon: { colorscheme: currentColor } };
@@ -13995,8 +14009,14 @@ ${fallbackTableRows(profile.rows)}
         if (btn) btn.classList.toggle('active', isSpinning);
     }
 
+    function normalizeViewerStyle(mode) {
+        mode = String(mode || 'cartoon').toLowerCase();
+        if (mode === 'stick') return 'interface';
+        return ['cartoon', 'interface', 'sphere', 'surface', 'cross'].includes(mode) ? mode : 'cartoon';
+    }
+
     function setStyle(mode, btn) {
-        currentStyle = mode;
+        currentStyle = normalizeViewerStyle(mode);
         // Update active state on buttons
         if (btn) {
             btn.parentElement.querySelectorAll('.panel-opt').forEach(b => b.classList.remove('active'));
@@ -14007,9 +14027,9 @@ ${fallbackTableRows(profile.rows)}
             try {
                 modalIframe.contentWindow.postMessage({
                     source: 'zoonoab-gallery', type: 'setStyle',
-                    data: { name: mode }
+                    data: { name: currentStyle }
                 }, '*');
-                console.log('[3D] → Modal setStyle=' + mode);
+                console.log('[3D] → Modal setStyle=' + currentStyle);
             } catch(e) { console.warn('[3D] Modal postMessage failed:', e); }
             return;
         }
@@ -14757,7 +14777,7 @@ ${fallbackTableRows(profile.rows)}
             cdrH:[[26,33],[51,58],[93,104]], hotspots:{28:'m',32:'h',54:'m',97:'h',102:'m'},
             ddgMuts:[['Y97F','CDR-H3',2.6,'h'],['S32A','CDR-H1',2.1,'h'],['Y54F','CDR-H2',1.5,'m'],['R102K','CDR-H3',1.2,'m'],['G28S','CDR-H1',0.7,'l']],
             epitopeRes:[{pos:82,aa:'K',score:0.91,site:'Site-A'},{pos:86,aa:'L',score:0.88,site:'Site-A'},{pos:89,aa:'N',score:0.83,site:'Site-B'},{pos:91,aa:'L',score:0.75,site:'Site-B'},{pos:95,aa:'R',score:0.64,site:'Site-C'},{pos:12,aa:'T',score:0.42,site:'Site-D'}],
-            epitopeSites:[{name:'IL-33 Fab 结合面',score:'0.91',color:'#EF4444',res:'K82/L86',overlap:'9WWH核心'},{name:'β-trefoil 外侧面',score:'0.83',color:'#F97316',res:'N89/L91',overlap:'Tozorakimab'},{name:'C端 Loop',score:'0.64',color:'#EAB308',res:'R95',overlap:'Partial'},{name:'N端',score:'0.42',color:'#6B7280',res:'T12',overlap:'Novel'}],
+            epitopeSites:[{name:'IL-33 Fab 结合面',score:'0.91',color:'#EF4444',res:'K82/L86',overlap:'9X0J核心'},{name:'β-trefoil 外侧面',score:'0.83',color:'#F97316',res:'N89/L91',overlap:'Tozorakimab'},{name:'C端 Loop',score:'0.64',color:'#EAB308',res:'R95',overlap:'Partial'},{name:'N端',score:'0.42',color:'#6B7280',res:'T12',overlap:'Novel'}],
             iptm:[0.871,0.865,0.858,0.849,0.835], ptm:[0.90,0.87,0.85,0.83,0.80],
             contacts:[{ab:'S32(H)',ag:'K82',type:'氢键',dist:'2.9 Å',en:'-4.8'},{ab:'Y97(H)',ag:'L86',type:'疏水',dist:'3.7 Å',en:'-3.4'},{ab:'Y54(H)',ag:'N89',type:'氢键',dist:'3.1 Å',en:'-3.9'},{ab:'R102(H)',ag:'L91',type:'氢键',dist:'2.8 Å',en:'-4.6'},{ab:'Y32(L)',ag:'R95',type:'氢键',dist:'3.0 Å',en:'-3.2'}],
             totalDG:'-21.4', contactArea:'1,430', hbonds:14, hydrophobic:9, pipi:2, saltBridge:2 },
@@ -15292,8 +15312,18 @@ ${fallbackTableRows(profile.rows)}
     function mol3dZoomOut() { if (currentMol3dViewer) { try { currentMol3dViewer.zoom(0.75); currentMol3dViewer.render(); } catch(e){} } }
     function mol3dStyle(style) {
         if (!currentMol3dViewer) return;
-        const styleMap = { cartoon: {cartoon:{color:'spectrum'}}, sphere: {sphere:{scale:0.5}}, surface: {stick:{radius:0.15}} };
-        currentMol3dViewer.setStyle({}, styleMap[style] || {cartoon:{}});
+        try { currentMol3dViewer.removeAllSurfaces(); } catch(e) {}
+        currentMol3dViewer.setStyle({}, {});
+        if (style === 'surface') {
+            currentMol3dViewer.setStyle({}, { cartoon: { color: '#60A5FA', opacity: 0.28 } });
+            if (typeof $3Dmol !== 'undefined' && $3Dmol.SurfaceType) {
+                currentMol3dViewer.addSurface($3Dmol.SurfaceType.VDW, { opacity: 0.68, color: '#2DD4BF' }, {});
+            }
+        } else if (style === 'sphere') {
+            currentMol3dViewer.setStyle({}, { sphere: { scale: 0.5, colorscheme: 'chain' } });
+        } else {
+            currentMol3dViewer.setStyle({}, { cartoon: { colorscheme: 'chain' } });
+        }
         currentMol3dViewer.render();
     }
     function set3dScheme(scheme) {
@@ -15336,10 +15366,10 @@ ${fallbackTableRows(profile.rows)}
                     currentMol3dViewer.setStyle({chain:'H',resi:'95-102'},{cartoon:{color:'#FCD34D'}});
                     currentMol3dViewer.render();
                     msg.textContent = '✓ 关键区域已高亮';
-                } else if (lower.includes('球棍') || lower.includes('stick') || lower.includes('ball')) {
-                    currentMol3dViewer.setStyle({}, {stick:{radius:0.12}, sphere:{scale:0.3}});
+                } else if (lower.includes('空间') || lower.includes('space') || lower.includes('sphere') || lower.includes('ball')) {
+                    currentMol3dViewer.setStyle({}, {sphere:{scale:0.5, colorscheme:'chain'}});
                     currentMol3dViewer.render();
-                    msg.textContent = '✓ 已切换为球棍模式';
+                    msg.textContent = '✓ 已切换为空间填充模式';
                 } else if (lower.includes('卡通') || lower.includes('cartoon') || lower.includes('ribbon')) {
                     applyMol3dColors();
                     msg.textContent = '✓ 已切换为卡通模式';

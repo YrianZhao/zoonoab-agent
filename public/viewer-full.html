@@ -63,10 +63,15 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
     function antibodySelector() {
         return AB_CHAINS.length ? selectorForChains(AB_CHAINS) : {not: selectorForChains(AG_CHAINS)};
     }
+    function normalizeStyle(s) {
+        s = String(s || 'cartoon').toLowerCase();
+        if (s === 'stick') return 'interface';
+        return STYLES[s] ? s : 'cartoon';
+    }
     function applyByStyle(selector, color) {
         switch(currentStyle){
             case 'cartoon': glv.setStyle(selector, {cartoon:{color: color}}); break;
-            case 'stick': glv.setStyle(selector, {stick:{radius:0.15, color: color}}); break;
+            case 'interface': glv.setStyle(selector, {cartoon:{color: color}}); break;
             case 'sphere': glv.setStyle(selector, {sphere:{scale:0.35, color: color}}); break;
             case 'line': glv.setStyle(selector, {line:{color: color}}); break;
             case 'cross': glv.setStyle(selector, {cross:{color: color}}); break;
@@ -84,7 +89,7 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
     // ════ Style defs ════
     var STYLES = {
         cartoon: 'cartoon',
-        stick:   'stick',
+        interface: 'interface',
         sphere:  'sphere',
         line:    'line',
         cross:   'cross',
@@ -127,7 +132,7 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
             }
             switch(currentStyle){
                 case 'cartoon': glv.setStyle({}, {cartoon:{colorscheme:'chain'}}); break;
-                case 'stick':   glv.setStyle({}, {stick:{radius:0.15, colorscheme:'chain'}}); break;
+                case 'interface': glv.setStyle({}, {cartoon:{colorscheme:'chain'}}); break;
                 case 'sphere':  glv.setStyle({}, {sphere:{scale:0.35, colorscheme:'chain'}}); break;
                 case 'line':    glv.setStyle({}, {line:{colorscheme:'chain'}}); break;
                 case 'cross':   glv.setStyle({}, {cross:{colorscheme:'chain'}}); break;
@@ -144,7 +149,7 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
             }
             switch(currentStyle){
                 case 'cartoon': glv.setStyle({}, {cartoon:{colorscheme:'atomType'}}); break;
-                case 'stick':   glv.setStyle({}, {stick:{radius:0.15, colorscheme:'atomType'}}); break;
+                case 'interface': glv.setStyle({}, {cartoon:{colorscheme:'atomType'}}); break;
                 case 'sphere':  glv.setStyle({}, {sphere:{scale:0.35, colorscheme:'atomType'}}); break;
                 case 'line':    glv.setStyle({}, {line:{colorscheme:'atomType'}}); break;
                 case 'cross':   glv.setStyle({}, {cross:{colorscheme:'atomType'}}); break;
@@ -157,7 +162,7 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
     function _getBaseSpec(styleName) {
         switch(styleName){
             case 'cartoon': return {cartoon:{}};
-            case 'stick':   return {stick:{radius:0.15}};
+            case 'interface': return {cartoon:{}};
             case 'sphere':  return {sphere:{scale:0.35}};
             case 'line':    return {line:{}};
             case 'cross':   return {cross:{}};
@@ -289,8 +294,12 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
         try{
             glv.removeAllSurfaces();
 
+            glv.setStyle({}, {});
+
             if(currentStyle==='surface'){
                 doSurface();
+            }else if(currentStyle==='interface'){
+                doInterfaceDetail();
             }else{
                 var cs=COLORS[currentColor];
                 if(cs)cs();
@@ -313,9 +322,7 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
         if (!stype) try { stype = $3Dmol.SurfaceType.VDW; } catch(e) {}
 
         if (!stype) {
-            // No surface API at all — fallback to stick
             console.warn('[VF] no SurfaceType available');
-            glv.setStyle({}, {stick:{radius:0.12}});
             var cs = COLORS[currentColor]; if(cs)cs();
             render(); return;
         }
@@ -346,6 +353,29 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
         }
     }
 
+    function doInterfaceDetail(){
+        glv.removeAllSurfaces();
+        applyByStyle(selectorForChains(AG_CHAINS), AG_COLOR);
+        applyByStyle(antibodySelector(), AB_COLOR);
+
+        var agSelector = selectorForChains(AG_CHAINS);
+        var abSelector = antibodySelector();
+        try {
+            glv.setStyle({and:[agSelector, {within:{distance:5, sel:abSelector}}]}, {
+                cartoon:{color:AG_COLOR},
+                stick:{radius:0.14, color:AG_COLOR}
+            });
+            glv.setStyle({and:[abSelector, {within:{distance:5, sel:agSelector}}]}, {
+                cartoon:{color:AB_COLOR},
+                stick:{radius:0.14, color:AB_COLOR}
+            });
+        } catch(e) {
+            console.warn('[VF] interface detail err:', e);
+            applyByStyle(selectorForChains(AG_CHAINS), AG_COLOR);
+            applyByStyle(antibodySelector(), AB_COLOR);
+        }
+    }
+
     function render(){
         if(!glv)return;
         glv.render();
@@ -355,8 +385,8 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
 
     // ════ PUBLIC ACTIONS ════
     function doStyle(s){
-        currentStyle=s;
-        uiSync('style',s);
+        currentStyle=normalizeStyle(s);
+        uiSync('style',currentStyle);
         if(_loaded)apply();
     }
 

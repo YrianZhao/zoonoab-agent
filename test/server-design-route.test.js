@@ -190,8 +190,33 @@ test('allergic asthma route previews real IL-33 Fab structure presets', async ()
   assert.equal(firstBinder.antibodyFormat, 'Fab');
   assert.deepEqual(firstBinder.antigenChains, ['A']);
   assert.deepEqual(firstBinder.antibodyChains, ['B', 'C']);
-  assert.match(firstBinder.structuralBasis, /9WWH|Tozorakimab Fab/);
+  assert.match(firstBinder.structuralBasis, /9X0J|Tozorakimab Fab/);
   assert.doesNotMatch(serialized, /IL33-VHH|本地 VHH 展示支架|4KC3/);
+});
+
+test('server marks interface detail availability according to real-complex evidence', async () => {
+  const giprQuery = encodeURIComponent('针对 GIPR 设计十个抗体分子');
+  const giprRes = await fetch('http://127.0.0.1:' + PORT + '/api/debug/design-route?text=' + giprQuery);
+  assert.equal(giprRes.status, 200);
+  const gipr = await giprRes.json();
+  const giprBinder = gipr.threeDPreview.binders[0];
+
+  assert.match(giprBinder.file, /^GIPR-Fab-01\.pdb$/);
+  assert.match(giprBinder.structuralBasis, /4HJ0|GIPG013 Fab/);
+  assert.equal(giprBinder.interfaceDetail, true);
+  assert.deepEqual(giprBinder.antigenChains, ['A']);
+  assert.deepEqual(giprBinder.antibodyChains, ['B', 'C']);
+
+  const angptl3Query = encodeURIComponent('针对 ANGPTL3 设计十个抗体分子');
+  const angptl3Res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/design-route?text=' + angptl3Query);
+  assert.equal(angptl3Res.status, 200);
+  const angptl3 = await angptl3Res.json();
+  const angptl3Binder = angptl3.threeDPreview.binders[0];
+
+  assert.match(angptl3Binder.file, /^ANGPTL3-/);
+  assert.match(angptl3Binder.structuralBasis, /6EUA|真实靶点结构/);
+  assert.equal(angptl3Binder.interfaceDetail, false);
+  assert.deepEqual(angptl3Binder.antigenChains, ['A', 'D', 'E']);
 });
 
 test('server keeps non-biomedical virus wording out of design workflow', async () => {
