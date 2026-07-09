@@ -439,9 +439,9 @@ test('server can let the chat model route terse monoclonal slang into workflow',
     assert.ok(evidenceCall, 'model-routed slang request should enter target-resolution workflow');
     assert.equal(evidenceCall.params.target, 'TMV coat protein');
     assert.equal(captured.length, 1);
-    assert.match(captured[0].messages[0].content, /自然语言理解器|选择理由/);
+    assert.match(captured[0].messages[0].content, /自然语言理解器|选择理由|工作流展示|workflow/);
     assert.deepEqual(captured[0].response_format, { type: 'json_object' });
-    assert.ok(captured[0].max_tokens <= 700);
+    assert.ok(captured[0].max_tokens >= 1200);
   } finally {
     await new Promise(resolve => mockServer.close(resolve));
   }
@@ -1129,7 +1129,7 @@ test('target resolver rejects disease-shaped pseudo targets from the model', asy
     const agentTexts = messages.filter(msg => msg.type === 'agent_msg').map(msg => msg.text || '');
 
     assert.equal(evidenceCall, undefined);
-    assert.deepEqual(agentTexts, ['暂时无法理解这个需求，请稍后重试。']);
+    assert.deepEqual(agentTexts, ['智能解析服务暂时不可用，请检查助手问答配置后重试。']);
     assert.doesNotMatch(serialized, /肥胖\s*(?:表面|目标)?抗原|肥胖\s*代表性目标结构约束|肥胖\s*抗原可及|BAD-OBESITY/);
     assert.doesNotMatch(serialized, VISIBLE_RESOLVER_LEAK_PATTERN);
   } finally {
@@ -1317,7 +1317,7 @@ test('model-first routing stops when the model has no explicit target', async ()
     const agentTexts = messages.filter(msg => msg.type === 'agent_msg').map(msg => msg.text || '');
     const intro = agentTexts[0] || '';
 
-    assert.equal(intro, '暂时无法理解这个需求，请稍后重试。');
+    assert.equal(intro, '智能解析服务暂时不可用，请检查助手问答配置后重试。');
     assert.equal(messages.some(msg => msg.type === 'tool_call' && msg.tool === 'target_evidence_review'), false);
     assert.doesNotMatch(intro, VISIBLE_RESOLVER_LEAK_PATTERN);
   } finally {

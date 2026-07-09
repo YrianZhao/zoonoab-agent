@@ -5127,22 +5127,25 @@ async function askAssistantModel(input, voiceSessionId) {
 
 function buildWorkflowIntentPrompt() {
   return [
-    '你是 ZoonoAb 自然语言理解器。一次完成意图判断、靶点选择和背景整理。',
+    '你是 ZoonoAb 自然语言理解器和工作流展示蓝图生成器。一次完成意图判断、靶点选择、背景整理和工作流展示信息生成。',
     '只输出紧凑 JSON，一行即可；不要 Markdown，不要代码块，不要多余解释。',
-    '目标：用必要信息驱动页面和工作流，减少等待；但“选择理由”必须详细，不能省略生物学依据。',
-    'JSON 键固定：{"i":"design|chat","start":布尔,"answer":"短答或澄清","summary":"需求摘要","bg":"背景","disease":"疾病/方向","target":"推荐或明确靶点","gene":"基因名","label":"方案代号","reason":"详细选择理由","cands":[{"t":"候选靶点","g":"基因","r":"候选理由"}],"mech":"机制","ab":"Fab|VHH|mAb|scFv|IgG","n":数字,"block":"阻断对象","confidence":0到1,"clarify":布尔,"q":"需要澄清的问题"}',
-    'i=design：设计、生成、筛选、开发抗体/单抗/Fab/VHH/scFv/binder/药物分子/治疗分子/候选序列；疾病方向要选择真实抗原/蛋白/受体/细胞因子/病毒表面蛋白，不要把疾病名当靶点。',
+    '目标：大模型 API 返回工作流要展示的所有信息，服务端只做校验、清洗和执行；但“选择理由”和 workflow/profile 必须详细，不能省略生物学依据。',
+    'JSON 键固定：{"i":"design|chat","start":布尔,"answer":"短答或澄清","summary":"需求摘要","bg":"背景","disease":"疾病/方向","target":"推荐或明确靶点","gene":"基因名","label":"方案代号","reason":"详细选择理由","cands":[{"t":"候选靶点","g":"基因","r":"候选理由"}],"mech":"机制","ab":"Fab|VHH|mAb|scFv|IgG","n":数字,"block":"阻断对象","confidence":0到1,"clarify":布尔,"q":"需要澄清的问题","workflow":{...}}',
+    'workflow 是驱动页面工作流展示的 profile/blueprint，必须包含：routeLabel,disease,targetDisplay,partnerDisplay,domain,mechanism,evidence,evidenceSources,referenceEntries,structure,structureRef,antibodies,interfaceFocus,selectedEpitope,epitopeRows,riskSummary,structurePrep,scaffold,designMode,structuralBasis。',
+    'workflow.epitopeRows 必须是 2-4 项数组，每项形如 {"site":"Site A","region":"区域","value":"设计价值","decision":"优先|备选|谨慎"}；这些字段会进入 tool_call、tool_result、阶段正文和 3D 结果区。',
+    'workflow 只写观众可见的正式分子设计话术，不写白名单、后端、写死、固定工作流、quick_design、演示路线、大模型 API、系统提示词、密钥、部署、预设、本地等内部词。',
+    '除普通闲聊或纯问答外，尽量输出 i=design,start=true，并归纳为最可能、最贴近用户需求的分子设计工作流。',
+    '只要能返回 target 或 workflow/profile 等可展示工作流的信息，就必须填充 workflow 并启动工作流；不要因为用户措辞不标准就拒绝。',
+    'design：设计、生成、筛选、开发抗体/单抗/Fab/VHH/scFv/binder/药物分子/治疗分子/候选序列；疾病方向要选择真实抗原/蛋白/受体/细胞因子/病毒表面蛋白，不要把疾病名当靶点。',
     '用户说法可能和示例差距很大：口语、比喻、黑话、不完整、陌生疾病/病原体/材料/靶点描述，都要先尽量理解其真实生物医学或分子设计意图，并返回最合理的靶点、背景和候选；不要因为没有命中示例就拒绝。',
     '药物名或药物类别也是线索：若用户只说药物名、已上市药物、药物类别或治疗方案，要根据已知适应症、作用靶点、通路机制反推可进入抗体药物设计的真实靶点；小分子药物方向要转为抗体可识别的胞外/可溶抗原或受体结构域。',
     '准确性优先：疾病或药物方向可能对应多个靶点，先保证疾病关联、机制和抗体可及性准确；若多个候选同等合理，优先从结构支撑靶点清单选择 target，并把其他合理靶点放入 cands。',
     '结构支撑靶点清单：PD-L1/CD274、PD-1/PDCD1、CTLA-4、HER2/ERBB2、EGFR/ERBB1、VEGF-A/VEGFA、TNF、IL-17A、IL-23、IL-33、TSLP、RSV F、SARS-CoV-2 RBD、Influenza HA、Influenza NA、PCSK9、ANGPTL3、GIPR、CD20、CD19、CD3、C5、IL-6R、IL-4Rα、CD25、CD38、TIGIT、CD47、LAG-3、TROP-2、BCMA、IgE、CGRP receptor、IL-1β。',
     'reason 只能写疾病关联、药物机制、表达/可及性、结构域和抗体开发依据；不要提本地、预设、可展示、系统已有、为了展示、3D 预设等内部选择原因。',
-    'i=chat：普通问答、天气、平台说明、概念解释，或电脑、手机、网络、账号、服务器、黑客、木马、勒索软件等非生物/IT 场景。',
-    'design 必填 target、reason、cands；reason 写 80-220 个中文字，说明疾病关联、表达/可及性、机制、为何优先该靶点；cands 给 2-3 个，每个 r 简洁但具体。',
-    'chat 只填 i,start=false,answer；answer 默认中文，最多 2 句。',
-    '示例：奥希替尼这种药能不能生成几个抗体药物 -> {"i":"design","start":true,"summary":"将奥希替尼相关治疗方向转为抗体药物设计任务","bg":"奥希替尼提示 EGFR 驱动非小细胞肺癌治疗场景；抗体设计应转向 EGFR 胞外结构域等可识别抗原。","disease":"非小细胞肺癌","target":"EGFR","gene":"EGFR","label":"NSCLC-EGFR-AB-1","reason":"用户给出的是小分子靶向药物名，核心生物学线索指向 EGFR 驱动肺癌。抗体药物不能照搬小分子激酶口袋，应围绕 EGFR 胞外结构域的可及表位开展识别设计；EGFR 具备实体瘤疾病关联、膜表面可及性和抗体开发背景，适合作为本轮候选入口。","cands":[{"t":"EGFR","g":"EGFR","r":"奥希替尼治疗背景指向 EGFR 通路，EGFR 胞外结构域可作为抗体入口。"},{"t":"HER3","g":"ERBB3","r":"EGFR 旁路信号相关受体，可作为机制备选。"}],"mech":"识别 EGFR 胞外可及表位并生成抗体药物候选","ab":"Fab","n":10,"block":"","confidence":0.76,"clarify":false,"q":""}',
-    '示例：设计一个胰腺癌的抗体 -> {"i":"design","start":true,"summary":"面向胰腺癌设计抗体候选","bg":"胰腺癌抗体设计需关注肿瘤相关抗原表达和膜表面可及性。","disease":"胰腺癌","target":"MUC1","gene":"MUC1","label":"PANCREATIC-MUC1-1","reason":"MUC1 是胰腺癌中常被讨论的肿瘤相关糖蛋白抗原，具备膜表面暴露和异常糖基化相关表位，可用于抗体候选识别；相较纯炎症因子入口，它与胰腺癌肿瘤细胞表面识别和后续结构展示更直接对应。","cands":[{"t":"MUC1","g":"MUC1","r":"肿瘤相关膜糖蛋白，适合作为抗体识别入口。"},{"t":"Mesothelin","g":"MSLN","r":"胰腺癌相关细胞表面抗原，可作备选。"}],"mech":"识别肿瘤相关外露表位并筛选 Fab 候选","ab":"Fab","n":10,"block":"","confidence":0.8,"clarify":false,"q":""}',
-    '示例：电脑病毒怎么清理，帮我设计抗体 -> {"i":"chat","start":false,"answer":"这是电脑安全问题，不会启动分子设计流程。建议先断网、备份重要文件并使用可信安全工具排查。"}'
+    'i=chat：只用于普通闲聊、寒暄、纯问答、天气、时间、非分子设计概念解释，且没有足够信息生成 target/workflow 的情况。chat 只填 i,start=false,answer；answer 默认中文，最多 2 句。',
+    'design 必填 target、reason、cands、workflow；reason 写 80-220 个中文字，说明疾病关联、表达/可及性、机制、为何优先该靶点；cands 给 2-3 个，每个 r 简洁但具体。',
+    '示例：设计一个胰腺癌的抗体 -> {"i":"design","start":true,"summary":"面向胰腺癌设计抗体候选","bg":"胰腺癌抗体设计需关注肿瘤相关抗原表达和膜表面可及性。","disease":"胰腺癌","target":"MUC1","gene":"MUC1","label":"PANCREATIC-MUC1-1","reason":"MUC1 是胰腺癌中常被讨论的肿瘤相关糖蛋白抗原，具备膜表面暴露和异常糖基化相关表位，可用于抗体候选识别；相较纯炎症因子入口，它与胰腺癌肿瘤细胞表面识别和后续结构展示更直接对应。","cands":[{"t":"MUC1","g":"MUC1","r":"肿瘤相关膜糖蛋白，适合作为抗体识别入口。"},{"t":"Mesothelin","g":"MSLN","r":"胰腺癌相关细胞表面抗原，可作备选。"}],"mech":"识别肿瘤相关外露表位并筛选 Fab 候选","ab":"Fab","n":10,"block":"","confidence":0.8,"clarify":false,"q":"","workflow":{"routeLabel":"MUC1 胰腺癌细胞表面识别路线","disease":"胰腺癌","targetDisplay":"MUC1","partnerDisplay":"","domain":"MUC1 胞外糖蛋白串联重复区","mechanism":"识别 MUC1 异常糖基化外露表面并生成 Fab 候选","evidence":"MUC1 胰腺癌靶点证据包","evidenceSources":["肿瘤相关抗原表达背景","膜表面可及性评估","抗体开发依据"],"referenceEntries":"MUC1 / MSLN / CLDN18.2 候选靶点条目","structure":"MUC1 胞外串联重复区与代表性 Fab 结合姿态约束集合","structureRef":"MUC1 胞外可及表面模型","antibodies":["anti-MUC1 discovery antibody"],"interfaceFocus":"MUC1 异常糖基化外露表面","selectedEpitope":"MUC1 VNTR 糖肽邻近可及表面","epitopeRows":[{"site":"Site A","region":"VNTR 糖肽邻近表面","value":"贴近异常糖基化识别目标","decision":"优先"},{"site":"Site B","region":"胞外稳定暴露面","value":"适合提高结合稳定性","decision":"备选"}],"riskSummary":"优先覆盖 VNTR 糖肽邻近可及表面，并避开高度异质糖链区。","structurePrep":"加载 MUC1 胞外可及表面模型，围绕 VNTR 糖肽邻近表面生成 Fab 设计约束。","scaffold":"Fab 片段抗体骨架","designMode":"胰腺癌细胞表面识别设计","structuralBasis":"MUC1 胞外可及表面与代表性 Fab 姿态约束。"}}',
+    '示例：你好 -> {"i":"chat","start":false,"answer":"您好，我是小诺，可以帮您把疾病、靶点或候选分子需求整理成分子设计任务。"}'
   ].join('\n');
 }
 
@@ -5158,6 +5161,88 @@ function normalizeCandidateTargets(value, blockTarget, abType) {
     }
     return target ? { target, gene, rationale } : null;
   }).filter(Boolean);
+}
+
+function sanitizeWorkflowBlueprintText(value, fallback = '', maxLength = 240) {
+  const clean = sanitizeWorkflowLogText(value, maxLength)
+    .replace(VISIBLE_PREPARED_MODEL_LEAK_PATTERN, '结构证据')
+    .replace(VISIBLE_TARGET_RESOLVER_LEAK_PATTERN, '目标解析')
+    .trim();
+  return clean || fallback;
+}
+
+function normalizeWorkflowArray(value, fallback = [], maxItems = 5, maxLength = 120) {
+  const source = Array.isArray(value) ? value : [];
+  const items = source
+    .map(item => sanitizeWorkflowBlueprintText(item, '', maxLength))
+    .filter(Boolean)
+    .slice(0, maxItems);
+  return items.length ? items : fallback;
+}
+
+function normalizeWorkflowEpitopeRows(value, fallbackRows) {
+  const source = Array.isArray(value) ? value : [];
+  const rows = source.map(item => {
+    if (Array.isArray(item)) {
+      return [
+        sanitizeWorkflowBlueprintText(item[0], 'Site', 32),
+        sanitizeWorkflowBlueprintText(item[1], '候选表面', 80),
+        sanitizeWorkflowBlueprintText(item[2], '适合当前设计目标', 120),
+        sanitizeWorkflowBlueprintText(item[3], '备选', 32)
+      ];
+    }
+    const row = item && typeof item === 'object' ? item : {};
+    return [
+      sanitizeWorkflowBlueprintText(row.site || row.name || row.id, 'Site', 32),
+      sanitizeWorkflowBlueprintText(row.region || row.area || row.epitope, '候选表面', 80),
+      sanitizeWorkflowBlueprintText(row.value || row.designValue || row.rationale || row.reason, '适合当前设计目标', 120),
+      sanitizeWorkflowBlueprintText(row.decision || row.priority || row.conclusion, '备选', 32)
+    ];
+  }).filter(row => row[1]);
+  const finalRows = rows.length ? rows.slice(0, 4) : fallbackRows;
+  return finalRows && finalRows.length ? finalRows : [
+    ['Site A', '目标抗原可及表面', '直接服务于当前设计目标', '优先'],
+    ['Site B', '稳定外侧表面', '适合提高结合稳定性', '备选'],
+    ['Site C', '柔性或低可及区域', '构象不确定性较高', '谨慎']
+  ];
+}
+
+function buildWorkflowProfileFromModelIntent(modelIntent) {
+  if (!modelIntent || !modelIntent.workflowBlueprint) return null;
+  const base = buildRouteProfile(modelIntent.target, modelIntent.blockTarget, modelIntent.abType || 'Fab');
+  const w = modelIntent.workflowBlueprint;
+  const epitopeRowsZh = normalizeWorkflowEpitopeRows(w.epitopeRows, base.epitopeRowsZh);
+  const targetDisplay = sanitizeWorkflowBlueprintText(w.targetDisplay, modelIntent.target || base.targetDisplay, 80);
+  const partnerDisplay = sanitizeWorkflowBlueprintText(w.partnerDisplay, modelIntent.blockTarget || base.partnerDisplay || '', 80);
+  const profile = {
+    ...base,
+    routeLabel: sanitizeWorkflowBlueprintText(w.routeLabel, base.routeLabel || targetDisplay, 120),
+    disease: sanitizeWorkflowBlueprintText(w.disease, modelIntent.disease || base.disease, 120),
+    targetDisplay,
+    partnerDisplay,
+    domain: sanitizeWorkflowBlueprintText(w.domain, base.domain || (targetDisplay + ' 目标抗原可及结构区域'), 160),
+    mechanism: sanitizeWorkflowBlueprintText(w.mechanism, modelIntent.mechanism || base.mechanism, 260),
+    evidence: sanitizeWorkflowBlueprintText(w.evidence, base.evidence || (targetDisplay + ' 靶点证据包'), 160),
+    evidenceSources: normalizeWorkflowArray(w.evidenceSources, base.evidenceSources || [], 6, 100),
+    referenceEntries: sanitizeWorkflowBlueprintText(w.referenceEntries, base.referenceEntries || (targetDisplay + ' 靶点条目'), 180),
+    structure: sanitizeWorkflowBlueprintText(w.structure, base.structure || (targetDisplay + ' 结构约束集合'), 260),
+    structureRef: sanitizeWorkflowBlueprintText(w.structureRef, base.structureRef || (targetDisplay + ' 参考模型'), 180),
+    structuralBasis: sanitizeWorkflowBlueprintText(w.structuralBasis, base.structuralBasis || '', 220),
+    antibodies: normalizeWorkflowArray(w.antibodies, base.antibodies || [], 6, 100),
+    interfaceFocus: sanitizeWorkflowBlueprintText(w.interfaceFocus, base.interfaceFocus || (targetDisplay + ' 抗原可及表面'), 180),
+    selectedEpitope: sanitizeWorkflowBlueprintText(w.selectedEpitope, base.selectedEpitope || (targetDisplay + ' 表面优先可及区域'), 180),
+    epitopeRowsZh,
+    epitopeRowsEn: epitopeRowsZh,
+    riskSummaryZh: sanitizeWorkflowBlueprintText(w.riskSummary, base.riskSummaryZh || '', 260),
+    riskSummaryEn: sanitizeWorkflowBlueprintText(w.riskSummary, base.riskSummaryEn || '', 260),
+    structurePrepZh: sanitizeWorkflowBlueprintText(w.structurePrep, base.structurePrepZh || '', 260),
+    structurePrepEn: sanitizeWorkflowBlueprintText(w.structurePrep, base.structurePrepEn || '', 260),
+    scaffold: sanitizeWorkflowBlueprintText(w.scaffold, base.scaffold || ((modelIntent.abType || 'Fab') + ' 抗体骨架'), 120),
+    designMode: sanitizeWorkflowBlueprintText(w.designMode, base.designMode || '分子设计流程', 120),
+    modelGeneratedProfile: true
+  };
+  if (!profile.antibodies.length) profile.antibodies = ['同类抗原结合抗体设计经验'];
+  return profile;
 }
 
 function pickPreparedCandidateTarget(modelIntent) {
@@ -5176,9 +5261,11 @@ function normalizeWorkflowIntentResult(data) {
   const source = data && typeof data === 'object' ? data : {};
   const rawIntent = String(source.i || source.intent || '').trim().toLowerCase();
   const inferredDesign = Boolean(source.selectedTarget || source.selected_target || source.target || source.t || source.inputType || source.input_type);
-  const intent = rawIntent || (inferredDesign ? 'design' : '');
+  const hasWorkflowBlueprint = Boolean(source.workflow || source.profile || source.workflowProfile);
+  const shouldForceWorkflow = inferredDesign || hasWorkflowBlueprint;
+  const intent = rawIntent || (shouldForceWorkflow ? 'design' : '');
   if (!intent) return null;
-  const normalizedIntent = intent === 'design_workflow' || intent === 'workflow' || intent === 'design' ? 'design'
+  const normalizedIntent = intent === 'design_workflow' || intent === 'workflow' || intent === 'design' || shouldForceWorkflow ? 'design'
     : (intent === 'assistant_chat' || intent === 'chat' ? 'assistant_chat' : '');
   if (!normalizedIntent) return null;
   const count = Number(source.n || source.count || 0);
@@ -5190,7 +5277,7 @@ function normalizeWorkflowIntentResult(data) {
   const answer = sanitizeAssistantText(source.answer || source.reply || '');
   const result = {
     intent: normalizedIntent,
-    shouldStartWorkflow: typeof source.start === 'boolean' ? source.start : normalizedIntent === 'design',
+    shouldStartWorkflow: normalizedIntent === 'design' ? true : typeof source.start === 'boolean' ? source.start : false,
     count: Number.isFinite(count) && count > 0 ? Math.min(Math.round(count), 200) : null,
     target,
     targetGene: gene,
@@ -5205,8 +5292,9 @@ function normalizeWorkflowIntentResult(data) {
     mechanism: String(source.mech || source.mechanism || '').trim().slice(0, 360),
     answer,
     confidence: Math.max(0, Math.min(1, Number(source.confidence) || 0)),
-    needsClarification: Boolean(source.clarify || source.needsClarification),
-    clarifyingQuestion: String(source.q || source.question || source.clarifyingQuestion || '').trim().slice(0, 220)
+    needsClarification: normalizedIntent === 'design' ? false : Boolean(source.clarify || source.needsClarification),
+    clarifyingQuestion: String(source.q || source.question || source.clarifyingQuestion || '').trim().slice(0, 220),
+    workflowBlueprint: source.workflow || source.profile || source.workflowProfile || null
   };
   const preparedCandidate = pickPreparedCandidateTarget(result);
   if (preparedCandidate) {
@@ -5228,6 +5316,7 @@ function normalizeWorkflowIntentResult(data) {
       });
     }
   }
+  result.workflowProfile = buildWorkflowProfileFromModelIntent(result);
   return result;
 }
 
@@ -5254,7 +5343,7 @@ async function resolveWorkflowIntentWithModel(input, voiceSessionId) {
           { role: 'user', content: text.slice(0, 1000) }
         ],
         temperature: 0,
-        max_tokens: 700,
+        max_tokens: 1800,
         response_format: { type: 'json_object' },
         stream: false
       })
@@ -5511,6 +5600,7 @@ function buildResolvedTargetRoute(input, baseRoute, resolution, parsed) {
     dynamic: true,
     resolvedByModel: true,
     targetResolution: safeResolution,
+    workflowProfile: baseRoute && baseRoute.workflowProfile ? baseRoute.workflowProfile : null,
     displayStory: '围绕 ' + target + ' 生成抗体候选结构和可开发性评估结果。',
     keywords: []
   };
@@ -5614,11 +5704,11 @@ async function runDirectAssistantAnswer(ws, answer) {
 }
 
 async function runMissingChatKey(ws) {
-  await runDirectAssistantAnswer(ws, 'key 没有配置。');
+  await runDirectAssistantAnswer(ws, '智能解析服务暂时不可用，请检查助手问答配置后重试。');
 }
 
 async function runModelParseFailed(ws) {
-  await runDirectAssistantAnswer(ws, '暂时无法理解这个需求，请稍后重试。');
+  await runDirectAssistantAnswer(ws, '智能解析服务暂时不可用，请检查助手问答配置后重试。');
 }
 
 async function runDemoRoutedWorkflow(ws, input, route) {
@@ -5666,12 +5756,12 @@ async function runResolvedDiseaseDesign(ws, input, voiceSessionId, modelIntent =
   if (modelIntent) {
     resolution = modelIntentToTargetResolution(input, modelIntent);
     if (!resolution) {
-      return runDirectAssistantAnswer(ws, modelIntent.clarifyingQuestion || modelIntent.answer || '暂时无法理解这个需求，请稍后重试。');
+      return runDirectAssistantAnswer(ws, modelIntent.clarifyingQuestion || modelIntent.answer || '智能解析服务暂时不可用，请检查助手问答配置后重试。');
     }
   } else {
     resolution = await resolveDiseaseTargetWithModel(input, indication, voiceSessionId);
   }
-  const route = buildResolvedTargetRoute(input, null, resolution, parsed);
+  const route = buildResolvedTargetRoute(input, { workflowProfile: modelIntent && modelIntent.workflowProfile }, resolution, parsed);
   await delay(400);
   await runDemoRoutedWorkflow(ws, input, route);
 }
@@ -5850,9 +5940,21 @@ async function runWorkflow(ws, input, forcedRoute) {
   const lang = /[\u4e00-\u9fff]/.test(input) ? 'zh' : 'en';
   const M = msgs(lang);
   const isZh = lang === 'zh';
-  const profile = buildRouteProfile(target, blockTarget, abType);
+  const profile = forcedRoute && forcedRoute.workflowProfile
+    ? { ...forcedRoute.workflowProfile }
+    : buildRouteProfile(target, blockTarget, abType);
   const demoRouteForProfile = forcedRoute || detectDemoRoute(input);
   profile.routeId = demoRouteForProfile && demoRouteForProfile.id ? demoRouteForProfile.id : '';
+  if (!profile.targetDisplay) profile.targetDisplay = target;
+  if (!profile.routeLabel) profile.routeLabel = profile.targetDisplay;
+  if (!profile.mechanism) profile.mechanism = '围绕 ' + profile.targetDisplay + ' 生成抗体候选结构和可开发性评估结果';
+  if (!profile.selectedEpitope) profile.selectedEpitope = profile.targetDisplay + ' 表面优先可及区域';
+  if (!Array.isArray(profile.evidenceSources)) profile.evidenceSources = [];
+  if (!Array.isArray(profile.antibodies)) profile.antibodies = [];
+  if (!Array.isArray(profile.epitopeRowsZh) || !profile.epitopeRowsZh.length) {
+    profile.epitopeRowsZh = normalizeWorkflowEpitopeRows([], null);
+  }
+  if (!Array.isArray(profile.epitopeRowsEn) || !profile.epitopeRowsEn.length) profile.epitopeRowsEn = profile.epitopeRowsZh;
   const plan = buildScreeningPlan(count);
   const displayMeta = buildWorkflowDisplayMeta(profile, count, plan);
   const sess = findSessionBySocket(ws);
