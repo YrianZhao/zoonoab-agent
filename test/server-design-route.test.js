@@ -1015,16 +1015,42 @@ test('server routes diabetes indication requests through target resolution', asy
 });
 
 test('target resolver fallback uses softer visible wording when the model has no explicit target', async () => {
-  const messages = await collectUserMessageStream('帮我设计10个针对糖尿病的抗体', {
-    timeoutMs: 12000,
-    stopWhen: (msg) => msg.type === 'tool_call' && msg.tool === 'target_evidence_review'
+  const mockServer = http.createServer((req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({ choices: [{ message: { content: '{"selectedTarget":"UNKNOWN"}' } }] }));
   });
-  const agentTexts = messages.filter(msg => msg.type === 'agent_msg').map(msg => msg.text || '');
-  const intro = agentTexts[0] || '';
 
-  assert.match(intro, /当前疾病方向缺少明确靶点，可以先从炎症因子 IL-1β 入口/);
-  assert.doesNotMatch(intro, /当前疾病方向缺少明确靶点时，优先整理为炎症因子 IL-1β 入口/);
-  assert.doesNotMatch(intro, VISIBLE_RESOLVER_LEAK_PATTERN);
+  const mockPort = await listenOnLocalhost(mockServer);
+  try {
+    const saveResp = await fetch('http://127.0.0.1:' + PORT + '/api/voice/session', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        voice: { mode: 'local', provider: 'local' },
+        chat: {
+          baseUrl: 'http://127.0.0.1:' + mockPort + '/v1',
+          apiKey: 'test-unknown-target-secret',
+          model: 'mock-unknown-target'
+        }
+      })
+    });
+    assert.equal(saveResp.status, 200);
+    const saved = await saveResp.json();
+
+    const messages = await collectUserMessageStream('帮我设计10个针对慢性炎症的抗体', {
+      timeoutMs: 12000,
+      voiceSessionId: saved.voiceSessionId,
+      stopWhen: (msg) => msg.type === 'tool_call' && msg.tool === 'target_evidence_review'
+    });
+    const agentTexts = messages.filter(msg => msg.type === 'agent_msg').map(msg => msg.text || '');
+    const intro = agentTexts[0] || '';
+
+    assert.match(intro, /当前疾病方向缺少明确靶点，可以先从炎症因子 IL-1β 入口/);
+    assert.doesNotMatch(intro, /当前疾病方向缺少明确靶点时，优先整理为炎症因子 IL-1β 入口/);
+    assert.doesNotMatch(intro, VISIBLE_RESOLVER_LEAK_PATTERN);
+  } finally {
+    await new Promise(resolve => mockServer.close(resolve));
+  }
 });
 
 test('server routes drug molecule design wording through molecular design workflow', async () => {

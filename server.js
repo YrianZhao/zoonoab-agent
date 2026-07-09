@@ -5299,7 +5299,7 @@ function builtinTargetResolution(indication) {
     selectedGene: 'IL1B',
     designLabel: 'INFLAMMATION-IL1B-1',
     confidence: 0.45,
-    reason: '当前疾病方向缺少明确靶点时，优先整理为炎症因子 IL-1β 入口，以保证抗体候选设计、结构展示和可开发性评估可以稳定推进。',
+    reason: '当前疾病方向缺少明确靶点，可以先从炎症因子 IL-1β 入口，以保证抗体候选设计、结构展示和可开发性评估可以稳定推进。',
     candidates: [
       { target: 'IL-1β', gene: 'IL1B', rationale: '炎症通路中可中和的细胞因子，适合作为抗体候选设计入口。' },
       { target: 'TNF', gene: 'TNF', rationale: '经典炎症因子，可作为备选抗体设计靶点。' },
