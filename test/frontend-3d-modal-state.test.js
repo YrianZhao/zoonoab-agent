@@ -57,6 +57,7 @@ test('done handler cannot directly reopen a stale structure modal from a previou
 });
 
 test('assistant thinking indicator starts on model wait and stops before final output', () => {
+  const startChatRun = extractFunction(html, 'function startChatRun');
   const thinkingCase = extractSwitchCase(html, "case 'assistant_thinking':");
   const agentCase = extractSwitchCase(html, "case 'agent_msg':");
   const doneCase = extractSwitchCase(html, "case 'done':");
@@ -66,6 +67,7 @@ test('assistant thinking indicator starts on model wait and stops before final o
   assert.match(html, /getStream\(\)\.appendChild\(box\)/);
   assert.match(html, /function\s+startAssistantThinking\s*\(/);
   assert.match(html, /function\s+stopAssistantThinking\s*\(/);
+  assert.match(startChatRun, /startAssistantThinking\(\{\s*topic:\s*text\s*,\s*local:\s*true\s*\}\)/);
   assert.match(thinkingCase, /startAssistantThinking\(msg\)/);
   assert.match(agentCase, /stopAssistantThinking\(\)/);
   assert.match(doneCase, /stopAssistantThinking\(\)/);
