@@ -92,7 +92,6 @@ test.before(async () => {
       VOICE_API_CONFIG_FILE: CONFIG_PATH,
       WORKFLOW_REJECTION_LOG_FILE: QUESTION_LOG_PATH,
       LOCAL_ASR_AUTO_START: '0',
-      WORKFLOW_INTENT_TIMEOUT_MS: '2500',
       TARGET_RESOLVER_TIMEOUT_MS: '2500',
       ASSISTANT_CHAT_API_KEY: '',
       ASSISTANT_CHAT_BASE_URL: '',
@@ -511,6 +510,95 @@ test('model targets prefer prepared local 3D display targets when candidates inc
     assert.equal(evidenceCall.params.target, 'HER2');
     assert.match(agentTexts[0], /胃癌|HER2|ERBB2|Claudin 18\.2/);
     assert.doesNotMatch(agentTexts[0], /本地|预设|可展示靶点|为了展示|3D 预设|已有分子模型/);
+  } finally {
+    await new Promise(resolve => mockServer.close(resolve));
+  }
+});
+
+test('slower model workflow blueprint responses are allowed to start the workflow', async () => {
+  const captured = [];
+  const mockServer = http.createServer((req, res) => {
+    let body = '';
+    req.setEncoding('utf8');
+    req.on('data', chunk => { body += chunk; });
+    req.on('end', () => {
+      captured.push(JSON.parse(body || '{}'));
+      setTimeout(() => {
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify({
+          choices: [{
+            message: {
+              content: JSON.stringify({
+                i: 'design',
+                start: true,
+                summary: '用户希望围绕肿瘤免疫治疗方向生成抗体候选。',
+                bg: '肿瘤免疫治疗抗体设计应优先关注免疫检查点、抗原可及性和可形成阻断机制的表位。',
+                disease: '肿瘤免疫治疗',
+                target: 'PD-L1',
+                gene: 'CD274',
+                label: 'ONCO-PDL1-SLOW-1',
+                reason: 'PD-L1 是肿瘤免疫逃逸场景中常见的免疫检查点配体，位于细胞表面，具备抗体可及性和清晰的 PD-1/PD-L1 阻断机制，适合作为肿瘤免疫治疗方向的抗体设计入口。',
+                cands: [
+                  { t: 'PD-L1', g: 'CD274', r: '肿瘤免疫检查点配体，适合阻断型抗体设计。' },
+                  { t: 'PD-1', g: 'PDCD1', r: '同一免疫检查点轴上的受体靶点，可作备选。' },
+                  { t: 'CTLA-4', g: 'CTLA4', r: 'T 细胞免疫调节靶点，可作为备选免疫检查点方向。' }
+                ],
+                mech: '阻断 PD-1/PD-L1 结合并生成 Fab 候选。',
+                ab: 'Fab',
+                n: 10,
+                block: 'PD-1',
+                confidence: 0.86,
+                workflow: {
+                  routeLabel: 'PD-L1 肿瘤免疫检查点阻断路线',
+                  disease: '肿瘤免疫治疗',
+                  targetDisplay: 'PD-L1',
+                  partnerDisplay: 'PD-1',
+                  domain: 'PD-L1 胞外 IgV 样结构域',
+                  mechanism: '阻断 PD-1/PD-L1 结合并恢复 T 细胞抗肿瘤活性。',
+                  evidence: 'PD-L1 肿瘤免疫检查点证据包',
+                  evidenceSources: ['免疫检查点通路依据', 'PD-L1 胞外结构域注释', '阻断型抗体开发背景'],
+                  referenceEntries: 'CD274 / PDCD1 / CTLA4 候选靶点条目',
+                  structure: 'PD-L1 胞外结构域与 Fab 结合姿态约束集合',
+                  structureRef: 'PD-L1/PD-1 参考界面',
+                  antibodies: ['Atezolizumab', 'Durvalumab'],
+                  interfaceFocus: 'PD-1 受体结合表面',
+                  selectedEpitope: 'PD-1 结合界面邻近保守表面',
+                  epitopeRows: [
+                    { site: 'Site A', region: 'PD-1 结合界面', value: '直接服务于免疫检查点阻断目标', decision: '优先' },
+                    { site: 'Site B', region: 'IgV 侧向稳定表面', value: '适合提高结合稳定性', decision: '备选' },
+                    { site: 'Site C', region: '柔性外周环区', value: '构象不确定性较高', decision: '谨慎' }
+                  ],
+                  riskSummary: '优先覆盖 PD-1 结合表面，同时避开柔性外周环区。',
+                  structurePrep: '加载 PD-L1/PD-1 参考界面，围绕 PD-1 结合表面生成 Fab 设计约束。',
+                  scaffold: 'Fab 片段抗体骨架',
+                  designMode: '肿瘤免疫检查点阻断设计',
+                  structuralBasis: 'PD-L1 胞外结构域与阻断型 Fab 姿态约束。'
+                }
+              })
+            }
+          }]
+        }));
+      }, 4500);
+    });
+  });
+
+  const mockPort = await listenOnLocalhost(mockServer);
+  try {
+    const saved = await saveMockChatConfig(mockPort, 'mock-slow-workflow-blueprint');
+    const messages = await collectUserMessageStream('帮我做一个肿瘤免疫治疗方向的抗体设计', {
+      timeoutMs: 15000,
+      voiceSessionId: saved.voiceSessionId,
+      stopWhen: msg => msg.type === 'tool_call' && msg.tool === 'target_evidence_review'
+    });
+    const evidenceCall = messages.find(msg => msg.type === 'tool_call' && msg.tool === 'target_evidence_review');
+    const serialized = JSON.stringify(messages);
+
+    assert.equal(captured.length, 1);
+    assert.ok(evidenceCall, 'a complete workflow blueprint should not be aborted before it can start the workflow');
+    assert.equal(evidenceCall.params.target, 'PD-L1');
+    assert.equal(evidenceCall.params.route, 'PD-L1 肿瘤免疫检查点阻断路线');
+    assert.match(serialized, /PD-L1 肿瘤免疫检查点证据包|PD-1 结合界面邻近保守表面/);
+    assert.doesNotMatch(serialized, /智能解析服务暂时不可用/);
   } finally {
     await new Promise(resolve => mockServer.close(resolve));
   }
