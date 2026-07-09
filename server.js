@@ -3663,6 +3663,14 @@ function routeChainInfo(preset, file) {
     antigen: preset && Array.isArray(preset.antigenChains) && preset.antigenChains.length ? preset.antigenChains : (remarks.antigen && remarks.antigen.length ? remarks.antigen : ['A']),
     antibody: preset && Array.isArray(preset.antibodyChains) && preset.antibodyChains.length ? preset.antibodyChains : (remarks.antibody && remarks.antibody.length ? remarks.antibody : ['B'])
   };
+  if (preset && preset.interfaceDetail === false) {
+    return {
+      antigen: sourceInfo.antigen,
+      antibody: sourceInfo.antibody,
+      sourceAntigen: sourceInfo.antigen,
+      sourceAntibody: sourceInfo.antibody
+    };
+  }
   const displayInfo = selectContactDisplayChains(file, sourceInfo.antigen, sourceInfo.antibody);
   return {
     antigen: displayInfo.antigen,

@@ -655,6 +655,141 @@ function setAtomLine(atom, serial, chain, xyz) {
     line.slice(54)).trimEnd();
 }
 
+function atomLineRecord(line, index) {
+  if (!line.startsWith('ATOM')) return null;
+  const xyz = [
+    parseFloat(line.slice(30, 38)),
+    parseFloat(line.slice(38, 46)),
+    parseFloat(line.slice(46, 54))
+  ];
+  if (!xyz.every(Number.isFinite)) return null;
+  return {
+    index,
+    chain: line[21] || ' ',
+    xyz
+  };
+}
+
+function setAtomLineXyz(line, xyz) {
+  const padded = line.padEnd(80, ' ');
+  return (padded.slice(0, 30) +
+    formatCoord(xyz[0]) +
+    formatCoord(xyz[1]) +
+    formatCoord(xyz[2]) +
+    padded.slice(54)).trimEnd();
+}
+
+function roleGeometryForLines(atomLines, antigenChains, antibodyChains) {
+  const records = atomLines
+    .map((line, index) => atomLineRecord(line, index))
+    .filter(Boolean);
+  const antigen = records.filter(atom => antigenChains.includes(atom.chain));
+  const antibody = records.filter(atom => antibodyChains.includes(atom.chain));
+  const contactSq = 4.5 * 4.5;
+  const nearSq = 6 * 6;
+  const clashSq = 2 * 2;
+  let minDistanceSq = Infinity;
+  let closestPair = null;
+  let contactPairs = 0;
+  let nearPairs = 0;
+  let closeClashes = 0;
+
+  for (const a of antigen) {
+    for (const b of antibody) {
+      const dx = a.xyz[0] - b.xyz[0];
+      const dy = a.xyz[1] - b.xyz[1];
+      const dz = a.xyz[2] - b.xyz[2];
+      const distSq = dx * dx + dy * dy + dz * dz;
+      if (distSq < minDistanceSq) {
+        minDistanceSq = distSq;
+        closestPair = { antigen: a, antibody: b };
+      }
+      if (distSq < clashSq) closeClashes += 1;
+      if (distSq <= contactSq) contactPairs += 1;
+      if (distSq <= nearSq) nearPairs += 1;
+    }
+  }
+
+  return {
+    minDistance: Number.isFinite(minDistanceSq) ? Math.sqrt(minDistanceSq) : Infinity,
+    closestPair,
+    contactPairs,
+    nearPairs,
+    closeClashes
+  };
+}
+
+function translateChains(atomLines, chains, vector) {
+  return atomLines.map(line => {
+    const record = atomLineRecord(line, -1);
+    if (!record || !chains.includes(record.chain)) return line;
+    return setAtomLineXyz(line, add(record.xyz, vector));
+  });
+}
+
+function routeRoleSpacingThresholds(route) {
+  if (/^ANGPTL3-(?:CV|Met)-Fab$/.test(route.aliasPrefix || '')) {
+    return { minContacts: 4, minNearPairs: 20 };
+  }
+  if (/^IL33-VHH$/.test(route.aliasPrefix || '')) {
+    return { minContacts: 8, minNearPairs: 45 };
+  }
+  return { minContacts: 8, minNearPairs: 40 };
+}
+
+function roleSpacingLooksPlausible(geometry, thresholds) {
+  return geometry.closeClashes === 0 &&
+    geometry.minDistance >= 2 &&
+    geometry.minDistance <= 4.5 &&
+    geometry.contactPairs >= thresholds.minContacts &&
+    geometry.nearPairs >= thresholds.minNearPairs;
+}
+
+function pairDirection(pair, fallback, awayFromAntigen) {
+  if (!pair) return unit(fallback || [1, 0, 0]);
+  const from = awayFromAntigen ? pair.antigen.xyz : pair.antibody.xyz;
+  const to = awayFromAntigen ? pair.antibody.xyz : pair.antigen.xyz;
+  const vector = sub(to, from);
+  if (norm(vector) < 0.001) return unit(fallback || [1, 0, 0]);
+  return unit(vector);
+}
+
+function normalizeRoleSpacing(route, atomLines) {
+  if (!route.antigenChains || !route.antibodyChains || !route.antigenChains.length || !route.antibodyChains.length) {
+    return atomLines;
+  }
+  let lines = atomLines.slice();
+  const thresholds = routeRoleSpacingThresholds(route);
+  const fallbackDirection = route.attach || [1, 0, 0];
+  let geometry = roleGeometryForLines(lines, route.antigenChains, route.antibodyChains);
+
+  for (let i = 0; i < 40 && geometry.closeClashes > 0; i++) {
+    const direction = pairDirection(geometry.closestPair, fallbackDirection, true);
+    const amount = Math.max(0.05, 2.2 - geometry.minDistance + 0.02);
+    lines = translateChains(lines, route.antibodyChains, mul(direction, amount));
+    geometry = roleGeometryForLines(lines, route.antigenChains, route.antibodyChains);
+  }
+
+  if (!roleSpacingLooksPlausible(geometry, thresholds) &&
+      (geometry.minDistance > 4.5 || geometry.contactPairs < thresholds.minContacts || geometry.nearPairs < thresholds.minNearPairs)) {
+    const direction = pairDirection(geometry.closestPair, fallbackDirection, false);
+    const amount = Math.max(0, geometry.minDistance - 2.25);
+    if (amount > 0) {
+      lines = translateChains(lines, route.antibodyChains, mul(direction, amount));
+      geometry = roleGeometryForLines(lines, route.antigenChains, route.antibodyChains);
+    }
+  }
+
+  for (let i = 0; i < 40 && geometry.closeClashes > 0; i++) {
+    const direction = pairDirection(geometry.closestPair, fallbackDirection, true);
+    const amount = Math.max(0.05, 2.2 - geometry.minDistance + 0.02);
+    lines = translateChains(lines, route.antibodyChains, mul(direction, amount));
+    geometry = roleGeometryForLines(lines, route.antigenChains, route.antibodyChains);
+  }
+
+  return lines;
+}
+
 function mappedAtoms(templateId, mappings) {
   const atoms = parseAtoms(templateId);
   const out = [];
@@ -713,7 +848,7 @@ function buildStaticComplex(route, idx) {
       : [];
     out.push(...transformMappedAtoms(antibodyMapped, sceneCenter, serialState));
     out.push(...transformMappedAtoms(scaffoldMapped, sceneCenter, serialState));
-    return buildPdbText(route, idx, out);
+    return buildPdbText(route, idx, normalizeRoleSpacing(route, out));
   }
 
   const jitter = routeJitter(route, idx);
@@ -745,7 +880,7 @@ function buildStaticComplex(route, idx) {
     }));
   }
 
-  return buildPdbText(route, idx, out);
+  return buildPdbText(route, idx, normalizeRoleSpacing(route, out));
 }
 
 function buildPdbText(route, idx, atomLines) {

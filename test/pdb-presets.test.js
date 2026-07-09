@@ -244,6 +244,68 @@ function crossRoleContactSummary(atoms, antigenChains, antibodyChains, contactTh
   };
 }
 
+function crossRoleGeometrySummary(atoms, antigenChains, antibodyChains, contactThreshold = 4.5, nearThreshold = 6.0, clashThreshold = 2.0) {
+  const antigen = atoms.filter(atom => antigenChains.includes(atom.chain));
+  const antibody = atoms.filter(atom => antibodyChains.includes(atom.chain));
+  let minDistance = Infinity;
+  let contactPairs = 0;
+  let nearPairs = 0;
+  let closeClashes = 0;
+  const contactSq = contactThreshold * contactThreshold;
+  const nearSq = nearThreshold * nearThreshold;
+  const clashSq = clashThreshold * clashThreshold;
+
+  for (const a of antigen) {
+    for (const b of antibody) {
+      const distSq = ((a.x - b.x) ** 2) + ((a.y - b.y) ** 2) + ((a.z - b.z) ** 2);
+      if (distSq < minDistance) minDistance = distSq;
+      if (distSq <= contactSq) contactPairs += 1;
+      if (distSq <= nearSq) nearPairs += 1;
+      if (distSq < clashSq) closeClashes += 1;
+    }
+  }
+
+  return {
+    minDistance: Number.isFinite(minDistance) ? Math.sqrt(minDistance) : Infinity,
+    contactPairs,
+    nearPairs,
+    closeClashes
+  };
+}
+
+function assertPlausibleRoleGeometry(filename, options = {}) {
+  const text = readPdbText(filename);
+  const atoms = parsePdbAtoms(filename);
+  const antigenChains = remarkChains(text, 904);
+  const antibodyChains = remarkChains(text, 905);
+  const geometry = crossRoleGeometrySummary(
+    atoms,
+    antigenChains,
+    antibodyChains,
+    options.contactThreshold || 4.5,
+    options.nearThreshold || 6.0,
+    options.clashThreshold || 2.0
+  );
+
+  assert.ok(antigenChains.length > 0, filename + ' should declare antigen chains');
+  assert.ok(antibodyChains.length > 0, filename + ' should declare antibody chains');
+  assert.equal(geometry.closeClashes, 0, filename + ' should not have antigen-antibody atom pairs below 2.0 A');
+  assert.ok(geometry.contactPairs >= (options.minContacts || 10), filename + ' should keep visible antigen-antibody contacts within 4.5 A');
+  assert.ok(geometry.nearPairs >= (options.minNearPairs || 50), filename + ' should keep antigen-antibody chains within 6.0 A');
+  assert.ok(geometry.minDistance >= 2.0 && geometry.minDistance <= 4.5, filename + ' should be close enough for an interface but not overlap');
+}
+
+function roleGeometryThresholds(filename) {
+  const base = path.basename(filename);
+  if (/^ANGPTL3-(?:CV|Met)-Fab-\d+\.pdb$/.test(base)) {
+    return { minContacts: 4, minNearPairs: 20 };
+  }
+  if (/^IL33-VHH-\d+\.pdb$/.test(base)) {
+    return { minContacts: 8, minNearPairs: 45 };
+  }
+  return { minContacts: 8, minNearPairs: 40 };
+}
+
 test('IL-33 allergic asthma preset uses a real Fab complex without cross-chain hard clashes', () => {
   const atoms = parsePdbAtoms('pdb/IL33-Fab-01.pdb');
   const counts = chainAtomCounts(atoms);
@@ -341,6 +403,22 @@ test('static route preset PDBs avoid cross-chain hard clashes', () => {
     const clashes = crossChainClashSummary(atoms);
     assert.equal(clashes.hardClashes, 0, file + ' should have no cross-chain atom pairs below 1.2 A');
     assert.ok(clashes.minDistance > 1.2, file + ' closest cross-chain atom distance should be physically plausible');
+  }
+});
+
+test('local 3D display presets keep plausible antigen-antibody spacing', () => {
+  const pdbDir = path.join(ROOT, 'pdb');
+  const files = fs.readdirSync(pdbDir)
+    .filter(file => /-\d+\.pdb$/.test(file))
+    .filter(file => {
+      const text = readPdbText(path.join('pdb', file));
+      return remarkChains(text, 904).length > 0 && remarkChains(text, 905).length > 0;
+    })
+    .sort();
+
+  assert.ok(files.length >= 350, 'local display library should keep broad antigen-antibody preset coverage');
+  for (const file of files) {
+    assertPlausibleRoleGeometry(path.join('pdb', file), roleGeometryThresholds(file));
   }
 });
 
