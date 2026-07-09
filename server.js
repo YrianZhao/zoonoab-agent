@@ -5532,7 +5532,7 @@ function modelIntentToTargetResolution(input, modelIntent) {
 }
 
 function builtinTargetResolution(indication) {
-  const key = Object.keys(BUILTIN_DISEASE_TARGET_RESOLVERS).find(item => indication.includes(item) || item.includes(indication));
+  const key = findBuiltinDiseaseTargetResolutionKey(indication);
   const text = String(indication || '').trim();
   const base = key ? BUILTIN_DISEASE_TARGET_RESOLVERS[key] : (/烟草花叶病毒|tobacco mosaic|tmv/i.test(text) ? {
     inputType: 'pathogen_antigen',
@@ -5570,6 +5570,50 @@ function builtinTargetResolution(indication) {
       { target: 'IL-6', gene: 'IL6', rationale: '炎症级联相关细胞因子，可作为备选入口。' }
     ]
   }, '');
+}
+
+function findBuiltinDiseaseTargetResolutionKey(indication) {
+  const text = String(indication || '').trim();
+  if (!text) return '';
+  return Object.keys(BUILTIN_DISEASE_TARGET_RESOLVERS).find(item => text.includes(item) || item.includes(text)) || '';
+}
+
+function buildPreparedDiseaseFallbackIntent(input) {
+  const text = String(input || '').trim();
+  if (!text || shouldSuppressDesignWorkflow(text)) return null;
+  const parsed = extractDesignRequest(text);
+  if (!parsed.isDesignRequest) return null;
+  const indication = extractDiseaseIndication(text) || (parsed.target && isDiseaseIndication(parsed.target) ? parsed.target : '');
+  const key = findBuiltinDiseaseTargetResolutionKey(indication);
+  if (!key) return null;
+  const resolution = normalizeTargetResolution({
+    ...BUILTIN_DISEASE_TARGET_RESOLVERS[key],
+    disease: indication || key
+  }, indication || key);
+  if (!resolution || !resolution.selectedTarget) return null;
+  const contextText = [text, indication, resolution.reason, resolution.designLabel].filter(Boolean).join(' ');
+  const blockTarget = resolution.selectedTarget === 'PD-L1' && /肿瘤|癌|免疫治疗|PD-1|PD-L1|checkpoint/i.test(contextText)
+    ? 'PD-1'
+    : (parsed.blockTarget || '');
+  return {
+    intent: 'design',
+    shouldStartWorkflow: true,
+    count: parsed.count || 10,
+    target: resolution.selectedTarget,
+    targetGene: resolution.selectedGene || '',
+    abType: parsed.abType || 'Fab',
+    blockTarget,
+    disease: resolution.disease || indication || key,
+    designLabel: resolution.designLabel || '',
+    summary: '面向' + (resolution.disease || indication || key) + '整理抗体设计任务',
+    background: (resolution.disease || indication || key) + '方向已匹配到可进入分子设计流程的具体靶点。',
+    reason: resolution.reason || '',
+    candidateTargets: Array.isArray(resolution.candidates) ? resolution.candidates : [],
+    mechanism: blockTarget ? '阻断 ' + resolution.selectedTarget + '/' + blockTarget + ' 相互作用并筛选 Fab 候选。' : '围绕 ' + resolution.selectedTarget + ' 外露结构域生成 Fab 候选。',
+    confidence: resolution.confidence || 0.7,
+    needsClarification: false,
+    workflowProfile: null
+  };
 }
 
 function buildTargetResolverPrompt(indication, input) {
@@ -6668,6 +6712,18 @@ async function resolveUserMessageRunner(msg, cleanText) {
     };
   }
   if (!modelIntent || modelIntent.error) {
+    const fallbackIntent = buildPreparedDiseaseFallbackIntent(cleanText);
+    if (fallbackIntent) {
+      return {
+        detectedIntent: 'design',
+        intent: 'design',
+        demoRoute: null,
+        localWorkflowAllowed: true,
+        modelIntent: fallbackIntent,
+        modelFallbackReason: modelIntent && modelIntent.error || 'model_unavailable',
+        runner: (socket, text) => runResolvedDiseaseDesign(socket, text, msg.voiceSessionId, fallbackIntent)
+      };
+    }
     return {
       detectedIntent: 'assistant_chat',
       intent: 'assistant_chat',

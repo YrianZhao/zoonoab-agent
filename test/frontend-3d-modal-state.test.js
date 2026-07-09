@@ -74,6 +74,19 @@ test('assistant thinking indicator starts on model wait and stops before final o
   assert.match(errorCase, /stopAssistantThinking\(\)/);
 });
 
+test('skip thinking acknowledgement does not duplicate the local pending log', () => {
+  const skipThinking = extractFunction(html, 'function skipThinking');
+  const ackCase = extractSwitchCase(html, "case 'skip_thinking_ack':");
+
+  assert.match(skipThinking, /appendLog\('\[System\] 正在收束当前阶段，后续流程将进入快速思考\.\.\.'\)/);
+  assert.doesNotMatch(
+    ackCase,
+    /appendLog\('\[System\] '\s*\+/,
+    'server acknowledgement should not append a second pending skip-thinking line'
+  );
+  assert.match(ackCase, /setSkipThinkingButtonState\('pending'\)/);
+});
+
 test('workflow auto-scroll only follows while the page is pinned near the bottom', () => {
   const scrollBottom = extractFunction(html, 'function scrollBottom');
 

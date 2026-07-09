@@ -718,3 +718,32 @@ test('slower model workflow blueprint responses are allowed to start the workflo
     await new Promise(resolve => mockServer.close(resolve));
   }
 });
+
+test('prepared disease requests fall back to local target resolution when model parsing fails', async () => {
+  let captured = 0;
+  const mockServer = http.createServer((req, res) => {
+    captured += 1;
+    req.socket.destroy();
+  });
+
+  const mockPort = await listenOnLocalhost(mockServer);
+  try {
+    const saved = await saveMockChatConfig(mockPort, 'mock-failing-router');
+    const messages = await collectUserMessageStream('帮我做一个肿瘤免疫治疗方向的抗体设计', {
+      timeoutMs: 15000,
+      voiceSessionId: saved.voiceSessionId,
+      stopWhen: msg => msg.type === 'tool_call' && msg.tool === 'target_evidence_review'
+    });
+    const evidenceCall = messages.find(msg => msg.type === 'tool_call' && msg.tool === 'target_evidence_review');
+    const serialized = JSON.stringify(messages);
+
+    assert.equal(captured, 1);
+    assert.ok(evidenceCall, 'prepared tumor immunotherapy wording should still enter the workflow');
+    assert.equal(evidenceCall.params.target, 'PD-L1');
+    assert.match(serialized, /肿瘤免疫治疗|PD-1\/PD-L1|CD274/);
+    assert.doesNotMatch(serialized, /智能解析服务暂时不可用/);
+    assert.doesNotMatch(serialized, /IL-1β|IL1B|INFLAMMATION-IL1B/);
+  } finally {
+    await new Promise(resolve => mockServer.close(resolve));
+  }
+});
