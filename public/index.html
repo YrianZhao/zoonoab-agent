@@ -5852,7 +5852,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146085';
+    const APP_BUILD_VERSION = '78146086';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -6031,6 +6031,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     let demoSkipSettled = false;
     let workflowFastForward = false;
     let currentRunHas3D = false;
+    let currentClientRunId = '';
+    let cancelledClientRunIds = new Set();
 
     function refreshLucideIcons(options) {
         if (window.lucide && typeof window.lucide.createIcons === 'function') {
@@ -6041,6 +6043,36 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     // ═══════════════ Message Queue (for ordered, typewriter-synced output) ═══════════════
     let msgQueue = [];
     let queueProcessing = false;
+
+    function createClientRunId() {
+        return 'run-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 8);
+    }
+
+    function pruneCancelledClientRunIds() {
+        while (cancelledClientRunIds.size > 40) {
+            const first = cancelledClientRunIds.values().next().value;
+            cancelledClientRunIds.delete(first);
+        }
+    }
+
+    function retireClientRun(clientRunId) {
+        if (!clientRunId || currentClientRunId === clientRunId) currentClientRunId = '';
+    }
+
+    function isStaleClientRunId(clientRunId) {
+        if (!clientRunId) return false;
+        if (cancelledClientRunIds.has(clientRunId)) return true;
+        return Boolean(currentClientRunId && currentClientRunId !== clientRunId);
+    }
+
+    function isStaleRunMessage(msg) {
+        return Boolean(msg && msg.clientRunId && isStaleClientRunId(msg.clientRunId));
+    }
+
+    function clearQueuedRunOps() {
+        if (!Array.isArray(msgQueue) || msgQueue.length === 0) return;
+        msgQueue = [];
+    }
 
     function enqueueOp(fn) {
         msgQueue.push(fn);
@@ -6096,7 +6128,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     const TYPEWRITER_MS_PER_CHAR = 2;
 
     // Typewriter effect for agent messages
-    function typewriterEffect(markdown, contentEl, autoScroll = captureAutoScrollState()) {
+    function typewriterEffect(markdown, contentEl, autoScroll = captureAutoScrollState(), runId = currentClientRunId) {
         return new Promise(resolve => {
             contentEl.style.display = 'block';
             contentEl.style.width = '100%';
@@ -6110,6 +6142,11 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             let pos = 0;
 
             function tick() {
+                if (isStaleClientRunId(runId)) {
+                    contentEl.style.minHeight = '';
+                    resolve();
+                    return;
+                }
                 if (pos < totalLen) {
                     const accelerated = workflowFastForward || document.body.classList.contains('workflow-fast-forward') || skipThinkingRequested || demoSkipSettled;
                     const acceleratedStep = Math.max(charsPerTick * 6, Math.ceil(totalLen / 18), 8);
@@ -8294,6 +8331,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     function handleMsg(msg) {
+        if (isStaleRunMessage(msg)) return;
         markQuickDesignBackendResponse(msg);
         if (typeof window.voiceControlHandleWsMessage === 'function' && window.voiceControlHandleWsMessage(msg)) {
             return;
@@ -8468,6 +8506,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 break;
 
             case 'cancelled':
+                if (isStaleRunMessage(msg)) break;
                 enqueueOp(() => new Promise(resolve => {
                     stopAssistantThinking();
                     finishQuickDesignRun();
@@ -8475,11 +8514,13 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                     resetRunControls();
                     appendLog('[System] 服务端已确认取消');
                     finalizeHistoryRun('cancelled');
+                    retireClientRun(msg.clientRunId);
                     resolve();
                 }));
                 break;
 
             case 'error':
+                if (isStaleRunMessage(msg)) break;
                 enqueueOp(() => new Promise(resolve => {
                     stopAssistantThinking();
                     finishQuickDesignRun();
@@ -8488,17 +8529,20 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                     showToast(msg.text || '服务器错误，请重试', 'error');
                     if (msg.text) recordHistoryEvent('log', { text: '[Error] ' + msg.text });
                     finalizeHistoryRun('error');
+                    retireClientRun(msg.clientRunId);
                     resolve();
                 }));
                 break;
 
             case 'done':
+                if (isStaleRunMessage(msg)) break;
                 enqueueOp(() => new Promise(resolve => {
                     stopAssistantThinking();
                     finishQuickDesignRun();
                     resetRunControls();
                     showToast(t('Workflow complete!'), 'success');
                     finalizeHistoryRun('completed');
+                    retireClientRun(msg.clientRunId);
 
                     // Scroll to bottom, then wait for scroll to settle,
                     // then open the modal so user sees the full result state first.
@@ -8889,15 +8933,22 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
     function cancelTask() {
         if (!isRunning) return;
-        if (ws && ws.readyState === 1) {
-            ws.send(JSON.stringify({ type: 'cancel' }));
+        const clientRunId = currentClientRunId;
+        if (clientRunId) {
+            cancelledClientRunIds.add(clientRunId);
+            pruneCancelledClientRunIds();
         }
+        if (ws && ws.readyState === 1) {
+            ws.send(JSON.stringify({ type: 'cancel', clientRunId }));
+        }
+        clearQueuedRunOps();
         setWorkflowFastForward(false);
         finishQuickDesignRun();
         resetRunControls();
         showToast('工作流已取消', 'warning');
         appendLog('[System] 工作流已取消');
         finalizeHistoryRun('cancelled');
+        retireClientRun(clientRunId);
     }
 
     function skipThinking() {
@@ -8929,6 +8980,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
     // ═══════════════ Send Message ═══════════════
     function startChatRun(text) {
+        cancelledClientRunIds.clear();
+        currentClientRunId = createClientRunId();
         document.getElementById('emptyState')?.remove();
         document.body.classList.add('chatting-mode');
         startHistoryRun(text);
@@ -8955,11 +9008,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const _inputEl = document.getElementById('userInput');
         if (_inputEl) _inputEl.placeholder = '';
         showTyping();
+        return currentClientRunId;
     }
 
     function sendQuickDesignWorkflow(text, routeId) {
         if (!text || isRunning) return;
-        startChatRun(text);
+        const clientRunId = startChatRun(text);
         if (activeHistoryRun && routeId) activeHistoryRun.routeId = routeId;
         if (ws && ws.readyState === 1) {
             quickDesignRunActive = true;
@@ -8970,13 +9024,13 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             }, 8000);
             appendLog('[Design] 正在启动分子设计流程...');
             try {
-                ws.send(JSON.stringify({ type: 'quick_design', text, routeId }));
+                ws.send(JSON.stringify({ type: 'quick_design', text, routeId, clientRunId }));
             } catch (err) {
                 failQuickDesignRun('分子设计请求发送失败，请检查连接后重试。');
             }
         } else {
             appendLog('[Design] 正在启动分子设计流程...');
-            runDemo(text, routeId);
+            runDemo(text, routeId, clientRunId);
         }
     }
 
@@ -8989,7 +9043,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (!text || isRunning) return;
         if (text.length > 2000) { showToast('输入内容过长，请不超过 2000 字符', 'error'); return; }
 
-        startChatRun(text);
+        const clientRunId = startChatRun(text);
         input.value = '';
         input.style.height = 'auto';
 
@@ -8999,10 +9053,11 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 text,
                 voiceSessionId: voiceSessionId || '',
                 voice: Boolean(options.voice),
-                voiceChatOnly: Boolean(options.voiceChatOnly)
+                voiceChatOnly: Boolean(options.voiceChatOnly),
+                clientRunId
             }));
         } else {
-            runDemo(text);
+            runDemo(text, '', clientRunId);
         }
     }
 
@@ -12089,17 +12144,27 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     // ═══════════════ Demo Mode Simulation ═══════════════
     // Fires when backend WS is unavailable — simulates a full multi-agent VHH design run
 
-    function demoSleep(ms) {
-        const op = () => new Promise(r => setTimeout(r, workflowFastForward || demoSkipSettled ? Math.min(650, ms) : ms));
+    function demoSleep(ms, clientRunId = currentClientRunId) {
+        const op = () => new Promise(r => {
+            if (isStaleClientRunId(clientRunId)) {
+                r();
+                return;
+            }
+            setTimeout(r, workflowFastForward || demoSkipSettled ? Math.min(650, ms) : ms);
+        });
         op.skipOnThinkingSkip = true;
         enqueueOp(op);
     }
 
-    function demoMsg(type, payload) {
+    function demoMsg(type, payload, clientRunId = currentClientRunId) {
         // Push into queue for agent_msg (typewriter); immediate for others
         if (type === 'agent_msg') {
             recordHistoryEvent('assistant', { text: payload && payload.text ? payload.text : '' });
             enqueueOp(() => new Promise(resolve => {
+                if (isStaleClientRunId(clientRunId)) {
+                    resolve();
+                    return;
+                }
                 const div = document.createElement('div');
                 div.className = 'chat-message';
                 div.style.cssText = 'width:100%;display:block;min-width:0;';
@@ -12112,18 +12177,21 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                     <div class="message-content" style="display:block;width:100%;min-height:1.6em;"></div>`;
                 getStream().appendChild(div);
                 scrollBottom();
-                typewriterEffect(payload.text, div.querySelector('.message-content')).then(resolve);
+                typewriterEffect(payload.text, div.querySelector('.message-content'), captureAutoScrollState(), clientRunId).then(resolve);
             }));
         } else {
             enqueueOp(() => new Promise(resolve => {
-                handleMsg({ type, ...payload });
+                if (!isStaleClientRunId(clientRunId)) handleMsg({ type, ...payload, clientRunId });
                 resolve();
             }));
         }
     }
 
-    function demoLog(text) {
-        const op = () => new Promise(resolve => { appendLog(text); resolve(); });
+    function demoLog(text, clientRunId = currentClientRunId) {
+        const op = () => new Promise(resolve => {
+            if (!isStaleClientRunId(clientRunId)) appendLog(text);
+            resolve();
+        });
         op.skipOnThinkingSkip = true;
         enqueueOp(op);
     }
@@ -12355,7 +12423,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         };
     }
 
-    function runDemo(userText, routeId) {
+    function runDemo(userText, routeId, clientRunId = currentClientRunId) {
         const profile = getFallbackRouteProfile(userText, routeId);
         const meta = fallbackDisplayMeta(profile);
         const uid = () => Math.random().toString(36).slice(2,10);
@@ -17320,6 +17388,8 @@ ${fallbackTableRows(profile.rows)}
         starredSeqs.clear();
         finishQuickDesignRun();
         resetCurrentRun3DState();
+        currentClientRunId = '';
+        cancelledClientRunIds.clear();
         isRunning = false;
         setRunControlsActive(false);
         // Reset message queue

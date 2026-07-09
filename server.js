@@ -4740,9 +4740,10 @@ function resolveQuickDesignRoute(msg) {
   return detected || getDefaultDemoRoute();
 }
 
-function quickDesignAck(route) {
+function quickDesignAck(route, clientRunId = '') {
   return {
     type: 'quick_design_ack',
+    clientRunId,
     routeId: route.id,
     routeLabel: route.target + (route.blockTarget ? '/' + route.blockTarget : ''),
     disease: route.disease,
@@ -5729,7 +5730,30 @@ const _CDR3_POOL = [
 function _randPick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 
 function findSessionBySocket(ws) {
+  if (ws && ws.__baseSocket && ws.__runState) return createScopedSession(ws.__baseSocket, ws.__runState);
   return [...sessions.values()].find(s => s.ws === ws) || null;
+}
+
+function createScopedSession(baseSocket, runState) {
+  const sess = [...sessions.values()].find(s => s.ws === baseSocket) || null;
+  if (!sess || !runState) return sess;
+  return {
+    get ws() { return baseSocket; },
+    get busy() { return sess.currentRun === runState && sess.busy; },
+    set busy(value) { if (sess.currentRun === runState) sess.busy = value; },
+    get cancelled() { return Boolean(runState.cancelled || sess.currentRun !== runState); },
+    set cancelled(value) { runState.cancelled = Boolean(value); },
+    get skipThinking() { return sess.currentRun === runState && Boolean(sess.skipThinking); },
+    set skipThinking(value) { if (sess.currentRun === runState) sess.skipThinking = Boolean(value); },
+    get skipThinkingNotified() { return Boolean(runState.skipThinkingNotified); },
+    set skipThinkingNotified(value) { runState.skipThinkingNotified = Boolean(value); },
+    get fastForwardWorkflow() { return sess.currentRun === runState && Boolean(sess.fastForwardWorkflow); },
+    set fastForwardWorkflow(value) { if (sess.currentRun === runState) sess.fastForwardWorkflow = Boolean(value); },
+    get workflowStage() { return sess.currentRun === runState ? sess.workflowStage : ''; },
+    set workflowStage(value) { if (sess.currentRun === runState) sess.workflowStage = value || ''; },
+    get fromVoice() { return sess.currentRun === runState && Boolean(sess.fromVoice); },
+    set fromVoice(value) { if (sess.currentRun === runState) sess.fromVoice = Boolean(value); }
+  };
 }
 
 function markWorkflowStage(sess, stage) {
@@ -6517,10 +6541,31 @@ function runSocketTask(ws, sid, msg, buildRunner) {
   const text = String(msg.text || '');
   const sess = sessions.get(sid);
   if (sess && sess.busy) {
-    ws.send(JSON.stringify({ type: 'error', text: '当前工作流正在运行，请等待完成后再发送新指令。' }));
+    ws.send(JSON.stringify({ type: 'error', text: '当前工作流正在运行，请等待完成后再发送新指令。', clientRunId: msg && msg.clientRunId || '' }));
     return;
   }
+  const runState = { id: uuidv4(), clientRunId: msg && msg.clientRunId || '', cancelled: false, skipThinkingNotified: false };
+  const scopedWs = {
+    __baseSocket: ws,
+    __runState: runState,
+    get readyState() {
+      return sess && sess.currentRun === runState && !runState.cancelled ? ws.readyState : 0;
+    },
+    send(payload) {
+      if (!sess || sess.currentRun !== runState || runState.cancelled || ws.readyState !== 1) return;
+      let outbound = payload;
+      try {
+        const parsed = typeof payload === 'string' ? JSON.parse(payload) : null;
+        if (parsed && parsed.type && runState.clientRunId && !parsed.clientRunId) {
+          parsed.clientRunId = runState.clientRunId;
+          outbound = JSON.stringify(parsed);
+        }
+      } catch {}
+      ws.send(outbound);
+    }
+  };
   if (sess) {
+    sess.currentRun = runState;
     sess.busy = true;
     sess.cancelled = false;
     sess.skipThinking = false;
@@ -6531,14 +6576,15 @@ function runSocketTask(ws, sid, msg, buildRunner) {
   }
   const cleanText = stripWakeWords(text);
   Promise.resolve(buildRunner(cleanText || text))
-    .then(runner => runner(ws, cleanText || text))
+    .then(runner => runner(scopedWs, cleanText || text))
     .catch(err => {
       if (err && err.isCancelled) return;
+      if (sess && sess.currentRun !== runState) return;
       console.error('[Server] Workflow error:', err);
-      if (ws.readyState === 1) ws.send(JSON.stringify({ type: 'error', text: '工作流执行出错，请重试。' }));
+      if (ws.readyState === 1) ws.send(JSON.stringify({ type: 'error', text: '工作流执行出错，请重试。', clientRunId: runState.clientRunId || '' }));
     })
     .finally(() => {
-      if (sess) {
+      if (sess && sess.currentRun === runState) {
         sess.busy = false;
         sess.cancelled = false;
         sess.skipThinking = false;
@@ -6546,6 +6592,7 @@ function runSocketTask(ws, sid, msg, buildRunner) {
         sess.fastForwardWorkflow = false;
         sess.workflowStage = '';
         sess.fromVoice = false;
+        sess.currentRun = null;
       }
     });
 }
@@ -7215,9 +7262,19 @@ wss.on('connection', ws => {
 
     if (msg.type === 'cancel') {
       const sess = sessions.get(sid);
-      if (sess && sess.busy) sess.cancelled = true;
-      if (sess) sess.fastForwardWorkflow = false;
-      if (ws.readyState === 1) ws.send(JSON.stringify({ type: 'cancelled' }));
+      const cancelClientRunId = msg && msg.clientRunId || (sess && sess.currentRun && sess.currentRun.clientRunId) || '';
+      if (sess) {
+        if (sess.currentRun) sess.currentRun.cancelled = true;
+        sess.cancelled = true;
+        sess.busy = false;
+        sess.skipThinking = false;
+        sess.skipThinkingNotified = false;
+        sess.fastForwardWorkflow = false;
+        sess.workflowStage = '';
+        sess.fromVoice = false;
+        sess.currentRun = null;
+      }
+      if (ws.readyState === 1) ws.send(JSON.stringify({ type: 'cancelled', clientRunId: cancelClientRunId }));
       return;
     }
 
@@ -7240,7 +7297,7 @@ wss.on('connection', ws => {
     if (msg.type === 'quick_design') {
       if (!msg.text || typeof msg.text !== 'string' || msg.text.length > 4000) return;
       const quickRoute = resolveQuickDesignRoute(msg);
-      if (ws.readyState === 1) ws.send(JSON.stringify(quickDesignAck(quickRoute)));
+      if (ws.readyState === 1) ws.send(JSON.stringify(quickDesignAck(quickRoute, msg && msg.clientRunId || '')));
       runSocketTask(ws, sid, msg, () => ((socket, text) => runDemoRoutedWorkflow(socket, text || msg.text, quickRoute)));
       return;
     }

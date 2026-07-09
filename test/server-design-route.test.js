@@ -67,6 +67,56 @@ function collectUserMessageStream(text, options = {}) {
   });
 }
 
+function collectCancelThenSecondRunMessages({ firstText, secondText, routeId = 'tumor_immunotherapy', timeoutMs = 9000 }) {
+  return new Promise((resolve, reject) => {
+    const ws = new WebSocket('ws://127.0.0.1:' + PORT);
+    const messages = [];
+    let sentFirst = false;
+    let sentCancel = false;
+    let sentSecond = false;
+    const timer = setTimeout(() => {
+      try { ws.close(); } catch {}
+      reject(new Error('timed out waiting for second run after cancellation'));
+    }, timeoutMs);
+
+    function finish() {
+      clearTimeout(timer);
+      try { ws.close(); } catch {}
+      resolve(messages);
+    }
+
+    ws.on('open', () => {
+      sentFirst = true;
+      ws.send(JSON.stringify({ type: 'quick_design', text: firstText, routeId }));
+    });
+    ws.on('message', raw => {
+      let msg;
+      try { msg = JSON.parse(String(raw)); } catch { return; }
+      messages.push(msg);
+      if (!sentCancel && sentFirst && (msg.type === 'quick_design_ack' || msg.type === 'agent_msg' || msg.type === 'tasks')) {
+        sentCancel = true;
+        ws.send(JSON.stringify({ type: 'cancel' }));
+        setTimeout(() => {
+          if (sentSecond) return;
+          sentSecond = true;
+          ws.send(JSON.stringify({
+            type: 'user_msg',
+            text: secondText,
+            voiceSessionId: defaultVoiceSessionId
+          }));
+        }, 5);
+        return;
+      }
+      if (sentSecond && msg.type === 'tool_call' && msg.tool === 'target_evidence_review') finish();
+      if (sentSecond && msg.type === 'error') finish();
+    });
+    ws.on('error', err => {
+      clearTimeout(timer);
+      reject(err);
+    });
+  });
+}
+
 function buildCompactDesignResponse({
   summary = '抗体设计需求',
   background = '已根据用户输入整理疾病方向、靶点背景和抗体设计入口。',
@@ -1297,6 +1347,20 @@ test('server routes drug molecule design wording through molecular design workfl
   assert.equal(diseaseData.runner, 'target_resolution_workflow');
   assert.equal(diseaseData.requiresTargetResolution, true);
   assert.equal(diseaseData.diseaseIndication, '过敏性哮喘');
+});
+
+test('a new user message can start immediately after cancelling the current workflow', async () => {
+  const messages = await collectCancelThenSecondRunMessages({
+    firstText: '阻断 PD-1/PD-L1 通路，设计 10 个高亲和力 Fab',
+    secondText: '帮我为过敏性哮喘设计十个抗体分子'
+  });
+  const serialized = JSON.stringify(messages);
+  const evidenceCall = messages.find(msg => msg.type === 'tool_call' && msg.tool === 'target_evidence_review');
+
+  assert.ok(messages.some(msg => msg.type === 'cancelled'), 'server should acknowledge the first workflow cancellation');
+  assert.ok(evidenceCall, 'second message should start a fresh workflow after cancellation');
+  assert.equal(evidenceCall.params.target, 'IL-33');
+  assert.doesNotMatch(serialized, /当前工作流正在运行|工作流执行出错/);
 });
 
 test('target resolver explanation remains rich for drug molecule design requests', async () => {
