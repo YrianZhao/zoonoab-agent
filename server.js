@@ -2347,10 +2347,14 @@ let workflowDisplaySerial = 0;
 function buildRouteProfile(target, blockTarget, abType) {
   let key = String(target || '').toUpperCase().replace(/\s+/g, '');
   if (['PDL1', 'PD-L-1'].includes(key)) key = 'PD-L1';
+  if (['CD274', 'B7H1', 'B7-H1'].includes(key)) key = 'PD-L1';
   if (['PD1', 'PD-ONE'].includes(key)) key = 'PD-1';
+  if (['PDCD1'].includes(key)) key = 'PD-1';
   if (['CTLA4', 'CTLA-4', 'CD152'].includes(key)) key = 'CTLA-4';
   if (['TNF-A', 'TNF-ALPHA', 'TNFΑ', 'TNFΑLPHA'].includes(key)) key = 'TNF';
   if (['VEGFA', 'VEGF-A'].includes(key)) key = 'VEGF-A';
+  if (['ERBB2', 'HER-2', 'NEU'].includes(key)) key = 'HER2';
+  if (['ERBB1'].includes(key)) key = 'EGFR';
   if (['CD20', 'MS4A1'].includes(key)) key = 'CD20';
   if (['CD19'].includes(key)) key = 'CD19';
   if (['CD3', 'CD3E', 'CD3EPSILON'].includes(key)) key = 'CD3';
@@ -2367,6 +2371,7 @@ function buildRouteProfile(target, blockTarget, abType) {
   if (['IGE'].includes(key)) key = 'IgE';
   if (['CGRPRECEPTOR', 'CGRPR', 'CALCRL'].includes(key)) key = 'CGRP receptor';
   if (['IL17A', 'IL-17-A'].includes(key)) key = 'IL-17A';
+  if (['IL23', 'IL23A', 'IL-23A'].includes(key)) key = 'IL-23';
   if (['IL1B', 'IL-1B', 'IL-1Β'].includes(key)) key = 'IL-1β';
   if (['RSVF', 'RSV-F'].includes(key)) key = 'RSV F';
   if (['SARS-COV-2RBD', 'SARSCOV2RBD', 'SARS-COV-2-RBD', 'RBD'].includes(key)) key = 'SARS-CoV-2 RBD';
@@ -3516,6 +3521,13 @@ function hasPrepared3DPresetForTarget(target, blockTarget, abType) {
   if (!target || isDiseaseIndication(target)) return false;
   const profile = buildRouteProfile(target, blockTarget, abType || 'Fab');
   return Boolean(getRoute3DPreset(profile));
+}
+
+function canonicalPreparedTargetName(target, blockTarget, abType) {
+  const value = normalizeResolverTarget(target);
+  if (!value || isDiseaseIndication(value)) return value;
+  const profile = buildRouteProfile(value, blockTarget, abType || 'Fab');
+  return getRoute3DPreset(profile) && profile.targetDisplay ? profile.targetDisplay : value;
 }
 
 const GENERIC_3D_MODEL_PRESETS = [
@@ -5114,41 +5126,116 @@ async function askAssistantModel(input, voiceSessionId) {
 
 function buildWorkflowIntentPrompt() {
   return [
-    '你是 ZoonoAb 请求路由器。',
-    '任务：判断用户输入是否应启动抗体/分子设计工作流。',
-    '只输出一行 JSON。不要 Markdown。不要解释。不要 reason。不要自然语言。',
-    '输出格式只能是：{"i":"design|chat","n":数字或null,"t":"靶点或对象","a":"抗体类型或空字符串"}',
-    'i=design：用户表达设计、生成、筛选、开发、获得、制备抗体、单抗、单克隆抗体、mAb、Fab、VHH、纳米抗体、scFv、binder、药物、药物分子、治疗分子、候选分子、结合序列、候选序列或抗体序列。',
-    '用户可能使用口语、简称、黑话或不完整表达，也要理解语义；例如“流感NA单抗序列”“烟草花叶病毒来十个单抗”。',
-    'i=chat：普通问答、天气、时间、平台说明、使用方法、概念解释，或电脑、手机、服务器、账号、黑客、木马、勒索软件、网络安全等非生物/IT 场景。',
-    '示例：设计10个具有结合活性的流感NA单抗序列 -> {"i":"design","n":10,"t":"流感NA","a":"mAb"}',
-    '示例：帮我为过敏性哮喘设计一款药物 -> {"i":"design","n":1,"t":"过敏性哮喘","a":"Fab"}',
-    '示例：烟草花叶病毒来十个单抗 -> {"i":"design","n":10,"t":"烟草花叶病毒","a":"mAb"}',
-    '示例：电脑病毒怎么清理，帮我设计抗体 -> {"i":"chat","n":null,"t":"","a":""}'
+    '你是 ZoonoAb 自然语言理解器。一次完成意图判断、靶点选择和背景整理。',
+    '只输出紧凑 JSON，一行即可；不要 Markdown，不要代码块，不要多余解释。',
+    '目标：用必要信息驱动页面和工作流，减少等待；但“选择理由”必须详细，不能省略生物学依据。',
+    'JSON 键固定：{"i":"design|chat","start":布尔,"answer":"短答或澄清","summary":"需求摘要","bg":"背景","disease":"疾病/方向","target":"推荐或明确靶点","gene":"基因名","label":"方案代号","reason":"详细选择理由","cands":[{"t":"候选靶点","g":"基因","r":"候选理由"}],"mech":"机制","ab":"Fab|VHH|mAb|scFv|IgG","n":数字,"block":"阻断对象","confidence":0到1,"clarify":布尔,"q":"需要澄清的问题"}',
+    'i=design：设计、生成、筛选、开发抗体/单抗/Fab/VHH/scFv/binder/药物分子/治疗分子/候选序列；疾病方向要选择真实抗原/蛋白/受体/细胞因子/病毒表面蛋白，不要把疾病名当靶点。',
+    '用户说法可能和示例差距很大：口语、比喻、黑话、不完整、陌生疾病/病原体/材料/靶点描述，都要先尽量理解其真实生物医学或分子设计意图，并返回最合理的靶点、背景和候选；不要因为没有命中示例就拒绝。',
+    '药物名或药物类别也是线索：若用户只说药物名、已上市药物、药物类别或治疗方案，要根据已知适应症、作用靶点、通路机制反推可进入抗体药物设计的真实靶点；小分子药物方向要转为抗体可识别的胞外/可溶抗原或受体结构域。',
+    '准确性优先：疾病或药物方向可能对应多个靶点，先保证疾病关联、机制和抗体可及性准确；若多个候选同等合理，优先从结构支撑靶点清单选择 target，并把其他合理靶点放入 cands。',
+    '结构支撑靶点清单：PD-L1/CD274、PD-1/PDCD1、CTLA-4、HER2/ERBB2、EGFR/ERBB1、VEGF-A/VEGFA、TNF、IL-17A、IL-23、IL-33、TSLP、RSV F、SARS-CoV-2 RBD、Influenza HA、Influenza NA、PCSK9、ANGPTL3、GIPR、CD20、CD19、CD3、C5、IL-6R、IL-4Rα、CD25、CD38、TIGIT、CD47、LAG-3、TROP-2、BCMA、IgE、CGRP receptor、IL-1β。',
+    'reason 只能写疾病关联、药物机制、表达/可及性、结构域和抗体开发依据；不要提本地、预设、可展示、系统已有、为了展示、3D 预设等内部选择原因。',
+    'i=chat：普通问答、天气、平台说明、概念解释，或电脑、手机、网络、账号、服务器、黑客、木马、勒索软件等非生物/IT 场景。',
+    'design 必填 target、reason、cands；reason 写 80-220 个中文字，说明疾病关联、表达/可及性、机制、为何优先该靶点；cands 给 2-3 个，每个 r 简洁但具体。',
+    'chat 只填 i,start=false,answer；answer 默认中文，最多 2 句。',
+    '示例：奥希替尼这种药能不能生成几个抗体药物 -> {"i":"design","start":true,"summary":"将奥希替尼相关治疗方向转为抗体药物设计任务","bg":"奥希替尼提示 EGFR 驱动非小细胞肺癌治疗场景；抗体设计应转向 EGFR 胞外结构域等可识别抗原。","disease":"非小细胞肺癌","target":"EGFR","gene":"EGFR","label":"NSCLC-EGFR-AB-1","reason":"用户给出的是小分子靶向药物名，核心生物学线索指向 EGFR 驱动肺癌。抗体药物不能照搬小分子激酶口袋，应围绕 EGFR 胞外结构域的可及表位开展识别设计；EGFR 具备实体瘤疾病关联、膜表面可及性和抗体开发背景，适合作为本轮候选入口。","cands":[{"t":"EGFR","g":"EGFR","r":"奥希替尼治疗背景指向 EGFR 通路，EGFR 胞外结构域可作为抗体入口。"},{"t":"HER3","g":"ERBB3","r":"EGFR 旁路信号相关受体，可作为机制备选。"}],"mech":"识别 EGFR 胞外可及表位并生成抗体药物候选","ab":"Fab","n":10,"block":"","confidence":0.76,"clarify":false,"q":""}',
+    '示例：设计一个胰腺癌的抗体 -> {"i":"design","start":true,"summary":"面向胰腺癌设计抗体候选","bg":"胰腺癌抗体设计需关注肿瘤相关抗原表达和膜表面可及性。","disease":"胰腺癌","target":"MUC1","gene":"MUC1","label":"PANCREATIC-MUC1-1","reason":"MUC1 是胰腺癌中常被讨论的肿瘤相关糖蛋白抗原，具备膜表面暴露和异常糖基化相关表位，可用于抗体候选识别；相较纯炎症因子入口，它与胰腺癌肿瘤细胞表面识别和后续结构展示更直接对应。","cands":[{"t":"MUC1","g":"MUC1","r":"肿瘤相关膜糖蛋白，适合作为抗体识别入口。"},{"t":"Mesothelin","g":"MSLN","r":"胰腺癌相关细胞表面抗原，可作备选。"}],"mech":"识别肿瘤相关外露表位并筛选 Fab 候选","ab":"Fab","n":10,"block":"","confidence":0.8,"clarify":false,"q":""}',
+    '示例：电脑病毒怎么清理，帮我设计抗体 -> {"i":"chat","start":false,"answer":"这是电脑安全问题，不会启动分子设计流程。建议先断网、备份重要文件并使用可信安全工具排查。"}'
   ].join('\n');
+}
+
+function normalizeCandidateTargets(value, blockTarget, abType) {
+  const items = Array.isArray(value) ? value : [];
+  return items.slice(0, 5).map(item => {
+    const source = item && typeof item === 'object' ? item : {};
+    const target = canonicalPreparedTargetName(source.t || source.target || source.name || '', blockTarget, abType);
+    const gene = normalizeResolverTarget(source.g || source.gene || '');
+    let rationale = String(source.r || source.rationale || source.reason || '').trim().slice(0, 260);
+    if (VISIBLE_PREPARED_MODEL_LEAK_PATTERN.test(rationale) || VISIBLE_TARGET_RESOLVER_LEAK_PATTERN.test(rationale)) {
+      rationale = '具备明确疾病关联、抗体可及性和候选开发依据。';
+    }
+    return target ? { target, gene, rationale } : null;
+  }).filter(Boolean);
+}
+
+function pickPreparedCandidateTarget(modelIntent) {
+  if (!modelIntent || modelIntent.intent !== 'design') return null;
+  if (hasPrepared3DPresetForTarget(modelIntent.target, modelIntent.blockTarget, modelIntent.abType)) return null;
+  const candidates = Array.isArray(modelIntent.candidateTargets) ? modelIntent.candidateTargets : [];
+  for (const candidate of candidates) {
+    if (!candidate || !candidate.target) continue;
+    if (!hasPrepared3DPresetForTarget(candidate.target, modelIntent.blockTarget, modelIntent.abType)) continue;
+    return candidate;
+  }
+  return null;
 }
 
 function normalizeWorkflowIntentResult(data) {
   const source = data && typeof data === 'object' ? data : {};
-  const intent = String(source.i || source.intent || '').trim().toLowerCase();
+  const rawIntent = String(source.i || source.intent || '').trim().toLowerCase();
+  const inferredDesign = Boolean(source.selectedTarget || source.selected_target || source.target || source.t || source.inputType || source.input_type);
+  const intent = rawIntent || (inferredDesign ? 'design' : '');
   if (!intent) return null;
   const normalizedIntent = intent === 'design_workflow' || intent === 'workflow' || intent === 'design' ? 'design'
     : (intent === 'assistant_chat' || intent === 'chat' ? 'assistant_chat' : '');
   if (!normalizedIntent) return null;
   const count = Number(source.n || source.count || 0);
-  return {
+  const abType = normalizeResolverTarget(source.a || source.ab || source.antibodyType || source.antibody_type || '');
+  const blockTarget = canonicalPreparedTargetName(source.block || source.blockTarget || source.partner || '', '', abType);
+  const candidateTargets = normalizeCandidateTargets(source.cands || source.candidates || source.candidateTargets, blockTarget, abType);
+  const target = canonicalPreparedTargetName(source.t || source.target || source.selectedTarget || '', blockTarget, abType);
+  const gene = normalizeResolverTarget(source.g || source.gene || source.selectedGene || '');
+  const answer = sanitizeAssistantText(source.answer || source.reply || '');
+  const result = {
     intent: normalizedIntent,
+    shouldStartWorkflow: typeof source.start === 'boolean' ? source.start : normalizedIntent === 'design',
     count: Number.isFinite(count) && count > 0 ? Math.min(Math.round(count), 200) : null,
-    target: normalizeResolverTarget(source.t || source.target || ''),
-    abType: normalizeResolverTarget(source.a || source.antibodyType || source.antibody_type || '')
+    target,
+    targetGene: gene,
+    abType,
+    blockTarget,
+    disease: normalizeResolverTarget(source.disease || source.indication || ''),
+    designLabel: normalizeResolverTarget(source.label || source.designLabel || source.design_label || ''),
+    summary: String(source.summary || source.need || '').trim().slice(0, 260),
+    background: String(source.bg || source.background || '').trim().slice(0, 520),
+    reason: String(source.reason || source.rationale || '').trim().slice(0, 800),
+    candidateTargets,
+    mechanism: String(source.mech || source.mechanism || '').trim().slice(0, 360),
+    answer,
+    confidence: Math.max(0, Math.min(1, Number(source.confidence) || 0)),
+    needsClarification: Boolean(source.clarify || source.needsClarification),
+    clarifyingQuestion: String(source.q || source.question || source.clarifyingQuestion || '').trim().slice(0, 220)
   };
+  const preparedCandidate = pickPreparedCandidateTarget(result);
+  if (preparedCandidate) {
+    const originalTarget = result.target;
+    result.target = preparedCandidate.target;
+    result.targetGene = preparedCandidate.gene || result.targetGene;
+    result.reason = [
+      sanitizeVisibleTargetReason(result.reason, preparedCandidate.target, result.disease),
+      preparedCandidate.rationale
+        ? '综合候选靶点比较，' + preparedCandidate.target + ' 具备明确疾病关联、胞外结构域可及性和抗体开发依据：' + preparedCandidate.rationale
+        : '综合候选靶点比较，' + preparedCandidate.target + ' 具备明确疾病关联、胞外结构域可及性和抗体开发依据，适合作为本轮抗体设计入口。'
+    ].filter(Boolean).join(' ');
+    const hasOriginal = result.candidateTargets.some(item => item.target === originalTarget);
+    if (originalTarget && !hasOriginal) {
+      result.candidateTargets.unshift({
+        target: originalTarget,
+        gene: gene,
+        rationale: '模型初始推荐靶点，作为本轮候选比较入口保留。'
+      });
+    }
+  }
+  return result;
 }
 
 async function resolveWorkflowIntentWithModel(input, voiceSessionId) {
   const text = String(input || '').trim();
-  if (!text || shouldSuppressDesignWorkflow(text)) return null;
+  if (!text) return null;
   const cfg = getAssistantChatConfig(voiceSessionId);
-  if (!cfg.key || !cfg.url || typeof fetch !== 'function') return null;
+  if (!cfg.key || !cfg.url) return { error: 'missing_key', intent: 'assistant_chat' };
+  if (typeof fetch !== 'function') return { error: 'runtime_unsupported', intent: 'assistant_chat' };
   const controller = typeof AbortController === 'function' ? new AbortController() : null;
   const timeout = controller ? setTimeout(() => controller.abort(), WORKFLOW_INTENT_TIMEOUT_MS) : null;
   try {
@@ -5163,10 +5250,10 @@ async function resolveWorkflowIntentWithModel(input, voiceSessionId) {
         model: cfg.model,
         messages: [
           { role: 'system', content: buildWorkflowIntentPrompt() },
-          { role: 'user', content: text.slice(0, 800) }
+          { role: 'user', content: text.slice(0, 1000) }
         ],
         temperature: 0,
-        max_tokens: 80,
+        max_tokens: 700,
         response_format: { type: 'json_object' },
         stream: false
       })
@@ -5175,18 +5262,18 @@ async function resolveWorkflowIntentWithModel(input, voiceSessionId) {
     const raw = await upstream.text();
     if (!upstream.ok) {
       console.error('[IntentRouter] request failed:', upstream.status, parseProviderError(raw));
-      return null;
+      return { error: 'model_failed', intent: 'assistant_chat' };
     }
     let data;
     try { data = JSON.parse(raw); } catch { data = {}; }
     const content = data && data.choices && data.choices[0] && data.choices[0].message
       ? extractChatMessageText(data.choices[0].message)
       : '';
-    return normalizeWorkflowIntentResult(extractJsonObjectFromText(content));
+    return normalizeWorkflowIntentResult(extractJsonObjectFromText(content)) || { error: 'invalid_model_response', intent: 'assistant_chat' };
   } catch (err) {
     if (timeout) clearTimeout(timeout);
     console.error('[IntentRouter] request error:', err && err.message ? err.message : err);
-    return null;
+    return { error: 'model_failed', intent: 'assistant_chat' };
   }
 }
 
@@ -5265,6 +5352,29 @@ function normalizeTargetResolution(data, indication) {
     reason: String(source.reason || source.rationale || '').trim().slice(0, 520),
     candidates: candidates.length ? candidates : [{ target: selectedTarget, gene: selectedGene, rationale: '可及靶点' }]
   };
+}
+
+function modelIntentToTargetResolution(input, modelIntent) {
+  if (!modelIntent || modelIntent.intent !== 'design' || !modelIntent.target) return null;
+  const disease = modelIntent.disease || extractDiseaseIndication(input) || '';
+  const reasonParts = [
+    modelIntent.background,
+    modelIntent.reason,
+    modelIntent.mechanism ? '设计机制：' + modelIntent.mechanism : ''
+  ].filter(Boolean);
+  const candidates = modelIntent.candidateTargets && modelIntent.candidateTargets.length
+    ? modelIntent.candidateTargets
+    : [{ target: modelIntent.target, gene: modelIntent.targetGene || '', rationale: modelIntent.reason || '模型推荐的抗体设计入口。' }];
+  return normalizeTargetResolution({
+    inputType: disease ? 'disease_indication' : 'target_like_request',
+    disease: disease || modelIntent.summary || String(input || '').trim(),
+    selectedTarget: modelIntent.target,
+    selectedGene: modelIntent.targetGene || '',
+    designLabel: modelIntent.designLabel || '',
+    confidence: modelIntent.confidence || 0.7,
+    reason: reasonParts.join(' '),
+    candidates
+  }, disease || modelIntent.summary || String(input || '').trim());
 }
 
 function builtinTargetResolution(indication) {
@@ -5407,11 +5517,24 @@ function buildResolvedTargetRoute(input, baseRoute, resolution, parsed) {
 
 const VISIBLE_TARGET_RESOLVER_LEAK_PATTERN = /未能完成|当前未能|在线靶点解析|解析失败|兜底|代表靶点|代表抗原|补充明确靶点|无关靶点|系统保留|系统选择|系统优先选择|验证展示序列|大模型\s*API|真正的研发设计/i;
 
+const VISIBLE_PREPARED_MODEL_LEAK_PATTERN = /本地|预设|可展示|展示优先|已有分子模型|已有.*模型|为了展示|3D\s*预设|结构支撑靶点清单|系统已有|已准备/i;
+
+function sanitizeVisibleTargetReason(reason, target, disease) {
+  const raw = String(reason || '').trim();
+  if (!raw || VISIBLE_PREPARED_MODEL_LEAK_PATTERN.test(raw) || VISIBLE_TARGET_RESOLVER_LEAK_PATTERN.test(raw)) {
+    const subject = disease || '当前疾病方向';
+    return target + ' 与 ' + subject + ' 的疾病机制或治疗场景具有明确关联，并具备适合抗体识别的可及结构域；结合候选靶点的表达背景、表位可及性和抗体开发依据，本轮优先围绕该靶点生成候选分子。';
+  }
+  return raw.replace(VISIBLE_PREPARED_MODEL_LEAK_PATTERN, '结构证据').trim();
+}
+
 function sanitizedTargetSelectionReason(resolution, route) {
   const target = resolution && resolution.selectedTarget ? resolution.selectedTarget : (route && route.target) || '当前靶点';
   const rawReason = String(resolution && resolution.reason || '').trim();
   const subject = resolution && resolution.disease ? resolution.disease : (route && route.disease) || '当前设计方向';
-  const cleanReason = rawReason && !VISIBLE_TARGET_RESOLVER_LEAK_PATTERN.test(rawReason) ? rawReason : '';
+  const cleanReason = rawReason && !VISIBLE_TARGET_RESOLVER_LEAK_PATTERN.test(rawReason) && !VISIBLE_PREPARED_MODEL_LEAK_PATTERN.test(rawReason)
+    ? rawReason
+    : '';
   const candidates = Array.isArray(resolution && resolution.candidates) ? resolution.candidates.filter(item => item && item.target) : [];
   const candidateNames = candidates.slice(0, 3).map(item => item.target).filter(Boolean).join('、');
   const baseReason = cleanReason || (function() {
@@ -5483,6 +5606,20 @@ async function runAssistantChat(ws, input, voiceSessionId) {
   send({ type: 'done' });
 }
 
+async function runDirectAssistantAnswer(ws, answer) {
+  const send = data => { if (ws.readyState === 1) ws.send(JSON.stringify(data)); };
+  send({ type: 'agent_msg', text: sanitizeAssistantText(answer) || '收到。' });
+  send({ type: 'done' });
+}
+
+async function runMissingChatKey(ws) {
+  await runDirectAssistantAnswer(ws, 'key 没有配置。');
+}
+
+async function runModelParseFailed(ws) {
+  await runDirectAssistantAnswer(ws, '暂时无法理解这个需求，请稍后重试。');
+}
+
 async function runDemoRoutedWorkflow(ws, input, route) {
   const send = data => { if (ws.readyState === 1) ws.send(JSON.stringify(data)); };
   const sess = findSessionBySocket(ws);
@@ -5502,20 +5639,37 @@ async function runResolvedDiseaseDesign(ws, input, voiceSessionId, modelIntent =
   const sess = findSessionBySocket(ws);
   const delay = (ms) => workflowDelay(ws, sess, ms);
   const localParsed = extractDesignRequest(input);
-  const parsed = localParsed.isDesignRequest ? localParsed : {
+  const parsed = modelIntent && modelIntent.intent === 'design' ? {
+    isDesignRequest: true,
+    count: modelIntent.count || localParsed.count || 10,
+    target: modelIntent.target || localParsed.target || '',
+    blockTarget: modelIntent.blockTarget || null,
+    abType: modelIntent.abType || localParsed.abType || 'Fab',
+    hasExplicitTarget: Boolean(modelIntent.target)
+  } : (localParsed.isDesignRequest ? localParsed : {
     isDesignRequest: Boolean(modelIntent && modelIntent.intent === 'design'),
     count: modelIntent && modelIntent.count ? modelIntent.count : 10,
     target: modelIntent && modelIntent.target ? modelIntent.target : '',
     blockTarget: null,
     abType: modelIntent && modelIntent.abType ? modelIntent.abType : 'Fab',
     hasExplicitTarget: Boolean(modelIntent && modelIntent.target)
-  };
-  const indication = extractDiseaseIndication(input) || parsed.target || String(input || '').trim();
-  if (!parsed.isDesignRequest || !indication) return runAssistantChat(ws, input, voiceSessionId);
+  });
+  const indication = modelIntent && (modelIntent.disease || modelIntent.summary)
+    ? (modelIntent.disease || modelIntent.summary)
+    : (extractDiseaseIndication(input) || parsed.target || String(input || '').trim());
+  if (!parsed.isDesignRequest || !indication) return runModelParseFailed(ws);
   markWorkflowStage(sess, '靶点解析');
   send({ type: 'assistant_thinking', active: true, topic: buildAssistantThinkingTopic(input) });
   send({ type: 'log', text: '[TargetAgent] 正在解析可进入抗体设计的具体靶点...' });
-  const resolution = await resolveDiseaseTargetWithModel(input, indication, voiceSessionId);
+  let resolution = null;
+  if (modelIntent) {
+    resolution = modelIntentToTargetResolution(input, modelIntent);
+    if (!resolution) {
+      return runDirectAssistantAnswer(ws, modelIntent.clarifyingQuestion || modelIntent.answer || '暂时无法理解这个需求，请稍后重试。');
+    }
+  } else {
+    resolution = await resolveDiseaseTargetWithModel(input, indication, voiceSessionId);
+  }
   const route = buildResolvedTargetRoute(input, null, resolution, parsed);
   await delay(400);
   await runDemoRoutedWorkflow(ws, input, route);
@@ -6294,10 +6448,54 @@ async function resolveUserMessageRunner(msg, cleanText) {
     };
   }
   const modelIntent = await resolveWorkflowIntentWithModel(cleanText, msg && msg.voiceSessionId);
-  const routing = modelIntent && modelIntent.intent === 'design'
-    ? { detectedIntent: 'design', intent: 'assistant_chat', demoRoute: null, localWorkflowAllowed: false, modelIntent }
-    : resolveUserRouting(cleanText);
-  if (shouldResolveDesignTargetBeforeWorkflow(cleanText, routing)) {
+  if (modelIntent && modelIntent.error === 'missing_key') {
+    return {
+      detectedIntent: 'assistant_chat',
+      intent: 'assistant_chat',
+      demoRoute: null,
+      localWorkflowAllowed: false,
+      modelIntent,
+      runner: (socket) => runMissingChatKey(socket)
+    };
+  }
+  if (!modelIntent || modelIntent.error) {
+    return {
+      detectedIntent: 'assistant_chat',
+      intent: 'assistant_chat',
+      demoRoute: null,
+      localWorkflowAllowed: false,
+      modelIntent,
+      runner: (socket) => runModelParseFailed(socket)
+    };
+  }
+  if (modelIntent.intent === 'assistant_chat' || modelIntent.shouldStartWorkflow === false) {
+    return {
+      detectedIntent: 'assistant_chat',
+      intent: 'assistant_chat',
+      demoRoute: null,
+      localWorkflowAllowed: false,
+      modelIntent,
+      runner: (socket) => runDirectAssistantAnswer(socket, modelIntent.clarifyingQuestion || modelIntent.answer || '收到。')
+    };
+  }
+  if (modelIntent.intent === 'design' && modelIntent.needsClarification) {
+    return {
+      detectedIntent: 'design',
+      intent: 'assistant_chat',
+      demoRoute: null,
+      localWorkflowAllowed: false,
+      modelIntent,
+      runner: (socket) => runDirectAssistantAnswer(socket, modelIntent.clarifyingQuestion || '请补充关键设计信息。')
+    };
+  }
+  const routing = {
+    detectedIntent: modelIntent.intent,
+    intent: modelIntent.intent === 'design' ? 'design' : 'assistant_chat',
+    demoRoute: null,
+    localWorkflowAllowed: modelIntent.intent === 'design',
+    modelIntent
+  };
+  if (modelIntent.intent === 'design') {
     return {
       ...routing,
       detectedIntent: 'design',
@@ -6307,13 +6505,12 @@ async function resolveUserMessageRunner(msg, cleanText) {
       runner: (socket, text) => runResolvedDiseaseDesign(socket, text, msg.voiceSessionId, routing.modelIntent)
     };
   }
-  const intent = routing.intent;
-  const demoRoute = routing.demoRoute;
-  const handlers = getWorkflowHandlers();
-  const runner = intent === 'assistant_chat'
-    ? ((socket, text) => runAssistantChat(socket, text, msg.voiceSessionId))
-    : (intent === 'design' && demoRoute ? ((socket, text) => runDemoRoutedWorkflow(socket, text, demoRoute)) : (handlers[intent] || runWorkflow));
-  return { ...routing, runner };
+  return {
+    ...routing,
+    intent: 'assistant_chat',
+    localWorkflowAllowed: false,
+    runner: (socket) => runDirectAssistantAnswer(socket, modelIntent.answer || '收到。')
+  };
 }
 
 function runSocketTask(ws, sid, msg, buildRunner) {
