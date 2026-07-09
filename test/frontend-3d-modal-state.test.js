@@ -148,3 +148,25 @@ test('candidate gallery thumbnails receive deterministic per-candidate pose seed
   assert.match(galleryHtml, /applyViewerPose/);
   assert.match(galleryHtml, /glv\.rotate/);
 });
+
+test('3D modal title bar shows the current selection reason without covering controls', () => {
+  const openMolModal = extractFunction(html, 'function openMolModal');
+  const openHistory3D = extractFunction(html, 'function openHistory3D');
+  const normalizeBinderPayload = extractFunction(html, 'function normalizeBinderPayload');
+  const titleCssStart = html.indexOf('.mol-modal-title {');
+  assert.notEqual(titleCssStart, -1, 'modal title CSS should exist');
+  const titleCss = html.slice(titleCssStart, html.indexOf('}', titleCssStart) + 1);
+
+  assert.match(html, /function\s+buildSelectionReasonHtml\s*\(/);
+  assert.match(html, /\.mol-modal-reason\s*{/);
+  assert.match(html, /-webkit-line-clamp:\s*2/);
+  assert.match(titleCss, /flex-direction:\s*row/);
+  assert.doesNotMatch(titleCss, /flex-direction:\s*column/);
+  assert.match(html, /\.mol-modal-close\s*{[\s\S]*flex-shrink:\s*0/);
+  assert.match(normalizeBinderPayload, /selectionReason:\s*meta\.selectionReason\s*\|\|\s*meta\.reason\s*\|\|\s*meta\.targetSelectionReason\s*\|\|\s*''/);
+  assert.match(openMolModal, /buildSelectionReasonHtml\(meta\)/);
+  assert.match(openMolModal, /titleEl\.innerHTML\s*=\s*'<div class="mol-modal-title-copy">/);
+  assert.match(openHistory3D, /buildSelectionReasonHtml\(model\)/);
+  assert.match(openHistory3D, /titleEl\.innerHTML\s*=\s*'<div class="mol-modal-title-copy">/);
+  assert.doesNotMatch(openMolModal, /quick_design|route|profile|API|大模型/);
+});

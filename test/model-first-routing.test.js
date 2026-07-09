@@ -322,6 +322,10 @@ test('compact workflow fields feed the final 3D molecular model note', async () 
     assert.equal(show3d.binderData[0].targetDisplay, 'IL-33');
     assert.equal(show3d.binderData[0].visualSummary, '展示 Fab 贴合 IL-33 受体结合面的三维候选模型');
     assert.match(show3d.binderData[0].structuralBasis, /RCSB 9X0J|IL-33/);
+    assert.equal(
+      show3d.binderData[0].selectionReason,
+      'IL-33 是过敏性哮喘中连接上皮损伤和 2 型炎症放大的关键报警素，通过 ST2 受体驱动下游炎症级联；该靶点为可溶性细胞因子，具备抗体可及性、受体阻断机制和抗 IL-33 抗体开发背景，适合作为本轮 Fab 候选设计入口。'
+    );
   } finally {
     await new Promise(resolve => mockServer.close(resolve));
   }

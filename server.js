@@ -3772,6 +3772,11 @@ function localPDBFileExists(filename) {
 
 function buildRoute3DMeta(profile, idx, file, ipTm, preset) {
   const target = (profile && profile.targetDisplay) || 'PD-L1';
+  const selectionReason = sanitizeSelectionReasonForDisplay(
+    profile && (profile.selectionReason || profile.targetSelectionReason || profile.reason),
+    target,
+    profile && profile.disease
+  );
   const presetBias = preset && typeof preset.ipTmBias === 'number' ? preset.ipTmBias : 0;
   const rawIpTm = typeof ipTm === 'number' && !Number.isNaN(ipTm)
     ? ipTm + presetBias - (idx % 4) * 0.0015
@@ -3801,6 +3806,7 @@ function buildRoute3DMeta(profile, idx, file, ipTm, preset) {
     partnerDisplay: (profile && profile.partnerDisplay) || '',
     domain: (profile && profile.domain) || '',
     mechanism: (profile && profile.mechanism) || '',
+    selectionReason,
     selectedEpitope: (profile && profile.selectedEpitope) || '',
     structureRef: (profile && profile.structureRef) || '',
     interfaceFocus: (profile && profile.interfaceFocus) || '',
@@ -5190,6 +5196,7 @@ function buildCompactWorkflowProfileFromModelIntent(modelIntent) {
     selectedEpitope: wf.epitope || base.selectedEpitope,
     structure: wf.structure || base.structure,
     structuralBasis: wf.structure || base.structuralBasis || '',
+    selectionReason: sanitizeSelectionReasonForDisplay(modelIntent.reason, targetDisplay || base.targetDisplay, modelIntent.disease || base.disease),
     structurePrepZh: wf.modelNote || base.structurePrepZh || '',
     structurePrepEn: wf.modelNote || base.structurePrepEn || '',
     modelVisualSummary: wf.modelNote || '',
@@ -5271,6 +5278,11 @@ function buildWorkflowProfileFromModelIntent(modelIntent) {
     structure: sanitizeWorkflowBlueprintText(w.structure, base.structure || (targetDisplay + ' 结构约束集合'), 260),
     structureRef: sanitizeWorkflowBlueprintText(w.structureRef, base.structureRef || (targetDisplay + ' 参考模型'), 180),
     structuralBasis: sanitizeWorkflowBlueprintText(w.structuralBasis, base.structuralBasis || '', 220),
+    selectionReason: sanitizeSelectionReasonForDisplay(
+      w.selectionReason || w.targetSelectionReason || modelIntent.reason,
+      targetDisplay,
+      modelIntent.disease || base.disease
+    ),
     antibodies: normalizeWorkflowArray(w.antibodies, base.antibodies || [], 6, 100),
     interfaceFocus: sanitizeWorkflowBlueprintText(w.interfaceFocus, base.interfaceFocus || (targetDisplay + ' 抗原可及表面'), 180),
     selectedEpitope: sanitizeWorkflowBlueprintText(w.selectedEpitope, base.selectedEpitope || (targetDisplay + ' 表面优先可及区域'), 180),
@@ -5645,6 +5657,10 @@ function buildResolvedTargetRoute(input, baseRoute, resolution, parsed) {
     resolvedByModel: true,
     targetResolution: safeResolution,
     workflowProfile: baseRoute && baseRoute.workflowProfile ? baseRoute.workflowProfile : null,
+    selectionReason: sanitizedTargetSelectionReason(safeResolution, {
+      disease: safeResolution && safeResolution.disease || extractDiseaseIndication(input) || '疾病方向',
+      target
+    }),
     displayStory: '围绕 ' + target + ' 生成抗体候选结构和可开发性评估结果。',
     keywords: []
   };
@@ -5661,6 +5677,16 @@ function sanitizeVisibleTargetReason(reason, target, disease) {
     return target + ' 与 ' + subject + ' 的疾病机制或治疗场景具有明确关联，并具备适合抗体识别的可及结构域；结合候选靶点的表达背景、表位可及性和抗体开发依据，本轮优先围绕该靶点生成候选分子。';
   }
   return raw.replace(VISIBLE_PREPARED_MODEL_LEAK_PATTERN, '结构证据').trim();
+}
+
+function sanitizeSelectionReasonForDisplay(reason, target, disease) {
+  const raw = String(reason || '').replace(/\s+/g, ' ').trim();
+  const targetName = target || '当前靶点';
+  const subject = disease || '当前疾病方向';
+  if (!raw || VISIBLE_PREPARED_MODEL_LEAK_PATTERN.test(raw) || VISIBLE_TARGET_RESOLVER_LEAK_PATTERN.test(raw)) {
+    return sanitizeVisibleTargetReason('', targetName, subject);
+  }
+  return sanitizeVisibleTargetReason(raw, targetName, subject).slice(0, 520);
 }
 
 function sanitizedTargetSelectionReason(resolution, route) {
@@ -5992,6 +6018,11 @@ async function runWorkflow(ws, input, forcedRoute) {
   if (!profile.targetDisplay) profile.targetDisplay = target;
   if (!profile.routeLabel) profile.routeLabel = profile.targetDisplay;
   if (!profile.mechanism) profile.mechanism = '围绕 ' + profile.targetDisplay + ' 生成抗体候选结构和可开发性评估结果';
+  if (!profile.selectionReason) {
+    profile.selectionReason = forcedRoute && forcedRoute.selectionReason
+      ? forcedRoute.selectionReason
+      : sanitizeSelectionReasonForDisplay('', profile.targetDisplay, profile.disease);
+  }
   if (!profile.selectedEpitope) profile.selectedEpitope = profile.targetDisplay + ' 表面优先可及区域';
   if (!Array.isArray(profile.evidenceSources)) profile.evidenceSources = [];
   if (!Array.isArray(profile.antibodies)) profile.antibodies = [];
