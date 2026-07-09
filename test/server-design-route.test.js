@@ -1014,6 +1014,19 @@ test('server routes diabetes indication requests through target resolution', asy
   assert.equal(data.diseaseIndication, '糖尿病');
 });
 
+test('target resolver fallback uses softer visible wording when the model has no explicit target', async () => {
+  const messages = await collectUserMessageStream('帮我设计10个针对糖尿病的抗体', {
+    timeoutMs: 12000,
+    stopWhen: (msg) => msg.type === 'tool_call' && msg.tool === 'target_evidence_review'
+  });
+  const agentTexts = messages.filter(msg => msg.type === 'agent_msg').map(msg => msg.text || '');
+  const intro = agentTexts[0] || '';
+
+  assert.match(intro, /当前疾病方向缺少明确靶点，可以先从炎症因子 IL-1β 入口/);
+  assert.doesNotMatch(intro, /当前疾病方向缺少明确靶点时，优先整理为炎症因子 IL-1β 入口/);
+  assert.doesNotMatch(intro, VISIBLE_RESOLVER_LEAK_PATTERN);
+});
+
 test('server routes drug molecule design wording through molecular design workflow', async () => {
   const targetQuery = encodeURIComponent('帮我设计10个针对流感 NA 的药物分子');
   const targetRes = await fetch('http://127.0.0.1:' + PORT + '/api/debug/user-routing?text=' + targetQuery);
