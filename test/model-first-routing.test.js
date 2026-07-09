@@ -34,6 +34,7 @@ function collectUserMessageStream(text, options = {}) {
   return new Promise((resolve, reject) => {
     const ws = new WebSocket('ws://127.0.0.1:' + PORT);
     const messages = [];
+    let sentSkipThinking = false;
     const timer = setTimeout(() => {
       try { ws.close(); } catch {}
       reject(new Error('timed out waiting for websocket done message'));
@@ -50,6 +51,10 @@ function collectUserMessageStream(text, options = {}) {
       let msg;
       try { msg = JSON.parse(String(raw)); } catch { return; }
       messages.push(msg);
+      if (options.skipThinking && !sentSkipThinking && (msg.type === 'tasks' || msg.type === 'tool_call')) {
+        sentSkipThinking = true;
+        ws.send(JSON.stringify({ type: 'skip_thinking' }));
+      }
       if ((typeof options.stopWhen === 'function' && options.stopWhen(msg, messages)) || msg.type === 'done') {
         clearTimeout(timer);
         ws.close();
@@ -118,12 +123,12 @@ test('ordinary user input requires a configured chat key before any local workfl
   const agentMessages = messages.filter(msg => msg.type === 'agent_msg').map(msg => msg.text || '');
   const serialized = JSON.stringify(messages);
 
-  assert.deepEqual(agentMessages, ['智能解析服务暂时不可用，请检查助手问答配置后重试。']);
+  assert.deepEqual(agentMessages, ['key 没有配置。']);
   assert.equal(messages[messages.length - 1].type, 'done');
   assert.doesNotMatch(serialized, /target_evidence_review|IL-1β|INFLAMMATION-IL1B|正在启动抗体设计工作流/);
 });
 
-test('model structured design result supplies target, background and candidates for workflow display', async () => {
+test('compact model design result supplies core fields and lets the server build workflow display', async () => {
   const captured = [];
   const mockServer = http.createServer((req, res) => {
     let body = '';
@@ -152,33 +157,7 @@ test('model structured design result supplies target, background and candidates 
               mech: '优先识别 MUC1 肿瘤相关外露表位，生成可进入结构评估的 Fab 候选。',
               ab: 'Fab',
               n: 10,
-              confidence: 0.82,
-              workflow: {
-                routeLabel: 'MUC1 胰腺癌细胞表面识别路线',
-                disease: '胰腺癌',
-                targetDisplay: 'MUC1',
-                partnerDisplay: '',
-                domain: 'MUC1 胞外糖蛋白串联重复区',
-                mechanism: '识别 MUC1 异常糖基化外露表面并生成 Fab 候选。',
-                evidence: 'MUC1 胰腺癌模型证据包',
-                evidenceSources: ['模型返回证据摘要', '膜表面可及性评估', '胰腺癌表达背景'],
-                referenceEntries: 'MUC1 / MSLN / CLDN18.2 模型候选靶点条目',
-                structure: 'MUC1 胞外串联重复区与代表性 Fab 结合姿态约束集合',
-                structureRef: 'MUC1 胞外可及表面模型',
-                antibodies: ['anti-MUC1 discovery antibody', 'MUC1 glycopeptide binder'],
-                interfaceFocus: 'MUC1 异常糖基化外露表面',
-                selectedEpitope: 'MUC1 VNTR 糖肽邻近可及表面',
-                epitopeRows: [
-                  { site: 'Site A', region: 'VNTR 糖肽邻近表面', value: '贴近胰腺癌异常糖基化识别目标', decision: '优先' },
-                  { site: 'Site B', region: '胞外稳定暴露面', value: '适合提高结合稳定性', decision: '备选' },
-                  { site: 'Site C', region: '高度异质糖链区', value: '样本差异较大', decision: '谨慎' }
-                ],
-                riskSummary: '模型提示应优先覆盖 MUC1 VNTR 糖肽邻近可及表面，并避开高度异质糖链区。',
-                structurePrep: '加载 MUC1 胞外可及表面模型，围绕 VNTR 糖肽邻近表面生成 Fab 设计约束。',
-                scaffold: 'Fab 片段抗体骨架',
-                designMode: '胰腺癌细胞表面识别设计',
-                structuralBasis: '模型返回的 MUC1 胞外可及表面与代表性 Fab 姿态约束。'
-              }
+              confidence: 0.82
             })
           }
         }]
@@ -199,18 +178,150 @@ test('model structured design result supplies target, background and candidates 
     const serialized = JSON.stringify(messages);
 
     assert.equal(captured.length, 1, 'one compact model call should provide routing, target and background');
-    assert.match(captured[0].messages[0].content, /工作流展示|workflow|profile|tool_call|tool_result/);
-    assert.ok(captured[0].max_tokens >= 1200);
+    assert.match(captured[0].messages[0].content, /核心 JSON|必要字段|选择理由/);
+    assert.match(captured[0].messages[0].content, /wf|modelNote/);
+    assert.doesNotMatch(captured[0].messages[0].content, /workflow\/profile|tool_call|tool_result|epitopeRows|referenceEntries/);
+    assert.ok(captured[0].max_tokens <= 900);
     assert.deepEqual(captured[0].response_format, { type: 'json_object' });
     assert.ok(evidenceCall, 'design response should enter workflow');
     assert.equal(evidenceCall.params.target, 'MUC1');
-    assert.equal(evidenceCall.params.route, 'MUC1 胰腺癌细胞表面识别路线');
-    assert.equal(evidenceCall.params.evidence_package, 'MUC1 胰腺癌模型证据包');
-    assert.match(evidenceCall.params.design_goal, /MUC1 异常糖基化外露表面/);
+    assert.match(evidenceCall.params.route, /MUC1/);
+    assert.match(evidenceCall.params.evidence_package, /MUC1/);
+    assert.match(evidenceCall.params.design_goal, /MUC1/);
     assert.match(agentTexts[0], /胰腺癌|MUC1|MUC1|胰腺癌常见抗体设计入口/);
     assert.match(agentTexts[0], /Mesothelin|Claudin 18\.2/);
-    assert.match(serialized, /MUC1 胰腺癌模型证据包|MUC1 VNTR 糖肽邻近可及表面|模型返回证据摘要/);
+    assert.match(serialized, /MUC1/);
     assert.doesNotMatch(serialized, /IL-1β|INFLAMMATION-IL1B|当前疾病方向缺少明确靶点/);
+  } finally {
+    await new Promise(resolve => mockServer.close(resolve));
+  }
+});
+
+test('compact model output can select a prepared structure target without returning workflow blueprint', async () => {
+  const captured = [];
+  const mockServer = http.createServer((req, res) => {
+    let body = '';
+    req.setEncoding('utf8');
+    req.on('data', chunk => { body += chunk; });
+    req.on('end', () => {
+      captured.push(JSON.parse(body || '{}'));
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify({
+        choices: [{
+          message: {
+            content: JSON.stringify({
+              i: 'design',
+              start: true,
+              summary: '面向过敏性哮喘生成抗体候选并展示结构模型。',
+              bg: '过敏性哮喘常由 2 型炎症和上皮报警素通路驱动，适合比较 IL-33、TSLP、IL-4Rα 和 IgE 等抗体可及靶点。',
+              disease: '过敏性哮喘',
+              target: 'IL-33',
+              gene: 'IL33',
+              reason: 'IL-33 是气道上皮损伤后释放的报警素，能通过 ST2 受体放大 2 型炎症反应，与过敏性哮喘的炎症级联、气道高反应性和抗体阻断策略具有明确关联；该靶点为可溶性细胞因子，表面可及性较好，已有抗 IL-33 抗体开发背景，适合作为本轮 Fab 候选设计入口。',
+              cands: [
+                { t: 'IL-33', g: 'IL33', r: 'IL-33/ST2 通路直接参与 2 型炎症放大，适合阻断型抗体设计。' },
+                { t: 'TSLP', g: 'TSLP', r: '上皮来源报警素，适合作为哮喘方向备选抗体靶点。' },
+                { t: 'IL-4Rα', g: 'IL4RA', r: 'IL-4/IL-13 信号受体链，具有明确过敏炎症治疗背景。' }
+              ],
+              mech: '阻断 IL-33 与 ST2 受体相互作用，筛选 Fab 候选。',
+              ab: 'Fab',
+              n: 10,
+              block: 'ST2',
+              confidence: 0.86,
+              wf: {
+                domain: 'IL-1 家族细胞因子结构域',
+                mechanism: '阻断 IL-33/ST2 炎症信号复合物',
+                epitope: '优先覆盖 ST2 结合界面邻近表面',
+                structure: 'IL-33/Fab 复合物结构依据',
+                modelNote: '展示 Fab 覆盖 IL-33 受体结合面的候选构象'
+              }
+            })
+          }
+        }]
+      }));
+    });
+  });
+
+  const mockPort = await listenOnLocalhost(mockServer);
+  try {
+    const saved = await saveMockChatConfig(mockPort, 'mock-compact-no-workflow');
+    const messages = await collectUserMessageStream('帮我为过敏性哮喘设计一个抗体分子，并打印一个结构模型', {
+      timeoutMs: 12000,
+      voiceSessionId: saved.voiceSessionId,
+      stopWhen: msg => msg.type === 'tool_call' && msg.tool === 'target_evidence_review'
+    });
+    const evidenceCall = messages.find(msg => msg.type === 'tool_call' && msg.tool === 'target_evidence_review');
+    const serialized = JSON.stringify(messages);
+
+    assert.equal(captured.length, 1);
+    assert.ok(evidenceCall, 'core model fields should be enough to enter the workflow');
+    assert.equal(evidenceCall.params.target, 'IL-33');
+    assert.equal(evidenceCall.params.route, 'IL-33 / ST2');
+    assert.equal(evidenceCall.params.evidence_package, 'IL-33/ST2 靶点证据包');
+    assert.match(serialized, /选择理由：.*IL-33.*ST2/s);
+    assert.match(serialized, /IL-33\/ST2 靶点证据包|优先覆盖 ST2 结合界面邻近表面/);
+    assert.doesNotMatch(serialized, /workflowBlueprint|workflowProfile|epitopeRows|本地|预设|可展示靶点|已有分子模型/);
+  } finally {
+    await new Promise(resolve => mockServer.close(resolve));
+  }
+});
+
+test('compact workflow fields feed the final 3D molecular model note', async () => {
+  const mockServer = http.createServer((req, res) => {
+    req.resume();
+    req.on('end', () => {
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify({
+        choices: [{
+          message: {
+            content: JSON.stringify({
+              i: 'design',
+              start: true,
+              summary: '面向过敏性哮喘生成抗体候选并展示结构模型。',
+              bg: '过敏性哮喘适合围绕上皮报警素通路组织抗体设计。',
+              disease: '过敏性哮喘',
+              target: 'IL-33',
+              gene: 'IL33',
+              reason: 'IL-33 是过敏性哮喘中连接上皮损伤和 2 型炎症放大的关键报警素，通过 ST2 受体驱动下游炎症级联；该靶点为可溶性细胞因子，具备抗体可及性、受体阻断机制和抗 IL-33 抗体开发背景，适合作为本轮 Fab 候选设计入口。',
+              cands: [
+                { t: 'IL-33', g: 'IL33', r: 'IL-33/ST2 通路直接参与哮喘炎症放大。' },
+                { t: 'TSLP', g: 'TSLP', r: '上皮炎症启动因子，可作备选。' }
+              ],
+              mech: '阻断 IL-33/ST2 信号并筛选 Fab 候选。',
+              ab: 'Fab',
+              n: 3,
+              block: 'ST2',
+              wf: {
+                domain: 'IL-1 家族细胞因子结构域',
+                mechanism: '阻断 IL-33/ST2 炎症信号复合物',
+                epitope: '优先覆盖 ST2 受体结合界面',
+                structure: 'IL-33/Fab 复合物结构依据',
+                modelNote: '展示 Fab 贴合 IL-33 受体结合面的三维候选模型'
+              }
+            })
+          }
+        }]
+      }));
+    });
+  });
+
+  const mockPort = await listenOnLocalhost(mockServer);
+  try {
+    const saved = await saveMockChatConfig(mockPort, 'mock-compact-3d-note');
+    const messages = await collectUserMessageStream('帮我为过敏性哮喘设计一个抗体分子，并打印一个结构模型', {
+      timeoutMs: 45000,
+      voiceSessionId: saved.voiceSessionId,
+      skipThinking: true,
+      stopWhen: msg => msg.type === 'show_3d'
+    });
+    const show3d = messages.find(msg => msg.type === 'show_3d');
+
+    assert.ok(show3d, 'workflow should reach the molecular model display');
+    assert.equal(show3d.primaryPDB, 'IL33-candidate-01');
+    assert.ok(Array.isArray(show3d.binderData));
+    assert.equal(show3d.binderData[0].targetDisplay, 'IL-33');
+    assert.equal(show3d.binderData[0].visualSummary, '展示 Fab 贴合 IL-33 受体结合面的三维候选模型');
+    assert.match(show3d.binderData[0].structuralBasis, /RCSB 9X0J|IL-33/);
   } finally {
     await new Promise(resolve => mockServer.close(resolve));
   }

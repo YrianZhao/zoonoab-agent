@@ -439,9 +439,10 @@ test('server can let the chat model route terse monoclonal slang into workflow',
     assert.ok(evidenceCall, 'model-routed slang request should enter target-resolution workflow');
     assert.equal(evidenceCall.params.target, 'TMV coat protein');
     assert.equal(captured.length, 1);
-    assert.match(captured[0].messages[0].content, /自然语言理解器|选择理由|工作流展示|workflow/);
+    assert.match(captured[0].messages[0].content, /自然语言理解器|选择理由|wf|modelNote/);
+    assert.doesNotMatch(captured[0].messages[0].content, /workflow\/profile|tool_call|tool_result|epitopeRows|referenceEntries/);
     assert.deepEqual(captured[0].response_format, { type: 'json_object' });
-    assert.ok(captured[0].max_tokens >= 1200);
+    assert.ok(captured[0].max_tokens <= 900);
   } finally {
     await new Promise(resolve => mockServer.close(resolve));
   }
