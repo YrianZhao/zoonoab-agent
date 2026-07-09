@@ -3810,6 +3810,7 @@ function buildRoute3DMeta(profile, idx, file, ipTm, preset) {
       ? profile.modelVisualSummary
       : (preset && preset.visualSummary ? preset.visualSummary : (profile && profile.structurePrepZh) || ''),
     structuralBasis: preset && preset.structuralBasis ? preset.structuralBasis : ((profile && profile.structuralBasis) || '本地代表性抗体-抗原结构模型，用于展示当前候选分子的三维构象。'),
+    selectionReason: profile && profile.reason ? String(profile.reason).trim().slice(0, 900) : '',
     interfaceDetail: !(preset && preset.interfaceDetail === false),
     antigenChains: chainInfo.antigen,
     antibodyChains: chainInfo.antibody,
@@ -6971,6 +6972,7 @@ async function runDeNovoDesign(ws, input) {
       targetDisplay: target,
       antibodyFormat: 'Fab',
       structuralBasis: 'RCSB 9X0J IL-33 / Tozorakimab Fab 复合体',
+      selectionReason: 'IL-33 与过敏性炎症通路存在明确关联，具备可及的细胞因子表面和清晰的受体阻断机制，适合作为本轮 Fab 候选设计入口。',
       antigenChains: ['A'],
       antibodyChains: ['B', 'C'],
       ipTm: null

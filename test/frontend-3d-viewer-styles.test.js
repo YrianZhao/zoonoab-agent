@@ -99,6 +99,19 @@ test('3D role legends only show role names and color swatches', () => {
   assert.doesNotMatch(fullLegendFunction, /Chains|展示链|Target antigen|Fab 候选/);
 });
 
+test('full-screen structure modal can show a truncated target selection reason', () => {
+  assert.match(indexHtml, /mol-modal-reason/);
+  assert.match(indexHtml, /-webkit-line-clamp:\s*2/);
+  assert.match(indexHtml, /选择理由：/);
+
+  const openModalFunction = extractFunction(indexHtml, 'function openMolModal(pdbId, name)');
+  const titleHtmlFunction = extractFunction(indexHtml, 'function buildMolModalTitleHtml(displayTitle, subtitleParts, selectionReason)');
+  assert.match(openModalFunction, /meta\.selectionReason/);
+  assert.match(titleHtmlFunction, /mol-modal-reason/);
+  assert.match(titleHtmlFunction, /选择理由：/);
+  assert.match(titleHtmlFunction, /mol-modal-title-copy/);
+});
+
 test('embedded and full 3D viewers hide chains outside the selected antigen-antibody pair in product display modes', () => {
   const galleryHtml = fs.readFileSync(path.join(ROOT, 'public', 'gallery-mol.html'), 'utf8');
   const galleryApplyChainColors = extractFunction(galleryHtml, 'function applyChainColors(m)');
