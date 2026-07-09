@@ -79,6 +79,26 @@ test('3D viewers expose an antigen and antibody color legend', () => {
   assert.match(viewerFullHtml, /抗体/);
 });
 
+test('3D role legends only show role names and color swatches', () => {
+  const legendHtmlFunction = extractFunction(indexHtml, 'function buildRoleLegendHtml(meta)');
+  assert.match(legendHtmlFunction, /item\.role/);
+  assert.doesNotMatch(legendHtmlFunction, /item\.label/);
+  assert.doesNotMatch(legendHtmlFunction, /viewer-role-chains/);
+  assert.doesNotMatch(legendHtmlFunction, /展示链|chains\.join/);
+
+  const frameUrlFunction = extractFunction(indexHtml, 'function buildMoleculeFrameUrl(basePath, pdbId, title, candidateIndex)');
+  assert.doesNotMatch(frameUrlFunction, /展示链/);
+  assert.doesNotMatch(frameUrlFunction, /legend\.antigen\.label|legend\.antibody\.label/);
+
+  const historyFrameUrlFunction = extractFunction(indexHtml, 'function buildHistoryMoleculeFrameUrl(section, model, modelIdx, title)');
+  assert.doesNotMatch(historyFrameUrlFunction, /展示链/);
+  assert.doesNotMatch(historyFrameUrlFunction, /legend\.antigen\.label|legend\.antibody\.label/);
+
+  const fullLegendFunction = extractFunction(viewerFullHtml, 'function renderRoleLegend()');
+  assert.doesNotMatch(fullLegendFunction, /AG_LABEL|AB_LABEL|replace\(/);
+  assert.doesNotMatch(fullLegendFunction, /Chains|展示链|Target antigen|Fab 候选/);
+});
+
 test('embedded and full 3D viewers hide chains outside the selected antigen-antibody pair in product display modes', () => {
   const galleryHtml = fs.readFileSync(path.join(ROOT, 'public', 'gallery-mol.html'), 'utf8');
   const galleryApplyChainColors = extractFunction(galleryHtml, 'function applyChainColors(m)');

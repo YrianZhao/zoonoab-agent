@@ -56,11 +56,9 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
         var text = String(value || '').trim();
         return /^#(?:[0-9A-Fa-f]{3}|[0-9A-Fa-f]{4}|[0-9A-Fa-f]{6}|[0-9A-Fa-f]{8})$/.test(text) ? text : fallback;
     }
-    var AG_COLOR = safeViewerColor(params.get('chainA'), '#FB923C');   // Antigen / Chain A
-    var AB_COLOR = safeViewerColor(params.get('chainB'), '#2DD4BF');   // Antibody / other chains
+    var AG_COLOR = safeViewerColor(params.get('chainA'), '#FB923C');
+    var AB_COLOR = safeViewerColor(params.get('chainB'), '#2DD4BF');
     var SF_COLOR = '#67E8F9';   // Surface → cyan
-    var AG_LABEL = params.get('antigenLabel') || '抗原：Target antigen · Chains A';
-    var AB_LABEL = params.get('antibodyLabel') || '抗体：Fab 候选 · Chains B';
     function escHtmlText(value) {
         return String(value == null ? '' : value)
             .replace(/&/g, '&amp;')
@@ -73,8 +71,8 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
         var el = document.getElementById('roleLegend');
         if (!el) return;
         el.innerHTML =
-            '<span class="vf-role-item"><span class="vf-role-swatch" style="background:' + escHtmlText(AG_COLOR) + '"></span><strong>抗原</strong><span>' + escHtmlText(AG_LABEL.replace(/^抗原[:：]\\s*/, '')) + '</span></span>' +
-            '<span class="vf-role-item"><span class="vf-role-swatch" style="background:' + escHtmlText(AB_COLOR) + '"></span><strong>抗体</strong><span>' + escHtmlText(AB_LABEL.replace(/^抗体[:：]\\s*/, '')) + '</span></span>';
+            '<span class="vf-role-item"><span class="vf-role-swatch" style="background:' + escHtmlText(AG_COLOR) + '"></span><strong>抗原</strong></span>' +
+            '<span class="vf-role-item"><span class="vf-role-swatch" style="background:' + escHtmlText(AB_COLOR) + '"></span><strong>抗体</strong></span>';
     }
     function parseChains(value, fallback) {
         var arr = String(value || '').split(',').map(function(s){ return s.trim(); }).filter(Boolean);

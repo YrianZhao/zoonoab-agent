@@ -2030,9 +2030,6 @@
             color: var(--text-primary);
             font-weight: 800;
         }
-        .viewer-role-chains {
-            color: var(--text-muted);
-        }
         .viewer-container {
             background: var(--bg-dark); /* Dark background for 3D viewer */
             border: 1px solid var(--border);
@@ -5855,7 +5852,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146081';
+    const APP_BUILD_VERSION = '78146082';
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -8165,8 +8162,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         url += '&chainB=' + encodeURIComponent(colors.antibody);
         url += '&antigenChains=' + encodeURIComponent(antigenChains.join(','));
         url += '&antibodyChains=' + encodeURIComponent(antibodyChains.join(','));
-        url += '&antigenLabel=' + encodeURIComponent(legend.antigen.role + '：' + legend.antigen.label + ' · 展示链 ' + legend.antigen.chains.join(','));
-        url += '&antibodyLabel=' + encodeURIComponent(legend.antibody.role + '：' + legend.antibody.label + ' · 展示链 ' + legend.antibody.chains.join(','));
+        url += '&antigenLabel=' + encodeURIComponent(legend.antigen.role);
+        url += '&antibodyLabel=' + encodeURIComponent(legend.antibody.role);
         url += '&poseSeed=' + encodeURIComponent(String(viewerPoseSeed));
         if (title) url += '&title=' + encodeURIComponent(title);
         return url;
@@ -13983,8 +13980,7 @@ ${fallbackTableRows(profile.rows)}
         return `<div class="viewer-role-legend" aria-label="抗原和抗体颜色图例">${items.map(item => `
             <span class="viewer-role-item">
                 <span class="viewer-role-swatch" style="background:${escHtml(item.color)}"></span>
-                <span><strong>${escHtml(item.role)}</strong> ${escHtml(item.label)}</span>
-                <span class="viewer-role-chains">展示链 ${escHtml(item.chains.join(','))}</span>
+                <span><strong>${escHtml(item.role)}</strong></span>
             </span>`).join('')}</div>`;
     }
 
@@ -14024,8 +14020,8 @@ ${fallbackTableRows(profile.rows)}
         url += '&antigenChains=' + encodeURIComponent(antigenChains.join(','));
         url += '&antibodyChains=' + encodeURIComponent(antibodyChains.join(','));
         const legend = getRoleLegend(meta);
-        url += '&antigenLabel=' + encodeURIComponent(legend.antigen.role + '：' + legend.antigen.label + ' · 展示链 ' + legend.antigen.chains.join(','));
-        url += '&antibodyLabel=' + encodeURIComponent(legend.antibody.role + '：' + legend.antibody.label + ' · 展示链 ' + legend.antibody.chains.join(','));
+        url += '&antigenLabel=' + encodeURIComponent(legend.antigen.role);
+        url += '&antibodyLabel=' + encodeURIComponent(legend.antibody.role);
         url += '&poseSeed=' + encodeURIComponent(String(viewerPoseSeed));
         if (title) url += '&title=' + encodeURIComponent(title);
         return url;
