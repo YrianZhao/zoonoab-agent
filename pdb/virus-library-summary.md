@@ -17,7 +17,7 @@
 | 新冠 SARS-CoV-2 | Wuhan, D614G, Alpha, Beta, Gamma, Delta, Omicron BA.1, Omicron BA.2 Spike | 7Z3Z, 7WZ2, 7LWT, 7LYN, 7V79, 7TOU, 8DZH, 7UB0 |
 | SARS one / SARS-CoV-1 | Spike | 8H16 |
 | MERS | Spike | 5X5C |
-| 尼帕病毒 | G attachment, prefusion F | 2VWD, 8DO4 |
+| 尼帕病毒 | G attachment oligomer, prefusion F | 8K0C, 8DO4 |
 | 埃博拉病毒 | Zaire GP, Sudan GP, Bundibugyo GP | 9MHA, 9N8F, 6DZM |
 | 呼吸道合胞病毒 RSV | RSV A prefusion F, RSV A/B postfusion F | 5W23, 3RRR |
 | HIV | HIV-1 BG505 Env, HIV-1 ConC Env, HIV-1 ZM233 Env | 4NCO, 8F7T, 9CV7 |
@@ -41,3 +41,9 @@
 /api/pdb/local/VIRUSLIB-FLU-HA-H01-7MFG.pdb
 ```
 
+## 形态和距离校验
+
+- 流感 H9 已从 `1JSD.pdb1` 单个 HA1/HA2 原聚体改为 `1JSD.pdb2` biological assembly，表现为 Hetero 6-mer（三聚体级 HA 装配）。
+- 尼帕病毒 G 已从 `2VWD` 单体头部替换为 `8K0C` oligomeric G-antibody assembly，表现为 Hetero 8-mer。
+- RCSB biological assembly 中的 `MODEL/ENDMDL` 块已在本地 PDB 中展平成单一坐标集合，避免 3Dmol 只显示第一帧。
+- 带抗体/Fab 的病毒复合物已做抗原-抗体最小距离检查，接触距离约 2.1-2.9 Å，未发现远离或明显穿模的展示结构。

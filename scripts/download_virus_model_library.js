@@ -21,7 +21,7 @@ const entries = [
   { group: 'Influenza', subtype: 'H6', antigen: 'HA', pdbId: '4WSR', file: 'VIRUSLIB-FLU-HA-H06-4WSR.pdb', label: 'Influenza A H6 HA', note: 'A/chicken/New York/14677-13/1998 H6 HA.' },
   { group: 'Influenza', subtype: 'H7', antigen: 'HA', pdbId: '8TNL', file: 'VIRUSLIB-FLU-HA-H07-8TNL.pdb', label: 'Influenza A H7 HA', note: 'A/Shanghai/2013 H7N9 HA with neutralizing antibody.' },
   { group: 'Influenza', subtype: 'H8', antigen: 'HA', pdbId: '6V46', file: 'VIRUSLIB-FLU-HA-H08-6V46.pdb', label: 'Influenza A H8 HA', note: 'A/turkey/Ontario/6118/1968 H8N4 HA.' },
-  { group: 'Influenza', subtype: 'H9', antigen: 'HA', pdbId: '1JSD', file: 'VIRUSLIB-FLU-HA-H09-1JSD.pdb', label: 'Influenza A H9 HA', note: 'Swine H9 hemagglutinin.' },
+  { group: 'Influenza', subtype: 'H9', antigen: 'HA', pdbId: '1JSD', assemblyId: '2', file: 'VIRUSLIB-FLU-HA-H09-1JSD.pdb', label: 'Influenza A H9 HA trimer', note: 'Swine H9 hemagglutinin biological assembly trimer.' },
   { group: 'Influenza', subtype: 'H10', antigen: 'HA', pdbId: '4CYV', file: 'VIRUSLIB-FLU-HA-H10-4CYV.pdb', label: 'Influenza A H10 HA', note: 'A/mallard/Sweden/51/2002 H10 HA.' },
   { group: 'Influenza', subtype: 'H11', antigen: 'HA', pdbId: '6V47', file: 'VIRUSLIB-FLU-HA-H11-6V47.pdb', label: 'Influenza A H11 HA', note: 'A/duck/Memphis/546/1974 H11N9 HA.' },
   { group: 'Influenza', subtype: 'H12', antigen: 'HA', pdbId: '7A9D', file: 'VIRUSLIB-FLU-HA-H12-7A9D.pdb', label: 'Influenza A H12 HA', note: 'H12 hemagglutinin.' },
@@ -44,7 +44,7 @@ const entries = [
   { group: 'MERS-CoV', subtype: 'MERS', antigen: 'Spike', pdbId: '5X5C', file: 'VIRUSLIB-MERS-SPIKE-5X5C.pdb', label: 'MERS-CoV Spike', note: 'MERS-CoV prefusion Spike glycoprotein.' },
 
   // Nipah virus.
-  { group: 'Nipah virus', subtype: 'G attachment', antigen: 'G', pdbId: '2VWD', file: 'VIRUSLIB-NIPAH-G-2VWD.pdb', label: 'Nipah virus attachment glycoprotein G', note: 'Attachment glycoprotein head domain.' },
+  { group: 'Nipah virus', subtype: 'G attachment oligomer', antigen: 'G', pdbId: '8K0C', file: 'VIRUSLIB-NIPAH-G-OLIGOMER-8K0C.pdb', label: 'Nipah virus attachment glycoprotein G oligomer', note: 'Nipah G oligomeric assembly with neutralizing antibody; preferred over monomeric head-only structures for display.' },
   { group: 'Nipah virus', subtype: 'F prefusion', antigen: 'F', pdbId: '8DO4', file: 'VIRUSLIB-NIPAH-F-PREFUSION-8DO4.pdb', label: 'Nipah virus prefusion F', note: 'Prefusion-stabilized Nipah F, dimer of trimers.' },
 
   // Ebolavirus GP representatives with reliable GP structures.
@@ -135,6 +135,24 @@ async function fetchEntryMeta(pdbId) {
   };
 }
 
+async function fetchAssemblyMeta(pdbId, assemblyId) {
+  try {
+    const assembly = await getJson(`${RCSB_DATA_BASE}/assembly/${pdbId}/${assemblyId}`);
+    return {
+      assemblyId,
+      details: assembly.pdbx_struct_assembly?.details || '',
+      methodDetails: assembly.pdbx_struct_assembly?.method_details || '',
+      polymerEntityInstanceCount: assembly.rcsb_assembly_info?.polymer_entity_instance_count || null,
+      atomCount: assembly.rcsb_assembly_info?.atom_count || null,
+      oligomericStates: (assembly.rcsb_struct_symmetry || [])
+        .map(item => item.oligomeric_state)
+        .filter(Boolean)
+    };
+  } catch {
+    return { assemblyId };
+  }
+}
+
 function chainSummary(entities) {
   return entities
     .map(entity => {
@@ -143,9 +161,66 @@ function chainSummary(entities) {
     });
 }
 
+function flattenPdbModels(text) {
+  const lines = String(text || '').split(/\r?\n/);
+  const modelChainPairs = new Set();
+  let currentModel = '';
+  let modelCount = 0;
+  for (const line of lines) {
+    if (line.startsWith('MODEL')) {
+      currentModel = String(++modelCount);
+      continue;
+    }
+    if (line.startsWith('ENDMDL')) {
+      currentModel = '';
+      continue;
+    }
+    if ((line.startsWith('ATOM') || line.startsWith('HETATM')) && currentModel) {
+      modelChainPairs.add(currentModel + '|' + (line[21] || ' '));
+    }
+  }
+
+  const chainChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'.split('');
+  const canRenameChains = modelChainPairs.size > 0 && modelChainPairs.size <= chainChars.length;
+  const chainMap = new Map();
+  if (canRenameChains) {
+    let idx = 0;
+    for (const key of modelChainPairs) chainMap.set(key, chainChars[idx++]);
+  }
+
+  currentModel = '';
+  const out = [];
+  for (const line of lines) {
+    if (line.startsWith('MODEL')) {
+      currentModel = String(Number(line.slice(10).trim()) || (Number(currentModel) + 1) || 1);
+      continue;
+    }
+    if (line.startsWith('ENDMDL')) {
+      currentModel = '';
+      continue;
+    }
+    if ((line.startsWith('ATOM') || line.startsWith('HETATM')) && currentModel && canRenameChains) {
+      const key = currentModel + '|' + (line[21] || ' ');
+      const chain = chainMap.get(key);
+      if (chain) {
+        out.push(line.slice(0, 21) + chain + line.slice(22));
+        continue;
+      }
+    }
+    out.push(line);
+  }
+  return {
+    text: out.join('\n').replace(/\n*$/, '\n'),
+    modelCount,
+    flattened: modelCount > 0,
+    renamedChainPairs: canRenameChains ? modelChainPairs.size : 0
+  };
+}
+
 async function downloadPdb(entry) {
   const outputPath = path.join(PDB_DIR, entry.file);
-  const assemblyUrl = `${RCSB_FILE_BASE}/${entry.pdbId}.pdb1`;
+  const assemblyId = String(entry.assemblyId || '1');
+  const assemblyUrl = `${RCSB_FILE_BASE}/${entry.pdbId}.pdb${assemblyId}`;
   const entryUrl = `${RCSB_FILE_BASE}/${entry.pdbId}.pdb`;
   let sourceUrl = assemblyUrl;
   let body;
@@ -155,10 +230,12 @@ async function downloadPdb(entry) {
     sourceUrl = entryUrl;
     body = await request(entryUrl);
   }
-  const text = body.toString('utf8');
-  if (!/\bATOM\b/.test(text)) {
+  const originalText = body.toString('utf8');
+  if (!/\bATOM\b/.test(originalText)) {
     throw new Error(`Downloaded file for ${entry.pdbId} did not contain ATOM records.`);
   }
+  const flattened = flattenPdbModels(originalText);
+  const text = flattened.text;
   const header = [
     `REMARK 900 ZOONOAB VIRUS DISPLAY LIBRARY`,
     `REMARK 920 SOURCE PDB: ${entry.pdbId}`,
@@ -170,7 +247,14 @@ async function downloadPdb(entry) {
     `REMARK 926 NOTE: ${entry.note || ''}`
   ].join('\n') + '\n';
   fs.writeFileSync(outputPath, header + text);
-  return { sourceUrl, bytes: fs.statSync(outputPath).size, atomLines: (text.match(/^ATOM/gm) || []).length };
+  return {
+    sourceUrl,
+    assemblyId,
+    bytes: fs.statSync(outputPath).size,
+    atomLines: (text.match(/^ATOM/gm) || []).length,
+    modelBlocksFlattened: flattened.modelCount,
+    renamedChainPairs: flattened.renamedChainPairs
+  };
 }
 
 async function main() {
@@ -180,11 +264,14 @@ async function main() {
   for (const entry of entries) {
     process.stdout.write(`Downloading ${entry.file} (${entry.pdbId})... `);
     const meta = await fetchEntryMeta(entry.pdbId);
+    const requestedAssemblyId = String(entry.assemblyId || '1');
+    const assemblyMeta = await fetchAssemblyMeta(entry.pdbId, requestedAssemblyId);
     const download = await downloadPdb(entry);
     const manifestEntry = {
       ...entry,
       sourceType: 'experimental',
       sourceDatabase: 'RCSB PDB',
+      assemblyId: download.assemblyId,
       rcsbEntryUrl: `https://www.rcsb.org/structure/${entry.pdbId}`,
       downloadUrl: download.sourceUrl,
       localPath: `pdb/${entry.file}`,
@@ -197,6 +284,9 @@ async function main() {
       resolutionAngstrom: meta.resolutionAngstrom,
       assemblyIds: meta.assemblyIds,
       depositedAtomCount: meta.depositedAtomCount,
+      assembly: assemblyMeta,
+      modelBlocksFlattened: download.modelBlocksFlattened,
+      renamedChainPairs: download.renamedChainPairs,
       entities: meta.entities,
       entitySummary: chainSummary(meta.entities)
     };
