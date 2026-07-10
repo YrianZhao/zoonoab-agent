@@ -202,3 +202,21 @@ test('automatic spin badge is rendered inside the full viewer toolbar instead of
   assert.match(viewerFullHtml, /vf-auto-spin-badge/);
   assert.match(viewerFullHtml, /insertBefore\(badge,\s*actions\.firstChild\)/);
 });
+
+test('selection reason overlay is full text and cannot mutate the 3D viewer', () => {
+  const viewerFullHtml = fs.readFileSync(path.join(__dirname, '..', 'public', 'viewer-full.html'), 'utf8');
+  const renderSelectionReason = extractFunction(viewerFullHtml, 'function renderSelectionReason');
+  const reasonCssStart = viewerFullHtml.indexOf('.vf-reason-ghost{');
+  assert.notEqual(reasonCssStart, -1, 'selection reason overlay CSS should exist');
+  const reasonCssEnd = viewerFullHtml.indexOf('.vf-role-legend{', reasonCssStart);
+  assert.notEqual(reasonCssEnd, -1, 'selection reason CSS block should end before role legend CSS');
+  const reasonCss = viewerFullHtml.slice(reasonCssStart, reasonCssEnd);
+
+  assert.match(reasonCss, /position:\s*absolute/);
+  assert.match(reasonCss, /pointer-events:\s*none/);
+  assert.match(reasonCss, /inset:\s*0/);
+  assert.match(reasonCss, /overflow-y:\s*auto/);
+  assert.doesNotMatch(reasonCss, /-webkit-line-clamp|max-width:\s*min|display:\s*-webkit-box/);
+  assert.doesNotMatch(reasonCss, /padding:[^;]*\b(?:2[4-9]|[3-9]\d)%/, 'selection reason should use the full viewer width, not a side column');
+  assert.doesNotMatch(renderSelectionReason, /\bglv\b|zoomTo|render\(|resize\(|setStyle|spin\(/);
+});
