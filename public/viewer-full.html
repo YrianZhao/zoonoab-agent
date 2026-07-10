@@ -17,7 +17,10 @@ html,body{width:100%;height:100%;overflow:hidden;background:#0D1117;font-family:
 .btn:hover{border-color:#FB923C;color:#FB923C;background:rgba(251,146,60,0.1)}
 .btn.active{background:#1D4ED8;color:#fff;border-color:#3B82F6;box-shadow:0 2px 8px rgba(59,130,246,.35)}
 .divider{width:1px;height:22px;background:rgba(255,255,255,0.1)}
-.actions{display:flex;gap:4px;margin-left:auto}
+.actions{display:flex;gap:4px;margin-left:auto;align-items:center}
+.vf-auto-spin-badge{display:inline-flex;align-items:center;justify-content:center;height:30px;padding:0 12px;margin-right:5px;border-radius:7px;border:1.5px solid rgba(59,130,246,0.38);background:rgba(37,99,235,0.18);color:#60A5FA;
+  font-size:11px;font-weight:800;letter-spacing:.35px;line-height:1;white-space:nowrap;box-shadow:0 0 0 1px rgba(96,165,250,0.08),0 0 16px rgba(37,99,235,0.16);animation:vfAutoSpinPulse 2.2s ease-in-out infinite}
+@keyframes vfAutoSpinPulse{0%,100%{box-shadow:0 0 0 1px rgba(96,165,250,0.08),0 0 16px rgba(37,99,235,0.12)}50%{box-shadow:0 0 0 1px rgba(96,165,250,0.22),0 0 22px rgba(37,99,235,0.28)}}
 .act{padding:5px 12px;border-radius:7px;border:1.5px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.65);
   font-size:12px;font-weight:600;cursor:pointer;transition:all .15s}
 .act:hover{border-color:#2DD4BF;color:#2DD4BF;background:rgba(45,212,191,0.1)}
@@ -25,6 +28,9 @@ html,body{width:100%;height:100%;overflow:hidden;background:#0D1117;font-family:
 .vwrap{flex:1;position:relative;overflow:hidden}
 #vc{width:100%;height:100%;position:relative}
 canvas{width:100%!important;height:100%!important;display:block;outline:none}
+.vf-reason-ghost{position:absolute;right:18px;top:16px;z-index:4;max-width:min(480px,36vw);padding:0 2px 0 18px;color:rgba(226,232,240,.48);font-size:12px;font-weight:600;line-height:1.68;letter-spacing:0;pointer-events:none;text-align:left;text-shadow:0 1px 10px rgba(0,0,0,.86);mix-blend-mode:screen;display:none}
+.vf-reason-ghost.has-text{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.vf-reason-ghost span{color:rgba(147,197,253,.62);font-weight:800}
 .vf-role-legend{position:absolute;left:14px;bottom:14px;z-index:4;display:flex;flex-wrap:wrap;gap:8px;max-width:calc(100% - 28px);pointer-events:none}
 .vf-role-item{display:inline-flex;align-items:center;gap:8px;max-width:100%;padding:7px 10px;border:1px solid rgba(255,255,255,0.14);border-radius:8px;background:rgba(13,17,23,0.78);color:rgba(255,255,255,0.78);font-size:12px;line-height:1.35;backdrop-filter:blur(8px)}
 .vf-role-swatch{width:11px;height:11px;border-radius:999px;border:1px solid rgba(255,255,255,0.35);flex:0 0 auto}
@@ -32,6 +38,10 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
 .hint{text-align:center;padding:7px 0;color:rgba(255,255,255,0.25);font-size:11px;flex-shrink:0;z-index:5;background:#0D1117;}
 .ld{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
    color:#FB923C;font-size:12px;letter-spacing:.5px;pointer-events:none;white-space:nowrap;z-index:3}
+@media (max-width: 720px){
+  .vf-auto-spin-badge{height:28px;padding:0 9px;font-size:10px}
+  .vf-reason-ghost{right:12px;top:10px;max-width:min(420px,74vw);font-size:11px;line-height:1.56;color:rgba(226,232,240,.42);padding-left:8px}
+}
 </style>
 <body>
 <div class="wrap">
@@ -41,7 +51,7 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
     <span class="tbg">COLOR</span><div class="btns" id="cBtns"></div>
     <div class="actions" id="acts"></div>
   </div>
-  <div class="vwrap"><div id="vc"><div class="ld">Loading...</div></div><div id="roleLegend" class="vf-role-legend"></div></div>
+  <div class="vwrap"><div id="vc"><div class="ld">Loading...</div></div><div id="selectionReason" class="vf-reason-ghost"></div><div id="roleLegend" class="vf-role-legend"></div></div>
   <div class="hint">Drag to rotate &middot; Scroll to zoom &middot; Right-drag to pan</div>
 </div>
 
@@ -50,6 +60,8 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
 (function(){
     var params = new URLSearchParams(location.search);
     var pdbUrl = params.get('pdb') || '';
+    var AUTO_SPIN = params.get('autoSpin') === '1';
+    var SELECTION_REASON = normalizeDisplayText(params.get('selectionReason') || '');
 
     // ════ Colors ════
     function safeViewerColor(value, fallback) {
@@ -67,12 +79,36 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
             .replace(/"/g, '&quot;')
             .replace(/'/g, '&#39;');
     }
+    function normalizeDisplayText(value) {
+        return String(value == null ? '' : value).replace(/\s+/g, ' ').trim();
+    }
     function renderRoleLegend() {
         var el = document.getElementById('roleLegend');
         if (!el) return;
         el.innerHTML =
             '<span class="vf-role-item"><span class="vf-role-swatch" style="background:' + escHtmlText(AG_COLOR) + '"></span><strong>抗原</strong></span>' +
             '<span class="vf-role-item"><span class="vf-role-swatch" style="background:' + escHtmlText(AB_COLOR) + '"></span><strong>抗体</strong></span>';
+    }
+    function renderSelectionReason() {
+        var el = document.getElementById('selectionReason');
+        if (!el) return;
+        if (!SELECTION_REASON) {
+            el.classList.remove('has-text');
+            el.textContent = '';
+            return;
+        }
+        el.innerHTML = '<span>选择理由：</span>' + escHtmlText(SELECTION_REASON);
+        el.classList.add('has-text');
+    }
+    function renderAutoSpinBadge() {
+        if (!AUTO_SPIN) return;
+        var actions = document.getElementById('acts');
+        if (!actions || document.getElementById('autoSpinBadge')) return;
+        var badge = document.createElement('span');
+        badge.id = 'autoSpinBadge';
+        badge.className = 'vf-auto-spin-badge';
+        badge.textContent = 'AUTO SPIN';
+        actions.insertBefore(badge, actions.firstChild);
     }
     function parseChains(value, fallback) {
         var arr = String(value || '').split(',').map(function(s){ return s.trim(); }).filter(Boolean);
@@ -223,6 +259,7 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
 
         document.title = decodeURIComponent(params.get('title')||'') || 'Molecule';
         renderRoleLegend();
+        renderSelectionReason();
 
         // Style buttons
         Object.keys(STYLES).forEach(function(n){
@@ -247,6 +284,7 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
         });
 
         // Action buttons
+        renderAutoSpinBadge();
         ['Spin','Reset','PNG'].forEach(function(n){
             var b=document.createElement('button');b.className='act';b.textContent=n;
             if(n==='Spin')b.id='spinB';
