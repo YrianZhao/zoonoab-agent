@@ -335,6 +335,75 @@ test('compact workflow fields feed the final 3D molecular model note', async () 
   }
 });
 
+test('model-resolved influenza subtype keeps academic display name while using the closest HA model', async () => {
+  const captured = [];
+  const mockServer = http.createServer((req, res) => {
+    let body = '';
+    req.setEncoding('utf8');
+    req.on('data', chunk => { body += chunk; });
+    req.on('end', () => {
+      captured.push(JSON.parse(body || '{}'));
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify({
+        choices: [{
+          message: {
+            content: JSON.stringify({
+              i: 'design',
+              start: true,
+              summary: '面向流感 H7 中和抗体生成候选 Fab。',
+              bg: '用户口语中的流感 H7 指向 H7 亚型流感病毒血凝素抗原，应整理为学术靶点名后进入中和抗体设计。',
+              disease: '流感病毒感染',
+              target: 'Influenza A(H7) hemagglutinin (HA)',
+              gene: 'HA',
+              reason: '用户提出的“流感 H7”在抗体中和语境下应理解为 H7 亚型流感病毒血凝素 HA。HA 是流感病毒表面负责受体识别和膜融合的关键抗原，具备头部和茎部可及表面；围绕 H7 HA 设计中和抗体可直接对应病毒进入阻断场景，同时可比较 HA、NA 等候选后优先选择 HA 作为本轮靶点。',
+              cands: [
+                { t: 'Influenza A(H7) hemagglutinin (HA)', g: 'HA', r: 'H7 亚型血凝素，最贴近用户指定靶点和中和抗体语境。' },
+                { t: 'Influenza HA', g: 'HA', r: 'HA 家族共享中和抗体结构参考，可作为相近结构模型依据。' },
+                { t: 'Influenza NA', g: 'NA', r: '神经氨酸酶是流感另一表面抗原，但与 H7 中和表述不如 HA 直接。' }
+              ],
+              mech: '识别 H7 HA 表面中和表位并生成 Fab 候选。',
+              ab: 'Fab',
+              n: 3,
+              wf: {
+                domain: 'H7 HA 头部/茎部抗原可及表面',
+                mechanism: '阻断病毒受体识别或融合相关表面',
+                epitope: '优先覆盖 H7 HA 保守中和表面',
+                structure: 'HA 家族相近三聚体复合物结构依据',
+                modelNote: '以相近 HA 复合体呈现 H7 HA 中和候选构象'
+              }
+            })
+          }
+        }]
+      }));
+    });
+  });
+
+  const mockPort = await listenOnLocalhost(mockServer);
+  try {
+    const saved = await saveMockChatConfig(mockPort, 'mock-influenza-h7-router');
+    const messages = await collectUserMessageStream('设计一个针对流感 H7 的中和抗体', {
+      timeoutMs: 45000,
+      voiceSessionId: saved.voiceSessionId,
+      skipThinking: true,
+      stopWhen: msg => msg.type === 'show_3d'
+    });
+    const show3d = messages.find(msg => msg.type === 'show_3d');
+
+    assert.equal(captured.length, 1);
+    assert.match(captured[0].messages[0].content, /口语靶点|学术展示名|H7|hemagglutinin|相近结构模型/);
+    assert.ok(show3d, 'workflow should reach 3D display');
+    assert.ok(Array.isArray(show3d.binderData));
+    assert.equal(show3d.binderData[0].targetDisplay, 'Influenza A(H7) hemagglutinin (HA)');
+    assert.equal(show3d.binderData[0].routeLabel, 'Influenza A(H7) hemagglutinin (HA)');
+    assert.match(show3d.binderData[0].file, /^FluHA-Fab-/);
+    assert.match(show3d.binderData[0].structureTitle, /Influenza A\(H7\) hemagglutinin \(HA\)/);
+    assert.match(show3d.binderData[0].structuralBasis, /RCSB 3GBM influenza HA trimer biological assembly/);
+    assert.doesNotMatch(show3d.binderData[0].structureTitle, /^Influenza HA Fab/);
+  } finally {
+    await new Promise(resolve => mockServer.close(resolve));
+  }
+});
+
 test('model chat result is answered from the same compact parse instead of starting local routing', async () => {
   const captured = [];
   const mockServer = http.createServer((req, res) => {

@@ -2679,7 +2679,47 @@ app.delete('/api/history', (req, res) => {
 
 let workflowDisplaySerial = 0;
 
+function normalizeInfluenzaHaSubtypeDisplay(input) {
+  const raw = String(input || '').trim();
+  if (!raw || /(?:neuraminidase|神经氨酸酶|\bNA\b)/i.test(raw)) return '';
+  const hasInfluenzaContext = /influenza|flu|流感|禽流感|hemagglutinin|ha\b|血凝素/i.test(raw);
+  const subtypeMatch = raw.match(/\bH\s*(1[0-8]|[1-9])\s*(?:N\s*\d+)?\b/i) ||
+    raw.match(/H\s*(1[0-8]|[1-9])\s*N\s*\d+/i);
+  if (!hasInfluenzaContext || !subtypeMatch) return '';
+  return 'Influenza A(H' + Number(subtypeMatch[1]) + ') hemagglutinin (HA)';
+}
+
+function isInfluenzaHaFamilyTarget(value) {
+  const text = String(value || '').trim();
+  return Boolean(normalizeInfluenzaHaSubtypeDisplay(text)) ||
+    /^Influenza\s+HA$/i.test(text) ||
+    /Influenza\s+A\s*\(H(?:1[0-8]|[1-9])\)\s*hemagglutinin\s*\(HA\)/i.test(text);
+}
+
+function applyInfluenzaHaSubtypeDisplay(profile, displayTarget) {
+  const target = normalizeInfluenzaHaSubtypeDisplay(displayTarget);
+  if (!target || !profile) return profile;
+  return {
+    ...profile,
+    routeLabel: target,
+    targetDisplay: target,
+    domain: target + ' 表面抗原可及区域',
+    mechanism: '识别 ' + target + ' 表面中和表位，降低病毒识别或融合进入机会',
+    evidence: target + ' 中和证据包',
+    referenceEntries: target + ' 靶点条目',
+    structure: target + ' 头部和茎部中和表位参考集合',
+    structureRef: target + ' 相近 HA 参考模型',
+    interfaceFocus: target + ' 表面抗原上的中和表位',
+    selectedEpitope: target + ' 保守茎部或头部邻近中和表面',
+    riskSummaryZh: '界面风险标注显示，' + target + ' 路线应优先覆盖保守茎部或稳定可及表面，减少高变异头部环区风险。',
+    riskSummaryEn: 'Interface-risk annotation prioritizes conserved stem or stable accessible surfaces on ' + target + ' and reduces high-variation head-loop risk.',
+    structurePrepZh: '加载 HA 家族相近参考模型，提取 ' + target + ' 中和相关可及表面并生成 Fab 设计约束。',
+    structurePrepEn: 'Loaded a close HA-family reference model and prepared Fab constraints around neutralizing surfaces on ' + target + '.'
+  };
+}
+
 function buildRouteProfile(target, blockTarget, abType) {
+  const influenzaHaSubtypeDisplay = normalizeInfluenzaHaSubtypeDisplay(target);
   let key = String(target || '').toUpperCase().replace(/\s+/g, '');
   if (['PDL1', 'PD-L-1'].includes(key)) key = 'PD-L1';
   if (['CD274', 'B7H1', 'B7-H1'].includes(key)) key = 'PD-L1';
@@ -2711,6 +2751,7 @@ function buildRouteProfile(target, blockTarget, abType) {
   if (['RSVF', 'RSV-F'].includes(key)) key = 'RSV F';
   if (['SARS-COV-2RBD', 'SARSCOV2RBD', 'SARS-COV-2-RBD', 'RBD'].includes(key)) key = 'SARS-CoV-2 RBD';
   if (['INFLUENZAHA', 'INFLUENZA-HA', 'FLUHA', 'HA'].includes(key)) key = 'Influenza HA';
+  if (influenzaHaSubtypeDisplay) key = 'Influenza HA';
   const profiles = {
     'IL-33': {
       routeLabel: 'IL-33 / ST2',
@@ -3228,6 +3269,9 @@ function buildRouteProfile(target, blockTarget, abType) {
   const profile = profiles[key]
     ? { ...profiles[key] }
     : buildGenericTargetProfile(target, blockTarget, abType);
+  if (influenzaHaSubtypeDisplay) {
+    return applyInfluenzaHaSubtypeDisplay(profile, influenzaHaSubtypeDisplay);
+  }
   if (blockTarget && !profile.partnerDisplay) profile.partnerDisplay = String(blockTarget);
   return profile;
 }
@@ -3811,6 +3855,7 @@ function getRoute3DPreset(profile) {
   if (routeId && ROUTE_3D_PRESETS[routeId]) return ROUTE_3D_PRESETS[routeId];
   const target = (profile && profile.targetDisplay) || '';
   const disease = (profile && profile.disease) || '';
+  if (isInfluenzaHaFamilyTarget(target)) return ROUTE_3D_PRESETS.infectious_flu;
   if (target === 'ANGPTL3' && /心血管|血脂/.test(disease)) return ROUTE_3D_PRESETS.cardio_angptl3;
   if (target === 'ANGPTL3') return ROUTE_3D_PRESETS.metabolic_angptl3;
   const targetPresetMap = {
@@ -4113,6 +4158,14 @@ function localPDBFileExists(filename) {
   return fs.existsSync(path.join(LOCAL_PDB_DIR, filename)) || fs.existsSync(path.join(PROJECT_ROOT, filename));
 }
 
+function routeStructureTitle(profile, preset, abFormat) {
+  const target = (profile && profile.targetDisplay) || '';
+  if (preset && preset.aliasPrefix === 'FluHA-Fab' && isInfluenzaHaFamilyTarget(target)) {
+    return target + ' ' + (abFormat || 'Fab') + ' 中和表位构象';
+  }
+  return preset && preset.title ? preset.title : ((profile && profile.routeLabel) || target || '候选结构') + ' 候选结构';
+}
+
 function buildRoute3DMeta(profile, idx, file, ipTm, preset) {
   const target = (profile && profile.targetDisplay) || 'PD-L1';
   const selectionReason = sanitizeSelectionReasonForDisplay(
@@ -4153,7 +4206,7 @@ function buildRoute3DMeta(profile, idx, file, ipTm, preset) {
     selectedEpitope: (profile && profile.selectedEpitope) || '',
     structureRef: (profile && profile.structureRef) || '',
     interfaceFocus: (profile && profile.interfaceFocus) || '',
-    structureTitle: preset && preset.title ? preset.title : routeLabel + ' 候选结构',
+    structureTitle: routeStructureTitle(profile, preset, abFormat),
     structureFamily: preset && preset.structureFamily ? preset.structureFamily : (profile && profile.domain) || '',
     visualSummary: profile && profile.modelVisualSummary
       ? profile.modelVisualSummary
@@ -5052,7 +5105,16 @@ function detectDemoRoute(input) {
 
   for (const rule of DEMO_ROUTE_RULES) {
     if (rule.id === 'infectious_flu' && designRequest.target === 'Influenza NA') continue;
-    if (containsAny(normalized, rule.keywords)) return rule;
+    if (containsAny(normalized, rule.keywords)) {
+      if (rule.id === 'infectious_flu' && isInfluenzaHaFamilyTarget(designRequest.target) && designRequest.target !== rule.target) {
+        return {
+          ...rule,
+          target: designRequest.target,
+          displayStory: '围绕 ' + designRequest.target + ' 表面抗原，生成病毒中和抗体候选结构。'
+        };
+      }
+      return rule;
+    }
   }
 
   if (designRequest.isDesignRequest && designRequest.target && !isDiseaseIndication(designRequest.target)) {
@@ -5486,12 +5548,14 @@ function buildWorkflowIntentPrompt() {
     '只要能返回 target、reason 和 cands，就必须启动设计；不要因为用户措辞不标准就拒绝。',
     'design：设计、生成、筛选、开发抗体/单抗/Fab/VHH/scFv/binder/药物分子/治疗分子/候选序列；疾病方向要选择真实抗原/蛋白/受体/细胞因子/病毒表面蛋白，不要把疾病名当靶点。',
     '用户说法可能和示例差距很大：口语、比喻、黑话、不完整、陌生疾病/病原体/材料/靶点描述，都要先尽量理解其真实生物医学或分子设计意图，并返回最合理的靶点、背景和候选；不要因为没有命中示例就拒绝。',
+    '口语靶点要整理成学术展示名：若用户说“流感 H7”“H7 流感”“H7N9 中和抗体”等，应判断真实靶点为 H7 亚型血凝素，target 写 "Influenza A(H7) hemagglutinin (HA)"；类似 H1-H18 亚型也按 "Influenza A(Hx) hemagglutinin (HA)" 输出。若只是泛称流感 HA 才写 "Influenza HA"；若用户明确说 NA/神经氨酸酶才写 "Influenza NA"。结构模型可使用最接近的同家族参考模型，但展示 target 必须保留用户真实靶点的学术名称。',
     '药物名或药物类别也是线索：若用户只说药物名、已上市药物、药物类别或治疗方案，要根据已知适应症、作用靶点、通路机制反推可进入抗体药物设计的真实靶点；小分子药物方向要转为抗体可识别的胞外/可溶抗原或受体结构域。',
     '准确性优先：疾病或药物方向可能对应多个靶点，先保证疾病关联、机制和抗体可及性准确；若多个候选同等合理，优先从结构支撑靶点清单选择 target，并把其他合理靶点放入 cands。',
     '结构支撑靶点清单：PD-L1/CD274、PD-1/PDCD1、CTLA-4、HER2/ERBB2、EGFR/ERBB1、VEGF-A/VEGFA、TNF、IL-17A、IL-23、IL-33、TSLP、RSV F、SARS-CoV-2 RBD、Influenza HA、Influenza NA、PCSK9、ANGPTL3、GIPR、CD20、CD19、CD3、C5、IL-6R、IL-4Rα、CD25、CD38、TIGIT、CD47、LAG-3、TROP-2、BCMA、IgE、CGRP receptor、IL-1β。',
     'reason 只能写疾病关联、药物机制、表达/可及性、结构域和抗体开发依据；不要提本地、预设、可展示、系统已有、为了展示、3D 预设等内部选择原因。',
     'i=chat：只用于普通闲聊、寒暄、纯问答、天气、时间、非分子设计概念解释，且没有足够信息生成 target 的情况。chat 只填 i,start=false,answer；answer 默认中文，最多 2 句。',
     'design 必填 target、reason、cands、wf；reason 写 100-240 个中文字，详细说明疾病关联、表达/可及性、机制、为何优先该靶点；cands 给 2-3 个，每个 r 简洁但具体；wf 每项不超过 35 个中文字。',
+    '示例：设计一个针对流感 H7 的中和抗体 -> {"i":"design","start":true,"summary":"面向流感 H7 生成中和抗体候选","bg":"流感 H7 在中和抗体语境下应整理为 H7 亚型流感病毒血凝素抗原。","disease":"流感病毒感染","target":"Influenza A(H7) hemagglutinin (HA)","gene":"HA","label":"FLU-H7-HA-1","reason":"用户提出的流感 H7 指向 H7 亚型流感病毒血凝素 HA。HA 是病毒表面负责受体识别和膜融合的关键抗原，具备头部和茎部可及表面；围绕 H7 HA 设计中和抗体可直接对应病毒进入阻断场景，并且相较 NA 更贴近用户指定的 H7 中和抗体需求。","cands":[{"t":"Influenza A(H7) hemagglutinin (HA)","g":"HA","r":"H7 亚型血凝素，最贴近用户指定靶点和中和抗体语境。"},{"t":"Influenza NA","g":"NA","r":"流感另一表面抗原，可作备选但不如 HA 贴合 H7 表述。"}],"mech":"识别 H7 HA 表面中和表位并生成 Fab 候选","ab":"Fab","n":10,"block":"","confidence":0.84,"wf":{"domain":"H7 HA 头部/茎部可及表面","mechanism":"阻断病毒受体识别或融合相关表面","epitope":"优先覆盖 H7 HA 保守中和表面","structure":"HA 家族相近三聚体复合物结构依据","modelNote":"以相近 HA 复合体呈现 H7 HA 中和候选构象"}}',
     '示例：设计一个胰腺癌的抗体 -> {"i":"design","start":true,"summary":"面向胰腺癌设计抗体候选","bg":"胰腺癌抗体设计需关注肿瘤相关抗原表达、膜表面可及性和正常组织背景。","disease":"胰腺癌","target":"MUC1","gene":"MUC1","label":"PANCREATIC-MUC1-1","reason":"MUC1 是胰腺癌中常被讨论的肿瘤相关糖蛋白抗原，具备膜表面暴露和异常糖基化相关表位，可用于抗体候选识别；相较纯炎症因子入口，它与胰腺癌肿瘤细胞表面识别、抗原可及性和后续候选筛选更直接对应。","cands":[{"t":"MUC1","g":"MUC1","r":"肿瘤相关膜糖蛋白，适合作为抗体识别入口。"},{"t":"Mesothelin","g":"MSLN","r":"胰腺癌相关细胞表面抗原，可作备选。"}],"mech":"识别肿瘤相关外露表位并筛选 Fab 候选","ab":"Fab","n":10,"block":"","confidence":0.8,"wf":{"domain":"MUC1 胞外糖蛋白可及区","mechanism":"识别肿瘤相关外露表位","epitope":"优先覆盖异常糖基化邻近表面","structure":"MUC1 胞外表面与 Fab 姿态约束","modelNote":"展示 Fab 贴合 MUC1 外露表面的候选构象"}}',
     '示例：你好 -> {"i":"chat","start":false,"answer":"您好，我是小诺，可以帮您把疾病、靶点或候选分子需求整理成分子设计任务。"}'
   ].join('\n');

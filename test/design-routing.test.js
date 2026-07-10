@@ -58,6 +58,15 @@ test('understands shorthand monoclonal antibody sequence requests', () => {
   assert.equal(parsed.abType, 'mAb');
 });
 
+test('keeps influenza HA subtype names academic for display', () => {
+  const parsed = extractDesignRequest('设计一个针对流感 H7 的中和抗体');
+
+  assert.equal(parsed.isDesignRequest, true);
+  assert.equal(parsed.target, 'Influenza A(H7) hemagglutinin (HA)');
+  assert.equal(parsed.count, 1);
+  assert.equal(parsed.abType, 'Fab');
+});
+
 test('suppresses non-biomedical computer virus requests', () => {
   assert.equal(shouldSuppressDesignWorkflow('电脑病毒设计抗体'), true);
   assert.equal(extractDesignRequest('电脑病毒设计抗体').isDesignRequest, false);

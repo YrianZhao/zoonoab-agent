@@ -498,6 +498,22 @@ test('server previews distinct 3D model files for different design targets and a
   assert.equal(previews[3].data.threeDPreview.binders[0].antibodyFormat, 'VHH');
 });
 
+test('server preserves influenza HA subtype display names while reusing the HA structure preset', async () => {
+  const query = encodeURIComponent('设计一个针对流感 H7 的中和抗体');
+  const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/design-route?text=' + query);
+  assert.equal(res.status, 200);
+  const data = await res.json();
+  const firstBinder = data.threeDPreview && data.threeDPreview.binders && data.threeDPreview.binders[0];
+
+  assert.ok(firstBinder, 'H7 request should still preview a local HA 3D model');
+  assert.equal(data.parsed.target, 'Influenza A(H7) hemagglutinin (HA)');
+  assert.equal(data.profile.targetDisplay, 'Influenza A(H7) hemagglutinin (HA)');
+  assert.equal(firstBinder.targetDisplay, 'Influenza A(H7) hemagglutinin (HA)');
+  assert.match(firstBinder.file, /^FluHA-Fab-/);
+  assert.match(firstBinder.structureTitle, /Influenza A\(H7\) hemagglutinin \(HA\)/);
+  assert.match(firstBinder.structuralBasis, /RCSB 3GBM influenza HA trimer biological assembly/);
+});
+
 test('server previews curated real complexes for common explicit antigen targets', async () => {
   const requests = [
     { text: '设计10个针对PD-1的Fab', expectedTarget: 'PD-1', expectedPrefix: /^PD1-Fab-/ },
