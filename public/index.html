@@ -2710,6 +2710,10 @@
             .mol-modal-header {
                 gap: 10px;
             }
+            .mol-modal-reason {
+                max-width: 46vw;
+                min-width: 0;
+            }
             .agent-tasks-sidebar { width: 88vw; }
         }
 
@@ -2789,6 +2793,19 @@
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+        }
+        .mol-modal-reason {
+            flex: 0 1 760px;
+            max-width: min(760px, 42vw);
+            min-width: 220px;
+            color: var(--text-secondary);
+            font-size: 11px;
+            font-weight: 500;
+            line-height: 1.45;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
         }
         .mol-modal-close {
             width: 48px; height: 48px; border-radius: 12px; border: none;
@@ -5865,7 +5882,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146099';
+    const APP_BUILD_VERSION = '78146097';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
 
@@ -8350,17 +8367,16 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         url += '&antigenLabel=' + encodeURIComponent(legend.antigen.role);
         url += '&antibodyLabel=' + encodeURIComponent(legend.antibody.role);
         url += '&poseSeed=' + encodeURIComponent(String(viewerPoseSeed));
-        const selectionReason = getSelectionReasonText(meta);
-        if (selectionReason) url += '&selectionReason=' + encodeURIComponent(selectionReason);
         if (title) url += '&title=' + encodeURIComponent(title);
         return url;
     }
 
-    function getSelectionReasonText(meta) {
+    function buildSelectionReasonHtml(meta) {
         const reason = meta && (meta.selectionReason || meta.reason || meta.targetSelectionReason)
             ? String(meta.selectionReason || meta.reason || meta.targetSelectionReason).replace(/\s+/g, ' ').trim()
             : '';
-        return reason;
+        if (!reason) return '';
+        return '<div class="mol-modal-reason" title="' + escHtml('选择理由：' + reason) + '">选择理由：' + escHtml(reason) + '</div>';
     }
 
     function openHistory3D(recordId, sectionIdx = 0, modelIdx = 0) {
@@ -8387,7 +8403,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         ].filter(Boolean);
         if (titleEl) {
             titleEl.innerHTML = '<div class="mol-modal-title-copy"><div class="mol-modal-title-main"><i data-lucide="box" style="width:18px;height:18px;color:#6B5BFF;"></i><span>' + escHtml(displayTitle) + '</span></div>' +
-                (subtitleParts.length ? '<div class="mol-modal-subtitle">' + escHtml(subtitleParts.join(' · ')) + '</div>' : '') + '</div>';
+                (subtitleParts.length ? '<div class="mol-modal-subtitle">' + escHtml(subtitleParts.join(' · ')) + '</div>' : '') + '</div>' +
+                buildSelectionReasonHtml(model);
         }
         bodyEl.innerHTML = '';
         modalIframe = document.createElement('iframe');
@@ -14263,8 +14280,6 @@ ${fallbackTableRows(profile.rows)}
         url += '&antigenLabel=' + encodeURIComponent(legend.antigen.role);
         url += '&antibodyLabel=' + encodeURIComponent(legend.antibody.role);
         url += '&poseSeed=' + encodeURIComponent(String(viewerPoseSeed));
-        const selectionReason = getSelectionReasonText(meta);
-        if (selectionReason) url += '&selectionReason=' + encodeURIComponent(selectionReason);
         if (title) url += '&title=' + encodeURIComponent(title);
         return url;
     }
@@ -17749,7 +17764,7 @@ QVQLVESGGGLVQPGGSLRLSCAASGYIFSSNAMGWYRQAPGKQRELVAAISSGGSTYYADSVKGRFTISRDNAKTTLYL
     let modalPdbId = null;
     let modalIframe = null;
 
-    function openMolModal(pdbId, name, options) {
+    function openMolModal(pdbId, name) {
         const overlay = document.getElementById('molModalOverlay');
         const titleEl = document.getElementById('molModalTitle');
         const bodyEl = document.getElementById('molModalBody');
@@ -17769,12 +17784,12 @@ QVQLVESGGGLVQPGGSLRLSCAASGYIFSSNAMGWYRQAPGKQRELVAAISSGGSTYYADSVKGRFTISRDNAKTTLYL
         ].filter(Boolean);
         if (titleEl) {
             titleEl.innerHTML = '<div class="mol-modal-title-copy"><div class="mol-modal-title-main"><i data-lucide="box" style="width:18px;height:18px;color:#6B5BFF;"></i><span>' + escHtml(displayTitle) + '</span></div>' +
-                (subtitleParts.length ? '<div class="mol-modal-subtitle">' + escHtml(subtitleParts.join(' · ')) + '</div>' : '') + '</div>';
+                (subtitleParts.length ? '<div class="mol-modal-subtitle">' + escHtml(subtitleParts.join(' · ')) + '</div>' : '') + '</div>' +
+                buildSelectionReasonHtml(meta);
         }
 
         // Build viewer-full URL
-        let vfUrl = buildMoleculeFrameUrl('/viewer-full.html', pdbId, displayTitle);
-        if (options && options.autoSpin) vfUrl += '&autoSpin=1';
+        const vfUrl = buildMoleculeFrameUrl('/viewer-full.html', pdbId, displayTitle);
 
         if (bodyEl) {
             bodyEl.innerHTML = '';
@@ -17831,7 +17846,20 @@ QVQLVESGGGLVQPGGSLRLSCAASGYIFSSNAMGWYRQAPGKQRELVAAISSGGSTYYADSVKGRFTISRDNAKTTLYL
         molCloseTimer = null;
 
         // Open modal
-        openMolModal(meta.id, meta.candidateLabel || meta.name || meta.id, { autoSpin: true });
+        openMolModal(meta.id, meta.candidateLabel || meta.name || meta.id);
+
+        // Add persistent spin badge
+        setTimeout(() => {
+            const titleEl = document.getElementById('molModalTitle');
+            if (titleEl && !document.getElementById('autoSpinBadge')) {
+                const titleMain = titleEl.querySelector('.mol-modal-title-main') || titleEl;
+                const badge = document.createElement('span');
+                badge.id = 'autoSpinBadge';
+                badge.style.cssText = 'margin-left:12px;font-size:11px;font-weight:700;padding:3px 11px;border-radius:999px;background:rgba(0,123,255,0.15);color:var(--brand);border:1px solid rgba(0,123,255,0.35);letter-spacing:0.3px;vertical-align:middle;';
+                badge.textContent = 'AUTO SPIN';
+                titleMain.appendChild(badge);
+            }
+        }, 80);
 
         // Click the Spin button once the iframe finishes loading
         // Use a single onload listener — no polling, no postMessage flooding
