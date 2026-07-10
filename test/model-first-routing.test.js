@@ -10,6 +10,7 @@ const WebSocket = require('ws');
 const PORT = 19131;
 const CONFIG_PATH = path.join(os.tmpdir(), 'zoonoab-model-first-config-' + PORT + '.json');
 const QUESTION_LOG_PATH = path.join(os.tmpdir(), 'zoonoab-model-first-routing-' + PORT + '.jsonl');
+const DIAGNOSTIC_LOG_PATH = path.join(os.tmpdir(), 'zoonoab-model-first-diagnostics-' + PORT + '.jsonl');
 let serverProcess;
 
 function listenOnLocalhost(server) {
@@ -88,6 +89,7 @@ async function saveMockChatConfig(mockPort, model = 'mock-model-first-router') {
 test.before(async () => {
   try { fs.unlinkSync(CONFIG_PATH); } catch {}
   try { fs.unlinkSync(QUESTION_LOG_PATH); } catch {}
+  try { fs.unlinkSync(DIAGNOSTIC_LOG_PATH); } catch {}
   serverProcess = spawn(process.execPath, ['server.js'], {
     cwd: process.cwd(),
     env: {
@@ -96,6 +98,7 @@ test.before(async () => {
       PORT: String(PORT),
       VOICE_API_CONFIG_FILE: CONFIG_PATH,
       WORKFLOW_REJECTION_LOG_FILE: QUESTION_LOG_PATH,
+      DIAGNOSTIC_LOG_FILE: DIAGNOSTIC_LOG_PATH,
       LOCAL_ASR_AUTO_START: '0',
       TARGET_RESOLVER_TIMEOUT_MS: '2500',
       ASSISTANT_CHAT_API_KEY: '',
@@ -116,6 +119,7 @@ test.after(async () => {
   await new Promise(resolve => serverProcess.once('exit', resolve));
   try { fs.unlinkSync(CONFIG_PATH); } catch {}
   try { fs.unlinkSync(QUESTION_LOG_PATH); } catch {}
+  try { fs.unlinkSync(DIAGNOSTIC_LOG_PATH); } catch {}
 });
 
 test('ordinary user input requires a configured chat key before any local workflow starts', async () => {
@@ -743,6 +747,16 @@ test('prepared disease requests fall back to local target resolution when model 
     assert.match(serialized, /肿瘤免疫治疗|PD-1\/PD-L1|CD274/);
     assert.doesNotMatch(serialized, /智能解析服务暂时不可用/);
     assert.doesNotMatch(serialized, /IL-1β|IL1B|INFLAMMATION-IL1B/);
+
+    const logResp = await fetch('http://127.0.0.1:' + PORT + '/api/diagnostic-logs?limit=20');
+    assert.equal(logResp.status, 200);
+    const logData = await logResp.json();
+    const events = logData.logs.map(item => item.event);
+
+    assert.ok(events.includes('workflow_intent_model_error'), 'model parse failure should be diagnosable');
+    assert.ok(events.includes('prepared_disease_fallback_started'), 'fallback routing should be diagnosable');
+    assert.ok(logData.logs.some(item => item.input === '帮我做一个肿瘤免疫治疗方向的抗体设计'));
+    assert.doesNotMatch(JSON.stringify(logData), /test-model-first-secret/);
   } finally {
     await new Promise(resolve => mockServer.close(resolve));
   }

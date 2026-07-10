@@ -72,6 +72,9 @@ const ASSISTANT_CHAT_BASE_URL = process.env.ASSISTANT_CHAT_BASE_URL || process.e
 const VOICE_API_CONFIG_FILE = process.env.VOICE_API_CONFIG_FILE || resolveDefaultVoiceApiConfigFile();
 const WORKFLOW_REJECTION_LOG_FILE = process.env.WORKFLOW_REJECTION_LOG_FILE || resolveDefaultWorkflowRejectionLogFile();
 const QUESTION_ROUTING_LOG_MAX_LINES = Math.max(50, Number(process.env.QUESTION_ROUTING_LOG_MAX_LINES || process.env.WORKFLOW_REJECTION_LOG_MAX_LINES || 500) || 500);
+const DIAGNOSTIC_LOG_FILE = process.env.DIAGNOSTIC_LOG_FILE || resolveDefaultDiagnosticLogFile();
+const DIAGNOSTIC_LOG_MAX_LINES = Math.max(100, Number(process.env.DIAGNOSTIC_LOG_MAX_LINES || 1000) || 1000);
+const DIAGNOSTIC_SLOW_REQUEST_MS = Math.max(500, Number(process.env.DIAGNOSTIC_SLOW_REQUEST_MS || 5000) || 5000);
 const WORKFLOW_INTENT_TIMEOUT_MS = Math.max(8000, Number(process.env.WORKFLOW_INTENT_TIMEOUT_MS || 30000) || 30000);
 const TARGET_RESOLVER_TIMEOUT_MS = Math.max(5000, Number(process.env.TARGET_RESOLVER_TIMEOUT_MS || 45000) || 45000);
 const LOCAL_TTS_PROVIDER = String(process.env.LOCAL_TTS_PROVIDER || 'edge').trim().toLowerCase();
@@ -198,6 +201,20 @@ function resolveDefaultWorkflowRejectionLogFile() {
     return path.join(persistentDir, 'question-routing-logs.jsonl');
   } catch (err) {
     console.warn('[WorkflowLog] Persistent log directory unavailable, falling back to project runtime:', err && err.message ? err.message : err);
+    return projectRuntimeFile;
+  }
+}
+
+function resolveDefaultDiagnosticLogFile() {
+  const projectRuntimeFile = path.join(__dirname, '.runtime', 'diagnostic-events.jsonl');
+  if (!IS_RENDER_RUNTIME) return projectRuntimeFile;
+  const persistentDir = path.join(RENDER_DATA_DIR || '/var/data', 'zoonoab');
+  try {
+    fs.mkdirSync(persistentDir, { recursive: true, mode: 0o700 });
+    fs.accessSync(persistentDir, fs.constants.W_OK);
+    return path.join(persistentDir, 'diagnostic-events.jsonl');
+  } catch (err) {
+    console.warn('[Diagnostics] Persistent log directory unavailable, falling back to project runtime:', err && err.message ? err.message : err);
     return projectRuntimeFile;
   }
 }
@@ -368,6 +385,119 @@ function sanitizeWorkflowLogText(input, maxLength = 800) {
     .slice(0, maxLength);
 }
 
+function sanitizeDiagnosticValue(value, depth = 0) {
+  if (value == null) return value;
+  if (typeof value === 'number' || typeof value === 'boolean') return value;
+  if (typeof value === 'string') return sanitizeWorkflowLogText(value, 1200);
+  if (value instanceof Error) return summarizeDiagnosticError(value);
+  if (Array.isArray(value)) {
+    if (depth >= 3) return '[Array]';
+    return value.slice(0, 30).map(item => sanitizeDiagnosticValue(item, depth + 1));
+  }
+  if (typeof value === 'object') {
+    if (depth >= 3) return '[Object]';
+    const output = {};
+    for (const [key, raw] of Object.entries(value).slice(0, 80)) {
+      if (/key|token|secret|password|authorization|cookie|bearer|密钥|密码/i.test(key)) {
+        output[key] = '[已隐藏]';
+      } else {
+        output[key] = sanitizeDiagnosticValue(raw, depth + 1);
+      }
+    }
+    return output;
+  }
+  return sanitizeWorkflowLogText(String(value), 400);
+}
+
+function summarizeDiagnosticError(err) {
+  if (!err) return null;
+  const stack = err && err.stack
+    ? String(err.stack).split('\n').slice(0, 8).join('\n')
+    : '';
+  return {
+    name: sanitizeWorkflowLogText(err.name || 'Error', 80),
+    message: sanitizeWorkflowLogText(err.message || String(err), 500),
+    code: sanitizeWorkflowLogText(err.code || '', 80),
+    stack: sanitizeWorkflowLogText(stack, 1600)
+  };
+}
+
+function pruneJsonlLogFile(filePath, maxLines, label) {
+  try {
+    if (!fs.existsSync(filePath)) return;
+    const content = fs.readFileSync(filePath, 'utf8');
+    const lines = content.split(/\r?\n/).filter(Boolean);
+    if (lines.length <= maxLines) return;
+    fs.writeFileSync(filePath, lines.slice(-maxLines).join('\n') + '\n', { mode: 0o600 });
+  } catch (err) {
+    console.error('[' + label + '] Failed to prune log file:', err && err.message ? err.message : err);
+  }
+}
+
+function recordDiagnosticEvent(event, fields = {}) {
+  const eventName = sanitizeWorkflowLogText(event, 120);
+  if (!eventName) return null;
+  const rawLevel = String(fields.level || '').toLowerCase();
+  const level = ['debug', 'info', 'warn', 'error'].includes(rawLevel)
+    ? rawLevel
+    : (fields.error || fields.statusCode >= 500 ? 'error' : (fields.statusCode >= 400 ? 'warn' : 'info'));
+  const sanitized = sanitizeDiagnosticValue(fields) || {};
+  delete sanitized.level;
+  const entry = {
+    id: 'diag-' + uuidv4().slice(0, 12),
+    at: new Date().toISOString(),
+    event: eventName,
+    level,
+    version: APP_BUILD_VERSION || null,
+    pid: process.pid,
+    ...sanitized
+  };
+  try {
+    fs.mkdirSync(path.dirname(DIAGNOSTIC_LOG_FILE), { recursive: true, mode: 0o700 });
+    fs.appendFileSync(DIAGNOSTIC_LOG_FILE, JSON.stringify(entry) + '\n', { mode: 0o600 });
+    pruneJsonlLogFile(DIAGNOSTIC_LOG_FILE, DIAGNOSTIC_LOG_MAX_LINES, 'Diagnostics');
+  } catch (err) {
+    console.error('[Diagnostics] Failed to record event:', err && err.message ? err.message : err);
+  }
+  return entry;
+}
+
+function normalizeDiagnosticLogEntry(parsed) {
+  if (!parsed || !parsed.event) return null;
+  return sanitizeDiagnosticValue(parsed);
+}
+
+function readDiagnosticLogs(limit = 50, options = {}) {
+  const safeLimit = Math.min(Math.max(Number(limit) || 50, 1), 500);
+  const eventFilter = sanitizeWorkflowLogText(options.event || '', 120);
+  const levelFilter = sanitizeWorkflowLogText(options.level || '', 40).toLowerCase();
+  try {
+    if (!fs.existsSync(DIAGNOSTIC_LOG_FILE)) return [];
+    const content = fs.readFileSync(DIAGNOSTIC_LOG_FILE, 'utf8');
+    const lines = content.split(/\r?\n/).filter(Boolean).slice(-(Math.max(safeLimit, 500)));
+    const logs = [];
+    for (const line of lines) {
+      try {
+        const entry = normalizeDiagnosticLogEntry(JSON.parse(line));
+        if (!entry) continue;
+        if (eventFilter && entry.event !== eventFilter) continue;
+        if (levelFilter && entry.level !== levelFilter) continue;
+        logs.push(entry);
+      } catch {}
+    }
+    return logs.reverse().slice(0, safeLimit);
+  } catch (err) {
+    console.error('[Diagnostics] Failed to read logs:', err && err.message ? err.message : err);
+    return [];
+  }
+}
+
+function normalizeClientDiagnosticEvent(value) {
+  const event = sanitizeWorkflowLogText(value || 'client_event', 80).toLowerCase();
+  if (/^client_[a-z0-9_]{3,80}$/.test(event)) return event;
+  return 'client_event';
+}
+
 function explainWorkflowRejection(routing, input) {
   const detectedIntent = routing && routing.detectedIntent ? routing.detectedIntent : 'assistant_chat';
   const text = String(input || '');
@@ -511,6 +641,32 @@ function recordQuestionRouting(routing, input, meta = {}) {
     console.error('[WorkflowLog] Failed to record rejection:', err && err.message ? err.message : err);
   }
 }
+
+app.use((req, res, next) => {
+  const requestIdHeader = String(req.headers['x-request-id'] || '').trim();
+  const requestId = /^[-_A-Za-z0-9:.]{6,80}$/.test(requestIdHeader)
+    ? requestIdHeader
+    : 'req-' + uuidv4().slice(0, 12);
+  const startedAt = Date.now();
+  req.requestId = requestId;
+  res.setHeader('X-Request-ID', requestId);
+  res.on('finish', () => {
+    const durationMs = Date.now() - startedAt;
+    if (res.statusCode < 400 && durationMs < DIAGNOSTIC_SLOW_REQUEST_MS) return;
+    recordDiagnosticEvent('http_request_completed', {
+      level: res.statusCode >= 500 ? 'error' : (res.statusCode >= 400 ? 'warn' : 'info'),
+      requestId,
+      method: req.method,
+      path: req.path || '',
+      originalUrl: req.originalUrl || req.url || '',
+      statusCode: res.statusCode,
+      durationMs,
+      contentLength: res.getHeader('Content-Length') || '',
+      userAgent: req.headers['user-agent'] || ''
+    });
+  });
+  next();
+});
 
 app.use(express.json({ limit: '1mb' }));
 app.use((req, res, next) => {
@@ -5388,8 +5544,26 @@ async function resolveWorkflowIntentWithModel(input, voiceSessionId) {
   const text = String(input || '').trim();
   if (!text) return null;
   const cfg = getAssistantChatConfig(voiceSessionId);
-  if (!cfg.key || !cfg.url) return { error: 'missing_key', intent: 'assistant_chat' };
-  if (typeof fetch !== 'function') return { error: 'runtime_unsupported', intent: 'assistant_chat' };
+  if (!cfg.key || !cfg.url) {
+    recordDiagnosticEvent('workflow_intent_model_unconfigured', {
+      level: 'warn',
+      input: text,
+      provider: cfg.provider || '',
+      model: cfg.model || '',
+      reason: !cfg.key ? 'missing_key' : 'missing_url'
+    });
+    return { error: 'missing_key', intent: 'assistant_chat' };
+  }
+  if (typeof fetch !== 'function') {
+    recordDiagnosticEvent('workflow_intent_model_error', {
+      level: 'error',
+      input: text,
+      provider: cfg.provider || '',
+      model: cfg.model || '',
+      error: 'runtime_unsupported'
+    });
+    return { error: 'runtime_unsupported', intent: 'assistant_chat' };
+  }
   const controller = typeof AbortController === 'function' ? new AbortController() : null;
   const timeout = controller ? setTimeout(() => controller.abort(), WORKFLOW_INTENT_TIMEOUT_MS) : null;
   try {
@@ -5416,6 +5590,14 @@ async function resolveWorkflowIntentWithModel(input, voiceSessionId) {
     const raw = await upstream.text();
     if (!upstream.ok) {
       console.error('[IntentRouter] request failed:', upstream.status, parseProviderError(raw));
+      recordDiagnosticEvent('workflow_intent_model_error', {
+        level: 'warn',
+        input: text,
+        provider: cfg.provider || '',
+        model: cfg.model || '',
+        statusCode: upstream.status,
+        providerError: parseProviderError(raw)
+      });
       return { error: 'model_failed', intent: 'assistant_chat' };
     }
     let data;
@@ -5423,10 +5605,28 @@ async function resolveWorkflowIntentWithModel(input, voiceSessionId) {
     const content = data && data.choices && data.choices[0] && data.choices[0].message
       ? extractChatMessageText(data.choices[0].message)
       : '';
-    return normalizeWorkflowIntentResult(extractJsonObjectFromText(content)) || { error: 'invalid_model_response', intent: 'assistant_chat' };
+    const normalized = normalizeWorkflowIntentResult(extractJsonObjectFromText(content));
+    if (!normalized) {
+      recordDiagnosticEvent('workflow_intent_invalid_response', {
+        level: 'warn',
+        input: text,
+        provider: cfg.provider || '',
+        model: cfg.model || '',
+        responsePreview: content.slice(0, 500)
+      });
+      return { error: 'invalid_model_response', intent: 'assistant_chat' };
+    }
+    return normalized;
   } catch (err) {
     if (timeout) clearTimeout(timeout);
     console.error('[IntentRouter] request error:', err && err.message ? err.message : err);
+    recordDiagnosticEvent('workflow_intent_model_error', {
+      level: 'warn',
+      input: text,
+      provider: cfg.provider || '',
+      model: cfg.model || '',
+      error: summarizeDiagnosticError(err)
+    });
     return { error: 'model_failed', intent: 'assistant_chat' };
   }
 }
@@ -5666,6 +5866,15 @@ async function resolveDiseaseTargetWithModel(input, indication, voiceSessionId) 
     const text = await upstream.text();
     if (!upstream.ok) {
       console.error('[TargetResolver] request failed:', upstream.status, parseProviderError(text));
+      recordDiagnosticEvent('target_resolver_model_error', {
+        level: 'warn',
+        input,
+        indication,
+        provider: cfg.provider || '',
+        model: cfg.model || '',
+        statusCode: upstream.status,
+        providerError: parseProviderError(text)
+      });
       return builtinTargetResolution(indication);
     }
     let data;
@@ -5677,6 +5886,14 @@ async function resolveDiseaseTargetWithModel(input, indication, voiceSessionId) 
   } catch (err) {
     if (timeout) clearTimeout(timeout);
     console.error('[TargetResolver] error:', err && err.message ? err.message : err);
+    recordDiagnosticEvent('target_resolver_model_error', {
+      level: 'warn',
+      input,
+      indication,
+      provider: cfg.provider || '',
+      model: cfg.model || '',
+      error: summarizeDiagnosticError(err)
+    });
     return builtinTargetResolution(indication);
   }
 }
@@ -6714,6 +6931,15 @@ async function resolveUserMessageRunner(msg, cleanText) {
   if (!modelIntent || modelIntent.error) {
     const fallbackIntent = buildPreparedDiseaseFallbackIntent(cleanText);
     if (fallbackIntent) {
+      recordDiagnosticEvent('prepared_disease_fallback_started', {
+        level: 'warn',
+        input: cleanText,
+        fallbackReason: modelIntent && modelIntent.error || 'model_unavailable',
+        disease: fallbackIntent.disease || '',
+        target: fallbackIntent.target || '',
+        targetGene: fallbackIntent.targetGene || '',
+        designLabel: fallbackIntent.designLabel || ''
+      });
       return {
         detectedIntent: 'design',
         intent: 'design',
@@ -6782,6 +7008,12 @@ function runSocketTask(ws, sid, msg, buildRunner) {
   const text = String(msg.text || '');
   const sess = sessions.get(sid);
   if (sess && sess.busy) {
+    recordDiagnosticEvent('workflow_rejected_busy', {
+      level: 'warn',
+      sid,
+      clientRunId: msg && msg.clientRunId || '',
+      input: text
+    });
     ws.send(JSON.stringify({ type: 'error', text: '当前工作流正在运行，请等待完成后再发送新指令。', clientRunId: msg && msg.clientRunId || '' }));
     return;
   }
@@ -6822,6 +7054,14 @@ function runSocketTask(ws, sid, msg, buildRunner) {
       if (err && err.isCancelled) return;
       if (sess && sess.currentRun !== runState) return;
       console.error('[Server] Workflow error:', err);
+      recordDiagnosticEvent('workflow_run_error', {
+        level: 'error',
+        sid,
+        runId: runState.id,
+        clientRunId: runState.clientRunId || '',
+        input: cleanText || text,
+        error: summarizeDiagnosticError(err)
+      });
       if (ws.readyState === 1) ws.send(JSON.stringify({ type: 'error', text: '工作流执行出错，请重试。', clientRunId: runState.clientRunId || '' }));
     })
     .finally(() => {
@@ -7658,6 +7898,37 @@ app.get('/api/question-routing-logs', (req, res) => {
   });
 });
 
+app.get('/api/diagnostic-logs', (req, res) => {
+  const limit = Math.min(Math.max(Number(req.query.limit || 50) || 50, 1), 500);
+  const event = String(req.query.event || '').trim();
+  const level = String(req.query.level || '').trim();
+  const logs = readDiagnosticLogs(limit, { event, level });
+  res.json({
+    ok: true,
+    event: event || 'all',
+    level: level || 'all',
+    count: logs.length,
+    logs
+  });
+});
+
+app.post('/api/client-diagnostics', (req, res) => {
+  const body = req.body && typeof req.body === 'object' && !Array.isArray(req.body) ? req.body : {};
+  const event = normalizeClientDiagnosticEvent(body.event);
+  const fields = { ...body };
+  delete fields.event;
+  delete fields.level;
+  const isErrorEvent = /error|rejection|failed|exception/i.test(event);
+  recordDiagnosticEvent(event, {
+    ...fields,
+    level: isErrorEvent ? 'error' : 'warn',
+    requestId: req.requestId || '',
+    path: req.path || '',
+    userAgent: req.headers['user-agent'] || ''
+  });
+  res.status(204).end();
+});
+
 app.get('/api/health', (_, res) => res.json({
   ok: true,
   platform: 'ZoonoAb',
@@ -7742,8 +8013,20 @@ process.on('SIGINT', () => {
   setTimeout(() => process.exit(1), 10_000);
 });
 
-process.on('uncaughtException', (err) => console.error('[Server] Uncaught exception:', err));
-process.on('unhandledRejection', (reason) => console.error('[Server] Unhandled rejection:', reason));
+process.on('uncaughtException', (err) => {
+  console.error('[Server] Uncaught exception:', err);
+  recordDiagnosticEvent('process_uncaught_exception', {
+    level: 'error',
+    error: summarizeDiagnosticError(err)
+  });
+});
+process.on('unhandledRejection', (reason) => {
+  console.error('[Server] Unhandled rejection:', reason);
+  recordDiagnosticEvent('process_unhandled_rejection', {
+    level: 'error',
+    error: reason instanceof Error ? summarizeDiagnosticError(reason) : sanitizeDiagnosticValue(reason)
+  });
+});
 
 const PORT = process.env.PORT || 8080;
 server.listen(PORT, () => {

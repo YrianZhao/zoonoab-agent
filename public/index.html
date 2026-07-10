@@ -5882,7 +5882,79 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146093';
+    const APP_BUILD_VERSION = '78146095';
+    const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
+    const clientDiagnosticKeys = new Set();
+
+    function clipClientDiagnosticText(value, maxLength = 900) {
+        return String(value == null ? '' : value)
+            .replace(/[\u0000-\u001F\u007F]/g, ' ')
+            .replace(/\s+/g, ' ')
+            .trim()
+            .slice(0, maxLength);
+    }
+
+    function reportClientDiagnostic(event, detail = {}) {
+        try {
+            const eventName = /^client_[a-z0-9_]{3,80}$/i.test(String(event || '')) ? String(event) : 'client_event';
+            const message = clipClientDiagnosticText(detail.message || detail.reason || detail.source || '', 240);
+            const dedupeKey = eventName + '|' + message + '|' + clipClientDiagnosticText(detail.source || detail.url || '', 180);
+            if (clientDiagnosticKeys.has(dedupeKey)) return;
+            clientDiagnosticKeys.add(dedupeKey);
+            if (clientDiagnosticKeys.size > CLIENT_DIAGNOSTIC_MAX_EVENTS) clientDiagnosticKeys.clear();
+            const payload = JSON.stringify({
+                event: eventName,
+                buildVersion: APP_BUILD_VERSION,
+                page: location.pathname + location.search,
+                message,
+                source: clipClientDiagnosticText(detail.source || detail.url || '', 500),
+                stack: clipClientDiagnosticText(detail.stack || '', 1200),
+                line: Number(detail.line || 0) || 0,
+                column: Number(detail.column || 0) || 0,
+                tag: clipClientDiagnosticText(detail.tag || '', 40),
+                readyState: typeof detail.readyState === 'number' ? detail.readyState : undefined,
+                code: typeof detail.code === 'number' ? detail.code : undefined,
+                dataPreview: clipClientDiagnosticText(detail.dataPreview || '', 300)
+            });
+            if (navigator.sendBeacon) {
+                const blob = new Blob([payload], { type: 'application/json' });
+                navigator.sendBeacon('/api/client-diagnostics', blob);
+                return;
+            }
+            fetch('/api/client-diagnostics', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: payload,
+                keepalive: true
+            }).catch(() => {});
+        } catch (err) {}
+    }
+
+    window.addEventListener('error', function(event) {
+        const target = event && event.target;
+        if (target && target !== window && (target.src || target.href)) {
+            reportClientDiagnostic('client_resource_error', {
+                tag: target.tagName || '',
+                source: target.src || target.href || ''
+            });
+            return;
+        }
+        reportClientDiagnostic('client_runtime_error', {
+            message: event && event.message || '',
+            source: event && event.filename || '',
+            line: event && event.lineno || 0,
+            column: event && event.colno || 0,
+            stack: event && event.error && event.error.stack || ''
+        });
+    }, true);
+
+    window.addEventListener('unhandledrejection', function(event) {
+        const reason = event && event.reason;
+        reportClientDiagnostic('client_unhandled_rejection', {
+            message: reason && reason.message ? reason.message : String(reason || ''),
+            stack: reason && reason.stack || ''
+        });
+    });
 
     // ═══════════════ I18N — Internationalization ═══════════════
     var LANG = (localStorage.getItem('zoonoab_lang') || 'en');
@@ -8305,13 +8377,21 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 handleMsg(msg);
             } catch (err) {
                 console.error('[WS] Failed to parse message:', err);
+                reportClientDiagnostic('client_ws_message_parse_error', {
+                    message: err && err.message || 'WebSocket message parse failed',
+                    dataPreview: String(e && e.data || '').slice(0, 300)
+                });
             }
         };
 
-        ws.onclose = () => {
+        ws.onclose = (event) => {
             document.getElementById('wsStatus').style.background = 'var(--error)';
             document.getElementById('wsStatusText').textContent = 'Reconnecting...';
             if (quickDesignRunActive && isRunning) {
+                reportClientDiagnostic('client_ws_closed_during_run', {
+                    code: event && event.code || 0,
+                    message: event && event.reason || 'WebSocket closed during active run'
+                });
                 failQuickDesignRun('连接已断开，分子设计流程未能继续执行。请稍后重试。');
             }
             const delay = Math.min(_wsReconnectDelay, 30000);
@@ -8319,7 +8399,13 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             setTimeout(connectWS, delay);
         };
 
-        ws.onerror = () => ws.close();
+        ws.onerror = () => {
+            reportClientDiagnostic('client_ws_error', {
+                message: 'WebSocket error',
+                readyState: ws && ws.readyState
+            });
+            ws.close();
+        };
     }
 
     function clearQuickDesignWatchdog() {

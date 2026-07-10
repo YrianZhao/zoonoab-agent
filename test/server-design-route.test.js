@@ -11,6 +11,7 @@ const PORT = 19081;
 const MOCK_CHAT_PORT = 19082;
 const CONFIG_PATH = path.join(os.tmpdir(), 'zoonoab-test-voice-config-' + PORT + '.json');
 const QUESTION_LOG_PATH = path.join(os.tmpdir(), 'zoonoab-test-question-routing-' + PORT + '.jsonl');
+const DIAGNOSTIC_LOG_PATH = path.join(os.tmpdir(), 'zoonoab-test-diagnostics-' + PORT + '.jsonl');
 const VISIBLE_RESOLVER_LEAK_PATTERN = /未能完成|当前未能|在线靶点解析|解析失败|兜底|代表靶点|代表抗原|补充明确靶点|无关靶点|系统保留|系统选择|系统优先选择|验证展示序列|大模型\s*API|真正的研发设计/;
 let serverProcess;
 let defaultMockServer;
@@ -282,6 +283,7 @@ function defaultModelResponseForText(text) {
 test.before(async () => {
   try { fs.unlinkSync(CONFIG_PATH); } catch {}
   try { fs.unlinkSync(QUESTION_LOG_PATH); } catch {}
+  try { fs.unlinkSync(DIAGNOSTIC_LOG_PATH); } catch {}
   defaultMockServer = http.createServer((req, res) => {
     let body = '';
     req.setEncoding('utf8');
@@ -312,6 +314,7 @@ test.before(async () => {
       PORT: String(PORT),
       VOICE_API_CONFIG_FILE: CONFIG_PATH,
       WORKFLOW_REJECTION_LOG_FILE: QUESTION_LOG_PATH,
+      DIAGNOSTIC_LOG_FILE: DIAGNOSTIC_LOG_PATH,
       LOCAL_ASR_AUTO_START: '0',
       TARGET_RESOLVER_TIMEOUT_MS: '4000'
     },
@@ -343,6 +346,7 @@ test.after(async () => {
   if (defaultMockServer) await new Promise(resolve => defaultMockServer.close(resolve));
   try { fs.unlinkSync(CONFIG_PATH); } catch {}
   try { fs.unlinkSync(QUESTION_LOG_PATH); } catch {}
+  try { fs.unlinkSync(DIAGNOSTIC_LOG_PATH); } catch {}
 });
 
 test('server design route sends implicit unknown targets to target resolution', async () => {
@@ -732,6 +736,49 @@ test('server records all user questions and classifies workflow routing', async 
   const rejectedData = await rejectedResp.json();
   assert.ok(rejectedData.logs.some(item => item.input === rejectedText));
   assert.equal(rejectedData.logs.some(item => item.input === acceptedText), false);
+});
+
+test('server records HTTP diagnostic events for failed requests', async () => {
+  const missingResp = await fetch('http://127.0.0.1:' + PORT + '/api/not-real-diagnostic-route');
+  assert.equal(missingResp.status, 404);
+
+  const logResp = await fetch('http://127.0.0.1:' + PORT + '/api/diagnostic-logs?event=http_request_completed&limit=20');
+  assert.equal(logResp.status, 200);
+  const data = await logResp.json();
+  const entry = data.logs.find(item => item.path === '/api/not-real-diagnostic-route');
+
+  assert.ok(entry, 'expected failed HTTP request to be present in diagnostic logs');
+  assert.equal(entry.event, 'http_request_completed');
+  assert.equal(entry.statusCode, 404);
+  assert.equal(entry.method, 'GET');
+  assert.equal(typeof entry.durationMs, 'number');
+  assert.match(entry.requestId, /^req-/);
+  assert.doesNotMatch(JSON.stringify(entry), /apiKey|Bearer|sk-/i);
+});
+
+test('server accepts sanitized client diagnostic events', async () => {
+  const resp = await fetch('http://127.0.0.1:' + PORT + '/api/client-diagnostics', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      event: 'client_runtime_error',
+      message: 'Viewer failed with apiKey=sk-clientsecret123456',
+      page: '/demo?token=secret-client-token',
+      apiKey: 'sk-directclientsecret123456',
+      stack: 'Error: failed\nAuthorization: Bearer clientBearerSecret123456\n at viewer.js:10:5'
+    })
+  });
+  assert.equal(resp.status, 204);
+
+  const logResp = await fetch('http://127.0.0.1:' + PORT + '/api/diagnostic-logs?event=client_runtime_error&limit=20');
+  assert.equal(logResp.status, 200);
+  const data = await logResp.json();
+  const entry = data.logs.find(item => item.event === 'client_runtime_error' && item.message && item.message.includes('Viewer failed'));
+
+  assert.ok(entry, 'expected client diagnostic event to be present');
+  assert.match(entry.requestId, /^req-/);
+  assert.equal(entry.apiKey, '[已隐藏]');
+  assert.doesNotMatch(JSON.stringify(entry), /sk-clientsecret|sk-directclientsecret|clientBearerSecret|secret-client-token/i);
 });
 
 test('server routes implicit target design requests through target resolution', async () => {
