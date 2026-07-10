@@ -123,3 +123,17 @@ test('knowledge base exposes history as a separate public-library entry with det
     assert.doesNotMatch(sidebarMarkup, /kbHistoryEntry|kbHistoryPanel|projectHistoryList/);
   }
 });
+
+test('knowledge base history is loaded from shared server APIs instead of browser localStorage', () => {
+  const historyBlockStart = html.indexOf('CONVERSATION HISTORY');
+  assert.ok(historyBlockStart >= 0, 'history block should exist');
+  const historyBlockEnd = html.indexOf('function getRelTime', historyBlockStart);
+  assert.ok(historyBlockEnd > historyBlockStart, 'history persistence block should be bounded');
+  const historyBlock = html.slice(historyBlockStart, historyBlockEnd);
+
+  assert.match(historyBlock, /fetch\('\/api\/history'/);
+  assert.match(historyBlock, /method:\s*'POST'/);
+  assert.match(historyBlock, /method:\s*'DELETE'/);
+  assert.match(html, /refreshHistoryFromServer\(\)/);
+  assert.doesNotMatch(historyBlock, /localStorage\.(getItem|setItem|removeItem)\(_HIST_KEY\)/);
+});

@@ -75,6 +75,12 @@ const QUESTION_ROUTING_LOG_MAX_LINES = Math.max(50, Number(process.env.QUESTION_
 const DIAGNOSTIC_LOG_FILE = process.env.DIAGNOSTIC_LOG_FILE || resolveDefaultDiagnosticLogFile();
 const DIAGNOSTIC_LOG_MAX_LINES = Math.max(100, Number(process.env.DIAGNOSTIC_LOG_MAX_LINES || 1000) || 1000);
 const DIAGNOSTIC_SLOW_REQUEST_MS = Math.max(500, Number(process.env.DIAGNOSTIC_SLOW_REQUEST_MS || 5000) || 5000);
+const HISTORY_STORE_FILE = resolveProjectPath(process.env.HISTORY_STORE_FILE || resolveDefaultHistoryStoreFile());
+const HISTORY_MAX_RECORDS = Math.max(50, Number(process.env.HISTORY_MAX_RECORDS || 500) || 500);
+const HISTORY_TEXT_MAX = Math.max(20_000, Number(process.env.HISTORY_TEXT_MAX || 200_000) || 200_000);
+const HISTORY_JSON_TEXT_MAX = Math.max(8_000, Number(process.env.HISTORY_JSON_TEXT_MAX || 80_000) || 80_000);
+const HISTORY_ARRAY_MAX = Math.max(50, Number(process.env.HISTORY_ARRAY_MAX || 1000) || 1000);
+const JSON_BODY_LIMIT = process.env.JSON_BODY_LIMIT || process.env.HISTORY_REQUEST_LIMIT || '8mb';
 const WORKFLOW_INTENT_TIMEOUT_MS = Math.max(8000, Number(process.env.WORKFLOW_INTENT_TIMEOUT_MS || 30000) || 30000);
 const TARGET_RESOLVER_TIMEOUT_MS = Math.max(5000, Number(process.env.TARGET_RESOLVER_TIMEOUT_MS || 45000) || 45000);
 const LOCAL_TTS_PROVIDER = String(process.env.LOCAL_TTS_PROVIDER || 'edge').trim().toLowerCase();
@@ -187,6 +193,20 @@ function resolveDefaultVoiceApiConfigFile() {
     return persistentFile;
   } catch (err) {
     console.warn('[Voice] Persistent API config directory unavailable, falling back to project runtime:', err && err.message ? err.message : err);
+    return projectRuntimeFile;
+  }
+}
+
+function resolveDefaultHistoryStoreFile() {
+  const projectRuntimeFile = path.join(__dirname, '.runtime', 'history-records.json');
+  if (process.platform !== 'linux' && !IS_RENDER_RUNTIME) return projectRuntimeFile;
+  const persistentDir = path.join(RENDER_DATA_DIR || '/var/data', 'zoonoab');
+  try {
+    fs.mkdirSync(persistentDir, { recursive: true, mode: 0o700 });
+    fs.accessSync(persistentDir, fs.constants.W_OK);
+    return path.join(persistentDir, 'history-records.json');
+  } catch (err) {
+    console.warn('[History] Persistent history directory unavailable, falling back to project runtime:', err && err.message ? err.message : err);
     return projectRuntimeFile;
   }
 }
@@ -668,7 +688,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(express.json({ limit: '1mb' }));
+app.use(express.json({ limit: JSON_BODY_LIMIT }));
 app.use((req, res, next) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-Frame-Options', 'SAMEORIGIN');
@@ -676,6 +696,133 @@ app.use((req, res, next) => {
   res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
   next();
 });
+
+function truncateHistoryText(value, max = HISTORY_TEXT_MAX) {
+  const text = value === undefined || value === null ? '' : String(value);
+  return text.length > max ? text.slice(0, max - 1) + '…' : text;
+}
+
+function cloneHistoryValue(value, maxText = HISTORY_JSON_TEXT_MAX) {
+  if (value === undefined || value === null) return value;
+  try {
+    return JSON.parse(JSON.stringify(value, (key, val) => {
+      if (typeof val === 'function' || typeof val === 'symbol' || typeof val === 'bigint') return undefined;
+      if (typeof val === 'string') return truncateHistoryText(val, maxText);
+      return val;
+    }));
+  } catch {
+    return truncateHistoryText(String(value), maxText);
+  }
+}
+
+function normalizeHistoryTimestamp(value, fallback = Date.now()) {
+  const n = Number(value);
+  if (Number.isFinite(n) && n > 0) return n;
+  const parsed = Date.parse(String(value || ''));
+  return Number.isFinite(parsed) ? parsed : fallback;
+}
+
+function normalizeHistoryId(value, fallbackSeed) {
+  const raw = String(value || '').trim();
+  if (/^[-_A-Za-z0-9:.]{3,120}$/.test(raw)) return raw;
+  return 'hist-' + normalizeHistoryTimestamp(fallbackSeed).toString(36) + '-' + uuidv4().slice(0, 8);
+}
+
+function normalizeHistoryArray(value, max = HISTORY_ARRAY_MAX, itemMaxText = HISTORY_JSON_TEXT_MAX) {
+  if (!Array.isArray(value)) return [];
+  return value.slice(0, max).map(item => cloneHistoryValue(item, itemMaxText)).filter(item => item !== undefined);
+}
+
+function normalizeServerHistoryRecord(entry, idx = 0) {
+  const source = entry && typeof entry === 'object' && !Array.isArray(entry) ? entry : {};
+  const now = Date.now();
+  const ts = normalizeHistoryTimestamp(source.ts || source.createdAt || source.updatedAt, now);
+  const updatedAt = normalizeHistoryTimestamp(source.updatedAt || source.ts || source.createdAt, ts);
+  const messages = normalizeHistoryArray(source.messages, HISTORY_ARRAY_MAX);
+  const events = normalizeHistoryArray(source.events, HISTORY_ARRAY_MAX);
+  const status = ['running', 'completed', 'cancelled', 'error', 'interrupted'].includes(source.status)
+    ? source.status
+    : 'completed';
+  const firstUser = messages.find(item => item && item.role === 'user');
+  return {
+    id: normalizeHistoryId(source.id, ts || idx),
+    schemaVersion: Number(source.schemaVersion) || 2,
+    title: truncateHistoryText(source.title || source.label || source.input || '未命名设计记录', 120),
+    input: truncateHistoryText(source.input || (firstUser && firstUser.text) || ''),
+    status,
+    ts,
+    updatedAt,
+    routeId: truncateHistoryText(source.routeId || '', 120),
+    routeLabel: truncateHistoryText(source.routeLabel || '', 160),
+    messages,
+    events,
+    results: normalizeHistoryArray(source.results, HISTORY_ARRAY_MAX),
+    models3d: normalizeHistoryArray(source.models3d, HISTORY_ARRAY_MAX),
+    stats: cloneHistoryValue(source.stats || null, HISTORY_JSON_TEXT_MAX)
+  };
+}
+
+function sortHistoryRecords(records) {
+  return records.sort((a, b) => {
+    const byUpdated = normalizeHistoryTimestamp(b.updatedAt || b.ts, 0) - normalizeHistoryTimestamp(a.updatedAt || a.ts, 0);
+    if (byUpdated) return byUpdated;
+    return String(b.id || '').localeCompare(String(a.id || ''));
+  });
+}
+
+function readHistoryStore() {
+  try {
+    if (!fs.existsSync(HISTORY_STORE_FILE)) return [];
+    const parsed = JSON.parse(fs.readFileSync(HISTORY_STORE_FILE, 'utf8') || '[]');
+    const rawRecords = Array.isArray(parsed)
+      ? parsed
+      : (parsed && Array.isArray(parsed.history) ? parsed.history : []);
+    const seen = new Set();
+    const normalized = [];
+    rawRecords.forEach((entry, idx) => {
+      const record = normalizeServerHistoryRecord(entry, idx);
+      if (seen.has(record.id)) return;
+      seen.add(record.id);
+      normalized.push(record);
+    });
+    sortHistoryRecords(normalized);
+    if (normalized.length > HISTORY_MAX_RECORDS) normalized.length = HISTORY_MAX_RECORDS;
+    return normalized;
+  } catch (err) {
+    console.error('[History] Failed to read history store:', err && err.message ? err.message : err);
+    return [];
+  }
+}
+
+function writeHistoryStore(records) {
+  const normalized = [];
+  const seen = new Set();
+  (Array.isArray(records) ? records : []).forEach((entry, idx) => {
+    const record = normalizeServerHistoryRecord(entry, idx);
+    if (seen.has(record.id)) return;
+    seen.add(record.id);
+    normalized.push(record);
+  });
+  sortHistoryRecords(normalized);
+  if (normalized.length > HISTORY_MAX_RECORDS) normalized.length = HISTORY_MAX_RECORDS;
+  fs.mkdirSync(path.dirname(HISTORY_STORE_FILE), { recursive: true, mode: 0o700 });
+  const tempFile = HISTORY_STORE_FILE + '.' + process.pid + '.' + Date.now() + '.tmp';
+  fs.writeFileSync(tempFile, JSON.stringify(normalized, null, 2), { mode: 0o600 });
+  fs.renameSync(tempFile, HISTORY_STORE_FILE);
+  try { fs.chmodSync(HISTORY_STORE_FILE, 0o600); } catch {}
+  return normalized;
+}
+
+function upsertHistoryRecord(entry) {
+  const record = normalizeServerHistoryRecord(entry);
+  const records = readHistoryStore().filter(item => item && item.id !== record.id);
+  records.unshift(record);
+  const saved = writeHistoryStore(records);
+  return {
+    record: saved.find(item => item.id === record.id) || record,
+    history: saved
+  };
+}
 
 function audioFilenameForType(contentType) {
   const baseType = String(contentType || '').split(';')[0].trim().toLowerCase();
@@ -2497,6 +2644,38 @@ app.get('/api/tts-stream', async (req, res) => {
   }
 });
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('/api/history', (req, res) => {
+  res.json({
+    ok: true,
+    history: readHistoryStore()
+  });
+});
+
+app.post('/api/history', (req, res) => {
+  const body = req.body && typeof req.body === 'object' && !Array.isArray(req.body) ? req.body : {};
+  const recordInput = body.record && typeof body.record === 'object' && !Array.isArray(body.record) ? body.record : body;
+  if (!recordInput || typeof recordInput !== 'object' || Array.isArray(recordInput)) {
+    return res.status(400).json({ ok: false, error: '历史记录格式不正确。' });
+  }
+  try {
+    const saved = upsertHistoryRecord(recordInput);
+    res.json({ ok: true, ...saved });
+  } catch (err) {
+    console.error('[History] Failed to save history record:', err && err.message ? err.message : err);
+    res.status(500).json({ ok: false, error: '历史记录保存失败。' });
+  }
+});
+
+app.delete('/api/history', (req, res) => {
+  try {
+    const history = writeHistoryStore([]);
+    res.json({ ok: true, history });
+  } catch (err) {
+    console.error('[History] Failed to clear history store:', err && err.message ? err.message : err);
+    res.status(500).json({ ok: false, error: '历史记录清除失败。' });
+  }
+});
 
 let workflowDisplaySerial = 0;
 

@@ -5882,7 +5882,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146095';
+    const APP_BUILD_VERSION = '78146096';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
 
@@ -7752,15 +7752,17 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         return qdVoiceDidNotHear({ speak: options.speak !== false });
     }
 
-    // ═══════════════ CONVERSATION HISTORY (localStorage) ═══════════════
-    const _HIST_KEY = 'zoonoab_history_v2';
-    const _HIST_MAX = 50;
+    // ═══════════════ CONVERSATION HISTORY (shared server store) ═══════════════
+    const _HIST_MAX = 500;
     const _HIST_MODEL_MAX = 60;
     const _HIST_TEXT_MAX = 200000;
     const _HIST_JSON_TEXT_MAX = 80000;
     const _DOT_COLORS = ['#22C55E','rgba(0,123,255,0.75)','rgba(139,92,246,0.75)','rgba(245,158,11,0.75)','rgba(239,68,68,0.75)','rgba(20,184,166,0.75)'];
     let activeHistoryRun = null;
     let activeHistorySelectedId = null;
+    let historyRecordsCache = [];
+    let historyLoaded = false;
+    let historyLoading = false;
 
     function historyId() {
         return 'hist-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 8);
@@ -7875,46 +7877,104 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         };
     }
 
+    function setHistoryCache(records) {
+        const normalized = (Array.isArray(records) ? records : [])
+            .map((entry, idx) => normalizeHistoryRecord(entry, idx))
+            .filter(entry => entry && entry.id);
+        normalized.sort((a, b) => Number(b.updatedAt || b.ts || 0) - Number(a.updatedAt || a.ts || 0));
+        if (normalized.length > _HIST_MAX) normalized.length = _HIST_MAX;
+        historyRecordsCache = normalized;
+        historyLoaded = true;
+    }
+
+    function upsertHistoryCache(record) {
+        if (!record || !record.id) return null;
+        const normalized = normalizeHistoryRecord(record);
+        const next = historyRecordsCache.filter(item => item && item.id !== normalized.id);
+        next.unshift(normalized);
+        setHistoryCache(next);
+        return normalized;
+    }
+
     function loadHistory() {
-        try {
-            const raw = JSON.parse(localStorage.getItem(_HIST_KEY) || '[]');
-            return Array.isArray(raw) ? raw : [];
-        } catch {
-            return [];
-        }
+        return historyRecordsCache.slice();
     }
 
     function loadHistoryRecords() {
         return loadHistory().map((entry, idx) => normalizeHistoryRecord(entry, idx));
     }
 
+    function refreshHistoryViews(selectedId) {
+        renderProjectHistory();
+        if (kbCurrentProject === 'history') renderHistoryPanel(selectedId || activeHistorySelectedId);
+    }
+
+    async function refreshHistoryFromServer(selectedId) {
+        if (historyLoading) return;
+        historyLoading = true;
+        refreshHistoryViews(selectedId);
+        try {
+            const res = await fetch('/api/history', { cache: 'no-store' });
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            const data = await res.json();
+            setHistoryCache(data && Array.isArray(data.history) ? data.history : []);
+            refreshHistoryViews(selectedId);
+        } catch (err) {
+            console.warn('[History] Failed to load shared history:', err);
+            historyLoaded = true;
+            refreshHistoryViews(selectedId);
+        } finally {
+            historyLoading = false;
+        }
+    }
+
     function saveHistory(entry) {
         if (!entry) return;
-        const record = normalizeHistoryRecord(entry);
-        const h = loadHistory().filter(item => item && item.id !== record.id);
-        h.unshift(record);
-        if (h.length > _HIST_MAX) h.length = _HIST_MAX;
-        try {
-            localStorage.setItem(_HIST_KEY, JSON.stringify(h));
-        } catch {
-            while (h.length > 1) {
-                h.pop();
-                try {
-                    localStorage.setItem(_HIST_KEY, JSON.stringify(h));
-                    break;
-                } catch {}
+        const record = upsertHistoryCache(entry);
+        if (!record) return;
+        refreshHistoryViews(record.id);
+        fetch('/api/history', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(record)
+        }).then(async res => {
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            return res.json();
+        }).then(data => {
+            if (data && Array.isArray(data.history)) {
+                setHistoryCache(data.history);
+            } else if (data && data.record) {
+                upsertHistoryCache(data.record);
             }
-        }
-        renderProjectHistory();
-        if (kbCurrentProject === 'history') renderHistoryPanel(record.id);
+            refreshHistoryViews(record.id);
+        }).catch(err => {
+            console.warn('[History] Failed to save shared history:', err);
+            showToast('历史记录暂未保存到服务器', 'error');
+        });
     }
 
     function clearProjectHistory() {
-        localStorage.removeItem(_HIST_KEY);
+        if (typeof window !== 'undefined' && window.confirm && !window.confirm('将清除所有共享历史记录，是否继续？')) return;
+        historyRecordsCache = [];
+        historyLoaded = true;
         activeHistorySelectedId = null;
         renderProjectHistory();
         renderHistoryPanel();
-        showToast('历史记录已清除');
+        fetch('/api/history', { method: 'DELETE' })
+            .then(async res => {
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                return res.json();
+            })
+            .then(data => {
+                setHistoryCache(data && Array.isArray(data.history) ? data.history : []);
+                refreshHistoryViews();
+                showToast('历史记录已清除');
+            })
+            .catch(err => {
+                console.warn('[History] Failed to clear shared history:', err);
+                showToast('历史记录清除失败，请稍后重试', 'error');
+                refreshHistoryFromServer();
+            });
     }
 
     function startHistoryRun(text, meta = {}) {
@@ -8081,7 +8141,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (countEl) countEl.textContent = history.length;
         if (!list) return;
         if (!history.length) {
-            list.innerHTML = '<div style="padding:10px 8px;font-size:11px;color:var(--text-muted);">暂无历史记录</div>';
+            list.innerHTML = `<div style="padding:10px 8px;font-size:11px;color:var(--text-muted);">${historyLoading && !historyLoaded ? '正在加载历史记录…' : '暂无历史记录'}</div>`;
             return;
         }
         list.innerHTML = history.slice(0, 8).map((h, i) => {
@@ -8116,6 +8176,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         document.querySelectorAll('.kb-tree-item').forEach(b => b.classList.remove('active'));
         setKBHistoryMode(true);
         renderHistoryPanel(recordId || activeHistorySelectedId);
+        refreshHistoryFromServer(recordId || activeHistorySelectedId);
         refreshLucideIcons({ nodes: [document.getElementById('kbHistoryPanel'), document.getElementById('kbHistoryEntry')].filter(Boolean) });
     }
 
@@ -8127,8 +8188,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const countEl = document.getElementById('kbHistoryCount');
         if (countEl) countEl.textContent = records.length;
         if (!records.length) {
-            list.innerHTML = '<div class="kb-history-empty">暂无历史记录。完成一次设计后，会在这里保存输出内容和结构模型。</div>';
-            detail.innerHTML = '<div class="kb-history-empty">暂无可查看记录。</div>';
+            const loadingText = historyLoading && !historyLoaded ? '正在从服务器读取历史记录…' : '暂无历史记录。完成一次设计后，会在这里保存输出内容和结构模型。';
+            list.innerHTML = '<div class="kb-history-empty">' + loadingText + '</div>';
+            detail.innerHTML = '<div class="kb-history-empty">' + (historyLoading && !historyLoaded ? '请稍候。' : '暂无可查看记录。') + '</div>';
             return;
         }
         const selected = records.find(item => item.id === recordId) || records[0];
@@ -17614,8 +17676,9 @@ ${fallbackTableRows(profile.rows)}
         // Apply translations
         applyI18N();
 
-        // Load persistent conversation history
+        // Load shared conversation history from the server
         renderProjectHistory();
+        refreshHistoryFromServer();
 
         // Initialize the current Quick Design voice controls before the legacy voice bundle runs.
         initVoiceShortcuts();
