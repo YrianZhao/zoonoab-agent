@@ -308,3 +308,60 @@ test('chat test endpoint can reuse the saved primary provider when only the mode
     await new Promise(resolve => fallback.server.close(resolve));
   }
 });
+
+test('chat provider reasoning effort can be cleared so responses calls output directly', async () => {
+  const primary = makeResponsesServer({ reply: '测试通过' });
+  const fallback = makeChatCompletionsServer();
+  const primaryPort = await listenOnLocalhost(primary.server);
+  const fallbackPort = await listenOnLocalhost(fallback.server);
+  try {
+    await saveAutoProviderConfig(primaryPort, fallbackPort, { mode: 'primary' });
+
+    const clearResp = await fetch('http://127.0.0.1:' + PORT + '/api/voice/session', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        voice: { mode: 'local', provider: 'local' },
+        chat: {
+          mode: 'primary',
+          reasoningEffort: '',
+          primary: {
+            provider: 'su8',
+            baseUrl: 'http://127.0.0.1:' + primaryPort + '/v1',
+            apiKey: '',
+            model: 'gpt-5.5',
+            wireApi: 'responses',
+            reasoningEffort: ''
+          },
+          fallback: {
+            provider: 'siliconflow',
+            baseUrl: 'http://127.0.0.1:' + fallbackPort + '/v1',
+            apiKey: '',
+            model: 'Qwen/Qwen3-32B',
+            wireApi: 'chat_completions'
+          }
+        }
+      })
+    });
+    assert.equal(clearResp.status, 200);
+    const clearData = await clearResp.json();
+    assert.equal(clearData.chat.reasoningEffort, '');
+    assert.equal(clearData.chat.primary.reasoningEffort, '');
+
+    const testResp = await fetch('http://127.0.0.1:' + PORT + '/api/voice/test/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat: { mode: 'primary' } })
+    });
+    assert.equal(testResp.status, 200);
+
+    const latestPrimaryRequest = primary.requests[primary.requests.length - 1];
+    assert.ok(latestPrimaryRequest, 'primary provider should be called after clearing reasoning effort');
+    assert.equal(latestPrimaryRequest.url, '/v1/responses');
+    assert.equal(latestPrimaryRequest.body.model, 'gpt-5.5');
+    assert.equal(latestPrimaryRequest.body.reasoning, undefined);
+  } finally {
+    await new Promise(resolve => primary.server.close(resolve));
+    await new Promise(resolve => fallback.server.close(resolve));
+  }
+});

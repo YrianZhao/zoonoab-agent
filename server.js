@@ -1276,6 +1276,19 @@ function cloneApiConfigSection(section) {
   return JSON.parse(JSON.stringify(section));
 }
 
+function hasOwnConfigProperty(source, ...names) {
+  if (!source || typeof source !== 'object') return false;
+  return names.some(name => Object.prototype.hasOwnProperty.call(source, name));
+}
+
+function readOwnConfigProperty(source, ...names) {
+  if (!source || typeof source !== 'object') return undefined;
+  for (const name of names) {
+    if (Object.prototype.hasOwnProperty.call(source, name)) return source[name];
+  }
+  return undefined;
+}
+
 function normalizeProviderName(value, fallback = 'compatible') {
   const raw = String(value || '').trim().toLowerCase();
   if (!raw) return fallback;
@@ -1520,6 +1533,7 @@ function chatInputSectionHasFields(section) {
     || String(section.provider || '').trim()
     || String(section.wireApi || section.wire_api || '').trim()
     || String(section.reasoningEffort || section.reasoning_effort || '').trim()
+    || hasOwnConfigProperty(section, 'reasoningEffort', 'reasoning_effort')
   );
 }
 
@@ -1527,6 +1541,7 @@ function chatInputUsesCompositeShape(body) {
   return Boolean(body && typeof body === 'object' && (
     body.primary || body.fallback || body.mode || body.activeProviderMode || body.providerMode
       || body.reasoningEffort || body.reasoning_effort
+      || hasOwnConfigProperty(body, 'reasoningEffort', 'reasoning_effort')
   ));
 }
 
@@ -1534,9 +1549,16 @@ function resolveChatProviderInputConfig(providerBody, persistedProvider, options
   const body = providerBody && typeof providerBody === 'object' ? providerBody : {};
   const persisted = persistedProvider && typeof persistedProvider === 'object' ? persistedProvider : null;
   const hasAnyField = chatInputSectionHasFields(body);
+  const hasOptionReasoningEffort = hasOwnConfigProperty(options, 'reasoningEffort', 'reasoning_effort');
   if (!hasAnyField) {
     if (options.preserveExisting && persisted) {
-      return { provider: cloneApiConfigSection(persisted), hasAnyField: false };
+      const provider = cloneApiConfigSection(persisted);
+      if (hasOptionReasoningEffort) {
+        const inheritedReasoningEffort = normalizeReasoningEffort(readOwnConfigProperty(options, 'reasoningEffort', 'reasoning_effort'));
+        if (inheritedReasoningEffort) provider.reasoningEffort = inheritedReasoningEffort;
+        else delete provider.reasoningEffort;
+      }
+      return { provider, hasAnyField: false };
     }
     if (!options.required) return { provider: null, hasAnyField: false };
   }
@@ -1548,8 +1570,13 @@ function resolveChatProviderInputConfig(providerBody, persistedProvider, options
   const resolvedBaseRaw = baseRaw || persisted?.url || '';
   const resolvedModel = model || persisted?.model || '';
   const wireApi = normalizeChatWireApi(body.wireApi || body.wire_api || persisted?.wireApi || options.defaultWireApi);
+  const hasProviderReasoningEffort = hasOwnConfigProperty(body, 'reasoningEffort', 'reasoning_effort');
   const reasoningEffort = normalizeReasoningEffort(
-    body.reasoningEffort || body.reasoning_effort || persisted?.reasoningEffort || options.reasoningEffort
+    hasProviderReasoningEffort
+      ? readOwnConfigProperty(body, 'reasoningEffort', 'reasoning_effort')
+      : (hasOptionReasoningEffort
+        ? readOwnConfigProperty(options, 'reasoningEffort', 'reasoning_effort')
+        : persisted?.reasoningEffort)
   );
   const label = options.label || '聊天服务';
   if (!resolvedApiKey) {
@@ -1593,16 +1620,20 @@ function resolveChatInputConfig(chatBody, persistedConfig = loadPersistedVoiceCo
       ? persistedChat.fallback
       : (persistedChat && !isCompositeChatConfig(persistedChat) ? persistedChat : null);
     const chatMode = normalizeChatMode(body.mode || body.activeProviderMode || body.providerMode || persistedChat?.mode);
+    const hasSharedReasoningEffort = hasOwnConfigProperty(body, 'reasoningEffort', 'reasoning_effort');
     const sharedReasoningEffort = normalizeReasoningEffort(
-      body.reasoningEffort || body.reasoning_effort || persistedChat?.reasoningEffort
+      hasSharedReasoningEffort
+        ? readOwnConfigProperty(body, 'reasoningEffort', 'reasoning_effort')
+        : persistedChat?.reasoningEffort
     );
-    const primaryResolved = resolveChatProviderInputConfig(body.primary, persistedPrimary, {
+    const primaryOptions = {
       preserveExisting: options.preserveExisting,
       provider: 'su8',
       defaultWireApi: 'responses',
-      reasoningEffort: sharedReasoningEffort,
       label: '主模型'
-    });
+    };
+    if (hasSharedReasoningEffort || sharedReasoningEffort) primaryOptions.reasoningEffort = sharedReasoningEffort;
+    const primaryResolved = resolveChatProviderInputConfig(body.primary, persistedPrimary, primaryOptions);
     if (primaryResolved.error) return { error: primaryResolved.error };
     const fallbackResolved = resolveChatProviderInputConfig(body.fallback, persistedFallback, {
       preserveExisting: options.preserveExisting,

@@ -5047,11 +5047,11 @@
                                         <div class="voice-settings-row">
                                             <label for="chatReasoningEffortSelect">思考</label>
                                             <select id="chatReasoningEffortSelect">
+                                                <option value="">关闭</option>
                                                 <option value="xhigh">xhigh</option>
                                                 <option value="high">high</option>
                                                 <option value="medium">medium</option>
                                                 <option value="low">low</option>
-                                                <option value="">关闭</option>
                                             </select>
                                         </div>
                                     </div>
@@ -5979,7 +5979,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146101';
+    const APP_BUILD_VERSION = '78146102';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
 
@@ -10785,7 +10785,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             if (chatModeSelect) chatModeSelect.value = ['auto', 'primary', 'fallback'].includes(chat.mode) ? chat.mode : 'auto';
             if (primaryBaseInput) primaryBaseInput.value = primary.baseUrl || 'https://jp.su8.codes/v1/responses';
             if (primaryWireInput) primaryWireInput.value = primary.wireApi || 'responses';
-            if (reasoningInput) reasoningInput.value = chat.reasoningEffort || primary.reasoningEffort || 'xhigh';
+            if (reasoningInput) reasoningInput.value = chat.reasoningEffort || primary.reasoningEffort || '';
             if (primaryKeyInput) {
                 primaryKeyInput.value = '';
                 primaryKeyInput.placeholder = primary.hasApiKey ? '已安全保存，留空继续使用' : '主模型 Key';

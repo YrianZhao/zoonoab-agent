@@ -76,3 +76,12 @@ test('API settings save payload includes primary provider, fallback provider, mo
   assert.match(loadVoiceConfig, /cfg\.chat\?\.primary/);
   assert.match(loadVoiceConfig, /cfg\.chat\?\.fallback/);
 });
+
+test('API settings default chat reasoning effort is off for direct responses', () => {
+  const selectMatch = html.match(/<select id="chatReasoningEffortSelect">([\s\S]*?)<\/select>/);
+  assert.ok(selectMatch, 'chat reasoning effort select should exist');
+  assert.match(selectMatch[1].trim(), /^<option value="">关闭<\/option>/);
+
+  const loadVoiceConfig = extractFunction(html, 'async function loadVoiceConfig');
+  assert.doesNotMatch(loadVoiceConfig, /\|\|\s*'xhigh'/);
+});
