@@ -95,3 +95,28 @@ test('API settings expose SiliconFlow fallback model candidates', () => {
   const saveVoiceSettings = extractFunction(html, 'async function saveVoiceSettings');
   assert.match(saveVoiceSettings, /modelCandidates:\s*SILICONFLOW_CHAT_FALLBACK_MODELS/);
 });
+
+test('top wake button keeps wake label and uses warning color when voice is unsupported', () => {
+  assert.match(html, /\.header-wake-btn\.voice-unavailable/);
+
+  const updateVoiceUI = extractFunction(html, 'function updateVoiceUI');
+  const initVoiceShortcuts = extractFunction(html, 'function initVoiceShortcuts');
+  assert.match(updateVoiceUI, /wakeBtn\.classList\.toggle\('voice-unavailable'/);
+  assert.match(initVoiceShortcuts, /wakeBtn\.classList\.toggle\('voice-unavailable'/);
+  assert.match(initVoiceShortcuts, /wakeBtn\.textContent\s*=\s*'唤醒'/);
+  assert.doesNotMatch(initVoiceShortcuts, /wakeBtn\)\s*wakeBtn\.textContent\s*=\s*'不可用'/);
+});
+
+test('top connection dot reflects chat provider health instead of websocket color writes', () => {
+  assert.match(html, /function\s+setChatConnectionIndicator\s*\(/);
+  assert.match(html, /chat-connection-primary/);
+  assert.match(html, /chat-connection-fallback/);
+  assert.match(html, /chat-connection-unavailable/);
+
+  const renderChatProviderHealth = extractFunction(html, 'function renderChatProviderHealth');
+  const refreshChatProviderHealth = extractFunction(html, 'async function refreshChatProviderHealth');
+  const connectWS = extractFunction(html, 'function connectWS');
+  assert.match(renderChatProviderHealth, /setChatConnectionIndicator\(/);
+  assert.match(refreshChatProviderHealth, /setChatConnectionIndicator\('checking'/);
+  assert.doesNotMatch(connectWS, /wsStatus'\)\.style\.background/);
+});
