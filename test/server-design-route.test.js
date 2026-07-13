@@ -446,7 +446,7 @@ test('server can let the chat model route terse monoclonal slang into workflow',
     assert.match(captured[0].messages[0].content, /自然语言理解器|选择理由|wf|modelNote/);
     assert.doesNotMatch(captured[0].messages[0].content, /workflow\/profile|tool_call|tool_result|epitopeRows|referenceEntries/);
     assert.deepEqual(captured[0].response_format, { type: 'json_object' });
-    assert.ok(captured[0].max_tokens <= 900);
+    assert.ok(captured[0].max_tokens <= 1200);
   } finally {
     await new Promise(resolve => mockServer.close(resolve));
   }

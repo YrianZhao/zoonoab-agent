@@ -156,7 +156,10 @@ test('compact model design result supplies core fields and lets the server build
               cands: [
                 { t: 'MUC1', g: 'MUC1', r: '胰腺癌相关糖蛋白抗原，具备膜表面可及性。' },
                 { t: 'Claudin 18.2', g: 'CLDN18', r: '部分胃肠道肿瘤和胰腺癌方向可讨论的膜蛋白入口。' },
-                { t: 'Mesothelin', g: 'MSLN', r: '胰腺癌相关细胞表面抗原，可作为备选设计入口。' }
+                { t: 'Mesothelin', g: 'MSLN', r: '胰腺癌相关细胞表面抗原，可作为备选设计入口。' },
+                { t: 'CEACAM6', g: 'CEACAM6', r: '胰腺癌中常见上调的细胞黏附相关膜蛋白，可作为补充候选。' },
+                { t: 'TROP-2', g: 'TACSTD2', r: '实体瘤相关表面抗原，具备抗体偶联药物开发语境。' },
+                { t: 'EGFR', g: 'EGFR', r: '胰腺癌生长信号相关受体，可作为机制备选入口。' }
               ],
               mech: '优先识别 MUC1 肿瘤相关外露表位，生成可进入结构评估的 Fab 候选。',
               ab: 'Fab',
@@ -183,9 +186,11 @@ test('compact model design result supplies core fields and lets the server build
 
     assert.equal(captured.length, 1, 'one compact model call should provide routing, target and background');
     assert.match(captured[0].messages[0].content, /核心 JSON|必要字段|选择理由/);
+    assert.match(captured[0].messages[0].content, /220-420 个中文字|用户原始需求|疾病机制|表达谱|抗原可及性|同类抗体开发背景/);
+    assert.match(captured[0].messages[0].content, /cands 给 5-7 个|候选靶点比较池/);
     assert.match(captured[0].messages[0].content, /wf|modelNote/);
     assert.doesNotMatch(captured[0].messages[0].content, /workflow\/profile|tool_call|tool_result|epitopeRows|referenceEntries/);
-    assert.ok(captured[0].max_tokens <= 900);
+    assert.ok(captured[0].max_tokens <= 1200);
     assert.deepEqual(captured[0].response_format, { type: 'json_object' });
     assert.ok(evidenceCall, 'design response should enter workflow');
     assert.equal(evidenceCall.params.target, 'MUC1');
@@ -193,7 +198,8 @@ test('compact model design result supplies core fields and lets the server build
     assert.match(evidenceCall.params.evidence_package, /MUC1/);
     assert.match(evidenceCall.params.design_goal, /MUC1/);
     assert.match(agentTexts[0], /胰腺癌|MUC1|MUC1|胰腺癌常见抗体设计入口/);
-    assert.match(agentTexts[0], /Mesothelin|Claudin 18\.2/);
+    assert.match(agentTexts[0], /Mesothelin|Claudin 18\.2|CEACAM6|TROP-2|EGFR/);
+    assert.match(agentTexts[0], /6\. EGFR/);
     assert.match(serialized, /MUC1/);
     assert.doesNotMatch(serialized, /IL-1β|INFLAMMATION-IL1B|当前疾病方向缺少明确靶点/);
   } finally {
