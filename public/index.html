@@ -5101,6 +5101,9 @@
                                             <div class="voice-model-row-control">
                                                 <select id="fallbackChatModelInput" aria-label="备用模型">
                                                     <option value="Qwen/Qwen3-32B">Qwen/Qwen3-32B</option>
+                                                    <option value="Qwen/Qwen3-14B">Qwen/Qwen3-14B</option>
+                                                    <option value="Qwen/Qwen3-8B">Qwen/Qwen3-8B</option>
+                                                    <option value="deepseek-ai/DeepSeek-V3">deepseek-ai/DeepSeek-V3</option>
                                                 </select>
                                                 <button class="voice-test-btn voice-model-detect-btn" id="fallbackChatModelsBtn" onclick="detectChatModels('fallback')" data-busy-text="检测中...">检测模型</button>
                                             </div>
@@ -6007,9 +6010,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146103';
+    const APP_BUILD_VERSION = '78146104';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
+    const SILICONFLOW_CHAT_FALLBACK_MODELS = ['Qwen/Qwen3-32B', 'Qwen/Qwen3-14B', 'Qwen/Qwen3-8B', 'deepseek-ai/DeepSeek-V3'];
     let debugFastWorkflowEnabled = false;
 
     function shouldUseDebugFastWorkflow() {
@@ -10858,7 +10862,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 fallbackKeyInput.placeholder = fallback.hasApiKey ? '已安全保存，留空继续使用' : '备用模型 Key';
                 fallbackKeyInput.title = fallback.hasApiKey ? '真实 Key 已安全保存，前端不回显；填写新 Key 后保存可覆盖。' : '填写备用模型 API Key';
             }
-            if (fallbackModelInput) setChatModelOptions(fallback.model ? [fallback.model] : ['Qwen/Qwen3-32B'], fallback.model || 'Qwen/Qwen3-32B', '选择备用模型', 'fallback');
+            if (fallbackModelInput) {
+                const fallbackModels = Array.isArray(fallback.modelCandidates) && fallback.modelCandidates.length
+                    ? fallback.modelCandidates
+                    : SILICONFLOW_CHAT_FALLBACK_MODELS;
+                setChatModelOptions(fallbackModels, fallback.model || 'Qwen/Qwen3-32B', '选择备用模型', 'fallback');
+            }
             if (note) {
                 const voiceKeyState = cfg.hasApiKey ? 'Key 已安全保存' : (cfg.local === false ? 'Key 待填写' : '无需 Key');
                 const primaryKeyState = primary.hasApiKey ? '主模型 Key 已保存' : '主模型 Key 待填写';
@@ -11147,6 +11156,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             provider: 'siliconflow',
             baseUrl: 'https://api.siliconflow.cn/v1/chat/completions',
             model: 'Qwen/Qwen3-32B',
+            modelCandidates: SILICONFLOW_CHAT_FALLBACK_MODELS,
             wireApi: 'chat_completions'
         },
         openai: {
@@ -11213,7 +11223,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const modelInput = document.getElementById(isFallback ? 'fallbackChatModelInput' : 'primaryChatModelInput');
         if (modelInput) {
             const selectedModel = preset.model || voiceConfigState?.chat?.model || '';
-            setChatModelOptions(selectedModel ? [selectedModel] : [], selectedModel, selectedModel ? '使用推荐模型' : '先检测模型列表', role);
+            const presetModels = Array.isArray(preset.modelCandidates) && preset.modelCandidates.length
+                ? preset.modelCandidates
+                : (selectedModel ? [selectedModel] : []);
+            setChatModelOptions(presetModels, selectedModel, selectedModel ? '使用推荐模型' : '先检测模型列表', role);
         }
         if (keyInput) {
             keyInput.value = '';
@@ -11363,6 +11376,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 baseUrl: settings.fallbackChatBaseUrl,
                 apiKey: settings.fallbackChatApiKey,
                 model: settings.fallbackChatModel,
+                modelCandidates: SILICONFLOW_CHAT_FALLBACK_MODELS,
                 wireApi: 'chat_completions'
             }
         };
@@ -11576,6 +11590,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 baseUrl: fallbackChatBaseUrl,
                 apiKey: fallbackChatApiKey,
                 model: fallbackChatModel,
+                modelCandidates: SILICONFLOW_CHAT_FALLBACK_MODELS,
                 wireApi: 'chat_completions'
             }
         };

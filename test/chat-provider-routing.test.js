@@ -80,6 +80,11 @@ function makeChatCompletionsServer(options = {}) {
       res.end(JSON.stringify({ data: [{ id: options.model || 'fallback-model' }] }));
       return;
     }
+    if (Array.isArray(options.failModels) && options.failModels.includes(body.model)) {
+      res.statusCode = options.statusCode || 503;
+      res.end(JSON.stringify({ error: { message: 'model unavailable: ' + body.model } }));
+      return;
+    }
     res.end(JSON.stringify({
       choices: [
         { message: { content: options.reply || '备用模型测试通过' } }
@@ -245,6 +250,32 @@ test('assistant model falls back to the SiliconFlow chat provider when the respo
     assert.equal(fallback.requests[0].authorization, 'Bearer sk-fallback-secret');
     assert.equal(fallback.requests[0].body.model, 'Qwen/Qwen3-32B');
     assert.match(answerData.answer, /备用模型测试通过/);
+  } finally {
+    await new Promise(resolve => primary.server.close(resolve));
+    await new Promise(resolve => fallback.server.close(resolve));
+  }
+});
+
+test('assistant model tries alternate SiliconFlow fallback models when Qwen3-32B fails', async () => {
+  const primary = makeResponsesServer({ fail: true });
+  const fallback = makeChatCompletionsServer({
+    failModels: ['Qwen/Qwen3-32B'],
+    reply: '备用模型二级测试通过'
+  });
+  const primaryPort = await listenOnLocalhost(primary.server);
+  const fallbackPort = await listenOnLocalhost(fallback.server);
+  try {
+    await saveAutoProviderConfig(primaryPort, fallbackPort);
+
+    const answerResp = await fetch('http://127.0.0.1:' + PORT + '/api/debug/assistant-answer?text=' + encodeURIComponent('请测试连接'));
+    assert.equal(answerResp.status, 200);
+    const answerData = await answerResp.json();
+
+    assert.equal(primary.requests.length, 1);
+    assert.equal(fallback.requests.length, 2);
+    assert.equal(fallback.requests[0].body.model, 'Qwen/Qwen3-32B');
+    assert.equal(fallback.requests[1].body.model, 'Qwen/Qwen3-14B');
+    assert.match(answerData.answer, /备用模型二级测试通过/);
   } finally {
     await new Promise(resolve => primary.server.close(resolve));
     await new Promise(resolve => fallback.server.close(resolve));

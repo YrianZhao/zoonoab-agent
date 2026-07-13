@@ -1323,6 +1323,37 @@ function normalizeReasoningEffort(value) {
   return '';
 }
 
+const SILICONFLOW_CHAT_FALLBACK_MODELS = [
+  'Qwen/Qwen3-32B',
+  'Qwen/Qwen3-14B',
+  'Qwen/Qwen3-8B',
+  'deepseek-ai/DeepSeek-V3'
+];
+
+function normalizeChatModelCandidates(value, primaryModel = '', provider = '') {
+  const seen = new Set();
+  const models = [];
+  const add = (item) => {
+    const raw = typeof item === 'string'
+      ? item
+      : String(item && (item.id || item.model || item.name || item.value) || '');
+    const model = raw.trim().slice(0, 180);
+    if (!model || seen.has(model)) return;
+    seen.add(model);
+    models.push(model);
+  };
+  add(primaryModel);
+  if (Array.isArray(value)) {
+    value.forEach(add);
+  } else if (typeof value === 'string') {
+    value.split(/[\n,;]+/).forEach(add);
+  }
+  if (normalizeProviderName(provider, '') === 'siliconflow') {
+    SILICONFLOW_CHAT_FALLBACK_MODELS.forEach(add);
+  }
+  return models.slice(0, 8);
+}
+
 function normalizeChatEndpoint(rawUrl, wireApi = 'chat_completions') {
   return normalizeChatWireApi(wireApi) === 'responses'
     ? normalizeResponsesBaseUrl(rawUrl)
@@ -1349,12 +1380,15 @@ function sanitizeChatProviderConfig(providerConfig, options = {}) {
   const reasoningEffort = normalizeReasoningEffort(
     source.reasoningEffort || source.reasoning_effort || options.reasoningEffort
   );
+  const provider = normalizeProviderName(source.provider || inferVoiceProvider(url), options.provider || 'compatible');
+  const modelCandidates = normalizeChatModelCandidates(source.modelCandidates || source.model_candidates || source.fallbackModels || source.fallback_models, model, provider);
   return {
-    provider: normalizeProviderName(source.provider || inferVoiceProvider(url), options.provider || 'compatible'),
+    provider,
     key,
     url,
     model: model.slice(0, 180),
     wireApi,
+    ...(modelCandidates.length > 1 ? { modelCandidates } : {}),
     ...(reasoningEffort ? { reasoningEffort } : {})
   };
 }
@@ -1597,13 +1631,20 @@ function resolveChatProviderInputConfig(providerBody, persistedProvider, options
   } catch (err) {
     return { error: { status: 400, error: 'invalid_chat_base_url', message: err.message || label + ' Base URL 无效。' } };
   }
+  const provider = normalizeProviderName(body.provider || persisted?.provider || inferVoiceProvider(url), options.provider || 'compatible');
+  const modelCandidates = normalizeChatModelCandidates(
+    body.modelCandidates || body.model_candidates || body.fallbackModels || body.fallback_models || persisted?.modelCandidates || persisted?.model_candidates,
+    resolvedModel,
+    provider
+  );
   return {
     provider: {
-      provider: normalizeProviderName(body.provider || persisted?.provider || inferVoiceProvider(url), options.provider || 'compatible'),
+      provider,
       key: resolvedApiKey,
       url,
       model: resolvedModel,
       wireApi,
+      ...(modelCandidates.length > 1 ? { modelCandidates } : {}),
       ...(reasoningEffort ? { reasoningEffort } : {})
     },
     hasAnyField
@@ -1798,43 +1839,49 @@ async function checkChatProviderHealth(provider, options = {}) {
       checkedAt: Date.now()
     });
   }
-  const key = chatProviderHealthCacheKey(provider);
+  const providerCandidates = expandChatProviderModelCandidates(provider);
+  const key = providerCandidates.map(chatProviderHealthCacheKey).join('||');
   const cached = chatProviderHealthCache.get(key);
   if (!options.refresh && cached && Date.now() - cached.checkedAt < CHAT_PROVIDER_HEALTH_TTL_MS) {
     return cached;
   }
   const startedAt = Date.now();
-  try {
-    await requestChatProvider(provider, {
-      messages: [
-        { role: 'system', content: '你是 ZoonoAb 小诺 API 连通性测试助手。只用中文回复“测试通过”。' },
-        { role: 'user', content: '请回复测试通过。' }
-      ],
-      temperature: 0,
-      maxTokens: 32
-    }, {
-      timeoutMs: options.timeoutMs || 9000
-    });
-    const health = chatProviderHealthPublic(provider, {
-      ok: true,
-      status: 'ready',
-      message: '连接正常',
-      latencyMs: Date.now() - startedAt,
-      checkedAt: Date.now()
-    });
-    chatProviderHealthCache.set(key, health);
-    return health;
-  } catch (err) {
-    const health = chatProviderHealthPublic(provider, {
-      ok: false,
-      status: err && err.name === 'AbortError' ? 'timeout' : 'error',
-      message: err && err.name === 'AbortError' ? '连接超时' : String(err && err.message || '连接失败').slice(0, 180),
-      latencyMs: Date.now() - startedAt,
-      checkedAt: Date.now()
-    });
-    chatProviderHealthCache.set(key, health);
-    return health;
+  let lastError = null;
+  for (const candidate of providerCandidates) {
+    try {
+      await requestChatProvider(candidate, {
+        messages: [
+          { role: 'system', content: '你是 ZoonoAb 小诺 API 连通性测试助手。只用中文回复“测试通过”。' },
+          { role: 'user', content: '请回复测试通过。' }
+        ],
+        temperature: 0,
+        maxTokens: 32
+      }, {
+        timeoutMs: options.timeoutMs || 9000
+      });
+      const health = chatProviderHealthPublic(candidate, {
+        ok: true,
+        status: 'ready',
+        message: candidate.model === provider.model ? '连接正常' : '连接正常 · 已切换备用模型 ' + candidate.model,
+        latencyMs: Date.now() - startedAt,
+        checkedAt: Date.now()
+      });
+      chatProviderHealthCache.set(key, health);
+      return health;
+    } catch (err) {
+      lastError = err;
+      console.error('[Voice] Chat health candidate failed:', candidate.provider || '', candidate.model || '', err && err.message ? err.message : err);
+    }
   }
+  const health = chatProviderHealthPublic(provider, {
+    ok: false,
+    status: lastError && lastError.name === 'AbortError' ? 'timeout' : 'error',
+    message: lastError && lastError.name === 'AbortError' ? '连接超时' : String(lastError && lastError.message || '连接失败').slice(0, 180),
+    latencyMs: Date.now() - startedAt,
+    checkedAt: Date.now()
+  });
+  chatProviderHealthCache.set(key, health);
+  return health;
 }
 
 async function buildChatProviderHealth(chat, options = {}) {
@@ -5966,12 +6013,16 @@ function normalizeAssistantChatConfig(chat) {
     try {
       url = normalizeChatEndpoint(chat.url, wireApi);
     } catch {}
+    const provider = chat.provider || inferVoiceProvider(chat.url);
+    const model = chat.model || ASSISTANT_CHAT_MODEL;
+    const modelCandidates = normalizeChatModelCandidates(chat.modelCandidates || chat.model_candidates || chat.fallbackModels || chat.fallback_models, model, provider);
     return {
       key: chat.key,
       url,
-      model: chat.model || ASSISTANT_CHAT_MODEL,
-      provider: chat.provider || inferVoiceProvider(chat.url),
+      model,
+      provider,
       wireApi,
+      ...(modelCandidates.length > 1 ? { modelCandidates } : {}),
       ...(chat.reasoningEffort ? { reasoningEffort: normalizeReasoningEffort(chat.reasoningEffort) } : {})
     };
   }
@@ -6006,12 +6057,31 @@ function chatProviderIsReady(provider) {
   return Boolean(provider && provider.key && provider.url && provider.model);
 }
 
+function chatProviderModelCandidates(provider) {
+  if (!chatProviderIsReady(provider)) return [];
+  return normalizeChatModelCandidates(
+    provider.modelCandidates || provider.model_candidates || provider.fallbackModels || provider.fallback_models,
+    provider.model,
+    provider.provider || inferVoiceProvider(provider.url || '')
+  );
+}
+
+function expandChatProviderModelCandidates(provider) {
+  if (!chatProviderIsReady(provider)) return [];
+  const models = chatProviderModelCandidates(provider);
+  return (models.length ? models : [provider.model]).map(model => ({
+    ...provider,
+    model
+  }));
+}
+
 function chatProviderPublic(provider) {
   if (!provider) {
     return {
       provider: '',
       baseUrl: '',
       model: '',
+      modelCandidates: [],
       wireApi: 'chat_completions',
       reasoningEffort: '',
       hasApiKey: false,
@@ -6022,6 +6092,7 @@ function chatProviderPublic(provider) {
     provider: provider.provider || inferVoiceProvider(provider.url || ''),
     baseUrl: provider.url || '',
     model: provider.model || '',
+    modelCandidates: chatProviderModelCandidates(provider),
     wireApi: normalizeChatWireApi(provider.wireApi),
     reasoningEffort: normalizeReasoningEffort(provider.reasoningEffort),
     hasApiKey: Boolean(provider.key),
@@ -6234,7 +6305,9 @@ async function requestChatProvider(provider, request, options = {}) {
 }
 
 async function requestAssistantModelWithFallback(providers, request, options = {}) {
-  const candidates = (Array.isArray(providers) ? providers : []).filter(chatProviderIsReady);
+  const candidates = (Array.isArray(providers) ? providers : [])
+    .flatMap(expandChatProviderModelCandidates)
+    .filter(chatProviderIsReady);
   if (!candidates.length) {
     const error = new Error('assistant_chat_unconfigured');
     error.code = 'assistant_chat_unconfigured';

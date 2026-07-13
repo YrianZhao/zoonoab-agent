@@ -85,3 +85,13 @@ test('API settings default chat reasoning effort is off for direct responses', (
   const loadVoiceConfig = extractFunction(html, 'async function loadVoiceConfig');
   assert.doesNotMatch(loadVoiceConfig, /\|\|\s*'xhigh'/);
 });
+
+test('API settings expose SiliconFlow fallback model candidates', () => {
+  assert.match(html, /Qwen\/Qwen3-32B/);
+  assert.match(html, /Qwen\/Qwen3-14B/);
+  assert.match(html, /Qwen\/Qwen3-8B/);
+  assert.match(html, /deepseek-ai\/DeepSeek-V3/);
+
+  const saveVoiceSettings = extractFunction(html, 'async function saveVoiceSettings');
+  assert.match(saveVoiceSettings, /modelCandidates:\s*SILICONFLOW_CHAT_FALLBACK_MODELS/);
+});
