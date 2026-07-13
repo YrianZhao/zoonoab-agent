@@ -188,9 +188,19 @@ test('knowledge base exposes common molecular structures for PDB inspection', ()
   assert.doesNotMatch(renderer, /AI 生成/);
 
   const opener = extractFunction(html, 'function openLocalPDBModel');
+  const frameUrl = extractFunction(html, 'function buildLocalPDBModelFrameUrl');
   assert.match(opener, /buildLocalPDBModelFrameUrl\(model\)/);
+  assert.match(frameUrl, /autoSpin=1/);
   assert.doesNotMatch(opener, /binderDataList\s*=/);
   assert.doesNotMatch(opener, /renderViewerSection/);
+});
+
+test('history and common molecular structure viewers auto-spin on first open', () => {
+  const historyFrameUrl = extractFunction(html, 'function buildHistoryMoleculeFrameUrl');
+  const localFrameUrl = extractFunction(html, 'function buildLocalPDBModelFrameUrl');
+
+  assert.match(historyFrameUrl, /autoSpin=1/);
+  assert.match(localFrameUrl, /autoSpin=1/);
 });
 
 test('history titles use the original user input instead of workflow summary labels', () => {

@@ -2817,7 +2817,7 @@
                 gap: 10px;
             }
             .mol-modal-reason {
-                max-width: 46vw;
+                max-width: 100%;
                 min-width: 0;
             }
             .agent-tasks-sidebar { width: 88vw; }
@@ -2863,7 +2863,7 @@
             opacity: 1;
         }
         .mol-modal-header {
-            display: flex; align-items: center; justify-content: space-between;
+            display: flex; align-items: flex-start; justify-content: space-between;
             gap: 16px;
             padding: 14px 20px; border-bottom: 1px solid var(--border-light);
             background: var(--bg-light);
@@ -2871,7 +2871,7 @@
         }
         .mol-modal-title {
             font-size: 14px; font-weight: 700; color: var(--text-primary);
-            display: flex; flex-direction: row; align-items: center; gap: 16px;
+            display: flex; flex-direction: column; align-items: stretch; gap: 6px;
             min-width: 0; flex: 1;
         }
         .mol-modal-title-copy {
@@ -2891,7 +2891,7 @@
         }
         .mol-modal-title i { color: var(--brand); }
         .mol-modal-subtitle {
-            max-width: min(1120px, calc(100vw - 120px));
+            max-width: 100%;
             color: var(--text-secondary);
             font-size: 11px;
             font-weight: 500;
@@ -2901,9 +2901,8 @@
             white-space: nowrap;
         }
         .mol-modal-reason {
-            flex: 0 1 760px;
-            max-width: min(760px, 42vw);
-            min-width: 220px;
+            max-width: 100%;
+            min-width: 0;
             color: var(--text-secondary);
             font-size: 11px;
             font-weight: 500;
@@ -6047,7 +6046,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146106';
+    const APP_BUILD_VERSION = '78146107';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
     const SILICONFLOW_CHAT_FALLBACK_MODELS = ['Qwen/Qwen3-32B', 'Qwen/Qwen3-14B', 'Qwen/Qwen3-8B', 'deepseek-ai/DeepSeek-V3'];
@@ -6679,6 +6678,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         url += '&antigenLabel=' + encodeURIComponent('抗原');
         url += '&antibodyLabel=' + encodeURIComponent('抗体');
         url += '&poseSeed=' + encodeURIComponent(String(stableViewerPoseSeed(filename)));
+        url += '&autoSpin=1';
         url += '&title=' + encodeURIComponent(model.name || filename);
         return url;
     }
@@ -8825,6 +8825,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         url += '&antigenLabel=' + encodeURIComponent(legend.antigen.role);
         url += '&antibodyLabel=' + encodeURIComponent(legend.antibody.role);
         url += '&poseSeed=' + encodeURIComponent(String(viewerPoseSeed));
+        url += '&autoSpin=1';
         if (title) url += '&title=' + encodeURIComponent(title);
         return url;
     }
@@ -18497,6 +18498,7 @@ QVQLVESGGGLVQPGGSLRLSCAASGYIFSSNAMGWYRQAPGKQRELVAAISSGGSTYYADSVKGRFTISRDNAKTTLYL
         if (!overlay) return;
 
         modalPdbId = pdbId;
+        const shouldAutoSpin = options.autoSpin !== false;
         const meta = getBinderMetaById(pdbId) || {};
         const displayTitle = meta.structureTitle
             ? meta.structureTitle + ' · ' + (meta.candidateLabel || name || pdbId)
@@ -18514,7 +18516,7 @@ QVQLVESGGGLVQPGGSLRLSCAASGYIFSSNAMGWYRQAPGKQRELVAAISSGGSTYYADSVKGRFTISRDNAKTTLYL
         }
 
         // Build viewer-full URL
-        const vfUrl = buildMoleculeFrameUrl('/viewer-full.html', pdbId, displayTitle, undefined, { autoSpin: !!options.autoSpin });
+        const vfUrl = buildMoleculeFrameUrl('/viewer-full.html', pdbId, displayTitle, undefined, { autoSpin: shouldAutoSpin });
 
         if (bodyEl) {
             bodyEl.innerHTML = '';
@@ -18571,22 +18573,9 @@ QVQLVESGGGLVQPGGSLRLSCAASGYIFSSNAMGWYRQAPGKQRELVAAISSGGSTYYADSVKGRFTISRDNAKTTLYL
         // Open modal
         openMolModal(meta.id, meta.candidateLabel || meta.name || meta.id, { autoSpin: true });
 
-        // Click the Spin button once the iframe finishes loading
-        // Use a single onload listener — no polling, no postMessage flooding
-        function clickSpin() {
+        function requestAutoSpin() {
             const iframe = modalIframe;
             if (!iframe) return;
-            try {
-                const doc = iframe.contentDocument || iframe.contentWindow.document;
-                const allBtns = doc.querySelectorAll('button');
-                for (const btn of allBtns) {
-                    if (btn.textContent.trim().toLowerCase() === 'spin') {
-                        btn.click();
-                        return;
-                    }
-                }
-            } catch(e) {}
-            // Fallback: postMessage
             try {
                 iframe.contentWindow.postMessage(
                     { source: 'zoonoab-gallery', type: 'setSpin', data: { spin: true } }, '*'
@@ -18599,7 +18588,8 @@ QVQLVESGGGLVQPGGSLRLSCAASGYIFSSNAMGWYRQAPGKQRELVAAISSGGSTYYADSVKGRFTISRDNAKTTLYL
             if (modalIframe) {
                 clearInterval(waitForIframe);
                 modalIframe.addEventListener('load', () => {
-                    setTimeout(clickSpin, 400);
+                    setTimeout(requestAutoSpin, 160);
+                    setTimeout(requestAutoSpin, 900);
                 }, { once: true });
             }
         }, 50);

@@ -175,8 +175,10 @@ test('3D modal title bar shows the current selection reason without covering con
   assert.match(html, /function\s+buildSelectionReasonHtml\s*\(/);
   assert.match(html, /\.mol-modal-reason\s*{/);
   assert.match(html, /-webkit-line-clamp:\s*2/);
-  assert.match(titleCss, /flex-direction:\s*row/);
-  assert.doesNotMatch(titleCss, /flex-direction:\s*column/);
+  assert.match(titleCss, /flex-direction:\s*column/);
+  assert.doesNotMatch(titleCss, /flex-direction:\s*row/);
+  assert.match(html, /\.mol-modal-reason\s*{[\s\S]*max-width:\s*100%/);
+  assert.match(html, /\.mol-modal-subtitle\s*{[\s\S]*max-width:\s*100%/);
   assert.match(html, /\.mol-modal-close\s*{[\s\S]*flex-shrink:\s*0/);
   assert.match(normalizeBinderPayload, /selectionReason:\s*meta\.selectionReason\s*\|\|\s*meta\.reason\s*\|\|\s*meta\.targetSelectionReason\s*\|\|\s*''/);
   assert.match(openMolModal, /buildSelectionReasonHtml\(meta\)/);
@@ -191,9 +193,13 @@ test('automatic spin modal passes autoSpin into viewer without adding a title ba
   const openBinderSpinModal = extractFunction(html, 'function openBinderSpinModal');
 
   assert.match(openMolModal, /options\s*=\s*options\s*\|\|\s*\{\}/);
-  assert.match(openMolModal, /autoSpin:\s*!!options\.autoSpin/);
+  assert.match(openMolModal, /const\s+shouldAutoSpin\s*=\s*options\.autoSpin\s*!==\s*false/);
+  assert.match(openMolModal, /autoSpin:\s*shouldAutoSpin/);
   assert.match(openMolModal, /buildMoleculeFrameUrl\('\/viewer-full\.html',\s*pdbId,\s*displayTitle,\s*undefined,\s*\{/);
   assert.match(openBinderSpinModal, /openMolModal\(meta\.id,\s*meta\.candidateLabel\s*\|\|\s*meta\.name\s*\|\|\s*meta\.id,\s*\{\s*autoSpin:\s*true\s*\}\)/);
+  assert.match(openBinderSpinModal, /type:\s*'setSpin'/);
+  assert.doesNotMatch(openBinderSpinModal, /\.click\(\)/);
+  assert.doesNotMatch(openBinderSpinModal, /querySelectorAll\('button'\)/);
   assert.doesNotMatch(openBinderSpinModal, /autoSpinBadge/);
   assert.doesNotMatch(openBinderSpinModal, /titleMain\.appendChild\(badge\)/);
 });
