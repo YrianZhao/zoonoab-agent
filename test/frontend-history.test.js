@@ -78,11 +78,33 @@ test('workflow history keeps full transcript text instead of summary-sized snipp
   assert.doesNotMatch(historyTextHtml, /truncateHistoryText/);
 });
 
+test('workflow history is persisted from submit through cancellation and errors', () => {
+  assert.match(html, /function\s+persistActiveHistoryRun\s*\(/);
+
+  const startHistoryRun = extractFunction(html, 'function startHistoryRun');
+  const recordHistoryEvent = extractFunction(html, 'function recordHistoryEvent');
+  const finalizeHistoryRun = extractFunction(html, 'function finalizeHistoryRun');
+  const cancelTask = extractFunction(html, 'function cancelTask');
+  const handleMsg = extractFunction(html, 'function handleMsg');
+
+  assert.match(startHistoryRun, /status:\s*'running'/);
+  assert.match(startHistoryRun, /recordHistoryEvent\('user',\s*\{\s*text\s*\}\)/);
+  assert.match(startHistoryRun, /persistActiveHistoryRun\('submitted',\s*\{\s*immediate:\s*true\s*\}\)/);
+  assert.match(recordHistoryEvent, /persistActiveHistoryRun\('event'\)/);
+  assert.match(finalizeHistoryRun, /statusDetail/);
+  assert.match(finalizeHistoryRun, /activeHistoryRun\.error\s*=\s*status\s*===\s*'error'/);
+  assert.match(cancelTask, /finalizeHistoryRun\('cancelled',\s*'用户手动停止工作流'\)/);
+  assert.match(handleMsg, /finalizeHistoryRun\('cancelled',\s*msg\.text\s*\|\|\s*'服务端确认工作流已取消'\)/);
+  assert.match(handleMsg, /finalizeHistoryRun\('error',\s*msg\.text\s*\|\|\s*'服务器错误，请重试'\)/);
+  assert.match(html, /addEventListener\('pagehide'[\s\S]*persistActiveHistoryRun\('pagehide'/);
+});
+
 test('history detail presents the user question and read-only workflow transcript', () => {
   const renderHistoryDetail = extractFunction(html, 'function renderHistoryDetail');
 
   assert.match(renderHistoryDetail, /用户问题/);
   assert.match(renderHistoryDetail, /模型 \/ 工作流完整输出/);
+  assert.match(renderHistoryDetail, /statusDetail/);
   assert.match(renderHistoryDetail, /outputEvents\s*=\s*\(record\.events\s*\|\|\s*\[\]\)\.filter\(event\s*=>\s*event\s*&&\s*event\.type\s*!==\s*'user'\)/);
 });
 

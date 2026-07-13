@@ -145,3 +145,33 @@ test('history API upserts records and can clear the shared server history', asyn
   const cleared = await readHistory();
   assert.deepEqual(cleared.history, []);
 });
+
+test('history API preserves cancellation and error details for shared records', async () => {
+  const record = {
+    id: 'shared-history-error-detail',
+    title: '错误记录',
+    input: '设计一个候选抗体',
+    status: 'error',
+    statusDetail: '服务器错误：目标解析失败',
+    error: '服务器错误：目标解析失败',
+    ts: Date.now(),
+    updatedAt: Date.now(),
+    messages: [{ role: 'user', text: '设计一个候选抗体', ts: Date.now() }],
+    events: [{ type: 'log', text: '[Error] 服务器错误：目标解析失败', ts: Date.now() }]
+  };
+
+  const res = await fetch('http://127.0.0.1:' + PORT + '/api/history', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(record)
+  });
+  assert.equal(res.status, 200);
+  const saved = await res.json();
+  assert.equal(saved.record.status, 'error');
+  assert.equal(saved.record.statusDetail, record.statusDetail);
+  assert.equal(saved.record.error, record.error);
+
+  const history = await readHistory();
+  assert.equal(history.history[0].statusDetail, record.statusDetail);
+  assert.equal(history.history[0].error, record.error);
+});

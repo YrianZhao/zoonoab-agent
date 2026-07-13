@@ -750,6 +750,8 @@ function normalizeServerHistoryRecord(entry, idx = 0) {
     title: truncateHistoryText(source.title || source.label || source.input || '未命名设计记录', 120),
     input: truncateHistoryText(source.input || (firstUser && firstUser.text) || ''),
     status,
+    statusDetail: truncateHistoryText(source.statusDetail || source.detail || source.error || '', 1000),
+    error: truncateHistoryText(source.error || '', 1000),
     ts,
     updatedAt,
     routeId: truncateHistoryText(source.routeId || '', 120),

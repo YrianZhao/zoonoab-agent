@@ -5889,7 +5889,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146098';
+    const APP_BUILD_VERSION = '78146099';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
 
@@ -7968,6 +7968,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     let historyRecordsCache = [];
     let historyLoaded = false;
     let historyLoading = false;
+    let activeHistoryPersistTimer = null;
+    let historySaveQueue = Promise.resolve();
 
     function historyId() {
         return 'hist-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 8);
@@ -8070,6 +8072,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             title: (entry && (entry.title || entry.label)) || makeHistoryTitle(entry && entry.input),
             input: (entry && entry.input) || (messages.find(m => m && m.role === 'user') || {}).text || '',
             status: (entry && entry.status) || 'completed',
+            statusDetail: (entry && (entry.statusDetail || entry.detail || entry.error)) || '',
+            error: (entry && entry.error) || '',
             ts,
             updatedAt: (entry && entry.updatedAt) || ts,
             routeId: (entry && entry.routeId) || '',
@@ -8133,15 +8137,25 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         }
     }
 
-    function saveHistory(entry) {
+    function saveHistory(entry, options = {}) {
         if (!entry) return;
         const record = upsertHistoryCache(entry);
         if (!record) return;
         refreshHistoryViews(record.id);
-        fetch('/api/history', {
+        const payload = JSON.stringify(record);
+        if (options.beacon && typeof navigator !== 'undefined' && typeof navigator.sendBeacon === 'function') {
+            try {
+                const blob = new Blob([payload], { type: 'application/json' });
+                if (navigator.sendBeacon('/api/history', blob)) return Promise.resolve(record);
+            } catch (err) {
+                console.warn('[History] Beacon save failed:', err);
+            }
+        }
+        const request = () => fetch('/api/history', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(record)
+            body: payload,
+            keepalive: Boolean(options.keepalive)
         }).then(async res => {
             if (!res.ok) throw new Error('HTTP ' + res.status);
             return res.json();
@@ -8154,8 +8168,32 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             refreshHistoryViews(record.id);
         }).catch(err => {
             console.warn('[History] Failed to save shared history:', err);
-            showToast('历史记录暂未保存到服务器', 'error');
+            if (!options.silent) showToast('历史记录暂未保存到服务器', 'error');
         });
+        historySaveQueue = historySaveQueue.catch(() => {}).then(request);
+        return historySaveQueue;
+    }
+
+    function persistActiveHistoryRun(reason = 'event', options = {}) {
+        if (!activeHistoryRun) return;
+        activeHistoryRun.updatedAt = Date.now();
+        if (activeHistoryPersistTimer) {
+            clearTimeout(activeHistoryPersistTimer);
+            activeHistoryPersistTimer = null;
+        }
+        const saveNow = () => saveHistory(activeHistoryRun, {
+            silent: true,
+            beacon: Boolean(options.beacon),
+            keepalive: Boolean(options.keepalive)
+        });
+        if (options.immediate || reason !== 'event') {
+            saveNow();
+            return;
+        }
+        activeHistoryPersistTimer = setTimeout(() => {
+            activeHistoryPersistTimer = null;
+            saveNow();
+        }, 700);
     }
 
     function clearProjectHistory() {
@@ -8189,6 +8227,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             title: makeHistoryTitle(text),
             input: historyFullText(text),
             status: 'running',
+            statusDetail: '',
+            error: '',
             ts: Date.now(),
             updatedAt: Date.now(),
             routeId: meta.routeId || '',
@@ -8200,6 +8240,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             stats: null
         };
         recordHistoryEvent('user', { text });
+        persistActiveHistoryRun('submitted', { immediate: true });
     }
 
     function recordHistoryEvent(type, payload = {}) {
@@ -8224,6 +8265,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             });
         }
         activeHistoryRun.updatedAt = now;
+        persistActiveHistoryRun('event');
     }
 
     function recordHistoryResults(sequences, stats) {
@@ -8239,6 +8281,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         activeHistoryRun.title = makeHistoryTitle(activeHistoryRun.input, stats || {});
         activeHistoryRun.results = [result];
         activeHistoryRun.updatedAt = now;
+        persistActiveHistoryRun('event');
     }
 
     function recordHistory3D(primaryPDB, allPDBs, label, binderData, extra = {}) {
@@ -8262,19 +8305,35 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (existingIdx >= 0) activeHistoryRun.models3d[existingIdx] = section;
         else activeHistoryRun.models3d.push(section);
         activeHistoryRun.updatedAt = Date.now();
+        persistActiveHistoryRun('event');
     }
 
-    function finalizeHistoryRun(status = 'completed') {
+    function finalizeHistoryRun(status = 'completed', statusDetail = '') {
         if (!activeHistoryRun) return;
+        if (activeHistoryPersistTimer) {
+            clearTimeout(activeHistoryPersistTimer);
+            activeHistoryPersistTimer = null;
+        }
         activeHistoryRun.status = status;
+        activeHistoryRun.statusDetail = statusDetail ? historyFullText(statusDetail) : '';
+        activeHistoryRun.error = status === 'error' ? activeHistoryRun.statusDetail : '';
         activeHistoryRun.updatedAt = Date.now();
         if (!activeHistoryRun.events.length && !activeHistoryRun.results.length && !activeHistoryRun.models3d.length) {
             activeHistoryRun = null;
             return;
         }
-        saveHistory(activeHistoryRun);
+        saveHistory(activeHistoryRun, { silent: status !== 'completed' });
         activeHistoryRun = null;
     }
+
+    window.addEventListener('pagehide', () => {
+        if (!activeHistoryRun) return;
+        if (activeHistoryRun.status === 'running') {
+            activeHistoryRun.status = 'interrupted';
+            activeHistoryRun.statusDetail = '页面关闭或刷新，任务未完成。';
+        }
+        persistActiveHistoryRun('pagehide', { immediate: true, beacon: true, keepalive: true });
+    });
 
     function getRelTime(ts) {
         const d = Date.now() - ts;
@@ -8432,6 +8491,13 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     function renderHistoryDetail(record) {
         const outputEvents = (record.events || []).filter(event => event && event.type !== 'user');
         const modelCount = (record.models3d || []).reduce((sum, section) => sum + (section.modelCount || 0), 0);
+        const statusDetail = record.statusDetail || record.error || '';
+        const statusDetailHtml = statusDetail
+            ? `<div class="kb-history-output log" style="margin-top:12px;">
+                <span class="kb-history-output-label">状态说明</span>
+                ${historyTextHtml(statusDetail, false)}
+            </div>`
+            : '';
         const outputsHtml = outputEvents.length ? outputEvents.map(event => {
             const cls = event.type;
             const labelMap = { assistant:'模型回复', log:'进度', tool_call:'工具调用', tool_result:'工具结果', tasks:'任务列表', subagents:'Agent 状态', plan:'计划', workflow_result:'流程结果' };
@@ -8455,6 +8521,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                     <span class="kb-history-pill">${outputEvents.length} 条输出</span>
                     <span class="kb-history-pill model">${modelCount} 个结构模型</span>
                 </div>
+                ${statusDetailHtml}
             </div>
             <div class="kb-history-section-title"><i data-lucide="user-round" style="width:14px;height:14px;"></i> 用户问题</div>
             <div class="kb-history-question-card">
@@ -8716,7 +8783,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         finishQuickDesignRun();
         resetRunControls();
         appendLog('[Design] ' + message);
-        finalizeHistoryRun('error');
+        finalizeHistoryRun('error', message);
         showToast(message, 'error');
     }
 
@@ -8907,7 +8974,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                     setWorkflowFastForward(false);
                     resetRunControls();
                     appendLog('[System] 服务端已确认取消');
-                    finalizeHistoryRun('cancelled');
+                    finalizeHistoryRun('cancelled', msg.text || '服务端确认工作流已取消');
                     retireClientRun(msg.clientRunId);
                     resolve();
                 }));
@@ -8922,7 +8989,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                     resetRunControls();
                     showToast(msg.text || '服务器错误，请重试', 'error');
                     if (msg.text) recordHistoryEvent('log', { text: '[Error] ' + msg.text });
-                    finalizeHistoryRun('error');
+                    finalizeHistoryRun('error', msg.text || '服务器错误，请重试');
                     retireClientRun(msg.clientRunId);
                     resolve();
                 }));
@@ -9341,7 +9408,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         resetRunControls();
         showToast('工作流已取消', 'warning');
         appendLog('[System] 工作流已取消');
-        finalizeHistoryRun('cancelled');
+        finalizeHistoryRun('cancelled', '用户手动停止工作流');
         retireClientRun(clientRunId);
     }
 
