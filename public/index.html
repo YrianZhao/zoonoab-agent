@@ -1186,6 +1186,82 @@
             color: var(--text-muted);
             padding: 2px 0 0 69px;
         }
+        .chat-providers-health-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            padding: 10px;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            background: rgba(248,250,252,0.9);
+        }
+        .chat-provider-status-row {
+            min-width: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+        .chat-provider-status-row strong {
+            min-width: 52px;
+            text-align: center;
+            padding: 2px 7px;
+            border-radius: var(--radius-full);
+            background: var(--gray-100);
+            color: var(--text-muted);
+            font-size: 10px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+        .chat-provider-status-row strong.ready {
+            background: var(--success-light);
+            color: #047857;
+        }
+        .chat-provider-status-row strong.error {
+            background: var(--error-light);
+            color: #B91C1C;
+        }
+        .chat-provider-status-row strong.checking {
+            background: var(--info-light);
+            color: var(--brand-dark);
+        }
+        .chat-provider-status-note {
+            grid-column: 1 / -1;
+            font-size: 10.5px;
+            line-height: 1.45;
+            color: var(--text-muted);
+        }
+        .chat-provider-block {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 7px;
+            padding: 10px;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            background: white;
+        }
+        .chat-provider-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+        .chat-provider-head small {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+        @media (max-width: 640px) {
+            .chat-providers-health-card {
+                grid-template-columns: 1fr;
+            }
+        }
         .kb-voice-api-entry {
             display: flex;
             align-items: center;
@@ -4918,38 +4994,97 @@
                                 <div class="voice-settings-group">
                                     <div class="voice-settings-title">
                                         <i data-lucide="message-circle"></i>
-                                        问答服务 Chat
+                                        聊天模型
                                     </div>
                                     <div class="voice-settings-row">
-                                        <label for="chatProviderSelect">服务</label>
-                                        <select id="chatProviderSelect" onchange="applyChatProviderPreset(this.value)">
-                                            <option value="siliconflow">SiliconFlow 兼容接口</option>
-                                            <option value="openai">OpenAI 兼容接口</option>
-                                            <option value="custom">自定义兼容接口</option>
+                                        <label for="chatModeSelect">模式</label>
+                                        <select id="chatModeSelect">
+                                            <option value="auto">自动优先主模型</option>
+                                            <option value="primary">只用主模型</option>
+                                            <option value="fallback">只用备用模型</option>
                                         </select>
                                     </div>
-                                    <div class="voice-settings-row">
-                                        <label for="chatBaseUrlInput">Base URL</label>
-                                        <input id="chatBaseUrlInput" type="url" autocomplete="off" spellcheck="false" placeholder="https://api.siliconflow.cn/v1/chat/completions">
+                                    <div class="chat-providers-health-card" id="chatProvidersHealthCard">
+                                        <div class="chat-provider-status-row">
+                                            <span>主模型</span>
+                                            <strong id="primaryChatStatusBadge">待检测</strong>
+                                        </div>
+                                        <div class="chat-provider-status-row">
+                                            <span>备用模型</span>
+                                            <strong id="fallbackChatStatusBadge">待检测</strong>
+                                        </div>
+                                        <div class="chat-provider-status-note" id="chatProviderHealthMessage">打开界面后自动检测连接，主模型可用时优先使用。</div>
                                     </div>
-                                    <div class="voice-settings-row">
-                                        <label for="chatApiKeyInput">API Key</label>
-                                        <input id="chatApiKeyInput" type="password" autocomplete="off" spellcheck="false" placeholder="聊天服务 Key">
-                                    </div>
-                                    <div class="voice-settings-row">
-                                        <label for="chatModelInput">Model</label>
-                                        <div class="voice-model-row-control">
-                                            <select id="chatModelInput" aria-label="聊天模型">
-                                                <option value="">先检测模型列表</option>
+                                    <div class="chat-provider-block">
+                                        <div class="chat-provider-head">
+                                            <span>主模型</span>
+                                            <small>su8 · Responses</small>
+                                        </div>
+                                        <div class="voice-settings-row">
+                                            <label for="primaryChatBaseUrlInput">Base URL</label>
+                                            <input id="primaryChatBaseUrlInput" type="url" autocomplete="off" spellcheck="false" placeholder="https://jp.su8.codes/v1">
+                                        </div>
+                                        <div class="voice-settings-row">
+                                            <label for="primaryChatApiKeyInput">API Key</label>
+                                            <input id="primaryChatApiKeyInput" type="password" autocomplete="off" spellcheck="false" placeholder="主模型 Key">
+                                        </div>
+                                        <div class="voice-settings-row">
+                                            <label for="primaryChatModelInput">Model</label>
+                                            <div class="voice-model-row-control">
+                                                <select id="primaryChatModelInput" aria-label="主模型">
+                                                    <option value="gpt-5.5">gpt-5.5</option>
+                                                </select>
+                                                <button class="voice-test-btn voice-model-detect-btn" id="primaryChatModelsBtn" onclick="detectChatModels('primary')" data-busy-text="检测中...">检测模型</button>
+                                            </div>
+                                        </div>
+                                        <div class="voice-settings-row">
+                                            <label for="primaryChatWireApiSelect">协议</label>
+                                            <select id="primaryChatWireApiSelect">
+                                                <option value="responses">Responses</option>
+                                                <option value="chat_completions">Chat</option>
                                             </select>
-                                            <button class="voice-test-btn voice-model-detect-btn" id="voiceChatModelsBtn" onclick="detectChatModels()" data-busy-text="检测中...">检测模型</button>
+                                        </div>
+                                        <div class="voice-settings-row">
+                                            <label for="chatReasoningEffortSelect">思考</label>
+                                            <select id="chatReasoningEffortSelect">
+                                                <option value="xhigh">xhigh</option>
+                                                <option value="high">high</option>
+                                                <option value="medium">medium</option>
+                                                <option value="low">low</option>
+                                                <option value="">关闭</option>
+                                            </select>
                                         </div>
                                     </div>
-                                    <div class="voice-settings-hint">支持 SiliconFlow、OpenAI 或其他 OpenAI 兼容聊天接口；填写 Key 和地址后可检测模型列表，Key 保存后只保存在服务端。</div>
+                                    <div class="chat-provider-block">
+                                        <div class="chat-provider-head">
+                                            <span>备用模型</span>
+                                            <small>SiliconFlow · Chat</small>
+                                        </div>
+                                        <div class="voice-settings-row">
+                                            <label for="fallbackChatBaseUrlInput">Base URL</label>
+                                            <input id="fallbackChatBaseUrlInput" type="url" autocomplete="off" spellcheck="false" placeholder="https://api.siliconflow.cn/v1/chat/completions">
+                                        </div>
+                                        <div class="voice-settings-row">
+                                            <label for="fallbackChatApiKeyInput">API Key</label>
+                                            <input id="fallbackChatApiKeyInput" type="password" autocomplete="off" spellcheck="false" placeholder="备用模型 Key">
+                                        </div>
+                                        <div class="voice-settings-row">
+                                            <label for="fallbackChatModelInput">Model</label>
+                                            <div class="voice-model-row-control">
+                                                <select id="fallbackChatModelInput" aria-label="备用模型">
+                                                    <option value="Qwen/Qwen3-32B">Qwen/Qwen3-32B</option>
+                                                </select>
+                                                <button class="voice-test-btn voice-model-detect-btn" id="fallbackChatModelsBtn" onclick="detectChatModels('fallback')" data-busy-text="检测中...">检测模型</button>
+                                            </div>
+                                        </div>
+                                        <input id="fallbackChatWireApiSelect" type="hidden" value="chat_completions">
+                                    </div>
+                                    <div class="voice-settings-hint">自动模式下主模型连接正常时优先使用；主模型超时或报错时切换备用模型。Key 保存后只保存在服务端。</div>
                                 </div>
                                 <div class="voice-settings-actions">
                                     <span class="voice-settings-note" id="voiceSettingsNote">语音识别可使用本机服务或兼容 API；Key 保存后写入安全配置。</span>
                                     <button class="voice-test-btn" id="voiceAsrTestBtn" onclick="testVoiceAsrSettings()">测试语音</button>
+                                    <button class="voice-test-btn" id="voiceChatHealthBtn" onclick="refreshChatProviderHealth({ force: true })" data-busy-text="检测中...">检测连接</button>
                                     <button class="voice-test-btn" id="voiceChatTestBtn" onclick="testVoiceChatSettings()">测试聊天</button>
                                     <button class="voice-save-btn" id="voiceSettingsSaveBtn" onclick="saveVoiceSettings()" data-busy-text="保存中...">保存</button>
                                 </div>
@@ -5844,7 +5979,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146100';
+    const APP_BUILD_VERSION = '78146101';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
 
@@ -10616,14 +10751,18 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             const voiceBaseInput = document.getElementById('voiceBaseUrlInput');
             const voiceKeyInput = document.getElementById('voiceApiKeyInput');
             const voiceModelInput = document.getElementById('voiceModelInput');
-            const chatProviderSelect = document.getElementById('chatProviderSelect');
-            const chatBaseInput = document.getElementById('chatBaseUrlInput');
-            const chatKeyInput = document.getElementById('chatApiKeyInput');
-            const chatModelInput = document.getElementById('chatModelInput');
+            const chatModeSelect = document.getElementById('chatModeSelect');
+            const primaryBaseInput = document.getElementById('primaryChatBaseUrlInput');
+            const primaryKeyInput = document.getElementById('primaryChatApiKeyInput');
+            const primaryModelInput = document.getElementById('primaryChatModelInput');
+            const primaryWireInput = document.getElementById('primaryChatWireApiSelect');
+            const reasoningInput = document.getElementById('chatReasoningEffortSelect');
+            const fallbackBaseInput = document.getElementById('fallbackChatBaseUrlInput');
+            const fallbackKeyInput = document.getElementById('fallbackChatApiKeyInput');
+            const fallbackModelInput = document.getElementById('fallbackChatModelInput');
             const note = document.getElementById('voiceSettingsNote');
             const voicePreset = inferVoicePresetFromConfig(cfg);
             if (voiceProviderSelect) voiceProviderSelect.value = voicePreset;
-            if (chatProviderSelect) chatProviderSelect.value = inferChatPresetFromConfig(cfg);
             if (voiceBaseInput) {
                 voiceBaseInput.value = cfg.local === false && cfg.baseUrl ? cfg.baseUrl : '';
                 voiceBaseInput.disabled = voicePreset === 'local';
@@ -10640,21 +10779,37 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 voiceModelInput.value = cfg.local === false && cfg.model ? cfg.model : '';
                 voiceModelInput.disabled = voicePreset === 'local';
             }
-            if (chatBaseInput && cfg.chat?.baseUrl && !chatBaseInput.value) chatBaseInput.value = cfg.chat.baseUrl;
-            if (chatKeyInput) {
-                chatKeyInput.value = '';
-                chatKeyInput.placeholder = cfg.chat?.hasApiKey ? '已安全保存，留空继续使用' : '聊天服务 Key';
-                chatKeyInput.title = cfg.chat?.hasApiKey ? '真实 Key 已安全保存，前端不回显；填写新 Key 后保存可覆盖。' : '填写聊天服务 API Key';
+            const chat = cfg.chat || {};
+            const primary = cfg.chat?.primary || {};
+            const fallback = cfg.chat?.fallback || (chat.mode === 'single' || (!cfg.chat?.primary && chat.baseUrl) ? chat : {});
+            if (chatModeSelect) chatModeSelect.value = ['auto', 'primary', 'fallback'].includes(chat.mode) ? chat.mode : 'auto';
+            if (primaryBaseInput) primaryBaseInput.value = primary.baseUrl || 'https://jp.su8.codes/v1/responses';
+            if (primaryWireInput) primaryWireInput.value = primary.wireApi || 'responses';
+            if (reasoningInput) reasoningInput.value = chat.reasoningEffort || primary.reasoningEffort || 'xhigh';
+            if (primaryKeyInput) {
+                primaryKeyInput.value = '';
+                primaryKeyInput.placeholder = primary.hasApiKey ? '已安全保存，留空继续使用' : '主模型 Key';
+                primaryKeyInput.title = primary.hasApiKey ? '真实 Key 已安全保存，前端不回显；填写新 Key 后保存可覆盖。' : '填写主模型 API Key';
             }
-            if (chatModelInput && cfg.chat?.model) setChatModelOptions([cfg.chat.model], cfg.chat.model, '使用已保存模型');
+            if (primaryModelInput) setChatModelOptions(primary.model ? [primary.model] : ['gpt-5.5'], primary.model || 'gpt-5.5', '选择主模型', 'primary');
+            if (fallbackBaseInput) fallbackBaseInput.value = fallback.baseUrl || 'https://api.siliconflow.cn/v1/chat/completions';
+            if (fallbackKeyInput) {
+                fallbackKeyInput.value = '';
+                fallbackKeyInput.placeholder = fallback.hasApiKey ? '已安全保存，留空继续使用' : '备用模型 Key';
+                fallbackKeyInput.title = fallback.hasApiKey ? '真实 Key 已安全保存，前端不回显；填写新 Key 后保存可覆盖。' : '填写备用模型 API Key';
+            }
+            if (fallbackModelInput) setChatModelOptions(fallback.model ? [fallback.model] : ['Qwen/Qwen3-32B'], fallback.model || 'Qwen/Qwen3-32B', '选择备用模型', 'fallback');
             if (note) {
                 const voiceKeyState = cfg.hasApiKey ? 'Key 已安全保存' : (cfg.local === false ? 'Key 待填写' : '无需 Key');
-                const chatKeyState = cfg.chat?.hasApiKey ? 'Key 已安全保存' : 'Key 待填写';
+                const primaryKeyState = primary.hasApiKey ? '主模型 Key 已保存' : '主模型 Key 待填写';
+                const fallbackKeyState = fallback.hasApiKey ? '备用模型 Key 已保存' : '备用模型 Key 待填写';
                 const voiceLabel = cfg.local === false ? (cfg.provider || 'compatible') : '语音控制';
                 const voiceState = `${voiceLabel} · ${cfg.model || ''} · ${voiceKeyState} · ${cfg.healthMessage || ''}`;
-                const chatState = cfg.chat?.ready ? `聊天已就绪 · ${cfg.chat.model || ''} · ${chatKeyState}` : `聊天可选填 · ${chatKeyState}`;
-                note.textContent = `${voiceState} / ${chatState}；前端不回显真实 Key`;
+                const chatState = chat.ready ? `聊天已就绪 · ${chat.model || primary.model || fallback.model || ''}` : '聊天模型待检测';
+                const chatKeyState = `${primaryKeyState} / ${fallbackKeyState}`;
+                note.textContent = `${voiceState} / ${chatState} · ${chatKeyState}；前端不回显真实 Key`;
             }
+            refreshChatProviderHealth({ force: true });
             maybeScheduleVoiceHealthRefresh(cfg, { autoStart: false });
         } catch (err) {
             console.warn('[Voice] Config check failed:', err);
@@ -10702,31 +10857,46 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const voiceBaseInput = document.getElementById('voiceBaseUrlInput');
         const voiceKeyInput = document.getElementById('voiceApiKeyInput');
         const voiceModelInput = document.getElementById('voiceModelInput');
-        const chatBaseInput = document.getElementById('chatBaseUrlInput');
-        const chatKeyInput = document.getElementById('chatApiKeyInput');
-        const chatModelInput = document.getElementById('chatModelInput');
+        const chatModeSelect = document.getElementById('chatModeSelect');
+        const primaryBaseInput = document.getElementById('primaryChatBaseUrlInput');
+        const primaryKeyInput = document.getElementById('primaryChatApiKeyInput');
+        const primaryModelInput = document.getElementById('primaryChatModelInput');
+        const primaryWireInput = document.getElementById('primaryChatWireApiSelect');
+        const reasoningInput = document.getElementById('chatReasoningEffortSelect');
+        const fallbackBaseInput = document.getElementById('fallbackChatBaseUrlInput');
+        const fallbackKeyInput = document.getElementById('fallbackChatApiKeyInput');
+        const fallbackModelInput = document.getElementById('fallbackChatModelInput');
         const voicePreset = voiceProviderSelect?.value || 'local';
         const voiceProvider = (VOICE_ASR_PRESETS[voicePreset]?.provider || voicePreset || 'local').trim();
+        const chatMode = chatModeSelect?.value || 'auto';
+        const chatReasoningEffort = reasoningInput?.value || '';
         return {
             voicePreset,
             voiceProvider,
             voiceBaseUrl: (voiceBaseInput?.value || '').trim(),
             voiceApiKey: (voiceKeyInput?.value || '').trim(),
             voiceModel: (voiceModelInput?.value || '').trim(),
-            chatBaseUrl: (chatBaseInput?.value || '').trim(),
-            chatApiKey: (chatKeyInput?.value || '').trim(),
-            chatModel: (chatModelInput?.value || '').trim()
+            chatMode,
+            chatReasoningEffort,
+            primaryChatBaseUrl: (primaryBaseInput?.value || '').trim(),
+            primaryChatApiKey: (primaryKeyInput?.value || '').trim(),
+            primaryChatModel: (primaryModelInput?.value || '').trim(),
+            primaryChatWireApi: (primaryWireInput?.value || 'responses').trim(),
+            fallbackChatBaseUrl: (fallbackBaseInput?.value || '').trim(),
+            fallbackChatApiKey: (fallbackKeyInput?.value || '').trim(),
+            fallbackChatModel: (fallbackModelInput?.value || '').trim(),
+            fallbackChatWireApi: 'chat_completions'
         };
     }
 
     function setVoiceSettingsButtonsBusy(busy, activeId) {
-        ['voiceAsrTestBtn', 'voiceChatTestBtn', 'voiceChatModelsBtn', 'voiceSettingsSaveBtn'].forEach(id => {
+        ['voiceAsrTestBtn', 'voiceChatTestBtn', 'voiceChatHealthBtn', 'primaryChatModelsBtn', 'fallbackChatModelsBtn', 'voiceSettingsSaveBtn'].forEach(id => {
             const btn = document.getElementById(id);
             if (!btn) return;
             btn.disabled = busy;
             if (busy && id === activeId) {
                 btn.dataset.originalText = btn.textContent;
-                btn.textContent = btn.dataset.busyText || (id === 'voiceSettingsSaveBtn' ? '保存中...' : (id === 'voiceChatModelsBtn' ? '检测中...' : '测试中...'));
+                btn.textContent = btn.dataset.busyText || (id === 'voiceSettingsSaveBtn' ? '保存中...' : (id.includes('Models') || id === 'voiceChatHealthBtn' ? '检测中...' : '测试中...'));
             } else if (!busy && btn.dataset.originalText) {
                 btn.textContent = btn.dataset.originalText;
                 delete btn.dataset.originalText;
@@ -10907,20 +11077,29 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     };
 
     const CHAT_SERVICE_PRESETS = {
+        su8: {
+            provider: 'su8',
+            baseUrl: 'https://jp.su8.codes/v1/responses',
+            model: 'gpt-5.5',
+            wireApi: 'responses'
+        },
         siliconflow: {
             provider: 'siliconflow',
             baseUrl: 'https://api.siliconflow.cn/v1/chat/completions',
-            model: 'Qwen/Qwen3-32B'
+            model: 'Qwen/Qwen3-32B',
+            wireApi: 'chat_completions'
         },
         openai: {
             provider: 'openai',
             baseUrl: 'https://api.openai.com/v1/chat/completions',
-            model: 'gpt-4o-mini'
+            model: 'gpt-4o-mini',
+            wireApi: 'chat_completions'
         },
         custom: {
             provider: 'compatible',
             baseUrl: '',
-            model: ''
+            model: '',
+            wireApi: 'chat_completions'
         }
     };
 
@@ -10963,19 +11142,23 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         }
     }
 
-    function applyChatProviderPreset(value) {
+    function applyChatProviderPreset(value, role = 'primary') {
         const preset = CHAT_SERVICE_PRESETS[value] || CHAT_SERVICE_PRESETS.custom;
-        const baseInput = document.getElementById('chatBaseUrlInput');
-        const modelInput = document.getElementById('chatModelInput');
-        const keyInput = document.getElementById('chatApiKeyInput');
+        const isFallback = role === 'fallback';
+        const baseInput = document.getElementById(isFallback ? 'fallbackChatBaseUrlInput' : 'primaryChatBaseUrlInput');
+        const keyInput = document.getElementById(isFallback ? 'fallbackChatApiKeyInput' : 'primaryChatApiKeyInput');
+        const wireInput = document.getElementById(isFallback ? 'fallbackChatWireApiSelect' : 'primaryChatWireApiSelect');
         if (baseInput && preset.baseUrl) baseInput.value = preset.baseUrl;
+        if (wireInput && preset.wireApi) wireInput.value = preset.wireApi;
+        const modelInput = document.getElementById(isFallback ? 'fallbackChatModelInput' : 'primaryChatModelInput');
         if (modelInput) {
             const selectedModel = preset.model || voiceConfigState?.chat?.model || '';
-            setChatModelOptions(selectedModel ? [selectedModel] : [], selectedModel, selectedModel ? '使用推荐模型' : '先检测模型列表');
+            setChatModelOptions(selectedModel ? [selectedModel] : [], selectedModel, selectedModel ? '使用推荐模型' : '先检测模型列表', role);
         }
         if (keyInput) {
             keyInput.value = '';
-            keyInput.placeholder = voiceConfigState?.chat?.hasApiKey ? '已安全保存，留空继续使用' : '聊天服务 Key';
+            const saved = isFallback ? voiceConfigState?.chat?.fallback?.hasApiKey : voiceConfigState?.chat?.primary?.hasApiKey;
+            keyInput.placeholder = saved ? '已安全保存，留空继续使用' : (isFallback ? '备用模型 Key' : '主模型 Key');
         }
     }
 
@@ -10996,8 +11179,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             .filter(Boolean);
     }
 
-    function setChatModelOptions(models, selected = '', placeholder = '先检测模型列表') {
-        const select = document.getElementById('chatModelInput');
+    function setChatModelOptions(models, selected = '', placeholder = '先检测模型列表', role = 'primary') {
+        const select = document.getElementById(role === 'fallback' ? 'fallbackChatModelInput' : 'primaryChatModelInput');
         if (!select) return;
         const normalized = normalizeChatModelOptions(models);
         const current = selected || select.value || '';
@@ -11028,25 +11211,31 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         }
     }
 
-    async function detectChatModels() {
+    async function detectChatModels(role = 'primary') {
         const note = document.getElementById('voiceSettingsNote');
-        const { chatBaseUrl, chatApiKey, chatModel } = collectVoiceSettings();
+        const settings = collectVoiceSettings();
+        const isFallback = role === 'fallback';
+        const chatBaseUrl = isFallback ? settings.fallbackChatBaseUrl : settings.primaryChatBaseUrl;
+        const chatApiKey = isFallback ? settings.fallbackChatApiKey : settings.primaryChatApiKey;
+        const chatModel = isFallback ? settings.fallbackChatModel : settings.primaryChatModel;
+        const wireApi = isFallback ? settings.fallbackChatWireApi : settings.primaryChatWireApi;
+        const savedKey = isFallback ? voiceConfigState?.chat?.fallback?.hasApiKey : voiceConfigState?.chat?.primary?.hasApiKey;
         if (!chatBaseUrl) {
             showToast('请先填写聊天服务 Base URL', 'warning');
             return;
         }
-        if (!chatApiKey && !voiceConfigState?.chat?.hasApiKey) {
+        if (!chatApiKey && !savedKey) {
             showToast('请先填写聊天服务 API Key，或保存已有 Key 后再检测', 'warning');
             return;
         }
         try {
-            setVoiceSettingsButtonsBusy(true, 'voiceChatModelsBtn');
+            setVoiceSettingsButtonsBusy(true, isFallback ? 'fallbackChatModelsBtn' : 'primaryChatModelsBtn');
             if (note) note.textContent = '正在检测可用模型列表...';
             const resp = await fetch('/api/voice/models/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    chat: { baseUrl: chatBaseUrl, apiKey: chatApiKey }
+                    chat: { baseUrl: chatBaseUrl, apiKey: chatApiKey, wireApi, providerRole: role }
                 })
             });
             const data = await resp.json().catch(() => ({}));
@@ -11058,8 +11247,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             }
             const models = normalizeChatModelOptions(data.models || []);
             const selected = models.some(model => model.id === chatModel) ? chatModel : (models[0]?.id || '');
-            setChatModelOptions(models, selected, '选择聊天模型');
-            if (note) note.textContent = `检测到 ${models.length} 个模型 · 已选择 ${selected || '未选择'}`;
+            setChatModelOptions(models, selected, isFallback ? '选择备用模型' : '选择主模型', role);
+            if (note) note.textContent = `${isFallback ? '备用模型' : '主模型'}检测到 ${models.length} 个模型 · 已选择 ${selected || '未选择'}`;
             showToast('模型列表检测完成', 'success');
         } catch (err) {
             const msg = err && err.message ? err.message : '模型列表检测失败';
@@ -11097,11 +11286,106 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         } catch {}
     }
 
+    function buildChatSettingsPayload(settings) {
+        return {
+            mode: settings.chatMode || 'auto',
+            reasoningEffort: settings.chatReasoningEffort || '',
+            primary: {
+                provider: 'su8',
+                baseUrl: settings.primaryChatBaseUrl,
+                apiKey: settings.primaryChatApiKey,
+                model: settings.primaryChatModel,
+                wireApi: settings.primaryChatWireApi || 'responses',
+                reasoningEffort: settings.chatReasoningEffort || ''
+            },
+            fallback: {
+                provider: 'siliconflow',
+                baseUrl: settings.fallbackChatBaseUrl,
+                apiKey: settings.fallbackChatApiKey,
+                model: settings.fallbackChatModel,
+                wireApi: 'chat_completions'
+            }
+        };
+    }
+
+    function renderChatProviderHealth(data) {
+        const primaryBadge = document.getElementById('primaryChatStatusBadge');
+        const fallbackBadge = document.getElementById('fallbackChatStatusBadge');
+        const message = document.getElementById('chatProviderHealthMessage');
+        const applyBadge = (el, health) => {
+            if (!el) return;
+            el.classList.remove('ready', 'error', 'checking');
+            if (!health || !health.checkedAt) {
+                el.textContent = '待检测';
+                return;
+            }
+            if (health.ok) {
+                el.textContent = '正常';
+                el.classList.add('ready');
+            } else {
+                el.textContent = '异常';
+                el.classList.add('error');
+            }
+        };
+        applyBadge(primaryBadge, data?.providers?.primary);
+        applyBadge(fallbackBadge, data?.providers?.fallback);
+        if (message) {
+            const active = data?.activeProvider === 'primary' ? '当前使用主模型'
+                : (data?.activeProvider === 'fallback' ? '当前使用备用模型' : '暂无可用聊天模型');
+            const primaryMsg = data?.providers?.primary?.message || '主模型未检测';
+            const fallbackMsg = data?.providers?.fallback?.message || '备用模型未检测';
+            message.textContent = `${active} · 主模型：${primaryMsg} · 备用模型：${fallbackMsg}`;
+        }
+    }
+
+    async function refreshChatProviderHealth(options = {}) {
+        const note = document.getElementById('voiceSettingsNote');
+        const primaryBadge = document.getElementById('primaryChatStatusBadge');
+        const fallbackBadge = document.getElementById('fallbackChatStatusBadge');
+        if (primaryBadge) {
+            primaryBadge.textContent = '检测中';
+            primaryBadge.classList.remove('ready', 'error');
+            primaryBadge.classList.add('checking');
+        }
+        if (fallbackBadge) {
+            fallbackBadge.textContent = '检测中';
+            fallbackBadge.classList.remove('ready', 'error');
+            fallbackBadge.classList.add('checking');
+        }
+        try {
+            if (options.force) setVoiceSettingsButtonsBusy(true, 'voiceChatHealthBtn');
+            const resp = await fetch('/api/voice/chat/health?refresh=' + (options.force ? '1' : '0'));
+            const data = await resp.json().catch(() => ({}));
+            renderChatProviderHealth(data);
+            if (note && options.force) {
+                note.textContent = data.activeProvider === 'primary'
+                    ? '聊天模型检测完成：当前使用主模型。'
+                    : (data.activeProvider === 'fallback'
+                        ? '聊天模型检测完成：主模型不可用，当前使用备用模型。'
+                        : '聊天模型检测完成：暂无可用模型。');
+            }
+            return data;
+        } catch (err) {
+            const msg = err && err.message ? err.message : '聊天模型检测失败';
+            renderChatProviderHealth({ providers: { primary: { checkedAt: Date.now(), ok: false, message: msg }, fallback: { checkedAt: Date.now(), ok: false, message: msg } } });
+            if (note) note.textContent = msg;
+            return null;
+        } finally {
+            if (options.force) setVoiceSettingsButtonsBusy(false);
+        }
+    }
+
     async function testVoiceChatSettings() {
         const note = document.getElementById('voiceSettingsNote');
-        const { chatBaseUrl, chatApiKey, chatModel } = collectVoiceSettings();
-        if (!chatBaseUrl || !chatModel) {
-            showToast('请先填写聊天服务 Base URL 和 Model', 'warning');
+        const settings = collectVoiceSettings();
+        const wantsPrimary = settings.chatMode !== 'fallback';
+        const wantsFallback = settings.chatMode !== 'primary';
+        if (wantsPrimary && (!settings.primaryChatBaseUrl || !settings.primaryChatModel)) {
+            showToast('请先填写主模型 Base URL 和 Model', 'warning');
+            return;
+        }
+        if (wantsFallback && (!settings.fallbackChatBaseUrl || !settings.fallbackChatModel)) {
+            showToast('请先填写备用模型 Base URL 和 Model', 'warning');
             return;
         }
         try {
@@ -11111,7 +11395,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    chat: { baseUrl: chatBaseUrl, apiKey: chatApiKey, model: chatModel }
+                    chat: buildChatSettingsPayload(settings)
                 })
             });
             const data = await resp.json().catch(() => ({}));
@@ -11122,7 +11406,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 return;
             }
             const preview = data.replyPreview ? ` · 回复：${data.replyPreview}` : '';
-            if (note) note.textContent = `聊天服务测试通过 · ${data.model || chatModel}${preview}`;
+            if (note) note.textContent = `聊天服务测试通过 · ${data.provider || 'model'} · ${data.model || ''}${preview}`;
             showToast('聊天服务接口测试通过', 'success');
         } catch (err) {
             const msg = err && err.message ? err.message : '聊天服务测试失败';
@@ -11180,19 +11464,61 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
     async function saveVoiceSettings() {
         const voiceKeyInput = document.getElementById('voiceApiKeyInput');
-        const chatKeyInput = document.getElementById('chatApiKeyInput');
+        const primaryChatKeyInput = document.getElementById('primaryChatApiKeyInput');
+        const fallbackChatKeyInput = document.getElementById('fallbackChatApiKeyInput');
         const note = document.getElementById('voiceSettingsNote');
-        const { voicePreset, voiceProvider, voiceBaseUrl, voiceApiKey, voiceModel, chatBaseUrl, chatApiKey, chatModel } = collectVoiceSettings();
+        const {
+            voicePreset,
+            voiceProvider,
+            voiceBaseUrl,
+            voiceApiKey,
+            voiceModel,
+            chatMode,
+            chatReasoningEffort,
+            primaryChatBaseUrl,
+            primaryChatApiKey,
+            primaryChatModel,
+            primaryChatWireApi,
+            fallbackChatBaseUrl,
+            fallbackChatApiKey,
+            fallbackChatModel
+        } = collectVoiceSettings();
         const usingLocalVoice = voicePreset === 'local';
-        const hasChatFields = !!(chatBaseUrl || chatApiKey || chatModel);
+        const wantsPrimary = chatMode !== 'fallback';
+        const wantsFallback = chatMode !== 'primary';
+        const hasPrimaryKey = !!(primaryChatApiKey || voiceConfigState?.chat?.primary?.hasApiKey);
+        const hasFallbackKey = !!(fallbackChatApiKey || voiceConfigState?.chat?.fallback?.hasApiKey || (voiceConfigState?.chat?.mode === 'single' && voiceConfigState?.chat?.hasApiKey));
         if (!usingLocalVoice && !(voiceBaseUrl && voiceModel)) {
             showToast('云端语音识别需要填写 Base URL 和 Model；如果尚未保存 Key，需要同时填写 API Key', 'warning');
             return;
         }
-        if (hasChatFields && !(chatBaseUrl && chatModel)) {
-            showToast('聊天服务需要填写 Base URL 和 Model；如果尚未保存 Key，需要同时填写 API Key', 'warning');
+        if (wantsPrimary && !(primaryChatBaseUrl && primaryChatModel && hasPrimaryKey)) {
+            showToast('主模型需要填写 Base URL、Model 和 API Key', 'warning');
             return;
         }
+        if (wantsFallback && !(fallbackChatBaseUrl && fallbackChatModel && hasFallbackKey)) {
+            showToast('备用模型需要填写 Base URL、Model 和 API Key', 'warning');
+            return;
+        }
+        const chatPayload = {
+            mode: chatMode,
+            reasoningEffort: chatReasoningEffort,
+            primary: {
+                provider: 'su8',
+                baseUrl: primaryChatBaseUrl,
+                apiKey: primaryChatApiKey,
+                model: primaryChatModel,
+                wireApi: primaryChatWireApi || 'responses',
+                reasoningEffort: chatReasoningEffort
+            },
+            fallback: {
+                provider: 'siliconflow',
+                baseUrl: fallbackChatBaseUrl,
+                apiKey: fallbackChatApiKey,
+                model: fallbackChatModel,
+                wireApi: 'chat_completions'
+            }
+        };
         try {
             setVoiceSettingsButtonsBusy(true, 'voiceSettingsSaveBtn');
             if (note) note.textContent = '正在保存语音和问答服务配置...';
@@ -11203,7 +11529,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                     voice: usingLocalVoice
                         ? { mode: 'local', provider: 'local' }
                         : { provider: voiceProvider || 'compatible', baseUrl: voiceBaseUrl, apiKey: voiceApiKey, model: voiceModel },
-                    chat: hasChatFields ? { baseUrl: chatBaseUrl, apiKey: chatApiKey, model: chatModel } : {}
+                    chat: chatPayload
                 })
             });
             const data = await resp.json().catch(() => ({}));
@@ -11221,18 +11547,24 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 voiceKeyInput.placeholder = data.local ? '本地识别无需 Key' : (data.hasApiKey ? '已安全保存，留空继续使用' : '语音识别 Key');
                 voiceKeyInput.title = data.hasApiKey ? '真实 Key 已安全保存，前端不回显；填写新 Key 后保存可覆盖。' : '填写语音识别 API Key';
             }
-            if (chatKeyInput) {
-                chatKeyInput.value = '';
-                chatKeyInput.placeholder = data.chat?.hasApiKey ? '已安全保存，留空继续使用' : '聊天服务 Key';
-                chatKeyInput.title = data.chat?.hasApiKey ? '真实 Key 已安全保存，前端不回显；填写新 Key 后保存可覆盖。' : '填写聊天服务 API Key';
+            if (primaryChatKeyInput) {
+                primaryChatKeyInput.value = '';
+                primaryChatKeyInput.placeholder = data.chat?.primary?.hasApiKey ? '已安全保存，留空继续使用' : '主模型 Key';
+                primaryChatKeyInput.title = data.chat?.primary?.hasApiKey ? '真实 Key 已安全保存，前端不回显；填写新 Key 后保存可覆盖。' : '填写主模型 API Key';
+            }
+            if (fallbackChatKeyInput) {
+                fallbackChatKeyInput.value = '';
+                fallbackChatKeyInput.placeholder = data.chat?.fallback?.hasApiKey ? '已安全保存，留空继续使用' : '备用模型 Key';
+                fallbackChatKeyInput.title = data.chat?.fallback?.hasApiKey ? '真实 Key 已安全保存，前端不回显；填写新 Key 后保存可覆盖。' : '填写备用模型 API Key';
             }
             if (note) {
                 const voiceText = data.local
                     ? `语音控制已就绪 · ${data.model || 'paraformer-zh'}`
                     : `${data.provider || 'compatible'} 语音识别已就绪 · ${data.model || voiceModel}`;
-                const chatText = data.chat?.ready ? `${data.chat.provider || 'Chat'} 聊天已就绪 · ${data.chat.model || chatModel}` : '聊天未配置，将使用内置问答话术';
+                const chatText = data.chat?.ready ? `${data.chat.activeProvider === 'primary' ? '主模型' : '备用模型'}已就绪 · ${data.chat.model || primaryChatModel || fallbackChatModel}` : '聊天未配置，将使用内置问答话术';
                 note.textContent = `${voiceText} / ${chatText} · 前端不回显真实 Key`;
             }
+            refreshChatProviderHealth({ force: true });
             toggleVoiceSettings(false);
             showToast(data.local ? '语音控制配置已生效' : '语音识别 API 配置已保存', 'success');
         } catch (err) {
@@ -12514,6 +12846,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     window.toggleVoiceSettings = toggleVoiceSettings;
     window.saveVoiceSettings = saveVoiceSettings;
     window.detectChatModels = detectChatModels;
+    window.refreshChatProviderHealth = refreshChatProviderHealth;
     window.testVoiceChatSettings = testVoiceChatSettings;
     window.testVoiceAsrSettings = testVoiceAsrSettings;
     window.applyVoiceProviderPreset = applyVoiceProviderPreset;

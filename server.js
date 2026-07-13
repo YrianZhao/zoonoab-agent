@@ -1273,19 +1273,107 @@ async function buildVoiceHealth(providerConfig = getVoiceProviderConfig(), optio
 
 function cloneApiConfigSection(section) {
   if (!section || typeof section !== 'object') return null;
-  return { ...section };
+  return JSON.parse(JSON.stringify(section));
 }
 
 function normalizeProviderName(value, fallback = 'compatible') {
   const raw = String(value || '').trim().toLowerCase();
   if (!raw) return fallback;
   if (['local', 'offline', 'funasr', 'vosk'].includes(raw)) return 'local';
+  if (raw.includes('su8')) return 'su8';
   if (raw.includes('silicon')) return 'siliconflow';
   if (raw.includes('teleai') || raw.includes('telespeech')) return 'teleai';
   if (raw.includes('dashscope') || raw.includes('aliyun') || raw.includes('qwen')) return 'dashscope';
   if (raw.includes('openai')) return 'openai';
   if (raw.includes('deepseek')) return 'deepseek';
   return raw.replace(/[^a-z0-9_-]/g, '').slice(0, 40) || fallback;
+}
+
+function normalizeChatMode(value) {
+  const raw = String(value || '').trim().toLowerCase();
+  if (['primary', 'strong', 'su8'].includes(raw)) return 'primary';
+  if (['fallback', 'backup', 'siliconflow'].includes(raw)) return 'fallback';
+  return 'auto';
+}
+
+function normalizeChatWireApi(value) {
+  const raw = String(value || '').trim().toLowerCase().replace(/[-\s]/g, '_');
+  if (raw === 'responses' || raw === 'response') return 'responses';
+  return 'chat_completions';
+}
+
+function normalizeReasoningEffort(value) {
+  const raw = String(value || '').trim().toLowerCase();
+  if (['none', 'off', 'disabled'].includes(raw)) return '';
+  if (['low', 'medium', 'high', 'xhigh'].includes(raw)) return raw;
+  if (['extra_high', 'extra-high', 'max', 'maximum'].includes(raw)) return 'xhigh';
+  return '';
+}
+
+function normalizeChatEndpoint(rawUrl, wireApi = 'chat_completions') {
+  return normalizeChatWireApi(wireApi) === 'responses'
+    ? normalizeResponsesBaseUrl(rawUrl)
+    : normalizeChatBaseUrl(rawUrl);
+}
+
+function isCompositeChatConfig(chat) {
+  return Boolean(chat && typeof chat === 'object' && (chat.primary || chat.fallback || chat.mode));
+}
+
+function sanitizeChatProviderConfig(providerConfig, options = {}) {
+  const source = providerConfig && typeof providerConfig === 'object' ? providerConfig : {};
+  const key = String(source.key || source.apiKey || '').trim();
+  const rawUrl = String(source.url || source.baseUrl || '').trim();
+  const model = String(source.model || '').trim();
+  if (!key || !rawUrl || !model) return null;
+  const wireApi = normalizeChatWireApi(source.wireApi || source.wire_api || options.defaultWireApi);
+  let url;
+  try {
+    url = normalizeChatEndpoint(rawUrl, wireApi);
+  } catch {
+    return null;
+  }
+  const reasoningEffort = normalizeReasoningEffort(
+    source.reasoningEffort || source.reasoning_effort || options.reasoningEffort
+  );
+  return {
+    provider: normalizeProviderName(source.provider || inferVoiceProvider(url), options.provider || 'compatible'),
+    key,
+    url,
+    model: model.slice(0, 180),
+    wireApi,
+    ...(reasoningEffort ? { reasoningEffort } : {})
+  };
+}
+
+function sanitizePersistedChatConfig(chat) {
+  if (!chat || typeof chat !== 'object') return null;
+  const hasCompositeShape = Boolean(chat.primary || chat.fallback || chat.mode);
+  if (hasCompositeShape) {
+    const sharedReasoningEffort = normalizeReasoningEffort(chat.reasoningEffort || chat.reasoning_effort);
+    const primary = sanitizeChatProviderConfig(chat.primary, {
+      provider: 'su8',
+      defaultWireApi: 'responses',
+      reasoningEffort: sharedReasoningEffort
+    });
+    const fallback = sanitizeChatProviderConfig(chat.fallback, {
+      provider: 'siliconflow',
+      defaultWireApi: 'chat_completions'
+    }) || sanitizeChatProviderConfig(chat, {
+      provider: 'siliconflow',
+      defaultWireApi: 'chat_completions'
+    });
+    if (!primary && !fallback) return null;
+    const chatMode = normalizeChatMode(chat.mode || chat.activeProviderMode || chat.providerMode);
+    return {
+      mode: chatMode,
+      provider: 'auto',
+      ...(sharedReasoningEffort ? { reasoningEffort: sharedReasoningEffort } : {}),
+      ...(primary ? { primary } : {}),
+      ...(fallback ? { fallback } : {})
+    };
+  }
+  return sanitizeChatProviderConfig(chat, { defaultWireApi: 'chat_completions' });
 }
 
 function sanitizePersistedAsrConfig(asr) {
@@ -1323,14 +1411,7 @@ function sanitizePersistedVoiceConfig(raw) {
     updatedAt: Number(raw.updatedAt || 0) || Date.now()
   };
   const chat = raw.chat && typeof raw.chat === 'object' ? raw.chat : null;
-  if (chat && chat.key && chat.url && chat.model) {
-    sanitized.chat = {
-      provider: String(chat.provider || inferVoiceProvider(chat.url)).trim() || 'compatible',
-      key: String(chat.key || '').trim(),
-      url: String(chat.url || '').trim(),
-      model: String(chat.model || '').trim()
-    };
-  }
+  sanitized.chat = sanitizePersistedChatConfig(chat);
   return sanitized;
 }
 
@@ -1430,46 +1511,137 @@ function parseProviderError(text) {
   }
 }
 
-function resolveChatInputConfig(chatBody, persistedConfig = loadPersistedVoiceConfig(), options = {}) {
-  const body = chatBody && typeof chatBody === 'object' ? chatBody : {};
-  const persistedChat = persistedConfig && persistedConfig.chat ? persistedConfig.chat : null;
-  const apiKey = String(body.apiKey || '').trim();
-  const model = String(body.model || '').trim();
-  const baseRaw = String(body.baseUrl || '').trim();
-  const hasAnyField = Boolean(apiKey || model || baseRaw);
-  if (!hasAnyField && !options.required) {
-    return { chat: options.preserveExisting ? cloneApiConfigSection(persistedChat) : null, hasAnyField: false };
+function chatInputSectionHasFields(section) {
+  if (!section || typeof section !== 'object') return false;
+  return Boolean(
+    String(section.apiKey || section.key || '').trim()
+    || String(section.baseUrl || section.url || '').trim()
+    || String(section.model || '').trim()
+    || String(section.provider || '').trim()
+    || String(section.wireApi || section.wire_api || '').trim()
+    || String(section.reasoningEffort || section.reasoning_effort || '').trim()
+  );
+}
+
+function chatInputUsesCompositeShape(body) {
+  return Boolean(body && typeof body === 'object' && (
+    body.primary || body.fallback || body.mode || body.activeProviderMode || body.providerMode
+      || body.reasoningEffort || body.reasoning_effort
+  ));
+}
+
+function resolveChatProviderInputConfig(providerBody, persistedProvider, options = {}) {
+  const body = providerBody && typeof providerBody === 'object' ? providerBody : {};
+  const persisted = persistedProvider && typeof persistedProvider === 'object' ? persistedProvider : null;
+  const hasAnyField = chatInputSectionHasFields(body);
+  if (!hasAnyField) {
+    if (options.preserveExisting && persisted) {
+      return { provider: cloneApiConfigSection(persisted), hasAnyField: false };
+    }
+    if (!options.required) return { provider: null, hasAnyField: false };
   }
-  const resolvedApiKey = apiKey || persistedChat?.key || '';
-  const resolvedBaseRaw = baseRaw || persistedChat?.url || '';
-  const resolvedModel = model || persistedChat?.model || '';
+
+  const apiKey = String(body.apiKey || body.key || '').trim();
+  const model = String(body.model || '').trim();
+  const baseRaw = String(body.baseUrl || body.url || '').trim();
+  const resolvedApiKey = apiKey || persisted?.key || '';
+  const resolvedBaseRaw = baseRaw || persisted?.url || '';
+  const resolvedModel = model || persisted?.model || '';
+  const wireApi = normalizeChatWireApi(body.wireApi || body.wire_api || persisted?.wireApi || options.defaultWireApi);
+  const reasoningEffort = normalizeReasoningEffort(
+    body.reasoningEffort || body.reasoning_effort || persisted?.reasoningEffort || options.reasoningEffort
+  );
+  const label = options.label || '聊天服务';
   if (!resolvedApiKey) {
-    return { error: { status: 400, error: 'missing_chat_api_key', message: '请填写聊天服务 API Key。' } };
+    return { error: { status: 400, error: 'missing_chat_api_key', message: '请填写' + label + ' API Key。' } };
   }
   if (!resolvedBaseRaw) {
-    return { error: { status: 400, error: 'missing_chat_base_url', message: '请填写聊天服务 Base URL。' } };
+    return { error: { status: 400, error: 'missing_chat_base_url', message: '请填写' + label + ' Base URL。' } };
   }
   if (!resolvedModel || resolvedModel.length > 160) {
-    return { error: { status: 400, error: 'invalid_chat_model', message: '请填写有效的聊天服务模型名称。' } };
+    return { error: { status: 400, error: 'invalid_chat_model', message: '请填写有效的' + label + '模型名称。' } };
   }
   if (resolvedApiKey.length > 3000) {
-    return { error: { status: 400, error: 'chat_api_key_too_long', message: '聊天服务 API Key 过长。' } };
+    return { error: { status: 400, error: 'chat_api_key_too_long', message: label + ' API Key 过长。' } };
   }
   let url;
   try {
-    url = normalizeChatBaseUrl(resolvedBaseRaw);
+    url = normalizeChatEndpoint(resolvedBaseRaw, wireApi);
   } catch (err) {
-    return { error: { status: 400, error: 'invalid_chat_base_url', message: err.message || '聊天服务 Base URL 无效。' } };
+    return { error: { status: 400, error: 'invalid_chat_base_url', message: err.message || label + ' Base URL 无效。' } };
   }
   return {
-    chat: {
-      provider: inferVoiceProvider(url),
+    provider: {
+      provider: normalizeProviderName(body.provider || persisted?.provider || inferVoiceProvider(url), options.provider || 'compatible'),
       key: resolvedApiKey,
       url,
-      model: resolvedModel
+      model: resolvedModel,
+      wireApi,
+      ...(reasoningEffort ? { reasoningEffort } : {})
     },
     hasAnyField
   };
+}
+
+function resolveChatInputConfig(chatBody, persistedConfig = loadPersistedVoiceConfig(), options = {}) {
+  const body = chatBody && typeof chatBody === 'object' ? chatBody : {};
+  const persistedChat = persistedConfig && persistedConfig.chat ? persistedConfig.chat : null;
+  const compositeInput = chatInputUsesCompositeShape(body);
+  if (compositeInput) {
+    const persistedPrimary = persistedChat && persistedChat.primary ? persistedChat.primary : null;
+    const persistedFallback = persistedChat && persistedChat.fallback
+      ? persistedChat.fallback
+      : (persistedChat && !isCompositeChatConfig(persistedChat) ? persistedChat : null);
+    const chatMode = normalizeChatMode(body.mode || body.activeProviderMode || body.providerMode || persistedChat?.mode);
+    const sharedReasoningEffort = normalizeReasoningEffort(
+      body.reasoningEffort || body.reasoning_effort || persistedChat?.reasoningEffort
+    );
+    const primaryResolved = resolveChatProviderInputConfig(body.primary, persistedPrimary, {
+      preserveExisting: options.preserveExisting,
+      provider: 'su8',
+      defaultWireApi: 'responses',
+      reasoningEffort: sharedReasoningEffort,
+      label: '主模型'
+    });
+    if (primaryResolved.error) return { error: primaryResolved.error };
+    const fallbackResolved = resolveChatProviderInputConfig(body.fallback, persistedFallback, {
+      preserveExisting: options.preserveExisting,
+      provider: 'siliconflow',
+      defaultWireApi: 'chat_completions',
+      label: '备用模型'
+    });
+    if (fallbackResolved.error) return { error: fallbackResolved.error };
+    const primary = primaryResolved.provider;
+    const fallback = fallbackResolved.provider;
+    if (!primary && !fallback) {
+      if (!options.required) {
+        return { chat: options.preserveExisting ? cloneApiConfigSection(persistedChat) : null, hasAnyField: false };
+      }
+      return { error: { status: 400, error: 'missing_chat_provider', message: '请至少配置一个聊天模型。' } };
+    }
+    return {
+      chat: {
+        mode: chatMode,
+        provider: 'auto',
+        ...(sharedReasoningEffort ? { reasoningEffort: sharedReasoningEffort } : {}),
+        ...(primary ? { primary } : {}),
+        ...(fallback ? { fallback } : {})
+      },
+      hasAnyField: true
+    };
+  }
+
+  const resolved = resolveChatProviderInputConfig(body, persistedChat && !isCompositeChatConfig(persistedChat) ? persistedChat : null, {
+    preserveExisting: options.preserveExisting,
+    required: options.required,
+    defaultWireApi: 'chat_completions',
+    label: '聊天服务'
+  });
+  if (resolved.error) return { error: resolved.error };
+  if (!resolved.provider && !options.required) {
+    return { chat: options.preserveExisting ? cloneApiConfigSection(persistedChat) : null, hasAnyField: false };
+  }
+  return { chat: resolved.provider, hasAnyField: resolved.hasAnyField };
 }
 
 function normalizeChatModelsUrl(rawUrl) {
@@ -1488,6 +1660,8 @@ function normalizeChatModelsUrl(rawUrl) {
   const pathName = url.pathname.replace(/\/+$/, '');
   if (/\/chat\/completions$/i.test(pathName)) {
     url.pathname = pathName.replace(/\/chat\/completions$/i, '/models');
+  } else if (/\/responses$/i.test(pathName)) {
+    url.pathname = pathName.replace(/\/responses$/i, '/models');
   } else if (!/\/models$/i.test(pathName)) {
     const base = pathName.endsWith('/v1') ? pathName : (pathName + '/v1');
     url.pathname = (base + '/models').replace(/\/{2,}/g, '/');
@@ -1498,10 +1672,15 @@ function normalizeChatModelsUrl(rawUrl) {
 function resolveChatModelListInputConfig(chatBody, persistedConfig = loadPersistedVoiceConfig()) {
   const body = chatBody && typeof chatBody === 'object' ? chatBody : {};
   const persistedChat = persistedConfig && persistedConfig.chat ? persistedConfig.chat : null;
-  const apiKey = String(body.apiKey || '').trim();
-  const baseRaw = String(body.baseUrl || '').trim();
-  const resolvedApiKey = apiKey || persistedChat?.key || '';
-  const resolvedBaseRaw = baseRaw || persistedChat?.url || '';
+  const providerRole = String(body.providerRole || body.role || '').trim().toLowerCase();
+  const persistedProvider = isCompositeChatConfig(persistedChat)
+    ? (providerRole === 'fallback' ? persistedChat.fallback : persistedChat.primary || persistedChat.fallback)
+    : persistedChat;
+  const apiKey = String(body.apiKey || body.key || '').trim();
+  const baseRaw = String(body.baseUrl || body.url || '').trim();
+  const resolvedApiKey = apiKey || persistedProvider?.key || '';
+  const resolvedBaseRaw = baseRaw || persistedProvider?.url || '';
+  const wireApi = normalizeChatWireApi(body.wireApi || body.wire_api || persistedProvider?.wireApi);
   if (!resolvedApiKey) {
     return { error: { status: 400, error: 'missing_chat_api_key', message: '请填写聊天服务 API Key，或先保存后再检测模型。' } };
   }
@@ -1514,17 +1693,18 @@ function resolveChatModelListInputConfig(chatBody, persistedConfig = loadPersist
   let chatUrl;
   let modelsUrl;
   try {
-    chatUrl = normalizeChatBaseUrl(resolvedBaseRaw);
+    chatUrl = normalizeChatEndpoint(resolvedBaseRaw, wireApi);
     modelsUrl = normalizeChatModelsUrl(resolvedBaseRaw);
   } catch (err) {
     return { error: { status: 400, error: 'invalid_chat_base_url', message: err.message || '聊天服务 Base URL 无效。' } };
   }
   return {
     chat: {
-      provider: inferVoiceProvider(chatUrl),
+      provider: normalizeProviderName(body.provider || persistedProvider?.provider || inferVoiceProvider(chatUrl), 'compatible'),
       key: resolvedApiKey,
       url: chatUrl,
-      modelsUrl
+      modelsUrl,
+      wireApi
     }
   };
 }
@@ -1550,6 +1730,105 @@ function extractChatModels(payload) {
     if (models.length >= 500) break;
   }
   return models;
+}
+
+const CHAT_PROVIDER_HEALTH_TTL_MS = 60 * 1000;
+const chatProviderHealthCache = new Map();
+
+function chatProviderHealthCacheKey(provider) {
+  if (!provider) return '';
+  return [
+    provider.provider || '',
+    provider.url || '',
+    provider.model || '',
+    normalizeChatWireApi(provider.wireApi),
+    normalizeReasoningEffort(provider.reasoningEffort),
+    String(provider.key || '').slice(-8)
+  ].join('|');
+}
+
+function chatProviderHealthPublic(provider, extra = {}) {
+  return {
+    ...chatProviderPublic(provider),
+    ok: Boolean(extra.ok),
+    status: extra.status || (extra.ok ? 'ready' : 'unconfigured'),
+    message: extra.message || (extra.ok ? '连接正常' : '未配置'),
+    latencyMs: Number(extra.latencyMs || 0) || 0,
+    checkedAt: extra.checkedAt || 0
+  };
+}
+
+async function checkChatProviderHealth(provider, options = {}) {
+  if (!chatProviderIsReady(provider)) {
+    return chatProviderHealthPublic(provider, {
+      ok: false,
+      status: 'unconfigured',
+      message: '模型未配置',
+      checkedAt: Date.now()
+    });
+  }
+  const key = chatProviderHealthCacheKey(provider);
+  const cached = chatProviderHealthCache.get(key);
+  if (!options.refresh && cached && Date.now() - cached.checkedAt < CHAT_PROVIDER_HEALTH_TTL_MS) {
+    return cached;
+  }
+  const startedAt = Date.now();
+  try {
+    await requestChatProvider(provider, {
+      messages: [
+        { role: 'system', content: '你是 ZoonoAb 小诺 API 连通性测试助手。只用中文回复“测试通过”。' },
+        { role: 'user', content: '请回复测试通过。' }
+      ],
+      temperature: 0,
+      maxTokens: 32
+    }, {
+      timeoutMs: options.timeoutMs || 9000
+    });
+    const health = chatProviderHealthPublic(provider, {
+      ok: true,
+      status: 'ready',
+      message: '连接正常',
+      latencyMs: Date.now() - startedAt,
+      checkedAt: Date.now()
+    });
+    chatProviderHealthCache.set(key, health);
+    return health;
+  } catch (err) {
+    const health = chatProviderHealthPublic(provider, {
+      ok: false,
+      status: err && err.name === 'AbortError' ? 'timeout' : 'error',
+      message: err && err.name === 'AbortError' ? '连接超时' : String(err && err.message || '连接失败').slice(0, 180),
+      latencyMs: Date.now() - startedAt,
+      checkedAt: Date.now()
+    });
+    chatProviderHealthCache.set(key, health);
+    return health;
+  }
+}
+
+async function buildChatProviderHealth(chat, options = {}) {
+  const mode = isCompositeChatConfig(chat) ? normalizeChatMode(chat.mode) : (chatProviderIsReady(chat) ? 'single' : '');
+  const primary = isCompositeChatConfig(chat) ? chat.primary : chat;
+  const fallback = isCompositeChatConfig(chat) ? chat.fallback : null;
+  const [primaryHealth, fallbackHealth] = await Promise.all([
+    primary ? checkChatProviderHealth(primary, options) : Promise.resolve(chatProviderHealthPublic(null)),
+    fallback ? checkChatProviderHealth(fallback, options) : Promise.resolve(chatProviderHealthPublic(null))
+  ]);
+  const activeProvider = mode === 'fallback'
+    ? (fallbackHealth.ok ? 'fallback' : '')
+    : (mode === 'primary'
+      ? (primaryHealth.ok ? 'primary' : '')
+      : (primaryHealth.ok ? 'primary' : (fallbackHealth.ok ? 'fallback' : '')));
+  return {
+    ok: Boolean(primaryHealth.ok || fallbackHealth.ok),
+    mode,
+    activeProvider,
+    providers: {
+      primary: primaryHealth,
+      fallback: fallbackHealth
+    },
+    checkedAt: Date.now()
+  };
 }
 
 function resolveVoiceInputConfig(asrBody, persistedConfig = loadPersistedVoiceConfig(), options = {}) {
@@ -1706,14 +1985,7 @@ app.get('/api/voice/config', async (_, res) => {
   const health = await buildVoiceHealth(providerConfig, { autoStart: false, reason: 'config' });
   const localHealth = health.localHealth || null;
   const chatConfig = getAssistantChatConfig();
-  let chatReady = false;
-  let chatUrl = '';
-  try {
-    chatUrl = chatConfig.url ? normalizeChatBaseUrl(chatConfig.url) : '';
-    chatReady = Boolean(chatConfig.key && chatUrl && chatConfig.model);
-  } catch {
-    chatUrl = '';
-  }
+  const chatPublic = chatConfigPublic(chatConfig);
   res.json({
     provider: providerConfig.provider,
     model: providerConfig.model,
@@ -1734,13 +2006,7 @@ app.get('/api/voice/config', async (_, res) => {
     install: health.install,
     supportsAudio: providerConfig.supportsAudio,
     baseUrl: providerConfig.url || '',
-    chat: {
-      provider: chatConfig.provider || (chatUrl ? inferVoiceProvider(chatUrl) : ''),
-      model: chatReady ? chatConfig.model : '',
-      hasApiKey: Boolean(chatConfig.key),
-      ready: chatReady,
-      baseUrl: chatUrl
-    },
+    chat: chatPublic,
     persistence: 'backend_file',
     configExpiresInSeconds: null,
     sessionTtlSeconds: Math.floor(VOICE_SESSION_TTL_MS / 1000)
@@ -1751,6 +2017,13 @@ app.get('/api/voice/health', async (req, res) => {
   const autoStart = String(req.query && req.query.autostart || '1') !== '0';
   const providerConfig = getVoiceProviderConfig(req);
   const health = await buildVoiceHealth(providerConfig, { autoStart, reason: 'health' });
+  res.json(health);
+});
+
+app.get('/api/voice/chat/health', async (req, res) => {
+  const refresh = String(req.query && req.query.refresh || '0') === '1';
+  const chatConfig = getAssistantChatConfig(req.headers['x-voice-session']);
+  const health = await buildChatProviderHealth(chatConfig, { refresh, timeoutMs: 9000 });
   res.json(health);
 });
 
@@ -1847,19 +2120,7 @@ app.post('/api/voice/session', (req, res) => {
     model: voiceConfig.model,
     hasApiKey: Boolean(voiceConfig.key),
     local: isLocalVoiceProvider(voiceConfig.provider),
-    chat: chat ? {
-      provider: chat.provider,
-      baseUrl: chat.url,
-      model: chat.model,
-      hasApiKey: Boolean(chat.key),
-      ready: true
-    } : {
-      provider: '',
-      baseUrl: '',
-      model: ASSISTANT_CHAT_MODEL,
-      hasApiKey: false,
-      ready: false
-    },
+    chat: chatConfigPublic(chat),
     ready: true,
     persistence: 'backend_file',
     configExpiresInSeconds: null,
@@ -1938,7 +2199,7 @@ app.post('/api/voice/models/chat', async (req, res) => {
 app.post('/api/voice/test/chat', async (req, res) => {
   const body = req.body || {};
   const chatBody = body.chat && typeof body.chat === 'object' ? body.chat : body;
-  const resolved = resolveChatInputConfig(chatBody, loadPersistedVoiceConfig(), { required: true });
+  const resolved = resolveChatInputConfig(chatBody, loadPersistedVoiceConfig(), { required: true, preserveExisting: true });
   if (resolved.error) {
     return res.status(resolved.error.status).json({
       ok: false,
@@ -1950,53 +2211,32 @@ app.post('/api/voice/test/chat', async (req, res) => {
   if (typeof fetch !== 'function') {
     return res.status(500).json({ ok: false, error: 'runtime_unsupported', message: '当前 Node.js 运行时不支持原生 fetch。' });
   }
-  const controller = typeof AbortController === 'function' ? new AbortController() : null;
-  const timeout = controller ? setTimeout(() => controller.abort(), 9000) : null;
   try {
-    const upstream = await fetch(cfg.url, {
-      method: 'POST',
-      headers: {
-        Authorization: 'Bearer ' + cfg.key,
-        'Content-Type': 'application/json'
-      },
-      signal: controller ? controller.signal : undefined,
-      body: JSON.stringify({
-        model: cfg.model,
-        messages: [
-          { role: 'system', content: '你是 ZoonoAb 小诺 API 连通性测试助手。只用中文回复“测试通过”。' },
-          { role: 'user', content: '请回复测试通过。' }
-        ],
-        temperature: 0,
-        max_tokens: 32,
-        stream: false
-      })
+    const providers = getChatProviderCandidatesFromConfig(cfg);
+    const result = await requestAssistantModelWithFallback(providers, {
+      messages: [
+        { role: 'system', content: '你是 ZoonoAb 小诺 API 连通性测试助手。只用中文回复“测试通过”。' },
+        { role: 'user', content: '请回复测试通过。' }
+      ],
+      temperature: 0,
+      maxTokens: 32
+    }, {
+      timeoutMs: 9000
     });
-    if (timeout) clearTimeout(timeout);
-    const text = await upstream.text();
-    if (!upstream.ok) {
-      const message = parseProviderError(text);
-      console.error('[Voice] Chat test failed:', cfg.provider, upstream.status, message);
-      return res.status(502).json({ ok: false, error: 'chat_test_failed', provider: cfg.provider, message });
-    }
-    let data;
-    try { data = JSON.parse(text); } catch { data = {}; }
-    const content = data && data.choices && data.choices[0] && data.choices[0].message
-      ? sanitizeAssistantText(data.choices[0].message.content)
-      : '';
     return res.json({
       ok: true,
-      provider: cfg.provider,
-      model: cfg.model,
-      baseUrl: cfg.url,
-      replyPreview: String(content || '').slice(0, 80)
+      provider: result.provider,
+      model: result.model,
+      baseUrl: result.baseUrl,
+      wireApi: result.wireApi,
+      replyPreview: String(sanitizeAssistantText(result.text) || '').slice(0, 80)
     });
   } catch (err) {
-    if (timeout) clearTimeout(timeout);
     console.error('[Voice] Chat test error:', err && err.message ? err.message : err);
     return res.status(502).json({
       ok: false,
       error: err && err.name === 'AbortError' ? 'chat_test_timeout' : 'chat_test_unavailable',
-      provider: cfg.provider,
+      provider: isCompositeChatConfig(cfg) ? chatActiveProviderName(cfg) : cfg.provider,
       message: err && err.name === 'AbortError' ? '聊天服务接口测试超时。' : '聊天服务接口暂时不可用。'
     });
   }
@@ -5646,9 +5886,33 @@ function normalizeChatBaseUrl(rawUrl) {
   return url.toString();
 }
 
+function normalizeResponsesBaseUrl(rawUrl) {
+  const value = String(rawUrl || '').trim();
+  if (!value) return '';
+  let url;
+  try {
+    url = new URL(value);
+  } catch {
+    throw new Error('助手问答 Base URL 格式不正确。');
+  }
+  const isLocal = ['localhost', '127.0.0.1', '::1'].includes(url.hostname);
+  if (url.protocol !== 'https:' && !(isLocal && url.protocol === 'http:')) {
+    throw new Error('助手问答 Base URL 必须使用 HTTPS，本地调试可使用 localhost。');
+  }
+  const pathName = url.pathname.replace(/\/+$/, '');
+  if (!/\/responses$/i.test(pathName)) {
+    let base = pathName
+      .replace(/\/chat\/completions$/i, '')
+      .replace(/\/responses$/i, '');
+    base = base.endsWith('/v1') ? base : (base + '/v1');
+    url.pathname = (base + '/responses').replace(/\/{2,}/g, '/');
+  }
+  return url.toString();
+}
+
 function chatUrlFromVoiceConfig(cfg) {
-  if (cfg && cfg.chat && cfg.chat.url) return normalizeChatBaseUrl(cfg.chat.url);
-  if (cfg && cfg.url && /\/chat\/completions\/?$/i.test(String(cfg.url))) return normalizeChatBaseUrl(cfg.url);
+  if (cfg && cfg.chat && cfg.chat.url) return normalizeChatEndpoint(cfg.chat.url, cfg.chat.wireApi);
+  if (cfg && cfg.url) return normalizeChatEndpoint(cfg.url, cfg.wireApi);
   return '';
 }
 
@@ -5662,36 +5926,37 @@ function getVoiceRuntimeConfigById(id) {
   return cfg;
 }
 
+function normalizeAssistantChatConfig(chat) {
+  if (!chat || typeof chat !== 'object') return null;
+  if (isCompositeChatConfig(chat)) return cloneApiConfigSection(chat);
+  if (chat.key && chat.url) {
+    let url = '';
+    const wireApi = normalizeChatWireApi(chat.wireApi);
+    try {
+      url = normalizeChatEndpoint(chat.url, wireApi);
+    } catch {}
+    return {
+      key: chat.key,
+      url,
+      model: chat.model || ASSISTANT_CHAT_MODEL,
+      provider: chat.provider || inferVoiceProvider(chat.url),
+      wireApi,
+      ...(chat.reasoningEffort ? { reasoningEffort: normalizeReasoningEffort(chat.reasoningEffort) } : {})
+    };
+  }
+  return null;
+}
+
 function getAssistantChatConfig(voiceSessionId) {
   const runtimeConfig = getVoiceRuntimeConfigById(voiceSessionId);
   const runtimeChat = runtimeConfig && runtimeConfig.chat ? runtimeConfig.chat : null;
-  if (runtimeChat && runtimeChat.key && runtimeChat.url) {
-    let runtimeUrl = '';
-    try {
-      runtimeUrl = chatUrlFromVoiceConfig({ chat: runtimeChat });
-    } catch {}
-    return {
-      key: runtimeChat.key,
-      url: runtimeUrl,
-      model: runtimeChat.model || ASSISTANT_CHAT_MODEL,
-      provider: runtimeChat.provider || inferVoiceProvider(runtimeChat.url)
-    };
-  }
+  const normalizedRuntimeChat = normalizeAssistantChatConfig(runtimeChat);
+  if (normalizedRuntimeChat) return normalizedRuntimeChat;
 
   const persistedConfig = loadPersistedVoiceConfig();
   const persistedChat = persistedConfig && persistedConfig.chat ? persistedConfig.chat : null;
-  if (persistedChat && persistedChat.key && persistedChat.url) {
-    let persistedUrl = '';
-    try {
-      persistedUrl = normalizeChatBaseUrl(persistedChat.url);
-    } catch {}
-    return {
-      key: persistedChat.key,
-      url: persistedUrl,
-      model: persistedChat.model || ASSISTANT_CHAT_MODEL,
-      provider: persistedChat.provider || inferVoiceProvider(persistedChat.url)
-    };
-  }
+  const normalizedPersistedChat = normalizeAssistantChatConfig(persistedChat);
+  if (normalizedPersistedChat) return normalizedPersistedChat;
 
   let envUrl = '';
   try {
@@ -5701,8 +5966,88 @@ function getAssistantChatConfig(voiceSessionId) {
     key: process.env.ASSISTANT_CHAT_API_KEY || process.env.VOICE_CHAT_API_KEY || process.env.DEEPSEEK_API_KEY || '',
     url: envUrl,
     model: ASSISTANT_CHAT_MODEL,
-    provider: envUrl ? inferVoiceProvider(envUrl) : 'chat'
+    provider: envUrl ? inferVoiceProvider(envUrl) : 'chat',
+    wireApi: 'chat_completions'
   };
+}
+
+function chatProviderIsReady(provider) {
+  return Boolean(provider && provider.key && provider.url && provider.model);
+}
+
+function chatProviderPublic(provider) {
+  if (!provider) {
+    return {
+      provider: '',
+      baseUrl: '',
+      model: '',
+      wireApi: 'chat_completions',
+      reasoningEffort: '',
+      hasApiKey: false,
+      ready: false
+    };
+  }
+  return {
+    provider: provider.provider || inferVoiceProvider(provider.url || ''),
+    baseUrl: provider.url || '',
+    model: provider.model || '',
+    wireApi: normalizeChatWireApi(provider.wireApi),
+    reasoningEffort: normalizeReasoningEffort(provider.reasoningEffort),
+    hasApiKey: Boolean(provider.key),
+    ready: chatProviderIsReady(provider)
+  };
+}
+
+function chatActiveProviderName(chat) {
+  if (!chat) return '';
+  if (!isCompositeChatConfig(chat)) return chatProviderIsReady(chat) ? 'single' : '';
+  const mode = normalizeChatMode(chat.mode);
+  if (mode === 'primary') return chatProviderIsReady(chat.primary) ? 'primary' : '';
+  if (mode === 'fallback') return chatProviderIsReady(chat.fallback) ? 'fallback' : '';
+  if (chatProviderIsReady(chat.primary)) return 'primary';
+  if (chatProviderIsReady(chat.fallback)) return 'fallback';
+  return '';
+}
+
+function chatConfigPublic(chat) {
+  if (isCompositeChatConfig(chat)) {
+    const activeProvider = chatActiveProviderName(chat);
+    const active = activeProvider === 'primary' ? chat.primary : (activeProvider === 'fallback' ? chat.fallback : null);
+    return {
+      mode: normalizeChatMode(chat.mode),
+      provider: active ? active.provider : 'auto',
+      activeProvider,
+      baseUrl: active ? active.url : '',
+      model: active ? active.model : '',
+      wireApi: active ? normalizeChatWireApi(active.wireApi) : 'chat_completions',
+      reasoningEffort: normalizeReasoningEffort(chat.reasoningEffort || (active && active.reasoningEffort)),
+      hasApiKey: Boolean(active && active.key),
+      ready: Boolean(active),
+      primary: chatProviderPublic(chat.primary),
+      fallback: chatProviderPublic(chat.fallback)
+    };
+  }
+  const publicProvider = chatProviderPublic(chat);
+  return {
+    ...publicProvider,
+    mode: chatProviderIsReady(chat) ? 'single' : '',
+    activeProvider: chatProviderIsReady(chat) ? 'single' : ''
+  };
+}
+
+function getChatProviderCandidatesFromConfig(chat) {
+  if (!chat) return [];
+  if (!isCompositeChatConfig(chat)) return chatProviderIsReady(chat) ? [chat] : [];
+  const mode = normalizeChatMode(chat.mode);
+  const primary = chatProviderIsReady(chat.primary) ? chat.primary : null;
+  const fallback = chatProviderIsReady(chat.fallback) ? chat.fallback : null;
+  if (mode === 'primary') return primary ? [primary] : [];
+  if (mode === 'fallback') return fallback ? [fallback] : [];
+  return [primary, fallback].filter(Boolean);
+}
+
+function getAssistantChatProviderCandidates(voiceSessionId) {
+  return getChatProviderCandidatesFromConfig(getAssistantChatConfig(voiceSessionId));
 }
 
 function sanitizeAssistantText(text) {
@@ -5744,46 +6089,156 @@ function localAssistantFallback(input) {
   return '收到。我是 ZoonoAb 小诺。这个问题暂时不需要启动抗体设计工作流，我可以继续帮您解释平台能力，或把需求整理成适合执行的设计指令。';
 }
 
-async function askAssistantModel(input, voiceSessionId) {
-  const cfg = getAssistantChatConfig(voiceSessionId);
-  if (!cfg.key || !cfg.url) return localAssistantFallback(input);
-  if (typeof fetch !== 'function') return localAssistantFallback(input);
+function buildResponsesInput(messages) {
+  return (Array.isArray(messages) ? messages : [])
+    .map(message => {
+      const role = String(message && message.role || 'user').trim() || 'user';
+      const content = typeof message.content === 'string'
+        ? message.content
+        : extractChatMessageText(message);
+      return {
+        role,
+        content: String(content || '')
+      };
+    })
+    .filter(message => message.content);
+}
+
+function extractResponsesText(data) {
+  if (!data || typeof data !== 'object') return '';
+  if (typeof data.output_text === 'string') return data.output_text;
+  if (Array.isArray(data.output)) {
+    return data.output.map(item => {
+      if (!item || typeof item !== 'object') return '';
+      if (typeof item.text === 'string') return item.text;
+      if (typeof item.content === 'string') return item.content;
+      if (Array.isArray(item.content)) {
+        return item.content.map(part => {
+          if (!part || typeof part !== 'object') return '';
+          return part.text || part.output_text || part.value || '';
+        }).join('');
+      }
+      return '';
+    }).join('');
+  }
+  if (data.response && typeof data.response.output_text === 'string') return data.response.output_text;
+  return '';
+}
+
+function buildChatCompletionsPayload(request) {
+  const payload = {
+    model: request.model,
+    messages: request.messages,
+    temperature: typeof request.temperature === 'number' ? request.temperature : 0,
+    max_tokens: request.maxTokens || 180,
+    stream: false
+  };
+  if (request.json) payload.response_format = { type: 'json_object' };
+  return payload;
+}
+
+function buildResponsesPayload(provider, request) {
+  const payload = {
+    model: request.model,
+    input: buildResponsesInput(request.messages),
+    stream: false,
+    max_output_tokens: request.maxTokens || 180
+  };
+  if (typeof request.temperature === 'number') payload.temperature = request.temperature;
+  const reasoningEffort = normalizeReasoningEffort(request.reasoningEffort || provider.reasoningEffort);
+  if (reasoningEffort) payload.reasoning = { effort: reasoningEffort };
+  return payload;
+}
+
+async function requestChatProvider(provider, request, options = {}) {
+  const wireApi = normalizeChatWireApi(provider && provider.wireApi);
+  const url = normalizeChatEndpoint(provider && provider.url, wireApi);
   const controller = typeof AbortController === 'function' ? new AbortController() : null;
-  const timeout = controller ? setTimeout(() => controller.abort(), 6500) : null;
-  const systemPrompt = buildAssistantSystemPrompt();
+  const timeout = controller ? setTimeout(() => controller.abort(), options.timeoutMs || 6500) : null;
+  const modelRequest = {
+    ...request,
+    model: request.model || provider.model,
+    reasoningEffort: request.reasoningEffort || provider.reasoningEffort
+  };
+  const body = wireApi === 'responses'
+    ? buildResponsesPayload(provider, modelRequest)
+    : buildChatCompletionsPayload(modelRequest);
   try {
-    const upstream = await fetch(cfg.url, {
+    const upstream = await fetch(url, {
       method: 'POST',
       headers: {
-        Authorization: 'Bearer ' + cfg.key,
+        Authorization: 'Bearer ' + provider.key,
         'Content-Type': 'application/json'
       },
       signal: controller ? controller.signal : undefined,
-      body: JSON.stringify({
-        model: cfg.model,
-        messages: [
-          { role: 'system', content: systemPrompt },
-          { role: 'user', content: String(input || '').slice(0, 2000) }
-        ],
-        temperature: 0.2,
-        max_tokens: 180,
-        stream: false
-      })
+      body: JSON.stringify(body)
     });
     if (timeout) clearTimeout(timeout);
-    const text = await upstream.text();
+    const raw = await upstream.text();
     if (!upstream.ok) {
-      console.error('[Assistant] Chat request failed:', upstream.status, parseProviderError(text));
-      return localAssistantFallback(input);
+      const error = new Error(parseProviderError(raw));
+      error.statusCode = upstream.status;
+      error.provider = provider.provider || '';
+      error.wireApi = wireApi;
+      throw error;
     }
     let data;
-    try { data = JSON.parse(text); } catch { data = {}; }
-    const content = data && data.choices && data.choices[0] && data.choices[0].message
-      ? data.choices[0].message.content
-      : '';
-    return sanitizeAssistantText(content) || localAssistantFallback(input);
+    try { data = JSON.parse(raw); } catch { data = {}; }
+    const content = wireApi === 'responses'
+      ? extractResponsesText(data)
+      : (data && data.choices && data.choices[0] && data.choices[0].message
+          ? extractChatMessageText(data.choices[0].message)
+          : '');
+    return {
+      text: String(content || ''),
+      provider: provider.provider || inferVoiceProvider(url),
+      model: modelRequest.model,
+      wireApi,
+      baseUrl: url
+    };
   } catch (err) {
     if (timeout) clearTimeout(timeout);
+    throw err;
+  }
+}
+
+async function requestAssistantModelWithFallback(providers, request, options = {}) {
+  const candidates = (Array.isArray(providers) ? providers : []).filter(chatProviderIsReady);
+  if (!candidates.length) {
+    const error = new Error('assistant_chat_unconfigured');
+    error.code = 'assistant_chat_unconfigured';
+    throw error;
+  }
+  let lastError = null;
+  for (const provider of candidates) {
+    try {
+      return await requestChatProvider(provider, request, options);
+    } catch (err) {
+      lastError = err;
+      console.error('[Assistant] Provider request failed:', provider.provider || '', provider.model || '', err && err.message ? err.message : err);
+    }
+  }
+  throw lastError || new Error('assistant_chat_unavailable');
+}
+
+async function askAssistantModel(input, voiceSessionId) {
+  const providers = getAssistantChatProviderCandidates(voiceSessionId);
+  if (!providers.length) return localAssistantFallback(input);
+  if (typeof fetch !== 'function') return localAssistantFallback(input);
+  const systemPrompt = buildAssistantSystemPrompt();
+  try {
+    const result = await requestAssistantModelWithFallback(providers, {
+      messages: [
+        { role: 'system', content: systemPrompt },
+        { role: 'user', content: String(input || '').slice(0, 2000) }
+      ],
+      temperature: 0.2,
+      maxTokens: 180
+    }, {
+      timeoutMs: 6500
+    });
+    return sanitizeAssistantText(result.text) || localAssistantFallback(input);
+  } catch (err) {
     console.error('[Assistant] Chat request error:', err && err.message ? err.message : err);
     return localAssistantFallback(input);
   }
@@ -6037,14 +6492,15 @@ function normalizeWorkflowIntentResult(data) {
 async function resolveWorkflowIntentWithModel(input, voiceSessionId) {
   const text = String(input || '').trim();
   if (!text) return null;
-  const cfg = getAssistantChatConfig(voiceSessionId);
-  if (!cfg.key || !cfg.url) {
+  const providers = getAssistantChatProviderCandidates(voiceSessionId);
+  const primaryProvider = providers[0] || {};
+  if (!providers.length) {
     recordDiagnosticEvent('workflow_intent_model_unconfigured', {
       level: 'warn',
       input: text,
-      provider: cfg.provider || '',
-      model: cfg.model || '',
-      reason: !cfg.key ? 'missing_key' : 'missing_url'
+      provider: primaryProvider.provider || '',
+      model: primaryProvider.model || '',
+      reason: 'missing_provider'
     });
     return { error: 'missing_key', intent: 'assistant_chat' };
   }
@@ -6052,73 +6508,44 @@ async function resolveWorkflowIntentWithModel(input, voiceSessionId) {
     recordDiagnosticEvent('workflow_intent_model_error', {
       level: 'error',
       input: text,
-      provider: cfg.provider || '',
-      model: cfg.model || '',
+      provider: primaryProvider.provider || '',
+      model: primaryProvider.model || '',
       error: 'runtime_unsupported'
     });
     return { error: 'runtime_unsupported', intent: 'assistant_chat' };
   }
-  const controller = typeof AbortController === 'function' ? new AbortController() : null;
-  const timeout = controller ? setTimeout(() => controller.abort(), WORKFLOW_INTENT_TIMEOUT_MS) : null;
   try {
-    const upstream = await fetch(cfg.url, {
-      method: 'POST',
-      headers: {
-        Authorization: 'Bearer ' + cfg.key,
-        'Content-Type': 'application/json'
-      },
-      signal: controller ? controller.signal : undefined,
-      body: JSON.stringify({
-        model: cfg.model,
-        messages: [
-          { role: 'system', content: buildWorkflowIntentPrompt() },
-          { role: 'user', content: text.slice(0, 1000) }
-        ],
-        temperature: 0,
-        max_tokens: 760,
-        response_format: { type: 'json_object' },
-        stream: false
-      })
+    const result = await requestAssistantModelWithFallback(providers, {
+      messages: [
+        { role: 'system', content: buildWorkflowIntentPrompt() },
+        { role: 'user', content: text.slice(0, 1000) }
+      ],
+      temperature: 0,
+      maxTokens: 760,
+      json: true
+    }, {
+      timeoutMs: WORKFLOW_INTENT_TIMEOUT_MS
     });
-    if (timeout) clearTimeout(timeout);
-    const raw = await upstream.text();
-    if (!upstream.ok) {
-      console.error('[IntentRouter] request failed:', upstream.status, parseProviderError(raw));
-      recordDiagnosticEvent('workflow_intent_model_error', {
-        level: 'warn',
-        input: text,
-        provider: cfg.provider || '',
-        model: cfg.model || '',
-        statusCode: upstream.status,
-        providerError: parseProviderError(raw)
-      });
-      return { error: 'model_failed', intent: 'assistant_chat' };
-    }
-    let data;
-    try { data = JSON.parse(raw); } catch { data = {}; }
-    const content = data && data.choices && data.choices[0] && data.choices[0].message
-      ? extractChatMessageText(data.choices[0].message)
-      : '';
+    const content = result.text || '';
     const normalized = normalizeWorkflowIntentResult(extractJsonObjectFromText(content));
     if (!normalized) {
       recordDiagnosticEvent('workflow_intent_invalid_response', {
         level: 'warn',
         input: text,
-        provider: cfg.provider || '',
-        model: cfg.model || '',
+        provider: result.provider || '',
+        model: result.model || '',
         responsePreview: content.slice(0, 500)
       });
       return { error: 'invalid_model_response', intent: 'assistant_chat' };
     }
     return normalized;
   } catch (err) {
-    if (timeout) clearTimeout(timeout);
     console.error('[IntentRouter] request error:', err && err.message ? err.message : err);
     recordDiagnosticEvent('workflow_intent_model_error', {
       level: 'warn',
       input: text,
-      provider: cfg.provider || '',
-      model: cfg.model || '',
+      provider: primaryProvider.provider || '',
+      model: primaryProvider.model || '',
       error: summarizeDiagnosticError(err)
     });
     return { error: 'model_failed', intent: 'assistant_chat' };
@@ -6332,60 +6759,30 @@ function buildTargetResolverPrompt(indication, input) {
 }
 
 async function resolveDiseaseTargetWithModel(input, indication, voiceSessionId) {
-  const cfg = getAssistantChatConfig(voiceSessionId);
-  if (!cfg.key || !cfg.url || typeof fetch !== 'function') return builtinTargetResolution(indication);
-  const controller = typeof AbortController === 'function' ? new AbortController() : null;
-  const timeout = controller ? setTimeout(() => controller.abort(), TARGET_RESOLVER_TIMEOUT_MS) : null;
+  const providers = getAssistantChatProviderCandidates(voiceSessionId);
+  if (!providers.length || typeof fetch !== 'function') return builtinTargetResolution(indication);
+  const primaryProvider = providers[0] || {};
   try {
-    const upstream = await fetch(cfg.url, {
-      method: 'POST',
-      headers: {
-        Authorization: 'Bearer ' + cfg.key,
-        'Content-Type': 'application/json'
-      },
-      signal: controller ? controller.signal : undefined,
-      body: JSON.stringify({
-        model: cfg.model,
-        messages: [
-          { role: 'system', content: buildTargetResolverPrompt(indication, input) },
-          { role: 'user', content: String(input || '').slice(0, 2000) }
-        ],
-        temperature: 0,
-        max_tokens: 80,
-        response_format: { type: 'json_object' },
-        stream: false
-      })
+    const result = await requestAssistantModelWithFallback(providers, {
+      messages: [
+        { role: 'system', content: buildTargetResolverPrompt(indication, input) },
+        { role: 'user', content: String(input || '').slice(0, 2000) }
+      ],
+      temperature: 0,
+      maxTokens: 80,
+      json: true
+    }, {
+      timeoutMs: TARGET_RESOLVER_TIMEOUT_MS
     });
-    if (timeout) clearTimeout(timeout);
-    const text = await upstream.text();
-    if (!upstream.ok) {
-      console.error('[TargetResolver] request failed:', upstream.status, parseProviderError(text));
-      recordDiagnosticEvent('target_resolver_model_error', {
-        level: 'warn',
-        input,
-        indication,
-        provider: cfg.provider || '',
-        model: cfg.model || '',
-        statusCode: upstream.status,
-        providerError: parseProviderError(text)
-      });
-      return builtinTargetResolution(indication);
-    }
-    let data;
-    try { data = JSON.parse(text); } catch { data = {}; }
-    const content = data && data.choices && data.choices[0] && data.choices[0].message
-      ? extractChatMessageText(data.choices[0].message)
-      : '';
-    return normalizeTargetResolution(extractJsonObjectFromText(content), indication) || builtinTargetResolution(indication);
+    return normalizeTargetResolution(extractJsonObjectFromText(result.text), indication) || builtinTargetResolution(indication);
   } catch (err) {
-    if (timeout) clearTimeout(timeout);
     console.error('[TargetResolver] error:', err && err.message ? err.message : err);
     recordDiagnosticEvent('target_resolver_model_error', {
       level: 'warn',
       input,
       indication,
-      provider: cfg.provider || '',
-      model: cfg.model || '',
+      provider: primaryProvider.provider || '',
+      model: primaryProvider.model || '',
       error: summarizeDiagnosticError(err)
     });
     return builtinTargetResolution(indication);
