@@ -1193,7 +1193,7 @@ test('target resolver rejects disease-shaped pseudo targets from the model', asy
     const agentTexts = messages.filter(msg => msg.type === 'agent_msg').map(msg => msg.text || '');
 
     assert.equal(evidenceCall, undefined);
-    assert.deepEqual(agentTexts, ['智能解析服务暂时不可用，请检查助手问答配置后重试。']);
+    assert.deepEqual(agentTexts, ['服务器超时']);
     assert.doesNotMatch(serialized, /肥胖\s*(?:表面|目标)?抗原|肥胖\s*代表性目标结构约束|肥胖\s*抗原可及|BAD-OBESITY/);
     assert.doesNotMatch(serialized, VISIBLE_RESOLVER_LEAK_PATTERN);
   } finally {
@@ -1381,7 +1381,7 @@ test('model-first routing stops when the model has no explicit target', async ()
     const agentTexts = messages.filter(msg => msg.type === 'agent_msg').map(msg => msg.text || '');
     const intro = agentTexts[0] || '';
 
-    assert.equal(intro, '智能解析服务暂时不可用，请检查助手问答配置后重试。');
+    assert.equal(intro, '服务器超时');
     assert.equal(messages.some(msg => msg.type === 'tool_call' && msg.tool === 'target_evidence_review'), false);
     assert.doesNotMatch(intro, VISIBLE_RESOLVER_LEAK_PATTERN);
   } finally {

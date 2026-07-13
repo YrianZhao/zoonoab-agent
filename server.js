@@ -4711,7 +4711,7 @@ function buildRoute3DMeta(profile, idx, file, ipTm, preset) {
     visualSummary: profile && profile.modelVisualSummary
       ? profile.modelVisualSummary
       : (preset && preset.visualSummary ? preset.visualSummary : (profile && profile.structurePrepZh) || ''),
-    structuralBasis: preset && preset.structuralBasis ? preset.structuralBasis : ((profile && profile.structuralBasis) || '本地代表性抗体-抗原结构模型，用于展示当前候选分子的三维构象。'),
+    structuralBasis: preset && preset.structuralBasis ? preset.structuralBasis : ((profile && profile.structuralBasis) || (target + ' 抗原-抗体结合构象展示')),
     interfaceDetail: !(preset && preset.interfaceDetail === false),
     antigenChains: chainInfo.antigen,
     antibodyChains: chainInfo.antibody,
@@ -6361,7 +6361,7 @@ function buildWorkflowIntentPrompt() {
     '口语靶点要整理成学术展示名：若用户说“流感 H7”“H7 流感”“H7N9 中和抗体”等，应判断真实靶点为 H7 亚型血凝素，target 写 "Influenza A(H7) hemagglutinin (HA)"；类似 H1-H18 亚型也按 "Influenza A(Hx) hemagglutinin (HA)" 输出。若只是泛称流感 HA 才写 "Influenza HA"；若用户明确说 NA/神经氨酸酶才写 "Influenza NA"。结构模型可使用最接近的同家族参考模型，但展示 target 必须保留用户真实靶点的学术名称。',
     '药物名或药物类别也是线索：仅当用户是在询问某个药物方向、已上市药物关联疾病/机制或“抗体药物方向”时，才根据已知适应症、作用靶点、通路机制反推可进入抗体药物设计的真实大分子靶点。',
     '边界：如果用户明确要求针对小分子/半抗原/化合物本身生成或特异性结合抗体（例如“设计氯胺酮抗体”“设计特异性结合噻吩嗪的单克隆抗体”），输出 i=chat,start=false,answer，说明 ZoonoAb 面向大分子抗原/蛋白靶点，不直接生成小分子/半抗原抗体；不要把该小分子硬转成蛋白靶点。',
-    '准确性优先：疾病或药物方向可能对应多个靶点，先保证疾病关联、机制和抗体可及性准确；若多个候选同等合理，优先从结构支撑靶点清单选择 target，并把其他合理靶点放入 cands。',
+    '准确性优先：疾病或药物方向可能对应多个靶点，先保证疾病关联、机制和抗体可及性准确；如果用户明确指定靶点，target 必须保留用户真实指定靶点；如果用户只给疾病、方向或药物机制，且多个候选同等合理，优先从结构支撑靶点清单选择 target，并把其他合理靶点放入 cands。',
     '结构支撑靶点清单：PD-L1/CD274、PD-1/PDCD1、CTLA-4、HER2/ERBB2、EGFR/ERBB1、VEGF-A/VEGFA、TNF、IL-17A、IL-23、IL-33、TSLP、RSV F、SARS-CoV-2 RBD、Influenza HA、Influenza NA、PCSK9、ANGPTL3、GIPR、CD20、CD19、CD3、C5、IL-6R、IL-4Rα、CD25、CD38、TIGIT、CD47、LAG-3、TROP-2、BCMA、IgE、CGRP receptor、IL-1β。',
     'reason 只能写疾病关联、药物机制、表达/可及性、结构域和抗体开发依据；不要提本地、预设、可展示、系统已有、为了展示、3D 预设等内部选择原因。',
     'i=chat：只用于普通闲聊、寒暄、纯问答、天气、时间、非分子设计概念解释，且没有足够信息生成 target 的情况。chat 只填 i,start=false,answer；answer 默认中文，最多 2 句。',
@@ -6518,18 +6518,6 @@ function buildWorkflowProfileFromModelIntent(modelIntent) {
   return profile;
 }
 
-function pickPreparedCandidateTarget(modelIntent) {
-  if (!modelIntent || modelIntent.intent !== 'design') return null;
-  if (hasPrepared3DPresetForTarget(modelIntent.target, modelIntent.blockTarget, modelIntent.abType)) return null;
-  const candidates = Array.isArray(modelIntent.candidateTargets) ? modelIntent.candidateTargets : [];
-  for (const candidate of candidates) {
-    if (!candidate || !candidate.target) continue;
-    if (!hasPrepared3DPresetForTarget(candidate.target, modelIntent.blockTarget, modelIntent.abType)) continue;
-    return candidate;
-  }
-  return null;
-}
-
 function normalizeWorkflowIntentResult(data) {
   const source = data && typeof data === 'object' ? data : {};
   const rawIntent = String(source.i || source.intent || '').trim().toLowerCase();
@@ -6570,26 +6558,6 @@ function normalizeWorkflowIntentResult(data) {
     workflowBlueprint: source.workflow || source.profile || source.workflowProfile || null,
     workflowFields: normalizeCompactWorkflowFields(source.wf || source.workflowFields || source.display)
   };
-  const preparedCandidate = pickPreparedCandidateTarget(result);
-  if (preparedCandidate) {
-    const originalTarget = result.target;
-    result.target = preparedCandidate.target;
-    result.targetGene = preparedCandidate.gene || result.targetGene;
-    result.reason = [
-      sanitizeVisibleTargetReason(result.reason, preparedCandidate.target, result.disease),
-      preparedCandidate.rationale
-        ? '综合候选靶点比较，' + preparedCandidate.target + ' 具备明确疾病关联、胞外结构域可及性和抗体开发依据：' + preparedCandidate.rationale
-        : '综合候选靶点比较，' + preparedCandidate.target + ' 具备明确疾病关联、胞外结构域可及性和抗体开发依据，适合作为本轮抗体设计入口。'
-    ].filter(Boolean).join(' ');
-    const hasOriginal = result.candidateTargets.some(item => item.target === originalTarget);
-    if (originalTarget && !hasOriginal) {
-      result.candidateTargets.unshift({
-        target: originalTarget,
-        gene: gene,
-        rationale: '模型初始推荐靶点，作为本轮候选比较入口保留。'
-      });
-    }
-  }
   result.workflowProfile = buildWorkflowProfileFromModelIntent(result) || buildCompactWorkflowProfileFromModelIntent(result);
   return result;
 }
@@ -7043,7 +7011,7 @@ async function runMissingChatKey(ws) {
 }
 
 async function runModelParseFailed(ws) {
-  await runDirectAssistantAnswer(ws, '智能解析服务暂时不可用，请检查助手问答配置后重试。');
+  await runDirectAssistantAnswer(ws, '服务器超时');
 }
 
 async function runDemoRoutedWorkflow(ws, input, route) {
@@ -7091,7 +7059,7 @@ async function runResolvedDiseaseDesign(ws, input, voiceSessionId, modelIntent =
   if (modelIntent) {
     resolution = modelIntentToTargetResolution(input, modelIntent);
     if (!resolution) {
-      return runDirectAssistantAnswer(ws, modelIntent.clarifyingQuestion || modelIntent.answer || '智能解析服务暂时不可用，请检查助手问答配置后重试。');
+      return runModelParseFailed(ws);
     }
   } else {
     resolution = await resolveDiseaseTargetWithModel(input, indication, voiceSessionId);
@@ -7925,27 +7893,6 @@ async function resolveUserMessageRunner(msg, cleanText) {
     };
   }
   if (!modelIntent || modelIntent.error) {
-    const fallbackIntent = buildPreparedDiseaseFallbackIntent(cleanText);
-    if (fallbackIntent) {
-      recordDiagnosticEvent('prepared_disease_fallback_started', {
-        level: 'warn',
-        input: cleanText,
-        fallbackReason: modelIntent && modelIntent.error || 'model_unavailable',
-        disease: fallbackIntent.disease || '',
-        target: fallbackIntent.target || '',
-        targetGene: fallbackIntent.targetGene || '',
-        designLabel: fallbackIntent.designLabel || ''
-      });
-      return {
-        detectedIntent: 'design',
-        intent: 'design',
-        demoRoute: null,
-        localWorkflowAllowed: true,
-        modelIntent: fallbackIntent,
-        modelFallbackReason: modelIntent && modelIntent.error || 'model_unavailable',
-        runner: (socket, text) => runResolvedDiseaseDesign(socket, text, msg.voiceSessionId, fallbackIntent)
-      };
-    }
     return {
       detectedIntent: 'assistant_chat',
       intent: 'assistant_chat',

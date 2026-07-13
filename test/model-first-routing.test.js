@@ -686,7 +686,7 @@ test('small molecule antibody requests rely on the model to answer the platform 
   }
 });
 
-test('model targets prefer prepared local 3D display targets when candidates include one', async () => {
+test('model selected target is kept while the prompt can describe structure-supported candidates', async () => {
   const captured = [];
   const mockServer = http.createServer((req, res) => {
     let body = '';
@@ -738,9 +738,9 @@ test('model targets prefer prepared local 3D display targets when candidates inc
 
     assert.equal(captured.length, 1);
     assert.match(captured[0].messages[0].content, /可展示靶点|HER2|EGFR|PD-L1|3D/);
-    assert.ok(evidenceCall, 'supported candidate should enter the structure-backed workflow');
-    assert.equal(evidenceCall.params.target, 'HER2');
-    assert.match(agentTexts[0], /胃癌|HER2|ERBB2|Claudin 18\.2/);
+    assert.ok(evidenceCall, 'model-selected target should enter the workflow');
+    assert.equal(evidenceCall.params.target, 'Claudin 18.2');
+    assert.match(agentTexts[0], /胃癌|Claudin 18\.2/);
     assert.doesNotMatch(agentTexts[0], /本地|预设|可展示靶点|为了展示|3D 预设|已有分子模型/);
   } finally {
     await new Promise(resolve => mockServer.close(resolve));
@@ -836,7 +836,7 @@ test('slower model workflow blueprint responses are allowed to start the workflo
   }
 });
 
-test('prepared disease requests fall back to local target resolution when model parsing fails', async () => {
+test('model parse failures return server timeout without starting local fallback workflow', async () => {
   let captured = 0;
   const mockServer = http.createServer((req, res) => {
     captured += 1;
@@ -848,17 +848,16 @@ test('prepared disease requests fall back to local target resolution when model 
     const saved = await saveMockChatConfig(mockPort, 'mock-failing-router');
     const messages = await collectUserMessageStream('帮我做一个肿瘤免疫治疗方向的抗体设计', {
       timeoutMs: 15000,
-      voiceSessionId: saved.voiceSessionId,
-      stopWhen: msg => msg.type === 'tool_call' && msg.tool === 'target_evidence_review'
+      voiceSessionId: saved.voiceSessionId
     });
     const evidenceCall = messages.find(msg => msg.type === 'tool_call' && msg.tool === 'target_evidence_review');
+    const agentMessages = messages.filter(msg => msg.type === 'agent_msg').map(msg => msg.text || '');
     const serialized = JSON.stringify(messages);
 
     assert.equal(captured, 1);
-    assert.ok(evidenceCall, 'prepared tumor immunotherapy wording should still enter the workflow');
-    assert.equal(evidenceCall.params.target, 'PD-L1');
-    assert.match(serialized, /肿瘤免疫治疗|PD-1\/PD-L1|CD274/);
-    assert.doesNotMatch(serialized, /智能解析服务暂时不可用/);
+    assert.equal(evidenceCall, undefined, 'local fallback workflow must not start when model parsing fails');
+    assert.deepEqual(agentMessages, ['服务器超时']);
+    assert.doesNotMatch(serialized, /target_evidence_review|正在启动抗体设计工作流|PD-1\/PD-L1|CD274/);
     assert.doesNotMatch(serialized, /IL-1β|IL1B|INFLAMMATION-IL1B/);
 
     const logResp = await fetch('http://127.0.0.1:' + PORT + '/api/diagnostic-logs?limit=20');
@@ -867,9 +866,79 @@ test('prepared disease requests fall back to local target resolution when model 
     const events = logData.logs.map(item => item.event);
 
     assert.ok(events.includes('workflow_intent_model_error'), 'model parse failure should be diagnosable');
-    assert.ok(events.includes('prepared_disease_fallback_started'), 'fallback routing should be diagnosable');
+    assert.equal(events.includes('prepared_disease_fallback_started'), false, 'fallback workflow should not be started');
     assert.ok(logData.logs.some(item => item.input === '帮我做一个肿瘤免疫治疗方向的抗体设计'));
     assert.doesNotMatch(JSON.stringify(logData), /test-model-first-secret/);
+  } finally {
+    await new Promise(resolve => mockServer.close(resolve));
+  }
+});
+
+test('model-selected target is not replaced by a prepared candidate and generic 3D display keeps the selected target', async () => {
+  const captured = [];
+  const mockServer = http.createServer((req, res) => {
+    let body = '';
+    req.setEncoding('utf8');
+    req.on('data', chunk => { body += chunk; });
+    req.on('end', () => {
+      captured.push(JSON.parse(body || '{}'));
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify({
+        choices: [{
+          message: {
+            content: JSON.stringify({
+              i: 'design',
+              start: true,
+              summary: '面向胃癌方向生成 Claudin 18.2 单克隆抗体候选。',
+              bg: '用户明确要求围绕 Claudin 18.2 设计抗体，应保持该靶点作为主设计对象。',
+              disease: '胃癌',
+              target: 'Claudin 18.2',
+              gene: 'CLDN18',
+              reason: 'Claudin 18.2 是胃癌和胃食管交界癌中具有明确开发背景的膜蛋白靶点，胞外环区域具备抗体可及性，并已有同类抗体药物开发经验；用户明确指定该靶点，因此本轮应围绕 Claudin 18.2 生成候选抗体，而不是改选其他肿瘤相关抗原。',
+              cands: [
+                { t: 'Claudin 18.2', g: 'CLDN18', r: '用户明确指定，且具备肿瘤膜表面抗原开发背景。' },
+                { t: 'HER2', g: 'ERBB2', r: '胃癌中可讨论的膜蛋白靶点，但不是本轮用户指定目标。' }
+              ],
+              mech: '识别 Claudin 18.2 胞外可及环区并筛选 mAb 候选。',
+              ab: 'mAb',
+              n: 2,
+              wf: {
+                domain: 'Claudin 18.2 胞外可及环区',
+                mechanism: '识别胃癌细胞表面 Claudin 18.2',
+                epitope: '优先覆盖胞外环可及表位',
+                structure: 'Claudin 18.2 胞外表面抗体结合约束',
+                modelNote: '展示 Claudin 18.2 抗体候选结合构象'
+              }
+            })
+          }
+        }]
+      }));
+    });
+  });
+
+  const mockPort = await listenOnLocalhost(mockServer);
+  try {
+    const saved = await saveMockChatConfig(mockPort, 'mock-keep-model-target');
+    const messages = await collectUserMessageStream('设计 2 个针对 Claudin 18.2 的单克隆抗体', {
+      timeoutMs: 45000,
+      voiceSessionId: saved.voiceSessionId,
+      skipThinking: true,
+      stopWhen: msg => msg.type === 'show_3d'
+    });
+    const evidenceCall = messages.find(msg => msg.type === 'tool_call' && msg.tool === 'target_evidence_review');
+    const show3d = messages.find(msg => msg.type === 'show_3d');
+    const serialized = JSON.stringify(messages);
+
+    assert.equal(captured.length, 1);
+    assert.ok(evidenceCall, 'workflow should start from the model-selected target');
+    assert.equal(evidenceCall.params.target, 'Claudin 18.2');
+    assert.ok(show3d, 'workflow should reach 3D display');
+    assert.match(show3d.label, /Claudin 18\.2/);
+    assert.ok(Array.isArray(show3d.binderData));
+    assert.equal(show3d.binderData[0].targetDisplay, 'Claudin 18.2');
+    assert.match(show3d.binderData[0].selectionReason, /用户明确指定该靶点|Claudin 18\.2/);
+    assert.doesNotMatch(serialized, /HER2 Fab 胞外结构域结合构象|靶点：HER2/);
+    assert.doesNotMatch(serialized, /非该靶点真实复合物|代表性结构预览|本地代表性/);
   } finally {
     await new Promise(resolve => mockServer.close(resolve));
   }
