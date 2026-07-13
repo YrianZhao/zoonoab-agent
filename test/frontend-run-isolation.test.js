@@ -73,6 +73,25 @@ test('debug fast workflow switch is gated and opt-in per workflow message', () =
   assert.match(sendMessage, /debugFastWorkflow:\s*shouldUseDebugFastWorkflow\(\)/);
 });
 
+test('debug fast workflow entry is hidden inside the team member list', () => {
+  const teamMembersIndex = html.indexOf('团队成员 (4)');
+  const liIndex = html.indexOf('李博士', teamMembersIndex);
+  const zhaoIndex = html.indexOf('id="drZhaoWorkflowToggle"', teamMembersIndex);
+  const beforeZhaoMarkup = html.slice(teamMembersIndex, zhaoIndex);
+  const zhaoButtonMarkup = html.slice(
+    html.lastIndexOf('<button', zhaoIndex),
+    html.indexOf('</button>', zhaoIndex) + '</button>'.length
+  );
+
+  assert.notEqual(teamMembersIndex, -1, 'team member list should exist');
+  assert.notEqual(liIndex, -1, '李博士 should remain in the team member list');
+  assert.notEqual(zhaoIndex, -1, '赵博士 workflow entry should exist');
+  assert.ok(liIndex < zhaoIndex, '赵博士 should appear directly after the visible team members');
+  assert.doesNotMatch(beforeZhaoMarkup, /<div class="team-sidebar-section">/);
+  assert.match(zhaoButtonMarkup, /class="team-member-item dr-zhao-toggle"/);
+  assert.doesNotMatch(zhaoButtonMarkup, /dr-zhao-switch/);
+});
+
 test('frontend cancellation includes and retires the active client run id', () => {
   const cancelTask = extractFunction(html, 'function cancelTask');
 

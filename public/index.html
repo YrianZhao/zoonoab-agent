@@ -4304,25 +4304,15 @@
         }
         .dr-zhao-toggle {
             width: 100%; border: 0; background: transparent; text-align: left;
+            font: inherit; line-height: inherit; appearance: none;
         }
         .dr-zhao-toggle.enabled {
             background: rgba(37,99,235,0.08);
             color: var(--brand-dark);
         }
-        .dr-zhao-switch {
-            margin-left: auto; width: 32px; height: 18px; border-radius: 999px;
-            background: var(--gray-200); border: 1px solid var(--border);
-            position: relative; transition: var(--transition); flex-shrink: 0;
+        .dr-zhao-toggle.enabled .team-member-avatar {
+            box-shadow: 0 0 0 2px rgba(37,99,235,0.14);
         }
-        .dr-zhao-switch::after {
-            content: ''; position: absolute; top: 2px; left: 2px;
-            width: 12px; height: 12px; border-radius: 50%;
-            background: white; box-shadow: var(--shadow-xs); transition: var(--transition);
-        }
-        .dr-zhao-toggle.enabled .dr-zhao-switch {
-            background: var(--brand); border-color: var(--brand);
-        }
-        .dr-zhao-toggle.enabled .dr-zhao-switch::after { transform: translateX(14px); }
         .team-main { flex: 1; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; display: flex; flex-direction: column; }
         .team-main-header { padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
         .team-main-title { font-size: 15px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
@@ -5018,12 +5008,9 @@
                             <div class="team-member-avatar" style="background:#F59E0B;">李</div>
                             <span>李博士</span>
                         </div>
-                    </div>
-                    <div class="team-sidebar-section">
                         <button type="button" class="team-member-item dr-zhao-toggle" id="drZhaoWorkflowToggle" onclick="toggleDrZhaoWorkflow()" aria-pressed="false">
                             <div class="team-member-avatar" style="background:#0F766E;">赵</div>
                             <span>赵博士</span>
-                            <span class="dr-zhao-switch" aria-hidden="true"></span>
                         </button>
                     </div>
                 </div>
@@ -6166,7 +6153,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146108';
+    const APP_BUILD_VERSION = '78146109';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
     const SILICONFLOW_CHAT_FALLBACK_MODELS = ['Qwen/Qwen3-32B', 'Qwen/Qwen3-14B', 'Qwen/Qwen3-8B', 'deepseek-ai/DeepSeek-V3'];
