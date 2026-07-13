@@ -4582,6 +4582,67 @@ function resolveLocalPDBAlias(filename) {
   return files[idx % files.length];
 }
 
+function localPDBPath(filename) {
+  if (!filename || filename.includes('..') || !/^[A-Za-z0-9][A-Za-z0-9_.-]*\.pdb$/.test(filename)) return '';
+  for (const rootDir of [LOCAL_PDB_DIR, PROJECT_ROOT]) {
+    const root = path.resolve(rootDir);
+    const fp = path.resolve(root, filename);
+    const rel = path.relative(root, fp);
+    if (!rel.startsWith('..') && !path.isAbsolute(rel) && fs.existsSync(fp)) return fp;
+  }
+  return '';
+}
+
+function localPDBPublicUrl(filename) {
+  return '/api/pdb/local/' + encodeURIComponent(filename);
+}
+
+function localPDBViewerUrl(filename, name, chains) {
+  const antigenChains = chains && Array.isArray(chains.antigen) && chains.antigen.length ? chains.antigen : ['A'];
+  const antibodyChains = chains && Array.isArray(chains.antibody) && chains.antibody.length ? chains.antibody : ['B'];
+  const pdbUrl = localPDBPublicUrl(filename);
+  let url = '/viewer-full.html?pdb=' + encodeURIComponent(pdbUrl);
+  url += '&chainA=' + encodeURIComponent('#0891B2');
+  url += '&chainB=' + encodeURIComponent('#FB7185');
+  url += '&antigenChains=' + encodeURIComponent(antigenChains.join(','));
+  url += '&antibodyChains=' + encodeURIComponent(antibodyChains.join(','));
+  url += '&antigenLabel=' + encodeURIComponent('抗原');
+  url += '&antibodyLabel=' + encodeURIComponent('抗体');
+  url += '&title=' + encodeURIComponent(name || filename);
+  return url;
+}
+
+function buildLocalPDBLibraryModel(filename) {
+  const fp = localPDBPath(filename);
+  const stat = fp ? fs.statSync(fp) : null;
+  const remarks = readLocalPDBRemarks(filename);
+  const name = String(filename || '').replace(/\.pdb$/i, '');
+  return {
+    filename,
+    name,
+    url: localPDBPublicUrl(filename),
+    viewerUrl: localPDBViewerUrl(filename, name, remarks),
+    sizeBytes: stat ? stat.size : 0,
+    updatedAt: stat ? stat.mtime.toISOString() : null,
+    antigenChains: remarks.antigen || [],
+    antibodyChains: remarks.antibody || []
+  };
+}
+
+app.get('/api/pdb/local-models', (req, res) => {
+  try {
+    const models = listLocalPDBFiles().map(buildLocalPDBLibraryModel);
+    res.json({
+      ok: true,
+      count: models.length,
+      models
+    });
+  } catch (err) {
+    console.error('[PDB] local model library error:', err && err.message ? err.message : err);
+    res.status(500).json({ ok: false, error: 'Local PDB library unavailable' });
+  }
+});
+
 app.get('/api/pdb/local/:filename', (req, res) => {
   const filename = resolveLocalPDBAlias(req.params.filename);
   if (!filename || filename.includes('..') || !/^[A-Za-z0-9][A-Za-z0-9_.-]*\.pdb$/.test(filename)) {

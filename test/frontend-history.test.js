@@ -124,6 +124,41 @@ test('knowledge base exposes history as a separate public-library entry with det
   }
 });
 
+test('knowledge base exposes a local molecular structure library for PDB inspection', () => {
+  assert.match(html, /id="kbLocalPDBEntry"/);
+  assert.match(html, /onclick="openLocalPDBLibrary\(\)"/);
+  assert.match(html, /本地分子模型结构/);
+  assert.match(html, /id="kbLocalPDBCount"/);
+  assert.match(html, /function\s+loadLocalPDBModels\s*\(/);
+  assert.match(html, /function\s+renderLocalPDBLibrary\s*\(/);
+  assert.match(html, /function\s+openLocalPDBLibrary\s*\(/);
+  assert.match(html, /function\s+openLocalPDBModel\s*\(/);
+  assert.match(html, /function\s+buildLocalPDBModelFrameUrl\s*\(/);
+
+  const commonIndex = html.indexOf("data-project=\"common\"");
+  const localIndex = html.indexOf('id="kbLocalPDBEntry"');
+  assert.ok(commonIndex >= 0 && localIndex > commonIndex, 'local structure library entry should be under the public library area');
+
+  const loader = extractFunction(html, 'async function loadLocalPDBModels');
+  assert.match(loader, /fetch\('\/api\/pdb\/local-models'/);
+  assert.match(loader, /kbLocalPDBModels\s*=/);
+
+  const renderer = extractFunction(html, 'function renderLocalPDBLibrary');
+  assert.match(renderer, /kbLocalPDBModels/);
+  assert.match(renderer, /查看结构/);
+  assert.match(renderer, /openLocalPDBModel\(/);
+  assert.match(renderer, /antigenChains/);
+  assert.match(renderer, /antibodyChains/);
+  assert.match(html, /function\s+renderKBStats\s*\(/);
+  assert.match(renderer, /renderKBStats\(\s*models\.length[\s\S]*本地结构/);
+  assert.doesNotMatch(renderer, /AI 生成/);
+
+  const opener = extractFunction(html, 'function openLocalPDBModel');
+  assert.match(opener, /buildLocalPDBModelFrameUrl\(model\)/);
+  assert.doesNotMatch(opener, /binderDataList\s*=/);
+  assert.doesNotMatch(opener, /renderViewerSection/);
+});
+
 test('knowledge base history is loaded from shared server APIs instead of browser localStorage', () => {
   const historyBlockStart = html.indexOf('CONVERSATION HISTORY');
   assert.ok(historyBlockStart >= 0, 'history block should exist');

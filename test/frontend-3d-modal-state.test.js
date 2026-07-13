@@ -185,3 +185,15 @@ test('3D modal title bar shows the current selection reason without covering con
   assert.match(openHistory3D, /titleEl\.innerHTML\s*=\s*'<div class="mol-modal-title-copy">/);
   assert.doesNotMatch(openMolModal, /quick_design|route|profile|API|大模型/);
 });
+
+test('automatic spin modal passes autoSpin into viewer without adding a title badge', () => {
+  const openMolModal = extractFunction(html, 'function openMolModal');
+  const openBinderSpinModal = extractFunction(html, 'function openBinderSpinModal');
+
+  assert.match(openMolModal, /options\s*=\s*options\s*\|\|\s*\{\}/);
+  assert.match(openMolModal, /autoSpin:\s*!!options\.autoSpin/);
+  assert.match(openMolModal, /buildMoleculeFrameUrl\('\/viewer-full\.html',\s*pdbId,\s*displayTitle,\s*undefined,\s*\{/);
+  assert.match(openBinderSpinModal, /openMolModal\(meta\.id,\s*meta\.candidateLabel\s*\|\|\s*meta\.name\s*\|\|\s*meta\.id,\s*\{\s*autoSpin:\s*true\s*\}\)/);
+  assert.doesNotMatch(openBinderSpinModal, /autoSpinBadge/);
+  assert.doesNotMatch(openBinderSpinModal, /titleMain\.appendChild\(badge\)/);
+});

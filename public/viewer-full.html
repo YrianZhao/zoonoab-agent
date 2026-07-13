@@ -17,11 +17,12 @@ html,body{width:100%;height:100%;overflow:hidden;background:#0D1117;font-family:
 .btn:hover{border-color:#FB923C;color:#FB923C;background:rgba(251,146,60,0.1)}
 .btn.active{background:#1D4ED8;color:#fff;border-color:#3B82F6;box-shadow:0 2px 8px rgba(59,130,246,.35)}
 .divider{width:1px;height:22px;background:rgba(255,255,255,0.1)}
-.actions{display:flex;gap:4px;margin-left:auto}
+.actions{display:flex;align-items:center;gap:4px;margin-left:auto}
 .act{padding:5px 12px;border-radius:7px;border:1.5px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.65);
   font-size:12px;font-weight:600;cursor:pointer;transition:all .15s}
 .act:hover{border-color:#2DD4BF;color:#2DD4BF;background:rgba(45,212,191,0.1)}
 .act.active{background:#EF4444;color:#fff;border-color:#EF4444}
+.vf-auto-spin-badge{display:inline-flex;align-items:center;height:30px;padding:0 14px;border-radius:8px;border:1px solid rgba(59,130,246,0.45);background:rgba(37,99,235,0.16);color:#60A5FA;font-size:12px;font-weight:800;letter-spacing:.12em;white-space:nowrap;box-shadow:0 0 0 1px rgba(59,130,246,0.08) inset}
 .vwrap{flex:1;position:relative;overflow:hidden}
 #vc{width:100%;height:100%;position:relative}
 canvas{width:100%!important;height:100%!important;display:block;outline:none}
@@ -50,6 +51,7 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
 (function(){
     var params = new URLSearchParams(location.search);
     var pdbUrl = params.get('pdb') || '';
+    var AUTO_SPIN = params.get('autoSpin') === '1' || params.get('autoSpin') === 'true';
 
     // ════ Colors ════
     function safeViewerColor(value, fallback) {
@@ -73,6 +75,16 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
         el.innerHTML =
             '<span class="vf-role-item"><span class="vf-role-swatch" style="background:' + escHtmlText(AG_COLOR) + '"></span><strong>抗原</strong></span>' +
             '<span class="vf-role-item"><span class="vf-role-swatch" style="background:' + escHtmlText(AB_COLOR) + '"></span><strong>抗体</strong></span>';
+    }
+    function renderAutoSpinBadge() {
+        if (!AUTO_SPIN) return;
+        var actions = document.getElementById('acts');
+        if (!actions || document.getElementById('vfAutoSpinBadge')) return;
+        var badge = document.createElement('span');
+        badge.id = 'vfAutoSpinBadge';
+        badge.className = 'vf-auto-spin-badge';
+        badge.textContent = 'AUTO SPIN';
+        actions.insertBefore(badge, actions.firstChild);
     }
     function parseChains(value, fallback) {
         var arr = String(value || '').split(',').map(function(s){ return s.trim(); }).filter(Boolean);
@@ -247,6 +259,7 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
         });
 
         // Action buttons
+        renderAutoSpinBadge();
         ['Spin','Reset','PNG'].forEach(function(n){
             var b=document.createElement('button');b.className='act';b.textContent=n;
             if(n==='Spin')b.id='spinB';
@@ -278,6 +291,7 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
             setTimeout(center,200);setTimeout(center,700);
             if(ldEl){ldEl.style.display='none';}
             _loaded=true;
+            if(AUTO_SPIN)setSpinState(true);
             window.parent.postMessage({source:'viewer-full',type:'ready',data:{}},'*');
         }).catch(function(err){
             console.error('[VF] fetch err:',err,'→ fallback');
@@ -291,6 +305,7 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
                         setTimeout(center,300);setTimeout(center,800);
                         if(ldEl){ldEl.style.display='none';}
                         _loaded=true;
+                        if(AUTO_SPIN)setSpinState(true);
                         window.parent.postMessage({source:'viewer-full',type:'ready',data:{}},'*');
                     } catch(innerErr) {
                         showLoadError(ldEl, innerErr);
@@ -433,9 +448,12 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
         p.querySelectorAll('.btn').forEach(function(b){b.classList.toggle('active',b.dataset.v===val);});
     }
 
-    function doSpin(){
-        isSpinning=!isSpinning;if(glv)glv.spin(isSpinning);
+    function setSpinState(next){
+        isSpinning=!!next;if(glv)glv.spin(isSpinning);
         var sb=document.getElementById('spinB');if(sb)sb.classList.toggle('active',isSpinning);
+    }
+    function doSpin(){
+        setSpinState(!isSpinning);
     }
     function doReset(){if(glv){glv.zoomTo();glv.render();}setTimeout(function(){if(glv){glv.zoomTo();glv.render();}},400);}
     function doPNG(){
@@ -454,9 +472,7 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
             case 'resetView':doReset();break;
             case 'toggleSpin':
             case 'setSpin':
-                isSpinning=d.data.spin!==false;
-                if(glv)glv.spin(isSpinning);
-                var sb=document.getElementById('spinB');if(sb)sb.classList.toggle('active',isSpinning);
+                setSpinState(d.data.spin!==false);
                 break;
             case 'exportImage':doPNG();break;
         }

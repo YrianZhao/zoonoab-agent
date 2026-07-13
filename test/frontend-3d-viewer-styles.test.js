@@ -119,3 +119,25 @@ test('embedded and full 3D viewers hide chains outside the selected antigen-anti
   assert.doesNotMatch(fullAntibodySelector, /\{not:\s*selectorForChains\(AG_CHAINS\)\}/);
   assert.match(fullAbAgColor, /glv\.setStyle\(\{not:\s*visibleSelector\(\)\},\s*\{\}\)/);
 });
+
+test('auto-spin badge is rendered in the full viewer action toolbar before Spin', () => {
+  assert.match(viewerFullHtml, /var\s+AUTO_SPIN\s*=/);
+  assert.match(viewerFullHtml, /\.vf-auto-spin-badge\s*{/);
+  assert.match(viewerFullHtml, /function\s+renderAutoSpinBadge\s*\(/);
+
+  const renderBadge = extractFunction(viewerFullHtml, 'function renderAutoSpinBadge()');
+  assert.match(renderBadge, /AUTO_SPIN/);
+  assert.match(renderBadge, /document\.getElementById\('acts'\)/);
+  assert.match(renderBadge, /textContent\s*=\s*'AUTO SPIN'/);
+  assert.match(renderBadge, /insertBefore\(badge,\s*actions\.firstChild\)/);
+
+  const initStart = viewerFullHtml.indexOf('// Action buttons');
+  assert.notEqual(initStart, -1, 'action button block should exist');
+  const initEnd = viewerFullHtml.indexOf('load(pdbUrl, ldEl)', initStart);
+  assert.notEqual(initEnd, -1, 'action button block should be bounded');
+  const initBlock = viewerFullHtml.slice(initStart, initEnd);
+  assert.ok(
+    initBlock.indexOf('renderAutoSpinBadge()') >= 0 && initBlock.indexOf('renderAutoSpinBadge()') < initBlock.indexOf("['Spin','Reset','PNG']"),
+    'AUTO SPIN badge should be inserted before the Spin button is appended'
+  );
+});

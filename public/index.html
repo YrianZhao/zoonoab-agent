@@ -2410,12 +2410,6 @@
             50% { opacity: 0; }
         }
 
-        /* ═══════════════ Auto-Spin badge keyframe ═══════════════ */
-        @keyframes spinPillPulse {
-            0%,100% { box-shadow: 0 0 0 0 rgba(0,123,255,0.4); }
-            50% { box-shadow: 0 0 0 6px rgba(0,123,255,0); }
-        }
-
         /* ═══════════════ Markdown Rendering ═══════════════ */
         .markdown-h1 { font-size: 20px; font-weight: 800; margin: 16px 0 8px; line-height: 1.25; color: var(--text-primary); }
         .markdown-h2 { font-size: 17px; font-weight: 700; margin: 18px 0 8px; line-height: 1.3; color: var(--text-primary); border-bottom: 1px solid var(--border-light); padding-bottom: 6px; }
@@ -4465,6 +4459,15 @@
         .kb-card-tags { display: flex; gap: 4px; flex-wrap: wrap; }
         .kb-card-tag { padding: 2px 7px; background: var(--brand-lighter); color: var(--brand-dark); border-radius: var(--radius-full); font-size: 10px; font-weight: 600; }
         .kb-card-ai-badge { padding: 2px 7px; background: linear-gradient(135deg, rgba(0,123,255,0.1), rgba(124,58,237,0.1)); color: var(--brand); border: 1px solid rgba(0,123,255,0.2); border-radius: var(--radius-full); font-size: 10px; font-weight: 700; }
+        .kb-local-pdb-card .kb-card-summary { -webkit-line-clamp: 3; }
+        .kb-local-pdb-metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+        .kb-local-pdb-metric { background: var(--bg-page); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 7px 8px; min-width: 0; }
+        .kb-local-pdb-metric span { display: block; font-size: 10px; font-weight: 700; color: var(--text-muted); margin-bottom: 2px; }
+        .kb-local-pdb-metric strong { display: block; font-size: 12px; line-height: 1.3; color: var(--text-primary); word-break: break-word; }
+        .kb-local-pdb-chains { display: flex; gap: 4px; flex-wrap: wrap; }
+        .kb-local-pdb-chain { padding: 2px 7px; border-radius: var(--radius-full); border: 1px solid var(--border); background: white; color: var(--text-secondary); font-size: 10px; font-weight: 700; }
+        .kb-local-pdb-chain.ag { border-color: rgba(8,145,178,0.24); background: rgba(8,145,178,0.08); color: #0E7490; }
+        .kb-local-pdb-chain.ab { border-color: rgba(251,113,133,0.26); background: rgba(251,113,133,0.08); color: #BE123C; }
         .kb-card-footer { display: flex; gap: 6px; padding-top: 8px; border-top: 1px solid var(--border); }
         .kb-card-action { display: flex; align-items: center; gap: 4px; padding: 5px 10px; border: 1px solid var(--border); background: transparent; border-radius: var(--radius-md); font-size: 12px; color: var(--text-secondary); cursor: pointer; transition: var(--transition); }
         .kb-card-action:hover { border-color: var(--brand-light); color: var(--brand); background: var(--brand-lighter); }
@@ -5011,6 +5014,10 @@
                         <div class="kb-tree-item" data-project="common" onclick="kbSelectProject(this,'common')">
                             <span>📚</span> 公共资料库 <span class="kb-tree-count">2</span>
                         </div>
+                        <button class="kb-history-entry" id="kbLocalPDBEntry" type="button" onclick="openLocalPDBLibrary()">
+                            <span class="kb-history-entry-main"><i data-lucide="box" style="width:13px;height:13px;"></i> 本地分子模型结构</span>
+                            <span class="kb-history-count" id="kbLocalPDBCount">--</span>
+                        </button>
                         <button class="kb-history-entry" id="kbHistoryEntry" type="button" onclick="openHistoryPanel()">
                             <span class="kb-history-entry-main"><i data-lucide="history" style="width:13px;height:13px;"></i> 历史记录</span>
                             <span class="kb-history-count" id="kbHistoryCount">0</span>
@@ -5882,7 +5889,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146097';
+    const APP_BUILD_VERSION = '78146098';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
 
@@ -6353,11 +6360,32 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     let kbCurrentProject = 'all';
     let kbCurrentType = 'all';
     let kbSearchQuery = '';
+    let kbLocalPDBModels = [];
+    let kbLocalPDBLoaded = false;
+    let kbLocalPDBLoading = false;
+    let kbLocalPDBError = '';
+
+    function renderKBStats(count, noun, details) {
+        const stats = document.querySelector('#kbSection .kb-main-stats');
+        if (!stats) return;
+        const safeDetails = Array.isArray(details) ? details : [];
+        stats.innerHTML = '<span class="kb-stat-text">共 <strong id="kbResultCount" style="color:var(--text-primary);font-weight:700;">' + escHtml(String(count)) + '</strong> ' + escHtml(noun || '个文件') + '</span>' +
+            safeDetails.map(item => {
+                const label = item && item[0] ? item[0] : '';
+                const value = item && item[1] ? item[1] : '';
+                return '<span class="kb-stat-text">· ' + escHtml(label) + ' <strong style="color:var(--text-secondary);font-weight:600;">' + escHtml(value) + '</strong></span>';
+            }).join('');
+    }
 
     function kbRender() {
         if (kbCurrentProject === 'history') {
             setKBHistoryMode(true);
             renderHistoryPanel(activeHistorySelectedId);
+            return;
+        }
+        if (kbCurrentProject === 'local-pdb') {
+            setKBHistoryMode(false);
+            renderLocalPDBLibrary();
             return;
         }
         setKBHistoryMode(false);
@@ -6370,8 +6398,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             if (q) return f.name.toLowerCase().includes(q) || f.summary.toLowerCase().includes(q) || f.tags.some(t => t.toLowerCase().includes(q)) || f.projectName.toLowerCase().includes(q);
             return true;
         });
-        const countEl = document.getElementById('kbResultCount');
-        if (countEl) countEl.textContent = files.length;
+        renderKBStats(files.length, '个文件', [['AI 生成', '6 个'], ['总大小', '55.4 MB']]);
         const icons = { pdf:'📄', fasta:'🧬', csv:'📊', pdb:'🔬', img:'🖼️', doc:'📝' };
         if (files.length === 0) {
             grid.innerHTML = `<div class="kb-empty"><div class="kb-empty-icon">🔍</div><div style="font-size:15px;font-weight:600;color:var(--text-secondary);margin-bottom:6px;">未找到匹配文件</div><div style="font-size:13px;">尝试调整搜索词或筛选条件</div></div>`;
@@ -6407,6 +6434,182 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         refreshLucideIcons();
     }
 
+    function formatLocalPDBSize(bytes) {
+        const value = Number(bytes);
+        if (!Number.isFinite(value) || value <= 0) return '--';
+        if (value < 1024) return Math.round(value) + ' B';
+        if (value < 1024 * 1024) return (value / 1024).toFixed(1) + ' KB';
+        return (value / 1024 / 1024).toFixed(1) + ' MB';
+    }
+
+    function formatLocalPDBTime(value) {
+        const date = new Date(value || 0);
+        if (Number.isNaN(date.getTime())) return '--';
+        return date.toLocaleString('zh-CN', { month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit' });
+    }
+
+    function updateLocalPDBCount() {
+        const countEl = document.getElementById('kbLocalPDBCount');
+        if (countEl) countEl.textContent = kbLocalPDBLoaded ? kbLocalPDBModels.length : (kbLocalPDBLoading ? '...' : '--');
+    }
+
+    async function loadLocalPDBModels() {
+        if (kbLocalPDBLoading) return;
+        kbLocalPDBLoading = true;
+        kbLocalPDBError = '';
+        updateLocalPDBCount();
+        try {
+            const resp = await fetch('/api/pdb/local-models');
+            if (!resp.ok) throw new Error('HTTP ' + resp.status);
+            const data = await resp.json();
+            kbLocalPDBModels = Array.isArray(data.models) ? data.models : [];
+            kbLocalPDBLoaded = true;
+        } catch (err) {
+            kbLocalPDBError = '暂时无法读取本地分子模型结构。';
+            kbLocalPDBModels = [];
+        } finally {
+            kbLocalPDBLoading = false;
+            updateLocalPDBCount();
+            if (kbCurrentProject === 'local-pdb') renderLocalPDBLibrary();
+        }
+    }
+
+    function localPDBChainsHtml(model) {
+        const antigenChains = Array.isArray(model.antigenChains) && model.antigenChains.length ? model.antigenChains : [];
+        const antibodyChains = Array.isArray(model.antibodyChains) && model.antibodyChains.length ? model.antibodyChains : [];
+        const items = [];
+        if (antigenChains.length) items.push('<span class="kb-local-pdb-chain ag">Ag ' + escHtml(antigenChains.join(',')) + '</span>');
+        if (antibodyChains.length) items.push('<span class="kb-local-pdb-chain ab">Ab ' + escHtml(antibodyChains.join(',')) + '</span>');
+        if (!items.length) items.push('<span class="kb-local-pdb-chain">链集合待确认</span>');
+        return items.join('');
+    }
+
+    function buildLocalPDBModelFrameUrl(model) {
+        model = model || {};
+        const filename = String(model.filename || '').replace(/\.pdb$/i, '') + '.pdb';
+        const antigenChains = Array.isArray(model.antigenChains) && model.antigenChains.length ? model.antigenChains : ['A'];
+        const antibodyChains = Array.isArray(model.antibodyChains) && model.antibodyChains.length ? model.antibodyChains : ['B'];
+        let url = '/viewer-full.html?pdb=' + encodeURIComponent('/api/pdb/local/' + encodeURIComponent(filename));
+        url += '&chainA=' + encodeURIComponent('#0891B2');
+        url += '&chainB=' + encodeURIComponent('#FB7185');
+        url += '&antigenChains=' + encodeURIComponent(antigenChains.join(','));
+        url += '&antibodyChains=' + encodeURIComponent(antibodyChains.join(','));
+        url += '&antigenLabel=' + encodeURIComponent('抗原');
+        url += '&antibodyLabel=' + encodeURIComponent('抗体');
+        url += '&poseSeed=' + encodeURIComponent(String(stableViewerPoseSeed(filename)));
+        url += '&title=' + encodeURIComponent(model.name || filename);
+        return url;
+    }
+
+    function renderLocalPDBLibrary() {
+        const grid = document.getElementById('kbDocsGrid');
+        if (!grid) return;
+        if (!kbLocalPDBLoaded && !kbLocalPDBLoading) loadLocalPDBModels();
+        updateLocalPDBCount();
+        const q = kbSearchQuery.toLowerCase();
+        const models = kbLocalPDBModels.filter(model => {
+            if (kbCurrentType !== 'all' && kbCurrentType !== 'pdb') return false;
+            const haystack = [
+                model.name || '',
+                model.filename || '',
+                Array.isArray(model.antigenChains) ? model.antigenChains.join(',') : '',
+                Array.isArray(model.antibodyChains) ? model.antibodyChains.join(',') : ''
+            ].join(' ').toLowerCase();
+            return !q || haystack.includes(q);
+        });
+        const totalBytes = models.reduce((sum, model) => sum + (Number(model.sizeBytes) || 0), 0);
+        renderKBStats(models.length, '个结构', [['本地结构', kbLocalPDBModels.length + ' 个'], ['总大小', formatLocalPDBSize(totalBytes)]]);
+        if (kbLocalPDBLoading && !kbLocalPDBLoaded) {
+            grid.innerHTML = '<div class="kb-empty"><div class="kb-empty-icon">🔬</div><div style="font-size:15px;font-weight:600;color:var(--text-secondary);margin-bottom:6px;">正在读取本地分子模型结构</div><div style="font-size:13px;">请稍候，结构库会自动加载。</div></div>';
+            return;
+        }
+        if (kbLocalPDBError) {
+            grid.innerHTML = '<div class="kb-empty"><div class="kb-empty-icon">⚠️</div><div style="font-size:15px;font-weight:600;color:var(--text-secondary);margin-bottom:6px;">读取失败</div><div style="font-size:13px;">' + escHtml(kbLocalPDBError) + '</div></div>';
+            return;
+        }
+        if (!models.length) {
+            grid.innerHTML = '<div class="kb-empty"><div class="kb-empty-icon">🔍</div><div style="font-size:15px;font-weight:600;color:var(--text-secondary);margin-bottom:6px;">未找到匹配结构</div><div style="font-size:13px;">尝试调整搜索词或切回 PDB/全部筛选。</div></div>';
+            return;
+        }
+        grid.innerHTML = models.map(model => `
+            <div class="kb-card kb-local-pdb-card">
+                <div class="kb-card-header">
+                    <div class="kb-card-icon type-pdb">🔬</div>
+                    <div class="kb-card-body">
+                        <div class="kb-card-name">${escHtml(model.name || model.filename || '本地结构')}</div>
+                        <div class="kb-card-meta">${escHtml(model.filename || '')}</div>
+                        <div class="kb-card-summary">本地 PDB 结构预设，可直接打开 3D viewer 检查抗原、抗体链集合与显示构象。</div>
+                    </div>
+                </div>
+                <div class="kb-local-pdb-metrics">
+                    <div class="kb-local-pdb-metric"><span>文件大小</span><strong>${escHtml(formatLocalPDBSize(model.sizeBytes))}</strong></div>
+                    <div class="kb-local-pdb-metric"><span>更新时间</span><strong>${escHtml(formatLocalPDBTime(model.updatedAt))}</strong></div>
+                </div>
+                <div class="kb-local-pdb-chains">${localPDBChainsHtml(model)}</div>
+                <div class="kb-card-tags">
+                    <span class="kb-card-tag">PDB</span>
+                    <span class="kb-card-tag">本地结构</span>
+                </div>
+                <div class="kb-card-footer" onclick="event.stopPropagation()">
+                    <button class="kb-card-action primary" onclick="openLocalPDBModel('${escJsString(model.filename || '')}')">
+                        <i data-lucide="box" style="width:12px;height:12px;"></i> 查看结构
+                    </button>
+                </div>
+            </div>
+        `).join('');
+        refreshLucideIcons();
+    }
+
+    function openLocalPDBLibrary() {
+        const kbSection = document.getElementById('kbSection');
+        if (kbSection && kbSection.style.display === 'none') switchView('kb');
+        kbCurrentProject = 'local-pdb';
+        document.querySelectorAll('.kb-tree-item').forEach(b => b.classList.remove('active'));
+        setKBHistoryMode(false);
+        const entry = document.getElementById('kbLocalPDBEntry');
+        if (entry) entry.classList.add('active');
+        renderLocalPDBLibrary();
+    }
+
+    function openLocalPDBModel(filename) {
+        const model = kbLocalPDBModels.find(item => item && item.filename === filename);
+        if (!model) {
+            showToast('未找到本地结构', 'error');
+            return;
+        }
+        const overlay = document.getElementById('molModalOverlay');
+        const titleEl = document.getElementById('molModalTitle');
+        const bodyEl = document.getElementById('molModalBody');
+        if (!overlay || !bodyEl) return;
+        const displayTitle = model.name || model.filename || '本地分子模型结构';
+        const subtitleParts = [
+            model.filename || '',
+            Array.isArray(model.antigenChains) && model.antigenChains.length ? 'Ag ' + model.antigenChains.join(',') : '',
+            Array.isArray(model.antibodyChains) && model.antibodyChains.length ? 'Ab ' + model.antibodyChains.join(',') : ''
+        ].filter(Boolean);
+        modalPdbId = model.filename;
+        if (titleEl) {
+            titleEl.innerHTML = '<div class="mol-modal-title-copy"><div class="mol-modal-title-main"><i data-lucide="box" style="width:18px;height:18px;color:#6B5BFF;"></i><span>' + escHtml(displayTitle) + '</span></div>' +
+                (subtitleParts.length ? '<div class="mol-modal-subtitle">' + escHtml(subtitleParts.join(' · ')) + '</div>' : '') + '</div>';
+        }
+        bodyEl.innerHTML = '';
+        modalIframe = document.createElement('iframe');
+        modalIframe.src = buildLocalPDBModelFrameUrl(model);
+        modalIframe.style.cssText = 'width:100%;height:100%;border:none;display:block;';
+        bodyEl.appendChild(modalIframe);
+        clearTimeout(molCloseTimer);
+        molCloseTimer = null;
+        overlay.style.display = 'flex';
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                overlay.classList.add('open');
+            });
+        });
+        molModalOpen = true;
+        document.body.style.overflow = 'hidden';
+        refreshLucideIcons({ nodes: [titleEl] });
+    }
+
     function kbSelectProject(el, project) {
         kbCurrentProject = project;
         if (project === 'history') {
@@ -6415,6 +6618,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         }
         setKBHistoryMode(false);
         document.querySelectorAll('.kb-tree-item').forEach(b => b.classList.remove('active'));
+        const localEntry = document.getElementById('kbLocalPDBEntry');
+        if (localEntry) localEntry.classList.remove('active');
         el.classList.add('active');
         kbRender();
     }
@@ -8162,11 +8367,13 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const topbar = document.querySelector('#kbSection .kb-main-topbar');
         const stats = document.querySelector('#kbSection .kb-main-stats');
         const entry = document.getElementById('kbHistoryEntry');
+        const localEntry = document.getElementById('kbLocalPDBEntry');
         if (panel) panel.style.display = active ? 'flex' : 'none';
         if (docsArea) docsArea.style.display = active ? 'none' : 'block';
         if (topbar) topbar.style.display = active ? 'none' : 'flex';
         if (stats) stats.style.display = active ? 'none' : 'flex';
         if (entry) entry.classList.toggle('active', active);
+        if (localEntry) localEntry.classList.toggle('active', kbCurrentProject === 'local-pdb');
     }
 
     function openHistoryPanel(recordId) {
@@ -14256,6 +14463,7 @@ ${fallbackTableRows(profile.rows)}
     }
 
     function buildMoleculeFrameUrl(basePath, pdbId, title, candidateIndex) {
+        const options = arguments[4] || {};
         const meta = getBinderMetaById(pdbId) || {};
         const colors = getBinderVisualColors(meta);
         const antigenChains = Array.isArray(meta.antigenChains) && meta.antigenChains.length ? meta.antigenChains : ['A'];
@@ -14280,6 +14488,7 @@ ${fallbackTableRows(profile.rows)}
         url += '&antigenLabel=' + encodeURIComponent(legend.antigen.role);
         url += '&antibodyLabel=' + encodeURIComponent(legend.antibody.role);
         url += '&poseSeed=' + encodeURIComponent(String(viewerPoseSeed));
+        if (options.autoSpin) url += '&autoSpin=1';
         if (title) url += '&title=' + encodeURIComponent(title);
         return url;
     }
@@ -17764,7 +17973,8 @@ QVQLVESGGGLVQPGGSLRLSCAASGYIFSSNAMGWYRQAPGKQRELVAAISSGGSTYYADSVKGRFTISRDNAKTTLYL
     let modalPdbId = null;
     let modalIframe = null;
 
-    function openMolModal(pdbId, name) {
+    function openMolModal(pdbId, name, options) {
+        options = options || {};
         const overlay = document.getElementById('molModalOverlay');
         const titleEl = document.getElementById('molModalTitle');
         const bodyEl = document.getElementById('molModalBody');
@@ -17789,7 +17999,7 @@ QVQLVESGGGLVQPGGSLRLSCAASGYIFSSNAMGWYRQAPGKQRELVAAISSGGSTYYADSVKGRFTISRDNAKTTLYL
         }
 
         // Build viewer-full URL
-        const vfUrl = buildMoleculeFrameUrl('/viewer-full.html', pdbId, displayTitle);
+        const vfUrl = buildMoleculeFrameUrl('/viewer-full.html', pdbId, displayTitle, undefined, { autoSpin: !!options.autoSpin });
 
         if (bodyEl) {
             bodyEl.innerHTML = '';
@@ -17818,8 +18028,6 @@ QVQLVESGGGLVQPGGSLRLSCAASGYIFSSNAMGWYRQAPGKQRELVAAISSGGSTYYADSVKGRFTISRDNAKTTLYL
     function closeMolModal() {
         const overlay = document.getElementById('molModalOverlay');
         const bodyEl = document.getElementById('molModalBody');
-        const badge = document.getElementById('autoSpinBadge');
-        if (badge) badge.remove();
         if (overlay) overlay.classList.remove('open');
         clearTimeout(molCloseTimer);
         molCloseTimer = setTimeout(() => {
@@ -17846,20 +18054,7 @@ QVQLVESGGGLVQPGGSLRLSCAASGYIFSSNAMGWYRQAPGKQRELVAAISSGGSTYYADSVKGRFTISRDNAKTTLYL
         molCloseTimer = null;
 
         // Open modal
-        openMolModal(meta.id, meta.candidateLabel || meta.name || meta.id);
-
-        // Add persistent spin badge
-        setTimeout(() => {
-            const titleEl = document.getElementById('molModalTitle');
-            if (titleEl && !document.getElementById('autoSpinBadge')) {
-                const titleMain = titleEl.querySelector('.mol-modal-title-main') || titleEl;
-                const badge = document.createElement('span');
-                badge.id = 'autoSpinBadge';
-                badge.style.cssText = 'margin-left:12px;font-size:11px;font-weight:700;padding:3px 11px;border-radius:999px;background:rgba(0,123,255,0.15);color:var(--brand);border:1px solid rgba(0,123,255,0.35);letter-spacing:0.3px;vertical-align:middle;';
-                badge.textContent = 'AUTO SPIN';
-                titleMain.appendChild(badge);
-            }
-        }, 80);
+        openMolModal(meta.id, meta.candidateLabel || meta.name || meta.id, { autoSpin: true });
 
         // Click the Spin button once the iframe finishes loading
         // Use a single onload listener — no polling, no postMessage flooding
@@ -17902,8 +18097,6 @@ QVQLVESGGGLVQPGGSLRLSCAASGYIFSSNAMGWYRQAPGKQRELVAAISSGGSTYYADSVKGRFTISRDNAKTTLYL
     function closeBinderSpinModal() {
         if (binderSpinTimer) { clearTimeout(binderSpinTimer); binderSpinTimer = null; }
         if (binderSpinCountInterval) { clearInterval(binderSpinCountInterval); binderSpinCountInterval = null; }
-        const badge = document.getElementById('autoSpinBadge');
-        if (badge) badge.remove();
         closeMolModal();
     }
 
