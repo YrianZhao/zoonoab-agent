@@ -4156,6 +4156,27 @@
             display: flex; align-items: center; justify-content: center;
             font-size: 10px; font-weight: 700; color: white; flex-shrink: 0;
         }
+        .dr-zhao-toggle {
+            width: 100%; border: 0; background: transparent; text-align: left;
+        }
+        .dr-zhao-toggle.enabled {
+            background: rgba(37,99,235,0.08);
+            color: var(--brand-dark);
+        }
+        .dr-zhao-switch {
+            margin-left: auto; width: 32px; height: 18px; border-radius: 999px;
+            background: var(--gray-200); border: 1px solid var(--border);
+            position: relative; transition: var(--transition); flex-shrink: 0;
+        }
+        .dr-zhao-switch::after {
+            content: ''; position: absolute; top: 2px; left: 2px;
+            width: 12px; height: 12px; border-radius: 50%;
+            background: white; box-shadow: var(--shadow-xs); transition: var(--transition);
+        }
+        .dr-zhao-toggle.enabled .dr-zhao-switch {
+            background: var(--brand); border-color: var(--brand);
+        }
+        .dr-zhao-toggle.enabled .dr-zhao-switch::after { transform: translateX(14px); }
         .team-main { flex: 1; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; display: flex; flex-direction: column; }
         .team-main-header { padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
         .team-main-title { font-size: 15px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
@@ -4841,6 +4862,13 @@
                             <div class="team-member-avatar" style="background:#F59E0B;">李</div>
                             <span>李博士</span>
                         </div>
+                    </div>
+                    <div class="team-sidebar-section">
+                        <button type="button" class="team-member-item dr-zhao-toggle" id="drZhaoWorkflowToggle" onclick="toggleDrZhaoWorkflow()" aria-pressed="false">
+                            <div class="team-member-avatar" style="background:#0F766E;">赵</div>
+                            <span>赵博士</span>
+                            <span class="dr-zhao-switch" aria-hidden="true"></span>
+                        </button>
                     </div>
                 </div>
                 <!-- Main content -->
@@ -5979,9 +6007,40 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146102';
+    const APP_BUILD_VERSION = '78146103';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
+    let debugFastWorkflowEnabled = false;
+
+    function shouldUseDebugFastWorkflow() {
+        return debugFastWorkflowEnabled === true;
+    }
+
+    function renderDrZhaoWorkflowToggle() {
+        const btn = document.getElementById('drZhaoWorkflowToggle');
+        if (!btn) return;
+        btn.classList.toggle('enabled', shouldUseDebugFastWorkflow());
+        btn.setAttribute('aria-pressed', shouldUseDebugFastWorkflow() ? 'true' : 'false');
+    }
+
+    function toggleDrZhaoWorkflow() {
+        if (!debugFastWorkflowEnabled) {
+            const code = prompt('请输入赵博士验证口令');
+            if (code !== '123456') {
+                debugFastWorkflowEnabled = false;
+                renderDrZhaoWorkflowToggle();
+                if (code !== null) showToast('口令不正确', 'warning');
+                return;
+            }
+            debugFastWorkflowEnabled = true;
+            renderDrZhaoWorkflowToggle();
+            showToast('赵博士已开启', 'success');
+            return;
+        }
+        debugFastWorkflowEnabled = false;
+        renderDrZhaoWorkflowToggle();
+        showToast('赵博士已关闭', 'info');
+    }
 
     function clipClientDiagnosticText(value, maxLength = 900) {
         return String(value == null ? '' : value)
@@ -9570,7 +9629,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             }, 8000);
             appendLog('[Design] 正在启动分子设计流程...');
             try {
-                ws.send(JSON.stringify({ type: 'quick_design', text, routeId, clientRunId }));
+                ws.send(JSON.stringify({ type: 'quick_design', text, routeId, clientRunId, debugFastWorkflow: shouldUseDebugFastWorkflow() }));
             } catch (err) {
                 failQuickDesignRun('分子设计请求发送失败，请检查连接后重试。');
             }
@@ -9600,7 +9659,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 voiceSessionId: voiceSessionId || '',
                 voice: Boolean(options.voice),
                 voiceChatOnly: Boolean(options.voiceChatOnly),
-                clientRunId
+                clientRunId,
+                debugFastWorkflow: shouldUseDebugFastWorkflow()
             }));
         } else {
             runDemo(text, '', clientRunId);

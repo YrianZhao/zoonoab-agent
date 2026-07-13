@@ -58,6 +58,21 @@ test('frontend assigns a client run id before sending workflow messages', () => 
   assert.match(sendMessage, /type:\s*'user_msg'[\s\S]*clientRunId/);
 });
 
+test('debug fast workflow switch is gated and opt-in per workflow message', () => {
+  const toggleDrZhaoWorkflow = extractFunction(html, 'function toggleDrZhaoWorkflow');
+  const shouldUseDebugFastWorkflow = extractFunction(html, 'function shouldUseDebugFastWorkflow');
+  const sendQuickDesignWorkflow = extractFunction(html, 'function sendQuickDesignWorkflow');
+  const sendMessage = extractFunction(html, 'function sendMessage');
+
+  assert.match(html, /id="drZhaoWorkflowToggle"/);
+  assert.match(html, /let\s+debugFastWorkflowEnabled\s*=\s*false/);
+  assert.match(toggleDrZhaoWorkflow, /prompt\('请输入赵博士验证口令'\)/);
+  assert.match(toggleDrZhaoWorkflow, /code\s*!==\s*'123456'/);
+  assert.match(shouldUseDebugFastWorkflow, /debugFastWorkflowEnabled\s*===\s*true/);
+  assert.match(sendQuickDesignWorkflow, /debugFastWorkflow:\s*shouldUseDebugFastWorkflow\(\)/);
+  assert.match(sendMessage, /debugFastWorkflow:\s*shouldUseDebugFastWorkflow\(\)/);
+});
+
 test('frontend cancellation includes and retires the active client run id', () => {
   const cancelTask = extractFunction(html, 'function cancelTask');
 

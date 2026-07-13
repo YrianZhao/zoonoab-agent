@@ -7939,7 +7939,8 @@ function runSocketTask(ws, sid, msg, buildRunner) {
     ws.send(JSON.stringify({ type: 'error', text: '当前工作流正在运行，请等待完成后再发送新指令。', clientRunId: msg && msg.clientRunId || '' }));
     return;
   }
-  const runState = { id: uuidv4(), clientRunId: msg && msg.clientRunId || '', cancelled: false, skipThinkingNotified: false };
+  const debugFastWorkflow = Boolean(msg && msg.debugFastWorkflow);
+  const runState = { id: uuidv4(), clientRunId: msg && msg.clientRunId || '', cancelled: false, skipThinkingNotified: debugFastWorkflow };
   const scopedWs = {
     __baseSocket: ws,
     __runState: runState,
@@ -7964,8 +7965,8 @@ function runSocketTask(ws, sid, msg, buildRunner) {
     sess.busy = true;
     sess.cancelled = false;
     sess.skipThinking = false;
-    sess.skipThinkingNotified = false;
-    sess.fastForwardWorkflow = false;
+    sess.skipThinkingNotified = debugFastWorkflow;
+    sess.fastForwardWorkflow = debugFastWorkflow;
     sess.workflowStage = '';
     sess.fromVoice = Boolean(msg && msg.voice);
   }

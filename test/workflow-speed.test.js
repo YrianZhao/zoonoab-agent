@@ -35,3 +35,11 @@ test('workflow delays use a global scale so visible progress is faster by defaul
     'workflowDelay should not wait the original unscaled duration'
   );
 });
+
+test('debug fast workflow mode is isolated to explicitly flagged websocket runs', () => {
+  const runSocketTask = extractFunction(server, 'function runSocketTask');
+
+  assert.match(runSocketTask, /Boolean\(msg\s*&&\s*msg\.debugFastWorkflow\)/);
+  assert.match(runSocketTask, /sess\.fastForwardWorkflow\s*=\s*debugFastWorkflow/);
+  assert.match(runSocketTask, /sess\.skipThinking\s*=\s*false/);
+});
