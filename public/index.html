@@ -646,6 +646,16 @@
             color: var(--text-secondary); cursor: pointer; user-select: none;
         }
         .toggle-label:hover { color: var(--brand-dark); }
+        .default-model-count-hint {
+            display: inline-flex;
+            align-items: center;
+            min-height: 18px;
+            margin-right: 10px;
+            color: var(--text-secondary);
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
         .toggle-switch {
             appearance: none; width: 32px; height: 18px; background: var(--gray-300);
             border-radius: var(--radius-full); position: relative; cursor: pointer; outline: none;
@@ -4766,6 +4776,7 @@
                         <span>Attach file</span>
                     </button>
                     <div style="flex:1"></div>
+                    <span class="default-model-count-hint">默认生成十个分子模型</span>
                     <label class="toggle-label">
                         <input type="checkbox" class="toggle-switch" id="hideToolsToggle" onchange="toggleTools()">
                         <span data-i18n="Hide Tool Calls">Hide Tool Calls</span>
@@ -6036,7 +6047,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146105';
+    const APP_BUILD_VERSION = '78146106';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
     const SILICONFLOW_CHAT_FALLBACK_MODELS = ['Qwen/Qwen3-32B', 'Qwen/Qwen3-14B', 'Qwen/Qwen3-8B', 'deepseek-ai/DeepSeek-V3'];

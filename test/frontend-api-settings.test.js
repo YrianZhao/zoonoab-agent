@@ -120,3 +120,12 @@ test('top connection dot reflects chat provider health instead of websocket colo
   assert.match(refreshChatProviderHealth, /setChatConnectionIndicator\('checking'/);
   assert.doesNotMatch(connectWS, /wsStatus'\)\.style\.background/);
 });
+
+test('home input toolbar states the default ten molecule output', () => {
+  assert.match(html, /class="default-model-count-hint"/);
+  assert.match(html, /默认生成十个分子模型/);
+
+  const hintIndex = html.indexOf('默认生成十个分子模型');
+  const toggleIndex = html.indexOf('id="hideToolsToggle"');
+  assert.ok(hintIndex >= 0 && toggleIndex >= 0 && hintIndex < toggleIndex, 'default model count hint should appear before Hide Tool Calls');
+});
