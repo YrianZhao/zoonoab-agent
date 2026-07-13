@@ -58,6 +58,26 @@ test('understands shorthand monoclonal antibody sequence requests', () => {
   assert.equal(parsed.abType, 'mAb');
 });
 
+test('keeps monoclonal antibody synonyms stable for biological material targets', () => {
+  for (const text of ['设计叶绿体单抗', '设计叶绿体单克隆抗体']) {
+    const parsed = extractDesignRequest(text);
+
+    assert.equal(parsed.isDesignRequest, true, text);
+    assert.equal(parsed.target, '叶绿体', text);
+    assert.equal(parsed.count, 10, text);
+    assert.equal(parsed.abType, 'mAb', text);
+  }
+});
+
+test('keeps small molecule antibody wording available for model-first judgement', () => {
+  for (const text of ['设计氯胺酮抗体', '设计 10 个特异性结合的噻吩嗪的单克隆抗体']) {
+    const parsed = extractDesignRequest(text);
+
+    assert.equal(parsed.isDesignRequest, true, text);
+    assert.equal(parsed.count, 10, text);
+  }
+});
+
 test('keeps influenza HA subtype names academic for display', () => {
   const parsed = extractDesignRequest('设计一个针对流感 H7 的中和抗体');
 

@@ -634,9 +634,53 @@ test('drug-name requests are routed through the model so it can infer antibody d
 
     assert.equal(captured.length, 1);
     assert.match(captured[0].messages[0].content, /药物名|药物类别|作用靶点|适应症|反推/);
+    assert.match(captured[0].messages[0].content, /小分子\/半抗原|不要把.*小分子.*硬转成蛋白靶点/);
     assert.ok(evidenceCall, 'drug-name wording should still enter workflow when the model resolves it');
     assert.equal(evidenceCall.params.target, 'EGFR');
     assert.match(agentTexts[0], /奥希替尼|非小细胞肺癌|EGFR|胞外结构域/);
+  } finally {
+    await new Promise(resolve => mockServer.close(resolve));
+  }
+});
+
+test('small molecule antibody requests rely on the model to answer the platform boundary', async () => {
+  const captured = [];
+  const mockServer = http.createServer((req, res) => {
+    let body = '';
+    req.setEncoding('utf8');
+    req.on('data', chunk => { body += chunk; });
+    req.on('end', () => {
+      captured.push(JSON.parse(body || '{}'));
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify({
+        choices: [{
+          message: {
+            content: JSON.stringify({
+              i: 'chat',
+              start: false,
+              answer: '当前 ZoonoAb 面向大分子抗原、蛋白靶点、受体、细胞因子和病毒表面抗原的抗体设计展示，不直接生成针对噻吩嗪这类小分子/半抗原的抗体候选。'
+            })
+          }
+        }]
+      }));
+    });
+  });
+
+  const mockPort = await listenOnLocalhost(mockServer);
+  try {
+    const saved = await saveMockChatConfig(mockPort, 'mock-small-molecule-boundary');
+    const messages = await collectUserMessageStream('设计 10 个特异性结合的噻吩嗪的单克隆抗体', {
+      timeoutMs: 12000,
+      voiceSessionId: saved.voiceSessionId,
+      stopWhen: msg => msg.type === 'done'
+    });
+    const agentTexts = messages.filter(msg => msg.type === 'agent_msg').map(msg => msg.text || '');
+    const serialized = JSON.stringify(messages);
+
+    assert.equal(captured.length, 1);
+    assert.match(captured[0].messages[0].content, /小分子\/半抗原|不要把.*小分子.*硬转成蛋白靶点/);
+    assert.match(agentTexts[0] || '', /噻吩嗪|小分子|大分子|不直接生成/);
+    assert.doesNotMatch(serialized, /target_evidence_review|正在启动抗体设计工作流/);
   } finally {
     await new Promise(resolve => mockServer.close(resolve));
   }
