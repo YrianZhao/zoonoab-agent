@@ -136,7 +136,7 @@ test('history API upserts records and can clear the shared server history', asyn
 
   const saved = await readHistory();
   assert.equal(saved.history.length, 1);
-  assert.equal(saved.history[0].title, '更新后的标题');
+  assert.equal(saved.history[0].title, record.input);
   assert.equal(saved.history[0].status, 'completed');
 
   const clearRes = await fetch('http://127.0.0.1:' + PORT + '/api/history', { method: 'DELETE' });

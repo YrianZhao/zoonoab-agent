@@ -80,6 +80,9 @@ const HISTORY_MAX_RECORDS = Math.max(50, Number(process.env.HISTORY_MAX_RECORDS 
 const HISTORY_TEXT_MAX = Math.max(20_000, Number(process.env.HISTORY_TEXT_MAX || 200_000) || 200_000);
 const HISTORY_JSON_TEXT_MAX = Math.max(8_000, Number(process.env.HISTORY_JSON_TEXT_MAX || 80_000) || 80_000);
 const HISTORY_ARRAY_MAX = Math.max(50, Number(process.env.HISTORY_ARRAY_MAX || 1000) || 1000);
+const QUESTION_TEST_SET_FILE = resolveProjectPath(process.env.QUESTION_TEST_SET_FILE || resolveDefaultQuestionTestSetFile());
+const QUESTION_TEST_SET_MAX_ITEMS = Math.max(100, Number(process.env.QUESTION_TEST_SET_MAX_ITEMS || 5000) || 5000);
+const QUESTION_TEST_SET_TEXT_MAX = Math.max(1000, Number(process.env.QUESTION_TEST_SET_TEXT_MAX || 4000) || 4000);
 const JSON_BODY_LIMIT = process.env.JSON_BODY_LIMIT || process.env.HISTORY_REQUEST_LIMIT || '8mb';
 const WORKFLOW_INTENT_TIMEOUT_MS = Math.max(8000, Number(process.env.WORKFLOW_INTENT_TIMEOUT_MS || 30000) || 30000);
 const TARGET_RESOLVER_TIMEOUT_MS = Math.max(5000, Number(process.env.TARGET_RESOLVER_TIMEOUT_MS || 45000) || 45000);
@@ -207,6 +210,20 @@ function resolveDefaultHistoryStoreFile() {
     return path.join(persistentDir, 'history-records.json');
   } catch (err) {
     console.warn('[History] Persistent history directory unavailable, falling back to project runtime:', err && err.message ? err.message : err);
+    return projectRuntimeFile;
+  }
+}
+
+function resolveDefaultQuestionTestSetFile() {
+  const projectRuntimeFile = path.join(__dirname, '.runtime', 'user-question-test-set.json');
+  if (process.platform !== 'linux' && !IS_RENDER_RUNTIME) return projectRuntimeFile;
+  const persistentDir = path.join(RENDER_DATA_DIR || '/var/data', 'zoonoab');
+  try {
+    fs.mkdirSync(persistentDir, { recursive: true, mode: 0o700 });
+    fs.accessSync(persistentDir, fs.constants.W_OK);
+    return path.join(persistentDir, 'user-question-test-set.json');
+  } catch (err) {
+    console.warn('[QuestionSet] Persistent question-set directory unavailable, falling back to project runtime:', err && err.message ? err.message : err);
     return projectRuntimeFile;
   }
 }
@@ -733,6 +750,11 @@ function normalizeHistoryArray(value, max = HISTORY_ARRAY_MAX, itemMaxText = HIS
   return value.slice(0, max).map(item => cloneHistoryValue(item, itemMaxText)).filter(item => item !== undefined);
 }
 
+function serverHistoryTitleFromInput(input, fallback) {
+  const primary = input !== undefined && input !== null && String(input).trim() ? input : fallback;
+  return truncateHistoryText(primary || '未命名设计记录', 120);
+}
+
 function normalizeServerHistoryRecord(entry, idx = 0) {
   const source = entry && typeof entry === 'object' && !Array.isArray(entry) ? entry : {};
   const now = Date.now();
@@ -744,11 +766,12 @@ function normalizeServerHistoryRecord(entry, idx = 0) {
     ? source.status
     : 'completed';
   const firstUser = messages.find(item => item && item.role === 'user');
+  const input = truncateHistoryText(source.input || (firstUser && firstUser.text) || '');
   return {
     id: normalizeHistoryId(source.id, ts || idx),
     schemaVersion: Number(source.schemaVersion) || 2,
-    title: truncateHistoryText(source.title || source.label || source.input || '未命名设计记录', 120),
-    input: truncateHistoryText(source.input || (firstUser && firstUser.text) || ''),
+    title: serverHistoryTitleFromInput(input, source.title || source.label),
+    input,
     status,
     statusDetail: truncateHistoryText(source.statusDetail || source.detail || source.error || '', 1000),
     error: truncateHistoryText(source.error || '', 1000),
@@ -824,6 +847,58 @@ function upsertHistoryRecord(entry) {
     record: saved.find(item => item.id === record.id) || record,
     history: saved
   };
+}
+
+function normalizeQuestionTestSetItem(value) {
+  const text = value === undefined || value === null ? '' : String(value).trim();
+  if (!text) return '';
+  return truncateHistoryText(text, QUESTION_TEST_SET_TEXT_MAX);
+}
+
+function normalizeQuestionTestSetArray(value) {
+  const source = Array.isArray(value)
+    ? value
+    : (value && Array.isArray(value.questions) ? value.questions : []);
+  const normalized = [];
+  for (const item of source) {
+    const text = typeof item === 'string'
+      ? normalizeQuestionTestSetItem(item)
+      : normalizeQuestionTestSetItem(item && (item.question || item.input || item.text));
+    if (text) normalized.push(text);
+  }
+  if (normalized.length > QUESTION_TEST_SET_MAX_ITEMS) {
+    return normalized.slice(normalized.length - QUESTION_TEST_SET_MAX_ITEMS);
+  }
+  return normalized;
+}
+
+function readQuestionTestSet() {
+  try {
+    if (!fs.existsSync(QUESTION_TEST_SET_FILE)) return [];
+    const parsed = JSON.parse(fs.readFileSync(QUESTION_TEST_SET_FILE, 'utf8') || '[]');
+    return normalizeQuestionTestSetArray(parsed);
+  } catch (err) {
+    console.error('[QuestionSet] Failed to read question test set:', err && err.message ? err.message : err);
+    return [];
+  }
+}
+
+function writeQuestionTestSet(questions) {
+  const normalized = normalizeQuestionTestSetArray(questions);
+  fs.mkdirSync(path.dirname(QUESTION_TEST_SET_FILE), { recursive: true, mode: 0o700 });
+  const tempFile = QUESTION_TEST_SET_FILE + '.' + process.pid + '.' + Date.now() + '.tmp';
+  fs.writeFileSync(tempFile, JSON.stringify(normalized, null, 2), { mode: 0o600 });
+  fs.renameSync(tempFile, QUESTION_TEST_SET_FILE);
+  try { fs.chmodSync(QUESTION_TEST_SET_FILE, 0o600); } catch {}
+  return normalized;
+}
+
+function appendQuestionTestSet(question) {
+  const text = normalizeQuestionTestSetItem(question);
+  if (!text) return readQuestionTestSet();
+  const questions = readQuestionTestSet();
+  questions.push(text);
+  return writeQuestionTestSet(questions);
 }
 
 function audioFilenameForType(contentType) {
@@ -2679,6 +2754,44 @@ app.delete('/api/history', (req, res) => {
   }
 });
 
+app.get('/api/question-test-set', (req, res) => {
+  const questions = readQuestionTestSet();
+  res.json({
+    ok: true,
+    count: questions.length,
+    questions
+  });
+});
+
+app.post('/api/question-test-set', (req, res) => {
+  const body = req.body && typeof req.body === 'object' && !Array.isArray(req.body) ? req.body : {};
+  const question = normalizeQuestionTestSetItem(body.question !== undefined ? body.question : body.input);
+  if (!question) {
+    return res.status(400).json({ ok: false, error: '用户问题不能为空。' });
+  }
+  try {
+    const questions = appendQuestionTestSet(question);
+    res.json({
+      ok: true,
+      count: questions.length,
+      questions
+    });
+  } catch (err) {
+    console.error('[QuestionSet] Failed to save question:', err && err.message ? err.message : err);
+    res.status(500).json({ ok: false, error: '用户问题测试集保存失败。' });
+  }
+});
+
+app.delete('/api/question-test-set', (req, res) => {
+  try {
+    const questions = writeQuestionTestSet([]);
+    res.json({ ok: true, count: questions.length, questions });
+  } catch (err) {
+    console.error('[QuestionSet] Failed to clear question test set:', err && err.message ? err.message : err);
+    res.status(500).json({ ok: false, error: '用户问题测试集清除失败。' });
+  }
+});
+
 let workflowDisplaySerial = 0;
 
 function normalizeInfluenzaHaSubtypeDisplay(input) {
@@ -4027,16 +4140,83 @@ function readLocalPDBRemarks(filename) {
   if (filePath) {
     try {
       const text = fs.readFileSync(filePath, 'utf8');
+      const remarkValue = (remarkNo, label) => {
+        const safeLabel = String(label || '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const match = text.match(new RegExp('REMARK\\s+' + remarkNo + '\\s+' + safeLabel + '\\s*:\\s*(.*)', 'i'));
+        return match ? match[1].trim() : '';
+      };
       const remarkChains = (remarkNo) => {
         const match = text.match(new RegExp('REMARK\\s+' + remarkNo + '\\s+[^:]+:\\s*(.*)'));
         return match ? match[1].split(',').map(item => item.trim()).filter(Boolean) : [];
       };
+      result.target = remarkValue(901, 'TARGET') || remarkValue(921, 'DISPLAY LABEL') || remarkValue(924, 'ANTIGEN');
+      result.format = remarkValue(902, 'FORMAT');
+      result.structuralBasis = remarkValue(903, 'STRUCTURAL BASIS') || remarkValue(920, 'SOURCE PDB');
+      result.virusGroup = remarkValue(922, 'VIRUS GROUP');
+      result.antigenLabel = remarkValue(924, 'ANTIGEN');
       result.antigen = remarkChains(904);
       result.antibody = remarkChains(905);
     } catch {}
   }
   localPDBRemarkCache.set(safeName, result);
   return result;
+}
+
+function localPDBPresetForFilename(filename) {
+  const safeName = String(filename || '').trim();
+  if (!safeName) return null;
+  for (const preset of Object.values(ROUTE_3D_PRESETS)) {
+    if (!preset || !preset.aliasPrefix) continue;
+    const safePrefix = preset.aliasPrefix.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    if (new RegExp('^' + safePrefix + '-\\d+\\.pdb$', 'i').test(safeName)) return preset;
+  }
+  return null;
+}
+
+function inferLocalPDBTargetFromFilename(filename, remarks) {
+  const safeName = String(filename || '');
+  if (remarks && remarks.target) return remarks.target;
+  if (/^4KC3_/i.test(safeName)) return 'PD-L1';
+  if (/IL33/i.test(safeName)) return 'IL-33';
+  if (/PDL1/i.test(safeName)) return 'PD-L1';
+  if (/PD1/i.test(safeName)) return 'PD-1';
+  if (/HER2/i.test(safeName)) return 'HER2';
+  if (/VEGFA/i.test(safeName)) return 'VEGF-A';
+  if (/TNF/i.test(safeName)) return 'TNF';
+  if (/FLU-HA|FluHA/i.test(safeName)) return 'Influenza HA';
+  if (/SC2|SARS|RBD/i.test(safeName)) return 'SARS-CoV-2 RBD';
+  if (/RSVF/i.test(safeName)) return 'RSV F';
+  return '';
+}
+
+function inferLocalPDBFormatFromFilename(filename, remarks) {
+  const safeName = String(filename || '');
+  if (remarks && remarks.format) return remarks.format;
+  if (/VHH/i.test(safeName)) return 'VHH';
+  if (/Fab/i.test(safeName)) return 'Fab';
+  if (/binder|4KC3/i.test(safeName)) return 'Binder';
+  return '';
+}
+
+function buildLocalPDBDisplayMetadata(filename, remarks) {
+  const preset = localPDBPresetForFilename(filename);
+  const targetDisplay = inferLocalPDBTargetFromFilename(filename, remarks);
+  const antibodyFormat = inferLocalPDBFormatFromFilename(filename, remarks);
+  const hasAntibodyChains = Array.isArray(remarks && remarks.antibody) && remarks.antibody.length > 0;
+  let structureKind = '抗原结构预设';
+  if (antibodyFormat === 'Binder') structureKind = '抗原-候选抗体复合体';
+  else if (antibodyFormat) structureKind = antibodyFormat + ' 抗原-抗体复合体';
+  else if (hasAntibodyChains) structureKind = '抗原-抗体复合体';
+  const structureBrief = [targetDisplay || '靶点待确认', structureKind].filter(Boolean).join(' · ');
+  return {
+    targetDisplay,
+    antibodyFormat,
+    structureKind,
+    structureBrief,
+    structureFamily: (preset && preset.structureFamily) || '',
+    structuralBasis: (remarks && remarks.structuralBasis) || (preset && preset.structuralBasis) || '',
+    visualSummary: (preset && preset.visualSummary) || ''
+  };
 }
 
 function routeChainInfo(preset, file) {
@@ -4618,6 +4798,7 @@ function buildLocalPDBLibraryModel(filename) {
   const fp = localPDBPath(filename);
   const stat = fp ? fs.statSync(fp) : null;
   const remarks = readLocalPDBRemarks(filename);
+  const displayMeta = buildLocalPDBDisplayMetadata(filename, remarks);
   const name = String(filename || '').replace(/\.pdb$/i, '');
   return {
     filename,
@@ -4627,7 +4808,14 @@ function buildLocalPDBLibraryModel(filename) {
     sizeBytes: stat ? stat.size : 0,
     updatedAt: stat ? stat.mtime.toISOString() : null,
     antigenChains: remarks.antigen || [],
-    antibodyChains: remarks.antibody || []
+    antibodyChains: remarks.antibody || [],
+    targetDisplay: displayMeta.targetDisplay,
+    antibodyFormat: displayMeta.antibodyFormat,
+    structureKind: displayMeta.structureKind,
+    structureBrief: displayMeta.structureBrief,
+    structureFamily: displayMeta.structureFamily,
+    structuralBasis: displayMeta.structuralBasis,
+    visualSummary: displayMeta.visualSummary
   };
 }
 

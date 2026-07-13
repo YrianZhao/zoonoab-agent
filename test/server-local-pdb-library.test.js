@@ -77,6 +77,12 @@ test('local PDB model library API lists local structures with viewer metadata', 
   assert.match(flu.viewerUrl, /^\/viewer-full\.html\?/);
   assert.match(flu.viewerUrl, /pdb=/);
   assert.ok(flu.sizeBytes > 0);
+  assert.equal(flu.targetDisplay, 'Influenza HA');
+  assert.equal(flu.antibodyFormat, 'Fab');
+  assert.equal(flu.structureKind, 'Fab 抗原-抗体复合体');
+  assert.match(flu.structureBrief, /Influenza HA/);
+  assert.match(flu.structureBrief, /Fab 抗原-抗体复合体/);
+  assert.match(flu.structuralBasis, /RCSB 3GBM/);
   assert.ok(Array.isArray(flu.antigenChains));
   assert.ok(Array.isArray(flu.antibodyChains));
   assert.match(flu.updatedAt, /^\d{4}-\d{2}-\d{2}T/);

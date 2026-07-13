@@ -3470,42 +3470,6 @@
         }
         .plan-duration { font-size: 11px; color: var(--text-muted); font-family: var(--mono-font-family); }
 
-        /* ═══════════════ PROJECT HISTORY (knowledge base sidebar) ═══════════════ */
-        .project-history-section {
-            border-top: 1px solid var(--border);
-            padding: 10px 8px 0;
-            flex-shrink: 0;
-            min-height: 0;
-            max-height: 220px;
-            background: transparent;
-            margin-top: 8px;
-        }
-        .project-history-title {
-            font-size: 10px; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 0.06em; color: var(--text-muted); margin-bottom: 6px;
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 0 2px;
-        }
-        .project-history-title button { color: var(--brand) !important; }
-        .project-history-title button:hover { color: var(--brand-dark, #0057CC) !important; }
-        .project-history-list {
-            display: flex; flex-direction: column; gap: 2px;
-            max-height: 168px; overflow-y: auto; overscroll-behavior: contain;
-            padding-right: 2px;
-        }
-        .project-history-item {
-            display: flex; align-items: center; gap: 8px;
-            padding: 6px 8px; border-radius: var(--radius-md);
-            cursor: pointer; transition: var(--transition);
-            font-size: 12px; color: var(--text-secondary);
-        }
-        .project-history-item:hover { background: var(--bg-hover); color: var(--text-primary); }
-        .project-history-item .proj-dot {
-            width: 6px; height: 6px; border-radius: 50%;
-            background: var(--brand); flex-shrink: 0;
-        }
-        .project-history-item .proj-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        .project-history-item .proj-time { font-size: 10px; color: var(--text-muted); flex-shrink: 0; }
         .kb-history-entry {
             width: 100%;
             display: flex;
@@ -5015,7 +4979,7 @@
                             <span>📚</span> 公共资料库 <span class="kb-tree-count">2</span>
                         </div>
                         <button class="kb-history-entry" id="kbLocalPDBEntry" type="button" onclick="openLocalPDBLibrary()">
-                            <span class="kb-history-entry-main"><i data-lucide="box" style="width:13px;height:13px;"></i> 本地分子模型结构</span>
+                            <span class="kb-history-entry-main"><i data-lucide="box" style="width:13px;height:13px;"></i> 常见分子模型结构</span>
                             <span class="kb-history-count" id="kbLocalPDBCount">--</span>
                         </button>
                         <button class="kb-history-entry" id="kbHistoryEntry" type="button" onclick="openHistoryPanel()">
@@ -5026,15 +4990,6 @@
                             <span><i data-lucide="mic-2" style="width:12px;height:12px;"></i> 语音 API 设置</span>
                             <i data-lucide="chevron-right" style="width:12px;height:12px;"></i>
                         </button>
-                        <div class="project-history-section" id="projectHistorySection">
-                            <div class="project-history-title">
-                                <span><i data-lucide="history" style="width:10px;height:10px;vertical-align:middle;margin-right:4px;"></i> 历史会话</span>
-                                <button style="background:none;border:none;font-size:10px;color:var(--brand);cursor:pointer;font-weight:600;" onclick="clearProjectHistory()">清除</button>
-                            </div>
-                            <div class="project-history-list" id="projectHistoryList">
-                                <div style="padding:10px 8px;font-size:11px;color:var(--text-muted);">暂无历史记录</div>
-                            </div>
-                        </div>
                     </div>
                     <div class="kb-tree-footer">
                         <button class="kb-upload-btn" onclick="openKBUpload()">
@@ -5889,7 +5844,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146099';
+    const APP_BUILD_VERSION = '78146100';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
 
@@ -6434,14 +6389,6 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         refreshLucideIcons();
     }
 
-    function formatLocalPDBSize(bytes) {
-        const value = Number(bytes);
-        if (!Number.isFinite(value) || value <= 0) return '--';
-        if (value < 1024) return Math.round(value) + ' B';
-        if (value < 1024 * 1024) return (value / 1024).toFixed(1) + ' KB';
-        return (value / 1024 / 1024).toFixed(1) + ' MB';
-    }
-
     function formatLocalPDBTime(value) {
         const date = new Date(value || 0);
         if (Number.isNaN(date.getTime())) return '--';
@@ -6465,7 +6412,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             kbLocalPDBModels = Array.isArray(data.models) ? data.models : [];
             kbLocalPDBLoaded = true;
         } catch (err) {
-            kbLocalPDBError = '暂时无法读取本地分子模型结构。';
+            kbLocalPDBError = '暂时无法读取常见分子模型结构。';
             kbLocalPDBModels = [];
         } finally {
             kbLocalPDBLoading = false;
@@ -6512,15 +6459,18 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             const haystack = [
                 model.name || '',
                 model.filename || '',
+                model.targetDisplay || '',
+                model.structureKind || '',
+                model.structureBrief || '',
+                model.structureFamily || '',
                 Array.isArray(model.antigenChains) ? model.antigenChains.join(',') : '',
                 Array.isArray(model.antibodyChains) ? model.antibodyChains.join(',') : ''
             ].join(' ').toLowerCase();
             return !q || haystack.includes(q);
         });
-        const totalBytes = models.reduce((sum, model) => sum + (Number(model.sizeBytes) || 0), 0);
-        renderKBStats(models.length, '个结构', [['本地结构', kbLocalPDBModels.length + ' 个'], ['总大小', formatLocalPDBSize(totalBytes)]]);
+        renderKBStats(models.length, '个结构', [['本地结构', kbLocalPDBModels.length + ' 个'], ['展示信息', '靶点 / 抗原抗体']]);
         if (kbLocalPDBLoading && !kbLocalPDBLoaded) {
-            grid.innerHTML = '<div class="kb-empty"><div class="kb-empty-icon">🔬</div><div style="font-size:15px;font-weight:600;color:var(--text-secondary);margin-bottom:6px;">正在读取本地分子模型结构</div><div style="font-size:13px;">请稍候，结构库会自动加载。</div></div>';
+            grid.innerHTML = '<div class="kb-empty"><div class="kb-empty-icon">🔬</div><div style="font-size:15px;font-weight:600;color:var(--text-secondary);margin-bottom:6px;">正在读取常见分子模型结构</div><div style="font-size:13px;">请稍候，结构库会自动加载。</div></div>';
             return;
         }
         if (kbLocalPDBError) {
@@ -6531,24 +6481,28 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             grid.innerHTML = '<div class="kb-empty"><div class="kb-empty-icon">🔍</div><div style="font-size:15px;font-weight:600;color:var(--text-secondary);margin-bottom:6px;">未找到匹配结构</div><div style="font-size:13px;">尝试调整搜索词或切回 PDB/全部筛选。</div></div>';
             return;
         }
-        grid.innerHTML = models.map(model => `
+        grid.innerHTML = models.map(model => {
+            const targetType = [model.targetDisplay || '靶点待确认', model.structureKind || '抗原-抗体结构'].filter(Boolean).join(' · ');
+            const brief = model.structureBrief || targetType || '常见 PDB 结构预设，可直接打开 3D viewer 检查抗原、抗体链集合与显示构象。';
+            return `
             <div class="kb-card kb-local-pdb-card">
                 <div class="kb-card-header">
                     <div class="kb-card-icon type-pdb">🔬</div>
                     <div class="kb-card-body">
                         <div class="kb-card-name">${escHtml(model.name || model.filename || '本地结构')}</div>
                         <div class="kb-card-meta">${escHtml(model.filename || '')}</div>
-                        <div class="kb-card-summary">本地 PDB 结构预设，可直接打开 3D viewer 检查抗原、抗体链集合与显示构象。</div>
+                        <div class="kb-card-summary">${escHtml(brief)}</div>
                     </div>
                 </div>
                 <div class="kb-local-pdb-metrics">
-                    <div class="kb-local-pdb-metric"><span>文件大小</span><strong>${escHtml(formatLocalPDBSize(model.sizeBytes))}</strong></div>
+                    <div class="kb-local-pdb-metric"><span>靶点 / 类型</span><strong>${escHtml(targetType)}</strong></div>
                     <div class="kb-local-pdb-metric"><span>更新时间</span><strong>${escHtml(formatLocalPDBTime(model.updatedAt))}</strong></div>
                 </div>
                 <div class="kb-local-pdb-chains">${localPDBChainsHtml(model)}</div>
                 <div class="kb-card-tags">
                     <span class="kb-card-tag">PDB</span>
-                    <span class="kb-card-tag">本地结构</span>
+                    <span class="kb-card-tag">常见结构</span>
+                    ${model.antibodyFormat ? `<span class="kb-card-tag">${escHtml(model.antibodyFormat)}</span>` : ''}
                 </div>
                 <div class="kb-card-footer" onclick="event.stopPropagation()">
                     <button class="kb-card-action primary" onclick="openLocalPDBModel('${escJsString(model.filename || '')}')">
@@ -6556,7 +6510,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                     </button>
                 </div>
             </div>
-        `).join('');
+        `; }).join('');
         refreshLucideIcons();
     }
 
@@ -6581,8 +6535,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const titleEl = document.getElementById('molModalTitle');
         const bodyEl = document.getElementById('molModalBody');
         if (!overlay || !bodyEl) return;
-        const displayTitle = model.name || model.filename || '本地分子模型结构';
+        const displayTitle = model.name || model.filename || '常见分子模型结构';
         const subtitleParts = [
+            model.targetDisplay || '',
+            model.structureKind || '',
             model.filename || '',
             Array.isArray(model.antigenChains) && model.antigenChains.length ? 'Ag ' + model.antigenChains.join(',') : '',
             Array.isArray(model.antibodyChains) && model.antibodyChains.length ? 'Ab ' + model.antibodyChains.join(',') : ''
@@ -7962,7 +7918,6 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     const _HIST_MODEL_MAX = 60;
     const _HIST_TEXT_MAX = 200000;
     const _HIST_JSON_TEXT_MAX = 80000;
-    const _DOT_COLORS = ['#22C55E','rgba(0,123,255,0.75)','rgba(139,92,246,0.75)','rgba(245,158,11,0.75)','rgba(239,68,68,0.75)','rgba(20,184,166,0.75)'];
     let activeHistoryRun = null;
     let activeHistorySelectedId = null;
     let historyRecordsCache = [];
@@ -8052,12 +8007,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         };
     }
 
-    function makeHistoryTitle(text, stats) {
-        if (stats && (stats.target || stats.abType || stats.passing)) {
-            return '分子设计 · ' + [stats.target || '抗体', stats.abType || '', stats.passing ? (stats.passing + ' 个候选') : ''].filter(Boolean).join(' · ');
-        }
-        const clean = String(text || '').replace(/\s+/g, ' ').trim();
-        return clean ? truncateHistoryText(clean, 52) : '未命名设计记录';
+    function makeHistoryTitle(text) {
+        const raw = text === undefined || text === null ? '' : String(text);
+        return raw.trim() ? truncateHistoryText(raw, 120) : '未命名设计记录';
     }
 
     function normalizeHistoryRecord(entry, idx = 0) {
@@ -8066,11 +8018,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const messages = Array.isArray(entry && entry.messages) ? entry.messages : [];
         const models3d = Array.isArray(entry && entry.models3d) ? entry.models3d : [];
         const results = Array.isArray(entry && entry.results) ? entry.results : [];
+        const input = (entry && entry.input) || (messages.find(m => m && m.role === 'user') || {}).text || '';
         return {
             id: (entry && entry.id) || ('legacy-' + ts + '-' + idx),
             schemaVersion: (entry && entry.schemaVersion) || 1,
-            title: (entry && (entry.title || entry.label)) || makeHistoryTitle(entry && entry.input),
-            input: (entry && entry.input) || (messages.find(m => m && m.role === 'user') || {}).text || '',
+            title: makeHistoryTitle(input || (entry && (entry.title || entry.label))),
+            input,
             status: (entry && entry.status) || 'completed',
             statusDetail: (entry && (entry.statusDetail || entry.detail || entry.error)) || '',
             error: (entry && entry.error) || '',
@@ -8084,6 +8037,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             models3d,
             stats: (entry && entry.stats) || null
         };
+    }
+
+    function historyDisplayTitle(record) {
+        return makeHistoryTitle(record && (record.input || record.title || record.label));
     }
 
     function setHistoryCache(records) {
@@ -8114,7 +8071,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     function refreshHistoryViews(selectedId) {
-        renderProjectHistory();
+        updateHistoryCount();
         if (kbCurrentProject === 'history') renderHistoryPanel(selectedId || activeHistorySelectedId);
     }
 
@@ -8201,7 +8158,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         historyRecordsCache = [];
         historyLoaded = true;
         activeHistorySelectedId = null;
-        renderProjectHistory();
+        updateHistoryCount();
         renderHistoryPanel();
         fetch('/api/history', { method: 'DELETE' })
             .then(async res => {
@@ -8220,7 +8177,21 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             });
     }
 
+    function saveQuestionTestSet(text) {
+        const question = historyFullText(text);
+        if (!String(question || '').trim()) return Promise.resolve();
+        return fetch('/api/question-test-set', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ question: historyFullText(text) }),
+            keepalive: true
+        }).catch(err => {
+            console.warn('[QuestionSet] Failed to save user question:', err);
+        });
+    }
+
     function startHistoryRun(text, meta = {}) {
+        saveQuestionTestSet(text);
         activeHistoryRun = {
             id: historyId(),
             schemaVersion: 2,
@@ -8278,7 +8249,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             sequences: Array.isArray(sequences) ? sequences.slice(0, 80).map(compactHistorySequence) : []
         };
         activeHistoryRun.stats = result.stats;
-        activeHistoryRun.title = makeHistoryTitle(activeHistoryRun.input, stats || {});
+        activeHistoryRun.title = makeHistoryTitle(activeHistoryRun.input);
         activeHistoryRun.results = [result];
         activeHistoryRun.updatedAt = now;
         persistActiveHistoryRun('event');
@@ -8335,14 +8306,6 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         persistActiveHistoryRun('pagehide', { immediate: true, beacon: true, keepalive: true });
     });
 
-    function getRelTime(ts) {
-        const d = Date.now() - ts;
-        if (d < 60000) return '刚刚';
-        if (d < 3600000) return Math.round(d/60000) + '分钟前';
-        if (d < 86400000) return Math.round(d/3600000) + '小时前';
-        return Math.round(d/86400000) + '天前';
-    }
-
     function formatHistoryTime(ts) {
         const date = new Date(ts || Date.now());
         if (Number.isNaN(date.getTime())) return '--';
@@ -8398,26 +8361,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         return historyTextHtml(historyValuePreview(data), false);
     }
 
-    function renderProjectHistory() {
-        const list = document.getElementById('projectHistoryList');
+    function updateHistoryCount() {
         const countEl = document.getElementById('kbHistoryCount');
         const history = loadHistoryRecords();
         if (countEl) countEl.textContent = history.length;
-        if (!list) return;
-        if (!history.length) {
-            list.innerHTML = `<div style="padding:10px 8px;font-size:11px;color:var(--text-muted);">${historyLoading && !historyLoaded ? '正在加载历史记录…' : '暂无历史记录'}</div>`;
-            return;
-        }
-        list.innerHTML = history.slice(0, 8).map((h, i) => {
-            const dot = _DOT_COLORS[i % _DOT_COLORS.length];
-            const time = h.ts ? getRelTime(h.ts) : '';
-            const modelCount = h.models3d.reduce((sum, item) => sum + (item.modelCount || 0), 0);
-            return `<div class="project-history-item" title="${escHtml(h.title||'')}" onclick="openHistoryPanel('${escJsString(h.id)}')">
-                <div class="proj-dot" style="background:${dot};"></div>
-                <span class="proj-name">${escHtml(h.title||'未知任务')}${modelCount ? ` · ${modelCount} 结构` : ''}</span>
-                <span class="proj-time">${escHtml(time)}</span>
-            </div>`;
-        }).join('');
     }
 
     function setKBHistoryMode(active) {
@@ -8464,8 +8411,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         list.innerHTML = records.map(item => {
             const outputCount = (item.events || []).filter(e => e.type !== 'user').length;
             const modelCount = (item.models3d || []).reduce((sum, section) => sum + (section.modelCount || 0), 0);
+            const displayTitle = historyDisplayTitle(item);
             return `<div class="kb-history-row${item.id === selected.id ? ' active' : ''}" data-history-id="${escHtml(item.id)}" onclick="openHistoryDetail('${escJsString(item.id)}')">
-                <div class="kb-history-row-title">${escHtml(item.title || '未命名设计记录')}</div>
+                <div class="kb-history-row-title">${escHtml(displayTitle)}</div>
                 <div class="kb-history-row-meta">
                     <span>${escHtml(formatHistoryTime(item.ts))}</span>
                     <span class="kb-history-pill done">${escHtml(historyStatusLabel(item.status))}</span>
@@ -8491,6 +8439,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     function renderHistoryDetail(record) {
         const outputEvents = (record.events || []).filter(event => event && event.type !== 'user');
         const modelCount = (record.models3d || []).reduce((sum, section) => sum + (section.modelCount || 0), 0);
+        const displayTitle = historyDisplayTitle(record);
         const statusDetail = record.statusDetail || record.error || '';
         const statusDetailHtml = statusDetail
             ? `<div class="kb-history-output log" style="margin-top:12px;">
@@ -8514,7 +8463,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         }).join('') : '<div class="kb-history-empty">这条记录没有可显示的输出内容。</div>';
         return `
             <div class="kb-history-detail-head">
-                <div class="kb-history-detail-title">${escHtml(record.title || '未命名设计记录')}</div>
+                <div class="kb-history-detail-title">${historyTextHtml(displayTitle, false)}</div>
                 <div class="kb-history-detail-meta">
                     <span class="kb-history-pill done">${escHtml(historyStatusLabel(record.status))}</span>
                     <span class="kb-history-pill">${escHtml(formatHistoryTime(record.ts))}</span>
@@ -17953,7 +17902,7 @@ ${fallbackTableRows(profile.rows)}
         applyI18N();
 
         // Load shared conversation history from the server
-        renderProjectHistory();
+        updateHistoryCount();
         refreshHistoryFromServer();
 
         // Initialize the current Quick Design voice controls before the legacy voice bundle runs.

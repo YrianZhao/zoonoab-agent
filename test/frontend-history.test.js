@@ -144,12 +144,18 @@ test('knowledge base exposes history as a separate public-library entry with det
     const sidebarMarkup = html.slice(sidebarStart, sidebarEnd >= 0 ? sidebarEnd : sidebarStart + 5000);
     assert.doesNotMatch(sidebarMarkup, /kbHistoryEntry|kbHistoryPanel|projectHistoryList/);
   }
+
+  assert.doesNotMatch(html, /id="projectHistorySection"/);
+  assert.doesNotMatch(html, /id="projectHistoryList"/);
+  assert.doesNotMatch(html, /历史会话/);
+  assert.doesNotMatch(html, /function\s+renderProjectHistory\s*\(/);
 });
 
-test('knowledge base exposes a local molecular structure library for PDB inspection', () => {
+test('knowledge base exposes common molecular structures for PDB inspection', () => {
   assert.match(html, /id="kbLocalPDBEntry"/);
   assert.match(html, /onclick="openLocalPDBLibrary\(\)"/);
-  assert.match(html, /本地分子模型结构/);
+  assert.match(html, /常见分子模型结构/);
+  assert.doesNotMatch(html, /本地分子模型结构/);
   assert.match(html, /id="kbLocalPDBCount"/);
   assert.match(html, /function\s+loadLocalPDBModels\s*\(/);
   assert.match(html, /function\s+renderLocalPDBLibrary\s*\(/);
@@ -169,10 +175,16 @@ test('knowledge base exposes a local molecular structure library for PDB inspect
   assert.match(renderer, /kbLocalPDBModels/);
   assert.match(renderer, /查看结构/);
   assert.match(renderer, /openLocalPDBModel\(/);
+  assert.match(renderer, /靶点 \/ 类型/);
+  assert.match(renderer, /targetDisplay/);
+  assert.match(renderer, /structureKind/);
   assert.match(renderer, /antigenChains/);
   assert.match(renderer, /antibodyChains/);
   assert.match(html, /function\s+renderKBStats\s*\(/);
   assert.match(renderer, /renderKBStats\(\s*models\.length[\s\S]*本地结构/);
+  assert.doesNotMatch(renderer, /文件大小/);
+  assert.doesNotMatch(renderer, /formatLocalPDBSize/);
+  assert.doesNotMatch(renderer, /sizeBytes/);
   assert.doesNotMatch(renderer, /AI 生成/);
 
   const opener = extractFunction(html, 'function openLocalPDBModel');
@@ -181,10 +193,39 @@ test('knowledge base exposes a local molecular structure library for PDB inspect
   assert.doesNotMatch(opener, /renderViewerSection/);
 });
 
+test('history titles use the original user input instead of workflow summary labels', () => {
+  const makeHistoryTitle = extractFunction(html, 'function makeHistoryTitle');
+  const normalizeHistoryRecord = extractFunction(html, 'function normalizeHistoryRecord');
+  const recordHistoryResults = extractFunction(html, 'function recordHistoryResults');
+  const renderHistoryPanel = extractFunction(html, 'function renderHistoryPanel');
+  const renderHistoryDetail = extractFunction(html, 'function renderHistoryDetail');
+
+  assert.doesNotMatch(makeHistoryTitle, /stats/);
+  assert.doesNotMatch(makeHistoryTitle, /分子设计/);
+  assert.match(normalizeHistoryRecord, /title:\s*makeHistoryTitle\(input\s*\|\|\s*\(entry\s*&&\s*\(entry\.title\s*\|\|\s*entry\.label\)\)\)/);
+  assert.doesNotMatch(recordHistoryResults, /makeHistoryTitle\(activeHistoryRun\.input,\s*stats/);
+  assert.match(recordHistoryResults, /activeHistoryRun\.title\s*=\s*makeHistoryTitle\(activeHistoryRun\.input\)/);
+  assert.match(renderHistoryPanel, /historyDisplayTitle\(item\)/);
+  assert.match(renderHistoryDetail, /historyDisplayTitle\(record\)/);
+});
+
+test('submitted user questions are also saved to a question-only backend test set', () => {
+  assert.match(html, /function\s+saveQuestionTestSet\s*\(/);
+
+  const saveQuestionTestSet = extractFunction(html, 'function saveQuestionTestSet');
+  const startHistoryRun = extractFunction(html, 'function startHistoryRun');
+
+  assert.match(saveQuestionTestSet, /fetch\('\/api\/question-test-set'/);
+  assert.match(saveQuestionTestSet, /method:\s*'POST'/);
+  assert.match(saveQuestionTestSet, /question:\s*historyFullText\(text\)/);
+  assert.doesNotMatch(saveQuestionTestSet, /events|results|models3d|statusDetail|error/);
+  assert.match(startHistoryRun, /saveQuestionTestSet\(text\)/);
+});
+
 test('knowledge base history is loaded from shared server APIs instead of browser localStorage', () => {
   const historyBlockStart = html.indexOf('CONVERSATION HISTORY');
   assert.ok(historyBlockStart >= 0, 'history block should exist');
-  const historyBlockEnd = html.indexOf('function getRelTime', historyBlockStart);
+  const historyBlockEnd = html.indexOf('function formatHistoryTime', historyBlockStart);
   assert.ok(historyBlockEnd > historyBlockStart, 'history persistence block should be bounded');
   const historyBlock = html.slice(historyBlockStart, historyBlockEnd);
 
