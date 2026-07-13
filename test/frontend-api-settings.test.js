@@ -121,6 +121,32 @@ test('top connection dot reflects chat provider health instead of websocket colo
   assert.doesNotMatch(connectWS, /wsStatus'\)\.style\.background/);
 });
 
+test('top connection status opens a model availability popover', () => {
+  assert.match(html, /id="chatProviderStatusBtn"/);
+  assert.match(html, /onclick="toggleChatProviderPopover\(event\)"/);
+  assert.match(html, /id="chatProviderPopover"/);
+  assert.match(html, /id="chatProviderPopoverBody"/);
+  assert.match(html, /aria-expanded="false"/);
+  assert.match(html, /当前使用/);
+  assert.match(html, /主模型/);
+  assert.match(html, /备用模型/);
+
+  const renderChatProviderHealth = extractFunction(html, 'function renderChatProviderHealth');
+  const toggleChatProviderPopover = extractFunction(html, 'function toggleChatProviderPopover');
+  const renderChatProviderPopover = extractFunction(html, 'function renderChatProviderPopover');
+  const renderChatProviderRow = extractFunction(html, 'function renderChatProviderRow');
+  const chatProviderDisplayName = extractFunction(html, 'function chatProviderDisplayName');
+  assert.match(renderChatProviderHealth, /chatProviderHealthState\s*=\s*data\s*\|\|\s*null/);
+  assert.match(renderChatProviderHealth, /renderChatProviderPopover\(chatProviderHealthState\)/);
+  assert.match(toggleChatProviderPopover, /refreshChatProviderHealth\(\{\s*popover:\s*true\s*\}\)/);
+  assert.match(renderChatProviderPopover, /activeHealth\.model/);
+  assert.match(renderChatProviderRow, /chatProviderDisplayName\(health\)/);
+  assert.match(chatProviderDisplayName, /health\.model/);
+  assert.match(renderChatProviderRow, /formatChatProviderStatus/);
+  assert.doesNotMatch(renderChatProviderPopover, /apiKey|hasApiKey|baseUrl/);
+  assert.doesNotMatch(renderChatProviderRow, /apiKey|hasApiKey|baseUrl/);
+});
+
 test('home input toolbar states the default ten molecule output', () => {
   assert.match(html, /class="default-model-count-hint"/);
   assert.match(html, /默认生成十个分子模型/);

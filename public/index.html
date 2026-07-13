@@ -182,6 +182,117 @@
             font-size: 12px;
             white-space: nowrap;
             box-shadow: var(--shadow-xs);
+            cursor: pointer;
+            font-family: inherit;
+            line-height: 1;
+            transition: var(--transition);
+        }
+        .header-status-line:hover,
+        .header-status-line.open {
+            color: var(--brand-dark);
+            border-color: rgba(0, 123, 255, 0.18);
+            background: var(--brand-lighter);
+            transform: translateY(-1px);
+        }
+        .chat-provider-popover {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            width: min(360px, calc(100vw - 24px));
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: rgba(255,255,255,0.98);
+            box-shadow: var(--shadow-xl);
+            z-index: 260;
+            display: none;
+        }
+        .chat-provider-popover.open { display: block; }
+        .chat-provider-popover-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+        .chat-provider-popover-title strong {
+            color: var(--text-primary);
+            font-size: 13px;
+            line-height: 1.25;
+        }
+        .chat-provider-popover-title span {
+            color: var(--text-muted);
+            font-size: 11px;
+            white-space: nowrap;
+        }
+        .chat-provider-current {
+            padding: 8px 10px;
+            border-radius: 9px;
+            background: var(--brand-lighter);
+            border: 1px solid rgba(0,123,255,0.12);
+            color: var(--brand-text);
+            font-size: 12px;
+            line-height: 1.45;
+            margin-bottom: 8px;
+        }
+        .chat-provider-current strong {
+            display: block;
+            color: var(--brand-dark);
+            font-size: 13px;
+            margin-top: 2px;
+            word-break: break-word;
+        }
+        .chat-provider-popover-row {
+            display: grid;
+            grid-template-columns: minmax(58px, auto) 1fr auto;
+            gap: 8px;
+            align-items: start;
+            padding: 8px 0;
+            border-top: 1px solid var(--border-light);
+            font-size: 12px;
+            line-height: 1.4;
+        }
+        .chat-provider-popover-row:first-of-type { border-top: none; }
+        .chat-provider-popover-role {
+            color: var(--text-secondary);
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .chat-provider-popover-model {
+            min-width: 0;
+            color: var(--text-primary);
+            font-weight: 700;
+            word-break: break-word;
+        }
+        .chat-provider-popover-note {
+            color: var(--text-muted);
+            font-size: 11px;
+            font-weight: 500;
+            margin-top: 2px;
+            word-break: break-word;
+        }
+        .chat-provider-popover-status {
+            justify-self: end;
+            display: inline-flex;
+            align-items: center;
+            min-height: 22px;
+            padding: 2px 7px;
+            border-radius: var(--radius-full);
+            font-size: 11px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+        .chat-provider-popover-status.ready {
+            color: #047857;
+            background: rgba(34,197,94,0.12);
+        }
+        .chat-provider-popover-status.error {
+            color: #B45309;
+            background: rgba(245,158,11,0.14);
+        }
+        .chat-provider-popover-status.checking {
+            color: var(--text-secondary);
+            background: var(--gray-100);
         }
         .top-header-actions .header-btn {
             height: 34px;
@@ -4708,10 +4819,19 @@
         </nav>
         <div class="top-header-actions">
             <div class="header-utility-group" aria-label="状态和语音控制">
-                <span class="header-status-line" title="WebSocket 状态">
+                <button class="header-status-line" id="chatProviderStatusBtn" type="button" onclick="toggleChatProviderPopover(event)" title="查看聊天模型状态" aria-label="查看聊天模型状态" aria-expanded="false" aria-controls="chatProviderPopover">
                     <span class="status-dot" id="wsStatus"></span>
                     <span id="wsStatusText" data-i18n="Connected">Connected</span>
-                </span>
+                </button>
+                <div class="chat-provider-popover" id="chatProviderPopover" role="dialog" aria-label="聊天模型状态" aria-hidden="true">
+                    <div class="chat-provider-popover-title">
+                        <strong>模型连接状态</strong>
+                        <span id="chatProviderPopoverCheckedAt">待检测</span>
+                    </div>
+                    <div id="chatProviderPopoverBody">
+                        <div class="chat-provider-current">当前使用<strong>正在检测</strong></div>
+                    </div>
+                </div>
                 <button class="header-btn notif-btn" id="notifBtn" onclick="toggleNotifPanel()" title="通知" aria-label="通知" style="position:relative;">
                     <i data-lucide="bell" style="width:14px;height:14px;"></i>
                     <span class="header-btn-label">通知</span>
@@ -6046,7 +6166,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146107';
+    const APP_BUILD_VERSION = '78146108';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
     const SILICONFLOW_CHAT_FALLBACK_MODELS = ['Qwen/Qwen3-32B', 'Qwen/Qwen3-14B', 'Qwen/Qwen3-8B', 'deepseek-ai/DeepSeek-V3'];
@@ -8884,6 +9004,95 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     let _wsReconnectDelay = 1000;
     let chatConnectionIndicatorState = 'checking';
     let chatConnectionIndicatorMessage = '正在检测聊天模型连接';
+    let chatProviderHealthState = null;
+
+    function formatChatProviderStatus(health) {
+        if (!health || !health.checkedAt) return { label: '待检测', className: 'checking' };
+        if (health.ok) return { label: '可用', className: 'ready' };
+        if (health.status === 'unconfigured') return { label: '未配置', className: 'checking' };
+        return { label: '异常', className: 'error' };
+    }
+
+    function formatChatProviderCheckedAt(ts) {
+        const n = Number(ts || 0);
+        if (!Number.isFinite(n) || n <= 0) return '待检测';
+        try {
+            return new Date(n).toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        } catch {
+            return '已检测';
+        }
+    }
+
+    function chatProviderRoleLabel(role) {
+        return role === 'fallback' ? '备用模型' : '主模型';
+    }
+
+    function chatProviderDisplayName(health) {
+        const model = health && health.model ? String(health.model) : '';
+        const provider = health && health.provider ? String(health.provider) : '';
+        return model || provider || '未配置';
+    }
+
+    function renderChatProviderRow(role, health) {
+        const status = formatChatProviderStatus(health);
+        const latency = health && Number.isFinite(Number(health.latencyMs)) && Number(health.latencyMs) > 0
+            ? ' · ' + Math.round(Number(health.latencyMs)) + ' ms'
+            : '';
+        const message = health && health.message ? String(health.message) : (health && health.checkedAt ? '已完成检测' : '尚未检测');
+        return '<div class="chat-provider-popover-row">' +
+            '<div class="chat-provider-popover-role">' + escHtml(chatProviderRoleLabel(role)) + '</div>' +
+            '<div><div class="chat-provider-popover-model">' + escHtml(chatProviderDisplayName(health)) + '</div>' +
+            '<div class="chat-provider-popover-note">' + escHtml(message + latency) + '</div></div>' +
+            '<span class="chat-provider-popover-status ' + escHtml(status.className) + '">' + escHtml(status.label) + '</span>' +
+            '</div>';
+    }
+
+    function renderChatProviderPopover(data) {
+        const body = document.getElementById('chatProviderPopoverBody');
+        const checkedAt = document.getElementById('chatProviderPopoverCheckedAt');
+        if (!body) return;
+        const primary = data && data.providers ? data.providers.primary : null;
+        const fallback = data && data.providers ? data.providers.fallback : null;
+        const activeRole = data && data.activeProvider === 'fallback'
+            ? 'fallback'
+            : (data && data.activeProvider === 'primary' ? 'primary' : '');
+        const activeHealth = activeRole === 'fallback' ? fallback : (activeRole === 'primary' ? primary : null);
+        const currentText = activeRole ? chatProviderRoleLabel(activeRole) : '暂无可用模型';
+        const currentModel = activeHealth && activeHealth.model ? activeHealth.model : (activeHealth && activeHealth.provider ? activeHealth.provider : '等待检测结果');
+        const latestCheckedAt = data && data.checkedAt
+            ? data.checkedAt
+            : Math.max(Number(primary && primary.checkedAt || 0), Number(fallback && fallback.checkedAt || 0));
+        if (checkedAt) checkedAt.textContent = formatChatProviderCheckedAt(latestCheckedAt);
+        body.innerHTML =
+            '<div class="chat-provider-current">当前使用<strong>' + escHtml(currentText + ' · ' + currentModel) + '</strong></div>' +
+            renderChatProviderRow('primary', primary) +
+            renderChatProviderRow('fallback', fallback);
+    }
+
+    function setChatProviderPopoverOpen(open) {
+        const popover = document.getElementById('chatProviderPopover');
+        const btn = document.getElementById('chatProviderStatusBtn');
+        const shouldOpen = !!open;
+        if (popover) {
+            popover.classList.toggle('open', shouldOpen);
+            popover.setAttribute('aria-hidden', shouldOpen ? 'false' : 'true');
+        }
+        if (btn) {
+            btn.classList.toggle('open', shouldOpen);
+            btn.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+        }
+    }
+
+    function toggleChatProviderPopover(event) {
+        if (event) event.stopPropagation();
+        const popover = document.getElementById('chatProviderPopover');
+        const isOpen = popover && popover.classList.contains('open');
+        setChatProviderPopoverOpen(!isOpen);
+        if (!isOpen) {
+            renderChatProviderPopover(chatProviderHealthState);
+            refreshChatProviderHealth({ popover: true });
+        }
+    }
 
     function setChatConnectionIndicator(state = 'checking', message = '') {
         const normalized = ['primary', 'fallback', 'unavailable', 'checking'].includes(state) ? state : 'checking';
@@ -11456,6 +11665,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     function renderChatProviderHealth(data) {
+        chatProviderHealthState = data || null;
         const primaryBadge = document.getElementById('primaryChatStatusBadge');
         const fallbackBadge = document.getElementById('fallbackChatStatusBadge');
         const message = document.getElementById('chatProviderHealthMessage');
@@ -11492,6 +11702,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             const fallbackMsg = data?.providers?.fallback?.message || '备用模型未检测';
             message.textContent = `${active} · 主模型：${primaryMsg} · 备用模型：${fallbackMsg}`;
         }
+        const popover = document.getElementById('chatProviderPopover');
+        if (popover && popover.classList.contains('open')) renderChatProviderPopover(chatProviderHealthState);
     }
 
     async function refreshChatProviderHealth(options = {}) {
@@ -12995,6 +13207,13 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             if (!panel || !panel.classList.contains('open')) return;
             if (panel.contains(e.target) || (btnSettings && btnSettings.contains(e.target))) return;
             toggleVoiceSettings(false);
+        });
+        document.addEventListener('click', (e) => {
+            const popover = document.getElementById('chatProviderPopover');
+            const btn = document.getElementById('chatProviderStatusBtn');
+            if (!popover || !popover.classList.contains('open')) return;
+            if (popover.contains(e.target) || (btn && btn.contains(e.target))) return;
+            setChatProviderPopoverOpen(false);
         });
         window.addEventListener('resize', () => {
             const panel = document.getElementById('voiceSettingsPanel');
