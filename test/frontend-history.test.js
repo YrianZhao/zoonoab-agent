@@ -52,6 +52,8 @@ test('workflow history stores full visible output and shown 3D model metadata', 
   assert.match(handleMsg, /recordHistoryEvent\('subagents'/);
   assert.match(handleMsg, /recordHistoryEvent\('plan'/);
   assert.match(handleMsg, /recordHistoryEvent\('workflow_result'/);
+  assert.match(handleMsg, /recordHistoryResearchTrace\(traceMsg\)/);
+  assert.match(handleMsg, /recordHistoryResearchTraceComplete\(/);
   assert.match(handleMsg, /recordHistoryResults\(msg\.sequences,\s*msg\.stats\)/);
   assert.match(handleMsg, /recordHistory3D\(msg\.primaryPDB,\s*msg\.allPDBs,\s*msg\.label,\s*msg\.binderData/);
   assert.match(handleMsg, /finalizeHistoryRun\('completed'\)/);
@@ -59,6 +61,24 @@ test('workflow history stores full visible output and shown 3D model metadata', 
 
   const demoMsg = extractFunction(html, 'function demoMsg');
   assert.match(demoMsg, /recordHistoryEvent\('assistant'/);
+});
+
+test('research trace history deduplicates step updates and preserves terminal status', () => {
+  const recordTrace = extractFunction(html, 'function recordHistoryResearchTrace');
+  const recordTraceComplete = extractFunction(html, 'function recordHistoryResearchTraceComplete');
+  const structuredEvent = extractFunction(html, 'function historyStructuredEventHtml');
+  const renderHistoryDetail = extractFunction(html, 'function renderHistoryDetail');
+
+  assert.match(recordTrace, /event\.data\.clientRunId\s*===\s*clientRunId\s*&&\s*event\.data\.stepId\s*===\s*stepId/);
+  assert.match(recordTrace, /recordHistoryEvent\('research_trace'/);
+  assert.match(recordTrace, /resolveResearchTraceTerminalStatus\(existing\.data\.status,\s*data\.status\)/);
+  assert.match(recordTraceComplete, /event\.data\.clientRunId\s*===\s*clientRunId/);
+  assert.match(recordTraceComplete, /if\s*\(event\.data\.status\s*===\s*'active'\)\s*event\.data\.status\s*=\s*status/);
+  assert.match(recordTraceComplete, /recordHistoryEvent\('research_trace_complete'/);
+  assert.match(structuredEvent, /event\.type\s*===\s*'research_trace'/);
+  assert.match(structuredEvent, /event\.type\s*===\s*'research_trace_complete'/);
+  assert.match(renderHistoryDetail, /research_trace:'\u5206\u6790\u8f68\u8ff9'/);
+  assert.match(renderHistoryDetail, /research_trace_complete:'\u5206\u6790\u8f68\u8ff9\u5b8c\u6210'/);
 });
 
 test('workflow history keeps full transcript text instead of summary-sized snippets', () => {

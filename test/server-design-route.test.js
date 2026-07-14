@@ -17,6 +17,47 @@ let serverProcess;
 let defaultMockServer;
 let defaultVoiceSessionId = '';
 
+function modelSystemPrompt(request) {
+  return String(request?.messages?.[0]?.content || '');
+}
+
+function isDisplayTraceRequest(request) {
+  return /\u5c55\u793a\u8f68\u8ff9\u89c4\u5212\u5668/.test(modelSystemPrompt(request));
+}
+
+function findIntentRequest(requests) {
+  return requests.find(request => !isDisplayTraceRequest(request));
+}
+
+function displayTraceContent(overrides = {}) {
+  return JSON.stringify({
+    opening: [
+      { agent: 'TargetAgent', action: 'scope_request', variant: 0, delayMs: 20 },
+      { agent: 'EvidenceAgent', action: 'set_evaluation_dimensions', variant: 1, delayMs: 20 }
+    ],
+    afterTarget: [
+      { agent: 'EvidenceAgent', action: 'organize_target_context', variant: 0, delayMs: 20 },
+      { agent: 'LiteratureAgent', action: 'assess_accessibility', variant: 1, delayMs: 20 }
+    ],
+    structure: [
+      { agent: 'StructureAgent', action: 'prepare_structure', variant: 0, delayMs: 20 },
+      { agent: 'EpitopeAgent', action: 'inspect_antigen_surface', variant: 1, delayMs: 20 }
+    ],
+    ...overrides
+  });
+}
+
+function sendModelContent(res, content) {
+  res.setHeader('Content-Type', 'application/json');
+  res.end(JSON.stringify({ choices: [{ message: { content } }] }));
+}
+
+function respondToDisplayTrace(request, res, overrides) {
+  if (!isDisplayTraceRequest(request)) return false;
+  sendModelContent(res, displayTraceContent(overrides));
+  return true;
+}
+
 function listenOnLocalhost(server) {
   return new Promise(resolve => {
     server.listen(0, '127.0.0.1', () => resolve(server.address().port));
@@ -48,7 +89,8 @@ function collectUserMessageStream(text, options = {}) {
       ws.send(JSON.stringify({
         type: 'user_msg',
         text,
-        ...((options.voiceSessionId || defaultVoiceSessionId) ? { voiceSessionId: options.voiceSessionId || defaultVoiceSessionId } : {})
+        ...((options.voiceSessionId || defaultVoiceSessionId) ? { voiceSessionId: options.voiceSessionId || defaultVoiceSessionId } : {}),
+        ...(options.clientRunId ? { clientRunId: options.clientRunId } : {})
       }));
     });
     ws.on('message', raw => {
@@ -290,11 +332,13 @@ test.before(async () => {
     req.on('data', chunk => { body += chunk; });
     req.on('end', () => {
       let text = '';
+      let parsed = {};
       try {
-        const parsed = JSON.parse(body || '{}');
+        parsed = JSON.parse(body || '{}');
         const userMessage = Array.isArray(parsed.messages) ? parsed.messages.find(item => item && item.role === 'user') : null;
         text = userMessage && userMessage.content ? String(userMessage.content) : '';
       } catch {}
+      if (respondToDisplayTrace(parsed, res)) return;
       res.setHeader('Content-Type', 'application/json');
       res.end(JSON.stringify({ choices: [{ message: { content: defaultModelResponseForText(text) } }] }));
     });
@@ -316,7 +360,10 @@ test.before(async () => {
       WORKFLOW_REJECTION_LOG_FILE: QUESTION_LOG_PATH,
       DIAGNOSTIC_LOG_FILE: DIAGNOSTIC_LOG_PATH,
       LOCAL_ASR_AUTO_START: '0',
-      TARGET_RESOLVER_TIMEOUT_MS: '4000'
+      TARGET_RESOLVER_TIMEOUT_MS: '4000',
+      DISPLAY_TRACE_TIMEOUT_MS: '3500',
+      DISPLAY_TRACE_STEP_MIN_MS: '5',
+      DISPLAY_TRACE_STEP_MAX_MS: '10'
     },
     stdio: ['ignore', 'pipe', 'pipe']
   });
@@ -396,6 +443,7 @@ test('server can let the chat model route terse monoclonal slang into workflow',
     req.on('end', () => {
       const parsedBody = JSON.parse(body || '{}');
       captured.push(parsedBody);
+      if (respondToDisplayTrace(parsedBody, res)) return;
       res.setHeader('Content-Type', 'application/json');
       res.end(JSON.stringify({ choices: [{ message: { content: buildCompactDesignResponse({
         summary: '烟草花叶病毒单抗序列设计',
@@ -439,14 +487,16 @@ test('server can let the chat model route terse monoclonal slang into workflow',
       stopWhen: (msg) => msg.type === 'tool_call' && msg.tool === 'target_evidence_review'
     });
     const evidenceCall = messages.find(msg => msg.type === 'tool_call' && msg.tool === 'target_evidence_review');
+    const intentRequest = findIntentRequest(captured);
 
     assert.ok(evidenceCall, 'model-routed slang request should enter target-resolution workflow');
     assert.equal(evidenceCall.params.target, 'TMV coat protein');
-    assert.equal(captured.length, 1);
-    assert.match(captured[0].messages[0].content, /自然语言理解器|选择理由|wf|modelNote/);
-    assert.doesNotMatch(captured[0].messages[0].content, /workflow\/profile|tool_call|tool_result|epitopeRows|referenceEntries/);
-    assert.deepEqual(captured[0].response_format, { type: 'json_object' });
-    assert.ok(captured[0].max_tokens <= 1200);
+    assert.ok(intentRequest);
+    assert.ok(captured.some(isDisplayTraceRequest));
+    assert.match(modelSystemPrompt(intentRequest), /自然语言理解器|选择理由|wf|modelNote/);
+    assert.doesNotMatch(modelSystemPrompt(intentRequest), /workflow\/profile|tool_call|tool_result|epitopeRows|referenceEntries/);
+    assert.deepEqual(intentRequest.response_format, { type: 'json_object' });
+    assert.ok(intentRequest.max_tokens <= 1200);
   } finally {
     await new Promise(resolve => mockServer.close(resolve));
   }
@@ -897,11 +947,13 @@ test('disease design requests resolve a real target before launching the workflo
     req.setEncoding('utf8');
     req.on('data', chunk => { body += chunk; });
     req.on('end', () => {
+      const parsedBody = JSON.parse(body || '{}');
+      if (respondToDisplayTrace(parsedBody, res)) return;
       captured = {
         method: req.method,
         url: req.url,
         authorization: req.headers.authorization || '',
-        body: JSON.parse(body || '{}')
+        body: parsedBody
       };
       res.setHeader('Content-Type', 'application/json');
       res.end(JSON.stringify({
@@ -980,11 +1032,13 @@ test('implicit pathogen target requests call the model before launching the work
     req.setEncoding('utf8');
     req.on('data', chunk => { body += chunk; });
     req.on('end', () => {
+      const parsedBody = JSON.parse(body || '{}');
+      if (respondToDisplayTrace(parsedBody, res)) return;
       captured = {
         method: req.method,
         url: req.url,
         authorization: req.headers.authorization || '',
-        body: JSON.parse(body || '{}')
+        body: parsedBody
       };
       res.setHeader('Content-Type', 'application/json');
       res.end(JSON.stringify({
@@ -1062,11 +1116,13 @@ test('target resolver accepts provider reasoning JSON when message content is em
     req.setEncoding('utf8');
     req.on('data', chunk => { body += chunk; });
     req.on('end', () => {
+      const parsedBody = JSON.parse(body || '{}');
+      if (respondToDisplayTrace(parsedBody, res)) return;
       captured = {
         method: req.method,
         url: req.url,
         authorization: req.headers.authorization || '',
-        body: JSON.parse(body || '{}')
+        body: parsedBody
       };
       res.setHeader('Content-Type', 'application/json');
       res.end(JSON.stringify({
@@ -1134,8 +1190,12 @@ test('target resolver accepts provider reasoning JSON when message content is em
 
 test('target resolver rejects disease-shaped pseudo targets from the model', async () => {
   const mockServer = http.createServer((req, res) => {
-    req.resume();
+    let body = '';
+    req.setEncoding('utf8');
+    req.on('data', chunk => { body += chunk; });
     req.on('end', () => {
+      const parsedBody = JSON.parse(body || '{}');
+      if (respondToDisplayTrace(parsedBody, res)) return;
       res.setHeader('Content-Type', 'application/json');
       res.end(JSON.stringify({
         choices: [
@@ -1253,6 +1313,7 @@ test('tumor immunotherapy disease requests use one compact model parse before wo
     req.on('end', () => {
       const parsedBody = JSON.parse(body || '{}');
       captured.push(parsedBody);
+      if (respondToDisplayTrace(parsedBody, res)) return;
       res.setHeader('Content-Type', 'application/json');
       res.end(JSON.stringify({
         choices: [
@@ -1304,12 +1365,14 @@ test('tumor immunotherapy disease requests use one compact model parse before wo
     const serialized = JSON.stringify(messages);
     const agentTexts = messages.filter(msg => msg.type === 'agent_msg').map(msg => msg.text || '');
     const evidenceCall = messages.find(msg => msg.type === 'tool_call' && msg.tool === 'target_evidence_review');
+    const intentRequest = findIntentRequest(captured);
 
-    assert.equal(captured.length, 1, 'tumor immunotherapy disease request should use one compact model parse');
-    assert.equal(captured[0].model, 'mock-tumor-target-resolver');
-    assert.deepEqual(captured[0].response_format, { type: 'json_object' });
-    assert.match(captured[0].messages[0].content, /自然语言理解器|选择理由|JSON/);
-    assert.match(captured[0].messages[1].content, /肿瘤免疫治疗方向/);
+    assert.ok(intentRequest, 'tumor immunotherapy should use one authoritative compact parse');
+    assert.ok(captured.some(isDisplayTraceRequest));
+    assert.equal(intentRequest.model, 'mock-tumor-target-resolver');
+    assert.deepEqual(intentRequest.response_format, { type: 'json_object' });
+    assert.match(modelSystemPrompt(intentRequest), /自然语言理解器|选择理由|JSON/);
+    assert.match(intentRequest.messages[1].content, /肿瘤免疫治疗方向/);
     assert.match(agentTexts[0], /肿瘤免疫治疗|PD-L1|CD274|ONCOLOGY-PDL1-1/);
     assert.equal(evidenceCall.params.target, 'PD-L1');
     assert.match(evidenceCall.params.evidence_package, /PD-1\/PD-L1|免疫检查点/);

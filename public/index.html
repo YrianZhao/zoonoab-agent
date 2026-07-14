@@ -2094,6 +2094,194 @@
             color: var(--brand);
             animation: assistantThinkingCursor 0.9s steps(1, end) infinite;
         }
+
+        /* ── Research trace ── */
+        .research-trace-panel {
+            width: calc(100% - 36px);
+            min-width: 0;
+            margin: 0 0 18px 36px;
+            box-sizing: border-box;
+            overflow: hidden;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            animation: msgIn 0.28s ease;
+        }
+        .research-trace-header {
+            width: 100%;
+            height: 52px;
+            padding: 0 14px;
+            border: 0;
+            background: var(--bg-light);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-align: left;
+            cursor: pointer;
+            font: inherit;
+        }
+        .research-trace-header:hover { background: var(--bg-hover); }
+        .research-trace-header:focus-visible {
+            outline: 2px solid var(--brand);
+            outline-offset: -2px;
+        }
+        .research-trace-header-icon {
+            width: 28px;
+            height: 28px;
+            flex: 0 0 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            color: var(--brand-dark);
+            background: var(--brand-lighter);
+        }
+        .research-trace-heading {
+            min-width: 0;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 2px;
+        }
+        .research-trace-title {
+            font-size: 13px;
+            line-height: 1.25;
+            font-weight: 700;
+            letter-spacing: 0;
+        }
+        .research-trace-summary {
+            min-width: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            color: var(--text-muted);
+            font-size: 11px;
+            line-height: 1.25;
+            letter-spacing: 0;
+        }
+        .research-trace-status {
+            flex: 0 0 auto;
+            min-width: 50px;
+            height: 22px;
+            padding: 0 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            background: var(--brand-lighter);
+            color: var(--brand-dark);
+            font-size: 10px;
+            line-height: 1;
+            font-weight: 700;
+            letter-spacing: 0;
+        }
+        .research-trace-panel[data-status="completed"] .research-trace-status {
+            color: var(--success);
+            background: var(--success-light);
+        }
+        .research-trace-panel[data-status="cancelled"] .research-trace-status,
+        .research-trace-panel[data-status="error"] .research-trace-status {
+            color: var(--text-secondary);
+            background: var(--gray-100);
+        }
+        .research-trace-chevron {
+            width: 16px;
+            height: 16px;
+            flex: 0 0 16px;
+            color: var(--text-muted);
+            transition: transform 0.18s ease;
+        }
+        .research-trace-panel.collapsed .research-trace-chevron { transform: rotate(-90deg); }
+        .research-trace-body {
+            height: 184px;
+            min-height: 184px;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            border-top: 1px solid var(--border-light);
+            background: var(--bg-card);
+        }
+        .research-trace-panel.collapsed .research-trace-body { display: none; }
+        .research-trace-empty {
+            height: 100%;
+            padding: 18px 14px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: flex-start;
+            color: var(--text-muted);
+            font-size: 12px;
+            line-height: 1.55;
+        }
+        .research-trace-row {
+            min-height: 60px;
+            padding: 10px 14px;
+            box-sizing: border-box;
+            display: grid;
+            grid-template-columns: 24px minmax(0, 1fr) 18px;
+            align-items: start;
+            gap: 10px;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .research-trace-row:last-child { border-bottom: 0; }
+        .research-trace-row[data-status="active"] { background: rgba(0, 123, 255, 0.035); }
+        .research-trace-step-icon {
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+        }
+        .research-trace-row[data-status="active"] .research-trace-step-icon { color: var(--brand); }
+        .research-trace-row[data-status="completed"] .research-trace-step-icon { color: var(--success); }
+        .research-trace-row[data-status="cancelled"] .research-trace-step-icon { color: var(--text-muted); }
+        .research-trace-row[data-status="error"] .research-trace-step-icon { color: var(--error); }
+        .research-trace-step-icon .is-spinning { animation: researchTraceSpin 0.9s linear infinite; }
+        .research-trace-step-copy { min-width: 0; display: block; }
+        .research-trace-step-meta {
+            display: block;
+            margin-bottom: 3px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            color: var(--text-muted);
+            font-size: 10px;
+            line-height: 1.35;
+            font-weight: 700;
+            letter-spacing: 0;
+        }
+        .research-trace-step-text {
+            display: block;
+            color: var(--text-primary);
+            font-size: 12px;
+            line-height: 1.55;
+            overflow-wrap: anywhere;
+            letter-spacing: 0;
+        }
+        .research-trace-step-state {
+            width: 18px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+        }
+        .research-trace-row[data-status="completed"] .research-trace-step-state { color: var(--success); }
+        .research-trace-row[data-status="error"] .research-trace-step-state { color: var(--error); }
+        @keyframes researchTraceSpin { to { transform: rotate(360deg); } }
+        @media (max-width: 768px) {
+            .research-trace-panel {
+                width: 100%;
+                margin-left: 0;
+            }
+            .research-trace-body {
+                height: 172px;
+                min-height: 172px;
+            }
+            .research-trace-status { min-width: 46px; }
+        }
         @keyframes assistantThinkingSpin {
             to { transform: rotate(360deg); }
         }
@@ -4749,6 +4937,11 @@
         .kb-history-output.log { background: #0D1117; color: #D1FAE5; border-color: rgba(255,255,255,0.08); font-family: var(--mono-font-family); font-size: 12px; }
         .kb-history-output.tool_call,
         .kb-history-output.tool_result { border-left: 3px solid #8B5CF6; }
+        .kb-history-output.research_trace,
+        .kb-history-output.research_trace_complete {
+            border-left: 3px solid var(--brand);
+            background: rgba(0,123,255,0.035);
+        }
         .kb-history-output-label { display: block; font-size: 10px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 5px; }
         .kb-history-output.log .kb-history-output-label { color: rgba(209,250,229,0.65); }
         .kb-history-result-card,
@@ -6148,7 +6341,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '78146114';
+    const APP_BUILD_VERSION = '69498207';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
     const SILICONFLOW_CHAT_FALLBACK_MODELS = ['Qwen/Qwen3-32B', 'Qwen/Qwen3-14B', 'Qwen/Qwen3-8B', 'deepseek-ai/DeepSeek-V3'];
@@ -6433,6 +6626,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     let currentRunHas3D = false;
     let currentClientRunId = '';
     let cancelledClientRunIds = new Set();
+    const researchTracePanels = new Map();
 
     function refreshLucideIcons(options) {
         if (window.lucide && typeof window.lucide.createIcons === 'function') {
@@ -8576,6 +8770,76 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         persistActiveHistoryRun('event');
     }
 
+    function recordHistoryResearchTrace(msg) {
+        if (!activeHistoryRun || !msg) return;
+        const phase = String(msg.phase || 'opening');
+        const stepId = String(msg.stepId || `${phase}-${Number(msg.step) || 1}`);
+        const clientRunId = researchTraceRunKey(msg.clientRunId);
+        const data = {
+            clientRunId,
+            stepId,
+            phase,
+            phaseLabel: researchTracePhaseLabel(phase),
+            agent: String(msg.agent || ''),
+            status: normalizeResearchTraceStatus(msg.status),
+            step: Number(msg.step) || 0,
+            total: Number(msg.total) || 0
+        };
+        const existing = [...activeHistoryRun.events].reverse().find(event =>
+            event && event.type === 'research_trace' && event.data
+            && event.data.clientRunId === clientRunId && event.data.stepId === stepId
+        );
+        if (!existing) {
+            recordHistoryEvent('research_trace', { text: msg.text || '', data });
+            return;
+        }
+        if (existing.data.status && existing.data.status !== 'active') {
+            data.status = resolveResearchTraceTerminalStatus(existing.data.status, data.status);
+        }
+        existing.text = historyFullText(msg.text !== undefined ? msg.text : existing.text);
+        existing.data = historyFullJsonClone(data);
+        activeHistoryRun.updatedAt = Date.now();
+        persistActiveHistoryRun('event');
+    }
+
+    function recordHistoryResearchTraceComplete(msg) {
+        if (!activeHistoryRun) return;
+        const incomingStatus = normalizeResearchTraceStatus(msg && msg.status || 'completed');
+        const clientRunId = researchTraceRunKey(msg && msg.clientRunId);
+        const traceEvents = activeHistoryRun.events.filter(event =>
+            event && event.type === 'research_trace' && event.data && event.data.clientRunId === clientRunId
+        );
+        const existing = [...activeHistoryRun.events].reverse().find(event =>
+            event && event.type === 'research_trace_complete' && event.data && event.data.clientRunId === clientRunId
+        );
+        if (!traceEvents.length && !existing && !(msg && msg.force)) return;
+        const existingStatus = normalizeResearchTraceStatus(existing && existing.data && existing.data.status || 'active');
+        const status = resolveResearchTraceTerminalStatus(existingStatus, incomingStatus);
+        const preserveExistingTerminal = Boolean(
+            existing && status !== incomingStatus && (existingStatus === 'error' || existingStatus === 'cancelled')
+        );
+        traceEvents.forEach(event => {
+            if (!event || event.type !== 'research_trace' || !event.data || event.data.clientRunId !== clientRunId) return;
+            if (event.data.status === 'active') event.data.status = status;
+        });
+        const data = {
+            clientRunId,
+            status,
+            total: Number(msg && msg.total) || Number(existing && existing.data && existing.data.total) || traceEvents.length
+        };
+        const text = preserveExistingTerminal
+            ? existing.text
+            : (msg && msg.text ? msg.text : (existing && existing.text ? existing.text : '分析轨迹已完成'));
+        if (!existing) {
+            recordHistoryEvent('research_trace_complete', { text, data });
+            return;
+        }
+        existing.text = historyFullText(text);
+        existing.data = historyFullJsonClone(data);
+        activeHistoryRun.updatedAt = Date.now();
+        persistActiveHistoryRun('event');
+    }
+
     function recordHistoryResults(sequences, stats) {
         if (!activeHistoryRun) return;
         const now = Date.now();
@@ -8670,6 +8934,17 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
     function historyStructuredEventHtml(event) {
         const data = event && event.data;
+        if (event.type === 'research_trace') {
+            const phase = data && (data.phaseLabel || researchTracePhaseLabel(data.phase)) || '综合分析';
+            const agent = data && data.agent ? String(data.agent) : '';
+            const status = researchTraceStatusCopy(data && data.status || 'completed');
+            const heading = agent ? `${agent} · ${phase}` : phase;
+            return `<strong>${escHtml(heading)}</strong> · ${escHtml(status)}<br>${historyTextHtml(event.text || '', false)}`;
+        }
+        if (event.type === 'research_trace_complete') {
+            const status = researchTraceStatusCopy(data && data.status || 'completed');
+            return `<strong>${escHtml(status)}</strong><br>${historyTextHtml(event.text || '分析轨迹已完成', false)}`;
+        }
         if (event.type === 'tasks' && Array.isArray(data)) {
             return data.slice(0, 18).map((task, idx) => {
                 const status = task && task.status ? task.status : 'pending';
@@ -8786,12 +9061,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             : '';
         const outputsHtml = outputEvents.length ? outputEvents.map(event => {
             const cls = event.type;
-            const labelMap = { assistant:'模型回复', log:'进度', tool_call:'工具调用', tool_result:'工具结果', tasks:'任务列表', subagents:'Agent 状态', plan:'计划', workflow_result:'流程结果' };
+            const labelMap = { assistant:'模型回复', log:'进度', tool_call:'工具调用', tool_result:'工具结果', tasks:'任务列表', subagents:'Agent 状态', plan:'计划', workflow_result:'流程结果', research_trace:'分析轨迹', research_trace_complete:'分析轨迹完成' };
             let body = '';
             if (event.type === 'assistant') body = historyTextHtml(event.text, true);
             else if (event.type === 'tool_call') body = `<strong>${escHtml(event.tool || '工具')}</strong>${event.toolId ? ` · ${escHtml(event.toolId)}` : ''}<br>${historyTextHtml(historyValuePreview(event.params), false)}`;
             else if (event.type === 'tool_result') body = `<strong>${escHtml(event.tool || '工具')}</strong><br>${historyTextHtml(historyValuePreview(event.result), false)}`;
-            else if (['tasks','subagents','plan','workflow_result'].includes(event.type)) body = historyStructuredEventHtml(event);
+            else if (['tasks','subagents','plan','workflow_result','research_trace','research_trace_complete'].includes(event.type)) body = historyStructuredEventHtml(event);
             else body = historyTextHtml(event.text || historyValuePreview(event.data), false);
             return `<div class="kb-history-output ${escHtml(cls)}">
                 <span class="kb-history-output-label">${escHtml(labelMap[event.type] || event.type)} · ${escHtml(formatHistoryTime(event.ts))}</span>
@@ -9191,6 +9466,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     function failQuickDesignRun(message) {
+        if (hasResearchTracePanel(currentClientRunId)) {
+            completeResearchTracePanel(currentClientRunId, 'error', message);
+            recordHistoryResearchTraceComplete({ clientRunId: currentClientRunId, status: 'error', text: message });
+        }
         finishQuickDesignRun();
         resetRunControls();
         appendLog('[Design] ' + message);
@@ -9243,6 +9522,35 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             case 'assistant_thinking':
                 startAssistantThinking(msg);
                 break;
+
+            case 'research_trace': {
+                const traceClientRunId = msg.clientRunId || '';
+                const traceMsg = { ...msg, clientRunId: traceClientRunId };
+                enqueueOp(() => {
+                    if (traceClientRunId && (isStaleClientRunId(traceClientRunId) || traceClientRunId !== currentClientRunId)) return;
+                    stopAssistantThinking();
+                    hideTyping();
+                    recordHistoryResearchTrace(traceMsg);
+                    updateResearchTracePanel(traceMsg);
+                });
+                break;
+            }
+
+            case 'research_trace_complete': {
+                const traceCompleteClientRunId = msg.clientRunId || '';
+                const traceCompleteMsg = { ...msg, clientRunId: traceCompleteClientRunId };
+                enqueueOp(() => {
+                    if (traceCompleteClientRunId && (isStaleClientRunId(traceCompleteClientRunId) || traceCompleteClientRunId !== currentClientRunId)) return;
+                    stopAssistantThinking();
+                    recordHistoryResearchTraceComplete({ ...traceCompleteMsg, force: true });
+                    completeResearchTracePanel(
+                        traceCompleteMsg.clientRunId,
+                        traceCompleteMsg.status || 'completed',
+                        traceCompleteMsg.text || ''
+                    );
+                });
+                break;
+            }
 
             case 'agent_msg':
                 recordHistoryEvent('assistant', { text: msg.text || '' });
@@ -9380,11 +9688,16 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             case 'cancelled':
                 if (isStaleRunMessage(msg)) break;
                 enqueueOp(() => new Promise(resolve => {
+                    if (isStaleRunMessage(msg)) { resolve(); return; }
                     stopAssistantThinking();
                     finishQuickDesignRun();
                     setWorkflowFastForward(false);
                     resetRunControls();
                     appendLog('[System] 服务端已确认取消');
+                    if (hasResearchTracePanel(msg.clientRunId)) {
+                        completeResearchTracePanel(msg.clientRunId, 'cancelled', msg.text || '服务端已确认取消');
+                        recordHistoryResearchTraceComplete({ ...msg, status: 'cancelled', text: msg.text || '服务端已确认取消' });
+                    }
                     finalizeHistoryRun('cancelled', msg.text || '服务端确认工作流已取消');
                     retireClientRun(msg.clientRunId);
                     resolve();
@@ -9394,12 +9707,17 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             case 'error':
                 if (isStaleRunMessage(msg)) break;
                 enqueueOp(() => new Promise(resolve => {
+                    if (isStaleRunMessage(msg)) { resolve(); return; }
                     stopAssistantThinking();
                     finishQuickDesignRun();
                     setWorkflowFastForward(false);
                     resetRunControls();
                     showToast(msg.text || '服务器错误，请重试', 'error');
                     if (msg.text) recordHistoryEvent('log', { text: '[Error] ' + msg.text });
+                    if (hasResearchTracePanel(msg.clientRunId)) {
+                        completeResearchTracePanel(msg.clientRunId, 'error', msg.text || '服务器错误，请重试');
+                        recordHistoryResearchTraceComplete({ ...msg, status: 'error', text: msg.text || '服务器错误，请重试' });
+                    }
                     finalizeHistoryRun('error', msg.text || '服务器错误，请重试');
                     retireClientRun(msg.clientRunId);
                     resolve();
@@ -9409,10 +9727,15 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             case 'done':
                 if (isStaleRunMessage(msg)) break;
                 enqueueOp(() => new Promise(resolve => {
+                    if (isStaleRunMessage(msg)) { resolve(); return; }
                     stopAssistantThinking();
                     finishQuickDesignRun();
                     resetRunControls();
                     showToast(t('Workflow complete!'), 'success');
+                    if (hasActiveResearchTracePanel(msg.clientRunId)) {
+                        completeResearchTracePanel(msg.clientRunId, 'completed');
+                        recordHistoryResearchTraceComplete({ ...msg, status: 'completed' });
+                    }
                     finalizeHistoryRun('completed');
                     retireClientRun(msg.clientRunId);
 
@@ -9814,6 +10137,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             ws.send(JSON.stringify({ type: 'cancel', clientRunId }));
         }
         clearQueuedRunOps();
+        if (hasResearchTracePanel(clientRunId)) {
+            completeResearchTracePanel(clientRunId, 'cancelled', '用户手动停止工作流');
+            recordHistoryResearchTraceComplete({ clientRunId, status: 'cancelled', text: '用户手动停止工作流' });
+        }
         setWorkflowFastForward(false);
         finishQuickDesignRun();
         resetRunControls();
@@ -13934,6 +14261,208 @@ ${fallbackTableRows(profile.rows)}
         scrollBottom();
     }
 
+    function researchTraceRunKey(clientRunId) {
+        return String(clientRunId || currentClientRunId || 'current-run');
+    }
+
+    function normalizeResearchTraceStatus(status) {
+        const value = String(status || 'active').toLowerCase();
+        if (value === 'done' || value === 'complete' || value === 'completed') return 'completed';
+        if (value === 'cancel' || value === 'canceled' || value === 'cancelled') return 'cancelled';
+        if (value === 'failed' || value === 'error') return 'error';
+        return 'active';
+    }
+
+    function resolveResearchTraceTerminalStatus(currentStatus, incomingStatus) {
+        const current = normalizeResearchTraceStatus(currentStatus);
+        const incoming = normalizeResearchTraceStatus(incomingStatus);
+        const currentIsHigherPriority = current === 'error' || current === 'cancelled';
+        if (currentIsHigherPriority) return current;
+        if (incoming === 'error' || incoming === 'cancelled') return incoming;
+        if (current === 'completed') return current;
+        return incoming === 'active' ? 'completed' : incoming;
+    }
+
+    function researchTracePhaseLabel(phase) {
+        const labels = {
+            opening: '需求解析',
+            'opening-initial': '需求解析',
+            target: '靶点研判',
+            afterTarget: '靶点研判',
+            after_target: '靶点研判',
+            evidence: '信息归并',
+            structure: '结构准备'
+        };
+        const key = String(phase || '').trim();
+        return labels[key] || key || '综合分析';
+    }
+
+    function researchTracePhaseIcon(phase) {
+        const key = String(phase || '').trim();
+        if (key === 'target' || key === 'afterTarget' || key === 'after_target') return 'target';
+        if (key === 'structure') return 'box';
+        if (key === 'evidence') return 'files';
+        return 'search';
+    }
+
+    function researchTraceStepIcon(status) {
+        if (status === 'completed') return { name: 'check-circle-2', className: '' };
+        if (status === 'cancelled') return { name: 'circle-slash-2', className: '' };
+        if (status === 'error') return { name: 'triangle-alert', className: '' };
+        return { name: 'loader-2', className: 'is-spinning' };
+    }
+
+    function researchTraceStatusCopy(status) {
+        if (status === 'completed') return '已完成';
+        if (status === 'cancelled') return '已取消';
+        if (status === 'error') return '已中断';
+        return '分析中';
+    }
+
+    function renderResearchTracePanelSummary(state) {
+        const steps = Array.from(state.steps.values());
+        const completed = steps.filter(step => step.status === 'completed').length;
+        const total = Math.max(Number(state.total) || 0, steps.length);
+        let summary = total
+            ? `已完成 ${completed}/${total} 个分析步骤`
+            : '正在梳理需求与关键信息';
+        if (state.status === 'completed') summary = total ? `${total} 个分析步骤已完成` : '分析轨迹已完成';
+        if (state.status === 'cancelled') summary = state.statusDetail || '本次分析已取消';
+        if (state.status === 'error') summary = state.statusDetail || '本次分析已中断';
+        state.el.dataset.status = state.status;
+        const statusEl = state.el.querySelector('.research-trace-status');
+        const summaryEl = state.el.querySelector('.research-trace-summary');
+        if (statusEl) statusEl.innerHTML = escHtml(researchTraceStatusCopy(state.status));
+        if (summaryEl) summaryEl.innerHTML = escHtml(summary);
+    }
+
+    function ensureResearchTracePanel(clientRunId) {
+        const runKey = researchTraceRunKey(clientRunId);
+        const existing = researchTracePanels.get(runKey);
+        if (existing && existing.el && existing.el.isConnected) return existing;
+
+        const panel = document.createElement('section');
+        panel.className = 'research-trace-panel';
+        panel.dataset.clientRunId = runKey;
+        panel.dataset.status = 'active';
+        panel.setAttribute('aria-label', '分析进展');
+        panel.innerHTML = `
+            <button class="research-trace-header" type="button" aria-expanded="true">
+                <span class="research-trace-header-icon" aria-hidden="true"><i data-lucide="search-check" style="width:15px;height:15px;"></i></span>
+                <span class="research-trace-heading">
+                    <span class="research-trace-title">${escHtml('分析进展')}</span>
+                    <span class="research-trace-summary">${escHtml('正在梳理需求与关键信息')}</span>
+                </span>
+                <span class="research-trace-status">${escHtml('分析中')}</span>
+                <i data-lucide="chevron-down" class="research-trace-chevron" aria-hidden="true"></i>
+            </button>
+            <div class="research-trace-body" role="list" aria-live="polite">
+                <div class="research-trace-empty">${escHtml('正在准备分析步骤...')}</div>
+            </div>`;
+
+        const state = {
+            runId: runKey,
+            el: panel,
+            body: panel.querySelector('.research-trace-body'),
+            steps: new Map(),
+            total: 0,
+            status: 'active',
+            statusDetail: ''
+        };
+        panel.querySelector('.research-trace-header').addEventListener('click', () => {
+            const collapsed = panel.classList.toggle('collapsed');
+            panel.querySelector('.research-trace-header').setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+        });
+        researchTracePanels.set(runKey, state);
+        getStream().appendChild(panel);
+        refreshLucideIcons({ nodes: [panel] });
+        scrollBottom();
+        return state;
+    }
+
+    function renderResearchTraceStep(state, step) {
+        let row = step.el;
+        if (!row) {
+            state.body.querySelector('.research-trace-empty')?.remove();
+            row = document.createElement('div');
+            row.className = 'research-trace-row';
+            row.setAttribute('role', 'listitem');
+            row.dataset.stepId = step.id;
+            state.body.appendChild(row);
+            step.el = row;
+        }
+        const phaseLabel = researchTracePhaseLabel(step.phase);
+        const agentLabel = String(step.agent || '').trim();
+        const metaText = agentLabel ? `${agentLabel} · ${phaseLabel}` : phaseLabel;
+        const stateIcon = researchTraceStepIcon(step.status);
+        row.dataset.status = step.status;
+        row.innerHTML = `
+            <span class="research-trace-step-icon" aria-hidden="true"><i data-lucide="${researchTracePhaseIcon(step.phase)}" style="width:15px;height:15px;"></i></span>
+            <span class="research-trace-step-copy">
+                <span class="research-trace-step-meta">${escHtml(metaText)}</span>
+                <span class="research-trace-step-text">${escHtml(step.text)}</span>
+            </span>
+            <span class="research-trace-step-state" title="${escHtml(researchTraceStatusCopy(step.status))}" aria-label="${escHtml(researchTraceStatusCopy(step.status))}">
+                <i data-lucide="${stateIcon.name}" class="${stateIcon.className}" style="width:14px;height:14px;"></i>
+            </span>`;
+        refreshLucideIcons({ nodes: [row] });
+    }
+
+    function updateResearchTracePanel(msg) {
+        const state = ensureResearchTracePanel(msg.clientRunId);
+        const phase = String(msg.phase || 'opening');
+        const ordinal = Number(msg.step) || (state.steps.size + 1);
+        const stepId = String(msg.stepId || `${phase}-${ordinal}`);
+        let status = normalizeResearchTraceStatus(msg.status);
+        if (state.status !== 'active' && status === 'active') status = state.status;
+        const prior = state.steps.get(stepId) || {};
+        if (prior.status && prior.status !== 'active') {
+            status = resolveResearchTraceTerminalStatus(prior.status, status);
+        }
+        const step = {
+            ...prior,
+            id: stepId,
+            phase,
+            agent: msg.agent || prior.agent || '',
+            text: String(msg.text || prior.text || '正在整理当前分析信息'),
+            status
+        };
+        state.steps.set(stepId, step);
+        state.total = Math.max(state.total, Number(msg.total) || 0, state.steps.size);
+        renderResearchTraceStep(state, step);
+        renderResearchTracePanelSummary(state);
+        state.body.scrollTop = state.body.scrollHeight;
+        scrollBottom();
+    }
+
+    function completeResearchTracePanel(clientRunId, status = 'completed', detail = '') {
+        const state = researchTracePanels.get(researchTraceRunKey(clientRunId));
+        if (!state || !state.el || !state.el.isConnected) return;
+        const terminalStatus = normalizeResearchTraceStatus(status);
+        const resolvedStatus = resolveResearchTraceTerminalStatus(state.status, terminalStatus);
+        const keepExistingDetail = (state.status === 'error' || state.status === 'cancelled') && resolvedStatus === state.status;
+        state.status = resolvedStatus;
+        if (!keepExistingDetail || !state.statusDetail) state.statusDetail = String(detail || state.statusDetail || '');
+        state.steps.forEach(step => {
+            if (step.status === 'active') {
+                step.status = state.status === 'completed' ? 'completed' : state.status;
+                renderResearchTraceStep(state, step);
+            }
+        });
+        renderResearchTracePanelSummary(state);
+        refreshLucideIcons({ nodes: [state.el] });
+    }
+
+    function hasActiveResearchTracePanel(clientRunId) {
+        const state = researchTracePanels.get(researchTraceRunKey(clientRunId));
+        return Boolean(state && state.el && state.el.isConnected && state.status === 'active');
+    }
+
+    function hasResearchTracePanel(clientRunId) {
+        const state = researchTracePanels.get(researchTraceRunKey(clientRunId));
+        return Boolean(state && state.el && state.el.isConnected && state.steps.size > 0);
+    }
+
     function toggleSidebar() {
         const sidebar = document.getElementById('agentTasksSidebar');
         if (!sidebar) return;
@@ -16354,24 +16883,25 @@ ${fallbackTableRows(profile.rows)}
 
     function normalizeAssistantThinkingTopic(topic) {
         const raw = String(topic || '').replace(/\s+/g, ' ').trim();
-        if (!raw) return 'the request';
+        if (!raw) return '当前需求';
         if (/[\u4e00-\u9fff]/.test(raw)) {
-            if (/天气|气温|下雨/.test(raw)) return 'weather context';
-            if (/能力|功能|平台|介绍/.test(raw)) return 'platform capabilities';
-            if (/抗体|靶点|抗原|表位|蛋白/.test(raw)) return 'biomedical design intent';
-            return 'the user request';
+            if (/天气|气温|下雨/.test(raw)) return '天气与环境信息';
+            if (/能力|功能|平台|介绍/.test(raw)) return '平台能力与使用边界';
+            if (/抗体|靶点|抗原|表位|蛋白/.test(raw)) return '分子设计需求';
+            return '用户需求';
         }
-        return raw.replace(/[^A-Za-z0-9\s\-_/]/g, '').trim().slice(0, 48) || 'the request';
+        const compact = raw.replace(/[^A-Za-z0-9\s\-_/]/g, '').trim().slice(0, 48);
+        return compact ? `“${compact}”相关需求` : '当前需求';
     }
 
     function buildAssistantThinkingLines(topic) {
         const safeTopic = normalizeAssistantThinkingTopic(topic);
         return [
-            `Reading the user's ${safeTopic}...`,
-            'Mapping intent to ZoonoAb response boundaries...',
-            `Checking context signals around ${safeTopic}...`,
-            'Preparing a concise, product-safe answer...',
-            'Waiting for the model response stream...'
+            `正在解析${safeTopic}中的核心目标...`,
+            '正在识别任务边界与所需信息...',
+            `正在梳理${safeTopic}的关键线索...`,
+            '正在组织分析路径与回复结构...',
+            '正在准备后续分析内容...'
         ];
     }
 
@@ -16396,6 +16926,10 @@ ${fallbackTableRows(profile.rows)}
     }
 
     function startAssistantThinking(msg = {}) {
+        if (hasActiveResearchTracePanel(msg.clientRunId || currentClientRunId)) {
+            stopAssistantThinking();
+            return;
+        }
         let box = document.getElementById('assistantThinkingIndicator');
         if (!box) {
             box = document.createElement('div');
@@ -18506,6 +19040,7 @@ ${fallbackTableRows(profile.rows)}
         resetCurrentRun3DState();
         currentClientRunId = '';
         cancelledClientRunIds.clear();
+        researchTracePanels.clear();
         isRunning = false;
         setRunControlsActive(false);
         // Reset message queue

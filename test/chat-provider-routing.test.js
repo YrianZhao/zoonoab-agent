@@ -5,6 +5,7 @@ const http = require('http');
 const os = require('os');
 const path = require('path');
 const test = require('node:test');
+const WebSocket = require('ws');
 
 const PORT = 19141;
 const CONFIG_PATH = path.join(os.tmpdir(), 'zoonoab-chat-provider-routing-' + PORT + '.json');
@@ -15,6 +16,40 @@ let serverProcess;
 function listenOnLocalhost(server) {
   return new Promise(resolve => {
     server.listen(0, '127.0.0.1', () => resolve(server.address().port));
+  });
+}
+
+function collectUserMessageStream(text, options = {}) {
+  return new Promise((resolve, reject) => {
+    const ws = new WebSocket('ws://127.0.0.1:' + PORT);
+    const messages = [];
+    const timer = setTimeout(() => {
+      try { ws.close(); } catch {}
+      reject(new Error('timed out waiting for websocket workflow output'));
+    }, options.timeoutMs || 10000);
+
+    ws.on('open', () => {
+      ws.send(JSON.stringify({
+        type: 'user_msg',
+        text,
+        voiceSessionId: options.voiceSessionId || '',
+        clientRunId: options.clientRunId || ''
+      }));
+    });
+    ws.on('message', raw => {
+      let msg;
+      try { msg = JSON.parse(String(raw)); } catch { return; }
+      messages.push(msg);
+      if ((typeof options.stopWhen === 'function' && options.stopWhen(msg, messages)) || msg.type === 'done') {
+        clearTimeout(timer);
+        ws.close();
+        resolve(messages);
+      }
+    });
+    ws.on('error', err => {
+      clearTimeout(timer);
+      reject(err);
+    });
   });
 }
 
@@ -57,9 +92,10 @@ function makeResponsesServer(options = {}) {
       res.end(JSON.stringify({ error: { message: 'primary unavailable' } }));
       return;
     }
+    const reply = typeof options.reply === 'function' ? options.reply(body) : options.reply;
     res.end(JSON.stringify({
       id: 'resp_test',
-      output_text: options.reply || '测试通过'
+      output_text: reply || '测试通过'
     }));
   });
   return { server, requests };
@@ -85,9 +121,10 @@ function makeChatCompletionsServer(options = {}) {
       res.end(JSON.stringify({ error: { message: 'model unavailable: ' + body.model } }));
       return;
     }
+    const reply = typeof options.reply === 'function' ? options.reply(body) : options.reply;
     res.end(JSON.stringify({
       choices: [
-        { message: { content: options.reply || '备用模型测试通过' } }
+        { message: { content: reply || '备用模型测试通过' } }
       ]
     }));
   });
@@ -143,7 +180,10 @@ test.before(async () => {
       VOICE_CHAT_API_KEY: '',
       VOICE_CHAT_BASE_URL: '',
       DEEPSEEK_API_KEY: '',
-      DEEPSEEK_CHAT_BASE_URL: ''
+      DEEPSEEK_CHAT_BASE_URL: '',
+      DISPLAY_TRACE_TIMEOUT_MS: '3500',
+      DISPLAY_TRACE_STEP_MIN_MS: '300',
+      DISPLAY_TRACE_STEP_MAX_MS: '300'
     },
     stdio: ['ignore', 'pipe', 'pipe']
   });
@@ -226,6 +266,78 @@ test('assistant model uses the responses primary provider before fallback in aut
     assert.equal(fallback.requests.length, 0);
     assert.doesNotMatch(answerData.answer, /OpenAI|GPT|sk-primary-secret|gpt-5\.5/i);
     assert.match(answerData.answer, /ZoonoAb|小诺/);
+  } finally {
+    await new Promise(resolve => primary.server.close(resolve));
+    await new Promise(resolve => fallback.server.close(resolve));
+  }
+});
+
+test('design intent uses the authoritative responses primary while display trace prefers chat completions', async () => {
+  const primary = makeResponsesServer({
+    reply: () => JSON.stringify({
+      i: 'design',
+      start: true,
+      summary: 'PD-L1 Fab 设计',
+      bg: 'PD-L1 是肿瘤免疫检查点通路中具有明确胞外可及性的配体靶点。',
+      disease: '肿瘤免疫治疗',
+      target: 'PD-L1',
+      gene: 'CD274',
+      label: 'ONCOLOGY-PDL1-COMPOSITE',
+      reason: 'PD-L1 与 PD-1 结合后会抑制 T 细胞活性，其胞外结构域具备抗体可及性、成熟阻断机制和同类抗体开发背景；相较同通路备选靶点，PD-L1 与用户指定的 Fab 设计目标直接一致，适合进入候选筛选和结构评估。',
+      cands: [
+        { t: 'PD-L1', g: 'CD274', r: '用户指定的免疫检查点配体靶点。' },
+        { t: 'PD-1', g: 'PDCD1', r: '同一通路的受体备选靶点。' }
+      ],
+      mech: '阻断 PD-1/PD-L1 结合并生成 Fab 候选。',
+      ab: 'Fab',
+      n: 3,
+      confidence: 0.92,
+      wf: {
+        domain: 'PD-L1 胞外结构域',
+        mechanism: '阻断 PD-1/PD-L1 结合',
+        epitope: '优先覆盖 PD-1 结合表面',
+        structure: 'PD-L1 胞外结构域与 Fab 姿态约束',
+        modelNote: '展示 Fab 贴合 PD-L1 可及表面的候选构象'
+      }
+    })
+  });
+  const fallback = makeChatCompletionsServer({
+    reply: () => JSON.stringify({
+      opening: [
+        { agent: 'TargetAgent', action: 'scope_request', variant: 0, delayMs: 300 },
+        { agent: 'EvidenceAgent', action: 'set_evaluation_dimensions', variant: 1, delayMs: 300 }
+      ],
+      afterTarget: [
+        { agent: 'EvidenceAgent', action: 'organize_target_context', variant: 0, delayMs: 300 },
+        { agent: 'LiteratureAgent', action: 'assess_accessibility', variant: 1, delayMs: 300 }
+      ],
+      structure: [
+        { agent: 'StructureAgent', action: 'prepare_structure', variant: 0, delayMs: 300 },
+        { agent: 'EpitopeAgent', action: 'inspect_antigen_surface', variant: 1, delayMs: 300 }
+      ]
+    })
+  });
+  const primaryPort = await listenOnLocalhost(primary.server);
+  const fallbackPort = await listenOnLocalhost(fallback.server);
+  try {
+    const saved = await saveAutoProviderConfig(primaryPort, fallbackPort);
+    const messages = await collectUserMessageStream('设计 3 个针对 PD-L1 的 Fab', {
+      timeoutMs: 10000,
+      voiceSessionId: saved.voiceSessionId,
+      clientRunId: 'composite-provider-run-1',
+      stopWhen: msg => msg.type === 'tool_call' && msg.tool === 'target_evidence_review'
+    });
+    const evidenceCall = messages.find(msg => msg.type === 'tool_call' && msg.tool === 'target_evidence_review');
+
+    assert.equal(primary.requests.length, 1);
+    assert.equal(primary.requests[0].url, '/v1/responses');
+    assert.match(String(primary.requests[0].body.input?.[0]?.content || ''), /自然语言理解器|核心 JSON/);
+    assert.equal(primary.requests[0].body.reasoning.effort, 'xhigh');
+    assert.equal(fallback.requests.length, 1);
+    assert.equal(fallback.requests[0].url, '/v1/chat/completions');
+    assert.match(String(fallback.requests[0].body.messages?.[0]?.content || ''), /展示轨迹规划器/);
+    assert.equal(evidenceCall?.params?.target, 'PD-L1');
+    assert.ok(messages.some(msg => msg.type === 'research_trace' && msg.clientRunId === 'composite-provider-run-1'));
   } finally {
     await new Promise(resolve => primary.server.close(resolve));
     await new Promise(resolve => fallback.server.close(resolve));
