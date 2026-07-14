@@ -2522,6 +2522,24 @@
             box-shadow: var(--shadow-lg);
             transform: translateY(-2px);
         }
+        .gallery-card.viewer-promoted {
+            position: fixed;
+            top: var(--promoted-viewer-top, 96px);
+            left: 0;
+            width: 100vw;
+            height: calc(100dvh - var(--promoted-viewer-top, 96px));
+            z-index: 10002;
+            margin: 0;
+            border: 0;
+            border-radius: 0;
+            background: #0D1117;
+            box-shadow: none;
+            transform: none !important;
+            cursor: default;
+        }
+        .gallery-card.viewer-promoted:hover { transform: none !important; box-shadow: none; }
+        .gallery-card.viewer-promoted .gallery-viewer { width: 100%; height: 100%; }
+        .gallery-card.viewer-promoted .gallery-info { display: none; }
         .gallery-viewer {
             width: 100%; height: 200px;
             background: var(--bg-dark); /* Dark background for gallery viewers */
@@ -6387,7 +6405,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '69498215';
+    const APP_BUILD_VERSION = '69498216';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
     const SILICONFLOW_CHAT_FALLBACK_MODELS = ['Qwen/Qwen3-32B', 'Qwen/Qwen3-14B', 'Qwen/Qwen3-8B', 'deepseek-ai/DeepSeek-V3'];
@@ -19804,9 +19822,10 @@ QVQLVESGGGLVQPGGSLRLSCAASGYIFSSNAMGWYRQAPGKQRELVAAISSGGSTYYADSVKGRFTISRDNAKTTLYL
         if (!modalIframeHome) return false;
         const state = modalIframeHome;
         modalIframeHome = null;
-        if (state.iframe && state.container && state.container.isConnected) {
+        if (state.iframe && state.card && state.card.isConnected) {
+            state.card.classList.remove('viewer-promoted');
+            state.card.style.removeProperty('--promoted-viewer-top');
             state.iframe.style.cssText = 'width:100%;height:100%;border:none;display:block;allow-scripts;pointer-events:none;';
-            state.container.appendChild(state.iframe);
             try {
                 state.iframe.contentWindow.postMessage({
                     source: 'zoonoab-gallery',
@@ -19851,6 +19870,9 @@ QVQLVESGGGLVQPGGSLRLSCAASGYIFSSNAMGWYRQAPGKQRELVAAISSGGSTYYADSVKGRFTISRDNAKTTLYL
                 (subtitleParts.length ? '<div class="mol-modal-subtitle">' + escHtml(subtitleParts.join(' · ')) + '</div>' : '') + '</div>' +
                 buildSelectionReasonHtml(meta) + buildStructureDisclosureHtml(meta);
         }
+        overlay.style.display = 'flex';
+        overlay.style.visibility = 'visible';
+        overlay.setAttribute('aria-hidden', 'false');
 
         // Build viewer-full URL
         const vfUrl = buildMoleculeFrameUrl('/viewer-full.html', pdbId, displayTitle, undefined, { autoSpin: shouldAutoSpin });
@@ -19858,19 +19880,24 @@ QVQLVESGGGLVQPGGSLRLSCAASGYIFSSNAMGWYRQAPGKQRELVAAISSGGSTYYADSVKGRFTISRDNAKTTLYL
         const reusableGalleryIframe = galleryEntry && galleryEntry.iframe && galleryEntry.iframe.isConnected
             ? galleryEntry.iframe
             : null;
+        const reusableGalleryCard = reusableGalleryIframe ? reusableGalleryIframe.closest('.gallery-card') : null;
 
-        if (bodyEl && reusableGalleryIframe) {
+        if (bodyEl && reusableGalleryIframe && reusableGalleryCard) {
             if (modalIframe !== reusableGalleryIframe) {
                 restorePromotedModalIframe();
                 bodyEl.innerHTML = '';
-                modalIframeHome = { iframe: reusableGalleryIframe, container: reusableGalleryIframe.parentNode };
+                modalIframeHome = { iframe: reusableGalleryIframe, card: reusableGalleryCard };
                 modalIframe = reusableGalleryIframe;
                 modalIframe.style.cssText = 'width:100%;height:100%;border:none;display:block;pointer-events:auto;';
-                bodyEl.appendChild(modalIframe);
+                const header = document.querySelector('#molModalOverlay .mol-modal-header');
+                reusableGalleryCard.style.setProperty('--promoted-viewer-top', Math.max(0, header ? header.offsetHeight : 96) + 'px');
+                reusableGalleryCard.classList.add('viewer-promoted');
                 modalIframeUrl = modalIframe.src;
             }
             const expandViewer = () => postModalViewerCommand('setCompact', { compact: false, autoSpin: shouldAutoSpin });
             expandViewer();
+            requestAnimationFrame(expandViewer);
+            setTimeout(expandViewer, 120);
             if (!galleryEntry.loadFinished) modalIframe.addEventListener('load', expandViewer, { once: true });
         } else if (bodyEl) {
             restorePromotedModalIframe();
@@ -19887,8 +19914,6 @@ QVQLVESGGGLVQPGGSLRLSCAASGYIFSSNAMGWYRQAPGKQRELVAAISSGGSTYYADSVKGRFTISRDNAKTTLYL
         clearTimeout(molCloseTimer);
         molCloseTimer = null;
         overlay.style.display = 'flex';
-        overlay.style.visibility = 'visible';
-        overlay.setAttribute('aria-hidden', 'false');
         // Use rAF so browser paints the initial state (opacity:0, scale:0.92) before transition starts
         requestAnimationFrame(() => {
             requestAnimationFrame(() => {

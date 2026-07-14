@@ -185,7 +185,13 @@ test('molecular viewers avoid duplicate parsing and reuse the loaded full-screen
   assert.match(initGallery, /buildMoleculeFrameUrl\('\/viewer-full\.html',[\s\S]*compact:\s*true/);
   assert.match(openModal, /reusableGalleryIframe/);
   assert.match(openModal, /modalIframeHome\s*=\s*\{\s*iframe:\s*reusableGalleryIframe/);
+  assert.match(openModal, /reusableGalleryCard\.classList\.add\('viewer-promoted'\)/);
   assert.match(openModal, /postModalViewerCommand\('setCompact',[\s\S]*compact:\s*false/);
+  const promoteStart = openModal.indexOf('if (bodyEl && reusableGalleryIframe && reusableGalleryCard)');
+  const promoteEnd = openModal.indexOf('} else if (bodyEl)', promoteStart);
+  assert.ok(promoteStart >= 0 && promoteEnd > promoteStart);
+  assert.doesNotMatch(openModal.slice(promoteStart, promoteEnd), /appendChild\(modalIframe\)/);
+  assert.match(indexHtml, /\.gallery-card\.viewer-promoted\s*{/);
   assert.match(openModal, /!modalIframe \|\| modalIframeUrl !== vfUrl/);
   assert.match(openModal, /modalIframeUrl = vfUrl/);
   assert.match(restoreModal, /type:\s*'setCompact'/);
