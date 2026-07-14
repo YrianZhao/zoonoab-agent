@@ -92,6 +92,18 @@ test('debug fast workflow entry is hidden inside the team member list', () => {
   assert.doesNotMatch(zhaoButtonMarkup, /dr-zhao-switch/);
 });
 
+test('debug fast workflow entry keeps the same visual typography as team members', () => {
+  const drZhaoStyle = html.match(/\.dr-zhao-toggle\s*\{([\s\S]*?)\}/)?.[1] || '';
+
+  assert.match(drZhaoStyle, /font-family:\s*inherit/);
+  assert.match(drZhaoStyle, /font-size:\s*12px/);
+  assert.match(drZhaoStyle, /font-weight:\s*400/);
+  assert.match(drZhaoStyle, /line-height:\s*inherit/);
+  assert.match(drZhaoStyle, /color:\s*var\(--text-secondary\)/);
+  assert.doesNotMatch(drZhaoStyle, /font:\s*inherit/);
+  assert.doesNotMatch(html, /\.dr-zhao-toggle\.enabled\s*\{/);
+});
+
 test('frontend cancellation includes and retires the active client run id', () => {
   const cancelTask = extractFunction(html, 'function cancelTask');
 
