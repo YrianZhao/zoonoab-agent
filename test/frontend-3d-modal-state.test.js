@@ -136,32 +136,35 @@ test('final workflow modal preparation does not force page scrolling when the us
   assert.match(scrollToBottomThen, /cb\(\)/);
 });
 
-test('agent message typewriter uses faster explicit timing constants', () => {
+test('agent message typewriter uses bounded pacing with a fast-forward path', () => {
   const typewriter = extractFunction(html, 'function typewriterEffect');
 
-  assert.match(html, /const\s+TYPEWRITER_TICK_MS\s*=\s*12/);
-  assert.match(html, /const\s+TYPEWRITER_TARGET_MIN_MS\s*=\s*360/);
-  assert.match(html, /const\s+TYPEWRITER_TARGET_MAX_MS\s*=\s*2200/);
-  assert.match(html, /const\s+TYPEWRITER_MS_PER_CHAR\s*=\s*2/);
+  assert.match(html, /const\s+TYPEWRITER_TICK_MS\s*=\s*24/);
+  assert.match(html, /const\s+TYPEWRITER_TARGET_MIN_MS\s*=\s*720/);
+  assert.match(html, /const\s+TYPEWRITER_TARGET_MAX_MS\s*=\s*10000/);
+  assert.match(html, /const\s+TYPEWRITER_MS_PER_CHAR\s*=\s*16/);
+  assert.match(html, /const\s+TYPEWRITER_SENTENCE_PAUSE_MS\s*=\s*96/);
+  assert.match(html, /const\s+TYPEWRITER_CLAUSE_PAUSE_MS\s*=\s*48/);
   assert.match(typewriter, /TYPEWRITER_TICK_MS/);
   assert.match(typewriter, /TYPEWRITER_TARGET_MAX_MS/);
   assert.match(typewriter, /TYPEWRITER_TARGET_MIN_MS/);
   assert.match(typewriter, /TYPEWRITER_MS_PER_CHAR/);
+  assert.match(typewriter, /accelerated \? 10/);
   assert.doesNotMatch(typewriter, /target\s+2-4s/, 'stale slower timing comment should be removed');
 });
 
 test('candidate gallery thumbnails receive deterministic per-candidate pose seeds', () => {
   const frameUrlFunction = extractFunction(html, 'function buildMoleculeFrameUrl');
   const initGalleryViewer = extractFunction(html, 'function initGalleryViewer');
-  const galleryHtml = fs.readFileSync(path.join(__dirname, '..', 'public', 'gallery-mol.html'), 'utf8');
+  const viewerHtml = fs.readFileSync(path.join(__dirname, '..', 'public', 'viewer-full.html'), 'utf8');
 
   assert.match(frameUrlFunction, /poseSeed/);
   assert.match(frameUrlFunction, /viewerPoseSeed/);
   assert.match(initGalleryViewer, /idx/);
-  assert.match(initGalleryViewer, /buildMoleculeFrameUrl\('\/gallery-mol\.html',\s*pdbId,\s*[^,]+,\s*idx\)/);
-  assert.match(galleryHtml, /params\.get\('poseSeed'\)/);
-  assert.match(galleryHtml, /applyViewerPose/);
-  assert.match(galleryHtml, /glv\.rotate/);
+  assert.match(initGalleryViewer, /buildMoleculeFrameUrl\('\/viewer-full\.html',\s*pdbId,\s*[^,]+,\s*idx,\s*\{\s*compact:\s*true\s*\}\)/);
+  assert.match(viewerHtml, /params\.get\('poseSeed'\)/);
+  assert.match(viewerHtml, /applyViewerPose/);
+  assert.match(viewerHtml, /glv\.rotate/);
 });
 
 test('3D modal title bar shows the current selection reason without covering controls', () => {

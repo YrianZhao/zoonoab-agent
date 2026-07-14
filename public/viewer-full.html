@@ -23,6 +23,9 @@ html,body{width:100%;height:100%;overflow:hidden;background:#0D1117;font-family:
 .act:hover{border-color:#2DD4BF;color:#2DD4BF;background:rgba(45,212,191,0.1)}
 .act.active{background:#EF4444;color:#fff;border-color:#EF4444}
 .vf-auto-spin-badge{display:inline-flex;align-items:center;height:30px;padding:0 14px;border-radius:8px;border:1px solid rgba(59,130,246,0.45);background:rgba(37,99,235,0.16);color:#60A5FA;font-size:12px;font-weight:800;letter-spacing:.12em;white-space:nowrap;box-shadow:0 0 0 1px rgba(59,130,246,0.08) inset}
+.vf-source-badge{display:inline-flex;align-items:center;justify-content:center;height:30px;min-width:58px;padding:0 13px;border-radius:7px;border:1px solid rgba(255,255,255,.16);font-size:12px;font-weight:800;letter-spacing:.04em;line-height:1;text-transform:lowercase;white-space:nowrap;pointer-events:none;user-select:none;cursor:default}
+.vf-source-badge.local{border-color:rgba(45,212,191,.48);background:rgba(13,148,136,.17);color:#5EEAD4}
+.vf-source-badge.auto{border-color:rgba(250,204,21,.38);background:rgba(202,138,4,.13);color:#FDE68A}
 .vwrap{flex:1;position:relative;overflow:hidden}
 #vc{width:100%;height:100%;position:relative}
 canvas{width:100%!important;height:100%!important;display:block;outline:none}
@@ -33,6 +36,19 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
 .hint{text-align:center;padding:7px 0;color:rgba(255,255,255,0.25);font-size:11px;flex-shrink:0;z-index:5;background:#0D1117;}
 .ld{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
    color:#FB923C;font-size:12px;letter-spacing:.5px;pointer-events:none;white-space:nowrap;z-index:3}
+body.compact-viewer .toolbar,body.compact-viewer .hint,body.compact-viewer .vf-role-legend{display:none!important}
+body.compact-viewer .vwrap{height:100%;flex-basis:100%}
+@media (max-width:600px){
+  .toolbar{display:grid;grid-template-columns:44px minmax(0,1fr);align-items:start;gap:7px 8px;padding:8px 10px}
+  .tbg{line-height:30px}
+  .divider{display:none}
+  .btns{min-width:0;flex-wrap:wrap;gap:4px}
+  .btn{padding:4px 10px}
+  .actions{grid-column:2;margin-left:0;min-width:0;flex-wrap:wrap;justify-content:flex-start}
+  .act{padding:5px 10px}
+  .vf-auto-spin-badge{height:30px;padding:0 12px}
+  .vf-source-badge{height:30px;min-width:54px;padding:0 10px}
+}
 </style>
 <body>
 <div class="wrap">
@@ -52,6 +68,11 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
     var params = new URLSearchParams(location.search);
     var pdbUrl = params.get('pdb') || '';
     var AUTO_SPIN = params.get('autoSpin') === '1' || params.get('autoSpin') === 'true';
+    var INTERFACE_DETAIL_ENABLED = params.get('interfaceDetail') !== '0';
+    var MODEL_ORIGIN = params.get('modelOrigin') === 'local' ? 'local' : 'auto';
+    var COMPACT_MODE = params.get('compact') === '1';
+    var POSE_SEED = parseInt(params.get('poseSeed') || '0', 10) || 0;
+    document.body.classList.toggle('compact-viewer', COMPACT_MODE);
 
     // ════ Colors ════
     function safeViewerColor(value, fallback) {
@@ -84,7 +105,19 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
         badge.id = 'vfAutoSpinBadge';
         badge.className = 'vf-auto-spin-badge';
         badge.textContent = 'AUTO SPIN';
-        actions.insertBefore(badge, actions.firstChild);
+        var firstAction = actions.querySelector('.act');
+        if (firstAction) actions.insertBefore(badge, firstAction);
+        else actions.appendChild(badge);
+    }
+    function renderModelOriginBadge() {
+        var actions = document.getElementById('acts');
+        if (!actions || document.getElementById('vfModelOriginBadge')) return;
+        var badge = document.createElement('span');
+        badge.id = 'vfModelOriginBadge';
+        badge.className = 'vf-source-badge ' + MODEL_ORIGIN;
+        badge.textContent = MODEL_ORIGIN;
+        badge.setAttribute('aria-label', MODEL_ORIGIN === 'local' ? '本地已匹配结构' : '自动结构');
+        actions.appendChild(badge);
     }
     function parseChains(value, fallback) {
         var arr = String(value || '').split(',').map(function(s){ return s.trim(); }).filter(Boolean);
@@ -137,6 +170,7 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
         cross:   'cross',
         surface: 'surface'
     };
+    if (!INTERFACE_DETAIL_ENABLED) delete STYLES.interface;
 
     // ════ Color scheme implementations ════
     //
@@ -259,6 +293,7 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
         });
 
         // Action buttons
+        renderModelOriginBadge();
         renderAutoSpinBadge();
         ['Spin','Reset','PNG'].forEach(function(n){
             var b=document.createElement('button');b.className='act';b.textContent=n;
@@ -275,11 +310,14 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
     // ════ LOAD ════
     function load(url,ldEl){
         if(!url){if(ldEl)ldEl.textContent='No URL';return;}
+        var loadStarted = performance.now();
+        var fetchFinished = loadStarted;
         console.log('[VF] load '+url);
         fetch(url).then(function(r){
             if(!r.ok)throw new Error(r.status);
             return r.text();
         }).then(function(txt){
+            fetchFinished = performance.now();
             console.log('[VF] got '+txt.length+' chars');
             if(!/\b(ATOM|HETATM)\b/.test(txt)) throw new Error('invalid PDB payload');
             glv.addModel(txt,'pdb');
@@ -288,38 +326,32 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
             try { glv.remove({or:[{resn:'HOH'},{resn:'WAT'}]}); } catch(e){}
 
             apply();
+            applyViewerPose();
             setTimeout(center,200);setTimeout(center,700);
             if(ldEl){ldEl.style.display='none';}
             _loaded=true;
             if(AUTO_SPIN)setSpinState(true);
-            window.parent.postMessage({source:'viewer-full',type:'ready',data:{}},'*');
+            window.parent.postMessage({source:'viewer-full',type:'ready',data:{
+                fetchMs: Math.round(fetchFinished-loadStarted),
+                parseRenderMs: Math.round(performance.now()-fetchFinished),
+                totalMs: Math.round(performance.now()-loadStarted)
+            }},'*');
         }).catch(function(err){
-            console.error('[VF] fetch err:',err,'→ fallback');
-            try {
-                $3Dmol.download(url,{mimetype:'text/plain'},function(m){
-                    try {
-                        if(!m || !/\b(ATOM|HETATM)\b/.test(String(m))) throw new Error('invalid fallback PDB payload');
-                        glv.addModel(m,'pdb');
-                        try{glv.remove({or:[{resn:'HOH'},{resn:'WAT'}]});}catch(e){}
-                        apply();
-                        setTimeout(center,300);setTimeout(center,800);
-                        if(ldEl){ldEl.style.display='none';}
-                        _loaded=true;
-                        if(AUTO_SPIN)setSpinState(true);
-                        window.parent.postMessage({source:'viewer-full',type:'ready',data:{}},'*');
-                    } catch(innerErr) {
-                        showLoadError(ldEl, innerErr);
-                    }
-                });
-            } catch(downloadErr) {
-                showLoadError(ldEl, downloadErr);
-            }
-            setTimeout(function(){
-                if(ldEl&&ldEl.style.display!=='none'&&!_loaded){
-                    showLoadError(ldEl, new Error('timeout'));
-                }
-            },15000);
+            console.error('[VF] fetch err:',err);
+            showLoadError(ldEl, err);
         });
+    }
+
+    function applyViewerPose(){
+        if(!glv)return;
+        try{
+            glv.zoomTo();
+            glv.rotate(24 + (POSE_SEED * 37 % 170), 'y');
+            glv.rotate(-42 + (POSE_SEED * 19 % 86), 'x');
+            glv.rotate(-18 + (POSE_SEED * 11 % 42), 'z');
+            glv.zoom(0.94 + ((POSE_SEED % 7) * 0.025));
+            glv.render();
+        }catch(e){console.warn('[VF] pose err:',e);}
     }
     function showLoadError(ldEl, err) {
         console.error('[VF] load error:', err);
@@ -400,6 +432,12 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
     }
 
     function doInterfaceDetail(){
+        if (!INTERFACE_DETAIL_ENABLED) {
+            currentStyle = 'cartoon';
+            var fallbackColors = COLORS[currentColor];
+            if (fallbackColors) fallbackColors();
+            return;
+        }
         glv.removeAllSurfaces();
         applyByStyle(selectorForChains(AG_CHAINS), AG_COLOR);
         applyByStyle(antibodySelector(), AB_COLOR);
@@ -429,6 +467,22 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
         setTimeout(function(){try{glv.zoomTo();glv.render();}catch(e){}},180);
     }
     function center(){try{glv.zoomTo();glv.render();}catch(e){}}
+
+    function setCompactMode(compact, options) {
+        options = options || {};
+        COMPACT_MODE = !!compact;
+        document.body.classList.toggle('compact-viewer', COMPACT_MODE);
+        if (!COMPACT_MODE && options.autoSpin) {
+            AUTO_SPIN = true;
+            renderAutoSpinBadge();
+            setSpinState(true);
+        } else if (COMPACT_MODE) {
+            setSpinState(false);
+        }
+        setTimeout(function(){
+            try{if(glv){glv.resize();glv.zoomTo();glv.render();}}catch(e){}
+        }, 40);
+    }
 
     // ════ PUBLIC ACTIONS ════
     function doStyle(s){
@@ -473,6 +527,9 @@ canvas{width:100%!important;height:100%!important;display:block;outline:none}
             case 'toggleSpin':
             case 'setSpin':
                 setSpinState(d.data.spin!==false);
+                break;
+            case 'setCompact':
+                setCompactMode(d.data.compact!==false,d.data);
                 break;
             case 'exportImage':doPNG();break;
         }

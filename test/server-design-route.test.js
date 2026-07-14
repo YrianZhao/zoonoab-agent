@@ -8,7 +8,6 @@ const test = require('node:test');
 const WebSocket = require('ws');
 
 const PORT = 19081;
-const MOCK_CHAT_PORT = 19082;
 const CONFIG_PATH = path.join(os.tmpdir(), 'zoonoab-test-voice-config-' + PORT + '.json');
 const QUESTION_LOG_PATH = path.join(os.tmpdir(), 'zoonoab-test-question-routing-' + PORT + '.jsonl');
 const DIAGNOSTIC_LOG_PATH = path.join(os.tmpdir(), 'zoonoab-test-diagnostics-' + PORT + '.jsonl');
@@ -464,7 +463,7 @@ test('server can let the chat model route terse monoclonal slang into workflow',
     });
   });
 
-  await new Promise(resolve => mockServer.listen(MOCK_CHAT_PORT, '127.0.0.1', resolve));
+  const mockPort = await listenOnLocalhost(mockServer);
   try {
     const saveResp = await fetch('http://127.0.0.1:' + PORT + '/api/voice/session', {
       method: 'POST',
@@ -472,7 +471,7 @@ test('server can let the chat model route terse monoclonal slang into workflow',
       body: JSON.stringify({
         voice: { mode: 'local', provider: 'local' },
         chat: {
-          baseUrl: 'http://127.0.0.1:' + MOCK_CHAT_PORT + '/v1',
+          baseUrl: 'http://127.0.0.1:' + mockPort + '/v1',
           apiKey: 'test-intent-router-secret',
           model: 'mock-intent-router'
         }
@@ -519,12 +518,10 @@ test('server design route preserves explicitly declared unknown targets across r
   assert.doesNotMatch(serialized, /IL-33|ST2|PD-L1|CD274|4KC3/);
 });
 
-test('server previews distinct 3D model files for different design targets and antibody formats', async () => {
+test('server previews exact prepared structures and leaves unknown targets for verified resolution', async () => {
   const requests = [
     { text: '针对流感HA血凝素设计10个抗体', expectedPrefix: /^FluHA-Fab-/ },
-    { text: '设计10个针对PD-L1的Fab', expectedPrefix: /^PDL1-Fab-/ },
-    { text: '设计10个抗体，靶点是烟草花叶病毒', expectedNotPrefix: /^PDL1-Fab-/ },
-    { text: '设计10个纳米抗体，靶点是烟草花叶病毒', expectedNotPrefix: /^PDL1-Fab-/ }
+    { text: '设计10个针对PD-L1的Fab', expectedPrefix: /^PDL1-Fab-/ }
   ];
   const previews = [];
 
@@ -538,30 +535,44 @@ test('server previews distinct 3D model files for different design targets and a
       : '';
     assert.ok(firstFile, item.text + ' should preview a local 3D model file');
     if (item.expectedPrefix) assert.match(firstFile, item.expectedPrefix);
-    if (item.expectedNotPrefix) assert.doesNotMatch(firstFile, item.expectedNotPrefix);
     previews.push({ ...item, data, firstFile });
   }
 
   assert.notEqual(previews[0].firstFile, previews[1].firstFile);
-  assert.notEqual(previews[2].firstFile, previews[3].firstFile);
-  assert.equal(previews[2].data.threeDPreview.binders[0].antibodyFormat, 'Fab');
-  assert.equal(previews[3].data.threeDPreview.binders[0].antibodyFormat, 'VHH');
+
+  for (const text of ['设计10个抗体，靶点是烟草花叶病毒', '设计10个纳米抗体，靶点是烟草花叶病毒']) {
+    const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/design-route?text=' + encodeURIComponent(text));
+    assert.equal(res.status, 200);
+    const data = await res.json();
+    assert.deepEqual(data.threeDPreview.binders, []);
+    assert.deepEqual(data.threeDPreview.files, []);
+    assert.doesNotMatch(JSON.stringify(data.threeDPreview), /PDL1-Fab|IL33|4KC3/);
+  }
 });
 
-test('server preserves influenza HA subtype display names while reusing the HA structure preset', async () => {
+test('server preserves influenza HA subtype display names and leaves non-exact family structures for online resolution', async () => {
   const query = encodeURIComponent('设计一个针对流感 H7 的中和抗体');
   const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/design-route?text=' + query);
   assert.equal(res.status, 200);
   const data = await res.json();
-  const firstBinder = data.threeDPreview && data.threeDPreview.binders && data.threeDPreview.binders[0];
-
-  assert.ok(firstBinder, 'H7 request should still preview a local HA 3D model');
   assert.equal(data.parsed.target, 'Influenza A(H7) hemagglutinin (HA)');
   assert.equal(data.profile.targetDisplay, 'Influenza A(H7) hemagglutinin (HA)');
-  assert.equal(firstBinder.targetDisplay, 'Influenza A(H7) hemagglutinin (HA)');
-  assert.match(firstBinder.file, /^FluHA-Fab-/);
-  assert.match(firstBinder.structureTitle, /Influenza A\(H7\) hemagglutinin \(HA\)/);
-  assert.match(firstBinder.structuralBasis, /RCSB 3GBM influenza HA trimer biological assembly/);
+  assert.deepEqual(data.threeDPreview.binders, []);
+  assert.deepEqual(data.threeDPreview.files, []);
+  assert.doesNotMatch(JSON.stringify(data.threeDPreview), /FluHA-Fab|3GBM/);
+});
+
+test('server does not mark a Fab preset as an exact local VHH structure', async () => {
+  const query = encodeURIComponent('设计 2 个靶向 PD-L1 的 VHH 纳米抗体');
+  const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/design-route?text=' + query);
+  assert.equal(res.status, 200);
+  const data = await res.json();
+
+  assert.equal(data.profile.targetDisplay, 'PD-L1');
+  assert.match(data.profile.scaffold, /VHH/);
+  assert.deepEqual(data.threeDPreview.binders, []);
+  assert.deepEqual(data.threeDPreview.files, []);
+  assert.doesNotMatch(JSON.stringify(data.threeDPreview), /PDL1-Fab/);
 });
 
 test('server previews curated real complexes for common explicit antigen targets', async () => {
@@ -982,7 +993,7 @@ test('disease design requests resolve a real target before launching the workflo
     });
   });
 
-  await new Promise(resolve => mockServer.listen(MOCK_CHAT_PORT, '127.0.0.1', resolve));
+  const mockPort = await listenOnLocalhost(mockServer);
   try {
     const saveResp = await fetch('http://127.0.0.1:' + PORT + '/api/voice/session', {
       method: 'POST',
@@ -990,7 +1001,7 @@ test('disease design requests resolve a real target before launching the workflo
       body: JSON.stringify({
         voice: { mode: 'local', provider: 'local' },
         chat: {
-          baseUrl: 'http://127.0.0.1:' + MOCK_CHAT_PORT + '/v1',
+          baseUrl: 'http://127.0.0.1:' + mockPort + '/v1',
           apiKey: 'test-target-resolver-secret',
           model: 'mock-target-resolver'
         }
@@ -1066,7 +1077,7 @@ test('implicit pathogen target requests call the model before launching the work
     });
   });
 
-  await new Promise(resolve => mockServer.listen(MOCK_CHAT_PORT, '127.0.0.1', resolve));
+  const mockPort = await listenOnLocalhost(mockServer);
   try {
     const saveResp = await fetch('http://127.0.0.1:' + PORT + '/api/voice/session', {
       method: 'POST',
@@ -1074,7 +1085,7 @@ test('implicit pathogen target requests call the model before launching the work
       body: JSON.stringify({
         voice: { mode: 'local', provider: 'local' },
         chat: {
-          baseUrl: 'http://127.0.0.1:' + MOCK_CHAT_PORT + '/v1',
+          baseUrl: 'http://127.0.0.1:' + mockPort + '/v1',
           apiKey: 'test-pathogen-target-secret',
           model: 'mock-pathogen-target'
         }
@@ -1155,7 +1166,7 @@ test('target resolver accepts provider reasoning JSON when message content is em
     });
   });
 
-  await new Promise(resolve => mockServer.listen(MOCK_CHAT_PORT, '127.0.0.1', resolve));
+  const mockPort = await listenOnLocalhost(mockServer);
   try {
     const saveResp = await fetch('http://127.0.0.1:' + PORT + '/api/voice/session', {
       method: 'POST',
@@ -1163,7 +1174,7 @@ test('target resolver accepts provider reasoning JSON when message content is em
       body: JSON.stringify({
         voice: { mode: 'local', provider: 'local' },
         chat: {
-          baseUrl: 'http://127.0.0.1:' + MOCK_CHAT_PORT + '/v1',
+          baseUrl: 'http://127.0.0.1:' + mockPort + '/v1',
           apiKey: 'test-reasoning-json-secret',
           model: 'mock-reasoning-json'
         }
@@ -1226,7 +1237,7 @@ test('target resolver rejects disease-shaped pseudo targets from the model', asy
     });
   });
 
-  await new Promise(resolve => mockServer.listen(MOCK_CHAT_PORT, '127.0.0.1', resolve));
+  const mockPort = await listenOnLocalhost(mockServer);
   try {
     const saveResp = await fetch('http://127.0.0.1:' + PORT + '/api/voice/session', {
       method: 'POST',
@@ -1234,7 +1245,7 @@ test('target resolver rejects disease-shaped pseudo targets from the model', asy
       body: JSON.stringify({
         voice: { mode: 'local', provider: 'local' },
         chat: {
-          baseUrl: 'http://127.0.0.1:' + MOCK_CHAT_PORT + '/v1',
+          baseUrl: 'http://127.0.0.1:' + mockPort + '/v1',
           apiKey: 'test-pseudo-target-secret',
           model: 'mock-pseudo-target'
         }
@@ -1340,7 +1351,7 @@ test('tumor immunotherapy disease requests use one compact model parse before wo
     });
   });
 
-  await new Promise(resolve => mockServer.listen(MOCK_CHAT_PORT, '127.0.0.1', resolve));
+  const mockPort = await listenOnLocalhost(mockServer);
   try {
     const saveResp = await fetch('http://127.0.0.1:' + PORT + '/api/voice/session', {
       method: 'POST',
@@ -1348,7 +1359,7 @@ test('tumor immunotherapy disease requests use one compact model parse before wo
       body: JSON.stringify({
         voice: { mode: 'local', provider: 'local' },
         chat: {
-          baseUrl: 'http://127.0.0.1:' + MOCK_CHAT_PORT + '/v1',
+          baseUrl: 'http://127.0.0.1:' + mockPort + '/v1',
           apiKey: 'test-tumor-target-resolver-secret',
           model: 'mock-tumor-target-resolver'
         }
@@ -1702,7 +1713,7 @@ test('assistant model calls include ZoonoAb persona prompt and hide provider nam
     });
   });
 
-  await new Promise(resolve => mockServer.listen(MOCK_CHAT_PORT, '127.0.0.1', resolve));
+  const mockPort = await listenOnLocalhost(mockServer);
   try {
     const saveResp = await fetch('http://127.0.0.1:' + PORT + '/api/voice/session', {
       method: 'POST',
@@ -1710,7 +1721,7 @@ test('assistant model calls include ZoonoAb persona prompt and hide provider nam
       body: JSON.stringify({
         voice: { mode: 'local', provider: 'local' },
         chat: {
-          baseUrl: 'http://127.0.0.1:' + MOCK_CHAT_PORT + '/v1',
+          baseUrl: 'http://127.0.0.1:' + mockPort + '/v1',
           apiKey: 'sk-mock-chat-secret',
           model: 'mock-chat-model'
         }

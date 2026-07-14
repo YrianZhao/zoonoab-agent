@@ -2415,6 +2415,13 @@
             color: var(--text-primary);
             font-weight: 700;
         }
+        .viewer-route-note.disclosure {
+            flex-basis: 100%;
+            border-radius: var(--radius-md);
+            background: var(--warning-light);
+            color: #92400E;
+            white-space: normal;
+        }
         .viewer-role-legend {
             display: flex; flex-wrap: wrap; gap: 8px;
             margin: -4px 0 14px 0;
@@ -2546,6 +2553,19 @@
         .badge-fail { background: var(--error-light); color: var(--error); }
         .badge-warn { background: var(--warning-light); color: var(--warning); }
         .badge-ipTm { background: var(--info-light); color: var(--info); }
+        .badge-display { background: rgba(13,148,136,0.12); color: #0F766E; }
+        .badge-reference { background: var(--info-light); color: var(--info); }
+        .gallery-disclosure {
+            margin-top: 6px;
+            min-height: 24px;
+            color: var(--text-muted);
+            font-size: 9px;
+            line-height: 1.35;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
 
         /* ═══════ BINDERS ROW — PASS/FAIL strip ═══════ */
         .binders-section {
@@ -2591,6 +2611,16 @@
             border-color: var(--error);
         }
         .binder-chip.fail:hover { background: var(--error); color: var(--text-white); transform: translateY(-1px); }
+        .binder-chip.display {
+            background: rgba(13,148,136,0.12); color: #0F766E;
+            border-color: #0D9488;
+        }
+        .binder-chip.display:hover { background: #0D9488; color: var(--text-white); transform: translateY(-1px); }
+        .binder-chip.reference {
+            background: var(--info-light); color: var(--info);
+            border-color: var(--info);
+        }
+        .binder-chip.reference:hover { background: var(--info); color: var(--text-white); transform: translateY(-1px); }
         .binder-chip.active {
             outline: 2px solid var(--brand);
             outline-offset: 1px;
@@ -2813,9 +2843,10 @@
         .typing-cursor {
             display: inline-block; width: 2px; height: 1em;
             background: var(--brand); margin-left: 2px; vertical-align: middle;
-            animation: cursorBlink 0.8s step-end infinite;
+            animation: cursorBlink 1s ease-in-out infinite;
             border-radius: 1px;
         }
+        .message-content.is-streaming { text-rendering: optimizeLegibility; }
         @keyframes cursorBlink {
             0%, 100% { opacity: 1; }
             50% { opacity: 0; }
@@ -3206,6 +3237,21 @@
             font-size: 11px;
             font-weight: 500;
             line-height: 1.45;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+        .mol-modal-disclosure {
+            max-width: 100%;
+            min-width: 0;
+            padding: 5px 8px;
+            border-radius: var(--radius-sm);
+            background: var(--warning-light);
+            color: #92400E;
+            font-size: 11px;
+            font-weight: 600;
+            line-height: 1.4;
             overflow: hidden;
             display: -webkit-box;
             -webkit-line-clamp: 2;
@@ -6341,7 +6387,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '69498207';
+    const APP_BUILD_VERSION = '69498215';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
     const SILICONFLOW_CHAT_FALLBACK_MODELS = ['Qwen/Qwen3-32B', 'Qwen/Qwen3-14B', 'Qwen/Qwen3-8B', 'deepseek-ai/DeepSeek-V3'];
@@ -6716,10 +6762,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         }
     }
 
-    const TYPEWRITER_TICK_MS = 12;
-    const TYPEWRITER_TARGET_MIN_MS = 360;
-    const TYPEWRITER_TARGET_MAX_MS = 2200;
-    const TYPEWRITER_MS_PER_CHAR = 2;
+    const TYPEWRITER_TICK_MS = 24;
+    const TYPEWRITER_TARGET_MIN_MS = 720;
+    const TYPEWRITER_TARGET_MAX_MS = 10000;
+    const TYPEWRITER_MS_PER_CHAR = 16;
+    const TYPEWRITER_SENTENCE_PAUSE_MS = 96;
+    const TYPEWRITER_CLAUSE_PAUSE_MS = 48;
 
     // Typewriter effect for agent messages
     function typewriterEffect(markdown, contentEl, autoScroll = captureAutoScrollState(), runId = currentClientRunId) {
@@ -6728,16 +6776,24 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             contentEl.style.width = '100%';
             contentEl.style.minHeight = '1.6em';
 
-            const rawText = markdown;
+            const rawText = String(markdown || '');
             const totalLen = rawText.length;
 
             const targetMs = Math.min(TYPEWRITER_TARGET_MAX_MS, Math.max(TYPEWRITER_TARGET_MIN_MS, totalLen * TYPEWRITER_MS_PER_CHAR));
-            const charsPerTick = Math.max(3, Math.ceil(totalLen / (targetMs / TYPEWRITER_TICK_MS)));
+            const charsPerTick = Math.max(1, Math.ceil(totalLen / (targetMs / TYPEWRITER_TICK_MS)));
             let pos = 0;
+            contentEl.classList.add('is-streaming');
+            contentEl.setAttribute('aria-busy', 'true');
+
+            function finishStreaming() {
+                contentEl.classList.remove('is-streaming');
+                contentEl.removeAttribute('aria-busy');
+                contentEl.style.minHeight = '';
+            }
 
             function tick() {
                 if (isStaleClientRunId(runId)) {
-                    contentEl.style.minHeight = '';
+                    finishStreaming();
                     resolve();
                     return;
                 }
@@ -6745,13 +6801,17 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                     const accelerated = workflowFastForward || document.body.classList.contains('workflow-fast-forward') || skipThinkingRequested || demoSkipSettled;
                     const acceleratedStep = Math.max(charsPerTick * 6, Math.ceil(totalLen / 18), 8);
                     const step = accelerated ? acceleratedStep : charsPerTick;
+                    const previousPos = pos;
                     pos = Math.min(pos + step, totalLen);
                     contentEl.innerHTML = renderMarkdown(rawText.slice(0, pos)) + '<span class="typing-cursor"></span>';
                     scrollBottom(autoScroll);
-                    setTimeout(tick, accelerated ? 10 : TYPEWRITER_TICK_MS);
+                    const chunk = rawText.slice(previousPos, pos);
+                    const sentencePause = /[.!?。！？]\s*$/.test(chunk) ? TYPEWRITER_SENTENCE_PAUSE_MS : 0;
+                    const clausePause = !sentencePause && /[,;:，、；：\n]\s*$/.test(chunk) ? TYPEWRITER_CLAUSE_PAUSE_MS : 0;
+                    setTimeout(tick, accelerated ? 10 : TYPEWRITER_TICK_MS + sentencePause + clausePause);
                 } else {
                     contentEl.innerHTML = renderMarkdown(markdown);
-                    contentEl.style.minHeight = '';
+                    finishStreaming();
                     scrollBottom(autoScroll);
                     resolve();
                 }
@@ -6966,7 +7026,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const filename = String(model.filename || '').replace(/\.pdb$/i, '') + '.pdb';
         const antigenChains = Array.isArray(model.antigenChains) && model.antigenChains.length ? model.antigenChains : ['A'];
         const antibodyChains = Array.isArray(model.antibodyChains) && model.antibodyChains.length ? model.antibodyChains : ['B'];
-        let url = '/viewer-full.html?pdb=' + encodeURIComponent('/api/pdb/local/' + encodeURIComponent(filename));
+        const pdbUrl = '/api/pdb/local/' + encodeURIComponent(filename) + '?chains=' + encodeURIComponent([...new Set([...antigenChains, ...antibodyChains])].join(','));
+        let url = '/viewer-full.html?pdb=' + encodeURIComponent(pdbUrl);
         url += '&chainA=' + encodeURIComponent('#0891B2');
         url += '&chainB=' + encodeURIComponent('#FB7185');
         url += '&antigenChains=' + encodeURIComponent(antigenChains.join(','));
@@ -6974,6 +7035,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         url += '&antigenLabel=' + encodeURIComponent('抗原');
         url += '&antibodyLabel=' + encodeURIComponent('抗体');
         url += '&poseSeed=' + encodeURIComponent(String(stableViewerPoseSeed(filename)));
+        url += '&modelOrigin=local';
         url += '&autoSpin=1';
         url += '&title=' + encodeURIComponent(model.name || filename);
         return url;
@@ -7079,14 +7141,18 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             titleEl.innerHTML = '<div class="mol-modal-title-copy"><div class="mol-modal-title-main"><i data-lucide="box" style="width:18px;height:18px;color:#6B5BFF;"></i><span>' + escHtml(displayTitle) + '</span></div>' +
                 (subtitleParts.length ? '<div class="mol-modal-subtitle">' + escHtml(subtitleParts.join(' · ')) + '</div>' : '') + '</div>';
         }
+        restorePromotedModalIframe();
         bodyEl.innerHTML = '';
         modalIframe = document.createElement('iframe');
-        modalIframe.src = buildLocalPDBModelFrameUrl(model);
+        modalIframeUrl = buildLocalPDBModelFrameUrl(model);
+        modalIframe.src = modalIframeUrl;
         modalIframe.style.cssText = 'width:100%;height:100%;border:none;display:block;';
         bodyEl.appendChild(modalIframe);
         clearTimeout(molCloseTimer);
         molCloseTimer = null;
         overlay.style.display = 'flex';
+        overlay.style.visibility = 'visible';
+        overlay.setAttribute('aria-hidden', 'false');
         requestAnimationFrame(() => {
             requestAnimationFrame(() => {
                 overlay.classList.add('open');
@@ -8501,18 +8567,48 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         };
     }
 
+    function cloneBinderStructure(structure) {
+        if (!structure || typeof structure !== 'object') return null;
+        try {
+            return JSON.parse(JSON.stringify(structure));
+        } catch (err) {
+            console.warn('[3D] Unable to copy structure metadata:', err);
+            return null;
+        }
+    }
+
+    function sanitizeDisplayPoseLabel(value) {
+        return String(value || '')
+            .replace(/\s*\((?:i?p?tm|dockq|rmsd|plddt)[^)]*\)/gi, '')
+            .replace(/\b(?:i?p?tm|dockq|rmsd|plddt)\s*[=:]\s*[-+]?\d+(?:\.\d+)?/gi, '')
+            .replace(/\s{2,}/g, ' ')
+            .trim();
+    }
+
     function compactHistoryBinder(meta) {
         meta = meta || {};
+        const structure = cloneBinderStructure(meta.structure);
+        const coordinates = structure && structure.coordinates ? structure.coordinates : {};
+        const display = structure && structure.display ? structure.display : {};
+        const source = structure && structure.source ? structure.source : {};
+        const pose = structure && structure.pose ? structure.pose : {};
+        const targetIdentity = structure && structure.targetIdentity ? structure.targetIdentity : {};
+        const structureKind = String(pose.kind || source.kind || meta.poseKind || meta.structurePoseKind || meta.structureSourceKind || '').toLowerCase();
+        const displayPose = structureKind === 'display_pose';
+        const nonScoringStructure = displayPose || structureKind === 'representative';
         return {
             id: meta.id || '',
             file: meta.file || '',
             displayFile: meta.displayFile || '',
-            name: meta.name || '',
-            candidateLabel: meta.candidateLabel || '',
+            structure,
+            structureUrl: coordinates.structureUrl || meta.structureUrl || '',
+            modelOrigin: getModelOrigin(meta),
+            name: displayPose ? sanitizeDisplayPoseLabel(meta.name) : (meta.name || ''),
+            candidateLabel: displayPose ? sanitizeDisplayPoseLabel(meta.candidateLabel || meta.name) : (meta.candidateLabel || ''),
             routeId: meta.routeId || '',
             routeLabel: meta.routeLabel || '',
             disease: meta.disease || '',
-            targetDisplay: meta.targetDisplay || '',
+            targetDisplay: meta.targetDisplay || targetIdentity.requestedLabel || targetIdentity.canonicalName || '',
             partnerDisplay: meta.partnerDisplay || '',
             domain: meta.domain || '',
             mechanism: meta.mechanism || '',
@@ -8520,20 +8616,28 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             selectedEpitope: meta.selectedEpitope || '',
             structureRef: meta.structureRef || '',
             interfaceFocus: meta.interfaceFocus || '',
-            structureTitle: meta.structureTitle || '',
+            structureTitle: display.structureTitle || meta.structureTitle || '',
             structureFamily: meta.structureFamily || '',
-            visualSummary: meta.visualSummary || '',
-            structuralBasis: meta.structuralBasis || '',
+            visualSummary: display.visualSummary || meta.visualSummary || '',
+            structuralBasis: display.structuralBasis || meta.structuralBasis || '',
             interfaceDetail: meta.interfaceDetail !== false,
-            antigenChains: Array.isArray(meta.antigenChains) ? meta.antigenChains.slice(0, 12) : [],
-            antibodyChains: Array.isArray(meta.antibodyChains) ? meta.antibodyChains.slice(0, 12) : [],
+            antigenChains: Array.isArray(coordinates.antigenChains) ? coordinates.antigenChains.slice(0, 12) : (Array.isArray(meta.antigenChains) ? meta.antigenChains.slice(0, 12) : []),
+            antibodyChains: Array.isArray(coordinates.antibodyChains) ? coordinates.antibodyChains.slice(0, 12) : (Array.isArray(meta.antibodyChains) ? meta.antibodyChains.slice(0, 12) : []),
+            sourceAntigenChains: Array.isArray(coordinates.sourceAntigenChains) ? coordinates.sourceAntigenChains.slice(0, 12) : (Array.isArray(meta.sourceAntigenChains) ? meta.sourceAntigenChains.slice(0, 12) : []),
+            sourceAntibodyChains: Array.isArray(coordinates.sourceAntibodyChains) ? coordinates.sourceAntibodyChains.slice(0, 12) : (Array.isArray(meta.sourceAntibodyChains) ? meta.sourceAntibodyChains.slice(0, 12) : []),
             visualColors: meta.visualColors ? historyJsonClone(meta.visualColors, 120) : null,
+            structureSourceKind: source.kind || meta.structureSourceKind || meta.sourceKind || '',
+            structureDatabase: source.database || meta.structureDatabase || meta.sourceDatabase || '',
+            structureAccession: source.accession || meta.structureAccession || meta.sourceAccession || '',
+            structureGrade: display.grade || meta.structureGrade || meta.grade || '',
+            structureDisclosure: display.disclosure || meta.structureDisclosure || meta.disclosure || '',
+            poseKind: pose.kind || meta.poseKind || meta.structurePoseKind || '',
             sequence: meta.sequence ? truncateHistoryText(meta.sequence, 1800) : '',
             cdrSummary: meta.cdrSummary || '',
             developability: meta.developability || '',
             site: meta.site || '',
             binderId: meta.binderId || '',
-            ipTm: typeof meta.ipTm === 'number' ? meta.ipTm : null,
+            ipTm: !nonScoringStructure && typeof meta.ipTm === 'number' ? meta.ipTm : null,
             fallback: Boolean(meta.fallback)
         };
     }
@@ -9135,18 +9239,27 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                     </div>
                     ${renderHistoryModelRouteSummary(section)}
                     <div class="kb-history-model-grid">
-                        ${(section.binderData || []).map((model, modelIdx) => `
-                            <div class="kb-history-stat">
+                        ${(section.binderData || []).map((model, modelIdx) => {
+                            model = model || {};
+                            const structureMeta = getStructurePresentation(model);
+                            const sourceDisplay = structureMeta.sourceLabel || model.displayFile || model.file || model.id || '--';
+                            const showIpTm = !structureMeta.isDisplayPose && !structureMeta.isRepresentative
+                                && model.ipTm !== null && model.ipTm !== undefined;
+                            return `<div class="kb-history-stat">
                                 <div class="kb-history-stat-label">${escHtml(model.candidateLabel || model.name || model.id || ('模型 ' + (modelIdx + 1)))}</div>
-                                <div class="kb-history-stat-value" style="font-size:12px;">${escHtml(model.displayFile || model.file || model.id || '--')}</div>
+                                <div class="kb-history-stat-value" style="font-size:12px;">${escHtml(sourceDisplay)}</div>
                                 <div style="margin-top:5px;display:flex;gap:4px;flex-wrap:wrap;">
                                     ${model.targetDisplay ? `<span class="kb-history-pill model">${escHtml(model.targetDisplay)}</span>` : ''}
-                                    ${model.ipTm !== null && model.ipTm !== undefined ? `<span class="kb-history-pill">ipTM ${Number(model.ipTm).toFixed(3)}</span>` : ''}
+                                    ${structureMeta.kindLabel ? `<span class="kb-history-pill model">${escHtml(structureMeta.kindLabel)}</span>` : ''}
+                                    ${structureMeta.grade ? `<span class="kb-history-pill">等级 ${escHtml(structureMeta.grade)}</span>` : ''}
+                                    ${showIpTm ? `<span class="kb-history-pill">ipTM ${Number(model.ipTm).toFixed(3)}</span>` : ''}
                                     ${model.antigenChains && model.antigenChains.length ? `<span class="kb-history-pill">Ag ${escHtml(model.antigenChains.join(','))}</span>` : ''}
                                     ${model.antibodyChains && model.antibodyChains.length ? `<span class="kb-history-pill">Ab ${escHtml(model.antibodyChains.join(','))}</span>` : ''}
                                 </div>
+                                ${structureMeta.disclosure ? `<div style="margin-top:6px;font-size:10px;line-height:1.45;color:#92400E;">${escHtml(structureMeta.disclosure)}</div>` : ''}
                                 <button class="kb-history-action secondary" type="button" onclick="openHistory3D('${escJsString(record.id)}', ${sectionIdx}, ${modelIdx})"><i data-lucide="box" style="width:13px;height:13px;"></i> 查看结构</button>
-                            </div>`).join('')}
+                            </div>`;
+                        }).join('')}
                     </div>
                 </div>`).join('')}`;
     }
@@ -9158,7 +9271,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             first.targetDisplay ? ['靶点', first.targetDisplay] : null,
             first.mechanism ? ['作用机制', first.mechanism] : null,
             first.selectedEpitope ? ['表位策略', first.selectedEpitope] : null,
-            first.structuralBasis ? ['结构依据', first.structuralBasis] : null
+            first.structuralBasis ? ['结构依据', first.structuralBasis] : null,
+            ...getStructureSummaryItems(first)
         ].filter(Boolean);
         if (!items.length) return '';
         return `<div class="kb-history-model-summary">${items.map(([label, value]) => `<span class="kb-history-pill model">${escHtml(label)} · ${escHtml(value)}</span>`).join('')}</div>`;
@@ -9166,15 +9280,17 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
     function getHistoryPDBUrl(model, pdbId) {
         const meta = model || {};
+        const structureUrl = meta.structure?.coordinates?.structureUrl || meta.structureUrl;
+        if (structureUrl) return addViewerChainProjection(structureUrl, meta);
         if (meta.displayFile) {
             const displayName = String(meta.displayFile).replace(/\.pdb$/i, '');
-            return '/api/pdb/local/' + displayName + '.pdb';
+            return addViewerChainProjection('/api/pdb/local/' + displayName + '.pdb', meta);
         }
         if (meta.file) {
             const filename = String(meta.file).replace(/\.pdb$/i, '');
-            return '/api/pdb/local/' + filename + '.pdb';
+            return addViewerChainProjection('/api/pdb/local/' + filename + '.pdb', meta);
         }
-        return '/api/pdb/local/' + String(pdbId || '').replace(/\.pdb$/i, '') + '.pdb';
+        return addViewerChainProjection('/api/pdb/local/' + String(pdbId || '').replace(/\.pdb$/i, '') + '.pdb', meta);
     }
 
     function buildHistoryMoleculeFrameUrl(section, model, modelIdx, title) {
@@ -9182,7 +9298,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const pdbId = meta.id || (section && section.primaryPDB) || '';
         const colors = getBinderVisualColors(meta);
         const antigenChains = Array.isArray(meta.antigenChains) && meta.antigenChains.length ? meta.antigenChains : ['A'];
-        const antibodyChains = Array.isArray(meta.antibodyChains) && meta.antibodyChains.length ? meta.antibodyChains : ['B'];
+        const antibodyChains = Array.isArray(meta.antibodyChains) ? meta.antibodyChains : ['B'];
         const legend = getRoleLegend(meta);
         const seedSource = [
             meta.viewerPoseSeed,
@@ -9202,6 +9318,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         url += '&antigenLabel=' + encodeURIComponent(legend.antigen.role);
         url += '&antibodyLabel=' + encodeURIComponent(legend.antibody.role);
         url += '&poseSeed=' + encodeURIComponent(String(viewerPoseSeed));
+        url += '&interfaceDetail=' + (meta.interfaceDetail === false ? '0' : '1');
+        url += '&modelOrigin=' + encodeURIComponent(getModelOrigin(meta));
         url += '&autoSpin=1';
         if (title) url += '&title=' + encodeURIComponent(title);
         return url;
@@ -9209,7 +9327,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
     function buildSelectionReasonHtml(meta) {
         const reason = meta && (meta.selectionReason || meta.reason || meta.targetSelectionReason)
-            ? String(meta.selectionReason || meta.reason || meta.targetSelectionReason).replace(/\s+/g, ' ').trim()
+            ? String(meta.selectionReason || meta.reason || meta.targetSelectionReason).trim()
             : '';
         if (!reason) return '';
         return '<div class="mol-modal-reason" title="' + escHtml('选择理由：' + reason) + '">选择理由：' + escHtml(reason) + '</div>';
@@ -9230,26 +9348,35 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const displayTitle = model.structureTitle
             ? model.structureTitle + ' · ' + (model.candidateLabel || model.name || model.id || section.primaryPDB)
             : (model.candidateLabel || model.name || model.id || section.label || '历史结构');
+        const structureMeta = getStructurePresentation(model);
         const subtitleParts = [
             model.disease || '',
             model.targetDisplay ? '靶点：' + model.targetDisplay : '',
             model.mechanism || '',
             model.selectedEpitope ? '表位策略：' + model.selectedEpitope : '',
-            model.structuralBasis ? '结构依据：' + model.structuralBasis : ''
+            model.structuralBasis ? '结构依据：' + model.structuralBasis : '',
+            structureMeta.sourceLabel ? '结构来源：' + structureMeta.sourceLabel : '',
+            structureMeta.kindLabel ? '结构类型：' + structureMeta.kindLabel : '',
+            structureMeta.grade ? '展示等级：' + structureMeta.grade : '',
+            structureMeta.hasTargetVerification ? '抗原身份：' + (structureMeta.targetVerified ? '已核验' : '未核验') : ''
         ].filter(Boolean);
         if (titleEl) {
             titleEl.innerHTML = '<div class="mol-modal-title-copy"><div class="mol-modal-title-main"><i data-lucide="box" style="width:18px;height:18px;color:#6B5BFF;"></i><span>' + escHtml(displayTitle) + '</span></div>' +
                 (subtitleParts.length ? '<div class="mol-modal-subtitle">' + escHtml(subtitleParts.join(' · ')) + '</div>' : '') + '</div>' +
-                buildSelectionReasonHtml(model);
+                buildSelectionReasonHtml(model) + buildStructureDisclosureHtml(model);
         }
+        restorePromotedModalIframe();
         bodyEl.innerHTML = '';
         modalIframe = document.createElement('iframe');
-        modalIframe.src = buildHistoryMoleculeFrameUrl(section, model, modelIdx, displayTitle);
+        modalIframeUrl = buildHistoryMoleculeFrameUrl(section, model, modelIdx, displayTitle);
+        modalIframe.src = modalIframeUrl;
         modalIframe.style.cssText = 'width:100%;height:100%;border:none;display:block;';
         bodyEl.appendChild(modalIframe);
         clearTimeout(molCloseTimer);
         molCloseTimer = null;
         overlay.style.display = 'flex';
+        overlay.style.visibility = 'visible';
+        overlay.setAttribute('aria-hidden', 'false');
         requestAnimationFrame(() => requestAnimationFrame(() => overlay.classList.add('open')));
         molModalOpen = true;
         modalPdbId = model.id || section.primaryPDB || null;
@@ -13635,6 +13762,79 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         enqueueOp(op);
     }
 
+    function extractFallbackRequestedTarget(userText, requireExplicit = false) {
+        const raw = String(userText || '').trim();
+        if (!raw) return requireExplicit ? '' : '用户需求靶点';
+        const explicit = raw.match(/(?:靶向|针对|靶点(?:为|是)?|target(?:ing)?(?:\s+is|\s*[:：])?)\s*[“”"']?([A-Za-z][A-Za-z0-9 .()\/_-]{1,64})/i);
+        const namedTarget = raw.match(/\b([A-Za-z][A-Za-z-]{2,})\s+(\d+(?:\.\d+)?)\b/);
+        const token = raw.match(/\b([A-Za-z]{2,}[A-Za-z0-9]*(?:[-.][A-Za-z0-9]+)+|[A-Za-z]{2,}\d+[A-Za-z0-9.-]*)\b/);
+        const namedTargetValue = namedTarget && !/^(?:design|generate|create|produce|make)$/i.test(namedTarget[1])
+            ? namedTarget[1] + ' ' + namedTarget[2]
+            : '';
+        const candidate = String(explicit && explicit[1] || namedTargetValue || token && token[1] || '')
+            .split(/(?:\s+的?\s*(?:胃癌|乳腺癌|实体瘤|肿瘤|自身免疫|炎症|感染)|设计|生成|抗体|候选|分子|用于|阻断|中和|结合|，|。|、|,|;|；)/)[0]
+            .trim()
+            .replace(/[“”"'：:]+$/g, '')
+            .slice(0, 80);
+        return candidate || (requireExplicit ? '' : '用户需求靶点');
+    }
+
+    function inferFallbackDiseaseContext(userText) {
+        const text = String(userText || '');
+        const diseasePatterns = [
+            [/胃癌/, '胃癌'], [/乳腺癌/, '乳腺癌'], [/实体瘤/, '实体瘤'], [/肿瘤免疫/, '肿瘤免疫治疗'],
+            [/类风湿|关节炎/, '类风湿与关节炎'], [/自身免疫/, '自身免疫疾病'], [/银屑病/, '银屑病'],
+            [/炎症性肠病|克罗恩/, '炎症性肠病'], [/哮喘|气道炎症/, '哮喘与气道炎症'], [/过敏/, '过敏性疾病'],
+            [/新冠|COVID|SARS-CoV-2/i, '新型冠状病毒感染'], [/流感|influenza/i, '流感病毒感染'],
+            [/RSV|呼吸道合胞/i, '呼吸道合胞病毒感染'], [/高脂血症|血脂|胆固醇/, '血脂代谢疾病'],
+            [/糖尿病|代谢/, '代谢性疾病'], [/偏头痛/, '偏头痛']
+        ];
+        const match = diseasePatterns.find(item => item[0].test(text));
+        return match ? match[1] : '用户需求疾病方向';
+    }
+
+    function inferFallbackMechanismContext(userText, target) {
+        const text = String(userText || '');
+        const match = text.match(/((?:阻断|中和|抑制|激活|调节|识别|结合)[^，。；;]{1,96})/);
+        return match ? match[1].trim() : ('围绕 ' + target + ' 的抗原可及表面生成结合候选');
+    }
+
+    function inferFallbackEpitopeContext(userText, target) {
+        const text = String(userText || '');
+        const match = text.match(/([^，。；;]{0,48}(?:表位|结合位点|可及表面)[^，。；;]{0,48})/);
+        return match ? match[1].trim() : ('自动选择 ' + target + ' 的候选表位区域');
+    }
+
+    function buildGenericFallbackRouteProfile(userText) {
+        const target = extractFallbackRequestedTarget(userText);
+        const disease = inferFallbackDiseaseContext(userText);
+        const mechanism = inferFallbackMechanismContext(userText, target);
+        const selectedEpitope = inferFallbackEpitopeContext(userText, target);
+        return {
+            routeId: 'representative_demo',
+            disease,
+            target,
+            partner: '',
+            abType: /vhh|nanobod|纳米抗体/i.test(String(userText || '')) ? 'VHH' : 'Fab',
+            count: 10,
+            routeLabel: target,
+            evidence: target + ' 靶点信息整理',
+            referenceEntries: target + ' 靶点注释',
+            domain: target + ' 抗原可及区域',
+            mechanism,
+            interfaceFocus: target + ' 抗原可及表面',
+            selectedEpitope,
+            structureRef: '默认抗原-抗体代表性结构',
+            antibodyBackground: '候选抗体设计背景',
+            selectionReason: '保留本轮用户需求中的靶点信息，并围绕该靶点组织候选设计流程。',
+            rows: [
+                ['Site A', '优先可及表面', '贴近本轮用户需求靶点', '优先'],
+                ['Site B', '外侧稳定表面', '用于候选多样性比较', '备选'],
+                ['Site C', '柔性或遮挡区域', '结构身份与可及性需复核', '谨慎']
+            ]
+        };
+    }
+
     function getFallbackRouteProfile(userText, routeId) {
         const text = String(userText || '').toLowerCase();
         const profiles = {
@@ -13793,6 +13993,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             }
         };
         if (routeId && profiles[routeId]) return profiles[routeId];
+        if (extractFallbackRequestedTarget(userText, true)) return buildGenericFallbackRouteProfile(userText);
         if (/il\s*-?\s*33|st2|哮喘|过敏/.test(text)) return profiles.allergic_asthma;
         if (/tslp|tslpr/.test(text)) return profiles.allergic_tslp;
         if (/her\s*-?\s*2|erbb\s*-?\s*2|乳腺癌|胃癌/.test(text)) return profiles.breast_cancer;
@@ -13803,12 +14004,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (/il\s*-?\s*23|炎症性肠病|克罗恩/.test(text)) return profiles.autoimmune_il23;
         if (/rsv|呼吸道合胞/.test(text)) return profiles.infectious_rsv;
         if (/sars|covid|新冠|rbd|ace2/.test(text)) return profiles.infectious_covid;
-        if (/influenza|流感|ha|血凝素/.test(text)) return profiles.infectious_flu;
+        if (/influenza|流感|\bha\b|血凝素/.test(text)) return profiles.infectious_flu;
         if (/pcsk9|ldlr|胆固醇|ldl/.test(text)) return profiles.cardio_pcsk9;
         if (/angptl3|脂质代谢|高脂血症/.test(text)) return profiles.metabolic_angptl3;
         if (/il\s*-?\s*1|il1b|心血管炎症/.test(text)) return profiles.cardio_il1b;
         if (/gipr|肠促胰岛素/.test(text)) return profiles.metabolic_gipr;
-        return profiles.tumor_immunotherapy;
+        return buildGenericFallbackRouteProfile(userText);
     }
 
     function fallbackAgents(activeName, progress = 20) {
@@ -15532,6 +15733,28 @@ ${fallbackTableRows(profile.rows)}
         metabolic_gipr: { aliasPrefix: 'GIPR-Fab', structureTitle: 'GIPR Fab 胞外受体结合构象', structureFamily: '代谢受体胞外结构域 · Fab 候选', visualSummary: '展示 GIPG013 Fab 识别 GIPR 胞外结构域的真实复合物界面。', structuralBasis: 'RCSB 4HJ0 human GIPR ECD / GIPG013 Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#0F766E', antibody: '#F472B6' }, order: [5,9,2,4,8,1,3,7,0,6,10,11] }
     };
 
+    const FALLBACK_PRESET_TARGETS = {
+        'IL33-Fab': 'IL-33', 'IL33-VHH': 'IL-33', 'TSLP-Fab': 'TSLP', 'PDL1-Fab': 'PD-L1',
+        'PD1-Fab': 'PD-1', 'CTLA4-Fab': 'CTLA-4', 'CD20-Fab': 'CD20', 'CD19-Fab': 'CD19',
+        'CD3-Fab': 'CD3', 'C5-Fab': 'C5', 'IL6R-Fab': 'IL-6R', 'IL4RA-Fab': 'IL-4Rα',
+        'CD25-Fab': 'CD25', 'CD38-Fab': 'CD38', 'TIGIT-Fab': 'TIGIT', 'CD47-Fab': 'CD47',
+        'LAG3-Fab': 'LAG-3', 'TROP2-Fab': 'TROP-2', 'BCMA-Fab': 'BCMA', 'IgE-Fab': 'IgE',
+        'CGRPR-Fab': 'CGRP receptor', 'HER2-Fab': 'HER2', 'EGFR-Fab': 'EGFR', 'VEGFA-Fab': 'VEGF-A',
+        'TNF-Fab': 'TNF', 'IL17A-Fab': 'IL-17A', 'IL23-Fab': 'IL-23', 'RSVF-Fab': 'RSV F',
+        'SC2RBD-Fab': 'SARS-CoV-2 RBD', 'FluHA-Fab': 'Influenza HA', 'FluNA-Fab': 'Influenza NA',
+        'PCSK9-Fab': 'PCSK9', 'ANGPTL3-CV-Fab': 'ANGPTL3', 'IL1B-Fab': 'IL-1B',
+        'ANGPTL3-Met-Fab': 'ANGPTL3', 'GIPR-Fab': 'GIPR'
+    };
+
+    function normalizeFallbackStructureTarget(value) {
+        return String(value || '')
+            .normalize('NFKC')
+            .toUpperCase()
+            .replace(/(?:ALPHA|Α)/g, 'A')
+            .replace(/(?:BETA|Β)/g, 'B')
+            .replace(/[^A-Z0-9]/g, '');
+    }
+
     function getFallback3DPreset(profile) {
         if (profile && profile.routeId && FALLBACK_3D_PRESETS[profile.routeId]) return FALLBACK_3D_PRESETS[profile.routeId];
         const target = String(profile && profile.target || '').toLowerCase();
@@ -15562,14 +15785,9 @@ ${fallbackTableRows(profile.rows)}
         if (/rsv|合胞/.test(target)) return FALLBACK_3D_PRESETS.infectious_rsv;
         if (/sars|cov|rbd|新冠/.test(target)) return FALLBACK_3D_PRESETS.infectious_covid;
         if (/vhh|纳米抗体/i.test(String(profile && profile.abType || ''))) return FALLBACK_3D_PRESETS.generic_vhh;
-        const values = Object.values(FALLBACK_3D_PRESETS);
-        const seedText = [profile && profile.target, profile && profile.disease, profile && profile.abType].filter(Boolean).join('|') || 'generic';
-        let seed = 2166136261;
-        for (let i = 0; i < seedText.length; i++) {
-            seed ^= seedText.charCodeAt(i);
-            seed = Math.imul(seed, 16777619) >>> 0;
-        }
-        return values[seed % values.length] || FALLBACK_3D_PRESETS.tumor_immunotherapy;
+        return /vhh|纳米抗体/i.test(String(profile && profile.abType || ''))
+            ? FALLBACK_3D_PRESETS.generic_vhh
+            : FALLBACK_3D_PRESETS.tumor_immunotherapy;
     }
 
     function fallbackOrderedFiles(preset) {
@@ -15599,19 +15817,86 @@ ${fallbackTableRows(profile.rows)}
     }
 
 	    function makeFallbackBinders(count = 12, profile) {
+	        profile = profile || buildGenericFallbackRouteProfile('');
 	        const targetCount = Math.max(1, count);
 	        const preset = getFallback3DPreset(profile);
-	        const target = profile && profile.target ? profile.target : '';
-	        const abType = profile && profile.abType ? profile.abType : '';
+	        const target = profile.target || '用户需求靶点';
+	        const abType = profile.abType || 'Fab';
+	        const coordinateTarget = FALLBACK_PRESET_TARGETS[preset.aliasPrefix] || '默认抗原';
+	        const targetVerified = normalizeFallbackStructureTarget(target) === normalizeFallbackStructureTarget(coordinateTarget);
+	        const representative = !targetVerified || preset.interfaceDetail === false;
+	        const accessionMatch = String(preset.structuralBasis || '').match(/RCSB\s+([0-9][A-Za-z0-9]{3})/i);
 	        const presetPrefix = preset.aliasPrefix || (target.replace(/[^A-Za-z0-9]+/g, '') + '-' + abType);
 	        const files = Array.from({ length: targetCount }, (_, idx) => presetPrefix + '-' + String(idx + 1).padStart(2, '0') + '.pdb');
 	        return files.map((file, idx) => {
 	            const meta = parseFallbackBinderFile(file, idx);
 	            if (target && abType) {
+	                const structureTitle = targetVerified
+	                    ? (preset.structureTitle || target + ' 三维结构')
+	                    : target + ' 默认抗原-抗体结构展示';
+	                const structuralBasis = targetVerified
+	                    ? (preset.structuralBasis || target + ' 本地结构预设')
+	                    : '默认 ' + abType + ' 结构模板；坐标中的抗原为 ' + coordinateTarget;
+	                const disclosure = targetVerified
+	                    ? (representative
+	                        ? '抗原身份与整体形态来自当前靶点结构；抗体仅作为代表性展示支架。'
+	                        : '本地公开复合物用于结构展示，不代表当前候选序列已经获得实验验证。')
+	                    : '题头保留用户需求靶点“' + target + '”；当前坐标使用默认 ' + abType + ' 抗原-抗体模板，坐标中的抗原为“' + coordinateTarget + '”，抗原身份未与该靶点核验。';
+	                const structure = {
+	                    schemaVersion: 1,
+	                    status: 'ready',
+	                    targetIdentity: {
+	                        requestedLabel: target,
+	                        canonicalName: coordinateTarget,
+	                        geneSymbol: '',
+	                        uniprotAccession: null,
+	                        organismName: '',
+	                        organismTaxId: null,
+	                        strain: null,
+	                        isoform: null,
+	                        exactMatch: targetVerified,
+	                        confidence: targetVerified ? 1 : 0
+	                    },
+	                    source: {
+	                        kind: representative ? 'representative' : 'prepared_exact_complex',
+	                        database: 'local',
+	                        accession: accessionMatch ? accessionMatch[1].toUpperCase() : file,
+	                        assemblyId: null,
+	                        biologicalAssembly: /biological assembly/i.test(String(preset.structuralBasis || '')),
+	                        sourceUrl: accessionMatch ? 'https://www.rcsb.org/structure/' + accessionMatch[1].toUpperCase() : '',
+	                        downloadUrl: '', retrievedAt: null, sha256: null,
+	                        experimentalMethod: null, resolutionAngstrom: null, sequenceCoverage: null
+	                    },
+	                    coordinates: {
+	                        structureUrl: '', cacheKey: '', format: 'pdb', coordinateAntigenLabel: coordinateTarget,
+	                        targetVerified,
+	                        antigenChains: preset.antigenChains || ['A'],
+	                        antibodyChains: preset.antibodyChains || ['B'],
+	                        sourceAntigenChains: preset.antigenChains || ['A'],
+	                        sourceAntibodyChains: preset.antibodyChains || ['B']
+	                    },
+	                    pose: {
+	                        kind: representative ? 'representative' : 'experimental_complex',
+	                        scaffoldId: representative ? preset.aliasPrefix : null,
+	                        generatorVersion: null, anchorStrategy: null,
+	                        minDistanceA: null, contactPairs45A: null, nearPairs60A: null,
+	                        clashesBelow20A: null, geometryValidated: targetVerified && !representative
+	                    },
+	                    display: {
+	                        grade: !targetVerified ? 'D' : (representative ? 'B' : 'A'),
+	                        interfaceDetail: targetVerified
+	                            ? (representative ? '当前靶点真实抗原与代表性抗体展示支架。' : '当前靶点本地公开抗原-抗体复合物。')
+	                            : '默认抗原-抗体结构模板，仅用于保持三维展示完整。',
+	                        structureTitle,
+	                        structuralBasis,
+	                        visualSummary: targetVerified ? (preset.visualSummary || '') : target + ' 需求信息 + 默认抗原-抗体代表性结构',
+	                        disclosure
+	                    }
+	                };
 	                meta.id = target.replace(/[^A-Za-z0-9]+/g, '') + '-candidate-' + String(idx + 1).padStart(2, '0');
 	                meta.file = file;
 	                meta.displayFile = file;
-	                meta.name = target + ' ' + abType + ' binder-' + String(idx + 1).padStart(2, '0') + (meta.ipTm !== null ? ' (ipTM=' + meta.ipTm.toFixed(4) + ')' : '');
+	                meta.name = target + ' ' + abType + ' ' + (representative ? '默认代表结构 ' : '结构参考 ') + String(idx + 1).padStart(2, '0');
 	                meta.candidateLabel = target + '-' + abType + '-' + String(idx + 1).padStart(2, '0');
 	                meta.viewerPoseSeed = stableViewerPoseSeed([profile.routeId || '', target, file, idx + 1].join('|'));
 	                meta.routeId = profile.routeId || '';
@@ -15625,23 +15910,173 @@ ${fallbackTableRows(profile.rows)}
 	                meta.selectedEpitope = profile.selectedEpitope || '';
 	                meta.structureRef = profile.structureRef || '';
 	                meta.interfaceFocus = profile.interfaceFocus || '';
-	                meta.structureTitle = preset.structureTitle || '';
-	                meta.structureFamily = preset.structureFamily || profile.domain || '';
-	                meta.visualSummary = preset.visualSummary || '';
-	                meta.structuralBasis = preset.structuralBasis || '';
-	                meta.interfaceDetail = preset.interfaceDetail !== false;
+	                meta.structure = structure;
+	                meta.structureTitle = structureTitle;
+	                meta.structureFamily = representative ? '默认代表结构' : (preset.structureFamily || profile.domain || '');
+	                meta.visualSummary = structure.display.visualSummary;
+	                meta.structuralBasis = structuralBasis;
+	                meta.structureSource = 'local';
+	                meta.modelOrigin = targetVerified ? 'local' : 'auto';
+	                meta.structureGrade = structure.display.grade;
+	                meta.structureKind = structure.pose.kind;
+	                meta.structureDisclosure = disclosure;
+	                meta.interfaceDetail = targetVerified && preset.interfaceDetail !== false;
 	                meta.antigenChains = preset.antigenChains || ['A'];
 	                meta.antibodyChains = preset.antibodyChains || ['B'];
 	                meta.visualColors = preset.visualColors || null;
 	                meta.sequence = generateMockVHH((idx + 1) * 31337);
 	                meta.cdrSummary = 'CDR-H3 ' + (12 + idx % 5) + ' aa · ' + (profile.selectedEpitope || '目标表位') + ' 匹配';
 	                meta.developability = idx < 7 ? '低风险 · 可进入合成评估' : '中等风险 · 建议复核界面电荷';
+	                if (representative) meta.ipTm = null;
 	            }
 	            return meta;
 	        });
 	    }
 
+    const STRUCTURE_SOURCE_LABELS = {
+        prepared_exact_complex: '已准备真实复合物',
+        rcsb_exact_complex: 'RCSB 实验复合物',
+        rcsb_exact_antigen: 'RCSB 实验抗原',
+        alphafold_exact_antigen: 'AlphaFold 预测抗原',
+        display_pose: '真实抗原 + 展示姿态',
+        representative: '代表性结构'
+    };
+
+    function getStructurePresentation(meta) {
+        meta = meta || {};
+        const structure = meta.structure && typeof meta.structure === 'object' ? meta.structure : {};
+        const source = structure.source && typeof structure.source === 'object' ? structure.source : {};
+        const coordinates = structure.coordinates && typeof structure.coordinates === 'object' ? structure.coordinates : {};
+        const pose = structure.pose && typeof structure.pose === 'object' ? structure.pose : {};
+        const display = structure.display && typeof structure.display === 'object' ? structure.display : {};
+        const sourceKind = String(source.kind || meta.structureSourceKind || meta.sourceKind || '').toLowerCase();
+        const poseKind = String(pose.kind || meta.poseKind || meta.structurePoseKind || '').toLowerCase();
+        const database = String(source.database || meta.structureDatabase || meta.sourceDatabase || '').trim();
+        const accession = String(source.accession || meta.structureAccession || meta.sourceAccession || '').trim();
+        const assemblyId = source.assemblyId === undefined || source.assemblyId === null ? '' : String(source.assemblyId).trim();
+        const hasTargetVerification = Object.prototype.hasOwnProperty.call(coordinates, 'targetVerified');
+        const targetVerified = coordinates.targetVerified === true;
+        const gradeValue = String(display.grade || meta.structureGrade || meta.grade || '').trim().toUpperCase();
+        const grade = /^[A-D]$/.test(gradeValue) ? gradeValue : '';
+        const isDisplayPose = poseKind === 'display_pose' || sourceKind === 'display_pose';
+        const isPredicted = sourceKind === 'alphafold_exact_antigen';
+        const isExperimentalComplex = poseKind === 'experimental_complex'
+            || sourceKind === 'prepared_exact_complex'
+            || sourceKind === 'rcsb_exact_complex';
+        const isAntigenOnly = poseKind === 'antigen_only' || sourceKind === 'rcsb_exact_antigen' || sourceKind === 'alphafold_exact_antigen';
+        const isRepresentative = poseKind === 'representative' || sourceKind === 'representative';
+        let kindLabel = '';
+        let badgeText = '';
+        if (isDisplayPose) {
+            kindLabel = '展示姿态';
+            badgeText = 'DISPLAY';
+        } else if (isExperimentalComplex) {
+            kindLabel = '实验复合物';
+            badgeText = 'EXPERIMENTAL';
+        } else if (isPredicted) {
+            kindLabel = '预测抗原结构';
+            badgeText = 'PREDICTED';
+        } else if (isAntigenOnly) {
+            kindLabel = '实验抗原结构';
+            badgeText = 'ANTIGEN';
+        } else if (isRepresentative) {
+            kindLabel = '代表性结构';
+            badgeText = 'REFERENCE';
+        }
+        const sourceParts = [];
+        if (database) sourceParts.push(database);
+        if (accession && !sourceParts.includes(accession)) sourceParts.push(accession);
+        if (assemblyId) sourceParts.push('Assembly ' + assemblyId);
+        const sourceLabel = sourceParts.join(' · ')
+            || String(meta.structureSource || '').trim()
+            || (sourceKind === 'display_pose' && !targetVerified ? '待核验抗原 + 展示姿态' : STRUCTURE_SOURCE_LABELS[sourceKind])
+            || '';
+        const disclosure = String(display.disclosure || meta.structureDisclosure || meta.disclosure || '').trim()
+            || (isDisplayPose
+                ? (targetVerified
+                    ? '真实抗原结构与 Fab/VHH 候选展示姿态；不代表实验复合物、对接预测或经验证结合界面。'
+                    : '抗原坐标身份尚未核验；当前仅为 Fab/VHH 候选展示姿态，不代表目标真实结构、实验复合物或经验证结合界面。')
+                : '');
+        return {
+            structure,
+            source,
+            coordinates,
+            pose,
+            display,
+            sourceKind,
+            poseKind,
+            sourceLabel,
+            kindLabel,
+            badgeText,
+            grade,
+            disclosure,
+            isDisplayPose,
+            isPredicted,
+            isExperimentalComplex,
+            isAntigenOnly,
+            isRepresentative,
+            hasTargetVerification,
+            targetVerified,
+            hasStructureMetadata: Boolean(meta.structure || meta.structureUrl || sourceKind || poseKind || grade || disclosure),
+            structureUrl: coordinates.structureUrl || meta.structureUrl || ''
+        };
+    }
+
+    function getModelOrigin(meta) {
+        meta = meta || {};
+        const explicit = String(meta.modelOrigin || '').trim().toLowerCase();
+        if (explicit === 'local' || explicit === 'auto') return explicit;
+        const structureMeta = getStructurePresentation(meta);
+        const database = String(structureMeta.source && structureMeta.source.database || '').trim().toLowerCase();
+        if (database === 'local' && structureMeta.targetVerified) return 'local';
+        if (!structureMeta.hasStructureMetadata && !meta.fallback && (meta.displayFile || meta.file)) return 'local';
+        return 'auto';
+    }
+
+    function addViewerChainProjection(rawUrl, meta) {
+        const value = String(rawUrl || '');
+        if (!value) return value;
+        const antigenChains = Array.isArray(meta && meta.antigenChains) ? meta.antigenChains : [];
+        const antibodyChains = Array.isArray(meta && meta.antibodyChains) ? meta.antibodyChains : [];
+        const chains = [...new Set([...antigenChains, ...antibodyChains]
+            .map(item => String(item || '').trim())
+            .filter(item => /^[A-Za-z0-9]$/.test(item)))];
+        if (!chains.length) return value;
+        try {
+            const parsed = new URL(value, window.location.origin);
+            if (parsed.origin !== window.location.origin || !/^\/api\/(?:pdb\/|structures\/)/.test(parsed.pathname)) return value;
+            parsed.searchParams.set('chains', chains.join(','));
+            return parsed.pathname + parsed.search + parsed.hash;
+        } catch {
+            return value;
+        }
+    }
+
+    function getStructureSummaryItems(meta) {
+        const structureMeta = getStructurePresentation(meta);
+        const rawSequenceCoverage = structureMeta.source && structureMeta.source.sequenceCoverage;
+        const sequenceCoverage = rawSequenceCoverage === null || rawSequenceCoverage === undefined || rawSequenceCoverage === ''
+            ? null
+            : Number(rawSequenceCoverage);
+        return [
+            structureMeta.sourceLabel ? ['结构来源', structureMeta.sourceLabel] : null,
+            structureMeta.kindLabel ? ['结构类型', structureMeta.kindLabel] : null,
+            structureMeta.grade ? ['展示等级', structureMeta.grade] : null,
+            Number.isFinite(sequenceCoverage) ? ['序列覆盖', (sequenceCoverage * 100).toFixed(1) + '%'] : null,
+            structureMeta.hasTargetVerification ? ['抗原身份', structureMeta.targetVerified ? '已核验' : '未核验'] : null,
+            structureMeta.disclosure ? ['结构说明', structureMeta.disclosure, 'disclosure'] : null
+        ].filter(Boolean);
+    }
+
+    function buildStructureDisclosureHtml(meta) {
+        const disclosure = getStructurePresentation(meta).disclosure;
+        if (!disclosure) return '';
+        return '<div class="mol-modal-disclosure" title="' + escHtml(disclosure) + '">' + escHtml(disclosure) + '</div>';
+    }
+
     function getBinderIpTm(meta) {
+        const structureMeta = getStructurePresentation(meta);
+        if (structureMeta.isDisplayPose || structureMeta.isRepresentative) return null;
         const value = meta && meta.ipTm;
         return (typeof value === 'number' && Number.isFinite(value)) ? value : null;
     }
@@ -15686,7 +16121,7 @@ ${fallbackTableRows(profile.rows)}
 
     function buildRoleLegendHtml(meta) {
         const legend = getRoleLegend(meta);
-        const items = [legend.antigen, legend.antibody];
+        const items = [legend.antigen, legend.antibody].filter(item => item.chains.length);
         return `<div class="viewer-role-legend" aria-label="抗原和抗体颜色图例">${items.map(item => `
             <span class="viewer-role-item">
                 <span class="viewer-role-swatch" style="background:${escHtml(item.color)}"></span>
@@ -15713,7 +16148,7 @@ ${fallbackTableRows(profile.rows)}
         const meta = getBinderMetaById(pdbId) || {};
         const colors = getBinderVisualColors(meta);
         const antigenChains = Array.isArray(meta.antigenChains) && meta.antigenChains.length ? meta.antigenChains : ['A'];
-        const antibodyChains = Array.isArray(meta.antibodyChains) && meta.antibodyChains.length ? meta.antibodyChains : ['B'];
+        const antibodyChains = Array.isArray(meta.antibodyChains) ? meta.antibodyChains : ['B'];
         const idx = Number.isFinite(candidateIndex) ? candidateIndex : binderDataList.findIndex(item => item && item.id === pdbId);
         const seedSource = [
             meta.viewerPoseSeed,
@@ -15734,6 +16169,9 @@ ${fallbackTableRows(profile.rows)}
         url += '&antigenLabel=' + encodeURIComponent(legend.antigen.role);
         url += '&antibodyLabel=' + encodeURIComponent(legend.antibody.role);
         url += '&poseSeed=' + encodeURIComponent(String(viewerPoseSeed));
+        url += '&interfaceDetail=' + (meta.interfaceDetail === false ? '0' : '1');
+        url += '&modelOrigin=' + encodeURIComponent(getModelOrigin(meta));
+        if (options.compact) url += '&compact=1';
         if (options.autoSpin) url += '&autoSpin=1';
         if (title) url += '&title=' + encodeURIComponent(title);
         return url;
@@ -15765,8 +16203,8 @@ ${fallbackTableRows(profile.rows)}
         if (!evt.data || typeof evt.data !== 'object') return;
         var src = evt.data.source;
 
-        // Handle gallery-mol thumbnail replies
-        if (src === 'gallery-mol') {
+        // Thumbnail viewers use the full viewer in compact mode so they can be promoted without reparsing.
+        if (src === 'gallery-mol' || src === 'viewer-full') {
             var msg = evt.data;
             switch (msg.type) {
                 case 'ready':
@@ -15774,6 +16212,7 @@ ${fallbackTableRows(profile.rows)}
                         var e = galleryViewers[pdbId];
                         if (e && e.iframe && (e.iframe === evt.source || e.iframe.contentWindow === evt.source)) {
                             e.viewer = true;
+                            finishGalleryViewerInit(e);
                             console.log('[Gallery] ✓ ' + pdbId + ' ready');
                         }
                     });
@@ -15787,7 +16226,15 @@ ${fallbackTableRows(profile.rows)}
                     }
                     break;
                 case 'spinChanged': break;
-                case 'error': console.error('[Gallery] iframe error:', msg.data); break;
+                case 'error':
+                    Object.keys(galleryViewers).forEach(function(pdbId) {
+                        var e = galleryViewers[pdbId];
+                        if (e && e.iframe && (e.iframe === evt.source || e.iframe.contentWindow === evt.source)) {
+                            finishGalleryViewerInit(e);
+                        }
+                    });
+                    console.error('[Gallery] iframe error:', msg.data);
+                    break;
             }
         }
 
@@ -15843,8 +16290,20 @@ ${fallbackTableRows(profile.rows)}
                 if (item && item.id) metaById.set(item.id, item);
             });
         }
-        if (!ids.length) {
-            const fallbackBinders = makeFallbackBinders(12);
+        const missingStructureMetadata = ids.length > 0 && ids.some(id => {
+            const meta = metaById.get(id);
+            return !meta || !meta.structure || !meta.structure.coordinates || !meta.structure.display;
+        });
+        if (!ids.length || missingStructureMetadata) {
+            const fallbackTarget = String(currentStats && currentStats.target || '用户需求靶点');
+            const fallbackProfile = {
+                ...buildGenericFallbackRouteProfile(''),
+                target: fallbackTarget,
+                routeLabel: fallbackTarget,
+                disease: String(currentStats && currentStats.disease || ''),
+                abType: String(currentStats && currentStats.abType || 'Fab')
+            };
+            const fallbackBinders = makeFallbackBinders(Math.max(1, ids.length || 12), fallbackProfile);
             return {
                 pdbIds: fallbackBinders.map(item => item.id),
                 binders: fallbackBinders
@@ -15855,17 +16314,29 @@ ${fallbackTableRows(profile.rows)}
 	            pdbIds: normalizedIds,
 	            binders: normalizedIds.map((id, idx) => {
 	                const meta = metaById.get(id) || {};
+	                const structure = cloneBinderStructure(meta.structure);
+	                const coordinates = structure && structure.coordinates ? structure.coordinates : {};
+	                const display = structure && structure.display ? structure.display : {};
+	                const source = structure && structure.source ? structure.source : {};
+	                const pose = structure && structure.pose ? structure.pose : {};
+	                const targetIdentity = structure && structure.targetIdentity ? structure.targetIdentity : {};
+	                const structureKind = String(pose.kind || source.kind || meta.poseKind || meta.structurePoseKind || meta.structureSourceKind || '').toLowerCase();
+	                const displayPose = structureKind === 'display_pose';
+	                const nonScoringStructure = displayPose || structureKind === 'representative';
 	                return {
 	                    ...meta,
 	                    id,
 	                    file: meta.file || id + '.pdb',
 	                    displayFile: meta.displayFile || '',
-	                    name: meta.name || ('Binder ' + String(idx + 1).padStart(2, '0')),
-	                    candidateLabel: meta.candidateLabel || meta.name || ('Binder ' + String(idx + 1).padStart(2, '0')),
+	                    structure,
+	                    structureUrl: coordinates.structureUrl || meta.structureUrl || '',
+	                    modelOrigin: getModelOrigin(meta),
+	                    name: displayPose ? (sanitizeDisplayPoseLabel(meta.name) || ('Binder ' + String(idx + 1).padStart(2, '0'))) : (meta.name || ('Binder ' + String(idx + 1).padStart(2, '0'))),
+	                    candidateLabel: displayPose ? (sanitizeDisplayPoseLabel(meta.candidateLabel || meta.name) || ('Binder ' + String(idx + 1).padStart(2, '0'))) : (meta.candidateLabel || meta.name || ('Binder ' + String(idx + 1).padStart(2, '0'))),
 	                    routeId: meta.routeId || '',
 	                    routeLabel: meta.routeLabel || '',
 	                    disease: meta.disease || '',
-	                    targetDisplay: meta.targetDisplay || '',
+                    targetDisplay: meta.targetDisplay || targetIdentity.requestedLabel || targetIdentity.canonicalName || '',
 	                    partnerDisplay: meta.partnerDisplay || '',
 	                    domain: meta.domain || '',
 	                    mechanism: meta.mechanism || '',
@@ -15873,22 +16344,32 @@ ${fallbackTableRows(profile.rows)}
 	                    selectedEpitope: meta.selectedEpitope || '',
 	                    structureRef: meta.structureRef || '',
 	                    interfaceFocus: meta.interfaceFocus || '',
-	                    structureTitle: meta.structureTitle || '',
+	                    structureTitle: display.structureTitle || meta.structureTitle || '',
 	                    structureFamily: meta.structureFamily || '',
-	                    visualSummary: meta.visualSummary || '',
-	                    structuralBasis: meta.structuralBasis || '',
+	                    visualSummary: display.visualSummary || meta.visualSummary || '',
+	                    structuralBasis: display.structuralBasis || meta.structuralBasis || '',
 	                    interfaceDetail: meta.interfaceDetail !== false,
-	                    antigenChains: Array.isArray(meta.antigenChains) && meta.antigenChains.length ? meta.antigenChains : ['A'],
-	                    antibodyChains: Array.isArray(meta.antibodyChains) && meta.antibodyChains.length ? meta.antibodyChains : ['B'],
-	                    sourceAntigenChains: Array.isArray(meta.sourceAntigenChains) && meta.sourceAntigenChains.length ? meta.sourceAntigenChains : (Array.isArray(meta.antigenChains) && meta.antigenChains.length ? meta.antigenChains : ['A']),
-	                    sourceAntibodyChains: Array.isArray(meta.sourceAntibodyChains) && meta.sourceAntibodyChains.length ? meta.sourceAntibodyChains : (Array.isArray(meta.antibodyChains) && meta.antibodyChains.length ? meta.antibodyChains : ['B']),
+	                    antigenChains: Array.isArray(coordinates.antigenChains) && coordinates.antigenChains.length ? coordinates.antigenChains : (Array.isArray(meta.antigenChains) && meta.antigenChains.length ? meta.antigenChains : ['A']),
+                    antibodyChains: Object.prototype.hasOwnProperty.call(coordinates, 'antibodyChains')
+                        ? (Array.isArray(coordinates.antibodyChains) ? coordinates.antibodyChains : [])
+                        : (Array.isArray(meta.antibodyChains) ? meta.antibodyChains : ['B']),
+	                    sourceAntigenChains: Array.isArray(coordinates.sourceAntigenChains) && coordinates.sourceAntigenChains.length ? coordinates.sourceAntigenChains : (Array.isArray(meta.sourceAntigenChains) && meta.sourceAntigenChains.length ? meta.sourceAntigenChains : (Array.isArray(meta.antigenChains) && meta.antigenChains.length ? meta.antigenChains : ['A'])),
+                    sourceAntibodyChains: Object.prototype.hasOwnProperty.call(coordinates, 'sourceAntibodyChains')
+                        ? (Array.isArray(coordinates.sourceAntibodyChains) ? coordinates.sourceAntibodyChains : [])
+                        : (Array.isArray(meta.sourceAntibodyChains) ? meta.sourceAntibodyChains : (Array.isArray(meta.antibodyChains) ? meta.antibodyChains : ['B'])),
 	                    visualColors: meta.visualColors || null,
+	                    structureSourceKind: source.kind || meta.structureSourceKind || meta.sourceKind || '',
+	                    structureDatabase: source.database || meta.structureDatabase || meta.sourceDatabase || '',
+	                    structureAccession: source.accession || meta.structureAccession || meta.sourceAccession || '',
+	                    structureGrade: display.grade || meta.structureGrade || meta.grade || '',
+	                    structureDisclosure: display.disclosure || meta.structureDisclosure || meta.disclosure || '',
+	                    poseKind: pose.kind || meta.poseKind || meta.structurePoseKind || '',
 	                    sequence: meta.sequence || '',
 	                    cdrSummary: meta.cdrSummary || '',
 	                    developability: meta.developability || '',
 	                    site: meta.site || '',
 	                    binderId: meta.binderId || '',
-	                    ipTm: typeof meta.ipTm === 'number' ? meta.ipTm : null
+	                    ipTm: !nonScoringStructure && typeof meta.ipTm === 'number' ? meta.ipTm : null
 	                };
 	            })
         };
@@ -15901,16 +16382,18 @@ ${fallbackTableRows(profile.rows)}
         activeBinderIdx = 0;
         galleryViewers = {};
         currentGalleryViewer = null;
+        resetGalleryInitScheduler();
         const routeMeta = binderDataList[0] || {};
         const routeSummaryItems = [
             routeMeta.disease ? ['疾病方向', routeMeta.disease] : null,
             routeMeta.targetDisplay ? ['靶点', routeMeta.targetDisplay] : null,
             routeMeta.mechanism ? ['作用机制', routeMeta.mechanism] : null,
             routeMeta.selectedEpitope ? ['表位策略', routeMeta.selectedEpitope] : null,
-            routeMeta.structuralBasis ? ['结构依据', routeMeta.structuralBasis] : null
+            routeMeta.structuralBasis ? ['结构依据', routeMeta.structuralBasis] : null,
+            ...getStructureSummaryItems(routeMeta)
         ].filter(Boolean);
         const routeSummaryHtml = routeSummaryItems.length
-            ? `<div class="viewer-route-summary">${routeSummaryItems.map(item => `<span class="viewer-route-note"><strong>${escHtml(item[0])}</strong>${escHtml(item[1])}</span>`).join('')}</div>`
+            ? `<div class="viewer-route-summary">${routeSummaryItems.map(item => `<span class="viewer-route-note${item[2] === 'disclosure' ? ' disclosure' : ''}"><strong>${escHtml(item[0])}</strong>${escHtml(item[1])}</span>`).join('')}</div>`
             : '';
         const roleLegendHtml = buildRoleLegendHtml(routeMeta);
 
@@ -16082,8 +16565,49 @@ ${fallbackTableRows(profile.rows)}
         }
     }
 
-    // Lazy-init queue: only create WebGL contexts when visible
-    const galleryInitQueue = [];  // [{pdbId, idx, inited: false}]
+    // Lazy-init queue: parse large structures serially so the full viewer stays responsive.
+    const galleryInitQueue = [];  // [{pdbId, idx, inited, queued}]
+    const galleryInitPending = [];
+    const GALLERY_INIT_CONCURRENCY = 1;
+    let galleryInitActive = 0;
+    let galleryInitGeneration = 0;
+
+    function resetGalleryInitScheduler() {
+        galleryInitPending.length = 0;
+        galleryInitActive = 0;
+        galleryInitGeneration += 1;
+    }
+
+    function finishGalleryViewerInit(entry) {
+        if (!entry || entry.loadFinished) return;
+        entry.loadFinished = true;
+        if (entry.loadTimer) clearTimeout(entry.loadTimer);
+        if (entry.generation !== galleryInitGeneration) return;
+        galleryInitActive = Math.max(0, galleryInitActive - 1);
+        pumpGalleryInitQueue();
+    }
+
+    function pumpGalleryInitQueue() {
+        if (typeof molModalOpen !== 'undefined' && molModalOpen) return;
+        while (galleryInitActive < GALLERY_INIT_CONCURRENCY && galleryInitPending.length) {
+            const idx = galleryInitPending.shift();
+            const item = galleryInitQueue[idx];
+            if (!item || item.inited) continue;
+            item.queued = false;
+            item.inited = true;
+            galleryInitActive += 1;
+            initGalleryViewer(item.pdbId, item.idx);
+        }
+    }
+
+    function scheduleGalleryViewerInit(idx, priority = false) {
+        const item = galleryInitQueue[idx];
+        if (!item || item.inited || item.queued) return;
+        item.queued = true;
+        if (priority) galleryInitPending.unshift(idx);
+        else galleryInitPending.push(idx);
+        pumpGalleryInitQueue();
+    }
 
     function renderGalleryCards(allPDBs) {
         const container = findViewerElement('galleryScroll');
@@ -16107,26 +16631,41 @@ ${fallbackTableRows(profile.rows)}
 
             // Threshold-based status — realistic distribution
             // ipTm ≥ 0.78: strong PASS | 0.65~0.77: weak PASS | < 0.65: FAIL
+            const structureMeta = getStructurePresentation(meta);
             const ipTm = getBinderIpTm(meta);
             var isPass = ipTm === null || ipTm >= 0.65;
             var isStrong = ipTm !== null && ipTm >= 0.78;
-            var badgeClass = !isPass ? 'badge-fail' : (isStrong ? 'badge-pass' : 'badge-warn');
+            var badgeClass;
+            if (structureMeta.isDisplayPose) {
+                badgeClass = 'badge-display';
+            } else if (structureMeta.isRepresentative) {
+                badgeClass = 'badge-reference';
+            } else if (structureMeta.kindLabel) {
+                badgeClass = structureMeta.isPredicted ? 'badge-ipTm' : 'badge-pass';
+            } else {
+                badgeClass = !isPass ? 'badge-fail' : (isStrong ? 'badge-pass' : 'badge-warn');
+            }
+            var badgeText = structureMeta.badgeText || (!isPass ? 'FAIL' : (isStrong ? 'PASS' : 'WEAK'));
+            const galleryRoute = [meta.structureFamily, structureMeta.sourceLabel].filter(Boolean).join(' · ');
 
 	            card.innerHTML = `
 	                <div class="gallery-viewer" id="galleryViewer-${pdbId}">
 	                </div>
 	                <div class="gallery-info">
 	                    <div class="gallery-name">${escHtml(meta.candidateLabel || meta.name || pdbId)}</div>
-	                    ${meta.structureFamily ? `<div class="gallery-route">${escHtml(meta.structureFamily)}</div>` : ''}
+	                    ${galleryRoute ? `<div class="gallery-route" title="${escHtml(galleryRoute)}">${escHtml(galleryRoute)}</div>` : ''}
 	                    <div class="gallery-metrics">
 	                        ${meta.targetDisplay ? `<span class="gallery-badge badge-ipTm">${escHtml(meta.targetDisplay)}</span>` : ''}
 	                        ${ipTm !== null ? `<span class="gallery-badge badge-ipTm">ipTM ${ipTm.toFixed(3)}</span>` : ''}
-	                        <span class="gallery-badge ${badgeClass}">${!isPass ? 'FAIL' : (isStrong ? 'PASS' : 'WEAK')}</span>
+	                        <span class="gallery-badge ${badgeClass}">${escHtml(badgeText)}</span>
+	                        ${structureMeta.grade ? `<span class="gallery-badge badge-ipTm">GRADE ${escHtml(structureMeta.grade)}</span>` : ''}
+	                        ${structureMeta.hasTargetVerification ? `<span class="gallery-badge ${structureMeta.targetVerified ? 'badge-pass' : 'badge-warn'}">${structureMeta.targetVerified ? 'VERIFIED' : 'UNVERIFIED'}</span>` : ''}
 	                    </div>
+	                    ${structureMeta.disclosure ? `<div class="gallery-disclosure" title="${escHtml(structureMeta.disclosure)}">${escHtml(structureMeta.disclosure)}</div>` : ''}
 	                </div>`;
             container.appendChild(card);
 
-            galleryInitQueue.push({ pdbId, idx, inited: false });
+            galleryInitQueue.push({ pdbId, idx, inited: false, queued: false });
         });
 
         // Initial lazy load + scroll observer
@@ -16138,8 +16677,7 @@ ${fallbackTableRows(profile.rows)}
                     if (e.isIntersecting) {
                         const idx = parseInt(e.target.dataset.pdbIdx);
                         if (!isNaN(idx) && galleryInitQueue[idx] && !galleryInitQueue[idx].inited) {
-                            initGalleryViewer(galleryInitQueue[idx].pdbId, idx);
-                            galleryInitQueue[idx].inited = true;
+                            scheduleGalleryViewerInit(idx);
                         }
                     }
                 });
@@ -16152,14 +16690,7 @@ ${fallbackTableRows(profile.rows)}
     }
 
     function lazyInitGalleryViewers() {
-        // Immediately init the first 4 (visible on load), rest deferred
-        const toInit = Math.min(4, galleryInitQueue.length);
-        for (let i = 0; i < toInit; i++) {
-            if (!galleryInitQueue[i].inited) {
-                initGalleryViewer(galleryInitQueue[i].pdbId, i);
-                galleryInitQueue[i].inited = true;
-            }
-        }
+        if (galleryInitQueue.length) scheduleGalleryViewerInit(0, true);
     }
 
     function initGalleryViewer(pdbId, idx) {
@@ -16170,10 +16701,20 @@ ${fallbackTableRows(profile.rows)}
 
         var iframe = document.createElement('iframe');
         iframe.style.cssText = 'width:100%;height:100%;border:none;display:block;allow-scripts;pointer-events:none;';
-        iframe.src = buildMoleculeFrameUrl('/gallery-mol.html', pdbId, null, idx);
+        iframe.src = buildMoleculeFrameUrl('/viewer-full.html', pdbId, null, idx, { compact: true });
         container.appendChild(iframe);
 
-        galleryViewers[pdbId] = { iframe: iframe, viewer: null };
+        const entry = {
+            iframe: iframe,
+            viewer: null,
+            loadFinished: false,
+            generation: galleryInitGeneration,
+            loadTimer: null
+        };
+        entry.loadTimer = setTimeout(function() {
+            finishGalleryViewerInit(entry);
+        }, 25000);
+        galleryViewers[pdbId] = entry;
         if (idx === 0) currentGalleryViewer = galleryViewers[pdbId];
 
         iframe.addEventListener('load', function() {
@@ -16195,14 +16736,19 @@ ${fallbackTableRows(profile.rows)}
         binderDataList.forEach((meta, idx) => {
             var chip = document.createElement('div');
             // Same threshold as gallery cards: ≥0.78 PASS, 0.65~0.77 WEAK, <0.65 FAIL
+            const structureMeta = getStructurePresentation(meta);
             const ipTm = getBinderIpTm(meta);
             var isPass = ipTm === null || ipTm >= 0.65;
             var isStrong = ipTm !== null && ipTm >= 0.78;
-            var chipClass = !isPass ? 'fail' : (isStrong ? 'pass' : 'warn');
+            var chipClass = structureMeta.isDisplayPose
+                ? 'display'
+                : (structureMeta.isRepresentative ? 'reference' : (!isPass ? 'fail' : (isStrong ? 'pass' : 'warn')));
             chip.className = 'binder-chip ' + chipClass + (idx === activeBinderIdx ? ' active' : '');
-            chip.textContent = !isPass ? 'FAIL' : (isStrong ? 'PASS' : 'WEAK');
+            chip.textContent = structureMeta.isDisplayPose
+                ? 'DISPLAY'
+                : (structureMeta.isRepresentative ? 'REFERENCE' : (!isPass ? 'FAIL' : (isStrong ? 'PASS' : 'WEAK')));
             chip.onclick = () => selectBinder(idx);
-            chip.title = meta.name || `Binder ${idx}`;
+            chip.title = [meta.name || `Binder ${idx}`, structureMeta.disclosure].filter(Boolean).join(' · ');
             row.appendChild(chip);
         });
     }
@@ -16213,6 +16759,9 @@ ${fallbackTableRows(profile.rows)}
             renderBindersRow();
         }
         activeBinderIdx = idx;
+        if (galleryInitQueue[idx] && !galleryInitQueue[idx].inited) {
+            scheduleGalleryViewerInit(idx, true);
+        }
         const meta = binderDataList[idx] || {};
         const root = getViewerRoot();
 
@@ -16230,6 +16779,7 @@ ${fallbackTableRows(profile.rows)}
         const seqEl = findViewerElement('seqDisplay');
         const lenEl = findViewerElement('seqLen');
         const metEl = findViewerElement('seqMetrics');
+        const structureMeta = getStructurePresentation(meta);
         const ipTm = getBinderIpTm(meta);
 
         const seed = ipTm !== null ? Math.floor(ipTm * 10000) :
@@ -16241,27 +16791,42 @@ ${fallbackTableRows(profile.rows)}
         if (lenEl) lenEl.textContent = seq.length;
 
         if (metEl) {
-            const ipTmVal = ipTm !== null ? ipTm.toFixed(2) : '\u2014';
-            const dockQ = ipTm !== null ? (ipTm*1.05+Math.random()*0.15).toFixed(2) : '\u2014';
-            const rmsd = ipTm !== null ? (1.0+Math.random()*0.8).toFixed(2) : '\u2014';
-            const pLDDT = ipTm !== null ? (88+ipTm*8+Math.random()*5).toFixed(1) : '\u2014';
-            metEl.innerHTML = `
-                <span class="seq-metric"><strong>PASS</strong></span>
+            const contextMetrics = `
                 ${meta.targetDisplay ? `<span class="seq-metric">Target <strong>${escHtml(meta.targetDisplay)}</strong></span>` : ''}
                 ${meta.disease ? `<span class="seq-metric">Disease <strong>${escHtml(meta.disease)}</strong></span>` : ''}
                 ${meta.structureFamily ? `<span class="seq-metric">Structure <strong>${escHtml(meta.structureFamily)}</strong></span>` : ''}
                 ${meta.mechanism ? `<span class="seq-metric">Mechanism <strong>${escHtml(meta.mechanism)}</strong></span>` : ''}
                 ${meta.structuralBasis ? `<span class="seq-metric">Basis <strong>${escHtml(meta.structuralBasis)}</strong></span>` : ''}
+                ${structureMeta.sourceLabel ? `<span class="seq-metric">Source <strong>${escHtml(structureMeta.sourceLabel)}</strong></span>` : ''}
+                ${structureMeta.grade ? `<span class="seq-metric">Grade <strong>${escHtml(structureMeta.grade)}</strong></span>` : ''}
+                ${structureMeta.hasTargetVerification ? `<span class="seq-metric">Antigen <strong>${structureMeta.targetVerified ? '已核验' : '未核验'}</strong></span>` : ''}
                 ${meta.cdrSummary ? `<span class="seq-metric">CDR <strong>${escHtml(meta.cdrSummary)}</strong></span>` : ''}
-                <span class="seq-metric">Binder pTM <strong>${ipTmVal}</strong></span>
-                <span class="seq-metric">Min iPAE <strong>${ipTm !== null ? (ipTm*0.7).toFixed(2) : '\u2014'}</strong></span>
-                <span class="seq-metric">Complex RMSD <strong>${rmsd}</strong></span>
-                <span class="seq-metric">DockQ <strong>${dockQ}</strong></span>
-                <span class="seq-metric">Binder pLDDT <strong>${pLDDT}</strong></span>
-                <span class="seq-metric">IPTM <strong>${ipTm !== null ? ipTm.toFixed(2) : '\u2014'}</strong></span>
                 ${meta.selectedEpitope ? `<span class="seq-metric">Epitope <strong>${escHtml(meta.selectedEpitope)}</strong></span>` : ''}
                 ${meta.visualSummary ? `<span class="seq-metric">3D <strong>${escHtml(meta.visualSummary)}</strong></span>` : ''}
                 ${meta.developability ? `<span class="seq-metric">Developability <strong>${escHtml(meta.developability)}</strong></span>` : ''}`;
+            if (structureMeta.isDisplayPose || structureMeta.isRepresentative) {
+                const nonScoringLabel = structureMeta.isRepresentative
+                    ? (structureMeta.targetVerified ? '代表性结构 · 抗原已核验' : '代表性结构 · 未核验')
+                    : '展示姿态';
+                metEl.innerHTML = `
+                    <span class="seq-metric"><strong>${nonScoringLabel}</strong></span>
+                    ${contextMetrics}
+                    ${structureMeta.disclosure ? `<span class="seq-metric">说明 <strong>${escHtml(structureMeta.disclosure)}</strong></span>` : ''}`;
+            } else {
+                const ipTmVal = ipTm !== null ? ipTm.toFixed(2) : '\u2014';
+                const dockQ = ipTm !== null ? (ipTm*1.05+Math.random()*0.15).toFixed(2) : '\u2014';
+                const rmsd = ipTm !== null ? (1.0+Math.random()*0.8).toFixed(2) : '\u2014';
+                const pLDDT = ipTm !== null ? (88+ipTm*8+Math.random()*5).toFixed(1) : '\u2014';
+                metEl.innerHTML = `
+                    <span class="seq-metric"><strong>${escHtml(structureMeta.kindLabel || 'PASS')}</strong></span>
+                    ${contextMetrics}
+                    <span class="seq-metric">Binder pTM <strong>${ipTmVal}</strong></span>
+                    <span class="seq-metric">Min iPAE <strong>${ipTm !== null ? (ipTm*0.7).toFixed(2) : '\u2014'}</strong></span>
+                    <span class="seq-metric">Complex RMSD <strong>${rmsd}</strong></span>
+                    <span class="seq-metric">DockQ <strong>${dockQ}</strong></span>
+                    <span class="seq-metric">Binder pLDDT <strong>${pLDDT}</strong></span>
+                    <span class="seq-metric">IPTM <strong>${ipTm !== null ? ipTm.toFixed(2) : '\u2014'}</strong></span>`;
+            }
         }
 
         if (seqEl) {
@@ -16326,25 +16891,25 @@ ${fallbackTableRows(profile.rows)}
     // ═══ Whether to use local PDB files ═══
     let useLocalPDB = false;
     function getPDBUrl(pdbId) {
-        const displayMeta = binderDataList.find(item => item && item.id === pdbId && item.displayFile);
-        if (displayMeta) {
-            const displayName = String(displayMeta.displayFile).replace(/\.pdb$/i, '');
-            return '/api/pdb/local/' + displayName + '.pdb';
+        const meta = binderDataList.find(item => item && item.id === pdbId) || null;
+        const structureUrl = meta && (meta.structure?.coordinates?.structureUrl || meta.structureUrl);
+        if (structureUrl) return addViewerChainProjection(structureUrl, meta);
+        if (meta && meta.displayFile) {
+            const displayName = String(meta.displayFile).replace(/\.pdb$/i, '');
+            return addViewerChainProjection('/api/pdb/local/' + displayName + '.pdb', meta);
         }
-        const fallbackMeta = binderDataList.find(item => item && item.id === pdbId && item.fallback && item.file);
-        if (fallbackMeta) {
-            const filename = String(fallbackMeta.file).replace(/\.pdb$/i, '');
-            return '/api/pdb/local/' + filename + '.pdb';
+        if (meta && meta.fallback && meta.file) {
+            const filename = String(meta.file).replace(/\.pdb$/i, '');
+            return addViewerChainProjection('/api/pdb/local/' + filename + '.pdb', meta);
         }
-        const localMeta = binderDataList.find(item => item && item.id === pdbId && item.file);
-        if (localMeta) {
-            const filename = String(localMeta.file).replace(/\.pdb$/i, '');
-            return '/api/pdb/local/' + filename + '.pdb';
+        if (meta && meta.file) {
+            const filename = String(meta.file).replace(/\.pdb$/i, '');
+            return addViewerChainProjection('/api/pdb/local/' + filename + '.pdb', meta);
         }
         if (useLocalPDB) {
-            return '/api/pdb/local/' + pdbId + '.pdb';
+            return addViewerChainProjection('/api/pdb/local/' + pdbId + '.pdb', meta);
         }
-        return '/api/pdb/' + pdbId;
+        return addViewerChainProjection('/api/pdb/' + pdbId, meta);
     }
 
     // ═══ Surface rendering state ═══
@@ -19224,6 +19789,36 @@ QVQLVESGGGLVQPGGSLRLSCAASGYIFSSNAMGWYRQAPGKQRELVAAISSGGSTYYADSVKGRFTISRDNAKTTLYL
     let molModalOpen = false;
     let modalPdbId = null;
     let modalIframe = null;
+    let modalIframeUrl = '';
+    let modalIframeHome = null;
+
+    function postModalViewerCommand(type, data) {
+        try {
+            if (modalIframe && modalIframe.contentWindow) {
+                modalIframe.contentWindow.postMessage({ source: 'zoonoab-gallery', type, data: data || {} }, '*');
+            }
+        } catch(e) {}
+    }
+
+    function restorePromotedModalIframe() {
+        if (!modalIframeHome) return false;
+        const state = modalIframeHome;
+        modalIframeHome = null;
+        if (state.iframe && state.container && state.container.isConnected) {
+            state.iframe.style.cssText = 'width:100%;height:100%;border:none;display:block;allow-scripts;pointer-events:none;';
+            state.container.appendChild(state.iframe);
+            try {
+                state.iframe.contentWindow.postMessage({
+                    source: 'zoonoab-gallery',
+                    type: 'setCompact',
+                    data: { compact: true, autoSpin: false }
+                }, '*');
+            } catch(e) {}
+        }
+        modalIframe = null;
+        modalIframeUrl = '';
+        return true;
+    }
 
     function openMolModal(pdbId, name, options) {
         options = options || {};
@@ -19239,32 +19834,61 @@ QVQLVESGGGLVQPGGSLRLSCAASGYIFSSNAMGWYRQAPGKQRELVAAISSGGSTYYADSVKGRFTISRDNAKTTLYL
         const displayTitle = meta.structureTitle
             ? meta.structureTitle + ' · ' + (meta.candidateLabel || name || pdbId)
             : (name || meta.candidateLabel || pdbId);
+        const structureMeta = getStructurePresentation(meta);
         const subtitleParts = [
             meta.disease || '',
             meta.targetDisplay ? '靶点：' + meta.targetDisplay : '',
             meta.mechanism || '',
-            meta.structuralBasis ? '结构依据：' + meta.structuralBasis : ''
+            meta.selectedEpitope ? '表位策略：' + meta.selectedEpitope : '',
+            meta.structuralBasis ? '结构依据：' + meta.structuralBasis : '',
+            structureMeta.sourceLabel ? '结构来源：' + structureMeta.sourceLabel : '',
+            structureMeta.kindLabel ? '结构类型：' + structureMeta.kindLabel : '',
+            structureMeta.grade ? '展示等级：' + structureMeta.grade : '',
+            structureMeta.hasTargetVerification ? '抗原身份：' + (structureMeta.targetVerified ? '已核验' : '未核验') : ''
         ].filter(Boolean);
         if (titleEl) {
             titleEl.innerHTML = '<div class="mol-modal-title-copy"><div class="mol-modal-title-main"><i data-lucide="box" style="width:18px;height:18px;color:#6B5BFF;"></i><span>' + escHtml(displayTitle) + '</span></div>' +
                 (subtitleParts.length ? '<div class="mol-modal-subtitle">' + escHtml(subtitleParts.join(' · ')) + '</div>' : '') + '</div>' +
-                buildSelectionReasonHtml(meta);
+                buildSelectionReasonHtml(meta) + buildStructureDisclosureHtml(meta);
         }
 
         // Build viewer-full URL
         const vfUrl = buildMoleculeFrameUrl('/viewer-full.html', pdbId, displayTitle, undefined, { autoSpin: shouldAutoSpin });
+        const galleryEntry = galleryViewers[pdbId];
+        const reusableGalleryIframe = galleryEntry && galleryEntry.iframe && galleryEntry.iframe.isConnected
+            ? galleryEntry.iframe
+            : null;
 
-        if (bodyEl) {
-            bodyEl.innerHTML = '';
-            modalIframe = document.createElement('iframe');
-            modalIframe.src = vfUrl;
-            modalIframe.style.cssText = 'width:100%;height:100%;border:none;display:block;';
-            bodyEl.appendChild(modalIframe);
+        if (bodyEl && reusableGalleryIframe) {
+            if (modalIframe !== reusableGalleryIframe) {
+                restorePromotedModalIframe();
+                bodyEl.innerHTML = '';
+                modalIframeHome = { iframe: reusableGalleryIframe, container: reusableGalleryIframe.parentNode };
+                modalIframe = reusableGalleryIframe;
+                modalIframe.style.cssText = 'width:100%;height:100%;border:none;display:block;pointer-events:auto;';
+                bodyEl.appendChild(modalIframe);
+                modalIframeUrl = modalIframe.src;
+            }
+            const expandViewer = () => postModalViewerCommand('setCompact', { compact: false, autoSpin: shouldAutoSpin });
+            expandViewer();
+            if (!galleryEntry.loadFinished) modalIframe.addEventListener('load', expandViewer, { once: true });
+        } else if (bodyEl) {
+            restorePromotedModalIframe();
+            if (!modalIframe || modalIframeUrl !== vfUrl) {
+                bodyEl.innerHTML = '';
+                modalIframe = document.createElement('iframe');
+                modalIframe.src = vfUrl;
+                modalIframe.style.cssText = 'width:100%;height:100%;border:none;display:block;';
+                bodyEl.appendChild(modalIframe);
+                modalIframeUrl = vfUrl;
+            }
         }
 
         clearTimeout(molCloseTimer);
         molCloseTimer = null;
         overlay.style.display = 'flex';
+        overlay.style.visibility = 'visible';
+        overlay.setAttribute('aria-hidden', 'false');
         // Use rAF so browser paints the initial state (opacity:0, scale:0.92) before transition starts
         requestAnimationFrame(() => {
             requestAnimationFrame(() => {
@@ -19274,6 +19898,10 @@ QVQLVESGGGLVQPGGSLRLSCAASGYIFSSNAMGWYRQAPGKQRELVAAISSGGSTYYADSVKGRFTISRDNAKTTLYL
         molModalOpen = true;
         document.body.style.overflow = 'hidden';
         refreshLucideIcons({ nodes: [titleEl] });
+        requestAnimationFrame(() => {
+            try { modalIframe && modalIframe.contentWindow.dispatchEvent(new Event('resize')); } catch(e) {}
+            postModalViewerCommand('setSpin', { spin: shouldAutoSpin });
+        });
     }
 
     let molCloseTimer = null;
@@ -19284,11 +19912,15 @@ QVQLVESGGGLVQPGGSLRLSCAASGYIFSSNAMGWYRQAPGKQRELVAAISSGGSTYYADSVKGRFTISRDNAKTTLYL
         if (overlay) overlay.classList.remove('open');
         clearTimeout(molCloseTimer);
         molCloseTimer = setTimeout(() => {
-            if (overlay) overlay.style.display = 'none';
-            if (bodyEl) bodyEl.innerHTML = '';
-            modalIframe = null;
+            if (overlay) {
+                overlay.style.visibility = 'hidden';
+                overlay.setAttribute('aria-hidden', 'true');
+            }
+            restorePromotedModalIframe();
             molCloseTimer = null;
+            pumpGalleryInitQueue();
         }, 500);
+        postModalViewerCommand('setSpin', { spin: false });
         molModalOpen = false; modalPdbId = null;
         document.body.style.overflow = '';
     }
@@ -19371,7 +20003,7 @@ QVQLVESGGGLVQPGGSLRLSCAASGYIFSSNAMGWYRQAPGKQRELVAAISSGGSTYYADSVKGRFTISRDNAKTTLYL
     <script src="/voice-control.js"></script>
 
     <!-- Molecular Viewer Modal (reused for auto-spin on done) -->
-	    <div class="mol-modal-overlay" id="molModalOverlay">
+	    <div class="mol-modal-overlay" id="molModalOverlay" aria-hidden="true">
         <div class="mol-modal">
             <div class="mol-modal-header">
                 <div class="mol-modal-title" id="molModalTitle"><i data-lucide="box" style="width:18px;height:18px;color:#6B5BFF;"></i> Molecule Viewer</div>

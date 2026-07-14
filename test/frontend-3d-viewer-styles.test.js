@@ -129,7 +129,8 @@ test('auto-spin badge is rendered in the full viewer action toolbar before Spin'
   assert.match(renderBadge, /AUTO_SPIN/);
   assert.match(renderBadge, /document\.getElementById\('acts'\)/);
   assert.match(renderBadge, /textContent\s*=\s*'AUTO SPIN'/);
-  assert.match(renderBadge, /insertBefore\(badge,\s*actions\.firstChild\)/);
+  assert.match(renderBadge, /actions\.querySelector\('\.act'\)/);
+  assert.match(renderBadge, /insertBefore\(badge,\s*firstAction\)/);
 
   const initStart = viewerFullHtml.indexOf('// Action buttons');
   assert.notEqual(initStart, -1, 'action button block should exist');
@@ -140,4 +141,77 @@ test('auto-spin badge is rendered in the full viewer action toolbar before Spin'
     initBlock.indexOf('renderAutoSpinBadge()') >= 0 && initBlock.indexOf('renderAutoSpinBadge()') < initBlock.indexOf("['Spin','Reset','PNG']"),
     'AUTO SPIN badge should be inserted before the Spin button is appended'
   );
+});
+
+test('full viewer keeps every toolbar control visible on narrow mobile screens', () => {
+  assert.match(viewerFullHtml, /@media \(max-width:600px\)/);
+  assert.match(viewerFullHtml, /\.toolbar\{display:grid;grid-template-columns:44px minmax\(0,1fr\)/);
+  assert.match(viewerFullHtml, /\.btns\{min-width:0;flex-wrap:wrap/);
+  assert.match(viewerFullHtml, /\.actions\{grid-column:2;[^}]*flex-wrap:wrap/);
+});
+
+test('representative structures disable interface-detail controls in history and live viewers', () => {
+  const frameUrlFunction = extractFunction(indexHtml, 'function buildMoleculeFrameUrl(basePath, pdbId, title, candidateIndex)');
+  const historyFrameUrlFunction = extractFunction(indexHtml, 'function buildHistoryMoleculeFrameUrl(section, model, modelIdx, title)');
+  const interfaceFunction = extractFunction(viewerFullHtml, 'function doInterfaceDetail()');
+
+  assert.match(frameUrlFunction, /interfaceDetail/);
+  assert.match(frameUrlFunction, /meta\.interfaceDetail === false \? '0' : '1'/);
+  assert.match(historyFrameUrlFunction, /interfaceDetail/);
+  assert.match(historyFrameUrlFunction, /meta\.interfaceDetail === false \? '0' : '1'/);
+  assert.match(viewerFullHtml, /var\s+INTERFACE_DETAIL_ENABLED\s*=\s*params\.get\('interfaceDetail'\)\s*!==\s*'0'/);
+  assert.match(viewerFullHtml, /if\s*\(!INTERFACE_DETAIL_ENABLED\)\s*delete STYLES\.interface/);
+  assert.match(interfaceFunction, /if\s*\(!INTERFACE_DETAIL_ENABLED\)/);
+  assert.match(interfaceFunction, /currentStyle\s*=\s*'cartoon'/);
+
+  const disabledBranch = interfaceFunction.slice(0, interfaceFunction.indexOf('glv.removeAllSurfaces'));
+  assert.doesNotMatch(disabledBranch, /within|stick/);
+});
+
+test('molecular viewers avoid duplicate parsing and reuse the loaded full-screen iframe', () => {
+  const lazyInit = extractFunction(indexHtml, 'function lazyInitGalleryViewers()');
+  const scheduler = extractFunction(indexHtml, 'function pumpGalleryInitQueue()');
+  const initGallery = extractFunction(indexHtml, 'function initGalleryViewer(pdbId, idx)');
+  const openModal = extractFunction(indexHtml, 'function openMolModal(pdbId, name, options)');
+  const closeModal = extractFunction(indexHtml, 'function closeMolModal()');
+  const restoreModal = extractFunction(indexHtml, 'function restorePromotedModalIframe()');
+  const loadViewer = extractFunction(viewerFullHtml, 'function load(url,ldEl)');
+
+  assert.match(indexHtml, /const GALLERY_INIT_CONCURRENCY = 1/);
+  assert.match(lazyInit, /scheduleGalleryViewerInit\(0, true\)/);
+  assert.doesNotMatch(lazyInit, /Math\.min\(4/);
+  assert.match(scheduler, /galleryInitActive < GALLERY_INIT_CONCURRENCY/);
+  assert.match(scheduler, /if \(typeof molModalOpen !== 'undefined' && molModalOpen\) return/);
+  assert.match(initGallery, /buildMoleculeFrameUrl\('\/viewer-full\.html',[\s\S]*compact:\s*true/);
+  assert.match(openModal, /reusableGalleryIframe/);
+  assert.match(openModal, /modalIframeHome\s*=\s*\{\s*iframe:\s*reusableGalleryIframe/);
+  assert.match(openModal, /postModalViewerCommand\('setCompact',[\s\S]*compact:\s*false/);
+  assert.match(openModal, /!modalIframe \|\| modalIframeUrl !== vfUrl/);
+  assert.match(openModal, /modalIframeUrl = vfUrl/);
+  assert.match(restoreModal, /type:\s*'setCompact'/);
+  assert.match(restoreModal, /compact:\s*true/);
+  assert.doesNotMatch(closeModal, /bodyEl\.innerHTML\s*=\s*''/);
+  assert.doesNotMatch(closeModal, /modalIframe\s*=\s*null/);
+  assert.match(closeModal, /setSpin.*false/s);
+  assert.doesNotMatch(loadViewer, /\$3Dmol\.download/);
+  assert.match(loadViewer, /fetchMs/);
+  assert.match(loadViewer, /parseRenderMs/);
+});
+
+test('full viewer shows a non-interactive local or auto source badge before controls', () => {
+  const sourceBadge = extractFunction(viewerFullHtml, 'function renderModelOriginBadge()');
+  const frameUrl = extractFunction(indexHtml, 'function buildMoleculeFrameUrl(basePath, pdbId, title, candidateIndex)');
+  const historyFrameUrl = extractFunction(indexHtml, 'function buildHistoryMoleculeFrameUrl(section, model, modelIdx, title)');
+
+  assert.match(viewerFullHtml, /var\s+MODEL_ORIGIN\s*=\s*params\.get\('modelOrigin'\)\s*===\s*'local'\s*\?\s*'local'\s*:\s*'auto'/);
+  assert.match(viewerFullHtml, /\.vf-source-badge\{[^}]*pointer-events:none/);
+  assert.match(viewerFullHtml, /\.vf-source-badge\.local/);
+  assert.match(viewerFullHtml, /\.vf-source-badge\.auto/);
+  assert.match(sourceBadge, /document\.createElement\('span'\)/);
+  assert.match(sourceBadge, /textContent\s*=\s*MODEL_ORIGIN/);
+  assert.doesNotMatch(sourceBadge, /onclick|addEventListener\(['"]click/);
+  assert.match(frameUrl, /modelOrigin/);
+  assert.match(frameUrl, /getModelOrigin\(meta\)/);
+  assert.match(historyFrameUrl, /modelOrigin/);
+  assert.match(historyFrameUrl, /getModelOrigin\(meta\)/);
 });

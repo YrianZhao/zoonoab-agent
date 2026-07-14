@@ -20,6 +20,8 @@
 - 基线提交：`a5c7d878397d9dd36c0a097e66ca18414fdebff9`
 - 当前分支：`codex/voice-assistant-demo-20260528`
 - 本地回滚标签：`codex/rollback-before-research-trace-20260714`
+- 动态结构改造前提交：`93e6aa23865604880cd0aebfc3dbdc527597c76e`
+- 动态结构改造前本地标签：`codex/rollback-before-dynamic-structure-20260714`
 - 标签只保存在本地，不作为服务器部署标记。
 
 查看基线：
@@ -172,6 +174,14 @@ git switch -c codex/review-pre-research-trace codex/rollback-before-research-tra
 - 完成桌面、移动端、连续运行、断线、取消、无 Key 和无网络测试。
 - 完成 3D 截图和画布像素验证，确保 viewer 非空、构图正确且无 UI 遮挡。
 
+### 第五轮：分子模型加载性能
+
+- 对 PDB、JavaScript 和 HTML 响应启用 gzip/Brotli 压缩，降低低带宽路演现场的首次传输时间。
+- 本地 PDB 接口返回 `Cache-Control`、`ETag` 和 `Last-Modified`，缩略图加载后全屏 viewer 可直接复用浏览器缓存。
+- 缩略图 WebGL/PDB 解析改为单队列串行，全屏 viewer 打开时暂停后续缩略图解析，避免多个大结构抢占主线程。
+- 全屏 viewer 关闭后保留已加载 iframe，再次打开同一模型时不重新下载或解析。
+- 受控结构 URL 加载失败时直接显示明确错误，不再执行可能额外等待 15 秒的重复下载。
+
 ## 6. 版本、提交与验证规则
 
 - 任何影响展示、交互、后端或部署行为的修改都更新 `public/index.html` 中纯数字 `APP_BUILD_VERSION`。
@@ -189,3 +199,20 @@ git switch -c codex/review-pre-research-trace codex/rollback-before-research-tra
 - 轨迹面板默认展开还是自动折叠已完成阶段。
 - 未知靶点无真实复合物时，优先展示抗原单体还是自动生成展示级 Fab/VHH 姿态。
 - 3D 结果是否需要显式显示“实验结构 / 预测结构 / 候选姿态”分级标签。
+
+## 8. 已确认的动态结构方案
+
+用户已选择“真实抗原结构 + 自动生成 Fab/VHH 展示级结合姿态”，而不是只展示抗原单体。
+
+本轮实现边界如下：
+
+- 已准备 route/profile 继续使用与靶点一致的本地公开结构预设。
+- 未准备靶点按缓存、UniProt、RCSB biological assembly、AlphaFold DB 的顺序解析。
+- 只有 accession、物种和坐标链映射同时通过时，`targetVerified` 才能为 `true`。
+- 有公开实验复合物时显示公开结构参考，并明确不代表当前候选序列已被实验验证。
+- 只有真实抗原时，使用本地 Fab/VHH 支架生成确定性刚体展示姿态；抗原坐标保持不变。
+- 展示姿态必须通过最近距离、可见接触和硬碰撞检查，并标注为 `DISPLAY / 展示姿态`。
+- 展示姿态不生成或展示 ipTM、DockQ、RMSD、pLDDT 等伪结构质量指标。
+- 解析或几何校验失败时使用默认 Fab/VHH 抗原-抗体代表性结构完成展示；题头和路线信息继续保留用户需求靶点，同时将 `targetVerified` 设为 `false`，明确说明坐标抗原身份未与该靶点核验。
+- 结构解析作业在工作流取消、连接关闭、绝对截止时间或最终展示等待超时后立即中止；临时网络故障不写入无结构负缓存。
+- 不同靶点的坐标文件和缓存记录串行原子发布，动态姿态构建或写盘失败时继续进入默认代表结构兜底。

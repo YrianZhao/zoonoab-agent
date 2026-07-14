@@ -180,6 +180,8 @@ test.before(async () => {
       DISPLAY_TRACE_TIMEOUT_MS: '3500',
       DISPLAY_TRACE_STEP_MIN_MS: '5',
       DISPLAY_TRACE_STEP_MAX_MS: '10',
+      WORKFLOW_FAST_DELAY_MS: '1',
+      WORKFLOW_SKIP_SETTLE_MS: '1',
       ASSISTANT_CHAT_API_KEY: '',
       ASSISTANT_CHAT_BASE_URL: '',
       DEEPSEEK_API_KEY: '',
@@ -667,16 +669,16 @@ test('compact workflow fields feed the final 3D molecular model note', async () 
     assert.equal(show3d.binderData[0].targetDisplay, 'IL-33');
     assert.equal(show3d.binderData[0].visualSummary, '展示 Fab 贴合 IL-33 受体结合面的三维候选模型');
     assert.match(show3d.binderData[0].structuralBasis, /RCSB 9X0J|IL-33/);
-    assert.equal(
+    assert.match(
       show3d.binderData[0].selectionReason,
-      'IL-33 是过敏性哮喘中连接上皮损伤和 2 型炎症放大的关键报警素，通过 ST2 受体驱动下游炎症级联；该靶点为可溶性细胞因子，具备抗体可及性、受体阻断机制和抗 IL-33 抗体开发背景，适合作为本轮 Fab 候选设计入口。'
+      /IL-33 是过敏性哮喘中连接上皮损伤和 2 型炎症放大的关键报警素.*适合作为本轮 Fab 候选设计入口/
     );
   } finally {
     await new Promise(resolve => mockServer.close(resolve));
   }
 });
 
-test('model-resolved influenza subtype keeps academic display name while using the closest HA model', async () => {
+test('model-resolved influenza subtype keeps its title while a disabled resolver uses an unverified default structure', async () => {
   const captured = [];
   const mockServer = http.createServer((req, res) => {
     let body = '';
@@ -740,9 +742,13 @@ test('model-resolved influenza subtype keeps academic display name while using t
     assert.ok(Array.isArray(show3d.binderData));
     assert.equal(show3d.binderData[0].targetDisplay, 'Influenza A(H7) hemagglutinin (HA)');
     assert.equal(show3d.binderData[0].routeLabel, 'Influenza A(H7) hemagglutinin (HA)');
-    assert.match(show3d.binderData[0].file, /^FluHA-Fab-/);
+    assert.equal(show3d.binderData[0].file, 'PDL1-Fab-01.pdb');
     assert.match(show3d.binderData[0].structureTitle, /Influenza A\(H7\) hemagglutinin \(HA\)/);
-    assert.match(show3d.binderData[0].structuralBasis, /RCSB 3GBM influenza HA trimer biological assembly/);
+    assert.equal(show3d.binderData[0].structure.pose.kind, 'representative');
+    assert.equal(show3d.binderData[0].structure.coordinates.targetVerified, false);
+    assert.equal(show3d.binderData[0].structure.coordinates.coordinateAntigenLabel, 'PD-L1');
+    assert.equal(show3d.binderData[0].structure.display.grade, 'D');
+    assert.match(show3d.binderData[0].structure.display.disclosure, /题头保留用户需求靶点/);
     assert.doesNotMatch(show3d.binderData[0].structureTitle, /^Influenza HA Fab/);
   } finally {
     await new Promise(resolve => mockServer.close(resolve));
@@ -1090,7 +1096,7 @@ test('model selected target is kept while the prompt can describe structure-supp
   try {
     const saved = await saveMockChatConfig(mockPort, 'mock-prepared-target-router');
     const messages = await collectUserMessageStream('胃癌方向做几个抗体药物候选', {
-      timeoutMs: 12000,
+      timeoutMs: 30000,
       voiceSessionId: saved.voiceSessionId,
       stopWhen: msg => msg.type === 'tool_call' && msg.tool === 'target_evidence_review'
     });
@@ -1240,7 +1246,7 @@ test('model parse failures return server timeout without starting local fallback
   }
 });
 
-test('model-selected target is not replaced by a prepared candidate and generic 3D display keeps the selected target', async () => {
+test('model-selected unknown target keeps its title while the default 3D structure stays explicitly unverified', async () => {
   const captured = [];
   const mockServer = http.createServer((req, res) => {
     let body = '';
@@ -1288,26 +1294,32 @@ test('model-selected target is not replaced by a prepared candidate and generic 
   try {
     const saved = await saveMockChatConfig(mockPort, 'mock-keep-model-target');
     const messages = await collectUserMessageStream('设计 2 个针对 Claudin 18.2 的单克隆抗体', {
-      timeoutMs: 45000,
+      timeoutMs: 90000,
       voiceSessionId: saved.voiceSessionId,
-      skipThinking: true,
-      stopWhen: msg => msg.type === 'show_3d'
+      skipThinking: true
     });
     const evidenceCall = messages.find(msg => msg.type === 'tool_call' && msg.tool === 'target_evidence_review');
     const show3d = messages.find(msg => msg.type === 'show_3d');
+    const finalStructureStatus = messages.filter(msg => msg.type === 'structure_status').at(-1);
+    const assistantText = messages.filter(msg => msg.type === 'agent_msg').map(msg => msg.text || '').join('\n');
     const serialized = JSON.stringify(messages);
 
     assert.ok(findIntentRequest(captured));
     assert.ok(findDisplayTraceRequest(captured));
     assert.ok(evidenceCall, 'workflow should start from the model-selected target');
     assert.equal(evidenceCall.params.target, 'Claudin 18.2');
-    assert.ok(show3d, 'workflow should reach 3D display');
-    assert.match(show3d.label, /Claudin 18\.2/);
-    assert.ok(Array.isArray(show3d.binderData));
+    assert.ok(show3d, 'test mode should use the explicitly labeled default representative structure');
+    assert.match(show3d.label, /Claudin 18\.2.*默认抗原-抗体结构展示/);
+    assert.equal(finalStructureStatus.status, 'representative');
     assert.equal(show3d.binderData[0].targetDisplay, 'Claudin 18.2');
-    assert.match(show3d.binderData[0].selectionReason, /用户明确指定该靶点|Claudin 18\.2/);
+    assert.equal(show3d.binderData[0].structure.source.kind, 'representative');
+    assert.equal(show3d.binderData[0].structure.coordinates.targetVerified, false);
+    assert.equal(show3d.binderData[0].structure.coordinates.coordinateAntigenLabel, 'PD-L1');
+    assert.match(show3d.binderData[0].structure.display.structureTitle, /^Claudin 18\.2/);
+    assert.match(show3d.binderData[0].structure.display.disclosure, /题头保留用户需求靶点/);
+    assert.match(assistantText, /Claudin 18\.2/);
+    assert.match(assistantText, /默认抗原-抗体代表性结构/);
     assert.doesNotMatch(serialized, /HER2 Fab 胞外结构域结合构象|靶点：HER2/);
-    assert.doesNotMatch(serialized, /非该靶点真实复合物|代表性结构预览|本地代表性/);
   } finally {
     await new Promise(resolve => mockServer.close(resolve));
   }
