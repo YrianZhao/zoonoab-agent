@@ -146,6 +146,27 @@ test('history API upserts records and can clear the shared server history', asyn
   assert.deepEqual(cleared.history, []);
 });
 
+test('history API assigns stable ids to imported legacy records without explicit ids', async () => {
+  const legacyRecord = {
+    label: '🧬 PD-L1 Fab × 10',
+    ts: 1780570103262
+  };
+
+  for (let i = 0; i < 2; i += 1) {
+    const res = await fetch('http://127.0.0.1:' + PORT + '/api/history', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(legacyRecord)
+    });
+    assert.equal(res.status, 200);
+  }
+
+  const saved = await readHistory();
+  assert.equal(saved.history.length, 1);
+  assert.match(saved.history[0].id, /^hist-fp-[a-f0-9]{24}$/);
+  assert.equal(saved.history[0].title, legacyRecord.label);
+});
+
 test('history API preserves cancellation and error details for shared records', async () => {
   const record = {
     id: 'shared-history-error-detail',

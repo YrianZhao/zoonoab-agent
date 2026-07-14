@@ -9,6 +9,7 @@ const https = require('https');
 const os = require('os');
 const path = require('path');
 const fs = require('fs');
+const crypto = require('crypto');
 const { spawn, spawnSync } = require('child_process');
 const { v4: uuidv4 } = require('uuid');
 const {
@@ -76,7 +77,7 @@ const DIAGNOSTIC_LOG_FILE = process.env.DIAGNOSTIC_LOG_FILE || resolveDefaultDia
 const DIAGNOSTIC_LOG_MAX_LINES = Math.max(100, Number(process.env.DIAGNOSTIC_LOG_MAX_LINES || 1000) || 1000);
 const DIAGNOSTIC_SLOW_REQUEST_MS = Math.max(500, Number(process.env.DIAGNOSTIC_SLOW_REQUEST_MS || 5000) || 5000);
 const HISTORY_STORE_FILE = resolveProjectPath(process.env.HISTORY_STORE_FILE || resolveDefaultHistoryStoreFile());
-const HISTORY_MAX_RECORDS = Math.max(50, Number(process.env.HISTORY_MAX_RECORDS || 500) || 500);
+const HISTORY_MAX_RECORDS = Math.max(50, Number(process.env.HISTORY_MAX_RECORDS || 5000) || 5000);
 const HISTORY_TEXT_MAX = Math.max(20_000, Number(process.env.HISTORY_TEXT_MAX || 200_000) || 200_000);
 const HISTORY_JSON_TEXT_MAX = Math.max(8_000, Number(process.env.HISTORY_JSON_TEXT_MAX || 80_000) || 80_000);
 const HISTORY_ARRAY_MAX = Math.max(50, Number(process.env.HISTORY_ARRAY_MAX || 1000) || 1000);
@@ -745,6 +746,31 @@ function normalizeHistoryId(value, fallbackSeed) {
   return 'hist-' + normalizeHistoryTimestamp(fallbackSeed).toString(36) + '-' + uuidv4().slice(0, 8);
 }
 
+function stableHistoryFingerprint(source, normalized = {}) {
+  const messages = Array.isArray(source && source.messages) ? source.messages : [];
+  const events = Array.isArray(source && source.events) ? source.events : [];
+  const models3d = Array.isArray(source && source.models3d) ? source.models3d : [];
+  const basis = {
+    ts: normalizeHistoryTimestamp((source && (source.ts || source.createdAt || source.updatedAt)) || normalized.ts, 0),
+    input: truncateHistoryText(normalized.input || (source && (source.input || source.title || source.label)) || '', 2000),
+    title: truncateHistoryText((source && (source.title || source.label)) || normalized.title || '', 2000),
+    status: normalized.status || (source && source.status) || '',
+    routeId: truncateHistoryText((source && source.routeId) || '', 160),
+    routeLabel: truncateHistoryText((source && source.routeLabel) || '', 200),
+    messageCount: messages.length,
+    eventCount: events.length,
+    resultCount: Array.isArray(source && source.results) ? source.results.length : 0,
+    modelCount: models3d.length
+  };
+  return crypto.createHash('sha256').update(JSON.stringify(basis)).digest('hex');
+}
+
+function stableHistoryId(source, normalized = {}, idx = 0) {
+  const explicit = String(source && source.id || '').trim();
+  if (/^[-_A-Za-z0-9:.]{3,120}$/.test(explicit)) return explicit;
+  return 'hist-fp-' + stableHistoryFingerprint(source || {}, normalized).slice(0, 24);
+}
+
 function normalizeHistoryArray(value, max = HISTORY_ARRAY_MAX, itemMaxText = HISTORY_JSON_TEXT_MAX) {
   if (!Array.isArray(value)) return [];
   return value.slice(0, max).map(item => cloneHistoryValue(item, itemMaxText)).filter(item => item !== undefined);
@@ -767,8 +793,9 @@ function normalizeServerHistoryRecord(entry, idx = 0) {
     : 'completed';
   const firstUser = messages.find(item => item && item.role === 'user');
   const input = truncateHistoryText(source.input || (firstUser && firstUser.text) || '');
+  const normalizedMeta = { ts, input, status, title: source.title || source.label || '' };
   return {
-    id: normalizeHistoryId(source.id, ts || idx),
+    id: stableHistoryId(source, normalizedMeta, idx),
     schemaVersion: Number(source.schemaVersion) || 2,
     title: serverHistoryTitleFromInput(input, source.title || source.label),
     input,
@@ -860,11 +887,15 @@ function normalizeQuestionTestSetArray(value) {
     ? value
     : (value && Array.isArray(value.questions) ? value.questions : []);
   const normalized = [];
+  const seen = new Set();
   for (const item of source) {
     const text = typeof item === 'string'
       ? normalizeQuestionTestSetItem(item)
       : normalizeQuestionTestSetItem(item && (item.question || item.input || item.text));
-    if (text) normalized.push(text);
+    if (text && !seen.has(text)) {
+      seen.add(text);
+      normalized.push(text);
+    }
   }
   if (normalized.length > QUESTION_TEST_SET_MAX_ITEMS) {
     return normalized.slice(normalized.length - QUESTION_TEST_SET_MAX_ITEMS);

@@ -101,6 +101,22 @@ test('question test set persists only original user question strings', async () 
   assert.doesNotMatch(JSON.stringify(disk), /completed|这些内容不能保存到测试集/);
 });
 
+test('question test set deduplicates repeated original questions', async () => {
+  const question = '帮我做一个肿瘤免疫治疗方向的抗体设计';
+  for (let i = 0; i < 3; i += 1) {
+    const res = await fetch('http://127.0.0.1:' + PORT + '/api/question-test-set', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ question })
+    });
+    assert.equal(res.status, 200);
+  }
+
+  const saved = await readQuestionSet();
+  assert.deepEqual(saved.questions, [question]);
+  assert.equal(saved.count, 1);
+});
+
 test('question test set survives restarts and can be cleared independently', async () => {
   const question = '分析 HER2 VHH 序列风险';
   const saveRes = await fetch('http://127.0.0.1:' + PORT + '/api/question-test-set', {
