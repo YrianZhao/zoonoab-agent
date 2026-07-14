@@ -210,6 +210,11 @@ test('full viewer shows a non-interactive local or auto source badge before cont
   assert.match(sourceBadge, /document\.createElement\('span'\)/);
   assert.match(sourceBadge, /textContent\s*=\s*MODEL_ORIGIN/);
   assert.doesNotMatch(sourceBadge, /onclick|addEventListener\(['"]click/);
+  const actionStart = viewerFullHtml.indexOf('// Action buttons');
+  const actionEnd = viewerFullHtml.indexOf('load(pdbUrl, ldEl)', actionStart);
+  const actionBlock = viewerFullHtml.slice(actionStart, actionEnd);
+  assert.ok(actionBlock.indexOf('renderModelOriginBadge()') < actionBlock.indexOf('renderAutoSpinBadge()'));
+  assert.ok(actionBlock.indexOf('renderAutoSpinBadge()') < actionBlock.indexOf("['Spin','Reset','PNG']"));
   assert.match(frameUrl, /modelOrigin/);
   assert.match(frameUrl, /getModelOrigin\(meta\)/);
   assert.match(historyFrameUrl, /modelOrigin/);
