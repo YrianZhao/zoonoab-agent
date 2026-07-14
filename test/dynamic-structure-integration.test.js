@@ -133,6 +133,18 @@ test('prepared local structures require an exact requested-target to PDB REMARK 
   assert.match(preparedCheck, /preparedStructureTargetMatches\(profile, file\)/);
 });
 
+test('the selection reason shown before a workflow remains the exact binder reason', () => {
+  const intro = sliceBetween(serverSource, 'function targetResolutionIntro(', 'function buildAssistantThinkingTopic(');
+  const workflow = sliceBetween(serverSource, 'async function runWorkflow(', 'async function runRiskSiteScan(');
+  const binderMeta = sliceBetween(serverSource, 'function buildRoute3DMeta(', 'function routeLocalPDBs(');
+
+  assert.match(intro, /\(route && route\.selectionReason\) \|\| sanitizedTargetSelectionReason/);
+  assert.match(intro, /'\u9009\u62e9\u7406\u7531\uff1a' \+ selectionReason/);
+  assert.match(workflow, /if \(forcedRoute && forcedRoute\.selectionReason\)/);
+  assert.match(workflow, /profile\.selectionReason = forcedRoute\.selectionReason/);
+  assert.match(binderMeta, /profile && \(profile\.selectionReason \|\| profile\.targetSelectionReason \|\| profile\.reason\)/);
+});
+
 test('generic candidate aliases cannot select an arbitrary local PDB', async () => {
   const response = await fetch(BASE_URL + '/api/pdb/local/UnknownTarget-candidate-01.pdb');
   assert.equal(response.status, 404);
