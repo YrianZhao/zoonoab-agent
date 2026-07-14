@@ -178,6 +178,7 @@ test('prepared route binders expose the complete structure contract and a contro
   assert.equal(binder.structure.targetIdentity.exactMatch, true);
   assert.equal(binder.structure.source.kind, 'prepared_exact_complex');
   assert.equal(binder.structure.source.database, 'local');
+  assert.equal(binder.modelOrigin, 'local');
   assert.equal(binder.structure.coordinates.targetVerified, true);
   assert.equal(binder.structure.coordinates.coordinateAntigenLabel, 'PD-L1');
   assert.equal(binder.structure.coordinates.format, 'pdb');
@@ -194,6 +195,11 @@ test('prepared route binders expose the complete structure contract and a contro
   const absoluteStructureUrl = new URL(structureUrl, BASE_URL);
   assert.equal(absoluteStructureUrl.origin, BASE_URL);
   assert.equal(absoluteStructureUrl.search, '');
+
+  const originResolver = sliceBetween(serverSource, 'function structureModelOrigin(', 'function buildRoute3DMeta(');
+  assert.match(originResolver, /source\.database/);
+  assert.match(originResolver, /coordinates\.targetVerified\s*===\s*true/);
+  assert.match(originResolver, /\?\s*'local'\s*:\s*'auto'/);
 
   const aliasResponse = await fetch(BASE_URL + '/api/debug/design-route?text=' + encodeURIComponent(
     '设计 2 个 Fab，靶点是 PD-L1 / CD274'

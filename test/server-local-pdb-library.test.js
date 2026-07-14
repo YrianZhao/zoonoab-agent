@@ -79,6 +79,12 @@ test('local PDB model library API lists local structures with viewer metadata', 
   assert.ok(flu.sizeBytes > 0);
   assert.equal(flu.targetDisplay, 'Influenza HA');
   assert.equal(flu.antibodyFormat, 'Fab');
+  assert.equal(flu.modelOrigin, 'local');
+  assert.equal(flu.targetTag.tagged, true);
+  assert.equal(flu.targetTag.verifiedTag, true);
+  assert.equal(flu.targetTag.target, 'Influenza HA');
+  assert.equal(flu.targetTag.antibodyFormat, 'Fab');
+  assert.equal(flu.targetTag.source, 'pdb-remark');
   assert.equal(flu.structureKind, 'Fab 抗原-抗体复合体');
   assert.match(flu.structureBrief, /Influenza HA/);
   assert.match(flu.structureBrief, /Fab 抗原-抗体复合体/);
@@ -86,4 +92,26 @@ test('local PDB model library API lists local structures with viewer metadata', 
   assert.ok(Array.isArray(flu.antigenChains));
   assert.ok(Array.isArray(flu.antibodyChains));
   assert.match(flu.updatedAt, /^\d{4}-\d{2}-\d{2}T/);
+});
+
+test('local PDB responses are cacheable and can project only viewer-visible chains', async () => {
+  const full = await fetch('http://127.0.0.1:' + PORT + '/api/pdb/local/PDL1-Fab-01.pdb');
+  assert.equal(full.status, 200);
+  const fullText = await full.text();
+  const etag = full.headers.get('etag');
+  assert.match(full.headers.get('cache-control') || '', /max-age=86400/);
+  assert.ok(etag);
+
+  const projected = await fetch('http://127.0.0.1:' + PORT + '/api/pdb/local/PDL1-Fab-01.pdb?chains=A');
+  assert.equal(projected.status, 200);
+  const projectedText = await projected.text();
+  assert.ok(projectedText.length < fullText.length, 'chain projection should remove hidden antibody coordinates');
+  const coordinateChains = [...projectedText.matchAll(/^(?:ATOM  |HETATM).{15}(.).*/gm)].map(match => match[1]);
+  assert.ok(coordinateChains.length > 0);
+  assert.deepEqual([...new Set(coordinateChains)], ['A']);
+
+  const notModified = await fetch('http://127.0.0.1:' + PORT + '/api/pdb/local/PDL1-Fab-01.pdb', {
+    headers: { 'if-none-match': etag }
+  });
+  assert.equal(notModified.status, 304);
 });
