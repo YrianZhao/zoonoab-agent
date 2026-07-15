@@ -45,7 +45,7 @@ test('history and live viewers prefer controlled structure URLs over local alias
   assert.match(liveUrl, /if\s*\(structureUrl\)\s*return addViewerChainProjection\(structureUrl, meta\)/);
 });
 
-test('all structure views expose source, grade, pose label, and disclosure metadata', () => {
+test('structure contracts retain provenance while public views hide internal validation copy', () => {
   const presentation = sliceBetween(html, 'function getStructurePresentation', 'function getStructureSummaryItems');
   const summary = sliceBetween(html, 'function getStructureSummaryItems', 'function buildStructureDisclosureHtml');
   const routeSummary = sliceBetween(html, 'function renderViewerSection', '// ─── Chain Sequence Strip');
@@ -61,11 +61,12 @@ test('all structure views expose source, grade, pose label, and disclosure metad
   assert.match(presentation, /coordinates\.targetVerified\s*===\s*true/);
   assert.match(presentation, /抗原坐标身份尚未核验/);
   assert.match(summary, /rawSequenceCoverage === null \|\| rawSequenceCoverage === undefined \|\| rawSequenceCoverage === ''/);
+  assert.match(summary, /publicKind/);
+  assert.doesNotMatch(summary, /'结构来源'|'展示等级'|'抗原身份'|'结构说明'/);
   assert.match(routeSummary, /getStructureSummaryItems\(routeMeta\)/);
-  assert.match(routeSummary, /viewer-route-note\$\{item\[2\]\s*===\s*'disclosure'/);
   assert.match(historySummary, /getStructureSummaryItems\(first\)/);
-  assert.match(historyModal, /buildStructureDisclosureHtml\(model\)/);
-  assert.match(fullModal, /buildStructureDisclosureHtml\(meta\)/);
+  assert.doesNotMatch(historyModal, /buildStructureDisclosureHtml|buildSelectionReasonHtml|结构来源|展示等级|抗原身份/);
+  assert.doesNotMatch(fullModal, /buildStructureDisclosureHtml|buildSelectionReasonHtml|结构来源|展示等级|抗原身份/);
 });
 
 test('display poses and representative fallbacks never receive PASS or synthetic structural quality metrics', () => {
@@ -80,14 +81,11 @@ test('display poses and representative fallbacks never receive PASS or synthetic
   assert.notEqual(displayBranchEnd, -1, 'display pose sequence branch should end before legacy metrics');
   const displayBranch = sequence.slice(displayBranchStart, displayBranchEnd);
   assert.doesNotMatch(displayBranch, /DockQ|RMSD|pLDDT|pTM|iPAE|IPTM/);
-  assert.match(displayBranch, /structureMeta\.targetVerified\s*\?\s*'代表性结构 · 抗原已核验'\s*:\s*'代表性结构 · 未核验'/);
-  assert.match(displayBranch, /:\s*'展示姿态'/);
-  assert.match(gallery, /structureMeta\.badgeText/);
+  assert.match(displayBranch, /const nonScoringLabel = '抗原与抗体空间构象'/);
+  assert.doesNotMatch(displayBranch, /已核验|未核验|说明/);
   assert.match(gallery, /else if \(structureMeta\.isRepresentative\)\s*{\s*badgeClass = 'badge-reference'/);
-  assert.match(gallery, /gallery-disclosure/);
-  assert.match(gallery, /structureMeta\.sourceLabel/);
-  assert.match(gallery, /structureMeta\.grade/);
-  assert.match(binders, /structureMeta\.isRepresentative\s*\?\s*'REFERENCE'/);
+  assert.doesNotMatch(gallery, /gallery-disclosure|structureMeta\.sourceLabel|structureMeta\.grade|UNVERIFIED|VERIFIED/);
+  assert.match(binders, /\? 'STRUCTURE'/);
   assert.match(html, /\.binder-chip\.display\s*{/);
   assert.match(html, /\.binder-chip\.reference\s*{/);
   assert.match(html, /\.badge-display\s*{/);

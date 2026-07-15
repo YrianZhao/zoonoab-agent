@@ -167,8 +167,7 @@ test('candidate gallery thumbnails receive deterministic per-candidate pose seed
   assert.match(viewerHtml, /glv\.rotate/);
 });
 
-test('3D modal title bar shows the current selection reason without covering controls', () => {
-  const buildSelectionReason = extractFunction(html, 'function buildSelectionReasonHtml');
+test('3D modal title bar keeps concise audience-facing target context', () => {
   const openMolModal = extractFunction(html, 'function openMolModal');
   const openHistory3D = extractFunction(html, 'function openHistory3D');
   const normalizeBinderPayload = extractFunction(html, 'function normalizeBinderPayload');
@@ -176,21 +175,18 @@ test('3D modal title bar shows the current selection reason without covering con
   assert.notEqual(titleCssStart, -1, 'modal title CSS should exist');
   const titleCss = html.slice(titleCssStart, html.indexOf('}', titleCssStart) + 1);
 
-  assert.match(html, /function\s+buildSelectionReasonHtml\s*\(/);
-  assert.match(html, /\.mol-modal-reason\s*{/);
-  assert.match(html, /-webkit-line-clamp:\s*2/);
-  assert.match(buildSelectionReason, /String\(meta\.selectionReason \|\| meta\.reason \|\| meta\.targetSelectionReason\)\.trim\(\)/);
-  assert.match(buildSelectionReason, /title="' \+ escHtml\('\u9009\u62e9\u7406\u7531\uff1a' \+ reason\)/);
-  assert.doesNotMatch(buildSelectionReason, /replace\(\/\\s\+\//, 'selection reason text should not be rewritten before visual clamping');
   assert.match(titleCss, /flex-direction:\s*column/);
   assert.doesNotMatch(titleCss, /flex-direction:\s*row/);
-  assert.match(html, /\.mol-modal-reason\s*{[\s\S]*max-width:\s*100%/);
   assert.match(html, /\.mol-modal-subtitle\s*{[\s\S]*max-width:\s*100%/);
   assert.match(html, /\.mol-modal-close\s*{[\s\S]*flex-shrink:\s*0/);
   assert.match(normalizeBinderPayload, /selectionReason:\s*meta\.selectionReason\s*\|\|\s*meta\.reason\s*\|\|\s*meta\.targetSelectionReason\s*\|\|\s*''/);
-  assert.match(openMolModal, /buildSelectionReasonHtml\(meta\)/);
+  assert.doesNotMatch(openMolModal, /buildSelectionReasonHtml|buildStructureDisclosureHtml|结构来源|展示等级|抗原身份/);
+  assert.match(openMolModal, /meta\.disease/);
+  assert.match(openMolModal, /meta\.targetDisplay/);
+  assert.match(openMolModal, /meta\.mechanism/);
+  assert.match(openMolModal, /meta\.selectedEpitope/);
   assert.match(openMolModal, /titleEl\.innerHTML\s*=\s*'<div class="mol-modal-title-copy">/);
-  assert.match(openHistory3D, /buildSelectionReasonHtml\(model\)/);
+  assert.doesNotMatch(openHistory3D, /buildSelectionReasonHtml|buildStructureDisclosureHtml|结构来源|展示等级|抗原身份/);
   assert.match(openHistory3D, /titleEl\.innerHTML\s*=\s*'<div class="mol-modal-title-copy">/);
   assert.doesNotMatch(openMolModal, /quick_design|route|profile|API|大模型/);
 });

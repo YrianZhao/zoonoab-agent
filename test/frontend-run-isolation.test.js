@@ -150,18 +150,37 @@ test('research trace events are queued, scoped to the active run, and finalized 
   assert.match(doneCase, /completeResearchTracePanel\(msg\.clientRunId,\s*'completed'/);
 });
 
-test('research trace panel is collapsible and updates steps without duplicating their stable ids', () => {
+test('research trace panel stays expanded and reveals stable-id steps in order', () => {
   const ensurePanel = extractFunction(html, 'function ensureResearchTracePanel');
   const updatePanel = extractFunction(html, 'function updateResearchTracePanel');
   const completePanel = extractFunction(html, 'function completeResearchTracePanel');
 
   assert.match(ensurePanel, /researchTracePanels\.get\(runKey\)/);
   assert.match(ensurePanel, /className\s*=\s*'research-trace-panel'/);
-  assert.match(ensurePanel, /classList\.toggle\('collapsed'\)/);
-  assert.match(ensurePanel, /aria-expanded/);
+  assert.doesNotMatch(ensurePanel, /classList\.toggle\('collapsed'\)/);
+  assert.match(ensurePanel, /research-trace-waiting/);
+  assert.match(ensurePanel, /data-lucide="sparkles"/);
   assert.match(updatePanel, /state\.steps\.get\(stepId\)/);
   assert.match(updatePanel, /state\.steps\.set\(stepId,\s*step\)/);
   assert.match(updatePanel, /resolveResearchTraceTerminalStatus\(prior\.status,\s*status\)/);
+  assert.match(updatePanel, /return reveal/);
   assert.match(completePanel, /if\s*\(step\.status\s*===\s*'active'\)/);
   assert.match(completePanel, /renderResearchTracePanelSummary\(state\)/);
+});
+
+test('workflow logs and tool cards wait for earlier typewriter output', () => {
+  const logCase = extractSwitchCase(html, "case 'log':");
+  const toolCallCase = extractSwitchCase(html, "case 'tool_call':");
+  const toolResultCase = extractSwitchCase(html, "case 'tool_result':");
+  const appendToolCall = extractFunction(html, 'function appendToolCall');
+  const appendToolResult = extractFunction(html, 'function appendToolResult');
+
+  assert.match(logCase, /enqueueOp\(\(\) => appendLogAnimated/);
+  assert.match(toolCallCase, /enqueueOp/);
+  assert.match(toolCallCase, /Promise\.resolve\(appendToolCall/);
+  assert.match(toolResultCase, /Promise\.resolve\(appendToolResult/);
+  assert.match(appendToolCall, /is-revealing/);
+  assert.match(appendToolCall, /--tool-row-index/);
+  assert.doesNotMatch(appendToolCall, /classList\.toggle\('collapsed'\)/);
+  assert.doesNotMatch(appendToolResult, /tool-content collapsed|classList\.toggle\('collapsed'\)/);
 });

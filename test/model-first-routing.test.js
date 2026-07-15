@@ -272,13 +272,17 @@ test('compact model design result supplies core fields and lets the server build
     assert.ok(intentRequest, 'the authoritative intent request should be started');
     assert.ok(traceRequest, 'the independent display trace request should be started');
     assert.match(modelSystemPrompt(intentRequest), /核心 JSON|必要字段|选择理由/);
+    assert.match(modelSystemPrompt(intentRequest), /用于教育、路演、展会和产品演示的分子展示平台|绝对不是生物研究、湿实验设计、临床决策/);
     assert.match(modelSystemPrompt(intentRequest), /220-420 个中文字|用户原始需求|疾病机制|表达谱|抗原可及性|同类抗体开发背景/);
     assert.match(modelSystemPrompt(intentRequest), /cands 给 5-7 个|候选靶点比较池/);
+    assert.match(modelSystemPrompt(intentRequest), /reason 和每个 cands\.r 必须直接由模型写成学术靶点评审语句/);
+    assert.match(modelSystemPrompt(intentRequest), /禁止使用.*用户提出.*用户指定.*任务应整理为.*本轮目标/);
     assert.match(modelSystemPrompt(intentRequest), /wf|modelNote/);
     assert.doesNotMatch(modelSystemPrompt(intentRequest), /workflow\/profile|tool_call|tool_result|epitopeRows|referenceEntries/);
     assert.ok(intentRequest.max_tokens <= 1200);
     assert.deepEqual(intentRequest.response_format, { type: 'json_object' });
     assert.match(modelSystemPrompt(traceRequest), /展示轨迹规划器|action|variant|不要输出 text 字段/);
+    assert.match(modelSystemPrompt(traceRequest), /用于教育、路演、展会和产品演示的分子展示平台|绝对不是生物研究、湿实验设计、临床决策/);
     assert.match(modelSystemPrompt(traceRequest), /\{\{target\}\}|\{\{disease\}\}|\{\{antibodyType\}\}/);
     assert.deepEqual(traceRequest.response_format, { type: 'json_object' });
     assert.ok(evidenceCall, 'design response should enter workflow');
@@ -601,7 +605,7 @@ test('compact model output can select a prepared structure target without return
     assert.equal(evidenceCall.params.target, 'IL-33');
     assert.equal(evidenceCall.params.route, 'IL-33 / ST2');
     assert.equal(evidenceCall.params.evidence_package, 'IL-33/ST2 靶点证据包');
-    assert.match(serialized, /选择理由：.*IL-33.*ST2/s);
+    assert.match(serialized, /学术依据：.*IL-33.*ST2/s);
     assert.match(serialized, /IL-33\/ST2 靶点证据包|优先覆盖 ST2 结合界面邻近表面/);
     assert.doesNotMatch(serialized, /workflowBlueprint|workflowProfile|epitopeRows|本地|预设|可展示靶点|已有分子模型/);
   } finally {
@@ -629,7 +633,7 @@ test('compact workflow fields feed the final 3D molecular model note', async () 
               disease: '过敏性哮喘',
               target: 'IL-33',
               gene: 'IL33',
-              reason: 'IL-33 是过敏性哮喘中连接上皮损伤和 2 型炎症放大的关键报警素，通过 ST2 受体驱动下游炎症级联；该靶点为可溶性细胞因子，具备抗体可及性、受体阻断机制和抗 IL-33 抗体开发背景，适合作为本轮 Fab 候选设计入口。',
+              reason: 'IL-33 是过敏性哮喘中连接上皮损伤和 2 型炎症放大的关键报警素，通过 ST2 受体驱动下游炎症级联；该靶点为可溶性细胞因子，具备抗体可及性、受体阻断机制和抗 IL-33 抗体开发背景，相较 TSLP 等上皮报警素具有更直接的受体界面评估依据和较高综合优先级。',
               cands: [
                 { t: 'IL-33', g: 'IL33', r: 'IL-33/ST2 通路直接参与哮喘炎症放大。' },
                 { t: 'TSLP', g: 'TSLP', r: '上皮炎症启动因子，可作备选。' }
@@ -671,8 +675,9 @@ test('compact workflow fields feed the final 3D molecular model note', async () 
     assert.match(show3d.binderData[0].structuralBasis, /RCSB 9X0J|IL-33/);
     assert.match(
       show3d.binderData[0].selectionReason,
-      /IL-33 是过敏性哮喘中连接上皮损伤和 2 型炎症放大的关键报警素.*适合作为本轮 Fab 候选设计入口/
+      /IL-33 是过敏性哮喘中连接上皮损伤和 2 型炎症放大的关键报警素.*综合优先级/
     );
+    assert.doesNotMatch(show3d.binderData[0].selectionReason, /用户提出|用户指定|任务应|适合作为本轮/);
   } finally {
     await new Promise(resolve => mockServer.close(resolve));
   }
@@ -1264,14 +1269,14 @@ test('model-selected unknown target keeps its title while the default 3D structu
               i: 'design',
               start: true,
               summary: '面向胃癌方向生成 Claudin 18.2 单克隆抗体候选。',
-              bg: '用户明确要求围绕 Claudin 18.2 设计抗体，应保持该靶点作为主设计对象。',
+              bg: 'Claudin 18.2 是胃癌抗体开发中具有明确机制与抗原可及性的膜蛋白靶点。',
               disease: '胃癌',
               target: 'Claudin 18.2',
               gene: 'CLDN18',
-              reason: 'Claudin 18.2 是胃癌和胃食管交界癌中具有明确开发背景的膜蛋白靶点，胞外环区域具备抗体可及性，并已有同类抗体药物开发经验；用户明确指定该靶点，因此本轮应围绕 Claudin 18.2 生成候选抗体，而不是改选其他肿瘤相关抗原。',
+              reason: 'Claudin 18.2 是胃癌和胃食管交界癌中具有明确开发背景的膜蛋白靶点，其胞外环区域具备抗体可及性，并已有同类抗体药物开发经验。相较 HER2 等胃癌相关膜蛋白，Claudin 18.2 的肿瘤表达背景、表面暴露特征与直接抗原识别机制使其具有较高的综合靶点评审优先级。',
               cands: [
-                { t: 'Claudin 18.2', g: 'CLDN18', r: '用户明确指定，且具备肿瘤膜表面抗原开发背景。' },
-                { t: 'HER2', g: 'ERBB2', r: '胃癌中可讨论的膜蛋白靶点，但不是本轮用户指定目标。' }
+                { t: 'Claudin 18.2', g: 'CLDN18', r: '胃癌相关膜表面抗原，胞外环可及性和同类抗体开发依据较充分。' },
+                { t: 'HER2', g: 'ERBB2', r: '胃癌中具有临床分层价值的膜蛋白靶点，可作为表达谱依赖的比较候选。' }
               ],
               mech: '识别 Claudin 18.2 胞外可及环区并筛选 mAb 候选。',
               ab: 'mAb',
@@ -1318,7 +1323,8 @@ test('model-selected unknown target keeps its title while the default 3D structu
     assert.match(show3d.binderData[0].structure.display.structureTitle, /^Claudin 18\.2/);
     assert.match(show3d.binderData[0].structure.display.disclosure, /题头保留用户需求靶点/);
     assert.match(assistantText, /Claudin 18\.2/);
-    assert.match(assistantText, /默认抗原-抗体代表性结构/);
+    assert.doesNotMatch(assistantText, /默认抗原-抗体代表性结构|题头保留|抗原身份未核验|展示等级|结构来源：local/);
+    assert.doesNotMatch(assistantText, /用户明确指定|本轮用户指定目标/);
     assert.doesNotMatch(serialized, /HER2 Fab 胞外结构域结合构象|靶点：HER2/);
   } finally {
     await new Promise(resolve => mockServer.close(resolve));

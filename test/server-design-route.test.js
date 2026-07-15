@@ -550,6 +550,24 @@ test('server previews exact prepared structures and leaves unknown targets for v
   }
 });
 
+test('server previews exact canine NGF structures for a canine monoclonal antibody request', async () => {
+  const query = encodeURIComponent('设计狗 NGF 单抗');
+  const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/design-route?text=' + query);
+  assert.equal(res.status, 200);
+  const data = await res.json();
+  const firstBinder = data.threeDPreview && data.threeDPreview.binders && data.threeDPreview.binders[0];
+
+  assert.equal(data.parsed.target, 'Canine NGF');
+  assert.equal(data.profile.targetDisplay, 'Canine NGF');
+  assert.equal(data.profile.organismTaxId, 9615);
+  assert.ok(firstBinder);
+  assert.match(firstBinder.file, /^CANINE-NGF-Fab-/);
+  assert.match(firstBinder.structuralBasis, /A0A8I3PYI3/);
+  assert.equal(firstBinder.structure.coordinates.targetVerified, true);
+  assert.equal(firstBinder.structure.targetIdentity.organismTaxId, 9615);
+  assert.doesNotMatch(firstBinder.selectionReason, /用户提出|用户指定|任务应/);
+});
+
 test('server preserves influenza HA subtype display names and leaves non-exact family structures for online resolution', async () => {
   const query = encodeURIComponent('设计一个针对流感 H7 的中和抗体');
   const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/design-route?text=' + query);

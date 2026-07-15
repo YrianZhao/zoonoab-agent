@@ -1808,6 +1808,13 @@
             animation: msgIn 0.2s ease;
         }
         .log-line .log-tag { color: var(--brand); font-weight: 500; }
+        .log-line.is-revealing {
+            animation: workflowLogReveal var(--log-reveal-duration, 900ms) steps(28, end) both;
+        }
+        @keyframes workflowLogReveal {
+            from { opacity: 0.35; clip-path: inset(0 100% 0 0); }
+            to { opacity: 1; clip-path: inset(0 0 0 0); }
+        }
 
         /* ── Task List ── */
         .task-list {
@@ -1919,6 +1926,11 @@
             overflow: hidden; box-shadow: var(--shadow-sm);
             transition: var(--transition);
         }
+        .tool-block.is-revealing { animation: toolBlockReveal 620ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+        @keyframes toolBlockReveal {
+            from { opacity: 0; clip-path: inset(0 100% 0 0); transform: translateX(-8px); }
+            to { opacity: 1; clip-path: inset(0 0 0 0); transform: translateX(0); }
+        }
         body.hide-tools .tool-block {
             display: none !important;
         }
@@ -1951,6 +1963,14 @@
         .tool-content.collapsed { display: none; }
         .tool-params { padding: 10px 14px 10px; display: flex; flex-wrap: wrap; gap: 6px; }
         .tool-row { display: inline-flex; align-items: center; gap: 0; max-width: 100%; }
+        .tool-block.is-revealing .tool-row {
+            animation: toolRowReveal 360ms ease both;
+            animation-delay: calc(var(--tool-row-index, 0) * 120ms + 180ms);
+        }
+        @keyframes toolRowReveal {
+            from { opacity: 0; transform: translateX(-10px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
         .tool-label {
             font-size: 10px; color: var(--text-muted); font-weight: 600;
             background: var(--bg-light); border: 1px solid var(--border);
@@ -2119,13 +2139,8 @@
             align-items: center;
             gap: 10px;
             text-align: left;
-            cursor: pointer;
+            cursor: default;
             font: inherit;
-        }
-        .research-trace-header:hover { background: var(--bg-hover); }
-        .research-trace-header:focus-visible {
-            outline: 2px solid var(--brand);
-            outline-offset: -2px;
         }
         .research-trace-header-icon {
             width: 28px;
@@ -2187,23 +2202,12 @@
             color: var(--text-secondary);
             background: var(--gray-100);
         }
-        .research-trace-chevron {
-            width: 16px;
-            height: 16px;
-            flex: 0 0 16px;
-            color: var(--text-muted);
-            transition: transform 0.18s ease;
-        }
-        .research-trace-panel.collapsed .research-trace-chevron { transform: rotate(-90deg); }
         .research-trace-body {
-            height: 184px;
-            min-height: 184px;
-            overflow-y: auto;
-            overscroll-behavior: contain;
+            min-height: 72px;
+            overflow: visible;
             border-top: 1px solid var(--border-light);
             background: var(--bg-card);
         }
-        .research-trace-panel.collapsed .research-trace-body { display: none; }
         .research-trace-empty {
             height: 100%;
             padding: 18px 14px;
@@ -2223,6 +2227,15 @@
             align-items: start;
             gap: 10px;
             border-bottom: 1px solid var(--border-light);
+        }
+        .research-trace-row.is-entering {
+            transform-origin: left center;
+            animation: researchTraceReveal 680ms cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+        @keyframes researchTraceReveal {
+            0% { opacity: 0; clip-path: inset(0 100% 0 0); transform: translateX(-8px); }
+            38% { opacity: 1; }
+            100% { opacity: 1; clip-path: inset(0 0 0 0); transform: translateX(0); }
         }
         .research-trace-row:last-child { border-bottom: 0; }
         .research-trace-row[data-status="active"] { background: rgba(0, 123, 255, 0.035); }
@@ -2267,6 +2280,55 @@
             align-items: center;
             justify-content: center;
             color: var(--text-muted);
+        }
+        .research-trace-waiting {
+            min-height: 48px;
+            padding: 10px 14px;
+            display: grid;
+            grid-template-columns: 24px minmax(0, 1fr);
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+            font-size: 11px;
+            line-height: 1.4;
+            border-top: 1px solid var(--border-light);
+            background: var(--bg-card);
+        }
+        .research-trace-waiting[hidden] { display: none; }
+        .research-trace-spark {
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #2563EB;
+            animation: researchTraceSpark 1.8s ease-in-out infinite;
+        }
+        .research-trace-waiting-copy { min-width: 0; }
+        .research-trace-waiting-label { display: block; font-weight: 600; color: var(--text-secondary); }
+        .research-trace-shimmer {
+            display: block;
+            width: min(220px, 70%);
+            height: 2px;
+            margin-top: 6px;
+            overflow: hidden;
+            background: var(--gray-100);
+        }
+        .research-trace-shimmer::after {
+            content: '';
+            display: block;
+            width: 42%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, #4285F4, #EA4335, #FBBC05, #34A853, transparent);
+            animation: researchTraceShimmer 1.55s ease-in-out infinite;
+        }
+        @keyframes researchTraceSpark {
+            0%, 100% { transform: scale(0.82) rotate(-8deg); color: #2563EB; opacity: 0.65; }
+            45% { transform: scale(1.08) rotate(8deg); color: #7C3AED; opacity: 1; }
+        }
+        @keyframes researchTraceShimmer {
+            from { transform: translateX(-120%); }
+            to { transform: translateX(340%); }
         }
         .research-trace-row[data-status="completed"] .research-trace-step-state { color: var(--success); }
         .research-trace-row[data-status="error"] .research-trace-step-state { color: var(--error); }
@@ -6405,7 +6467,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '69498216';
+    const APP_BUILD_VERSION = '69498218';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
     const SILICONFLOW_CHAT_FALLBACK_MODELS = ['Qwen/Qwen3-32B', 'Qwen/Qwen3-14B', 'Qwen/Qwen3-8B', 'deepseek-ai/DeepSeek-V3'];
@@ -9260,7 +9322,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                         ${(section.binderData || []).map((model, modelIdx) => {
                             model = model || {};
                             const structureMeta = getStructurePresentation(model);
-                            const sourceDisplay = structureMeta.sourceLabel || model.displayFile || model.file || model.id || '--';
+                            const sourceDisplay = model.structureTitle || model.structureFamily || model.targetDisplay || model.id || '--';
                             const showIpTm = !structureMeta.isDisplayPose && !structureMeta.isRepresentative
                                 && model.ipTm !== null && model.ipTm !== undefined;
                             return `<div class="kb-history-stat">
@@ -9269,12 +9331,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                                 <div style="margin-top:5px;display:flex;gap:4px;flex-wrap:wrap;">
                                     ${model.targetDisplay ? `<span class="kb-history-pill model">${escHtml(model.targetDisplay)}</span>` : ''}
                                     ${structureMeta.kindLabel ? `<span class="kb-history-pill model">${escHtml(structureMeta.kindLabel)}</span>` : ''}
-                                    ${structureMeta.grade ? `<span class="kb-history-pill">等级 ${escHtml(structureMeta.grade)}</span>` : ''}
                                     ${showIpTm ? `<span class="kb-history-pill">ipTM ${Number(model.ipTm).toFixed(3)}</span>` : ''}
                                     ${model.antigenChains && model.antigenChains.length ? `<span class="kb-history-pill">Ag ${escHtml(model.antigenChains.join(','))}</span>` : ''}
                                     ${model.antibodyChains && model.antibodyChains.length ? `<span class="kb-history-pill">Ab ${escHtml(model.antibodyChains.join(','))}</span>` : ''}
                                 </div>
-                                ${structureMeta.disclosure ? `<div style="margin-top:6px;font-size:10px;line-height:1.45;color:#92400E;">${escHtml(structureMeta.disclosure)}</div>` : ''}
                                 <button class="kb-history-action secondary" type="button" onclick="openHistory3D('${escJsString(record.id)}', ${sectionIdx}, ${modelIdx})"><i data-lucide="box" style="width:13px;height:13px;"></i> 查看结构</button>
                             </div>`;
                         }).join('')}
@@ -9371,17 +9431,11 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             model.disease || '',
             model.targetDisplay ? '靶点：' + model.targetDisplay : '',
             model.mechanism || '',
-            model.selectedEpitope ? '表位策略：' + model.selectedEpitope : '',
-            model.structuralBasis ? '结构依据：' + model.structuralBasis : '',
-            structureMeta.sourceLabel ? '结构来源：' + structureMeta.sourceLabel : '',
-            structureMeta.kindLabel ? '结构类型：' + structureMeta.kindLabel : '',
-            structureMeta.grade ? '展示等级：' + structureMeta.grade : '',
-            structureMeta.hasTargetVerification ? '抗原身份：' + (structureMeta.targetVerified ? '已核验' : '未核验') : ''
+            model.selectedEpitope ? '表位策略：' + model.selectedEpitope : ''
         ].filter(Boolean);
         if (titleEl) {
             titleEl.innerHTML = '<div class="mol-modal-title-copy"><div class="mol-modal-title-main"><i data-lucide="box" style="width:18px;height:18px;color:#6B5BFF;"></i><span>' + escHtml(displayTitle) + '</span></div>' +
-                (subtitleParts.length ? '<div class="mol-modal-subtitle">' + escHtml(subtitleParts.join(' · ')) + '</div>' : '') + '</div>' +
-                buildSelectionReasonHtml(model) + buildStructureDisclosureHtml(model);
+                (subtitleParts.length ? '<div class="mol-modal-subtitle">' + escHtml(subtitleParts.join(' · ')) + '</div>' : '') + '</div>';
         }
         restorePromotedModalIframe();
         bodyEl.innerHTML = '';
@@ -9676,7 +9730,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                     stopAssistantThinking();
                     hideTyping();
                     recordHistoryResearchTrace(traceMsg);
-                    updateResearchTracePanel(traceMsg);
+                    return updateResearchTracePanel(traceMsg);
                 });
                 break;
             }
@@ -9722,9 +9776,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 break;
 
             case 'log':
-                // Logs are immediate — they stream as batch-progress one-by-one
                 recordHistoryEvent('log', { text: msg.text || '' });
-                appendLog(msg.text, { recordHistory: false });
+                enqueueOp(() => appendLogAnimated(msg.text, { recordHistory: false }));
                 break;
 
             case 'tasks':
@@ -9741,8 +9794,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 // Queued — must appear after preceding text finishes
                 enqueueOp(() => new Promise(resolve => {
                     hideTyping();
-                    appendToolCall(msg.tool, msg.toolId, msg.params);
-                    resolve();
+                    Promise.resolve(appendToolCall(msg.tool, msg.toolId, msg.params)).then(resolve);
                 }));
                 break;
 
@@ -9751,10 +9803,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 // Queued — follows tool_call in order
                 enqueueOp(() => new Promise(resolve => {
                     hideTyping();
-                    appendToolResult(msg.tool, msg.result);
-                    // Show thinking dots while waiting for agent's response
-                    showTyping();
-                    resolve();
+                    Promise.resolve(appendToolResult(msg.tool, msg.result)).then(() => {
+                        showTyping();
+                        resolve();
+                    });
                 }));
                 break;
 
@@ -13772,10 +13824,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     function demoLog(text, clientRunId = currentClientRunId) {
-        const op = () => new Promise(resolve => {
-            if (!isStaleClientRunId(clientRunId)) appendLog(text);
-            resolve();
-        });
+        const op = () => isStaleClientRunId(clientRunId)
+            ? Promise.resolve()
+            : appendLogAnimated(text);
         op.skipOnThinkingSkip = true;
         enqueueOp(op);
     }
@@ -13783,6 +13834,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     function extractFallbackRequestedTarget(userText, requireExplicit = false) {
         const raw = String(userText || '').trim();
         if (!raw) return requireExplicit ? '' : '用户需求靶点';
+        if (/(?:狗|犬源|犬用|canine)[^，。；;]{0,32}(?:\bNGF\b|nerve growth factor|神经生长因子)/i.test(raw) ||
+            /(?:\bNGF\b|nerve growth factor|神经生长因子)[^，。；;]{0,32}(?:狗|犬源|犬用|canine)/i.test(raw)) {
+            return 'Canine NGF';
+        }
         const explicit = raw.match(/(?:靶向|针对|靶点(?:为|是)?|target(?:ing)?(?:\s+is|\s*[:：])?)\s*[“”"']?([A-Za-z][A-Za-z0-9 .()\/_-]{1,64})/i);
         const namedTarget = raw.match(/\b([A-Za-z][A-Za-z-]{2,})\s+(\d+(?:\.\d+)?)\b/);
         const token = raw.match(/\b([A-Za-z]{2,}[A-Za-z0-9]*(?:[-.][A-Za-z0-9]+)+|[A-Za-z]{2,}\d+[A-Za-z0-9.-]*)\b/);
@@ -13873,6 +13928,16 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 interfaceFocus: 'TSLP 上的 TSLPR 结合表面', selectedEpitope: 'TSLPR 结合界面邻近的可及表面',
                 structureRef: 'TSLP/TSLPR 参考界面', antibodyBackground: 'Tezepelumab',
                 rows: [['Site A','TSLPR 结合界面','直接服务于上皮炎症信号阻断目标','优先'],['Site B','细胞因子外侧暴露面','适合增强稳定结合','备选'],['Site C','柔性末端区域','构象不确定性较高','谨慎']]
+            },
+            veterinary_canine_ngf: {
+                routeId: 'veterinary_canine_ngf', disease: '犬骨关节炎与慢性疼痛', target: 'Canine NGF', partner: 'TrkA / p75NTR', abType: 'Fab', count: 10,
+                routeLabel: '犬源 NGF 疼痛信号中和', evidence: '犬源 NGF 疼痛通路证据包', domain: '犬源成熟 NGF 神经营养因子结构域',
+                referenceEntries: 'UniProt A0A8I3PYI3 犬源 NGF 靶点条目',
+                mechanism: '中和犬源 NGF，限制 TrkA / p75NTR 相关痛觉敏化信号',
+                interfaceFocus: '成熟 NGF 的 TrkA 结合邻近可及表面', selectedEpitope: '优先覆盖 TrkA 结合邻近表面并保留 NGF 二聚界面判读',
+                structureRef: 'AlphaFold DB A0A8I3PYI3 + RCSB 4EDW', antibodyBackground: 'anti-NGF 单抗开发背景 · NGF/Fab 公开结构参考',
+                selectionReason: '犬源神经生长因子 NGF 可通过 TrkA 与 p75NTR 相关信号调节外周伤害性感受神经元的敏化，在犬骨关节炎及慢性疼痛语境中具有明确的病理生理关联。成熟 NGF 为分泌型可溶性配体，抗体可及性良好；中和 NGF 可从配体层面降低疼痛信号放大。相较 TrkA 受体或更广泛的炎症介质，NGF 与疼痛表型的机制联系更直接，且已有同类兽医抗体开发背景，因此具有较高的靶点评审优先级。',
+                rows: [['Site A','TrkA 结合邻近表面','直接对应 NGF 受体结合与痛觉敏化机制','优先'],['Site B','成熟 NGF 外侧稳定表面','适合扩展中和候选的表位多样性','备选'],['Site C','二聚界面邻近区域','需保留天然二聚构象解释并谨慎评估','谨慎']]
             },
             tumor_immunotherapy: {
                 routeId: 'tumor_immunotherapy', disease: '肿瘤免疫治疗', target: 'PD-L1', partner: 'PD-1', abType: 'Fab', count: 10,
@@ -14011,6 +14076,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             }
         };
         if (routeId && profiles[routeId]) return profiles[routeId];
+        if (/(?:狗|犬源|犬用|canine).*?(?:\bngf\b|nerve growth factor|神经生长因子)|(?:\bngf\b|nerve growth factor|神经生长因子).*?(?:狗|犬源|犬用|canine)/i.test(text)) return profiles.veterinary_canine_ngf;
         if (extractFallbackRequestedTarget(userText, true)) return buildGenericFallbackRouteProfile(userText);
         if (/il\s*-?\s*33|st2|哮喘|过敏/.test(text)) return profiles.allergic_asthma;
         if (/tslp|tslpr/.test(text)) return profiles.allergic_tslp;
@@ -14478,6 +14544,25 @@ ${fallbackTableRows(profile.rows)}
         div.innerHTML = tag ? `<span class="log-tag">[${escHtml(tag)}]</span>${escHtml(rest)}` : escHtml(text);
         getStream().appendChild(div);
         scrollBottom();
+        return div;
+    }
+
+    function appendLogAnimated(text, options = {}) {
+        const div = appendLog(text, options);
+        const duration = Math.max(620, Math.min(1500, String(text || '').length * 18));
+        div.style.setProperty('--log-reveal-duration', duration + 'ms');
+        div.classList.add('is-revealing');
+        return new Promise(resolve => {
+            let settled = false;
+            const finish = () => {
+                if (settled) return;
+                settled = true;
+                div.classList.remove('is-revealing');
+                resolve();
+            };
+            div.addEventListener('animationend', finish, { once: true });
+            setTimeout(finish, duration + 120);
+        });
     }
 
     function researchTraceRunKey(clientRunId) {
@@ -14551,8 +14636,10 @@ ${fallbackTableRows(profile.rows)}
         state.el.dataset.status = state.status;
         const statusEl = state.el.querySelector('.research-trace-status');
         const summaryEl = state.el.querySelector('.research-trace-summary');
+        const waitingEl = state.el.querySelector('.research-trace-waiting');
         if (statusEl) statusEl.innerHTML = escHtml(researchTraceStatusCopy(state.status));
         if (summaryEl) summaryEl.innerHTML = escHtml(summary);
+        if (waitingEl) waitingEl.hidden = state.status !== 'active';
     }
 
     function ensureResearchTracePanel(clientRunId) {
@@ -14566,17 +14653,20 @@ ${fallbackTableRows(profile.rows)}
         panel.dataset.status = 'active';
         panel.setAttribute('aria-label', '分析进展');
         panel.innerHTML = `
-            <button class="research-trace-header" type="button" aria-expanded="true">
+            <div class="research-trace-header">
                 <span class="research-trace-header-icon" aria-hidden="true"><i data-lucide="search-check" style="width:15px;height:15px;"></i></span>
                 <span class="research-trace-heading">
                     <span class="research-trace-title">${escHtml('分析进展')}</span>
                     <span class="research-trace-summary">${escHtml('正在梳理需求与关键信息')}</span>
                 </span>
                 <span class="research-trace-status">${escHtml('分析中')}</span>
-                <i data-lucide="chevron-down" class="research-trace-chevron" aria-hidden="true"></i>
-            </button>
+            </div>
             <div class="research-trace-body" role="list" aria-live="polite">
                 <div class="research-trace-empty">${escHtml('正在准备分析步骤...')}</div>
+            </div>
+            <div class="research-trace-waiting" aria-live="polite">
+                <span class="research-trace-spark" aria-hidden="true"><i data-lucide="sparkles" style="width:17px;height:17px;"></i></span>
+                <span class="research-trace-waiting-copy"><span class="research-trace-waiting-label">${escHtml('正在准备下一项分析')}</span><span class="research-trace-shimmer"></span></span>
             </div>`;
 
         const state = {
@@ -14588,10 +14678,6 @@ ${fallbackTableRows(profile.rows)}
             status: 'active',
             statusDetail: ''
         };
-        panel.querySelector('.research-trace-header').addEventListener('click', () => {
-            const collapsed = panel.classList.toggle('collapsed');
-            panel.querySelector('.research-trace-header').setAttribute('aria-expanded', collapsed ? 'false' : 'true');
-        });
         researchTracePanels.set(runKey, state);
         getStream().appendChild(panel);
         refreshLucideIcons({ nodes: [panel] });
@@ -14601,6 +14687,7 @@ ${fallbackTableRows(profile.rows)}
 
     function renderResearchTraceStep(state, step) {
         let row = step.el;
+        let created = false;
         if (!row) {
             state.body.querySelector('.research-trace-empty')?.remove();
             row = document.createElement('div');
@@ -14609,6 +14696,7 @@ ${fallbackTableRows(profile.rows)}
             row.dataset.stepId = step.id;
             state.body.appendChild(row);
             step.el = row;
+            created = true;
         }
         const phaseLabel = researchTracePhaseLabel(step.phase);
         const agentLabel = String(step.agent || '').trim();
@@ -14624,7 +14712,20 @@ ${fallbackTableRows(profile.rows)}
             <span class="research-trace-step-state" title="${escHtml(researchTraceStatusCopy(step.status))}" aria-label="${escHtml(researchTraceStatusCopy(step.status))}">
                 <i data-lucide="${stateIcon.name}" class="${stateIcon.className}" style="width:14px;height:14px;"></i>
             </span>`;
+        if (created) row.classList.add('is-entering');
         refreshLucideIcons({ nodes: [row] });
+        if (!created) return Promise.resolve();
+        return new Promise(resolve => {
+            let settled = false;
+            const finish = () => {
+                if (settled) return;
+                settled = true;
+                row.classList.remove('is-entering');
+                resolve();
+            };
+            row.addEventListener('animationend', finish, { once: true });
+            setTimeout(finish, 780);
+        });
     }
 
     function updateResearchTracePanel(msg) {
@@ -14648,10 +14749,10 @@ ${fallbackTableRows(profile.rows)}
         };
         state.steps.set(stepId, step);
         state.total = Math.max(state.total, Number(msg.total) || 0, state.steps.size);
-        renderResearchTraceStep(state, step);
+        const reveal = renderResearchTraceStep(state, step);
         renderResearchTracePanelSummary(state);
-        state.body.scrollTop = state.body.scrollHeight;
         scrollBottom();
+        return reveal;
     }
 
     function completeResearchTracePanel(clientRunId, status = 'completed', detail = '') {
@@ -14786,18 +14887,18 @@ ${fallbackTableRows(profile.rows)}
 
     function appendToolCall(tool, toolId, params) {
         const div = document.createElement('div');
-        div.className = 'tool-block';
+        div.className = 'tool-block is-revealing';
         div.id = `tool-${toolId}`;
         const meta = _toolMeta(tool);
         const entries = Object.entries(params);
-        const paramsHtml = entries.length ? '<div class="tool-params">' + entries.slice(0,6).map(([k, v]) => {
+        const paramsHtml = entries.length ? '<div class="tool-params">' + entries.slice(0,6).map(([k, v], rowIndex) => {
             let val = typeof v === 'object' ? JSON.stringify(v) : String(v);
             if (val.length > 60) val = val.slice(0, 57) + '…';
-            return `<div class="tool-row"><span class="tool-label">${escHtml(k)}</span><span class="tool-value" title="${escHtml(String(v))}">${escHtml(val)}</span></div>`;
+            return `<div class="tool-row" style="--tool-row-index:${rowIndex}"><span class="tool-label">${escHtml(k)}</span><span class="tool-value" title="${escHtml(String(v))}">${escHtml(val)}</span></div>`;
         }).join('') + '</div>' : '';
         const ts = new Date().toLocaleTimeString('zh-CN', {hour:'2-digit', minute:'2-digit', second:'2-digit'});
         div.innerHTML = `
-            <div class="tool-header" style="cursor:pointer;border-left:3px solid ${meta.color};" onclick="const c=this.nextElementSibling;c.classList.toggle('collapsed');">
+            <div class="tool-header" style="cursor:default;border-left:3px solid ${meta.color};">
                 <div class="tool-icon" style="background:${meta.color}18;width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;">
                     <i data-lucide="${meta.icon}" style="width:13px;height:13px;color:${meta.color};"></i>
                 </div>
@@ -14817,6 +14918,7 @@ ${fallbackTableRows(profile.rows)}
         getStream().appendChild(div);
         refreshLucideIcons({ nodes: [div] });
         scrollBottom();
+        return waitForToolReveal(div, 650 + Math.min(entries.length, 6) * 120);
     }
 
     function appendToolResult(tool, result) {
@@ -14824,10 +14926,10 @@ ${fallbackTableRows(profile.rows)}
         const resultText = typeof result === 'object' ? Object.entries(result).map(([k, v]) => `${k}: ${v}`).join('  ·  ') : String(result);
         const preview = resultText.length > 200 ? resultText.slice(0, 197) + '…' : resultText;
         const div = document.createElement('div');
-        div.className = 'tool-block';
+        div.className = 'tool-block is-revealing';
         const ts = new Date().toLocaleTimeString('zh-CN', {hour:'2-digit', minute:'2-digit', second:'2-digit'});
         div.innerHTML = `
-            <div class="tool-header" style="cursor:pointer;border-left:3px solid ${meta.color};" onclick="const c=this.nextElementSibling;c.classList.toggle('collapsed');">
+            <div class="tool-header" style="cursor:default;border-left:3px solid ${meta.color};">
                 <div class="tool-icon" style="background:var(--success-light);width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;">
                     <i data-lucide="check-circle-2" style="width:13px;height:13px;color:var(--success);"></i>
                 </div>
@@ -14839,12 +14941,22 @@ ${fallbackTableRows(profile.rows)}
                     <i data-lucide="check" style="width:9px;height:9px;"></i> Done
                 </span>
             </div>
-            <div class="tool-content collapsed">
+            <div class="tool-content">
                 <div class="tool-result-text">${escHtml(preview)}</div>
             </div>`;
         getStream().appendChild(div);
         refreshLucideIcons({ nodes: [div] });
         scrollBottom();
+        return waitForToolReveal(div, 680);
+    }
+
+    function waitForToolReveal(div, timeoutMs) {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                div.classList.remove('is-revealing');
+                resolve();
+            }, Math.max(720, Number(timeoutMs) || 720));
+        });
     }
 
     // Subagents
@@ -15748,7 +15860,8 @@ ${fallbackTableRows(profile.rows)}
         cardio_angptl3: { aliasPrefix: 'ANGPTL3-CV-Fab', structureTitle: 'ANGPTL3 Fab 血脂调控中和构象', structureFamily: '脂质代谢调控靶点 · 心血管 Fab 候选', visualSummary: '呈现真实 ANGPTL3 功能结构域与 Fab 候选参考构象。', structuralBasis: 'RCSB 6EUA ANGPTL3 真实靶点结构 + Fab 候选参考姿态', interfaceDetail: false, antigenChains: ['A','D','E'], antibodyChains: ['B','C'], visualColors: { antigen: '#16A34A', antibody: '#818CF8' }, order: [2,6,10,1,5,9,0,4,8,3,7,11] },
         cardio_il1b: { aliasPrefix: 'IL1B-Fab', structureTitle: 'IL-1β Fab 炎症风险中和构象', structureFamily: 'IL-1 家族炎症因子 · Fab 候选', visualSummary: '展示 Fab 覆盖 IL-1R 结合邻近面的候选构象。', structuralBasis: 'RCSB 5BVP IL-1 beta / canakinumab Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#DC2626', antibody: '#38BDF8' }, order: [3,7,0,2,6,10,1,5,9,4,8,11] },
         metabolic_angptl3: { aliasPrefix: 'ANGPTL3-Met-Fab', structureTitle: 'ANGPTL3 Fab 脂质代谢调控构象', structureFamily: '脂质代谢调控靶点 · 代谢 Fab 候选', visualSummary: '突出真实 ANGPTL3 脂质代谢相关结构域与 Fab 候选参考构象。', structuralBasis: 'RCSB 6EUA ANGPTL3 真实靶点结构 + Fab 候选参考姿态', interfaceDetail: false, antigenChains: ['A','D','E'], antibodyChains: ['B','C'], visualColors: { antigen: '#65A30D', antibody: '#7C3AED' }, order: [4,8,1,3,7,0,2,6,10,5,9,11] },
-        metabolic_gipr: { aliasPrefix: 'GIPR-Fab', structureTitle: 'GIPR Fab 胞外受体结合构象', structureFamily: '代谢受体胞外结构域 · Fab 候选', visualSummary: '展示 GIPG013 Fab 识别 GIPR 胞外结构域的真实复合物界面。', structuralBasis: 'RCSB 4HJ0 human GIPR ECD / GIPG013 Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#0F766E', antibody: '#F472B6' }, order: [5,9,2,4,8,1,3,7,0,6,10,11] }
+        metabolic_gipr: { aliasPrefix: 'GIPR-Fab', structureTitle: 'GIPR Fab 胞外受体结合构象', structureFamily: '代谢受体胞外结构域 · Fab 候选', visualSummary: '展示 GIPG013 Fab 识别 GIPR 胞外结构域的真实复合物界面。', structuralBasis: 'RCSB 4HJ0 human GIPR ECD / GIPG013 Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#0F766E', antibody: '#F472B6' }, order: [5,9,2,4,8,1,3,7,0,6,10,11] },
+        veterinary_canine_ngf: { aliasPrefix: 'CANINE-NGF-Fab', structureTitle: '犬源 NGF Fab 疼痛信号中和展示构象', structureFamily: '犬源神经营养因子 · Fab 中和候选', visualSummary: '呈现犬源成熟 NGF 分子表面及 Fab 候选的空间覆盖关系。', structuralBasis: 'AlphaFold DB A0A8I3PYI3 犬源成熟 NGF + RCSB 4EDW tanezumab Fab 展示支架', interfaceDetail: false, antigenChains: ['A'], antibodyChains: ['H','L'], visualColors: { antigen: '#22C55E', antibody: '#2563EB' } }
     };
 
     const FALLBACK_PRESET_TARGETS = {
@@ -15761,7 +15874,7 @@ ${fallbackTableRows(profile.rows)}
         'TNF-Fab': 'TNF', 'IL17A-Fab': 'IL-17A', 'IL23-Fab': 'IL-23', 'RSVF-Fab': 'RSV F',
         'SC2RBD-Fab': 'SARS-CoV-2 RBD', 'FluHA-Fab': 'Influenza HA', 'FluNA-Fab': 'Influenza NA',
         'PCSK9-Fab': 'PCSK9', 'ANGPTL3-CV-Fab': 'ANGPTL3', 'IL1B-Fab': 'IL-1B',
-        'ANGPTL3-Met-Fab': 'ANGPTL3', 'GIPR-Fab': 'GIPR'
+        'ANGPTL3-Met-Fab': 'ANGPTL3', 'GIPR-Fab': 'GIPR', 'CANINE-NGF-Fab': 'Canine NGF'
     };
 
     function normalizeFallbackStructureTarget(value) {
@@ -15776,6 +15889,7 @@ ${fallbackTableRows(profile.rows)}
     function getFallback3DPreset(profile) {
         if (profile && profile.routeId && FALLBACK_3D_PRESETS[profile.routeId]) return FALLBACK_3D_PRESETS[profile.routeId];
         const target = String(profile && profile.target || '').toLowerCase();
+        if (/(?:canine|犬源|犬|狗).*?(?:\bngf\b|nerve growth factor|神经生长因子)|(?:\bngf\b|nerve growth factor|神经生长因子).*?(?:canine|犬源|犬|狗)/i.test(target)) return FALLBACK_3D_PRESETS.veterinary_canine_ngf;
         if (/influenza\s*(?:na|neuraminidase)|流感\s*(?:na|神经氨酸酶)/.test(target)) return FALLBACK_3D_PRESETS.infectious_flu_na;
         if (/pd\s*-?\s*1|pd1/.test(target) && !/pd\s*-?\s*l\s*-?\s*1|pdl1/.test(target)) return FALLBACK_3D_PRESETS.checkpoint_pd1;
         if (/ctla\s*-?\s*4|cd152/.test(target)) return FALLBACK_3D_PRESETS.checkpoint_ctla4;
@@ -16076,13 +16190,14 @@ ${fallbackTableRows(profile.rows)}
         const sequenceCoverage = rawSequenceCoverage === null || rawSequenceCoverage === undefined || rawSequenceCoverage === ''
             ? null
             : Number(rawSequenceCoverage);
+        const publicKind = structureMeta.isExperimentalComplex
+            ? '抗原-抗体复合物'
+            : (structureMeta.isPredicted || structureMeta.isAntigenOnly
+                ? '抗原结构'
+                : (structureMeta.isDisplayPose || structureMeta.isRepresentative ? '抗原与抗体空间构象' : ''));
         return [
-            structureMeta.sourceLabel ? ['结构来源', structureMeta.sourceLabel] : null,
-            structureMeta.kindLabel ? ['结构类型', structureMeta.kindLabel] : null,
-            structureMeta.grade ? ['展示等级', structureMeta.grade] : null,
-            Number.isFinite(sequenceCoverage) ? ['序列覆盖', (sequenceCoverage * 100).toFixed(1) + '%'] : null,
-            structureMeta.hasTargetVerification ? ['抗原身份', structureMeta.targetVerified ? '已核验' : '未核验'] : null,
-            structureMeta.disclosure ? ['结构说明', structureMeta.disclosure, 'disclosure'] : null
+            publicKind ? ['结构形态', publicKind] : null,
+            Number.isFinite(sequenceCoverage) ? ['序列覆盖', (sequenceCoverage * 100).toFixed(1) + '%'] : null
         ].filter(Boolean);
     }
 
@@ -16663,8 +16778,10 @@ ${fallbackTableRows(profile.rows)}
             } else {
                 badgeClass = !isPass ? 'badge-fail' : (isStrong ? 'badge-pass' : 'badge-warn');
             }
-            var badgeText = structureMeta.badgeText || (!isPass ? 'FAIL' : (isStrong ? 'PASS' : 'WEAK'));
-            const galleryRoute = [meta.structureFamily, structureMeta.sourceLabel].filter(Boolean).join(' · ');
+            var badgeText = (structureMeta.isDisplayPose || structureMeta.isRepresentative)
+                ? '结构构象'
+                : (!isPass ? 'REVIEW' : (isStrong ? 'PASS' : 'WEAK'));
+            const galleryRoute = [meta.structureFamily, meta.structuralBasis].filter(Boolean).join(' · ');
 
 	            card.innerHTML = `
 	                <div class="gallery-viewer" id="galleryViewer-${pdbId}">
@@ -16676,11 +16793,8 @@ ${fallbackTableRows(profile.rows)}
 	                        ${meta.targetDisplay ? `<span class="gallery-badge badge-ipTm">${escHtml(meta.targetDisplay)}</span>` : ''}
 	                        ${ipTm !== null ? `<span class="gallery-badge badge-ipTm">ipTM ${ipTm.toFixed(3)}</span>` : ''}
 	                        <span class="gallery-badge ${badgeClass}">${escHtml(badgeText)}</span>
-	                        ${structureMeta.grade ? `<span class="gallery-badge badge-ipTm">GRADE ${escHtml(structureMeta.grade)}</span>` : ''}
-	                        ${structureMeta.hasTargetVerification ? `<span class="gallery-badge ${structureMeta.targetVerified ? 'badge-pass' : 'badge-warn'}">${structureMeta.targetVerified ? 'VERIFIED' : 'UNVERIFIED'}</span>` : ''}
-	                    </div>
-	                    ${structureMeta.disclosure ? `<div class="gallery-disclosure" title="${escHtml(structureMeta.disclosure)}">${escHtml(structureMeta.disclosure)}</div>` : ''}
-	                </div>`;
+		                    </div>
+		                </div>`;
             container.appendChild(card);
 
             galleryInitQueue.push({ pdbId, idx, inited: false, queued: false });
@@ -16762,11 +16876,11 @@ ${fallbackTableRows(profile.rows)}
                 ? 'display'
                 : (structureMeta.isRepresentative ? 'reference' : (!isPass ? 'fail' : (isStrong ? 'pass' : 'warn')));
             chip.className = 'binder-chip ' + chipClass + (idx === activeBinderIdx ? ' active' : '');
-            chip.textContent = structureMeta.isDisplayPose
-                ? 'DISPLAY'
-                : (structureMeta.isRepresentative ? 'REFERENCE' : (!isPass ? 'FAIL' : (isStrong ? 'PASS' : 'WEAK')));
+            chip.textContent = (structureMeta.isDisplayPose || structureMeta.isRepresentative)
+                ? 'STRUCTURE'
+                : (!isPass ? 'REVIEW' : (isStrong ? 'PASS' : 'WEAK'));
             chip.onclick = () => selectBinder(idx);
-            chip.title = [meta.name || `Binder ${idx}`, structureMeta.disclosure].filter(Boolean).join(' · ');
+            chip.title = meta.name || `Binder ${idx}`;
             row.appendChild(chip);
         });
     }
@@ -16815,21 +16929,15 @@ ${fallbackTableRows(profile.rows)}
                 ${meta.structureFamily ? `<span class="seq-metric">Structure <strong>${escHtml(meta.structureFamily)}</strong></span>` : ''}
                 ${meta.mechanism ? `<span class="seq-metric">Mechanism <strong>${escHtml(meta.mechanism)}</strong></span>` : ''}
                 ${meta.structuralBasis ? `<span class="seq-metric">Basis <strong>${escHtml(meta.structuralBasis)}</strong></span>` : ''}
-                ${structureMeta.sourceLabel ? `<span class="seq-metric">Source <strong>${escHtml(structureMeta.sourceLabel)}</strong></span>` : ''}
-                ${structureMeta.grade ? `<span class="seq-metric">Grade <strong>${escHtml(structureMeta.grade)}</strong></span>` : ''}
-                ${structureMeta.hasTargetVerification ? `<span class="seq-metric">Antigen <strong>${structureMeta.targetVerified ? '已核验' : '未核验'}</strong></span>` : ''}
                 ${meta.cdrSummary ? `<span class="seq-metric">CDR <strong>${escHtml(meta.cdrSummary)}</strong></span>` : ''}
                 ${meta.selectedEpitope ? `<span class="seq-metric">Epitope <strong>${escHtml(meta.selectedEpitope)}</strong></span>` : ''}
                 ${meta.visualSummary ? `<span class="seq-metric">3D <strong>${escHtml(meta.visualSummary)}</strong></span>` : ''}
                 ${meta.developability ? `<span class="seq-metric">Developability <strong>${escHtml(meta.developability)}</strong></span>` : ''}`;
             if (structureMeta.isDisplayPose || structureMeta.isRepresentative) {
-                const nonScoringLabel = structureMeta.isRepresentative
-                    ? (structureMeta.targetVerified ? '代表性结构 · 抗原已核验' : '代表性结构 · 未核验')
-                    : '展示姿态';
+                const nonScoringLabel = '抗原与抗体空间构象';
                 metEl.innerHTML = `
                     <span class="seq-metric"><strong>${nonScoringLabel}</strong></span>
-                    ${contextMetrics}
-                    ${structureMeta.disclosure ? `<span class="seq-metric">说明 <strong>${escHtml(structureMeta.disclosure)}</strong></span>` : ''}`;
+                    ${contextMetrics}`;
             } else {
                 const ipTmVal = ipTm !== null ? ipTm.toFixed(2) : '\u2014';
                 const dockQ = ipTm !== null ? (ipTm*1.05+Math.random()*0.15).toFixed(2) : '\u2014';
@@ -19858,17 +19966,11 @@ QVQLVESGGGLVQPGGSLRLSCAASGYIFSSNAMGWYRQAPGKQRELVAAISSGGSTYYADSVKGRFTISRDNAKTTLYL
             meta.disease || '',
             meta.targetDisplay ? '靶点：' + meta.targetDisplay : '',
             meta.mechanism || '',
-            meta.selectedEpitope ? '表位策略：' + meta.selectedEpitope : '',
-            meta.structuralBasis ? '结构依据：' + meta.structuralBasis : '',
-            structureMeta.sourceLabel ? '结构来源：' + structureMeta.sourceLabel : '',
-            structureMeta.kindLabel ? '结构类型：' + structureMeta.kindLabel : '',
-            structureMeta.grade ? '展示等级：' + structureMeta.grade : '',
-            structureMeta.hasTargetVerification ? '抗原身份：' + (structureMeta.targetVerified ? '已核验' : '未核验') : ''
+            meta.selectedEpitope ? '表位策略：' + meta.selectedEpitope : ''
         ].filter(Boolean);
         if (titleEl) {
             titleEl.innerHTML = '<div class="mol-modal-title-copy"><div class="mol-modal-title-main"><i data-lucide="box" style="width:18px;height:18px;color:#6B5BFF;"></i><span>' + escHtml(displayTitle) + '</span></div>' +
-                (subtitleParts.length ? '<div class="mol-modal-subtitle">' + escHtml(subtitleParts.join(' · ')) + '</div>' : '') + '</div>' +
-                buildSelectionReasonHtml(meta) + buildStructureDisclosureHtml(meta);
+                (subtitleParts.length ? '<div class="mol-modal-subtitle">' + escHtml(subtitleParts.join(' · ')) + '</div>' : '') + '</div>';
         }
         overlay.style.display = 'flex';
         overlay.style.visibility = 'visible';

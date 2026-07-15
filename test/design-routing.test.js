@@ -49,6 +49,13 @@ test('keeps known biomedical targets extractable for preset profiles', () => {
   assert.equal(parsed.abType, 'Fab');
 });
 
+test('recognizes canine NGF as an explicit veterinary design target', () => {
+  const parsed = extractDesignRequest('设计狗 NGF 单抗');
+  assert.equal(parsed.isDesignRequest, true);
+  assert.equal(parsed.target, 'Canine NGF');
+  assert.equal(parsed.abType, 'mAb');
+});
+
 test('understands shorthand monoclonal antibody sequence requests', () => {
   const parsed = extractDesignRequest('设计 10 个具有结合活性的流感 NA 单抗序列');
 

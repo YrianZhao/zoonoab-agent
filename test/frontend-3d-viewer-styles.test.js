@@ -204,7 +204,7 @@ test('molecular viewers avoid duplicate parsing and reuse the loaded full-screen
   assert.match(loadViewer, /parseRenderMs/);
 });
 
-test('full viewer shows a non-interactive local or auto source badge before controls', () => {
+test('full viewer keeps model origin internal and shows an audience-facing readiness badge', () => {
   const sourceBadge = extractFunction(viewerFullHtml, 'function renderModelOriginBadge()');
   const frameUrl = extractFunction(indexHtml, 'function buildMoleculeFrameUrl(basePath, pdbId, title, candidateIndex)');
   const historyFrameUrl = extractFunction(indexHtml, 'function buildHistoryMoleculeFrameUrl(section, model, modelIdx, title)');
@@ -214,7 +214,9 @@ test('full viewer shows a non-interactive local or auto source badge before cont
   assert.match(viewerFullHtml, /\.vf-source-badge\.local/);
   assert.match(viewerFullHtml, /\.vf-source-badge\.auto/);
   assert.match(sourceBadge, /document\.createElement\('span'\)/);
-  assert.match(sourceBadge, /textContent\s*=\s*MODEL_ORIGIN/);
+  assert.match(sourceBadge, /MODEL_ORIGIN\s*===\s*'local'\s*\?\s*'结构已就绪'\s*:\s*'结构已载入'/);
+  assert.match(sourceBadge, /textContent\s*=\s*displayLabel/);
+  assert.doesNotMatch(sourceBadge, /textContent\s*=\s*MODEL_ORIGIN/);
   assert.doesNotMatch(sourceBadge, /onclick|addEventListener\(['"]click/);
   const actionStart = viewerFullHtml.indexOf('// Action buttons');
   const actionEnd = viewerFullHtml.indexOf('load(pdbUrl, ldEl)', actionStart);

@@ -126,20 +126,21 @@ test('prepared local structures require an exact requested-target to PDB REMARK 
   assert.match(matcher, /targetTag\.verifiedTag/);
   assert.match(matcher, /targetTag\.antibodyFormat/);
   assert.match(matcher, /requestedFormat === coordinateFormat/);
-  assert.match(matcher, /!strain && !isoform && !explicitNonHumanOrganism/);
-  assert.match(matcher, /requestedIdentity === coordinateIdentity/);
+  assert.match(matcher, /!strain && !isoform && organismMatches/);
+  assert.match(matcher, /requestedTargetAlias === coordinateTargetAlias/);
+  assert.match(matcher, /coordinateOrganismTaxId/);
   assert.match(contract, /preparedStructureTargetMatches\(profile, file\)/);
   assert.match(contract, /grade: !targetVerified \? 'D'/);
   assert.match(preparedCheck, /preparedStructureTargetMatches\(profile, file\)/);
 });
 
-test('the selection reason shown before a workflow remains the exact binder reason', () => {
+test('the academic target rationale remains the binder reason used throughout the workflow', () => {
   const intro = sliceBetween(serverSource, 'function targetResolutionIntro(', 'function buildAssistantThinkingTopic(');
   const workflow = sliceBetween(serverSource, 'async function runWorkflow(', 'async function runRiskSiteScan(');
   const binderMeta = sliceBetween(serverSource, 'function buildRoute3DMeta(', 'function routeLocalPDBs(');
 
   assert.match(intro, /\(route && route\.selectionReason\) \|\| sanitizedTargetSelectionReason/);
-  assert.match(intro, /'\u9009\u62e9\u7406\u7531\uff1a' \+ selectionReason/);
+  assert.match(intro, /'\u5b66\u672f\u4f9d\u636e\uff1a' \+ selectionReason/);
   assert.match(workflow, /if \(forcedRoute && forcedRoute\.selectionReason\)/);
   assert.match(workflow, /profile\.selectionReason = forcedRoute\.selectionReason/);
   assert.match(binderMeta, /profile && \(profile\.selectionReason \|\| profile\.targetSelectionReason \|\| profile\.reason\)/);
@@ -298,7 +299,8 @@ test('workflow starts target resolution in the background and uses an explicit r
   assert.ok(readyGuard >= 0 && show3D > readyGuard, 'show_3d should be inside the non-empty binder guard');
   assert.equal((gallery.match(/type: 'show_3d'/g) || []).length, 1);
   assert.match(gallery, /status: 'representative'/);
-  assert.match(gallery, /默认抗原-抗体代表性结构/);
+  assert.match(gallery, /已准备抗原与抗体空间构象展示/);
+  assert.doesNotMatch(gallery, /页面题头|题头保留/);
 
   const fallback = sliceBetween(serverSource, 'function representativeFallbackStructure(', 'function buildRepresentativeFallbackBinders(');
   assert.match(fallback, /kind: 'representative'/);

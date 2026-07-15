@@ -115,8 +115,9 @@ body.compact-viewer .vwrap{height:100%;flex-basis:100%}
         var badge = document.createElement('span');
         badge.id = 'vfModelOriginBadge';
         badge.className = 'vf-source-badge ' + MODEL_ORIGIN;
-        badge.textContent = MODEL_ORIGIN;
-        badge.setAttribute('aria-label', MODEL_ORIGIN === 'local' ? '本地已匹配结构' : '自动结构');
+        var displayLabel = MODEL_ORIGIN === 'local' ? '结构已就绪' : '结构已载入';
+        badge.textContent = displayLabel;
+        badge.setAttribute('aria-label', displayLabel);
         actions.appendChild(badge);
     }
     function parseChains(value, fallback) {
