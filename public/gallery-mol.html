@@ -90,37 +90,25 @@
             try{glv.render();}catch(e3){}
         }
 
-        function isPdbText(txt) {
-            return typeof txt === 'string' && /(?:^|\n)(?:ATOM  |HETATM)/m.test(txt);
-        }
-
-        function showLoadError(error) {
-            var message = error && error.message ? error.message : 'Unknown response';
-            console.warn('[thumb] structure load failed:', error);
-            if (ld) {
-                ld.textContent = 'Structure unavailable';
-                ld.title = message;
-                ld.style.display = 'block';
-            }
-            window.parent.postMessage({source:'gallery-mol',type:'error',data:{message:message}},'*');
-        }
-
-        // Validate the controlled structure response before handing coordinates to 3Dmol.
-        fetch(pdbUrl).then(function(r){
-            if (!r.ok) throw new Error('Structure request failed (HTTP ' + r.status + ')');
-            return r.text();
-        }).then(function(txt){
-            if (!isPdbText(txt)) throw new Error('Structure response is not valid PDB coordinate text');
+        // Load PDB via fetch → full control
+        fetch(pdbUrl).then(function(r){return r.text();}).then(function(txt){
             var m = glv.addModel(txt, 'pdb');
             applyChainColors(m);
             applyViewerPose();
             if(ld)ld.style.display='none';
             window.parent.postMessage({source:'gallery-mol',type:'ready',data:{}},'*');
-        }).catch(showLoadError);
+        }).catch(function(e){
+            console.warn('[thumb] fetch err:',e,'→ trying download');
+            $3Dmol.download(pdbUrl,{mimetype:'text/plain'},function(txt2){
+                var m = glv.addModel(txt2,'pdb');
+                applyChainColors(m);
+                applyViewerPose();
+                if(ld)ld.style.display='none';
+                window.parent.postMessage({source:'gallery-mol',type:'ready',data:{}},'*');
+            });
+        });
 
-        setTimeout(function(){
-            if(ld&&ld.style.display!=='none'&&ld.textContent==='Loading...') ld.textContent='Structure loading timed out';
-        },20000);
+        setTimeout(function(){if(ld&&ld.style.display!=='none'){ld.style.display='none';}},20000);
 
         window.addEventListener('message',function(e){
             if(e.data&&e.data.type==='ping') e.source.postMessage({source:'gallery-mol',type:'pong',data:{}},'*');

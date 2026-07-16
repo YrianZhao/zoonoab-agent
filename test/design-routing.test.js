@@ -49,13 +49,6 @@ test('keeps known biomedical targets extractable for preset profiles', () => {
   assert.equal(parsed.abType, 'Fab');
 });
 
-test('recognizes canine NGF as an explicit veterinary design target', () => {
-  const parsed = extractDesignRequest('设计狗 NGF 单抗');
-  assert.equal(parsed.isDesignRequest, true);
-  assert.equal(parsed.target, 'Canine NGF');
-  assert.equal(parsed.abType, 'mAb');
-});
-
 test('understands shorthand monoclonal antibody sequence requests', () => {
   const parsed = extractDesignRequest('设计 10 个具有结合活性的流感 NA 单抗序列');
 
@@ -63,26 +56,6 @@ test('understands shorthand monoclonal antibody sequence requests', () => {
   assert.equal(parsed.target, 'Influenza NA');
   assert.equal(parsed.count, 10);
   assert.equal(parsed.abType, 'mAb');
-});
-
-test('keeps monoclonal antibody synonyms stable for biological material targets', () => {
-  for (const text of ['设计叶绿体单抗', '设计叶绿体单克隆抗体']) {
-    const parsed = extractDesignRequest(text);
-
-    assert.equal(parsed.isDesignRequest, true, text);
-    assert.equal(parsed.target, '叶绿体', text);
-    assert.equal(parsed.count, 10, text);
-    assert.equal(parsed.abType, 'mAb', text);
-  }
-});
-
-test('keeps small molecule antibody wording available for model-first judgement', () => {
-  for (const text of ['设计氯胺酮抗体', '设计 10 个特异性结合的噻吩嗪的单克隆抗体']) {
-    const parsed = extractDesignRequest(text);
-
-    assert.equal(parsed.isDesignRequest, true, text);
-    assert.equal(parsed.count, 10, text);
-  }
 });
 
 test('keeps influenza HA subtype names academic for display', () => {

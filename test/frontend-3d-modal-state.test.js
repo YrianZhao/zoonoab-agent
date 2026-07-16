@@ -136,38 +136,35 @@ test('final workflow modal preparation does not force page scrolling when the us
   assert.match(scrollToBottomThen, /cb\(\)/);
 });
 
-test('agent message typewriter uses bounded pacing with a fast-forward path', () => {
+test('agent message typewriter uses faster explicit timing constants', () => {
   const typewriter = extractFunction(html, 'function typewriterEffect');
 
-  assert.match(html, /const\s+TYPEWRITER_TICK_MS\s*=\s*24/);
-  assert.match(html, /const\s+TYPEWRITER_TARGET_MIN_MS\s*=\s*720/);
-  assert.match(html, /const\s+TYPEWRITER_TARGET_MAX_MS\s*=\s*10000/);
-  assert.match(html, /const\s+TYPEWRITER_MS_PER_CHAR\s*=\s*16/);
-  assert.match(html, /const\s+TYPEWRITER_SENTENCE_PAUSE_MS\s*=\s*96/);
-  assert.match(html, /const\s+TYPEWRITER_CLAUSE_PAUSE_MS\s*=\s*48/);
+  assert.match(html, /const\s+TYPEWRITER_TICK_MS\s*=\s*12/);
+  assert.match(html, /const\s+TYPEWRITER_TARGET_MIN_MS\s*=\s*360/);
+  assert.match(html, /const\s+TYPEWRITER_TARGET_MAX_MS\s*=\s*2200/);
+  assert.match(html, /const\s+TYPEWRITER_MS_PER_CHAR\s*=\s*2/);
   assert.match(typewriter, /TYPEWRITER_TICK_MS/);
   assert.match(typewriter, /TYPEWRITER_TARGET_MAX_MS/);
   assert.match(typewriter, /TYPEWRITER_TARGET_MIN_MS/);
   assert.match(typewriter, /TYPEWRITER_MS_PER_CHAR/);
-  assert.match(typewriter, /accelerated \? 10/);
   assert.doesNotMatch(typewriter, /target\s+2-4s/, 'stale slower timing comment should be removed');
 });
 
 test('candidate gallery thumbnails receive deterministic per-candidate pose seeds', () => {
   const frameUrlFunction = extractFunction(html, 'function buildMoleculeFrameUrl');
   const initGalleryViewer = extractFunction(html, 'function initGalleryViewer');
-  const viewerHtml = fs.readFileSync(path.join(__dirname, '..', 'public', 'viewer-full.html'), 'utf8');
+  const galleryHtml = fs.readFileSync(path.join(__dirname, '..', 'public', 'gallery-mol.html'), 'utf8');
 
   assert.match(frameUrlFunction, /poseSeed/);
   assert.match(frameUrlFunction, /viewerPoseSeed/);
   assert.match(initGalleryViewer, /idx/);
-  assert.match(initGalleryViewer, /buildMoleculeFrameUrl\('\/viewer-full\.html',\s*pdbId,\s*[^,]+,\s*idx,\s*\{\s*compact:\s*true\s*\}\)/);
-  assert.match(viewerHtml, /params\.get\('poseSeed'\)/);
-  assert.match(viewerHtml, /applyViewerPose/);
-  assert.match(viewerHtml, /glv\.rotate/);
+  assert.match(initGalleryViewer, /buildMoleculeFrameUrl\('\/gallery-mol\.html',\s*pdbId,\s*[^,]+,\s*idx\)/);
+  assert.match(galleryHtml, /params\.get\('poseSeed'\)/);
+  assert.match(galleryHtml, /applyViewerPose/);
+  assert.match(galleryHtml, /glv\.rotate/);
 });
 
-test('3D modal title bar keeps concise audience-facing target context', () => {
+test('3D modal title bar shows the current selection reason without covering controls', () => {
   const openMolModal = extractFunction(html, 'function openMolModal');
   const openHistory3D = extractFunction(html, 'function openHistory3D');
   const normalizeBinderPayload = extractFunction(html, 'function normalizeBinderPayload');
@@ -175,34 +172,16 @@ test('3D modal title bar keeps concise audience-facing target context', () => {
   assert.notEqual(titleCssStart, -1, 'modal title CSS should exist');
   const titleCss = html.slice(titleCssStart, html.indexOf('}', titleCssStart) + 1);
 
-  assert.match(titleCss, /flex-direction:\s*column/);
-  assert.doesNotMatch(titleCss, /flex-direction:\s*row/);
-  assert.match(html, /\.mol-modal-subtitle\s*{[\s\S]*max-width:\s*100%/);
+  assert.match(html, /function\s+buildSelectionReasonHtml\s*\(/);
+  assert.match(html, /\.mol-modal-reason\s*{/);
+  assert.match(html, /-webkit-line-clamp:\s*2/);
+  assert.match(titleCss, /flex-direction:\s*row/);
+  assert.doesNotMatch(titleCss, /flex-direction:\s*column/);
   assert.match(html, /\.mol-modal-close\s*{[\s\S]*flex-shrink:\s*0/);
   assert.match(normalizeBinderPayload, /selectionReason:\s*meta\.selectionReason\s*\|\|\s*meta\.reason\s*\|\|\s*meta\.targetSelectionReason\s*\|\|\s*''/);
-  assert.doesNotMatch(openMolModal, /buildSelectionReasonHtml|buildStructureDisclosureHtml|结构来源|展示等级|抗原身份/);
-  assert.match(openMolModal, /meta\.disease/);
-  assert.match(openMolModal, /meta\.targetDisplay/);
-  assert.match(openMolModal, /meta\.mechanism/);
-  assert.match(openMolModal, /meta\.selectedEpitope/);
+  assert.match(openMolModal, /buildSelectionReasonHtml\(meta\)/);
   assert.match(openMolModal, /titleEl\.innerHTML\s*=\s*'<div class="mol-modal-title-copy">/);
-  assert.doesNotMatch(openHistory3D, /buildSelectionReasonHtml|buildStructureDisclosureHtml|结构来源|展示等级|抗原身份/);
+  assert.match(openHistory3D, /buildSelectionReasonHtml\(model\)/);
   assert.match(openHistory3D, /titleEl\.innerHTML\s*=\s*'<div class="mol-modal-title-copy">/);
   assert.doesNotMatch(openMolModal, /quick_design|route|profile|API|大模型/);
-});
-
-test('automatic spin modal passes autoSpin into viewer without adding a title badge', () => {
-  const openMolModal = extractFunction(html, 'function openMolModal');
-  const openBinderSpinModal = extractFunction(html, 'function openBinderSpinModal');
-
-  assert.match(openMolModal, /options\s*=\s*options\s*\|\|\s*\{\}/);
-  assert.match(openMolModal, /const\s+shouldAutoSpin\s*=\s*options\.autoSpin\s*!==\s*false/);
-  assert.match(openMolModal, /autoSpin:\s*shouldAutoSpin/);
-  assert.match(openMolModal, /buildMoleculeFrameUrl\('\/viewer-full\.html',\s*pdbId,\s*displayTitle,\s*undefined,\s*\{/);
-  assert.match(openBinderSpinModal, /openMolModal\(meta\.id,\s*meta\.candidateLabel\s*\|\|\s*meta\.name\s*\|\|\s*meta\.id,\s*\{\s*autoSpin:\s*true\s*\}\)/);
-  assert.match(openBinderSpinModal, /type:\s*'setSpin'/);
-  assert.doesNotMatch(openBinderSpinModal, /\.click\(\)/);
-  assert.doesNotMatch(openBinderSpinModal, /querySelectorAll\('button'\)/);
-  assert.doesNotMatch(openBinderSpinModal, /autoSpinBadge/);
-  assert.doesNotMatch(openBinderSpinModal, /titleMain\.appendChild\(badge\)/);
 });
