@@ -272,7 +272,7 @@ test('compact model design result supplies core fields and lets the server build
     assert.ok(intentRequest, 'the authoritative intent request should be started');
     assert.ok(traceRequest, 'the independent display trace request should be started');
     assert.match(modelSystemPrompt(intentRequest), /核心 JSON|必要字段|选择理由/);
-    assert.match(modelSystemPrompt(intentRequest), /用于教育、路演、展会和产品演示的分子展示平台|绝对不是生物研究、湿实验设计、临床决策/);
+    assert.doesNotMatch(modelSystemPrompt(intentRequest), /用于教育|路演|展会|产品演示|演示产品|非研究用途/);
     assert.match(modelSystemPrompt(intentRequest), /220-420 个中文字|用户原始需求|疾病机制|表达谱|抗原可及性|同类抗体开发背景/);
     assert.match(modelSystemPrompt(intentRequest), /cands 给 5-7 个|候选靶点比较池/);
     assert.match(modelSystemPrompt(intentRequest), /reason 和每个 cands\.r 必须直接由模型写成学术靶点评审语句/);
@@ -282,7 +282,7 @@ test('compact model design result supplies core fields and lets the server build
     assert.ok(intentRequest.max_tokens <= 1200);
     assert.deepEqual(intentRequest.response_format, { type: 'json_object' });
     assert.match(modelSystemPrompt(traceRequest), /展示轨迹规划器|action|variant|不要输出 text 字段/);
-    assert.match(modelSystemPrompt(traceRequest), /用于教育、路演、展会和产品演示的分子展示平台|绝对不是生物研究、湿实验设计、临床决策/);
+    assert.doesNotMatch(modelSystemPrompt(traceRequest), /用于教育|路演|展会|产品演示|演示产品|非研究用途/);
     assert.match(modelSystemPrompt(traceRequest), /\{\{target\}\}|\{\{disease\}\}|\{\{antibodyType\}\}/);
     assert.deepEqual(traceRequest.response_format, { type: 'json_object' });
     assert.ok(evidenceCall, 'design response should enter workflow');
