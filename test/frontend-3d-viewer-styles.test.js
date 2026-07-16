@@ -120,7 +120,7 @@ test('embedded and full 3D viewers hide chains outside the selected antigen-anti
   assert.match(fullAbAgColor, /glv\.setStyle\(\{not:\s*visibleSelector\(\)\},\s*\{\}\)/);
 });
 
-test('auto-spin badge is rendered in the full viewer action toolbar before Spin', () => {
+test('auto-spin badge uses audience-facing copy and is rendered before Spin', () => {
   assert.match(viewerFullHtml, /var\s+AUTO_SPIN\s*=/);
   assert.match(viewerFullHtml, /\.vf-auto-spin-badge\s*{/);
   assert.match(viewerFullHtml, /function\s+renderAutoSpinBadge\s*\(/);
@@ -128,7 +128,7 @@ test('auto-spin badge is rendered in the full viewer action toolbar before Spin'
   const renderBadge = extractFunction(viewerFullHtml, 'function renderAutoSpinBadge()');
   assert.match(renderBadge, /AUTO_SPIN/);
   assert.match(renderBadge, /document\.getElementById\('acts'\)/);
-  assert.match(renderBadge, /textContent\s*=\s*'AUTO SPIN'/);
+  assert.match(renderBadge, /textContent\s*=\s*'自动旋转'/);
   assert.match(renderBadge, /actions\.querySelector\('\.act'\)/);
   assert.match(renderBadge, /insertBefore\(badge,\s*firstAction\)/);
 
@@ -227,4 +227,5 @@ test('full viewer keeps model origin internal and shows an audience-facing readi
   assert.match(frameUrl, /getModelOrigin\(meta\)/);
   assert.match(historyFrameUrl, /modelOrigin/);
   assert.match(historyFrameUrl, /getModelOrigin\(meta\)/);
+  assert.match(viewerFullHtml, /badge\.textContent = '自动旋转'/);
 });

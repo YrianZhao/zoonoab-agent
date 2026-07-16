@@ -67,12 +67,14 @@ function targetEntity({
   taxId = 9606,
   chains = ['A'],
   coverage = 180,
-  description = 'Novel antigen'
+  description = 'Novel antigen',
+  labelChains = []
 } = {}) {
   return {
     rcsb_polymer_entity: { pdbx_description: description },
     rcsb_polymer_entity_container_identifiers: {
       auth_asym_ids: chains,
+      asym_ids: labelChains,
       reference_sequence_identifiers: [{ database_name: 'UniProt', database_accession: accession }]
     },
     rcsb_entity_source_organism: [{ scientific_name: 'Homo sapiens', ncbi_taxonomy_id: taxId }],
@@ -110,8 +112,8 @@ function exactRcsbFetch(calls, options = {}) {
       });
     }
     if (url === 'https://data.rcsb.org/rest/v1/core/polymer_entity/1ABC/1') return jsonResponse(targetEntity({ accession }));
-    if (url === 'https://data.rcsb.org/rest/v1/core/polymer_entity/1ABC/2') return jsonResponse(antibodyEntity('Fab heavy chain', ['H']));
-    if (url === 'https://data.rcsb.org/rest/v1/core/polymer_entity/1ABC/3') return jsonResponse(antibodyEntity('Fab light chain', ['L']));
+    if (url === 'https://data.rcsb.org/rest/v1/core/polymer_entity/1ABC/2') return jsonResponse(antibodyEntity('Fab heavy chain', options.heavyChains || ['H']));
+    if (url === 'https://data.rcsb.org/rest/v1/core/polymer_entity/1ABC/3') return jsonResponse(antibodyEntity('Fab light chain', options.lightChains || ['L']));
     if (url === 'https://files.rcsb.org/download/1ABC.pdb1.gz') return bufferResponse(assembly);
     throw new Error(`Unexpected URL ${url}`);
   };
@@ -154,6 +156,72 @@ test('resolves an exact RCSB biological assembly and preserves every mapped chai
   assert.match(text, /^ATOM.* L/m);
   assert.equal(structure.source.sha256.length, 64);
   assert.ok(calls.some(call => call.url.endsWith('.pdb1.gz')));
+});
+
+test('accepts a model display label containing the exact gene alias', async t => {
+  const cacheDir = tempCache();
+  t.after(() => fs.rmSync(cacheDir, { recursive: true, force: true }));
+  const calls = [];
+  const resolver = createStructureResolver({ cacheDir, fetchImpl: exactRcsbFetch(calls, { gene: 'HCRTR2' }) });
+
+  const structure = await resolver.resolveStructure({
+    requestedTarget: 'Orexin receptor type 2 (HCRTR2)',
+    targetGene: 'HCRTR2'
+  });
+
+  assert.equal(structure.status, 'ready');
+  assert.equal(structure.targetIdentity.geneSymbol, 'HCRTR2');
+  assert.equal(structure.coordinates.targetVerified, true);
+});
+
+test('selects one complete Fab when an RCSB assembly repeats antibody chains', async t => {
+  const cacheDir = tempCache();
+  t.after(() => fs.rmSync(cacheDir, { recursive: true, force: true }));
+  const calls = [];
+  const resolver = createStructureResolver({
+    cacheDir,
+    fetchImpl: exactRcsbFetch(calls, {
+      pdb: pdbText(['A', 'H', 'L', 'X', 'Y']),
+      heavyChains: ['H', 'X'],
+      lightChains: ['L', 'Y']
+    })
+  });
+
+  const structure = await resolver.resolveStructure({ requestedTarget: 'Novel antigen', targetGene: 'NOVEL1' });
+
+  assert.deepEqual(structure.coordinates.antibodyChains, ['H', 'L']);
+});
+
+test('uses author chain IDs without mixing in RCSB label chain IDs', async t => {
+  const cacheDir = tempCache();
+  t.after(() => fs.rmSync(cacheDir, { recursive: true, force: true }));
+  const assembly = zlib.gzipSync(Buffer.from(pdbText(['R', 'E'])));
+  const fetchImpl = async (url, init = {}) => {
+    if (url.startsWith('https://rest.uniprot.org/uniprotkb/search?')) {
+      return jsonResponse({ results: [uniprotRecord({ pdbIds: ['1ABC'] })] });
+    }
+    if (url === 'https://search.rcsb.org/rcsbsearch/v2/query') return jsonResponse({ result_set: [{ identifier: '1ABC_1' }] });
+    if (url === 'https://data.rcsb.org/rest/v1/core/entry/1ABC') {
+      return jsonResponse({
+        struct: { title: 'Novel antigen with a single-domain antibody' },
+        rcsb_entry_container_identifiers: { polymer_entity_ids: ['1', '2'], assembly_ids: ['1'] }
+      });
+    }
+    if (url === 'https://data.rcsb.org/rest/v1/core/polymer_entity/1ABC/1') {
+      return jsonResponse(targetEntity({ chains: ['R'], labelChains: ['A'] }));
+    }
+    if (url === 'https://data.rcsb.org/rest/v1/core/polymer_entity/1ABC/2') {
+      return jsonResponse(antibodyEntity('single-domain antibody', ['E']));
+    }
+    if (url === 'https://files.rcsb.org/download/1ABC.pdb1.gz') return bufferResponse(assembly);
+    throw new Error(`Unexpected URL ${url} ${init.method || 'GET'}`);
+  };
+  const resolver = createStructureResolver({ cacheDir, fetchImpl });
+
+  const structure = await resolver.resolveStructure({ requestedTarget: 'Novel antigen', targetGene: 'NOVEL1' });
+
+  assert.deepEqual(structure.coordinates.antigenChains, ['R']);
+  assert.deepEqual(structure.coordinates.antibodyChains, ['E']);
 });
 
 test('falls back to the exact AlphaFold accession when no RCSB entry exists', async t => {
@@ -309,8 +377,8 @@ test('keeps an explicit isoform unresolved when no isoform accession can be prov
   assert.equal(networkCalls, 0);
 });
 
-test('uses structure cache schema version 2', () => {
-  assert.equal(SCHEMA_VERSION, 2);
+test('uses structure cache schema version 3', () => {
+  assert.equal(SCHEMA_VERSION, 3);
 });
 
 test('loads verified coordinates after resolver restart without making network requests', async t => {
