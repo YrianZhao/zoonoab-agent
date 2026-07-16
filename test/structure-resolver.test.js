@@ -224,6 +224,36 @@ test('uses author chain IDs without mixing in RCSB label chain IDs', async t => 
   assert.deepEqual(structure.coordinates.antibodyChains, ['E']);
 });
 
+test('keeps only one heavy-light antibody pair when an entry contains multiple Fabs', async t => {
+  const cacheDir = tempCache();
+  t.after(() => fs.rmSync(cacheDir, { recursive: true, force: true }));
+  const assembly = zlib.gzipSync(Buffer.from(pdbText(['A', 'H', 'L', 'X', 'Y'])));
+  const fetchImpl = async url => {
+    if (url.startsWith('https://rest.uniprot.org/uniprotkb/search?')) {
+      return jsonResponse({ results: [uniprotRecord({ pdbIds: ['1ABC'] })] });
+    }
+    if (url === 'https://search.rcsb.org/rcsbsearch/v2/query') return jsonResponse({ result_set: [{ identifier: '1ABC_1' }] });
+    if (url === 'https://data.rcsb.org/rest/v1/core/entry/1ABC') {
+      return jsonResponse({
+        struct: { title: 'Novel antigen with two Fabs' },
+        rcsb_entry_container_identifiers: { polymer_entity_ids: ['1', '2', '3', '4', '5'], assembly_ids: ['1'] }
+      });
+    }
+    if (url === 'https://data.rcsb.org/rest/v1/core/polymer_entity/1ABC/1') return jsonResponse(targetEntity());
+    if (url === 'https://data.rcsb.org/rest/v1/core/polymer_entity/1ABC/2') return jsonResponse(antibodyEntity('First Fab heavy chain', ['H']));
+    if (url === 'https://data.rcsb.org/rest/v1/core/polymer_entity/1ABC/3') return jsonResponse(antibodyEntity('First Fab light chain', ['L']));
+    if (url === 'https://data.rcsb.org/rest/v1/core/polymer_entity/1ABC/4') return jsonResponse(antibodyEntity('Second Fab heavy chain', ['X']));
+    if (url === 'https://data.rcsb.org/rest/v1/core/polymer_entity/1ABC/5') return jsonResponse(antibodyEntity('Second Fab light chain', ['Y']));
+    if (url === 'https://files.rcsb.org/download/1ABC.pdb1.gz') return bufferResponse(assembly);
+    throw new Error(`Unexpected URL ${url}`);
+  };
+  const resolver = createStructureResolver({ cacheDir, fetchImpl });
+
+  const structure = await resolver.resolveStructure({ requestedTarget: 'Novel antigen', targetGene: 'NOVEL1' });
+
+  assert.deepEqual(structure.coordinates.antibodyChains, ['H', 'L']);
+});
+
 test('falls back to the exact AlphaFold accession when no RCSB entry exists', async t => {
   const cacheDir = tempCache();
   t.after(() => fs.rmSync(cacheDir, { recursive: true, force: true }));
