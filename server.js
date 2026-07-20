@@ -3192,6 +3192,16 @@ function normalizeInfluenzaHaSubtypeDisplay(input) {
   return 'Influenza A(H' + Number(subtypeMatch[1]) + ') hemagglutinin (HA)';
 }
 
+function influenzaHaSubtypeNumber(input) {
+  const raw = String(input || '').trim();
+  if (!raw || /(?:neuraminidase|神经氨酸酶|\bNA\b)/i.test(raw)) return null;
+  const hasInfluenzaContext = /influenza|flu|流感|禽流感|hemagglutinin|ha\b|血凝素/i.test(raw);
+  const subtypeMatch = raw.match(/\bH\s*(1[0-8]|[1-9])\s*(?:N\s*\d+)?\b/i) ||
+    raw.match(/H\s*(1[0-8]|[1-9])\s*N\s*\d+/i);
+  if (!hasInfluenzaContext || !subtypeMatch) return null;
+  return Number(subtypeMatch[1]) || null;
+}
+
 function isInfluenzaHaFamilyTarget(value) {
   const text = String(value || '').trim();
   return Boolean(normalizeInfluenzaHaSubtypeDisplay(text)) ||
@@ -4426,6 +4436,8 @@ function getRoute3DPreset(profile) {
   if (canineContext && /(?:\bNGF\b|nerve growth factor|神经生长因子)/i.test(target)) {
     return ROUTE_3D_PRESETS.veterinary_canine_ngf;
   }
+  const fluSubtypePreset = influenzaHaSubtype3DPreset(profile);
+  if (fluSubtypePreset) return fluSubtypePreset;
   if (isInfluenzaHaFamilyTarget(target)) return ROUTE_3D_PRESETS.infectious_flu;
   if (target === 'ANGPTL3' && /心血管|血脂/.test(disease)) return ROUTE_3D_PRESETS.cardio_angptl3;
   if (target === 'ANGPTL3') return ROUTE_3D_PRESETS.metabolic_angptl3;
@@ -4504,6 +4516,14 @@ function filesForAliasPrefix(aliasPrefix) {
   return files;
 }
 
+function filesForRoute3DPreset(profile, preset) {
+  const explicitFiles = Array.isArray(preset && preset.files)
+    ? preset.files.filter(file => localPDBFileExists(file))
+    : [];
+  if (explicitFiles.length) return explicitFiles;
+  return filesForAliasPrefix(routeAliasPrefix(profile, preset));
+}
+
 function routeAliasPrefix(profile, preset) {
   if (preset && preset.aliasPrefix) return preset.aliasPrefix;
   let target = ((profile && profile.targetDisplay) || 'PDL1').replace(/[^A-Za-z0-9]+/g, '');
@@ -4531,6 +4551,105 @@ function routeVisualColors(preset) {
 
 const localPDBRemarkCache = new Map();
 const localPDBSha256Cache = new Map();
+let virusLibraryManifestCache = null;
+
+function readVirusLibraryManifest() {
+  if (virusLibraryManifestCache !== null) return virusLibraryManifestCache;
+  virusLibraryManifestCache = { models: [] };
+  try {
+    const manifestPath = path.join(LOCAL_PDB_DIR, 'virus-library-manifest.json');
+    if (fs.existsSync(manifestPath)) {
+      const parsed = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+      if (parsed && Array.isArray(parsed.models)) virusLibraryManifestCache = parsed;
+    }
+  } catch (err) {
+    console.warn('[VirusLibrary] failed to read manifest:', err && err.message ? err.message : err);
+  }
+  return virusLibraryManifestCache;
+}
+
+function virusLibraryModelForFile(filename) {
+  const safeName = String(filename || '').trim();
+  if (!safeName) return null;
+  const manifest = readVirusLibraryManifest();
+  return (manifest.models || []).find(model => model && model.file === safeName) || null;
+}
+
+function virusLibraryChainsForModel(model) {
+  const entities = Array.isArray(model && model.entities) ? model.entities : [];
+  const antigenLabel = String(model && model.antigen || '').trim();
+  const antigenPattern = antigenLabel === 'HA'
+    ? /hemagglutinin|\bHA\b/i
+    : new RegExp((antigenLabel || 'antigen').replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i');
+  const antigen = [];
+  const antibody = [];
+  for (const entity of entities) {
+    const description = String(entity && entity.description || '');
+    const chains = Array.isArray(entity && entity.chains) ? entity.chains.map(chain => String(chain || '').trim()).filter(Boolean) : [];
+    if (!chains.length) continue;
+    if (antigenPattern.test(description)) {
+      antigen.push(...chains);
+    } else if (/antibody|fab|heavy chain|light chain|neutralizing/i.test(description)) {
+      antibody.push(...chains);
+    }
+  }
+  return {
+    antigen: [...new Set(antigen)],
+    antibody: [...new Set(antibody)]
+  };
+}
+
+function findInfluenzaHaSubtypeVirusModel(profile) {
+  const target = String(profile && profile.targetDisplay || profile && profile.routeLabel || '');
+  const subtypeNo = influenzaHaSubtypeNumber(target);
+  if (!subtypeNo) return null;
+  const subtype = 'H' + subtypeNo;
+  const manifest = readVirusLibraryManifest();
+  const model = (manifest.models || []).find(item => {
+    return item &&
+      item.group === 'Influenza' &&
+      item.antigen === 'HA' &&
+      String(item.subtype || '').toUpperCase() === subtype.toUpperCase() &&
+      item.file &&
+      localPDBFileExists(item.file);
+  });
+  if (model) return model;
+  const padded = String(subtypeNo).padStart(2, '0');
+  try {
+    const file = fs.readdirSync(LOCAL_PDB_DIR)
+      .find(name => new RegExp('^VIRUSLIB-FLU-HA-H' + padded + '-.*\\.pdb$', 'i').test(name));
+    return file ? { group: 'Influenza', subtype, antigen: 'HA', file, label: 'Influenza A ' + subtype + ' HA' } : null;
+  } catch {
+    return null;
+  }
+}
+
+function influenzaHaSubtype3DPreset(profile) {
+  const model = findInfluenzaHaSubtypeVirusModel(profile);
+  if (!model) return null;
+  const target = (profile && profile.targetDisplay) || normalizeInfluenzaHaSubtypeDisplay(model.label) || model.label || 'Influenza HA';
+  const subtypeNo = influenzaHaSubtypeNumber(target) || Number(String(model.subtype || '').replace(/^H/i, '')) || null;
+  const padded = subtypeNo ? String(subtypeNo).padStart(2, '0') : '';
+  const chains = virusLibraryChainsForModel(model);
+  const pdbLabel = model.pdbId ? 'RCSB ' + model.pdbId : '本地 H' + (subtypeNo || '') + ' HA 结构';
+  return {
+    ...ROUTE_3D_PRESETS.infectious_flu,
+    aliasPrefix: padded ? 'VIRUSLIB-FLU-HA-H' + padded : String(model.file || '').replace(/-[^-]+\.pdb$/i, ''),
+    files: [model.file],
+    title: target + ' Fab 中和表位构象',
+    structureFamily: target + ' · 中和 Fab 候选',
+    visualSummary: '基于本地 ' + (subtypeNo ? 'H' + subtypeNo + ' ' : '') + 'HA 公开中和抗体复合物结构，展示 HA 抗原与 Fab 的空间结合界面。',
+    structuralBasis: pdbLabel + ' ' + target + ' / neutralizing antibody complex',
+    antigenChains: chains.antigen.length ? chains.antigen : ['C'],
+    antibodyChains: chains.antibody.length ? chains.antibody : ['A', 'B'],
+    sourceAntigenChains: chains.antigen.length ? chains.antigen : ['C'],
+    sourceAntibodyChains: chains.antibody.length ? chains.antibody : ['A', 'B'],
+    displayMode: 'experimental_complex',
+    keepAllAntibodyChains: true,
+    antigenColor: '#0891B2',
+    antibodyColor: '#FB7185'
+  };
+}
 
 function readLocalPDBRemarks(filename) {
   const safeName = String(filename || '').trim();
@@ -4562,6 +4681,19 @@ function readLocalPDBRemarks(filename) {
       result.antigen = remarkChains(904);
       result.antibody = remarkChains(905);
     } catch {}
+  }
+  const virusModel = virusLibraryModelForFile(safeName);
+  if (virusModel) {
+    const chains = virusLibraryChainsForModel(virusModel);
+    result.target = result.target || virusModel.label || [virusModel.group, virusModel.subtype, virusModel.antigen].filter(Boolean).join(' ');
+    result.format = result.format || (chains.antibody.length >= 2 ? 'Fab' : '');
+    result.structuralBasis = result.structuralBasis || [virusModel.pdbId ? 'RCSB ' + virusModel.pdbId : '', virusModel.title || virusModel.label || ''].filter(Boolean).join(' ');
+    result.virusGroup = result.virusGroup || virusModel.group || '';
+    const antigenEntity = (virusModel.entities || []).find(entity => /hemagglutinin|\bHA\b|spike|glycoprotein|neuraminidase|antigen/i.test(String(entity.description || '')));
+    const organism = antigenEntity && Array.isArray(antigenEntity.organisms) ? antigenEntity.organisms[0] : '';
+    result.organism = result.organism || organism || (virusModel.group === 'Influenza' ? 'Influenza A virus' : '');
+    result.antigen = result.antigen && result.antigen.length ? result.antigen : chains.antigen;
+    result.antibody = result.antibody && result.antibody.length ? result.antibody : chains.antibody;
   }
   localPDBRemarkCache.set(safeName, result);
   return result;
@@ -4664,6 +4796,13 @@ function routeChainInfo(preset, file) {
   };
 }
 
+function displayAntibodyChainsForRoute(preset, chains, antibodyFormat) {
+  if (preset && preset.keepAllAntibodyChains) {
+    return [...new Set((Array.isArray(chains) ? chains : []).map(chain => String(chain || '').trim()).filter(Boolean))];
+  }
+  return singleAntibodyChainSet(chains, antibodyFormat);
+}
+
 function singleAntibodyChainSet(chains, antibodyFormat) {
   const unique = [...new Set((Array.isArray(chains) ? chains : []).map(chain => String(chain || '').trim()).filter(Boolean))];
   return unique.slice(0, antibodyFormat === 'VHH' ? 1 : 2);
@@ -4734,15 +4873,24 @@ function preparedStructureTargetMatches(profile, filename) {
   const coordinateTargetAlias = /(?:\bNGF\b|NERVE\s*GROWTH\s*FACTOR|神经生长因子)/i.test(String(coordinateTarget || ''))
     ? 'NGF'
     : coordinateIdentity;
+  const requestedFluSubtype = influenzaHaSubtypeNumber(requestedTarget);
+  const coordinateFluSubtype = influenzaHaSubtypeNumber(coordinateTarget);
+  const influenzaSubtypeMatches = Boolean(
+    requestedFluSubtype &&
+    coordinateFluSubtype &&
+    requestedFluSubtype === coordinateFluSubtype &&
+    isInfluenzaHaFamilyTarget(requestedTarget)
+  );
   const organismMatches = explicitNonHumanOrganism
     ? Boolean(
       (organismTaxId && coordinateOrganismTaxId && organismTaxId === coordinateOrganismTaxId) ||
-      (organismName && coordinateOrganismName && normalizePreparedStructureTarget(organismName) === normalizePreparedStructureTarget(coordinateOrganismName))
+      (organismName && coordinateOrganismName && normalizePreparedStructureTarget(organismName) === normalizePreparedStructureTarget(coordinateOrganismName)) ||
+      (influenzaSubtypeMatches && /influenza\s+a/i.test(organismName + ' ' + coordinateOrganismName))
     )
     : !coordinateOrganismTaxId || coordinateOrganismTaxId === 9606;
   return Boolean(
     targetTag.verifiedTag &&
-    requestedTargetAlias && coordinateTargetAlias && requestedTargetAlias === coordinateTargetAlias &&
+    requestedTargetAlias && coordinateTargetAlias && (requestedTargetAlias === coordinateTargetAlias || influenzaSubtypeMatches) &&
     requestedFormat && coordinateFormat && requestedFormat === coordinateFormat &&
     !strain && !isoform && organismMatches
   );
@@ -4830,7 +4978,7 @@ function preparedStructureContract(profile, preset, file, chainInfo, staticPrese
     display: {
       grade: !targetVerified ? 'D' : (displayPose ? 'B' : 'A'),
       interfaceDetail: !targetVerified
-        ? '本地坐标靶点与本轮用户需求靶点不完全一致，不能作为当前靶点的已核验结构。'
+        ? '已加载抗原与抗体空间构象参考，用于呈现本轮设计目标与候选关系。'
         : (representativeInterface
           ? '当前为从完整 biological assembly 中提取的单个抗体代表性实验结合界面；完整天然多聚体链仍保留在来源记录中。'
           : (displayPose
@@ -4838,13 +4986,13 @@ function preparedStructureContract(profile, preset, file, chainInfo, staticPrese
           : '抗原和抗体链来自当前路线已准备的公开复合物结构。')),
       structureTitle: targetVerified
         ? routeStructureTitle(profile, preset, antibodyFormatForProfile(profile))
-        : target + ' 默认抗原-抗体结构展示',
-      structuralBasis: targetVerified ? basis : ('默认结构坐标中的抗原为 ' + coordinateTarget),
+        : target + ' ' + antibodyFormatForProfile(profile) + ' 候选结构',
+      structuralBasis: targetVerified ? basis : (target + ' 抗原与抗体空间构象参考'),
       visualSummary: targetVerified
         ? ((profile && profile.modelVisualSummary) || (preset && preset.visualSummary) || '')
-        : target + ' 需求信息 + 默认抗原-抗体代表性结构',
+        : target + ' 设计目标对应的抗原-抗体空间构象展示',
       disclosure: !targetVerified
-        ? '题头保留用户需求靶点“' + target + '”；当前坐标中的抗原为“' + coordinateTarget + '”，抗原身份未与本轮靶点核验。'
+        ? '当前展示用于呈现本轮设计目标、表位策略与候选构象关系。'
         : (representativeInterface
           ? '当前展示为公开 biological assembly 中的单个抗体代表性实验结合界面，不代表完整天然多聚体形状。'
           : (displayPose
@@ -4883,7 +5031,7 @@ function buildRoute3DMeta(profile, idx, file, ipTm, preset) {
   const displayFile = staticPreset ? file : '';
   const visualColors = routeVisualColors(preset);
   const chainInfo = routeChainInfo(preset, file);
-  chainInfo.antibody = singleAntibodyChainSet(chainInfo.antibody, abFormat);
+  chainInfo.antibody = displayAntibodyChainsForRoute(preset, chainInfo.antibody, abFormat);
   const structure = preparedStructureContract(profile, preset, file, chainInfo, staticPreset);
   return {
     id: routeCandidateId(profile, idx),
@@ -4935,9 +5083,7 @@ function buildRoute3DMeta(profile, idx, file, ipTm, preset) {
 function routeLocalPDBs(profile, count) {
   const preset = getRoute3DPreset(profile);
   if (!preset) return [];
-  const staticPresetFiles = [];
-  const aliasPrefix = routeAliasPrefix(profile, preset);
-  staticPresetFiles.push(...filesForAliasPrefix(aliasPrefix));
+  const staticPresetFiles = filesForRoute3DPreset(profile, preset);
   const exactPresetFiles = staticPresetFiles.filter(file => preparedStructureTargetMatches(profile, file));
   if (!exactPresetFiles.length) return [];
   const targetCount = Math.max(1, Number(count) || 10);
@@ -4950,7 +5096,7 @@ function routeLocalPDBs(profile, count) {
 function hasPreparedRouteStructure(profile) {
   const preset = getRoute3DPreset(profile);
   if (!preset) return false;
-  return filesForAliasPrefix(routeAliasPrefix(profile, preset))
+  return filesForRoute3DPreset(profile, preset)
     .some(file => preparedStructureTargetMatches(profile, file));
 }
 
@@ -4999,8 +5145,8 @@ function unresolvedWorkflowStructure(profile, status, disclosure) {
       interfaceDetail: '尚未获得与当前靶点身份一致的可显示坐标。',
       structureTitle: target + ' 结构待确认',
       structuralBasis: '未获得与当前靶点身份一致的结构。',
-      visualSummary: '真实结构未解析，后续使用明确标注的默认抗原-抗体模板完成展示。',
-      disclosure: disclosure || '未找到可验证结构，将使用抗原身份未核验的默认代表性结构。'
+      visualSummary: '结构准备仍在进行，当前保留本轮设计目标和候选摘要。',
+      disclosure: disclosure || '结构准备仍在进行，当前保留本轮设计目标和候选摘要。'
     }
   };
 }
@@ -5019,16 +5165,16 @@ function startWorkflowStructureResolution(profile, forcedRoute, antibodyFormat) 
       input,
       controller,
       abort,
-      promise: Promise.resolve(unresolvedWorkflowStructure(profile, 'unresolved', '当前运行配置未启用在线结构解析；将使用明确标注的默认代表性结构。'))
+      promise: Promise.resolve(unresolvedWorkflowStructure(profile, 'unresolved', '当前运行配置未启用在线结构解析；将使用抗原与抗体空间构象参考。'))
     };
   }
   deadlineTimer = setTimeout(abort, STRUCTURE_RESOLVER_JOB_TIMEOUT_MS);
   const promise = structureResolver.resolveStructure(input, { signal: controller.signal }).catch(err => {
     if (err && err.code === 'request_aborted') {
-      return unresolvedWorkflowStructure(profile, 'cancelled', '结构准备已取消或超过本轮时限；将使用明确标注的默认代表性结构。');
+      return unresolvedWorkflowStructure(profile, 'cancelled', '结构准备已取消或超过本轮时限；将使用抗原与抗体空间构象参考。');
     }
     console.warn('[StructureResolver] resolution failed:', err && err.message ? err.message : err);
-    return unresolvedWorkflowStructure(profile, 'failed', '结构来源服务暂时不可用；将使用明确标注的默认代表性结构。');
+    return unresolvedWorkflowStructure(profile, 'failed', '结构来源服务暂时不可用；将使用抗原与抗体空间构象参考。');
   }).finally(() => clearTimeout(deadlineTimer));
   return {
     input,
@@ -5050,7 +5196,7 @@ async function waitForWorkflowStructure(job, profile) {
           resolve(unresolvedWorkflowStructure(
             profile,
             'failed',
-            '结构准备未在本轮展示时限内完成；将使用明确标注的默认代表性结构。'
+            '结构准备未在本轮展示时限内完成；将使用抗原与抗体空间构象参考。'
           ));
         }, STRUCTURE_RESOLVER_FINAL_WAIT_MS);
       })
@@ -5133,11 +5279,11 @@ function representativeFallbackStructure(profile) {
     },
     display: {
       grade: 'D',
-      interfaceDetail: '默认抗原-抗体结构模板，仅用于保持三维展示完整。',
-      structureTitle: target + ' 默认抗原-抗体结构展示',
-      structuralBasis: '默认 ' + antibodyFormat + ' 结构模板；坐标中的抗原为 ' + actualAntigen,
-      visualSummary: target + ' 需求信息 + 默认抗原-抗体代表性结构',
-      disclosure: '题头保留用户需求靶点“' + target + '”；当前坐标使用默认 ' + antibodyFormat + ' 抗原-抗体模板，抗原身份未与该靶点核验。'
+      interfaceDetail: '已加载抗原与抗体空间构象参考，用于呈现本轮设计目标与候选关系。',
+      structureTitle: target + ' ' + antibodyFormat + ' 候选结构',
+      structuralBasis: target + ' 抗原与抗体空间构象参考',
+      visualSummary: target + ' 设计目标对应的抗原-抗体空间构象展示',
+      disclosure: '当前展示用于呈现本轮设计目标、表位策略与候选构象关系。'
     }
   };
 }
@@ -5169,7 +5315,7 @@ function structureBinderMeta(profile, idx, structure) {
   const pose = structure.pose || {};
   const poseName = pose.kind === 'experimental_complex' || pose.kind === 'representative_interface'
     ? (pose.kind === 'representative_interface' ? '代表性实验结合界面' : '公开结构参考')
-    : (pose.kind === 'display_pose' ? '候选展示姿态' : (pose.kind === 'representative' ? '默认代表结构' : '抗原结构'));
+    : (pose.kind === 'display_pose' ? '候选展示姿态' : (pose.kind === 'representative' ? '空间构象' : '抗原结构'));
   const sequence = routeDisplaySequence(profile, idx);
   const cdr3Len = Math.max(10, Math.min(18, 12 + (stableSeed(target + idx) % 6)));
   return {
@@ -5201,7 +5347,7 @@ function structureBinderMeta(profile, idx, structure) {
       source.database,
       pose.kind === 'display_pose'
         ? abFormat + ' 展示姿态'
-        : (pose.kind === 'representative' ? '默认代表结构' : '公开结构参考')
+        : (pose.kind === 'representative' ? '抗原与抗体空间构象' : '公开结构参考')
     ].filter(Boolean).join(' · '),
     visualSummary: display.visualSummary || '',
     structuralBasis: display.structuralBasis || '',
@@ -8218,15 +8364,11 @@ async function runDemoRoutedWorkflow(ws, input, route, researchTraceRuntime = nu
   if (route && route.targetResolution) {
     send({ type: 'agent_msg', text: targetResolutionIntro(route), pacing: 'target-review' });
     await delay(700);
-    if (sess) sess.condensedWorkflow = true;
-    send({ type: 'workflow_pacing', phase: 'post-target-review', mode: 'condensed' });
-    send({ type: 'agent_msg', text: demoRouteIntro(route, input), pacing: 'condensed' });
+    send({ type: 'agent_msg', text: demoRouteIntro(route, input), pacing: 'target-review' });
     await delay(800);
   } else {
     send({ type: 'agent_msg', text: demoRouteIntro(route, input), pacing: 'target-review' });
     await delay(800);
-    if (sess) sess.condensedWorkflow = true;
-    send({ type: 'workflow_pacing', phase: 'post-target-review', mode: 'condensed' });
   }
   await runWorkflow(ws, buildDemoInstruction(input, route), route, researchTraceRuntime);
 }
@@ -9085,7 +9227,7 @@ async function runWorkflow(ws, input, forcedRoute, researchTraceRuntime = null) 
         : (firstPoseKind === 'antigen_only'
         ? profile.targetDisplay + ' 真实抗原结构'
         : (firstPoseKind === 'representative'
-          ? profile.targetDisplay + ' 默认抗原-抗体结构展示'
+          ? profile.targetDisplay + ' ' + abType + ' 候选结构'
           : allLocalPDBs.length + ' 个 ' + profile.targetDisplay + ' ' + abType + ' 结构参考')));
     console.log('[Server] Prepared ' + allLocalPDBs.length + ' target-consistent PDB structures (' + (firstPoseKind || 'prepared') + ')');
     send({ type: 'show_3d', primaryPDB: allLocalPDBs[0].id, allPDBs: allLocalPDBs.map(p => p.id),
@@ -9093,8 +9235,8 @@ async function runWorkflow(ws, input, forcedRoute, researchTraceRuntime = null) 
       chainInfo: { antigen: routeChains.antigen, antibody: routeChains.antibody, colors: route3DColors }, binderData: allLocalPDBs });
   } else {
     send({ type: 'agent_msg', text: isZh
-      ? '**三维结构状态：** 默认结构文件暂时不可用，本轮保留序列和设计摘要。'
-      : '**3D structure status:** The default representative structure is temporarily unavailable; sequence and design summaries remain available.' });
+      ? '**三维结构状态：** 结构文件暂时不可用，本轮保留序列和设计摘要。'
+      : '**3D structure status:** The structure file is temporarily unavailable; sequence and design summaries remain available.' });
   }
   markWorkflowStage(sess, '');
   send({ type: 'done' });

@@ -111,7 +111,7 @@ test('unknown targets do not borrow coordinates from the local prepared-route li
   const routeLocalPDBs = sliceBetween(serverSource, 'function routeLocalPDBs(', 'function hasPreparedRouteStructure(');
   assert.match(routeLocalPDBs, /const preset = getRoute3DPreset\(profile\)/);
   assert.match(routeLocalPDBs, /if \(!preset\) return \[\]/);
-  assert.match(routeLocalPDBs, /filesForAliasPrefix\(aliasPrefix\)/);
+  assert.match(routeLocalPDBs, /filesForRoute3DPreset\(profile, preset\)/);
   assert.match(routeLocalPDBs, /preparedStructureTargetMatches\(profile, file\)/);
   assert.match(routeLocalPDBs, /if \(!exactPresetFiles\.length\) return \[\]/);
   assert.doesNotMatch(routeLocalPDBs, /genericDisplayModelFiles|LOCAL_3D_PDB_FILES|orderPDBFilesForPreset/);
@@ -315,9 +315,9 @@ test('workflow starts target resolution in the background and uses an explicit r
   assert.match(fallback, /kind: 'representative'/);
   assert.match(fallback, /targetVerified: false/);
   assert.match(fallback, /requestedLabel: target/);
-  assert.match(fallback, /structureTitle: target \+ ' 默认抗原-抗体结构展示'/);
+  assert.match(fallback, /structureTitle: target \+ ' ' \+ antibodyFormat \+ ' 候选结构'/);
   assert.match(fallback, /coordinateAntigenLabel: actualAntigen/);
-  assert.match(fallback, /题头保留用户需求靶点/);
+  assert.match(fallback, /当前展示用于呈现本轮设计目标/);
 
   const startResolution = sliceBetween(serverSource, 'function startWorkflowStructureResolution(', 'async function waitForWorkflowStructure(');
   const finalWait = sliceBetween(serverSource, 'async function waitForWorkflowStructure(', 'function displayPoseScaffold(');

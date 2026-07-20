@@ -36,7 +36,7 @@ test('workflow delays use a global scale so visible progress is faster by defaul
   );
 });
 
-test('post-target pacing is condensed while explicit skip keeps the visible delay budget under 30 seconds', () => {
+test('normal pacing remains uncondensed while explicit skip keeps the visible delay budget under 30 seconds', () => {
   const workflowDelay = extractFunction(server, 'function workflowDelay');
   const routedWorkflow = extractFunction(server, 'async function runDemoRoutedWorkflow');
   const fastDelay = Number(server.match(/WORKFLOW_FAST_DELAY_MS\s*=\s*Number\([^\n]+\|\|\s*(\d+)\)/)[1]);
@@ -51,7 +51,8 @@ test('post-target pacing is condensed while explicit skip keeps the visible dela
   assert.match(workflowDelay, /WORKFLOW_POST_TARGET_DELAY_MS/);
   assert.ok(visibleDelayCount * fastDelay < 30_000, 'server-side visible waits must fit inside the 30 second skip budget');
   assert.match(routedWorkflow, /pacing:\s*'target-review'/);
-  assert.match(routedWorkflow, /type:\s*'workflow_pacing'[\s\S]*mode:\s*'condensed'/);
+  assert.doesNotMatch(routedWorkflow, /mode:\s*'condensed'/);
+  assert.doesNotMatch(routedWorkflow, /sess\.condensedWorkflow\s*=\s*true/);
   assert.match(routedWorkflow, /completeResearchTrace\([^\n]+\'靶点评审已完成'/);
 });
 

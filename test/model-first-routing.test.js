@@ -747,13 +747,13 @@ test('model-resolved influenza subtype keeps its title while a disabled resolver
     assert.ok(Array.isArray(show3d.binderData));
     assert.equal(show3d.binderData[0].targetDisplay, 'Influenza A(H7) hemagglutinin (HA)');
     assert.equal(show3d.binderData[0].routeLabel, 'Influenza A(H7) hemagglutinin (HA)');
-    assert.equal(show3d.binderData[0].file, 'PDL1-Fab-01.pdb');
+    assert.equal(show3d.binderData[0].file, 'VIRUSLIB-FLU-HA-H07-8TNL.pdb');
     assert.match(show3d.binderData[0].structureTitle, /Influenza A\(H7\) hemagglutinin \(HA\)/);
-    assert.equal(show3d.binderData[0].structure.pose.kind, 'representative');
-    assert.equal(show3d.binderData[0].structure.coordinates.targetVerified, false);
-    assert.equal(show3d.binderData[0].structure.coordinates.coordinateAntigenLabel, 'PD-L1');
-    assert.equal(show3d.binderData[0].structure.display.grade, 'D');
-    assert.match(show3d.binderData[0].structure.display.disclosure, /题头保留用户需求靶点/);
+    assert.equal(show3d.binderData[0].structure.pose.kind, 'experimental_complex');
+    assert.equal(show3d.binderData[0].structure.coordinates.targetVerified, true);
+    assert.match(show3d.binderData[0].structure.coordinates.coordinateAntigenLabel, /Influenza A H7 HA/);
+    assert.equal(show3d.binderData[0].structure.display.grade, 'A');
+    assert.match(show3d.binderData[0].structuralBasis, /RCSB 8TNL/);
     assert.doesNotMatch(show3d.binderData[0].structureTitle, /^Influenza HA Fab/);
   } finally {
     await new Promise(resolve => mockServer.close(resolve));
@@ -1251,7 +1251,7 @@ test('model parse failures return server timeout without starting local fallback
   }
 });
 
-test('model-selected unknown target keeps its title while the default 3D structure stays explicitly unverified', async () => {
+test('model-selected unknown target keeps its title while representative 3D structure stays display-safe', async () => {
   const captured = [];
   const mockServer = http.createServer((req, res) => {
     let body = '';
@@ -1313,15 +1313,15 @@ test('model-selected unknown target keeps its title while the default 3D structu
     assert.ok(findDisplayTraceRequest(captured));
     assert.ok(evidenceCall, 'workflow should start from the model-selected target');
     assert.equal(evidenceCall.params.target, 'Claudin 18.2');
-    assert.ok(show3d, 'test mode should use the explicitly labeled default representative structure');
-    assert.match(show3d.label, /Claudin 18\.2.*默认抗原-抗体结构展示/);
+    assert.ok(show3d, 'test mode should use a requested-target labeled representative structure');
+    assert.match(show3d.label, /Claudin 18\.2.*(?:Fab|mAb) 候选结构/);
     assert.equal(finalStructureStatus.status, 'representative');
     assert.equal(show3d.binderData[0].targetDisplay, 'Claudin 18.2');
     assert.equal(show3d.binderData[0].structure.source.kind, 'representative');
     assert.equal(show3d.binderData[0].structure.coordinates.targetVerified, false);
     assert.equal(show3d.binderData[0].structure.coordinates.coordinateAntigenLabel, 'PD-L1');
     assert.match(show3d.binderData[0].structure.display.structureTitle, /^Claudin 18\.2/);
-    assert.match(show3d.binderData[0].structure.display.disclosure, /题头保留用户需求靶点/);
+    assert.match(show3d.binderData[0].structure.display.disclosure, /当前展示用于呈现本轮设计目标/);
     assert.match(assistantText, /Claudin 18\.2/);
     assert.doesNotMatch(assistantText, /默认抗原-抗体代表性结构|题头保留|抗原身份未核验|展示等级|结构来源：local/);
     assert.doesNotMatch(assistantText, /用户明确指定|本轮用户指定目标/);

@@ -61,7 +61,7 @@ test('structure contracts retain provenance while public views hide internal val
   assert.match(presentation, /kindLabel\s*=\s*'预测抗原结构'/);
   assert.match(presentation, /不代表实验复合物、对接预测或经验证结合界面/);
   assert.match(presentation, /coordinates\.targetVerified\s*===\s*true/);
-  assert.match(presentation, /抗原坐标身份尚未核验/);
+  assert.match(presentation, /当前仅为 Fab\/VHH 候选展示姿态/);
   assert.match(summary, /rawSequenceCoverage === null \|\| rawSequenceCoverage === undefined \|\| rawSequenceCoverage === ''/);
   assert.match(summary, /publicKind/);
   assert.doesNotMatch(summary, /'结构来源'|'展示等级'|'抗原身份'|'结构说明'/);
@@ -122,7 +122,7 @@ test('disconnected and empty-payload fallbacks preserve the requested target wit
   assert.match(binderFallback, /targetVerified,/);
   assert.match(binderFallback, /representativeInterface \? 'representative_interface' : 'experimental_complex'/);
   assert.match(binderFallback, /grade: !targetVerified \? 'D'/);
-  assert.match(binderFallback, /题头保留用户需求靶点/);
+  assert.match(binderFallback, /当前展示用于呈现本轮设计目标/);
   assert.match(binderFallback, /if \(representative\) meta\.ipTm = null/);
   assert.match(normalize, /currentStats && currentStats\.target/);
   assert.match(normalize, /const missingStructureMetadata = ids\.length > 0 && ids\.some/);

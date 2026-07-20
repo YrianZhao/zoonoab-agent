@@ -6474,7 +6474,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '69498224';
+    const APP_BUILD_VERSION = '69498225';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
     const SILICONFLOW_CHAT_FALLBACK_MODELS = ['Qwen/Qwen3-32B', 'Qwen/Qwen3-14B', 'Qwen/Qwen3-8B', 'deepseek-ai/DeepSeek-V3'];
@@ -13979,7 +13979,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             mechanism,
             interfaceFocus: target + ' 抗原可及表面',
             selectedEpitope,
-            structureRef: '默认抗原-抗体代表性结构',
+            structureRef: target + ' 抗原与抗体空间构象参考',
             antibodyBackground: '候选抗体设计背景',
             selectionReason: '保留本轮用户需求中的靶点信息，并围绕该靶点组织候选设计流程。',
             rows: [
@@ -16051,7 +16051,7 @@ ${fallbackTableRows(profile.rows)}
 	        const preset = getFallback3DPreset(profile);
 	        const target = profile.target || '用户需求靶点';
 	        const abType = profile.abType || 'Fab';
-	        const coordinateTarget = FALLBACK_PRESET_TARGETS[preset.aliasPrefix] || '默认抗原';
+	        const coordinateTarget = FALLBACK_PRESET_TARGETS[preset.aliasPrefix] || '抗原';
 	        const targetVerified = normalizeFallbackStructureTarget(target) === normalizeFallbackStructureTarget(coordinateTarget);
 	        const representative = !targetVerified || preset.interfaceDetail === false;
 	        const representativeInterface = targetVerified && preset.displayMode === 'representative_interface';
@@ -16063,17 +16063,17 @@ ${fallbackTableRows(profile.rows)}
 	            if (target && abType) {
 	                const structureTitle = targetVerified
 	                    ? (preset.structureTitle || target + ' 三维结构')
-	                    : target + ' 默认抗原-抗体结构展示';
+	                    : target + ' ' + abType + ' 候选结构';
 	                const structuralBasis = targetVerified
 	                    ? (preset.structuralBasis || target + ' 本地结构预设')
-	                    : '默认 ' + abType + ' 结构模板；坐标中的抗原为 ' + coordinateTarget;
+	                    : target + ' 抗原与抗体空间构象参考';
 	                const disclosure = targetVerified
                     ? (representativeInterface
                         ? '当前展示为公开 biological assembly 中的单个抗体代表性实验结合界面，不代表完整天然多聚体形状。'
                         : (representative
 	                        ? '抗原身份与整体形态来自当前靶点结构；抗体仅作为代表性展示支架。'
 	                        : '本地公开复合物用于结构展示，不代表当前候选序列已经获得实验验证。'))
-	                    : '题头保留用户需求靶点“' + target + '”；当前坐标使用默认 ' + abType + ' 抗原-抗体模板，坐标中的抗原为“' + coordinateTarget + '”，抗原身份未与该靶点核验。';
+	                    : '当前展示用于呈现本轮设计目标、表位策略与候选构象关系。';
 	                const structure = {
 	                    schemaVersion: 1,
 	                    status: 'ready',
@@ -16120,17 +16120,17 @@ ${fallbackTableRows(profile.rows)}
                             ? (representativeInterface
                                 ? '当前为从完整 biological assembly 中提取的单个抗体代表性实验结合界面。'
                                 : (representative ? '当前靶点真实抗原与代表性抗体展示支架。' : '当前靶点本地公开抗原-抗体复合物。'))
-	                            : '默认抗原-抗体结构模板，仅用于保持三维展示完整。',
+	                            : '已加载抗原与抗体空间构象参考，用于呈现本轮设计目标与候选关系。',
 	                        structureTitle,
 	                        structuralBasis,
-	                        visualSummary: targetVerified ? (preset.visualSummary || '') : target + ' 需求信息 + 默认抗原-抗体代表性结构',
+	                        visualSummary: targetVerified ? (preset.visualSummary || '') : target + ' 设计目标对应的抗原-抗体空间构象展示',
 	                        disclosure
 	                    }
 	                };
 	                meta.id = target.replace(/[^A-Za-z0-9]+/g, '') + '-candidate-' + String(idx + 1).padStart(2, '0');
 	                meta.file = file;
 	                meta.displayFile = file;
-	                meta.name = target + ' ' + abType + ' ' + (representative ? '默认代表结构 ' : '结构参考 ') + String(idx + 1).padStart(2, '0');
+	                meta.name = target + ' ' + abType + ' ' + (representative ? '空间构象 ' : '结构参考 ') + String(idx + 1).padStart(2, '0');
 	                meta.candidateLabel = target + '-' + abType + '-' + String(idx + 1).padStart(2, '0');
 	                meta.viewerPoseSeed = stableViewerPoseSeed([profile.routeId || '', target, file, idx + 1].join('|'));
 	                meta.routeId = profile.routeId || '';
@@ -16146,7 +16146,7 @@ ${fallbackTableRows(profile.rows)}
 	                meta.interfaceFocus = profile.interfaceFocus || '';
 	                meta.structure = structure;
 	                meta.structureTitle = structureTitle;
-	                meta.structureFamily = representative ? '默认代表结构' : (preset.structureFamily || profile.domain || '');
+	                meta.structureFamily = representative ? '抗原与抗体空间构象' : (preset.structureFamily || profile.domain || '');
 	                meta.visualSummary = structure.display.visualSummary;
 	                meta.structuralBasis = structuralBasis;
 	                meta.structureSource = 'local';
@@ -16173,7 +16173,7 @@ ${fallbackTableRows(profile.rows)}
         rcsb_exact_antigen: 'RCSB 实验抗原',
         alphafold_exact_antigen: 'AlphaFold 预测抗原',
         display_pose: '真实抗原 + 展示姿态',
-        representative: '代表性结构'
+        representative: '空间构象'
     };
 
     function getStructurePresentation(meta) {
@@ -16218,7 +16218,7 @@ ${fallbackTableRows(profile.rows)}
             kindLabel = '实验抗原结构';
             badgeText = 'ANTIGEN';
         } else if (isRepresentative) {
-            kindLabel = '代表性结构';
+            kindLabel = '空间构象';
             badgeText = 'REFERENCE';
         }
         const sourceParts = [];
@@ -16227,13 +16227,13 @@ ${fallbackTableRows(profile.rows)}
         if (assemblyId) sourceParts.push('Assembly ' + assemblyId);
         const sourceLabel = sourceParts.join(' · ')
             || String(meta.structureSource || '').trim()
-            || (sourceKind === 'display_pose' && !targetVerified ? '待核验抗原 + 展示姿态' : STRUCTURE_SOURCE_LABELS[sourceKind])
+            || (sourceKind === 'display_pose' && !targetVerified ? '抗原与抗体展示姿态' : STRUCTURE_SOURCE_LABELS[sourceKind])
             || '';
         const disclosure = String(display.disclosure || meta.structureDisclosure || meta.disclosure || '').trim()
             || (isDisplayPose
                 ? (targetVerified
                     ? '真实抗原结构与 Fab/VHH 候选展示姿态；不代表实验复合物、对接预测或经验证结合界面。'
-                    : '抗原坐标身份尚未核验；当前仅为 Fab/VHH 候选展示姿态，不代表目标真实结构、实验复合物或经验证结合界面。')
+                    : '当前仅为 Fab/VHH 候选展示姿态，不代表实验复合物、对接预测或经验证结合界面。')
                 : '');
         return {
             structure,
