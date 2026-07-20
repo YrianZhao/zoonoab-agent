@@ -36,6 +36,25 @@ test('workflow delays use a global scale so visible progress is faster by defaul
   );
 });
 
+test('post-target pacing is condensed while explicit skip keeps the visible delay budget under 30 seconds', () => {
+  const workflowDelay = extractFunction(server, 'function workflowDelay');
+  const routedWorkflow = extractFunction(server, 'async function runDemoRoutedWorkflow');
+  const fastDelay = Number(server.match(/WORKFLOW_FAST_DELAY_MS\s*=\s*Number\([^\n]+\|\|\s*(\d+)\)/)[1]);
+  const visibleDelayCount = (server.slice(
+    server.indexOf('async function runWorkflow('),
+    server.indexOf('// ─── Risk Site Scan')
+  ).match(/await\s+delay\(/g) || []).length;
+
+  assert.equal(fastDelay, 40);
+  assert.match(server, /const\s+WORKFLOW_POST_TARGET_DELAY_MS\s*=/);
+  assert.match(workflowDelay, /sess\.condensedWorkflow/);
+  assert.match(workflowDelay, /WORKFLOW_POST_TARGET_DELAY_MS/);
+  assert.ok(visibleDelayCount * fastDelay < 30_000, 'server-side visible waits must fit inside the 30 second skip budget');
+  assert.match(routedWorkflow, /pacing:\s*'target-review'/);
+  assert.match(routedWorkflow, /type:\s*'workflow_pacing'[\s\S]*mode:\s*'condensed'/);
+  assert.match(routedWorkflow, /completeResearchTrace\([^\n]+\'靶点评审已完成'/);
+});
+
 test('debug fast workflow mode is isolated to explicitly flagged websocket runs', () => {
   const runSocketTask = extractFunction(server, 'function runSocketTask');
 

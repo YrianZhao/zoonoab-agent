@@ -133,7 +133,7 @@ const PDB_CACHE_MAX_ENTRIES = Math.max(8, Number(process.env.PDB_CACHE_MAX_ENTRI
 const pdbResponseCache = new Map();
 const VOICE_DOMAIN_PROMPT = [
   'ZoonoAb AI antibody design platform.',
-  'Common terms: IL-33, ST2, VHH, nanobody, Fab, PD-1, PD-L1, HER2, EGFR, VEGF-A, TNF, IL-17A, IL-23, TSLP, RSV F, RBD, HA, PCSK9, ANGPTL3, GIPR, CD3e, UniProt, Chai-1, ipTM, pLDDT, DockQ, PDB, CDR, CDR-H3.',
+  'Common terms: IL-33, ST2, VHH, nanobody, Fab, PD-1, PD-L1, HER2, EGFR, VEGF-A, TNF, IL-17A, IL-23, TSLP, RSV F, RBD, HA, PCSK9, ANGPTL3, GIPR, DAT, SLC6A3, CD3e, UniProt, Chai-1, ipTM, pLDDT, DockQ, PDB, CDR, CDR-H3.',
   'The speaker may give Chinese or English demo control commands for Quick Design, next step, previous step, submit design, molecular viewers and antibody workflows.'
 ].join(' ');
 const VOICE_AUDIO_TYPES = new Set([
@@ -162,7 +162,8 @@ let localAsrLastExit = null;
 const localAsrRecentLogs = [];
 
 const WORKFLOW_SKIP_SETTLE_MS = Number(process.env.WORKFLOW_SKIP_SETTLE_MS || 1100);
-const WORKFLOW_FAST_DELAY_MS = Number(process.env.WORKFLOW_FAST_DELAY_MS || 300);
+const WORKFLOW_FAST_DELAY_MS = Number(process.env.WORKFLOW_FAST_DELAY_MS || 40);
+const WORKFLOW_POST_TARGET_DELAY_MS = Number(process.env.WORKFLOW_POST_TARGET_DELAY_MS || 160);
 const WORKFLOW_DELAY_SCALE = Math.max(0.2, Math.min(1, Number(process.env.WORKFLOW_DELAY_SCALE || 0.55) || 0.55));
 const WORKFLOW_MIN_DELAY_MS = Math.max(80, Number(process.env.WORKFLOW_MIN_DELAY_MS || 160) || 160);
 
@@ -3253,6 +3254,7 @@ function buildRouteProfile(target, blockTarget, abType) {
   if (['RSVF', 'RSV-F'].includes(key)) key = 'RSV F';
   if (['SARS-COV-2RBD', 'SARSCOV2RBD', 'SARS-COV-2-RBD', 'RBD'].includes(key)) key = 'SARS-CoV-2 RBD';
   if (['INFLUENZAHA', 'INFLUENZA-HA', 'FLUHA', 'HA'].includes(key)) key = 'Influenza HA';
+  if (['DAT', 'DAT1', 'SLC6A3', 'DOPAMINETRANSPORTER'].includes(key)) key = 'DAT';
   if (influenzaHaSubtypeDisplay) key = 'Influenza HA';
   const profiles = {
     'IL-33': {
@@ -3766,6 +3768,38 @@ function buildRouteProfile(target, blockTarget, abType) {
       structurePrepEn: 'Loaded the GIPR extracellular reference model and prepared Fab constraints around stable accessible surfaces.',
       scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '代谢受体结合设计'
+    },
+    DAT: {
+      routeLabel: 'DAT / dopamine reuptake',
+      disease: '注意缺陷多动障碍（ADHD）及多巴胺再摄取异常相关方向',
+      targetDisplay: 'DAT',
+      partnerDisplay: '',
+      domain: 'DAT 胞外 vestibule 与外露环区',
+      mechanism: '围绕 DAT 胞外可及表面生成候选 Fab，调节多巴胺再摄取相关构象状态',
+      evidence: 'DAT/SLC6A3 神经递质调控证据包',
+      evidenceSources: ['多巴胺再摄取通路背景', 'DAT 胞外结构域注释', '膜蛋白胞外环可及性评估', '神经调控方向抗体工程经验'],
+      referenceEntries: 'UniProt SLC6A3(DAT) 靶点条目',
+      structure: '人源 DAT 外向开放构象与代表性 Fab 展示支架结构集合',
+      structureRef: '9EO4 human DAT outward-open structure',
+      antibodies: ['DAT extracellular loop targeting concepts', 'representative Fab display scaffold'],
+      interfaceFocus: '胞外 vestibule、TM1/TM6 邻近可及表面与外露环区',
+      selectedEpitope: '优先覆盖多巴胺与抑制剂进入邻近的胞外 vestibule 可及表面',
+      epitopeRowsZh: [
+        ['Site A', '胞外 vestibule 入口', '直接贴近多巴胺再摄取与抑制剂占位相关表面', '优先'],
+        ['Site B', 'EL2 / 外露环区稳定表面', '适合膜蛋白胞外识别与展示级结合姿态', '备选'],
+        ['Site C', '跨膜深部口袋邻近区域', '抗体可及性受限，需谨慎解读', '谨慎']
+      ],
+      epitopeRowsEn: [
+        ['Site A', 'extracellular vestibule entrance', 'aligned with dopamine reuptake and inhibitor-facing surfaces', 'primary'],
+        ['Site B', 'EL2 / exposed loop surface', 'useful for extracellular membrane-protein recognition and display poses', 'backup'],
+        ['Site C', 'deep transmembrane pocket-proximal region', 'antibody accessibility is limited', 'caution']
+      ],
+      riskSummaryZh: '界面风险标注显示，DAT 路线应优先围绕胞外 vestibule 与外露环区展开，避免把深部跨膜口袋误解为高可及抗体表位。',
+      riskSummaryEn: 'Interface-risk annotation prioritizes the extracellular vestibule and exposed loops while avoiding over-interpretation of deep transmembrane pockets.',
+      structurePrepZh: '加载人源 DAT 外向开放构象，提取胞外 vestibule 与外露环区并生成 Fab 展示约束。',
+      structurePrepEn: 'Loaded the human DAT outward-open structure and prepared Fab display constraints around the extracellular vestibule and exposed loops.',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
+      designMode: '神经递质转运调控设计'
     }
   };
   const profile = profiles[key]
@@ -4326,6 +4360,19 @@ const ROUTE_3D_PRESETS = {
     order: [5, 9, 2, 4, 8, 1, 3, 7, 0, 6, 10, 11],
     ipTmBias: 0.001
   },
+  neuro_adhd_dat: {
+    aliasPrefix: 'DAT-Fab',
+    title: 'DAT Fab 多巴胺再摄取调控展示构象',
+    structureFamily: '多巴胺转运蛋白 · Fab 展示候选',
+    visualSummary: '保留人源 DAT 的真实外向开放形态，并以 Fab 展示胞外 vestibule 邻近可及表面。',
+    structuralBasis: 'RCSB 9EO4 human dopamine transporter outward-open structure + representative Fab display scaffold',
+    interfaceDetail: false,
+    antigenChains: ['B'],
+    antibodyChains: ['H', 'L'],
+    antigenColor: '#22C55E',
+    antibodyColor: '#2563EB',
+    ipTmBias: 0.002
+  },
   veterinary_canine_ngf: {
     aliasPrefix: 'CANINE-NGF-Fab',
     title: '犬源 NGF Fab 疼痛信号中和展示构象',
@@ -4403,17 +4450,18 @@ function getRoute3DPreset(profile) {
     HER2: 'breast_cancer',
     EGFR: 'solid_tumor_egfr',
     'VEGF-A': 'angiogenesis_oncology',
-    TNF: 'autoimmune_inflammation',
-    'IL-17A': 'autoimmune_il17',
-    'IL-23': 'autoimmune_il23',
-    'RSV F': 'infectious_rsv',
-    'SARS-CoV-2 RBD': 'infectious_covid',
-    'Influenza HA': 'infectious_flu',
-    'Influenza NA': 'infectious_flu_na',
-    PCSK9: 'cardio_pcsk9',
-    'IL-1β': 'cardio_il1b',
-    GIPR: 'metabolic_gipr'
-  };
+      TNF: 'autoimmune_inflammation',
+      'IL-17A': 'autoimmune_il17',
+      'IL-23': 'autoimmune_il23',
+      'RSV F': 'infectious_rsv',
+      'SARS-CoV-2 RBD': 'infectious_covid',
+      'Influenza HA': 'infectious_flu',
+      'Influenza NA': 'infectious_flu_na',
+      PCSK9: 'cardio_pcsk9',
+      'IL-1β': 'cardio_il1b',
+      GIPR: 'metabolic_gipr',
+      DAT: 'neuro_adhd_dat'
+    };
   const targetCandidates = [target, ...String(target).split(/\s*\/\s*/)]
     .map(item => item.trim())
     .filter((item, idx, all) => item && all.indexOf(item) === idx);
@@ -6169,6 +6217,18 @@ const DEMO_ROUTE_RULES = [
     printable: false,
     displayStory: '围绕 GIPR 胞外可及区域，生成代谢调控方向抗体候选设计。',
     keywords: ['gipr', 'gip receptor', '肠促胰岛素', '代谢调控']
+  },
+  {
+    id: 'neuro_adhd_dat',
+    disease: '注意缺陷多动障碍（ADHD）',
+    systemUnderstanding: '多巴胺再摄取调控通路',
+    target: 'DAT',
+    blockTarget: null,
+    abType: 'Fab',
+    count: 10,
+    printable: false,
+    displayStory: '围绕 DAT/SLC6A3 胞外可及表面，生成注意缺陷多动障碍方向抗体候选结构。',
+    keywords: ['多动症', '注意缺陷', '注意缺陷多动障碍', 'adhd', 'attention deficit', 'hyperactivity', 'dopamine transporter', 'slc6a3', 'dat1', 'dat']
   }
 ];
 
@@ -6185,6 +6245,7 @@ const REPRESENTATIVE_DEMO_DIRECTIONS = [
   { label: '炎症性肠病方向需求', keywords: ['炎症性肠病', '克罗恩', '溃疡性结肠炎', 'ibd', 'crohn'] },
   { label: '银屑病方向需求', keywords: ['银屑病', 'psoriasis'] },
   { label: 'IL-23 / IL-17 炎症轴方向需求', keywords: ['il23', 'il-23', 'il 23', 'il17', 'il-17', 'il 17'] },
+  { label: '注意缺陷多动障碍方向需求', keywords: ['多动症', '注意缺陷', 'adhd', 'attention deficit', 'hyperactivity', 'slc6a3', 'dopamine transporter', 'dat1'] },
   { label: '神经退行性疾病方向需求', keywords: ['阿尔茨海默', '老年痴呆', 'alzheimer'] }
 ];
 
@@ -6273,6 +6334,42 @@ const BUILTIN_DISEASE_TARGET_RESOLVERS = {
       { target: 'IL-1β', gene: 'IL1B', rationale: '心血管炎症风险相关细胞因子，适合中和型抗体候选设计。' },
       { target: 'TNF', gene: 'TNF', rationale: '经典炎症因子，可作为心肌炎症调控方向备选靶点。' },
       { target: 'IL-6', gene: 'IL6', rationale: '炎症级联反应相关细胞因子，可作为候选设计备选入口。' }
+    ]
+  },
+  '多动症': {
+    selectedTarget: 'DAT',
+    selectedGene: 'SLC6A3',
+    designLabel: 'ADHD-DAT-1',
+    confidence: 0.77,
+    reason: '注意缺陷多动障碍语境下，多巴胺再摄取调控是最直接、最可解释的神经递质机制入口。DAT/SLC6A3 位于突触前膜并直接决定多巴胺清除速率；相较更下游的受体或更泛化的神经营养因子，DAT 与症状相关的递质稳态更贴近，且具备明确胞外可及表面与真实人源结构依据，适合作为本轮抗体候选展示入口。',
+    candidates: [
+      { target: 'DAT', gene: 'SLC6A3', rationale: '多巴胺再摄取核心转运体，机制链路直接且具备真实人源结构参考。' },
+      { target: 'TrkB', gene: 'NTRK2', rationale: 'BDNF/TrkB 神经可塑性轴相关，可作为神经营养方向备选靶点。' },
+      { target: 'DRD4', gene: 'DRD4', rationale: '多巴胺受体方向备选，但构象状态与抗体可及性解释更复杂。' }
+    ]
+  },
+  '注意缺陷多动障碍': {
+    selectedTarget: 'DAT',
+    selectedGene: 'SLC6A3',
+    designLabel: 'ADHD-DAT-1',
+    confidence: 0.77,
+    reason: '注意缺陷多动障碍语境下，多巴胺再摄取调控是最直接、最可解释的神经递质机制入口。DAT/SLC6A3 位于突触前膜并直接决定多巴胺清除速率；相较更下游的受体或更泛化的神经营养因子，DAT 与症状相关的递质稳态更贴近，且具备明确胞外可及表面与真实人源结构依据，适合作为本轮抗体候选展示入口。',
+    candidates: [
+      { target: 'DAT', gene: 'SLC6A3', rationale: '多巴胺再摄取核心转运体，机制链路直接且具备真实人源结构参考。' },
+      { target: 'TrkB', gene: 'NTRK2', rationale: 'BDNF/TrkB 神经可塑性轴相关，可作为神经营养方向备选靶点。' },
+      { target: 'DRD4', gene: 'DRD4', rationale: '多巴胺受体方向备选，但构象状态与抗体可及性解释更复杂。' }
+    ]
+  },
+  'ADHD': {
+    selectedTarget: 'DAT',
+    selectedGene: 'SLC6A3',
+    designLabel: 'ADHD-DAT-1',
+    confidence: 0.77,
+    reason: 'ADHD design requests map most directly to dopamine reuptake control. DAT/SLC6A3 sits on the presynaptic membrane and directly sets dopamine clearance; versus broader neurotrophic or downstream receptor routes, it is closer to the neurotransmitter mechanism and still offers a defined extracellular surface with a real human structure reference.',
+    candidates: [
+      { target: 'DAT', gene: 'SLC6A3', rationale: 'Primary dopamine reuptake transporter with direct mechanism relevance and real human structural support.' },
+      { target: 'TrkB', gene: 'NTRK2', rationale: 'Neuroplasticity-axis backup target relevant to BDNF signaling.' },
+      { target: 'DRD4', gene: 'DRD4', rationale: 'Dopamine receptor backup target, but surface accessibility and state interpretation are more complex.' }
     ]
   }
 };
@@ -7054,11 +7151,12 @@ function buildWorkflowIntentPrompt() {
     '药物名或药物类别也是线索：仅当用户是在询问某个药物方向、已上市药物关联疾病/机制或“抗体药物方向”时，才根据已知适应症、作用靶点、通路机制反推可进入抗体药物设计的真实大分子靶点。',
     '边界：如果用户明确要求针对小分子/半抗原/化合物本身生成或特异性结合抗体（例如“设计氯胺酮抗体”“设计特异性结合噻吩嗪的单克隆抗体”），输出 i=chat,start=false,answer，说明 ZoonoAb 面向大分子抗原/蛋白靶点，不直接生成小分子/半抗原抗体；不要把该小分子硬转成蛋白靶点。',
     '准确性优先：疾病或药物方向可能对应多个靶点，先保证疾病关联、机制和抗体可及性准确；如果用户明确指定靶点，target 必须保留用户真实指定靶点；如果用户只给疾病、方向或药物机制，且多个候选同等合理，优先从结构支撑靶点清单选择 target，并把其他合理靶点放入 cands，形成候选靶点比较池。',
-    '结构支撑靶点清单：PD-L1/CD274、PD-1/PDCD1、CTLA-4、HER2/ERBB2、EGFR/ERBB1、VEGF-A/VEGFA、TNF、IL-17A、IL-23、IL-33、TSLP、RSV F、SARS-CoV-2 RBD、Influenza HA、Influenza NA、PCSK9、ANGPTL3、GIPR、CD20、CD19、CD3、C5、IL-6R、IL-4Rα、CD25、CD38、TIGIT、CD47、LAG-3、TROP-2、BCMA、IgE、CGRP receptor、IL-1β，以及犬源 NGF。',
+    '结构支撑靶点清单：PD-L1/CD274、PD-1/PDCD1、CTLA-4、HER2/ERBB2、EGFR/ERBB1、VEGF-A/VEGFA、TNF、IL-17A、IL-23、IL-33、TSLP、RSV F、SARS-CoV-2 RBD、Influenza HA、Influenza NA、PCSK9、ANGPTL3、GIPR、DAT/SLC6A3、CD20、CD19、CD3、C5、IL-6R、IL-4Rα、CD25、CD38、TIGIT、CD47、LAG-3、TROP-2、BCMA、IgE、CGRP receptor、IL-1β，以及犬源 NGF。',
     'reason 只能写疾病关联、药物机制、表达/可及性、结构域和抗体开发依据；不要提本地、预设、可展示、系统已有、为了展示、3D 预设等内部选择原因。',
     'i=chat：只用于普通闲聊、寒暄、纯问答、天气、时间、非分子设计概念解释，且没有足够信息生成 target 的情况。chat 只填 i,start=false,answer；answer 默认中文，最多 2 句。',
     'design 必填 target、reason、cands、wf；reason 写 220-420 个中文字，必须紧扣用户原始需求，按疾病机制/适应症语境、表达谱或抗原暴露、抗原可及性、作用机制、同类抗体开发背景、与备选靶点比较这几类依据展开，说明为何优先该靶点，语言要像专业靶点评审摘要；cands 给 5-7 个候选靶点，包含已选 target 和其他合理备选，每个 r 用 35-90 个中文字写清候选理由、适用场景和相对优先级；wf 每项不超过 35 个中文字。',
     '示例：设计一个针对流感 H7 的中和抗体 -> {"i":"design","start":true,"summary":"面向流感 H7 生成中和抗体候选","bg":"流感 H7 在中和抗体语境下对应 H7 亚型流感病毒血凝素抗原。","disease":"流感病毒感染","target":"Influenza A(H7) hemagglutinin (HA)","gene":"HA","label":"FLU-H7-HA-1","reason":"H7 亚型血凝素 HA 是病毒表面负责受体识别和膜融合的关键抗原，其头部与茎部均提供抗体可及表面。中和性表位可直接关联病毒进入阻断机制；与神经氨酸酶 NA 相比，HA 更直接对应 H7 亚型抗原身份及受体结合/膜融合阶段，因而具有更高的综合靶点评审优先级。","cands":[{"t":"Influenza A(H7) hemagglutinin (HA)","g":"HA","r":"H7 亚型血凝素，直接对应亚型身份和病毒进入阶段。"},{"t":"Influenza NA","g":"NA","r":"流感另一表面抗原，可作为病毒释放阶段的备选靶点。"}],"mech":"识别 H7 HA 表面中和表位并生成 Fab 候选","ab":"Fab","n":10,"block":"","confidence":0.84,"wf":{"domain":"H7 HA 头部/茎部可及表面","mechanism":"阻断病毒受体识别或融合相关表面","epitope":"优先覆盖 H7 HA 保守中和表面","structure":"HA 家族相近三聚体复合物结构依据","modelNote":"以相近 HA 复合体呈现 H7 HA 中和候选构象"}}',
+    '示例：设计一个多动症方向抗体 -> {"i":"design","start":true,"summary":"面向注意缺陷多动障碍方向生成抗体候选","bg":"多动症方向可优先围绕多巴胺再摄取调控展开。","disease":"注意缺陷多动障碍（ADHD）","target":"DAT","gene":"SLC6A3","label":"ADHD-DAT-1","reason":"DAT/SLC6A3 位于突触前膜并直接决定多巴胺清除速率，与注意缺陷多动障碍相关的神经递质稳态最贴近。相较更下游的受体或更泛化的神经营养因子，DAT 机制链路更直接，且其胞外 vestibule 与外露环区提供可进入抗体展示与结构评估的可及表面，因此具有较高的综合靶点评审优先级。","cands":[{"t":"DAT","g":"SLC6A3","r":"多巴胺再摄取核心转运体，机制直接且具备真实人源结构依据。"},{"t":"TrkB","g":"NTRK2","r":"神经可塑性轴备选靶点，可用于 BDNF/TrkB 方向叙事。"}],"mech":"围绕 DAT 胞外可及表面生成 Fab 候选","ab":"Fab","n":10,"block":"","confidence":0.77,"wf":{"domain":"DAT 胞外 vestibule 与外露环区","mechanism":"调节多巴胺再摄取相关构象状态","epitope":"优先覆盖 DAT 胞外 vestibule 可及表面","structure":"DAT 人源外向开放构象结构依据","modelNote":"展示真实 DAT 形态与 Fab 候选空间关系"}}',
     '示例：设计狗 NGF 单抗 -> {"i":"design","start":true,"summary":"面向犬源 NGF 生成单抗候选","bg":"犬源 NGF 与骨关节炎相关慢性疼痛的外周伤害性感受通路有关。","disease":"犬骨关节炎与慢性疼痛","target":"Canine NGF","gene":"NGF","organismName":"Canis lupus familiaris","organismTaxId":9615,"label":"CANINE-NGF-1","reason":"犬源神经生长因子 NGF 可通过 TrkA 与 p75NTR 相关信号调节外周伤害性感受神经元的敏化，在犬骨关节炎及慢性疼痛语境中具有明确的病理生理关联。成熟 NGF 为分泌型可溶性配体，抗体可及性良好；中和 NGF 可从配体层面降低疼痛信号放大。相较 TrkA 受体或更广泛的炎症介质，NGF 与疼痛表型的机制联系更直接，且已有同类兽医抗体开发背景，因此具有较高的靶点评审优先级。","cands":[{"t":"Canine NGF","g":"NGF","r":"与外周痛觉敏化直接相关，分泌型配体具有良好抗体可及性。"},{"t":"Canine TrkA","g":"NTRK1","r":"NGF 受体通路入口，但受体表达范围与机制影响更复杂。"}],"mech":"中和犬源 NGF 并降低 TrkA 相关痛觉敏化信号","ab":"mAb","n":10,"block":"TrkA","confidence":0.92,"wf":{"domain":"成熟 NGF 神经营养因子结构域","mechanism":"限制 NGF 受体结合与痛觉敏化","epitope":"优先覆盖 TrkA 结合邻近表面","structure":"犬源 NGF 坐标与 NGF/Fab 结构参考","modelNote":"展示犬源成熟 NGF 与 Fab 候选空间关系"}}',
     '示例：设计一个胰腺癌的抗体 -> {"i":"design","start":true,"summary":"面向胰腺癌设计抗体候选","bg":"胰腺癌抗体设计需关注肿瘤相关抗原表达、膜表面可及性和正常组织背景。","disease":"胰腺癌","target":"MUC1","gene":"MUC1","label":"PANCREATIC-MUC1-1","reason":"MUC1 是胰腺癌中常被讨论的肿瘤相关糖蛋白抗原，具备膜表面暴露和异常糖基化相关表位，可用于抗体候选识别；相较纯炎症因子入口，它与胰腺癌肿瘤细胞表面识别、抗原可及性和后续候选筛选更直接对应。","cands":[{"t":"MUC1","g":"MUC1","r":"肿瘤相关膜糖蛋白，适合作为抗体识别入口。"},{"t":"Mesothelin","g":"MSLN","r":"胰腺癌相关细胞表面抗原，可作备选。"}],"mech":"识别肿瘤相关外露表位并筛选 Fab 候选","ab":"Fab","n":10,"block":"","confidence":0.8,"wf":{"domain":"MUC1 胞外糖蛋白可及区","mechanism":"识别肿瘤相关外露表位","epitope":"优先覆盖异常糖基化邻近表面","structure":"MUC1 胞外表面与 Fab 姿态约束","modelNote":"展示 Fab 贴合 MUC1 外露表面的候选构象"}}',
     '示例：你好 -> {"i":"chat","start":false,"answer":"您好，我是小诺，可以帮您把疾病、靶点或候选分子需求整理成分子设计任务。"}'
@@ -7319,7 +7417,7 @@ async function playResearchTraceSteps(ws, runtime, phase, steps, context) {
       Math.min(DISPLAY_TRACE_STEP_MAX_MS, Number.isFinite(requestedDelay) ? requestedDelay : 900)
     );
     await workflowDelay(ws, sess, playbackDelay, {
-      fastMs: 180,
+      fastMs: WORKFLOW_FAST_DELAY_MS,
       settleMs: 500,
       allowBelowMinimum: process.env.NODE_ENV === 'test'
     });
@@ -7328,11 +7426,11 @@ async function playResearchTraceSteps(ws, runtime, phase, steps, context) {
   }
 }
 
-function completeResearchTrace(ws, runtime, status = 'completed') {
+function completeResearchTrace(ws, runtime, status = 'completed', text = '') {
   if (!runtime || runtime.completed) return;
   runtime.completed = true;
   runtime.stopped = status !== 'completed';
-  sendResearchTraceEvent(ws, { type: 'research_trace_complete', status });
+  sendResearchTraceEvent(ws, { type: 'research_trace_complete', status, text });
 }
 
 function startResearchTraceRuntime(ws, input, tracePromise) {
@@ -7888,6 +7986,7 @@ function buildTargetResolverPrompt(indication, input) {
     '示例：设计10个烟草花叶病毒抗体 -> {"selectedTarget":"TMV coat protein"}',
     '示例：设计10个具有结合活性的流感NA单抗序列 -> {"selectedTarget":"Influenza neuraminidase"}',
     '示例：乳腺癌方向设计10个抗体 -> {"selectedTarget":"HER2"}',
+    '示例：设计一个多动症方向抗体 -> {"selectedTarget":"DAT","selectedGene":"SLC6A3","designLabel":"ADHD-DAT-1"}',
     '示例：帮我做一个肿瘤免疫治疗方向的抗体设计 -> {"selectedTarget":"PD-L1","selectedGene":"CD274","designLabel":"ONCOLOGY-PDL1-1"}',
     '示例：癌症免疫治疗方向抗体设计 -> {"selectedTarget":"PD-L1","selectedGene":"CD274","designLabel":"ONCOLOGY-PDL1-1"}',
     '示例：阻断PD-1/PD-L1通路，设计10个Fab -> {"selectedTarget":"PD-L1"}',
@@ -8096,12 +8195,20 @@ async function runDemoRoutedWorkflow(ws, input, route, researchTraceRuntime = nu
   const sess = findSessionBySocket(ws);
   const delay = (ms) => workflowDelay(ws, sess, ms);
   markWorkflowStage(sess, '设计意图确认');
+  completeResearchTrace(ws, researchTraceRuntime, 'completed', '靶点评审已完成');
   if (route && route.targetResolution) {
-    send({ type: 'agent_msg', text: targetResolutionIntro(route) });
+    send({ type: 'agent_msg', text: targetResolutionIntro(route), pacing: 'target-review' });
     await delay(700);
+    if (sess) sess.condensedWorkflow = true;
+    send({ type: 'workflow_pacing', phase: 'post-target-review', mode: 'condensed' });
+    send({ type: 'agent_msg', text: demoRouteIntro(route, input), pacing: 'condensed' });
+    await delay(800);
+  } else {
+    send({ type: 'agent_msg', text: demoRouteIntro(route, input), pacing: 'target-review' });
+    await delay(800);
+    if (sess) sess.condensedWorkflow = true;
+    send({ type: 'workflow_pacing', phase: 'post-target-review', mode: 'condensed' });
   }
-  send({ type: 'agent_msg', text: demoRouteIntro(route, input) });
-  await delay(800);
   await runWorkflow(ws, buildDemoInstruction(input, route), route, researchTraceRuntime);
 }
 
@@ -8176,8 +8283,8 @@ function parseRequest(input, forcedRoute) {
     ? designRequest.count
     : parseDesignCount(input, fallbackCount);
   const targetPatterns = [
-    /(?:bind(?:ing)? to|targeting|针对|靶向)\s+(?:human\s+)?(SARS-CoV-2\s+RBD|Influenza\s+HA|RSV\s+F|CGRP\s+receptor|IL-17A|IL-23|IL-1β|IL-1B|IL-6R|IL-4Rα|IL-4RA|VEGF-A|ANGPTL3|PCSK9|CTLA-4|TROP-2|LAG-3|TSLP|GIPR|EGFR|HER2|PD-L1|PD-1|CD20|CD19|CD3|CD25|CD38|CD47|BCMA|TIGIT|IgE|C5|TNF)/i,
-    /\b(SARS-CoV-2\s+RBD|Influenza\s+HA|RSV\s+F|CGRP\s+receptor|IL-17A|IL-23|IL-1β|IL-1B|IL-6R|IL-4Rα|IL-4RA|VEGF-A|ANGPTL3|PCSK9|CTLA-4|TROP-2|LAG-3|TSLP|GIPR|EGFR|HER2|PD-L1|PD-1|CD20|CD19|CD3|CD25|CD38|CD47|BCMA|TIGIT|IgE|C5|TNF[α\-]?A?)\b/i];
+    /(?:bind(?:ing)? to|targeting|针对|靶向)\s+(?:human\s+)?(SARS-CoV-2\s+RBD|Influenza\s+HA|RSV\s+F|CGRP\s+receptor|IL-17A|IL-23|IL-1β|IL-1B|IL-6R|IL-4Rα|IL-4RA|VEGF-A|ANGPTL3|PCSK9|CTLA-4|TROP-2|LAG-3|TSLP|GIPR|DAT|dopamine\s+transporter|SLC6A3|EGFR|HER2|PD-L1|PD-1|CD20|CD19|CD3|CD25|CD38|CD47|BCMA|TIGIT|IgE|C5|TNF)/i,
+    /\b(SARS-CoV-2\s+RBD|Influenza\s+HA|RSV\s+F|CGRP\s+receptor|IL-17A|IL-23|IL-1β|IL-1B|IL-6R|IL-4Rα|IL-4RA|VEGF-A|ANGPTL3|PCSK9|CTLA-4|TROP-2|LAG-3|TSLP|GIPR|DAT|dopamine\s+transporter|SLC6A3|EGFR|HER2|PD-L1|PD-1|CD20|CD19|CD3|CD25|CD38|CD47|BCMA|TIGIT|IgE|C5|TNF[α\-]?A?)\b/i];
   let target = demoRoute ? demoRoute.target : (designRequest.target || 'PD-L1');
   if (!demoRoute) {
     for (const p of targetPatterns) {
@@ -8240,6 +8347,8 @@ function createScopedSession(baseSocket, runState) {
     set skipThinkingNotified(value) { runState.skipThinkingNotified = Boolean(value); },
     get fastForwardWorkflow() { return sess.currentRun === runState && Boolean(sess.fastForwardWorkflow); },
     set fastForwardWorkflow(value) { if (sess.currentRun === runState) sess.fastForwardWorkflow = Boolean(value); },
+    get condensedWorkflow() { return sess.currentRun === runState && Boolean(sess.condensedWorkflow); },
+    set condensedWorkflow(value) { if (sess.currentRun === runState) sess.condensedWorkflow = Boolean(value); },
     get workflowStage() { return sess.currentRun === runState ? sess.workflowStage : ''; },
     set workflowStage(value) { if (sess.currentRun === runState) sess.workflowStage = value || ''; },
     get fromVoice() { return sess.currentRun === runState && Boolean(sess.fromVoice); },
@@ -8255,9 +8364,12 @@ function markWorkflowStage(sess, stage) {
 function workflowDelay(ws, sess, ms, options) {
   options = options || {};
   const requestedMs = Number(ms) || 0;
-  const normalMs = options.allowBelowMinimum
+  const scaledMs = options.allowBelowMinimum
     ? Math.max(0, Math.round(requestedMs * WORKFLOW_DELAY_SCALE))
     : scaledWorkflowDelayMs(ms);
+  const normalMs = sess && sess.condensedWorkflow && !options.keepFullPacing
+    ? Math.min(Math.max(0, WORKFLOW_POST_TARGET_DELAY_MS), scaledMs)
+    : scaledMs;
   const settleMs = Number(options.settleMs || WORKFLOW_SKIP_SETTLE_MS);
   const fastMs = Number(options.fastMs || WORKFLOW_FAST_DELAY_MS);
   return new Promise((resolve, reject) => {
@@ -9073,7 +9185,7 @@ function extractNamedTargetForLocalWorkflow(input) {
       return value;
     }
   }
-  const symbol = text.match(/\b(?:PD-?L?1|IL-?\d+[A-Z]?|HER2|EGFR|VEGF-?A|TNF|TSLP|RSV|RBD|PCSK9|ANGPTL3|GIPR|CD\d+[A-Z]?)\b/i);
+  const symbol = text.match(/\b(?:PD-?L?1|IL-?\d+[A-Z]?|HER2|EGFR|VEGF-?A|TNF|TSLP|RSV|RBD|PCSK9|ANGPTL3|GIPR|DAT|SLC6A3|CD\d+[A-Z]?)\b/i);
   return symbol ? symbol[0] : '';
 }
 
@@ -9285,6 +9397,7 @@ function runSocketTask(ws, sid, msg, buildRunner) {
     sess.skipThinking = false;
     sess.skipThinkingNotified = debugFastWorkflow;
     sess.fastForwardWorkflow = debugFastWorkflow;
+    sess.condensedWorkflow = false;
     sess.workflowStage = '';
     sess.fromVoice = Boolean(msg && msg.voice);
   }
@@ -9323,6 +9436,7 @@ function runSocketTask(ws, sid, msg, buildRunner) {
         sess.skipThinking = false;
         sess.skipThinkingNotified = false;
         sess.fastForwardWorkflow = false;
+        sess.condensedWorkflow = false;
         sess.workflowStage = '';
         sess.fromVoice = false;
         sess.currentRun = null;
@@ -10009,6 +10123,7 @@ wss.on('connection', ws => {
         sess.skipThinking = false;
         sess.skipThinkingNotified = false;
         sess.fastForwardWorkflow = false;
+        sess.condensedWorkflow = false;
         sess.workflowStage = '';
         sess.fromVoice = false;
         sess.currentRun = null;

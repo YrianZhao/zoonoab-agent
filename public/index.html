@@ -2597,10 +2597,18 @@
             background: #0D1117;
             box-shadow: none;
             transform: none !important;
+            transition: none !important;
+            animation: none !important;
+            clip-path: none !important;
             cursor: default;
         }
         .gallery-card.viewer-promoted:hover { transform: none !important; box-shadow: none; }
-        .gallery-card.viewer-promoted .gallery-viewer { width: 100%; height: 100%; }
+        .gallery-card.viewer-promoted .gallery-viewer {
+            width: 100%; height: 100%;
+            transition: none !important;
+            animation: none !important;
+            clip-path: none !important;
+        }
         .gallery-card.viewer-promoted .gallery-info { display: none; }
         .gallery-viewer {
             width: 100%; height: 200px;
@@ -3248,9 +3256,9 @@
             display: none; align-items: center; justify-content: center;
             opacity: 0; pointer-events: none;
             transition:
-                opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-                background 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-                backdrop-filter 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+                opacity 0.12s ease-out,
+                background 0.12s ease-out,
+                backdrop-filter 0.12s ease-out;
         }
         .mol-modal-overlay.open {
             display: flex;
@@ -3263,13 +3271,12 @@
             background: var(--bg-card); border-radius: 0;
             box-shadow: 0 32px 80px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.08);
             overflow: hidden; display: flex; flex-direction: column;
-            transform: scale(0.92) translateY(24px);
-            transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-                        opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-            opacity: 0;
+            transform: none;
+            transition: none;
+            opacity: 1;
         }
         .mol-modal-overlay.open .mol-modal {
-            transform: scale(1) translateY(0);
+            transform: none;
             opacity: 1;
         }
         .mol-modal-header {
@@ -6467,7 +6474,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '69498221';
+    const APP_BUILD_VERSION = '69498223';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
     const SILICONFLOW_CHAT_FALLBACK_MODELS = ['Qwen/Qwen3-32B', 'Qwen/Qwen3-14B', 'Qwen/Qwen3-8B', 'deepseek-ai/DeepSeek-V3'];
@@ -6749,6 +6756,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     let demoSkipRequested = false;
     let demoSkipSettled = false;
     let workflowFastForward = false;
+    let workflowCondensedPacing = false;
     let currentRunHas3D = false;
     let currentClientRunId = '';
     let cancelledClientRunIds = new Set();
@@ -6809,6 +6817,35 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         document.body.classList.toggle('workflow-fast-forward', workflowFastForward);
     }
 
+    function setWorkflowCondensedPacing(active) {
+        workflowCondensedPacing = Boolean(active);
+        document.body.classList.toggle('workflow-condensed-pacing', workflowCondensedPacing);
+    }
+
+    function isWorkflowHardFastForward() {
+        return workflowFastForward || document.body.classList.contains('workflow-fast-forward') || skipThinkingRequested || demoSkipSettled;
+    }
+
+    function waitForWorkflowPresentation(normalMs, condensedMs, fastMs) {
+        const startedAt = performance.now();
+        const normalTarget = Math.max(0, Number(normalMs) || 0);
+        const condensedTarget = Math.max(0, Number(condensedMs) || Math.min(220, normalTarget));
+        const fastTarget = Math.max(0, Number(fastMs) || Math.min(32, condensedTarget));
+        return new Promise(resolve => {
+            const check = () => {
+                const target = isWorkflowHardFastForward()
+                    ? fastTarget
+                    : (workflowCondensedPacing ? condensedTarget : normalTarget);
+                if (performance.now() - startedAt >= target) {
+                    resolve();
+                    return;
+                }
+                setTimeout(check, 16);
+            };
+            check();
+        });
+    }
+
     async function drainQueue() {
         queueProcessing = true;
         while (msgQueue.length > 0) {
@@ -6838,6 +6875,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             demoSkipRequested = false;
             demoSkipSettled = false;
             setWorkflowFastForward(false);
+            setWorkflowCondensedPacing(false);
             setSkipThinkingButtonState('idle');
         }
     }
@@ -6850,7 +6888,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     const TYPEWRITER_CLAUSE_PAUSE_MS = 48;
 
     // Typewriter effect for agent messages
-    function typewriterEffect(markdown, contentEl, autoScroll = captureAutoScrollState(), runId = currentClientRunId) {
+    function typewriterEffect(markdown, contentEl, autoScroll = captureAutoScrollState(), runId = currentClientRunId, options) {
+        options = options || {};
         return new Promise(resolve => {
             contentEl.style.display = 'block';
             contentEl.style.width = '100%';
@@ -6878,9 +6917,11 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                     return;
                 }
                 if (pos < totalLen) {
-                    const accelerated = workflowFastForward || document.body.classList.contains('workflow-fast-forward') || skipThinkingRequested || demoSkipSettled;
-                    const acceleratedStep = Math.max(charsPerTick * 6, Math.ceil(totalLen / 18), 8);
-                    const step = accelerated ? acceleratedStep : charsPerTick;
+                    const hardFastForward = isWorkflowHardFastForward();
+                    const condensed = !hardFastForward && workflowCondensedPacing && options.pacing !== 'target-review';
+                    const acceleratedStep = Math.max(charsPerTick * 8, Math.ceil(totalLen / 6), 12);
+                    const condensedStep = Math.max(charsPerTick * 5, Math.ceil(totalLen / 18), 8);
+                    const step = hardFastForward ? acceleratedStep : (condensed ? condensedStep : charsPerTick);
                     const previousPos = pos;
                     pos = Math.min(pos + step, totalLen);
                     contentEl.innerHTML = renderMarkdown(rawText.slice(0, pos)) + '<span class="typing-cursor"></span>';
@@ -6888,7 +6929,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                     const chunk = rawText.slice(previousPos, pos);
                     const sentencePause = /[.!?。！？]\s*$/.test(chunk) ? TYPEWRITER_SENTENCE_PAUSE_MS : 0;
                     const clausePause = !sentencePause && /[,;:，、；：\n]\s*$/.test(chunk) ? TYPEWRITER_CLAUSE_PAUSE_MS : 0;
-                    setTimeout(tick, accelerated ? 10 : TYPEWRITER_TICK_MS + sentencePause + clausePause);
+                    setTimeout(tick, hardFastForward ? 4 : (condensed ? 12 : TYPEWRITER_TICK_MS + sentencePause + clausePause));
                 } else {
                     contentEl.innerHTML = renderMarkdown(markdown);
                     finishStreaming();
@@ -7693,6 +7734,17 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             printable: false,
             routeLabel: 'GIPR 代谢调控方向',
             triggerHint: '代谢疾病、GIPR'
+        },
+        neuro_adhd_dat: {
+            disease: '注意缺陷多动障碍（ADHD）',
+            systemUnderstanding: '多巴胺再摄取调控通路',
+            target: 'DAT',
+            blockTarget: null,
+            abType: 'Fab',
+            count: 10,
+            printable: false,
+            routeLabel: 'DAT 多巴胺再摄取方向',
+            triggerHint: '多动症、ADHD、DAT、SLC6A3'
         }
     };
     const qdWorkflowTriggers = {
@@ -7712,7 +7764,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         cardio_angptl3: '靶向 ANGPTL3，设计 10 个高亲和力 Fab',
         cardio_il1b: '中和 IL-1β 炎症因子，设计 10 个高亲和力 Fab',
         metabolic_angptl3: '靶向 ANGPTL3，设计 10 个高亲和力 Fab',
-        metabolic_gipr: '靶向 GIPR，设计 10 个高亲和力 Fab'
+        metabolic_gipr: '靶向 GIPR，设计 10 个高亲和力 Fab',
+        neuro_adhd_dat: '靶向 DAT（SLC6A3），设计 10 个高亲和力 Fab'
     };
     const qdDiseaseOptions = [
         { id: 'oncology', title: '肿瘤', desc: 'PD-L1、HER2、EGFR、VEGF-A 等肿瘤相关靶点', recommended: true },
@@ -7720,7 +7773,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         { id: 'allergy', title: '过敏 / 呼吸道炎症', desc: 'IL-33、TSLP 等气道炎症相关靶点' },
         { id: 'infection', title: '感染性疾病', desc: 'RSV F、SARS-CoV-2 RBD、流感 HA 等抗原' },
         { id: 'cardio', title: '心血管 / 血脂疾病', desc: 'PCSK9、ANGPTL3、IL-1β 等心血管相关靶点' },
-        { id: 'metabolic', title: '代谢 / 脂质代谢疾病', desc: 'ANGPTL3、GIPR 等代谢调控靶点' }
+        { id: 'metabolic', title: '代谢 / 脂质代谢疾病', desc: 'ANGPTL3、GIPR 等代谢调控靶点' },
+        { id: 'neuro', title: '神经 / ADHD', desc: 'DAT 等多巴胺调控相关靶点' }
     ];
     const qdTargetOptions = {
         oncology: [
@@ -7751,6 +7805,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         metabolic: [
             { id: 'ANGPTL3', routeId: 'metabolic_angptl3', title: 'ANGPTL3', desc: '脂质代谢和高脂血症相关靶点', recommended: true },
             { id: 'GIPR', routeId: 'metabolic_gipr', title: 'GIPR', desc: '代谢调控与肠促胰岛素受体方向' }
+        ],
+        neuro: [
+            { id: 'DAT', routeId: 'neuro_adhd_dat', title: 'DAT', desc: '多巴胺转运蛋白，适合 ADHD 方向展示', recommended: true }
         ]
     };
     const qdMechanismOptions = {
@@ -7833,6 +7890,11 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             { id: 'modulate-receptor', title: '调节 GIPR 受体信号', desc: '围绕代谢调控场景生成结合候选', recommended: true },
             { id: 'high-affinity', title: '生成高亲和力结合抗体', desc: '优先优化 GIPR 结合能力和稳定性' },
             { id: 'developability', title: '强化可开发性筛选', desc: '优先获得更适合后续工程化的候选分子' }
+        ],
+        'DAT': [
+            { id: 'modulate-reuptake', title: '调节 DAT 多巴胺再摄取', desc: '围绕 DAT 胞外 vestibule 与外露环区生成候选', recommended: true },
+            { id: 'vestibule-surface', title: '优先识别胞外 vestibule', desc: '强调与多巴胺进入相关的胞外可及表面' },
+            { id: 'high-affinity', title: '生成高亲和力结合抗体', desc: '优先优化 DAT 胞外表面结合能力和稳定性' }
         ],
         default: [
             { id: 'block-ligand', title: '阻断配体结合', desc: '阻止目标蛋白与关键伙伴结合', recommended: true },
@@ -8357,7 +8419,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             { id: 'PCSK9', aliases: ['pcsk9', 'pcsk九', 'p c s k 9', '胆固醇'] },
             { id: 'ANGPTL3', aliases: ['angptl3', 'angptl三', '甘油三酯', '脂质代谢'] },
             { id: 'IL-1β', aliases: ['il-1β', 'il1b', 'il一β', 'il 1 beta', '心血管炎症'] },
-            { id: 'GIPR', aliases: ['gipr', 'g i p r', '肠促胰岛素'] }
+            { id: 'GIPR', aliases: ['gipr', 'g i p r', '肠促胰岛素'] },
+            { id: 'DAT', aliases: ['dat', 'dat1', 'd a t', 'slc6a3', 'dopamine transporter', '多巴胺转运蛋白', '多动症', '注意缺陷'] }
         ],
         mechanism: [
             { id: 'block-pd1-pdl1', aliases: ['阻断pd1pdl1', 'pd1pdl1', '检查点阻断'] },
@@ -9720,6 +9783,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 showTyping();
                 break;
 
+            case 'workflow_pacing':
+                setWorkflowCondensedPacing(msg.mode === 'condensed');
+                break;
+
             case 'assistant_thinking':
                 startAssistantThinking(msg);
                 break;
@@ -9773,7 +9840,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                     refreshLucideIcons({ nodes: [div] });
                     scrollBottom(autoScroll);
                     const contentEl = div.querySelector('.message-content');
-                    typewriterEffect(msg.text, contentEl, autoScroll).then(resolve);
+                    typewriterEffect(msg.text, contentEl, autoScroll, currentClientRunId, { pacing: msg.pacing || '' }).then(resolve);
                 }));
                 break;
 
@@ -10402,6 +10469,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         demoSkipRequested = false;
         demoSkipSettled = false;
         setWorkflowFastForward(false);
+        setWorkflowCondensedPacing(false);
         setRunControlsActive(true);
         const _inputEl = document.getElementById('userInput');
         if (_inputEl) _inputEl.placeholder = '';
@@ -13788,7 +13856,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 r();
                 return;
             }
-            setTimeout(r, workflowFastForward || demoSkipSettled ? Math.min(650, ms) : ms);
+            const targetMs = workflowFastForward || demoSkipSettled
+                ? Math.min(40, ms)
+                : (workflowCondensedPacing ? Math.min(160, ms) : ms);
+            setTimeout(r, targetMs);
         });
         op.skipOnThinkingSkip = true;
         enqueueOp(op);
@@ -13815,7 +13886,13 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                     <div class="message-content" style="display:block;width:100%;min-height:1.6em;"></div>`;
                 getStream().appendChild(div);
                 scrollBottom();
-                typewriterEffect(payload.text, div.querySelector('.message-content'), captureAutoScrollState(), clientRunId).then(resolve);
+                typewriterEffect(
+                    payload.text,
+                    div.querySelector('.message-content'),
+                    captureAutoScrollState(),
+                    clientRunId,
+                    { pacing: payload && payload.pacing || '' }
+                ).then(resolve);
             }));
         } else {
             enqueueOp(() => new Promise(resolve => {
@@ -13840,6 +13917,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             /(?:\bNGF\b|nerve growth factor|神经生长因子)[^，。；;]{0,32}(?:狗|犬源|犬用|canine)/i.test(raw)) {
             return 'Canine NGF';
         }
+        if (/\b(?:DAT1|SLC6A3)\b/i.test(raw) || /dopamine transporter|多巴胺转运蛋白/i.test(raw)) {
+            return 'DAT';
+        }
         const explicit = raw.match(/(?:靶向|针对|靶点(?:为|是)?|target(?:ing)?(?:\s+is|\s*[:：])?)\s*[“”"']?([A-Za-z][A-Za-z0-9 .()\/_-]{1,64})/i);
         const namedTarget = raw.match(/\b([A-Za-z][A-Za-z-]{2,})\s+(\d+(?:\.\d+)?)\b/);
         const token = raw.match(/\b([A-Za-z]{2,}[A-Za-z0-9]*(?:[-.][A-Za-z0-9]+)+|[A-Za-z]{2,}\d+[A-Za-z0-9.-]*)\b/);
@@ -13862,7 +13942,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             [/炎症性肠病|克罗恩/, '炎症性肠病'], [/哮喘|气道炎症/, '哮喘与气道炎症'], [/过敏/, '过敏性疾病'],
             [/新冠|COVID|SARS-CoV-2/i, '新型冠状病毒感染'], [/流感|influenza/i, '流感病毒感染'],
             [/RSV|呼吸道合胞/i, '呼吸道合胞病毒感染'], [/高脂血症|血脂|胆固醇/, '血脂代谢疾病'],
-            [/糖尿病|代谢/, '代谢性疾病'], [/偏头痛/, '偏头痛']
+            [/糖尿病|代谢/, '代谢性疾病'], [/偏头痛/, '偏头痛'], [/多动症|注意缺陷|ADHD/i, '注意缺陷多动障碍（ADHD）']
         ];
         const match = diseasePatterns.find(item => item[0].test(text));
         return match ? match[1] : '用户需求疾病方向';
@@ -13940,6 +14020,16 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 structureRef: 'AlphaFold DB A0A8I3PYI3 + RCSB 4EDW', antibodyBackground: 'anti-NGF 单抗开发背景 · NGF/Fab 公开结构参考',
                 selectionReason: '犬源神经生长因子 NGF 可通过 TrkA 与 p75NTR 相关信号调节外周伤害性感受神经元的敏化，在犬骨关节炎及慢性疼痛语境中具有明确的病理生理关联。成熟 NGF 为分泌型可溶性配体，抗体可及性良好；中和 NGF 可从配体层面降低疼痛信号放大。相较 TrkA 受体或更广泛的炎症介质，NGF 与疼痛表型的机制联系更直接，且已有同类兽医抗体开发背景，因此具有较高的靶点评审优先级。',
                 rows: [['Site A','TrkA 结合邻近表面','直接对应 NGF 受体结合与痛觉敏化机制','优先'],['Site B','成熟 NGF 外侧稳定表面','适合扩展中和候选的表位多样性','备选'],['Site C','二聚界面邻近区域','需保留天然二聚构象解释并谨慎评估','谨慎']]
+            },
+            neuro_adhd_dat: {
+                routeId: 'neuro_adhd_dat', disease: '注意缺陷多动障碍（ADHD）', target: 'DAT', partner: '', abType: 'Fab', count: 10,
+                routeLabel: 'DAT / dopamine reuptake', evidence: 'DAT/SLC6A3 神经递质调控证据包', domain: 'DAT 胞外 vestibule 与外露环区',
+                referenceEntries: 'UniProt SLC6A3(DAT) 靶点条目',
+                mechanism: '围绕 DAT 胞外可及表面生成候选 Fab，调节多巴胺再摄取相关构象状态',
+                interfaceFocus: '胞外 vestibule、TM1/TM6 邻近可及表面与外露环区', selectedEpitope: '优先覆盖多巴胺与抑制剂进入邻近的胞外 vestibule 可及表面',
+                structureRef: '9EO4 human DAT outward-open structure', antibodyBackground: '膜蛋白胞外环识别抗体工程经验 · representative Fab display scaffold',
+                selectionReason: 'DAT/SLC6A3 位于突触前膜并直接决定多巴胺清除速率，与注意缺陷多动障碍相关的神经递质稳态最贴近。相较更下游的受体或更泛化的神经营养因子，DAT 机制链路更直接，且其胞外 vestibule 与外露环区提供可进入抗体展示与结构评估的可及表面，因此具有较高的综合靶点评审优先级。',
+                rows: [['Site A','胞外 vestibule 入口','直接贴近多巴胺再摄取与抑制剂占位相关表面','优先'],['Site B','EL2 / 外露环区稳定表面','适合膜蛋白胞外识别与展示级结合姿态','备选'],['Site C','跨膜深部口袋邻近区域','抗体可及性受限，需谨慎解读','谨慎']]
             },
             tumor_immunotherapy: {
                 routeId: 'tumor_immunotherapy', disease: '肿瘤免疫治疗', target: 'PD-L1', partner: 'PD-1', abType: 'Fab', count: 10,
@@ -14551,7 +14641,10 @@ ${fallbackTableRows(profile.rows)}
 
     function appendLogAnimated(text, options = {}) {
         const div = appendLog(text, options);
-        const duration = Math.max(620, Math.min(1500, String(text || '').length * 18));
+        const normalDuration = Math.max(620, Math.min(1500, String(text || '').length * 18));
+        const duration = isWorkflowHardFastForward()
+            ? 28
+            : (workflowCondensedPacing ? Math.min(180, normalDuration) : normalDuration);
         div.style.setProperty('--log-reveal-duration', duration + 'ms');
         div.classList.add('is-revealing');
         return new Promise(resolve => {
@@ -14563,7 +14656,7 @@ ${fallbackTableRows(profile.rows)}
                 resolve();
             };
             div.addEventListener('animationend', finish, { once: true });
-            setTimeout(finish, duration + 120);
+            waitForWorkflowPresentation(normalDuration + 120, 200, 32).then(finish);
         });
     }
 
@@ -14632,7 +14725,7 @@ ${fallbackTableRows(profile.rows)}
         let summary = total
             ? `已完成 ${completed}/${total} 个分析步骤`
             : '正在梳理需求与关键信息';
-        if (state.status === 'completed') summary = total ? `${total} 个分析步骤已完成` : '分析轨迹已完成';
+        if (state.status === 'completed') summary = state.statusDetail || (total ? `${total} 个分析步骤已完成` : '靶点评审已完成');
         if (state.status === 'cancelled') summary = state.statusDetail || '本次分析已取消';
         if (state.status === 'error') summary = state.statusDetail || '本次分析已中断';
         state.el.dataset.status = state.status;
@@ -14726,7 +14819,7 @@ ${fallbackTableRows(profile.rows)}
                 resolve();
             };
             row.addEventListener('animationend', finish, { once: true });
-            setTimeout(finish, 780);
+            waitForWorkflowPresentation(780, 140, 24).then(finish);
         });
     }
 
@@ -14954,10 +15047,10 @@ ${fallbackTableRows(profile.rows)}
 
     function waitForToolReveal(div, timeoutMs) {
         return new Promise(resolve => {
-            setTimeout(() => {
+            waitForWorkflowPresentation(Math.max(720, Number(timeoutMs) || 720), 190, 32).then(() => {
                 div.classList.remove('is-revealing');
                 resolve();
-            }, Math.max(720, Number(timeoutMs) || 720));
+            });
         });
     }
 
@@ -15863,6 +15956,7 @@ ${fallbackTableRows(profile.rows)}
         cardio_il1b: { aliasPrefix: 'IL1B-Fab', structureTitle: 'IL-1β Fab 炎症风险中和构象', structureFamily: 'IL-1 家族炎症因子 · Fab 候选', visualSummary: '展示 Fab 覆盖 IL-1R 结合邻近面的候选构象。', structuralBasis: 'RCSB 5BVP IL-1 beta / canakinumab Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#DC2626', antibody: '#38BDF8' }, order: [3,7,0,2,6,10,1,5,9,4,8,11] },
         metabolic_angptl3: { aliasPrefix: 'ANGPTL3-Met-Fab', structureTitle: 'ANGPTL3 Fab 脂质代谢调控构象', structureFamily: '脂质代谢调控靶点 · 代谢 Fab 候选', visualSummary: '突出真实 ANGPTL3 脂质代谢相关结构域与 Fab 候选参考构象。', structuralBasis: 'RCSB 6EUA ANGPTL3 真实靶点结构 + Fab 候选参考姿态', interfaceDetail: false, antigenChains: ['A','D','E'], antibodyChains: ['B','C'], visualColors: { antigen: '#65A30D', antibody: '#7C3AED' }, order: [4,8,1,3,7,0,2,6,10,5,9,11] },
         metabolic_gipr: { aliasPrefix: 'GIPR-Fab', structureTitle: 'GIPR Fab 胞外受体结合构象', structureFamily: '代谢受体胞外结构域 · Fab 候选', visualSummary: '展示 GIPG013 Fab 识别 GIPR 胞外结构域的真实复合物界面。', structuralBasis: 'RCSB 4HJ0 human GIPR ECD / GIPG013 Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#0F766E', antibody: '#F472B6' }, order: [5,9,2,4,8,1,3,7,0,6,10,11] },
+        neuro_adhd_dat: { aliasPrefix: 'DAT-Fab', structureTitle: 'DAT Fab 多巴胺再摄取调控展示构象', structureFamily: '多巴胺转运蛋白 · Fab 展示候选', visualSummary: '保留人源 DAT 的真实外向开放形态，并以 Fab 展示胞外 vestibule 邻近可及表面。', structuralBasis: 'RCSB 9EO4 human dopamine transporter outward-open structure + representative Fab display scaffold', interfaceDetail: false, antigenChains: ['B'], antibodyChains: ['H','L'], visualColors: { antigen: '#22C55E', antibody: '#2563EB' } },
         veterinary_canine_ngf: { aliasPrefix: 'CANINE-NGF-Fab', structureTitle: '犬源 NGF Fab 疼痛信号中和展示构象', structureFamily: '犬源神经营养因子 · Fab 中和候选', visualSummary: '呈现犬源成熟 NGF 分子表面及 Fab 候选的空间覆盖关系。', structuralBasis: 'AlphaFold DB A0A8I3PYI3 犬源成熟 NGF + RCSB 4EDW tanezumab Fab 展示支架', interfaceDetail: false, antigenChains: ['A'], antibodyChains: ['H','L'], visualColors: { antigen: '#22C55E', antibody: '#2563EB' } }
     };
 
@@ -15876,7 +15970,7 @@ ${fallbackTableRows(profile.rows)}
         'TNF-Fab': 'TNF', 'IL17A-Fab': 'IL-17A', 'IL23-Fab': 'IL-23', 'RSVF-Fab': 'RSV F',
         'SC2RBD-Fab': 'SARS-CoV-2 RBD', 'FluHA-Fab': 'Influenza HA', 'FluNA-Fab': 'Influenza NA',
         'PCSK9-Fab': 'PCSK9', 'ANGPTL3-CV-Fab': 'ANGPTL3', 'IL1B-Fab': 'IL-1B',
-        'ANGPTL3-Met-Fab': 'ANGPTL3', 'GIPR-Fab': 'GIPR', 'CANINE-NGF-Fab': 'Canine NGF'
+        'ANGPTL3-Met-Fab': 'ANGPTL3', 'GIPR-Fab': 'GIPR', 'DAT-Fab': 'DAT', 'CANINE-NGF-Fab': 'Canine NGF'
     };
 
     function normalizeFallbackStructureTarget(value) {
@@ -15895,6 +15989,7 @@ ${fallbackTableRows(profile.rows)}
         if (/influenza\s*(?:na|neuraminidase)|流感\s*(?:na|神经氨酸酶)/.test(target)) return FALLBACK_3D_PRESETS.infectious_flu_na;
         if (/pd\s*-?\s*1|pd1/.test(target) && !/pd\s*-?\s*l\s*-?\s*1|pdl1/.test(target)) return FALLBACK_3D_PRESETS.checkpoint_pd1;
         if (/ctla\s*-?\s*4|cd152/.test(target)) return FALLBACK_3D_PRESETS.checkpoint_ctla4;
+        if (/dopamine\s*transporter|多巴胺转运蛋白|\bdat1\b|\bslc6a3\b|\bdat\b/.test(target)) return FALLBACK_3D_PRESETS.neuro_adhd_dat;
         if (/cd\s*-?\s*20|ms4a1/.test(target)) return FALLBACK_3D_PRESETS.heme_cd20;
         if (/cd\s*-?\s*19/.test(target)) return FALLBACK_3D_PRESETS.heme_cd19;
         if (/cd\s*-?\s*3(?:e|epsilon|ε)?/.test(target)) return FALLBACK_3D_PRESETS.immune_cd3;
@@ -20020,12 +20115,7 @@ QVQLVESGGGLVQPGGSLRLSCAASGYIFSSNAMGWYRQAPGKQRELVAAISSGGSTYYADSVKGRFTISRDNAKTTLYL
         clearTimeout(molCloseTimer);
         molCloseTimer = null;
         overlay.style.display = 'flex';
-        // Use rAF so browser paints the initial state (opacity:0, scale:0.92) before transition starts
-        requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-                overlay.classList.add('open');
-            });
-        });
+        overlay.classList.add('open');
         molModalOpen = true;
         document.body.style.overflow = 'hidden';
         refreshLucideIcons({ nodes: [titleEl] });
@@ -20045,12 +20135,13 @@ QVQLVESGGGLVQPGGSLRLSCAASGYIFSSNAMGWYRQAPGKQRELVAAISSGGSTYYADSVKGRFTISRDNAKTTLYL
         molCloseTimer = setTimeout(() => {
             if (overlay) {
                 overlay.style.visibility = 'hidden';
+                overlay.style.display = 'none';
                 overlay.setAttribute('aria-hidden', 'true');
             }
             restorePromotedModalIframe();
             molCloseTimer = null;
             pumpGalleryInitQueue();
-        }, 500);
+        }, 140);
         postModalViewerCommand('setSpin', { spin: false });
         molModalOpen = false; modalPdbId = null;
         document.body.style.overflow = '';

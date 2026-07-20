@@ -138,6 +138,7 @@ test('final workflow modal preparation does not force page scrolling when the us
 
 test('agent message typewriter uses bounded pacing with a fast-forward path', () => {
   const typewriter = extractFunction(html, 'function typewriterEffect');
+  const pacingCase = extractSwitchCase(html, "case 'workflow_pacing':");
 
   assert.match(html, /const\s+TYPEWRITER_TICK_MS\s*=\s*24/);
   assert.match(html, /const\s+TYPEWRITER_TARGET_MIN_MS\s*=\s*720/);
@@ -149,8 +150,22 @@ test('agent message typewriter uses bounded pacing with a fast-forward path', ()
   assert.match(typewriter, /TYPEWRITER_TARGET_MAX_MS/);
   assert.match(typewriter, /TYPEWRITER_TARGET_MIN_MS/);
   assert.match(typewriter, /TYPEWRITER_MS_PER_CHAR/);
-  assert.match(typewriter, /accelerated \? 10/);
+  assert.match(html, /let\s+workflowCondensedPacing\s*=\s*false/);
+  assert.match(typewriter, /options\.pacing\s*!==\s*'target-review'/);
+  assert.match(typewriter, /hardFastForward\s*\?\s*4/);
+  assert.match(typewriter, /condensed\s*\?\s*12/);
+  assert.match(pacingCase, /setWorkflowCondensedPacing\(msg\.mode\s*===\s*'condensed'\)/);
   assert.doesNotMatch(typewriter, /target\s+2-4s/, 'stale slower timing comment should be removed');
+});
+
+test('completed target review settles the research panel and removes its waiting shimmer', () => {
+  const summary = extractFunction(html, 'function renderResearchTracePanelSummary');
+  const completePanel = extractFunction(html, 'function completeResearchTracePanel');
+
+  assert.match(summary, /state\.statusDetail/);
+  assert.match(summary, /靶点评审已完成/);
+  assert.match(summary, /waitingEl\.hidden\s*=\s*state\.status\s*!==\s*'active'/);
+  assert.match(completePanel, /state\.steps\.forEach/);
 });
 
 test('candidate gallery thumbnails receive deterministic per-candidate pose seeds', () => {
