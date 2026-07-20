@@ -111,7 +111,9 @@ function exactRcsbFetch(calls, options = {}) {
         rcsb_entry_info: { resolution_combined: [2.4] }
       });
     }
-    if (url === 'https://data.rcsb.org/rest/v1/core/polymer_entity/1ABC/1') return jsonResponse(targetEntity({ accession }));
+    if (url === 'https://data.rcsb.org/rest/v1/core/polymer_entity/1ABC/1') {
+      return jsonResponse(targetEntity({ accession, chains: options.targetChains || ['A'] }));
+    }
     if (url === 'https://data.rcsb.org/rest/v1/core/polymer_entity/1ABC/2') return jsonResponse(antibodyEntity('Fab heavy chain', options.heavyChains || ['H']));
     if (url === 'https://data.rcsb.org/rest/v1/core/polymer_entity/1ABC/3') return jsonResponse(antibodyEntity('Fab light chain', options.lightChains || ['L']));
     if (url === 'https://files.rcsb.org/download/1ABC.pdb1.gz') return bufferResponse(assembly);
@@ -190,6 +192,34 @@ test('selects one complete Fab when an RCSB assembly repeats antibody chains', a
   const structure = await resolver.resolveStructure({ requestedTarget: 'Novel antigen', targetGene: 'NOVEL1' });
 
   assert.deepEqual(structure.coordinates.antibodyChains, ['H', 'L']);
+});
+
+test('projects an RCSB assembly to the antigen chains contacting the selected antibody', async t => {
+  const cacheDir = tempCache();
+  t.after(() => fs.rmSync(cacheDir, { recursive: true, force: true }));
+  const lines = ['HEADER    CONTACT-FOCUSED TEST'];
+  let serial = 1;
+  for (const [chain, x] of [['A', 0], ['D', 3], ['E', 80], ['F', 120], ['H', 1], ['L', 2]]) {
+    lines.push(atomLine(serial++, chain, x));
+    lines.push(atomLine(serial++, chain, x + 0.5));
+  }
+  lines.push('END', '');
+  const resolver = createStructureResolver({
+    cacheDir,
+    fetchImpl: exactRcsbFetch([], {
+      pdb: lines.join('\n'),
+      targetChains: ['A', 'D', 'E', 'F']
+    })
+  });
+
+  const structure = await resolver.resolveStructure({ requestedTarget: 'Novel antigen', targetGene: 'NOVEL1' });
+
+  assert.deepEqual(structure.coordinates.antigenChains, ['A', 'D']);
+  assert.deepEqual(structure.coordinates.sourceAntigenChains, ['A', 'D', 'E', 'F']);
+  assert.deepEqual(structure.coordinates.antibodyChains, ['H', 'L']);
+  assert.equal(structure.pose.kind, 'representative_interface');
+  assert.match(structure.display.interfaceDetail, /未将远端对称拷贝重复显示/);
+  assert.match(structure.display.disclosure, /biological assembly/);
 });
 
 test('uses author chain IDs without mixing in RCSB label chain IDs', async t => {
@@ -407,8 +437,8 @@ test('keeps an explicit isoform unresolved when no isoform accession can be prov
   assert.equal(networkCalls, 0);
 });
 
-test('uses structure cache schema version 3', () => {
-  assert.equal(SCHEMA_VERSION, 3);
+test('uses structure cache schema version 4', () => {
+  assert.equal(SCHEMA_VERSION, 4);
 });
 
 test('loads verified coordinates after resolver restart without making network requests', async t => {

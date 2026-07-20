@@ -56,6 +56,8 @@ test('structure contracts retain provenance while public views hide internal val
   assert.match(presentation, /kindLabel\s*=\s*'展示姿态'/);
   assert.match(presentation, /badgeText\s*=\s*'DISPLAY'/);
   assert.match(presentation, /kindLabel\s*=\s*'实验复合物'/);
+  assert.match(presentation, /kindLabel\s*=\s*'实验结合界面'/);
+  assert.match(presentation, /poseKind\s*===\s*'representative_interface'/);
   assert.match(presentation, /kindLabel\s*=\s*'预测抗原结构'/);
   assert.match(presentation, /不代表实验复合物、对接预测或经验证结合界面/);
   assert.match(presentation, /coordinates\.targetVerified\s*===\s*true/);
@@ -118,7 +120,7 @@ test('disconnected and empty-payload fallbacks preserve the requested target wit
   assert.match(binderFallback, /requestedLabel: target/);
   assert.match(binderFallback, /coordinateAntigenLabel: coordinateTarget/);
   assert.match(binderFallback, /targetVerified,/);
-  assert.match(binderFallback, /kind: representative \? 'representative' : 'experimental_complex'/);
+  assert.match(binderFallback, /representativeInterface \? 'representative_interface' : 'experimental_complex'/);
   assert.match(binderFallback, /grade: !targetVerified \? 'D'/);
   assert.match(binderFallback, /题头保留用户需求靶点/);
   assert.match(binderFallback, /if \(representative\) meta\.ipTm = null/);

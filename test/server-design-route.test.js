@@ -539,6 +539,12 @@ test('server previews exact prepared structures and leaves unknown targets for v
   }
 
   assert.notEqual(previews[0].firstFile, previews[1].firstFile);
+  const fluBinder = previews[0].data.threeDPreview.binders[0];
+  assert.deepEqual(fluBinder.antigenChains, ['A', 'D'], 'Flu HA should show one HA1/HA2 protomer at the selected Fab interface');
+  assert.deepEqual(fluBinder.antibodyChains, ['B', 'C'], 'Flu HA should show one complete Fab');
+  assert.deepEqual(fluBinder.sourceAntigenChains, ['A', 'D', 'E', 'F', 'G', 'H'], 'Flu HA should retain the full trimer chain provenance');
+  assert.equal(fluBinder.structure.pose.kind, 'representative_interface');
+  assert.match(fluBinder.structure.display.disclosure, /不代表完整天然多聚体形状/);
 
   for (const text of ['设计10个抗体，靶点是烟草花叶病毒', '设计10个纳米抗体，靶点是烟草花叶病毒']) {
     const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/design-route?text=' + encodeURIComponent(text));

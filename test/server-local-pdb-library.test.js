@@ -85,12 +85,18 @@ test('local PDB model library API lists local structures with viewer metadata', 
   assert.equal(flu.targetTag.target, 'Influenza HA');
   assert.equal(flu.targetTag.antibodyFormat, 'Fab');
   assert.equal(flu.targetTag.source, 'pdb-remark');
-  assert.equal(flu.structureKind, 'Fab 抗原-抗体复合体');
+  assert.equal(flu.structureKind, 'Fab 代表性实验结合界面');
   assert.match(flu.structureBrief, /Influenza HA/);
-  assert.match(flu.structureBrief, /Fab 抗原-抗体复合体/);
-  assert.match(flu.structuralBasis, /RCSB 3GBM/);
+  assert.match(flu.structureBrief, /Fab 代表性实验结合界面/);
+  assert.equal(flu.structuralBasis, 'RCSB 3GBM influenza HA trimer biological assembly / representative HA protomer-CR6261 Fab interface');
   assert.ok(Array.isArray(flu.antigenChains));
   assert.ok(Array.isArray(flu.antibodyChains));
+  assert.deepEqual(flu.antigenChains, ['A', 'D']);
+  assert.deepEqual(flu.antibodyChains, ['B', 'C']);
+  assert.deepEqual(flu.sourceAntigenChains, ['A', 'D', 'E', 'F', 'G', 'H']);
+  assert.deepEqual(flu.sourceAntibodyChains, ['B', 'C']);
+  const fluViewerPdbUrl = new URL(flu.viewerUrl, 'http://127.0.0.1').searchParams.get('pdb');
+  assert.match(fluViewerPdbUrl, /chains=A%2CD%2CB%2CC/);
   assert.match(flu.updatedAt, /^\d{4}-\d{2}-\d{2}T/);
 });
 

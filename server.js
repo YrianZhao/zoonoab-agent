@@ -105,7 +105,7 @@ const STRUCTURE_RESOLVER_REQUEST_TIMEOUT_MS = Math.max(1500, Number(process.env.
 const STRUCTURE_RESOLVER_FINAL_WAIT_MS = Math.max(1000, Number(process.env.STRUCTURE_RESOLVER_FINAL_WAIT_MS || 18000) || 18000);
 const STRUCTURE_RESOLVER_JOB_TIMEOUT_MS = Math.max(STRUCTURE_RESOLVER_FINAL_WAIT_MS, Number(process.env.STRUCTURE_RESOLVER_JOB_TIMEOUT_MS || 45000) || 45000);
 const STRUCTURE_DISPLAY_MAX_CANDIDATES = Math.max(1, Math.min(20, Number(process.env.STRUCTURE_DISPLAY_MAX_CANDIDATES || 10) || 10));
-const STRUCTURE_CACHE_DIR = resolveProjectPath(process.env.STRUCTURE_CACHE_DIR || path.join('.runtime', 'structure-cache', 'v3'));
+const STRUCTURE_CACHE_DIR = resolveProjectPath(process.env.STRUCTURE_CACHE_DIR || path.join('.runtime', 'structure-cache', 'v4'));
 const GENERATED_STRUCTURE_DIR = path.join(STRUCTURE_CACHE_DIR, 'generated');
 const GENERATED_STRUCTURE_MAX_ENTRIES = Math.max(20, Number(process.env.GENERATED_STRUCTURE_MAX_ENTRIES || 300) || 300);
 const GENERATED_STRUCTURE_MAX_BYTES = Math.max(16 * 1024 * 1024, Number(process.env.GENERATED_STRUCTURE_MAX_BYTES || 512 * 1024 * 1024) || 512 * 1024 * 1024);
@@ -4272,10 +4272,13 @@ const ROUTE_3D_PRESETS = {
     aliasPrefix: 'FluHA-Fab',
     title: 'Influenza HA Fab 保守中和表位构象',
     structureFamily: '流感表面抗原 · 广谱中和 Fab 候选',
-    visualSummary: '保留 HA 三聚体 biological assembly，并突出 Fab 对保守中和表面的稳定接触。',
-    structuralBasis: 'RCSB 3GBM influenza HA trimer biological assembly / CR6261 Fab complex',
-    antigenChains: ['A', 'D', 'E', 'F', 'G', 'H'],
+    visualSummary: '从真实 HA 三聚体 biological assembly 中提取一个 HA1/HA2 原聚体与一个 CR6261 Fab 的实验结合界面。',
+    structuralBasis: 'RCSB 3GBM influenza HA trimer biological assembly / representative HA protomer-CR6261 Fab interface',
+    antigenChains: ['A', 'D'],
+    sourceAntigenChains: ['A', 'D', 'E', 'F', 'G', 'H'],
     antibodyChains: ['B', 'C'],
+    sourceAntibodyChains: ['B', 'C'],
+    displayMode: 'representative_interface',
     antigenColor: '#0891B2',
     antibodyColor: '#FB7185',
     order: [10, 2, 5, 8, 0, 3, 6, 9, 1, 4, 7, 11],
@@ -4624,8 +4627,10 @@ function buildLocalPDBDisplayMetadata(filename, remarks) {
   const targetDisplay = targetTag.target;
   const antibodyFormat = targetTag.antibodyFormat;
   const hasAntibodyChains = Array.isArray(remarks && remarks.antibody) && remarks.antibody.length > 0;
+  const representativeInterface = Boolean(preset && preset.displayMode === 'representative_interface');
   let structureKind = '抗原结构预设';
-  if (antibodyFormat === 'Binder') structureKind = '抗原-候选抗体复合体';
+  if (representativeInterface) structureKind = (antibodyFormat || '抗体') + ' 代表性实验结合界面';
+  else if (antibodyFormat === 'Binder') structureKind = '抗原-候选抗体复合体';
   else if (antibodyFormat) structureKind = antibodyFormat + ' 抗原-抗体复合体';
   else if (hasAntibodyChains) structureKind = '抗原-抗体复合体';
   const structureBrief = [targetDisplay || '靶点待确认', structureKind].filter(Boolean).join(' · ');
@@ -4635,7 +4640,9 @@ function buildLocalPDBDisplayMetadata(filename, remarks) {
     structureKind,
     structureBrief,
     structureFamily: (preset && preset.structureFamily) || '',
-    structuralBasis: (remarks && remarks.structuralBasis) || (preset && preset.structuralBasis) || '',
+    structuralBasis: representativeInterface
+      ? preset.structuralBasis
+      : ((remarks && remarks.structuralBasis) || (preset && preset.structuralBasis) || ''),
     visualSummary: (preset && preset.visualSummary) || '',
     targetTag
   };
@@ -4643,15 +4650,17 @@ function buildLocalPDBDisplayMetadata(filename, remarks) {
 
 function routeChainInfo(preset, file) {
   const remarks = readLocalPDBRemarks(file);
-  const sourceInfo = {
-    antigen: preset && Array.isArray(preset.antigenChains) && preset.antigenChains.length ? preset.antigenChains : (remarks.antigen && remarks.antigen.length ? remarks.antigen : ['A']),
-    antibody: preset && Array.isArray(preset.antibodyChains) && preset.antibodyChains.length ? preset.antibodyChains : (remarks.antibody && remarks.antibody.length ? remarks.antibody : ['B'])
-  };
+  const sourceAntigen = preset && Array.isArray(preset.sourceAntigenChains) && preset.sourceAntigenChains.length
+    ? preset.sourceAntigenChains
+    : (remarks.antigen && remarks.antigen.length ? remarks.antigen : ['A']);
+  const sourceAntibody = preset && Array.isArray(preset.sourceAntibodyChains) && preset.sourceAntibodyChains.length
+    ? preset.sourceAntibodyChains
+    : (remarks.antibody && remarks.antibody.length ? remarks.antibody : ['B']);
   return {
-    antigen: sourceInfo.antigen,
-    antibody: sourceInfo.antibody,
-    sourceAntigen: sourceInfo.antigen,
-    sourceAntibody: sourceInfo.antibody
+    antigen: preset && Array.isArray(preset.antigenChains) && preset.antigenChains.length ? preset.antigenChains : sourceAntigen,
+    antibody: preset && Array.isArray(preset.antibodyChains) && preset.antibodyChains.length ? preset.antibodyChains : sourceAntibody,
+    sourceAntigen,
+    sourceAntibody
   };
 }
 
@@ -4762,6 +4771,7 @@ function preparedStructureContract(profile, preset, file, chainInfo, staticPrese
   const accessionMatch = String(basis).match(/RCSB\s+([0-9][A-Za-z0-9]{3})/i);
   const targetVerified = Boolean(staticPreset && preset && preparedStructureTargetMatches(profile, file));
   const displayPose = targetVerified && Boolean(preset && preset.interfaceDetail === false);
+  const representativeInterface = targetVerified && Boolean(preset && preset.displayMode === 'representative_interface');
   const representative = !targetVerified;
   const antigenChains = chainInfo && Array.isArray(chainInfo.antigen) ? chainInfo.antigen : [];
   const antibodyChains = chainInfo && Array.isArray(chainInfo.antibody) ? chainInfo.antibody : [];
@@ -4807,7 +4817,7 @@ function preparedStructureContract(profile, preset, file, chainInfo, staticPrese
       sourceAntibodyChains: chainInfo && Array.isArray(chainInfo.sourceAntibody) ? chainInfo.sourceAntibody : antibodyChains
     },
     pose: {
-      kind: displayPose ? 'display_pose' : (representative ? 'representative' : 'experimental_complex'),
+      kind: displayPose ? 'display_pose' : (representative ? 'representative' : (representativeInterface ? 'representative_interface' : 'experimental_complex')),
       scaffoldId: null,
       generatorVersion: null,
       anchorStrategy: null,
@@ -4821,9 +4831,11 @@ function preparedStructureContract(profile, preset, file, chainInfo, staticPrese
       grade: !targetVerified ? 'D' : (displayPose ? 'B' : 'A'),
       interfaceDetail: !targetVerified
         ? '本地坐标靶点与本轮用户需求靶点不完全一致，不能作为当前靶点的已核验结构。'
-        : (displayPose
+        : (representativeInterface
+          ? '当前为从完整 biological assembly 中提取的单个抗体代表性实验结合界面；完整天然多聚体链仍保留在来源记录中。'
+          : (displayPose
           ? '真实抗原结构与代表性 Fab/VHH 展示支架；不声明为完整实验结合界面。'
-          : '抗原和抗体链来自当前路线已准备的公开复合物结构。'),
+          : '抗原和抗体链来自当前路线已准备的公开复合物结构。')),
       structureTitle: targetVerified
         ? routeStructureTitle(profile, preset, antibodyFormatForProfile(profile))
         : target + ' 默认抗原-抗体结构展示',
@@ -4833,9 +4845,11 @@ function preparedStructureContract(profile, preset, file, chainInfo, staticPrese
         : target + ' 需求信息 + 默认抗原-抗体代表性结构',
       disclosure: !targetVerified
         ? '题头保留用户需求靶点“' + target + '”；当前坐标中的抗原为“' + coordinateTarget + '”，抗原身份未与本轮靶点核验。'
-        : (displayPose
+        : (representativeInterface
+          ? '当前展示为公开 biological assembly 中的单个抗体代表性实验结合界面，不代表完整天然多聚体形状。'
+          : (displayPose
           ? '抗原身份与整体形态来自当前靶点结构；抗体为公开支架生成的展示姿态，不代表实验复合物或经验证结合界面。'
-          : '公开实验复合物用于展示结构参考，不代表当前候选序列已经获得实验验证。')
+          : '公开实验复合物用于展示结构参考，不代表当前候选序列已经获得实验验证。'))
     }
   };
 }
@@ -5153,8 +5167,8 @@ function structureBinderMeta(profile, idx, structure) {
   const coordinates = structure.coordinates || {};
   const source = structure.source || {};
   const pose = structure.pose || {};
-  const poseName = pose.kind === 'experimental_complex'
-    ? '公开结构参考'
+  const poseName = pose.kind === 'experimental_complex' || pose.kind === 'representative_interface'
+    ? (pose.kind === 'representative_interface' ? '代表性实验结合界面' : '公开结构参考')
     : (pose.kind === 'display_pose' ? '候选展示姿态' : (pose.kind === 'representative' ? '默认代表结构' : '抗原结构'));
   const sequence = routeDisplaySequence(profile, idx);
   const cdr3Len = Math.max(10, Math.min(18, 12 + (stableSeed(target + idx) % 6)));
@@ -5191,7 +5205,7 @@ function structureBinderMeta(profile, idx, structure) {
     ].filter(Boolean).join(' · '),
     visualSummary: display.visualSummary || '',
     structuralBasis: display.structuralBasis || '',
-    interfaceDetail: pose.kind === 'experimental_complex',
+    interfaceDetail: pose.kind === 'experimental_complex' || pose.kind === 'representative_interface',
     antigenChains: Array.isArray(coordinates.antigenChains) ? coordinates.antigenChains : [],
     antibodyChains: Array.isArray(coordinates.antibodyChains) ? coordinates.antibodyChains : [],
     sourceAntigenChains: Array.isArray(coordinates.sourceAntigenChains) ? coordinates.sourceAntigenChains : [],
@@ -5216,7 +5230,7 @@ function canUseResolvedExperimentalComplex(structure, antibodyFormat) {
   const chains = structure && structure.coordinates && Array.isArray(structure.coordinates.antibodyChains)
     ? structure.coordinates.antibodyChains
     : [];
-  if (!structure || !structure.pose || structure.pose.kind !== 'experimental_complex') return false;
+  if (!structure || !structure.pose || !['experimental_complex', 'representative_interface'].includes(structure.pose.kind)) return false;
   return antibodyFormat === 'VHH' ? chains.length === 1 : chains.length >= 2;
 }
 
@@ -5787,17 +5801,22 @@ function buildLocalPDBLibraryModel(filename) {
   const fp = localPDBPath(filename);
   const stat = fp ? fs.statSync(fp) : null;
   const remarks = readLocalPDBRemarks(filename);
+  const preset = localPDBPresetForFilename(filename);
+  const chainInfo = routeChainInfo(preset, filename);
+  chainInfo.antibody = singleAntibodyChainSet(chainInfo.antibody, inferLocalPDBFormatFromFilename(filename, remarks));
   const displayMeta = buildLocalPDBDisplayMetadata(filename, remarks);
   const name = String(filename || '').replace(/\.pdb$/i, '');
   return {
     filename,
     name,
     url: localPDBPublicUrl(filename),
-    viewerUrl: localPDBViewerUrl(filename, name, remarks),
+    viewerUrl: localPDBViewerUrl(filename, name, chainInfo),
     sizeBytes: stat ? stat.size : 0,
     updatedAt: stat ? stat.mtime.toISOString() : null,
-    antigenChains: remarks.antigen || [],
-    antibodyChains: remarks.antibody || [],
+    antigenChains: chainInfo.antigen,
+    antibodyChains: chainInfo.antibody,
+    sourceAntigenChains: chainInfo.sourceAntigen,
+    sourceAntibodyChains: chainInfo.sourceAntibody,
     targetDisplay: displayMeta.targetDisplay,
     antibodyFormat: displayMeta.antibodyFormat,
     structureKind: displayMeta.structureKind,
@@ -9061,11 +9080,13 @@ async function runWorkflow(ws, input, forcedRoute, researchTraceRuntime = null) 
     };
     const galleryLabel = firstPoseKind === 'display_pose'
       ? allLocalPDBs.length + ' 个 ' + profile.targetDisplay + ' ' + abType + ' 候选展示姿态'
-      : (firstPoseKind === 'antigen_only'
+      : (firstPoseKind === 'representative_interface'
+        ? allLocalPDBs.length + ' 个 ' + profile.targetDisplay + ' ' + abType + ' 代表性实验结合界面'
+        : (firstPoseKind === 'antigen_only'
         ? profile.targetDisplay + ' 真实抗原结构'
         : (firstPoseKind === 'representative'
           ? profile.targetDisplay + ' 默认抗原-抗体结构展示'
-          : allLocalPDBs.length + ' 个 ' + profile.targetDisplay + ' ' + abType + ' 结构参考'));
+          : allLocalPDBs.length + ' 个 ' + profile.targetDisplay + ' ' + abType + ' 结构参考')));
     console.log('[Server] Prepared ' + allLocalPDBs.length + ' target-consistent PDB structures (' + (firstPoseKind || 'prepared') + ')');
     send({ type: 'show_3d', primaryPDB: allLocalPDBs[0].id, allPDBs: allLocalPDBs.map(p => p.id),
       label: galleryLabel, isLocal: true,

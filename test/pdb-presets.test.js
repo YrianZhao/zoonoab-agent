@@ -26,8 +26,10 @@ const MULTIMER_ROUTE_EXPECTATIONS = [
     routeId: 'infectious_flu',
     file: 'pdb/FluHA-Fab-01.pdb',
     basis: /RCSB 3GBM influenza HA trimer biological assembly \/ CR6261 Fab complex/,
-    basisText: 'RCSB 3GBM influenza HA trimer biological assembly / CR6261 Fab complex',
+    basisText: 'RCSB 3GBM influenza HA trimer biological assembly / representative HA protomer-CR6261 Fab interface',
     antigenChains: ['A', 'D', 'E', 'F', 'G', 'H'],
+    displayAntigenChains: ['A', 'D'],
+    sourceAntigenChains: ['A', 'D', 'E', 'F', 'G', 'H'],
     antibodyChains: ['B', 'C']
   }
 ];
@@ -156,6 +158,7 @@ function parsePdbAtoms(filename) {
     .map(line => ({
       chain: line[21] || ' ',
       atom: line.slice(12, 16).trim(),
+      element: line.slice(76, 78).trim(),
       x: parseFloat(line.slice(30, 38)),
       y: parseFloat(line.slice(38, 46)),
       z: parseFloat(line.slice(46, 54))
@@ -245,8 +248,9 @@ function crossRoleContactSummary(atoms, antigenChains, antibodyChains, contactTh
 }
 
 function crossRoleGeometrySummary(atoms, antigenChains, antibodyChains, contactThreshold = 4.5, nearThreshold = 6.0, clashThreshold = 2.0) {
-  const antigen = atoms.filter(atom => antigenChains.includes(atom.chain));
-  const antibody = atoms.filter(atom => antibodyChains.includes(atom.chain));
+  const isHeavyAtom = atom => !/^H/i.test(atom.element || atom.atom.replace(/^\d/, ''));
+  const antigen = atoms.filter(atom => antigenChains.includes(atom.chain) && isHeavyAtom(atom));
+  const antibody = atoms.filter(atom => antibodyChains.includes(atom.chain) && isHeavyAtom(atom));
   let minDistance = Infinity;
   let contactPairs = 0;
   let nearPairs = 0;
@@ -358,9 +362,10 @@ test('multimeric antigen metadata stays aligned across backend and frontend fall
   const frontendSource = fs.readFileSync(path.join(ROOT, 'public/index.html'), 'utf8');
 
   for (const item of MULTIMER_ROUTE_EXPECTATIONS) {
-    const backendAntigens = item.antigenChains.map(chain => "'" + chain + "'").join(', ');
+    const displayAntigenChains = item.displayAntigenChains || item.antigenChains;
+    const backendAntigens = displayAntigenChains.map(chain => "'" + chain + "'").join(', ');
     const backendAntibodies = item.antibodyChains.map(chain => "'" + chain + "'").join(', ');
-    const frontendAntigens = item.antigenChains.map(chain => "'" + chain + "'").join(',');
+    const frontendAntigens = displayAntigenChains.map(chain => "'" + chain + "'").join(',');
     const frontendAntibodies = item.antibodyChains.map(chain => "'" + chain + "'").join(',');
     const basisPattern = escapeRegExp(item.basisText);
 
@@ -389,6 +394,12 @@ test('multimeric antigen metadata stays aligned across backend and frontend fall
       frontendSource,
       new RegExp(item.routeId + ': \\{[\\s\\S]*antibodyChains: \\[' + escapeRegExp(frontendAntibodies) + '\\]')
     );
+    if (item.sourceAntigenChains) {
+      const backendSources = item.sourceAntigenChains.map(chain => "'" + chain + "'").join(', ');
+      const frontendSources = item.sourceAntigenChains.map(chain => "'" + chain + "'").join(',');
+      assert.match(serverSource, new RegExp(item.routeId + ': \\{[\\s\\S]*sourceAntigenChains: \\[' + escapeRegExp(backendSources) + '\\]'));
+      assert.match(frontendSource, new RegExp(item.routeId + ': \\{[\\s\\S]*sourceAntigenChains: \\[' + escapeRegExp(frontendSources) + '\\]'));
+    }
   }
 });
 
