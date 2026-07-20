@@ -6467,7 +6467,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '69498220';
+    const APP_BUILD_VERSION = '69498221';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
     const SILICONFLOW_CHAT_FALLBACK_MODELS = ['Qwen/Qwen3-32B', 'Qwen/Qwen3-14B', 'Qwen/Qwen3-8B', 'deepseek-ai/DeepSeek-V3'];
@@ -9398,6 +9398,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         url += '&poseSeed=' + encodeURIComponent(String(viewerPoseSeed));
         url += '&interfaceDetail=' + (meta.interfaceDetail === false ? '0' : '1');
         url += '&modelOrigin=' + encodeURIComponent(getModelOrigin(meta));
+        url += '&structureLabel=' + encodeURIComponent(getStructurePresentation(meta).kindLabel || '坐标已载入');
         url += '&autoSpin=1';
         if (title) url += '&title=' + encodeURIComponent(title);
         return url;
@@ -9435,7 +9436,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         ].filter(Boolean);
         if (titleEl) {
             titleEl.innerHTML = '<div class="mol-modal-title-copy"><div class="mol-modal-title-main"><i data-lucide="box" style="width:18px;height:18px;color:#6B5BFF;"></i><span>' + escHtml(displayTitle) + '</span></div>' +
-                (subtitleParts.length ? '<div class="mol-modal-subtitle">' + escHtml(subtitleParts.join(' · ')) + '</div>' : '') + '</div>';
+                (subtitleParts.length ? '<div class="mol-modal-subtitle">' + escHtml(subtitleParts.join(' · ')) + '</div>' : '') +
+                buildSelectionReasonHtml(model) + '</div>';
         }
         restorePromotedModalIframe();
         bodyEl.innerHTML = '';
@@ -16304,6 +16306,7 @@ ${fallbackTableRows(profile.rows)}
         url += '&poseSeed=' + encodeURIComponent(String(viewerPoseSeed));
         url += '&interfaceDetail=' + (meta.interfaceDetail === false ? '0' : '1');
         url += '&modelOrigin=' + encodeURIComponent(getModelOrigin(meta));
+        url += '&structureLabel=' + encodeURIComponent(getStructurePresentation(meta).kindLabel || '坐标已载入');
         if (options.compact) url += '&compact=1';
         if (options.autoSpin) url += '&autoSpin=1';
         if (title) url += '&title=' + encodeURIComponent(title);
@@ -19970,7 +19973,8 @@ QVQLVESGGGLVQPGGSLRLSCAASGYIFSSNAMGWYRQAPGKQRELVAAISSGGSTYYADSVKGRFTISRDNAKTTLYL
         ].filter(Boolean);
         if (titleEl) {
             titleEl.innerHTML = '<div class="mol-modal-title-copy"><div class="mol-modal-title-main"><i data-lucide="box" style="width:18px;height:18px;color:#6B5BFF;"></i><span>' + escHtml(displayTitle) + '</span></div>' +
-                (subtitleParts.length ? '<div class="mol-modal-subtitle">' + escHtml(subtitleParts.join(' · ')) + '</div>' : '') + '</div>';
+                (subtitleParts.length ? '<div class="mol-modal-subtitle">' + escHtml(subtitleParts.join(' · ')) + '</div>' : '') +
+                buildSelectionReasonHtml(meta) + '</div>';
         }
         overlay.style.display = 'flex';
         overlay.style.visibility = 'visible';

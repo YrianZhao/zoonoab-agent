@@ -564,6 +564,8 @@ test('server previews exact canine NGF structures for a canine monoclonal antibo
   assert.match(firstBinder.file, /^CANINE-NGF-Fab-/);
   assert.match(firstBinder.structuralBasis, /A0A8I3PYI3/);
   assert.equal(firstBinder.structure.coordinates.targetVerified, true);
+  assert.equal(firstBinder.structure.source.kind, 'display_pose');
+  assert.equal(firstBinder.structure.pose.kind, 'display_pose');
   assert.equal(firstBinder.structure.targetIdentity.organismTaxId, 9615);
   assert.doesNotMatch(firstBinder.selectionReason, /用户提出|用户指定|任务应/);
 });

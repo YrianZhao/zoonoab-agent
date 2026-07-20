@@ -65,8 +65,10 @@ test('structure contracts retain provenance while public views hide internal val
   assert.doesNotMatch(summary, /'结构来源'|'展示等级'|'抗原身份'|'结构说明'/);
   assert.match(routeSummary, /getStructureSummaryItems\(routeMeta\)/);
   assert.match(historySummary, /getStructureSummaryItems\(first\)/);
-  assert.doesNotMatch(historyModal, /buildStructureDisclosureHtml|buildSelectionReasonHtml|结构来源|展示等级|抗原身份/);
-  assert.doesNotMatch(fullModal, /buildStructureDisclosureHtml|buildSelectionReasonHtml|结构来源|展示等级|抗原身份/);
+  assert.match(historyModal, /buildSelectionReasonHtml\(model\)/);
+  assert.match(fullModal, /buildSelectionReasonHtml\(meta\)/);
+  assert.doesNotMatch(historyModal, /buildStructureDisclosureHtml|结构来源|展示等级|抗原身份/);
+  assert.doesNotMatch(fullModal, /buildStructureDisclosureHtml|结构来源|展示等级|抗原身份/);
 });
 
 test('display poses and representative fallbacks never receive PASS or synthetic structural quality metrics', () => {

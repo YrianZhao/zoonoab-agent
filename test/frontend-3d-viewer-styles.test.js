@@ -214,7 +214,8 @@ test('full viewer keeps model origin internal and shows an audience-facing readi
   assert.match(viewerFullHtml, /\.vf-source-badge\.local/);
   assert.match(viewerFullHtml, /\.vf-source-badge\.auto/);
   assert.match(sourceBadge, /document\.createElement\('span'\)/);
-  assert.match(sourceBadge, /MODEL_ORIGIN\s*===\s*'local'\s*\?\s*'结构已就绪'\s*:\s*'结构已载入'/);
+  assert.match(viewerFullHtml, /var\s+STRUCTURE_LABEL\s*=/);
+  assert.match(sourceBadge, /displayLabel\s*=\s*STRUCTURE_LABEL/);
   assert.match(sourceBadge, /textContent\s*=\s*displayLabel/);
   assert.doesNotMatch(sourceBadge, /textContent\s*=\s*MODEL_ORIGIN/);
   assert.doesNotMatch(sourceBadge, /onclick|addEventListener\(['"]click/);
@@ -225,7 +226,10 @@ test('full viewer keeps model origin internal and shows an audience-facing readi
   assert.ok(actionBlock.indexOf('renderAutoSpinBadge()') < actionBlock.indexOf("['Spin','Reset','PNG']"));
   assert.match(frameUrl, /modelOrigin/);
   assert.match(frameUrl, /getModelOrigin\(meta\)/);
+  assert.match(frameUrl, /structureLabel/);
+  assert.match(frameUrl, /getStructurePresentation\(meta\)\.kindLabel/);
   assert.match(historyFrameUrl, /modelOrigin/);
   assert.match(historyFrameUrl, /getModelOrigin\(meta\)/);
+  assert.match(historyFrameUrl, /structureLabel/);
   assert.match(viewerFullHtml, /badge\.textContent = '自动旋转'/);
 });

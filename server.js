@@ -4713,7 +4713,8 @@ function preparedStructureContract(profile, preset, file, chainInfo, staticPrese
     : ((profile && profile.structuralBasis) || target + ' 结构预设');
   const accessionMatch = String(basis).match(/RCSB\s+([0-9][A-Za-z0-9]{3})/i);
   const targetVerified = Boolean(staticPreset && preset && preparedStructureTargetMatches(profile, file));
-  const representative = !targetVerified || Boolean(preset && preset.interfaceDetail === false);
+  const displayPose = targetVerified && Boolean(preset && preset.interfaceDetail === false);
+  const representative = !targetVerified;
   const antigenChains = chainInfo && Array.isArray(chainInfo.antigen) ? chainInfo.antigen : [];
   const antibodyChains = chainInfo && Array.isArray(chainInfo.antibody) ? chainInfo.antibody : [];
   const structureUrl = staticPreset ? localPDBPublicUrl(file) : '';
@@ -4733,7 +4734,7 @@ function preparedStructureContract(profile, preset, file, chainInfo, staticPrese
       confidence: targetVerified ? 1 : 0
     },
     source: {
-      kind: representative ? 'representative' : 'prepared_exact_complex',
+      kind: displayPose ? 'display_pose' : (representative ? 'representative' : 'prepared_exact_complex'),
       database: 'local',
       accession: accessionMatch ? accessionMatch[1].toUpperCase() : file,
       assemblyId: null,
@@ -4758,7 +4759,7 @@ function preparedStructureContract(profile, preset, file, chainInfo, staticPrese
       sourceAntibodyChains: chainInfo && Array.isArray(chainInfo.sourceAntibody) ? chainInfo.sourceAntibody : antibodyChains
     },
     pose: {
-      kind: representative ? 'representative' : 'experimental_complex',
+      kind: displayPose ? 'display_pose' : (representative ? 'representative' : 'experimental_complex'),
       scaffoldId: null,
       generatorVersion: null,
       anchorStrategy: null,
@@ -4766,13 +4767,13 @@ function preparedStructureContract(profile, preset, file, chainInfo, staticPrese
       contactPairs45A: null,
       nearPairs60A: null,
       clashesBelow20A: null,
-      geometryValidated: targetVerified && !representative
+      geometryValidated: targetVerified
     },
     display: {
-      grade: !targetVerified ? 'D' : (representative ? 'B' : 'A'),
+      grade: !targetVerified ? 'D' : (displayPose ? 'B' : 'A'),
       interfaceDetail: !targetVerified
         ? '本地坐标靶点与本轮用户需求靶点不完全一致，不能作为当前靶点的已核验结构。'
-        : (representative
+        : (displayPose
           ? '真实抗原结构与代表性 Fab/VHH 展示支架；不声明为完整实验结合界面。'
           : '抗原和抗体链来自当前路线已准备的公开复合物结构。'),
       structureTitle: targetVerified
@@ -4784,8 +4785,8 @@ function preparedStructureContract(profile, preset, file, chainInfo, staticPrese
         : target + ' 需求信息 + 默认抗原-抗体代表性结构',
       disclosure: !targetVerified
         ? '题头保留用户需求靶点“' + target + '”；当前坐标中的抗原为“' + coordinateTarget + '”，抗原身份未与本轮靶点核验。'
-        : (representative
-          ? '抗原身份与整体形态来自当前靶点结构；抗体仅作为代表性展示支架。'
+        : (displayPose
+          ? '抗原身份与整体形态来自当前靶点结构；抗体为公开支架生成的展示姿态，不代表实验复合物或经验证结合界面。'
           : '公开实验复合物用于展示结构参考，不代表当前候选序列已经获得实验验证。')
     }
   };

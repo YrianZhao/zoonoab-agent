@@ -180,13 +180,15 @@ test('3D modal title bar keeps concise audience-facing target context', () => {
   assert.match(html, /\.mol-modal-subtitle\s*{[\s\S]*max-width:\s*100%/);
   assert.match(html, /\.mol-modal-close\s*{[\s\S]*flex-shrink:\s*0/);
   assert.match(normalizeBinderPayload, /selectionReason:\s*meta\.selectionReason\s*\|\|\s*meta\.reason\s*\|\|\s*meta\.targetSelectionReason\s*\|\|\s*''/);
-  assert.doesNotMatch(openMolModal, /buildSelectionReasonHtml|buildStructureDisclosureHtml|结构来源|展示等级|抗原身份/);
+  assert.match(openMolModal, /buildSelectionReasonHtml\(meta\)/);
+  assert.doesNotMatch(openMolModal, /buildStructureDisclosureHtml|结构来源|展示等级|抗原身份/);
   assert.match(openMolModal, /meta\.disease/);
   assert.match(openMolModal, /meta\.targetDisplay/);
   assert.match(openMolModal, /meta\.mechanism/);
   assert.match(openMolModal, /meta\.selectedEpitope/);
   assert.match(openMolModal, /titleEl\.innerHTML\s*=\s*'<div class="mol-modal-title-copy">/);
-  assert.doesNotMatch(openHistory3D, /buildSelectionReasonHtml|buildStructureDisclosureHtml|结构来源|展示等级|抗原身份/);
+  assert.match(openHistory3D, /buildSelectionReasonHtml\(model\)/);
+  assert.doesNotMatch(openHistory3D, /buildStructureDisclosureHtml|结构来源|展示等级|抗原身份/);
   assert.match(openHistory3D, /titleEl\.innerHTML\s*=\s*'<div class="mol-modal-title-copy">/);
   assert.doesNotMatch(openMolModal, /quick_design|route|profile|API|大模型/);
 });

@@ -134,6 +134,15 @@ test('prepared local structures require an exact requested-target to PDB REMARK 
   assert.match(preparedCheck, /preparedStructureTargetMatches\(profile, file\)/);
 });
 
+test('target-exact scaffold structures are classified as display poses rather than experimental complexes', () => {
+  const contract = sliceBetween(serverSource, 'function preparedStructureContract(', 'function buildRoute3DMeta(');
+
+  assert.match(contract, /const displayPose = targetVerified && Boolean\(preset && preset\.interfaceDetail === false\)/);
+  assert.match(contract, /kind: displayPose \? 'display_pose'/);
+  assert.match(contract, /kind: displayPose \? 'display_pose' : \(representative \? 'representative' : 'experimental_complex'\)/);
+  assert.match(contract, /不代表实验复合物或经验证结合界面/);
+});
+
 test('the academic target rationale remains the binder reason used throughout the workflow', () => {
   const intro = sliceBetween(serverSource, 'function targetResolutionIntro(', 'function buildAssistantThinkingTopic(');
   const workflow = sliceBetween(serverSource, 'async function runWorkflow(', 'async function runRiskSiteScan(');

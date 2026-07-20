@@ -70,6 +70,9 @@ body.compact-viewer .vwrap{height:100%;flex-basis:100%}
     var AUTO_SPIN = params.get('autoSpin') === '1' || params.get('autoSpin') === 'true';
     var INTERFACE_DETAIL_ENABLED = params.get('interfaceDetail') !== '0';
     var MODEL_ORIGIN = params.get('modelOrigin') === 'local' ? 'local' : 'auto';
+    var STRUCTURE_LABELS = ['展示姿态', '实验复合物', '预测抗原结构', '实验抗原结构', '代表性结构', '坐标已载入'];
+    var requestedStructureLabel = String(params.get('structureLabel') || '').trim();
+    var STRUCTURE_LABEL = STRUCTURE_LABELS.indexOf(requestedStructureLabel) >= 0 ? requestedStructureLabel : '坐标已载入';
     var COMPACT_MODE = params.get('compact') === '1';
     var POSE_SEED = parseInt(params.get('poseSeed') || '0', 10) || 0;
     document.body.classList.toggle('compact-viewer', COMPACT_MODE);
@@ -115,7 +118,7 @@ body.compact-viewer .vwrap{height:100%;flex-basis:100%}
         var badge = document.createElement('span');
         badge.id = 'vfModelOriginBadge';
         badge.className = 'vf-source-badge ' + MODEL_ORIGIN;
-        var displayLabel = MODEL_ORIGIN === 'local' ? '结构已就绪' : '结构已载入';
+        var displayLabel = STRUCTURE_LABEL;
         badge.textContent = displayLabel;
         badge.setAttribute('aria-label', displayLabel);
         actions.appendChild(badge);
