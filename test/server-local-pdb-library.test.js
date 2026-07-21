@@ -131,6 +131,30 @@ test('local PDB model library API lists local structures with viewer metadata', 
   assert.match(dkk1.structuralBasis, /5GJE/);
   assert.equal(dkk1.targetTag.verifiedTag, true);
 
+  const mslnEpitope = data.models.find(model => model.filename === 'SOLIDLIB-HUMAN-MSLN-FAB-RCSB-4F3F.pdb');
+  assert.ok(mslnEpitope, 'solid-tumor Mesothelin epitope Fab asset should be listed');
+  assert.equal(mslnEpitope.targetDisplay, 'Mesothelin');
+  assert.equal(mslnEpitope.antibodyFormat, 'Fab');
+  assert.equal(mslnEpitope.structureKind, 'Fab 抗原-抗体复合体');
+  assert.deepEqual(mslnEpitope.antigenChains, ['C']);
+  assert.deepEqual(mslnEpitope.antibodyChains, ['A', 'B']);
+  assert.deepEqual(mslnEpitope.sourceAntigenChains, ['C']);
+  assert.deepEqual(mslnEpitope.sourceAntibodyChains, ['A', 'B']);
+  assert.match(mslnEpitope.structuralBasis, /4F3F/);
+  assert.equal(mslnEpitope.targetTag.verifiedTag, true);
+
+  const mslnVh = data.models.find(model => model.filename === 'SOLIDLIB-HUMAN-MSLN-VH-RCSB-8FSL.pdb');
+  assert.ok(mslnVh, 'solid-tumor Mesothelin VH asset should be listed');
+  assert.equal(mslnVh.targetDisplay, 'Mesothelin');
+  assert.equal(mslnVh.antibodyFormat, 'VH');
+  assert.equal(mslnVh.structureKind, 'VH 抗原-抗体复合体');
+  assert.deepEqual(mslnVh.antigenChains, ['E']);
+  assert.deepEqual(mslnVh.antibodyChains, ['A']);
+  assert.deepEqual(mslnVh.sourceAntigenChains, ['E', 'F']);
+  assert.deepEqual(mslnVh.sourceAntibodyChains, ['A', 'B', 'C', 'D']);
+  assert.match(mslnVh.structuralBasis, /8FSL/);
+  assert.equal(mslnVh.targetTag.verifiedTag, true);
+
   const igf1r = data.models.find(model => model.filename === 'ENDOCRINELIB-HUMAN-IGF1R-RCSB-7XGD.pdb');
   assert.ok(igf1r, 'endocrine-library IGF1R asset should be listed');
   assert.equal(igf1r.targetDisplay, 'IGF1R');

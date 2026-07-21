@@ -26,7 +26,7 @@ function actualCoordinateChains(filename) {
 test('solid-tumor asset library keeps exact local sources for non-routeable tumor targets', () => {
   assert.equal(manifest.schemaVersion, 1);
   assert.equal(manifest.totalModels, manifest.models.length);
-  assert.equal(manifest.totalModels, 17);
+  assert.equal(manifest.totalModels, 19);
 
   for (const model of manifest.models) {
     assert.ok(fs.existsSync(path.join(ROOT, 'pdb', model.filename)), model.filename + ' should exist locally');
@@ -42,6 +42,13 @@ test('solid-tumor exact Fab assets keep truthful local chain-role remarks', () =
   assert.match(fgfr2, /REMARK 904 ANTIGEN CHAINS: C/);
   assert.match(fgfr2, /REMARK 905 ANTIBODY CHAINS: A,B/);
   assert.match(fgfr2, /REMARK 912 ACCESSION: 4WV1/);
+
+  const mslnEpitope = readModelText(manifest.models.find(model => model.accession === '4F3F'));
+  assert.match(mslnEpitope, /REMARK 901 TARGET: Mesothelin/);
+  assert.match(mslnEpitope, /REMARK 902 FORMAT: Fab/);
+  assert.match(mslnEpitope, /REMARK 904 ANTIGEN CHAINS: C/);
+  assert.match(mslnEpitope, /REMARK 905 ANTIBODY CHAINS: A,B/);
+  assert.match(mslnEpitope, /REMARK 912 ACCESSION: 4F3F/);
 });
 
 test('solid-tumor antigen-only assets keep empty antibody chain remarks', () => {
@@ -109,6 +116,18 @@ test('solid-tumor non-Fab complexes keep truthful local chain-role remarks', () 
   assert.match(epcam, /REMARK 904 ANTIGEN CHAINS: C,D/);
   assert.match(epcam, /REMARK 905 ANTIBODY CHAINS: A,B/);
   assert.match(epcam, /REMARK 912 ACCESSION: 6I07/);
+
+  const mslnVhModel = manifest.models.find(model => model.accession === '8FSL');
+  const mslnVh = readModelText(mslnVhModel);
+  assert.match(mslnVh, /REMARK 901 TARGET: Mesothelin/);
+  assert.match(mslnVh, /REMARK 902 FORMAT: VH/);
+  assert.match(mslnVh, /REMARK 904 ANTIGEN CHAINS: E/);
+  assert.match(mslnVh, /REMARK 905 ANTIBODY CHAINS: A/);
+  assert.match(mslnVh, /REMARK 912 ACCESSION: 8FSL/);
+  const mslnVhChains = actualCoordinateChains(mslnVhModel.filename);
+  for (const chain of ['A', 'B', 'C', 'D', 'E', 'F']) {
+    assert.equal(mslnVhChains.has(chain), true, '8FSL should retain chain ' + chain + ' in ATOM/HETATM records');
+  }
 });
 
 test('CAIX routeable preset keeps exact peptide-epitope Fab remarks locally', () => {

@@ -19,9 +19,9 @@ const ROOT = path.resolve(__dirname, '..');
 test('local structure catalog is the machine-readable inventory for route-backed models', () => {
   const catalog = loadLocalStructureCatalog(ROOT);
   assert.equal(catalog.schemaVersion, 1);
-  assert.ok(catalog.summary.pdbFileCount >= 472);
+  assert.ok(catalog.summary.pdbFileCount >= 507);
   assert.ok(catalog.summary.promptEligibleRoutePresetCount >= 30);
-  assert.ok(catalog.summary.libraryAssetCount >= 87);
+  assert.ok(catalog.summary.libraryAssetCount >= 112);
 
   const covid = catalogEntryForFilename(catalog, 'SC2RBD-Fab-01.pdb');
   assert.ok(covid, 'SC2RBD-Fab-01 should be represented in the catalog');
@@ -54,6 +54,28 @@ test('local structure catalog is the machine-readable inventory for route-backed
   assert.equal(folr1.structureClass, 'experimental_antigen_only');
   assert.deepEqual(folr1.antigenChains, ['A']);
   assert.deepEqual(folr1.antibodyChains, []);
+
+  const mslnEpitope = catalogEntryForFilename(catalog, 'SOLIDLIB-HUMAN-MSLN-FAB-RCSB-4F3F.pdb');
+  assert.ok(mslnEpitope, 'solid-tumor Mesothelin epitope Fab asset should be represented in the catalog');
+  assert.equal(mslnEpitope.target, 'Mesothelin');
+  assert.equal(mslnEpitope.gene, 'MSLN');
+  assert.equal(mslnEpitope.organismTaxId, 9606);
+  assert.equal(mslnEpitope.antibodyFormat, 'Fab');
+  assert.equal(mslnEpitope.structureClass, 'target_exact_epitope_complex');
+  assert.deepEqual(mslnEpitope.antigenChains, ['C']);
+  assert.deepEqual(mslnEpitope.antibodyChains, ['A', 'B']);
+
+  const mslnVh = catalogEntryForFilename(catalog, 'SOLIDLIB-HUMAN-MSLN-VH-RCSB-8FSL.pdb');
+  assert.ok(mslnVh, 'solid-tumor Mesothelin VH asset should be represented in the catalog');
+  assert.equal(mslnVh.target, 'Mesothelin');
+  assert.equal(mslnVh.gene, 'MSLN');
+  assert.equal(mslnVh.organismTaxId, 9606);
+  assert.equal(mslnVh.antibodyFormat, 'VH');
+  assert.equal(mslnVh.structureClass, 'target_exact_complex');
+  assert.deepEqual(mslnVh.antigenChains, ['E']);
+  assert.deepEqual(mslnVh.antibodyChains, ['A']);
+  assert.deepEqual(mslnVh.sourceAntigenChains, ['E', 'F']);
+  assert.deepEqual(mslnVh.sourceAntibodyChains, ['A', 'B', 'C', 'D']);
 
   const psma = catalogEntryForFilename(catalog, 'SOLIDLIB-HUMAN-PSMA-VHH-RCSB-9HLW.pdb');
   assert.ok(psma, 'solid-tumor PSMA asset should be represented in the catalog');
