@@ -114,6 +114,8 @@ test('keeps newly cataloged solid-tumor targets stable in explicit design reques
 test('keeps newly cataloged local-library targets stable in explicit design requests', () => {
   const cases = [
     ['设计10个针对DRD4的Fab', 'DRD4'],
+    ['设计10个针对TrkB的Fab', 'TrkB'],
+    ['设计10个针对NTRK2的Fab', 'NTRK2'],
     ['设计10个针对GLP1R的Fab', 'GLP1R'],
     ['设计10个针对Myostatin的Fab', 'Myostatin'],
     ['设计10个针对GDF8的Fab', 'Myostatin'],

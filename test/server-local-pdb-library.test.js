@@ -214,6 +214,18 @@ test('local PDB model library API lists local structures with viewer metadata', 
   assert.match(drd4.structuralBasis, /5WIU/);
   assert.equal(drd4.targetTag.verifiedTag, true);
 
+  const trkb = data.models.find(model => model.filename === 'NEUROLIB-HUMAN-TRKB-FAB-RCSB-5MO9.pdb');
+  assert.ok(trkb, 'neuro-library TrkB Fab asset should be listed');
+  assert.equal(trkb.targetDisplay, 'TrkB');
+  assert.equal(trkb.antibodyFormat, 'Fab');
+  assert.equal(trkb.structureKind, 'Fab 抗原-抗体复合体');
+  assert.deepEqual(trkb.antigenChains, ['X']);
+  assert.deepEqual(trkb.antibodyChains, ['H', 'L']);
+  assert.deepEqual(trkb.sourceAntigenChains, ['X']);
+  assert.deepEqual(trkb.sourceAntibodyChains, ['H', 'L']);
+  assert.match(trkb.structuralBasis, /5MO9/);
+  assert.equal(trkb.targetTag.verifiedTag, true);
+
   const gba = data.models.find(model => model.filename === 'NEUROLIB-HUMAN-GBA-RCSB-1OGS.pdb');
   assert.ok(gba, 'neuro-library GBA asset should be listed');
   assert.equal(gba.targetDisplay, 'GBA');

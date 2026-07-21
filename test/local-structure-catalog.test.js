@@ -259,6 +259,19 @@ test('local structure catalog is the machine-readable inventory for route-backed
   assert.deepEqual(actriib.antigenChains, ['C', 'D']);
   assert.deepEqual(actriib.antibodyChains, ['A', 'B', 'H', 'L']);
 
+  const trkb = catalogEntryForFilename(catalog, 'NEUROLIB-HUMAN-TRKB-FAB-RCSB-5MO9.pdb');
+  assert.ok(trkb, 'neuro-library TrkB Fab asset should be represented in the catalog');
+  assert.equal(trkb.target, 'TrkB');
+  assert.equal(trkb.gene, 'NTRK2');
+  assert.equal(trkb.organismTaxId, 9606);
+  assert.equal(trkb.structureClass, 'experimental_reference_complex');
+  assert.equal(trkb.antibodyFormat, 'Fab');
+  assert.deepEqual(trkb.antigenChains, ['X']);
+  assert.deepEqual(trkb.antibodyChains, ['H', 'L']);
+  assert.deepEqual(trkb.sourceAntigenChains, ['X']);
+  assert.deepEqual(trkb.sourceAntibodyChains, ['H', 'L']);
+  assert.match(trkb.structuralBasis, /5MO9/);
+
   const il6 = catalogEntryForFilename(catalog, 'INFLAMLIB-HUMAN-IL6-RCSB-1ALU.pdb');
   assert.ok(il6, 'inflammation-library IL-6 antigen-only asset should be represented in the catalog');
   assert.equal(il6.target, 'IL-6');

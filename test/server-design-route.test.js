@@ -702,6 +702,16 @@ test('server previews exact local-library assets for explicit targets without pr
       expectedAntibodyChains: []
     },
     {
+      text: '设计10个针对TrkB的Fab',
+      expectedTarget: 'TrkB',
+      expectedFile: 'NEUROLIB-HUMAN-TRKB-FAB-RCSB-5MO9.pdb',
+      expectedPoseKind: 'experimental_complex',
+      expectedAntigenChains: ['X'],
+      expectedAntibodyChains: ['H', 'L'],
+      expectedSourceAntigenChains: ['X'],
+      expectedSourceAntibodyChains: ['H', 'L']
+    },
+    {
       text: '设计10个针对GLP1R的Fab',
       expectedTarget: 'GLP1R',
       expectedFile: 'ENDOCRINELIB-HUMAN-GLP1R-RCSB-6LN2.pdb',
