@@ -4401,6 +4401,57 @@ const ROUTE_3D_PRESETS = {
   }
 };
 
+const ROUTE_3D_PRESET_ORGANISMS = {
+  allergic_asthma: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  allergic_tslp: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  tumor_immunotherapy: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  checkpoint_pd1: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  checkpoint_ctla4: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  heme_cd20: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  heme_cd19: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  immune_cd3: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  complement_c5: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  inflammation_il6r: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  allergic_il4ra: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  immune_cd25: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  heme_cd38: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  checkpoint_tigit: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  checkpoint_cd47: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  checkpoint_lag3: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  solid_tumor_trop2: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  heme_bcma: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  allergic_ige: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  migraine_cgrpr: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  breast_cancer: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  solid_tumor_egfr: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  angiogenesis_oncology: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  autoimmune_inflammation: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  autoimmune_il17: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  autoimmune_il23: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  infectious_covid: { organismName: 'Severe acute respiratory syndrome coronavirus 2', organismTaxId: 2697049 },
+  infectious_flu: { organismName: 'Influenza A virus', organismTaxId: 11320 },
+  infectious_flu_na: { organismName: 'Influenza A virus', organismTaxId: 11320 },
+  cardio_pcsk9: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  cardio_angptl3: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  cardio_il1b: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  metabolic_angptl3: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  metabolic_gipr: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  neuro_adhd_dat: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  veterinary_canine_ngf: { organismName: 'Canis lupus familiaris', organismTaxId: 9615 },
+  infectious_rsv: { organismName: 'Respiratory syncytial virus', organismTaxId: null }
+};
+
+const ROUTE_3D_PRESET_ROUTE_IDS = new Map(Object.entries(ROUTE_3D_PRESETS).map(([routeId, preset]) => [preset, routeId]));
+
+function routePresetIdentityForProfile(profile, preset = null) {
+  const profileRouteId = String(profile && profile.routeId || '').trim();
+  if (profileRouteId && ROUTE_3D_PRESET_ORGANISMS[profileRouteId]) {
+    return ROUTE_3D_PRESET_ORGANISMS[profileRouteId];
+  }
+  const presetRouteId = String(preset && ROUTE_3D_PRESET_ROUTE_IDS.get(preset) || '').trim();
+  return presetRouteId ? (ROUTE_3D_PRESET_ORGANISMS[presetRouteId] || null) : null;
+}
+
 function stableSeed(input) {
   return String(input || '').split('').reduce((sum, ch) => ((sum * 31) + ch.charCodeAt(0)) >>> 0, 2166136261);
 }
@@ -4852,21 +4903,19 @@ function preparedStructureTargetMatches(profile, filename) {
   const requestedTarget = profile && profile.targetDisplay;
   const remarks = readLocalPDBRemarks(filename);
   const targetTag = buildLocalPDBTargetTag(filename, remarks);
+  const presetIdentity = routePresetIdentityForProfile(profile, localPDBPresetForFilename(filename));
   const coordinateTarget = targetTag.target;
   const requestedIdentity = normalizePreparedStructureTarget(requestedTarget);
   const coordinateIdentity = targetTag.normalizedTarget;
   const requestedFormat = String(antibodyFormatForProfile(profile) || '').trim().toUpperCase();
   const coordinateFormat = String(targetTag.antibodyFormat || '').trim().toUpperCase();
-  const organismName = String(profile && profile.organismName || '').trim();
-  const organismTaxId = Number(profile && profile.organismTaxId || 0) || null;
+  const requestedOrganismName = String(profile && profile.organismName || '').trim();
+  const requestedOrganismTaxId = Number(profile && profile.organismTaxId || 0) || null;
+  const requestedOrganismProvided = Boolean(requestedOrganismName || requestedOrganismTaxId);
   const strain = String(profile && profile.strain || '').trim();
   const isoform = String(profile && profile.isoform || '').trim();
-  const explicitNonHumanOrganism = Boolean(
-    (organismTaxId && organismTaxId !== 9606) ||
-    (organismName && !/(?:homo sapiens|human|人源|人类)/i.test(organismName))
-  );
-  const coordinateOrganismName = String(remarks && remarks.organism || '').trim();
-  const coordinateOrganismTaxId = Number(remarks && remarks.organismTaxId || 0) || null;
+  const coordinateOrganismName = String((remarks && remarks.organism) || (presetIdentity && presetIdentity.organismName) || '').trim();
+  const coordinateOrganismTaxId = Number((remarks && remarks.organismTaxId) || (presetIdentity && presetIdentity.organismTaxId) || 0) || null;
   const requestedTargetAlias = /(?:\bNGF\b|NERVE\s*GROWTH\s*FACTOR|神经生长因子)/i.test(String(requestedTarget || ''))
     ? 'NGF'
     : requestedIdentity;
@@ -4881,13 +4930,11 @@ function preparedStructureTargetMatches(profile, filename) {
     requestedFluSubtype === coordinateFluSubtype &&
     isInfluenzaHaFamilyTarget(requestedTarget)
   );
-  const organismMatches = explicitNonHumanOrganism
-    ? Boolean(
-      (organismTaxId && coordinateOrganismTaxId && organismTaxId === coordinateOrganismTaxId) ||
-      (organismName && coordinateOrganismName && normalizePreparedStructureTarget(organismName) === normalizePreparedStructureTarget(coordinateOrganismName)) ||
-      (influenzaSubtypeMatches && /influenza\s+a/i.test(organismName + ' ' + coordinateOrganismName))
-    )
-    : !coordinateOrganismTaxId || coordinateOrganismTaxId === 9606;
+  const organismMatches = !requestedOrganismProvided || Boolean(
+    (requestedOrganismTaxId && coordinateOrganismTaxId && requestedOrganismTaxId === coordinateOrganismTaxId) ||
+    (requestedOrganismName && coordinateOrganismName && normalizePreparedStructureTarget(requestedOrganismName) === normalizePreparedStructureTarget(coordinateOrganismName)) ||
+    (influenzaSubtypeMatches && /influenza\s+a/i.test(requestedOrganismName + ' ' + coordinateOrganismName))
+  );
   return Boolean(
     targetTag.verifiedTag &&
     requestedTargetAlias && coordinateTargetAlias && (requestedTargetAlias === coordinateTargetAlias || influenzaSubtypeMatches) &&
@@ -4912,6 +4959,7 @@ function localPDBSha256(filename) {
 function preparedStructureContract(profile, preset, file, chainInfo, staticPreset) {
   const target = (profile && profile.targetDisplay) || '当前靶点';
   const remarks = readLocalPDBRemarks(file);
+  const presetIdentity = routePresetIdentityForProfile(profile, preset);
   const coordinateTarget = (remarks && (remarks.target || remarks.antigenLabel)) || target;
   const basis = preset && preset.structuralBasis
     ? preset.structuralBasis
@@ -4932,8 +4980,8 @@ function preparedStructureContract(profile, preset, file, chainInfo, staticPrese
       canonicalName: coordinateTarget,
       geneSymbol: (profile && profile.targetGene) || '',
       uniprotAccession: null,
-      organismName: (profile && profile.organismName) || '',
-      organismTaxId: (profile && profile.organismTaxId) || null,
+      organismName: (remarks && remarks.organism) || (presetIdentity && presetIdentity.organismName) || (profile && profile.organismName) || '',
+      organismTaxId: (remarks && remarks.organismTaxId) || (presetIdentity && presetIdentity.organismTaxId) || (profile && profile.organismTaxId) || null,
       strain: (profile && profile.strain) || null,
       isoform: null,
       exactMatch: targetVerified,

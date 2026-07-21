@@ -576,6 +576,32 @@ test('server previews exact canine NGF structures for a canine monoclonal antibo
   assert.doesNotMatch(firstBinder.selectionReason, /用户提出|用户指定|任务应/);
 });
 
+test('server previews exact SARS-CoV-2 RBD structures even when local files omit organism remarks', async () => {
+  const requests = [
+    '设计10个针对新冠的Fab',
+    '设计10个针对SARS-CoV-2 RBD的Fab'
+  ];
+
+  for (const text of requests) {
+    const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/design-route?text=' + encodeURIComponent(text));
+    assert.equal(res.status, 200);
+    const data = await res.json();
+    const binder = data.threeDPreview && data.threeDPreview.binders && data.threeDPreview.binders[0];
+
+    assert.equal(data.profile.targetDisplay, 'SARS-CoV-2 RBD', text);
+    assert.equal(data.profile.organismTaxId, 2697049, text);
+    assert.equal(data.threeDPreview.binders.length, 10, text);
+    assert.ok(binder, text + ' should preview a local SARS-CoV-2 RBD model');
+    assert.match(binder.file, /^SC2RBD-Fab-\d+\.pdb$/);
+    assert.equal(binder.fallback, false, text);
+    assert.equal(binder.structure.coordinates.targetVerified, true, text);
+    assert.equal(binder.structure.targetIdentity.organismTaxId, 2697049, text);
+    assert.deepEqual(binder.antigenChains, ['A']);
+    assert.deepEqual(binder.antibodyChains, ['B', 'C']);
+    assert.match(binder.structuralBasis, /6XDG|REGN10933/);
+  }
+});
+
 test('server preserves influenza HA subtype display names and leaves non-exact family structures for online resolution', async () => {
   const query = encodeURIComponent('设计一个针对流感 H7 的中和抗体');
   const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/design-route?text=' + query);
