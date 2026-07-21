@@ -156,6 +156,12 @@ const COMMON_REAL_COMPLEX_EXPECTATIONS = [
     antibodyChains: ['A', 'B']
   },
   {
+    prefix: 'B7H6-Fab',
+    basis: /RCSB 4ZSO human B7-H6 ectodomain \/ inhibitory antibody Fab complex/,
+    antigenChains: ['E'],
+    antibodyChains: ['A', 'B']
+  },
+  {
     prefix: 'MUC1-Fab',
     basis: /RCSB 7V7K MUC1 GlycoST VNTR glycopeptide \/ 16A Fab complex/,
     antigenChains: ['C'],
@@ -208,6 +214,12 @@ const COMMON_REAL_COMPLEX_EXPECTATIONS = [
     basis: /RCSB 9VL2 human CD33 \/ Fab-10C8 complex/,
     antigenChains: ['A', 'D'],
     antibodyChains: ['B', 'C', 'E', 'F']
+  },
+  {
+    prefix: 'CD22-Fab',
+    basis: /RCSB 5VL3 human CD22 D1-D3 ectodomain \/ epratuzumab Fab complex/,
+    antigenChains: ['Q'],
+    antibodyChains: ['H', 'L']
   },
   {
     prefix: 'BAFF-Fab',

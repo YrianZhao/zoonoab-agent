@@ -651,6 +651,7 @@ test('server previews curated real complexes for common explicit antigen targets
     { text: '设计10个针对Mesothelin的Fab', expectedTarget: 'Mesothelin', expectedPrefix: /^MSLN-Fab-/ },
     { text: '设计10个针对Claudin 18.2的Fab', expectedTarget: 'Claudin 18.2', expectedPrefix: /^CLDN18\.2-Fab-/ },
     { text: '设计10个针对B7-H3的Fab', expectedTarget: 'B7-H3', expectedPrefix: /^CD276-Fab-/ },
+    { text: '设计10个针对B7-H6的Fab', expectedTarget: 'B7-H6', expectedPrefix: /^B7H6-Fab-/ },
     { text: '设计10个针对CAIX的Fab', expectedTarget: 'CAIX', expectedPrefix: /^CAIX-Fab-/ },
     { text: '设计10个针对Nectin-4的Fab', expectedTarget: 'Nectin-4', expectedPrefix: /^NECTIN4-Fab-/ },
     { text: '设计10个针对GPRC5D的Fab', expectedTarget: 'GPRC5D', expectedPrefix: /^GPRC5D-Fab-/ },
@@ -661,6 +662,7 @@ test('server previews curated real complexes for common explicit antigen targets
     { text: '设计10个针对IL-13的Fab', expectedTarget: 'IL-13', expectedPrefix: /^IL13-Fab-/ },
     { text: '设计10个针对CD123的Fab', expectedTarget: 'CD123', expectedPrefix: /^CD123-Fab-/ },
     { text: '设计10个针对CD33的Fab', expectedTarget: 'CD33', expectedPrefix: /^CD33-Fab-/ },
+    { text: '设计10个针对CD22的Fab', expectedTarget: 'CD22', expectedPrefix: /^CD22-Fab-/ },
     { text: '设计10个针对BAFF的Fab', expectedTarget: 'BAFF', expectedPrefix: /^BAFF-Fab-/ },
     { text: '设计10个针对FcRn的Fab', expectedTarget: 'FcRn', expectedPrefix: /^FCRN-Fab-/ },
     { text: '设计10个针对NGF的Fab', expectedTarget: 'NGF', expectedPrefix: /^NGF-Fab-/ },
@@ -826,6 +828,7 @@ test('server previews exact local-library assets for explicit targets without pr
 
 test('disease-first prepared directions resolve to their new exact local structures', async () => {
   const requests = [
+    { text: '帮我设计一个针对B-ALL的抗体', expectedTarget: 'CD22', expectedPrefix: /^CD22-Fab-/ },
     { text: '帮我设计一个针对甲状腺眼病的抗体', expectedTarget: 'TSHR', expectedPrefix: /^TSHR-Fab-/ },
     { text: '帮我设计一个针对帕金森病的抗体', expectedTarget: 'alpha-synuclein', expectedPrefix: /^SNCA-Fab-/ },
     { text: '帮我设计一个针对视神经脊髓炎的抗体', expectedTarget: 'AQP4', expectedPrefix: /^AQP4-Fab-/ }

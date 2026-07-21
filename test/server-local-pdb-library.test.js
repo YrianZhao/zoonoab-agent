@@ -446,6 +446,30 @@ test('local PDB model library API lists local structures with viewer metadata', 
   assert.match(cd33.structuralBasis, /9VL2/);
   assert.equal(cd33.targetTag.verifiedTag, true);
 
+  const cd22Model = data.models.find(model => model.filename === 'CD22-Fab-01.pdb');
+  assert.ok(cd22Model, 'CD22 routeable Fab preset should be listed');
+  assert.equal(cd22Model.targetDisplay, 'CD22');
+  assert.equal(cd22Model.antibodyFormat, 'Fab');
+  assert.equal(cd22Model.structureKind, 'Fab 抗原-抗体复合体');
+  assert.deepEqual(cd22Model.antigenChains, ['Q']);
+  assert.deepEqual(cd22Model.antibodyChains, ['H', 'L']);
+  assert.deepEqual(cd22Model.sourceAntigenChains, ['Q', 'R', 'S', 'T']);
+  assert.deepEqual(cd22Model.sourceAntibodyChains, ['A', 'B', 'C', 'D', 'E', 'F', 'H', 'L']);
+  assert.match(cd22Model.structuralBasis, /5VL3/);
+  assert.equal(cd22Model.targetTag.verifiedTag, true);
+
+  const b7h6Model = data.models.find(model => model.filename === 'B7H6-Fab-01.pdb');
+  assert.ok(b7h6Model, 'B7-H6 routeable Fab preset should be listed');
+  assert.equal(b7h6Model.targetDisplay, 'B7-H6');
+  assert.equal(b7h6Model.antibodyFormat, 'Fab');
+  assert.equal(b7h6Model.structureKind, 'Fab 抗原-抗体复合体');
+  assert.deepEqual(b7h6Model.antigenChains, ['E']);
+  assert.deepEqual(b7h6Model.antibodyChains, ['A', 'B']);
+  assert.deepEqual(b7h6Model.sourceAntigenChains, ['E', 'F']);
+  assert.deepEqual(b7h6Model.sourceAntibodyChains, ['A', 'B', 'C', 'D']);
+  assert.match(b7h6Model.structuralBasis, /4ZSO/);
+  assert.equal(b7h6Model.targetTag.verifiedTag, true);
+
   const baff = data.models.find(model => model.filename === 'BAFF-Fab-01.pdb');
   assert.ok(baff, 'BAFF routeable Fab preset should be listed');
   assert.equal(baff.targetDisplay, 'BAFF');
@@ -631,6 +655,18 @@ test('structure catalog API exposes route-backed structure inventory', async () 
   assert.equal(cd33.aliasPrefix, 'CD33-Fab');
   assert.equal(cd33.target, 'CD33');
   assert.ok((cd33.files || []).includes('CD33-Fab-01.pdb'));
+
+  const cd22Route = data.catalog.routePresets.find(item => item.routeId === 'heme_cd22');
+  assert.ok(cd22Route, 'catalog should expose the CD22 local route');
+  assert.equal(cd22Route.aliasPrefix, 'CD22-Fab');
+  assert.equal(cd22Route.target, 'CD22');
+  assert.ok((cd22Route.files || []).includes('CD22-Fab-01.pdb'));
+
+  const b7h6Route = data.catalog.routePresets.find(item => item.routeId === 'solid_tumor_b7h6');
+  assert.ok(b7h6Route, 'catalog should expose the B7-H6 local route');
+  assert.equal(b7h6Route.aliasPrefix, 'B7H6-Fab');
+  assert.equal(b7h6Route.target, 'B7-H6');
+  assert.ok((b7h6Route.files || []).includes('B7H6-Fab-01.pdb'));
 
   const gpc2 = data.catalog.routePresets.find(item => item.routeId === 'sclc_gpc2');
   assert.ok(gpc2, 'catalog should expose the GPC2 local route');

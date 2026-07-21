@@ -4,10 +4,10 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 
 ## Summary
 
-- PDB files: 507
-- Route presets: 63
-- Routeable presets: 62
-- Prompt-eligible structure-supported targets: 62
+- PDB files: 509
+- Route presets: 65
+- Routeable presets: 64
+- Prompt-eligible structure-supported targets: 64
 - Library assets: 112
 
 ## Route-backed structure families
@@ -59,9 +59,11 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 | neuro_nmosd_aqp4 | AQP4 | AQP4 | AQP4-Fab | 1 | Homo sapiens | RCSB 8V91 human AQP4 tetramer / rAB 58 Fab complex |
 | veterinary_canine_ngf | Canine NGF | NGF | CANINE-NGF-Fab | 10 | Canis lupus familiaris | AlphaFold DB A0A8I3PYI3 犬源成熟 NGF + RCSB 4EDW tanezumab Fab 展示支架 |
 | generic_vhh | IL-33 | IL33 | IL33-VHH | 15 | Homo sapiens | VHH 候选与抗原界面参考构象 |
+| heme_cd22 | CD22 | CD22 | CD22-Fab | 1 | Homo sapiens | RCSB 5VL3 human CD22 D1-D3 ectodomain / epratuzumab Fab complex |
 | solid_tumor_mesothelin | Mesothelin | MSLN | MSLN-Fab | 1 | Homo sapiens | RCSB 7UED full-length mesothelin / MORAb-009 Fab complex |
 | solid_tumor_cldn18 | Claudin 18.2 | CLDN18 | CLDN18.2-Fab | 1 | Homo sapiens | RCSB 9V32 claudin 18.2 / zolbetuximab Fab complex |
 | solid_tumor_b7h3 | B7-H3 | CD276 | CD276-Fab | 1 | Homo sapiens | RCSB 9LY5 human B7-H3 IgC domain / 20G5 Fab complex |
+| solid_tumor_b7h6 | B7-H6 | NCR3LG1 | B7H6-Fab | 1 | Homo sapiens | RCSB 4ZSO human B7-H6 ectodomain / inhibitory antibody Fab complex |
 | solid_tumor_muc1 | MUC1 | MUC1 | MUC1-Fab | 1 | Homo sapiens | RCSB 7V7K MUC1 GlycoST VNTR glycopeptide / 16A Fab complex |
 | solid_tumor_nectin4 | Nectin-4 | NECTIN4 | NECTIN4-Fab | 1 | Homo sapiens | RCSB 9KKJ Nectin-4 D1 domain / 9MW2821 Fab complex |
 | heme_gprc5d | GPRC5D | GPRC5D | GPRC5D-Fab | 1 | Homo sapiens | RCSB 9IMA GPRC5D dimer / talquetamab Fab complex |

@@ -19,7 +19,7 @@ const ROOT = path.resolve(__dirname, '..');
 test('local structure catalog is the machine-readable inventory for route-backed models', () => {
   const catalog = loadLocalStructureCatalog(ROOT);
   assert.equal(catalog.schemaVersion, 1);
-  assert.ok(catalog.summary.pdbFileCount >= 507);
+  assert.ok(catalog.summary.pdbFileCount >= 509);
   assert.ok(catalog.summary.promptEligibleRoutePresetCount >= 30);
   assert.ok(catalog.summary.libraryAssetCount >= 112);
 
@@ -168,6 +168,30 @@ test('local structure catalog is the machine-readable inventory for route-backed
   assert.equal(cd33.structureClass, 'target_exact_domain_complex');
   assert.deepEqual(cd33.display.antigenChains, ['A', 'D']);
   assert.deepEqual(cd33.display.antibodyChains, ['B', 'C', 'E', 'F']);
+
+  const cd22 = catalogEntryForFilename(catalog, 'CD22-Fab-01.pdb');
+  assert.ok(cd22, 'CD22-Fab-01 should be represented in the catalog');
+  assert.equal(cd22.target, 'CD22');
+  assert.equal(cd22.gene, 'CD22');
+  assert.equal(cd22.organismTaxId, 9606);
+  assert.equal(cd22.aliasPrefix, 'CD22-Fab');
+  assert.equal(cd22.structureClass, 'target_exact_domain_complex');
+  assert.deepEqual(cd22.display.antigenChains, ['Q']);
+  assert.deepEqual(cd22.display.antibodyChains, ['H', 'L']);
+  assert.deepEqual(cd22.display.sourceAntigenChains, ['Q', 'R', 'S', 'T']);
+  assert.deepEqual(cd22.display.sourceAntibodyChains, ['A', 'B', 'C', 'D', 'E', 'F', 'H', 'L']);
+
+  const b7h6 = catalogEntryForFilename(catalog, 'B7H6-Fab-01.pdb');
+  assert.ok(b7h6, 'B7H6-Fab-01 should be represented in the catalog');
+  assert.equal(b7h6.target, 'B7-H6');
+  assert.equal(b7h6.gene, 'NCR3LG1');
+  assert.equal(b7h6.organismTaxId, 9606);
+  assert.equal(b7h6.aliasPrefix, 'B7H6-Fab');
+  assert.equal(b7h6.structureClass, 'target_exact_domain_complex');
+  assert.deepEqual(b7h6.display.antigenChains, ['E']);
+  assert.deepEqual(b7h6.display.antibodyChains, ['A', 'B']);
+  assert.deepEqual(b7h6.display.sourceAntigenChains, ['E', 'F']);
+  assert.deepEqual(b7h6.display.sourceAntibodyChains, ['A', 'B', 'C', 'D']);
 
   const baff = catalogEntryForFilename(catalog, 'BAFF-Fab-01.pdb');
   assert.ok(baff, 'BAFF-Fab-01 should be represented in the catalog');
@@ -473,11 +497,13 @@ test('local structure catalog is the machine-readable inventory for route-backed
   assert.match(supportList, /IL-13\/IL13/);
   assert.match(supportList, /CD123\/IL3RA/);
   assert.match(supportList, /CD33\/Siglec-3/);
+  assert.match(supportList, /CD22\/Siglec-2/);
   assert.match(supportList, /BAFF\/TNFSF13B/);
   assert.match(supportList, /FcRn\/FCGRT/);
   assert.match(supportList, /NGF/);
   assert.match(supportList, /Integrin α4β7\/ITGA4-ITGB7/);
   assert.match(supportList, /GPC2\/Glypican-2/);
+  assert.match(supportList, /B7-H6\/NCR3LG1/);
   assert.match(supportList, /Amyloid-beta\/APP/);
   assert.match(supportList, /Tau\/MAPT/);
   assert.match(supportList, /TREM2/);
@@ -516,8 +542,12 @@ test('catalog-derived target map can route aliases without hand-editing target m
   assert.equal(map[normalizeStructureCatalogKey('IL3RA')], 'heme_cd123');
   assert.equal(map[normalizeStructureCatalogKey('CD33')], 'heme_cd33');
   assert.equal(map[normalizeStructureCatalogKey('Siglec-3')], 'heme_cd33');
+  assert.equal(map[normalizeStructureCatalogKey('CD22')], 'heme_cd22');
+  assert.equal(map[normalizeStructureCatalogKey('SIGLEC2')], 'heme_cd22');
   assert.equal(map[normalizeStructureCatalogKey('BAFF')], 'autoimmune_baff');
   assert.equal(map[normalizeStructureCatalogKey('TNFSF13B')], 'autoimmune_baff');
+  assert.equal(map[normalizeStructureCatalogKey('B7-H6')], 'solid_tumor_b7h6');
+  assert.equal(map[normalizeStructureCatalogKey('NCR3LG1')], 'solid_tumor_b7h6');
   assert.equal(map[normalizeStructureCatalogKey('FcRn')], 'autoimmune_fcrn');
   assert.equal(map[normalizeStructureCatalogKey('FCGRT')], 'autoimmune_fcrn');
   assert.equal(map[normalizeStructureCatalogKey('NGF')], 'pain_ngf');

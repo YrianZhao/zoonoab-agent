@@ -54,6 +54,8 @@ test('keeps newly cataloged solid-tumor targets stable in explicit design reques
     ['设计10个针对MUC1的Fab', 'MUC1'],
     ['设计10个针对Mesothelin的Fab', 'Mesothelin'],
     ['设计10个针对B7-H3的Fab', 'B7-H3'],
+    ['设计10个针对B7-H6的Fab', 'B7-H6'],
+    ['设计10个针对NCR3LG1的Fab', 'B7-H6'],
     ['设计10个针对CAIX的Fab', 'CAIX'],
     ['设计10个针对CA9的Fab', 'CAIX'],
     ['设计10个针对CD276的Fab', 'B7-H3'],
@@ -72,6 +74,8 @@ test('keeps newly cataloged solid-tumor targets stable in explicit design reques
     ['设计10个针对IL3RA的Fab', 'CD123'],
     ['设计10个针对CD33的Fab', 'CD33'],
     ['设计10个针对SIGLEC3的Fab', 'CD33'],
+    ['设计10个针对CD22的Fab', 'CD22'],
+    ['设计10个针对SIGLEC2的Fab', 'CD22'],
     ['设计10个针对BAFF的Fab', 'BAFF'],
     ['设计10个针对BLyS的Fab', 'BAFF'],
     ['设计10个针对FcRn的Fab', 'FcRn'],
@@ -288,6 +292,15 @@ test('treats allergic asthma ten-candidate wording as a disease indication, not 
   assert.equal(parsed.count, 10);
   assert.equal(parsed.target, '过敏性哮喘');
   assert.equal(extractDiseaseIndication('帮我为过敏性哮喘设计十个抗体分子'), '过敏性哮喘');
+});
+
+test('treats B-ALL wording as a disease indication, not an explicit protein target', () => {
+  const parsed = extractDesignRequest('帮我设计一个针对B-ALL的抗体');
+
+  assert.equal(parsed.isDesignRequest, true);
+  assert.equal(parsed.target, 'B-ALL');
+  assert.equal(parsed.count, 1);
+  assert.equal(extractDiseaseIndication('帮我设计一个针对B-ALL的抗体'), 'B-ALL');
 });
 
 test('treats drug molecule wording as a molecular design request', () => {

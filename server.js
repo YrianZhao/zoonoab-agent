@@ -7224,6 +7224,19 @@ const CERVICAL_CANCER_TISSUE_FACTOR_TARGET_RESOLUTION = {
   ]
 };
 
+const BALL_CD22_TARGET_RESOLUTION = {
+  selectedTarget: 'CD22',
+  selectedGene: 'CD22',
+  designLabel: 'BALL-CD22-1',
+  confidence: 0.8,
+  reason: 'B-ALL 方向可优先围绕 CD22/SIGLEC2 这一 B 细胞系表面受体展开。CD22 具有明确的人源胞外 Ig domain 结构、成熟的抗体开发背景和真实的 human CD22 D1-D3 / epratuzumab Fab 本地复合物，可直接支撑 B 细胞急性淋巴细胞白血病方向的抗体展示与结构映射；相较更泛化的 B 细胞标志物，CD22 与当前新增本地 route-backed 结构的对应关系更直接。',
+  candidates: [
+    { target: 'CD22', gene: 'CD22', rationale: 'B 细胞系表面受体，具备真实 human CD22/Fab 复合物结构，可直接服务于 B-ALL 方向展示。' },
+    { target: 'CD19', gene: 'CD19', rationale: '经典 B 细胞恶性肿瘤表面抗原，可作为 B-ALL 与 B 细胞肿瘤的稳定备选入口。' },
+    { target: 'CD20', gene: 'MS4A1', rationale: '成熟 B 细胞相关表面抗原，适合作为 B 细胞谱系方向的补充备选靶点。' }
+  ]
+};
+
 const BUILTIN_DISEASE_TARGET_RESOLVERS = {
   '肿瘤免疫治疗': TUMOR_IMMUNOTHERAPY_TARGET_RESOLUTION,
   '肿瘤免疫': TUMOR_IMMUNOTHERAPY_TARGET_RESOLUTION,
@@ -7265,6 +7278,16 @@ const BUILTIN_DISEASE_TARGET_RESOLVERS = {
   'osteoporosis': OSTEOPOROSIS_SOST_TARGET_RESOLUTION,
   '宫颈癌': CERVICAL_CANCER_TISSUE_FACTOR_TARGET_RESOLUTION,
   'cervical cancer': CERVICAL_CANCER_TISSUE_FACTOR_TARGET_RESOLUTION,
+  'B-ALL': BALL_CD22_TARGET_RESOLUTION,
+  'b-all': BALL_CD22_TARGET_RESOLUTION,
+  'B ALL': BALL_CD22_TARGET_RESOLUTION,
+  'b all': BALL_CD22_TARGET_RESOLUTION,
+  'B细胞急性淋巴细胞白血病': BALL_CD22_TARGET_RESOLUTION,
+  'B 细胞急性淋巴细胞白血病': BALL_CD22_TARGET_RESOLUTION,
+  '急性B淋巴细胞白血病': BALL_CD22_TARGET_RESOLUTION,
+  'B-cell acute lymphoblastic leukemia': BALL_CD22_TARGET_RESOLUTION,
+  'b-cell acute lymphoblastic leukemia': BALL_CD22_TARGET_RESOLUTION,
+  'acute B lymphoblastic leukemia': BALL_CD22_TARGET_RESOLUTION,
   '过敏性哮喘': {
     selectedTarget: 'IL-33',
     selectedGene: 'IL33',

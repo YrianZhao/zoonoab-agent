@@ -2,16 +2,16 @@
 (function(){
   window.ZOONOAB_LOCAL_STRUCTURE_CATALOG = {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-21T21:22:55.380Z",
+  "generatedAt": "2026-07-21T22:05:35.279Z",
   "summary": {
-    "pdbFileCount": 507,
-    "routePresetCount": 63,
-    "routeableRoutePresetCount": 62,
-    "promptEligibleRoutePresetCount": 62,
-    "routePresetFileCount": 415,
+    "pdbFileCount": 509,
+    "routePresetCount": 65,
+    "routeableRoutePresetCount": 64,
+    "promptEligibleRoutePresetCount": 64,
+    "routePresetFileCount": 417,
     "libraryAssetCount": 112
   },
-  "promptSupportTargets": "IL-33/IL33、TSLP、PD-L1/CD274、PD-1/PDCD1、CTLA-4/CTLA4、CD20/MS4A1、CD19、CD3/CD3E/CD3G、C5、IL-6R/IL6R、IL-4Rα/IL4R、CD25/IL2RA、CD38、TIGIT、CD47、LAG-3/LAG3、TROP-2/TACSTD2、Tissue Factor/F3、BCMA/TNFRSF17、IgE/IGH、CGRP receptor/CALCRL/RAMP1、HER2/ERBB2、EGFR、VEGF-A/VEGFA、TNF、IL-17A/IL17A、IL-23/IL23A/IL12B、RSV F/F、SARS-CoV-2 RBD/S、Influenza HA/HA、Influenza NA/NA、PCSK9、ANGPTL3、IL-1B、GIPR、Amyloid-beta/APP、Tau/MAPT、TREM2、DAT/SLC6A3、TSHR、alpha-synuclein/SNCA、AQP4、Canine NGF/NGF、Mesothelin/MSLN、Claudin 18.2/CLDN18、B7-H3/CD276、MUC1、Nectin-4/NECTIN4、GPRC5D、CEACAM5/CEA、STEAP1、CAIX/CA9、IL-5/IL5、IL-13/IL13、CD123/IL3RA、BAFF/TNFSF13B、FcRn/FCGRT、NGF、CD33/Siglec-3、GPC2/Glypican-2、Integrin α4β7/ITGA4-ITGB7",
+  "promptSupportTargets": "IL-33/IL33、TSLP、PD-L1/CD274、PD-1/PDCD1、CTLA-4/CTLA4、CD20/MS4A1、CD19、CD3/CD3E/CD3G、C5、IL-6R/IL6R、IL-4Rα/IL4R、CD25/IL2RA、CD38、TIGIT、CD47、LAG-3/LAG3、TROP-2/TACSTD2、Tissue Factor/F3、BCMA/TNFRSF17、IgE/IGH、CGRP receptor/CALCRL/RAMP1、HER2/ERBB2、EGFR、VEGF-A/VEGFA、TNF、IL-17A/IL17A、IL-23/IL23A/IL12B、RSV F/F、SARS-CoV-2 RBD/S、Influenza HA/HA、Influenza NA/NA、PCSK9、ANGPTL3、IL-1B、GIPR、Amyloid-beta/APP、Tau/MAPT、TREM2、DAT/SLC6A3、TSHR、alpha-synuclein/SNCA、AQP4、Canine NGF/NGF、CD22/Siglec-2、Mesothelin/MSLN、Claudin 18.2/CLDN18、B7-H3/CD276、B7-H6/NCR3LG1、MUC1、Nectin-4/NECTIN4、GPRC5D、CEACAM5/CEA、STEAP1、CAIX/CA9、IL-5/IL5、IL-13/IL13、CD123/IL3RA、BAFF/TNFSF13B、FcRn/FCGRT、NGF、CD33/Siglec-3、GPC2/Glypican-2、Integrin α4β7/ITGA4-ITGB7",
   "routePresets": [
     {
       "routeId": "allergic_asthma",
@@ -2254,6 +2254,57 @@
       }
     },
     {
+      "routeId": "heme_cd22",
+      "aliasPrefix": "CD22-Fab",
+      "target": "CD22",
+      "gene": "CD22",
+      "aliases": [
+        "SIGLEC2",
+        "B-cell receptor CD22",
+        "Leu-14"
+      ],
+      "promptLabel": "CD22/Siglec-2",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "CD22-Fab-01.pdb"
+      ],
+      "display": {
+        "structureTitle": "CD22 Fab B 细胞恶性肿瘤相关受体结合构象",
+        "structureFamily": "B 细胞谱系表面受体 · CD22 Fab 候选",
+        "visualSummary": "展示 human CD22 D1-D3 ectodomain 与 epratuzumab Fab 的真实实验复合物，可支撑 B-ALL 与 B 细胞肿瘤方向的表面受体展示。",
+        "structuralBasis": "RCSB 5VL3 human CD22 D1-D3 ectodomain / epratuzumab Fab complex",
+        "antigenChains": [
+          "Q"
+        ],
+        "antibodyChains": [
+          "H",
+          "L"
+        ],
+        "sourceAntigenChains": [
+          "Q",
+          "R",
+          "S",
+          "T"
+        ],
+        "sourceAntibodyChains": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "H",
+          "L"
+        ],
+        "visualColors": {
+          "antigen": "#22C55E",
+          "antibody": "#2563EB"
+        }
+      }
+    },
+    {
       "routeId": "solid_tumor_mesothelin",
       "aliasPrefix": "MSLN-Fab",
       "target": "Mesothelin",
@@ -2376,6 +2427,51 @@
         "visualColors": {
           "antigen": "#2563EB",
           "antibody": "#F97316"
+        }
+      }
+    },
+    {
+      "routeId": "solid_tumor_b7h6",
+      "aliasPrefix": "B7H6-Fab",
+      "target": "B7-H6",
+      "gene": "NCR3LG1",
+      "aliases": [
+        "NCR3LG1",
+        "B7H6",
+        "Natural cytotoxicity triggering receptor 3 ligand 1"
+      ],
+      "promptLabel": "B7-H6/NCR3LG1",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "B7H6-Fab-01.pdb"
+      ],
+      "display": {
+        "structureTitle": "B7-H6 Fab 肿瘤免疫配体结合构象",
+        "structureFamily": "实体瘤免疫配体 · B7-H6 Fab 候选",
+        "visualSummary": "展示 human B7-H6 ectodomain 与 inhibitory antibody Fab 的真实实验界面，可用于头颈癌等 B7-H6 高表达实体瘤方向的局部抗原展示。",
+        "structuralBasis": "RCSB 4ZSO human B7-H6 ectodomain / inhibitory antibody Fab complex",
+        "antigenChains": [
+          "E"
+        ],
+        "antibodyChains": [
+          "A",
+          "B"
+        ],
+        "sourceAntigenChains": [
+          "E",
+          "F"
+        ],
+        "sourceAntibodyChains": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "visualColors": {
+          "antigen": "#F97316",
+          "antibody": "#2563EB"
         }
       }
     },
