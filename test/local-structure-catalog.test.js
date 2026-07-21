@@ -272,6 +272,45 @@ test('local structure catalog is the machine-readable inventory for route-backed
   assert.deepEqual(trkb.sourceAntibodyChains, ['H', 'L']);
   assert.match(trkb.structuralBasis, /5MO9/);
 
+  const met = catalogEntryForFilename(catalog, 'SOLIDLIB-HUMAN-MET-FAB-RCSB-6I04.pdb');
+  assert.ok(met, 'solid-tumor MET Fab asset should be represented in the catalog');
+  assert.equal(met.target, 'MET');
+  assert.equal(met.gene, 'MET');
+  assert.equal(met.organismTaxId, 9606);
+  assert.equal(met.structureClass, 'target_exact_domain_complex');
+  assert.equal(met.antibodyFormat, 'Fab');
+  assert.deepEqual(met.antigenChains, ['A']);
+  assert.deepEqual(met.antibodyChains, ['H', 'L']);
+  assert.deepEqual(met.sourceAntigenChains, ['A', 'B']);
+  assert.deepEqual(met.sourceAntibodyChains, ['H', 'L', 'C', 'D']);
+  assert.match(met.structuralBasis, /6I04/);
+
+  const her3 = catalogEntryForFilename(catalog, 'SOLIDLIB-HUMAN-HER3-FAB-RCSB-7D85.pdb');
+  assert.ok(her3, 'solid-tumor HER3 Fab asset should be represented in the catalog');
+  assert.equal(her3.target, 'HER3');
+  assert.equal(her3.gene, 'ERBB3');
+  assert.equal(her3.organismTaxId, 9606);
+  assert.equal(her3.structureClass, 'target_exact_domain_complex');
+  assert.equal(her3.antibodyFormat, 'Fab');
+  assert.deepEqual(her3.antigenChains, ['A']);
+  assert.deepEqual(her3.antibodyChains, ['B', 'C']);
+  assert.deepEqual(her3.sourceAntigenChains, ['A', 'D']);
+  assert.deepEqual(her3.sourceAntibodyChains, ['B', 'C', 'E', 'F']);
+  assert.match(her3.structuralBasis, /7D85/);
+
+  const fgfr3 = catalogEntryForFilename(catalog, 'SOLIDLIB-HUMAN-FGFR3-FAB-RCSB-3GRW.pdb');
+  assert.ok(fgfr3, 'solid-tumor FGFR3 Fab asset should be represented in the catalog');
+  assert.equal(fgfr3.target, 'FGFR3');
+  assert.equal(fgfr3.gene, 'FGFR3');
+  assert.equal(fgfr3.organismTaxId, 9606);
+  assert.equal(fgfr3.structureClass, 'target_exact_domain_complex');
+  assert.equal(fgfr3.antibodyFormat, 'Fab');
+  assert.deepEqual(fgfr3.antigenChains, ['A']);
+  assert.deepEqual(fgfr3.antibodyChains, ['H', 'L']);
+  assert.deepEqual(fgfr3.sourceAntigenChains, ['A']);
+  assert.deepEqual(fgfr3.sourceAntibodyChains, ['H', 'L']);
+  assert.match(fgfr3.structuralBasis, /3GRW/);
+
   const il6 = catalogEntryForFilename(catalog, 'INFLAMLIB-HUMAN-IL6-RCSB-1ALU.pdb');
   assert.ok(il6, 'inflammation-library IL-6 antigen-only asset should be represented in the catalog');
   assert.equal(il6.target, 'IL-6');

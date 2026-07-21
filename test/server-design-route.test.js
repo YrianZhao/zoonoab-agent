@@ -712,6 +712,36 @@ test('server previews exact local-library assets for explicit targets without pr
       expectedSourceAntibodyChains: ['H', 'L']
     },
     {
+      text: '设计10个针对MET的Fab',
+      expectedTarget: 'MET',
+      expectedFile: 'SOLIDLIB-HUMAN-MET-FAB-RCSB-6I04.pdb',
+      expectedPoseKind: 'experimental_complex',
+      expectedAntigenChains: ['A'],
+      expectedAntibodyChains: ['H', 'L'],
+      expectedSourceAntigenChains: ['A', 'B'],
+      expectedSourceAntibodyChains: ['H', 'L', 'C', 'D']
+    },
+    {
+      text: '设计10个针对HER3的Fab',
+      expectedTarget: 'HER3',
+      expectedFile: 'SOLIDLIB-HUMAN-HER3-FAB-RCSB-7D85.pdb',
+      expectedPoseKind: 'experimental_complex',
+      expectedAntigenChains: ['A'],
+      expectedAntibodyChains: ['B', 'C'],
+      expectedSourceAntigenChains: ['A', 'D'],
+      expectedSourceAntibodyChains: ['B', 'C', 'E', 'F']
+    },
+    {
+      text: '设计10个针对FGFR3的Fab',
+      expectedTarget: 'FGFR3',
+      expectedFile: 'SOLIDLIB-HUMAN-FGFR3-FAB-RCSB-3GRW.pdb',
+      expectedPoseKind: 'experimental_complex',
+      expectedAntigenChains: ['A'],
+      expectedAntibodyChains: ['H', 'L'],
+      expectedSourceAntigenChains: ['A'],
+      expectedSourceAntibodyChains: ['H', 'L']
+    },
+    {
       text: '设计10个针对GLP1R的Fab',
       expectedTarget: 'GLP1R',
       expectedFile: 'ENDOCRINELIB-HUMAN-GLP1R-RCSB-6LN2.pdb',

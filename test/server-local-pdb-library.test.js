@@ -226,6 +226,42 @@ test('local PDB model library API lists local structures with viewer metadata', 
   assert.match(trkb.structuralBasis, /5MO9/);
   assert.equal(trkb.targetTag.verifiedTag, true);
 
+  const met = data.models.find(model => model.filename === 'SOLIDLIB-HUMAN-MET-FAB-RCSB-6I04.pdb');
+  assert.ok(met, 'solid-tumor MET Fab asset should be listed');
+  assert.equal(met.targetDisplay, 'MET');
+  assert.equal(met.antibodyFormat, 'Fab');
+  assert.equal(met.structureKind, 'Fab 抗原-抗体复合体');
+  assert.deepEqual(met.antigenChains, ['A']);
+  assert.deepEqual(met.antibodyChains, ['H', 'L']);
+  assert.deepEqual(met.sourceAntigenChains, ['A', 'B']);
+  assert.deepEqual(met.sourceAntibodyChains, ['H', 'L', 'C', 'D']);
+  assert.match(met.structuralBasis, /6I04/);
+  assert.equal(met.targetTag.verifiedTag, true);
+
+  const her3 = data.models.find(model => model.filename === 'SOLIDLIB-HUMAN-HER3-FAB-RCSB-7D85.pdb');
+  assert.ok(her3, 'solid-tumor HER3 Fab asset should be listed');
+  assert.equal(her3.targetDisplay, 'HER3');
+  assert.equal(her3.antibodyFormat, 'Fab');
+  assert.equal(her3.structureKind, 'Fab 抗原-抗体复合体');
+  assert.deepEqual(her3.antigenChains, ['A']);
+  assert.deepEqual(her3.antibodyChains, ['B', 'C']);
+  assert.deepEqual(her3.sourceAntigenChains, ['A', 'D']);
+  assert.deepEqual(her3.sourceAntibodyChains, ['B', 'C', 'E', 'F']);
+  assert.match(her3.structuralBasis, /7D85/);
+  assert.equal(her3.targetTag.verifiedTag, true);
+
+  const fgfr3 = data.models.find(model => model.filename === 'SOLIDLIB-HUMAN-FGFR3-FAB-RCSB-3GRW.pdb');
+  assert.ok(fgfr3, 'solid-tumor FGFR3 Fab asset should be listed');
+  assert.equal(fgfr3.targetDisplay, 'FGFR3');
+  assert.equal(fgfr3.antibodyFormat, 'Fab');
+  assert.equal(fgfr3.structureKind, 'Fab 抗原-抗体复合体');
+  assert.deepEqual(fgfr3.antigenChains, ['A']);
+  assert.deepEqual(fgfr3.antibodyChains, ['H', 'L']);
+  assert.deepEqual(fgfr3.sourceAntigenChains, ['A']);
+  assert.deepEqual(fgfr3.sourceAntibodyChains, ['H', 'L']);
+  assert.match(fgfr3.structuralBasis, /3GRW/);
+  assert.equal(fgfr3.targetTag.verifiedTag, true);
+
   const gba = data.models.find(model => model.filename === 'NEUROLIB-HUMAN-GBA-RCSB-1OGS.pdb');
   assert.ok(gba, 'neuro-library GBA asset should be listed');
   assert.equal(gba.targetDisplay, 'GBA');

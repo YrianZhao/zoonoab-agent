@@ -15,7 +15,7 @@ function readModelText(model) {
 test('solid-tumor asset library keeps exact local sources for non-routeable tumor targets', () => {
   assert.equal(manifest.schemaVersion, 1);
   assert.equal(manifest.totalModels, manifest.models.length);
-  assert.equal(manifest.totalModels, 12);
+  assert.equal(manifest.totalModels, 15);
 
   for (const model of manifest.models) {
     assert.ok(fs.existsSync(path.join(ROOT, 'pdb', model.filename)), model.filename + ' should exist locally');
