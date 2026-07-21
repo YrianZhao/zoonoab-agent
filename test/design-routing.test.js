@@ -49,6 +49,24 @@ test('keeps known biomedical targets extractable for preset profiles', () => {
   assert.equal(parsed.abType, 'Fab');
 });
 
+test('keeps newly cataloged solid-tumor targets stable in explicit design requests', () => {
+  const cases = [
+    ['设计10个针对MUC1的Fab', 'MUC1'],
+    ['设计10个针对Mesothelin的Fab', 'Mesothelin'],
+    ['设计10个针对B7-H3的Fab', 'B7-H3'],
+    ['设计10个针对CD276的Fab', 'B7-H3'],
+    ['设计一个针对 Claudin 18.2 的 Fab 抗体', 'Claudin 18.2'],
+    ['设计10个针对CLDN18的Fab', 'Claudin 18.2']
+  ];
+
+  for (const [text, expectedTarget] of cases) {
+    const parsed = extractDesignRequest(text);
+    assert.equal(parsed.isDesignRequest, true, text);
+    assert.equal(parsed.target, expectedTarget, text);
+    assert.equal(parsed.hasExplicitTarget, true, text);
+  }
+});
+
 test('recognizes canine NGF as an explicit veterinary design target', () => {
   const parsed = extractDesignRequest('设计狗 NGF 单抗');
   assert.equal(parsed.isDesignRequest, true);

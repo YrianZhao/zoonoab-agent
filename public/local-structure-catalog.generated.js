@@ -2,16 +2,16 @@
 (function(){
   window.ZOONOAB_LOCAL_STRUCTURE_CATALOG = {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-21T06:40:16.520Z",
+  "generatedAt": "2026-07-21T12:44:20.908Z",
   "summary": {
-    "pdbFileCount": 447,
-    "routePresetCount": 38,
-    "routeableRoutePresetCount": 37,
-    "promptEligibleRoutePresetCount": 37,
-    "routePresetFileCount": 390,
+    "pdbFileCount": 451,
+    "routePresetCount": 42,
+    "routeableRoutePresetCount": 41,
+    "promptEligibleRoutePresetCount": 41,
+    "routePresetFileCount": 394,
     "libraryAssetCount": 77
   },
-  "promptSupportTargets": "IL-33/IL33、TSLP、PD-L1/CD274、PD-1/PDCD1、CTLA-4/CTLA4、CD20/MS4A1、CD19、CD3/CD3E/CD3G、C5、IL-6R/IL6R、IL-4Rα/IL4R、CD25/IL2RA、CD38、TIGIT、CD47、LAG-3/LAG3、TROP-2/TACSTD2、BCMA/TNFRSF17、IgE/IGH、CGRP receptor/CALCRL/RAMP1、HER2/ERBB2、EGFR、VEGF-A/VEGFA、TNF、IL-17A/IL17A、IL-23/IL23A/IL12B、RSV F/F、SARS-CoV-2 RBD/S、Influenza HA/HA、Influenza NA/NA、PCSK9、ANGPTL3、IL-1B、GIPR、DAT/SLC6A3、Canine NGF/NGF",
+  "promptSupportTargets": "IL-33/IL33、TSLP、PD-L1/CD274、PD-1/PDCD1、CTLA-4/CTLA4、CD20/MS4A1、CD19、CD3/CD3E/CD3G、C5、IL-6R/IL6R、IL-4Rα/IL4R、CD25/IL2RA、CD38、TIGIT、CD47、LAG-3/LAG3、TROP-2/TACSTD2、BCMA/TNFRSF17、IgE/IGH、CGRP receptor/CALCRL/RAMP1、HER2/ERBB2、EGFR、VEGF-A/VEGFA、TNF、IL-17A/IL17A、IL-23/IL23A/IL12B、RSV F/F、SARS-CoV-2 RBD/S、Influenza HA/HA、Influenza NA/NA、PCSK9、ANGPTL3、IL-1B、GIPR、DAT/SLC6A3、Canine NGF/NGF、Mesothelin/MSLN、Claudin 18.2/CLDN18、B7-H3/CD276、MUC1",
   "routePresets": [
     {
       "routeId": "allergic_asthma",
@@ -1974,6 +1974,173 @@
           9,
           10
         ]
+      }
+    },
+    {
+      "routeId": "solid_tumor_mesothelin",
+      "aliasPrefix": "MSLN-Fab",
+      "target": "Mesothelin",
+      "gene": "MSLN",
+      "aliases": [
+        "MSLN",
+        "CAK1",
+        "SMRP"
+      ],
+      "promptLabel": "Mesothelin/MSLN",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "MSLN-Fab-01.pdb"
+      ],
+      "display": {
+        "structureTitle": "Mesothelin Fab 胰腺癌相关表面抗原结合构象",
+        "structureFamily": "实体瘤表面抗原 · Mesothelin Fab 候选",
+        "visualSummary": "展示全长 Mesothelin ectodomain 与 MORAb-009 Fab 的真实实验结合界面，可直接支撑胰腺癌与间皮相关实体瘤靶点展示。",
+        "structuralBasis": "RCSB 7UED full-length mesothelin / MORAb-009 Fab complex",
+        "antigenChains": [
+          "M"
+        ],
+        "antibodyChains": [
+          "H",
+          "L"
+        ],
+        "sourceAntigenChains": [
+          "M"
+        ],
+        "sourceAntibodyChains": [
+          "H",
+          "L"
+        ],
+        "visualColors": {
+          "antigen": "#F97316",
+          "antibody": "#0EA5E9"
+        }
+      }
+    },
+    {
+      "routeId": "solid_tumor_cldn18",
+      "aliasPrefix": "CLDN18.2-Fab",
+      "target": "Claudin 18.2",
+      "gene": "CLDN18",
+      "aliases": [
+        "CLDN18.2",
+        "Claudin-18.2",
+        "Claudin 18.2"
+      ],
+      "promptLabel": "Claudin 18.2/CLDN18",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "CLDN18.2-Fab-01.pdb"
+      ],
+      "display": {
+        "structureTitle": "Claudin 18.2 Fab 胃癌相关紧密连接抗原结合构象",
+        "structureFamily": "胃癌相关膜蛋白 · Claudin 18.2 Fab 候选",
+        "visualSummary": "展示 Claudin 18.2 外露环区与 zolbetuximab Fab 的真实实验结合界面，适合胃癌、胃食管交界癌与胰腺癌方向的表面抗原展示。",
+        "structuralBasis": "RCSB 9V32 claudin 18.2 / zolbetuximab Fab complex",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "H",
+          "L"
+        ],
+        "sourceAntigenChains": [
+          "A"
+        ],
+        "sourceAntibodyChains": [
+          "H",
+          "L"
+        ],
+        "visualColors": {
+          "antigen": "#0F766E",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "solid_tumor_b7h3",
+      "aliasPrefix": "CD276-Fab",
+      "target": "B7-H3",
+      "gene": "CD276",
+      "aliases": [
+        "CD276",
+        "B7H3",
+        "B7-H3/CD276"
+      ],
+      "promptLabel": "B7-H3/CD276",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "CD276-Fab-01.pdb"
+      ],
+      "display": {
+        "structureTitle": "B7-H3 Fab 免疫调节肿瘤抗原结合构象",
+        "structureFamily": "实体瘤免疫调节表面抗原 · B7-H3 Fab 候选",
+        "visualSummary": "展示 human B7-H3 IgC domain 与 20G5 Fab 的真实实验结合界面，可用于 CD276 相关实体瘤靶点展示。",
+        "structuralBasis": "RCSB 9LY5 human B7-H3 IgC domain / 20G5 Fab complex",
+        "antigenChains": [
+          "C"
+        ],
+        "antibodyChains": [
+          "A",
+          "B"
+        ],
+        "sourceAntigenChains": [
+          "C"
+        ],
+        "sourceAntibodyChains": [
+          "A",
+          "B"
+        ],
+        "visualColors": {
+          "antigen": "#2563EB",
+          "antibody": "#F97316"
+        }
+      }
+    },
+    {
+      "routeId": "solid_tumor_muc1",
+      "aliasPrefix": "MUC1-Fab",
+      "target": "MUC1",
+      "gene": "MUC1",
+      "aliases": [
+        "Mucin-1",
+        "CD227"
+      ],
+      "promptLabel": "MUC1",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "MUC1-Fab-01.pdb"
+      ],
+      "display": {
+        "structureTitle": "MUC1 Fab 肿瘤相关 GlycoST VNTR 表位结合构象",
+        "structureFamily": "肿瘤相关糖蛋白抗原 · MUC1 glycopeptide Fab 候选",
+        "visualSummary": "展示 MUC1 肿瘤相关 GlycoST VNTR 局部糖肽表位与 16A Fab 的真实实验复合物，不将其表述为全长 MUC1 天然整体形态。",
+        "structuralBasis": "RCSB 7V7K MUC1 GlycoST VNTR glycopeptide / 16A Fab complex",
+        "antigenChains": [
+          "C"
+        ],
+        "antibodyChains": [
+          "A",
+          "B"
+        ],
+        "sourceAntigenChains": [
+          "C"
+        ],
+        "sourceAntibodyChains": [
+          "A",
+          "B"
+        ],
+        "visualColors": {
+          "antigen": "#EC4899",
+          "antibody": "#38BDF8"
+        }
       }
     }
   ]

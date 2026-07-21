@@ -1251,7 +1251,7 @@ test('model parse failures return server timeout without starting local fallback
   }
 });
 
-test('model-selected unknown target keeps its title while representative 3D structure stays display-safe', async () => {
+test('model-selected Claudin 18.2 requests upgrade from representative fallback to a prepared local exact complex', async () => {
   const captured = [];
   const mockServer = http.createServer((req, res) => {
     let body = '';
@@ -1313,15 +1313,18 @@ test('model-selected unknown target keeps its title while representative 3D stru
     assert.ok(findDisplayTraceRequest(captured));
     assert.ok(evidenceCall, 'workflow should start from the model-selected target');
     assert.equal(evidenceCall.params.target, 'Claudin 18.2');
-    assert.ok(show3d, 'test mode should use a requested-target labeled representative structure');
-    assert.match(show3d.label, /Claudin 18\.2.*(?:Fab|mAb) 候选结构/);
-    assert.equal(finalStructureStatus.status, 'representative');
+    assert.ok(show3d, 'test mode should surface the prepared Claudin 18.2 local complex');
+    assert.match(show3d.label, /Claudin 18\.2/);
+    assert.equal(finalStructureStatus.status, 'ready');
     assert.equal(show3d.binderData[0].targetDisplay, 'Claudin 18.2');
-    assert.equal(show3d.binderData[0].structure.source.kind, 'representative');
-    assert.equal(show3d.binderData[0].structure.coordinates.targetVerified, false);
-    assert.equal(show3d.binderData[0].structure.coordinates.coordinateAntigenLabel, 'PD-L1');
+    assert.equal(show3d.binderData[0].file, 'CLDN18.2-Fab-01.pdb');
+    assert.equal(show3d.binderData[0].structure.source.kind, 'prepared_exact_complex');
+    assert.equal(show3d.binderData[0].structure.coordinates.targetVerified, true);
+    assert.equal(show3d.binderData[0].structure.coordinates.coordinateAntigenLabel, 'Claudin 18.2');
+    assert.deepEqual(show3d.binderData[0].structure.coordinates.antigenChains, ['A']);
+    assert.deepEqual(show3d.binderData[0].structure.coordinates.antibodyChains, ['H', 'L']);
     assert.match(show3d.binderData[0].structure.display.structureTitle, /^Claudin 18\.2/);
-    assert.match(show3d.binderData[0].structure.display.disclosure, /当前展示用于呈现本轮设计目标/);
+    assert.match(show3d.binderData[0].structure.display.disclosure, /公开实验复合物用于展示结构参考/);
     assert.match(assistantText, /Claudin 18\.2/);
     assert.doesNotMatch(assistantText, /默认抗原-抗体代表性结构|题头保留|抗原身份未核验|展示等级|结构来源：local/);
     assert.doesNotMatch(assistantText, /用户明确指定|本轮用户指定目标/);

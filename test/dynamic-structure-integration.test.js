@@ -94,14 +94,14 @@ test.after(async () => {
   }
 });
 
-test('unknown targets do not borrow coordinates from the local prepared-route library', async () => {
+test('targets without a prepared local route do not borrow coordinates from the local prepared-route library', async () => {
   const response = await fetch(BASE_URL + '/api/debug/design-route?text=' + encodeURIComponent(
-    '设计一个针对 CLDN18.2 的 Fab 抗体'
+    '设计一个针对 CEACAM6 的 Fab 抗体'
   ));
   assert.equal(response.status, 200);
   const data = await response.json();
 
-  assert.equal(data.profile.targetDisplay, 'CLDN18.2');
+  assert.equal(data.profile.targetDisplay, 'CEACAM6');
   assert.equal(data.profile.genericProfile, true);
   assert.deepEqual(data.threeDPreview.files, []);
   assert.deepEqual(data.threeDPreview.displayFiles, []);
@@ -115,6 +115,26 @@ test('unknown targets do not borrow coordinates from the local prepared-route li
   assert.match(routeLocalPDBs, /preparedStructureTargetMatches\(profile, file\)/);
   assert.match(routeLocalPDBs, /if \(!exactPresetFiles\.length\) return \[\]/);
   assert.doesNotMatch(routeLocalPDBs, /genericDisplayModelFiles|LOCAL_3D_PDB_FILES|orderPDBFilesForPreset/);
+});
+
+test('newly cataloged exact routes use their own prepared local structures', async () => {
+  const response = await fetch(BASE_URL + '/api/debug/design-route?text=' + encodeURIComponent(
+    '设计一个针对 Claudin 18.2 的 Fab 抗体'
+  ));
+  assert.equal(response.status, 200);
+  const data = await response.json();
+  const binder = data.threeDPreview && data.threeDPreview.binders && data.threeDPreview.binders[0];
+
+  assert.equal(data.profile.targetDisplay, 'Claudin 18.2');
+  assert.ok(binder, 'prepared local route should expose a binder');
+  assert.match(binder.file, /^CLDN18\.2-Fab-/);
+  assert.equal(binder.modelOrigin, 'local');
+  assert.equal(binder.structure.source.kind, 'prepared_exact_complex');
+  assert.equal(binder.structure.coordinates.targetVerified, true);
+  assert.equal(binder.structure.coordinates.coordinateAntigenLabel, 'Claudin 18.2');
+  assert.deepEqual(binder.structure.coordinates.antigenChains, ['A']);
+  assert.deepEqual(binder.structure.coordinates.antibodyChains, ['H', 'L']);
+  assert.doesNotMatch(JSON.stringify(data.threeDPreview), /PDL1|IL33|4KC3|FluHA|RSVF/);
 });
 
 test('prepared local structures require an exact requested-target to PDB REMARK identity match', () => {

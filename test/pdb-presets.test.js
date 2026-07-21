@@ -138,6 +138,30 @@ const COMMON_REAL_COMPLEX_EXPECTATIONS = [
     antibodyChains: ['B', 'C']
   },
   {
+    prefix: 'MSLN-Fab',
+    basis: /RCSB 7UED full-length mesothelin \/ MORAb-009 Fab complex/,
+    antigenChains: ['M'],
+    antibodyChains: ['H', 'L']
+  },
+  {
+    prefix: 'CLDN18.2-Fab',
+    basis: /RCSB 9V32 claudin 18\.2 \/ zolbetuximab Fab complex/,
+    antigenChains: ['A'],
+    antibodyChains: ['H', 'L']
+  },
+  {
+    prefix: 'CD276-Fab',
+    basis: /RCSB 9LY5 human B7-H3 IgC domain \/ 20G5 Fab complex/,
+    antigenChains: ['C'],
+    antibodyChains: ['A', 'B']
+  },
+  {
+    prefix: 'MUC1-Fab',
+    basis: /RCSB 7V7K MUC1 GlycoST VNTR glycopeptide \/ 16A Fab complex/,
+    antigenChains: ['C'],
+    antibodyChains: ['A', 'B']
+  },
+  {
     prefix: 'FluNA-Fab',
     basis: /RCSB 1NCD influenza N9 neuraminidase \/ NC41 Fab complex/,
     antigenChains: ['A'],
@@ -444,13 +468,13 @@ test('default display library only contains local complexes with visible antigen
     'TNF-Fab',
     'IL17A-Fab',
     'IL23-Fab',
-    'RSVF-Fab',
-    'SC2RBD-Fab',
-    'FluHA-Fab',
-    'PCSK9-Fab',
-    'IL1B-Fab',
-    'GIPR-Fab'
-  ];
+      'RSVF-Fab',
+      'SC2RBD-Fab',
+      'FluHA-Fab',
+      'PCSK9-Fab',
+      'IL1B-Fab',
+      'GIPR-Fab'
+    ];
 
   for (const prefix of displayPrefixes) {
     for (let idx = 1; idx <= 10; idx++) {

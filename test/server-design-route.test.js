@@ -646,7 +646,11 @@ test('server previews curated real complexes for common explicit antigen targets
     { text: '设计10个针对BCMA的Fab', expectedTarget: 'BCMA', expectedPrefix: /^BCMA-Fab-/ },
     { text: '设计10个针对IgE的Fab', expectedTarget: 'IgE', expectedPrefix: /^IgE-Fab-/ },
     { text: '设计10个针对CGRP receptor的Fab', expectedTarget: 'CGRP receptor', expectedPrefix: /^CGRPR-Fab-/ },
-    { text: '设计10个针对流感NA的Fab', expectedTarget: 'Influenza NA', expectedPrefix: /^FluNA-Fab-/ }
+    { text: '设计10个针对流感NA的Fab', expectedTarget: 'Influenza NA', expectedPrefix: /^FluNA-Fab-/ },
+    { text: '设计10个针对MUC1的Fab', expectedTarget: 'MUC1', expectedPrefix: /^MUC1-Fab-/ },
+    { text: '设计10个针对Mesothelin的Fab', expectedTarget: 'Mesothelin', expectedPrefix: /^MSLN-Fab-/ },
+    { text: '设计10个针对Claudin 18.2的Fab', expectedTarget: 'Claudin 18.2', expectedPrefix: /^CLDN18\.2-Fab-/ },
+    { text: '设计10个针对B7-H3的Fab', expectedTarget: 'B7-H3', expectedPrefix: /^CD276-Fab-/ }
   ];
 
   for (const item of requests) {

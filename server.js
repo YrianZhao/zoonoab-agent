@@ -9330,6 +9330,18 @@ async function runWorkflow(ws, input, forcedRoute, researchTraceRuntime = null) 
       }
     }
   }
+  if (!structureJob && allLocalPDBs.length) {
+    const preparedLocalStructure = allLocalPDBs[0] && allLocalPDBs[0].structure;
+    if (preparedLocalStructure && preparedLocalStructure.status === 'ready') {
+      send({
+        type: 'structure_status',
+        status: 'ready',
+        target: profile.targetDisplay,
+        source: preparedLocalStructure.source || null,
+        message: '已获得与当前靶点身份一致的本地结构坐标，正在准备三维展示。'
+      });
+    }
+  }
   if (!allLocalPDBs.length) {
     allLocalPDBs = buildRepresentativeFallbackBinders(profile);
     send({

@@ -4,10 +4,10 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 
 ## Summary
 
-- PDB files: 447
-- Route presets: 38
-- Routeable presets: 37
-- Prompt-eligible structure-supported targets: 37
+- PDB files: 451
+- Route presets: 42
+- Routeable presets: 41
+- Prompt-eligible structure-supported targets: 41
 - Library assets: 77
 
 ## Route-backed structure families
@@ -52,6 +52,10 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 | neuro_adhd_dat | DAT | SLC6A3 | DAT-Fab | 10 | Homo sapiens | RCSB 9EO4 human dopamine transporter outward-open structure + representative Fab display scaffold |
 | veterinary_canine_ngf | Canine NGF | NGF | CANINE-NGF-Fab | 10 | Canis lupus familiaris | AlphaFold DB A0A8I3PYI3 犬源成熟 NGF + RCSB 4EDW tanezumab Fab 展示支架 |
 | generic_vhh | IL-33 | IL33 | IL33-VHH | 15 | Homo sapiens | VHH 候选与抗原界面参考构象 |
+| solid_tumor_mesothelin | Mesothelin | MSLN | MSLN-Fab | 1 | Homo sapiens | RCSB 7UED full-length mesothelin / MORAb-009 Fab complex |
+| solid_tumor_cldn18 | Claudin 18.2 | CLDN18 | CLDN18.2-Fab | 1 | Homo sapiens | RCSB 9V32 claudin 18.2 / zolbetuximab Fab complex |
+| solid_tumor_b7h3 | B7-H3 | CD276 | CD276-Fab | 1 | Homo sapiens | RCSB 9LY5 human B7-H3 IgC domain / 20G5 Fab complex |
+| solid_tumor_muc1 | MUC1 | MUC1 | MUC1-Fab | 1 | Homo sapiens | RCSB 7V7K MUC1 GlycoST VNTR glycopeptide / 16A Fab complex |
 
 ## Extension priorities
 
