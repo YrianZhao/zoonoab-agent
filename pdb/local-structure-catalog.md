@@ -4,10 +4,10 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 
 ## Summary
 
-- PDB files: 465
-- Route presets: 47
-- Routeable presets: 46
-- Prompt-eligible structure-supported targets: 46
+- PDB files: 468
+- Route presets: 50
+- Routeable presets: 49
+- Prompt-eligible structure-supported targets: 49
 - Library assets: 86
 
 ## Route-backed structure families
@@ -49,6 +49,9 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 | cardio_il1b | IL-1B |  | IL1B-Fab | 10 | Homo sapiens | RCSB 5BVP IL-1 beta / canakinumab Fab 复合体 |
 | metabolic_angptl3 | ANGPTL3 | ANGPTL3 | ANGPTL3-Met-Fab | 10 | Homo sapiens | RCSB 6EUA ANGPTL3 真实靶点结构 + Fab 候选参考姿态 |
 | metabolic_gipr | GIPR | GIPR | GIPR-Fab | 10 | Homo sapiens | RCSB 4HJ0 human GIPR ECD / GIPG013 Fab 复合体 |
+| neuro_alz_abeta | Amyloid-beta | APP | ABETA-Fab | 1 | Homo sapiens | RCSB 4OJF amyloid-beta 1-8 peptide / humanized 3D6 Fab complex |
+| neuro_alz_tau | Tau | MAPT | TAU-Fab | 1 | Homo sapiens | RCSB 6PXR Tau peptide / gosuranemab Fab complex |
+| neuro_alz_trem2 | TREM2 | TREM2 | TREM2-Fab | 1 | Homo sapiens | RCSB 9PWN TREM2 stalk peptide / 7411 Fab complex |
 | neuro_adhd_dat | DAT | SLC6A3 | DAT-Fab | 10 | Homo sapiens | RCSB 9EO4 human dopamine transporter outward-open structure + representative Fab display scaffold |
 | veterinary_canine_ngf | Canine NGF | NGF | CANINE-NGF-Fab | 10 | Canis lupus familiaris | AlphaFold DB A0A8I3PYI3 犬源成熟 NGF + RCSB 4EDW tanezumab Fab 展示支架 |
 | generic_vhh | IL-33 | IL33 | IL33-VHH | 15 | Homo sapiens | VHH 候选与抗原界面参考构象 |

@@ -2,16 +2,16 @@
 (function(){
   window.ZOONOAB_LOCAL_STRUCTURE_CATALOG = {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-21T14:04:21.968Z",
+  "generatedAt": "2026-07-21T14:24:28.160Z",
   "summary": {
-    "pdbFileCount": 465,
-    "routePresetCount": 47,
-    "routeableRoutePresetCount": 46,
-    "promptEligibleRoutePresetCount": 46,
-    "routePresetFileCount": 399,
+    "pdbFileCount": 468,
+    "routePresetCount": 50,
+    "routeableRoutePresetCount": 49,
+    "promptEligibleRoutePresetCount": 49,
+    "routePresetFileCount": 402,
     "libraryAssetCount": 86
   },
-  "promptSupportTargets": "IL-33/IL33、TSLP、PD-L1/CD274、PD-1/PDCD1、CTLA-4/CTLA4、CD20/MS4A1、CD19、CD3/CD3E/CD3G、C5、IL-6R/IL6R、IL-4Rα/IL4R、CD25/IL2RA、CD38、TIGIT、CD47、LAG-3/LAG3、TROP-2/TACSTD2、BCMA/TNFRSF17、IgE/IGH、CGRP receptor/CALCRL/RAMP1、HER2/ERBB2、EGFR、VEGF-A/VEGFA、TNF、IL-17A/IL17A、IL-23/IL23A/IL12B、RSV F/F、SARS-CoV-2 RBD/S、Influenza HA/HA、Influenza NA/NA、PCSK9、ANGPTL3、IL-1B、GIPR、DAT/SLC6A3、Canine NGF/NGF、Mesothelin/MSLN、Claudin 18.2/CLDN18、B7-H3/CD276、MUC1、Nectin-4/NECTIN4、GPRC5D、CEACAM5/CEA、STEAP1、CAIX/CA9",
+  "promptSupportTargets": "IL-33/IL33、TSLP、PD-L1/CD274、PD-1/PDCD1、CTLA-4/CTLA4、CD20/MS4A1、CD19、CD3/CD3E/CD3G、C5、IL-6R/IL6R、IL-4Rα/IL4R、CD25/IL2RA、CD38、TIGIT、CD47、LAG-3/LAG3、TROP-2/TACSTD2、BCMA/TNFRSF17、IgE/IGH、CGRP receptor/CALCRL/RAMP1、HER2/ERBB2、EGFR、VEGF-A/VEGFA、TNF、IL-17A/IL17A、IL-23/IL23A/IL12B、RSV F/F、SARS-CoV-2 RBD/S、Influenza HA/HA、Influenza NA/NA、PCSK9、ANGPTL3、IL-1B、GIPR、Amyloid-beta/APP、Tau/MAPT、TREM2、DAT/SLC6A3、Canine NGF/NGF、Mesothelin/MSLN、Claudin 18.2/CLDN18、B7-H3/CD276、MUC1、Nectin-4/NECTIN4、GPRC5D、CEACAM5/CEA、STEAP1、CAIX/CA9",
   "routePresets": [
     {
       "routeId": "allergic_asthma",
@@ -1821,6 +1821,134 @@
           11
         ],
         "ipTmBias": 0.001
+      }
+    },
+    {
+      "routeId": "neuro_alz_abeta",
+      "aliasPrefix": "ABETA-Fab",
+      "target": "Amyloid-beta",
+      "gene": "APP",
+      "aliases": [
+        "Aβ",
+        "Abeta",
+        "Amyloid beta",
+        "Amyloid-beta"
+      ],
+      "promptLabel": "Amyloid-beta/APP",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "ABETA-Fab-01.pdb"
+      ],
+      "display": {
+        "structureTitle": "Amyloid-beta Fab 阿尔茨海默病相关表位结合构象",
+        "structureFamily": "阿尔茨海默病相关淀粉样肽 · Amyloid-beta Fab 候选",
+        "visualSummary": "展示 Amyloid-beta 1-8 N 端表位与 humanized 3D6 Fab 的真实实验复合物，不将其表述为完整淀粉样纤维整体形态。",
+        "structuralBasis": "RCSB 4OJF amyloid-beta 1-8 peptide / humanized 3D6 Fab complex",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "H",
+          "L"
+        ],
+        "sourceAntigenChains": [
+          "A"
+        ],
+        "sourceAntibodyChains": [
+          "H",
+          "L"
+        ],
+        "visualColors": {
+          "antigen": "#7C3AED",
+          "antibody": "#38BDF8"
+        },
+        "ipTmBias": 0.002
+      }
+    },
+    {
+      "routeId": "neuro_alz_tau",
+      "aliasPrefix": "TAU-Fab",
+      "target": "Tau",
+      "gene": "MAPT",
+      "aliases": [
+        "MAPT",
+        "PHF-Tau",
+        "Tau protein"
+      ],
+      "promptLabel": "Tau/MAPT",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "TAU-Fab-01.pdb"
+      ],
+      "display": {
+        "structureTitle": "Tau Fab 阿尔茨海默病相关表位结合构象",
+        "structureFamily": "Tau 蛋白 N 端表位 · Fab 候选",
+        "visualSummary": "展示 Tau 15-22 N 端表位肽与 gosuranemab Fab 的真实实验复合物，不将其表述为完整 Tau 纤维整体形态。",
+        "structuralBasis": "RCSB 6PXR Tau peptide / gosuranemab Fab complex",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "H",
+          "L"
+        ],
+        "sourceAntigenChains": [
+          "A"
+        ],
+        "sourceAntibodyChains": [
+          "H",
+          "L"
+        ],
+        "visualColors": {
+          "antigen": "#8B5CF6",
+          "antibody": "#14B8A6"
+        },
+        "ipTmBias": 0.002
+      }
+    },
+    {
+      "routeId": "neuro_alz_trem2",
+      "aliasPrefix": "TREM2-Fab",
+      "target": "TREM2",
+      "gene": "TREM2",
+      "aliases": [
+        "Triggering receptor expressed on myeloid cells 2"
+      ],
+      "promptLabel": "TREM2",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "TREM2-Fab-01.pdb"
+      ],
+      "display": {
+        "structureTitle": "TREM2 Fab 阿尔茨海默病相关表位结合构象",
+        "structureFamily": "微胶质调节受体 · TREM2 peptide Fab 候选",
+        "visualSummary": "展示 TREM2 stalk peptide 与 7411 Fab 的真实实验复合物，不将其表述为完整 TREM2 ectodomain 整体形态。",
+        "structuralBasis": "RCSB 9PWN TREM2 stalk peptide / 7411 Fab complex",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "H",
+          "L"
+        ],
+        "sourceAntigenChains": [
+          "A"
+        ],
+        "sourceAntibodyChains": [
+          "H",
+          "L"
+        ],
+        "visualColors": {
+          "antigen": "#22C55E",
+          "antibody": "#2563EB"
+        },
+        "ipTmBias": 0.002
       }
     },
     {

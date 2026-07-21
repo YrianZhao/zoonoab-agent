@@ -19,7 +19,7 @@ const ROOT = path.resolve(__dirname, '..');
 test('local structure catalog is the machine-readable inventory for route-backed models', () => {
   const catalog = loadLocalStructureCatalog(ROOT);
   assert.equal(catalog.schemaVersion, 1);
-  assert.ok(catalog.summary.pdbFileCount >= 465);
+  assert.ok(catalog.summary.pdbFileCount >= 468);
   assert.ok(catalog.summary.promptEligibleRoutePresetCount >= 30);
   assert.ok(catalog.summary.libraryAssetCount >= 86);
 
@@ -75,6 +75,36 @@ test('local structure catalog is the machine-readable inventory for route-backed
   assert.deepEqual(caix.display.antigenChains, ['P']);
   assert.deepEqual(caix.display.antibodyChains, ['H', 'L']);
 
+  const abeta = catalogEntryForFilename(catalog, 'ABETA-Fab-01.pdb');
+  assert.ok(abeta, 'ABETA-Fab-01 should be represented in the catalog');
+  assert.equal(abeta.target, 'Amyloid-beta');
+  assert.equal(abeta.gene, 'APP');
+  assert.equal(abeta.organismTaxId, 9606);
+  assert.equal(abeta.aliasPrefix, 'ABETA-Fab');
+  assert.equal(abeta.structureClass, 'target_exact_epitope_complex');
+  assert.deepEqual(abeta.display.antigenChains, ['A']);
+  assert.deepEqual(abeta.display.antibodyChains, ['H', 'L']);
+
+  const tau = catalogEntryForFilename(catalog, 'TAU-Fab-01.pdb');
+  assert.ok(tau, 'TAU-Fab-01 should be represented in the catalog');
+  assert.equal(tau.target, 'Tau');
+  assert.equal(tau.gene, 'MAPT');
+  assert.equal(tau.organismTaxId, 9606);
+  assert.equal(tau.aliasPrefix, 'TAU-Fab');
+  assert.equal(tau.structureClass, 'target_exact_epitope_complex');
+  assert.deepEqual(tau.display.antigenChains, ['A']);
+  assert.deepEqual(tau.display.antibodyChains, ['H', 'L']);
+
+  const trem2 = catalogEntryForFilename(catalog, 'TREM2-Fab-01.pdb');
+  assert.ok(trem2, 'TREM2-Fab-01 should be represented in the catalog');
+  assert.equal(trem2.target, 'TREM2');
+  assert.equal(trem2.gene, 'TREM2');
+  assert.equal(trem2.organismTaxId, 9606);
+  assert.equal(trem2.aliasPrefix, 'TREM2-Fab');
+  assert.equal(trem2.structureClass, 'target_exact_epitope_complex');
+  assert.deepEqual(trem2.display.antigenChains, ['A']);
+  assert.deepEqual(trem2.display.antibodyChains, ['H', 'L']);
+
   const epcam = catalogEntryForFilename(catalog, 'SOLIDLIB-HUMAN-EPCAM-SCFV-RCSB-6I07.pdb');
   assert.ok(epcam, 'solid-tumor EpCAM asset should be represented in the catalog');
   assert.equal(epcam.target, 'EpCAM');
@@ -98,6 +128,9 @@ test('local structure catalog is the machine-readable inventory for route-backed
   assert.match(supportList, /CEACAM5\/CEA/);
   assert.match(supportList, /CAIX\/CA9/);
   assert.match(supportList, /STEAP1/);
+  assert.match(supportList, /Amyloid-beta\/APP/);
+  assert.match(supportList, /Tau\/MAPT/);
+  assert.match(supportList, /TREM2/);
 });
 
 test('catalog-derived target map can route aliases without hand-editing target maps', () => {
@@ -122,6 +155,11 @@ test('catalog-derived target map can route aliases without hand-editing target m
   assert.equal(map[normalizeStructureCatalogKey('CEA')], 'solid_tumor_ceacam5');
   assert.equal(map[normalizeStructureCatalogKey('CEACAM5')], 'solid_tumor_ceacam5');
   assert.equal(map[normalizeStructureCatalogKey('STEAP1')], 'prostate_steap1');
+  assert.equal(map[normalizeStructureCatalogKey('Amyloid-beta')], 'neuro_alz_abeta');
+  assert.equal(map[normalizeStructureCatalogKey('APP')], 'neuro_alz_abeta');
+  assert.equal(map[normalizeStructureCatalogKey('Tau')], 'neuro_alz_tau');
+  assert.equal(map[normalizeStructureCatalogKey('MAPT')], 'neuro_alz_tau');
+  assert.equal(map[normalizeStructureCatalogKey('TREM2')], 'neuro_alz_trem2');
 });
 
 test('client generated structure catalog stays synchronized with JSON source', () => {

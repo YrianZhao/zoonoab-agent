@@ -4387,6 +4387,42 @@ const ROUTE_3D_PRESETS = {
     order: [5, 9, 2, 4, 8, 1, 3, 7, 0, 6, 10, 11],
     ipTmBias: 0.001
   },
+  neuro_alz_abeta: {
+    aliasPrefix: 'ABETA-Fab',
+    title: 'Amyloid-beta Fab 阿尔茨海默病相关表位结合构象',
+    structureFamily: '阿尔茨海默病相关淀粉样肽 · Amyloid-beta Fab 候选',
+    visualSummary: '展示 amyloid-beta 1-8 N 端表位与 humanized 3D6 Fab 的真实实验复合物，不将其表述为完整淀粉样纤维整体形态。',
+    structuralBasis: 'RCSB 4OJF amyloid-beta 1-8 peptide / humanized 3D6 Fab complex',
+    antigenChains: ['A'],
+    antibodyChains: ['H', 'L'],
+    antigenColor: '#7C3AED',
+    antibodyColor: '#38BDF8',
+    ipTmBias: 0.002
+  },
+  neuro_alz_tau: {
+    aliasPrefix: 'TAU-Fab',
+    title: 'Tau Fab 阿尔茨海默病相关表位结合构象',
+    structureFamily: 'Tau 蛋白 N 端表位 · Fab 候选',
+    visualSummary: '展示 Tau 15-22 N 端表位肽与 gosuranemab Fab 的真实实验复合物，不将其表述为完整 Tau 纤维整体形态。',
+    structuralBasis: 'RCSB 6PXR Tau peptide / gosuranemab Fab complex',
+    antigenChains: ['A'],
+    antibodyChains: ['H', 'L'],
+    antigenColor: '#8B5CF6',
+    antibodyColor: '#14B8A6',
+    ipTmBias: 0.002
+  },
+  neuro_alz_trem2: {
+    aliasPrefix: 'TREM2-Fab',
+    title: 'TREM2 Fab 阿尔茨海默病相关表位结合构象',
+    structureFamily: '微胶质调节受体 · TREM2 peptide Fab 候选',
+    visualSummary: '展示 TREM2 stalk peptide 与 7411 Fab 的真实实验复合物，不将其表述为完整 TREM2 ectodomain 整体形态。',
+    structuralBasis: 'RCSB 9PWN TREM2 stalk peptide / 7411 Fab complex',
+    antigenChains: ['A'],
+    antibodyChains: ['H', 'L'],
+    antigenColor: '#22C55E',
+    antibodyColor: '#2563EB',
+    ipTmBias: 0.002
+  },
   neuro_adhd_dat: {
     aliasPrefix: 'DAT-Fab',
     title: 'DAT Fab 多巴胺再摄取调控展示构象',
@@ -4452,6 +4488,9 @@ const ROUTE_3D_PRESET_ORGANISMS_FALLBACK = {
   cardio_il1b: { organismName: 'Homo sapiens', organismTaxId: 9606 },
   metabolic_angptl3: { organismName: 'Homo sapiens', organismTaxId: 9606 },
   metabolic_gipr: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  neuro_alz_abeta: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  neuro_alz_tau: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  neuro_alz_trem2: { organismName: 'Homo sapiens', organismTaxId: 9606 },
   neuro_adhd_dat: { organismName: 'Homo sapiens', organismTaxId: 9606 },
   veterinary_canine_ngf: { organismName: 'Canis lupus familiaris', organismTaxId: 9615 },
   infectious_rsv: { organismName: 'Respiratory syncytial virus', organismTaxId: null }
@@ -7457,7 +7496,7 @@ function buildWorkflowIntentPrompt() {
     '边界：如果用户明确要求针对小分子/半抗原/化合物本身生成或特异性结合抗体（例如“设计氯胺酮抗体”“设计特异性结合噻吩嗪的单克隆抗体”），输出 i=chat,start=false,answer，说明 ZoonoAb 面向大分子抗原/蛋白靶点，不直接生成小分子/半抗原抗体；不要把该小分子硬转成蛋白靶点。',
     '准确性优先：疾病或药物方向可能对应多个靶点，先保证疾病关联、机制和抗体可及性准确；如果用户明确指定靶点，target 必须保留用户真实指定靶点；如果用户只给疾病、方向或药物机制，且多个候选同等合理，优先从结构支撑靶点清单选择 target，并把其他合理靶点放入 cands，形成候选靶点比较池。',
     '结构支撑靶点清单：' + STRUCTURE_SUPPORT_TARGETS_FOR_PROMPT + '。',
-    '常见疾病发散参考：尿路上皮癌/肾盂癌优先比较 Nectin-4、TROP-2、B7-H3 或 HER2；肾癌/透明细胞肾细胞癌优先比较 CAIX、VEGF-A、B7-H3；多发性骨髓瘤优先比较 GPRC5D、BCMA、CD38；前列腺癌优先比较 STEAP1、PSMA、B7-H3；结直肠癌优先比较 CEACAM5、EGFR、B7-H3；卵巢癌优先比较 Mesothelin、MUC1、FOLR1；小细胞肺癌优先比较 DLL3、B7-H3、TROP-2。',
+    '常见疾病发散参考：尿路上皮癌/肾盂癌优先比较 Nectin-4、TROP-2、B7-H3 或 HER2；肾癌/透明细胞肾细胞癌优先比较 CAIX、VEGF-A、B7-H3；阿尔茨海默病优先比较 Amyloid-beta、Tau、TREM2；多发性骨髓瘤优先比较 GPRC5D、BCMA、CD38；前列腺癌优先比较 STEAP1、PSMA、B7-H3；结直肠癌优先比较 CEACAM5、EGFR、B7-H3；卵巢癌优先比较 Mesothelin、MUC1、FOLR1；小细胞肺癌优先比较 DLL3、B7-H3、TROP-2。',
     'reason 只能写疾病关联、药物机制、表达/可及性、结构域和抗体开发依据；不要提本地、预设、可展示、系统已有、为了展示、3D 预设等内部选择原因。',
     'i=chat：只用于普通闲聊、寒暄、纯问答、天气、时间、非分子设计概念解释，且没有足够信息生成 target 的情况。chat 只填 i,start=false,answer；answer 默认中文，最多 2 句。',
     'design 必填 target、reason、cands、wf；reason 写 220-420 个中文字，必须紧扣用户原始需求，按疾病机制/适应症语境、表达谱或抗原暴露、抗原可及性、作用机制、同类抗体开发背景、与备选靶点比较这几类依据展开，说明为何优先该靶点，语言要像专业靶点评审摘要；cands 给 5-7 个候选靶点，包含已选 target 和其他合理备选，每个 r 用 35-90 个中文字写清候选理由、适用场景和相对优先级；wf 每项不超过 35 个中文字。',
@@ -7467,6 +7506,7 @@ function buildWorkflowIntentPrompt() {
     '示例：设计一个胰腺癌的抗体 -> {"i":"design","start":true,"summary":"面向胰腺癌设计抗体候选","bg":"胰腺癌抗体设计需关注肿瘤相关抗原表达、膜表面可及性和正常组织背景。","disease":"胰腺癌","target":"MUC1","gene":"MUC1","label":"PANCREATIC-MUC1-1","reason":"MUC1 是胰腺癌中常被讨论的肿瘤相关糖蛋白抗原，具备膜表面暴露和异常糖基化相关表位，可用于抗体候选识别；相较纯炎症因子入口，它与胰腺癌肿瘤细胞表面识别、抗原可及性和后续候选筛选更直接对应。","cands":[{"t":"MUC1","g":"MUC1","r":"肿瘤相关膜糖蛋白，适合作为抗体识别入口。"},{"t":"Mesothelin","g":"MSLN","r":"胰腺癌相关细胞表面抗原，可作备选。"}],"mech":"识别肿瘤相关外露表位并筛选 Fab 候选","ab":"Fab","n":10,"block":"","confidence":0.8,"wf":{"domain":"MUC1 胞外糖蛋白可及区","mechanism":"识别肿瘤相关外露表位","epitope":"优先覆盖异常糖基化邻近表面","structure":"MUC1 胞外表面与 Fab 姿态约束","modelNote":"展示 Fab 贴合 MUC1 外露表面的候选构象"}}',
     '示例：治疗肾盂癌 -> {"i":"design","start":true,"summary":"面向肾盂癌与尿路上皮癌方向生成抗体候选","bg":"肾盂癌属于尿路上皮癌谱系，抗体设计通常优先比较高表达表面抗原、ADC 开发背景与正常尿路组织窗口。","disease":"肾盂癌/尿路上皮癌","target":"Nectin-4","gene":"NECTIN4","label":"UTUC-NECTIN4-1","reason":"Nectin-4/NECTIN4 是尿路上皮癌与肾盂癌方向具有明确开发背景的细胞黏附分子，位于肿瘤细胞表面并提供真实可及的免疫球蛋白样外露结构域，适合抗体或抗体偶联药物方向的结合设计。相较更泛化的免疫检查点或下游通路因子，Nectin-4 与尿路上皮肿瘤细胞表面识别的对应关系更直接，且已有同类抗体药物开发依据，因此具有较高的综合靶点评审优先级。","cands":[{"t":"Nectin-4","g":"NECTIN4","r":"尿路上皮癌相关表面黏附分子，具备明确 ADC 与抗体开发背景。"},{"t":"TROP-2","g":"TACSTD2","r":"尿路上皮癌与多种上皮肿瘤中的常见表面抗原，可作为机制备选入口。"},{"t":"B7-H3","g":"CD276","r":"免疫调节型肿瘤表面抗原，可作为高表达实体瘤方向的补充候选。"}],"mech":"识别 Nectin-4 外露 Ig 样表面并筛选 Fab 候选","ab":"Fab","n":10,"block":"","confidence":0.86,"wf":{"domain":"Nectin-4 D1 外露结构域","mechanism":"围绕细胞表面黏附界面生成结合候选","epitope":"优先覆盖外露 Ig 样可及表面","structure":"Nectin-4 D1/Fab 复合物结构依据","modelNote":"展示 Nectin-4 表面与 Fab 候选结合构象"}}',
     '示例：治疗肾癌 -> {"i":"design","start":true,"summary":"面向肾癌与透明细胞肾细胞癌方向生成抗体候选","bg":"肾癌方向的抗体设计通常优先比较缺氧相关表面抗原、血管生成依赖和肿瘤细胞表面可及性。","disease":"肾癌/透明细胞肾细胞癌","target":"CAIX","gene":"CA9","label":"RCC-CAIX-1","reason":"CAIX/CA9 是透明细胞肾细胞癌方向最经典的缺氧诱导型细胞表面抗原之一，在肿瘤细胞膜外侧具有明确可及的胞外结构并与缺氧代谢重编程密切相关。相较更广谱的血管生成因子或免疫调节分子，CAIX 与肾癌肿瘤细胞本体表面识别的对应关系更直接，且具备 G250/M75 类抗体开发背景和明确表位依据，因此在肾癌方向通常具有更高的综合靶点评审优先级。","cands":[{"t":"CAIX","g":"CA9","r":"透明细胞肾细胞癌中最常见的缺氧相关表面抗原之一，具备经典抗体开发背景。"},{"t":"VEGF-A","g":"VEGFA","r":"肾癌高度依赖血管生成，可作为血管生成轴备选入口。"},{"t":"B7-H3","g":"CD276","r":"免疫调节型高表达实体瘤表面抗原，可作为肾癌方向的补充候选。"}],"mech":"识别 CAIX 外露表位并筛选 Fab 候选","ab":"Fab","n":10,"block":"","confidence":0.83,"wf":{"domain":"CAIX 外露表位肽与邻近胞外区","mechanism":"围绕缺氧相关表面表位生成结合候选","epitope":"优先覆盖 CAIX 外露免疫可及表位","structure":"CAIX 表位肽/Fab 复合物结构依据","modelNote":"展示 CAIX 相关表位与 Fab 候选结合构象"}}',
+    '示例：治疗阿尔茨海默病 -> {"i":"design","start":true,"summary":"面向阿尔茨海默病方向生成抗体候选","bg":"阿尔茨海默病抗体设计常优先比较淀粉样病理、Tau 病理和微胶质调节受体轴。","disease":"阿尔茨海默病","target":"Amyloid-beta","gene":"APP","label":"AD-ABETA-1","reason":"Amyloid-beta 是阿尔茨海默病中最经典的细胞外异常聚集抗原之一，直接关联淀粉样斑块病理、可溶性寡聚体毒性和下游神经炎症放大。相较更偏细胞内聚集阶段的 Tau 或更偏免疫调节的 TREM2，Amyloid-beta 作为胞外可及抗原更适合抗体优先识别与中和设计，且已有临床与公开结构背景支撑，因此在阿尔茨海默病方向通常具有较高的综合靶点评审优先级。","cands":[{"t":"Amyloid-beta","g":"APP","r":"阿尔茨海默病最经典的胞外异常聚集抗原之一，具备明确抗体开发背景。"},{"t":"Tau","g":"MAPT","r":"神经纤维缠结相关关键病理蛋白，可作为病程进展与传播轴备选靶点。"},{"t":"TREM2","g":"TREM2","r":"微胶质调节受体，适合免疫调节与神经炎症方向的补充候选。"}],"mech":"识别 Amyloid-beta 外露病理表位并筛选 Fab 候选","ab":"Fab","n":10,"block":"","confidence":0.79,"wf":{"domain":"Amyloid-beta N 端病理表位","mechanism":"围绕胞外病理表位生成结合候选","epitope":"优先覆盖 Aβ N 端可及表位","structure":"Aβ/Fab 复合物结构依据","modelNote":"展示 Aβ 表位与 Fab 候选结合构象"}}',
     '示例：你好 -> {"i":"chat","start":false,"answer":"您好，我是小诺，可以帮您把疾病、靶点或候选分子需求整理成分子设计任务。"}'
   ].join('\n');
 }

@@ -186,6 +186,24 @@ const COMMON_REAL_COMPLEX_EXPECTATIONS = [
     antibodyChains: ['H', 'I', 'J', 'L', 'M', 'N']
   },
   {
+    prefix: 'ABETA-Fab',
+    basis: /RCSB 4OJF amyloid-beta 1-8 peptide \/ humanized 3D6 Fab complex/,
+    antigenChains: ['A'],
+    antibodyChains: ['H', 'L']
+  },
+  {
+    prefix: 'TAU-Fab',
+    basis: /RCSB 6PXR Tau peptide \/ gosuranemab Fab complex/,
+    antigenChains: ['A'],
+    antibodyChains: ['H', 'L']
+  },
+  {
+    prefix: 'TREM2-Fab',
+    basis: /RCSB 9PWN TREM2 stalk peptide \/ 7411 Fab complex/,
+    antigenChains: ['A'],
+    antibodyChains: ['H', 'L']
+  },
+  {
     prefix: 'FluNA-Fab',
     basis: /RCSB 1NCD influenza N9 neuraminidase \/ NC41 Fab complex/,
     antigenChains: ['A'],

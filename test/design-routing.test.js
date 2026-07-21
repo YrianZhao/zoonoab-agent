@@ -63,6 +63,11 @@ test('keeps newly cataloged solid-tumor targets stable in explicit design reques
     ['设计10个针对GPRC5D的Fab', 'GPRC5D'],
     ['设计10个针对CEA的Fab', 'CEACAM5'],
     ['设计10个针对STEAP1的Fab', 'STEAP1'],
+    ['设计10个针对Amyloid-beta的Fab', 'Amyloid-beta'],
+    ['设计10个针对Abeta的Fab', 'Amyloid-beta'],
+    ['设计10个针对Tau的Fab', 'Tau'],
+    ['设计10个针对MAPT的Fab', 'Tau'],
+    ['设计10个针对TREM2的Fab', 'TREM2'],
     ['设计一个针对 EpCAM 的 scFv 抗体', 'EpCAM']
   ];
 

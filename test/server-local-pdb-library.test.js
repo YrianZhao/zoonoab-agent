@@ -143,6 +143,36 @@ test('local PDB model library API lists local structures with viewer metadata', 
   assert.deepEqual(epcam.antigenChains, ['C', 'D']);
   assert.deepEqual(epcam.antibodyChains, ['A', 'B']);
   assert.equal(epcam.targetTag.verifiedTag, true);
+
+  const abeta = data.models.find(model => model.filename === 'ABETA-Fab-01.pdb');
+  assert.ok(abeta, 'Amyloid-beta routeable Fab preset should be listed');
+  assert.equal(abeta.targetDisplay, 'Amyloid-beta');
+  assert.equal(abeta.antibodyFormat, 'Fab');
+  assert.equal(abeta.structureKind, 'Fab 抗原-抗体复合体');
+  assert.deepEqual(abeta.antigenChains, ['A']);
+  assert.deepEqual(abeta.antibodyChains, ['H', 'L']);
+  assert.match(abeta.structuralBasis, /4OJF/);
+  assert.equal(abeta.targetTag.verifiedTag, true);
+
+  const tau = data.models.find(model => model.filename === 'TAU-Fab-01.pdb');
+  assert.ok(tau, 'Tau routeable Fab preset should be listed');
+  assert.equal(tau.targetDisplay, 'Tau');
+  assert.equal(tau.antibodyFormat, 'Fab');
+  assert.equal(tau.structureKind, 'Fab 抗原-抗体复合体');
+  assert.deepEqual(tau.antigenChains, ['A']);
+  assert.deepEqual(tau.antibodyChains, ['H', 'L']);
+  assert.match(tau.structuralBasis, /6PXR/);
+  assert.equal(tau.targetTag.verifiedTag, true);
+
+  const trem2 = data.models.find(model => model.filename === 'TREM2-Fab-01.pdb');
+  assert.ok(trem2, 'TREM2 routeable Fab preset should be listed');
+  assert.equal(trem2.targetDisplay, 'TREM2');
+  assert.equal(trem2.antibodyFormat, 'Fab');
+  assert.equal(trem2.structureKind, 'Fab 抗原-抗体复合体');
+  assert.deepEqual(trem2.antigenChains, ['A']);
+  assert.deepEqual(trem2.antibodyChains, ['H', 'L']);
+  assert.match(trem2.structuralBasis, /9PWN/);
+  assert.equal(trem2.targetTag.verifiedTag, true);
 });
 
 test('structure catalog API exposes route-backed structure inventory', async () => {
@@ -157,6 +187,12 @@ test('structure catalog API exposes route-backed structure inventory', async () 
   assert.equal(covid.aliasPrefix, 'SC2RBD-Fab');
   assert.equal(covid.target, 'SARS-CoV-2 RBD');
   assert.ok((covid.files || []).includes('SC2RBD-Fab-01.pdb'));
+
+  const abeta = data.catalog.routePresets.find(item => item.routeId === 'neuro_alz_abeta');
+  assert.ok(abeta, 'catalog should expose the Alzheimer Amyloid-beta local route');
+  assert.equal(abeta.aliasPrefix, 'ABETA-Fab');
+  assert.equal(abeta.target, 'Amyloid-beta');
+  assert.ok((abeta.files || []).includes('ABETA-Fab-01.pdb'));
 });
 
 test('local PDB responses are cacheable and can project only viewer-visible chains', async () => {
