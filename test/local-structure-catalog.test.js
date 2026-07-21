@@ -206,6 +206,35 @@ test('local structure catalog is the machine-readable inventory for route-backed
   assert.deepEqual(igf1r.antigenChains, ['A', 'B']);
   assert.deepEqual(igf1r.antibodyChains, []);
 
+  const glp1r = catalogEntryForFilename(catalog, 'ENDOCRINELIB-HUMAN-GLP1R-RCSB-6LN2.pdb');
+  assert.ok(glp1r, 'endocrine-library GLP1R asset should be represented in the catalog');
+  assert.equal(glp1r.target, 'GLP1R');
+  assert.equal(glp1r.gene, 'GLP1R');
+  assert.equal(glp1r.organismTaxId, 9606);
+  assert.equal(glp1r.structureClass, 'experimental_reference_complex');
+  assert.equal(glp1r.antibodyFormat, 'Fab');
+  assert.deepEqual(glp1r.antigenChains, ['A']);
+  assert.deepEqual(glp1r.antibodyChains, ['B', 'C']);
+
+  const il6 = catalogEntryForFilename(catalog, 'INFLAMLIB-HUMAN-IL6-RCSB-1ALU.pdb');
+  assert.ok(il6, 'inflammation-library IL-6 antigen-only asset should be represented in the catalog');
+  assert.equal(il6.target, 'IL-6');
+  assert.equal(il6.gene, 'IL6');
+  assert.equal(il6.organismTaxId, 9606);
+  assert.equal(il6.structureClass, 'experimental_antigen_only');
+  assert.deepEqual(il6.antigenChains, ['A']);
+  assert.deepEqual(il6.antibodyChains, []);
+
+  const il6Fab = catalogEntryForFilename(catalog, 'INFLAMLIB-HUMAN-IL6-FAB-RCSB-4ZS7.pdb');
+  assert.ok(il6Fab, 'inflammation-library IL-6 Fab asset should be represented in the catalog');
+  assert.equal(il6Fab.target, 'IL-6');
+  assert.equal(il6Fab.gene, 'IL6');
+  assert.equal(il6Fab.organismTaxId, 9606);
+  assert.equal(il6Fab.structureClass, 'target_exact_complex');
+  assert.equal(il6Fab.antibodyFormat, 'Fab');
+  assert.deepEqual(il6Fab.antigenChains, ['A']);
+  assert.deepEqual(il6Fab.antibodyChains, ['H', 'L']);
+
   const lrrk2 = catalogEntryForFilename(catalog, 'NEUROLIB-HUMAN-LRRK2-RCSB-7LHT.pdb');
   assert.ok(lrrk2, 'neuro-library LRRK2 asset should be represented in the catalog');
   assert.equal(lrrk2.target, 'LRRK2');

@@ -141,6 +141,36 @@ test('local PDB model library API lists local structures with viewer metadata', 
   assert.match(igf1r.structuralBasis, /7XGD/);
   assert.equal(igf1r.targetTag.verifiedTag, true);
 
+  const glp1r = data.models.find(model => model.filename === 'ENDOCRINELIB-HUMAN-GLP1R-RCSB-6LN2.pdb');
+  assert.ok(glp1r, 'endocrine-library GLP1R asset should be listed');
+  assert.equal(glp1r.targetDisplay, 'GLP1R');
+  assert.equal(glp1r.antibodyFormat, 'Fab');
+  assert.equal(glp1r.structureKind, 'Fab 抗原-抗体复合体');
+  assert.deepEqual(glp1r.antigenChains, ['A']);
+  assert.deepEqual(glp1r.antibodyChains, ['B', 'C']);
+  assert.match(glp1r.structuralBasis, /6LN2/);
+  assert.equal(glp1r.targetTag.verifiedTag, true);
+
+  const il6 = data.models.find(model => model.filename === 'INFLAMLIB-HUMAN-IL6-RCSB-1ALU.pdb');
+  assert.ok(il6, 'inflammation-library IL-6 antigen-only asset should be listed');
+  assert.equal(il6.targetDisplay, 'IL-6');
+  assert.equal(il6.antibodyFormat, '');
+  assert.equal(il6.structureKind, '实验抗原结构');
+  assert.deepEqual(il6.antigenChains, ['A']);
+  assert.deepEqual(il6.antibodyChains, []);
+  assert.match(il6.structuralBasis, /1ALU/);
+  assert.equal(il6.targetTag.verifiedTag, true);
+
+  const il6Fab = data.models.find(model => model.filename === 'INFLAMLIB-HUMAN-IL6-FAB-RCSB-4ZS7.pdb');
+  assert.ok(il6Fab, 'inflammation-library IL-6 Fab asset should be listed');
+  assert.equal(il6Fab.targetDisplay, 'IL-6');
+  assert.equal(il6Fab.antibodyFormat, 'Fab');
+  assert.equal(il6Fab.structureKind, 'Fab 抗原-抗体复合体');
+  assert.deepEqual(il6Fab.antigenChains, ['A']);
+  assert.deepEqual(il6Fab.antibodyChains, ['H', 'L']);
+  assert.match(il6Fab.structuralBasis, /4ZS7/);
+  assert.equal(il6Fab.targetTag.verifiedTag, true);
+
   const lrrk2 = data.models.find(model => model.filename === 'NEUROLIB-HUMAN-LRRK2-RCSB-7LHT.pdb');
   assert.ok(lrrk2, 'neuro-library LRRK2 asset should be listed');
   assert.equal(lrrk2.targetDisplay, 'LRRK2');
