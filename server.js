@@ -26,6 +26,17 @@ const {
 } = require('./lib/design-routing');
 const { createStructureResolver } = require('./lib/structure-resolver');
 const {
+  loadLocalStructureCatalog,
+  buildStructureSupportPromptList,
+  buildAliasPrefixTargetMapFromCatalog,
+  buildRoutePresetOrganismsFromCatalog,
+  buildTargetRouteMapFromCatalog,
+  catalogEntryForFilename,
+  catalogRouteEntryForFilename,
+  applyCatalogRoutePresetOverlay,
+  toClientStructureCatalog
+} = require('./lib/local-structure-catalog');
+const {
   FORMAT_DEFAULTS,
   generateDisplayPose,
   measureInterfaceGeometry,
@@ -127,6 +138,9 @@ const COSYVOICE_TTS_SAMPLE_RATE = Number(process.env.COSYVOICE_TTS_SAMPLE_RATE |
 const COSYVOICE_TTS_TIMEOUT_MS = Math.max(3500, Number(process.env.COSYVOICE_TTS_TIMEOUT_MS || 12000) || 12000);
 const COSYVOICE_TTS_RETRY_MS = Math.max(30_000, Number(process.env.COSYVOICE_TTS_RETRY_MS || 5 * 60 * 1000) || 5 * 60 * 1000);
 const APP_BUILD_VERSION = readAppBuildVersion();
+const LOCAL_STRUCTURE_CATALOG = loadLocalStructureCatalog(__dirname);
+const FALLBACK_STRUCTURE_SUPPORT_TARGETS = 'PD-L1/CD274、PD-1/PDCD1、CTLA-4、HER2/ERBB2、EGFR/ERBB1、VEGF-A/VEGFA、TNF、IL-17A、IL-23、IL-33、TSLP、RSV F、SARS-CoV-2 RBD、Influenza HA、Influenza NA、PCSK9、ANGPTL3、GIPR、DAT/SLC6A3、CD20、CD19、CD3、C5、IL-6R、IL-4Rα、CD25、CD38、TIGIT、CD47、LAG-3、TROP-2、BCMA、IgE、CGRP receptor、IL-1β，以及犬源 NGF';
+const STRUCTURE_SUPPORT_TARGETS_FOR_PROMPT = buildStructureSupportPromptList(LOCAL_STRUCTURE_CATALOG, FALLBACK_STRUCTURE_SUPPORT_TARGETS);
 const PDB_CACHE_TTL_MS = Math.max(60_000, Number(process.env.PDB_CACHE_TTL_MS || 6 * 60 * 60 * 1000) || 6 * 60 * 60 * 1000);
 const PDB_BROWSER_CACHE_MAX_AGE = Math.max(60, Math.floor(PDB_CACHE_TTL_MS / 1000));
 const PDB_CACHE_MAX_ENTRIES = Math.max(8, Number(process.env.PDB_CACHE_MAX_ENTRIES || 32) || 32);
@@ -4401,7 +4415,9 @@ const ROUTE_3D_PRESETS = {
   }
 };
 
-const ROUTE_3D_PRESET_ORGANISMS = {
+applyCatalogRoutePresetOverlay(ROUTE_3D_PRESETS, LOCAL_STRUCTURE_CATALOG);
+
+const ROUTE_3D_PRESET_ORGANISMS_FALLBACK = {
   allergic_asthma: { organismName: 'Homo sapiens', organismTaxId: 9606 },
   allergic_tslp: { organismName: 'Homo sapiens', organismTaxId: 9606 },
   tumor_immunotherapy: { organismName: 'Homo sapiens', organismTaxId: 9606 },
@@ -4440,6 +4456,13 @@ const ROUTE_3D_PRESET_ORGANISMS = {
   veterinary_canine_ngf: { organismName: 'Canis lupus familiaris', organismTaxId: 9615 },
   infectious_rsv: { organismName: 'Respiratory syncytial virus', organismTaxId: null }
 };
+
+const ROUTE_3D_PRESET_ORGANISMS = buildRoutePresetOrganismsFromCatalog(
+  LOCAL_STRUCTURE_CATALOG,
+  ROUTE_3D_PRESET_ORGANISMS_FALLBACK
+);
+const ROUTE_3D_PRESET_TARGET_ROUTE_MAP = buildTargetRouteMapFromCatalog(LOCAL_STRUCTURE_CATALOG);
+const ROUTE_3D_PRESET_ALIAS_TARGETS = buildAliasPrefixTargetMapFromCatalog(LOCAL_STRUCTURE_CATALOG);
 
 const ROUTE_3D_PRESET_ROUTE_IDS = new Map(Object.entries(ROUTE_3D_PRESETS).map(([routeId, preset]) => [preset, routeId]));
 
@@ -4531,7 +4554,9 @@ function getRoute3DPreset(profile) {
   const targetCandidates = [target, ...String(target).split(/\s*\/\s*/)]
     .map(item => item.trim())
     .filter((item, idx, all) => item && all.indexOf(item) === idx);
-  const presetKey = targetCandidates.map(item => targetPresetMap[item]).find(Boolean);
+  const presetKey = targetCandidates
+    .map(item => ROUTE_3D_PRESET_TARGET_ROUTE_MAP[normalizePreparedStructureTarget(item)] || targetPresetMap[item])
+    .find(Boolean);
   return presetKey ? ROUTE_3D_PRESETS[presetKey] : null;
 }
 
@@ -4624,6 +4649,14 @@ function virusLibraryModelForFile(filename) {
   if (!safeName) return null;
   const manifest = readVirusLibraryManifest();
   return (manifest.models || []).find(model => model && model.file === safeName) || null;
+}
+
+function localStructureCatalogEntryForFile(filename) {
+  return catalogEntryForFilename(LOCAL_STRUCTURE_CATALOG, filename);
+}
+
+function localStructureCatalogRouteEntryForFile(filename) {
+  return catalogRouteEntryForFilename(LOCAL_STRUCTURE_CATALOG, filename);
 }
 
 function virusLibraryChainsForModel(model) {
@@ -4722,7 +4755,9 @@ function readLocalPDBRemarks(filename) {
         return match ? match[1].split(',').map(item => item.trim()).filter(Boolean) : [];
       };
       result.target = remarkValue(901, 'TARGET') || remarkValue(921, 'DISPLAY LABEL') || remarkValue(924, 'ANTIGEN');
+      if (result.target) result.targetSource = 'pdb-remark';
       result.format = remarkValue(902, 'FORMAT');
+      if (result.format) result.formatSource = 'pdb-remark';
       result.structuralBasis = remarkValue(903, 'STRUCTURAL BASIS') || remarkValue(920, 'SOURCE PDB');
       result.virusGroup = remarkValue(922, 'VIRUS GROUP');
       result.antigenLabel = remarkValue(924, 'ANTIGEN');
@@ -4736,8 +4771,14 @@ function readLocalPDBRemarks(filename) {
   const virusModel = virusLibraryModelForFile(safeName);
   if (virusModel) {
     const chains = virusLibraryChainsForModel(virusModel);
-    result.target = result.target || virusModel.label || [virusModel.group, virusModel.subtype, virusModel.antigen].filter(Boolean).join(' ');
-    result.format = result.format || (chains.antibody.length >= 2 ? 'Fab' : '');
+    if (!result.target) {
+      result.target = virusModel.label || [virusModel.group, virusModel.subtype, virusModel.antigen].filter(Boolean).join(' ');
+      if (result.target) result.targetSource = 'virus-manifest';
+    }
+    if (!result.format) {
+      result.format = chains.antibody.length >= 2 ? 'Fab' : '';
+      if (result.format) result.formatSource = 'virus-manifest';
+    }
     result.structuralBasis = result.structuralBasis || [virusModel.pdbId ? 'RCSB ' + virusModel.pdbId : '', virusModel.title || virusModel.label || ''].filter(Boolean).join(' ');
     result.virusGroup = result.virusGroup || virusModel.group || '';
     const antigenEntity = (virusModel.entities || []).find(entity => /hemagglutinin|\bHA\b|spike|glycoprotein|neuraminidase|antigen/i.test(String(entity.description || '')));
@@ -4746,6 +4787,28 @@ function readLocalPDBRemarks(filename) {
     result.antigen = result.antigen && result.antigen.length ? result.antigen : chains.antigen;
     result.antibody = result.antibody && result.antibody.length ? result.antibody : chains.antibody;
   }
+  const catalogEntry = localStructureCatalogEntryForFile(safeName);
+  if (catalogEntry) {
+    const display = catalogEntry.display && typeof catalogEntry.display === 'object' ? catalogEntry.display : {};
+    if (!result.target) {
+      result.target = catalogEntry.target || display.target || '';
+      if (result.target) result.targetSource = 'catalog';
+    }
+    if (!result.format) {
+      result.format = catalogEntry.antibodyFormat || display.antibodyFormat || '';
+      if (result.format) result.formatSource = 'catalog';
+    }
+    result.structuralBasis = result.structuralBasis || catalogEntry.structuralBasis || display.structuralBasis || '';
+    result.organism = result.organism || catalogEntry.organismName || catalogEntry.organism || '';
+    result.organismTaxId = result.organismTaxId || Number(catalogEntry.organismTaxId || catalogEntry.taxId || 0) || null;
+    result.accession = result.accession || catalogEntry.accession || (Array.isArray(catalogEntry.sourcePdbIds) ? catalogEntry.sourcePdbIds[0] : '') || '';
+    result.antigen = result.antigen && result.antigen.length
+      ? result.antigen
+      : (display.antigenChains || catalogEntry.antigenChains || []);
+    result.antibody = result.antibody && result.antibody.length
+      ? result.antibody
+      : (display.antibodyChains || catalogEntry.antibodyChains || []);
+  }
   localPDBRemarkCache.set(safeName, result);
   return result;
 }
@@ -4753,16 +4816,25 @@ function readLocalPDBRemarks(filename) {
 function buildLocalPDBTargetTag(filename, inputRemarks) {
   const remarks = inputRemarks || readLocalPDBRemarks(filename);
   const remarkedTarget = String(remarks && (remarks.target || remarks.antigenLabel) || '').trim();
+  const source = String(remarks && remarks.targetSource || '').trim();
+  const catalogEntry = localStructureCatalogEntryForFile(filename);
   const inferredTarget = inferLocalPDBTargetFromFilename(filename, remarks);
   const antibodyFormat = inferLocalPDBFormatFromFilename(filename, remarks);
   const target = remarkedTarget || inferredTarget;
+  const catalogTargetMatches = Boolean(
+    catalogEntry &&
+    catalogEntry.target &&
+    target &&
+    normalizePreparedStructureTarget(catalogEntry.target) === normalizePreparedStructureTarget(target)
+  );
+  const trustedTargetSource = /^(pdb-remark|catalog|virus-manifest)$/.test(source);
   return {
     tagged: Boolean(target),
-    verifiedTag: Boolean(remarkedTarget),
+    verifiedTag: Boolean((remarkedTarget && trustedTargetSource) || catalogTargetMatches),
     target,
     normalizedTarget: normalizePreparedStructureTarget(target),
     antibodyFormat,
-    source: remarkedTarget ? 'pdb-remark' : (inferredTarget ? 'filename' : 'untagged'),
+    source: remarkedTarget ? (source || 'pdb-remark') : (inferredTarget ? 'filename' : 'untagged'),
     antigenChains: Array.isArray(remarks && remarks.antigen) ? remarks.antigen : [],
     antibodyChains: Array.isArray(remarks && remarks.antibody) ? remarks.antibody : []
   };
@@ -4782,6 +4854,8 @@ function localPDBPresetForFilename(filename) {
 function inferLocalPDBTargetFromFilename(filename, remarks) {
   const safeName = String(filename || '');
   if (remarks && remarks.target) return remarks.target;
+  const catalogEntry = localStructureCatalogEntryForFile(filename);
+  if (catalogEntry && catalogEntry.target) return catalogEntry.target;
   if (/^4KC3_/i.test(safeName)) return 'PD-L1';
   if (/IL33/i.test(safeName)) return 'IL-33';
   if (/PDL1/i.test(safeName)) return 'PD-L1';
@@ -4798,6 +4872,8 @@ function inferLocalPDBTargetFromFilename(filename, remarks) {
 function inferLocalPDBFormatFromFilename(filename, remarks) {
   const safeName = String(filename || '');
   if (remarks && remarks.format) return remarks.format;
+  const catalogEntry = localStructureCatalogEntryForFile(filename);
+  if (catalogEntry && catalogEntry.antibodyFormat) return catalogEntry.antibodyFormat;
   if (/VHH/i.test(safeName)) return 'VHH';
   if (/Fab/i.test(safeName)) return 'Fab';
   if (/binder|4KC3/i.test(safeName)) return 'Binder';
@@ -6057,6 +6133,13 @@ app.get('/api/pdb/local-models', (req, res) => {
     console.error('[PDB] local model library error:', err && err.message ? err.message : err);
     res.status(500).json({ ok: false, error: 'Local PDB library unavailable' });
   }
+});
+
+app.get('/api/structure-catalog', (req, res) => {
+  res.json({
+    ok: true,
+    catalog: toClientStructureCatalog(LOCAL_STRUCTURE_CATALOG)
+  });
 });
 
 app.get('/api/pdb/local/:filename', async (req, res) => {
@@ -7364,7 +7447,7 @@ function buildWorkflowIntentPrompt() {
     '药物名或药物类别也是线索：仅当用户是在询问某个药物方向、已上市药物关联疾病/机制或“抗体药物方向”时，才根据已知适应症、作用靶点、通路机制反推可进入抗体药物设计的真实大分子靶点。',
     '边界：如果用户明确要求针对小分子/半抗原/化合物本身生成或特异性结合抗体（例如“设计氯胺酮抗体”“设计特异性结合噻吩嗪的单克隆抗体”），输出 i=chat,start=false,answer，说明 ZoonoAb 面向大分子抗原/蛋白靶点，不直接生成小分子/半抗原抗体；不要把该小分子硬转成蛋白靶点。',
     '准确性优先：疾病或药物方向可能对应多个靶点，先保证疾病关联、机制和抗体可及性准确；如果用户明确指定靶点，target 必须保留用户真实指定靶点；如果用户只给疾病、方向或药物机制，且多个候选同等合理，优先从结构支撑靶点清单选择 target，并把其他合理靶点放入 cands，形成候选靶点比较池。',
-    '结构支撑靶点清单：PD-L1/CD274、PD-1/PDCD1、CTLA-4、HER2/ERBB2、EGFR/ERBB1、VEGF-A/VEGFA、TNF、IL-17A、IL-23、IL-33、TSLP、RSV F、SARS-CoV-2 RBD、Influenza HA、Influenza NA、PCSK9、ANGPTL3、GIPR、DAT/SLC6A3、CD20、CD19、CD3、C5、IL-6R、IL-4Rα、CD25、CD38、TIGIT、CD47、LAG-3、TROP-2、BCMA、IgE、CGRP receptor、IL-1β，以及犬源 NGF。',
+    '结构支撑靶点清单：' + STRUCTURE_SUPPORT_TARGETS_FOR_PROMPT + '。',
     'reason 只能写疾病关联、药物机制、表达/可及性、结构域和抗体开发依据；不要提本地、预设、可展示、系统已有、为了展示、3D 预设等内部选择原因。',
     'i=chat：只用于普通闲聊、寒暄、纯问答、天气、时间、非分子设计概念解释，且没有足够信息生成 target 的情况。chat 只填 i,start=false,answer；answer 默认中文，最多 2 句。',
     'design 必填 target、reason、cands、wf；reason 写 220-420 个中文字，必须紧扣用户原始需求，按疾病机制/适应症语境、表达谱或抗原暴露、抗原可及性、作用机制、同类抗体开发背景、与备选靶点比较这几类依据展开，说明为何优先该靶点，语言要像专业靶点评审摘要；cands 给 5-7 个候选靶点，包含已选 target 和其他合理备选，每个 r 用 35-90 个中文字写清候选理由、适用场景和相对优先级；wf 每项不超过 35 个中文字。',

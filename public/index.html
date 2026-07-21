@@ -6,6 +6,7 @@
     <title>ZoonoAb — 新一代 AI 抗体全流程设计平台</title>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="/lib/3Dmol-min.js"></script>
+    <script src="/local-structure-catalog.generated.js"></script>
     <!-- marked.js replaced by custom renderer below -->
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -6474,7 +6475,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '69498226';
+    const APP_BUILD_VERSION = '69498227';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
     const SILICONFLOW_CHAT_FALLBACK_MODELS = ['Qwen/Qwen3-32B', 'Qwen/Qwen3-14B', 'Qwen/Qwen3-8B', 'deepseek-ai/DeepSeek-V3'];
@@ -15904,8 +15905,8 @@ ${fallbackTableRows(profile.rows)}
     let currentGalleryViewer = null;
     let currentViewerSection = null;
 
-    const FALLBACK_BINDER_FILES = [
-        '4KC3_site1_1655576_binder-0_iptm-0.7953_complex.pdb',
+	    const FALLBACK_BINDER_FILES = [
+	        '4KC3_site1_1655576_binder-0_iptm-0.7953_complex.pdb',
         '4KC3_site1_1655576_binder-1_iptm-0.7825_complex.pdb',
         '4KC3_site1_1665463_binder-2_iptm-0.7847_complex.pdb',
         '4KC3_site1_1665463_binder-3_iptm-0.7770_complex.pdb',
@@ -15916,10 +15917,55 @@ ${fallbackTableRows(profile.rows)}
         '4KC3_site1_1037374_binder-2_iptm-0.7727_complex.pdb',
         '4KC3_site1_1037374_binder-3_iptm-0.7503_complex.pdb',
         '4KC3_site1_1037374_binder-8_iptm-0.7685_complex.pdb',
-        'IL33_VHH_complex.pdb'
-    ];
+	        'IL33_VHH_complex.pdb'
+	    ];
 
-    const FALLBACK_3D_PRESETS = {
+        function getLocalStructureCatalogForFallback() {
+            return (window.ZOONOAB_LOCAL_STRUCTURE_CATALOG && typeof window.ZOONOAB_LOCAL_STRUCTURE_CATALOG === 'object')
+                ? window.ZOONOAB_LOCAL_STRUCTURE_CATALOG
+                : { routePresets: [] };
+        }
+
+        function buildFallback3DPresetsFromCatalog(catalog) {
+            const presets = {};
+            const entries = Array.isArray(catalog && catalog.routePresets) ? catalog.routePresets : [];
+            entries.forEach(entry => {
+                if (!entry || !entry.routeId || !entry.aliasPrefix || entry.clientFallbackEligible === false) return;
+                const display = entry.display || {};
+                const colors = display.visualColors || {};
+                presets[entry.routeId] = {
+                    aliasPrefix: entry.aliasPrefix,
+                    structureTitle: display.structureTitle || display.title || (entry.target ? entry.target + ' 三维结构' : ''),
+                    structureFamily: display.structureFamily || '',
+                    visualSummary: display.visualSummary || '',
+                    structuralBasis: display.structuralBasis || entry.structuralBasis || '',
+                    antigenChains: Array.isArray(display.antigenChains) ? display.antigenChains : [],
+                    antibodyChains: Array.isArray(display.antibodyChains) ? display.antibodyChains : [],
+                    sourceAntigenChains: Array.isArray(display.sourceAntigenChains) ? display.sourceAntigenChains : undefined,
+                    sourceAntibodyChains: Array.isArray(display.sourceAntibodyChains) ? display.sourceAntibodyChains : undefined,
+                    displayMode: display.displayMode,
+                    interfaceDetail: display.interfaceDetail,
+                    keepAllAntibodyChains: display.keepAllAntibodyChains,
+                    visualColors: {
+                        antigen: colors.antigen || '#9CA3AF',
+                        antibody: colors.antibody || '#60A5FA'
+                    },
+                    order: Array.isArray(display.order) ? display.order : undefined
+                };
+            });
+            return presets;
+        }
+
+        function buildFallbackPresetTargetsFromCatalog(catalog) {
+            const targets = {};
+            const entries = Array.isArray(catalog && catalog.routePresets) ? catalog.routePresets : [];
+            entries.forEach(entry => {
+                if (entry && entry.aliasPrefix && entry.target) targets[entry.aliasPrefix] = entry.target;
+            });
+            return targets;
+        }
+
+	    const FALLBACK_3D_PRESETS = {
         allergic_asthma: { aliasPrefix: 'IL33-Fab', structureTitle: 'IL-33 Fab 炎症信号阻断构象', structureFamily: 'IL-1 家族细胞因子 · Fab 中和候选', visualSummary: '展示 Tozorakimab Fab 贴合 IL-33 表面形成稳定抗体-抗原复合物。', structuralBasis: 'RCSB 9X0J IL-33 / Tozorakimab Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#F59E0B', antibody: '#0EA5E9' }, order: [0,2,5,1,4,7,3,6,8,9,10,11] },
         generic_vhh: { aliasPrefix: 'IL33-VHH', structureTitle: 'VHH 小型抗体展示构象', structureFamily: 'VHH 小型结合体 · 通用展示候选', visualSummary: '用于 VHH 设计路线的结构展示。', structuralBasis: 'VHH 候选与抗原界面参考构象', antigenChains: ['A'], antibodyChains: ['B'], visualColors: { antigen: '#F59E0B', antibody: '#14B8A6' }, order: [11,0,2,5,1,4,7,3,6,8,9,10] },
         allergic_tslp: { aliasPrefix: 'TSLP-Fab', structureTitle: 'TSLP/TSLPR Fab 上皮炎症界面阻断构象', structureFamily: '上皮来源细胞因子 · Fab 阻断候选', visualSummary: '展示 Fab 覆盖 TSLPR 结合面并保留外侧稳定接触。', structuralBasis: 'RCSB 5J13 TSLP / tezepelumab Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#F97316', antibody: '#0EA5E9' }, order: [1,4,7,0,3,6,9,2,5,8,10,11] },
@@ -15970,22 +16016,44 @@ ${fallbackTableRows(profile.rows)}
         'TNF-Fab': 'TNF', 'IL17A-Fab': 'IL-17A', 'IL23-Fab': 'IL-23', 'RSVF-Fab': 'RSV F',
         'SC2RBD-Fab': 'SARS-CoV-2 RBD', 'FluHA-Fab': 'Influenza HA', 'FluNA-Fab': 'Influenza NA',
         'PCSK9-Fab': 'PCSK9', 'ANGPTL3-CV-Fab': 'ANGPTL3', 'IL1B-Fab': 'IL-1B',
-        'ANGPTL3-Met-Fab': 'ANGPTL3', 'GIPR-Fab': 'GIPR', 'DAT-Fab': 'DAT', 'CANINE-NGF-Fab': 'Canine NGF'
-    };
+	        'ANGPTL3-Met-Fab': 'ANGPTL3', 'GIPR-Fab': 'GIPR', 'DAT-Fab': 'DAT', 'CANINE-NGF-Fab': 'Canine NGF'
+	    };
 
-    function normalizeFallbackStructureTarget(value) {
-        return String(value || '')
-            .normalize('NFKC')
-            .toUpperCase()
-            .replace(/(?:ALPHA|Α)/g, 'A')
-            .replace(/(?:BETA|Β)/g, 'B')
-            .replace(/[^A-Z0-9]/g, '');
-    }
+        Object.assign(FALLBACK_3D_PRESETS, buildFallback3DPresetsFromCatalog(getLocalStructureCatalogForFallback()));
+        Object.assign(FALLBACK_PRESET_TARGETS, buildFallbackPresetTargetsFromCatalog(getLocalStructureCatalogForFallback()));
 
-    function getFallback3DPreset(profile) {
-        if (profile && profile.routeId && FALLBACK_3D_PRESETS[profile.routeId]) return FALLBACK_3D_PRESETS[profile.routeId];
-        const target = String(profile && profile.target || '').toLowerCase();
-        if (/(?:canine|犬源|犬|狗).*?(?:\bngf\b|nerve growth factor|神经生长因子)|(?:\bngf\b|nerve growth factor|神经生长因子).*?(?:canine|犬源|犬|狗)/i.test(target)) return FALLBACK_3D_PRESETS.veterinary_canine_ngf;
+	    function normalizeFallbackStructureTarget(value) {
+	        return String(value || '')
+	            .normalize('NFKC')
+	            .toUpperCase()
+	            .replace(/(?:ALPHA|Α)/g, 'A')
+	            .replace(/(?:BETA|Β)/g, 'B')
+	            .replace(/[^A-Z0-9]/g, '');
+	    }
+
+        function getCatalogFallbackPresetForTarget(target, profile) {
+            const normalizedTarget = normalizeFallbackStructureTarget(target);
+            if (!normalizedTarget) return null;
+            const catalog = getLocalStructureCatalogForFallback();
+            const entries = Array.isArray(catalog && catalog.routePresets) ? catalog.routePresets : [];
+            for (const entry of entries) {
+                if (!entry || entry.routeable === false || entry.clientFallbackEligible === false) continue;
+                const labels = [entry.target, entry.gene, entry.promptLabel].concat(Array.isArray(entry.aliases) ? entry.aliases : []);
+                if (labels.some(label => normalizeFallbackStructureTarget(label) === normalizedTarget)) {
+                    return FALLBACK_3D_PRESETS[entry.routeId] || null;
+                }
+            }
+            const abType = String(profile && profile.abType || '');
+            if (/vhh|纳米抗体/i.test(abType) && FALLBACK_3D_PRESETS.generic_vhh) return FALLBACK_3D_PRESETS.generic_vhh;
+            return null;
+        }
+
+	    function getFallback3DPreset(profile) {
+	        if (profile && profile.routeId && FALLBACK_3D_PRESETS[profile.routeId]) return FALLBACK_3D_PRESETS[profile.routeId];
+	        const target = String(profile && profile.target || '').toLowerCase();
+            const catalogPreset = getCatalogFallbackPresetForTarget(target, profile);
+            if (catalogPreset) return catalogPreset;
+	        if (/(?:canine|犬源|犬|狗).*?(?:\bngf\b|nerve growth factor|神经生长因子)|(?:\bngf\b|nerve growth factor|神经生长因子).*?(?:canine|犬源|犬|狗)/i.test(target)) return FALLBACK_3D_PRESETS.veterinary_canine_ngf;
         if (/influenza\s*(?:na|neuraminidase)|流感\s*(?:na|神经氨酸酶)/.test(target)) return FALLBACK_3D_PRESETS.infectious_flu_na;
         if (/pd\s*-?\s*1|pd1/.test(target) && !/pd\s*-?\s*l\s*-?\s*1|pdl1/.test(target)) return FALLBACK_3D_PRESETS.checkpoint_pd1;
         if (/ctla\s*-?\s*4|cd152/.test(target)) return FALLBACK_3D_PRESETS.checkpoint_ctla4;

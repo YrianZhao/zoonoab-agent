@@ -1,0 +1,520 @@
+'use strict';
+
+const fs = require('fs');
+const path = require('path');
+const vm = require('vm');
+const {
+  toClientStructureCatalog
+} = require('../lib/local-structure-catalog');
+
+const ROOT = path.resolve(__dirname, '..');
+const PDB_DIR = path.join(ROOT, 'pdb');
+const SERVER_PATH = path.join(ROOT, 'server.js');
+const INDEX_PATH = path.join(ROOT, 'public', 'index.html');
+const CATALOG_PATH = path.join(PDB_DIR, 'local-structure-catalog.json');
+const CATALOG_MD_PATH = path.join(PDB_DIR, 'local-structure-catalog.md');
+const CLIENT_CATALOG_PATH = path.join(ROOT, 'public', 'local-structure-catalog.generated.js');
+
+const GENE_BY_TARGET = {
+  'PD-L1': 'CD274',
+  'PD-1': 'PDCD1',
+  'CTLA-4': 'CTLA4',
+  HER2: 'ERBB2',
+  EGFR: 'EGFR',
+  'VEGF-A': 'VEGFA',
+  TNF: 'TNF',
+  'IL-17A': 'IL17A',
+  'IL-23': 'IL23A/IL12B',
+  'IL-33': 'IL33',
+  TSLP: 'TSLP',
+  'RSV F': 'F',
+  'SARS-CoV-2 RBD': 'S',
+  'Influenza HA': 'HA',
+  'Influenza NA': 'NA',
+  PCSK9: 'PCSK9',
+  ANGPTL3: 'ANGPTL3',
+  GIPR: 'GIPR',
+  DAT: 'SLC6A3',
+  CD20: 'MS4A1',
+  CD19: 'CD19',
+  CD3: 'CD3E/CD3G',
+  C5: 'C5',
+  'IL-6R': 'IL6R',
+  'IL-4Rα': 'IL4R',
+  CD25: 'IL2RA',
+  CD38: 'CD38',
+  TIGIT: 'TIGIT',
+  CD47: 'CD47',
+  'LAG-3': 'LAG3',
+  'TROP-2': 'TACSTD2',
+  BCMA: 'TNFRSF17',
+  IgE: 'IGH',
+  'CGRP receptor': 'CALCRL/RAMP1',
+  'IL-1β': 'IL1B',
+  'Canine NGF': 'NGF'
+};
+
+const ALIASES_BY_TARGET = {
+  'PD-L1': ['CD274', 'B7-H1', 'PDL1'],
+  'PD-1': ['PDCD1', 'PD1'],
+  'CTLA-4': ['CTLA4', 'CD152'],
+  HER2: ['ERBB2', 'HER-2'],
+  EGFR: ['ERBB1'],
+  'VEGF-A': ['VEGFA', 'VEGF'],
+  TNF: ['TNF-alpha', 'TNFα'],
+  'IL-17A': ['IL17A'],
+  'IL-23': ['IL23', 'IL23A'],
+  'IL-33': ['IL33'],
+  TSLP: ['TSLP'],
+  'RSV F': ['Respiratory syncytial virus F', 'RSV fusion protein'],
+  'SARS-CoV-2 RBD': ['SARS-CoV-2 receptor-binding domain', 'SC2 RBD', 'RBD'],
+  'Influenza HA': ['Influenza hemagglutinin', 'Flu HA', '血凝素'],
+  'Influenza NA': ['Influenza neuraminidase', 'Flu NA', '神经氨酸酶'],
+  PCSK9: ['PCSK9'],
+  ANGPTL3: ['ANGPTL3'],
+  GIPR: ['GIP receptor'],
+  DAT: ['SLC6A3', 'DAT1', 'dopamine transporter'],
+  CD20: ['MS4A1'],
+  CD19: ['CD19'],
+  CD3: ['CD3E', 'CD3 epsilon'],
+  C5: ['Complement C5'],
+  'IL-6R': ['IL6R', 'CD126', 'IL-6Rα'],
+  'IL-4Rα': ['IL4R', 'IL4RA', 'CD124'],
+  CD25: ['IL2RA'],
+  CD38: ['CD38'],
+  TIGIT: ['TIGIT'],
+  CD47: ['CD47'],
+  'LAG-3': ['LAG3'],
+  'TROP-2': ['TACSTD2'],
+  BCMA: ['TNFRSF17', 'CD269'],
+  IgE: ['Immunoglobulin E'],
+  'CGRP receptor': ['CGRPR', 'CALCRL', 'RAMP1'],
+  'IL-1β': ['IL1B', 'IL-1B', 'IL-1 beta'],
+  'Canine NGF': ['NGF', 'dog NGF', '犬源 NGF', '犬 NGF']
+};
+
+function readText(filePath) {
+  return fs.readFileSync(filePath, 'utf8');
+}
+
+function findObjectLiteral(source, constName) {
+  const needle = 'const ' + constName + ' =';
+  const idx = source.indexOf(needle);
+  if (idx < 0) throw new Error('Unable to find ' + constName);
+  const start = source.indexOf('{', idx);
+  if (start < 0) throw new Error('Unable to find object start for ' + constName);
+  let depth = 0;
+  let quote = '';
+  let escaped = false;
+  for (let i = start; i < source.length; i += 1) {
+    const ch = source[i];
+    if (quote) {
+      if (escaped) {
+        escaped = false;
+      } else if (ch === '\\') {
+        escaped = true;
+      } else if (ch === quote) {
+        quote = '';
+      }
+      continue;
+    }
+    if (ch === '\'' || ch === '"' || ch === '`') {
+      quote = ch;
+      continue;
+    }
+    if (ch === '{') depth += 1;
+    if (ch === '}') {
+      depth -= 1;
+      if (depth === 0) return source.slice(start, i + 1);
+    }
+  }
+  throw new Error('Unable to find object end for ' + constName);
+}
+
+function evaluateObjectLiteral(source, constName) {
+  const literal = findObjectLiteral(source, constName);
+  return vm.runInNewContext('(' + literal + ')', {}, { timeout: 1000 });
+}
+
+function readJsonIfExists(filePath) {
+  try {
+    if (!fs.existsSync(filePath)) return null;
+    return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+  } catch {
+    return null;
+  }
+}
+
+function sortedPdbFiles() {
+  return fs.readdirSync(PDB_DIR)
+    .filter(file => file.endsWith('.pdb'))
+    .sort((a, b) => a.localeCompare(b, 'en', { numeric: true }));
+}
+
+function filesForAliasPrefix(files, aliasPrefix) {
+  const safePrefix = String(aliasPrefix || '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const pattern = new RegExp('^' + safePrefix + '-\\d+\\.pdb$', 'i');
+  return files.filter(file => pattern.test(file));
+}
+
+function inferFormat(aliasPrefix) {
+  if (/VHH/i.test(aliasPrefix)) return 'VHH';
+  if (/Fab/i.test(aliasPrefix)) return 'Fab';
+  if (/mAb/i.test(aliasPrefix)) return 'mAb';
+  return '';
+}
+
+function parseRcsbIds(value) {
+  return [...String(value || '').matchAll(/RCSB\s+([0-9][A-Za-z0-9]{3})/g)]
+    .map(match => match[1].toUpperCase());
+}
+
+function promptLabelForTarget(target, gene) {
+  if (!target) return '';
+  if (gene && gene !== target && !String(target).includes('/')) return target + '/' + gene;
+  return target;
+}
+
+function compactObject(input) {
+  const output = {};
+  for (const [key, value] of Object.entries(input || {})) {
+    if (value === undefined || value === null || value === '') continue;
+    if (Array.isArray(value) && value.length === 0) continue;
+    output[key] = value;
+  }
+  return output;
+}
+
+function buildRouteEntries(routePresets, organisms, fallbackTargets, fallback3DPresets, files) {
+  const entries = [];
+  for (const [routeId, preset] of Object.entries(routePresets)) {
+    const target = fallbackTargets[preset.aliasPrefix] || '';
+    const gene = GENE_BY_TARGET[target] || '';
+    const localFiles = filesForAliasPrefix(files, preset.aliasPrefix);
+    const organism = organisms[routeId] || {};
+    const visualColors = compactObject({
+      antigen: preset.antigenColor,
+      antibody: preset.antibodyColor
+    });
+    entries.push(compactObject({
+      routeId,
+      aliasPrefix: preset.aliasPrefix,
+      target,
+      gene,
+      aliases: ALIASES_BY_TARGET[target] || [],
+      organismName: organism.organismName || '',
+      organismTaxId: organism.organismTaxId || null,
+      antibodyFormat: inferFormat(preset.aliasPrefix),
+      routeable: true,
+      promptEligible: localFiles.length > 0,
+      clientFallbackEligible: true,
+      structureClass: preset.interfaceDetail === false
+        ? 'target_exact_display_pose'
+        : (preset.displayMode === 'representative_interface' ? 'representative_experimental_interface' : 'target_exact_complex'),
+      sourceClass: 'route_preset',
+      filenamePattern: preset.aliasPrefix + '-NN.pdb',
+      files: localFiles,
+      fileCount: localFiles.length,
+      promptLabel: promptLabelForTarget(target, gene),
+      structuralBasis: preset.structuralBasis,
+      sourcePdbIds: parseRcsbIds(preset.structuralBasis),
+      display: compactObject({
+        structureTitle: preset.title,
+        structureFamily: preset.structureFamily,
+        visualSummary: preset.visualSummary,
+        structuralBasis: preset.structuralBasis,
+        antigenChains: preset.antigenChains,
+        antibodyChains: preset.antibodyChains,
+        sourceAntigenChains: preset.sourceAntigenChains,
+        sourceAntibodyChains: preset.sourceAntibodyChains,
+        displayMode: preset.displayMode,
+        interfaceDetail: preset.interfaceDetail,
+        keepAllAntibodyChains: preset.keepAllAntibodyChains,
+        visualColors,
+        order: preset.order,
+        ipTmBias: preset.ipTmBias
+      })
+    }));
+  }
+
+  const genericVhh = fallback3DPresets.generic_vhh;
+  if (genericVhh) {
+    const target = fallbackTargets[genericVhh.aliasPrefix] || 'IL-33';
+    const gene = GENE_BY_TARGET[target] || '';
+    const localFiles = filesForAliasPrefix(files, genericVhh.aliasPrefix);
+    entries.push(compactObject({
+      routeId: 'generic_vhh',
+      aliasPrefix: genericVhh.aliasPrefix,
+      target,
+      gene,
+      aliases: ALIASES_BY_TARGET[target] || [],
+      organismName: 'Homo sapiens',
+      organismTaxId: 9606,
+      antibodyFormat: 'VHH',
+      routeable: false,
+      promptEligible: false,
+      clientFallbackEligible: true,
+      structureClass: 'generic_vhh_display_scaffold',
+      sourceClass: 'client_fallback_scaffold',
+      filenamePattern: genericVhh.aliasPrefix + '-NN.pdb',
+      files: localFiles,
+      fileCount: localFiles.length,
+      promptLabel: target,
+      structuralBasis: genericVhh.structuralBasis,
+      display: compactObject({
+        structureTitle: genericVhh.structureTitle,
+        structureFamily: genericVhh.structureFamily,
+        visualSummary: genericVhh.visualSummary,
+        structuralBasis: genericVhh.structuralBasis,
+        antigenChains: genericVhh.antigenChains,
+        antibodyChains: genericVhh.antibodyChains,
+        visualColors: genericVhh.visualColors,
+        order: genericVhh.order
+      })
+    }));
+  }
+  return entries;
+}
+
+function summarizeVirusAsset(model) {
+  return compactObject({
+    sourceCatalog: 'virus-library-manifest.json',
+    filename: model.file || '',
+    localPath: model.localPath || (model.file ? 'pdb/' + model.file : ''),
+    target: model.label || [model.group, model.subtype, model.antigen].filter(Boolean).join(' '),
+    gene: model.antigen || '',
+    group: model.group,
+    subtype: model.subtype,
+    antigen: model.antigen,
+    organismName: model.group === 'Influenza' ? 'Influenza A virus' : '',
+    organismTaxId: model.group === 'Influenza' ? 11320 : null,
+    pdbId: model.pdbId,
+    source: model.sourceDatabase || 'RCSB PDB',
+    sourceUrl: model.rcsbEntryUrl || model.downloadUrl || '',
+    structureClass: model.sourceType === 'experimental' ? 'experimental_antigen_or_complex' : model.sourceType,
+    routeable: false,
+    promptEligible: false,
+    fileCount: model.file ? 1 : 0,
+    label: model.label,
+    note: model.note,
+    assemblyId: model.assemblyId,
+    experimentalMethod: model.experimentalMethod,
+    resolutionAngstrom: model.resolutionAngstrom,
+    antigenChains: Array.isArray(model.entities)
+      ? model.entities
+        .filter(entity => /hemagglutinin|\bHA\b|spike|glycoprotein|neuraminidase|antigen|fusion|attachment|VP1|Env/i.test(String(entity.description || '')))
+        .flatMap(entity => Array.isArray(entity.chains) ? entity.chains : [])
+      : [],
+    antibodyChains: Array.isArray(model.entities)
+      ? model.entities
+        .filter(entity => /antibody|fab|heavy chain|light chain|neutralizing/i.test(String(entity.description || '')))
+        .flatMap(entity => Array.isArray(entity.chains) ? entity.chains : [])
+      : []
+  });
+}
+
+function summarizeSimpleManifestAsset(model, sourceCatalog) {
+  const filename = model.filename || model.file || '';
+  return compactObject({
+    sourceCatalog,
+    filename,
+    localPath: model.localPath || (filename ? 'pdb/' + filename : ''),
+    target: model.target || model.label || '',
+    gene: model.gene || '',
+    organismName: model.organism || model.organismName || '',
+    organismTaxId: model.organismTaxId || null,
+    accession: model.accession || '',
+    source: model.source || model.sourceDatabase || '',
+    sourceUrl: model.sourceUrl || model.downloadUrl || '',
+    structureClass: model.structureClass || '',
+    routeable: /^target_exact_display_pose$/.test(String(model.structureClass || '')),
+    promptEligible: false,
+    fileCount: filename ? 1 : 0,
+    antigenChains: model.antigenChains || [],
+    antibodyChains: model.antibodyChains || [],
+    context: model.context || ''
+  });
+}
+
+function buildLibraryAssets() {
+  const assets = [];
+  const virus = readJsonIfExists(path.join(PDB_DIR, 'virus-library-manifest.json'));
+  if (virus && Array.isArray(virus.models)) {
+    assets.push(...virus.models.map(summarizeVirusAsset));
+  }
+  const veterinary = readJsonIfExists(path.join(PDB_DIR, 'veterinary-library-manifest.json'));
+  if (veterinary && Array.isArray(veterinary.models)) {
+    assets.push(...veterinary.models.map(model => summarizeSimpleManifestAsset(model, 'veterinary-library-manifest.json')));
+  }
+  const neuro = readJsonIfExists(path.join(PDB_DIR, 'neuro-library-manifest.json'));
+  if (neuro && Array.isArray(neuro.models)) {
+    assets.push(...neuro.models.map(model => summarizeSimpleManifestAsset(model, 'neuro-library-manifest.json')));
+  }
+  const seen = new Set();
+  return assets.filter(asset => {
+    const key = [asset.sourceCatalog, asset.filename || asset.localPath || asset.target].join('|');
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
+function buildCatalog() {
+  const serverSource = readText(SERVER_PATH);
+  const indexSource = readText(INDEX_PATH);
+  const routePresets = evaluateObjectLiteral(serverSource, 'ROUTE_3D_PRESETS');
+  const organisms = evaluateObjectLiteral(serverSource, 'ROUTE_3D_PRESET_ORGANISMS_FALLBACK');
+  const fallbackTargets = evaluateObjectLiteral(indexSource, 'FALLBACK_PRESET_TARGETS');
+  const fallback3DPresets = evaluateObjectLiteral(indexSource, 'FALLBACK_3D_PRESETS');
+  const pdbFiles = sortedPdbFiles();
+  const routeEntries = buildRouteEntries(routePresets, organisms, fallbackTargets, fallback3DPresets, pdbFiles);
+  const libraryAssets = buildLibraryAssets();
+  const promptEligible = routeEntries.filter(entry => entry.routeable !== false && entry.promptEligible !== false);
+  const routeFileCount = routeEntries.reduce((sum, entry) => sum + (Number(entry.fileCount) || 0), 0);
+
+  return {
+    schemaVersion: 1,
+    generatedAt: new Date().toISOString(),
+    sourceFiles: [
+      'server.js:ROUTE_3D_PRESETS',
+      'server.js:ROUTE_3D_PRESET_ORGANISMS_FALLBACK',
+      'public/index.html:FALLBACK_3D_PRESETS',
+      'public/index.html:FALLBACK_PRESET_TARGETS',
+      'pdb/*-library-manifest.json',
+      'pdb/*.pdb'
+    ],
+    summary: {
+      pdbFileCount: pdbFiles.length,
+      routePresetCount: routeEntries.length,
+      routeableRoutePresetCount: routeEntries.filter(entry => entry.routeable !== false).length,
+      promptEligibleRoutePresetCount: promptEligible.length,
+      routePresetFileCount: routeFileCount,
+      libraryAssetCount: libraryAssets.length
+    },
+    promptPolicy: {
+      useWhen: 'Only prefer a structure-supported target when multiple candidate targets are biologically similarly reasonable.',
+      preserveExplicitTarget: true,
+      doNotExposeInternalAvailabilityReason: true
+    },
+    routePresets: routeEntries,
+    libraryAssets,
+    extensionPriorities: [
+      {
+        priority: 1,
+        area: 'solid_tumor_surface_antigens',
+        targets: ['MUC1', 'Mesothelin/MSLN', 'Claudin 18.2/CLDN18', 'CEACAM6', 'GPC3', 'B7-H3/CD276'],
+        reason: 'These targets appear in natural-language tumor requests or tests but are not yet backed by route-level local PDB families.'
+      },
+      {
+        priority: 2,
+        area: 'route_variants',
+        targets: ['VHH variants for prepared Fab routes', 'species-specific veterinary variants', 'viral subtype/strain variants'],
+        reason: 'Adding variants under existing target identities improves coverage without multiplying unrelated route logic.'
+      },
+      {
+        priority: 3,
+        area: 'library_asset_promotion',
+        targets: ['VIRUSLIB surface proteins', 'VETLIB predicted antigens', 'NEUROLIB reference assets'],
+        reason: 'Some assets can become routeable only after target identity, chain roles and candidate display metadata are filled.'
+      }
+    ]
+  };
+}
+
+function escapeMd(value) {
+  return String(value || '').replace(/\|/g, '\\|').replace(/\r?\n/g, ' ');
+}
+
+function markdownTable(rows) {
+  return rows.map(row => '| ' + row.map(escapeMd).join(' | ') + ' |').join('\n');
+}
+
+function buildCatalogMarkdown(catalog) {
+  const routeRows = [
+    ['routeId', 'target', 'gene', 'aliasPrefix', 'files', 'organism', 'structure basis'],
+    ['---', '---', '---', '---', '---:', '---', '---']
+  ];
+  for (const entry of catalog.routePresets) {
+    routeRows.push([
+      entry.routeId,
+      entry.target,
+      entry.gene,
+      entry.aliasPrefix,
+      String(entry.fileCount || 0),
+      entry.organismName || '',
+      entry.structuralBasis || ''
+    ]);
+  }
+
+  const priorityRows = [
+    ['priority', 'area', 'targets', 'reason'],
+    ['---:', '---', '---', '---']
+  ];
+  for (const item of catalog.extensionPriorities) {
+    priorityRows.push([
+      String(item.priority),
+      item.area,
+      item.targets.join(', '),
+      item.reason
+    ]);
+  }
+
+  return [
+    '# Local structure catalog',
+    '',
+    'This file is generated from `pdb/local-structure-catalog.json` and summarizes the local molecular structure inventory for maintainers.',
+    '',
+    '## Summary',
+    '',
+    '- PDB files: ' + catalog.summary.pdbFileCount,
+    '- Route presets: ' + catalog.summary.routePresetCount,
+    '- Routeable presets: ' + catalog.summary.routeableRoutePresetCount,
+    '- Prompt-eligible structure-supported targets: ' + catalog.summary.promptEligibleRoutePresetCount,
+    '- Library assets: ' + catalog.summary.libraryAssetCount,
+    '',
+    '## Route-backed structure families',
+    '',
+    markdownTable(routeRows),
+    '',
+    '## Extension priorities',
+    '',
+    markdownTable(priorityRows),
+    '',
+    '## Maintenance contract',
+    '',
+    '- `local-structure-catalog.json` is the machine-readable source of truth.',
+    '- Runtime prompts should consume only the structure-supported target summary generated from this catalog.',
+    '- New routeable entries must include target identity, aliases, organism/taxid, file pattern, chain roles and structural basis.',
+    '- Asset-only entries should not be promoted to routeable status until chain roles and display metadata are complete.',
+    ''
+  ].join('\n');
+}
+
+function buildClientCatalogJs(catalog) {
+  const clientCatalog = toClientStructureCatalog(catalog);
+  return [
+    '// Generated by scripts/build_local_structure_catalog.js. Do not edit by hand.',
+    '(function(){',
+    '  window.ZOONOAB_LOCAL_STRUCTURE_CATALOG = ' + JSON.stringify(clientCatalog, null, 2) + ';',
+    '}());',
+    ''
+  ].join('\n');
+}
+
+function main() {
+  const catalog = buildCatalog();
+  fs.writeFileSync(CATALOG_PATH, JSON.stringify(catalog, null, 2) + '\n');
+  fs.writeFileSync(CATALOG_MD_PATH, buildCatalogMarkdown(catalog));
+  fs.writeFileSync(CLIENT_CATALOG_PATH, buildClientCatalogJs(catalog));
+  console.log('Wrote ' + path.relative(ROOT, CATALOG_PATH));
+  console.log('Wrote ' + path.relative(ROOT, CATALOG_MD_PATH));
+  console.log('Wrote ' + path.relative(ROOT, CLIENT_CATALOG_PATH));
+}
+
+if (require.main === module) main();
+
+module.exports = {
+  buildCatalog,
+  buildCatalogMarkdown,
+  buildClientCatalogJs
+};

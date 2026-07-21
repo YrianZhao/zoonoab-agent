@@ -100,6 +100,20 @@ test('local PDB model library API lists local structures with viewer metadata', 
   assert.match(flu.updatedAt, /^\d{4}-\d{2}-\d{2}T/);
 });
 
+test('structure catalog API exposes route-backed structure inventory', async () => {
+  const res = await fetch('http://127.0.0.1:' + PORT + '/api/structure-catalog');
+  assert.equal(res.status, 200);
+  const data = await res.json();
+  assert.equal(data.ok, true);
+  assert.ok(data.catalog);
+  assert.ok(Array.isArray(data.catalog.routePresets));
+  const covid = data.catalog.routePresets.find(item => item.routeId === 'infectious_covid');
+  assert.ok(covid, 'catalog should expose the SARS-CoV-2 local route');
+  assert.equal(covid.aliasPrefix, 'SC2RBD-Fab');
+  assert.equal(covid.target, 'SARS-CoV-2 RBD');
+  assert.ok((covid.files || []).includes('SC2RBD-Fab-01.pdb'));
+});
+
 test('local PDB responses are cacheable and can project only viewer-visible chains', async () => {
   const full = await fetch('http://127.0.0.1:' + PORT + '/api/pdb/local/PDL1-Fab-01.pdb');
   assert.equal(full.status, 200);
