@@ -204,6 +204,18 @@ const COMMON_REAL_COMPLEX_EXPECTATIONS = [
     antibodyChains: ['A', 'B', 'H', 'L']
   },
   {
+    prefix: 'BAFF-Fab',
+    basis: /RCSB 6FXN human BAFF trimer \/ belimumab Fab complex/,
+    antigenChains: ['A', 'B', 'C'],
+    antibodyChains: ['D', 'E', 'F', 'G', 'H', 'I']
+  },
+  {
+    prefix: 'FCRN-Fab',
+    basis: /RCSB 9MI6 human FcRn \/ beta-2-microglobulin \/ nipocalimab Fab complex/,
+    antigenChains: ['A', 'B'],
+    antibodyChains: ['H', 'L']
+  },
+  {
     prefix: 'ABETA-Fab',
     basis: /RCSB 4OJF amyloid-beta 1-8 peptide \/ humanized 3D6 Fab complex/,
     antigenChains: ['A'],

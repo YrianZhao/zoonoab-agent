@@ -174,6 +174,26 @@ test('local PDB model library API lists local structures with viewer metadata', 
   assert.match(cd123.structuralBasis, /4JZJ/);
   assert.equal(cd123.targetTag.verifiedTag, true);
 
+  const baff = data.models.find(model => model.filename === 'BAFF-Fab-01.pdb');
+  assert.ok(baff, 'BAFF routeable Fab preset should be listed');
+  assert.equal(baff.targetDisplay, 'BAFF');
+  assert.equal(baff.antibodyFormat, 'Fab');
+  assert.equal(baff.structureKind, 'Fab 抗原-抗体复合体');
+  assert.deepEqual(baff.antigenChains, ['A', 'B', 'C']);
+  assert.deepEqual(baff.antibodyChains, ['D', 'E', 'F', 'G', 'H', 'I']);
+  assert.match(baff.structuralBasis, /6FXN/);
+  assert.equal(baff.targetTag.verifiedTag, true);
+
+  const fcrn = data.models.find(model => model.filename === 'FCRN-Fab-01.pdb');
+  assert.ok(fcrn, 'FcRn routeable Fab preset should be listed');
+  assert.equal(fcrn.targetDisplay, 'FcRn');
+  assert.equal(fcrn.antibodyFormat, 'Fab');
+  assert.equal(fcrn.structureKind, 'Fab 抗原-抗体复合体');
+  assert.deepEqual(fcrn.antigenChains, ['A', 'B']);
+  assert.deepEqual(fcrn.antibodyChains, ['H', 'L']);
+  assert.match(fcrn.structuralBasis, /9MI6/);
+  assert.equal(fcrn.targetTag.verifiedTag, true);
+
   const abeta = data.models.find(model => model.filename === 'ABETA-Fab-01.pdb');
   assert.ok(abeta, 'Amyloid-beta routeable Fab preset should be listed');
   assert.equal(abeta.targetDisplay, 'Amyloid-beta');
@@ -229,6 +249,12 @@ test('structure catalog API exposes route-backed structure inventory', async () 
   assert.equal(il5.aliasPrefix, 'IL5-Fab');
   assert.equal(il5.target, 'IL-5');
   assert.ok((il5.files || []).includes('IL5-Fab-01.pdb'));
+
+  const baff = data.catalog.routePresets.find(item => item.routeId === 'autoimmune_baff');
+  assert.ok(baff, 'catalog should expose the BAFF local route');
+  assert.equal(baff.aliasPrefix, 'BAFF-Fab');
+  assert.equal(baff.target, 'BAFF');
+  assert.ok((baff.files || []).includes('BAFF-Fab-01.pdb'));
 });
 
 test('local PDB responses are cacheable and can project only viewer-visible chains', async () => {

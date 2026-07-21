@@ -2,16 +2,16 @@
 (function(){
   window.ZOONOAB_LOCAL_STRUCTURE_CATALOG = {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-21T14:50:22.920Z",
+  "generatedAt": "2026-07-21T15:14:33.303Z",
   "summary": {
-    "pdbFileCount": 471,
-    "routePresetCount": 53,
-    "routeableRoutePresetCount": 52,
-    "promptEligibleRoutePresetCount": 52,
-    "routePresetFileCount": 405,
+    "pdbFileCount": 473,
+    "routePresetCount": 55,
+    "routeableRoutePresetCount": 54,
+    "promptEligibleRoutePresetCount": 54,
+    "routePresetFileCount": 407,
     "libraryAssetCount": 86
   },
-  "promptSupportTargets": "IL-33/IL33、TSLP、PD-L1/CD274、PD-1/PDCD1、CTLA-4/CTLA4、CD20/MS4A1、CD19、CD3/CD3E/CD3G、C5、IL-6R/IL6R、IL-4Rα/IL4R、CD25/IL2RA、CD38、TIGIT、CD47、LAG-3/LAG3、TROP-2/TACSTD2、BCMA/TNFRSF17、IgE/IGH、CGRP receptor/CALCRL/RAMP1、HER2/ERBB2、EGFR、VEGF-A/VEGFA、TNF、IL-17A/IL17A、IL-23/IL23A/IL12B、RSV F/F、SARS-CoV-2 RBD/S、Influenza HA/HA、Influenza NA/NA、PCSK9、ANGPTL3、IL-1B、GIPR、Amyloid-beta/APP、Tau/MAPT、TREM2、DAT/SLC6A3、Canine NGF/NGF、Mesothelin/MSLN、Claudin 18.2/CLDN18、B7-H3/CD276、MUC1、Nectin-4/NECTIN4、GPRC5D、CEACAM5/CEA、STEAP1、CAIX/CA9、IL-5/IL5、IL-13/IL13、CD123/IL3RA",
+  "promptSupportTargets": "IL-33/IL33、TSLP、PD-L1/CD274、PD-1/PDCD1、CTLA-4/CTLA4、CD20/MS4A1、CD19、CD3/CD3E/CD3G、C5、IL-6R/IL6R、IL-4Rα/IL4R、CD25/IL2RA、CD38、TIGIT、CD47、LAG-3/LAG3、TROP-2/TACSTD2、BCMA/TNFRSF17、IgE/IGH、CGRP receptor/CALCRL/RAMP1、HER2/ERBB2、EGFR、VEGF-A/VEGFA、TNF、IL-17A/IL17A、IL-23/IL23A/IL12B、RSV F/F、SARS-CoV-2 RBD/S、Influenza HA/HA、Influenza NA/NA、PCSK9、ANGPTL3、IL-1B、GIPR、Amyloid-beta/APP、Tau/MAPT、TREM2、DAT/SLC6A3、Canine NGF/NGF、Mesothelin/MSLN、Claudin 18.2/CLDN18、B7-H3/CD276、MUC1、Nectin-4/NECTIN4、GPRC5D、CEACAM5/CEA、STEAP1、CAIX/CA9、IL-5/IL5、IL-13/IL13、CD123/IL3RA、BAFF/TNFSF13B、FcRn/FCGRT",
   "routePresets": [
     {
       "routeId": "allergic_asthma",
@@ -2628,6 +2628,106 @@
         "keepAllAntibodyChains": true,
         "visualColors": {
           "antigen": "#22C55E",
+          "antibody": "#2563EB"
+        }
+      }
+    },
+    {
+      "routeId": "autoimmune_baff",
+      "aliasPrefix": "BAFF-Fab",
+      "target": "BAFF",
+      "gene": "TNFSF13B",
+      "aliases": [
+        "BLyS",
+        "B-cell activating factor",
+        "TNFSF13B",
+        "TALL-1"
+      ],
+      "promptLabel": "BAFF/TNFSF13B",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "BAFF-Fab-01.pdb"
+      ],
+      "display": {
+        "structureTitle": "BAFF Fab B 细胞活化因子结合构象",
+        "structureFamily": "自身免疫 B 细胞生存配体 · BAFF Fab 候选",
+        "visualSummary": "展示 trimeric human BAFF 与三组 belimumab Fab 的真实实验复合物，可支撑系统性红斑狼疮与 B 细胞异常活化方向的配体展示。",
+        "structuralBasis": "RCSB 6FXN human BAFF trimer / belimumab Fab complex",
+        "antigenChains": [
+          "A",
+          "B",
+          "C"
+        ],
+        "antibodyChains": [
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
+          "I"
+        ],
+        "sourceAntigenChains": [
+          "A",
+          "B",
+          "C"
+        ],
+        "sourceAntibodyChains": [
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
+          "I"
+        ],
+        "keepAllAntibodyChains": true,
+        "visualColors": {
+          "antigen": "#8B5CF6",
+          "antibody": "#F97316"
+        }
+      }
+    },
+    {
+      "routeId": "autoimmune_fcrn",
+      "aliasPrefix": "FCRN-Fab",
+      "target": "FcRn",
+      "gene": "FCGRT",
+      "aliases": [
+        "FCRN",
+        "Neonatal Fc receptor",
+        "FCGRT"
+      ],
+      "promptLabel": "FcRn/FCGRT",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "FCRN-Fab-01.pdb"
+      ],
+      "display": {
+        "structureTitle": "FcRn Fab IgG 转运受体结合构象",
+        "structureFamily": "IgG 转运受体复合物 · FcRn Fab 候选",
+        "visualSummary": "展示 human FcRn alpha-chain / beta-2-microglobulin heterodimer 与 nipocalimab Fab 的真实实验复合物，可支撑重症肌无力与 IgG 介导自身免疫方向的 FcRn 阻断展示。",
+        "structuralBasis": "RCSB 9MI6 human FcRn / beta-2-microglobulin / nipocalimab Fab complex",
+        "antigenChains": [
+          "A",
+          "B"
+        ],
+        "antibodyChains": [
+          "H",
+          "L"
+        ],
+        "sourceAntigenChains": [
+          "A",
+          "B"
+        ],
+        "sourceAntibodyChains": [
+          "H",
+          "L"
+        ],
+        "visualColors": {
+          "antigen": "#06B6D4",
           "antibody": "#2563EB"
         }
       }

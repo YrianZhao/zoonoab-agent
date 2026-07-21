@@ -6610,11 +6610,45 @@ const TUMOR_IMMUNOTHERAPY_TARGET_RESOLUTION = {
   ]
 };
 
+const LUPUS_BAFF_TARGET_RESOLUTION = {
+  selectedTarget: 'BAFF',
+  selectedGene: 'TNFSF13B',
+  designLabel: 'SLE-BAFF-1',
+  confidence: 0.82,
+  reason: '系统性红斑狼疮方向可优先围绕 BAFF/TNFSF13B 介导的 B 细胞存活与自身抗体生成通路展开。BAFF 是可溶性 TNF 家族配体，直接影响自身反应性 B 细胞维持、浆细胞分化和体液免疫放大，并具备真实人源 BAFF-belimumab 复合物结构，适合作为本轮抗体设计入口。',
+  candidates: [
+    { target: 'BAFF', gene: 'TNFSF13B', rationale: 'B 细胞存活配体，与自身抗体驱动的狼疮免疫轴高度相关，且具备真实人源 Fab 复合物。' },
+    { target: 'FcRn', gene: 'FCGRT', rationale: '调节致病 IgG 回收与暴露半衰期，适合自抗体负荷明显的备选阻断方向。' },
+    { target: 'CD20', gene: 'MS4A1', rationale: 'B 细胞去pletion方向具备成熟抗体开发背景，可作为细胞消耗型备选入口。' }
+  ]
+};
+
+const MYASTHENIA_FCRN_TARGET_RESOLUTION = {
+  selectedTarget: 'FcRn',
+  selectedGene: 'FCGRT',
+  designLabel: 'GMG-FCRN-1',
+  confidence: 0.84,
+  reason: '重症肌无力方向可优先围绕 FcRn/FCGRT 介导的 IgG 回收通路展开。FcRn 通过延长循环 IgG 半衰期维持致病自身抗体暴露；相较更偏终末炎症放大的补体通路或更广义的 B 细胞消耗策略，FcRn 阻断与 IgG 介导的致病机制对应更直接，且具备真实人源 FcRn-nipocalimab Fab 复合物结构，适合作为本轮抗体设计入口。',
+  candidates: [
+    { target: 'FcRn', gene: 'FCGRT', rationale: 'IgG 回收受体，直接影响致病自身抗体负荷，具备真实人源 Fab 复合物。' },
+    { target: 'C5', gene: 'C5', rationale: '补体终末通路关键因子，可作为神经肌接头损伤放大阶段的备选靶点。' },
+    { target: 'CD20', gene: 'MS4A1', rationale: 'B 细胞消耗方向可降低自身抗体来源，适合作为机制备选。' }
+  ]
+};
+
 const BUILTIN_DISEASE_TARGET_RESOLVERS = {
   '肿瘤免疫治疗': TUMOR_IMMUNOTHERAPY_TARGET_RESOLUTION,
   '肿瘤免疫': TUMOR_IMMUNOTHERAPY_TARGET_RESOLUTION,
   '癌症免疫治疗': TUMOR_IMMUNOTHERAPY_TARGET_RESOLUTION,
   '癌症免疫': TUMOR_IMMUNOTHERAPY_TARGET_RESOLUTION,
+  '系统性红斑狼疮': LUPUS_BAFF_TARGET_RESOLUTION,
+  '红斑狼疮': LUPUS_BAFF_TARGET_RESOLUTION,
+  '狼疮': LUPUS_BAFF_TARGET_RESOLUTION,
+  'SLE': LUPUS_BAFF_TARGET_RESOLUTION,
+  'lupus': LUPUS_BAFF_TARGET_RESOLUTION,
+  '重症肌无力': MYASTHENIA_FCRN_TARGET_RESOLUTION,
+  'myasthenia gravis': MYASTHENIA_FCRN_TARGET_RESOLUTION,
+  'gMG': MYASTHENIA_FCRN_TARGET_RESOLUTION,
   '过敏性哮喘': {
     selectedTarget: 'IL-33',
     selectedGene: 'IL33',
@@ -7500,7 +7534,7 @@ function buildWorkflowIntentPrompt() {
     '边界：如果用户明确要求针对小分子/半抗原/化合物本身生成或特异性结合抗体（例如“设计氯胺酮抗体”“设计特异性结合噻吩嗪的单克隆抗体”），输出 i=chat,start=false,answer，说明 ZoonoAb 面向大分子抗原/蛋白靶点，不直接生成小分子/半抗原抗体；不要把该小分子硬转成蛋白靶点。',
     '准确性优先：疾病或药物方向可能对应多个靶点，先保证疾病关联、机制和抗体可及性准确；如果用户明确指定靶点，target 必须保留用户真实指定靶点；如果用户只给疾病、方向或药物机制，且多个候选同等合理，优先从结构支撑靶点清单选择 target，并把其他合理靶点放入 cands，形成候选靶点比较池。',
     '结构支撑靶点清单：' + STRUCTURE_SUPPORT_TARGETS_FOR_PROMPT + '。',
-    '常见疾病发散参考：尿路上皮癌/肾盂癌优先比较 Nectin-4、TROP-2、B7-H3 或 HER2；肾癌/透明细胞肾细胞癌优先比较 CAIX、VEGF-A、B7-H3；嗜酸性哮喘/重度 2 型炎症优先比较 IL-5、IL-13、IL-4Rα 或 TSLP；特应性皮炎优先比较 IL-13、IL-4Rα、TSLP 或 IL-33；阿尔茨海默病优先比较 Amyloid-beta、Tau、TREM2；急性髓系白血病优先比较 CD123、CD47、CD33；多发性骨髓瘤优先比较 GPRC5D、BCMA、CD38；前列腺癌优先比较 STEAP1、PSMA、B7-H3；结直肠癌优先比较 CEACAM5、EGFR、B7-H3；卵巢癌优先比较 Mesothelin、MUC1、FOLR1；小细胞肺癌优先比较 DLL3、B7-H3、TROP-2。',
+    '常见疾病发散参考：尿路上皮癌/肾盂癌优先比较 Nectin-4、TROP-2、B7-H3 或 HER2；肾癌/透明细胞肾细胞癌优先比较 CAIX、VEGF-A、B7-H3；嗜酸性哮喘/重度 2 型炎症优先比较 IL-5、IL-13、IL-4Rα 或 TSLP；特应性皮炎优先比较 IL-13、IL-4Rα、TSLP 或 IL-33；系统性红斑狼疮/SLE 优先比较 BAFF、FcRn、CD20；重症肌无力/gMG 优先比较 FcRn、C5、CD20；阿尔茨海默病优先比较 Amyloid-beta、Tau、TREM2；急性髓系白血病优先比较 CD123、CD47、CD33；多发性骨髓瘤优先比较 GPRC5D、BCMA、CD38；前列腺癌优先比较 STEAP1、PSMA、B7-H3；结直肠癌优先比较 CEACAM5、EGFR、B7-H3；卵巢癌优先比较 Mesothelin、MUC1、FOLR1；小细胞肺癌优先比较 DLL3、B7-H3、TROP-2。',
     'reason 只能写疾病关联、药物机制、表达/可及性、结构域和抗体开发依据；不要提本地、预设、可展示、系统已有、为了展示、3D 预设等内部选择原因。',
     'i=chat：只用于普通闲聊、寒暄、纯问答、天气、时间、非分子设计概念解释，且没有足够信息生成 target 的情况。chat 只填 i,start=false,answer；answer 默认中文，最多 2 句。',
     'design 必填 target、reason、cands、wf；reason 写 220-420 个中文字，必须紧扣用户原始需求，按疾病机制/适应症语境、表达谱或抗原暴露、抗原可及性、作用机制、同类抗体开发背景、与备选靶点比较这几类依据展开，说明为何优先该靶点，语言要像专业靶点评审摘要；cands 给 5-7 个候选靶点，包含已选 target 和其他合理备选，每个 r 用 35-90 个中文字写清候选理由、适用场景和相对优先级；wf 每项不超过 35 个中文字。',

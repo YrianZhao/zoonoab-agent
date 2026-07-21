@@ -4,10 +4,10 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 
 ## Summary
 
-- PDB files: 471
-- Route presets: 53
-- Routeable presets: 52
-- Prompt-eligible structure-supported targets: 52
+- PDB files: 473
+- Route presets: 55
+- Routeable presets: 54
+- Prompt-eligible structure-supported targets: 54
 - Library assets: 86
 
 ## Route-backed structure families
@@ -67,6 +67,8 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 | allergic_il5 | IL-5 | IL5 | IL5-Fab | 1 | Homo sapiens | RCSB 9GVN depemokimab Fab / IL-5 dimer complex |
 | allergic_il13 | IL-13 | IL13 | IL13-Fab | 1 | Homo sapiens | RCSB 5L6Y IL-13 / tralokinumab Fab complex |
 | heme_cd123 | CD123 | IL3RA | CD123-Fab | 1 | Homo sapiens | RCSB 4JZJ human CD123 D2-D3 ectodomain / CSL362 Fab complex |
+| autoimmune_baff | BAFF | TNFSF13B | BAFF-Fab | 1 | Homo sapiens | RCSB 6FXN human BAFF trimer / belimumab Fab complex |
+| autoimmune_fcrn | FcRn | FCGRT | FCRN-Fab | 1 | Homo sapiens | RCSB 9MI6 human FcRn / beta-2-microglobulin / nipocalimab Fab complex |
 
 ## Extension priorities
 

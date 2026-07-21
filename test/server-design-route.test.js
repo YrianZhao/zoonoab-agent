@@ -659,6 +659,8 @@ test('server previews curated real complexes for common explicit antigen targets
     { text: '设计10个针对IL-5的Fab', expectedTarget: 'IL-5', expectedPrefix: /^IL5-Fab-/ },
     { text: '设计10个针对IL-13的Fab', expectedTarget: 'IL-13', expectedPrefix: /^IL13-Fab-/ },
     { text: '设计10个针对CD123的Fab', expectedTarget: 'CD123', expectedPrefix: /^CD123-Fab-/ },
+    { text: '设计10个针对BAFF的Fab', expectedTarget: 'BAFF', expectedPrefix: /^BAFF-Fab-/ },
+    { text: '设计10个针对FcRn的Fab', expectedTarget: 'FcRn', expectedPrefix: /^FCRN-Fab-/ },
     { text: '设计10个针对Amyloid-beta的Fab', expectedTarget: 'Amyloid-beta', expectedPrefix: /^ABETA-Fab-/ },
     { text: '设计10个针对Tau的Fab', expectedTarget: 'Tau', expectedPrefix: /^TAU-Fab-/ },
     { text: '设计10个针对TREM2的Fab', expectedTarget: 'TREM2', expectedPrefix: /^TREM2-Fab-/ }
@@ -989,6 +991,26 @@ test('server routes obesity indication requests through target resolution instea
   assert.equal(data.runner, 'target_resolution_workflow');
   assert.equal(data.requiresTargetResolution, true);
   assert.equal(data.diseaseIndication, '肥胖');
+});
+
+test('server recognizes lupus and myasthenia disease wording as target-resolution indications', async () => {
+  const cases = [
+    ['帮我设计一个治疗系统性红斑狼疮的抗体', '系统性红斑狼疮'],
+    ['帮我设计一个治疗重症肌无力的抗体', '重症肌无力']
+  ];
+
+  for (const [text, expectedIndication] of cases) {
+    const query = encodeURIComponent(text);
+    const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/user-routing?text=' + query);
+    assert.equal(res.status, 200);
+    const data = await res.json();
+
+    assert.equal(data.intent, 'design');
+    assert.equal(data.localWorkflowAllowed, true);
+    assert.equal(data.runner, 'target_resolution_workflow');
+    assert.equal(data.requiresTargetResolution, true);
+    assert.equal(data.diseaseIndication, expectedIndication);
+  }
 });
 
 test('server routes compact obesity antibody wording through target resolution', async () => {

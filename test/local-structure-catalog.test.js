@@ -105,6 +105,26 @@ test('local structure catalog is the machine-readable inventory for route-backed
   assert.deepEqual(cd123.display.antigenChains, ['C', 'D']);
   assert.deepEqual(cd123.display.antibodyChains, ['A', 'B', 'H', 'L']);
 
+  const baff = catalogEntryForFilename(catalog, 'BAFF-Fab-01.pdb');
+  assert.ok(baff, 'BAFF-Fab-01 should be represented in the catalog');
+  assert.equal(baff.target, 'BAFF');
+  assert.equal(baff.gene, 'TNFSF13B');
+  assert.equal(baff.organismTaxId, 9606);
+  assert.equal(baff.aliasPrefix, 'BAFF-Fab');
+  assert.equal(baff.structureClass, 'target_exact_complex');
+  assert.deepEqual(baff.display.antigenChains, ['A', 'B', 'C']);
+  assert.deepEqual(baff.display.antibodyChains, ['D', 'E', 'F', 'G', 'H', 'I']);
+
+  const fcrn = catalogEntryForFilename(catalog, 'FCRN-Fab-01.pdb');
+  assert.ok(fcrn, 'FCRN-Fab-01 should be represented in the catalog');
+  assert.equal(fcrn.target, 'FcRn');
+  assert.equal(fcrn.gene, 'FCGRT');
+  assert.equal(fcrn.organismTaxId, 9606);
+  assert.equal(fcrn.aliasPrefix, 'FCRN-Fab');
+  assert.equal(fcrn.structureClass, 'target_exact_domain_complex');
+  assert.deepEqual(fcrn.display.antigenChains, ['A', 'B']);
+  assert.deepEqual(fcrn.display.antibodyChains, ['H', 'L']);
+
   const abeta = catalogEntryForFilename(catalog, 'ABETA-Fab-01.pdb');
   assert.ok(abeta, 'ABETA-Fab-01 should be represented in the catalog');
   assert.equal(abeta.target, 'Amyloid-beta');
@@ -161,6 +181,8 @@ test('local structure catalog is the machine-readable inventory for route-backed
   assert.match(supportList, /IL-5\/IL5/);
   assert.match(supportList, /IL-13\/IL13/);
   assert.match(supportList, /CD123\/IL3RA/);
+  assert.match(supportList, /BAFF\/TNFSF13B/);
+  assert.match(supportList, /FcRn\/FCGRT/);
   assert.match(supportList, /Amyloid-beta\/APP/);
   assert.match(supportList, /Tau\/MAPT/);
   assert.match(supportList, /TREM2/);
@@ -194,6 +216,10 @@ test('catalog-derived target map can route aliases without hand-editing target m
   assert.equal(map[normalizeStructureCatalogKey('IL13')], 'allergic_il13');
   assert.equal(map[normalizeStructureCatalogKey('CD123')], 'heme_cd123');
   assert.equal(map[normalizeStructureCatalogKey('IL3RA')], 'heme_cd123');
+  assert.equal(map[normalizeStructureCatalogKey('BAFF')], 'autoimmune_baff');
+  assert.equal(map[normalizeStructureCatalogKey('TNFSF13B')], 'autoimmune_baff');
+  assert.equal(map[normalizeStructureCatalogKey('FcRn')], 'autoimmune_fcrn');
+  assert.equal(map[normalizeStructureCatalogKey('FCGRT')], 'autoimmune_fcrn');
   assert.equal(map[normalizeStructureCatalogKey('Amyloid-beta')], 'neuro_alz_abeta');
   assert.equal(map[normalizeStructureCatalogKey('APP')], 'neuro_alz_abeta');
   assert.equal(map[normalizeStructureCatalogKey('Tau')], 'neuro_alz_tau');
