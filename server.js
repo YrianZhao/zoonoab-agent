@@ -7312,14 +7312,14 @@ const BUILTIN_DISEASE_TARGET_RESOLVERS = {
     ]
   },
   '肥胖': {
-    selectedTarget: 'Activin E / Myostatin',
-    selectedGene: 'INHBE / GDF8',
+    selectedTarget: 'Myostatin',
+    selectedGene: 'GDF8',
     designLabel: 'OBESITY-1',
     confidence: 0.72,
-    reason: '肥胖相关抗体设计更适合围绕代谢调控通路中的可及蛋白展开。Activin E / Myostatin 与体成分改善、瘦体重保持和心代谢风险管理相关，适合作为本轮分子识别入口。',
+    reason: '肥胖与体成分管理方向可优先围绕 Myostatin/GDF8 调控轴展开。Myostatin 是分泌型 TGF-beta 家族配体，直接参与骨骼肌维持、瘦体重分配和能量代谢适配；相较仍缺少稳定本地精确结构入口的 Activin E，或当前仅具受体级 Fv 参考的 ActRIIA/ActRIIB，Myostatin 与抗体可及性、机制解释和本地 exact Fab 复合物结构的对应关系更直接，适合作为本轮优先设计入口。',
     candidates: [
-      { target: 'Activin E', gene: 'INHBE', rationale: '与脂肪分布和心代谢调控相关，可作为肥胖方向抗体探索靶点。' },
-      { target: 'Myostatin', gene: 'GDF8', rationale: '与骨骼肌保持和体成分改善相关，适合减重辅助场景。' },
+      { target: 'Myostatin', gene: 'GDF8', rationale: '分泌型配体，直接关联骨骼肌保持和体成分改善，且具备真实 human Myostatin/Fab 复合物结构。' },
+      { target: 'Activin E', gene: 'INHBE', rationale: '与脂肪分布和心代谢调控相关，可作为肥胖方向的机制备选入口。' },
       { target: 'ActRIIA / ActRIIB', gene: 'ACVR2A / ACVR2B', rationale: 'activin/myostatin 通路受体，存在抗体阻断研究基础。' }
     ]
   },
@@ -8173,7 +8173,7 @@ function buildWorkflowIntentPrompt() {
     '边界：如果用户明确要求针对小分子/半抗原/化合物本身生成或特异性结合抗体（例如“设计氯胺酮抗体”“设计特异性结合噻吩嗪的单克隆抗体”），输出 i=chat,start=false,answer，说明 ZoonoAb 面向大分子抗原/蛋白靶点，不直接生成小分子/半抗原抗体；不要把该小分子硬转成蛋白靶点。',
     '准确性优先：疾病或药物方向可能对应多个靶点，先保证疾病关联、机制和抗体可及性准确；如果用户明确指定靶点，target 必须保留用户真实指定靶点；如果用户只给疾病、方向或药物机制，且多个候选同等合理，优先从结构支撑靶点清单选择 target，并把其他合理靶点放入 cands，形成候选靶点比较池。',
     '结构支撑靶点清单：' + STRUCTURE_SUPPORT_TARGETS_FOR_PROMPT + '。',
-    '常见疾病发散参考：尿路上皮癌/肾盂癌优先比较 Nectin-4、FGFR3、TROP-2 或 HER2；非小细胞肺癌/肺腺癌优先比较 EGFR、HER3、MET 或 PD-L1；胃癌/胃食管交界癌优先比较 Claudin 18.2、HER2、MET、HER3 或 FGFR2；宫颈癌优先比较 Tissue Factor/F3、TROP-2、B7-H3 或 PD-L1；肾癌/透明细胞肾细胞癌优先比较 CAIX、VEGF-A、B7-H3；嗜酸性哮喘/重度 2 型炎症优先比较 IL-5、IL-13、IL-4Rα 或 TSLP；特应性皮炎优先比较 IL-13、IL-4Rα、TSLP 或 IL-33；系统性红斑狼疮/SLE 优先比较 BAFF、FcRn、CD20；重症肌无力/gMG 优先比较 FcRn、C5、CD20；炎症性肠病/溃疡性结肠炎/克罗恩病优先比较 Integrin α4β7、IL-23、TNF；骨关节炎/慢性疼痛优先比较 NGF、TrkA、IL-1β；骨质疏松优先比较 SOST、RANKL、DKK1；Graves disease/thyroid eye disease 优先比较 TSHR、IGF1R、IL-6R；Parkinson disease/synucleinopathy 优先比较 alpha-synuclein、LRRK2、GBA；NMOSD/neuromyelitis optica 优先比较 AQP4、IL-6R、C5；阿尔茨海默病优先比较 Amyloid-beta、Tau、TREM2；急性髓系白血病优先比较 CD123、CD47、CD33；多发性骨髓瘤优先比较 GPRC5D、BCMA、CD38；前列腺癌优先比较 STEAP1、PSMA、B7-H3；结直肠癌优先比较 CEACAM5、EGFR、B7-H3；卵巢癌优先比较 Mesothelin、MUC1、FOLR1 或 B7-H4；小细胞肺癌优先比较 GPC2、DLL3、B7-H3 或 TROP-2。',
+    '常见疾病发散参考：尿路上皮癌/肾盂癌优先比较 Nectin-4、FGFR3、TROP-2 或 HER2；非小细胞肺癌/肺腺癌优先比较 EGFR、HER3、MET 或 PD-L1；胃癌/胃食管交界癌优先比较 Claudin 18.2、HER2、MET、HER3 或 FGFR2；宫颈癌优先比较 Tissue Factor/F3、TROP-2、B7-H3 或 PD-L1；肾癌/透明细胞肾细胞癌优先比较 CAIX、VEGF-A、B7-H3；嗜酸性哮喘/重度 2 型炎症优先比较 IL-5、IL-13、IL-4Rα 或 TSLP；特应性皮炎优先比较 IL-13、IL-4Rα、TSLP 或 IL-33；系统性红斑狼疮/SLE 优先比较 BAFF、FcRn、CD20；重症肌无力/gMG 优先比较 FcRn、C5、CD20；炎症性肠病/溃疡性结肠炎/克罗恩病优先比较 Integrin α4β7、IL-23、TNF；骨关节炎/慢性疼痛优先比较 NGF、TrkA、IL-1β；骨质疏松优先比较 SOST、RANKL、DKK1；肥胖/obesity 优先比较 Myostatin/GDF8、ActRIIB/ACVR2B、GLP1R；2 型糖尿病/type 2 diabetes 优先比较 GIPR、GLP1R、ANGPTL3；心肌炎/myocarditis 优先比较 IL-1β、TNF、IL-6；Graves disease/thyroid eye disease 优先比较 TSHR、IGF1R、IL-6R；注意缺陷多动障碍/ADHD 优先比较 DAT、TrkB、DRD4；Parkinson disease/synucleinopathy 优先比较 alpha-synuclein、LRRK2、GBA；NMOSD/neuromyelitis optica 优先比较 AQP4、IL-6R、C5；阿尔茨海默病优先比较 Amyloid-beta、Tau、TREM2；急性髓系白血病优先比较 CD123、CD47、CD33；多发性骨髓瘤优先比较 GPRC5D、BCMA、CD38；前列腺癌优先比较 STEAP1、PSMA、B7-H3；结直肠癌优先比较 CEACAM5、EGFR、B7-H3；卵巢癌优先比较 Mesothelin、MUC1、FOLR1 或 B7-H4；小细胞肺癌优先比较 GPC2、DLL3、B7-H3 或 TROP-2。',
     'reason 只能写疾病关联、药物机制、表达/可及性、结构域和抗体开发依据；不要提本地、预设、可展示、系统已有、为了展示、3D 预设等内部选择原因。',
     'i=chat：只用于普通闲聊、寒暄、纯问答、天气、时间、非分子设计概念解释，且没有足够信息生成 target 的情况。chat 只填 i,start=false,answer；answer 默认中文，最多 2 句。',
     'design 必填 target、reason、cands、wf；reason 写 220-420 个中文字，必须紧扣用户原始需求，按疾病机制/适应症语境、表达谱或抗原暴露、抗原可及性、作用机制、同类抗体开发背景、与备选靶点比较这几类依据展开，说明为何优先该靶点，语言要像专业靶点评审摘要；cands 给 5-7 个候选靶点，包含已选 target 和其他合理备选，每个 r 用 35-90 个中文字写清候选理由、适用场景和相对优先级；wf 每项不超过 35 个中文字。',
@@ -8854,19 +8854,26 @@ function isInvalidResolvedDiseaseTarget(target, indication) {
 
 function normalizeTargetResolution(data, indication) {
   const source = data && typeof data === 'object' ? data : {};
-  const selectedTarget = normalizeResolverTarget(source.selectedTarget || source.target || source.selected_target);
-  const selectedGene = normalizeResolverTarget(source.selectedGene || source.gene || source.selected_gene);
+  const candidates = Array.isArray(source.candidates) ? source.candidates.slice(0, 8).map(item => ({
+    target: normalizeResolverTarget(item && (item.target || item.name)),
+    gene: normalizeResolverTarget(item && item.gene),
+    rationale: String(item && (item.rationale || item.reason || '') || '').replace(/\s+/g, ' ').trim().slice(0, 360)
+  })).filter(item => item.target) : [];
+  const rawSelectedTarget = normalizeResolverTarget(source.selectedTarget || source.target || source.selected_target);
+  const selectedTarget = preferredPreparedTargetFromResolution(rawSelectedTarget, candidates, source.ab || source.antibodyFormat || 'Fab');
+  let selectedGene = normalizeResolverTarget(source.selectedGene || source.gene || source.selected_gene);
   const organismName = normalizeResolverTarget(source.organismName || source.organism || source.organism_name);
   const rawOrganismTaxId = Number(source.organismTaxId || source.taxId || source.organism_tax_id || 0);
   const organismTaxId = Number.isSafeInteger(rawOrganismTaxId) && rawOrganismTaxId > 0 ? rawOrganismTaxId : null;
   if (!selectedTarget) return null;
   if (/^(unknown|无法判断|不确定|n\/a|null)$/i.test(selectedTarget)) return null;
   if (isInvalidResolvedDiseaseTarget(selectedTarget, indication)) return null;
-  const candidates = Array.isArray(source.candidates) ? source.candidates.slice(0, 8).map(item => ({
-    target: normalizeResolverTarget(item && (item.target || item.name)),
-    gene: normalizeResolverTarget(item && item.gene),
-    rationale: String(item && (item.rationale || item.reason || '') || '').replace(/\s+/g, ' ').trim().slice(0, 360)
-  })).filter(item => item.target) : [];
+  if (selectedTarget !== rawSelectedTarget) {
+    const matchedCandidate = candidates.find(item =>
+      normalizePreparedStructureTarget(item.target) === normalizePreparedStructureTarget(selectedTarget)
+    );
+    if (matchedCandidate && matchedCandidate.gene) selectedGene = matchedCandidate.gene;
+  }
   return {
     inputType: String(source.inputType || source.input_type || 'disease_indication'),
     disease: normalizeResolverTarget(source.disease || indication),
@@ -8881,6 +8888,24 @@ function normalizeTargetResolution(data, indication) {
     reason: String(source.reason || source.rationale || '').trim().slice(0, 1000),
     candidates: candidates.length ? candidates : [{ target: selectedTarget, gene: selectedGene, rationale: '可及靶点' }]
   };
+}
+
+function preferredPreparedTargetFromResolution(selectedTarget, candidates, antibodyFormat) {
+  const value = normalizeResolverTarget(selectedTarget);
+  if (!value || !/\//.test(value)) return value;
+  const parts = [...new Set(value.split(/\s*\/\s*/).map(item => normalizeResolverTarget(item)).filter(Boolean))];
+  if (parts.length < 2) return value;
+  const routeableParts = parts.filter(part => hasPrepared3DPresetForTarget(part, null, antibodyFormat || 'Fab'));
+  if (routeableParts.length === 1) return routeableParts[0];
+  const candidateMatches = (Array.isArray(candidates) ? candidates : [])
+    .map(item => normalizeResolverTarget(item && item.target))
+    .filter(Boolean)
+    .filter(target =>
+      parts.some(part => normalizePreparedStructureTarget(part) === normalizePreparedStructureTarget(target)) &&
+      hasPrepared3DPresetForTarget(target, null, antibodyFormat || 'Fab')
+    );
+  const uniqueCandidateMatches = [...new Set(candidateMatches.map(item => normalizePreparedStructureTarget(item)))];
+  return uniqueCandidateMatches.length === 1 ? candidateMatches[0] : value;
 }
 
 function modelIntentToTargetResolution(input, modelIntent) {

@@ -518,6 +518,30 @@ test('local PDB model library API lists local structures with viewer metadata', 
   assert.match(fgfr2Model.structuralBasis, /4WV1/);
   assert.equal(fgfr2Model.targetTag.verifiedTag, true);
 
+  const il6RouteModel = data.models.find(model => model.filename === 'IL6-Fab-01.pdb');
+  assert.ok(il6RouteModel, 'IL-6 routeable Fab preset should be listed');
+  assert.equal(il6RouteModel.targetDisplay, 'IL-6');
+  assert.equal(il6RouteModel.antibodyFormat, 'Fab');
+  assert.equal(il6RouteModel.structureKind, 'Fab 抗原-抗体复合体');
+  assert.deepEqual(il6RouteModel.antigenChains, ['A']);
+  assert.deepEqual(il6RouteModel.antibodyChains, ['H', 'L']);
+  assert.deepEqual(il6RouteModel.sourceAntigenChains, ['A']);
+  assert.deepEqual(il6RouteModel.sourceAntibodyChains, ['H', 'L']);
+  assert.match(il6RouteModel.structuralBasis, /4ZS7/);
+  assert.equal(il6RouteModel.targetTag.verifiedTag, true);
+
+  const mstnRouteModel = data.models.find(model => model.filename === 'MSTN-Fab-01.pdb');
+  assert.ok(mstnRouteModel, 'Myostatin routeable Fab preset should be listed');
+  assert.equal(mstnRouteModel.targetDisplay, 'Myostatin');
+  assert.equal(mstnRouteModel.antibodyFormat, 'Fab');
+  assert.equal(mstnRouteModel.structureKind, 'Fab 抗原-抗体复合体');
+  assert.deepEqual(mstnRouteModel.antigenChains, ['I', 'J']);
+  assert.deepEqual(mstnRouteModel.antibodyChains, ['A', 'B', 'C', 'D']);
+  assert.deepEqual(mstnRouteModel.sourceAntigenChains, ['I', 'J', 'K', 'L']);
+  assert.deepEqual(mstnRouteModel.sourceAntibodyChains, ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']);
+  assert.match(mstnRouteModel.structuralBasis, /5F3H/);
+  assert.equal(mstnRouteModel.targetTag.verifiedTag, true);
+
   const baff = data.models.find(model => model.filename === 'BAFF-Fab-01.pdb');
   assert.ok(baff, 'BAFF routeable Fab preset should be listed');
   assert.equal(baff.targetDisplay, 'BAFF');
@@ -739,6 +763,18 @@ test('structure catalog API exposes route-backed structure inventory', async () 
   assert.equal(fgfr2Route.aliasPrefix, 'FGFR2-Fab');
   assert.equal(fgfr2Route.target, 'FGFR2');
   assert.ok((fgfr2Route.files || []).includes('FGFR2-Fab-01.pdb'));
+
+  const il6Route = data.catalog.routePresets.find(item => item.routeId === 'inflammation_il6');
+  assert.ok(il6Route, 'catalog should expose the IL-6 local route');
+  assert.equal(il6Route.aliasPrefix, 'IL6-Fab');
+  assert.equal(il6Route.target, 'IL-6');
+  assert.ok((il6Route.files || []).includes('IL6-Fab-01.pdb'));
+
+  const mstnRoute = data.catalog.routePresets.find(item => item.routeId === 'metabolic_myostatin');
+  assert.ok(mstnRoute, 'catalog should expose the Myostatin local route');
+  assert.equal(mstnRoute.aliasPrefix, 'MSTN-Fab');
+  assert.equal(mstnRoute.target, 'Myostatin');
+  assert.ok((mstnRoute.files || []).includes('MSTN-Fab-01.pdb'));
 
   const gpc2 = data.catalog.routePresets.find(item => item.routeId === 'sclc_gpc2');
   assert.ok(gpc2, 'catalog should expose the GPC2 local route');

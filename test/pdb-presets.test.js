@@ -78,6 +78,12 @@ const COMMON_REAL_COMPLEX_EXPECTATIONS = [
     antibodyChains: ['B', 'C']
   },
   {
+    prefix: 'IL6-Fab',
+    basis: /RCSB 4ZS7 human IL-6 \/ llama Fab 68F2 complex/,
+    antigenChains: ['A'],
+    antibodyChains: ['H', 'L']
+  },
+  {
     prefix: 'IL4RA-Fab',
     basis: /RCSB 6WGL IL-4 receptor alpha \/ dupilumab Fab complex/,
     antigenChains: ['A'],
@@ -136,6 +142,12 @@ const COMMON_REAL_COMPLEX_EXPECTATIONS = [
     basis: /RCSB 6UMG CGRP receptor ECD \/ erenumab Fab complex/,
     antigenChains: ['A', 'D'],
     antibodyChains: ['B', 'C']
+  },
+  {
+    prefix: 'MSTN-Fab',
+    basis: /RCSB 5F3H human myostatin\/GDF8 dimer in complex with humanized RK35 Fab/,
+    antigenChains: ['I', 'J'],
+    antibodyChains: ['A', 'B', 'C', 'D']
   },
   {
     prefix: 'MSLN-Fab',

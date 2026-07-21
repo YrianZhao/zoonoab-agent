@@ -279,13 +279,13 @@ function defaultModelResponseForText(text) {
       summary: '面向肥胖方向设计抗体候选',
       background: '肥胖方向抗体设计需要先解析到可被抗体识别的真实蛋白靶点。',
       disease: '肥胖',
-      target: 'Activin E / Myostatin',
-      gene: 'INHBE / GDF8',
+      target: 'Myostatin',
+      gene: 'GDF8',
       label: 'OBESITY-1',
-      reason: '肥胖方向更适合先解析到可设计抗体靶点。Activin E / Myostatin 与代谢调控、体重管理和瘦体重保持相关，具备可讨论的分泌蛋白或通路调控背景，适合作为本轮抗体设计代表靶点；相比直接把肥胖作为抗原，该组合能提供明确蛋白对象。',
+      reason: '肥胖与体成分管理方向可优先围绕 Myostatin/GDF8 调控轴展开。Myostatin 是分泌型 TGF-beta 家族配体，直接参与骨骼肌维持、瘦体重分配和能量代谢适配；相较仍缺少稳定本地精确结构入口的 Activin E，或当前仅具受体级 Fv 参考的 ActRIIA/ActRIIB，Myostatin 与抗体可及性、机制解释和本地 exact Fab 复合物结构的对应关系更直接，适合作为本轮优先设计入口。',
       candidates: [
-        { target: 'Activin E', gene: 'INHBE', rationale: '脂肪分布和心代谢调控相关。' },
-        { target: 'Myostatin', gene: 'GDF8', rationale: '骨骼肌保持和体成分改善相关。' }
+        { target: 'Myostatin', gene: 'GDF8', rationale: '分泌型配体，直接关联骨骼肌保持和体成分改善，且具备真实 human Myostatin/Fab 复合物结构。' },
+        { target: 'Activin E', gene: 'INHBE', rationale: '脂肪分布和心代谢调控相关，但当前仍缺少稳定本地 exact 结构入口。' }
       ],
       mechanism: '围绕代谢调控相关蛋白生成 Fab 候选。'
     });
@@ -636,6 +636,7 @@ test('server previews curated real complexes for common explicit antigen targets
     { text: '设计10个针对CD3的Fab', expectedTarget: 'CD3', expectedPrefix: /^CD3-Fab-/ },
     { text: '设计10个针对C5的Fab', expectedTarget: 'C5', expectedPrefix: /^C5-Fab-/ },
     { text: '设计10个针对IL-6R的Fab', expectedTarget: 'IL-6R', expectedPrefix: /^IL6R-Fab-/ },
+    { text: '设计10个针对IL-6的Fab', expectedTarget: 'IL-6', expectedPrefix: /^IL6-Fab-/ },
     { text: '设计10个针对IL-4Rα的Fab', expectedTarget: 'IL-4Rα', expectedPrefix: /^IL4RA-Fab-/ },
     { text: '设计10个针对CD25的Fab', expectedTarget: 'CD25', expectedPrefix: /^CD25-Fab-/ },
     { text: '设计10个针对CD38的Fab', expectedTarget: 'CD38', expectedPrefix: /^CD38-Fab-/ },
@@ -672,6 +673,7 @@ test('server previews curated real complexes for common explicit antigen targets
     { text: '设计10个针对HER3的Fab', expectedTarget: 'HER3', expectedPrefix: /^HER3-Fab-/ },
     { text: '设计10个针对FGFR3的Fab', expectedTarget: 'FGFR3', expectedPrefix: /^FGFR3-Fab-/ },
     { text: '设计10个针对FGFR2的Fab', expectedTarget: 'FGFR2', expectedPrefix: /^FGFR2-Fab-/ },
+    { text: '设计10个针对Myostatin的Fab', expectedTarget: 'Myostatin', expectedPrefix: /^MSTN-Fab-/ },
     { text: '设计10个针对Amyloid-beta的Fab', expectedTarget: 'Amyloid-beta', expectedPrefix: /^ABETA-Fab-/ },
     { text: '设计10个针对Tau的Fab', expectedTarget: 'Tau', expectedPrefix: /^TAU-Fab-/ },
     { text: '设计10个针对TREM2的Fab', expectedTarget: 'TREM2', expectedPrefix: /^TREM2-Fab-/ },
@@ -736,16 +738,6 @@ test('server previews exact local-library assets for explicit targets without pr
       expectedAntibodyChains: ['B', 'C']
     },
     {
-      text: '设计10个针对Myostatin的Fab',
-      expectedTarget: 'Myostatin',
-      expectedFile: 'METABOLIB-HUMAN-MSTN-FAB-RCSB-5F3H.pdb',
-      expectedPoseKind: 'experimental_complex',
-      expectedAntigenChains: ['I', 'J'],
-      expectedAntibodyChains: ['A', 'B'],
-      expectedSourceAntigenChains: ['I', 'J', 'K', 'L'],
-      expectedSourceAntibodyChains: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
-    },
-    {
       text: '设计10个针对ActRIIB的抗体',
       expectedTarget: 'ActRIIB',
       expectedFile: 'METABOLIB-HUMAN-ACTRIIB-FV-RCSB-5NHR.pdb',
@@ -753,14 +745,6 @@ test('server previews exact local-library assets for explicit targets without pr
       expectedAntigenChains: ['C', 'D'],
       expectedAntibodyChains: ['A', 'B'],
       expectedSourceAntibodyChains: ['A', 'B', 'H', 'L']
-    },
-    {
-      text: '设计10个针对IL-6的Fab',
-      expectedTarget: 'IL-6',
-      expectedFile: 'INFLAMLIB-HUMAN-IL6-FAB-RCSB-4ZS7.pdb',
-      expectedPoseKind: 'experimental_complex',
-      expectedAntigenChains: ['A'],
-      expectedAntibodyChains: ['H', 'L']
     }
   ];
 
@@ -793,6 +777,7 @@ test('server previews exact local-library assets for explicit targets without pr
 test('disease-first prepared directions resolve to their new exact local structures', async () => {
   const requests = [
     { text: '帮我设计一个针对B-ALL的抗体', expectedTarget: 'CD22', expectedPrefix: /^CD22-Fab-/ },
+    { text: '帮我设计一个针对肥胖的抗体', expectedTarget: 'Myostatin', expectedPrefix: /^MSTN-Fab-/ },
     { text: '帮我设计一个针对甲状腺眼病的抗体', expectedTarget: 'TSHR', expectedPrefix: /^TSHR-Fab-/ },
     { text: '帮我设计一个针对帕金森病的抗体', expectedTarget: 'alpha-synuclein', expectedPrefix: /^SNCA-Fab-/ },
     { text: '帮我设计一个针对视神经脊髓炎的抗体', expectedTarget: 'AQP4', expectedPrefix: /^AQP4-Fab-/ }
@@ -1226,13 +1211,13 @@ test('disease design requests resolve a real target before launching the workflo
                 summary: '面向肥胖方向设计抗体候选',
                 background: '肥胖方向抗体设计需要先解析到可被抗体识别的真实蛋白靶点。',
                 disease: '肥胖',
-                target: 'Activin E / Myostatin',
-                gene: 'INHBE / GDF8',
+                target: 'Myostatin',
+                gene: 'GDF8',
                 label: 'OBESITY-1',
-                reason: '肥胖方向更适合先解析到可设计抗体靶点。Activin E / Myostatin 与代谢调控、体重管理和瘦体重保持相关，具备可讨论的分泌蛋白或通路调控背景，适合作为本轮抗体设计代表靶点；相比直接把肥胖作为抗原，该组合能提供明确蛋白对象和后续结构评估入口。',
+                reason: '肥胖与体成分管理方向可优先围绕 Myostatin/GDF8 调控轴展开。Myostatin 是分泌型 TGF-beta 家族配体，直接参与骨骼肌维持、瘦体重分配和能量代谢适配；相较仍缺少稳定本地精确结构入口的 Activin E，或当前仅具受体级 Fv 参考的 ActRIIA/ActRIIB，Myostatin 与抗体可及性、机制解释和本地 exact Fab 复合物结构的对应关系更直接，适合作为本轮优先设计入口。',
                 candidates: [
-                  { target: 'Activin E', gene: 'INHBE', rationale: '脂肪分布和心代谢调控相关。' },
-                  { target: 'Myostatin', gene: 'GDF8', rationale: '骨骼肌保持和体成分改善相关。' }
+                  { target: 'Myostatin', gene: 'GDF8', rationale: '分泌型配体，直接关联骨骼肌保持和体成分改善，且具备真实 human Myostatin/Fab 复合物结构。' },
+                  { target: 'Activin E', gene: 'INHBE', rationale: '脂肪分布和心代谢调控相关，但当前仍缺少稳定本地 exact 结构入口。' }
                 ],
                 mechanism: '围绕代谢调控相关蛋白生成可进入结构评估的 Fab 候选。',
                 confidence: 0.88
@@ -1277,9 +1262,9 @@ test('disease design requests resolve a real target before launching the workflo
     assert.deepEqual(captured.body.response_format, { type: 'json_object' });
     assert.match(captured.body.messages[0].content, /自然语言理解器|疾病方向|选择理由|JSON/);
     assert.match(captured.body.messages[1].content, /设计一个针对肥胖的抗体/);
-    assert.match(agentTexts[0], /肥胖|OBESITY-1|Activin E|Myostatin|INHBE|GDF8/);
-    assert.equal(evidenceCall.params.target, 'Activin E/Myostatin');
-    assert.match(serialized, /Activin E \/ Myostatin|INHBE \/ GDF8/);
+    assert.match(agentTexts[0], /肥胖|OBESITY-1|Myostatin|GDF8/);
+    assert.equal(evidenceCall.params.target, 'Myostatin');
+    assert.match(serialized, /Myostatin|GDF8/);
     assert.doesNotMatch(serialized, /肥胖\s*(?:表面|目标)?抗原|肥胖\s*代表性目标结构约束|肥胖\s*抗原可及/);
     assert.doesNotMatch(serialized, VISIBLE_RESOLVER_LEAK_PATTERN);
   } finally {

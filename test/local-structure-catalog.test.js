@@ -19,7 +19,7 @@ const ROOT = path.resolve(__dirname, '..');
 test('local structure catalog is the machine-readable inventory for route-backed models', () => {
   const catalog = loadLocalStructureCatalog(ROOT);
   assert.equal(catalog.schemaVersion, 1);
-  assert.ok(catalog.summary.pdbFileCount >= 513);
+  assert.ok(catalog.summary.pdbFileCount >= 515);
   assert.ok(catalog.summary.promptEligibleRoutePresetCount >= 30);
   assert.ok(catalog.summary.libraryAssetCount >= 112);
 
@@ -240,6 +240,30 @@ test('local structure catalog is the machine-readable inventory for route-backed
   assert.deepEqual(fgfr2Route.display.antibodyChains, ['A', 'B']);
   assert.deepEqual(fgfr2Route.display.sourceAntigenChains, ['C', 'F']);
   assert.deepEqual(fgfr2Route.display.sourceAntibodyChains, ['A', 'B', 'D', 'E']);
+
+  const il6Route = catalogEntryForFilename(catalog, 'IL6-Fab-01.pdb');
+  assert.ok(il6Route, 'IL6-Fab-01 should be represented in the catalog');
+  assert.equal(il6Route.target, 'IL-6');
+  assert.equal(il6Route.gene, 'IL6');
+  assert.equal(il6Route.organismTaxId, 9606);
+  assert.equal(il6Route.aliasPrefix, 'IL6-Fab');
+  assert.equal(il6Route.structureClass, 'target_exact_complex');
+  assert.deepEqual(il6Route.display.antigenChains, ['A']);
+  assert.deepEqual(il6Route.display.antibodyChains, ['H', 'L']);
+  assert.deepEqual(il6Route.display.sourceAntigenChains, ['A']);
+  assert.deepEqual(il6Route.display.sourceAntibodyChains, ['H', 'L']);
+
+  const mstnRoute = catalogEntryForFilename(catalog, 'MSTN-Fab-01.pdb');
+  assert.ok(mstnRoute, 'MSTN-Fab-01 should be represented in the catalog');
+  assert.equal(mstnRoute.target, 'Myostatin');
+  assert.equal(mstnRoute.gene, 'GDF8');
+  assert.equal(mstnRoute.organismTaxId, 9606);
+  assert.equal(mstnRoute.aliasPrefix, 'MSTN-Fab');
+  assert.equal(mstnRoute.structureClass, 'target_exact_complex');
+  assert.deepEqual(mstnRoute.display.antigenChains, ['I', 'J']);
+  assert.deepEqual(mstnRoute.display.antibodyChains, ['A', 'B', 'C', 'D']);
+  assert.deepEqual(mstnRoute.display.sourceAntigenChains, ['I', 'J', 'K', 'L']);
+  assert.deepEqual(mstnRoute.display.sourceAntibodyChains, ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']);
 
   const baff = catalogEntryForFilename(catalog, 'BAFF-Fab-01.pdb');
   assert.ok(baff, 'BAFF-Fab-01 should be represented in the catalog');
@@ -556,6 +580,8 @@ test('local structure catalog is the machine-readable inventory for route-backed
   assert.match(supportList, /HER3\/ERBB3/);
   assert.match(supportList, /FGFR3/);
   assert.match(supportList, /FGFR2\/KGFR/);
+  assert.match(supportList, /IL-6\/IL6/);
+  assert.match(supportList, /Myostatin\/GDF8/);
   assert.match(supportList, /Amyloid-beta\/APP/);
   assert.match(supportList, /Tau\/MAPT/);
   assert.match(supportList, /TREM2/);
@@ -617,6 +643,10 @@ test('catalog-derived target map can route aliases without hand-editing target m
   assert.equal(map[normalizeStructureCatalogKey('JTK4')], 'urothelial_fgfr3');
   assert.equal(map[normalizeStructureCatalogKey('FGFR2')], 'upper_gi_fgfr2');
   assert.equal(map[normalizeStructureCatalogKey('KGFR')], 'upper_gi_fgfr2');
+  assert.equal(map[normalizeStructureCatalogKey('IL-6')], 'inflammation_il6');
+  assert.equal(map[normalizeStructureCatalogKey('IL6')], 'inflammation_il6');
+  assert.equal(map[normalizeStructureCatalogKey('Myostatin')], 'metabolic_myostatin');
+  assert.equal(map[normalizeStructureCatalogKey('GDF8')], 'metabolic_myostatin');
   assert.equal(map[normalizeStructureCatalogKey('Amyloid-beta')], 'neuro_alz_abeta');
   assert.equal(map[normalizeStructureCatalogKey('APP')], 'neuro_alz_abeta');
   assert.equal(map[normalizeStructureCatalogKey('Tau')], 'neuro_alz_tau');

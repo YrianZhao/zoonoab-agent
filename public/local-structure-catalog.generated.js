@@ -2,16 +2,16 @@
 (function(){
   window.ZOONOAB_LOCAL_STRUCTURE_CATALOG = {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-21T22:24:09.582Z",
+  "generatedAt": "2026-07-21T22:48:27.517Z",
   "summary": {
-    "pdbFileCount": 513,
-    "routePresetCount": 69,
-    "routeableRoutePresetCount": 68,
-    "promptEligibleRoutePresetCount": 68,
-    "routePresetFileCount": 421,
+    "pdbFileCount": 515,
+    "routePresetCount": 71,
+    "routeableRoutePresetCount": 70,
+    "promptEligibleRoutePresetCount": 70,
+    "routePresetFileCount": 423,
     "libraryAssetCount": 112
   },
-  "promptSupportTargets": "IL-33/IL33、TSLP、PD-L1/CD274、PD-1/PDCD1、CTLA-4/CTLA4、CD20/MS4A1、CD19、CD3/CD3E/CD3G、C5、IL-6R/IL6R、IL-4Rα/IL4R、CD25/IL2RA、CD38、TIGIT、CD47、LAG-3/LAG3、TROP-2/TACSTD2、Tissue Factor/F3、BCMA/TNFRSF17、IgE/IGH、CGRP receptor/CALCRL/RAMP1、HER2/ERBB2、EGFR、VEGF-A/VEGFA、TNF、IL-17A/IL17A、IL-23/IL23A/IL12B、RSV F/F、SARS-CoV-2 RBD/S、Influenza HA/HA、Influenza NA/NA、PCSK9、ANGPTL3、IL-1B、GIPR、Amyloid-beta/APP、Tau/MAPT、TREM2、DAT/SLC6A3、TSHR、alpha-synuclein/SNCA、AQP4、Canine NGF/NGF、CD22/Siglec-2、Mesothelin/MSLN、Claudin 18.2/CLDN18、MET/c-MET、HER3/ERBB3、B7-H3/CD276、B7-H6/NCR3LG1、MUC1、Nectin-4/NECTIN4、FGFR2/KGFR、FGFR3、GPRC5D、CEACAM5/CEA、STEAP1、CAIX/CA9、IL-5/IL5、IL-13/IL13、CD123/IL3RA、BAFF/TNFSF13B、FcRn/FCGRT、NGF、CD33/Siglec-3、GPC2/Glypican-2、Integrin α4β7/ITGA4-ITGB7",
+  "promptSupportTargets": "IL-33/IL33、TSLP、PD-L1/CD274、PD-1/PDCD1、CTLA-4/CTLA4、CD20/MS4A1、CD19、CD3/CD3E/CD3G、C5、IL-6R/IL6R、IL-4Rα/IL4R、CD25/IL2RA、CD38、TIGIT、CD47、LAG-3/LAG3、TROP-2/TACSTD2、Tissue Factor/F3、BCMA/TNFRSF17、IgE/IGH、CGRP receptor/CALCRL/RAMP1、HER2/ERBB2、EGFR、VEGF-A/VEGFA、TNF、IL-17A/IL17A、IL-23/IL23A/IL12B、RSV F/F、SARS-CoV-2 RBD/S、Influenza HA/HA、Influenza NA/NA、PCSK9、ANGPTL3、IL-1B、GIPR、Amyloid-beta/APP、Tau/MAPT、TREM2、DAT/SLC6A3、TSHR、alpha-synuclein/SNCA、AQP4、Canine NGF/NGF、CD22/Siglec-2、Mesothelin/MSLN、Claudin 18.2/CLDN18、MET/c-MET、HER3/ERBB3、B7-H3/CD276、B7-H6/NCR3LG1、MUC1、Nectin-4/NECTIN4、FGFR2/KGFR、FGFR3、GPRC5D、CEACAM5/CEA、STEAP1、CAIX/CA9、IL-5/IL5、IL-13/IL13、CD123/IL3RA、BAFF/TNFSF13B、FcRn/FCGRT、NGF、CD33/Siglec-3、GPC2/Glypican-2、Integrin α4β7/ITGA4-ITGB7、IL-6/IL6、Myostatin/GDF8",
   "routePresets": [
     {
       "routeId": "allergic_asthma",
@@ -3335,6 +3335,102 @@
         "visualColors": {
           "antigen": "#10B981",
           "antibody": "#2563EB"
+        }
+      }
+    },
+    {
+      "routeId": "inflammation_il6",
+      "aliasPrefix": "IL6-Fab",
+      "target": "IL-6",
+      "gene": "IL6",
+      "aliases": [
+        "IL6",
+        "Interleukin-6"
+      ],
+      "promptLabel": "IL-6/IL6",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "IL6-Fab-01.pdb"
+      ],
+      "display": {
+        "structureTitle": "IL-6 Fab 炎症级联细胞因子结合构象",
+        "structureFamily": "炎症细胞因子 · IL-6 Fab 候选",
+        "visualSummary": "展示 soluble human IL-6 与 antagonistic llama Fab 68F2 的真实实验复合物，可支撑炎症级联、心肌炎和细胞因子放大方向的配体展示。",
+        "structuralBasis": "RCSB 4ZS7 human IL-6 / llama Fab 68F2 complex",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "H",
+          "L"
+        ],
+        "sourceAntigenChains": [
+          "A"
+        ],
+        "sourceAntibodyChains": [
+          "H",
+          "L"
+        ],
+        "visualColors": {
+          "antigen": "#DC2626",
+          "antibody": "#38BDF8"
+        }
+      }
+    },
+    {
+      "routeId": "metabolic_myostatin",
+      "aliasPrefix": "MSTN-Fab",
+      "target": "Myostatin",
+      "gene": "GDF8",
+      "aliases": [
+        "MSTN",
+        "GDF8",
+        "Growth/differentiation factor 8"
+      ],
+      "promptLabel": "Myostatin/GDF8",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "MSTN-Fab-01.pdb"
+      ],
+      "display": {
+        "structureTitle": "Myostatin Fab 体成分调控配体结合构象",
+        "structureFamily": "代谢与体成分调控配体 · Myostatin Fab 候选",
+        "visualSummary": "展示 dimeric human Myostatin/GDF8 与两组 humanized RK35 Fab 的真实实验复合物，可支撑肥胖、体成分调控与肌肉保持方向的配体展示。",
+        "structuralBasis": "RCSB 5F3H human myostatin/GDF8 dimer in complex with humanized RK35 Fab",
+        "antigenChains": [
+          "I",
+          "J"
+        ],
+        "antibodyChains": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "sourceAntigenChains": [
+          "I",
+          "J",
+          "K",
+          "L"
+        ],
+        "sourceAntibodyChains": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "keepAllAntibodyChains": true,
+        "visualColors": {
+          "antigen": "#14B8A6",
+          "antibody": "#F97316"
         }
       }
     }

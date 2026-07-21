@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-21T22:24:09.582Z",
+  "generatedAt": "2026-07-21T22:48:27.517Z",
   "sourceFiles": [
     "server.js:ROUTE_3D_PRESETS",
     "server.js:ROUTE_3D_PRESET_ORGANISMS_FALLBACK",
@@ -4094,6 +4094,124 @@
           "antibody": "#2563EB"
         }
       }
+    },
+    {
+      "routeId": "inflammation_il6",
+      "aliasPrefix": "IL6-Fab",
+      "target": "IL-6",
+      "gene": "IL6",
+      "aliases": [
+        "IL6",
+        "Interleukin-6"
+      ],
+      "organismName": "Homo sapiens",
+      "organismTaxId": 9606,
+      "antibodyFormat": "Fab",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "structureClass": "target_exact_complex",
+      "sourceClass": "catalog_manual",
+      "filenamePattern": "IL6-Fab-NN.pdb",
+      "files": [
+        "IL6-Fab-01.pdb"
+      ],
+      "fileCount": 1,
+      "promptLabel": "IL-6/IL6",
+      "structuralBasis": "RCSB 4ZS7 human IL-6 / llama Fab 68F2 complex",
+      "sourcePdbIds": [
+        "4ZS7"
+      ],
+      "display": {
+        "structureTitle": "IL-6 Fab 炎症级联细胞因子结合构象",
+        "structureFamily": "炎症细胞因子 · IL-6 Fab 候选",
+        "visualSummary": "展示 soluble human IL-6 与 antagonistic llama Fab 68F2 的真实实验复合物，可支撑炎症级联、心肌炎和细胞因子放大方向的配体展示。",
+        "structuralBasis": "RCSB 4ZS7 human IL-6 / llama Fab 68F2 complex",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "H",
+          "L"
+        ],
+        "sourceAntigenChains": [
+          "A"
+        ],
+        "sourceAntibodyChains": [
+          "H",
+          "L"
+        ],
+        "visualColors": {
+          "antigen": "#DC2626",
+          "antibody": "#38BDF8"
+        }
+      }
+    },
+    {
+      "routeId": "metabolic_myostatin",
+      "aliasPrefix": "MSTN-Fab",
+      "target": "Myostatin",
+      "gene": "GDF8",
+      "aliases": [
+        "MSTN",
+        "GDF8",
+        "Growth/differentiation factor 8"
+      ],
+      "organismName": "Homo sapiens",
+      "organismTaxId": 9606,
+      "antibodyFormat": "Fab",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "structureClass": "target_exact_complex",
+      "sourceClass": "catalog_manual",
+      "filenamePattern": "MSTN-Fab-NN.pdb",
+      "files": [
+        "MSTN-Fab-01.pdb"
+      ],
+      "fileCount": 1,
+      "promptLabel": "Myostatin/GDF8",
+      "structuralBasis": "RCSB 5F3H human myostatin/GDF8 dimer in complex with humanized RK35 Fab",
+      "sourcePdbIds": [
+        "5F3H"
+      ],
+      "display": {
+        "structureTitle": "Myostatin Fab 体成分调控配体结合构象",
+        "structureFamily": "代谢与体成分调控配体 · Myostatin Fab 候选",
+        "visualSummary": "展示 dimeric human Myostatin/GDF8 与两组 humanized RK35 Fab 的真实实验复合物，可支撑肥胖、体成分调控与肌肉保持方向的配体展示。",
+        "structuralBasis": "RCSB 5F3H human myostatin/GDF8 dimer in complex with humanized RK35 Fab",
+        "antigenChains": [
+          "I",
+          "J"
+        ],
+        "antibodyChains": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "sourceAntigenChains": [
+          "I",
+          "J",
+          "K",
+          "L"
+        ],
+        "sourceAntibodyChains": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "keepAllAntibodyChains": true,
+        "visualColors": {
+          "antigen": "#14B8A6",
+          "antibody": "#F97316"
+        }
+      }
     }
   ],
   "libraryAssets": [
@@ -7736,14 +7854,14 @@
       "priority": 2,
       "area": "non_oncology_asset_promotion_candidates",
       "targets": [
-        "IL-6",
         "IGF1R",
         "GLP1R",
         "TrkB",
-        "Myostatin/GDF8",
-        "ActRIIB/ACVR2B"
+        "ActRIIB/ACVR2B",
+        "SOST",
+        "RANKL"
       ],
-      "reason": "These common-disease assets already have exact local structures or engineered reference complexes, but they still need route-policy curation before promotion because their current files are antigen-only, engineered receptor/Fv contexts, or non-prepared disease-direction references."
+      "reason": "These common-disease assets already have exact local structures or engineered/non-Fab reference complexes, but they still need route-policy curation before promotion because their current files remain antigen-only, receptor-stabilization references, or non-Fab/Fv contexts."
     },
     {
       "priority": 3,
@@ -7768,11 +7886,11 @@
     }
   ],
   "summary": {
-    "pdbFileCount": 513,
-    "routePresetCount": 69,
-    "routeableRoutePresetCount": 68,
-    "promptEligibleRoutePresetCount": 68,
-    "routePresetFileCount": 421,
+    "pdbFileCount": 515,
+    "routePresetCount": 71,
+    "routeableRoutePresetCount": 70,
+    "promptEligibleRoutePresetCount": 70,
+    "routePresetFileCount": 423,
     "libraryAssetCount": 112
   }
 }
