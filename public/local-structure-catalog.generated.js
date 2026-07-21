@@ -2,7 +2,7 @@
 (function(){
   window.ZOONOAB_LOCAL_STRUCTURE_CATALOG = {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-21T06:26:58.887Z",
+  "generatedAt": "2026-07-21T06:40:16.520Z",
   "summary": {
     "pdbFileCount": 447,
     "routePresetCount": 38,

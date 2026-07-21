@@ -185,6 +185,90 @@ function compactObject(input) {
   return output;
 }
 
+function isPlainObject(value) {
+  return Boolean(value && typeof value === 'object' && !Array.isArray(value));
+}
+
+function mergeCatalogObjects(base, override) {
+  if (!isPlainObject(base)) return override;
+  if (!isPlainObject(override)) return base;
+  const output = { ...base };
+  for (const [key, value] of Object.entries(override)) {
+    if (isPlainObject(value) && isPlainObject(output[key])) {
+      output[key] = mergeCatalogObjects(output[key], value);
+    } else {
+      output[key] = value;
+    }
+  }
+  return output;
+}
+
+function mergeExistingRoutePresets(baseEntries, existingEntries) {
+  const ordered = [];
+  const byRouteId = new Map();
+  for (const entry of baseEntries || []) {
+    if (!entry || !entry.routeId) continue;
+    const copy = { ...entry };
+    byRouteId.set(copy.routeId, copy);
+    ordered.push(copy);
+  }
+  for (const existing of existingEntries || []) {
+    if (!existing || !existing.routeId) continue;
+    const current = byRouteId.get(existing.routeId);
+    if (current) {
+      const merged = mergeCatalogObjects(current, existing);
+      byRouteId.set(existing.routeId, merged);
+      const idx = ordered.findIndex(item => item.routeId === existing.routeId);
+      if (idx >= 0) ordered[idx] = merged;
+    } else {
+      const manual = {
+        ...existing,
+        sourceClass: existing.sourceClass || 'catalog_manual'
+      };
+      byRouteId.set(existing.routeId, manual);
+      ordered.push(manual);
+    }
+  }
+  return ordered;
+}
+
+function mergeExistingLibraryAssets(baseAssets, existingAssets) {
+  const keyFor = asset => [
+    asset && asset.sourceCatalog,
+    asset && (asset.filename || asset.file || asset.localPath || asset.target)
+  ].filter(Boolean).join('|');
+  const assets = [];
+  const seen = new Set();
+  for (const asset of baseAssets || []) {
+    const key = keyFor(asset);
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    assets.push(asset);
+  }
+  for (const asset of existingAssets || []) {
+    const key = keyFor(asset);
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    assets.push(asset);
+  }
+  return assets;
+}
+
+function recalculateCatalogSummary(catalog, pdbFiles) {
+  const routeEntries = Array.isArray(catalog.routePresets) ? catalog.routePresets : [];
+  const libraryAssets = Array.isArray(catalog.libraryAssets) ? catalog.libraryAssets : [];
+  const routeFileCount = routeEntries.reduce((sum, entry) => sum + (Number(entry.fileCount) || (Array.isArray(entry.files) ? entry.files.length : 0)), 0);
+  catalog.summary = {
+    pdbFileCount: pdbFiles.length,
+    routePresetCount: routeEntries.length,
+    routeableRoutePresetCount: routeEntries.filter(entry => entry.routeable !== false).length,
+    promptEligibleRoutePresetCount: routeEntries.filter(entry => entry.routeable !== false && entry.promptEligible !== false).length,
+    routePresetFileCount: routeFileCount,
+    libraryAssetCount: libraryAssets.length
+  };
+  return catalog;
+}
+
 function buildRouteEntries(routePresets, organisms, fallbackTargets, fallback3DPresets, files) {
   const entries = [];
   for (const [routeId, preset] of Object.entries(routePresets)) {
@@ -360,6 +444,7 @@ function buildLibraryAssets() {
 }
 
 function buildCatalog() {
+  const existingCatalog = readJsonIfExists(CATALOG_PATH);
   const serverSource = readText(SERVER_PATH);
   const indexSource = readText(INDEX_PATH);
   const routePresets = evaluateObjectLiteral(serverSource, 'ROUTE_3D_PRESETS');
@@ -367,12 +452,17 @@ function buildCatalog() {
   const fallbackTargets = evaluateObjectLiteral(indexSource, 'FALLBACK_PRESET_TARGETS');
   const fallback3DPresets = evaluateObjectLiteral(indexSource, 'FALLBACK_3D_PRESETS');
   const pdbFiles = sortedPdbFiles();
-  const routeEntries = buildRouteEntries(routePresets, organisms, fallbackTargets, fallback3DPresets, pdbFiles);
-  const libraryAssets = buildLibraryAssets();
-  const promptEligible = routeEntries.filter(entry => entry.routeable !== false && entry.promptEligible !== false);
-  const routeFileCount = routeEntries.reduce((sum, entry) => sum + (Number(entry.fileCount) || 0), 0);
-
-  return {
+  const baseRouteEntries = buildRouteEntries(routePresets, organisms, fallbackTargets, fallback3DPresets, pdbFiles);
+  const baseLibraryAssets = buildLibraryAssets();
+  const routeEntries = mergeExistingRoutePresets(
+    baseRouteEntries,
+    Array.isArray(existingCatalog && existingCatalog.routePresets) ? existingCatalog.routePresets : []
+  );
+  const libraryAssets = mergeExistingLibraryAssets(
+    baseLibraryAssets,
+    Array.isArray(existingCatalog && existingCatalog.libraryAssets) ? existingCatalog.libraryAssets : []
+  );
+  const catalog = {
     schemaVersion: 1,
     generatedAt: new Date().toISOString(),
     sourceFiles: [
@@ -383,14 +473,6 @@ function buildCatalog() {
       'pdb/*-library-manifest.json',
       'pdb/*.pdb'
     ],
-    summary: {
-      pdbFileCount: pdbFiles.length,
-      routePresetCount: routeEntries.length,
-      routeableRoutePresetCount: routeEntries.filter(entry => entry.routeable !== false).length,
-      promptEligibleRoutePresetCount: promptEligible.length,
-      routePresetFileCount: routeFileCount,
-      libraryAssetCount: libraryAssets.length
-    },
     promptPolicy: {
       useWhen: 'Only prefer a structure-supported target when multiple candidate targets are biologically similarly reasonable.',
       preserveExplicitTarget: true,
@@ -398,7 +480,7 @@ function buildCatalog() {
     },
     routePresets: routeEntries,
     libraryAssets,
-    extensionPriorities: [
+    extensionPriorities: Array.isArray(existingCatalog && existingCatalog.extensionPriorities) ? existingCatalog.extensionPriorities : [
       {
         priority: 1,
         area: 'solid_tumor_surface_antigens',
@@ -419,6 +501,7 @@ function buildCatalog() {
       }
     ]
   };
+  return recalculateCatalogSummary(catalog, pdbFiles);
 }
 
 function escapeMd(value) {
