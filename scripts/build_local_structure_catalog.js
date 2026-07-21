@@ -17,7 +17,8 @@ const CLIENT_CATALOG_PATH = path.join(ROOT, 'public', 'local-structure-catalog.g
 const SIMPLE_LIBRARY_MANIFESTS = [
   'veterinary-library-manifest.json',
   'neuro-library-manifest.json',
-  'solid-tumor-library-manifest.json'
+  'solid-tumor-library-manifest.json',
+  'bone-library-manifest.json'
 ];
 
 const GENE_BY_TARGET = {

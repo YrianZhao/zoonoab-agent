@@ -112,6 +112,34 @@ test('local PDB model library API lists local structures with viewer metadata', 
   const folr1ViewerPdbUrl = new URL(folr1.viewerUrl, 'http://127.0.0.1').searchParams.get('pdb');
   assert.match(folr1ViewerPdbUrl, /chains=A$/);
 
+  const sost = data.models.find(model => model.filename === 'BONELIB-HUMAN-SOST-RCSB-2K8P.pdb');
+  assert.ok(sost, 'bone-library SOST antigen-only asset should be listed');
+  assert.equal(sost.targetDisplay, 'SOST');
+  assert.equal(sost.antibodyFormat, '');
+  assert.equal(sost.structureKind, '实验抗原结构');
+  assert.deepEqual(sost.antigenChains, ['A']);
+  assert.deepEqual(sost.antibodyChains, []);
+  assert.match(sost.structuralBasis, /2K8P/);
+  assert.equal(sost.targetTag.verifiedTag, true);
+
+  const dkk1 = data.models.find(model => model.filename === 'BONELIB-HUMAN-DKK1-RCSB-5GJE.pdb');
+  assert.ok(dkk1, 'bone-library DKK1 reference asset should be listed');
+  assert.equal(dkk1.targetDisplay, 'DKK1');
+  assert.equal(dkk1.antibodyFormat, '');
+  assert.deepEqual(dkk1.antigenChains, ['C']);
+  assert.deepEqual(dkk1.antibodyChains, []);
+  assert.match(dkk1.structuralBasis, /5GJE/);
+  assert.equal(dkk1.targetTag.verifiedTag, true);
+
+  const rankl = data.models.find(model => model.filename === 'BONELIB-HUMAN-RANKL-RCSB-3URF.pdb');
+  assert.ok(rankl, 'bone-library RANKL reference asset should be listed');
+  assert.equal(rankl.targetDisplay, 'RANKL');
+  assert.equal(rankl.antibodyFormat, '');
+  assert.deepEqual(rankl.antigenChains, ['A']);
+  assert.deepEqual(rankl.antibodyChains, []);
+  assert.match(rankl.structuralBasis, /3URF/);
+  assert.equal(rankl.targetTag.verifiedTag, true);
+
   const psma = data.models.find(model => model.filename === 'SOLIDLIB-HUMAN-PSMA-VHH-RCSB-9HLW.pdb');
   assert.ok(psma, 'solid-tumor PSMA nanobody asset should be listed');
   assert.equal(psma.targetDisplay, 'PSMA');

@@ -74,6 +74,10 @@ test('keeps newly cataloged solid-tumor targets stable in explicit design reques
     ['设计10个针对FcRn的Fab', 'FcRn'],
     ['设计10个针对FCGRT的Fab', 'FcRn'],
     ['设计10个针对NGF的Fab', 'NGF'],
+    ['设计10个针对SOST的抗体', 'SOST'],
+    ['设计10个针对sclerostin的抗体', 'SOST'],
+    ['设计10个针对RANKL的抗体', 'RANKL'],
+    ['设计10个针对DKK1的抗体', 'DKK1'],
     ['设计10个针对α4β7的Fab', 'Integrin α4β7'],
     ['设计10个针对alpha4beta7的Fab', 'Integrin α4β7'],
     ['设计10个针对GPC2的Fab', 'GPC2'],
@@ -176,6 +180,11 @@ test('cleans disease-area wording before using it as a dynamic target', () => {
   assert.equal(ibd.isDesignRequest, true);
   assert.equal(ibd.target, '溃疡性结肠炎');
   assert.equal(ibd.hasExplicitTarget, true);
+
+  const osteoporosis = extractDesignRequest('帮我设计一个针对骨质疏松的抗体');
+  assert.equal(osteoporosis.isDesignRequest, true);
+  assert.equal(osteoporosis.target, '骨质疏松');
+  assert.equal(osteoporosis.hasExplicitTarget, true);
 });
 
 test('keeps explicit targets inside disease-area requests', () => {
