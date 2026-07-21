@@ -311,6 +311,19 @@ test('local structure catalog is the machine-readable inventory for route-backed
   assert.deepEqual(fgfr3.sourceAntibodyChains, ['H', 'L']);
   assert.match(fgfr3.structuralBasis, /3GRW/);
 
+  const fgfr2 = catalogEntryForFilename(catalog, 'SOLIDLIB-HUMAN-FGFR2-FAB-RCSB-4WV1.pdb');
+  assert.ok(fgfr2, 'solid-tumor FGFR2 Fab asset should be represented in the catalog');
+  assert.equal(fgfr2.target, 'FGFR2');
+  assert.equal(fgfr2.gene, 'FGFR2');
+  assert.equal(fgfr2.organismTaxId, 9606);
+  assert.equal(fgfr2.structureClass, 'target_exact_domain_complex');
+  assert.equal(fgfr2.antibodyFormat, 'Fab');
+  assert.deepEqual(fgfr2.antigenChains, ['C']);
+  assert.deepEqual(fgfr2.antibodyChains, ['A', 'B']);
+  assert.deepEqual(fgfr2.sourceAntigenChains, ['C', 'F']);
+  assert.deepEqual(fgfr2.sourceAntibodyChains, ['A', 'B', 'D', 'E']);
+  assert.match(fgfr2.structuralBasis, /4WV1/);
+
   const il6 = catalogEntryForFilename(catalog, 'INFLAMLIB-HUMAN-IL6-RCSB-1ALU.pdb');
   assert.ok(il6, 'inflammation-library IL-6 antigen-only asset should be represented in the catalog');
   assert.equal(il6.target, 'IL-6');

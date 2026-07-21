@@ -4,11 +4,11 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 
 ## Summary
 
-- PDB files: 502
+- PDB files: 503
 - Route presets: 63
 - Routeable presets: 62
 - Prompt-eligible structure-supported targets: 62
-- Library assets: 107
+- Library assets: 108
 
 ## Route-backed structure families
 
@@ -82,8 +82,8 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 
 | priority | area | targets | reason |
 | ---: | --- | --- | --- |
-| 1 | common_disease_tumor_gaps | FOLR1/FRalpha, DLL3, PSMA/FOLH1, CEACAM6, GPC3 | These disease-linked surface antigens remain common user asks, but still lack a routeable exact local Fab family or only have antigen-only / non-Fab public structures. |
-| 2 | new_common_disease_route_families | Nectin-4/NECTIN4, GPRC5D, CEACAM5/CEA, STEAP1, CD33/Siglec-3, GPC2/Glypican-2 | These newly added exact complexes extend disease-first coverage for urothelial, myeloma, colorectal, prostate, AML and small-cell lung cancer requests; follow-up work should add route variants and alternates rather than unrelated defaults. |
+| 1 | common_disease_tumor_gaps | FOLR1/FRalpha, DLL3, PSMA/FOLH1, CEACAM6, GPC3, B7-H4/VTCN1 | These disease-linked surface antigens remain common user asks, but still lack a routeable exact local Fab family or only have antigen-only / non-Fab public structures. |
+| 2 | prepared_route_promotion_candidates | MET, HER3/ERBB3, FGFR3, FGFR2 | These targets now have exact local human Fab complexes in the cataloged asset library, but they should remain asset-only until the project explicitly adds prepared disease routes and route-level display policy for them. |
 | 3 | route_variants | VHH variants for prepared Fab routes, species-specific veterinary variants, viral subtype/strain variants | Adding variants under existing target identities improves coverage without multiplying unrelated route logic. |
 | 4 | library_asset_promotion | VIRUSLIB surface proteins, VETLIB predicted antigens, NEUROLIB reference assets, SOLIDLIB exact antigen / non-Fab tumor assets | Some assets can become routeable only after target identity, chain roles, display metadata and route policy are filled. |
 

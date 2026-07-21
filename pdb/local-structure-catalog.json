@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-21T20:01:21.764Z",
+  "generatedAt": "2026-07-21T20:21:39.208Z",
   "sourceFiles": [
     "server.js:ROUTE_3D_PRESETS",
     "server.js:ROUTE_3D_PRESET_ORGANISMS_FALLBACK",
@@ -7007,6 +7007,56 @@
       ]
     },
     {
+      "sourceCatalog": "solid-tumor-library-manifest.json",
+      "filename": "SOLIDLIB-HUMAN-FGFR2-FAB-RCSB-4WV1.pdb",
+      "localPath": "pdb/SOLIDLIB-HUMAN-FGFR2-FAB-RCSB-4WV1.pdb",
+      "target": "FGFR2",
+      "gene": "FGFR2",
+      "aliases": [
+        "Fibroblast growth factor receptor 2",
+        "FGFR2b",
+        "KGFR",
+        "K-SAM"
+      ],
+      "protein": "Fibroblast growth factor receptor 2",
+      "organismName": "Homo sapiens",
+      "organismTaxId": 9606,
+      "accession": "4WV1",
+      "uniprotAccession": "P21802",
+      "source": "RCSB PDB",
+      "sourceUrl": "https://files.rcsb.org/download/4WV1.pdb",
+      "sourceEntryUrl": "https://www.rcsb.org/structure/4WV1",
+      "structureClass": "target_exact_domain_complex",
+      "antibodyFormat": "Fab",
+      "routeable": false,
+      "promptEligible": false,
+      "fileCount": 1,
+      "experimentalMethod": "X-ray diffraction",
+      "resolutionAngstrom": 2.36,
+      "biologicalAssembly": "deposited coordinates preserve duplicated FGFR2 D2/Fab assemblies",
+      "structuralBasis": "RCSB 4WV1 human FGFR2 D2 domain in complex with Fab 2B.1.3",
+      "status": "asset_only",
+      "context": "胃癌 / 胆管癌 FGFR2 本地 Fab 复合物参考",
+      "note": "Exact human FGFR2 D2/Fab complex retained as a local gastric and cholangiocarcinoma reference. Keep out of routeable routing until the project adopts an explicit prepared FGFR2 route.",
+      "antigenChains": [
+        "C"
+      ],
+      "antibodyChains": [
+        "A",
+        "B"
+      ],
+      "sourceAntigenChains": [
+        "C",
+        "F"
+      ],
+      "sourceAntibodyChains": [
+        "A",
+        "B",
+        "D",
+        "E"
+      ]
+    },
+    {
       "sourceCatalog": "bone-library-manifest.json",
       "filename": "BONELIB-HUMAN-SOST-RCSB-2K8P.pdb",
       "localPath": "pdb/BONELIB-HUMAN-SOST-RCSB-2K8P.pdb",
@@ -7150,22 +7200,21 @@
         "DLL3",
         "PSMA/FOLH1",
         "CEACAM6",
-        "GPC3"
+        "GPC3",
+        "B7-H4/VTCN1"
       ],
       "reason": "These disease-linked surface antigens remain common user asks, but still lack a routeable exact local Fab family or only have antigen-only / non-Fab public structures."
     },
     {
       "priority": 2,
-      "area": "new_common_disease_route_families",
+      "area": "prepared_route_promotion_candidates",
       "targets": [
-        "Nectin-4/NECTIN4",
-        "GPRC5D",
-        "CEACAM5/CEA",
-        "STEAP1",
-        "CD33/Siglec-3",
-        "GPC2/Glypican-2"
+        "MET",
+        "HER3/ERBB3",
+        "FGFR3",
+        "FGFR2"
       ],
-      "reason": "These newly added exact complexes extend disease-first coverage for urothelial, myeloma, colorectal, prostate, AML and small-cell lung cancer requests; follow-up work should add route variants and alternates rather than unrelated defaults."
+      "reason": "These targets now have exact local human Fab complexes in the cataloged asset library, but they should remain asset-only until the project explicitly adds prepared disease routes and route-level display policy for them."
     },
     {
       "priority": 3,
@@ -7190,11 +7239,11 @@
     }
   ],
   "summary": {
-    "pdbFileCount": 502,
+    "pdbFileCount": 503,
     "routePresetCount": 63,
     "routeableRoutePresetCount": 62,
     "promptEligibleRoutePresetCount": 62,
     "routePresetFileCount": 415,
-    "libraryAssetCount": 107
+    "libraryAssetCount": 108
   }
 }

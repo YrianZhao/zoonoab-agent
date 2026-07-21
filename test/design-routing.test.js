@@ -119,6 +119,8 @@ test('keeps newly cataloged local-library targets stable in explicit design requ
     ['设计10个针对c-MET的Fab', 'MET'],
     ['设计10个针对HER3的Fab', 'HER3'],
     ['设计10个针对ERBB3的Fab', 'HER3'],
+    ['设计10个针对FGFR2的Fab', 'FGFR2'],
+    ['设计10个针对KGFR的Fab', 'FGFR2'],
     ['设计10个针对FGFR3的Fab', 'FGFR3'],
     ['设计10个针对GLP1R的Fab', 'GLP1R'],
     ['设计10个针对Myostatin的Fab', 'Myostatin'],

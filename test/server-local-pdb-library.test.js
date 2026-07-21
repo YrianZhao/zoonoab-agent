@@ -262,6 +262,18 @@ test('local PDB model library API lists local structures with viewer metadata', 
   assert.match(fgfr3.structuralBasis, /3GRW/);
   assert.equal(fgfr3.targetTag.verifiedTag, true);
 
+  const fgfr2 = data.models.find(model => model.filename === 'SOLIDLIB-HUMAN-FGFR2-FAB-RCSB-4WV1.pdb');
+  assert.ok(fgfr2, 'solid-tumor FGFR2 Fab asset should be listed');
+  assert.equal(fgfr2.targetDisplay, 'FGFR2');
+  assert.equal(fgfr2.antibodyFormat, 'Fab');
+  assert.equal(fgfr2.structureKind, 'Fab 抗原-抗体复合体');
+  assert.deepEqual(fgfr2.antigenChains, ['C']);
+  assert.deepEqual(fgfr2.antibodyChains, ['A', 'B']);
+  assert.deepEqual(fgfr2.sourceAntigenChains, ['C', 'F']);
+  assert.deepEqual(fgfr2.sourceAntibodyChains, ['A', 'B', 'D', 'E']);
+  assert.match(fgfr2.structuralBasis, /4WV1/);
+  assert.equal(fgfr2.targetTag.verifiedTag, true);
+
   const gba = data.models.find(model => model.filename === 'NEUROLIB-HUMAN-GBA-RCSB-1OGS.pdb');
   assert.ok(gba, 'neuro-library GBA asset should be listed');
   assert.equal(gba.targetDisplay, 'GBA');

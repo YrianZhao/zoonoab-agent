@@ -15,7 +15,7 @@ function readModelText(model) {
 test('solid-tumor asset library keeps exact local sources for non-routeable tumor targets', () => {
   assert.equal(manifest.schemaVersion, 1);
   assert.equal(manifest.totalModels, manifest.models.length);
-  assert.equal(manifest.totalModels, 15);
+  assert.equal(manifest.totalModels, 16);
 
   for (const model of manifest.models) {
     assert.ok(fs.existsSync(path.join(ROOT, 'pdb', model.filename)), model.filename + ' should exist locally');
@@ -23,6 +23,14 @@ test('solid-tumor asset library keeps exact local sources for non-routeable tumo
     assert.ok((model.sourceUrl || '').startsWith('https://files.rcsb.org/download/'));
     assert.ok((model.sourceEntryUrl || '').startsWith('https://www.rcsb.org/structure/'));
   }
+});
+
+test('solid-tumor exact Fab assets keep truthful local chain-role remarks', () => {
+  const fgfr2 = readModelText(manifest.models.find(model => model.accession === '4WV1'));
+  assert.match(fgfr2, /REMARK 901 TARGET: FGFR2/);
+  assert.match(fgfr2, /REMARK 904 ANTIGEN CHAINS: C/);
+  assert.match(fgfr2, /REMARK 905 ANTIBODY CHAINS: A,B/);
+  assert.match(fgfr2, /REMARK 912 ACCESSION: 4WV1/);
 });
 
 test('solid-tumor antigen-only assets keep empty antibody chain remarks', () => {

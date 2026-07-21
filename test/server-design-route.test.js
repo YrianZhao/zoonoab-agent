@@ -742,6 +742,16 @@ test('server previews exact local-library assets for explicit targets without pr
       expectedSourceAntibodyChains: ['H', 'L']
     },
     {
+      text: '设计10个针对FGFR2的Fab',
+      expectedTarget: 'FGFR2',
+      expectedFile: 'SOLIDLIB-HUMAN-FGFR2-FAB-RCSB-4WV1.pdb',
+      expectedPoseKind: 'experimental_complex',
+      expectedAntigenChains: ['C'],
+      expectedAntibodyChains: ['A', 'B'],
+      expectedSourceAntigenChains: ['C', 'F'],
+      expectedSourceAntibodyChains: ['A', 'B', 'D', 'E']
+    },
+    {
       text: '设计10个针对GLP1R的Fab',
       expectedTarget: 'GLP1R',
       expectedFile: 'ENDOCRINELIB-HUMAN-GLP1R-RCSB-6LN2.pdb',
