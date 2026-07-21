@@ -197,6 +197,33 @@ test('local structure catalog is the machine-readable inventory for route-backed
   assert.deepEqual(trem2.display.antigenChains, ['A']);
   assert.deepEqual(trem2.display.antibodyChains, ['H', 'L']);
 
+  const igf1r = catalogEntryForFilename(catalog, 'ENDOCRINELIB-HUMAN-IGF1R-RCSB-7XGD.pdb');
+  assert.ok(igf1r, 'endocrine-library IGF1R asset should be represented in the catalog');
+  assert.equal(igf1r.target, 'IGF1R');
+  assert.equal(igf1r.gene, 'IGF1R');
+  assert.equal(igf1r.organismTaxId, 9606);
+  assert.equal(igf1r.structureClass, 'experimental_antigen_only');
+  assert.deepEqual(igf1r.antigenChains, ['A', 'B']);
+  assert.deepEqual(igf1r.antibodyChains, []);
+
+  const lrrk2 = catalogEntryForFilename(catalog, 'NEUROLIB-HUMAN-LRRK2-RCSB-7LHT.pdb');
+  assert.ok(lrrk2, 'neuro-library LRRK2 asset should be represented in the catalog');
+  assert.equal(lrrk2.target, 'LRRK2');
+  assert.equal(lrrk2.gene, 'LRRK2');
+  assert.equal(lrrk2.organismTaxId, 9606);
+  assert.equal(lrrk2.structureClass, 'experimental_antigen_only');
+  assert.deepEqual(lrrk2.antigenChains, ['A', 'B']);
+  assert.deepEqual(lrrk2.antibodyChains, []);
+
+  const gba = catalogEntryForFilename(catalog, 'NEUROLIB-HUMAN-GBA-RCSB-1OGS.pdb');
+  assert.ok(gba, 'neuro-library GBA asset should be represented in the catalog');
+  assert.equal(gba.target, 'GBA');
+  assert.equal(gba.gene, 'GBA1');
+  assert.equal(gba.organismTaxId, 9606);
+  assert.equal(gba.structureClass, 'experimental_antigen_only');
+  assert.deepEqual(gba.antigenChains, ['A', 'B']);
+  assert.deepEqual(gba.antibodyChains, []);
+
   const tshr = catalogEntryForFilename(catalog, 'TSHR-Fab-01.pdb');
   assert.ok(tshr, 'TSHR-Fab-01 should be represented in the catalog');
   assert.equal(tshr.target, 'TSHR');

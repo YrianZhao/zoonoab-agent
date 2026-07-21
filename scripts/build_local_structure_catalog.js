@@ -16,6 +16,7 @@ const CATALOG_MD_PATH = path.join(PDB_DIR, 'local-structure-catalog.md');
 const CLIENT_CATALOG_PATH = path.join(ROOT, 'public', 'local-structure-catalog.generated.js');
 const SIMPLE_LIBRARY_MANIFESTS = [
   'veterinary-library-manifest.json',
+  'endocrine-library-manifest.json',
   'neuro-library-manifest.json',
   'solid-tumor-library-manifest.json',
   'bone-library-manifest.json'

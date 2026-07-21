@@ -131,6 +131,36 @@ test('local PDB model library API lists local structures with viewer metadata', 
   assert.match(dkk1.structuralBasis, /5GJE/);
   assert.equal(dkk1.targetTag.verifiedTag, true);
 
+  const igf1r = data.models.find(model => model.filename === 'ENDOCRINELIB-HUMAN-IGF1R-RCSB-7XGD.pdb');
+  assert.ok(igf1r, 'endocrine-library IGF1R asset should be listed');
+  assert.equal(igf1r.targetDisplay, 'IGF1R');
+  assert.equal(igf1r.antibodyFormat, '');
+  assert.equal(igf1r.structureKind, '实验抗原结构');
+  assert.deepEqual(igf1r.antigenChains, ['A', 'B']);
+  assert.deepEqual(igf1r.antibodyChains, []);
+  assert.match(igf1r.structuralBasis, /7XGD/);
+  assert.equal(igf1r.targetTag.verifiedTag, true);
+
+  const lrrk2 = data.models.find(model => model.filename === 'NEUROLIB-HUMAN-LRRK2-RCSB-7LHT.pdb');
+  assert.ok(lrrk2, 'neuro-library LRRK2 asset should be listed');
+  assert.equal(lrrk2.targetDisplay, 'LRRK2');
+  assert.equal(lrrk2.antibodyFormat, '');
+  assert.equal(lrrk2.structureKind, '实验抗原结构');
+  assert.deepEqual(lrrk2.antigenChains, ['A', 'B']);
+  assert.deepEqual(lrrk2.antibodyChains, []);
+  assert.match(lrrk2.structuralBasis, /7LHT/);
+  assert.equal(lrrk2.targetTag.verifiedTag, true);
+
+  const gba = data.models.find(model => model.filename === 'NEUROLIB-HUMAN-GBA-RCSB-1OGS.pdb');
+  assert.ok(gba, 'neuro-library GBA asset should be listed');
+  assert.equal(gba.targetDisplay, 'GBA');
+  assert.equal(gba.antibodyFormat, '');
+  assert.equal(gba.structureKind, '实验抗原结构');
+  assert.deepEqual(gba.antigenChains, ['A', 'B']);
+  assert.deepEqual(gba.antibodyChains, []);
+  assert.match(gba.structuralBasis, /1OGS/);
+  assert.equal(gba.targetTag.verifiedTag, true);
+
   const rankl = data.models.find(model => model.filename === 'BONELIB-HUMAN-RANKL-RCSB-3URF.pdb');
   assert.ok(rankl, 'bone-library RANKL reference asset should be listed');
   assert.equal(rankl.targetDisplay, 'RANKL');
