@@ -174,6 +174,16 @@ test('local PDB model library API lists local structures with viewer metadata', 
   assert.match(cd123.structuralBasis, /4JZJ/);
   assert.equal(cd123.targetTag.verifiedTag, true);
 
+  const cd33 = data.models.find(model => model.filename === 'CD33-Fab-01.pdb');
+  assert.ok(cd33, 'CD33 routeable Fab preset should be listed');
+  assert.equal(cd33.targetDisplay, 'CD33');
+  assert.equal(cd33.antibodyFormat, 'Fab');
+  assert.equal(cd33.structureKind, 'Fab 抗原-抗体复合体');
+  assert.deepEqual(cd33.antigenChains, ['A', 'D']);
+  assert.deepEqual(cd33.antibodyChains, ['B', 'C', 'E', 'F']);
+  assert.match(cd33.structuralBasis, /9VL2/);
+  assert.equal(cd33.targetTag.verifiedTag, true);
+
   const baff = data.models.find(model => model.filename === 'BAFF-Fab-01.pdb');
   assert.ok(baff, 'BAFF routeable Fab preset should be listed');
   assert.equal(baff.targetDisplay, 'BAFF');
@@ -213,6 +223,18 @@ test('local PDB model library API lists local structures with viewer metadata', 
   assert.deepEqual(a4b7.antibodyChains, ['H', 'L']);
   assert.match(a4b7.structuralBasis, /3V4P/);
   assert.equal(a4b7.targetTag.verifiedTag, true);
+
+  const gpc2 = data.models.find(model => model.filename === 'GPC2-Fab-01.pdb');
+  assert.ok(gpc2, 'GPC2 routeable Fab preset should be listed');
+  assert.equal(gpc2.targetDisplay, 'GPC2');
+  assert.equal(gpc2.antibodyFormat, 'Fab');
+  assert.equal(gpc2.structureKind, 'Fab 抗原-抗体复合体');
+  assert.deepEqual(gpc2.antigenChains, ['G']);
+  assert.deepEqual(gpc2.antibodyChains, ['H', 'L']);
+  assert.deepEqual(gpc2.sourceAntigenChains, ['E', 'G']);
+  assert.deepEqual(gpc2.sourceAntibodyChains, ['F', 'H', 'I', 'J', 'K', 'L']);
+  assert.match(gpc2.structuralBasis, /6WJL/);
+  assert.equal(gpc2.targetTag.verifiedTag, true);
 
   const abeta = data.models.find(model => model.filename === 'ABETA-Fab-01.pdb');
   assert.ok(abeta, 'Amyloid-beta routeable Fab preset should be listed');
@@ -281,6 +303,18 @@ test('structure catalog API exposes route-backed structure inventory', async () 
   assert.equal(ngf.aliasPrefix, 'NGF-Fab');
   assert.equal(ngf.target, 'NGF');
   assert.ok((ngf.files || []).includes('NGF-Fab-01.pdb'));
+
+  const cd33 = data.catalog.routePresets.find(item => item.routeId === 'heme_cd33');
+  assert.ok(cd33, 'catalog should expose the CD33 local route');
+  assert.equal(cd33.aliasPrefix, 'CD33-Fab');
+  assert.equal(cd33.target, 'CD33');
+  assert.ok((cd33.files || []).includes('CD33-Fab-01.pdb'));
+
+  const gpc2 = data.catalog.routePresets.find(item => item.routeId === 'sclc_gpc2');
+  assert.ok(gpc2, 'catalog should expose the GPC2 local route');
+  assert.equal(gpc2.aliasPrefix, 'GPC2-Fab');
+  assert.equal(gpc2.target, 'GPC2');
+  assert.ok((gpc2.files || []).includes('GPC2-Fab-01.pdb'));
 });
 
 test('local PDB responses are cacheable and can project only viewer-visible chains', async () => {

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-21T15:41:40.155Z",
+  "generatedAt": "2026-07-21T16:07:31.165Z",
   "sourceFiles": [
     "server.js:ROUTE_3D_PRESETS",
     "server.js:ROUTE_3D_PRESET_ORGANISMS_FALLBACK",
@@ -3388,6 +3388,124 @@
       }
     },
     {
+      "routeId": "heme_cd33",
+      "aliasPrefix": "CD33-Fab",
+      "target": "CD33",
+      "gene": "CD33",
+      "aliases": [
+        "SIGLEC3",
+        "Siglec-3",
+        "Myeloid cell surface antigen CD33"
+      ],
+      "organismName": "Homo sapiens",
+      "organismTaxId": 9606,
+      "antibodyFormat": "Fab",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "structureClass": "target_exact_domain_complex",
+      "sourceClass": "catalog_manual",
+      "filenamePattern": "CD33-Fab-NN.pdb",
+      "files": [
+        "CD33-Fab-01.pdb"
+      ],
+      "fileCount": 1,
+      "promptLabel": "CD33/Siglec-3",
+      "structuralBasis": "RCSB 9VL2 human CD33 / Fab-10C8 complex",
+      "sourcePdbIds": [
+        "9VL2"
+      ],
+      "display": {
+        "structureTitle": "CD33 Fab AML 相关髓系表面受体结合构象",
+        "structureFamily": "髓系白血病相关 Siglec 受体 · CD33 Fab 候选",
+        "visualSummary": "展示 duplicated human CD33 ectodomain 与两组 Fab-10C8 的真实实验复合物，可支撑 AML 与相关髓系肿瘤方向的表面受体展示。",
+        "structuralBasis": "RCSB 9VL2 human CD33 / Fab-10C8 complex",
+        "antigenChains": [
+          "A",
+          "D"
+        ],
+        "antibodyChains": [
+          "B",
+          "C",
+          "E",
+          "F"
+        ],
+        "sourceAntigenChains": [
+          "A",
+          "D"
+        ],
+        "sourceAntibodyChains": [
+          "B",
+          "C",
+          "E",
+          "F"
+        ],
+        "keepAllAntibodyChains": true,
+        "visualColors": {
+          "antigen": "#F97316",
+          "antibody": "#2563EB"
+        }
+      }
+    },
+    {
+      "routeId": "sclc_gpc2",
+      "aliasPrefix": "GPC2-Fab",
+      "target": "GPC2",
+      "gene": "GPC2",
+      "aliases": [
+        "Glypican-2",
+        "GPC-2",
+        "Cerebroglycan"
+      ],
+      "organismName": "Homo sapiens",
+      "organismTaxId": 9606,
+      "antibodyFormat": "Fab",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "structureClass": "target_exact_domain_complex",
+      "sourceClass": "catalog_manual",
+      "filenamePattern": "GPC2-Fab-NN.pdb",
+      "files": [
+        "GPC2-Fab-01.pdb"
+      ],
+      "fileCount": 1,
+      "promptLabel": "GPC2/Glypican-2",
+      "structuralBasis": "RCSB 6WJL human GPC2 core protein / D3 Fab complex",
+      "sourcePdbIds": [
+        "6WJL"
+      ],
+      "display": {
+        "structureTitle": "GPC2 Fab 小细胞肺癌相关表面抗原结合构象",
+        "structureFamily": "神经内分泌肿瘤相关 glypican 抗原 · GPC2 Fab 候选",
+        "visualSummary": "展示 human GPC2 core protein 与 D3 Fab 的真实实验复合物，可支撑小细胞肺癌与 GPC2 高表达神经内分泌肿瘤方向的表面抗原展示。源坐标中额外的辅助 VHH 链只保留为 provenance，不纳入默认观众视图。",
+        "structuralBasis": "RCSB 6WJL human GPC2 core protein / D3 Fab complex",
+        "antigenChains": [
+          "G"
+        ],
+        "antibodyChains": [
+          "H",
+          "L"
+        ],
+        "sourceAntigenChains": [
+          "E",
+          "G"
+        ],
+        "sourceAntibodyChains": [
+          "F",
+          "H",
+          "I",
+          "J",
+          "K",
+          "L"
+        ],
+        "visualColors": {
+          "antigen": "#22C55E",
+          "antibody": "#2563EB"
+        }
+      }
+    },
+    {
       "routeId": "ibd_a4b7",
       "aliasPrefix": "A4B7-Fab",
       "target": "Integrin α4β7",
@@ -5958,9 +6076,11 @@
         "Nectin-4/NECTIN4",
         "GPRC5D",
         "CEACAM5/CEA",
-        "STEAP1"
+        "STEAP1",
+        "CD33/Siglec-3",
+        "GPC2/Glypican-2"
       ],
-      "reason": "These newly added exact complexes extend disease-first coverage for urothelial, myeloma, colorectal and prostate cancer requests; follow-up work should add route variants and alternates rather than unrelated defaults."
+      "reason": "These newly added exact complexes extend disease-first coverage for urothelial, myeloma, colorectal, prostate, AML and small-cell lung cancer requests; follow-up work should add route variants and alternates rather than unrelated defaults."
     },
     {
       "priority": 3,
@@ -5985,11 +6105,11 @@
     }
   ],
   "summary": {
-    "pdbFileCount": 475,
-    "routePresetCount": 57,
-    "routeableRoutePresetCount": 56,
-    "promptEligibleRoutePresetCount": 56,
-    "routePresetFileCount": 409,
+    "pdbFileCount": 477,
+    "routePresetCount": 59,
+    "routeableRoutePresetCount": 58,
+    "promptEligibleRoutePresetCount": 58,
+    "routePresetFileCount": 411,
     "libraryAssetCount": 86
   }
 }

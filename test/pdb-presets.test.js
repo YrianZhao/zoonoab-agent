@@ -204,6 +204,12 @@ const COMMON_REAL_COMPLEX_EXPECTATIONS = [
     antibodyChains: ['A', 'B', 'H', 'L']
   },
   {
+    prefix: 'CD33-Fab',
+    basis: /RCSB 9VL2 human CD33 \/ Fab-10C8 complex/,
+    antigenChains: ['A', 'D'],
+    antibodyChains: ['B', 'C', 'E', 'F']
+  },
+  {
     prefix: 'BAFF-Fab',
     basis: /RCSB 6FXN human BAFF trimer \/ belimumab Fab complex/,
     antigenChains: ['A', 'B', 'C'],
@@ -225,6 +231,12 @@ const COMMON_REAL_COMPLEX_EXPECTATIONS = [
     prefix: 'A4B7-Fab',
     basis: /RCSB 3V4P human integrin α4β7 headpiece \/ ACT-1 Fab complex/,
     antigenChains: ['A', 'B'],
+    antibodyChains: ['H', 'L']
+  },
+  {
+    prefix: 'GPC2-Fab',
+    basis: /RCSB 6WJL human GPC2 core protein \/ D3 Fab complex/,
+    antigenChains: ['G'],
     antibodyChains: ['H', 'L']
   },
   {

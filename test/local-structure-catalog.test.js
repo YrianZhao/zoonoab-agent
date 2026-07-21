@@ -105,6 +105,16 @@ test('local structure catalog is the machine-readable inventory for route-backed
   assert.deepEqual(cd123.display.antigenChains, ['C', 'D']);
   assert.deepEqual(cd123.display.antibodyChains, ['A', 'B', 'H', 'L']);
 
+  const cd33 = catalogEntryForFilename(catalog, 'CD33-Fab-01.pdb');
+  assert.ok(cd33, 'CD33-Fab-01 should be represented in the catalog');
+  assert.equal(cd33.target, 'CD33');
+  assert.equal(cd33.gene, 'CD33');
+  assert.equal(cd33.organismTaxId, 9606);
+  assert.equal(cd33.aliasPrefix, 'CD33-Fab');
+  assert.equal(cd33.structureClass, 'target_exact_domain_complex');
+  assert.deepEqual(cd33.display.antigenChains, ['A', 'D']);
+  assert.deepEqual(cd33.display.antibodyChains, ['B', 'C', 'E', 'F']);
+
   const baff = catalogEntryForFilename(catalog, 'BAFF-Fab-01.pdb');
   assert.ok(baff, 'BAFF-Fab-01 should be represented in the catalog');
   assert.equal(baff.target, 'BAFF');
@@ -144,6 +154,18 @@ test('local structure catalog is the machine-readable inventory for route-backed
   assert.equal(a4b7.structureClass, 'target_exact_domain_complex');
   assert.deepEqual(a4b7.display.antigenChains, ['A', 'B']);
   assert.deepEqual(a4b7.display.antibodyChains, ['H', 'L']);
+
+  const gpc2 = catalogEntryForFilename(catalog, 'GPC2-Fab-01.pdb');
+  assert.ok(gpc2, 'GPC2-Fab-01 should be represented in the catalog');
+  assert.equal(gpc2.target, 'GPC2');
+  assert.equal(gpc2.gene, 'GPC2');
+  assert.equal(gpc2.organismTaxId, 9606);
+  assert.equal(gpc2.aliasPrefix, 'GPC2-Fab');
+  assert.equal(gpc2.structureClass, 'target_exact_domain_complex');
+  assert.deepEqual(gpc2.display.antigenChains, ['G']);
+  assert.deepEqual(gpc2.display.antibodyChains, ['H', 'L']);
+  assert.deepEqual(gpc2.display.sourceAntigenChains, ['E', 'G']);
+  assert.deepEqual(gpc2.display.sourceAntibodyChains, ['F', 'H', 'I', 'J', 'K', 'L']);
 
   const abeta = catalogEntryForFilename(catalog, 'ABETA-Fab-01.pdb');
   assert.ok(abeta, 'ABETA-Fab-01 should be represented in the catalog');
@@ -201,10 +223,12 @@ test('local structure catalog is the machine-readable inventory for route-backed
   assert.match(supportList, /IL-5\/IL5/);
   assert.match(supportList, /IL-13\/IL13/);
   assert.match(supportList, /CD123\/IL3RA/);
+  assert.match(supportList, /CD33\/Siglec-3/);
   assert.match(supportList, /BAFF\/TNFSF13B/);
   assert.match(supportList, /FcRn\/FCGRT/);
   assert.match(supportList, /NGF/);
   assert.match(supportList, /Integrin α4β7\/ITGA4-ITGB7/);
+  assert.match(supportList, /GPC2\/Glypican-2/);
   assert.match(supportList, /Amyloid-beta\/APP/);
   assert.match(supportList, /Tau\/MAPT/);
   assert.match(supportList, /TREM2/);
@@ -238,6 +262,8 @@ test('catalog-derived target map can route aliases without hand-editing target m
   assert.equal(map[normalizeStructureCatalogKey('IL13')], 'allergic_il13');
   assert.equal(map[normalizeStructureCatalogKey('CD123')], 'heme_cd123');
   assert.equal(map[normalizeStructureCatalogKey('IL3RA')], 'heme_cd123');
+  assert.equal(map[normalizeStructureCatalogKey('CD33')], 'heme_cd33');
+  assert.equal(map[normalizeStructureCatalogKey('Siglec-3')], 'heme_cd33');
   assert.equal(map[normalizeStructureCatalogKey('BAFF')], 'autoimmune_baff');
   assert.equal(map[normalizeStructureCatalogKey('TNFSF13B')], 'autoimmune_baff');
   assert.equal(map[normalizeStructureCatalogKey('FcRn')], 'autoimmune_fcrn');
@@ -247,6 +273,8 @@ test('catalog-derived target map can route aliases without hand-editing target m
   assert.equal(map[normalizeStructureCatalogKey('犬源 NGF')], 'veterinary_canine_ngf');
   assert.equal(map[normalizeStructureCatalogKey('Integrin α4β7')], 'ibd_a4b7');
   assert.equal(map[normalizeStructureCatalogKey('alpha4beta7')], 'ibd_a4b7');
+  assert.equal(map[normalizeStructureCatalogKey('GPC2')], 'sclc_gpc2');
+  assert.equal(map[normalizeStructureCatalogKey('Glypican-2')], 'sclc_gpc2');
   assert.equal(map[normalizeStructureCatalogKey('Amyloid-beta')], 'neuro_alz_abeta');
   assert.equal(map[normalizeStructureCatalogKey('APP')], 'neuro_alz_abeta');
   assert.equal(map[normalizeStructureCatalogKey('Tau')], 'neuro_alz_tau');

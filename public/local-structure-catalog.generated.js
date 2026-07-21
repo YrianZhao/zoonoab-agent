@@ -2,16 +2,16 @@
 (function(){
   window.ZOONOAB_LOCAL_STRUCTURE_CATALOG = {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-21T15:41:40.155Z",
+  "generatedAt": "2026-07-21T16:07:31.165Z",
   "summary": {
-    "pdbFileCount": 475,
-    "routePresetCount": 57,
-    "routeableRoutePresetCount": 56,
-    "promptEligibleRoutePresetCount": 56,
-    "routePresetFileCount": 409,
+    "pdbFileCount": 477,
+    "routePresetCount": 59,
+    "routeableRoutePresetCount": 58,
+    "promptEligibleRoutePresetCount": 58,
+    "routePresetFileCount": 411,
     "libraryAssetCount": 86
   },
-  "promptSupportTargets": "IL-33/IL33、TSLP、PD-L1/CD274、PD-1/PDCD1、CTLA-4/CTLA4、CD20/MS4A1、CD19、CD3/CD3E/CD3G、C5、IL-6R/IL6R、IL-4Rα/IL4R、CD25/IL2RA、CD38、TIGIT、CD47、LAG-3/LAG3、TROP-2/TACSTD2、BCMA/TNFRSF17、IgE/IGH、CGRP receptor/CALCRL/RAMP1、HER2/ERBB2、EGFR、VEGF-A/VEGFA、TNF、IL-17A/IL17A、IL-23/IL23A/IL12B、RSV F/F、SARS-CoV-2 RBD/S、Influenza HA/HA、Influenza NA/NA、PCSK9、ANGPTL3、IL-1B、GIPR、Amyloid-beta/APP、Tau/MAPT、TREM2、DAT/SLC6A3、Canine NGF/NGF、Mesothelin/MSLN、Claudin 18.2/CLDN18、B7-H3/CD276、MUC1、Nectin-4/NECTIN4、GPRC5D、CEACAM5/CEA、STEAP1、CAIX/CA9、IL-5/IL5、IL-13/IL13、CD123/IL3RA、BAFF/TNFSF13B、FcRn/FCGRT、NGF、Integrin α4β7/ITGA4-ITGB7",
+  "promptSupportTargets": "IL-33/IL33、TSLP、PD-L1/CD274、PD-1/PDCD1、CTLA-4/CTLA4、CD20/MS4A1、CD19、CD3/CD3E/CD3G、C5、IL-6R/IL6R、IL-4Rα/IL4R、CD25/IL2RA、CD38、TIGIT、CD47、LAG-3/LAG3、TROP-2/TACSTD2、BCMA/TNFRSF17、IgE/IGH、CGRP receptor/CALCRL/RAMP1、HER2/ERBB2、EGFR、VEGF-A/VEGFA、TNF、IL-17A/IL17A、IL-23/IL23A/IL12B、RSV F/F、SARS-CoV-2 RBD/S、Influenza HA/HA、Influenza NA/NA、PCSK9、ANGPTL3、IL-1B、GIPR、Amyloid-beta/APP、Tau/MAPT、TREM2、DAT/SLC6A3、Canine NGF/NGF、Mesothelin/MSLN、Claudin 18.2/CLDN18、B7-H3/CD276、MUC1、Nectin-4/NECTIN4、GPRC5D、CEACAM5/CEA、STEAP1、CAIX/CA9、IL-5/IL5、IL-13/IL13、CD123/IL3RA、BAFF/TNFSF13B、FcRn/FCGRT、NGF、CD33/Siglec-3、GPC2/Glypican-2、Integrin α4β7/ITGA4-ITGB7",
   "routePresets": [
     {
       "routeId": "allergic_asthma",
@@ -2769,6 +2769,102 @@
         ],
         "visualColors": {
           "antigen": "#F59E0B",
+          "antibody": "#2563EB"
+        }
+      }
+    },
+    {
+      "routeId": "heme_cd33",
+      "aliasPrefix": "CD33-Fab",
+      "target": "CD33",
+      "gene": "CD33",
+      "aliases": [
+        "SIGLEC3",
+        "Siglec-3",
+        "Myeloid cell surface antigen CD33"
+      ],
+      "promptLabel": "CD33/Siglec-3",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "CD33-Fab-01.pdb"
+      ],
+      "display": {
+        "structureTitle": "CD33 Fab AML 相关髓系表面受体结合构象",
+        "structureFamily": "髓系白血病相关 Siglec 受体 · CD33 Fab 候选",
+        "visualSummary": "展示 duplicated human CD33 ectodomain 与两组 Fab-10C8 的真实实验复合物，可支撑 AML 与相关髓系肿瘤方向的表面受体展示。",
+        "structuralBasis": "RCSB 9VL2 human CD33 / Fab-10C8 complex",
+        "antigenChains": [
+          "A",
+          "D"
+        ],
+        "antibodyChains": [
+          "B",
+          "C",
+          "E",
+          "F"
+        ],
+        "sourceAntigenChains": [
+          "A",
+          "D"
+        ],
+        "sourceAntibodyChains": [
+          "B",
+          "C",
+          "E",
+          "F"
+        ],
+        "keepAllAntibodyChains": true,
+        "visualColors": {
+          "antigen": "#F97316",
+          "antibody": "#2563EB"
+        }
+      }
+    },
+    {
+      "routeId": "sclc_gpc2",
+      "aliasPrefix": "GPC2-Fab",
+      "target": "GPC2",
+      "gene": "GPC2",
+      "aliases": [
+        "Glypican-2",
+        "GPC-2",
+        "Cerebroglycan"
+      ],
+      "promptLabel": "GPC2/Glypican-2",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "GPC2-Fab-01.pdb"
+      ],
+      "display": {
+        "structureTitle": "GPC2 Fab 小细胞肺癌相关表面抗原结合构象",
+        "structureFamily": "神经内分泌肿瘤相关 glypican 抗原 · GPC2 Fab 候选",
+        "visualSummary": "展示 human GPC2 core protein 与 D3 Fab 的真实实验复合物，可支撑小细胞肺癌与 GPC2 高表达神经内分泌肿瘤方向的表面抗原展示。源坐标中额外的辅助 VHH 链只保留为 provenance，不纳入默认观众视图。",
+        "structuralBasis": "RCSB 6WJL human GPC2 core protein / D3 Fab complex",
+        "antigenChains": [
+          "G"
+        ],
+        "antibodyChains": [
+          "H",
+          "L"
+        ],
+        "sourceAntigenChains": [
+          "E",
+          "G"
+        ],
+        "sourceAntibodyChains": [
+          "F",
+          "H",
+          "I",
+          "J",
+          "K",
+          "L"
+        ],
+        "visualColors": {
+          "antigen": "#22C55E",
           "antibody": "#2563EB"
         }
       }

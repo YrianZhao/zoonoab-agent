@@ -4,10 +4,10 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 
 ## Summary
 
-- PDB files: 475
-- Route presets: 57
-- Routeable presets: 56
-- Prompt-eligible structure-supported targets: 56
+- PDB files: 477
+- Route presets: 59
+- Routeable presets: 58
+- Prompt-eligible structure-supported targets: 58
 - Library assets: 86
 
 ## Route-backed structure families
@@ -70,6 +70,8 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 | autoimmune_baff | BAFF | TNFSF13B | BAFF-Fab | 1 | Homo sapiens | RCSB 6FXN human BAFF trimer / belimumab Fab complex |
 | autoimmune_fcrn | FcRn | FCGRT | FCRN-Fab | 1 | Homo sapiens | RCSB 9MI6 human FcRn / beta-2-microglobulin / nipocalimab Fab complex |
 | pain_ngf | NGF | NGF | NGF-Fab | 1 | Homo sapiens | RCSB 4EDW human beta-NGF / tanezumab Fab complex |
+| heme_cd33 | CD33 | CD33 | CD33-Fab | 1 | Homo sapiens | RCSB 9VL2 human CD33 / Fab-10C8 complex |
+| sclc_gpc2 | GPC2 | GPC2 | GPC2-Fab | 1 | Homo sapiens | RCSB 6WJL human GPC2 core protein / D3 Fab complex |
 | ibd_a4b7 | Integrin α4β7 | ITGA4 / ITGB7 | A4B7-Fab | 1 | Homo sapiens | RCSB 3V4P human integrin α4β7 headpiece / ACT-1 Fab complex |
 
 ## Extension priorities
@@ -77,7 +79,7 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 | priority | area | targets | reason |
 | ---: | --- | --- | --- |
 | 1 | common_disease_tumor_gaps | FOLR1/FRalpha, DLL3, PSMA/FOLH1, CEACAM6, GPC3 | These disease-linked surface antigens remain common user asks, but still lack a routeable exact local Fab family or only have antigen-only / non-Fab public structures. |
-| 2 | new_common_disease_route_families | Nectin-4/NECTIN4, GPRC5D, CEACAM5/CEA, STEAP1 | These newly added exact complexes extend disease-first coverage for urothelial, myeloma, colorectal and prostate cancer requests; follow-up work should add route variants and alternates rather than unrelated defaults. |
+| 2 | new_common_disease_route_families | Nectin-4/NECTIN4, GPRC5D, CEACAM5/CEA, STEAP1, CD33/Siglec-3, GPC2/Glypican-2 | These newly added exact complexes extend disease-first coverage for urothelial, myeloma, colorectal, prostate, AML and small-cell lung cancer requests; follow-up work should add route variants and alternates rather than unrelated defaults. |
 | 3 | route_variants | VHH variants for prepared Fab routes, species-specific veterinary variants, viral subtype/strain variants | Adding variants under existing target identities improves coverage without multiplying unrelated route logic. |
 | 4 | library_asset_promotion | VIRUSLIB surface proteins, VETLIB predicted antigens, NEUROLIB reference assets, SOLIDLIB exact antigen / non-Fab tumor assets | Some assets can become routeable only after target identity, chain roles, display metadata and route policy are filled. |
 
