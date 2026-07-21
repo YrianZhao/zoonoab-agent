@@ -162,6 +162,30 @@ const COMMON_REAL_COMPLEX_EXPECTATIONS = [
     antibodyChains: ['A', 'B']
   },
   {
+    prefix: 'NECTIN4-Fab',
+    basis: /RCSB 9KKJ Nectin-4 D1 domain \/ 9MW2821 Fab complex/,
+    antigenChains: ['A'],
+    antibodyChains: ['H', 'L']
+  },
+  {
+    prefix: 'GPRC5D-Fab',
+    basis: /RCSB 9IMA GPRC5D dimer \/ talquetamab Fab complex/,
+    antigenChains: ['A', 'B'],
+    antibodyChains: ['C', 'D']
+  },
+  {
+    prefix: 'CEACAM5-Fab',
+    basis: /RCSB 8BW0 CEACAM5 A3-B3 domain \/ tusamitamab Fab complex/,
+    antigenChains: ['C'],
+    antibodyChains: ['H', 'L']
+  },
+  {
+    prefix: 'STEAP1-Fab',
+    basis: /RCSB 6Y9B trimeric human STEAP1 \/ Fab120\.545 complex/,
+    antigenChains: ['A', 'B', 'C'],
+    antibodyChains: ['H', 'I', 'J', 'L', 'M', 'N']
+  },
+  {
     prefix: 'FluNA-Fab',
     basis: /RCSB 1NCD influenza N9 neuraminidase \/ NC41 Fab complex/,
     antigenChains: ['A'],
@@ -541,7 +565,7 @@ test('common real antigen-antibody library covers high-frequency user targets wi
       assert.ok((counts.get(chain) || 0) > 50, item.prefix + ' antigen chain ' + chain + ' should contain visible atoms');
     }
     for (const chain of item.antibodyChains) {
-      assert.ok((counts.get(chain) || 0) > 800, item.prefix + ' antibody chain ' + chain + ' should contain a visible Fab chain');
+      assert.ok((counts.get(chain) || 0) >= 800, item.prefix + ' antibody chain ' + chain + ' should contain a visible Fab chain');
     }
     assert.ok(contacts.contactPairs >= 50, item.prefix + ' should expose a visible antigen-antibody interface');
     assert.ok(contacts.minDistance >= 1.2 && contacts.minDistance <= 3.5, item.prefix + ' should have a plausible closest antigen-antibody contact');

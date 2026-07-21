@@ -2,16 +2,16 @@
 (function(){
   window.ZOONOAB_LOCAL_STRUCTURE_CATALOG = {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-21T12:44:20.908Z",
+  "generatedAt": "2026-07-21T13:19:37.958Z",
   "summary": {
-    "pdbFileCount": 451,
-    "routePresetCount": 42,
-    "routeableRoutePresetCount": 41,
-    "promptEligibleRoutePresetCount": 41,
-    "routePresetFileCount": 394,
+    "pdbFileCount": 455,
+    "routePresetCount": 46,
+    "routeableRoutePresetCount": 45,
+    "promptEligibleRoutePresetCount": 45,
+    "routePresetFileCount": 398,
     "libraryAssetCount": 77
   },
-  "promptSupportTargets": "IL-33/IL33、TSLP、PD-L1/CD274、PD-1/PDCD1、CTLA-4/CTLA4、CD20/MS4A1、CD19、CD3/CD3E/CD3G、C5、IL-6R/IL6R、IL-4Rα/IL4R、CD25/IL2RA、CD38、TIGIT、CD47、LAG-3/LAG3、TROP-2/TACSTD2、BCMA/TNFRSF17、IgE/IGH、CGRP receptor/CALCRL/RAMP1、HER2/ERBB2、EGFR、VEGF-A/VEGFA、TNF、IL-17A/IL17A、IL-23/IL23A/IL12B、RSV F/F、SARS-CoV-2 RBD/S、Influenza HA/HA、Influenza NA/NA、PCSK9、ANGPTL3、IL-1B、GIPR、DAT/SLC6A3、Canine NGF/NGF、Mesothelin/MSLN、Claudin 18.2/CLDN18、B7-H3/CD276、MUC1",
+  "promptSupportTargets": "IL-33/IL33、TSLP、PD-L1/CD274、PD-1/PDCD1、CTLA-4/CTLA4、CD20/MS4A1、CD19、CD3/CD3E/CD3G、C5、IL-6R/IL6R、IL-4Rα/IL4R、CD25/IL2RA、CD38、TIGIT、CD47、LAG-3/LAG3、TROP-2/TACSTD2、BCMA/TNFRSF17、IgE/IGH、CGRP receptor/CALCRL/RAMP1、HER2/ERBB2、EGFR、VEGF-A/VEGFA、TNF、IL-17A/IL17A、IL-23/IL23A/IL12B、RSV F/F、SARS-CoV-2 RBD/S、Influenza HA/HA、Influenza NA/NA、PCSK9、ANGPTL3、IL-1B、GIPR、DAT/SLC6A3、Canine NGF/NGF、Mesothelin/MSLN、Claudin 18.2/CLDN18、B7-H3/CD276、MUC1、Nectin-4/NECTIN4、GPRC5D、CEACAM5/CEA、STEAP1",
   "routePresets": [
     {
       "routeId": "allergic_asthma",
@@ -2140,6 +2140,185 @@
         "visualColors": {
           "antigen": "#EC4899",
           "antibody": "#38BDF8"
+        }
+      }
+    },
+    {
+      "routeId": "solid_tumor_nectin4",
+      "aliasPrefix": "NECTIN4-Fab",
+      "target": "Nectin-4",
+      "gene": "NECTIN4",
+      "aliases": [
+        "NECTIN4",
+        "PVRL4",
+        "Nectin4"
+      ],
+      "promptLabel": "Nectin-4/NECTIN4",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "NECTIN4-Fab-01.pdb"
+      ],
+      "display": {
+        "structureTitle": "Nectin-4 Fab 尿路上皮癌相关表面抗原结合构象",
+        "structureFamily": "尿路上皮癌相关黏附分子 · Nectin-4 Fab 候选",
+        "visualSummary": "展示 Nectin-4 D1 外露结构域与 9MW2821 Fab 的真实实验结合界面，适合尿路上皮癌、肾盂癌与膀胱癌方向的表面抗原展示。",
+        "structuralBasis": "RCSB 9KKJ Nectin-4 D1 domain / 9MW2821 Fab complex",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "H",
+          "L"
+        ],
+        "sourceAntigenChains": [
+          "A"
+        ],
+        "sourceAntibodyChains": [
+          "H",
+          "L"
+        ],
+        "visualColors": {
+          "antigen": "#F97316",
+          "antibody": "#0EA5E9"
+        }
+      }
+    },
+    {
+      "routeId": "heme_gprc5d",
+      "aliasPrefix": "GPRC5D-Fab",
+      "target": "GPRC5D",
+      "gene": "GPRC5D",
+      "aliases": [
+        "GPCR family C group 5 member D"
+      ],
+      "promptLabel": "GPRC5D",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "GPRC5D-Fab-01.pdb"
+      ],
+      "display": {
+        "structureTitle": "GPRC5D Fab 多发性骨髓瘤相关表面受体结合构象",
+        "structureFamily": "浆细胞肿瘤表面受体 · GPRC5D Fab 候选",
+        "visualSummary": "展示 dimeric human GPRC5D 与 talquetamab Fab 的真实实验复合物，可用于多发性骨髓瘤方向的表面受体展示。",
+        "structuralBasis": "RCSB 9IMA GPRC5D dimer / talquetamab Fab complex",
+        "antigenChains": [
+          "A",
+          "B"
+        ],
+        "antibodyChains": [
+          "C",
+          "D"
+        ],
+        "sourceAntigenChains": [
+          "A",
+          "B"
+        ],
+        "sourceAntibodyChains": [
+          "C",
+          "D"
+        ],
+        "visualColors": {
+          "antigen": "#22C55E",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "solid_tumor_ceacam5",
+      "aliasPrefix": "CEACAM5-Fab",
+      "target": "CEACAM5",
+      "gene": "CEACAM5",
+      "aliases": [
+        "CEA",
+        "Carcinoembryonic antigen",
+        "CD66e"
+      ],
+      "promptLabel": "CEACAM5/CEA",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "CEACAM5-Fab-01.pdb"
+      ],
+      "display": {
+        "structureTitle": "CEACAM5 Fab 结直肠癌相关 CEA 表位结合构象",
+        "structureFamily": "胃肠道肿瘤相关表面抗原 · CEACAM5 Fab 候选",
+        "visualSummary": "展示 CEACAM5 A3-B3 外露结构域与 tusamitamab Fab 的真实实验结合界面，适合结直肠癌与 CEA 高表达胃肠道肿瘤方向的靶点展示。",
+        "structuralBasis": "RCSB 8BW0 CEACAM5 A3-B3 domain / tusamitamab Fab complex",
+        "antigenChains": [
+          "C"
+        ],
+        "antibodyChains": [
+          "H",
+          "L"
+        ],
+        "sourceAntigenChains": [
+          "C"
+        ],
+        "sourceAntibodyChains": [
+          "H",
+          "L"
+        ],
+        "visualColors": {
+          "antigen": "#F59E0B",
+          "antibody": "#06B6D4"
+        }
+      }
+    },
+    {
+      "routeId": "prostate_steap1",
+      "aliasPrefix": "STEAP1-Fab",
+      "target": "STEAP1",
+      "gene": "STEAP1",
+      "aliases": [
+        "STEAP-1",
+        "Six-transmembrane epithelial antigen of the prostate 1"
+      ],
+      "promptLabel": "STEAP1",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "STEAP1-Fab-01.pdb"
+      ],
+      "display": {
+        "structureTitle": "STEAP1 Fab 前列腺癌相关三聚体表面抗原结合构象",
+        "structureFamily": "前列腺癌相关膜蛋白 · STEAP1 Fab 候选",
+        "visualSummary": "展示 trimeric human STEAP1 与三组 Fab120.545 的真实实验复合物，保留完整三聚体抗原形态，可支撑前列腺癌方向的表面抗原展示。",
+        "structuralBasis": "RCSB 6Y9B trimeric human STEAP1 / Fab120.545 complex",
+        "antigenChains": [
+          "A",
+          "B",
+          "C"
+        ],
+        "antibodyChains": [
+          "H",
+          "I",
+          "J",
+          "L",
+          "M",
+          "N"
+        ],
+        "sourceAntigenChains": [
+          "A",
+          "B",
+          "C"
+        ],
+        "sourceAntibodyChains": [
+          "H",
+          "I",
+          "J",
+          "L",
+          "M",
+          "N"
+        ],
+        "visualColors": {
+          "antigen": "#14B8A6",
+          "antibody": "#F97316"
         }
       }
     }

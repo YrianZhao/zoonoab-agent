@@ -4,10 +4,10 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 
 ## Summary
 
-- PDB files: 451
-- Route presets: 42
-- Routeable presets: 41
-- Prompt-eligible structure-supported targets: 41
+- PDB files: 455
+- Route presets: 46
+- Routeable presets: 45
+- Prompt-eligible structure-supported targets: 45
 - Library assets: 77
 
 ## Route-backed structure families
@@ -56,14 +56,19 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 | solid_tumor_cldn18 | Claudin 18.2 | CLDN18 | CLDN18.2-Fab | 1 | Homo sapiens | RCSB 9V32 claudin 18.2 / zolbetuximab Fab complex |
 | solid_tumor_b7h3 | B7-H3 | CD276 | CD276-Fab | 1 | Homo sapiens | RCSB 9LY5 human B7-H3 IgC domain / 20G5 Fab complex |
 | solid_tumor_muc1 | MUC1 | MUC1 | MUC1-Fab | 1 | Homo sapiens | RCSB 7V7K MUC1 GlycoST VNTR glycopeptide / 16A Fab complex |
+| solid_tumor_nectin4 | Nectin-4 | NECTIN4 | NECTIN4-Fab | 1 | Homo sapiens | RCSB 9KKJ Nectin-4 D1 domain / 9MW2821 Fab complex |
+| heme_gprc5d | GPRC5D | GPRC5D | GPRC5D-Fab | 1 | Homo sapiens | RCSB 9IMA GPRC5D dimer / talquetamab Fab complex |
+| solid_tumor_ceacam5 | CEACAM5 | CEACAM5 | CEACAM5-Fab | 1 | Homo sapiens | RCSB 8BW0 CEACAM5 A3-B3 domain / tusamitamab Fab complex |
+| prostate_steap1 | STEAP1 | STEAP1 | STEAP1-Fab | 1 | Homo sapiens | RCSB 6Y9B trimeric human STEAP1 / Fab120.545 complex |
 
 ## Extension priorities
 
 | priority | area | targets | reason |
 | ---: | --- | --- | --- |
-| 1 | solid_tumor_surface_antigens | MUC1, Mesothelin/MSLN, Claudin 18.2/CLDN18, CEACAM6, GPC3, B7-H3/CD276 | These targets appear in natural-language tumor requests or tests but are not yet backed by route-level local PDB families. |
-| 2 | route_variants | VHH variants for prepared Fab routes, species-specific veterinary variants, viral subtype/strain variants | Adding variants under existing target identities improves coverage without multiplying unrelated route logic. |
-| 3 | library_asset_promotion | VIRUSLIB surface proteins, VETLIB predicted antigens, NEUROLIB reference assets | Some assets can become routeable only after target identity, chain roles and candidate display metadata are filled. |
+| 1 | common_disease_tumor_gaps | FOLR1/FRalpha, DLL3, PSMA/FOLH1, CEACAM6, GPC3 | These disease-linked surface antigens remain common user asks, but still lack a routeable exact local Fab family or only have antigen-only / non-Fab public structures. |
+| 2 | new_common_disease_route_families | Nectin-4/NECTIN4, GPRC5D, CEACAM5/CEA, STEAP1 | These newly added exact complexes extend disease-first coverage for urothelial, myeloma, colorectal and prostate cancer requests; follow-up work should add route variants and alternates rather than unrelated defaults. |
+| 3 | route_variants | VHH variants for prepared Fab routes, species-specific veterinary variants, viral subtype/strain variants | Adding variants under existing target identities improves coverage without multiplying unrelated route logic. |
+| 4 | library_asset_promotion | VIRUSLIB surface proteins, VETLIB predicted antigens, NEUROLIB reference assets | Some assets can become routeable only after target identity, chain roles and candidate display metadata are filled. |
 
 ## Maintenance contract
 

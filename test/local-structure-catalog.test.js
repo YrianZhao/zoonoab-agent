@@ -38,6 +38,14 @@ test('local structure catalog is the machine-readable inventory for route-backed
   assert.deepEqual(muc1.display.antigenChains, ['C']);
   assert.deepEqual(muc1.display.antibodyChains, ['A', 'B']);
 
+  const nectin4 = catalogEntryForFilename(catalog, 'NECTIN4-Fab-01.pdb');
+  assert.ok(nectin4, 'NECTIN4-Fab-01 should be represented in the catalog');
+  assert.equal(nectin4.target, 'Nectin-4');
+  assert.equal(nectin4.organismTaxId, 9606);
+  assert.equal(nectin4.aliasPrefix, 'NECTIN4-Fab');
+  assert.deepEqual(nectin4.display.antigenChains, ['A']);
+  assert.deepEqual(nectin4.display.antibodyChains, ['H', 'L']);
+
   const supportList = buildStructureSupportPromptList(catalog);
   assert.match(supportList, /PD-L1\/CD274/);
   assert.match(supportList, /SARS-CoV-2 RBD\/S/);
@@ -46,6 +54,10 @@ test('local structure catalog is the machine-readable inventory for route-backed
   assert.match(supportList, /Mesothelin\/MSLN/);
   assert.match(supportList, /Claudin 18\.2\/CLDN18/);
   assert.match(supportList, /B7-H3\/CD276/);
+  assert.match(supportList, /Nectin-4\/NECTIN4/);
+  assert.match(supportList, /GPRC5D/);
+  assert.match(supportList, /CEACAM5\/CEA/);
+  assert.match(supportList, /STEAP1/);
 });
 
 test('catalog-derived target map can route aliases without hand-editing target maps', () => {
@@ -62,6 +74,12 @@ test('catalog-derived target map can route aliases without hand-editing target m
   assert.equal(map[normalizeStructureCatalogKey('CLDN18')], 'solid_tumor_cldn18');
   assert.equal(map[normalizeStructureCatalogKey('B7-H3')], 'solid_tumor_b7h3');
   assert.equal(map[normalizeStructureCatalogKey('CD276')], 'solid_tumor_b7h3');
+  assert.equal(map[normalizeStructureCatalogKey('Nectin-4')], 'solid_tumor_nectin4');
+  assert.equal(map[normalizeStructureCatalogKey('PVRL4')], 'solid_tumor_nectin4');
+  assert.equal(map[normalizeStructureCatalogKey('GPRC5D')], 'heme_gprc5d');
+  assert.equal(map[normalizeStructureCatalogKey('CEA')], 'solid_tumor_ceacam5');
+  assert.equal(map[normalizeStructureCatalogKey('CEACAM5')], 'solid_tumor_ceacam5');
+  assert.equal(map[normalizeStructureCatalogKey('STEAP1')], 'prostate_steap1');
 });
 
 test('client generated structure catalog stays synchronized with JSON source', () => {
