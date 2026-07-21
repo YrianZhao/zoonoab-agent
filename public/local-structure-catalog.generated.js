@@ -2,16 +2,16 @@
 (function(){
   window.ZOONOAB_LOCAL_STRUCTURE_CATALOG = {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-21T13:45:14.647Z",
+  "generatedAt": "2026-07-21T14:04:21.968Z",
   "summary": {
-    "pdbFileCount": 462,
-    "routePresetCount": 46,
-    "routeableRoutePresetCount": 45,
-    "promptEligibleRoutePresetCount": 45,
-    "routePresetFileCount": 398,
-    "libraryAssetCount": 84
+    "pdbFileCount": 465,
+    "routePresetCount": 47,
+    "routeableRoutePresetCount": 46,
+    "promptEligibleRoutePresetCount": 46,
+    "routePresetFileCount": 399,
+    "libraryAssetCount": 86
   },
-  "promptSupportTargets": "IL-33/IL33、TSLP、PD-L1/CD274、PD-1/PDCD1、CTLA-4/CTLA4、CD20/MS4A1、CD19、CD3/CD3E/CD3G、C5、IL-6R/IL6R、IL-4Rα/IL4R、CD25/IL2RA、CD38、TIGIT、CD47、LAG-3/LAG3、TROP-2/TACSTD2、BCMA/TNFRSF17、IgE/IGH、CGRP receptor/CALCRL/RAMP1、HER2/ERBB2、EGFR、VEGF-A/VEGFA、TNF、IL-17A/IL17A、IL-23/IL23A/IL12B、RSV F/F、SARS-CoV-2 RBD/S、Influenza HA/HA、Influenza NA/NA、PCSK9、ANGPTL3、IL-1B、GIPR、DAT/SLC6A3、Canine NGF/NGF、Mesothelin/MSLN、Claudin 18.2/CLDN18、B7-H3/CD276、MUC1、Nectin-4/NECTIN4、GPRC5D、CEACAM5/CEA、STEAP1",
+  "promptSupportTargets": "IL-33/IL33、TSLP、PD-L1/CD274、PD-1/PDCD1、CTLA-4/CTLA4、CD20/MS4A1、CD19、CD3/CD3E/CD3G、C5、IL-6R/IL6R、IL-4Rα/IL4R、CD25/IL2RA、CD38、TIGIT、CD47、LAG-3/LAG3、TROP-2/TACSTD2、BCMA/TNFRSF17、IgE/IGH、CGRP receptor/CALCRL/RAMP1、HER2/ERBB2、EGFR、VEGF-A/VEGFA、TNF、IL-17A/IL17A、IL-23/IL23A/IL12B、RSV F/F、SARS-CoV-2 RBD/S、Influenza HA/HA、Influenza NA/NA、PCSK9、ANGPTL3、IL-1B、GIPR、DAT/SLC6A3、Canine NGF/NGF、Mesothelin/MSLN、Claudin 18.2/CLDN18、B7-H3/CD276、MUC1、Nectin-4/NECTIN4、GPRC5D、CEACAM5/CEA、STEAP1、CAIX/CA9",
   "routePresets": [
     {
       "routeId": "allergic_asthma",
@@ -2319,6 +2319,50 @@
         "visualColors": {
           "antigen": "#14B8A6",
           "antibody": "#F97316"
+        }
+      }
+    },
+    {
+      "routeId": "renal_caix",
+      "aliasPrefix": "CAIX-Fab",
+      "target": "CAIX",
+      "gene": "CA9",
+      "aliases": [
+        "CA9",
+        "Carbonic anhydrase IX",
+        "Carbonic anhydrase 9",
+        "G250",
+        "MN"
+      ],
+      "promptLabel": "CAIX/CA9",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "CAIX-Fab-01.pdb"
+      ],
+      "display": {
+        "structureTitle": "CAIX Fab 肾癌相关表位结合构象",
+        "structureFamily": "肾癌相关缺氧表面抗原 · CAIX peptide Fab 候选",
+        "visualSummary": "展示 CAIX/CA9 外露表位肽与 M75 Fab 的真实实验复合物，不将其表述为完整天然 CAIX ectodomain 整体形态。",
+        "structuralBasis": "RCSB 2HKF CAIX proteoglycan-like domain peptide epitope / M75 Fab complex",
+        "antigenChains": [
+          "P"
+        ],
+        "antibodyChains": [
+          "H",
+          "L"
+        ],
+        "sourceAntigenChains": [
+          "P"
+        ],
+        "sourceAntibodyChains": [
+          "H",
+          "L"
+        ],
+        "visualColors": {
+          "antigen": "#14B8A6",
+          "antibody": "#0EA5E9"
         }
       }
     }

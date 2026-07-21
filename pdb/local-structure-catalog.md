@@ -4,11 +4,11 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 
 ## Summary
 
-- PDB files: 462
-- Route presets: 46
-- Routeable presets: 45
-- Prompt-eligible structure-supported targets: 45
-- Library assets: 84
+- PDB files: 465
+- Route presets: 47
+- Routeable presets: 46
+- Prompt-eligible structure-supported targets: 46
+- Library assets: 86
 
 ## Route-backed structure families
 
@@ -60,6 +60,7 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 | heme_gprc5d | GPRC5D | GPRC5D | GPRC5D-Fab | 1 | Homo sapiens | RCSB 9IMA GPRC5D dimer / talquetamab Fab complex |
 | solid_tumor_ceacam5 | CEACAM5 | CEACAM5 | CEACAM5-Fab | 1 | Homo sapiens | RCSB 8BW0 CEACAM5 A3-B3 domain / tusamitamab Fab complex |
 | prostate_steap1 | STEAP1 | STEAP1 | STEAP1-Fab | 1 | Homo sapiens | RCSB 6Y9B trimeric human STEAP1 / Fab120.545 complex |
+| renal_caix | CAIX | CA9 | CAIX-Fab | 1 | Homo sapiens | RCSB 2HKF CAIX proteoglycan-like domain peptide epitope / M75 Fab complex |
 
 ## Extension priorities
 

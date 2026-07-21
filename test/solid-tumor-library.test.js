@@ -15,7 +15,7 @@ function readModelText(model) {
 test('solid-tumor asset library keeps exact local sources for non-routeable tumor targets', () => {
   assert.equal(manifest.schemaVersion, 1);
   assert.equal(manifest.totalModels, manifest.models.length);
-  assert.equal(manifest.totalModels, 7);
+  assert.equal(manifest.totalModels, 9);
 
   for (const model of manifest.models) {
     assert.ok(fs.existsSync(path.join(ROOT, 'pdb', model.filename)), model.filename + ' should exist locally');
@@ -30,10 +30,11 @@ test('solid-tumor antigen-only assets keep empty antibody chain remarks', () => 
     'SOLIDLIB-HUMAN-FOLR1-RCSB-4KM6.pdb',
     'SOLIDLIB-HUMAN-FOLR1-RCSB-4KM7.pdb',
     'SOLIDLIB-HUMAN-FOLR1-RCSB-4KMX.pdb',
-    'SOLIDLIB-HUMAN-CEACAM6-RCSB-4WHC.pdb'
+    'SOLIDLIB-HUMAN-CEACAM6-RCSB-4WHC.pdb',
+    'SOLIDLIB-HUMAN-CAIX-RCSB-6FE2.pdb'
   ]) {
     const text = fs.readFileSync(path.join(ROOT, 'pdb', filename), 'utf8');
-    assert.match(text, /REMARK 901 TARGET: (FOLR1|CEACAM6)/);
+    assert.match(text, /REMARK 901 TARGET: (FOLR1|CEACAM6|CAIX)/);
     assert.match(text, /REMARK 910 ORGANISM: Homo sapiens/);
     assert.match(text, /REMARK 911 TAXID: 9606/);
     const antibodyLine = text.split(/\r?\n/).find(line => line.startsWith('REMARK 905 ANTIBODY CHAINS:'));
@@ -55,4 +56,21 @@ test('solid-tumor non-Fab complexes keep truthful local chain-role remarks', () 
   assert.match(gpc3, /REMARK 904 ANTIGEN CHAINS: A/);
   assert.match(gpc3, /REMARK 905 ANTIBODY CHAINS: B/);
   assert.match(gpc3, /REMARK 912 ACCESSION: 9NTQ/);
+
+  const epcam = readModelText(manifest.models.find(model => model.accession === '6I07'));
+  assert.match(epcam, /REMARK 901 TARGET: EpCAM/);
+  assert.match(epcam, /REMARK 902 FORMAT: scFv/);
+  assert.match(epcam, /REMARK 904 ANTIGEN CHAINS: C,D/);
+  assert.match(epcam, /REMARK 905 ANTIBODY CHAINS: A,B/);
+  assert.match(epcam, /REMARK 912 ACCESSION: 6I07/);
+});
+
+test('CAIX routeable preset keeps exact peptide-epitope Fab remarks locally', () => {
+  const text = fs.readFileSync(path.join(ROOT, 'pdb', 'CAIX-Fab-01.pdb'), 'utf8');
+  assert.match(text, /REMARK 900 STATIC ROUTE PRESET: renal_caix/);
+  assert.match(text, /REMARK 901 TARGET: CAIX/);
+  assert.match(text, /REMARK 902 FORMAT: Fab/);
+  assert.match(text, /REMARK 904 ANTIGEN CHAINS: P/);
+  assert.match(text, /REMARK 905 ANTIBODY CHAINS: H,L/);
+  assert.match(text, /REMARK 912 ACCESSION: 2HKF/);
 });

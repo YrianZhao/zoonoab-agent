@@ -19,9 +19,9 @@ const ROOT = path.resolve(__dirname, '..');
 test('local structure catalog is the machine-readable inventory for route-backed models', () => {
   const catalog = loadLocalStructureCatalog(ROOT);
   assert.equal(catalog.schemaVersion, 1);
-  assert.ok(catalog.summary.pdbFileCount >= 460);
+  assert.ok(catalog.summary.pdbFileCount >= 465);
   assert.ok(catalog.summary.promptEligibleRoutePresetCount >= 30);
-  assert.ok(catalog.summary.libraryAssetCount >= 84);
+  assert.ok(catalog.summary.libraryAssetCount >= 86);
 
   const covid = catalogEntryForFilename(catalog, 'SC2RBD-Fab-01.pdb');
   assert.ok(covid, 'SC2RBD-Fab-01 should be represented in the catalog');
@@ -65,6 +65,26 @@ test('local structure catalog is the machine-readable inventory for route-backed
   assert.deepEqual(psma.antigenChains, ['A', 'E']);
   assert.deepEqual(psma.antibodyChains, ['H', 'Q']);
 
+  const caix = catalogEntryForFilename(catalog, 'CAIX-Fab-01.pdb');
+  assert.ok(caix, 'CAIX-Fab-01 should be represented in the catalog');
+  assert.equal(caix.target, 'CAIX');
+  assert.equal(caix.gene, 'CA9');
+  assert.equal(caix.organismTaxId, 9606);
+  assert.equal(caix.aliasPrefix, 'CAIX-Fab');
+  assert.equal(caix.structureClass, 'target_exact_epitope_complex');
+  assert.deepEqual(caix.display.antigenChains, ['P']);
+  assert.deepEqual(caix.display.antibodyChains, ['H', 'L']);
+
+  const epcam = catalogEntryForFilename(catalog, 'SOLIDLIB-HUMAN-EPCAM-SCFV-RCSB-6I07.pdb');
+  assert.ok(epcam, 'solid-tumor EpCAM asset should be represented in the catalog');
+  assert.equal(epcam.target, 'EpCAM');
+  assert.equal(epcam.gene, 'EPCAM');
+  assert.equal(epcam.organismTaxId, 9606);
+  assert.equal(epcam.antibodyFormat, 'scFv');
+  assert.equal(epcam.structureClass, 'target_exact_scfv_complex');
+  assert.deepEqual(epcam.antigenChains, ['C', 'D']);
+  assert.deepEqual(epcam.antibodyChains, ['A', 'B']);
+
   const supportList = buildStructureSupportPromptList(catalog);
   assert.match(supportList, /PD-L1\/CD274/);
   assert.match(supportList, /SARS-CoV-2 RBD\/S/);
@@ -76,6 +96,7 @@ test('local structure catalog is the machine-readable inventory for route-backed
   assert.match(supportList, /Nectin-4\/NECTIN4/);
   assert.match(supportList, /GPRC5D/);
   assert.match(supportList, /CEACAM5\/CEA/);
+  assert.match(supportList, /CAIX\/CA9/);
   assert.match(supportList, /STEAP1/);
 });
 
@@ -93,6 +114,8 @@ test('catalog-derived target map can route aliases without hand-editing target m
   assert.equal(map[normalizeStructureCatalogKey('CLDN18')], 'solid_tumor_cldn18');
   assert.equal(map[normalizeStructureCatalogKey('B7-H3')], 'solid_tumor_b7h3');
   assert.equal(map[normalizeStructureCatalogKey('CD276')], 'solid_tumor_b7h3');
+  assert.equal(map[normalizeStructureCatalogKey('CAIX')], 'renal_caix');
+  assert.equal(map[normalizeStructureCatalogKey('CA9')], 'renal_caix');
   assert.equal(map[normalizeStructureCatalogKey('Nectin-4')], 'solid_tumor_nectin4');
   assert.equal(map[normalizeStructureCatalogKey('PVRL4')], 'solid_tumor_nectin4');
   assert.equal(map[normalizeStructureCatalogKey('GPRC5D')], 'heme_gprc5d');

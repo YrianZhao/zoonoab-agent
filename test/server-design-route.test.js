@@ -651,6 +651,7 @@ test('server previews curated real complexes for common explicit antigen targets
     { text: '设计10个针对Mesothelin的Fab', expectedTarget: 'Mesothelin', expectedPrefix: /^MSLN-Fab-/ },
     { text: '设计10个针对Claudin 18.2的Fab', expectedTarget: 'Claudin 18.2', expectedPrefix: /^CLDN18\.2-Fab-/ },
     { text: '设计10个针对B7-H3的Fab', expectedTarget: 'B7-H3', expectedPrefix: /^CD276-Fab-/ },
+    { text: '设计10个针对CAIX的Fab', expectedTarget: 'CAIX', expectedPrefix: /^CAIX-Fab-/ },
     { text: '设计10个针对Nectin-4的Fab', expectedTarget: 'Nectin-4', expectedPrefix: /^NECTIN4-Fab-/ },
     { text: '设计10个针对GPRC5D的Fab', expectedTarget: 'GPRC5D', expectedPrefix: /^GPRC5D-Fab-/ },
     { text: '设计10个针对CEA的Fab', expectedTarget: 'CEACAM5', expectedPrefix: /^CEACAM5-Fab-/ },

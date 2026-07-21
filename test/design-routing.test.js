@@ -54,13 +54,16 @@ test('keeps newly cataloged solid-tumor targets stable in explicit design reques
     ['设计10个针对MUC1的Fab', 'MUC1'],
     ['设计10个针对Mesothelin的Fab', 'Mesothelin'],
     ['设计10个针对B7-H3的Fab', 'B7-H3'],
+    ['设计10个针对CAIX的Fab', 'CAIX'],
+    ['设计10个针对CA9的Fab', 'CAIX'],
     ['设计10个针对CD276的Fab', 'B7-H3'],
     ['设计一个针对 Claudin 18.2 的 Fab 抗体', 'Claudin 18.2'],
     ['设计10个针对CLDN18的Fab', 'Claudin 18.2'],
     ['设计10个针对Nectin-4的Fab', 'Nectin-4'],
     ['设计10个针对GPRC5D的Fab', 'GPRC5D'],
     ['设计10个针对CEA的Fab', 'CEACAM5'],
-    ['设计10个针对STEAP1的Fab', 'STEAP1']
+    ['设计10个针对STEAP1的Fab', 'STEAP1'],
+    ['设计一个针对 EpCAM 的 scFv 抗体', 'EpCAM']
   ];
 
   for (const [text, expectedTarget] of cases) {

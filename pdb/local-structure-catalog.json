@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-21T13:45:14.647Z",
+  "generatedAt": "2026-07-21T14:04:21.968Z",
   "sourceFiles": [
     "server.js:ROUTE_3D_PRESETS",
     "server.js:ROUTE_3D_PRESET_ORGANISMS_FALLBACK",
@@ -2825,6 +2825,61 @@
           "antibody": "#F97316"
         }
       }
+    },
+    {
+      "routeId": "renal_caix",
+      "aliasPrefix": "CAIX-Fab",
+      "target": "CAIX",
+      "gene": "CA9",
+      "aliases": [
+        "CA9",
+        "Carbonic anhydrase IX",
+        "Carbonic anhydrase 9",
+        "G250",
+        "MN"
+      ],
+      "organismName": "Homo sapiens",
+      "organismTaxId": 9606,
+      "antibodyFormat": "Fab",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "structureClass": "target_exact_epitope_complex",
+      "sourceClass": "catalog_manual",
+      "filenamePattern": "CAIX-Fab-NN.pdb",
+      "files": [
+        "CAIX-Fab-01.pdb"
+      ],
+      "fileCount": 1,
+      "promptLabel": "CAIX/CA9",
+      "structuralBasis": "RCSB 2HKF CAIX proteoglycan-like domain peptide epitope / M75 Fab complex",
+      "sourcePdbIds": [
+        "2HKF"
+      ],
+      "display": {
+        "structureTitle": "CAIX Fab 肾癌相关表位结合构象",
+        "structureFamily": "肾癌相关缺氧表面抗原 · CAIX peptide Fab 候选",
+        "visualSummary": "展示 CAIX/CA9 外露表位肽与 M75 Fab 的真实实验复合物，不将其表述为完整天然 CAIX ectodomain 整体形态。",
+        "structuralBasis": "RCSB 2HKF CAIX proteoglycan-like domain peptide epitope / M75 Fab complex",
+        "antigenChains": [
+          "P"
+        ],
+        "antibodyChains": [
+          "H",
+          "L"
+        ],
+        "sourceAntigenChains": [
+          "P"
+        ],
+        "sourceAntibodyChains": [
+          "H",
+          "L"
+        ],
+        "visualColors": {
+          "antigen": "#14B8A6",
+          "antibody": "#0EA5E9"
+        }
+      }
     }
   ],
   "libraryAssets": [
@@ -5232,6 +5287,92 @@
       "sourceAntibodyChains": [
         "B"
       ]
+    },
+    {
+      "sourceCatalog": "solid-tumor-library-manifest.json",
+      "filename": "SOLIDLIB-HUMAN-CAIX-RCSB-6FE2.pdb",
+      "localPath": "pdb/SOLIDLIB-HUMAN-CAIX-RCSB-6FE2.pdb",
+      "target": "CAIX",
+      "gene": "CA9",
+      "aliases": [
+        "CA9",
+        "Carbonic anhydrase IX",
+        "G250"
+      ],
+      "protein": "Carbonic anhydrase 9",
+      "organismName": "Homo sapiens",
+      "organismTaxId": 9606,
+      "accession": "6FE2",
+      "uniprotAccession": "Q16790",
+      "source": "RCSB PDB",
+      "sourceUrl": "https://files.rcsb.org/download/6FE2.pdb",
+      "sourceEntryUrl": "https://www.rcsb.org/structure/6FE2",
+      "structureClass": "experimental_antigen_only",
+      "routeable": false,
+      "promptEligible": false,
+      "fileCount": 1,
+      "experimentalMethod": "X-ray diffraction",
+      "resolutionAngstrom": 1.87,
+      "biologicalAssembly": "no additional assembly required",
+      "structuralBasis": "RCSB 6FE2 human carbonic anhydrase IX ectodomain structure; antigen-only reference",
+      "status": "asset_only",
+      "context": "肾癌 / 缺氧相关实体瘤 CAIX 本地抗原参考",
+      "note": "Exact human CAIX experimental antigen structure without antibody partner. Use as a local antigen reference rather than a prompt-eligible Fab route.",
+      "antigenChains": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "antibodyChains": []
+    },
+    {
+      "sourceCatalog": "solid-tumor-library-manifest.json",
+      "filename": "SOLIDLIB-HUMAN-EPCAM-SCFV-RCSB-6I07.pdb",
+      "localPath": "pdb/SOLIDLIB-HUMAN-EPCAM-SCFV-RCSB-6I07.pdb",
+      "target": "EpCAM",
+      "gene": "EPCAM",
+      "aliases": [
+        "EPCAM",
+        "TACSTD1",
+        "TROP1"
+      ],
+      "protein": "Epithelial cell adhesion molecule",
+      "organismName": "Homo sapiens",
+      "organismTaxId": 9606,
+      "accession": "6I07",
+      "uniprotAccession": "P16422",
+      "source": "RCSB PDB",
+      "sourceUrl": "https://files.rcsb.org/download/6I07.pdb",
+      "sourceEntryUrl": "https://www.rcsb.org/structure/6I07",
+      "structureClass": "target_exact_scfv_complex",
+      "antibodyFormat": "scFv",
+      "routeable": false,
+      "promptEligible": false,
+      "fileCount": 1,
+      "experimentalMethod": "X-ray diffraction",
+      "resolutionAngstrom": 2.35,
+      "biologicalAssembly": "no additional assembly required",
+      "structuralBasis": "RCSB 6I07 human EpCAM ectodomain dimer in complex with scFv",
+      "status": "asset_only",
+      "context": "结直肠癌 / 胃肠道上皮肿瘤 EpCAM 本地 scFv 复合物参考",
+      "note": "Exact human EpCAM complex with scFv chains rather than a Fab route. Keep out of prompt-eligible Fab routing unless the project adopts an explicit scFv route policy.",
+      "antigenChains": [
+        "C",
+        "D"
+      ],
+      "antibodyChains": [
+        "A",
+        "B"
+      ],
+      "sourceAntigenChains": [
+        "C",
+        "D"
+      ],
+      "sourceAntibodyChains": [
+        "A",
+        "B"
+      ]
     }
   ],
   "extensionPriorities": [
@@ -5281,11 +5422,11 @@
     }
   ],
   "summary": {
-    "pdbFileCount": 462,
-    "routePresetCount": 46,
-    "routeableRoutePresetCount": 45,
-    "promptEligibleRoutePresetCount": 45,
-    "routePresetFileCount": 398,
-    "libraryAssetCount": 84
+    "pdbFileCount": 465,
+    "routePresetCount": 47,
+    "routeableRoutePresetCount": 46,
+    "promptEligibleRoutePresetCount": 46,
+    "routePresetFileCount": 399,
+    "libraryAssetCount": 86
   }
 }

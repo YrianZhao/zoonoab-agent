@@ -122,6 +122,27 @@ test('local PDB model library API lists local structures with viewer metadata', 
   assert.deepEqual(psma.sourceAntibodyChains, ['H', 'Q']);
   assert.match(psma.structuralBasis, /9HLW/);
   assert.equal(psma.targetTag.verifiedTag, true);
+
+  const caix = data.models.find(model => model.filename === 'CAIX-Fab-01.pdb');
+  assert.ok(caix, 'CAIX routeable Fab preset should be listed');
+  assert.equal(caix.targetDisplay, 'CAIX');
+  assert.equal(caix.antibodyFormat, 'Fab');
+  assert.equal(caix.structureKind, 'Fab 抗原-抗体复合体');
+  assert.deepEqual(caix.antigenChains, ['P']);
+  assert.deepEqual(caix.antibodyChains, ['H', 'L']);
+  assert.match(caix.structuralBasis, /2HKF/);
+  assert.equal(caix.targetTag.verifiedTag, true);
+  const caixViewerPdbUrl = new URL(caix.viewerUrl, 'http://127.0.0.1').searchParams.get('pdb');
+  assert.match(caixViewerPdbUrl, /chains=P%2CH%2CL/);
+
+  const epcam = data.models.find(model => model.filename === 'SOLIDLIB-HUMAN-EPCAM-SCFV-RCSB-6I07.pdb');
+  assert.ok(epcam, 'solid-tumor EpCAM scFv asset should be listed');
+  assert.equal(epcam.targetDisplay, 'EpCAM');
+  assert.equal(epcam.antibodyFormat, 'scFv');
+  assert.equal(epcam.structureKind, 'scFv 抗原-抗体复合体');
+  assert.deepEqual(epcam.antigenChains, ['C', 'D']);
+  assert.deepEqual(epcam.antibodyChains, ['A', 'B']);
+  assert.equal(epcam.targetTag.verifiedTag, true);
 });
 
 test('structure catalog API exposes route-backed structure inventory', async () => {
