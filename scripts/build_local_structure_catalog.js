@@ -14,6 +14,11 @@ const INDEX_PATH = path.join(ROOT, 'public', 'index.html');
 const CATALOG_PATH = path.join(PDB_DIR, 'local-structure-catalog.json');
 const CATALOG_MD_PATH = path.join(PDB_DIR, 'local-structure-catalog.md');
 const CLIENT_CATALOG_PATH = path.join(ROOT, 'public', 'local-structure-catalog.generated.js');
+const SIMPLE_LIBRARY_MANIFESTS = [
+  'veterinary-library-manifest.json',
+  'neuro-library-manifest.json',
+  'solid-tumor-library-manifest.json'
+];
 
 const GENE_BY_TARGET = {
   'PD-L1': 'CD274',
@@ -399,25 +404,41 @@ function summarizeVirusAsset(model) {
 
 function summarizeSimpleManifestAsset(model, sourceCatalog) {
   const filename = model.filename || model.file || '';
-  return compactObject({
+  const structureClass = String(model.structureClass || '');
+  const asset = compactObject({
     sourceCatalog,
     filename,
     localPath: model.localPath || (filename ? 'pdb/' + filename : ''),
     target: model.target || model.label || '',
     gene: model.gene || '',
+    aliases: model.aliases || [],
+    protein: model.protein || '',
     organismName: model.organism || model.organismName || '',
     organismTaxId: model.organismTaxId || null,
     accession: model.accession || '',
+    uniprotAccession: model.uniprotAccession || '',
+    referenceAccession: model.referenceAccession || '',
     source: model.source || model.sourceDatabase || '',
     sourceUrl: model.sourceUrl || model.downloadUrl || '',
-    structureClass: model.structureClass || '',
-    routeable: /^target_exact_display_pose$/.test(String(model.structureClass || '')),
+    sourceEntryUrl: model.sourceEntryUrl || '',
+    structureClass,
+    antibodyFormat: model.antibodyFormat || '',
+    routeable: /^target_exact_display_pose$/.test(structureClass),
     promptEligible: false,
     fileCount: filename ? 1 : 0,
-    antigenChains: model.antigenChains || [],
-    antibodyChains: model.antibodyChains || [],
-    context: model.context || ''
+    experimentalMethod: model.experimentalMethod || '',
+    resolutionAngstrom: model.resolutionAngstrom || null,
+    biologicalAssembly: model.biologicalAssembly || '',
+    structuralBasis: model.structuralBasis || '',
+    status: model.status || '',
+    context: model.context || '',
+    note: model.note || ''
   });
+  if (Array.isArray(model.antigenChains)) asset.antigenChains = model.antigenChains;
+  if (Array.isArray(model.antibodyChains)) asset.antibodyChains = model.antibodyChains;
+  if (Array.isArray(model.sourceAntigenChains)) asset.sourceAntigenChains = model.sourceAntigenChains;
+  if (Array.isArray(model.sourceAntibodyChains)) asset.sourceAntibodyChains = model.sourceAntibodyChains;
+  return asset;
 }
 
 function buildLibraryAssets() {
@@ -426,13 +447,11 @@ function buildLibraryAssets() {
   if (virus && Array.isArray(virus.models)) {
     assets.push(...virus.models.map(summarizeVirusAsset));
   }
-  const veterinary = readJsonIfExists(path.join(PDB_DIR, 'veterinary-library-manifest.json'));
-  if (veterinary && Array.isArray(veterinary.models)) {
-    assets.push(...veterinary.models.map(model => summarizeSimpleManifestAsset(model, 'veterinary-library-manifest.json')));
-  }
-  const neuro = readJsonIfExists(path.join(PDB_DIR, 'neuro-library-manifest.json'));
-  if (neuro && Array.isArray(neuro.models)) {
-    assets.push(...neuro.models.map(model => summarizeSimpleManifestAsset(model, 'neuro-library-manifest.json')));
+  for (const manifestName of SIMPLE_LIBRARY_MANIFESTS) {
+    const manifest = readJsonIfExists(path.join(PDB_DIR, manifestName));
+    if (manifest && Array.isArray(manifest.models)) {
+      assets.push(...manifest.models.map(model => summarizeSimpleManifestAsset(model, manifestName)));
+    }
   }
   const seen = new Set();
   return assets.filter(asset => {

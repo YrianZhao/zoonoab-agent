@@ -4,11 +4,11 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 
 ## Summary
 
-- PDB files: 455
+- PDB files: 462
 - Route presets: 46
 - Routeable presets: 45
 - Prompt-eligible structure-supported targets: 45
-- Library assets: 77
+- Library assets: 84
 
 ## Route-backed structure families
 
@@ -68,7 +68,7 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 | 1 | common_disease_tumor_gaps | FOLR1/FRalpha, DLL3, PSMA/FOLH1, CEACAM6, GPC3 | These disease-linked surface antigens remain common user asks, but still lack a routeable exact local Fab family or only have antigen-only / non-Fab public structures. |
 | 2 | new_common_disease_route_families | Nectin-4/NECTIN4, GPRC5D, CEACAM5/CEA, STEAP1 | These newly added exact complexes extend disease-first coverage for urothelial, myeloma, colorectal and prostate cancer requests; follow-up work should add route variants and alternates rather than unrelated defaults. |
 | 3 | route_variants | VHH variants for prepared Fab routes, species-specific veterinary variants, viral subtype/strain variants | Adding variants under existing target identities improves coverage without multiplying unrelated route logic. |
-| 4 | library_asset_promotion | VIRUSLIB surface proteins, VETLIB predicted antigens, NEUROLIB reference assets | Some assets can become routeable only after target identity, chain roles and candidate display metadata are filled. |
+| 4 | library_asset_promotion | VIRUSLIB surface proteins, VETLIB predicted antigens, NEUROLIB reference assets, SOLIDLIB exact antigen / non-Fab tumor assets | Some assets can become routeable only after target identity, chain roles, display metadata and route policy are filled. |
 
 ## Maintenance contract
 

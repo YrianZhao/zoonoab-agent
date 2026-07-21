@@ -98,6 +98,30 @@ test('local PDB model library API lists local structures with viewer metadata', 
   const fluViewerPdbUrl = new URL(flu.viewerUrl, 'http://127.0.0.1').searchParams.get('pdb');
   assert.match(fluViewerPdbUrl, /chains=A%2CD%2CB%2CC/);
   assert.match(flu.updatedAt, /^\d{4}-\d{2}-\d{2}T/);
+
+  const folr1 = data.models.find(model => model.filename === 'SOLIDLIB-HUMAN-FOLR1-RCSB-4KM6.pdb');
+  assert.ok(folr1, 'solid-tumor antigen-only asset should be listed');
+  assert.equal(folr1.targetDisplay, 'FOLR1');
+  assert.equal(folr1.antibodyFormat, '');
+  assert.equal(folr1.structureKind, '实验抗原结构');
+  assert.deepEqual(folr1.antigenChains, ['A']);
+  assert.deepEqual(folr1.antibodyChains, []);
+  assert.equal(folr1.targetTag.tagged, true);
+  assert.equal(folr1.targetTag.verifiedTag, true);
+  assert.equal(folr1.targetTag.source, 'pdb-remark');
+  const folr1ViewerPdbUrl = new URL(folr1.viewerUrl, 'http://127.0.0.1').searchParams.get('pdb');
+  assert.match(folr1ViewerPdbUrl, /chains=A$/);
+
+  const psma = data.models.find(model => model.filename === 'SOLIDLIB-HUMAN-PSMA-VHH-RCSB-9HLW.pdb');
+  assert.ok(psma, 'solid-tumor PSMA nanobody asset should be listed');
+  assert.equal(psma.targetDisplay, 'PSMA');
+  assert.equal(psma.antibodyFormat, 'VHH');
+  assert.equal(psma.structureKind, 'VHH 抗原-抗体复合体');
+  assert.deepEqual(psma.antigenChains, ['A', 'E']);
+  assert.deepEqual(psma.antibodyChains, ['H']);
+  assert.deepEqual(psma.sourceAntibodyChains, ['H', 'Q']);
+  assert.match(psma.structuralBasis, /9HLW/);
+  assert.equal(psma.targetTag.verifiedTag, true);
 });
 
 test('structure catalog API exposes route-backed structure inventory', async () => {

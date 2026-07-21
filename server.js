@@ -4882,13 +4882,16 @@ function inferLocalPDBFormatFromFilename(filename, remarks) {
 
 function buildLocalPDBDisplayMetadata(filename, remarks) {
   const preset = localPDBPresetForFilename(filename);
+  const catalogEntry = localStructureCatalogEntryForFile(filename);
   const targetTag = buildLocalPDBTargetTag(filename, remarks);
   const targetDisplay = targetTag.target;
   const antibodyFormat = targetTag.antibodyFormat;
   const hasAntibodyChains = Array.isArray(remarks && remarks.antibody) && remarks.antibody.length > 0;
   const representativeInterface = Boolean(preset && preset.displayMode === 'representative_interface');
+  const structureClass = String(catalogEntry && catalogEntry.structureClass || '').trim().toLowerCase();
   let structureKind = '抗原结构预设';
-  if (representativeInterface) structureKind = (antibodyFormat || '抗体') + ' 代表性实验结合界面';
+  if (!hasAntibodyChains && /experimental_antigen/.test(structureClass)) structureKind = '实验抗原结构';
+  else if (representativeInterface) structureKind = (antibodyFormat || '抗体') + ' 代表性实验结合界面';
   else if (antibodyFormat === 'Binder') structureKind = '抗原-候选抗体复合体';
   else if (antibodyFormat) structureKind = antibodyFormat + ' 抗原-抗体复合体';
   else if (hasAntibodyChains) structureKind = '抗原-抗体复合体';
@@ -4911,10 +4914,10 @@ function routeChainInfo(preset, file) {
   const remarks = readLocalPDBRemarks(file);
   const sourceAntigen = preset && Array.isArray(preset.sourceAntigenChains) && preset.sourceAntigenChains.length
     ? preset.sourceAntigenChains
-    : (remarks.antigen && remarks.antigen.length ? remarks.antigen : ['A']);
+    : (remarks.antigen && remarks.antigen.length ? remarks.antigen : []);
   const sourceAntibody = preset && Array.isArray(preset.sourceAntibodyChains) && preset.sourceAntibodyChains.length
     ? preset.sourceAntibodyChains
-    : (remarks.antibody && remarks.antibody.length ? remarks.antibody : ['B']);
+    : (remarks.antibody && remarks.antibody.length ? remarks.antibody : []);
   return {
     antigen: preset && Array.isArray(preset.antigenChains) && preset.antigenChains.length ? preset.antigenChains : sourceAntigen,
     antibody: preset && Array.isArray(preset.antibodyChains) && preset.antibodyChains.length ? preset.antibodyChains : sourceAntibody,
@@ -5971,10 +5974,16 @@ function localPDBPublicUrl(filename) {
 }
 
 function localPDBViewerUrl(filename, name, chains) {
-  const antigenChains = chains && Array.isArray(chains.antigen) && chains.antigen.length ? chains.antigen : ['A'];
-  const antibodyChains = chains && Array.isArray(chains.antibody) && chains.antibody.length ? chains.antibody : ['B'];
+  const antigenChains = chains && Array.isArray(chains.antigen)
+    ? [...new Set(chains.antigen.map(chain => String(chain || '').trim()).filter(Boolean))]
+    : [];
+  const antibodyChains = chains && Array.isArray(chains.antibody)
+    ? [...new Set(chains.antibody.map(chain => String(chain || '').trim()).filter(Boolean))]
+    : [];
   const visibleChains = [...new Set([...antigenChains, ...antibodyChains])];
-  const pdbUrl = localPDBPublicUrl(filename) + '?chains=' + encodeURIComponent(visibleChains.join(','));
+  const pdbUrl = visibleChains.length
+    ? (localPDBPublicUrl(filename) + '?chains=' + encodeURIComponent(visibleChains.join(',')))
+    : localPDBPublicUrl(filename);
   let url = '/viewer-full.html?pdb=' + encodeURIComponent(pdbUrl);
   url += '&chainA=' + encodeURIComponent('#0891B2');
   url += '&chainB=' + encodeURIComponent('#FB7185');

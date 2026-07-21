@@ -19,8 +19,9 @@ const ROOT = path.resolve(__dirname, '..');
 test('local structure catalog is the machine-readable inventory for route-backed models', () => {
   const catalog = loadLocalStructureCatalog(ROOT);
   assert.equal(catalog.schemaVersion, 1);
-  assert.ok(catalog.summary.pdbFileCount >= 400);
+  assert.ok(catalog.summary.pdbFileCount >= 460);
   assert.ok(catalog.summary.promptEligibleRoutePresetCount >= 30);
+  assert.ok(catalog.summary.libraryAssetCount >= 84);
 
   const covid = catalogEntryForFilename(catalog, 'SC2RBD-Fab-01.pdb');
   assert.ok(covid, 'SC2RBD-Fab-01 should be represented in the catalog');
@@ -45,6 +46,24 @@ test('local structure catalog is the machine-readable inventory for route-backed
   assert.equal(nectin4.aliasPrefix, 'NECTIN4-Fab');
   assert.deepEqual(nectin4.display.antigenChains, ['A']);
   assert.deepEqual(nectin4.display.antibodyChains, ['H', 'L']);
+
+  const folr1 = catalogEntryForFilename(catalog, 'SOLIDLIB-HUMAN-FOLR1-RCSB-4KM6.pdb');
+  assert.ok(folr1, 'solid-tumor FOLR1 asset should be represented in the catalog');
+  assert.equal(folr1.target, 'FOLR1');
+  assert.equal(folr1.organismTaxId, 9606);
+  assert.equal(folr1.structureClass, 'experimental_antigen_only');
+  assert.deepEqual(folr1.antigenChains, ['A']);
+  assert.deepEqual(folr1.antibodyChains, []);
+
+  const psma = catalogEntryForFilename(catalog, 'SOLIDLIB-HUMAN-PSMA-VHH-RCSB-9HLW.pdb');
+  assert.ok(psma, 'solid-tumor PSMA asset should be represented in the catalog');
+  assert.equal(psma.target, 'PSMA');
+  assert.equal(psma.gene, 'FOLH1');
+  assert.equal(psma.organismTaxId, 9606);
+  assert.equal(psma.antibodyFormat, 'VHH');
+  assert.equal(psma.structureClass, 'target_exact_nanobody_complex');
+  assert.deepEqual(psma.antigenChains, ['A', 'E']);
+  assert.deepEqual(psma.antibodyChains, ['H', 'Q']);
 
   const supportList = buildStructureSupportPromptList(catalog);
   assert.match(supportList, /PD-L1\/CD274/);
