@@ -111,6 +111,18 @@ The table below is for “what might a user ask next?” planning. `local_existi
 | 阿尔茨海默病 / Alzheimer disease | `Amyloid-beta`, `Tau`, `TREM2` | `Amyloid-beta=new_local`, `Tau=new_local`, `TREM2=new_local` |
 | 呼吸道病毒感染 | `RSV F`, `Influenza HA/NA`, `SARS-CoV-2 RBD` | all `local_existing` |
 
+### Stable Built-In Disease Routing
+
+- `治疗肾盂癌` / `治疗尿路上皮癌` / `治疗膀胱癌` now resolve to `Nectin-4` first, with `FGFR3` and `TROP-2` kept as the comparison candidates.
+- `治疗肾癌` / `治疗透明细胞肾细胞癌` now resolve to `CAIX` first, with `VEGF-A` and `B7-H3` kept as the comparison candidates.
+- `治疗胰腺癌` now resolves to `MUC1` first, with `Mesothelin` and `CEACAM6` kept as the comparison candidates.
+- `治疗胃癌` / `治疗胃食管交界癌` now resolve to `Claudin 18.2` first, with `HER2` and `MET` kept as the comparison candidates.
+- `治疗卵巢癌` now resolves to `Mesothelin` first, with `MUC1` and `FOLR1` kept as the comparison candidates.
+- `治疗前列腺癌` now resolves to `STEAP1` first, with `PSMA` and `B7-H3` kept as the comparison candidates.
+- `治疗结直肠癌` now resolves to `CEACAM5` first, with `EGFR` and `B7-H3` kept as the comparison candidates.
+- `治疗小细胞肺癌` now resolves to `GPC2` first, with `DLL3` and `B7-H3` kept as the comparison candidates.
+- `治疗多发性骨髓瘤` now resolves to `GPRC5D` first, with `BCMA` and `CD38` kept as the comparison candidates.
+
 ## Next High-Value Backlog
 
 1. `DLL3` remains the highest-priority pure backlog target in this disease-first set because this round still did not confirm a suitable public exact antibody-bound structure. Re-check RCSB as new entries appear.

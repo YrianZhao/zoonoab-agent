@@ -257,6 +257,30 @@ test('cleans disease-area wording before using it as a dynamic target', () => {
   assert.equal(extractDiseaseIndication('帮我设计一个针对视神经脊髓炎的抗体'), '视神经脊髓炎');
 });
 
+test('recognizes concise disease treatment asks as disease-first design intents', () => {
+  const cases = [
+    ['治疗肾盂癌', '肾盂癌'],
+    ['治疗尿路上皮癌', '尿路上皮癌'],
+    ['治疗肾癌', '肾癌'],
+    ['治疗胰腺癌', '胰腺癌'],
+    ['治疗胃癌', '胃癌'],
+    ['治疗卵巢癌', '卵巢癌'],
+    ['治疗前列腺癌', '前列腺癌'],
+    ['治疗结直肠癌', '结直肠癌'],
+    ['治疗小细胞肺癌', '小细胞肺癌'],
+    ['治疗多发性骨髓瘤', '多发性骨髓瘤']
+  ];
+
+  for (const [text, expectedDisease] of cases) {
+    const parsed = extractDesignRequest(text);
+    assert.equal(parsed.isDesignRequest, true, text);
+    assert.equal(parsed.target, expectedDisease, text);
+    assert.equal(parsed.hasExplicitTarget, true, text);
+    assert.equal(parsed.abType, 'Fab', text);
+    assert.equal(extractDiseaseIndication(text), expectedDisease, text);
+  }
+});
+
 test('keeps explicit targets inside disease-area requests', () => {
   const parsed = extractDesignRequest('肥胖方向，靶点 GIPR，设计10个抗体');
 

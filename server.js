@@ -7211,6 +7211,123 @@ const OSTEOPOROSIS_SOST_TARGET_RESOLUTION = {
   ]
 };
 
+const UROTHELIAL_NECTIN4_TARGET_RESOLUTION = {
+  selectedTarget: 'Nectin-4',
+  selectedGene: 'NECTIN4',
+  designLabel: 'UTUC-NECTIN4-1',
+  confidence: 0.85,
+  reason: '肾盂癌、上尿路尿路上皮癌和膀胱癌方向可优先围绕 Nectin-4/NECTIN4 展开。Nectin-4 是尿路上皮癌方向最稳定的肿瘤细胞表面黏附分子入口之一，具备明确的外露 Ig 样结构域、抗体药物开发背景和本地 human Nectin-4/Fab 复合物结构，可直接支撑疾病直问后的抗体展示与三维结构映射。',
+  candidates: [
+    { target: 'Nectin-4', gene: 'NECTIN4', rationale: '尿路上皮癌相关表面黏附分子，具备真实 human Nectin-4/Fab 复合物结构与明确开发背景。' },
+    { target: 'FGFR3', gene: 'FGFR3', rationale: '尿路上皮癌中常见受体酪氨酸激酶改变入口，适合分型与表面结构域结合设计比较。' },
+    { target: 'TROP-2', gene: 'TACSTD2', rationale: '常见上皮肿瘤表面抗原，可作为尿路上皮癌方向的机制备选入口。' }
+  ]
+};
+
+const RCC_CAIX_TARGET_RESOLUTION = {
+  selectedTarget: 'CAIX',
+  selectedGene: 'CA9',
+  designLabel: 'RCC-CAIX-1',
+  confidence: 0.84,
+  reason: '肾癌和透明细胞肾细胞癌方向可优先围绕 CAIX/CA9 展开。CAIX 是缺氧诱导的经典肿瘤细胞表面抗原，与肾癌代谢重编程和膜外可及表位关系直接，并具备本地 human CAIX 表位/Fab 复合物结构，适合作为疾病直问后的优先抗体设计入口。',
+  candidates: [
+    { target: 'CAIX', gene: 'CA9', rationale: '透明细胞肾细胞癌最经典的缺氧相关表面抗原之一，具备真实 human CAIX/Fab 复合物结构。' },
+    { target: 'VEGF-A', gene: 'VEGFA', rationale: '肾癌高度依赖血管生成，可作为血管生成轴备选入口。' },
+    { target: 'B7-H3', gene: 'CD276', rationale: '免疫调节型高表达实体瘤表面抗原，可作为肾癌方向的补充候选。' }
+  ]
+};
+
+const PANCREATIC_MUC1_TARGET_RESOLUTION = {
+  selectedTarget: 'MUC1',
+  selectedGene: 'MUC1',
+  designLabel: 'PANCREATIC-MUC1-1',
+  confidence: 0.8,
+  reason: '胰腺癌方向可优先围绕 MUC1 展开。MUC1 是胰腺癌和多种上皮肿瘤中常被优先讨论的异常糖基化膜糖蛋白，能够直接对应肿瘤细胞表面识别和表位展示；当前本地已具备 human MUC1 肿瘤相关糖肽/Fab 复合物结构，可作为疾病直问后的首选结构入口。',
+  candidates: [
+    { target: 'MUC1', gene: 'MUC1', rationale: '肿瘤相关膜糖蛋白，具备真实 human MUC1 肿瘤相关糖肽/Fab 复合物结构。' },
+    { target: 'Mesothelin', gene: 'MSLN', rationale: '胰腺癌相关细胞表面抗原，具备真实 human Mesothelin/Fab 复合物结构，可作为稳定备选入口。' },
+    { target: 'CEACAM6', gene: 'CEACAM6', rationale: '胰腺癌中常见上调的细胞黏附相关膜蛋白，可作为结构资产补充候选。' }
+  ]
+};
+
+const GASTRIC_CLDN18_TARGET_RESOLUTION = {
+  selectedTarget: 'Claudin 18.2',
+  selectedGene: 'CLDN18',
+  designLabel: 'GASTRIC-CLDN18-1',
+  confidence: 0.83,
+  reason: '胃癌和胃食管交界癌方向可优先围绕 Claudin 18.2/CLDN18 展开。Claudin 18.2 是胃癌相关膜蛋白中最适合抗体展示的外露环入口之一，具备清晰的肿瘤表达背景和本地 human Claudin 18.2/Fab 复合物结构，可稳定支撑疾病直问后的本地结构命中。',
+  candidates: [
+    { target: 'Claudin 18.2', gene: 'CLDN18', rationale: '胃癌相关膜蛋白入口，具备真实 human Claudin 18.2/Fab 复合物结构。' },
+    { target: 'HER2', gene: 'ERBB2', rationale: '胃癌和乳腺癌相关受体靶点，可作为表达谱依赖的比较候选。' },
+    { target: 'MET', gene: 'MET', rationale: '胃癌和胃食管交界癌中常见的受体酪氨酸激酶入口，可作为结构域结合设计备选。' }
+  ]
+};
+
+const OVARIAN_MSLN_TARGET_RESOLUTION = {
+  selectedTarget: 'Mesothelin',
+  selectedGene: 'MSLN',
+  designLabel: 'OVARIAN-MSLN-1',
+  confidence: 0.83,
+  reason: '卵巢癌方向可优先围绕 Mesothelin/MSLN 展开。Mesothelin 是浆膜来源实体瘤中最稳定的细胞表面抗原入口之一，能够直接对应肿瘤细胞表面识别与抗体展示，并具备本地 human Mesothelin/Fab 复合物结构，可作为卵巢癌疾病直问后的优先结构入口。',
+  candidates: [
+    { target: 'Mesothelin', gene: 'MSLN', rationale: '卵巢癌和浆膜来源实体瘤相关表面抗原，具备真实 human Mesothelin/Fab 复合物结构。' },
+    { target: 'MUC1', gene: 'MUC1', rationale: '肿瘤相关膜糖蛋白，可作为卵巢癌方向的补充表位展示入口。' },
+    { target: 'FOLR1', gene: 'FOLR1', rationale: '卵巢癌经典表面抗原，但当前本地更适合作为 antigen-only 机制比较候选。' }
+  ]
+};
+
+const PROSTATE_STEAP1_TARGET_RESOLUTION = {
+  selectedTarget: 'STEAP1',
+  selectedGene: 'STEAP1',
+  designLabel: 'PROSTATE-STEAP1-1',
+  confidence: 0.82,
+  reason: '前列腺癌方向可优先围绕 STEAP1 展开。STEAP1 是前列腺癌和部分去势抵抗性肿瘤方向具有明确开发背景的多跨膜表面抗原，当前本地已具备 human STEAP1/Fab 复合物结构，可稳定支撑疾病直问后的结构展示和候选映射。',
+  candidates: [
+    { target: 'STEAP1', gene: 'STEAP1', rationale: '前列腺癌相关多跨膜表面抗原，具备真实 human STEAP1/Fab 复合物结构。' },
+    { target: 'PSMA', gene: 'FOLH1', rationale: '前列腺癌经典表面抗原，当前本地已有 exact nanobody 复合物可作为机制比较候选。' },
+    { target: 'B7-H3', gene: 'CD276', rationale: '高表达实体瘤表面抗原，可作为前列腺癌方向的补充入口。' }
+  ]
+};
+
+const COLORECTAL_CEACAM5_TARGET_RESOLUTION = {
+  selectedTarget: 'CEACAM5',
+  selectedGene: 'CEACAM5',
+  designLabel: 'CRC-CEACAM5-1',
+  confidence: 0.82,
+  reason: '结直肠癌方向可优先围绕 CEACAM5/CEA 展开。CEACAM5 是结直肠癌最经典的腔面相关肿瘤抗原之一，具有明确的疾病关联、细胞表面可及性叙事和本地 human CEACAM5/Fab 复合物结构，可作为疾病直问后的优先抗体展示入口。',
+  candidates: [
+    { target: 'CEACAM5', gene: 'CEACAM5', rationale: '结直肠癌经典 CEA 轴表面抗原，具备真实 human CEACAM5/Fab 复合物结构。' },
+    { target: 'EGFR', gene: 'EGFR', rationale: '结直肠癌常见受体靶点，适合结构域结合设计和表达谱比较。' },
+    { target: 'B7-H3', gene: 'CD276', rationale: '高表达实体瘤表面抗原，可作为免疫调节方向补充候选。' }
+  ]
+};
+
+const SCLC_GPC2_TARGET_RESOLUTION = {
+  selectedTarget: 'GPC2',
+  selectedGene: 'GPC2',
+  designLabel: 'SCLC-GPC2-1',
+  confidence: 0.8,
+  reason: '小细胞肺癌方向可优先围绕 GPC2 展开。GPC2 是神经内分泌肿瘤和小细胞肺癌方向较稳定的细胞表面抗原之一，当前本地已具备 human GPC2/Fab 复合物结构，可作为疾病直问后的优先结构入口；相较仍待补齐 exact public complex 的 DLL3，GPC2 的本地结构支撑更完整。',
+  candidates: [
+    { target: 'GPC2', gene: 'GPC2', rationale: '小细胞肺癌相关神经内分泌表面抗原，具备真实 human GPC2/Fab 复合物结构。' },
+    { target: 'DLL3', gene: 'DLL3', rationale: '小细胞肺癌常见表面靶点，但当前仍处于待补结构候选队列。' },
+    { target: 'B7-H3', gene: 'CD276', rationale: '高表达实体瘤表面抗原，可作为小细胞肺癌方向的补充入口。' }
+  ]
+};
+
+const MYELOMA_GPRC5D_TARGET_RESOLUTION = {
+  selectedTarget: 'GPRC5D',
+  selectedGene: 'GPRC5D',
+  designLabel: 'MYELOMA-GPRC5D-1',
+  confidence: 0.81,
+  reason: '多发性骨髓瘤方向可优先围绕 GPRC5D 展开。GPRC5D 是骨髓瘤表面抗原中与当前本地结构路线对应最直接的一类入口之一，具备真实 human GPRC5D/Fab 复合物结构，可稳定支撑疾病直问后的本地结构展示与候选映射。',
+  candidates: [
+    { target: 'GPRC5D', gene: 'GPRC5D', rationale: '多发性骨髓瘤相关表面抗原，具备真实 human GPRC5D/Fab 复合物结构。' },
+    { target: 'BCMA', gene: 'TNFRSF17', rationale: '骨髓瘤经典表面靶点，可作为成熟开发路径的比较候选。' },
+    { target: 'CD38', gene: 'CD38', rationale: '浆细胞谱系表面抗原，可作为多发性骨髓瘤方向的补充入口。' }
+  ]
+};
+
 const CERVICAL_CANCER_TISSUE_FACTOR_TARGET_RESOLUTION = {
   selectedTarget: 'Tissue Factor',
   selectedGene: 'F3',
@@ -7276,6 +7393,47 @@ const BUILTIN_DISEASE_TARGET_RESOLVERS = {
   'neuromyelitis optica': NMOSD_AQP4_TARGET_RESOLUTION,
   '骨质疏松': OSTEOPOROSIS_SOST_TARGET_RESOLUTION,
   'osteoporosis': OSTEOPOROSIS_SOST_TARGET_RESOLUTION,
+  '肾盂癌': UROTHELIAL_NECTIN4_TARGET_RESOLUTION,
+  '尿路上皮癌': UROTHELIAL_NECTIN4_TARGET_RESOLUTION,
+  '上尿路尿路上皮癌': UROTHELIAL_NECTIN4_TARGET_RESOLUTION,
+  '膀胱癌': UROTHELIAL_NECTIN4_TARGET_RESOLUTION,
+  'utuc': UROTHELIAL_NECTIN4_TARGET_RESOLUTION,
+  'urothelial carcinoma': UROTHELIAL_NECTIN4_TARGET_RESOLUTION,
+  'urothelial cancer': UROTHELIAL_NECTIN4_TARGET_RESOLUTION,
+  'bladder cancer': UROTHELIAL_NECTIN4_TARGET_RESOLUTION,
+  '肾癌': RCC_CAIX_TARGET_RESOLUTION,
+  '透明细胞肾细胞癌': RCC_CAIX_TARGET_RESOLUTION,
+  '肾细胞癌': RCC_CAIX_TARGET_RESOLUTION,
+  'renal cell carcinoma': RCC_CAIX_TARGET_RESOLUTION,
+  'kidney cancer': RCC_CAIX_TARGET_RESOLUTION,
+  'ccrcc': RCC_CAIX_TARGET_RESOLUTION,
+  '胰腺癌': PANCREATIC_MUC1_TARGET_RESOLUTION,
+  'pancreatic cancer': PANCREATIC_MUC1_TARGET_RESOLUTION,
+  'pdac': PANCREATIC_MUC1_TARGET_RESOLUTION,
+  '胃癌': GASTRIC_CLDN18_TARGET_RESOLUTION,
+  '胃食管交界癌': GASTRIC_CLDN18_TARGET_RESOLUTION,
+  '胃食管交界部癌': GASTRIC_CLDN18_TARGET_RESOLUTION,
+  'gastric cancer': GASTRIC_CLDN18_TARGET_RESOLUTION,
+  'gastroesophageal junction cancer': GASTRIC_CLDN18_TARGET_RESOLUTION,
+  'gej cancer': GASTRIC_CLDN18_TARGET_RESOLUTION,
+  '卵巢癌': OVARIAN_MSLN_TARGET_RESOLUTION,
+  'ovarian cancer': OVARIAN_MSLN_TARGET_RESOLUTION,
+  '前列腺癌': PROSTATE_STEAP1_TARGET_RESOLUTION,
+  'prostate cancer': PROSTATE_STEAP1_TARGET_RESOLUTION,
+  '结直肠癌': COLORECTAL_CEACAM5_TARGET_RESOLUTION,
+  '结肠癌': COLORECTAL_CEACAM5_TARGET_RESOLUTION,
+  '直肠癌': COLORECTAL_CEACAM5_TARGET_RESOLUTION,
+  'colorectal cancer': COLORECTAL_CEACAM5_TARGET_RESOLUTION,
+  'colon cancer': COLORECTAL_CEACAM5_TARGET_RESOLUTION,
+  'crc': COLORECTAL_CEACAM5_TARGET_RESOLUTION,
+  '小细胞肺癌': SCLC_GPC2_TARGET_RESOLUTION,
+  'small cell lung cancer': SCLC_GPC2_TARGET_RESOLUTION,
+  'small-cell lung cancer': SCLC_GPC2_TARGET_RESOLUTION,
+  'sclc': SCLC_GPC2_TARGET_RESOLUTION,
+  '多发性骨髓瘤': MYELOMA_GPRC5D_TARGET_RESOLUTION,
+  '骨髓瘤': MYELOMA_GPRC5D_TARGET_RESOLUTION,
+  'multiple myeloma': MYELOMA_GPRC5D_TARGET_RESOLUTION,
+  'myeloma': MYELOMA_GPRC5D_TARGET_RESOLUTION,
   '宫颈癌': CERVICAL_CANCER_TISSUE_FACTOR_TARGET_RESOLUTION,
   'cervical cancer': CERVICAL_CANCER_TISSUE_FACTOR_TARGET_RESOLUTION,
   'B-ALL': BALL_CD22_TARGET_RESOLUTION,

@@ -799,6 +799,35 @@ test('disease-first prepared directions resolve to their new exact local structu
   }
 });
 
+test('concise disease treatment asks resolve to stable local disease-first structures', async () => {
+  const requests = [
+    { text: '治疗肾盂癌', expectedTarget: 'Nectin-4', expectedPrefix: /^NECTIN4-Fab-/ },
+    { text: '治疗肾癌', expectedTarget: 'CAIX', expectedPrefix: /^CAIX-Fab-/ },
+    { text: '治疗胰腺癌', expectedTarget: 'MUC1', expectedPrefix: /^MUC1-Fab-/ },
+    { text: '治疗胃癌', expectedTarget: 'Claudin 18.2', expectedPrefix: /^CLDN18\.2-Fab-/ },
+    { text: '治疗卵巢癌', expectedTarget: 'Mesothelin', expectedPrefix: /^MSLN-Fab-/ },
+    { text: '治疗前列腺癌', expectedTarget: 'STEAP1', expectedPrefix: /^STEAP1-Fab-/ },
+    { text: '治疗结直肠癌', expectedTarget: 'CEACAM5', expectedPrefix: /^CEACAM5-Fab-/ },
+    { text: '治疗小细胞肺癌', expectedTarget: 'GPC2', expectedPrefix: /^GPC2-Fab-/ },
+    { text: '治疗多发性骨髓瘤', expectedTarget: 'GPRC5D', expectedPrefix: /^GPRC5D-Fab-/ }
+  ];
+
+  for (const item of requests) {
+    const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/design-route?text=' + encodeURIComponent(item.text));
+    assert.equal(res.status, 200);
+    const data = await res.json();
+    const firstBinder = data.threeDPreview && data.threeDPreview.binders && data.threeDPreview.binders[0];
+
+    assert.equal(data.requiresTargetResolution, true, item.text + ' should resolve through disease-first target mapping');
+    assert.ok(firstBinder, item.text + ' should preview a local 3D model');
+    assert.equal(data.profile && data.profile.targetDisplay, item.expectedTarget, item.text + ' should resolve to the expected target');
+    assert.match(firstBinder.file, item.expectedPrefix);
+    assert.equal(firstBinder.modelOrigin, 'local');
+    assert.equal(firstBinder.structure.coordinates.targetVerified, true);
+    assert.match(firstBinder.structuralBasis, /RCSB /);
+  }
+});
+
 test('explicit PSMA requests stay inside the exact PSMA local-asset family', async () => {
   const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/design-route?text=' + encodeURIComponent('设计10个针对PSMA的Fab'));
   assert.equal(res.status, 200);
