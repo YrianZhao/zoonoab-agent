@@ -787,6 +787,32 @@ test('disease-first prepared directions resolve to their new exact local structu
   }
 });
 
+test('explicit PSMA requests stay inside the exact PSMA local-asset family', async () => {
+  const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/design-route?text=' + encodeURIComponent('设计10个针对PSMA的Fab'));
+  assert.equal(res.status, 200);
+  const data = await res.json();
+  const binders = data.threeDPreview && Array.isArray(data.threeDPreview.binders) ? data.threeDPreview.binders : [];
+  const files = data.threeDPreview && Array.isArray(data.threeDPreview.files) ? data.threeDPreview.files : [];
+  const uniqueFiles = [...new Set(files)].sort();
+  const expectedFiles = [
+    'SOLIDLIB-HUMAN-PSMA-VHH-RCSB-9HLW.pdb',
+    'SOLIDLIB-HUMAN-PSMA-VHH-RCSB-9HVI.pdb',
+    'SOLIDLIB-HUMAN-PSMA-VHH-RCSB-9HVK.pdb'
+  ];
+
+  assert.equal(data.profile && data.profile.targetDisplay, 'PSMA');
+  assert.deepEqual(uniqueFiles, expectedFiles);
+  assert.ok(binders.length > 0, 'PSMA should preview exact local assets');
+  assert.ok(binders.every(binder => expectedFiles.includes(binder.file)));
+  assert.ok(binders.every(binder => binder.modelOrigin === 'local'));
+  assert.ok(binders.every(binder => binder.fallback === false));
+  assert.ok(binders.every(binder => binder.structure.source.kind === 'local_library_asset'));
+  assert.ok(binders.every(binder => binder.structure.coordinates.targetVerified === true));
+  assert.ok(binders.every(binder => binder.structure.pose.kind === 'experimental_complex'));
+  assert.ok(binders.every(binder => binder.antigenChains.join(',') === 'A,E'));
+  assert.ok(binders.every(binder => binder.antibodyChains.join(',') === 'H'));
+});
+
 test('generic target previews avoid local display structures without antigen-antibody contact', async () => {
   const query = encodeURIComponent('设计10个具有结合活性的流感NA单抗序列');
   const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/design-route?text=' + query);

@@ -244,6 +244,28 @@ test('local PDB model library API lists local structures with viewer metadata', 
   assert.match(psma.structuralBasis, /9HLW/);
   assert.equal(psma.targetTag.verifiedTag, true);
 
+  const psma8 = data.models.find(model => model.filename === 'SOLIDLIB-HUMAN-PSMA-VHH-RCSB-9HVI.pdb');
+  assert.ok(psma8, 'solid-tumor PSMA nanobody 8 asset should be listed');
+  assert.equal(psma8.targetDisplay, 'PSMA');
+  assert.equal(psma8.antibodyFormat, 'VHH');
+  assert.equal(psma8.structureKind, 'VHH 抗原-抗体复合体');
+  assert.deepEqual(psma8.antigenChains, ['A', 'E']);
+  assert.deepEqual(psma8.antibodyChains, ['H']);
+  assert.deepEqual(psma8.sourceAntibodyChains, ['H', 'Q']);
+  assert.match(psma8.structuralBasis, /9HVI/);
+  assert.equal(psma8.targetTag.verifiedTag, true);
+
+  const psmaDual = data.models.find(model => model.filename === 'SOLIDLIB-HUMAN-PSMA-VHH-RCSB-9HVK.pdb');
+  assert.ok(psmaDual, 'solid-tumor PSMA dual-nanobody asset should be listed');
+  assert.equal(psmaDual.targetDisplay, 'PSMA');
+  assert.equal(psmaDual.antibodyFormat, 'VHH');
+  assert.equal(psmaDual.structureKind, 'VHH 抗原-抗体复合体');
+  assert.deepEqual(psmaDual.antigenChains, ['A', 'E']);
+  assert.deepEqual(psmaDual.antibodyChains, ['H']);
+  assert.deepEqual(psmaDual.sourceAntibodyChains, ['H', 'Q', 'M', 'P']);
+  assert.match(psmaDual.structuralBasis, /9HVK/);
+  assert.equal(psmaDual.targetTag.verifiedTag, true);
+
   const caix = data.models.find(model => model.filename === 'CAIX-Fab-01.pdb');
   assert.ok(caix, 'CAIX routeable Fab preset should be listed');
   assert.equal(caix.targetDisplay, 'CAIX');

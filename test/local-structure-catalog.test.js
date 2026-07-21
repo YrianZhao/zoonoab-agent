@@ -65,6 +65,27 @@ test('local structure catalog is the machine-readable inventory for route-backed
   assert.deepEqual(psma.antigenChains, ['A', 'E']);
   assert.deepEqual(psma.antibodyChains, ['H', 'Q']);
 
+  const psma8 = catalogEntryForFilename(catalog, 'SOLIDLIB-HUMAN-PSMA-VHH-RCSB-9HVI.pdb');
+  assert.ok(psma8, 'solid-tumor PSMA nanobody 8 asset should be represented in the catalog');
+  assert.equal(psma8.target, 'PSMA');
+  assert.equal(psma8.gene, 'FOLH1');
+  assert.equal(psma8.organismTaxId, 9606);
+  assert.equal(psma8.antibodyFormat, 'VHH');
+  assert.equal(psma8.structureClass, 'target_exact_nanobody_complex');
+  assert.deepEqual(psma8.antigenChains, ['A', 'E']);
+  assert.deepEqual(psma8.antibodyChains, ['H', 'Q']);
+
+  const psmaDual = catalogEntryForFilename(catalog, 'SOLIDLIB-HUMAN-PSMA-VHH-RCSB-9HVK.pdb');
+  assert.ok(psmaDual, 'solid-tumor PSMA dual-nanobody asset should be represented in the catalog');
+  assert.equal(psmaDual.target, 'PSMA');
+  assert.equal(psmaDual.gene, 'FOLH1');
+  assert.equal(psmaDual.organismTaxId, 9606);
+  assert.equal(psmaDual.antibodyFormat, 'VHH');
+  assert.equal(psmaDual.structureClass, 'target_exact_nanobody_complex');
+  assert.deepEqual(psmaDual.antigenChains, ['A', 'E']);
+  assert.deepEqual(psmaDual.antibodyChains, ['H', 'Q', 'M', 'P']);
+  assert.deepEqual(psmaDual.sourceAntibodyChains, ['H', 'Q', 'M', 'P']);
+
   const caix = catalogEntryForFilename(catalog, 'CAIX-Fab-01.pdb');
   assert.ok(caix, 'CAIX-Fab-01 should be represented in the catalog');
   assert.equal(caix.target, 'CAIX');

@@ -15,7 +15,7 @@ function readModelText(model) {
 test('solid-tumor asset library keeps exact local sources for non-routeable tumor targets', () => {
   assert.equal(manifest.schemaVersion, 1);
   assert.equal(manifest.totalModels, manifest.models.length);
-  assert.equal(manifest.totalModels, 10);
+  assert.equal(manifest.totalModels, 12);
 
   for (const model of manifest.models) {
     assert.ok(fs.existsSync(path.join(ROOT, 'pdb', model.filename)), model.filename + ' should exist locally');
@@ -51,6 +51,20 @@ test('solid-tumor non-Fab complexes keep truthful local chain-role remarks', () 
   assert.match(psma, /REMARK 904 ANTIGEN CHAINS: A,E/);
   assert.match(psma, /REMARK 905 ANTIBODY CHAINS: H,Q/);
   assert.match(psma, /REMARK 912 ACCESSION: 9HLW/);
+
+  const psma8 = readModelText(manifest.models.find(model => model.accession === '9HVI'));
+  assert.match(psma8, /REMARK 901 TARGET: PSMA/);
+  assert.match(psma8, /REMARK 902 FORMAT: VHH/);
+  assert.match(psma8, /REMARK 904 ANTIGEN CHAINS: A,E/);
+  assert.match(psma8, /REMARK 905 ANTIBODY CHAINS: H,Q/);
+  assert.match(psma8, /REMARK 912 ACCESSION: 9HVI/);
+
+  const psmaDual = readModelText(manifest.models.find(model => model.accession === '9HVK'));
+  assert.match(psmaDual, /REMARK 901 TARGET: PSMA/);
+  assert.match(psmaDual, /REMARK 902 FORMAT: VHH/);
+  assert.match(psmaDual, /REMARK 904 ANTIGEN CHAINS: A,E/);
+  assert.match(psmaDual, /REMARK 905 ANTIBODY CHAINS: H,Q,M,P/);
+  assert.match(psmaDual, /REMARK 912 ACCESSION: 9HVK/);
 
   const gpc3 = readModelText(manifest.models.find(model => model.accession === '9NTQ'));
   assert.match(gpc3, /REMARK 901 TARGET: GPC3/);
