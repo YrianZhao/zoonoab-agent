@@ -18,6 +18,7 @@ const SIMPLE_LIBRARY_MANIFESTS = [
   'veterinary-library-manifest.json',
   'inflammation-library-manifest.json',
   'endocrine-library-manifest.json',
+  'metabolic-library-manifest.json',
   'neuro-library-manifest.json',
   'solid-tumor-library-manifest.json',
   'bone-library-manifest.json'

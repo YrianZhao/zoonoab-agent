@@ -5151,15 +5151,37 @@ function buildLocalPDBDisplayMetadata(filename, remarks) {
 
 function routeChainInfo(preset, file) {
   const remarks = readLocalPDBRemarks(file);
+  const catalogEntry = localStructureCatalogEntryForFile(file);
+  const catalogDisplay = catalogEntry && catalogEntry.display && typeof catalogEntry.display === 'object' ? catalogEntry.display : {};
   const sourceAntigen = preset && Array.isArray(preset.sourceAntigenChains) && preset.sourceAntigenChains.length
     ? preset.sourceAntigenChains
-    : (remarks.antigen && remarks.antigen.length ? remarks.antigen : []);
+    : (Array.isArray(catalogDisplay.sourceAntigenChains) && catalogDisplay.sourceAntigenChains.length
+      ? catalogDisplay.sourceAntigenChains
+      : (Array.isArray(catalogEntry && catalogEntry.sourceAntigenChains) && catalogEntry.sourceAntigenChains.length
+        ? catalogEntry.sourceAntigenChains
+        : (remarks.antigen && remarks.antigen.length ? remarks.antigen : [])));
   const sourceAntibody = preset && Array.isArray(preset.sourceAntibodyChains) && preset.sourceAntibodyChains.length
     ? preset.sourceAntibodyChains
-    : (remarks.antibody && remarks.antibody.length ? remarks.antibody : []);
+    : (Array.isArray(catalogDisplay.sourceAntibodyChains) && catalogDisplay.sourceAntibodyChains.length
+      ? catalogDisplay.sourceAntibodyChains
+      : (Array.isArray(catalogEntry && catalogEntry.sourceAntibodyChains) && catalogEntry.sourceAntibodyChains.length
+        ? catalogEntry.sourceAntibodyChains
+        : (remarks.antibody && remarks.antibody.length ? remarks.antibody : [])));
   return {
-    antigen: preset && Array.isArray(preset.antigenChains) && preset.antigenChains.length ? preset.antigenChains : sourceAntigen,
-    antibody: preset && Array.isArray(preset.antibodyChains) && preset.antibodyChains.length ? preset.antibodyChains : sourceAntibody,
+    antigen: preset && Array.isArray(preset.antigenChains) && preset.antigenChains.length
+      ? preset.antigenChains
+      : (Array.isArray(catalogDisplay.antigenChains) && catalogDisplay.antigenChains.length
+        ? catalogDisplay.antigenChains
+        : (Array.isArray(catalogEntry && catalogEntry.antigenChains) && catalogEntry.antigenChains.length
+          ? catalogEntry.antigenChains
+          : sourceAntigen)),
+    antibody: preset && Array.isArray(preset.antibodyChains) && preset.antibodyChains.length
+      ? preset.antibodyChains
+      : (Array.isArray(catalogDisplay.antibodyChains) && catalogDisplay.antibodyChains.length
+        ? catalogDisplay.antibodyChains
+        : (Array.isArray(catalogEntry && catalogEntry.antibodyChains) && catalogEntry.antibodyChains.length
+          ? catalogEntry.antibodyChains
+          : sourceAntibody)),
     sourceAntigen,
     sourceAntibody
   };

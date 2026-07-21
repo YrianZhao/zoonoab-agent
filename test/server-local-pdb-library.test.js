@@ -151,6 +151,29 @@ test('local PDB model library API lists local structures with viewer metadata', 
   assert.match(glp1r.structuralBasis, /6LN2/);
   assert.equal(glp1r.targetTag.verifiedTag, true);
 
+  const myostatin = data.models.find(model => model.filename === 'METABOLIB-HUMAN-MSTN-FAB-RCSB-5F3H.pdb');
+  assert.ok(myostatin, 'metabolic-library Myostatin asset should be listed');
+  assert.equal(myostatin.targetDisplay, 'Myostatin');
+  assert.equal(myostatin.antibodyFormat, 'Fab');
+  assert.equal(myostatin.structureKind, 'Fab 抗原-抗体复合体');
+  assert.deepEqual(myostatin.antigenChains, ['I', 'J']);
+  assert.deepEqual(myostatin.antibodyChains, ['A', 'B']);
+  assert.deepEqual(myostatin.sourceAntigenChains, ['I', 'J', 'K', 'L']);
+  assert.deepEqual(myostatin.sourceAntibodyChains, ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']);
+  assert.match(myostatin.structuralBasis, /5F3H/);
+  assert.equal(myostatin.targetTag.verifiedTag, true);
+
+  const actriib = data.models.find(model => model.filename === 'METABOLIB-HUMAN-ACTRIIB-FV-RCSB-5NHR.pdb');
+  assert.ok(actriib, 'metabolic-library ActRIIB asset should be listed');
+  assert.equal(actriib.targetDisplay, 'ActRIIB');
+  assert.equal(actriib.antibodyFormat, 'Fv');
+  assert.equal(actriib.structureKind, 'Fv 抗原-抗体复合体');
+  assert.deepEqual(actriib.antigenChains, ['C', 'D']);
+  assert.deepEqual(actriib.antibodyChains, ['A', 'B']);
+  assert.deepEqual(actriib.sourceAntibodyChains, ['A', 'B', 'H', 'L']);
+  assert.match(actriib.structuralBasis, /5NHR/);
+  assert.equal(actriib.targetTag.verifiedTag, true);
+
   const il6 = data.models.find(model => model.filename === 'INFLAMLIB-HUMAN-IL6-RCSB-1ALU.pdb');
   assert.ok(il6, 'inflammation-library IL-6 antigen-only asset should be listed');
   assert.equal(il6.targetDisplay, 'IL-6');
@@ -180,6 +203,16 @@ test('local PDB model library API lists local structures with viewer metadata', 
   assert.deepEqual(lrrk2.antibodyChains, []);
   assert.match(lrrk2.structuralBasis, /7LHT/);
   assert.equal(lrrk2.targetTag.verifiedTag, true);
+
+  const drd4 = data.models.find(model => model.filename === 'NEUROLIB-HUMAN-DRD4-RCSB-5WIU.pdb');
+  assert.ok(drd4, 'neuro-library DRD4 asset should be listed');
+  assert.equal(drd4.targetDisplay, 'DRD4');
+  assert.equal(drd4.antibodyFormat, '');
+  assert.equal(drd4.structureKind, '实验抗原结构');
+  assert.deepEqual(drd4.antigenChains, ['A']);
+  assert.deepEqual(drd4.antibodyChains, []);
+  assert.match(drd4.structuralBasis, /5WIU/);
+  assert.equal(drd4.targetTag.verifiedTag, true);
 
   const gba = data.models.find(model => model.filename === 'NEUROLIB-HUMAN-GBA-RCSB-1OGS.pdb');
   assert.ok(gba, 'neuro-library GBA asset should be listed');

@@ -216,6 +216,28 @@ test('local structure catalog is the machine-readable inventory for route-backed
   assert.deepEqual(glp1r.antigenChains, ['A']);
   assert.deepEqual(glp1r.antibodyChains, ['B', 'C']);
 
+  const myostatin = catalogEntryForFilename(catalog, 'METABOLIB-HUMAN-MSTN-FAB-RCSB-5F3H.pdb');
+  assert.ok(myostatin, 'metabolic-library Myostatin asset should be represented in the catalog');
+  assert.equal(myostatin.target, 'Myostatin');
+  assert.equal(myostatin.gene, 'GDF8');
+  assert.equal(myostatin.organismTaxId, 9606);
+  assert.equal(myostatin.structureClass, 'target_exact_complex');
+  assert.equal(myostatin.antibodyFormat, 'Fab');
+  assert.deepEqual(myostatin.antigenChains, ['I', 'J']);
+  assert.deepEqual(myostatin.antibodyChains, ['A', 'B', 'C', 'D']);
+  assert.deepEqual(myostatin.sourceAntigenChains, ['I', 'J', 'K', 'L']);
+  assert.deepEqual(myostatin.sourceAntibodyChains, ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']);
+
+  const actriib = catalogEntryForFilename(catalog, 'METABOLIB-HUMAN-ACTRIIB-FV-RCSB-5NHR.pdb');
+  assert.ok(actriib, 'metabolic-library ActRIIB asset should be represented in the catalog');
+  assert.equal(actriib.target, 'ActRIIB');
+  assert.equal(actriib.gene, 'ACVR2B');
+  assert.equal(actriib.organismTaxId, 9606);
+  assert.equal(actriib.structureClass, 'target_exact_fv_complex');
+  assert.equal(actriib.antibodyFormat, 'Fv');
+  assert.deepEqual(actriib.antigenChains, ['C', 'D']);
+  assert.deepEqual(actriib.antibodyChains, ['A', 'B', 'H', 'L']);
+
   const il6 = catalogEntryForFilename(catalog, 'INFLAMLIB-HUMAN-IL6-RCSB-1ALU.pdb');
   assert.ok(il6, 'inflammation-library IL-6 antigen-only asset should be represented in the catalog');
   assert.equal(il6.target, 'IL-6');
@@ -243,6 +265,15 @@ test('local structure catalog is the machine-readable inventory for route-backed
   assert.equal(lrrk2.structureClass, 'experimental_antigen_only');
   assert.deepEqual(lrrk2.antigenChains, ['A', 'B']);
   assert.deepEqual(lrrk2.antibodyChains, []);
+
+  const drd4 = catalogEntryForFilename(catalog, 'NEUROLIB-HUMAN-DRD4-RCSB-5WIU.pdb');
+  assert.ok(drd4, 'neuro-library DRD4 asset should be represented in the catalog');
+  assert.equal(drd4.target, 'DRD4');
+  assert.equal(drd4.gene, 'DRD4');
+  assert.equal(drd4.organismTaxId, 9606);
+  assert.equal(drd4.structureClass, 'experimental_antigen_only');
+  assert.deepEqual(drd4.antigenChains, ['A']);
+  assert.deepEqual(drd4.antibodyChains, []);
 
   const gba = catalogEntryForFilename(catalog, 'NEUROLIB-HUMAN-GBA-RCSB-1OGS.pdb');
   assert.ok(gba, 'neuro-library GBA asset should be represented in the catalog');
