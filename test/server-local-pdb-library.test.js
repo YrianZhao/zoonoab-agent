@@ -306,6 +306,36 @@ test('local PDB model library API lists local structures with viewer metadata', 
   assert.match(trem2.structuralBasis, /9PWN/);
   assert.equal(trem2.targetTag.verifiedTag, true);
 
+  const tshr = data.models.find(model => model.filename === 'TSHR-Fab-01.pdb');
+  assert.ok(tshr, 'TSHR routeable Fab preset should be listed');
+  assert.equal(tshr.targetDisplay, 'TSHR');
+  assert.equal(tshr.antibodyFormat, 'Fab');
+  assert.equal(tshr.structureKind, 'Fab 抗原-抗体复合体');
+  assert.deepEqual(tshr.antigenChains, ['R']);
+  assert.deepEqual(tshr.antibodyChains, ['H', 'L']);
+  assert.match(tshr.structuralBasis, /7T9M/);
+  assert.equal(tshr.targetTag.verifiedTag, true);
+
+  const snca = data.models.find(model => model.filename === 'SNCA-Fab-01.pdb');
+  assert.ok(snca, 'alpha-synuclein routeable Fab preset should be listed');
+  assert.equal(snca.targetDisplay, 'alpha-synuclein');
+  assert.equal(snca.antibodyFormat, 'Fab');
+  assert.equal(snca.structureKind, 'Fab 抗原-抗体复合体');
+  assert.deepEqual(snca.antigenChains, ['P']);
+  assert.deepEqual(snca.antibodyChains, ['H', 'L']);
+  assert.match(snca.structuralBasis, /8OG0/);
+  assert.equal(snca.targetTag.verifiedTag, true);
+
+  const aqp4 = data.models.find(model => model.filename === 'AQP4-Fab-01.pdb');
+  assert.ok(aqp4, 'AQP4 routeable Fab preset should be listed');
+  assert.equal(aqp4.targetDisplay, 'AQP4');
+  assert.equal(aqp4.antibodyFormat, 'Fab');
+  assert.equal(aqp4.structureKind, 'Fab 抗原-抗体复合体');
+  assert.deepEqual(aqp4.antigenChains, ['A', 'B', 'C', 'D']);
+  assert.deepEqual(aqp4.antibodyChains, ['J', 'I']);
+  assert.match(aqp4.structuralBasis, /8V91/);
+  assert.equal(aqp4.targetTag.verifiedTag, true);
+
   const trka = data.models.find(model => model.filename === 'NEUROLIB-HUMAN-TRKA-RCSB-1HE7.pdb');
   assert.ok(trka, 'TrkA antigen-only asset should be listed');
   assert.equal(trka.targetDisplay, 'TrkA');
@@ -391,6 +421,24 @@ test('structure catalog API exposes route-backed structure inventory', async () 
   assert.equal(tissueFactor.aliasPrefix, 'F3-Fab');
   assert.equal(tissueFactor.target, 'Tissue Factor');
   assert.ok((tissueFactor.files || []).includes('F3-Fab-01.pdb'));
+
+  const tshr = data.catalog.routePresets.find(item => item.routeId === 'endocrine_graves_tshr');
+  assert.ok(tshr, 'catalog should expose the TSHR local route');
+  assert.equal(tshr.aliasPrefix, 'TSHR-Fab');
+  assert.equal(tshr.target, 'TSHR');
+  assert.ok((tshr.files || []).includes('TSHR-Fab-01.pdb'));
+
+  const snca = data.catalog.routePresets.find(item => item.routeId === 'neuro_parkinson_snca');
+  assert.ok(snca, 'catalog should expose the alpha-synuclein local route');
+  assert.equal(snca.aliasPrefix, 'SNCA-Fab');
+  assert.equal(snca.target, 'alpha-synuclein');
+  assert.ok((snca.files || []).includes('SNCA-Fab-01.pdb'));
+
+  const aqp4 = data.catalog.routePresets.find(item => item.routeId === 'neuro_nmosd_aqp4');
+  assert.ok(aqp4, 'catalog should expose the AQP4 local route');
+  assert.equal(aqp4.aliasPrefix, 'AQP4-Fab');
+  assert.equal(aqp4.target, 'AQP4');
+  assert.ok((aqp4.files || []).includes('AQP4-Fab-01.pdb'));
 });
 
 test('local PDB responses are cacheable and can project only viewer-visible chains', async () => {

@@ -41,6 +41,9 @@ const GENE_BY_TARGET = {
   ANGPTL3: 'ANGPTL3',
   GIPR: 'GIPR',
   DAT: 'SLC6A3',
+  TSHR: 'TSHR',
+  AQP4: 'AQP4',
+  'alpha-synuclein': 'SNCA',
   CD20: 'MS4A1',
   CD19: 'CD19',
   CD3: 'CD3E/CD3G',
@@ -81,6 +84,9 @@ const ALIASES_BY_TARGET = {
   ANGPTL3: ['ANGPTL3'],
   GIPR: ['GIP receptor'],
   DAT: ['SLC6A3', 'DAT1', 'dopamine transporter'],
+  TSHR: ['Thyrotropin receptor', 'Thyroid-stimulating hormone receptor', '促甲状腺激素受体'],
+  AQP4: ['AQP-4', 'Aquaporin-4', '水通道蛋白4'],
+  'alpha-synuclein': ['SNCA', 'α-synuclein', 'Alpha synuclein', '突触核蛋白'],
   CD20: ['MS4A1'],
   CD19: ['CD19'],
   CD3: ['CD3E', 'CD3 epsilon'],
@@ -170,6 +176,21 @@ function inferFormat(aliasPrefix) {
   if (/Fab/i.test(aliasPrefix)) return 'Fab';
   if (/mAb/i.test(aliasPrefix)) return 'mAb';
   return '';
+}
+
+function inferRouteStructureClass(preset) {
+  if (preset && preset.interfaceDetail === false) return 'target_exact_display_pose';
+  if (preset && preset.displayMode === 'representative_interface') return 'representative_experimental_interface';
+  const text = [
+    preset && preset.structuralBasis,
+    preset && preset.title,
+    preset && preset.structureFamily,
+    preset && preset.visualSummary
+  ].filter(Boolean).join(' ');
+  if (/(?:glyco)?peptide|stalk peptide|epitope/i.test(text)) {
+    return 'target_exact_epitope_complex';
+  }
+  return 'target_exact_complex';
 }
 
 function parseRcsbIds(value) {
@@ -300,9 +321,7 @@ function buildRouteEntries(routePresets, organisms, fallbackTargets, fallback3DP
       routeable: true,
       promptEligible: localFiles.length > 0,
       clientFallbackEligible: true,
-      structureClass: preset.interfaceDetail === false
-        ? 'target_exact_display_pose'
-        : (preset.displayMode === 'representative_interface' ? 'representative_experimental_interface' : 'target_exact_complex'),
+      structureClass: inferRouteStructureClass(preset),
       sourceClass: 'route_preset',
       filenamePattern: preset.aliasPrefix + '-NN.pdb',
       files: localFiles,

@@ -258,6 +258,25 @@ const COMMON_REAL_COMPLEX_EXPECTATIONS = [
     antibodyChains: ['H', 'L']
   },
   {
+    prefix: 'TSHR-Fab',
+    basis: /RCSB 7T9M human thyrotropin receptor \/ CS-17 Fab complex/,
+    antigenChains: ['R'],
+    antibodyChains: ['H', 'L']
+  },
+  {
+    prefix: 'SNCA-Fab',
+    basis: /RCSB 8OG0 alpha-synuclein epitope peptide \/ MJF14-6-4-2 Fab complex/,
+    antigenChains: ['P'],
+    antibodyChains: ['H', 'L'],
+    minAntigenAtoms: 40
+  },
+  {
+    prefix: 'AQP4-Fab',
+    basis: /RCSB 8V91 human AQP4 tetramer \/ rAB 58 Fab complex/,
+    antigenChains: ['A', 'B', 'C', 'D'],
+    antibodyChains: ['J', 'I']
+  },
+  {
     prefix: 'FluNA-Fab',
     basis: /RCSB 1NCD influenza N9 neuraminidase \/ NC41 Fab complex/,
     antigenChains: ['A'],
@@ -634,7 +653,10 @@ test('common real antigen-antibody library covers high-frequency user targets wi
     assert.deepEqual(antigenChains, item.antigenChains, item.prefix + ' should mark the real antigen chain set');
     assert.deepEqual(antibodyChains, item.antibodyChains, item.prefix + ' should mark the real antibody chain set');
     for (const chain of item.antigenChains) {
-      assert.ok((counts.get(chain) || 0) > 50, item.prefix + ' antigen chain ' + chain + ' should contain visible atoms');
+      assert.ok(
+        (counts.get(chain) || 0) >= (item.minAntigenAtoms || 51),
+        item.prefix + ' antigen chain ' + chain + ' should contain visible atoms'
+      );
     }
     for (const chain of item.antibodyChains) {
       assert.ok((counts.get(chain) || 0) >= 800, item.prefix + ' antibody chain ' + chain + ' should contain a visible Fab chain');

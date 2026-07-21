@@ -3280,6 +3280,9 @@ function buildRouteProfile(target, blockTarget, abType) {
   if (['SARS-COV-2RBD', 'SARSCOV2RBD', 'SARS-COV-2-RBD', 'RBD'].includes(key)) key = 'SARS-CoV-2 RBD';
   if (['INFLUENZAHA', 'INFLUENZA-HA', 'FLUHA', 'HA'].includes(key)) key = 'Influenza HA';
   if (['DAT', 'DAT1', 'SLC6A3', 'DOPAMINETRANSPORTER'].includes(key)) key = 'DAT';
+  if (['TSHR', 'THYROTROPINRECEPTOR', 'THYROIDSTIMULATINGHORMONERECEPTOR'].includes(key)) key = 'TSHR';
+  if (['AQP4', 'AQP-4', 'AQUAPORIN4', 'AQUAPORIN-4'].includes(key)) key = 'AQP4';
+  if (['ALPHASYNUCLEIN', 'ALPHA-SYNUCLEIN', 'ΑΣYNUCLEIN', 'Α-SYNUCLEIN', 'SNCA'].includes(key)) key = 'alpha-synuclein';
   if (influenzaHaSubtypeDisplay) key = 'Influenza HA';
   const profiles = {
     'IL-33': {
@@ -3860,6 +3863,111 @@ function buildRouteProfile(target, blockTarget, abType) {
       structurePrepEn: 'Loaded the human DAT outward-open structure and prepared Fab display constraints around the extracellular vestibule and exposed loops.',
       scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '神经递质转运调控设计'
+    },
+    TSHR: {
+      routeLabel: 'TSHR / TSH',
+      disease: 'Graves disease / thyroid eye disease',
+      targetDisplay: 'TSHR',
+      targetGene: 'TSHR',
+      partnerDisplay: 'TSH',
+      domain: 'TSHR 胞外受体结构域',
+      mechanism: '围绕 TSHR 胞外可及表面生成 Fab 候选，并优先贴近 TSH 结合相关区域进行表位约束',
+      evidence: 'TSHR Graves disease 方向证据包',
+      evidenceSources: ['Graves disease / thyroid eye disease 病理背景', 'TSHR 胞外受体结构域注释', '抗 TSHR 抗体开发背景', 'TSH 结合邻近表位规则'],
+      referenceEntries: 'UniProt TSHR 靶点条目',
+      structure: 'TSHR 与 CS-17 Fab 真实结合界面参考集合',
+      structureRef: '7T9M human thyrotropin receptor / CS-17 Fab complex',
+      structuralBasis: 'RCSB 7T9M human thyrotropin receptor / CS-17 Fab complex',
+      antibodies: ['CS-17', 'TSHR antibody development background'],
+      interfaceFocus: 'TSHR 胞外结构域上的 TSH 结合邻近可及表面',
+      selectedEpitope: '优先覆盖已解析 TSHR 胞外结构域中贴近 TSH 结合相关区域的外露表面',
+      epitopeRowsZh: [
+        ['Site A', 'TSH 结合邻近外露面', '直接贴近 Graves disease 相关受体识别与阻断叙事', '优先'],
+        ['Site B', '胞外结构域侧向稳定表面', '适合扩展高亲和力结合与受体表面识别展示', '备选'],
+        ['Site C', '膜近端与未完整解析区域邻近表面', '超出当前已解析受体构象范围需谨慎解读', '谨慎']
+      ],
+      epitopeRowsEn: [
+        ['Site A', 'TSH-proximal exposed face', 'aligned with receptor-recognition and blockade storytelling', 'primary'],
+        ['Site B', 'ectodomain lateral stable surface', 'useful for high-affinity binding and receptor-surface recognition display', 'backup'],
+        ['Site C', 'membrane-proximal / unsolved-adjacent surface', 'outside the fully solved receptor scope', 'caution']
+      ],
+      riskSummaryZh: '界面风险标注显示，TSHR 路线应优先围绕已解析胞外结构域中的 TSH 结合邻近表面展开，并避免把膜近端或未完整解析区域误读为完整天然受体表位。',
+      riskSummaryEn: 'Interface-risk annotation prioritizes the TSH-proximal ectodomain surface and avoids over-interpreting membrane-proximal or unsolved-adjacent regions as the full native receptor epitope.',
+      modelVisualSummary: '展示 human TSHR 与 CS-17 Fab 的真实实验界面，并将结构解读限制在公开坐标覆盖的受体构象范围内。',
+      structurePrepZh: '加载 7T9M human TSHR/CS-17 Fab 复合物，提取 TSH 结合邻近外露表面并生成 Fab 设计约束。',
+      structurePrepEn: 'Loaded the 7T9M human TSHR/CS-17 Fab complex and prepared Fab constraints around the TSH-proximal exposed surface.',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
+      designMode: '受体表面结合设计'
+    },
+    'alpha-synuclein': {
+      routeLabel: 'alpha-synuclein / SNCA',
+      disease: 'Parkinson disease / synucleinopathy',
+      targetDisplay: 'alpha-synuclein',
+      targetGene: 'SNCA',
+      partnerDisplay: '',
+      domain: 'alpha-synuclein 病理相关表位肽',
+      mechanism: '围绕已解析 alpha-synuclein 表位肽可及面生成 Fab 候选，并将结构解读限制在该表位范围内',
+      evidence: 'alpha-synuclein 帕金森病方向证据包',
+      evidenceSources: ['Parkinson disease / synucleinopathy 病理背景', 'alpha-synuclein 表位注释', '抗 alpha-synuclein 抗体开发背景', '病理表位可及性规则'],
+      referenceEntries: 'UniProt SNCA(alpha-synuclein) 靶点条目',
+      structure: 'alpha-synuclein 表位肽与 Fab 真实结合界面参考集合',
+      structureRef: '8OG0 alpha-synuclein epitope peptide / MJF14-6-4-2 Fab complex',
+      structuralBasis: 'RCSB 8OG0 alpha-synuclein epitope peptide / MJF14-6-4-2 Fab complex',
+      antibodies: ['MJF14-6-4-2', 'alpha-synuclein antibody development background'],
+      interfaceFocus: '已解析 alpha-synuclein 表位肽外露面',
+      selectedEpitope: '优先覆盖已解析病理相关 alpha-synuclein 表位肽外露表面',
+      epitopeRowsZh: [
+        ['Site A', '已解析核心表位肽表面', '直接对应公开实验复合物中的抗体识别区域', '优先'],
+        ['Site B', '表位肽两端邻近外露面', '适合扩展局部结合包络与展示解读', '备选'],
+        ['Site C', '超出当前肽段坐标范围的病理构象', '不应被误读为完整纤维或全长天然构象', '谨慎']
+      ],
+      epitopeRowsEn: [
+        ['Site A', 'solved core epitope peptide surface', 'directly aligned with the public experimental complex', 'primary'],
+        ['Site B', 'epitope-flanking exposed faces', 'useful for local binding-envelope interpretation', 'backup'],
+        ['Site C', 'pathological conformations outside the solved peptide scope', 'must not be interpreted as the full fibril or full-length native state', 'caution']
+      ],
+      riskSummaryZh: '界面风险标注显示，alpha-synuclein 路线应把结构解读严格限制在已解析表位肽范围内，不应外推为完整纤维或全长天然蛋白表面。',
+      riskSummaryEn: 'Interface-risk annotation keeps interpretation strictly within the solved epitope-peptide scope rather than extrapolating to the full fibril or full-length native protein surface.',
+      modelVisualSummary: '展示 alpha-synuclein 已解析表位肽与 MJF14-6-4-2 Fab 的真实实验界面，并明确该结构只代表局部病理表位范围。',
+      structurePrepZh: '加载 8OG0 alpha-synuclein 表位肽/MJF14-6-4-2 Fab 复合物，提取病理相关表位肽外露面并生成 Fab 设计约束。',
+      structurePrepEn: 'Loaded the 8OG0 alpha-synuclein epitope peptide / MJF14-6-4-2 Fab complex and prepared Fab constraints around the solved pathological epitope surface.',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
+      designMode: '病理表位识别设计'
+    },
+    AQP4: {
+      routeLabel: 'AQP4',
+      disease: 'NMOSD / neuromyelitis optica',
+      targetDisplay: 'AQP4',
+      targetGene: 'AQP4',
+      partnerDisplay: '',
+      domain: 'AQP4 四聚体胞外可及界面',
+      mechanism: '围绕 AQP4 四聚体胞外可及表面生成 Fab 候选，并将结构解读限制在已解析 autoantibody interface 范围内',
+      evidence: 'AQP4 NMOSD 方向证据包',
+      evidenceSources: ['NMOSD / neuromyelitis optica 自身免疫背景', 'AQP4 四聚体胞外 loop 注释', 'AQP4 自身抗体结构背景', '自身抗原界面可及性规则'],
+      referenceEntries: 'UniProt AQP4 靶点条目',
+      structure: 'AQP4 tetramer 与 rAB 58 Fab 真实结合界面参考集合',
+      structureRef: '8V91 human AQP4 tetramer / rAB 58 Fab complex',
+      structuralBasis: 'RCSB 8V91 human AQP4 tetramer / rAB 58 Fab complex',
+      antibodies: ['rAB 58', 'AQP4 autoantibody structural background'],
+      interfaceFocus: 'AQP4 tetramer 胞外 loop 可及表面',
+      selectedEpitope: '优先覆盖已解析 AQP4 四聚体胞外 loop 相关外露表面',
+      epitopeRowsZh: [
+        ['Site A', '胞外 loop 结合界面', '直接对应公开 AQP4 / autoantibody 复合物中的识别表面', '优先'],
+        ['Site B', 'tetramer 周边相邻外露面', '适合扩展局部结合包络与空间展示解读', '备选'],
+        ['Site C', '膜内或未被当前复合物覆盖区域', '不应被误读为完整治疗性阻断界面', '谨慎']
+      ],
+      epitopeRowsEn: [
+        ['Site A', 'extracellular loop-binding interface', 'directly aligned with the public AQP4 / autoantibody complex', 'primary'],
+        ['Site B', 'tetramer-peripheral exposed surfaces', 'useful for local binding-envelope interpretation', 'backup'],
+        ['Site C', 'membrane-embedded or unsolved-adjacent regions', 'must not be interpreted as a full therapeutic blockade interface', 'caution']
+      ],
+      riskSummaryZh: '界面风险标注显示，AQP4 路线应把结构解读限制在已解析四聚体-自身抗体界面范围内，不应把该参考结构表述为治疗性功效结论。',
+      riskSummaryEn: 'Interface-risk annotation keeps interpretation within the solved tetramer / autoantibody interface and avoids presenting the reference structure as a therapeutic-efficacy claim.',
+      modelVisualSummary: '展示 human AQP4 tetramer 与 rAB 58 Fab 的真实实验界面，并明确该结构用作 NMOSD 相关自身抗原界面参考。',
+      structurePrepZh: '加载 8V91 human AQP4 tetramer/rAB 58 Fab 复合物，提取胞外 loop 相关外露表面并生成 Fab 设计约束。',
+      structurePrepEn: 'Loaded the 8V91 human AQP4 tetramer / rAB 58 Fab complex and prepared Fab constraints around the extracellular loop-facing surface.',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
+      designMode: '自身抗原界面识别设计'
     }
   };
   const profile = profiles[key]
@@ -4484,6 +4592,42 @@ const ROUTE_3D_PRESETS = {
     antibodyColor: '#2563EB',
     ipTmBias: 0.002
   },
+  endocrine_graves_tshr: {
+    aliasPrefix: 'TSHR-Fab',
+    title: 'TSHR Fab Graves disease 相关受体结合构象',
+    structureFamily: '甲状腺刺激素受体 ectodomain · Fab 候选',
+    visualSummary: '展示 human TSHR 与 CS-17 Fab 的真实实验界面，并将结构解读限制在公开坐标覆盖的受体构象范围内。',
+    structuralBasis: 'RCSB 7T9M human thyrotropin receptor / CS-17 Fab complex',
+    antigenChains: ['R'],
+    antibodyChains: ['H', 'L'],
+    antigenColor: '#0F766E',
+    antibodyColor: '#F59E0B',
+    ipTmBias: 0.003
+  },
+  neuro_parkinson_snca: {
+    aliasPrefix: 'SNCA-Fab',
+    title: 'alpha-synuclein Fab 帕金森病相关表位结合构象',
+    structureFamily: '突触核蛋白 peptide epitope · Fab 候选',
+    visualSummary: '展示 alpha-synuclein 已解析表位肽与 MJF14-6-4-2 Fab 的真实实验界面，并明确该结构只代表局部病理表位范围。',
+    structuralBasis: 'RCSB 8OG0 alpha-synuclein epitope peptide / MJF14-6-4-2 Fab complex',
+    antigenChains: ['P'],
+    antibodyChains: ['H', 'L'],
+    antigenColor: '#8B5CF6',
+    antibodyColor: '#22D3EE',
+    ipTmBias: 0.001
+  },
+  neuro_nmosd_aqp4: {
+    aliasPrefix: 'AQP4-Fab',
+    title: 'AQP4 Fab NMOSD 相关自身抗原界面构象',
+    structureFamily: 'AQP4 tetramer · Fab 界面参考',
+    visualSummary: '展示 human AQP4 tetramer 与 rAB 58 Fab 的真实实验界面，并明确该结构用作 NMOSD 相关自身抗原界面参考。',
+    structuralBasis: 'RCSB 8V91 human AQP4 tetramer / rAB 58 Fab complex',
+    antigenChains: ['A', 'B', 'C', 'D'],
+    antibodyChains: ['J', 'I'],
+    antigenColor: '#2563EB',
+    antibodyColor: '#F97316',
+    ipTmBias: 0.002
+  },
   veterinary_canine_ngf: {
     aliasPrefix: 'CANINE-NGF-Fab',
     title: '犬源 NGF Fab 疼痛信号中和展示构象',
@@ -4541,6 +4685,9 @@ const ROUTE_3D_PRESET_ORGANISMS_FALLBACK = {
   neuro_alz_tau: { organismName: 'Homo sapiens', organismTaxId: 9606 },
   neuro_alz_trem2: { organismName: 'Homo sapiens', organismTaxId: 9606 },
   neuro_adhd_dat: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  endocrine_graves_tshr: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  neuro_parkinson_snca: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  neuro_nmosd_aqp4: { organismName: 'Homo sapiens', organismTaxId: 9606 },
   veterinary_canine_ngf: { organismName: 'Canis lupus familiaris', organismTaxId: 9615 },
   infectious_rsv: { organismName: 'Respiratory syncytial virus', organismTaxId: null }
 };
@@ -4637,7 +4784,10 @@ function getRoute3DPreset(profile) {
       PCSK9: 'cardio_pcsk9',
       'IL-1β': 'cardio_il1b',
       GIPR: 'metabolic_gipr',
-      DAT: 'neuro_adhd_dat'
+      DAT: 'neuro_adhd_dat',
+      TSHR: 'endocrine_graves_tshr',
+      'alpha-synuclein': 'neuro_parkinson_snca',
+      AQP4: 'neuro_nmosd_aqp4'
     };
   const targetCandidates = [target, ...String(target).split(/\s*\/\s*/)]
     .map(item => item.trim())
@@ -6627,6 +6777,42 @@ const DEMO_ROUTE_RULES = [
     printable: false,
     displayStory: '围绕 DAT/SLC6A3 胞外可及表面，生成注意缺陷多动障碍方向抗体候选结构。',
     keywords: ['多动症', '注意缺陷', '注意缺陷多动障碍', 'adhd', 'attention deficit', 'hyperactivity', 'dopamine transporter', 'slc6a3', 'dat1', 'dat']
+  },
+  {
+    id: 'endocrine_graves_tshr',
+    disease: 'Graves disease / thyroid eye disease',
+    systemUnderstanding: '甲状腺刺激受体相关通路',
+    target: 'TSHR',
+    blockTarget: 'TSH',
+    abType: 'Fab',
+    count: 10,
+    printable: false,
+    displayStory: '围绕 TSHR 胞外可及表面，生成 Graves disease / thyroid eye disease 方向抗体候选结构。',
+    keywords: ['graves', 'graves disease', 'thyroid eye disease', '甲状腺眼病', '甲状腺相关眼病', 'tshr', 'thyrotropin receptor', 'thyroid-stimulating hormone receptor', '促甲状腺激素受体']
+  },
+  {
+    id: 'neuro_parkinson_snca',
+    disease: 'Parkinson disease / synucleinopathy',
+    systemUnderstanding: '突触核蛋白相关病理通路',
+    target: 'alpha-synuclein',
+    blockTarget: null,
+    abType: 'Fab',
+    count: 10,
+    printable: false,
+    displayStory: '围绕 alpha-synuclein 已解析病理表位界面，生成 Parkinson disease / synucleinopathy 方向抗体候选结构。',
+    keywords: ['parkinson', 'parkinson disease', 'parkinsons disease', '帕金森', '帕金森病', 'synucleinopathy', 'alpha-synuclein', 'snca', '突触核蛋白']
+  },
+  {
+    id: 'neuro_nmosd_aqp4',
+    disease: 'NMOSD / neuromyelitis optica',
+    systemUnderstanding: 'AQP4 自身抗原相关通路',
+    target: 'AQP4',
+    blockTarget: null,
+    abType: 'Fab',
+    count: 10,
+    printable: false,
+    displayStory: '围绕 AQP4 四聚体与自身抗体界面参考，生成 NMOSD / neuromyelitis optica 方向抗体候选结构。',
+    keywords: ['nmosd', 'neuromyelitis optica', '视神经脊髓炎', 'aqp4', 'aquaporin 4', 'aquaporin-4', '水通道蛋白4']
   }
 ];
 
@@ -6712,6 +6898,45 @@ const PAIN_NGF_TARGET_RESOLUTION = {
   ]
 };
 
+const GRAVES_TSHR_TARGET_RESOLUTION = {
+  selectedTarget: 'TSHR',
+  selectedGene: 'TSHR',
+  designLabel: 'GRAVES-TSHR-1',
+  confidence: 0.82,
+  reason: 'Graves disease / thyroid eye disease 方向可优先围绕 TSHR/促甲状腺激素受体展开。TSHR 是甲状腺自身抗体相关病理中最直接的受体级抗原入口，其胞外结构域直接参与配体和致病抗体识别；相较更偏共刺激或下游炎症放大的 IGF1R、IL-6R 等备选机制，TSHR 与疾病特异性自身抗原识别链路更直接，且具备真实人源 TSHR-CS-17 Fab 复合物结构，适合作为本轮抗体设计入口。',
+  candidates: [
+    { target: 'TSHR', gene: 'TSHR', rationale: 'Graves disease 方向最直接的受体级自身抗原入口，具备真实 human TSHR/Fab 复合物结构。' },
+    { target: 'IGF1R', gene: 'IGF1R', rationale: '甲状腺眼病相关成纤维细胞信号备选靶点，但当前本地更适合保留为机制比较候选。' },
+    { target: 'IL-6R', gene: 'IL6R', rationale: '炎症放大与免疫调节方向备选靶点，可作为 Graves / TED 相关免疫轴补充入口。' }
+  ]
+};
+
+const PARKINSON_SNCA_TARGET_RESOLUTION = {
+  selectedTarget: 'alpha-synuclein',
+  selectedGene: 'SNCA',
+  designLabel: 'PARKINSON-SNCA-1',
+  confidence: 0.8,
+  reason: 'Parkinson disease / synucleinopathy 方向可优先围绕 alpha-synuclein/SNCA 病理表位展开。alpha-synuclein 是帕金森病和相关突触核蛋白病理中最直接的聚集抗原入口，能够直接对应病理构象识别与聚集相关表位设计；相较更偏激酶调控的 LRRK2 或代谢风险相关的 GBA，alpha-synuclein 与抗原识别机制的对应关系更直接，且具备真实 human alpha-synuclein epitope peptide / Fab 复合物结构，适合作为本轮抗体设计入口。',
+  candidates: [
+    { target: 'alpha-synuclein', gene: 'SNCA', rationale: '突触核蛋白病理的直接抗原入口，具备真实表位肽/Fab 复合物结构。' },
+    { target: 'LRRK2', gene: 'LRRK2', rationale: '帕金森病相关激酶调控轴备选靶点，适合机制补充比较。' },
+    { target: 'GBA', gene: 'GBA1', rationale: '溶酶体代谢与遗传风险相关备选靶点，可作为病理背景补充入口。' }
+  ]
+};
+
+const NMOSD_AQP4_TARGET_RESOLUTION = {
+  selectedTarget: 'AQP4',
+  selectedGene: 'AQP4',
+  designLabel: 'NMOSD-AQP4-1',
+  confidence: 0.81,
+  reason: 'NMOSD / neuromyelitis optica 方向可优先围绕 AQP4/水通道蛋白 4 展开。AQP4 是该疾病语境下最经典、最直接的自身抗原入口，其胞外 loop 可形成明确的抗体识别界面；相较更偏炎症放大或终末效应放大的 IL-6R、C5 备选机制，AQP4 与疾病特异性自身抗原识别链路更直接，且具备真实 human AQP4 tetramer / Fab 复合物结构，可作为本轮结构参考入口。',
+  candidates: [
+    { target: 'AQP4', gene: 'AQP4', rationale: 'NMOSD 方向最直接的自身抗原入口，具备真实 human AQP4 tetramer/Fab 复合物结构。' },
+    { target: 'IL-6R', gene: 'IL6R', rationale: '炎症放大与复发控制相关备选靶点，可作为免疫调节方向补充入口。' },
+    { target: 'C5', gene: 'C5', rationale: '补体终末通路备选靶点，可作为下游组织损伤放大方向的补充比较。' }
+  ]
+};
+
 const OSTEOPOROSIS_SOST_TARGET_RESOLUTION = {
   selectedTarget: 'SOST',
   selectedGene: 'SOST',
@@ -6762,6 +6987,19 @@ const BUILTIN_DISEASE_TARGET_RESOLVERS = {
   '慢性疼痛': PAIN_NGF_TARGET_RESOLUTION,
   'chronic pain': PAIN_NGF_TARGET_RESOLUTION,
   'osteoarthritis': PAIN_NGF_TARGET_RESOLUTION,
+  '甲状腺眼病': GRAVES_TSHR_TARGET_RESOLUTION,
+  'graves': GRAVES_TSHR_TARGET_RESOLUTION,
+  'graves disease': GRAVES_TSHR_TARGET_RESOLUTION,
+  'thyroid eye disease': GRAVES_TSHR_TARGET_RESOLUTION,
+  'parkinson': PARKINSON_SNCA_TARGET_RESOLUTION,
+  'parkinson disease': PARKINSON_SNCA_TARGET_RESOLUTION,
+  'parkinsons disease': PARKINSON_SNCA_TARGET_RESOLUTION,
+  '帕金森': PARKINSON_SNCA_TARGET_RESOLUTION,
+  '帕金森病': PARKINSON_SNCA_TARGET_RESOLUTION,
+  'synucleinopathy': PARKINSON_SNCA_TARGET_RESOLUTION,
+  '视神经脊髓炎': NMOSD_AQP4_TARGET_RESOLUTION,
+  'nmosd': NMOSD_AQP4_TARGET_RESOLUTION,
+  'neuromyelitis optica': NMOSD_AQP4_TARGET_RESOLUTION,
   '骨质疏松': OSTEOPOROSIS_SOST_TARGET_RESOLUTION,
   'osteoporosis': OSTEOPOROSIS_SOST_TARGET_RESOLUTION,
   '宫颈癌': CERVICAL_CANCER_TISSUE_FACTOR_TARGET_RESOLUTION,
@@ -7651,7 +7889,7 @@ function buildWorkflowIntentPrompt() {
     '边界：如果用户明确要求针对小分子/半抗原/化合物本身生成或特异性结合抗体（例如“设计氯胺酮抗体”“设计特异性结合噻吩嗪的单克隆抗体”），输出 i=chat,start=false,answer，说明 ZoonoAb 面向大分子抗原/蛋白靶点，不直接生成小分子/半抗原抗体；不要把该小分子硬转成蛋白靶点。',
     '准确性优先：疾病或药物方向可能对应多个靶点，先保证疾病关联、机制和抗体可及性准确；如果用户明确指定靶点，target 必须保留用户真实指定靶点；如果用户只给疾病、方向或药物机制，且多个候选同等合理，优先从结构支撑靶点清单选择 target，并把其他合理靶点放入 cands，形成候选靶点比较池。',
     '结构支撑靶点清单：' + STRUCTURE_SUPPORT_TARGETS_FOR_PROMPT + '。',
-    '常见疾病发散参考：尿路上皮癌/肾盂癌优先比较 Nectin-4、TROP-2、B7-H3 或 HER2；宫颈癌优先比较 Tissue Factor/F3、TROP-2、B7-H3 或 PD-L1；肾癌/透明细胞肾细胞癌优先比较 CAIX、VEGF-A、B7-H3；嗜酸性哮喘/重度 2 型炎症优先比较 IL-5、IL-13、IL-4Rα 或 TSLP；特应性皮炎优先比较 IL-13、IL-4Rα、TSLP 或 IL-33；系统性红斑狼疮/SLE 优先比较 BAFF、FcRn、CD20；重症肌无力/gMG 优先比较 FcRn、C5、CD20；炎症性肠病/溃疡性结肠炎/克罗恩病优先比较 Integrin α4β7、IL-23、TNF；骨关节炎/慢性疼痛优先比较 NGF、TrkA、IL-1β；骨质疏松优先比较 SOST、RANKL、DKK1；阿尔茨海默病优先比较 Amyloid-beta、Tau、TREM2；急性髓系白血病优先比较 CD123、CD47、CD33；多发性骨髓瘤优先比较 GPRC5D、BCMA、CD38；前列腺癌优先比较 STEAP1、PSMA、B7-H3；结直肠癌优先比较 CEACAM5、EGFR、B7-H3；卵巢癌优先比较 Mesothelin、MUC1、FOLR1 或 B7-H4；小细胞肺癌优先比较 GPC2、DLL3、B7-H3 或 TROP-2。',
+    '常见疾病发散参考：尿路上皮癌/肾盂癌优先比较 Nectin-4、TROP-2、B7-H3 或 HER2；宫颈癌优先比较 Tissue Factor/F3、TROP-2、B7-H3 或 PD-L1；肾癌/透明细胞肾细胞癌优先比较 CAIX、VEGF-A、B7-H3；嗜酸性哮喘/重度 2 型炎症优先比较 IL-5、IL-13、IL-4Rα 或 TSLP；特应性皮炎优先比较 IL-13、IL-4Rα、TSLP 或 IL-33；系统性红斑狼疮/SLE 优先比较 BAFF、FcRn、CD20；重症肌无力/gMG 优先比较 FcRn、C5、CD20；炎症性肠病/溃疡性结肠炎/克罗恩病优先比较 Integrin α4β7、IL-23、TNF；骨关节炎/慢性疼痛优先比较 NGF、TrkA、IL-1β；骨质疏松优先比较 SOST、RANKL、DKK1；Graves disease/thyroid eye disease 优先比较 TSHR、IGF1R、IL-6R；Parkinson disease/synucleinopathy 优先比较 alpha-synuclein、LRRK2、GBA；NMOSD/neuromyelitis optica 优先比较 AQP4、IL-6R、C5；阿尔茨海默病优先比较 Amyloid-beta、Tau、TREM2；急性髓系白血病优先比较 CD123、CD47、CD33；多发性骨髓瘤优先比较 GPRC5D、BCMA、CD38；前列腺癌优先比较 STEAP1、PSMA、B7-H3；结直肠癌优先比较 CEACAM5、EGFR、B7-H3；卵巢癌优先比较 Mesothelin、MUC1、FOLR1 或 B7-H4；小细胞肺癌优先比较 GPC2、DLL3、B7-H3 或 TROP-2。',
     'reason 只能写疾病关联、药物机制、表达/可及性、结构域和抗体开发依据；不要提本地、预设、可展示、系统已有、为了展示、3D 预设等内部选择原因。',
     'i=chat：只用于普通闲聊、寒暄、纯问答、天气、时间、非分子设计概念解释，且没有足够信息生成 target 的情况。chat 只填 i,start=false,answer；answer 默认中文，最多 2 句。',
     'design 必填 target、reason、cands、wf；reason 写 220-420 个中文字，必须紧扣用户原始需求，按疾病机制/适应症语境、表达谱或抗原暴露、抗原可及性、作用机制、同类抗体开发背景、与备选靶点比较这几类依据展开，说明为何优先该靶点，语言要像专业靶点评审摘要；cands 给 5-7 个候选靶点，包含已选 target 和其他合理备选，每个 r 用 35-90 个中文字写清候选理由、适用场景和相对优先级；wf 每项不超过 35 个中文字。',
@@ -10840,6 +11078,7 @@ if (process.env.NODE_ENV === 'test') {
     const diseaseIndication = extractDiseaseIndication(text) || (parsed.target && isDiseaseIndication(parsed.target) ? parsed.target : '');
     const designRequest = extractDesignRequest(text);
     const requiresTargetResolution = shouldResolveDesignTargetBeforeWorkflow(text, resolveUserRouting(text));
+    const preparedDiseaseFallback = requiresTargetResolution ? buildPreparedDiseaseFallbackIntent(text) : null;
     const profile = !requiresTargetResolution && (route || parsed.target)
       ? buildRouteProfile(parsed.target, parsed.blockTarget, parsed.abType)
       : null;
@@ -10850,15 +11089,30 @@ if (process.env.NODE_ENV === 'test') {
       applyCanineNgfProfile(profile);
     }
     if (profile && route && route.id) profile.routeId = route.id;
-    const previewProfile = profile || (designRequest.isDesignRequest && designRequest.target && !isDiseaseIndication(designRequest.target)
-      ? buildRouteProfile(designRequest.target, designRequest.blockTarget, designRequest.abType)
-      : null);
+    const previewProfile = profile
+      || (preparedDiseaseFallback && preparedDiseaseFallback.target
+        ? buildRouteProfile(
+          preparedDiseaseFallback.target,
+          preparedDiseaseFallback.blockTarget,
+          preparedDiseaseFallback.abType
+        )
+        : null)
+      || (designRequest.isDesignRequest && designRequest.target && !isDiseaseIndication(designRequest.target)
+        ? buildRouteProfile(designRequest.target, designRequest.blockTarget, designRequest.abType)
+        : null);
     if (previewProfile) {
+      if (!previewProfile.targetGene && preparedDiseaseFallback && preparedDiseaseFallback.targetGene) {
+        previewProfile.targetGene = preparedDiseaseFallback.targetGene;
+      }
+      if (!previewProfile.disease && preparedDiseaseFallback && preparedDiseaseFallback.disease) {
+        previewProfile.disease = preparedDiseaseFallback.disease;
+      }
       previewProfile.organismName = identityContext.organismName || previewProfile.organismName || '';
       previewProfile.organismTaxId = identityContext.organismTaxId || previewProfile.organismTaxId || null;
       applyCanineNgfProfile(previewProfile);
     }
     if (previewProfile && !previewProfile.routeId && route && route.id) previewProfile.routeId = route.id;
+    const responseProfile = profile || previewProfile || null;
     const threeDBinders = previewProfile ? routeLocalPDBs(previewProfile, parsed.count || designRequest.count || 10) : [];
     res.json({
       intent: requiresTargetResolution ? 'design' : detectIntent(text),
@@ -10866,7 +11120,7 @@ if (process.env.NODE_ENV === 'test') {
       parsed,
       diseaseIndication,
       requiresTargetResolution,
-      profile,
+      profile: responseProfile,
       threeDPreview: previewProfile ? {
         primaryPDB: threeDBinders[0] ? threeDBinders[0].id : '',
         files: threeDBinders.map(item => item.file),

@@ -94,6 +94,12 @@ test('keeps newly cataloged solid-tumor targets stable in explicit design reques
     ['设计10个针对Tau的Fab', 'Tau'],
     ['设计10个针对MAPT的Fab', 'Tau'],
     ['设计10个针对TREM2的Fab', 'TREM2'],
+    ['设计10个针对TSHR的Fab', 'TSHR'],
+    ['设计10个针对thyrotropin receptor的Fab', 'TSHR'],
+    ['设计10个针对AQP4的Fab', 'AQP4'],
+    ['设计10个针对aquaporin-4的Fab', 'AQP4'],
+    ['设计10个针对alpha-synuclein的Fab', 'alpha-synuclein'],
+    ['设计10个针对SNCA的Fab', 'alpha-synuclein'],
     ['设计一个针对 EpCAM 的 scFv 抗体', 'EpCAM']
   ];
 
@@ -197,6 +203,24 @@ test('cleans disease-area wording before using it as a dynamic target', () => {
   assert.equal(cervical.isDesignRequest, true);
   assert.equal(cervical.target, '宫颈癌');
   assert.equal(cervical.hasExplicitTarget, true);
+
+  const graves = extractDesignRequest('帮我设计一个针对甲状腺眼病的抗体');
+  assert.equal(graves.isDesignRequest, true);
+  assert.equal(graves.target, '甲状腺眼病');
+  assert.equal(graves.hasExplicitTarget, true);
+  assert.equal(extractDiseaseIndication('帮我设计一个针对甲状腺眼病的抗体'), '甲状腺眼病');
+
+  const parkinson = extractDesignRequest('帮我设计一个针对帕金森病的抗体');
+  assert.equal(parkinson.isDesignRequest, true);
+  assert.equal(parkinson.target, '帕金森病');
+  assert.equal(parkinson.hasExplicitTarget, true);
+  assert.equal(extractDiseaseIndication('帮我设计一个针对帕金森病的抗体'), '帕金森病');
+
+  const nmosd = extractDesignRequest('帮我设计一个针对视神经脊髓炎的抗体');
+  assert.equal(nmosd.isDesignRequest, true);
+  assert.equal(nmosd.target, '视神经脊髓炎');
+  assert.equal(nmosd.hasExplicitTarget, true);
+  assert.equal(extractDiseaseIndication('帮我设计一个针对视神经脊髓炎的抗体'), '视神经脊髓炎');
 });
 
 test('keeps explicit targets inside disease-area requests', () => {

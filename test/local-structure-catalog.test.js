@@ -197,6 +197,36 @@ test('local structure catalog is the machine-readable inventory for route-backed
   assert.deepEqual(trem2.display.antigenChains, ['A']);
   assert.deepEqual(trem2.display.antibodyChains, ['H', 'L']);
 
+  const tshr = catalogEntryForFilename(catalog, 'TSHR-Fab-01.pdb');
+  assert.ok(tshr, 'TSHR-Fab-01 should be represented in the catalog');
+  assert.equal(tshr.target, 'TSHR');
+  assert.equal(tshr.gene, 'TSHR');
+  assert.equal(tshr.organismTaxId, 9606);
+  assert.equal(tshr.aliasPrefix, 'TSHR-Fab');
+  assert.equal(tshr.structureClass, 'target_exact_complex');
+  assert.deepEqual(tshr.display.antigenChains, ['R']);
+  assert.deepEqual(tshr.display.antibodyChains, ['H', 'L']);
+
+  const snca = catalogEntryForFilename(catalog, 'SNCA-Fab-01.pdb');
+  assert.ok(snca, 'SNCA-Fab-01 should be represented in the catalog');
+  assert.equal(snca.target, 'alpha-synuclein');
+  assert.equal(snca.gene, 'SNCA');
+  assert.equal(snca.organismTaxId, 9606);
+  assert.equal(snca.aliasPrefix, 'SNCA-Fab');
+  assert.equal(snca.structureClass, 'target_exact_epitope_complex');
+  assert.deepEqual(snca.display.antigenChains, ['P']);
+  assert.deepEqual(snca.display.antibodyChains, ['H', 'L']);
+
+  const aqp4 = catalogEntryForFilename(catalog, 'AQP4-Fab-01.pdb');
+  assert.ok(aqp4, 'AQP4-Fab-01 should be represented in the catalog');
+  assert.equal(aqp4.target, 'AQP4');
+  assert.equal(aqp4.gene, 'AQP4');
+  assert.equal(aqp4.organismTaxId, 9606);
+  assert.equal(aqp4.aliasPrefix, 'AQP4-Fab');
+  assert.equal(aqp4.structureClass, 'target_exact_complex');
+  assert.deepEqual(aqp4.display.antigenChains, ['A', 'B', 'C', 'D']);
+  assert.deepEqual(aqp4.display.antibodyChains, ['J', 'I']);
+
   const epcam = catalogEntryForFilename(catalog, 'SOLIDLIB-HUMAN-EPCAM-SCFV-RCSB-6I07.pdb');
   assert.ok(epcam, 'solid-tumor EpCAM asset should be represented in the catalog');
   assert.equal(epcam.target, 'EpCAM');
@@ -232,6 +262,9 @@ test('local structure catalog is the machine-readable inventory for route-backed
   assert.match(supportList, /Amyloid-beta\/APP/);
   assert.match(supportList, /Tau\/MAPT/);
   assert.match(supportList, /TREM2/);
+  assert.match(supportList, /TSHR/);
+  assert.match(supportList, /alpha-synuclein\/SNCA/);
+  assert.match(supportList, /AQP4/);
 });
 
 test('catalog-derived target map can route aliases without hand-editing target maps', () => {
@@ -280,6 +313,12 @@ test('catalog-derived target map can route aliases without hand-editing target m
   assert.equal(map[normalizeStructureCatalogKey('Tau')], 'neuro_alz_tau');
   assert.equal(map[normalizeStructureCatalogKey('MAPT')], 'neuro_alz_tau');
   assert.equal(map[normalizeStructureCatalogKey('TREM2')], 'neuro_alz_trem2');
+  assert.equal(map[normalizeStructureCatalogKey('TSHR')], 'endocrine_graves_tshr');
+  assert.equal(map[normalizeStructureCatalogKey('Thyrotropin receptor')], 'endocrine_graves_tshr');
+  assert.equal(map[normalizeStructureCatalogKey('alpha-synuclein')], 'neuro_parkinson_snca');
+  assert.equal(map[normalizeStructureCatalogKey('SNCA')], 'neuro_parkinson_snca');
+  assert.equal(map[normalizeStructureCatalogKey('AQP4')], 'neuro_nmosd_aqp4');
+  assert.equal(map[normalizeStructureCatalogKey('Aquaporin-4')], 'neuro_nmosd_aqp4');
 });
 
 test('client generated structure catalog stays synchronized with JSON source', () => {

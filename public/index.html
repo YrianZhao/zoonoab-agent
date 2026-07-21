@@ -6490,7 +6490,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '69498239';
+    const APP_BUILD_VERSION = '69498240';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
     const SILICONFLOW_CHAT_FALLBACK_MODELS = ['Qwen/Qwen3-32B', 'Qwen/Qwen3-14B', 'Qwen/Qwen3-8B', 'deepseek-ai/DeepSeek-V3'];
@@ -7761,6 +7761,39 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             printable: false,
             routeLabel: 'DAT 多巴胺再摄取方向',
             triggerHint: '多动症、ADHD、DAT、SLC6A3'
+        },
+        endocrine_graves_tshr: {
+            disease: 'Graves disease / thyroid eye disease',
+            systemUnderstanding: '甲状腺刺激受体相关通路',
+            target: 'TSHR',
+            blockTarget: 'TSH',
+            abType: 'Fab',
+            count: 10,
+            printable: false,
+            routeLabel: 'TSHR 受体识别方向',
+            triggerHint: 'Graves disease、thyroid eye disease、TSHR'
+        },
+        neuro_parkinson_snca: {
+            disease: 'Parkinson disease / synucleinopathy',
+            systemUnderstanding: '突触核蛋白相关病理通路',
+            target: 'alpha-synuclein',
+            blockTarget: null,
+            abType: 'Fab',
+            count: 10,
+            printable: false,
+            routeLabel: 'alpha-synuclein 病理表位方向',
+            triggerHint: 'Parkinson disease、SNCA、alpha-synuclein'
+        },
+        neuro_nmosd_aqp4: {
+            disease: 'NMOSD / neuromyelitis optica',
+            systemUnderstanding: 'AQP4 自身抗原相关通路',
+            target: 'AQP4',
+            blockTarget: null,
+            abType: 'Fab',
+            count: 10,
+            printable: false,
+            routeLabel: 'AQP4 自身抗原界面方向',
+            triggerHint: 'NMOSD、neuromyelitis optica、AQP4'
         }
     };
     const qdWorkflowTriggers = {
@@ -7781,7 +7814,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         cardio_il1b: '中和 IL-1β 炎症因子，设计 10 个高亲和力 Fab',
         metabolic_angptl3: '靶向 ANGPTL3，设计 10 个高亲和力 Fab',
         metabolic_gipr: '靶向 GIPR，设计 10 个高亲和力 Fab',
-        neuro_adhd_dat: '靶向 DAT（SLC6A3），设计 10 个高亲和力 Fab'
+        neuro_adhd_dat: '靶向 DAT（SLC6A3），设计 10 个高亲和力 Fab',
+        endocrine_graves_tshr: '围绕 TSHR 胞外可及表面，设计 10 个高亲和力 Fab',
+        neuro_parkinson_snca: '围绕 alpha-synuclein 已解析病理表位，设计 10 个高亲和力 Fab',
+        neuro_nmosd_aqp4: '围绕 AQP4 四聚体胞外可及界面，设计 10 个高亲和力 Fab'
     };
     const qdDiseaseOptions = [
         { id: 'oncology', title: '肿瘤', desc: 'PD-L1、HER2、EGFR、VEGF-A 等肿瘤相关靶点', recommended: true },
@@ -7824,6 +7860,13 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         ],
         neuro: [
             { id: 'DAT', routeId: 'neuro_adhd_dat', title: 'DAT', desc: '多巴胺转运蛋白，适合 ADHD 方向展示', recommended: true }
+        ],
+        endocrine: [
+            { id: 'TSHR', routeId: 'endocrine_graves_tshr', title: 'TSHR', desc: 'Graves disease / thyroid eye disease 相关受体入口', recommended: true }
+        ],
+        neuro_disease: [
+            { id: 'alpha-synuclein', routeId: 'neuro_parkinson_snca', title: 'alpha-synuclein', desc: '帕金森病相关病理表位入口', recommended: true },
+            { id: 'AQP4', routeId: 'neuro_nmosd_aqp4', title: 'AQP4', desc: 'NMOSD 相关自身抗原界面入口' }
         ]
     };
     const qdMechanismOptions = {
@@ -7911,6 +7954,21 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             { id: 'modulate-reuptake', title: '调节 DAT 多巴胺再摄取', desc: '围绕 DAT 胞外 vestibule 与外露环区生成候选', recommended: true },
             { id: 'vestibule-surface', title: '优先识别胞外 vestibule', desc: '强调与多巴胺进入相关的胞外可及表面' },
             { id: 'high-affinity', title: '生成高亲和力结合抗体', desc: '优先优化 DAT 胞外表面结合能力和稳定性' }
+        ],
+        'TSHR': [
+            { id: 'block-tsh', title: '优先覆盖 TSH 结合邻近表面', desc: '围绕 TSHR 胞外受体可及区域生成候选', recommended: true, block: 'TSH' },
+            { id: 'receptor-surface', title: '识别胞外受体稳定表面', desc: '强调受体 ectodomain 的稳定外露区域' },
+            { id: 'high-affinity', title: '生成高亲和力结合抗体', desc: '优先优化 TSHR 胞外表面结合能力和稳定性' }
+        ],
+        'alpha-synuclein': [
+            { id: 'epitope-scope', title: '围绕已解析病理表位生成候选', desc: '把结构解读限制在已解析 alpha-synuclein 表位肽范围内', recommended: true },
+            { id: 'local-pathology', title: '强调局部病理表位识别', desc: '突出局部病理表位而非完整纤维整体形态' },
+            { id: 'high-affinity', title: '生成高亲和力结合抗体', desc: '优先优化局部病理表位结合能力和稳定性' }
+        ],
+        'AQP4': [
+            { id: 'loop-interface', title: '围绕胞外 loop 界面生成候选', desc: '聚焦 AQP4 tetramer 胞外可及表面', recommended: true },
+            { id: 'autoantigen-surface', title: '强调自身抗原界面识别', desc: '将结构解读限制在已解析自身抗体界面范围内' },
+            { id: 'high-affinity', title: '生成高亲和力结合抗体', desc: '优先优化 AQP4 胞外表面结合能力和稳定性' }
         ],
         default: [
             { id: 'block-ligand', title: '阻断配体结合', desc: '阻止目标蛋白与关键伙伴结合', recommended: true },
@@ -16162,6 +16220,9 @@ ${fallbackTableRows(profile.rows)}
         metabolic_angptl3: { aliasPrefix: 'ANGPTL3-Met-Fab', structureTitle: 'ANGPTL3 Fab 脂质代谢调控构象', structureFamily: '脂质代谢调控靶点 · 代谢 Fab 候选', visualSummary: '突出真实 ANGPTL3 脂质代谢相关结构域与 Fab 候选参考构象。', structuralBasis: 'RCSB 6EUA ANGPTL3 真实靶点结构 + Fab 候选参考姿态', interfaceDetail: false, antigenChains: ['A','D','E'], antibodyChains: ['B','C'], visualColors: { antigen: '#65A30D', antibody: '#7C3AED' }, order: [4,8,1,3,7,0,2,6,10,5,9,11] },
         metabolic_gipr: { aliasPrefix: 'GIPR-Fab', structureTitle: 'GIPR Fab 胞外受体结合构象', structureFamily: '代谢受体胞外结构域 · Fab 候选', visualSummary: '展示 GIPG013 Fab 识别 GIPR 胞外结构域的真实复合物界面。', structuralBasis: 'RCSB 4HJ0 human GIPR ECD / GIPG013 Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#0F766E', antibody: '#F472B6' }, order: [5,9,2,4,8,1,3,7,0,6,10,11] },
         neuro_adhd_dat: { aliasPrefix: 'DAT-Fab', structureTitle: 'DAT Fab 多巴胺再摄取调控展示构象', structureFamily: '多巴胺转运蛋白 · Fab 展示候选', visualSummary: '保留人源 DAT 的真实外向开放形态，并以 Fab 展示胞外 vestibule 邻近可及表面。', structuralBasis: 'RCSB 9EO4 human dopamine transporter outward-open structure + representative Fab display scaffold', interfaceDetail: false, antigenChains: ['B'], antibodyChains: ['H','L'], visualColors: { antigen: '#22C55E', antibody: '#2563EB' } },
+        endocrine_graves_tshr: { aliasPrefix: 'TSHR-Fab', structureTitle: 'TSHR Fab Graves disease 相关受体结合构象', structureFamily: '甲状腺刺激素受体 ectodomain · Fab 候选', visualSummary: '展示 human TSHR 与 CS-17 Fab 的真实实验界面，并将结构解读限制在公开坐标覆盖的受体构象范围内。', structuralBasis: 'RCSB 7T9M human thyrotropin receptor / CS-17 Fab complex', antigenChains: ['R'], antibodyChains: ['H','L'], visualColors: { antigen: '#0F766E', antibody: '#F59E0B' } },
+        neuro_parkinson_snca: { aliasPrefix: 'SNCA-Fab', structureTitle: 'alpha-synuclein Fab 帕金森病相关表位结合构象', structureFamily: '突触核蛋白 peptide epitope · Fab 候选', visualSummary: '展示 alpha-synuclein 已解析表位肽与 MJF14-6-4-2 Fab 的真实实验界面，并明确该结构只代表局部病理表位范围。', structuralBasis: 'RCSB 8OG0 alpha-synuclein epitope peptide / MJF14-6-4-2 Fab complex', antigenChains: ['P'], antibodyChains: ['H','L'], visualColors: { antigen: '#8B5CF6', antibody: '#22D3EE' } },
+        neuro_nmosd_aqp4: { aliasPrefix: 'AQP4-Fab', structureTitle: 'AQP4 Fab NMOSD 相关自身抗原界面构象', structureFamily: 'AQP4 tetramer · Fab 界面参考', visualSummary: '展示 human AQP4 tetramer 与 rAB 58 Fab 的真实实验界面，并明确该结构用作 NMOSD 相关自身抗原界面参考。', structuralBasis: 'RCSB 8V91 human AQP4 tetramer / rAB 58 Fab complex', antigenChains: ['A','B','C','D'], antibodyChains: ['J','I'], visualColors: { antigen: '#2563EB', antibody: '#F97316' } },
         veterinary_canine_ngf: { aliasPrefix: 'CANINE-NGF-Fab', structureTitle: '犬源 NGF Fab 疼痛信号中和展示构象', structureFamily: '犬源神经营养因子 · Fab 中和候选', visualSummary: '呈现犬源成熟 NGF 分子表面及 Fab 候选的空间覆盖关系。', structuralBasis: 'AlphaFold DB A0A8I3PYI3 犬源成熟 NGF + RCSB 4EDW tanezumab Fab 展示支架', interfaceDetail: false, antigenChains: ['A'], antibodyChains: ['H','L'], visualColors: { antigen: '#22C55E', antibody: '#2563EB' } }
     };
 
@@ -16175,7 +16236,7 @@ ${fallbackTableRows(profile.rows)}
         'TNF-Fab': 'TNF', 'IL17A-Fab': 'IL-17A', 'IL23-Fab': 'IL-23', 'RSVF-Fab': 'RSV F',
         'SC2RBD-Fab': 'SARS-CoV-2 RBD', 'FluHA-Fab': 'Influenza HA', 'FluNA-Fab': 'Influenza NA',
         'PCSK9-Fab': 'PCSK9', 'ANGPTL3-CV-Fab': 'ANGPTL3', 'IL1B-Fab': 'IL-1B',
-	        'ANGPTL3-Met-Fab': 'ANGPTL3', 'GIPR-Fab': 'GIPR', 'DAT-Fab': 'DAT', 'CANINE-NGF-Fab': 'Canine NGF'
+	        'ANGPTL3-Met-Fab': 'ANGPTL3', 'GIPR-Fab': 'GIPR', 'DAT-Fab': 'DAT', 'TSHR-Fab': 'TSHR', 'SNCA-Fab': 'alpha-synuclein', 'AQP4-Fab': 'AQP4', 'CANINE-NGF-Fab': 'Canine NGF'
 	    };
 
         Object.assign(FALLBACK_3D_PRESETS, buildFallback3DPresetsFromCatalog(getLocalStructureCatalogForFallback()));
@@ -16217,6 +16278,9 @@ ${fallbackTableRows(profile.rows)}
         if (/pd\s*-?\s*1|pd1/.test(target) && !/pd\s*-?\s*l\s*-?\s*1|pdl1/.test(target)) return FALLBACK_3D_PRESETS.checkpoint_pd1;
         if (/ctla\s*-?\s*4|cd152/.test(target)) return FALLBACK_3D_PRESETS.checkpoint_ctla4;
         if (/dopamine\s*transporter|多巴胺转运蛋白|\bdat1\b|\bslc6a3\b|\bdat\b/.test(target)) return FALLBACK_3D_PRESETS.neuro_adhd_dat;
+        if (/tshr|thyrotropin\s*receptor|thyroid[\s-]*stimulating\s*hormone\s*receptor|促甲状腺激素受体/.test(target)) return FALLBACK_3D_PRESETS.endocrine_graves_tshr;
+        if (/alpha[\s-]*synuclein|α[\s-]*synuclein|\bsnca\b|突触核蛋白/.test(target)) return FALLBACK_3D_PRESETS.neuro_parkinson_snca;
+        if (/aqp\s*-?\s*4|aquaporin[\s-]*4|水通道蛋白\s*4/.test(target)) return FALLBACK_3D_PRESETS.neuro_nmosd_aqp4;
         if (/cd\s*-?\s*20|ms4a1/.test(target)) return FALLBACK_3D_PRESETS.heme_cd20;
         if (/cd\s*-?\s*19/.test(target)) return FALLBACK_3D_PRESETS.heme_cd19;
         if (/cd\s*-?\s*3(?:e|epsilon|ε)?/.test(target)) return FALLBACK_3D_PRESETS.immune_cd3;

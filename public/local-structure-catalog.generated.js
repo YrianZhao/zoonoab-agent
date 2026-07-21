@@ -2,16 +2,16 @@
 (function(){
   window.ZOONOAB_LOCAL_STRUCTURE_CATALOG = {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-21T17:06:58.885Z",
+  "generatedAt": "2026-07-21T17:55:48.603Z",
   "summary": {
-    "pdbFileCount": 485,
-    "routePresetCount": 60,
-    "routeableRoutePresetCount": 59,
-    "promptEligibleRoutePresetCount": 59,
-    "routePresetFileCount": 412,
+    "pdbFileCount": 488,
+    "routePresetCount": 63,
+    "routeableRoutePresetCount": 62,
+    "promptEligibleRoutePresetCount": 62,
+    "routePresetFileCount": 415,
     "libraryAssetCount": 93
   },
-  "promptSupportTargets": "IL-33/IL33、TSLP、PD-L1/CD274、PD-1/PDCD1、CTLA-4/CTLA4、CD20/MS4A1、CD19、CD3/CD3E/CD3G、C5、IL-6R/IL6R、IL-4Rα/IL4R、CD25/IL2RA、CD38、TIGIT、CD47、LAG-3/LAG3、TROP-2/TACSTD2、Tissue Factor/F3、BCMA/TNFRSF17、IgE/IGH、CGRP receptor/CALCRL/RAMP1、HER2/ERBB2、EGFR、VEGF-A/VEGFA、TNF、IL-17A/IL17A、IL-23/IL23A/IL12B、RSV F/F、SARS-CoV-2 RBD/S、Influenza HA/HA、Influenza NA/NA、PCSK9、ANGPTL3、IL-1B、GIPR、Amyloid-beta/APP、Tau/MAPT、TREM2、DAT/SLC6A3、Canine NGF/NGF、Mesothelin/MSLN、Claudin 18.2/CLDN18、B7-H3/CD276、MUC1、Nectin-4/NECTIN4、GPRC5D、CEACAM5/CEA、STEAP1、CAIX/CA9、IL-5/IL5、IL-13/IL13、CD123/IL3RA、BAFF/TNFSF13B、FcRn/FCGRT、NGF、CD33/Siglec-3、GPC2/Glypican-2、Integrin α4β7/ITGA4-ITGB7",
+  "promptSupportTargets": "IL-33/IL33、TSLP、PD-L1/CD274、PD-1/PDCD1、CTLA-4/CTLA4、CD20/MS4A1、CD19、CD3/CD3E/CD3G、C5、IL-6R/IL6R、IL-4Rα/IL4R、CD25/IL2RA、CD38、TIGIT、CD47、LAG-3/LAG3、TROP-2/TACSTD2、Tissue Factor/F3、BCMA/TNFRSF17、IgE/IGH、CGRP receptor/CALCRL/RAMP1、HER2/ERBB2、EGFR、VEGF-A/VEGFA、TNF、IL-17A/IL17A、IL-23/IL23A/IL12B、RSV F/F、SARS-CoV-2 RBD/S、Influenza HA/HA、Influenza NA/NA、PCSK9、ANGPTL3、IL-1B、GIPR、Amyloid-beta/APP、Tau/MAPT、TREM2、DAT/SLC6A3、TSHR、alpha-synuclein/SNCA、AQP4、Canine NGF/NGF、Mesothelin/MSLN、Claudin 18.2/CLDN18、B7-H3/CD276、MUC1、Nectin-4/NECTIN4、GPRC5D、CEACAM5/CEA、STEAP1、CAIX/CA9、IL-5/IL5、IL-13/IL13、CD123/IL3RA、BAFF/TNFSF13B、FcRn/FCGRT、NGF、CD33/Siglec-3、GPC2/Glypican-2、Integrin α4β7/ITGA4-ITGB7",
   "routePresets": [
     {
       "routeId": "allergic_asthma",
@@ -2030,6 +2030,118 @@
         "visualColors": {
           "antigen": "#22C55E",
           "antibody": "#2563EB"
+        },
+        "ipTmBias": 0.002
+      }
+    },
+    {
+      "routeId": "endocrine_graves_tshr",
+      "aliasPrefix": "TSHR-Fab",
+      "target": "TSHR",
+      "gene": "TSHR",
+      "aliases": [
+        "Thyrotropin receptor",
+        "Thyroid-stimulating hormone receptor",
+        "促甲状腺激素受体"
+      ],
+      "promptLabel": "TSHR",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "TSHR-Fab-01.pdb"
+      ],
+      "display": {
+        "structureTitle": "TSHR Fab Graves disease 相关受体结合构象",
+        "structureFamily": "甲状腺刺激素受体 ectodomain · Fab 候选",
+        "visualSummary": "展示 human TSHR 与 CS-17 Fab 的真实实验界面，并将结构解读限制在公开坐标覆盖的受体构象范围内。",
+        "structuralBasis": "RCSB 7T9M human thyrotropin receptor / CS-17 Fab complex",
+        "antigenChains": [
+          "R"
+        ],
+        "antibodyChains": [
+          "H",
+          "L"
+        ],
+        "visualColors": {
+          "antigen": "#0F766E",
+          "antibody": "#F59E0B"
+        },
+        "ipTmBias": 0.003
+      }
+    },
+    {
+      "routeId": "neuro_parkinson_snca",
+      "aliasPrefix": "SNCA-Fab",
+      "target": "alpha-synuclein",
+      "gene": "SNCA",
+      "aliases": [
+        "SNCA",
+        "α-synuclein",
+        "Alpha synuclein",
+        "突触核蛋白"
+      ],
+      "promptLabel": "alpha-synuclein/SNCA",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "SNCA-Fab-01.pdb"
+      ],
+      "display": {
+        "structureTitle": "alpha-synuclein Fab 帕金森病相关表位结合构象",
+        "structureFamily": "突触核蛋白 peptide epitope · Fab 候选",
+        "visualSummary": "展示 alpha-synuclein 已解析表位肽与 MJF14-6-4-2 Fab 的真实实验界面，并明确该结构只代表局部病理表位范围。",
+        "structuralBasis": "RCSB 8OG0 alpha-synuclein epitope peptide / MJF14-6-4-2 Fab complex",
+        "antigenChains": [
+          "P"
+        ],
+        "antibodyChains": [
+          "H",
+          "L"
+        ],
+        "visualColors": {
+          "antigen": "#8B5CF6",
+          "antibody": "#22D3EE"
+        },
+        "ipTmBias": 0.001
+      }
+    },
+    {
+      "routeId": "neuro_nmosd_aqp4",
+      "aliasPrefix": "AQP4-Fab",
+      "target": "AQP4",
+      "gene": "AQP4",
+      "aliases": [
+        "AQP-4",
+        "Aquaporin-4",
+        "水通道蛋白4"
+      ],
+      "promptLabel": "AQP4",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "AQP4-Fab-01.pdb"
+      ],
+      "display": {
+        "structureTitle": "AQP4 Fab NMOSD 相关自身抗原界面构象",
+        "structureFamily": "AQP4 tetramer · Fab 界面参考",
+        "visualSummary": "展示 human AQP4 tetramer 与 rAB 58 Fab 的真实实验界面，并明确该结构用作 NMOSD 相关自身抗原界面参考。",
+        "structuralBasis": "RCSB 8V91 human AQP4 tetramer / rAB 58 Fab complex",
+        "antigenChains": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "antibodyChains": [
+          "J",
+          "I"
+        ],
+        "visualColors": {
+          "antigen": "#2563EB",
+          "antibody": "#F97316"
         },
         "ipTmBias": 0.002
       }

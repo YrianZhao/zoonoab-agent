@@ -668,7 +668,10 @@ test('server previews curated real complexes for common explicit antigen targets
     { text: '设计10个针对GPC2的Fab', expectedTarget: 'GPC2', expectedPrefix: /^GPC2-Fab-/ },
     { text: '设计10个针对Amyloid-beta的Fab', expectedTarget: 'Amyloid-beta', expectedPrefix: /^ABETA-Fab-/ },
     { text: '设计10个针对Tau的Fab', expectedTarget: 'Tau', expectedPrefix: /^TAU-Fab-/ },
-    { text: '设计10个针对TREM2的Fab', expectedTarget: 'TREM2', expectedPrefix: /^TREM2-Fab-/ }
+    { text: '设计10个针对TREM2的Fab', expectedTarget: 'TREM2', expectedPrefix: /^TREM2-Fab-/ },
+    { text: '设计10个针对TSHR的Fab', expectedTarget: 'TSHR', expectedPrefix: /^TSHR-Fab-/ },
+    { text: '设计10个针对AQP4的Fab', expectedTarget: 'AQP4', expectedPrefix: /^AQP4-Fab-/ },
+    { text: '设计10个针对SNCA的Fab', expectedTarget: 'alpha-synuclein', expectedPrefix: /^SNCA-Fab-/ }
   ];
 
   for (const item of requests) {
@@ -685,6 +688,29 @@ test('server previews curated real complexes for common explicit antigen targets
     assert.equal(firstBinder.fallback, false);
     assert.ok(Array.isArray(firstBinder.antigenChains) && firstBinder.antigenChains.length >= 1);
     assert.ok(Array.isArray(firstBinder.antibodyChains) && firstBinder.antibodyChains.length >= 2);
+  }
+});
+
+test('disease-first prepared directions resolve to their new exact local structures', async () => {
+  const requests = [
+    { text: '帮我设计一个针对甲状腺眼病的抗体', expectedTarget: 'TSHR', expectedPrefix: /^TSHR-Fab-/ },
+    { text: '帮我设计一个针对帕金森病的抗体', expectedTarget: 'alpha-synuclein', expectedPrefix: /^SNCA-Fab-/ },
+    { text: '帮我设计一个针对视神经脊髓炎的抗体', expectedTarget: 'AQP4', expectedPrefix: /^AQP4-Fab-/ }
+  ];
+
+  for (const item of requests) {
+    const query = encodeURIComponent(item.text);
+    const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/design-route?text=' + query);
+    assert.equal(res.status, 200);
+    const data = await res.json();
+    const firstBinder = data.threeDPreview && data.threeDPreview.binders && data.threeDPreview.binders[0];
+
+    assert.ok(firstBinder, item.text + ' should preview a local 3D model');
+    assert.equal(data.profile && data.profile.targetDisplay, item.expectedTarget, item.text + ' should resolve to the expected target');
+    assert.match(firstBinder.file, item.expectedPrefix);
+    assert.equal(firstBinder.modelOrigin, 'local');
+    assert.equal(firstBinder.structure.coordinates.targetVerified, true);
+    assert.match(firstBinder.structuralBasis, /RCSB /);
   }
 });
 

@@ -4,10 +4,10 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 
 ## Summary
 
-- PDB files: 485
-- Route presets: 60
-- Routeable presets: 59
-- Prompt-eligible structure-supported targets: 59
+- PDB files: 488
+- Route presets: 63
+- Routeable presets: 62
+- Prompt-eligible structure-supported targets: 62
 - Library assets: 93
 
 ## Route-backed structure families
@@ -54,6 +54,9 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 | neuro_alz_tau | Tau | MAPT | TAU-Fab | 1 | Homo sapiens | RCSB 6PXR Tau peptide / gosuranemab Fab complex |
 | neuro_alz_trem2 | TREM2 | TREM2 | TREM2-Fab | 1 | Homo sapiens | RCSB 9PWN TREM2 stalk peptide / 7411 Fab complex |
 | neuro_adhd_dat | DAT | SLC6A3 | DAT-Fab | 10 | Homo sapiens | RCSB 9EO4 human dopamine transporter outward-open structure + representative Fab display scaffold |
+| endocrine_graves_tshr | TSHR | TSHR | TSHR-Fab | 1 | Homo sapiens | RCSB 7T9M human thyrotropin receptor / CS-17 Fab complex |
+| neuro_parkinson_snca | alpha-synuclein | SNCA | SNCA-Fab | 1 | Homo sapiens | RCSB 8OG0 alpha-synuclein epitope peptide / MJF14-6-4-2 Fab complex |
+| neuro_nmosd_aqp4 | AQP4 | AQP4 | AQP4-Fab | 1 | Homo sapiens | RCSB 8V91 human AQP4 tetramer / rAB 58 Fab complex |
 | veterinary_canine_ngf | Canine NGF | NGF | CANINE-NGF-Fab | 10 | Canis lupus familiaris | AlphaFold DB A0A8I3PYI3 犬源成熟 NGF + RCSB 4EDW tanezumab Fab 展示支架 |
 | generic_vhh | IL-33 | IL33 | IL33-VHH | 15 | Homo sapiens | VHH 候选与抗原界面参考构象 |
 | solid_tumor_mesothelin | Mesothelin | MSLN | MSLN-Fab | 1 | Homo sapiens | RCSB 7UED full-length mesothelin / MORAb-009 Fab complex |
