@@ -2,16 +2,16 @@
 (function(){
   window.ZOONOAB_LOCAL_STRUCTURE_CATALOG = {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-21T16:28:41.075Z",
+  "generatedAt": "2026-07-21T17:06:58.885Z",
   "summary": {
-    "pdbFileCount": 481,
-    "routePresetCount": 59,
-    "routeableRoutePresetCount": 58,
-    "promptEligibleRoutePresetCount": 58,
-    "routePresetFileCount": 411,
-    "libraryAssetCount": 90
+    "pdbFileCount": 485,
+    "routePresetCount": 60,
+    "routeableRoutePresetCount": 59,
+    "promptEligibleRoutePresetCount": 59,
+    "routePresetFileCount": 412,
+    "libraryAssetCount": 93
   },
-  "promptSupportTargets": "IL-33/IL33、TSLP、PD-L1/CD274、PD-1/PDCD1、CTLA-4/CTLA4、CD20/MS4A1、CD19、CD3/CD3E/CD3G、C5、IL-6R/IL6R、IL-4Rα/IL4R、CD25/IL2RA、CD38、TIGIT、CD47、LAG-3/LAG3、TROP-2/TACSTD2、BCMA/TNFRSF17、IgE/IGH、CGRP receptor/CALCRL/RAMP1、HER2/ERBB2、EGFR、VEGF-A/VEGFA、TNF、IL-17A/IL17A、IL-23/IL23A/IL12B、RSV F/F、SARS-CoV-2 RBD/S、Influenza HA/HA、Influenza NA/NA、PCSK9、ANGPTL3、IL-1B、GIPR、Amyloid-beta/APP、Tau/MAPT、TREM2、DAT/SLC6A3、Canine NGF/NGF、Mesothelin/MSLN、Claudin 18.2/CLDN18、B7-H3/CD276、MUC1、Nectin-4/NECTIN4、GPRC5D、CEACAM5/CEA、STEAP1、CAIX/CA9、IL-5/IL5、IL-13/IL13、CD123/IL3RA、BAFF/TNFSF13B、FcRn/FCGRT、NGF、CD33/Siglec-3、GPC2/Glypican-2、Integrin α4β7/ITGA4-ITGB7",
+  "promptSupportTargets": "IL-33/IL33、TSLP、PD-L1/CD274、PD-1/PDCD1、CTLA-4/CTLA4、CD20/MS4A1、CD19、CD3/CD3E/CD3G、C5、IL-6R/IL6R、IL-4Rα/IL4R、CD25/IL2RA、CD38、TIGIT、CD47、LAG-3/LAG3、TROP-2/TACSTD2、Tissue Factor/F3、BCMA/TNFRSF17、IgE/IGH、CGRP receptor/CALCRL/RAMP1、HER2/ERBB2、EGFR、VEGF-A/VEGFA、TNF、IL-17A/IL17A、IL-23/IL23A/IL12B、RSV F/F、SARS-CoV-2 RBD/S、Influenza HA/HA、Influenza NA/NA、PCSK9、ANGPTL3、IL-1B、GIPR、Amyloid-beta/APP、Tau/MAPT、TREM2、DAT/SLC6A3、Canine NGF/NGF、Mesothelin/MSLN、Claudin 18.2/CLDN18、B7-H3/CD276、MUC1、Nectin-4/NECTIN4、GPRC5D、CEACAM5/CEA、STEAP1、CAIX/CA9、IL-5/IL5、IL-13/IL13、CD123/IL3RA、BAFF/TNFSF13B、FcRn/FCGRT、NGF、CD33/Siglec-3、GPC2/Glypican-2、Integrin α4β7/ITGA4-ITGB7",
   "routePresets": [
     {
       "routeId": "allergic_asthma",
@@ -807,6 +807,43 @@
           "antibody": "#38BDF8"
         },
         "ipTmBias": 0.005
+      }
+    },
+    {
+      "routeId": "solid_tumor_tissue_factor",
+      "aliasPrefix": "F3-Fab",
+      "target": "Tissue Factor",
+      "gene": "F3",
+      "aliases": [
+        "F3",
+        "CD142",
+        "Thromboplastin",
+        "Coagulation factor III"
+      ],
+      "promptLabel": "Tissue Factor/F3",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "F3-Fab-01.pdb"
+      ],
+      "display": {
+        "structureTitle": "Tissue Factor Fab 肿瘤相关外露结构域结合构象",
+        "structureFamily": "实体瘤相关凝血通路表面抗原 · Tissue Factor Fab 候选",
+        "visualSummary": "展示 human Tissue Factor 外露结构域与 anti-Tissue Factor HATR-5 Fab 的真实实验结合界面，适合宫颈癌等 Tissue Factor 高表达实体瘤方向展示。",
+        "structuralBasis": "RCSB 1UJ3 human Tissue Factor extracellular domain / HATR-5 Fab complex",
+        "antigenChains": [
+          "C"
+        ],
+        "antibodyChains": [
+          "A",
+          "B"
+        ],
+        "visualColors": {
+          "antigen": "#F97316",
+          "antibody": "#2563EB"
+        },
+        "ipTmBias": 0.004
       }
     },
     {

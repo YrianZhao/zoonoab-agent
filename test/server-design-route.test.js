@@ -656,6 +656,7 @@ test('server previews curated real complexes for common explicit antigen targets
     { text: '设计10个针对GPRC5D的Fab', expectedTarget: 'GPRC5D', expectedPrefix: /^GPRC5D-Fab-/ },
     { text: '设计10个针对CEA的Fab', expectedTarget: 'CEACAM5', expectedPrefix: /^CEACAM5-Fab-/ },
     { text: '设计10个针对STEAP1的Fab', expectedTarget: 'STEAP1', expectedPrefix: /^STEAP1-Fab-/ },
+    { text: '设计10个针对Tissue Factor的Fab', expectedTarget: 'Tissue Factor', expectedPrefix: /^F3-Fab-/ },
     { text: '设计10个针对IL-5的Fab', expectedTarget: 'IL-5', expectedPrefix: /^IL5-Fab-/ },
     { text: '设计10个针对IL-13的Fab', expectedTarget: 'IL-13', expectedPrefix: /^IL13-Fab-/ },
     { text: '设计10个针对CD123的Fab', expectedTarget: 'CD123', expectedPrefix: /^CD123-Fab-/ },
@@ -1003,6 +1004,7 @@ test('server recognizes lupus and myasthenia disease wording as target-resolutio
     ['帮我设计一个治疗重症肌无力的抗体', '重症肌无力'],
     ['帮我设计一个治疗骨关节炎的抗体', '骨关节炎'],
     ['帮我设计一个治疗骨质疏松的抗体', '骨质疏松'],
+    ['帮我设计一个治疗宫颈癌的抗体', '宫颈癌'],
     ['帮我设计一个治疗溃疡性结肠炎的抗体', '溃疡性结肠炎']
   ];
 

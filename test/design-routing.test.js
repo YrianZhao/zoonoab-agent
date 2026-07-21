@@ -63,6 +63,9 @@ test('keeps newly cataloged solid-tumor targets stable in explicit design reques
     ['设计10个针对GPRC5D的Fab', 'GPRC5D'],
     ['设计10个针对CEA的Fab', 'CEACAM5'],
     ['设计10个针对STEAP1的Fab', 'STEAP1'],
+    ['设计10个针对Tissue Factor的Fab', 'Tissue Factor'],
+    ['设计10个针对F3的Fab', 'Tissue Factor'],
+    ['设计10个针对CD142的Fab', 'Tissue Factor'],
     ['设计10个针对IL-5的Fab', 'IL-5'],
     ['设计10个针对IL13的Fab', 'IL-13'],
     ['设计10个针对CD123的Fab', 'CD123'],
@@ -78,6 +81,10 @@ test('keeps newly cataloged solid-tumor targets stable in explicit design reques
     ['设计10个针对sclerostin的抗体', 'SOST'],
     ['设计10个针对RANKL的抗体', 'RANKL'],
     ['设计10个针对DKK1的抗体', 'DKK1'],
+    ['设计10个针对TrkA的抗体', 'TrkA'],
+    ['设计10个针对NTRK1的抗体', 'TrkA'],
+    ['设计10个针对B7-H4的抗体', 'B7-H4'],
+    ['设计10个针对VTCN1的抗体', 'B7-H4'],
     ['设计10个针对α4β7的Fab', 'Integrin α4β7'],
     ['设计10个针对alpha4beta7的Fab', 'Integrin α4β7'],
     ['设计10个针对GPC2的Fab', 'GPC2'],
@@ -185,6 +192,11 @@ test('cleans disease-area wording before using it as a dynamic target', () => {
   assert.equal(osteoporosis.isDesignRequest, true);
   assert.equal(osteoporosis.target, '骨质疏松');
   assert.equal(osteoporosis.hasExplicitTarget, true);
+
+  const cervical = extractDesignRequest('帮我设计一个针对宫颈癌的抗体');
+  assert.equal(cervical.isDesignRequest, true);
+  assert.equal(cervical.target, '宫颈癌');
+  assert.equal(cervical.hasExplicitTarget, true);
 });
 
 test('keeps explicit targets inside disease-area requests', () => {

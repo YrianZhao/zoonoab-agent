@@ -4,11 +4,11 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 
 ## Summary
 
-- PDB files: 481
-- Route presets: 59
-- Routeable presets: 58
-- Prompt-eligible structure-supported targets: 58
-- Library assets: 90
+- PDB files: 485
+- Route presets: 60
+- Routeable presets: 59
+- Prompt-eligible structure-supported targets: 59
+- Library assets: 93
 
 ## Route-backed structure families
 
@@ -31,6 +31,7 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 | checkpoint_cd47 | CD47 | CD47 | CD47-Fab | 10 | Homo sapiens | RCSB 8ZCA CD47 / hu1C8 Fab complex |
 | checkpoint_lag3 | LAG-3 | LAG3 | LAG3-Fab | 10 | Homo sapiens | RCSB 8SO3 LAG-3 / favezelimab Fab complex |
 | solid_tumor_trop2 | TROP-2 | TACSTD2 | TROP2-Fab | 10 | Homo sapiens | RCSB 9PI9 TROP-2 dimer / sacituzumab Fab complex |
+| solid_tumor_tissue_factor | Tissue Factor | F3 | F3-Fab | 1 | Homo sapiens | RCSB 1UJ3 human Tissue Factor extracellular domain / HATR-5 Fab complex |
 | heme_bcma | BCMA | TNFRSF17 | BCMA-Fab | 10 | Homo sapiens | RCSB 9MQO BCMA / CA10V2 Fab complex |
 | allergic_ige | IgE | IGH | IgE-Fab | 10 | Homo sapiens | RCSB 5G64 IgE-Fc / anti-IgE Fab complex |
 | migraine_cgrpr | CGRP receptor | CALCRL/RAMP1 | CGRPR-Fab | 10 | Homo sapiens | RCSB 6UMG CGRP receptor ECD / erenumab Fab complex |

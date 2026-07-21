@@ -15,7 +15,7 @@ function readModelText(model) {
 test('solid-tumor asset library keeps exact local sources for non-routeable tumor targets', () => {
   assert.equal(manifest.schemaVersion, 1);
   assert.equal(manifest.totalModels, manifest.models.length);
-  assert.equal(manifest.totalModels, 9);
+  assert.equal(manifest.totalModels, 10);
 
   for (const model of manifest.models) {
     assert.ok(fs.existsSync(path.join(ROOT, 'pdb', model.filename)), model.filename + ' should exist locally');
@@ -31,10 +31,11 @@ test('solid-tumor antigen-only assets keep empty antibody chain remarks', () => 
     'SOLIDLIB-HUMAN-FOLR1-RCSB-4KM7.pdb',
     'SOLIDLIB-HUMAN-FOLR1-RCSB-4KMX.pdb',
     'SOLIDLIB-HUMAN-CEACAM6-RCSB-4WHC.pdb',
-    'SOLIDLIB-HUMAN-CAIX-RCSB-6FE2.pdb'
+    'SOLIDLIB-HUMAN-CAIX-RCSB-6FE2.pdb',
+    'SOLIDLIB-HUMAN-B7H4-RCSB-4GOS.pdb'
   ]) {
     const text = fs.readFileSync(path.join(ROOT, 'pdb', filename), 'utf8');
-    assert.match(text, /REMARK 901 TARGET: (FOLR1|CEACAM6|CAIX)/);
+    assert.match(text, /REMARK 901 TARGET: (FOLR1|CEACAM6|CAIX|B7-H4)/);
     assert.match(text, /REMARK 910 ORGANISM: Homo sapiens/);
     assert.match(text, /REMARK 911 TAXID: 9606/);
     const antibodyLine = text.split(/\r?\n/).find(line => line.startsWith('REMARK 905 ANTIBODY CHAINS:'));

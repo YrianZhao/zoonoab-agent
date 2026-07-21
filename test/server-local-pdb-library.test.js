@@ -163,6 +163,18 @@ test('local PDB model library API lists local structures with viewer metadata', 
   const caixViewerPdbUrl = new URL(caix.viewerUrl, 'http://127.0.0.1').searchParams.get('pdb');
   assert.match(caixViewerPdbUrl, /chains=P%2CH%2CL/);
 
+  const tissueFactor = data.models.find(model => model.filename === 'F3-Fab-01.pdb');
+  assert.ok(tissueFactor, 'Tissue Factor routeable Fab preset should be listed');
+  assert.equal(tissueFactor.targetDisplay, 'Tissue Factor');
+  assert.equal(tissueFactor.antibodyFormat, 'Fab');
+  assert.equal(tissueFactor.structureKind, 'Fab 抗原-抗体复合体');
+  assert.deepEqual(tissueFactor.antigenChains, ['C']);
+  assert.deepEqual(tissueFactor.antibodyChains, ['A', 'B']);
+  assert.match(tissueFactor.structuralBasis, /1UJ3/);
+  assert.equal(tissueFactor.targetTag.verifiedTag, true);
+  const tissueFactorViewerPdbUrl = new URL(tissueFactor.viewerUrl, 'http://127.0.0.1').searchParams.get('pdb');
+  assert.match(tissueFactorViewerPdbUrl, /chains=C%2CA%2CB/);
+
   const epcam = data.models.find(model => model.filename === 'SOLIDLIB-HUMAN-EPCAM-SCFV-RCSB-6I07.pdb');
   assert.ok(epcam, 'solid-tumor EpCAM scFv asset should be listed');
   assert.equal(epcam.targetDisplay, 'EpCAM');
@@ -293,6 +305,36 @@ test('local PDB model library API lists local structures with viewer metadata', 
   assert.deepEqual(trem2.antibodyChains, ['H', 'L']);
   assert.match(trem2.structuralBasis, /9PWN/);
   assert.equal(trem2.targetTag.verifiedTag, true);
+
+  const trka = data.models.find(model => model.filename === 'NEUROLIB-HUMAN-TRKA-RCSB-1HE7.pdb');
+  assert.ok(trka, 'TrkA antigen-only asset should be listed');
+  assert.equal(trka.targetDisplay, 'TrkA');
+  assert.equal(trka.antibodyFormat, '');
+  assert.equal(trka.structureKind, '实验抗原结构');
+  assert.deepEqual(trka.antigenChains, ['A']);
+  assert.deepEqual(trka.antibodyChains, []);
+  assert.match(trka.structuralBasis, /1HE7/);
+  assert.equal(trka.targetTag.verifiedTag, true);
+
+  const trkaNgf = data.models.find(model => model.filename === 'NEUROLIB-HUMAN-TRKA-NGF-RCSB-2IFG.pdb');
+  assert.ok(trkaNgf, 'TrkA-NGF reference asset should be listed');
+  assert.equal(trkaNgf.targetDisplay, 'TrkA');
+  assert.equal(trkaNgf.antibodyFormat, '');
+  assert.equal(trkaNgf.structureKind, '实验参考复合体');
+  assert.deepEqual(trkaNgf.antigenChains, ['A', 'B']);
+  assert.deepEqual(trkaNgf.antibodyChains, []);
+  assert.match(trkaNgf.structuralBasis, /2IFG/);
+  assert.equal(trkaNgf.targetTag.verifiedTag, true);
+
+  const b7h4 = data.models.find(model => model.filename === 'SOLIDLIB-HUMAN-B7H4-RCSB-4GOS.pdb');
+  assert.ok(b7h4, 'B7-H4 antigen-only asset should be listed');
+  assert.equal(b7h4.targetDisplay, 'B7-H4');
+  assert.equal(b7h4.antibodyFormat, '');
+  assert.equal(b7h4.structureKind, '实验抗原结构');
+  assert.deepEqual(b7h4.antigenChains, ['A']);
+  assert.deepEqual(b7h4.antibodyChains, []);
+  assert.match(b7h4.structuralBasis, /4GOS/);
+  assert.equal(b7h4.targetTag.verifiedTag, true);
 });
 
 test('structure catalog API exposes route-backed structure inventory', async () => {
@@ -343,6 +385,12 @@ test('structure catalog API exposes route-backed structure inventory', async () 
   assert.equal(gpc2.aliasPrefix, 'GPC2-Fab');
   assert.equal(gpc2.target, 'GPC2');
   assert.ok((gpc2.files || []).includes('GPC2-Fab-01.pdb'));
+
+  const tissueFactor = data.catalog.routePresets.find(item => item.routeId === 'solid_tumor_tissue_factor');
+  assert.ok(tissueFactor, 'catalog should expose the Tissue Factor local route');
+  assert.equal(tissueFactor.aliasPrefix, 'F3-Fab');
+  assert.equal(tissueFactor.target, 'Tissue Factor');
+  assert.ok((tissueFactor.files || []).includes('F3-Fab-01.pdb'));
 });
 
 test('local PDB responses are cacheable and can project only viewer-visible chains', async () => {

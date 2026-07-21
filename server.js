@@ -3269,6 +3269,7 @@ function buildRouteProfile(target, blockTarget, abType) {
   if (['CD47'].includes(key)) key = 'CD47';
   if (['LAG3', 'LAG-3'].includes(key)) key = 'LAG-3';
   if (['TROP2', 'TROP-2', 'TACSTD2'].includes(key)) key = 'TROP-2';
+  if (['TISSUEFACTOR', 'F3', 'CD142', 'THROMBOPLASTIN', 'COAGULATIONFACTORIII'].includes(key)) key = 'Tissue Factor';
   if (['BCMA', 'TNFRSF17', 'CD269'].includes(key)) key = 'BCMA';
   if (['IGE'].includes(key)) key = 'IgE';
   if (['CGRPRECEPTOR', 'CGRPR', 'CALCRL'].includes(key)) key = 'CGRP receptor';
@@ -3408,6 +3409,41 @@ function buildRouteProfile(target, blockTarget, abType) {
       structurePrepEn: 'Loaded the HER2 extracellular reference model and prepared Fab design constraints around accessible antibody epitopes.',
       scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '肿瘤相关过表达靶点结合设计'
+    },
+    'Tissue Factor': {
+      routeLabel: 'Tissue Factor / F3',
+      disease: '宫颈癌及 Tissue Factor 高表达实体瘤',
+      targetDisplay: 'Tissue Factor',
+      targetGene: 'F3',
+      partnerDisplay: 'Factor VIIa',
+      domain: 'Tissue Factor 胞外结构域',
+      mechanism: '围绕 Tissue Factor 胞外可及表面生成 Fab 候选，并优先贴近 Factor VIIa 结合相关区域进行表位约束',
+      evidence: 'Tissue Factor 实体瘤表面抗原证据包',
+      evidenceSources: ['宫颈癌与实体瘤表面抗原开发背景', 'Tissue Factor 胞外结构域注释', 'anti-Tissue Factor 抗体开发背景', 'Factor VIIa 结合邻近表位规则'],
+      referenceEntries: 'UniProt F3(Tissue Factor) 靶点条目',
+      structure: 'Tissue Factor 胞外结构域与 HATR-5 Fab 真实结合界面参考集合',
+      structureRef: '1UJ3 Tissue Factor ectodomain / HATR-5 Fab complex',
+      structuralBasis: 'RCSB 1UJ3 human Tissue Factor extracellular domain / HATR-5 Fab complex',
+      antibodies: ['HATR-5', 'Tissue Factor-targeting antibody development background'],
+      interfaceFocus: 'Tissue Factor 胞外结构域上的 Factor VIIa 结合邻近可及表面',
+      selectedEpitope: '优先覆盖已解析胞外结构域中贴近 Factor VIIa 结合相关区域的外露表面',
+      epitopeRowsZh: [
+        ['Site A', 'Factor VIIa 结合邻近外露面', '直接贴近 Tissue Factor 功能相关界面与阻断叙事', '优先'],
+        ['Site B', '胞外结构域侧向稳定表面', '适合扩展高亲和力结合与表面识别展示', '备选'],
+        ['Site C', '近膜端截断边缘邻近区域', '超出当前已解析范围的天然膜环境需谨慎解读', '谨慎']
+      ],
+      epitopeRowsEn: [
+        ['Site A', 'Factor VIIa-proximal exposed face', 'aligned with functional-interface and blockade storytelling', 'primary'],
+        ['Site B', 'ectodomain lateral stable surface', 'useful for high-affinity binding and surface-recognition display', 'backup'],
+        ['Site C', 'membrane-proximal truncation edge', 'native membrane context is outside the solved scope', 'caution']
+      ],
+      riskSummaryZh: '界面风险标注显示，Tissue Factor 路线应优先围绕已解析胞外结构域中的 Factor VIIa 结合邻近外露面展开，并避免把近膜端截断边缘误读为完整天然膜环境表位。',
+      riskSummaryEn: 'Interface-risk annotation prioritizes the Factor VIIa-proximal ectodomain surface and avoids over-interpreting the membrane-proximal truncation edge as full native membrane context.',
+      modelVisualSummary: '展示 human Tissue Factor 已解析胞外结构域与 HATR-5 Fab 的真实实验界面，并将表位解读限制在公开坐标覆盖的 ectodomain 范围内。',
+      structurePrepZh: '加载 1UJ3 Tissue Factor ectodomain/HATR-5 Fab 复合物，提取 Factor VIIa 结合邻近外露表面并生成 Fab 设计约束。',
+      structurePrepEn: 'Loaded the 1UJ3 Tissue Factor ectodomain/HATR-5 Fab complex and prepared Fab constraints around the Factor VIIa-proximal exposed surface.',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
+      designMode: '实体瘤表面抗原结合设计'
     },
     'EGFR': {
       routeLabel: 'EGFR',
@@ -4152,6 +4188,18 @@ const ROUTE_3D_PRESETS = {
     antibodyColor: '#38BDF8',
     ipTmBias: 0.005
   },
+  solid_tumor_tissue_factor: {
+    aliasPrefix: 'F3-Fab',
+    title: 'Tissue Factor Fab 肿瘤相关外露结构域结合构象',
+    structureFamily: '实体瘤相关凝血通路表面抗原 · Tissue Factor Fab 候选',
+    visualSummary: '展示 human Tissue Factor 外露结构域与 anti-Tissue Factor HATR-5 Fab 的真实实验结合界面，适合宫颈癌等 Tissue Factor 高表达实体瘤方向展示。',
+    structuralBasis: 'RCSB 1UJ3 human Tissue Factor extracellular domain / HATR-5 Fab complex',
+    antigenChains: ['C'],
+    antibodyChains: ['A', 'B'],
+    antigenColor: '#F97316',
+    antibodyColor: '#2563EB',
+    ipTmBias: 0.004
+  },
   heme_bcma: {
     aliasPrefix: 'BCMA-Fab',
     title: 'BCMA Fab 浆细胞靶点结合构象',
@@ -4471,6 +4519,7 @@ const ROUTE_3D_PRESET_ORGANISMS_FALLBACK = {
   checkpoint_cd47: { organismName: 'Homo sapiens', organismTaxId: 9606 },
   checkpoint_lag3: { organismName: 'Homo sapiens', organismTaxId: 9606 },
   solid_tumor_trop2: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  solid_tumor_tissue_factor: { organismName: 'Homo sapiens', organismTaxId: 9606 },
   heme_bcma: { organismName: 'Homo sapiens', organismTaxId: 9606 },
   allergic_ige: { organismName: 'Homo sapiens', organismTaxId: 9606 },
   migraine_cgrpr: { organismName: 'Homo sapiens', organismTaxId: 9606 },
@@ -4930,6 +4979,7 @@ function buildLocalPDBDisplayMetadata(filename, remarks) {
   const structureClass = String(catalogEntry && catalogEntry.structureClass || '').trim().toLowerCase();
   let structureKind = '抗原结构预设';
   if (!hasAntibodyChains && /experimental_antigen/.test(structureClass)) structureKind = '实验抗原结构';
+  else if (!hasAntibodyChains && /experimental_reference_complex/.test(structureClass)) structureKind = '实验参考复合体';
   else if (representativeInterface) structureKind = (antibodyFormat || '抗体') + ' 代表性实验结合界面';
   else if (antibodyFormat === 'Binder') structureKind = '抗原-候选抗体复合体';
   else if (antibodyFormat) structureKind = antibodyFormat + ' 抗原-抗体复合体';
@@ -6675,6 +6725,19 @@ const OSTEOPOROSIS_SOST_TARGET_RESOLUTION = {
   ]
 };
 
+const CERVICAL_CANCER_TISSUE_FACTOR_TARGET_RESOLUTION = {
+  selectedTarget: 'Tissue Factor',
+  selectedGene: 'F3',
+  designLabel: 'CERVICAL-F3-1',
+  confidence: 0.8,
+  reason: '宫颈癌方向可优先围绕 Tissue Factor/F3 相关肿瘤细胞表面凝血通路入口展开。Tissue Factor 是经典的细胞表面外露糖蛋白，具备明确的人源外露结构域与真实 Fab 复合物结构，可直接对应宫颈癌等 Tissue Factor 高表达实体瘤的抗体结合设计；相较更泛化的免疫检查点或下游炎症因子，Tissue Factor 与肿瘤细胞表面识别和 ADC/抗体开发背景的对应关系更直接，因此适合作为疾病优先靶点入口。',
+  candidates: [
+    { target: 'Tissue Factor', gene: 'F3', rationale: '肿瘤细胞表面凝血通路糖蛋白，具备真实 human Tissue Factor/Fab 复合物结构与明确开发背景。' },
+    { target: 'TROP-2', gene: 'TACSTD2', rationale: '常见上皮肿瘤表面抗原，可作为宫颈癌与其他上皮性肿瘤方向的备选入口。' },
+    { target: 'B7-H3', gene: 'CD276', rationale: '免疫调节型高表达实体瘤表面抗原，可作为高表达实体瘤方向的补充候选。' }
+  ]
+};
+
 const BUILTIN_DISEASE_TARGET_RESOLVERS = {
   '肿瘤免疫治疗': TUMOR_IMMUNOTHERAPY_TARGET_RESOLUTION,
   '肿瘤免疫': TUMOR_IMMUNOTHERAPY_TARGET_RESOLUTION,
@@ -6701,6 +6764,8 @@ const BUILTIN_DISEASE_TARGET_RESOLVERS = {
   'osteoarthritis': PAIN_NGF_TARGET_RESOLUTION,
   '骨质疏松': OSTEOPOROSIS_SOST_TARGET_RESOLUTION,
   'osteoporosis': OSTEOPOROSIS_SOST_TARGET_RESOLUTION,
+  '宫颈癌': CERVICAL_CANCER_TISSUE_FACTOR_TARGET_RESOLUTION,
+  'cervical cancer': CERVICAL_CANCER_TISSUE_FACTOR_TARGET_RESOLUTION,
   '过敏性哮喘': {
     selectedTarget: 'IL-33',
     selectedGene: 'IL33',
@@ -7586,7 +7651,7 @@ function buildWorkflowIntentPrompt() {
     '边界：如果用户明确要求针对小分子/半抗原/化合物本身生成或特异性结合抗体（例如“设计氯胺酮抗体”“设计特异性结合噻吩嗪的单克隆抗体”），输出 i=chat,start=false,answer，说明 ZoonoAb 面向大分子抗原/蛋白靶点，不直接生成小分子/半抗原抗体；不要把该小分子硬转成蛋白靶点。',
     '准确性优先：疾病或药物方向可能对应多个靶点，先保证疾病关联、机制和抗体可及性准确；如果用户明确指定靶点，target 必须保留用户真实指定靶点；如果用户只给疾病、方向或药物机制，且多个候选同等合理，优先从结构支撑靶点清单选择 target，并把其他合理靶点放入 cands，形成候选靶点比较池。',
     '结构支撑靶点清单：' + STRUCTURE_SUPPORT_TARGETS_FOR_PROMPT + '。',
-    '常见疾病发散参考：尿路上皮癌/肾盂癌优先比较 Nectin-4、TROP-2、B7-H3 或 HER2；肾癌/透明细胞肾细胞癌优先比较 CAIX、VEGF-A、B7-H3；嗜酸性哮喘/重度 2 型炎症优先比较 IL-5、IL-13、IL-4Rα 或 TSLP；特应性皮炎优先比较 IL-13、IL-4Rα、TSLP 或 IL-33；系统性红斑狼疮/SLE 优先比较 BAFF、FcRn、CD20；重症肌无力/gMG 优先比较 FcRn、C5、CD20；炎症性肠病/溃疡性结肠炎/克罗恩病优先比较 Integrin α4β7、IL-23、TNF；骨关节炎/慢性疼痛优先比较 NGF、TrkA、IL-1β；骨质疏松优先比较 SOST、RANKL、DKK1；阿尔茨海默病优先比较 Amyloid-beta、Tau、TREM2；急性髓系白血病优先比较 CD123、CD47、CD33；多发性骨髓瘤优先比较 GPRC5D、BCMA、CD38；前列腺癌优先比较 STEAP1、PSMA、B7-H3；结直肠癌优先比较 CEACAM5、EGFR、B7-H3；卵巢癌优先比较 Mesothelin、MUC1、FOLR1；小细胞肺癌优先比较 GPC2、DLL3、B7-H3 或 TROP-2。',
+    '常见疾病发散参考：尿路上皮癌/肾盂癌优先比较 Nectin-4、TROP-2、B7-H3 或 HER2；宫颈癌优先比较 Tissue Factor/F3、TROP-2、B7-H3 或 PD-L1；肾癌/透明细胞肾细胞癌优先比较 CAIX、VEGF-A、B7-H3；嗜酸性哮喘/重度 2 型炎症优先比较 IL-5、IL-13、IL-4Rα 或 TSLP；特应性皮炎优先比较 IL-13、IL-4Rα、TSLP 或 IL-33；系统性红斑狼疮/SLE 优先比较 BAFF、FcRn、CD20；重症肌无力/gMG 优先比较 FcRn、C5、CD20；炎症性肠病/溃疡性结肠炎/克罗恩病优先比较 Integrin α4β7、IL-23、TNF；骨关节炎/慢性疼痛优先比较 NGF、TrkA、IL-1β；骨质疏松优先比较 SOST、RANKL、DKK1；阿尔茨海默病优先比较 Amyloid-beta、Tau、TREM2；急性髓系白血病优先比较 CD123、CD47、CD33；多发性骨髓瘤优先比较 GPRC5D、BCMA、CD38；前列腺癌优先比较 STEAP1、PSMA、B7-H3；结直肠癌优先比较 CEACAM5、EGFR、B7-H3；卵巢癌优先比较 Mesothelin、MUC1、FOLR1 或 B7-H4；小细胞肺癌优先比较 GPC2、DLL3、B7-H3 或 TROP-2。',
     'reason 只能写疾病关联、药物机制、表达/可及性、结构域和抗体开发依据；不要提本地、预设、可展示、系统已有、为了展示、3D 预设等内部选择原因。',
     'i=chat：只用于普通闲聊、寒暄、纯问答、天气、时间、非分子设计概念解释，且没有足够信息生成 target 的情况。chat 只填 i,start=false,answer；answer 默认中文，最多 2 句。',
     'design 必填 target、reason、cands、wf；reason 写 220-420 个中文字，必须紧扣用户原始需求，按疾病机制/适应症语境、表达谱或抗原暴露、抗原可及性、作用机制、同类抗体开发背景、与备选靶点比较这几类依据展开，说明为何优先该靶点，语言要像专业靶点评审摘要；cands 给 5-7 个候选靶点，包含已选 target 和其他合理备选，每个 r 用 35-90 个中文字写清候选理由、适用场景和相对优先级；wf 每项不超过 35 个中文字。',
@@ -7595,6 +7660,7 @@ function buildWorkflowIntentPrompt() {
     '示例：设计狗 NGF 单抗 -> {"i":"design","start":true,"summary":"面向犬源 NGF 生成单抗候选","bg":"犬源 NGF 与骨关节炎相关慢性疼痛的外周伤害性感受通路有关。","disease":"犬骨关节炎与慢性疼痛","target":"Canine NGF","gene":"NGF","organismName":"Canis lupus familiaris","organismTaxId":9615,"label":"CANINE-NGF-1","reason":"犬源神经生长因子 NGF 可通过 TrkA 与 p75NTR 相关信号调节外周伤害性感受神经元的敏化，在犬骨关节炎及慢性疼痛语境中具有明确的病理生理关联。成熟 NGF 为分泌型可溶性配体，抗体可及性良好；中和 NGF 可从配体层面降低疼痛信号放大。相较 TrkA 受体或更广泛的炎症介质，NGF 与疼痛表型的机制联系更直接，且已有同类兽医抗体开发背景，因此具有较高的靶点评审优先级。","cands":[{"t":"Canine NGF","g":"NGF","r":"与外周痛觉敏化直接相关，分泌型配体具有良好抗体可及性。"},{"t":"Canine TrkA","g":"NTRK1","r":"NGF 受体通路入口，但受体表达范围与机制影响更复杂。"}],"mech":"中和犬源 NGF 并降低 TrkA 相关痛觉敏化信号","ab":"mAb","n":10,"block":"TrkA","confidence":0.92,"wf":{"domain":"成熟 NGF 神经营养因子结构域","mechanism":"限制 NGF 受体结合与痛觉敏化","epitope":"优先覆盖 TrkA 结合邻近表面","structure":"犬源 NGF 坐标与 NGF/Fab 结构参考","modelNote":"展示犬源成熟 NGF 与 Fab 候选空间关系"}}',
     '示例：设计一个胰腺癌的抗体 -> {"i":"design","start":true,"summary":"面向胰腺癌设计抗体候选","bg":"胰腺癌抗体设计需关注肿瘤相关抗原表达、膜表面可及性和正常组织背景。","disease":"胰腺癌","target":"MUC1","gene":"MUC1","label":"PANCREATIC-MUC1-1","reason":"MUC1 是胰腺癌中常被讨论的肿瘤相关糖蛋白抗原，具备膜表面暴露和异常糖基化相关表位，可用于抗体候选识别；相较纯炎症因子入口，它与胰腺癌肿瘤细胞表面识别、抗原可及性和后续候选筛选更直接对应。","cands":[{"t":"MUC1","g":"MUC1","r":"肿瘤相关膜糖蛋白，适合作为抗体识别入口。"},{"t":"Mesothelin","g":"MSLN","r":"胰腺癌相关细胞表面抗原，可作备选。"}],"mech":"识别肿瘤相关外露表位并筛选 Fab 候选","ab":"Fab","n":10,"block":"","confidence":0.8,"wf":{"domain":"MUC1 胞外糖蛋白可及区","mechanism":"识别肿瘤相关外露表位","epitope":"优先覆盖异常糖基化邻近表面","structure":"MUC1 胞外表面与 Fab 姿态约束","modelNote":"展示 Fab 贴合 MUC1 外露表面的候选构象"}}',
     '示例：治疗肾盂癌 -> {"i":"design","start":true,"summary":"面向肾盂癌与尿路上皮癌方向生成抗体候选","bg":"肾盂癌属于尿路上皮癌谱系，抗体设计通常优先比较高表达表面抗原、ADC 开发背景与正常尿路组织窗口。","disease":"肾盂癌/尿路上皮癌","target":"Nectin-4","gene":"NECTIN4","label":"UTUC-NECTIN4-1","reason":"Nectin-4/NECTIN4 是尿路上皮癌与肾盂癌方向具有明确开发背景的细胞黏附分子，位于肿瘤细胞表面并提供真实可及的免疫球蛋白样外露结构域，适合抗体或抗体偶联药物方向的结合设计。相较更泛化的免疫检查点或下游通路因子，Nectin-4 与尿路上皮肿瘤细胞表面识别的对应关系更直接，且已有同类抗体药物开发依据，因此具有较高的综合靶点评审优先级。","cands":[{"t":"Nectin-4","g":"NECTIN4","r":"尿路上皮癌相关表面黏附分子，具备明确 ADC 与抗体开发背景。"},{"t":"TROP-2","g":"TACSTD2","r":"尿路上皮癌与多种上皮肿瘤中的常见表面抗原，可作为机制备选入口。"},{"t":"B7-H3","g":"CD276","r":"免疫调节型肿瘤表面抗原，可作为高表达实体瘤方向的补充候选。"}],"mech":"识别 Nectin-4 外露 Ig 样表面并筛选 Fab 候选","ab":"Fab","n":10,"block":"","confidence":0.86,"wf":{"domain":"Nectin-4 D1 外露结构域","mechanism":"围绕细胞表面黏附界面生成结合候选","epitope":"优先覆盖外露 Ig 样可及表面","structure":"Nectin-4 D1/Fab 复合物结构依据","modelNote":"展示 Nectin-4 表面与 Fab 候选结合构象"}}',
+    '示例：治疗宫颈癌 -> {"i":"design","start":true,"summary":"面向宫颈癌方向生成抗体候选","bg":"宫颈癌方向的抗体设计通常优先比较高表达表面抗原、ADC 开发背景与肿瘤细胞外露结构域可及性。","disease":"宫颈癌","target":"Tissue Factor","gene":"F3","label":"CERVICAL-F3-1","reason":"Tissue Factor/F3 是宫颈癌方向具有明确开发背景的肿瘤细胞表面糖蛋白，具备真实人源外露结构域与 Fab 复合物结构，可直接对应表面抗原识别与抗体偶联药物方向的结合设计。相较更泛化的免疫检查点或下游炎症通路，Tissue Factor 与宫颈癌肿瘤细胞表面识别和局部凝血通路重编程的对应关系更直接，因此具有较高的综合靶点评审优先级。","cands":[{"t":"Tissue Factor","g":"F3","r":"宫颈癌与多种实体瘤中具有开发背景的表面糖蛋白，具备真实 human Tissue Factor/Fab 复合物结构。"},{"t":"TROP-2","g":"TACSTD2","r":"常见上皮肿瘤表面抗原，可作为宫颈癌方向的备选入口。"},{"t":"B7-H3","g":"CD276","r":"免疫调节型高表达实体瘤表面抗原，可作为补充候选。"}],"mech":"识别 Tissue Factor 外露结构域并筛选 Fab 候选","ab":"Fab","n":10,"block":"","confidence":0.82,"wf":{"domain":"Tissue Factor 胞外结构域","mechanism":"围绕肿瘤细胞表面外露糖蛋白界面生成结合候选","epitope":"优先覆盖外露可及表面并贴近功能阻断相关区域","structure":"Tissue Factor/Fab 复合物结构依据","modelNote":"展示 Tissue Factor 表面与 Fab 候选结合构象"}}',
     '示例：治疗肾癌 -> {"i":"design","start":true,"summary":"面向肾癌与透明细胞肾细胞癌方向生成抗体候选","bg":"肾癌方向的抗体设计通常优先比较缺氧相关表面抗原、血管生成依赖和肿瘤细胞表面可及性。","disease":"肾癌/透明细胞肾细胞癌","target":"CAIX","gene":"CA9","label":"RCC-CAIX-1","reason":"CAIX/CA9 是透明细胞肾细胞癌方向最经典的缺氧诱导型细胞表面抗原之一，在肿瘤细胞膜外侧具有明确可及的胞外结构并与缺氧代谢重编程密切相关。相较更广谱的血管生成因子或免疫调节分子，CAIX 与肾癌肿瘤细胞本体表面识别的对应关系更直接，且具备 G250/M75 类抗体开发背景和明确表位依据，因此在肾癌方向通常具有更高的综合靶点评审优先级。","cands":[{"t":"CAIX","g":"CA9","r":"透明细胞肾细胞癌中最常见的缺氧相关表面抗原之一，具备经典抗体开发背景。"},{"t":"VEGF-A","g":"VEGFA","r":"肾癌高度依赖血管生成，可作为血管生成轴备选入口。"},{"t":"B7-H3","g":"CD276","r":"免疫调节型高表达实体瘤表面抗原，可作为肾癌方向的补充候选。"}],"mech":"识别 CAIX 外露表位并筛选 Fab 候选","ab":"Fab","n":10,"block":"","confidence":0.83,"wf":{"domain":"CAIX 外露表位肽与邻近胞外区","mechanism":"围绕缺氧相关表面表位生成结合候选","epitope":"优先覆盖 CAIX 外露免疫可及表位","structure":"CAIX 表位肽/Fab 复合物结构依据","modelNote":"展示 CAIX 相关表位与 Fab 候选结合构象"}}',
     '示例：治疗阿尔茨海默病 -> {"i":"design","start":true,"summary":"面向阿尔茨海默病方向生成抗体候选","bg":"阿尔茨海默病抗体设计常优先比较淀粉样病理、Tau 病理和微胶质调节受体轴。","disease":"阿尔茨海默病","target":"Amyloid-beta","gene":"APP","label":"AD-ABETA-1","reason":"Amyloid-beta 是阿尔茨海默病中最经典的细胞外异常聚集抗原之一，直接关联淀粉样斑块病理、可溶性寡聚体毒性和下游神经炎症放大。相较更偏细胞内聚集阶段的 Tau 或更偏免疫调节的 TREM2，Amyloid-beta 作为胞外可及抗原更适合抗体优先识别与中和设计，且已有临床与公开结构背景支撑，因此在阿尔茨海默病方向通常具有较高的综合靶点评审优先级。","cands":[{"t":"Amyloid-beta","g":"APP","r":"阿尔茨海默病最经典的胞外异常聚集抗原之一，具备明确抗体开发背景。"},{"t":"Tau","g":"MAPT","r":"神经纤维缠结相关关键病理蛋白，可作为病程进展与传播轴备选靶点。"},{"t":"TREM2","g":"TREM2","r":"微胶质调节受体，适合免疫调节与神经炎症方向的补充候选。"}],"mech":"识别 Amyloid-beta 外露病理表位并筛选 Fab 候选","ab":"Fab","n":10,"block":"","confidence":0.79,"wf":{"domain":"Amyloid-beta N 端病理表位","mechanism":"围绕胞外病理表位生成结合候选","epitope":"优先覆盖 Aβ N 端可及表位","structure":"Aβ/Fab 复合物结构依据","modelNote":"展示 Aβ 表位与 Fab 候选结合构象"}}',
     '示例：你好 -> {"i":"chat","start":false,"answer":"您好，我是小诺，可以帮您把疾病、靶点或候选分子需求整理成分子设计任务。"}'

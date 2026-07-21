@@ -57,6 +57,7 @@ const GENE_BY_TARGET = {
   IgE: 'IGH',
   'CGRP receptor': 'CALCRL/RAMP1',
   'IL-1β': 'IL1B',
+  'Tissue Factor': 'F3',
   'Canine NGF': 'NGF'
 };
 
@@ -96,6 +97,7 @@ const ALIASES_BY_TARGET = {
   IgE: ['Immunoglobulin E'],
   'CGRP receptor': ['CGRPR', 'CALCRL', 'RAMP1'],
   'IL-1β': ['IL1B', 'IL-1B', 'IL-1 beta'],
+  'Tissue Factor': ['F3', 'CD142', 'Thromboplastin', 'Coagulation factor III'],
   'Canine NGF': ['dog NGF', 'dog nerve growth factor', '犬源 NGF', '犬 NGF']
 };
 
