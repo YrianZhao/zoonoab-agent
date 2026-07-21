@@ -19,7 +19,7 @@ const ROOT = path.resolve(__dirname, '..');
 test('local structure catalog is the machine-readable inventory for route-backed models', () => {
   const catalog = loadLocalStructureCatalog(ROOT);
   assert.equal(catalog.schemaVersion, 1);
-  assert.ok(catalog.summary.pdbFileCount >= 468);
+  assert.ok(catalog.summary.pdbFileCount >= 471);
   assert.ok(catalog.summary.promptEligibleRoutePresetCount >= 30);
   assert.ok(catalog.summary.libraryAssetCount >= 86);
 
@@ -75,6 +75,36 @@ test('local structure catalog is the machine-readable inventory for route-backed
   assert.deepEqual(caix.display.antigenChains, ['P']);
   assert.deepEqual(caix.display.antibodyChains, ['H', 'L']);
 
+  const il5 = catalogEntryForFilename(catalog, 'IL5-Fab-01.pdb');
+  assert.ok(il5, 'IL5-Fab-01 should be represented in the catalog');
+  assert.equal(il5.target, 'IL-5');
+  assert.equal(il5.gene, 'IL5');
+  assert.equal(il5.organismTaxId, 9606);
+  assert.equal(il5.aliasPrefix, 'IL5-Fab');
+  assert.equal(il5.structureClass, 'target_exact_complex');
+  assert.deepEqual(il5.display.antigenChains, ['A', 'B']);
+  assert.deepEqual(il5.display.antibodyChains, ['C', 'D', 'E', 'F']);
+
+  const il13 = catalogEntryForFilename(catalog, 'IL13-Fab-01.pdb');
+  assert.ok(il13, 'IL13-Fab-01 should be represented in the catalog');
+  assert.equal(il13.target, 'IL-13');
+  assert.equal(il13.gene, 'IL13');
+  assert.equal(il13.organismTaxId, 9606);
+  assert.equal(il13.aliasPrefix, 'IL13-Fab');
+  assert.equal(il13.structureClass, 'target_exact_complex');
+  assert.deepEqual(il13.display.antigenChains, ['C']);
+  assert.deepEqual(il13.display.antibodyChains, ['H', 'L']);
+
+  const cd123 = catalogEntryForFilename(catalog, 'CD123-Fab-01.pdb');
+  assert.ok(cd123, 'CD123-Fab-01 should be represented in the catalog');
+  assert.equal(cd123.target, 'CD123');
+  assert.equal(cd123.gene, 'IL3RA');
+  assert.equal(cd123.organismTaxId, 9606);
+  assert.equal(cd123.aliasPrefix, 'CD123-Fab');
+  assert.equal(cd123.structureClass, 'target_exact_domain_complex');
+  assert.deepEqual(cd123.display.antigenChains, ['C', 'D']);
+  assert.deepEqual(cd123.display.antibodyChains, ['A', 'B', 'H', 'L']);
+
   const abeta = catalogEntryForFilename(catalog, 'ABETA-Fab-01.pdb');
   assert.ok(abeta, 'ABETA-Fab-01 should be represented in the catalog');
   assert.equal(abeta.target, 'Amyloid-beta');
@@ -128,6 +158,9 @@ test('local structure catalog is the machine-readable inventory for route-backed
   assert.match(supportList, /CEACAM5\/CEA/);
   assert.match(supportList, /CAIX\/CA9/);
   assert.match(supportList, /STEAP1/);
+  assert.match(supportList, /IL-5\/IL5/);
+  assert.match(supportList, /IL-13\/IL13/);
+  assert.match(supportList, /CD123\/IL3RA/);
   assert.match(supportList, /Amyloid-beta\/APP/);
   assert.match(supportList, /Tau\/MAPT/);
   assert.match(supportList, /TREM2/);
@@ -155,6 +188,12 @@ test('catalog-derived target map can route aliases without hand-editing target m
   assert.equal(map[normalizeStructureCatalogKey('CEA')], 'solid_tumor_ceacam5');
   assert.equal(map[normalizeStructureCatalogKey('CEACAM5')], 'solid_tumor_ceacam5');
   assert.equal(map[normalizeStructureCatalogKey('STEAP1')], 'prostate_steap1');
+  assert.equal(map[normalizeStructureCatalogKey('IL-5')], 'allergic_il5');
+  assert.equal(map[normalizeStructureCatalogKey('IL5')], 'allergic_il5');
+  assert.equal(map[normalizeStructureCatalogKey('IL-13')], 'allergic_il13');
+  assert.equal(map[normalizeStructureCatalogKey('IL13')], 'allergic_il13');
+  assert.equal(map[normalizeStructureCatalogKey('CD123')], 'heme_cd123');
+  assert.equal(map[normalizeStructureCatalogKey('IL3RA')], 'heme_cd123');
   assert.equal(map[normalizeStructureCatalogKey('Amyloid-beta')], 'neuro_alz_abeta');
   assert.equal(map[normalizeStructureCatalogKey('APP')], 'neuro_alz_abeta');
   assert.equal(map[normalizeStructureCatalogKey('Tau')], 'neuro_alz_tau');

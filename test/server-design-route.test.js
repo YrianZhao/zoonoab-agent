@@ -656,6 +656,9 @@ test('server previews curated real complexes for common explicit antigen targets
     { text: '设计10个针对GPRC5D的Fab', expectedTarget: 'GPRC5D', expectedPrefix: /^GPRC5D-Fab-/ },
     { text: '设计10个针对CEA的Fab', expectedTarget: 'CEACAM5', expectedPrefix: /^CEACAM5-Fab-/ },
     { text: '设计10个针对STEAP1的Fab', expectedTarget: 'STEAP1', expectedPrefix: /^STEAP1-Fab-/ },
+    { text: '设计10个针对IL-5的Fab', expectedTarget: 'IL-5', expectedPrefix: /^IL5-Fab-/ },
+    { text: '设计10个针对IL-13的Fab', expectedTarget: 'IL-13', expectedPrefix: /^IL13-Fab-/ },
+    { text: '设计10个针对CD123的Fab', expectedTarget: 'CD123', expectedPrefix: /^CD123-Fab-/ },
     { text: '设计10个针对Amyloid-beta的Fab', expectedTarget: 'Amyloid-beta', expectedPrefix: /^ABETA-Fab-/ },
     { text: '设计10个针对Tau的Fab', expectedTarget: 'Tau', expectedPrefix: /^TAU-Fab-/ },
     { text: '设计10个针对TREM2的Fab', expectedTarget: 'TREM2', expectedPrefix: /^TREM2-Fab-/ }

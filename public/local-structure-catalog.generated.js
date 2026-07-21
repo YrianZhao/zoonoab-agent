@@ -2,16 +2,16 @@
 (function(){
   window.ZOONOAB_LOCAL_STRUCTURE_CATALOG = {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-21T14:24:28.160Z",
+  "generatedAt": "2026-07-21T14:50:22.920Z",
   "summary": {
-    "pdbFileCount": 468,
-    "routePresetCount": 50,
-    "routeableRoutePresetCount": 49,
-    "promptEligibleRoutePresetCount": 49,
-    "routePresetFileCount": 402,
+    "pdbFileCount": 471,
+    "routePresetCount": 53,
+    "routeableRoutePresetCount": 52,
+    "promptEligibleRoutePresetCount": 52,
+    "routePresetFileCount": 405,
     "libraryAssetCount": 86
   },
-  "promptSupportTargets": "IL-33/IL33、TSLP、PD-L1/CD274、PD-1/PDCD1、CTLA-4/CTLA4、CD20/MS4A1、CD19、CD3/CD3E/CD3G、C5、IL-6R/IL6R、IL-4Rα/IL4R、CD25/IL2RA、CD38、TIGIT、CD47、LAG-3/LAG3、TROP-2/TACSTD2、BCMA/TNFRSF17、IgE/IGH、CGRP receptor/CALCRL/RAMP1、HER2/ERBB2、EGFR、VEGF-A/VEGFA、TNF、IL-17A/IL17A、IL-23/IL23A/IL12B、RSV F/F、SARS-CoV-2 RBD/S、Influenza HA/HA、Influenza NA/NA、PCSK9、ANGPTL3、IL-1B、GIPR、Amyloid-beta/APP、Tau/MAPT、TREM2、DAT/SLC6A3、Canine NGF/NGF、Mesothelin/MSLN、Claudin 18.2/CLDN18、B7-H3/CD276、MUC1、Nectin-4/NECTIN4、GPRC5D、CEACAM5/CEA、STEAP1、CAIX/CA9",
+  "promptSupportTargets": "IL-33/IL33、TSLP、PD-L1/CD274、PD-1/PDCD1、CTLA-4/CTLA4、CD20/MS4A1、CD19、CD3/CD3E/CD3G、C5、IL-6R/IL6R、IL-4Rα/IL4R、CD25/IL2RA、CD38、TIGIT、CD47、LAG-3/LAG3、TROP-2/TACSTD2、BCMA/TNFRSF17、IgE/IGH、CGRP receptor/CALCRL/RAMP1、HER2/ERBB2、EGFR、VEGF-A/VEGFA、TNF、IL-17A/IL17A、IL-23/IL23A/IL12B、RSV F/F、SARS-CoV-2 RBD/S、Influenza HA/HA、Influenza NA/NA、PCSK9、ANGPTL3、IL-1B、GIPR、Amyloid-beta/APP、Tau/MAPT、TREM2、DAT/SLC6A3、Canine NGF/NGF、Mesothelin/MSLN、Claudin 18.2/CLDN18、B7-H3/CD276、MUC1、Nectin-4/NECTIN4、GPRC5D、CEACAM5/CEA、STEAP1、CAIX/CA9、IL-5/IL5、IL-13/IL13、CD123/IL3RA",
   "routePresets": [
     {
       "routeId": "allergic_asthma",
@@ -2491,6 +2491,144 @@
         "visualColors": {
           "antigen": "#14B8A6",
           "antibody": "#0EA5E9"
+        }
+      }
+    },
+    {
+      "routeId": "allergic_il5",
+      "aliasPrefix": "IL5-Fab",
+      "target": "IL-5",
+      "gene": "IL5",
+      "aliases": [
+        "IL5",
+        "Interleukin-5"
+      ],
+      "promptLabel": "IL-5/IL5",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "IL5-Fab-01.pdb"
+      ],
+      "display": {
+        "structureTitle": "IL-5 Fab 嗜酸性炎症细胞因子结合构象",
+        "structureFamily": "2 型炎症细胞因子 · IL-5 Fab 候选",
+        "visualSummary": "展示 dimeric human IL-5 与两组 depemokimab Fab 的真实实验复合物，可支撑嗜酸性哮喘与嗜酸性炎症方向的细胞因子展示。",
+        "structuralBasis": "RCSB 9GVN depemokimab Fab / IL-5 dimer complex",
+        "antigenChains": [
+          "A",
+          "B"
+        ],
+        "antibodyChains": [
+          "C",
+          "D",
+          "E",
+          "F"
+        ],
+        "sourceAntigenChains": [
+          "A",
+          "B"
+        ],
+        "sourceAntibodyChains": [
+          "C",
+          "D",
+          "E",
+          "F"
+        ],
+        "keepAllAntibodyChains": true,
+        "visualColors": {
+          "antigen": "#14B8A6",
+          "antibody": "#F97316"
+        }
+      }
+    },
+    {
+      "routeId": "allergic_il13",
+      "aliasPrefix": "IL13-Fab",
+      "target": "IL-13",
+      "gene": "IL13",
+      "aliases": [
+        "IL13",
+        "Interleukin-13"
+      ],
+      "promptLabel": "IL-13/IL13",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "IL13-Fab-01.pdb"
+      ],
+      "display": {
+        "structureTitle": "IL-13 Fab 2 型炎症细胞因子结合构象",
+        "structureFamily": "2 型炎症细胞因子 · IL-13 Fab 候选",
+        "visualSummary": "展示 human IL-13 与 tralokinumab Fab 的真实实验复合物，可支撑特应性皮炎、哮喘与 2 型炎症方向的细胞因子展示。",
+        "structuralBasis": "RCSB 5L6Y IL-13 / tralokinumab Fab complex",
+        "antigenChains": [
+          "C"
+        ],
+        "antibodyChains": [
+          "H",
+          "L"
+        ],
+        "sourceAntigenChains": [
+          "C"
+        ],
+        "sourceAntibodyChains": [
+          "H",
+          "L"
+        ],
+        "visualColors": {
+          "antigen": "#8B5CF6",
+          "antibody": "#0EA5E9"
+        }
+      }
+    },
+    {
+      "routeId": "heme_cd123",
+      "aliasPrefix": "CD123-Fab",
+      "target": "CD123",
+      "gene": "IL3RA",
+      "aliases": [
+        "IL3RA",
+        "Interleukin-3 receptor alpha",
+        "IL-3R alpha"
+      ],
+      "promptLabel": "CD123/IL3RA",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "CD123-Fab-01.pdb"
+      ],
+      "display": {
+        "structureTitle": "CD123 Fab 髓系白血病相关受体结合构象",
+        "structureFamily": "髓系白血病相关表面受体 · CD123 Fab 候选",
+        "visualSummary": "展示 human CD123/IL3RA D2-D3 ectodomain 与 CSL362 Fab 的真实实验复合物，可支撑 AML 与髓系肿瘤方向的表面受体展示。",
+        "structuralBasis": "RCSB 4JZJ human CD123 D2-D3 ectodomain / CSL362 Fab complex",
+        "antigenChains": [
+          "C",
+          "D"
+        ],
+        "antibodyChains": [
+          "A",
+          "B",
+          "H",
+          "L"
+        ],
+        "sourceAntigenChains": [
+          "C",
+          "D"
+        ],
+        "sourceAntibodyChains": [
+          "A",
+          "B",
+          "H",
+          "L"
+        ],
+        "keepAllAntibodyChains": true,
+        "visualColors": {
+          "antigen": "#22C55E",
+          "antibody": "#2563EB"
         }
       }
     }

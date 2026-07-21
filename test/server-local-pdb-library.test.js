@@ -144,6 +144,36 @@ test('local PDB model library API lists local structures with viewer metadata', 
   assert.deepEqual(epcam.antibodyChains, ['A', 'B']);
   assert.equal(epcam.targetTag.verifiedTag, true);
 
+  const il5 = data.models.find(model => model.filename === 'IL5-Fab-01.pdb');
+  assert.ok(il5, 'IL-5 routeable Fab preset should be listed');
+  assert.equal(il5.targetDisplay, 'IL-5');
+  assert.equal(il5.antibodyFormat, 'Fab');
+  assert.equal(il5.structureKind, 'Fab 抗原-抗体复合体');
+  assert.deepEqual(il5.antigenChains, ['A', 'B']);
+  assert.deepEqual(il5.antibodyChains, ['C', 'D', 'E', 'F']);
+  assert.match(il5.structuralBasis, /9GVN/);
+  assert.equal(il5.targetTag.verifiedTag, true);
+
+  const il13 = data.models.find(model => model.filename === 'IL13-Fab-01.pdb');
+  assert.ok(il13, 'IL-13 routeable Fab preset should be listed');
+  assert.equal(il13.targetDisplay, 'IL-13');
+  assert.equal(il13.antibodyFormat, 'Fab');
+  assert.equal(il13.structureKind, 'Fab 抗原-抗体复合体');
+  assert.deepEqual(il13.antigenChains, ['C']);
+  assert.deepEqual(il13.antibodyChains, ['H', 'L']);
+  assert.match(il13.structuralBasis, /5L6Y/);
+  assert.equal(il13.targetTag.verifiedTag, true);
+
+  const cd123 = data.models.find(model => model.filename === 'CD123-Fab-01.pdb');
+  assert.ok(cd123, 'CD123 routeable Fab preset should be listed');
+  assert.equal(cd123.targetDisplay, 'CD123');
+  assert.equal(cd123.antibodyFormat, 'Fab');
+  assert.equal(cd123.structureKind, 'Fab 抗原-抗体复合体');
+  assert.deepEqual(cd123.antigenChains, ['C', 'D']);
+  assert.deepEqual(cd123.antibodyChains, ['A', 'B', 'H', 'L']);
+  assert.match(cd123.structuralBasis, /4JZJ/);
+  assert.equal(cd123.targetTag.verifiedTag, true);
+
   const abeta = data.models.find(model => model.filename === 'ABETA-Fab-01.pdb');
   assert.ok(abeta, 'Amyloid-beta routeable Fab preset should be listed');
   assert.equal(abeta.targetDisplay, 'Amyloid-beta');
@@ -193,6 +223,12 @@ test('structure catalog API exposes route-backed structure inventory', async () 
   assert.equal(abeta.aliasPrefix, 'ABETA-Fab');
   assert.equal(abeta.target, 'Amyloid-beta');
   assert.ok((abeta.files || []).includes('ABETA-Fab-01.pdb'));
+
+  const il5 = data.catalog.routePresets.find(item => item.routeId === 'allergic_il5');
+  assert.ok(il5, 'catalog should expose the IL-5 local route');
+  assert.equal(il5.aliasPrefix, 'IL5-Fab');
+  assert.equal(il5.target, 'IL-5');
+  assert.ok((il5.files || []).includes('IL5-Fab-01.pdb'));
 });
 
 test('local PDB responses are cacheable and can project only viewer-visible chains', async () => {

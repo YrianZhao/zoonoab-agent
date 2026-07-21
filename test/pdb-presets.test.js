@@ -186,6 +186,24 @@ const COMMON_REAL_COMPLEX_EXPECTATIONS = [
     antibodyChains: ['H', 'I', 'J', 'L', 'M', 'N']
   },
   {
+    prefix: 'IL5-Fab',
+    basis: /RCSB 9GVN depemokimab Fab \/ IL-5 dimer complex/,
+    antigenChains: ['A', 'B'],
+    antibodyChains: ['C', 'D', 'E', 'F']
+  },
+  {
+    prefix: 'IL13-Fab',
+    basis: /RCSB 5L6Y IL-13 \/ tralokinumab Fab complex/,
+    antigenChains: ['C'],
+    antibodyChains: ['H', 'L']
+  },
+  {
+    prefix: 'CD123-Fab',
+    basis: /RCSB 4JZJ human CD123 D2-D3 ectodomain \/ CSL362 Fab complex/,
+    antigenChains: ['C', 'D'],
+    antibodyChains: ['A', 'B', 'H', 'L']
+  },
+  {
     prefix: 'ABETA-Fab',
     basis: /RCSB 4OJF amyloid-beta 1-8 peptide \/ humanized 3D6 Fab complex/,
     antigenChains: ['A'],
