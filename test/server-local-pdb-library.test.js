@@ -327,6 +327,17 @@ test('local PDB model library API lists local structures with viewer metadata', 
   assert.match(psma8.structuralBasis, /9HVI/);
   assert.equal(psma8.targetTag.verifiedTag, true);
 
+  const psma37 = data.models.find(model => model.filename === 'SOLIDLIB-HUMAN-PSMA-VHH-RCSB-9HVL.pdb');
+  assert.ok(psma37, 'solid-tumor PSMA nanobody 37 asset should be listed');
+  assert.equal(psma37.targetDisplay, 'PSMA');
+  assert.equal(psma37.antibodyFormat, 'VHH');
+  assert.equal(psma37.structureKind, 'VHH 抗原-抗体复合体');
+  assert.deepEqual(psma37.antigenChains, ['A', 'E']);
+  assert.deepEqual(psma37.antibodyChains, ['H']);
+  assert.deepEqual(psma37.sourceAntibodyChains, ['H', 'P']);
+  assert.match(psma37.structuralBasis, /9HVL/);
+  assert.equal(psma37.targetTag.verifiedTag, true);
+
   const psmaDual = data.models.find(model => model.filename === 'SOLIDLIB-HUMAN-PSMA-VHH-RCSB-9HVK.pdb');
   assert.ok(psmaDual, 'solid-tumor PSMA dual-nanobody asset should be listed');
   assert.equal(psmaDual.targetDisplay, 'PSMA');

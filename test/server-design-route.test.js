@@ -857,7 +857,8 @@ test('explicit PSMA requests stay inside the exact PSMA local-asset family', asy
   const expectedFiles = [
     'SOLIDLIB-HUMAN-PSMA-VHH-RCSB-9HLW.pdb',
     'SOLIDLIB-HUMAN-PSMA-VHH-RCSB-9HVI.pdb',
-    'SOLIDLIB-HUMAN-PSMA-VHH-RCSB-9HVK.pdb'
+    'SOLIDLIB-HUMAN-PSMA-VHH-RCSB-9HVK.pdb',
+    'SOLIDLIB-HUMAN-PSMA-VHH-RCSB-9HVL.pdb'
   ];
 
   assert.equal(data.profile && data.profile.targetDisplay, 'PSMA');

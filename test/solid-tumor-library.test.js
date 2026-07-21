@@ -12,10 +12,21 @@ function readModelText(model) {
   return fs.readFileSync(path.join(ROOT, 'pdb', model.filename), 'utf8');
 }
 
+function actualCoordinateChains(filename) {
+  const chains = new Set();
+  const text = fs.readFileSync(path.join(ROOT, 'pdb', filename), 'utf8');
+  for (const line of text.split(/\r?\n/)) {
+    if (!line.startsWith('ATOM  ') && !line.startsWith('HETATM')) continue;
+    const chain = String(line[21] || '').trim();
+    if (chain) chains.add(chain);
+  }
+  return chains;
+}
+
 test('solid-tumor asset library keeps exact local sources for non-routeable tumor targets', () => {
   assert.equal(manifest.schemaVersion, 1);
   assert.equal(manifest.totalModels, manifest.models.length);
-  assert.equal(manifest.totalModels, 16);
+  assert.equal(manifest.totalModels, 17);
 
   for (const model of manifest.models) {
     assert.ok(fs.existsSync(path.join(ROOT, 'pdb', model.filename)), model.filename + ' should exist locally');
@@ -66,6 +77,18 @@ test('solid-tumor non-Fab complexes keep truthful local chain-role remarks', () 
   assert.match(psma8, /REMARK 904 ANTIGEN CHAINS: A,E/);
   assert.match(psma8, /REMARK 905 ANTIBODY CHAINS: H,Q/);
   assert.match(psma8, /REMARK 912 ACCESSION: 9HVI/);
+
+  const psma37Model = manifest.models.find(model => model.accession === '9HVL');
+  const psma37 = readModelText(psma37Model);
+  assert.match(psma37, /REMARK 901 TARGET: PSMA/);
+  assert.match(psma37, /REMARK 902 FORMAT: VHH/);
+  assert.match(psma37, /REMARK 904 ANTIGEN CHAINS: A,E/);
+  assert.match(psma37, /REMARK 905 ANTIBODY CHAINS: H,P/);
+  assert.match(psma37, /REMARK 912 ACCESSION: 9HVL/);
+  const psma37Chains = actualCoordinateChains(psma37Model.filename);
+  for (const chain of ['A', 'E', 'H', 'P']) {
+    assert.equal(psma37Chains.has(chain), true, '9HVL should retain chain ' + chain + ' in ATOM/HETATM records');
+  }
 
   const psmaDual = readModelText(manifest.models.find(model => model.accession === '9HVK'));
   assert.match(psmaDual, /REMARK 901 TARGET: PSMA/);
