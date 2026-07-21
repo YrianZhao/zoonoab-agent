@@ -668,6 +668,10 @@ test('server previews curated real complexes for common explicit antigen targets
     { text: '设计10个针对NGF的Fab', expectedTarget: 'NGF', expectedPrefix: /^NGF-Fab-/ },
     { text: '设计10个针对α4β7的Fab', expectedTarget: 'Integrin α4β7', expectedPrefix: /^A4B7-Fab-/ },
     { text: '设计10个针对GPC2的Fab', expectedTarget: 'GPC2', expectedPrefix: /^GPC2-Fab-/ },
+    { text: '设计10个针对MET的Fab', expectedTarget: 'MET', expectedPrefix: /^MET-Fab-/ },
+    { text: '设计10个针对HER3的Fab', expectedTarget: 'HER3', expectedPrefix: /^HER3-Fab-/ },
+    { text: '设计10个针对FGFR3的Fab', expectedTarget: 'FGFR3', expectedPrefix: /^FGFR3-Fab-/ },
+    { text: '设计10个针对FGFR2的Fab', expectedTarget: 'FGFR2', expectedPrefix: /^FGFR2-Fab-/ },
     { text: '设计10个针对Amyloid-beta的Fab', expectedTarget: 'Amyloid-beta', expectedPrefix: /^ABETA-Fab-/ },
     { text: '设计10个针对Tau的Fab', expectedTarget: 'Tau', expectedPrefix: /^TAU-Fab-/ },
     { text: '设计10个针对TREM2的Fab', expectedTarget: 'TREM2', expectedPrefix: /^TREM2-Fab-/ },
@@ -712,46 +716,6 @@ test('server previews exact local-library assets for explicit targets without pr
       expectedAntibodyChains: ['H', 'L'],
       expectedSourceAntigenChains: ['X'],
       expectedSourceAntibodyChains: ['H', 'L']
-    },
-    {
-      text: '设计10个针对MET的Fab',
-      expectedTarget: 'MET',
-      expectedFile: 'SOLIDLIB-HUMAN-MET-FAB-RCSB-6I04.pdb',
-      expectedPoseKind: 'experimental_complex',
-      expectedAntigenChains: ['A'],
-      expectedAntibodyChains: ['H', 'L'],
-      expectedSourceAntigenChains: ['A', 'B'],
-      expectedSourceAntibodyChains: ['H', 'L', 'C', 'D']
-    },
-    {
-      text: '设计10个针对HER3的Fab',
-      expectedTarget: 'HER3',
-      expectedFile: 'SOLIDLIB-HUMAN-HER3-FAB-RCSB-7D85.pdb',
-      expectedPoseKind: 'experimental_complex',
-      expectedAntigenChains: ['A'],
-      expectedAntibodyChains: ['B', 'C'],
-      expectedSourceAntigenChains: ['A', 'D'],
-      expectedSourceAntibodyChains: ['B', 'C', 'E', 'F']
-    },
-    {
-      text: '设计10个针对FGFR3的Fab',
-      expectedTarget: 'FGFR3',
-      expectedFile: 'SOLIDLIB-HUMAN-FGFR3-FAB-RCSB-3GRW.pdb',
-      expectedPoseKind: 'experimental_complex',
-      expectedAntigenChains: ['A'],
-      expectedAntibodyChains: ['H', 'L'],
-      expectedSourceAntigenChains: ['A'],
-      expectedSourceAntibodyChains: ['H', 'L']
-    },
-    {
-      text: '设计10个针对FGFR2的Fab',
-      expectedTarget: 'FGFR2',
-      expectedFile: 'SOLIDLIB-HUMAN-FGFR2-FAB-RCSB-4WV1.pdb',
-      expectedPoseKind: 'experimental_complex',
-      expectedAntigenChains: ['C'],
-      expectedAntibodyChains: ['A', 'B'],
-      expectedSourceAntigenChains: ['C', 'F'],
-      expectedSourceAntibodyChains: ['A', 'B', 'D', 'E']
     },
     {
       text: '设计10个针对IGF1R的Fab',

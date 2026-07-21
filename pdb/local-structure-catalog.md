@@ -4,10 +4,10 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 
 ## Summary
 
-- PDB files: 509
-- Route presets: 65
-- Routeable presets: 64
-- Prompt-eligible structure-supported targets: 64
+- PDB files: 513
+- Route presets: 69
+- Routeable presets: 68
+- Prompt-eligible structure-supported targets: 68
 - Library assets: 112
 
 ## Route-backed structure families
@@ -62,10 +62,14 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 | heme_cd22 | CD22 | CD22 | CD22-Fab | 1 | Homo sapiens | RCSB 5VL3 human CD22 D1-D3 ectodomain / epratuzumab Fab complex |
 | solid_tumor_mesothelin | Mesothelin | MSLN | MSLN-Fab | 1 | Homo sapiens | RCSB 7UED full-length mesothelin / MORAb-009 Fab complex |
 | solid_tumor_cldn18 | Claudin 18.2 | CLDN18 | CLDN18.2-Fab | 1 | Homo sapiens | RCSB 9V32 claudin 18.2 / zolbetuximab Fab complex |
+| solid_tumor_met | MET | MET | MET-Fab | 1 | Homo sapiens | RCSB 6I04 human MET Sema domain / MM-131 Fab arm complex |
+| solid_tumor_her3 | HER3 | ERBB3 | HER3-Fab | 1 | Homo sapiens | RCSB 7D85 human HER3/ERBB3 extracellular domain 3 / ISU104 Fab complex |
 | solid_tumor_b7h3 | B7-H3 | CD276 | CD276-Fab | 1 | Homo sapiens | RCSB 9LY5 human B7-H3 IgC domain / 20G5 Fab complex |
 | solid_tumor_b7h6 | B7-H6 | NCR3LG1 | B7H6-Fab | 1 | Homo sapiens | RCSB 4ZSO human B7-H6 ectodomain / inhibitory antibody Fab complex |
 | solid_tumor_muc1 | MUC1 | MUC1 | MUC1-Fab | 1 | Homo sapiens | RCSB 7V7K MUC1 GlycoST VNTR glycopeptide / 16A Fab complex |
 | solid_tumor_nectin4 | Nectin-4 | NECTIN4 | NECTIN4-Fab | 1 | Homo sapiens | RCSB 9KKJ Nectin-4 D1 domain / 9MW2821 Fab complex |
+| upper_gi_fgfr2 | FGFR2 | FGFR2 | FGFR2-Fab | 1 | Homo sapiens | RCSB 4WV1 human FGFR2 D2 domain / Fab 2B.1.3 complex |
+| urothelial_fgfr3 | FGFR3 | FGFR3 | FGFR3-Fab | 1 | Homo sapiens | RCSB 3GRW human FGFR3 domains 2-3 / R3Mab Fab complex |
 | heme_gprc5d | GPRC5D | GPRC5D | GPRC5D-Fab | 1 | Homo sapiens | RCSB 9IMA GPRC5D dimer / talquetamab Fab complex |
 | solid_tumor_ceacam5 | CEACAM5 | CEACAM5 | CEACAM5-Fab | 1 | Homo sapiens | RCSB 8BW0 CEACAM5 A3-B3 domain / tusamitamab Fab complex |
 | prostate_steap1 | STEAP1 | STEAP1 | STEAP1-Fab | 1 | Homo sapiens | RCSB 6Y9B trimeric human STEAP1 / Fab120.545 complex |
@@ -85,7 +89,7 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 | priority | area | targets | reason |
 | ---: | --- | --- | --- |
 | 1 | common_disease_tumor_gaps | FOLR1/FRalpha, DLL3, PSMA/FOLH1, CEACAM6, GPC3, B7-H4/VTCN1 | These disease-linked surface antigens remain common user asks, but still lack a routeable exact local Fab family or only have antigen-only / non-Fab public structures. |
-| 2 | prepared_route_promotion_candidates | MET, HER3/ERBB3, FGFR3, FGFR2 | These targets now have exact local human Fab complexes in the cataloged asset library, but they should remain asset-only until the project explicitly adds prepared disease routes and route-level display policy for them. |
+| 2 | non_oncology_asset_promotion_candidates | IL-6, IGF1R, GLP1R, TrkB, Myostatin/GDF8, ActRIIB/ACVR2B | These common-disease assets already have exact local structures or engineered reference complexes, but they still need route-policy curation before promotion because their current files are antigen-only, engineered receptor/Fv contexts, or non-prepared disease-direction references. |
 | 3 | route_variants | VHH variants for prepared Fab routes, species-specific veterinary variants, viral subtype/strain variants | Adding variants under existing target identities improves coverage without multiplying unrelated route logic. |
 | 4 | library_asset_promotion | VIRUSLIB surface proteins, VETLIB predicted antigens, NEUROLIB reference assets, SOLIDLIB exact antigen / non-Fab tumor assets | Some assets can become routeable only after target identity, chain roles, display metadata and route policy are filled. |
 

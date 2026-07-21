@@ -470,6 +470,54 @@ test('local PDB model library API lists local structures with viewer metadata', 
   assert.match(b7h6Model.structuralBasis, /4ZSO/);
   assert.equal(b7h6Model.targetTag.verifiedTag, true);
 
+  const metModel = data.models.find(model => model.filename === 'MET-Fab-01.pdb');
+  assert.ok(metModel, 'MET routeable Fab preset should be listed');
+  assert.equal(metModel.targetDisplay, 'MET');
+  assert.equal(metModel.antibodyFormat, 'Fab');
+  assert.equal(metModel.structureKind, 'Fab 抗原-抗体复合体');
+  assert.deepEqual(metModel.antigenChains, ['A']);
+  assert.deepEqual(metModel.antibodyChains, ['H', 'L']);
+  assert.deepEqual(metModel.sourceAntigenChains, ['A', 'B']);
+  assert.deepEqual(metModel.sourceAntibodyChains, ['H', 'L', 'C', 'D']);
+  assert.match(metModel.structuralBasis, /6I04/);
+  assert.equal(metModel.targetTag.verifiedTag, true);
+
+  const her3Model = data.models.find(model => model.filename === 'HER3-Fab-01.pdb');
+  assert.ok(her3Model, 'HER3 routeable Fab preset should be listed');
+  assert.equal(her3Model.targetDisplay, 'HER3');
+  assert.equal(her3Model.antibodyFormat, 'Fab');
+  assert.equal(her3Model.structureKind, 'Fab 抗原-抗体复合体');
+  assert.deepEqual(her3Model.antigenChains, ['A']);
+  assert.deepEqual(her3Model.antibodyChains, ['B', 'C']);
+  assert.deepEqual(her3Model.sourceAntigenChains, ['A', 'D']);
+  assert.deepEqual(her3Model.sourceAntibodyChains, ['B', 'C', 'E', 'F']);
+  assert.match(her3Model.structuralBasis, /7D85/);
+  assert.equal(her3Model.targetTag.verifiedTag, true);
+
+  const fgfr3Model = data.models.find(model => model.filename === 'FGFR3-Fab-01.pdb');
+  assert.ok(fgfr3Model, 'FGFR3 routeable Fab preset should be listed');
+  assert.equal(fgfr3Model.targetDisplay, 'FGFR3');
+  assert.equal(fgfr3Model.antibodyFormat, 'Fab');
+  assert.equal(fgfr3Model.structureKind, 'Fab 抗原-抗体复合体');
+  assert.deepEqual(fgfr3Model.antigenChains, ['A']);
+  assert.deepEqual(fgfr3Model.antibodyChains, ['H', 'L']);
+  assert.deepEqual(fgfr3Model.sourceAntigenChains, ['A']);
+  assert.deepEqual(fgfr3Model.sourceAntibodyChains, ['H', 'L']);
+  assert.match(fgfr3Model.structuralBasis, /3GRW/);
+  assert.equal(fgfr3Model.targetTag.verifiedTag, true);
+
+  const fgfr2Model = data.models.find(model => model.filename === 'FGFR2-Fab-01.pdb');
+  assert.ok(fgfr2Model, 'FGFR2 routeable Fab preset should be listed');
+  assert.equal(fgfr2Model.targetDisplay, 'FGFR2');
+  assert.equal(fgfr2Model.antibodyFormat, 'Fab');
+  assert.equal(fgfr2Model.structureKind, 'Fab 抗原-抗体复合体');
+  assert.deepEqual(fgfr2Model.antigenChains, ['C']);
+  assert.deepEqual(fgfr2Model.antibodyChains, ['A', 'B']);
+  assert.deepEqual(fgfr2Model.sourceAntigenChains, ['C', 'F']);
+  assert.deepEqual(fgfr2Model.sourceAntibodyChains, ['A', 'B', 'D', 'E']);
+  assert.match(fgfr2Model.structuralBasis, /4WV1/);
+  assert.equal(fgfr2Model.targetTag.verifiedTag, true);
+
   const baff = data.models.find(model => model.filename === 'BAFF-Fab-01.pdb');
   assert.ok(baff, 'BAFF routeable Fab preset should be listed');
   assert.equal(baff.targetDisplay, 'BAFF');
@@ -667,6 +715,30 @@ test('structure catalog API exposes route-backed structure inventory', async () 
   assert.equal(b7h6Route.aliasPrefix, 'B7H6-Fab');
   assert.equal(b7h6Route.target, 'B7-H6');
   assert.ok((b7h6Route.files || []).includes('B7H6-Fab-01.pdb'));
+
+  const metRoute = data.catalog.routePresets.find(item => item.routeId === 'solid_tumor_met');
+  assert.ok(metRoute, 'catalog should expose the MET local route');
+  assert.equal(metRoute.aliasPrefix, 'MET-Fab');
+  assert.equal(metRoute.target, 'MET');
+  assert.ok((metRoute.files || []).includes('MET-Fab-01.pdb'));
+
+  const her3Route = data.catalog.routePresets.find(item => item.routeId === 'solid_tumor_her3');
+  assert.ok(her3Route, 'catalog should expose the HER3 local route');
+  assert.equal(her3Route.aliasPrefix, 'HER3-Fab');
+  assert.equal(her3Route.target, 'HER3');
+  assert.ok((her3Route.files || []).includes('HER3-Fab-01.pdb'));
+
+  const fgfr3Route = data.catalog.routePresets.find(item => item.routeId === 'urothelial_fgfr3');
+  assert.ok(fgfr3Route, 'catalog should expose the FGFR3 local route');
+  assert.equal(fgfr3Route.aliasPrefix, 'FGFR3-Fab');
+  assert.equal(fgfr3Route.target, 'FGFR3');
+  assert.ok((fgfr3Route.files || []).includes('FGFR3-Fab-01.pdb'));
+
+  const fgfr2Route = data.catalog.routePresets.find(item => item.routeId === 'upper_gi_fgfr2');
+  assert.ok(fgfr2Route, 'catalog should expose the FGFR2 local route');
+  assert.equal(fgfr2Route.aliasPrefix, 'FGFR2-Fab');
+  assert.equal(fgfr2Route.target, 'FGFR2');
+  assert.ok((fgfr2Route.files || []).includes('FGFR2-Fab-01.pdb'));
 
   const gpc2 = data.catalog.routePresets.find(item => item.routeId === 'sclc_gpc2');
   assert.ok(gpc2, 'catalog should expose the GPC2 local route');

@@ -2,16 +2,16 @@
 (function(){
   window.ZOONOAB_LOCAL_STRUCTURE_CATALOG = {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-21T22:05:35.279Z",
+  "generatedAt": "2026-07-21T22:24:09.582Z",
   "summary": {
-    "pdbFileCount": 509,
-    "routePresetCount": 65,
-    "routeableRoutePresetCount": 64,
-    "promptEligibleRoutePresetCount": 64,
-    "routePresetFileCount": 417,
+    "pdbFileCount": 513,
+    "routePresetCount": 69,
+    "routeableRoutePresetCount": 68,
+    "promptEligibleRoutePresetCount": 68,
+    "routePresetFileCount": 421,
     "libraryAssetCount": 112
   },
-  "promptSupportTargets": "IL-33/IL33、TSLP、PD-L1/CD274、PD-1/PDCD1、CTLA-4/CTLA4、CD20/MS4A1、CD19、CD3/CD3E/CD3G、C5、IL-6R/IL6R、IL-4Rα/IL4R、CD25/IL2RA、CD38、TIGIT、CD47、LAG-3/LAG3、TROP-2/TACSTD2、Tissue Factor/F3、BCMA/TNFRSF17、IgE/IGH、CGRP receptor/CALCRL/RAMP1、HER2/ERBB2、EGFR、VEGF-A/VEGFA、TNF、IL-17A/IL17A、IL-23/IL23A/IL12B、RSV F/F、SARS-CoV-2 RBD/S、Influenza HA/HA、Influenza NA/NA、PCSK9、ANGPTL3、IL-1B、GIPR、Amyloid-beta/APP、Tau/MAPT、TREM2、DAT/SLC6A3、TSHR、alpha-synuclein/SNCA、AQP4、Canine NGF/NGF、CD22/Siglec-2、Mesothelin/MSLN、Claudin 18.2/CLDN18、B7-H3/CD276、B7-H6/NCR3LG1、MUC1、Nectin-4/NECTIN4、GPRC5D、CEACAM5/CEA、STEAP1、CAIX/CA9、IL-5/IL5、IL-13/IL13、CD123/IL3RA、BAFF/TNFSF13B、FcRn/FCGRT、NGF、CD33/Siglec-3、GPC2/Glypican-2、Integrin α4β7/ITGA4-ITGB7",
+  "promptSupportTargets": "IL-33/IL33、TSLP、PD-L1/CD274、PD-1/PDCD1、CTLA-4/CTLA4、CD20/MS4A1、CD19、CD3/CD3E/CD3G、C5、IL-6R/IL6R、IL-4Rα/IL4R、CD25/IL2RA、CD38、TIGIT、CD47、LAG-3/LAG3、TROP-2/TACSTD2、Tissue Factor/F3、BCMA/TNFRSF17、IgE/IGH、CGRP receptor/CALCRL/RAMP1、HER2/ERBB2、EGFR、VEGF-A/VEGFA、TNF、IL-17A/IL17A、IL-23/IL23A/IL12B、RSV F/F、SARS-CoV-2 RBD/S、Influenza HA/HA、Influenza NA/NA、PCSK9、ANGPTL3、IL-1B、GIPR、Amyloid-beta/APP、Tau/MAPT、TREM2、DAT/SLC6A3、TSHR、alpha-synuclein/SNCA、AQP4、Canine NGF/NGF、CD22/Siglec-2、Mesothelin/MSLN、Claudin 18.2/CLDN18、MET/c-MET、HER3/ERBB3、B7-H3/CD276、B7-H6/NCR3LG1、MUC1、Nectin-4/NECTIN4、FGFR2/KGFR、FGFR3、GPRC5D、CEACAM5/CEA、STEAP1、CAIX/CA9、IL-5/IL5、IL-13/IL13、CD123/IL3RA、BAFF/TNFSF13B、FcRn/FCGRT、NGF、CD33/Siglec-3、GPC2/Glypican-2、Integrin α4β7/ITGA4-ITGB7",
   "routePresets": [
     {
       "routeId": "allergic_asthma",
@@ -2389,6 +2389,97 @@
       }
     },
     {
+      "routeId": "solid_tumor_met",
+      "aliasPrefix": "MET-Fab",
+      "target": "MET",
+      "gene": "MET",
+      "aliases": [
+        "c-MET",
+        "MET receptor",
+        "HGF receptor",
+        "Hepatocyte growth factor receptor"
+      ],
+      "promptLabel": "MET/c-MET",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "MET-Fab-01.pdb"
+      ],
+      "display": {
+        "structureTitle": "MET Fab 非小细胞肺癌相关受体结合构象",
+        "structureFamily": "实体瘤受体酪氨酸激酶 · MET Fab 候选",
+        "visualSummary": "展示 human MET Sema domain 与 MM-131 Fab arm 的真实实验界面，可用于非小细胞肺癌、胃癌与 MET 相关实体瘤方向的局部受体展示。",
+        "structuralBasis": "RCSB 6I04 human MET Sema domain / MM-131 Fab arm complex",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "H",
+          "L"
+        ],
+        "sourceAntigenChains": [
+          "A",
+          "B"
+        ],
+        "sourceAntibodyChains": [
+          "H",
+          "L",
+          "C",
+          "D"
+        ],
+        "visualColors": {
+          "antigen": "#14B8A6",
+          "antibody": "#F59E0B"
+        }
+      }
+    },
+    {
+      "routeId": "solid_tumor_her3",
+      "aliasPrefix": "HER3-Fab",
+      "target": "HER3",
+      "gene": "ERBB3",
+      "aliases": [
+        "ERBB3",
+        "ErbB3",
+        "Receptor tyrosine-protein kinase erbB-3"
+      ],
+      "promptLabel": "HER3/ERBB3",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "HER3-Fab-01.pdb"
+      ],
+      "display": {
+        "structureTitle": "HER3 Fab 非小细胞肺癌相关受体结合构象",
+        "structureFamily": "实体瘤 ErbB 受体 · HER3 Fab 候选",
+        "visualSummary": "展示 human HER3/ERBB3 extracellular domain 3 与 ISU104 Fab 的真实实验界面，可用于非小细胞肺癌、胃癌与 HER3 高表达实体瘤方向的局部受体展示。",
+        "structuralBasis": "RCSB 7D85 human HER3/ERBB3 extracellular domain 3 / ISU104 Fab complex",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "sourceAntigenChains": [
+          "A",
+          "D"
+        ],
+        "sourceAntibodyChains": [
+          "B",
+          "C",
+          "E",
+          "F"
+        ],
+        "visualColors": {
+          "antigen": "#7C3AED",
+          "antibody": "#0EA5E9"
+        }
+      }
+    },
+    {
       "routeId": "solid_tumor_b7h3",
       "aliasPrefix": "CD276-Fab",
       "target": "B7-H3",
@@ -2555,6 +2646,93 @@
         "visualColors": {
           "antigen": "#F97316",
           "antibody": "#0EA5E9"
+        }
+      }
+    },
+    {
+      "routeId": "upper_gi_fgfr2",
+      "aliasPrefix": "FGFR2-Fab",
+      "target": "FGFR2",
+      "gene": "FGFR2",
+      "aliases": [
+        "Fibroblast growth factor receptor 2",
+        "FGFR2b",
+        "KGFR",
+        "K-SAM"
+      ],
+      "promptLabel": "FGFR2/KGFR",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "FGFR2-Fab-01.pdb"
+      ],
+      "display": {
+        "structureTitle": "FGFR2 Fab 胃癌与胆管癌相关受体结合构象",
+        "structureFamily": "上消化道肿瘤相关受体酪氨酸激酶 · FGFR2 Fab 候选",
+        "visualSummary": "展示 human FGFR2 D2 domain 与 Fab 2B.1.3 的真实实验界面，可用于 FGFR2-high 胃癌、胃食管交界癌与胆管癌方向的局部受体展示。",
+        "structuralBasis": "RCSB 4WV1 human FGFR2 D2 domain / Fab 2B.1.3 complex",
+        "antigenChains": [
+          "C"
+        ],
+        "antibodyChains": [
+          "A",
+          "B"
+        ],
+        "sourceAntigenChains": [
+          "C",
+          "F"
+        ],
+        "sourceAntibodyChains": [
+          "A",
+          "B",
+          "D",
+          "E"
+        ],
+        "visualColors": {
+          "antigen": "#16A34A",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "urothelial_fgfr3",
+      "aliasPrefix": "FGFR3-Fab",
+      "target": "FGFR3",
+      "gene": "FGFR3",
+      "aliases": [
+        "Fibroblast growth factor receptor 3",
+        "JTK4"
+      ],
+      "promptLabel": "FGFR3",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "FGFR3-Fab-01.pdb"
+      ],
+      "display": {
+        "structureTitle": "FGFR3 Fab 尿路上皮癌相关受体结合构象",
+        "structureFamily": "尿路上皮癌相关受体酪氨酸激酶 · FGFR3 Fab 候选",
+        "visualSummary": "展示 human FGFR3 D2-D3 与 R3Mab Fab 的真实实验界面，可用于尿路上皮癌、肾盂癌与膀胱癌方向的局部受体展示。",
+        "structuralBasis": "RCSB 3GRW human FGFR3 domains 2-3 / R3Mab Fab complex",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "H",
+          "L"
+        ],
+        "sourceAntigenChains": [
+          "A"
+        ],
+        "sourceAntibodyChains": [
+          "H",
+          "L"
+        ],
+        "visualColors": {
+          "antigen": "#0EA5E9",
+          "antibody": "#F97316"
         }
       }
     },

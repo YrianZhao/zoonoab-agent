@@ -162,6 +162,30 @@ const COMMON_REAL_COMPLEX_EXPECTATIONS = [
     antibodyChains: ['A', 'B']
   },
   {
+    prefix: 'MET-Fab',
+    basis: /RCSB 6I04 human MET Sema domain \/ MM-131 Fab arm complex/,
+    antigenChains: ['A'],
+    antibodyChains: ['H', 'L']
+  },
+  {
+    prefix: 'HER3-Fab',
+    basis: /RCSB 7D85 human HER3\/ERBB3 extracellular domain 3 \/ ISU104 Fab complex/,
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C']
+  },
+  {
+    prefix: 'FGFR3-Fab',
+    basis: /RCSB 3GRW human FGFR3 domains 2-3 \/ R3Mab Fab complex/,
+    antigenChains: ['A'],
+    antibodyChains: ['H', 'L']
+  },
+  {
+    prefix: 'FGFR2-Fab',
+    basis: /RCSB 4WV1 human FGFR2 D2 domain \/ Fab 2B\.1\.3 complex/,
+    antigenChains: ['C'],
+    antibodyChains: ['A', 'B']
+  },
+  {
     prefix: 'MUC1-Fab',
     basis: /RCSB 7V7K MUC1 GlycoST VNTR glycopeptide \/ 16A Fab complex/,
     antigenChains: ['C'],
