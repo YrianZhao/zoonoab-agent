@@ -122,6 +122,13 @@ test('workflow history is persisted from submit through cancellation and errors'
 test('history detail presents the user question and read-only workflow transcript', () => {
   const renderHistoryDetail = extractFunction(html, 'function renderHistoryDetail');
 
+  assert.match(html, /function\s+renderHistoryStructureSourceBanner\s*\(/);
+  assert.match(html, /function\s+classifyHistoryStructureModel\s*\(/);
+  assert.match(html, /结构来源状态/);
+  assert.match(html, /本地结构库/);
+  assert.match(html, /在线结构解析/);
+  assert.match(html, /默认\/代表性模型/);
+  assert.match(renderHistoryDetail, /renderHistoryStructureSourceBanner\(record\)[\s\S]*kb-history-detail-head/);
   assert.match(renderHistoryDetail, /用户问题/);
   assert.match(renderHistoryDetail, /模型 \/ 工作流完整输出/);
   assert.match(renderHistoryDetail, /statusDetail/);

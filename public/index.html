@@ -5058,6 +5058,21 @@
         .kb-history-pill.done { border-color: rgba(34,197,94,0.25); background: rgba(34,197,94,0.08); color: #15803D; }
         .kb-history-detail { min-width: 0; overflow-y: auto; padding: 18px 20px 24px; }
         .kb-history-empty { padding: 56px 20px; text-align: center; color: var(--text-muted); font-size: 13px; line-height: 1.7; }
+        .kb-history-source-banner { background: white; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 14px 16px; margin-bottom: 14px; box-shadow: 0 8px 24px rgba(15,23,42,0.05); }
+        .kb-history-source-banner.local { border-color: rgba(34,197,94,0.28); background: linear-gradient(135deg, rgba(240,253,244,0.98), white 72%); }
+        .kb-history-source-banner.online { border-color: rgba(59,130,246,0.30); background: linear-gradient(135deg, rgba(239,246,255,0.98), white 72%); }
+        .kb-history-source-banner.default { border-color: rgba(245,158,11,0.34); background: linear-gradient(135deg, rgba(255,251,235,0.98), white 72%); }
+        .kb-history-source-banner.none { border-color: rgba(148,163,184,0.28); background: linear-gradient(135deg, rgba(248,250,252,0.98), white 72%); }
+        .kb-history-source-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+        .kb-history-source-kicker { font-size: 10px; font-weight: 850; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 3px; }
+        .kb-history-source-title { font-size: 16px; font-weight: 900; color: var(--text-primary); line-height: 1.35; }
+        .kb-history-source-desc { margin-top: 6px; color: var(--text-secondary); font-size: 12px; line-height: 1.65; }
+        .kb-history-source-badge { flex-shrink: 0; display: inline-flex; align-items: center; gap: 5px; border-radius: var(--radius-full); padding: 5px 10px; font-size: 11px; font-weight: 850; border: 1px solid var(--border); background: white; color: var(--text-secondary); }
+        .kb-history-source-banner.local .kb-history-source-badge { border-color: rgba(34,197,94,0.28); color: #15803D; background: rgba(240,253,244,0.96); }
+        .kb-history-source-banner.online .kb-history-source-badge { border-color: rgba(59,130,246,0.30); color: #1D4ED8; background: rgba(239,246,255,0.96); }
+        .kb-history-source-banner.default .kb-history-source-badge { border-color: rgba(245,158,11,0.36); color: #B45309; background: rgba(255,251,235,0.98); }
+        .kb-history-source-banner.none .kb-history-source-badge { border-color: rgba(148,163,184,0.30); color: #64748B; background: rgba(248,250,252,0.98); }
+        .kb-history-source-meta { margin-top: 9px; display: flex; gap: 6px; flex-wrap: wrap; }
         .kb-history-detail-head { background: white; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 16px 18px; margin-bottom: 14px; }
         .kb-history-detail-title { font-size: 18px; font-weight: 850; color: var(--text-primary); line-height: 1.45; margin-bottom: 8px; }
         .kb-history-detail-meta { display: flex; gap: 7px; flex-wrap: wrap; align-items: center; }
@@ -6475,7 +6490,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '69498227';
+    const APP_BUILD_VERSION = '69498228';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
     const SILICONFLOW_CHAT_FALLBACK_MODELS = ['Qwen/Qwen3-32B', 'Qwen/Qwen3-14B', 'Qwen/Qwen3-8B', 'deepseek-ai/DeepSeek-V3'];
@@ -9180,9 +9195,9 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         try { return truncateHistoryText(JSON.stringify(value, null, 2), max); } catch { return truncateHistoryText(String(value), max); }
     }
 
-    function historyStructuredEventHtml(event) {
-        const data = event && event.data;
-        if (event.type === 'research_trace') {
+	    function historyStructuredEventHtml(event) {
+	        const data = event && event.data;
+	        if (event.type === 'research_trace') {
             const phase = data && (data.phaseLabel || researchTracePhaseLabel(data.phase)) || '综合分析';
             const agent = data && data.agent ? String(data.agent) : '';
             const status = researchTraceStatusCopy(data && data.status || 'completed');
@@ -9217,12 +9232,154 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         }
         if (event.type === 'workflow_result' && data) {
             return `<strong>${escHtml(data.wfType || '流程结果')}</strong><br>${historyTextHtml(historyValuePreview(data.result), false)}`;
-        }
-        return historyTextHtml(historyValuePreview(data), false);
-    }
+	        }
+	        return historyTextHtml(historyValuePreview(data), false);
+	    }
 
-    function updateHistoryCount() {
-        const countEl = document.getElementById('kbHistoryCount');
+	    function collectHistoryStructureModels(record) {
+	        const sections = record && Array.isArray(record.models3d) ? record.models3d : [];
+	        const entries = [];
+	        sections.forEach((section, sectionIdx) => {
+	            const binders = Array.isArray(section && section.binderData) ? section.binderData : [];
+	            if (binders.length) {
+	                binders.forEach((model, modelIdx) => entries.push({ section: section || {}, sectionIdx, model: model || {}, modelIdx }));
+	                return;
+	            }
+	            if (section && (section.primaryPDB || section.label)) {
+	                entries.push({
+	                    section: section || {},
+	                    sectionIdx,
+	                    model: { id: section.primaryPDB || section.label || '', candidateLabel: section.primaryPDB || '', modelOrigin: section.isLocal ? 'local' : '' },
+	                    modelIdx: 0
+	                });
+	            }
+	        });
+	        return entries;
+	    }
+
+	    function classifyHistoryStructureModel(model, section = {}) {
+	        model = model || {};
+	        const structureMeta = getStructurePresentation(model);
+	        const source = structureMeta.source || {};
+	        const sourceKind = String(structureMeta.sourceKind || '').toLowerCase();
+	        const poseKind = String(structureMeta.poseKind || '').toLowerCase();
+	        const database = String(source.database || model.structureDatabase || model.sourceDatabase || '').trim();
+	        const databaseKey = database.toLowerCase();
+	        const explicitOrigin = String(model.modelOrigin || '').trim().toLowerCase();
+	        const structureUrl = String(structureMeta.structureUrl || model.structureUrl || '').trim();
+	        const fallback = Boolean(model.fallback)
+	            || structureMeta.isRepresentative
+	            || sourceKind === 'representative'
+	            || poseKind === 'representative'
+	            || (structureMeta.hasTargetVerification && structureMeta.targetVerified === false && (sourceKind === 'representative' || poseKind === 'representative'));
+	        if (fallback) {
+	            return {
+	                category: 'default',
+	                label: '默认/代表性模型',
+	                badge: 'DEFAULT',
+	                description: '本轮没有命中可验证的正式靶点结构，使用空间构象或默认支架呈现候选关系；不应视为当前靶点真实复合物。',
+	                sourceText: structureMeta.sourceLabel || model.structureSource || '代表性空间构象',
+	                kindText: structureMeta.kindLabel || '空间构象'
+	            };
+	        }
+	        const local = explicitOrigin === 'local'
+	            || databaseKey === 'local'
+	            || (!structureMeta.hasStructureMetadata && Boolean(model.displayFile || model.file || section.isLocal));
+	        if (local) {
+	            return {
+	                category: 'local',
+	                label: '本地结构库',
+	                badge: 'LOCAL',
+	                description: '主结构来自已登记的本地 PDB/结构库映射；后端已按靶点身份、抗体形式和链角色选择结构。',
+	                sourceText: structureMeta.sourceLabel || model.displayFile || model.file || section.primaryPDB || '本地结构文件',
+	                kindText: structureMeta.kindLabel || '本地结构'
+	            };
+	        }
+	        const online = Boolean(database && databaseKey !== 'local')
+	            || /^\/api\/structures\//.test(structureUrl)
+	            || /rcsb|pdb|pdbe|alphafold|uniprot/i.test(sourceKind + ' ' + structureUrl);
+	        if (online) {
+	            return {
+	                category: 'online',
+	                label: '在线结构解析',
+	                badge: 'ONLINE',
+	                description: '主结构来自本轮在线结构解析并缓存到本机；若类型为展示姿态或预测抗原，不等同于实验复合物或经验证结合界面。',
+	                sourceText: structureMeta.sourceLabel || database || model.structureSource || '在线结构来源',
+	                kindText: structureMeta.kindLabel || '在线结构'
+	            };
+	        }
+	        return {
+	            category: 'none',
+	            label: '结构来源未标明',
+	            badge: 'UNKNOWN',
+	            description: '这条历史记录没有保存足够的结构来源 metadata，无法判断是否来自本地、在线解析或默认模型。',
+	            sourceText: section.primaryPDB || model.id || '',
+	            kindText: structureMeta.kindLabel || ''
+	        };
+	    }
+
+	    function historyStructureSourceSummary(record) {
+	        const entries = collectHistoryStructureModels(record);
+	        if (!entries.length) {
+	            return {
+	                category: 'none',
+	                label: '无结构模型',
+	                badge: 'NO MODEL',
+	                description: '这条历史记录没有保存 3D 结构模型。',
+	                sourceText: '',
+	                kindText: '',
+	                counts: { local: 0, online: 0, default: 0, none: 0 },
+	                total: 0
+	            };
+	        }
+	        const primary = entries[0];
+	        const primaryStatus = classifyHistoryStructureModel(primary.model, primary.section);
+	        const counts = { local: 0, online: 0, default: 0, none: 0 };
+	        entries.forEach(entry => {
+	            const status = classifyHistoryStructureModel(entry.model, entry.section);
+	            counts[status.category] = (counts[status.category] || 0) + 1;
+	        });
+	        return {
+	            ...primaryStatus,
+	            primaryModel: primary.model,
+	            primarySection: primary.section,
+	            counts,
+	            total: entries.length
+	        };
+	    }
+
+	    function renderHistoryStructureSourceBanner(record) {
+	        const summary = historyStructureSourceSummary(record);
+	        const model = summary.primaryModel || {};
+	        const section = summary.primarySection || {};
+	        const countParts = [
+	            summary.counts.local ? '本地 ' + summary.counts.local : '',
+	            summary.counts.online ? '在线 ' + summary.counts.online : '',
+	            summary.counts.default ? '默认 ' + summary.counts.default : '',
+	            summary.counts.none ? '未标明 ' + summary.counts.none : ''
+	        ].filter(Boolean).join(' · ');
+	        const primaryName = model.candidateLabel || model.name || model.id || section.primaryPDB || '';
+	        const metaItems = [
+	            primaryName ? ['主结构', primaryName] : null,
+	            summary.sourceText ? ['来源', summary.sourceText] : null,
+	            summary.kindText ? ['类型', summary.kindText] : null,
+	            summary.total ? ['结构数', summary.total + (countParts ? '（' + countParts + '）' : '')] : null
+	        ].filter(Boolean);
+	        return `<div class="kb-history-source-banner ${escHtml(summary.category)}">
+	            <div class="kb-history-source-top">
+	                <div>
+	                    <div class="kb-history-source-kicker">结构来源状态</div>
+	                    <div class="kb-history-source-title">${escHtml(summary.label)}</div>
+	                    <div class="kb-history-source-desc">${escHtml(summary.description)}</div>
+	                </div>
+	                <span class="kb-history-source-badge">${escHtml(summary.badge)}</span>
+	            </div>
+	            ${metaItems.length ? `<div class="kb-history-source-meta">${metaItems.map(([label, value]) => `<span class="kb-history-pill model">${escHtml(label)} · ${escHtml(value)}</span>`).join('')}</div>` : ''}
+	        </div>`;
+	    }
+
+	    function updateHistoryCount() {
+	        const countEl = document.getElementById('kbHistoryCount');
         const history = loadHistoryRecords();
         if (countEl) countEl.textContent = history.length;
     }
@@ -9320,11 +9477,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 <span class="kb-history-output-label">${escHtml(labelMap[event.type] || event.type)} · ${escHtml(formatHistoryTime(event.ts))}</span>
                 ${body || '<span style="color:var(--text-muted);">无内容</span>'}
             </div>`;
-        }).join('') : '<div class="kb-history-empty">这条记录没有可显示的输出内容。</div>';
-        return `
-            <div class="kb-history-detail-head">
-                <div class="kb-history-detail-title">${historyTextHtml(displayTitle, false)}</div>
-                <div class="kb-history-detail-meta">
+	        }).join('') : '<div class="kb-history-empty">这条记录没有可显示的输出内容。</div>';
+	        return `
+	            ${renderHistoryStructureSourceBanner(record)}
+	            <div class="kb-history-detail-head">
+	                <div class="kb-history-detail-title">${historyTextHtml(displayTitle, false)}</div>
+	                <div class="kb-history-detail-meta">
                     <span class="kb-history-pill done">${escHtml(historyStatusLabel(record.status))}</span>
                     <span class="kb-history-pill">${escHtml(formatHistoryTime(record.ts))}</span>
                     <span class="kb-history-pill">${outputEvents.length} 条输出</span>
