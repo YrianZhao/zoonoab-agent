@@ -227,6 +227,19 @@ test('local structure catalog is the machine-readable inventory for route-backed
   assert.deepEqual(igf1r.antigenChains, ['A', 'B']);
   assert.deepEqual(igf1r.antibodyChains, []);
 
+  const igf1rFv = catalogEntryForFilename(catalog, 'ENDOCRINELIB-HUMAN-IGF1R-FV-RCSB-5U8R.pdb');
+  assert.ok(igf1rFv, 'endocrine-library IGF1R Fv asset should be represented in the catalog');
+  assert.equal(igf1rFv.target, 'IGF1R');
+  assert.equal(igf1rFv.gene, 'IGF1R');
+  assert.equal(igf1rFv.organismTaxId, 9606);
+  assert.equal(igf1rFv.structureClass, 'experimental_reference_complex');
+  assert.equal(igf1rFv.antibodyFormat, 'Fv');
+  assert.deepEqual(igf1rFv.antigenChains, ['A']);
+  assert.deepEqual(igf1rFv.antibodyChains, ['H', 'L']);
+  assert.deepEqual(igf1rFv.sourceAntigenChains, ['A']);
+  assert.deepEqual(igf1rFv.sourceAntibodyChains, ['H', 'L']);
+  assert.match(igf1rFv.structuralBasis, /5U8R/);
+
   const glp1r = catalogEntryForFilename(catalog, 'ENDOCRINELIB-HUMAN-GLP1R-RCSB-6LN2.pdb');
   assert.ok(glp1r, 'endocrine-library GLP1R asset should be represented in the catalog');
   assert.equal(glp1r.target, 'GLP1R');

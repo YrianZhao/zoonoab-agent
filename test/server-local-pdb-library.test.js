@@ -141,6 +141,18 @@ test('local PDB model library API lists local structures with viewer metadata', 
   assert.match(igf1r.structuralBasis, /7XGD/);
   assert.equal(igf1r.targetTag.verifiedTag, true);
 
+  const igf1rFv = data.models.find(model => model.filename === 'ENDOCRINELIB-HUMAN-IGF1R-FV-RCSB-5U8R.pdb');
+  assert.ok(igf1rFv, 'endocrine-library IGF1R Fv asset should be listed');
+  assert.equal(igf1rFv.targetDisplay, 'IGF1R');
+  assert.equal(igf1rFv.antibodyFormat, 'Fv');
+  assert.equal(igf1rFv.structureKind, 'Fv 抗原-抗体复合体');
+  assert.deepEqual(igf1rFv.antigenChains, ['A']);
+  assert.deepEqual(igf1rFv.antibodyChains, ['H', 'L']);
+  assert.deepEqual(igf1rFv.sourceAntigenChains, ['A']);
+  assert.deepEqual(igf1rFv.sourceAntibodyChains, ['H', 'L']);
+  assert.match(igf1rFv.structuralBasis, /5U8R/);
+  assert.equal(igf1rFv.targetTag.verifiedTag, true);
+
   const glp1r = data.models.find(model => model.filename === 'ENDOCRINELIB-HUMAN-GLP1R-RCSB-6LN2.pdb');
   assert.ok(glp1r, 'endocrine-library GLP1R asset should be listed');
   assert.equal(glp1r.targetDisplay, 'GLP1R');

@@ -752,6 +752,16 @@ test('server previews exact local-library assets for explicit targets without pr
       expectedSourceAntibodyChains: ['A', 'B', 'D', 'E']
     },
     {
+      text: '设计10个针对IGF1R的Fab',
+      expectedTarget: 'IGF1R',
+      expectedFile: 'ENDOCRINELIB-HUMAN-IGF1R-FV-RCSB-5U8R.pdb',
+      expectedPoseKind: 'experimental_complex',
+      expectedAntigenChains: ['A'],
+      expectedAntibodyChains: ['H', 'L'],
+      expectedSourceAntigenChains: ['A'],
+      expectedSourceAntibodyChains: ['H', 'L']
+    },
+    {
       text: '设计10个针对GLP1R的Fab',
       expectedTarget: 'GLP1R',
       expectedFile: 'ENDOCRINELIB-HUMAN-GLP1R-RCSB-6LN2.pdb',
