@@ -4897,6 +4897,105 @@ function localStructureCatalogRouteEntryForFile(filename) {
   return catalogRouteEntryForFilename(LOCAL_STRUCTURE_CATALOG, filename);
 }
 
+function localStructureCatalogLibraryAssets() {
+  return Array.isArray(LOCAL_STRUCTURE_CATALOG && LOCAL_STRUCTURE_CATALOG.libraryAssets)
+    ? LOCAL_STRUCTURE_CATALOG.libraryAssets
+    : [];
+}
+
+function localStructureCatalogAliases(entry) {
+  return [...new Set([
+    entry && entry.target,
+    entry && entry.gene,
+    ...(Array.isArray(entry && entry.aliases) ? entry.aliases : [])
+  ].map(item => String(item || '').trim()).filter(Boolean))];
+}
+
+function localLibraryAssetStructureRank(entry, requestedFormat) {
+  const structureClass = String(entry && entry.structureClass || '').toLowerCase();
+  const antibodyFormat = String(entry && entry.antibodyFormat || '').trim().toUpperCase();
+  const hasAntibodyChains = Array.isArray(entry && entry.antibodyChains) && entry.antibodyChains.length > 0;
+  const formatScore = requestedFormat && antibodyFormat === requestedFormat ? 0 : (hasAntibodyChains ? 1 : 2);
+  let classScore = 4;
+  if (/target_exact_(?:complex|domain_complex|epitope_complex|nanobody_complex|vhh_or_tce_complex|fv_complex|scfv_complex)/.test(structureClass)) {
+    classScore = 0;
+  } else if (/experimental_reference_complex/.test(structureClass)) {
+    classScore = 1;
+  } else if (/experimental_antigen/.test(structureClass)) {
+    classScore = 2;
+  } else if (hasAntibodyChains) {
+    classScore = 1;
+  }
+  const resolution = Number(entry && entry.resolutionAngstrom || 999) || 999;
+  return [formatScore, classScore, resolution];
+}
+
+function compareLocalLibraryAssetPreference(a, b, requestedFormat) {
+  const left = localLibraryAssetStructureRank(a, requestedFormat);
+  const right = localLibraryAssetStructureRank(b, requestedFormat);
+  for (let idx = 0; idx < left.length; idx += 1) {
+    if (left[idx] !== right[idx]) return left[idx] - right[idx];
+  }
+  return String(a && a.filename || '').localeCompare(String(b && b.filename || ''));
+}
+
+function localLibraryAssetMatchesProfile(profile, entry) {
+  if (!profile || !entry) return false;
+  const requestedTarget = String(profile.targetDisplay || '').trim();
+  const requestedIdentity = normalizePreparedStructureTarget(requestedTarget);
+  if (!requestedIdentity) return false;
+  const aliases = localStructureCatalogAliases(entry);
+  const targetMatches = aliases.some(alias => normalizePreparedStructureTarget(alias) === requestedIdentity);
+  if (!targetMatches) return false;
+  const requestedOrganismName = String(profile.organismName || '').trim();
+  const requestedOrganismTaxId = Number(profile.organismTaxId || 0) || null;
+  if (!requestedOrganismName && !requestedOrganismTaxId) return true;
+  const coordinateOrganismName = String(entry.organismName || entry.organism || '').trim();
+  const coordinateOrganismTaxId = Number(entry.organismTaxId || entry.taxId || 0) || null;
+  return Boolean(
+    (requestedOrganismTaxId && coordinateOrganismTaxId && requestedOrganismTaxId === coordinateOrganismTaxId) ||
+    (requestedOrganismName && coordinateOrganismName && normalizePreparedStructureTarget(requestedOrganismName) === normalizePreparedStructureTarget(coordinateOrganismName))
+  );
+}
+
+function localLibraryAssetEntriesForProfile(profile) {
+  const requestedFormat = String(antibodyFormatForProfile(profile) || '').trim().toUpperCase();
+  return localStructureCatalogLibraryAssets()
+    .filter(entry => localLibraryAssetMatchesProfile(profile, entry))
+    .sort((a, b) => compareLocalLibraryAssetPreference(a, b, requestedFormat));
+}
+
+function preferredLocalLibraryAssetEntries(profile) {
+  const requestedFormat = String(antibodyFormatForProfile(profile) || '').trim().toUpperCase();
+  const assets = localLibraryAssetEntriesForProfile(profile);
+  if (!assets.length) return [];
+  const [topFormatScore, topClassScore] = localLibraryAssetStructureRank(assets[0], requestedFormat);
+  const rankFiltered = assets.filter(entry => {
+    const [formatScore, classScore] = localLibraryAssetStructureRank(entry, requestedFormat);
+    return formatScore === topFormatScore && classScore === topClassScore;
+  });
+  if (rankFiltered.length <= 1) return rankFiltered;
+  const requestedOrganismName = String(profile && profile.organismName || '').trim();
+  const requestedOrganismTaxId = Number(profile && profile.organismTaxId || 0) || null;
+  if (requestedOrganismName || requestedOrganismTaxId) return rankFiltered;
+  const topOrganismName = String(rankFiltered[0] && (rankFiltered[0].organismName || rankFiltered[0].organism) || '').trim();
+  const topOrganismTaxId = Number(rankFiltered[0] && (rankFiltered[0].organismTaxId || rankFiltered[0].taxId) || 0) || null;
+  if (!topOrganismName && !topOrganismTaxId) return rankFiltered;
+  const organismFiltered = rankFiltered.filter(entry => {
+    const organismName = String(entry && (entry.organismName || entry.organism) || '').trim();
+    const organismTaxId = Number(entry && (entry.organismTaxId || entry.taxId) || 0) || null;
+    return Boolean(
+      (topOrganismTaxId && organismTaxId && topOrganismTaxId === organismTaxId) ||
+      (topOrganismName && organismName && normalizePreparedStructureTarget(topOrganismName) === normalizePreparedStructureTarget(organismName))
+    );
+  });
+  return organismFiltered.length ? organismFiltered : rankFiltered;
+}
+
+function hasExactLocalAssetStructure(profile) {
+  return localLibraryAssetEntriesForProfile(profile).length > 0;
+}
+
 function virusLibraryChainsForModel(model) {
   const entities = Array.isArray(model && model.entities) ? model.entities : [];
   const antigenLabel = String(model && model.antigen || '').trim();
@@ -5488,6 +5587,146 @@ function hasPreparedRouteStructure(profile) {
     .some(file => preparedStructureTargetMatches(profile, file));
 }
 
+function localLibraryAssetStructure(profile, file, entry) {
+  const target = (profile && profile.targetDisplay) || (entry && entry.target) || '当前靶点';
+  const remarks = readLocalPDBRemarks(file);
+  const targetTag = buildLocalPDBTargetTag(file, remarks);
+  const antibodyFormat = String(entry && entry.antibodyFormat || '').trim() || String(targetTag.antibodyFormat || '').trim();
+  const displayAntigenChains = Array.isArray(entry && entry.antigenChains) ? entry.antigenChains : [];
+  const displayAntibodyChains = Array.isArray(entry && entry.antibodyChains) ? entry.antibodyChains : [];
+  const sourceAntigenChains = Array.isArray(entry && entry.sourceAntigenChains) && entry.sourceAntigenChains.length
+    ? entry.sourceAntigenChains
+    : displayAntigenChains;
+  const sourceAntibodyChains = Array.isArray(entry && entry.sourceAntibodyChains) && entry.sourceAntibodyChains.length
+    ? entry.sourceAntibodyChains
+    : displayAntibodyChains;
+  const structureClass = String(entry && entry.structureClass || '').toLowerCase();
+  const hasAntibodyChains = displayAntibodyChains.length > 0;
+  const isAntigenOnly = !hasAntibodyChains && /experimental_antigen/.test(structureClass);
+  const isReferenceComplex = !hasAntibodyChains && /reference_complex/.test(structureClass);
+  const poseKind = hasAntibodyChains || isReferenceComplex ? 'experimental_complex' : 'antigen_only';
+  const grade = hasAntibodyChains ? 'A' : (isReferenceComplex ? 'B' : 'B');
+  const disclosure = String(entry && entry.note || '').trim() || (
+    hasAntibodyChains
+      ? '当前展示使用与靶点身份一致的本地结构资产，不代表当前候选序列已经获得实验验证。'
+      : '当前展示使用与靶点身份一致的本地抗原结构资产，用于呈现靶点与候选设计之间的对应关系。'
+  );
+  const interfaceDetail = hasAntibodyChains
+    ? '当前展示使用与靶点身份一致的本地实验复合物坐标。'
+    : (isReferenceComplex
+      ? '当前展示使用与靶点身份一致的本地参考复合体坐标。'
+      : '当前展示使用与靶点身份一致的本地抗原坐标。');
+  const structureTitle = hasAntibodyChains
+    ? (target + ' ' + antibodyFormat + ' 本地结构')
+    : (target + ' 本地结构');
+  return {
+    schemaVersion: 1,
+    status: 'ready',
+    targetIdentity: {
+      requestedLabel: target,
+      canonicalName: entry && entry.target || target,
+      geneSymbol: (entry && entry.gene) || (profile && profile.targetGene) || '',
+      uniprotAccession: entry && (entry.uniprotAccession || entry.referenceAccession) || null,
+      organismName: entry && (entry.organismName || entry.organism) || (profile && profile.organismName) || '',
+      organismTaxId: entry && (entry.organismTaxId || entry.taxId) || (profile && profile.organismTaxId) || null,
+      strain: (profile && profile.strain) || null,
+      isoform: (profile && profile.isoform) || null,
+      exactMatch: true,
+      confidence: 1
+    },
+    source: {
+      kind: 'local_library_asset',
+      database: 'local',
+      accession: entry && (entry.accession || entry.referenceAccession || entry.filename) || file,
+      assemblyId: null,
+      biologicalAssembly: /biological assembly/i.test(String(entry && entry.biologicalAssembly || '')),
+      sourceUrl: entry && entry.sourceEntryUrl ? entry.sourceEntryUrl : '',
+      downloadUrl: entry && entry.sourceUrl ? entry.sourceUrl : '',
+      retrievedAt: null,
+      sha256: localPDBSha256(file),
+      experimentalMethod: entry && entry.experimentalMethod || null,
+      resolutionAngstrom: entry && entry.resolutionAngstrom || null,
+      sequenceCoverage: null
+    },
+    coordinates: {
+      structureUrl: localPDBPublicUrl(file),
+      cacheKey: '',
+      format: 'pdb',
+      coordinateAntigenLabel: entry && entry.target || targetTag.target || target,
+      targetVerified: true,
+      antigenChains: displayAntigenChains,
+      antibodyChains: displayAntibodyChainsForRoute(null, displayAntibodyChains, antibodyFormat),
+      sourceAntigenChains,
+      sourceAntibodyChains
+    },
+    pose: {
+      kind: poseKind,
+      scaffoldId: null,
+      generatorVersion: null,
+      anchorStrategy: null,
+      minDistanceA: null,
+      contactPairs45A: null,
+      nearPairs60A: null,
+      clashesBelow20A: null,
+      geometryValidated: hasAntibodyChains
+    },
+    display: {
+      grade,
+      interfaceDetail,
+      structureTitle,
+      structuralBasis: entry && entry.structuralBasis || '',
+      visualSummary: String(entry && entry.context || '').trim() || structureTitle,
+      disclosure
+    }
+  };
+}
+
+function buildLocalLibraryAssetMeta(profile, idx, entry) {
+  const file = String(entry && (entry.filename || entry.file || '') || '').trim();
+  if (!file || !localPDBFileExists(file)) return null;
+  const structure = localLibraryAssetStructure(profile, file, entry);
+  const binder = structureBinderMeta(profile, idx, structure);
+  binder.file = file;
+  binder.displayFile = file;
+  binder.structureUrl = structure.coordinates.structureUrl;
+  binder.targetDisplay = structure.targetIdentity.canonicalName || binder.targetDisplay;
+  binder.antibodyFormat = String(entry && entry.antibodyFormat || '').trim() || binder.antibodyFormat;
+  binder.structureTitle = structure.display.structureTitle;
+  binder.structureFamily = [
+    structure.source.experimentalMethod || '',
+    structure.pose.kind === 'antigen_only' ? '本地抗原结构' : '本地结构资产'
+  ].filter(Boolean).join(' · ');
+  binder.visualSummary = structure.display.visualSummary;
+  binder.structuralBasis = structure.display.structuralBasis;
+  binder.interfaceDetail = structure.pose.kind === 'experimental_complex';
+  binder.antigenChains = structure.coordinates.antigenChains;
+  binder.antibodyChains = structure.coordinates.antibodyChains;
+  binder.sourceAntigenChains = structure.coordinates.sourceAntigenChains;
+  binder.sourceAntibodyChains = structure.coordinates.sourceAntibodyChains;
+  binder.structure = structure;
+  binder.modelOrigin = 'local';
+  binder.structureSource = [structure.source.database, structure.source.accession].filter(Boolean).join(' ');
+  binder.structureGrade = structure.display.grade;
+  binder.structureKind = structure.pose.kind;
+  binder.structureDisclosure = structure.display.disclosure;
+  binder.fallback = false;
+  return binder;
+}
+
+function routeExactLocalAssetPDBs(profile, count) {
+  const assets = preferredLocalLibraryAssetEntries(profile);
+  if (!assets.length) return [];
+  const targetCount = Math.max(1, Number(count) || 10);
+  return Array.from({ length: targetCount }, (_, idx) => buildLocalLibraryAssetMeta(profile, idx, assets[idx % assets.length]))
+    .filter(Boolean);
+}
+
+function preferredLocalPDBs(profile, count) {
+  const prepared = routeLocalPDBs(profile, count);
+  if (prepared.length) return prepared;
+  return routeExactLocalAssetPDBs(profile, count);
+}
+
 function structureResolutionInput(profile, forcedRoute, antibodyFormat) {
   const targetResolution = forcedRoute && forcedRoute.targetResolution ? forcedRoute.targetResolution : {};
   return {
@@ -5540,7 +5779,7 @@ function unresolvedWorkflowStructure(profile, status, disclosure) {
 }
 
 function startWorkflowStructureResolution(profile, forcedRoute, antibodyFormat) {
-  if (hasPreparedRouteStructure(profile)) return null;
+  if (hasPreparedRouteStructure(profile) || hasExactLocalAssetStructure(profile)) return null;
   const input = structureResolutionInput(profile, forcedRoute, antibodyFormat);
   const controller = new AbortController();
   let deadlineTimer = null;
@@ -9749,7 +9988,7 @@ async function runWorkflow(ws, input, forcedRoute, researchTraceRuntime = null) 
 
   // 3D Gallery
   let resolvedStructure = null;
-  let allLocalPDBs = routeLocalPDBs(profile, finalPass);
+  let allLocalPDBs = preferredLocalPDBs(profile, finalPass);
   if (structureJob) {
     markWorkflowStage(sess, isZh ? '真实抗原结构收束' : 'Verified antigen structure finalization');
     resolvedStructure = await waitForWorkflowStructure(structureJob, profile);
@@ -11135,7 +11374,7 @@ if (process.env.NODE_ENV === 'test') {
     }
     if (previewProfile && !previewProfile.routeId && route && route.id) previewProfile.routeId = route.id;
     const responseProfile = profile || previewProfile || null;
-    const threeDBinders = previewProfile ? routeLocalPDBs(previewProfile, parsed.count || designRequest.count || 10) : [];
+    const threeDBinders = previewProfile ? preferredLocalPDBs(previewProfile, parsed.count || designRequest.count || 10) : [];
     res.json({
       intent: requiresTargetResolution ? 'design' : detectIntent(text),
       route,

@@ -111,6 +111,26 @@ test('keeps newly cataloged solid-tumor targets stable in explicit design reques
   }
 });
 
+test('keeps newly cataloged local-library targets stable in explicit design requests', () => {
+  const cases = [
+    ['设计10个针对DRD4的Fab', 'DRD4'],
+    ['设计10个针对GLP1R的Fab', 'GLP1R'],
+    ['设计10个针对Myostatin的Fab', 'Myostatin'],
+    ['设计10个针对GDF8的Fab', 'Myostatin'],
+    ['设计10个针对ActRIIA的抗体', 'ActRIIA'],
+    ['设计10个针对ActRIIB的抗体', 'ActRIIB'],
+    ['设计10个针对ACVR2B的抗体', 'ActRIIB'],
+    ['设计10个针对IL-6的Fab', 'IL-6']
+  ];
+
+  for (const [text, expectedTarget] of cases) {
+    const parsed = extractDesignRequest(text);
+    assert.equal(parsed.isDesignRequest, true, text);
+    assert.equal(parsed.target, expectedTarget, text);
+    assert.equal(parsed.hasExplicitTarget, true, text);
+  }
+});
+
 test('recognizes canine NGF as an explicit veterinary design target', () => {
   const parsed = extractDesignRequest('设计狗 NGF 单抗');
   assert.equal(parsed.isDesignRequest, true);

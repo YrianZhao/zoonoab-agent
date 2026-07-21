@@ -691,6 +691,79 @@ test('server previews curated real complexes for common explicit antigen targets
   }
 });
 
+test('server previews exact local-library assets for explicit targets without prepared routes', async () => {
+  const requests = [
+    {
+      text: '设计10个针对DRD4的Fab',
+      expectedTarget: 'DRD4',
+      expectedFile: 'NEUROLIB-HUMAN-DRD4-RCSB-5WIU.pdb',
+      expectedPoseKind: 'antigen_only',
+      expectedAntigenChains: ['A'],
+      expectedAntibodyChains: []
+    },
+    {
+      text: '设计10个针对GLP1R的Fab',
+      expectedTarget: 'GLP1R',
+      expectedFile: 'ENDOCRINELIB-HUMAN-GLP1R-RCSB-6LN2.pdb',
+      expectedPoseKind: 'experimental_complex',
+      expectedAntigenChains: ['A'],
+      expectedAntibodyChains: ['B', 'C']
+    },
+    {
+      text: '设计10个针对Myostatin的Fab',
+      expectedTarget: 'Myostatin',
+      expectedFile: 'METABOLIB-HUMAN-MSTN-FAB-RCSB-5F3H.pdb',
+      expectedPoseKind: 'experimental_complex',
+      expectedAntigenChains: ['I', 'J'],
+      expectedAntibodyChains: ['A', 'B'],
+      expectedSourceAntigenChains: ['I', 'J', 'K', 'L'],
+      expectedSourceAntibodyChains: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
+    },
+    {
+      text: '设计10个针对ActRIIB的抗体',
+      expectedTarget: 'ActRIIB',
+      expectedFile: 'METABOLIB-HUMAN-ACTRIIB-FV-RCSB-5NHR.pdb',
+      expectedPoseKind: 'experimental_complex',
+      expectedAntigenChains: ['C', 'D'],
+      expectedAntibodyChains: ['A', 'B'],
+      expectedSourceAntibodyChains: ['A', 'B', 'H', 'L']
+    },
+    {
+      text: '设计10个针对IL-6的Fab',
+      expectedTarget: 'IL-6',
+      expectedFile: 'INFLAMLIB-HUMAN-IL6-FAB-RCSB-4ZS7.pdb',
+      expectedPoseKind: 'experimental_complex',
+      expectedAntigenChains: ['A'],
+      expectedAntibodyChains: ['H', 'L']
+    }
+  ];
+
+  for (const item of requests) {
+    const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/design-route?text=' + encodeURIComponent(item.text));
+    assert.equal(res.status, 200);
+    const data = await res.json();
+    const binder = data.threeDPreview && data.threeDPreview.binders && data.threeDPreview.binders[0];
+
+    assert.ok(binder, item.text + ' should preview a local structure asset');
+    assert.equal(data.profile && data.profile.targetDisplay, item.expectedTarget, item.text + ' should keep the explicit target');
+    assert.equal(binder.file, item.expectedFile, item.text + ' should use the expected local asset');
+    assert.ok(data.threeDPreview.files.every(file => file === item.expectedFile), item.text + ' should not mix unrelated local assets');
+    assert.equal(binder.modelOrigin, 'local');
+    assert.equal(binder.fallback, false);
+    assert.equal(binder.structure.source.kind, 'local_library_asset');
+    assert.equal(binder.structure.coordinates.targetVerified, true);
+    assert.equal(binder.structure.pose.kind, item.expectedPoseKind);
+    assert.deepEqual(binder.antigenChains, item.expectedAntigenChains);
+    assert.deepEqual(binder.antibodyChains, item.expectedAntibodyChains);
+    if (item.expectedSourceAntigenChains) {
+      assert.deepEqual(binder.sourceAntigenChains, item.expectedSourceAntigenChains);
+    }
+    if (item.expectedSourceAntibodyChains) {
+      assert.deepEqual(binder.sourceAntibodyChains, item.expectedSourceAntibodyChains);
+    }
+  }
+});
+
 test('disease-first prepared directions resolve to their new exact local structures', async () => {
   const requests = [
     { text: '帮我设计一个针对甲状腺眼病的抗体', expectedTarget: 'TSHR', expectedPrefix: /^TSHR-Fab-/ },
