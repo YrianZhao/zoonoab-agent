@@ -2,16 +2,16 @@
 (function(){
   window.ZOONOAB_LOCAL_STRUCTURE_CATALOG = {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-21T15:14:33.303Z",
+  "generatedAt": "2026-07-21T15:41:40.155Z",
   "summary": {
-    "pdbFileCount": 473,
-    "routePresetCount": 55,
-    "routeableRoutePresetCount": 54,
-    "promptEligibleRoutePresetCount": 54,
-    "routePresetFileCount": 407,
+    "pdbFileCount": 475,
+    "routePresetCount": 57,
+    "routeableRoutePresetCount": 56,
+    "promptEligibleRoutePresetCount": 56,
+    "routePresetFileCount": 409,
     "libraryAssetCount": 86
   },
-  "promptSupportTargets": "IL-33/IL33、TSLP、PD-L1/CD274、PD-1/PDCD1、CTLA-4/CTLA4、CD20/MS4A1、CD19、CD3/CD3E/CD3G、C5、IL-6R/IL6R、IL-4Rα/IL4R、CD25/IL2RA、CD38、TIGIT、CD47、LAG-3/LAG3、TROP-2/TACSTD2、BCMA/TNFRSF17、IgE/IGH、CGRP receptor/CALCRL/RAMP1、HER2/ERBB2、EGFR、VEGF-A/VEGFA、TNF、IL-17A/IL17A、IL-23/IL23A/IL12B、RSV F/F、SARS-CoV-2 RBD/S、Influenza HA/HA、Influenza NA/NA、PCSK9、ANGPTL3、IL-1B、GIPR、Amyloid-beta/APP、Tau/MAPT、TREM2、DAT/SLC6A3、Canine NGF/NGF、Mesothelin/MSLN、Claudin 18.2/CLDN18、B7-H3/CD276、MUC1、Nectin-4/NECTIN4、GPRC5D、CEACAM5/CEA、STEAP1、CAIX/CA9、IL-5/IL5、IL-13/IL13、CD123/IL3RA、BAFF/TNFSF13B、FcRn/FCGRT",
+  "promptSupportTargets": "IL-33/IL33、TSLP、PD-L1/CD274、PD-1/PDCD1、CTLA-4/CTLA4、CD20/MS4A1、CD19、CD3/CD3E/CD3G、C5、IL-6R/IL6R、IL-4Rα/IL4R、CD25/IL2RA、CD38、TIGIT、CD47、LAG-3/LAG3、TROP-2/TACSTD2、BCMA/TNFRSF17、IgE/IGH、CGRP receptor/CALCRL/RAMP1、HER2/ERBB2、EGFR、VEGF-A/VEGFA、TNF、IL-17A/IL17A、IL-23/IL23A/IL12B、RSV F/F、SARS-CoV-2 RBD/S、Influenza HA/HA、Influenza NA/NA、PCSK9、ANGPTL3、IL-1B、GIPR、Amyloid-beta/APP、Tau/MAPT、TREM2、DAT/SLC6A3、Canine NGF/NGF、Mesothelin/MSLN、Claudin 18.2/CLDN18、B7-H3/CD276、MUC1、Nectin-4/NECTIN4、GPRC5D、CEACAM5/CEA、STEAP1、CAIX/CA9、IL-5/IL5、IL-13/IL13、CD123/IL3RA、BAFF/TNFSF13B、FcRn/FCGRT、NGF、Integrin α4β7/ITGA4-ITGB7",
   "routePresets": [
     {
       "routeId": "allergic_asthma",
@@ -2003,7 +2003,7 @@
       "target": "Canine NGF",
       "gene": "NGF",
       "aliases": [
-        "NGF",
+        "Canine NGF",
         "dog NGF",
         "犬源 NGF",
         "犬 NGF"
@@ -2728,6 +2728,93 @@
         ],
         "visualColors": {
           "antigen": "#06B6D4",
+          "antibody": "#2563EB"
+        }
+      }
+    },
+    {
+      "routeId": "pain_ngf",
+      "aliasPrefix": "NGF-Fab",
+      "target": "NGF",
+      "gene": "NGF",
+      "aliases": [
+        "Beta-NGF",
+        "Nerve growth factor"
+      ],
+      "promptLabel": "NGF",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "NGF-Fab-01.pdb"
+      ],
+      "display": {
+        "structureTitle": "NGF Fab 慢性疼痛相关配体结合构象",
+        "structureFamily": "神经营养因子配体 · NGF Fab 候选",
+        "visualSummary": "展示 human beta-NGF 与 tanezumab Fab 的真实实验复合物，可支撑骨关节炎与慢性疼痛方向的 NGF 中和展示。",
+        "structuralBasis": "RCSB 4EDW human beta-NGF / tanezumab Fab complex",
+        "antigenChains": [
+          "V"
+        ],
+        "antibodyChains": [
+          "H",
+          "L"
+        ],
+        "sourceAntigenChains": [
+          "V"
+        ],
+        "sourceAntibodyChains": [
+          "H",
+          "L"
+        ],
+        "visualColors": {
+          "antigen": "#F59E0B",
+          "antibody": "#2563EB"
+        }
+      }
+    },
+    {
+      "routeId": "ibd_a4b7",
+      "aliasPrefix": "A4B7-Fab",
+      "target": "Integrin α4β7",
+      "gene": "ITGA4 / ITGB7",
+      "aliases": [
+        "Integrin alpha4beta7",
+        "alpha4beta7",
+        "A4B7",
+        "α4β7",
+        "ITGA4/ITGB7"
+      ],
+      "promptLabel": "Integrin α4β7/ITGA4-ITGB7",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "A4B7-Fab-01.pdb"
+      ],
+      "display": {
+        "structureTitle": "Integrin α4β7 Fab 肠道归巢整合素结合构象",
+        "structureFamily": "肠道炎症相关整合素受体 · α4β7 Fab 候选",
+        "visualSummary": "展示 human integrin α4β7 headpiece 与 ACT-1 Fab 的真实实验复合物，可支撑炎症性肠病与溃疡性结肠炎方向的肠道归巢整合素展示。",
+        "structuralBasis": "RCSB 3V4P human integrin α4β7 headpiece / ACT-1 Fab complex",
+        "antigenChains": [
+          "A",
+          "B"
+        ],
+        "antibodyChains": [
+          "H",
+          "L"
+        ],
+        "sourceAntigenChains": [
+          "A",
+          "B"
+        ],
+        "sourceAntibodyChains": [
+          "H",
+          "L"
+        ],
+        "visualColors": {
+          "antigen": "#10B981",
           "antibody": "#2563EB"
         }
       }

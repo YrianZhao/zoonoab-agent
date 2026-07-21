@@ -95,7 +95,7 @@ const ALIASES_BY_TARGET = {
   IgE: ['Immunoglobulin E'],
   'CGRP receptor': ['CGRPR', 'CALCRL', 'RAMP1'],
   'IL-1β': ['IL1B', 'IL-1B', 'IL-1 beta'],
-  'Canine NGF': ['NGF', 'dog NGF', '犬源 NGF', '犬 NGF']
+  'Canine NGF': ['dog NGF', 'dog nerve growth factor', '犬源 NGF', '犬 NGF']
 };
 
 function readText(filePath) {

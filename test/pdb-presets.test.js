@@ -216,6 +216,18 @@ const COMMON_REAL_COMPLEX_EXPECTATIONS = [
     antibodyChains: ['H', 'L']
   },
   {
+    prefix: 'NGF-Fab',
+    basis: /RCSB 4EDW human beta-NGF \/ tanezumab Fab complex/,
+    antigenChains: ['V'],
+    antibodyChains: ['H', 'L']
+  },
+  {
+    prefix: 'A4B7-Fab',
+    basis: /RCSB 3V4P human integrin α4β7 headpiece \/ ACT-1 Fab complex/,
+    antigenChains: ['A', 'B'],
+    antibodyChains: ['H', 'L']
+  },
+  {
     prefix: 'ABETA-Fab',
     basis: /RCSB 4OJF amyloid-beta 1-8 peptide \/ humanized 3D6 Fab complex/,
     antigenChains: ['A'],

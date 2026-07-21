@@ -661,6 +661,8 @@ test('server previews curated real complexes for common explicit antigen targets
     { text: '设计10个针对CD123的Fab', expectedTarget: 'CD123', expectedPrefix: /^CD123-Fab-/ },
     { text: '设计10个针对BAFF的Fab', expectedTarget: 'BAFF', expectedPrefix: /^BAFF-Fab-/ },
     { text: '设计10个针对FcRn的Fab', expectedTarget: 'FcRn', expectedPrefix: /^FCRN-Fab-/ },
+    { text: '设计10个针对NGF的Fab', expectedTarget: 'NGF', expectedPrefix: /^NGF-Fab-/ },
+    { text: '设计10个针对α4β7的Fab', expectedTarget: 'Integrin α4β7', expectedPrefix: /^A4B7-Fab-/ },
     { text: '设计10个针对Amyloid-beta的Fab', expectedTarget: 'Amyloid-beta', expectedPrefix: /^ABETA-Fab-/ },
     { text: '设计10个针对Tau的Fab', expectedTarget: 'Tau', expectedPrefix: /^TAU-Fab-/ },
     { text: '设计10个针对TREM2的Fab', expectedTarget: 'TREM2', expectedPrefix: /^TREM2-Fab-/ }
@@ -996,7 +998,9 @@ test('server routes obesity indication requests through target resolution instea
 test('server recognizes lupus and myasthenia disease wording as target-resolution indications', async () => {
   const cases = [
     ['帮我设计一个治疗系统性红斑狼疮的抗体', '系统性红斑狼疮'],
-    ['帮我设计一个治疗重症肌无力的抗体', '重症肌无力']
+    ['帮我设计一个治疗重症肌无力的抗体', '重症肌无力'],
+    ['帮我设计一个治疗骨关节炎的抗体', '骨关节炎'],
+    ['帮我设计一个治疗溃疡性结肠炎的抗体', '溃疡性结肠炎']
   ];
 
   for (const [text, expectedIndication] of cases) {

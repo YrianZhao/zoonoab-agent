@@ -194,6 +194,26 @@ test('local PDB model library API lists local structures with viewer metadata', 
   assert.match(fcrn.structuralBasis, /9MI6/);
   assert.equal(fcrn.targetTag.verifiedTag, true);
 
+  const ngf = data.models.find(model => model.filename === 'NGF-Fab-01.pdb');
+  assert.ok(ngf, 'NGF routeable Fab preset should be listed');
+  assert.equal(ngf.targetDisplay, 'NGF');
+  assert.equal(ngf.antibodyFormat, 'Fab');
+  assert.equal(ngf.structureKind, 'Fab 抗原-抗体复合体');
+  assert.deepEqual(ngf.antigenChains, ['V']);
+  assert.deepEqual(ngf.antibodyChains, ['H', 'L']);
+  assert.match(ngf.structuralBasis, /4EDW/);
+  assert.equal(ngf.targetTag.verifiedTag, true);
+
+  const a4b7 = data.models.find(model => model.filename === 'A4B7-Fab-01.pdb');
+  assert.ok(a4b7, 'α4β7 routeable Fab preset should be listed');
+  assert.equal(a4b7.targetDisplay, 'Integrin α4β7');
+  assert.equal(a4b7.antibodyFormat, 'Fab');
+  assert.equal(a4b7.structureKind, 'Fab 抗原-抗体复合体');
+  assert.deepEqual(a4b7.antigenChains, ['A', 'B']);
+  assert.deepEqual(a4b7.antibodyChains, ['H', 'L']);
+  assert.match(a4b7.structuralBasis, /3V4P/);
+  assert.equal(a4b7.targetTag.verifiedTag, true);
+
   const abeta = data.models.find(model => model.filename === 'ABETA-Fab-01.pdb');
   assert.ok(abeta, 'Amyloid-beta routeable Fab preset should be listed');
   assert.equal(abeta.targetDisplay, 'Amyloid-beta');
@@ -255,6 +275,12 @@ test('structure catalog API exposes route-backed structure inventory', async () 
   assert.equal(baff.aliasPrefix, 'BAFF-Fab');
   assert.equal(baff.target, 'BAFF');
   assert.ok((baff.files || []).includes('BAFF-Fab-01.pdb'));
+
+  const ngf = data.catalog.routePresets.find(item => item.routeId === 'pain_ngf');
+  assert.ok(ngf, 'catalog should expose the NGF local route');
+  assert.equal(ngf.aliasPrefix, 'NGF-Fab');
+  assert.equal(ngf.target, 'NGF');
+  assert.ok((ngf.files || []).includes('NGF-Fab-01.pdb'));
 });
 
 test('local PDB responses are cacheable and can project only viewer-visible chains', async () => {
