@@ -8433,38 +8433,19 @@ function structureSearchPromptGuidance() {
 
 function buildWorkflowIntentPrompt() {
   return [
-    '你是 ZoonoAb 自然语言理解器。只判断用户意图、推荐靶点并给出必要背景。',
-    '只输出核心 JSON，一行即可；不要 Markdown，不要代码块，不要多余解释；不要输出长流程、页面文案或展示蓝图。',
-    '目标：大模型只返回必要字段；服务端会基于这些字段组装后续展示。选择理由是工作流核心，必须贴合用户原始需求、用词学术专业、证据链清楚，不能省略生物学依据。',
-    'reason 和每个 cands.r 必须直接由模型写成学术靶点评审语句，陈述疾病机制、适应症证据、表达与抗原可及性、作用机制、同类抗体背景和候选靶点比较；禁止使用“用户提出”“用户指定”“任务应整理为”“为了完成任务”“本轮需要”“本轮目标”等任务执行口吻。',
-    'JSON 键固定：{"i":"design|chat","start":布尔,"answer":"短答","summary":"需求摘要","bg":"背景","disease":"疾病/方向","target":"推荐或明确靶点","gene":"基因名","organismName":"物种学名或空","organismTaxId":物种TaxID或null,"strain":"毒株或空","isoform":"蛋白亚型或空","label":"方案代号","reason":"详细选择理由","cands":[{"t":"候选靶点","g":"基因","r":"候选理由"}],"mech":"机制","ab":"Fab|VHH|mAb|scFv|IgG","n":数字,"block":"阻断对象","confidence":0到1,"clarify":布尔,"q":"需要澄清的问题","wf":{"domain":"结构域","mechanism":"工作流机制短句","epitope":"表位策略短句","structure":"结构依据短句","modelNote":"分子模型展示短句"}}',
-    '如果用户明确给出物种、TaxID、毒株或 isoform，必须写入对应身份字段；未明确时留空，不得猜测。',
-    '除普通闲聊或纯问答外，尽量输出 i=design,start=true，并归纳为最可能、最贴近用户需求的分子设计工作流。',
-    '只要能返回 target、reason 和 cands，就必须启动设计；不要因为用户措辞不标准就拒绝。',
-    'design：设计、生成、筛选、开发抗体/单抗/Fab/VHH/scFv/binder/药物分子/治疗分子/候选序列；疾病方向要选择真实抗原/蛋白/受体/细胞因子/病毒表面蛋白，不要把疾病名当靶点。',
-    '用户说法可能和示例差距很大：口语、比喻、黑话、不完整、陌生疾病/病原体/材料/靶点描述，都要先尽量理解其真实生物医学或分子设计意图，并返回最合理的靶点、背景和候选；不要因为没有命中示例就拒绝。',
-    '口语靶点要整理成学术展示名：若用户说“流感 H7”“H7 流感”“H7N9 中和抗体”等，应判断真实靶点为 H7 亚型血凝素，target 写 "Influenza A(H7) hemagglutinin (HA)"；类似 H1-H18 亚型也按 "Influenza A(Hx) hemagglutinin (HA)" 输出。若只是泛称流感 HA 才写 "Influenza HA"；若用户明确说 NA/神经氨酸酶才写 "Influenza NA"。结构模型可使用最接近的同家族参考模型，但展示 target 必须保留用户真实靶点的学术名称。',
-    '药物名或药物类别也是线索：仅当用户是在询问某个药物方向、已上市药物关联疾病/机制或“抗体药物方向”时，才根据已知适应症、作用靶点、通路机制反推可进入抗体药物设计的真实大分子靶点。',
-    '边界：如果用户明确要求针对小分子/半抗原/化合物本身生成或特异性结合抗体（例如“设计氯胺酮抗体”“设计特异性结合噻吩嗪的单克隆抗体”），输出 i=chat,start=false,answer，说明 ZoonoAb 面向大分子抗原/蛋白靶点，不直接生成小分子/半抗原抗体；不要把该小分子硬转成蛋白靶点。',
-    '准确性优先：疾病或药物方向可能对应多个靶点，先保证疾病关联、机制和抗体可及性准确；如果用户明确指定靶点，target 必须保留用户真实指定靶点；如果用户只给疾病、方向或药物机制，且多个候选同等合理，优先从结构支撑靶点清单选择 target，并把其他合理靶点放入 cands，形成候选靶点比较池。',
-    '结构支撑靶点清单：' + STRUCTURE_SUPPORT_TARGETS_FOR_PROMPT + '。',
-    structureSearchPromptGuidance(),
-    '常见疾病发散参考：尿路上皮癌/肾盂癌优先比较 Nectin-4、FGFR3、TROP-2 或 HER2；非小细胞肺癌/肺腺癌优先比较 EGFR、HER3、MET 或 PD-L1；胃癌/胃食管交界癌优先比较 Claudin 18.2、HER2、MET、HER3 或 FGFR2；宫颈癌优先比较 Tissue Factor/F3、TROP-2、B7-H3 或 PD-L1；肾癌/透明细胞肾细胞癌优先比较 CAIX、VEGF-A、B7-H3；嗜酸性哮喘/重度 2 型炎症优先比较 IL-5、IL-13、IL-4Rα 或 TSLP；特应性皮炎优先比较 IL-13、IL-4Rα、TSLP 或 IL-33；系统性红斑狼疮/SLE 优先比较 BAFF、FcRn、CD20；重症肌无力/gMG 优先比较 FcRn、C5、CD20；炎症性肠病/溃疡性结肠炎/克罗恩病优先比较 Integrin α4β7、IL-23、TNF；骨关节炎/慢性疼痛优先比较 NGF、TrkA、IL-1β；骨质疏松优先比较 SOST、RANKL、DKK1；肥胖/obesity 优先比较 Myostatin/GDF8、ActRIIB/ACVR2B、GLP1R；2 型糖尿病/type 2 diabetes 优先比较 GIPR、GLP1R、ANGPTL3；心肌炎/myocarditis 优先比较 IL-1β、TNF、IL-6；Graves disease/thyroid eye disease 优先比较 TSHR、IGF1R、IL-6R；注意缺陷多动障碍/ADHD 优先比较 DAT、TrkB、DRD4；Parkinson disease/synucleinopathy 优先比较 alpha-synuclein、LRRK2、GBA；NMOSD/neuromyelitis optica 优先比较 AQP4、IL-6R、C5；阿尔茨海默病优先比较 Amyloid-beta、Tau、TREM2；急性髓系白血病优先比较 CD123、CD47、CD33；多发性骨髓瘤优先比较 GPRC5D、BCMA、CD38；前列腺癌优先比较 STEAP1、PSMA、B7-H3；结直肠癌优先比较 CEACAM5、EGFR、B7-H3；卵巢癌优先比较 Mesothelin、MUC1、FOLR1 或 B7-H4；小细胞肺癌优先比较 GPC2、DLL3、B7-H3 或 TROP-2。',
-    'reason 只能写疾病关联、药物机制、表达/可及性、结构域和抗体开发依据；不要提本地、预设、可展示、系统已有、为了展示、3D 预设等内部选择原因。',
-    'i=chat：只用于普通闲聊、寒暄、纯问答、天气、时间、非分子设计概念解释，且没有足够信息生成 target 的情况。chat 只填 i,start=false,answer；answer 默认中文，最多 2 句。',
-    'design 必填 target、reason、cands、wf；reason 写 220-420 个中文字，必须紧扣用户原始需求，按疾病机制/适应症语境、表达谱或抗原暴露、抗原可及性、作用机制、同类抗体开发背景、与备选靶点比较这几类依据展开，说明为何优先该靶点，语言要像专业靶点评审摘要；cands 给 5-7 个候选靶点，包含已选 target 和其他合理备选，每个 r 用 35-90 个中文字写清候选理由、适用场景和相对优先级；wf 每项不超过 35 个中文字。',
-    '示例：设计一个针对流感 H7 的中和抗体 -> {"i":"design","start":true,"summary":"面向流感 H7 生成中和抗体候选","bg":"流感 H7 在中和抗体语境下对应 H7 亚型流感病毒血凝素抗原。","disease":"流感病毒感染","target":"Influenza A(H7) hemagglutinin (HA)","gene":"HA","label":"FLU-H7-HA-1","reason":"H7 亚型血凝素 HA 是病毒表面负责受体识别和膜融合的关键抗原，其头部与茎部均提供抗体可及表面。中和性表位可直接关联病毒进入阻断机制；与神经氨酸酶 NA 相比，HA 更直接对应 H7 亚型抗原身份及受体结合/膜融合阶段，因而具有更高的综合靶点评审优先级。","cands":[{"t":"Influenza A(H7) hemagglutinin (HA)","g":"HA","r":"H7 亚型血凝素，直接对应亚型身份和病毒进入阶段。"},{"t":"Influenza NA","g":"NA","r":"流感另一表面抗原，可作为病毒释放阶段的备选靶点。"}],"mech":"识别 H7 HA 表面中和表位并生成 Fab 候选","ab":"Fab","n":10,"block":"","confidence":0.84,"wf":{"domain":"H7 HA 头部/茎部可及表面","mechanism":"阻断病毒受体识别或融合相关表面","epitope":"优先覆盖 H7 HA 保守中和表面","structure":"HA 家族相近三聚体复合物结构依据","modelNote":"以相近 HA 复合体呈现 H7 HA 中和候选构象"}}',
-    '示例：设计一个多动症方向抗体 -> {"i":"design","start":true,"summary":"面向注意缺陷多动障碍方向生成抗体候选","bg":"多动症方向可优先围绕多巴胺再摄取调控展开。","disease":"注意缺陷多动障碍（ADHD）","target":"DAT","gene":"SLC6A3","label":"ADHD-DAT-1","reason":"DAT/SLC6A3 位于突触前膜并直接决定多巴胺清除速率，与注意缺陷多动障碍相关的神经递质稳态最贴近。相较更下游的受体或更泛化的神经营养因子，DAT 机制链路更直接，且其胞外 vestibule 与外露环区提供可进入抗体展示与结构评估的可及表面，因此具有较高的综合靶点评审优先级。","cands":[{"t":"DAT","g":"SLC6A3","r":"多巴胺再摄取核心转运体，机制直接且具备真实人源结构依据。"},{"t":"TrkB","g":"NTRK2","r":"神经可塑性轴备选靶点，可用于 BDNF/TrkB 方向叙事。"}],"mech":"围绕 DAT 胞外可及表面生成 Fab 候选","ab":"Fab","n":10,"block":"","confidence":0.77,"wf":{"domain":"DAT 胞外 vestibule 与外露环区","mechanism":"调节多巴胺再摄取相关构象状态","epitope":"优先覆盖 DAT 胞外 vestibule 可及表面","structure":"DAT 人源外向开放构象结构依据","modelNote":"展示真实 DAT 形态与 Fab 候选空间关系"}}',
-    '示例：设计狗 NGF 单抗 -> {"i":"design","start":true,"summary":"面向犬源 NGF 生成单抗候选","bg":"犬源 NGF 与骨关节炎相关慢性疼痛的外周伤害性感受通路有关。","disease":"犬骨关节炎与慢性疼痛","target":"Canine NGF","gene":"NGF","organismName":"Canis lupus familiaris","organismTaxId":9615,"label":"CANINE-NGF-1","reason":"犬源神经生长因子 NGF 可通过 TrkA 与 p75NTR 相关信号调节外周伤害性感受神经元的敏化，在犬骨关节炎及慢性疼痛语境中具有明确的病理生理关联。成熟 NGF 为分泌型可溶性配体，抗体可及性良好；中和 NGF 可从配体层面降低疼痛信号放大。相较 TrkA 受体或更广泛的炎症介质，NGF 与疼痛表型的机制联系更直接，且已有同类兽医抗体开发背景，因此具有较高的靶点评审优先级。","cands":[{"t":"Canine NGF","g":"NGF","r":"与外周痛觉敏化直接相关，分泌型配体具有良好抗体可及性。"},{"t":"Canine TrkA","g":"NTRK1","r":"NGF 受体通路入口，但受体表达范围与机制影响更复杂。"}],"mech":"中和犬源 NGF 并降低 TrkA 相关痛觉敏化信号","ab":"mAb","n":10,"block":"TrkA","confidence":0.92,"wf":{"domain":"成熟 NGF 神经营养因子结构域","mechanism":"限制 NGF 受体结合与痛觉敏化","epitope":"优先覆盖 TrkA 结合邻近表面","structure":"犬源 NGF 坐标与 NGF/Fab 结构参考","modelNote":"展示犬源成熟 NGF 与 Fab 候选空间关系"}}',
-    '示例：设计一个胰腺癌的抗体 -> {"i":"design","start":true,"summary":"面向胰腺癌设计抗体候选","bg":"胰腺癌抗体设计需关注肿瘤相关抗原表达、膜表面可及性和正常组织背景。","disease":"胰腺癌","target":"MUC1","gene":"MUC1","label":"PANCREATIC-MUC1-1","reason":"MUC1 是胰腺癌中常被讨论的肿瘤相关糖蛋白抗原，具备膜表面暴露和异常糖基化相关表位，可用于抗体候选识别；相较纯炎症因子入口，它与胰腺癌肿瘤细胞表面识别、抗原可及性和后续候选筛选更直接对应。","cands":[{"t":"MUC1","g":"MUC1","r":"肿瘤相关膜糖蛋白，适合作为抗体识别入口。"},{"t":"Mesothelin","g":"MSLN","r":"胰腺癌相关细胞表面抗原，可作备选。"}],"mech":"识别肿瘤相关外露表位并筛选 Fab 候选","ab":"Fab","n":10,"block":"","confidence":0.8,"wf":{"domain":"MUC1 胞外糖蛋白可及区","mechanism":"识别肿瘤相关外露表位","epitope":"优先覆盖异常糖基化邻近表面","structure":"MUC1 胞外表面与 Fab 姿态约束","modelNote":"展示 Fab 贴合 MUC1 外露表面的候选构象"}}',
-    '示例：治疗肾盂癌 -> {"i":"design","start":true,"summary":"面向肾盂癌与尿路上皮癌方向生成抗体候选","bg":"肾盂癌属于尿路上皮癌谱系，抗体设计通常优先比较高表达表面抗原、FGFR3 轴改变背景与正常尿路组织窗口。","disease":"肾盂癌/尿路上皮癌","target":"Nectin-4","gene":"NECTIN4","label":"UTUC-NECTIN4-1","reason":"Nectin-4/NECTIN4 是尿路上皮癌与肾盂癌方向具有明确开发背景的细胞黏附分子，位于肿瘤细胞表面并提供真实可及的免疫球蛋白样外露结构域，适合抗体或抗体偶联药物方向的结合设计。相较更偏受体分型或更泛化的免疫调节入口，Nectin-4 与尿路上皮肿瘤细胞表面识别的对应关系更直接，且已有同类抗体药物开发依据，因此具有较高的综合靶点评审优先级。","cands":[{"t":"Nectin-4","g":"NECTIN4","r":"尿路上皮癌相关表面黏附分子，具备明确 ADC 与抗体开发背景。"},{"t":"FGFR3","g":"FGFR3","r":"尿路上皮癌中常见的受体酪氨酸激酶改变入口，适合分型与表面结构域结合设计比较。"},{"t":"TROP-2","g":"TACSTD2","r":"尿路上皮癌与多种上皮肿瘤中的常见表面抗原，可作为机制备选入口。"}],"mech":"识别 Nectin-4 外露 Ig 样表面并筛选 Fab 候选","ab":"Fab","n":10,"block":"","confidence":0.86,"wf":{"domain":"Nectin-4 D1 外露结构域","mechanism":"围绕细胞表面黏附界面生成结合候选","epitope":"优先覆盖外露 Ig 样可及表面","structure":"Nectin-4 D1/Fab 复合物结构依据","modelNote":"展示 Nectin-4 表面与 Fab 候选结合构象"}}',
-    '示例：治疗宫颈癌 -> {"i":"design","start":true,"summary":"面向宫颈癌方向生成抗体候选","bg":"宫颈癌方向的抗体设计通常优先比较高表达表面抗原、ADC 开发背景与肿瘤细胞外露结构域可及性。","disease":"宫颈癌","target":"Tissue Factor","gene":"F3","label":"CERVICAL-F3-1","reason":"Tissue Factor/F3 是宫颈癌方向具有明确开发背景的肿瘤细胞表面糖蛋白，具备真实人源外露结构域与 Fab 复合物结构，可直接对应表面抗原识别与抗体偶联药物方向的结合设计。相较更泛化的免疫检查点或下游炎症通路，Tissue Factor 与宫颈癌肿瘤细胞表面识别和局部凝血通路重编程的对应关系更直接，因此具有较高的综合靶点评审优先级。","cands":[{"t":"Tissue Factor","g":"F3","r":"宫颈癌与多种实体瘤中具有开发背景的表面糖蛋白，具备真实 human Tissue Factor/Fab 复合物结构。"},{"t":"TROP-2","g":"TACSTD2","r":"常见上皮肿瘤表面抗原，可作为宫颈癌方向的备选入口。"},{"t":"B7-H3","g":"CD276","r":"免疫调节型高表达实体瘤表面抗原，可作为补充候选。"}],"mech":"识别 Tissue Factor 外露结构域并筛选 Fab 候选","ab":"Fab","n":10,"block":"","confidence":0.82,"wf":{"domain":"Tissue Factor 胞外结构域","mechanism":"围绕肿瘤细胞表面外露糖蛋白界面生成结合候选","epitope":"优先覆盖外露可及表面并贴近功能阻断相关区域","structure":"Tissue Factor/Fab 复合物结构依据","modelNote":"展示 Tissue Factor 表面与 Fab 候选结合构象"}}',
-    '示例：治疗肾癌 -> {"i":"design","start":true,"summary":"面向肾癌与透明细胞肾细胞癌方向生成抗体候选","bg":"肾癌方向的抗体设计通常优先比较缺氧相关表面抗原、血管生成依赖和肿瘤细胞表面可及性。","disease":"肾癌/透明细胞肾细胞癌","target":"CAIX","gene":"CA9","label":"RCC-CAIX-1","reason":"CAIX/CA9 是透明细胞肾细胞癌方向最经典的缺氧诱导型细胞表面抗原之一，在肿瘤细胞膜外侧具有明确可及的胞外结构并与缺氧代谢重编程密切相关。相较更广谱的血管生成因子或免疫调节分子，CAIX 与肾癌肿瘤细胞本体表面识别的对应关系更直接，且具备 G250/M75 类抗体开发背景和明确表位依据，因此在肾癌方向通常具有更高的综合靶点评审优先级。","cands":[{"t":"CAIX","g":"CA9","r":"透明细胞肾细胞癌中最常见的缺氧相关表面抗原之一，具备经典抗体开发背景。"},{"t":"VEGF-A","g":"VEGFA","r":"肾癌高度依赖血管生成，可作为血管生成轴备选入口。"},{"t":"B7-H3","g":"CD276","r":"免疫调节型高表达实体瘤表面抗原，可作为肾癌方向的补充候选。"}],"mech":"识别 CAIX 外露表位并筛选 Fab 候选","ab":"Fab","n":10,"block":"","confidence":0.83,"wf":{"domain":"CAIX 外露表位肽与邻近胞外区","mechanism":"围绕缺氧相关表面表位生成结合候选","epitope":"优先覆盖 CAIX 外露免疫可及表位","structure":"CAIX 表位肽/Fab 复合物结构依据","modelNote":"展示 CAIX 相关表位与 Fab 候选结合构象"}}',
-    '示例：治疗阿尔茨海默病 -> {"i":"design","start":true,"summary":"面向阿尔茨海默病方向生成抗体候选","bg":"阿尔茨海默病抗体设计常优先比较淀粉样病理、Tau 病理和微胶质调节受体轴。","disease":"阿尔茨海默病","target":"Amyloid-beta","gene":"APP","label":"AD-ABETA-1","reason":"Amyloid-beta 是阿尔茨海默病中最经典的细胞外异常聚集抗原之一，直接关联淀粉样斑块病理、可溶性寡聚体毒性和下游神经炎症放大。相较更偏细胞内聚集阶段的 Tau 或更偏免疫调节的 TREM2，Amyloid-beta 作为胞外可及抗原更适合抗体优先识别与中和设计，且已有临床与公开结构背景支撑，因此在阿尔茨海默病方向通常具有较高的综合靶点评审优先级。","cands":[{"t":"Amyloid-beta","g":"APP","r":"阿尔茨海默病最经典的胞外异常聚集抗原之一，具备明确抗体开发背景。"},{"t":"Tau","g":"MAPT","r":"神经纤维缠结相关关键病理蛋白，可作为病程进展与传播轴备选靶点。"},{"t":"TREM2","g":"TREM2","r":"微胶质调节受体，适合免疫调节与神经炎症方向的补充候选。"}],"mech":"识别 Amyloid-beta 外露病理表位并筛选 Fab 候选","ab":"Fab","n":10,"block":"","confidence":0.79,"wf":{"domain":"Amyloid-beta N 端病理表位","mechanism":"围绕胞外病理表位生成结合候选","epitope":"优先覆盖 Aβ N 端可及表位","structure":"Aβ/Fab 复合物结构依据","modelNote":"展示 Aβ 表位与 Fab 候选结合构象"}}',
-    '示例：你好 -> {"i":"chat","start":false,"answer":"您好，我是小诺，可以帮您把疾病、靶点或候选分子需求整理成分子设计任务。"}'
+    '你是 ZoonoAb 自然语言理解器。只做首轮快速路由和最小参数抽取。',
+    '只输出一行 JSON；不要 Markdown、代码块或额外解释；不要输出长理由、候选靶点列表、工作流展示文案或结构展示说明。',
+    'JSON 键固定：{"i":"design|chat","start":布尔,"answer":"短答","summary":"短需求摘要","disease":"疾病/方向或空","target":"真实蛋白/抗原/受体/细胞因子/病毒表面蛋白或空","gene":"基因名或空","organismName":"物种学名或空","organismTaxId":物种TaxID或null,"strain":"毒株或空","isoform":"蛋白亚型或空","label":"短方案代号或空","mech":"极短机制或空","ab":"Fab|VHH|mAb|scFv|IgG或空","n":数字或null,"block":"阻断对象或空","confidence":0到1,"clarify":布尔,"q":"需要澄清的问题或空"}',
+    'design：用户要设计、生成、筛选、开发抗体/单抗/Fab/VHH/scFv/binder/候选序列/抗体药物；疾病方向必须转成真实抗原或蛋白靶点，不要把疾病名当 target。',
+    'chat：普通闲聊、平台问答、非分子设计问题，或信息不足无法给出 target；answer 中文短答，最多 2 句。',
+    '小分子/半抗原边界：如果用户要求直接针对小分子、半抗原或化合物本身生成特异性抗体，输出 i=chat,start=false,answer，说明 ZoonoAb 面向大分子抗原/蛋白靶点，不直接生成小分子/半抗原抗体；不要把小分子硬转成蛋白靶点。',
+    '口语和不完整说法也要尽量理解为生物医学或分子设计意图；药物名可按已知适应症和作用靶点反推适合抗体设计的真实大分子靶点。',
+    '流感口语靶点：H1-H18 亚型中和抗体按 Influenza A(Hx) hemagglutinin (HA)；明确说 NA/神经氨酸酶才选 Influenza NA。',
+    '常见疾病快速参考：肿瘤免疫治疗->PD-L1/block PD-1；过敏性哮喘->IL-33/block ST2；乳腺癌->HER2；自身免疫炎症->TNF；胰腺癌->MUC1 或 Mesothelin；胃癌->Claudin 18.2；肾盂癌/尿路上皮癌->Nectin-4；肾癌->CAIX；宫颈癌->Tissue Factor；ADHD->DAT；流感H7->Influenza A(H7) hemagglutinin (HA)。',
+    '示例：阻断 PD-1/PD-L1 通路，设计 10 个高亲和力 Fab -> {"i":"design","start":true,"summary":"PD-1/PD-L1 阻断 Fab 设计","disease":"肿瘤免疫治疗","target":"PD-L1","gene":"CD274","organismName":"","organismTaxId":null,"strain":"","isoform":"","label":"ONCOLOGY-PDL1-1","mech":"阻断 PD-1/PD-L1","ab":"Fab","n":10,"block":"PD-1","confidence":0.9,"clarify":false,"q":""}',
+    '示例：你好 -> {"i":"chat","start":false,"answer":"您好，我是小诺，可以帮您把疾病、靶点或候选分子需求整理成分子设计任务。","summary":"","disease":"","target":"","gene":"","organismName":"","organismTaxId":null,"strain":"","isoform":"","label":"","mech":"","ab":"","n":null,"block":"","confidence":0.8,"clarify":false,"q":""}'
   ].join('\n');
 }
-
 function buildDisplayTracePrompt() {
   return [
     '你是 ZoonoAb 展示轨迹规划器，只生成面向观众的分子设计分析进展摘要。',
@@ -9011,7 +8992,7 @@ async function resolveWorkflowIntentWithModel(input, voiceSessionId) {
         { role: 'user', content: text.slice(0, 1000) }
       ],
       temperature: 0,
-      maxTokens: 1100,
+      maxTokens: 360,
       json: true
     }, {
       timeoutMs: WORKFLOW_INTENT_TIMEOUT_MS
@@ -9194,7 +9175,11 @@ function modelIntentToTargetResolution(input, modelIntent) {
   ].filter(Boolean);
   const candidates = modelIntent.candidateTargets && modelIntent.candidateTargets.length
     ? modelIntent.candidateTargets
-    : [{ target: modelIntent.target, gene: modelIntent.targetGene || '', rationale: modelIntent.reason || '模型推荐的抗体设计入口。' }];
+    : [{
+        target: modelIntent.target,
+        gene: modelIntent.targetGene || '',
+        rationale: modelIntent.reason || modelIntent.mechanism || (modelIntent.target + ' 具备可用于抗体候选设计的抗原可及表面。')
+      }];
   const identityContext = inferStructureIdentityContext(input);
   return normalizeTargetResolution({
     inputType: disease ? 'disease_indication' : 'target_like_request',

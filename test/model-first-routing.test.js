@@ -271,15 +271,13 @@ test('compact model design result supplies core fields and lets the server build
 
     assert.ok(intentRequest, 'the authoritative intent request should be started');
     assert.ok(traceRequest, 'the independent display trace request should be started');
-    assert.match(modelSystemPrompt(intentRequest), /核心 JSON|必要字段|选择理由/);
+    assert.match(modelSystemPrompt(intentRequest), /首轮快速路由|最小参数抽取|短需求摘要/);
     assert.doesNotMatch(modelSystemPrompt(intentRequest), /用于教育|路演|展会|产品演示|演示产品|非研究用途/);
-    assert.match(modelSystemPrompt(intentRequest), /220-420 个中文字|用户原始需求|疾病机制|表达谱|抗原可及性|同类抗体开发背景/);
-    assert.match(modelSystemPrompt(intentRequest), /cands 给 5-7 个|候选靶点比较池/);
-    assert.match(modelSystemPrompt(intentRequest), /reason 和每个 cands\.r 必须直接由模型写成学术靶点评审语句/);
-    assert.match(modelSystemPrompt(intentRequest), /禁止使用.*用户提出.*用户指定.*任务应整理为.*本轮目标/);
-    assert.match(modelSystemPrompt(intentRequest), /wf|modelNote/);
+    assert.match(modelSystemPrompt(intentRequest), /不要输出长理由、候选靶点列表/);
+    assert.match(modelSystemPrompt(intentRequest), /JSON 键固定.*target.*gene.*ab.*n.*block/s);
+    assert.doesNotMatch(modelSystemPrompt(intentRequest), /220-420 个中文字|cands 给 5-7 个|候选靶点比较池|reason 和每个 cands\.r|modelNote/);
     assert.doesNotMatch(modelSystemPrompt(intentRequest), /workflow\/profile|tool_call|tool_result|epitopeRows|referenceEntries/);
-    assert.ok(intentRequest.max_tokens <= 1200);
+    assert.ok(intentRequest.max_tokens <= 420);
     assert.deepEqual(intentRequest.response_format, { type: 'json_object' });
     assert.match(modelSystemPrompt(traceRequest), /展示轨迹规划器|action|variant|不要输出 text 字段/);
     assert.doesNotMatch(modelSystemPrompt(traceRequest), /用于教育|路演|展会|产品演示|演示产品|非研究用途/);
@@ -742,7 +740,7 @@ test('model-resolved influenza subtype keeps its title while a disabled resolver
 
     assert.ok(intentRequest);
     assert.ok(findDisplayTraceRequest(captured));
-    assert.match(modelSystemPrompt(intentRequest), /口语靶点|学术展示名|H7|hemagglutinin|相近结构模型/);
+    assert.match(modelSystemPrompt(intentRequest), /流感口语靶点|H1-H18|H7|hemagglutinin/);
     assert.ok(show3d, 'workflow should reach 3D display');
     assert.ok(Array.isArray(show3d.binderData));
     assert.equal(show3d.binderData[0].targetDisplay, 'Influenza A(H7) hemagglutinin (HA)');
@@ -938,7 +936,7 @@ test('compact prompt tells the model to infer distant or colloquial design wordi
 
     assert.ok(intentRequest);
     assert.ok(findDisplayTraceRequest(captured));
-    assert.match(modelSystemPrompt(intentRequest), /口语|比喻|不完整|陌生|尽量理解/);
+    assert.match(modelSystemPrompt(intentRequest), /口语和不完整说法|尽量理解/);
     assert.ok(evidenceCall, 'colloquial design wording should still enter workflow when the model resolves it');
     assert.equal(evidenceCall.params.target, 'Mesothelin');
     assert.match(agentTexts[0], /胰腺癌|Mesothelin|MSLN|细胞表面/);
@@ -1000,8 +998,8 @@ test('drug-name requests are routed through the model so it can infer antibody d
 
     assert.ok(intentRequest);
     assert.ok(findDisplayTraceRequest(captured));
-    assert.match(modelSystemPrompt(intentRequest), /药物名|药物类别|作用靶点|适应症|反推/);
-    assert.match(modelSystemPrompt(intentRequest), /小分子\/半抗原|不要把.*小分子.*硬转成蛋白靶点/);
+    assert.match(modelSystemPrompt(intentRequest), /药物名.*适应症.*作用靶点.*反推/);
+    assert.match(modelSystemPrompt(intentRequest), /小分子\/半抗原边界|不要把小分子硬转成蛋白靶点/);
     assert.ok(evidenceCall, 'drug-name wording should still enter workflow when the model resolves it');
     assert.equal(evidenceCall.params.target, 'EGFR');
     assert.match(agentTexts[0], /奥希替尼|非小细胞肺癌|EGFR|胞外结构域/);
@@ -1049,7 +1047,7 @@ test('small molecule antibody requests rely on the model to answer the platform 
 
     assert.ok(intentRequest);
     assert.ok(findDisplayTraceRequest(captured));
-    assert.match(modelSystemPrompt(intentRequest), /小分子\/半抗原|不要把.*小分子.*硬转成蛋白靶点/);
+    assert.match(modelSystemPrompt(intentRequest), /小分子\/半抗原边界|不要把小分子硬转成蛋白靶点/);
     assert.match(agentTexts[0] || '', /噻吩嗪|小分子|大分子|不直接生成/);
     assert.doesNotMatch(serialized, /target_evidence_review|正在启动抗体设计工作流/);
   } finally {
@@ -1111,7 +1109,7 @@ test('model selected target is kept while the prompt can describe structure-supp
 
     assert.ok(intentRequest);
     assert.ok(findDisplayTraceRequest(captured));
-    assert.match(modelSystemPrompt(intentRequest), /可展示靶点|HER2|EGFR|PD-L1|3D/);
+    assert.match(modelSystemPrompt(intentRequest), /常见疾病快速参考|胃癌->Claudin 18\.2|肿瘤免疫治疗->PD-L1/);
     assert.ok(evidenceCall, 'model-selected target should enter the workflow');
     assert.equal(evidenceCall.params.target, 'Claudin 18.2');
     assert.match(agentTexts[0], /胃癌|Claudin 18\.2/);

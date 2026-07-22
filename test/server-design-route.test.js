@@ -531,10 +531,11 @@ test('server can let the chat model route terse monoclonal slang into workflow',
     assert.equal(evidenceCall.params.target, 'TMV coat protein');
     assert.ok(intentRequest);
     assert.ok(captured.some(isDisplayTraceRequest));
-    assert.match(modelSystemPrompt(intentRequest), /自然语言理解器|选择理由|wf|modelNote/);
+    assert.match(modelSystemPrompt(intentRequest), /自然语言理解器|首轮快速路由|最小参数抽取/);
+    assert.doesNotMatch(modelSystemPrompt(intentRequest), /选择理由|wf|modelNote|cands 给 5-7 个/);
     assert.doesNotMatch(modelSystemPrompt(intentRequest), /workflow\/profile|tool_call|tool_result|epitopeRows|referenceEntries/);
     assert.deepEqual(intentRequest.response_format, { type: 'json_object' });
-    assert.ok(intentRequest.max_tokens <= 1200);
+    assert.ok(intentRequest.max_tokens <= 420);
   } finally {
     await new Promise(resolve => mockServer.close(resolve));
   }
@@ -1677,7 +1678,7 @@ test('tumor immunotherapy disease requests use one compact model parse before wo
     assert.ok(captured.some(isDisplayTraceRequest));
     assert.equal(intentRequest.model, 'mock-tumor-target-resolver');
     assert.deepEqual(intentRequest.response_format, { type: 'json_object' });
-    assert.match(modelSystemPrompt(intentRequest), /自然语言理解器|选择理由|JSON/);
+    assert.match(modelSystemPrompt(intentRequest), /自然语言理解器|首轮快速路由|JSON/);
     assert.match(intentRequest.messages[1].content, /肿瘤免疫治疗方向/);
     assert.match(agentTexts[0], /肿瘤免疫治疗|PD-L1|CD274|ONCOLOGY-PDL1-1/);
     assert.equal(evidenceCall.params.target, 'PD-L1');
