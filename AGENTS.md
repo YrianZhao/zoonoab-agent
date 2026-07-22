@@ -52,6 +52,7 @@ TTS 只对播报文本做发音归一化，不改变页面展示文字；至少�
 快速设计 3D 预设应优先基于对应疾病靶点的真实公开 PDB 结构或抗原-抗体复合体模板生成；没有完全匹配抗体复合体时，才使用真实靶点结构加代表 Fab/VHH 展示支架。生成文件和 `binderData` 必须保留结构来源说明、抗原链集合和抗体链集合，viewer 应按这些链集合上色，不得继续假设只有 A/B 两条链。
 本地抗原 3D 预设必须优先使用 RCSB/PDB biological assembly 或条目中明确给出的生物学多聚体形态；TNF、IL-17A、VEGF-A、RSV F、Influenza HA、ANGPTL3 等天然二聚体/三聚体/多链抗原不得只截取一个单体冒充完整抗原形状。若只能使用单接触单元或代表性展示支架，观众可见文案和 `structuralBasis/interfaceDetail` 必须明确这是代表性界面展示，不得写成完整天然抗原形状。
 自然语言命中已准备 route/profile 时，3D 结果必须使用该 route 对应的真实本地 PDB 预设，并确保靶点身份、抗原链集合、抗体链集合、结构来源、疾病方向和作用机制一致；不得用另一个靶点的 PDB 作为命中路线的展示结果。自然语言未命中已准备 route/profile 时，当前方案只能使用目标解析后的 generic profile 和代表性 Fab/VHH 结构预览；不得声称其为用户指定靶点的真实抗原结构。更稳妥的后续方案应接入在线结构解析和缓存，例如 UniProt/RCSB/AlphaFold 检索、物种和结构域确认、候选结构置信度标记、人工确认或离线缓存后再进入正式展示。
+公共结构检索必须默认关闭，只能由知识库中的“公共结构检索”开关显式启用；关闭时，未命中本地模型库的工作流不得创建在线结构解析任务或访问 UniProt、RCSB、AlphaFold，继续使用目标身份一致的 generic profile 与代表性 Fab/VHH 结构预览。开关状态必须由后端持久化并在任何远端请求之前校验，同时同步到靶点解析和工作流意图提示词；不得只在前端隐藏状态而保留后端联网行为。
 快速设计 3D 结果区和全屏弹窗应展示当前路线的疾病方向、靶点、作用机制、表位策略和结构依据，让观众能看出 3D 结构与前序快速设计目标的对应关系。
 3D 结果区要对 `show_3d` 的 `binderData/allPDBs` 做前端归一化；如果后端 payload 为空或缺字段，必须用本地 4KC3/IL33 PDB 清单兜底渲染 Binders、Sequence、CDR strip 和结构缩略图，避免展会 demo 出现空白面板。
 连续多次渲染 3D 结果时，前端必须按当前 `.section-3d` 作用域查找 Binders、Sequence、Gallery、Chain strip 等固定 id 元素，并重置 `galleryViewers`、`currentGalleryViewer`、`activeBinderIdx`，避免 `document.getElementById` 命中旧结果卡片导致新结果空白。

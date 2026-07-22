@@ -9,6 +9,7 @@ const WebSocket = require('ws');
 
 const PORT = 19081;
 const CONFIG_PATH = path.join(os.tmpdir(), 'zoonoab-test-voice-config-' + PORT + '.json');
+const APP_SETTINGS_PATH = path.join(os.tmpdir(), 'zoonoab-test-app-settings-' + PORT + '.json');
 const QUESTION_LOG_PATH = path.join(os.tmpdir(), 'zoonoab-test-question-routing-' + PORT + '.jsonl');
 const DIAGNOSTIC_LOG_PATH = path.join(os.tmpdir(), 'zoonoab-test-diagnostics-' + PORT + '.jsonl');
 const VISIBLE_RESOLVER_LEAK_PATTERN = /未能完成|当前未能|在线靶点解析|解析失败|兜底|代表靶点|代表抗原|补充明确靶点|无关靶点|系统保留|系统选择|系统优先选择|验证展示序列|大模型\s*API|真正的研发设计/;
@@ -323,6 +324,7 @@ function defaultModelResponseForText(text) {
 
 test.before(async () => {
   try { fs.unlinkSync(CONFIG_PATH); } catch {}
+  try { fs.unlinkSync(APP_SETTINGS_PATH); } catch {}
   try { fs.unlinkSync(QUESTION_LOG_PATH); } catch {}
   try { fs.unlinkSync(DIAGNOSTIC_LOG_PATH); } catch {}
   defaultMockServer = http.createServer((req, res) => {
@@ -356,9 +358,11 @@ test.before(async () => {
       NODE_ENV: 'test',
       PORT: String(PORT),
       VOICE_API_CONFIG_FILE: CONFIG_PATH,
+      APP_SETTINGS_FILE: APP_SETTINGS_PATH,
       WORKFLOW_REJECTION_LOG_FILE: QUESTION_LOG_PATH,
       DIAGNOSTIC_LOG_FILE: DIAGNOSTIC_LOG_PATH,
       LOCAL_ASR_AUTO_START: '0',
+      STRUCTURE_RESOLVER_TEST_NETWORK: '1',
       TARGET_RESOLVER_TIMEOUT_MS: '4000',
       DISPLAY_TRACE_TIMEOUT_MS: '3500',
       DISPLAY_TRACE_STEP_MIN_MS: '5',
@@ -391,6 +395,7 @@ test.after(async () => {
   }
   if (defaultMockServer) await new Promise(resolve => defaultMockServer.close(resolve));
   try { fs.unlinkSync(CONFIG_PATH); } catch {}
+  try { fs.unlinkSync(APP_SETTINGS_PATH); } catch {}
   try { fs.unlinkSync(QUESTION_LOG_PATH); } catch {}
   try { fs.unlinkSync(DIAGNOSTIC_LOG_PATH); } catch {}
 });
@@ -431,6 +436,40 @@ test('voice health exposes the current build version at the top level', async ()
 
   assert.equal(data.buildVersion, buildVersion);
   assert.equal(data.diagnostics && data.diagnostics.buildVersion, buildVersion);
+});
+
+test('public structure search is off by default and persists explicit changes', async () => {
+  const initialResp = await fetch('http://127.0.0.1:' + PORT + '/api/settings/public-structure-search');
+  assert.equal(initialResp.status, 200);
+  const initial = await initialResp.json();
+  assert.equal(initial.available, true);
+  assert.equal(initial.enabled, false);
+  assert.deepEqual(initial.sources, ['UniProt', 'RCSB PDB', 'AlphaFold DB']);
+
+  const invalidResp = await fetch('http://127.0.0.1:' + PORT + '/api/settings/public-structure-search', {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ enabled: 'yes' })
+  });
+  assert.equal(invalidResp.status, 400);
+
+  const enableResp = await fetch('http://127.0.0.1:' + PORT + '/api/settings/public-structure-search', {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ enabled: true })
+  });
+  assert.equal(enableResp.status, 200);
+  assert.equal((await enableResp.json()).enabled, true);
+  assert.equal(JSON.parse(fs.readFileSync(APP_SETTINGS_PATH, 'utf8')).publicStructureSearchEnabled, true);
+
+  const disableResp = await fetch('http://127.0.0.1:' + PORT + '/api/settings/public-structure-search', {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ enabled: false })
+  });
+  assert.equal(disableResp.status, 200);
+  assert.equal((await disableResp.json()).enabled, false);
+  assert.equal(JSON.parse(fs.readFileSync(APP_SETTINGS_PATH, 'utf8')).publicStructureSearchEnabled, false);
 });
 
 test('server can let the chat model route terse monoclonal slang into workflow', async () => {

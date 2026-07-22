@@ -73,6 +73,7 @@ test.before(async () => {
       PORT: String(PORT),
       LOCAL_ASR_AUTO_START: '0',
       STRUCTURE_RESOLVER_TEST_NETWORK: '0',
+      APP_SETTINGS_FILE: runtimePrefix + '-settings.json',
       VOICE_API_CONFIG_FILE: runtimePrefix + '-voice.json',
       HISTORY_STORE_FILE: runtimePrefix + '-history.json',
       QUESTION_TEST_SET_FILE: runtimePrefix + '-questions.json',
@@ -89,7 +90,7 @@ test.before(async () => {
 
 test.after(async () => {
   await stopServer();
-  for (const suffix of ['-voice.json', '-history.json', '-questions.json', '-diagnostics.jsonl', '-rejections.jsonl']) {
+  for (const suffix of ['-settings.json', '-voice.json', '-history.json', '-questions.json', '-diagnostics.jsonl', '-rejections.jsonl']) {
     await fs.promises.unlink(runtimePrefix + suffix).catch(() => {});
   }
 });
@@ -368,6 +369,31 @@ test('workflow starts target resolution in the background and uses an explicit r
     /catch \(err\) \{\s*if \(err && err\.isCancelled\) throw err;/,
     'builder cancellation must escape instead of being presented as a representative fallback'
   );
+});
+
+test('public structure search setting gates the resolver before any remote resolution job', () => {
+  const startResolution = sliceBetween(serverSource, 'function startWorkflowStructureResolution(', 'async function waitForWorkflowStructure(');
+  const gateIndex = startResolution.indexOf('if (!isPublicStructureSearchEnabled()) return null;');
+  const inputIndex = startResolution.indexOf('const input = structureResolutionInput(');
+  const remoteIndex = startResolution.indexOf('structureResolver.resolveStructure(');
+
+  assert.ok(gateIndex >= 0, 'unknown targets should be gated by the persisted structure-search setting');
+  assert.ok(gateIndex < inputIndex && inputIndex < remoteIndex,
+    'the setting must be checked before a resolver input or remote job is created');
+
+  const settingsApi = sliceBetween(serverSource, "app.get('/api/settings/public-structure-search'", "app.get('/api/voice/config'");
+  assert.match(settingsApi, /app\.put\('\/api\/settings\/public-structure-search'/);
+  assert.match(settingsApi, /typeof body\.enabled !== 'boolean'/);
+  assert.match(settingsApi, /publicStructureSearchEnabled: body\.enabled/);
+
+  const promptGuidance = sliceBetween(serverSource, 'function structureSearchPromptGuidance(', 'function buildWorkflowIntentPrompt(');
+  assert.match(promptGuidance, /isPublicStructureSearchEnabled\(\)/);
+  assert.match(promptGuidance, /不得声称会在线补充结构/);
+
+  const html = fs.readFileSync(path.join(ROOT, 'public', 'index.html'), 'utf8');
+  assert.match(html, /id="publicStructureSearchToggle"[^>]+role="switch"/);
+  assert.match(html, /fetch\('\/api\/settings\/public-structure-search'/);
+  assert.match(html, /仅读取本地模型库/);
 });
 
 test('workflow cancellation and socket close abort the active structure resolver job', () => {

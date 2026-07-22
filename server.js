@@ -91,6 +91,7 @@ const LOCAL_ASR_TORCH_INDEX_URL = process.env.LOCAL_ASR_TORCH_INDEX_URL || 'http
 const ASSISTANT_CHAT_MODEL = process.env.ASSISTANT_CHAT_MODEL || process.env.DEEPSEEK_CHAT_MODEL || 'deepseek-chat';
 const ASSISTANT_CHAT_BASE_URL = process.env.ASSISTANT_CHAT_BASE_URL || process.env.DEEPSEEK_CHAT_BASE_URL || process.env.VOICE_CHAT_BASE_URL || '';
 const VOICE_API_CONFIG_FILE = process.env.VOICE_API_CONFIG_FILE || resolveDefaultVoiceApiConfigFile();
+const APP_SETTINGS_FILE = process.env.APP_SETTINGS_FILE || resolveDefaultAppSettingsFile();
 const WORKFLOW_REJECTION_LOG_FILE = process.env.WORKFLOW_REJECTION_LOG_FILE || resolveDefaultWorkflowRejectionLogFile();
 const QUESTION_ROUTING_LOG_MAX_LINES = Math.max(50, Number(process.env.QUESTION_ROUTING_LOG_MAX_LINES || process.env.WORKFLOW_REJECTION_LOG_MAX_LINES || 500) || 500);
 const DIAGNOSTIC_LOG_FILE = process.env.DIAGNOSTIC_LOG_FILE || resolveDefaultDiagnosticLogFile();
@@ -169,6 +170,8 @@ const voiceAudioParser = express.raw({
 const voiceRuntimeConfigs = new Map();
 let persistedVoiceConfigCache = null;
 let persistedVoiceConfigMtimeMs = 0;
+let appSettingsCache = null;
+let appSettingsMtimeMs = 0;
 let localAsrProcess = null;
 let localAsrStarting = false;
 let localAsrLastStartAt = 0;
@@ -239,6 +242,25 @@ function resolveDefaultVoiceApiConfigFile() {
     return persistentFile;
   } catch (err) {
     console.warn('[Voice] Persistent API config directory unavailable, falling back to project runtime:', err && err.message ? err.message : err);
+    return projectRuntimeFile;
+  }
+}
+
+function resolveDefaultAppSettingsFile() {
+  const projectRuntimeFile = path.join(__dirname, '.runtime', 'app-settings.json');
+  if (process.platform !== 'linux' && !IS_RENDER_RUNTIME) return projectRuntimeFile;
+  const persistentDir = path.join(RENDER_DATA_DIR || '/var/data', 'zoonoab');
+  try {
+    fs.mkdirSync(persistentDir, { recursive: true, mode: 0o700 });
+    fs.accessSync(persistentDir, fs.constants.W_OK);
+    const persistentFile = path.join(persistentDir, 'app-settings.json');
+    if (!fs.existsSync(persistentFile) && fs.existsSync(projectRuntimeFile)) {
+      fs.copyFileSync(projectRuntimeFile, persistentFile);
+      try { fs.chmodSync(persistentFile, 0o600); } catch {}
+    }
+    return persistentFile;
+  } catch (err) {
+    console.warn('[Settings] Persistent settings directory unavailable, falling back to project runtime:', err && err.message ? err.message : err);
     return projectRuntimeFile;
   }
 }
@@ -1595,6 +1617,67 @@ function savePersistedVoiceConfig(config) {
   return sanitized;
 }
 
+function sanitizeAppSettings(raw) {
+  const source = raw && typeof raw === 'object' && !Array.isArray(raw) ? raw : {};
+  return {
+    publicStructureSearchEnabled: source.publicStructureSearchEnabled === true,
+    updatedAt: Number(source.updatedAt || 0) || Date.now()
+  };
+}
+
+function loadAppSettings() {
+  try {
+    const stat = fs.statSync(APP_SETTINGS_FILE);
+    if (appSettingsCache && appSettingsMtimeMs === stat.mtimeMs) return appSettingsCache;
+    const parsed = JSON.parse(fs.readFileSync(APP_SETTINGS_FILE, 'utf8'));
+    appSettingsCache = sanitizeAppSettings(parsed);
+    appSettingsMtimeMs = stat.mtimeMs;
+    return appSettingsCache;
+  } catch (err) {
+    if (err && err.code !== 'ENOENT') {
+      console.error('[Settings] Failed to load app settings:', err.message || err);
+    }
+    appSettingsCache = sanitizeAppSettings(null);
+    appSettingsMtimeMs = 0;
+    return appSettingsCache;
+  }
+}
+
+function saveAppSettings(settings) {
+  const sanitized = sanitizeAppSettings(settings);
+  const dir = path.dirname(APP_SETTINGS_FILE);
+  fs.mkdirSync(dir, { recursive: true, mode: 0o700 });
+  const tempFile = APP_SETTINGS_FILE + '.' + process.pid + '.' + crypto.randomBytes(6).toString('hex') + '.tmp';
+  try {
+    fs.writeFileSync(tempFile, JSON.stringify(sanitized, null, 2) + '\n', { mode: 0o600, flag: 'wx' });
+    fs.renameSync(tempFile, APP_SETTINGS_FILE);
+    try { fs.chmodSync(APP_SETTINGS_FILE, 0o600); } catch {}
+  } finally {
+    try { fs.unlinkSync(tempFile); } catch {}
+  }
+  appSettingsCache = sanitized;
+  try {
+    appSettingsMtimeMs = fs.statSync(APP_SETTINGS_FILE).mtimeMs;
+  } catch {
+    appSettingsMtimeMs = Date.now();
+  }
+  return sanitized;
+}
+
+function isPublicStructureSearchEnabled() {
+  return STRUCTURE_RESOLVER_ENABLED && loadAppSettings().publicStructureSearchEnabled === true;
+}
+
+function publicStructureSearchSettings() {
+  const settings = loadAppSettings();
+  return {
+    enabled: STRUCTURE_RESOLVER_ENABLED && settings.publicStructureSearchEnabled === true,
+    available: STRUCTURE_RESOLVER_ENABLED,
+    sources: ['UniProt', 'RCSB PDB', 'AlphaFold DB'],
+    updatedAt: settings.updatedAt
+  };
+}
+
 function cleanupVoiceRuntimeConfigs() {
   const now = Date.now();
   for (const [id, cfg] of voiceRuntimeConfigs) {
@@ -2141,6 +2224,40 @@ async function transcribeAudioWithConfig(providerConfig, audio, contentType) {
     throw wrapped;
   }
 }
+
+app.get('/api/settings/public-structure-search', (_, res) => {
+  res.json(publicStructureSearchSettings());
+});
+
+app.put('/api/settings/public-structure-search', (req, res) => {
+  const body = req.body && typeof req.body === 'object' && !Array.isArray(req.body) ? req.body : {};
+  if (typeof body.enabled !== 'boolean') {
+    return res.status(400).json({
+      error: 'invalid_structure_search_setting',
+      message: '公共结构检索设置必须是布尔值。'
+    });
+  }
+  if (body.enabled && !STRUCTURE_RESOLVER_ENABLED) {
+    return res.status(409).json({
+      error: 'structure_search_unavailable',
+      message: '当前运行环境未开放公共结构检索。',
+      ...publicStructureSearchSettings()
+    });
+  }
+  try {
+    saveAppSettings({
+      publicStructureSearchEnabled: body.enabled,
+      updatedAt: Date.now()
+    });
+    return res.json(publicStructureSearchSettings());
+  } catch (err) {
+    console.error('[Settings] Failed to persist public structure search setting:', err && err.message ? err.message : err);
+    return res.status(500).json({
+      error: 'structure_search_setting_save_failed',
+      message: '公共结构检索设置保存失败。'
+    });
+  }
+});
 
 app.get('/api/voice/config', async (_, res) => {
   const providerConfig = getVoiceProviderConfig();
@@ -5780,6 +5897,7 @@ function unresolvedWorkflowStructure(profile, status, disclosure) {
 
 function startWorkflowStructureResolution(profile, forcedRoute, antibodyFormat) {
   if (hasPreparedRouteStructure(profile) || hasExactLocalAssetStructure(profile)) return null;
+  if (!isPublicStructureSearchEnabled()) return null;
   const input = structureResolutionInput(profile, forcedRoute, antibodyFormat);
   const controller = new AbortController();
   let deadlineTimer = null;
@@ -5787,14 +5905,6 @@ function startWorkflowStructureResolution(profile, forcedRoute, antibodyFormat) 
     clearTimeout(deadlineTimer);
     if (!controller.signal.aborted) controller.abort();
   };
-  if (!STRUCTURE_RESOLVER_ENABLED) {
-    return {
-      input,
-      controller,
-      abort,
-      promise: Promise.resolve(unresolvedWorkflowStructure(profile, 'unresolved', '当前运行配置未启用在线结构解析；将使用抗原与抗体空间构象参考。'))
-    };
-  }
   deadlineTimer = setTimeout(abort, STRUCTURE_RESOLVER_JOB_TIMEOUT_MS);
   const promise = structureResolver.resolveStructure(input, { signal: controller.signal }).catch(err => {
     if (err && err.code === 'request_aborted') {
@@ -8314,6 +8424,13 @@ async function askAssistantModel(input, voiceSessionId) {
   }
 }
 
+function structureSearchPromptGuidance() {
+  if (isPublicStructureSearchEnabled()) {
+    return '公共结构检索当前已开启：当明确靶点不在结构支撑清单时，后续结构阶段可以核对 UniProt、RCSB PDB 与 AlphaFold DB；仍不得篡改用户明确指定的靶点。';
+  }
+  return '公共结构检索当前未开启：疾病方向存在多个同等合理候选时优先选择结构支撑清单中的靶点；用户明确指定清单外靶点时必须保留其真实身份，不得声称会在线补充结构。';
+}
+
 function buildWorkflowIntentPrompt() {
   return [
     '你是 ZoonoAb 自然语言理解器。只判断用户意图、推荐靶点并给出必要背景。',
@@ -8331,6 +8448,7 @@ function buildWorkflowIntentPrompt() {
     '边界：如果用户明确要求针对小分子/半抗原/化合物本身生成或特异性结合抗体（例如“设计氯胺酮抗体”“设计特异性结合噻吩嗪的单克隆抗体”），输出 i=chat,start=false,answer，说明 ZoonoAb 面向大分子抗原/蛋白靶点，不直接生成小分子/半抗原抗体；不要把该小分子硬转成蛋白靶点。',
     '准确性优先：疾病或药物方向可能对应多个靶点，先保证疾病关联、机制和抗体可及性准确；如果用户明确指定靶点，target 必须保留用户真实指定靶点；如果用户只给疾病、方向或药物机制，且多个候选同等合理，优先从结构支撑靶点清单选择 target，并把其他合理靶点放入 cands，形成候选靶点比较池。',
     '结构支撑靶点清单：' + STRUCTURE_SUPPORT_TARGETS_FOR_PROMPT + '。',
+    structureSearchPromptGuidance(),
     '常见疾病发散参考：尿路上皮癌/肾盂癌优先比较 Nectin-4、FGFR3、TROP-2 或 HER2；非小细胞肺癌/肺腺癌优先比较 EGFR、HER3、MET 或 PD-L1；胃癌/胃食管交界癌优先比较 Claudin 18.2、HER2、MET、HER3 或 FGFR2；宫颈癌优先比较 Tissue Factor/F3、TROP-2、B7-H3 或 PD-L1；肾癌/透明细胞肾细胞癌优先比较 CAIX、VEGF-A、B7-H3；嗜酸性哮喘/重度 2 型炎症优先比较 IL-5、IL-13、IL-4Rα 或 TSLP；特应性皮炎优先比较 IL-13、IL-4Rα、TSLP 或 IL-33；系统性红斑狼疮/SLE 优先比较 BAFF、FcRn、CD20；重症肌无力/gMG 优先比较 FcRn、C5、CD20；炎症性肠病/溃疡性结肠炎/克罗恩病优先比较 Integrin α4β7、IL-23、TNF；骨关节炎/慢性疼痛优先比较 NGF、TrkA、IL-1β；骨质疏松优先比较 SOST、RANKL、DKK1；肥胖/obesity 优先比较 Myostatin/GDF8、ActRIIB/ACVR2B、GLP1R；2 型糖尿病/type 2 diabetes 优先比较 GIPR、GLP1R、ANGPTL3；心肌炎/myocarditis 优先比较 IL-1β、TNF、IL-6；Graves disease/thyroid eye disease 优先比较 TSHR、IGF1R、IL-6R；注意缺陷多动障碍/ADHD 优先比较 DAT、TrkB、DRD4；Parkinson disease/synucleinopathy 优先比较 alpha-synuclein、LRRK2、GBA；NMOSD/neuromyelitis optica 优先比较 AQP4、IL-6R、C5；阿尔茨海默病优先比较 Amyloid-beta、Tau、TREM2；急性髓系白血病优先比较 CD123、CD47、CD33；多发性骨髓瘤优先比较 GPRC5D、BCMA、CD38；前列腺癌优先比较 STEAP1、PSMA、B7-H3；结直肠癌优先比较 CEACAM5、EGFR、B7-H3；卵巢癌优先比较 Mesothelin、MUC1、FOLR1 或 B7-H4；小细胞肺癌优先比较 GPC2、DLL3、B7-H3 或 TROP-2。',
     'reason 只能写疾病关联、药物机制、表达/可及性、结构域和抗体开发依据；不要提本地、预设、可展示、系统已有、为了展示、3D 预设等内部选择原因。',
     'i=chat：只用于普通闲聊、寒暄、纯问答、天气、时间、非分子设计概念解释，且没有足够信息生成 target 的情况。chat 只填 i,start=false,answer；answer 默认中文，最多 2 句。',
@@ -9189,6 +9307,8 @@ function buildTargetResolverPrompt(indication, input) {
     'reason 和每个 candidates.rationale 都直接陈述机制、适应症、表达/可及性和候选比较，禁止使用“用户提出”“用户指定”“任务应整理为”“本轮目标”等任务执行口吻。',
     '用户明确给出物种、TaxID、毒株或蛋白 isoform 时必须保留；没有依据时对应字段留空，不得猜测。',
     '如果用户已经明确给出靶点，直接标准化输出该靶点。',
+    '结构支撑靶点清单：' + STRUCTURE_SUPPORT_TARGETS_FOR_PROMPT + '。',
+    structureSearchPromptGuidance(),
     '如果用户给的是疾病/适应症，输出适合抗体设计展示的代表性真实蛋白靶点，不要把疾病名本身当抗原。',
     '如果用户给的是病原体、病毒或生物材料，输出最适合抗体识别的具体表面抗原、衣壳蛋白、包膜蛋白或核心蛋白。',
     '如果无法判断或属于电脑、手机、服务器、黑客、木马、勒索软件、网络安全等非生物场景，输出 {"selectedTarget":"UNKNOWN"}。',

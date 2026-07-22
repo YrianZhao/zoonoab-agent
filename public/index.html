@@ -1437,6 +1437,75 @@
             gap: 6px;
             min-width: 0;
         }
+        .kb-structure-search-entry {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin: 4px 0 6px;
+            padding: 9px 10px;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-sm);
+            background: rgba(20,184,166,0.04);
+            color: var(--text-secondary);
+        }
+        .kb-structure-search-copy {
+            display: flex;
+            align-items: flex-start;
+            gap: 7px;
+            min-width: 0;
+        }
+        .kb-structure-search-copy > i {
+            width: 13px;
+            height: 13px;
+            margin-top: 1px;
+            flex: 0 0 auto;
+            color: var(--text-muted);
+        }
+        .kb-structure-search-text {
+            display: grid;
+            gap: 2px;
+            min-width: 0;
+        }
+        .kb-structure-search-title {
+            font-size: 11px;
+            font-weight: 700;
+            line-height: 1.25;
+            color: var(--text-secondary);
+        }
+        .kb-structure-search-status {
+            font-size: 9px;
+            line-height: 1.35;
+            color: var(--text-muted);
+        }
+        .kb-setting-switch {
+            position: relative;
+            width: 34px;
+            height: 20px;
+            flex: 0 0 auto;
+            padding: 0;
+            border: 0;
+            border-radius: 10px;
+            background: var(--gray-300);
+            cursor: pointer;
+            transition: background 0.16s ease, opacity 0.16s ease;
+        }
+        .kb-setting-switch::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: white;
+            box-shadow: 0 1px 3px rgba(15,23,42,0.22);
+            transition: transform 0.16s ease;
+        }
+        .kb-setting-switch.enabled { background: var(--success); }
+        .kb-setting-switch.enabled::after { transform: translateX(14px); }
+        .kb-setting-switch:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+        .kb-setting-switch:disabled { cursor: wait; opacity: 0.55; }
         .voice-health-card {
             display: grid;
             grid-template-columns: 1fr;
@@ -5628,6 +5697,16 @@
                             <span class="kb-history-entry-main"><i data-lucide="box" style="width:13px;height:13px;"></i> 常见分子模型结构</span>
                             <span class="kb-history-count" id="kbLocalPDBCount">--</span>
                         </button>
+                        <div class="kb-structure-search-entry">
+                            <div class="kb-structure-search-copy">
+                                <i data-lucide="globe-2"></i>
+                                <span class="kb-structure-search-text">
+                                    <span class="kb-structure-search-title">公共结构检索</span>
+                                    <span class="kb-structure-search-status" id="publicStructureSearchStatus">仅读取本地模型库</span>
+                                </span>
+                            </div>
+                            <button class="kb-setting-switch" id="publicStructureSearchToggle" type="button" role="switch" aria-checked="false" aria-label="启用公共结构检索" title="本地模型库未命中时查询公共结构资源" onclick="togglePublicStructureSearch()"></button>
+                        </div>
                         <button class="kb-history-entry" id="kbHistoryEntry" type="button" onclick="openHistoryPanel()">
                             <span class="kb-history-entry-main"><i data-lucide="history" style="width:13px;height:13px;"></i> 历史记录</span>
                             <span class="kb-history-count" id="kbHistoryCount">0</span>
@@ -6490,7 +6569,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '69498256';
+    const APP_BUILD_VERSION = '69498257';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
     const SILICONFLOW_CHAT_FALLBACK_MODELS = ['Qwen/Qwen3-32B', 'Qwen/Qwen3-14B', 'Qwen/Qwen3-8B', 'deepseek-ai/DeepSeek-V3'];
@@ -6987,7 +7066,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (initialGroup) initialGroup.style.display = isChat ? '' : 'none';
         batchesSection.style.display = view === 'batches' ? 'block' : 'none';
         if (teamSection) { teamSection.style.display = view === 'team' ? 'block' : 'none'; if (view === 'team') { const activeCh = document.querySelector('.team-channel-item.active'); teamSelectChannel(activeCh, teamActiveChannel); } }
-        if (kbSection) { kbSection.style.display = view === 'kb' ? 'flex' : 'none'; if (view === 'kb') { document.body.classList.add('kb-open'); kbRender(); } else { document.body.classList.remove('kb-open'); } }
+        if (kbSection) { kbSection.style.display = view === 'kb' ? 'flex' : 'none'; if (view === 'kb') { document.body.classList.add('kb-open'); kbRender(); loadPublicStructureSearchSetting(); } else { document.body.classList.remove('kb-open'); } }
         if (view !== 'kb') toggleVoiceSettings(false);
 
         if (window.innerWidth <= 768) {
@@ -7046,6 +7125,12 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     let kbLocalPDBLoaded = false;
     let kbLocalPDBLoading = false;
     let kbLocalPDBError = '';
+    let publicStructureSearchSetting = {
+        enabled: false,
+        available: true,
+        loaded: false,
+        loading: false
+    };
 
     function renderKBStats(count, noun, details) {
         const stats = document.querySelector('#kbSection .kb-main-stats');
@@ -7057,6 +7142,83 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 const value = item && item[1] ? item[1] : '';
                 return '<span class="kb-stat-text">· ' + escHtml(label) + ' <strong style="color:var(--text-secondary);font-weight:600;">' + escHtml(value) + '</strong></span>';
             }).join('');
+    }
+
+    function renderPublicStructureSearchSetting() {
+        const toggle = document.getElementById('publicStructureSearchToggle');
+        const status = document.getElementById('publicStructureSearchStatus');
+        if (!toggle || !status) return;
+        const enabled = publicStructureSearchSetting.enabled === true;
+        const available = publicStructureSearchSetting.available !== false;
+        toggle.classList.toggle('enabled', enabled);
+        toggle.setAttribute('aria-checked', enabled ? 'true' : 'false');
+        toggle.setAttribute('aria-label', enabled ? '关闭公共结构检索' : '启用公共结构检索');
+        toggle.disabled = publicStructureSearchSetting.loading || !available;
+        if (publicStructureSearchSetting.loading) {
+            status.textContent = '正在保存设置...';
+        } else if (!available) {
+            status.textContent = '当前环境未开放';
+        } else if (enabled) {
+            status.textContent = '本地未命中时查询公共结构资源';
+        } else {
+            status.textContent = '仅读取本地模型库';
+        }
+    }
+
+    async function loadPublicStructureSearchSetting() {
+        if (publicStructureSearchSetting.loading) return;
+        try {
+            const resp = await fetch('/api/settings/public-structure-search');
+            const data = await resp.json().catch(() => ({}));
+            if (!resp.ok) throw new Error(data.message || '设置读取失败');
+            publicStructureSearchSetting = {
+                enabled: data.enabled === true,
+                available: data.available !== false,
+                loaded: true,
+                loading: false
+            };
+        } catch (err) {
+            publicStructureSearchSetting = {
+                ...publicStructureSearchSetting,
+                enabled: false,
+                available: false,
+                loaded: true,
+                loading: false
+            };
+            console.warn('[StructureSearch] Setting load failed:', err);
+        }
+        renderPublicStructureSearchSetting();
+    }
+
+    async function togglePublicStructureSearch() {
+        if (publicStructureSearchSetting.loading || publicStructureSearchSetting.available === false) return;
+        const previousEnabled = publicStructureSearchSetting.enabled === true;
+        publicStructureSearchSetting.loading = true;
+        renderPublicStructureSearchSetting();
+        try {
+            const resp = await fetch('/api/settings/public-structure-search', {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ enabled: !previousEnabled })
+            });
+            const data = await resp.json().catch(() => ({}));
+            if (!resp.ok) throw new Error(data.message || '设置保存失败');
+            publicStructureSearchSetting = {
+                enabled: data.enabled === true,
+                available: data.available !== false,
+                loaded: true,
+                loading: false
+            };
+            showToast(data.enabled ? '公共结构检索已开启' : '公共结构检索已关闭', 'success');
+        } catch (err) {
+            publicStructureSearchSetting = {
+                ...publicStructureSearchSetting,
+                enabled: previousEnabled,
+                loading: false
+            };
+            showToast(err && err.message ? err.message : '公共结构检索设置保存失败', 'error');
+        }
+        renderPublicStructureSearchSetting();
     }
 
     function kbRender() {
