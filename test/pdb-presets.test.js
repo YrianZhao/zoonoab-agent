@@ -306,6 +306,12 @@ const COMMON_REAL_COMPLEX_EXPECTATIONS = [
     antibodyChains: ['H', 'L']
   },
   {
+    prefix: 'TRKB-Fab',
+    basis: /RCSB 5MO9 human TrkB ligand-binding domain \/ AB20 Fab complex/,
+    antigenChains: ['X'],
+    antibodyChains: ['H', 'L']
+  },
+  {
     prefix: 'TSHR-Fab',
     basis: /RCSB 7T9M human thyrotropin receptor \/ CS-17 Fab complex/,
     antigenChains: ['R'],

@@ -677,6 +677,7 @@ test('server previews curated real complexes for common explicit antigen targets
     { text: '设计10个针对Amyloid-beta的Fab', expectedTarget: 'Amyloid-beta', expectedPrefix: /^ABETA-Fab-/ },
     { text: '设计10个针对Tau的Fab', expectedTarget: 'Tau', expectedPrefix: /^TAU-Fab-/ },
     { text: '设计10个针对TREM2的Fab', expectedTarget: 'TREM2', expectedPrefix: /^TREM2-Fab-/ },
+    { text: '设计10个针对TrkB的Fab', expectedTarget: 'TrkB', expectedPrefix: /^TRKB-Fab-/ },
     { text: '设计10个针对TSHR的Fab', expectedTarget: 'TSHR', expectedPrefix: /^TSHR-Fab-/ },
     { text: '设计10个针对AQP4的Fab', expectedTarget: 'AQP4', expectedPrefix: /^AQP4-Fab-/ },
     { text: '设计10个针对SNCA的Fab', expectedTarget: 'alpha-synuclein', expectedPrefix: /^SNCA-Fab-/ }
@@ -708,16 +709,6 @@ test('server previews exact local-library assets for explicit targets without pr
       expectedPoseKind: 'antigen_only',
       expectedAntigenChains: ['A'],
       expectedAntibodyChains: []
-    },
-    {
-      text: '设计10个针对TrkB的Fab',
-      expectedTarget: 'TrkB',
-      expectedFile: 'NEUROLIB-HUMAN-TRKB-FAB-RCSB-5MO9.pdb',
-      expectedPoseKind: 'experimental_complex',
-      expectedAntigenChains: ['X'],
-      expectedAntibodyChains: ['H', 'L'],
-      expectedSourceAntigenChains: ['X'],
-      expectedSourceAntibodyChains: ['H', 'L']
     },
     {
       text: '设计10个针对IGF1R的Fab',

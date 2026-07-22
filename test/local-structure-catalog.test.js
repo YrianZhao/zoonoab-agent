@@ -19,7 +19,7 @@ const ROOT = path.resolve(__dirname, '..');
 test('local structure catalog is the machine-readable inventory for route-backed models', () => {
   const catalog = loadLocalStructureCatalog(ROOT);
   assert.equal(catalog.schemaVersion, 1);
-  assert.ok(catalog.summary.pdbFileCount >= 515);
+  assert.ok(catalog.summary.pdbFileCount >= 516);
   assert.ok(catalog.summary.promptEligibleRoutePresetCount >= 30);
   assert.ok(catalog.summary.libraryAssetCount >= 112);
 
@@ -347,6 +347,18 @@ test('local structure catalog is the machine-readable inventory for route-backed
   assert.deepEqual(trem2.display.antigenChains, ['A']);
   assert.deepEqual(trem2.display.antibodyChains, ['H', 'L']);
 
+  const trkbRoute = catalogEntryForFilename(catalog, 'TRKB-Fab-01.pdb');
+  assert.ok(trkbRoute, 'TRKB-Fab-01 should be represented in the catalog');
+  assert.equal(trkbRoute.target, 'TrkB');
+  assert.equal(trkbRoute.gene, 'NTRK2');
+  assert.equal(trkbRoute.organismTaxId, 9606);
+  assert.equal(trkbRoute.aliasPrefix, 'TRKB-Fab');
+  assert.equal(trkbRoute.structureClass, 'target_exact_domain_complex');
+  assert.deepEqual(trkbRoute.display.antigenChains, ['X']);
+  assert.deepEqual(trkbRoute.display.antibodyChains, ['H', 'L']);
+  assert.deepEqual(trkbRoute.display.sourceAntigenChains, ['X']);
+  assert.deepEqual(trkbRoute.display.sourceAntibodyChains, ['H', 'L']);
+
   const igf1r = catalogEntryForFilename(catalog, 'ENDOCRINELIB-HUMAN-IGF1R-RCSB-7XGD.pdb');
   assert.ok(igf1r, 'endocrine-library IGF1R asset should be represented in the catalog');
   assert.equal(igf1r.target, 'IGF1R');
@@ -585,6 +597,7 @@ test('local structure catalog is the machine-readable inventory for route-backed
   assert.match(supportList, /Amyloid-beta\/APP/);
   assert.match(supportList, /Tau\/MAPT/);
   assert.match(supportList, /TREM2/);
+  assert.match(supportList, /TrkB\/NTRK2/);
   assert.match(supportList, /TSHR/);
   assert.match(supportList, /alpha-synuclein\/SNCA/);
   assert.match(supportList, /AQP4/);
@@ -652,6 +665,8 @@ test('catalog-derived target map can route aliases without hand-editing target m
   assert.equal(map[normalizeStructureCatalogKey('Tau')], 'neuro_alz_tau');
   assert.equal(map[normalizeStructureCatalogKey('MAPT')], 'neuro_alz_tau');
   assert.equal(map[normalizeStructureCatalogKey('TREM2')], 'neuro_alz_trem2');
+  assert.equal(map[normalizeStructureCatalogKey('TrkB')], 'neuro_trkb');
+  assert.equal(map[normalizeStructureCatalogKey('NTRK2')], 'neuro_trkb');
   assert.equal(map[normalizeStructureCatalogKey('TSHR')], 'endocrine_graves_tshr');
   assert.equal(map[normalizeStructureCatalogKey('Thyrotropin receptor')], 'endocrine_graves_tshr');
   assert.equal(map[normalizeStructureCatalogKey('alpha-synuclein')], 'neuro_parkinson_snca');

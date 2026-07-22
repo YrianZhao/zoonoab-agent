@@ -2,16 +2,16 @@
 (function(){
   window.ZOONOAB_LOCAL_STRUCTURE_CATALOG = {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-21T22:48:27.517Z",
+  "generatedAt": "2026-07-22T01:57:53.035Z",
   "summary": {
-    "pdbFileCount": 515,
-    "routePresetCount": 71,
-    "routeableRoutePresetCount": 70,
-    "promptEligibleRoutePresetCount": 70,
-    "routePresetFileCount": 423,
+    "pdbFileCount": 516,
+    "routePresetCount": 72,
+    "routeableRoutePresetCount": 71,
+    "promptEligibleRoutePresetCount": 71,
+    "routePresetFileCount": 424,
     "libraryAssetCount": 112
   },
-  "promptSupportTargets": "IL-33/IL33、TSLP、PD-L1/CD274、PD-1/PDCD1、CTLA-4/CTLA4、CD20/MS4A1、CD19、CD3/CD3E/CD3G、C5、IL-6R/IL6R、IL-4Rα/IL4R、CD25/IL2RA、CD38、TIGIT、CD47、LAG-3/LAG3、TROP-2/TACSTD2、Tissue Factor/F3、BCMA/TNFRSF17、IgE/IGH、CGRP receptor/CALCRL/RAMP1、HER2/ERBB2、EGFR、VEGF-A/VEGFA、TNF、IL-17A/IL17A、IL-23/IL23A/IL12B、RSV F/F、SARS-CoV-2 RBD/S、Influenza HA/HA、Influenza NA/NA、PCSK9、ANGPTL3、IL-1B、GIPR、Amyloid-beta/APP、Tau/MAPT、TREM2、DAT/SLC6A3、TSHR、alpha-synuclein/SNCA、AQP4、Canine NGF/NGF、CD22/Siglec-2、Mesothelin/MSLN、Claudin 18.2/CLDN18、MET/c-MET、HER3/ERBB3、B7-H3/CD276、B7-H6/NCR3LG1、MUC1、Nectin-4/NECTIN4、FGFR2/KGFR、FGFR3、GPRC5D、CEACAM5/CEA、STEAP1、CAIX/CA9、IL-5/IL5、IL-13/IL13、CD123/IL3RA、BAFF/TNFSF13B、FcRn/FCGRT、NGF、CD33/Siglec-3、GPC2/Glypican-2、Integrin α4β7/ITGA4-ITGB7、IL-6/IL6、Myostatin/GDF8",
+  "promptSupportTargets": "IL-33/IL33、TSLP、PD-L1/CD274、PD-1/PDCD1、CTLA-4/CTLA4、CD20/MS4A1、CD19、CD3/CD3E/CD3G、C5、IL-6R/IL6R、IL-4Rα/IL4R、CD25/IL2RA、CD38、TIGIT、CD47、LAG-3/LAG3、TROP-2/TACSTD2、Tissue Factor/F3、BCMA/TNFRSF17、IgE/IGH、CGRP receptor/CALCRL/RAMP1、HER2/ERBB2、EGFR、VEGF-A/VEGFA、TNF、IL-17A/IL17A、IL-23/IL23A/IL12B、RSV F/F、SARS-CoV-2 RBD/S、Influenza HA/HA、Influenza NA/NA、PCSK9、ANGPTL3、IL-1B、GIPR、Amyloid-beta/APP、Tau/MAPT、TREM2、DAT/SLC6A3、TSHR、alpha-synuclein/SNCA、AQP4、Canine NGF/NGF、CD22/Siglec-2、Mesothelin/MSLN、Claudin 18.2/CLDN18、MET/c-MET、HER3/ERBB3、B7-H3/CD276、B7-H6/NCR3LG1、MUC1、Nectin-4/NECTIN4、FGFR2/KGFR、FGFR3、GPRC5D、CEACAM5/CEA、STEAP1、CAIX/CA9、IL-5/IL5、IL-13/IL13、CD123/IL3RA、BAFF/TNFSF13B、FcRn/FCGRT、NGF、CD33/Siglec-3、GPC2/Glypican-2、Integrin α4β7/ITGA4-ITGB7、IL-6/IL6、Myostatin/GDF8、TrkB/NTRK2",
   "routePresets": [
     {
       "routeId": "allergic_asthma",
@@ -3431,6 +3431,48 @@
         "visualColors": {
           "antigen": "#14B8A6",
           "antibody": "#F97316"
+        }
+      }
+    },
+    {
+      "routeId": "neuro_trkb",
+      "aliasPrefix": "TRKB-Fab",
+      "target": "TrkB",
+      "gene": "NTRK2",
+      "aliases": [
+        "NTRK2",
+        "Tropomyosin receptor kinase B",
+        "Neurotrophic tyrosine kinase receptor type 2"
+      ],
+      "promptLabel": "TrkB/NTRK2",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "TRKB-Fab-01.pdb"
+      ],
+      "display": {
+        "structureTitle": "TrkB Fab 神经营养因子受体结合构象",
+        "structureFamily": "神经营养因子受体 ligand-binding domain · TrkB Fab 候选",
+        "visualSummary": "展示 human TrkB ligand-binding domain 与 AB20 Fab 的真实实验界面，并将结构解读限制在公开坐标覆盖的配体结合结构域范围内。",
+        "structuralBasis": "RCSB 5MO9 human TrkB ligand-binding domain / AB20 Fab complex",
+        "antigenChains": [
+          "X"
+        ],
+        "antibodyChains": [
+          "H",
+          "L"
+        ],
+        "sourceAntigenChains": [
+          "X"
+        ],
+        "sourceAntibodyChains": [
+          "H",
+          "L"
+        ],
+        "visualColors": {
+          "antigen": "#22C55E",
+          "antibody": "#2563EB"
         }
       }
     }

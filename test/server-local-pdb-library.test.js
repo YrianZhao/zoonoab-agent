@@ -262,6 +262,18 @@ test('local PDB model library API lists local structures with viewer metadata', 
   assert.match(trkb.structuralBasis, /5MO9/);
   assert.equal(trkb.targetTag.verifiedTag, true);
 
+  const trkbRoute = data.models.find(model => model.filename === 'TRKB-Fab-01.pdb');
+  assert.ok(trkbRoute, 'route-backed TrkB Fab preset should be listed');
+  assert.equal(trkbRoute.targetDisplay, 'TrkB');
+  assert.equal(trkbRoute.antibodyFormat, 'Fab');
+  assert.equal(trkbRoute.structureKind, 'Fab 抗原-抗体复合体');
+  assert.deepEqual(trkbRoute.antigenChains, ['X']);
+  assert.deepEqual(trkbRoute.antibodyChains, ['H', 'L']);
+  assert.deepEqual(trkbRoute.sourceAntigenChains, ['X']);
+  assert.deepEqual(trkbRoute.sourceAntibodyChains, ['H', 'L']);
+  assert.match(trkbRoute.structuralBasis, /5MO9/);
+  assert.equal(trkbRoute.targetTag.verifiedTag, true);
+
   const met = data.models.find(model => model.filename === 'SOLIDLIB-HUMAN-MET-FAB-RCSB-6I04.pdb');
   assert.ok(met, 'solid-tumor MET Fab asset should be listed');
   assert.equal(met.targetDisplay, 'MET');
@@ -805,6 +817,12 @@ test('structure catalog API exposes route-backed structure inventory', async () 
   assert.equal(aqp4.aliasPrefix, 'AQP4-Fab');
   assert.equal(aqp4.target, 'AQP4');
   assert.ok((aqp4.files || []).includes('AQP4-Fab-01.pdb'));
+
+  const trkb = data.catalog.routePresets.find(item => item.routeId === 'neuro_trkb');
+  assert.ok(trkb, 'catalog should expose the TrkB local route');
+  assert.equal(trkb.aliasPrefix, 'TRKB-Fab');
+  assert.equal(trkb.target, 'TrkB');
+  assert.ok((trkb.files || []).includes('TRKB-Fab-01.pdb'));
 });
 
 test('local PDB responses are cacheable and can project only viewer-visible chains', async () => {

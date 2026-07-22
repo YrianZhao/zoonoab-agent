@@ -4,10 +4,10 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 
 ## Summary
 
-- PDB files: 515
-- Route presets: 71
-- Routeable presets: 70
-- Prompt-eligible structure-supported targets: 70
+- PDB files: 516
+- Route presets: 72
+- Routeable presets: 71
+- Prompt-eligible structure-supported targets: 71
 - Library assets: 112
 
 ## Route-backed structure families
@@ -85,13 +85,14 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 | ibd_a4b7 | Integrin α4β7 | ITGA4 / ITGB7 | A4B7-Fab | 1 | Homo sapiens | RCSB 3V4P human integrin α4β7 headpiece / ACT-1 Fab complex |
 | inflammation_il6 | IL-6 | IL6 | IL6-Fab | 1 | Homo sapiens | RCSB 4ZS7 human IL-6 / llama Fab 68F2 complex |
 | metabolic_myostatin | Myostatin | GDF8 | MSTN-Fab | 1 | Homo sapiens | RCSB 5F3H human myostatin/GDF8 dimer in complex with humanized RK35 Fab |
+| neuro_trkb | TrkB | NTRK2 | TRKB-Fab | 1 | Homo sapiens | RCSB 5MO9 human TrkB ligand-binding domain / AB20 Fab complex |
 
 ## Extension priorities
 
 | priority | area | targets | reason |
 | ---: | --- | --- | --- |
 | 1 | common_disease_tumor_gaps | FOLR1/FRalpha, DLL3, PSMA/FOLH1, CEACAM6, GPC3, B7-H4/VTCN1 | These disease-linked surface antigens remain common user asks, but still lack a routeable exact local Fab family or only have antigen-only / non-Fab public structures. |
-| 2 | non_oncology_asset_promotion_candidates | IGF1R, GLP1R, TrkB, ActRIIB/ACVR2B, SOST, RANKL | These common-disease assets already have exact local structures or engineered/non-Fab reference complexes, but they still need route-policy curation before promotion because their current files remain antigen-only, receptor-stabilization references, or non-Fab/Fv contexts. |
+| 2 | non_oncology_asset_promotion_candidates | IGF1R, GLP1R, ActRIIB/ACVR2B, DKK1, SOST, RANKL | These common-disease assets already have exact local structures or engineered/non-Fab reference complexes, but they still need route-policy curation before promotion because their current files remain antigen-only, receptor-stabilization references, or non-Fab/Fv contexts. |
 | 3 | route_variants | VHH variants for prepared Fab routes, species-specific veterinary variants, viral subtype/strain variants | Adding variants under existing target identities improves coverage without multiplying unrelated route logic. |
 | 4 | library_asset_promotion | VIRUSLIB surface proteins, VETLIB predicted antigens, NEUROLIB reference assets, SOLIDLIB exact antigen / non-Fab tumor assets | Some assets can become routeable only after target identity, chain roles, display metadata and route policy are filled. |
 
