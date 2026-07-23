@@ -704,4 +704,20 @@ test('client generated structure catalog stays synchronized with JSON source', (
     generated.routePresets.find(item => item.routeId === 'infectious_covid').target,
     'SARS-CoV-2 RBD'
   );
+  assert.equal(
+    generated.routePresets.find(item => item.routeId === 'immune_cd4').target,
+    'CD4'
+  );
+  assert.equal(
+    generated.routePresets.find(item => item.routeId === 'immune_cd4').structureClass,
+    'target_exact_complex'
+  );
+  assert.equal(
+    generated.routePresets.find(item => item.routeId === 'complement_cfh').target,
+    'CFH'
+  );
+  assert.equal(
+    generated.routePresets.find(item => item.routeId === 'complement_cfh').structureClass,
+    'target_exact_nanobody_complex'
+  );
 });

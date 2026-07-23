@@ -722,6 +722,22 @@ test('structure catalog API exposes route-backed structure inventory', async () 
   assert.equal(covid.target, 'SARS-CoV-2 RBD');
   assert.ok((covid.files || []).includes('SC2RBD-Fab-01.pdb'));
 
+  const cd4 = data.catalog.routePresets.find(item => item.routeId === 'immune_cd4');
+  assert.ok(cd4, 'catalog should expose the CD4 local route');
+  assert.equal(cd4.aliasPrefix, 'CD4-Fab');
+  assert.equal(cd4.target, 'CD4');
+  assert.equal(cd4.gene, 'CD4');
+  assert.equal(cd4.structureClass, 'target_exact_complex');
+  assert.ok((cd4.files || []).includes('CD4-Fab-01.pdb'));
+
+  const cfh = data.catalog.routePresets.find(item => item.routeId === 'complement_cfh');
+  assert.ok(cfh, 'catalog should expose the CFH local route');
+  assert.equal(cfh.aliasPrefix, 'CFH-VHH');
+  assert.equal(cfh.target, 'CFH');
+  assert.equal(cfh.gene, 'CFH');
+  assert.equal(cfh.structureClass, 'target_exact_nanobody_complex');
+  assert.ok((cfh.files || []).includes('CFH-VHH-01.pdb'));
+
   const abeta = data.catalog.routePresets.find(item => item.routeId === 'neuro_alz_abeta');
   assert.ok(abeta, 'catalog should expose the Alzheimer Amyloid-beta local route');
   assert.equal(abeta.aliasPrefix, 'ABETA-Fab');

@@ -4,10 +4,10 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 
 ## Summary
 
-- PDB files: 517
-- Route presets: 72
-- Routeable presets: 71
-- Prompt-eligible structure-supported targets: 71
+- PDB files: 519
+- Route presets: 74
+- Routeable presets: 73
+- Prompt-eligible structure-supported targets: 73
 - Library assets: 113
 
 ## Route-backed structure families
@@ -22,7 +22,9 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 | heme_cd20 | CD20 | MS4A1 | CD20-Fab | 10 | Homo sapiens | RCSB 6VJA CD20 / rituximab Fab complex |
 | heme_cd19 | CD19 | CD19 | CD19-Fab | 10 | Homo sapiens | RCSB 6AL5 CD19 / B43 Fab complex |
 | immune_cd3 | CD3 | CD3E/CD3G | CD3-Fab | 10 | Homo sapiens | RCSB 1SY6 CD3 gamma-epsilon / OKT3 Fab complex |
+| immune_cd4 | CD4 | CD4 | CD4-Fab | 1 | Homo sapiens | RCSB 3O2D human CD4 / ibalizumab Fab complex |
 | complement_c5 | C5 | C5 | C5-Fab | 10 | Homo sapiens | RCSB 5I5K complement C5 / eculizumab variable-domain antibody complex |
+| complement_cfh | CFH | CFH | CFH-VHH | 1 | Homo sapiens | RCSB 7WKI human complement factor H / nanobody complex |
 | inflammation_il6r | IL-6R | IL6R | IL6R-Fab | 10 | Homo sapiens | RCSB 8J6F IL-6R alpha / tocilizumab Fab complex |
 | allergic_il4ra | IL-4Rα | IL4R | IL4RA-Fab | 10 | Homo sapiens | RCSB 6WGL IL-4 receptor alpha / dupilumab Fab complex |
 | immune_cd25 | CD25 | IL2RA | CD25-Fab | 10 | Homo sapiens | RCSB 3NFP IL-2RA(CD25) / daclizumab Fab complex |

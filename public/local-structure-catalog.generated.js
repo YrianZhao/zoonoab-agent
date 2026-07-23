@@ -2,16 +2,16 @@
 (function(){
   window.ZOONOAB_LOCAL_STRUCTURE_CATALOG = {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-23T05:51:54.866Z",
+  "generatedAt": "2026-07-23T08:15:41.503Z",
   "summary": {
-    "pdbFileCount": 517,
-    "routePresetCount": 72,
-    "routeableRoutePresetCount": 71,
-    "promptEligibleRoutePresetCount": 71,
-    "routePresetFileCount": 424,
+    "pdbFileCount": 519,
+    "routePresetCount": 74,
+    "routeableRoutePresetCount": 73,
+    "promptEligibleRoutePresetCount": 73,
+    "routePresetFileCount": 426,
     "libraryAssetCount": 113
   },
-  "promptSupportTargets": "IL-33/IL33、TSLP、PD-L1/CD274、PD-1/PDCD1、CTLA-4/CTLA4、CD20/MS4A1、CD19、CD3/CD3E/CD3G、C5、IL-6R/IL6R、IL-4Rα/IL4R、CD25/IL2RA、CD38、TIGIT、CD47、LAG-3/LAG3、TROP-2/TACSTD2、Tissue Factor/F3、BCMA/TNFRSF17、IgE/IGH、CGRP receptor/CALCRL/RAMP1、HER2/ERBB2、EGFR、VEGF-A/VEGFA、TNF、IL-17A/IL17A、IL-23/IL23A/IL12B、RSV F/F、SARS-CoV-2 RBD/S、Influenza HA/HA、Influenza NA/NA、PCSK9、ANGPTL3、IL-1B、GIPR、Amyloid-beta/APP、Tau/MAPT、TREM2、DAT/SLC6A3、TSHR、alpha-synuclein/SNCA、AQP4、Canine NGF/NGF、CD22/Siglec-2、Mesothelin/MSLN、Claudin 18.2/CLDN18、MET/c-MET、HER3/ERBB3、B7-H3/CD276、B7-H6/NCR3LG1、MUC1、Nectin-4/NECTIN4、FGFR2/KGFR、FGFR3、GPRC5D、CEACAM5/CEA、STEAP1、CAIX/CA9、IL-5/IL5、IL-13/IL13、CD123/IL3RA、BAFF/TNFSF13B、FcRn/FCGRT、NGF、CD33/Siglec-3、GPC2/Glypican-2、Integrin α4β7/ITGA4-ITGB7、IL-6/IL6、Myostatin/GDF8、TrkB/NTRK2",
+  "promptSupportTargets": "IL-33/IL33、TSLP、PD-L1/CD274、PD-1/PDCD1、CTLA-4/CTLA4、CD20/MS4A1、CD19、CD3/CD3E/CD3G、CD4、C5、CFH、IL-6R/IL6R、IL-4Rα/IL4R、CD25/IL2RA、CD38、TIGIT、CD47、LAG-3/LAG3、TROP-2/TACSTD2、Tissue Factor/F3、BCMA/TNFRSF17、IgE/IGH、CGRP receptor/CALCRL/RAMP1、HER2/ERBB2、EGFR、VEGF-A/VEGFA、TNF、IL-17A/IL17A、IL-23/IL23A/IL12B、RSV F/F、SARS-CoV-2 RBD/S、Influenza HA/HA、Influenza NA/NA、PCSK9、ANGPTL3、IL-1B、GIPR、Amyloid-beta/APP、Tau/MAPT、TREM2、DAT/SLC6A3、TSHR、alpha-synuclein/SNCA、AQP4、Canine NGF/NGF、CD22/Siglec-2、Mesothelin/MSLN、Claudin 18.2/CLDN18、MET/c-MET、HER3/ERBB3、B7-H3/CD276、B7-H6/NCR3LG1、MUC1、Nectin-4/NECTIN4、FGFR2/KGFR、FGFR3、GPRC5D、CEACAM5/CEA、STEAP1、CAIX/CA9、IL-5/IL5、IL-13/IL13、CD123/IL3RA、BAFF/TNFSF13B、FcRn/FCGRT、NGF、CD33/Siglec-3、GPC2/Glypican-2、Integrin α4β7/ITGA4-ITGB7、IL-6/IL6、Myostatin/GDF8、TrkB/NTRK2",
   "routePresets": [
     {
       "routeId": "allergic_asthma",
@@ -22,6 +22,7 @@
         "IL33"
       ],
       "promptLabel": "IL-33/IL33",
+      "structureClass": "target_exact_epitope_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -84,6 +85,7 @@
         "TSLP"
       ],
       "promptLabel": "TSLP",
+      "structureClass": "target_exact_nanobody_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -143,6 +145,7 @@
         "PDL1"
       ],
       "promptLabel": "PD-L1/CD274",
+      "structureClass": "target_exact_nanobody_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -201,6 +204,7 @@
         "PD1"
       ],
       "promptLabel": "PD-1/PDCD1",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -245,6 +249,7 @@
         "CD152"
       ],
       "promptLabel": "CTLA-4/CTLA4",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -288,6 +293,7 @@
         "MS4A1"
       ],
       "promptLabel": "CD20/MS4A1",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -334,6 +340,7 @@
         "CD19"
       ],
       "promptLabel": "CD19",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -378,6 +385,7 @@
         "CD3 epsilon"
       ],
       "promptLabel": "CD3/CD3E/CD3G",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -413,6 +421,38 @@
       }
     },
     {
+      "routeId": "immune_cd4",
+      "aliasPrefix": "CD4-Fab",
+      "target": "CD4",
+      "gene": "CD4",
+      "promptLabel": "CD4",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "CD4-Fab-01.pdb"
+      ],
+      "display": {
+        "structureTitle": "CD4 Fab HIV 进入阻断构象",
+        "structureFamily": "HIV 进入受体 · Fab 阻断候选",
+        "visualSummary": "展示 ibalizumab Fab 贴合 human CD4 胞外 Ig-like 结构域的真实复合物界面。",
+        "structuralBasis": "RCSB 3O2D human CD4 / ibalizumab Fab complex",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "H",
+          "L"
+        ],
+        "visualColors": {
+          "antigen": "#22C55E",
+          "antibody": "#06B6D4"
+        },
+        "ipTmBias": 0.004
+      }
+    },
+    {
       "routeId": "complement_c5",
       "aliasPrefix": "C5-Fab",
       "target": "C5",
@@ -421,6 +461,7 @@
         "Complement C5"
       ],
       "promptLabel": "C5",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -459,6 +500,37 @@
       }
     },
     {
+      "routeId": "complement_cfh",
+      "aliasPrefix": "CFH-VHH",
+      "target": "CFH",
+      "gene": "CFH",
+      "promptLabel": "CFH",
+      "structureClass": "target_exact_nanobody_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "CFH-VHH-01.pdb"
+      ],
+      "display": {
+        "structureTitle": "CFH VHH 补体调节构象",
+        "structureFamily": "补体调节蛋白 · VHH 候选",
+        "visualSummary": "展示 human CFH 调节结构域与单域抗体的真实结合界面。",
+        "structuralBasis": "RCSB 7WKI human complement factor H / nanobody complex",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "visualColors": {
+          "antigen": "#38BDF8",
+          "antibody": "#F97316"
+        },
+        "ipTmBias": 0.003
+      }
+    },
+    {
       "routeId": "inflammation_il6r",
       "aliasPrefix": "IL6R-Fab",
       "target": "IL-6R",
@@ -469,6 +541,7 @@
         "IL-6Rα"
       ],
       "promptLabel": "IL-6R/IL6R",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -514,6 +587,7 @@
         "CD124"
       ],
       "promptLabel": "IL-4Rα/IL4R",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -557,6 +631,7 @@
         "IL2RA"
       ],
       "promptLabel": "CD25/IL2RA",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -600,6 +675,7 @@
         "CD38"
       ],
       "promptLabel": "CD38",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -643,6 +719,7 @@
         "TIGIT"
       ],
       "promptLabel": "TIGIT",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -686,6 +763,7 @@
         "CD47"
       ],
       "promptLabel": "CD47",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -729,6 +807,7 @@
         "LAG3"
       ],
       "promptLabel": "LAG-3/LAG3",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -772,6 +851,7 @@
         "TACSTD2"
       ],
       "promptLabel": "TROP-2/TACSTD2",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -821,6 +901,7 @@
         "Coagulation factor III"
       ],
       "promptLabel": "Tissue Factor/F3",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -856,6 +937,7 @@
         "CD269"
       ],
       "promptLabel": "BCMA/TNFRSF17",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -899,6 +981,7 @@
         "Immunoglobulin E"
       ],
       "promptLabel": "IgE/IGH",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -947,6 +1030,7 @@
         "RAMP1"
       ],
       "promptLabel": "CGRP receptor/CALCRL/RAMP1",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -992,6 +1076,7 @@
         "HER-2"
       ],
       "promptLabel": "HER2/ERBB2",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -1049,6 +1134,7 @@
         "ERBB1"
       ],
       "promptLabel": "EGFR",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -1107,6 +1193,7 @@
         "VEGF"
       ],
       "promptLabel": "VEGF-A/VEGFA",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -1166,6 +1253,7 @@
         "TNFα"
       ],
       "promptLabel": "TNF",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -1225,6 +1313,7 @@
         "IL17A"
       ],
       "promptLabel": "IL-17A/IL17A",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -1286,6 +1375,7 @@
         "IL23A"
       ],
       "promptLabel": "IL-23/IL23A/IL12B",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -1345,6 +1435,7 @@
         "RSV fusion protein"
       ],
       "promptLabel": "RSV F/F",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -1406,6 +1497,7 @@
         "RBD"
       ],
       "promptLabel": "SARS-CoV-2 RBD/S",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -1465,6 +1557,7 @@
         "血凝素"
       ],
       "promptLabel": "Influenza HA/HA",
+      "structureClass": "representative_experimental_interface",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -1538,6 +1631,7 @@
         "神经氨酸酶"
       ],
       "promptLabel": "Influenza NA/NA",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -1581,6 +1675,7 @@
         "PCSK9"
       ],
       "promptLabel": "PCSK9",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -1639,6 +1734,7 @@
         "ANGPTL3"
       ],
       "promptLabel": "ANGPTL3",
+      "structureClass": "target_exact_display_pose",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -1695,6 +1791,7 @@
       "aliasPrefix": "IL1B-Fab",
       "target": "IL-1B",
       "promptLabel": "IL-1B",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -1752,6 +1849,7 @@
         "ANGPTL3"
       ],
       "promptLabel": "ANGPTL3",
+      "structureClass": "target_exact_display_pose",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -1812,6 +1910,7 @@
         "GIP receptor"
       ],
       "promptLabel": "GIPR",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -1872,6 +1971,7 @@
         "Amyloid-beta"
       ],
       "promptLabel": "Amyloid-beta/APP",
+      "structureClass": "target_exact_epitope_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -1915,6 +2015,7 @@
         "Tau protein"
       ],
       "promptLabel": "Tau/MAPT",
+      "structureClass": "target_exact_epitope_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -1956,6 +2057,7 @@
         "Triggering receptor expressed on myeloid cells 2"
       ],
       "promptLabel": "TREM2",
+      "structureClass": "target_exact_epitope_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -1999,6 +2101,7 @@
         "dopamine transporter"
       ],
       "promptLabel": "DAT/SLC6A3",
+      "structureClass": "target_exact_display_pose",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -2045,6 +2148,7 @@
         "促甲状腺激素受体"
       ],
       "promptLabel": "TSHR",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -2082,6 +2186,7 @@
         "突触核蛋白"
       ],
       "promptLabel": "alpha-synuclein/SNCA",
+      "structureClass": "target_exact_epitope_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -2118,6 +2223,7 @@
         "水通道蛋白4"
       ],
       "promptLabel": "AQP4",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -2158,6 +2264,7 @@
         "犬 NGF"
       ],
       "promptLabel": "Canine NGF/NGF",
+      "structureClass": "target_exact_display_pose",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -2202,6 +2309,7 @@
         "IL33"
       ],
       "promptLabel": "IL-33",
+      "structureClass": "generic_vhh_display_scaffold",
       "routeable": false,
       "promptEligible": false,
       "clientFallbackEligible": true,
@@ -2264,6 +2372,7 @@
         "Leu-14"
       ],
       "promptLabel": "CD22/Siglec-2",
+      "structureClass": "target_exact_domain_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -2315,6 +2424,7 @@
         "SMRP"
       ],
       "promptLabel": "Mesothelin/MSLN",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -2357,6 +2467,7 @@
         "Claudin 18.2"
       ],
       "promptLabel": "Claudin 18.2/CLDN18",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -2400,6 +2511,7 @@
         "Hepatocyte growth factor receptor"
       ],
       "promptLabel": "MET/c-MET",
+      "structureClass": "target_exact_domain_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -2445,6 +2557,7 @@
         "Receptor tyrosine-protein kinase erbB-3"
       ],
       "promptLabel": "HER3/ERBB3",
+      "structureClass": "target_exact_domain_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -2490,6 +2603,7 @@
         "B7-H3/CD276"
       ],
       "promptLabel": "B7-H3/CD276",
+      "structureClass": "target_exact_domain_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -2532,6 +2646,7 @@
         "Natural cytotoxicity triggering receptor 3 ligand 1"
       ],
       "promptLabel": "B7-H6/NCR3LG1",
+      "structureClass": "target_exact_domain_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -2576,6 +2691,7 @@
         "CD227"
       ],
       "promptLabel": "MUC1",
+      "structureClass": "target_exact_epitope_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -2618,6 +2734,7 @@
         "Nectin4"
       ],
       "promptLabel": "Nectin-4/NECTIN4",
+      "structureClass": "target_exact_domain_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -2661,6 +2778,7 @@
         "K-SAM"
       ],
       "promptLabel": "FGFR2/KGFR",
+      "structureClass": "target_exact_domain_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -2705,6 +2823,7 @@
         "JTK4"
       ],
       "promptLabel": "FGFR3",
+      "structureClass": "target_exact_domain_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -2745,6 +2864,7 @@
         "GPCR family C group 5 member D"
       ],
       "promptLabel": "GPRC5D",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -2789,6 +2909,7 @@
         "CD66e"
       ],
       "promptLabel": "CEACAM5/CEA",
+      "structureClass": "target_exact_domain_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -2830,6 +2951,7 @@
         "Six-transmembrane epithelial antigen of the prostate 1"
       ],
       "promptLabel": "STEAP1",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -2886,6 +3008,7 @@
         "MN"
       ],
       "promptLabel": "CAIX/CA9",
+      "structureClass": "target_exact_epitope_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -2927,6 +3050,7 @@
         "Interleukin-5"
       ],
       "promptLabel": "IL-5/IL5",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -2975,6 +3099,7 @@
         "Interleukin-13"
       ],
       "promptLabel": "IL-13/IL13",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -3017,6 +3142,7 @@
         "IL-3R alpha"
       ],
       "promptLabel": "CD123/IL3RA",
+      "structureClass": "target_exact_domain_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -3067,6 +3193,7 @@
         "TALL-1"
       ],
       "promptLabel": "BAFF/TNFSF13B",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -3122,6 +3249,7 @@
         "FCGRT"
       ],
       "promptLabel": "FcRn/FCGRT",
+      "structureClass": "target_exact_domain_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -3165,6 +3293,7 @@
         "Nerve growth factor"
       ],
       "promptLabel": "NGF",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -3207,6 +3336,7 @@
         "Myeloid cell surface antigen CD33"
       ],
       "promptLabel": "CD33/Siglec-3",
+      "structureClass": "target_exact_domain_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -3256,6 +3386,7 @@
         "Cerebroglycan"
       ],
       "promptLabel": "GPC2/Glypican-2",
+      "structureClass": "target_exact_domain_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -3305,6 +3436,7 @@
         "ITGA4/ITGB7"
       ],
       "promptLabel": "Integrin α4β7/ITGA4-ITGB7",
+      "structureClass": "target_exact_domain_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -3348,6 +3480,7 @@
         "Interleukin-6"
       ],
       "promptLabel": "IL-6/IL6",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -3390,6 +3523,7 @@
         "Growth/differentiation factor 8"
       ],
       "promptLabel": "Myostatin/GDF8",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -3445,6 +3579,7 @@
         "Neurotrophic tyrosine kinase receptor type 2"
       ],
       "promptLabel": "TrkB/NTRK2",
+      "structureClass": "target_exact_domain_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,

@@ -44,6 +44,8 @@ const GENE_BY_TARGET = {
   ANGPTL3: 'ANGPTL3',
   GIPR: 'GIPR',
   DAT: 'SLC6A3',
+  CD4: 'CD4',
+  CFH: 'CFH',
   TSHR: 'TSHR',
   AQP4: 'AQP4',
   'alpha-synuclein': 'SNCA',
@@ -184,6 +186,7 @@ function inferFormat(aliasPrefix) {
 function inferRouteStructureClass(preset) {
   if (preset && preset.interfaceDetail === false) return 'target_exact_display_pose';
   if (preset && preset.displayMode === 'representative_interface') return 'representative_experimental_interface';
+  if (/VHH/i.test(String(preset && preset.aliasPrefix || ''))) return 'target_exact_nanobody_complex';
   const text = [
     preset && preset.structuralBasis,
     preset && preset.title,

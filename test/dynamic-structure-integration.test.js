@@ -146,6 +146,33 @@ test('newly cataloged exact routes use their own prepared local structures', asy
   assert.doesNotMatch(JSON.stringify(data.threeDPreview), /PDL1|IL33|4KC3|FluHA|RSVF/);
 });
 
+test('new CD4 and CFH routes resolve to their dedicated local structures', async () => {
+  const cd4Response = await fetch(BASE_URL + '/api/debug/design-route?text=' + encodeURIComponent(
+    '设计一个针对 CD4 的 Fab 抗体'
+  ));
+  assert.equal(cd4Response.status, 200);
+  const cd4Data = await cd4Response.json();
+  const cd4Binder = cd4Data.threeDPreview && cd4Data.threeDPreview.binders && cd4Data.threeDPreview.binders[0];
+  assert.equal(cd4Data.profile.targetDisplay, 'CD4');
+  assert.ok(cd4Binder, 'CD4 prepared route should expose a binder');
+  assert.match(cd4Binder.file, /^CD4-Fab-/);
+  assert.equal(cd4Binder.structure.coordinates.coordinateAntigenLabel, 'CD4');
+  assert.equal(cd4Binder.structure.source.kind, 'prepared_exact_complex');
+
+  const cfhResponse = await fetch(BASE_URL + '/api/debug/design-route?text=' + encodeURIComponent(
+    '设计一个针对 CFH 的 VHH 抗体'
+  ));
+  assert.equal(cfhResponse.status, 200);
+  const cfhData = await cfhResponse.json();
+  const cfhBinder = cfhData.threeDPreview && cfhData.threeDPreview.binders && cfhData.threeDPreview.binders[0];
+  assert.equal(cfhData.profile.targetDisplay, 'CFH');
+  assert.ok(cfhBinder, 'CFH prepared route should expose a binder');
+  assert.match(cfhBinder.file, /^CFH-VHH-/);
+  assert.equal(cfhBinder.structure.coordinates.coordinateAntigenLabel, 'CFH');
+  assert.equal(cfhBinder.structure.source.kind, 'prepared_exact_complex');
+  assert.equal(cfhData.profile.targetDisplay, 'CFH');
+});
+
 test('prepared local structures require an exact requested-target to PDB REMARK identity match', () => {
   const matcher = sliceBetween(serverSource, 'function normalizePreparedStructureTarget(', 'function localPDBSha256(');
   const contract = sliceBetween(serverSource, 'function preparedStructureContract(', 'function buildRoute3DMeta(');

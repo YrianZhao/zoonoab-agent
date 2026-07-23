@@ -3377,7 +3377,9 @@ function buildRouteProfile(target, blockTarget, abType) {
   if (['CD20', 'MS4A1'].includes(key)) key = 'CD20';
   if (['CD19'].includes(key)) key = 'CD19';
   if (['CD3', 'CD3E', 'CD3EPSILON'].includes(key)) key = 'CD3';
+  if (['CD4'].includes(key)) key = 'CD4';
   if (['C5', 'COMPLEMENTC5'].includes(key)) key = 'C5';
+  if (['CFH', 'COMPLEMENTFACTORH'].includes(key)) key = 'CFH';
   if (['IL6R', 'IL-6R', 'CD126'].includes(key)) key = 'IL-6R';
   if (['IL4RA', 'IL-4RA', 'IL-4RΑ', 'IL4RΑ', 'CD124'].includes(key)) key = 'IL-4Rα';
   if (['CD25', 'IL2RA', 'IL-2RA'].includes(key)) key = 'CD25';
@@ -3724,6 +3726,70 @@ function buildRouteProfile(target, blockTarget, abType) {
       structurePrepEn: 'Loaded the IL-23 complex reference model and prepared Fab constraints around p19-specific accessible surfaces.',
       scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '炎症轴中和设计'
+    },
+    CD4: {
+      routeLabel: 'CD4 / HIV entry blockade',
+      disease: 'HIV 入侵阻断',
+      targetDisplay: 'CD4',
+      partnerDisplay: 'gp120',
+      domain: 'CD4 胞外 D1/D2 Ig-like 结构域',
+      mechanism: '阻断 gp120 与 CD4 的初始识别界面，降低 HIV 入侵机会',
+      evidence: 'CD4/HIV 进入阻断证据包',
+      evidenceSources: ['HIV 入侵受体背景', 'CD4 胞外 Ig-like 结构域注释', 'ibalizumab 抗体开发背景', '受体界面可及性规则'],
+      referenceEntries: 'UniProt CD4 靶点条目',
+      structure: 'human CD4 / ibalizumab Fab 复合物参考集合',
+      structureRef: 'RCSB 3O2D human CD4 / ibalizumab Fab complex',
+      antibodies: ['Ibalizumab'],
+      interfaceFocus: 'CD4 胞外 D1/D2 区域的 gp120 邻近可及面',
+      selectedEpitope: '优先覆盖 CD4 与 gp120 初始接触邻近的外露表面',
+      epitopeRowsZh: [
+        ['Site A', 'gp120 结合邻近面', '直接服务于 HIV 进入阻断叙事', '优先'],
+        ['Site B', 'D2 外露稳定表面', '适合高亲和力结合与展示', '备选'],
+        ['Site C', '膜近端柔性连接区', '不应作为当前可及表位的主叙事', '谨慎']
+      ],
+      epitopeRowsEn: [
+        ['Site A', 'gp120-proximal face', 'directly aligned with HIV entry blockade', 'primary'],
+        ['Site B', 'exposed D2 stable surface', 'useful for high-affinity binding and display', 'backup'],
+        ['Site C', 'membrane-proximal flexible linker', 'should not be treated as the primary accessible epitope', 'caution']
+      ],
+      riskSummaryZh: '界面风险标注显示，CD4 路线应优先覆盖 gp120 结合邻近外露面，避免把膜近端柔性连接区误读为主表位。',
+      riskSummaryEn: 'Interface-risk annotation prioritizes the gp120-proximal exposed face and avoids treating the membrane-proximal linker as the main epitope.',
+      structurePrepZh: '加载 CD4 / ibalizumab Fab 参考界面，提取 gp120 邻近可及表面并生成 Fab 设计约束。',
+      structurePrepEn: 'Loaded the CD4 / ibalizumab Fab reference interface and prepared Fab constraints around the gp120-proximal accessible surface.',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
+      designMode: 'HIV 进入受体阻断设计'
+    },
+    CFH: {
+      routeLabel: 'CFH / complement regulation',
+      disease: '补体调节相关肾脏炎症',
+      targetDisplay: 'CFH',
+      partnerDisplay: '',
+      domain: 'CFH 补体调节结构域',
+      mechanism: '围绕 CFH 可及结构域生成 VHH 候选，支持补体调节与炎症相关展示',
+      evidence: 'CFH 补体调节证据包',
+      evidenceSources: ['补体因子 H 调节背景', 'human CFH 结构域注释', 'nanobody 结合界面背景', '补体调节可及性规则'],
+      referenceEntries: 'UniProt CFH 靶点条目',
+      structure: 'human CFH / nanobody 复合物参考集合',
+      structureRef: 'RCSB 7WKI human complement factor H / nanobody complex',
+      antibodies: ['nanobody'],
+      interfaceFocus: 'CFH 调节结构域上的单域抗体可及表面',
+      selectedEpitope: '优先覆盖 human CFH 调节结构域可及表面',
+      epitopeRowsZh: [
+        ['Site A', '调节结构域外露面', '直接服务于补体调节叙事', '优先'],
+        ['Site B', '侧向稳定表面', '适合 VHH 展示和亲和力筛选', '备选'],
+        ['Site C', '更靠近柔性端部的区域', '可及性和稳定性需复核', '谨慎']
+      ],
+      epitopeRowsEn: [
+        ['Site A', 'exposed regulatory-domain face', 'directly supports complement-regulation storytelling', 'primary'],
+        ['Site B', 'lateral stable surface', 'useful for VHH display and affinity screening', 'backup'],
+        ['Site C', 'more flexible terminal-adjacent region', 'accessibility and stability need review', 'caution']
+      ],
+      riskSummaryZh: '界面风险标注显示，CFH 路线应优先选择可及的补体调节结构域表面，避免把柔性端部误读为高置信表位。',
+      riskSummaryEn: 'Interface-risk annotation prioritizes accessible regulatory-domain surfaces and avoids over-reading flexible termini as high-confidence epitopes.',
+      structurePrepZh: '加载 human CFH / nanobody 参考界面，提取调节结构域可及表面并生成 VHH 设计约束。',
+      structurePrepEn: 'Loaded the human CFH / nanobody reference interface and prepared VHH constraints around accessible regulatory-domain surfaces.',
+      scaffold: abType === 'VHH' ? 'VHH 单域抗体骨架' : abType + ' 抗体骨架',
+      designMode: '补体调节单域抗体设计'
     },
     'RSV F': {
       routeLabel: 'RSV F',
@@ -4305,6 +4371,18 @@ const ROUTE_3D_PRESETS = {
     antibodyColor: '#F43F5E',
     ipTmBias: 0.003
   },
+  immune_cd4: {
+    aliasPrefix: 'CD4-Fab',
+    title: 'CD4 Fab HIV 进入阻断构象',
+    structureFamily: 'HIV 进入受体 · Fab 阻断候选',
+    visualSummary: '展示 ibalizumab Fab 贴合 human CD4 胞外 Ig-like 结构域的真实复合物界面。',
+    structuralBasis: 'RCSB 3O2D human CD4 / ibalizumab Fab complex',
+    antigenChains: ['A'],
+    antibodyChains: ['H', 'L'],
+    antigenColor: '#22C55E',
+    antibodyColor: '#06B6D4',
+    ipTmBias: 0.004
+  },
   complement_c5: {
     aliasPrefix: 'C5-Fab',
     title: 'Complement C5 抗体结合构象',
@@ -4316,6 +4394,18 @@ const ROUTE_3D_PRESETS = {
     antigenColor: '#16A34A',
     antibodyColor: '#6366F1',
     ipTmBias: 0.007
+  },
+  complement_cfh: {
+    aliasPrefix: 'CFH-VHH',
+    title: 'CFH VHH 补体调节构象',
+    structureFamily: '补体调节蛋白 · VHH 候选',
+    visualSummary: '展示 human CFH 调节结构域与单域抗体的真实结合界面。',
+    structuralBasis: 'RCSB 7WKI human complement factor H / nanobody complex',
+    antigenChains: ['A'],
+    antibodyChains: ['B'],
+    antigenColor: '#38BDF8',
+    antibodyColor: '#F97316',
+    ipTmBias: 0.003
   },
   inflammation_il6r: {
     aliasPrefix: 'IL6R-Fab',
@@ -4779,6 +4869,8 @@ const ROUTE_3D_PRESET_ORGANISMS_FALLBACK = {
   checkpoint_tigit: { organismName: 'Homo sapiens', organismTaxId: 9606 },
   checkpoint_cd47: { organismName: 'Homo sapiens', organismTaxId: 9606 },
   checkpoint_lag3: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  immune_cd4: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  complement_cfh: { organismName: 'Homo sapiens', organismTaxId: 9606 },
   solid_tumor_trop2: { organismName: 'Homo sapiens', organismTaxId: 9606 },
   solid_tumor_tissue_factor: { organismName: 'Homo sapiens', organismTaxId: 9606 },
   heme_bcma: { organismName: 'Homo sapiens', organismTaxId: 9606 },
