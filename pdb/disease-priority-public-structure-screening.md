@@ -48,7 +48,7 @@
 - Exact public antibody complexes found: `2`
 - Representative public complexes found: `0`
 - Local reused / duplicate-target rows: `32`
-- Not found in this pass: `70`
+- Not found in this pass: `66`
 - Imported files: `2`
 
 | disease rank | disease | primary target | match status | current local status | public structure result | representative public data | structure class in current pass | suggested next step | notes |
