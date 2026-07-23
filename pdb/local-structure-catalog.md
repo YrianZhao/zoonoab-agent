@@ -4,11 +4,11 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 
 ## Summary
 
-- PDB files: 516
+- PDB files: 517
 - Route presets: 72
 - Routeable presets: 71
 - Prompt-eligible structure-supported targets: 71
-- Library assets: 112
+- Library assets: 113
 
 ## Route-backed structure families
 

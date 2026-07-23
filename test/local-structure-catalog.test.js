@@ -478,6 +478,16 @@ test('local structure catalog is the machine-readable inventory for route-backed
   assert.deepEqual(fgfr2.sourceAntibodyChains, ['A', 'B', 'D', 'E']);
   assert.match(fgfr2.structuralBasis, /4WV1/);
 
+  const cd70 = catalogEntryForFilename(catalog, 'SOLIDLIB-HUMAN-CD70-RCSB-7KX0.pdb');
+  assert.ok(cd70, 'solid-tumor CD70 reference asset should be represented in the catalog');
+  assert.equal(cd70.target, 'CD70');
+  assert.equal(cd70.gene, 'TNFSF7');
+  assert.equal(cd70.organismTaxId, 9606);
+  assert.equal(cd70.structureClass, 'experimental_reference_complex');
+  assert.deepEqual(cd70.antigenChains, ['A', 'B', 'C']);
+  assert.deepEqual(cd70.antibodyChains, []);
+  assert.match(cd70.structuralBasis, /7KX0/);
+
   const il6 = catalogEntryForFilename(catalog, 'INFLAMLIB-HUMAN-IL6-RCSB-1ALU.pdb');
   assert.ok(il6, 'inflammation-library IL-6 antigen-only asset should be represented in the catalog');
   assert.equal(il6.target, 'IL-6');

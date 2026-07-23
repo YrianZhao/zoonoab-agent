@@ -26,7 +26,7 @@ function actualCoordinateChains(filename) {
 test('solid-tumor asset library keeps exact local sources for non-routeable tumor targets', () => {
   assert.equal(manifest.schemaVersion, 1);
   assert.equal(manifest.totalModels, manifest.models.length);
-  assert.equal(manifest.totalModels, 19);
+  assert.equal(manifest.totalModels, 20);
 
   for (const model of manifest.models) {
     assert.ok(fs.existsSync(path.join(ROOT, 'pdb', model.filename)), model.filename + ' should exist locally');
@@ -67,6 +67,29 @@ test('solid-tumor antigen-only assets keep empty antibody chain remarks', () => 
     const antibodyLine = text.split(/\r?\n/).find(line => line.startsWith('REMARK 905 ANTIBODY CHAINS:'));
     assert.equal(Boolean(antibodyLine), true);
     assert.equal(antibodyLine.trim(), 'REMARK 905 ANTIBODY CHAINS:');
+  }
+});
+
+test('solid-tumor reference-complex assets keep truthful non-antibody remarks', () => {
+  const cd70Model = manifest.models.find(model => model.accession === '7KX0');
+  assert.ok(cd70Model, 'CD70 reference asset should be registered in the solid-tumor manifest');
+  assert.equal(cd70Model.target, 'CD70');
+  assert.equal(cd70Model.gene, 'TNFSF7');
+  assert.equal(cd70Model.structureClass, 'experimental_reference_complex');
+  assert.deepEqual(cd70Model.antigenChains, ['A', 'B', 'C']);
+  assert.deepEqual(cd70Model.antibodyChains, []);
+
+  const cd70 = readModelText(cd70Model);
+  assert.match(cd70, /REMARK 901 TARGET: CD70/);
+  assert.match(cd70, /REMARK 904 ANTIGEN CHAINS: A,B,C/);
+  assert.match(cd70, /REMARK 912 ACCESSION: 7KX0/);
+  const antibodyLine = cd70.split(/\r?\n/).find(line => line.startsWith('REMARK 905 ANTIBODY CHAINS:'));
+  assert.equal(Boolean(antibodyLine), true);
+  assert.equal(antibodyLine.trim(), 'REMARK 905 ANTIBODY CHAINS:');
+
+  const chains = actualCoordinateChains(cd70Model.filename);
+  for (const chain of ['A', 'B', 'C', 'D', 'E', 'F']) {
+    assert.equal(chains.has(chain), true, '7KX0 should retain chain ' + chain + ' in ATOM/HETATM records');
   }
 });
 

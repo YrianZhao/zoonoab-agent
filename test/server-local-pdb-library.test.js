@@ -686,6 +686,18 @@ test('local PDB model library API lists local structures with viewer metadata', 
   assert.match(trkaNgf.structuralBasis, /2IFG/);
   assert.equal(trkaNgf.targetTag.verifiedTag, true);
 
+  const cd70 = data.models.find(model => model.filename === 'SOLIDLIB-HUMAN-CD70-RCSB-7KX0.pdb');
+  assert.ok(cd70, 'CD70 reference asset should be listed');
+  assert.equal(cd70.targetDisplay, 'CD70');
+  assert.equal(cd70.antibodyFormat, '');
+  assert.equal(cd70.structureKind, '实验参考复合体');
+  assert.deepEqual(cd70.antigenChains, ['A', 'B', 'C']);
+  assert.deepEqual(cd70.antibodyChains, []);
+  assert.match(cd70.structuralBasis, /7KX0/);
+  assert.equal(cd70.targetTag.verifiedTag, true);
+  const cd70ViewerPdbUrl = new URL(cd70.viewerUrl, 'http://127.0.0.1').searchParams.get('pdb');
+  assert.match(cd70ViewerPdbUrl, /chains=A%2CB%2CC$/);
+
   const b7h4 = data.models.find(model => model.filename === 'SOLIDLIB-HUMAN-B7H4-RCSB-4GOS.pdb');
   assert.ok(b7h4, 'B7-H4 antigen-only asset should be listed');
   assert.equal(b7h4.targetDisplay, 'B7-H4');
