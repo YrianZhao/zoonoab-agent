@@ -21,7 +21,7 @@ test('local structure catalog is the machine-readable inventory for route-backed
   assert.equal(catalog.schemaVersion, 1);
   assert.ok(catalog.summary.pdbFileCount >= 516);
   assert.ok(catalog.summary.promptEligibleRoutePresetCount >= 30);
-  assert.ok(catalog.summary.libraryAssetCount >= 112);
+  assert.ok(catalog.summary.libraryAssetCount >= 273);
 
   const covid = catalogEntryForFilename(catalog, 'SC2RBD-Fab-01.pdb');
   assert.ok(covid, 'SC2RBD-Fab-01 should be represented in the catalog');
@@ -611,6 +611,37 @@ test('local structure catalog is the machine-readable inventory for route-backed
   assert.match(supportList, /TSHR/);
   assert.match(supportList, /alpha-synuclein\/SNCA/);
   assert.match(supportList, /AQP4/);
+});
+
+test('antigen display pose library assets are indexed for exact local matching', () => {
+  const catalog = loadLocalStructureCatalog(ROOT);
+  const displayAssets = catalog.libraryAssets.filter(item => item.sourceCatalog === 'antigen-display-pose-manifest.json');
+  assert.equal(displayAssets.length, 160);
+
+  const pcsk9 = catalogEntryForFilename(catalog, 'PCSK9-Fab-2QTW.pdb');
+  assert.ok(pcsk9, 'PCSK9 display pose asset should be represented in the catalog');
+  assert.equal(pcsk9.target, 'PCSK9');
+  assert.equal(pcsk9.gene, 'PCSK9');
+  assert.equal(pcsk9.antibodyFormat, 'Fab');
+  assert.equal(pcsk9.structureClass, 'target_exact_display_pose');
+  assert.deepEqual(pcsk9.antigenChains, ['A', 'B']);
+  assert.deepEqual(pcsk9.antibodyChains, ['H', 'C']);
+  assert.equal(pcsk9.localPath, 'pdb/antigen-display-pose/PCSK9-Fab-2QTW.pdb');
+
+  const prnp = catalogEntryForFilename(catalog, 'PRNP-VHH-1QLX.pdb');
+  assert.ok(prnp, 'PRNP display pose asset should be represented in the catalog');
+  assert.equal(prnp.target, 'PRNP');
+  assert.equal(prnp.gene, 'PRNP');
+  assert.equal(prnp.antibodyFormat, 'VHH');
+  assert.equal(prnp.structureClass, 'target_exact_display_pose');
+  assert.deepEqual(prnp.antibodyChains, ['B']);
+
+  const adrb1 = catalogEntryForFilename(catalog, 'ADRB1-VHH-8S2T.pdb');
+  assert.ok(adrb1, 'ADRB1 display pose asset should be represented in the catalog');
+  assert.equal(adrb1.target, 'ADRB1');
+  assert.equal(adrb1.gene, 'ADRB1');
+  assert.equal(adrb1.antibodyFormat, 'VHH');
+  assert.equal(adrb1.structureClass, 'target_exact_nanobody_complex');
 });
 
 test('catalog-derived target map can route aliases without hand-editing target maps', () => {

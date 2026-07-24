@@ -8,7 +8,7 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 - Route presets: 74
 - Routeable presets: 73
 - Prompt-eligible structure-supported targets: 73
-- Library assets: 113
+- Library assets: 273
 
 ## Route-backed structure families
 

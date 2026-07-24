@@ -851,6 +851,29 @@ test('structure catalog API exposes route-backed structure inventory', async () 
   assert.equal(trkb.aliasPrefix, 'TRKB-Fab');
   assert.equal(trkb.target, 'TrkB');
   assert.ok((trkb.files || []).includes('TRKB-Fab-01.pdb'));
+
+  assert.ok(Array.isArray(data.catalog.libraryAssets));
+  const displayAssets = data.catalog.libraryAssets.filter(item => item.sourceCatalog === 'antigen-display-pose-manifest.json');
+  assert.equal(displayAssets.length, 160);
+
+  const pcsk9Display = displayAssets.find(item => item.filename === 'PCSK9-Fab-2QTW.pdb');
+  assert.ok(pcsk9Display, 'catalog should expose the generated PCSK9 display pose asset');
+  assert.equal(pcsk9Display.target, 'PCSK9');
+  assert.equal(pcsk9Display.gene, 'PCSK9');
+  assert.equal(pcsk9Display.antibodyFormat, 'Fab');
+  assert.equal(pcsk9Display.structureClass, 'target_exact_display_pose');
+
+  const prnpDisplay = displayAssets.find(item => item.filename === 'PRNP-VHH-1QLX.pdb');
+  assert.ok(prnpDisplay, 'catalog should expose the generated PRNP display pose asset');
+  assert.equal(prnpDisplay.target, 'PRNP');
+  assert.equal(prnpDisplay.gene, 'PRNP');
+  assert.equal(prnpDisplay.antibodyFormat, 'VHH');
+
+  const adrb1Display = displayAssets.find(item => item.filename === 'ADRB1-VHH-8S2T.pdb');
+  assert.ok(adrb1Display, 'catalog should expose the generated ADRB1 display pose asset');
+  assert.equal(adrb1Display.target, 'ADRB1');
+  assert.equal(adrb1Display.gene, 'ADRB1');
+  assert.equal(adrb1Display.antibodyFormat, 'VHH');
 });
 
 test('local PDB responses are cacheable and can project only viewer-visible chains', async () => {

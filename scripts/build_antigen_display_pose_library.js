@@ -275,7 +275,7 @@ function chooseGeneratedFormat(chainStats, antigenChains) {
   return 'Fab';
 }
 
-function generatePoseFromSource({ filePath, sourceText, accession, primaryTarget, organism, taxId, antigenChains, chainStats }) {
+function generatePoseFromSource({ filePath, sourceText, accession, primaryTarget, gene, aliases, organism, taxId, experimentalMethod, resolutionAngstrom, antigenChains, chainStats }) {
   const format = chooseGeneratedFormat(chainStats, antigenChains);
   const scaffoldFile = format === 'VHH' ? VHH_SCAFFOLD_FILE : FAB_SCAFFOLD_FILE;
   const scaffoldChains = format === 'VHH' ? VHH_SCAFFOLD_CHAINS : FAB_SCAFFOLD_CHAINS;
@@ -310,8 +310,12 @@ function generatePoseFromSource({ filePath, sourceText, accession, primaryTarget
   return {
     accession,
     primaryTarget,
+    gene,
+    aliases,
     organism,
     taxId,
+    experimentalMethod,
+    resolutionAngstrom,
     sourceText,
     antigenChains: pose.antigenChains,
     antibodyChains: pose.antibodyChains,
@@ -338,6 +342,59 @@ function parseOrganism(pdbText) {
     organism: organismMatch ? normalizeSpaces(organismMatch[1]) : DEFAULT_ORGANISM,
     taxId: taxMatch ? Number(taxMatch[1]) : DEFAULT_TAX_ID
   };
+}
+
+function parseExperimentalMethod(pdbText) {
+  const match = String(pdbText).match(/^EXPDTA\s+(.*)$/m);
+  return match ? normalizeSpaces(match[1]) : '';
+}
+
+function parseResolutionAngstrom(pdbText) {
+  const match = String(pdbText).match(/REMARK\s+2\s+RESOLUTION\.\s+([0-9.]+)\s+ANGSTROMS\./i);
+  return match ? Number(match[1]) : null;
+}
+
+function inferGeneSymbol(primaryTarget, targetEntry, entities) {
+  const candidateValues = [
+    ...(targetEntry && Array.isArray(targetEntry.targets) ? targetEntry.targets : []),
+    ...(targetEntry ? [...targetEntry.aliases] : []),
+    ...(entities || []).map(entity => entity.gene).filter(Boolean),
+    primaryTarget
+  ];
+  for (const value of candidateValues) {
+    for (const piece of String(value || '').split(/[\/,]/)) {
+      const trimmed = normalizeSpaces(piece);
+      if (/^[A-Z0-9-]{2,15}$/.test(trimmed)) return trimmed;
+    }
+  }
+  return '';
+}
+
+function inferAliases(primaryTarget, targetEntry, entities) {
+  const aliases = new Set();
+  aliases.add(primaryTarget);
+  if (targetEntry) {
+    for (const value of targetEntry.targets || []) aliases.add(value);
+    for (const value of targetEntry.aliases || []) aliases.add(value);
+  }
+  for (const entity of entities || []) {
+    if (entity.molecule) aliases.add(entity.molecule);
+    if (entity.synonym) {
+      for (const piece of entity.synonym.split(',')) aliases.add(normalizeSpaces(piece));
+    }
+    if (entity.gene) {
+      for (const piece of entity.gene.split(',')) aliases.add(normalizeSpaces(piece));
+    }
+  }
+  return [...aliases].map(normalizeSpaces).filter(Boolean);
+}
+
+function structureClassForResult(result) {
+  if (result.sourceKind === 'exact_local_complex') {
+    if (result.format === 'VHH') return 'target_exact_nanobody_complex';
+    return 'target_exact_complex';
+  }
+  return 'target_exact_display_pose';
 }
 
 function describeSource(sourceKind) {
@@ -371,6 +428,10 @@ function analyzeSourceFile(filePath, targetEntry) {
 
   const primaryTarget = ((targetEntry && targetEntry.targets && targetEntry.targets[0]) || targetFallback || accession).replace(/\s+/g, ' ').trim();
   const { organism, taxId } = parseOrganism(sourceText);
+  const experimentalMethod = parseExperimentalMethod(sourceText);
+  const resolutionAngstrom = parseResolutionAngstrom(sourceText);
+  const gene = inferGeneSymbol(primaryTarget, targetEntry, entities);
+  const aliases = inferAliases(primaryTarget, targetEntry, entities);
 
   if (antibodyChains.length) {
     const contact = contactingChains(records, antigenChains, antibodyChains, 8);
@@ -394,8 +455,12 @@ function analyzeSourceFile(filePath, targetEntry) {
     const exactResult = {
       accession,
       primaryTarget,
+      gene,
+      aliases,
       organism,
       taxId,
+      experimentalMethod,
+      resolutionAngstrom,
       sourceText,
       antigenChains: contact.left,
       antibodyChains: contact.right,
@@ -407,10 +472,10 @@ function analyzeSourceFile(filePath, targetEntry) {
       sourceFile: path.basename(filePath)
     };
     if (auditStatus(exactResult.format, exactResult.geometry).accepted) return exactResult;
-    return generatePoseFromSource({ filePath, sourceText, accession, primaryTarget, organism, taxId, antigenChains, chainStats });
+    return generatePoseFromSource({ filePath, sourceText, accession, primaryTarget, gene, aliases, organism, taxId, experimentalMethod, resolutionAngstrom, antigenChains, chainStats });
   }
 
-  return generatePoseFromSource({ filePath, sourceText, accession, primaryTarget, organism, taxId, antigenChains, chainStats });
+  return generatePoseFromSource({ filePath, sourceText, accession, primaryTarget, gene, aliases, organism, taxId, experimentalMethod, resolutionAngstrom, antigenChains, chainStats });
 }
 
 function auditStatus(format, geometry) {
@@ -484,13 +549,32 @@ function main() {
     fs.writeFileSync(path.join(OUTPUT_DIR, filename), analyzed.outputPdbText);
     manifestEntries.push({
       filename,
+      localPath: path.join('pdb', 'antigen-display-pose', filename).replace(/\\/g, '/'),
       sourceFile: analyzed.sourceFile,
       sourceAccession: analyzed.accession,
       sourceKind: analyzed.sourceKind,
       sourceDescription: describeSource(analyzed.sourceKind),
       target: analyzed.primaryTarget,
+      gene: analyzed.gene || '',
+      aliases: analyzed.aliases || [],
       organism: analyzed.organism,
-      taxId: analyzed.taxId,
+      organismTaxId: analyzed.taxId,
+      accession: analyzed.accession,
+      source: 'local public structure library',
+      sourceUrl: /^([0-9][A-Z0-9]{3})$/.test(analyzed.accession) ? ('https://www.rcsb.org/structure/' + analyzed.accession) : '',
+      structureClass: structureClassForResult(analyzed),
+      antibodyFormat: analyzed.format,
+      experimentalMethod: analyzed.experimentalMethod || '',
+      resolutionAngstrom: analyzed.resolutionAngstrom,
+      structuralBasis: analyzed.sourceKind === 'exact_local_complex'
+        ? ('Local exact complex retained from antigen-only sweep source ' + analyzed.sourceFile)
+        : ('Local antigen structure from antigen-only sweep source ' + analyzed.sourceFile + ' + ' + analyzed.scaffoldFile + ' display scaffold'),
+      context: analyzed.sourceKind === 'exact_local_complex'
+        ? 'Exact local public complex promoted from antigen-only sweep for workflow routing.'
+        : 'Exact local antigen with deterministic Fab/VHH display pose for workflow routing.',
+      note: analyzed.sourceKind === 'exact_local_complex'
+        ? 'Experimental local complex preserved and geometry-audited.'
+        : 'Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.',
       format: analyzed.format,
       scaffoldFile: analyzed.scaffoldFile,
       antigenChains: analyzed.antigenChains,
@@ -516,14 +600,16 @@ function main() {
   fs.writeFileSync(MANIFEST_PATH, JSON.stringify({
     schemaVersion: 1,
     generatedAt: new Date().toISOString(),
+    purpose: 'Roadshow, exhibition and product-presentation molecular structure library',
     sourceDir: path.relative(ROOT, SOURCE_DIR),
     outputDir: path.relative(ROOT, OUTPUT_DIR),
+    totalModels: manifestEntries.length,
     scaffolds: {
       Fab: { file: FAB_SCAFFOLD_FILE, chains: FAB_SCAFFOLD_CHAINS },
       VHH: { file: VHH_SCAFFOLD_FILE, chains: VHH_SCAFFOLD_CHAINS }
     },
     summary,
-    entries: manifestEntries
+    models: manifestEntries
   }, null, 2) + '\n');
   writeAudit(manifestEntries);
   console.log(JSON.stringify(summary, null, 2));

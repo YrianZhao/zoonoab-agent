@@ -5527,7 +5527,7 @@ function orderPDBFilesForPreset(preset, availableFiles) {
 
 function localPDBFileExists(filename) {
   if (!filename || filename.includes('..') || !/^[A-Za-z0-9][A-Za-z0-9_.-]*\.pdb$/.test(filename)) return false;
-  return fs.existsSync(path.join(LOCAL_PDB_DIR, filename)) || fs.existsSync(path.join(PROJECT_ROOT, filename));
+  return Boolean(localPDBPath(filename));
 }
 
 function routeStructureTitle(profile, preset, abFormat) {
@@ -6631,6 +6631,30 @@ setInterval(() => {
 // ─── Local PDB ─────────────────────────────────────────────
 const LOCAL_PDB_DIR = path.join(__dirname, 'pdb');
 const PROJECT_ROOT = __dirname;
+
+function localPDBCatalogLocalPath(filename) {
+  const entry = localStructureCatalogEntryForFile(filename);
+  const localPath = String(entry && entry.localPath || '').trim();
+  if (!localPath || localPath.includes('..')) return '';
+  return localPath;
+}
+
+function localPDBCandidatePaths(filename) {
+  const candidates = [];
+  for (const relativePath of [String(filename || '').trim(), localPDBCatalogLocalPath(filename)]) {
+    if (!relativePath) continue;
+    for (const rootDir of [LOCAL_PDB_DIR, PROJECT_ROOT]) {
+      const root = path.resolve(rootDir);
+      const fp = path.resolve(root, relativePath);
+      const rel = path.relative(root, fp);
+      if (!rel.startsWith('..') && !path.isAbsolute(rel) && fs.existsSync(fp) && !candidates.includes(fp)) {
+        candidates.push(fp);
+      }
+    }
+  }
+  return candidates;
+}
+
 function listLocalPDBFiles() {
   const files = [];
   for (const scanDir of [PROJECT_ROOT, LOCAL_PDB_DIR]) {
@@ -6638,6 +6662,10 @@ function listLocalPDBFiles() {
     for (const file of fs.readdirSync(scanDir).filter(name => name.endsWith('.pdb'))) {
       if (!files.includes(file)) files.push(file);
     }
+  }
+  for (const entry of localStructureCatalogLibraryAssets()) {
+    const file = String(entry && entry.filename || '').trim();
+    if (file && file.endsWith('.pdb') && !files.includes(file)) files.push(file);
   }
   files.sort();
   return files;
@@ -6662,13 +6690,7 @@ function resolveLocalPDBAlias(filename) {
 
 function localPDBPath(filename) {
   if (!filename || filename.includes('..') || !/^[A-Za-z0-9][A-Za-z0-9_.-]*\.pdb$/.test(filename)) return '';
-  for (const rootDir of [LOCAL_PDB_DIR, PROJECT_ROOT]) {
-    const root = path.resolve(rootDir);
-    const fp = path.resolve(root, filename);
-    const rel = path.relative(root, fp);
-    if (!rel.startsWith('..') && !path.isAbsolute(rel) && fs.existsSync(fp)) return fp;
-  }
-  return '';
+  return localPDBCandidatePaths(filename)[0] || '';
 }
 
 function localPDBPublicUrl(filename) {
@@ -6862,15 +6884,7 @@ app.get('/api/pdb/local/:filename', async (req, res) => {
   if (!filename || filename.includes('..') || !/^[A-Za-z0-9][A-Za-z0-9_.-]*\.pdb$/.test(filename)) {
     return res.status(400).json({ error: 'Invalid filename' });
   }
-  function safeLocalPath(rootDir) {
-    const root = path.resolve(rootDir);
-    const fp = path.resolve(root, filename);
-    const rel = path.relative(root, fp);
-    if (rel.startsWith('..') || path.isAbsolute(rel)) return '';
-    return fp;
-  }
-  let fp = safeLocalPath(LOCAL_PDB_DIR);
-  if (!fp || !fs.existsSync(fp)) fp = safeLocalPath(PROJECT_ROOT);
+  const fp = localPDBPath(filename);
   if (!fs.existsSync(fp)) return res.status(404).json({ error: 'Not found' });
   let stat;
   try {
