@@ -6569,7 +6569,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '69498265';
+    const APP_BUILD_VERSION = '69498266';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
     const SILICONFLOW_CHAT_FALLBACK_MODELS = ['Qwen/Qwen3-32B', 'Qwen/Qwen3-14B', 'Qwen/Qwen3-8B', 'deepseek-ai/DeepSeek-V3'];
@@ -7324,7 +7324,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         model = model || {};
         const filename = String(model.filename || '').replace(/\.pdb$/i, '') + '.pdb';
         const antigenChains = Array.isArray(model.antigenChains) && model.antigenChains.length ? model.antigenChains : ['A'];
-        const antibodyChains = Array.isArray(model.antibodyChains) && model.antibodyChains.length ? model.antibodyChains : ['B'];
+        const antibodyChains = Array.isArray(model.antibodyChains) ? model.antibodyChains : [];
         const pdbUrl = '/api/pdb/local/' + encodeURIComponent(filename) + '?chains=' + encodeURIComponent([...new Set([...antigenChains, ...antibodyChains])].join(','));
         let url = '/viewer-full.html?pdb=' + encodeURIComponent(pdbUrl);
         url += '&chainA=' + encodeURIComponent('#0891B2');
@@ -9818,7 +9818,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const pdbId = meta.id || (section && section.primaryPDB) || '';
         const colors = getBinderVisualColors(meta);
         const antigenChains = Array.isArray(meta.antigenChains) && meta.antigenChains.length ? meta.antigenChains : ['A'];
-        const antibodyChains = Array.isArray(meta.antibodyChains) ? meta.antibodyChains : ['B'];
+        const antibodyChains = Array.isArray(meta.antibodyChains) ? meta.antibodyChains : [];
         const legend = getRoleLegend(meta);
         const seedSource = [
             meta.viewerPoseSeed,
@@ -16794,7 +16794,7 @@ ${fallbackTableRows(profile.rows)}
         meta = meta || {};
         const colors = getBinderVisualColors(meta);
         const antigenChains = Array.isArray(meta.antigenChains) && meta.antigenChains.length ? meta.antigenChains : ['A'];
-        const antibodyChains = Array.isArray(meta.antibodyChains) && meta.antibodyChains.length ? meta.antibodyChains : ['B'];
+        const antibodyChains = Array.isArray(meta.antibodyChains) ? meta.antibodyChains : [];
         const targetLabel = meta.targetDisplay || meta.routeLabel || 'Target antigen';
         const antibodyFormat = meta.antibodyFormat || (/VHH/i.test(String(meta.structureFamily || meta.candidateLabel || '')) ? 'VHH' : 'Fab');
         return {
@@ -16842,7 +16842,7 @@ ${fallbackTableRows(profile.rows)}
         const meta = getBinderMetaById(pdbId) || {};
         const colors = getBinderVisualColors(meta);
         const antigenChains = Array.isArray(meta.antigenChains) && meta.antigenChains.length ? meta.antigenChains : ['A'];
-        const antibodyChains = Array.isArray(meta.antibodyChains) ? meta.antibodyChains : ['B'];
+        const antibodyChains = Array.isArray(meta.antibodyChains) ? meta.antibodyChains : [];
         const idx = Number.isFinite(candidateIndex) ? candidateIndex : binderDataList.findIndex(item => item && item.id === pdbId);
         const seedSource = [
             meta.viewerPoseSeed,
@@ -17047,11 +17047,11 @@ ${fallbackTableRows(profile.rows)}
 	                    antigenChains: Array.isArray(coordinates.antigenChains) && coordinates.antigenChains.length ? coordinates.antigenChains : (Array.isArray(meta.antigenChains) && meta.antigenChains.length ? meta.antigenChains : ['A']),
                     antibodyChains: Object.prototype.hasOwnProperty.call(coordinates, 'antibodyChains')
                         ? (Array.isArray(coordinates.antibodyChains) ? coordinates.antibodyChains : [])
-                        : (Array.isArray(meta.antibodyChains) ? meta.antibodyChains : ['B']),
+                        : (Array.isArray(meta.antibodyChains) ? meta.antibodyChains : []),
 	                    sourceAntigenChains: Array.isArray(coordinates.sourceAntigenChains) && coordinates.sourceAntigenChains.length ? coordinates.sourceAntigenChains : (Array.isArray(meta.sourceAntigenChains) && meta.sourceAntigenChains.length ? meta.sourceAntigenChains : (Array.isArray(meta.antigenChains) && meta.antigenChains.length ? meta.antigenChains : ['A'])),
                     sourceAntibodyChains: Object.prototype.hasOwnProperty.call(coordinates, 'sourceAntibodyChains')
                         ? (Array.isArray(coordinates.sourceAntibodyChains) ? coordinates.sourceAntibodyChains : [])
-                        : (Array.isArray(meta.sourceAntibodyChains) ? meta.sourceAntibodyChains : (Array.isArray(meta.antibodyChains) ? meta.antibodyChains : ['B'])),
+                        : (Array.isArray(meta.sourceAntibodyChains) ? meta.sourceAntibodyChains : (Array.isArray(meta.antibodyChains) ? meta.antibodyChains : [])),
 	                    visualColors: meta.visualColors || null,
 	                    structureSourceKind: source.kind || meta.structureSourceKind || meta.sourceKind || '',
 	                    structureDatabase: source.database || meta.structureDatabase || meta.sourceDatabase || '',

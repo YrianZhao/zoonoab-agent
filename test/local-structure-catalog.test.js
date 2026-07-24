@@ -16,6 +16,15 @@ const {
 
 const ROOT = path.resolve(__dirname, '..');
 
+function coordinateChains(filename) {
+  const chains = new Set();
+  const text = fs.readFileSync(path.join(ROOT, 'pdb', filename), 'utf8');
+  for (const line of text.split(/\r?\n/)) {
+    if (line.startsWith('ATOM  ') || line.startsWith('HETATM')) chains.add(line[21]);
+  }
+  return chains;
+}
+
 test('local structure catalog is the machine-readable inventory for route-backed models', () => {
   const catalog = loadLocalStructureCatalog(ROOT);
   assert.equal(catalog.schemaVersion, 1);
@@ -611,6 +620,39 @@ test('local structure catalog is the machine-readable inventory for route-backed
   assert.match(supportList, /TSHR/);
   assert.match(supportList, /alpha-synuclein\/SNCA/);
   assert.match(supportList, /AQP4/);
+});
+
+test('virus library display roles match the flattened biological assembly chains', () => {
+  const catalog = loadLocalStructureCatalog(ROOT);
+  const expected = {
+    'VIRUSLIB-FLU-HA-H07-8TNL.pdb': { antigen: ['C', 'D', 'E'], antibody: ['A', 'B', 'F', 'G', 'H', 'I'] },
+    'VIRUSLIB-SC2-SPIKE-D614G-7WZ2.pdb': { antigen: ['A', 'B', 'C'], antibody: [] },
+    'VIRUSLIB-NIPAH-F-PREFUSION-8DO4.pdb': { antigen: ['A', 'B', 'C', 'D', 'E', 'F'], antibody: [] },
+    'VIRUSLIB-RSV-A-F-PREFUSION-5W23.pdb': { antigen: ['A', 'B', 'C'], antibody: ['D', 'E', 'F', 'G', 'H', 'I'] },
+    'VIRUSLIB-RSV-AB-F-POSTFUSION-3RRR.pdb': { antigen: ['A', 'B', 'C', 'D', 'E', 'F'], antibody: [] },
+    'VIRUSLIB-HIV1-ENV-ZM233-9CV7.pdb': { antigen: ['A', 'D', 'E'], antibody: ['B', 'C'] },
+    'VIRUSLIB-HMPV-A-F-4DAG.pdb': { antigen: ['A'], antibody: ['B', 'C'] },
+    'VIRUSLIB-HPIV3-F-PREFUSION-8DG8.pdb': { antigen: ['A', 'D', 'E'], antibody: ['B', 'C'] }
+  };
+
+  for (const [filename, roles] of Object.entries(expected)) {
+    const asset = catalogEntryForFilename(catalog, filename);
+    assert.ok(asset, filename + ' should be present in the catalog');
+    assert.deepEqual(asset.antigenChains || [], roles.antigen, filename + ' antigen roles');
+    assert.deepEqual(asset.antibodyChains || [], roles.antibody, filename + ' antibody roles');
+  }
+});
+
+test('every catalog display role references a chain present in its local PDB', () => {
+  const catalog = loadLocalStructureCatalog(ROOT);
+  for (const asset of catalog.libraryAssets) {
+    if (!asset.filename || !fs.existsSync(path.join(ROOT, 'pdb', asset.filename))) continue;
+    const actual = coordinateChains(asset.filename);
+    const declared = [...(asset.antigenChains || []), ...(asset.antibodyChains || [])];
+    for (const chain of declared) {
+      assert.ok(actual.has(chain), asset.filename + ' declares missing display chain ' + chain);
+    }
+  }
 });
 
 test('antigen display pose library assets are indexed for exact local matching', () => {

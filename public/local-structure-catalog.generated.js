@@ -2,7 +2,7 @@
 (function(){
   window.ZOONOAB_LOCAL_STRUCTURE_CATALOG = {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-24T02:54:41.102Z",
+  "generatedAt": "2026-07-24T07:30:00.531Z",
   "summary": {
     "pdbFileCount": 519,
     "routePresetCount": 74,
@@ -3809,16 +3809,16 @@
       "note": "A/Shanghai/2013 H7N9 HA with neutralizing antibody.",
       "antigenChains": [
         "C",
-        "I",
-        "K"
+        "D",
+        "E"
       ],
       "antibodyChains": [
         "A",
-        "D",
-        "H",
         "B",
-        "E",
-        "L"
+        "F",
+        "G",
+        "H",
+        "I"
       ]
     },
     {
@@ -4083,8 +4083,8 @@
       "note": "D614G Spike trimer.",
       "antigenChains": [
         "A",
-        "C",
-        "E"
+        "B",
+        "C"
       ]
     },
     {
@@ -4327,7 +4327,7 @@
         "C",
         "D",
         "E",
-        "G"
+        "F"
       ]
     },
     {
@@ -4428,12 +4428,12 @@
         "C"
       ],
       "antibodyChains": [
+        "D",
+        "E",
+        "F",
+        "G",
         "H",
-        "I",
-        "J",
-        "L",
-        "M",
-        "N"
+        "I"
       ]
     },
     {
@@ -4455,17 +4455,11 @@
       "note": "Postfusion F entry containing RSV A and RSV B chains.",
       "antigenChains": [
         "A",
-        "C",
-        "E",
-        "G",
-        "I",
-        "M",
         "B",
+        "C",
         "D",
-        "F",
-        "H",
-        "L",
-        "N"
+        "E",
+        "F"
       ]
     },
     {
@@ -4537,9 +4531,14 @@
       ],
       "resolutionAngstrom": 3.8,
       "note": "ZM233 NFL TD CC3+ Env trimer with Fab.",
+      "antigenChains": [
+        "A",
+        "D",
+        "E"
+      ],
       "antibodyChains": [
-        "H",
-        "L"
+        "B",
+        "C"
       ]
     },
     {
@@ -4672,8 +4671,8 @@
         "A"
       ],
       "antibodyChains": [
-        "H",
-        "L"
+        "B",
+        "C"
       ]
     },
     {
@@ -4735,12 +4734,12 @@
       "note": "HPIV3 prefusion F trimer with Fab.",
       "antigenChains": [
         "A",
-        "B",
-        "C"
+        "D",
+        "E"
       ],
       "antibodyChains": [
-        "H",
-        "L"
+        "B",
+        "C"
       ]
     },
     {

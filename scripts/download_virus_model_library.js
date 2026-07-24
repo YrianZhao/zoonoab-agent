@@ -19,7 +19,7 @@ const entries = [
   { group: 'Influenza', subtype: 'H4', antigen: 'HA', pdbId: '5XL8', file: 'VIRUSLIB-FLU-HA-H04-5XL8.pdb', label: 'Influenza A H4 HA', note: 'A/duck/Czech/1956 H4N6 HA.' },
   { group: 'Influenza', subtype: 'H5', antigen: 'HA', pdbId: '4K64', file: 'VIRUSLIB-FLU-HA-H05-4K64.pdb', label: 'Influenza A H5 HA', note: 'Avian H5 HA with human receptor analog.' },
   { group: 'Influenza', subtype: 'H6', antigen: 'HA', pdbId: '4WSR', file: 'VIRUSLIB-FLU-HA-H06-4WSR.pdb', label: 'Influenza A H6 HA', note: 'A/chicken/New York/14677-13/1998 H6 HA.' },
-  { group: 'Influenza', subtype: 'H7', antigen: 'HA', pdbId: '8TNL', file: 'VIRUSLIB-FLU-HA-H07-8TNL.pdb', label: 'Influenza A H7 HA', note: 'A/Shanghai/2013 H7N9 HA with neutralizing antibody.' },
+  { group: 'Influenza', subtype: 'H7', antigen: 'HA', pdbId: '8TNL', file: 'VIRUSLIB-FLU-HA-H07-8TNL.pdb', label: 'Influenza A H7 HA', note: 'A/Shanghai/2013 H7N9 HA with neutralizing antibody.', displayAntigenChains: ['C', 'D', 'E'], displayAntibodyChains: ['A', 'B', 'F', 'G', 'H', 'I'] },
   { group: 'Influenza', subtype: 'H8', antigen: 'HA', pdbId: '6V46', file: 'VIRUSLIB-FLU-HA-H08-6V46.pdb', label: 'Influenza A H8 HA', note: 'A/turkey/Ontario/6118/1968 H8N4 HA.' },
   { group: 'Influenza', subtype: 'H9', antigen: 'HA', pdbId: '1JSD', assemblyId: '2', file: 'VIRUSLIB-FLU-HA-H09-1JSD.pdb', label: 'Influenza A H9 HA trimer', note: 'Swine H9 hemagglutinin biological assembly trimer.' },
   { group: 'Influenza', subtype: 'H10', antigen: 'HA', pdbId: '4CYV', file: 'VIRUSLIB-FLU-HA-H10-4CYV.pdb', label: 'Influenza A H10 HA', note: 'A/mallard/Sweden/51/2002 H10 HA.' },
@@ -31,7 +31,7 @@ const entries = [
 
   // SARS-CoV-2 spike variant representatives.
   { group: 'SARS-CoV-2', subtype: 'Wuhan', antigen: 'Spike', pdbId: '7Z3Z', file: 'VIRUSLIB-SC2-SPIKE-WUHAN-7Z3Z.pdb', label: 'SARS-CoV-2 Wuhan spike', note: 'Locked Wuhan prefusion Spike ectodomain.' },
-  { group: 'SARS-CoV-2', subtype: 'D614G', antigen: 'Spike', pdbId: '7WZ2', file: 'VIRUSLIB-SC2-SPIKE-D614G-7WZ2.pdb', label: 'SARS-CoV-2 D614G spike', note: 'D614G Spike trimer.' },
+  { group: 'SARS-CoV-2', subtype: 'D614G', antigen: 'Spike', pdbId: '7WZ2', file: 'VIRUSLIB-SC2-SPIKE-D614G-7WZ2.pdb', label: 'SARS-CoV-2 D614G spike', note: 'D614G Spike trimer.', displayAntigenChains: ['A', 'B', 'C'], displayAntibodyChains: [] },
   { group: 'SARS-CoV-2', subtype: 'Alpha B.1.1.7', antigen: 'Spike', pdbId: '7LWT', file: 'VIRUSLIB-SC2-SPIKE-ALPHA-7LWT.pdb', label: 'SARS-CoV-2 Alpha spike', note: 'B.1.1.7 Spike trimer, 1-RBD-up.' },
   { group: 'SARS-CoV-2', subtype: 'Beta B.1.351', antigen: 'Spike', pdbId: '7LYN', file: 'VIRUSLIB-SC2-SPIKE-BETA-7LYN.pdb', label: 'SARS-CoV-2 Beta spike', note: 'B.1.351 Spike trimer, 1-RBD-up.' },
   { group: 'SARS-CoV-2', subtype: 'Gamma P.1', antigen: 'Spike', pdbId: '7V79', file: 'VIRUSLIB-SC2-SPIKE-GAMMA-7V79.pdb', label: 'SARS-CoV-2 Gamma spike', note: 'P.1 Spike trimer, 1-RBD-up.' },
@@ -45,7 +45,7 @@ const entries = [
 
   // Nipah virus.
   { group: 'Nipah virus', subtype: 'G attachment oligomer', antigen: 'G', pdbId: '8K0C', file: 'VIRUSLIB-NIPAH-G-OLIGOMER-8K0C.pdb', label: 'Nipah virus attachment glycoprotein G oligomer', note: 'Nipah G oligomeric assembly with neutralizing antibody; preferred over monomeric head-only structures for display.' },
-  { group: 'Nipah virus', subtype: 'F prefusion', antigen: 'F', pdbId: '8DO4', file: 'VIRUSLIB-NIPAH-F-PREFUSION-8DO4.pdb', label: 'Nipah virus prefusion F', note: 'Prefusion-stabilized Nipah F, dimer of trimers.' },
+  { group: 'Nipah virus', subtype: 'F prefusion', antigen: 'F', pdbId: '8DO4', file: 'VIRUSLIB-NIPAH-F-PREFUSION-8DO4.pdb', label: 'Nipah virus prefusion F', note: 'Prefusion-stabilized Nipah F, dimer of trimers.', displayAntigenChains: ['A', 'B', 'C', 'D', 'E', 'F'], displayAntibodyChains: [] },
 
   // Ebolavirus GP representatives with reliable GP structures.
   { group: 'Ebolavirus', subtype: 'Zaire ebolavirus', antigen: 'GP', pdbId: '9MHA', file: 'VIRUSLIB-EBOLA-ZAIRE-GP-9MHA.pdb', label: 'Zaire Ebola virus GP', note: 'Zaire Ebola envelope glycoprotein GP.' },
@@ -53,13 +53,13 @@ const entries = [
   { group: 'Ebolavirus', subtype: 'Bundibugyo ebolavirus', antigen: 'GP', pdbId: '6DZM', file: 'VIRUSLIB-EBOLA-BUNDIBUGYO-GP-6DZM.pdb', label: 'Bundibugyo ebolavirus GP', note: 'Bundibugyo GP with pan-ebolavirus Fab.' },
 
   // Respiratory syncytial virus.
-  { group: 'Respiratory syncytial virus', subtype: 'RSV A', antigen: 'F prefusion', pdbId: '5W23', file: 'VIRUSLIB-RSV-A-F-PREFUSION-5W23.pdb', label: 'RSV A prefusion F', note: 'RSV F prefusion trimer with 5C4 Fab.' },
-  { group: 'Respiratory syncytial virus', subtype: 'RSV A/B', antigen: 'F postfusion', pdbId: '3RRR', file: 'VIRUSLIB-RSV-AB-F-POSTFUSION-3RRR.pdb', label: 'RSV A/B postfusion F', note: 'Postfusion F entry containing RSV A and RSV B chains.' },
+  { group: 'Respiratory syncytial virus', subtype: 'RSV A', antigen: 'F prefusion', pdbId: '5W23', file: 'VIRUSLIB-RSV-A-F-PREFUSION-5W23.pdb', label: 'RSV A prefusion F', note: 'RSV F prefusion trimer with 5C4 Fab.', displayAntigenChains: ['A', 'B', 'C'], displayAntibodyChains: ['D', 'E', 'F', 'G', 'H', 'I'] },
+  { group: 'Respiratory syncytial virus', subtype: 'RSV A/B', antigen: 'F postfusion', pdbId: '3RRR', file: 'VIRUSLIB-RSV-AB-F-POSTFUSION-3RRR.pdb', label: 'RSV A/B postfusion F', note: 'Postfusion F entry containing RSV A and RSV B chains.', displayAntigenChains: ['A', 'B', 'C', 'D', 'E', 'F'], displayAntibodyChains: [] },
 
   // HIV-1 Env display representatives.
   { group: 'HIV', subtype: 'HIV-1 BG505', antigen: 'Env', pdbId: '4NCO', file: 'VIRUSLIB-HIV1-ENV-BG505-4NCO.pdb', label: 'HIV-1 BG505 Env trimer', note: 'BG505 SOSIP gp140 Env trimer with PGT122 Fab.' },
   { group: 'HIV', subtype: 'HIV-1 ConC', antigen: 'Env', pdbId: '8F7T', file: 'VIRUSLIB-HIV1-ENV-CONC-8F7T.pdb', label: 'HIV-1 ConC Env trimer', note: 'Glycan-base ConC Env trimer.' },
-  { group: 'HIV', subtype: 'HIV-1 ZM233', antigen: 'Env', pdbId: '9CV7', file: 'VIRUSLIB-HIV1-ENV-ZM233-9CV7.pdb', label: 'HIV-1 ZM233 Env trimer', note: 'ZM233 NFL TD CC3+ Env trimer with Fab.' },
+  { group: 'HIV', subtype: 'HIV-1 ZM233', antigen: 'Env', pdbId: '9CV7', file: 'VIRUSLIB-HIV1-ENV-ZM233-9CV7.pdb', label: 'HIV-1 ZM233 Env trimer', note: 'ZM233 NFL TD CC3+ Env trimer with Fab.', displayAntigenChains: ['A', 'D', 'E'], displayAntibodyChains: ['B', 'C'] },
 
   // Norovirus capsid representatives.
   { group: 'Norovirus', subtype: 'GI.1 Norwalk', antigen: 'VP1 shell', pdbId: '7KJP', file: 'VIRUSLIB-NORO-GI1-VP1-SHELL-7KJP.pdb', label: 'Norovirus GI.1 VP1 shell', note: 'Disulfide-stabilized Norovirus GI.1 VLP shell region.' },
@@ -69,12 +69,12 @@ const entries = [
 
   // Human metapneumovirus.
   { group: 'Human metapneumovirus', subtype: 'hMPV prefusion', antigen: 'F', pdbId: '5WB0', file: 'VIRUSLIB-HMPV-F-PREFUSION-5WB0.pdb', label: 'Human metapneumovirus prefusion F', note: 'Prefusion-stabilized hMPV fusion glycoprotein.' },
-  { group: 'Human metapneumovirus', subtype: 'hMPV A', antigen: 'F', pdbId: '4DAG', file: 'VIRUSLIB-HMPV-A-F-4DAG.pdb', label: 'Human metapneumovirus A F', note: 'hMPV A F with neutralizing antibody.' },
+  { group: 'Human metapneumovirus', subtype: 'hMPV A', antigen: 'F', pdbId: '4DAG', file: 'VIRUSLIB-HMPV-A-F-4DAG.pdb', label: 'Human metapneumovirus A F', note: 'hMPV A F with neutralizing antibody.', displayAntigenChains: ['A'], displayAntibodyChains: ['B', 'C'] },
   { group: 'Human metapneumovirus', subtype: 'hMPV postfusion', antigen: 'F', pdbId: '5L1X', file: 'VIRUSLIB-HMPV-F-POSTFUSION-5L1X.pdb', label: 'Human metapneumovirus postfusion F', note: 'Postfusion hMPV F.' },
 
   // Human parainfluenza virus. Reliable human PDB coverage is HPIV3-heavy.
   { group: 'Human parainfluenza virus', subtype: 'HPIV3', antigen: 'HN', pdbId: '4MZA', file: 'VIRUSLIB-HPIV3-HN-4MZA.pdb', label: 'HPIV3 hemagglutinin-neuraminidase', note: 'Human parainfluenza virus type 3 HN.' },
-  { group: 'Human parainfluenza virus', subtype: 'HPIV3', antigen: 'F prefusion', pdbId: '8DG8', file: 'VIRUSLIB-HPIV3-F-PREFUSION-8DG8.pdb', label: 'HPIV3 prefusion F', note: 'HPIV3 prefusion F trimer with Fab.' }
+  { group: 'Human parainfluenza virus', subtype: 'HPIV3', antigen: 'F prefusion', pdbId: '8DG8', file: 'VIRUSLIB-HPIV3-F-PREFUSION-8DG8.pdb', label: 'HPIV3 prefusion F', note: 'HPIV3 prefusion F trimer with Fab.', displayAntigenChains: ['A', 'D', 'E'], displayAntibodyChains: ['B', 'C'] }
 ];
 
 const gaps = [

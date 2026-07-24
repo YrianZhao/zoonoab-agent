@@ -38,12 +38,13 @@
         var cA = params.get('chainA') || '#9CA3AF';
         var cB = params.get('chainB') || '#60A5FA';
         var poseSeed = parseInt(params.get('poseSeed') || '0', 10) || 0;
-        function parseChains(value, fallback) {
+        function parseChains(value, fallback, allowExplicitEmpty) {
+            if (allowExplicitEmpty && value !== null && String(value).trim() === '') return [];
             var arr = String(value || '').split(',').map(function(s){ return s.trim(); }).filter(Boolean);
             return arr.length ? arr : fallback;
         }
         var antigenChains = parseChains(params.get('antigenChains'), ['A']);
-        var antibodyChains = parseChains(params.get('antibodyChains'), ['B']);
+        var antibodyChains = parseChains(params.get('antibodyChains'), ['B'], params.has('antibodyChains'));
         var visibleChains = antigenChains.concat(antibodyChains).filter(function(ch, idx, arr) {
             return ch && arr.indexOf(ch) === idx;
         });
@@ -66,7 +67,7 @@
                 var isAntibody = antibodyChains.indexOf(ch) >= 0;
                 if (isAntigen) {
                     glv.setStyle({chain:ch},{cartoon:{color: cA || '#FB923C'}});
-                } else if (isAntibody || (visibleChains.length === 1 && visibleChains[0] === ch)) {
+                } else if (isAntibody) {
                     glv.setStyle({chain:ch},{cartoon:{color: cB || '#2DD4BF'}});
                 } else {
                     hiddenChains.push(ch);

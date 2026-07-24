@@ -418,16 +418,20 @@ function summarizeVirusAsset(model) {
     assemblyId: model.assemblyId,
     experimentalMethod: model.experimentalMethod,
     resolutionAngstrom: model.resolutionAngstrom,
-    antigenChains: Array.isArray(model.entities)
+    antigenChains: Array.isArray(model.displayAntigenChains)
+      ? model.displayAntigenChains
+      : (Array.isArray(model.entities)
       ? model.entities
         .filter(entity => /hemagglutinin|\bHA\b|spike|glycoprotein|neuraminidase|antigen|fusion|attachment|VP1|Env/i.test(String(entity.description || '')))
         .flatMap(entity => Array.isArray(entity.chains) ? entity.chains : [])
-      : [],
-    antibodyChains: Array.isArray(model.entities)
+      : []),
+    antibodyChains: Array.isArray(model.displayAntibodyChains)
+      ? model.displayAntibodyChains
+      : (Array.isArray(model.entities)
       ? model.entities
         .filter(entity => /antibody|fab|heavy chain|light chain|neutralizing/i.test(String(entity.description || '')))
         .flatMap(entity => Array.isArray(entity.chains) ? entity.chains : [])
-      : []
+      : [])
   });
 }
 

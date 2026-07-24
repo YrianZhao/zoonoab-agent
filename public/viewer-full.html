@@ -96,9 +96,12 @@ body.compact-viewer .vwrap{height:100%;flex-basis:100%}
     function renderRoleLegend() {
         var el = document.getElementById('roleLegend');
         if (!el) return;
-        el.innerHTML =
-            '<span class="vf-role-item"><span class="vf-role-swatch" style="background:' + escHtmlText(AG_COLOR) + '"></span><strong>抗原</strong></span>' +
-            '<span class="vf-role-item"><span class="vf-role-swatch" style="background:' + escHtmlText(AB_COLOR) + '"></span><strong>抗体</strong></span>';
+        var html =
+            '<span class="vf-role-item"><span class="vf-role-swatch" style="background:' + escHtmlText(AG_COLOR) + '"></span><strong>抗原</strong></span>';
+        if (AB_CHAINS.length) {
+            html += '<span class="vf-role-item"><span class="vf-role-swatch" style="background:' + escHtmlText(AB_COLOR) + '"></span><strong>抗体</strong></span>';
+        }
+        el.innerHTML = html;
     }
     function renderAutoSpinBadge() {
         if (!AUTO_SPIN) return;
@@ -123,12 +126,13 @@ body.compact-viewer .vwrap{height:100%;flex-basis:100%}
         badge.setAttribute('aria-label', displayLabel);
         actions.appendChild(badge);
     }
-    function parseChains(value, fallback) {
+    function parseChains(value, fallback, allowExplicitEmpty) {
+        if (allowExplicitEmpty && value !== null && String(value).trim() === '') return [];
         var arr = String(value || '').split(',').map(function(s){ return s.trim(); }).filter(Boolean);
         return arr.length ? arr : fallback;
     }
     var AG_CHAINS = parseChains(params.get('antigenChains'), ['A']);
-    var AB_CHAINS = parseChains(params.get('antibodyChains'), ['B']);
+    var AB_CHAINS = parseChains(params.get('antibodyChains'), ['B'], params.has('antibodyChains'));
     var VISIBLE_CHAINS = AG_CHAINS.concat(AB_CHAINS).filter(function(ch, idx, arr) {
         return ch && arr.indexOf(ch) === idx;
     });
@@ -139,8 +143,7 @@ body.compact-viewer .vwrap{height:100%;flex-basis:100%}
         return selectorForChains(VISIBLE_CHAINS.length ? VISIBLE_CHAINS : AG_CHAINS.concat(AB_CHAINS));
     }
     function antibodySelector() {
-        if (AB_CHAINS.length) return selectorForChains(AB_CHAINS);
-        return selectorForChains(VISIBLE_CHAINS);
+        return AB_CHAINS.length ? selectorForChains(AB_CHAINS) : null;
     }
     function normalizeStyle(s) {
         s = String(s || 'cartoon').toLowerCase();
@@ -194,7 +197,7 @@ body.compact-viewer .vwrap{height:100%;flex-basis:100%}
                 glv.setStyle({not: visibleSelector()}, {});
                 // Surface mode: set underlying atom colors (surface picks up atom colors)
                 glv.setStyle(selectorForChains(AG_CHAINS), {color: AG_COLOR});
-                glv.setStyle(antibodySelector(), {color: AB_COLOR});
+                if (AB_CHAINS.length) glv.setStyle(antibodySelector(), {color: AB_COLOR});
                 return;
             }
 
@@ -202,7 +205,7 @@ body.compact-viewer .vwrap{height:100%;flex-basis:100%}
             // For non-surface styles: embed color INSIDE each style's spec
             // This is CRITICAL — 3Dmol ignores top-level "color" for cartoon/stick etc.
             applyByStyle(selectorForChains(AG_CHAINS), AG_COLOR);
-            applyByStyle(antibodySelector(), AB_COLOR);
+            if (AB_CHAINS.length) applyByStyle(antibodySelector(), AB_COLOR);
         },
 
         // Chain: product display keeps the same two role colors and hides non-selected chains.
@@ -211,12 +214,12 @@ body.compact-viewer .vwrap{height:100%;flex-basis:100%}
             if (currentStyle === 'surface') {
                 glv.setStyle({not: visibleSelector()}, {});
                 glv.setStyle(selectorForChains(AG_CHAINS), {color: AG_COLOR});
-                glv.setStyle(antibodySelector(), {color: AB_COLOR});
+                if (AB_CHAINS.length) glv.setStyle(antibodySelector(), {color: AB_COLOR});
                 return;
             }
             glv.setStyle({not: visibleSelector()}, {});
             applyByStyle(selectorForChains(AG_CHAINS), AG_COLOR);
-            applyByStyle(antibodySelector(), AB_COLOR);
+            if (AB_CHAINS.length) applyByStyle(antibodySelector(), AB_COLOR);
         },
 
         // Atom: color by atom type (CPK-like)
@@ -420,10 +423,12 @@ body.compact-viewer .vwrap{height:100%;flex-basis:100%}
         }
 
         try {
-            glv.addSurface(stype, {
-                opacity: 0.88,
-                color: AB_COLOR
-            }, antibodySelector(), {});
+            if (AB_CHAINS.length) {
+                glv.addSurface(stype, {
+                    opacity: 0.88,
+                    color: AB_COLOR
+                }, antibodySelector(), {});
+            }
         } catch(e) {
             console.warn('[VF] surface antibody err:', e);
         }
@@ -444,6 +449,10 @@ body.compact-viewer .vwrap{height:100%;flex-basis:100%}
         }
         glv.removeAllSurfaces();
         applyByStyle(selectorForChains(AG_CHAINS), AG_COLOR);
+        if (!AB_CHAINS.length) {
+            glv.setStyle({not: visibleSelector()}, {});
+            return;
+        }
         applyByStyle(antibodySelector(), AB_COLOR);
         glv.setStyle({not: visibleSelector()}, {});
 
@@ -461,7 +470,7 @@ body.compact-viewer .vwrap{height:100%;flex-basis:100%}
         } catch(e) {
             console.warn('[VF] interface detail err:', e);
             applyByStyle(selectorForChains(AG_CHAINS), AG_COLOR);
-            applyByStyle(antibodySelector(), AB_COLOR);
+            if (AB_CHAINS.length) applyByStyle(antibodySelector(), AB_COLOR);
         }
     }
 

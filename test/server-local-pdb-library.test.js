@@ -99,6 +99,17 @@ test('local PDB model library API lists local structures with viewer metadata', 
   assert.match(fluViewerPdbUrl, /chains=A%2CD%2CB%2CC/);
   assert.match(flu.updatedAt, /^\d{4}-\d{2}-\d{2}T/);
 
+  const fluH7 = data.models.find(model => model.filename === 'VIRUSLIB-FLU-HA-H07-8TNL.pdb');
+  assert.ok(fluH7, 'H7 biological assembly should be listed');
+  assert.deepEqual(fluH7.antigenChains, ['C', 'D', 'E']);
+  assert.deepEqual(fluH7.antibodyChains, ['A', 'B']);
+  assert.deepEqual(fluH7.sourceAntigenChains, ['C', 'D', 'E']);
+  assert.deepEqual(fluH7.sourceAntibodyChains, ['A', 'B', 'F', 'G', 'H', 'I']);
+  const fluH7ViewerUrl = new URL(fluH7.viewerUrl, 'http://127.0.0.1');
+  assert.equal(fluH7ViewerUrl.searchParams.get('antigenChains'), 'C,D,E');
+  assert.equal(fluH7ViewerUrl.searchParams.get('antibodyChains'), 'A,B');
+  assert.match(fluH7ViewerUrl.searchParams.get('pdb'), /chains=C%2CD%2CE%2CA%2CB/);
+
   const folr1 = data.models.find(model => model.filename === 'SOLIDLIB-HUMAN-FOLR1-RCSB-4KM6.pdb');
   assert.ok(folr1, 'solid-tumor antigen-only asset should be listed');
   assert.equal(folr1.targetDisplay, 'FOLR1');
@@ -109,7 +120,9 @@ test('local PDB model library API lists local structures with viewer metadata', 
   assert.equal(folr1.targetTag.tagged, true);
   assert.equal(folr1.targetTag.verifiedTag, true);
   assert.equal(folr1.targetTag.source, 'pdb-remark');
-  const folr1ViewerPdbUrl = new URL(folr1.viewerUrl, 'http://127.0.0.1').searchParams.get('pdb');
+  const folr1ViewerUrl = new URL(folr1.viewerUrl, 'http://127.0.0.1');
+  const folr1ViewerPdbUrl = folr1ViewerUrl.searchParams.get('pdb');
+  assert.equal(folr1ViewerUrl.searchParams.get('antibodyChains'), '');
   assert.match(folr1ViewerPdbUrl, /chains=A$/);
 
   const sost = data.models.find(model => model.filename === 'BONELIB-HUMAN-SOST-RCSB-2K8P.pdb');
