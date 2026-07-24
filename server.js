@@ -107,7 +107,6 @@ const QUESTION_TEST_SET_MAX_ITEMS = Math.max(100, Number(process.env.QUESTION_TE
 const QUESTION_TEST_SET_TEXT_MAX = Math.max(1000, Number(process.env.QUESTION_TEST_SET_TEXT_MAX || 4000) || 4000);
 const JSON_BODY_LIMIT = process.env.JSON_BODY_LIMIT || process.env.HISTORY_REQUEST_LIMIT || '8mb';
 const WORKFLOW_INTENT_TIMEOUT_MS = Math.max(8000, Number(process.env.WORKFLOW_INTENT_TIMEOUT_MS || 30000) || 30000);
-const DISPLAY_TRACE_TIMEOUT_MS = Math.max(3500, Number(process.env.DISPLAY_TRACE_TIMEOUT_MS || 15000) || 15000);
 const DISPLAY_TRACE_STEP_FLOOR_MS = process.env.NODE_ENV === 'test' ? 1 : 300;
 const DISPLAY_TRACE_STEP_MIN_MS = Math.max(DISPLAY_TRACE_STEP_FLOOR_MS, Number(process.env.DISPLAY_TRACE_STEP_MIN_MS || 700) || 700);
 const DISPLAY_TRACE_STEP_MAX_MS = Math.max(DISPLAY_TRACE_STEP_MIN_MS, Number(process.env.DISPLAY_TRACE_STEP_MAX_MS || 1500) || 1500);
@@ -8539,34 +8538,18 @@ function structureSearchPromptGuidance() {
 
 function buildWorkflowIntentPrompt() {
   return [
-    '你是 ZoonoAb 自然语言理解器。只做首轮快速路由和最小参数抽取。',
-    '只输出一行 JSON；不要 Markdown、代码块或额外解释；不要输出长理由、候选靶点列表、工作流展示文案或结构展示说明。',
-    'JSON 键固定：{"i":"design|chat","start":布尔,"answer":"短答","summary":"短需求摘要","disease":"疾病/方向或空","target":"真实蛋白/抗原/受体/细胞因子/病毒表面蛋白或空","gene":"基因名或空","organismName":"物种学名或空","organismTaxId":物种TaxID或null,"strain":"毒株或空","isoform":"蛋白亚型或空","label":"短方案代号或空","mech":"极短机制或空","ab":"Fab|VHH|mAb|scFv|IgG或空","n":数字或null,"block":"阻断对象或空","confidence":0到1,"clarify":布尔,"q":"需要澄清的问题或空"}',
-    'design：用户要设计、生成、筛选、开发抗体/单抗/Fab/VHH/scFv/binder/候选序列/抗体药物；疾病方向必须转成真实抗原或蛋白靶点，不要把疾病名当 target。',
-    'chat：普通闲聊、平台问答、非分子设计问题，或信息不足无法给出 target；answer 中文短答，最多 2 句。',
-    '小分子/半抗原边界：如果用户要求直接针对小分子、半抗原或化合物本身生成特异性抗体，输出 i=chat,start=false,answer，说明 ZoonoAb 面向大分子抗原/蛋白靶点，不直接生成小分子/半抗原抗体；不要把小分子硬转成蛋白靶点。',
-    '口语和不完整说法也要尽量理解为生物医学或分子设计意图；药物名可按已知适应症和作用靶点反推适合抗体设计的真实大分子靶点。',
+    '你是 ZoonoAb 学术分子设计任务解析引擎。这一次返回就是唯一的业务判断，必须同时完成意图识别、主靶点判断与最终回答入口判断。',
+    '只输出一行 JSON；不要 Markdown、代码块或额外解释。不要输出 workflow、profile、tool_call、tool_result、epitopeRows、referenceEntries。',
+    '唯一权威字段是 action，只能取 design、answer、clarify 三者之一。',
+    'JSON 键固定：{"action":"design|answer|clarify","answer":"短答或空","question":"澄清问题或空","summary":"任务摘要或空","background":"背景说明或空","disease":"疾病/方向或空","target":"明确靶点或空","gene":"基因名或空","targetType":"protein|receptor|cytokine|viral_surface_protein|bacterial_antigen|other 或空","organism":"物种或病原体或空","mechanism":"作用机制或空","antibodyType":"Fab|VHH|mAb|scFv|IgG或空","count":数字或null,"blockTarget":"阻断对象或空","selectionReason":"选择该靶点的理由或空","candidates":[{"target":"候选靶点","gene":"基因名或空","rationale":"候选理由"}],"assumptions":["必要假设"],"confidence":0到1}',
+    'design：用户明确要设计、生成、筛选、开发抗体/单抗/Fab/VHH/scFv/binder/候选分子时使用。只要请求里存在疾病、病原体、通路、抗原方向，就必须直接选择一个明确靶点，不得因为候选不止一个就转 clarify。',
+    'answer：普通问答、能力介绍、非分子设计问题，或小分子/半抗原边界问题。answer 最多 2 句。',
+    'clarify：只有在主语缺失到无法判断设计对象时才允许，例如“设计一个抗体”这类完全没有疾病、病原体、通路或靶点线索的输入。',
+    '小分子/半抗原边界：如果用户要求直接针对小分子、半抗原或化合物本身生成特异性抗体，返回 action=answer，并说明当前展示聚焦大分子抗原、蛋白靶点、受体、细胞因子和病原体表面抗原；不要把小分子硬转成蛋白靶点。',
+    '口语、简称和不完整说法也要尽量归一化为正式靶点；药物名可按已知适应症和作用靶点反推适合抗体设计的真实大分子靶点。',
     '流感口语靶点：H1-H18 亚型中和抗体按 Influenza A(Hx) hemagglutinin (HA)；明确说 NA/神经氨酸酶才选 Influenza NA。',
-    '常见疾病快速参考：肿瘤免疫治疗->PD-L1/block PD-1；过敏性哮喘->IL-33/block ST2；乳腺癌->HER2；自身免疫炎症->TNF；胰腺癌->MUC1 或 Mesothelin；胃癌->Claudin 18.2；肾盂癌/尿路上皮癌->Nectin-4；肾癌->CAIX；宫颈癌->Tissue Factor；ADHD->DAT；流感H7->Influenza A(H7) hemagglutinin (HA)。',
-    '示例：阻断 PD-1/PD-L1 通路，设计 10 个高亲和力 Fab -> {"i":"design","start":true,"summary":"PD-1/PD-L1 阻断 Fab 设计","disease":"肿瘤免疫治疗","target":"PD-L1","gene":"CD274","organismName":"","organismTaxId":null,"strain":"","isoform":"","label":"ONCOLOGY-PDL1-1","mech":"阻断 PD-1/PD-L1","ab":"Fab","n":10,"block":"PD-1","confidence":0.9,"clarify":false,"q":""}',
-    '示例：你好 -> {"i":"chat","start":false,"answer":"您好，我是小诺，可以帮您把疾病、靶点或候选分子需求整理成分子设计任务。","summary":"","disease":"","target":"","gene":"","organismName":"","organismTaxId":null,"strain":"","isoform":"","label":"","mech":"","ab":"","n":null,"block":"","confidence":0.8,"clarify":false,"q":""}'
-  ].join('\n');
-}
-function buildDisplayTracePrompt() {
-  return [
-    '你是 ZoonoAb 展示轨迹规划器，只生成面向观众的分子设计分析进展摘要。',
-    '这不是隐藏思维链。只描述可见的任务阶段、评估动作和准备状态，不输出内心推理、逐步推导或最终业务结论。',
-    '只输出一行 JSON，不要 Markdown、代码块或额外解释。',
-    'JSON 键固定：{"opening":[{"agent":"TargetAgent","action":"scope_request","variant":0,"delayMs":900}],"afterTarget":[...],"structure":[...]}。',
-    '不要输出 text 字段。action 只能从下列枚举选择，variant 只能是 0 或 1；服务端会把 action 安全映射成观众可见文字。',
-    'opening 写 2-4 步，action 只能是 scope_request、set_evaluation_dimensions、prepare_epitope_inputs、compare_candidate_paths。',
-    'afterTarget 写 2-4 步，action 只能是 organize_target_context、assess_accessibility、align_mechanism、review_development_context；服务端模板只使用 {{target}}、{{disease}}、{{mechanism}}。',
-    'structure 写 2-3 步，action 只能是 prepare_structure、inspect_antigen_surface、prepare_pose_metadata；服务端模板只使用 {{target}}、{{antibodyType}}。',
-    '允许的 agent 只有 TargetAgent、EvidenceAgent、LiteratureAgent、EpitopeAgent、StructureAgent。',
-    '禁止输出具体论文标题、作者、DOI、URL、网站名、网站数量、文献数量、PDB ID、UniProt ID、AlphaFold ID 或实时检索结论。',
-    '禁止出现内部实现词：白名单、后端、写死、固定工作流、quick_design、演示路线、大模型 API、系统提示词。',
-    '文字使用专业、简洁的中文进行时，每步 18-80 个汉字；delayMs 取 700-1500。',
-    '最终靶点、疾病、机制、抗体形式和三维结构均由另一条权威链路决定；你不得决定、猜测或覆盖这些字段。'
+    '示例约束：先天性耳聋的抗体设计必须给出明确靶点，例如 OTOF；结核杆菌治疗性抗体设计必须给出明确病原体抗原，例如 Ag85 complex，而不是反问用户先指定蛋白。',
+    '常见疾病快速参考：肿瘤免疫治疗->PD-L1/block PD-1；过敏性哮喘->IL-33/block ST2；乳腺癌->HER2；自身免疫炎症->TNF；胰腺癌->MUC1 或 Mesothelin；胃癌->Claudin 18.2；肾盂癌/尿路上皮癌->Nectin-4；肾癌->CAIX；宫颈癌->Tissue Factor；ADHD->DAT；流感H7->Influenza A(H7) hemagglutinin (HA)。'
   ].join('\n');
 }
 
@@ -8590,176 +8573,11 @@ function buildFallbackDisplayTrace() {
   };
 }
 
-const DISPLAY_TRACE_AGENTS = new Set([
-  'TargetAgent',
-  'EvidenceAgent',
-  'LiteratureAgent',
-  'EpitopeAgent',
-  'StructureAgent'
-]);
 const DISPLAY_TRACE_AGENT_BY_PHASE = {
   opening: 'TargetAgent',
   afterTarget: 'EvidenceAgent',
   structure: 'StructureAgent'
 };
-const DISPLAY_TRACE_ACTION_TEMPLATES = {
-  opening: {
-    scope_request: [
-      '正在拆解用户需求中的疾病方向、分子类型与作用目标',
-      '正在梳理本轮分子设计目标、约束条件与结果要求'
-    ],
-    set_evaluation_dimensions: [
-      '正在建立候选靶点的关联性、可及性与机制评估维度',
-      '正在整理候选方向的疾病关联、抗原暴露与机制匹配维度'
-    ],
-    prepare_epitope_inputs: [
-      '正在整理后续表位判断与结构准备所需的输入条件',
-      '正在归纳表位研判、结构准备与候选筛选的必要条件'
-    ],
-    compare_candidate_paths: [
-      '正在比较不同候选路径的作用目标与分子设计适配性',
-      '正在构建候选方向之间的机制与结构适配比较框架'
-    ]
-  },
-  afterTarget: {
-    organize_target_context: [
-      '围绕 {{target}} 归并 {{disease}} 相关的靶点线索',
-      '正在围绕 {{target}} 整理 {{disease}} 方向的关联背景'
-    ],
-    assess_accessibility: [
-      '正在比较 {{target}} 的抗原可及性与候选开发背景',
-      '正在评估 {{target}} 的表面可及条件与抗体开发适配性'
-    ],
-    align_mechanism: [
-      '正在围绕 {{target}} 确认 {{mechanism}} 与优先表位策略的一致性',
-      '正在核对 {{target}} 与 {{mechanism}} 的机制匹配关系'
-    ],
-    review_development_context: [
-      '正在归纳 {{target}} 的同类开发背景与候选优先条件',
-      '正在比较 {{target}} 的候选依据、结构条件与开发边界'
-    ]
-  },
-  structure: {
-    prepare_structure: [
-      '正在准备 {{target}} 的抗原结构与 {{antibodyType}} 结合约束',
-      '正在为 {{target}} 与 {{antibodyType}} 候选整理结构输入'
-    ],
-    inspect_antigen_surface: [
-      '正在检查 {{target}} 的抗原链形态与表面可及区域',
-      '正在评估 {{target}} 的整体构象、链集合与可及表面'
-    ],
-    prepare_pose_metadata: [
-      '正在为 {{target}} 的三维结果整理结构元信息与候选姿态',
-      '正在归纳 {{target}} 三维呈现所需的链信息与姿态条件'
-    ]
-  }
-};
-const DISPLAY_TRACE_ALLOWED_PLACEHOLDERS = new Set(['target', 'disease', 'mechanism', 'antibodyType']);
-const DISPLAY_TRACE_FORBIDDEN_PATTERN = /(?:https?:\/\/|www\.|\bdoi\b|\bpdb\b|uniprot|alphafold|rcsb|\b10\.\d{4,9}\/|\d+\s*(?:个|家|篇|条)\s*(?:网站|网页|论文|文献|数据库)|白名单|后端|写死|固定工作流|quick_design|演示路线|大模型\s*api|系统提示词)/i;
-
-function normalizeDisplayTraceStep(value, phase) {
-  const source = value && typeof value === 'object' ? value : {};
-  const action = String(source.action || '').trim();
-  const phaseTemplates = DISPLAY_TRACE_ACTION_TEMPLATES[phase] || {};
-  const variants = Array.isArray(phaseTemplates[action]) ? phaseTemplates[action] : null;
-  if (!variants || !variants.length) return null;
-  const variant = Math.abs(Math.round(Number(source.variant) || 0)) % variants.length;
-  const rawText = String(variants[variant] || '')
-    .replace(/[\u0000-\u001f\u007f]+/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim();
-  const charLength = Array.from(rawText).length;
-  if (charLength < 12 || charLength > 110 || DISPLAY_TRACE_FORBIDDEN_PATTERN.test(rawText)) return null;
-  const placeholders = [...rawText.matchAll(/\{\{\s*([A-Za-z]+)\s*\}\}/g)].map(match => match[1]);
-  if (placeholders.some(name => !DISPLAY_TRACE_ALLOWED_PLACEHOLDERS.has(name))) return null;
-  if (phase === 'opening' && placeholders.length) return null;
-  if (phase !== 'opening' && !placeholders.includes('target')) return null;
-  const withoutPlaceholders = rawText.replace(/\{\{\s*[A-Za-z]+\s*\}\}/g, '');
-  if (/[A-Za-z]{2,}|\d/.test(withoutPlaceholders)) return null;
-  const requestedAgent = String(source.agent || '').trim();
-  const agent = DISPLAY_TRACE_AGENTS.has(requestedAgent)
-    ? requestedAgent
-    : DISPLAY_TRACE_AGENT_BY_PHASE[phase];
-  const requestedDelay = Number(source.delayMs || source.delay || 0);
-  const delayMs = Math.max(
-    DISPLAY_TRACE_STEP_MIN_MS,
-    Math.min(DISPLAY_TRACE_STEP_MAX_MS, Number.isFinite(requestedDelay) && requestedDelay > 0 ? requestedDelay : 900)
-  );
-  return { agent, text: rawText, delayMs };
-}
-
-function normalizeDisplayTraceResult(data) {
-  const source = data && typeof data === 'object' ? data : {};
-  const fallback = buildFallbackDisplayTrace();
-  const limits = { opening: 4, afterTarget: 4, structure: 3 };
-  const normalized = {};
-  for (const phase of Object.keys(limits)) {
-    const values = Array.isArray(source[phase]) ? source[phase] : [];
-    const steps = values
-      .slice(0, limits[phase])
-      .map(value => normalizeDisplayTraceStep(value, phase))
-      .filter(Boolean);
-    normalized[phase] = steps.length >= 2 ? steps : fallback[phase];
-  }
-  return normalized;
-}
-
-async function resolveDisplayTraceWithModel(input, voiceSessionId) {
-  const text = String(input || '').trim();
-  const fallback = buildFallbackDisplayTrace();
-  const providers = getAssistantChatProviderCandidates(voiceSessionId);
-  const traceProvider = providers.find(provider => normalizeChatWireApi(provider && provider.wireApi) === 'chat_completions')
-    || providers[0]
-    || null;
-  if (!text || !traceProvider || !chatProviderIsReady(traceProvider) || typeof fetch !== 'function') {
-    return fallback;
-  }
-  try {
-    const result = await requestChatProvider(traceProvider, {
-      messages: [
-        { role: 'system', content: buildDisplayTracePrompt() },
-        { role: 'user', content: text.slice(0, 1000) }
-      ],
-      temperature: 0.4,
-      maxTokens: 300,
-      json: true
-    }, {
-      timeoutMs: DISPLAY_TRACE_TIMEOUT_MS
-    });
-    const parsed = extractJsonObjectFromText(result.text || '');
-    if (!parsed) {
-      recordDiagnosticEvent('display_trace_invalid_response', {
-        level: 'warn',
-        input: text,
-        provider: result.provider || '',
-        model: result.model || '',
-        responsePreview: String(result.text || '').slice(0, 400)
-      });
-      return fallback;
-    }
-    return normalizeDisplayTraceResult(parsed);
-  } catch (err) {
-    console.error('[DisplayTrace] request error:', err && err.message ? err.message : err);
-    recordDiagnosticEvent('display_trace_model_error', {
-      level: 'warn',
-      input: text,
-      provider: traceProvider.provider || '',
-      model: traceProvider.model || '',
-      error: summarizeDiagnosticError(err)
-    });
-    return fallback;
-  }
-}
-
-function shouldPrepareResearchTrace(input, voiceSessionId) {
-  const text = String(input || '').trim();
-  if (!text || shouldSuppressDesignWorkflow(text)) return false;
-  if (!getAssistantChatProviderCandidates(voiceSessionId).length) return false;
-  if (extractDesignRequest(text).isDesignRequest || detectDemoRoute(text)) return true;
-  const actionPattern = /(?:设计|生成|筛选|开发|制备|制作|做(?:一|几|十|\d)|来(?:一|几|十|\d)|搞(?:一|几|十|\d)|想(?:做|要|搞)|要(?:一|几|十|\d)|(?:给我|帮我)(?:设计|生成|筛选|开发|做|搞|来)).{0,20}(?:抗体|单抗|双抗|纳米抗体|分子|候选|序列|结合|抓住)|(?:antibody|mab|fab|vhh|binder|candidate).{0,20}(?:design|generate|develop|make|screen)/i;
-  const biomedicalPattern = /(?:抗体|单抗|双抗|纳米抗体|靶点|抗原|蛋白|受体|细胞因子|表位|肿瘤|癌|感染|病毒|细菌|病原体|细胞表面|免疫|通路|mab|antibody|target|antigen|protein|receptor|cytokine|epitope|cancer|tumou?r|virus|bacteri|pathogen)/i;
-  return actionPattern.test(text) && biomedicalPattern.test(text);
-}
 
 function interpolateDisplayTraceText(text, context) {
   const displayValue = (value, fallback, maxLength) => {
@@ -8822,30 +8640,17 @@ function completeResearchTrace(ws, runtime, status = 'completed', text = '') {
   sendResearchTraceEvent(ws, { type: 'research_trace_complete', status, text });
 }
 
-function startResearchTraceRuntime(ws, input, tracePromise) {
-  const fallback = buildFallbackDisplayTrace();
+function startResearchTraceRuntime(ws, input, trace = null) {
+  const fallback = trace || buildFallbackDisplayTrace();
   const runtime = {
     input: String(input || ''),
-    tracePromise,
     trace: fallback,
-    traceReady: false,
+    traceReady: true,
     stopped: false,
     completed: false,
     openingPromise: null,
-    traceSettledPromise: null
+    traceSettledPromise: Promise.resolve(fallback)
   };
-  runtime.traceSettledPromise = Promise.resolve(tracePromise)
-    .then(trace => {
-      if (trace && !runtime.stopped && !runtime.completed) {
-        runtime.trace = trace;
-        runtime.traceReady = true;
-      }
-      return trace || fallback;
-    })
-    .catch(err => {
-      if (!err || !err.isCancelled) console.error('[DisplayTrace] preparation error:', err && err.message ? err.message : err);
-      return fallback;
-    });
   sendResearchTraceEvent(ws, { type: 'assistant_thinking', active: true, topic: buildAssistantThinkingTopic(input) });
   runtime.openingPromise = (async () => {
     const initial = [{
@@ -9019,14 +8824,20 @@ function buildWorkflowProfileFromModelIntent(modelIntent) {
 
 function normalizeWorkflowIntentResult(data) {
   const source = data && typeof data === 'object' ? data : {};
+  const rawAction = String(source.action || '').trim().toLowerCase();
   const rawIntent = String(source.i || source.intent || '').trim().toLowerCase();
   const inferredDesign = Boolean(source.selectedTarget || source.selected_target || source.target || source.t || source.inputType || source.input_type);
   const hasWorkflowBlueprint = Boolean(source.workflow || source.profile || source.workflowProfile);
-  const shouldForceWorkflow = inferredDesign || hasWorkflowBlueprint;
-  const intent = rawIntent || (shouldForceWorkflow ? 'design' : '');
+  const shouldForceWorkflow = rawAction === 'design' || inferredDesign || hasWorkflowBlueprint;
+  const intent = rawAction || rawIntent || (shouldForceWorkflow ? 'design' : '');
   if (!intent) return null;
-  const normalizedIntent = intent === 'design_workflow' || intent === 'workflow' || intent === 'design' || shouldForceWorkflow ? 'design'
-    : (intent === 'assistant_chat' || intent === 'chat' ? 'assistant_chat' : '');
+  const normalizedIntent = (intent === 'design_workflow' || intent === 'workflow' || intent === 'design')
+    ? 'design'
+    : ((!rawAction && shouldForceWorkflow)
+      ? 'design'
+    : ((intent === 'assistant_chat' || intent === 'chat' || intent === 'answer' || intent === 'clarify')
+      ? 'assistant_chat'
+      : (shouldForceWorkflow ? 'design' : '')));
   if (!normalizedIntent) return null;
   const count = Number(source.n || source.count || 0);
   const abType = normalizeResolverTarget(source.a || source.ab || source.antibodyType || source.antibody_type || '');
@@ -9038,6 +8849,7 @@ function normalizeWorkflowIntentResult(data) {
   const answer = sanitizeAssistantText(source.answer || source.reply || '');
   const result = {
     intent: normalizedIntent,
+    action: rawAction || (normalizedIntent === 'design' ? 'design' : (Boolean(source.clarify || source.needsClarification) ? 'clarify' : 'answer')),
     shouldStartWorkflow: normalizedIntent === 'design' ? true : typeof source.start === 'boolean' ? source.start : false,
     count: Number.isFinite(count) && count > 0 ? Math.min(Math.round(count), 200) : null,
     target,
@@ -9051,17 +8863,25 @@ function normalizeWorkflowIntentResult(data) {
     disease: normalizeResolverTarget(source.disease || source.indication || ''),
     designLabel: normalizeResolverTarget(source.label || source.designLabel || source.design_label || ''),
     summary: String(source.summary || source.need || '').trim().slice(0, 260),
-    background: String(source.bg || source.background || '').trim().slice(0, 520),
-    reason: String(source.reason || source.rationale || '').trim().slice(0, 800),
+    background: String(source.bg || source.background || '').trim().slice(0, 800),
+    reason: String(source.selectionReason || source.reason || source.rationale || '').trim().slice(0, 1200),
     candidateTargets,
     mechanism: String(source.mech || source.mechanism || '').trim().slice(0, 360),
     answer,
     confidence: Math.max(0, Math.min(1, Number(source.confidence) || 0)),
-    needsClarification: normalizedIntent === 'design' ? false : Boolean(source.clarify || source.needsClarification),
-    clarifyingQuestion: String(source.q || source.question || source.clarifyingQuestion || '').trim().slice(0, 220),
+    targetType: normalizeResolverTarget(source.targetType || source.target_type || ''),
+    assumptions: (Array.isArray(source.assumptions) ? source.assumptions : [])
+      .map(item => String(item || '').trim().slice(0, 180))
+      .filter(Boolean)
+      .slice(0, 6),
+    needsClarification: rawAction === 'clarify' || (normalizedIntent !== 'design' && Boolean(source.clarify || source.needsClarification)),
+    clarifyingQuestion: String(source.q || source.question || source.clarifyingQuestion || '').trim().slice(0, 260),
     workflowBlueprint: source.workflow || source.profile || source.workflowProfile || null,
     workflowFields: normalizeCompactWorkflowFields(source.wf || source.workflowFields || source.display)
   };
+  if (result.action === 'design' && !result.target) return null;
+  if (result.action === 'answer' && !result.answer) return null;
+  if (result.action === 'clarify' && !result.clarifyingQuestion) return null;
   result.workflowProfile = buildWorkflowProfileFromModelIntent(result) || buildCompactWorkflowProfileFromModelIntent(result);
   return result;
 }
@@ -9098,7 +8918,7 @@ async function resolveWorkflowIntentWithModel(input, voiceSessionId) {
         { role: 'user', content: text.slice(0, 1000) }
       ],
       temperature: 0,
-      maxTokens: 360,
+      maxTokens: 780,
       json: true
     }, {
       timeoutMs: WORKFLOW_INTENT_TIMEOUT_MS
@@ -9660,7 +9480,7 @@ async function runResolvedDiseaseDesign(ws, input, voiceSessionId, modelIntent =
     send({ type: 'log', text: '[TargetAgent] 正在解析可进入抗体设计的具体靶点...' });
   }
   let resolution = null;
-  if (modelIntent) {
+  if (modelIntent && modelIntent.intent === 'design') {
     resolution = modelIntentToTargetResolution(input, modelIntent);
     if (!resolution) {
       await stopResearchTrace(ws, researchTraceRuntime, 'error');
@@ -10705,19 +10525,8 @@ async function resolveUserMessageRunner(msg, cleanText, scopedWs = null) {
     };
   }
   const voiceSessionId = msg && msg.voiceSessionId;
-  const intentPromise = resolveWorkflowIntentWithModel(cleanText, voiceSessionId);
-  const traceEnabled = Boolean(scopedWs && shouldPrepareResearchTrace(cleanText, voiceSessionId));
-  let tracePromise = traceEnabled
-    ? resolveDisplayTraceWithModel(cleanText, voiceSessionId)
-    : null;
-  let researchTraceRuntime = traceEnabled
-    ? startResearchTraceRuntime(scopedWs, cleanText, tracePromise)
-    : null;
-  const modelIntent = await intentPromise;
-  if (!researchTraceRuntime && scopedWs && modelIntent && modelIntent.intent === 'design' && modelIntent.shouldStartWorkflow !== false) {
-    tracePromise = resolveDisplayTraceWithModel(cleanText, voiceSessionId);
-    researchTraceRuntime = startResearchTraceRuntime(scopedWs, cleanText, tracePromise);
-  }
+  const modelIntent = await resolveWorkflowIntentWithModel(cleanText, voiceSessionId);
+  let researchTraceRuntime = null;
   if (modelIntent && modelIntent.error === 'missing_key') {
     await stopResearchTrace(scopedWs, researchTraceRuntime, 'error');
     return {
@@ -10740,7 +10549,7 @@ async function resolveUserMessageRunner(msg, cleanText, scopedWs = null) {
       runner: (socket) => runModelParseFailed(socket)
     };
   }
-  if (modelIntent.intent === 'assistant_chat' || modelIntent.shouldStartWorkflow === false) {
+  if (modelIntent.action === 'answer' || modelIntent.intent === 'assistant_chat' || modelIntent.shouldStartWorkflow === false) {
     await stopResearchTrace(scopedWs, researchTraceRuntime, 'completed');
     return {
       detectedIntent: 'assistant_chat',
@@ -10751,7 +10560,7 @@ async function resolveUserMessageRunner(msg, cleanText, scopedWs = null) {
       runner: (socket) => runDirectAssistantAnswer(socket, modelIntent.clarifyingQuestion || modelIntent.answer || '收到。')
     };
   }
-  if (modelIntent.intent === 'design' && modelIntent.needsClarification) {
+  if (modelIntent.action === 'clarify' || (modelIntent.intent === 'design' && modelIntent.needsClarification)) {
     await stopResearchTrace(scopedWs, researchTraceRuntime, 'completed');
     return {
       detectedIntent: 'design',
@@ -10770,6 +10579,7 @@ async function resolveUserMessageRunner(msg, cleanText, scopedWs = null) {
     modelIntent
   };
   if (modelIntent.intent === 'design') {
+    if (scopedWs) researchTraceRuntime = startResearchTraceRuntime(scopedWs, cleanText, buildFallbackDisplayTrace());
     return {
       ...routing,
       detectedIntent: 'design',

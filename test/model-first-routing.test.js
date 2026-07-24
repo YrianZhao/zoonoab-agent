@@ -267,22 +267,17 @@ test('compact model design result supplies core fields and lets the server build
     const evidenceCall = messages.find(msg => msg.type === 'tool_call' && msg.tool === 'target_evidence_review');
     const serialized = JSON.stringify(messages);
     const intentRequest = findIntentRequest(captured);
-    const traceRequest = findDisplayTraceRequest(captured);
 
     assert.ok(intentRequest, 'the authoritative intent request should be started');
-    assert.ok(traceRequest, 'the independent display trace request should be started');
-    assert.match(modelSystemPrompt(intentRequest), /首轮快速路由|最小参数抽取|短需求摘要/);
+    assert.equal(captured.length, 1, 'successful design routing should use a single authoritative model request');
+    assert.match(modelSystemPrompt(intentRequest), /唯一的业务判断|action|主靶点选择/);
     assert.doesNotMatch(modelSystemPrompt(intentRequest), /用于教育|路演|展会|产品演示|演示产品|非研究用途/);
-    assert.match(modelSystemPrompt(intentRequest), /不要输出长理由、候选靶点列表/);
-    assert.match(modelSystemPrompt(intentRequest), /JSON 键固定.*target.*gene.*ab.*n.*block/s);
-    assert.doesNotMatch(modelSystemPrompt(intentRequest), /220-420 个中文字|cands 给 5-7 个|候选靶点比较池|reason 和每个 cands\.r|modelNote/);
-    assert.doesNotMatch(modelSystemPrompt(intentRequest), /workflow\/profile|tool_call|tool_result|epitopeRows|referenceEntries/);
-    assert.ok(intentRequest.max_tokens <= 420);
+    assert.match(modelSystemPrompt(intentRequest), /只要请求里存在疾病、病原体、通路、抗原方向，就必须直接选择一个明确靶点|不得因为候选不止一个就转 clarify/s);
+    assert.match(modelSystemPrompt(intentRequest), /action.*design\|answer\|clarify|selectionReason|assumptions/s);
+    assert.match(modelSystemPrompt(intentRequest), /先天性耳聋.*OTOF|结核杆菌.*Ag85 complex/s);
+    assert.match(modelSystemPrompt(intentRequest), /不要输出 workflow、profile、tool_call、tool_result、epitopeRows、referenceEntries/);
+    assert.ok(intentRequest.max_tokens <= 800);
     assert.deepEqual(intentRequest.response_format, { type: 'json_object' });
-    assert.match(modelSystemPrompt(traceRequest), /展示轨迹规划器|action|variant|不要输出 text 字段/);
-    assert.doesNotMatch(modelSystemPrompt(traceRequest), /用于教育|路演|展会|产品演示|演示产品|非研究用途/);
-    assert.match(modelSystemPrompt(traceRequest), /\{\{target\}\}|\{\{disease\}\}|\{\{antibodyType\}\}/);
-    assert.deepEqual(traceRequest.response_format, { type: 'json_object' });
     assert.ok(evidenceCall, 'design response should enter workflow');
     assert.equal(evidenceCall.params.target, 'MUC1');
     assert.match(evidenceCall.params.route, /MUC1/);
@@ -311,12 +306,10 @@ test('compact model design result supplies core fields and lets the server build
   }
 });
 
-test('display trace planning and authoritative intent parsing start concurrently', async () => {
+test('authoritative intent parsing alone can wait and still start the workflow with local trace', async () => {
   const captured = [];
-  let traceSeen = false;
   let pendingIntentResponse = null;
   let pendingIntentTimer = null;
-  let intentReleasedAfterTrace = false;
   const mockServer = http.createServer((req, res) => {
     let body = '';
     req.setEncoding('utf8');
@@ -324,22 +317,6 @@ test('display trace planning and authoritative intent parsing start concurrently
     req.on('end', () => {
       const request = JSON.parse(body || '{}');
       captured.push(request);
-      if (isDisplayTraceRequest(request)) {
-        traceSeen = true;
-        sendModelContent(res, displayTraceContent());
-        if (pendingIntentResponse) {
-          clearTimeout(pendingIntentTimer);
-          intentReleasedAfterTrace = true;
-          sendModelContent(pendingIntentResponse, compactDesignContent());
-          pendingIntentResponse = null;
-        }
-        return;
-      }
-      if (traceSeen) {
-        intentReleasedAfterTrace = true;
-        sendModelContent(res, compactDesignContent());
-        return;
-      }
       pendingIntentResponse = res;
       pendingIntentTimer = setTimeout(() => {
         if (!pendingIntentResponse) return;
@@ -360,18 +337,17 @@ test('display trace planning and authoritative intent parsing start concurrently
     const evidenceCall = messages.find(msg => msg.type === 'tool_call' && msg.tool === 'target_evidence_review');
 
     assert.ok(findIntentRequest(captured));
-    assert.ok(findDisplayTraceRequest(captured));
-    assert.equal(intentReleasedAfterTrace, true, 'intent response should be able to wait for an already-started trace request');
+    assert.equal(captured.length, 1);
     assert.equal(evidenceCall?.params?.target, 'PD-L1');
+    assert.ok(messages.some(msg => msg.type === 'research_trace'));
   } finally {
     clearTimeout(pendingIntentTimer);
     await new Promise(resolve => mockServer.close(resolve));
   }
 });
 
-test('a model-resolved design starts one late display trace when local pretrigger does not match', async () => {
+test('a model-resolved design starts the workflow without a second trace model request when local pretrigger does not match', async () => {
   const captured = [];
-  const requestOrder = [];
   const mockServer = http.createServer((req, res) => {
     let body = '';
     req.setEncoding('utf8');
@@ -379,12 +355,6 @@ test('a model-resolved design starts one late display trace when local pretrigge
     req.on('end', () => {
       const request = JSON.parse(body || '{}');
       captured.push(request);
-      if (isDisplayTraceRequest(request)) {
-        requestOrder.push('trace');
-        sendModelContent(res, displayTraceContent());
-        return;
-      }
-      requestOrder.push('intent');
       sendModelContent(res, compactDesignContent({
         summary: '面向胰腺癌细胞表面识别生成候选分子。',
         bg: '胰腺癌细胞表面识别需要比较肿瘤相关膜抗原的表达与可及性。',
@@ -414,8 +384,7 @@ test('a model-resolved design starts one late display trace when local pretrigge
     const evidenceCall = messages.find(msg => msg.type === 'tool_call' && msg.tool === 'target_evidence_review');
     const traceEvents = messages.filter(msg => msg.type === 'research_trace');
 
-    assert.equal(requestOrder[0], 'intent', 'the local pretrigger should not start A before B resolves this phrasing');
-    assert.equal(captured.filter(isDisplayTraceRequest).length, 1, 'B should start exactly one late A request');
+    assert.equal(captured.length, 1);
     assert.equal(evidenceCall?.params?.target, 'MUC1');
     assert.ok(traceEvents.length > 0);
     assert.ok(traceEvents.every(event => event.clientRunId === 'late-trace-run-1'));
@@ -424,7 +393,7 @@ test('a model-resolved design starts one late display trace when local pretrigge
   }
 });
 
-test('an invalid display trace falls back without blocking the authoritative workflow', async () => {
+test('local display trace fallback stays visible without blocking the authoritative workflow', async () => {
   const captured = [];
   const mockServer = http.createServer((req, res) => {
     let body = '';
@@ -433,7 +402,7 @@ test('an invalid display trace falls back without blocking the authoritative wor
     req.on('end', () => {
       const request = JSON.parse(body || '{}');
       captured.push(request);
-      sendModelContent(res, isDisplayTraceRequest(request) ? 'not valid json' : compactDesignContent());
+      sendModelContent(res, compactDesignContent());
     });
   });
 
@@ -448,7 +417,7 @@ test('an invalid display trace falls back without blocking the authoritative wor
     const evidenceCall = messages.find(msg => msg.type === 'tool_call' && msg.tool === 'target_evidence_review');
     const traceEvents = messages.filter(msg => msg.type === 'research_trace');
 
-    assert.ok(findDisplayTraceRequest(captured));
+    assert.equal(captured.length, 1);
     assert.equal(evidenceCall?.params?.target, 'PD-L1');
     assert.ok(traceEvents.length > 0, 'local fallback steps should keep the progress display alive');
     assert.equal(messages.some(msg => msg.type === 'error'), false);
@@ -457,9 +426,8 @@ test('an invalid display trace falls back without blocking the authoritative wor
   }
 });
 
-test('a display trace timeout does not block the authoritative workflow result', async () => {
+test('local display trace generation does not block the authoritative workflow result', async () => {
   const captured = [];
-  const hangingTraceResponses = new Set();
   const mockServer = http.createServer((req, res) => {
     let body = '';
     req.setEncoding('utf8');
@@ -467,11 +435,6 @@ test('a display trace timeout does not block the authoritative workflow result',
     req.on('end', () => {
       const request = JSON.parse(body || '{}');
       captured.push(request);
-      if (isDisplayTraceRequest(request)) {
-        hangingTraceResponses.add(res);
-        res.on('close', () => hangingTraceResponses.delete(res));
-        return;
-      }
       sendModelContent(res, compactDesignContent());
     });
   });
@@ -487,17 +450,16 @@ test('a display trace timeout does not block the authoritative workflow result',
     const evidenceCall = messages.find(msg => msg.type === 'tool_call' && msg.tool === 'target_evidence_review');
 
     assert.ok(findIntentRequest(captured));
-    assert.ok(findDisplayTraceRequest(captured));
+    assert.equal(captured.length, 1);
     assert.equal(evidenceCall?.params?.target, 'PD-L1');
     assert.ok(messages.some(msg => msg.type === 'research_trace'));
     assert.equal(messages.some(msg => msg.type === 'error'), false);
   } finally {
-    for (const res of hangingTraceResponses) res.destroy();
     await new Promise(resolve => mockServer.close(resolve));
   }
 });
 
-test('target names invented by the display trace cannot replace the authoritative target', async () => {
+test('local trace never replaces the authoritative target selected by the model', async () => {
   const captured = [];
   const mockServer = http.createServer((req, res) => {
     let body = '';
@@ -506,15 +468,6 @@ test('target names invented by the display trace cannot replace the authoritativ
     req.on('end', () => {
       const request = JSON.parse(body || '{}');
       captured.push(request);
-      if (isDisplayTraceRequest(request)) {
-        sendModelContent(res, displayTraceContent({
-          afterTarget: [
-            { agent: 'EvidenceAgent', action: 'invent_HER2_target', variant: 0, delayMs: 20 },
-            { agent: 'TargetAgent', action: 'replace_with_HER2', variant: 1, delayMs: 20 }
-          ]
-        }));
-        return;
-      }
       sendModelContent(res, compactDesignContent());
     });
   });
@@ -530,7 +483,7 @@ test('target names invented by the display trace cannot replace the authoritativ
     const evidenceCall = messages.find(msg => msg.type === 'tool_call' && msg.tool === 'target_evidence_review');
     const visibleTrace = messages.filter(msg => msg.type === 'research_trace').map(msg => msg.text || '').join('\n');
 
-    assert.ok(findDisplayTraceRequest(captured));
+    assert.equal(captured.length, 1);
     assert.equal(evidenceCall?.params?.target, 'PD-L1');
     assert.doesNotMatch(visibleTrace, /HER2/);
     assert.match(visibleTrace, /PD-L1/);
@@ -598,7 +551,7 @@ test('compact model output can select a prepared structure target without return
     const serialized = JSON.stringify(messages);
 
     assert.ok(findIntentRequest(captured));
-    assert.ok(findDisplayTraceRequest(captured));
+    assert.equal(captured.length, 1);
     assert.ok(evidenceCall, 'core model fields should be enough to enter the workflow');
     assert.equal(evidenceCall.params.target, 'IL-33');
     assert.equal(evidenceCall.params.route, 'IL-33 / ST2');
@@ -739,7 +692,7 @@ test('model-resolved influenza subtype keeps its title while a disabled resolver
     const intentRequest = findIntentRequest(captured);
 
     assert.ok(intentRequest);
-    assert.ok(findDisplayTraceRequest(captured));
+    assert.equal(captured.length, 1);
     assert.match(modelSystemPrompt(intentRequest), /流感口语靶点|H1-H18|H7|hemagglutinin/);
     assert.ok(show3d, 'workflow should reach 3D display');
     assert.ok(Array.isArray(show3d.binderData));
@@ -935,8 +888,8 @@ test('compact prompt tells the model to infer distant or colloquial design wordi
     const intentRequest = findIntentRequest(captured);
 
     assert.ok(intentRequest);
-    assert.ok(findDisplayTraceRequest(captured));
-    assert.match(modelSystemPrompt(intentRequest), /口语和不完整说法|尽量理解/);
+    assert.equal(captured.length, 1);
+    assert.match(modelSystemPrompt(intentRequest), /口语、简称和不完整说法|尽量归一化/);
     assert.ok(evidenceCall, 'colloquial design wording should still enter workflow when the model resolves it');
     assert.equal(evidenceCall.params.target, 'Mesothelin');
     assert.match(agentTexts[0], /胰腺癌|Mesothelin|MSLN|细胞表面/);
@@ -997,7 +950,7 @@ test('drug-name requests are routed through the model so it can infer antibody d
     const intentRequest = findIntentRequest(captured);
 
     assert.ok(intentRequest);
-    assert.ok(findDisplayTraceRequest(captured));
+    assert.equal(captured.length, 1);
     assert.match(modelSystemPrompt(intentRequest), /药物名.*适应症.*作用靶点.*反推/);
     assert.match(modelSystemPrompt(intentRequest), /小分子\/半抗原边界|不要把小分子硬转成蛋白靶点/);
     assert.ok(evidenceCall, 'drug-name wording should still enter workflow when the model resolves it');
@@ -1023,8 +976,7 @@ test('small molecule antibody requests rely on the model to answer the platform 
         choices: [{
           message: {
             content: JSON.stringify({
-              i: 'chat',
-              start: false,
+              action: 'answer',
               answer: '当前 ZoonoAb 面向大分子抗原、蛋白靶点、受体、细胞因子和病毒表面抗原的抗体设计展示，不直接生成针对噻吩嗪这类小分子/半抗原的抗体候选。'
             })
           }
@@ -1046,7 +998,7 @@ test('small molecule antibody requests rely on the model to answer the platform 
     const intentRequest = findIntentRequest(captured);
 
     assert.ok(intentRequest);
-    assert.ok(findDisplayTraceRequest(captured));
+    assert.equal(captured.length, 1);
     assert.match(modelSystemPrompt(intentRequest), /小分子\/半抗原边界|不要把小分子硬转成蛋白靶点/);
     assert.match(agentTexts[0] || '', /噻吩嗪|小分子|大分子|不直接生成/);
     assert.doesNotMatch(serialized, /target_evidence_review|正在启动抗体设计工作流/);
@@ -1108,7 +1060,7 @@ test('model selected target is kept while the prompt can describe structure-supp
     const intentRequest = findIntentRequest(captured);
 
     assert.ok(intentRequest);
-    assert.ok(findDisplayTraceRequest(captured));
+    assert.equal(captured.length, 1);
     assert.match(modelSystemPrompt(intentRequest), /常见疾病快速参考|胃癌->Claudin 18\.2|肿瘤免疫治疗->PD-L1/);
     assert.ok(evidenceCall, 'model-selected target should enter the workflow');
     assert.equal(evidenceCall.params.target, 'Claudin 18.2');
@@ -1200,7 +1152,7 @@ test('slower model workflow blueprint responses are allowed to start the workflo
     const serialized = JSON.stringify(messages);
 
     assert.ok(findIntentRequest(captured));
-    assert.ok(findDisplayTraceRequest(captured));
+    assert.equal(captured.length, 1);
     assert.ok(evidenceCall, 'a complete workflow blueprint should not be aborted before it can start the workflow');
     assert.equal(evidenceCall.params.target, 'PD-L1');
     assert.equal(evidenceCall.params.route, 'PD-L1 肿瘤免疫检查点阻断路线');
@@ -1308,7 +1260,7 @@ test('model-selected Claudin 18.2 requests upgrade from representative fallback 
     const serialized = JSON.stringify(messages);
 
     assert.ok(findIntentRequest(captured));
-    assert.ok(findDisplayTraceRequest(captured));
+    assert.equal(captured.length, 1);
     assert.ok(evidenceCall, 'workflow should start from the model-selected target');
     assert.equal(evidenceCall.params.target, 'Claudin 18.2');
     assert.ok(show3d, 'test mode should surface the prepared Claudin 18.2 local complex');

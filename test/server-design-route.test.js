@@ -530,12 +530,12 @@ test('server can let the chat model route terse monoclonal slang into workflow',
     assert.ok(evidenceCall, 'model-routed slang request should enter target-resolution workflow');
     assert.equal(evidenceCall.params.target, 'TMV coat protein');
     assert.ok(intentRequest);
-    assert.ok(captured.some(isDisplayTraceRequest));
-    assert.match(modelSystemPrompt(intentRequest), /自然语言理解器|首轮快速路由|最小参数抽取/);
+    assert.equal(captured.length, 1);
+    assert.match(modelSystemPrompt(intentRequest), /唯一的业务判断|action|主靶点选择/);
     assert.doesNotMatch(modelSystemPrompt(intentRequest), /选择理由|wf|modelNote|cands 给 5-7 个/);
-    assert.doesNotMatch(modelSystemPrompt(intentRequest), /workflow\/profile|tool_call|tool_result|epitopeRows|referenceEntries/);
+    assert.match(modelSystemPrompt(intentRequest), /不要输出 workflow、profile、tool_call、tool_result、epitopeRows、referenceEntries/);
     assert.deepEqual(intentRequest.response_format, { type: 'json_object' });
-    assert.ok(intentRequest.max_tokens <= 420);
+    assert.ok(intentRequest.max_tokens <= 800);
   } finally {
     await new Promise(resolve => mockServer.close(resolve));
   }
@@ -745,10 +745,10 @@ test('server previews exact local-library assets for explicit targets without pr
     {
       text: '设计10个针对DRD4的Fab',
       expectedTarget: 'DRD4',
-      expectedFile: 'NEUROLIB-HUMAN-DRD4-RCSB-5WIU.pdb',
-      expectedPoseKind: 'antigen_only',
+      expectedFile: 'DRD4-Fab-5WIU.pdb',
+      expectedPoseKind: 'experimental_complex',
       expectedAntigenChains: ['A'],
-      expectedAntibodyChains: []
+      expectedAntibodyChains: ['B', 'C']
     },
     {
       text: '设计10个针对IGF1R的Fab',
@@ -1320,7 +1320,7 @@ test('disease design requests resolve a real target before launching the workflo
     assert.equal(captured.authorization, 'Bearer test-target-resolver-secret');
     assert.equal(captured.body.model, 'mock-target-resolver');
     assert.deepEqual(captured.body.response_format, { type: 'json_object' });
-    assert.match(captured.body.messages[0].content, /自然语言理解器|疾病方向|选择理由|JSON/);
+    assert.match(captured.body.messages[0].content, /唯一的业务判断|action|主靶点选择|JSON/);
     assert.match(captured.body.messages[1].content, /设计一个针对肥胖的抗体/);
     assert.match(agentTexts[0], /肥胖|OBESITY-1|Myostatin|GDF8/);
     assert.equal(evidenceCall.params.target, 'Myostatin');
@@ -1403,7 +1403,7 @@ test('implicit pathogen target requests call the model before launching the work
 
     assert.equal(captured.method, 'POST');
     assert.equal(captured.body.model, 'mock-pathogen-target');
-    assert.match(captured.body.messages[0].content, /自然语言理解器|选择理由|疾病方向/);
+    assert.match(captured.body.messages[0].content, /唯一的业务判断|action|主靶点选择/);
     assert.equal(firstBusinessMessage.type, 'assistant_thinking');
     assert.equal(thinkingMessages.length, 1);
     assert.match(thinkingMessages[0].topic, /biomedical design intent/i);
@@ -1675,10 +1675,10 @@ test('tumor immunotherapy disease requests use one compact model parse before wo
     const intentRequest = findIntentRequest(captured);
 
     assert.ok(intentRequest, 'tumor immunotherapy should use one authoritative compact parse');
-    assert.ok(captured.some(isDisplayTraceRequest));
+    assert.equal(captured.length, 1);
     assert.equal(intentRequest.model, 'mock-tumor-target-resolver');
     assert.deepEqual(intentRequest.response_format, { type: 'json_object' });
-    assert.match(modelSystemPrompt(intentRequest), /自然语言理解器|首轮快速路由|JSON/);
+    assert.match(modelSystemPrompt(intentRequest), /唯一的业务判断|action|主靶点选择/);
     assert.match(intentRequest.messages[1].content, /肿瘤免疫治疗方向/);
     assert.match(agentTexts[0], /肿瘤免疫治疗|PD-L1|CD274|ONCOLOGY-PDL1-1/);
     assert.equal(evidenceCall.params.target, 'PD-L1');

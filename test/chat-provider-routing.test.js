@@ -272,7 +272,7 @@ test('assistant model uses the responses primary provider before fallback in aut
   }
 });
 
-test('design intent uses the authoritative responses primary while display trace prefers chat completions', async () => {
+test('design intent uses only the authoritative responses primary while local trace stays visible', async () => {
   const primary = makeResponsesServer({
     reply: () => JSON.stringify({
       i: 'design',
@@ -301,22 +301,7 @@ test('design intent uses the authoritative responses primary while display trace
       }
     })
   });
-  const fallback = makeChatCompletionsServer({
-    reply: () => JSON.stringify({
-      opening: [
-        { agent: 'TargetAgent', action: 'scope_request', variant: 0, delayMs: 300 },
-        { agent: 'EvidenceAgent', action: 'set_evaluation_dimensions', variant: 1, delayMs: 300 }
-      ],
-      afterTarget: [
-        { agent: 'EvidenceAgent', action: 'organize_target_context', variant: 0, delayMs: 300 },
-        { agent: 'LiteratureAgent', action: 'assess_accessibility', variant: 1, delayMs: 300 }
-      ],
-      structure: [
-        { agent: 'StructureAgent', action: 'prepare_structure', variant: 0, delayMs: 300 },
-        { agent: 'EpitopeAgent', action: 'inspect_antigen_surface', variant: 1, delayMs: 300 }
-      ]
-    })
-  });
+  const fallback = makeChatCompletionsServer({ reply: '不应该使用备用模型' });
   const primaryPort = await listenOnLocalhost(primary.server);
   const fallbackPort = await listenOnLocalhost(fallback.server);
   try {
@@ -331,11 +316,9 @@ test('design intent uses the authoritative responses primary while display trace
 
     assert.equal(primary.requests.length, 1);
     assert.equal(primary.requests[0].url, '/v1/responses');
-    assert.match(String(primary.requests[0].body.input?.[0]?.content || ''), /自然语言理解器|核心 JSON/);
+    assert.match(String(primary.requests[0].body.input?.[0]?.content || ''), /唯一的业务判断|action|主靶点选择/);
     assert.equal(primary.requests[0].body.reasoning.effort, 'xhigh');
-    assert.equal(fallback.requests.length, 1);
-    assert.equal(fallback.requests[0].url, '/v1/chat/completions');
-    assert.match(String(fallback.requests[0].body.messages?.[0]?.content || ''), /展示轨迹规划器/);
+    assert.equal(fallback.requests.length, 0);
     assert.equal(evidenceCall?.params?.target, 'PD-L1');
     assert.ok(messages.some(msg => msg.type === 'research_trace' && msg.clientRunId === 'composite-provider-run-1'));
   } finally {
