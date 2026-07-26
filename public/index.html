@@ -379,6 +379,42 @@
             50% { box-shadow: 0 0 0 6px rgba(var(--status-pulse-rgb), 0); }
         }
 
+        .page-fullscreen-btn {
+            position: fixed;
+            top: 76px;
+            right: calc(20px + env(safe-area-inset-right));
+            z-index: 140;
+            width: 38px;
+            height: 38px;
+            padding: 0;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            background: rgba(255,255,255,0.96);
+            color: var(--text-secondary);
+            box-shadow: var(--shadow-sm);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        .page-fullscreen-btn:hover {
+            border-color: rgba(0,123,255,0.25);
+            background: var(--brand-lighter);
+            color: var(--brand-dark);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-1px);
+        }
+        .page-fullscreen-btn:focus-visible {
+            outline: 3px solid rgba(0,123,255,0.2);
+            outline-offset: 2px;
+        }
+        .page-fullscreen-btn .fullscreen-exit-icon { display: none; }
+        .page-fullscreen-btn.is-active .fullscreen-enter-icon { display: none; }
+        .page-fullscreen-btn.is-active .fullscreen-exit-icon { display: block; }
+        html:fullscreen,
+        html:-webkit-full-screen { background: var(--bg-page); }
+
         /* ═══════════════ Main Container ═══════════════ */
         .main-container {
             width: 100%;
@@ -3190,6 +3226,13 @@
             .header-btn-label,
             #langLabel { display: none; }
 
+            .page-fullscreen-btn {
+                top: 66px;
+                right: calc(12px + env(safe-area-inset-right));
+                width: 36px;
+                height: 36px;
+            }
+
             /* ── Typography scaling ── */
             .hero-section { padding: 20px 0 0; }
             .hero-title { font-size: 26px; margin-bottom: 10px; overflow-wrap: anywhere; }
@@ -5270,6 +5313,11 @@
         </div>
     </header>
 
+    <button class="page-fullscreen-btn" id="pageFullscreenBtn" type="button" onclick="togglePageFullscreen()" title="进入全屏" aria-label="进入全屏" aria-pressed="false">
+        <i class="fullscreen-enter-icon" data-lucide="maximize" style="width:17px;height:17px;"></i>
+        <i class="fullscreen-exit-icon" data-lucide="minimize" style="width:17px;height:17px;"></i>
+    </button>
+
     <main class="main-container">
         <div class="initial-center-group">
             <!-- Hero Area -->
@@ -6569,7 +6617,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '69498268';
+    const APP_BUILD_VERSION = '69498269';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
     const SILICONFLOW_CHAT_FALLBACK_MODELS = ['Qwen/Qwen3-32B', 'Qwen/Qwen3-14B', 'Qwen/Qwen3-8B', 'deepseek-ai/DeepSeek-V3'];
@@ -6860,6 +6908,48 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     function refreshLucideIcons(options) {
         if (window.lucide && typeof window.lucide.createIcons === 'function') {
             window.lucide.createIcons(options);
+        }
+    }
+
+    function getPageFullscreenElement() {
+        return document.fullscreenElement || document.webkitFullscreenElement || null;
+    }
+
+    function syncPageFullscreenButton() {
+        const button = document.getElementById('pageFullscreenBtn');
+        if (!button) return;
+        const isFullscreen = Boolean(getPageFullscreenElement());
+        const label = LANG === 'zh'
+            ? (isFullscreen ? '退出全屏' : '进入全屏')
+            : (isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen');
+        button.classList.toggle('is-active', isFullscreen);
+        button.setAttribute('aria-pressed', isFullscreen ? 'true' : 'false');
+        button.setAttribute('aria-label', label);
+        button.title = label;
+    }
+
+    async function togglePageFullscreen() {
+        try {
+            if (getPageFullscreenElement()) {
+                const exitFullscreen = document.exitFullscreen || document.webkitExitFullscreen;
+                if (exitFullscreen) await Promise.resolve(exitFullscreen.call(document));
+                return;
+            }
+
+            const page = document.documentElement;
+            const requestFullscreen = page.requestFullscreen || page.webkitRequestFullscreen;
+            if (!requestFullscreen) {
+                showToast(LANG === 'zh' ? '当前浏览器不支持全屏' : 'Fullscreen is not supported by this browser', 'warning');
+                return;
+            }
+            await Promise.resolve(requestFullscreen.call(page));
+        } catch (error) {
+            reportClientDiagnostic('client_fullscreen_error', {
+                message: error && error.message ? error.message : String(error || '')
+            });
+            showToast(LANG === 'zh' ? '全屏开启失败，请重试' : 'Fullscreen could not be started. Please try again.', 'warning');
+        } finally {
+            syncPageFullscreenButton();
         }
     }
 
@@ -20353,6 +20443,7 @@ ${fallbackTableRows(profile.rows)}
 
         // Set html lang attribute
         document.documentElement.lang = LANG === 'zh' ? 'zh-CN' : 'en';
+        syncPageFullscreenButton();
     }
 
     function renderBuildVersion() {
@@ -20385,6 +20476,9 @@ ${fallbackTableRows(profile.rows)}
         refreshLucideIcons();
         renderBuildVersion();
         syncSidebarLayout();
+        syncPageFullscreenButton();
+        document.addEventListener('fullscreenchange', syncPageFullscreenButton);
+        document.addEventListener('webkitfullscreenchange', syncPageFullscreenButton);
         window.addEventListener('resize', syncSidebarLayout);
 
         // Apply translations
@@ -20662,6 +20756,10 @@ QVQLVESGGGLVQPGGSLRLSCAASGYIFSSNAMGWYRQAPGKQRELVAAISSGGSTYYADSVKGRFTISRDNAKTTLYL
     // Close on overlay click or Escape
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
+            if (getPageFullscreenElement()) {
+                togglePageFullscreen();
+                return;
+            }
             if (voiceState === 'listening') {
                 stopVoiceCapture({ cancel: true });
                 return;
