@@ -700,7 +700,11 @@ test('model-resolved influenza subtype keeps its title while a disabled resolver
     assert.equal(show3d.binderData[0].routeLabel, 'Influenza A(H7) hemagglutinin (HA)');
     assert.equal(show3d.binderData[0].file, 'VIRUSLIB-FLU-HA-H07-8TNL.pdb');
     assert.match(show3d.binderData[0].structureTitle, /Influenza A\(H7\) hemagglutinin \(HA\)/);
-    assert.equal(show3d.binderData[0].structure.pose.kind, 'experimental_complex');
+    assert.equal(show3d.binderData[0].structure.pose.kind, 'representative_interface');
+    assert.deepEqual(show3d.binderData[0].antigenChains, ['C']);
+    assert.deepEqual(show3d.binderData[0].antibodyChains, ['A', 'B']);
+    assert.deepEqual(show3d.binderData[0].structure.coordinates.sourceAntigenChains, ['C', 'D', 'E']);
+    assert.deepEqual(show3d.binderData[0].structure.coordinates.sourceAntibodyChains, ['A', 'B', 'F', 'G', 'H', 'I']);
     assert.equal(show3d.binderData[0].structure.coordinates.targetVerified, true);
     assert.match(show3d.binderData[0].structure.coordinates.coordinateAntigenLabel, /Influenza A H7 HA/);
     assert.equal(show3d.binderData[0].structure.display.grade, 'A');

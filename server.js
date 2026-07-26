@@ -4943,6 +4943,8 @@ function routeDisplaySequence(profile, idx) {
 }
 
 function getRoute3DPreset(profile) {
+  const fluSubtypePreset = influenzaHaSubtype3DPreset(profile);
+  if (fluSubtypePreset) return fluSubtypePreset;
   const routeId = profile && profile.routeId;
   if (routeId && ROUTE_3D_PRESETS[routeId]) return ROUTE_3D_PRESETS[routeId];
   const target = (profile && profile.targetDisplay) || '';
@@ -4953,8 +4955,6 @@ function getRoute3DPreset(profile) {
   if (canineContext && /(?:\bNGF\b|nerve growth factor|神经生长因子)/i.test(target)) {
     return ROUTE_3D_PRESETS.veterinary_canine_ngf;
   }
-  const fluSubtypePreset = influenzaHaSubtype3DPreset(profile);
-  if (fluSubtypePreset) return fluSubtypePreset;
   if (isInfluenzaHaFamilyTarget(target)) return ROUTE_3D_PRESETS.infectious_flu;
   if (target === 'ANGPTL3' && /心血管|血脂/.test(disease)) return ROUTE_3D_PRESETS.cardio_angptl3;
   if (target === 'ANGPTL3') return ROUTE_3D_PRESETS.metabolic_angptl3;
@@ -5204,7 +5204,22 @@ function hasExactLocalAssetStructure(profile) {
   return localLibraryAssetEntriesForProfile(profile).length > 0;
 }
 
+function normalizeVirusLibraryDisplayChains(value) {
+  return [...new Set((Array.isArray(value) ? value : [])
+    .map(chain => String(chain || '').trim())
+    .filter(chain => /^[A-Za-z0-9]$/.test(chain)))];
+}
+
 function virusLibraryChainsForModel(model) {
+  const explicitAntigen = normalizeVirusLibraryDisplayChains(model && model.displayAntigenChains);
+  const explicitAntibody = normalizeVirusLibraryDisplayChains(model && model.displayAntibodyChains);
+  if (explicitAntigen.length || explicitAntibody.length) {
+    return {
+      antigen: explicitAntigen,
+      antibody: explicitAntibody
+    };
+  }
+
   const entities = Array.isArray(model && model.entities) ? model.entities : [];
   const antigenLabel = String(model && model.antigen || '').trim();
   const antigenPattern = antigenLabel === 'HA'
@@ -5253,6 +5268,17 @@ function findInfluenzaHaSubtypeVirusModel(profile) {
   }
 }
 
+function representativeInfluenzaHaSubtypeChains(chains) {
+  const antigen = [...new Set((chains && Array.isArray(chains.antigen) ? chains.antigen : []).map(chain => String(chain || '').trim()).filter(Boolean))];
+  const antibody = [...new Set((chains && Array.isArray(chains.antibody) ? chains.antibody : []).map(chain => String(chain || '').trim()).filter(Boolean))];
+  const representativeComplex = antibody.length > 2 || (antigen.length > 1 && antibody.length >= 2);
+  return {
+    antigen: representativeComplex ? antigen.slice(0, 1) : antigen,
+    antibody: representativeComplex ? antibody.slice(0, 2) : antibody,
+    representativeComplex
+  };
+}
+
 function influenzaHaSubtype3DPreset(profile) {
   const model = findInfluenzaHaSubtypeVirusModel(profile);
   if (!model) return null;
@@ -5260,21 +5286,32 @@ function influenzaHaSubtype3DPreset(profile) {
   const subtypeNo = influenzaHaSubtypeNumber(target) || Number(String(model.subtype || '').replace(/^H/i, '')) || null;
   const padded = subtypeNo ? String(subtypeNo).padStart(2, '0') : '';
   const chains = virusLibraryChainsForModel(model);
+  const displayChains = representativeInfluenzaHaSubtypeChains(chains);
   const pdbLabel = model.pdbId ? 'RCSB ' + model.pdbId : '本地 H' + (subtypeNo || '') + ' HA 结构';
+  const sourceAntigenChains = chains.antigen.length ? chains.antigen : ['C'];
+  const sourceAntibodyChains = chains.antibody.length ? chains.antibody : ['A', 'B'];
+  const displayAntigenChains = displayChains.antigen.length ? displayChains.antigen : sourceAntigenChains.slice(0, 1);
+  const displayAntibodyChains = displayChains.antibody.length ? displayChains.antibody : sourceAntibodyChains.slice(0, 2);
+  const displayMode = displayChains.representativeComplex ? 'representative_interface' : 'experimental_complex';
+  const visualSummary = displayChains.representativeComplex
+    ? ('基于本地 ' + (subtypeNo ? 'H' + subtypeNo + ' ' : '') + 'HA 公开中和抗体复合物结构，提取单个 HA protomer 与一套 Fab 作为稳定代表性结合界面展示。')
+    : ('基于本地 ' + (subtypeNo ? 'H' + subtypeNo + ' ' : '') + 'HA 公开中和抗体复合物结构，展示 HA 抗原与 Fab 的空间结合界面。');
+  const structuralBasis = displayChains.representativeComplex
+    ? (pdbLabel + ' ' + target + ' / representative HA protomer-neutralizing antibody interface')
+    : (pdbLabel + ' ' + target + ' / neutralizing antibody complex');
   return {
     ...ROUTE_3D_PRESETS.infectious_flu,
     aliasPrefix: padded ? 'VIRUSLIB-FLU-HA-H' + padded : String(model.file || '').replace(/-[^-]+\.pdb$/i, ''),
     files: [model.file],
     title: target + ' Fab 中和表位构象',
     structureFamily: target + ' · 中和 Fab 候选',
-    visualSummary: '基于本地 ' + (subtypeNo ? 'H' + subtypeNo + ' ' : '') + 'HA 公开中和抗体复合物结构，展示 HA 抗原与 Fab 的空间结合界面。',
-    structuralBasis: pdbLabel + ' ' + target + ' / neutralizing antibody complex',
-    antigenChains: chains.antigen.length ? chains.antigen : ['C'],
-    antibodyChains: chains.antibody.length ? chains.antibody : ['A', 'B'],
-    sourceAntigenChains: chains.antigen.length ? chains.antigen : ['C'],
-    sourceAntibodyChains: chains.antibody.length ? chains.antibody : ['A', 'B'],
-    displayMode: 'experimental_complex',
-    keepAllAntibodyChains: true,
+    visualSummary,
+    structuralBasis,
+    antigenChains: displayAntigenChains,
+    antibodyChains: displayAntibodyChains,
+    sourceAntigenChains: sourceAntigenChains,
+    sourceAntibodyChains: sourceAntibodyChains,
+    displayMode,
     antigenColor: '#0891B2',
     antibodyColor: '#FB7185'
   };

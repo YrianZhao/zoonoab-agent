@@ -642,15 +642,24 @@ test('server previews exact SARS-CoV-2 RBD structures even when local files omit
   }
 });
 
-test('server preserves influenza HA subtype display names and leaves non-exact family structures for online resolution', async () => {
+test('server preserves influenza HA subtype display names and previews the matching local H7 interface', async () => {
   const query = encodeURIComponent('设计一个针对流感 H7 的中和抗体');
   const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/design-route?text=' + query);
   assert.equal(res.status, 200);
   const data = await res.json();
   assert.equal(data.parsed.target, 'Influenza A(H7) hemagglutinin (HA)');
   assert.equal(data.profile.targetDisplay, 'Influenza A(H7) hemagglutinin (HA)');
-  assert.deepEqual(data.threeDPreview.binders, []);
-  assert.deepEqual(data.threeDPreview.files, []);
+  assert.equal(data.threeDPreview.binders.length, 1);
+  assert.equal(data.threeDPreview.files[0], 'VIRUSLIB-FLU-HA-H07-8TNL.pdb');
+  const binder = data.threeDPreview.binders[0];
+  assert.equal(binder.file, 'VIRUSLIB-FLU-HA-H07-8TNL.pdb');
+  assert.equal(binder.structure.coordinates.targetVerified, true);
+  assert.equal(binder.structure.pose.kind, 'representative_interface');
+  assert.deepEqual(binder.antigenChains, ['C']);
+  assert.deepEqual(binder.antibodyChains, ['A', 'B']);
+  assert.deepEqual(binder.sourceAntigenChains, ['C', 'D', 'E']);
+  assert.deepEqual(binder.sourceAntibodyChains, ['A', 'B', 'F', 'G', 'H', 'I']);
+  assert.match(binder.structuralBasis, /RCSB 8TNL/);
   assert.doesNotMatch(JSON.stringify(data.threeDPreview), /FluHA-Fab|3GBM/);
 });
 
