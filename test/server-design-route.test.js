@@ -1901,6 +1901,47 @@ test('HER2 receptor model output resolves to the HER2 local route instead of the
   }
 });
 
+test('catalog target aliases and receptor variants resolve to their canonical prepared targets', async () => {
+  const catalog = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'pdb/local-structure-catalog.json'), 'utf8'));
+  const routePresets = Array.isArray(catalog.routePresets) ? catalog.routePresets : [];
+  const cases = [];
+  for (const entry of routePresets) {
+    if (!entry || !entry.routeId || !entry.target) continue;
+    const target = String(entry.target || '').trim();
+    const gene = String(entry.gene || '').trim();
+    const aliases = [
+      ...(Array.isArray(entry.aliases) ? entry.aliases : []),
+      gene,
+      target && !/\breceptor\b/i.test(target) ? target + ' receptor' : '',
+      gene && !/\breceptor\b/i.test(target) ? gene + ' receptor' : ''
+    ].map(item => String(item || '').trim()).filter(Boolean);
+    const preferredAlias = aliases.find(alias => alias && alias !== target) || target;
+    cases.push({ routeId: entry.routeId, canonical: target, alias: preferredAlias });
+  }
+
+  const failures = [];
+  for (const item of cases) {
+    const query = encodeURIComponent(`请为${item.alias}设计一个候选抗体`);
+    const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/user-routing?text=' + query);
+    assert.equal(res.status, 200);
+    const data = await res.json();
+    const routeTarget = data && data.demoRoute && data.demoRoute.target ? data.demoRoute.target : '';
+    if (!(data.localWorkflowAllowed === true && data.runner === 'local_workflow' && routeTarget === item.canonical)) {
+      failures.push({
+        routeId: item.routeId,
+        alias: item.alias,
+        canonical: item.canonical,
+        runner: data.runner,
+        localWorkflowAllowed: data.localWorkflowAllowed,
+        routeTarget
+      });
+      if (failures.length >= 12) break;
+    }
+  }
+
+  assert.equal(failures.length, 0, JSON.stringify(failures, null, 2));
+});
+
 test('server does not treat ordinary English words containing ha as influenza HA', async () => {
   const query = encodeURIComponent('how much has the dow changed today');
   const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/user-routing?text=' + query);

@@ -3393,7 +3393,7 @@ function buildRouteProfile(target, blockTarget, abType) {
   if (['CGRPRECEPTOR', 'CGRPR', 'CALCRL'].includes(key)) key = 'CGRP receptor';
   if (['IL17A', 'IL-17-A'].includes(key)) key = 'IL-17A';
   if (['IL23', 'IL23A', 'IL-23A'].includes(key)) key = 'IL-23';
-  if (['IL1B', 'IL-1B', 'IL-1Β'].includes(key)) key = 'IL-1β';
+  if (['IL1B', 'IL-1B', 'IL-1Β'].includes(key)) key = 'IL-1B';
   if (['RSVF', 'RSV-F'].includes(key)) key = 'RSV F';
   if (['SARS-COV-2RBD', 'SARSCOV2RBD', 'SARS-COV-2-RBD', 'RBD'].includes(key)) key = 'SARS-CoV-2 RBD';
   if (['INFLUENZAHA', 'INFLUENZA-HA', 'FLUHA', 'HA'].includes(key)) key = 'Influenza HA';
@@ -7419,7 +7419,7 @@ const DEMO_ROUTE_RULES = [
     id: 'cardio_il1b',
     disease: '心血管 / 血脂疾病',
     systemUnderstanding: '炎症性心血管风险通路',
-    target: 'IL-1β',
+    target: 'IL-1B',
     blockTarget: null,
     abType: 'Fab',
     count: 10,
@@ -8043,6 +8043,16 @@ function buildRepresentativeDemoRoute(label, reason) {
   };
 }
 
+function canonicalizeDemoRouteTarget(route) {
+  if (!route || typeof route !== 'object') return route;
+  const canonicalTarget = ROUTE_3D_PRESET_CANONICAL_TARGETS[route.id];
+  if (!canonicalTarget || canonicalTarget === route.target) return route;
+  return {
+    ...route,
+    target: canonicalTarget
+  };
+}
+
 function detectDemoRoute(input) {
   const normalized = normalizeCommandText(input);
   if (!normalized) return null;
@@ -8086,15 +8096,15 @@ function detectDemoRoute(input) {
   }
 
   const representativeLabel = getRepresentativeDemoDirection(normalized);
-  if (representativeLabel) return buildRepresentativeDemoRoute(representativeLabel, 'unsupported_direction');
+  if (representativeLabel) return canonicalizeDemoRouteTarget(buildRepresentativeDemoRoute(representativeLabel, 'unsupported_direction'));
 
-  if (/il\s*-?\s*33|st2|il1rl1/.test(normalized)) return DEMO_ROUTE_RULES.find(rule => rule.id === 'allergic_asthma') || DEMO_ROUTE_RULES[0];
-  if (/pd\s*-?\s*l\s*-?\s*1|pdl1|programmed death ligand|pd\s*-?\s*1\s*\/\s*pd\s*-?\s*l\s*-?\s*1|pd\s*-?\s*l\s*-?\s*1\s*\/\s*pd\s*-?\s*1|检查点/.test(normalized)) return DEMO_ROUTE_RULES.find(rule => rule.id === 'tumor_immunotherapy') || getDefaultDemoRoute();
-  if (/her\s*-?\s*2|erbb\s*-?\s*2/.test(normalized)) return DEMO_ROUTE_RULES.find(rule => rule.id === 'breast_cancer') || getDefaultDemoRoute();
-  if (/tnf/.test(normalized)) return DEMO_ROUTE_RULES.find(rule => rule.id === 'autoimmune_inflammation') || getDefaultDemoRoute();
+  if (/il\s*-?\s*33|st2|il1rl1/.test(normalized)) return canonicalizeDemoRouteTarget(DEMO_ROUTE_RULES.find(rule => rule.id === 'allergic_asthma') || DEMO_ROUTE_RULES[0]);
+  if (/pd\s*-?\s*l\s*-?\s*1|pdl1|programmed death ligand|pd\s*-?\s*1\s*\/\s*pd\s*-?\s*l\s*-?\s*1|pd\s*-?\s*l\s*-?\s*1\s*\/\s*pd\s*-?\s*1|检查点/.test(normalized)) return canonicalizeDemoRouteTarget(DEMO_ROUTE_RULES.find(rule => rule.id === 'tumor_immunotherapy') || getDefaultDemoRoute());
+  if (/her\s*-?\s*2|erbb\s*-?\s*2/.test(normalized)) return canonicalizeDemoRouteTarget(DEMO_ROUTE_RULES.find(rule => rule.id === 'breast_cancer') || getDefaultDemoRoute());
+  if (/tnf/.test(normalized)) return canonicalizeDemoRouteTarget(DEMO_ROUTE_RULES.find(rule => rule.id === 'autoimmune_inflammation') || getDefaultDemoRoute());
 
   if (/(设计|生成|做|来一个|演示|打印|结构模型|候选).*(抗体|分子|药物|治疗分子|模型)|(?:抗体|药物|治疗分子).*(设计|生成|演示|打印|模型)|(?:antibody|drug|medicine|therapeutic).*(design|generate|demo)|design.*(?:antibody|drug|medicine|therapeutic)/.test(normalized)) {
-    return buildRepresentativeDemoRoute('完整抗体设计演示', 'default_demo');
+    return canonicalizeDemoRouteTarget(buildRepresentativeDemoRoute('完整抗体设计演示', 'default_demo'));
   }
 
   return null;

@@ -8630,6 +8630,78 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         return item && Array.isArray(item.aliases) ? item.aliases : [];
     }
 
+    function qdPreparedTargetAliasVariants(value) {
+        const raw = String(value || '').trim();
+        if (!raw) return [];
+        const variants = [];
+        const add = item => {
+            const text = String(item || '').trim();
+            if (text && !variants.includes(text)) variants.push(text);
+        };
+        const parts = raw.split(/[\/,;|]+/).map(item => item.trim()).filter(Boolean);
+        add(raw);
+        add(raw.replace(/[()\[\]{}]/g, ' '));
+        for (const part of parts) add(part);
+        for (const part of [raw, ...parts]) {
+            const stripped = String(part || '')
+                .replace(/\b(?:receptor(?:s)?|protein(?:s)?|domain(?:s)?|ectodomain|ecd|extracellular(?:\s+domain)?|membrane|surface|antigen|subunit(?:s)?|chain(?:s)?|fragment(?:s)?|component(?:s)?|unit(?:s)?)\b/gi, ' ')
+                .replace(/\b(?:alpha|beta|gamma|delta|epsilon|zeta|eta|theta|iota|kappa|lambda|mu|nu|xi|omicron)\b/gi, ' ')
+                .replace(/[()\[\]{}]/g, ' ')
+                .replace(/\s+/g, ' ')
+                .trim();
+            add(stripped);
+        }
+        return variants;
+    }
+
+    let qdCatalogTargetCanonicalMap = null;
+    function qdBuildCatalogTargetCanonicalMap() {
+        if (qdCatalogTargetCanonicalMap) return qdCatalogTargetCanonicalMap;
+        const map = {};
+        const catalog = getLocalStructureCatalogForFallback();
+        const entries = Array.isArray(catalog && catalog.routePresets) ? catalog.routePresets : [];
+        entries.forEach(entry => {
+            if (!entry || !entry.routeId || !entry.target) return;
+            const canonical = String(entry.target || '').trim();
+            const aliases = [
+                canonical,
+                entry.gene,
+                entry.promptLabel,
+                ...(Array.isArray(entry.aliases) ? entry.aliases : [])
+            ];
+            if (canonical && !/\breceptor\b/i.test(canonical)) {
+                aliases.push(canonical + ' receptor');
+                aliases.push(canonical + ' protein');
+                aliases.push(canonical + ' domain');
+                aliases.push(canonical + ' ECD');
+                aliases.push(canonical + ' extracellular domain');
+            }
+            if (entry.gene) {
+                aliases.push(entry.gene + ' receptor');
+                aliases.push(entry.gene + ' protein');
+            }
+            aliases.filter(Boolean).forEach(alias => {
+                qdPreparedTargetAliasVariants(alias).forEach(variant => {
+                    const key = qdVoiceCompact(variant);
+                    if (key && !map[key]) map[key] = canonical;
+                });
+            });
+        });
+        qdCatalogTargetCanonicalMap = map;
+        return map;
+    }
+
+    function qdCatalogTargetCanonicalFromText(text) {
+        const compact = qdVoiceCompact(text);
+        if (!compact) return '';
+        const map = qdBuildCatalogTargetCanonicalMap();
+        for (const variant of qdPreparedTargetAliasVariants(text)) {
+            const key = qdVoiceCompact(variant);
+            if (key && map[key]) return map[key];
+        }
+        return '';
+    }
+
     function qdVoiceOverlapScore(a, b) {
         if (!a || !b) return 0;
         const aa = Array.from(new Set(a.split('')));
@@ -8651,7 +8723,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         return phrases.filter(Boolean);
     }
 
-    function qdVoiceScoreOption(compact, option, group) {
+    function qdVoiceScoreOption(compact, option, group, canonicalTarget = '') {
         let score = option.recommended ? 2 : 0;
         if (group === 'disease' && option.id === 'oncology' && /肿瘤|癌症|癌|肿瘤免疫|恶性|肿留|中瘤|仲瘤/.test(compact)) score += 150;
         if (group === 'disease' && option.id === 'oncology' && /pdl1|pd1|her2|egfr|vegfa|肿瘤相关|肿瘤靶点|相关靶点/.test(compact)) score += 150;
@@ -8665,11 +8737,15 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (group === 'disease' && option.id === 'cardio' && /pcsk9|angptl3|il1β|il1b|心血管相关/.test(compact)) score += 145;
         if (group === 'disease' && option.id === 'metabolic' && /代谢|肥胖|糖|gipr/.test(compact)) score += 130;
         if (group === 'disease' && option.id === 'metabolic' && /angptl3|gipr|代谢调控|脂质代谢/.test(compact)) score += 145;
-        if (group === 'target' && option.id === 'PD-L1' && /pdl?1|检查点|免疫检查/.test(compact)) score += 160;
-        if (group === 'target' && option.id === 'PD-L1' && /pd1/.test(compact) && !/her2|egfr|vegf/.test(compact)) score += 48;
-        if (group === 'target' && option.id === 'HER2' && /her2|her2receptor|erbb2|乳腺|胃癌/.test(compact)) score += 130;
-        if (group === 'target' && option.id === 'EGFR' && /egfr|实体瘤|生长信号/.test(compact)) score += 130;
-        if (group === 'target' && option.id === 'VEGF-A' && /vegfa?|血管生成/.test(compact)) score += 130;
+        if (group === 'target') {
+            if (canonicalTarget && option.id === canonicalTarget) score += 260;
+            if (canonicalTarget && option.routeId && qdDemoRoutes[option.routeId] && qdDemoRoutes[option.routeId].target === canonicalTarget) score += 260;
+            if (option.id === 'PD-L1' && /pdl?1|检查点|免疫检查/.test(compact)) score += 160;
+            if (option.id === 'PD-L1' && /pd1/.test(compact) && !/her2|egfr|vegf/.test(compact)) score += 48;
+            if (option.id === 'HER2' && /her2|her2receptor|erbb2|乳腺|胃癌/.test(compact)) score += 130;
+            if (option.id === 'EGFR' && /egfr|实体瘤|生长信号/.test(compact)) score += 130;
+            if (option.id === 'VEGF-A' && /vegfa?|血管生成/.test(compact)) score += 130;
+        }
         if (group === 'mechanism' && option.id === 'block-pd1-pdl1' && /阻断|检查点|pd1|pdl1|通路/.test(compact)) score += 155;
         if (group === 'mechanism' && option.id === 'neutralize' && /中和|降低|抑制/.test(compact)) score += 130;
         if (group === 'mechanism' && option.id === 'high-affinity' && /高亲和|亲和力|结合能力/.test(compact)) score += 125;
@@ -8693,10 +8769,11 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     function qdVoiceBestOption(rawText, options, group) {
         const compact = qdVoiceCompact(rawText);
         if (!compact || !Array.isArray(options) || !options.length || !qdVoiceHasSelectableSignal(compact)) return null;
+        const canonicalTarget = group === 'target' ? qdCatalogTargetCanonicalFromText(rawText) : '';
         let best = null;
         let bestScore = -Infinity;
         options.forEach(option => {
-            const score = qdVoiceScoreOption(compact, option, group);
+            const score = qdVoiceScoreOption(compact, option, group, canonicalTarget);
             if (score > bestScore) {
                 best = option;
                 bestScore = score;
