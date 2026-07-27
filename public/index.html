@@ -6617,7 +6617,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '69498270';
+    const APP_BUILD_VERSION = '69498271';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
     const SILICONFLOW_CHAT_FALLBACK_MODELS = ['Qwen/Qwen3-32B', 'Qwen/Qwen3-14B', 'Qwen/Qwen3-8B', 'deepseek-ai/DeepSeek-V3'];
@@ -18226,25 +18226,34 @@ ${fallbackTableRows(profile.rows)}
 
     function normalizeAssistantThinkingTopic(topic) {
         const raw = String(topic || '').replace(/\s+/g, ' ').trim();
-        if (!raw) return '当前需求';
+        if (!raw) return 'the current query';
         if (/[\u4e00-\u9fff]/.test(raw)) {
-            if (/天气|气温|下雨/.test(raw)) return '天气与环境信息';
-            if (/能力|功能|平台|介绍/.test(raw)) return '平台能力与使用边界';
-            if (/抗体|靶点|抗原|表位|蛋白/.test(raw)) return '分子设计需求';
-            return '用户需求';
+            if (/天气|气温|下雨/.test(raw)) return 'the environmental context';
+            if (/能力|功能|平台|介绍/.test(raw)) return 'the platform capability query';
+            if (/抗体|靶点|抗原|表位|蛋白|分子|多动症|疾病/.test(raw)) return 'the molecular design objective';
+            return 'the user objective';
         }
         const compact = raw.replace(/[^A-Za-z0-9\s\-_/]/g, '').trim().slice(0, 48);
-        return compact ? `“${compact}”相关需求` : '当前需求';
+        return compact ? `the “${compact}” objective` : 'the current query';
     }
 
     function buildAssistantThinkingLines(topic) {
         const safeTopic = normalizeAssistantThinkingTopic(topic);
         return [
-            `正在解析${safeTopic}中的核心目标...`,
-            '正在识别任务边界与所需信息...',
-            `正在梳理${safeTopic}的关键线索...`,
-            '正在组织分析路径与回复结构...',
-            '正在准备后续分析内容...'
+            `Parsing the scientific intent behind ${safeTopic}...`,
+            'Defining analytical scope and required evidence streams...',
+            `Mapping the mechanistic context for ${safeTopic}...`,
+            'Prioritizing target biology, antigen accessibility, and modality fit...',
+            'Reviewing structural cues and candidate design constraints...',
+            'Aligning disease rationale with molecular intervention strategy...',
+            'Screening for epitope logic, binding geometry, and developability signals...',
+            'Organizing the response into evidence, reasoning, and design recommendations...',
+            'Checking terminology consistency across target, mechanism, and format...',
+            'Preparing a concise academic synthesis for the next step...',
+            'Integrating mechanistic assumptions with structural feasibility criteria...',
+            'Balancing affinity, specificity, manufacturability, and translational relevance...',
+            'Cross-checking candidate rationale against the requested therapeutic context...',
+            'Refining the analytical pathway before presenting findings...'
         ];
     }
 
