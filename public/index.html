@@ -6617,7 +6617,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '69498271';
+    const APP_BUILD_VERSION = '69498273';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
     const SILICONFLOW_CHAT_FALLBACK_MODELS = ['Qwen/Qwen3-32B', 'Qwen/Qwen3-14B', 'Qwen/Qwen3-8B', 'deepseek-ai/DeepSeek-V3'];
@@ -8667,7 +8667,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (group === 'disease' && option.id === 'metabolic' && /angptl3|gipr|代谢调控|脂质代谢/.test(compact)) score += 145;
         if (group === 'target' && option.id === 'PD-L1' && /pdl?1|检查点|免疫检查/.test(compact)) score += 160;
         if (group === 'target' && option.id === 'PD-L1' && /pd1/.test(compact) && !/her2|egfr|vegf/.test(compact)) score += 48;
-        if (group === 'target' && option.id === 'HER2' && /her2|乳腺|胃癌/.test(compact)) score += 130;
+        if (group === 'target' && option.id === 'HER2' && /her2|her2receptor|erbb2|乳腺|胃癌/.test(compact)) score += 130;
         if (group === 'target' && option.id === 'EGFR' && /egfr|实体瘤|生长信号/.test(compact)) score += 130;
         if (group === 'target' && option.id === 'VEGF-A' && /vegfa?|血管生成/.test(compact)) score += 130;
         if (group === 'mechanism' && option.id === 'block-pd1-pdl1' && /阻断|检查点|pd1|pdl1|通路/.test(compact)) score += 155;
@@ -8731,7 +8731,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         ],
         target: [
             { id: 'PD-L1', aliases: ['pd-l1', 'pdl1', 'p d l 1', 'pdl一', 'pd l1', '检查点'] },
-            { id: 'HER2', aliases: ['her2', 'her two', 'h e r 2', '乳腺癌'] },
+            { id: 'HER2', aliases: ['her2', 'her two', 'h e r 2', 'her2 receptor', 'her2 receptor erbb2', 'erbb2', '乳腺癌'] },
             { id: 'EGFR', aliases: ['egfr', 'e g f r', '实体瘤'] },
             { id: 'VEGF-A', aliases: ['vegf-a', 'vegfa', 'vegf', 'v e g f', '血管生成'] },
             { id: 'TNF', aliases: ['tnf', 'tnf alpha', '类风湿'] },
@@ -14638,10 +14638,18 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         };
         if (routeId && profiles[routeId]) return profiles[routeId];
         if (/(?:狗|犬源|犬用|canine).*?(?:\bngf\b|nerve growth factor|神经生长因子)|(?:\bngf\b|nerve growth factor|神经生长因子).*?(?:狗|犬源|犬用|canine)/i.test(text)) return profiles.veterinary_canine_ngf;
-        if (extractFallbackRequestedTarget(userText, true)) return buildGenericFallbackRouteProfile(userText);
+        const explicitFallbackTarget = extractFallbackRequestedTarget(userText, true);
+        if (explicitFallbackTarget) {
+            if (/^(?:her2(?:\s*receptor(?:\s*\(?erbb2\)?)?)?|erbb2)$/i.test(explicitFallbackTarget)) return profiles.breast_cancer;
+            if (/^(?:egfr(?:\s*receptor(?:\s*\(?erbb1\)?)?)?|erbb1)$/i.test(explicitFallbackTarget)) return profiles.solid_tumor_egfr;
+            if (/^(?:pdl1(?:\s*receptor)?|cd274|b7h1)$/i.test(explicitFallbackTarget)) return profiles.tumor_immunotherapy;
+            if (/^(?:pd1(?:\s*receptor)?|pdcd1)$/i.test(explicitFallbackTarget)) return profiles.tumor_immunotherapy;
+            if (/^(?:tnf(?:\s*alpha)?|tnfa|tnf-?alpha)$/i.test(explicitFallbackTarget)) return profiles.autoimmune_inflammation;
+            return buildGenericFallbackRouteProfile(userText);
+        }
         if (/il\s*-?\s*33|st2|哮喘|过敏/.test(text)) return profiles.allergic_asthma;
         if (/tslp|tslpr/.test(text)) return profiles.allergic_tslp;
-        if (/her\s*-?\s*2|erbb\s*-?\s*2|乳腺癌|胃癌/.test(text)) return profiles.breast_cancer;
+        if (/her\s*-?\s*2(?:\s*receptor)?|her2\s*receptor|erbb\s*-?\s*2|乳腺癌|胃癌/.test(text)) return profiles.breast_cancer;
         if (/egfr|实体瘤/.test(text)) return profiles.solid_tumor_egfr;
         if (/vegf|血管生成/.test(text)) return profiles.angiogenesis_oncology;
         if (/tnf|类风湿|自身免疫|关节炎/.test(text)) return profiles.autoimmune_inflammation;

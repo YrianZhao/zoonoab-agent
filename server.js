@@ -3363,7 +3363,7 @@ function applyInfluenzaHaSubtypeDisplay(profile, displayTarget) {
 
 function buildRouteProfile(target, blockTarget, abType) {
   const influenzaHaSubtypeDisplay = normalizeInfluenzaHaSubtypeDisplay(target);
-  let key = String(target || '').toUpperCase().replace(/\s+/g, '');
+  let key = String(canonicalPreparedTargetAlias(target) || target || '').toUpperCase().replace(/\s+/g, '');
   if (['PDL1', 'PD-L-1'].includes(key)) key = 'PD-L1';
   if (['CD274', 'B7H1', 'B7-H1'].includes(key)) key = 'PD-L1';
   if (['PD1', 'PD-ONE'].includes(key)) key = 'PD-1';
@@ -5013,7 +5013,7 @@ function hasPrepared3DPresetForTarget(target, blockTarget, abType) {
 }
 
 function canonicalPreparedTargetName(target, blockTarget, abType) {
-  const value = normalizeResolverTarget(target);
+  const value = canonicalPreparedTargetAlias(target);
   if (!value || isDiseaseIndication(value)) return value;
   const profile = buildRouteProfile(value, blockTarget, abType || 'Fab');
   return getRoute3DPreset(profile) && profile.targetDisplay ? profile.targetDisplay : value;
@@ -9038,6 +9038,21 @@ function normalizeResolverTarget(value) {
     .slice(0, 80);
 }
 
+function canonicalPreparedTargetAlias(value) {
+  const raw = normalizeResolverTarget(value);
+  if (!raw) return raw;
+  const compact = normalizePreparedStructureTarget(raw);
+  if (!compact) return raw;
+  if (/^(?:HER2|HER2RECEPTOR|HER2RECEPTORERBB2|HER2ERBB2|ERBB2|HER2ECD|HER2ECDDOMAIN|NEU)$/.test(compact)) return 'HER2';
+  if (/^(?:EGFR|EGFRRECEPTOR|ERBB1|HER1)$/.test(compact)) return 'EGFR';
+  if (/^(?:PDL1|PDL1RECEPTOR|CD274|B7H1)$/.test(compact)) return 'PD-L1';
+  if (/^(?:PD1|PD1RECEPTOR|PDCD1)$/.test(compact)) return 'PD-1';
+  if (/^(?:CTLA4|CTLA4RECEPTOR|CD152)$/.test(compact)) return 'CTLA-4';
+  if (/^(?:VEGFA|VEGFARECEPTOR|VEGFARECEPTOR2|VEGFAECD)$/.test(compact)) return 'VEGF-A';
+  if (/^(?:IL6R|IL6RALPHA|CD126)$/.test(compact)) return 'IL-6R';
+  return raw;
+}
+
 function inferStructureIdentityContext(input) {
   const text = String(input || '');
   let organismName = '';
@@ -9091,7 +9106,11 @@ function normalizeTargetResolution(data, indication) {
     rationale: String(item && (item.rationale || item.reason || '') || '').replace(/\s+/g, ' ').trim().slice(0, 360)
   })).filter(item => item.target) : [];
   const rawSelectedTarget = normalizeResolverTarget(source.selectedTarget || source.target || source.selected_target);
-  const selectedTarget = preferredPreparedTargetFromResolution(rawSelectedTarget, candidates, source.ab || source.antibodyFormat || 'Fab');
+  const selectedTarget = canonicalPreparedTargetName(
+    preferredPreparedTargetFromResolution(rawSelectedTarget, candidates, source.ab || source.antibodyFormat || 'Fab'),
+    null,
+    source.ab || source.antibodyFormat || 'Fab'
+  );
   let selectedGene = normalizeResolverTarget(source.selectedGene || source.gene || source.selected_gene);
   const organismName = normalizeResolverTarget(source.organismName || source.organism || source.organism_name);
   const rawOrganismTaxId = Number(source.organismTaxId || source.taxId || source.organism_tax_id || 0);
@@ -9329,7 +9348,11 @@ function buildResolvedTargetRoute(input, baseRoute, resolution, parsed) {
   const count = parsed && parsed.count ? parsed.count : (baseRoute && baseRoute.count) || 10;
   const abType = parsed && parsed.abType ? parsed.abType : (baseRoute && baseRoute.abType) || 'Fab';
   const safeResolution = resolution || builtinTargetResolution(extractDiseaseIndication(input) || String(input || '').trim());
-  const target = safeResolution && safeResolution.selectedTarget ? safeResolution.selectedTarget : 'IL-1β';
+  const target = canonicalPreparedTargetName(
+    safeResolution && safeResolution.selectedTarget ? safeResolution.selectedTarget : 'IL-1β',
+    baseRoute && baseRoute.blockTarget || (parsed && parsed.blockTarget) || null,
+    abType
+  ) || (safeResolution && safeResolution.selectedTarget ? safeResolution.selectedTarget : 'IL-1β');
   const targetText = String(target || '');
   const contextText = [
     input,

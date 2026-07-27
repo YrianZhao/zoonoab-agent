@@ -1821,6 +1821,86 @@ test('target resolver explanation remains rich for drug molecule design requests
   assert.doesNotMatch(intro, VISIBLE_RESOLVER_LEAK_PATTERN);
 });
 
+test('HER2 receptor model output resolves to the HER2 local route instead of the generic fallback', async () => {
+  const captured = [];
+  const mockServer = http.createServer((req, res) => {
+    let body = '';
+    req.on('data', chunk => { body += chunk; });
+    req.on('end', () => {
+      let request = {};
+      try { request = JSON.parse(body || '{}'); } catch {}
+      captured.push(request);
+      const systemPrompt = String(request?.messages?.[0]?.content || '');
+      const her2Resolution = JSON.stringify({
+        selectedTarget: 'HER2 receptor',
+        selectedGene: 'ERBB2',
+        organismName: 'Homo sapiens',
+        organismTaxId: 9606,
+        designLabel: '乳腺癌-1',
+        confidence: 0.96,
+        reason: 'HER2 receptor（ERBB2）是乳腺癌相关的经典受体靶点，具备清晰的胞外结构域与成熟抗体开发背景。',
+        candidates: [
+          { target: 'HER2 receptor', gene: 'ERBB2', rationale: 'HER2/ERBB2 是乳腺癌经典受体靶点。' }
+        ]
+      });
+      if (/抗体设计靶点解析器/.test(systemPrompt)) {
+        sendModelContent(res, her2Resolution);
+        return;
+      }
+      if (/唯一的业务判断|主靶点选择/.test(systemPrompt)) {
+        sendModelContent(res, JSON.stringify({
+          intent: 'design',
+          action: 'design',
+          target: 'HER2 receptor',
+          targetGene: 'ERBB2',
+          disease: '乳腺癌相关疾病',
+          designLabel: '乳腺癌-1',
+          confidence: 0.95,
+          mechanism: '围绕 HER2 receptor 胞外可及表面生成 Fab 候选。',
+          reason: 'HER2 receptor（ERBB2）具有明确的疾病关联和可及结构域。'
+        }));
+        return;
+      }
+      if (respondToDisplayTrace(request, res)) return;
+      sendModelContent(res, JSON.stringify({ choices: [{ message: { content: '{}' } }] }));
+    });
+  });
+  const mockPort = await listenOnLocalhost(mockServer);
+  try {
+    const saveResp = await fetch('http://127.0.0.1:' + PORT + '/api/voice/session', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        voice: { mode: 'local', provider: 'local' },
+        chat: {
+          baseUrl: 'http://127.0.0.1:' + mockPort + '/v1',
+          apiKey: 'test-her2-receptor-secret',
+          model: 'mock-her2-receptor-resolver'
+        }
+      })
+    });
+    assert.equal(saveResp.status, 200);
+    const saved = await saveResp.json();
+
+    const messages = await collectUserMessageStream('请为乳腺癌相关疾病设计一个候选抗体', {
+      timeoutMs: 12000,
+      voiceSessionId: saved.voiceSessionId,
+      stopWhen: (msg) => msg.type === 'tool_call' && msg.tool === 'target_evidence_review'
+    });
+    const serialized = JSON.stringify(messages);
+    const agentTexts = messages.filter(msg => msg.type === 'agent_msg').map(msg => msg.text || '');
+    const evidenceCall = messages.find(msg => msg.type === 'tool_call' && msg.tool === 'target_evidence_review');
+
+    assert.ok(captured.length >= 1, 'expected at least one model request for HER2 receptor routing');
+    assert.ok(evidenceCall, 'HER2 receptor request should reach target evidence review');
+    assert.equal(evidenceCall.params.target, 'HER2');
+    assert.match(agentTexts[0], /HER2|ERBB2|乳腺癌-1/);
+    assert.doesNotMatch(serialized, /用户需求靶点|Generic|默认抗原抗体/);
+  } finally {
+    await new Promise(resolve => mockServer.close(resolve));
+  }
+});
+
 test('server does not treat ordinary English words containing ha as influenza HA', async () => {
   const query = encodeURIComponent('how much has the dow changed today');
   const res = await fetch('http://127.0.0.1:' + PORT + '/api/debug/user-routing?text=' + query);
