@@ -139,7 +139,7 @@ const COSYVOICE_TTS_TIMEOUT_MS = Math.max(3500, Number(process.env.COSYVOICE_TTS
 const COSYVOICE_TTS_RETRY_MS = Math.max(30_000, Number(process.env.COSYVOICE_TTS_RETRY_MS || 5 * 60 * 1000) || 5 * 60 * 1000);
 const APP_BUILD_VERSION = readAppBuildVersion();
 const LOCAL_STRUCTURE_CATALOG = loadLocalStructureCatalog(__dirname);
-const FALLBACK_STRUCTURE_SUPPORT_TARGETS = 'PD-L1/CD274、PD-1/PDCD1、CTLA-4、HER2/ERBB2、EGFR/ERBB1、VEGF-A/VEGFA、TNF、IL-17A、IL-23、IL-33、TSLP、RSV F、SARS-CoV-2 RBD、Influenza HA、Influenza NA、PCSK9、ANGPTL3、GIPR、DAT/SLC6A3、CD20、CD19、CD3、C5、IL-6R、IL-4Rα、CD25、CD33/SIGLEC3、CD38、TIGIT、CD47、LAG-3、TROP-2、BCMA、IgE、CGRP receptor、IL-1β、BAFF/TNFSF13B、FcRn/FCGRT、NGF、Integrin α4β7/ITGA4-ITGB7、GPC2/Glypican-2，以及犬源 NGF';
+const FALLBACK_STRUCTURE_SUPPORT_TARGETS = 'PD-L1/CD274、PD-1/PDCD1、CTLA-4、HER2/ERBB2、EGFR/ERBB1、VEGF-A/VEGFA、TNF、IL-17A、IL-23、IL-33、TSLP、RSV F、SARS-CoV-2 RBD、Influenza HA、Influenza NA、Influenza M2、PF4/CXCL4、Adenovirus hexon、PRRSV GP4、PRRSV NSP10、HSV gD、PCV2 capsid、PEDV spike、CSFV NS5B、Feline panleukopenia VP2、Connexin-26、PCSK9、ANGPTL3、GIPR、DAT/SLC6A3、CD20、CD19、CD3、C5、IL-6R、IL-4Rα、CD25、CD33/SIGLEC3、CD38、TIGIT、CD47、LAG-3、TROP-2、BCMA、IgE、CGRP receptor、IL-1β、BAFF/TNFSF13B、FcRn/FCGRT、NGF、Integrin α4β7/ITGA4-ITGB7、GPC2/Glypican-2，以及犬源 NGF';
 const STRUCTURE_SUPPORT_TARGETS_FOR_PROMPT = buildStructureSupportPromptList(LOCAL_STRUCTURE_CATALOG, FALLBACK_STRUCTURE_SUPPORT_TARGETS);
 const PDB_CACHE_TTL_MS = Math.max(60_000, Number(process.env.PDB_CACHE_TTL_MS || 6 * 60 * 60 * 1000) || 6 * 60 * 60 * 1000);
 const PDB_BROWSER_CACHE_MAX_AGE = Math.max(60, Math.floor(PDB_CACHE_TTL_MS / 1000));
@@ -4846,6 +4846,138 @@ const ROUTE_3D_PRESETS = {
     antigenColor: '#22C55E',
     antibodyColor: '#2563EB',
     ipTmBias: 0
+  },
+  inflammation_pf4: {
+    aliasPrefix: 'PF4-Fab',
+    title: 'PF4 Fab 血小板趋化因子结合构象',
+    structureFamily: '血小板因子 4 · Fab 候选',
+    visualSummary: '展示 PF4 抗原表面与本地 Fab 骨架的稳定覆盖关系。',
+    structuralBasis: 'RCSB 1F9Q platelet factor 4 reference structure + local Fab display scaffold',
+    antigenChains: ['A', 'D', 'E', 'F'],
+    antibodyChains: ['B', 'C'],
+    antigenColor: '#0EA5E9',
+    antibodyColor: '#F97316',
+    ipTmBias: 0.001
+  },
+  infectious_adenovirus_hexon: {
+    aliasPrefix: 'ADENO-HEXON-Fab',
+    title: 'Adenovirus hexon Fab 广谱中和展示构象',
+    structureFamily: '腺病毒六邻体主衣壳蛋白 · Fab 候选',
+    visualSummary: '展示 human adenovirus hexon 表面与本地 Fab 骨架的广谱抗体展示关系。',
+    structuralBasis: 'RCSB 10DP human adenovirus hexon reference structure + local Fab display scaffold',
+    antigenChains: ['A', 'D', 'E'],
+    antibodyChains: ['B', 'C'],
+    antigenColor: '#A855F7',
+    antibodyColor: '#22D3EE',
+    ipTmBias: 0.002
+  },
+  infectious_flu_m2: {
+    aliasPrefix: 'M2e-Fab',
+    title: 'Influenza M2 Fab 病毒膜蛋白展示构象',
+    structureFamily: '流感病毒 Matrix protein 2 · Fab 候选',
+    visualSummary: '展示 Influenza A M2 ectodomain 与本地 Fab 骨架的抗原覆盖关系。',
+    structuralBasis: 'RCSB 4N8C influenza A M2 ectodomain / antibody complex',
+    antigenChains: ['X', 'Y'],
+    antibodyChains: ['B', 'C'],
+    antigenColor: '#06B6D4',
+    antibodyColor: '#F472B6',
+    ipTmBias: 0.002
+  },
+  infectious_prrsv_gp4: {
+    aliasPrefix: 'PRRSV-GP4-Fab',
+    title: 'PRRSV GP4 中和表位结合构象',
+    structureFamily: '猪繁殖与呼吸综合征病毒 GP4 · 中和候选',
+    visualSummary: '展示 PRRSV GP4 抗原区段与本地抗体骨架的结合展示。',
+    structuralBasis: 'RCSB 29TJ PRRSV-2 GP4 antigenic region / neutralizing scFv#18 complex',
+    antigenChains: ['A'],
+    antibodyChains: ['B'],
+    antigenColor: '#F59E0B',
+    antibodyColor: '#8B5CF6',
+    ipTmBias: 0.001
+  },
+  infectious_prrsv_nsp10: {
+    aliasPrefix: 'PRRSV-NSP10-Fab',
+    title: 'PRRSV NSP10 Fab 结合构象',
+    structureFamily: '猪繁殖与呼吸综合征病毒 NSP10/Helicase · Fab 候选',
+    visualSummary: '展示 PRRSV NSP10 蛋白与本地 Fab 骨架的结合展示关系。',
+    structuralBasis: 'RCSB 6JDS PRRSV NSP10 helicase reference structure + local Fab display scaffold',
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C'],
+    antigenColor: '#22C55E',
+    antibodyColor: '#2563EB',
+    ipTmBias: 0.001
+  },
+  infectious_hsv_gd: {
+    aliasPrefix: 'HSV-GD-Fab',
+    title: 'HSV gD 受体介导入侵阻断构象',
+    structureFamily: 'HSV-1 glycoprotein D · Fab 候选',
+    visualSummary: '展示 HSV-1 gD 二聚体表面与本地 Fab 骨架的受体结合面覆盖关系。',
+    structuralBasis: 'RCSB 2C36 HSV-1 glycoprotein D reference structure + local Fab display scaffold',
+    antigenChains: ['A', 'D'],
+    antibodyChains: ['B', 'C'],
+    antigenColor: '#EF4444',
+    antibodyColor: '#0EA5E9',
+    ipTmBias: 0.002
+  },
+  infectious_pcv2_capsid: {
+    aliasPrefix: 'PCV2-Cap-Fab',
+    title: 'PCV2 capsid Fab 检测构象',
+    structureFamily: '猪圆环病毒 2 型衣壳蛋白 · Fab 候选',
+    visualSummary: '展示 PCV2 capsid 单体抗原与本地 Fab 骨架的检测覆盖关系。',
+    structuralBasis: 'RCSB 3R0R PCV2 capsid protein reference structure + local Fab display scaffold',
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C'],
+    antigenColor: '#14B8A6',
+    antibodyColor: '#F97316',
+    ipTmBias: 0.001
+  },
+  infectious_pedv_spike: {
+    aliasPrefix: 'PEDV-Spike-Fab',
+    title: 'PEDV spike Fab 中和构象',
+    structureFamily: '猪流行性腹泻病毒 Spike glycoprotein · Fab 候选',
+    visualSummary: '展示 PEDV spike 三聚体表面与本地 Fab 骨架的中和覆盖关系。',
+    structuralBasis: 'RCSB 6VV5 PEDV spike glycoprotein reference structure + local Fab display scaffold',
+    antigenChains: ['A', 'D', 'E'],
+    antibodyChains: ['B', 'C'],
+    antigenColor: '#3B82F6',
+    antibodyColor: '#F472B6',
+    ipTmBias: 0.002
+  },
+  infectious_csfv_ns5b: {
+    aliasPrefix: 'CSFV-NS5B-Fab',
+    title: 'CSFV NS5B Fab 检测构象',
+    structureFamily: '经典猪瘟病毒 NS5B · Fab 候选',
+    visualSummary: '展示 CSFV NS5B 蛋白与本地 Fab 骨架的检测型结合关系。',
+    structuralBasis: 'RCSB 7EKJ classical swine fever virus NS5B reference structure + local Fab display scaffold',
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C'],
+    antigenColor: '#D946EF',
+    antibodyColor: '#22D3EE',
+    ipTmBias: 0.001
+  },
+  infectious_fpv_vp2: {
+    aliasPrefix: 'FPV-VP2-Fab',
+    title: 'Feline panleukopenia VP2 Fab 检测构象',
+    structureFamily: '猫瘟病毒 VP2 衣壳蛋白 · Fab 候选',
+    visualSummary: '展示 feline panleukopenia virus VP2 抗原与本地 Fab 骨架的检测覆盖关系。',
+    structuralBasis: 'RCSB 1FPV feline panleukopenia virus VP2 reference structure + local Fab display scaffold',
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C'],
+    antigenColor: '#FB7185',
+    antibodyColor: '#0EA5E9',
+    ipTmBias: 0.001
+  },
+  neuro_deafness_gjb2: {
+    aliasPrefix: 'GJB2-Fab',
+    title: 'Connexin-26 Fab 先天性耳聋相关构象',
+    structureFamily: '缝隙连接蛋白 β-2 / Connexin-26 · Fab 候选',
+    visualSummary: '展示 Connexin-26 通道表面与本地 Fab 骨架的可及区域覆盖关系。',
+    structuralBasis: 'RCSB 2ZW3 connexin-26 reference structure + local Fab display scaffold',
+    antigenChains: ['A', 'D', 'E', 'F', 'G', 'H'],
+    antibodyChains: ['B', 'C'],
+    antigenColor: '#22C55E',
+    antibodyColor: '#2563EB',
+    ipTmBias: 0.001
   }
 };
 
@@ -4897,6 +5029,17 @@ const ROUTE_3D_PRESET_ORGANISMS_FALLBACK = {
   neuro_parkinson_snca: { organismName: 'Homo sapiens', organismTaxId: 9606 },
   neuro_nmosd_aqp4: { organismName: 'Homo sapiens', organismTaxId: 9606 },
   veterinary_canine_ngf: { organismName: 'Canis lupus familiaris', organismTaxId: 9615 },
+  inflammation_pf4: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  infectious_adenovirus_hexon: { organismName: 'Human adenovirus 57', organismTaxId: 879186 },
+  infectious_flu_m2: { organismName: 'Influenza A virus', organismTaxId: 11320 },
+  infectious_prrsv_gp4: { organismName: 'Porcine reproductive and respiratory syndrome virus', organismTaxId: 28344 },
+  infectious_prrsv_nsp10: { organismName: 'Porcine reproductive and respiratory syndrome virus', organismTaxId: 28344 },
+  infectious_hsv_gd: { organismName: 'Human herpesvirus 1', organismTaxId: 10298 },
+  infectious_pcv2_capsid: { organismName: 'Porcine circovirus 2', organismTaxId: 85708 },
+  infectious_pedv_spike: { organismName: 'Porcine epidemic diarrhea virus', organismTaxId: 28295 },
+  infectious_csfv_ns5b: { organismName: 'Classical swine fever virus', organismTaxId: 11096 },
+  infectious_fpv_vp2: { organismName: 'Feline panleukopenia virus', organismTaxId: 10786 },
+  neuro_deafness_gjb2: { organismName: 'Homo sapiens', organismTaxId: 9606 },
   infectious_rsv: { organismName: 'Respiratory syncytial virus', organismTaxId: null }
 };
 
@@ -4906,6 +5049,13 @@ const ROUTE_3D_PRESET_ORGANISMS = buildRoutePresetOrganismsFromCatalog(
 );
 const ROUTE_3D_PRESET_TARGET_ROUTE_MAP = buildTargetRouteMapFromCatalog(LOCAL_STRUCTURE_CATALOG);
 const ROUTE_3D_PRESET_ALIAS_TARGETS = buildAliasPrefixTargetMapFromCatalog(LOCAL_STRUCTURE_CATALOG);
+const ROUTE_3D_PRESET_CANONICAL_TARGETS = Object.fromEntries(
+  (Array.isArray(LOCAL_STRUCTURE_CATALOG && LOCAL_STRUCTURE_CATALOG.routePresets)
+    ? LOCAL_STRUCTURE_CATALOG.routePresets
+    : [])
+    .filter(entry => entry && entry.routeId && entry.target)
+    .map(entry => [entry.routeId, entry.target])
+);
 
 const ROUTE_3D_PRESET_ROUTE_IDS = new Map(Object.entries(ROUTE_3D_PRESETS).map(([routeId, preset]) => [preset, routeId]));
 
@@ -4995,7 +5145,18 @@ function getRoute3DPreset(profile) {
       DAT: 'neuro_adhd_dat',
       TSHR: 'endocrine_graves_tshr',
       'alpha-synuclein': 'neuro_parkinson_snca',
-      AQP4: 'neuro_nmosd_aqp4'
+      AQP4: 'neuro_nmosd_aqp4',
+      PF4: 'inflammation_pf4',
+      'Adenovirus hexon': 'infectious_adenovirus_hexon',
+      'Influenza M2': 'infectious_flu_m2',
+      'PRRSV GP4': 'infectious_prrsv_gp4',
+      'PRRSV NSP10': 'infectious_prrsv_nsp10',
+      'HSV gD': 'infectious_hsv_gd',
+      'PCV2 capsid': 'infectious_pcv2_capsid',
+      'PEDV spike': 'infectious_pedv_spike',
+      'CSFV NS5B': 'infectious_csfv_ns5b',
+      'Feline panleukopenia VP2': 'infectious_fpv_vp2',
+      'Connexin-26': 'neuro_deafness_gjb2'
     };
   const targetCandidates = [target, ...String(target).split(/\s*\/\s*/)]
     .map(item => item.trim())
@@ -9038,9 +9199,51 @@ function normalizeResolverTarget(value) {
     .slice(0, 80);
 }
 
+function preparedTargetAliasVariants(value) {
+  const raw = normalizeResolverTarget(value);
+  if (!raw) return [];
+  const variants = [];
+  const add = item => {
+    const text = normalizeResolverTarget(item);
+    if (text && !variants.includes(text)) variants.push(text);
+  };
+  const parts = raw
+    .split(/[\/,;|]+/)
+    .map(item => item.trim())
+    .filter(Boolean);
+  add(raw);
+  add(raw.replace(/[()\[\]{}]/g, ' '));
+  for (const part of parts) add(part);
+  for (const part of [raw, ...parts]) {
+    const stripped = String(part || '')
+      .replace(/\b(?:receptor(?:s)?|protein(?:s)?|domain(?:s)?|ectodomain|ecd|extracellular(?:\s+domain)?|membrane|surface|antigen|subunit(?:s)?|chain(?:s)?|fragment(?:s)?|component(?:s)?|unit(?:s)?)\b/gi, ' ')
+      .replace(/\b(?:alpha|beta|gamma|delta|epsilon|zeta|eta|theta|iota|kappa|lambda|mu|nu|xi|omicron)\b/gi, ' ')
+      .replace(/[()\[\]{}]/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+    add(stripped);
+    if (/\(([^)]+)\)/.test(part)) {
+      const inside = part.match(/\(([^)]+)\)/g) || [];
+      inside.forEach(chunk => add(chunk.replace(/[()]/g, ' ')));
+    }
+  }
+  return variants;
+}
+
+function preparedTargetRouteId(value) {
+  for (const variant of preparedTargetAliasVariants(value)) {
+    const key = normalizePreparedStructureTarget(variant);
+    const routeId = ROUTE_3D_PRESET_TARGET_ROUTE_MAP[key];
+    if (routeId) return routeId;
+  }
+  return '';
+}
+
 function canonicalPreparedTargetAlias(value) {
   const raw = normalizeResolverTarget(value);
   if (!raw) return raw;
+  const routeId = preparedTargetRouteId(raw);
+  if (routeId && ROUTE_3D_PRESET_CANONICAL_TARGETS[routeId]) return ROUTE_3D_PRESET_CANONICAL_TARGETS[routeId];
   const compact = normalizePreparedStructureTarget(raw);
   if (!compact) return raw;
   if (/^(?:HER2|HER2RECEPTOR|HER2RECEPTORERBB2|HER2ERBB2|ERBB2|HER2ECD|HER2ECDDOMAIN|NEU)$/.test(compact)) return 'HER2';

@@ -68,6 +68,18 @@ const GENE_BY_TARGET = {
   'IL-1β': 'IL1B',
   'Tissue Factor': 'F3',
   'Canine NGF': 'NGF'
+  ,
+  PF4: 'CXCL4',
+  'Adenovirus hexon': 'L3',
+  'Influenza M2': 'M2',
+  'PRRSV GP4': 'GP4',
+  'PRRSV NSP10': 'NSP10',
+  'HSV gD': 'gD',
+  'PCV2 capsid': 'CAP',
+  'PEDV spike': 'S',
+  'CSFV NS5B': 'NS5B',
+  'Feline panleukopenia VP2': 'VP2',
+  'Connexin-26': 'GJB2'
 };
 
 const ALIASES_BY_TARGET = {
@@ -111,6 +123,18 @@ const ALIASES_BY_TARGET = {
   'IL-1β': ['IL1B', 'IL-1B', 'IL-1 beta'],
   'Tissue Factor': ['F3', 'CD142', 'Thromboplastin', 'Coagulation factor III'],
   'Canine NGF': ['dog NGF', 'dog nerve growth factor', '犬源 NGF', '犬 NGF']
+  ,
+  PF4: ['CXCL4', 'platelet factor 4'],
+  'Adenovirus hexon': ['human adenovirus hexon', 'adenovirus hexon', 'HAdV hexon'],
+  'Influenza M2': ['M2e', 'matrix protein 2', 'influenza matrix protein 2'],
+  'PRRSV GP4': ['PRRSV-2 GP4', 'GP4', 'porcine reproductive and respiratory syndrome virus GP4'],
+  'PRRSV NSP10': ['PRRSV nsp10', 'NSP10', 'porcine reproductive and respiratory syndrome virus NSP10'],
+  'HSV gD': ['gD', 'glycoprotein D', 'HSV glycoprotein D'],
+  'PCV2 capsid': ['PCV2', 'porcine circovirus 2 capsid', 'CAP', 'ORF2'],
+  'PEDV spike': ['PEDV S', 'spike glycoprotein', 'porcine epidemic diarrhea virus spike'],
+  'CSFV NS5B': ['classical swine fever virus NS5B', 'NS5B'],
+  'Feline panleukopenia VP2': ['FPV VP2', 'feline panleukopenia virus VP2', 'parvovirus VP2'],
+  'Connexin-26': ['GJB2', 'CX26', 'connexin-26']
 };
 
 function readText(filePath) {

@@ -2,16 +2,16 @@
 (function(){
   window.ZOONOAB_LOCAL_STRUCTURE_CATALOG = {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-27T08:36:34.996Z",
+  "generatedAt": "2026-07-27T10:32:03.908Z",
   "summary": {
-    "pdbFileCount": 519,
-    "routePresetCount": 74,
-    "routeableRoutePresetCount": 73,
-    "promptEligibleRoutePresetCount": 73,
-    "routePresetFileCount": 426,
+    "pdbFileCount": 629,
+    "routePresetCount": 85,
+    "routeableRoutePresetCount": 84,
+    "promptEligibleRoutePresetCount": 84,
+    "routePresetFileCount": 536,
     "libraryAssetCount": 273
   },
-  "promptSupportTargets": "IL-33/IL33、TSLP、PD-L1/CD274、PD-1/PDCD1、CTLA-4/CTLA4、CD20/MS4A1、CD19、CD3/CD3E/CD3G、CD4、C5、CFH、IL-6R/IL6R、IL-4Rα/IL4R、CD25/IL2RA、CD38、TIGIT、CD47、LAG-3/LAG3、TROP-2/TACSTD2、Tissue Factor/F3、BCMA/TNFRSF17、IgE/IGH、CGRP receptor/CALCRL/RAMP1、HER2/ERBB2、EGFR、VEGF-A/VEGFA、TNF、IL-17A/IL17A、IL-23/IL23A/IL12B、RSV F/F、SARS-CoV-2 RBD/S、Influenza HA/HA、Influenza NA/NA、PCSK9、ANGPTL3、IL-1B、GIPR、Amyloid-beta/APP、Tau/MAPT、TREM2、DAT/SLC6A3、TSHR、alpha-synuclein/SNCA、AQP4、Canine NGF/NGF、CD22/Siglec-2、Mesothelin/MSLN、Claudin 18.2/CLDN18、MET/c-MET、HER3/ERBB3、B7-H3/CD276、B7-H6/NCR3LG1、MUC1、Nectin-4/NECTIN4、FGFR2/KGFR、FGFR3、GPRC5D、CEACAM5/CEA、STEAP1、CAIX/CA9、IL-5/IL5、IL-13/IL13、CD123/IL3RA、BAFF/TNFSF13B、FcRn/FCGRT、NGF、CD33/Siglec-3、GPC2/Glypican-2、Integrin α4β7/ITGA4-ITGB7、IL-6/IL6、Myostatin/GDF8、TrkB/NTRK2",
+  "promptSupportTargets": "IL-33/IL33、TSLP、PD-L1/CD274、PD-1/PDCD1、CTLA-4/CTLA4、CD20/MS4A1、CD19、CD3/CD3E/CD3G、CD4、C5、CFH、IL-6R/IL6R、IL-4Rα/IL4R、CD25/IL2RA、CD38、TIGIT、CD47、LAG-3/LAG3、TROP-2/TACSTD2、Tissue Factor/F3、BCMA/TNFRSF17、IgE/IGH、CGRP receptor/CALCRL/RAMP1、HER2/ERBB2、EGFR、VEGF-A/VEGFA、TNF、IL-17A/IL17A、IL-23/IL23A/IL12B、RSV F/F、SARS-CoV-2 RBD/S、Influenza HA/HA、Influenza NA/NA、PCSK9、ANGPTL3、IL-1B、GIPR、Amyloid-beta/APP、Tau/MAPT、TREM2、DAT/SLC6A3、TSHR、alpha-synuclein/SNCA、AQP4、Canine NGF/NGF、PF4/CXCL4、Adenovirus hexon/L3、Influenza M2/M2、PRRSV GP4/GP4、PRRSV NSP10/NSP10、HSV gD/gD、PCV2 capsid/CAP、PEDV spike/S、CSFV NS5B/NS5B、Feline panleukopenia VP2/VP2、Connexin-26/GJB2、CD22/Siglec-2、Mesothelin/MSLN、Claudin 18.2/CLDN18、MET/c-MET、HER3/ERBB3、B7-H3/CD276、B7-H6/NCR3LG1、MUC1、Nectin-4/NECTIN4、FGFR2/KGFR、FGFR3、GPRC5D、CEACAM5/CEA、STEAP1、CAIX/CA9、IL-5/IL5、IL-13/IL13、CD123/IL3RA、BAFF/TNFSF13B、FcRn/FCGRT、NGF、CD33/Siglec-3、GPC2/Glypican-2、Integrin α4β7/ITGA4-ITGB7、IL-6/IL6、Myostatin/GDF8、TrkB/NTRK2",
   "routePresets": [
     {
       "routeId": "allergic_asthma",
@@ -2298,6 +2298,524 @@
           "antibody": "#2563EB"
         },
         "ipTmBias": 0
+      }
+    },
+    {
+      "routeId": "inflammation_pf4",
+      "aliasPrefix": "PF4-Fab",
+      "target": "PF4",
+      "gene": "CXCL4",
+      "aliases": [
+        "CXCL4",
+        "platelet factor 4"
+      ],
+      "promptLabel": "PF4/CXCL4",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "PF4-Fab-01.pdb",
+        "PF4-Fab-02.pdb",
+        "PF4-Fab-03.pdb",
+        "PF4-Fab-04.pdb",
+        "PF4-Fab-05.pdb",
+        "PF4-Fab-06.pdb",
+        "PF4-Fab-07.pdb",
+        "PF4-Fab-08.pdb",
+        "PF4-Fab-09.pdb",
+        "PF4-Fab-10.pdb"
+      ],
+      "display": {
+        "structureTitle": "PF4 Fab 血小板趋化因子结合构象",
+        "structureFamily": "血小板因子 4 · Fab 候选",
+        "visualSummary": "展示 PF4 抗原表面与本地 Fab 骨架的稳定覆盖关系。",
+        "structuralBasis": "RCSB 1F9Q platelet factor 4 reference structure + local Fab display scaffold",
+        "antigenChains": [
+          "A",
+          "D",
+          "E",
+          "F"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "visualColors": {
+          "antigen": "#0EA5E9",
+          "antibody": "#F97316"
+        },
+        "ipTmBias": 0.001
+      }
+    },
+    {
+      "routeId": "infectious_adenovirus_hexon",
+      "aliasPrefix": "ADENO-HEXON-Fab",
+      "target": "Adenovirus hexon",
+      "gene": "L3",
+      "aliases": [
+        "human adenovirus hexon",
+        "adenovirus hexon",
+        "HAdV hexon"
+      ],
+      "promptLabel": "Adenovirus hexon/L3",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "ADENO-HEXON-Fab-01.pdb",
+        "ADENO-HEXON-Fab-02.pdb",
+        "ADENO-HEXON-Fab-03.pdb",
+        "ADENO-HEXON-Fab-04.pdb",
+        "ADENO-HEXON-Fab-05.pdb",
+        "ADENO-HEXON-Fab-06.pdb",
+        "ADENO-HEXON-Fab-07.pdb",
+        "ADENO-HEXON-Fab-08.pdb",
+        "ADENO-HEXON-Fab-09.pdb",
+        "ADENO-HEXON-Fab-10.pdb"
+      ],
+      "display": {
+        "structureTitle": "Adenovirus hexon Fab 广谱中和展示构象",
+        "structureFamily": "腺病毒六邻体主衣壳蛋白 · Fab 候选",
+        "visualSummary": "展示 human adenovirus hexon 表面与本地 Fab 骨架的广谱抗体展示关系。",
+        "structuralBasis": "RCSB 10DP human adenovirus hexon reference structure + local Fab display scaffold",
+        "antigenChains": [
+          "A",
+          "D",
+          "E"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "visualColors": {
+          "antigen": "#A855F7",
+          "antibody": "#22D3EE"
+        },
+        "ipTmBias": 0.002
+      }
+    },
+    {
+      "routeId": "infectious_flu_m2",
+      "aliasPrefix": "M2e-Fab",
+      "target": "Influenza M2",
+      "gene": "M2",
+      "aliases": [
+        "M2e",
+        "matrix protein 2",
+        "influenza matrix protein 2"
+      ],
+      "promptLabel": "Influenza M2/M2",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "M2e-Fab-01.pdb",
+        "M2e-Fab-02.pdb",
+        "M2e-Fab-03.pdb",
+        "M2e-Fab-04.pdb",
+        "M2e-Fab-05.pdb",
+        "M2e-Fab-06.pdb",
+        "M2e-Fab-07.pdb",
+        "M2e-Fab-08.pdb",
+        "M2e-Fab-09.pdb",
+        "M2e-Fab-10.pdb"
+      ],
+      "display": {
+        "structureTitle": "Influenza M2 Fab 病毒膜蛋白展示构象",
+        "structureFamily": "流感病毒 Matrix protein 2 · Fab 候选",
+        "visualSummary": "展示 Influenza A M2 ectodomain 与本地 Fab 骨架的抗原覆盖关系。",
+        "structuralBasis": "RCSB 4N8C influenza A M2 ectodomain / antibody complex",
+        "antigenChains": [
+          "X",
+          "Y"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "visualColors": {
+          "antigen": "#06B6D4",
+          "antibody": "#F472B6"
+        },
+        "ipTmBias": 0.002
+      }
+    },
+    {
+      "routeId": "infectious_prrsv_gp4",
+      "aliasPrefix": "PRRSV-GP4-Fab",
+      "target": "PRRSV GP4",
+      "gene": "GP4",
+      "aliases": [
+        "PRRSV-2 GP4",
+        "GP4",
+        "porcine reproductive and respiratory syndrome virus GP4"
+      ],
+      "promptLabel": "PRRSV GP4/GP4",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "PRRSV-GP4-Fab-01.pdb",
+        "PRRSV-GP4-Fab-02.pdb",
+        "PRRSV-GP4-Fab-03.pdb",
+        "PRRSV-GP4-Fab-04.pdb",
+        "PRRSV-GP4-Fab-05.pdb",
+        "PRRSV-GP4-Fab-06.pdb",
+        "PRRSV-GP4-Fab-07.pdb",
+        "PRRSV-GP4-Fab-08.pdb",
+        "PRRSV-GP4-Fab-09.pdb",
+        "PRRSV-GP4-Fab-10.pdb"
+      ],
+      "display": {
+        "structureTitle": "PRRSV GP4 中和表位结合构象",
+        "structureFamily": "猪繁殖与呼吸综合征病毒 GP4 · 中和候选",
+        "visualSummary": "展示 PRRSV GP4 抗原区段与本地抗体骨架的结合展示。",
+        "structuralBasis": "RCSB 29TJ PRRSV-2 GP4 antigenic region / neutralizing scFv#18 complex",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "visualColors": {
+          "antigen": "#F59E0B",
+          "antibody": "#8B5CF6"
+        },
+        "ipTmBias": 0.001
+      }
+    },
+    {
+      "routeId": "infectious_prrsv_nsp10",
+      "aliasPrefix": "PRRSV-NSP10-Fab",
+      "target": "PRRSV NSP10",
+      "gene": "NSP10",
+      "aliases": [
+        "PRRSV nsp10",
+        "NSP10",
+        "porcine reproductive and respiratory syndrome virus NSP10"
+      ],
+      "promptLabel": "PRRSV NSP10/NSP10",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "PRRSV-NSP10-Fab-01.pdb",
+        "PRRSV-NSP10-Fab-02.pdb",
+        "PRRSV-NSP10-Fab-03.pdb",
+        "PRRSV-NSP10-Fab-04.pdb",
+        "PRRSV-NSP10-Fab-05.pdb",
+        "PRRSV-NSP10-Fab-06.pdb",
+        "PRRSV-NSP10-Fab-07.pdb",
+        "PRRSV-NSP10-Fab-08.pdb",
+        "PRRSV-NSP10-Fab-09.pdb",
+        "PRRSV-NSP10-Fab-10.pdb"
+      ],
+      "display": {
+        "structureTitle": "PRRSV NSP10 Fab 结合构象",
+        "structureFamily": "猪繁殖与呼吸综合征病毒 NSP10/Helicase · Fab 候选",
+        "visualSummary": "展示 PRRSV NSP10 蛋白与本地 Fab 骨架的结合展示关系。",
+        "structuralBasis": "RCSB 6JDS PRRSV NSP10 helicase reference structure + local Fab display scaffold",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "visualColors": {
+          "antigen": "#22C55E",
+          "antibody": "#2563EB"
+        },
+        "ipTmBias": 0.001
+      }
+    },
+    {
+      "routeId": "infectious_hsv_gd",
+      "aliasPrefix": "HSV-GD-Fab",
+      "target": "HSV gD",
+      "gene": "gD",
+      "aliases": [
+        "gD",
+        "glycoprotein D",
+        "HSV glycoprotein D"
+      ],
+      "promptLabel": "HSV gD/gD",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "HSV-GD-Fab-01.pdb",
+        "HSV-GD-Fab-02.pdb",
+        "HSV-GD-Fab-03.pdb",
+        "HSV-GD-Fab-04.pdb",
+        "HSV-GD-Fab-05.pdb",
+        "HSV-GD-Fab-06.pdb",
+        "HSV-GD-Fab-07.pdb",
+        "HSV-GD-Fab-08.pdb",
+        "HSV-GD-Fab-09.pdb",
+        "HSV-GD-Fab-10.pdb"
+      ],
+      "display": {
+        "structureTitle": "HSV gD 受体介导入侵阻断构象",
+        "structureFamily": "HSV-1 glycoprotein D · Fab 候选",
+        "visualSummary": "展示 HSV-1 gD 二聚体表面与本地 Fab 骨架的受体结合面覆盖关系。",
+        "structuralBasis": "RCSB 2C36 HSV-1 glycoprotein D reference structure + local Fab display scaffold",
+        "antigenChains": [
+          "A",
+          "D"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "visualColors": {
+          "antigen": "#EF4444",
+          "antibody": "#0EA5E9"
+        },
+        "ipTmBias": 0.002
+      }
+    },
+    {
+      "routeId": "infectious_pcv2_capsid",
+      "aliasPrefix": "PCV2-Cap-Fab",
+      "target": "PCV2 capsid",
+      "gene": "CAP",
+      "aliases": [
+        "PCV2",
+        "porcine circovirus 2 capsid",
+        "CAP",
+        "ORF2"
+      ],
+      "promptLabel": "PCV2 capsid/CAP",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "PCV2-Cap-Fab-01.pdb",
+        "PCV2-Cap-Fab-02.pdb",
+        "PCV2-Cap-Fab-03.pdb",
+        "PCV2-Cap-Fab-04.pdb",
+        "PCV2-Cap-Fab-05.pdb",
+        "PCV2-Cap-Fab-06.pdb",
+        "PCV2-Cap-Fab-07.pdb",
+        "PCV2-Cap-Fab-08.pdb",
+        "PCV2-Cap-Fab-09.pdb",
+        "PCV2-Cap-Fab-10.pdb"
+      ],
+      "display": {
+        "structureTitle": "PCV2 capsid Fab 检测构象",
+        "structureFamily": "猪圆环病毒 2 型衣壳蛋白 · Fab 候选",
+        "visualSummary": "展示 PCV2 capsid 单体抗原与本地 Fab 骨架的检测覆盖关系。",
+        "structuralBasis": "RCSB 3R0R PCV2 capsid protein reference structure + local Fab display scaffold",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "visualColors": {
+          "antigen": "#14B8A6",
+          "antibody": "#F97316"
+        },
+        "ipTmBias": 0.001
+      }
+    },
+    {
+      "routeId": "infectious_pedv_spike",
+      "aliasPrefix": "PEDV-Spike-Fab",
+      "target": "PEDV spike",
+      "gene": "S",
+      "aliases": [
+        "PEDV S",
+        "spike glycoprotein",
+        "porcine epidemic diarrhea virus spike"
+      ],
+      "promptLabel": "PEDV spike/S",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "PEDV-Spike-Fab-01.pdb",
+        "PEDV-Spike-Fab-02.pdb",
+        "PEDV-Spike-Fab-03.pdb",
+        "PEDV-Spike-Fab-04.pdb",
+        "PEDV-Spike-Fab-05.pdb",
+        "PEDV-Spike-Fab-06.pdb",
+        "PEDV-Spike-Fab-07.pdb",
+        "PEDV-Spike-Fab-08.pdb",
+        "PEDV-Spike-Fab-09.pdb",
+        "PEDV-Spike-Fab-10.pdb"
+      ],
+      "display": {
+        "structureTitle": "PEDV spike Fab 中和构象",
+        "structureFamily": "猪流行性腹泻病毒 Spike glycoprotein · Fab 候选",
+        "visualSummary": "展示 PEDV spike 三聚体表面与本地 Fab 骨架的中和覆盖关系。",
+        "structuralBasis": "RCSB 6VV5 PEDV spike glycoprotein reference structure + local Fab display scaffold",
+        "antigenChains": [
+          "A",
+          "D",
+          "E"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "visualColors": {
+          "antigen": "#3B82F6",
+          "antibody": "#F472B6"
+        },
+        "ipTmBias": 0.002
+      }
+    },
+    {
+      "routeId": "infectious_csfv_ns5b",
+      "aliasPrefix": "CSFV-NS5B-Fab",
+      "target": "CSFV NS5B",
+      "gene": "NS5B",
+      "aliases": [
+        "classical swine fever virus NS5B",
+        "NS5B"
+      ],
+      "promptLabel": "CSFV NS5B/NS5B",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "CSFV-NS5B-Fab-01.pdb",
+        "CSFV-NS5B-Fab-02.pdb",
+        "CSFV-NS5B-Fab-03.pdb",
+        "CSFV-NS5B-Fab-04.pdb",
+        "CSFV-NS5B-Fab-05.pdb",
+        "CSFV-NS5B-Fab-06.pdb",
+        "CSFV-NS5B-Fab-07.pdb",
+        "CSFV-NS5B-Fab-08.pdb",
+        "CSFV-NS5B-Fab-09.pdb",
+        "CSFV-NS5B-Fab-10.pdb"
+      ],
+      "display": {
+        "structureTitle": "CSFV NS5B Fab 检测构象",
+        "structureFamily": "经典猪瘟病毒 NS5B · Fab 候选",
+        "visualSummary": "展示 CSFV NS5B 蛋白与本地 Fab 骨架的检测型结合关系。",
+        "structuralBasis": "RCSB 7EKJ classical swine fever virus NS5B reference structure + local Fab display scaffold",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "visualColors": {
+          "antigen": "#D946EF",
+          "antibody": "#22D3EE"
+        },
+        "ipTmBias": 0.001
+      }
+    },
+    {
+      "routeId": "infectious_fpv_vp2",
+      "aliasPrefix": "FPV-VP2-Fab",
+      "target": "Feline panleukopenia VP2",
+      "gene": "VP2",
+      "aliases": [
+        "FPV VP2",
+        "feline panleukopenia virus VP2",
+        "parvovirus VP2"
+      ],
+      "promptLabel": "Feline panleukopenia VP2/VP2",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "FPV-VP2-Fab-01.pdb",
+        "FPV-VP2-Fab-02.pdb",
+        "FPV-VP2-Fab-03.pdb",
+        "FPV-VP2-Fab-04.pdb",
+        "FPV-VP2-Fab-05.pdb",
+        "FPV-VP2-Fab-06.pdb",
+        "FPV-VP2-Fab-07.pdb",
+        "FPV-VP2-Fab-08.pdb",
+        "FPV-VP2-Fab-09.pdb",
+        "FPV-VP2-Fab-10.pdb"
+      ],
+      "display": {
+        "structureTitle": "Feline panleukopenia VP2 Fab 检测构象",
+        "structureFamily": "猫瘟病毒 VP2 衣壳蛋白 · Fab 候选",
+        "visualSummary": "展示 feline panleukopenia virus VP2 抗原与本地 Fab 骨架的检测覆盖关系。",
+        "structuralBasis": "RCSB 1FPV feline panleukopenia virus VP2 reference structure + local Fab display scaffold",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "visualColors": {
+          "antigen": "#FB7185",
+          "antibody": "#0EA5E9"
+        },
+        "ipTmBias": 0.001
+      }
+    },
+    {
+      "routeId": "neuro_deafness_gjb2",
+      "aliasPrefix": "GJB2-Fab",
+      "target": "Connexin-26",
+      "gene": "GJB2",
+      "aliases": [
+        "GJB2",
+        "CX26",
+        "connexin-26"
+      ],
+      "promptLabel": "Connexin-26/GJB2",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "GJB2-Fab-01.pdb",
+        "GJB2-Fab-02.pdb",
+        "GJB2-Fab-03.pdb",
+        "GJB2-Fab-04.pdb",
+        "GJB2-Fab-05.pdb",
+        "GJB2-Fab-06.pdb",
+        "GJB2-Fab-07.pdb",
+        "GJB2-Fab-08.pdb",
+        "GJB2-Fab-09.pdb",
+        "GJB2-Fab-10.pdb"
+      ],
+      "display": {
+        "structureTitle": "Connexin-26 Fab 先天性耳聋相关构象",
+        "structureFamily": "缝隙连接蛋白 β-2 / Connexin-26 · Fab 候选",
+        "visualSummary": "展示 Connexin-26 通道表面与本地 Fab 骨架的可及区域覆盖关系。",
+        "structuralBasis": "RCSB 2ZW3 connexin-26 reference structure + local Fab display scaffold",
+        "antigenChains": [
+          "A",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "visualColors": {
+          "antigen": "#22C55E",
+          "antibody": "#2563EB"
+        },
+        "ipTmBias": 0.001
       }
     },
     {

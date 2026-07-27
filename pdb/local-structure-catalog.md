@@ -4,10 +4,10 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 
 ## Summary
 
-- PDB files: 519
-- Route presets: 74
-- Routeable presets: 73
-- Prompt-eligible structure-supported targets: 73
+- PDB files: 629
+- Route presets: 85
+- Routeable presets: 84
+- Prompt-eligible structure-supported targets: 84
 - Library assets: 273
 
 ## Route-backed structure families
@@ -60,6 +60,17 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 | neuro_parkinson_snca | alpha-synuclein | SNCA | SNCA-Fab | 1 | Homo sapiens | RCSB 8OG0 alpha-synuclein epitope peptide / MJF14-6-4-2 Fab complex |
 | neuro_nmosd_aqp4 | AQP4 | AQP4 | AQP4-Fab | 1 | Homo sapiens | RCSB 8V91 human AQP4 tetramer / rAB 58 Fab complex |
 | veterinary_canine_ngf | Canine NGF | NGF | CANINE-NGF-Fab | 10 | Canis lupus familiaris | AlphaFold DB A0A8I3PYI3 犬源成熟 NGF + RCSB 4EDW tanezumab Fab 展示支架 |
+| inflammation_pf4 | PF4 | CXCL4 | PF4-Fab | 10 | Homo sapiens | RCSB 1F9Q platelet factor 4 reference structure + local Fab display scaffold |
+| infectious_adenovirus_hexon | Adenovirus hexon | L3 | ADENO-HEXON-Fab | 10 | Human adenovirus 57 | RCSB 10DP human adenovirus hexon reference structure + local Fab display scaffold |
+| infectious_flu_m2 | Influenza M2 | M2 | M2e-Fab | 10 | Influenza A virus | RCSB 4N8C influenza A M2 ectodomain / antibody complex |
+| infectious_prrsv_gp4 | PRRSV GP4 | GP4 | PRRSV-GP4-Fab | 10 | Porcine reproductive and respiratory syndrome virus | RCSB 29TJ PRRSV-2 GP4 antigenic region / neutralizing scFv#18 complex |
+| infectious_prrsv_nsp10 | PRRSV NSP10 | NSP10 | PRRSV-NSP10-Fab | 10 | Porcine reproductive and respiratory syndrome virus | RCSB 6JDS PRRSV NSP10 helicase reference structure + local Fab display scaffold |
+| infectious_hsv_gd | HSV gD | gD | HSV-GD-Fab | 10 | Human herpesvirus 1 | RCSB 2C36 HSV-1 glycoprotein D reference structure + local Fab display scaffold |
+| infectious_pcv2_capsid | PCV2 capsid | CAP | PCV2-Cap-Fab | 10 | Porcine circovirus 2 | RCSB 3R0R PCV2 capsid protein reference structure + local Fab display scaffold |
+| infectious_pedv_spike | PEDV spike | S | PEDV-Spike-Fab | 10 | Porcine epidemic diarrhea virus | RCSB 6VV5 PEDV spike glycoprotein reference structure + local Fab display scaffold |
+| infectious_csfv_ns5b | CSFV NS5B | NS5B | CSFV-NS5B-Fab | 10 | Classical swine fever virus | RCSB 7EKJ classical swine fever virus NS5B reference structure + local Fab display scaffold |
+| infectious_fpv_vp2 | Feline panleukopenia VP2 | VP2 | FPV-VP2-Fab | 10 | Feline panleukopenia virus | RCSB 1FPV feline panleukopenia virus VP2 reference structure + local Fab display scaffold |
+| neuro_deafness_gjb2 | Connexin-26 | GJB2 | GJB2-Fab | 10 | Homo sapiens | RCSB 2ZW3 connexin-26 reference structure + local Fab display scaffold |
 | generic_vhh | IL-33 | IL33 | IL33-VHH | 15 | Homo sapiens | VHH 候选与抗原界面参考构象 |
 | heme_cd22 | CD22 | CD22 | CD22-Fab | 1 | Homo sapiens | RCSB 5VL3 human CD22 D1-D3 ectodomain / epratuzumab Fab complex |
 | solid_tumor_mesothelin | Mesothelin | MSLN | MSLN-Fab | 1 | Homo sapiens | RCSB 7UED full-length mesothelin / MORAb-009 Fab complex |
