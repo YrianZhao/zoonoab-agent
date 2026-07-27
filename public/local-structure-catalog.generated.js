@@ -2,7 +2,7 @@
 (function(){
   window.ZOONOAB_LOCAL_STRUCTURE_CATALOG = {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-27T10:32:03.908Z",
+  "generatedAt": "2026-07-27T13:19:39.201Z",
   "summary": {
     "pdbFileCount": 629,
     "routePresetCount": 85,
@@ -1790,6 +1790,12 @@
       "routeId": "cardio_il1b",
       "aliasPrefix": "IL1B-Fab",
       "target": "IL-1B",
+      "gene": "IL1B",
+      "aliases": [
+        "IL1B",
+        "IL-1β",
+        "IL-1 beta"
+      ],
       "promptLabel": "IL-1B",
       "structureClass": "target_exact_complex",
       "routeable": true,

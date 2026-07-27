@@ -65,7 +65,7 @@ const GENE_BY_TARGET = {
   BCMA: 'TNFRSF17',
   IgE: 'IGH',
   'CGRP receptor': 'CALCRL/RAMP1',
-  'IL-1β': 'IL1B',
+  'IL-1B': 'IL1B',
   'Tissue Factor': 'F3',
   'Canine NGF': 'NGF'
   ,
@@ -120,7 +120,7 @@ const ALIASES_BY_TARGET = {
   BCMA: ['TNFRSF17', 'CD269'],
   IgE: ['Immunoglobulin E'],
   'CGRP receptor': ['CGRPR', 'CALCRL', 'RAMP1'],
-  'IL-1β': ['IL1B', 'IL-1B', 'IL-1 beta'],
+  'IL-1B': ['IL1B', 'IL-1β', 'IL-1 beta'],
   'Tissue Factor': ['F3', 'CD142', 'Thromboplastin', 'Coagulation factor III'],
   'Canine NGF': ['dog NGF', 'dog nerve growth factor', '犬源 NGF', '犬 NGF']
   ,
@@ -588,6 +588,75 @@ function markdownTable(rows) {
   return rows.map(row => '| ' + row.map(escapeMd).join(' | ') + ' |').join('\n');
 }
 
+
+function compactAliasKey(value) {
+  return String(value || '')
+    .normalize('NFKC')
+    .toUpperCase()
+    .replace(/(?:ALPHA|Α)/g, 'A')
+    .replace(/(?:BETA|Β)/g, 'B')
+    .replace(/[^\p{Script=Han}A-Z0-9]/gu, '');
+}
+
+function aliasIsSafeForMaintenanceList(value) {
+  const key = compactAliasKey(value);
+  if (!key) return false;
+  if (key.length >= 3) return true;
+  return /^(?:C\d|CD\d+|IL\d+|PD1|C5)$/i.test(String(value || '').replace(/\s+/g, ''));
+}
+
+function routeAliasRows(catalog) {
+  const rows = [
+    ['routeId', 'canonical target', 'gene', 'accepted aliases', 'safe suffix variants', 'route gate'],
+    ['---', '---', '---', '---', '---', '---']
+  ];
+  for (const entry of catalog.routePresets || []) {
+    if (!entry || entry.routeable === false || entry.promptEligible === false) continue;
+    const target = String(entry.target || '').trim();
+    const gene = String(entry.gene || '').trim();
+    const includeBareGene = !(target && /^Canine\s+/i.test(target)) && aliasIsSafeForMaintenanceList(gene);
+    const aliases = [
+      ...(Array.isArray(entry.aliases) ? entry.aliases : []),
+      includeBareGene ? gene : '',
+      entry.promptLabel || ''
+    ].map(item => String(item || '').trim()).filter(Boolean);
+    const uniqueAliases = [...new Set(aliases)]
+      .filter(item => item !== target)
+      .filter(item => aliasIsSafeForMaintenanceList(item) || item.includes('/'));
+    const suffixVariants = [];
+    for (const base of [target, includeBareGene ? gene : '']) {
+      const value = String(base || '').trim();
+      if (!value || /\breceptor\b/i.test(value)) continue;
+      const key = compactAliasKey(value);
+      if (!key || key.length <= 1) continue;
+      const receptorSuffixWouldMislead = /^IL\d/.test(key) && !/R(?:A|B|ALPHA|BETA)?$/.test(key);
+      if (!receptorSuffixWouldMislead) suffixVariants.push(value + ' receptor');
+      suffixVariants.push(value + ' protein');
+    }
+    const uniqueSuffixVariants = [...new Set(suffixVariants)];
+    rows.push([
+      entry.routeId,
+      target,
+      gene,
+      uniqueAliases.length ? uniqueAliases.join(', ') : '—',
+      uniqueSuffixVariants.length ? uniqueSuffixVariants.join(', ') : '—',
+      entry.clientFallbackEligible === false ? 'server only' : 'server + client fallback'
+    ]);
+  }
+  return rows;
+}
+
+function buildAliasMaintenanceChecklist() {
+  return [
+    '1. Add or update the route in `pdb/local-structure-catalog.json` with `routeId`, canonical `target`, `gene`, `aliases`, `promptLabel`, `aliasPrefix`, organism/taxid, chain roles and structural basis.',
+    '2. Include gene-symbol aliases and common user-facing aliases, especially receptor/protein/domain forms such as `TARGET receptor`, `GENE receptor`, ECD/domain wording, hyphen/no-hyphen spelling and clinically common names.',
+    '3. For species-specific routes, keep species words inside the alias list, for example `dog NGF`, `Canine NGF`, `犬源 NGF`, to avoid collapsing them into the human target.',
+    '4. Regenerate the catalog with `npm run structures:catalog` after changing route metadata.',
+    '5. Run `npm run targets:aliases` and `node --test test/server-design-route.test.js --test-name-pattern="catalog target aliases"` before committing.',
+    '6. If a target is only a disease/pathogen name and not a precise antigen, keep it on the target-resolution workflow unless the user explicitly declares it with `靶点是` / `target is`.'
+  ];
+}
+
 function buildCatalogMarkdown(catalog) {
   const routeRows = [
     ['routeId', 'target', 'gene', 'aliasPrefix', 'files', 'organism', 'structure basis'],
@@ -618,6 +687,9 @@ function buildCatalogMarkdown(catalog) {
     ]);
   }
 
+  const aliasRows = routeAliasRows(catalog);
+  const checklist = buildAliasMaintenanceChecklist();
+
   return [
     '# Local structure catalog',
     '',
@@ -635,6 +707,16 @@ function buildCatalogMarkdown(catalog) {
     '',
     markdownTable(routeRows),
     '',
+    '## Alias normalization rules',
+    '',
+    'The runtime normalizer treats this table as the maintainable route-level target identity map. `target` is the canonical display identity; `gene`, `aliases` and `promptLabel` are accepted as equivalent user inputs. Common suffix forms such as `receptor`, `protein`, `domain`, `ECD` and spacing/hyphen variants are normalized before route lookup.',
+    '',
+    markdownTable(aliasRows),
+    '',
+    '## Alias maintenance checklist',
+    '',
+    ...checklist.map(item => '- ' + item),
+    '',
     '## Extension priorities',
     '',
     markdownTable(priorityRows),
@@ -644,6 +726,7 @@ function buildCatalogMarkdown(catalog) {
     '- `local-structure-catalog.json` is the machine-readable source of truth.',
     '- Runtime prompts should consume only the structure-supported target summary generated from this catalog.',
     '- New routeable entries must include target identity, aliases, organism/taxid, file pattern, chain roles and structural basis.',
+    '- Alias normalization must be catalog-driven first. Avoid adding one-off regexes unless the value cannot be represented as `target`, `gene`, `aliases`, `promptLabel`, or a suffix variant.',
     '- Asset-only entries should not be promoted to routeable status until chain roles and display metadata are complete.',
     ''
   ].join('\n');
