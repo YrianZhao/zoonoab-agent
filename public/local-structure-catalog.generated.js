@@ -2,7 +2,7 @@
 (function(){
   window.ZOONOAB_LOCAL_STRUCTURE_CATALOG = {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-24T07:30:00.531Z",
+  "generatedAt": "2026-07-27T08:36:34.996Z",
   "summary": {
     "pdbFileCount": 519,
     "routePresetCount": 74,
@@ -4195,19 +4195,19 @@
         "ELECTRON MICROSCOPY"
       ],
       "resolutionAngstrom": 3.2,
-      "note": "BA.1.1.529 Spike trimer with Fab.",
+      "note": "BA.1.1.529 Spike trimer with Fab; display coloring uses flattened assembly protein chains A/B/C for Spike and D/E/F/G/H/I for Fab.",
       "antigenChains": [
         "A",
         "B",
         "C"
       ],
       "antibodyChains": [
-        "E",
-        "H",
-        "I",
         "D",
-        "J",
-        "L"
+        "E",
+        "F",
+        "G",
+        "H",
+        "I"
       ]
     },
     {

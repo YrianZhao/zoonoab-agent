@@ -36,7 +36,7 @@ const entries = [
   { group: 'SARS-CoV-2', subtype: 'Beta B.1.351', antigen: 'Spike', pdbId: '7LYN', file: 'VIRUSLIB-SC2-SPIKE-BETA-7LYN.pdb', label: 'SARS-CoV-2 Beta spike', note: 'B.1.351 Spike trimer, 1-RBD-up.' },
   { group: 'SARS-CoV-2', subtype: 'Gamma P.1', antigen: 'Spike', pdbId: '7V79', file: 'VIRUSLIB-SC2-SPIKE-GAMMA-7V79.pdb', label: 'SARS-CoV-2 Gamma spike', note: 'P.1 Spike trimer, 1-RBD-up.' },
   { group: 'SARS-CoV-2', subtype: 'Delta B.1.617.2', antigen: 'Spike', pdbId: '7TOU', file: 'VIRUSLIB-SC2-SPIKE-DELTA-7TOU.pdb', label: 'SARS-CoV-2 Delta spike', note: 'B.1.617.2 Spike trimer, 3-RBD-down.' },
-  { group: 'SARS-CoV-2', subtype: 'Omicron BA.1/B.1.1.529', antigen: 'Spike', pdbId: '8DZH', file: 'VIRUSLIB-SC2-SPIKE-OMICRON-BA1-8DZH.pdb', label: 'SARS-CoV-2 Omicron BA.1 spike', note: 'BA.1.1.529 Spike trimer with Fab.' },
+  { group: 'SARS-CoV-2', subtype: 'Omicron BA.1/B.1.1.529', antigen: 'Spike', pdbId: '8DZH', file: 'VIRUSLIB-SC2-SPIKE-OMICRON-BA1-8DZH.pdb', label: 'SARS-CoV-2 Omicron BA.1 spike', note: 'BA.1.1.529 Spike trimer with Fab; display chains use the flattened protein chains A/B/C for Spike and D/E/F/G/H/I for Fab.', displayAntigenChains: ['A', 'B', 'C'], displayAntibodyChains: ['D', 'E', 'F', 'G', 'H', 'I'] },
   { group: 'SARS-CoV-2', subtype: 'Omicron BA.2', antigen: 'Spike', pdbId: '7UB0', file: 'VIRUSLIB-SC2-SPIKE-OMICRON-BA2-7UB0.pdb', label: 'SARS-CoV-2 Omicron BA.2 spike', note: 'BA.2 Spike trimer, 3-RBD-down.' },
 
   // Other coronaviruses.
