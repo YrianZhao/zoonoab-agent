@@ -8766,7 +8766,10 @@ function buildWorkflowIntentPrompt() {
     'clarify：只有在主语缺失到无法判断设计对象时才允许，例如“设计一个抗体”这类完全没有疾病、病原体、通路或靶点线索的输入。',
     '小分子/半抗原边界：如果用户要求直接针对小分子、半抗原或化合物本身生成特异性抗体，返回 action=answer，并说明当前展示聚焦大分子抗原、蛋白靶点、受体、细胞因子和病原体表面抗原；不要把小分子硬转成蛋白靶点。',
     '口语、简称和不完整说法也要尽量归一化为正式靶点；药物名可按已知适应症和作用靶点反推适合抗体设计的真实大分子靶点。',
-    '流感口语靶点：H1-H18 亚型中和抗体按 Influenza A(Hx) hemagglutinin (HA)；明确说 NA/神经氨酸酶才选 Influenza NA。',
+    '流感口语靶点：H1-H18 亚型中和抗体必须按完整格式 Influenza A(Hx) hemagglutinin (HA) 输出 target，例如用户说 H7 则 target 必须为 Influenza A(H7) hemagglutinin (HA)，不得简写为 Influenza HA；明确说 NA/神经氨酸酶才选 Influenza NA。',
+    'selectionReason 要求：至少 3 句话，直接陈述靶点的疾病关联机制、抗原可及性优势、与同类候选靶点相比的优先级依据，禁止使用"用户提出""用户指定"等任务执行口吻。',
+    'candidates 要求：提供 3-5 个候选靶点，每个候选必须包含 target 和 rationale（至少 1 句话说明该候选的适应症关联、机制或可及性特点）。',
+    'summary、background、assumptions 尽量简短，把输出空间留给 selectionReason 和 candidates。',
     '示例约束：先天性耳聋的抗体设计必须给出明确靶点，例如 OTOF；结核杆菌治疗性抗体设计必须给出明确病原体抗原，例如 Ag85 complex，而不是反问用户先指定蛋白。',
     '常见疾病快速参考：肿瘤免疫治疗->PD-L1/block PD-1；过敏性哮喘->IL-33/block ST2；乳腺癌->HER2；自身免疫炎症->TNF；胰腺癌->MUC1 或 Mesothelin；胃癌->Claudin 18.2；肾盂癌/尿路上皮癌->Nectin-4；肾癌->CAIX；宫颈癌->Tissue Factor；ADHD->DAT；流感H7->Influenza A(H7) hemagglutinin (HA)。'
   ].join('\n');
@@ -8897,11 +8900,11 @@ async function stopResearchTrace(ws, runtime, status = 'cancelled') {
 
 function normalizeCandidateTargets(value, blockTarget, abType) {
   const items = Array.isArray(value) ? value : [];
-  return items.slice(0, 8).map(item => {
+  return items.slice(0, 10).map(item => {
     const source = item && typeof item === 'object' ? item : { t: item };
     const target = canonicalPreparedTargetName(source.t || source.target || source.name || '', blockTarget, abType);
     const gene = normalizeResolverTarget(source.g || source.gene || '');
-    let rationale = String(source.r || source.rationale || source.reason || '').trim().slice(0, 360);
+    let rationale = String(source.r || source.rationale || source.reason || '').trim().slice(0, 500);
     if (VISIBLE_PREPARED_MODEL_LEAK_PATTERN.test(rationale) || VISIBLE_TARGET_RESOLVER_LEAK_PATTERN.test(rationale)) {
       rationale = '具备明确疾病关联、抗体可及性和候选开发依据。';
     }
@@ -9137,7 +9140,7 @@ async function resolveWorkflowIntentWithModel(input, voiceSessionId) {
         { role: 'user', content: text.slice(0, 1000) }
       ],
       temperature: 0,
-      maxTokens: 780,
+      maxTokens: 1600,
       json: true
     }, {
       timeoutMs: WORKFLOW_INTENT_TIMEOUT_MS
@@ -9374,6 +9377,11 @@ function preferredPreparedTargetFromResolution(selectedTarget, candidates, antib
 function modelIntentToTargetResolution(input, modelIntent) {
   if (!modelIntent || modelIntent.intent !== 'design' || !modelIntent.target) return null;
   const disease = modelIntent.disease || extractDiseaseIndication(input) || '';
+  let resolvedTarget = modelIntent.target;
+  const inputFluSubtype = influenzaHaSubtypeNumber(input);
+  if (inputFluSubtype && isInfluenzaHaFamilyTarget(resolvedTarget) && !influenzaHaSubtypeNumber(resolvedTarget)) {
+    resolvedTarget = 'Influenza A(H' + inputFluSubtype + ') hemagglutinin (HA)';
+  }
   const reasonParts = [
     modelIntent.background,
     modelIntent.reason,
@@ -9382,15 +9390,15 @@ function modelIntentToTargetResolution(input, modelIntent) {
   const candidates = modelIntent.candidateTargets && modelIntent.candidateTargets.length
     ? modelIntent.candidateTargets
     : [{
-        target: modelIntent.target,
+        target: resolvedTarget,
         gene: modelIntent.targetGene || '',
-        rationale: modelIntent.reason || modelIntent.mechanism || (modelIntent.target + ' 具备可用于抗体候选设计的抗原可及表面。')
+        rationale: modelIntent.reason || modelIntent.mechanism || (resolvedTarget + ' 具备可用于抗体候选设计的抗原可及表面。')
       }];
   const identityContext = inferStructureIdentityContext(input);
   return normalizeTargetResolution({
     inputType: disease ? 'disease_indication' : 'target_like_request',
     disease: disease || modelIntent.summary || String(input || '').trim(),
-    selectedTarget: modelIntent.target,
+    selectedTarget: resolvedTarget,
     selectedGene: modelIntent.targetGene || '',
     organismName: modelIntent.organismName || identityContext.organismName,
     organismTaxId: modelIntent.organismTaxId || identityContext.organismTaxId,
@@ -9616,9 +9624,9 @@ function sanitizeSelectionReasonForDisplay(reason, target, disease) {
   const targetName = target || '当前靶点';
   const subject = disease || '当前疾病方向';
   if (!raw || VISIBLE_PREPARED_MODEL_LEAK_PATTERN.test(raw) || VISIBLE_TARGET_RESOLVER_LEAK_PATTERN.test(raw)) {
-    return sanitizeVisibleTargetReason('', targetName, subject).slice(0, 520);
+    return sanitizeVisibleTargetReason('', targetName, subject).slice(0, 800);
   }
-  return sanitizeVisibleTargetReason(raw, targetName, subject).slice(0, 520);
+  return sanitizeVisibleTargetReason(raw, targetName, subject).slice(0, 800);
 }
 
 function sanitizedTargetSelectionReason(resolution, route) {
@@ -9656,7 +9664,7 @@ function targetResolutionIntro(route) {
     (route && route.selectionReason) || sanitizedTargetSelectionReason(r, route)
   ).trim();
   const candidates = Array.isArray(r.candidates) && r.candidates.length
-    ? '\n\n候选靶点评估：\n' + r.candidates.slice(0, 6).map((item, idx) => {
+    ? '\n\n候选靶点评估：\n' + r.candidates.slice(0, 8).map((item, idx) => {
       const gene = item.gene ? ' / ' + item.gene : '';
       const rationale = item.rationale ? '：' + item.rationale : '';
       return String(idx + 1) + '. ' + item.target + gene + rationale;
