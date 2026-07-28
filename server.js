@@ -5314,17 +5314,16 @@ function localLibraryAssetMatchesProfile(profile, entry) {
   const requestedIdentity = normalizePreparedStructureTarget(requestedTarget);
   if (!requestedIdentity) return false;
   const aliases = localStructureCatalogAliases(entry);
-  const targetMatches = aliases.some(alias => normalizePreparedStructureTarget(alias) === requestedIdentity);
-  if (!targetMatches) return false;
-  const requestedOrganismName = String(profile.organismName || '').trim();
-  const requestedOrganismTaxId = Number(profile.organismTaxId || 0) || null;
-  if (!requestedOrganismName && !requestedOrganismTaxId) return true;
-  const coordinateOrganismName = String(entry.organismName || entry.organism || '').trim();
-  const coordinateOrganismTaxId = Number(entry.organismTaxId || entry.taxId || 0) || null;
-  return Boolean(
-    (requestedOrganismTaxId && coordinateOrganismTaxId && requestedOrganismTaxId === coordinateOrganismTaxId) ||
-    (requestedOrganismName && coordinateOrganismName && normalizePreparedStructureTarget(requestedOrganismName) === normalizePreparedStructureTarget(coordinateOrganismName))
-  );
+  // Relaxed target matching: exact or fuzzy substring
+  const targetMatches = aliases.some(alias => {
+    const aliasIdentity = normalizePreparedStructureTarget(alias);
+    return aliasIdentity && (
+      aliasIdentity === requestedIdentity ||
+      aliasIdentity.includes(requestedIdentity) ||
+      requestedIdentity.includes(aliasIdentity)
+    );
+  });
+  return targetMatches;
 }
 
 function localLibraryAssetEntriesForProfile(profile) {
@@ -5343,22 +5342,7 @@ function preferredLocalLibraryAssetEntries(profile) {
     const [formatScore, classScore] = localLibraryAssetStructureRank(entry, requestedFormat);
     return formatScore === topFormatScore && classScore === topClassScore;
   });
-  if (rankFiltered.length <= 1) return rankFiltered;
-  const requestedOrganismName = String(profile && profile.organismName || '').trim();
-  const requestedOrganismTaxId = Number(profile && profile.organismTaxId || 0) || null;
-  if (requestedOrganismName || requestedOrganismTaxId) return rankFiltered;
-  const topOrganismName = String(rankFiltered[0] && (rankFiltered[0].organismName || rankFiltered[0].organism) || '').trim();
-  const topOrganismTaxId = Number(rankFiltered[0] && (rankFiltered[0].organismTaxId || rankFiltered[0].taxId) || 0) || null;
-  if (!topOrganismName && !topOrganismTaxId) return rankFiltered;
-  const organismFiltered = rankFiltered.filter(entry => {
-    const organismName = String(entry && (entry.organismName || entry.organism) || '').trim();
-    const organismTaxId = Number(entry && (entry.organismTaxId || entry.taxId) || 0) || null;
-    return Boolean(
-      (topOrganismTaxId && organismTaxId && topOrganismTaxId === organismTaxId) ||
-      (topOrganismName && organismName && normalizePreparedStructureTarget(topOrganismName) === normalizePreparedStructureTarget(organismName))
-    );
-  });
-  return organismFiltered.length ? organismFiltered : rankFiltered;
+  return rankFiltered;
 }
 
 function hasExactLocalAssetStructure(profile) {
@@ -5855,19 +5839,11 @@ function preparedStructureTargetMatches(profile, filename) {
   const requestedTarget = profile && profile.targetDisplay;
   const remarks = readLocalPDBRemarks(filename);
   const targetTag = buildLocalPDBTargetTag(filename, remarks);
-  const presetIdentity = routePresetIdentityForProfile(profile, localPDBPresetForFilename(filename));
   const coordinateTarget = targetTag.target;
   const requestedIdentity = normalizePreparedStructureTarget(requestedTarget);
   const coordinateIdentity = targetTag.normalizedTarget;
   const requestedFormat = String(antibodyFormatForProfile(profile) || '').trim().toUpperCase();
   const coordinateFormat = String(targetTag.antibodyFormat || '').trim().toUpperCase();
-  const requestedOrganismName = String(profile && profile.organismName || '').trim();
-  const requestedOrganismTaxId = Number(profile && profile.organismTaxId || 0) || null;
-  const requestedOrganismProvided = Boolean(requestedOrganismName || requestedOrganismTaxId);
-  const strain = String(profile && profile.strain || '').trim();
-  const isoform = String(profile && profile.isoform || '').trim();
-  const coordinateOrganismName = String((remarks && remarks.organism) || (presetIdentity && presetIdentity.organismName) || '').trim();
-  const coordinateOrganismTaxId = Number((remarks && remarks.organismTaxId) || (presetIdentity && presetIdentity.organismTaxId) || 0) || null;
   const requestedTargetAlias = /(?:\bNGF\b|NERVE\s*GROWTH\s*FACTOR|神经生长因子)/i.test(String(requestedTarget || ''))
     ? 'NGF'
     : requestedIdentity;
@@ -5882,17 +5858,23 @@ function preparedStructureTargetMatches(profile, filename) {
     requestedFluSubtype === coordinateFluSubtype &&
     isInfluenzaHaFamilyTarget(requestedTarget)
   );
-  const organismMatches = !requestedOrganismProvided || Boolean(
-    (requestedOrganismTaxId && coordinateOrganismTaxId && requestedOrganismTaxId === coordinateOrganismTaxId) ||
-    (requestedOrganismName && coordinateOrganismName && normalizePreparedStructureTarget(requestedOrganismName) === normalizePreparedStructureTarget(coordinateOrganismName)) ||
-    (influenzaSubtypeMatches && /influenza\s+a/i.test(requestedOrganismName + ' ' + coordinateOrganismName))
+  // Relaxed target matching: exact, alias, influenza subtype, or fuzzy substring
+  const targetMatches = Boolean(
+    requestedTargetAlias && coordinateTargetAlias && (
+      requestedTargetAlias === coordinateTargetAlias ||
+      influenzaSubtypeMatches ||
+      requestedTargetAlias.includes(coordinateTargetAlias) ||
+      coordinateTargetAlias.includes(requestedTargetAlias)
+    )
   );
-  const strainIsoformOk = influenzaSubtypeMatches || (!strain && !isoform);
+  // Relaxed format matching: Fab/mAb/IgG are mutually compatible (mAb contains Fab regions)
+  const fabLikeFormats = ['FAB', 'IGG', 'MAB'];
+  const formatCompatible = !requestedFormat || !coordinateFormat || requestedFormat === coordinateFormat ||
+    (fabLikeFormats.includes(requestedFormat) && fabLikeFormats.includes(coordinateFormat));
   return Boolean(
-    targetTag.verifiedTag &&
-    requestedTargetAlias && coordinateTargetAlias && (requestedTargetAlias === coordinateTargetAlias || influenzaSubtypeMatches) &&
-    requestedFormat && coordinateFormat && requestedFormat === coordinateFormat &&
-    strainIsoformOk && organismMatches
+    targetTag.tagged &&
+    targetMatches &&
+    formatCompatible
   );
 }
 
@@ -9031,24 +9013,25 @@ function buildCompactWorkflowProfileFromModelIntent(modelIntent) {
   const rawTargetDisplay = modelIntent.target || base.targetDisplay || '';
   const influenzaDisplay = normalizeInfluenzaHaSubtypeDisplay(rawTargetDisplay);
   const targetDisplay = influenzaDisplay || rawTargetDisplay;
+  const canonicalTargetDisplay = canonicalPreparedTargetName(targetDisplay, modelIntent.blockTarget, modelIntent.abType || 'Fab') || targetDisplay;
   const profile = {
     ...base,
     disease: modelIntent.disease || base.disease,
-    targetDisplay: targetDisplay || base.targetDisplay,
+    targetDisplay: canonicalTargetDisplay || base.targetDisplay,
     domain: wf.domain || base.domain,
     mechanism: wf.mechanism || modelIntent.mechanism || base.mechanism,
     interfaceFocus: wf.epitope || base.interfaceFocus,
     selectedEpitope: wf.epitope || base.selectedEpitope,
     structure: wf.structure || base.structure,
     structuralBasis: wf.structure || base.structuralBasis || '',
-    selectionReason: sanitizeSelectionReasonForDisplay(modelIntent.reason, targetDisplay || base.targetDisplay, modelIntent.disease || base.disease),
+    selectionReason: sanitizeSelectionReasonForDisplay(modelIntent.reason, canonicalTargetDisplay || base.targetDisplay, modelIntent.disease || base.disease),
     structurePrepZh: wf.modelNote || base.structurePrepZh || '',
     structurePrepEn: wf.modelNote || base.structurePrepEn || '',
     modelVisualSummary: wf.modelNote || '',
     modelGeneratedProfile: true
   };
-  if (!profile.routeLabel) profile.routeLabel = profile.targetDisplay || targetDisplay;
-  if (!profile.evidence) profile.evidence = (profile.targetDisplay || targetDisplay || '目标靶点') + ' 靶点证据包';
+  if (!profile.routeLabel) profile.routeLabel = profile.targetDisplay || canonicalTargetDisplay;
+  if (!profile.evidence) profile.evidence = (profile.targetDisplay || canonicalTargetDisplay || '目标靶点') + ' 靶点证据包';
   if (!Array.isArray(profile.evidenceSources) || !profile.evidenceSources.length) {
     profile.evidenceSources = ['疾病关联背景', '抗体可及性评估', '候选靶点比较'];
   }
@@ -9110,29 +9093,30 @@ function buildWorkflowProfileFromModelIntent(modelIntent) {
   const rawTargetDisplay = sanitizeWorkflowBlueprintText(w.targetDisplay, modelIntent.target || base.targetDisplay, 80);
   const influenzaDisplay = normalizeInfluenzaHaSubtypeDisplay(rawTargetDisplay) || normalizeInfluenzaHaSubtypeDisplay(modelIntent.target);
   const targetDisplay = influenzaDisplay || rawTargetDisplay;
+  const canonicalTargetDisplay = canonicalPreparedTargetName(targetDisplay, modelIntent.blockTarget, modelIntent.abType || 'Fab') || targetDisplay;
   const partnerDisplay = sanitizeWorkflowBlueprintText(w.partnerDisplay, modelIntent.blockTarget || base.partnerDisplay || '', 80);
   const profile = {
     ...base,
-    routeLabel: sanitizeWorkflowBlueprintText(w.routeLabel, base.routeLabel || targetDisplay, 120),
+    routeLabel: sanitizeWorkflowBlueprintText(w.routeLabel, base.routeLabel || canonicalTargetDisplay, 120),
     disease: sanitizeWorkflowBlueprintText(w.disease, modelIntent.disease || base.disease, 120),
-    targetDisplay,
+    targetDisplay: canonicalTargetDisplay,
     partnerDisplay,
-    domain: sanitizeWorkflowBlueprintText(w.domain, base.domain || (targetDisplay + ' 目标抗原可及结构区域'), 160),
+    domain: sanitizeWorkflowBlueprintText(w.domain, base.domain || (canonicalTargetDisplay + ' 目标抗原可及结构区域'), 160),
     mechanism: sanitizeWorkflowBlueprintText(w.mechanism, modelIntent.mechanism || base.mechanism, 260),
-    evidence: sanitizeWorkflowBlueprintText(w.evidence, base.evidence || (targetDisplay + ' 靶点证据包'), 160),
+    evidence: sanitizeWorkflowBlueprintText(w.evidence, base.evidence || (canonicalTargetDisplay + ' 靶点证据包'), 160),
     evidenceSources: normalizeWorkflowArray(w.evidenceSources, base.evidenceSources || [], 6, 100),
-    referenceEntries: sanitizeWorkflowBlueprintText(w.referenceEntries, base.referenceEntries || (targetDisplay + ' 靶点条目'), 180),
-    structure: sanitizeWorkflowBlueprintText(w.structure, base.structure || (targetDisplay + ' 结构约束集合'), 260),
-    structureRef: sanitizeWorkflowBlueprintText(w.structureRef, base.structureRef || (targetDisplay + ' 参考模型'), 180),
+    referenceEntries: sanitizeWorkflowBlueprintText(w.referenceEntries, base.referenceEntries || (canonicalTargetDisplay + ' 靶点条目'), 180),
+    structure: sanitizeWorkflowBlueprintText(w.structure, base.structure || (canonicalTargetDisplay + ' 结构约束集合'), 260),
+    structureRef: sanitizeWorkflowBlueprintText(w.structureRef, base.structureRef || (canonicalTargetDisplay + ' 参考模型'), 180),
     structuralBasis: sanitizeWorkflowBlueprintText(w.structuralBasis, base.structuralBasis || '', 220),
     selectionReason: sanitizeSelectionReasonForDisplay(
       w.selectionReason || w.targetSelectionReason || modelIntent.reason,
-      targetDisplay,
+      canonicalTargetDisplay,
       modelIntent.disease || base.disease
     ),
     antibodies: normalizeWorkflowArray(w.antibodies, base.antibodies || [], 6, 100),
-    interfaceFocus: sanitizeWorkflowBlueprintText(w.interfaceFocus, base.interfaceFocus || (targetDisplay + ' 抗原可及表面'), 180),
-    selectedEpitope: sanitizeWorkflowBlueprintText(w.selectedEpitope, base.selectedEpitope || (targetDisplay + ' 表面优先可及区域'), 180),
+    interfaceFocus: sanitizeWorkflowBlueprintText(w.interfaceFocus, base.interfaceFocus || (canonicalTargetDisplay + ' 抗原可及表面'), 180),
+    selectedEpitope: sanitizeWorkflowBlueprintText(w.selectedEpitope, base.selectedEpitope || (canonicalTargetDisplay + ' 表面优先可及区域'), 180),
     epitopeRowsZh,
     epitopeRowsEn: epitopeRowsZh,
     riskSummaryZh: sanitizeWorkflowBlueprintText(w.riskSummary, base.riskSummaryZh || '', 260),
@@ -10182,6 +10166,11 @@ async function runWorkflow(ws, input, forcedRoute, researchTraceRuntime = null) 
   const demoRouteForProfile = forcedRoute || detectDemoRoute(input);
   profile.routeId = demoRouteForProfile && demoRouteForProfile.id ? demoRouteForProfile.id : '';
   if (!profile.targetDisplay) profile.targetDisplay = target;
+  // Canonicalize targetDisplay to ensure it matches local PDB structure tags
+  // This fixes cases where the model API returns a non-canonical targetDisplay
+  // (e.g., "Dopamine transporter (DAT)" instead of "DAT") in the workflow blueprint
+  const canonicalDisplay = canonicalPreparedTargetName(profile.targetDisplay, blockTarget, abType);
+  if (canonicalDisplay) profile.targetDisplay = canonicalDisplay;
   if (!profile.targetGene && forcedRoute && forcedRoute.targetResolution && forcedRoute.targetResolution.selectedGene) {
     profile.targetGene = forcedRoute.targetResolution.selectedGene;
   }
