@@ -4341,7 +4341,7 @@ const ROUTE_3D_PRESETS = {
     visualSummary: '保留 CD20 双链跨膜区外露构象，并展示 rituximab Fab 的真实结合姿态。',
     structuralBasis: 'RCSB 6VJA CD20 / rituximab Fab complex',
     antigenChains: ['A', 'D'],
-    antibodyChains: ['B', 'C', 'F', 'G'],
+    antibodyChains: ['B', 'C'],
     antigenColor: '#2563EB',
     antibodyColor: '#F97316',
     ipTmBias: 0.006
@@ -4389,7 +4389,7 @@ const ROUTE_3D_PRESETS = {
     visualSummary: '保留 complement C5 多结构域形状，并展示 eculizumab 可变区抗体复合体界面。',
     structuralBasis: 'RCSB 5I5K complement C5 / eculizumab variable-domain antibody complex',
     antigenChains: ['A', 'D'],
-    antibodyChains: ['B', 'C', 'F', 'G'],
+    antibodyChains: ['B', 'C'],
     antigenColor: '#16A34A',
     antibodyColor: '#6366F1',
     ipTmBias: 0.007
@@ -4497,7 +4497,7 @@ const ROUTE_3D_PRESETS = {
     visualSummary: '保留 TROP-2 二聚体形状，并展示 sacituzumab Fab 的真实结合姿态。',
     structuralBasis: 'RCSB 9PI9 TROP-2 dimer / sacituzumab Fab complex',
     antigenChains: ['A', 'D'],
-    antibodyChains: ['B', 'C', 'F', 'G'],
+    antibodyChains: ['B', 'C'],
     antigenColor: '#EC4899',
     antibodyColor: '#38BDF8',
     ipTmBias: 0.005
@@ -4533,7 +4533,7 @@ const ROUTE_3D_PRESETS = {
     visualSummary: '保留 IgE-Fc 双链形状，并展示 anti-IgE Fab 的真实结合姿态。',
     structuralBasis: 'RCSB 5G64 IgE-Fc / anti-IgE Fab complex',
     antigenChains: ['A', 'D'],
-    antibodyChains: ['B', 'C', 'F', 'G'],
+    antibodyChains: ['B', 'C'],
     antigenColor: '#F59E0B',
     antibodyColor: '#0EA5E9',
     ipTmBias: 0.002
@@ -4609,7 +4609,7 @@ const ROUTE_3D_PRESETS = {
     visualSummary: '保留 IL-17A 二聚体构象，并展示 Fab 对炎症轴关键可及面的双侧覆盖。',
     structuralBasis: 'RCSB 2VXS IL-17A dimer / neutralizing Fab complex',
     antigenChains: ['A', 'D'],
-    antibodyChains: ['B', 'C', 'F', 'G'],
+    antibodyChains: ['B', 'C'],
     antigenColor: '#F43F5E',
     antibodyColor: '#06B6D4',
     order: [6, 9, 1, 3, 5, 8, 0, 2, 4, 7, 10, 11],

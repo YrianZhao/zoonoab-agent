@@ -2,7 +2,7 @@
 (function(){
   window.ZOONOAB_LOCAL_STRUCTURE_CATALOG = {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-27T13:19:39.201Z",
+  "generatedAt": "2026-07-28T15:10:12.551Z",
   "summary": {
     "pdbFileCount": 629,
     "routePresetCount": 85,
@@ -3494,10 +3494,10 @@
         ],
         "antibodyChains": [
           "H",
-          "I",
-          "J",
           "L",
+          "I",
           "M",
+          "J",
           "N"
         ],
         "sourceAntigenChains": [
@@ -3507,10 +3507,10 @@
         ],
         "sourceAntibodyChains": [
           "H",
-          "I",
-          "J",
           "L",
+          "I",
           "M",
+          "J",
           "N"
         ],
         "visualColors": {
@@ -3606,7 +3606,6 @@
           "E",
           "F"
         ],
-        "keepAllAntibodyChains": true,
         "visualColors": {
           "antigen": "#14B8A6",
           "antibody": "#F97316"
@@ -3698,7 +3697,6 @@
           "H",
           "L"
         ],
-        "keepAllAntibodyChains": true,
         "visualColors": {
           "antigen": "#22C55E",
           "antibody": "#2563EB"
@@ -3727,7 +3725,7 @@
       "display": {
         "structureTitle": "BAFF Fab B 细胞活化因子结合构象",
         "structureFamily": "自身免疫 B 细胞生存配体 · BAFF Fab 候选",
-        "visualSummary": "展示 trimeric human BAFF 与三组 belimumab Fab 的真实实验复合物，可支撑系统性红斑狼疮与 B 细胞异常活化方向的配体展示。",
+        "visualSummary": "展示 trimeric human BAFF 与一组 belimumab Fab 的真实实验复合物，可支撑系统性红斑狼疮与 B 细胞异常活化方向的配体展示。",
         "structuralBasis": "RCSB 6FXN human BAFF trimer / belimumab Fab complex",
         "antigenChains": [
           "A",
@@ -3755,7 +3753,6 @@
           "H",
           "I"
         ],
-        "keepAllAntibodyChains": true,
         "visualColors": {
           "antigen": "#8B5CF6",
           "antibody": "#F97316"
@@ -3892,7 +3889,6 @@
           "E",
           "F"
         ],
-        "keepAllAntibodyChains": true,
         "visualColors": {
           "antigen": "#F97316",
           "antibody": "#2563EB"
@@ -4085,7 +4081,6 @@
           "G",
           "H"
         ],
-        "keepAllAntibodyChains": true,
         "visualColors": {
           "antigen": "#14B8A6",
           "antibody": "#F97316"
