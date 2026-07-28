@@ -4942,11 +4942,28 @@ const TUMOR_IMMUNOTHERAPY_TARGET_RESOLUTION = {
   ]
 };
 
+const BREAST_CANCER_HER2_TARGET_RESOLUTION = {
+  selectedTarget: 'HER2',
+  selectedGene: 'ERBB2',
+  designLabel: 'BREAST-HER2-1',
+  confidence: 0.84,
+  reason: '乳腺癌相关疾病方向可优先围绕 HER2/ERBB2 胞外结构域展开。HER2 是经典受体酪氨酸激酶靶点，具备明确的细胞表面可及性、成熟抗体开发背景和本地三维结构预设，适合作为乳腺癌方向的 Fab 候选设计入口。',
+  candidates: [
+    { target: 'HER2', gene: 'ERBB2', rationale: '乳腺癌相关经典细胞表面受体靶点，具备 HER2 胞外结构域与抗体复合物展示基础。' },
+    { target: 'TROP-2', gene: 'TACSTD2', rationale: '上皮肿瘤表面抗原，可作为乳腺癌方向的补充候选。' },
+    { target: 'PD-L1', gene: 'CD274', rationale: '肿瘤免疫调节相关检查点配体，可作为免疫治疗语境下的备选入口。' }
+  ]
+};
+
 const BUILTIN_DISEASE_TARGET_RESOLVERS = {
   '肿瘤免疫治疗': TUMOR_IMMUNOTHERAPY_TARGET_RESOLUTION,
   '肿瘤免疫': TUMOR_IMMUNOTHERAPY_TARGET_RESOLUTION,
   '癌症免疫治疗': TUMOR_IMMUNOTHERAPY_TARGET_RESOLUTION,
   '癌症免疫': TUMOR_IMMUNOTHERAPY_TARGET_RESOLUTION,
+  '乳腺癌': BREAST_CANCER_HER2_TARGET_RESOLUTION,
+  '乳腺癌相关疾病': BREAST_CANCER_HER2_TARGET_RESOLUTION,
+  'breast cancer': BREAST_CANCER_HER2_TARGET_RESOLUTION,
+  'HER2 阳性乳腺癌': BREAST_CANCER_HER2_TARGET_RESOLUTION,
   '过敏性哮喘': {
     selectedTarget: 'IL-33',
     selectedGene: 'IL33',
