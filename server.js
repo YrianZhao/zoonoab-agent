@@ -8868,7 +8868,9 @@ function buildWorkflowIntentPrompt() {
     'candidates 要求：提供 3-5 个候选靶点，每个候选必须包含 target 和 rationale（至少 1 句话说明该候选的适应症关联、机制或可及性特点）。',
     'summary、background、assumptions 尽量简短，把输出空间留给 selectionReason 和 candidates。',
     '示例约束：先天性耳聋的抗体设计必须给出明确靶点，例如 OTOF；结核杆菌治疗性抗体设计必须给出明确病原体抗原，例如 Ag85 complex，而不是反问用户先指定蛋白。',
-    '常见疾病快速参考：肿瘤免疫治疗->PD-L1/block PD-1；过敏性哮喘->IL-33/block ST2；乳腺癌->HER2；自身免疫炎症->TNF；胰腺癌->MUC1 或 Mesothelin；胃癌->Claudin 18.2；肾盂癌/尿路上皮癌->Nectin-4；肾癌->CAIX；宫颈癌->Tissue Factor；ADHD->DAT；流感H7->Influenza A(H7) hemagglutinin (HA)。'
+    '常见疾病快速参考：肿瘤免疫治疗->PD-L1/block PD-1；过敏性哮喘->IL-33/block ST2；乳腺癌->HER2；自身免疫炎症->TNF；胰腺癌->MUC1 或 Mesothelin；胃癌->Claudin 18.2；肾盂癌/尿路上皮癌->Nectin-4；肾癌->CAIX；宫颈癌->Tissue Factor；ADHD->DAT；流感H7->Influenza A(H7) hemagglutinin (HA)。',
+    '本地结构支撑靶点清单（优先从此清单中选择主靶点，可展示真实抗原-抗体复合物结构）：' + STRUCTURE_SUPPORT_TARGETS_FOR_PROMPT + '。',
+    '当多个候选靶点在生物学上同样合理时，必须优先选择上述清单中存在的靶点作为 target，以便展示真实抗原结构；但不得选择与用户疾病方向明显不相关的靶点。'
   ].join('\n');
 }
 
