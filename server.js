@@ -5394,7 +5394,7 @@ function virusLibraryChainsForModel(model) {
     if (!chains.length) continue;
     if (antigenPattern.test(description)) {
       antigen.push(...chains);
-    } else if (/antibody|fab|heavy chain|light chain|neutralizing/i.test(description)) {
+    } else if (/antibody|fab|\bheavy\b|\blight\b|\bvh\b|\bvl\b|\bvhh\b|nanobody|neutralizing/i.test(description)) {
       antibody.push(...chains);
     }
   }
@@ -5429,13 +5429,109 @@ function findInfluenzaHaSubtypeVirusModel(profile) {
   }
 }
 
-function representativeInfluenzaHaSubtypeChains(chains) {
+function computePDBChainCenters(filename) {
+  const safeName = String(filename || '').trim();
+  if (!safeName) return null;
+  const candidates = [path.join(LOCAL_PDB_DIR, safeName), path.join(PROJECT_ROOT, safeName)];
+  const filePath = candidates.find(item => fs.existsSync(item));
+  if (!filePath) return null;
+  try {
+    const text = fs.readFileSync(filePath, 'utf8');
+    const lines = text.split('\n');
+    const chainData = {};
+    for (const line of lines) {
+      if (!line.startsWith('ATOM')) continue;
+      const chainId = line.substring(21, 22).trim();
+      if (!chainId) continue;
+      const x = parseFloat(line.substring(30, 38));
+      const y = parseFloat(line.substring(38, 46));
+      const z = parseFloat(line.substring(46, 54));
+      if (isNaN(x) || isNaN(y) || isNaN(z)) continue;
+      if (!chainData[chainId]) chainData[chainId] = { sumX: 0, sumY: 0, sumZ: 0, count: 0 };
+      chainData[chainId].sumX += x;
+      chainData[chainId].sumY += y;
+      chainData[chainId].sumZ += z;
+      chainData[chainId].count++;
+    }
+    const centers = {};
+    for (const [chainId, data] of Object.entries(chainData)) {
+      centers[chainId] = { x: data.sumX / data.count, y: data.sumY / data.count, z: data.sumZ / data.count };
+    }
+    return centers;
+  } catch {
+    return null;
+  }
+}
+
+function chainCenterDistance(centers, chain1, chain2) {
+  const c1 = centers && centers[chain1];
+  const c2 = centers && centers[chain2];
+  if (!c1 || !c2) return Infinity;
+  return Math.sqrt((c1.x - c2.x) ** 2 + (c1.y - c2.y) ** 2 + (c1.z - c2.z) ** 2);
+}
+
+function representativeInfluenzaHaSubtypeChains(chains, filename) {
   const antigen = [...new Set((chains && Array.isArray(chains.antigen) ? chains.antigen : []).map(chain => String(chain || '').trim()).filter(Boolean))];
   const antibody = [...new Set((chains && Array.isArray(chains.antibody) ? chains.antibody : []).map(chain => String(chain || '').trim()).filter(Boolean))];
   const representativeComplex = antibody.length > 2 || (antigen.length > 1 && antibody.length >= 2);
+  if (!representativeComplex) {
+    return { antigen, antibody, representativeComplex };
+  }
+
+  // Use actual PDB coordinates to find the closest antigen-antibody pair
+  const centers = filename ? computePDBChainCenters(filename) : null;
+  if (centers) {
+    // Step 1: Cluster antibody chains into Fab pairs (heavy+light) by proximity.
+    // Two antibody chains within 35Å center distance are likely a Fab pair.
+    const abUsed = new Set();
+    const fabPairs = [];
+    for (let i = 0; i < antibody.length; i++) {
+      if (abUsed.has(antibody[i])) continue;
+      let bestPartner = null;
+      let bestPartnerDist = Infinity;
+      for (let j = i + 1; j < antibody.length; j++) {
+        if (abUsed.has(antibody[j])) continue;
+        const dist = chainCenterDistance(centers, antibody[i], antibody[j]);
+        if (dist < bestPartnerDist) {
+          bestPartnerDist = dist;
+          bestPartner = antibody[j];
+        }
+      }
+      if (bestPartner && bestPartnerDist < 35) {
+        fabPairs.push([antibody[i], bestPartner]);
+        abUsed.add(antibody[i]);
+        abUsed.add(bestPartner);
+      } else {
+        // Single-chain antibody (VHH) or unpaired chain
+        fabPairs.push([antibody[i]]);
+        abUsed.add(antibody[i]);
+      }
+    }
+
+    // Step 2: For each Fab pair, find the closest antigen chain by center distance
+    let bestAg = null;
+    let bestFab = null;
+    let bestDist = Infinity;
+    for (const fab of fabPairs) {
+      for (const ag of antigen) {
+        // Use the minimum center distance from any Fab chain to the antigen
+        const fabDist = Math.min(...fab.map(ab => chainCenterDistance(centers, ag, ab)));
+        if (fabDist < bestDist) {
+          bestDist = fabDist;
+          bestAg = ag;
+          bestFab = fab;
+        }
+      }
+    }
+    if (bestAg && bestFab) {
+      return { antigen: [bestAg], antibody: bestFab, representativeComplex: true };
+    }
+  }
+
+  // Fallback: take first antigen + first 2 antibody chains
   return {
-    antigen: representativeComplex ? antigen.slice(0, 1) : antigen,
-    antibody: representativeComplex ? antibody.slice(0, 2) : antibody,
+    antigen: antigen.slice(0, 1),
+    antibody: antibody.slice(0, 2),
     representativeComplex
   };
 }
@@ -5447,7 +5543,7 @@ function influenzaHaSubtype3DPreset(profile) {
   const subtypeNo = influenzaHaSubtypeNumber(target) || Number(String(model.subtype || '').replace(/^H/i, '')) || null;
   const padded = subtypeNo ? String(subtypeNo).padStart(2, '0') : '';
   const chains = virusLibraryChainsForModel(model);
-  const displayChains = representativeInfluenzaHaSubtypeChains(chains);
+  const displayChains = representativeInfluenzaHaSubtypeChains(chains, model.file);
   const pdbLabel = model.pdbId ? 'RCSB ' + model.pdbId : '本地 H' + (subtypeNo || '') + ' HA 结构';
   const sourceAntigenChains = chains.antigen.length ? chains.antigen : ['C'];
   const sourceAntibodyChains = chains.antibody.length ? chains.antibody : ['A', 'B'];
