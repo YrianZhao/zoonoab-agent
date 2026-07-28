@@ -9570,6 +9570,51 @@ function buildPreparedDiseaseFallbackIntent(input) {
   if (!parsed.isDesignRequest) return null;
   const indication = extractDiseaseIndication(text) || (parsed.target && isDiseaseIndication(parsed.target) ? parsed.target : '');
   const key = findBuiltinDiseaseTargetResolutionKey(indication);
+
+  // Influenza HA subtype fallback (e.g., H7, H1, H5) - works without model API
+  const fluSubtype = influenzaHaSubtypeNumber(text) || influenzaHaSubtypeNumber(parsed.target);
+  if (fluSubtype) {
+    const fluDisplay = 'Influenza A(H' + fluSubtype + ') hemagglutinin (HA)';
+    const fluResolution = normalizeTargetResolution({
+      inputType: 'pathogen_antigen',
+      disease: indication || '流感',
+      selectedTarget: fluDisplay,
+      selectedGene: 'HA',
+      organismName: 'Influenza A virus',
+      organismTaxId: 11320,
+      strain: text.match(/H\d+N\d+/i) ? text.match(/H\d+N\d+/i)[0].toUpperCase() : '',
+      designLabel: 'FLU-H' + fluSubtype + '-1',
+      confidence: 0.82,
+      reason: '流感 H' + fluSubtype + ' 亚型中和抗体设计可优先围绕血凝素（HA）展开。HA 是流感病毒表面最关键的中和抗体靶抗原，其头部结构域直接介导受体结合和宿主细胞入侵，具备明确的抗体可及表面和本地三维结构预设，适合作为本轮抗体候选设计入口。',
+      candidates: [
+        { target: fluDisplay, gene: 'HA', rationale: '流感病毒表面主要中和抗原，具备真实抗原-抗体复合物结构。' },
+        { target: 'Influenza NA', gene: 'NA', rationale: '神经氨酸酶，可作为备选抗流感靶点。' },
+        { target: 'Influenza M2', gene: 'M2', rationale: '离子通道蛋白，适合广谱流感抗体方向备选。' }
+      ]
+    }, indication || '流感');
+    if (fluResolution && fluResolution.selectedTarget) {
+      return {
+        intent: 'design',
+        shouldStartWorkflow: true,
+        count: parsed.count || 10,
+        target: fluResolution.selectedTarget,
+        targetGene: fluResolution.selectedGene || 'HA',
+        abType: parsed.abType || 'Fab',
+        blockTarget: '',
+        disease: fluResolution.disease || '流感',
+        designLabel: fluResolution.designLabel || 'FLU-H' + fluSubtype + '-1',
+        summary: '面向流感 H' + fluSubtype + ' 亚型整理抗体设计任务',
+        background: '流感 H' + fluSubtype + ' 方向已匹配到可进入分子设计流程的具体靶点。',
+        reason: fluResolution.reason || '',
+        candidateTargets: Array.isArray(fluResolution.candidates) ? fluResolution.candidates : [],
+        mechanism: '围绕 ' + fluResolution.selectedTarget + ' 外露结构域生成 Fab 候选。',
+        confidence: fluResolution.confidence || 0.82,
+        needsClarification: false,
+        workflowProfile: null
+      };
+    }
+  }
+
   if (!key) return null;
   const resolution = normalizeTargetResolution({
     ...BUILTIN_DISEASE_TARGET_RESOLVERS[key],
@@ -10946,6 +10991,18 @@ async function resolveUserMessageRunner(msg, cleanText, scopedWs = null) {
     };
   }
   if (!modelIntent || modelIntent.error) {
+    const fallbackIntent = buildPreparedDiseaseFallbackIntent(cleanText);
+    if (fallbackIntent && fallbackIntent.intent === 'design' && fallbackIntent.target) {
+      if (scopedWs) researchTraceRuntime = startResearchTraceRuntime(scopedWs, cleanText, buildFallbackDisplayTrace());
+      return {
+        detectedIntent: 'design',
+        intent: 'design',
+        demoRoute: null,
+        localWorkflowAllowed: true,
+        modelIntent: fallbackIntent,
+        runner: (socket, text) => runResolvedDiseaseDesign(socket, text, voiceSessionId, fallbackIntent, researchTraceRuntime)
+      };
+    }
     await stopResearchTrace(scopedWs, researchTraceRuntime, 'error');
     return {
       detectedIntent: 'assistant_chat',
