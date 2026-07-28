@@ -5791,11 +5791,12 @@ function preparedStructureTargetMatches(profile, filename) {
     (requestedOrganismName && coordinateOrganismName && normalizePreparedStructureTarget(requestedOrganismName) === normalizePreparedStructureTarget(coordinateOrganismName)) ||
     (influenzaSubtypeMatches && /influenza\s+a/i.test(requestedOrganismName + ' ' + coordinateOrganismName))
   );
+  const strainIsoformOk = influenzaSubtypeMatches || (!strain && !isoform);
   return Boolean(
     targetTag.verifiedTag &&
     requestedTargetAlias && coordinateTargetAlias && (requestedTargetAlias === coordinateTargetAlias || influenzaSubtypeMatches) &&
     requestedFormat && coordinateFormat && requestedFormat === coordinateFormat &&
-    !strain && !isoform && organismMatches
+    strainIsoformOk && organismMatches
   );
 }
 
@@ -8929,7 +8930,9 @@ function buildCompactWorkflowProfileFromModelIntent(modelIntent) {
   if (!modelIntent || !modelIntent.workflowFields) return null;
   const base = buildRouteProfile(modelIntent.target, modelIntent.blockTarget, modelIntent.abType || 'Fab');
   const wf = modelIntent.workflowFields;
-  const targetDisplay = modelIntent.target || base.targetDisplay || '';
+  const rawTargetDisplay = modelIntent.target || base.targetDisplay || '';
+  const influenzaDisplay = normalizeInfluenzaHaSubtypeDisplay(rawTargetDisplay);
+  const targetDisplay = influenzaDisplay || rawTargetDisplay;
   const profile = {
     ...base,
     disease: modelIntent.disease || base.disease,
@@ -9006,7 +9009,9 @@ function buildWorkflowProfileFromModelIntent(modelIntent) {
   const base = buildRouteProfile(modelIntent.target, modelIntent.blockTarget, modelIntent.abType || 'Fab');
   const w = modelIntent.workflowBlueprint;
   const epitopeRowsZh = normalizeWorkflowEpitopeRows(w.epitopeRows, base.epitopeRowsZh);
-  const targetDisplay = sanitizeWorkflowBlueprintText(w.targetDisplay, modelIntent.target || base.targetDisplay, 80);
+  const rawTargetDisplay = sanitizeWorkflowBlueprintText(w.targetDisplay, modelIntent.target || base.targetDisplay, 80);
+  const influenzaDisplay = normalizeInfluenzaHaSubtypeDisplay(rawTargetDisplay) || normalizeInfluenzaHaSubtypeDisplay(modelIntent.target);
+  const targetDisplay = influenzaDisplay || rawTargetDisplay;
   const partnerDisplay = sanitizeWorkflowBlueprintText(w.partnerDisplay, modelIntent.blockTarget || base.partnerDisplay || '', 80);
   const profile = {
     ...base,
@@ -9379,7 +9384,8 @@ function modelIntentToTargetResolution(input, modelIntent) {
   const disease = modelIntent.disease || extractDiseaseIndication(input) || '';
   let resolvedTarget = modelIntent.target;
   const inputFluSubtype = influenzaHaSubtypeNumber(input);
-  if (inputFluSubtype && isInfluenzaHaFamilyTarget(resolvedTarget) && !influenzaHaSubtypeNumber(resolvedTarget)) {
+  if (inputFluSubtype && !influenzaHaSubtypeNumber(resolvedTarget) &&
+      (isInfluenzaHaFamilyTarget(resolvedTarget) || /H\s*(1[0-8]|[1-9])/i.test(resolvedTarget) || /流感|influenza|flu|hemagglutinin|ha\b/i.test(resolvedTarget))) {
     resolvedTarget = 'Influenza A(H' + inputFluSubtype + ') hemagglutinin (HA)';
   }
   const reasonParts = [
@@ -10042,6 +10048,17 @@ async function runWorkflow(ws, input, forcedRoute, researchTraceRuntime = null) 
     if (!profile.organismTaxId && targetResolution.organismTaxId) profile.organismTaxId = targetResolution.organismTaxId;
     if (!profile.strain && targetResolution.strain) profile.strain = targetResolution.strain;
     if (!profile.isoform && targetResolution.isoform) profile.isoform = targetResolution.isoform;
+  }
+  // Normalize influenza HA subtype display: ensure targetDisplay has proper influenza context
+  // for model-generated profiles that might use abbreviated target names (e.g., "H7 HA")
+  const inputFluSubtype = influenzaHaSubtypeNumber(input) || influenzaHaSubtypeNumber(profile.targetDisplay);
+  if (inputFluSubtype) {
+    const normalizedFluDisplay = normalizeInfluenzaHaSubtypeDisplay(profile.targetDisplay);
+    if (normalizedFluDisplay) {
+      profile.targetDisplay = normalizedFluDisplay;
+    } else if (isInfluenzaHaFamilyTarget(profile.targetDisplay) || /H\s*(1[0-8]|[1-9])/i.test(profile.targetDisplay)) {
+      profile.targetDisplay = 'Influenza A(H' + inputFluSubtype + ') hemagglutinin (HA)';
+    }
   }
   if (!profile.routeLabel) profile.routeLabel = profile.targetDisplay;
   if (!profile.mechanism) profile.mechanism = '围绕 ' + profile.targetDisplay + ' 生成抗体候选结构和可开发性评估结果';
