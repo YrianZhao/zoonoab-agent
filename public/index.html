@@ -5627,6 +5627,7 @@
                                             <option value="auto">自动优先主模型</option>
                                             <option value="primary">只用主模型</option>
                                             <option value="fallback">只用备用模型</option>
+                                            <option value="race">赛马模式（同时调用，取最快）</option>
                                         </select>
                                     </div>
                                     <div class="chat-providers-health-card" id="chatProvidersHealthCard">
@@ -12250,7 +12251,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             const chat = cfg.chat || {};
             const primary = cfg.chat?.primary || {};
             const fallback = cfg.chat?.fallback || (chat.mode === 'single' || (!cfg.chat?.primary && chat.baseUrl) ? chat : {});
-            if (chatModeSelect) chatModeSelect.value = ['auto', 'primary', 'fallback'].includes(chat.mode) ? chat.mode : 'auto';
+            if (chatModeSelect) chatModeSelect.value = ['auto', 'primary', 'fallback', 'race'].includes(chat.mode) ? chat.mode : 'auto';
             if (primaryBaseInput) primaryBaseInput.value = primary.baseUrl || 'https://jp.su8.codes/v1/responses';
             if (primaryWireInput) primaryWireInput.value = primary.wireApi || 'responses';
             if (reasoningInput) reasoningInput.value = chat.reasoningEffort || primary.reasoningEffort || '';
