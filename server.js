@@ -106,11 +106,13 @@ const QUESTION_TEST_SET_FILE = resolveProjectPath(process.env.QUESTION_TEST_SET_
 const QUESTION_TEST_SET_MAX_ITEMS = Math.max(100, Number(process.env.QUESTION_TEST_SET_MAX_ITEMS || 5000) || 5000);
 const QUESTION_TEST_SET_TEXT_MAX = Math.max(1000, Number(process.env.QUESTION_TEST_SET_TEXT_MAX || 4000) || 4000);
 const JSON_BODY_LIMIT = process.env.JSON_BODY_LIMIT || process.env.HISTORY_REQUEST_LIMIT || '8mb';
-const WORKFLOW_INTENT_TIMEOUT_MS = Math.max(8000, Number(process.env.WORKFLOW_INTENT_TIMEOUT_MS || 30000) || 30000);
+const WORKFLOW_INTENT_TIMEOUT_MS = Math.max(5000, Number(process.env.WORKFLOW_INTENT_TIMEOUT_MS || 8000) || 8000);
+const WORKFLOW_INTENT_GLOBAL_DEADLINE_MS = Math.max(WORKFLOW_INTENT_TIMEOUT_MS, Number(process.env.WORKFLOW_INTENT_GLOBAL_DEADLINE_MS || 15000) || 15000);
 const DISPLAY_TRACE_STEP_FLOOR_MS = process.env.NODE_ENV === 'test' ? 1 : 300;
 const DISPLAY_TRACE_STEP_MIN_MS = Math.max(DISPLAY_TRACE_STEP_FLOOR_MS, Number(process.env.DISPLAY_TRACE_STEP_MIN_MS || 700) || 700);
 const DISPLAY_TRACE_STEP_MAX_MS = Math.max(DISPLAY_TRACE_STEP_MIN_MS, Number(process.env.DISPLAY_TRACE_STEP_MAX_MS || 1500) || 1500);
-const TARGET_RESOLVER_TIMEOUT_MS = Math.max(5000, Number(process.env.TARGET_RESOLVER_TIMEOUT_MS || 45000) || 45000);
+const TARGET_RESOLVER_TIMEOUT_MS = Math.max(5000, Number(process.env.TARGET_RESOLVER_TIMEOUT_MS || 12000) || 12000);
+const TARGET_RESOLVER_GLOBAL_DEADLINE_MS = Math.max(TARGET_RESOLVER_TIMEOUT_MS, Number(process.env.TARGET_RESOLVER_GLOBAL_DEADLINE_MS || 20000) || 20000);
 const STRUCTURE_RESOLVER_ENABLED = process.env.STRUCTURE_RESOLVER_ENABLED !== '0' && (process.env.NODE_ENV !== 'test' || process.env.STRUCTURE_RESOLVER_TEST_NETWORK === '1');
 const STRUCTURE_RESOLVER_REQUEST_TIMEOUT_MS = Math.max(1500, Number(process.env.STRUCTURE_RESOLVER_REQUEST_TIMEOUT_MS || 6500) || 6500);
 const STRUCTURE_RESOLVER_FINAL_WAIT_MS = Math.max(1000, Number(process.env.STRUCTURE_RESOLVER_FINAL_WAIT_MS || 18000) || 18000);
@@ -2012,8 +2014,13 @@ async function checkChatProviderHealth(provider, options = {}) {
     return cached;
   }
   const startedAt = Date.now();
+  const healthDeadline = 18000;
   let lastError = null;
   for (const candidate of providerCandidates) {
+    if (Date.now() - startedAt >= healthDeadline) {
+      console.error('[Voice] Health check deadline exceeded, skipping remaining candidates:', providerCandidates.length, 'total');
+      break;
+    }
     try {
       await requestChatProvider(candidate, {
         messages: [
@@ -8792,8 +8799,15 @@ async function requestAssistantModelWithFallback(providers, request, options = {
     error.code = 'assistant_chat_unconfigured';
     throw error;
   }
+  const globalDeadline = Number(options.globalDeadlineMs) > 0 ? options.globalDeadlineMs : null;
+  const startTime = Date.now();
   let lastError = null;
-  for (const provider of candidates) {
+  for (let i = 0; i < candidates.length; i++) {
+    const provider = candidates[i];
+    if (globalDeadline && Date.now() - startTime >= globalDeadline) {
+      console.error('[Assistant] Global deadline exceeded, skipping remaining providers:', candidates.length - i, 'left');
+      break;
+    }
     try {
       return await requestChatProvider(provider, request, options);
     } catch (err) {
@@ -9221,17 +9235,23 @@ async function resolveWorkflowIntentWithModel(input, voiceSessionId) {
     return { error: 'runtime_unsupported', intent: 'assistant_chat' };
   }
   try {
-    const result = await requestAssistantModelWithFallback(providers, {
-      messages: [
-        { role: 'system', content: buildWorkflowIntentPrompt() },
-        { role: 'user', content: text.slice(0, 1000) }
-      ],
-      temperature: 0,
-      maxTokens: 1600,
-      json: true
-    }, {
-      timeoutMs: WORKFLOW_INTENT_TIMEOUT_MS
-    });
+    const result = await Promise.race([
+      requestAssistantModelWithFallback(providers, {
+        messages: [
+          { role: 'system', content: buildWorkflowIntentPrompt() },
+          { role: 'user', content: text.slice(0, 1000) }
+        ],
+        temperature: 0,
+        maxTokens: 1600,
+        json: true
+      }, {
+        timeoutMs: WORKFLOW_INTENT_TIMEOUT_MS,
+        globalDeadlineMs: WORKFLOW_INTENT_GLOBAL_DEADLINE_MS
+      }),
+      new Promise((_, reject) => {
+        setTimeout(() => reject(new Error('intent_global_deadline_exceeded')), WORKFLOW_INTENT_GLOBAL_DEADLINE_MS);
+      })
+    ]);
     const content = result.text || '';
     const normalized = normalizeWorkflowIntentResult(extractJsonObjectFromText(content));
     if (!normalized) {
@@ -9664,17 +9684,23 @@ async function resolveDiseaseTargetWithModel(input, indication, voiceSessionId) 
   if (!providers.length || typeof fetch !== 'function') return builtinTargetResolution(indication);
   const primaryProvider = providers[0] || {};
   try {
-    const result = await requestAssistantModelWithFallback(providers, {
-      messages: [
-        { role: 'system', content: buildTargetResolverPrompt(indication, input) },
-        { role: 'user', content: String(input || '').slice(0, 2000) }
-      ],
-      temperature: 0,
-      maxTokens: 420,
-      json: true
-    }, {
-      timeoutMs: TARGET_RESOLVER_TIMEOUT_MS
-    });
+    const result = await Promise.race([
+      requestAssistantModelWithFallback(providers, {
+        messages: [
+          { role: 'system', content: buildTargetResolverPrompt(indication, input) },
+          { role: 'user', content: String(input || '').slice(0, 2000) }
+        ],
+        temperature: 0,
+        maxTokens: 420,
+        json: true
+      }, {
+        timeoutMs: TARGET_RESOLVER_TIMEOUT_MS,
+        globalDeadlineMs: TARGET_RESOLVER_GLOBAL_DEADLINE_MS
+      }),
+      new Promise((_, reject) => {
+        setTimeout(() => reject(new Error('target_resolver_global_deadline_exceeded')), TARGET_RESOLVER_GLOBAL_DEADLINE_MS);
+      })
+    ]);
     const source = extractJsonObjectFromText(result.text) || {};
     const identityContext = inferStructureIdentityContext(input);
     return normalizeTargetResolution({
@@ -10966,6 +10992,9 @@ async function resolveUserMessageRunner(msg, cleanText, scopedWs = null) {
     };
   }
   const voiceSessionId = msg && msg.voiceSessionId;
+  if (scopedWs && scopedWs.readyState === 1) {
+    sendResearchTraceEvent(scopedWs, { type: 'assistant_thinking', active: true, topic: buildAssistantThinkingTopic(cleanText) });
+  }
   const modelIntent = await resolveWorkflowIntentWithModel(cleanText, voiceSessionId);
   let researchTraceRuntime = null;
   if (modelIntent && modelIntent.error === 'missing_key') {
