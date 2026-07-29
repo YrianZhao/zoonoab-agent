@@ -4,10 +4,10 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 
 ## Summary
 
-- PDB files: 629
-- Route presets: 85
-- Routeable presets: 84
-- Prompt-eligible structure-supported targets: 84
+- PDB files: 1079
+- Route presets: 237
+- Routeable presets: 236
+- Prompt-eligible structure-supported targets: 236
 - Library assets: 273
 
 ## Route-backed structure families
@@ -99,6 +99,158 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 | inflammation_il6 | IL-6 | IL6 | IL6-Fab | 1 | Homo sapiens | RCSB 4ZS7 human IL-6 / llama Fab 68F2 complex |
 | metabolic_myostatin | Myostatin | GDF8 | MSTN-Fab | 1 | Homo sapiens | RCSB 5F3H human myostatin/GDF8 dimer in complex with humanized RK35 Fab |
 | neuro_trkb | TrkB | NTRK2 | TRKB-Fab | 1 | Homo sapiens | RCSB 5MO9 human TrkB ligand-binding domain / AB20 Fab complex |
+| display_pose_cd40lg_0 | CD40LG | CD40LG | CD40LG-VHH-1ALY | 1 | HOMO SAPIENS | RCSB 1ALY CD40LG antigen / representative VHH display pose |
+| display_pose_arsa_1 | ARSA | ARSA | ARSA-Fab-1AUK | 1 | HOMO SAPIENS | RCSB 1AUK ARSA antigen / representative Fab display pose |
+| display_pose_apoa1_2 | APOA1 | APOA1 | APOA1-Fab-1AV1 | 1 | HOMO SAPIENS | RCSB 1AV1 APOA1 antigen / representative Fab display pose |
+| display_pose_apoe_3 | APOE | APOE | APOE-VHH-1B68 | 1 | HOMO SAPIENS | RCSB 1B68 APOE antigen / representative VHH display pose |
+| display_pose_epo_4 | EPO | EPO | EPO-VHH-1BUY | 1 | HOMO SAPIENS | RCSB 1BUY EPO antigen / representative VHH display pose |
+| display_pose_dmd_5 | DMD | DMD | DMD-Fab-1DXX | 1 | HOMO SAPIENS | RCSB 1DXX DMD antigen / representative Fab display pose |
+| display_pose_apc_6 | APC | APC | APC-VHH-1EMU | 1 | HOMO SAPIENS | RCSB 1EMU APC antigen / representative VHH display pose |
+| display_pose_epor_7 | EPOR | EPOR | EPOR-Fab-1ERN | 1 | HOMO SAPIENS | RCSB 1ERN EPOR antigen / representative Fab display pose |
+| display_pose_ttr_8 | TTR | TTR | TTR-Fab-1F41 | 1 | HOMO SAPIENS | RCSB 1F41 TTR antigen / representative Fab display pose |
+| display_pose_il12b_9 | IL12B | IL12B | IL12B-Fab-1F45 | 1 | HOMO SAPIENS | RCSB 1F45 IL12B antigen / representative Fab display pose |
+| display_pose_ifng_10 | IFNG | IFNG | IFNG-Fab-1FG9 | 1 | HOMO SAPIENS | RCSB 1FG9 IFNG antigen / representative Fab display pose |
+| display_pose_fkbp1a_11 | FKBP1A | FKBP1A | FKBP1A-VHH-1FKJ | 1 | HOMO SAPIENS | RCSB 1FKJ FKBP1A antigen / representative VHH display pose |
+| display_pose_crp_12 | CRP | CRP | CRP-Fab-1GNH | 1 | HOMO SAPIENS | RCSB 1GNH CRP antigen / representative Fab display pose |
+| display_pose_il1b_13 | IL1B | IL1B | IL1B-VHH-1I1B | 1 | HOMO SAPIENS | RCSB 1I1B IL1B antigen / representative VHH display pose |
+| display_pose_il4r_14 | IL4R | IL4R | IL4R-Fab-1IAR | 1 | HOMO SAPIENS | RCSB 1IAR IL4R antigen / representative Fab display pose |
+| display_pose_tnni3_15 | TNNI3 | TNNI3 | TNNI3-Fab-1J1E | 1 | HOMO SAPIENS | RCSB 1J1E TNNI3 antigen / representative Fab display pose |
+| display_pose_pah_16 | PAH | PAH | PAH-Fab-1J8T | 1 | HOMO SAPIENS | RCSB 1J8T PAH antigen / representative Fab display pose |
+| display_pose_impdh1_17 | IMPDH1 | IMPDH1 | IMPDH1-Fab-1JCN | 1 | HOMO SAPIENS | RCSB 1JCN IMPDH1 antigen / representative Fab display pose |
+| display_pose_tgfb1_18 | TGFB1 | TGFB1 | TGFB1-VHH-1KLC | 1 | HOMO SAPIENS | RCSB 1KLC TGFB1 antigen / representative VHH display pose |
+| display_pose_erbb3_19 | ERBB3 | ERBB3 | ERBB3-Fab-1M6B | 1 | HOMO SAPIENS | RCSB 1M6B ERBB3 antigen / representative Fab display pose |
+| display_pose_il6r_20 | IL6R | IL6R | IL6R-Fab-1N26 | 1 | HOMO SAPIENS | RCSB 1N26 IL6R antigen / representative Fab display pose |
+| display_pose_ifnar2_21 | IFNAR2 | IFNAR2 | IFNAR2-VHH-1N6V | 1 | HOMO SAPIENS | RCSB 1N6V IFNAR2 antigen / representative VHH display pose |
+| display_pose_cxcl10_22 | CXCL10 | CXCL10 | CXCL10-Fab-1O7Y | 1 | HOMO SAPIENS | RCSB 1O7Y CXCL10 antigen / representative Fab display pose |
+| display_pose_nr1h4___fxr_23 | NR1H4 / FXR | NR1H4 | NR1H4-FXR-Fab-1OSH | 1 | HOMO SAPIENS | RCSB 1OSH NR1H4 / FXR antigen / representative Fab display pose |
+| display_pose_mybpc3_24 | MYBPC3 | MYBPC3 | MYBPC3-VHH-1PD6 | 1 | HOMO SAPIENS | RCSB 1PD6 MYBPC3 antigen / representative VHH display pose |
+| display_pose_hla_drb1_25 | HLA-DRB1 | HLA-DRB1 | HLA-DRB1-Fab-1PYW | 1 | HOMO SAPIENS | RCSB 1PYW HLA-DRB1 antigen / representative Fab display pose |
+| display_pose_prnp_26 | PRNP | PRNP | PRNP-VHH-1QLX | 1 | HOMO SAPIENS | RCSB 1QLX PRNP antigen / representative VHH display pose |
+| display_pose_ace2_27 | ACE2 | ACE2 | ACE2-Fab-1R42 | 1 | HOMO SAPIENS | RCSB 1R42 ACE2 antigen / representative Fab display pose |
+| display_pose_kit_28 | KIT | KIT | KIT-Fab-1T45 | 1 | HOMO SAPIENS | RCSB 1T45 KIT antigen / representative Fab display pose |
+| display_pose_tp53_29 | TP53 | TP53 | TP53-VHH-1TUP | 1 | HOMO SAPIENS | RCSB 1TUP TP53 antigen / representative VHH display pose |
+| display_pose_rarb_30 | RARB | RARB | RARB-Fab-1XAP | 1 | HOMO SAPIENS | RCSB 1XAP RARB antigen / representative Fab display pose |
+| display_pose_tnfrsf17_31 | TNFRSF17 | TNFRSF17 | TNFRSF17-Fab-1XU2 | 1 | MUS MUSCULUS | RCSB 1XU2 TNFRSF17 antigen / representative Fab display pose |
+| display_pose_hprt1_32 | HPRT1 | HPRT1 | HPRT1-Fab-1Z7G | 1 | HOMO SAPIENS | RCSB 1Z7G HPRT1 antigen / representative Fab display pose |
+| display_pose_il2ra_33 | IL2RA | IL2RA | IL2RA-VHH-1Z92 | 1 | HOMO SAPIENS | RCSB 1Z92 IL2RA antigen / representative VHH display pose |
+| display_pose_aldh2_34 | ALDH2 | ALDH2 | ALDH2-Fab-1ZUM | 1 | HOMO SAPIENS | RCSB 1ZUM ALDH2 antigen / representative Fab display pose |
+| display_pose_kitlg_35 | KITLG | KITLG | KITLG-Fab-2E9W | 1 | HOMO SAPIENS | RCSB 2E9W KITLG antigen / representative Fab display pose |
+| display_pose_pdhx_36 | PDHX | PDHX | PDHX-VHH-2F60 | 1 | HOMO SAPIENS | RCSB 2F60 PDHX antigen / representative VHH display pose |
+| display_pose_braf_37 | BRAF | BRAF | BRAF-Fab-2FB8 | 1 | HOMO SAPIENS | RCSB 2FB8 BRAF antigen / representative Fab display pose |
+| display_pose_f10_38 | F10 | F10 | F10-Fab-2GD4 | 1 | HOMO SAPIENS | RCSB 2GD4 F10 antigen / representative Fab display pose |
+| display_pose_il10_39 | IL10 | IL10 | IL10-VHH-2H24 | 1 | HOMO SAPIENS | RCSB 2H24 IL10 antigen / representative VHH display pose |
+| display_pose_ncam1_40 | NCAM1 | NCAM1 | NCAM1-VHH-2HAZ | 1 | HOMO SAPIENS | RCSB 2HAZ NCAM1 antigen / representative VHH display pose |
+| display_pose_adk_41 | ADK | ADK | ADK-Fab-2I6A | 1 | HOMO SAPIENS | RCSB 2I6A ADK antigen / representative Fab display pose |
+| display_pose_myd88_42 | MYD88 | MYD88 | MYD88-VHH-2JS7 | 1 | HOMO SAPIENS | RCSB 2JS7 MYD88 antigen / representative VHH display pose |
+| display_pose_scn2a_43 | SCN2A | SCN2A | SCN2A-VHH-2KAV | 1 | HOMO SAPIENS | RCSB 2KAV SCN2A antigen / representative VHH display pose |
+| display_pose_hmgb1_44 | HMGB1 | HMGB1 | HMGB1-VHH-2LY4 | 1 | HOMO SAPIENS | RCSB 2LY4 HMGB1 antigen / representative VHH display pose |
+| display_pose_siglec8_45 | SIGLEC8 | SIGLEC8 | SIGLEC8-VHH-2N7B | 1 | HOMO SAPIENS | RCSB 2N7B SIGLEC8 antigen / representative VHH display pose |
+| display_pose_serping1_46 | SERPING1 | SERPING1 | SERPING1-Fab-2OAY | 1 | HOMO SAPIENS | RCSB 2OAY SERPING1 antigen / representative Fab display pose |
+| display_pose_mmp8_47 | MMP8 | MMP8 | MMP8-Fab-2OY4 | 1 | HOMO SAPIENS | RCSB 2OY4 MMP8 antigen / representative Fab display pose |
+| display_pose_serpina1_48 | SERPINA1 | SERPINA1 | SERPINA1-Fab-2QUG | 1 | HOMO SAPIENS | RCSB 2QUG SERPINA1 antigen / representative Fab display pose |
+| display_pose_cd55_49 | CD55 | CD55 | CD55-VHH-2QZD | 1 | HOMO SAPIENS | RCSB 2QZD CD55 antigen / representative VHH display pose |
+| display_pose_prss1_50 | PRSS1 | PRSS1 | PRSS1-Fab-2RA3 | 1 | HOMO SAPIENS | RCSB 2RA3 PRSS1 antigen / representative Fab display pose |
+| display_pose_ren_51 | REN | REN | REN-Fab-2REN | 1 | HOMO SAPIENS | RCSB 2REN REN antigen / representative Fab display pose |
+| display_pose_vdr_52 | VDR | VDR | VDR-Fab-3A78 | 1 | HOMO SAPIENS | RCSB 3A78 VDR antigen / representative Fab display pose |
+| display_pose_ptk2b_53 | PTK2B | PTK2B | PTK2B-Fab-3CC6 | 1 | HOMO SAPIENS | RCSB 3CC6 PTK2B antigen / representative Fab display pose |
+| display_pose_hectd1_54 | HECTD1 | HECTD1 | HECTD1-VHH-3DKM | 1 | HOMO SAPIENS | RCSB 3DKM HECTD1 antigen / representative VHH display pose |
+| display_pose_jak1_55 | JAK1 | JAK1 | JAK1-Fab-3EYG | 1 | HOMO SAPIENS | RCSB 3EYG JAK1 antigen / representative Fab display pose |
+| display_pose_bmpr2_56 | BMPR2 | BMPR2 | BMPR2-Fab-3G2F | 1 | HOMO SAPIENS | RCSB 3G2F BMPR2 antigen / representative Fab display pose |
+| display_pose_dst_57 | DST | DST | DST-Fab-3GJO | 1 | HOMO SAPIENS | RCSB 3GJO DST antigen / representative Fab display pose |
+| display_pose_thrb_58 | THRB | THRB | THRB-Fab-3GWS | 1 | HOMO SAPIENS | RCSB 3GWS THRB antigen / representative Fab display pose |
+| display_pose_chek2_59 | CHEK2 | CHEK2 | CHEK2-Fab-3I6U | 1 | HOMO SAPIENS | RCSB 3I6U CHEK2 antigen / representative Fab display pose |
+| display_pose_ada2_60 | ADA2 | ADA2 | ADA2-Fab-3LGG | 1 | HOMO SAPIENS | RCSB 3LGG ADA2 antigen / representative Fab display pose |
+| display_pose_adrb2_61 | ADRB2 | ADRB2 | ADRB2-Fab-3NY9 | 1 | HOMO SAPIENS, ENTEROBACTERIA PHAGE T4 | RCSB 3NY9 ADRB2 antigen / representative Fab display pose |
+| display_pose_raf1_62 | RAF1 | RAF1 | RAF1-Fab-3OMV | 1 | HOMO SAPIENS | RCSB 3OMV RAF1 antigen / representative Fab display pose |
+| display_pose_ctla4_63 | CTLA4 | CTLA4 | CTLA4-Fab-3OSK | 1 | HOMO SAPIENS | RCSB 3OSK CTLA4 antigen / representative Fab display pose |
+| display_pose_nf1_64 | NF1 | NF1 | NF1-Fab-3P7Z | 1 | HOMO SAPIENS | RCSB 3P7Z NF1 antigen / representative Fab display pose |
+| display_pose_rb1_65 | RB1 | RB1 | RB1-Fab-3POM | 1 | HOMO SAPIENS | RCSB 3POM RB1 antigen / representative Fab display pose |
+| display_pose_calr_66 | CALR | CALR | CALR-Fab-3POW | 1 | HOMO SAPIENS | RCSB 3POW CALR antigen / representative Fab display pose |
+| display_pose_vamp2_67 | VAMP2 | VAMP2 | VAMP2-VHH-3RK2 | 1 | HOMO SAPIENS | RCSB 3RK2 VAMP2 antigen / representative VHH display pose |
+| display_pose_nkx2_5_68 | NKX2-5 | NKX2-5 | NKX2-5-VHH-3RKQ | 1 | HOMO SAPIENS | RCSB 3RKQ NKX2-5 antigen / representative VHH display pose |
+| display_pose_mmp1_69 | MMP1 | MMP1 | MMP1-Fab-3SHI | 1 | HOMO SAPIENS | RCSB 3SHI MMP1 antigen / representative Fab display pose |
+| display_pose_il21_70 | IL21 | IL21 | IL21-Fab-3TGX | 1 | HOMO SAPIENS | RCSB 3TGX IL21 antigen / representative Fab display pose |
+| display_pose_pkp2_71 | PKP2 | PKP2 | PKP2-Fab-3TT9 | 1 | HOMO SAPIENS | RCSB 3TT9 PKP2 antigen / representative Fab display pose |
+| display_pose_f2___thrombin_72 | F2 / thrombin | F2 | F2-thrombin-Fab-3U69 | 1 | HOMO SAPIENS | RCSB 3U69 F2 / thrombin antigen / representative Fab display pose |
+| display_pose_men1_73 | MEN1 | MEN1 | MEN1-Fab-3U84 | 1 | HOMO SAPIENS | RCSB 3U84 MEN1 antigen / representative Fab display pose |
+| display_pose_chrm2_74 | CHRM2 | CHRM2 | CHRM2-Fab-3UON | 1 | HOMO SAPIENS, ENTEROBACTERIA PHAGE T4 | RCSB 3UON CHRM2 antigen / representative Fab display pose |
+| display_pose_flcn_75 | FLCN | FLCN | FLCN-Fab-3V42 | 1 | HOMO SAPIENS | RCSB 3V42 FLCN antigen / representative Fab display pose |
+| display_pose_il18_76 | IL18 | IL18 | IL18-Fab-3WO2 | 1 | HOMO SAPIENS | RCSB 3WO2 IL18 antigen / representative Fab display pose |
+| display_pose_gabrb3_77 | GABRB3 | GABRB3 | GABRB3-Fab-4COF | 1 | HOMO SAPIENS | RCSB 4COF GABRB3 antigen / representative Fab display pose |
+| display_pose_fto_78 | FTO | FTO | FTO-Fab-4CXW | 1 | HOMO SAPIENS | RCSB 4CXW FTO antigen / representative Fab display pose |
+| display_pose_fgfr1_79 | FGFR1 | FGFR1 | FGFR1-Fab-4F64 | 1 | HOMO SAPIENS | RCSB 4F64 FGFR1 antigen / representative Fab display pose |
+| display_pose_top2a_80 | TOP2A | TOP2A | TOP2A-Fab-4FM9 | 1 | HOMO SAPIENS | RCSB 4FM9 TOP2A antigen / representative Fab display pose |
+| display_pose_mmp13_81 | MMP13 | MMP13 | MMP13-Fab-4FU4 | 1 | HOMO SAPIENS | RCSB 4FU4 MMP13 antigen / representative Fab display pose |
+| display_pose_hbb_82 | HBB | HBB | HBB-Fab-4HHB | 1 | HOMO SAPIENS | RCSB 4HHB HBB antigen / representative Fab display pose |
+| display_pose_il17a_83 | IL17A | IL17A | IL17A-VHH-4HR9 | 1 | HOMO SAPIENS | RCSB 4HR9 IL17A antigen / representative VHH display pose |
+| display_pose_oas1_84 | OAS1 | OAS1 | OAS1-Fab-4IG8 | 1 | HOMO SAPIENS | RCSB 4IG8 OAS1 antigen / representative Fab display pose |
+| display_pose_grik1_85 | GRIK1 | GRIK1 | GRIK1-Fab-4MF3 | 1 | HOMO SAPIENS | RCSB 4MF3 GRIK1 antigen / representative Fab display pose |
+| display_pose_fcgrt___fcrn_86 | FCGRT / FcRn | FCGRT | FCGRT-FcRn-VHH-4N0U | 1 | HOMO SAPIENS | RCSB 4N0U FCGRT / FcRn antigen / representative VHH display pose |
+| display_pose_kras_87 | KRAS | KRAS | KRAS-Fab-4OBE | 1 | HOMO SAPIENS | RCSB 4OBE KRAS antigen / representative Fab display pose |
+| display_pose_nr3c1_88 | NR3C1 | NR3C1 | NR3C1-Fab-4P6X | 1 | HOMO SAPIENS | RCSB 4P6X NR3C1 antigen / representative Fab display pose |
+| display_pose_stag2_89 | STAG2 | STAG2 | STAG2-Fab-4PK7 | 1 | HOMO SAPIENS | RCSB 4PK7 STAG2 antigen / representative Fab display pose |
+| display_pose_axl_90 | AXL | AXL | AXL-Fab-4RA0 | 1 | HOMO SAPIENS | RCSB 4RA0 AXL antigen / representative Fab display pose |
+| display_pose_ret_91 | RET | RET | RET-Fab-4UX8 | 1 | HOMO SAPIENS | RCSB 4UX8 RET antigen / representative Fab display pose |
+| display_pose_myoc_92 | MYOC | MYOC | MYOC-Fab-4WXQ | 1 | HOMO SAPIENS | RCSB 4WXQ MYOC antigen / representative Fab display pose |
+| display_pose_agtr1_93 | AGTR1 | AGTR1 | AGTR1-Fab-4YAY | 1 | ESCHERICHIA COLI, HOMO SAPIENS | RCSB 4YAY AGTR1 antigen / representative Fab display pose |
+| display_pose_odc1_94 | ODC1 | ODC1 | ODC1-Fab-4ZGY | 1 | HOMO SAPIENS | RCSB 4ZGY ODC1 antigen / representative Fab display pose |
+| display_pose_krt10_95 | KRT10 | KRT10 | KRT10-VHH-4ZRY | 1 | HOMO SAPIENS | RCSB 4ZRY KRT10 antigen / representative VHH display pose |
+| display_pose_idh1_96 | IDH1 | IDH1 | IDH1-Fab-5DE1 | 1 | HOMO SAPIENS | RCSB 5DE1 IDH1 antigen / representative Fab display pose |
+| display_pose_serping1_97 | SERPING1 | SERPING1 | SERPING1-Fab-5DU3 | 1 | HOMO SAPIENS | RCSB 5DU3 SERPING1 antigen / representative Fab display pose |
+| display_pose_ptgs2_98 | PTGS2 | PTGS2 | PTGS2-Fab-5F19 | 1 | HOMO SAPIENS | RCSB 5F19 PTGS2 antigen / representative Fab display pose |
+| display_pose_slc6a4___sert_99 | SLC6A4 / SERT | SLC6A4 | SLC6A4-SERT-Fab-5I75 | 1 | HOMO SAPIENS | RCSB 5I75 SLC6A4 / SERT antigen / representative Fab display pose |
+| display_pose_gaa_100 | GAA | GAA | GAA-Fab-5KZW | 1 | HOMO SAPIENS | RCSB 5KZW GAA antigen / representative Fab display pose |
+| display_pose_ntrk2_101 | NTRK2 | NTRK2 | NTRK2-Fab-5MO9 | 1 | MUS MUSCULUS | RCSB 5MO9 NTRK2 antigen / representative Fab display pose |
+| display_pose_fbn1_102 | FBN1 | FBN1 | FBN1-VHH-5MS9 | 1 | HOMO SAPIENS | RCSB 5MS9 FBN1 antigen / representative VHH display pose |
+| display_pose_col4a1_103 | COL4A1 | COL4A1 | COL4A1-Fab-5NAY | 1 | HOMO SAPIENS | RCSB 5NAY COL4A1 antigen / representative Fab display pose |
+| display_pose_drd4_104 | DRD4 | DRD4 | DRD4-Fab-5WIU | 1 | HOMO SAPIENS, ESCHERICHIA COLI | RCSB 5WIU DRD4 antigen / representative Fab display pose |
+| display_pose_cnr1_105 | CNR1 | CNR1 | CNR1-Fab-5XRA | 1 | HOMO SAPIENS, DESULFOVIBRIO VULGARIS (STRAIN HILDENBOROUGH / ATCC 29579 / DSM 644 / NCIMB 8303) | RCSB 5XRA CNR1 antigen / representative Fab display pose |
+| display_pose_atp4a_106 | ATP4A | ATP4A | ATP4A-Fab-5YLU | 1 | SUS SCROFA | RCSB 5YLU ATP4A antigen / representative Fab display pose |
+| display_pose_dicer1_107 | DICER1 | DICER1 | DICER1-Fab-5ZAL | 1 | HOMO SAPIENS | RCSB 5ZAL DICER1 antigen / representative Fab display pose |
+| display_pose_plat_108 | PLAT | PLAT | PLAT-Fab-5ZLZ | 1 | HOMO SAPIENS | RCSB 5ZLZ PLAT antigen / representative Fab display pose |
+| display_pose_htr2a_109 | HTR2A | HTR2A | HTR2A-Fab-6A93 | 1 | HOMO SAPIENS, ESCHERICHIA COLI | RCSB 6A93 HTR2A antigen / representative Fab display pose |
+| display_pose_gnas_110 | GNAS | GNAS | GNAS-Fab-6AU6 | 1 | HOMO SAPIENS | RCSB 6AU6 GNAS antigen / representative Fab display pose |
+| display_pose_drd2_111 | DRD2 | DRD2 | DRD2-Fab-6CM4 | 1 | HOMO SAPIENS, ENTEROBACTERIA PHAGE T4 | RCSB 6CM4 DRD2 antigen / representative Fab display pose |
+| display_pose_ntrk1_112 | NTRK1 | NTRK1 | NTRK1-Fab-6D20 | 1 | HOMO SAPIENS | RCSB 6D20 NTRK1 antigen / representative Fab display pose |
+| display_pose_col3a1_113 | COL3A1 | COL3A1 | COL3A1-Fab-6FZV | 1 | HOMO SAPIENS | RCSB 6FZV COL3A1 antigen / representative Fab display pose |
+| display_pose_suclg1_114 | SUCLG1 | SUCLG1 | SUCLG1-Fab-6G4Q | 1 | HOMO SAPIENS | RCSB 6G4Q SUCLG1 antigen / representative Fab display pose |
+| display_pose_psph_115 | PSPH | PSPH | PSPH-Fab-6HYJ | 1 | HOMO SAPIENS | RCSB 6HYJ PSPH antigen / representative Fab display pose |
+| display_pose_gucy1a1_116 | GUCY1A1 | GUCY1A1 | GUCY1A1-Fab-6JT0 | 1 | HOMO SAPIENS | RCSB 6JT0 GUCY1A1 antigen / representative Fab display pose |
+| display_pose_adra2b_117 | ADRA2B | ADRA2B | ADRA2B-VHH-6K41 | 1 | HOMO SAPIENS | RCSB 6K41 ADRA2B antigen / representative VHH display pose |
+| display_pose_atm_118 | ATM | ATM | ATM-Fab-6K9L | 1 | HOMO SAPIENS | RCSB 6K9L ATM antigen / representative Fab display pose |
+| display_pose_cacna1g_119 | CACNA1G | CACNA1G | CACNA1G-Fab-6KZO | 1 | HOMO SAPIENS | RCSB 6KZO CACNA1G antigen / representative Fab display pose |
+| display_pose_proc_120 | PROC | PROC | PROC-Fab-6M3B | 1 | HOMO SAPIENS | RCSB 6M3B PROC antigen / representative Fab display pose |
+| display_pose_cftr_121 | CFTR | CFTR | CFTR-Fab-6MSM | 1 | HOMO SAPIENS | RCSB 6MSM CFTR antigen / representative Fab display pose |
+| display_pose_klkb1_122 | KLKB1 | KLKB1 | KLKB1-Fab-6O1S | 1 | HOMO SAPIENS | RCSB 6O1S KLKB1 antigen / representative Fab display pose |
+| display_pose_myh7_123 | MYH7 | MYH7 | MYH7-Fab-6PFP | 1 | HOMO SAPIENS | RCSB 6PFP MYH7 antigen / representative Fab display pose |
+| display_pose_abcb4_124 | ABCB4 | ABCB4 | ABCB4-Fab-6S7P | 1 | HOMO SAPIENS | RCSB 6S7P ABCB4 antigen / representative Fab display pose |
+| display_pose_tg_125 | TG | TG | TG-Fab-6SCJ | 1 | HOMO SAPIENS | RCSB 6SCJ TG antigen / representative Fab display pose |
+| display_pose_ryr1_126 | RYR1 | RYR1 | RYR1-VHH-6UHI | 1 | BACTEROIDES THETAIOTAOMICRON (STRAIN ATCC 29148 / DSM 2079 / NCTC 10582 / E50 / VPI-5482), HOMO SAPIENS | RCSB 6UHI RYR1 antigen / representative VHH display pose |
+| display_pose_jak2_127 | JAK2 | JAK2 | JAK2-Fab-6VGL | 1 | HOMO SAPIENS | RCSB 6VGL JAK2 antigen / representative Fab display pose |
+| display_pose_gabrb2_128 | GABRB2 | GABRB2 | GABRB2-Fab-6X3U | 1 | HOMO SAPIENS | RCSB 6X3U GABRB2 antigen / representative Fab display pose |
+| display_pose_avpr2_129 | AVPR2 | AVPR2 | AVPR2-VHH-7BB6 | 1 | HOMO SAPIENS | RCSB 7BB6 AVPR2 antigen / representative VHH display pose |
+| display_pose_tlr7_130 | TLR7 | TLR7 | TLR7-Fab-7CYN | 1 | HOMO SAPIENS | RCSB 7CYN TLR7 antigen / representative Fab display pose |
+| display_pose_scn1a_131 | SCN1A | SCN1A | SCN1A-Fab-7DTD | 1 | HOMO SAPIENS | RCSB 7DTD SCN1A antigen / representative Fab display pose |
+| display_pose_lhcgr_132 | LHCGR | LHCGR | LHCGR-Fab-7FIJ | 1 | HOMO SAPIENS | RCSB 7FIJ LHCGR antigen / representative Fab display pose |
+| display_pose_pde3a_133 | PDE3A | PDE3A | PDE3A-Fab-7L28 | 1 | HOMO SAPIENS | RCSB 7L28 PDE3A antigen / representative Fab display pose |
+| display_pose_alk_134 | ALK | ALK | ALK-Fab-7MZY | 1 | HOMO SAPIENS | RCSB 7MZY ALK antigen / representative Fab display pose |
+| display_pose_spink1_135 | SPINK1 | SPINK1 | SPINK1-Fab-7QE8 | 1 | HOMO SAPIENS | RCSB 7QE8 SPINK1 antigen / representative Fab display pose |
+| display_pose_mmp7_136 | MMP7 | MMP7 | MMP7-Fab-7WXX | 1 | HOMO SAPIENS | RCSB 7WXX MMP7 antigen / representative Fab display pose |
+| display_pose_atp2c1_137 | ATP2C1 | ATP2C1 | ATP2C1-VHH-7YAG | 1 | HOMO SAPIENS | RCSB 7YAG ATP2C1 antigen / representative VHH display pose |
+| display_pose_tlr9_138 | TLR9 | TLR9 | TLR9-VHH-8AR3 | 1 | HOMO SAPIENS | RCSB 8AR3 TLR9 antigen / representative VHH display pose |
+| display_pose_grem1_139 | GREM1 | GREM1 | GREM1-Fab-8B7H | 1 | HOMO SAPIENS | RCSB 8B7H GREM1 antigen / representative Fab display pose |
+| display_pose_oprm1_140 | OPRM1 | OPRM1 | OPRM1-Fab-8F7Q | 1 | HOMO SAPIENS | RCSB 8F7Q OPRM1 antigen / representative Fab display pose |
+| display_pose_gucy2c_141 | GUCY2C | GUCY2C | GUCY2C-Fab-8FX4 | 1 | CRICETULUS GRISEUS | RCSB 8FX4 GUCY2C antigen / representative Fab display pose |
+| display_pose_gpr161_142 | GPR161 | GPR161 | GPR161-VHH-8KH4 | 1 | HOMO SAPIENS | RCSB 8KH4 GPR161 antigen / representative VHH display pose |
+| display_pose_adrb1_143 | ADRB1 | ADRB1 | ADRB1-VHH-8S2T | 1 | HOMO SAPIENS | RCSB 8S2T ADRB1 antigen / representative VHH display pose |
+| display_pose_ctnnb1_144 | CTNNB1 | CTNNB1 | CTNNB1-Fab-8Y0G | 1 | HOMO SAPIENS | RCSB 8Y0G CTNNB1 antigen / representative Fab display pose |
+| display_pose_scnn1b_145 | SCNN1B | SCNN1B | SCNN1B-Fab-9BLR | 1 | HOMO SAPIENS | RCSB 9BLR SCNN1B antigen / representative Fab display pose |
+| display_pose_best1_146 | BEST1 | BEST1 | BEST1-Fab-9EGT | 1 | HOMO SAPIENS | RCSB 9EGT BEST1 antigen / representative Fab display pose |
+| display_pose_slc6a3_147 | SLC6A3 | SLC6A3 | SLC6A3-Fab-9EO4 | 1 | HOMO SAPIENS | RCSB 9EO4 SLC6A3 antigen / representative Fab display pose |
+| display_pose_chrna1_148 | CHRNA1 | CHRNA1 | CHRNA1-Fab-9GU3 | 1 | HOMO SAPIENS | RCSB 9GU3 CHRNA1 antigen / representative Fab display pose |
+| display_pose_gnai1_149 | GNAI1 | GNAI1 | GNAI1-VHH-9ODM | 1 | HOMO SAPIENS | RCSB 9ODM GNAI1 antigen / representative VHH display pose |
+| display_pose_scn5a_150 | SCN5A | SCN5A | SCN5A-Fab-9P24 | 1 | HOMO SAPIENS | RCSB 9P24 SCN5A antigen / representative Fab display pose |
+| display_pose_nkx2_1_151 | NKX2-1 | NKX2-1 | NKX2-1-Fab-9U18 | 1 | HOMO SAPIENS | RCSB 9U18 NKX2-1 antigen / representative Fab display pose |
 
 ## Alias normalization rules
 
@@ -190,6 +342,158 @@ The runtime normalizer treats this table as the maintainable route-level target 
 | inflammation_il6 | IL-6 | IL6 | IL6, Interleukin-6, IL-6/IL6 | IL-6 protein, IL6 protein | server + client fallback |
 | metabolic_myostatin | Myostatin | GDF8 | MSTN, GDF8, Growth/differentiation factor 8, Myostatin/GDF8 | Myostatin receptor, Myostatin protein, GDF8 receptor, GDF8 protein | server + client fallback |
 | neuro_trkb | TrkB | NTRK2 | NTRK2, Tropomyosin receptor kinase B, Neurotrophic tyrosine kinase receptor type 2, TrkB/NTRK2 | TrkB receptor, TrkB protein, NTRK2 receptor, NTRK2 protein | server + client fallback |
+| display_pose_cd40lg_0 | CD40LG | CD40LG | CD40LG/CD40LG | CD40LG receptor, CD40LG protein | server + client fallback |
+| display_pose_arsa_1 | ARSA | ARSA | ARSA/ARSA | ARSA receptor, ARSA protein | server + client fallback |
+| display_pose_apoa1_2 | APOA1 | APOA1 | APOA1/APOA1 | APOA1 receptor, APOA1 protein | server + client fallback |
+| display_pose_apoe_3 | APOE | APOE | APOE/APOE | APOE receptor, APOE protein | server + client fallback |
+| display_pose_epo_4 | EPO | EPO | EPO/EPO | EPO receptor, EPO protein | server + client fallback |
+| display_pose_dmd_5 | DMD | DMD | DMD/DMD | DMD receptor, DMD protein | server + client fallback |
+| display_pose_apc_6 | APC | APC | APC/APC | APC receptor, APC protein | server + client fallback |
+| display_pose_epor_7 | EPOR | EPOR | EPOR/EPOR | EPOR receptor, EPOR protein | server + client fallback |
+| display_pose_ttr_8 | TTR | TTR | TTR/TTR | TTR receptor, TTR protein | server + client fallback |
+| display_pose_il12b_9 | IL12B | IL12B | IL12B/IL12B | IL12B protein | server + client fallback |
+| display_pose_ifng_10 | IFNG | IFNG | IFNG/IFNG | IFNG receptor, IFNG protein | server + client fallback |
+| display_pose_fkbp1a_11 | FKBP1A | FKBP1A | FKBP1A/FKBP1A | FKBP1A receptor, FKBP1A protein | server + client fallback |
+| display_pose_crp_12 | CRP | CRP | CRP/CRP | CRP receptor, CRP protein | server + client fallback |
+| display_pose_il1b_13 | IL1B | IL1B | IL1B/IL1B | IL1B protein | server + client fallback |
+| display_pose_il4r_14 | IL4R | IL4R | IL4R/IL4R | IL4R receptor, IL4R protein | server + client fallback |
+| display_pose_tnni3_15 | TNNI3 | TNNI3 | TNNI3/TNNI3 | TNNI3 receptor, TNNI3 protein | server + client fallback |
+| display_pose_pah_16 | PAH | PAH | PAH/PAH | PAH receptor, PAH protein | server + client fallback |
+| display_pose_impdh1_17 | IMPDH1 | IMPDH1 | IMPDH1/IMPDH1 | IMPDH1 receptor, IMPDH1 protein | server + client fallback |
+| display_pose_tgfb1_18 | TGFB1 | TGFB1 | TGFB1/TGFB1 | TGFB1 receptor, TGFB1 protein | server + client fallback |
+| display_pose_erbb3_19 | ERBB3 | ERBB3 | ERBB3/ERBB3 | ERBB3 receptor, ERBB3 protein | server + client fallback |
+| display_pose_il6r_20 | IL6R | IL6R | IL6R/IL6R | IL6R receptor, IL6R protein | server + client fallback |
+| display_pose_ifnar2_21 | IFNAR2 | IFNAR2 | IFNAR2/IFNAR2 | IFNAR2 receptor, IFNAR2 protein | server + client fallback |
+| display_pose_cxcl10_22 | CXCL10 | CXCL10 | CXCL10/CXCL10 | CXCL10 receptor, CXCL10 protein | server + client fallback |
+| display_pose_nr1h4___fxr_23 | NR1H4 / FXR | NR1H4 | NR1H4, NR1H4 / FXR/NR1H4 | NR1H4 / FXR receptor, NR1H4 / FXR protein, NR1H4 receptor, NR1H4 protein | server + client fallback |
+| display_pose_mybpc3_24 | MYBPC3 | MYBPC3 | MYBPC3/MYBPC3 | MYBPC3 receptor, MYBPC3 protein | server + client fallback |
+| display_pose_hla_drb1_25 | HLA-DRB1 | HLA-DRB1 | HLA-DRB1/HLA-DRB1 | HLA-DRB1 receptor, HLA-DRB1 protein | server + client fallback |
+| display_pose_prnp_26 | PRNP | PRNP | PRNP/PRNP | PRNP receptor, PRNP protein | server + client fallback |
+| display_pose_ace2_27 | ACE2 | ACE2 | ACE2/ACE2 | ACE2 receptor, ACE2 protein | server + client fallback |
+| display_pose_kit_28 | KIT | KIT | KIT/KIT | KIT receptor, KIT protein | server + client fallback |
+| display_pose_tp53_29 | TP53 | TP53 | TP53/TP53 | TP53 receptor, TP53 protein | server + client fallback |
+| display_pose_rarb_30 | RARB | RARB | RARB/RARB | RARB receptor, RARB protein | server + client fallback |
+| display_pose_tnfrsf17_31 | TNFRSF17 | TNFRSF17 | TNFRSF17/TNFRSF17 | TNFRSF17 receptor, TNFRSF17 protein | server + client fallback |
+| display_pose_hprt1_32 | HPRT1 | HPRT1 | HPRT1/HPRT1 | HPRT1 receptor, HPRT1 protein | server + client fallback |
+| display_pose_il2ra_33 | IL2RA | IL2RA | IL2RA/IL2RA | IL2RA receptor, IL2RA protein | server + client fallback |
+| display_pose_aldh2_34 | ALDH2 | ALDH2 | ALDH2/ALDH2 | ALDH2 receptor, ALDH2 protein | server + client fallback |
+| display_pose_kitlg_35 | KITLG | KITLG | KITLG/KITLG | KITLG receptor, KITLG protein | server + client fallback |
+| display_pose_pdhx_36 | PDHX | PDHX | PDHX/PDHX | PDHX receptor, PDHX protein | server + client fallback |
+| display_pose_braf_37 | BRAF | BRAF | BRAF/BRAF | BRAF receptor, BRAF protein | server + client fallback |
+| display_pose_f10_38 | F10 | F10 | F10/F10 | F10 receptor, F10 protein | server + client fallback |
+| display_pose_il10_39 | IL10 | IL10 | IL10/IL10 | IL10 protein | server + client fallback |
+| display_pose_ncam1_40 | NCAM1 | NCAM1 | NCAM1/NCAM1 | NCAM1 receptor, NCAM1 protein | server + client fallback |
+| display_pose_adk_41 | ADK | ADK | ADK/ADK | ADK receptor, ADK protein | server + client fallback |
+| display_pose_myd88_42 | MYD88 | MYD88 | MYD88/MYD88 | MYD88 receptor, MYD88 protein | server + client fallback |
+| display_pose_scn2a_43 | SCN2A | SCN2A | SCN2A/SCN2A | SCN2A receptor, SCN2A protein | server + client fallback |
+| display_pose_hmgb1_44 | HMGB1 | HMGB1 | HMGB1/HMGB1 | HMGB1 receptor, HMGB1 protein | server + client fallback |
+| display_pose_siglec8_45 | SIGLEC8 | SIGLEC8 | SIGLEC8/SIGLEC8 | SIGLEC8 receptor, SIGLEC8 protein | server + client fallback |
+| display_pose_serping1_46 | SERPING1 | SERPING1 | SERPING1/SERPING1 | SERPING1 receptor, SERPING1 protein | server + client fallback |
+| display_pose_mmp8_47 | MMP8 | MMP8 | MMP8/MMP8 | MMP8 receptor, MMP8 protein | server + client fallback |
+| display_pose_serpina1_48 | SERPINA1 | SERPINA1 | SERPINA1/SERPINA1 | SERPINA1 receptor, SERPINA1 protein | server + client fallback |
+| display_pose_cd55_49 | CD55 | CD55 | CD55/CD55 | CD55 receptor, CD55 protein | server + client fallback |
+| display_pose_prss1_50 | PRSS1 | PRSS1 | PRSS1/PRSS1 | PRSS1 receptor, PRSS1 protein | server + client fallback |
+| display_pose_ren_51 | REN | REN | REN/REN | REN receptor, REN protein | server + client fallback |
+| display_pose_vdr_52 | VDR | VDR | VDR/VDR | VDR receptor, VDR protein | server + client fallback |
+| display_pose_ptk2b_53 | PTK2B | PTK2B | PTK2B/PTK2B | PTK2B receptor, PTK2B protein | server + client fallback |
+| display_pose_hectd1_54 | HECTD1 | HECTD1 | HECTD1/HECTD1 | HECTD1 receptor, HECTD1 protein | server + client fallback |
+| display_pose_jak1_55 | JAK1 | JAK1 | JAK1/JAK1 | JAK1 receptor, JAK1 protein | server + client fallback |
+| display_pose_bmpr2_56 | BMPR2 | BMPR2 | BMPR2/BMPR2 | BMPR2 receptor, BMPR2 protein | server + client fallback |
+| display_pose_dst_57 | DST | DST | DST/DST | DST receptor, DST protein | server + client fallback |
+| display_pose_thrb_58 | THRB | THRB | THRB/THRB | THRB receptor, THRB protein | server + client fallback |
+| display_pose_chek2_59 | CHEK2 | CHEK2 | CHEK2/CHEK2 | CHEK2 receptor, CHEK2 protein | server + client fallback |
+| display_pose_ada2_60 | ADA2 | ADA2 | ADA2/ADA2 | ADA2 receptor, ADA2 protein | server + client fallback |
+| display_pose_adrb2_61 | ADRB2 | ADRB2 | ADRB2/ADRB2 | ADRB2 receptor, ADRB2 protein | server + client fallback |
+| display_pose_raf1_62 | RAF1 | RAF1 | RAF1/RAF1 | RAF1 receptor, RAF1 protein | server + client fallback |
+| display_pose_ctla4_63 | CTLA4 | CTLA4 | CTLA4/CTLA4 | CTLA4 receptor, CTLA4 protein | server + client fallback |
+| display_pose_nf1_64 | NF1 | NF1 | NF1/NF1 | NF1 receptor, NF1 protein | server + client fallback |
+| display_pose_rb1_65 | RB1 | RB1 | RB1/RB1 | RB1 receptor, RB1 protein | server + client fallback |
+| display_pose_calr_66 | CALR | CALR | CALR/CALR | CALR receptor, CALR protein | server + client fallback |
+| display_pose_vamp2_67 | VAMP2 | VAMP2 | VAMP2/VAMP2 | VAMP2 receptor, VAMP2 protein | server + client fallback |
+| display_pose_nkx2_5_68 | NKX2-5 | NKX2-5 | NKX2-5/NKX2-5 | NKX2-5 receptor, NKX2-5 protein | server + client fallback |
+| display_pose_mmp1_69 | MMP1 | MMP1 | MMP1/MMP1 | MMP1 receptor, MMP1 protein | server + client fallback |
+| display_pose_il21_70 | IL21 | IL21 | IL21/IL21 | IL21 protein | server + client fallback |
+| display_pose_pkp2_71 | PKP2 | PKP2 | PKP2/PKP2 | PKP2 receptor, PKP2 protein | server + client fallback |
+| display_pose_f2___thrombin_72 | F2 / thrombin | F2 | F2 / thrombin/F2 | F2 / thrombin receptor, F2 / thrombin protein | server + client fallback |
+| display_pose_men1_73 | MEN1 | MEN1 | MEN1/MEN1 | MEN1 receptor, MEN1 protein | server + client fallback |
+| display_pose_chrm2_74 | CHRM2 | CHRM2 | CHRM2/CHRM2 | CHRM2 receptor, CHRM2 protein | server + client fallback |
+| display_pose_flcn_75 | FLCN | FLCN | FLCN/FLCN | FLCN receptor, FLCN protein | server + client fallback |
+| display_pose_il18_76 | IL18 | IL18 | IL18/IL18 | IL18 protein | server + client fallback |
+| display_pose_gabrb3_77 | GABRB3 | GABRB3 | GABRB3/GABRB3 | GABRB3 receptor, GABRB3 protein | server + client fallback |
+| display_pose_fto_78 | FTO | FTO | FTO/FTO | FTO receptor, FTO protein | server + client fallback |
+| display_pose_fgfr1_79 | FGFR1 | FGFR1 | FGFR1/FGFR1 | FGFR1 receptor, FGFR1 protein | server + client fallback |
+| display_pose_top2a_80 | TOP2A | TOP2A | TOP2A/TOP2A | TOP2A receptor, TOP2A protein | server + client fallback |
+| display_pose_mmp13_81 | MMP13 | MMP13 | MMP13/MMP13 | MMP13 receptor, MMP13 protein | server + client fallback |
+| display_pose_hbb_82 | HBB | HBB | HBB/HBB | HBB receptor, HBB protein | server + client fallback |
+| display_pose_il17a_83 | IL17A | IL17A | IL17A/IL17A | IL17A protein | server + client fallback |
+| display_pose_oas1_84 | OAS1 | OAS1 | OAS1/OAS1 | OAS1 receptor, OAS1 protein | server + client fallback |
+| display_pose_grik1_85 | GRIK1 | GRIK1 | GRIK1/GRIK1 | GRIK1 receptor, GRIK1 protein | server + client fallback |
+| display_pose_fcgrt___fcrn_86 | FCGRT / FcRn | FCGRT | FCGRT, FCGRT / FcRn/FCGRT | FCGRT / FcRn receptor, FCGRT / FcRn protein, FCGRT receptor, FCGRT protein | server + client fallback |
+| display_pose_kras_87 | KRAS | KRAS | KRAS/KRAS | KRAS receptor, KRAS protein | server + client fallback |
+| display_pose_nr3c1_88 | NR3C1 | NR3C1 | NR3C1/NR3C1 | NR3C1 receptor, NR3C1 protein | server + client fallback |
+| display_pose_stag2_89 | STAG2 | STAG2 | STAG2/STAG2 | STAG2 receptor, STAG2 protein | server + client fallback |
+| display_pose_axl_90 | AXL | AXL | AXL/AXL | AXL receptor, AXL protein | server + client fallback |
+| display_pose_ret_91 | RET | RET | RET/RET | RET receptor, RET protein | server + client fallback |
+| display_pose_myoc_92 | MYOC | MYOC | MYOC/MYOC | MYOC receptor, MYOC protein | server + client fallback |
+| display_pose_agtr1_93 | AGTR1 | AGTR1 | AGTR1/AGTR1 | AGTR1 receptor, AGTR1 protein | server + client fallback |
+| display_pose_odc1_94 | ODC1 | ODC1 | ODC1/ODC1 | ODC1 receptor, ODC1 protein | server + client fallback |
+| display_pose_krt10_95 | KRT10 | KRT10 | KRT10/KRT10 | KRT10 receptor, KRT10 protein | server + client fallback |
+| display_pose_idh1_96 | IDH1 | IDH1 | IDH1/IDH1 | IDH1 receptor, IDH1 protein | server + client fallback |
+| display_pose_serping1_97 | SERPING1 | SERPING1 | SERPING1/SERPING1 | SERPING1 receptor, SERPING1 protein | server + client fallback |
+| display_pose_ptgs2_98 | PTGS2 | PTGS2 | PTGS2/PTGS2 | PTGS2 receptor, PTGS2 protein | server + client fallback |
+| display_pose_slc6a4___sert_99 | SLC6A4 / SERT | SLC6A4 | SLC6A4, SLC6A4 / SERT/SLC6A4 | SLC6A4 / SERT receptor, SLC6A4 / SERT protein, SLC6A4 receptor, SLC6A4 protein | server + client fallback |
+| display_pose_gaa_100 | GAA | GAA | GAA/GAA | GAA receptor, GAA protein | server + client fallback |
+| display_pose_ntrk2_101 | NTRK2 | NTRK2 | NTRK2/NTRK2 | NTRK2 receptor, NTRK2 protein | server + client fallback |
+| display_pose_fbn1_102 | FBN1 | FBN1 | FBN1/FBN1 | FBN1 receptor, FBN1 protein | server + client fallback |
+| display_pose_col4a1_103 | COL4A1 | COL4A1 | COL4A1/COL4A1 | COL4A1 receptor, COL4A1 protein | server + client fallback |
+| display_pose_drd4_104 | DRD4 | DRD4 | DRD4/DRD4 | DRD4 receptor, DRD4 protein | server + client fallback |
+| display_pose_cnr1_105 | CNR1 | CNR1 | CNR1/CNR1 | CNR1 receptor, CNR1 protein | server + client fallback |
+| display_pose_atp4a_106 | ATP4A | ATP4A | ATP4A/ATP4A | ATP4A receptor, ATP4A protein | server + client fallback |
+| display_pose_dicer1_107 | DICER1 | DICER1 | DICER1/DICER1 | DICER1 receptor, DICER1 protein | server + client fallback |
+| display_pose_plat_108 | PLAT | PLAT | PLAT/PLAT | PLAT receptor, PLAT protein | server + client fallback |
+| display_pose_htr2a_109 | HTR2A | HTR2A | HTR2A/HTR2A | HTR2A receptor, HTR2A protein | server + client fallback |
+| display_pose_gnas_110 | GNAS | GNAS | GNAS/GNAS | GNAS receptor, GNAS protein | server + client fallback |
+| display_pose_drd2_111 | DRD2 | DRD2 | DRD2/DRD2 | DRD2 receptor, DRD2 protein | server + client fallback |
+| display_pose_ntrk1_112 | NTRK1 | NTRK1 | NTRK1/NTRK1 | NTRK1 receptor, NTRK1 protein | server + client fallback |
+| display_pose_col3a1_113 | COL3A1 | COL3A1 | COL3A1/COL3A1 | COL3A1 receptor, COL3A1 protein | server + client fallback |
+| display_pose_suclg1_114 | SUCLG1 | SUCLG1 | SUCLG1/SUCLG1 | SUCLG1 receptor, SUCLG1 protein | server + client fallback |
+| display_pose_psph_115 | PSPH | PSPH | PSPH/PSPH | PSPH receptor, PSPH protein | server + client fallback |
+| display_pose_gucy1a1_116 | GUCY1A1 | GUCY1A1 | GUCY1A1/GUCY1A1 | GUCY1A1 receptor, GUCY1A1 protein | server + client fallback |
+| display_pose_adra2b_117 | ADRA2B | ADRA2B | ADRA2B/ADRA2B | ADRA2B receptor, ADRA2B protein | server + client fallback |
+| display_pose_atm_118 | ATM | ATM | ATM/ATM | ATM receptor, ATM protein | server + client fallback |
+| display_pose_cacna1g_119 | CACNA1G | CACNA1G | CACNA1G/CACNA1G | CACNA1G receptor, CACNA1G protein | server + client fallback |
+| display_pose_proc_120 | PROC | PROC | PROC/PROC | PROC receptor, PROC protein | server + client fallback |
+| display_pose_cftr_121 | CFTR | CFTR | CFTR/CFTR | CFTR receptor, CFTR protein | server + client fallback |
+| display_pose_klkb1_122 | KLKB1 | KLKB1 | KLKB1/KLKB1 | KLKB1 receptor, KLKB1 protein | server + client fallback |
+| display_pose_myh7_123 | MYH7 | MYH7 | MYH7/MYH7 | MYH7 receptor, MYH7 protein | server + client fallback |
+| display_pose_abcb4_124 | ABCB4 | ABCB4 | ABCB4/ABCB4 | ABCB4 receptor, ABCB4 protein | server + client fallback |
+| display_pose_tg_125 | TG | TG | TG/TG | TG receptor, TG protein | server + client fallback |
+| display_pose_ryr1_126 | RYR1 | RYR1 | RYR1/RYR1 | RYR1 receptor, RYR1 protein | server + client fallback |
+| display_pose_jak2_127 | JAK2 | JAK2 | JAK2/JAK2 | JAK2 receptor, JAK2 protein | server + client fallback |
+| display_pose_gabrb2_128 | GABRB2 | GABRB2 | GABRB2/GABRB2 | GABRB2 receptor, GABRB2 protein | server + client fallback |
+| display_pose_avpr2_129 | AVPR2 | AVPR2 | AVPR2/AVPR2 | AVPR2 receptor, AVPR2 protein | server + client fallback |
+| display_pose_tlr7_130 | TLR7 | TLR7 | TLR7/TLR7 | TLR7 receptor, TLR7 protein | server + client fallback |
+| display_pose_scn1a_131 | SCN1A | SCN1A | SCN1A/SCN1A | SCN1A receptor, SCN1A protein | server + client fallback |
+| display_pose_lhcgr_132 | LHCGR | LHCGR | LHCGR/LHCGR | LHCGR receptor, LHCGR protein | server + client fallback |
+| display_pose_pde3a_133 | PDE3A | PDE3A | PDE3A/PDE3A | PDE3A receptor, PDE3A protein | server + client fallback |
+| display_pose_alk_134 | ALK | ALK | ALK/ALK | ALK receptor, ALK protein | server + client fallback |
+| display_pose_spink1_135 | SPINK1 | SPINK1 | SPINK1/SPINK1 | SPINK1 receptor, SPINK1 protein | server + client fallback |
+| display_pose_mmp7_136 | MMP7 | MMP7 | MMP7/MMP7 | MMP7 receptor, MMP7 protein | server + client fallback |
+| display_pose_atp2c1_137 | ATP2C1 | ATP2C1 | ATP2C1/ATP2C1 | ATP2C1 receptor, ATP2C1 protein | server + client fallback |
+| display_pose_tlr9_138 | TLR9 | TLR9 | TLR9/TLR9 | TLR9 receptor, TLR9 protein | server + client fallback |
+| display_pose_grem1_139 | GREM1 | GREM1 | GREM1/GREM1 | GREM1 receptor, GREM1 protein | server + client fallback |
+| display_pose_oprm1_140 | OPRM1 | OPRM1 | OPRM1/OPRM1 | OPRM1 receptor, OPRM1 protein | server + client fallback |
+| display_pose_gucy2c_141 | GUCY2C | GUCY2C | GUCY2C/GUCY2C | GUCY2C receptor, GUCY2C protein | server + client fallback |
+| display_pose_gpr161_142 | GPR161 | GPR161 | GPR161/GPR161 | GPR161 receptor, GPR161 protein | server + client fallback |
+| display_pose_adrb1_143 | ADRB1 | ADRB1 | ADRB1/ADRB1 | ADRB1 receptor, ADRB1 protein | server + client fallback |
+| display_pose_ctnnb1_144 | CTNNB1 | CTNNB1 | CTNNB1/CTNNB1 | CTNNB1 receptor, CTNNB1 protein | server + client fallback |
+| display_pose_scnn1b_145 | SCNN1B | SCNN1B | SCNN1B/SCNN1B | SCNN1B receptor, SCNN1B protein | server + client fallback |
+| display_pose_best1_146 | BEST1 | BEST1 | BEST1/BEST1 | BEST1 receptor, BEST1 protein | server + client fallback |
+| display_pose_slc6a3_147 | SLC6A3 | SLC6A3 | SLC6A3/SLC6A3 | SLC6A3 receptor, SLC6A3 protein | server + client fallback |
+| display_pose_chrna1_148 | CHRNA1 | CHRNA1 | CHRNA1/CHRNA1 | CHRNA1 receptor, CHRNA1 protein | server + client fallback |
+| display_pose_gnai1_149 | GNAI1 | GNAI1 | GNAI1/GNAI1 | GNAI1 receptor, GNAI1 protein | server + client fallback |
+| display_pose_scn5a_150 | SCN5A | SCN5A | SCN5A/SCN5A | SCN5A receptor, SCN5A protein | server + client fallback |
+| display_pose_nkx2_1_151 | NKX2-1 | NKX2-1 | NKX2-1/NKX2-1 | NKX2-1 receptor, NKX2-1 protein | server + client fallback |
 
 ## Alias maintenance checklist
 

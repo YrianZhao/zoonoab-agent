@@ -1092,6 +1092,9 @@ function buildPdbText(route, idx, atomLines) {
   ].join('\n');
 }
 
+module.exports = { ROUTES };
+
+if (require.main === module) {
 fs.mkdirSync(OUT_DIR, { recursive: true });
 
 let written = 0;
@@ -1113,3 +1116,4 @@ for (const route of selectedRoutes) {
 }
 
 console.log('Generated ' + written + ' disease-aligned route preset PDB files in ' + OUT_DIR);
+}

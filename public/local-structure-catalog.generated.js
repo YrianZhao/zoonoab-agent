@@ -2,16 +2,16 @@
 (function(){
   window.ZOONOAB_LOCAL_STRUCTURE_CATALOG = {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-28T15:10:12.551Z",
+  "generatedAt": "2026-07-29T03:37:35.276Z",
   "summary": {
-    "pdbFileCount": 629,
-    "routePresetCount": 85,
-    "routeableRoutePresetCount": 84,
-    "promptEligibleRoutePresetCount": 84,
-    "routePresetFileCount": 536,
+    "pdbFileCount": 1079,
+    "routePresetCount": 237,
+    "routeableRoutePresetCount": 236,
+    "promptEligibleRoutePresetCount": 236,
+    "routePresetFileCount": 688,
     "libraryAssetCount": 273
   },
-  "promptSupportTargets": "IL-33/IL33、TSLP、PD-L1/CD274、PD-1/PDCD1、CTLA-4/CTLA4、CD20/MS4A1、CD19、CD3/CD3E/CD3G、CD4、C5、CFH、IL-6R/IL6R、IL-4Rα/IL4R、CD25/IL2RA、CD38、TIGIT、CD47、LAG-3/LAG3、TROP-2/TACSTD2、Tissue Factor/F3、BCMA/TNFRSF17、IgE/IGH、CGRP receptor/CALCRL/RAMP1、HER2/ERBB2、EGFR、VEGF-A/VEGFA、TNF、IL-17A/IL17A、IL-23/IL23A/IL12B、RSV F/F、SARS-CoV-2 RBD/S、Influenza HA/HA、Influenza NA/NA、PCSK9、ANGPTL3、IL-1B、GIPR、Amyloid-beta/APP、Tau/MAPT、TREM2、DAT/SLC6A3、TSHR、alpha-synuclein/SNCA、AQP4、Canine NGF/NGF、PF4/CXCL4、Adenovirus hexon/L3、Influenza M2/M2、PRRSV GP4/GP4、PRRSV NSP10/NSP10、HSV gD/gD、PCV2 capsid/CAP、PEDV spike/S、CSFV NS5B/NS5B、Feline panleukopenia VP2/VP2、Connexin-26/GJB2、CD22/Siglec-2、Mesothelin/MSLN、Claudin 18.2/CLDN18、MET/c-MET、HER3/ERBB3、B7-H3/CD276、B7-H6/NCR3LG1、MUC1、Nectin-4/NECTIN4、FGFR2/KGFR、FGFR3、GPRC5D、CEACAM5/CEA、STEAP1、CAIX/CA9、IL-5/IL5、IL-13/IL13、CD123/IL3RA、BAFF/TNFSF13B、FcRn/FCGRT、NGF、CD33/Siglec-3、GPC2/Glypican-2、Integrin α4β7/ITGA4-ITGB7、IL-6/IL6、Myostatin/GDF8、TrkB/NTRK2",
+  "promptSupportTargets": "IL-33/IL33、TSLP、PD-L1/CD274、PD-1/PDCD1、CTLA-4/CTLA4、CD20/MS4A1、CD19、CD3/CD3E/CD3G、CD4、C5、CFH、IL-6R/IL6R、IL-4Rα/IL4R、CD25/IL2RA、CD38、TIGIT、CD47、LAG-3/LAG3、TROP-2/TACSTD2、Tissue Factor/F3、BCMA/TNFRSF17、IgE/IGH、CGRP receptor/CALCRL/RAMP1、HER2/ERBB2、EGFR、VEGF-A/VEGFA、TNF、IL-17A/IL17A、IL-23/IL23A/IL12B、RSV F/F、SARS-CoV-2 RBD/S、Influenza HA/HA、Influenza NA/NA、PCSK9、ANGPTL3、IL-1B、GIPR、Amyloid-beta/APP、Tau/MAPT、TREM2、DAT/SLC6A3、TSHR、alpha-synuclein/SNCA、AQP4、Canine NGF/NGF、PF4/CXCL4、Adenovirus hexon/L3、Influenza M2/M2、PRRSV GP4/GP4、PRRSV NSP10/NSP10、HSV gD/gD、PCV2 capsid/CAP、PEDV spike/S、CSFV NS5B/NS5B、Feline panleukopenia VP2/VP2、Connexin-26/GJB2、CD22/Siglec-2、Mesothelin/MSLN、Claudin 18.2/CLDN18、MET/c-MET、HER3/ERBB3、B7-H3/CD276、B7-H6/NCR3LG1、MUC1、Nectin-4/NECTIN4、FGFR2/KGFR、FGFR3、GPRC5D、CEACAM5/CEA、STEAP1、CAIX/CA9、IL-5/IL5、IL-13/IL13、CD123/IL3RA、BAFF/TNFSF13B、FcRn/FCGRT、NGF、CD33/Siglec-3、GPC2/Glypican-2、Integrin α4β7/ITGA4-ITGB7、IL-6/IL6、Myostatin/GDF8、TrkB/NTRK2、CD40LG/CD40LG、ARSA/ARSA、APOA1/APOA1、APOE/APOE、EPO/EPO、DMD/DMD、APC/APC、EPOR/EPOR、TTR/TTR、IL12B/IL12B、IFNG/IFNG、FKBP1A/FKBP1A、CRP/CRP、IL1B/IL1B、IL4R/IL4R、TNNI3/TNNI3、PAH/PAH、IMPDH1/IMPDH1、TGFB1/TGFB1、ERBB3/ERBB3、IL6R/IL6R、IFNAR2/IFNAR2、CXCL10/CXCL10、NR1H4 / FXR/NR1H4、MYBPC3/MYBPC3、HLA-DRB1/HLA-DRB1、PRNP/PRNP、ACE2/ACE2、KIT/KIT、TP53/TP53、RARB/RARB、TNFRSF17/TNFRSF17、HPRT1/HPRT1、IL2RA/IL2RA、ALDH2/ALDH2、KITLG/KITLG、PDHX/PDHX、BRAF/BRAF、F10/F10、IL10/IL10、NCAM1/NCAM1、ADK/ADK、MYD88/MYD88、SCN2A/SCN2A、HMGB1/HMGB1、SIGLEC8/SIGLEC8、SERPING1/SERPING1、MMP8/MMP8、SERPINA1/SERPINA1、CD55/CD55、PRSS1/PRSS1、REN/REN、VDR/VDR、PTK2B/PTK2B、HECTD1/HECTD1、JAK1/JAK1、BMPR2/BMPR2、DST/DST、THRB/THRB、CHEK2/CHEK2、ADA2/ADA2、ADRB2/ADRB2、RAF1/RAF1、CTLA4/CTLA4、NF1/NF1、RB1/RB1、CALR/CALR、VAMP2/VAMP2、NKX2-5/NKX2-5、MMP1/MMP1、IL21/IL21、PKP2/PKP2、F2 / thrombin/F2、MEN1/MEN1、CHRM2/CHRM2、FLCN/FLCN、IL18/IL18、GABRB3/GABRB3、FTO/FTO、FGFR1/FGFR1、TOP2A/TOP2A、MMP13/MMP13、HBB/HBB、IL17A/IL17A、OAS1/OAS1、GRIK1/GRIK1、FCGRT / FcRn/FCGRT、KRAS/KRAS、NR3C1/NR3C1、STAG2/STAG2、AXL/AXL、RET/RET、MYOC/MYOC、AGTR1/AGTR1、ODC1/ODC1、KRT10/KRT10、IDH1/IDH1、PTGS2/PTGS2、SLC6A4 / SERT/SLC6A4、GAA/GAA、NTRK2/NTRK2、FBN1/FBN1、COL4A1/COL4A1、DRD4/DRD4、CNR1/CNR1、ATP4A/ATP4A、DICER1/DICER1、PLAT/PLAT、HTR2A/HTR2A、GNAS/GNAS、DRD2/DRD2、NTRK1/NTRK1、COL3A1/COL3A1、SUCLG1/SUCLG1、PSPH/PSPH、GUCY1A1/GUCY1A1、ADRA2B/ADRA2B、ATM/ATM、CACNA1G/CACNA1G、PROC/PROC、CFTR/CFTR、KLKB1/KLKB1、MYH7/MYH7、ABCB4/ABCB4、TG/TG、RYR1/RYR1、JAK2/JAK2、GABRB2/GABRB2、AVPR2/AVPR2、TLR7/TLR7、SCN1A/SCN1A、LHCGR/LHCGR、PDE3A/PDE3A、ALK/ALK、SPINK1/SPINK1、MMP7/MMP7、ATP2C1/ATP2C1、TLR9/TLR9、GREM1/GREM1、OPRM1/OPRM1、GUCY2C/GUCY2C、GPR161/GPR161、ADRB1/ADRB1、CTNNB1/CTNNB1、SCNN1B/SCNN1B、BEST1/BEST1、SLC6A3/SLC6A3、CHRNA1/CHRNA1、GNAI1/GNAI1、SCN5A/SCN5A、NKX2-1/NKX2-1",
   "routePresets": [
     {
       "routeId": "allergic_asthma",
@@ -4127,6 +4127,5595 @@
         "visualColors": {
           "antigen": "#22C55E",
           "antibody": "#2563EB"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_cd40lg_0",
+      "aliasPrefix": "CD40LG-VHH-1ALY",
+      "target": "CD40LG",
+      "gene": "CD40LG",
+      "aliases": [
+        "CD40LG",
+        "CD40LG"
+      ],
+      "promptLabel": "CD40LG/CD40LG",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "CD40LG-VHH-1ALY.pdb"
+      ],
+      "display": {
+        "structureTitle": "CD40LG VHH 展示构象",
+        "structureFamily": "免疫炎症方向靶点 · VHH 展示候选",
+        "visualSummary": "基于 RCSB 1ALY CD40LG 抗原结构的代表性 VHH 展示姿态",
+        "structuralBasis": "RCSB 1ALY CD40LG antigen / geometric VHH display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_arsa_1",
+      "aliasPrefix": "ARSA-Fab-1AUK",
+      "target": "ARSA",
+      "gene": "ARSA",
+      "aliases": [
+        "ARSA",
+        "ARSA"
+      ],
+      "promptLabel": "ARSA/ARSA",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "ARSA-Fab-1AUK.pdb"
+      ],
+      "display": {
+        "structureTitle": "ARSA Fab 展示构象",
+        "structureFamily": "内分泌方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 1AUK ARSA 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 1AUK ARSA antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_apoa1_2",
+      "aliasPrefix": "APOA1-Fab-1AV1",
+      "target": "APOA1",
+      "gene": "APOA1",
+      "aliases": [
+        "APOA1",
+        "APOA1"
+      ],
+      "promptLabel": "APOA1/APOA1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "APOA1-Fab-1AV1.pdb"
+      ],
+      "display": {
+        "structureTitle": "APOA1 Fab 展示构象",
+        "structureFamily": "其他方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 1AV1 APOA1 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 1AV1 APOA1 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_apoe_3",
+      "aliasPrefix": "APOE-VHH-1B68",
+      "target": "APOE",
+      "gene": "APOE",
+      "aliases": [
+        "APOE",
+        "APOE"
+      ],
+      "promptLabel": "APOE/APOE",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "APOE-VHH-1B68.pdb"
+      ],
+      "display": {
+        "structureTitle": "APOE VHH 展示构象",
+        "structureFamily": "其他方向靶点 · VHH 展示候选",
+        "visualSummary": "基于 RCSB 1B68 APOE 抗原结构的代表性 VHH 展示姿态",
+        "structuralBasis": "RCSB 1B68 APOE antigen / geometric VHH display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_epo_4",
+      "aliasPrefix": "EPO-VHH-1BUY",
+      "target": "EPO",
+      "gene": "EPO",
+      "aliases": [
+        "EPO",
+        "EPO"
+      ],
+      "promptLabel": "EPO/EPO",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "EPO-VHH-1BUY.pdb"
+      ],
+      "display": {
+        "structureTitle": "EPO VHH 展示构象",
+        "structureFamily": "凝血/血液方向靶点 · VHH 展示候选",
+        "visualSummary": "基于 RCSB 1BUY EPO 抗原结构的代表性 VHH 展示姿态",
+        "structuralBasis": "RCSB 1BUY EPO antigen / geometric VHH display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_dmd_5",
+      "aliasPrefix": "DMD-Fab-1DXX",
+      "target": "DMD",
+      "gene": "DMD",
+      "aliases": [
+        "DMD",
+        "DMD"
+      ],
+      "promptLabel": "DMD/DMD",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "DMD-Fab-1DXX.pdb"
+      ],
+      "display": {
+        "structureTitle": "DMD Fab 展示构象",
+        "structureFamily": "其他方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 1DXX DMD 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 1DXX DMD antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_apc_6",
+      "aliasPrefix": "APC-VHH-1EMU",
+      "target": "APC",
+      "gene": "APC",
+      "aliases": [
+        "APC",
+        "APC"
+      ],
+      "promptLabel": "APC/APC",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "APC-VHH-1EMU.pdb"
+      ],
+      "display": {
+        "structureTitle": "APC VHH 展示构象",
+        "structureFamily": "肿瘤方向靶点 · VHH 展示候选",
+        "visualSummary": "基于 RCSB 1EMU APC 抗原结构的代表性 VHH 展示姿态",
+        "structuralBasis": "RCSB 1EMU APC antigen / geometric VHH display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_epor_7",
+      "aliasPrefix": "EPOR-Fab-1ERN",
+      "target": "EPOR",
+      "gene": "EPOR",
+      "aliases": [
+        "EPOR",
+        "EPOR"
+      ],
+      "promptLabel": "EPOR/EPOR",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "EPOR-Fab-1ERN.pdb"
+      ],
+      "display": {
+        "structureTitle": "EPOR Fab 展示构象",
+        "structureFamily": "凝血/血液方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 1ERN EPOR 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 1ERN EPOR antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_ttr_8",
+      "aliasPrefix": "TTR-Fab-1F41",
+      "target": "TTR",
+      "gene": "TTR",
+      "aliases": [
+        "TTR",
+        "TTR"
+      ],
+      "promptLabel": "TTR/TTR",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "TTR-Fab-1F41.pdb"
+      ],
+      "display": {
+        "structureTitle": "TTR Fab 展示构象",
+        "structureFamily": "其他方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 1F41 TTR 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 1F41 TTR antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_il12b_9",
+      "aliasPrefix": "IL12B-Fab-1F45",
+      "target": "IL12B",
+      "gene": "IL12B",
+      "aliases": [
+        "IL12B",
+        "IL12B"
+      ],
+      "promptLabel": "IL12B/IL12B",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "IL12B-Fab-1F45.pdb"
+      ],
+      "display": {
+        "structureTitle": "IL12B Fab 展示构象",
+        "structureFamily": "免疫炎症方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 1F45 IL12B 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 1F45 IL12B antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_ifng_10",
+      "aliasPrefix": "IFNG-Fab-1FG9",
+      "target": "IFNG",
+      "gene": "IFNG",
+      "aliases": [
+        "IFNG",
+        "IFNG"
+      ],
+      "promptLabel": "IFNG/IFNG",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "IFNG-Fab-1FG9.pdb"
+      ],
+      "display": {
+        "structureTitle": "IFNG Fab 展示构象",
+        "structureFamily": "免疫炎症方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 1FG9 IFNG 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 1FG9 IFNG antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_fkbp1a_11",
+      "aliasPrefix": "FKBP1A-VHH-1FKJ",
+      "target": "FKBP1A",
+      "gene": "FKBP1A",
+      "aliases": [
+        "FKBP1A",
+        "FKBP1A"
+      ],
+      "promptLabel": "FKBP1A/FKBP1A",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "FKBP1A-VHH-1FKJ.pdb"
+      ],
+      "display": {
+        "structureTitle": "FKBP1A VHH 展示构象",
+        "structureFamily": "其他方向靶点 · VHH 展示候选",
+        "visualSummary": "基于 RCSB 1FKJ FKBP1A 抗原结构的代表性 VHH 展示姿态",
+        "structuralBasis": "RCSB 1FKJ FKBP1A antigen / geometric VHH display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_crp_12",
+      "aliasPrefix": "CRP-Fab-1GNH",
+      "target": "CRP",
+      "gene": "CRP",
+      "aliases": [
+        "CRP",
+        "CRP"
+      ],
+      "promptLabel": "CRP/CRP",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "CRP-Fab-1GNH.pdb"
+      ],
+      "display": {
+        "structureTitle": "CRP Fab 展示构象",
+        "structureFamily": "免疫炎症方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 1GNH CRP 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 1GNH CRP antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_il1b_13",
+      "aliasPrefix": "IL1B-VHH-1I1B",
+      "target": "IL1B",
+      "gene": "IL1B",
+      "aliases": [
+        "IL1B",
+        "IL1B"
+      ],
+      "promptLabel": "IL1B/IL1B",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "IL1B-VHH-1I1B.pdb"
+      ],
+      "display": {
+        "structureTitle": "IL1B VHH 展示构象",
+        "structureFamily": "免疫炎症方向靶点 · VHH 展示候选",
+        "visualSummary": "基于 RCSB 1I1B IL1B 抗原结构的代表性 VHH 展示姿态",
+        "structuralBasis": "RCSB 1I1B IL1B antigen / geometric VHH display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_il4r_14",
+      "aliasPrefix": "IL4R-Fab-1IAR",
+      "target": "IL4R",
+      "gene": "IL4R",
+      "aliases": [
+        "IL4R",
+        "IL4R"
+      ],
+      "promptLabel": "IL4R/IL4R",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "IL4R-Fab-1IAR.pdb"
+      ],
+      "display": {
+        "structureTitle": "IL4R Fab 展示构象",
+        "structureFamily": "其他方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 1IAR IL4R 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 1IAR IL4R antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_tnni3_15",
+      "aliasPrefix": "TNNI3-Fab-1J1E",
+      "target": "TNNI3",
+      "gene": "TNNI3",
+      "aliases": [
+        "TNNI3",
+        "TNNI3"
+      ],
+      "promptLabel": "TNNI3/TNNI3",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "TNNI3-Fab-1J1E.pdb"
+      ],
+      "display": {
+        "structureTitle": "TNNI3 Fab 展示构象",
+        "structureFamily": "神经/心血管方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 1J1E TNNI3 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 1J1E TNNI3 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_pah_16",
+      "aliasPrefix": "PAH-Fab-1J8T",
+      "target": "PAH",
+      "gene": "PAH",
+      "aliases": [
+        "PAH",
+        "PAH"
+      ],
+      "promptLabel": "PAH/PAH",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "PAH-Fab-1J8T.pdb"
+      ],
+      "display": {
+        "structureTitle": "PAH Fab 展示构象",
+        "structureFamily": "其他方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 1J8T PAH 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 1J8T PAH antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_impdh1_17",
+      "aliasPrefix": "IMPDH1-Fab-1JCN",
+      "target": "IMPDH1",
+      "gene": "IMPDH1",
+      "aliases": [
+        "IMPDH1",
+        "IMPDH1"
+      ],
+      "promptLabel": "IMPDH1/IMPDH1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "IMPDH1-Fab-1JCN.pdb"
+      ],
+      "display": {
+        "structureTitle": "IMPDH1 Fab 展示构象",
+        "structureFamily": "其他方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 1JCN IMPDH1 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 1JCN IMPDH1 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_tgfb1_18",
+      "aliasPrefix": "TGFB1-VHH-1KLC",
+      "target": "TGFB1",
+      "gene": "TGFB1",
+      "aliases": [
+        "TGFB1",
+        "TGFB1"
+      ],
+      "promptLabel": "TGFB1/TGFB1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "TGFB1-VHH-1KLC.pdb"
+      ],
+      "display": {
+        "structureTitle": "TGFB1 VHH 展示构象",
+        "structureFamily": "免疫炎症方向靶点 · VHH 展示候选",
+        "visualSummary": "基于 RCSB 1KLC TGFB1 抗原结构的代表性 VHH 展示姿态",
+        "structuralBasis": "RCSB 1KLC TGFB1 antigen / geometric VHH display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_erbb3_19",
+      "aliasPrefix": "ERBB3-Fab-1M6B",
+      "target": "ERBB3",
+      "gene": "ERBB3",
+      "aliases": [
+        "ERBB3",
+        "ERBB3"
+      ],
+      "promptLabel": "ERBB3/ERBB3",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "ERBB3-Fab-1M6B.pdb"
+      ],
+      "display": {
+        "structureTitle": "ERBB3 Fab 展示构象",
+        "structureFamily": "肿瘤方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 1M6B ERBB3 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 1M6B ERBB3 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_il6r_20",
+      "aliasPrefix": "IL6R-Fab-1N26",
+      "target": "IL6R",
+      "gene": "IL6R",
+      "aliases": [
+        "IL6R",
+        "IL6R"
+      ],
+      "promptLabel": "IL6R/IL6R",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "IL6R-Fab-1N26.pdb"
+      ],
+      "display": {
+        "structureTitle": "IL6R Fab 展示构象",
+        "structureFamily": "免疫炎症方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 1N26 IL6R 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 1N26 IL6R antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_ifnar2_21",
+      "aliasPrefix": "IFNAR2-VHH-1N6V",
+      "target": "IFNAR2",
+      "gene": "IFNAR2",
+      "aliases": [
+        "IFNAR2",
+        "IFNAR2"
+      ],
+      "promptLabel": "IFNAR2/IFNAR2",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "IFNAR2-VHH-1N6V.pdb"
+      ],
+      "display": {
+        "structureTitle": "IFNAR2 VHH 展示构象",
+        "structureFamily": "免疫炎症方向靶点 · VHH 展示候选",
+        "visualSummary": "基于 RCSB 1N6V IFNAR2 抗原结构的代表性 VHH 展示姿态",
+        "structuralBasis": "RCSB 1N6V IFNAR2 antigen / geometric VHH display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_cxcl10_22",
+      "aliasPrefix": "CXCL10-Fab-1O7Y",
+      "target": "CXCL10",
+      "gene": "CXCL10",
+      "aliases": [
+        "CXCL10",
+        "CXCL10"
+      ],
+      "promptLabel": "CXCL10/CXCL10",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "CXCL10-Fab-1O7Y.pdb"
+      ],
+      "display": {
+        "structureTitle": "CXCL10 Fab 展示构象",
+        "structureFamily": "其他方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 1O7Y CXCL10 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 1O7Y CXCL10 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_nr1h4___fxr_23",
+      "aliasPrefix": "NR1H4-FXR-Fab-1OSH",
+      "target": "NR1H4 / FXR",
+      "gene": "NR1H4",
+      "aliases": [
+        "NR1H4",
+        "NR1H4 / FXR"
+      ],
+      "promptLabel": "NR1H4 / FXR/NR1H4",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "NR1H4-FXR-Fab-1OSH.pdb"
+      ],
+      "display": {
+        "structureTitle": "NR1H4 / FXR Fab 展示构象",
+        "structureFamily": "内分泌方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 1OSH NR1H4 / FXR 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 1OSH NR1H4 / FXR antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_mybpc3_24",
+      "aliasPrefix": "MYBPC3-VHH-1PD6",
+      "target": "MYBPC3",
+      "gene": "MYBPC3",
+      "aliases": [
+        "MYBPC3",
+        "MYBPC3"
+      ],
+      "promptLabel": "MYBPC3/MYBPC3",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "MYBPC3-VHH-1PD6.pdb"
+      ],
+      "display": {
+        "structureTitle": "MYBPC3 VHH 展示构象",
+        "structureFamily": "神经/心血管方向靶点 · VHH 展示候选",
+        "visualSummary": "基于 RCSB 1PD6 MYBPC3 抗原结构的代表性 VHH 展示姿态",
+        "structuralBasis": "RCSB 1PD6 MYBPC3 antigen / geometric VHH display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_hla_drb1_25",
+      "aliasPrefix": "HLA-DRB1-Fab-1PYW",
+      "target": "HLA-DRB1",
+      "gene": "HLA-DRB1",
+      "aliases": [
+        "HLA-DRB1",
+        "HLA-DRB1"
+      ],
+      "promptLabel": "HLA-DRB1/HLA-DRB1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "HLA-DRB1-Fab-1PYW.pdb"
+      ],
+      "display": {
+        "structureTitle": "HLA-DRB1 Fab 展示构象",
+        "structureFamily": "肿瘤方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 1PYW HLA-DRB1 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 1PYW HLA-DRB1 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_prnp_26",
+      "aliasPrefix": "PRNP-VHH-1QLX",
+      "target": "PRNP",
+      "gene": "PRNP",
+      "aliases": [
+        "PRNP",
+        "PRNP"
+      ],
+      "promptLabel": "PRNP/PRNP",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "PRNP-VHH-1QLX.pdb"
+      ],
+      "display": {
+        "structureTitle": "PRNP VHH 展示构象",
+        "structureFamily": "其他方向靶点 · VHH 展示候选",
+        "visualSummary": "基于 RCSB 1QLX PRNP 抗原结构的代表性 VHH 展示姿态",
+        "structuralBasis": "RCSB 1QLX PRNP antigen / geometric VHH display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_ace2_27",
+      "aliasPrefix": "ACE2-Fab-1R42",
+      "target": "ACE2",
+      "gene": "ACE2",
+      "aliases": [
+        "ACE2",
+        "ACE2"
+      ],
+      "promptLabel": "ACE2/ACE2",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "ACE2-Fab-1R42.pdb"
+      ],
+      "display": {
+        "structureTitle": "ACE2 Fab 展示构象",
+        "structureFamily": "肾脏/结缔组织方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 1R42 ACE2 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 1R42 ACE2 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_kit_28",
+      "aliasPrefix": "KIT-Fab-1T45",
+      "target": "KIT",
+      "gene": "KIT",
+      "aliases": [
+        "KIT",
+        "KIT"
+      ],
+      "promptLabel": "KIT/KIT",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "KIT-Fab-1T45.pdb"
+      ],
+      "display": {
+        "structureTitle": "KIT Fab 展示构象",
+        "structureFamily": "肿瘤方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 1T45 KIT 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 1T45 KIT antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_tp53_29",
+      "aliasPrefix": "TP53-VHH-1TUP",
+      "target": "TP53",
+      "gene": "TP53",
+      "aliases": [
+        "TP53",
+        "TP53"
+      ],
+      "promptLabel": "TP53/TP53",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "TP53-VHH-1TUP.pdb"
+      ],
+      "display": {
+        "structureTitle": "TP53 VHH 展示构象",
+        "structureFamily": "肿瘤方向靶点 · VHH 展示候选",
+        "visualSummary": "基于 RCSB 1TUP TP53 抗原结构的代表性 VHH 展示姿态",
+        "structuralBasis": "RCSB 1TUP TP53 antigen / geometric VHH display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_rarb_30",
+      "aliasPrefix": "RARB-Fab-1XAP",
+      "target": "RARB",
+      "gene": "RARB",
+      "aliases": [
+        "RARB",
+        "RARB"
+      ],
+      "promptLabel": "RARB/RARB",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "RARB-Fab-1XAP.pdb"
+      ],
+      "display": {
+        "structureTitle": "RARB Fab 展示构象",
+        "structureFamily": "内分泌方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 1XAP RARB 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 1XAP RARB antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_tnfrsf17_31",
+      "aliasPrefix": "TNFRSF17-Fab-1XU2",
+      "target": "TNFRSF17",
+      "gene": "TNFRSF17",
+      "aliases": [
+        "TNFRSF17",
+        "TNFRSF17"
+      ],
+      "promptLabel": "TNFRSF17/TNFRSF17",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "TNFRSF17-Fab-1XU2.pdb"
+      ],
+      "display": {
+        "structureTitle": "TNFRSF17 Fab 展示构象",
+        "structureFamily": "免疫炎症方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 1XU2 TNFRSF17 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 1XU2 TNFRSF17 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_hprt1_32",
+      "aliasPrefix": "HPRT1-Fab-1Z7G",
+      "target": "HPRT1",
+      "gene": "HPRT1",
+      "aliases": [
+        "HPRT1",
+        "HPRT1"
+      ],
+      "promptLabel": "HPRT1/HPRT1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "HPRT1-Fab-1Z7G.pdb"
+      ],
+      "display": {
+        "structureTitle": "HPRT1 Fab 展示构象",
+        "structureFamily": "其他方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 1Z7G HPRT1 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 1Z7G HPRT1 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_il2ra_33",
+      "aliasPrefix": "IL2RA-VHH-1Z92",
+      "target": "IL2RA",
+      "gene": "IL2RA",
+      "aliases": [
+        "IL2RA",
+        "IL2RA"
+      ],
+      "promptLabel": "IL2RA/IL2RA",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "IL2RA-VHH-1Z92.pdb"
+      ],
+      "display": {
+        "structureTitle": "IL2RA VHH 展示构象",
+        "structureFamily": "其他方向靶点 · VHH 展示候选",
+        "visualSummary": "基于 RCSB 1Z92 IL2RA 抗原结构的代表性 VHH 展示姿态",
+        "structuralBasis": "RCSB 1Z92 IL2RA antigen / geometric VHH display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_aldh2_34",
+      "aliasPrefix": "ALDH2-Fab-1ZUM",
+      "target": "ALDH2",
+      "gene": "ALDH2",
+      "aliases": [
+        "ALDH2",
+        "ALDH2"
+      ],
+      "promptLabel": "ALDH2/ALDH2",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "ALDH2-Fab-1ZUM.pdb"
+      ],
+      "display": {
+        "structureTitle": "ALDH2 Fab 展示构象",
+        "structureFamily": "其他方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 1ZUM ALDH2 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 1ZUM ALDH2 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_kitlg_35",
+      "aliasPrefix": "KITLG-Fab-2E9W",
+      "target": "KITLG",
+      "gene": "KITLG",
+      "aliases": [
+        "KITLG",
+        "KITLG"
+      ],
+      "promptLabel": "KITLG/KITLG",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "KITLG-Fab-2E9W.pdb"
+      ],
+      "display": {
+        "structureTitle": "KITLG Fab 展示构象",
+        "structureFamily": "肿瘤方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 2E9W KITLG 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 2E9W KITLG antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_pdhx_36",
+      "aliasPrefix": "PDHX-VHH-2F60",
+      "target": "PDHX",
+      "gene": "PDHX",
+      "aliases": [
+        "PDHX",
+        "PDHX"
+      ],
+      "promptLabel": "PDHX/PDHX",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "PDHX-VHH-2F60.pdb"
+      ],
+      "display": {
+        "structureTitle": "PDHX VHH 展示构象",
+        "structureFamily": "其他方向靶点 · VHH 展示候选",
+        "visualSummary": "基于 RCSB 2F60 PDHX 抗原结构的代表性 VHH 展示姿态",
+        "structuralBasis": "RCSB 2F60 PDHX antigen / geometric VHH display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_braf_37",
+      "aliasPrefix": "BRAF-Fab-2FB8",
+      "target": "BRAF",
+      "gene": "BRAF",
+      "aliases": [
+        "BRAF",
+        "BRAF"
+      ],
+      "promptLabel": "BRAF/BRAF",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "BRAF-Fab-2FB8.pdb"
+      ],
+      "display": {
+        "structureTitle": "BRAF Fab 展示构象",
+        "structureFamily": "肿瘤方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 2FB8 BRAF 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 2FB8 BRAF antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_f10_38",
+      "aliasPrefix": "F10-Fab-2GD4",
+      "target": "F10",
+      "gene": "F10",
+      "aliases": [
+        "F10",
+        "F10"
+      ],
+      "promptLabel": "F10/F10",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "F10-Fab-2GD4.pdb"
+      ],
+      "display": {
+        "structureTitle": "F10 Fab 展示构象",
+        "structureFamily": "凝血/血液方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 2GD4 F10 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 2GD4 F10 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_il10_39",
+      "aliasPrefix": "IL10-VHH-2H24",
+      "target": "IL10",
+      "gene": "IL10",
+      "aliases": [
+        "IL10",
+        "IL10"
+      ],
+      "promptLabel": "IL10/IL10",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "IL10-VHH-2H24.pdb"
+      ],
+      "display": {
+        "structureTitle": "IL10 VHH 展示构象",
+        "structureFamily": "免疫炎症方向靶点 · VHH 展示候选",
+        "visualSummary": "基于 RCSB 2H24 IL10 抗原结构的代表性 VHH 展示姿态",
+        "structuralBasis": "RCSB 2H24 IL10 antigen / geometric VHH display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_ncam1_40",
+      "aliasPrefix": "NCAM1-VHH-2HAZ",
+      "target": "NCAM1",
+      "gene": "NCAM1",
+      "aliases": [
+        "NCAM1",
+        "NCAM1"
+      ],
+      "promptLabel": "NCAM1/NCAM1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "NCAM1-VHH-2HAZ.pdb"
+      ],
+      "display": {
+        "structureTitle": "NCAM1 VHH 展示构象",
+        "structureFamily": "其他方向靶点 · VHH 展示候选",
+        "visualSummary": "基于 RCSB 2HAZ NCAM1 抗原结构的代表性 VHH 展示姿态",
+        "structuralBasis": "RCSB 2HAZ NCAM1 antigen / geometric VHH display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_adk_41",
+      "aliasPrefix": "ADK-Fab-2I6A",
+      "target": "ADK",
+      "gene": "ADK",
+      "aliases": [
+        "ADK",
+        "ADK"
+      ],
+      "promptLabel": "ADK/ADK",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "ADK-Fab-2I6A.pdb"
+      ],
+      "display": {
+        "structureTitle": "ADK Fab 展示构象",
+        "structureFamily": "其他方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 2I6A ADK 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 2I6A ADK antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_myd88_42",
+      "aliasPrefix": "MYD88-VHH-2JS7",
+      "target": "MYD88",
+      "gene": "MYD88",
+      "aliases": [
+        "MYD88",
+        "MYD88"
+      ],
+      "promptLabel": "MYD88/MYD88",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "MYD88-VHH-2JS7.pdb"
+      ],
+      "display": {
+        "structureTitle": "MYD88 VHH 展示构象",
+        "structureFamily": "其他方向靶点 · VHH 展示候选",
+        "visualSummary": "基于 RCSB 2JS7 MYD88 抗原结构的代表性 VHH 展示姿态",
+        "structuralBasis": "RCSB 2JS7 MYD88 antigen / geometric VHH display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_scn2a_43",
+      "aliasPrefix": "SCN2A-VHH-2KAV",
+      "target": "SCN2A",
+      "gene": "SCN2A",
+      "aliases": [
+        "SCN2A",
+        "SCN2A"
+      ],
+      "promptLabel": "SCN2A/SCN2A",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "SCN2A-VHH-2KAV.pdb"
+      ],
+      "display": {
+        "structureTitle": "SCN2A VHH 展示构象",
+        "structureFamily": "神经/心血管方向靶点 · VHH 展示候选",
+        "visualSummary": "基于 RCSB 2KAV SCN2A 抗原结构的代表性 VHH 展示姿态",
+        "structuralBasis": "RCSB 2KAV SCN2A antigen / geometric VHH display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_hmgb1_44",
+      "aliasPrefix": "HMGB1-VHH-2LY4",
+      "target": "HMGB1",
+      "gene": "HMGB1",
+      "aliases": [
+        "HMGB1",
+        "HMGB1"
+      ],
+      "promptLabel": "HMGB1/HMGB1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "HMGB1-VHH-2LY4.pdb"
+      ],
+      "display": {
+        "structureTitle": "HMGB1 VHH 展示构象",
+        "structureFamily": "免疫炎症方向靶点 · VHH 展示候选",
+        "visualSummary": "基于 RCSB 2LY4 HMGB1 抗原结构的代表性 VHH 展示姿态",
+        "structuralBasis": "RCSB 2LY4 HMGB1 antigen / geometric VHH display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_siglec8_45",
+      "aliasPrefix": "SIGLEC8-VHH-2N7B",
+      "target": "SIGLEC8",
+      "gene": "SIGLEC8",
+      "aliases": [
+        "SIGLEC8",
+        "SIGLEC8"
+      ],
+      "promptLabel": "SIGLEC8/SIGLEC8",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "SIGLEC8-VHH-2N7B.pdb"
+      ],
+      "display": {
+        "structureTitle": "SIGLEC8 VHH 展示构象",
+        "structureFamily": "其他方向靶点 · VHH 展示候选",
+        "visualSummary": "基于 RCSB 2N7B SIGLEC8 抗原结构的代表性 VHH 展示姿态",
+        "structuralBasis": "RCSB 2N7B SIGLEC8 antigen / geometric VHH display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_serping1_46",
+      "aliasPrefix": "SERPING1-Fab-2OAY",
+      "target": "SERPING1",
+      "gene": "SERPING1",
+      "aliases": [
+        "SERPING1",
+        "SERPING1"
+      ],
+      "promptLabel": "SERPING1/SERPING1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "SERPING1-Fab-2OAY.pdb"
+      ],
+      "display": {
+        "structureTitle": "SERPING1 Fab 展示构象",
+        "structureFamily": "凝血/血液方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 2OAY SERPING1 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 2OAY SERPING1 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_mmp8_47",
+      "aliasPrefix": "MMP8-Fab-2OY4",
+      "target": "MMP8",
+      "gene": "MMP8",
+      "aliases": [
+        "MMP8",
+        "MMP8"
+      ],
+      "promptLabel": "MMP8/MMP8",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "MMP8-Fab-2OY4.pdb"
+      ],
+      "display": {
+        "structureTitle": "MMP8 Fab 展示构象",
+        "structureFamily": "消化/骨骼方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 2OY4 MMP8 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 2OY4 MMP8 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_serpina1_48",
+      "aliasPrefix": "SERPINA1-Fab-2QUG",
+      "target": "SERPINA1",
+      "gene": "SERPINA1",
+      "aliases": [
+        "SERPINA1",
+        "SERPINA1"
+      ],
+      "promptLabel": "SERPINA1/SERPINA1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "SERPINA1-Fab-2QUG.pdb"
+      ],
+      "display": {
+        "structureTitle": "SERPINA1 Fab 展示构象",
+        "structureFamily": "凝血/血液方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 2QUG SERPINA1 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 2QUG SERPINA1 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_cd55_49",
+      "aliasPrefix": "CD55-VHH-2QZD",
+      "target": "CD55",
+      "gene": "CD55",
+      "aliases": [
+        "CD55",
+        "CD55"
+      ],
+      "promptLabel": "CD55/CD55",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "CD55-VHH-2QZD.pdb"
+      ],
+      "display": {
+        "structureTitle": "CD55 VHH 展示构象",
+        "structureFamily": "其他方向靶点 · VHH 展示候选",
+        "visualSummary": "基于 RCSB 2QZD CD55 抗原结构的代表性 VHH 展示姿态",
+        "structuralBasis": "RCSB 2QZD CD55 antigen / geometric VHH display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_prss1_50",
+      "aliasPrefix": "PRSS1-Fab-2RA3",
+      "target": "PRSS1",
+      "gene": "PRSS1",
+      "aliases": [
+        "PRSS1",
+        "PRSS1"
+      ],
+      "promptLabel": "PRSS1/PRSS1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "PRSS1-Fab-2RA3.pdb"
+      ],
+      "display": {
+        "structureTitle": "PRSS1 Fab 展示构象",
+        "structureFamily": "消化/骨骼方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 2RA3 PRSS1 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 2RA3 PRSS1 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_ren_51",
+      "aliasPrefix": "REN-Fab-2REN",
+      "target": "REN",
+      "gene": "REN",
+      "aliases": [
+        "REN",
+        "REN"
+      ],
+      "promptLabel": "REN/REN",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "REN-Fab-2REN.pdb"
+      ],
+      "display": {
+        "structureTitle": "REN Fab 展示构象",
+        "structureFamily": "肾脏/结缔组织方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 2REN REN 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 2REN REN antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_vdr_52",
+      "aliasPrefix": "VDR-Fab-3A78",
+      "target": "VDR",
+      "gene": "VDR",
+      "aliases": [
+        "VDR",
+        "VDR"
+      ],
+      "promptLabel": "VDR/VDR",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "VDR-Fab-3A78.pdb"
+      ],
+      "display": {
+        "structureTitle": "VDR Fab 展示构象",
+        "structureFamily": "内分泌方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 3A78 VDR 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 3A78 VDR antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_ptk2b_53",
+      "aliasPrefix": "PTK2B-Fab-3CC6",
+      "target": "PTK2B",
+      "gene": "PTK2B",
+      "aliases": [
+        "PTK2B",
+        "PTK2B"
+      ],
+      "promptLabel": "PTK2B/PTK2B",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "PTK2B-Fab-3CC6.pdb"
+      ],
+      "display": {
+        "structureTitle": "PTK2B Fab 展示构象",
+        "structureFamily": "肿瘤方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 3CC6 PTK2B 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 3CC6 PTK2B antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_hectd1_54",
+      "aliasPrefix": "HECTD1-VHH-3DKM",
+      "target": "HECTD1",
+      "gene": "HECTD1",
+      "aliases": [
+        "HECTD1",
+        "HECTD1"
+      ],
+      "promptLabel": "HECTD1/HECTD1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "HECTD1-VHH-3DKM.pdb"
+      ],
+      "display": {
+        "structureTitle": "HECTD1 VHH 展示构象",
+        "structureFamily": "其他方向靶点 · VHH 展示候选",
+        "visualSummary": "基于 RCSB 3DKM HECTD1 抗原结构的代表性 VHH 展示姿态",
+        "structuralBasis": "RCSB 3DKM HECTD1 antigen / geometric VHH display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_jak1_55",
+      "aliasPrefix": "JAK1-Fab-3EYG",
+      "target": "JAK1",
+      "gene": "JAK1",
+      "aliases": [
+        "JAK1",
+        "JAK1"
+      ],
+      "promptLabel": "JAK1/JAK1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "JAK1-Fab-3EYG.pdb"
+      ],
+      "display": {
+        "structureTitle": "JAK1 Fab 展示构象",
+        "structureFamily": "其他方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 3EYG JAK1 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 3EYG JAK1 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_bmpr2_56",
+      "aliasPrefix": "BMPR2-Fab-3G2F",
+      "target": "BMPR2",
+      "gene": "BMPR2",
+      "aliases": [
+        "BMPR2",
+        "BMPR2"
+      ],
+      "promptLabel": "BMPR2/BMPR2",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "BMPR2-Fab-3G2F.pdb"
+      ],
+      "display": {
+        "structureTitle": "BMPR2 Fab 展示构象",
+        "structureFamily": "信号通路方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 3G2F BMPR2 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 3G2F BMPR2 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_dst_57",
+      "aliasPrefix": "DST-Fab-3GJO",
+      "target": "DST",
+      "gene": "DST",
+      "aliases": [
+        "DST",
+        "DST"
+      ],
+      "promptLabel": "DST/DST",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "DST-Fab-3GJO.pdb"
+      ],
+      "display": {
+        "structureTitle": "DST Fab 展示构象",
+        "structureFamily": "其他方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 3GJO DST 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 3GJO DST antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_thrb_58",
+      "aliasPrefix": "THRB-Fab-3GWS",
+      "target": "THRB",
+      "gene": "THRB",
+      "aliases": [
+        "THRB",
+        "THRB"
+      ],
+      "promptLabel": "THRB/THRB",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "THRB-Fab-3GWS.pdb"
+      ],
+      "display": {
+        "structureTitle": "THRB Fab 展示构象",
+        "structureFamily": "内分泌方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 3GWS THRB 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 3GWS THRB antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_chek2_59",
+      "aliasPrefix": "CHEK2-Fab-3I6U",
+      "target": "CHEK2",
+      "gene": "CHEK2",
+      "aliases": [
+        "CHEK2",
+        "CHEK2"
+      ],
+      "promptLabel": "CHEK2/CHEK2",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "CHEK2-Fab-3I6U.pdb"
+      ],
+      "display": {
+        "structureTitle": "CHEK2 Fab 展示构象",
+        "structureFamily": "肿瘤方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 3I6U CHEK2 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 3I6U CHEK2 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_ada2_60",
+      "aliasPrefix": "ADA2-Fab-3LGG",
+      "target": "ADA2",
+      "gene": "ADA2",
+      "aliases": [
+        "ADA2",
+        "ADA2"
+      ],
+      "promptLabel": "ADA2/ADA2",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "ADA2-Fab-3LGG.pdb"
+      ],
+      "display": {
+        "structureTitle": "ADA2 Fab 展示构象",
+        "structureFamily": "其他方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 3LGG ADA2 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 3LGG ADA2 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_adrb2_61",
+      "aliasPrefix": "ADRB2-Fab-3NY9",
+      "target": "ADRB2",
+      "gene": "ADRB2",
+      "aliases": [
+        "ADRB2",
+        "ADRB2"
+      ],
+      "promptLabel": "ADRB2/ADRB2",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "ADRB2-Fab-3NY9.pdb"
+      ],
+      "display": {
+        "structureTitle": "ADRB2 Fab 展示构象",
+        "structureFamily": "神经/心血管方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 3NY9 ADRB2 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 3NY9 ADRB2 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_raf1_62",
+      "aliasPrefix": "RAF1-Fab-3OMV",
+      "target": "RAF1",
+      "gene": "RAF1",
+      "aliases": [
+        "RAF1",
+        "RAF1"
+      ],
+      "promptLabel": "RAF1/RAF1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "RAF1-Fab-3OMV.pdb"
+      ],
+      "display": {
+        "structureTitle": "RAF1 Fab 展示构象",
+        "structureFamily": "肿瘤方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 3OMV RAF1 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 3OMV RAF1 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_ctla4_63",
+      "aliasPrefix": "CTLA4-Fab-3OSK",
+      "target": "CTLA4",
+      "gene": "CTLA4",
+      "aliases": [
+        "CTLA4",
+        "CTLA4"
+      ],
+      "promptLabel": "CTLA4/CTLA4",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "CTLA4-Fab-3OSK.pdb"
+      ],
+      "display": {
+        "structureTitle": "CTLA4 Fab 展示构象",
+        "structureFamily": "其他方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 3OSK CTLA4 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 3OSK CTLA4 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_nf1_64",
+      "aliasPrefix": "NF1-Fab-3P7Z",
+      "target": "NF1",
+      "gene": "NF1",
+      "aliases": [
+        "NF1",
+        "NF1"
+      ],
+      "promptLabel": "NF1/NF1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "NF1-Fab-3P7Z.pdb"
+      ],
+      "display": {
+        "structureTitle": "NF1 Fab 展示构象",
+        "structureFamily": "肿瘤方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 3P7Z NF1 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 3P7Z NF1 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_rb1_65",
+      "aliasPrefix": "RB1-Fab-3POM",
+      "target": "RB1",
+      "gene": "RB1",
+      "aliases": [
+        "RB1",
+        "RB1"
+      ],
+      "promptLabel": "RB1/RB1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "RB1-Fab-3POM.pdb"
+      ],
+      "display": {
+        "structureTitle": "RB1 Fab 展示构象",
+        "structureFamily": "肿瘤方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 3POM RB1 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 3POM RB1 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_calr_66",
+      "aliasPrefix": "CALR-Fab-3POW",
+      "target": "CALR",
+      "gene": "CALR",
+      "aliases": [
+        "CALR",
+        "CALR"
+      ],
+      "promptLabel": "CALR/CALR",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "CALR-Fab-3POW.pdb"
+      ],
+      "display": {
+        "structureTitle": "CALR Fab 展示构象",
+        "structureFamily": "免疫炎症方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 3POW CALR 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 3POW CALR antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_vamp2_67",
+      "aliasPrefix": "VAMP2-VHH-3RK2",
+      "target": "VAMP2",
+      "gene": "VAMP2",
+      "aliases": [
+        "VAMP2",
+        "VAMP2"
+      ],
+      "promptLabel": "VAMP2/VAMP2",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "VAMP2-VHH-3RK2.pdb"
+      ],
+      "display": {
+        "structureTitle": "VAMP2 VHH 展示构象",
+        "structureFamily": "其他方向靶点 · VHH 展示候选",
+        "visualSummary": "基于 RCSB 3RK2 VAMP2 抗原结构的代表性 VHH 展示姿态",
+        "structuralBasis": "RCSB 3RK2 VAMP2 antigen / geometric VHH display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_nkx2_5_68",
+      "aliasPrefix": "NKX2-5-VHH-3RKQ",
+      "target": "NKX2-5",
+      "gene": "NKX2-5",
+      "aliases": [
+        "NKX2-5",
+        "NKX2-5"
+      ],
+      "promptLabel": "NKX2-5/NKX2-5",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "NKX2-5-VHH-3RKQ.pdb"
+      ],
+      "display": {
+        "structureTitle": "NKX2-5 VHH 展示构象",
+        "structureFamily": "其他方向靶点 · VHH 展示候选",
+        "visualSummary": "基于 RCSB 3RKQ NKX2-5 抗原结构的代表性 VHH 展示姿态",
+        "structuralBasis": "RCSB 3RKQ NKX2-5 antigen / geometric VHH display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_mmp1_69",
+      "aliasPrefix": "MMP1-Fab-3SHI",
+      "target": "MMP1",
+      "gene": "MMP1",
+      "aliases": [
+        "MMP1",
+        "MMP1"
+      ],
+      "promptLabel": "MMP1/MMP1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "MMP1-Fab-3SHI.pdb"
+      ],
+      "display": {
+        "structureTitle": "MMP1 Fab 展示构象",
+        "structureFamily": "消化/骨骼方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 3SHI MMP1 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 3SHI MMP1 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_il21_70",
+      "aliasPrefix": "IL21-Fab-3TGX",
+      "target": "IL21",
+      "gene": "IL21",
+      "aliases": [
+        "IL21",
+        "IL21"
+      ],
+      "promptLabel": "IL21/IL21",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "IL21-Fab-3TGX.pdb"
+      ],
+      "display": {
+        "structureTitle": "IL21 Fab 展示构象",
+        "structureFamily": "免疫炎症方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 3TGX IL21 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 3TGX IL21 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_pkp2_71",
+      "aliasPrefix": "PKP2-Fab-3TT9",
+      "target": "PKP2",
+      "gene": "PKP2",
+      "aliases": [
+        "PKP2",
+        "PKP2"
+      ],
+      "promptLabel": "PKP2/PKP2",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "PKP2-Fab-3TT9.pdb"
+      ],
+      "display": {
+        "structureTitle": "PKP2 Fab 展示构象",
+        "structureFamily": "神经/心血管方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 3TT9 PKP2 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 3TT9 PKP2 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_f2___thrombin_72",
+      "aliasPrefix": "F2-thrombin-Fab-3U69",
+      "target": "F2 / thrombin",
+      "gene": "F2",
+      "aliases": [
+        "F2",
+        "F2 / thrombin"
+      ],
+      "promptLabel": "F2 / thrombin/F2",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "F2-thrombin-Fab-3U69.pdb"
+      ],
+      "display": {
+        "structureTitle": "F2 / thrombin Fab 展示构象",
+        "structureFamily": "凝血/血液方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 3U69 F2 / thrombin 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 3U69 F2 / thrombin antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_men1_73",
+      "aliasPrefix": "MEN1-Fab-3U84",
+      "target": "MEN1",
+      "gene": "MEN1",
+      "aliases": [
+        "MEN1",
+        "MEN1"
+      ],
+      "promptLabel": "MEN1/MEN1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "MEN1-Fab-3U84.pdb"
+      ],
+      "display": {
+        "structureTitle": "MEN1 Fab 展示构象",
+        "structureFamily": "肿瘤方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 3U84 MEN1 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 3U84 MEN1 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_chrm2_74",
+      "aliasPrefix": "CHRM2-Fab-3UON",
+      "target": "CHRM2",
+      "gene": "CHRM2",
+      "aliases": [
+        "CHRM2",
+        "CHRM2"
+      ],
+      "promptLabel": "CHRM2/CHRM2",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "CHRM2-Fab-3UON.pdb"
+      ],
+      "display": {
+        "structureTitle": "CHRM2 Fab 展示构象",
+        "structureFamily": "神经/心血管方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 3UON CHRM2 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 3UON CHRM2 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_flcn_75",
+      "aliasPrefix": "FLCN-Fab-3V42",
+      "target": "FLCN",
+      "gene": "FLCN",
+      "aliases": [
+        "FLCN",
+        "FLCN"
+      ],
+      "promptLabel": "FLCN/FLCN",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "FLCN-Fab-3V42.pdb"
+      ],
+      "display": {
+        "structureTitle": "FLCN Fab 展示构象",
+        "structureFamily": "肿瘤方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 3V42 FLCN 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 3V42 FLCN antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_il18_76",
+      "aliasPrefix": "IL18-Fab-3WO2",
+      "target": "IL18",
+      "gene": "IL18",
+      "aliases": [
+        "IL18",
+        "IL18"
+      ],
+      "promptLabel": "IL18/IL18",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "IL18-Fab-3WO2.pdb"
+      ],
+      "display": {
+        "structureTitle": "IL18 Fab 展示构象",
+        "structureFamily": "免疫炎症方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 3WO2 IL18 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 3WO2 IL18 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_gabrb3_77",
+      "aliasPrefix": "GABRB3-Fab-4COF",
+      "target": "GABRB3",
+      "gene": "GABRB3",
+      "aliases": [
+        "GABRB3",
+        "GABRB3"
+      ],
+      "promptLabel": "GABRB3/GABRB3",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "GABRB3-Fab-4COF.pdb"
+      ],
+      "display": {
+        "structureTitle": "GABRB3 Fab 展示构象",
+        "structureFamily": "神经/心血管方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 4COF GABRB3 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 4COF GABRB3 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_fto_78",
+      "aliasPrefix": "FTO-Fab-4CXW",
+      "target": "FTO",
+      "gene": "FTO",
+      "aliases": [
+        "FTO",
+        "FTO"
+      ],
+      "promptLabel": "FTO/FTO",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "FTO-Fab-4CXW.pdb"
+      ],
+      "display": {
+        "structureTitle": "FTO Fab 展示构象",
+        "structureFamily": "代谢方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 4CXW FTO 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 4CXW FTO antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_fgfr1_79",
+      "aliasPrefix": "FGFR1-Fab-4F64",
+      "target": "FGFR1",
+      "gene": "FGFR1",
+      "aliases": [
+        "FGFR1",
+        "FGFR1"
+      ],
+      "promptLabel": "FGFR1/FGFR1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "FGFR1-Fab-4F64.pdb"
+      ],
+      "display": {
+        "structureTitle": "FGFR1 Fab 展示构象",
+        "structureFamily": "肿瘤方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 4F64 FGFR1 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 4F64 FGFR1 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_top2a_80",
+      "aliasPrefix": "TOP2A-Fab-4FM9",
+      "target": "TOP2A",
+      "gene": "TOP2A",
+      "aliases": [
+        "TOP2A",
+        "TOP2A"
+      ],
+      "promptLabel": "TOP2A/TOP2A",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "TOP2A-Fab-4FM9.pdb"
+      ],
+      "display": {
+        "structureTitle": "TOP2A Fab 展示构象",
+        "structureFamily": "肿瘤方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 4FM9 TOP2A 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 4FM9 TOP2A antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_mmp13_81",
+      "aliasPrefix": "MMP13-Fab-4FU4",
+      "target": "MMP13",
+      "gene": "MMP13",
+      "aliases": [
+        "MMP13",
+        "MMP13"
+      ],
+      "promptLabel": "MMP13/MMP13",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "MMP13-Fab-4FU4.pdb"
+      ],
+      "display": {
+        "structureTitle": "MMP13 Fab 展示构象",
+        "structureFamily": "消化/骨骼方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 4FU4 MMP13 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 4FU4 MMP13 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_hbb_82",
+      "aliasPrefix": "HBB-Fab-4HHB",
+      "target": "HBB",
+      "gene": "HBB",
+      "aliases": [
+        "HBB",
+        "HBB"
+      ],
+      "promptLabel": "HBB/HBB",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "HBB-Fab-4HHB.pdb"
+      ],
+      "display": {
+        "structureTitle": "HBB Fab 展示构象",
+        "structureFamily": "凝血/血液方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 4HHB HBB 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 4HHB HBB antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_il17a_83",
+      "aliasPrefix": "IL17A-VHH-4HR9",
+      "target": "IL17A",
+      "gene": "IL17A",
+      "aliases": [
+        "IL17A",
+        "IL17A"
+      ],
+      "promptLabel": "IL17A/IL17A",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "IL17A-VHH-4HR9.pdb"
+      ],
+      "display": {
+        "structureTitle": "IL17A VHH 展示构象",
+        "structureFamily": "其他方向靶点 · VHH 展示候选",
+        "visualSummary": "基于 RCSB 4HR9 IL17A 抗原结构的代表性 VHH 展示姿态",
+        "structuralBasis": "RCSB 4HR9 IL17A antigen / geometric VHH display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_oas1_84",
+      "aliasPrefix": "OAS1-Fab-4IG8",
+      "target": "OAS1",
+      "gene": "OAS1",
+      "aliases": [
+        "OAS1",
+        "OAS1"
+      ],
+      "promptLabel": "OAS1/OAS1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "OAS1-Fab-4IG8.pdb"
+      ],
+      "display": {
+        "structureTitle": "OAS1 Fab 展示构象",
+        "structureFamily": "其他方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 4IG8 OAS1 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 4IG8 OAS1 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_grik1_85",
+      "aliasPrefix": "GRIK1-Fab-4MF3",
+      "target": "GRIK1",
+      "gene": "GRIK1",
+      "aliases": [
+        "GRIK1",
+        "GRIK1"
+      ],
+      "promptLabel": "GRIK1/GRIK1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "GRIK1-Fab-4MF3.pdb"
+      ],
+      "display": {
+        "structureTitle": "GRIK1 Fab 展示构象",
+        "structureFamily": "神经/心血管方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 4MF3 GRIK1 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 4MF3 GRIK1 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_fcgrt___fcrn_86",
+      "aliasPrefix": "FCGRT-FcRn-VHH-4N0U",
+      "target": "FCGRT / FcRn",
+      "gene": "FCGRT",
+      "aliases": [
+        "FCGRT",
+        "FCGRT / FcRn"
+      ],
+      "promptLabel": "FCGRT / FcRn/FCGRT",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "FCGRT-FcRn-VHH-4N0U.pdb"
+      ],
+      "display": {
+        "structureTitle": "FCGRT / FcRn VHH 展示构象",
+        "structureFamily": "其他方向靶点 · VHH 展示候选",
+        "visualSummary": "基于 RCSB 4N0U FCGRT / FcRn 抗原结构的代表性 VHH 展示姿态",
+        "structuralBasis": "RCSB 4N0U FCGRT / FcRn antigen / geometric VHH display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_kras_87",
+      "aliasPrefix": "KRAS-Fab-4OBE",
+      "target": "KRAS",
+      "gene": "KRAS",
+      "aliases": [
+        "KRAS",
+        "KRAS"
+      ],
+      "promptLabel": "KRAS/KRAS",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "KRAS-Fab-4OBE.pdb"
+      ],
+      "display": {
+        "structureTitle": "KRAS Fab 展示构象",
+        "structureFamily": "肿瘤方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 4OBE KRAS 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 4OBE KRAS antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_nr3c1_88",
+      "aliasPrefix": "NR3C1-Fab-4P6X",
+      "target": "NR3C1",
+      "gene": "NR3C1",
+      "aliases": [
+        "NR3C1",
+        "NR3C1"
+      ],
+      "promptLabel": "NR3C1/NR3C1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "NR3C1-Fab-4P6X.pdb"
+      ],
+      "display": {
+        "structureTitle": "NR3C1 Fab 展示构象",
+        "structureFamily": "内分泌方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 4P6X NR3C1 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 4P6X NR3C1 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_stag2_89",
+      "aliasPrefix": "STAG2-Fab-4PK7",
+      "target": "STAG2",
+      "gene": "STAG2",
+      "aliases": [
+        "STAG2",
+        "STAG2"
+      ],
+      "promptLabel": "STAG2/STAG2",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "STAG2-Fab-4PK7.pdb"
+      ],
+      "display": {
+        "structureTitle": "STAG2 Fab 展示构象",
+        "structureFamily": "肿瘤方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 4PK7 STAG2 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 4PK7 STAG2 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_axl_90",
+      "aliasPrefix": "AXL-Fab-4RA0",
+      "target": "AXL",
+      "gene": "AXL",
+      "aliases": [
+        "AXL",
+        "AXL"
+      ],
+      "promptLabel": "AXL/AXL",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "AXL-Fab-4RA0.pdb"
+      ],
+      "display": {
+        "structureTitle": "AXL Fab 展示构象",
+        "structureFamily": "肿瘤方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 4RA0 AXL 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 4RA0 AXL antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_ret_91",
+      "aliasPrefix": "RET-Fab-4UX8",
+      "target": "RET",
+      "gene": "RET",
+      "aliases": [
+        "RET",
+        "RET"
+      ],
+      "promptLabel": "RET/RET",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "RET-Fab-4UX8.pdb"
+      ],
+      "display": {
+        "structureTitle": "RET Fab 展示构象",
+        "structureFamily": "肿瘤方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 4UX8 RET 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 4UX8 RET antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_myoc_92",
+      "aliasPrefix": "MYOC-Fab-4WXQ",
+      "target": "MYOC",
+      "gene": "MYOC",
+      "aliases": [
+        "MYOC",
+        "MYOC"
+      ],
+      "promptLabel": "MYOC/MYOC",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "MYOC-Fab-4WXQ.pdb"
+      ],
+      "display": {
+        "structureTitle": "MYOC Fab 展示构象",
+        "structureFamily": "肾脏/结缔组织方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 4WXQ MYOC 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 4WXQ MYOC antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_agtr1_93",
+      "aliasPrefix": "AGTR1-Fab-4YAY",
+      "target": "AGTR1",
+      "gene": "AGTR1",
+      "aliases": [
+        "AGTR1",
+        "AGTR1"
+      ],
+      "promptLabel": "AGTR1/AGTR1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "AGTR1-Fab-4YAY.pdb"
+      ],
+      "display": {
+        "structureTitle": "AGTR1 Fab 展示构象",
+        "structureFamily": "肾脏/结缔组织方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 4YAY AGTR1 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 4YAY AGTR1 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_odc1_94",
+      "aliasPrefix": "ODC1-Fab-4ZGY",
+      "target": "ODC1",
+      "gene": "ODC1",
+      "aliases": [
+        "ODC1",
+        "ODC1"
+      ],
+      "promptLabel": "ODC1/ODC1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "ODC1-Fab-4ZGY.pdb"
+      ],
+      "display": {
+        "structureTitle": "ODC1 Fab 展示构象",
+        "structureFamily": "其他方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 4ZGY ODC1 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 4ZGY ODC1 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_krt10_95",
+      "aliasPrefix": "KRT10-VHH-4ZRY",
+      "target": "KRT10",
+      "gene": "KRT10",
+      "aliases": [
+        "KRT10",
+        "KRT10"
+      ],
+      "promptLabel": "KRT10/KRT10",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "KRT10-VHH-4ZRY.pdb"
+      ],
+      "display": {
+        "structureTitle": "KRT10 VHH 展示构象",
+        "structureFamily": "其他方向靶点 · VHH 展示候选",
+        "visualSummary": "基于 RCSB 4ZRY KRT10 抗原结构的代表性 VHH 展示姿态",
+        "structuralBasis": "RCSB 4ZRY KRT10 antigen / geometric VHH display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_idh1_96",
+      "aliasPrefix": "IDH1-Fab-5DE1",
+      "target": "IDH1",
+      "gene": "IDH1",
+      "aliases": [
+        "IDH1",
+        "IDH1"
+      ],
+      "promptLabel": "IDH1/IDH1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "IDH1-Fab-5DE1.pdb"
+      ],
+      "display": {
+        "structureTitle": "IDH1 Fab 展示构象",
+        "structureFamily": "其他方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 5DE1 IDH1 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 5DE1 IDH1 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_serping1_97",
+      "aliasPrefix": "SERPING1-Fab-5DU3",
+      "target": "SERPING1",
+      "gene": "SERPING1",
+      "aliases": [
+        "SERPING1",
+        "SERPING1"
+      ],
+      "promptLabel": "SERPING1/SERPING1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "SERPING1-Fab-5DU3.pdb"
+      ],
+      "display": {
+        "structureTitle": "SERPING1 Fab 展示构象",
+        "structureFamily": "凝血/血液方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 5DU3 SERPING1 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 5DU3 SERPING1 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_ptgs2_98",
+      "aliasPrefix": "PTGS2-Fab-5F19",
+      "target": "PTGS2",
+      "gene": "PTGS2",
+      "aliases": [
+        "PTGS2",
+        "PTGS2"
+      ],
+      "promptLabel": "PTGS2/PTGS2",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "PTGS2-Fab-5F19.pdb"
+      ],
+      "display": {
+        "structureTitle": "PTGS2 Fab 展示构象",
+        "structureFamily": "信号通路方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 5F19 PTGS2 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 5F19 PTGS2 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_slc6a4___sert_99",
+      "aliasPrefix": "SLC6A4-SERT-Fab-5I75",
+      "target": "SLC6A4 / SERT",
+      "gene": "SLC6A4",
+      "aliases": [
+        "SLC6A4",
+        "SLC6A4 / SERT"
+      ],
+      "promptLabel": "SLC6A4 / SERT/SLC6A4",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "SLC6A4-SERT-Fab-5I75.pdb"
+      ],
+      "display": {
+        "structureTitle": "SLC6A4 / SERT Fab 展示构象",
+        "structureFamily": "神经/心血管方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 5I75 SLC6A4 / SERT 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 5I75 SLC6A4 / SERT antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_gaa_100",
+      "aliasPrefix": "GAA-Fab-5KZW",
+      "target": "GAA",
+      "gene": "GAA",
+      "aliases": [
+        "GAA",
+        "GAA"
+      ],
+      "promptLabel": "GAA/GAA",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "GAA-Fab-5KZW.pdb"
+      ],
+      "display": {
+        "structureTitle": "GAA Fab 展示构象",
+        "structureFamily": "代谢/溶酶体方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 5KZW GAA 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 5KZW GAA antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_ntrk2_101",
+      "aliasPrefix": "NTRK2-Fab-5MO9",
+      "target": "NTRK2",
+      "gene": "NTRK2",
+      "aliases": [
+        "NTRK2",
+        "NTRK2"
+      ],
+      "promptLabel": "NTRK2/NTRK2",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "NTRK2-Fab-5MO9.pdb"
+      ],
+      "display": {
+        "structureTitle": "NTRK2 Fab 展示构象",
+        "structureFamily": "肿瘤方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 5MO9 NTRK2 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 5MO9 NTRK2 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_fbn1_102",
+      "aliasPrefix": "FBN1-VHH-5MS9",
+      "target": "FBN1",
+      "gene": "FBN1",
+      "aliases": [
+        "FBN1",
+        "FBN1"
+      ],
+      "promptLabel": "FBN1/FBN1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "FBN1-VHH-5MS9.pdb"
+      ],
+      "display": {
+        "structureTitle": "FBN1 VHH 展示构象",
+        "structureFamily": "其他方向靶点 · VHH 展示候选",
+        "visualSummary": "基于 RCSB 5MS9 FBN1 抗原结构的代表性 VHH 展示姿态",
+        "structuralBasis": "RCSB 5MS9 FBN1 antigen / geometric VHH display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_col4a1_103",
+      "aliasPrefix": "COL4A1-Fab-5NAY",
+      "target": "COL4A1",
+      "gene": "COL4A1",
+      "aliases": [
+        "COL4A1",
+        "COL4A1"
+      ],
+      "promptLabel": "COL4A1/COL4A1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "COL4A1-Fab-5NAY.pdb"
+      ],
+      "display": {
+        "structureTitle": "COL4A1 Fab 展示构象",
+        "structureFamily": "肾脏/结缔组织方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 5NAY COL4A1 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 5NAY COL4A1 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_drd4_104",
+      "aliasPrefix": "DRD4-Fab-5WIU",
+      "target": "DRD4",
+      "gene": "DRD4",
+      "aliases": [
+        "DRD4",
+        "DRD4"
+      ],
+      "promptLabel": "DRD4/DRD4",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "DRD4-Fab-5WIU.pdb"
+      ],
+      "display": {
+        "structureTitle": "DRD4 Fab 展示构象",
+        "structureFamily": "神经/心血管方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 5WIU DRD4 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 5WIU DRD4 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_cnr1_105",
+      "aliasPrefix": "CNR1-Fab-5XRA",
+      "target": "CNR1",
+      "gene": "CNR1",
+      "aliases": [
+        "CNR1",
+        "CNR1"
+      ],
+      "promptLabel": "CNR1/CNR1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "CNR1-Fab-5XRA.pdb"
+      ],
+      "display": {
+        "structureTitle": "CNR1 Fab 展示构象",
+        "structureFamily": "神经/心血管方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 5XRA CNR1 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 5XRA CNR1 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_atp4a_106",
+      "aliasPrefix": "ATP4A-Fab-5YLU",
+      "target": "ATP4A",
+      "gene": "ATP4A",
+      "aliases": [
+        "ATP4A",
+        "ATP4A"
+      ],
+      "promptLabel": "ATP4A/ATP4A",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "ATP4A-Fab-5YLU.pdb"
+      ],
+      "display": {
+        "structureTitle": "ATP4A Fab 展示构象",
+        "structureFamily": "消化/骨骼方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 5YLU ATP4A 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 5YLU ATP4A antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_dicer1_107",
+      "aliasPrefix": "DICER1-Fab-5ZAL",
+      "target": "DICER1",
+      "gene": "DICER1",
+      "aliases": [
+        "DICER1",
+        "DICER1"
+      ],
+      "promptLabel": "DICER1/DICER1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "DICER1-Fab-5ZAL.pdb"
+      ],
+      "display": {
+        "structureTitle": "DICER1 Fab 展示构象",
+        "structureFamily": "肿瘤方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 5ZAL DICER1 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 5ZAL DICER1 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_plat_108",
+      "aliasPrefix": "PLAT-Fab-5ZLZ",
+      "target": "PLAT",
+      "gene": "PLAT",
+      "aliases": [
+        "PLAT",
+        "PLAT"
+      ],
+      "promptLabel": "PLAT/PLAT",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "PLAT-Fab-5ZLZ.pdb"
+      ],
+      "display": {
+        "structureTitle": "PLAT Fab 展示构象",
+        "structureFamily": "信号通路方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 5ZLZ PLAT 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 5ZLZ PLAT antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_htr2a_109",
+      "aliasPrefix": "HTR2A-Fab-6A93",
+      "target": "HTR2A",
+      "gene": "HTR2A",
+      "aliases": [
+        "HTR2A",
+        "HTR2A"
+      ],
+      "promptLabel": "HTR2A/HTR2A",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "HTR2A-Fab-6A93.pdb"
+      ],
+      "display": {
+        "structureTitle": "HTR2A Fab 展示构象",
+        "structureFamily": "神经/心血管方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 6A93 HTR2A 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 6A93 HTR2A antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_gnas_110",
+      "aliasPrefix": "GNAS-Fab-6AU6",
+      "target": "GNAS",
+      "gene": "GNAS",
+      "aliases": [
+        "GNAS",
+        "GNAS"
+      ],
+      "promptLabel": "GNAS/GNAS",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "GNAS-Fab-6AU6.pdb"
+      ],
+      "display": {
+        "structureTitle": "GNAS Fab 展示构象",
+        "structureFamily": "其他方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 6AU6 GNAS 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 6AU6 GNAS antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_drd2_111",
+      "aliasPrefix": "DRD2-Fab-6CM4",
+      "target": "DRD2",
+      "gene": "DRD2",
+      "aliases": [
+        "DRD2",
+        "DRD2"
+      ],
+      "promptLabel": "DRD2/DRD2",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "DRD2-Fab-6CM4.pdb"
+      ],
+      "display": {
+        "structureTitle": "DRD2 Fab 展示构象",
+        "structureFamily": "神经/心血管方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 6CM4 DRD2 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 6CM4 DRD2 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_ntrk1_112",
+      "aliasPrefix": "NTRK1-Fab-6D20",
+      "target": "NTRK1",
+      "gene": "NTRK1",
+      "aliases": [
+        "NTRK1",
+        "NTRK1"
+      ],
+      "promptLabel": "NTRK1/NTRK1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "NTRK1-Fab-6D20.pdb"
+      ],
+      "display": {
+        "structureTitle": "NTRK1 Fab 展示构象",
+        "structureFamily": "肿瘤方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 6D20 NTRK1 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 6D20 NTRK1 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_col3a1_113",
+      "aliasPrefix": "COL3A1-Fab-6FZV",
+      "target": "COL3A1",
+      "gene": "COL3A1",
+      "aliases": [
+        "COL3A1",
+        "COL3A1"
+      ],
+      "promptLabel": "COL3A1/COL3A1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "COL3A1-Fab-6FZV.pdb"
+      ],
+      "display": {
+        "structureTitle": "COL3A1 Fab 展示构象",
+        "structureFamily": "肾脏/结缔组织方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 6FZV COL3A1 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 6FZV COL3A1 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_suclg1_114",
+      "aliasPrefix": "SUCLG1-Fab-6G4Q",
+      "target": "SUCLG1",
+      "gene": "SUCLG1",
+      "aliases": [
+        "SUCLG1",
+        "SUCLG1"
+      ],
+      "promptLabel": "SUCLG1/SUCLG1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "SUCLG1-Fab-6G4Q.pdb"
+      ],
+      "display": {
+        "structureTitle": "SUCLG1 Fab 展示构象",
+        "structureFamily": "其他方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 6G4Q SUCLG1 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 6G4Q SUCLG1 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_psph_115",
+      "aliasPrefix": "PSPH-Fab-6HYJ",
+      "target": "PSPH",
+      "gene": "PSPH",
+      "aliases": [
+        "PSPH",
+        "PSPH"
+      ],
+      "promptLabel": "PSPH/PSPH",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "PSPH-Fab-6HYJ.pdb"
+      ],
+      "display": {
+        "structureTitle": "PSPH Fab 展示构象",
+        "structureFamily": "其他方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 6HYJ PSPH 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 6HYJ PSPH antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_gucy1a1_116",
+      "aliasPrefix": "GUCY1A1-Fab-6JT0",
+      "target": "GUCY1A1",
+      "gene": "GUCY1A1",
+      "aliases": [
+        "GUCY1A1",
+        "GUCY1A1"
+      ],
+      "promptLabel": "GUCY1A1/GUCY1A1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "GUCY1A1-Fab-6JT0.pdb"
+      ],
+      "display": {
+        "structureTitle": "GUCY1A1 Fab 展示构象",
+        "structureFamily": "消化/骨骼方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 6JT0 GUCY1A1 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 6JT0 GUCY1A1 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_adra2b_117",
+      "aliasPrefix": "ADRA2B-VHH-6K41",
+      "target": "ADRA2B",
+      "gene": "ADRA2B",
+      "aliases": [
+        "ADRA2B",
+        "ADRA2B"
+      ],
+      "promptLabel": "ADRA2B/ADRA2B",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "ADRA2B-VHH-6K41.pdb"
+      ],
+      "display": {
+        "structureTitle": "ADRA2B VHH 展示构象",
+        "structureFamily": "神经/心血管方向靶点 · VHH 展示候选",
+        "visualSummary": "基于 RCSB 6K41 ADRA2B 抗原结构的代表性 VHH 展示姿态",
+        "structuralBasis": "RCSB 6K41 ADRA2B antigen / geometric VHH display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_atm_118",
+      "aliasPrefix": "ATM-Fab-6K9L",
+      "target": "ATM",
+      "gene": "ATM",
+      "aliases": [
+        "ATM",
+        "ATM"
+      ],
+      "promptLabel": "ATM/ATM",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "ATM-Fab-6K9L.pdb"
+      ],
+      "display": {
+        "structureTitle": "ATM Fab 展示构象",
+        "structureFamily": "肿瘤方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 6K9L ATM 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 6K9L ATM antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_cacna1g_119",
+      "aliasPrefix": "CACNA1G-Fab-6KZO",
+      "target": "CACNA1G",
+      "gene": "CACNA1G",
+      "aliases": [
+        "CACNA1G",
+        "CACNA1G"
+      ],
+      "promptLabel": "CACNA1G/CACNA1G",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "CACNA1G-Fab-6KZO.pdb"
+      ],
+      "display": {
+        "structureTitle": "CACNA1G Fab 展示构象",
+        "structureFamily": "神经/心血管方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 6KZO CACNA1G 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 6KZO CACNA1G antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_proc_120",
+      "aliasPrefix": "PROC-Fab-6M3B",
+      "target": "PROC",
+      "gene": "PROC",
+      "aliases": [
+        "PROC",
+        "PROC"
+      ],
+      "promptLabel": "PROC/PROC",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "PROC-Fab-6M3B.pdb"
+      ],
+      "display": {
+        "structureTitle": "PROC Fab 展示构象",
+        "structureFamily": "凝血/血液方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 6M3B PROC 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 6M3B PROC antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_cftr_121",
+      "aliasPrefix": "CFTR-Fab-6MSM",
+      "target": "CFTR",
+      "gene": "CFTR",
+      "aliases": [
+        "CFTR",
+        "CFTR"
+      ],
+      "promptLabel": "CFTR/CFTR",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "CFTR-Fab-6MSM.pdb"
+      ],
+      "display": {
+        "structureTitle": "CFTR Fab 展示构象",
+        "structureFamily": "消化/骨骼方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 6MSM CFTR 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 6MSM CFTR antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_klkb1_122",
+      "aliasPrefix": "KLKB1-Fab-6O1S",
+      "target": "KLKB1",
+      "gene": "KLKB1",
+      "aliases": [
+        "KLKB1",
+        "KLKB1"
+      ],
+      "promptLabel": "KLKB1/KLKB1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "KLKB1-Fab-6O1S.pdb"
+      ],
+      "display": {
+        "structureTitle": "KLKB1 Fab 展示构象",
+        "structureFamily": "凝血/血液方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 6O1S KLKB1 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 6O1S KLKB1 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_myh7_123",
+      "aliasPrefix": "MYH7-Fab-6PFP",
+      "target": "MYH7",
+      "gene": "MYH7",
+      "aliases": [
+        "MYH7",
+        "MYH7"
+      ],
+      "promptLabel": "MYH7/MYH7",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "MYH7-Fab-6PFP.pdb"
+      ],
+      "display": {
+        "structureTitle": "MYH7 Fab 展示构象",
+        "structureFamily": "神经/心血管方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 6PFP MYH7 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 6PFP MYH7 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_abcb4_124",
+      "aliasPrefix": "ABCB4-Fab-6S7P",
+      "target": "ABCB4",
+      "gene": "ABCB4",
+      "aliases": [
+        "ABCB4",
+        "ABCB4"
+      ],
+      "promptLabel": "ABCB4/ABCB4",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "ABCB4-Fab-6S7P.pdb"
+      ],
+      "display": {
+        "structureTitle": "ABCB4 Fab 展示构象",
+        "structureFamily": "消化/骨骼方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 6S7P ABCB4 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 6S7P ABCB4 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_tg_125",
+      "aliasPrefix": "TG-Fab-6SCJ",
+      "target": "TG",
+      "gene": "TG",
+      "aliases": [
+        "TG",
+        "TG"
+      ],
+      "promptLabel": "TG/TG",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "TG-Fab-6SCJ.pdb"
+      ],
+      "display": {
+        "structureTitle": "TG Fab 展示构象",
+        "structureFamily": "其他方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 6SCJ TG 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 6SCJ TG antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_ryr1_126",
+      "aliasPrefix": "RYR1-VHH-6UHI",
+      "target": "RYR1",
+      "gene": "RYR1",
+      "aliases": [
+        "RYR1",
+        "RYR1"
+      ],
+      "promptLabel": "RYR1/RYR1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "RYR1-VHH-6UHI.pdb"
+      ],
+      "display": {
+        "structureTitle": "RYR1 VHH 展示构象",
+        "structureFamily": "神经/心血管方向靶点 · VHH 展示候选",
+        "visualSummary": "基于 RCSB 6UHI RYR1 抗原结构的代表性 VHH 展示姿态",
+        "structuralBasis": "RCSB 6UHI RYR1 antigen / geometric VHH display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_jak2_127",
+      "aliasPrefix": "JAK2-Fab-6VGL",
+      "target": "JAK2",
+      "gene": "JAK2",
+      "aliases": [
+        "JAK2",
+        "JAK2"
+      ],
+      "promptLabel": "JAK2/JAK2",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "JAK2-Fab-6VGL.pdb"
+      ],
+      "display": {
+        "structureTitle": "JAK2 Fab 展示构象",
+        "structureFamily": "其他方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 6VGL JAK2 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 6VGL JAK2 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_gabrb2_128",
+      "aliasPrefix": "GABRB2-Fab-6X3U",
+      "target": "GABRB2",
+      "gene": "GABRB2",
+      "aliases": [
+        "GABRB2",
+        "GABRB2"
+      ],
+      "promptLabel": "GABRB2/GABRB2",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "GABRB2-Fab-6X3U.pdb"
+      ],
+      "display": {
+        "structureTitle": "GABRB2 Fab 展示构象",
+        "structureFamily": "神经/心血管方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 6X3U GABRB2 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 6X3U GABRB2 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_avpr2_129",
+      "aliasPrefix": "AVPR2-VHH-7BB6",
+      "target": "AVPR2",
+      "gene": "AVPR2",
+      "aliases": [
+        "AVPR2",
+        "AVPR2"
+      ],
+      "promptLabel": "AVPR2/AVPR2",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "AVPR2-VHH-7BB6.pdb"
+      ],
+      "display": {
+        "structureTitle": "AVPR2 VHH 展示构象",
+        "structureFamily": "其他方向靶点 · VHH 展示候选",
+        "visualSummary": "基于 RCSB 7BB6 AVPR2 抗原结构的代表性 VHH 展示姿态",
+        "structuralBasis": "RCSB 7BB6 AVPR2 antigen / geometric VHH display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_tlr7_130",
+      "aliasPrefix": "TLR7-Fab-7CYN",
+      "target": "TLR7",
+      "gene": "TLR7",
+      "aliases": [
+        "TLR7",
+        "TLR7"
+      ],
+      "promptLabel": "TLR7/TLR7",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "TLR7-Fab-7CYN.pdb"
+      ],
+      "display": {
+        "structureTitle": "TLR7 Fab 展示构象",
+        "structureFamily": "免疫炎症方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 7CYN TLR7 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 7CYN TLR7 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_scn1a_131",
+      "aliasPrefix": "SCN1A-Fab-7DTD",
+      "target": "SCN1A",
+      "gene": "SCN1A",
+      "aliases": [
+        "SCN1A",
+        "SCN1A"
+      ],
+      "promptLabel": "SCN1A/SCN1A",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "SCN1A-Fab-7DTD.pdb"
+      ],
+      "display": {
+        "structureTitle": "SCN1A Fab 展示构象",
+        "structureFamily": "神经/心血管方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 7DTD SCN1A 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 7DTD SCN1A antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_lhcgr_132",
+      "aliasPrefix": "LHCGR-Fab-7FIJ",
+      "target": "LHCGR",
+      "gene": "LHCGR",
+      "aliases": [
+        "LHCGR",
+        "LHCGR"
+      ],
+      "promptLabel": "LHCGR/LHCGR",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "LHCGR-Fab-7FIJ.pdb"
+      ],
+      "display": {
+        "structureTitle": "LHCGR Fab 展示构象",
+        "structureFamily": "内分泌方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 7FIJ LHCGR 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 7FIJ LHCGR antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_pde3a_133",
+      "aliasPrefix": "PDE3A-Fab-7L28",
+      "target": "PDE3A",
+      "gene": "PDE3A",
+      "aliases": [
+        "PDE3A",
+        "PDE3A"
+      ],
+      "promptLabel": "PDE3A/PDE3A",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "PDE3A-Fab-7L28.pdb"
+      ],
+      "display": {
+        "structureTitle": "PDE3A Fab 展示构象",
+        "structureFamily": "其他方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 7L28 PDE3A 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 7L28 PDE3A antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_alk_134",
+      "aliasPrefix": "ALK-Fab-7MZY",
+      "target": "ALK",
+      "gene": "ALK",
+      "aliases": [
+        "ALK",
+        "ALK"
+      ],
+      "promptLabel": "ALK/ALK",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "ALK-Fab-7MZY.pdb"
+      ],
+      "display": {
+        "structureTitle": "ALK Fab 展示构象",
+        "structureFamily": "肿瘤方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 7MZY ALK 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 7MZY ALK antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_spink1_135",
+      "aliasPrefix": "SPINK1-Fab-7QE8",
+      "target": "SPINK1",
+      "gene": "SPINK1",
+      "aliases": [
+        "SPINK1",
+        "SPINK1"
+      ],
+      "promptLabel": "SPINK1/SPINK1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "SPINK1-Fab-7QE8.pdb"
+      ],
+      "display": {
+        "structureTitle": "SPINK1 Fab 展示构象",
+        "structureFamily": "消化/骨骼方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 7QE8 SPINK1 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 7QE8 SPINK1 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_mmp7_136",
+      "aliasPrefix": "MMP7-Fab-7WXX",
+      "target": "MMP7",
+      "gene": "MMP7",
+      "aliases": [
+        "MMP7",
+        "MMP7"
+      ],
+      "promptLabel": "MMP7/MMP7",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "MMP7-Fab-7WXX.pdb"
+      ],
+      "display": {
+        "structureTitle": "MMP7 Fab 展示构象",
+        "structureFamily": "消化/骨骼方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 7WXX MMP7 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 7WXX MMP7 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_atp2c1_137",
+      "aliasPrefix": "ATP2C1-VHH-7YAG",
+      "target": "ATP2C1",
+      "gene": "ATP2C1",
+      "aliases": [
+        "ATP2C1",
+        "ATP2C1"
+      ],
+      "promptLabel": "ATP2C1/ATP2C1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "ATP2C1-VHH-7YAG.pdb"
+      ],
+      "display": {
+        "structureTitle": "ATP2C1 VHH 展示构象",
+        "structureFamily": "消化/骨骼方向靶点 · VHH 展示候选",
+        "visualSummary": "基于 RCSB 7YAG ATP2C1 抗原结构的代表性 VHH 展示姿态",
+        "structuralBasis": "RCSB 7YAG ATP2C1 antigen / geometric VHH display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_tlr9_138",
+      "aliasPrefix": "TLR9-VHH-8AR3",
+      "target": "TLR9",
+      "gene": "TLR9",
+      "aliases": [
+        "TLR9",
+        "TLR9"
+      ],
+      "promptLabel": "TLR9/TLR9",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "TLR9-VHH-8AR3.pdb"
+      ],
+      "display": {
+        "structureTitle": "TLR9 VHH 展示构象",
+        "structureFamily": "免疫炎症方向靶点 · VHH 展示候选",
+        "visualSummary": "基于 RCSB 8AR3 TLR9 抗原结构的代表性 VHH 展示姿态",
+        "structuralBasis": "RCSB 8AR3 TLR9 antigen / geometric VHH display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_grem1_139",
+      "aliasPrefix": "GREM1-Fab-8B7H",
+      "target": "GREM1",
+      "gene": "GREM1",
+      "aliases": [
+        "GREM1",
+        "GREM1"
+      ],
+      "promptLabel": "GREM1/GREM1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "GREM1-Fab-8B7H.pdb"
+      ],
+      "display": {
+        "structureTitle": "GREM1 Fab 展示构象",
+        "structureFamily": "消化/骨骼方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 8B7H GREM1 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 8B7H GREM1 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_oprm1_140",
+      "aliasPrefix": "OPRM1-Fab-8F7Q",
+      "target": "OPRM1",
+      "gene": "OPRM1",
+      "aliases": [
+        "OPRM1",
+        "OPRM1"
+      ],
+      "promptLabel": "OPRM1/OPRM1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "OPRM1-Fab-8F7Q.pdb"
+      ],
+      "display": {
+        "structureTitle": "OPRM1 Fab 展示构象",
+        "structureFamily": "神经/心血管方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 8F7Q OPRM1 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 8F7Q OPRM1 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_gucy2c_141",
+      "aliasPrefix": "GUCY2C-Fab-8FX4",
+      "target": "GUCY2C",
+      "gene": "GUCY2C",
+      "aliases": [
+        "GUCY2C",
+        "GUCY2C"
+      ],
+      "promptLabel": "GUCY2C/GUCY2C",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "GUCY2C-Fab-8FX4.pdb"
+      ],
+      "display": {
+        "structureTitle": "GUCY2C Fab 展示构象",
+        "structureFamily": "消化/骨骼方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 8FX4 GUCY2C 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 8FX4 GUCY2C antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_gpr161_142",
+      "aliasPrefix": "GPR161-VHH-8KH4",
+      "target": "GPR161",
+      "gene": "GPR161",
+      "aliases": [
+        "GPR161",
+        "GPR161"
+      ],
+      "promptLabel": "GPR161/GPR161",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "GPR161-VHH-8KH4.pdb"
+      ],
+      "display": {
+        "structureTitle": "GPR161 VHH 展示构象",
+        "structureFamily": "其他方向靶点 · VHH 展示候选",
+        "visualSummary": "基于 RCSB 8KH4 GPR161 抗原结构的代表性 VHH 展示姿态",
+        "structuralBasis": "RCSB 8KH4 GPR161 antigen / geometric VHH display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_adrb1_143",
+      "aliasPrefix": "ADRB1-VHH-8S2T",
+      "target": "ADRB1",
+      "gene": "ADRB1",
+      "aliases": [
+        "ADRB1",
+        "ADRB1"
+      ],
+      "promptLabel": "ADRB1/ADRB1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "ADRB1-VHH-8S2T.pdb"
+      ],
+      "display": {
+        "structureTitle": "ADRB1 VHH 展示构象",
+        "structureFamily": "肿瘤方向靶点 · VHH 展示候选",
+        "visualSummary": "基于 RCSB 8S2T ADRB1 抗原结构的代表性 VHH 展示姿态",
+        "structuralBasis": "RCSB 8S2T ADRB1 antigen / geometric VHH display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_ctnnb1_144",
+      "aliasPrefix": "CTNNB1-Fab-8Y0G",
+      "target": "CTNNB1",
+      "gene": "CTNNB1",
+      "aliases": [
+        "CTNNB1",
+        "CTNNB1"
+      ],
+      "promptLabel": "CTNNB1/CTNNB1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "CTNNB1-Fab-8Y0G.pdb"
+      ],
+      "display": {
+        "structureTitle": "CTNNB1 Fab 展示构象",
+        "structureFamily": "肿瘤方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 8Y0G CTNNB1 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 8Y0G CTNNB1 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_scnn1b_145",
+      "aliasPrefix": "SCNN1B-Fab-9BLR",
+      "target": "SCNN1B",
+      "gene": "SCNN1B",
+      "aliases": [
+        "SCNN1B",
+        "SCNN1B"
+      ],
+      "promptLabel": "SCNN1B/SCNN1B",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "SCNN1B-Fab-9BLR.pdb"
+      ],
+      "display": {
+        "structureTitle": "SCNN1B Fab 展示构象",
+        "structureFamily": "神经/心血管方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 9BLR SCNN1B 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 9BLR SCNN1B antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_best1_146",
+      "aliasPrefix": "BEST1-Fab-9EGT",
+      "target": "BEST1",
+      "gene": "BEST1",
+      "aliases": [
+        "BEST1",
+        "BEST1"
+      ],
+      "promptLabel": "BEST1/BEST1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "BEST1-Fab-9EGT.pdb"
+      ],
+      "display": {
+        "structureTitle": "BEST1 Fab 展示构象",
+        "structureFamily": "肾脏/结缔组织方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 9EGT BEST1 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 9EGT BEST1 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_slc6a3_147",
+      "aliasPrefix": "SLC6A3-Fab-9EO4",
+      "target": "SLC6A3",
+      "gene": "SLC6A3",
+      "aliases": [
+        "SLC6A3",
+        "SLC6A3"
+      ],
+      "promptLabel": "SLC6A3/SLC6A3",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "SLC6A3-Fab-9EO4.pdb"
+      ],
+      "display": {
+        "structureTitle": "SLC6A3 Fab 展示构象",
+        "structureFamily": "神经/心血管方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 9EO4 SLC6A3 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 9EO4 SLC6A3 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_chrna1_148",
+      "aliasPrefix": "CHRNA1-Fab-9GU3",
+      "target": "CHRNA1",
+      "gene": "CHRNA1",
+      "aliases": [
+        "CHRNA1",
+        "CHRNA1"
+      ],
+      "promptLabel": "CHRNA1/CHRNA1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "CHRNA1-Fab-9GU3.pdb"
+      ],
+      "display": {
+        "structureTitle": "CHRNA1 Fab 展示构象",
+        "structureFamily": "神经/心血管方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 9GU3 CHRNA1 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 9GU3 CHRNA1 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_gnai1_149",
+      "aliasPrefix": "GNAI1-VHH-9ODM",
+      "target": "GNAI1",
+      "gene": "GNAI1",
+      "aliases": [
+        "GNAI1",
+        "GNAI1"
+      ],
+      "promptLabel": "GNAI1/GNAI1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "GNAI1-VHH-9ODM.pdb"
+      ],
+      "display": {
+        "structureTitle": "GNAI1 VHH 展示构象",
+        "structureFamily": "其他方向靶点 · VHH 展示候选",
+        "visualSummary": "基于 RCSB 9ODM GNAI1 抗原结构的代表性 VHH 展示姿态",
+        "structuralBasis": "RCSB 9ODM GNAI1 antigen / geometric VHH display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_scn5a_150",
+      "aliasPrefix": "SCN5A-Fab-9P24",
+      "target": "SCN5A",
+      "gene": "SCN5A",
+      "aliases": [
+        "SCN5A",
+        "SCN5A"
+      ],
+      "promptLabel": "SCN5A/SCN5A",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "SCN5A-Fab-9P24.pdb"
+      ],
+      "display": {
+        "structureTitle": "SCN5A Fab 展示构象",
+        "structureFamily": "神经/心血管方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 9P24 SCN5A 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 9P24 SCN5A antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        }
+      }
+    },
+    {
+      "routeId": "display_pose_nkx2_1_151",
+      "aliasPrefix": "NKX2-1-Fab-9U18",
+      "target": "NKX2-1",
+      "gene": "NKX2-1",
+      "aliases": [
+        "NKX2-1",
+        "NKX2-1"
+      ],
+      "promptLabel": "NKX2-1/NKX2-1",
+      "structureClass": "target_exact_display_pose",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "NKX2-1-Fab-9U18.pdb"
+      ],
+      "display": {
+        "structureTitle": "NKX2-1 Fab 展示构象",
+        "structureFamily": "其他方向靶点 · Fab 展示候选",
+        "visualSummary": "基于 RCSB 9U18 NKX2-1 抗原结构的代表性 Fab 展示姿态",
+        "structuralBasis": "RCSB 9U18 NKX2-1 antigen / geometric Fab display pose",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "displayMode": "representative_display_pose",
+        "interfaceDetail": false,
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
         }
       }
     }

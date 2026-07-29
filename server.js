@@ -4161,7 +4161,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       structurePrepEn: 'Loaded the 8V91 human AQP4 tetramer / rAB 58 Fab complex and prepared Fab constraints around the extracellular loop-facing surface.',
       scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '自身抗原界面识别设计'
-    ,
+    },
     'CD40LG': {
       routeLabel: 'CD40LG',
       disease: '免疫炎症',
@@ -7962,7 +7962,6 @@ function buildRouteProfile(target, blockTarget, abType) {
       designMode: '发育/转录因子方向设计',
       routeId: 'display_pose_nkx2_1_151'
     }
-}
   };
   const profile = profiles[key]
     ? { ...profiles[key] }
@@ -9173,10 +9172,15 @@ function filesForRoute3DPreset(profile, preset) {
 }
 
 function routeAliasPrefix(profile, preset) {
-  if (preset && preset.aliasPrefix) return preset.aliasPrefix;
+  const abFormat = antibodyFormatForProfile(profile) === 'VHH' ? 'VHH' : 'Fab';
+  if (preset && preset.aliasPrefix) {
+    if (abFormat === 'VHH' && /-Fab$/i.test(preset.aliasPrefix)) {
+      return preset.aliasPrefix.replace(/-Fab$/i, '-VHH');
+    }
+    return preset.aliasPrefix;
+  }
   let target = ((profile && profile.targetDisplay) || 'PDL1').replace(/[^A-Za-z0-9]+/g, '');
   if (!target) target = 'Target' + stableSeed(profile && profile.targetDisplay || 'custom').toString(36);
-  const abFormat = antibodyFormatForProfile(profile) === 'VHH' ? 'VHH' : 'Fab';
   return target + '-' + abFormat;
 }
 
@@ -9634,7 +9638,7 @@ function localPDBPresetForFilename(filename) {
   for (const preset of Object.values(ROUTE_3D_PRESETS)) {
     if (!preset || !preset.aliasPrefix) continue;
     const safePrefix = preset.aliasPrefix.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    if (new RegExp('^' + safePrefix + '-\\d+\\.pdb$', 'i').test(safeName)) return preset;
+    if (new RegExp('^' + safePrefix + '(-\\d+)?\\.pdb$', 'i').test(safeName)) return preset;
   }
   return null;
 }
@@ -9785,10 +9789,14 @@ function localPDBFileExists(filename) {
 
 function routeStructureTitle(profile, preset, abFormat) {
   const target = (profile && profile.targetDisplay) || '';
-  if (preset && preset.aliasPrefix === 'FluHA-Fab' && isInfluenzaHaFamilyTarget(target)) {
+  if (preset && /FluHA-Fab/i.test(preset.aliasPrefix) && isInfluenzaHaFamilyTarget(target)) {
     return target + ' ' + (abFormat || 'Fab') + ' 中和表位构象';
   }
-  return preset && preset.title ? preset.title : ((profile && profile.routeLabel) || target || '候选结构') + ' 候选结构';
+  const title = preset && preset.title ? preset.title : ((profile && profile.routeLabel) || target || '候选结构') + ' 候选结构';
+  if (abFormat === 'VHH' && /\bFab\b/i.test(title)) {
+    return title.replace(/\bFab\b/gi, 'VHH');
+  }
+  return title;
 }
 
 function normalizePreparedStructureTarget(value) {
@@ -9975,7 +9983,7 @@ function buildRoute3DMeta(profile, idx, file, ipTm, preset) {
   const routeLabel = (profile && profile.routeLabel) || target;
   const abFormat = antibodyFormatForProfile(profile);
   const aliasPrefix = routeAliasPrefix(profile, preset);
-  const staticPreset = file.startsWith(aliasPrefix + '-') && localPDBFileExists(file);
+  const staticPreset = localPDBFileExists(file) && (file.startsWith(aliasPrefix + '-') || file.startsWith(aliasPrefix + '.'));
   const displayFile = staticPreset ? file : '';
   const visualColors = routeVisualColors(preset);
   const chainInfo = routeChainInfo(preset, file);
@@ -10001,7 +10009,9 @@ function buildRoute3DMeta(profile, idx, file, ipTm, preset) {
     structureRef: (profile && profile.structureRef) || '',
     interfaceFocus: (profile && profile.interfaceFocus) || '',
     structureTitle: routeStructureTitle(profile, preset, abFormat),
-    structureFamily: preset && preset.structureFamily ? preset.structureFamily : (profile && profile.domain) || '',
+    structureFamily: preset && preset.structureFamily
+      ? (abFormat === 'VHH' ? preset.structureFamily.replace(/\bFab\b/gi, 'VHH') : preset.structureFamily)
+      : (profile && profile.domain) || '',
     visualSummary: profile && profile.modelVisualSummary
       ? profile.modelVisualSummary
       : (preset && preset.visualSummary ? preset.visualSummary : (profile && profile.structurePrepZh) || ''),
@@ -10927,9 +10937,18 @@ function localPDBCandidatePaths(filename) {
 
 function listLocalPDBFiles() {
   const files = [];
+  const knownSubdirs = ['antigen-display-pose', 'antigen-only-sweep'];
   for (const scanDir of [PROJECT_ROOT, LOCAL_PDB_DIR]) {
     if (!fs.existsSync(scanDir)) continue;
     for (const file of fs.readdirSync(scanDir).filter(name => name.endsWith('.pdb'))) {
+      if (!files.includes(file)) files.push(file);
+    }
+  }
+  // Scan known subdirectories for additional PDB files
+  for (const subdir of knownSubdirs) {
+    const subDir = path.join(LOCAL_PDB_DIR, subdir);
+    if (!fs.existsSync(subDir)) continue;
+    for (const file of fs.readdirSync(subDir).filter(name => name.endsWith('.pdb'))) {
       if (!files.includes(file)) files.push(file);
     }
   }
@@ -13652,6 +13671,37 @@ function buildPreparedDiseaseFallbackIntent(input) {
         needsClarification: false,
         workflowProfile: null
       };
+    }
+  }
+
+  // Catalog-based fallback: if parsed target matches a catalog route preset,
+  // build a design intent without requiring the large model API
+  if (parsed.target) {
+    const routeId = preparedTargetRouteId(parsed.target);
+    if (routeId) {
+      const canonicalTarget = ROUTE_3D_PRESET_CANONICAL_TARGETS[routeId] || parsed.target;
+      const profile = buildRouteProfile(canonicalTarget, parsed.blockTarget, parsed.abType);
+      if (profile && (profile.routeId === routeId || (!profile.routeId && !profile.genericProfile))) {
+        return {
+          intent: 'design',
+          shouldStartWorkflow: true,
+          count: parsed.count || 10,
+          target: canonicalTarget,
+          targetGene: profile.targetGene || '',
+          abType: parsed.abType || (profile.scaffold && /VHH|纳米抗体/i.test(profile.scaffold) ? 'VHH' : 'Fab'),
+          blockTarget: parsed.blockTarget || '',
+          disease: profile.disease || '用户指定靶点方向',
+          designLabel: routeId,
+          summary: '面向' + canonicalTarget + '整理抗体设计任务',
+          background: canonicalTarget + '方向已匹配到可进入分子设计流程的具体靶点。',
+          reason: profile.structurePrepZh || (canonicalTarget + ' 靶点已匹配到本地结构预设。'),
+          candidateTargets: [{ target: canonicalTarget, gene: profile.targetGene || '', rationale: profile.structurePrepZh || '' }],
+          mechanism: profile.mechanism || ('围绕 ' + canonicalTarget + ' 外露结构域生成 Fab 候选。'),
+          confidence: 0.75,
+          needsClarification: false,
+          workflowProfile: null
+        };
+      }
     }
   }
 

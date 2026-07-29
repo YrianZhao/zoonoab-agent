@@ -6618,7 +6618,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '69498287';
+    const APP_BUILD_VERSION = '69498290';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
     const SILICONFLOW_CHAT_FALLBACK_MODELS = ['Qwen/Qwen3-32B', 'Qwen/Qwen3-14B', 'Qwen/Qwen3-8B', 'deepseek-ai/DeepSeek-V3'];
@@ -16610,7 +16610,7 @@ ${fallbackTableRows(profile.rows)}
             return null;
         }
 
-	    function getFallback3DPreset(profile) {
+	    function _getFallback3DPresetRaw(profile) {
 	        if (profile && profile.routeId && FALLBACK_3D_PRESETS[profile.routeId]) return FALLBACK_3D_PRESETS[profile.routeId];
 	        const target = String(profile && profile.target || '').toLowerCase();
             const catalogPreset = getCatalogFallbackPresetForTarget(target, profile);
@@ -16651,6 +16651,20 @@ ${fallbackTableRows(profile.rows)}
         return /vhh|纳米抗体/i.test(String(profile && profile.abType || ''))
             ? FALLBACK_3D_PRESETS.generic_vhh
             : FALLBACK_3D_PRESETS.tumor_immunotherapy;
+    }
+
+    function getFallback3DPreset(profile) {
+        const preset = _getFallback3DPresetRaw(profile);
+        const isVHH = /vhh|纳米抗体/i.test(String(profile && profile.abType || ''));
+        if (isVHH && preset && preset.aliasPrefix && /-Fab$/i.test(preset.aliasPrefix)) {
+            return Object.assign({}, preset, {
+                aliasPrefix: preset.aliasPrefix.replace(/-Fab$/i, '-VHH'),
+                antibodyChains: ['B'],
+                structureTitle: preset.structureTitle ? preset.structureTitle.replace(/\bFab\b/gi, 'VHH') : preset.structureTitle,
+                structureFamily: preset.structureFamily ? preset.structureFamily.replace(/\bFab\b/gi, 'VHH') : preset.structureFamily
+            });
+        }
+        return preset;
     }
 
     function fallbackOrderedFiles(preset) {
