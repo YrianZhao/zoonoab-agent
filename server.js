@@ -8870,8 +8870,11 @@ async function askAssistantModel(input, voiceSessionId) {
   if (!providers.length) return localAssistantFallback(input);
   if (typeof fetch !== 'function') return localAssistantFallback(input);
   const systemPrompt = buildAssistantSystemPrompt();
+  const chatConfig = getAssistantChatConfig(voiceSessionId);
+  const isRaceMode = isCompositeChatConfig(chatConfig) && normalizeChatMode(chatConfig.mode) === 'race';
+  const requestFn = isRaceMode ? requestAssistantModelRace : requestAssistantModelWithFallback;
   try {
-    const result = await requestAssistantModelWithFallback(providers, {
+    const result = await requestFn(providers, {
       messages: [
         { role: 'system', content: systemPrompt },
         { role: 'user', content: String(input || '').slice(0, 2000) }
@@ -9282,8 +9285,11 @@ async function resolveWorkflowIntentWithModel(input, voiceSessionId) {
     return { error: 'runtime_unsupported', intent: 'assistant_chat' };
   }
   try {
+    const chatConfig = getAssistantChatConfig(voiceSessionId);
+    const isRaceMode = isCompositeChatConfig(chatConfig) && normalizeChatMode(chatConfig.mode) === 'race';
+    const requestFn = isRaceMode ? requestAssistantModelRace : requestAssistantModelWithFallback;
     const result = await Promise.race([
-      requestAssistantModelWithFallback(providers, {
+      requestFn(providers, {
         messages: [
           { role: 'system', content: buildWorkflowIntentPrompt() },
           { role: 'user', content: text.slice(0, 1000) }
