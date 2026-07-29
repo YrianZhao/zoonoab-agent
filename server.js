@@ -28,11 +28,13 @@ const { createStructureResolver } = require('./lib/structure-resolver');
 const {
   loadLocalStructureCatalog,
   buildStructureSupportPromptList,
+  buildCategorizedPromptList,
   buildAliasPrefixTargetMapFromCatalog,
   buildRoutePresetOrganismsFromCatalog,
   buildTargetRouteMapFromCatalog,
   catalogEntryForFilename,
   catalogRouteEntryForFilename,
+  catalogAliasesForEntry,
   applyCatalogRoutePresetOverlay,
   toClientStructureCatalog
 } = require('./lib/local-structure-catalog');
@@ -143,6 +145,7 @@ const APP_BUILD_VERSION = readAppBuildVersion();
 const LOCAL_STRUCTURE_CATALOG = loadLocalStructureCatalog(__dirname);
 const FALLBACK_STRUCTURE_SUPPORT_TARGETS = 'PD-L1/CD274、PD-1/PDCD1、CTLA-4、HER2/ERBB2、EGFR/ERBB1、VEGF-A/VEGFA、TNF、IL-17A、IL-23、IL-33、TSLP、RSV F、SARS-CoV-2 RBD、Influenza HA、Influenza NA、Influenza M2、PF4/CXCL4、Adenovirus hexon、PRRSV GP4、PRRSV NSP10、HSV gD、PCV2 capsid、PEDV spike、CSFV NS5B、Feline panleukopenia VP2、Connexin-26、PCSK9、ANGPTL3、GIPR、DAT/SLC6A3、CD20、CD19、CD3、C5、IL-6R、IL-4Rα、CD25、CD33/SIGLEC3、CD38、TIGIT、CD47、LAG-3、TROP-2、BCMA、IgE、CGRP receptor、IL-1β、BAFF/TNFSF13B、FcRn/FCGRT、NGF、Integrin α4β7/ITGA4-ITGB7、GPC2/Glypican-2，以及犬源 NGF';
 const STRUCTURE_SUPPORT_TARGETS_FOR_PROMPT = buildStructureSupportPromptList(LOCAL_STRUCTURE_CATALOG, FALLBACK_STRUCTURE_SUPPORT_TARGETS);
+const STRUCTURE_SUPPORT_TARGETS_CATEGORIZED = buildCategorizedPromptList(LOCAL_STRUCTURE_CATALOG, STRUCTURE_SUPPORT_TARGETS_FOR_PROMPT);
 const PDB_CACHE_TTL_MS = Math.max(60_000, Number(process.env.PDB_CACHE_TTL_MS || 6 * 60 * 60 * 1000) || 6 * 60 * 60 * 1000);
 const PDB_BROWSER_CACHE_MAX_AGE = Math.max(60, Math.floor(PDB_CACHE_TTL_MS / 1000));
 const PDB_CACHE_MAX_ENTRIES = Math.max(8, Number(process.env.PDB_CACHE_MAX_ENTRIES || 32) || 32);
@@ -3371,6 +3374,79 @@ function applyInfluenzaHaSubtypeDisplay(profile, displayTarget) {
     riskSummaryEn: 'Interface-risk annotation prioritizes conserved stem or stable accessible surfaces on ' + target + ' and reduces high-variation head-loop risk.',
     structurePrepZh: '加载 HA 家族相近参考模型，提取 ' + target + ' 中和相关可及表面并生成 Fab 设计约束。',
     structurePrepEn: 'Loaded a close HA-family reference model and prepared Fab constraints around neutralizing surfaces on ' + target + '.'
+  };
+}
+
+function findCatalogEntryByRouteId(routeId) {
+  if (!routeId) return null;
+  const presets = Array.isArray(LOCAL_STRUCTURE_CATALOG && LOCAL_STRUCTURE_CATALOG.routePresets)
+    ? LOCAL_STRUCTURE_CATALOG.routePresets
+    : [];
+  return presets.find(entry => entry && entry.routeId === routeId) || null;
+}
+
+function buildCatalogBasedProfile(target, blockTarget, abType) {
+  const targetDisplay = String(target || '').trim();
+  if (!targetDisplay) return null;
+  // Try to find the routeId via the catalog-based target route map
+  const routeId = preparedTargetRouteId(targetDisplay);
+  if (!routeId) return null;
+  const preset = ROUTE_3D_PRESETS[routeId];
+  if (!preset) return null;
+  const catalogEntry = findCatalogEntryByRouteId(routeId);
+  const canonicalTarget = ROUTE_3D_PRESET_CANONICAL_TARGETS[routeId] || targetDisplay;
+  const organismInfo = ROUTE_3D_PRESET_ORGANISMS[routeId] || {};
+  const antibodyFormat = abType || 'Fab';
+  const gene = (catalogEntry && catalogEntry.gene) || '';
+  const disease = (catalogEntry && catalogEntry.disease) || inferDiseaseDirection(canonicalTarget);
+  const partnerDisplay = blockTarget ? String(blockTarget) : '';
+  const structuralBasis = preset.structuralBasis || (canonicalTarget + ' 本地结构预设');
+  const interfaceFocus = partnerDisplay
+    ? canonicalTarget + '/' + partnerDisplay + ' 相互作用界面'
+    : canonicalTarget + ' 抗原可及表面';
+  const selectedEpitope = partnerDisplay
+    ? canonicalTarget + '/' + partnerDisplay + ' 邻近可及界面'
+    : canonicalTarget + ' 表面优先可及区域';
+  const mechanism = partnerDisplay
+    ? '阻断 ' + canonicalTarget + '/' + partnerDisplay + ' 相互作用，生成可进入结构评估的抗体候选'
+    : '靶向识别 ' + canonicalTarget + '，围绕抗原可及表面生成稳定结合的抗体候选';
+  return {
+    catalogProfile: true,
+    routeLabel: canonicalTarget,
+    disease,
+    targetDisplay: canonicalTarget,
+    targetGene: gene,
+    partnerDisplay,
+    organismName: organismInfo.organismName || '',
+    organismTaxId: organismInfo.organismTaxId || null,
+    domain: canonicalTarget + ' 目标抗原可及结构区域',
+    mechanism,
+    evidence: canonicalTarget + ' 靶点证据包',
+    evidenceSources: [canonicalTarget + ' 靶点设计背景', '本地结构预设', '抗体可及性评估', '可开发性规则库'],
+    referenceEntries: gene ? 'UniProt ' + gene + ' 靶点条目' : canonicalTarget + ' 靶点条目',
+    structure: structuralBasis,
+    structureRef: structuralBasis,
+    structuralBasis,
+    antibodies: [canonicalTarget + ' 抗体候选背景'],
+    interfaceFocus,
+    selectedEpitope,
+    epitopeRowsZh: [
+      ['Site A', canonicalTarget + ' 主要结合面', '结构暴露，适合抗体识别', '高'],
+      ['Site B', canonicalTarget + ' 旁观面', '次级接触区域', '中'],
+      ['Site C', canonicalTarget + ' 远端面', '非功能性表位', '低']
+    ],
+    epitopeRowsEn: [
+      ['Site A', canonicalTarget + ' primary binding surface', 'Solvent exposed, suitable for antibody', 'High'],
+      ['Site B', canonicalTarget + ' secondary contact', 'Secondary contact region', 'Medium'],
+      ['Site C', canonicalTarget + ' distal face', 'Non-functional epitope', 'Low']
+    ],
+    riskSummaryZh: canonicalTarget + ' 靶点存在一定免疫原性风险，需关注交叉反应。',
+    riskSummaryEn: canonicalTarget + ' target carries immunogenicity risk; cross-reactivity needs attention.',
+    structurePrepZh: '加载 ' + canonicalTarget + ' 的本地结构预设，提取抗体可及表面并生成 ' + antibodyFormat + ' 设计输入。',
+    structurePrepEn: 'Loaded local structure preset for ' + canonicalTarget + ' and prepared ' + antibodyFormat + ' design inputs around accessible antigen surfaces.',
+    scaffold: antibodyFormat === 'VHH' ? 'VHH 纳米抗体骨架' : (antibodyFormat === 'Fab' ? 'Fab 片段抗体骨架' : antibodyFormat + ' 抗体骨架'),
+    designMode: '本地结构支撑靶点设计',
+    routeId
   };
 }
 
@@ -7967,7 +8043,7 @@ function buildRouteProfile(target, blockTarget, abType) {
   };
   const profile = profiles[key]
     ? { ...profiles[key] }
-    : buildGenericTargetProfile(target, blockTarget, abType);
+    : (buildCatalogBasedProfile(target, blockTarget, abType) || buildGenericTargetProfile(target, blockTarget, abType));
   if (influenzaHaSubtypeDisplay) {
     return applyInfluenzaHaSubtypeDisplay(profile, influenzaHaSubtypeDisplay);
   }
@@ -8921,214 +8997,11 @@ function getRoute3DPreset(profile) {
   if (isInfluenzaHaFamilyTarget(target)) return ROUTE_3D_PRESETS.infectious_flu;
   if (target === 'ANGPTL3' && /心血管|血脂/.test(disease)) return ROUTE_3D_PRESETS.cardio_angptl3;
   if (target === 'ANGPTL3') return ROUTE_3D_PRESETS.metabolic_angptl3;
-  const targetPresetMap = {
-    'IL-33': 'allergic_asthma',
-    TSLP: 'allergic_tslp',
-    'PD-L1': 'tumor_immunotherapy',
-    'PD-1': 'checkpoint_pd1',
-    'CTLA-4': 'checkpoint_ctla4',
-    CD20: 'heme_cd20',
-    CD19: 'heme_cd19',
-    CD3: 'immune_cd3',
-    C5: 'complement_c5',
-    'IL-6R': 'inflammation_il6r',
-    'IL-4Rα': 'allergic_il4ra',
-    CD25: 'immune_cd25',
-    CD38: 'heme_cd38',
-    TIGIT: 'checkpoint_tigit',
-    CD47: 'checkpoint_cd47',
-    'LAG-3': 'checkpoint_lag3',
-    'TROP-2': 'solid_tumor_trop2',
-    BCMA: 'heme_bcma',
-    IgE: 'allergic_ige',
-    'CGRP receptor': 'migraine_cgrpr',
-    HER2: 'breast_cancer',
-    EGFR: 'solid_tumor_egfr',
-    'VEGF-A': 'angiogenesis_oncology',
-      TNF: 'autoimmune_inflammation',
-      'IL-17A': 'autoimmune_il17',
-      'IL-23': 'autoimmune_il23',
-      'RSV F': 'infectious_rsv',
-      'SARS-CoV-2 RBD': 'infectious_covid',
-      'Influenza HA': 'infectious_flu',
-      'Influenza NA': 'infectious_flu_na',
-      PCSK9: 'cardio_pcsk9',
-      'IL-1β': 'cardio_il1b',
-      GIPR: 'metabolic_gipr',
-      DAT: 'neuro_adhd_dat',
-      TSHR: 'endocrine_graves_tshr',
-      'alpha-synuclein': 'neuro_parkinson_snca',
-      AQP4: 'neuro_nmosd_aqp4',
-      PF4: 'inflammation_pf4',
-      'Adenovirus hexon': 'infectious_adenovirus_hexon',
-      'Influenza M2': 'infectious_flu_m2',
-      'PRRSV GP4': 'infectious_prrsv_gp4',
-      'PRRSV NSP10': 'infectious_prrsv_nsp10',
-      'HSV gD': 'infectious_hsv_gd',
-      'PCV2 capsid': 'infectious_pcv2_capsid',
-      'PEDV spike': 'infectious_pedv_spike',
-      'CSFV NS5B': 'infectious_csfv_ns5b',
-      'Feline panleukopenia VP2': 'infectious_fpv_vp2',
-      'Connexin-26': 'neuro_deafness_gjb2',
-      'CD40LG': 'display_pose_cd40lg_0',
-      'ARSA': 'display_pose_arsa_1',
-      'APOA1': 'display_pose_apoa1_2',
-      'APOE': 'display_pose_apoe_3',
-      'EPO': 'display_pose_epo_4',
-      'DMD': 'display_pose_dmd_5',
-      'APC': 'display_pose_apc_6',
-      'EPOR': 'display_pose_epor_7',
-      'TTR': 'display_pose_ttr_8',
-      'IL12B': 'display_pose_il12b_9',
-      'IFNG': 'display_pose_ifng_10',
-      'FKBP1A': 'display_pose_fkbp1a_11',
-      'CRP': 'display_pose_crp_12',
-      'IL1B': 'display_pose_il1b_13',
-      'IL4R': 'display_pose_il4r_14',
-      'TNNI3': 'display_pose_tnni3_15',
-      'PAH': 'display_pose_pah_16',
-      'IMPDH1': 'display_pose_impdh1_17',
-      'TGFB1': 'display_pose_tgfb1_18',
-      'ERBB3': 'display_pose_erbb3_19',
-      'IL6R': 'display_pose_il6r_20',
-      'IFNAR2': 'display_pose_ifnar2_21',
-      'CXCL10': 'display_pose_cxcl10_22',
-      'NR1H4 / FXR': 'display_pose_nr1h4___fxr_23',
-      'MYBPC3': 'display_pose_mybpc3_24',
-      'HLA-DRB1': 'display_pose_hla_drb1_25',
-      'PRNP': 'display_pose_prnp_26',
-      'ACE2': 'display_pose_ace2_27',
-      'KIT': 'display_pose_kit_28',
-      'TP53': 'display_pose_tp53_29',
-      'RARB': 'display_pose_rarb_30',
-      'TNFRSF17': 'display_pose_tnfrsf17_31',
-      'HPRT1': 'display_pose_hprt1_32',
-      'IL2RA': 'display_pose_il2ra_33',
-      'ALDH2': 'display_pose_aldh2_34',
-      'KITLG': 'display_pose_kitlg_35',
-      'PDHX': 'display_pose_pdhx_36',
-      'BRAF': 'display_pose_braf_37',
-      'F10': 'display_pose_f10_38',
-      'IL10': 'display_pose_il10_39',
-      'NCAM1': 'display_pose_ncam1_40',
-      'ADK': 'display_pose_adk_41',
-      'MYD88': 'display_pose_myd88_42',
-      'SCN2A': 'display_pose_scn2a_43',
-      'HMGB1': 'display_pose_hmgb1_44',
-      'SIGLEC8': 'display_pose_siglec8_45',
-      'SERPING1': 'display_pose_serping1_46',
-      'MMP8': 'display_pose_mmp8_47',
-      'SERPINA1': 'display_pose_serpina1_48',
-      'CD55': 'display_pose_cd55_49',
-      'PRSS1': 'display_pose_prss1_50',
-      'REN': 'display_pose_ren_51',
-      'VDR': 'display_pose_vdr_52',
-      'PTK2B': 'display_pose_ptk2b_53',
-      'HECTD1': 'display_pose_hectd1_54',
-      'JAK1': 'display_pose_jak1_55',
-      'BMPR2': 'display_pose_bmpr2_56',
-      'DST': 'display_pose_dst_57',
-      'THRB': 'display_pose_thrb_58',
-      'CHEK2': 'display_pose_chek2_59',
-      'ADA2': 'display_pose_ada2_60',
-      'ADRB2': 'display_pose_adrb2_61',
-      'RAF1': 'display_pose_raf1_62',
-      'CTLA4': 'display_pose_ctla4_63',
-      'NF1': 'display_pose_nf1_64',
-      'RB1': 'display_pose_rb1_65',
-      'CALR': 'display_pose_calr_66',
-      'VAMP2': 'display_pose_vamp2_67',
-      'NKX2-5': 'display_pose_nkx2_5_68',
-      'MMP1': 'display_pose_mmp1_69',
-      'IL21': 'display_pose_il21_70',
-      'PKP2': 'display_pose_pkp2_71',
-      'F2 / thrombin': 'display_pose_f2___thrombin_72',
-      'MEN1': 'display_pose_men1_73',
-      'CHRM2': 'display_pose_chrm2_74',
-      'FLCN': 'display_pose_flcn_75',
-      'IL18': 'display_pose_il18_76',
-      'GABRB3': 'display_pose_gabrb3_77',
-      'FTO': 'display_pose_fto_78',
-      'FGFR1': 'display_pose_fgfr1_79',
-      'TOP2A': 'display_pose_top2a_80',
-      'MMP13': 'display_pose_mmp13_81',
-      'HBB': 'display_pose_hbb_82',
-      'IL17A': 'display_pose_il17a_83',
-      'OAS1': 'display_pose_oas1_84',
-      'GRIK1': 'display_pose_grik1_85',
-      'FCGRT / FcRn': 'display_pose_fcgrt___fcrn_86',
-      'KRAS': 'display_pose_kras_87',
-      'NR3C1': 'display_pose_nr3c1_88',
-      'STAG2': 'display_pose_stag2_89',
-      'AXL': 'display_pose_axl_90',
-      'RET': 'display_pose_ret_91',
-      'MYOC': 'display_pose_myoc_92',
-      'AGTR1': 'display_pose_agtr1_93',
-      'ODC1': 'display_pose_odc1_94',
-      'KRT10': 'display_pose_krt10_95',
-      'IDH1': 'display_pose_idh1_96',
-      'SERPING1': 'display_pose_serping1_97',
-      'PTGS2': 'display_pose_ptgs2_98',
-      'SLC6A4 / SERT': 'display_pose_slc6a4___sert_99',
-      'GAA': 'display_pose_gaa_100',
-      'NTRK2': 'display_pose_ntrk2_101',
-      'FBN1': 'display_pose_fbn1_102',
-      'COL4A1': 'display_pose_col4a1_103',
-      'DRD4': 'display_pose_drd4_104',
-      'CNR1': 'display_pose_cnr1_105',
-      'ATP4A': 'display_pose_atp4a_106',
-      'DICER1': 'display_pose_dicer1_107',
-      'PLAT': 'display_pose_plat_108',
-      'HTR2A': 'display_pose_htr2a_109',
-      'GNAS': 'display_pose_gnas_110',
-      'DRD2': 'display_pose_drd2_111',
-      'NTRK1': 'display_pose_ntrk1_112',
-      'COL3A1': 'display_pose_col3a1_113',
-      'SUCLG1': 'display_pose_suclg1_114',
-      'PSPH': 'display_pose_psph_115',
-      'GUCY1A1': 'display_pose_gucy1a1_116',
-      'ADRA2B': 'display_pose_adra2b_117',
-      'ATM': 'display_pose_atm_118',
-      'CACNA1G': 'display_pose_cacna1g_119',
-      'PROC': 'display_pose_proc_120',
-      'CFTR': 'display_pose_cftr_121',
-      'KLKB1': 'display_pose_klkb1_122',
-      'MYH7': 'display_pose_myh7_123',
-      'ABCB4': 'display_pose_abcb4_124',
-      'TG': 'display_pose_tg_125',
-      'RYR1': 'display_pose_ryr1_126',
-      'JAK2': 'display_pose_jak2_127',
-      'GABRB2': 'display_pose_gabrb2_128',
-      'AVPR2': 'display_pose_avpr2_129',
-      'TLR7': 'display_pose_tlr7_130',
-      'SCN1A': 'display_pose_scn1a_131',
-      'LHCGR': 'display_pose_lhcgr_132',
-      'PDE3A': 'display_pose_pde3a_133',
-      'ALK': 'display_pose_alk_134',
-      'SPINK1': 'display_pose_spink1_135',
-      'MMP7': 'display_pose_mmp7_136',
-      'ATP2C1': 'display_pose_atp2c1_137',
-      'TLR9': 'display_pose_tlr9_138',
-      'GREM1': 'display_pose_grem1_139',
-      'OPRM1': 'display_pose_oprm1_140',
-      'GUCY2C': 'display_pose_gucy2c_141',
-      'GPR161': 'display_pose_gpr161_142',
-      'ADRB1': 'display_pose_adrb1_143',
-      'CTNNB1': 'display_pose_ctnnb1_144',
-      'SCNN1B': 'display_pose_scnn1b_145',
-      'BEST1': 'display_pose_best1_146',
-      'SLC6A3': 'display_pose_slc6a3_147',
-      'CHRNA1': 'display_pose_chrna1_148',
-      'GNAI1': 'display_pose_gnai1_149',
-      'SCN5A': 'display_pose_scn5a_150',
-      'NKX2-1': 'display_pose_nkx2_1_151'
-
-    };
   const targetCandidates = [target, ...String(target).split(/\s*\/\s*/)]
     .map(item => item.trim())
     .filter((item, idx, all) => item && all.indexOf(item) === idx);
   const presetKey = targetCandidates
-    .map(item => ROUTE_3D_PRESET_TARGET_ROUTE_MAP[normalizePreparedStructureTarget(item)] || targetPresetMap[item])
+    .map(item => ROUTE_3D_PRESET_TARGET_ROUTE_MAP[normalizePreparedStructureTarget(item)])
     .find(Boolean);
   return presetKey ? ROUTE_3D_PRESETS[presetKey] : null;
 }
@@ -9849,13 +9722,25 @@ function preparedStructureTargetMatches(profile, filename) {
     requestedFluSubtype === coordinateFluSubtype &&
     isInfluenzaHaFamilyTarget(requestedTarget)
   );
-  // Relaxed target matching: exact, alias, influenza subtype, or fuzzy substring
+  // Strict target matching: exact, influenza subtype, gene name, or constrained substring
+  const catalogEntryForFile = localStructureCatalogEntryForFile(filename);
+  const requestedGene = normalizePreparedStructureTarget(profile && profile.targetGene);
+  const coordinateGene = normalizePreparedStructureTarget(catalogEntryForFile && catalogEntryForFile.gene);
+  const geneMatches = Boolean(requestedGene && coordinateGene && requestedGene === coordinateGene && requestedGene.length >= 2);
+  // Constrained substring: both sides ≥ 4 chars and one fully contains the other
+  // Prevents false matches like CD4↔CD40, IL6↔IL6R, PD1↔PDL1
+  const minLen = 4;
+  const constrainedSubstring = Boolean(
+    requestedTargetAlias && coordinateTargetAlias &&
+    requestedTargetAlias.length >= minLen && coordinateTargetAlias.length >= minLen &&
+    (requestedTargetAlias.includes(coordinateTargetAlias) || coordinateTargetAlias.includes(requestedTargetAlias))
+  );
   const targetMatches = Boolean(
     requestedTargetAlias && coordinateTargetAlias && (
       requestedTargetAlias === coordinateTargetAlias ||
       influenzaSubtypeMatches ||
-      requestedTargetAlias.includes(coordinateTargetAlias) ||
-      coordinateTargetAlias.includes(requestedTargetAlias)
+      geneMatches ||
+      constrainedSubstring
     )
   );
   // Relaxed format matching: Fab/mAb/IgG are mutually compatible (mAb contains Fab regions)
@@ -12935,7 +12820,8 @@ function buildWorkflowIntentPrompt() {
     'summary、background、assumptions 尽量简短，把输出空间留给 selectionReason 和 candidates。',
     '示例约束：先天性耳聋的抗体设计必须给出明确靶点，例如 OTOF；结核杆菌治疗性抗体设计必须给出明确病原体抗原，例如 Ag85 complex，而不是反问用户先指定蛋白。',
     '常见疾病快速参考：肿瘤免疫治疗->PD-L1/block PD-1；过敏性哮喘->IL-33/block ST2；乳腺癌->HER2；自身免疫炎症->TNF；胰腺癌->MUC1 或 Mesothelin；胃癌->Claudin 18.2；肾盂癌/尿路上皮癌->Nectin-4；肾癌->CAIX；宫颈癌->Tissue Factor；ADHD->DAT；流感H7->Influenza A(H7) hemagglutinin (HA)。',
-    '本地结构支撑靶点清单（优先从此清单中选择主靶点，可展示真实抗原-抗体复合物结构）：' + STRUCTURE_SUPPORT_TARGETS_FOR_PROMPT + '。',
+    '本地结构支撑靶点清单（按类别分组，优先从此清单中选择主靶点，可展示真实抗原-抗体复合物结构）：\n' + STRUCTURE_SUPPORT_TARGETS_CATEGORIZED,
+    '硬性规则：如果用户请求的疾病方向或靶点在此清单中，target 字段必须使用清单中的标准名称格式。如果用户请求的靶点不在清单中，返回生物学上最合理的靶点，并在 candidates 中标注哪些候选存在于本地清单中。',
     '当多个候选靶点在生物学上同样合理时，必须优先选择上述清单中存在的靶点作为 target，以便展示真实抗原结构；但不得选择与用户疾病方向明显不相关的靶点。'
   ].join('\n');
 }
@@ -13277,6 +13163,133 @@ function normalizeWorkflowIntentResult(data) {
   if (result.action === 'clarify' && !result.clarifyingQuestion) return null;
   result.workflowProfile = buildWorkflowProfileFromModelIntent(result) || buildCompactWorkflowProfileFromModelIntent(result);
   return result;
+}
+
+// Build a gene→routeId lookup map from the catalog for gene-based target matching
+const CATALOG_GENE_ROUTE_MAP = (function buildGeneRouteMap() {
+  const map = {};
+  const entries = Array.isArray(LOCAL_STRUCTURE_CATALOG && LOCAL_STRUCTURE_CATALOG.routePresets)
+    ? LOCAL_STRUCTURE_CATALOG.routePresets
+    : [];
+  for (const entry of entries) {
+    if (!entry || entry.routeable === false || !entry.routeId) continue;
+    const gene = String(entry.gene || '').trim();
+    if (gene) {
+      const key = normalizePreparedStructureTarget(gene);
+      if (key && !map[key]) map[key] = entry.routeId;
+    }
+  }
+  return map;
+})();
+
+// Build a list of { alias, routeId, canonicalTarget } for input text scanning
+const CATALOG_TARGET_SCAN_LIST = (function buildTargetScanList() {
+  const list = [];
+  const entries = Array.isArray(LOCAL_STRUCTURE_CATALOG && LOCAL_STRUCTURE_CATALOG.routePresets)
+    ? LOCAL_STRUCTURE_CATALOG.routePresets
+    : [];
+  for (const entry of entries) {
+    if (!entry || entry.routeable === false || entry.promptEligible === false) continue;
+    const canonicalTarget = ROUTE_3D_PRESET_CANONICAL_TARGETS[entry.routeId] || entry.target;
+    const aliases = catalogAliasesForEntry(entry);
+    for (const alias of aliases) {
+      const trimmed = String(alias || '').trim();
+      // Only scan aliases that are at least 3 chars to avoid false positives
+      if (trimmed.length >= 3) {
+        list.push({ alias: trimmed, routeId: entry.routeId, canonicalTarget });
+      }
+    }
+  }
+  // Sort by alias length descending so longer matches take priority
+  list.sort((a, b) => b.alias.length - a.alias.length);
+  return list;
+})();
+
+function matchTargetWithCatalog(target, gene) {
+  // Try exact/alias match via the catalog route map
+  const routeId = preparedTargetRouteId(target);
+  if (routeId) {
+    return {
+      routeId,
+      canonicalTarget: ROUTE_3D_PRESET_CANONICAL_TARGETS[routeId] || target,
+      matchType: 'exact_alias'
+    };
+  }
+  // Try gene name match
+  if (gene) {
+    const geneKey = normalizePreparedStructureTarget(gene);
+    const geneRouteId = CATALOG_GENE_ROUTE_MAP[geneKey];
+    if (geneRouteId) {
+      return {
+        routeId: geneRouteId,
+        canonicalTarget: ROUTE_3D_PRESET_CANONICAL_TARGETS[geneRouteId] || target,
+        matchType: 'gene'
+      };
+    }
+  }
+  return null;
+}
+
+function scanInputTextForCatalogTarget(inputText) {
+  const text = String(inputText || '');
+  if (!text) return null;
+  for (const item of CATALOG_TARGET_SCAN_LIST) {
+    // Case-insensitive whole-word match
+    const alias = item.alias;
+    const escaped = alias.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const re = new RegExp('(?<![A-Za-z0-9])' + escaped + '(?![A-Za-z0-9])', 'i');
+    if (re.test(text)) {
+      return {
+        routeId: item.routeId,
+        canonicalTarget: item.canonicalTarget,
+        matchType: 'input_scan'
+      };
+    }
+  }
+  return null;
+}
+
+function verifyAndOverrideTargetWithCatalog(modelIntent, inputText) {
+  if (!modelIntent || modelIntent.intent !== 'design' || !modelIntent.target) return;
+  // Step 1: Try matching the main target
+  const mainMatch = matchTargetWithCatalog(modelIntent.target, modelIntent.targetGene);
+  if (mainMatch) {
+    modelIntent.target = mainMatch.canonicalTarget;
+    modelIntent.targetGene = modelIntent.targetGene || '';
+    modelIntent.routeId = mainMatch.routeId;
+    modelIntent.hasLocalStructure = true;
+    modelIntent.catalogMatchType = mainMatch.matchType;
+    return;
+  }
+  // Step 2: Try matching candidate targets
+  if (Array.isArray(modelIntent.candidateTargets)) {
+    for (const candidate of modelIntent.candidateTargets) {
+      const candidateTarget = candidate && (candidate.target || candidate.t || candidate.name);
+      const candidateGene = candidate && (candidate.gene || candidate.g || '');
+      if (!candidateTarget) continue;
+      const candidateMatch = matchTargetWithCatalog(candidateTarget, candidateGene);
+      if (candidateMatch) {
+        modelIntent.target = candidateMatch.canonicalTarget;
+        modelIntent.targetGene = candidateGene || modelIntent.targetGene || '';
+        modelIntent.routeId = candidateMatch.routeId;
+        modelIntent.hasLocalStructure = true;
+        modelIntent.catalogMatchType = 'candidate_' + candidateMatch.matchType;
+        return;
+      }
+    }
+  }
+  // Step 3: Scan user input text for catalog target names
+  const inputMatch = scanInputTextForCatalogTarget(inputText);
+  if (inputMatch) {
+    modelIntent.target = inputMatch.canonicalTarget;
+    modelIntent.routeId = inputMatch.routeId;
+    modelIntent.hasLocalStructure = true;
+    modelIntent.catalogMatchType = inputMatch.matchType;
+    return;
+  }
+  // Step 4: No local structure match found
+  modelIntent.hasLocalStructure = false;
+  modelIntent.catalogMatchType = 'none';
 }
 
 async function resolveWorkflowIntentWithModel(input, voiceSessionId) {
@@ -13792,7 +13805,7 @@ function buildTargetResolverPrompt(indication, input) {
     'reason 和每个 candidates.rationale 都直接陈述机制、适应症、表达/可及性和候选比较，禁止使用“用户提出”“用户指定”“任务应整理为”“本轮目标”等任务执行口吻。',
     '用户明确给出物种、TaxID、毒株或蛋白 isoform 时必须保留；没有依据时对应字段留空，不得猜测。',
     '如果用户已经明确给出靶点，直接标准化输出该靶点。',
-    '结构支撑靶点清单：' + STRUCTURE_SUPPORT_TARGETS_FOR_PROMPT + '。',
+    '本地结构支撑靶点清单（优先从中选择，可展示真实结构）：\n' + STRUCTURE_SUPPORT_TARGETS_CATEGORIZED,
     structureSearchPromptGuidance(),
     '如果用户给的是疾病/适应症，输出适合抗体设计展示的代表性真实蛋白靶点，不要把疾病名本身当抗原。',
     '如果用户给的是病原体、病毒或生物材料，输出最适合抗体识别的具体表面抗原、衣壳蛋白、包膜蛋白或核心蛋白。',
@@ -15136,6 +15149,10 @@ async function resolveUserMessageRunner(msg, cleanText, scopedWs = null) {
     sendResearchTraceEvent(scopedWs, { type: 'assistant_thinking', active: true, topic: buildAssistantThinkingTopic(cleanText) });
   }
   const modelIntent = await resolveWorkflowIntentWithModel(cleanText, voiceSessionId);
+  // Deterministic catalog verification: override target with local catalog match if possible
+  if (modelIntent && !modelIntent.error && modelIntent.intent === 'design') {
+    verifyAndOverrideTargetWithCatalog(modelIntent, cleanText);
+  }
   if (scopedWs && scopedWs.readyState === 1 && modelIntent) {
     scopedWs.send(JSON.stringify({
       type: 'workflow_meta',
