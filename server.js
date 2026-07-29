@@ -106,13 +106,13 @@ const QUESTION_TEST_SET_FILE = resolveProjectPath(process.env.QUESTION_TEST_SET_
 const QUESTION_TEST_SET_MAX_ITEMS = Math.max(100, Number(process.env.QUESTION_TEST_SET_MAX_ITEMS || 5000) || 5000);
 const QUESTION_TEST_SET_TEXT_MAX = Math.max(1000, Number(process.env.QUESTION_TEST_SET_TEXT_MAX || 4000) || 4000);
 const JSON_BODY_LIMIT = process.env.JSON_BODY_LIMIT || process.env.HISTORY_REQUEST_LIMIT || '8mb';
-const WORKFLOW_INTENT_TIMEOUT_MS = Math.max(5000, Number(process.env.WORKFLOW_INTENT_TIMEOUT_MS || 8000) || 8000);
-const WORKFLOW_INTENT_GLOBAL_DEADLINE_MS = Math.max(WORKFLOW_INTENT_TIMEOUT_MS, Number(process.env.WORKFLOW_INTENT_GLOBAL_DEADLINE_MS || 15000) || 15000);
+const WORKFLOW_INTENT_TIMEOUT_MS = Math.max(5000, Number(process.env.WORKFLOW_INTENT_TIMEOUT_MS || 20000) || 20000);
+const WORKFLOW_INTENT_GLOBAL_DEADLINE_MS = Math.max(WORKFLOW_INTENT_TIMEOUT_MS, Number(process.env.WORKFLOW_INTENT_GLOBAL_DEADLINE_MS || 35000) || 35000);
 const DISPLAY_TRACE_STEP_FLOOR_MS = process.env.NODE_ENV === 'test' ? 1 : 300;
 const DISPLAY_TRACE_STEP_MIN_MS = Math.max(DISPLAY_TRACE_STEP_FLOOR_MS, Number(process.env.DISPLAY_TRACE_STEP_MIN_MS || 700) || 700);
 const DISPLAY_TRACE_STEP_MAX_MS = Math.max(DISPLAY_TRACE_STEP_MIN_MS, Number(process.env.DISPLAY_TRACE_STEP_MAX_MS || 1500) || 1500);
-const TARGET_RESOLVER_TIMEOUT_MS = Math.max(5000, Number(process.env.TARGET_RESOLVER_TIMEOUT_MS || 12000) || 12000);
-const TARGET_RESOLVER_GLOBAL_DEADLINE_MS = Math.max(TARGET_RESOLVER_TIMEOUT_MS, Number(process.env.TARGET_RESOLVER_GLOBAL_DEADLINE_MS || 20000) || 20000);
+const TARGET_RESOLVER_TIMEOUT_MS = Math.max(5000, Number(process.env.TARGET_RESOLVER_TIMEOUT_MS || 20000) || 20000);
+const TARGET_RESOLVER_GLOBAL_DEADLINE_MS = Math.max(TARGET_RESOLVER_TIMEOUT_MS, Number(process.env.TARGET_RESOLVER_GLOBAL_DEADLINE_MS || 35000) || 35000);
 const STRUCTURE_RESOLVER_ENABLED = process.env.STRUCTURE_RESOLVER_ENABLED !== '0' && (process.env.NODE_ENV !== 'test' || process.env.STRUCTURE_RESOLVER_TEST_NETWORK === '1');
 const STRUCTURE_RESOLVER_REQUEST_TIMEOUT_MS = Math.max(1500, Number(process.env.STRUCTURE_RESOLVER_REQUEST_TIMEOUT_MS || 6500) || 6500);
 const STRUCTURE_RESOLVER_FINAL_WAIT_MS = Math.max(1000, Number(process.env.STRUCTURE_RESOLVER_FINAL_WAIT_MS || 18000) || 18000);
@@ -13721,7 +13721,34 @@ function buildPreparedDiseaseFallbackIntent(input) {
     }
   }
 
-  if (!key) return null;
+  if (!key) {
+    // Try builtinTargetResolution which handles additional targets (e.g., TMV, custom targets)
+    // not registered in BUILTIN_DISEASE_TARGET_RESOLVERS
+    const builtinResolution = builtinTargetResolution(indication || parsed.target || text);
+    if (builtinResolution && builtinResolution.selectedTarget) {
+      const blockTarget = (parsed.blockTarget || '');
+      return {
+        intent: 'design',
+        shouldStartWorkflow: true,
+        count: parsed.count || 10,
+        target: builtinResolution.selectedTarget,
+        targetGene: builtinResolution.selectedGene || '',
+        abType: parsed.abType || 'Fab',
+        blockTarget,
+        disease: builtinResolution.disease || indication || '',
+        designLabel: builtinResolution.designLabel || '',
+        summary: '面向' + (builtinResolution.disease || indication || '') + '整理抗体设计任务',
+        background: (builtinResolution.disease || indication || '') + '方向已匹配到可进入分子设计流程的具体靶点。',
+        reason: builtinResolution.reason || '',
+        candidateTargets: Array.isArray(builtinResolution.candidates) ? builtinResolution.candidates : [],
+        mechanism: blockTarget ? '阻断 ' + builtinResolution.selectedTarget + '/' + blockTarget + ' 相互作用并筛选 Fab 候选。' : '围绕 ' + builtinResolution.selectedTarget + ' 外露结构域生成 Fab 候选。',
+        confidence: builtinResolution.confidence || 0.6,
+        needsClarification: false,
+        workflowProfile: null
+      };
+    }
+    return null;
+  }
   const resolution = normalizeTargetResolution({
     ...BUILTIN_DISEASE_TARGET_RESOLVERS[key],
     disease: indication || key
@@ -13982,7 +14009,7 @@ async function runMissingChatKey(ws) {
 }
 
 async function runModelParseFailed(ws) {
-  await runDirectAssistantAnswer(ws, '服务器超时');
+  await runDirectAssistantAnswer(ws, '分子设计引擎暂时无法响应，请稍后重试，或使用快速设计功能选择已支持的疾病方向和靶点。');
 }
 
 async function runDemoRoutedWorkflow(ws, input, route, researchTraceRuntime = null) {
