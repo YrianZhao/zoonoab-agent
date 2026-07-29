@@ -5624,10 +5624,10 @@
                                     <div class="voice-settings-row">
                                         <label for="chatModeSelect">模式</label>
                                         <select id="chatModeSelect">
+                                            <option value="race">赛马模式（同时调用，取最快）</option>
                                             <option value="auto">自动优先主模型</option>
                                             <option value="primary">只用主模型</option>
                                             <option value="fallback">只用备用模型</option>
-                                            <option value="race">赛马模式（同时调用，取最快）</option>
                                         </select>
                                     </div>
                                     <div class="chat-providers-health-card" id="chatProvidersHealthCard">
@@ -5639,7 +5639,7 @@
                                             <span>备用模型</span>
                                             <strong id="fallbackChatStatusBadge">待检测</strong>
                                         </div>
-                                        <div class="chat-provider-status-note" id="chatProviderHealthMessage">打开界面后自动检测连接，主模型可用时优先使用。</div>
+                                        <div class="chat-provider-status-note" id="chatProviderHealthMessage">打开界面后自动检测连接，默认同时调用主备模型取最快返回。</div>
                                     </div>
                                     <div class="chat-provider-block">
                                         <div class="chat-provider-head">
@@ -6618,7 +6618,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '69498285';
+    const APP_BUILD_VERSION = '69498287';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
     const SILICONFLOW_CHAT_FALLBACK_MODELS = ['Qwen/Qwen3-32B', 'Qwen/Qwen3-14B', 'Qwen/Qwen3-8B', 'deepseek-ai/DeepSeek-V3'];
@@ -12251,7 +12251,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             const chat = cfg.chat || {};
             const primary = cfg.chat?.primary || {};
             const fallback = cfg.chat?.fallback || (chat.mode === 'single' || (!cfg.chat?.primary && chat.baseUrl) ? chat : {});
-            if (chatModeSelect) chatModeSelect.value = ['auto', 'primary', 'fallback', 'race'].includes(chat.mode) ? chat.mode : 'auto';
+            if (chatModeSelect) chatModeSelect.value = ['auto', 'primary', 'fallback', 'race'].includes(chat.mode) ? chat.mode : 'race';
             if (primaryBaseInput) primaryBaseInput.value = primary.baseUrl || 'https://jp.su8.codes/v1/responses';
             if (primaryWireInput) primaryWireInput.value = primary.wireApi || 'responses';
             if (reasoningInput) reasoningInput.value = chat.reasoningEffort || primary.reasoningEffort || '';
@@ -12342,7 +12342,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const fallbackModelInput = document.getElementById('fallbackChatModelInput');
         const voicePreset = voiceProviderSelect?.value || 'local';
         const voiceProvider = (VOICE_ASR_PRESETS[voicePreset]?.provider || voicePreset || 'local').trim();
-        const chatMode = chatModeSelect?.value || 'auto';
+        const chatMode = chatModeSelect?.value || 'race';
         const chatReasoningEffort = reasoningInput?.value || '';
         return {
             voicePreset,
