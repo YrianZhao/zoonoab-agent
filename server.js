@@ -2070,7 +2070,9 @@ async function buildChatProviderHealth(chat, options = {}) {
     ? (fallbackHealth.ok ? 'fallback' : '')
     : (mode === 'primary'
       ? (primaryHealth.ok ? 'primary' : '')
-      : (primaryHealth.ok ? 'primary' : (fallbackHealth.ok ? 'fallback' : '')));
+      : (mode === 'race'
+        ? (primaryHealth.ok && fallbackHealth.ok ? 'race' : (primaryHealth.ok ? 'primary' : (fallbackHealth.ok ? 'fallback' : '')))
+        : (primaryHealth.ok ? 'primary' : (fallbackHealth.ok ? 'fallback' : ''))));
   return {
     ok: Boolean(primaryHealth.ok || fallbackHealth.ok),
     mode,
@@ -8591,6 +8593,14 @@ function chatActiveProviderName(chat) {
   if (!chat) return '';
   if (!isCompositeChatConfig(chat)) return chatProviderIsReady(chat) ? 'single' : '';
   const mode = normalizeChatMode(chat.mode);
+  if (mode === 'race') {
+    const pReady = chatProviderIsReady(chat.primary);
+    const fReady = chatProviderIsReady(chat.fallback);
+    if (pReady && fReady) return 'race';
+    if (pReady) return 'primary';
+    if (fReady) return 'fallback';
+    return '';
+  }
   if (mode === 'primary') return chatProviderIsReady(chat.primary) ? 'primary' : '';
   if (mode === 'fallback') return chatProviderIsReady(chat.fallback) ? 'fallback' : '';
   if (chatProviderIsReady(chat.primary)) return 'primary';
@@ -8601,10 +8611,10 @@ function chatActiveProviderName(chat) {
 function chatConfigPublic(chat) {
   if (isCompositeChatConfig(chat)) {
     const activeProvider = chatActiveProviderName(chat);
-    const active = activeProvider === 'primary' ? chat.primary : (activeProvider === 'fallback' ? chat.fallback : null);
+    const active = (activeProvider === 'primary' || activeProvider === 'race') ? chat.primary : (activeProvider === 'fallback' ? chat.fallback : null);
     return {
       mode: normalizeChatMode(chat.mode),
-      provider: active ? active.provider : 'auto',
+      provider: activeProvider === 'race' ? 'race' : (active ? active.provider : 'auto'),
       activeProvider,
       baseUrl: active ? active.url : '',
       model: active ? active.model : '',
