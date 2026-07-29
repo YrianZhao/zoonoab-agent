@@ -1413,6 +1413,7 @@ function normalizeChatMode(value) {
   const raw = String(value || '').trim().toLowerCase();
   if (['primary', 'strong', 'su8'].includes(raw)) return 'primary';
   if (['fallback', 'backup', 'siliconflow'].includes(raw)) return 'fallback';
+  if (['race', 'parallel', 'compete'].includes(raw)) return 'race';
   return 'auto';
 }
 
@@ -8816,6 +8817,52 @@ async function requestAssistantModelWithFallback(providers, request, options = {
     }
   }
   throw lastError || new Error('assistant_chat_unavailable');
+}
+
+async function requestAssistantModelRace(providers, request, options = {}) {
+  const allProviders = (Array.isArray(providers) ? providers : []).filter(chatProviderIsReady);
+  if (!allProviders.length) {
+    const error = new Error('assistant_chat_unconfigured');
+    error.code = 'assistant_chat_unconfigured';
+    throw error;
+  }
+  // Each provider only uses its first model for the race
+  const seenProviders = new Set();
+  const raceCandidates = [];
+  for (const provider of allProviders) {
+    const models = chatProviderModelCandidates(provider);
+    const model = models.length ? models[0] : provider.model;
+    const key = provider.provider || provider.url;
+    if (!seenProviders.has(key)) {
+      seenProviders.add(key);
+      raceCandidates.push({ ...provider, model });
+    }
+  }
+  // Only one provider — no need to race, fall back to sequential
+  if (raceCandidates.length < 2) {
+    return requestAssistantModelWithFallback(providers, request, { ...options, race: false });
+  }
+  const racePromises = raceCandidates.map(provider =>
+    requestChatProvider(provider, request, options).catch(err => {
+      console.error('[Assistant] Race candidate failed:', provider.provider || '', provider.model || '', err && err.message ? err.message : err);
+      throw err;
+    })
+  );
+  try {
+    return await Promise.any(racePromises);
+  } catch (aggregateError) {
+    // All race candidates failed — try remaining model candidates sequentially
+    const usedKeys = new Set(raceCandidates.map(c => c.provider + '::' + c.model));
+    const remainingCandidates = allProviders
+      .flatMap(expandChatProviderModelCandidates)
+      .filter(c => !usedKeys.has((c.provider || c.url) + '::' + c.model))
+      .filter(chatProviderIsReady);
+    if (!remainingCandidates.length) {
+      throw (aggregateError.errors && aggregateError.errors[0]) || new Error('assistant_chat_unavailable');
+    }
+    console.warn('[Assistant] All race candidates failed, trying remaining models sequentially:', remainingCandidates.length, 'left');
+    return requestAssistantModelWithFallback(remainingCandidates, request, { ...options, race: false });
+  }
 }
 
 async function askAssistantModel(input, voiceSessionId) {
