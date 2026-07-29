@@ -6618,7 +6618,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '69498292';
+    const APP_BUILD_VERSION = '69498302';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
     const SILICONFLOW_CHAT_FALLBACK_MODELS = ['Qwen/Qwen3-32B', 'Qwen/Qwen3-14B', 'Qwen/Qwen3-8B', 'deepseek-ai/DeepSeek-V3'];
@@ -9213,6 +9213,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             updatedAt: (entry && entry.updatedAt) || ts,
             routeId: (entry && entry.routeId) || '',
             routeLabel: (entry && entry.routeLabel) || '',
+            modelProvider: (entry && entry.modelProvider) || '',
+            modelName: (entry && entry.modelName) || '',
             messages,
             events,
             results,
@@ -9386,6 +9388,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             updatedAt: Date.now(),
             routeId: meta.routeId || '',
             routeLabel: meta.routeLabel || '',
+            modelProvider: '',
+            modelName: '',
             messages: [],
             events: [],
             results: [],
@@ -9747,11 +9751,17 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 	            summary.counts.none ? '未标明 ' + summary.counts.none : ''
 	        ].filter(Boolean).join(' · ');
 	        const primaryName = model.candidateLabel || model.name || model.id || section.primaryPDB || '';
+	        const modelLabel = record.modelName
+	            ? (record.modelProvider && record.modelProvider !== record.modelName
+	                ? record.modelProvider + ' / ' + record.modelName
+	                : record.modelName)
+	            : '';
 	        const metaItems = [
 	            primaryName ? ['主结构', primaryName] : null,
 	            summary.sourceText ? ['来源', summary.sourceText] : null,
 	            summary.kindText ? ['类型', summary.kindText] : null,
-	            summary.total ? ['结构数', summary.total + (countParts ? '（' + countParts + '）' : '')] : null
+	            summary.total ? ['结构数', summary.total + (countParts ? '（' + countParts + '）' : '')] : null,
+	            modelLabel ? ['解析模型', modelLabel] : null
 	        ].filter(Boolean);
 	        return `<div class="kb-history-source-banner ${escHtml(summary.category)}">
 	            <div class="kb-history-source-top">
@@ -9875,6 +9885,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                     <span class="kb-history-pill">${escHtml(formatHistoryTime(record.ts))}</span>
                     <span class="kb-history-pill">${outputEvents.length} 条输出</span>
                     <span class="kb-history-pill model">${modelCount} 个结构模型</span>
+                    ${record.modelName ? `<span class="kb-history-pill model">${escHtml(record.modelProvider && record.modelProvider !== record.modelName ? record.modelProvider + ' · ' + record.modelName : record.modelName)}</span>` : ''}
                 </div>
                 ${statusDetailHtml}
             </div>
@@ -10332,6 +10343,15 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
             case 'workflow_pacing':
                 setWorkflowCondensedPacing(msg.mode === 'condensed');
+                break;
+
+            case 'workflow_meta':
+                if (activeHistoryRun) {
+                    activeHistoryRun.modelProvider = msg.modelProvider || '';
+                    activeHistoryRun.modelName = msg.modelName || '';
+                    activeHistoryRun.intentSource = msg.intentSource || '';
+                    persistActiveHistoryRun('workflow_meta');
+                }
                 break;
 
             case 'assistant_thinking':

@@ -882,6 +882,8 @@ function normalizeServerHistoryRecord(entry, idx = 0) {
     updatedAt,
     routeId: truncateHistoryText(source.routeId || '', 120),
     routeLabel: truncateHistoryText(source.routeLabel || '', 160),
+    modelProvider: truncateHistoryText(source.modelProvider || '', 120),
+    modelName: truncateHistoryText(source.modelName || '', 160),
     messages,
     events,
     results: normalizeHistoryArray(source.results, HISTORY_ARRAY_MAX),
@@ -13290,7 +13292,7 @@ async function resolveWorkflowIntentWithModel(input, voiceSessionId) {
       model: primaryProvider.model || '',
       reason: 'missing_provider'
     });
-    return { error: 'missing_key', intent: 'assistant_chat' };
+    return { error: 'missing_key', intent: 'assistant_chat', modelProvider: primaryProvider.provider || '', modelName: primaryProvider.model || '' };
   }
   if (typeof fetch !== 'function') {
     recordDiagnosticEvent('workflow_intent_model_error', {
@@ -13300,7 +13302,7 @@ async function resolveWorkflowIntentWithModel(input, voiceSessionId) {
       model: primaryProvider.model || '',
       error: 'runtime_unsupported'
     });
-    return { error: 'runtime_unsupported', intent: 'assistant_chat' };
+    return { error: 'runtime_unsupported', intent: 'assistant_chat', modelProvider: primaryProvider.provider || '', modelName: primaryProvider.model || '' };
   }
   try {
     const chatConfig = getAssistantChatConfig(voiceSessionId);
@@ -13333,8 +13335,10 @@ async function resolveWorkflowIntentWithModel(input, voiceSessionId) {
         model: result.model || '',
         responsePreview: content.slice(0, 500)
       });
-      return { error: 'invalid_model_response', intent: 'assistant_chat' };
+      return { error: 'invalid_model_response', intent: 'assistant_chat', modelProvider: result.provider || primaryProvider.provider || '', modelName: result.model || primaryProvider.model || '' };
     }
+    normalized.modelProvider = result.provider || primaryProvider.provider || '';
+    normalized.modelName = result.model || primaryProvider.model || '';
     return normalized;
   } catch (err) {
     console.error('[IntentRouter] request error:', err && err.message ? err.message : err);
@@ -13345,7 +13349,7 @@ async function resolveWorkflowIntentWithModel(input, voiceSessionId) {
       model: primaryProvider.model || '',
       error: summarizeDiagnosticError(err)
     });
-    return { error: 'model_failed', intent: 'assistant_chat' };
+    return { error: 'model_failed', intent: 'assistant_chat', modelProvider: primaryProvider.provider || '', modelName: primaryProvider.model || '' };
   }
 }
 
@@ -15132,6 +15136,14 @@ async function resolveUserMessageRunner(msg, cleanText, scopedWs = null) {
     sendResearchTraceEvent(scopedWs, { type: 'assistant_thinking', active: true, topic: buildAssistantThinkingTopic(cleanText) });
   }
   const modelIntent = await resolveWorkflowIntentWithModel(cleanText, voiceSessionId);
+  if (scopedWs && scopedWs.readyState === 1 && modelIntent) {
+    scopedWs.send(JSON.stringify({
+      type: 'workflow_meta',
+      modelProvider: modelIntent.modelProvider || '',
+      modelName: modelIntent.modelName || '',
+      intentSource: modelIntent.error ? 'fallback' : 'model'
+    }));
+  }
   let researchTraceRuntime = null;
   if (modelIntent && modelIntent.error === 'missing_key') {
     await stopResearchTrace(scopedWs, researchTraceRuntime, 'error');
@@ -16012,6 +16024,7 @@ wss.on('connection', ws => {
       if (!msg.text || typeof msg.text !== 'string' || msg.text.length > 4000) return;
       const quickRoute = resolveQuickDesignRoute(msg);
       if (ws.readyState === 1) ws.send(JSON.stringify(quickDesignAck(quickRoute, msg && msg.clientRunId || '')));
+      if (ws.readyState === 1) ws.send(JSON.stringify({ type: 'workflow_meta', modelProvider: '', modelName: '快速设计路线', intentSource: 'quick_design' }));
       runSocketTask(ws, sid, msg, () => ((socket, text) => runDemoRoutedWorkflow(socket, text || msg.text, quickRoute)));
       return;
     }
