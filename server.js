@@ -9167,7 +9167,23 @@ function filesForRoute3DPreset(profile, preset) {
   const explicitFiles = Array.isArray(preset && preset.files)
     ? preset.files.filter(file => localPDBFileExists(file))
     : [];
-  if (explicitFiles.length) return explicitFiles;
+  if (explicitFiles.length) {
+    // When VHH is requested but the preset's explicit files are Fab-only,
+    // convert Fab filenames to VHH filenames to pick up the VHH library.
+    const abFormat = antibodyFormatForProfile(profile);
+    if (abFormat === 'VHH') {
+      const vhhFiles = explicitFiles
+        .map(file => {
+          if (!/-Fab-/i.test(file)) return null; // skip non-Fab files
+          const vhhFile = file.replace(/-Fab-/i, '-VHH-');
+          return localPDBFileExists(vhhFile) ? vhhFile : null;
+        })
+        .filter(Boolean);
+      if (vhhFiles.length) return vhhFiles;
+      // If no VHH files found, fall through to alias prefix lookup
+    }
+    return explicitFiles;
+  }
   return filesForAliasPrefix(routeAliasPrefix(profile, preset));
 }
 
