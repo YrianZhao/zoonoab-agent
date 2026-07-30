@@ -17,10 +17,26 @@ const OUTPUT_DIR = path.join(PDB_DIR, 'antigen-display-pose');
 const MANIFEST_PATH = path.join(PDB_DIR, 'antigen-display-pose-manifest.json');
 const AUDIT_JSON_PATH = path.join(PDB_DIR, 'antigen-display-pose-audit.json');
 const AUDIT_MD_PATH = path.join(PDB_DIR, 'antigen-display-pose-audit.md');
-const FAB_SCAFFOLD_FILE = 'PDL1-Fab-01.pdb';
-const FAB_SCAFFOLD_CHAINS = ['B', 'C'];
-const VHH_SCAFFOLD_FILE = 'IL33-VHH-01.pdb';
-const VHH_SCAFFOLD_CHAINS = ['B'];
+const SCAFFOLDS = [
+  { name: 'trastuzumab',  file: 'HER2-Fab-01.pdb',  chains: ['B', 'C'], format: 'Fab' },
+  { name: 'cetuximab',    file: 'EGFR-Fab-01.pdb',  chains: ['B', 'C'], format: 'Fab' },
+  { name: 'bevacizumab',  file: 'VEGFA-Fab-01.pdb', chains: ['B', 'C'], format: 'Fab' },
+  { name: 'certolizumab', file: 'TNF-Fab-01.pdb',   chains: ['B', 'C'], format: 'Fab' },
+  { name: 'nivolumab',    file: 'PD1-Fab-01.pdb',    chains: ['B', 'C'], format: 'Fab' },
+  { name: 'ipilimumab',   file: 'CTLA4-Fab-01.pdb',  chains: ['B', 'C'], format: 'Fab' },
+  { name: 'daratumumab',  file: 'CD38-Fab-01.pdb',  chains: ['B', 'C'], format: 'Fab' },
+  { name: 'tozorakimab',  file: 'IL33-Fab-01.pdb',  chains: ['B', 'C'], format: 'Fab' },
+  { name: 'VHH-IL33',     file: 'IL33-VHH-01.pdb',   chains: ['B'],      format: 'VHH' },
+  { name: 'VHH-TSLP',     file: 'TSLP-VHH-01.pdb',   chains: ['B'],      format: 'VHH' }
+];
+
+function chooseScaffold(target, format) {
+  const matching = SCAFFOLDS.filter(s => s.format === format);
+  if (!matching.length) return SCAFFOLDS[0];
+  const hash = crypto.createHash('sha256').update(String(target || '')).digest();
+  const idx = hash.readUInt32BE(0) % matching.length;
+  return matching[idx];
+}
 const ANTIBODY_KEYWORD_RE = /\b(?:antibody|autoantibody|immunoglobulin|fab|nanobody|vhh|scfv|single[- ]chain fv|megabody|vh[- ]domain)\b/i;
 const PDB_ID_RE = /^[0-9][A-Z0-9]{3}$/;
 const DEFAULT_ORGANISM = 'Homo sapiens';
@@ -277,8 +293,9 @@ function chooseGeneratedFormat(chainStats, antigenChains) {
 
 function generatePoseFromSource({ filePath, sourceText, accession, primaryTarget, gene, aliases, organism, taxId, experimentalMethod, resolutionAngstrom, antigenChains, chainStats }) {
   const format = chooseGeneratedFormat(chainStats, antigenChains);
-  const scaffoldFile = format === 'VHH' ? VHH_SCAFFOLD_FILE : FAB_SCAFFOLD_FILE;
-  const scaffoldChains = format === 'VHH' ? VHH_SCAFFOLD_CHAINS : FAB_SCAFFOLD_CHAINS;
+  const scaffold = chooseScaffold(primaryTarget, format);
+  const scaffoldFile = scaffold.file;
+  const scaffoldChains = scaffold.chains;
   const scaffoldPdbText = proteinLinesForChains(
     fs.readFileSync(path.join(PDB_DIR, scaffoldFile), 'utf8'),
     scaffoldChains
@@ -329,6 +346,7 @@ function generatePoseFromSource({ filePath, sourceText, accession, primaryTarget
       hardClashes: pose.pose.geometry.hardClashesBelow2A
     },
     scaffoldFile,
+    scaffoldName: scaffold.name,
     sourceFile: path.basename(filePath)
   };
 }

@@ -79,7 +79,43 @@ const GENE_BY_TARGET = {
   'PEDV spike': 'S',
   'CSFV NS5B': 'NS5B',
   'Feline panleukopenia VP2': 'VP2',
-  'Connexin-26': 'GJB2'
+  'Connexin-26': 'GJB2',
+  // ─── 35 expanded gap disease targets ───
+  DLL3: 'DLL3',
+  FOLR1: 'FOLR1',
+  ROR1: 'ROR1',
+  CD30: 'TNFRSF8',
+  FLT3: 'FLT3',
+  CD70: 'CD70',
+  PTK7: 'PTK7',
+  PSMA: 'FOLH1',
+  CD74: 'CD74',
+  'TIM-3': 'HAVCR2',
+  GITR: 'TNFRSF18',
+  OX40: 'TNFRSF4',
+  '4-1BB': 'TNFRSF9',
+  CD40: 'TNFRSF5',
+  CD27: 'TNFRSF7',
+  DR5: 'TNFRSF10B',
+  CLDN6: 'CLDN6',
+  CDH6: 'CDH6',
+  PRLR: 'PRLR',
+  SSTR2: 'SSTR2',
+  GUCY2C: 'GUCY2C',
+  'IL-31': 'IL31',
+  'IL-17RA': 'IL17RA',
+  'GM-CSF': 'CSF2',
+  'IL-36α': 'IL36A',
+  'BAFF-R': 'TNFRSF13C',
+  'GLP-1R': 'GLP1R',
+  FGF21: 'FGF21',
+  LGR5: 'LGR5',
+  BACE1: 'BACE1',
+  'Leptin receptor': 'LEPR',
+  'Dengue E': 'E',
+  'Zika NS1': 'NS1',
+  'Rabies G': 'G',
+  'CMV gB': 'gB'
 };
 
 const ALIASES_BY_TARGET = {
@@ -134,7 +170,43 @@ const ALIASES_BY_TARGET = {
   'PEDV spike': ['PEDV S', 'spike glycoprotein', 'porcine epidemic diarrhea virus spike'],
   'CSFV NS5B': ['classical swine fever virus NS5B', 'NS5B'],
   'Feline panleukopenia VP2': ['FPV VP2', 'feline panleukopenia virus VP2', 'parvovirus VP2'],
-  'Connexin-26': ['GJB2', 'CX26', 'connexin-26']
+  'Connexin-26': ['GJB2', 'CX26', 'connexin-26'],
+  // ─── 35 expanded gap disease targets ───
+  DLL3: ['DLL3', 'Delta-like ligand 3'],
+  FOLR1: ['FOLR1', 'FOL-alpha', 'folate receptor alpha'],
+  ROR1: ['ROR1', 'receptor tyrosine kinase-like orphan receptor 1'],
+  CD30: ['TNFRSF8', 'CD30 antigen'],
+  FLT3: ['FLT3', 'FLK2', 'CD135'],
+  CD70: ['CD70', 'CD27 ligand', 'TNFSF7'],
+  PTK7: ['PTK7', 'protein tyrosine kinase 7'],
+  PSMA: ['FOLH1', 'GCPII', 'glutamate carboxypeptidase II'],
+  CD74: ['CD74', 'HLA class II histocompatibility antigen gamma chain'],
+  'TIM-3': ['HAVCR2', 'T-cell immunoglobulin and mucin domain-containing protein 3'],
+  GITR: ['TNFRSF18', 'CD357'],
+  OX40: ['TNFRSF4', 'CD134'],
+  '4-1BB': ['TNFRSF9', 'CD137'],
+  CD40: ['TNFRSF5', 'CD40 antigen'],
+  CD27: ['TNFRSF7', 'T14'],
+  DR5: ['TNFRSF10B', 'TRAIL receptor 2', 'CD262'],
+  CLDN6: ['CLDN6', 'Claudin-6'],
+  CDH6: ['CDH6', 'K-cadherin'],
+  PRLR: ['PRLR', 'prolactin receptor'],
+  SSTR2: ['SSTR2', 'somatostatin receptor 2'],
+  GUCY2C: ['GUCY2C', 'GC-C', 'guanylate cyclase C'],
+  'IL-31': ['IL31', 'interleukin-31'],
+  'IL-17RA': ['IL17RA', 'IL-17 receptor A'],
+  'GM-CSF': ['CSF2', 'granulocyte-macrophage colony-stimulating factor'],
+  'IL-36α': ['IL36A', 'IL-36 alpha'],
+  'BAFF-R': ['TNFRSF13C', 'BAFF receptor', 'CD268'],
+  'GLP-1R': ['GLP1R', 'GLP-1 receptor', 'glucagon-like peptide 1 receptor'],
+  FGF21: ['FGF21', 'fibroblast growth factor 21'],
+  LGR5: ['LGR5', 'GPR49', 'leucine-rich repeat-containing G protein-coupled receptor 5'],
+  BACE1: ['BACE1', 'beta-site APP cleaving enzyme 1'],
+  'Leptin receptor': ['LEPR', 'LEP-R', 'obesity receptor'],
+  'Dengue E': ['E', 'dengue virus envelope protein'],
+  'Zika NS1': ['NS1', 'Zika virus non-structural protein 1'],
+  'Rabies G': ['G', 'rabies virus glycoprotein'],
+  'CMV gB': ['gB', 'cytomegalovirus glycoprotein B']
 };
 
 function readText(filePath) {
@@ -309,6 +381,8 @@ function mergeExistingLibraryAssets(baseAssets, existingAssets) {
     const key = keyFor(asset);
     if (!key || seen.has(key)) continue;
     seen.add(key);
+    // Apply cleaning safety net to manually-added existing assets too
+    cleanAssetAliases(asset);
     assets.push(asset);
   }
   return assets;
@@ -498,6 +572,135 @@ function summarizeSimpleManifestAsset(model, sourceCatalog) {
   return asset;
 }
 
+// ── Alias cleaning safety net ──────────────────────────────────────────────
+// Prevents polluted aliases (protein names from other chains in multi-chain
+// complexes) from entering the catalog even if a source manifest accidentally
+// includes them.
+function normalizeAliasKey(value) {
+  return String(value || '')
+    .normalize('NFKC')
+    .toUpperCase()
+    .replace(/(?:ALPHA|Α)/g, 'A')
+    .replace(/(?:BETA|Β)/g, 'B')
+    .replace(/[^\p{Script=Han}A-Z0-9]/gu, '');
+}
+
+function splitCompositeAliasName(name) {
+  return String(name || '')
+    .split(/\s*\/\s*/)
+    .map(s => s.trim())
+    .filter(Boolean);
+}
+
+const ALIAS_POLLUTION_PATTERNS = [
+  /GUANINE\s*NUCLEOTIDE/i,
+  /G\s*SUBUNIT/i,
+  /TRANSDUCIN/i,
+  /ADREN(?:ERGIC|ORECEPT)/i,
+  /LYSOZYME|MURAMIDASE|ENDOLYSIN|LYSIS\s*PROTEIN/i,
+  /CYTOCHROME/i,
+  /FLAVODOXIN/i,
+  /FAB\s*(?:HEAVY|LIGHT|ANTIBODY|FRAGMENT)/i,
+  /HEAVY\s*CHAIN|LIGHT\s*CHAIN/i,
+  /NANOBODY|SCFV|SCFV\d+|VHH/i,
+  /GFP|GREEN\s*FLUORESCENT/i,
+  /DNA\s*\(|RNA\s*\(/i,
+  /OLIGONUCLEOTIDE/i,
+  /PEPTIDE\s*INHIBITOR/i,
+  /COACTIVATOR|CHAPERONE|HEAT\s*SHOCK/i,
+  /SYNTAXIN|SNAP/i,
+  /ANTITHROMBIN|SERPIN/i,
+  /TRYPSIN|SERINE\s*PROTEASE/i,
+  /ENTEROTOXIN/i,
+  /HEMOGLOBIN\s*SUBUNIT|GLOBIN/i,
+  /KERATIN|CYTOKERATIN/i,
+  /TROPONIN/i,
+  /GROWTH\s*FACTOR\s*RECEPTOR/i,
+  /INTERLEUKIN.*RECEPTOR/i,
+  /COLLAGEN/i,
+  /PROCOLLAGEN/i,
+];
+
+const ALIAS_POLLUTED_GENES = new Set([
+  'GNAO1', 'GNB1', 'GNG2', 'GNAS', 'GNAS1', 'GSP', 'GNAL', 'GNAI1',
+  'LYSOZYME', 'MURAMIDASE', 'ENDOLYSIN', 'SCFV',
+  'CYBC', 'DVU2680',
+  'HBA1', 'HBA2', 'HBB',
+  'GABRA1', 'GABRG2',
+  'GUCY1B1', 'GUC1B3', 'GUCY1B3',
+  'SUCLA2',
+  'SCNN1D', 'SCNN1G',
+  'CHRNB1', 'CHRND', 'CHRNE',
+  'ATP4B',
+  'SCN4B',
+  'TNNC1', 'TNNT',
+  'KRT1', 'KRTA',
+  'GAS6', 'GAS-6', 'AXLLG',
+  'GFRA1', 'GDNF', 'HGDNF', 'ATF',
+  'IL7R', 'CRLF2', 'TSLPR',
+  'EGF',
+  'KIT', 'SCFR', 'CKIT',
+  'IL12A',
+  'IFNGR1',
+  'IL4',
+  'SERPINE1', 'PAI1', 'PLANH1',
+  'PRSS1',
+  'OAZ1', 'OAZ',
+  'IL21R',
+  'NCOA2', 'BHLHE75', 'TIF2', 'HTIF2',
+  'RAD21', 'HHR21', 'SCC1', 'NXP1',
+  'PCOLCE', 'PCPE1',
+  'UNC93B1', 'HUNC93B1', 'UNC93',
+  'HSP90BETA',
+  'AXIN',
+  'MAPRE1', 'EB1',
+  'STX1A', 'SNAP25',
+  'SCG2',
+  'SERPINC1', 'AT3', 'ATIII',
+  'HLADRA',
+  'SEC3', 'ENTC3',
+  'TARBP2', 'TTRBP', 'TRBP',
+  'B2M', 'ALB', 'IGHG1',
+  'ERBB2', 'VERBB2',
+  'GP60-90',
+  'ADK', 'AK1',
+  'HTT',
+  'TNC', 'TNT',
+  'MOR', 'OPRM',
+  'E', '1',
+]);
+
+function isPollutedAlias(alias, cleanIdentities) {
+  const aliasIdentity = normalizeAliasKey(alias);
+  if (!aliasIdentity) return true;
+  if (cleanIdentities.has(aliasIdentity)) return false;
+  if (aliasIdentity.length <= 2) return true;
+  if (ALIAS_POLLUTION_PATTERNS.some(pattern => pattern.test(alias))) return true;
+  if (ALIAS_POLLUTED_GENES.has(aliasIdentity)) return true;
+  if (aliasIdentity.length <= 5 && !cleanIdentities.has(aliasIdentity)) return true;
+  return false;
+}
+
+function cleanAssetAliases(asset) {
+  if (!asset || !Array.isArray(asset.aliases) || asset.aliases.length === 0) return asset;
+  const parts = [...splitCompositeAliasName(asset.target), ...splitCompositeAliasName(asset.gene)];
+  const cleanIdentities = new Set();
+  for (const part of parts) {
+    const normalized = normalizeAliasKey(part);
+    if (normalized) cleanIdentities.add(normalized);
+  }
+  const targetNorm = normalizeAliasKey(asset.target);
+  const geneNorm = normalizeAliasKey(asset.gene);
+  if (targetNorm) cleanIdentities.add(targetNorm);
+  if (geneNorm) cleanIdentities.add(geneNorm);
+  const proteinNorm = normalizeAliasKey(asset.protein);
+  if (proteinNorm) cleanIdentities.add(proteinNorm);
+
+  const kept = asset.aliases.filter(alias => !isPollutedAlias(alias, cleanIdentities));
+  asset.aliases = [...new Set(kept.map(a => String(a).trim()).filter(Boolean))];
+  return asset;
+}
+
 function buildLibraryAssets() {
   const assets = [];
   const virus = readJsonIfExists(path.join(PDB_DIR, 'virus-library-manifest.json'));
@@ -510,8 +713,9 @@ function buildLibraryAssets() {
       assets.push(...manifest.models.map(model => summarizeSimpleManifestAsset(model, manifestName)));
     }
   }
+  // Safety net: clean polluted aliases from all generated assets
   const seen = new Set();
-  return assets.filter(asset => {
+  return assets.map(cleanAssetAliases).filter(asset => {
     const key = [asset.sourceCatalog, asset.filename || asset.localPath || asset.target].join('|');
     if (seen.has(key)) return false;
     seen.add(key);

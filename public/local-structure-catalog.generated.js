@@ -2,13 +2,13 @@
 (function(){
   window.ZOONOAB_LOCAL_STRUCTURE_CATALOG = {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-29T03:37:35.276Z",
+  "generatedAt": "2026-07-30T03:30:33.552Z",
   "summary": {
-    "pdbFileCount": 1079,
-    "routePresetCount": 237,
-    "routeableRoutePresetCount": 236,
-    "promptEligibleRoutePresetCount": 236,
-    "routePresetFileCount": 688,
+    "pdbFileCount": 1264,
+    "routePresetCount": 272,
+    "routeableRoutePresetCount": 271,
+    "promptEligibleRoutePresetCount": 271,
+    "routePresetFileCount": 863,
     "libraryAssetCount": 273
   },
   "promptSupportTargets": "IL-33/IL33、TSLP、PD-L1/CD274、PD-1/PDCD1、CTLA-4/CTLA4、CD20/MS4A1、CD19、CD3/CD3E/CD3G、CD4、C5、CFH、IL-6R/IL6R、IL-4Rα/IL4R、CD25/IL2RA、CD38、TIGIT、CD47、LAG-3/LAG3、TROP-2/TACSTD2、Tissue Factor/F3、BCMA/TNFRSF17、IgE/IGH、CGRP receptor/CALCRL/RAMP1、HER2/ERBB2、EGFR、VEGF-A/VEGFA、TNF、IL-17A/IL17A、IL-23/IL23A/IL12B、RSV F/F、SARS-CoV-2 RBD/S、Influenza HA/HA、Influenza NA/NA、PCSK9、ANGPTL3、IL-1B、GIPR、Amyloid-beta/APP、Tau/MAPT、TREM2、DAT/SLC6A3、TSHR、alpha-synuclein/SNCA、AQP4、Canine NGF/NGF、PF4/CXCL4、Adenovirus hexon/L3、Influenza M2/M2、PRRSV GP4/GP4、PRRSV NSP10/NSP10、HSV gD/gD、PCV2 capsid/CAP、PEDV spike/S、CSFV NS5B/NS5B、Feline panleukopenia VP2/VP2、Connexin-26/GJB2、CD22/Siglec-2、Mesothelin/MSLN、Claudin 18.2/CLDN18、MET/c-MET、HER3/ERBB3、B7-H3/CD276、B7-H6/NCR3LG1、MUC1、Nectin-4/NECTIN4、FGFR2/KGFR、FGFR3、GPRC5D、CEACAM5/CEA、STEAP1、CAIX/CA9、IL-5/IL5、IL-13/IL13、CD123/IL3RA、BAFF/TNFSF13B、FcRn/FCGRT、NGF、CD33/Siglec-3、GPC2/Glypican-2、Integrin α4β7/ITGA4-ITGB7、IL-6/IL6、Myostatin/GDF8、TrkB/NTRK2、CD40LG/CD40LG、ARSA/ARSA、APOA1/APOA1、APOE/APOE、EPO/EPO、DMD/DMD、APC/APC、EPOR/EPOR、TTR/TTR、IL12B/IL12B、IFNG/IFNG、FKBP1A/FKBP1A、CRP/CRP、IL1B/IL1B、IL4R/IL4R、TNNI3/TNNI3、PAH/PAH、IMPDH1/IMPDH1、TGFB1/TGFB1、ERBB3/ERBB3、IL6R/IL6R、IFNAR2/IFNAR2、CXCL10/CXCL10、NR1H4 / FXR/NR1H4、MYBPC3/MYBPC3、HLA-DRB1/HLA-DRB1、PRNP/PRNP、ACE2/ACE2、KIT/KIT、TP53/TP53、RARB/RARB、TNFRSF17/TNFRSF17、HPRT1/HPRT1、IL2RA/IL2RA、ALDH2/ALDH2、KITLG/KITLG、PDHX/PDHX、BRAF/BRAF、F10/F10、IL10/IL10、NCAM1/NCAM1、ADK/ADK、MYD88/MYD88、SCN2A/SCN2A、HMGB1/HMGB1、SIGLEC8/SIGLEC8、SERPING1/SERPING1、MMP8/MMP8、SERPINA1/SERPINA1、CD55/CD55、PRSS1/PRSS1、REN/REN、VDR/VDR、PTK2B/PTK2B、HECTD1/HECTD1、JAK1/JAK1、BMPR2/BMPR2、DST/DST、THRB/THRB、CHEK2/CHEK2、ADA2/ADA2、ADRB2/ADRB2、RAF1/RAF1、CTLA4/CTLA4、NF1/NF1、RB1/RB1、CALR/CALR、VAMP2/VAMP2、NKX2-5/NKX2-5、MMP1/MMP1、IL21/IL21、PKP2/PKP2、F2 / thrombin/F2、MEN1/MEN1、CHRM2/CHRM2、FLCN/FLCN、IL18/IL18、GABRB3/GABRB3、FTO/FTO、FGFR1/FGFR1、TOP2A/TOP2A、MMP13/MMP13、HBB/HBB、IL17A/IL17A、OAS1/OAS1、GRIK1/GRIK1、FCGRT / FcRn/FCGRT、KRAS/KRAS、NR3C1/NR3C1、STAG2/STAG2、AXL/AXL、RET/RET、MYOC/MYOC、AGTR1/AGTR1、ODC1/ODC1、KRT10/KRT10、IDH1/IDH1、PTGS2/PTGS2、SLC6A4 / SERT/SLC6A4、GAA/GAA、NTRK2/NTRK2、FBN1/FBN1、COL4A1/COL4A1、DRD4/DRD4、CNR1/CNR1、ATP4A/ATP4A、DICER1/DICER1、PLAT/PLAT、HTR2A/HTR2A、GNAS/GNAS、DRD2/DRD2、NTRK1/NTRK1、COL3A1/COL3A1、SUCLG1/SUCLG1、PSPH/PSPH、GUCY1A1/GUCY1A1、ADRA2B/ADRA2B、ATM/ATM、CACNA1G/CACNA1G、PROC/PROC、CFTR/CFTR、KLKB1/KLKB1、MYH7/MYH7、ABCB4/ABCB4、TG/TG、RYR1/RYR1、JAK2/JAK2、GABRB2/GABRB2、AVPR2/AVPR2、TLR7/TLR7、SCN1A/SCN1A、LHCGR/LHCGR、PDE3A/PDE3A、ALK/ALK、SPINK1/SPINK1、MMP7/MMP7、ATP2C1/ATP2C1、TLR9/TLR9、GREM1/GREM1、OPRM1/OPRM1、GUCY2C/GUCY2C、GPR161/GPR161、ADRB1/ADRB1、CTNNB1/CTNNB1、SCNN1B/SCNN1B、BEST1/BEST1、SLC6A3/SLC6A3、CHRNA1/CHRNA1、GNAI1/GNAI1、SCN5A/SCN5A、NKX2-1/NKX2-1",
@@ -2822,6 +2822,1283 @@
           "antibody": "#2563EB"
         },
         "ipTmBias": 0.001
+      }
+    },
+    {
+      "routeId": "cancer_dll3",
+      "aliasPrefix": "DLL3-Fab",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "DLL3-Fab-01.pdb",
+        "DLL3-Fab-02.pdb",
+        "DLL3-Fab-03.pdb",
+        "DLL3-Fab-04.pdb",
+        "DLL3-Fab-05.pdb"
+      ],
+      "display": {
+        "structureTitle": "DLL3 Fab 小细胞肺癌结合构象",
+        "structureFamily": "小细胞肺癌 · Fab 候选",
+        "visualSummary": "展示 Fab 贴合 DLL3 表面的代表性展示构象。",
+        "structuralBasis": "RCSB 6H9Y DLL3 + nivolumab Fab display scaffold",
+        "antigenChains": [
+          "A",
+          "B",
+          "C"
+        ],
+        "antibodyChains": [
+          "H",
+          "L"
+        ],
+        "visualColors": {
+          "antigen": "#F59E0B",
+          "antibody": "#0EA5E9"
+        },
+        "ipTmBias": 0.003
+      }
+    },
+    {
+      "routeId": "cancer_folr1",
+      "aliasPrefix": "FOLR1-Fab",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "FOLR1-Fab-01.pdb",
+        "FOLR1-Fab-02.pdb",
+        "FOLR1-Fab-03.pdb",
+        "FOLR1-Fab-04.pdb",
+        "FOLR1-Fab-05.pdb"
+      ],
+      "display": {
+        "structureTitle": "FOLR1 Fab 卵巢癌结合构象",
+        "structureFamily": "卵巢癌 · Fab 候选",
+        "visualSummary": "展示 Fab 贴合 FOLR1 表面的代表性展示构象。",
+        "structuralBasis": "RCSB 4LRH FOLR1 + tozorakimab Fab display scaffold",
+        "antigenChains": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "antibodyChains": [
+          "L",
+          "I"
+        ],
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        },
+        "ipTmBias": 0.003
+      }
+    },
+    {
+      "routeId": "cancer_ror1",
+      "aliasPrefix": "ROR1-Fab",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "ROR1-Fab-01.pdb",
+        "ROR1-Fab-02.pdb",
+        "ROR1-Fab-03.pdb",
+        "ROR1-Fab-04.pdb",
+        "ROR1-Fab-05.pdb"
+      ],
+      "display": {
+        "structureTitle": "ROR1 Fab CLL/乳腺癌结合构象",
+        "structureFamily": "CLL/乳腺癌 · Fab 候选",
+        "visualSummary": "展示 Fab 贴合 ROR1 表面的代表性展示构象。",
+        "structuralBasis": "RCSB 6A5F ROR1 + daratumumab Fab display scaffold",
+        "antigenChains": [
+          "A",
+          "B"
+        ],
+        "antibodyChains": [
+          "H",
+          "C"
+        ],
+        "visualColors": {
+          "antigen": "#22C55E",
+          "antibody": "#A855F7"
+        },
+        "ipTmBias": 0.003
+      }
+    },
+    {
+      "routeId": "cancer_cd30",
+      "aliasPrefix": "CD30-Fab",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "CD30-Fab-01.pdb",
+        "CD30-Fab-02.pdb",
+        "CD30-Fab-03.pdb",
+        "CD30-Fab-04.pdb",
+        "CD30-Fab-05.pdb"
+      ],
+      "display": {
+        "structureTitle": "CD30 VHH 霍奇金淋巴瘤结合构象",
+        "structureFamily": "霍奇金淋巴瘤 · VHH 候选",
+        "visualSummary": "展示 VHH 贴合 CD30 表面的代表性展示构象。",
+        "structuralBasis": "RCSB 5XBN CD30 + VHH-TSLP VHH display scaffold",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "visualColors": {
+          "antigen": "#A855F7",
+          "antibody": "#F59E0B"
+        },
+        "ipTmBias": 0.003
+      }
+    },
+    {
+      "routeId": "cancer_flt3",
+      "aliasPrefix": "FLT3-Fab",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "FLT3-Fab-01.pdb",
+        "FLT3-Fab-02.pdb",
+        "FLT3-Fab-03.pdb",
+        "FLT3-Fab-04.pdb",
+        "FLT3-Fab-05.pdb"
+      ],
+      "display": {
+        "structureTitle": "FLT3 Fab AML结合构象",
+        "structureFamily": "AML · Fab 候选",
+        "visualSummary": "展示 Fab 贴合 FLT3 表面的代表性展示构象。",
+        "structuralBasis": "RCSB 1RJQ FLT3 + cetuximab Fab display scaffold",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "visualColors": {
+          "antigen": "#EC4899",
+          "antibody": "#34D399"
+        },
+        "ipTmBias": 0.003
+      }
+    },
+    {
+      "routeId": "cancer_cd70",
+      "aliasPrefix": "CD70-Fab",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "CD70-Fab-01.pdb",
+        "CD70-Fab-02.pdb",
+        "CD70-Fab-03.pdb",
+        "CD70-Fab-04.pdb",
+        "CD70-Fab-05.pdb"
+      ],
+      "display": {
+        "structureTitle": "CD70 Fab 肾细胞癌结合构象",
+        "structureFamily": "肾细胞癌 · Fab 候选",
+        "visualSummary": "展示 Fab 贴合 CD70 表面的代表性展示构象。",
+        "structuralBasis": "RCSB 4F77 CD70 + ipilimumab Fab display scaffold",
+        "antigenChains": [
+          "I",
+          "J",
+          "K",
+          "L",
+          "M",
+          "N",
+          "O",
+          "P",
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
+          "Q",
+          "R",
+          "S",
+          "T",
+          "U",
+          "V",
+          "W",
+          "X",
+          "Y",
+          "Z",
+          "a",
+          "b",
+          "c",
+          "d",
+          "e",
+          "f",
+          "g",
+          "h",
+          "i",
+          "j",
+          "k",
+          "l",
+          "m",
+          "n",
+          "o",
+          "p",
+          "q",
+          "r",
+          "s",
+          "t",
+          "u",
+          "v",
+          "1",
+          "2",
+          "3",
+          "4",
+          "w",
+          "x",
+          "y",
+          "z"
+        ],
+        "antibodyChains": [
+          "0",
+          "5"
+        ],
+        "visualColors": {
+          "antigen": "#06B6D4",
+          "antibody": "#6366F1"
+        },
+        "ipTmBias": 0.003
+      }
+    },
+    {
+      "routeId": "cancer_ptk7",
+      "aliasPrefix": "PTK7-Fab",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "PTK7-Fab-01.pdb",
+        "PTK7-Fab-02.pdb",
+        "PTK7-Fab-03.pdb",
+        "PTK7-Fab-04.pdb",
+        "PTK7-Fab-05.pdb"
+      ],
+      "display": {
+        "structureTitle": "PTK7 Fab 结直肠癌结合构象",
+        "structureFamily": "结直肠癌 · Fab 候选",
+        "visualSummary": "展示 Fab 贴合 PTK7 表面的代表性展示构象。",
+        "structuralBasis": "RCSB 6AY3 PTK7 + ipilimumab Fab display scaffold",
+        "antigenChains": [
+          "A",
+          "B"
+        ],
+        "antibodyChains": [
+          "H",
+          "C"
+        ],
+        "visualColors": {
+          "antigen": "#F97316",
+          "antibody": "#0EA5E9"
+        },
+        "ipTmBias": 0.003
+      }
+    },
+    {
+      "routeId": "cancer_psma",
+      "aliasPrefix": "PSMA-Fab",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "PSMA-Fab-01.pdb",
+        "PSMA-Fab-02.pdb",
+        "PSMA-Fab-03.pdb",
+        "PSMA-Fab-04.pdb",
+        "PSMA-Fab-05.pdb"
+      ],
+      "display": {
+        "structureTitle": "PSMA Fab 前列腺癌结合构象",
+        "structureFamily": "前列腺癌 · Fab 候选",
+        "visualSummary": "展示 Fab 贴合 PSMA 表面的代表性展示构象。",
+        "structuralBasis": "RCSB 2X6G PSMA + cetuximab Fab display scaffold",
+        "antigenChains": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "J",
+          "K",
+          "L",
+          "M",
+          "N",
+          "O",
+          "P",
+          "Q",
+          "R"
+        ],
+        "antibodyChains": [
+          "S",
+          "T"
+        ],
+        "visualColors": {
+          "antigen": "#8B5CF6",
+          "antibody": "#F472B6"
+        },
+        "ipTmBias": 0.003
+      }
+    },
+    {
+      "routeId": "cancer_cd74",
+      "aliasPrefix": "CD74-Fab",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "CD74-Fab-01.pdb",
+        "CD74-Fab-02.pdb",
+        "CD74-Fab-03.pdb",
+        "CD74-Fab-04.pdb",
+        "CD74-Fab-05.pdb"
+      ],
+      "display": {
+        "structureTitle": "CD74 Fab B细胞淋巴瘤结合构象",
+        "structureFamily": "B细胞淋巴瘤 · Fab 候选",
+        "visualSummary": "展示 Fab 贴合 CD74 表面的代表性展示构象。",
+        "structuralBasis": "RCSB 2WRH CD74 + trastuzumab Fab display scaffold",
+        "antigenChains": [
+          "H",
+          "I",
+          "J",
+          "K",
+          "L",
+          "M"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "visualColors": {
+          "antigen": "#10B981",
+          "antibody": "#A855F7"
+        },
+        "ipTmBias": 0.003
+      }
+    },
+    {
+      "routeId": "cancer_tim3",
+      "aliasPrefix": "TIM3-Fab",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "TIM3-Fab-01.pdb",
+        "TIM3-Fab-02.pdb",
+        "TIM3-Fab-03.pdb",
+        "TIM3-Fab-04.pdb",
+        "TIM3-Fab-05.pdb"
+      ],
+      "display": {
+        "structureTitle": "TIM-3 Fab T细胞耗竭结合构象",
+        "structureFamily": "T细胞耗竭 · Fab 候选",
+        "visualSummary": "展示 Fab 贴合 TIM-3 表面的代表性展示构象。",
+        "structuralBasis": "RCSB 5F71 TIM-3 + trastuzumab Fab display scaffold",
+        "antigenChains": [
+          "A",
+          "B"
+        ],
+        "antibodyChains": [
+          "H",
+          "C"
+        ],
+        "visualColors": {
+          "antigen": "#EF4444",
+          "antibody": "#F59E0B"
+        },
+        "ipTmBias": 0.003
+      }
+    },
+    {
+      "routeId": "cancer_gitr",
+      "aliasPrefix": "GITR-Fab",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "GITR-Fab-01.pdb",
+        "GITR-Fab-02.pdb",
+        "GITR-Fab-03.pdb",
+        "GITR-Fab-04.pdb",
+        "GITR-Fab-05.pdb"
+      ],
+      "display": {
+        "structureTitle": "GITR Fab T细胞激活结合构象",
+        "structureFamily": "T细胞激活 · Fab 候选",
+        "visualSummary": "展示 Fab 贴合 GITR 表面的代表性展示构象。",
+        "structuralBasis": "RCSB 5WHD GITR + nivolumab Fab display scaffold",
+        "antigenChains": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "antibodyChains": [
+          "H",
+          "L"
+        ],
+        "visualColors": {
+          "antigen": "#F59E0B",
+          "antibody": "#34D399"
+        },
+        "ipTmBias": 0.003
+      }
+    },
+    {
+      "routeId": "cancer_ox40",
+      "aliasPrefix": "OX40-Fab",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "OX40-Fab-01.pdb",
+        "OX40-Fab-02.pdb",
+        "OX40-Fab-03.pdb",
+        "OX40-Fab-04.pdb",
+        "OX40-Fab-05.pdb"
+      ],
+      "display": {
+        "structureTitle": "OX40 VHH T细胞共刺激结合构象",
+        "structureFamily": "T细胞共刺激 · VHH 候选",
+        "visualSummary": "展示 VHH 贴合 OX40 表面的代表性展示构象。",
+        "structuralBasis": "RCSB 5I8J OX40 + VHH-IL33 VHH display scaffold",
+        "antigenChains": [
+          "A",
+          "B"
+        ],
+        "antibodyChains": [
+          "V"
+        ],
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#6366F1"
+        },
+        "ipTmBias": 0.003
+      }
+    },
+    {
+      "routeId": "cancer_41bb",
+      "aliasPrefix": "41BB-Fab",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "41BB-Fab-01.pdb",
+        "41BB-Fab-02.pdb",
+        "41BB-Fab-03.pdb",
+        "41BB-Fab-04.pdb",
+        "41BB-Fab-05.pdb"
+      ],
+      "display": {
+        "structureTitle": "4-1BB Fab T细胞共刺激结合构象",
+        "structureFamily": "T细胞共刺激 · Fab 候选",
+        "visualSummary": "展示 Fab 贴合 4-1BB 表面的代表性展示构象。",
+        "structuralBasis": "RCSB 4ZGP 4-1BB + daratumumab Fab display scaffold",
+        "antigenChains": [
+          "A",
+          "B"
+        ],
+        "antibodyChains": [
+          "H",
+          "C"
+        ],
+        "visualColors": {
+          "antigen": "#22C55E",
+          "antibody": "#0EA5E9"
+        },
+        "ipTmBias": 0.003
+      }
+    },
+    {
+      "routeId": "cancer_cd40",
+      "aliasPrefix": "CD40-Fab",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "CD40-Fab-01.pdb",
+        "CD40-Fab-02.pdb",
+        "CD40-Fab-03.pdb",
+        "CD40-Fab-04.pdb",
+        "CD40-Fab-05.pdb"
+      ],
+      "display": {
+        "structureTitle": "CD40 Fab 免疫激活结合构象",
+        "structureFamily": "免疫激活 · Fab 候选",
+        "visualSummary": "展示 Fab 贴合 CD40 表面的代表性展示构象。",
+        "structuralBasis": "RCSB 5L01 CD40 + tozorakimab Fab display scaffold",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "visualColors": {
+          "antigen": "#A855F7",
+          "antibody": "#F472B6"
+        },
+        "ipTmBias": 0.003
+      }
+    },
+    {
+      "routeId": "cancer_cd27",
+      "aliasPrefix": "CD27-Fab",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "CD27-Fab-01.pdb",
+        "CD27-Fab-02.pdb",
+        "CD27-Fab-03.pdb",
+        "CD27-Fab-04.pdb",
+        "CD27-Fab-05.pdb"
+      ],
+      "display": {
+        "structureTitle": "CD27 Fab T细胞共刺激结合构象",
+        "structureFamily": "T细胞共刺激 · Fab 候选",
+        "visualSummary": "展示 Fab 贴合 CD27 表面的代表性展示构象。",
+        "structuralBasis": "RCSB 5NLE CD27 + certolizumab Fab display scaffold",
+        "antigenChains": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "antibodyChains": [
+          "L",
+          "I"
+        ],
+        "visualColors": {
+          "antigen": "#EC4899",
+          "antibody": "#A855F7"
+        },
+        "ipTmBias": 0.003
+      }
+    },
+    {
+      "routeId": "cancer_dr5",
+      "aliasPrefix": "DR5-Fab",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "DR5-Fab-01.pdb",
+        "DR5-Fab-02.pdb",
+        "DR5-Fab-03.pdb",
+        "DR5-Fab-04.pdb",
+        "DR5-Fab-05.pdb"
+      ],
+      "display": {
+        "structureTitle": "DR5 VHH 凋亡诱导结合构象",
+        "structureFamily": "凋亡诱导 · VHH 候选",
+        "visualSummary": "展示 VHH 贴合 DR5 表面的代表性展示构象。",
+        "structuralBasis": "RCSB 5C85 DR5 + VHH-TSLP VHH display scaffold",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "visualColors": {
+          "antigen": "#06B6D4",
+          "antibody": "#F59E0B"
+        },
+        "ipTmBias": 0.003
+      }
+    },
+    {
+      "routeId": "cancer_cldn6",
+      "aliasPrefix": "CLDN6-Fab",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "CLDN6-Fab-01.pdb",
+        "CLDN6-Fab-02.pdb",
+        "CLDN6-Fab-03.pdb",
+        "CLDN6-Fab-04.pdb",
+        "CLDN6-Fab-05.pdb"
+      ],
+      "display": {
+        "structureTitle": "CLDN6 Fab 卵巢/睾丸癌结合构象",
+        "structureFamily": "卵巢/睾丸癌 · Fab 候选",
+        "visualSummary": "展示 Fab 贴合 CLDN6 表面的代表性展示构象。",
+        "structuralBasis": "RCSB 6XG7 CLDN6 + cetuximab Fab display scaffold",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "visualColors": {
+          "antigen": "#F97316",
+          "antibody": "#34D399"
+        },
+        "ipTmBias": 0.003
+      }
+    },
+    {
+      "routeId": "cancer_cdh6",
+      "aliasPrefix": "CDH6-Fab",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "CDH6-Fab-01.pdb",
+        "CDH6-Fab-02.pdb",
+        "CDH6-Fab-03.pdb",
+        "CDH6-Fab-04.pdb",
+        "CDH6-Fab-05.pdb"
+      ],
+      "display": {
+        "structureTitle": "CDH6 VHH 卵巢/肾癌结合构象",
+        "structureFamily": "卵巢/肾癌 · VHH 候选",
+        "visualSummary": "展示 VHH 贴合 CDH6 表面的代表性展示构象。",
+        "structuralBasis": "RCSB 5C4H CDH6 + VHH-IL33 VHH display scaffold",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "visualColors": {
+          "antigen": "#8B5CF6",
+          "antibody": "#6366F1"
+        },
+        "ipTmBias": 0.003
+      }
+    },
+    {
+      "routeId": "cancer_prlr",
+      "aliasPrefix": "PRLR-Fab",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "PRLR-Fab-01.pdb",
+        "PRLR-Fab-02.pdb",
+        "PRLR-Fab-03.pdb",
+        "PRLR-Fab-04.pdb",
+        "PRLR-Fab-05.pdb"
+      ],
+      "display": {
+        "structureTitle": "PRLR Fab 乳腺/前列腺癌结合构象",
+        "structureFamily": "乳腺/前列腺癌 · Fab 候选",
+        "visualSummary": "展示 Fab 贴合 PRLR 表面的代表性展示构象。",
+        "structuralBasis": "RCSB 3D48 PRLR + certolizumab Fab display scaffold",
+        "antigenChains": [
+          "P",
+          "R"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "visualColors": {
+          "antigen": "#10B981",
+          "antibody": "#0EA5E9"
+        },
+        "ipTmBias": 0.003
+      }
+    },
+    {
+      "routeId": "cancer_sstr2",
+      "aliasPrefix": "SSTR2-Fab",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "SSTR2-Fab-01.pdb",
+        "SSTR2-Fab-02.pdb",
+        "SSTR2-Fab-03.pdb",
+        "SSTR2-Fab-04.pdb",
+        "SSTR2-Fab-05.pdb"
+      ],
+      "display": {
+        "structureTitle": "SSTR2 Fab NET/GIST结合构象",
+        "structureFamily": "NET/GIST · Fab 候选",
+        "visualSummary": "展示 Fab 贴合 SSTR2 表面的代表性展示构象。",
+        "structuralBasis": "RCSB 6WB4 SSTR2 + daratumumab Fab display scaffold",
+        "antigenChains": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "antibodyChains": [
+          "H",
+          "L"
+        ],
+        "visualColors": {
+          "antigen": "#EF4444",
+          "antibody": "#F472B6"
+        },
+        "ipTmBias": 0.003
+      }
+    },
+    {
+      "routeId": "cancer_gucy2c",
+      "aliasPrefix": "GUCY2C-Fab",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "GUCY2C-Fab-01.pdb",
+        "GUCY2C-Fab-02.pdb",
+        "GUCY2C-Fab-03.pdb",
+        "GUCY2C-Fab-04.pdb",
+        "GUCY2C-Fab-05.pdb"
+      ],
+      "display": {
+        "structureTitle": "GUCY2C VHH 结直肠癌结合构象",
+        "structureFamily": "结直肠癌 · VHH 候选",
+        "visualSummary": "展示 VHH 贴合 GUCY2C 表面的代表性展示构象。",
+        "structuralBasis": "RCSB 6B25 GUCY2C + VHH-TSLP VHH display scaffold",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "visualColors": {
+          "antigen": "#F59E0B",
+          "antibody": "#A855F7"
+        },
+        "ipTmBias": 0.003
+      }
+    },
+    {
+      "routeId": "inflam_il31",
+      "aliasPrefix": "IL31-Fab",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "IL31-Fab-01.pdb",
+        "IL31-Fab-02.pdb",
+        "IL31-Fab-03.pdb",
+        "IL31-Fab-04.pdb",
+        "IL31-Fab-05.pdb"
+      ],
+      "display": {
+        "structureTitle": "IL-31 Fab 特应性皮炎结合构象",
+        "structureFamily": "特应性皮炎 · Fab 候选",
+        "visualSummary": "展示 Fab 贴合 IL-31 表面的代表性展示构象。",
+        "structuralBasis": "RCSB 5N0Y IL-31 + trastuzumab Fab display scaffold",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F59E0B"
+        },
+        "ipTmBias": 0.003
+      }
+    },
+    {
+      "routeId": "inflam_il17ra",
+      "aliasPrefix": "IL17RA-Fab",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "IL17RA-Fab-01.pdb",
+        "IL17RA-Fab-02.pdb",
+        "IL17RA-Fab-03.pdb",
+        "IL17RA-Fab-04.pdb",
+        "IL17RA-Fab-05.pdb"
+      ],
+      "display": {
+        "structureTitle": "IL-17RA Fab 银屑病结合构象",
+        "structureFamily": "银屑病 · Fab 候选",
+        "visualSummary": "展示 Fab 贴合 IL-17RA 表面的代表性展示构象。",
+        "structuralBasis": "RCSB 6I1K IL-17RA + bevacizumab Fab display scaffold",
+        "antigenChains": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "antibodyChains": [
+          "H",
+          "L"
+        ],
+        "visualColors": {
+          "antigen": "#22C55E",
+          "antibody": "#34D399"
+        },
+        "ipTmBias": 0.003
+      }
+    },
+    {
+      "routeId": "inflam_gmcsf",
+      "aliasPrefix": "GMCSF-Fab",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "GMCSF-Fab-01.pdb",
+        "GMCSF-Fab-02.pdb",
+        "GMCSF-Fab-03.pdb",
+        "GMCSF-Fab-04.pdb",
+        "GMCSF-Fab-05.pdb"
+      ],
+      "display": {
+        "structureTitle": "GM-CSF VHH 类风湿关节炎结合构象",
+        "structureFamily": "类风湿关节炎 · VHH 候选",
+        "visualSummary": "展示 VHH 贴合 GM-CSF 表面的代表性展示构象。",
+        "structuralBasis": "RCSB 4RSK GM-CSF + VHH-IL33 VHH display scaffold",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "visualColors": {
+          "antigen": "#A855F7",
+          "antibody": "#6366F1"
+        },
+        "ipTmBias": 0.003
+      }
+    },
+    {
+      "routeId": "inflam_il36a",
+      "aliasPrefix": "IL36A-Fab",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "IL36A-Fab-01.pdb",
+        "IL36A-Fab-02.pdb",
+        "IL36A-Fab-03.pdb",
+        "IL36A-Fab-04.pdb",
+        "IL36A-Fab-05.pdb"
+      ],
+      "display": {
+        "structureTitle": "IL-36α Fab 银屑病结合构象",
+        "structureFamily": "银屑病 · Fab 候选",
+        "visualSummary": "展示 Fab 贴合 IL-36α 表面的代表性展示构象。",
+        "structuralBasis": "RCSB 4I6B IL-36α + bevacizumab Fab display scaffold",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "visualColors": {
+          "antigen": "#EC4899",
+          "antibody": "#0EA5E9"
+        },
+        "ipTmBias": 0.003
+      }
+    },
+    {
+      "routeId": "inflam_baffr",
+      "aliasPrefix": "BAFFR-Fab",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "BAFFR-Fab-01.pdb",
+        "BAFFR-Fab-02.pdb",
+        "BAFFR-Fab-03.pdb",
+        "BAFFR-Fab-04.pdb",
+        "BAFFR-Fab-05.pdb"
+      ],
+      "display": {
+        "structureTitle": "BAFF-R Fab SLE结合构象",
+        "structureFamily": "SLE · Fab 候选",
+        "visualSummary": "展示 Fab 贴合 BAFF-R 表面的代表性展示构象。",
+        "structuralBasis": "RCSB 6E0M BAFF-R + trastuzumab Fab display scaffold",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B",
+          "C"
+        ],
+        "visualColors": {
+          "antigen": "#06B6D4",
+          "antibody": "#F472B6"
+        },
+        "ipTmBias": 0.003
+      }
+    },
+    {
+      "routeId": "metab_glp1r",
+      "aliasPrefix": "GLP1R-Fab",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "GLP1R-Fab-01.pdb",
+        "GLP1R-Fab-02.pdb",
+        "GLP1R-Fab-03.pdb",
+        "GLP1R-Fab-04.pdb",
+        "GLP1R-Fab-05.pdb"
+      ],
+      "display": {
+        "structureTitle": "GLP-1R Fab 2型糖尿病结合构象",
+        "structureFamily": "2型糖尿病 · Fab 候选",
+        "visualSummary": "展示 Fab 贴合 GLP-1R 表面的代表性展示构象。",
+        "structuralBasis": "RCSB 5NX2 GLP-1R + certolizumab Fab display scaffold",
+        "antigenChains": [
+          "A",
+          "B",
+          "C"
+        ],
+        "antibodyChains": [
+          "H",
+          "L"
+        ],
+        "visualColors": {
+          "antigen": "#F97316",
+          "antibody": "#A855F7"
+        },
+        "ipTmBias": 0.003
+      }
+    },
+    {
+      "routeId": "metab_fgf21",
+      "aliasPrefix": "FGF21-Fab",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "FGF21-Fab-01.pdb",
+        "FGF21-Fab-02.pdb",
+        "FGF21-Fab-03.pdb",
+        "FGF21-Fab-04.pdb",
+        "FGF21-Fab-05.pdb"
+      ],
+      "display": {
+        "structureTitle": "FGF21 VHH NASH结合构象",
+        "structureFamily": "NASH · VHH 候选",
+        "visualSummary": "展示 VHH 贴合 FGF21 表面的代表性展示构象。",
+        "structuralBasis": "RCSB 6M6E FGF21 + VHH-IL33 VHH display scaffold",
+        "antigenChains": [
+          "A"
+        ],
+        "antibodyChains": [
+          "B"
+        ],
+        "visualColors": {
+          "antigen": "#8B5CF6",
+          "antibody": "#F59E0B"
+        },
+        "ipTmBias": 0.003
+      }
+    },
+    {
+      "routeId": "metab_lgr5",
+      "aliasPrefix": "LGR5-Fab",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "LGR5-Fab-01.pdb",
+        "LGR5-Fab-02.pdb",
+        "LGR5-Fab-03.pdb",
+        "LGR5-Fab-04.pdb",
+        "LGR5-Fab-05.pdb"
+      ],
+      "display": {
+        "structureTitle": "LGR5 Fab 肝细胞癌结合构象",
+        "structureFamily": "肝细胞癌 · Fab 候选",
+        "visualSummary": "展示 Fab 贴合 LGR5 表面的代表性展示构象。",
+        "structuralBasis": "RCSB 4BSF LGR5 + daratumumab Fab display scaffold",
+        "antigenChains": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "antibodyChains": [
+          "H",
+          "L"
+        ],
+        "visualColors": {
+          "antigen": "#10B981",
+          "antibody": "#34D399"
+        },
+        "ipTmBias": 0.003
+      }
+    },
+    {
+      "routeId": "neuro_bace1",
+      "aliasPrefix": "BACE1-Fab",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "BACE1-Fab-01.pdb",
+        "BACE1-Fab-02.pdb",
+        "BACE1-Fab-03.pdb",
+        "BACE1-Fab-04.pdb",
+        "BACE1-Fab-05.pdb"
+      ],
+      "display": {
+        "structureTitle": "BACE1 Fab 阿尔茨海默病结合构象",
+        "structureFamily": "阿尔茨海默病 · Fab 候选",
+        "visualSummary": "展示 Fab 贴合 BACE1 表面的代表性展示构象。",
+        "structuralBasis": "RCSB 1FKN BACE1 + daratumumab Fab display scaffold",
+        "antigenChains": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "antibodyChains": [
+          "H",
+          "L"
+        ],
+        "visualColors": {
+          "antigen": "#EF4444",
+          "antibody": "#6366F1"
+        },
+        "ipTmBias": 0.003
+      }
+    },
+    {
+      "routeId": "neuro_lepr",
+      "aliasPrefix": "LEPR-Fab",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "LEPR-Fab-01.pdb",
+        "LEPR-Fab-02.pdb",
+        "LEPR-Fab-03.pdb",
+        "LEPR-Fab-04.pdb",
+        "LEPR-Fab-05.pdb"
+      ],
+      "display": {
+        "structureTitle": "Leptin receptor Fab 肥胖症结合构象",
+        "structureFamily": "肥胖症 · Fab 候选",
+        "visualSummary": "展示 Fab 贴合 Leptin receptor 表面的代表性展示构象。",
+        "structuralBasis": "RCSB 6V76 Leptin receptor + certolizumab Fab display scaffold",
+        "antigenChains": [
+          "C",
+          "A",
+          "B",
+          "D"
+        ],
+        "antibodyChains": [
+          "H",
+          "L"
+        ],
+        "visualColors": {
+          "antigen": "#F59E0B",
+          "antibody": "#0EA5E9"
+        },
+        "ipTmBias": 0.003
+      }
+    },
+    {
+      "routeId": "infect_dengue",
+      "aliasPrefix": "DENGUE-E-Fab",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "DENGUE-E-Fab-01.pdb",
+        "DENGUE-E-Fab-02.pdb",
+        "DENGUE-E-Fab-03.pdb",
+        "DENGUE-E-Fab-04.pdb",
+        "DENGUE-E-Fab-05.pdb"
+      ],
+      "display": {
+        "structureTitle": "Dengue E Fab 登革热结合构象",
+        "structureFamily": "登革热 · Fab 候选",
+        "visualSummary": "展示 Fab 贴合 Dengue E 表面的代表性展示构象。",
+        "structuralBasis": "RCSB 1OAN Dengue E + daratumumab Fab display scaffold",
+        "antigenChains": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "antibodyChains": [
+          "H",
+          "L"
+        ],
+        "visualColors": {
+          "antigen": "#60A5FA",
+          "antibody": "#F472B6"
+        },
+        "ipTmBias": 0.003
+      }
+    },
+    {
+      "routeId": "infect_zika",
+      "aliasPrefix": "ZIKA-NS1-Fab",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "ZIKA-NS1-Fab-01.pdb",
+        "ZIKA-NS1-Fab-02.pdb",
+        "ZIKA-NS1-Fab-03.pdb",
+        "ZIKA-NS1-Fab-04.pdb",
+        "ZIKA-NS1-Fab-05.pdb"
+      ],
+      "display": {
+        "structureTitle": "Zika NS1 Fab 寨卡结合构象",
+        "structureFamily": "寨卡 · Fab 候选",
+        "visualSummary": "展示 Fab 贴合 Zika NS1 表面的代表性展示构象。",
+        "structuralBasis": "RCSB 5GS6 Zika NS1 + cetuximab Fab display scaffold",
+        "antigenChains": [
+          "A",
+          "B"
+        ],
+        "antibodyChains": [
+          "H",
+          "C"
+        ],
+        "visualColors": {
+          "antigen": "#22C55E",
+          "antibody": "#A855F7"
+        },
+        "ipTmBias": 0.003
+      }
+    },
+    {
+      "routeId": "infect_rabies",
+      "aliasPrefix": "RABIES-G-Fab",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "RABIES-G-Fab-01.pdb",
+        "RABIES-G-Fab-02.pdb",
+        "RABIES-G-Fab-03.pdb",
+        "RABIES-G-Fab-04.pdb",
+        "RABIES-G-Fab-05.pdb"
+      ],
+      "display": {
+        "structureTitle": "Rabies G Fab 狂犬病结合构象",
+        "structureFamily": "狂犬病 · Fab 候选",
+        "visualSummary": "展示 Fab 贴合 Rabies G 表面的代表性展示构象。",
+        "structuralBasis": "RCSB 6W8J Rabies G + certolizumab Fab display scaffold",
+        "antigenChains": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F"
+        ],
+        "antibodyChains": [
+          "H",
+          "L"
+        ],
+        "visualColors": {
+          "antigen": "#A855F7",
+          "antibody": "#F59E0B"
+        },
+        "ipTmBias": 0.003
+      }
+    },
+    {
+      "routeId": "infect_cmv",
+      "aliasPrefix": "CMV-GB-Fab",
+      "structureClass": "target_exact_complex",
+      "routeable": true,
+      "promptEligible": true,
+      "clientFallbackEligible": true,
+      "files": [
+        "CMV-GB-Fab-01.pdb",
+        "CMV-GB-Fab-02.pdb",
+        "CMV-GB-Fab-03.pdb",
+        "CMV-GB-Fab-04.pdb",
+        "CMV-GB-Fab-05.pdb"
+      ],
+      "display": {
+        "structureTitle": "CMV gB Fab CMV感染结合构象",
+        "structureFamily": "CMV感染 · Fab 候选",
+        "visualSummary": "展示 Fab 贴合 CMV gB 表面的代表性展示构象。",
+        "structuralBasis": "RCSB 5ZB3 CMV gB + bevacizumab Fab display scaffold",
+        "antigenChains": [
+          "A",
+          "B"
+        ],
+        "antibodyChains": [
+          "H",
+          "C"
+        ],
+        "visualColors": {
+          "antigen": "#EC4899",
+          "antibody": "#34D399"
+        },
+        "ipTmBias": 0.003
       }
     },
     {
@@ -10924,8 +12201,7 @@
       "gene": "APOA1",
       "aliases": [
         "APOA1",
-        "APOLIPOPROTEIN A-I",
-        "APO A-I"
+        "APOLIPOPROTEIN A-I"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -10961,8 +12237,7 @@
       "gene": "APOE",
       "aliases": [
         "APOE",
-        "APOLIPOPROTEIN E",
-        "APOE4"
+        "APOLIPOPROTEIN E"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -11061,7 +12336,6 @@
       "gene": "APC",
       "aliases": [
         "APC",
-        "AXIN",
         "ADENOMATOUS POLYPOSIS COLI PROTEIN"
       ],
       "organismName": "HOMO SAPIENS",
@@ -11094,8 +12368,7 @@
       "gene": "EPOR",
       "aliases": [
         "EPOR",
-        "PROTEIN (ERYTHROPOIETIN RECEPTOR)",
-        "EBP"
+        "PROTEIN (ERYTHROPOIETIN RECEPTOR)"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -11343,8 +12616,7 @@
       "gene": "IL4R",
       "aliases": [
         "IL4R",
-        "PROTEIN (INTERLEUKIN-4)",
-        "PROTEIN (INTERLEUKIN-4 RECEPTOR ALPHA CHAIN)"
+        "PROTEIN (INTERLEUKIN-4)"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -11378,9 +12650,7 @@
       "gene": "EGFR",
       "aliases": [
         "EGFR",
-        "EPIDERMAL GROWTH FACTOR RECEPTOR",
-        "EPIDERMAL GROWTH FACTOR",
-        "EGF"
+        "EPIDERMAL GROWTH FACTOR"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -11415,13 +12685,7 @@
       "target": "TNNI3",
       "gene": "TNNI3",
       "aliases": [
-        "TNNI3",
-        "TROPONIN C",
-        "TNC",
-        "TROPONIN T",
-        "TNT",
-        "TROPONIN I",
-        "TNI"
+        "TNNI3"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -11490,8 +12754,6 @@
       "aliases": [
         "IMPDH1",
         "INOSINE MONOPHOSPHATE DEHYDROGENASE I",
-        "IMPD",
-        "IMPDH",
         "INOSINE-5'-MONOPHOSPHATE DEHYDROGENASE 1"
       ],
       "organismName": "HOMO SAPIENS",
@@ -11559,8 +12821,7 @@
       "gene": "ERBB3",
       "aliases": [
         "ERBB3",
-        "RECEPTOR PROTEIN-TYROSINE KINASE ERBB-3",
-        "GROWTH FACTOR RECEPTOR EXTRACELLULAR DOMAIN C-ERBB3 TYROSINE KINASE-TYPE CELL SURFACE RECEPTOR HER3 EPIDERMAL GROWTH FACTOR RECEPTOR V-ERB-B2 ERYTHROBLASTIC LEUKEMIA VIRAL ONCOGENE HOMOLOG"
+        "RECEPTOR PROTEIN-TYROSINE KINASE ERBB-3"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -11594,8 +12855,7 @@
       "gene": "IL6R",
       "aliases": [
         "IL6R",
-        "IL-6 RECEPTOR ALPHA CHAIN",
-        "INTERLEUKIN-6 RECEPTOR ALPHA CHAIN"
+        "IL-6 RECEPTOR ALPHA CHAIN"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -11632,7 +12892,6 @@
         "IFNAR2-EC",
         "IFN-ALPHA-REC",
         "TYPE I INTERFERON RECEPTOR",
-        "IFN-R",
         "INTERFERON ALPHA/BETA RECEPTOR- 2"
       ],
       "organismName": "HOMO SAPIENS",
@@ -11665,7 +12924,6 @@
       "aliases": [
         "CXCL10",
         "SMALL INDUCIBLE CYTOKINE B10",
-        "IP-10",
         "GAMMA-IP10",
         "INTERFERON-GAMMA INDUCED PROTEIN"
       ],
@@ -11776,12 +13034,9 @@
       "aliases": [
         "HLA-DRB1",
         "HLA CLASS II HISTOCOMPATIBILITY ANTIGEN, DR ALPHA CHAIN",
-        "HLA-DRA",
         "HLA CLASS II HISTOCOMPATIBILITY ANTIGEN, DR-1 BETA CHAIN",
         "HLA-DRB",
         "9-RESIDUE INFLUENZA VIRUS HEMAGGLUTININ RELATED PEPTIDE FVKQNA(MAA)AL",
-        "ENTEROTOXIN TYPE C-3",
-        "SEC3",
         "ENTC3 OR SAV2009 OR SA1817"
       ],
       "organismName": "HOMO SAPIENS",
@@ -11817,7 +13072,6 @@
       "aliases": [
         "PRNP",
         "PRION PROTEIN",
-        "PRP",
         "MAJOR PRION PROTEIN",
         "PRP27-30",
         "PRP33-35C",
@@ -11960,8 +13214,6 @@
       "gene": "TP53",
       "aliases": [
         "TP53",
-        "DNA (5'- D(*TP*TP*TP*CP*CP*TP*AP*GP*AP*CP*TP*TP*GP*CP*CP*CP*A P*AP*TP*TP*A)- 3')",
-        "DNA (5'- D(*AP*TP*AP*AP*TP*TP*GP*GP*GP*CP*AP*AP*GP*TP*CP*TP*A P*GP*GP*AP*A)- 3')",
         "PROTEIN (P53 TUMOR SUPPRESSOR )"
       ],
       "organismName": "HOMO SAPIENS",
@@ -12066,14 +13318,11 @@
         "TNFRSF17",
         "TUMOR NECROSIS FACTOR LIGAND SUPERFAMILY MEMBER 13",
         "A PROLIFERATION-INDUCING LIGAND",
-        "APRIL",
         "TNFSF13B OR TALL-2",
         "TNFSF13",
         "TUMOR NECROSIS FACTOR RECEPTOR SUPERFAMILY MEMBER 17",
         "B-CELL MATURATION PROTEIN",
-        "TNFFSF17",
-        "BCM",
-        "BCMA"
+        "TNFFSF17"
       ],
       "organismName": "MUS MUSCULUS",
       "organismTaxId": 10090,
@@ -12112,9 +13361,7 @@
       "aliases": [
         "HPRT1",
         "HYPOXANTHINE-GUANINE PHOSPHORIBOSYLTRANSFERASE",
-        "HGPRT",
-        "HGPRTASE",
-        "HPRT"
+        "HGPRTASE"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -12151,14 +13398,9 @@
       "aliases": [
         "IL2RA",
         "INTERLEUKIN-2",
-        "IL-2",
         "T-CELL GROWTH FACTOR",
-        "TCGF",
         "ALDESLEUKIN",
-        "IL2",
-        "INTERLEUKIN-2 RECEPTOR ALPHA CHAIN",
         "IL-2 RECEPTOR ALPHA SUBUNIT",
-        "P55",
         "TAC ANTIGEN",
         "CD25 ANTIGEN"
       ],
@@ -12195,10 +13437,8 @@
         "ALDH2",
         "ALDEHYDE DEHYDROGENASE",
         "ALDH CLASS 2",
-        "ALDHI",
         "ALDH-E2",
-        "ALDH2*2",
-        "ALDM"
+        "ALDH2*2"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -12242,18 +13482,12 @@
       "gene": "KITLG",
       "aliases": [
         "KITLG",
-        "KIT",
-        "MAST/STEM CELL GROWTH FACTOR RECEPTOR",
-        "SCFR",
         "PROTO-ONCOGENE TYROSINE-PROTEIN KINASE KIT",
-        "C-KIT",
         "CD117 ANTIGEN",
         "KIT LIGAND",
         "C-KIT LIGAND",
         "STEM CELL FACTOR",
-        "SCF",
-        "MAST CELL GROWTH FACTOR",
-        "MGF"
+        "MAST CELL GROWTH FACTOR"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -12292,10 +13526,7 @@
         "PYRUVATE DEHYDROGENASE PROTEIN X COMPONENT",
         "DIHYDROLIPOAMIDE DEHYDROGENASE-BINDING PROTEIN OF PYRUVATE DEHYDROGENASE COMPLEX",
         "LIPOYL-CONTAINING PYRUVATE DEHYDROGENASE COMPLEX COMPONENT X",
-        "E3-BINDING PROTEIN",
-        "E3BP",
-        "PROX",
-        "PDX1"
+        "E3-BINDING PROTEIN"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -12328,10 +13559,7 @@
       "aliases": [
         "BRAF",
         "B-RAF PROTO-ONCOGENE SERINE/THREONINE-PROTEIN KINASE",
-        "P94",
-        "V-RAF MURINE SARCOMA VIRAL ONCOGENE HOMOLOG B1",
-        "BRAF1",
-        "RAFB1"
+        "V-RAF MURINE SARCOMA VIRAL ONCOGENE HOMOLOG B1"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -12366,9 +13594,7 @@
       "aliases": [
         "CFH",
         "COMPLEMENT FACTOR H",
-        "H FACTOR 1",
-        "HF",
-        "HF1"
+        "H FACTOR 1"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -12400,13 +13626,7 @@
       "target": "F10",
       "gene": "F10",
       "aliases": [
-        "F10",
-        "COAGULATION FACTOR X, STUART FACTOR, STUART-PROWER FACTOR, CONTAINS: FACTOR X LIGHT CHAIN FACTOR X HEAVY CHAIN ACTIVATED FACTOR XA HEAVY CHAIN",
-        "COAGULATION FACTOR, STUART FACTOR, STUART-PROWER FACTOR, CONTAINS: FACTOR X LIGHT CHAIN FACTOR X HEAVY CHAIN ACTIVATED FACTOR XA HEAVY CHAIN",
-        "ANTITHROMBIN-III",
-        "ATIII",
-        "SERPINC1",
-        "AT3"
+        "F10"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -12444,8 +13664,7 @@
         "IL10",
         "INTERLEUKIN-10",
         "IL-10",
-        "CYTOKINE SYNTHESIS INHIBITORY FACTOR",
-        "CSIF"
+        "CYTOKINE SYNTHESIS INHIBITORY FACTOR"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -12584,7 +13803,6 @@
         "SODIUM CHANNEL PROTEIN",
         "BRAIN II SUBUNIT ALPHA",
         "HBSC II",
-        "NAC2",
         "SCN2A1",
         "SCN2A2"
       ],
@@ -12619,14 +13837,10 @@
         "HMGB1",
         "HIGH MOBILITY GROUP PROTEIN B1",
         "HIGH MOBILITY GROUP PROTEIN 1",
-        "HMG-1",
-        "HMG1",
         "CELLULAR TUMOR ANTIGEN P53",
         "ANTIGEN NY-CO-13",
         "PHOSPHOPROTEIN P53",
-        "TUMOR SUPPRESSOR P53",
-        "P53",
-        "TP53"
+        "TUMOR SUPPRESSOR P53"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -12659,9 +13873,7 @@
         "SIGLEC8",
         "SIALIC ACID-BINDING IG-LIKE LECTIN 8",
         "SIGLEC-8",
-        "SIALOADHESIN FAMILY MEMBER 2",
-        "SAF-2",
-        "SAF2"
+        "SIALOADHESIN FAMILY MEMBER 2"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -12693,9 +13905,7 @@
       "aliases": [
         "SERPING1",
         "PLASMA PROTEASE C1 INHIBITOR",
-        "C1-INHIBITOR C1 INH C1INH C1 ESTERASE INHIBITOR C1- INHIBITING FACTOR",
-        "C1IN",
-        "C1NH"
+        "C1-INHIBITOR C1 INH C1INH C1 ESTERASE INHIBITOR C1- INHIBITING FACTOR"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -12728,12 +13938,9 @@
       "gene": "MMP8",
       "aliases": [
         "MMP8",
-        "NEUTROPHIL COLLAGENASE",
         "MATRIX METALLOPROTEINASE-8",
         "MMP-8",
-        "PMNL COLLAGENASE",
-        "PMNL- CL",
-        "CLG1"
+        "PMNL- CL"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -12771,8 +13978,6 @@
         "PROPROTEIN CONVERTASE PC9",
         "SUBTILISIN/KEXIN-LIKE PROTEASE PC9",
         "NEURAL APOPTOSIS-REGULATED CONVERTASE 1",
-        "NARC-1",
-        "NARC1",
         "PROPROTEIN CONVERTASE SUBTILISIN/KEXIN TYPE 9"
       ],
       "organismName": "HOMO SAPIENS",
@@ -12807,11 +14012,8 @@
       "gene": "SERPINA1",
       "aliases": [
         "SERPINA1",
-        "ALPHA-1-ANTITRYPSIN",
         "ALPHA-1 PROTEASE INHIBITOR",
-        "ALPHA-1-ANTIPROTEINASE",
-        "AAT",
-        "PI"
+        "ALPHA-1-ANTIPROTEINASE"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -12845,9 +14047,7 @@
       "aliases": [
         "CD55",
         "COMPLEMENT DECAY-ACCELERATING FACTOR",
-        "CD55 ANTIGEN",
-        "CR",
-        "DAF"
+        "CD55 ANTIGEN"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -12879,17 +14079,7 @@
       "gene": "PRSS1",
       "aliases": [
         "PRSS1",
-        "TRYPSIN-1",
-        "TRYPSIN I",
-        "CATIONIC TRYPSINOGEN",
-        "SERINE PROTEASE 1",
-        "TRP1",
-        "TRY1",
-        "TRYP1",
-        "PANCREATIC TRYPSIN INHIBITOR",
         "BASIC PROTEASE INHIBITOR",
-        "BPI",
-        "BPTI",
         "APROTININ"
       ],
       "organismName": "HOMO SAPIENS",
@@ -12923,8 +14113,7 @@
       "target": "REN",
       "gene": "REN",
       "aliases": [
-        "REN",
-        "RENIN"
+        "REN"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -12957,8 +14146,6 @@
       "gene": "TSHR",
       "aliases": [
         "TSHR",
-        "THYROID BLOCKING HUMAN AUTOANTIBODY K1-70 HEAVY CHAIN",
-        "THYROID BLOCKING HUMAN AUTOANTIBODY K1-70 LIGHT CHAIN",
         "THYROTROPIN RECEPTOR",
         "THYROID-STIMULATING HORMONE RECEPTOR",
         "TSH-R"
@@ -12995,7 +14182,6 @@
       "aliases": [
         "VDR",
         "VITAMIN D3 RECEPTOR",
-        "1",
         "25-DIHYDROXYVITAMIN D3 RECEPTOR",
         "NUCLEAR RECEPTOR SUBFAMILY 1 GROUP I MEMBER 1"
       ],
@@ -13032,16 +14218,10 @@
         "PTK2B",
         "PROTEIN TYROSINE KINASE 2 BETA",
         "FOCAL ADHESION KINASE 2",
-        "FADK 2",
         "PROLINE-RICH TYROSINE KINASE 2",
         "CELL ADHESION KINASE BETA",
-        "CAK BETA",
         "CALCIUM-DEPENDENT TYROSINE KINASE",
-        "CADTK",
-        "RELATED ADHESION FOCAL TYROSINE KINASE",
-        "RAFTK",
-        "FAK2",
-        "PYK2"
+        "RELATED ADHESION FOCAL TYROSINE KINASE"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -13077,7 +14257,6 @@
         "E3 UBIQUITIN-PROTEIN LIGASE HECTD1",
         "HECT DOMAIN-CONTAINING PROTEIN 1",
         "E3 LIGASE FOR INHIBIN RECEPTOR",
-        "EULIR",
         "KIAA1131"
       ],
       "organismName": "HOMO SAPIENS",
@@ -13147,8 +14326,7 @@
         "BONE MORPHOGENETIC PROTEIN RECEPTOR TYPE-2",
         "BONE MORPHOGENETIC PROTEIN RECEPTOR TYPE II",
         "BMP TYPE II RECEPTOR",
-        "BMPR-II",
-        "PPH1"
+        "BMPR-II"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -13185,8 +14363,6 @@
         "MICROTUBULE-ASSOCIATED PROTEIN RP/EB FAMILY MEMBER 1",
         "APC-BINDING PROTEIN EB1",
         "END-BINDING PROTEIN 1",
-        "EB1",
-        "MAPRE1",
         "DYSTONIN"
       ],
       "organismName": "HOMO SAPIENS",
@@ -13228,10 +14404,7 @@
       "aliases": [
         "THRB",
         "THYROID HORMONE RECEPTOR BETA",
-        "NUCLEAR RECEPTOR SUBFAMILY 1 GROUP A MEMBER 2",
-        "ERBA2",
-        "NR1A2",
-        "THR1"
+        "NUCLEAR RECEPTOR SUBFAMILY 1 GROUP A MEMBER 2"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -13264,10 +14437,7 @@
       "gene": "CHEK2",
       "aliases": [
         "CHEK2",
-        "SERINE/THREONINE-PROTEIN KINASE CHK2",
-        "CDS1",
-        "CHK2",
-        "RAD53"
+        "SERINE/THREONINE-PROTEIN KINASE CHK2"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -13302,9 +14472,7 @@
       "aliases": [
         "ADA2",
         "ADENOSINE DEAMINASE CECR1",
-        "CAT EYE SYNDROME CRITICAL REGION PROTEIN 1",
-        "CECR1",
-        "IDGFL"
+        "CAT EYE SYNDROME CRITICAL REGION PROTEIN 1"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -13338,15 +14506,8 @@
       "gene": "ADRB2",
       "aliases": [
         "ADRB2",
-        "BETA-2 ADRENERGIC RECEPTOR, LYSOZYME",
-        "BETA-2 ADRENORECEPTOR",
         "BETA-2 ADRENOCEPTOR",
-        "LYSIS PROTEIN",
-        "MURAMIDASE",
-        "ENDOLYSIN",
-        "ADRB2R",
-        "B2AR",
-        "E"
+        "ADRB2R"
       ],
       "organismName": "HOMO SAPIENS, ENTEROBACTERIA PHAGE T4",
       "organismTaxId": 9606,
@@ -13381,9 +14542,7 @@
         "RAF1",
         "RAF PROTO-ONCOGENE SERINE/THREONINE-PROTEIN KINASE",
         "PROTO-ONCOGENE C-RAF",
-        "CRAF",
-        "RAF-1",
-        "RAF"
+        "RAF-1"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -13419,8 +14578,7 @@
         "CTLA4",
         "CYTOTOXIC T-LYMPHOCYTE PROTEIN 4",
         "CYTOTOXIC T-LYMPHOCYTE-ASSOCIATED ANTIGEN 4",
-        "CTLA-4",
-        "CD152"
+        "CTLA-4"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -13491,10 +14649,7 @@
       "aliases": [
         "RB1",
         "RETINOBLASTOMA-ASSOCIATED PROTEIN",
-        "P105-RB",
-        "PRB",
-        "RB",
-        "PP110"
+        "P105-RB"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -13529,13 +14684,8 @@
       "aliases": [
         "CALR",
         "CALRETICULIN",
-        "CRP55",
         "CALREGULIN",
-        "ENDOPLASMIC RETICULUM RESIDENT PROTEIN 60",
-        "ERP60",
-        "HACBP",
-        "GRP60",
-        "CRTC"
+        "ENDOPLASMIC RETICULUM RESIDENT PROTEIN 60"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -13571,20 +14721,11 @@
         "VESICLE-ASSOCIATED MEMBRANE PROTEIN 2",
         "VAMP-2",
         "SYNAPTOBREVIN-2",
-        "SYB2",
-        "SYNTAXIN-1A",
         "NEURON-SPECIFIC ANTIGEN HPC-1",
         "SYNAPTOTAGMIN-ASSOCIATED 35 KDA PROTEIN",
-        "P35A",
-        "STX1A",
-        "SAP",
         "SYNAPTOSOMAL-ASSOCIATED PROTEIN 25",
-        "SNAP-25",
         "SUPER PROTEIN",
-        "SUP",
-        "SYNAPTOSOMAL-ASSOCIATED 25 KDA PROTEIN",
-        "SNAP25",
-        "SNAP"
+        "SYNAPTOSOMAL-ASSOCIATED 25 KDA PROTEIN"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -13621,9 +14762,7 @@
         "CARDIAC-SPECIFIC HOMEOBOX",
         "HOMEOBOX PROTEIN CSX",
         "HOMEOBOX PROTEIN NK-2 HOMOLOG E",
-        "CSX",
         "NKX2.5",
-        "NKX2E",
         "ANF-242 DNA"
       ],
       "organismName": "HOMO SAPIENS",
@@ -13657,12 +14796,8 @@
       "gene": "MMP1",
       "aliases": [
         "MMP1",
-        "INTERSTITIAL COLLAGENASE",
         "MMP-1",
-        "MATRIX METALLOPROTEINASE-1",
-        "22 KDA INTERSTITIAL COLLAGENASE",
-        "FIBROBLAST COLLAGENASE",
-        "CLG"
+        "MATRIX METALLOPROTEINASE-1"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -13697,16 +14832,10 @@
       "gene": "IL21",
       "aliases": [
         "IL21",
-        "INTERLEUKIN-21 RECEPTOR",
         "IL-21 RECEPTOR",
-        "IL-21R",
-        "NOVEL INTERLEUKIN RECEPTOR",
-        "IL21R",
-        "NILR",
         "UNQ3121/PRO10273",
         "INTERLEUKIN-21",
-        "IL-21",
-        "ZA11"
+        "IL-21"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -13789,9 +14918,7 @@
         "F2 / thrombin",
         "F2",
         "thrombin",
-        "PROTHROMBIN",
-        "THROMBIN LIGHT CHAIN",
-        "THROMBIN HEAVY CHAIN"
+        "PROTHROMBIN"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -13824,9 +14951,7 @@
       "target": "MEN1",
       "gene": "MEN1",
       "aliases": [
-        "MEN1",
-        "MENIN",
-        "SCG2"
+        "MEN1"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -13859,9 +14984,7 @@
       "target": "CHRM2",
       "gene": "CHRM2",
       "aliases": [
-        "CHRM2",
-        "HUMAN M2 MUSCARINIC ACETYLCHOLINE, RECEPTOR T4 LYSOZYME FUSION PROTEIN",
-        "E"
+        "CHRM2"
       ],
       "organismName": "HOMO SAPIENS, ENTEROBACTERIA PHAGE T4",
       "organismTaxId": 9606,
@@ -13896,8 +15019,7 @@
         "FLCN",
         "FOLLICULIN",
         "BHD SKIN LESION FIBROFOLLICULOMA PROTEIN",
-        "BIRT-HOGG-DUBE SYNDROME PROTEIN",
-        "BHD"
+        "BIRT-HOGG-DUBE SYNDROME PROTEIN"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -13976,8 +15098,7 @@
         "GAMMA-AMINOBUTYRIC ACID RECEPTOR SUBUNIT BETA-3",
         "GABA(A) RECEPTOR SUBUNIT BETA-3",
         "GABA RECEPTOR",
-        "IONOTROPIC",
-        "BETA-3"
+        "IONOTROPIC"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -14048,20 +15169,10 @@
       "gene": "FGFR1",
       "aliases": [
         "FGFR1",
-        "FIBROBLAST GROWTH FACTOR RECEPTOR 1",
         "FGFR-1",
-        "BASIC FIBROBLAST GROWTH FACTOR RECEPTOR 1",
-        "BFGFR",
         "BFGF-R-1",
         "FMS-LIKE TYROSINE KINASE 2",
-        "FLT-2",
-        "N-SAM",
-        "PROTO-ONCOGENE C- FGR",
-        "CEK",
-        "FGFBR",
-        "FLG",
-        "FLT2",
-        "HBGFR"
+        "PROTO-ONCOGENE C- FGR"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -14097,10 +15208,7 @@
         "TOP2A",
         "DNA TOPOISOMERASE 2-ALPHA",
         "DNA TOPOISOMERASE II",
-        "ALPHA ISOZYME",
-        "TOP2",
-        "DNA (5'-D(P*GP*AP*GP*GP*AP*TP*GP*AP*CP*GP*AP*TP*G)-3')",
-        "DNA (5'- D(*CP*GP*CP*GP*CP*AP*TP*CP*GP*TP*CP*AP*TP*CP*CP*TP*C)-3')"
+        "ALPHA ISOZYME"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -14133,10 +15241,8 @@
       "gene": "MMP13",
       "aliases": [
         "MMP13",
-        "COLLAGENASE 3",
         "MATRIX METALLOPROTEINASE-13",
-        "MMP-13",
-        "COLLAGENASE 3, PRO-DOMAIN PEPTIDE"
+        "MMP-13"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -14171,15 +15277,7 @@
       "target": "HBB",
       "gene": "HBB",
       "aliases": [
-        "HBB",
-        "HEMOGLOBIN SUBUNIT ALPHA",
-        "ALPHA-GLOBIN",
-        "HEMOGLOBIN ALPHA CHAIN",
-        "HBA1",
-        "HBA2",
-        "HEMOGLOBIN SUBUNIT BETA",
-        "BETA-GLOBIN",
-        "HEMOGLOBIN BETA CHAIN"
+        "HBB"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -14216,12 +15314,8 @@
       "aliases": [
         "IL17A",
         "INTERLEUKIN-17A",
-        "IL-17",
         "IL-17A",
-        "CYTOTOXIC T-LYMPHOCYTE-ASSOCIATED ANTIGEN 8",
-        "CTLA-8",
-        "CTLA8",
-        "IL17"
+        "CYTOTOXIC T-LYMPHOCYTE-ASSOCIATED ANTIGEN 8"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -14258,10 +15352,7 @@
         "(2-5')OLIGO(A) SYNTHASE 1",
         "2-5A SYNTHASE 1",
         "E18/E16",
-        "P46/P42 OAS",
-        "OIAS",
-        "RNA (5'- R(*GP*GP*CP*UP*UP*UP*UP*GP*AP*CP*CP*UP*UP*UP*AP*UP*GP*C)-3')",
-        "RNA (5'- R(*GP*CP*AP*UP*AP*AP*AP*GP*GP*UP*CP*AP*AP*AP*AP*GP*CP*C)-3')"
+        "P46/P42 OAS"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -14295,12 +15386,8 @@
       "aliases": [
         "GRIK1",
         "GLUTAMATE RECEPTOR IONOTROPIC, KAINATE 1",
-        "GLUK1",
         "EXCITATORY AMINO ACID RECEPTOR 3",
-        "EAA3",
-        "GLUTAMATE RECEPTOR 5",
-        "GLUR-5",
-        "GLUR5"
+        "GLUTAMATE RECEPTOR 5"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -14342,21 +15429,16 @@
         "NEONATAL FC RECEPTOR",
         "BETA-2-MICROGLOBULIN",
         "BETA-2-MICROGLOBULIN FORM PI 5.3",
-        "B2M",
         "CDABP0092",
         "HDCMA22P",
         "SERUM ALBUMIN",
-        "ALB",
-        "GIG20",
-        "GIG42",
         "PRO0903",
         "PRO1708",
         "PRO2044",
         "PRO2619",
         "PRO2675",
         "UNQ696/PRO1341",
-        "IG GAMMA-1 CHAIN C REGION",
-        "IGHG1"
+        "IG GAMMA-1 CHAIN C REGION"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -14389,14 +15471,9 @@
       "aliases": [
         "KRAS",
         "GTPASE KRAS",
-        "'K-RAS 2",
-        "KI-RAS",
-        "C-K-RAS",
         "C-KI-RAS",
         "N- TERMINALLY PROCESSED",
-        "V-KI-RAS2 KIRSTEN RAT SARCOMA VIRAL ONCOGENE HOMOLOG",
-        "KRAS2",
-        "RASK2"
+        "V-KI-RAS2 KIRSTEN RAT SARCOMA VIRAL ONCOGENE HOMOLOG"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -14431,15 +15508,9 @@
       "aliases": [
         "NR3C1",
         "GLUCOCORTICOID RECEPTOR",
-        "GR",
         "NUCLEAR RECEPTOR SUBFAMILY 3 GROUP C MEMBER 1",
-        "GRL",
-        "NUCLEAR RECEPTOR COACTIVATOR 2",
-        "NCOA-2",
         "CLASS E BASIC HELIX-LOOP-HELIX PROTEIN 75",
-        "BHLHE75",
-        "TRANSCRIPTIONAL INTERMEDIARY FACTOR 2",
-        "HTIF2"
+        "TRANSCRIPTIONAL INTERMEDIARY FACTOR 2"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -14480,16 +15551,10 @@
         "COHESIN SUBUNIT SA-2",
         "SCC3 HOMOLOG 2",
         "STROMAL ANTIGEN 2",
-        "SA2",
         "DOUBLE-STRAND-BREAK REPAIR PROTEIN RAD21 HOMOLOG",
-        "HHR21",
         "NUCLEAR MATRIX PROTEIN 1",
-        "NXP-1",
         "SCC1 HOMOLOG",
-        "RAD21",
-        "HR21",
-        "KIAA0078",
-        "NXP1"
+        "KIAA0078"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -14523,13 +15588,9 @@
       "aliases": [
         "AXL",
         "GROWTH ARREST-SPECIFIC PROTEIN 6",
-        "GAS-6",
         "AXL RECEPTOR TYROSINE KINASE LIGAND",
-        "GAS6",
-        "AXLLG",
         "TYROSINE-PROTEIN KINASE RECEPTOR UFO",
-        "AXL ONCOGENE",
-        "UFO"
+        "AXL ONCOGENE"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -14570,12 +15631,8 @@
         "PROTO-ONCOGENE C-RET",
         "RET RECEPTOR TYROSINE KINASE",
         "GDNF FAMILY RECEPTOR ALPHA-1",
-        "GFR ALPHA 1",
         "GLIAL CELL LINE-DERIVED NEUROTROPHIC FACTOR",
-        "HGDNF",
-        "ASTROCYTE-DERIVED TROPHIC FACTOR",
-        "ATF",
-        "GDNF"
+        "ASTROCYTE-DERIVED TROPHIC FACTOR"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -14609,15 +15666,7 @@
       "gene": "FGFR2",
       "aliases": [
         "FGFR2",
-        "FIBROBLAST GROWTH FACTOR RECEPTOR 2",
-        "FGFR-2",
-        "K-SAM",
-        "KGFR",
-        "KERATINOCYTE GROWTH FACTOR RECEPTOR",
-        "BEK",
-        "KSAM",
-        "FAB HEAVY CHAIN",
-        "FAB LIGHT CHAIN"
+        "FGFR-2"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -14655,9 +15704,7 @@
         "MYOC",
         "MYOCILIN",
         "MYOCILIN 55 KDA SUBUNIT",
-        "TRABECULAR MESHWORK-INDUCED GLUCOCORTICOID RESPONSE PROTEIN",
-        "GLC1A",
-        "TIGR"
+        "TRABECULAR MESHWORK-INDUCED GLUCOCORTICOID RESPONSE PROTEIN"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -14690,16 +15737,9 @@
       "gene": "AGTR1",
       "aliases": [
         "AGTR1",
-        "SOLUBLE CYTOCHROME B562,TYPE-1 ANGIOTENSIN II RECEPTOR",
-        "CYTOCHROME B-562",
-        "AT1AR",
-        "AT1BR",
         "ANGIOTENSIN II TYPE-1 RECEPTOR",
-        "AT1",
-        "CYBC",
         "AGTR1A",
         "AGTR1B",
-        "AT2R1",
         "AT2R1B"
       ],
       "organismName": "ESCHERICHIA COLI, HOMO SAPIENS",
@@ -14734,11 +15774,7 @@
       "aliases": [
         "ODC1",
         "ORNITHINE DECARBOXYLASE",
-        "ODC",
-        "ORNITHINE DECARBOXYLASE ANTIZYME 1",
-        "ODC-AZ",
-        "OAZ1",
-        "OAZ"
+        "ORNITHINE DECARBOXYLASE ANTIZYME 1"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -14771,22 +15807,7 @@
       "gene": "KRT10",
       "aliases": [
         "KRT10",
-        "KERATIN, TYPE I CYTOSKELETAL 10",
-        "CYTOKERATIN-10",
-        "CK-10",
-        "KERATIN-10",
-        "K10",
-        "KPP",
-        "KERATIN, TYPE II CYTOSKELETAL 1",
-        "67 KDA CYTOKERATIN",
-        "CYTOKERATIN-1",
-        "CK-1",
-        "HAIR ALPHA PROTEIN",
-        "KERATIN-1",
-        "K1",
-        "TYPE-II KERATIN KB1",
-        "KRT1",
-        "KRTA"
+        "HAIR ALPHA PROTEIN"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -14819,12 +15840,9 @@
       "aliases": [
         "IDH1",
         "ISOCITRATE DEHYDROGENASE [NADP] CYTOPLASMIC",
-        "IDH",
         "CYTOSOLIC NADP-ISOCITRATE DEHYDROGENASE",
-        "IDP",
         "NADP(+)- SPECIFIC ICDH",
-        "OXALOSUCCINATE DECARBOXYLASE",
-        "PICD"
+        "OXALOSUCCINATE DECARBOXYLASE"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -14859,12 +15877,9 @@
       "aliases": [
         "SERPING1",
         "PLASMA PROTEASE C1 INHIBITOR",
-        "C1INH",
         "C1 ESTERASE INHIBITOR",
         "C1-INHIBITING FACTOR",
-        "SERPIN G1",
-        "C1IN",
-        "C1NH"
+        "SERPIN G1"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -14900,12 +15915,8 @@
         "PTGS2",
         "PROSTAGLANDIN G/H SYNTHASE 2",
         "CYCLOOXYGENASE-2",
-        "COX-2",
-        "PHS II",
         "PROSTAGLANDIN H2 SYNTHASE 2",
-        "PGHS-2",
-        "PROSTAGLANDIN-ENDOPEROXIDE SYNTHASE 2",
-        "COX2"
+        "PROSTAGLANDIN-ENDOPEROXIDE SYNTHASE 2"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -14943,11 +15954,7 @@
         "SERT",
         "SODIUM-DEPENDENT SEROTONIN TRANSPORTER",
         "5HT TRANSPORTER",
-        "5HTT",
-        "SOLUTE CARRIER FAMILY 6 MEMBER 4",
-        "HTT",
-        "8B6 ANTIBODY, HEAVY CHAIN",
-        "8B6 ANTIBODY, LIGHT CHAIN"
+        "SOLUTE CARRIER FAMILY 6 MEMBER 4"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -14981,17 +15988,10 @@
       "aliases": [
         "TSLP",
         "THYMIC STROMAL LYMPHOPOIETIN",
-        "INTERLEUKIN-7 RECEPTOR SUBUNIT ALPHA",
-        "IL7R",
         "CYTOKINE RECEPTOR-LIKE FACTOR 2",
         "CYTOKINE RECEPTOR-LIKE 2",
-        "IL-XR",
         "THYMIC STROMAL LYMPHOPOIETIN PROTEIN RECEPTOR",
-        "TSLP RECEPTOR",
-        "CRLF2",
-        "CRL2",
-        "ILXR",
-        "TSLPR"
+        "TSLP RECEPTOR"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -15060,15 +16060,11 @@
       "gene": "NTRK2",
       "aliases": [
         "NTRK2",
-        "AB20 FAB HEAVY CHAIN",
-        "AB20 FAB LIGHT CHAIN",
         "BDNF/NT-3 GROWTH FACTORS RECEPTOR",
         "GP145-TRKB",
-        "TRK-B",
         "NEUROTROPHIC TYROSINE KINASE RECEPTOR TYPE 2",
         "TRKB TYROSINE KINASE",
-        "TROPOMYOSIN-RELATED KINASE B",
-        "TRKB"
+        "TROPOMYOSIN-RELATED KINASE B"
       ],
       "organismName": "MUS MUSCULUS",
       "organismTaxId": 10090,
@@ -15101,8 +16097,7 @@
       "gene": "FBN1",
       "aliases": [
         "FBN1",
-        "FIBRILLIN-1",
-        "FBN"
+        "FIBRILLIN-1"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -15132,8 +16127,7 @@
       "target": "COL4A1",
       "gene": "COL4A1",
       "aliases": [
-        "COL4A1",
-        "COLLAGEN ALPHA-1(IV) CHAIN"
+        "COL4A1"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -15171,11 +16165,8 @@
       "gene": "DRD4",
       "aliases": [
         "DRD4",
-        "D(4) DOPAMINE RECEPTOR, SOLUBLE CYTOCHROME B562 CHIMERA",
         "D(2C) DOPAMINE RECEPTOR",
-        "DOPAMINE D4 RECEPTOR",
-        "CYTOCHROME B- 562",
-        "CYBC"
+        "DOPAMINE D4 RECEPTOR"
       ],
       "organismName": "HOMO SAPIENS, ESCHERICHIA COLI",
       "organismTaxId": 9606,
@@ -15207,12 +16198,7 @@
       "target": "CNR1",
       "gene": "CNR1",
       "aliases": [
-        "CNR1",
-        "CANNABINOID RECEPTOR 1,FLAVODOXIN,CANNABINOID RECEPTOR 1",
-        "CB1",
-        "CANN6",
-        "CNR",
-        "DVU_2680"
+        "CNR1"
       ],
       "organismName": "HOMO SAPIENS, DESULFOVIBRIO VULGARIS (STRAIN HILDENBOROUGH / ATCC 29579 / DSM 644 / NCIMB 8303)",
       "organismTaxId": 9606,
@@ -15251,8 +16237,7 @@
         "POTASSIUM-TRANSPORTING ATPASE SUBUNIT BETA",
         "GASTRIC H(+)/K(+) ATPASE SUBUNIT BETA",
         "PROTON PUMP BETA CHAIN",
-        "GP60-90",
-        "ATP4B"
+        "GP60-90"
       ],
       "organismName": "SUS SCROFA",
       "organismTaxId": 9823,
@@ -15288,16 +16273,10 @@
         "ENDORIBONUCLEASE DICER",
         "HELICASE WITH RNASE MOTIF",
         "HELICASE MOI",
-        "DICER",
-        "HERNA",
         "KIAA0928",
         "RISC-LOADING COMPLEX SUBUNIT TARBP2",
-        "TTRBP",
         "AR RNA-BINDING PROTEIN 2",
         "TRANS-ACTIVATION-RESPONSIVE RNA-BINDING PROTEIN",
-        "TARBP2",
-        "TRBP",
-        "RNA (73-MER)",
         "PRELET7"
       ],
       "organismName": "HOMO SAPIENS",
@@ -15332,14 +16311,8 @@
       "aliases": [
         "PLAT",
         "PLASMINOGEN ACTIVATOR INHIBITOR 1",
-        "PAI-1",
         "ENDOTHELIAL PLASMINOGEN ACTIVATOR INHIBITOR",
-        "SERPIN E1",
-        "SERPINE1",
-        "PAI1",
-        "PLANH1",
-        "TISSUE-TYPE PLASMINOGEN ACTIVATOR",
-        "TPA"
+        "TISSUE-TYPE PLASMINOGEN ACTIVATOR"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -15373,12 +16346,7 @@
       "gene": "HTR2A",
       "aliases": [
         "HTR2A",
-        "5-HYDROXYTRYPTAMINE RECEPTOR 2A,SOLUBLE CYTOCHROME B562",
-        "5-HT-2A",
-        "SEROTONIN RECEPTOR 2A",
-        "CYTOCHROME B-562",
-        "HTR2",
-        "CYBC"
+        "SEROTONIN RECEPTOR 2A"
       ],
       "organismName": "HOMO SAPIENS, ESCHERICHIA COLI",
       "organismTaxId": 9606,
@@ -15412,10 +16380,7 @@
       "gene": "GNAS",
       "aliases": [
         "GNAS",
-        "GUANINE NUCLEOTIDE-BINDING PROTEIN G(S) SUBUNIT ALPHA ISOFORMS SHORT",
-        "ADENYLATE CYCLASE-STIMULATING G ALPHA PROTEIN",
-        "GNAS1",
-        "GSP"
+        "ADENYLATE CYCLASE-STIMULATING G ALPHA PROTEIN"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -15448,12 +16413,7 @@
       "gene": "DRD2",
       "aliases": [
         "DRD2",
-        "D(2) DOPAMINE RECEPTOR, ENDOLYSIN CHIMERA",
         "DOPAMINE D2 RECEPTOR",
-        "LYSIS PROTEIN",
-        "LYSOZYME",
-        "MURAMIDASE",
-        "E",
         "T4TP126"
       ],
       "organismName": "HOMO SAPIENS, ENTEROBACTERIA PHAGE T4",
@@ -15487,18 +16447,13 @@
       "gene": "NTRK1",
       "aliases": [
         "NTRK1",
-        "HIGH AFFINITY NERVE GROWTH FACTOR RECEPTOR",
         "NEUROTROPHIC TYROSINE KINASE RECEPTOR TYPE 1",
         "TRK1- TRANSFORMING TYROSINE KINASE PROTEIN",
         "TROPOMYOSIN-RELATED KINASE A",
         "TYROSINE KINASE RECEPTOR",
         "TYROSINE KINASE RECEPTOR A",
-        "TRK-A",
         "GP140TRK",
-        "P140-TRKA",
-        "MTC",
-        "TRK",
-        "TRKA"
+        "P140-TRKA"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -15530,15 +16485,7 @@
       "target": "COL3A1",
       "gene": "COL3A1",
       "aliases": [
-        "COL3A1",
-        "COLLAGEN ALPHA-1(III) CHAIN",
-        "PROCOLLAGEN C-ENDOPEPTIDASE ENHANCER 1",
-        "PROCOLLAGEN COOH-TERMINAL PROTEINASE ENHANCER 1",
-        "PROCOLLAGEN C-PROTEINASE ENHANCER 1",
-        "TYPE 1 PROCOLLAGEN C-PROTEINASE ENHANCER PROTEIN",
-        "TYPE I PROCOLLAGEN COOH-TERMINAL PROTEINASE ENHANCER",
-        "PCOLCE",
-        "PCPE1"
+        "COL3A1"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -15575,13 +16522,9 @@
         "SUCLG1",
         "SUCCINATE--COA LIGASE [ADP/GDP-FORMING] SUBUNIT ALPHA, MITOCHONDRIAL",
         "SUCCINYL-COA SYNTHETASE SUBUNIT ALPHA",
-        "SCS-ALPHA",
         "SUCCINATE--COA LIGASE [ADP-FORMING] SUBUNIT BETA, MITOCHONDRIAL",
         "ATP-SPECIFIC SUCCINYL-COA SYNTHETASE SUBUNIT BETA",
-        "A-SCS",
-        "SUCCINYL-COA SYNTHETASE BETA-A CHAIN",
-        "SCS-BETAA",
-        "SUCLA2"
+        "SUCCINYL-COA SYNTHETASE BETA-A CHAIN"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -15652,22 +16595,15 @@
       "aliases": [
         "GUCY1A1",
         "GUANYLATE CYCLASE SOLUBLE SUBUNIT ALPHA-1",
-        "GCS-ALPHA-1",
         "GUANYLATE CYCLASE SOLUBLE SUBUNIT ALPHA-3",
-        "GCS- ALPHA-3",
         "SOLUBLE GUANYLATE CYCLASE LARGE SUBUNIT",
         "GUC1A3",
         "GUCSA3",
         "GUCY1A3",
         "GUANYLATE CYCLASE SOLUBLE SUBUNIT BETA-1",
-        "GCS-BETA-1",
         "GUANYLATE CYCLASE SOLUBLE SUBUNIT BETA-3",
-        "GCS- BETA-3",
         "SOLUBLE GUANYLATE CYCLASE SMALL SUBUNIT",
-        "GUCY1B1",
-        "GUC1B3",
-        "GUCSB3",
-        "GUCY1B3"
+        "GUCSB3"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -15700,30 +16636,11 @@
       "gene": "ADRA2B",
       "aliases": [
         "ADRA2B",
-        "GUANINE NUCLEOTIDE-BINDING PROTEIN G(O) SUBUNIT ALPHA",
-        "GNAO1",
-        "GUANINE NUCLEOTIDE-BINDING PROTEIN G(I)/G(S)/G(T) SUBUNIT BETA-1",
-        "TRANSDUCIN BETA CHAIN 1",
-        "GNB1",
-        "GUANINE NUCLEOTIDE-BINDING PROTEIN G(I)/G(S)/G(O) SUBUNIT GAMMA-2",
         "G GAMMA-I",
-        "GNG2",
-        "ALPHA-2A ADRENERGIC RECEPTOR,ENDOLYSIN,ALPHA-2B ADRENERGIC RECEPTOR,ALPHA-2B ADRENERGIC RECEPTOR",
-        "ALPHA-2A ADRENORECEPTOR",
-        "ALPHA-2AAR",
-        "ALPHA-2D ADRENERGIC RECEPTOR",
-        "LYSIS PROTEIN",
-        "LYSOZYME",
-        "MURAMIDASE",
-        "ALPHA-2 ADRENERGIC RECEPTOR SUBTYPE C2",
-        "ALPHA-2B ADRENORECEPTOR",
-        "ALPHA-2BAR",
         "ADRA2A",
-        "E",
         "RB59_126",
         "ADRA2L1",
-        "ADRA2RL1",
-        "SCFV"
+        "ADRA2RL1"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -15793,7 +16710,6 @@
         "CACNA1G",
         "VOLTAGE-DEPENDENT T-TYPE CALCIUM CHANNEL SUBUNIT ALPHA-1G",
         "CAV3.1C",
-        "NBR13",
         "VOLTAGE-GATED CALCIUM CHANNEL SUBUNIT ALPHA CAV3.1",
         "KIAA1123"
       ],
@@ -15828,11 +16744,9 @@
       "gene": "PROC",
       "aliases": [
         "PROC",
-        "VITAMIN K-DEPENDENT PROTEIN C HEAVY CHAIN",
         "ANTICOAGULANT PROTEIN C",
         "AUTOPROTHROMBIN IIA",
         "BLOOD COAGULATION FACTOR XIV",
-        "VITAMIN K-DEPENDENT PROTEIN C LIGHT CHAIN",
         "C25K23 FAB L CHAIN",
         "C25K23 FAB H CHAIN"
       ],
@@ -15871,7 +16785,6 @@
         "ATP-BINDING CASSETTE SUB-FAMILY C MEMBER 7",
         "CHANNEL CONDUCTANCE-CONTROLLING ATPASE",
         "CAMP-DEPENDENT CHLORIDE CHANNEL",
-        "ABCC7",
         "PIECE OF MOLECULE-1"
       ],
       "organismName": "HOMO SAPIENS",
@@ -15909,9 +16822,7 @@
         "PLASMA KALLIKREIN",
         "FLETCHER FACTOR",
         "KININOGENIN",
-        "PLASMA PREKALLIKREIN",
-        "PKK",
-        "KLK3"
+        "PLASMA PREKALLIKREIN"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -15944,8 +16855,7 @@
       "gene": "MYH7",
       "aliases": [
         "MYH7",
-        "MYOSIN-7 FUSED TO GP7 AND EB1",
-        "MYHCB"
+        "MYOSIN-7 FUSED TO GP7 AND EB1"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -15984,9 +16894,7 @@
         "PHOSPHATIDYLCHOLINE TRANSLOCATOR ABCB4",
         "ATP-BINDING CASSETTE SUB-FAMILY B MEMBER 4",
         "MULTIDRUG RESISTANCE PROTEIN 3",
-        "P-GLYCOPROTEIN 3",
-        "MDR3",
-        "PGY3"
+        "P-GLYCOPROTEIN 3"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -16058,8 +16966,7 @@
         "SKELETAL MUSCLE RYANODINE RECEPTOR",
         "SKELETAL MUSCLE-TYPE RYANODINE RECEPTOR",
         "TYPE 1 RYANODINE RECEPTOR",
-        "BT_2247",
-        "RYDR"
+        "BT_2247"
       ],
       "organismName": "BACTEROIDES THETAIOTAOMICRON (STRAIN ATCC 29148 / DSM 2079 / NCTC 10582 / E50 / VPI-5482), HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -16133,12 +17040,8 @@
         "GABA(A) RECEPTOR SUBUNIT BETA-2",
         "GAMMA-AMINOBUTYRIC ACID RECEPTOR SUBUNIT ALPHA-1",
         "GABA(A) RECEPTOR SUBUNIT ALPHA-1",
-        "GABRA1",
         "GAMMA-AMINOBUTYRIC ACID RECEPTOR SUBUNIT GAMMA-2",
-        "GABA(A) RECEPTOR SUBUNIT GAMMA-2",
-        "GABRG2",
-        "KAPPA FAB LIGHT CHAIN",
-        "IGG2B FAB HEAVY CHAIN"
+        "GABA(A) RECEPTOR SUBUNIT GAMMA-2"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -16173,26 +17076,12 @@
       "aliases": [
         "AVPR2",
         "VASOPRESSIN V2 RECEPTOR",
-        "V2R",
         "AVPR V2",
         "ANTIDIURETIC HORMONE RECEPTOR",
         "RENAL-TYPE ARGININE VASOPRESSIN RECEPTOR",
-        "ADHR",
-        "DIR",
-        "DIR3",
-        "GUANINE NUCLEOTIDE-BINDING PROTEIN G(I)/G(S)/G(T) SUBUNIT BETA-1",
-        "TRANSDUCIN BETA CHAIN 1",
-        "GNB1",
-        "GUANINE NUCLEOTIDE-BINDING PROTEIN G(S) SUBUNIT ALPHA ISOFORMS SHORT",
         "ADENYLATE CYCLASE-STIMULATING G ALPHA PROTEIN",
-        "GNAS",
-        "GNAS1",
-        "GSP",
-        "GUANINE NUCLEOTIDE-BINDING PROTEIN G(I)/G(S)/G(O) SUBUNIT GAMMA-2",
         "G GAMMA-I",
-        "GNG2",
-        "ARGININE-VASOPRESSIN",
-        "NANOBODY 35"
+        "ARGININE-VASOPRESSIN"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -16227,9 +17116,6 @@
         "TOLL-LIKE RECEPTOR 7",
         "UNQ248/PRO285",
         "PROTEIN UNC-93 HOMOLOG B1",
-        "HUNC93B1",
-        "UNC93B1",
-        "UNC93",
         "UNC93B"
       ],
       "organismName": "HOMO SAPIENS",
@@ -16265,13 +17151,10 @@
       "aliases": [
         "SCN1A",
         "SODIUM CHANNEL SUBUNIT BETA-4",
-        "SCN4B",
         "SODIUM CHANNEL PROTEIN TYPE 1 SUBUNIT ALPHA",
         "SODIUM CHANNEL PROTEIN BRAIN I SUBUNIT ALPHA",
         "SODIUM CHANNEL PROTEIN TYPE I SUBUNIT ALPHA",
-        "VOLTAGE-GATED SODIUM CHANNEL SUBUNIT ALPHA NAV1.1",
-        "NAC1",
-        "SCN1"
+        "VOLTAGE-GATED SODIUM CHANNEL SUBUNIT ALPHA NAV1.1"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -16307,12 +17190,7 @@
         "LHCGR",
         "LUTROPIN-CHORIOGONADOTROPIC HORMONE RECEPTOR",
         "LH/CG-R",
-        "LUTEINIZING HORMONE RECEPTOR",
-        "LHR",
-        "LSH-R",
-        "LCGR",
-        "LGR2",
-        "LHRHR"
+        "LUTEINIZING HORMONE RECEPTOR"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -16417,21 +17295,7 @@
       "target": "SPINK1",
       "gene": "SPINK1",
       "aliases": [
-        "SPINK1",
-        "PRSS1",
-        "TRYPSIN-1",
-        "BETA-TRYPSIN",
-        "CATIONIC TRYPSINOGEN",
-        "SERINE PROTEASE 1",
-        "TRYPSIN I",
-        "TRP1",
-        "TRY1",
-        "TRYP1",
-        "SERINE PROTEASE INHIBITOR KAZAL-TYPE 1",
-        "PANCREATIC SECRETORY TRYPSIN INHIBITOR",
-        "TUMOR-ASSOCIATED TRYPSIN INHIBITOR",
-        "TATI",
-        "PSTI"
+        "SPINK1"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -16472,10 +17336,7 @@
         "MATRIX METALLOPROTEINASE-7",
         "MMP-7",
         "PUMP-1 PROTEASE",
-        "UTERINE METALLOPROTEINASE",
-        "MPSL1",
-        "PUMP1",
-        "PEPTIDE INHIBITOR"
+        "UTERINE METALLOPROTEINASE"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -16513,11 +17374,8 @@
         "ATP-DEPENDENT CA(2+) PUMP PMR1",
         "CA(2+)/MN(2+)- ATPASE 2C1",
         "SECRETORY PATHWAY CA(2+)-TRANSPORTING ATPASE TYPE 1",
-        "SPCA1",
         "KIAA1347",
-        "PMR1L",
-        "HUSSY-28",
-        "NANOBODY HEAD PIECE OF MEGABODY"
+        "HUSSY-28"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -16581,8 +17439,6 @@
       "gene": "GREM1",
       "aliases": [
         "GREM1",
-        "FAB ANTIBODY FRAGMENT (LIGHT CHAIN)",
-        "FAB ANTIBODY FRAGMENT (HEAVY CHAIN)",
         "GREMLIN-1",
         "CELL PROLIFERATION-INDUCING GENE 2 PROTEIN",
         "CYSTEINE KNOT SUPERFAMILY 1",
@@ -16590,11 +17446,7 @@
         "DAN DOMAIN FAMILY MEMBER 2",
         "DOWN- REGULATED IN MOS-TRANSFORMED CELLS PROTEIN",
         "INCREASED IN HIGH GLUCOSE PROTEIN 2",
-        "IHG-2",
-        "CKTSF1B1",
-        "DAND2",
-        "DRM",
-        "PIG2"
+        "CKTSF1B1"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -16628,24 +17480,11 @@
       "aliases": [
         "OPRM1",
         "MU-TYPE OPIOID RECEPTOR",
-        "M-OR-1",
-        "MOR-1",
         "MU OPIATE RECEPTOR",
         "MU OPIOID RECEPTOR",
-        "MOP",
-        "HMOP",
-        "MOR1",
         "BETA-ENDORPHIN",
-        "GUANINE NUCLEOTIDE-BINDING PROTEIN G(I) SUBUNIT ALPHA-1",
         "ADENYLATE CYCLASE-INHIBITING G ALPHA PROTEIN",
-        "GNAI1",
-        "GUANINE NUCLEOTIDE-BINDING PROTEIN G(I)/G(S)/G(T) SUBUNIT BETA-1",
-        "TRANSDUCIN BETA CHAIN 1",
-        "GNB1",
-        "GUANINE NUCLEOTIDE-BINDING PROTEIN G(I)/G(S)/G(O) SUBUNIT GAMMA-2",
-        "G GAMMA-I",
-        "GNG2",
-        "SCFV16"
+        "G GAMMA-I"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -16679,16 +17518,9 @@
       "gene": "GUCY2C",
       "aliases": [
         "GUCY2C",
-        "HEAT SHOCK PROTEIN HSP 90-BETA",
-        "HSP90 CO-CHAPERONE CDC37",
         "GUANYLYL CYCLASE C",
-        "GC-C",
-        "HEAT-STABLE ENTEROTOXIN RECEPTOR",
         "STA RECEPTOR",
-        "HSTAR",
-        "INTESTINAL GUANYLATE CYCLASE",
-        "GUC2C",
-        "STAR"
+        "INTESTINAL GUANYLATE CYCLASE"
       ],
       "organismName": "CRICETULUS GRISEUS",
       "organismTaxId": 10029,
@@ -16724,19 +17556,9 @@
       "aliases": [
         "GPR161",
         "G-PROTEIN COUPLED RECEPTOR 161",
-        "GUANINE NUCLEOTIDE-BINDING PROTEIN G(OLF) SUBUNIT ALPHA, GUANINE NUCLEOTIDE-BINDING PROTEIN G(S) SUBUNIT ALPHA ISOFORMS SHORT",
         "ADENYLATE CYCLASE-STIMULATING G ALPHA PROTEIN",
         "OLFACTORY TYPE",
-        "GNAL",
-        "GNAS",
-        "GNAS1",
-        "GSP",
-        "GUANINE NUCLEOTIDE-BINDING PROTEIN G(I)/G(S)/G(T) SUBUNIT BETA-1",
-        "GNB1",
-        "NANOBODY 35",
-        "GUANINE NUCLEOTIDE-BINDING PROTEIN G(I)/G(S)/G(O) SUBUNIT GAMMA-2",
-        "G GAMMA-I",
-        "GNG2"
+        "G GAMMA-I"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -16768,23 +17590,10 @@
       "gene": "ADRB1",
       "aliases": [
         "ADRB1",
-        "ISOFORM GNAS-2 OF GUANINE NUCLEOTIDE-BINDING PROTEIN G(S) SUBUNIT ALPHA ISOFORMS SHORT",
         "ADENYLATE CYCLASE-STIMULATING G ALPHA PROTEIN",
-        "GNAS",
-        "GNAS1",
-        "GSP",
-        "GUANINE NUCLEOTIDE-BINDING PROTEIN G(I)/G(S)/G(T) SUBUNIT BETA-1",
-        "TRANSDUCIN BETA CHAIN 1",
-        "GNB1",
-        "GUANINE NUCLEOTIDE-BINDING PROTEIN G(I)/G(S)/G(O) SUBUNIT GAMMA-2",
         "G GAMMA-I",
-        "GNG2",
-        "NANOBODY-35",
-        "BETA-1 ADRENERGIC RECEPTOR",
-        "BETA-1 ADRENORECEPTOR",
         "BETA-1 ADRENOCEPTOR",
-        "ADRB1R",
-        "B1AR"
+        "ADRB1R"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -16818,7 +17627,6 @@
         "CTNNB1",
         "CATENIN BETA-1",
         "BETA-CATENIN",
-        "CTNNB",
         "OK/SW-CL.35",
         "PRO2286"
       ],
@@ -16857,26 +17665,15 @@
         "DELTA-NACH",
         "EPITHELIAL NA(+) CHANNEL SUBUNIT DELTA",
         "DELTA- ENAC",
-        "ENACD",
         "NONVOLTAGE-GATED SODIUM CHANNEL 1 SUBUNIT DELTA",
-        "SCNED",
-        "SCNN1D",
-        "DNACH",
         "AMILORIDE-SENSITIVE SODIUM CHANNEL SUBUNIT BETA",
-        "BETA-NACH",
         "EPITHELIAL NA(+) CHANNEL SUBUNIT BETA",
-        "BETA-ENAC",
-        "ENACB",
         "NONVOLTAGE-GATED SODIUM CHANNEL 1 SUBUNIT BETA",
-        "SCNEB",
         "AMILORIDE-SENSITIVE SODIUM CHANNEL SUBUNIT GAMMA",
         "EPITHELIAL NA(+) CHANNEL SUBUNIT GAMMA",
-        "ENACG",
         "GAMMA-ENAC",
         "GAMMA-NACH",
-        "NONVOLTAGE-GATED SODIUM CHANNEL 1 SUBUNIT GAMMA",
-        "SCNEG",
-        "SCNN1G"
+        "NONVOLTAGE-GATED SODIUM CHANNEL 1 SUBUNIT GAMMA"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -16911,9 +17708,7 @@
       "aliases": [
         "BEST1",
         "BESTROPHIN-1",
-        "TU15B",
-        "VITELLIFORM MACULAR DYSTROPHY PROTEIN 2",
-        "VMD2"
+        "VITELLIFORM MACULAR DYSTROPHY PROTEIN 2"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -16952,9 +17747,7 @@
         "SLC6A3",
         "SODIUM-DEPENDENT DOPAMINE TRANSPORTER",
         "DA TRANSPORTER",
-        "DAT",
-        "SOLUTE CARRIER FAMILY 6 MEMBER 3",
-        "DAT1"
+        "SOLUTE CARRIER FAMILY 6 MEMBER 3"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -16988,21 +17781,8 @@
       "aliases": [
         "CHRNA1",
         "ACETYLCHOLINE RECEPTOR SUBUNIT ALPHA",
-        "ACHRA",
-        "CHNRA",
         "ACETYLCHOLINE RECEPTOR SUBUNIT BETA",
-        "CHRNB1",
-        "ACHRB",
-        "CHRNB",
-        "ACETYLCHOLINE RECEPTOR SUBUNIT DELTA",
-        "CHRND",
-        "ACHRD",
-        "ACETYLCHOLINE RECEPTOR SUBUNIT EPSILON,GREEN FLUORESCENT PROTEIN",
-        "CHRNE",
-        "ACHRE",
-        "GFP",
-        "FAB35 LIGHT CHAIN",
-        "FAB35 HEAVY CHAIN"
+        "ACETYLCHOLINE RECEPTOR SUBUNIT DELTA"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -17036,21 +17816,9 @@
       "gene": "GNAI1",
       "aliases": [
         "GNAI1",
-        "GUANINE NUCLEOTIDE-BINDING PROTEIN G(I) SUBUNIT ALPHA-1",
         "ADENYLATE CYCLASE-INHIBITING G ALPHA PROTEIN",
-        "GUANINE NUCLEOTIDE-BINDING PROTEIN G(I)/G(S)/G(T) SUBUNIT BETA-1",
-        "TRANSDUCIN BETA CHAIN 1",
-        "GNB1",
-        "GUANINE NUCLEOTIDE-BINDING PROTEIN G(I)/G(S)/G(O) SUBUNIT GAMMA-2",
         "G GAMMA-I",
-        "GNG2",
-        "MU-TYPE OPIOID RECEPTOR",
-        "M-OR-1",
-        "MOR-1",
-        "OPRM1",
-        "MOR",
-        "OPRM",
-        "DAMGO"
+        "MU-TYPE OPIOID RECEPTOR"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -17085,8 +17853,7 @@
         "SODIUM CHANNEL PROTEIN TYPE 5 SUBUNIT ALPHA",
         "SODIUM CHANNEL PROTEIN CARDIAC MUSCLE SUBUNIT ALPHA",
         "SODIUM CHANNEL PROTEIN TYPE V SUBUNIT ALPHA",
-        "VOLTAGE-GATED SODIUM CHANNEL SUBUNIT ALPHA NAV1.5",
-        "HH1"
+        "VOLTAGE-GATED SODIUM CHANNEL SUBUNIT ALPHA NAV1.5"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -17125,12 +17892,7 @@
         "HOMEOBOX PROTEIN NK-2 HOMOLOG A",
         "THYROID NUCLEAR FACTOR 1",
         "THYROID TRANSCRIPTION FACTOR 1",
-        "TTF-1",
-        "THYROID-SPECIFIC ENHANCER- BINDING PROTEIN",
-        "T/EBP",
-        "NKX2A",
-        "TITF1",
-        "TTF1"
+        "THYROID-SPECIFIC ENHANCER- BINDING PROTEIN"
       ],
       "organismName": "HOMO SAPIENS",
       "organismTaxId": 9606,
@@ -17825,7 +18587,6 @@
       "target": "Myostatin",
       "gene": "GDF8",
       "aliases": [
-        "MSTN",
         "GDF8",
         "Growth/differentiation factor 8"
       ],
@@ -18282,8 +19043,7 @@
       "target": "TrkA",
       "gene": "NTRK1",
       "aliases": [
-        "NTRK1",
-        "nerve growth factor receptor"
+        "NTRK1"
       ],
       "protein": "High affinity nerve growth factor receptor",
       "organismName": "Homo sapiens",
@@ -18315,8 +19075,7 @@
       "target": "TrkA",
       "gene": "NTRK1",
       "aliases": [
-        "NTRK1",
-        "nerve growth factor receptor"
+        "NTRK1"
       ],
       "protein": "High affinity nerve growth factor receptor",
       "organismName": "Homo sapiens",
@@ -18353,7 +19112,6 @@
       "target": "LRRK2",
       "gene": "LRRK2",
       "aliases": [
-        "PARK8",
         "Leucine-rich repeat serine/threonine-protein kinase 2"
       ],
       "protein": "Leucine-rich repeat serine/threonine-protein kinase 2",
@@ -18422,7 +19180,6 @@
       "target": "FOLR1",
       "gene": "FOLR1",
       "aliases": [
-        "FRalpha",
         "Folate receptor alpha"
       ],
       "protein": "Folate receptor alpha",
@@ -18455,7 +19212,6 @@
       "target": "FOLR1",
       "gene": "FOLR1",
       "aliases": [
-        "FRalpha",
         "Folate receptor alpha"
       ],
       "protein": "Folate receptor alpha",
@@ -18489,7 +19245,6 @@
       "target": "FOLR1",
       "gene": "FOLR1",
       "aliases": [
-        "FRalpha",
         "Folate receptor alpha"
       ],
       "protein": "Folate receptor alpha",
@@ -18523,9 +19278,7 @@
       "target": "Mesothelin",
       "gene": "MSLN",
       "aliases": [
-        "MSLN",
-        "CAK1",
-        "SMRP"
+        "MSLN"
       ],
       "protein": "Mesothelin, cleaved form",
       "organismName": "Homo sapiens",
@@ -18569,9 +19322,7 @@
       "target": "Mesothelin",
       "gene": "MSLN",
       "aliases": [
-        "MSLN",
-        "CAK1",
-        "SMRP"
+        "MSLN"
       ],
       "protein": "Mesothelin",
       "organismName": "Homo sapiens",
@@ -18616,10 +19367,6 @@
       "localPath": "pdb/SOLIDLIB-HUMAN-CEACAM6-RCSB-4WHC.pdb",
       "target": "CEACAM6",
       "gene": "CEACAM6",
-      "aliases": [
-        "CD66c",
-        "NCA"
-      ],
       "protein": "Cell adhesion molecule CEACAM6",
       "organismName": "Homo sapiens",
       "organismTaxId": 9606,
@@ -18652,7 +19399,6 @@
       "gene": "FOLH1",
       "aliases": [
         "FOLH1",
-        "GCPII",
         "Prostate-specific membrane antigen"
       ],
       "protein": "Glutamate carboxypeptidase 2",
@@ -18700,7 +19446,6 @@
       "gene": "FOLH1",
       "aliases": [
         "FOLH1",
-        "GCPII",
         "Prostate-specific membrane antigen"
       ],
       "protein": "Glutamate carboxypeptidase 2",
@@ -18748,7 +19493,6 @@
       "gene": "FOLH1",
       "aliases": [
         "FOLH1",
-        "GCPII",
         "Prostate-specific membrane antigen"
       ],
       "protein": "Glutamate carboxypeptidase 2",
@@ -18796,7 +19540,6 @@
       "gene": "FOLH1",
       "aliases": [
         "FOLH1",
-        "GCPII",
         "Prostate-specific membrane antigen"
       ],
       "protein": "Glutamate carboxypeptidase 2",
@@ -18930,8 +19673,7 @@
       "gene": "CA9",
       "aliases": [
         "CA9",
-        "Carbonic anhydrase IX",
-        "G250"
+        "Carbonic anhydrase IX"
       ],
       "protein": "Carbonic anhydrase 9",
       "organismName": "Homo sapiens",
@@ -18967,8 +19709,7 @@
       "gene": "EPCAM",
       "aliases": [
         "EPCAM",
-        "TACSTD1",
-        "TROP1"
+        "TACSTD1"
       ],
       "protein": "Epithelial cell adhesion molecule",
       "organismName": "Homo sapiens",
@@ -19014,9 +19755,7 @@
       "target": "B7-H4",
       "gene": "VTCN1",
       "aliases": [
-        "VTCN1",
-        "B7X",
-        "B7S1"
+        "VTCN1"
       ],
       "protein": "V-set domain-containing T-cell activation inhibitor 1",
       "organismName": "Homo sapiens",
@@ -19048,7 +19787,6 @@
       "target": "MET",
       "gene": "MET",
       "aliases": [
-        "c-MET",
         "MET receptor",
         "HGF receptor",
         "Hepatocyte growth factor receptor"
@@ -19148,8 +19886,7 @@
       "target": "FGFR3",
       "gene": "FGFR3",
       "aliases": [
-        "Fibroblast growth factor receptor 3",
-        "JTK4"
+        "Fibroblast growth factor receptor 3"
       ],
       "protein": "Fibroblast growth factor receptor 3",
       "organismName": "Homo sapiens",
@@ -19194,9 +19931,7 @@
       "gene": "FGFR2",
       "aliases": [
         "Fibroblast growth factor receptor 2",
-        "FGFR2b",
-        "KGFR",
-        "K-SAM"
+        "FGFR2b"
       ],
       "protein": "Fibroblast growth factor receptor 2",
       "organismName": "Homo sapiens",
@@ -19244,7 +19979,6 @@
       "gene": "TNFSF7",
       "aliases": [
         "TNFSF7",
-        "CD27L",
         "CD27 ligand"
       ],
       "protein": "CD70 antigen",

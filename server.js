@@ -8791,6 +8791,426 @@ const ROUTE_3D_PRESETS = {
     antigenColor: '#22C55E',
     antibodyColor: '#2563EB',
     ipTmBias: 0.001
+  },
+  cancer_dll3: {
+    aliasPrefix: 'DLL3-Fab',
+    title: 'DLL3 Fab 小细胞肺癌结合构象',
+    structureFamily: '小细胞肺癌 · Fab 候选',
+    visualSummary: '展示 Fab 贴合 DLL3 表面的代表性展示构象。',
+    structuralBasis: 'RCSB 6H9Y DLL3 + nivolumab Fab display scaffold',
+    antigenChains: ["A","B","C"],
+    antibodyChains: ["H","L"],
+    antigenColor: '#F59E0B',
+    antibodyColor: '#0EA5E9',
+    ipTmBias: 0.003
+  },
+  cancer_folr1: {
+    aliasPrefix: 'FOLR1-Fab',
+    title: 'FOLR1 Fab 卵巢癌结合构象',
+    structureFamily: '卵巢癌 · Fab 候选',
+    visualSummary: '展示 Fab 贴合 FOLR1 表面的代表性展示构象。',
+    structuralBasis: 'RCSB 4LRH FOLR1 + tozorakimab Fab display scaffold',
+    antigenChains: ["A","B","C","D","E","F","G","H"],
+    antibodyChains: ["L","I"],
+    antigenColor: '#60A5FA',
+    antibodyColor: '#F472B6',
+    ipTmBias: 0.003
+  },
+  cancer_ror1: {
+    aliasPrefix: 'ROR1-Fab',
+    title: 'ROR1 Fab CLL/乳腺癌结合构象',
+    structureFamily: 'CLL/乳腺癌 · Fab 候选',
+    visualSummary: '展示 Fab 贴合 ROR1 表面的代表性展示构象。',
+    structuralBasis: 'RCSB 6A5F ROR1 + daratumumab Fab display scaffold',
+    antigenChains: ["A","B"],
+    antibodyChains: ["H","C"],
+    antigenColor: '#22C55E',
+    antibodyColor: '#A855F7',
+    ipTmBias: 0.003
+  },
+  cancer_cd30: {
+    aliasPrefix: 'CD30-Fab',
+    title: 'CD30 VHH 霍奇金淋巴瘤结合构象',
+    structureFamily: '霍奇金淋巴瘤 · VHH 候选',
+    visualSummary: '展示 VHH 贴合 CD30 表面的代表性展示构象。',
+    structuralBasis: 'RCSB 5XBN CD30 + VHH-TSLP VHH display scaffold',
+    antigenChains: ["A"],
+    antibodyChains: ["B"],
+    antigenColor: '#A855F7',
+    antibodyColor: '#F59E0B',
+    ipTmBias: 0.003
+  },
+  cancer_flt3: {
+    aliasPrefix: 'FLT3-Fab',
+    title: 'FLT3 Fab AML结合构象',
+    structureFamily: 'AML · Fab 候选',
+    visualSummary: '展示 Fab 贴合 FLT3 表面的代表性展示构象。',
+    structuralBasis: 'RCSB 1RJQ FLT3 + cetuximab Fab display scaffold',
+    antigenChains: ["A"],
+    antibodyChains: ["B","C"],
+    antigenColor: '#EC4899',
+    antibodyColor: '#34D399',
+    ipTmBias: 0.003
+  },
+  cancer_cd70: {
+    aliasPrefix: 'CD70-Fab',
+    title: 'CD70 Fab 肾细胞癌结合构象',
+    structureFamily: '肾细胞癌 · Fab 候选',
+    visualSummary: '展示 Fab 贴合 CD70 表面的代表性展示构象。',
+    structuralBasis: 'RCSB 4F77 CD70 + ipilimumab Fab display scaffold',
+    antigenChains: ["I","J","K","L","M","N","O","P","A","B","C","D","E","F","G","H","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","1","2","3","4","w","x","y","z"],
+    antibodyChains: ["0","5"],
+    antigenColor: '#06B6D4',
+    antibodyColor: '#6366F1',
+    ipTmBias: 0.003
+  },
+  cancer_ptk7: {
+    aliasPrefix: 'PTK7-Fab',
+    title: 'PTK7 Fab 结直肠癌结合构象',
+    structureFamily: '结直肠癌 · Fab 候选',
+    visualSummary: '展示 Fab 贴合 PTK7 表面的代表性展示构象。',
+    structuralBasis: 'RCSB 6AY3 PTK7 + ipilimumab Fab display scaffold',
+    antigenChains: ["A","B"],
+    antibodyChains: ["H","C"],
+    antigenColor: '#F97316',
+    antibodyColor: '#0EA5E9',
+    ipTmBias: 0.003
+  },
+  cancer_psma: {
+    aliasPrefix: 'PSMA-Fab',
+    title: 'PSMA Fab 前列腺癌结合构象',
+    structureFamily: '前列腺癌 · Fab 候选',
+    visualSummary: '展示 Fab 贴合 PSMA 表面的代表性展示构象。',
+    structuralBasis: 'RCSB 2X6G PSMA + cetuximab Fab display scaffold',
+    antigenChains: ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R"],
+    antibodyChains: ["S","T"],
+    antigenColor: '#8B5CF6',
+    antibodyColor: '#F472B6',
+    ipTmBias: 0.003
+  },
+  cancer_cd74: {
+    aliasPrefix: 'CD74-Fab',
+    title: 'CD74 Fab B细胞淋巴瘤结合构象',
+    structureFamily: 'B细胞淋巴瘤 · Fab 候选',
+    visualSummary: '展示 Fab 贴合 CD74 表面的代表性展示构象。',
+    structuralBasis: 'RCSB 2WRH CD74 + trastuzumab Fab display scaffold',
+    antigenChains: ["H","I","J","K","L","M"],
+    antibodyChains: ["B","C"],
+    antigenColor: '#10B981',
+    antibodyColor: '#A855F7',
+    ipTmBias: 0.003
+  },
+  cancer_tim3: {
+    aliasPrefix: 'TIM3-Fab',
+    title: 'TIM-3 Fab T细胞耗竭结合构象',
+    structureFamily: 'T细胞耗竭 · Fab 候选',
+    visualSummary: '展示 Fab 贴合 TIM-3 表面的代表性展示构象。',
+    structuralBasis: 'RCSB 5F71 TIM-3 + trastuzumab Fab display scaffold',
+    antigenChains: ["A","B"],
+    antibodyChains: ["H","C"],
+    antigenColor: '#EF4444',
+    antibodyColor: '#F59E0B',
+    ipTmBias: 0.003
+  },
+  cancer_gitr: {
+    aliasPrefix: 'GITR-Fab',
+    title: 'GITR Fab T细胞激活结合构象',
+    structureFamily: 'T细胞激活 · Fab 候选',
+    visualSummary: '展示 Fab 贴合 GITR 表面的代表性展示构象。',
+    structuralBasis: 'RCSB 5WHD GITR + nivolumab Fab display scaffold',
+    antigenChains: ["A","B","C","D"],
+    antibodyChains: ["H","L"],
+    antigenColor: '#F59E0B',
+    antibodyColor: '#34D399',
+    ipTmBias: 0.003
+  },
+  cancer_ox40: {
+    aliasPrefix: 'OX40-Fab',
+    title: 'OX40 VHH T细胞共刺激结合构象',
+    structureFamily: 'T细胞共刺激 · VHH 候选',
+    visualSummary: '展示 VHH 贴合 OX40 表面的代表性展示构象。',
+    structuralBasis: 'RCSB 5I8J OX40 + VHH-IL33 VHH display scaffold',
+    antigenChains: ["A","B"],
+    antibodyChains: ["V"],
+    antigenColor: '#60A5FA',
+    antibodyColor: '#6366F1',
+    ipTmBias: 0.003
+  },
+  cancer_41bb: {
+    aliasPrefix: '41BB-Fab',
+    title: '4-1BB Fab T细胞共刺激结合构象',
+    structureFamily: 'T细胞共刺激 · Fab 候选',
+    visualSummary: '展示 Fab 贴合 4-1BB 表面的代表性展示构象。',
+    structuralBasis: 'RCSB 4ZGP 4-1BB + daratumumab Fab display scaffold',
+    antigenChains: ["A","B"],
+    antibodyChains: ["H","C"],
+    antigenColor: '#22C55E',
+    antibodyColor: '#0EA5E9',
+    ipTmBias: 0.003
+  },
+  cancer_cd40: {
+    aliasPrefix: 'CD40-Fab',
+    title: 'CD40 Fab 免疫激活结合构象',
+    structureFamily: '免疫激活 · Fab 候选',
+    visualSummary: '展示 Fab 贴合 CD40 表面的代表性展示构象。',
+    structuralBasis: 'RCSB 5L01 CD40 + tozorakimab Fab display scaffold',
+    antigenChains: ["A"],
+    antibodyChains: ["B","C"],
+    antigenColor: '#A855F7',
+    antibodyColor: '#F472B6',
+    ipTmBias: 0.003
+  },
+  cancer_cd27: {
+    aliasPrefix: 'CD27-Fab',
+    title: 'CD27 Fab T细胞共刺激结合构象',
+    structureFamily: 'T细胞共刺激 · Fab 候选',
+    visualSummary: '展示 Fab 贴合 CD27 表面的代表性展示构象。',
+    structuralBasis: 'RCSB 5NLE CD27 + certolizumab Fab display scaffold',
+    antigenChains: ["A","B","C","D","E","F","G","H"],
+    antibodyChains: ["L","I"],
+    antigenColor: '#EC4899',
+    antibodyColor: '#A855F7',
+    ipTmBias: 0.003
+  },
+  cancer_dr5: {
+    aliasPrefix: 'DR5-Fab',
+    title: 'DR5 VHH 凋亡诱导结合构象',
+    structureFamily: '凋亡诱导 · VHH 候选',
+    visualSummary: '展示 VHH 贴合 DR5 表面的代表性展示构象。',
+    structuralBasis: 'RCSB 5C85 DR5 + VHH-TSLP VHH display scaffold',
+    antigenChains: ["A"],
+    antibodyChains: ["B"],
+    antigenColor: '#06B6D4',
+    antibodyColor: '#F59E0B',
+    ipTmBias: 0.003
+  },
+  cancer_cldn6: {
+    aliasPrefix: 'CLDN6-Fab',
+    title: 'CLDN6 Fab 卵巢/睾丸癌结合构象',
+    structureFamily: '卵巢/睾丸癌 · Fab 候选',
+    visualSummary: '展示 Fab 贴合 CLDN6 表面的代表性展示构象。',
+    structuralBasis: 'RCSB 6XG7 CLDN6 + cetuximab Fab display scaffold',
+    antigenChains: ["A"],
+    antibodyChains: ["B","C"],
+    antigenColor: '#F97316',
+    antibodyColor: '#34D399',
+    ipTmBias: 0.003
+  },
+  cancer_cdh6: {
+    aliasPrefix: 'CDH6-Fab',
+    title: 'CDH6 VHH 卵巢/肾癌结合构象',
+    structureFamily: '卵巢/肾癌 · VHH 候选',
+    visualSummary: '展示 VHH 贴合 CDH6 表面的代表性展示构象。',
+    structuralBasis: 'RCSB 5C4H CDH6 + VHH-IL33 VHH display scaffold',
+    antigenChains: ["A"],
+    antibodyChains: ["B"],
+    antigenColor: '#8B5CF6',
+    antibodyColor: '#6366F1',
+    ipTmBias: 0.003
+  },
+  cancer_prlr: {
+    aliasPrefix: 'PRLR-Fab',
+    title: 'PRLR Fab 乳腺/前列腺癌结合构象',
+    structureFamily: '乳腺/前列腺癌 · Fab 候选',
+    visualSummary: '展示 Fab 贴合 PRLR 表面的代表性展示构象。',
+    structuralBasis: 'RCSB 3D48 PRLR + certolizumab Fab display scaffold',
+    antigenChains: ["P","R"],
+    antibodyChains: ["B","C"],
+    antigenColor: '#10B981',
+    antibodyColor: '#0EA5E9',
+    ipTmBias: 0.003
+  },
+  cancer_sstr2: {
+    aliasPrefix: 'SSTR2-Fab',
+    title: 'SSTR2 Fab NET/GIST结合构象',
+    structureFamily: 'NET/GIST · Fab 候选',
+    visualSummary: '展示 Fab 贴合 SSTR2 表面的代表性展示构象。',
+    structuralBasis: 'RCSB 6WB4 SSTR2 + daratumumab Fab display scaffold',
+    antigenChains: ["A","B","C","D"],
+    antibodyChains: ["H","L"],
+    antigenColor: '#EF4444',
+    antibodyColor: '#F472B6',
+    ipTmBias: 0.003
+  },
+  cancer_gucy2c: {
+    aliasPrefix: 'GUCY2C-Fab',
+    title: 'GUCY2C VHH 结直肠癌结合构象',
+    structureFamily: '结直肠癌 · VHH 候选',
+    visualSummary: '展示 VHH 贴合 GUCY2C 表面的代表性展示构象。',
+    structuralBasis: 'RCSB 6B25 GUCY2C + VHH-TSLP VHH display scaffold',
+    antigenChains: ["A"],
+    antibodyChains: ["B"],
+    antigenColor: '#F59E0B',
+    antibodyColor: '#A855F7',
+    ipTmBias: 0.003
+  },
+  inflam_il31: {
+    aliasPrefix: 'IL31-Fab',
+    title: 'IL-31 Fab 特应性皮炎结合构象',
+    structureFamily: '特应性皮炎 · Fab 候选',
+    visualSummary: '展示 Fab 贴合 IL-31 表面的代表性展示构象。',
+    structuralBasis: 'RCSB 5N0Y IL-31 + trastuzumab Fab display scaffold',
+    antigenChains: ["A"],
+    antibodyChains: ["B","C"],
+    antigenColor: '#60A5FA',
+    antibodyColor: '#F59E0B',
+    ipTmBias: 0.003
+  },
+  inflam_il17ra: {
+    aliasPrefix: 'IL17RA-Fab',
+    title: 'IL-17RA Fab 银屑病结合构象',
+    structureFamily: '银屑病 · Fab 候选',
+    visualSummary: '展示 Fab 贴合 IL-17RA 表面的代表性展示构象。',
+    structuralBasis: 'RCSB 6I1K IL-17RA + bevacizumab Fab display scaffold',
+    antigenChains: ["A","B","C","D"],
+    antibodyChains: ["H","L"],
+    antigenColor: '#22C55E',
+    antibodyColor: '#34D399',
+    ipTmBias: 0.003
+  },
+  inflam_gmcsf: {
+    aliasPrefix: 'GMCSF-Fab',
+    title: 'GM-CSF VHH 类风湿关节炎结合构象',
+    structureFamily: '类风湿关节炎 · VHH 候选',
+    visualSummary: '展示 VHH 贴合 GM-CSF 表面的代表性展示构象。',
+    structuralBasis: 'RCSB 4RSK GM-CSF + VHH-IL33 VHH display scaffold',
+    antigenChains: ["A"],
+    antibodyChains: ["B"],
+    antigenColor: '#A855F7',
+    antibodyColor: '#6366F1',
+    ipTmBias: 0.003
+  },
+  inflam_il36a: {
+    aliasPrefix: 'IL36A-Fab',
+    title: 'IL-36α Fab 银屑病结合构象',
+    structureFamily: '银屑病 · Fab 候选',
+    visualSummary: '展示 Fab 贴合 IL-36α 表面的代表性展示构象。',
+    structuralBasis: 'RCSB 4I6B IL-36α + bevacizumab Fab display scaffold',
+    antigenChains: ["A"],
+    antibodyChains: ["B","C"],
+    antigenColor: '#EC4899',
+    antibodyColor: '#0EA5E9',
+    ipTmBias: 0.003
+  },
+  inflam_baffr: {
+    aliasPrefix: 'BAFFR-Fab',
+    title: 'BAFF-R Fab SLE结合构象',
+    structureFamily: 'SLE · Fab 候选',
+    visualSummary: '展示 Fab 贴合 BAFF-R 表面的代表性展示构象。',
+    structuralBasis: 'RCSB 6E0M BAFF-R + trastuzumab Fab display scaffold',
+    antigenChains: ["A"],
+    antibodyChains: ["B","C"],
+    antigenColor: '#06B6D4',
+    antibodyColor: '#F472B6',
+    ipTmBias: 0.003
+  },
+  metab_glp1r: {
+    aliasPrefix: 'GLP1R-Fab',
+    title: 'GLP-1R Fab 2型糖尿病结合构象',
+    structureFamily: '2型糖尿病 · Fab 候选',
+    visualSummary: '展示 Fab 贴合 GLP-1R 表面的代表性展示构象。',
+    structuralBasis: 'RCSB 5NX2 GLP-1R + certolizumab Fab display scaffold',
+    antigenChains: ["A","B","C"],
+    antibodyChains: ["H","L"],
+    antigenColor: '#F97316',
+    antibodyColor: '#A855F7',
+    ipTmBias: 0.003
+  },
+  metab_fgf21: {
+    aliasPrefix: 'FGF21-Fab',
+    title: 'FGF21 VHH NASH结合构象',
+    structureFamily: 'NASH · VHH 候选',
+    visualSummary: '展示 VHH 贴合 FGF21 表面的代表性展示构象。',
+    structuralBasis: 'RCSB 6M6E FGF21 + VHH-IL33 VHH display scaffold',
+    antigenChains: ["A"],
+    antibodyChains: ["B"],
+    antigenColor: '#8B5CF6',
+    antibodyColor: '#F59E0B',
+    ipTmBias: 0.003
+  },
+  metab_lgr5: {
+    aliasPrefix: 'LGR5-Fab',
+    title: 'LGR5 Fab 肝细胞癌结合构象',
+    structureFamily: '肝细胞癌 · Fab 候选',
+    visualSummary: '展示 Fab 贴合 LGR5 表面的代表性展示构象。',
+    structuralBasis: 'RCSB 4BSF LGR5 + daratumumab Fab display scaffold',
+    antigenChains: ["A","B","C","D"],
+    antibodyChains: ["H","L"],
+    antigenColor: '#10B981',
+    antibodyColor: '#34D399',
+    ipTmBias: 0.003
+  },
+  neuro_bace1: {
+    aliasPrefix: 'BACE1-Fab',
+    title: 'BACE1 Fab 阿尔茨海默病结合构象',
+    structureFamily: '阿尔茨海默病 · Fab 候选',
+    visualSummary: '展示 Fab 贴合 BACE1 表面的代表性展示构象。',
+    structuralBasis: 'RCSB 1FKN BACE1 + daratumumab Fab display scaffold',
+    antigenChains: ["A","B","C","D"],
+    antibodyChains: ["H","L"],
+    antigenColor: '#EF4444',
+    antibodyColor: '#6366F1',
+    ipTmBias: 0.003
+  },
+  neuro_lepr: {
+    aliasPrefix: 'LEPR-Fab',
+    title: 'Leptin receptor Fab 肥胖症结合构象',
+    structureFamily: '肥胖症 · Fab 候选',
+    visualSummary: '展示 Fab 贴合 Leptin receptor 表面的代表性展示构象。',
+    structuralBasis: 'RCSB 6V76 Leptin receptor + certolizumab Fab display scaffold',
+    antigenChains: ["C","A","B","D"],
+    antibodyChains: ["H","L"],
+    antigenColor: '#F59E0B',
+    antibodyColor: '#0EA5E9',
+    ipTmBias: 0.003
+  },
+  infect_dengue: {
+    aliasPrefix: 'DENGUE-E-Fab',
+    title: 'Dengue E Fab 登革热结合构象',
+    structureFamily: '登革热 · Fab 候选',
+    visualSummary: '展示 Fab 贴合 Dengue E 表面的代表性展示构象。',
+    structuralBasis: 'RCSB 1OAN Dengue E + daratumumab Fab display scaffold',
+    antigenChains: ["A","B","C","D"],
+    antibodyChains: ["H","L"],
+    antigenColor: '#60A5FA',
+    antibodyColor: '#F472B6',
+    ipTmBias: 0.003
+  },
+  infect_zika: {
+    aliasPrefix: 'ZIKA-NS1-Fab',
+    title: 'Zika NS1 Fab 寨卡结合构象',
+    structureFamily: '寨卡 · Fab 候选',
+    visualSummary: '展示 Fab 贴合 Zika NS1 表面的代表性展示构象。',
+    structuralBasis: 'RCSB 5GS6 Zika NS1 + cetuximab Fab display scaffold',
+    antigenChains: ["A","B"],
+    antibodyChains: ["H","C"],
+    antigenColor: '#22C55E',
+    antibodyColor: '#A855F7',
+    ipTmBias: 0.003
+  },
+  infect_rabies: {
+    aliasPrefix: 'RABIES-G-Fab',
+    title: 'Rabies G Fab 狂犬病结合构象',
+    structureFamily: '狂犬病 · Fab 候选',
+    visualSummary: '展示 Fab 贴合 Rabies G 表面的代表性展示构象。',
+    structuralBasis: 'RCSB 6W8J Rabies G + certolizumab Fab display scaffold',
+    antigenChains: ["A","B","C","D","E","F"],
+    antibodyChains: ["H","L"],
+    antigenColor: '#A855F7',
+    antibodyColor: '#F59E0B',
+    ipTmBias: 0.003
+  },
+  infect_cmv: {
+    aliasPrefix: 'CMV-GB-Fab',
+    title: 'CMV gB Fab CMV感染结合构象',
+    structureFamily: 'CMV感染 · Fab 候选',
+    visualSummary: '展示 Fab 贴合 CMV gB 表面的代表性展示构象。',
+    structuralBasis: 'RCSB 5ZB3 CMV gB + bevacizumab Fab display scaffold',
+    antigenChains: ["A","B"],
+    antibodyChains: ["H","C"],
+    antigenColor: '#EC4899',
+    antibodyColor: '#34D399',
+    ipTmBias: 0.003
   }
 };
 
@@ -8853,7 +9273,42 @@ const ROUTE_3D_PRESET_ORGANISMS_FALLBACK = {
   infectious_csfv_ns5b: { organismName: 'Classical swine fever virus', organismTaxId: 11096 },
   infectious_fpv_vp2: { organismName: 'Feline panleukopenia virus', organismTaxId: 10786 },
   neuro_deafness_gjb2: { organismName: 'Homo sapiens', organismTaxId: 9606 },
-  infectious_rsv: { organismName: 'Respiratory syncytial virus', organismTaxId: null }
+  infectious_rsv: { organismName: 'Respiratory syncytial virus', organismTaxId: null },
+  cancer_dll3: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  cancer_folr1: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  cancer_ror1: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  cancer_cd30: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  cancer_flt3: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  cancer_cd70: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  cancer_ptk7: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  cancer_psma: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  cancer_cd74: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  cancer_tim3: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  cancer_gitr: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  cancer_ox40: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  cancer_41bb: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  cancer_cd40: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  cancer_cd27: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  cancer_dr5: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  cancer_cldn6: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  cancer_cdh6: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  cancer_prlr: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  cancer_sstr2: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  cancer_gucy2c: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  inflam_il31: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  inflam_il17ra: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  inflam_gmcsf: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  inflam_il36a: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  inflam_baffr: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  metab_glp1r: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  metab_fgf21: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  metab_lgr5: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  neuro_bace1: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  neuro_lepr: { organismName: 'Homo sapiens', organismTaxId: 9606 },
+  infect_dengue: { organismName: 'Dengue virus', organismTaxId: 11051 },
+  infect_zika: { organismName: 'Zika virus', organismTaxId: 1983736 },
+  infect_rabies: { organismName: 'Rabies virus', organismTaxId: 11292 },
+  infect_cmv: { organismName: 'Human cytomegalovirus', organismTaxId: 10359 }
 };
 
 const ROUTE_3D_PRESET_ORGANISMS = buildRoutePresetOrganismsFromCatalog(
@@ -9301,14 +9756,19 @@ function localLibraryAssetMatchesProfile(profile, entry) {
   const requestedIdentity = normalizePreparedStructureTarget(requestedTarget);
   if (!requestedIdentity) return false;
   const aliases = localStructureCatalogAliases(entry);
-  // Relaxed target matching: exact or fuzzy substring
+  // Exact match only: substring matching caused cross-target false positives
+  // (e.g., single-letter aliases like "E" matching any target containing "E")
   const targetMatches = aliases.some(alias => {
     const aliasIdentity = normalizePreparedStructureTarget(alias);
-    return aliasIdentity && (
-      aliasIdentity === requestedIdentity ||
-      aliasIdentity.includes(requestedIdentity) ||
-      requestedIdentity.includes(aliasIdentity)
-    );
+    if (!aliasIdentity) return false;
+    if (aliasIdentity === requestedIdentity) return true;
+    // Allow substring match only when both sides are long enough to be specific
+    // (>= 6 chars normalized) to avoid short-alias false positives
+    if (aliasIdentity.length >= 6 && requestedIdentity.length >= 6 &&
+        (aliasIdentity.includes(requestedIdentity) || requestedIdentity.includes(aliasIdentity))) {
+      return true;
+    }
+    return false;
   });
   return targetMatches;
 }
@@ -9850,12 +10310,16 @@ function preparedStructureTargetMatches(profile, filename) {
     isInfluenzaHaFamilyTarget(requestedTarget)
   );
   // Relaxed target matching: exact, alias, influenza subtype, or fuzzy substring
+  // Substring matching requires both sides >= 6 chars to avoid short-name false positives
+  const canSubstring = requestedTargetAlias.length >= 6 && coordinateTargetAlias.length >= 6;
   const targetMatches = Boolean(
     requestedTargetAlias && coordinateTargetAlias && (
       requestedTargetAlias === coordinateTargetAlias ||
       influenzaSubtypeMatches ||
-      requestedTargetAlias.includes(coordinateTargetAlias) ||
-      coordinateTargetAlias.includes(requestedTargetAlias)
+      (canSubstring && (
+        requestedTargetAlias.includes(coordinateTargetAlias) ||
+        coordinateTargetAlias.includes(requestedTargetAlias)
+      ))
     )
   );
   // Relaxed format matching: Fab/mAb/IgG are mutually compatible (mAb contains Fab regions)
