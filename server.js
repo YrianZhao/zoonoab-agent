@@ -1428,7 +1428,7 @@ function normalizeChatWireApi(value) {
 
 function normalizeReasoningEffort(value) {
   const raw = String(value || '').trim().toLowerCase();
-  if (['none', 'off', 'disabled'].includes(raw)) return '';
+  if (['none', 'off', 'disabled'].includes(raw)) return 'none';
   if (['low', 'medium', 'high', 'xhigh'].includes(raw)) return raw;
   if (['extra_high', 'extra-high', 'max', 'maximum'].includes(raw)) return 'xhigh';
   return '';
@@ -13780,7 +13780,8 @@ async function resolveWorkflowIntentWithModel(input, voiceSessionId) {
         ],
         temperature: 0,
         maxTokens: 1600,
-        json: true
+        json: true,
+        reasoningEffort: 'none'
       }, {
         timeoutMs: WORKFLOW_INTENT_TIMEOUT_MS,
         globalDeadlineMs: WORKFLOW_INTENT_GLOBAL_DEADLINE_MS
