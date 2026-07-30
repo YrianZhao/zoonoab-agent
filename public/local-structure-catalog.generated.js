@@ -2,7 +2,7 @@
 (function(){
   window.ZOONOAB_LOCAL_STRUCTURE_CATALOG = {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-30T04:05:09.767Z",
+  "generatedAt": "2026-07-30T04:19:42.348Z",
   "summary": {
     "pdbFileCount": 1254,
     "routePresetCount": 272,
@@ -22,7 +22,7 @@
         "IL33"
       ],
       "promptLabel": "IL-33/IL33",
-      "structureClass": "target_exact_epitope_complex",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -85,7 +85,7 @@
         "TSLP"
       ],
       "promptLabel": "TSLP",
-      "structureClass": "target_exact_nanobody_complex",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -145,7 +145,7 @@
         "PDL1"
       ],
       "promptLabel": "PD-L1/CD274",
-      "structureClass": "target_exact_nanobody_complex",
+      "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
@@ -320,9 +320,7 @@
         ],
         "antibodyChains": [
           "B",
-          "C",
-          "F",
-          "G"
+          "C"
         ],
         "visualColors": {
           "antigen": "#2563EB",
@@ -488,9 +486,7 @@
         ],
         "antibodyChains": [
           "B",
-          "C",
-          "F",
-          "G"
+          "C"
         ],
         "visualColors": {
           "antigen": "#16A34A",
@@ -878,9 +874,7 @@
         ],
         "antibodyChains": [
           "B",
-          "C",
-          "F",
-          "G"
+          "C"
         ],
         "visualColors": {
           "antigen": "#EC4899",
@@ -1008,9 +1002,7 @@
         ],
         "antibodyChains": [
           "B",
-          "C",
-          "F",
-          "G"
+          "C"
         ],
         "visualColors": {
           "antigen": "#F59E0B",
@@ -1340,9 +1332,7 @@
         ],
         "antibodyChains": [
           "B",
-          "C",
-          "F",
-          "G"
+          "C"
         ],
         "visualColors": {
           "antigen": "#F43F5E",
@@ -1987,19 +1977,12 @@
       "display": {
         "structureTitle": "Amyloid-beta Fab 阿尔茨海默病相关表位结合构象",
         "structureFamily": "阿尔茨海默病相关淀粉样肽 · Amyloid-beta Fab 候选",
-        "visualSummary": "展示 Amyloid-beta 1-8 N 端表位与 humanized 3D6 Fab 的真实实验复合物，不将其表述为完整淀粉样纤维整体形态。",
+        "visualSummary": "展示 amyloid-beta 1-8 N 端表位与 humanized 3D6 Fab 的真实实验复合物，不将其表述为完整淀粉样纤维整体形态。",
         "structuralBasis": "RCSB 4OJF amyloid-beta 1-8 peptide / humanized 3D6 Fab complex",
         "antigenChains": [
           "A"
         ],
         "antibodyChains": [
-          "H",
-          "L"
-        ],
-        "sourceAntigenChains": [
-          "A"
-        ],
-        "sourceAntibodyChains": [
           "H",
           "L"
         ],
@@ -2040,13 +2023,6 @@
           "H",
           "L"
         ],
-        "sourceAntigenChains": [
-          "A"
-        ],
-        "sourceAntibodyChains": [
-          "H",
-          "L"
-        ],
         "visualColors": {
           "antigen": "#8B5CF6",
           "antibody": "#14B8A6"
@@ -2079,13 +2055,6 @@
           "A"
         ],
         "antibodyChains": [
-          "H",
-          "L"
-        ],
-        "sourceAntigenChains": [
-          "A"
-        ],
-        "sourceAntibodyChains": [
           "H",
           "L"
         ],
@@ -2957,7 +2926,7 @@
     },
     {
       "routeId": "cancer_cd30",
-      "aliasPrefix": "CD30-Fab",
+      "aliasPrefix": "CD30-VHH",
       "target": "CD30",
       "gene": "TNFRSF8",
       "aliases": [
@@ -2965,22 +2934,22 @@
         "CD30 antigen"
       ],
       "promptLabel": "CD30/TNFRSF8",
-      "structureClass": "target_exact_complex",
+      "structureClass": "target_exact_nanobody_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
       "files": [
-        "CD30-Fab-01.pdb",
-        "CD30-Fab-02.pdb",
-        "CD30-Fab-03.pdb",
-        "CD30-Fab-04.pdb",
-        "CD30-Fab-05.pdb"
+        "CD30-VHH-01.pdb",
+        "CD30-VHH-02.pdb",
+        "CD30-VHH-03.pdb",
+        "CD30-VHH-04.pdb",
+        "CD30-VHH-05.pdb"
       ],
       "display": {
         "structureTitle": "CD30 VHH 霍奇金淋巴瘤结合构象",
         "structureFamily": "霍奇金淋巴瘤 · VHH 候选",
         "visualSummary": "展示 VHH 贴合 CD30 表面的代表性展示构象。",
-        "structuralBasis": "RCSB 5XBN CD30 + VHH-TSLP VHH display scaffold",
+        "structuralBasis": "RCSB 5XBN CD30 + TSLP-VHH display scaffold",
         "antigenChains": [
           "A"
         ],
@@ -3361,7 +3330,7 @@
     },
     {
       "routeId": "cancer_ox40",
-      "aliasPrefix": "OX40-Fab",
+      "aliasPrefix": "OX40-VHH",
       "target": "OX40",
       "gene": "TNFRSF4",
       "aliases": [
@@ -3369,22 +3338,22 @@
         "CD134"
       ],
       "promptLabel": "OX40/TNFRSF4",
-      "structureClass": "target_exact_complex",
+      "structureClass": "target_exact_nanobody_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
       "files": [
-        "OX40-Fab-01.pdb",
-        "OX40-Fab-02.pdb",
-        "OX40-Fab-03.pdb",
-        "OX40-Fab-04.pdb",
-        "OX40-Fab-05.pdb"
+        "OX40-VHH-01.pdb",
+        "OX40-VHH-02.pdb",
+        "OX40-VHH-03.pdb",
+        "OX40-VHH-04.pdb",
+        "OX40-VHH-05.pdb"
       ],
       "display": {
         "structureTitle": "OX40 VHH T细胞共刺激结合构象",
         "structureFamily": "T细胞共刺激 · VHH 候选",
         "visualSummary": "展示 VHH 贴合 OX40 表面的代表性展示构象。",
-        "structuralBasis": "RCSB 5I8J OX40 + VHH-IL33 VHH display scaffold",
+        "structuralBasis": "RCSB 5I8J OX40 + IL33-VHH display scaffold",
         "antigenChains": [
           "A",
           "B"
@@ -3529,7 +3498,7 @@
     },
     {
       "routeId": "cancer_dr5",
-      "aliasPrefix": "DR5-Fab",
+      "aliasPrefix": "DR5-VHH",
       "target": "DR5",
       "gene": "TNFRSF10B",
       "aliases": [
@@ -3538,22 +3507,22 @@
         "CD262"
       ],
       "promptLabel": "DR5/TNFRSF10B",
-      "structureClass": "target_exact_complex",
+      "structureClass": "target_exact_nanobody_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
       "files": [
-        "DR5-Fab-01.pdb",
-        "DR5-Fab-02.pdb",
-        "DR5-Fab-03.pdb",
-        "DR5-Fab-04.pdb",
-        "DR5-Fab-05.pdb"
+        "DR5-VHH-01.pdb",
+        "DR5-VHH-02.pdb",
+        "DR5-VHH-03.pdb",
+        "DR5-VHH-04.pdb",
+        "DR5-VHH-05.pdb"
       ],
       "display": {
         "structureTitle": "DR5 VHH 凋亡诱导结合构象",
         "structureFamily": "凋亡诱导 · VHH 候选",
         "visualSummary": "展示 VHH 贴合 DR5 表面的代表性展示构象。",
-        "structuralBasis": "RCSB 5C85 DR5 + VHH-TSLP VHH display scaffold",
+        "structuralBasis": "RCSB 5C85 DR5 + TSLP-VHH display scaffold",
         "antigenChains": [
           "A"
         ],
@@ -3609,7 +3578,7 @@
     },
     {
       "routeId": "cancer_cdh6",
-      "aliasPrefix": "CDH6-Fab",
+      "aliasPrefix": "CDH6-VHH",
       "target": "CDH6",
       "gene": "CDH6",
       "aliases": [
@@ -3617,22 +3586,22 @@
         "K-cadherin"
       ],
       "promptLabel": "CDH6",
-      "structureClass": "target_exact_complex",
+      "structureClass": "target_exact_nanobody_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
       "files": [
-        "CDH6-Fab-01.pdb",
-        "CDH6-Fab-02.pdb",
-        "CDH6-Fab-03.pdb",
-        "CDH6-Fab-04.pdb",
-        "CDH6-Fab-05.pdb"
+        "CDH6-VHH-01.pdb",
+        "CDH6-VHH-02.pdb",
+        "CDH6-VHH-03.pdb",
+        "CDH6-VHH-04.pdb",
+        "CDH6-VHH-05.pdb"
       ],
       "display": {
         "structureTitle": "CDH6 VHH 卵巢/肾癌结合构象",
         "structureFamily": "卵巢/肾癌 · VHH 候选",
         "visualSummary": "展示 VHH 贴合 CDH6 表面的代表性展示构象。",
-        "structuralBasis": "RCSB 5C4H CDH6 + VHH-IL33 VHH display scaffold",
+        "structuralBasis": "RCSB 5C4H CDH6 + IL33-VHH display scaffold",
         "antigenChains": [
           "A"
         ],
@@ -3732,7 +3701,7 @@
     },
     {
       "routeId": "cancer_gucy2c",
-      "aliasPrefix": "GUCY2C-Fab",
+      "aliasPrefix": "GUCY2C-VHH",
       "target": "GUCY2C",
       "gene": "GUCY2C",
       "aliases": [
@@ -3741,22 +3710,22 @@
         "guanylate cyclase C"
       ],
       "promptLabel": "GUCY2C",
-      "structureClass": "target_exact_complex",
+      "structureClass": "target_exact_nanobody_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
       "files": [
-        "GUCY2C-Fab-01.pdb",
-        "GUCY2C-Fab-02.pdb",
-        "GUCY2C-Fab-03.pdb",
-        "GUCY2C-Fab-04.pdb",
-        "GUCY2C-Fab-05.pdb"
+        "GUCY2C-VHH-01.pdb",
+        "GUCY2C-VHH-02.pdb",
+        "GUCY2C-VHH-03.pdb",
+        "GUCY2C-VHH-04.pdb",
+        "GUCY2C-VHH-05.pdb"
       ],
       "display": {
         "structureTitle": "GUCY2C VHH 结直肠癌结合构象",
         "structureFamily": "结直肠癌 · VHH 候选",
         "visualSummary": "展示 VHH 贴合 GUCY2C 表面的代表性展示构象。",
-        "structuralBasis": "RCSB 6B25 GUCY2C + VHH-TSLP VHH display scaffold",
+        "structuralBasis": "RCSB 6B25 GUCY2C + TSLP-VHH display scaffold",
         "antigenChains": [
           "A"
         ],
@@ -3855,7 +3824,7 @@
     },
     {
       "routeId": "inflam_gmcsf",
-      "aliasPrefix": "GMCSF-Fab",
+      "aliasPrefix": "GMCSF-VHH",
       "target": "GM-CSF",
       "gene": "CSF2",
       "aliases": [
@@ -3863,22 +3832,22 @@
         "granulocyte-macrophage colony-stimulating factor"
       ],
       "promptLabel": "GM-CSF/CSF2",
-      "structureClass": "target_exact_complex",
+      "structureClass": "target_exact_nanobody_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
       "files": [
-        "GMCSF-Fab-01.pdb",
-        "GMCSF-Fab-02.pdb",
-        "GMCSF-Fab-03.pdb",
-        "GMCSF-Fab-04.pdb",
-        "GMCSF-Fab-05.pdb"
+        "GMCSF-VHH-01.pdb",
+        "GMCSF-VHH-02.pdb",
+        "GMCSF-VHH-03.pdb",
+        "GMCSF-VHH-04.pdb",
+        "GMCSF-VHH-05.pdb"
       ],
       "display": {
         "structureTitle": "GM-CSF VHH 类风湿关节炎结合构象",
         "structureFamily": "类风湿关节炎 · VHH 候选",
         "visualSummary": "展示 VHH 贴合 GM-CSF 表面的代表性展示构象。",
-        "structuralBasis": "RCSB 4RSK GM-CSF + VHH-IL33 VHH display scaffold",
+        "structuralBasis": "RCSB 4RSK GM-CSF + IL33-VHH display scaffold",
         "antigenChains": [
           "A"
         ],
@@ -4018,7 +3987,7 @@
     },
     {
       "routeId": "metab_fgf21",
-      "aliasPrefix": "FGF21-Fab",
+      "aliasPrefix": "FGF21-VHH",
       "target": "FGF21",
       "gene": "FGF21",
       "aliases": [
@@ -4026,22 +3995,22 @@
         "fibroblast growth factor 21"
       ],
       "promptLabel": "FGF21",
-      "structureClass": "target_exact_complex",
+      "structureClass": "target_exact_nanobody_complex",
       "routeable": true,
       "promptEligible": true,
       "clientFallbackEligible": true,
       "files": [
-        "FGF21-Fab-01.pdb",
-        "FGF21-Fab-02.pdb",
-        "FGF21-Fab-03.pdb",
-        "FGF21-Fab-04.pdb",
-        "FGF21-Fab-05.pdb"
+        "FGF21-VHH-01.pdb",
+        "FGF21-VHH-02.pdb",
+        "FGF21-VHH-03.pdb",
+        "FGF21-VHH-04.pdb",
+        "FGF21-VHH-05.pdb"
       ],
       "display": {
         "structureTitle": "FGF21 VHH NASH结合构象",
         "structureFamily": "NASH · VHH 候选",
         "visualSummary": "展示 VHH 贴合 FGF21 表面的代表性展示构象。",
-        "structuralBasis": "RCSB 6M6E FGF21 + VHH-IL33 VHH display scaffold",
+        "structuralBasis": "RCSB 6M6E FGF21 + IL33-VHH display scaffold",
         "antigenChains": [
           "A"
         ],

@@ -8829,11 +8829,11 @@ const ROUTE_3D_PRESETS = {
     ipTmBias: 0.003
   },
   cancer_cd30: {
-    aliasPrefix: 'CD30-Fab',
+    aliasPrefix: 'CD30-VHH',
     title: 'CD30 VHH 霍奇金淋巴瘤结合构象',
     structureFamily: '霍奇金淋巴瘤 · VHH 候选',
     visualSummary: '展示 VHH 贴合 CD30 表面的代表性展示构象。',
-    structuralBasis: 'RCSB 5XBN CD30 + VHH-TSLP VHH display scaffold',
+    structuralBasis: 'RCSB 5XBN CD30 + TSLP-VHH display scaffold',
     antigenChains: ["A"],
     antibodyChains: ["B"],
     antigenColor: '#A855F7',
@@ -8925,11 +8925,11 @@ const ROUTE_3D_PRESETS = {
     ipTmBias: 0.003
   },
   cancer_ox40: {
-    aliasPrefix: 'OX40-Fab',
+    aliasPrefix: 'OX40-VHH',
     title: 'OX40 VHH T细胞共刺激结合构象',
     structureFamily: 'T细胞共刺激 · VHH 候选',
     visualSummary: '展示 VHH 贴合 OX40 表面的代表性展示构象。',
-    structuralBasis: 'RCSB 5I8J OX40 + VHH-IL33 VHH display scaffold',
+    structuralBasis: 'RCSB 5I8J OX40 + IL33-VHH display scaffold',
     antigenChains: ["A","B"],
     antibodyChains: ["V"],
     antigenColor: '#60A5FA',
@@ -8973,11 +8973,11 @@ const ROUTE_3D_PRESETS = {
     ipTmBias: 0.003
   },
   cancer_dr5: {
-    aliasPrefix: 'DR5-Fab',
+    aliasPrefix: 'DR5-VHH',
     title: 'DR5 VHH 凋亡诱导结合构象',
     structureFamily: '凋亡诱导 · VHH 候选',
     visualSummary: '展示 VHH 贴合 DR5 表面的代表性展示构象。',
-    structuralBasis: 'RCSB 5C85 DR5 + VHH-TSLP VHH display scaffold',
+    structuralBasis: 'RCSB 5C85 DR5 + TSLP-VHH display scaffold',
     antigenChains: ["A"],
     antibodyChains: ["B"],
     antigenColor: '#06B6D4',
@@ -8997,11 +8997,11 @@ const ROUTE_3D_PRESETS = {
     ipTmBias: 0.003
   },
   cancer_cdh6: {
-    aliasPrefix: 'CDH6-Fab',
+    aliasPrefix: 'CDH6-VHH',
     title: 'CDH6 VHH 卵巢/肾癌结合构象',
     structureFamily: '卵巢/肾癌 · VHH 候选',
     visualSummary: '展示 VHH 贴合 CDH6 表面的代表性展示构象。',
-    structuralBasis: 'RCSB 5C4H CDH6 + VHH-IL33 VHH display scaffold',
+    structuralBasis: 'RCSB 5C4H CDH6 + IL33-VHH display scaffold',
     antigenChains: ["A"],
     antibodyChains: ["B"],
     antigenColor: '#8B5CF6',
@@ -9033,11 +9033,11 @@ const ROUTE_3D_PRESETS = {
     ipTmBias: 0.003
   },
   cancer_gucy2c: {
-    aliasPrefix: 'GUCY2C-Fab',
+    aliasPrefix: 'GUCY2C-VHH',
     title: 'GUCY2C VHH 结直肠癌结合构象',
     structureFamily: '结直肠癌 · VHH 候选',
     visualSummary: '展示 VHH 贴合 GUCY2C 表面的代表性展示构象。',
-    structuralBasis: 'RCSB 6B25 GUCY2C + VHH-TSLP VHH display scaffold',
+    structuralBasis: 'RCSB 6B25 GUCY2C + TSLP-VHH display scaffold',
     antigenChains: ["A"],
     antibodyChains: ["B"],
     antigenColor: '#F59E0B',
@@ -9069,11 +9069,11 @@ const ROUTE_3D_PRESETS = {
     ipTmBias: 0.003
   },
   inflam_gmcsf: {
-    aliasPrefix: 'GMCSF-Fab',
+    aliasPrefix: 'GMCSF-VHH',
     title: 'GM-CSF VHH 类风湿关节炎结合构象',
     structureFamily: '类风湿关节炎 · VHH 候选',
     visualSummary: '展示 VHH 贴合 GM-CSF 表面的代表性展示构象。',
-    structuralBasis: 'RCSB 4RSK GM-CSF + VHH-IL33 VHH display scaffold',
+    structuralBasis: 'RCSB 4RSK GM-CSF + IL33-VHH display scaffold',
     antigenChains: ["A"],
     antibodyChains: ["B"],
     antigenColor: '#A855F7',
@@ -9117,11 +9117,11 @@ const ROUTE_3D_PRESETS = {
     ipTmBias: 0.003
   },
   metab_fgf21: {
-    aliasPrefix: 'FGF21-Fab',
+    aliasPrefix: 'FGF21-VHH',
     title: 'FGF21 VHH NASH结合构象',
     structureFamily: 'NASH · VHH 候选',
     visualSummary: '展示 VHH 贴合 FGF21 表面的代表性展示构象。',
-    structuralBasis: 'RCSB 6M6E FGF21 + VHH-IL33 VHH display scaffold',
+    structuralBasis: 'RCSB 6M6E FGF21 + IL33-VHH display scaffold',
     antigenChains: ["A"],
     antibodyChains: ["B"],
     antigenColor: '#8B5CF6',

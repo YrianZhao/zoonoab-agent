@@ -74,7 +74,7 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 | cancer_dll3 | DLL3 | DLL3 | DLL3-Fab | 5 | Homo sapiens | RCSB 6H9Y DLL3 + nivolumab Fab display scaffold |
 | cancer_folr1 | FOLR1 | FOLR1 | FOLR1-Fab | 5 | Homo sapiens | RCSB 4LRH FOLR1 + tozorakimab Fab display scaffold |
 | cancer_ror1 | ROR1 | ROR1 | ROR1-Fab | 5 | Homo sapiens | RCSB 6A5F ROR1 + daratumumab Fab display scaffold |
-| cancer_cd30 | CD30 | TNFRSF8 | CD30-Fab | 5 | Homo sapiens | RCSB 5XBN CD30 + VHH-TSLP VHH display scaffold |
+| cancer_cd30 | CD30 | TNFRSF8 | CD30-VHH | 5 | Homo sapiens | RCSB 5XBN CD30 + TSLP-VHH display scaffold |
 | cancer_flt3 | FLT3 | FLT3 | FLT3-Fab | 5 | Homo sapiens | RCSB 1RJQ FLT3 + cetuximab Fab display scaffold |
 | cancer_cd70 | CD70 | CD70 | CD70-Fab | 5 | Homo sapiens | RCSB 4F77 CD70 + ipilimumab Fab display scaffold |
 | cancer_ptk7 | PTK7 | PTK7 | PTK7-Fab | 5 | Homo sapiens | RCSB 6AY3 PTK7 + ipilimumab Fab display scaffold |
@@ -82,23 +82,23 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 | cancer_cd74 | CD74 | CD74 | CD74-Fab | 5 | Homo sapiens | RCSB 2WRH CD74 + trastuzumab Fab display scaffold |
 | cancer_tim3 | TIM-3 | HAVCR2 | TIM3-Fab | 5 | Homo sapiens | RCSB 5F71 TIM-3 + trastuzumab Fab display scaffold |
 | cancer_gitr | GITR | TNFRSF18 | GITR-Fab | 5 | Homo sapiens | RCSB 5WHD GITR + nivolumab Fab display scaffold |
-| cancer_ox40 | OX40 | TNFRSF4 | OX40-Fab | 5 | Homo sapiens | RCSB 5I8J OX40 + VHH-IL33 VHH display scaffold |
+| cancer_ox40 | OX40 | TNFRSF4 | OX40-VHH | 5 | Homo sapiens | RCSB 5I8J OX40 + IL33-VHH display scaffold |
 | cancer_41bb | 4-1BB | TNFRSF9 | 41BB-Fab | 5 | Homo sapiens | RCSB 4ZGP 4-1BB + daratumumab Fab display scaffold |
 | cancer_cd40 | CD40 | TNFRSF5 | CD40-Fab | 5 | Homo sapiens | RCSB 5L01 CD40 + tozorakimab Fab display scaffold |
 | cancer_cd27 | CD27 | TNFRSF7 | CD27-Fab | 5 | Homo sapiens | RCSB 5NLE CD27 + certolizumab Fab display scaffold |
-| cancer_dr5 | DR5 | TNFRSF10B | DR5-Fab | 5 | Homo sapiens | RCSB 5C85 DR5 + VHH-TSLP VHH display scaffold |
+| cancer_dr5 | DR5 | TNFRSF10B | DR5-VHH | 5 | Homo sapiens | RCSB 5C85 DR5 + TSLP-VHH display scaffold |
 | cancer_cldn6 | CLDN6 | CLDN6 | CLDN6-Fab | 5 | Homo sapiens | RCSB 6XG7 CLDN6 + cetuximab Fab display scaffold |
-| cancer_cdh6 | CDH6 | CDH6 | CDH6-Fab | 5 | Homo sapiens | RCSB 5C4H CDH6 + VHH-IL33 VHH display scaffold |
+| cancer_cdh6 | CDH6 | CDH6 | CDH6-VHH | 5 | Homo sapiens | RCSB 5C4H CDH6 + IL33-VHH display scaffold |
 | cancer_prlr | PRLR | PRLR | PRLR-Fab | 5 | Homo sapiens | RCSB 3D48 PRLR + certolizumab Fab display scaffold |
 | cancer_sstr2 | SSTR2 | SSTR2 | SSTR2-Fab | 5 | Homo sapiens | RCSB 6WB4 SSTR2 + daratumumab Fab display scaffold |
-| cancer_gucy2c | GUCY2C | GUCY2C | GUCY2C-Fab | 5 | Homo sapiens | RCSB 6B25 GUCY2C + VHH-TSLP VHH display scaffold |
+| cancer_gucy2c | GUCY2C | GUCY2C | GUCY2C-VHH | 5 | Homo sapiens | RCSB 6B25 GUCY2C + TSLP-VHH display scaffold |
 | inflam_il31 | IL-31 | IL31 | IL31-Fab | 5 | Homo sapiens | RCSB 5N0Y IL-31 + trastuzumab Fab display scaffold |
 | inflam_il17ra | IL-17RA | IL17RA | IL17RA-Fab | 5 | Homo sapiens | RCSB 6I1K IL-17RA + bevacizumab Fab display scaffold |
-| inflam_gmcsf | GM-CSF | CSF2 | GMCSF-Fab | 5 | Homo sapiens | RCSB 4RSK GM-CSF + VHH-IL33 VHH display scaffold |
+| inflam_gmcsf | GM-CSF | CSF2 | GMCSF-VHH | 5 | Homo sapiens | RCSB 4RSK GM-CSF + IL33-VHH display scaffold |
 | inflam_il36a | IL-36α | IL36A | IL36A-Fab | 5 | Homo sapiens | RCSB 4I6B IL-36α + bevacizumab Fab display scaffold |
 | inflam_baffr | BAFF-R | TNFRSF13C | BAFFR-Fab | 5 | Homo sapiens | RCSB 6E0M BAFF-R + trastuzumab Fab display scaffold |
 | metab_glp1r | GLP-1R | GLP1R | GLP1R-Fab | 5 | Homo sapiens | RCSB 5NX2 GLP-1R + certolizumab Fab display scaffold |
-| metab_fgf21 | FGF21 | FGF21 | FGF21-Fab | 5 | Homo sapiens | RCSB 6M6E FGF21 + VHH-IL33 VHH display scaffold |
+| metab_fgf21 | FGF21 | FGF21 | FGF21-VHH | 5 | Homo sapiens | RCSB 6M6E FGF21 + IL33-VHH display scaffold |
 | metab_lgr5 | LGR5 | LGR5 | LGR5-Fab | 5 | Homo sapiens | RCSB 4BSF LGR5 + daratumumab Fab display scaffold |
 | neuro_bace1 | BACE1 | BACE1 | BACE1-Fab | 5 | Homo sapiens | RCSB 1FKN BACE1 + daratumumab Fab display scaffold |
 | neuro_lepr | Leptin receptor | LEPR | LEPR-Fab | 5 | Homo sapiens | RCSB 6V76 Leptin receptor + certolizumab Fab display scaffold |

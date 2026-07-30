@@ -38,8 +38,8 @@ const SCAFFOLDS = [
   { name: 'ipilimumab',   source: 'CTLA4-Fab-01.pdb', chains: ['B', 'C'], format: 'Fab', description: 'Ipilimumab Fab (human IgG1)' },
   { name: 'daratumumab',  source: 'CD38-Fab-01.pdb',  chains: ['B', 'C'], format: 'Fab', description: 'Daratumumab Fab (human IgG1)' },
   { name: 'tozorakimab',  source: 'IL33-Fab-01.pdb',  chains: ['B', 'C'], format: 'Fab', description: 'Tozorakimab Fab (humanized)' },
-  { name: 'VHH-IL33',     source: 'IL33-VHH-01.pdb',  chains: ['B'],      format: 'VHH', description: 'Anti-IL-33 VHH (single-domain)' },
-  { name: 'VHH-TSLP',     source: 'TSLP-VHH-01.pdb',  chains: ['B'],      format: 'VHH', description: 'Anti-TSLP VHH (different CDR architecture)' }
+  { name: 'IL33-VHH',     source: 'IL33-VHH-01.pdb',  chains: ['B'],      format: 'VHH', description: 'Anti-IL-33 VHH (single-domain)' },
+  { name: 'TSLP-VHH',     source: 'TSLP-VHH-01.pdb',  chains: ['B'],      format: 'VHH', description: 'Anti-TSLP VHH (different CDR architecture)' }
 ];
 
 // ─── 35 gap disease targets with RCSB PDB IDs ───
@@ -48,7 +48,7 @@ const GAP_TARGETS = [
   { routeId: 'cancer_dll3',     target: 'DLL3',       gene: 'DLL3',       disease: '小细胞肺癌',         pdbId: '6H9Y', aliasPrefix: 'DLL3-Fab',       organism: 'Homo sapiens', taxId: 9606 },
   { routeId: 'cancer_folr1',    target: 'FOLR1',      gene: 'FOLR1',      disease: '卵巢癌',             pdbId: '4LRH', aliasPrefix: 'FOLR1-Fab',      organism: 'Homo sapiens', taxId: 9606 },
   { routeId: 'cancer_ror1',     target: 'ROR1',       gene: 'ROR1',       disease: 'CLL/乳腺癌',         pdbId: '6A5F', aliasPrefix: 'ROR1-Fab',       organism: 'Homo sapiens', taxId: 9606 },
-  { routeId: 'cancer_cd30',     target: 'CD30',       gene: 'TNFRSF8',    disease: '霍奇金淋巴瘤',       pdbId: '5XBN', aliasPrefix: 'CD30-Fab',       organism: 'Homo sapiens', taxId: 9606 },
+  { routeId: 'cancer_cd30',     target: 'CD30',       gene: 'TNFRSF8',    disease: '霍奇金淋巴瘤',       pdbId: '5XBN', aliasPrefix: 'CD30-VHH',       organism: 'Homo sapiens', taxId: 9606 },
   { routeId: 'cancer_flt3',     target: 'FLT3',       gene: 'FLT3',       disease: 'AML',                pdbId: '1RJQ', aliasPrefix: 'FLT3-Fab',       organism: 'Homo sapiens', taxId: 9606 },
   { routeId: 'cancer_cd70',    target: 'CD70',       gene: 'CD70',       disease: '肾细胞癌',           pdbId: '4F77', aliasPrefix: 'CD70-Fab',       organism: 'Homo sapiens', taxId: 9606 },
   { routeId: 'cancer_ptk7',     target: 'PTK7',       gene: 'PTK7',       disease: '结直肠癌',           pdbId: '6AY3', aliasPrefix: 'PTK7-Fab',       organism: 'Homo sapiens', taxId: 9606 },
@@ -56,34 +56,34 @@ const GAP_TARGETS = [
   { routeId: 'cancer_cd74',     target: 'CD74',       gene: 'CD74',       disease: 'B细胞淋巴瘤',       pdbId: '2WRH', aliasPrefix: 'CD74-Fab',       organism: 'Homo sapiens', taxId: 9606 },
   { routeId: 'cancer_tim3',     target: 'TIM-3',      gene: 'HAVCR2',     disease: 'T细胞耗竭',          pdbId: '5F71', aliasPrefix: 'TIM3-Fab',       organism: 'Homo sapiens', taxId: 9606 },
   { routeId: 'cancer_gitr',     target: 'GITR',       gene: 'TNFRSF18',   disease: 'T细胞激活',          pdbId: '5WHD', aliasPrefix: 'GITR-Fab',       organism: 'Homo sapiens', taxId: 9606 },
-  { routeId: 'cancer_ox40',     target: 'OX40',       gene: 'TNFRSF4',    disease: 'T细胞共刺激',        pdbId: '5I8J', aliasPrefix: 'OX40-Fab',       organism: 'Homo sapiens', taxId: 9606 },
+  { routeId: 'cancer_ox40',     target: 'OX40',       gene: 'TNFRSF4',    disease: 'T细胞共刺激',        pdbId: '5I8J', aliasPrefix: 'OX40-VHH',       organism: 'Homo sapiens', taxId: 9606 },
   { routeId: 'cancer_41bb',     target: '4-1BB',      gene: 'TNFRSF9',    disease: 'T细胞共刺激',        pdbId: '4ZGP', aliasPrefix: '41BB-Fab',       organism: 'Homo sapiens', taxId: 9606 },
   { routeId: 'cancer_cd40',    target: 'CD40',       gene: 'TNFRSF5',    disease: '免疫激活',           pdbId: '5L01', aliasPrefix: 'CD40-Fab',       organism: 'Homo sapiens', taxId: 9606 },
   { routeId: 'cancer_cd27',     target: 'CD27',       gene: 'TNFRSF7',    disease: 'T细胞共刺激',        pdbId: '5NLE', aliasPrefix: 'CD27-Fab',       organism: 'Homo sapiens', taxId: 9606 },
-  { routeId: 'cancer_dr5',      target: 'DR5',        gene: 'TNFRSF10B',  disease: '凋亡诱导',           pdbId: '5C85', aliasPrefix: 'DR5-Fab',        organism: 'Homo sapiens', taxId: 9606 },
+  { routeId: 'cancer_dr5',      target: 'DR5',        gene: 'TNFRSF10B',  disease: '凋亡诱导',           pdbId: '5C85', aliasPrefix: 'DR5-VHH',        organism: 'Homo sapiens', taxId: 9606 },
   { routeId: 'cancer_cldn6',    target: 'CLDN6',      gene: 'CLDN6',      disease: '卵巢/睾丸癌',        pdbId: '6XG7', aliasPrefix: 'CLDN6-Fab',      organism: 'Homo sapiens', taxId: 9606 },
-  { routeId: 'cancer_cdh6',     target: 'CDH6',       gene: 'CDH6',       disease: '卵巢/肾癌',           pdbId: '5C4H', aliasPrefix: 'CDH6-Fab',       organism: 'Homo sapiens', taxId: 9606 },
+  { routeId: 'cancer_cdh6',     target: 'CDH6',       gene: 'CDH6',       disease: '卵巢/肾癌',           pdbId: '5C4H', aliasPrefix: 'CDH6-VHH',       organism: 'Homo sapiens', taxId: 9606 },
   { routeId: 'cancer_prlr',     target: 'PRLR',       gene: 'PRLR',       disease: '乳腺/前列腺癌',      pdbId: '3D48', aliasPrefix: 'PRLR-Fab',       organism: 'Homo sapiens', taxId: 9606 },
   { routeId: 'cancer_sstr2',    target: 'SSTR2',      gene: 'SSTR2',      disease: 'NET/GIST',           pdbId: '6WB4', aliasPrefix: 'SSTR2-Fab',      organism: 'Homo sapiens', taxId: 9606 },
-  { routeId: 'cancer_gucy2c',   target: 'GUCY2C',     gene: 'GUCY2C',     disease: '结直肠癌',           pdbId: '6B25', aliasPrefix: 'GUCY2C-Fab',     organism: 'Homo sapiens', taxId: 9606 },
+  { routeId: 'cancer_gucy2c',   target: 'GUCY2C',     gene: 'GUCY2C',     disease: '结直肠癌',           pdbId: '6B25', aliasPrefix: 'GUCY2C-VHH',     organism: 'Homo sapiens', taxId: 9606 },
   // Inflammation/autoimmune (5)
   { routeId: 'inflam_il31',     target: 'IL-31',      gene: 'IL31',       disease: '特应性皮炎',         pdbId: '5N0Y', aliasPrefix: 'IL31-Fab',       organism: 'Homo sapiens', taxId: 9606 },
   { routeId: 'inflam_il17ra',  target: 'IL-17RA',     gene: 'IL17RA',     disease: '银屑病',              pdbId: '6I1K', aliasPrefix: 'IL17RA-Fab',     organism: 'Homo sapiens', taxId: 9606 },
-  { routeId: 'inflam_gmcsf',    target: 'GM-CSF',     gene: 'CSF2',       disease: '类风湿关节炎',       pdbId: '4RSK', aliasPrefix: 'GMCSF-Fab',      organism: 'Homo sapiens', taxId: 9606 },
+  { routeId: 'inflam_gmcsf',    target: 'GM-CSF',     gene: 'CSF2',       disease: '类风湿关节炎',       pdbId: '4RSK', aliasPrefix: 'GMCSF-VHH',      organism: 'Homo sapiens', taxId: 9606 },
   { routeId: 'inflam_il36a',    target: 'IL-36α',     gene: 'IL36A',      disease: '银屑病',              pdbId: '4I6B', aliasPrefix: 'IL36A-Fab',      organism: 'Homo sapiens', taxId: 9606 },
   { routeId: 'inflam_baffr',   target: 'BAFF-R',     gene: 'TNFRSF13C',  disease: 'SLE',                pdbId: '6E0M', aliasPrefix: 'BAFFR-Fab',     organism: 'Homo sapiens', taxId: 9606 },
   // Metabolic (3)
   { routeId: 'metab_glp1r',     target: 'GLP-1R',     gene: 'GLP1R',      disease: '2型糖尿病',          pdbId: '5NX2', aliasPrefix: 'GLP1R-Fab',      organism: 'Homo sapiens', taxId: 9606 },
-  { routeId: 'metab_fgf21',     target: 'FGF21',      gene: 'FGF21',      disease: 'NASH',               pdbId: '6M6E', aliasPrefix: 'FGF21-Fab',      organism: 'Homo sapiens', taxId: 9606 },
+  { routeId: 'metab_fgf21',     target: 'FGF21',      gene: 'FGF21',      disease: 'NASH',               pdbId: '6M6E', aliasPrefix: 'FGF21-VHH',      organism: 'Homo sapiens', taxId: 9606 },
   { routeId: 'metab_lgr5',      target: 'LGR5',       gene: 'LGR5',       disease: '肝细胞癌',           pdbId: '4BSF', aliasPrefix: 'LGR5-Fab',       organism: 'Homo sapiens', taxId: 9606 },
   // Neurodegenerative (2)
   { routeId: 'neuro_bace1',     target: 'BACE1',      gene: 'BACE1',      disease: '阿尔茨海默病',       pdbId: '1FKN', aliasPrefix: 'BACE1-Fab',      organism: 'Homo sapiens', taxId: 9606 },
   { routeId: 'neuro_lepr',      target: 'Leptin receptor', gene: 'LEPR',   disease: '肥胖症',              pdbId: '6V76', aliasPrefix: 'LEPR-Fab',       organism: 'Homo sapiens', taxId: 9606 },
   // Infectious (4)
-  { routeId: 'infect_dengue',   target: 'Dengue E',   gene: 'E',          disease: '登革热',              pdbId: '1OAN', aliasPrefix: 'DENGUE-E-Fab',   organism: 'Dengue virus', taxId: 11051 },
-  { routeId: 'infect_zika',     target: 'Zika NS1',    gene: 'NS1',        disease: '寨卡',                pdbId: '5GS6', aliasPrefix: 'ZIKA-NS1-Fab',   organism: 'Zika virus',  taxId: 1983736 },
-  { routeId: 'infect_rabies',   target: 'Rabies G',    gene: 'G',          disease: '狂犬病',              pdbId: '6W8J', aliasPrefix: 'RABIES-G-Fab',   organism: 'Rabies virus', taxId: 11292 },
-  { routeId: 'infect_cmv',      target: 'CMV gB',      gene: 'gB',         disease: 'CMV感染',             pdbId: '5ZB3', aliasPrefix: 'CMV-GB-Fab',     organism: 'Human cytomegalovirus', taxId: 10359 }
+  { routeId: 'infect_dengue',   target: 'Dengue E',   gene: 'DENV-E',     disease: '登革热',              pdbId: '1OAN', aliasPrefix: 'DENGUE-E-Fab',   organism: 'Dengue virus', taxId: 11051 },
+  { routeId: 'infect_zika',     target: 'Zika NS1',    gene: 'ZIKV-NS1',   disease: '寨卡',                pdbId: '5GS6', aliasPrefix: 'ZIKA-NS1-Fab',   organism: 'Zika virus',  taxId: 1983736 },
+  { routeId: 'infect_rabies',   target: 'Rabies G',    gene: 'RABV-G',     disease: '狂犬病',              pdbId: '6W8J', aliasPrefix: 'RABIES-G-Fab',   organism: 'Rabies virus', taxId: 11292 },
+  { routeId: 'infect_cmv',      target: 'CMV gB',      gene: 'HCMV-UL55',  disease: 'CMV感染',             pdbId: '5ZB3', aliasPrefix: 'CMV-GB-Fab',     organism: 'Human cytomegalovirus', taxId: 10359 }
 ];
 
 const POSES_PER_TARGET = 5;

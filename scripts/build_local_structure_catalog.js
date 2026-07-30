@@ -344,8 +344,15 @@ function mergeExistingRoutePresets(baseEntries, existingEntries) {
     byRouteId.set(copy.routeId, copy);
     ordered.push(copy);
   }
-  // Identity fields that must come from the freshly-built base, never from stale catalog
-  const IDENTITY_FIELDS = ['target', 'gene', 'aliases', 'promptLabel', 'organismName', 'organismTaxId'];
+  // Fields that must come from the freshly-built base, never from stale catalog.
+  // Includes identity fields AND derived fields (aliasPrefix drives file matching,
+  // structuralBasis/display are updated when presets change).
+  const IDENTITY_FIELDS = [
+    'target', 'gene', 'aliases', 'promptLabel', 'organismName', 'organismTaxId',
+    'aliasPrefix', 'filenamePattern', 'antibodyFormat', 'structureClass',
+    'files', 'fileCount', 'structuralBasis', 'sourcePdbIds', 'display',
+    'promptEligible', 'routeable', 'clientFallbackEligible', 'sourceClass'
+  ];
   for (const existing of existingEntries || []) {
     if (!existing || !existing.routeId) continue;
     const current = byRouteId.get(existing.routeId);
