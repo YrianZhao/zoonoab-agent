@@ -13311,12 +13311,13 @@ async function requestAssistantModelRace(providers, request, options = {}) {
     throw error;
   }
   // Each provider only uses its first model for the race
+  // Key by provider+model so the same provider with different models can both race
   const seenProviders = new Set();
   const raceCandidates = [];
   for (const provider of allProviders) {
     const models = chatProviderModelCandidates(provider);
     const model = models.length ? models[0] : provider.model;
-    const key = provider.provider || provider.url;
+    const key = (provider.provider || provider.url) + '::' + (model || '');
     if (!seenProviders.has(key)) {
       seenProviders.add(key);
       raceCandidates.push({ ...provider, model });
