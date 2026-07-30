@@ -112,10 +112,10 @@ const GENE_BY_TARGET = {
   LGR5: 'LGR5',
   BACE1: 'BACE1',
   'Leptin receptor': 'LEPR',
-  'Dengue E': 'E',
-  'Zika NS1': 'NS1',
-  'Rabies G': 'G',
-  'CMV gB': 'gB'
+  'Dengue E': 'DENV-E',
+  'Zika NS1': 'ZIKV-NS1',
+  'Rabies G': 'RABV-G',
+  'CMV gB': 'HCMV-UL55'
 };
 
 const ALIASES_BY_TARGET = {
@@ -203,10 +203,10 @@ const ALIASES_BY_TARGET = {
   LGR5: ['LGR5', 'GPR49', 'leucine-rich repeat-containing G protein-coupled receptor 5'],
   BACE1: ['BACE1', 'beta-site APP cleaving enzyme 1'],
   'Leptin receptor': ['LEPR', 'LEP-R', 'obesity receptor'],
-  'Dengue E': ['E', 'dengue virus envelope protein'],
-  'Zika NS1': ['NS1', 'Zika virus non-structural protein 1'],
-  'Rabies G': ['G', 'rabies virus glycoprotein'],
-  'CMV gB': ['gB', 'cytomegalovirus glycoprotein B']
+  'Dengue E': ['dengue virus envelope protein', 'DENV E'],
+  'Zika NS1': ['Zika virus non-structural protein 1', 'ZIKV NS1'],
+  'Rabies G': ['rabies virus glycoprotein', 'RABV G'],
+  'CMV gB': ['cytomegalovirus glycoprotein B', 'HCMV gB']
 };
 
 function readText(filePath) {
@@ -344,11 +344,17 @@ function mergeExistingRoutePresets(baseEntries, existingEntries) {
     byRouteId.set(copy.routeId, copy);
     ordered.push(copy);
   }
+  // Identity fields that must come from the freshly-built base, never from stale catalog
+  const IDENTITY_FIELDS = ['target', 'gene', 'aliases', 'promptLabel', 'organismName', 'organismTaxId'];
   for (const existing of existingEntries || []) {
     if (!existing || !existing.routeId) continue;
     const current = byRouteId.get(existing.routeId);
     if (current) {
       const merged = mergeCatalogObjects(current, existing);
+      // Re-assert identity fields from the fresh base entry
+      for (const field of IDENTITY_FIELDS) {
+        if (current[field] !== undefined) merged[field] = current[field];
+      }
       byRouteId.set(existing.routeId, merged);
       const idx = ordered.findIndex(item => item.routeId === existing.routeId);
       if (idx >= 0) ordered[idx] = merged;

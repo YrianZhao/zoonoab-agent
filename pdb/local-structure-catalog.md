@@ -4,7 +4,7 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 
 ## Summary
 
-- PDB files: 1264
+- PDB files: 1254
 - Route presets: 272
 - Routeable presets: 271
 - Prompt-eligible structure-supported targets: 271
@@ -102,10 +102,10 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 | metab_lgr5 | LGR5 | LGR5 | LGR5-Fab | 5 | Homo sapiens | RCSB 4BSF LGR5 + daratumumab Fab display scaffold |
 | neuro_bace1 | BACE1 | BACE1 | BACE1-Fab | 5 | Homo sapiens | RCSB 1FKN BACE1 + daratumumab Fab display scaffold |
 | neuro_lepr | Leptin receptor | LEPR | LEPR-Fab | 5 | Homo sapiens | RCSB 6V76 Leptin receptor + certolizumab Fab display scaffold |
-| infect_dengue | Dengue E | E | DENGUE-E-Fab | 5 | Dengue virus | RCSB 1OAN Dengue E + daratumumab Fab display scaffold |
-| infect_zika | Zika NS1 | NS1 | ZIKA-NS1-Fab | 5 | Zika virus | RCSB 5GS6 Zika NS1 + cetuximab Fab display scaffold |
-| infect_rabies | Rabies G | G | RABIES-G-Fab | 5 | Rabies virus | RCSB 6W8J Rabies G + certolizumab Fab display scaffold |
-| infect_cmv | CMV gB | gB | CMV-GB-Fab | 5 | Human cytomegalovirus | RCSB 5ZB3 CMV gB + bevacizumab Fab display scaffold |
+| infect_dengue | Dengue E | DENV-E | DENGUE-E-Fab | 5 | Dengue virus | RCSB 1OAN Dengue E + daratumumab Fab display scaffold |
+| infect_zika | Zika NS1 | ZIKV-NS1 | ZIKA-NS1-Fab | 5 | Zika virus | RCSB 5GS6 Zika NS1 + cetuximab Fab display scaffold |
+| infect_rabies | Rabies G | RABV-G | RABIES-G-Fab | 5 | Rabies virus | RCSB 6W8J Rabies G + certolizumab Fab display scaffold |
+| infect_cmv | CMV gB | HCMV-UL55 | CMV-GB-Fab | 5 | Human cytomegalovirus | RCSB 5ZB3 CMV gB + bevacizumab Fab display scaffold |
 | generic_vhh | IL-33 | IL33 | IL33-VHH | 15 | Homo sapiens | VHH 候选与抗原界面参考构象 |
 | heme_cd22 | CD22 | CD22 | CD22-Fab | 1 | Homo sapiens | RCSB 5VL3 human CD22 D1-D3 ectodomain / epratuzumab Fab complex |
 | solid_tumor_mesothelin | Mesothelin | MSLN | MSLN-Fab | 1 | Homo sapiens | RCSB 7UED full-length mesothelin / MORAb-009 Fab complex |
@@ -328,7 +328,7 @@ The runtime normalizer treats this table as the maintainable route-level target 
 | infectious_flu_na | Influenza NA | NA | Influenza neuraminidase, Flu NA, 神经氨酸酶, Influenza NA/NA | Influenza NA receptor, Influenza NA protein | server + client fallback |
 | cardio_pcsk9 | PCSK9 | PCSK9 | — | PCSK9 receptor, PCSK9 protein | server + client fallback |
 | cardio_angptl3 | ANGPTL3 | ANGPTL3 | — | ANGPTL3 receptor, ANGPTL3 protein | server + client fallback |
-| cardio_il1b | IL-1B | IL1B | IL1B, IL-1β, IL-1 beta | IL-1B protein, IL1B protein | server + client fallback |
+| cardio_il1b | IL-1B | IL1B | IL1B, IL-1β, IL-1 beta, IL-1B/IL1B | IL-1B protein, IL1B protein | server + client fallback |
 | metabolic_angptl3 | ANGPTL3 | ANGPTL3 | — | ANGPTL3 receptor, ANGPTL3 protein | server + client fallback |
 | metabolic_gipr | GIPR | GIPR | GIP receptor | GIPR receptor, GIPR protein | server + client fallback |
 | neuro_alz_abeta | Amyloid-beta | APP | Amyloid beta, APP, Amyloid-beta/APP | Amyloid-beta receptor, Amyloid-beta protein, APP receptor, APP protein | server + client fallback |
@@ -338,7 +338,7 @@ The runtime normalizer treats this table as the maintainable route-level target 
 | endocrine_graves_tshr | TSHR | TSHR | Thyrotropin receptor, Thyroid-stimulating hormone receptor, 促甲状腺激素受体 | TSHR receptor, TSHR protein | server + client fallback |
 | neuro_parkinson_snca | alpha-synuclein | SNCA | SNCA, α-synuclein, Alpha synuclein, 突触核蛋白, alpha-synuclein/SNCA | alpha-synuclein receptor, alpha-synuclein protein, SNCA receptor, SNCA protein | server + client fallback |
 | neuro_nmosd_aqp4 | AQP4 | AQP4 | AQP-4, Aquaporin-4, 水通道蛋白4 | AQP4 receptor, AQP4 protein | server + client fallback |
-| veterinary_canine_ngf | Canine NGF | NGF | dog NGF, 犬源 NGF, 犬 NGF, Canine NGF/NGF | Canine NGF receptor, Canine NGF protein | server + client fallback |
+| veterinary_canine_ngf | Canine NGF | NGF | dog NGF, dog nerve growth factor, 犬源 NGF, 犬 NGF, Canine NGF/NGF | Canine NGF receptor, Canine NGF protein | server + client fallback |
 | inflammation_pf4 | PF4 | CXCL4 | CXCL4, platelet factor 4, PF4/CXCL4 | PF4 receptor, PF4 protein, CXCL4 receptor, CXCL4 protein | server + client fallback |
 | infectious_adenovirus_hexon | Adenovirus hexon | L3 | human adenovirus hexon, adenovirus hexon, HAdV hexon, Adenovirus hexon/L3 | Adenovirus hexon receptor, Adenovirus hexon protein | server + client fallback |
 | infectious_flu_m2 | Influenza M2 | M2 | M2e, matrix protein 2, influenza matrix protein 2, Influenza M2/M2 | Influenza M2 receptor, Influenza M2 protein | server + client fallback |
@@ -381,10 +381,10 @@ The runtime normalizer treats this table as the maintainable route-level target 
 | metab_lgr5 | LGR5 | LGR5 | GPR49, leucine-rich repeat-containing G protein-coupled receptor 5 | LGR5 receptor, LGR5 protein | server + client fallback |
 | neuro_bace1 | BACE1 | BACE1 | beta-site APP cleaving enzyme 1 | BACE1 receptor, BACE1 protein | server + client fallback |
 | neuro_lepr | Leptin receptor | LEPR | LEPR, LEP-R, obesity receptor, Leptin receptor/LEPR | LEPR receptor, LEPR protein | server + client fallback |
-| infect_dengue | Dengue E | E | dengue virus envelope protein, Dengue E/E | Dengue E receptor, Dengue E protein | server + client fallback |
-| infect_zika | Zika NS1 | NS1 | NS1, Zika virus non-structural protein 1, Zika NS1/NS1 | Zika NS1 receptor, Zika NS1 protein, NS1 receptor, NS1 protein | server + client fallback |
-| infect_rabies | Rabies G | G | rabies virus glycoprotein, Rabies G/G | Rabies G receptor, Rabies G protein | server + client fallback |
-| infect_cmv | CMV gB | gB | cytomegalovirus glycoprotein B, CMV gB/gB | CMV gB receptor, CMV gB protein | server + client fallback |
+| infect_dengue | Dengue E | DENV-E | dengue virus envelope protein, DENV E, DENV-E, Dengue E/DENV-E | Dengue E receptor, Dengue E protein, DENV-E receptor, DENV-E protein | server + client fallback |
+| infect_zika | Zika NS1 | ZIKV-NS1 | Zika virus non-structural protein 1, ZIKV NS1, ZIKV-NS1, Zika NS1/ZIKV-NS1 | Zika NS1 receptor, Zika NS1 protein, ZIKV-NS1 receptor, ZIKV-NS1 protein | server + client fallback |
+| infect_rabies | Rabies G | RABV-G | rabies virus glycoprotein, RABV G, RABV-G, Rabies G/RABV-G | Rabies G receptor, Rabies G protein, RABV-G receptor, RABV-G protein | server + client fallback |
+| infect_cmv | CMV gB | HCMV-UL55 | cytomegalovirus glycoprotein B, HCMV gB, HCMV-UL55, CMV gB/HCMV-UL55 | CMV gB receptor, CMV gB protein, HCMV-UL55 receptor, HCMV-UL55 protein | server + client fallback |
 | heme_cd22 | CD22 | CD22 | SIGLEC2, B-cell receptor CD22, Leu-14, CD22/Siglec-2 | CD22 receptor, CD22 protein | server + client fallback |
 | solid_tumor_mesothelin | Mesothelin | MSLN | MSLN, CAK1, SMRP, Mesothelin/MSLN | Mesothelin receptor, Mesothelin protein, MSLN receptor, MSLN protein | server + client fallback |
 | solid_tumor_cldn18 | Claudin 18.2 | CLDN18 | CLDN18.2, Claudin-18.2, CLDN18, Claudin 18.2/CLDN18 | Claudin 18.2 receptor, Claudin 18.2 protein, CLDN18 receptor, CLDN18 protein | server + client fallback |

@@ -296,7 +296,7 @@ function createScaffoldFiles() {
     const sourceText = fs.readFileSync(sourcePath, 'utf8');
     const scaffoldPdbText = proteinLinesForChains(sourceText, scaffold.chains);
     const scaffoldFileName = `SCAFFOLD-${scaffold.format}-${scaffold.name}.pdb`;
-    const scaffoldPath = path.join(PDB_DIR, scaffoldFileName);
+    const scaffoldPath = path.join(SCAFFOLD_DIR, scaffoldFileName);
     const header = [
       'HEADER    ZOONOAB ANTIBODY SCAFFOLD',
       `REMARK 900 SCAFFOLD: ${scaffold.name} ${scaffold.format}`,
@@ -340,7 +340,7 @@ async function downloadGapAntigens() {
 // ─── Display pose generation ───
 function generatePoseForTarget(target, scaffold, antigenPdbText, antigenChains, chainStats) {
   const format = scaffold.format;
-  const scaffoldPath = path.join(PDB_DIR, `SCAFFOLD-${format}-${scaffold.name}.pdb`);
+  const scaffoldPath = path.join(SCAFFOLD_DIR, `SCAFFOLD-${format}-${scaffold.name}.pdb`);
   if (!fs.existsSync(scaffoldPath)) {
     throw new Error(`Scaffold file not found: ${scaffoldPath}`);
   }
