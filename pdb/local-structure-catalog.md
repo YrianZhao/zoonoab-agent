@@ -4,10 +4,10 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 
 ## Summary
 
-- PDB files: 1254
-- Route presets: 272
-- Routeable presets: 271
-- Prompt-eligible structure-supported targets: 271
+- PDB files: 1259
+- Route presets: 273
+- Routeable presets: 272
+- Prompt-eligible structure-supported targets: 272
 - Library assets: 273
 
 ## Route-backed structure families
@@ -106,6 +106,7 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 | infect_zika | Zika NS1 | ZIKV-NS1 | ZIKA-NS1-Fab | 5 | Zika virus | RCSB 5GS6 Zika NS1 + cetuximab Fab display scaffold |
 | infect_rabies | Rabies G | RABV-G | RABIES-G-Fab | 5 | Rabies virus | RCSB 6W8J Rabies G + certolizumab Fab display scaffold |
 | infect_cmv | CMV gB | HCMV-UL55 | CMV-GB-Fab | 5 | Human cytomegalovirus | RCSB 5ZB3 CMV gB + bevacizumab Fab display scaffold |
+| plant_virus_tmv | TMV coat protein | TMV-CP | TMV-CP-Fab | 5 | Tobacco mosaic virus | RCSB 6R7M TMV coat protein + representative Fab display scaffold, 非真实共晶结构 |
 | generic_vhh | IL-33 | IL33 | IL33-VHH | 15 | Homo sapiens | VHH 候选与抗原界面参考构象 |
 | heme_cd22 | CD22 | CD22 | CD22-Fab | 1 | Homo sapiens | RCSB 5VL3 human CD22 D1-D3 ectodomain / epratuzumab Fab complex |
 | solid_tumor_mesothelin | Mesothelin | MSLN | MSLN-Fab | 1 | Homo sapiens | RCSB 7UED full-length mesothelin / MORAb-009 Fab complex |
@@ -385,6 +386,7 @@ The runtime normalizer treats this table as the maintainable route-level target 
 | infect_zika | Zika NS1 | ZIKV-NS1 | Zika virus non-structural protein 1, ZIKV NS1, ZIKV-NS1, Zika NS1/ZIKV-NS1 | Zika NS1 receptor, Zika NS1 protein, ZIKV-NS1 receptor, ZIKV-NS1 protein | server + client fallback |
 | infect_rabies | Rabies G | RABV-G | rabies virus glycoprotein, RABV G, RABV-G, Rabies G/RABV-G | Rabies G receptor, Rabies G protein, RABV-G receptor, RABV-G protein | server + client fallback |
 | infect_cmv | CMV gB | HCMV-UL55 | cytomegalovirus glycoprotein B, HCMV gB, HCMV-UL55, CMV gB/HCMV-UL55 | CMV gB receptor, CMV gB protein, HCMV-UL55 receptor, HCMV-UL55 protein | server + client fallback |
+| plant_virus_tmv | TMV coat protein | TMV-CP | TMV-CP, TMV CP, Tobacco mosaic virus coat protein, Capsid protein | TMV coat protein receptor, TMV coat protein protein, TMV-CP receptor, TMV-CP protein | server + client fallback |
 | heme_cd22 | CD22 | CD22 | SIGLEC2, B-cell receptor CD22, Leu-14, CD22/Siglec-2 | CD22 receptor, CD22 protein | server + client fallback |
 | solid_tumor_mesothelin | Mesothelin | MSLN | MSLN, CAK1, SMRP, Mesothelin/MSLN | Mesothelin receptor, Mesothelin protein, MSLN receptor, MSLN protein | server + client fallback |
 | solid_tumor_cldn18 | Claudin 18.2 | CLDN18 | CLDN18.2, Claudin-18.2, CLDN18, Claudin 18.2/CLDN18 | Claudin 18.2 receptor, Claudin 18.2 protein, CLDN18 receptor, CLDN18 protein | server + client fallback |

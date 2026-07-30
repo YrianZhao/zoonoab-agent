@@ -3415,6 +3415,7 @@ function buildRouteProfile(target, blockTarget, abType) {
   if (['AQP4', 'AQP-4', 'AQUAPORIN4', 'AQUAPORIN-4'].includes(key)) key = 'AQP4';
   if (['ALPHASYNUCLEIN', 'ALPHA-SYNUCLEIN', 'ΑΣYNUCLEIN', 'Α-SYNUCLEIN', 'SNCA'].includes(key)) key = 'alpha-synuclein';
   if (influenzaHaSubtypeDisplay) key = 'Influenza HA';
+  if (['TMVCOATPROTEIN', 'TMV-CP', 'TMVCP', 'TMV', 'TOBACCOMOSAICVIRUSCOATPROTEIN', 'COATPROTEIN'].includes(key)) key = 'TMV coat protein';
   const profiles = {
     'IL-33': {
       routeLabel: 'IL-33 / ST2',
@@ -7963,6 +7964,38 @@ function buildRouteProfile(target, blockTarget, abType) {
       scaffold: 'Fab 片段抗体骨架',
       designMode: '发育/转录因子方向设计',
       routeId: 'display_pose_nkx2_1_151'
+    },
+    'TMV coat protein': {
+      routeLabel: 'TMV / 植物病毒',
+      disease: '烟草花叶病毒感染',
+      targetDisplay: 'TMV coat protein',
+      partnerDisplay: '',
+      domain: 'TMV 衣壳蛋白（Capsid Protein）外表面',
+      mechanism: '靶向 TMV 衣壳蛋白外表面，阻断病毒颗粒组装或介导检测型抗体识别',
+      evidence: 'TMV 衣壳蛋白结构与人造抗体展示支架参考集合',
+      evidenceSources: ['烟草花叶病毒衣壳蛋白结构注释', 'RCSB 6R7M cryo-EM 结构', '植物病毒抗体检测背景'],
+      referenceEntries: 'UniProt P69687 TMV Capsid protein 靶点条目',
+      structure: 'RCSB 6R7M TMV 衣壳蛋白与代表性 Fab 展示姿态参考',
+      structureRef: 'TMV CP 展示支架参考模型',
+      antibodies: ['抗 TMV CP 多克隆抗体（展示参考）'],
+      interfaceFocus: 'TMV 衣壳蛋白外表面高可及区',
+      selectedEpitope: '衣壳蛋白外表面可及表位',
+      epitopeRowsZh: [
+        ['Site A', '衣壳蛋白外表面螺旋区', '主要抗体可及区域', '优先'],
+        ['Site B', 'RNA 结合槽附近外缘', '辅助结合，增强亲和力', '备选'],
+        ['Site C', 'C 端柔性区', '适配检测型抗体空间', '备选']
+      ],
+      epitopeRowsEn: [
+        ['Site A', 'Capsid outer helix region', 'Primary accessible epitope', 'Primary'],
+        ['Site B', 'RNA-binding groove rim', 'Auxiliary binding, enhanced affinity', 'Alternative'],
+        ['Site C', 'C-terminal flexible tail', 'Detection antibody spatial fit', 'Alternative']
+      ],
+      riskSummaryZh: 'TMV 为植物病毒，对人体无感染性；抗体设计主要用于植物病毒检测与基础研究展示。',
+      riskSummaryEn: 'TMV is a plant virus with no human infectivity; antibody design is primarily for detection and research display.',
+      structurePrepZh: '加载 RCSB 6R7M TMV 衣壳蛋白结构与 Fab 展示姿态参考。',
+      structurePrepEn: 'Loading RCSB 6R7M TMV capsid protein structure with Fab display pose reference.',
+      scaffold: 'Fab 片段抗体骨架',
+      designMode: '植物病毒抗体设计'
     }
   };
   const profile = profiles[key]
@@ -9211,6 +9244,18 @@ const ROUTE_3D_PRESETS = {
     antigenColor: '#EC4899',
     antibodyColor: '#34D399',
     ipTmBias: 0.003
+  },
+  plant_virus_tmv: {
+    aliasPrefix: 'TMV-CP-Fab',
+    title: 'TMV 衣壳蛋白 Fab 候选结构',
+    structureFamily: '植物病毒衣壳蛋白 · Fab 候选',
+    visualSummary: '展示 Fab 对烟草花叶病毒衣壳蛋白表面的空间覆盖。',
+    structuralBasis: 'RCSB 6R7M TMV coat protein + representative Fab display scaffold, 非真实共晶结构',
+    antigenChains: ['A'],
+    antibodyChains: ['B', 'C'],
+    antigenColor: '#22C55E',
+    antibodyColor: '#F97316',
+    ipTmBias: 0.003
   }
 };
 
@@ -9576,7 +9621,8 @@ function getRoute3DPreset(profile) {
       'CHRNA1': 'display_pose_chrna1_148',
       'GNAI1': 'display_pose_gnai1_149',
       'SCN5A': 'display_pose_scn5a_150',
-      'NKX2-1': 'display_pose_nkx2_1_151'
+      'NKX2-1': 'display_pose_nkx2_1_151',
+      'TMV coat protein': 'plant_virus_tmv'
 
     };
   const targetCandidates = [target, ...String(target).split(/\s*\/\s*/)]
@@ -12061,6 +12107,18 @@ const DEMO_ROUTE_RULES = [
     printable: false,
     displayStory: '围绕 AQP4 四聚体与自身抗体界面参考，生成 NMOSD / neuromyelitis optica 方向抗体候选结构。',
     keywords: ['nmosd', 'neuromyelitis optica', '视神经脊髓炎', 'aqp4', 'aquaporin 4', 'aquaporin-4', '水通道蛋白4']
+  },
+  {
+    id: 'plant_virus_tmv',
+    disease: '烟草花叶病毒感染',
+    systemUnderstanding: '植物病毒衣壳蛋白通路',
+    target: 'TMV coat protein',
+    blockTarget: null,
+    abType: 'Fab',
+    count: 10,
+    printable: true,
+    displayStory: '围绕烟草花叶病毒衣壳蛋白外表面，展示抗体识别与检测型 Fab 候选结构生成。',
+    keywords: ['烟草花叶病毒', 'tmv', 'tobacco mosaic', 'coat protein', '衣壳蛋白', 'capsid protein', '植物病毒']
   }
 ];
 
