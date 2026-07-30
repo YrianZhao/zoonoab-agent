@@ -2,7 +2,7 @@
 (function(){
   window.ZOONOAB_LOCAL_STRUCTURE_CATALOG = {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-30T03:30:33.552Z",
+  "generatedAt": "2026-07-30T03:34:30.885Z",
   "summary": {
     "pdbFileCount": 1264,
     "routePresetCount": 272,
@@ -11,7 +11,7 @@
     "routePresetFileCount": 863,
     "libraryAssetCount": 273
   },
-  "promptSupportTargets": "IL-33/IL33、TSLP、PD-L1/CD274、PD-1/PDCD1、CTLA-4/CTLA4、CD20/MS4A1、CD19、CD3/CD3E/CD3G、CD4、C5、CFH、IL-6R/IL6R、IL-4Rα/IL4R、CD25/IL2RA、CD38、TIGIT、CD47、LAG-3/LAG3、TROP-2/TACSTD2、Tissue Factor/F3、BCMA/TNFRSF17、IgE/IGH、CGRP receptor/CALCRL/RAMP1、HER2/ERBB2、EGFR、VEGF-A/VEGFA、TNF、IL-17A/IL17A、IL-23/IL23A/IL12B、RSV F/F、SARS-CoV-2 RBD/S、Influenza HA/HA、Influenza NA/NA、PCSK9、ANGPTL3、IL-1B、GIPR、Amyloid-beta/APP、Tau/MAPT、TREM2、DAT/SLC6A3、TSHR、alpha-synuclein/SNCA、AQP4、Canine NGF/NGF、PF4/CXCL4、Adenovirus hexon/L3、Influenza M2/M2、PRRSV GP4/GP4、PRRSV NSP10/NSP10、HSV gD/gD、PCV2 capsid/CAP、PEDV spike/S、CSFV NS5B/NS5B、Feline panleukopenia VP2/VP2、Connexin-26/GJB2、CD22/Siglec-2、Mesothelin/MSLN、Claudin 18.2/CLDN18、MET/c-MET、HER3/ERBB3、B7-H3/CD276、B7-H6/NCR3LG1、MUC1、Nectin-4/NECTIN4、FGFR2/KGFR、FGFR3、GPRC5D、CEACAM5/CEA、STEAP1、CAIX/CA9、IL-5/IL5、IL-13/IL13、CD123/IL3RA、BAFF/TNFSF13B、FcRn/FCGRT、NGF、CD33/Siglec-3、GPC2/Glypican-2、Integrin α4β7/ITGA4-ITGB7、IL-6/IL6、Myostatin/GDF8、TrkB/NTRK2、CD40LG/CD40LG、ARSA/ARSA、APOA1/APOA1、APOE/APOE、EPO/EPO、DMD/DMD、APC/APC、EPOR/EPOR、TTR/TTR、IL12B/IL12B、IFNG/IFNG、FKBP1A/FKBP1A、CRP/CRP、IL1B/IL1B、IL4R/IL4R、TNNI3/TNNI3、PAH/PAH、IMPDH1/IMPDH1、TGFB1/TGFB1、ERBB3/ERBB3、IL6R/IL6R、IFNAR2/IFNAR2、CXCL10/CXCL10、NR1H4 / FXR/NR1H4、MYBPC3/MYBPC3、HLA-DRB1/HLA-DRB1、PRNP/PRNP、ACE2/ACE2、KIT/KIT、TP53/TP53、RARB/RARB、TNFRSF17/TNFRSF17、HPRT1/HPRT1、IL2RA/IL2RA、ALDH2/ALDH2、KITLG/KITLG、PDHX/PDHX、BRAF/BRAF、F10/F10、IL10/IL10、NCAM1/NCAM1、ADK/ADK、MYD88/MYD88、SCN2A/SCN2A、HMGB1/HMGB1、SIGLEC8/SIGLEC8、SERPING1/SERPING1、MMP8/MMP8、SERPINA1/SERPINA1、CD55/CD55、PRSS1/PRSS1、REN/REN、VDR/VDR、PTK2B/PTK2B、HECTD1/HECTD1、JAK1/JAK1、BMPR2/BMPR2、DST/DST、THRB/THRB、CHEK2/CHEK2、ADA2/ADA2、ADRB2/ADRB2、RAF1/RAF1、CTLA4/CTLA4、NF1/NF1、RB1/RB1、CALR/CALR、VAMP2/VAMP2、NKX2-5/NKX2-5、MMP1/MMP1、IL21/IL21、PKP2/PKP2、F2 / thrombin/F2、MEN1/MEN1、CHRM2/CHRM2、FLCN/FLCN、IL18/IL18、GABRB3/GABRB3、FTO/FTO、FGFR1/FGFR1、TOP2A/TOP2A、MMP13/MMP13、HBB/HBB、IL17A/IL17A、OAS1/OAS1、GRIK1/GRIK1、FCGRT / FcRn/FCGRT、KRAS/KRAS、NR3C1/NR3C1、STAG2/STAG2、AXL/AXL、RET/RET、MYOC/MYOC、AGTR1/AGTR1、ODC1/ODC1、KRT10/KRT10、IDH1/IDH1、PTGS2/PTGS2、SLC6A4 / SERT/SLC6A4、GAA/GAA、NTRK2/NTRK2、FBN1/FBN1、COL4A1/COL4A1、DRD4/DRD4、CNR1/CNR1、ATP4A/ATP4A、DICER1/DICER1、PLAT/PLAT、HTR2A/HTR2A、GNAS/GNAS、DRD2/DRD2、NTRK1/NTRK1、COL3A1/COL3A1、SUCLG1/SUCLG1、PSPH/PSPH、GUCY1A1/GUCY1A1、ADRA2B/ADRA2B、ATM/ATM、CACNA1G/CACNA1G、PROC/PROC、CFTR/CFTR、KLKB1/KLKB1、MYH7/MYH7、ABCB4/ABCB4、TG/TG、RYR1/RYR1、JAK2/JAK2、GABRB2/GABRB2、AVPR2/AVPR2、TLR7/TLR7、SCN1A/SCN1A、LHCGR/LHCGR、PDE3A/PDE3A、ALK/ALK、SPINK1/SPINK1、MMP7/MMP7、ATP2C1/ATP2C1、TLR9/TLR9、GREM1/GREM1、OPRM1/OPRM1、GUCY2C/GUCY2C、GPR161/GPR161、ADRB1/ADRB1、CTNNB1/CTNNB1、SCNN1B/SCNN1B、BEST1/BEST1、SLC6A3/SLC6A3、CHRNA1/CHRNA1、GNAI1/GNAI1、SCN5A/SCN5A、NKX2-1/NKX2-1",
+  "promptSupportTargets": "IL-33/IL33、TSLP、PD-L1/CD274、PD-1/PDCD1、CTLA-4/CTLA4、CD20/MS4A1、CD19、CD3/CD3E/CD3G、CD4、C5、CFH、IL-6R/IL6R、IL-4Rα/IL4R、CD25/IL2RA、CD38、TIGIT、CD47、LAG-3/LAG3、TROP-2/TACSTD2、Tissue Factor/F3、BCMA/TNFRSF17、IgE/IGH、CGRP receptor/CALCRL/RAMP1、HER2/ERBB2、EGFR、VEGF-A/VEGFA、TNF、IL-17A/IL17A、IL-23/IL23A/IL12B、RSV F/F、SARS-CoV-2 RBD/S、Influenza HA/HA、Influenza NA/NA、PCSK9、ANGPTL3、IL-1B、GIPR、Amyloid-beta/APP、Tau/MAPT、TREM2、DAT/SLC6A3、TSHR、alpha-synuclein/SNCA、AQP4、Canine NGF/NGF、PF4/CXCL4、Adenovirus hexon/L3、Influenza M2/M2、PRRSV GP4/GP4、PRRSV NSP10/NSP10、HSV gD/gD、PCV2 capsid/CAP、PEDV spike/S、CSFV NS5B/NS5B、Feline panleukopenia VP2/VP2、Connexin-26/GJB2、DLL3、FOLR1、ROR1、CD30/TNFRSF8、FLT3、CD70、PTK7、PSMA/FOLH1、CD74、TIM-3/HAVCR2、GITR/TNFRSF18、OX40/TNFRSF4、4-1BB/TNFRSF9、CD40/TNFRSF5、CD27/TNFRSF7、DR5/TNFRSF10B、CLDN6、CDH6、PRLR、SSTR2、GUCY2C、IL-31/IL31、IL-17RA/IL17RA、GM-CSF/CSF2、IL-36α/IL36A、BAFF-R/TNFRSF13C、GLP-1R/GLP1R、FGF21、LGR5、BACE1、Leptin receptor/LEPR、Dengue E/E、Zika NS1/NS1、Rabies G/G、CMV gB/gB、CD22/Siglec-2、Mesothelin/MSLN、Claudin 18.2/CLDN18、MET/c-MET、HER3/ERBB3、B7-H3/CD276、B7-H6/NCR3LG1、MUC1、Nectin-4/NECTIN4、FGFR2/KGFR、FGFR3、GPRC5D、CEACAM5/CEA、STEAP1、CAIX/CA9、IL-5/IL5、IL-13/IL13、CD123/IL3RA、BAFF/TNFSF13B、FcRn/FCGRT、NGF、CD33/Siglec-3、GPC2/Glypican-2、Integrin α4β7/ITGA4-ITGB7、IL-6/IL6、Myostatin/GDF8、TrkB/NTRK2、CD40LG/CD40LG、ARSA/ARSA、APOA1/APOA1、APOE/APOE、EPO/EPO、DMD/DMD、APC/APC、EPOR/EPOR、TTR/TTR、IL12B/IL12B、IFNG/IFNG、FKBP1A/FKBP1A、CRP/CRP、IL1B/IL1B、IL4R/IL4R、TNNI3/TNNI3、PAH/PAH、IMPDH1/IMPDH1、TGFB1/TGFB1、ERBB3/ERBB3、IL6R/IL6R、IFNAR2/IFNAR2、CXCL10/CXCL10、NR1H4 / FXR/NR1H4、MYBPC3/MYBPC3、HLA-DRB1/HLA-DRB1、PRNP/PRNP、ACE2/ACE2、KIT/KIT、TP53/TP53、RARB/RARB、TNFRSF17/TNFRSF17、HPRT1/HPRT1、IL2RA/IL2RA、ALDH2/ALDH2、KITLG/KITLG、PDHX/PDHX、BRAF/BRAF、F10/F10、IL10/IL10、NCAM1/NCAM1、ADK/ADK、MYD88/MYD88、SCN2A/SCN2A、HMGB1/HMGB1、SIGLEC8/SIGLEC8、SERPING1/SERPING1、MMP8/MMP8、SERPINA1/SERPINA1、CD55/CD55、PRSS1/PRSS1、REN/REN、VDR/VDR、PTK2B/PTK2B、HECTD1/HECTD1、JAK1/JAK1、BMPR2/BMPR2、DST/DST、THRB/THRB、CHEK2/CHEK2、ADA2/ADA2、ADRB2/ADRB2、RAF1/RAF1、CTLA4/CTLA4、NF1/NF1、RB1/RB1、CALR/CALR、VAMP2/VAMP2、NKX2-5/NKX2-5、MMP1/MMP1、IL21/IL21、PKP2/PKP2、F2 / thrombin/F2、MEN1/MEN1、CHRM2/CHRM2、FLCN/FLCN、IL18/IL18、GABRB3/GABRB3、FTO/FTO、FGFR1/FGFR1、TOP2A/TOP2A、MMP13/MMP13、HBB/HBB、IL17A/IL17A、OAS1/OAS1、GRIK1/GRIK1、FCGRT / FcRn/FCGRT、KRAS/KRAS、NR3C1/NR3C1、STAG2/STAG2、AXL/AXL、RET/RET、MYOC/MYOC、AGTR1/AGTR1、ODC1/ODC1、KRT10/KRT10、IDH1/IDH1、PTGS2/PTGS2、SLC6A4 / SERT/SLC6A4、GAA/GAA、NTRK2/NTRK2、FBN1/FBN1、COL4A1/COL4A1、DRD4/DRD4、CNR1/CNR1、ATP4A/ATP4A、DICER1/DICER1、PLAT/PLAT、HTR2A/HTR2A、GNAS/GNAS、DRD2/DRD2、NTRK1/NTRK1、COL3A1/COL3A1、SUCLG1/SUCLG1、PSPH/PSPH、GUCY1A1/GUCY1A1、ADRA2B/ADRA2B、ATM/ATM、CACNA1G/CACNA1G、PROC/PROC、CFTR/CFTR、KLKB1/KLKB1、MYH7/MYH7、ABCB4/ABCB4、TG/TG、RYR1/RYR1、JAK2/JAK2、GABRB2/GABRB2、AVPR2/AVPR2、TLR7/TLR7、SCN1A/SCN1A、LHCGR/LHCGR、PDE3A/PDE3A、ALK/ALK、SPINK1/SPINK1、MMP7/MMP7、ATP2C1/ATP2C1、TLR9/TLR9、GREM1/GREM1、OPRM1/OPRM1、GUCY2C/GUCY2C、GPR161/GPR161、ADRB1/ADRB1、CTNNB1/CTNNB1、SCNN1B/SCNN1B、BEST1/BEST1、SLC6A3/SLC6A3、CHRNA1/CHRNA1、GNAI1/GNAI1、SCN5A/SCN5A、NKX2-1/NKX2-1",
   "routePresets": [
     {
       "routeId": "allergic_asthma",
@@ -2827,6 +2827,13 @@
     {
       "routeId": "cancer_dll3",
       "aliasPrefix": "DLL3-Fab",
+      "target": "DLL3",
+      "gene": "DLL3",
+      "aliases": [
+        "DLL3",
+        "Delta-like ligand 3"
+      ],
+      "promptLabel": "DLL3",
       "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
@@ -2862,6 +2869,14 @@
     {
       "routeId": "cancer_folr1",
       "aliasPrefix": "FOLR1-Fab",
+      "target": "FOLR1",
+      "gene": "FOLR1",
+      "aliases": [
+        "FOLR1",
+        "FOL-alpha",
+        "folate receptor alpha"
+      ],
+      "promptLabel": "FOLR1",
       "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
@@ -2902,6 +2917,13 @@
     {
       "routeId": "cancer_ror1",
       "aliasPrefix": "ROR1-Fab",
+      "target": "ROR1",
+      "gene": "ROR1",
+      "aliases": [
+        "ROR1",
+        "receptor tyrosine kinase-like orphan receptor 1"
+      ],
+      "promptLabel": "ROR1",
       "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
@@ -2936,6 +2958,13 @@
     {
       "routeId": "cancer_cd30",
       "aliasPrefix": "CD30-Fab",
+      "target": "CD30",
+      "gene": "TNFRSF8",
+      "aliases": [
+        "TNFRSF8",
+        "CD30 antigen"
+      ],
+      "promptLabel": "CD30/TNFRSF8",
       "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
@@ -2968,6 +2997,14 @@
     {
       "routeId": "cancer_flt3",
       "aliasPrefix": "FLT3-Fab",
+      "target": "FLT3",
+      "gene": "FLT3",
+      "aliases": [
+        "FLT3",
+        "FLK2",
+        "CD135"
+      ],
+      "promptLabel": "FLT3",
       "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
@@ -3001,6 +3038,14 @@
     {
       "routeId": "cancer_cd70",
       "aliasPrefix": "CD70-Fab",
+      "target": "CD70",
+      "gene": "CD70",
+      "aliases": [
+        "CD70",
+        "CD27 ligand",
+        "TNFSF7"
+      ],
+      "promptLabel": "CD70",
       "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
@@ -3089,6 +3134,13 @@
     {
       "routeId": "cancer_ptk7",
       "aliasPrefix": "PTK7-Fab",
+      "target": "PTK7",
+      "gene": "PTK7",
+      "aliases": [
+        "PTK7",
+        "protein tyrosine kinase 7"
+      ],
+      "promptLabel": "PTK7",
       "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
@@ -3123,6 +3175,14 @@
     {
       "routeId": "cancer_psma",
       "aliasPrefix": "PSMA-Fab",
+      "target": "PSMA",
+      "gene": "FOLH1",
+      "aliases": [
+        "FOLH1",
+        "GCPII",
+        "glutamate carboxypeptidase II"
+      ],
+      "promptLabel": "PSMA/FOLH1",
       "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
@@ -3173,6 +3233,13 @@
     {
       "routeId": "cancer_cd74",
       "aliasPrefix": "CD74-Fab",
+      "target": "CD74",
+      "gene": "CD74",
+      "aliases": [
+        "CD74",
+        "HLA class II histocompatibility antigen gamma chain"
+      ],
+      "promptLabel": "CD74",
       "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
@@ -3211,6 +3278,13 @@
     {
       "routeId": "cancer_tim3",
       "aliasPrefix": "TIM3-Fab",
+      "target": "TIM-3",
+      "gene": "HAVCR2",
+      "aliases": [
+        "HAVCR2",
+        "T-cell immunoglobulin and mucin domain-containing protein 3"
+      ],
+      "promptLabel": "TIM-3/HAVCR2",
       "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
@@ -3245,6 +3319,13 @@
     {
       "routeId": "cancer_gitr",
       "aliasPrefix": "GITR-Fab",
+      "target": "GITR",
+      "gene": "TNFRSF18",
+      "aliases": [
+        "TNFRSF18",
+        "CD357"
+      ],
+      "promptLabel": "GITR/TNFRSF18",
       "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
@@ -3281,6 +3362,13 @@
     {
       "routeId": "cancer_ox40",
       "aliasPrefix": "OX40-Fab",
+      "target": "OX40",
+      "gene": "TNFRSF4",
+      "aliases": [
+        "TNFRSF4",
+        "CD134"
+      ],
+      "promptLabel": "OX40/TNFRSF4",
       "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
@@ -3314,6 +3402,13 @@
     {
       "routeId": "cancer_41bb",
       "aliasPrefix": "41BB-Fab",
+      "target": "4-1BB",
+      "gene": "TNFRSF9",
+      "aliases": [
+        "TNFRSF9",
+        "CD137"
+      ],
+      "promptLabel": "4-1BB/TNFRSF9",
       "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
@@ -3348,6 +3443,13 @@
     {
       "routeId": "cancer_cd40",
       "aliasPrefix": "CD40-Fab",
+      "target": "CD40",
+      "gene": "TNFRSF5",
+      "aliases": [
+        "TNFRSF5",
+        "CD40 antigen"
+      ],
+      "promptLabel": "CD40/TNFRSF5",
       "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
@@ -3381,6 +3483,13 @@
     {
       "routeId": "cancer_cd27",
       "aliasPrefix": "CD27-Fab",
+      "target": "CD27",
+      "gene": "TNFRSF7",
+      "aliases": [
+        "TNFRSF7",
+        "T14"
+      ],
+      "promptLabel": "CD27/TNFRSF7",
       "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
@@ -3421,6 +3530,14 @@
     {
       "routeId": "cancer_dr5",
       "aliasPrefix": "DR5-Fab",
+      "target": "DR5",
+      "gene": "TNFRSF10B",
+      "aliases": [
+        "TNFRSF10B",
+        "TRAIL receptor 2",
+        "CD262"
+      ],
+      "promptLabel": "DR5/TNFRSF10B",
       "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
@@ -3453,6 +3570,13 @@
     {
       "routeId": "cancer_cldn6",
       "aliasPrefix": "CLDN6-Fab",
+      "target": "CLDN6",
+      "gene": "CLDN6",
+      "aliases": [
+        "CLDN6",
+        "Claudin-6"
+      ],
+      "promptLabel": "CLDN6",
       "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
@@ -3486,6 +3610,13 @@
     {
       "routeId": "cancer_cdh6",
       "aliasPrefix": "CDH6-Fab",
+      "target": "CDH6",
+      "gene": "CDH6",
+      "aliases": [
+        "CDH6",
+        "K-cadherin"
+      ],
+      "promptLabel": "CDH6",
       "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
@@ -3518,6 +3649,13 @@
     {
       "routeId": "cancer_prlr",
       "aliasPrefix": "PRLR-Fab",
+      "target": "PRLR",
+      "gene": "PRLR",
+      "aliases": [
+        "PRLR",
+        "prolactin receptor"
+      ],
+      "promptLabel": "PRLR",
       "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
@@ -3552,6 +3690,13 @@
     {
       "routeId": "cancer_sstr2",
       "aliasPrefix": "SSTR2-Fab",
+      "target": "SSTR2",
+      "gene": "SSTR2",
+      "aliases": [
+        "SSTR2",
+        "somatostatin receptor 2"
+      ],
+      "promptLabel": "SSTR2",
       "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
@@ -3588,6 +3733,14 @@
     {
       "routeId": "cancer_gucy2c",
       "aliasPrefix": "GUCY2C-Fab",
+      "target": "GUCY2C",
+      "gene": "GUCY2C",
+      "aliases": [
+        "GUCY2C",
+        "GC-C",
+        "guanylate cyclase C"
+      ],
+      "promptLabel": "GUCY2C",
       "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
@@ -3620,6 +3773,13 @@
     {
       "routeId": "inflam_il31",
       "aliasPrefix": "IL31-Fab",
+      "target": "IL-31",
+      "gene": "IL31",
+      "aliases": [
+        "IL31",
+        "interleukin-31"
+      ],
+      "promptLabel": "IL-31/IL31",
       "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
@@ -3653,6 +3813,13 @@
     {
       "routeId": "inflam_il17ra",
       "aliasPrefix": "IL17RA-Fab",
+      "target": "IL-17RA",
+      "gene": "IL17RA",
+      "aliases": [
+        "IL17RA",
+        "IL-17 receptor A"
+      ],
+      "promptLabel": "IL-17RA/IL17RA",
       "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
@@ -3689,6 +3856,13 @@
     {
       "routeId": "inflam_gmcsf",
       "aliasPrefix": "GMCSF-Fab",
+      "target": "GM-CSF",
+      "gene": "CSF2",
+      "aliases": [
+        "CSF2",
+        "granulocyte-macrophage colony-stimulating factor"
+      ],
+      "promptLabel": "GM-CSF/CSF2",
       "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
@@ -3721,6 +3895,13 @@
     {
       "routeId": "inflam_il36a",
       "aliasPrefix": "IL36A-Fab",
+      "target": "IL-36α",
+      "gene": "IL36A",
+      "aliases": [
+        "IL36A",
+        "IL-36 alpha"
+      ],
+      "promptLabel": "IL-36α/IL36A",
       "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
@@ -3754,6 +3935,14 @@
     {
       "routeId": "inflam_baffr",
       "aliasPrefix": "BAFFR-Fab",
+      "target": "BAFF-R",
+      "gene": "TNFRSF13C",
+      "aliases": [
+        "TNFRSF13C",
+        "BAFF receptor",
+        "CD268"
+      ],
+      "promptLabel": "BAFF-R/TNFRSF13C",
       "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
@@ -3787,6 +3976,14 @@
     {
       "routeId": "metab_glp1r",
       "aliasPrefix": "GLP1R-Fab",
+      "target": "GLP-1R",
+      "gene": "GLP1R",
+      "aliases": [
+        "GLP1R",
+        "GLP-1 receptor",
+        "glucagon-like peptide 1 receptor"
+      ],
+      "promptLabel": "GLP-1R/GLP1R",
       "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
@@ -3822,6 +4019,13 @@
     {
       "routeId": "metab_fgf21",
       "aliasPrefix": "FGF21-Fab",
+      "target": "FGF21",
+      "gene": "FGF21",
+      "aliases": [
+        "FGF21",
+        "fibroblast growth factor 21"
+      ],
+      "promptLabel": "FGF21",
       "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
@@ -3854,6 +4058,14 @@
     {
       "routeId": "metab_lgr5",
       "aliasPrefix": "LGR5-Fab",
+      "target": "LGR5",
+      "gene": "LGR5",
+      "aliases": [
+        "LGR5",
+        "GPR49",
+        "leucine-rich repeat-containing G protein-coupled receptor 5"
+      ],
+      "promptLabel": "LGR5",
       "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
@@ -3890,6 +4102,13 @@
     {
       "routeId": "neuro_bace1",
       "aliasPrefix": "BACE1-Fab",
+      "target": "BACE1",
+      "gene": "BACE1",
+      "aliases": [
+        "BACE1",
+        "beta-site APP cleaving enzyme 1"
+      ],
+      "promptLabel": "BACE1",
       "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
@@ -3926,6 +4145,14 @@
     {
       "routeId": "neuro_lepr",
       "aliasPrefix": "LEPR-Fab",
+      "target": "Leptin receptor",
+      "gene": "LEPR",
+      "aliases": [
+        "LEPR",
+        "LEP-R",
+        "obesity receptor"
+      ],
+      "promptLabel": "Leptin receptor/LEPR",
       "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
@@ -3962,6 +4189,13 @@
     {
       "routeId": "infect_dengue",
       "aliasPrefix": "DENGUE-E-Fab",
+      "target": "Dengue E",
+      "gene": "E",
+      "aliases": [
+        "E",
+        "dengue virus envelope protein"
+      ],
+      "promptLabel": "Dengue E/E",
       "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
@@ -3998,6 +4232,13 @@
     {
       "routeId": "infect_zika",
       "aliasPrefix": "ZIKA-NS1-Fab",
+      "target": "Zika NS1",
+      "gene": "NS1",
+      "aliases": [
+        "NS1",
+        "Zika virus non-structural protein 1"
+      ],
+      "promptLabel": "Zika NS1/NS1",
       "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
@@ -4032,6 +4273,13 @@
     {
       "routeId": "infect_rabies",
       "aliasPrefix": "RABIES-G-Fab",
+      "target": "Rabies G",
+      "gene": "G",
+      "aliases": [
+        "G",
+        "rabies virus glycoprotein"
+      ],
+      "promptLabel": "Rabies G/G",
       "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,
@@ -4070,6 +4318,13 @@
     {
       "routeId": "infect_cmv",
       "aliasPrefix": "CMV-GB-Fab",
+      "target": "CMV gB",
+      "gene": "gB",
+      "aliases": [
+        "gB",
+        "cytomegalovirus glycoprotein B"
+      ],
+      "promptLabel": "CMV gB/gB",
       "structureClass": "target_exact_complex",
       "routeable": true,
       "promptEligible": true,

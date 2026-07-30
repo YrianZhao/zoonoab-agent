@@ -71,41 +71,41 @@ This file is generated from `pdb/local-structure-catalog.json` and summarizes th
 | infectious_csfv_ns5b | CSFV NS5B | NS5B | CSFV-NS5B-Fab | 10 | Classical swine fever virus | RCSB 7EKJ classical swine fever virus NS5B reference structure + local Fab display scaffold |
 | infectious_fpv_vp2 | Feline panleukopenia VP2 | VP2 | FPV-VP2-Fab | 10 | Feline panleukopenia virus | RCSB 1FPV feline panleukopenia virus VP2 reference structure + local Fab display scaffold |
 | neuro_deafness_gjb2 | Connexin-26 | GJB2 | GJB2-Fab | 10 | Homo sapiens | RCSB 2ZW3 connexin-26 reference structure + local Fab display scaffold |
-| cancer_dll3 |  |  | DLL3-Fab | 5 | Homo sapiens | RCSB 6H9Y DLL3 + nivolumab Fab display scaffold |
-| cancer_folr1 |  |  | FOLR1-Fab | 5 | Homo sapiens | RCSB 4LRH FOLR1 + tozorakimab Fab display scaffold |
-| cancer_ror1 |  |  | ROR1-Fab | 5 | Homo sapiens | RCSB 6A5F ROR1 + daratumumab Fab display scaffold |
-| cancer_cd30 |  |  | CD30-Fab | 5 | Homo sapiens | RCSB 5XBN CD30 + VHH-TSLP VHH display scaffold |
-| cancer_flt3 |  |  | FLT3-Fab | 5 | Homo sapiens | RCSB 1RJQ FLT3 + cetuximab Fab display scaffold |
-| cancer_cd70 |  |  | CD70-Fab | 5 | Homo sapiens | RCSB 4F77 CD70 + ipilimumab Fab display scaffold |
-| cancer_ptk7 |  |  | PTK7-Fab | 5 | Homo sapiens | RCSB 6AY3 PTK7 + ipilimumab Fab display scaffold |
-| cancer_psma |  |  | PSMA-Fab | 5 | Homo sapiens | RCSB 2X6G PSMA + cetuximab Fab display scaffold |
-| cancer_cd74 |  |  | CD74-Fab | 5 | Homo sapiens | RCSB 2WRH CD74 + trastuzumab Fab display scaffold |
-| cancer_tim3 |  |  | TIM3-Fab | 5 | Homo sapiens | RCSB 5F71 TIM-3 + trastuzumab Fab display scaffold |
-| cancer_gitr |  |  | GITR-Fab | 5 | Homo sapiens | RCSB 5WHD GITR + nivolumab Fab display scaffold |
-| cancer_ox40 |  |  | OX40-Fab | 5 | Homo sapiens | RCSB 5I8J OX40 + VHH-IL33 VHH display scaffold |
-| cancer_41bb |  |  | 41BB-Fab | 5 | Homo sapiens | RCSB 4ZGP 4-1BB + daratumumab Fab display scaffold |
-| cancer_cd40 |  |  | CD40-Fab | 5 | Homo sapiens | RCSB 5L01 CD40 + tozorakimab Fab display scaffold |
-| cancer_cd27 |  |  | CD27-Fab | 5 | Homo sapiens | RCSB 5NLE CD27 + certolizumab Fab display scaffold |
-| cancer_dr5 |  |  | DR5-Fab | 5 | Homo sapiens | RCSB 5C85 DR5 + VHH-TSLP VHH display scaffold |
-| cancer_cldn6 |  |  | CLDN6-Fab | 5 | Homo sapiens | RCSB 6XG7 CLDN6 + cetuximab Fab display scaffold |
-| cancer_cdh6 |  |  | CDH6-Fab | 5 | Homo sapiens | RCSB 5C4H CDH6 + VHH-IL33 VHH display scaffold |
-| cancer_prlr |  |  | PRLR-Fab | 5 | Homo sapiens | RCSB 3D48 PRLR + certolizumab Fab display scaffold |
-| cancer_sstr2 |  |  | SSTR2-Fab | 5 | Homo sapiens | RCSB 6WB4 SSTR2 + daratumumab Fab display scaffold |
-| cancer_gucy2c |  |  | GUCY2C-Fab | 5 | Homo sapiens | RCSB 6B25 GUCY2C + VHH-TSLP VHH display scaffold |
-| inflam_il31 |  |  | IL31-Fab | 5 | Homo sapiens | RCSB 5N0Y IL-31 + trastuzumab Fab display scaffold |
-| inflam_il17ra |  |  | IL17RA-Fab | 5 | Homo sapiens | RCSB 6I1K IL-17RA + bevacizumab Fab display scaffold |
-| inflam_gmcsf |  |  | GMCSF-Fab | 5 | Homo sapiens | RCSB 4RSK GM-CSF + VHH-IL33 VHH display scaffold |
-| inflam_il36a |  |  | IL36A-Fab | 5 | Homo sapiens | RCSB 4I6B IL-36α + bevacizumab Fab display scaffold |
-| inflam_baffr |  |  | BAFFR-Fab | 5 | Homo sapiens | RCSB 6E0M BAFF-R + trastuzumab Fab display scaffold |
-| metab_glp1r |  |  | GLP1R-Fab | 5 | Homo sapiens | RCSB 5NX2 GLP-1R + certolizumab Fab display scaffold |
-| metab_fgf21 |  |  | FGF21-Fab | 5 | Homo sapiens | RCSB 6M6E FGF21 + VHH-IL33 VHH display scaffold |
-| metab_lgr5 |  |  | LGR5-Fab | 5 | Homo sapiens | RCSB 4BSF LGR5 + daratumumab Fab display scaffold |
-| neuro_bace1 |  |  | BACE1-Fab | 5 | Homo sapiens | RCSB 1FKN BACE1 + daratumumab Fab display scaffold |
-| neuro_lepr |  |  | LEPR-Fab | 5 | Homo sapiens | RCSB 6V76 Leptin receptor + certolizumab Fab display scaffold |
-| infect_dengue |  |  | DENGUE-E-Fab | 5 | Dengue virus | RCSB 1OAN Dengue E + daratumumab Fab display scaffold |
-| infect_zika |  |  | ZIKA-NS1-Fab | 5 | Zika virus | RCSB 5GS6 Zika NS1 + cetuximab Fab display scaffold |
-| infect_rabies |  |  | RABIES-G-Fab | 5 | Rabies virus | RCSB 6W8J Rabies G + certolizumab Fab display scaffold |
-| infect_cmv |  |  | CMV-GB-Fab | 5 | Human cytomegalovirus | RCSB 5ZB3 CMV gB + bevacizumab Fab display scaffold |
+| cancer_dll3 | DLL3 | DLL3 | DLL3-Fab | 5 | Homo sapiens | RCSB 6H9Y DLL3 + nivolumab Fab display scaffold |
+| cancer_folr1 | FOLR1 | FOLR1 | FOLR1-Fab | 5 | Homo sapiens | RCSB 4LRH FOLR1 + tozorakimab Fab display scaffold |
+| cancer_ror1 | ROR1 | ROR1 | ROR1-Fab | 5 | Homo sapiens | RCSB 6A5F ROR1 + daratumumab Fab display scaffold |
+| cancer_cd30 | CD30 | TNFRSF8 | CD30-Fab | 5 | Homo sapiens | RCSB 5XBN CD30 + VHH-TSLP VHH display scaffold |
+| cancer_flt3 | FLT3 | FLT3 | FLT3-Fab | 5 | Homo sapiens | RCSB 1RJQ FLT3 + cetuximab Fab display scaffold |
+| cancer_cd70 | CD70 | CD70 | CD70-Fab | 5 | Homo sapiens | RCSB 4F77 CD70 + ipilimumab Fab display scaffold |
+| cancer_ptk7 | PTK7 | PTK7 | PTK7-Fab | 5 | Homo sapiens | RCSB 6AY3 PTK7 + ipilimumab Fab display scaffold |
+| cancer_psma | PSMA | FOLH1 | PSMA-Fab | 5 | Homo sapiens | RCSB 2X6G PSMA + cetuximab Fab display scaffold |
+| cancer_cd74 | CD74 | CD74 | CD74-Fab | 5 | Homo sapiens | RCSB 2WRH CD74 + trastuzumab Fab display scaffold |
+| cancer_tim3 | TIM-3 | HAVCR2 | TIM3-Fab | 5 | Homo sapiens | RCSB 5F71 TIM-3 + trastuzumab Fab display scaffold |
+| cancer_gitr | GITR | TNFRSF18 | GITR-Fab | 5 | Homo sapiens | RCSB 5WHD GITR + nivolumab Fab display scaffold |
+| cancer_ox40 | OX40 | TNFRSF4 | OX40-Fab | 5 | Homo sapiens | RCSB 5I8J OX40 + VHH-IL33 VHH display scaffold |
+| cancer_41bb | 4-1BB | TNFRSF9 | 41BB-Fab | 5 | Homo sapiens | RCSB 4ZGP 4-1BB + daratumumab Fab display scaffold |
+| cancer_cd40 | CD40 | TNFRSF5 | CD40-Fab | 5 | Homo sapiens | RCSB 5L01 CD40 + tozorakimab Fab display scaffold |
+| cancer_cd27 | CD27 | TNFRSF7 | CD27-Fab | 5 | Homo sapiens | RCSB 5NLE CD27 + certolizumab Fab display scaffold |
+| cancer_dr5 | DR5 | TNFRSF10B | DR5-Fab | 5 | Homo sapiens | RCSB 5C85 DR5 + VHH-TSLP VHH display scaffold |
+| cancer_cldn6 | CLDN6 | CLDN6 | CLDN6-Fab | 5 | Homo sapiens | RCSB 6XG7 CLDN6 + cetuximab Fab display scaffold |
+| cancer_cdh6 | CDH6 | CDH6 | CDH6-Fab | 5 | Homo sapiens | RCSB 5C4H CDH6 + VHH-IL33 VHH display scaffold |
+| cancer_prlr | PRLR | PRLR | PRLR-Fab | 5 | Homo sapiens | RCSB 3D48 PRLR + certolizumab Fab display scaffold |
+| cancer_sstr2 | SSTR2 | SSTR2 | SSTR2-Fab | 5 | Homo sapiens | RCSB 6WB4 SSTR2 + daratumumab Fab display scaffold |
+| cancer_gucy2c | GUCY2C | GUCY2C | GUCY2C-Fab | 5 | Homo sapiens | RCSB 6B25 GUCY2C + VHH-TSLP VHH display scaffold |
+| inflam_il31 | IL-31 | IL31 | IL31-Fab | 5 | Homo sapiens | RCSB 5N0Y IL-31 + trastuzumab Fab display scaffold |
+| inflam_il17ra | IL-17RA | IL17RA | IL17RA-Fab | 5 | Homo sapiens | RCSB 6I1K IL-17RA + bevacizumab Fab display scaffold |
+| inflam_gmcsf | GM-CSF | CSF2 | GMCSF-Fab | 5 | Homo sapiens | RCSB 4RSK GM-CSF + VHH-IL33 VHH display scaffold |
+| inflam_il36a | IL-36α | IL36A | IL36A-Fab | 5 | Homo sapiens | RCSB 4I6B IL-36α + bevacizumab Fab display scaffold |
+| inflam_baffr | BAFF-R | TNFRSF13C | BAFFR-Fab | 5 | Homo sapiens | RCSB 6E0M BAFF-R + trastuzumab Fab display scaffold |
+| metab_glp1r | GLP-1R | GLP1R | GLP1R-Fab | 5 | Homo sapiens | RCSB 5NX2 GLP-1R + certolizumab Fab display scaffold |
+| metab_fgf21 | FGF21 | FGF21 | FGF21-Fab | 5 | Homo sapiens | RCSB 6M6E FGF21 + VHH-IL33 VHH display scaffold |
+| metab_lgr5 | LGR5 | LGR5 | LGR5-Fab | 5 | Homo sapiens | RCSB 4BSF LGR5 + daratumumab Fab display scaffold |
+| neuro_bace1 | BACE1 | BACE1 | BACE1-Fab | 5 | Homo sapiens | RCSB 1FKN BACE1 + daratumumab Fab display scaffold |
+| neuro_lepr | Leptin receptor | LEPR | LEPR-Fab | 5 | Homo sapiens | RCSB 6V76 Leptin receptor + certolizumab Fab display scaffold |
+| infect_dengue | Dengue E | E | DENGUE-E-Fab | 5 | Dengue virus | RCSB 1OAN Dengue E + daratumumab Fab display scaffold |
+| infect_zika | Zika NS1 | NS1 | ZIKA-NS1-Fab | 5 | Zika virus | RCSB 5GS6 Zika NS1 + cetuximab Fab display scaffold |
+| infect_rabies | Rabies G | G | RABIES-G-Fab | 5 | Rabies virus | RCSB 6W8J Rabies G + certolizumab Fab display scaffold |
+| infect_cmv | CMV gB | gB | CMV-GB-Fab | 5 | Human cytomegalovirus | RCSB 5ZB3 CMV gB + bevacizumab Fab display scaffold |
 | generic_vhh | IL-33 | IL33 | IL33-VHH | 15 | Homo sapiens | VHH 候选与抗原界面参考构象 |
 | heme_cd22 | CD22 | CD22 | CD22-Fab | 1 | Homo sapiens | RCSB 5VL3 human CD22 D1-D3 ectodomain / epratuzumab Fab complex |
 | solid_tumor_mesothelin | Mesothelin | MSLN | MSLN-Fab | 1 | Homo sapiens | RCSB 7UED full-length mesothelin / MORAb-009 Fab complex |
@@ -350,41 +350,41 @@ The runtime normalizer treats this table as the maintainable route-level target 
 | infectious_csfv_ns5b | CSFV NS5B | NS5B | classical swine fever virus NS5B, NS5B, CSFV NS5B/NS5B | CSFV NS5B receptor, CSFV NS5B protein, NS5B receptor, NS5B protein | server + client fallback |
 | infectious_fpv_vp2 | Feline panleukopenia VP2 | VP2 | FPV VP2, feline panleukopenia virus VP2, parvovirus VP2, VP2, Feline panleukopenia VP2/VP2 | Feline panleukopenia VP2 receptor, Feline panleukopenia VP2 protein, VP2 receptor, VP2 protein | server + client fallback |
 | neuro_deafness_gjb2 | Connexin-26 | GJB2 | GJB2, CX26, connexin-26, Connexin-26/GJB2 | Connexin-26 receptor, Connexin-26 protein, GJB2 receptor, GJB2 protein | server + client fallback |
-| cancer_dll3 |  |  | — | — | server + client fallback |
-| cancer_folr1 |  |  | — | — | server + client fallback |
-| cancer_ror1 |  |  | — | — | server + client fallback |
-| cancer_cd30 |  |  | — | — | server + client fallback |
-| cancer_flt3 |  |  | — | — | server + client fallback |
-| cancer_cd70 |  |  | — | — | server + client fallback |
-| cancer_ptk7 |  |  | — | — | server + client fallback |
-| cancer_psma |  |  | — | — | server + client fallback |
-| cancer_cd74 |  |  | — | — | server + client fallback |
-| cancer_tim3 |  |  | — | — | server + client fallback |
-| cancer_gitr |  |  | — | — | server + client fallback |
-| cancer_ox40 |  |  | — | — | server + client fallback |
-| cancer_41bb |  |  | — | — | server + client fallback |
-| cancer_cd40 |  |  | — | — | server + client fallback |
-| cancer_cd27 |  |  | — | — | server + client fallback |
-| cancer_dr5 |  |  | — | — | server + client fallback |
-| cancer_cldn6 |  |  | — | — | server + client fallback |
-| cancer_cdh6 |  |  | — | — | server + client fallback |
-| cancer_prlr |  |  | — | — | server + client fallback |
-| cancer_sstr2 |  |  | — | — | server + client fallback |
-| cancer_gucy2c |  |  | — | — | server + client fallback |
-| inflam_il31 |  |  | — | — | server + client fallback |
-| inflam_il17ra |  |  | — | — | server + client fallback |
-| inflam_gmcsf |  |  | — | — | server + client fallback |
-| inflam_il36a |  |  | — | — | server + client fallback |
-| inflam_baffr |  |  | — | — | server + client fallback |
-| metab_glp1r |  |  | — | — | server + client fallback |
-| metab_fgf21 |  |  | — | — | server + client fallback |
-| metab_lgr5 |  |  | — | — | server + client fallback |
-| neuro_bace1 |  |  | — | — | server + client fallback |
-| neuro_lepr |  |  | — | — | server + client fallback |
-| infect_dengue |  |  | — | — | server + client fallback |
-| infect_zika |  |  | — | — | server + client fallback |
-| infect_rabies |  |  | — | — | server + client fallback |
-| infect_cmv |  |  | — | — | server + client fallback |
+| cancer_dll3 | DLL3 | DLL3 | Delta-like ligand 3 | DLL3 receptor, DLL3 protein | server + client fallback |
+| cancer_folr1 | FOLR1 | FOLR1 | FOL-alpha, folate receptor alpha | FOLR1 receptor, FOLR1 protein | server + client fallback |
+| cancer_ror1 | ROR1 | ROR1 | receptor tyrosine kinase-like orphan receptor 1 | ROR1 receptor, ROR1 protein | server + client fallback |
+| cancer_cd30 | CD30 | TNFRSF8 | TNFRSF8, CD30 antigen, CD30/TNFRSF8 | CD30 receptor, CD30 protein, TNFRSF8 receptor, TNFRSF8 protein | server + client fallback |
+| cancer_flt3 | FLT3 | FLT3 | FLK2, CD135 | FLT3 receptor, FLT3 protein | server + client fallback |
+| cancer_cd70 | CD70 | CD70 | CD27 ligand, TNFSF7 | CD70 receptor, CD70 protein | server + client fallback |
+| cancer_ptk7 | PTK7 | PTK7 | protein tyrosine kinase 7 | PTK7 receptor, PTK7 protein | server + client fallback |
+| cancer_psma | PSMA | FOLH1 | FOLH1, GCPII, glutamate carboxypeptidase II, PSMA/FOLH1 | PSMA receptor, PSMA protein, FOLH1 receptor, FOLH1 protein | server + client fallback |
+| cancer_cd74 | CD74 | CD74 | HLA class II histocompatibility antigen gamma chain | CD74 receptor, CD74 protein | server + client fallback |
+| cancer_tim3 | TIM-3 | HAVCR2 | HAVCR2, T-cell immunoglobulin and mucin domain-containing protein 3, TIM-3/HAVCR2 | TIM-3 receptor, TIM-3 protein, HAVCR2 receptor, HAVCR2 protein | server + client fallback |
+| cancer_gitr | GITR | TNFRSF18 | TNFRSF18, CD357, GITR/TNFRSF18 | GITR receptor, GITR protein, TNFRSF18 receptor, TNFRSF18 protein | server + client fallback |
+| cancer_ox40 | OX40 | TNFRSF4 | TNFRSF4, CD134, OX40/TNFRSF4 | OX40 receptor, OX40 protein, TNFRSF4 receptor, TNFRSF4 protein | server + client fallback |
+| cancer_41bb | 4-1BB | TNFRSF9 | TNFRSF9, CD137, 4-1BB/TNFRSF9 | 4-1BB receptor, 4-1BB protein, TNFRSF9 receptor, TNFRSF9 protein | server + client fallback |
+| cancer_cd40 | CD40 | TNFRSF5 | TNFRSF5, CD40 antigen, CD40/TNFRSF5 | CD40 receptor, CD40 protein, TNFRSF5 receptor, TNFRSF5 protein | server + client fallback |
+| cancer_cd27 | CD27 | TNFRSF7 | TNFRSF7, T14, CD27/TNFRSF7 | CD27 receptor, CD27 protein, TNFRSF7 receptor, TNFRSF7 protein | server + client fallback |
+| cancer_dr5 | DR5 | TNFRSF10B | TNFRSF10B, TRAIL receptor 2, CD262, DR5/TNFRSF10B | DR5 receptor, DR5 protein, TNFRSF10B receptor, TNFRSF10B protein | server + client fallback |
+| cancer_cldn6 | CLDN6 | CLDN6 | Claudin-6 | CLDN6 receptor, CLDN6 protein | server + client fallback |
+| cancer_cdh6 | CDH6 | CDH6 | K-cadherin | CDH6 receptor, CDH6 protein | server + client fallback |
+| cancer_prlr | PRLR | PRLR | prolactin receptor | PRLR receptor, PRLR protein | server + client fallback |
+| cancer_sstr2 | SSTR2 | SSTR2 | somatostatin receptor 2 | SSTR2 receptor, SSTR2 protein | server + client fallback |
+| cancer_gucy2c | GUCY2C | GUCY2C | GC-C, guanylate cyclase C | GUCY2C receptor, GUCY2C protein | server + client fallback |
+| inflam_il31 | IL-31 | IL31 | IL31, interleukin-31, IL-31/IL31 | IL-31 protein, IL31 protein | server + client fallback |
+| inflam_il17ra | IL-17RA | IL17RA | IL17RA, IL-17 receptor A, IL-17RA/IL17RA | IL-17RA receptor, IL-17RA protein, IL17RA receptor, IL17RA protein | server + client fallback |
+| inflam_gmcsf | GM-CSF | CSF2 | CSF2, granulocyte-macrophage colony-stimulating factor, GM-CSF/CSF2 | GM-CSF receptor, GM-CSF protein, CSF2 receptor, CSF2 protein | server + client fallback |
+| inflam_il36a | IL-36α | IL36A | IL36A, IL-36 alpha, IL-36α/IL36A | IL-36α protein, IL36A protein | server + client fallback |
+| inflam_baffr | BAFF-R | TNFRSF13C | TNFRSF13C, BAFF receptor, CD268, BAFF-R/TNFRSF13C | BAFF-R receptor, BAFF-R protein, TNFRSF13C receptor, TNFRSF13C protein | server + client fallback |
+| metab_glp1r | GLP-1R | GLP1R | GLP1R, GLP-1 receptor, glucagon-like peptide 1 receptor, GLP-1R/GLP1R | GLP-1R receptor, GLP-1R protein, GLP1R receptor, GLP1R protein | server + client fallback |
+| metab_fgf21 | FGF21 | FGF21 | fibroblast growth factor 21 | FGF21 receptor, FGF21 protein | server + client fallback |
+| metab_lgr5 | LGR5 | LGR5 | GPR49, leucine-rich repeat-containing G protein-coupled receptor 5 | LGR5 receptor, LGR5 protein | server + client fallback |
+| neuro_bace1 | BACE1 | BACE1 | beta-site APP cleaving enzyme 1 | BACE1 receptor, BACE1 protein | server + client fallback |
+| neuro_lepr | Leptin receptor | LEPR | LEPR, LEP-R, obesity receptor, Leptin receptor/LEPR | LEPR receptor, LEPR protein | server + client fallback |
+| infect_dengue | Dengue E | E | dengue virus envelope protein, Dengue E/E | Dengue E receptor, Dengue E protein | server + client fallback |
+| infect_zika | Zika NS1 | NS1 | NS1, Zika virus non-structural protein 1, Zika NS1/NS1 | Zika NS1 receptor, Zika NS1 protein, NS1 receptor, NS1 protein | server + client fallback |
+| infect_rabies | Rabies G | G | rabies virus glycoprotein, Rabies G/G | Rabies G receptor, Rabies G protein | server + client fallback |
+| infect_cmv | CMV gB | gB | cytomegalovirus glycoprotein B, CMV gB/gB | CMV gB receptor, CMV gB protein | server + client fallback |
 | heme_cd22 | CD22 | CD22 | SIGLEC2, B-cell receptor CD22, Leu-14, CD22/Siglec-2 | CD22 receptor, CD22 protein | server + client fallback |
 | solid_tumor_mesothelin | Mesothelin | MSLN | MSLN, CAK1, SMRP, Mesothelin/MSLN | Mesothelin receptor, Mesothelin protein, MSLN receptor, MSLN protein | server + client fallback |
 | solid_tumor_cldn18 | Claudin 18.2 | CLDN18 | CLDN18.2, Claudin-18.2, CLDN18, Claudin 18.2/CLDN18 | Claudin 18.2 receptor, Claudin 18.2 protein, CLDN18 receptor, CLDN18 protein | server + client fallback |
