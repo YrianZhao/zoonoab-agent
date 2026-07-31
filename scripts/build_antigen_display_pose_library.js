@@ -17,7 +17,11 @@ const OUTPUT_DIR = path.join(PDB_DIR, 'antigen-display-pose');
 const MANIFEST_PATH = path.join(PDB_DIR, 'antigen-display-pose-manifest.json');
 const AUDIT_JSON_PATH = path.join(PDB_DIR, 'antigen-display-pose-audit.json');
 const AUDIT_MD_PATH = path.join(PDB_DIR, 'antigen-display-pose-audit.md');
+// ─── 30 diverse antibody scaffolds (22 Fab + 8 VHH) ───
+// Fab scaffolds: 8 original (route preset PDBs) + 14 new (diverse atom counts)
+// VHH scaffolds: 2 original + 6 new (real RCSB nanobody crystal structures)
 const SCAFFOLDS = [
+  // ── Original 8 Fab scaffolds ──
   { name: 'trastuzumab',  file: 'HER2-Fab-01.pdb',  chains: ['B', 'C'], format: 'Fab' },
   { name: 'cetuximab',    file: 'EGFR-Fab-01.pdb',  chains: ['B', 'C'], format: 'Fab' },
   { name: 'bevacizumab',  file: 'VEGFA-Fab-01.pdb', chains: ['B', 'C'], format: 'Fab' },
@@ -26,15 +30,45 @@ const SCAFFOLDS = [
   { name: 'ipilimumab',   file: 'CTLA4-Fab-01.pdb',  chains: ['B', 'C'], format: 'Fab' },
   { name: 'daratumumab',  file: 'CD38-Fab-01.pdb',  chains: ['B', 'C'], format: 'Fab' },
   { name: 'tozorakimab',  file: 'IL33-Fab-01.pdb',  chains: ['B', 'C'], format: 'Fab' },
-  { name: 'VHH-IL33',     file: 'IL33-VHH-01.pdb',   chains: ['B'],      format: 'VHH' },
-  { name: 'VHH-TSLP',     file: 'TSLP-VHH-01.pdb',   chains: ['B'],      format: 'VHH' }
+  // ── 14 new Fab scaffolds ──
+  { name: 'fluha',        file: 'FluHA-Fab-01.pdb',  chains: ['B', 'C'], format: 'Fab' },
+  { name: 'bcma',         file: 'BCMA-Fab-01.pdb',   chains: ['B', 'C'], format: 'Fab' },
+  { name: 'il13',         file: 'IL13-Fab-01.pdb',   chains: ['H', 'L'], format: 'Fab' },
+  { name: 'fcrn',         file: 'FCRN-Fab-01.pdb',   chains: ['H', 'L'], format: 'Fab' },
+  { name: 'gipr',         file: 'GIPR-Fab-01.pdb',   chains: ['B', 'C'], format: 'Fab' },
+  { name: 'her3',         file: 'HER3-Fab-01.pdb',   chains: ['B', 'C'], format: 'Fab' },
+  { name: 'cd47',         file: 'CD47-Fab-01.pdb',   chains: ['B', 'C'], format: 'Fab' },
+  { name: 'cgrpr',        file: 'CGRPR-Fab-01.pdb',  chains: ['B', 'C'], format: 'Fab' },
+  { name: 'il6r',         file: 'IL6R-Fab-01.pdb',   chains: ['B', 'C'], format: 'Fab' },
+  { name: 'b7h6',         file: 'B7H6-Fab-01.pdb',   chains: ['A', 'B'], format: 'Fab' },
+  { name: 'cd19',         file: 'CD19-Fab-01.pdb',   chains: ['B', 'C'], format: 'Fab' },
+  { name: 'tigit',        file: 'TIGIT-Fab-01.pdb',  chains: ['B', 'C'], format: 'Fab' },
+  { name: 'gprc5d',       file: 'GPRC5D-Fab-01.pdb', chains: ['C', 'D'], format: 'Fab' },
+  { name: 'rsvf',         file: 'RSVF-Fab-01.pdb',   chains: ['B', 'C'], format: 'Fab' },
+  // ── Original 2 VHH scaffolds ──
+  { name: 'IL33',         file: 'IL33-VHH-01.pdb',   chains: ['B'],      format: 'VHH' },
+  { name: 'TSLP',         file: 'TSLP-VHH-01.pdb',   chains: ['B'],      format: 'VHH' },
+  // ── 6 new VHH scaffolds (real nanobody crystal structures from RCSB) ──
+  { name: 'nb-7d12',      file: 'scaffolds/SCAFFOLD-VHH-nb-7d12.pdb',  chains: ['A'], format: 'VHH' },
+  { name: 'cab-lys3',     file: 'scaffolds/SCAFFOLD-VHH-cab-lys3.pdb', chains: ['A'], format: 'VHH' },
+  { name: 'cab-rn05',     file: 'scaffolds/SCAFFOLD-VHH-cab-rn05.pdb', chains: ['B'], format: 'VHH' },
+  { name: 'nb-tnf3',      file: 'scaffolds/SCAFFOLD-VHH-nb-tnf3.pdb',  chains: ['D'], format: 'VHH' },
+  { name: 'cab-bcii',     file: 'scaffolds/SCAFFOLD-VHH-cab-bcii.pdb', chains: ['A'], format: 'VHH' },
+  { name: 'nb80',         file: 'scaffolds/SCAFFOLD-VHH-nb80.pdb',     chains: ['B'], format: 'VHH' }
 ];
+
+// Rotation offset ensures consecutive calls select different scaffolds,
+// preventing repetitive antibody structures across targets.
+let _scaffoldRotationOffset = 0;
 
 function chooseScaffold(target, format) {
   const matching = SCAFFOLDS.filter(s => s.format === format);
   if (!matching.length) return SCAFFOLDS[0];
   const hash = crypto.createHash('sha256').update(String(target || '')).digest();
-  const idx = hash.readUInt32BE(0) % matching.length;
+  const baseIdx = hash.readUInt32BE(0) % matching.length;
+  // Apply rotation offset so consecutive targets/calls get different scaffolds
+  const idx = (baseIdx + _scaffoldRotationOffset) % matching.length;
+  _scaffoldRotationOffset = (_scaffoldRotationOffset + 1) % matching.length;
   return matching[idx];
 }
 const ANTIBODY_KEYWORD_RE = /\b(?:antibody|autoantibody|immunoglobulin|fab|nanobody|vhh|scfv|single[- ]chain fv|megabody|vh[- ]domain)\b/i;
@@ -623,8 +657,8 @@ function main() {
     outputDir: path.relative(ROOT, OUTPUT_DIR),
     totalModels: manifestEntries.length,
     scaffolds: {
-      Fab: { file: FAB_SCAFFOLD_FILE, chains: FAB_SCAFFOLD_CHAINS },
-      VHH: { file: VHH_SCAFFOLD_FILE, chains: VHH_SCAFFOLD_CHAINS }
+      Fab: { count: SCAFFOLDS.filter(s => s.format === 'Fab').length, entries: SCAFFOLDS.filter(s => s.format === 'Fab').map(s => ({ name: s.name, file: s.file, chains: s.chains })) },
+      VHH: { count: SCAFFOLDS.filter(s => s.format === 'VHH').length, entries: SCAFFOLDS.filter(s => s.format === 'VHH').map(s => ({ name: s.name, file: s.file, chains: s.chains })) }
     },
     summary,
     models: manifestEntries

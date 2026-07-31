@@ -4,7 +4,7 @@
  * Expand the molecular model library with 35 gap disease targets.
  *
  * This script:
- * 1. Creates 10 diverse antibody scaffold files from existing route preset PDBs
+ * 1. Creates 30 diverse antibody scaffold files (22 Fab + 8 VHH) from route preset PDBs and RCSB
  * 2. Downloads 35 gap antigen PDB files from RCSB
  * 3. Generates 5 display poses per target using deterministic scaffold assignment
  * 4. Writes a manifest documenting all generated files
@@ -28,8 +28,10 @@ const SCAFFOLD_DIR = path.join(PDB_DIR, 'scaffolds');
 const MANIFEST_PATH = path.join(PDB_DIR, 'expanded-model-library-manifest.json');
 const RCSB_FILE_BASE = 'https://files.rcsb.org/download';
 
-// ─── 10 diverse antibody scaffolds (extracted from existing route preset PDBs) ───
+// ─── 30 diverse antibody scaffolds (8 original Fab + 14 new Fab + 2 original VHH + 6 new VHH) ───
+// Fab scaffolds ordered by atom count for diverse CDR architectures
 const SCAFFOLDS = [
+  // ── Original 8 Fab scaffolds (extracted from route preset PDBs) ──
   { name: 'trastuzumab',  source: 'HER2-Fab-01.pdb',  chains: ['B', 'C'], format: 'Fab', description: 'Trastuzumab Fab (VH3-23, short CDR-H3)' },
   { name: 'cetuximab',    source: 'EGFR-Fab-01.pdb',  chains: ['B', 'C'], format: 'Fab', description: 'Cetuximab Fab (chimeric, different germline)' },
   { name: 'bevacizumab',  source: 'VEGFA-Fab-01.pdb', chains: ['B', 'C'], format: 'Fab', description: 'Bevacizumab Fab (Kabat I, different VH family)' },
@@ -38,8 +40,31 @@ const SCAFFOLDS = [
   { name: 'ipilimumab',   source: 'CTLA4-Fab-01.pdb', chains: ['B', 'C'], format: 'Fab', description: 'Ipilimumab Fab (human IgG1)' },
   { name: 'daratumumab',  source: 'CD38-Fab-01.pdb',  chains: ['B', 'C'], format: 'Fab', description: 'Daratumumab Fab (human IgG1)' },
   { name: 'tozorakimab',  source: 'IL33-Fab-01.pdb',  chains: ['B', 'C'], format: 'Fab', description: 'Tozorakimab Fab (humanized)' },
-  { name: 'IL33-VHH',     source: 'IL33-VHH-01.pdb',  chains: ['B'],      format: 'VHH', description: 'Anti-IL-33 VHH (single-domain)' },
-  { name: 'TSLP-VHH',     source: 'TSLP-VHH-01.pdb',  chains: ['B'],      format: 'VHH', description: 'Anti-TSLP VHH (different CDR architecture)' }
+  // ── 14 new Fab scaffolds (diverse atom counts / CDR architectures) ──
+  { name: 'fluha',        source: 'FluHA-Fab-01.pdb',  chains: ['B', 'C'], format: 'Fab', description: 'Anti-influenza HA Fab (1498 atoms, distinct CDR architecture)' },
+  { name: 'bcma',         source: 'BCMA-Fab-01.pdb',   chains: ['B', 'C'], format: 'Fab', description: 'Anti-BCMA Fab (1539 atoms, compact framework)' },
+  { name: 'il13',         source: 'IL13-Fab-01.pdb',   chains: ['H', 'L'], format: 'Fab', description: 'Anti-IL-13 Fab (1544 atoms, different VH family)' },
+  { name: 'fcrn',         source: 'FCRN-Fab-01.pdb',   chains: ['H', 'L'], format: 'Fab', description: 'Anti-FcRn Fab (1550 atoms, long CDR-L1)' },
+  { name: 'gipr',         source: 'GIPR-Fab-01.pdb',   chains: ['B', 'C'], format: 'Fab', description: 'Anti-GIPR Fab (1566 atoms, class GPCR binder)' },
+  { name: 'her3',         source: 'HER3-Fab-01.pdb',   chains: ['B', 'C'], format: 'Fab', description: 'Anti-HER3 Fab (1571 atoms, EGFR family)' },
+  { name: 'cd47',         source: 'CD47-Fab-01.pdb',   chains: ['B', 'C'], format: 'Fab', description: 'Anti-CD47 Fab (1581 atoms, macrophage checkpoint)' },
+  { name: 'cgrpr',        source: 'CGRPR-Fab-01.pdb',  chains: ['B', 'C'], format: 'Fab', description: 'Anti-CGRP receptor Fab (1592 atoms, distinct germline)' },
+  { name: 'il6r',         source: 'IL6R-Fab-01.pdb',   chains: ['B', 'C'], format: 'Fab', description: 'Anti-IL-6R Fab (1615 atoms, tocilizumab-like)' },
+  { name: 'b7h6',         source: 'B7H6-Fab-01.pdb',   chains: ['A', 'B'], format: 'Fab', description: 'Anti-B7-H6 Fab (1624 atoms, NK cell checkpoint)' },
+  { name: 'cd19',         source: 'CD19-Fab-01.pdb',   chains: ['B', 'C'], format: 'Fab', description: 'Anti-CD19 Fab (1651 atoms, different CDR-H3 length)' },
+  { name: 'tigit',        source: 'TIGIT-Fab-01.pdb',  chains: ['B', 'C'], format: 'Fab', description: 'Anti-TIGIT Fab (1653 atoms, IgV domain binder)' },
+  { name: 'gprc5d',       source: 'GPRC5D-Fab-01.pdb', chains: ['C', 'D'], format: 'Fab', description: 'Anti-GPRC5D Fab (1665 atoms, orphan GPCR binder)' },
+  { name: 'rsvf',         source: 'RSVF-Fab-01.pdb',   chains: ['B', 'C'], format: 'Fab', description: 'Anti-RSV F Fab (1670 atoms, prefusion-specific)' },
+  // ── Original 2 VHH scaffolds ──
+  { name: 'IL33',         source: 'IL33-VHH-01.pdb',  chains: ['B'],      format: 'VHH', description: 'Anti-IL-33 VHH (single-domain)' },
+  { name: 'TSLP',         source: 'TSLP-VHH-01.pdb',  chains: ['B'],      format: 'VHH', description: 'Anti-TSLP VHH (different CDR architecture)' },
+  // ── 6 new VHH scaffolds (real nanobody crystal structures from RCSB) ──
+  { name: 'nb-7d12',      prebuilt: true, chains: ['A'], format: 'VHH', description: 'Anti-EGFR nanobody 7D12 (Lama glama, 133 res, VHH-only structure)' },
+  { name: 'cab-lys3',     prebuilt: true, chains: ['A'], format: 'VHH', description: 'cAb-Lys3 anti-lysozyme VHH (Camelus dromedarius, classic VHH)' },
+  { name: 'cab-rn05',     prebuilt: true, chains: ['B'], format: 'VHH', description: 'cAb-RN05 anti-RNase A VHH (Camelus dromedarius, scaffold variant)' },
+  { name: 'nb-tnf3',      prebuilt: true, chains: ['D'], format: 'VHH', description: 'Anti-TNF VHH3 (Lama glama, picomolar bivalent candidate)' },
+  { name: 'cab-bcii',     prebuilt: true, chains: ['A'], format: 'VHH', description: 'cAb-BCII10 anti-beta-lactamase VHH (Camelus dromedarius)' },
+  { name: 'nb80',         prebuilt: true, chains: ['B'], format: 'VHH', description: 'Nb80 anti-beta2 adrenergic receptor VHH (Llama)' }
 ];
 
 // ─── 35 gap disease targets with RCSB PDB IDs ───
@@ -262,7 +287,11 @@ function chooseGeneratedFormat(chainStats, antigenChains) {
   return 'Fab';
 }
 
-// ─── Deterministic scaffold assignment ───
+// ─── Deterministic scaffold assignment with rotation ───
+// Rotation offset ensures consecutive batch calls select different scaffolds,
+// preventing repetitive antibody structures across targets.
+let _scaffoldRotationOffset = 0;
+
 function hashScaffoldIndex(target, scaffoldCount) {
   const hash = crypto.createHash('sha256').update(target).digest();
   const num = hash.readUInt32BE(0);
@@ -272,7 +301,11 @@ function hashScaffoldIndex(target, scaffoldCount) {
 function selectScaffoldsForTarget(target, format, count) {
   const matchingScaffolds = SCAFFOLDS.filter(s => s.format === format);
   if (matchingScaffolds.length === 0) return [];
-  const startIdx = hashScaffoldIndex(target, matchingScaffolds.length);
+  const baseIdx = hashScaffoldIndex(target, matchingScaffolds.length);
+  // Apply rotation offset so consecutive targets/calls get different scaffolds.
+  // Step by count to ensure consecutive calls for the same target have minimal overlap.
+  const startIdx = (baseIdx + _scaffoldRotationOffset) % matchingScaffolds.length;
+  _scaffoldRotationOffset = (_scaffoldRotationOffset + count) % matchingScaffolds.length;
   const selected = [];
   for (let i = 0; i < count && i < matchingScaffolds.length; i++) {
     selected.push(matchingScaffolds[(startIdx + i) % matchingScaffolds.length]);
@@ -282,12 +315,24 @@ function selectScaffoldsForTarget(target, format, count) {
 
 // ─── Scaffold creation ───
 function createScaffoldFiles() {
-  console.log('\n=== Step 1: Creating 10 diverse antibody scaffold files ===');
+  console.log(`\n=== Step 1: Creating ${SCAFFOLDS.length} diverse antibody scaffold files ===`);
   if (!fs.existsSync(SCAFFOLD_DIR)) {
     fs.mkdirSync(SCAFFOLD_DIR, { recursive: true });
   }
   const created = [];
   for (const scaffold of SCAFFOLDS) {
+    const scaffoldFileName = `SCAFFOLD-${scaffold.format}-${scaffold.name}.pdb`;
+    const scaffoldPath = path.join(SCAFFOLD_DIR, scaffoldFileName);
+    // Prebuilt scaffolds (e.g. RCSB-downloaded VHH) already exist in scaffolds/
+    if (scaffold.prebuilt) {
+      if (fs.existsSync(scaffoldPath)) {
+        console.log(`  ✓ ${scaffoldFileName} (prebuilt, already exists)`);
+        created.push({ ...scaffold, file: scaffoldFileName });
+      } else {
+        console.error(`  ✗ Prebuilt scaffold file not found: ${scaffoldFileName}`);
+      }
+      continue;
+    }
     const sourcePath = path.join(PDB_DIR, scaffold.source);
     if (!fs.existsSync(sourcePath)) {
       console.error(`  ✗ Source file not found: ${scaffold.source}`);
@@ -295,8 +340,6 @@ function createScaffoldFiles() {
     }
     const sourceText = fs.readFileSync(sourcePath, 'utf8');
     const scaffoldPdbText = proteinLinesForChains(sourceText, scaffold.chains);
-    const scaffoldFileName = `SCAFFOLD-${scaffold.format}-${scaffold.name}.pdb`;
-    const scaffoldPath = path.join(SCAFFOLD_DIR, scaffoldFileName);
     const header = [
       'HEADER    ZOONOAB ANTIBODY SCAFFOLD',
       `REMARK 900 SCAFFOLD: ${scaffold.name} ${scaffold.format}`,
@@ -516,7 +559,7 @@ function generateAllDisplayPoses() {
 function writeManifest(scaffoldResults, poseResults) {
   const manifest = {
     generatedAt: new Date().toISOString(),
-    description: 'Expanded molecular model library with 35 gap disease targets and 10 diverse antibody scaffolds',
+    description: 'Expanded molecular model library with 35 gap disease targets and 30 diverse antibody scaffolds (22 Fab + 8 VHH)',
     scaffoldCount: scaffoldResults.length,
     targetCount: GAP_TARGETS.length,
     posesPerTarget: POSES_PER_TARGET,
@@ -568,7 +611,7 @@ function writeManifest(scaffoldResults, poseResults) {
 async function main() {
   console.log('╔══════════════════════════════════════════════════════════════╗');
   console.log('║  Expand Molecular Model Library                              ║');
-  console.log('║  35 gap disease targets + 10 diverse antibody scaffolds      ║');
+  console.log('║  35 gap disease targets + 30 diverse antibody scaffolds     ║');
   console.log('╚══════════════════════════════════════════════════════════════╝');
 
   // Step 1: Create scaffold files
