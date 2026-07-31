@@ -6618,7 +6618,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '69498314';
+    const APP_BUILD_VERSION = '69498315';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
     const SILICONFLOW_CHAT_FALLBACK_MODELS = ['Qwen/Qwen3-32B', 'Qwen/Qwen3-14B', 'Qwen/Qwen3-8B', 'deepseek-ai/DeepSeek-V3'];
@@ -20514,6 +20514,18 @@ ${fallbackTableRows(profile.rows)}
     }
 
     function resetChat() {
+        // Cancel any active run first to prevent stale WebSocket messages from leaking into the new session
+        if (isRunning && currentClientRunId) {
+            cancelledClientRunIds.add(currentClientRunId);
+            pruneCancelledClientRunIds();
+            if (ws && ws.readyState === 1) {
+                try { ws.send(JSON.stringify({ type: 'cancel', clientRunId: currentClientRunId })); } catch(e) { /* ignore */ }
+            }
+            if (hasResearchTracePanel(currentClientRunId)) {
+                completeResearchTracePanel(currentClientRunId, 'cancelled', '用户新建会话，工作流已停止');
+            }
+            finalizeHistoryRun('cancelled', '用户新建会话，工作流已停止');
+        }
         document.body.classList.remove('chatting-mode');
         taskListEl = null;
         subagentEl = null;
@@ -20523,9 +20535,13 @@ ${fallbackTableRows(profile.rows)}
         finishQuickDesignRun();
         resetCurrentRun3DState();
         currentClientRunId = '';
-        cancelledClientRunIds.clear();
+        // Keep cancelledClientRunIds to filter stale messages from the previous session.
+        // They will be pruned naturally and cleared on the next startChatRun().
         researchTracePanels.clear();
         isRunning = false;
+        isSpinning = false;
+        activeBinderIdx = 0;
+        activeResultsSection = null;
         setRunControlsActive(false);
         // Reset message queue
         msgQueue = [];
