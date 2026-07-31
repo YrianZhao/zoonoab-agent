@@ -5530,7 +5530,7 @@
                     </div>
                     <!-- Input bar -->
                     <div style="padding:16px;border-top:1px solid var(--border);display:flex;gap:8px;align-items:center;">
-                        <input id="teamMsgInput" type="text" placeholder="发送消息到 #抗体设计讨论..." style="flex:1;padding:8px 14px;border:1px solid var(--border);border-radius:var(--radius-xl);font-size:13px;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--brand-light)'" onblur="this.style.borderColor='var(--border)'" onkeydown="if(event.key==='Enter')teamSendMsg()">
+                        <input id="teamMsgInput" type="text" placeholder="发送消息到 #抗体设计讨论..." style="flex:1;padding:8px 14px;border:1px solid var(--border);border-radius:var(--radius-xl);font-size:13px;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--brand-light)'" onblur="this.style.borderColor='var(--border)'" onkeydown="if(event.key==='Enter'&&!event.isComposing&&event.keyCode!==229)teamSendMsg()">
                         <button class="input-submit" style="width:36px;height:36px;" onclick="teamSendMsg()">
                             <i data-lucide="send" style="width:15px;height:15px;"></i>
                         </button>
@@ -5900,7 +5900,7 @@
                         <button class="kb-qa-preset" onclick="kbQAPreset('下一步建议')">🚀 下一步建议</button>
                     </div>
                     <div class="kb-qa-input-row">
-                        <input class="kb-qa-input" id="kbQAInput" placeholder="对文档提问，例如：这个靶点的成药性如何？" onkeydown="if(event.key==='Enter')kbQASend()">
+                        <input class="kb-qa-input" id="kbQAInput" placeholder="对文档提问，例如：这个靶点的成药性如何？" onkeydown="if(event.key==='Enter'&&!event.isComposing&&event.keyCode!==229)kbQASend()">
                         <button class="kb-qa-send" onclick="kbQASend()">发送</button>
                     </div>
                 </div>
@@ -6275,7 +6275,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                                 <span class="mol3d-ai-chip" onclick="mol3dAICmd('显示水分子')">显示水分子</span>
                             </div>
                             <div class="mol3d-ai-input">
-                                <input type="text" id="mol3dAIInput" placeholder="输入指令或自然语言..." onkeydown="if(event.key==='Enter')mol3dAISend()">
+                                <input type="text" id="mol3dAIInput" placeholder="输入指令或自然语言..." onkeydown="if(event.key==='Enter'&&!event.isComposing&&event.keyCode!==229)mol3dAISend()">
                                 <button class="mol3d-ai-send" onclick="mol3dAISend()"><i data-lucide="send" style="width:12px;height:12px;"></i></button>
                             </div>
                         </div>
@@ -6618,7 +6618,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '69498315';
+    const APP_BUILD_VERSION = '69498316';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
     const SILICONFLOW_CHAT_FALLBACK_MODELS = ['Qwen/Qwen3-32B', 'Qwen/Qwen3-14B', 'Qwen/Qwen3-8B', 'deepseek-ai/DeepSeek-V3'];
@@ -20718,6 +20718,8 @@ QVQLVESGGGLVQPGGSLRLSCAASGYIFSSNAMGWYRQAPGKQRELVAAISSGGSTYYADSVKGRFTISRDNAKTTLYL
         });
         textarea.addEventListener('keydown', function (e) {
             if (e.key === 'Enter' && !e.shiftKey) {
+                // Ignore Enter while IME is composing (e.g. Chinese input method confirmation)
+                if (e.isComposing || e.keyCode === 229) return;
                 e.preventDefault();
                 sendMessage();
             }
