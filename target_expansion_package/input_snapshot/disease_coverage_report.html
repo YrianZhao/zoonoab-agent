@@ -1,0 +1,155 @@
+<style>
+:root {
+  --brand: #7C5CFC;
+  --brand-light: #A78BFA;
+  --brand-soft: rgba(124,92,252,0.12);
+  --surface: #FFFFFF;
+  --surface-muted: #F7F8FA;
+  --border: #E5E7EB;
+  --text: #1A1A2E;
+  --text-body: #3D3D4E;
+  --text-muted: #8A8A9B;
+  --chart-series-1: #7C5CFC;
+  --chart-series-2: #5B8DEF;
+  --chart-series-3: #00C2A8;
+  --chart-series-4: #F59E0B;
+  --chart-other: #C4B5FD;
+  --accent-green: #16A34A;
+  --accent-orange: #F59E0B;
+  --accent-red: #EF4444;
+  --radius: 8px;
+  --radius-card: 12px;
+  --font-sans: -apple-system, "PingFang SC", "Noto Sans CJK SC", "Segoe UI", sans-serif;
+  --font-metric: "SF Mono", "Roboto Mono", monospace;
+  --text-caption: 12px/18px;
+  --text-body-14: 14px/20px;
+  --text-title: 16px/24px;
+  --weight-medium: 500;
+  --weight-strong: 700;
+  --spacer-4: 4px;
+  --spacer-8: 8px;
+  --spacer-12: 12px;
+  --spacer-16: 16px;
+  --spacer-20: 20px;
+  --spacer-24: 24px;
+}
+:root[data-widget-theme="dark"] {
+  --surface: #1E1E2E;
+  --surface-muted: #16161F;
+  --border: #2D2D40;
+  --text: #E8E8F0;
+  --text-body: #B8B8C8;
+  --text-muted: #6E6E80;
+  --brand-soft: rgba(124,92,252,0.2);
+}
+.widget-root {
+  font-family: var(--font-sans);
+  background: var(--surface);
+  color: var(--text);
+  border-radius: var(--radius-card);
+  padding: var(--spacer-20);
+  border: 1px solid var(--border);
+}
+.widget-header { display:flex; align-items:baseline; gap:var(--spacer-12); margin-bottom:var(--spacer-4); }
+.widget-title { font: var(--weight-strong) var(--text-title) var(--font-sans); }
+.widget-subtitle { font: var(--text-caption); color: var(--text-muted); }
+.kpi-strip { display:flex; gap:var(--spacer-16); margin: var(--spacer-16) 0; flex-wrap:wrap; }
+.kpi-card { flex:1; min-width:100px; background:var(--surface-muted); border-radius:var(--radius); padding:var(--spacer-12) var(--spacer-16); border:1px solid var(--border); }
+.kpi-value { font: var(--weight-strong) 22px var(--font-metric); color: var(--brand); }
+.kpi-label { font: var(--text-caption); color: var(--text-muted); margin-top:var(--spacer-4); }
+.section-title { font: var(--weight-medium) var(--text-title) var(--font-sans); margin: var(--spacer-20) 0 var(--spacer-12); }
+.bar-chart { display:flex; flex-direction:column; gap:var(--spacer-8); }
+.bar-row { display:flex; align-items:center; gap:var(--spacer-8); }
+.bar-label { width:120px; font: var(--text-body-14); flex-shrink:0; text-align:right; }
+.bar-track { flex:1; height:22px; background:var(--surface-muted); border-radius:var(--radius); overflow:hidden; position:relative; }
+.bar-fill-green { height:100%; background:var(--accent-green); border-radius:var(--radius); transition:width 0.4s ease; }
+.bar-fill-orange { height:100%; background:var(--accent-orange); border-radius:var(--radius); transition:width 0.4s ease; }
+.bar-fill-red { height:100%; background:var(--accent-red); border-radius:var(--radius); transition:width 0.4s ease; }
+.bar-count { width:60px; font: var(--text-caption); color:var(--text-muted); flex-shrink:0; }
+.legend { display:flex; gap:var(--spacer-16); margin-top:var(--spacer-12); font: var(--text-caption); color:var(--text-muted); }
+.legend-item { display:flex; align-items:center; gap:var(--spacer-4); }
+.legend-dot { width:8px; height:8px; border-radius:2px; }
+.who-table { width:100%; border-collapse:collapse; margin-top:var(--spacer-8); }
+.who-table th, .who-table td { padding:var(--spacer-8) var(--spacer-12); text-align:left; font: var(--text-body-14); border-bottom:1px solid var(--border); }
+.who-table th { font: var(--weight-medium) var(--text-caption); color:var(--text-muted); }
+.status-badge { display:inline-block; padding:2px 8px; border-radius:999px; font: var(--text-caption); font-weight:var(--weight-medium); }
+.status-full { background:rgba(22,163,74,0.12); color:var(--accent-green); }
+.status-partial { background:rgba(245,158,11,0.12); color:var(--accent-orange); }
+.status-none { background:rgba(239,68,68,0.12); color:var(--accent-red); }
+.uncovered-list { display:flex; flex-direction:column; gap:var(--spacer-8); margin-top:var(--spacer-8); }
+.uncovered-item { display:flex; align-items:center; justify-content:space-between; padding:var(--spacer-8) var(--spacer-12); background:var(--surface-muted); border-radius:var(--radius); border:1px solid var(--border); }
+.uncovered-name { font: var(--text-body-14); }
+.uncovered-targets { font: var(--text-caption); color:var(--text-muted); }
+</style>
+<div class="widget-root" data-dynamic-ui-widget data-template="disease-coverage">
+  <div class="widget-header">
+    <span class="widget-title">人类常见疾病靶点覆盖报告</span>
+    <span class="widget-subtitle">基于 WHO 全球疾病负担 + ICD-11 分类，共 166 种常见疾病</span>
+  </div>
+
+  <div class="kpi-strip">
+    <div class="kpi-card"><div class="kpi-value">268</div><div class="kpi-label">本地靶点总数</div></div>
+    <div class="kpi-card"><div class="kpi-value" style="color:var(--accent-green)">94</div><div class="kpi-label">完全覆盖疾病</div></div>
+    <div class="kpi-card"><div class="kpi-value" style="color:var(--accent-orange)">61</div><div class="kpi-label">部分覆盖疾病</div></div>
+    <div class="kpi-card"><div class="kpi-value" style="color:var(--accent-red)">11</div><div class="kpi-label">未覆盖疾病</div></div>
+    <div class="kpi-card"><div class="kpi-value">93%</div><div class="kpi-label">总体覆盖率</div></div>
+  </div>
+
+  <div class="section-title">各疾病类别覆盖分布</div>
+  <div class="bar-chart" id="catChart">
+    <div class="bar-row"><span class="bar-label">恶性肿瘤</span><div class="bar-track"><div class="bar-fill-green" style="width:73.9%"></div><div class="bar-fill-orange" style="width:26.1%;margin-left:-100%"></div></div><span class="bar-count">23种</span></div>
+    <div class="bar-row"><span class="bar-label">自身免疫/炎症</span><div class="bar-track"><div class="bar-fill-green" style="width:66.7%"></div><div class="bar-fill-orange" style="width:33.3%;margin-left:-100%"></div></div><span class="bar-count">24种</span></div>
+    <div class="bar-row"><span class="bar-label">感染性疾病</span><div class="bar-track"><div class="bar-fill-green" style="width:61.9%"></div><div class="bar-fill-orange" style="width:23.8%;margin-left:-100%"></div><div class="bar-fill-red" style="width:14.3%;margin-left:-100%"></div></div><span class="bar-count">21种</span></div>
+    <div class="bar-row"><span class="bar-label">心血管疾病</span><div class="bar-track"><div class="bar-fill-green" style="width:61.5%"></div><div class="bar-fill-orange" style="width:38.5%;margin-left:-100%"></div></div><span class="bar-count">13种</span></div>
+    <div class="bar-row"><span class="bar-label">代谢/内分泌</span><div class="bar-track"><div class="bar-fill-green" style="width:50%"></div><div class="bar-fill-orange" style="width:50%;margin-left:-100%"></div></div><span class="bar-count">12种</span></div>
+    <div class="bar-row"><span class="bar-label">消化系统</span><div class="bar-track"><div class="bar-fill-green" style="width:71.4%"></div><div class="bar-fill-orange" style="width:28.6%;margin-left:-100%"></div></div><span class="bar-count">7种</span></div>
+    <div class="bar-row"><span class="bar-label">神经退行性</span><div class="bar-track"><div class="bar-fill-green" style="width:57.1%"></div><div class="bar-fill-orange" style="width:14.3%;margin-left:-100%"></div><div class="bar-fill-red" style="width:28.6%;margin-left:-100%"></div></div><span class="bar-count">7种</span></div>
+    <div class="bar-row"><span class="bar-label">神经精神</span><div class="bar-track"><div class="bar-fill-green" style="width:42.9%"></div><div class="bar-fill-orange" style="width:57.1%;margin-left:-100%"></div></div><span class="bar-count">7种</span></div>
+    <div class="bar-row"><span class="bar-label">呼吸系统</span><div class="bar-track"><div class="bar-fill-green" style="width:71.4%"></div><div class="bar-fill-orange" style="width:28.6%;margin-left:-100%"></div></div><span class="bar-count">7种</span></div>
+    <div class="bar-row"><span class="bar-label">血液系统</span><div class="bar-track"><div class="bar-fill-green" style="width:33.3%"></div><div class="bar-fill-orange" style="width:66.7%;margin-left:-100%"></div></div><span class="bar-count">6种</span></div>
+    <div class="bar-row"><span class="bar-label">神经系统</span><div class="bar-track"><div class="bar-fill-orange" style="width:83.3%"></div><div class="bar-fill-red" style="width:16.7%;margin-left:-100%"></div></div><span class="bar-count">6种</span></div>
+    <div class="bar-row"><span class="bar-label">眼科</span><div class="bar-track"><div class="bar-fill-green" style="width:60%"></div><div class="bar-fill-orange" style="width:40%;margin-left:-100%"></div></div><span class="bar-count">5种</span></div>
+    <div class="bar-row"><span class="bar-label">皮肤</span><div class="bar-track"><div class="bar-fill-green" style="width:40%"></div><div class="bar-fill-orange" style="width:60%;margin-left:-100%"></div></div><span class="bar-count">5种</span></div>
+    <div class="bar-row"><span class="bar-label">罕见病</span><div class="bar-track"><div class="bar-fill-green" style="width:11.1%"></div><div class="bar-fill-orange" style="width:33.3%;margin-left:-100%"></div><div class="bar-fill-red" style="width:55.6%;margin-left:-100%"></div></div><span class="bar-count">9种</span></div>
+    <div class="bar-row"><span class="bar-label">骨/肌肉</span><div class="bar-track"><div class="bar-fill-green" style="width:50%"></div><div class="bar-fill-orange" style="width:50%;margin-left:-100%"></div></div><span class="bar-count">4种</span></div>
+    <div class="bar-row"><span class="bar-label">肾脏/泌尿</span><div class="bar-track"><div class="bar-fill-green" style="width:25%"></div><div class="bar-fill-orange" style="width:75%;margin-left:-100%"></div></div><span class="bar-count">4种</span></div>
+    <div class="bar-row"><span class="bar-label">移植/免疫</span><div class="bar-track"><div class="bar-fill-green" style="width:100%"></div></div><span class="bar-count">3种</span></div>
+  </div>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--accent-green)"></div>完全覆盖</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--accent-orange)"></div>部分覆盖</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--accent-red)"></div>未覆盖</div>
+  </div>
+
+  <div class="section-title">WHO 全球十大死因覆盖</div>
+  <table class="who-table">
+    <thead><tr><th>#</th><th>疾病</th><th>ICD</th><th>状态</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>缺血性心脏病</td><td>I20-I25</td><td><span class="status-badge status-full">完全覆盖</span></td></tr>
+      <tr><td>2</td><td>脑卒中</td><td>I60-I69</td><td><span class="status-badge status-full">完全覆盖</span></td></tr>
+      <tr><td>3</td><td>慢性阻塞性肺病</td><td>J40-J44</td><td><span class="status-badge status-full">完全覆盖</span></td></tr>
+      <tr><td>4</td><td>下呼吸道感染</td><td>J12-J18</td><td><span class="status-badge status-full">完全覆盖</span></td></tr>
+      <tr><td>5</td><td>新生儿疾病</td><td>P00-P96</td><td><span class="status-badge status-full">完全覆盖</span></td></tr>
+      <tr><td>6</td><td>气管/支气管/肺癌</td><td>C33-C34</td><td><span class="status-badge status-full">完全覆盖</span></td></tr>
+      <tr><td>7</td><td>结直肠癌</td><td>C18-C21</td><td><span class="status-badge status-full">完全覆盖</span></td></tr>
+      <tr><td>8</td><td>阿尔茨海默病</td><td>G30</td><td><span class="status-badge status-full">完全覆盖</span></td></tr>
+      <tr><td>9</td><td>消化系统疾病</td><td>K70-K93</td><td><span class="status-badge status-full">完全覆盖</span></td></tr>
+      <tr><td>10</td><td>糖尿病肾病/慢性肾病</td><td>N18-N19</td><td><span class="status-badge status-full">完全覆盖</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-title">未覆盖疾病清单（11种）</div>
+  <div class="uncovered-list">
+    <div class="uncovered-item"><span class="uncovered-name">亨廷顿病</span><span class="uncovered-targets">缺少: HTT</span></div>
+    <div class="uncovered-item"><span class="uncovered-name">肌萎缩侧索硬化症 (ALS)</span><span class="uncovered-targets">缺少: SOD1, C9orf72, TDP-43</span></div>
+    <div class="uncovered-item"><span class="uncovered-name">脊髓损伤</span><span class="uncovered-targets">缺少: Nogo-66, NgR, Cethrin</span></div>
+    <div class="uncovered-item"><span class="uncovered-name">破伤风</span><span class="uncovered-targets">缺少: Tetanus toxin</span></div>
+    <div class="uncovered-item"><span class="uncovered-name">疟疾</span><span class="uncovered-targets">缺少: PfHRP2, CSP, MSP1, AMA1, RH5</span></div>
+    <div class="uncovered-item"><span class="uncovered-name">HPV感染</span><span class="uncovered-targets">缺少: L1蛋白, E6/E7</span></div>
+    <div class="uncovered-item"><span class="uncovered-name">法布里病</span><span class="uncovered-targets">缺少: alpha-Gal A</span></div>
+    <div class="uncovered-item"><span class="uncovered-name">戈谢病</span><span class="uncovered-targets">缺少: GBA / GCase</span></div>
+    <div class="uncovered-item"><span class="uncovered-name">黏多糖贮积症</span><span class="uncovered-targets">缺少: IDS, IDUA</span></div>
+    <div class="uncovered-item"><span class="uncovered-name">脊髓性肌萎缩 (SMA)</span><span class="uncovered-targets">缺少: SMN1/2, Survivin</span></div>
+    <div class="uncovered-item"><span class="uncovered-name">尼曼-匹克病</span><span class="uncovered-targets">缺少: NPC1/2</span></div>
+  </div>
+</div>

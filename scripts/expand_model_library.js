@@ -4,7 +4,7 @@
  * Expand the molecular model library with 35 gap disease targets.
  *
  * This script:
- * 1. Creates 30 diverse antibody scaffold files (22 Fab + 8 VHH) from route preset PDBs and RCSB
+ * 1. Creates 32 diverse antibody scaffold files (22 Fab + 10 VHH) from route preset PDBs and RCSB
  * 2. Downloads 35 gap antigen PDB files from RCSB
  * 3. Generates 5 display poses per target using deterministic scaffold assignment
  * 4. Writes a manifest documenting all generated files
@@ -28,7 +28,7 @@ const SCAFFOLD_DIR = path.join(PDB_DIR, 'scaffolds');
 const MANIFEST_PATH = path.join(PDB_DIR, 'expanded-model-library-manifest.json');
 const RCSB_FILE_BASE = 'https://files.rcsb.org/download';
 
-// ─── 30 diverse antibody scaffolds (8 original Fab + 14 new Fab + 2 original VHH + 6 new VHH) ───
+// ─── 32 diverse antibody scaffolds (22 Fab + 10 VHH) ───
 // Fab scaffolds ordered by atom count for diverse CDR architectures
 const SCAFFOLDS = [
   // ── Original 8 Fab scaffolds (extracted from route preset PDBs) ──
@@ -64,7 +64,10 @@ const SCAFFOLDS = [
   { name: 'cab-rn05',     prebuilt: true, chains: ['B'], format: 'VHH', description: 'cAb-RN05 anti-RNase A VHH (Camelus dromedarius, scaffold variant)' },
   { name: 'nb-tnf3',      prebuilt: true, chains: ['D'], format: 'VHH', description: 'Anti-TNF VHH3 (Lama glama, picomolar bivalent candidate)' },
   { name: 'cab-bcii',     prebuilt: true, chains: ['A'], format: 'VHH', description: 'cAb-BCII10 anti-beta-lactamase VHH (Camelus dromedarius)' },
-  { name: 'nb80',         prebuilt: true, chains: ['B'], format: 'VHH', description: 'Nb80 anti-beta2 adrenergic receptor VHH (Llama)' }
+  { name: 'nb80',         prebuilt: true, chains: ['B'], format: 'VHH', description: 'Nb80 anti-beta2 adrenergic receptor VHH (Llama)' },
+  // ── 2 additional VHH scaffolds (real nanobody crystal structures from RCSB) ──
+  { name: 'mu551',        prebuilt: true, chains: ['B'], format: 'VHH', description: 'MU551 anti-CD38 nanobody (Lama glama, 163 res, therapeutic MM target)' },
+  { name: 'clec4f',       prebuilt: true, chains: ['A'], format: 'VHH', description: 'Clec4f Nanobody 246 (VHH-only structure, 131 res, monomer)' }
 ];
 
 // ─── 35 gap disease targets with RCSB PDB IDs ───
@@ -559,7 +562,7 @@ function generateAllDisplayPoses() {
 function writeManifest(scaffoldResults, poseResults) {
   const manifest = {
     generatedAt: new Date().toISOString(),
-    description: 'Expanded molecular model library with 35 gap disease targets and 30 diverse antibody scaffolds (22 Fab + 8 VHH)',
+    description: 'Expanded molecular model library with 35 gap disease targets and 32 diverse antibody scaffolds (22 Fab + 10 VHH)',
     scaffoldCount: scaffoldResults.length,
     targetCount: GAP_TARGETS.length,
     posesPerTarget: POSES_PER_TARGET,
@@ -611,7 +614,7 @@ function writeManifest(scaffoldResults, poseResults) {
 async function main() {
   console.log('╔══════════════════════════════════════════════════════════════╗');
   console.log('║  Expand Molecular Model Library                              ║');
-  console.log('║  35 gap disease targets + 30 diverse antibody scaffolds     ║');
+  console.log('║  35 gap disease targets + 32 diverse antibody scaffolds     ║');
   console.log('╚══════════════════════════════════════════════════════════════╝');
 
   // Step 1: Create scaffold files

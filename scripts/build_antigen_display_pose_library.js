@@ -17,9 +17,9 @@ const OUTPUT_DIR = path.join(PDB_DIR, 'antigen-display-pose');
 const MANIFEST_PATH = path.join(PDB_DIR, 'antigen-display-pose-manifest.json');
 const AUDIT_JSON_PATH = path.join(PDB_DIR, 'antigen-display-pose-audit.json');
 const AUDIT_MD_PATH = path.join(PDB_DIR, 'antigen-display-pose-audit.md');
-// ─── 30 diverse antibody scaffolds (22 Fab + 8 VHH) ───
+// ─── 32 diverse antibody scaffolds (22 Fab + 10 VHH) ───
 // Fab scaffolds: 8 original (route preset PDBs) + 14 new (diverse atom counts)
-// VHH scaffolds: 2 original + 6 new (real RCSB nanobody crystal structures)
+// VHH scaffolds: 2 original + 8 new (real RCSB nanobody crystal structures)
 const SCAFFOLDS = [
   // ── Original 8 Fab scaffolds ──
   { name: 'trastuzumab',  file: 'HER2-Fab-01.pdb',  chains: ['B', 'C'], format: 'Fab' },
@@ -54,7 +54,10 @@ const SCAFFOLDS = [
   { name: 'cab-rn05',     file: 'scaffolds/SCAFFOLD-VHH-cab-rn05.pdb', chains: ['B'], format: 'VHH' },
   { name: 'nb-tnf3',      file: 'scaffolds/SCAFFOLD-VHH-nb-tnf3.pdb',  chains: ['D'], format: 'VHH' },
   { name: 'cab-bcii',     file: 'scaffolds/SCAFFOLD-VHH-cab-bcii.pdb', chains: ['A'], format: 'VHH' },
-  { name: 'nb80',         file: 'scaffolds/SCAFFOLD-VHH-nb80.pdb',     chains: ['B'], format: 'VHH' }
+  { name: 'nb80',         file: 'scaffolds/SCAFFOLD-VHH-nb80.pdb',     chains: ['B'], format: 'VHH' },
+  // ── 2 additional VHH scaffolds (real nanobody crystal structures from RCSB) ──
+  { name: 'mu551',        file: 'scaffolds/SCAFFOLD-VHH-mu551.pdb',    chains: ['B'], format: 'VHH' },
+  { name: 'clec4f',       file: 'scaffolds/SCAFFOLD-VHH-clec4f.pdb',   chains: ['A'], format: 'VHH' }
 ];
 
 // Rotation offset ensures consecutive calls select different scaffolds,

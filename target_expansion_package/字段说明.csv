@@ -1,0 +1,13 @@
+﻿字段,含义,要求
+target_id / 靶点ID/基因,官方基因符号、病原体基因/蛋白ID或抗原名,主键候选；需与 organism 联合去重
+Open Targets/Ensembl ID,人类靶点稳定 Ensembl ID,人类蛋白优先主键
+UniProt,蛋白 accession,RCSB/AlphaFold 查询主键
+structure_source,RCSB 或 ALPHAFOLD,实验/预测必须分开
+candidate_rank,同一靶点结构候选排名,默认只下载 rank=1，保留更多候选供审查
+download_url,直接结构下载链接,RCSB 默认 mmCIF gz
+enabled_default,是否默认下载,NO 表示可选/表位结构/预测结构
+structure_scope,全长、结构域、表位肽、复合物等,建模前必须核验
+requires_scope_review,是否需要链和残基范围人工审查,实验结构通常仍为 YES
+local_status,ROUTED_LOCAL / ASSET_ONLY_LOCAL / MISSING,避免重复下载
+association_score,Open Targets 直接关联综合分数,用于排序，不等于临床有效性
+top_indications,按关联分数排序的疾病/适应症摘要,完整 pair 保存在 Parquet

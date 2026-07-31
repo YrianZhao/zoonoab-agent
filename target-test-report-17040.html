@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZoonoAb 17040 端口靶点测试报告</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Noto Sans CJK SC", sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    line-height: 1.6;
+  }
+  .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+  .header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #fff;
+    padding: 32px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+  }
+  .header h1 { font-size: 24px; margin-bottom: 8px; }
+  .header .subtitle { color: #a0a0b0; font-size: 14px; }
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .stat-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    text-align: center;
+  }
+  .stat-card .value {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1a1a2e;
+  }
+  .stat-card .label {
+    font-size: 13px;
+    color: #666;
+    margin-top: 4px;
+  }
+  .stat-card.pass .value { color: #16a34a; }
+  .stat-card.fail .value { color: #dc2626; }
+  .stat-card.rate .value { color: #2563eb; }
+  .section {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .section h2 {
+    font-size: 18px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #e0e0e0;
+  }
+  .info-list { list-style: none; }
+  .info-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+  }
+  .info-list li:last-child { border-bottom: none; }
+  .info-list .key { color: #666; font-weight: 500; }
+  .info-list .val { color: #1a1a2e; font-weight: 600; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  th {
+    background: #f8f9fa;
+    padding: 12px 8px;
+    text-align: left;
+    font-weight: 600;
+    color: #555;
+    border-bottom: 2px solid #dee2e6;
+    position: sticky;
+    top: 0;
+  }
+  td {
+    padding: 10px 8px;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: top;
+  }
+  tr:hover { background: #f8f9fa; }
+  .status-pass { color: #16a34a; font-weight: 600; }
+  .status-retried { color: #f59e0b; font-weight: 600; }
+  .pdb-tag {
+    display: inline-block;
+    background: #e8f0fe;
+    color: #1a56db;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-family: "SF Mono", "Fira Code", monospace;
+    margin: 2px;
+  }
+  .pdb-cell { max-width: 400px; }
+  .table-wrapper {
+    max-height: 800px;
+    overflow-y: auto;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+  }
+  .retry-notice {
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  .retry-notice strong { color: #856404; }
+  .footer {
+    text-align: center;
+    color: #999;
+    font-size: 12px;
+    padding: 16px;
+  }
+  .badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .badge-green { background: #d4edda; color: #155724; }
+  .badge-yellow { background: #fff3cd; color: #856404; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>ZoonoAb 17040 端口靶点测试报告</h1>
+    <div class="subtitle">稳定版验收测试 - 服务器 222.211.217.189:17040 - 构建版本 69498311</div>
+  </div>
+
+  <div class="summary-grid">
+    <div class="stat-card">
+      <div class="value">119</div>
+      <div class="label">总靶点数</div>
+    </div>
+    <div class="stat-card pass">
+      <div class="value">119</div>
+      <div class="label">通过数</div>
+    </div>
+    <div class="stat-card fail">
+      <div class="value">0</div>
+      <div class="label">失败数</div>
+    </div>
+    <div class="stat-card rate">
+      <div class="value">100%</div>
+      <div class="label">通过率</div>
+    </div>
+    <div class="stat-card">
+      <div class="value">80.9s</div>
+      <div class="label">平均耗时</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>测试概要</h2>
+    <ul class="info-list">
+      <li><span class="key">测试服务器</span><span class="val">ws://222.211.217.189:17040</span></li>
+      <li><span class="key">构建版本</span><span class="val">69498311</span></li>
+      <li><span class="key">测试时间</span><span class="val">2026-07-31</span></li>
+      <li><span class="key">总靶点数</span><span class="val">119</span></li>
+      <li><span class="key">初次测试通过</span><span class="val">117 / 119 (98.3%)</span></li>
+      <li><span class="key">初次超时靶点</span><span class="val">2 个 (TIM-3, CDH6)</span></li>
+      <li><span class="key">重测结果</span><span class="val">2 / 2 全部通过</span></li>
+      <li><span class="key">最终通过率</span><span class="val">119 / 119 (100%)</span></li>
+      <li><span class="key">总测试时间</span><span class="val">3226.0s (54 min)</span></li>
+      <li><span class="key">平均每个靶点</span><span class="val">80.9s</span></li>
+      <li><span class="key">测试方法</span><span class="val">WebSocket user_msg -> 等待 show_3d 消息</span></li>
+      <li><span class="key">测试输入格式</span><span class="val">"design antibody against {target}"</span></li>
+      <li><span class="key">并行度</span><span class="val">3 路并行</span></li>
+      <li><span class="key">超时设置</span><span class="val">初次 120s，重测 180s</span></li>
+    </ul>
+  </div>
+
+  <div class="retry-notice">
+    <strong>重测说明：</strong> TIM-3 (cancer_tim3) 和 CDH6 (cancer_cdh6) 在初次批量测试中因 120 秒超时未返回 show_3d 消息。
+    经单独重测（180 秒超时），两个靶点分别在 71.4 秒和 83.8 秒成功返回分子模型，确认为偶发性超时（可能由大模型 API 响应延迟导致），非靶点路由或结构文件问题。
+  </div>
+
+  <div class="section">
+    <h2>全部靶点测试结果 (119 个)</h2>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>靶点</th>
+            <th>路由 ID</th>
+            <th>状态</th>
+            <th>PDB 文件数</th>
+            <th>返回的 PDB 文件</th>
+            <th>耗时</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+      <tr class="pass">
+        <td>1</td>
+        <td><strong>IL-33</strong></td>
+        <td><code>allergic_asthma</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">IL33-candidate-01</span><span class="pdb-tag">IL33-candidate-02</span><span class="pdb-tag">IL33-candidate-03</span><span class="pdb-tag">IL33-candidate-04</span><span class="pdb-tag">IL33-candidate-05</span><span class="pdb-tag">IL33-candidate-06</span><span class="pdb-tag">IL33-candidate-07</span><span class="pdb-tag">IL33-candidate-08</span><span class="pdb-tag">IL33-candidate-09</span><span class="pdb-tag">IL33-candidate-10</span></td>
+        <td>84.7s</td>
+      </tr>
+      <tr class="pass">
+        <td>2</td>
+        <td><strong>IgE</strong></td>
+        <td><code>allergic_ige</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">IgE-candidate-01</span></td>
+        <td>78.1s</td>
+      </tr>
+      <tr class="pass">
+        <td>3</td>
+        <td><strong>IL-13</strong></td>
+        <td><code>allergic_il13</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">IL13-candidate-01</span><span class="pdb-tag">IL13-candidate-02</span><span class="pdb-tag">IL13-candidate-03</span><span class="pdb-tag">IL13-candidate-04</span><span class="pdb-tag">IL13-candidate-05</span><span class="pdb-tag">IL13-candidate-06</span><span class="pdb-tag">IL13-candidate-07</span><span class="pdb-tag">IL13-candidate-08</span><span class="pdb-tag">IL13-candidate-09</span><span class="pdb-tag">IL13-candidate-10</span></td>
+        <td>81.4s</td>
+      </tr>
+      <tr class="pass">
+        <td>4</td>
+        <td><strong>IL-4Rα</strong></td>
+        <td><code>allergic_il4ra</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">IL4R-candidate-01</span><span class="pdb-tag">IL4R-candidate-02</span><span class="pdb-tag">IL4R-candidate-03</span><span class="pdb-tag">IL4R-candidate-04</span><span class="pdb-tag">IL4R-candidate-05</span><span class="pdb-tag">IL4R-candidate-06</span><span class="pdb-tag">IL4R-candidate-07</span><span class="pdb-tag">IL4R-candidate-08</span><span class="pdb-tag">IL4R-candidate-09</span><span class="pdb-tag">IL4R-candidate-10</span></td>
+        <td>78.7s</td>
+      </tr>
+      <tr class="pass">
+        <td>5</td>
+        <td><strong>IL-5</strong></td>
+        <td><code>allergic_il5</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">IL5-candidate-01</span><span class="pdb-tag">IL5-candidate-02</span><span class="pdb-tag">IL5-candidate-03</span><span class="pdb-tag">IL5-candidate-04</span><span class="pdb-tag">IL5-candidate-05</span><span class="pdb-tag">IL5-candidate-06</span><span class="pdb-tag">IL5-candidate-07</span><span class="pdb-tag">IL5-candidate-08</span><span class="pdb-tag">IL5-candidate-09</span><span class="pdb-tag">IL5-candidate-10</span></td>
+        <td>82.2s</td>
+      </tr>
+      <tr class="pass">
+        <td>6</td>
+        <td><strong>TSLP</strong></td>
+        <td><code>allergic_tslp</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">TSLP-candidate-01</span></td>
+        <td>73.7s</td>
+      </tr>
+      <tr class="pass">
+        <td>7</td>
+        <td><strong>VEGF-A</strong></td>
+        <td><code>angiogenesis_oncology</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">VEGFA-candidate-01</span><span class="pdb-tag">VEGFA-candidate-02</span><span class="pdb-tag">VEGFA-candidate-03</span><span class="pdb-tag">VEGFA-candidate-04</span><span class="pdb-tag">VEGFA-candidate-05</span><span class="pdb-tag">VEGFA-candidate-06</span><span class="pdb-tag">VEGFA-candidate-07</span><span class="pdb-tag">VEGFA-candidate-08</span><span class="pdb-tag">VEGFA-candidate-09</span><span class="pdb-tag">VEGFA-candidate-10</span></td>
+        <td>86.9s</td>
+      </tr>
+      <tr class="pass">
+        <td>8</td>
+        <td><strong>BAFF</strong></td>
+        <td><code>autoimmune_baff</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">BAFF-candidate-01</span><span class="pdb-tag">BAFF-candidate-02</span><span class="pdb-tag">BAFF-candidate-03</span><span class="pdb-tag">BAFF-candidate-04</span><span class="pdb-tag">BAFF-candidate-05</span><span class="pdb-tag">BAFF-candidate-06</span><span class="pdb-tag">BAFF-candidate-07</span><span class="pdb-tag">BAFF-candidate-08</span><span class="pdb-tag">BAFF-candidate-09</span><span class="pdb-tag">BAFF-candidate-10</span></td>
+        <td>86.5s</td>
+      </tr>
+      <tr class="pass">
+        <td>9</td>
+        <td><strong>FcRn</strong></td>
+        <td><code>autoimmune_fcrn</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">FCGRTFcRn-candidate-01</span><span class="pdb-tag">FCGRTFcRn-candidate-02</span><span class="pdb-tag">FCGRTFcRn-candidate-03</span><span class="pdb-tag">FCGRTFcRn-candidate-04</span><span class="pdb-tag">FCGRTFcRn-candidate-05</span><span class="pdb-tag">FCGRTFcRn-candidate-06</span><span class="pdb-tag">FCGRTFcRn-candidate-07</span><span class="pdb-tag">FCGRTFcRn-candidate-08</span><span class="pdb-tag">FCGRTFcRn-candidate-09</span><span class="pdb-tag">FCGRTFcRn-candidate-10</span></td>
+        <td>84.5s</td>
+      </tr>
+      <tr class="pass">
+        <td>10</td>
+        <td><strong>IL-17A</strong></td>
+        <td><code>autoimmune_il17</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">IL17A-candidate-01</span></td>
+        <td>72.8s</td>
+      </tr>
+      <tr class="pass">
+        <td>11</td>
+        <td><strong>IL-23</strong></td>
+        <td><code>autoimmune_il23</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">IL23-candidate-01</span><span class="pdb-tag">IL23-candidate-02</span><span class="pdb-tag">IL23-candidate-03</span><span class="pdb-tag">IL23-candidate-04</span><span class="pdb-tag">IL23-candidate-05</span><span class="pdb-tag">IL23-candidate-06</span><span class="pdb-tag">IL23-candidate-07</span><span class="pdb-tag">IL23-candidate-08</span><span class="pdb-tag">IL23-candidate-09</span><span class="pdb-tag">IL23-candidate-10</span></td>
+        <td>84.6s</td>
+      </tr>
+      <tr class="pass">
+        <td>12</td>
+        <td><strong>TNF</strong></td>
+        <td><code>autoimmune_inflammation</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">TNF-candidate-01</span><span class="pdb-tag">TNF-candidate-02</span><span class="pdb-tag">TNF-candidate-03</span><span class="pdb-tag">TNF-candidate-04</span><span class="pdb-tag">TNF-candidate-05</span><span class="pdb-tag">TNF-candidate-06</span><span class="pdb-tag">TNF-candidate-07</span><span class="pdb-tag">TNF-candidate-08</span><span class="pdb-tag">TNF-candidate-09</span><span class="pdb-tag">TNF-candidate-10</span></td>
+        <td>85.7s</td>
+      </tr>
+      <tr class="pass">
+        <td>13</td>
+        <td><strong>HER2</strong></td>
+        <td><code>breast_cancer</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">HER2-candidate-01</span></td>
+        <td>74.7s</td>
+      </tr>
+      <tr class="pass">
+        <td>14</td>
+        <td><strong>4-1BB</strong></td>
+        <td><code>cancer_41bb</code></td>
+        <td class="status-pass">通过</td>
+        <td>4</td>
+        <td class="pdb-cell"><span class="pdb-tag">41BB-candidate-01</span><span class="pdb-tag">41BB-candidate-02</span><span class="pdb-tag">41BB-candidate-03</span><span class="pdb-tag">41BB-candidate-04</span></td>
+        <td>72.3s</td>
+      </tr>
+      <tr class="pass">
+        <td>15</td>
+        <td><strong>CD27</strong></td>
+        <td><code>cancer_cd27</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">CD27-candidate-01</span></td>
+        <td>76.1s</td>
+      </tr>
+      <tr class="pass">
+        <td>16</td>
+        <td><strong>CD30</strong></td>
+        <td><code>cancer_cd30</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">CD30-candidate-01</span></td>
+        <td>78.1s</td>
+      </tr>
+      <tr class="pass">
+        <td>17</td>
+        <td><strong>CD40</strong></td>
+        <td><code>cancer_cd40</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">CD40-candidate-01</span><span class="pdb-tag">CD40-candidate-02</span><span class="pdb-tag">CD40-candidate-03</span><span class="pdb-tag">CD40-candidate-04</span><span class="pdb-tag">CD40-candidate-05</span><span class="pdb-tag">CD40-candidate-06</span><span class="pdb-tag">CD40-candidate-07</span><span class="pdb-tag">CD40-candidate-08</span><span class="pdb-tag">CD40-candidate-09</span><span class="pdb-tag">CD40-candidate-10</span></td>
+        <td>81.7s</td>
+      </tr>
+      <tr class="pass">
+        <td>18</td>
+        <td><strong>CD70</strong></td>
+        <td><code>cancer_cd70</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">CD70-candidate-01</span></td>
+        <td>77.6s</td>
+      </tr>
+      <tr class="pass">
+        <td>19</td>
+        <td><strong>CD74</strong></td>
+        <td><code>cancer_cd74</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">CD74-candidate-01</span></td>
+        <td>71.8s</td>
+      </tr>
+      <tr class="retried">
+        <td>20</td>
+        <td><strong>CDH6</strong></td>
+        <td><code>cancer_cdh6</code></td>
+        <td class="status-retried">通过 (重测)</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">CDH6-candidate-01</span></td>
+        <td>83.8s</td>
+      </tr>
+      <tr class="pass">
+        <td>21</td>
+        <td><strong>CLDN6</strong></td>
+        <td><code>cancer_cldn6</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">CLDN6-candidate-01</span><span class="pdb-tag">CLDN6-candidate-02</span><span class="pdb-tag">CLDN6-candidate-03</span><span class="pdb-tag">CLDN6-candidate-04</span><span class="pdb-tag">CLDN6-candidate-05</span><span class="pdb-tag">CLDN6-candidate-06</span><span class="pdb-tag">CLDN6-candidate-07</span><span class="pdb-tag">CLDN6-candidate-08</span><span class="pdb-tag">CLDN6-candidate-09</span><span class="pdb-tag">CLDN6-candidate-10</span></td>
+        <td>82.0s</td>
+      </tr>
+      <tr class="pass">
+        <td>22</td>
+        <td><strong>DLL3</strong></td>
+        <td><code>cancer_dll3</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">DLL3-candidate-01</span></td>
+        <td>81.6s</td>
+      </tr>
+      <tr class="pass">
+        <td>23</td>
+        <td><strong>DR5</strong></td>
+        <td><code>cancer_dr5</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">DR5-candidate-01</span></td>
+        <td>80.3s</td>
+      </tr>
+      <tr class="pass">
+        <td>24</td>
+        <td><strong>FLT3</strong></td>
+        <td><code>cancer_flt3</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">FLT3-candidate-01</span><span class="pdb-tag">FLT3-candidate-02</span><span class="pdb-tag">FLT3-candidate-03</span><span class="pdb-tag">FLT3-candidate-04</span><span class="pdb-tag">FLT3-candidate-05</span><span class="pdb-tag">FLT3-candidate-06</span><span class="pdb-tag">FLT3-candidate-07</span><span class="pdb-tag">FLT3-candidate-08</span><span class="pdb-tag">FLT3-candidate-09</span><span class="pdb-tag">FLT3-candidate-10</span></td>
+        <td>81.7s</td>
+      </tr>
+      <tr class="pass">
+        <td>25</td>
+        <td><strong>FOLR1</strong></td>
+        <td><code>cancer_folr1</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">FOLR1-candidate-01</span></td>
+        <td>83.0s</td>
+      </tr>
+      <tr class="pass">
+        <td>26</td>
+        <td><strong>GITR</strong></td>
+        <td><code>cancer_gitr</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">GITR-candidate-01</span><span class="pdb-tag">GITR-candidate-02</span><span class="pdb-tag">GITR-candidate-03</span><span class="pdb-tag">GITR-candidate-04</span><span class="pdb-tag">GITR-candidate-05</span><span class="pdb-tag">GITR-candidate-06</span><span class="pdb-tag">GITR-candidate-07</span><span class="pdb-tag">GITR-candidate-08</span><span class="pdb-tag">GITR-candidate-09</span><span class="pdb-tag">GITR-candidate-10</span></td>
+        <td>83.5s</td>
+      </tr>
+      <tr class="pass">
+        <td>27</td>
+        <td><strong>GUCY2C</strong></td>
+        <td><code>cancer_gucy2c</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">GUCY2C-candidate-01</span><span class="pdb-tag">GUCY2C-candidate-02</span><span class="pdb-tag">GUCY2C-candidate-03</span><span class="pdb-tag">GUCY2C-candidate-04</span><span class="pdb-tag">GUCY2C-candidate-05</span><span class="pdb-tag">GUCY2C-candidate-06</span><span class="pdb-tag">GUCY2C-candidate-07</span><span class="pdb-tag">GUCY2C-candidate-08</span><span class="pdb-tag">GUCY2C-candidate-09</span><span class="pdb-tag">GUCY2C-candidate-10</span></td>
+        <td>78.3s</td>
+      </tr>
+      <tr class="pass">
+        <td>28</td>
+        <td><strong>OX40</strong></td>
+        <td><code>cancer_ox40</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">OX40-candidate-01</span></td>
+        <td>82.3s</td>
+      </tr>
+      <tr class="pass">
+        <td>29</td>
+        <td><strong>PRLR</strong></td>
+        <td><code>cancer_prlr</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">PRLR-candidate-01</span></td>
+        <td>77.0s</td>
+      </tr>
+      <tr class="pass">
+        <td>30</td>
+        <td><strong>PSMA</strong></td>
+        <td><code>cancer_psma</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">PSMA-candidate-01</span><span class="pdb-tag">PSMA-candidate-02</span><span class="pdb-tag">PSMA-candidate-03</span><span class="pdb-tag">PSMA-candidate-04</span><span class="pdb-tag">PSMA-candidate-05</span><span class="pdb-tag">PSMA-candidate-06</span><span class="pdb-tag">PSMA-candidate-07</span><span class="pdb-tag">PSMA-candidate-08</span><span class="pdb-tag">PSMA-candidate-09</span><span class="pdb-tag">PSMA-candidate-10</span></td>
+        <td>89.7s</td>
+      </tr>
+      <tr class="pass">
+        <td>31</td>
+        <td><strong>PTK7</strong></td>
+        <td><code>cancer_ptk7</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">PTK7-candidate-01</span></td>
+        <td>79.4s</td>
+      </tr>
+      <tr class="pass">
+        <td>32</td>
+        <td><strong>ROR1</strong></td>
+        <td><code>cancer_ror1</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">ROR1-candidate-01</span></td>
+        <td>72.5s</td>
+      </tr>
+      <tr class="pass">
+        <td>33</td>
+        <td><strong>SSTR2</strong></td>
+        <td><code>cancer_sstr2</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">SSTR2-candidate-01</span></td>
+        <td>80.7s</td>
+      </tr>
+      <tr class="retried">
+        <td>34</td>
+        <td><strong>TIM-3</strong></td>
+        <td><code>cancer_tim3</code></td>
+        <td class="status-retried">通过 (重测)</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">TIM3-candidate-01</span></td>
+        <td>71.4s</td>
+      </tr>
+      <tr class="pass">
+        <td>35</td>
+        <td><strong>ANGPTL3</strong></td>
+        <td><code>cardio_angptl3</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">ANGPTL3-candidate-01</span></td>
+        <td>80.6s</td>
+      </tr>
+      <tr class="pass">
+        <td>36</td>
+        <td><strong>IL-1B</strong></td>
+        <td><code>cardio_il1b</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">IL1B-candidate-01</span><span class="pdb-tag">IL1B-candidate-02</span><span class="pdb-tag">IL1B-candidate-03</span><span class="pdb-tag">IL1B-candidate-04</span><span class="pdb-tag">IL1B-candidate-05</span><span class="pdb-tag">IL1B-candidate-06</span><span class="pdb-tag">IL1B-candidate-07</span><span class="pdb-tag">IL1B-candidate-08</span><span class="pdb-tag">IL1B-candidate-09</span><span class="pdb-tag">IL1B-candidate-10</span></td>
+        <td>79.4s</td>
+      </tr>
+      <tr class="pass">
+        <td>37</td>
+        <td><strong>PCSK9</strong></td>
+        <td><code>cardio_pcsk9</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">PCSK9-candidate-01</span><span class="pdb-tag">PCSK9-candidate-02</span><span class="pdb-tag">PCSK9-candidate-03</span><span class="pdb-tag">PCSK9-candidate-04</span><span class="pdb-tag">PCSK9-candidate-05</span><span class="pdb-tag">PCSK9-candidate-06</span><span class="pdb-tag">PCSK9-candidate-07</span><span class="pdb-tag">PCSK9-candidate-08</span><span class="pdb-tag">PCSK9-candidate-09</span><span class="pdb-tag">PCSK9-candidate-10</span></td>
+        <td>80.2s</td>
+      </tr>
+      <tr class="pass">
+        <td>38</td>
+        <td><strong>CD47</strong></td>
+        <td><code>checkpoint_cd47</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">CD47-candidate-01</span><span class="pdb-tag">CD47-candidate-02</span><span class="pdb-tag">CD47-candidate-03</span><span class="pdb-tag">CD47-candidate-04</span><span class="pdb-tag">CD47-candidate-05</span><span class="pdb-tag">CD47-candidate-06</span><span class="pdb-tag">CD47-candidate-07</span><span class="pdb-tag">CD47-candidate-08</span><span class="pdb-tag">CD47-candidate-09</span><span class="pdb-tag">CD47-candidate-10</span></td>
+        <td>82.3s</td>
+      </tr>
+      <tr class="pass">
+        <td>39</td>
+        <td><strong>CTLA-4</strong></td>
+        <td><code>checkpoint_ctla4</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">CTLA4-candidate-01</span><span class="pdb-tag">CTLA4-candidate-02</span><span class="pdb-tag">CTLA4-candidate-03</span><span class="pdb-tag">CTLA4-candidate-04</span><span class="pdb-tag">CTLA4-candidate-05</span><span class="pdb-tag">CTLA4-candidate-06</span><span class="pdb-tag">CTLA4-candidate-07</span><span class="pdb-tag">CTLA4-candidate-08</span><span class="pdb-tag">CTLA4-candidate-09</span><span class="pdb-tag">CTLA4-candidate-10</span></td>
+        <td>86.8s</td>
+      </tr>
+      <tr class="pass">
+        <td>40</td>
+        <td><strong>LAG-3</strong></td>
+        <td><code>checkpoint_lag3</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">LAG3-candidate-01</span></td>
+        <td>74.2s</td>
+      </tr>
+      <tr class="pass">
+        <td>41</td>
+        <td><strong>PD-1</strong></td>
+        <td><code>checkpoint_pd1</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">PD1-candidate-01</span><span class="pdb-tag">PD1-candidate-02</span><span class="pdb-tag">PD1-candidate-03</span><span class="pdb-tag">PD1-candidate-04</span><span class="pdb-tag">PD1-candidate-05</span><span class="pdb-tag">PD1-candidate-06</span><span class="pdb-tag">PD1-candidate-07</span><span class="pdb-tag">PD1-candidate-08</span><span class="pdb-tag">PD1-candidate-09</span><span class="pdb-tag">PD1-candidate-10</span></td>
+        <td>82.3s</td>
+      </tr>
+      <tr class="pass">
+        <td>42</td>
+        <td><strong>TIGIT</strong></td>
+        <td><code>checkpoint_tigit</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">TIGIT-candidate-01</span><span class="pdb-tag">TIGIT-candidate-02</span><span class="pdb-tag">TIGIT-candidate-03</span><span class="pdb-tag">TIGIT-candidate-04</span><span class="pdb-tag">TIGIT-candidate-05</span><span class="pdb-tag">TIGIT-candidate-06</span><span class="pdb-tag">TIGIT-candidate-07</span><span class="pdb-tag">TIGIT-candidate-08</span><span class="pdb-tag">TIGIT-candidate-09</span><span class="pdb-tag">TIGIT-candidate-10</span></td>
+        <td>83.3s</td>
+      </tr>
+      <tr class="pass">
+        <td>43</td>
+        <td><strong>C5</strong></td>
+        <td><code>complement_c5</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">C5-candidate-01</span></td>
+        <td>81.8s</td>
+      </tr>
+      <tr class="pass">
+        <td>44</td>
+        <td><strong>CFH</strong></td>
+        <td><code>complement_cfh</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">CFH-candidate-01</span><span class="pdb-tag">CFH-candidate-02</span><span class="pdb-tag">CFH-candidate-03</span><span class="pdb-tag">CFH-candidate-04</span><span class="pdb-tag">CFH-candidate-05</span><span class="pdb-tag">CFH-candidate-06</span><span class="pdb-tag">CFH-candidate-07</span><span class="pdb-tag">CFH-candidate-08</span><span class="pdb-tag">CFH-candidate-09</span><span class="pdb-tag">CFH-candidate-10</span></td>
+        <td>86.2s</td>
+      </tr>
+      <tr class="pass">
+        <td>45</td>
+        <td><strong>TSHR</strong></td>
+        <td><code>endocrine_graves_tshr</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">TSHR-candidate-01</span><span class="pdb-tag">TSHR-candidate-02</span><span class="pdb-tag">TSHR-candidate-03</span><span class="pdb-tag">TSHR-candidate-04</span><span class="pdb-tag">TSHR-candidate-05</span><span class="pdb-tag">TSHR-candidate-06</span><span class="pdb-tag">TSHR-candidate-07</span><span class="pdb-tag">TSHR-candidate-08</span><span class="pdb-tag">TSHR-candidate-09</span><span class="pdb-tag">TSHR-candidate-10</span></td>
+        <td>82.5s</td>
+      </tr>
+      <tr class="pass">
+        <td>46</td>
+        <td><strong>BCMA</strong></td>
+        <td><code>heme_bcma</code></td>
+        <td class="status-pass">通过</td>
+        <td>3</td>
+        <td class="pdb-cell"><span class="pdb-tag">BCMA-candidate-01</span><span class="pdb-tag">BCMA-candidate-02</span><span class="pdb-tag">BCMA-candidate-03</span></td>
+        <td>78.7s</td>
+      </tr>
+      <tr class="pass">
+        <td>47</td>
+        <td><strong>CD123</strong></td>
+        <td><code>heme_cd123</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">CD123-candidate-01</span><span class="pdb-tag">CD123-candidate-02</span><span class="pdb-tag">CD123-candidate-03</span><span class="pdb-tag">CD123-candidate-04</span><span class="pdb-tag">CD123-candidate-05</span><span class="pdb-tag">CD123-candidate-06</span><span class="pdb-tag">CD123-candidate-07</span><span class="pdb-tag">CD123-candidate-08</span><span class="pdb-tag">CD123-candidate-09</span><span class="pdb-tag">CD123-candidate-10</span></td>
+        <td>80.4s</td>
+      </tr>
+      <tr class="pass">
+        <td>48</td>
+        <td><strong>CD19</strong></td>
+        <td><code>heme_cd19</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">CD19-candidate-01</span></td>
+        <td>80.2s</td>
+      </tr>
+      <tr class="pass">
+        <td>49</td>
+        <td><strong>CD20</strong></td>
+        <td><code>heme_cd20</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">CD20-candidate-01</span><span class="pdb-tag">CD20-candidate-02</span><span class="pdb-tag">CD20-candidate-03</span><span class="pdb-tag">CD20-candidate-04</span><span class="pdb-tag">CD20-candidate-05</span><span class="pdb-tag">CD20-candidate-06</span><span class="pdb-tag">CD20-candidate-07</span><span class="pdb-tag">CD20-candidate-08</span><span class="pdb-tag">CD20-candidate-09</span><span class="pdb-tag">CD20-candidate-10</span></td>
+        <td>83.5s</td>
+      </tr>
+      <tr class="pass">
+        <td>50</td>
+        <td><strong>CD22</strong></td>
+        <td><code>heme_cd22</code></td>
+        <td class="status-pass">通过</td>
+        <td>3</td>
+        <td class="pdb-cell"><span class="pdb-tag">CD22-candidate-01</span><span class="pdb-tag">CD22-candidate-02</span><span class="pdb-tag">CD22-candidate-03</span></td>
+        <td>75.8s</td>
+      </tr>
+      <tr class="pass">
+        <td>51</td>
+        <td><strong>CD33</strong></td>
+        <td><code>heme_cd33</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">CD33-candidate-01</span><span class="pdb-tag">CD33-candidate-02</span><span class="pdb-tag">CD33-candidate-03</span><span class="pdb-tag">CD33-candidate-04</span><span class="pdb-tag">CD33-candidate-05</span><span class="pdb-tag">CD33-candidate-06</span><span class="pdb-tag">CD33-candidate-07</span><span class="pdb-tag">CD33-candidate-08</span><span class="pdb-tag">CD33-candidate-09</span><span class="pdb-tag">CD33-candidate-10</span></td>
+        <td>84.4s</td>
+      </tr>
+      <tr class="pass">
+        <td>52</td>
+        <td><strong>CD38</strong></td>
+        <td><code>heme_cd38</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">CD38-candidate-01</span><span class="pdb-tag">CD38-candidate-02</span><span class="pdb-tag">CD38-candidate-03</span><span class="pdb-tag">CD38-candidate-04</span><span class="pdb-tag">CD38-candidate-05</span><span class="pdb-tag">CD38-candidate-06</span><span class="pdb-tag">CD38-candidate-07</span><span class="pdb-tag">CD38-candidate-08</span><span class="pdb-tag">CD38-candidate-09</span><span class="pdb-tag">CD38-candidate-10</span></td>
+        <td>80.6s</td>
+      </tr>
+      <tr class="pass">
+        <td>53</td>
+        <td><strong>GPRC5D</strong></td>
+        <td><code>heme_gprc5d</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">GPRC5D-candidate-01</span></td>
+        <td>77.0s</td>
+      </tr>
+      <tr class="pass">
+        <td>54</td>
+        <td><strong>Integrin α4β7</strong></td>
+        <td><code>ibd_a4b7</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">Integrin47-candidate-01</span><span class="pdb-tag">Integrin47-candidate-02</span><span class="pdb-tag">Integrin47-candidate-03</span><span class="pdb-tag">Integrin47-candidate-04</span><span class="pdb-tag">Integrin47-candidate-05</span><span class="pdb-tag">Integrin47-candidate-06</span><span class="pdb-tag">Integrin47-candidate-07</span><span class="pdb-tag">Integrin47-candidate-08</span><span class="pdb-tag">Integrin47-candidate-09</span><span class="pdb-tag">Integrin47-candidate-10</span></td>
+        <td>82.1s</td>
+      </tr>
+      <tr class="pass">
+        <td>55</td>
+        <td><strong>CD25</strong></td>
+        <td><code>immune_cd25</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">CD25-candidate-01</span><span class="pdb-tag">CD25-candidate-02</span><span class="pdb-tag">CD25-candidate-03</span><span class="pdb-tag">CD25-candidate-04</span><span class="pdb-tag">CD25-candidate-05</span><span class="pdb-tag">CD25-candidate-06</span><span class="pdb-tag">CD25-candidate-07</span><span class="pdb-tag">CD25-candidate-08</span><span class="pdb-tag">CD25-candidate-09</span><span class="pdb-tag">CD25-candidate-10</span></td>
+        <td>81.9s</td>
+      </tr>
+      <tr class="pass">
+        <td>56</td>
+        <td><strong>CD3</strong></td>
+        <td><code>immune_cd3</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">CD3-candidate-01</span></td>
+        <td>76.3s</td>
+      </tr>
+      <tr class="pass">
+        <td>57</td>
+        <td><strong>CD4</strong></td>
+        <td><code>immune_cd4</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">CD4-candidate-01</span></td>
+        <td>78.3s</td>
+      </tr>
+      <tr class="pass">
+        <td>58</td>
+        <td><strong>CMV gB</strong></td>
+        <td><code>infect_cmv</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">CMVgB-candidate-01</span></td>
+        <td>73.6s</td>
+      </tr>
+      <tr class="pass">
+        <td>59</td>
+        <td><strong>Dengue E</strong></td>
+        <td><code>infect_dengue</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">DengueE-candidate-01</span><span class="pdb-tag">DengueE-candidate-02</span><span class="pdb-tag">DengueE-candidate-03</span><span class="pdb-tag">DengueE-candidate-04</span><span class="pdb-tag">DengueE-candidate-05</span><span class="pdb-tag">DengueE-candidate-06</span><span class="pdb-tag">DengueE-candidate-07</span><span class="pdb-tag">DengueE-candidate-08</span><span class="pdb-tag">DengueE-candidate-09</span><span class="pdb-tag">DengueE-candidate-10</span></td>
+        <td>84.1s</td>
+      </tr>
+      <tr class="pass">
+        <td>60</td>
+        <td><strong>Rabies G</strong></td>
+        <td><code>infect_rabies</code></td>
+        <td class="status-pass">通过</td>
+        <td>3</td>
+        <td class="pdb-cell"><span class="pdb-tag">RabiesG-candidate-01</span><span class="pdb-tag">RabiesG-candidate-02</span><span class="pdb-tag">RabiesG-candidate-03</span></td>
+        <td>70.0s</td>
+      </tr>
+      <tr class="pass">
+        <td>61</td>
+        <td><strong>Zika NS1</strong></td>
+        <td><code>infect_zika</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">ZikaNS1-candidate-01</span></td>
+        <td>71.2s</td>
+      </tr>
+      <tr class="pass">
+        <td>62</td>
+        <td><strong>Adenovirus hexon</strong></td>
+        <td><code>infectious_adenovirus_hexon</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">Adenovirushexon-candidate-01</span></td>
+        <td>72.1s</td>
+      </tr>
+      <tr class="pass">
+        <td>63</td>
+        <td><strong>SARS-CoV-2 RBD</strong></td>
+        <td><code>infectious_covid</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">SARSCoV2RBD-candidate-01</span></td>
+        <td>109.6s</td>
+      </tr>
+      <tr class="pass">
+        <td>64</td>
+        <td><strong>CSFV NS5B</strong></td>
+        <td><code>infectious_csfv_ns5b</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">CSFVNS5B-candidate-01</span></td>
+        <td>77.7s</td>
+      </tr>
+      <tr class="pass">
+        <td>65</td>
+        <td><strong>Influenza HA</strong></td>
+        <td><code>infectious_flu</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">InfluenzaHA-candidate-01</span><span class="pdb-tag">InfluenzaHA-candidate-02</span><span class="pdb-tag">InfluenzaHA-candidate-03</span><span class="pdb-tag">InfluenzaHA-candidate-04</span><span class="pdb-tag">InfluenzaHA-candidate-05</span><span class="pdb-tag">InfluenzaHA-candidate-06</span><span class="pdb-tag">InfluenzaHA-candidate-07</span><span class="pdb-tag">InfluenzaHA-candidate-08</span><span class="pdb-tag">InfluenzaHA-candidate-09</span><span class="pdb-tag">InfluenzaHA-candidate-10</span></td>
+        <td>80.0s</td>
+      </tr>
+      <tr class="pass">
+        <td>66</td>
+        <td><strong>Influenza M2</strong></td>
+        <td><code>infectious_flu_m2</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">InfluenzaM2-candidate-01</span></td>
+        <td>75.6s</td>
+      </tr>
+      <tr class="pass">
+        <td>67</td>
+        <td><strong>Influenza NA</strong></td>
+        <td><code>infectious_flu_na</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">InfluenzaNA-candidate-01</span><span class="pdb-tag">InfluenzaNA-candidate-02</span><span class="pdb-tag">InfluenzaNA-candidate-03</span><span class="pdb-tag">InfluenzaNA-candidate-04</span><span class="pdb-tag">InfluenzaNA-candidate-05</span><span class="pdb-tag">InfluenzaNA-candidate-06</span><span class="pdb-tag">InfluenzaNA-candidate-07</span><span class="pdb-tag">InfluenzaNA-candidate-08</span><span class="pdb-tag">InfluenzaNA-candidate-09</span><span class="pdb-tag">InfluenzaNA-candidate-10</span></td>
+        <td>83.0s</td>
+      </tr>
+      <tr class="pass">
+        <td>68</td>
+        <td><strong>Feline panleukopenia VP2</strong></td>
+        <td><code>infectious_fpv_vp2</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">FelinepanleukopeniaVP2-candidate-01</span></td>
+        <td>78.4s</td>
+      </tr>
+      <tr class="pass">
+        <td>69</td>
+        <td><strong>HSV gD</strong></td>
+        <td><code>infectious_hsv_gd</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">HSVgD-candidate-01</span></td>
+        <td>76.3s</td>
+      </tr>
+      <tr class="pass">
+        <td>70</td>
+        <td><strong>PCV2 capsid</strong></td>
+        <td><code>infectious_pcv2_capsid</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">PCV2capsid-candidate-01</span></td>
+        <td>81.5s</td>
+      </tr>
+      <tr class="pass">
+        <td>71</td>
+        <td><strong>PEDV spike</strong></td>
+        <td><code>infectious_pedv_spike</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">PEDVspike-candidate-01</span><span class="pdb-tag">PEDVspike-candidate-02</span><span class="pdb-tag">PEDVspike-candidate-03</span><span class="pdb-tag">PEDVspike-candidate-04</span><span class="pdb-tag">PEDVspike-candidate-05</span><span class="pdb-tag">PEDVspike-candidate-06</span><span class="pdb-tag">PEDVspike-candidate-07</span><span class="pdb-tag">PEDVspike-candidate-08</span><span class="pdb-tag">PEDVspike-candidate-09</span><span class="pdb-tag">PEDVspike-candidate-10</span></td>
+        <td>79.7s</td>
+      </tr>
+      <tr class="pass">
+        <td>72</td>
+        <td><strong>PRRSV GP4</strong></td>
+        <td><code>infectious_prrsv_gp4</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">PRRSVGP4-candidate-01</span><span class="pdb-tag">PRRSVGP4-candidate-02</span><span class="pdb-tag">PRRSVGP4-candidate-03</span><span class="pdb-tag">PRRSVGP4-candidate-04</span><span class="pdb-tag">PRRSVGP4-candidate-05</span><span class="pdb-tag">PRRSVGP4-candidate-06</span><span class="pdb-tag">PRRSVGP4-candidate-07</span><span class="pdb-tag">PRRSVGP4-candidate-08</span><span class="pdb-tag">PRRSVGP4-candidate-09</span><span class="pdb-tag">PRRSVGP4-candidate-10</span></td>
+        <td>82.1s</td>
+      </tr>
+      <tr class="pass">
+        <td>73</td>
+        <td><strong>PRRSV NSP10</strong></td>
+        <td><code>infectious_prrsv_nsp10</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">PRRSVNSP10-candidate-01</span><span class="pdb-tag">PRRSVNSP10-candidate-02</span><span class="pdb-tag">PRRSVNSP10-candidate-03</span><span class="pdb-tag">PRRSVNSP10-candidate-04</span><span class="pdb-tag">PRRSVNSP10-candidate-05</span><span class="pdb-tag">PRRSVNSP10-candidate-06</span><span class="pdb-tag">PRRSVNSP10-candidate-07</span><span class="pdb-tag">PRRSVNSP10-candidate-08</span><span class="pdb-tag">PRRSVNSP10-candidate-09</span><span class="pdb-tag">PRRSVNSP10-candidate-10</span></td>
+        <td>80.6s</td>
+      </tr>
+      <tr class="pass">
+        <td>74</td>
+        <td><strong>RSV F</strong></td>
+        <td><code>infectious_rsv</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">RSVF-candidate-01</span><span class="pdb-tag">RSVF-candidate-02</span><span class="pdb-tag">RSVF-candidate-03</span><span class="pdb-tag">RSVF-candidate-04</span><span class="pdb-tag">RSVF-candidate-05</span><span class="pdb-tag">RSVF-candidate-06</span><span class="pdb-tag">RSVF-candidate-07</span><span class="pdb-tag">RSVF-candidate-08</span><span class="pdb-tag">RSVF-candidate-09</span><span class="pdb-tag">RSVF-candidate-10</span></td>
+        <td>78.9s</td>
+      </tr>
+      <tr class="pass">
+        <td>75</td>
+        <td><strong>BAFF-R</strong></td>
+        <td><code>inflam_baffr</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">BAFFR-candidate-01</span></td>
+        <td>75.7s</td>
+      </tr>
+      <tr class="pass">
+        <td>76</td>
+        <td><strong>GM-CSF</strong></td>
+        <td><code>inflam_gmcsf</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">GMCSF-candidate-01</span></td>
+        <td>86.3s</td>
+      </tr>
+      <tr class="pass">
+        <td>77</td>
+        <td><strong>IL-17RA</strong></td>
+        <td><code>inflam_il17ra</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">IL17RA-candidate-01</span><span class="pdb-tag">IL17RA-candidate-02</span><span class="pdb-tag">IL17RA-candidate-03</span><span class="pdb-tag">IL17RA-candidate-04</span><span class="pdb-tag">IL17RA-candidate-05</span><span class="pdb-tag">IL17RA-candidate-06</span><span class="pdb-tag">IL17RA-candidate-07</span><span class="pdb-tag">IL17RA-candidate-08</span><span class="pdb-tag">IL17RA-candidate-09</span><span class="pdb-tag">IL17RA-candidate-10</span></td>
+        <td>84.1s</td>
+      </tr>
+      <tr class="pass">
+        <td>78</td>
+        <td><strong>IL-31</strong></td>
+        <td><code>inflam_il31</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">IL31-candidate-01</span></td>
+        <td>82.8s</td>
+      </tr>
+      <tr class="pass">
+        <td>79</td>
+        <td><strong>IL-36α</strong></td>
+        <td><code>inflam_il36a</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">IL36-candidate-01</span></td>
+        <td>77.2s</td>
+      </tr>
+      <tr class="pass">
+        <td>80</td>
+        <td><strong>IL-6</strong></td>
+        <td><code>inflammation_il6</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">IL6-candidate-01</span></td>
+        <td>76.9s</td>
+      </tr>
+      <tr class="pass">
+        <td>81</td>
+        <td><strong>IL-6R</strong></td>
+        <td><code>inflammation_il6r</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">IL6R-candidate-01</span></td>
+        <td>78.2s</td>
+      </tr>
+      <tr class="pass">
+        <td>82</td>
+        <td><strong>PF4</strong></td>
+        <td><code>inflammation_pf4</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">PF4-candidate-01</span></td>
+        <td>88.2s</td>
+      </tr>
+      <tr class="pass">
+        <td>83</td>
+        <td><strong>FGF21</strong></td>
+        <td><code>metab_fgf21</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">FGF21-candidate-01</span></td>
+        <td>80.4s</td>
+      </tr>
+      <tr class="pass">
+        <td>84</td>
+        <td><strong>GLP-1R</strong></td>
+        <td><code>metab_glp1r</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">GLP1R-candidate-01</span><span class="pdb-tag">GLP1R-candidate-02</span><span class="pdb-tag">GLP1R-candidate-03</span><span class="pdb-tag">GLP1R-candidate-04</span><span class="pdb-tag">GLP1R-candidate-05</span><span class="pdb-tag">GLP1R-candidate-06</span><span class="pdb-tag">GLP1R-candidate-07</span><span class="pdb-tag">GLP1R-candidate-08</span><span class="pdb-tag">GLP1R-candidate-09</span><span class="pdb-tag">GLP1R-candidate-10</span></td>
+        <td>85.6s</td>
+      </tr>
+      <tr class="pass">
+        <td>85</td>
+        <td><strong>LGR5</strong></td>
+        <td><code>metab_lgr5</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">LGR5-candidate-01</span><span class="pdb-tag">LGR5-candidate-02</span><span class="pdb-tag">LGR5-candidate-03</span><span class="pdb-tag">LGR5-candidate-04</span><span class="pdb-tag">LGR5-candidate-05</span><span class="pdb-tag">LGR5-candidate-06</span><span class="pdb-tag">LGR5-candidate-07</span><span class="pdb-tag">LGR5-candidate-08</span><span class="pdb-tag">LGR5-candidate-09</span><span class="pdb-tag">LGR5-candidate-10</span></td>
+        <td>77.8s</td>
+      </tr>
+      <tr class="pass">
+        <td>86</td>
+        <td><strong>ANGPTL3</strong></td>
+        <td><code>metabolic_angptl3</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">ANGPTL3-candidate-01</span></td>
+        <td>74.6s</td>
+      </tr>
+      <tr class="pass">
+        <td>87</td>
+        <td><strong>GIPR</strong></td>
+        <td><code>metabolic_gipr</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">GIPR-candidate-01</span></td>
+        <td>80.0s</td>
+      </tr>
+      <tr class="pass">
+        <td>88</td>
+        <td><strong>Myostatin</strong></td>
+        <td><code>metabolic_myostatin</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">Myostatin-candidate-01</span></td>
+        <td>73.4s</td>
+      </tr>
+      <tr class="pass">
+        <td>89</td>
+        <td><strong>CGRP receptor</strong></td>
+        <td><code>migraine_cgrpr</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">CGRPreceptor-candidate-01</span><span class="pdb-tag">CGRPreceptor-candidate-02</span><span class="pdb-tag">CGRPreceptor-candidate-03</span><span class="pdb-tag">CGRPreceptor-candidate-04</span><span class="pdb-tag">CGRPreceptor-candidate-05</span><span class="pdb-tag">CGRPreceptor-candidate-06</span><span class="pdb-tag">CGRPreceptor-candidate-07</span><span class="pdb-tag">CGRPreceptor-candidate-08</span><span class="pdb-tag">CGRPreceptor-candidate-09</span><span class="pdb-tag">CGRPreceptor-candidate-10</span></td>
+        <td>78.2s</td>
+      </tr>
+      <tr class="pass">
+        <td>90</td>
+        <td><strong>DAT</strong></td>
+        <td><code>neuro_adhd_dat</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">DAT-candidate-01</span><span class="pdb-tag">DAT-candidate-02</span><span class="pdb-tag">DAT-candidate-03</span><span class="pdb-tag">DAT-candidate-04</span><span class="pdb-tag">DAT-candidate-05</span><span class="pdb-tag">DAT-candidate-06</span><span class="pdb-tag">DAT-candidate-07</span><span class="pdb-tag">DAT-candidate-08</span><span class="pdb-tag">DAT-candidate-09</span><span class="pdb-tag">DAT-candidate-10</span></td>
+        <td>82.8s</td>
+      </tr>
+      <tr class="pass">
+        <td>91</td>
+        <td><strong>Amyloid-beta</strong></td>
+        <td><code>neuro_alz_abeta</code></td>
+        <td class="status-pass">通过</td>
+        <td>3</td>
+        <td class="pdb-cell"><span class="pdb-tag">Amyloidbeta-candidate-01</span><span class="pdb-tag">Amyloidbeta-candidate-02</span><span class="pdb-tag">Amyloidbeta-candidate-03</span></td>
+        <td>74.1s</td>
+      </tr>
+      <tr class="pass">
+        <td>92</td>
+        <td><strong>Tau</strong></td>
+        <td><code>neuro_alz_tau</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">Tau-candidate-01</span><span class="pdb-tag">Tau-candidate-02</span><span class="pdb-tag">Tau-candidate-03</span><span class="pdb-tag">Tau-candidate-04</span><span class="pdb-tag">Tau-candidate-05</span><span class="pdb-tag">Tau-candidate-06</span><span class="pdb-tag">Tau-candidate-07</span><span class="pdb-tag">Tau-candidate-08</span><span class="pdb-tag">Tau-candidate-09</span><span class="pdb-tag">Tau-candidate-10</span></td>
+        <td>82.2s</td>
+      </tr>
+      <tr class="pass">
+        <td>93</td>
+        <td><strong>TREM2</strong></td>
+        <td><code>neuro_alz_trem2</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">TREM2-candidate-01</span><span class="pdb-tag">TREM2-candidate-02</span><span class="pdb-tag">TREM2-candidate-03</span><span class="pdb-tag">TREM2-candidate-04</span><span class="pdb-tag">TREM2-candidate-05</span><span class="pdb-tag">TREM2-candidate-06</span><span class="pdb-tag">TREM2-candidate-07</span><span class="pdb-tag">TREM2-candidate-08</span><span class="pdb-tag">TREM2-candidate-09</span><span class="pdb-tag">TREM2-candidate-10</span></td>
+        <td>81.5s</td>
+      </tr>
+      <tr class="pass">
+        <td>94</td>
+        <td><strong>BACE1</strong></td>
+        <td><code>neuro_bace1</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">BACE1-candidate-01</span><span class="pdb-tag">BACE1-candidate-02</span><span class="pdb-tag">BACE1-candidate-03</span><span class="pdb-tag">BACE1-candidate-04</span><span class="pdb-tag">BACE1-candidate-05</span><span class="pdb-tag">BACE1-candidate-06</span><span class="pdb-tag">BACE1-candidate-07</span><span class="pdb-tag">BACE1-candidate-08</span><span class="pdb-tag">BACE1-candidate-09</span><span class="pdb-tag">BACE1-candidate-10</span></td>
+        <td>80.0s</td>
+      </tr>
+      <tr class="pass">
+        <td>95</td>
+        <td><strong>Connexin-26</strong></td>
+        <td><code>neuro_deafness_gjb2</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">Connexin26-candidate-01</span></td>
+        <td>77.8s</td>
+      </tr>
+      <tr class="pass">
+        <td>96</td>
+        <td><strong>Leptin receptor</strong></td>
+        <td><code>neuro_lepr</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">Leptinreceptor-candidate-01</span><span class="pdb-tag">Leptinreceptor-candidate-02</span><span class="pdb-tag">Leptinreceptor-candidate-03</span><span class="pdb-tag">Leptinreceptor-candidate-04</span><span class="pdb-tag">Leptinreceptor-candidate-05</span><span class="pdb-tag">Leptinreceptor-candidate-06</span><span class="pdb-tag">Leptinreceptor-candidate-07</span><span class="pdb-tag">Leptinreceptor-candidate-08</span><span class="pdb-tag">Leptinreceptor-candidate-09</span><span class="pdb-tag">Leptinreceptor-candidate-10</span></td>
+        <td>83.4s</td>
+      </tr>
+      <tr class="pass">
+        <td>97</td>
+        <td><strong>AQP4</strong></td>
+        <td><code>neuro_nmosd_aqp4</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">AQP4-candidate-01</span><span class="pdb-tag">AQP4-candidate-02</span><span class="pdb-tag">AQP4-candidate-03</span><span class="pdb-tag">AQP4-candidate-04</span><span class="pdb-tag">AQP4-candidate-05</span><span class="pdb-tag">AQP4-candidate-06</span><span class="pdb-tag">AQP4-candidate-07</span><span class="pdb-tag">AQP4-candidate-08</span><span class="pdb-tag">AQP4-candidate-09</span><span class="pdb-tag">AQP4-candidate-10</span></td>
+        <td>82.4s</td>
+      </tr>
+      <tr class="pass">
+        <td>98</td>
+        <td><strong>alpha-synuclein</strong></td>
+        <td><code>neuro_parkinson_snca</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">alphasynuclein-candidate-01</span><span class="pdb-tag">alphasynuclein-candidate-02</span><span class="pdb-tag">alphasynuclein-candidate-03</span><span class="pdb-tag">alphasynuclein-candidate-04</span><span class="pdb-tag">alphasynuclein-candidate-05</span><span class="pdb-tag">alphasynuclein-candidate-06</span><span class="pdb-tag">alphasynuclein-candidate-07</span><span class="pdb-tag">alphasynuclein-candidate-08</span><span class="pdb-tag">alphasynuclein-candidate-09</span><span class="pdb-tag">alphasynuclein-candidate-10</span></td>
+        <td>83.2s</td>
+      </tr>
+      <tr class="pass">
+        <td>99</td>
+        <td><strong>TrkB</strong></td>
+        <td><code>neuro_trkb</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">TrkB-candidate-01</span><span class="pdb-tag">TrkB-candidate-02</span><span class="pdb-tag">TrkB-candidate-03</span><span class="pdb-tag">TrkB-candidate-04</span><span class="pdb-tag">TrkB-candidate-05</span><span class="pdb-tag">TrkB-candidate-06</span><span class="pdb-tag">TrkB-candidate-07</span><span class="pdb-tag">TrkB-candidate-08</span><span class="pdb-tag">TrkB-candidate-09</span><span class="pdb-tag">TrkB-candidate-10</span></td>
+        <td>83.8s</td>
+      </tr>
+      <tr class="pass">
+        <td>100</td>
+        <td><strong>NGF</strong></td>
+        <td><code>pain_ngf</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">NGF-candidate-01</span><span class="pdb-tag">NGF-candidate-02</span><span class="pdb-tag">NGF-candidate-03</span><span class="pdb-tag">NGF-candidate-04</span><span class="pdb-tag">NGF-candidate-05</span><span class="pdb-tag">NGF-candidate-06</span><span class="pdb-tag">NGF-candidate-07</span><span class="pdb-tag">NGF-candidate-08</span><span class="pdb-tag">NGF-candidate-09</span><span class="pdb-tag">NGF-candidate-10</span></td>
+        <td>82.4s</td>
+      </tr>
+      <tr class="pass">
+        <td>101</td>
+        <td><strong>STEAP1</strong></td>
+        <td><code>prostate_steap1</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">STEAP1-candidate-01</span><span class="pdb-tag">STEAP1-candidate-02</span><span class="pdb-tag">STEAP1-candidate-03</span><span class="pdb-tag">STEAP1-candidate-04</span><span class="pdb-tag">STEAP1-candidate-05</span><span class="pdb-tag">STEAP1-candidate-06</span><span class="pdb-tag">STEAP1-candidate-07</span><span class="pdb-tag">STEAP1-candidate-08</span><span class="pdb-tag">STEAP1-candidate-09</span><span class="pdb-tag">STEAP1-candidate-10</span></td>
+        <td>78.4s</td>
+      </tr>
+      <tr class="pass">
+        <td>102</td>
+        <td><strong>CAIX</strong></td>
+        <td><code>renal_caix</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">CAIX-candidate-01</span><span class="pdb-tag">CAIX-candidate-02</span><span class="pdb-tag">CAIX-candidate-03</span><span class="pdb-tag">CAIX-candidate-04</span><span class="pdb-tag">CAIX-candidate-05</span><span class="pdb-tag">CAIX-candidate-06</span><span class="pdb-tag">CAIX-candidate-07</span><span class="pdb-tag">CAIX-candidate-08</span><span class="pdb-tag">CAIX-candidate-09</span><span class="pdb-tag">CAIX-candidate-10</span></td>
+        <td>78.9s</td>
+      </tr>
+      <tr class="pass">
+        <td>103</td>
+        <td><strong>GPC2</strong></td>
+        <td><code>sclc_gpc2</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">GPC2-candidate-01</span><span class="pdb-tag">GPC2-candidate-02</span><span class="pdb-tag">GPC2-candidate-03</span><span class="pdb-tag">GPC2-candidate-04</span><span class="pdb-tag">GPC2-candidate-05</span><span class="pdb-tag">GPC2-candidate-06</span><span class="pdb-tag">GPC2-candidate-07</span><span class="pdb-tag">GPC2-candidate-08</span><span class="pdb-tag">GPC2-candidate-09</span><span class="pdb-tag">GPC2-candidate-10</span></td>
+        <td>82.7s</td>
+      </tr>
+      <tr class="pass">
+        <td>104</td>
+        <td><strong>B7-H3</strong></td>
+        <td><code>solid_tumor_b7h3</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">B7H3-candidate-01</span><span class="pdb-tag">B7H3-candidate-02</span><span class="pdb-tag">B7H3-candidate-03</span><span class="pdb-tag">B7H3-candidate-04</span><span class="pdb-tag">B7H3-candidate-05</span><span class="pdb-tag">B7H3-candidate-06</span><span class="pdb-tag">B7H3-candidate-07</span><span class="pdb-tag">B7H3-candidate-08</span><span class="pdb-tag">B7H3-candidate-09</span><span class="pdb-tag">B7H3-candidate-10</span></td>
+        <td>79.8s</td>
+      </tr>
+      <tr class="pass">
+        <td>105</td>
+        <td><strong>B7-H6</strong></td>
+        <td><code>solid_tumor_b7h6</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">B7H6-candidate-01</span></td>
+        <td>72.9s</td>
+      </tr>
+      <tr class="pass">
+        <td>106</td>
+        <td><strong>CEACAM5</strong></td>
+        <td><code>solid_tumor_ceacam5</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">CEACAM5-candidate-01</span><span class="pdb-tag">CEACAM5-candidate-02</span><span class="pdb-tag">CEACAM5-candidate-03</span><span class="pdb-tag">CEACAM5-candidate-04</span><span class="pdb-tag">CEACAM5-candidate-05</span><span class="pdb-tag">CEACAM5-candidate-06</span><span class="pdb-tag">CEACAM5-candidate-07</span><span class="pdb-tag">CEACAM5-candidate-08</span><span class="pdb-tag">CEACAM5-candidate-09</span><span class="pdb-tag">CEACAM5-candidate-10</span></td>
+        <td>79.7s</td>
+      </tr>
+      <tr class="pass">
+        <td>107</td>
+        <td><strong>Claudin 18.2</strong></td>
+        <td><code>solid_tumor_cldn18</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">Claudin182-candidate-01</span><span class="pdb-tag">Claudin182-candidate-02</span><span class="pdb-tag">Claudin182-candidate-03</span><span class="pdb-tag">Claudin182-candidate-04</span><span class="pdb-tag">Claudin182-candidate-05</span><span class="pdb-tag">Claudin182-candidate-06</span><span class="pdb-tag">Claudin182-candidate-07</span><span class="pdb-tag">Claudin182-candidate-08</span><span class="pdb-tag">Claudin182-candidate-09</span><span class="pdb-tag">Claudin182-candidate-10</span></td>
+        <td>74.8s</td>
+      </tr>
+      <tr class="pass">
+        <td>108</td>
+        <td><strong>EGFR</strong></td>
+        <td><code>solid_tumor_egfr</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">EGFR-candidate-01</span><span class="pdb-tag">EGFR-candidate-02</span><span class="pdb-tag">EGFR-candidate-03</span><span class="pdb-tag">EGFR-candidate-04</span><span class="pdb-tag">EGFR-candidate-05</span><span class="pdb-tag">EGFR-candidate-06</span><span class="pdb-tag">EGFR-candidate-07</span><span class="pdb-tag">EGFR-candidate-08</span><span class="pdb-tag">EGFR-candidate-09</span><span class="pdb-tag">EGFR-candidate-10</span></td>
+        <td>79.5s</td>
+      </tr>
+      <tr class="pass">
+        <td>109</td>
+        <td><strong>HER3</strong></td>
+        <td><code>solid_tumor_her3</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">HER3-candidate-01</span><span class="pdb-tag">HER3-candidate-02</span><span class="pdb-tag">HER3-candidate-03</span><span class="pdb-tag">HER3-candidate-04</span><span class="pdb-tag">HER3-candidate-05</span><span class="pdb-tag">HER3-candidate-06</span><span class="pdb-tag">HER3-candidate-07</span><span class="pdb-tag">HER3-candidate-08</span><span class="pdb-tag">HER3-candidate-09</span><span class="pdb-tag">HER3-candidate-10</span></td>
+        <td>81.2s</td>
+      </tr>
+      <tr class="pass">
+        <td>110</td>
+        <td><strong>Mesothelin</strong></td>
+        <td><code>solid_tumor_mesothelin</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">Mesothelin-candidate-01</span></td>
+        <td>78.3s</td>
+      </tr>
+      <tr class="pass">
+        <td>111</td>
+        <td><strong>MET</strong></td>
+        <td><code>solid_tumor_met</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">MET-candidate-01</span><span class="pdb-tag">MET-candidate-02</span><span class="pdb-tag">MET-candidate-03</span><span class="pdb-tag">MET-candidate-04</span><span class="pdb-tag">MET-candidate-05</span><span class="pdb-tag">MET-candidate-06</span><span class="pdb-tag">MET-candidate-07</span><span class="pdb-tag">MET-candidate-08</span><span class="pdb-tag">MET-candidate-09</span><span class="pdb-tag">MET-candidate-10</span></td>
+        <td>80.0s</td>
+      </tr>
+      <tr class="pass">
+        <td>112</td>
+        <td><strong>MUC1</strong></td>
+        <td><code>solid_tumor_muc1</code></td>
+        <td class="status-pass">通过</td>
+        <td>3</td>
+        <td class="pdb-cell"><span class="pdb-tag">MUC1-candidate-01</span><span class="pdb-tag">MUC1-candidate-02</span><span class="pdb-tag">MUC1-candidate-03</span></td>
+        <td>76.7s</td>
+      </tr>
+      <tr class="pass">
+        <td>113</td>
+        <td><strong>Nectin-4</strong></td>
+        <td><code>solid_tumor_nectin4</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">Nectin4-candidate-01</span></td>
+        <td>75.0s</td>
+      </tr>
+      <tr class="pass">
+        <td>114</td>
+        <td><strong>Tissue Factor</strong></td>
+        <td><code>solid_tumor_tissue_factor</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">TissueFactor-candidate-01</span></td>
+        <td>82.7s</td>
+      </tr>
+      <tr class="pass">
+        <td>115</td>
+        <td><strong>TROP-2</strong></td>
+        <td><code>solid_tumor_trop2</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">TROP2-candidate-01</span><span class="pdb-tag">TROP2-candidate-02</span><span class="pdb-tag">TROP2-candidate-03</span><span class="pdb-tag">TROP2-candidate-04</span><span class="pdb-tag">TROP2-candidate-05</span><span class="pdb-tag">TROP2-candidate-06</span><span class="pdb-tag">TROP2-candidate-07</span><span class="pdb-tag">TROP2-candidate-08</span><span class="pdb-tag">TROP2-candidate-09</span><span class="pdb-tag">TROP2-candidate-10</span></td>
+        <td>82.2s</td>
+      </tr>
+      <tr class="pass">
+        <td>116</td>
+        <td><strong>PD-L1</strong></td>
+        <td><code>tumor_immunotherapy</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">PDL1-candidate-01</span><span class="pdb-tag">PDL1-candidate-02</span><span class="pdb-tag">PDL1-candidate-03</span><span class="pdb-tag">PDL1-candidate-04</span><span class="pdb-tag">PDL1-candidate-05</span><span class="pdb-tag">PDL1-candidate-06</span><span class="pdb-tag">PDL1-candidate-07</span><span class="pdb-tag">PDL1-candidate-08</span><span class="pdb-tag">PDL1-candidate-09</span><span class="pdb-tag">PDL1-candidate-10</span></td>
+        <td>84.6s</td>
+      </tr>
+      <tr class="pass">
+        <td>117</td>
+        <td><strong>FGFR2</strong></td>
+        <td><code>upper_gi_fgfr2</code></td>
+        <td class="status-pass">通过</td>
+        <td>1</td>
+        <td class="pdb-cell"><span class="pdb-tag">FGFR2-candidate-01</span></td>
+        <td>78.1s</td>
+      </tr>
+      <tr class="pass">
+        <td>118</td>
+        <td><strong>FGFR3</strong></td>
+        <td><code>urothelial_fgfr3</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">FGFR3-candidate-01</span><span class="pdb-tag">FGFR3-candidate-02</span><span class="pdb-tag">FGFR3-candidate-03</span><span class="pdb-tag">FGFR3-candidate-04</span><span class="pdb-tag">FGFR3-candidate-05</span><span class="pdb-tag">FGFR3-candidate-06</span><span class="pdb-tag">FGFR3-candidate-07</span><span class="pdb-tag">FGFR3-candidate-08</span><span class="pdb-tag">FGFR3-candidate-09</span><span class="pdb-tag">FGFR3-candidate-10</span></td>
+        <td>83.2s</td>
+      </tr>
+      <tr class="pass">
+        <td>119</td>
+        <td><strong>Canine NGF</strong></td>
+        <td><code>veterinary_canine_ngf</code></td>
+        <td class="status-pass">通过</td>
+        <td>10</td>
+        <td class="pdb-cell"><span class="pdb-tag">CanineNGF-candidate-01</span><span class="pdb-tag">CanineNGF-candidate-02</span><span class="pdb-tag">CanineNGF-candidate-03</span><span class="pdb-tag">CanineNGF-candidate-04</span><span class="pdb-tag">CanineNGF-candidate-05</span><span class="pdb-tag">CanineNGF-candidate-06</span><span class="pdb-tag">CanineNGF-candidate-07</span><span class="pdb-tag">CanineNGF-candidate-08</span><span class="pdb-tag">CanineNGF-candidate-09</span><span class="pdb-tag">CanineNGF-candidate-10</span></td>
+        <td>83.0s</td>
+      </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="footer">
+    ZoonoAb 稳定版靶点测试报告 - 生成于 2026-07-31 - 服务器 222.211.217.189:17040 - 版本 69498311
+  </div>
+</div>
+</body>
+</html>
