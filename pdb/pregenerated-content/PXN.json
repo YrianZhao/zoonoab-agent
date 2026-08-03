@@ -1,0 +1,65 @@
+{
+  "gene": "PXN",
+  "generatedAt": "2026-08-03T15:46:02.159Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PXN编码的paxillin是黏着斑支架蛋白，参与整合素介导的细胞黏附、FAK/SRC信号复合体组装及细胞迁移调控，与心房重构、炎症反应指标及多种血液性状关联。该蛋白主要定位于胞质侧黏着斑，缺乏稳定胞外结构域或分泌形式，作为常规体内阻断型抗体抗原的可及性不足。相较于同通路中ITGA/ITGB或受体酪氨酸激酶等膜蛋白，PXN更适合作为胞内机制研究或结构引导结合分子开发靶点，抗体设计优先级应低于可直接接触的上游膜受体。",
+    "mechanism": "设计分子以识别PXN LIM结构域表面，干扰其与黏着斑定位因子及FAK/SRC复合体相关界面的结合，抑制黏着斑成熟与迁移信号传递。",
+    "selectedEpitope": "优先评估LIM3-LIM4模块暴露面及锌指间沟槽，避免破坏保守锌配位核心。",
+    "diseaseDirection": "黏着斑信号与心血管重构",
+    "domain": "PXN含N端LD基序区和C端四个LIM锌指结构域；2O9V覆盖C端LIM结构模块。",
+    "evidence": "PXN黏着斑结构域与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB P49023功能与定位注释",
+      "RCSB PDB 2O9V晶体结构记录",
+      "Reactome整合素细胞表面相互作用与黏着斑通路"
+    ],
+    "referenceEntries": "UniProtKB:P49023；RCSB PDB:2O9V；HGNC:9718",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "LIM3-LIM4相邻外侧暴露面",
+        "可用于构建识别C端黏着斑定位模块的构象型结合分子",
+        "优先"
+      ],
+      [
+        "Site B",
+        "LIM2-LIM3连接区及邻近表面",
+        "可能影响LIM模块空间取向，适合筛选调节型结合分子",
+        "备选"
+      ],
+      [
+        "Site C",
+        "LIM锌指Cys/His配位核心",
+        "高度保守且承担结构稳定功能，结合风险高，易引发非特异构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PXN为胞内黏着斑蛋白，常规抗体体内可及性弱；设计应定位于研究级Fab、胞内抗体或递送依赖型格式，并规避锌指核心。",
+    "structurePrepZh": "以2O9V链A/B为模板，保留结构锌离子及配位残基，校验LIM结构域边界、晶体接触面和缺失N端LD区注释。",
+    "structureRef": "RCSB PDB 2O9V；人源paxillin LIM结构域X射线结构，1.63 Å",
+    "antibodies": [
+      "Anti-paxillin clone 5H11",
+      "Anti-phospho-paxillin Tyr118 antibody"
+    ],
+    "interfaceFocus": "LIM3-LIM4外侧暴露面与锌指间沟槽",
+    "designMode": "胞内靶点研究型",
+    "candidates": [
+      {
+        "target": "PTK2",
+        "rationale": "PTK2/FAK是整合素黏着斑信号的核心激酶，与PXN通过黏着斑复合体共同调控细胞迁移和机械信号转导。其激酶活性及支架功能在心血管重构和炎症相关细胞行为中具有明确机制地位。"
+      },
+      {
+        "target": "ITGB1",
+        "rationale": "ITGB1位于PXN上游的整合素受体复合体中，直接连接胞外基质识别与胞内黏着斑装配。作为跨膜受体，其胞外结构域具备更明确的抗体可及性。"
+      },
+      {
+        "target": "SRC",
+        "rationale": "SRC参与FAK-PXN信号复合体中的酪氨酸磷酸化级联，可促进PXN Tyr31/Tyr118等位点相关信号输出。其与黏着斑动态和细胞迁移调控处于同一功能通路。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

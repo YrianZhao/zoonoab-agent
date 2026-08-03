@@ -1,0 +1,65 @@
+{
+  "gene": "ADAP1",
+  "generatedAt": "2026-08-03T10:06:02.496Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ADAP1编码含ArfGAP结构域与双PH结构域的胞内Arf GTPase调节蛋白，主要参与ARF依赖的膜转运、磷脂结合和囊泡交通，其遗传关联集中于血细胞组成、哮喘及克罗恩病等免疫炎症表型。该蛋白缺乏经典分泌信号肽、跨膜区或稳定胞外结构域，天然抗原可及性不利于常规细胞外阻断抗体开发。相较于同通路中具备胞外可及性的细胞因子或整合素靶点，ADAP1更适合作为机制研究或胞内递送抗体探索靶点，主靶点优先级应低于可直接药物化的免疫炎症膜受体与分泌因子。",
+    "mechanism": "设计方向聚焦于干扰ADAP1 PH结构域与磷脂膜面的结合，或阻断ArfGAP催化界面对ARF-GTP的识别，从而影响ARF依赖膜转运复合体组装。",
+    "selectedEpitope": "优先评估PH结构域磷脂结合口袋邻近碱性界面，备选ArfGAP催化沟槽周边ARF结合面。",
+    "diseaseDirection": "免疫炎症与血细胞表型",
+    "domain": "ADAP1含N端ArfGAP锌指催化结构域及两个PH结构域，PDB 3LJU覆盖可解析胞内结构片段。",
+    "evidence": "ADAP1免疫炎症遗传关联与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB O75689 functional annotation",
+      "RCSB PDB 3LJU X-ray structure",
+      "Gene Ontology ARF GTPase regulator annotation"
+    ],
+    "referenceEntries": "UniProt O75689；RCSB PDB 3LJU；HGNC ADAP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PH结构域磷脂结合口袋邻近碱性界面",
+        "可直接削弱膜磷脂识别与膜定位，适合胞内功能阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ArfGAP结构域催化沟槽及ARF-GTP识别边缘",
+        "具备干扰ADAP1与ARF底物结合的机制价值，但需避免催化锌指核心构象扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离PH口袋的溶剂暴露环区",
+        "可用于结合验证或结构示踪，但功能阻断确定性较低",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ADAP1为胞内蛋白，常规IgG难以到达作用位点；PH结构域与ArfGAP家族界面存在保守性，需强化同源蛋白选择性与胞内递送可行性评估。",
+    "structurePrepZh": "以3LJU链X为模板，补全缺失环区并保留实验构象；对PH口袋、ArfGAP催化界面及锌配位区域进行分区标注。",
+    "structureRef": "RCSB PDB 3LJU，X-ray diffraction，1.702 Å",
+    "antibodies": [
+      "无已批准ADAP1靶向抗体",
+      "无公开临床阶段ADAP1阻断抗体"
+    ],
+    "interfaceFocus": "PH磷脂结合口袋与ArfGAP-ARF识别面",
+    "designMode": "胞内阻断探索",
+    "candidates": [
+      {
+        "target": "IL13",
+        "rationale": "IL13是哮喘2型炎症通路中的分泌型细胞因子，可通过IL13RA1/IL4RA受体复合体驱动气道炎症与杯状细胞反应，抗体可直接中和其受体结合。"
+      },
+      {
+        "target": "IL4R",
+        "rationale": "IL4Rα为IL4和IL13共享受体亚基，是2型炎症信号的胞外可及膜受体靶点，相比ADAP1具有更明确的抗体阻断窗口。"
+      },
+      {
+        "target": "ITGA4",
+        "rationale": "ITGA4参与白细胞黏附与肠道炎症细胞募集，是克罗恩病相关免疫迁移通路中的膜表面靶点，可通过抗体阻断整合素介导的细胞黏附。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

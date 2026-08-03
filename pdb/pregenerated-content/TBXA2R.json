@@ -1,0 +1,65 @@
+{
+  "gene": "TBXA2R",
+  "generatedAt": "2026-08-03T17:10:39.088Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TBXA2R 是血栓烷A2信号轴的核心膜受体，介导血小板聚集、血管收缩及平滑肌反应，在血栓形成、气道阻塞和相关炎症表型中具有明确疾病关联。该靶点为典型七次跨膜GPCR，胞外环与配体结合口袋可及性较高，适合通过抗体实现受体阻断或构象锁定。相较下游凝血因子，TBXA2R更接近病理起始环节，且相较TXA2合成酶具备更直接的受体层抑制优势。另一方面，其在血小板与血管壁细胞上的膜定位提高了抗原暴露度，支持开展以胞外环和N端为重点的抗体设计。",
+    "mechanism": "抗体阻断TXA2与TBXA2R配体结合口袋及胞外环协同识别，抑制受体激活与Gq/11耦联。",
+    "selectedEpitope": "优先靶向ECD2与ECL2交界的配体入口区，兼顾N端稳定构象表位。",
+    "diseaseDirection": "血栓与血小板激活",
+    "domain": "七次跨膜GPCR；重点为N端、ECL1/ECL2/ECL3及配体入口口袋",
+    "evidence": "TBXA2R抗体设计证据包",
+    "evidenceSources": [
+      "UniProt:P21731",
+      "RCSB PDB:6IIU",
+      "Open Targets Platform",
+      "GPCRdb"
+    ],
+    "referenceEntries": "UniProt P21731; RCSB 6IIU; GPCRdb TBXA2R human",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ECD2-ECL2交界及口袋上缘",
+        "直接干扰TXA2结合与受体激活",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端与ECL1邻接区",
+        "用于稳定非活化构象并提升特异性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ECL3外侧边缘",
+        "可及性较好但远离核心口袋，阻断效力不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TBXA2R属于高度保守的GPCR家族，表位需优先避开跨家族保守骨架面并减少对非目标受体交叉识别。建议结合活化态与非活化态构象比对，优先选择ECL2主导的功能性界面。",
+    "structurePrepZh": "以6IIU为模板补全缺失环区并保留膜近端取向，结合同源建模校正胞外环柔性。抗原构象宜在膜环境约束下评估，以提升表位判定可靠性。",
+    "structureRef": "PDB 6IIU；TBXA2R晶体结构",
+    "antibodies": [
+      "SQ 29,548",
+      "Terutroban"
+    ],
+    "interfaceFocus": "ECL2口袋入口与N端邻接面",
+    "designMode": "结构引导阻断型",
+    "candidates": [
+      {
+        "target": "TBXA2R",
+        "rationale": "主靶点位于血栓烷A2信号轴起始端，适合以功能阻断实现血小板抑制。其膜受体属性与已解析结构支持抗体工程化开发。"
+      },
+      {
+        "target": "TBXAS1",
+        "rationale": "血栓烷A2合成酶位于同一通路上游，抑制其活性可减少配体生成。与TBXA2R联合比较可用于区分“配体耗竭”与“受体阻断”策略。"
+      },
+      {
+        "target": "PTGS1",
+        "rationale": "PTGS1参与前列腺素H2生成并为TXA2生物合成提供底物，在血小板活化通路中处于上游。其与TBXA2R构成同一病理轴，可作为通路级对照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

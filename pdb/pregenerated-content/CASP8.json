@@ -1,0 +1,65 @@
+{
+  "gene": "CASP8",
+  "generatedAt": "2026-08-03T18:14:27.790Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CASP8是死亡受体通路和Fas介导淋巴细胞凋亡的关键起始半胱天冬酶，FAS、FADD与procaspase-8形成DISC后触发级联激活，功能缺陷可导致自身免疫性淋巴增殖综合征2B及反复病毒感染。该蛋白主要为胞内酶原，天然抗原可及性弱，抗体设计更适合定位为结构生物学驱动的细胞内递送抗体或研究级阻断工具，而非经典细胞表面治疗抗体。相较CASP3等下游执行者，CASP8位于外源性凋亡通路入口，具有更高通路分辨率；相较FAS/FASLG，直接靶向CASP8可解析酶原二聚化与催化成熟界面，适合机制验证型分子设计。",
+    "mechanism": "阻断CASP8催化结构域p18/p10界面形成活性构象，抑制procaspase-8二聚化后自切割成熟及下游CASP3、CASP7激活。",
+    "selectedEpitope": "优先覆盖p18大亚基催化沟槽邻近二聚化界面，避开保守半胱氨酸催化位点核心。",
+    "diseaseDirection": "死亡受体凋亡与免疫失衡",
+    "domain": "CASP8含N端双DED结构域及C端caspase催化区，成熟酶由p18与p10亚基组成。",
+    "evidence": "CASP8死亡受体凋亡通路结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q14790功能与结构域注释",
+      "RCSB PDB 4JJ7晶体结构记录",
+      "Reactome外源性凋亡与DISC通路注释"
+    ],
+    "referenceEntries": "UniProt Q14790；RCSB PDB 4JJ7；Reactome CASP8 apoptosis",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "p18大亚基二聚化界面及活性构象邻近区域",
+        "可干预活性二聚体稳定化并降低自切割成熟效率",
+        "优先"
+      ],
+      [
+        "Site B",
+        "p10小亚基与p18装配接触面",
+        "可影响成熟酶四聚体样装配，适合构象选择性结合",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端DED1/DED2与FADD DED结合界面",
+        "可阻断DISC招募，但需额外结构模型支持且细胞内递送要求较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CASP8为胞内蛋白，常规抗体难以达到作用位点；催化区与其他caspase存在保守性，需以构象表位和交叉反应筛查降低脱靶风险。",
+    "structurePrepZh": "以4JJ7高分辨率晶体结构提取A、B链催化区，补全缺失环区并标注p18/p10界面、催化残基和同源caspase保守面。",
+    "structureRef": "RCSB PDB 4JJ7，human caspase-8 X-ray structure 1.178 Å",
+    "antibodies": [
+      "C15 anti-caspase-8",
+      "1C12 anti-caspase-8"
+    ],
+    "interfaceFocus": "p18/p10装配面与催化沟槽邻近二聚化界面",
+    "designMode": "胞内递送阻断",
+    "candidates": [
+      {
+        "target": "FAS",
+        "rationale": "FAS位于同一死亡受体凋亡通路上游，配体结合后招募FADD并启动DISC形成，具备细胞表面抗原可及性。"
+      },
+      {
+        "target": "FASLG",
+        "rationale": "FASLG直接结合FAS并诱导受体聚集，是Fas介导淋巴细胞凋亡与免疫稳态调控的近端配体节点。"
+      },
+      {
+        "target": "FADD",
+        "rationale": "FADD通过death domain连接FAS并通过DED招募procaspase-8，是DISC装配和CASP8激活所必需的衔接蛋白。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

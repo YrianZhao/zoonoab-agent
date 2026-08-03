@@ -1,0 +1,65 @@
+{
+  "gene": "PAX5",
+  "generatedAt": "2026-08-03T15:06:16.825Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PAX5是B细胞谱系决定性转录因子，在急性淋巴细胞白血病中常见失活突变、易位或表达异常，影响B细胞分化停滞与白血病克隆维持。该蛋白主要定位于细胞核，其paired DNA结合结构域并非天然胞外抗原，抗体药物直接结合活细胞表面PAX5的可及性受限。相较CD19、CD22等B细胞表面靶点，PAX5更适合作为机制分型、核内功能阻断研究或细胞内递送抗体设计对象，优先级应定位为探索性结构生物学靶点而非常规治疗性抗体主靶点。",
+    "mechanism": "通过结合PAX5 paired domain的DNA识别界面，阻断其与靶基因启动子/增强子PAX结合序列相互作用，削弱B细胞谱系转录程序维持。",
+    "selectedEpitope": "优先覆盖paired domain N端亚结构域与DNA大沟接触面，避免破坏全局折叠核心。",
+    "diseaseDirection": "B细胞急性淋巴细胞白血病",
+    "domain": "PAX5含N端paired DNA结合结构域、八肽区、部分同源结构域及C端转录调控区。",
+    "evidence": "PAX5结构与B-ALL遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q02548功能与结构域注释",
+      "RCSB PDB 1K78晶体结构记录",
+      "B细胞急性淋巴细胞白血病PAX5突变研究文献"
+    ],
+    "referenceEntries": "UniProt Q02548；RCSB PDB 1K78；Open Targets PAX5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "paired domain N端亚结构域DNA大沟识别面",
+        "可直接竞争PAX5与靶DNA结合，机制指向明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "paired domain C端亚结构域DNA接触邻近面",
+        "可增强对复合DNA结合构象的干扰，适合协同阻断设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "paired domain折叠核心与保守疏水区",
+        "可能影响蛋白稳定性并引发非特异构象扰动，需降低优先级",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PAX5为核内转录因子，缺乏天然胞外表位，常规Fab或VHH难以直接进入细胞核；需结合细胞穿透、核定位或递送系统评估可开发性。",
+    "structurePrepZh": "以1K78的paired domain-DNA复合物为模板，保留DNA接触残基注释，补全缺失环区并进行质子化、链选择和界面能量最小化。",
+    "structureRef": "RCSB PDB 1K78，PAX5 paired domain-DNA复合物，2.25 Å",
+    "antibodies": [
+      "anti-PAX5 clone 24",
+      "anti-PAX5 clone DAK-Pax5"
+    ],
+    "interfaceFocus": "paired domain与DNA大沟/小沟接触界面",
+    "designMode": "核内阻断探索",
+    "candidates": [
+      {
+        "target": "CD19",
+        "rationale": "CD19受PAX5调控并参与B细胞受体共受体信号，是B-ALL中成熟度较高的细胞表面治疗靶点。其胞外结构域可及性显著优于核内PAX5。"
+      },
+      {
+        "target": "CD22",
+        "rationale": "CD22为B细胞限制性膜受体，参与BCR信号负调控并在多种B-ALL病例中表达。其Ig样胞外结构域适合抗体结合与内吞型药物偶联策略。"
+      },
+      {
+        "target": "EBF1",
+        "rationale": "EBF1与PAX5共同维持B细胞谱系转录网络，遗传异常可促进B细胞发育阻滞。该靶点适合作为同一分化通路的核内机制研究参照。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

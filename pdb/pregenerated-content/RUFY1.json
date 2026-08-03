@@ -1,0 +1,65 @@
+{
+  "gene": "RUFY1",
+  "generatedAt": "2026-08-03T16:15:59.464Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RUFY1是含RUN结构域与FYVE结构域的胞内膜运输衔接蛋白，参与Rab4/Rab5相关早期内体运输、PI3P富集膜区定位及受体回收过程，其遗传关联主要集中于体脂量、体脂百分比、腰围、体重和BMI等肥胖相关表型。该靶点缺乏分泌形式和跨膜胞外结构域，天然抗原可及性不利于常规体内抗体阻断，更适合以胞内递送抗体片段或结构生物学工具抗体进行机制验证。相比脂肪代谢通路中具有明确胞外配体结合位点的受体类靶点，RUFY1的优先级应定位为探索性胞内节点，优势在于可直接解析内体回收对代谢表型相关受体周转的影响。",
+    "mechanism": "设计抗体片段阻断RUFY1 RUN结构域与Rab4/Rab5小GTP酶或FYVE结构域与PI3P膜位点的结合，干扰早期内体定位与受体回收复合体装配。",
+    "selectedEpitope": "优先覆盖RUN结构域GTPase结合面，备选评估FYVE结构域PI3P结合口袋邻近环区。",
+    "diseaseDirection": "肥胖与脂肪分布表型",
+    "domain": "RUFY1含N端RUN结构域、卷曲螺旋区及C端FYVE锌指结构域，介导Rab小GTP酶与PI3P膜定位。",
+    "evidence": "RUFY1肥胖表型遗传关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q96T51功能与结构域注释",
+      "RCSB PDB 2YW8晶体结构记录",
+      "Pfam/InterPro RUN与FYVE结构域注释"
+    ],
+    "referenceEntries": "UniProt: Q96T51; RCSB PDB: 2YW8; Gene: RUFY1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RUN结构域Rab GTPase结合界面",
+        "可直接阻断Rab4/Rab5依赖的早期内体募集与运输衔接",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FYVE结构域PI3P结合口袋邻近环区",
+        "可削弱PI3P富集膜区定位，但需避免破坏锌指整体折叠",
+        "备选"
+      ],
+      [
+        "Site C",
+        "卷曲螺旋寡聚化/支架区域",
+        "可能影响复合体装配，但结构柔性较高且特异性表位界定困难",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RUFY1为胞内蛋白，常规抗体药物难以到达作用位点；建议采用细胞内VHH、递送型抗体片段或研究级Fab，并优先验证Rab/PI3P结合阻断效应。",
+    "structurePrepZh": "以PDB 2YW8链A为结构模板，补全缺失环区并检查3.0 Å分辨率下侧链构象；FYVE区域需保留锌离子配位约束并标注PI3P结合残基。",
+    "structureRef": "RCSB PDB 2YW8，X-ray diffraction，3.0 Å，Homo sapiens RUFY1",
+    "antibodies": [
+      "暂无获批RUFY1靶向治疗抗体",
+      "研究级抗RUFY1检测抗体"
+    ],
+    "interfaceFocus": "RUN-Rab界面与FYVE-PI3P膜结合面",
+    "designMode": "胞内VHH工具抗体",
+    "candidates": [
+      {
+        "target": "RAB4A",
+        "rationale": "RAB4A参与早期内体快速回收通路，并与RUFY1所在膜运输网络功能相连；其活性状态决定回收货物从早期内体返回质膜的效率。"
+      },
+      {
+        "target": "RAB5A",
+        "rationale": "RAB5A是早期内体成熟与货物分选的核心小GTP酶，可与RUFY1 RUN结构域相关网络共同调控内吞后受体转运。"
+      },
+      {
+        "target": "PIK3C3",
+        "rationale": "PIK3C3/VPS34生成PI3P，为FYVE结构域蛋白募集至早期内体膜提供脂质标记；该节点位于RUFY1膜定位的上游。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

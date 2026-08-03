@@ -1,0 +1,65 @@
+{
+  "gene": "FCER1A",
+  "generatedAt": "2026-08-03T12:30:16.757Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FCER1A编码高亲和力IgE受体FcεRI的α链，负责结合IgE Fc区并介导肥大细胞、嗜碱性粒细胞的过敏原依赖性脱颗粒反应，与血清IgE水平和荨麻疹等IgE介导疾病表型具有明确关联。该靶点为I型跨膜受体，IgE结合所需的D1-D2胞外结构域暴露于细胞表面，具备抗体识别与阻断的可及性。相较下游SYK、LYN等胞内信号分子，FCER1A更适合抗体药物直接干预，并可在受体激活起始层面阻断IgE装载。",
+    "mechanism": "抗体阻断FCER1A胞外D2结构域与IgE Fc Cε3结构域的结合，降低FcεRI-IgE复合物形成及过敏原交联诱导的脱颗粒信号。",
+    "selectedEpitope": "优先锁定D2结构域IgE-Fc结合界面，覆盖Cε3接触残基并避免稳定D1-D2折叠核心。",
+    "diseaseDirection": "IgE介导过敏与荨麻疹",
+    "domain": "FCER1A胞外区由两个免疫球蛋白样结构域D1与D2组成，D2主导IgE Fc结合。",
+    "evidence": "FCER1A-IgE轴过敏疾病结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P12319功能与拓扑注释",
+      "RCSB PDB 1F2Q晶体结构记录",
+      "FcεRI-IgE复合物结构与过敏免疫文献"
+    ],
+    "referenceEntries": "UniProt:P12319；RCSB PDB:1F2Q；Open Targets:FCER1A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "D2结构域IgE Fc Cε3结合界面",
+        "直接竞争IgE装载，具备明确阻断机制",
+        "优先"
+      ],
+      [
+        "Site B",
+        "D1-D2连接区邻近受体外侧面",
+        "可通过空间位阻削弱IgE结合并保留构象稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "D1远端非IgE接触面",
+        "可能提供结合信号但阻断效力不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "D2界面与IgE结合高度相关，需避免诱导受体交联或模拟聚集；建议筛选单价阻断构型并评估肥大细胞脱颗粒风险。",
+    "structurePrepZh": "以1F2Q晶体结构为模板，保留FCER1A胞外D1-D2与IgE接触构象，补全缺失侧链并标注糖基化邻近区域。",
+    "structureRef": "Garman等解析人FcεRIα胞外区与IgE Fc复合物结构，PDB 1F2Q",
+    "antibodies": [
+      "Omalizumab",
+      "Ligelizumab"
+    ],
+    "interfaceFocus": "FCER1A D2-Cε3 IgE结合界面",
+    "designMode": "阻断型Fab/VHH",
+    "candidates": [
+      {
+        "target": "IGHG4",
+        "rationale": "IgE通路中更准确的核心配体为免疫球蛋白ε重链基因IGH E而非IGHG4；若限定IgE轴，配体侧阻断应围绕IgE Fc Cε3区域进行。"
+      },
+      {
+        "target": "MS4A2",
+        "rationale": "MS4A2编码FcεRIβ链，参与FcεRI复合物装配并放大受体下游信号，是同一高亲和力IgE受体通路的膜组分。"
+      },
+      {
+        "target": "SYK",
+        "rationale": "SYK在FcεRI交联后结合ITAM磷酸化信号并驱动肥大细胞脱颗粒，是IgE受体通路的关键下游激酶靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

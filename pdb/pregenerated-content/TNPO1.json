@@ -1,0 +1,65 @@
+{
+  "gene": "TNPO1",
+  "generatedAt": "2026-08-03T17:23:46.723Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TNPO1 编码 transportin 1，是核转运受体 karyopherin-β 家族成员，主要通过识别 PY-NLS 货物蛋白并与 RanGTP 循环耦联介导核输入；其遗传关联主要集中于血小板计数、血小板体积及红细胞相关数量性状，提示其可能反映造血细胞核转运调控轴。TNPO1 为胞质-核质可溶性蛋白，缺乏跨膜区或稳定胞外结构域，常规体内抗体可及性不具备优势，更适合作为结构验证、细胞内抗体或递送型抗体设计对象。相比同通路中更广谱且冗余性更强的核转运因子，TNPO1 具有明确的 PY-NLS 货物结合沟槽和已解析实验结构，可优先用于界面阻断型分子设计研究。",
+    "mechanism": "通过结合 TNPO1 HEAT-repeat 超螺旋内侧的 PY-NLS 货物结合沟槽，阻断 hnRNP 类货物蛋白 PY-NLS 与 TNPO1 的相互作用，从而抑制其 Ran 依赖性核输入。",
+    "selectedEpitope": "优先覆盖 HEAT repeats 8–18 形成的 PY-NLS 结合沟槽，避开 RanGTP 结合界面。",
+    "diseaseDirection": "造血数量性状与核转运调控",
+    "domain": "TNPO1 由连续 HEAT repeats 构成 karyopherin-β 型超螺旋，内侧沟槽识别 PY-NLS 货物。",
+    "evidence": "TNPO1 核转运结构与血液性状遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 遗传关联与性状证据",
+      "UniProt Q92973 蛋白功能与亚细胞定位注释",
+      "RCSB PDB 4FDD X-ray 结构解析数据",
+      "karyopherin-β/PY-NLS 核输入机制文献"
+    ],
+    "referenceEntries": "UniProt Q92973；RCSB PDB 4FDD；Open Targets TNPO1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "HEAT repeats 8–18 的 PY-NLS 货物结合沟槽",
+        "直接竞争 PY-NLS 货物结合，机制清晰且与结构界面对应",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N 端 HEAT repeats 1–4 的 RanGTP 调控相关区域",
+        "可影响 Ran 依赖性构象转换，但需避免广泛干扰 karyopherin-β 保守功能",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端 HEAT repeats 外侧非货物结合面",
+        "可用于结构示踪或稳定构象，功能阻断效应不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TNPO1 为细胞内可溶性核转运蛋白，常规抗体体内可及性受限；设计宜定位为细胞内抗体、递送型抗体或结构探针，并严格评估核转运广谱毒性。",
+    "structurePrepZh": "以 4FDD 的 A、B 链为实验结构模板，保留 HEAT-repeat 主体构象，校验缺失环区、货物结合沟槽暴露度及链间晶体接触后再进行表位建模。",
+    "structureRef": "RCSB PDB 4FDD，2.3 Å X-ray human TNPO1 structure",
+    "antibodies": [
+      "商业研究级 anti-TNPO1 monoclonal antibody",
+      "商业研究级 anti-Transportin 1 polyclonal antibody"
+    ],
+    "interfaceFocus": "PY-NLS 货物结合沟槽及 Ran 调控邻近面",
+    "designMode": "细胞内界面阻断",
+    "candidates": [
+      {
+        "target": "RAN",
+        "rationale": "RAN 是 karyopherin-β 核转运循环的核心小 GTPase，RanGTP 与 TNPO1 结合驱动货物释放，处于同一核输入通路关键节点。"
+      },
+      {
+        "target": "KPNA2",
+        "rationale": "KPNA2 介导经典 NLS 货物识别并与 importin-β 轴协同参与核输入，在造血细胞增殖和核转运调控中具有真实通路关联。"
+      },
+      {
+        "target": "KPNB1",
+        "rationale": "KPNB1 是经典核输入受体 importin-β1，与 karyopherin-β 家族共享 RanGTP 调控机制，可作为核转运通路内的可比候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

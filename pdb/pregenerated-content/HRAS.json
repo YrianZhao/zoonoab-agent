@@ -1,0 +1,65 @@
+{
+  "gene": "HRAS",
+  "generatedAt": "2026-08-03T13:16:43.301Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HRAS编码小GTP酶HRas，致病变异可使其维持GTP结合活化状态，持续驱动RAF-MEK-ERK与PI3K-AKT通路，是Costello综合征及膀胱癌等RASopathy/肿瘤疾病的关键上游节点。然而HRas主要定位于质膜内侧胞质面，缺乏胞外结构域或分泌抗原属性，常规体内阻断型抗体可及性受限。其优先级主要来自高疾病遗传关联、明确致癌热点和高分辨率结构基础；相较RTK等胞外靶点，更适合作为胞内抗体、工程化递送抗体或结构引导抑制性结合蛋白的设计对象。",
+    "mechanism": "设计分子应结合HRas Switch I/II邻近GTP酶核心，阻断RAF1 RBD与GTP-HRas的效应器界面，并稳定非效应器结合构象。",
+    "selectedEpitope": "优先覆盖Switch I与Switch II形成的RAF1-RBD结合面，兼顾GTP结合口袋邻近构象敏感残基。",
+    "diseaseDirection": "RASopathy与RAS驱动肿瘤",
+    "domain": "HRas含GTP酶G结构域，包含P-loop、Switch I、Switch II及C端CAAX膜定位修饰区。",
+    "evidence": "HRAS遗传激活与RAS-MAPK通路结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P01112功能与变异注释",
+      "RCSB PDB 1CTQ高分辨率晶体结构",
+      "RAS-MAPK通路及RASopathy临床遗传研究"
+    ],
+    "referenceEntries": "UniProt:P01112；RCSB PDB:1CTQ；HGNC:HRAS",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Switch I/Switch II效应器结合界面",
+        "可直接干扰RAF1 RBD识别活化HRas，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "P-loop与核苷酸结合口袋邻近区域",
+        "可通过构象锁定影响GTP/GDP状态，但需避免核苷酸竞争不足",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端高变区与CAAX膜定位邻近段",
+        "参与膜锚定和亚细胞定位，结构柔性高且1CTQ覆盖有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HRas为胞内膜相关蛋白，传统抗体体内可及性低；设计宜定位于胞内抗体、递送型Fab/VHH或外泌体递送策略，并严格评估KRAS/NRAS交叉反应。",
+    "structurePrepZh": "以1CTQ链A为G结构域模板，保留核苷酸相关构象信息，补全缺失侧链并标注Switch I/II、P-loop及效应器结合面用于表位建模。",
+    "structureRef": "RCSB PDB 1CTQ；HRas GTP酶结构X射线晶体学解析",
+    "antibodies": [
+      "iDab#6",
+      "Y13-259"
+    ],
+    "interfaceFocus": "Switch I/II与RAF1 RBD结合界面",
+    "designMode": "胞内抗体设计",
+    "candidates": [
+      {
+        "target": "KRAS",
+        "rationale": "KRAS同属RAS小GTP酶，激活后通过RAF-MEK-ERK与PI3K-AKT轴驱动肿瘤增殖，是RAS通路中临床优先级最高的并行靶点。"
+      },
+      {
+        "target": "NRAS",
+        "rationale": "NRAS与HRAS共享效应器结合机制，在RAS-MAPK异常激活相关肿瘤中具有明确致病作用，可用于评估RAS家族选择性设计边界。"
+      },
+      {
+        "target": "RAF1",
+        "rationale": "RAF1是GTP-RAS的直接效应器，其RBD与RAS Switch I区域结合并启动MEK-ERK级联，适合作为同一通路下游界面靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

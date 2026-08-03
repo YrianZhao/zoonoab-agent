@@ -1,0 +1,65 @@
+{
+  "gene": "RIGI",
+  "generatedAt": "2026-08-03T20:58:46.925Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RIG-I由DDX58编码，是胞质RNA模式识别受体，可识别5′三磷酸或短双链病毒RNA并通过CARD结构域激活MAVS，诱导I型干扰素和炎症因子表达；该轴异常增强与Singleton-Merten综合征及银屑病样炎症表型相关。RIG-I为胞内RNA解旋酶样蛋白，天然抗原可及性低于膜受体或分泌蛋白，但其CARD和Helicase-CTD构象界面具备明确结构模板，适合发展胞内递送抗体片段或机制研究型阻断分子。相较下游广谱JAK-STAT节点，RIG-I位于先天免疫RNA感知起始端，靶向优先级来自对DDX58-MAVS异常信号的上游选择性干预潜力。",
+    "mechanism": "抗体片段阻断RIG-I双CARD与MAVS CARD聚合界面的结合，或稳定自抑制构象，抑制TBK1-IRF3介导的IFNB1转录启动。",
+    "selectedEpitope": "优先覆盖N端CARD2外露面及CARD1-CARD2排列界面，干预MAVS CARD募集。",
+    "diseaseDirection": "干扰素介导自身炎症",
+    "domain": "RIG-I含N端串联CARD、中央DExD/H helicase核心和C端RNA结合调节结构域。",
+    "evidence": "RIG-I-MAVS先天免疫轴结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform DDX58疾病关联",
+      "UniProt O95786功能与结构域注释",
+      "RCSB PDB 3LRR晶体结构记录",
+      "人类RIG-I-MAVS-I型干扰素通路文献"
+    ],
+    "referenceEntries": "UniProt O95786；RCSB PDB 3LRR；Open Targets DDX58",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端CARD2及CARD1-CARD2信号复合界面",
+        "直接削弱MAVS CARD募集与下游聚合，机制指向清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Helicase-CTD邻近RNA结合调节界面",
+        "影响5′三磷酸RNA结合后构象释放，适合构象锁定策略",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATPase裂隙邻近保守解旋酶核心",
+        "保守性高且可能干扰DDX家族相关功能，需控制交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RIG-I为胞内抗原，常规体内抗体可达性受限；建议采用VHH、intrabody或递送偶联形式，并严格评估DDX家族保守ATPase区域交叉反应。",
+    "structurePrepZh": "以3LRR实验晶体结构为模板，保留抗原链A-D中解析完整区域，补建缺失环区并标注CARD、Helicase与CTD边界后开展界面建模。",
+    "structureRef": "PDB 3LRR，X-ray diffraction，2.15 Å，人RIG-I结构",
+    "antibodies": [
+      "D14G6 anti-RIG-I",
+      "Alme-1 anti-RIG-I"
+    ],
+    "interfaceFocus": "CARD2-MAVS CARD结合面与CARD排列界面",
+    "designMode": "胞内阻断型VHH/Fab",
+    "candidates": [
+      {
+        "target": "IFIH1",
+        "rationale": "MDA5与RIG-I同属RLR RNA感知受体，识别长双链RNA并经MAVS诱导I型干扰素；其功能获得性变异亦与干扰素病相关。"
+      },
+      {
+        "target": "MAVS",
+        "rationale": "MAVS是RIG-I和MDA5共同的线粒体适配蛋白，CARD聚合是IRF3和NF-κB激活的关键放大步骤，适合下游汇聚节点干预。"
+      },
+      {
+        "target": "TBK1",
+        "rationale": "TBK1位于MAVS下游并直接磷酸化IRF3，驱动IFNB1转录；其阻断可降低RLR轴诱导的I型干扰素输出。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

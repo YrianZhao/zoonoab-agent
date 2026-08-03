@@ -1,0 +1,65 @@
+{
+  "gene": "ACE",
+  "generatedAt": "2026-08-03T09:57:14.452Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ACE 是肾素-血管紧张素系统的关键金属肽酶，催化 Ang I 转化为血管收缩性 Ang II，并降解缓激肽，直接参与高血压、心血管疾病和糖尿病肾病的病理进展。ACE 为 I 型膜结合胞外酶，包含大型胞外催化结构域，抗原表位可及性优于胞内信号分子。相较下游受体阻断，ACE 同时覆盖 Ang II 生成与缓激肽代谢节点，具备明确酶学读出和高分辨率结构基础，适合作为抗体抑制设计主靶点。",
+    "mechanism": "抗体结合 ACE 胞外催化沟槽邻近区域，空间阻断 Ang I 进入锌依赖活性位点，并降低缓激肽底物结合与水解效率。",
+    "selectedEpitope": "优先靶向 C-domain 催化沟槽入口及邻近 lid 区域，避开保守锌配位核心以降低非特异风险。",
+    "diseaseDirection": "高血压与肾脏心血管疾病",
+    "domain": "ACE 含 N-domain 与 C-domain 两个同源胞外锌金属肽酶结构域，近膜区后接单跨膜螺旋。",
+    "evidence": "ACE-RAS 轴疾病关联与结构设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt P12821 蛋白功能与结构域注释",
+      "RCSB PDB 1UZE 高分辨率晶体结构",
+      "肾素-血管紧张素系统药理学与遗传学研究"
+    ],
+    "referenceEntries": "UniProt: P12821; RCSB PDB: 1UZE; HGNC: ACE",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C-domain 催化沟槽入口与 lid 邻近面",
+        "可阻断 Ang I 底物进入活性位点，形成酶抑制型抗体设计核心",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N-domain 外侧底物通道周边非锌配位表面",
+        "可能影响缓激肽及肽类底物结合，适合作为功能调节备选表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "HEMGH 锌结合基序及深部催化核心附近",
+        "保守性高且结构凹陷，可能带来选择性不足和抗体可达性限制",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ACE 催化核心与多种金属肽酶存在保守特征，需避免直接覆盖 HEMGH 锌结合基序；建议优先筛选 C-domain 选择性、非交叉反应构象表位。",
+    "structurePrepZh": "以 1UZE 链 A 为结构模板，补充缺失侧链并保留锌离子与关键糖基化位点标注；按胞外可及面进行表位聚类与抗体对接。",
+    "structureRef": "Natesh et al., Nature 2003; RCSB PDB 1UZE",
+    "antibodies": [
+      "9B9",
+      "i2H5"
+    ],
+    "interfaceFocus": "C-domain 底物入口、lid 区域与S1/S2口袋边缘",
+    "designMode": "酶活阻断型",
+    "candidates": [
+      {
+        "target": "AGT",
+        "rationale": "AGT 编码血管紧张素原，是 Ang I 的前体来源；阻断 AGT 可在 ACE 上游降低 Ang II 生成，属于同一 RAS 轴干预策略。"
+      },
+      {
+        "target": "REN",
+        "rationale": "REN 催化血管紧张素原生成 Ang I，是 ACE 底物来源的限速节点；其抑制可与 ACE 阻断形成同通路上游替代方案。"
+      },
+      {
+        "target": "AGTR1",
+        "rationale": "AGTR1 是 Ang II 的主要效应受体，介导血管收缩、醛固酮释放和肾脏血流动力学改变；该节点代表 ACE 下游受体阻断策略。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

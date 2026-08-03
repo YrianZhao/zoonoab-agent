@@ -1,0 +1,65 @@
+{
+  "gene": "UCN2",
+  "generatedAt": "2026-08-03T17:40:56.081Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "UCN2 是促肾上腺皮质激素释放因子家族肽类配体，主要通过结合 CRHR2 调节血管舒张、心血管应激反应、糖脂代谢及能量稳态，Open Targets 表型关联集中于 HbA1c、平均动脉压和脂质测量指标。UCN2 为分泌型短肽，抗原决定簇位于细胞外体液环境，具备优于胞内代谢调控因子的抗体可及性。相较 CRHR1 轴或非选择性 CRH 配体，UCN2 对 CRHR2 具有更高通路指向性，适合构建以配体中和为核心的机制验证抗体。",
+    "mechanism": "中和抗体结合 UCN2 的 CRHR2 识别面，阻断 UCN2 与 CRHR2 胞外结构域结合，从而抑制受体激活及下游 cAMP 信号产生。",
+    "selectedEpitope": "优先覆盖 UCN2 C 端 α 螺旋受体结合面，兼顾中段疏水残基簇以干扰 CRHR2 识别。",
+    "diseaseDirection": "心血管代谢表型调控",
+    "domain": "UCN2 为分泌型 CRF 家族肽，成熟肽以连续 α 螺旋为主要构象，缺乏大型球状结构域。",
+    "evidence": "UCN2-CRHR2 心血管代谢轴证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q96RP3 functional annotation",
+      "RCSB PDB 3N95 experimental structure",
+      "CRF family ligand-receptor pharmacology literature"
+    ],
+    "referenceEntries": "UniProt: Q96RP3; RCSB PDB: 3N95; Gene: UCN2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C 端 α 螺旋 CRHR2 结合面",
+        "直接阻断受体识别，最符合配体中和机制",
+        "优先"
+      ],
+      [
+        "Site B",
+        "中段 α 螺旋疏水残基簇",
+        "稳定结合线性肽构象并削弱受体亲和力",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端柔性肽段",
+        "构象异质性较高，单独靶向可能不足以阻断 CRHR2 结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "UCN2 成熟肽较短且与 UCN3、CRH 存在家族同源性，需控制交叉反应；建议围绕 CRHR2 选择性残基进行精细化表位筛选。",
+    "structurePrepZh": "以 3N95 晶体结构链 A-J 提取 UCN2 肽构象，去除非目标链与晶体接触冗余，评估多链构象一致性后用于表位建模。",
+    "structureRef": "RCSB PDB 3N95, X-ray diffraction, 2.72 Å",
+    "antibodies": [
+      "anti-UCN2 neutralizing antibody",
+      "anti-CRHR2 blocking antibody"
+    ],
+    "interfaceFocus": "UCN2 C 端螺旋与 CRHR2 胞外域识别界面",
+    "designMode": "分泌肽中和",
+    "candidates": [
+      {
+        "target": "CRHR2",
+        "rationale": "CRHR2 是 UCN2 的主要受体，直接介导 UCN2 诱导的 cAMP 信号和血管舒张反应；受体阻断可作为配体中和的同通路替代策略。"
+      },
+      {
+        "target": "UCN3",
+        "rationale": "UCN3 同属 CRF 家族并偏向激活 CRHR2，在心血管和代谢调控轴中与 UCN2 具有通路重叠性，适合作为选择性评估参照靶点。"
+      },
+      {
+        "target": "CRH",
+        "rationale": "CRH 是同一家族配体，可通过 CRHR1/CRHR2 参与神经内分泌应激轴；纳入候选有助于界定 UCN2 抗体的家族交叉反应边界。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

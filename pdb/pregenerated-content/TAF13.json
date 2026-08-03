@@ -1,0 +1,65 @@
+{
+  "gene": "TAF13",
+  "generatedAt": "2026-08-03T17:06:44.116Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TAF13是TFIID/SL1相关转录复合体的组成亚基，参与TBP依赖的转录起始与Pol I/Pol II转录调控，其疾病关联主要集中于神经发育异常及感染相关宿主转录重编程。该蛋白为核内可溶性因子，不具备胞外结构域或膜外暴露抗原性，天然抗体可及性较低，因而更适合以结构生物学驱动的结合界面设计而非经典阻断型表面抗原策略。相较于同通路中可及性更高但特异性不足的通用转录因子，TAF13与TBP/TAF11形成的稳定复合界面提供了更明确的构象选择性，有利于获得机制可解释且同工复合体区分度更高的结合分子。",
+    "mechanism": "通过占据TAF13与TBP/TAF11的蛋白-蛋白接触界面，干扰TFIID/SL1复合体装配与启动子装载过程。",
+    "selectedEpitope": "优先锁定TAF13螺旋束与TBP接触面，兼顾TAF11配对界面残基。",
+    "diseaseDirection": "神经发育与宿主转录调控",
+    "domain": "核内转录因子相关亚基，主要为长螺旋束与复合体装配界面",
+    "evidence": "TAF13转录复合体结构与疾病关联证据包",
+    "evidenceSources": [
+      "UniProt Q15543",
+      "RCSB PDB 1BH9",
+      "Open Targets Platform",
+      "PubMed转录起始复合体文献"
+    ],
+    "referenceEntries": "UniProt:Q15543；PDB:1BH9；Open Targets:TAF13",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "TAF13-TBP接触面核心残基",
+        "优先阻断复合体装配，具备明确机制可读出",
+        "优先"
+      ],
+      [
+        "Site B",
+        "TAF13-TAF11二聚界面周边",
+        "可削弱复合体稳定性并提高构象选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离界面的表面保守区",
+        "特异性较弱且难以产生功能抑制",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TAF13为核内必需型复合体成员，功能位点保守且同源蛋白背景强，非选择性结合可致广泛转录扰动；宜采用界面定向、构象筛选与交叉反应排除并行策略。",
+    "structurePrepZh": "以1BH9晶体结构为主模板，保留A/B链完整界面，补充缺失侧链并按生理pH进行质子化；必要时结合AF2补全柔性环段。",
+    "structureRef": "RCSB 1BH9，2.6 Å晶体结构",
+    "antibodies": [
+      "抗TBP界面阻断抗体候选",
+      "抗转录复合体亚基构象抗体候选"
+    ],
+    "interfaceFocus": "TBP结合面与TAF11配对界面",
+    "designMode": "结构驱动界面阻断",
+    "candidates": [
+      {
+        "target": "TBP",
+        "rationale": "TBP是TAF13所在TFIID/SL1轴上的直接互作伙伴，干预TBP招募可与TAF13界面阻断形成同通路验证。该靶点在转录起始复合体中具有明确分子配对关系。"
+      },
+      {
+        "target": "TAF11",
+        "rationale": "TAF11与TAF13共同构成稳定复合模块，属于同一转录起始通路的真实互作靶点。围绕TAF11的并行设计有助于验证二聚界面抑制的结构依赖性。"
+      },
+      {
+        "target": "POLR1A",
+        "rationale": "POLR1A处于SL1/TBP依赖的RNA聚合酶I转录起始通路下游，属于同一核内转录轴上的真实相关靶点。其纳入有助于评估TAF13干预对rRNA转录程序的功能传递。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

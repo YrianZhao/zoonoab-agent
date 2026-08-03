@@ -1,0 +1,65 @@
+{
+  "gene": "PDE4C",
+  "generatedAt": "2026-08-03T15:09:34.182Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PDE4C 为 cAMP 特异性磷酸二酯酶，参与神经细胞内 cAMP 降解并影响 PKA/CREB 相关转录反应，其遗传与疾病证据主要指向神经退行性疾病，但 Open Targets 关联强度处于探索级。该蛋白为胞内可溶性酶，天然抗体抗原可及性显著弱于膜受体或分泌因子，因此更适合作为细胞内递送抗体、intrabody 或酶结构识别模型靶点。相较 PDE4A、PDE4B 与 PDE4D，PDE4C 的中枢疾病证据和临床验证深度较低，优先级主要来自可解析催化结构与同工酶选择性研究价值，而非直接体液抗体药物可及性优势。",
+    "mechanism": "通过识别 PDE4C 催化结构域邻近底物结合口袋的构象表面，空间阻碍 cAMP 进入金属离子依赖性催化中心，降低 cAMP 水解为 5'-AMP。",
+    "selectedEpitope": "优先选择催化结构域 M-loop 与底物口袋外缘邻近区域，避免直接深入口袋造成交叉同工酶反应。",
+    "diseaseDirection": "神经退行性疾病探索方向",
+    "domain": "PDE4C 含 N 端调控区、UCR1/UCR2 调控模块及 C 端 PDEase I 催化结构域。",
+    "evidence": "PDE4C-cAMP 神经疾病结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt PDE4C functional annotation",
+      "RCSB PDB 2QYM structural entry",
+      "PDE4 family cAMP signaling literature"
+    ],
+    "referenceEntries": "UniProt: Q08493; RCSB PDB: 2QYM; Open Targets: PDE4C",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域 M-loop 与底物口袋外缘",
+        "可干预 cAMP 进入催化中心并保留构象选择性设计空间",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域 H-loop 邻近溶剂暴露面",
+        "可能影响催化口袋构象稳定性，适合作为变构型结合位点",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守金属结合残基周边核心口袋",
+        "催化关键性强但 PDE4 同工酶交叉反应风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PDE4C 为胞内酶，常规抗体难以到达作用位点；PDE4 催化核心高度保守，需以同工酶差异表面和细胞内递送策略降低脱靶风险。",
+    "structurePrepZh": "以 PDB 2QYM 链 A 为催化域模板，补全缺失侧链与质子化状态，保留催化金属配位几何并标注保守口袋残基。",
+    "structureRef": "RCSB PDB 2QYM human PDE4C catalytic domain",
+    "antibodies": [
+      "anti-PDE4C research antibody",
+      "cell-penetrating intrabody format candidate"
+    ],
+    "interfaceFocus": "M-loop、H-loop 与 cAMP 入口外缘",
+    "designMode": "细胞内酶阻断",
+    "candidates": [
+      {
+        "target": "PDE4B",
+        "rationale": "PDE4B 同属 cAMP 降解通路，在神经炎症与小胶质细胞 cAMP 信号调控中证据更充分，可作为同通路优先比较靶点。"
+      },
+      {
+        "target": "PDE4D",
+        "rationale": "PDE4D 调控神经元 cAMP/PKA/CREB 信号并具有较多药理学研究基础，适合评估 PDE4C 选择性设计边界。"
+      },
+      {
+        "target": "CREB1",
+        "rationale": "CREB1 位于 cAMP/PKA 下游并介导神经可塑性相关转录反应，可用于构建 PDE4C 作用后效应的通路验证轴。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

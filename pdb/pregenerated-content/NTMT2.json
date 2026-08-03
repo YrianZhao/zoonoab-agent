@@ -1,0 +1,65 @@
+{
+  "gene": "NTMT2",
+  "generatedAt": "2026-08-03T14:53:00.422Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NTMT2为胞内N端甲基转移酶，参与X-Pro-Lys序列蛋白N端α-氨基甲基化，遗传关联主要指向心房颤动、心律失常、身高及骨骼异常等表型。其抗原可及性不具备典型抗体药物优势，因为NTMT2缺少分泌信号肽、跨膜区和稳定胞外结构域，天然状态下常规抗体难以直接接触活细胞内靶点。相较膜受体、分泌因子或离子通道类心律失常靶点，NTMT2更适合作为结构生物学验证、细胞内递送抗体或诊断试剂开发对象，治疗性优先级应低于具备胞外可及界面的同通路靶点。",
+    "mechanism": "设计抗体应以抑制NTMT2与含X-Pro-Lys N端底物肽及SAM供体结合为目标，阻断催化口袋内甲基转移复合物形成。",
+    "selectedEpitope": "优先覆盖Rossmann样SAM结合核心与底物肽沟槽邻近环区，避免仅选择远端非催化表面。",
+    "diseaseDirection": "心律失常遗传关联与骨骼表型",
+    "domain": "NTMT2为七β链Rossmann样甲基转移酶折叠，含SAM结合口袋与N端底物肽识别沟槽。",
+    "evidence": "NTMT2结构与人类遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q5VVY1蛋白功能注释",
+      "RCSB PDB 6DUB晶体结构",
+      "甲基转移酶SAM依赖催化机制文献"
+    ],
+    "referenceEntries": "UniProt Q5VVY1；RCSB PDB 6DUB；Open Targets NTMT2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SAM结合口袋入口及底物肽沟槽交界面",
+        "可同时干扰甲基供体定位与底物N端进入，具备机制阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Rossmann样核心折叠外侧保守环区",
+        "有利于获得构象识别抗体，可用于结构稳定化和酶活调控筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化口袋的溶剂暴露表面",
+        "可能产生高亲和结合但难以抑制NTMT2催化功能，机制相关性较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险来自靶点胞内定位及催化口袋保守性；治疗性抗体需考虑细胞内递送策略，并通过NTMT1交叉反应筛查控制选择性。",
+    "structurePrepZh": "以6DUB高分辨率晶体结构为模板，保留催化核心构象，检查SAM或配体占位、晶体接触界面及多链非对称单元差异。",
+    "structureRef": "RCSB PDB 6DUB，X射线晶体结构，1.2 Å",
+    "antibodies": [
+      "无已获批NTMT2治疗性抗体",
+      "研究级抗NTMT2检测抗体"
+    ],
+    "interfaceFocus": "SAM口袋入口与X-Pro-Lys底物肽沟槽",
+    "designMode": "胞内酶抑制抗体",
+    "candidates": [
+      {
+        "target": "NTMT1",
+        "rationale": "NTMT1与NTMT2同属N端X-Pro-Lys蛋白α-N-甲基转移酶家族，催化相同类型底物N端甲基化，是选择性评估和同通路比较的核心靶点。"
+      },
+      {
+        "target": "KCNQ1",
+        "rationale": "KCNQ1为心脏复极相关钾通道基因，与心房颤动和心律失常遗传风险相关，具备膜蛋白胞外可及结构域，治疗性抗体可及性优于NTMT2。"
+      },
+      {
+        "target": "SCN5A",
+        "rationale": "SCN5A编码心脏Nav1.5钠通道，是心律失常遗传通路中的关键离子通道靶点，其胞外环区可作为抗体或结合蛋白工程的候选界面。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

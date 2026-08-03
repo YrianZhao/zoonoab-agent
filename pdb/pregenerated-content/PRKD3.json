@@ -1,0 +1,65 @@
+{
+  "gene": "PRKD3",
+  "generatedAt": "2026-08-03T15:36:09.836Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PRKD3编码胞内丝氨酸/苏氨酸激酶，参与DAG-PKC轴下游的蛋白激酶D信号，并可影响造血肿瘤细胞增殖、存活及转录调控过程；Open Targets中急性髓系白血病和肥大细胞相关恶性疾病关联较高。PRKD3缺乏跨膜区和分泌信号肽，抗原天然可及性不符合常规细胞外抗体药物要求，更适合作为胞内递送抗体、降解型抗体或研究级阻断分子靶点。其优先级低于KIT、FLT3等同病种膜受体，但在解析PKD亚型特异性信号和耐药旁路时具有差异化设计价值。",
+    "mechanism": "通过胞内抗体阻断PRKD3激酶结构域ATP结合沟槽或底物识别面，抑制其对下游底物的磷酸转移。",
+    "selectedEpitope": "优先围绕2D9Z所覆盖的C1结构域疏水配体结合沟槽设计，避免非功能性柔性尾区。",
+    "diseaseDirection": "髓系白血病与肥大细胞肿瘤",
+    "domain": "PRKD3含N端C1A/C1B二酰甘油结合结构域、PH结构域及C端丝氨酸/苏氨酸激酶结构域。",
+    "evidence": "PRKD3肿瘤信号与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与功能关联",
+      "UniProt O94806蛋白结构域注释",
+      "RCSB PDB 2D9Z溶液NMR结构",
+      "Reactome/文献中的DAG-PKC-PKD信号通路注释"
+    ],
+    "referenceEntries": "UniProt O94806；RCSB PDB 2D9Z；Open Targets PRKD3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C1结构域疏水配体结合沟槽",
+        "可干预DAG/佛波酯样配体结合与膜募集过程",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端激酶结构域ATP结合裂隙邻近面",
+        "有望直接抑制催化活性，但需补充高质量结构模板",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PH结构域及连接区柔性表面",
+        "可能影响构象调控，但表位稳定性和功能耦合证据有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PRKD3为胞内激酶，常规IgG难以到达天然抗原；C1结构域与PRKD1/PRKD2同源性较高，需强化亚型特异性筛选并采用胞内递送策略。",
+    "structurePrepZh": "以2D9Z的NMR构象集合评估C1结构域保守疏水沟槽，补充AlphaFold或同源模型覆盖PH与激酶结构域并标注低置信柔性区。",
+    "structureRef": "RCSB PDB 2D9Z，human PRKD3 C1 domain NMR structure",
+    "antibodies": [
+      "暂无获批PRKD3治疗性抗体",
+      "研究级anti-PRKD3单克隆抗体"
+    ],
+    "interfaceFocus": "C1结构域DAG结合沟槽与膜募集界面",
+    "designMode": "胞内抗体阻断",
+    "candidates": [
+      {
+        "target": "KIT",
+        "rationale": "KIT为肥大细胞白血病和系统性肥大细胞增多症的关键膜受体酪氨酸激酶，突变激活可驱动PI3K、MAPK和PLCγ信号，抗原可及性优于PRKD3。"
+      },
+      {
+        "target": "FLT3",
+        "rationale": "FLT3在急性髓系白血病中常见突变或异常激活，位于造血生长因子受体信号上游，可通过抗体阻断配体结合或受体活化。"
+      },
+      {
+        "target": "PRKD2",
+        "rationale": "PRKD2与PRKD3同属DAG-PKC-PKD信号轴，参与造血细胞信号转导；可作为PKD亚型选择性和功能冗余评估的同通路比较靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "TYR",
+  "generatedAt": "2026-08-03T17:36:08.031Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TYR编码黑色素合成限速酶tyrosinase，催化酪氨酸羟化为L-DOPA并进一步氧化为dopaquinone；其功能缺陷直接导致OCA1A/OCA1B等眼皮肤白化病表型。该蛋白为黑素体膜相关糖蛋白，催化结构域位于黑素体腔侧，具备可被腔内递送抗体片段或细胞内抗体工程识别的结构可及性。相较TYRP1、DCT等下游酶，TYR处于黑色素生物合成入口步骤，遗传证据强、疾病关联分值高，适合作为机制验证优先靶点。",
+    "mechanism": "设计抗体结合TYR催化核心近邻区域，阻碍L-tyrosine/L-DOPA进入双铜活性中心或干扰底物定位，从而降低dopaquinone生成。",
+    "selectedEpitope": "优先覆盖催化结构域双铜中心入口及底物通道邻近环区，避免直接破坏保守金属配位残基。",
+    "diseaseDirection": "色素生成异常与眼皮肤白化病",
+    "domain": "TYR含N端信号肽、腔侧含铜催化结构域、C端单跨膜区及短胞质尾部。",
+    "evidence": "TYR遗传变异与黑色素合成缺陷证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P14679功能与结构域注释",
+      "RCSB PDB 7RK7晶体结构数据",
+      "OMIM与ClinVar中OCA1相关致病变异记录"
+    ],
+    "referenceEntries": "UniProt P14679；RCSB PDB 7RK7；Open Targets ENSG00000077498",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域双铜活性中心入口及底物通道环区",
+        "可阻断酪氨酸/L-DOPA进入催化口袋，直接影响dopaquinone生成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "腔侧催化结构域远端糖基化邻近表面",
+        "利于获得高可及结合位点，可用于构象稳定或递送型结合分子设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "跨膜区近端茎区与C端连接区域",
+        "靠近膜面且结构柔性较高，可能受脂质环境和加工状态影响",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TYR活性中心含保守铜配位组氨酸，表位设计应避免诱导非特异金属螯合或广泛交叉抑制TYRP1；需评估糖基化遮挡与黑素体递送可达性。",
+    "structurePrepZh": "以7RK7实验结构为模板，保留催化结构域金属离子与关键糖基化位点注释，补全缺失柔性环并分离抗原链用于表位可及性评估。",
+    "structureRef": "RCSB PDB 7RK7，human tyrosinase，X-ray 2.54 Å",
+    "antibodies": [
+      "TA99",
+      "T311"
+    ],
+    "interfaceFocus": "双铜活性中心入口、底物通道环区与腔侧催化表面",
+    "designMode": "酶活阻断型抗体设计",
+    "candidates": [
+      {
+        "target": "TYRP1",
+        "rationale": "TYRP1参与真黑素合成并与TYR同属黑素体黑色素生成酶网络；其突变与眼皮肤白化病3型及色素异常相关，可作为同通路比较靶点。"
+      },
+      {
+        "target": "DCT",
+        "rationale": "DCT催化dopachrome向DHICA转化，位于dopaquinone下游的黑色素生物合成分支；靶向该节点有助于区分上游TYR抑制与下游聚合调控效应。"
+      },
+      {
+        "target": "OCA2",
+        "rationale": "OCA2调节黑素体内环境并影响TYR成熟与黑色素合成效率；其遗传缺陷导致OCA2，适合作为同一色素生成疾病轴的膜蛋白候选靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

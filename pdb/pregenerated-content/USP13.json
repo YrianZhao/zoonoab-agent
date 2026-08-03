@@ -1,0 +1,65 @@
+{
+  "gene": "USP13",
+  "generatedAt": "2026-08-03T17:44:12.685Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "USP13 是胞内去泛素化酶，参与底物蛋白泛素链水解并影响蛋白稳态，其遗传关联主要集中于 HbA1c、妊娠糖尿病、血小板计数等复杂性状，但现有 Open Targets 关联强度偏低且多为遗传或表型关联。USP13 缺乏分泌形式或稳定胞外结构域，天然抗体难以直接接近催化结构域，因此不具备常规阻断型治疗抗体的抗原可及性优势。与胰岛素受体、GLP1R 或细胞因子受体等同类代谢通路膜蛋白相比，USP13 更适合作为机制研究、胞内递送抗体或蛋白互作干预的探索性靶点，优先级应低于具有明确胞外配体结合界面的靶点。",
+    "mechanism": "设计分子应阻断 USP13 催化半胱氨酸邻近的泛素结合沟槽与底物泛素链相互作用，从而抑制底物去泛素化。",
+    "selectedEpitope": "优先评估 UCH 催化结构域泛素结合沟槽及催化裂隙邻近环区表位。",
+    "diseaseDirection": "代谢性状与妊娠糖尿病探索",
+    "domain": "USP13 含 N 端 UBP-type zinc finger 样结构域及 C 端 USP/UCH 催化结构域，2L80 对应溶液 NMR 结构片段。",
+    "evidence": "USP13 遗传关联与去泛素化机制证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q92995 functional annotation",
+      "RCSB PDB 2L80 solution NMR structure",
+      "Human deubiquitinase family and ubiquitin-proteasome literature"
+    ],
+    "referenceEntries": "UniProt Q92995；RCSB PDB 2L80；Open Targets USP13",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "USP/UCH 催化结构域泛素结合沟槽",
+        "可干预 USP13 与泛素化底物或游离泛素链的结合，是功能阻断设计的主要界面",
+        "优先"
+      ],
+      [
+        "Site B",
+        "UBP-type zinc finger 样泛素识别结构域表面",
+        "可能影响泛素链识别或底物装配，适合作为变构调节表位进行探索",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化核心保守折叠背侧非底物界面",
+        "功能相关性较弱且可能仅提供结合信号，不宜作为单独阻断表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "USP13 为胞内酶，常规抗体细胞可及性不足；需采用胞内递送、intrabody 或降解偶联策略，并避免跨 USP 家族保守催化位点导致选择性不足。",
+    "structurePrepZh": "2L80 为溶液 NMR 结构，应保留代表性构象集合并进行构象聚类；催化结构域缺失区域需结合 AlphaFold 或同源 USP 结构补全后评估表位。",
+    "structureRef": "RCSB PDB 2L80，human USP13 solution NMR structure",
+    "antibodies": [
+      "无临床获批抗 USP13 治疗抗体",
+      "研究级抗 USP13 单克隆抗体"
+    ],
+    "interfaceFocus": "泛素结合沟槽与催化裂隙邻近环区",
+    "designMode": "胞内递送抗体探索",
+    "candidates": [
+      {
+        "target": "INSR",
+        "rationale": "INSR 是胰岛素信号通路的细胞表面受体，与 HbA1c 和妊娠糖尿病相关的葡萄糖稳态机制直接相关，且具有可及的胞外配体结合结构域。"
+      },
+      {
+        "target": "IGF1R",
+        "rationale": "IGF1R 与 INSR 共享受体酪氨酸激酶信号轴，可影响代谢和生长相关表型，胞外 α 亚基提供明确抗体结合界面。"
+      },
+      {
+        "target": "GLP1R",
+        "rationale": "GLP1R 是胰岛 β 细胞调节胰岛素分泌的膜受体，与血糖控制和妊娠糖尿病方向具有明确药理学关联，结构域可支持配体竞争或变构抗体设计。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "SLK",
+  "generatedAt": "2026-08-03T16:42:16.088Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SLK为胞内STE20样丝氨酸/苏氨酸激酶，参与细胞骨架重塑、应激诱导凋亡与神经元损伤相关过程，Open Targets提示其与神经退行性疾病及卒中存在遗传关联。其催化结构域已有高分辨率晶体结构，可支持小分子或胞内结合体设计；但SLK缺乏天然胞外结构域，常规循环抗体抗原可及性较弱。相较膜受体或分泌因子，SLK作为抗体主靶点优先级受递送限制约束，更适合作为细胞内Fab/VHH、降解偶联或结构验证型设计对象。",
+    "mechanism": "设计胞内Fab/VHH结合SLK激酶N叶ATP结合裂隙或N/C叶铰链区，阻断ATP与催化赖氨酸-谷氨酸盐桥协同定位，抑制底物磷酸化。",
+    "selectedEpitope": "优先锁定激酶结构域ATP口袋邻近铰链区与αC螺旋调控界面。",
+    "diseaseDirection": "神经退行性疾病与卒中损伤",
+    "domain": "SLK含N端蛋白激酶催化结构域及C端卷曲螺旋区域；6HVD覆盖激酶催化核心。",
+    "evidence": "SLK结构与神经损伤遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9H2G2功能与结构域注释",
+      "RCSB PDB 6HVD晶体结构记录",
+      "Human Protein Atlas组织表达与亚细胞定位信息"
+    ],
+    "referenceEntries": "UniProt Q9H2G2；RCSB PDB 6HVD；Open Targets SLK",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域铰链区及ATP腺嘌呤结合沟槽邻近表面",
+        "可直接干预ATP定位并稳定非催化构象，适合抑制型胞内Fab/VHH设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "αC螺旋与N叶β折叠之间的调控界面",
+        "可扰动催化赖氨酸-谷氨酸盐桥形成，具备变构抑制潜力",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化环与活化环周边保守激酶表面",
+        "可能影响底物进入，但保守性较高，需严格评估激酶家族交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SLK为胞内激酶，天然抗体难以进入细胞；ATP口袋与催化环保守性较高，应优先采用胞内VHH/Fab并强化STE20家族选择性筛选。",
+    "structurePrepZh": "以6HVD链A为模板，补全缺失侧链与质子化状态，保留催化核心构象，标注ATP口袋、铰链区、αC螺旋及保守激酶残基。",
+    "structureRef": "RCSB PDB 6HVD；X-ray diffraction，1.63 Å",
+    "antibodies": [
+      "暂无获批SLK抗体药物",
+      "研究级抗SLK检测抗体"
+    ],
+    "interfaceFocus": "ATP结合裂隙、铰链区与αC螺旋界面",
+    "designMode": "胞内抑制型结合体",
+    "candidates": [
+      {
+        "target": "MST1",
+        "rationale": "MST1/STK4同属STE20样激酶网络，参与神经元应激凋亡与Hippo通路调控，可作为同类应激激酶轴的替代干预节点。"
+      },
+      {
+        "target": "MST2",
+        "rationale": "MST2/STK3与MST1共同调控LATS1/2磷酸化及细胞死亡相关信号，在神经损伤与组织应激场景中具备通路邻近性。"
+      },
+      {
+        "target": "LATS1",
+        "rationale": "LATS1为Hippo激酶级联下游核心激酶，连接上游STE20样激酶输入与YAP/TAZ转录效应，适合作为同通路药效比较靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

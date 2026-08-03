@@ -1,0 +1,65 @@
+{
+  "gene": "RRAS",
+  "generatedAt": "2026-08-03T16:14:50.780Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RRAS为小型GTP酶，参与RAS/MAPK与PI3K相关信号调控，其变异或异常活化可影响发育性RASopathy表型，并与Noonan综合征谱系存在遗传关联。该蛋白主要定位于胞内侧膜相关区，缺乏天然胞外结构域，作为常规体内阻断抗体靶点的抗原可及性显著受限，但可用于胞内抗体、结构探针或递送型抗体设计。相较EGFR等胞外上游受体，RRAS更接近RASopathy信号节点，但抗体开发优先级低于可及性更佳的受体型靶点，需以结构验证和功能干预场景为主。",
+    "mechanism": "设计抗体结合RRAS G结构域Switch I/Switch II邻近界面，阻断其与效应蛋白RAS-binding domain或GEF/GAP调控因子的构象依赖性相互作用。",
+    "selectedEpitope": "优先覆盖G结构域Switch I与Switch II周边效应蛋白结合面，避开核苷酸深口袋。",
+    "diseaseDirection": "RASopathy与Noonan综合征方向",
+    "domain": "RRAS含保守小GTP酶G结构域，包含P-loop、Switch I、Switch II及C端膜锚定相关区。",
+    "evidence": "RRAS结构与RASopathy通路关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P10301功能与定位注释",
+      "RCSB PDB 2FN4晶体结构记录",
+      "RAS/MAPK信号与Noonan综合征遗传研究文献"
+    ],
+    "referenceEntries": "UniProt:P10301；RCSB PDB:2FN4；Open Targets:RRAS",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "G结构域Switch I/Switch II效应蛋白结合面",
+        "可干扰RRAS-GTP与RAF/PI3K类RBD效应结构域结合，具备机制验证价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "P-loop邻近核苷酸结合口袋外缘",
+        "可识别GTP/GDP构象状态，但需避免直接竞争核苷酸导致构象不稳定",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端高变区及膜锚定邻近片段",
+        "序列柔性高且结构解析覆盖有限，表位一致性与可成药性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RRAS为胞内膜相关小GTP酶，体内抗体可及性不足；建议限定为胞内抗体、递送型抗体或结构功能探针，并强化构象选择性筛选。",
+    "structurePrepZh": "以2FN4链A为结构模板，保留G结构域坐标并检查核苷酸、镁离子及Switch区构象；对缺失柔性区进行标注而非强制建模。",
+    "structureRef": "RCSB PDB 2FN4，X-ray diffraction，1.65 Å",
+    "antibodies": [
+      "Pan-RAS antibody Y13-259",
+      "RAS-GTP conformation-specific antibody fragment"
+    ],
+    "interfaceFocus": "Switch I/Switch II效应蛋白结合界面",
+    "designMode": "胞内抗体/结构探针",
+    "candidates": [
+      {
+        "target": "PTPN11",
+        "rationale": "PTPN11编码SHP2，是Noonan综合征和RAS/MAPK通路的核心上游调节因子；其异常活化可增强RAS-ERK信号输出。"
+      },
+      {
+        "target": "SOS1",
+        "rationale": "SOS1为RAS鸟嘌呤核苷酸交换因子，促进RAS家族蛋白GDP-GTP交换；其致病变异与Noonan综合征谱系明确相关。"
+      },
+      {
+        "target": "RAF1",
+        "rationale": "RAF1是RAS-GTP下游直接效应激酶，连接RAS活化与MEK-ERK级联；其变异是RASopathy和Noonan相关表型的重要遗传因素。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

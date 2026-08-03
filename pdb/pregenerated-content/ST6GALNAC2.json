@@ -1,0 +1,65 @@
+{
+  "gene": "ST6GALNAC2",
+  "generatedAt": "2026-08-03T16:56:44.499Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ST6GALNAC2为高尔基体定位的分泌通路糖基转移酶，参与末端唾液酸化并改变黏蛋白型糖链构型，可影响感染与免疫相关糖表位的生成，因而与COVID-19及严重急性呼吸综合征等疾病背景具有合理关联。其催化结构域属于腔内可及蛋白折叠，且已有晶体结构可用于解析活性沟槽与底物结合位点，较多数仅有间接关联的候选更适合作为结构驱动抗体设计对象。相较同通路其他糖基化酶，ST6GALNAC2具有明确的酶活口袋和可定义的结构域边界，便于通过阻断供体底物与受体底物的结合界面实现机制导向的抗体干预。",
+    "mechanism": "抗体结合催化口袋周缘，阻断CMP-唾液酸与糖链受体进入，抑制α2,6唾液酸转移反应。",
+    "selectedEpitope": "优先覆盖催化裂隙与供体结合环，避免远端柔性尾部。",
+    "diseaseDirection": "感染相关糖基化",
+    "domain": "高尔基腔内催化SiaTase核心结构域，含保守催化裂隙与底物结合环",
+    "evidence": "ST6GALNAC2结构-疾病证据包",
+    "evidenceSources": [
+      "UniProt: Q9UJ37",
+      "RCSB PDB: 6APL",
+      "Open Targets Platform",
+      "AlphaFold/结构域注释数据库"
+    ],
+    "referenceEntries": "UniProt Q9UJ37；RCSB 6APL；ST6GALNAC2 human",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化裂隙入口及CMP-唾液酸结合邻域",
+        "直接干扰供体底物装载，优先级最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "受体糖链结合沟槽外缘",
+        "削弱受体进入与定位，适合交叉阻断",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离活性中心的表面环区",
+        "有利于构象锁定但抑制效应不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "需重点规避与家族保守催化位点交叉结合导致的选择性不足；建议优先采用覆盖活性沟槽的高亲和Fab，并辅以结构比对排除同源糖基转移酶脱靶。",
+    "structurePrepZh": "建议以6APL为主模板补全缺失环区并保留配体邻域构象，按高尔基腔内取向重建可及表面后再进行表位映射。",
+    "structureRef": "RCSB 6APL晶体结构报道",
+    "antibodies": [
+      "无广泛临床应用同类抗体",
+      "无公开成熟中和抗体"
+    ],
+    "interfaceFocus": "催化裂隙、CMP-唾液酸结合口袋",
+    "designMode": "structure-guided",
+    "candidates": [
+      {
+        "target": "ST6GALNAC1",
+        "rationale": "同属ST6GALNAC家族，参与相近α2,6唾液酸化过程，可作为家族选择性与交叉反应评估的近邻靶点。其存在有助于界定ST6GALNAC2特异表位边界。"
+      },
+      {
+        "target": "ST3GAL1",
+        "rationale": "同为唾液酸转移酶，参与黏蛋白型O-糖链末端修饰，和ST6GALNAC2处于相近糖基化通路。可用于评估抗体对相关糖基化轴的通路选择性。"
+      },
+      {
+        "target": "C1GALT1",
+        "rationale": "该酶位于核心1型O-糖链延伸通路上游，与ST6GALNAC2共同决定O-糖链末端构型。作为通路内候选靶点，可辅助判断阻断末端唾液酸化后的功能冗余。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

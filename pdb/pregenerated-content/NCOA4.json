@@ -1,0 +1,65 @@
+{
+  "gene": "NCOA4",
+  "generatedAt": "2026-08-03T14:35:40.857Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NCOA4是铁蛋白自噬受体，介导铁蛋白重链和轻链递送至自噬溶酶体并释放铁，因而与红细胞数量、网织红细胞计数和红细胞体积等铁代谢依赖表型具有机制关联。该蛋白主要为胞质可溶性自噬适配因子，缺乏稳定胞外结构域，天然抗原可及性不支持常规体内阻断型抗体。其优先级低于TFRC、FTH1或FPN1等同轴铁稳态靶点，更适合用于结构表征、细胞内递送抗体或研究级结合分子设计。",
+    "mechanism": "设计重点为阻断NCOA4 C端铁蛋白结合区与FTH1四重轴邻近表面的结合，抑制铁蛋白递送至自噬溶酶体。",
+    "selectedEpitope": "优先覆盖C端FTH1结合结构域的铁蛋白接触界面，避开无序低复杂度区。",
+    "diseaseDirection": "红细胞表型与铁稳态异常",
+    "domain": "NCOA4含N端卷曲螺旋区及C端铁蛋白结合区，结构中可解析区域对应稳定复合物界面。",
+    "evidence": "NCOA4介导铁蛋白自噬与红系表型证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q13772功能注释",
+      "RCSB PDB 9L93晶体结构",
+      "铁蛋白自噬与红细胞生成文献证据"
+    ],
+    "referenceEntries": "UniProt Q13772；RCSB PDB 9L93；Open Targets NCOA4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端铁蛋白结合区与FTH1接触面",
+        "直接干预NCOA4-FTH1识别，机制验证价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端结合区邻近保守螺旋表面",
+        "可产生变构干扰并降低复合物稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端卷曲螺旋或预测无序片段",
+        "可能影响自聚集或伴侣结合，但结构可预测性较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NCOA4为胞内蛋白，常规IgG难以到达作用位点；抗体格式应优先评估细胞内递送、intrabody或VHH融合策略。",
+    "structurePrepZh": "以PDB 9L93抗原链A-D为模板，保留可解析复合物界面，补充缺失环区注释并标记无序区域。",
+    "structureRef": "RCSB PDB 9L93，X-ray diffraction，1.73 Å",
+    "antibodies": [
+      "研究级抗NCOA4单克隆抗体",
+      "抗NCOA4多克隆验证抗体"
+    ],
+    "interfaceFocus": "NCOA4 C端-FTH1铁蛋白识别界面",
+    "designMode": "胞内靶点结合设计",
+    "candidates": [
+      {
+        "target": "FTH1",
+        "rationale": "FTH1是NCOA4介导铁蛋白自噬的直接货物蛋白，阻断其与NCOA4结合可直接影响铁蛋白周转。"
+      },
+      {
+        "target": "FTL",
+        "rationale": "FTL与FTH1共同构成铁蛋白壳体，参与细胞铁储存并处于同一铁蛋白自噬轴。"
+      },
+      {
+        "target": "TFRC",
+        "rationale": "TFRC介导转铁蛋白结合铁摄取，与NCOA4控制的铁释放共同决定红系细胞铁供应。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

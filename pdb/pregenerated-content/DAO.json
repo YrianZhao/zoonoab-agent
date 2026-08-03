@@ -1,0 +1,65 @@
+{
+  "gene": "DAO",
+  "generatedAt": "2026-08-03T18:29:07.418Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DAO编码过氧化物酶体黄素酶D-amino acid oxidase，催化D-丝氨酸氧化降解，从而降低NMDA受体共激动剂供给；该轴与运动神经元兴奋毒性及肌萎缩侧索硬化症遗传证据相关。DAO主要为胞内/过氧化物酶体酶，抗原天然可及性弱于典型膜受体或分泌因子，抗体设计更适合采用细胞内递送、酶构象捕获或研究级阻断策略。相较下游GRIN受体直接拮抗，DAO干预具有调节D-丝氨酸代谢输入的上游优势，并可借助3ZNN高分辨率二聚体结构开展精确界面表位设计。",
+    "mechanism": "抗体结合DAO活性口袋邻近的FAD/底物进入通道或二聚体界面，限制D-丝氨酸进入催化位点并降低过氧化氢生成。",
+    "selectedEpitope": "优先覆盖FAD结合Rossmann样结构域邻近底物通道与二聚体界面，避开深埋辅因子核心。",
+    "diseaseDirection": "ALS相关D-丝氨酸代谢轴",
+    "domain": "人DAO为FAD依赖氧化酶，含FAD结合Rossmann样结构域、底物结合口袋及C端过氧化物酶体定位序列。",
+    "evidence": "DAO-D-丝氨酸-NMDA轴结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P14920功能与亚细胞定位注释",
+      "RCSB PDB 3ZNN晶体结构记录",
+      "ALS中DAO变异与D-丝氨酸代谢研究文献"
+    ],
+    "referenceEntries": "UniProt P14920；RCSB PDB 3ZNN；Open Targets DAO",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "FAD结合结构域外侧的底物进入通道口",
+        "可通过空间位阻限制D-丝氨酸进入催化中心，兼顾构象可及性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "A/B链二聚体接触界面邻近催化沟槽",
+        "可能扰动功能性二聚体稳定性并降低酶活，适合构象锁定设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端过氧化物酶体定位序列附近区域",
+        "可能影响定位相关构象，但序列短且细胞内可及性与功能阻断确定性较低",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DAO为胞内过氧化物酶体酶，常规抗体组织可及性不足；应优先评估内体逃逸、细胞穿透或递送格式，并避免干扰FAD深埋位点导致非特异构象选择。",
+    "structurePrepZh": "以3ZNN的A、B链二聚体为结构模板，保留FAD及关键配体环境用于口袋判定，补全缺失侧链并标注二聚体界面与底物通道。",
+    "structureRef": "RCSB PDB 3ZNN，X-ray diffraction，1.9 Å",
+    "antibodies": [
+      "抗DAO研究级单克隆抗体",
+      "抗DAO多克隆抗体"
+    ],
+    "interfaceFocus": "底物通道口、FAD邻近环区与A/B链二聚体界面",
+    "designMode": "胞内酶阻断型",
+    "candidates": [
+      {
+        "target": "SRR",
+        "rationale": "SRR催化L-丝氨酸生成D-丝氨酸，与DAO共同决定NMDA受体共激动剂水平；作为同一D-丝氨酸代谢轴靶点，可用于上游合成端调控比较。"
+      },
+      {
+        "target": "GRIN1",
+        "rationale": "GRIN1编码NMDA受体必需亚基，D-丝氨酸通过其甘氨酸/D-丝氨酸共激动剂位点促进受体激活；该靶点代表DAO代谢效应的直接受体端。"
+      },
+      {
+        "target": "SLC1A4",
+        "rationale": "SLC1A4参与中性氨基酸转运并与D-丝氨酸跨膜转运相关，可影响突触外D-丝氨酸可用性；适合作为代谢-转运环节候选靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

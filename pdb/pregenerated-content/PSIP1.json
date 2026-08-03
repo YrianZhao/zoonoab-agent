@@ -1,0 +1,65 @@
+{
+  "gene": "PSIP1",
+  "generatedAt": "2026-08-03T15:38:17.770Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PSIP1编码LEDGF/p75，是HIV整合酶的宿主染色质锚定因子，通过其整合酶结合结构域将病毒整合复合体定位至转录活跃染色质，促进前病毒整合。该蛋白主要位于细胞核内，缺乏天然胞外结构域或分泌特征，抗原可及性不符合常规体内抗体阻断模式，更适合作为结构验证或细胞内递送抗体研究对象。相较于CCR5、CD4等膜表面入侵靶点，PSIP1的疾病机制更直接连接整合步骤，但成药优先级受细胞内定位限制，应以Fab/VHH结构探针策略谨慎推进。",
+    "mechanism": "以抗体片段占据PSIP1整合酶结合结构域，阻断LEDGF/p75与HIV-1整合酶催化核心结构域二聚体界面的结合。",
+    "selectedEpitope": "优先覆盖IBD结构域α螺旋束中与HIV整合酶CCD二聚体结合的疏水沟槽界面。",
+    "diseaseDirection": "HIV感染整合抑制方向",
+    "domain": "PSIP1含PWWP染色质结合域、AT-hook样DNA结合区及C端整合酶结合结构域IBD。",
+    "evidence": "PSIP1-LEDGF/p75介导HIV整合证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与关联评分",
+      "UniProt O75475功能与亚细胞定位注释",
+      "RCSB PDB 5N88晶体结构记录",
+      "HIV-1整合酶与LEDGF/p75相互作用文献"
+    ],
+    "referenceEntries": "UniProt O75475；RCSB PDB 5N88；Open Targets PSIP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "IBD与HIV整合酶CCD二聚体接触沟槽",
+        "直接竞争病毒整合酶结合，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "IBD外侧α螺旋束非核心接触面",
+        "可作为变构干扰或亲和成熟备选区域",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PWWP染色质结合域芳香笼邻近区域",
+        "可能影响H3K36me3染色质识别，宿主功能干扰风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PSIP1为核内宿主蛋白，体内抗体可及性低；需采用细胞内递送Fab/VHH或作为结构阻断探针，并规避PWWP介导的宿主染色质功能广泛干扰。",
+    "structurePrepZh": "以5N88高分辨率晶体结构为模板，保留PSIP1抗原链并核查IBD构象，移除结晶添加物后进行界面残基标注与质子化处理。",
+    "structureRef": "RCSB PDB 5N88，X-ray diffraction，1.7 Å",
+    "antibodies": [
+      "抗LEDGF/p75研究用单克隆抗体",
+      "抗PSIP1研究用多克隆抗体"
+    ],
+    "interfaceFocus": "IBD-整合酶CCD二聚体结合界面",
+    "designMode": "细胞内VHH/Fab阻断",
+    "candidates": [
+      {
+        "target": "CCR5",
+        "rationale": "CCR5是HIV入侵阶段的宿主共受体，位于细胞膜表面，抗体可及性和临床可验证性优于核内PSIP1。"
+      },
+      {
+        "target": "CD4",
+        "rationale": "CD4介导HIV包膜糖蛋白gp120初始结合，是病毒进入通路的核心表面受体，可用于阻断病毒吸附步骤。"
+      },
+      {
+        "target": "CXCR4",
+        "rationale": "CXCR4是X4嗜性HIV株使用的共受体，与CCR5同属病毒进入通路，适合构建入侵阻断候选靶点组合。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

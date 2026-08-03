@@ -1,0 +1,65 @@
+{
+  "gene": "SRGAP2",
+  "generatedAt": "2026-08-03T16:55:21.658Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SRGAP2编码细胞内F-BAR/RhoGAP支架蛋白，参与SLIT-ROBO轴下游CDC42/RAC1相关细胞骨架调控，并与神经元迁移、树突棘成熟及神经发育表型相关；Open Targets关联信号以身高、肺功能、HbA1c及神经退行性疾病等复杂性状为主，提示其疾病证据偏遗传关联而非经典配体-受体驱动。该蛋白缺乏分泌型或膜外结构域，抗原天然可及性不符合常规治疗性抗体靶点要求，仅适合细胞内研究抗体、结构探针或递送型胞内抗体探索。相比ROBO1、SLIT2等同通路胞外靶点，SRGAP2优先级较低；其优势在于4RUG提供高分辨率实验结构，可支持结构域特异性结合分子设计。",
+    "mechanism": "设计抗体应结合SRGAP2 F-BAR结构域表面，干预其膜结合/寡聚化构象或阻断与ROBO下游复合体的空间耦联，从而影响CDC42/RAC1相关骨架调控。",
+    "selectedEpitope": "优先评估4RUG中F-BAR二聚体凸面膜结合相关界面，避免深埋二聚化核心残基。",
+    "diseaseDirection": "神经发育与神经退行性疾病",
+    "domain": "SRGAP2含N端F-BAR结构域、中部RhoGAP结构域及C端SH3结构域；4RUG覆盖F-BAR二聚体结构。",
+    "evidence": "SRGAP2结构域与神经表型证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt O75044蛋白功能注释",
+      "RCSB PDB 4RUG晶体结构",
+      "SLIT-ROBO下游Rho GTPase调控文献"
+    ],
+    "referenceEntries": "UniProt O75044；RCSB PDB 4RUG；Open Targets SRGAP2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "F-BAR结构域凸面膜结合相关区域",
+        "可作为干预膜曲率识别与亚细胞定位的结构表位",
+        "优先"
+      ],
+      [
+        "Site B",
+        "F-BAR二聚体边缘暴露螺旋束",
+        "利于获得构象选择性结合分子并保留结构稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "F-BAR二聚化核心界面",
+        "可能破坏折叠或二聚体稳定性，需避免非特异构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SRGAP2为细胞内蛋白，常规抗体难以到达天然作用位点；应优先定位于研究级Fab/VHH、胞内抗体或递送平台，并严格评估SRGAP家族同源性交叉反应。",
+    "structurePrepZh": "以4RUG链A/B构建F-BAR二聚体抗原模型，保留实验二聚体装配，补全缺失侧链并标注暴露螺旋、二聚体界面及保守家族残基。",
+    "structureRef": "RCSB PDB 4RUG，X-ray diffraction，1.73 Å",
+    "antibodies": [
+      "无已获批治疗性抗体",
+      "研究级抗SRGAP2抗体"
+    ],
+    "interfaceFocus": "F-BAR凸面膜结合区与二聚体边缘螺旋",
+    "designMode": "胞内结构探针设计",
+    "candidates": [
+      {
+        "target": "ROBO1",
+        "rationale": "ROBO1为SLIT配体受体，位于细胞膜并具有胞外Ig/FNIII结构域，抗原可及性显著优于SRGAP2。阻断SLIT-ROBO相互作用可直接影响轴突导向和细胞迁移信号。"
+      },
+      {
+        "target": "SLIT2",
+        "rationale": "SLIT2为分泌型ROBO配体，是SLIT-ROBO通路的上游可及抗原。抗体可通过阻断SLIT2与ROBO1/ROBO2结合调节下游Rho GTPase相关细胞骨架响应。"
+      },
+      {
+        "target": "ROBO2",
+        "rationale": "ROBO2与ROBO1同属SLIT受体家族，参与神经发育和细胞迁移过程。其胞外结构域适合抗体识别，且与SRGAP2处于同一SLIT-ROBO下游调控网络。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "FAF2",
+  "generatedAt": "2026-08-03T12:26:25.544Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FAF2是内质网相关蛋白降解与泛素化蛋白质量控制网络中的膜相关适配因子，可通过UBX结构域参与p97/VCP复合体募集，并影响错误折叠蛋白清除与神经退行性疾病相关蛋白稳态。该蛋白含N端泛素相关结构域和C端跨膜锚定区，但主要功能界面位于胞质侧，抗体可及性弱于典型分泌蛋白或胞外膜受体。相较于VCP、SEL1L等核心ERAD节点，FAF2疾病遗传关联较温和且缺乏成熟胞外阻断机制，因此作为探索性细胞内抗体或递送型抗体靶点的优先级高于常规表面抗原项目，低于可直接药物化的胞外受体。",
+    "mechanism": "设计抗体阻断FAF2 UBX结构域与VCP N结构域结合，干扰p97复合体在内质网膜旁募集及泛素化底物处理。",
+    "selectedEpitope": "优先覆盖2DAM所示UBX结构域VCP结合面，避免跨膜邻近非结构化区。",
+    "diseaseDirection": "神经退行性疾病蛋白稳态",
+    "domain": "FAF2含UBA样N端区、UBX结构域及C端跨膜锚定区，2DAM对应UBX折叠。",
+    "evidence": "FAF2-ERAD蛋白稳态与疾病遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q96CS3功能与结构域注释",
+      "RCSB PDB 2DAM溶液NMR结构",
+      "ERAD/p97-VCP复合体蛋白质量控制文献"
+    ],
+    "referenceEntries": "UniProt Q96CS3；RCSB PDB 2DAM；Open Targets FAF2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "UBX结构域p97/VCP结合面",
+        "直接干预FAF2募集VCP复合体的关键蛋白互作界面",
+        "优先"
+      ],
+      [
+        "Site B",
+        "UBX β-grasp折叠外侧保守沟槽",
+        "可获得构象特异结合并用于稳定FAF2结构状态",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端跨膜邻近低复杂度连接区",
+        "柔性较高且胞质可及性受膜环境限制，功能阻断不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FAF2为膜锚定胞质侧蛋白，常规外源抗体难以进入细胞；应采用胞内抗体、递送型Fab/VHH或细胞模型验证界面占位。",
+    "structurePrepZh": "以2DAM的A链UBX结构域为模板，补全缺失氢原子并生成NMR代表构象集，标注VCP结合相关疏水与带电残基。",
+    "structureRef": "RCSB PDB 2DAM：人FAF2 UBX结构域溶液NMR结构",
+    "antibodies": [
+      "抗FAF2研究级抗体",
+      "抗UBXD8/FAF2研究级抗体"
+    ],
+    "interfaceFocus": "UBX结构域与VCP N结构域结合界面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "VCP",
+        "rationale": "VCP/p97是ERAD底物抽提和泛素化蛋白质量控制的核心ATPase，与FAF2 UBX结构域存在直接功能耦联。其在神经退行性疾病和蛋白稳态失衡中具有更强机制证据。"
+      },
+      {
+        "target": "SEL1L",
+        "rationale": "SEL1L是HRD1-SEL1L ERAD复合体的内质网膜支架成分，参与错误折叠蛋白识别与递送。其与FAF2同属内质网相关降解通路，可作为上游ERAD节点候选。"
+      },
+      {
+        "target": "SYVN1",
+        "rationale": "SYVN1/HRD1是ERAD通路中的E3泛素连接酶，负责多种内质网错误折叠底物泛素化。该节点与FAF2介导的VCP募集共同构成底物清除轴。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

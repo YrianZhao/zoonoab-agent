@@ -1,0 +1,65 @@
+{
+  "gene": "ZFYVE9",
+  "generatedAt": "2026-08-03T18:00:23.144Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ZFYVE9编码SARA，是TGF-β/SMAD通路中的胞内内体衔接蛋白，通过FYVE结构域定位于磷脂酰肌醇3-磷酸富集内体，并以SMAD-binding domain招募SMAD2/3促进受体介导磷酸化。其疾病关联以泛癌信号重塑为主，但蛋白主要位于胞内内体膜表面，缺乏分泌或细胞外结构域，抗原天然可及性弱。相较TGFB1、TGFBR2或整合素介导的TGF-β活化节点，ZFYVE9更适合作为机制研究或胞内递送抗体模型靶点，治疗性常规抗体优先级较低。",
+    "mechanism": "通过胞内递送抗体阻断ZFYVE9的SMAD-binding domain与SMAD2/3 MH2结构域结合，降低SMAD2/3在TGF-β受体复合物附近的招募与磷酸化效率。",
+    "selectedEpitope": "优先覆盖SBD中SMAD2/3结合螺旋界面，避免FYVE锌指核心磷脂结合位点。",
+    "diseaseDirection": "TGF-β相关肿瘤信号通路",
+    "domain": "含N端SMAD-binding domain与C端FYVE型锌指结构域，FYVE域结合PI3P内体膜。",
+    "evidence": "ZFYVE9-SMAD衔接功能与泛癌关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt O95405功能与亚细胞定位注释",
+      "RCSB PDB 1DEV晶体结构记录",
+      "TGF-β/SMAD通路文献与Reactome通路注释"
+    ],
+    "referenceEntries": "UniProt O95405；RCSB PDB 1DEV；Reactome TGF-β signaling",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SMAD-binding domain的SMAD2/3结合界面",
+        "直接干预SARA招募SMAD2/3至TGF-β受体复合物的关键相互作用",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FYVE结构域膜近端非锌配位外表面",
+        "可能影响内体定位构象，但需避免破坏结构折叠造成非特异效应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "FYVE锌指Cys/His配位核心及PI3P结合口袋",
+        "高度保守且依赖金属配位，抗体结合可能导致构象失稳和交叉风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ZFYVE9为胞内蛋白，常规抗体难以到达作用位点；建议限定为细胞穿透、内体逃逸或intrAb设计，并严格评估FYVE保守位点交叉反应。",
+    "structurePrepZh": "以1DEV多链晶体结构为模板，保留FYVE锌配位几何并补充缺失环区；SBD需结合AlphaFold或同源建模定义SMAD结合界面。",
+    "structureRef": "RCSB PDB 1DEV，X-ray diffraction，2.2 Å",
+    "antibodies": [
+      "暂无获批ZFYVE9靶向治疗抗体",
+      "暂无临床阶段ZFYVE9阻断抗体"
+    ],
+    "interfaceFocus": "SBD-SMAD2/3结合面与FYVE膜结合外缘",
+    "designMode": "胞内递送阻断",
+    "candidates": [
+      {
+        "target": "TGFB1",
+        "rationale": "TGFB1是TGF-β/SMAD通路的上游配体，抗体可在胞外阻断TGFB1与TGFBR2结合，抗原可及性显著优于ZFYVE9。"
+      },
+      {
+        "target": "TGFBR2",
+        "rationale": "TGFBR2位于细胞膜表面并直接结合TGF-β配体，是启动SMAD2/3磷酸化的受体节点，适合开发阻断型抗体。"
+      },
+      {
+        "target": "ITGAV",
+        "rationale": "ITGAV参与潜伏TGF-β复合物活化，位于细胞表面且在肿瘤微环境中具有通路上游调控价值。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

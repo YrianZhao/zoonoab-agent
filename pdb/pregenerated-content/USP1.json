@@ -1,0 +1,65 @@
+{
+  "gene": "USP1",
+  "generatedAt": "2026-08-03T17:44:15.350Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "USP1是DNA损伤修复与复制叉稳定通路中的去泛素化酶，主要通过与UAF1形成复合物并去除FANCD2、FANCI及PCNA上的泛素修饰，参与Fanconi贫血通路和跨损伤合成调控。Open Targets显示其与多类血液学表型及神经退行性疾病存在遗传关联，但USP1为胞内半胱氨酸蛋白酶，天然抗原可及性显著弱于膜受体或分泌蛋白，需限定为细胞内递送抗体、intrabody或结构引导型功能探针设计。相比同通路的FANCD2、FANCI等大型核内底物，USP1具有明确催化半胱氨酸结构域、可解析的USP1-UAF1结合构象及小分子抑制先例，因而更适合作为结构机制验证优先靶点。",
+    "mechanism": "通过抗体占据USP1催化沟槽或UAF1结合界面，阻断USP1对单泛素化FANCD2/FANCI及PCNA的去泛素化作用，削弱DNA损伤耐受与复制叉修复能力。",
+    "selectedEpitope": "优先靶向USP催化核心中邻近Cys90-His593-Asp751三联体的底物泛素结合沟槽，避免直接覆盖高度保守催化残基。",
+    "diseaseDirection": "DNA损伤修复与血液学表型",
+    "domain": "USP1包含N端调控区、USP催化核心及C端调节区；6DO5解析USP1与UAF1相关复合构象。",
+    "evidence": "USP1去泛素化酶结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联数据",
+      "UniProt O94782蛋白功能与结构域注释",
+      "RCSB PDB 6DO5 X射线晶体结构",
+      "Fanconi anemia DNA修复通路文献证据"
+    ],
+    "referenceEntries": "UniProt: O94782; RCSB PDB: 6DO5; Gene: USP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "USP催化核心底物泛素结合沟槽",
+        "可干扰FANCD2/FANCI或PCNA去泛素化底物定位，具备功能阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "USP1-UAF1相互作用界面邻近区域",
+        "可能削弱UAF1对USP1活性和构象稳定性的增强作用，适合变构抑制设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化三联体近端高度保守口袋",
+        "功能相关性强但同源DUB交叉反应风险较高，需严格选择非保守侧链表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "USP1为胞内核质蛋白，常规治疗性抗体难以直接进入靶区；设计应优先采用细胞内递送、intrabody或研究级Fab，并进行DUB家族选择性筛查。",
+    "structurePrepZh": "以6DO5晶体结构为模板，保留USP1催化核心及UAF1相关界面，补全缺失环区，校正质子化状态并标注催化三联体与底物结合沟槽。",
+    "structureRef": "RCSB PDB 6DO5, X-ray diffraction, 2.5 Å",
+    "antibodies": [
+      "抗USP1研究级单克隆抗体",
+      "抗USP1免疫检测抗体"
+    ],
+    "interfaceFocus": "USP催化沟槽与USP1-UAF1调控界面",
+    "designMode": "胞内功能阻断",
+    "candidates": [
+      {
+        "target": "FANCD2",
+        "rationale": "FANCD2是Fanconi贫血通路核心底物，其单泛素化状态受USP1-UAF1复合物去泛素化调控，可作为同一DNA交联修复轴上的机制候选靶点。"
+      },
+      {
+        "target": "FANCI",
+        "rationale": "FANCI与FANCD2形成ID复合物并参与DNA损伤位点募集，其泛素化循环与USP1活性密切相关，适合用于通路级验证。"
+      },
+      {
+        "target": "PCNA",
+        "rationale": "PCNA在复制压力下发生单泛素化以招募跨损伤合成聚合酶，USP1介导PCNA去泛素化，二者处于同一DNA损伤耐受调控网络。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

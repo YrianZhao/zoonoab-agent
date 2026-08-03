@@ -1,0 +1,65 @@
+{
+  "gene": "HTATIP2",
+  "generatedAt": "2026-08-03T13:20:00.734Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HTATIP2/TIP30为胞内氧化还原相关蛋白，文献提示其参与细胞应激、凋亡调控及肿瘤转移抑制过程，但Open Targets所示关联主要集中于血清蛋白水平测量、COVID-19和SARS等表型，疾病因果强度有限。该蛋白缺乏跨膜区和经典分泌信号肽，天然抗原可及性低，不具备膜受体或分泌因子类抗体靶点的直接优势。相较ACE2、IL6R、TNF或SARS-CoV-2 Spike等同疾病炎症/感染轴靶点，HTATIP2更适合作为血清生物标志物检测抗体靶点，而非优先治疗性阻断靶点。",
+    "mechanism": "抗体设计宜定位于检测用途，通过识别HTATIP2折叠表面构象表位捕获血清或裂解液中蛋白，不建议设定为阻断胞内相互作用的治疗机制。",
+    "selectedEpitope": "优先选择2BKA中远离NADPH结合样沟槽的α/β折叠外露环区，保留构象识别特异性。",
+    "diseaseDirection": "感染炎症相关血清标志物",
+    "domain": "HTATIP2为约242 aa胞内氧化还原酶样折叠蛋白，2BKA覆盖主要催化样核心结构域。",
+    "evidence": "HTATIP2结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q9BUP3蛋白功能与定位注释",
+      "RCSB PDB 2BKA晶体结构记录",
+      "PubMed关于TIP30/HTATIP2应激与肿瘤抑制研究"
+    ],
+    "referenceEntries": "UniProt Q9BUP3；RCSB PDB 2BKA；Open Targets HTATIP2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "2BKA核心折叠外侧连续α螺旋-环区表面",
+        "结构稳定且远离潜在小分子结合沟槽，适合构象捕获抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端可及环段及邻近β片层边缘",
+        "利于产生线性/构象混合表位，适合免疫检测开发",
+        "备选"
+      ],
+      [
+        "Site C",
+        "NADPH结合样沟槽及保守催化样残基邻域",
+        "保守性与构象依赖性较高，可能影响特异性和交叉反应评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为胞内定位导致体内抗原不可及，疾病关联偏表型测量而非因果通路；建议限定为诊断或药效学检测抗体。",
+    "structurePrepZh": "采用2BKA链A作为抗原模板，补全缺失侧链并评估晶体接触面；表位建模应排除埋藏界面和保守辅因子沟槽。",
+    "structureRef": "RCSB PDB 2BKA，X-ray diffraction，1.7 Å",
+    "antibodies": [
+      "抗HTATIP2/TIP30研究用单克隆抗体",
+      "抗HTATIP2/TIP30研究用多克隆抗体"
+    ],
+    "interfaceFocus": "外露α螺旋-环区与β片层边缘",
+    "designMode": "检测抗体优先",
+    "candidates": [
+      {
+        "target": "ACE2",
+        "rationale": "ACE2是SARS-CoV和SARS-CoV-2 Spike受体结合域的宿主受体，位于细胞表面，抗原可及性和感染通路因果性均强于HTATIP2。"
+      },
+      {
+        "target": "IL6R",
+        "rationale": "IL6R介导IL-6经典信号和反式信号放大炎症反应，与COVID-19重症炎症表型具有明确治疗关联。"
+      },
+      {
+        "target": "TNF",
+        "rationale": "TNF为感染和急性炎症反应中的关键分泌性细胞因子，适合通过中和抗体阻断TNF与TNFR1/TNFR2结合。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

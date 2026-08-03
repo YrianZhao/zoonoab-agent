@@ -1,0 +1,65 @@
+{
+  "gene": "SDS",
+  "generatedAt": "2026-08-03T16:23:34.838Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SDS编码丝氨酸脱水酶，主要为胞质型吡哆醛磷酸依赖代谢酶，催化L-丝氨酸脱氨生成丙酮酸和氨，参与肝脏氨基酸分解代谢。其Open Targets关联以神经退行性疾病和代谢性表型为主，但现有证据更多反映遗传或表达相关性，而非明确的可抗体阻断型致病配体轴。该蛋白缺乏分泌信号肽、跨膜区和稳定胞外结构域，天然抗原可及性显著弱于膜受体或分泌因子，因此仅适合作为细胞内抗体、蛋白降解偶联或研究级结合分子探索靶点，优先级低于同通路中具有胞外可及性的代谢炎症靶点。",
+    "mechanism": "设计分子可结合SDS二聚体活性口袋周边，干扰PLP辅因子稳定及L-丝氨酸进入催化位点，从而降低丝氨酸脱氨反应。",
+    "selectedEpitope": "优先评估PLP结合口袋邻近的催化结构域边缘及二聚体界面，避免直接覆盖高度保守辅因子核心。",
+    "diseaseDirection": "氨基酸代谢与神经退行性疾病",
+    "domain": "人SDS为PLP依赖β家族裂解酶样胞质酶，包含催化核心、PLP结合区及二聚体装配界面。",
+    "evidence": "SDS代谢酶结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProtKB P20132功能与亚细胞定位注释",
+      "RCSB PDB 4H27晶体结构记录",
+      "PLP依赖丝氨酸脱水酶催化机制文献"
+    ],
+    "referenceEntries": "UniProtKB:P20132；RCSB PDB:4H27；Open Targets:SDS",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PLP结合口袋外缘与底物入口沟槽",
+        "可干扰L-丝氨酸进入催化中心并降低酶反应效率",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化核心邻近的二聚体界面",
+        "可能影响SDS寡聚体稳定性及活性构象维持",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守PLP赖氨酸结合核心",
+        "跨PLP酶家族保守性高，存在选择性和脱靶风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SDS为胞内代谢酶，常规外源抗体难以到达天然靶点位点；设计宜限定为细胞内递送格式或研究工具，并严格评估PLP酶家族交叉反应。",
+    "structurePrepZh": "以4H27 A链为模板，保留PLP及关键催化残基注释，补全缺失侧链、校正质子化状态，并标注底物入口与二聚体接触面。",
+    "structureRef": "RCSB PDB 4H27，人SDS X射线晶体结构，1.3 Å",
+    "antibodies": [
+      "无获批SDS治疗性抗体",
+      "抗SDS研究级检测抗体"
+    ],
+    "interfaceFocus": "PLP口袋外缘、底物入口沟槽及二聚体界面",
+    "designMode": "胞内酶抑制型",
+    "candidates": [
+      {
+        "target": "SHMT1",
+        "rationale": "SHMT1同属丝氨酸/一碳代谢网络，催化丝氨酸与四氢叶酸生成甘氨酸和5,10-亚甲基四氢叶酸，可作为细胞内代谢通量调节参照靶点。"
+      },
+      {
+        "target": "PSAT1",
+        "rationale": "PSAT1参与丝氨酸生物合成通路，将3-磷酸羟基丙酮酸转氨生成3-磷酸丝氨酸，与SDS共同影响丝氨酸稳态。"
+      },
+      {
+        "target": "PHGDH",
+        "rationale": "PHGDH为丝氨酸从头合成限速酶，连接糖酵解中间产物与丝氨酸代谢，在代谢重编程和神经系统代谢研究中具有明确通路相关性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "CR2",
+  "generatedAt": "2026-08-03T11:37:17.330Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CR2编码补体受体2/CD21，是B细胞和滤泡树突状细胞表面的I型膜受体，可结合C3d、C3dg及iC3b片段，并与CD19/CD81复合体协同降低BCR活化阈值，参与体液免疫缺陷和系统性红斑狼疮中的免疫复合物应答异常。其配体结合位点位于胞外短一致重复结构域，抗原可及性明确，适合阻断型抗体介入。相比下游信号分子，CR2处于补体片段识别与B细胞共受体放大的交汇节点，具有更直接的配体竞争设计价值。",
+    "mechanism": "阻断CR2胞外SCR1-SCR2与C3d/C3dg的结合，削弱C3d标记抗原对CD19-CD81-BCR共受体复合体的共刺激放大。",
+    "selectedEpitope": "优先覆盖SCR1-SCR2的C3d结合沟槽及带电界面，避免干扰膜近端非配体结合区。",
+    "diseaseDirection": "补体-B细胞免疫异常疾病",
+    "domain": "CR2胞外区由15至16个SCR/CCP重复结构域组成，N端SCR1-SCR2介导C3d结合。",
+    "evidence": "CR2-C3d轴与B细胞共受体证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P20023 functional annotation",
+      "RCSB PDB 8SM0 X-ray structure",
+      "Complement receptor 2 and C3d binding literature"
+    ],
+    "referenceEntries": "UniProt:P20023；RCSB PDB:8SM0；HGNC:2336",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端SCR1-SCR2的C3d结合界面",
+        "直接竞争C3d/C3dg结合并降低B细胞共受体放大",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SCR2外侧暴露环区",
+        "可形成邻近位阻，保留对核心结合残基的选择性调节",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SCR3及后续SCR连接区",
+        "可能影响受体构象或空间取向，但配体竞争效力不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SCR模块富含二硫键且表面带电斑块参与C3d识别，设计需避免破坏折叠依赖表位，并评估与CR1等CCP家族成员的交叉反应。",
+    "structurePrepZh": "以8SM0中CR2抗原链C、G为结构模板，保留SCR1-SCR2完整二硫键和糖基化邻近信息，清理非界面晶体接触后进行表位映射。",
+    "structureRef": "RCSB PDB 8SM0，X-ray diffraction，1.68 Å",
+    "antibodies": [
+      "Rituximab",
+      "Inebilizumab"
+    ],
+    "interfaceFocus": "SCR1-SCR2与C3d酸性/碱性互补界面",
+    "designMode": "配体阻断型",
+    "candidates": [
+      {
+        "target": "C3",
+        "rationale": "C3裂解产生C3d、C3dg和iC3b，是CR2识别的直接补体来源；靶向C3可从上游减少CR2介导的B细胞共刺激输入。"
+      },
+      {
+        "target": "CD19",
+        "rationale": "CD19与CR2和CD81组成B细胞共受体复合体，放大BCR信号；其膜外结构可作为同一路径中的替代抗体干预节点。"
+      },
+      {
+        "target": "CD81",
+        "rationale": "CD81稳定CD19-CR2共受体复合体并影响B细胞信号阈值；在补体标记抗原驱动的B细胞活化通路中具有协同调控价值。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

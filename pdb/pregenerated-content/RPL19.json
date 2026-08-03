@@ -1,0 +1,65 @@
+{
+  "gene": "RPL19",
+  "generatedAt": "2026-08-03T16:09:21.744Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RPL19 是 60S 核糖体大亚基组成蛋白，主要参与翻译延伸所需的核糖体结构稳定，而非经典胞外疾病驱动配体或膜受体。Open Targets 关联提示其与杜氏肌营养不良、流感和囊性纤维化等疾病存在遗传或转录层面的相关性，但这些关联更符合核糖体功能、感染应激或组织损伤背景下的伴随信号。RPL19 位于细胞内核糖体颗粒中，缺乏分泌型或跨膜胞外结构域，因此完整抗体药物的抗原可及性显著受限。相较于同一疾病方向中可直接接触的病毒表面蛋白、细胞因子或膜受体，RPL19 作为抗体主靶点优先级较低，更适合作为机制研究或细胞内递送型抗体片段探索对象。",
+    "mechanism": "采用细胞内递送抗体片段结合 RPL19 暴露螺旋面，干扰其与 28S rRNA 及邻近 60S 蛋白界面的稳定相互作用，从而影响核糖体大亚基装配或翻译效率。",
+    "selectedEpitope": "优先评估 60S 大亚基外侧可及 α-螺旋束及其邻近 rRNA 接触边缘，避开深埋核糖体核心界面。",
+    "diseaseDirection": "肌营养不良与感染应激相关翻译调控",
+    "domain": "RPL19 为核糖体 L19e 家族蛋白，富含 α-螺旋，嵌入 60S 大亚基并与 28S rRNA 接触。",
+    "evidence": "RPL19 核糖体结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt reviewed entry P84098",
+      "RCSB PDB 28LN electron microscopy structure",
+      "Gene Ontology ribosomal large subunit annotation"
+    ],
+    "referenceEntries": "UniProt P84098；RCSB PDB 28LN；HGNC RPL19；Open Targets ENSG00000108298",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "60S 外侧暴露 α-螺旋束",
+        "相对可及，适合细胞内抗体片段识别并降低对核心 rRNA 嵌入面的扰动",
+        "优先"
+      ],
+      [
+        "Site B",
+        "邻近 28S rRNA 接触边缘",
+        "可用于验证核糖体装配或稳定性干预，但需精确控制亲和力与占位效应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "深部核糖体核心嵌入界面",
+        "结构保守且空间受限，易产生广泛翻译毒性与构象不可及风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RPL19 为细胞内必需核糖体蛋白，常规抗体难以到达抗原；设计应限定为细胞内递送 Fab/VHH，并重点评估翻译抑制毒性。",
+    "structurePrepZh": "基于 PDB 28LN 提取 RPL19 所在 60S 局部环境，保留邻近 28S rRNA 与接触蛋白用于界面判定，并标注外侧暴露残基。",
+    "structureRef": "RCSB PDB 28LN，human ribosome cryo-EM，2.7 Å",
+    "antibodies": [
+      "暂无获批 RPL19 靶向治疗性抗体",
+      "研究级 anti-RPL19 antibody"
+    ],
+    "interfaceFocus": "RPL19 外侧螺旋束与 28S rRNA 接触边缘",
+    "designMode": "细胞内VHH探索",
+    "candidates": [
+      {
+        "target": "DMD",
+        "rationale": "DMD 是杜氏肌营养不良的核心致病基因，位于同一疾病方向的上游病因层级；相较 RPL19，其疾病因果证据更直接。"
+      },
+      {
+        "target": "UTRN",
+        "rationale": "UTRN 编码 utrophin，可在肌膜稳定复合体中部分补偿 dystrophin 缺陷，是杜氏肌营养不良通路中的真实调节节点。"
+      },
+      {
+        "target": "TGFB1",
+        "rationale": "TGFB1 参与杜氏肌营养不良肌肉纤维化与炎症重塑过程，分泌型配体具备明确抗原可及性并已有抗体阻断逻辑。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

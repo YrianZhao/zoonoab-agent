@@ -1,0 +1,65 @@
+{
+  "gene": "AMH",
+  "generatedAt": "2026-08-03T10:25:38.342Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "AMH 是 TGF-β 超家族分泌型配体，在男性胚胎期通过结合 AMHR2 并募集 ACVR1/BMPR1A 等 I 型受体，激活 SMAD1/5/8 信号以诱导 Müllerian duct 退化；AMH 或 AMHR2 功能缺陷可导致 persistent Müllerian duct syndrome。AMH 为循环和局部分泌蛋白，成熟 C 端二聚体及受体结合面具有良好的抗原可及性，适合抗体或抗体片段干预。相较下游 SMAD 或胞内激酶样受体结构域，AMH 的配体端干预更具选择性，可直接定义 AMH-AMHR2 轴的中和或配体捕获策略。",
+    "mechanism": "通过抗体占据 AMH 成熟 C 端二聚体的 AMHR2 结合界面，阻断 AMH 与 AMHR2 复合物形成，抑制后续 I 型受体募集与 SMAD1/5/8 磷酸化。",
+    "selectedEpitope": "优先靶向成熟 C 端 TGF-β 样生长因子结构域的 AMHR2 结合面，避开半胱氨酸结样核心。",
+    "diseaseDirection": "Müllerian duct 发育异常",
+    "domain": "AMH 含 N 端前结构域和 C 端 TGF-β 样成熟生长因子结构域，成熟配体以二硫键稳定二聚体存在。",
+    "evidence": "AMH-AMHR2 轴与 PMDS 结构功能证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt P03971 功能与变异注释",
+      "RCSB PDB 7L0J 晶体结构",
+      "OMIM/Orphanet persistent Müllerian duct syndrome 记录"
+    ],
+    "referenceEntries": "UniProt:P03971；RCSB PDB:7L0J；MONDO:0009857；Orphanet:2856",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "成熟 C 端 TGF-β 样结构域的 AMHR2 受体结合面",
+        "直接阻断 AMH-AMHR2 相互作用，适合中和型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "成熟二聚体外侧可及环区，邻近受体结合界面",
+        "可通过空间位阻削弱受体装配，同时降低对核心折叠的扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "半胱氨酸结样核心及二聚体二硫键邻域",
+        "保守性高且结构稳定性关键，存在构象扰动与交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "AMH 属 TGF-β 超家族，成熟结构域存在保守半胱氨酸结样折叠；设计应优先选择 AMHR2 特异接触残基周边非保守表面，并评估与其他 BMP/TGF-β 配体的交叉结合。",
+    "structurePrepZh": "以 7L0J 的 A、B 链成熟二聚体为抗原模板，保留二硫键与生物学二聚体构象，补全缺失侧链后进行质子化、糖基化注释核查和界面可及性分析。",
+    "structureRef": "RCSB PDB 7L0J，human AMH crystal structure，2.6 Å",
+    "antibodies": [
+      "Beckman Coulter AMH Gen II assay antibodies",
+      "Ansh Labs picoAMH assay monoclonal antibodies"
+    ],
+    "interfaceFocus": "AMH 成熟二聚体的 AMHR2 结合界面",
+    "designMode": "配体中和抗体设计",
+    "candidates": [
+      {
+        "target": "AMHR2",
+        "rationale": "AMHR2 是 AMH 的特异性 II 型受体，PMDS 中存在明确致病变异。靶向其胞外配体结合结构域可阻断 AMH-AMHR2 复合物形成。"
+      },
+      {
+        "target": "ACVR1",
+        "rationale": "ACVR1 可作为 AMH-AMHR2 复合物募集的 I 型受体之一，参与 SMAD1/5/8 信号转导。其通路位置适合作为下游受体调制候选靶点。"
+      },
+      {
+        "target": "BMPR1A",
+        "rationale": "BMPR1A 是 AMH 信号中可被 AMHR2 复合物募集的 I 型受体，介导 R-SMAD 激活。与 AMH-AMHR2 轴同属 Müllerian duct 退化相关 TGF-β/BMP 样通路。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

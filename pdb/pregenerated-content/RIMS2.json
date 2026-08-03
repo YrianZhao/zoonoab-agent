@@ -1,0 +1,65 @@
+{
+  "gene": "RIMS2",
+  "generatedAt": "2026-08-03T20:58:48.500Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RIMS2编码突触主动区支架蛋白RIM2，参与囊泡停靠、Ca2+通道耦联及神经递质释放，遗传变异与锥杆突触障碍等突触传递表型相关。该蛋白主要定位于细胞内突触前主动区，缺乏典型胞外结构域或分泌暴露面，作为体内阻断型抗体靶点的抗原可及性有限。相较CACNA1F、UNC13B等同通路膜蛋白或胞内效应因子，RIMS2更适合结构生物学工具抗体、细胞内抗体或机制验证抗体设计，优先级应限定于研究级分子探针场景。",
+    "mechanism": "设计抗体识别RIM2 C2B结构域，干扰其与Ca2+通道复合体及突触囊泡释放机器的支架耦联，用于解析主动区递质释放机制。",
+    "selectedEpitope": "优先覆盖1V27所示C2B结构域Ca2+/磷脂结合环及邻近β夹层边缘。",
+    "diseaseDirection": "遗传性视网膜突触传递障碍",
+    "domain": "RIM2含N端锌指、PDZ结构域及C端C2A/C2B结构域；1V27对应人源C2B结构域NMR结构。",
+    "evidence": "RIMS2突触主动区功能与锥杆突触障碍证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9UQ26蛋白功能注释",
+      "RCSB PDB 1V27人源RIM2 C2B结构域NMR结构",
+      "突触主动区RIM-Rab3-Ca2+通道复合体文献"
+    ],
+    "referenceEntries": "UniProt Q9UQ26；RCSB PDB 1V27；Open Targets RIMS2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C2B结构域顶部Ca2+/磷脂结合环",
+        "可干扰膜结合与释放位点定位，适合作为机制阻断表位",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C2B β夹层外侧保守暴露面",
+        "有利于获得构象特异性结合分子，适合作为结构稳定探针",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C2B结构域疏水核心邻近区域",
+        "可能影响折叠稳定性且体内可及性低，需避免强构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RIMS2为胞内主动区蛋白，常规IgG难以进入神经元胞质。建议定位为重组结构抗体、细胞内表达抗体或递送型VHH，并严格评估同源RIM家族交叉反应。",
+    "structurePrepZh": "采用1V27 NMR模型集合评估C2B结构域构象波动，保留β夹层核心并标注Ca2+/磷脂结合环；需补充AlphaFold全长模型进行结构域边界映射。",
+    "structureRef": "RCSB PDB 1V27，human RIM2 C2B domain，solution NMR",
+    "antibodies": [
+      "研究级anti-RIMS2抗体",
+      "研究级anti-RIM1/2交叉反应抗体"
+    ],
+    "interfaceFocus": "C2B Ca2+/磷脂结合环与β夹层外露面",
+    "designMode": "细胞内结构探针",
+    "candidates": [
+      {
+        "target": "CACNA1F",
+        "rationale": "CACNA1F编码视网膜突触前L型Ca2+通道Cav1.4，是光感受器带状突触Ca2+内流与递质释放的核心膜蛋白，具有更明确的膜受体样可及性。"
+      },
+      {
+        "target": "CABP4",
+        "rationale": "CABP4调节Cav1.4通道功能并参与光感受器突触传递，遗传缺陷与先天性夜盲和视网膜突触病变相关。"
+      },
+      {
+        "target": "UNC13B",
+        "rationale": "UNC13B参与突触囊泡priming并与RIM相关主动区释放机器处于同一递质释放轴，可作为突触前释放机制验证的候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

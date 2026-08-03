@@ -1,0 +1,65 @@
+{
+  "gene": "CRIPT",
+  "generatedAt": "2026-08-03T11:38:23.312Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CRIPT 是定位于胞内突触后致密区的 PDZ3 结构域结合蛋白，主要通过其 C 端 PDZ 结合基序与 DLG4/PSD-95 的 PDZ3 域相互作用，参与突触支架蛋白复合体组织。其疾病关联主要来自发育、生长表型及神经退行性疾病遗传证据，但该蛋白缺乏分泌形式、跨膜区或稳定胞外结构域，常规抗体难以在完整细胞环境中直接接近抗原。相较于同通路中具有胞外配体或膜受体属性的靶点，CRIPT 作为治疗性抗体主靶点优先级较低，更适合作为结构生物学验证或细胞内递送抗体片段探索靶点。",
+    "mechanism": "设计分子应阻断 CRIPT C 端 PDZ 结合基序与 DLG4/PSD-95 PDZ3 结合沟槽的相互作用，削弱突触后支架复合体装配。",
+    "selectedEpitope": "优先覆盖 CRIPT C 端 PDZ 结合基序及其邻近 CXXC 重复区的 DLG4-PDZ3 接触界面。",
+    "diseaseDirection": "神经发育与突触支架通路",
+    "domain": "CRIPT 为小型胞内蛋白，含 CXXC repeat 区域及 C 端 PDZ3 结合基序，无跨膜区和胞外结构域。",
+    "evidence": "CRIPT-DLG4突触支架互作结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt Q9P021 蛋白功能与亚细胞定位注释",
+      "RCSB PDB 7DVQ 电子显微镜结构记录",
+      "PSD-95/DLG4 PDZ3-CRIPT 互作相关结构与功能文献"
+    ],
+    "referenceEntries": "UniProt Q9P021；RCSB PDB 7DVQ；Open Targets CRIPT",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C 端 PDZ 结合基序",
+        "直接竞争 DLG4/PSD-95 PDZ3 结合沟槽，机制定义最清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "邻近 CXXC repeat 暴露面",
+        "可增强对 CRIPT 构象状态的识别并辅助界面阻断",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离 C 端结合基序的非界面表面",
+        "对 DLG4-PDZ3 互作阻断价值有限，需避免仅产生结合型分子",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CRIPT 为胞内抗原，常规 IgG 难以进入靶细胞；应限定为细胞内递送 Fab/VHH、降解偶联或研究级阻断分子，并重点评估脱靶 PDZ 互作扰动。",
+    "structurePrepZh": "以 7DVQ 结构为基础提取 CRIPT 相关链段并核验链归属；补建柔性 C 端残基，保留 DLG4-PDZ3 复合物界面用于表位可及性分析。",
+    "structureRef": "RCSB PDB 7DVQ，2.89 Å electron microscopy structure",
+    "antibodies": [
+      "研究级 anti-CRIPT antibody",
+      "细胞内递送 VHH/Fab 探索分子"
+    ],
+    "interfaceFocus": "CRIPT C 端基序-DLG4 PDZ3 结合沟槽",
+    "designMode": "胞内互作阻断",
+    "candidates": [
+      {
+        "target": "DLG4",
+        "rationale": "DLG4/PSD-95 是 CRIPT 的直接 PDZ3 结合伙伴，位于同一突触后支架复合体通路；其 PDZ3 结合沟槽是 CRIPT 依赖性复合体装配的核心界面。"
+      },
+      {
+        "target": "GRIN2B",
+        "rationale": "GRIN2B 编码 NMDA 受体 GluN2B 亚基，可通过 PSD-95 相关支架复合体参与突触后信号组织；其胞外受体结构域较 CRIPT 更具抗体可及性。"
+      },
+      {
+        "target": "DLGAP1",
+        "rationale": "DLGAP1 是 PSD-95 相关突触后支架蛋白网络成员，与 DLG4 复合体共同维持兴奋性突触结构；可作为同一突触支架通路的替代调节节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

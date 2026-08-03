@@ -1,0 +1,65 @@
+{
+  "gene": "PNOC",
+  "generatedAt": "2026-08-03T15:23:59.686Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PNOC编码prepronociceptin前体，经加工产生nociceptin/orphanin FQ，主要通过结合NOP/OPRL1受体影响Gi/o介导的神经调节、摄食行为、奖赏相关行为及代谢表型，Open Targets提示其与体重、BMI、2型糖尿病及药物使用表型存在遗传或组学关联。PNOC来源肽段为分泌性神经肽，抗原可及性优于胞内酶类靶点，可通过识别成熟肽或前体可暴露片段实现配体捕获。相较下游G蛋白或胞内效应分子，PNOC处于配体输入端，具有更明确的配体-受体阻断设计空间和较低的胞内递送限制。",
+    "mechanism": "抗体捕获成熟nociceptin肽，遮蔽其N端受体激活核心及疏水结合面，阻断PNOC衍生肽与OPRL1胞外结合口袋的相互作用。",
+    "selectedEpitope": "优先覆盖nociceptin成熟肽N端FGGFTGARKS核心及C端疏水延伸面。",
+    "diseaseDirection": "代谢表型与成瘾神经调节",
+    "domain": "PNOC为分泌型前体蛋白，含信号肽、nociceptin成熟肽段及其他加工肽片段。",
+    "evidence": "PNOC-OPRL1轴代谢与奖赏表型证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q13519蛋白注释",
+      "RCSB PDB 8F7X冷冻电镜结构",
+      "GPCRdb/文献中的NOP受体配体识别机制"
+    ],
+    "referenceEntries": "UniProt: Q13519；RCSB PDB: 8F7X；OPRL1通路注释",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "成熟nociceptin肽N端FGGFTGARKS区域",
+        "直接遮蔽NOP/OPRL1激活所需N端药效团，阻断效力预期最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "nociceptin肽C端疏水残基延伸面",
+        "干扰配体在OPRL1正构口袋中的稳定锚定，可增强中和覆盖度",
+        "备选"
+      ],
+      [
+        "Site C",
+        "prepronociceptin前体非成熟肽加工连接区",
+        "可能影响前体识别但对游离成熟肽中和相关性较弱，需验证加工状态",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "成熟nociceptin肽长度短且构象柔性高，需避免仅识别构象依赖瞬态表位；建议采用肽-载体复合免疫并进行游离肽亲和筛选。",
+    "structurePrepZh": "以8F7X中PNOC衍生肽-OPRL1复合物为界面模板，保留肽段与受体胞外口袋接触残基，补充分辨率受限侧链并进行质子化校正。",
+    "structureRef": "RCSB PDB 8F7X，3.28 Å冷冻电镜PNOC肽-受体复合物",
+    "antibodies": [
+      "抗nociceptin/orphanin FQ中和抗体",
+      "抗神经肽配体捕获型抗体"
+    ],
+    "interfaceFocus": "nociceptin N端药效团与OPRL1正构口袋",
+    "designMode": "分泌肽配体捕获",
+    "candidates": [
+      {
+        "target": "OPRL1",
+        "rationale": "OPRL1为nociceptin/orphanin FQ的同源受体，是PNOC信号进入Gi/o通路的直接膜受体节点。靶向其胞外环或正构口袋可阻断配体诱导的受体激活。"
+      },
+      {
+        "target": "POMC",
+        "rationale": "POMC衍生肽参与摄食、体重和代谢稳态调控，与PNOC相关代谢表型处于神经内分泌能量平衡网络。其分泌肽加工产物具备抗体捕获的可及性。"
+      },
+      {
+        "target": "NPY",
+        "rationale": "NPY是下丘脑摄食和能量代谢调节的关键分泌神经肽，与PNOC相关BMI和体重表型具有通路层面的交叉。阻断NPY与其受体相互作用可作为同方向代谢调节策略。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

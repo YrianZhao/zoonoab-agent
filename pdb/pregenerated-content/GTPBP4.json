@@ -1,0 +1,65 @@
+{
+  "gene": "GTPBP4",
+  "generatedAt": "2026-08-03T19:24:03.389Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GTPBP4 是核仁定位的 GTP 酶，参与 60S 核糖体大亚基成熟，与核糖体生物发生及细胞增殖状态相关，但 Open Targets 关联主要集中于测量性状、痛风和神经退行性疾病，缺乏可直接支持抗体干预的细胞外疾病机制。该蛋白无信号肽、跨膜区或分泌形式，主要位于核仁核糖体前体复合物内，抗原天然可及性显著弱于膜受体或分泌蛋白。相较于 IL1B、TNF、IL6R 等同炎症疾病通路中的可及靶点，GTPBP4 不具备细胞外抗体成药优先级，宜作为结构生物学或胞内递送研究对象而非常规抗体主靶点。",
+    "mechanism": "若采用胞内递送抗体片段，设计目标应为结合 GTPBP4 GTPase 结构域邻近核苷酸结合沟槽，干扰其与 pre-60S 核糖体成熟复合物的构象耦联，而非常规胞外阻断机制。",
+    "selectedEpitope": "优先评估 GTPase 结构域 Switch I/Switch II 邻近面及与 HEAT/OB 样辅助结构域形成的暴露沟槽。",
+    "diseaseDirection": "痛风与炎症代谢关联探索",
+    "domain": "GTPBP4 含保守 P-loop NTPase/GTPase 核心结构域，并具有参与核糖体前体结合的辅助结构区。",
+    "evidence": "GTPBP4 核糖体生物发生与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9BZE4 functional annotation",
+      "RCSB PDB 8FKV cryo-EM structure",
+      "Gene Ontology ribosome biogenesis annotations"
+    ],
+    "referenceEntries": "UniProt: Q9BZE4；RCSB PDB: 8FKV；Ensembl: ENSG00000107937",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "GTPase 结构域 Switch I/Switch II 邻近表面",
+        "可能影响 GTP 结合/水解相关构象转换，适合胞内片段抗体机制验证",
+        "优先"
+      ],
+      [
+        "Site B",
+        "GTPase 核心与辅助结构域之间的暴露沟槽",
+        "可能干扰 pre-60S 复合物结合界面或成熟因子装配",
+        "备选"
+      ],
+      [
+        "Site C",
+        "核苷酸结合 P-loop 深部口袋",
+        "口袋保守性高且可及性有限，易产生交叉反应或亲和成熟困难",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GTPBP4 为胞内核仁蛋白，常规抗体难以到达作用位点；P-loop GTPase 区域保守性较高，需避免识别其他 GTP 酶并优先采用胞内递送或研究级格式。",
+    "structurePrepZh": "以 8FKV 冷冻电镜模型提取 GTPBP4 链并补全缺失环区，保留核苷酸结合状态注释，去除非目标核糖体组分后进行表面可及性与保守性评估。",
+    "structureRef": "RCSB PDB 8FKV，human pre-60S ribosomal subunit cryo-EM structure",
+    "antibodies": [
+      "研究级 anti-GTPBP4 antibody",
+      "研究级 anti-NOG1/GTPBP4 antibody"
+    ],
+    "interfaceFocus": "GTPase Switch 区及 pre-60S 结合界面",
+    "designMode": "胞内片段抗体探索",
+    "candidates": [
+      {
+        "target": "IL1B",
+        "rationale": "IL1B 是痛风急性炎症中尿酸盐晶体经 NLRP3 炎症小体激活后的关键效应细胞因子，分泌型抗原可及性高，已有抗体阻断机制清晰。"
+      },
+      {
+        "target": "IL6R",
+        "rationale": "IL6R 介导 IL6 经典信号转导，参与系统性炎症和痛风相关炎症放大；膜型与可溶型受体均可被抗体直接拦截。"
+      },
+      {
+        "target": "TNF",
+        "rationale": "TNF 是炎症级联反应中的核心分泌细胞因子，与痛风及多种炎症性疾病相关；胞外可及且抗体药物开发经验充分。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

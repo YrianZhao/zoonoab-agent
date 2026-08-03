@@ -1,0 +1,65 @@
+{
+  "gene": "PTGS1",
+  "generatedAt": "2026-08-03T15:42:42.876Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PTGS1/COX-1催化花生四烯酸转化为PGG2并进一步生成PGH2，位于前列腺素与血栓烷合成通路上游，参与炎症痛觉、血小板TXA2生成及胃肠黏膜稳态。该蛋白为内质网与核膜相关膜蛋白，催化结构域位于腔面并形成可结构解析的二聚体，但其膜邻近定位限制全长抗原在体内抗体可及性。相较下游单一前列腺素受体，PTGS1处于脂质介质生成源头且结构药理学证据充分，适合作为体外结构引导的抗体样分子研究靶点；临床可及性优先级需低于典型分泌因子或细胞表面受体。",
+    "mechanism": "通过占据COX催化通道入口或二聚体变构界面，阻断花生四烯酸进入Tyr385/Ser530邻近活性位点，从而降低PGG2与PGH2生成。",
+    "selectedEpitope": "优先评估EGF样结构域-催化结构域连接区及COX通道入口外缘表位，避免深埋血红素口袋。",
+    "diseaseDirection": "炎症疼痛与血栓烷相关疾病",
+    "domain": "PTGS1含N端信号肽、EGF样二聚化结构域、膜结合螺旋区及C端过氧化物酶/环氧合酶催化结构域。",
+    "evidence": "PTGS1炎症脂质介质通路结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P23219功能与亚细胞定位注释",
+      "RCSB PDB 6Y3C X射线晶体结构",
+      "COX-1药理学与前列腺素生物合成文献"
+    ],
+    "referenceEntries": "UniProt P23219；RCSB PDB 6Y3C；Open Targets PTGS1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "COX催化通道入口外缘与膜结合结构域邻近面",
+        "可能阻断花生四烯酸进入催化通道，具备明确功能读出",
+        "优先"
+      ],
+      [
+        "Site B",
+        "EGF样结构域及其与催化结构域连接界面",
+        "可干预二聚体稳定性或构象耦联，降低直接竞争底物带来的空间限制",
+        "备选"
+      ],
+      [
+        "Site C",
+        "过氧化物酶血红素结合腔周边区域",
+        "区域保守且部分埋藏，存在交叉反应和难以获得有效阻断构象的风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PTGS1主要定位于细胞内膜系统腔面，体内抗体暴露受限；设计宜定位为细胞外递送、胞内抗体或体外结构验证，并严格评估PTGS2同源性交叉反应。",
+    "structurePrepZh": "以6Y3C同源二聚体为模板，补全缺失环区并保留血红素、糖基化与关键脂质配体信息；按抗原链A-D比较构象差异后定义可及表面。",
+    "structureRef": "RCSB PDB 6Y3C，human COX-1 X-ray structure, 3.361 Å",
+    "antibodies": [
+      "anti-COX-1 monoclonal antibody",
+      "anti-PTGS1 monoclonal antibody"
+    ],
+    "interfaceFocus": "COX通道入口、EGF样二聚化界面、PTGS2差异残基",
+    "designMode": "结构引导阻断设计",
+    "candidates": [
+      {
+        "target": "PTGS2",
+        "rationale": "PTGS2/COX-2与PTGS1共同催化花生四烯酸生成PGH2，在炎症诱导性前列腺素产生中占主导地位，是同一通路内更具炎症选择性的并行靶点。"
+      },
+      {
+        "target": "PLA2G4A",
+        "rationale": "PLA2G4A释放膜磷脂中的花生四烯酸，为PTGS1/PTGS2提供底物；阻断该上游节点可降低多种前列腺素与白三烯前体供应。"
+      },
+      {
+        "target": "TBXAS1",
+        "rationale": "TBXAS1将PGH2转化为血栓烷A2，连接PTGS1血小板通路与血管收缩、血小板聚集表型，适合作为血栓烷轴下游候选靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

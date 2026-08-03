@@ -1,0 +1,65 @@
+{
+  "gene": "ARHGEF19",
+  "generatedAt": "2026-08-03T10:34:25.288Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ARHGEF19 是胞内 Rho 鸟嘌呤核苷酸交换因子，主要通过 Dbl 同源性催化结构域促进 Rho 家族 GTPase 的 GDP-GTP 交换，Open Targets 关联信号集中于肾小球滤过率和血清肌酐等肾功能性状。该蛋白缺乏胞外结构域、分泌特征或膜受体暴露界面，完整抗体在生理条件下抗原可及性不足，常规阻断型抗体开发优先级较低。相较同通路中可细胞外干预的受体或配体，ARHGEF19 更适合作为结构生物学验证靶点或胞内递送抗体片段探索靶点，而非一线治疗性抗体主靶点。",
+    "mechanism": "以胞内递送抗体片段占据 DH 结构域的 Rho GTPase 结合沟槽，阻断其对 RHOA/RAC1/CDC42 的核苷酸交换催化。",
+    "selectedEpitope": "优先覆盖 DH 结构域与 Rho GTPase Switch I/II 区域结合界面，避开保守疏水核心。",
+    "diseaseDirection": "肾功能与Rho GTPase信号",
+    "domain": "ARHGEF19 含 RhoGEF/DH 催化结构域及相邻调控区，PDB 8YR7 覆盖实验解析片段。",
+    "evidence": "ARHGEF19肾功能遗传关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 遗传关联数据",
+      "UniProt Q8IW93 蛋白功能注释",
+      "RCSB PDB 8YR7 X射线晶体结构",
+      "RhoGEF-DH结构域与Rho GTPase交换机制文献"
+    ],
+    "referenceEntries": "UniProt Q8IW93；RCSB PDB 8YR7；Open Targets ARHGEF19",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DH结构域Rho GTPase结合沟槽",
+        "直接干预GDP-GTP交换复合物形成，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DH结构域外侧调控螺旋面",
+        "可能变构削弱催化构象稳定性，保守性风险较低",
+        "备选"
+      ],
+      [
+        "Site C",
+        "DH结构域保守催化核心邻近面",
+        "易影响折叠稳定性且同源GEF交叉反应风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为靶点胞内定位导致抗体可及性不足，且DH结构域在RhoGEF家族中存在保守界面；建议限定胞内递送格式并进行同源蛋白交叉筛查。",
+    "structurePrepZh": "以PDB 8YR7链A为模板，补全缺失侧链和氢原子，校正质子化状态，并标注DH结构域Rho GTPase结合沟槽用于表位网格定义。",
+    "structureRef": "RCSB PDB 8YR7，X-ray diffraction，3.0 Å",
+    "antibodies": [
+      "无已批准ARHGEF19靶向抗体",
+      "无临床阶段ARHGEF19同类抗体"
+    ],
+    "interfaceFocus": "DH结构域Rho GTPase结合沟槽",
+    "designMode": "胞内VHH探索",
+    "candidates": [
+      {
+        "target": "RHOA",
+        "rationale": "RHOA 是ARHGEF19潜在下游Rho GTPase，直接执行肌动蛋白骨架与收缩相关信号，在肾小球细胞力学调控中具有通路相关性。"
+      },
+      {
+        "target": "RAC1",
+        "rationale": "RAC1 属于Rho GTPase家族，可受多种RhoGEF调控并参与细胞骨架、氧化应激和肾小球屏障功能相关过程。"
+      },
+      {
+        "target": "CDC42",
+        "rationale": "CDC42 是Rho GTPase网络核心成员，调控细胞极性和足细胞结构稳定性，与肾小球滤过屏障相关通路具有生物学一致性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

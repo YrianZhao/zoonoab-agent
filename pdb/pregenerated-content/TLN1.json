@@ -1,0 +1,65 @@
+{
+  "gene": "TLN1",
+  "generatedAt": "2026-08-03T17:18:55.840Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TLN1编码talin 1，是整合素胞质尾部与肌动蛋白骨架之间的关键连接蛋白，可通过结合β整合素尾部促进整合素激活、黏附斑装配和肿瘤细胞迁移。其疾病关联覆盖癌症、心肌肥厚及RASopathy相关表型，提示黏附力学与RAS/MAPK背景下的组织重塑存在交叉。TLN1为细胞内胞质蛋白，完整蛋白并不具备常规胞外抗体可及性，因此抗体设计优先定位于机制验证、细胞内递送或结构域阻断研究；相较广泛胞外整合素靶点，TLN1具有更直接的整合素激活节点特异性。",
+    "mechanism": "阻断talin FERM F3结构域与β整合素胞质尾部NPxY基序及膜近端区域结合，抑制整合素由低亲和态向高亲和态转换。",
+    "selectedEpitope": "优先覆盖FERM F3/PTB样结构域的β整合素尾部结合沟槽及相邻膜近端识别面。",
+    "diseaseDirection": "肿瘤侵袭与黏附力学异常",
+    "domain": "talin 1含N端FERM头部F0-F3结构域和C端棒状结构域，4DJ9覆盖F2-F3头部片段。",
+    "evidence": "TLN1整合素激活与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q9Y490功能与结构域注释",
+      "RCSB PDB 4DJ9晶体结构记录",
+      "整合素-黏附斑信号通路文献"
+    ],
+    "referenceEntries": "UniProt Q9Y490；RCSB PDB 4DJ9；Open Targets TLN1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "FERM F3结构域β整合素尾部结合沟槽",
+        "直接干预talin-β整合素相互作用，机制指向明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "F2-F3连接面及膜近端定位相关表面",
+        "可能削弱头部结构域膜定位与整合素激活耦联",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离整合素结合面的F2外侧表面",
+        "结构可识别但对核心功能阻断价值有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TLN1为胞内蛋白，常规全长IgG难以进入胞质，体内成药性受限；建议采用细胞内抗体、VHH融合递送或体外机制验证体系。",
+    "structurePrepZh": "以4DJ9的A/B链为模板，保留FERM F2-F3结构域，校正缺失环区、质子化状态及界面残基构象后开展表位建模。",
+    "structureRef": "PDB 4DJ9，human talin F2-F3，2.25 Å X-ray",
+    "antibodies": [
+      "抗talin 1克隆8D4",
+      "抗talin 1克隆TA205"
+    ],
+    "interfaceFocus": "F3结构域β整合素尾部识别沟槽",
+    "designMode": "胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "ITGB1",
+        "rationale": "ITGB1编码β1整合素，其胞质尾部直接与TLN1 F3结构域结合，是黏附斑形成、细胞迁移和肿瘤基质相互作用中的同一路径受体节点。"
+      },
+      {
+        "target": "VCL",
+        "rationale": "VCL编码vinculin，可被talin棒状结构域招募至黏附斑并增强整合素-肌动蛋白机械连接，适合作为黏附力学通路的功能协同靶点。"
+      },
+      {
+        "target": "PTK2",
+        "rationale": "PTK2编码FAK，在整合素聚集后被黏附斑复合体激活，驱动迁移、存活和肿瘤侵袭信号，是TLN1下游黏附信号轴中的真实可药靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

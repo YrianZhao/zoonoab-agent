@@ -1,0 +1,65 @@
+{
+  "gene": "CHAMP1",
+  "generatedAt": "2026-08-03T11:20:19.398Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CHAMP1 是定位于细胞核与有丝分裂染色体区域的磷蛋白，致病变异与常染色体显性智力发育障碍40相关，机制涉及锌指依赖的染色体定位、着丝粒-微管附着稳定性及神经发育期细胞分裂质量控制。该蛋白并非分泌蛋白、膜受体或胞外抗原，天然抗原可及性不支持常规体内阻断型抗体开发，更适合作为细胞内研究抗体、结构识别抗体或递送型抗体片段探索对象。相较于同通路中广泛必需的着丝粒核心蛋白，CHAMP1 的疾病遗传证据更直接且PDB 6EKJ提供高分辨率结构片段，可优先用于机制性表位验证，但治疗性优先级应低于具备胞外可及性的神经发育通路靶点。",
+    "mechanism": "抗体设计以识别CHAMP1锌指结构表面为核心，干预其与染色体/着丝粒相关蛋白复合体的定位界面或用于捕获致病变异导致的构象改变。",
+    "selectedEpitope": "优先覆盖6EKJ解析的C2H2样锌指折叠外露螺旋与邻近金属配位稳定区，避免直接破坏锌配位核心。",
+    "diseaseDirection": "神经发育障碍与智力障碍",
+    "domain": "CHAMP1含多段C2H2型锌指样区域及富磷酸化低复杂度序列，6EKJ覆盖其结构化锌指片段。",
+    "evidence": "CHAMP1神经发育遗传证据与锌指结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q96JM3蛋白功能与结构域注释",
+      "RCSB PDB 6EKJ X射线晶体结构",
+      "OMIM/ClinVar CHAMP1相关神经发育障碍变异记录"
+    ],
+    "referenceEntries": "UniProt Q96JM3；RCSB PDB 6EKJ；Open Targets CHAMP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "6EKJ锌指结构外露α螺旋及侧链识别面",
+        "利于获得构象选择性抗体并区分折叠完整状态",
+        "优先"
+      ],
+      [
+        "Site B",
+        "锌指邻近非配位环区与链间晶体可见表面",
+        "可作为不干扰金属配位的结合表位，用于检测和富集",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Cys/His锌配位核心及疏水折叠内核",
+        "直接靶向可能破坏结构稳定性并产生非特异构象效应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CHAMP1为核内蛋白，体内抗体可及性和药物递送是主要风险；设计宜限定为细胞内抗体、研究级Fab/VHH或递送系统验证，并避开锌配位核心。",
+    "structurePrepZh": "采用PDB 6EKJ的A、B链作为结构模板，保留锌离子及配位残基约束，校验晶体接触面后定义可溶外露表位。",
+    "structureRef": "RCSB PDB 6EKJ，X-ray diffraction，1.6 Å",
+    "antibodies": [
+      "商业抗CHAMP1多克隆抗体",
+      "商业抗CHAMP1单克隆抗体"
+    ],
+    "interfaceFocus": "锌指外露螺旋、非配位环区及染色体定位相关表面",
+    "designMode": "细胞内结构表位识别",
+    "candidates": [
+      {
+        "target": "POGZ",
+        "rationale": "POGZ与CHAMP1同属神经发育障碍相关的锌指/染色质调控网络，致病变异可导致智力障碍与发育迟缓。其功能关联于有丝分裂和染色质组织，可作为同通路机制比较靶点。"
+      },
+      {
+        "target": "CENPE",
+        "rationale": "CENPE参与动粒-微管连接和染色体排列，是CHAMP1相关有丝分裂染色体稳定过程中的真实功能节点。其结构域和细胞周期依赖定位可用于评估染色体排列缺陷的下游效应。"
+      },
+      {
+        "target": "MAD2L1",
+        "rationale": "MAD2L1是纺锤体组装检查点核心蛋白，监测动粒附着错误并延缓有丝分裂进程。与CHAMP1介导的染色体排列稳定性处于同一细胞分裂质量控制轴。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

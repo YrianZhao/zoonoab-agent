@@ -1,0 +1,65 @@
+{
+  "gene": "CBLB",
+  "generatedAt": "2026-08-03T11:02:00.763Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CBLB编码胞内E3泛素连接酶Cbl-b，主要通过TCR/CD28、PI3K-AKT及受体酪氨酸激酶信号负调控免疫细胞活化，与自身免疫、肿瘤免疫耐受及免疫相关肾功能表型存在遗传和功能关联。该蛋白不具备胞外结构域或分泌形式，天然抗原可及性不支持常规细胞外阻断抗体，需限定为细胞内递送抗体、研究级结构抗体或降解适配体设计。相较CTLA4、PDCD1等胞外免疫检查点，CBLB位于T细胞活化阈值的胞内近端节点，具有解除多条抑制信号汇聚的优先级，但成药形式风险显著高于膜受体靶点。",
+    "mechanism": "设计分子应阻断CBLB RING结构域与E2泛素结合酶的装配，降低底物泛素化，从而解除TCR/CD28下游信号负调控。",
+    "selectedEpitope": "优先覆盖RING结构域E2结合面及相邻linker helix，避免破坏整体折叠核心。",
+    "diseaseDirection": "肿瘤免疫与自身免疫调节",
+    "domain": "CBLB含TKB结构域、linker helix、RING finger及富脯氨酸/泛素结合C端区域。",
+    "evidence": "CBLB免疫负调控与结构界面证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q13191功能与结构域注释",
+      "RCSB PDB 8QTG实验晶体结构",
+      "TCR/CD28-Cbl-b泛素化调控文献"
+    ],
+    "referenceEntries": "UniProt Q13191；RCSB PDB 8QTG；Open Targets CBLB",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RING结构域E2结合界面",
+        "直接干预E2招募与泛素转移复合物形成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "linker helix-RING邻接调控面",
+        "影响RING构象定位并保留TKB识别功能评估空间",
+        "备选"
+      ],
+      [
+        "Site C",
+        "TKB磷酸酪氨酸底物结合沟",
+        "可能改变底物识别但易造成广谱Cbl家族功能干扰",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CBLB为胞内蛋白，常规抗体难以到达作用位点；RING界面含保守锌结合折叠，表位设计应避开Zn2+配位残基并评估CBL/CBLC交叉反应。",
+    "structurePrepZh": "以8QTG链A为模板，补全缺失环区并保留结构性锌离子；对RING-E2界面周围残基进行质子化、构象稳定性和同源保守性标注。",
+    "structureRef": "RCSB PDB 8QTG，X-ray，1.419 Å，human CBLB",
+    "antibodies": [
+      "研究级anti-CBLB monoclonal antibody",
+      "细胞内递送型anti-CBLB VHH候选"
+    ],
+    "interfaceFocus": "RING-E2结合面与linker helix调控界面",
+    "designMode": "胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "CD28",
+        "rationale": "CD28共刺激信号与CBLB介导的T细胞活化阈值控制处于同一免疫调节轴，增强CD28信号可功能性对抗CBLB负调控。"
+      },
+      {
+        "target": "PIK3R1",
+        "rationale": "PIK3R1参与CD28-PI3K信号复合体形成，CBLB可限制PI3K-AKT活化，二者共同影响T细胞代谢与效应功能。"
+      },
+      {
+        "target": "PTEN",
+        "rationale": "PTEN抑制PI3K-AKT通路，与CBLB在T细胞活化负调控中形成同向抑制网络，适合作为通路内比较靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

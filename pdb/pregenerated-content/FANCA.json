@@ -1,0 +1,65 @@
+{
+  "gene": "FANCA",
+  "generatedAt": "2026-08-03T12:27:33.485Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FANCA 是 Fanconi anemia 核心复合体成员，参与 FANCD2/FANCI 单泛素化并维持 DNA 链间交联修复，功能缺陷与 Fanconi anemia、骨髓衰竭、急性髓系白血病及骨髓增生异常综合征存在明确遗传关联。该蛋白主要定位于细胞核内核心复合体，并非分泌蛋白或膜受体，天然抗原可及性低，因此更适合作为细胞内功能研究、递送型抗体片段或降解偶联策略的设计对象。相较同通路中结构信息不足或高度动态的因子，7KZP 提供了人源 FA 核心复合体实验结构，可支持界面级表位评估，但作为常规治疗性抗体靶点优先级低于可及性更高的膜表面肿瘤抗原。",
+    "mechanism": "通过识别 FANCA 在 FA 核心复合体中的 FANCG/FANCC 邻近界面，阻断核心复合体装配或扰动 FANCL 介导的 FANCD2-FANCI 单泛素化反应。",
+    "selectedEpitope": "优先选择 FANCA N 端与 FANCG/FANCC 组装界面附近暴露螺旋束，避免深埋核心接触面。",
+    "diseaseDirection": "Fanconi anemia与髓系肿瘤易感",
+    "domain": "FANCA 为大型核内支架蛋白，含多段螺旋重复区，构成 FA 核心复合体装配平台。",
+    "evidence": "FANCA遗传缺陷与FA核心复合体结构证据",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt O15360 functional annotation",
+      "RCSB PDB 7KZP electron microscopy structure",
+      "Fanconi anemia DNA interstrand crosslink repair literature"
+    ],
+    "referenceEntries": "UniProt O15360；RCSB PDB 7KZP；Open Targets FANCA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "FANCA N端螺旋束与FANCG/FANCC邻近装配界面",
+        "可用于干预核心复合体组装并评估功能依赖性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FANCA中段支架螺旋重复区外露面",
+        "适合作为结构识别与构象锁定表位，功能阻断效应需验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "FANCA深埋于FA核心复合体内部的多亚基接触面",
+        "空间可及性低且易受复合体构象影响，不宜作为首发表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FANCA 为细胞核内非分泌蛋白，常规抗体难以到达天然作用位点；设计应优先采用细胞内表达抗体、VHH 或递送偶联形式，并区分功能阻断与结构探针用途。",
+    "structurePrepZh": "以 7KZP 冷冻电镜模型为模板，保留 FANCA 所在链及相邻 FANCG、FANCC、FANCL 接触亚基，补全缺失环区后进行界面暴露度与保守性评估。",
+    "structureRef": "RCSB PDB 7KZP，human FA core complex，EM 3.1 Å",
+    "antibodies": [
+      "commercial anti-FANCA monoclonal antibody",
+      "commercial anti-FANCA polyclonal antibody"
+    ],
+    "interfaceFocus": "FANCA-FANCG/FANCC装配界面",
+    "designMode": "胞内VHH功能干预",
+    "candidates": [
+      {
+        "target": "FANCG",
+        "rationale": "FANCG 与 FANCA 同属 FA 核心复合体，参与复合体稳定和 FANCD2/FANCI 单泛素化，上游遗传缺陷同样导致 Fanconi anemia。"
+      },
+      {
+        "target": "FANCC",
+        "rationale": "FANCC 是 FA 核心复合体组分，与 FANCA/FANCE/FANCF 模块协同维持 DNA 链间交联修复，疾病关联与 FANCA 位于同一修复通路。"
+      },
+      {
+        "target": "FANCL",
+        "rationale": "FANCL 是 FA 核心复合体中的 E3 泛素连接酶，直接催化 FANCD2 和 FANCI 单泛素化，具有更明确的酶促功能界面。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "NABP2",
+  "generatedAt": "2026-08-03T20:15:14.456Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NABP2/SSB2为单链DNA结合蛋白，参与复制压力应答、同源重组修复和DNA损伤检查点维持，其功能异常可影响基因组稳定性，并与肿瘤及神经退行性疾病中的DNA损伤累积相关。该蛋白主要定位于细胞核，缺乏胞外结构域或分泌特征，天然抗体可及性明显受限，因此更适合作为胞内递送抗体、研究级阻断抗体或细胞内抗体设计对象。相较于ATM、ATR等大型激酶节点，NABP2具有明确的OB-fold核酸结合结构域和较小结构单元，便于开展界面级表位设计，但临床成药优先级低于膜受体或分泌型肿瘤靶点。",
+    "mechanism": "设计抗体阻断NABP2 OB-fold与单链DNA的结合，并干扰其在SOSS复合体中与INTS3形成的DNA损伤应答支架相互作用。",
+    "selectedEpitope": "优先覆盖OB-fold ssDNA结合沟槽及邻近β折叠环区，避免完全遮蔽核心折叠稳定界面。",
+    "diseaseDirection": "DNA损伤应答相关肿瘤与神经退行性疾病",
+    "domain": "NABP2含N端OB-fold单链核酸结合结构域及C端低复杂度区域，4OWT解析其寡核苷酸结合核心。",
+    "evidence": "NABP2 DNA损伤应答与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与关联评分",
+      "UniProt Q9BQ15功能与亚细胞定位注释",
+      "RCSB PDB 4OWT X射线晶体结构",
+      "DNA损伤应答及SOSS复合体研究文献"
+    ],
+    "referenceEntries": "UniProt Q9BQ15；RCSB PDB 4OWT；Open Targets NABP2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "OB-fold单链DNA结合沟槽与β2-β3环区",
+        "直接竞争ssDNA结合，适合功能阻断型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "OB-fold外侧溶剂暴露β片层边缘",
+        "有利于获得构象识别抗体并降低对折叠核心的扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端核心疏水折叠内部邻近区域",
+        "可能影响蛋白稳定性并产生非特异构象扰动，需谨慎评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NABP2为核内蛋白，常规循环抗体难以到达靶点；设计应结合胞内递送、细胞穿透或intrabody策略，并严格评估核酸结合蛋白交叉反应风险。",
+    "structurePrepZh": "以4OWT抗原链A/B/C为模板，保留OB-fold核心构象，去除结晶缓冲分子并校验缺失环区、质子化状态及潜在DNA结合沟槽电荷分布。",
+    "structureRef": "RCSB PDB 4OWT，X-ray diffraction，2.0 Å",
+    "antibodies": [
+      "无已批准NABP2治疗性抗体",
+      "研究级抗NABP2抗体"
+    ],
+    "interfaceFocus": "OB-fold ssDNA结合沟槽及INTS3邻近支架界面",
+    "designMode": "胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "INTS3",
+        "rationale": "INTS3是SOSS复合体核心支架蛋白，与NABP2共同参与单链DNA损伤位点识别和DNA损伤应答复合体装配。"
+      },
+      {
+        "target": "NABP1",
+        "rationale": "NABP1/SSB1与NABP2同属人源单链DNA结合蛋白，参与复制压力和DNA双链断裂修复通路，适合作为同通路比较靶点。"
+      },
+      {
+        "target": "ATM",
+        "rationale": "ATM是DNA双链断裂检查点激酶，可在损伤应答中调控下游修复与细胞周期停滞，是NABP2相关基因组稳定性网络的重要上游节点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

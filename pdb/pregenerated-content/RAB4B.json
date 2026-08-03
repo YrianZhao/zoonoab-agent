@@ -1,0 +1,65 @@
+{
+  "gene": "RAB4B",
+  "generatedAt": "2026-08-03T20:40:17.749Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RAB4B为小GTP酶，参与早期内体至质膜的快速回收转运，可能影响受体再循环、膜蛋白稳态及神经元内吞运输过程，Open Targets显示其与神经退行性疾病存在中等强度遗传关联。该蛋白主要定位于胞质侧内体膜并缺乏天然胞外结构域，完整抗体在活细胞条件下抗原可及性受限，更适合作为细胞内递送抗体、VHH或研究级构象探针靶点。相较于同通路中广泛表达且功能冗余较高的部分内吞调控因子，RAB4B具有明确GTP酶结构核心及实验晶体结构支撑，适合优先开展构象选择性结合分子设计，但治疗可开发性需严格评估。",
+    "mechanism": "设计分子优先阻断RAB4B的Switch I/Switch II区域与效应蛋白的GTP依赖性结合，干预早期内体回收货物向质膜的再循环过程。",
+    "selectedEpitope": "优先锁定GTP酶结构域Switch I/Switch II构象界面，避免直接覆盖高度保守核苷酸结合口袋。",
+    "diseaseDirection": "神经退行性疾病内吞回收通路",
+    "domain": "RAB4B含保守小GTP酶结构域，包括P-loop、Switch I、Switch II及C端膜定位相关区域。",
+    "evidence": "RAB4B结构与神经退行性疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联数据",
+      "UniProt P61018蛋白功能与定位注释",
+      "RCSB PDB 2O52晶体结构数据",
+      "Rab GTPase内体回收转运文献证据"
+    ],
+    "referenceEntries": "UniProt P61018；RCSB PDB 2O52；Open Targets RAB4B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Switch I/Switch II效应蛋白结合面",
+        "可实现GTP构象依赖性阻断并干预RAB4B效应蛋白招募",
+        "优先"
+      ],
+      [
+        "Site B",
+        "α3-β5邻近外露沟槽",
+        "有利于获得不直接竞争核苷酸的构象稳定型结合分子",
+        "备选"
+      ],
+      [
+        "Site C",
+        "P-loop核苷酸结合区域",
+        "序列与结构高度保守，存在交叉反应和影响基础GTP酶折叠风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RAB4B为胞内膜相关小GTP酶，常规抗体难以到达天然作用位点；设计宜采用VHH、细胞内递送或研究探针模式，并评估RAB4A/RAB5家族交叉反应。",
+    "structurePrepZh": "以PDB 2O52链A/B为模板，补全缺失侧链，保留核苷酸状态注释，按GTP酶核心结构对齐后标注Switch区柔性构象。",
+    "structureRef": "RCSB PDB 2O52，X-ray diffraction，2.2 Å",
+    "antibodies": [
+      "研究级anti-RAB4B抗体",
+      "Rab GTPase构象选择性VHH"
+    ],
+    "interfaceFocus": "Switch I/Switch II效应蛋白结合界面",
+    "designMode": "胞内VHH构象阻断",
+    "candidates": [
+      {
+        "target": "RAB4A",
+        "rationale": "RAB4A与RAB4B同属快速内体回收Rab亚家族，参与早期内体至质膜的受体再循环，可作为同轴通路冗余与选择性评估靶点。"
+      },
+      {
+        "target": "RAB11A",
+        "rationale": "RAB11A调控回收内体向质膜的慢速再循环，与RAB4B共同维持膜蛋白回收稳态，适合作为内体回收通路替代节点。"
+      },
+      {
+        "target": "RAB5A",
+        "rationale": "RAB5A控制早期内体形成与成熟，位于RAB4B介导回收分支的上游，可用于评估内吞入口与回收分流对疾病相关表型的贡献。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

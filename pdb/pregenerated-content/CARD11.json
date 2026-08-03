@@ -1,0 +1,65 @@
+{
+  "gene": "CARD11",
+  "generatedAt": "2026-08-03T10:59:53.664Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CARD11 是淋巴细胞抗原受体信号通路中的胞内支架蛋白，连接 BCR/TCR 近端激酶信号与 BCL10-MALT1 复合体形成，驱动 IKK-NF-κB 激活；功能缺失导致联合免疫缺陷，功能增强突变可参与 BENTA 病和 ABC 型弥漫大 B 细胞淋巴瘤。该蛋白缺乏天然胞外结构域，抗原可及性不适合常规体内阻断抗体，但其结构化 CARD/共iled-coil 片段可作为体外亲和试剂、细胞内抗体或降解递送模块的抗原。相较下游 NF-κB 组分，CARD11 位于抗原受体特异性 CBM 复合体入口，具备更高的通路选择性和疾病突变富集优先级。",
+    "mechanism": "设计分子应优先阻断 CARD11 CARD 与 BCL10 CARD 的同型 CARD-CARD 聚合界面，抑制 CBM 复合体装配及后续 IKK 复合体激活。",
+    "selectedEpitope": "优先覆盖 CARD 结构域酸碱互补聚合面及α螺旋束暴露沟槽，避开埋藏疏水核心。",
+    "diseaseDirection": "原发免疫缺陷与B细胞淋巴瘤",
+    "domain": "CARD11 含 N 端 CARD 结构域、coiled-coil 区、抑制区及 C 端 MAGUK 样 PDZ-SH3-GUK 模块。",
+    "evidence": "CARD11-CBM-NF-κB通路结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt Q9BXL7 蛋白功能注释",
+      "RCSB PDB 4LWD X射线晶体结构",
+      "OMIM与ClinVar CARD11变异-免疫表型记录"
+    ],
+    "referenceEntries": "UniProt Q9BXL7；RCSB PDB 4LWD；Open Targets CARD11",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CARD结构域同型相互作用电荷界面",
+        "可直接干预CARD11-BCL10聚合成核，机制指向性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CARD螺旋束外侧暴露沟槽",
+        "利于获得构象识别分子，可用于稳定非活化构象或检测突变状态",
+        "备选"
+      ],
+      [
+        "Site C",
+        "coiled-coil邻近寡聚化调控区",
+        "可能影响CARD11聚集与信号平台形成，但柔性和构象异质性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CARD11 为胞内蛋白，常规循环抗体缺乏靶点可及性；设计宜定位为细胞内抗体、蛋白降解递送模块或体外功能阻断试剂，并严格评估CARD家族交叉反应。",
+    "structurePrepZh": "以4LWD链A为结构模板，补全缺失侧链并校正质子化状态；保留CARD折叠核心，标注疾病相关突变与BCL10 CARD对接面用于表位筛选。",
+    "structureRef": "RCSB PDB 4LWD，X-ray diffraction，1.792 Å",
+    "antibodies": [
+      "研究级抗CARD11单克隆抗体",
+      "研究级抗CARMA1/CARD11抗体"
+    ],
+    "interfaceFocus": "CARD-CARD电荷互补聚合界面",
+    "designMode": "胞内抗体/结构阻断",
+    "candidates": [
+      {
+        "target": "BCL10",
+        "rationale": "BCL10 通过 CARD-CARD 相互作用与 CARD11 形成 CBM 复合体，是NF-κB信号装配的直接邻近节点。靶向该界面可验证CARD11依赖性信号成核。"
+      },
+      {
+        "target": "MALT1",
+        "rationale": "MALT1 是 CBM 复合体的蛋白酶和支架组分，参与抗原受体诱导的NF-κB激活。其蛋白酶活性与淋巴瘤和免疫炎症表型具有明确关联。"
+      },
+      {
+        "target": "BTK",
+        "rationale": "BTK 位于BCR近端信号轴上游，促进PLCγ2-CARD11通路激活。其在B细胞恶性肿瘤中的药理学可验证性高，可作为同通路比较靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

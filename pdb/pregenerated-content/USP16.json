@@ -1,0 +1,65 @@
+{
+  "gene": "USP16",
+  "generatedAt": "2026-08-03T17:44:09.897Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "USP16 为核内去泛素化酶，主要移除组蛋白 H2A Lys119 单泛素化修饰，参与 Polycomb 介导的染色质抑制解除、细胞周期推进与DNA损伤应答。Open Targets 显示其与肿瘤及多类定量性状存在遗传关联，但该蛋白缺乏经典胞外结构域或分泌特征，天然抗原可及性不支持常规细胞表面抗体阻断。相较膜受体类肿瘤靶点，USP16 的优先级更适合定位为结构指导的胞内结合分子、递送抗体或研究级功能抗体靶点，而非优先开发裸抗体治疗靶点。",
+    "mechanism": "设计结合 USP16 催化结构域的抗体片段，遮挡泛素 C 端尾部进入催化沟槽，抑制其对 H2AK119ub 的去泛素化作用。",
+    "selectedEpitope": "优先覆盖催化半胱氨酸邻近的泛素结合沟槽及 USP 结构域指状亚区界面。",
+    "diseaseDirection": "肿瘤表观遗传调控与染色质稳态",
+    "domain": "USP16 含 N 端调控区与 C 端 USP 催化结构域，催化结构域呈 palm-thumb-fingers 架构。",
+    "evidence": "USP16染色质去泛素化与肿瘤关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q9Y5T5 功能与结构域注释",
+      "RCSB PDB 9YCW X射线晶体结构",
+      "文献报道的 H2AK119ub 去泛素化功能研究"
+    ],
+    "referenceEntries": "UniProt Q9Y5T5；RCSB PDB 9YCW；Open Targets USP16",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "USP催化结构域泛素结合沟槽与催化Cys邻近区域",
+        "可直接阻断底物泛素尾部定位并抑制去泛素化反应",
+        "优先"
+      ],
+      [
+        "Site B",
+        "USP fingers亚区识别泛素远端疏水面的结构界面",
+        "可削弱泛素结合亲和力，适合构建非竞争性或变构抑制片段",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端调控区或柔性连接区暴露片段",
+        "结构稳定性和构象一致性有限，功能阻断相关性需实验验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "USP16 为胞内核定位酶，常规抗体难以进入作用区室；设计宜采用VHH、细胞内抗体或递送偶联策略，并避免干扰USP家族保守催化核心导致选择性不足。",
+    "structurePrepZh": "以9YCW高分辨率晶体结构为模板，保留抗原链A/B/C中构象完整链，补全缺失侧链并标注催化沟槽、泛素结合亚区及可及表面。",
+    "structureRef": "RCSB PDB 9YCW，X-ray diffraction，1.8 Å",
+    "antibodies": [
+      "研究级抗USP16抗体",
+      "细胞内VHH候选格式"
+    ],
+    "interfaceFocus": "催化沟槽、泛素尾部结合位点与fingers亚区",
+    "designMode": "胞内酶抑制型",
+    "candidates": [
+      {
+        "target": "BMI1",
+        "rationale": "BMI1 是 PRC1 复合体核心组分，参与 H2AK119 单泛素化沉积，与 USP16 在同一染色质标记周转轴上形成功能对照节点。"
+      },
+      {
+        "target": "RING1B",
+        "rationale": "RING1B/RNF2 是催化 H2AK119 泛素化的 PRC1 E3连接酶核心，与 USP16 的去泛素化活性共同决定该表观遗传标记水平。"
+      },
+      {
+        "target": "BAP1",
+        "rationale": "BAP1 亦为 H2AK119ub 去泛素化相关酶，参与染色质调控与肿瘤抑制网络，可作为同类表观遗传去泛素化通路参照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

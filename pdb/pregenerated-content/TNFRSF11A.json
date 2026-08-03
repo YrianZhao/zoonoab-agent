@@ -1,0 +1,65 @@
+{
+  "gene": "TNFRSF11A",
+  "generatedAt": "2026-08-03T17:21:37.563Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TNFRSF11A编码RANK，是RANKL介导破骨细胞分化、活化与存活的核心受体，异常激活可促进骨吸收并参与Paget病、家族性扩张性骨溶解及骨密度异常等骨重塑疾病。RANK为I型跨膜TNF受体家族成员，配体结合区由胞外半胱氨酸富集结构域组成，位于细胞表面，具备抗体直接识别与阻断的抗原可及性。相较下游TRAF6、NF-κB等胞内节点，RANK更适合抗体药物干预，并可在受体层面截断RANKL-RANK轴，优先级高于较难获得选择性阻断的胞内信号因子。",
+    "mechanism": "阻断RANK胞外CRD区与TNFSF11/RANKL的结合，抑制受体三聚化及TRAF6依赖性NF-κB、NFATc1破骨细胞分化信号。",
+    "selectedEpitope": "优先覆盖RANK胞外CRD2-CRD3配体结合界面，限制RANKL诱导的受体聚集。",
+    "diseaseDirection": "骨重塑异常与破骨细胞疾病",
+    "domain": "I型跨膜受体，胞外区含多个TNFR样半胱氨酸富集结构域，胞内区招募TRAF适配蛋白。",
+    "evidence": "RANK-RANKL骨吸收轴结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与关联评分",
+      "UniProt Q9Y6Q6功能与结构域注释",
+      "RCSB PDB 1LB5晶体结构记录",
+      "RANKL-RANK破骨细胞分化通路文献"
+    ],
+    "referenceEntries": "UniProt Q9Y6Q6；RCSB PDB 1LB5；HGNC TNFRSF11A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CRD2-CRD3配体结合界面",
+        "直接阻断RANKL接触并抑制受体三聚化，机制明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CRD1-CRD2邻近构象支撑区",
+        "可能通过空间位阻削弱RANKL装配，适合作为非竞争性阻断方案",
+        "备选"
+      ],
+      [
+        "Site C",
+        "靠近膜近端CRD4区域",
+        "可能影响受体构象但远离主要配体界面，需规避交联激动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TNFR家族受体存在抗体交联诱导受体聚集的潜在激动风险，设计应优先筛选单价阻断或无Fc聚集增强构型，并验证不激活NF-κB信号。",
+    "structurePrepZh": "以1LB5中RANK胞外链A、B为模板，校验二硫键、糖基化邻近位点和RANKL接触残基，保留CRD区构象用于表位映射。",
+    "structureRef": "PDB 1LB5，RANKL-RANK复合物X射线结构，2.4 Å",
+    "antibodies": [
+      "Denosumab",
+      "JMT103"
+    ],
+    "interfaceFocus": "RANK CRD2-CRD3与RANKL接触面",
+    "designMode": "受体阻断型抗体设计",
+    "candidates": [
+      {
+        "target": "TNFSF11",
+        "rationale": "TNFSF11编码RANKL，是RANK的直接配体，驱动破骨细胞生成与骨吸收；阻断RANKL已在骨质疏松和骨转移相关骨病中获得临床验证。"
+      },
+      {
+        "target": "TNFRSF11B",
+        "rationale": "TNFRSF11B编码OPG，是RANKL的诱饵受体并负向调控RANKL-RANK轴；其遗传或表达异常与骨密度和Paget样骨病相关。"
+      },
+      {
+        "target": "TRAF6",
+        "rationale": "TRAF6是RANK胞内信号复合体的关键适配蛋白，连接RANK活化与NF-κB、MAPK及NFATc1破骨细胞分化程序；但其胞内定位使其更适合小分子或降解策略而非抗体直接阻断。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

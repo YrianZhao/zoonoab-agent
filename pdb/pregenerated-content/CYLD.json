@@ -1,0 +1,65 @@
+{
+  "gene": "CYLD",
+  "generatedAt": "2026-08-03T11:46:05.081Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CYLD 是K63/M1连接泛素链去泛素化酶，负向限制TNFR、IL-1R、TLR及NEMO相关NF-κB信号，胚系失活与Brooke-Spiegler综合征、家族性圆柱瘤和多发性毛发上皮瘤具有明确遗传关联。该蛋白主要为胞质酶，缺乏天然胞外结构域或分泌暴露面，因此作为常规体内阻断抗体靶点的抗原可及性弱，更适合结构生物学试剂、细胞内递送抗体或降解平台探索。相比TNFRSF1A、NEMO或TRAF2等上游通路节点，CYLD具有疾病驱动突变富集和高分辨率催化结构支持的优先级，但治疗性抗体开发需首先解决胞内递送与功能调节方向性问题。",
+    "mechanism": "设计分子应结合CYLD USP催化结构域邻近泛素远端结合沟槽，干预CYLD与K63/M1泛素链底物的识别或稳定其催化构象。",
+    "selectedEpitope": "优先覆盖USP催化结构域的泛素结合沟槽与BL2环邻近界面，避免直接遮蔽催化Cys造成非选择性抑制。",
+    "diseaseDirection": "皮肤附属器肿瘤与NF-κB炎症轴",
+    "domain": "CYLD含N端CAP-Gly结构域、中央调控区及C端USP去泛素化催化结构域。",
+    "evidence": "CYLD遗传肿瘤综合征与USP结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9NQC7功能与结构域注释",
+      "RCSB PDB 7OWD晶体结构",
+      "OMIM与ClinVar胚系变异记录"
+    ],
+    "referenceEntries": "UniProt Q9NQC7；RCSB PDB 7OWD；Open Targets CYLD",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "USP结构域泛素远端结合沟槽及BL2环周边",
+        "可直接影响K63/M1泛素链底物识别，利于机制型结合分子设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "USP结构域非催化外侧保守表面",
+        "适合作为构象报告或亲和捕获表位，降低催化位点干扰风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化三联体邻近Cys-His-Asp活性中心",
+        "可能产生强抑制但选择性与功能补偿风险较高，需谨慎评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CYLD为胞内酶，常规抗体难以到达作用位点；设计应限定为Fab/VHH结构探针或递送型胞内抗体，并区分功能增强与抑制策略。",
+    "structurePrepZh": "以7OWD链A/B为实验结构模板，保留USP催化域构象，补全缺失侧链并标注活性中心、BL2环和泛素结合沟槽。",
+    "structureRef": "RCSB PDB 7OWD，X-ray diffraction，1.71 Å",
+    "antibodies": [
+      "commercial anti-CYLD clone EPR18234",
+      "commercial anti-CYLD clone D1A10"
+    ],
+    "interfaceFocus": "USP泛素结合沟槽与BL2环界面",
+    "designMode": "胞内结构抗体设计",
+    "candidates": [
+      {
+        "target": "TNFAIP3",
+        "rationale": "TNFAIP3/A20同为NF-κB通路负调控去泛素化因子，调节TNFR和免疫受体诱导的泛素信号，适合作为同轴去泛素化调控参照靶点。"
+      },
+      {
+        "target": "IKBKG",
+        "rationale": "IKBKG/NEMO是IKK复合体调节亚基，可识别K63/M1泛素链并介导NF-κB激活，与CYLD底物去泛素化功能位于同一信号轴。"
+      },
+      {
+        "target": "TRAF2",
+        "rationale": "TRAF2参与TNFR复合体泛素化支架形成，促进下游IKK-NF-κB信号，是CYLD去泛素化调控的上游相关节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

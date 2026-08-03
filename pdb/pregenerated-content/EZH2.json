@@ -1,0 +1,65 @@
+{
+  "gene": "EZH2",
+  "generatedAt": "2026-08-03T12:24:51.859Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "EZH2 是 PRC2 复合物的催化亚基，通过 SET 结构域介导 H3K27 三甲基化并沉默抑癌与分化相关基因，功能获得性突变与弥漫大 B 细胞淋巴瘤、滤泡性淋巴瘤密切相关。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌形式，抗原可及性不具备传统体内抗体阻断优势，更适合胞内递送抗体、降解抗体或结构验证抗体策略。相较于 PRC2 中 EED、SUZ12 等调控亚基，EZH2 具有明确催化口袋、疾病突变富集和已验证药物敏感性，因此在机制解析与胞内抗体工程中优先级较高。",
+    "mechanism": "设计抗体结合 EZH2 SET-I/SET 催化界面或 EED 结合相关构象面，阻断 SAM 依赖甲基转移构象稳定，降低 H3K27me3 沉积。",
+    "selectedEpitope": "优先聚焦 SET-I 与 SET 结构域邻近催化沟槽，避开高度保守 SAM 深口袋。",
+    "diseaseDirection": "B 细胞淋巴瘤与表观遗传异常",
+    "domain": "EZH2 含 EED 结合区、SANT 相关区、CXC 结构域及 C 端 SET 甲基转移酶结构域。",
+    "evidence": "EZH2-PRC2 表观遗传致癌证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传与药理关联",
+      "UniProt Q15910 功能与结构域注释",
+      "RCSB PDB 5U5T 人源 PRC2 晶体结构",
+      "COSMIC 与 ClinVar 淋巴瘤 EZH2 突变记录"
+    ],
+    "referenceEntries": "UniProt Q15910；RCSB PDB 5U5T；Open Targets ENSG00000106462",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SET-I/SET 催化构象界面",
+        "可干扰 H3K27 甲基转移所需活性构象，适合功能阻断型胞内抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CXC-SET 邻接结构域表面",
+        "可能影响催化域装配与核小体底物定位，具备变构调节价值",
+        "备选"
+      ],
+      [
+        "Site C",
+        "EED 结合相关 N 端调控区域",
+        "可能削弱 PRC2 复合物稳定性，但结构柔性与复合物依赖性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "EZH2 为核内酶，常规抗体体内可及性不足；设计应限定为胞内表达、递送抗体或研究级结合分子，并评估 EZH1 同源交叉反应。",
+    "structurePrepZh": "以 5U5T 高分辨率 PRC2 结构为模板，保留 EZH2 与核心复合物构象，标注 SAM/底物邻近残基并补全缺失柔性环区。",
+    "structureRef": "Justin et al., Nat Commun 2016；RCSB PDB 5U5T",
+    "antibodies": [
+      "研究级 anti-EZH2 clone D2C9",
+      "研究级 anti-EZH2 clone 11/EZH2"
+    ],
+    "interfaceFocus": "SET-I/SET 催化沟槽与 CXC-SET 邻接面",
+    "designMode": "胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "EED",
+        "rationale": "EED 是 PRC2 核心亚基，识别 H3K27me3 并通过变构机制激活 EZH2 催化活性，适合作为同一表观遗传通路的调控型候选靶点。"
+      },
+      {
+        "target": "SUZ12",
+        "rationale": "SUZ12 稳定 PRC2 复合物并参与核小体底物结合，其功能缺失或复合物装配异常直接影响 EZH2 介导的 H3K27 甲基化。"
+      },
+      {
+        "target": "RBBP4",
+        "rationale": "RBBP4 是 PRC2 相关组蛋白结合亚基，参与核小体识别和染色质募集，可作为干预 PRC2 染色质定位的候选节点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "DOCK2",
+  "generatedAt": "2026-08-03T18:38:40.547Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DOCK2 是造血细胞富集表达的 Rac 鸟嘌呤核苷酸交换因子，DOCK2 缺陷可导致 T、B、NK 细胞迁移和免疫突触形成异常，并与联合免疫缺陷及病毒易感性相关。该蛋白为胞内信号转导蛋白，天然抗原可及性显著低于膜受体或分泌因子，因此更适合作为机制验证或细胞内递送抗体设计靶点。相比广泛表达的 Rac 调控因子，DOCK2 在免疫细胞谱系中的富集性和明确的人类遗传缺陷证据提高了免疫缺陷通路研究优先级。",
+    "mechanism": "设计抗体阻断 DOCK2 DHR-2 催化结构域与 RAC1 的结合界面，抑制 RAC1 GDP-GTP 交换，削弱趋化因子诱导的肌动蛋白重排与淋巴细胞迁移。",
+    "selectedEpitope": "优先覆盖 DHR-2 结构域 RAC1 结合沟槽及催化界面，避免远离交换界面的保守折叠核心。",
+    "diseaseDirection": "原发性免疫缺陷与病毒易感性",
+    "domain": "DOCK2 含 SH3、DHR-1 磷脂结合结构域及 DHR-2 Rac GEF 催化结构域。",
+    "evidence": "DOCK2 免疫缺陷通路与DHR-2结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q92608 functional annotation",
+      "RCSB PDB 3A98 X-ray structure",
+      "Human DOCK2 deficiency clinical genetics literature"
+    ],
+    "referenceEntries": "UniProt Q92608；RCSB PDB 3A98；Open Targets DOCK2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DHR-2结构域RAC1结合沟槽",
+        "直接干预DOCK2介导的RAC1核苷酸交换反应",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DHR-2催化叶片外侧邻近界面",
+        "可能产生变构抑制并降低对折叠核心的扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "DHR-1磷脂结合区域",
+        "可能影响膜定位，但与3A98催化结构证据衔接较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DOCK2 为胞内蛋白，常规循环抗体难以到达作用位点；宜采用胞内递送、细胞穿透格式或作为结构生物学验证抗体，并严格评估与 DOCK1、DOCK5 催化域交叉反应。",
+    "structurePrepZh": "以 3A98 实验晶体结构链 A-D 为模板，保留 DHR-2 催化域完整构象，校正缺失侧链、质子化状态及晶体接触后进行界面映射。",
+    "structureRef": "RCSB PDB 3A98，DOCK2 DHR-2结构，2.1 Å X-ray",
+    "antibodies": [
+      "抗DOCK2研究用单克隆抗体",
+      "抗DOCK2研究用多克隆抗体"
+    ],
+    "interfaceFocus": "DHR-2与RAC1小GTP酶结合界面",
+    "designMode": "胞内靶点阻断型",
+    "candidates": [
+      {
+        "target": "RAC1",
+        "rationale": "RAC1 是 DOCK2 DHR-2 结构域的直接小 GTP 酶底物，位于同一趋化因子诱导的肌动蛋白重排和免疫细胞迁移通路。"
+      },
+      {
+        "target": "VAV1",
+        "rationale": "VAV1 是淋巴细胞中关键 Rac/Rho GEF，参与 TCR 与趋化因子信号下游的细胞骨架重塑，可作为并行免疫迁移调控节点。"
+      },
+      {
+        "target": "CXCR4",
+        "rationale": "CXCR4 通过 CXCL12 诱导淋巴细胞趋化，并可上游连接 DOCK2-RAC1 介导的肌动蛋白动态变化，抗原可及性优于胞内 GEF。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "VAT1L",
+  "generatedAt": "2026-08-03T17:47:28.954Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "VAT1L 为胞质可溶性酶样蛋白，PDB 4A27 显示其具有NADPH依赖性氧化还原酶折叠，但并非典型细胞表面受体或分泌抗原。Open Targets 关联主要集中于屈光误差、肾小球滤过率、钾水平和血浆蛋白量等数量性状，提示其可能参与代谢稳态或遗传关联网络，而非已确证的单一配体-受体疾病通路。抗原可及性方面，VAT1L缺乏胞外结构域和跨膜外露区，因此全身给药抗体优先级低于FGFRL1、UMOD、SLC12A3等具有分泌或膜定位优势的同疾病表型相关靶点；更适合作为结构生物学参照或细胞内递送抗体探索对象。",
+    "mechanism": "采用细胞内递送抗体或内体逃逸VHH，阻断VAT1L保守Rossmann样NADPH结合沟槽与辅因子的结合，抑制其氧化还原酶样活性。",
+    "selectedEpitope": "优先覆盖Rossmann样NADPH结合沟槽邻近环区，避免直接依赖高度保守核心β折叠表面。",
+    "diseaseDirection": "数量性状与肾眼代谢表型",
+    "domain": "VAT1L包含NADPH依赖性醌氧化还原酶样Rossmann折叠结构域，4A27为同源二聚体晶体结构。",
+    "evidence": "VAT1L遗传关联与4A27结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9HCJ6 functional annotation",
+      "RCSB PDB 4A27 X-ray structure",
+      "Human Protein Atlas subcellular localization"
+    ],
+    "referenceEntries": "UniProt Q9HCJ6；RCSB PDB 4A27；Ensembl ENSG00000171724",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "NADPH结合沟槽周边可塑环区",
+        "可能干预辅因子进入并提供较高构象选择性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "二聚体界面邻近α螺旋与β片层边缘",
+        "可评估是否影响VAT1L二聚体稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Rossmann核心β折叠保守面",
+        "同源氧化还原酶交叉反应风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "VAT1L为胞内蛋白，常规抗体难以到达作用位点；需采用细胞穿透、内体逃逸或胞内表达格式，并优先排除同源Rossmann折叠蛋白交叉反应。",
+    "structurePrepZh": "以4A27链A/B为模板，补全缺失侧链和质子化状态，保留NADPH结合沟槽几何特征，评估二聚体界面和晶体接触对表位暴露的影响。",
+    "structureRef": "RCSB PDB 4A27，X-ray diffraction，2.1 Å",
+    "antibodies": [
+      "暂无获批VAT1L靶向抗体",
+      "暂无临床阶段VAT1L靶向抗体"
+    ],
+    "interfaceFocus": "NADPH结合沟槽与二聚体界面邻近环区",
+    "designMode": "胞内VHH探索",
+    "candidates": [
+      {
+        "target": "FGFRL1",
+        "rationale": "FGFRL1血清水平位列相关表型之一，且FGFRL1为单跨膜成纤维生长因子受体样蛋白，胞外免疫球蛋白样结构域具备抗体可及性。"
+      },
+      {
+        "target": "UMOD",
+        "rationale": "UMOD为肾小管分泌糖蛋白，与肾小球滤过率和慢性肾病风险存在明确遗传关联，分泌型抗原属性适合抗体识别。"
+      },
+      {
+        "target": "SLC12A3",
+        "rationale": "SLC12A3编码远曲小管Na-Cl协同转运体，与钾水平和肾电解质稳态密切相关，可作为同类肾脏数量性状通路中的膜蛋白参照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

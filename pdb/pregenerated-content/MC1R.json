@@ -1,0 +1,65 @@
+{
+  "gene": "MC1R",
+  "generatedAt": "2026-08-03T14:06:29.756Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MC1R 是黑皮质素通路中的关键 GPCR，α-MSH/ACTH 结合后激活 Gs-cAMP-MITF 轴，促进真黑素生成并影响紫外线损伤后的色素保护反应，其遗传变异与皮肤色素异常、毛发颜色及皮肤肿瘤风险相关。该受体为七跨膜膜受体，N 端胞外区和三个胞外环可被抗体接近，适合开展构象表位识别。相较于下游 MITF、TYR 等胞内酶或转录因子，MC1R 位于配体识别起始层级，具备更明确的细胞表面干预可及性和通路选择优势。",
+    "mechanism": "抗体拟阻断 α-MSH 与 MC1R 胞外前庭及跨膜结合口袋入口的相互作用，抑制 Gs 偶联和 cAMP 生成。",
+    "selectedEpitope": "优先覆盖 N 端胞外区与 ECL2 形成的配体入口构象界面，避免深入口袋内疏水核心。",
+    "diseaseDirection": "皮肤色素异常与皮肤肿瘤风险",
+    "domain": "MC1R 含 N 端胞外段、7 个跨膜螺旋、3 个胞外环及胞内 G 蛋白偶联界面。",
+    "evidence": "MC1R 色素生成与皮肤肿瘤关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q01726 functional annotation",
+      "RCSB PDB 7F4H cryo-EM structure",
+      "GWAS and melanoma pigmentation genetics literature"
+    ],
+    "referenceEntries": "UniProt Q01726；RCSB PDB 7F4H；Open Targets MC1R",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N 端胞外段-ECL2 配体入口构象界面",
+        "可干扰 α-MSH 进入正构结合位点，并保留抗体可及性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ECL1 与 TM2-TM3 外侧前庭区域",
+        "可作为别构阻断位点，降低对跨膜疏水核心的依赖",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ECL3 与 TM6-TM7 外侧区域",
+        "靠近受体激活构象重排区域，但存在构象异质性和选择性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MC1R 胞外环较短且构象依赖性强，需规避跨膜疏水面和保守 GPCR 骨架区域；建议采用构象稳定抗原并开展 MC3R、MC4R、MC5R 交叉筛选。",
+    "structurePrepZh": "以 7F4H 冷冻电镜结构为模板，保留受体胞外前庭构象，去除非目标辅助蛋白与非必要配体，补全缺失胞外环并进行膜环境约束能量优化。",
+    "structureRef": "RCSB PDB 7F4H，human MC1R cryo-EM，2.7 Å",
+    "antibodies": [
+      "抗 MC1R 研究级单克隆抗体",
+      "抗 MC1R 胞外环识别抗体"
+    ],
+    "interfaceFocus": "N 端-ECL2 配体入口与胞外前庭",
+    "designMode": "构象阻断型抗体",
+    "candidates": [
+      {
+        "target": "POMC",
+        "rationale": "POMC 是 α-MSH 与 ACTH 的前体，位于 MC1R 上游配体生成环节；其加工产物直接驱动 MC1R 介导的色素生成信号。"
+      },
+      {
+        "target": "ASIP",
+        "rationale": "ASIP 是 MC1R 的内源性拮抗/反向激动相关配体，可与 α-MSH 在 MC1R 上竞争并影响真黑素与褐黑素平衡。"
+      },
+      {
+        "target": "MC4R",
+        "rationale": "MC4R 属于同一黑皮质素受体家族并共享 POMC 衍生黑皮质素配体，适合作为通路相关选择性评估靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

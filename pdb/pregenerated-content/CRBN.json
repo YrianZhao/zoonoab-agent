@@ -1,0 +1,65 @@
+{
+  "gene": "CRBN",
+  "generatedAt": "2026-08-03T11:37:50.372Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CRBN 是 CRL4CRBN E3 泛素连接酶复合体的底物受体，在多发性骨髓瘤中介导来那度胺、泊马度胺等 IMiD 诱导 IKZF1/IKZF3 泛素化降解，进而抑制浆细胞生存程序。其蛋白主要定位于细胞内，与 DDB1 形成复合体，天然抗原可及性显著弱于膜受体或分泌蛋白，因此更适合作为细胞内靶向递送、降解复合体阻断或研究型结合分子设计对象。相较 IKZF1/IKZF3 等转录因子，CRBN 具备高分辨率结构、明确小分子结合口袋和可解析复合物界面，结构驱动抗体片段设计优先级更高。",
+    "mechanism": "设计结合分子阻断 CRBN C 端 CULT 结构域与 IMiD 依赖性新底物 IKZF1/IKZF3 的招募界面，干预 DDB1-CRBN 复合体介导的泛素化反应。",
+    "selectedEpitope": "优先覆盖 C 端 CULT 结构域三色氨酸口袋及邻近新底物招募面，避开 DDB1 稳定结合核心界面。",
+    "diseaseDirection": "血液肿瘤与CRL4CRBN降解通路",
+    "domain": "CRBN 含 N 端 Lon-like 区域与 C 端 CULT 结构域，CULT 域形成 IMiD 结合口袋并参与底物识别。",
+    "evidence": "CRBN结构-功能与骨髓瘤药理证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传与药理关联",
+      "UniProt Q96SW2 蛋白功能与亚细胞定位注释",
+      "RCSB PDB 4M91 高分辨率晶体结构",
+      "多发性骨髓瘤 IMiD-CRBN-IKZF1/IKZF3 机制研究"
+    ],
+    "referenceEntries": "UniProt Q96SW2；RCSB PDB 4M91；Open Targets CRBN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CULT 结构域三色氨酸 IMiD 结合口袋邻近面",
+        "可干预药物依赖性新底物招募，结构界面定义清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CULT 结构域外侧底物识别沟槽",
+        "可能影响 IKZF1/IKZF3 对接而较少破坏 DDB1 复合体稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端 Lon-like 区域与 DDB1 接触附近表面",
+        "可能改变复合体装配，但存在广泛功能扰动与构象依赖风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CRBN 为细胞内蛋白，常规抗体药物可及性受限；宜采用胞内抗体、递送型 Fab/VHH 或机制验证分子，并严格评估 DDB1 复合体稳定性影响。",
+    "structurePrepZh": "以 4M91 晶体结构为核心模板，保留 CRBN 链并校验配体口袋残基；补全缺失环区、质子化关键位点后用于界面聚类与表位筛选。",
+    "structureRef": "Chamberlain et al., Nat Struct Mol Biol, 2014；PDB 4M91",
+    "antibodies": [
+      "抗 CRBN 研究级单克隆抗体",
+      "抗 CRBN 细胞内 VHH/纳米抗体候选"
+    ],
+    "interfaceFocus": "CULT 域 IMiD 口袋与 IKZF1/IKZF3 招募面",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "DDB1",
+        "rationale": "DDB1 是 CRL4CRBN 复合体支架蛋白，直接结合 CRBN 并连接 CUL4A/CUL4B 泛素连接酶核心；其界面调节可影响 CRBN 依赖性底物泛素化。"
+      },
+      {
+        "target": "IKZF1",
+        "rationale": "IKZF1 是 IMiD-CRBN 复合体诱导降解的关键转录因子底物，其降解与多发性骨髓瘤细胞抗增殖效应密切相关。"
+      },
+      {
+        "target": "IKZF3",
+        "rationale": "IKZF3 与 IKZF1 同属 CRBN 药物依赖性新底物，降解后降低 IRF4/MYC 相关浆细胞存活转录网络活性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "OPTN",
+  "generatedAt": "2026-08-03T14:58:33.723Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "OPTN编码的optineurin参与选择性自噬、线粒体自噬、NF-κB负调控与囊泡运输，ALS相关突变可削弱其与LC3、TBK1或泛素链的功能耦联，促进蛋白聚集清除障碍和运动神经元应激。其主要定位于胞质及膜相关内体/高尔基结构，缺乏经典分泌型或跨膜胞外结构域，抗体抗原可及性不及膜受体或分泌蛋白。相较TNF、IL6R等可直接胞外阻断的炎症靶点，OPTN更适合作为细胞内机制研究或递送型抗体工程靶点，主靶点优先级应依赖明确突变背景与细胞内递送可行性。",
+    "mechanism": "递送型抗体可结合OPTN C端泛素结合区，干预其与K63/M1泛素链的结合，从而改变TBK1依赖的选择性自噬复合物募集。",
+    "selectedEpitope": "优先评估PDB 3VTV所示C端UBAN/锌指相邻泛素结合界面，避开二聚化核心保守疏水面。",
+    "diseaseDirection": "ALS与开角型青光眼相关神经退行性疾病",
+    "domain": "OPTN含N端卷曲螺旋区、LC3相互作用区、UBAN泛素结合区及C端锌指结构域。",
+    "evidence": "OPTN神经退行性疾病与自噬通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联证据",
+      "UniProt Q96CV9功能与变异注释",
+      "RCSB PDB 3VTV晶体结构记录",
+      "OMIM与ALS/青光眼遗传学文献"
+    ],
+    "referenceEntries": "UniProt Q96CV9；RCSB PDB 3VTV；Open Targets OPTN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端UBAN/泛素结合界面邻近区域",
+        "可直接影响OPTN识别线性或K63连接泛素链的能力",
+        "优先"
+      ],
+      [
+        "Site B",
+        "LC3相互作用区及其相邻柔性片段",
+        "可用于调节OPTN与LC3家族蛋白介导的自噬受体功能",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端卷曲螺旋二聚化区域",
+        "可能影响高阶复合物装配，但保守结构面带来功能扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "OPTN为胞内支架蛋白，常规抗体难以到达作用位点；应采用细胞内递送、intrabody或降解偶联策略，并避免破坏广泛必需的自噬稳态。",
+    "structurePrepZh": "以3VTV链A为结构模板，补全缺失柔性区并标注UBAN、锌指及突变热点；抗原建模需保留二聚化状态与泛素结合构象。",
+    "structureRef": "RCSB PDB 3VTV，X射线晶体结构，1.7 Å",
+    "antibodies": [
+      "抗OPTN研究级单克隆抗体",
+      "抗optineurin免疫检测抗体"
+    ],
+    "interfaceFocus": "UBAN-泛素链结合面与C端锌指邻域",
+    "designMode": "胞内递送型抗体",
+    "candidates": [
+      {
+        "target": "TBK1",
+        "rationale": "TBK1在ALS相关自噬通路中磷酸化OPTN并增强其自噬受体功能，遗传变异亦与ALS和额颞叶变性相关。"
+      },
+      {
+        "target": "SQSTM1",
+        "rationale": "SQSTM1/p62与OPTN同属选择性自噬受体，均通过泛素链与LC3家族蛋白连接异常蛋白或受损细胞器至自噬体。"
+      },
+      {
+        "target": "TANK",
+        "rationale": "TANK与TBK1复合物相关，并参与先天免疫和NF-κB信号调节，与OPTN共享TBK1依赖的调控网络。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

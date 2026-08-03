@@ -1,0 +1,65 @@
+{
+  "gene": "SMG1",
+  "generatedAt": "2026-08-03T16:44:25.124Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SMG1 是磷脂酰肌醇3激酶相关激酶家族成员，参与无义介导 mRNA 降解并通过 UPF1 磷酸化耦联异常转录本清除，在遗传性转录后稳态失衡及肿瘤适应性应答中具有明确机制关联。其为胞内大型激酶，缺乏传统抗体可及的胞外抗原优势，因而更适合以结构导向的构象表位与功能阻断型抗体策略开展设计。相较同通路中的 UPF1、UPF2 或 SMG6，SMG1 位于上游激酶控制节点，具备更强的机制汇聚性与干预优先级，适合作为主靶点。",
+    "mechanism": "阻断 SMG1 与 UPF1 结合并抑制其激酶催化构象稳定，从而降低 UPF1 Ser/Thr 位点磷酸化。",
+    "selectedEpitope": "优先选择激酶结构域 ATP 结合裂隙邻近的构象依赖表位，兼顾 UPF1 招募界面。",
+    "diseaseDirection": "RNA监控与肿瘤",
+    "domain": "PIKK 家族 N 端 HEAT 重复区、中央激酶结构域及 FATC 尾端。",
+    "evidence": "SMG1 结构与疾病关联证据包",
+    "evidenceSources": [
+      "UniProt: Q96Q15",
+      "RCSB PDB: 7PW8",
+      "Open Targets Platform",
+      "PDBe / EMDB 结构注释"
+    ],
+    "referenceEntries": "UniProt Q96Q15；RCSB PDB 7PW8；SMG1 human protein entry",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域 ATP 结合口袋邻近环区",
+        "有利于阻断催化活性并限制 UPF1 磷酸化",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FATC 近端构象界面",
+        "适合稳定失活构象，增强功能抑制",
+        "备选"
+      ],
+      [
+        "Site C",
+        "HEAT 重复区 UPF1 对接面",
+        "可干扰底物招募，但特异性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SMG1 为大型胞内激酶，抗体进入细胞与选择性识别均构成主要风险；优先采用构象特异性 Fab 或 VHH 方案，并围绕激酶域与底物对接界面进行精细分辨。需重点规避与其他 PIKK 家族成员保守激酶核心的交叉识别。",
+    "structurePrepZh": "基于 7PW8 冷冻电镜模型完成链 A/B/C 重建，统一编号并保留激酶域、FAT 区与界面水分子；随后进行缺失环建模与局部能量最小化，用于表位与界面评估。",
+    "structureRef": "EM 结构 7PW8；SMG1 冷冻电镜解析",
+    "antibodies": [
+      "ATM/PIKK 构象识别抗体研究工具抗体",
+      "激酶域阻断型 Fab 文献抗体"
+    ],
+    "interfaceFocus": "激酶域活性裂隙与 UPF1 对接界面",
+    "designMode": "structure-guided",
+    "candidates": [
+      {
+        "target": "UPF1",
+        "rationale": "UPF1 是 SMG1 的直接底物，也是无义介导降解的核心执行因子，适合作为同通路验证靶点。围绕 SMG1-UPF1 磷酸化轴进行组合评估，可增强机制闭环。"
+      },
+      {
+        "target": "SMG6",
+        "rationale": "SMG6 处于 NMD 下游切割执行环节，与 SMG1 同属无义介导降解通路。其与 SMG1 共同构成通路级验证节点，便于比较上游激酶抑制与下游效应阻断。"
+      },
+      {
+        "target": "UPF2",
+        "rationale": "UPF2 参与 NMD 复合体装配并协同 UPF1 激活，属于与 SMG1 同一疾病通路的真实节点。与 SMG1 联合分析有助于区分底物招募缺陷与激酶活性抑制两类机制。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

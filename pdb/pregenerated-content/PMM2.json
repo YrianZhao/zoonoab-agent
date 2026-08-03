@@ -1,0 +1,65 @@
+{
+  "gene": "PMM2",
+  "generatedAt": "2026-08-03T15:23:59.948Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PMM2 编码胞质磷酸甘露糖变位酶，催化甘露糖-6-磷酸与甘露糖-1-磷酸互变，是 GDP-甘露糖生成及 N-连接糖基化前体合成的关键限速环节。PMM2 缺陷直接导致 PMM2-CDG 和 CDG-I 型糖基化不足，并与小脑共济失调、小脑发育不全等表型高度相关。该蛋白为胞内代谢酶，天然抗原可及性弱，不适合作为常规阻断型治疗抗体靶点；其优先价值在于结构明确、疾病因果性强，可用于细胞内递送抗体片段或构象稳定型分子工具设计。相比下游广泛糖基转移酶，PMM2 位于通路上游且遗传证据更集中，靶点优先级主要来自因果机制清晰而非表面可及性。",
+    "mechanism": "设计胞内递送 Fab/VHH 结合 PMM2 催化裂隙邻近构象面，稳定活性环与二聚体构象，降低致病突变引起的折叠不稳定或活性构象丢失。",
+    "selectedEpitope": "优先选择帽状结构域与核心催化结构域交界、靠近活性环但避开底物磷酸结合位点的构象表位。",
+    "diseaseDirection": "PMM2-CDG与先天糖基化障碍",
+    "domain": "PMM2 为胞质同源二聚体酶，含核心α/β催化结构域及帽状结构域，活性位点位于两结构域之间。",
+    "evidence": "PMM2-CDG遗传因果与酶结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt O15305 functional annotation",
+      "RCSB PDB 7O58 X-ray structure",
+      "OMIM PMM2-congenital disorder of glycosylation evidence"
+    ],
+    "referenceEntries": "UniProt O15305；RCSB PDB 7O58；Open Targets PMM2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "帽状结构域-核心催化结构域交界面",
+        "有利于稳定活性构象并降低对底物结合的直接竞争",
+        "优先"
+      ],
+      [
+        "Site B",
+        "同源二聚体界面外缘非催化面",
+        "可增强二聚体稳定性，适合构象稳定型抗体片段筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化裂隙及磷酸甘露糖结合口袋",
+        "可能抑制底物进入并造成酶活损失，需避免强阻断",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PMM2 为胞内酶且缺乏天然细胞外暴露，常规抗体药物递送受限；设计应采用胞内递送片段，并避免占据催化磷酸结合位点。",
+    "structurePrepZh": "以 7O58 双链晶体结构为模板，保留同源二聚体装配，校验催化残基、活性环和突变热点邻近区域后进行表面可及性分析。",
+    "structureRef": "RCSB PDB 7O58，X-ray diffraction，1.97 Å",
+    "antibodies": [
+      "无获批PMM2靶向抗体",
+      "无临床阶段PMM2抗体"
+    ],
+    "interfaceFocus": "帽状结构域交界面与二聚体稳定界面",
+    "designMode": "胞内构象稳定",
+    "candidates": [
+      {
+        "target": "MPI",
+        "rationale": "MPI 催化果糖-6-磷酸与甘露糖-6-磷酸互变，位于 PMM2 上游并影响 GDP-甘露糖供给，是 CDG-I 相关甘露糖代谢通路真实节点。"
+      },
+      {
+        "target": "DPM1",
+        "rationale": "DPM1 参与多萜醇磷酸甘露糖合成，连接 GDP-甘露糖池与内质网糖基化供体生成，缺陷可导致先天糖基化障碍。"
+      },
+      {
+        "target": "ALG1",
+        "rationale": "ALG1 催化脂质连接寡糖早期甘露糖转移步骤，处于 N-连接糖基化装配通路内，并与 CDG-I 型疾病机制一致。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

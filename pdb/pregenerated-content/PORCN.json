@@ -1,0 +1,65 @@
+{
+  "gene": "PORCN",
+  "generatedAt": "2026-08-03T15:28:24.465Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PORCN是内质网膜定位的Wnt O-酰基转移酶，催化Wnt配体棕榈油酰化并决定其与WLS结合、分泌及下游Frizzled/LRP5/6信号激活；该轴与Wnt依赖性肿瘤及发育异常疾病相关。该靶点为多跨膜酶，主要催化腔面位于内质网腔侧，天然抗原可及性低于细胞表面受体或分泌蛋白。其优先级来自通路上游、可同时限制多种Wnt配体成熟的机制优势，但抗体成药性风险显著高于FZD、LRP6或Wnt配体本身。",
+    "mechanism": "以结构引导抗体阻断PORCN腔面催化入口或Wnt脂酰化底物结合沟槽，抑制Wnt Ser209棕榈油酰化及其与WLS装载。",
+    "selectedEpitope": "优先评估内质网腔侧催化口袋周缘及Wnt底物进入沟槽，避开膜内疏水跨膜束核心。",
+    "diseaseDirection": "Wnt通路相关肿瘤与发育异常",
+    "domain": "PORCN为MBOAT家族多跨膜O-酰基转移酶，含膜内催化核心及腔面底物识别区域。",
+    "evidence": "PORCN-Wnt脂酰化结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt Q9H237功能与亚细胞定位注释",
+      "RCSB PDB 9OO6冷冻电镜结构",
+      "Wnt分泌与PORCN抑制剂药理研究"
+    ],
+    "referenceEntries": "UniProt Q9H237；RCSB PDB 9OO6；Open Targets PORCN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "腔面催化入口及底物进入沟槽周缘",
+        "直接干预Wnt底物结合与脂酰转移，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "腔面可溶性环区邻近MBOAT催化核心",
+        "可通过空间位阻限制Wnt或WLS相关装载步骤，适合结构优化",
+        "备选"
+      ],
+      [
+        "Site C",
+        "膜内跨膜螺旋束疏水界面",
+        "抗体可及性差且易受膜环境影响，构象表征与筛选风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PORCN位于内质网膜且非细胞表面抗原，常规抗体难以到达作用位点；建议限定为胞内递送抗体、工程化VHH或作为结构验证抗原模型。",
+    "structurePrepZh": "基于9OO6抗原链A保留跨膜区、腔面环及催化核心构象，补全缺失环区并在膜模拟环境中评估表位暴露。",
+    "structureRef": "RCSB PDB 9OO6，human PORCN冷冻电镜结构，2.39 Å",
+    "antibodies": [
+      "无已批准PORCN治疗性抗体",
+      "抗PORCN研究级单克隆抗体"
+    ],
+    "interfaceFocus": "腔面催化入口与Wnt底物结合沟槽",
+    "designMode": "结构约束型阻断",
+    "candidates": [
+      {
+        "target": "WLS",
+        "rationale": "WLS负责结合脂酰化Wnt并介导其分泌，与PORCN处于同一Wnt配体成熟与转运轴。其多跨膜特征同样具有挑战，但作用点更接近Wnt装载过程。"
+      },
+      {
+        "target": "FZD7",
+        "rationale": "FZD7是多种Wnt配体的细胞表面受体，参与β-catenin依赖性信号启动。相较PORCN，其胞外CRD可及性更适合抗体阻断Wnt-FZD相互作用。"
+      },
+      {
+        "target": "LRP6",
+        "rationale": "LRP6是经典Wnt信号共受体，与FZD共同形成受体复合物并促进β-catenin稳定化。其胞外β-propeller/EGF样结构域提供明确的抗体表位设计空间。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

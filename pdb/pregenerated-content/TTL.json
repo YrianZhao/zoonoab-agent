@@ -1,0 +1,65 @@
+{
+  "gene": "TTL",
+  "generatedAt": "2026-08-03T17:33:26.591Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TTL 是可溶性胞质酶，催化去酪氨酸化α-微管蛋白C端重新连接酪氨酸，参与微管酪氨酸化循环并影响细胞骨架动力学、纤毛功能和有丝分裂过程。现有 Open Targets 关联主要集中于行为测量性状、角膜营养不良和红细胞体积等表型，缺乏明确的可药性疾病驱动机制。由于 TTL 位于胞内且不具备分泌蛋白或膜受体的胞外可及结构，相比同通路中可被细胞内递送策略或小分子调控的酶类，常规抗体开发优先级较低；若用于机制研究，应定位为细胞内功能阻断或结构探针靶点。",
+    "mechanism": "抗体需进入细胞后遮蔽 TTL 活性口袋或微管蛋白C端结合槽，阻断去酪氨酸化α-微管蛋白与酪氨酸的连接反应。",
+    "selectedEpitope": "优先围绕 TTL ATP-grasp 催化核心邻近的微管蛋白C端结合槽设计阻断型表位。",
+    "diseaseDirection": "微管酪氨酸化循环相关表型",
+    "domain": "TTL 属 tubulin tyrosine ligase-like 家族，含 ATP-grasp 催化核心及识别α-微管蛋白C端的底物结合界面。",
+    "evidence": "TTL微管酪氨酸化循环结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病-靶点关联",
+      "UniProt Q8NG68 功能注释",
+      "RCSB PDB 8ASN X射线晶体结构",
+      "TTLL/TTL微管蛋白酪氨酸化循环文献"
+    ],
+    "referenceEntries": "UniProt Q8NG68；RCSB PDB 8ASN；Open Targets TTL",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ATP-grasp催化核心邻近底物结合槽",
+        "可直接干扰α-微管蛋白C端定位及酪氨酸连接反应",
+        "优先"
+      ],
+      [
+        "Site B",
+        "α-微管蛋白C端识别界面外缘",
+        "有利于获得底物竞争型抑制抗体并保留结构选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "TTL保守ATP结合与金属离子协调区域",
+        "保守性高且可能影响同源酶选择性，需避免广泛交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TTL 为胞内可溶酶，常规抗体缺乏天然抗原可及性；设计应优先用于细胞内递送、纳米抗体表达或结构生物学阻断验证。",
+    "structurePrepZh": "以 8ASN 晶体结构为模板，保留催化核心与底物结合槽构象，检查缺失环区、配体状态和多链装配后进行表面暴露性评估。",
+    "structureRef": "RCSB PDB 8ASN，X-ray diffraction 2.571 Å",
+    "antibodies": [
+      "无已获批TTL靶向治疗性抗体",
+      "研究级抗TTL抗体"
+    ],
+    "interfaceFocus": "催化核心-α微管蛋白C端结合槽",
+    "designMode": "胞内阻断型",
+    "candidates": [
+      {
+        "target": "VASH1",
+        "rationale": "VASH1 与 SVBP 形成去酪氨酸化酶复合物，直接去除α-微管蛋白C端酪氨酸，是 TTL 反向酶促循环的核心节点。"
+      },
+      {
+        "target": "SVBP",
+        "rationale": "SVBP 稳定并激活 VASH1/VASH2 去酪氨酸化活性，调节微管去酪氨酸化水平，与 TTL 处于同一酪氨酸化循环。"
+      },
+      {
+        "target": "VASH2",
+        "rationale": "VASH2 具有微管蛋白去酪氨酸化活性，与 VASH1/SVBP 轴共同对抗 TTL 介导的再酪氨酸化过程。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

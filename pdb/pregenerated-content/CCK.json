@@ -1,0 +1,65 @@
+{
+  "gene": "CCK",
+  "generatedAt": "2026-08-03T18:17:57.928Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CCK 是胃肠-中枢能量稳态轴中的肽类激素，可通过 CCKAR/CCKBR 调节胆囊收缩、胰酶分泌、胃排空及饱腹信号，与体重、体脂量和 BMI 等表型具有遗传与功能关联。成熟 CCK 肽为分泌型抗原，主要在胞外环境与膜受体结合，抗体可直接接触循环或局部分泌肽段。相较下游神经递质或胞内代谢酶，CCK 具有配体-受体界面明确、结构复合物分辨率高和药理验证充分的优先级优势。",
+    "mechanism": "抗体结合硫酸化 CCK 八肽的受体识别面，阻断 CCK 与 CCKAR/CCKBR 胞外入口及跨膜结合口袋的相互作用。",
+    "selectedEpitope": "优先覆盖成熟 CCK-8 的硫酸化 Tyr27、Met28-Gly29-Trp30 受体识别核心。",
+    "diseaseDirection": "肥胖与能量摄入调控",
+    "domain": "CCK 前体经加工产生分泌型成熟肽，活性核心为 C 端硫酸化 CCK-8 酰胺肽段。",
+    "evidence": "CCK-受体轴在体重与摄食调控中的证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProtKB P06307 蛋白注释",
+      "RCSB PDB 7MBX 冷冻电镜结构",
+      "GPCRdb 与药理学文献中的 CCKAR/CCKBR 配体结合资料"
+    ],
+    "referenceEntries": "UniProt P06307；RCSB PDB 7MBX；Open Targets CCK",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "成熟 CCK-8 C 端酰胺化肽段及硫酸化 Tyr27 邻近面",
+        "直接遮蔽 CCKAR/CCKBR 识别核心，具备最高中和价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Gly29-Trp30-Met31-Asp32-Phe33 C 端疏水-酸性序列",
+        "干预受体跨膜口袋插入与构象稳定，可作为亲和力增强区域",
+        "备选"
+      ],
+      [
+        "Site C",
+        "前体 pro-CCK 非成熟肽加工区",
+        "可能影响前体检测但难以中和成熟分泌肽，需避免偏离功能表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CCK 成熟肽极短且存在硫酸化与酰胺化修饰，表位空间有限；设计需控制与胃泌素 C 端同源序列交叉反应，并保留对修饰态的选择性。",
+    "structurePrepZh": "以 7MBX 中 CCK 结合受体复合物为模板，保留硫酸化酪氨酸和 C 端酰胺化状态，分离抗原肽链并标注受体接触残基。",
+    "structureRef": "RCSB PDB 7MBX，CCK 受体复合物冷冻电镜结构",
+    "antibodies": [
+      "anti-CCK clone C2581",
+      "anti-CCK monoclonal antibody 9303"
+    ],
+    "interfaceFocus": "硫酸化 Tyr27 与 C 端酰胺化受体接触面",
+    "designMode": "分泌肽中和",
+    "candidates": [
+      {
+        "target": "CCKAR",
+        "rationale": "CCKAR 是外周饱腹、胆囊收缩和胰腺分泌反应的主要 CCK 受体，位于同一 CCK-受体轴。靶向其胞外环或配体入口可直接阻断 CCK 诱导的受体激活。"
+      },
+      {
+        "target": "CCKBR",
+        "rationale": "CCKBR 与 CCK 及胃泌素共享配体识别特征，参与中枢神经和胃酸分泌相关信号。其配体结合位点可作为同通路受体端干预靶点。"
+      },
+      {
+        "target": "GAST",
+        "rationale": "GAST 编码胃泌素，与 CCK 共享 C 端酰胺化受体识别基序并作用于 CCKBR。该靶点适合用于评估同源肽交叉反应和 CCKBR 通路选择性。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

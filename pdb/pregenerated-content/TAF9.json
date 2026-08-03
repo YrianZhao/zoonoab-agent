@@ -1,0 +1,65 @@
+{
+  "gene": "TAF9",
+  "generatedAt": "2026-08-03T17:07:19.591Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TAF9是转录因子IID/TFIIF相关复合体中的核心亚基，参与RNA聚合酶II起始复合体装配，并通过与多种转录调控因子形成接触界面影响疾病相关基因表达程序。该蛋白为核内非膜蛋白，缺乏胞外结构域与分泌暴露特征，天然抗原可及性较低，因此更适合采用结构指导下的结合界面阻断策略而非经典阻断性膜靶设计。相较于同类转录共因子靶点，TAF9在转录共激活网络中具有更明确的结构复合体定位，且已获得实验结构支持，便于围绕蛋白-蛋白相互作用界面进行优先表位筛选。",
+    "mechanism": "阻断TAF9与TBP/转录共激活因子的复合体接触界面，抑制转录起始复合体装配。",
+    "selectedEpitope": "优先锁定TAF9与伙伴蛋白形成接触的保守螺旋/表面凹槽界面，避免深埋于核心折叠内区。",
+    "diseaseDirection": "转录失衡相关疾病",
+    "domain": "TAF9核心折叠域及其蛋白互作表面，缺乏胞外或跨膜结构。",
+    "evidence": "TAF9结构与疾病关联证据包",
+    "evidenceSources": [
+      "UniProt: Q16594",
+      "RCSB PDB: 6F3T",
+      "Open Targets Platform",
+      "Human Protein Atlas"
+    ],
+    "referenceEntries": "UniProt Q16594; PDB 6F3T; Homo sapiens TAF9",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "6F3T中暴露的伙伴结合界面",
+        "优先用于阻断复合体装配",
+        "优先"
+      ],
+      [
+        "Site B",
+        "核心折叠邻近的次级接触面",
+        "可用于干扰弱相互作用",
+        "备选"
+      ],
+      [
+        "Site C",
+        "结构埋藏较深的保守内核",
+        "亲和力潜力有限且易影响折叠",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险在于TAF9为核内必需共因子，表位若过度贴近折叠核心，可能导致非特异性失活或构象不稳定；应优先选择外露互作面并控制亲和力窗口。",
+    "structurePrepZh": "建议以6F3T为主模板进行链级别界面映射，保留十二聚体/多链复合背景下的暴露信息，并结合溶剂可及性与保守性过滤表位。",
+    "structureRef": "Zhang et al., X-ray structure of TAF9 complex, PDB 6F3T",
+    "antibodies": [
+      "无已上市TAF9特异性治疗抗体",
+      "无公认TAF9阻断性抗体"
+    ],
+    "interfaceFocus": "TBP/共激活因子接触面",
+    "designMode": "结构导向",
+    "candidates": [
+      {
+        "target": "TAF6",
+        "rationale": "TAF6与TAF9同属TFIID核心复合体组分，二者在转录起始复合体稳定中存在真实协同关系。围绕TAF6-TAF9界面设计交叉阻断策略，有助于验证该互作轴在转录失衡通路中的可干预性。"
+      },
+      {
+        "target": "TBP",
+        "rationale": "TBP是TAF9所在转录起始复合体的直接功能伙伴，TAF9相关界面干预的核心生物学读出即为TBP招募受限。将TBP作为同通路候选靶点有助于建立机制闭环。"
+      },
+      {
+        "target": "TAF4",
+        "rationale": "TAF4与TAF9共同构成TFIID转录调控网络的重要接触模块，属于同一转录起始通路中的真实伴侣靶点。对TAF4进行并行验证可用于区分核心复合体依赖性与界面特异性效应。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

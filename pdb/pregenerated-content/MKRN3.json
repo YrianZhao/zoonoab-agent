@@ -1,0 +1,65 @@
+{
+  "gene": "MKRN3",
+  "generatedAt": "2026-08-03T14:15:46.150Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MKRN3是父源表达的E3泛素连接酶，失功能突变可解除对GnRH脉冲启动的抑制，是中枢性性早熟的重要遗传病因。该蛋白主要为细胞内锌指/RING结构蛋白，并非经典可分泌抗原或跨膜受体，抗原可及性弱于KISS1R、TACR3等膜受体靶点。其优先级依据在于疾病遗传因果性强、结构域信息明确且适合机制研究型胞内抗体或降解调控设计，但治疗性外周抗体开发需谨慎定位。",
+    "mechanism": "设计胞内结合体占据MKRN3 RING指E2结合面，阻断其与E2泛素结合酶复合并抑制底物泛素化。",
+    "selectedEpitope": "优先覆盖RING finger的E2结合沟槽，避开锌配位核心以降低结构扰动。",
+    "diseaseDirection": "中枢性性早熟与HPG轴调控",
+    "domain": "MKRN3含多个C3H型锌指、makorin特征Cys-His基序及C端RING finger E3连接酶结构域。",
+    "evidence": "MKRN3遗传因果性与RING结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt Q13064功能与结构域注释",
+      "RCSB PDB 9P2Q溶液NMR结构",
+      "OMIM中枢性性早熟2型与Prader-Willi区域遗传资料"
+    ],
+    "referenceEntries": "UniProt Q13064；RCSB PDB 9P2Q；Open Targets MKRN3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端RING finger E2结合界面",
+        "可直接干预E3-E2复合物形成，机制可验证性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "makorin Cys-His基序邻近表面",
+        "可能影响底物识别或结构域间构象耦联，适合功能筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C3H锌指核酸/蛋白结合面",
+        "锌指结构保守且潜在脱靶风险较高，需严格选择性评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MKRN3为胞内蛋白，常规抗体难以到达靶点；RING与锌指区域保守性较高，应优先采用胞内抗体、VHH或递送偶联方案并进行同源蛋白交叉反应评估。",
+    "structurePrepZh": "以PDB 9P2Q的NMR构象簇为基础，保留锌配位几何并进行多构象表面聚类，标注RING指E2结合面与可成药浅沟槽。",
+    "structureRef": "RCSB PDB 9P2Q；MKRN3 RING finger溶液NMR结构",
+    "antibodies": [
+      "无获批MKRN3治疗性抗体",
+      "研究级抗MKRN3抗体"
+    ],
+    "interfaceFocus": "RING finger E2泛素结合酶接触面",
+    "designMode": "胞内VHH阻断",
+    "candidates": [
+      {
+        "target": "KISS1R",
+        "rationale": "KISS1R是GnRH神经元上游kisspeptin受体，直接促进HPG轴启动；作为膜受体，其抗原可及性明显优于MKRN3。"
+      },
+      {
+        "target": "TACR3",
+        "rationale": "TACR3介导神经激肽B信号并参与青春期启动调控，与中枢性性早熟和低促性腺激素性性腺功能减退均有遗传关联。"
+      },
+      {
+        "target": "GNRHR",
+        "rationale": "GNRHR位于垂体促性腺细胞并介导GnRH驱动的LH/FSH释放，是HPG轴下游可及膜受体节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

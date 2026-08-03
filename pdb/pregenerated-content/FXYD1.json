@@ -1,0 +1,65 @@
+{
+  "gene": "FXYD1",
+  "generatedAt": "2026-08-03T12:39:03.620Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FXYD1是Na+/K+-ATPase复合体的单跨膜调节亚基，可通过改变ATP1A/ATP1B泵复合体对Na+、K+的表观亲和力影响离子稳态，并与血小板参数及神经退行性疾病相关表型存在遗传关联。该蛋白具有短胞外N端、单跨膜螺旋和胞内C端，膜表面暴露区可作为抗体识别入口，但可及表位范围受限。相较于直接靶向ATP1A催化亚基，FXYD1具备调节性亚基属性，理论上有利于实现泵功能微调而降低全面抑制Na+/K+-ATPase的风险。",
+    "mechanism": "抗体拟结合FXYD1胞外近膜区，干预FXYD1与ATP1A/ATP1B泵复合体的构象耦联，从而改变Na+/K+-ATPase离子转运调节。",
+    "selectedEpitope": "优先选择N端胞外短肽与跨膜螺旋入口邻近区域，避免胞内磷酸化调控段。",
+    "diseaseDirection": "离子稳态与血液表型相关疾病",
+    "domain": "FXYD保守基序位于单跨膜螺旋附近，N端短胞外段连接膜内调节螺旋，C端为胞内调控区。",
+    "evidence": "FXYD1离子泵调节与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt O00168功能与定位注释",
+      "RCSB PDB 2JO1溶液NMR结构",
+      "Na+/K+-ATPase-FXYD调节复合体文献"
+    ],
+    "referenceEntries": "UniProt: O00168; RCSB PDB: 2JO1; HGNC: FXYD1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端胞外短肽及膜近端入口",
+        "具备抗体可及性，可干预FXYD1与泵复合体外侧构象耦联",
+        "优先"
+      ],
+      [
+        "Site B",
+        "跨膜螺旋外侧近膜表面",
+        "邻近FXYD保守调节螺旋，适合构象选择性结合设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "胞内C端磷酸化调控区",
+        "包含调节位点但抗体难以进入完整细胞内环境",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FXYD1胞外段较短，构象柔性和膜环境依赖性较高；建议采用膜模拟体系评估结合，并优先筛选不直接抑制ATP1A催化活性的调节型抗体。",
+    "structurePrepZh": "以2JO1溶液NMR构象集为基础，保留跨膜螺旋代表构象，补充膜取向、N端胞外段建模与ATP1A/ATP1B邻近界面约束。",
+    "structureRef": "PDB 2JO1; FXYD1 transmembrane domain solution NMR",
+    "antibodies": [
+      "抗FXYD1研究级单克隆抗体",
+      "抗Phospholemman实验抗体"
+    ],
+    "interfaceFocus": "N端胞外段-跨膜螺旋入口及泵复合体邻近面",
+    "designMode": "膜蛋白调节型抗体",
+    "candidates": [
+      {
+        "target": "ATP1A1",
+        "rationale": "ATP1A1编码Na+/K+-ATPase催化α1亚基，是FXYD1调节的直接泵复合体核心组分，可作为离子转运通路的机制验证靶点。"
+      },
+      {
+        "target": "ATP1B1",
+        "rationale": "ATP1B1编码Na+/K+-ATPase β1亚基，参与泵复合体装配和膜定位，与FXYD1处于同一膜泵调节模块。"
+      },
+      {
+        "target": "FXYD2",
+        "rationale": "FXYD2同属FXYD家族，可调节Na+/K+-ATPase离子亲和性，是同一离子泵调节轴上的可比较候选靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

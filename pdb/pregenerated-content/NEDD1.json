@@ -1,0 +1,65 @@
+{
+  "gene": "NEDD1",
+  "generatedAt": "2026-08-03T14:39:40.864Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NEDD1 是 γ-tubulin ring complex 的定位因子，主要通过结合 γTuRC 与中心体/纺锤体微管成核位点参与有丝分裂微管组织。现有 Open Targets 关联主要集中于人体测量性状与代谢表型，缺乏明确可药物化疾病通路因果证据。该蛋白为细胞内支架样因子，不具备分泌蛋白、膜受体或稳定胞外结构域特征，抗体抗原可及性显著受限。相较 EGFR、TNF、IL6R 等同类可及靶点，NEDD1 不宜作为常规治疗性抗体主靶点，优先级应限定于细胞内递送抗体或结构生物学验证场景。",
+    "mechanism": "以胞内递送抗体阻断 NEDD1 WD40/结构域界面与 γTuRC 组分的结合，干扰 γTuRC 向中心体募集及微管成核复合体装配。",
+    "selectedEpitope": "优先考察 N 端 WD40 β-propeller 暴露环及 γTuRC 接触面，避开保守折叠核心。",
+    "diseaseDirection": "细胞周期与代谢表型关联",
+    "domain": "NEDD1 含 N 端 WD40 repeat β-propeller 区域及 C 端 coiled-coil/γTuRC 结合相关区域。",
+    "evidence": "NEDD1-γTuRC 微管成核结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病与表型遗传关联",
+      "UniProt Q8NHV4 蛋白功能与结构域注释",
+      "RCSB PDB 9QVN 电子显微镜结构记录",
+      "γTuRC 中心体募集与微管成核相关文献"
+    ],
+    "referenceEntries": "UniProt Q8NHV4；RCSB PDB 9QVN；Open Targets NEDD1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N 端 WD40 β-propeller 外侧环区",
+        "可能阻断蛋白互作且保留折叠稳定性，适合胞内抗体筛选",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C 端 γTuRC 结合相关区域",
+        "贴近功能界面，可用于验证 NEDD1 介导的 γTuRC 定位机制",
+        "备选"
+      ],
+      [
+        "Site C",
+        "WD40 折叠核心保守叶片内侧",
+        "结构保守且可能影响整体折叠，产生非特异构象扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NEDD1 为胞内蛋白，常规抗体难以进入作用位点；4.7 Å EM 结构界面精度有限，宜采用交联质谱、突变扫描与胞内递送验证联合降险。",
+    "structurePrepZh": "以 PDB 9QVN 为复合体参考，分离 NEDD1 可解析片段，补全缺失环区并进行低分辨率模型约束优化，保留 γTuRC 接触界面标注。",
+    "structureRef": "RCSB PDB 9QVN，human γTuRC 相关 EM 结构",
+    "antibodies": [
+      "胞内递送抗 NEDD1 研究型抗体",
+      "抗 NEDD1 免疫检测抗体"
+    ],
+    "interfaceFocus": "NEDD1 与 γTuRC 组分接触界面",
+    "designMode": "胞内抗体探索",
+    "candidates": [
+      {
+        "target": "TUBG1",
+        "rationale": "TUBG1 编码 γ-tubulin，是 γTuRC 微管成核核心亚基，与 NEDD1 共同参与中心体微管成核复合体功能。其疾病转化仍受胞内可及性限制。"
+      },
+      {
+        "target": "TUBGCP2",
+        "rationale": "TUBGCP2 是 γTuRC 结构支架组分，参与 γ-tubulin 环状复合体装配，与 NEDD1 处于同一微管成核通路。适合用于复合体界面机制对照。"
+      },
+      {
+        "target": "TUBGCP3",
+        "rationale": "TUBGCP3 与 TUBGCP2 共同构成 γTuRC 支架核心，支持 γ-tubulin 组织与微管成核。其功能关联可用于评估 NEDD1 依赖性 γTuRC 定位轴。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

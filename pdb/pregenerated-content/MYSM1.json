@@ -1,0 +1,65 @@
+{
+  "gene": "MYSM1",
+  "generatedAt": "2026-08-03T14:31:54.940Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MYSM1 是核内去泛素化酶，参与组蛋白 H2A K119 去泛素化、染色质开放及造血干/祖细胞转录程序维持；其遗传缺陷与骨髓衰竭、B 细胞免疫缺陷和骨骼发育异常直接相关。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌特征，常规外源性抗体的抗原可及性明显受限。相较于同通路中可被胞外抗体直接阻断的造血因子或受体，MYSM1 更适合作为机制研究和胞内递送抗体设计对象，优先级应定位为探索性核内靶向项目。",
+    "mechanism": "设计重点为干预 MYSM1 SWIRM/MPN 相关界面，削弱其与染色质底物或调控复合物结合，从而影响 H2A K119 去泛素化过程。",
+    "selectedEpitope": "优先评估 2CU7 所覆盖 SWIRM 结构域暴露螺旋面，避开疏水核心并关注蛋白互作界面。",
+    "diseaseDirection": "遗传性骨髓衰竭与免疫缺陷",
+    "domain": "MYSM1 含 N 端 SANT 样区域、SWIRM 结构域及 C 端 MPN/JAMM 去泛素化催化结构域。",
+    "evidence": "MYSM1 造血衰竭遗传证据与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt Q5VVJ2 蛋白功能注释",
+      "RCSB PDB 2CU7 溶液 NMR 结构",
+      "OMIM/MONDO 骨髓衰竭与免疫缺陷表型记录"
+    ],
+    "referenceEntries": "UniProt Q5VVJ2；RCSB PDB 2CU7；Open Targets MYSM1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SWIRM 结构域外露 α 螺旋与相邻环区",
+        "可用于构建识别折叠结构的胞内 Fab/VHH，评估对染色质复合物结合的影响",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SWIRM 结构域保守表面沟槽",
+        "可能参与蛋白互作或核酸相关复合物识别，适合作为功能阻断备选表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "MPN/JAMM 催化结构域邻近锌结合活性中心",
+        "直接干预催化可能产生强功能效应，但金属结合位点保守性较高且选择性风险较大",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MYSM1 为核内蛋白，常规抗体难以到达天然作用位点；需采用胞内抗体、细胞穿透递送或工程化表达体系，并严格评估脱靶染色质效应。",
+    "structurePrepZh": "以 2CU7 的 NMR 构象集合为 SWIRM 域模板，筛选代表性构象，补充缺失区域建模并与 AlphaFold 全长模型交叉校验。",
+    "structureRef": "RCSB PDB 2CU7；MYSM1 SWIRM domain solution NMR structure",
+    "antibodies": [
+      "暂无获批 MYSM1 靶向治疗性抗体",
+      "研究级抗 MYSM1 抗体"
+    ],
+    "interfaceFocus": "SWIRM 外露螺旋面与潜在染色质复合物结合界面",
+    "designMode": "胞内抗体探索",
+    "candidates": [
+      {
+        "target": "H2AC",
+        "rationale": "组蛋白 H2A 是 MYSM1 去泛素化功能的直接底物类别，H2A K119ub 状态与造血细胞转录调控相关。该靶点适合作为底物轴验证参照。"
+      },
+      {
+        "target": "RING1",
+        "rationale": "RING1 是 Polycomb PRC1 复合物催化 H2A K119 泛素化的核心 E3 组分，与 MYSM1 在同一 H2A 泛素化平衡轴上形成功能对立关系。"
+      },
+      {
+        "target": "RNF2",
+        "rationale": "RNF2/RING2 与 RING1 共同介导 PRC1 依赖性 H2A K119 单泛素化，是 MYSM1 逆向去泛素化通路中的关键上游酶。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

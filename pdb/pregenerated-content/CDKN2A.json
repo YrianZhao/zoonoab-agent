@@ -1,0 +1,65 @@
+{
+  "gene": "CDKN2A",
+  "generatedAt": "2026-08-03T11:14:15.804Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CDKN2A 编码 p16INK4A 与 p14ARF 两类肿瘤抑制蛋白，其中 p16INK4A 通过结合 CDK4/6 阻断 Cyclin D-CDK4/6 介导的 RB1 磷酸化，是黑色素瘤易感和家族性非典型多痣黑色素瘤综合征中的核心细胞周期制动因子。该靶点为胞内非分泌蛋白，天然抗原可及性不适合常规体内阻断抗体，但其高分辨率复合物结构可支持细胞内抗体、递送型 VHH 或研究级构象探针设计。相比单纯下游 RB1 或上游 MAPK 通路节点，CDKN2A 直接定义 CDK4/6 轴失衡状态，在遗传证据和疾病关联强度方面具有优先建模价值。",
+    "mechanism": "设计分子应稳定 p16INK4A 与 CDK4/6 的 ankyrin-repeat 接触界面，竞争 Cyclin D-CDK4/6 活化构象并抑制 RB1 磷酸化。",
+    "selectedEpitope": "优先围绕 p16INK4A ankyrin repeats 2-4 的 CDK4 结合面设计构象识别表位。",
+    "diseaseDirection": "黑色素瘤细胞周期抑制轴",
+    "domain": "p16INK4A 由四个 ankyrin repeat 组成，形成凹面螺旋束并结合 CDK4/6 N-lobe 与 C-lobe 交界区。",
+    "evidence": "CDKN2A-CDK4/6-RB1 黑色素瘤证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt P42771 蛋白功能注释",
+      "RCSB PDB 7OZT 晶体结构",
+      "ClinVar 与 COSMIC 黑色素瘤变异记录"
+    ],
+    "referenceEntries": "UniProt P42771；RCSB PDB 7OZT；Open Targets CDKN2A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ankyrin repeats 2-4 的 CDK4/6 结合凹面",
+        "覆盖关键抑制界面，适合稳定抑制性复合物构象",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ankyrin repeat 1 与 N 端邻近螺旋区",
+        "可作为构象辅助识别区，提高 p16INK4A 选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ARF 替代读框相关 N 端序列区域",
+        "与 p16INK4A 功能结构不重叠，存在异构体选择性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CDKN2A 为胞内肿瘤抑制蛋白，常规抗体药物可及性受限；设计宜定位为细胞内 VHH、递送型抗体片段或结构探针，并避免干扰 ARF 异构体注释。",
+    "structurePrepZh": "以 7OZT 高分辨率晶体结构为模板，保留抗原链 A/B 中完整 ankyrin-repeat 构象，校验 CDK 结合面残基、缺失环区和晶体接触影响。",
+    "structureRef": "RCSB PDB 7OZT，X-ray diffraction，1.74 Å",
+    "antibodies": [
+      "p16INK4A clone E6H4",
+      "p16INK4A clone JC8"
+    ],
+    "interfaceFocus": "p16INK4A ankyrin 凹面-CDK4/6 接触界面",
+    "designMode": "胞内VHH构象稳定",
+    "candidates": [
+      {
+        "target": "CDK4",
+        "rationale": "CDK4 是 p16INK4A 的直接结合对象，突变或扩增可削弱 CDKN2A 介导的细胞周期抑制，是黑色素瘤 CDK4/6-RB1 轴中的同通路核心节点。"
+      },
+      {
+        "target": "CDK6",
+        "rationale": "CDK6 与 CDK4 功能相近，同样被 p16INK4A 抑制并驱动 RB1 磷酸化，适合作为并行验证的细胞周期激酶靶点。"
+      },
+      {
+        "target": "CCND1",
+        "rationale": "CCND1 编码 Cyclin D1，与 CDK4/6 形成活化复合物并促进 G1/S 转换，在 CDKN2A 缺失背景下具有通路补偿和药效分层价值。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

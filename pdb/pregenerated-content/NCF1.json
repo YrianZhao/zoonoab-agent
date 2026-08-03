@@ -1,0 +1,65 @@
+{
+  "gene": "NCF1",
+  "generatedAt": "2026-08-03T14:35:15.049Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NCF1编码p47phox，是NOX2 NADPH氧化酶复合体的胞质调节亚基，突变可破坏p47phox与p22phox及p67phox的装配，导致慢性肉芽肿病中吞噬细胞活性氧爆发缺陷。该蛋白主要定位于胞质，静息状态并非细胞表面抗原，抗原可及性显著弱于膜受体或分泌蛋白，抗体设计更适合用于胞内递送、结构探针或诊断检测。相较CYBB、CYBA等膜定位NOX2组分，NCF1具有高分辨率PX结构域实验结构和明确的SH3介导装配界面，适合开展机制验证型抗体设计，但治疗性优先级需低于胞外可及靶点。",
+    "mechanism": "通过结合p47phox的PX结构域或SH3邻近构象区域，阻断其与膜磷脂及p22phox富脯氨酸区的装配耦联，从而干预NOX2复合体活化。",
+    "selectedEpitope": "优先选择PX结构域磷脂结合口袋邻近环区，兼顾构象特异性与避免完全遮蔽保守核心折叠。",
+    "diseaseDirection": "慢性肉芽肿病与NOX2氧化爆发缺陷",
+    "domain": "NCF1含N端PX结构域、串联SH3结构域、富脯氨酸区及C端自抑制/磷酸化调控区。",
+    "evidence": "NCF1-NOX2复合体与慢性肉芽肿病证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P14598 functional annotation",
+      "RCSB PDB 1KQ6 X-ray structure",
+      "OMIM chronic granulomatous disease gene evidence"
+    ],
+    "referenceEntries": "UniProt P14598；RCSB PDB 1KQ6；Open Targets NCF1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PX结构域磷脂结合口袋邻近环区",
+        "可用于识别膜募集相关构象并评估p47phox定位功能",
+        "优先"
+      ],
+      [
+        "Site B",
+        "串联SH3结构域的p22phox富脯氨酸结合沟槽",
+        "直接关联NOX2装配界面，适合机制阻断型分子设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端自抑制区磷酸化簇附近线性片段",
+        "调控状态依赖且柔性较高，需避免获得低构象选择性抗体",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NCF1为胞质蛋白，常规抗体体内可及性不足；SH3和PX保守界面存在交叉反应风险，宜采用构象筛选并验证NCF2、NCF4选择性。",
+    "structurePrepZh": "以1KQ6链A为PX结构域模板，补充缺失的串联SH3和C端调控区模型，保留关键结合口袋并标注柔性环区。",
+    "structureRef": "RCSB PDB 1KQ6，p47phox PX结构域，1.18 Å X-ray",
+    "antibodies": [
+      "anti-p47phox clone D-10",
+      "anti-p47phox clone 1"
+    ],
+    "interfaceFocus": "PX磷脂结合口袋与SH3-p22phox装配界面",
+    "designMode": "胞内靶点机制探针",
+    "candidates": [
+      {
+        "target": "CYBB",
+        "rationale": "CYBB编码gp91phox，是NOX2催化膜亚基，突变是X连锁慢性肉芽肿病的主要原因。其膜定位使复合体功能读出更直接。"
+      },
+      {
+        "target": "CYBA",
+        "rationale": "CYBA编码p22phox，与gp91phox形成膜结合细胞色素b558，并通过富脯氨酸区招募p47phox。该界面与NCF1装配机制直接相连。"
+      },
+      {
+        "target": "NCF2",
+        "rationale": "NCF2编码p67phox，是NOX2活化所需胞质调节亚基，与NCF1共同参与氧化酶复合体组装。其功能缺陷同样可导致慢性肉芽肿病表型。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

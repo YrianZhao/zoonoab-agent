@@ -1,0 +1,65 @@
+{
+  "gene": "KIFC1",
+  "generatedAt": "2026-08-03T13:43:12.172Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KIFC1为C端驱动蛋白，参与有丝分裂纺锤体聚焦与多中心体肿瘤细胞的中心体聚集，过表达可支持肝细胞癌、乳腺癌等肿瘤细胞在中心体扩增背景下完成双极分裂。该蛋白主要定位于胞内纺锤体与中心体相关结构，缺乏天然胞外结构域，因此常规全长抗体的抗原可及性不具优势，更适合定位为细胞内靶向递送或研究级结合分子设计对象。相较广泛必需的有丝分裂激酶，KIFC1在多中心体肿瘤细胞中呈更强依赖性，而正常细胞对其依赖较低，因而具备较明确的合成致死优先级依据。",
+    "mechanism": "设计分子应阻断KIFC1运动结构域与微管结合界面，或干扰ATP结合口袋邻近构象转换，从而抑制其沿微管负端运动并削弱中心体聚集。",
+    "selectedEpitope": "优先覆盖C端motor domain的微管结合面及α4-α6邻近构象区，避免仅针对柔性尾部表位。",
+    "diseaseDirection": "肿瘤有丝分裂脆弱性",
+    "domain": "KIFC1包含N端尾部、中央coiled-coil茎区与C端kinesin motor催化结构域。",
+    "evidence": "KIFC1肿瘤中心体聚集与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9BW19功能与亚细胞定位注释",
+      "RCSB PDB 5WDH晶体结构记录",
+      "肿瘤多中心体聚集与KIFC1依赖性研究文献"
+    ],
+    "referenceEntries": "UniProt Q9BW19；RCSB PDB 5WDH；Open Targets KIFC1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端motor domain微管结合面",
+        "直接干扰KIFC1-微管相互作用，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "motor domain ATP口袋邻近switch区",
+        "可能限制ATP水解耦联的构象转换，适合变构阻断设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端尾部或coiled-coil远端区域",
+        "结构柔性较高且对运动催化阻断不直接，需验证功能相关性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "KIFC1为胞内蛋白，常规抗体难以直接到达作用位点；设计宜标注为细胞内递送、降解偶联或结构生物学工具分子，并严格评估有丝分裂毒性窗口。",
+    "structurePrepZh": "以PDB 5WDH链A为结构模板，保留motor domain核心折叠，检查配体、核苷酸类似物、缺失环区与晶体接触后再进行界面建模。",
+    "structureRef": "RCSB PDB 5WDH，X-ray diffraction，2.248 Å",
+    "antibodies": [
+      "anti-KIFC1 clone 1G4",
+      "anti-KIFC1 polyclonal antibody"
+    ],
+    "interfaceFocus": "motor domain微管结合面与switch构象区",
+    "designMode": "胞内靶向结合分子",
+    "candidates": [
+      {
+        "target": "PLK4",
+        "rationale": "PLK4调控中心体复制，中心体扩增可增强肿瘤细胞对KIFC1介导中心体聚集的依赖性，属于同一中心体异常分裂脆弱性网络。"
+      },
+      {
+        "target": "AURKA",
+        "rationale": "AURKA参与中心体成熟、纺锤体装配与有丝分裂进入，和KIFC1共同影响多中心体肿瘤细胞的纺锤体稳定性。"
+      },
+      {
+        "target": "TUBB",
+        "rationale": "β-微管蛋白构成KIFC1运动所依赖的微管轨道，直接处于KIFC1-微管相互作用轴线上，适合作为同通路比较靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

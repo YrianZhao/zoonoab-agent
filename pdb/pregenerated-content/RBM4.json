@@ -1,0 +1,65 @@
+{
+  "gene": "RBM4",
+  "generatedAt": "2026-08-03T15:56:02.123Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RBM4 为核内 RNA 结合蛋白，参与前体 mRNA 可变剪接、翻译调控及神经元相关转录后稳态，Open Targets 显示其与神经退行性疾病存在最高关联信号。该蛋白缺乏天然胞外结构域、分泌形式或膜受体特征，完整抗体在常规给药条件下抗原可及性受限，更适合作为细胞内结合分子或研究级干预靶点。相较 MAPT、SNCA 等神经退行性疾病经典胞外或聚集蛋白靶点，RBM4 的抗体药物化优先级较低，但其 RRM 结构域具备明确 RNA 结合界面，适合开展机制验证型抗体设计。",
+    "mechanism": "通过胞内 Fab/VHH 阻断 RBM4 RRM 与 U/C 富集 RNA 元件的结合，干预其介导的可变剪接复合物装配。",
+    "selectedEpitope": "优先覆盖 N 端 RRM1 β-sheet RNA 结合面及 RNP1/RNP2 基序邻近沟槽。",
+    "diseaseDirection": "神经退行性疾病转录后调控",
+    "domain": "RBM4 含两个 N 端 RNA recognition motif，C 端富含低复杂度区并参与蛋白互作。",
+    "evidence": "RBM4神经退行性疾病与RNA剪接证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9BWF3 functional annotation",
+      "RCSB PDB 2DNQ solution NMR structure",
+      "RNA-binding protein alternative splicing literature"
+    ],
+    "referenceEntries": "UniProt: Q9BWF3; RCSB PDB: 2DNQ; Open Targets: RBM4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RRM1 β-sheet RNA结合面与RNP1/RNP2基序",
+        "直接竞争RNA底物结合，利于机制阻断验证",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RRM1周边α螺旋与环区外侧表面",
+        "可降低对折叠核心扰动并提供构象识别位点",
+        "备选"
+      ],
+      [
+        "Site C",
+        "RRM疏水核心及高度保守芳香残基邻近区",
+        "可能破坏结构稳定性并增加同源RRM交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RBM4 为细胞内核蛋白，常规抗体递送可及性不足；RRM 保守性较高，应规避广泛保守核心残基并采用胞内表达格式验证。",
+    "structurePrepZh": "以 PDB 2DNQ 的 NMR 构象集合为模板，筛选代表性低能构象，补充缺失氢原子并标注 RNP1/RNP2 RNA结合基序。",
+    "structureRef": "RCSB PDB 2DNQ; human RBM4 RRM solution NMR structure",
+    "antibodies": [
+      "commercial anti-RBM4 monoclonal antibody",
+      "commercial anti-RBM4 polyclonal antibody"
+    ],
+    "interfaceFocus": "RRM1 β-sheet RNA结合沟槽",
+    "designMode": "胞内阻断型VHH/Fab",
+    "candidates": [
+      {
+        "target": "TARDBP",
+        "rationale": "TARDBP 编码 TDP-43，是神经退行性疾病中关键 RNA 结合蛋白，参与 RNA 剪接、转运和聚集病理，与 RBM4 同属转录后 RNA 稳态网络。"
+      },
+      {
+        "target": "FUS",
+        "rationale": "FUS 为核内 RNA 结合蛋白，参与剪接和 RNA 代谢，其异常定位及聚集与 ALS/FTD 等神经退行性疾病机制相关。"
+      },
+      {
+        "target": "HNRNPA1",
+        "rationale": "HNRNPA1 参与可变剪接和 RNA 转运，突变或异常相分离可影响神经元 RNA 稳态，适合作为同一 RNA 代谢病理轴候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

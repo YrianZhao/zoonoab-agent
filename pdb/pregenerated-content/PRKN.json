@@ -1,0 +1,65 @@
+{
+  "gene": "PRKN",
+  "generatedAt": "2026-08-03T15:36:06.060Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PRKN编码parkin RBR型E3泛素连接酶，在PINK1依赖性线粒体质量控制中介导受损线粒体外膜蛋白泛素化，其功能缺失与青年发病型帕金森病具有明确遗传关联。该蛋白主要定位于胞质并在应激后募集至线粒体外膜，缺乏稳定胞外结构域或分泌形式，抗体抗原可及性弱于膜受体或分泌因子。尽管如此，PRKN相较同通路下游底物具有更高遗传因果优先级，适合作为细胞内抗体、结构生物学验证及机制干预型分子设计靶点。",
+    "mechanism": "设计分子应稳定PRKN开放构象，解除Ubl结构域对RING1催化轴的自抑制，促进E2~Ub向RING2 Cys431转硫酯化。",
+    "selectedEpitope": "优先靶向Ubl与RING1邻近自抑制界面，避免遮挡RING2催化半胱氨酸区域。",
+    "diseaseDirection": "青年发病型帕金森病",
+    "domain": "PRKN含N端Ubl结构域、RING0、RING1、IBR与RING2组成的RBR催化核心。",
+    "evidence": "PRKN-PINK1线粒体质量控制证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt O60260功能与亚细胞定位注释",
+      "RCSB PDB 4I1F晶体结构记录",
+      "PINK1-parkin介导线粒体自噬文献证据"
+    ],
+    "referenceEntries": "UniProt O60260；RCSB PDB 4I1F；Open Targets PRKN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Ubl-RING1自抑制接触面",
+        "有望解除构象抑制并增强E3活化",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RING0-RING1支架外侧面",
+        "可用于稳定非催化结构并区分构象状态",
+        "备选"
+      ],
+      [
+        "Site C",
+        "RING2催化Cys431邻近区域",
+        "可能干扰泛素转移反应，需避免强遮挡",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PRKN为胞内E3连接酶，常规循环抗体难以到达作用位点；宜采用细胞内表达Fab/VHH或递送型格式，并规避锌结合核心与催化半胱氨酸。",
+    "structurePrepZh": "以4I1F高分辨率晶体结构为模板，补全缺失柔性区，保留RBR锌配位几何，标注Ubl相对催化核心的构象约束。",
+    "structureRef": "PDB 4I1F，human parkin RBR core，1.58 Å X-ray",
+    "antibodies": [
+      "Abcam ab77924",
+      "Cell Signaling Technology D18C8"
+    ],
+    "interfaceFocus": "Ubl-RING1自抑制界面与RING2催化轴",
+    "designMode": "胞内构象调节",
+    "candidates": [
+      {
+        "target": "PINK1",
+        "rationale": "PINK1在线粒体去极化后磷酸化泛素和PRKN，是PRKN募集与激活的上游激酶，处于同一线粒体自噬通路。"
+      },
+      {
+        "target": "MFN2",
+        "rationale": "MFN2可作为PINK1-parkin通路中的线粒体外膜底物，其泛素化参与受损线粒体隔离与清除。"
+      },
+      {
+        "target": "VDAC1",
+        "rationale": "VDAC1位于线粒体外膜并可被parkin泛素化，常用于评估PRKN依赖性线粒体外膜蛋白清除。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

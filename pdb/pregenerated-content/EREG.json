@@ -1,0 +1,65 @@
+{
+  "gene": "EREG",
+  "generatedAt": "2026-08-03T12:21:27.600Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "EREG编码表皮调节素，是EGFR/ERBB4配体家族成员，可通过激活ERBB受体驱动RAS-MAPK与PI3K-AKT轴，促进肿瘤细胞增殖、存活及上皮修复相关反应。该蛋白以前体形式锚定于细胞膜并经蛋白水解释放可溶性EGF-like配体，成熟胞外结构域可被抗体直接识别，抗原可及性明确。相较于下游激酶或广泛表达受体，靶向EREG可在配体层面选择性限制EGFR/ERBB4激活，适合用于EREG高表达或配体依赖型肿瘤亚群的阻断设计。",
+    "mechanism": "阻断成熟EREG EGF-like结构域与EGFR或ERBB4胞外配体结合口袋的相互作用，抑制受体二聚化及下游MAPK/AKT信号激活。",
+    "selectedEpitope": "优先覆盖EGF-like结构域受体结合面，聚焦β发夹与C端环区形成的ERBB接触界面。",
+    "diseaseDirection": "EREG依赖型实体瘤",
+    "domain": "EREG为膜结合前体蛋白，胞外区含成熟EGF-like结构域，具保守半胱氨酸配对与受体结合环。",
+    "evidence": "EREG-ERBB轴肿瘤阻断抗体设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联证据",
+      "UniProt O14944功能与结构域注释",
+      "RCSB PDB 5E8D晶体结构记录",
+      "EGF家族配体-ERBB受体结构与肿瘤信号文献"
+    ],
+    "referenceEntries": "UniProt O14944；RCSB PDB 5E8D；Open Targets EREG",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "EGF-like结构域受体结合β发夹/环区",
+        "直接干扰EREG与EGFR/ERBB4配体结合口袋接触，阻断价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "成熟配体C端环及邻近保守半胱氨酸框架外侧",
+        "可稳定识别构象型表位并限制受体诱导配体定位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "前体近膜区或非成熟片段邻近区域",
+        "可能受剪切加工、糖基化或膜近端空间限制影响，需验证暴露度",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "EGF-like结构域体积较小且与其他EGF家族配体存在结构保守性，需通过界面残基差异化设计降低交叉反应，并避免破坏抗原天然二硫键构象。",
+    "structurePrepZh": "以PDB 5E8D为实验结构模板，保留成熟EREG构象与抗体复合物界面信息，检查缺失残基、二硫键、晶体接触及质子化状态后用于表位建模。",
+    "structureRef": "RCSB PDB 5E8D，X-ray 2.5 Å人EREG复合物结构",
+    "antibodies": [
+      "9E5",
+      "已报道抗EREG中和抗体"
+    ],
+    "interfaceFocus": "EREG EGF-like结构域ERBB受体结合面",
+    "designMode": "配体阻断型",
+    "candidates": [
+      {
+        "target": "EGFR",
+        "rationale": "EGFR是EREG的主要ERBB受体之一，介导配体诱导的受体二聚化及MAPK/PI3K信号输出，是同一EREG-ERBB肿瘤通路的核心节点。"
+      },
+      {
+        "target": "ERBB4",
+        "rationale": "ERBB4可结合EREG并参与ERBB家族信号复合体形成，适合作为配体-受体轴的替代阻断节点。"
+      },
+      {
+        "target": "AREG",
+        "rationale": "AREG同属EGFR配体家族，在多种上皮肿瘤中与EREG共同维持EGFR自分泌/旁分泌激活，可作为同通路配体层面的候选靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

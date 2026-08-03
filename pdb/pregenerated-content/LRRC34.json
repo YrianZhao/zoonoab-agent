@@ -1,0 +1,65 @@
+{
+  "gene": "LRRC34",
+  "generatedAt": "2026-08-03T13:56:29.812Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "LRRC34的公开疾病关联以血液学表型、神经退行性疾病及前列腺癌相关量化性状为主，但其在这些疾病通路中的直接因果机制尚未形成明确共识。该蛋白缺乏经典分泌信号肽、跨膜区或经验证的细胞外结构域，抗体可及性弱于典型膜受体或分泌因子。因疾病关联得分中等且通路机制不充分，LRRC34作为主靶点的优先级低于PSA/KLK轴、雄激素受体轴或红细胞生成通路中具有明确胞外可及性的靶点。",
+    "mechanism": "优先验证抗体是否可结合可暴露LRR结构面并干扰LRRC34与尚待鉴定结合蛋白的复合体形成，不设定未经证实的受体-配体阻断机制。",
+    "selectedEpitope": "围绕LRR凹面重复单元与端帽区域设计构象表位，避开低分辨率模型不确定环区。",
+    "diseaseDirection": "前列腺癌与血液学表型探索",
+    "domain": "LRRC34为富含亮氨酸重复蛋白，预测包含多段LRR重复及端帽样结构，缺乏明确跨膜锚定。",
+    "evidence": "LRRC34疾病关联与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB Q8IZ02 curated protein annotation",
+      "RCSB PDB 8J07 electron microscopy structure",
+      "Human Protein Atlas expression annotation"
+    ],
+    "referenceEntries": "UniProt Q8IZ02；RCSB PDB 8J07；Open Targets LRRC34",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "LRR凹面连续重复单元",
+        "可形成构象依赖结合界面，适合筛选识别折叠态LRR骨架的抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "LRR N端或C端端帽区域",
+        "端帽区域常参与稳定LRR溶剂暴露面，可作为差异化结合表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "低分辨率柔性环区",
+        "4.1 Å电镜模型对侧链与环区定位有限，表位边界需经实验验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为抗原胞外可及性不足、疾病因果机制未明及8J07分辨率有限；建议先进行定位、分泌性和结合伴侣验证。",
+    "structurePrepZh": "以PDB 8J07为初始模板，进行链注释核查、缺失片段建模、糖基化与低置信环区标注，并保留LRR构象约束。",
+    "structureRef": "RCSB PDB 8J07，electron microscopy，4.1 Å",
+    "antibodies": [
+      "暂无针对LRRC34的临床验证抗体",
+      "暂无公开同靶点治疗性抗体"
+    ],
+    "interfaceFocus": "LRR凹面重复单元及端帽稳定界面",
+    "designMode": "探索性结合抗体设计",
+    "candidates": [
+      {
+        "target": "KLK3",
+        "rationale": "KLK3编码前列腺特异抗原，是前列腺癌检测与肿瘤负荷相关通路中的分泌型蛋白，抗原可及性显著优于LRRC34。"
+      },
+      {
+        "target": "AR",
+        "rationale": "AR是前列腺癌雄激素依赖性转录程序的核心驱动因子，与PSA表达调控直接相关；但其为核内受体，更适合小分子或降解策略而非经典抗体阻断。"
+      },
+      {
+        "target": "EPOR",
+        "rationale": "EPOR位于红细胞生成通路，介导促红细胞生成素依赖的JAK2-STAT5信号，与红细胞体积和血红蛋白相关表型具有明确生物学联系。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "IDH2",
+  "generatedAt": "2026-08-03T13:21:42.703Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IDH2 是线粒体 NADP+ 依赖性异柠檬酸脱氢酶，肿瘤相关突变可使其获得将 α-酮戊二酸还原为 D-2-羟基戊二酸的异常活性，驱动胶质瘤和急性髓系白血病中的表观遗传失衡。该蛋白定位于线粒体基质，缺乏天然胞外结构域，作为常规细胞表面抗体靶点的抗原可及性受限，但其高分辨率可溶性酶结构支持体外构象抗体、细胞内抗体或递送型抗体片段设计。相比 IDH1 等同通路靶点，IDH2 在 D-2-羟基戊二酸尿症、AML 和胶质瘤中具有明确突变热点与获功能机制，且 5I95 提供高分辨率构象依据，适合作为突变构象识别与酶界面阻断的优先研究靶点。",
+    "mechanism": "抗体片段可靶向 IDH2 二聚体活性口袋邻近区域，干扰底物异柠檬酸、NADP+ 与金属离子协同结合，或阻断突变酶构象稳定，从而降低 2-羟基戊二酸生成。",
+    "selectedEpitope": "优先选择 large domain 与 clasp domain 形成的二聚体活性沟槽边缘，覆盖 R140/R172 突变邻近构象面。",
+    "diseaseDirection": "肿瘤代谢与2-羟基戊二酸相关疾病",
+    "domain": "IDH2 含 mitochondrial targeting peptide、small domain、large catalytic domain 与 clasp domain，功能状态为同源二聚体酶。",
+    "evidence": "IDH2突变代谢重编程与结构抗原证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P48735 functional annotation",
+      "RCSB PDB 5I95 X-ray structure",
+      "TCGA与临床AML/胶质瘤IDH突变研究"
+    ],
+    "referenceEntries": "UniProt P48735；RCSB PDB 5I95；Open Targets ENSG00000182054",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "large domain-clasp domain二聚体活性沟槽边缘",
+        "邻近底物/NADP+结合构象，可用于阻断催化复合物形成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "R140/R172突变热点邻近的催化结构面",
+        "有利于区分突变构象并降低野生型酶交叉干扰",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端线粒体定位肽及柔性连接区",
+        "加工后成熟蛋白中可见性与构象稳定性有限，免疫原设计需谨慎",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IDH2 为线粒体基质酶，体内抗体可及性是主要风险。设计宜限定于体外诊断、递送型细胞内抗体或VHH框架，并避免广泛抑制野生型代谢酶活性。",
+    "structurePrepZh": "以5I95链A为结构模板，保留成熟酶核心区，校验NADP+/金属离子结合位点、二聚体界面与突变热点邻近残基，剔除低置信柔性端段。",
+    "structureRef": "RCSB PDB 5I95，human IDH2 X-ray structure，1.54 Å",
+    "antibodies": [
+      "抗IDH2 R172K突变特异性诊断抗体",
+      "抗IDH2 R140Q突变特异性研究抗体"
+    ],
+    "interfaceFocus": "催化沟槽、NADP+结合面及二聚体clasp界面",
+    "designMode": "细胞内酶构象抗体",
+    "candidates": [
+      {
+        "target": "IDH1",
+        "rationale": "IDH1 与 IDH2 同属异柠檬酸脱氢酶突变-2-羟基戊二酸生成轴，在胶质瘤和AML中具有平行获功能机制，可作为同通路对照与联合分型靶点。"
+      },
+      {
+        "target": "TET2",
+        "rationale": "TET2 是 α-酮戊二酸依赖性双加氧酶，受 2-羟基戊二酸竞争性抑制，位于 IDH 突变驱动表观遗传异常的下游功能节点。"
+      },
+      {
+        "target": "KDM4A",
+        "rationale": "KDM4A 属 α-酮戊二酸依赖性组蛋白去甲基化酶，其活性可被 IDH 突变产生的 2-羟基戊二酸抑制，反映同一代谢-染色质调控通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

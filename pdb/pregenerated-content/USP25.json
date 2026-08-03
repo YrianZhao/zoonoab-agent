@@ -1,0 +1,65 @@
+{
+  "gene": "USP25",
+  "generatedAt": "2026-08-03T17:44:44.522Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "USP25 是胞内去泛素化酶，参与蛋白泛素链编辑并影响多种炎症、免疫及造血相关细胞过程；Open Targets 关联主要集中于血液学表型，提示其与造血稳态存在遗传关联。该靶点缺乏分泌型或膜外结构域，抗原天然可及性不适合常规循环抗体阻断，但其催化结构域具备高分辨率结构基础，可支持胞内抗体、VHH 或降解偶联策略探索。相较同类泛素通路靶点，USP25 的实验晶体结构分辨率较高且催化域边界明确，适合作为结构约束型结合分子设计优先模型，但开发优先级应低于具备胞外可及性的疾病靶点。",
+    "mechanism": "设计分子应结合 USP25 催化结构域近端，空间阻断泛素底物进入 Cys178-His607-Asp624 催化裂隙，从而抑制去泛素化反应。",
+    "selectedEpitope": "优先聚焦催化结构域 ubiquitin 结合沟槽与活性位点邻近环区，避免直接依赖高度保守催化三联体残基。",
+    "diseaseDirection": "造血表型与泛素稳态调控",
+    "domain": "USP25 含 N 端 UBA 样区域、中央泛素特异性蛋白酶催化结构域及插入调控区域。",
+    "evidence": "USP25 结构与血液学遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9UHP3 functional annotation",
+      "RCSB PDB 5GP7 X-ray structure",
+      "Reactome ubiquitin-dependent protein catabolic process annotations"
+    ],
+    "referenceEntries": "UniProt Q9UHP3；RCSB PDB 5GP7；Open Targets ENSG00000155313",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域 ubiquitin 结合沟槽及活性位点近端环区",
+        "可阻断泛素底物定位并抑制去泛素化反应，结构解析支持精确建模",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域插入调控区域外露面",
+        "可能通过构象限制影响底物进入，保守性低于催化核心，选择性设计空间较好",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Cys-His-Asp 催化三联体周边保守裂隙",
+        "抑制效应可能较强，但与其他 USP 家族成员保守区域重叠，需严格评估选择性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "USP25 为胞内酶，常规抗体难以到达天然作用位点；建议限定为胞内 VHH、细胞递送抗体片段或结构验证型结合分子，并强化 USP 家族选择性筛选。",
+    "structurePrepZh": "以 PDB 5GP7 的 A、B 链为模板，保留催化结构域完整坐标，检查缺失环区、质子化状态与晶体接触界面后进行表面口袋映射。",
+    "structureRef": "PDB 5GP7，human USP25 catalytic domain，X-ray 1.502 Å",
+    "antibodies": [
+      "暂无获批 USP25 靶向抗体",
+      "研究级 anti-USP25 antibody"
+    ],
+    "interfaceFocus": "泛素结合沟槽、BL1/BL2 环与活性裂隙边缘",
+    "designMode": "胞内VHH抑制",
+    "candidates": [
+      {
+        "target": "USP7",
+        "rationale": "USP7 同属去泛素化酶通路，调控 p53-MDM2 轴及免疫相关蛋白稳定性，具备成熟的小分子和结构药理学证据。可作为 USP25 选择性评估中的关键同族参照。"
+      },
+      {
+        "target": "USP18",
+        "rationale": "USP18 参与 ISG15 去修饰及 I 型干扰素负反馈调控，与炎症和免疫稳态疾病通路密切相关。其功能轴可用于比较 USP25 在先天免疫泛素样修饰网络中的定位。"
+      },
+      {
+        "target": "TNFAIP3",
+        "rationale": "TNFAIP3 编码 A20，是 NF-κB 炎症通路中的去泛素化与泛素编辑因子，和 USP25 同处泛素依赖性免疫信号调控网络。该靶点具有明确炎症疾病遗传证据。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

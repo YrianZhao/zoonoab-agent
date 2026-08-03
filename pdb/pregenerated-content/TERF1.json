@@ -1,0 +1,65 @@
+{
+  "gene": "TERF1",
+  "generatedAt": "2026-08-03T17:12:53.198Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TERF1/TRF1 是 shelterin 复合体核心组分，直接结合端粒双链 TTAGGG 重复序列并抑制端粒酶延伸，Open Targets 显示其与端粒长度性状及多类疾病表型存在遗传关联。该靶点主要定位于细胞核端粒染色质，缺乏天然胞外结构域或分泌形式，因此抗体成药可及性弱，需优先限定为细胞内递送抗体、研究级阻断抗体或结构生物学工具抗体。相较 TERT 等催化酶靶点，TERF1 具有高分辨率 DNA 结合域结构与明确的 shelterin 组装功能，适合作为端粒维持通路中机制验证优先靶点，但不宜作为常规胞外治疗性抗体首选。",
+    "mechanism": "抗体结合 TERF1 Myb/SANT 型 DNA 结合域，阻断其识别端粒双链 TTAGGG 重复序列，从而干扰 shelterin 在端粒染色质上的稳定装配。",
+    "selectedEpitope": "优先覆盖 C 端 Myb/SANT DNA 结合域的识别螺旋及邻近 DNA 接触面。",
+    "diseaseDirection": "端粒长度调控与肿瘤相关机制",
+    "domain": "TERF1 含 N 端酸性区、TRFH 二聚化结构域、铰链区及 C 端 Myb/SANT 型端粒 DNA 结合域。",
+    "evidence": "TERF1 端粒结合与 shelterin 功能证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P54274 functional annotation",
+      "RCSB PDB 9HCL X-ray structure",
+      "Shelterin complex telomere biology literature"
+    ],
+    "referenceEntries": "UniProt P54274；RCSB PDB 9HCL；Open Targets TERF1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C 端 Myb/SANT DNA 结合域识别螺旋",
+        "直接竞争端粒 TTAGGG 双链 DNA 结合，机制最清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "TRFH 二聚化结构域表面沟槽",
+        "可能干扰 TERF1 同源二聚化或 shelterin 相关蛋白招募",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端酸性低复杂度区域",
+        "柔性高且结构约束不足，表位稳定性与特异性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TERF1 为核内 DNA 结合蛋白，常规抗体难以到达作用位点；设计应标注细胞内递送需求，并避免选择低复杂度柔性片段作为主表位。",
+    "structurePrepZh": "以 PDB 9HCL 抗原链 A 为模板，保留解析良好的 Myb/SANT 结构域，检查 DNA 接触残基、缺失片段及晶体接触界面后进行表面可及性评估。",
+    "structureRef": "RCSB PDB 9HCL，X-ray diffraction，1.87 Å",
+    "antibodies": [
+      "Abcam anti-TRF1 antibody",
+      "Cell Signaling Technology TRF1 antibody"
+    ],
+    "interfaceFocus": "Myb/SANT 识别螺旋与端粒 DNA 主沟接触面",
+    "designMode": "细胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "TERT",
+        "rationale": "TERT 是端粒酶催化亚基，直接延伸端粒重复序列，与 TERF1 共同处于端粒长度稳态调控轴。其功能改变与肿瘤端粒维持机制密切相关。"
+      },
+      {
+        "target": "POT1",
+        "rationale": "POT1 是 shelterin 复合体成员，结合端粒单链 3' overhang 并调控端粒酶进入。其与 TERF1 同属端粒保护与长度调控网络。"
+      },
+      {
+        "target": "TERF2",
+        "rationale": "TERF2/TRF2 与 TERF1 同为双链端粒 DNA 结合蛋白，维持 T-loop 构象并抑制 DNA 损伤反应。其通路位置与 TERF1 高度相邻。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

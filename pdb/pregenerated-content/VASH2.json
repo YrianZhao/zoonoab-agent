@@ -1,0 +1,65 @@
+{
+  "gene": "VASH2",
+  "generatedAt": "2026-08-03T17:47:31.776Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "VASH2属于vasohibin家族去酪氨酸化酶，需与SVBP形成复合物后切除α-微管蛋白C端酪氨酸，影响微管动态、细胞迁移与血管生成相关表型。该蛋白主要为胞内酶，抗体药物的天然抗原可及性弱于膜受体或分泌因子，适宜定位于结构验证、胞内递送抗体或诊断试剂方向。相较于泛微管调节靶点，VASH2具有明确催化口袋和辅因子结合依赖性，且与VASH1存在功能分化，优先级依据在于结构分辨率高、复合物界面清晰、可支持精确表位设计。",
+    "mechanism": "通过抗体占据VASH2催化沟槽或SVBP结合邻近界面，阻断VASH2-SVBP稳定复合物形成及α-微管蛋白C端尾部进入催化位点。",
+    "selectedEpitope": "优先覆盖VASH2半胱氨酸蛋白酶样催化结构域的底物结合沟槽及SVBP稳定界面邻近环区。",
+    "diseaseDirection": "微管去酪氨酸化与血管生成相关疾病",
+    "domain": "VASH2含vasohibin催化核心结构域，形成Cys-His-Ser催化三联体，并依赖SVBP稳定折叠与活性。",
+    "evidence": "VASH2-SVBP复合物结构与微管去酪氨酸化证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q86V25功能注释",
+      "RCSB PDB 6J4P晶体结构",
+      "vasohibin/SVBP介导α-微管蛋白去酪氨酸化文献"
+    ],
+    "referenceEntries": "UniProt Q86V25；RCSB PDB 6J4P；Open Targets VASH2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化核心底物结合沟槽及Cys-His-Ser三联体邻近表面",
+        "可直接限制α-微管蛋白C端尾肽进入活性位点，机制验证价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SVBP结合界面邻近的VASH2稳定化表面",
+        "可干扰VASH2-SVBP复合物稳定性，降低酶活构象形成概率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化沟槽的保守结构核心外侧表面",
+        "可能仅产生结合信号而缺乏功能阻断效应，需避免影响结构折叠判读",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "VASH2为胞内酶，常规抗体体内阻断受限；设计应优先用于细胞内递送格式、结构探针或诊断抗体，并评估与VASH1交叉反应。",
+    "structurePrepZh": "以6J4P实验晶体结构为模板，保留A、B链复合物界面，补全缺失侧链与氢原子，标注催化残基、SVBP界面和底物沟槽。",
+    "structureRef": "RCSB PDB 6J4P，1.599 Å X-ray VASH2-SVBP结构",
+    "antibodies": [
+      "抗VASH2研究级单克隆抗体",
+      "抗vasohibin家族功能验证抗体"
+    ],
+    "interfaceFocus": "催化沟槽、SVBP结合界面及底物尾肽入口",
+    "designMode": "胞内功能阻断",
+    "candidates": [
+      {
+        "target": "SVBP",
+        "rationale": "SVBP是VASH2酶活所需的小结合蛋白，可稳定vasohibin构象并促进α-微管蛋白去酪氨酸化，属于同一VASH-SVBP微管修饰轴。"
+      },
+      {
+        "target": "VASH1",
+        "rationale": "VASH1与VASH2同属vasohibin去酪氨酸化酶家族，同样依赖SVBP并作用于α-微管蛋白C端酪氨酸，可作为通路内功能对照靶点。"
+      },
+      {
+        "target": "TUBA1A",
+        "rationale": "TUBA1A编码α-微管蛋白，是VASH2-SVBP复合物去酪氨酸化反应的底物之一，可用于评估微管C端尾部修饰通路输出。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

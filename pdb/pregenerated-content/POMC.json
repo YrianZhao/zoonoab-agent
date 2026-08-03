@@ -1,0 +1,65 @@
+{
+  "gene": "POMC",
+  "generatedAt": "2026-08-03T15:27:18.426Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "POMC 是下丘脑-垂体轴中多肽激素前体，其加工产物 ACTH、α-MSH 和 β-MSH 通过 MC2R、MC4R 等黑皮质素受体参与能量摄入、肾上腺皮质功能与色素调控，POMC 缺陷可导致早发肥胖。POMC 为分泌型前体蛋白，成熟肽段位于细胞外体液环境，具备抗体识别的抗原可及性。相较下游多种 GPCR 受体，POMC 肽段可通过配体捕获或加工产物区分实现更直接的轴向干预，因此适合作为黑皮质素通路抗体设计的优先靶点。",
+    "mechanism": "抗体结合 POMC 来源的 MSH/ACTH 肽段，阻断其与 MC4R 或 MC2R 正构配体结合口袋的相互作用，从而改变黑皮质素受体激活。",
+    "selectedEpitope": "优先覆盖 ACTH/α-MSH 共享的 melanocortin 核心 HFRW 基序邻近面，兼顾加工切割位点选择性。",
+    "diseaseDirection": "单基因肥胖与黑皮质素轴疾病",
+    "domain": "POMC 含信号肽、N 端前体区及 ACTH、α-MSH、β-MSH、β-内啡肽等加工肽段。",
+    "evidence": "POMC-黑皮质素轴肥胖关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P01189 functional annotation",
+      "RCSB PDB 4XNH experimental structure",
+      "OMIM/MONDO POMC deficiency obesity records"
+    ],
+    "referenceEntries": "UniProt P01189；RCSB PDB 4XNH；Open Targets POMC",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ACTH/α-MSH 共享 HFRW 受体识别核心邻近区域",
+        "直接干预 MC4R/MC2R 配体识别，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ACTH N 端 1-13 与 α-MSH 重叠肽段外侧面",
+        "可增强对 melanocortin 肽段的捕获并保留一定亚型选择窗口",
+        "备选"
+      ],
+      [
+        "Site C",
+        "β-内啡肽加工肽段表面暴露区域",
+        "可能影响阿片样肽功能，疾病方向偏离肥胖主轴，需限制交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "POMC 加工肽段短且同源重叠，存在 ACTH、α-MSH 与相关 MSH 肽段交叉识别风险；宜采用肽段-结构联合筛选并验证受体亚型功能效应。",
+    "structurePrepZh": "以 4XNH 抗原链 A、B、C、F 为实验结构参考，保留解析肽段坐标，补充缺失柔性区注释并标定加工切割位点与 HFRW 核心。",
+    "structureRef": "RCSB PDB 4XNH，X-ray diffraction，2.1 Å",
+    "antibodies": [
+      "anti-ACTH monoclonal antibody",
+      "anti-α-MSH monoclonal antibody"
+    ],
+    "interfaceFocus": "MSH/ACTH HFRW 核心与受体识别界面",
+    "designMode": "分泌肽段捕获",
+    "candidates": [
+      {
+        "target": "MC4R",
+        "rationale": "MC4R 是 POMC 来源 α-MSH 与 β-MSH 调控食欲和能量消耗的核心受体，遗传缺陷与严重早发肥胖直接相关。"
+      },
+      {
+        "target": "PCSK1",
+        "rationale": "PCSK1 编码 prohormone convertase 1/3，负责 POMC 前体向 ACTH 和 MSH 相关肽段加工，是同一内分泌加工通路的关键节点。"
+      },
+      {
+        "target": "LEPR",
+        "rationale": "LEPR 介导瘦素信号并促进下丘脑 POMC 神经元活化，位于调控食欲抑制性 POMC-MC4R 轴的上游。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

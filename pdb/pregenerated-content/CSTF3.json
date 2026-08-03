@@ -1,0 +1,65 @@
+{
+  "gene": "CSTF3",
+  "generatedAt": "2026-08-03T11:41:44.459Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CSTF3是mRNA 3'端加工复合体Cleavage Stimulation Factor的核心亚基，主要通过与CSTF2、CSTF1及pre-mRNA polyadenylation信号邻近序列协同参与切割与多聚腺苷酸化，现有Open Targets关联以肾小球滤过率、血清肌酐及多种性状遗传关联为主。该蛋白为核内RNA加工因子，不具备天然胞外结构域、分泌蛋白或膜受体特征，抗原可及性显著弱于细胞表面或可溶性疾病介质。相较于同通路中具有可药性受体或分泌因子的靶点，CSTF3更适合作为机制研究或胞内递送抗体片段探索靶点，主靶点优先级应审慎设定。",
+    "mechanism": "设计策略聚焦阻断CSTF3 hinge domain与CSTF2/CSTF1复合体装配界面，干扰pre-mRNA 3'端切割刺激复合体稳定化。",
+    "selectedEpitope": "优先覆盖6B3X中CSTF3 hinge domain二聚/装配界面，避开高度保守疏水核心。",
+    "diseaseDirection": "RNA 3'端加工与肾功能性状",
+    "domain": "CSTF3含N端HAT样α螺旋重复区及C端hinge/proline-rich区域，6B3X解析复合体装配相关片段。",
+    "evidence": "CSTF3结构与RNA 3'端加工证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q12996功能与亚细胞定位注释",
+      "RCSB PDB 6B3X晶体结构记录",
+      "mRNA cleavage and polyadenylation复合体文献"
+    ],
+    "referenceEntries": "UniProt Q12996；RCSB PDB 6B3X；Open Targets CSTF3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "hinge domain复合体装配界面",
+        "可直接影响CSTF3与CSTF2/CSTF1相关装配，机制验证价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端HAT样α螺旋重复外侧沟槽",
+        "可能改变蛋白复合体构象稳定性，适合构象选择性结合设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "保守疏水核心及链间晶体接触区",
+        "易产生非特异疏水结合或影响折叠稳定性，需降低设计权重",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CSTF3为核内蛋白，常规抗体难以到达天然作用位点；建议采用Fab/VHH体外机制验证或胞内递送格式，并严格评估同源HAT重复蛋白交叉反应。",
+    "structurePrepZh": "以6B3X链A、B为模板，补全缺失侧链并质子化；保留生物学装配界面，剔除晶体缓冲组分后进行界面残基可及性评估。",
+    "structureRef": "RCSB PDB 6B3X，X-ray diffraction，2.3 Å",
+    "antibodies": [
+      "无已批准CSTF3治疗性抗体",
+      "研究级anti-CSTF3抗体"
+    ],
+    "interfaceFocus": "CSTF3 hinge装配界面与HAT重复外侧沟槽",
+    "designMode": "胞内靶点探索",
+    "candidates": [
+      {
+        "target": "CSTF2",
+        "rationale": "CSTF2与GU-rich/downstream sequence结合并和CSTF3共同组成CstF复合体，是同一mRNA 3'端加工通路的直接功能伙伴。"
+      },
+      {
+        "target": "CSTF1",
+        "rationale": "CSTF1作为CstF复合体亚基参与CSTF2与CSTF3桥接装配，适合用于比较复合体界面阻断策略。"
+      },
+      {
+        "target": "CPSF2",
+        "rationale": "CPSF2属于pre-mRNA cleavage and polyadenylation machinery，并参与切割反应核心复合体，代表同通路下游催化相关节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "UPF2",
+  "generatedAt": "2026-08-03T17:43:04.400Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "UPF2是无义介导mRNA降解通路的核心支架蛋白，连接UPF1与UPF3B并促进异常终止密码子转录本的识别与降解，神经发育表型和ASD遗传证据提示该通路具有疾病相关性。该蛋白主要定位于胞质和核周mRNP复合体，缺乏分泌型或跨膜胞外结构域，天然抗原可及性不适合传统体内阻断型抗体。相较于UPF1等ATPase酶类节点，UPF2的UPF1/UPF3B结合界面更适合发展细胞内Fab或VHH作为机制研究与靶点验证工具，主靶点优先级应定位为胞内功能干预而非常规治疗性抗体开发。",
+    "mechanism": "以细胞内Fab或VHH阻断UPF2 MIF4G样结构域与UPF3B EJC连接复合体的结合，或干扰UPF2对UPF1解旋酶的募集，从而降低NMD复合体装配效率。",
+    "selectedEpitope": "优先覆盖UPF2第三MIF4G结构域的UPF3B结合沟槽及相邻螺旋束界面。",
+    "diseaseDirection": "神经发育与NMD通路异常",
+    "domain": "UPF2含三个MIF4G样结构域，1UW4解析其C端MIF4G结构域螺旋重复折叠。",
+    "evidence": "UPF2-NMD复合体结构与神经发育遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9HAU5功能与亚细胞定位注释",
+      "RCSB PDB 1UW4晶体结构记录",
+      "NMD通路中UPF1-UPF2-UPF3B复合体文献"
+    ],
+    "referenceEntries": "UniProt: Q9HAU5；RCSB PDB: 1UW4；Open Targets: UPF2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端MIF4G结构域UPF3B结合沟槽",
+        "可直接阻断UPF2-UPF3B桥接并削弱EJC依赖性NMD装配",
+        "优先"
+      ],
+      [
+        "Site B",
+        "MIF4G螺旋束外侧保守凸面",
+        "适合构建稳定结合的胞内VHH，用于占位干扰复合体构象",
+        "备选"
+      ],
+      [
+        "Site C",
+        "结构域核心疏水折叠面",
+        "可能影响UPF2整体折叠稳定性，需避免非特异性变性效应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "UPF2为胞内蛋白，常规IgG难以进入细胞；设计应优先采用胞内表达VHH或Fab，并区分界面阻断效应与蛋白稳定性破坏效应。",
+    "structurePrepZh": "以1UW4晶体结构为模板，保留抗原链A-D中分辨率较完整的单体链，补全缺失侧链并标注UPF3B/UPF1相关界面残基。",
+    "structureRef": "RCSB PDB 1UW4，X-ray diffraction，1.95 Å",
+    "antibodies": [
+      "胞内抗体格式参考：intrabody Fab",
+      "胞内抗体格式参考：nanobody/VHH"
+    ],
+    "interfaceFocus": "UPF2 MIF4G结构域-UPF3B结合界面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "UPF1",
+        "rationale": "UPF1是NMD通路核心RNA解旋酶，与UPF2形成功能复合体并执行异常mRNA降解，是同一通路中更靠近催化执行端的节点。"
+      },
+      {
+        "target": "UPF3B",
+        "rationale": "UPF3B连接外显子连接复合体与UPF2，参与EJC依赖性NMD识别；其遗传变异与神经发育障碍存在明确关联。"
+      },
+      {
+        "target": "SMG1",
+        "rationale": "SMG1激酶磷酸化UPF1并启动NMD复合体后续事件，是UPF2-UPF1轴下游调控异常转录本清除的真实通路靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

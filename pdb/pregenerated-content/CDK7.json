@@ -1,0 +1,65 @@
+{
+  "gene": "CDK7",
+  "generatedAt": "2026-08-03T11:14:20.545Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CDK7 是 TFIIH 复合体相关丝氨酸/苏氨酸激酶，可磷酸化 RNA polymerase II CTD Ser5/Ser7 并调控转录起始，同时作为 CAK 激活多种细胞周期 CDK。其主要功能位点位于细胞核内，天然抗原可及性不具备膜受体或分泌蛋白优势，因此更适合细胞内抗体、递送型抗体或降解偶联策略评估。相较 CDK12/13 等转录 CDK，CDK7 同时连接转录控制与细胞周期 CDK 激活，在转录依赖性疾病模型中具有较高机制优先级，但传统胞外阻断抗体开发风险较高。",
+    "mechanism": "以胞内抗体阻断 CDK7 ATP 结合裂隙或 cyclin H/MAT1 稳定界面，抑制 RNAPII CTD Ser5/Ser7 及 CDK1/2/4/6 T-loop 磷酸化。",
+    "selectedEpitope": "优先覆盖 N-lobe ATP 铰链区至 C-lobe 激活环邻近界面，避免仅识别柔性尾段。",
+    "diseaseDirection": "转录依赖性疾病与病毒感染",
+    "domain": "CDK7 含典型蛋白激酶结构域，具 N-lobe、ATP 铰链区、C-lobe 与 T-loop 激活片段。",
+    "evidence": "CDK7 转录激酶与细胞周期证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt P50613 功能与亚细胞定位注释",
+      "RCSB PDB 8P4Z X-ray 结构条目",
+      "TFIIH-CAK 与 RNAPII CTD 磷酸化文献"
+    ],
+    "referenceEntries": "UniProt P50613；RCSB PDB 8P4Z；Open Targets CDK7",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ATP 结合裂隙铰链区及 N-lobe/C-lobe 夹角",
+        "可直接干扰 ATP 定位与催化构象，机制可解释性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "cyclin H 结合相关 N-lobe 表面与 PSTAIRE 类螺旋邻近区",
+        "可能削弱 CAK 复合体稳定性并降低 CDK7 激酶活性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端柔性区或暴露非保守环区",
+        "结构异质性较高且功能阻断不确定，需结合构象稳定性筛选",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CDK7 为核内激酶，常规抗体难以到达作用位点；需优先采用细胞穿透、胞内表达或降解偶联格式，并严控 CDK 家族交叉反应。",
+    "structurePrepZh": "以 8P4Z 链 A/B 为实验结构模板，补全缺失环区、校正 ATP 口袋质子化状态，并保留激酶核心构象用于表位建模。",
+    "structureRef": "RCSB PDB 8P4Z；X-ray diffraction，2.75 Å",
+    "antibodies": [
+      "抗 CDK7 研究级单克隆抗体",
+      "抗 CDK7 磷酸化状态检测抗体"
+    ],
+    "interfaceFocus": "ATP 铰链区、T-loop 与 cyclin H 结合面",
+    "designMode": "胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "CCNH",
+        "rationale": "CCNH 编码 cyclin H，是 CDK7-CAK 复合体的直接调控亚基；靶向其与 CDK7 的结合界面可影响同一转录和细胞周期激酶模块。"
+      },
+      {
+        "target": "MNAT1",
+        "rationale": "MNAT1 编码 MAT1，是稳定 CDK7-cyclin H 复合体并连接 TFIIH 的关键组分；干预该节点可削弱 CAK 复合体装配。"
+      },
+      {
+        "target": "ERCC3",
+        "rationale": "ERCC3/XPB 是 TFIIH 核心 ATPase，参与转录起始和核苷酸切除修复；与 CDK7 所在 TFIIH 通路具有明确复合体关联。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "UFD1",
+  "generatedAt": "2026-08-03T17:40:59.120Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "UFD1是p97/VCP-UFD1-NPL4复合体的泛素识别亚基，参与ER相关降解、错误折叠蛋白抽提与抗病毒感染应激中的泛素化底物处理；其与登革热等病毒感染关联提示宿主蛋白稳态轴可能影响病毒复制环境。UFD1主要为胞质蛋白，并非经典分泌蛋白或膜受体，天然抗原可及性不具备胞外优势，因此更适合胞内递送抗体片段、结构探针或机制验证型抗体设计。相较广泛作用的VCP ATPase，UFD1提供更聚焦的泛素识别界面，可在降低全局ATPase抑制毒性的前提下解析底物招募步骤，作为探索性优先级靶点更具结构选择性。",
+    "mechanism": "抗体片段拟结合UFD1 UT3泛素结合结构域，阻断K48连接泛素链与UFD1-NPL4受体界面的结合，从而削弱VCP复合体对泛素化ERAD底物的招募。",
+    "selectedEpitope": "优先覆盖UT3结构域泛素结合沟槽及邻近NPL4接触面，避免干扰非功能性疏水核心。",
+    "diseaseDirection": "病毒感染与蛋白稳态应激",
+    "domain": "UFD1含N端泛素调控区域与C端UT3泛素结合结构域，参与VCP-NPL4复合体底物识别。",
+    "evidence": "UFD1蛋白稳态与病毒感染关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q92890功能注释",
+      "RCSB PDB 5B6C晶体结构",
+      "ERAD与VCP-UFD1-NPL4复合体文献"
+    ],
+    "referenceEntries": "UniProt: Q92890; RCSB PDB: 5B6C; Gene: UFD1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "UT3结构域泛素结合沟槽",
+        "直接阻断泛素化底物识别，机制指向明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "UFD1-NPL4复合体邻近界面",
+        "干预辅因子装配或构象耦联，可用于机制分层",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离泛素结合面的保守折叠核心",
+        "可能影响蛋白稳定性而非特异功能界面，脱靶解释风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "UFD1为胞内蛋白，常规完整IgG难以到达作用位点；建议采用细胞内递送Fab/VHH或降解体结合验证，并设置VCP与NPL4结合保留性评估。",
+    "structurePrepZh": "以5B6C链A、B为结构模板，保留UT3结构域构象，校正缺失侧链与质子化状态，并映射泛素结合残基用于表位约束。",
+    "structureRef": "PDB 5B6C, X-ray diffraction, 1.55 Å",
+    "antibodies": [
+      "研究级抗UFD1单克隆抗体",
+      "研究级抗p97/VCP复合体抗体"
+    ],
+    "interfaceFocus": "UT3泛素结合沟槽与NPL4邻近界面",
+    "designMode": "胞内Fab/VHH阻断",
+    "candidates": [
+      {
+        "target": "VCP",
+        "rationale": "VCP是UFD1-NPL4复合体的AAA+ ATPase核心，驱动泛素化底物从膜或蛋白复合体中抽提，位于同一ERAD与蛋白稳态通路。"
+      },
+      {
+        "target": "NPLOC4",
+        "rationale": "NPLOC4编码NPL4，是UFD1的直接复合体伙伴，参与多泛素链识别与底物递交，适合作为同复合体界面调控候选靶点。"
+      },
+      {
+        "target": "DERL1",
+        "rationale": "DERL1参与ERAD底物跨膜逆转运，并与VCP辅因子轴功能耦联，适合用于比较膜端底物转运与胞质端抽提步骤的干预价值。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

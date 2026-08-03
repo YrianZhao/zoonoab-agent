@@ -1,0 +1,65 @@
+{
+  "gene": "PIM2",
+  "generatedAt": "2026-08-03T15:18:28.638Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PIM2 为胞内丝氨酸/苏氨酸激酶，参与 IL-6/STAT3、NF-κB 与 PI3K-AKT 相关存活网络，在多发性骨髓瘤和乳腺癌中促进 BAD 磷酸化、MCL1 稳定及细胞凋亡逃逸。其主要定位于胞质和细胞核，缺乏天然胞外结构域，抗体抗原可及性不优于膜受体或分泌因子，需限定为细胞内递送抗体或研究级构象探针。相比 PIM1/PIM3，PIM2 在骨髓瘤细胞存活和蛋白翻译控制中具有较强功能关联，但作为常规治疗性抗体靶点优先级低于同通路可及性更高的 IL6R、TNFRSF17 和 CD38。",
+    "mechanism": "通过胞内递送抗体占据 PIM2 ATP 结合裂隙，干扰 Lys61-Glu89 催化盐桥与底物定位，从而抑制 BAD、4E-BP1 等底物磷酸化。",
+    "selectedEpitope": "优先锁定激酶结构域 N-lobe/C-lobe 间 ATP 结合裂隙及铰链区构象表位。",
+    "diseaseDirection": "血液肿瘤与乳腺癌存活通路",
+    "domain": "PIM2 主要由单一丝氨酸/苏氨酸蛋白激酶结构域构成，含 N-lobe、铰链区、C-lobe 和活化环。",
+    "evidence": "PIM2 肿瘤存活激酶与结构表位证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9P1W9 functional annotation",
+      "RCSB PDB 4X7Q X-ray structure",
+      "Cancer Cell and Blood literature on PIM2 in myeloma survival"
+    ],
+    "referenceEntries": "UniProt Q9P1W9；RCSB PDB 4X7Q；Open Targets PIM2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ATP 结合裂隙与铰链区邻近构象面",
+        "可直接阻断 ATP 占位和催化构象稳定，最符合抑制型胞内抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N-lobe αC 螺旋与 Lys61-Glu89 调控界面",
+        "有助于破坏活性激酶构象，但需避免与 PIM1/PIM3 高保守区域交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C-lobe 底物结合沟槽与活化环周边",
+        "可能影响底物识别，但柔性较高且结构态依赖性强，需进行构象稳定评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PIM2 为胞内激酶，常规抗体难以接触天然抗原；PIM 家族激酶结构域保守性高，应强化 PIM1/PIM3 交叉反应筛选并配置递送策略。",
+    "structurePrepZh": "以 4X7Q 的 A、B 链激酶结构域为模板，去除结晶配体和非关键水分子，补全缺失侧链并保留 ATP 口袋构象用于表位建模。",
+    "structureRef": "RCSB PDB 4X7Q，human PIM2 kinase X-ray structure，2.33 Å",
+    "antibodies": [
+      "anti-PIM2 monoclonal antibody clone 1D12",
+      "anti-PIM2 monoclonal antibody clone EPR6985"
+    ],
+    "interfaceFocus": "ATP 结合裂隙、铰链区与αC螺旋调控面",
+    "designMode": "胞内抑制型抗体",
+    "candidates": [
+      {
+        "target": "IL6R",
+        "rationale": "IL6R 位于 IL-6/JAK/STAT3 轴上游，可驱动 PIM2 转录诱导；其胞外受体结构域可及性显著优于 PIM2，适合阻断 IL-6 与受体复合物形成。"
+      },
+      {
+        "target": "STAT3",
+        "rationale": "STAT3 是 IL-6 信号诱导 PIM2 表达的关键转录因子，可连接炎症因子刺激与肿瘤细胞存活程序；作为胞内靶点，适合与 PIM2 共同用于通路验证。"
+      },
+      {
+        "target": "TNFRSF17",
+        "rationale": "TNFRSF17/BCMA 是浆细胞骨髓瘤中与 NF-κB 存活信号相关的膜受体，和 PIM2 共同维持恶性浆细胞抗凋亡状态；其胞外结构域高度适合抗体药物设计。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

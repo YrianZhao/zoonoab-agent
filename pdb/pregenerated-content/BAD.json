@@ -1,0 +1,65 @@
+{
+  "gene": "BAD",
+  "generatedAt": "2026-08-03T10:45:29.348Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BAD是BH3-only促凋亡蛋白，在线粒体凋亡通路中通过BH3螺旋结合BCL2、BCL-XL或BCL2L2等抗凋亡蛋白，解除其对BAX/BAK1活化的抑制；神经退行性疾病中，BAD磷酸化失衡与神经元应激性凋亡相关。BAD主要为胞质可溶性蛋白，并非经典胞外抗体靶点，抗原可及性低于膜受体或分泌蛋白，更适合细胞内递送抗体片段或研究级阻断分子。其优先级来自高分辨率结构可支持BH3界面精细设计，但相较TNFRSF、补体或细胞因子类胞外靶点，成药转化优先级应审慎评估。",
+    "mechanism": "设计分子阻断BAD BH3螺旋与BCL2/BCL-XL疏水沟槽结合，降低BAD置换BAX/BAK1抑制复合物的能力，从而调节线粒体外膜通透化。",
+    "selectedEpitope": "优先覆盖BAD BH3 α螺旋LXXGD核心疏水面及与BCL-XL沟槽互补的关键残基。",
+    "diseaseDirection": "神经退行性疾病相关线粒体凋亡",
+    "domain": "BAD为BH3-only BCL2家族蛋白，含BH3 α螺旋介导抗凋亡BCL2家族结合。",
+    "evidence": "BAD介导线粒体凋亡与神经退行性疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q92934功能与亚细胞定位注释",
+      "RCSB PDB 9QNL高分辨率晶体结构",
+      "BCL2家族BH3结构与凋亡机制文献"
+    ],
+    "referenceEntries": "UniProt Q92934；RCSB PDB 9QNL；Open Targets BAD",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "BH3 α螺旋LXXGD核心疏水面",
+        "直接干预BAD与BCL2/BCL-XL结合界面，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "BH3螺旋N端调节侧面",
+        "可增强界面遮挡并提高对BH3构象的选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "非BH3无序调控区及磷酸化邻近片段",
+        "构象柔性高且同源功能界面不稳定，需避免非特异结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BAD为细胞内可溶性蛋白，常规抗体难以到达作用位点；建议采用VHH、intrabody或递送偶联策略，并严格评估BCL2家族交叉反应。",
+    "structurePrepZh": "以9QNL晶体结构为模板，保留抗原链A/B中解析的BH3构象，补全缺失柔性区仅用于背景建模，界面设计聚焦BH3螺旋。",
+    "structureRef": "RCSB PDB 9QNL，X-ray diffraction，1.3 Å",
+    "antibodies": [
+      "抗BAD研究用单克隆抗体",
+      "抗磷酸化BAD研究用抗体"
+    ],
+    "interfaceFocus": "BH3螺旋与BCL2/BCL-XL疏水沟槽",
+    "designMode": "细胞内VHH阻断",
+    "candidates": [
+      {
+        "target": "BCL2",
+        "rationale": "BCL2是BAD BH3结构域的抗凋亡结合伙伴，直接位于同一线粒体凋亡调控轴，可通过占据BH3结合沟槽影响BAX/BAK1释放。"
+      },
+      {
+        "target": "BCL2L1",
+        "rationale": "BCL2L1编码BCL-XL，是BAD高相关结合蛋白之一；其疏水沟槽介导BH3肽结合，是凋亡阈值调控的关键节点。"
+      },
+      {
+        "target": "BAK1",
+        "rationale": "BAK1是线粒体外膜通透化执行蛋白，处于BAD解除抗凋亡蛋白抑制后的下游效应环节，适合作为同通路功能验证候选。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

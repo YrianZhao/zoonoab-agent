@@ -1,0 +1,65 @@
+{
+  "gene": "MAP3K1",
+  "generatedAt": "2026-08-03T14:02:32.158Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAP3K1编码MEKK1，是MAPK级联上游丝氨酸/苏氨酸激酶，可通过磷酸化MAP2K4/MAP2K7连接JNK应激通路，并在性腺发育异常及乳腺、卵巢肿瘤中具有遗传和功能关联。该蛋白主要为胞内激酶，抗原天然可及性低，抗体设计应定位于结构验证、胞内递送或研究级构象探针。相比同通路下游MAPK，MAP3K1处于信号分支上游，疾病变异富集且结构解析质量较高，适合作为机制性抗体工程评估靶点。",
+    "mechanism": "通过结合MAP3K1激酶结构域ATP结合裂隙邻近构象表面，空间阻碍ATP定位或MAP2K4/MAP2K7底物进入催化界面，从而抑制JNK通路磷酸化传递。",
+    "selectedEpitope": "优先选择激酶结构域N-lobe/C-lobe夹缝及活化环邻近构象表位。",
+    "diseaseDirection": "性腺发育异常与妇科肿瘤",
+    "domain": "MAP3K1含N端调控区、SWIM锌指、RING结构域及C端丝氨酸/苏氨酸激酶结构域。",
+    "evidence": "MAP3K1疾病遗传关联与激酶结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q13233功能与结构域注释",
+      "RCSB PDB 6WHB晶体结构记录",
+      "ClinVar与肿瘤基因组变异证据"
+    ],
+    "referenceEntries": "UniProt Q13233；RCSB PDB 6WHB；Open Targets MAP3K1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域ATP结合裂隙及铰链区邻近表面",
+        "可直接干预ATP结合与催化构象稳定，是功能阻断设计的核心区域",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C-lobe底物结合沟槽及MAP2K4/MAP2K7接触面邻近区域",
+        "有望选择性阻断底物募集并降低对保守ATP口袋的依赖",
+        "备选"
+      ],
+      [
+        "Site C",
+        "活化环与DFG基序周边构象敏感区域",
+        "构象异质性和磷酸化状态依赖性较高，需避免获得状态特异性过窄的抗体",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAP3K1为胞内大分子激酶，常规治疗性抗体难以接触天然抗原；建议限定为胞内递送抗体、降解平台适配或结构功能研究抗体，并严控激酶家族交叉反应。",
+    "structurePrepZh": "以6WHB链A为模板，保留解析完整的激酶结构域，校正缺失环区与质子化状态，去除非必要晶体配体后评估ATP口袋及底物沟槽可成药表面。",
+    "structureRef": "RCSB PDB 6WHB，X-ray diffraction，1.90 Å",
+    "antibodies": [
+      "MAP3K1 research antibody",
+      "phospho-MAP3K1 research antibody"
+    ],
+    "interfaceFocus": "ATP铰链区、活化环与底物募集沟槽",
+    "designMode": "胞内靶向构象阻断",
+    "candidates": [
+      {
+        "target": "MAP2K4",
+        "rationale": "MAP2K4是MAP3K1下游JNK/p38分支MAPK激酶，参与应激信号传递和肿瘤相关通路。其位置更接近效应MAPK层级，可作为下游节点验证靶点。"
+      },
+      {
+        "target": "MAP2K7",
+        "rationale": "MAP2K7是JNK通路的专一性MAPK激酶，可被MAP3K1上游激活并磷酸化JNK。与MAP2K4联合评估有助于区分JNK通路分支贡献。"
+      },
+      {
+        "target": "MAPK8",
+        "rationale": "MAPK8编码JNK1，是MAP3K1-MAP2K4/MAP2K7轴的核心下游效应激酶。其活化状态可作为MAP3K1功能阻断后的通路药效读出。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

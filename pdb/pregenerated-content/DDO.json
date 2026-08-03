@@ -1,0 +1,65 @@
+{
+  "gene": "DDO",
+  "generatedAt": "2026-08-03T11:52:40.697Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DDO编码D-天冬氨酸氧化酶，主要定位于过氧化物酶体基质，催化D-天冬氨酸氧化脱氨并生成草酰乙酸、氨和过氧化氢；现有Open Targets关联主要集中于血小板体积、计数和红细胞体积等血液性状，但其与血小板生成或红系成熟的直接致病机制证据仍属遗传关联层面。该蛋白缺乏跨膜区和分泌信号，天然抗原可及性不具备膜受体或分泌蛋白优势，体内阻断型抗体开发可及性受限。相较于THPO、MPL、JAK2等同属血小板数量调控轴且具有明确细胞外配体-受体界面的靶点，DDO更适合作为结构验证或胞内递送抗体探索靶点，优先级应低于可直接干预造血因子信号的靶点。",
+    "mechanism": "设计抗体以识别FAD结合催化核心邻近口袋，空间遮挡D-天冬氨酸进入活性位点并干扰底物与催化残基的定位。",
+    "selectedEpitope": "优先覆盖FAD结合Rossmann样结构域与底物入口环区的复合表面。",
+    "diseaseDirection": "血小板数量与血细胞性状",
+    "domain": "人DDO为过氧化物酶体黄素依赖氧化酶，含FAD结合Rossmann样核心和底物结合催化口袋。",
+    "evidence": "DDO血液性状遗传关联与结构可成药性证据包",
+    "evidenceSources": [
+      "Open Targets Platform遗传关联与性状评分",
+      "UniProt Q99489功能与亚细胞定位注释",
+      "RCSB PDB 6RKF晶体结构记录",
+      "GWAS Catalog血小板与红细胞性状关联数据"
+    ],
+    "referenceEntries": "UniProt Q99489；RCSB PDB 6RKF；Open Targets DDO",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "FAD结合Rossmann样核心邻近底物入口",
+        "可同时影响辅因子稳定性与底物进入路径，适合功能阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化口袋外侧可溶剂暴露环区",
+        "有利于获得构象选择性结合，但需避免仅产生非阻断性结合",
+        "备选"
+      ],
+      [
+        "Site C",
+        "寡聚体晶体接触界面周边表面",
+        "可能受晶体堆积影响，需验证其在溶液状态下的真实暴露性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DDO为胞内过氧化物酶体酶，常规抗体难以到达天然作用位点；建议限定为胞内递送、降解偶联或体外结构探针方向。",
+    "structurePrepZh": "以6RKF实验结构为模板，保留FAD辅因子并检查A-F链构象一致性；补全缺失环区后进行质子化、能量最小化和界面暴露性评估。",
+    "structureRef": "RCSB PDB 6RKF，X-ray diffraction，3.219 Å",
+    "antibodies": [
+      "暂无获批DDO靶向抗体",
+      "暂无公开临床阶段DDO抗体"
+    ],
+    "interfaceFocus": "FAD结合沟槽、底物入口环区与催化口袋边缘",
+    "designMode": "胞内酶阻断探索",
+    "candidates": [
+      {
+        "target": "THPO",
+        "rationale": "THPO是血小板生成素，直接驱动MPL介导的巨核细胞增殖和血小板生成；其分泌蛋白属性提供优于DDO的抗原可及性。"
+      },
+      {
+        "target": "MPL",
+        "rationale": "MPL为血小板生成素受体，其胞外细胞因子受体结构域介导THPO结合与受体激活；阻断或调节THPO-MPL相互作用具有明确机制基础。"
+      },
+      {
+        "target": "JAK2",
+        "rationale": "JAK2位于MPL下游并介导STAT信号转导，是血小板生成和骨髓增殖性疾病中的关键节点；但其胞内激酶定位使抗体可及性同样受限。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "DLX5",
+  "generatedAt": "2026-08-03T11:59:20.259Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DLX5为同源盒转录因子，主要在肢端发育、颅面骨形成与内耳相关发育程序中调控下游基因转录，遗传缺陷与裂手裂足畸形及伴听力损失表型具有明确关联。该蛋白定位于细胞核，缺乏天然胞外结构域、分泌特征或膜受体可及性，因此常规体内阻断型抗体开发可及性受限。相较膜受体或分泌因子靶点，DLX5更适合用于结构生物学驱动的胞内递送抗体、研究级Fab/VHH或蛋白-DNA界面探针设计，优先级依据在于其PDB实验结构分辨率较高且疾病遗传证据集中。",
+    "mechanism": "设计抗体片段结合DLX5同源盒DNA识别螺旋，空间阻断其与TAAT核心序列邻近DNA大沟的接触，从而抑制DLX5介导的发育基因转录激活。",
+    "selectedEpitope": "优先锁定同源盒第三α螺旋DNA识别面及N端臂邻近沟槽结合界面。",
+    "diseaseDirection": "肢端发育畸形与骨发育异常",
+    "domain": "DLX5含N端调控区与C端同源盒DNA结合结构域，PDB 4RDU覆盖同源盒折叠。",
+    "evidence": "DLX5发育遗传关联与同源盒结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P56178 functional annotation",
+      "RCSB PDB 4RDU X-ray structure",
+      "OMIM and Orphanet developmental disorder records"
+    ],
+    "referenceEntries": "UniProt P56178；RCSB PDB 4RDU；Open Targets DLX5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "同源盒第三α螺旋DNA大沟识别面",
+        "直接干预DLX5-DNA序列识别，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "同源盒N端臂及小沟接触邻近区域",
+        "削弱DNA结合稳定性，可与Site A形成协同覆盖",
+        "备选"
+      ],
+      [
+        "Site C",
+        "同源盒疏水核心和保守折叠支撑面",
+        "可能影响蛋白折叠但特异性窗口较窄",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DLX5为核内转录因子，体内抗体递送与胞内暴露是主要风险；同源盒高度保守，需避开DLX1/2/6等旁系同源蛋白共享残基以提高选择性。",
+    "structurePrepZh": "以4RDU高分辨率晶体结构为模板，保留同源盒链构象，补全缺失侧链并评估寡聚晶体接触，优先构建DNA结合界面抗原模型。",
+    "structureRef": "RCSB PDB 4RDU，X-ray diffraction，1.85 Å",
+    "antibodies": [
+      "DLX5研究级多克隆抗体",
+      "DLX5研究级单克隆抗体"
+    ],
+    "interfaceFocus": "同源盒识别螺旋-DNA大沟接触界面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "DLX6",
+        "rationale": "DLX6与DLX5位于DLX5-DLX6发育调控轴，参与肢端与颅面发育程序；其同源盒DNA结合机制与DLX5相近，适合作为旁系选择性评估靶点。"
+      },
+      {
+        "target": "TP63",
+        "rationale": "TP63是肢端上皮发育和外胚层发育异常的重要转录调控因子，与裂手裂足相关遗传网络相交；可作为同疾病方向的上游或并行转录调控节点。"
+      },
+      {
+        "target": "FGFR1",
+        "rationale": "FGFR1介导FGF发育信号，在肢芽、骨形成和颅面发育中具有明确作用；其膜受体属性提供较DLX5更高的抗体可及性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

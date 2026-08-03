@@ -1,0 +1,65 @@
+{
+  "gene": "HSF2BP",
+  "generatedAt": "2026-08-03T13:17:50.324Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HSF2BP是减数分裂同源重组通路中的支架蛋白，通过结合BRME1并促进BRCA2装载至重组位点，影响RAD51/DMC1介导的DNA双链断裂修复，遗传缺陷与卵巢早衰相关。该蛋白为细胞内核质蛋白，天然抗原可及性不如膜受体或分泌蛋白，抗体设计更适合用于胞内递送、结构探针或研究级功能阻断。相较于BRCA2、RAD51等核心修复因子，HSF2BP结构更小且具有明确BRME1结合界面，适合作为机制验证优先靶点，但治疗性抗体优先级需受限评估。",
+    "mechanism": "通过抗体占据HSF2BP ARM-repeat凹面界面，阻断HSF2BP与BRME1相互作用，削弱BRCA2向减数分裂重组位点募集。",
+    "selectedEpitope": "优先覆盖ARM-repeat solenoid凹面BRME1结合界面，避免仅选择非功能性外凸环区。",
+    "diseaseDirection": "卵巢早衰与减数分裂DNA修复",
+    "domain": "HSF2BP主要由N端螺旋束及C端ARM-repeat样螺旋重复结构组成，形成蛋白互作凹面。",
+    "evidence": "HSF2BP-BRME1-BRCA2减数分裂重组证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt O75031功能与亚细胞定位注释",
+      "RCSB PDB 8A50晶体结构记录",
+      "减数分裂同源重组与卵巢早衰遗传学文献"
+    ],
+    "referenceEntries": "UniProt O75031；RCSB PDB 8A50；Open Targets HSF2BP",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ARM-repeat凹面BRME1结合界面",
+        "直接干预HSF2BP-BRME1复合物形成，功能阻断价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端螺旋束与ARM-repeat连接区",
+        "可能通过构象限制影响互作界面稳定性，适合作为变构型备选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离BRME1界面的外侧螺旋表面",
+        "结合可及性较好但功能相关性弱，需通过竞争实验确认",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HSF2BP为胞内核质蛋白，常规抗体难以在完整细胞内达到靶点；应优先定位为胞内递送抗体、Fab结构探针或体外功能阻断工具。",
+    "structurePrepZh": "以PDB 8A50链A/B为模板，检查二聚体装配、缺失环区与晶体接触；保留功能界面构象并去除非生物学接触后建模。",
+    "structureRef": "RCSB PDB 8A50，X-ray diffraction，1.484 Å",
+    "antibodies": [
+      "无已批准同靶点治疗性抗体",
+      "研究级抗HSF2BP抗体"
+    ],
+    "interfaceFocus": "ARM-repeat凹面BRME1结合沟槽",
+    "designMode": "胞内功能阻断",
+    "candidates": [
+      {
+        "target": "BRME1",
+        "rationale": "BRME1与HSF2BP形成复合物并参与BRCA2募集，是同一减数分裂重组轴上的直接互作伙伴。靶向其HSF2BP结合区域可用于验证复合物依赖性机制。"
+      },
+      {
+        "target": "BRCA2",
+        "rationale": "BRCA2是RAD51/DMC1装载和同源重组修复的核心因子，位于HSF2BP-BRME1复合物下游。其疾病证据强，但蛋白体量大且多功能性带来更高安全性风险。"
+      },
+      {
+        "target": "RAD51",
+        "rationale": "RAD51执行同源链侵入和重组中间体形成，是BRCA2募集后的关键效应蛋白。与HSF2BP处于同一DNA双链断裂修复通路，可作为功能读出和替代干预节点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

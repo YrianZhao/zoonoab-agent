@@ -1,0 +1,65 @@
+{
+  "gene": "PSMD10",
+  "generatedAt": "2026-08-03T15:40:28.956Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PSMD10编码gankyrin，为26S蛋白酶体19S调节颗粒非ATPase亚基，参与蛋白酶体依赖性降解并可促进MDM2介导的p53失活，在肝细胞癌、结直肠癌和非小细胞肺癌等肿瘤中具有疾病关联。该蛋白主要定位于胞质和细胞核，缺乏天然胞外结构域或分泌特征，因此完整抗体的抗原可及性受限，宜以胞内递送抗体片段或研究级结合分子为设计场景。相比直接靶向蛋白酶体催化核心，PSMD10具有肿瘤相关调控界面和高分辨率结构基础，可作为机制验证优先靶点，但成药性优先级低于胞外受体类肿瘤靶点。",
+    "mechanism": "设计分子阻断PSMD10 ankyrin-repeat表面与MDM2或蛋白酶体调节颗粒结合界面，削弱p53泛素化降解和蛋白酶体装配相关促癌信号。",
+    "selectedEpitope": "优先覆盖ankyrin repeat凹面连续沟槽及MDM2结合相关表面，避免核心折叠疏水区。",
+    "diseaseDirection": "肝细胞癌及实体瘤蛋白稳态通路",
+    "domain": "PSMD10由七个ankyrin repeat构成弯曲螺旋重复支架，形成蛋白互作沟槽。",
+    "evidence": "PSMD10肿瘤蛋白稳态与p53轴证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt O75832蛋白功能与定位注释",
+      "RCSB PDB 7VO6晶体结构记录",
+      "肝细胞癌中gankyrin-MDM2-p53轴研究文献"
+    ],
+    "referenceEntries": "UniProt O75832；RCSB PDB 7VO6；Open Targets PSMD10",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ankyrin repeat内凹互作沟槽",
+        "覆盖蛋白互作热点，适于阻断MDM2/调节颗粒结合",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ankyrin repeat外凸螺旋表面",
+        "结构稳定且可形成构象表位，适合作为高亲和结合位点",
+        "备选"
+      ],
+      [
+        "Site C",
+        "重复单元间疏水核心邻近区",
+        "可能影响整体折叠并产生非特异构象扰动，开发风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PSMD10为胞内非分泌蛋白，常规抗体难以直接到达作用位点；建议采用细胞内递送Fab/VHH、降解偶联或机制验证模型，并严格评估蛋白酶体广泛毒性。",
+    "structurePrepZh": "以7VO6链A为模板，保留ankyrin repeat主链构象，去除结晶水和非必要小分子，标注互作沟槽、电荷斑块及保守残基后开展表位建模。",
+    "structureRef": "RCSB PDB 7VO6，X-ray diffraction，1.71 Å",
+    "antibodies": [
+      "暂无获批PSMD10治疗性抗体",
+      "研究级anti-gankyrin抗体"
+    ],
+    "interfaceFocus": "ankyrin凹面沟槽与MDM2结合相关表面",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "MDM2",
+        "rationale": "MDM2介导p53泛素化降解，是PSMD10促癌轴中的关键E3连接酶节点；阻断MDM2-p53相互作用可恢复p53抑癌功能。"
+      },
+      {
+        "target": "TP53",
+        "rationale": "TP53是PSMD10-MDM2通路下游核心抑癌因子，其稳定性和转录活性反映该轴的功能输出；适合作为机制分层与联合设计参照。"
+      },
+      {
+        "target": "PSMD4",
+        "rationale": "PSMD4为26S蛋白酶体19S调节颗粒泛素受体亚基，与PSMD10同属蛋白酶体调节网络；可用于比较蛋白酶体依赖性肿瘤蛋白稳态干预策略。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

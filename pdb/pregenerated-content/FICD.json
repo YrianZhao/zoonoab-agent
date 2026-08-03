@@ -1,0 +1,65 @@
+{
+  "gene": "FICD",
+  "generatedAt": "2026-08-03T12:33:35.066Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FICD/HYPE 是内质网腔侧的 FIC 结构域腺苷酸转移酶，可对 HSPA5/BiP 进行 AMPylation 与去 AMPylation，影响未折叠蛋白反应和内质网蛋白稳态；其遗传关联信号包含常染色体隐性痉挛性截瘫 92。该蛋白为单跨膜内质网蛋白，催化结构域位于内质网腔内，具备抗体片段在细胞内递送或工程化内质网定位场景下的结构可识别性。相较一般 UPR 转录调控因子，FICD 具有高分辨率实验结构和明确底物界面，适合作为机制验证型抗体设计优先靶点。",
+    "mechanism": "抗体片段结合 FICD FIC 催化核心邻近的 HSPA5/BiP 识别面，阻断 FICD 与 BiP 的底物结合，从而抑制 BiP AMPylation 周期。",
+    "selectedEpitope": "优先覆盖 FIC 结构域催化环与底物结合沟槽边缘，避开跨膜近端低可及区。",
+    "diseaseDirection": "神经退行性痉挛性截瘫",
+    "domain": "FICD 含 N 端单跨膜区、内质网腔侧 TPR 样区域及 C 端 FIC 催化结构域。",
+    "evidence": "FICD-BiP AMPylation 与神经遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt Q9BVA6 功能与亚细胞定位注释",
+      "RCSB PDB 7B7Z X 射线晶体结构",
+      "FICD/HYPE 调控 HSPA5/BiP AMPylation 文献"
+    ],
+    "referenceEntries": "UniProt Q9BVA6；RCSB PDB 7B7Z；Open Targets FICD",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "FIC 结构域催化环及底物结合沟槽邻近区域",
+        "有利于阻断 HSPA5/BiP 与 FICD 的催化性结合",
+        "优先"
+      ],
+      [
+        "Site B",
+        "TPR 样结构域与 FIC 核心连接界面",
+        "可能影响构象耦联与底物进入路径，适合变构型抗体片段",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端跨膜近端腔侧短连接区",
+        "空间可及性和构象稳定性不确定，可能影响成药性评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FICD 主要定位于内质网腔，常规循环抗体难以到达靶点；宜采用细胞内递送抗体片段、ER 定位表达或体外机制探针策略。",
+    "structurePrepZh": "以 7B7Z 的 A、B 链为实验结构模板，补全缺失侧链并保留 FIC 催化核心；对二聚体界面、催化环和底物沟槽进行可及性标注。",
+    "structureRef": "RCSB PDB 7B7Z，X-ray diffraction，1.7 Å",
+    "antibodies": [
+      "FICD 机制研究用抗体",
+      "抗 HYPE/FICD 多克隆抗体"
+    ],
+    "interfaceFocus": "FIC 催化环与 HSPA5/BiP 底物结合沟槽",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "HSPA5",
+        "rationale": "HSPA5/BiP 是 FICD 的直接 AMPylation 底物，也是内质网蛋白折叠应激的核心伴侣蛋白。靶向其底物结合或调控界面可用于同一 ER 蛋白稳态通路验证。"
+      },
+      {
+        "target": "ERN1",
+        "rationale": "ERN1/IRE1 是未折叠蛋白反应的内质网跨膜感受器，与 BiP 解离和 ER 应激信号启动密切相关。其腔侧结构域具有抗体可及的配体样识别界面。"
+      },
+      {
+        "target": "ATF6",
+        "rationale": "ATF6 是 ER 应激反应的跨膜转录因子前体，与 BiP 结合状态和蛋白稳态负荷相关。靶向其 ER 腔侧应激感知区域可作为同通路候选策略。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

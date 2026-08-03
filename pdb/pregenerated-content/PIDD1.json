@@ -1,0 +1,65 @@
+{
+  "gene": "PIDD1",
+  "generatedAt": "2026-08-03T15:16:45.236Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PIDD1编码含死亡结构域的胞内支架蛋白，参与DNA损伤或有丝分裂错误后的PIDDosome装配，并通过RAIDD/CRADD招募CASP2；其双等位基因功能缺失与常染色体隐性神经发育障碍、无脑回样皮层发育异常和智力障碍相关。该蛋白主要定位于胞质并经自蛋白水解形成PIDD-CC/PIDD-C片段，缺乏天然分泌或跨膜胞外抗原可及性，因此常规体内阻断型抗体开发可及性受限，更适合结构验证、细胞内递送抗体或研究级结合分子设计。相比同通路下游半胱天冬酶，PIDD1处于PIDDosome装配上游，结构域界面更直接决定CRADD结合与CASP2激活，具备机制解析优先级。",
+    "mechanism": "设计抗体阻断PIDD1死亡结构域与CRADD死亡结构域的同型DD相互作用，抑制PIDDosome招募CASP2并降低CASP2活化。",
+    "selectedEpitope": "优先覆盖PIDD1 C端death domain的CRADD结合面，避开ZUD自切割核心与隐蔽疏水折叠面。",
+    "diseaseDirection": "神经发育障碍与皮层发育异常",
+    "domain": "PIDD1含N端七个LRR、两个ZUD自蛋白水解结构域及C端death domain，功能片段参与PIDDosome装配。",
+    "evidence": "PIDD1神经发育遗传关联与PIDDosome结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9HB75功能与结构域注释",
+      "RCSB PDB 9TUF实验晶体结构",
+      "PIDDosome中PIDD1-CRADD-CASP2相互作用文献"
+    ],
+    "referenceEntries": "UniProt Q9HB75；RCSB PDB 9TUF；Open Targets PIDD1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端death domain的CRADD对接界面",
+        "直接干预PIDDosome装配，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "death domain外侧带电螺旋表面",
+        "可获得构象选择性结合并降低复合物稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ZUD结构域自蛋白水解邻近区域",
+        "可能影响PIDD成熟加工，但存在折叠和功能多效性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PIDD1为胞内蛋白，体内抗体递送与靶点可及性为主要风险；建议限定为胞内抗体、递送抗体或结构探针，并验证对CRADD结合的选择性。",
+    "structurePrepZh": "以9TUF晶体结构为核心模板，保留抗原链A、B、C中解析完整的death domain区域，补全缺失侧链并进行质子化、界面水分子评估和同源链一致性检查。",
+    "structureRef": "RCSB PDB 9TUF，X-ray diffraction，1.8 Å",
+    "antibodies": [
+      "研究级抗PIDD1抗体",
+      "抗PIDD1 death domain结合抗体"
+    ],
+    "interfaceFocus": "PIDD1 death domain-CRADD death domain界面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "CRADD",
+        "rationale": "CRADD/RAIDD是PIDDosome中连接PIDD1与CASP2的适配蛋白，其death domain与PIDD1结合、CARD结构域招募CASP2，处于同一复合体装配轴。"
+      },
+      {
+        "target": "CASP2",
+        "rationale": "CASP2是PIDDosome下游效应半胱天冬酶，受CRADD聚集诱导活化；其功能改变与细胞周期应激、DNA损伤反应及神经发育表型具有通路相关性。"
+      },
+      {
+        "target": "TP53",
+        "rationale": "TP53可诱导PIDD1表达，并将基因组应激信号连接至PIDDosome相关细胞命运调控；该节点位于PIDD1上游调控层。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

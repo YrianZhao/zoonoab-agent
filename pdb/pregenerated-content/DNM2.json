@@ -1,0 +1,65 @@
+{
+  "gene": "DNM2",
+  "generatedAt": "2026-08-03T18:36:35.003Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DNM2编码dynamin 2，是网格蛋白介导内吞、膜管切割及T小管/神经轴突膜动力学中的大型GTP酶，致病变异可导致常染色体显性中央核肌病及中间型Charcot-Marie-Tooth病。该蛋白主要位于胞质侧膜颈部而非经典胞外抗原，因此完整抗体的体内可及性受限，更适合作为细胞内递送抗体或研究型抑制抗体设计靶点。其遗传证据强、疾病关联得分高，且相比上游广泛内吞因子更直接对应DNM2功能获得性或结构域错义变异，是肌病与周围神经病机制验证的高优先级节点。",
+    "mechanism": "抗体片段结合DNM2 GED/中间结构域界面，阻断dynamin自组装与GTP酶活性耦联，降低膜颈收缩和异常内吞膜切割。",
+    "selectedEpitope": "优先锁定GED与stalk相关自组装界面，避免直接覆盖保守GTP结合口袋。",
+    "diseaseDirection": "中央核肌病与遗传性周围神经病",
+    "domain": "DNM2含N端GTPase结构域、bundle signaling element、stalk、中间结构域、GED及C端PH/PRD功能区。",
+    "evidence": "DNM2遗传性肌病与神经病结构功能证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P50570功能与结构域注释",
+      "RCSB PDB 2YS1实验NMR结构记录",
+      "OMIM与ClinVar DNM2致病变异证据"
+    ],
+    "referenceEntries": "UniProt:P50570；RCSB PDB:2YS1；Gene:DNM2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "GED/stalk自组装调控界面",
+        "可干预寡聚化与GTP酶活性耦联，适合机制型阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PH结构域膜磷脂结合邻近面",
+        "可能削弱膜募集，但需避免广泛干扰磷脂识别造成非特异效应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端GTPase核苷酸结合裂隙",
+        "高度保守且与GTP水解核心直接重叠，选择性和安全窗口较窄",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DNM2为胞内蛋白，常规抗体难以接触天然靶点；应优先采用细胞内递送Fab/VHH，并验证对DNM1、DNM3的选择性。",
+    "structurePrepZh": "以2YS1 NMR构象集为局部结构参考，补全缺失结构域并结合AlphaFold全长模型评估GED/stalk暴露度与变异热点。",
+    "structureRef": "RCSB PDB 2YS1，human DNM2 solution NMR structure",
+    "antibodies": [
+      "commercial anti-Dynamin 2 clone C-18",
+      "commercial anti-Dynamin 2 clone D-3"
+    ],
+    "interfaceFocus": "GED/stalk寡聚化与BSE耦联界面",
+    "designMode": "胞内递送阻断型",
+    "candidates": [
+      {
+        "target": "BIN1",
+        "rationale": "BIN1参与T小管膜弯曲与肌肉膜结构维持，并与DNM2相关中央核肌病通路存在功能交叉。其突变亦可导致中央核肌病，是同一肌膜重塑轴的重要候选节点。"
+      },
+      {
+        "target": "MTM1",
+        "rationale": "MTM1调控磷脂酰肌醇代谢与肌纤维膜系统稳态，X连锁中央核肌病与DNM2剂量/功能异常存在遗传和功能互作证据。该靶点适合用于同通路疾病分层与组合机制评估。"
+      },
+      {
+        "target": "CLTC",
+        "rationale": "CLTC编码网格蛋白重链，是DNM2介导内吞膜颈切割的上游包被组分。其与DNM2处于网格蛋白介导内吞通路，可作为膜内吞动力学干预的相关候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

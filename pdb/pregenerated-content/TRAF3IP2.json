@@ -1,0 +1,65 @@
+{
+  "gene": "TRAF3IP2",
+  "generatedAt": "2026-08-03T17:27:01.381Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TRAF3IP2编码ACT1，是IL-17受体信号复合体的胞内衔接蛋白，通过SEFIR结构域连接IL-17RA/IL-17RC并招募TRAF6，驱动NF-κB、MAPK与炎症因子表达，符合银屑病、银屑病关节炎和慢性黏膜皮肤念珠菌病的遗传与免疫机制。其抗原位点主要位于胞内蛋白复合体界面，天然抗体可及性弱，但9OT1提供多链复合体结构，可支持胞内递送抗体、intrabody或结构生物学阻断分子设计。相较下游NF-κB或MAPK节点，TRAF3IP2更贴近IL-17轴的疾病特异信号分叉，具备较高通路选择性和遗传证据优先级。",
+    "mechanism": "阻断ACT1 SEFIR结构域与IL-17RA/IL-17RC SEFIR界面结合，或干扰ACT1与TRAF6结合，降低IL-17诱导的NF-κB与MAPK炎症转录输出。",
+    "selectedEpitope": "优先覆盖ACT1 SEFIR结构域受体结合面及其寡聚化界面，避免泛素结合相关非特异区域。",
+    "diseaseDirection": "IL-17轴炎症与皮肤免疫病",
+    "domain": "TRAF3IP2含N端TRAF6结合区、U-box样区域及C端SEFIR结构域，介导IL-17受体信号装配。",
+    "evidence": "TRAF3IP2-ACT1介导IL-17炎症轴证据包",
+    "evidenceSources": [
+      "Open Targets疾病遗传与关联评分",
+      "UniProt O43734功能与结构域注释",
+      "RCSB PDB 9OT1冷冻电镜结构",
+      "IL-17RA/IL-17RC-ACT1信号复合体文献"
+    ],
+    "referenceEntries": "UniProt O43734；RCSB PDB 9OT1；Open Targets TRAF3IP2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SEFIR结构域受体结合界面",
+        "直接阻断ACT1与IL-17RA/IL-17RC SEFIR相互作用，通路抑制特异性较高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SEFIR结构域寡聚化界面",
+        "限制ACT1信号平台装配，可降低IL-17诱导的受体近端信号放大",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端TRAF6结合邻近区域",
+        "可能干扰TRAF6招募与下游NF-κB激活，但构象柔性和胞内可及性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TRAF3IP2为胞内衔接蛋白，常规胞外抗体成药性受限；建议采用细胞内抗体、递送型Fab/VHH或结构引导的小型结合蛋白策略，并严格评估IL-17保护性抗真菌免疫风险。",
+    "structurePrepZh": "以9OT1冷冻电镜模型为模板，保留ACT1相关链并校验SEFIR界面残基，补全缺失环区、优化质子化状态，分离受体结合面用于表位聚类。",
+    "structureRef": "RCSB PDB 9OT1，human IL-17 receptor-ACT1 complex, EM 3.0 Å",
+    "antibodies": [
+      "Bimekizumab",
+      "Secukinumab"
+    ],
+    "interfaceFocus": "ACT1 SEFIR-IL-17RA/IL-17RC界面",
+    "designMode": "胞内阻断型抗体设计",
+    "candidates": [
+      {
+        "target": "IL17RA",
+        "rationale": "IL17RA是IL-17A/F受体复合体的共享受体链，直接位于TRAF3IP2上游；阻断其胞外配体结合可降低ACT1依赖性炎症信号。"
+      },
+      {
+        "target": "IL17RC",
+        "rationale": "IL17RC与IL17RA共同识别IL-17A和IL-17F，是皮肤与黏膜IL-17轴的重要受体组成，适合作为胞外可及的同通路候选靶点。"
+      },
+      {
+        "target": "IL17A",
+        "rationale": "IL17A是驱动角质形成细胞炎症因子和趋化因子表达的核心配体，临床抗体证据充分，可作为TRAF3IP2上游通路阻断参照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

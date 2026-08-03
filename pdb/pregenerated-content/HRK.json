@@ -1,0 +1,65 @@
+{
+  "gene": "HRK",
+  "generatedAt": "2026-08-03T13:16:45.306Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HRK 是 BH3-only BCL2 家族促凋亡蛋白，可通过其 BH3 螺旋与 BCL2、BCL2L1 或 MCL1 等抗凋亡蛋白沟槽结合，解除对 BAX/BAK 介导线粒体外膜通透化的抑制，因而与神经元凋亡及神经退行性表型具有机制关联。该蛋白主要定位于线粒体外膜并缺乏经典分泌或胞外结构域，完整蛋白并非理想的常规体内抗体可及抗原。其优先级主要来自高分辨率实验结构与明确的 BH3 结合界面，适合作为细胞内抗体、递送型 VHH 或机制验证工具靶点；相较上游转录调控因子，HRK 的蛋白互作界面更集中、可结构化设计。",
+    "mechanism": "设计分子结合 HRK BH3 螺旋，竞争性阻断其与 BCL2/BCL2L1 疏水沟槽相互作用，调节 BAX/BAK 依赖性线粒体凋亡阈值。",
+    "selectedEpitope": "优先锁定 BH3 α螺旋保守疏水面及 h0-h4 位点，覆盖 BCL2 家族结合界面。",
+    "diseaseDirection": "神经退行性疾病与神经元凋亡",
+    "domain": "HRK 为短型 BH3-only 蛋白，含 N 端低复杂度区、中央 BH3 α螺旋及 C 端疏水跨膜锚定区。",
+    "evidence": "HRK-BCL2家族凋亡互作结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProtKB O00198 功能与定位注释",
+      "RCSB PDB 9UGP X-ray 结构数据",
+      "BCL2 家族 BH3-only 蛋白凋亡机制文献"
+    ],
+    "referenceEntries": "UniProt O00198；RCSB PDB 9UGP；Open Targets HRK",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "BH3 α螺旋疏水面与保守 L/V/I 残基排列",
+        "直接覆盖 BCL2/BCL2L1 结合核心，可用于竞争性阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "BH3 螺旋两端带电残基与邻近转角区",
+        "有助于提高序列选择性并稳定螺旋构象",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端疏水跨膜锚定区",
+        "膜嵌入性强、抗原暴露受限，易产生非特异疏水结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HRK 属细胞内线粒体外膜相关蛋白，常规抗体体内可及性不足；建议限定为细胞内抗体、VHH 递送或体外机制工具，并规避跨膜疏水段。",
+    "structurePrepZh": "以 9UGP 抗原链 A、B 为模板，保留 BH3 螺旋构象，检查晶体接触与缺失残基，剔除非生理性缓冲组分后进行界面能量评估。",
+    "structureRef": "RCSB PDB 9UGP，X-ray diffraction，1.39 Å",
+    "antibodies": [
+      "anti-HRK polyclonal antibody",
+      "anti-HRK monoclonal antibody"
+    ],
+    "interfaceFocus": "BH3螺旋与BCL2家族疏水沟槽结合面",
+    "designMode": "细胞内VHH/Fab验证",
+    "candidates": [
+      {
+        "target": "BCL2",
+        "rationale": "BCL2 是线粒体凋亡通路核心抗凋亡蛋白，直接结合 BH3-only 蛋白并抑制 BAX/BAK 激活，处于 HRK 下游互作轴。"
+      },
+      {
+        "target": "BCL2L1",
+        "rationale": "BCL2L1 编码 BCL-XL，可通过其 BH3 结合沟槽捕获 HRK 等促凋亡 BH3 蛋白，是神经细胞存活与凋亡阈值的重要调节点。"
+      },
+      {
+        "target": "BAK1",
+        "rationale": "BAK1 是线粒体外膜效应蛋白，受 BCL2 家族调控并执行膜通透化，是 HRK 解除抗凋亡抑制后的关键下游节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

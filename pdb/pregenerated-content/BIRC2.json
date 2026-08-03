@@ -1,0 +1,65 @@
+{
+  "gene": "BIRC2",
+  "generatedAt": "2026-08-03T10:49:53.942Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BIRC2编码cIAP1，是TNF受体复合体及NOD2信号中的E3泛素连接酶，参与RIPK1、TRAF2等底物泛素化并影响NF-κB激活、炎症存活信号和细胞死亡阈值。该蛋白主要定位于胞质，缺乏天然胞外结构域或分泌形式，抗体抗原可及性显著弱于膜受体或分泌因子，因此更适合作为胞内递送抗体、研究级结合分子或降解平台配体开发对象。其优先级依据在于IAP家族中cIAP1具有明确的结构域解析、泛素化机制证据和药理学可验证性，但作为常规体内阻断抗体靶点的优先级低于同通路中的TNF、TNFRSF1A等胞外靶点。",
+    "mechanism": "设计分子应结合BIR3结构域SMAC结合沟槽，竞争性阻断SMAC/DIABLO AVPI基序与cIAP1的相互作用，并干预BIR3介导的IAP抑制复合物稳定性。",
+    "selectedEpitope": "优先选择BIR3结构域AVPI肽结合沟槽及其邻近α3区域，避免直接覆盖RING催化核心。",
+    "diseaseDirection": "炎症-细胞死亡与神经退行性疾病",
+    "domain": "BIRC2含3个BIR结构域、UBA结构域、CARD结构域及C端RING E3泛素连接酶结构域。",
+    "evidence": "BIRC2/cIAP1炎症存活信号结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联证据",
+      "UniProt Q13490功能与结构域注释",
+      "RCSB PDB 4HY4晶体结构记录",
+      "TNF-RIPK1-NF-κB与IAP家族机制文献"
+    ],
+    "referenceEntries": "UniProt Q13490；RCSB PDB 4HY4；HGNC BIRC2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "BIR3结构域SMAC/AVPI结合沟槽",
+        "可直接竞争SMAC样四肽结合并干预IAP复合物稳定性，结构信息清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "BIR2-BIR3相邻表面与连接区",
+        "可能影响TRAF2/RIPK1相关复合体构象，适合构象选择性结合分子筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端RING二聚化与E2酶结合界面",
+        "可能影响E3泛素连接酶活性，但催化界面保守且存在交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BIRC2为胞内蛋白，常规抗体体内可及性不足；BIR结构域与BIRC3等IAP成员同源性较高，应强化亚型选择性与胞内递送策略。",
+    "structurePrepZh": "以4HY4中A、B链为模板，保留BIR3核心折叠并校验SMAC样配体沟槽构象；补全缺失环区后进行界面质子化与同源性比对。",
+    "structureRef": "RCSB PDB 4HY4，X-ray，1.249 Å，Homo sapiens cIAP1",
+    "antibodies": [
+      "anti-cIAP1 research antibody",
+      "anti-BIRC2 intracellular validation antibody"
+    ],
+    "interfaceFocus": "BIR3 AVPI结合沟槽与α3邻近界面",
+    "designMode": "胞内表位结合设计",
+    "candidates": [
+      {
+        "target": "BIRC3",
+        "rationale": "BIRC3编码cIAP2，与BIRC2共同参与TNF受体复合体中的RIPK1泛素化及NF-κB存活信号调控，是同一IAP调控轴的近缘靶点。"
+      },
+      {
+        "target": "RIPK1",
+        "rationale": "RIPK1是TNFR1复合体中被cIAP1/2泛素化的关键底物，其泛素化状态决定NF-κB激活、凋亡和坏死性凋亡转换。"
+      },
+      {
+        "target": "TNFRSF1A",
+        "rationale": "TNFRSF1A编码TNFR1，是TNF诱导cIAP1/2募集和RIPK1泛素化的上游膜受体，具备更明确的胞外抗体可及性。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

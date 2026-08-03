@@ -1,0 +1,65 @@
+{
+  "gene": "DTL",
+  "generatedAt": "2026-08-03T18:46:03.861Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DTL为CRL4CDT2泛素连接酶复合物的底物适配蛋白，依赖PCNA结合位点识别CDT1、SET8、p21等复制许可因子并促进其泛素化降解，与细胞周期复制压力和增殖表型相关。该蛋白主要定位于细胞核并参与蛋白质复合物装配，缺乏天然胞外结构域或分泌特征，抗原可及性不支持常规体内阻断型抗体。相较于CDK、复制许可因子等同通路靶点，DTL具有底物选择节点属性和已解析WD40结构依据，适合作为细胞内递送抗体、结构验证抗体或研究级功能阻断分子的优先探索对象。",
+    "mechanism": "设计抗体阻断DTL WD40底物识别面与PCNA结合型底物的复合界面，削弱CDT1、SET8或p21被CRL4CDT2招募后的泛素化。",
+    "selectedEpitope": "优先靶向WD40 β-propeller顶面底物识别沟槽及邻近PCNA依赖底物结合界面。",
+    "diseaseDirection": "复制压力与细胞增殖相关疾病",
+    "domain": "DTL含DDB1结合区及C端WD40重复β-propeller结构，介导CRL4CDT2底物选择。",
+    "evidence": "DTL-CRL4CDT2复制许可调控证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9NZJ0功能与亚细胞定位注释",
+      "RCSB PDB 6QC0 X射线晶体结构",
+      "文献报道CRL4CDT2介导CDT1、SET8和p21泛素化"
+    ],
+    "referenceEntries": "UniProt Q9NZJ0；RCSB PDB 6QC0；Open Targets DTL",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "WD40 β-propeller顶面底物识别沟槽",
+        "可直接干预CDT1、SET8、p21等底物招募，功能阻断价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DDB1结合相关外侧界面",
+        "可能影响CRL4CDT2复合物装配，但需避免广泛破坏CRL4骨架",
+        "备选"
+      ],
+      [
+        "Site C",
+        "WD40底面保守结构核心",
+        "结构保守且功能表位不确定，存在交叉反应和构象扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DTL为细胞核内非分泌蛋白，常规抗体体内可及性受限；宜采用细胞内递送、intrabody或降解诱导验证体系，并严格评估WD40保守面交叉反应。",
+    "structurePrepZh": "以6QC0抗原链A/C/E/B/D/F为模板，按3.5 Å分辨率进行缺失环区建模、侧链重排与寡聚状态核查，保留WD40表面构象约束。",
+    "structureRef": "RCSB PDB 6QC0，X-ray diffraction，3.5 Å",
+    "antibodies": [
+      "研究级抗-DTL/CTL2抗体",
+      "研究级抗-CDT2抗体"
+    ],
+    "interfaceFocus": "WD40顶面底物识别沟槽与DDB1邻接面",
+    "designMode": "细胞内功能阻断",
+    "candidates": [
+      {
+        "target": "PCNA",
+        "rationale": "PCNA为CRL4CDT2底物识别的装载平台，CDT1、SET8和p21等底物通过PCNA结合肽实现复制偶联降解。其处于同一复制许可调控轴，但核内定位同样限制常规抗体可及性。"
+      },
+      {
+        "target": "CDT1",
+        "rationale": "CDT1是复制许可核心因子，也是CRL4CDT2介导泛素化降解的经典底物。靶向其PCNA结合相关降解决定区可用于验证复制再许可与DNA复制压力机制。"
+      },
+      {
+        "target": "CDKN1A",
+        "rationale": "CDKN1A编码p21，p21可通过PCNA结合位点被CRL4CDT2识别并降解，连接DNA损伤应答、细胞周期停滞与复制调控。其与DTL同属PCNA依赖底物清除网络。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "HSPA8",
+  "generatedAt": "2026-08-03T13:18:56.831Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HSPA8编码构成型Hsc70，是ATP依赖分子伴侣，参与网格蛋白介导内吞、伴侣介导自噬和蛋白稳态维持；其疾病关联主要集中于红细胞表型与登革热，机制上与细胞蛋白折叠、病毒复制复合体装配及蛋白质质量控制相关。该蛋白以胞质定位为主，常规细胞外抗原可及性弱，抗体设计更适合面向细胞外释放、外泌体展示或感染相关非经典表面暴露状态进行限定开发。相比广泛表达且功能冗余的HSPA家族成员，HSPA8具有明确结构模板和已解析核苷酸结合域，为构象选择性结合分子设计提供较高结构可操作性，但作为传统治疗性抗体靶点优先级应低于膜受体或分泌因子。",
+    "mechanism": "设计抗体结合HSPA8核苷酸结合域裂隙外缘，干扰ATP/ADP依赖构象循环及其与J-domain辅伴侣的功能耦联。",
+    "selectedEpitope": "优先选择核苷酸结合域IB/IIB亚域邻近裂隙边缘的构象表位，避免直接占据ATP结合深槽。",
+    "diseaseDirection": "感染相关蛋白稳态与红细胞表型",
+    "domain": "HSPA8含N端核苷酸结合域、底物结合β结构域及C端α螺旋盖帽区。",
+    "evidence": "HSPA8结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProtKB P11142功能与定位注释",
+      "RCSB PDB 4H5R晶体结构记录",
+      "Hsp70伴侣循环与病毒复制文献"
+    ],
+    "referenceEntries": "UniProtKB:P11142；RCSB PDB:4H5R；Open Targets:HSPA8",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "核苷酸结合域IB/IIB裂隙外缘",
+        "可调节ATP依赖构象转换并保留结构可成药性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "NBD与SBD连接区邻近构象面",
+        "可能影响NBD-SBD变构耦联和底物释放周期",
+        "备选"
+      ],
+      [
+        "Site C",
+        "底物结合β结构域疏水沟槽",
+        "功能相关但与广谱客户蛋白结合重叠，脱靶功能抑制风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HSPA8主要为胞内伴侣且高度保守，常规抗体难以进入胞质；应限定外泌体、细胞表面异常暴露或诊断捕获场景，并规避ATP深槽强竞争表位。",
+    "structurePrepZh": "以4H5R高分辨率X射线结构提取A/B链核苷酸结合域，补全缺失侧链、校正质子化状态，并标注ATP结合裂隙与亚域界面。",
+    "structureRef": "PDB 4H5R，human Hsc70结构，1.64 Å X-ray",
+    "antibodies": [
+      "anti-Hsc70 monoclonal antibody clone 1B5",
+      "anti-Hsc70/HSPA8 monoclonal antibody clone 13D3"
+    ],
+    "interfaceFocus": "NBD IB/IIB亚域裂隙与NBD-SBD变构连接区",
+    "designMode": "结构约束构象抗体设计",
+    "candidates": [
+      {
+        "target": "DNAJB1",
+        "rationale": "DNAJB1为Hsp40/J-domain辅伴侣，可通过J结构域促进HSPA8 ATP水解；其干预点位于同一Hsc70伴侣循环。"
+      },
+      {
+        "target": "BAG1",
+        "rationale": "BAG1作为核苷酸交换因子结合HSPA8核苷酸结合域，调节ADP释放和伴侣循环周转，是同一蛋白稳态通路的真实节点。"
+      },
+      {
+        "target": "STUB1",
+        "rationale": "STUB1/CHIP与HSPA8复合体耦联客户蛋白泛素化降解，连接分子伴侣识别与蛋白酶体清除过程。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

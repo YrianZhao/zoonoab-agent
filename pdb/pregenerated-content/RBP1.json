@@ -1,0 +1,65 @@
+{
+  "gene": "RBP1",
+  "generatedAt": "2026-08-03T20:51:03.909Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RBP1编码细胞视黄醇结合蛋白1，是胞质内脂质结合蛋白，主要负责结合全反式视黄醇并参与细胞内视黄醇向视黄酸代谢轴的递送；该轴可影响神经分化、上皮稳态及胎盘发育相关转录程序。Open Targets提示其与神经退行性疾病和子痫前期存在遗传或组学关联，但最高关联得分中等，需作为机制探索靶点审慎推进。RBP1缺乏跨膜区和分泌信号肽，抗原天然可及性弱；相较于STRA6、RBP4等同轴胞外或分泌靶点，其抗体成药优先级较低，更适合细胞内递送抗体片段或结构生物学验证场景。",
+    "mechanism": "设计分子应占据RBP1 β-barrel疏水配体腔入口，阻断视黄醇进入CRBP1结合口袋并干扰其向代谢酶复合体的递送。",
+    "selectedEpitope": "优先覆盖β-barrel配体腔入口及αI/αII螺旋帽区，避免仅靶向远端保守β折叠面。",
+    "diseaseDirection": "视黄醇代谢相关神经与胎盘疾病",
+    "domain": "胞质型CRBP脂质结合结构域，由十股反平行β-barrel与N端α螺旋帽构成。",
+    "evidence": "RBP1视黄醇结合结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB P09455功能与定位注释",
+      "RCSB PDB 5HBS高分辨率晶体结构",
+      "视黄醇/视黄酸代谢通路文献"
+    ],
+    "referenceEntries": "UniProt P09455；RCSB PDB 5HBS；HGNC RBP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "β-barrel配体腔入口与α螺旋帽交界面",
+        "可直接限制视黄醇进入结合腔，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端αI/αII螺旋帽外侧面",
+        "有利于调节配体入口构象并形成高亲和结合界面",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远端β折叠桶保守外表面",
+        "可能影响折叠稳定性但功能阻断不确定，且同源蛋白交叉反应风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RBP1为胞质蛋白，常规抗体难以到达天然抗原；需优先评估细胞内递送、纳米抗体或降解偶联策略，并严格排查与RBP2、RBP7同源交叉反应。",
+    "structurePrepZh": "以5HBS链A为模板，保留视黄醇结合腔和螺旋帽区构象，去除晶体无关分子后进行质子化、缺失残基检查与表面电荷映射。",
+    "structureRef": "RCSB PDB 5HBS，0.89 Å X射线晶体结构",
+    "antibodies": [
+      "抗RBP1免疫组化研究抗体",
+      "抗CRBP1研究级单克隆抗体"
+    ],
+    "interfaceFocus": "配体腔入口、α螺旋帽及β-barrel口缘",
+    "designMode": "胞内表位阻断",
+    "candidates": [
+      {
+        "target": "RBP4",
+        "rationale": "RBP4为循环视黄醇转运蛋白，与视黄醇稳态和STRA6介导摄取直接相关；其分泌蛋白属性使抗体可及性显著优于RBP1。"
+      },
+      {
+        "target": "STRA6",
+        "rationale": "STRA6是RBP4-视黄醇复合体的膜受体，负责介导细胞摄取视黄醇；其胞外结构域提供更明确的抗体阻断界面。"
+      },
+      {
+        "target": "ALDH1A1",
+        "rationale": "ALDH1A1参与视黄醛氧化生成视黄酸，是RBP1下游代谢轴的关键酶；适合作为同一视黄酸生物合成通路中的机制参照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

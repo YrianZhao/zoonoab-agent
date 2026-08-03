@@ -1,0 +1,65 @@
+{
+  "gene": "HNRNPM",
+  "generatedAt": "2026-08-03T19:51:01.888Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HNRNPM 是核内 RNA 结合蛋白，参与前体 mRNA 剪接、RNA 加工与转录后调控；现有疾病关联以登革热、红细胞表型和骨骼异常等遗传或感染相关表型为主，但关联强度有限且缺乏明确的胞外致病配体轴。该蛋白主要定位于细胞核与核质核糖核蛋白复合体，天然状态下不具备分泌蛋白或膜受体的抗原可及性优势，因此不适合作为常规治疗性抗体的首选胞外靶点。相较于同通路中可作为宿主因子研究的 RNA 结合蛋白，HNRNPM 的结构片段可支持机制性结合探针设计，但抗体药物优先级低于具有细胞表面可及性或病毒颗粒暴露表位的靶点。",
+    "mechanism": "抗体片段设计宜定位为细胞内研究探针，结合 HNRNPM RNA recognition motif 表面，干扰其与富含 GU 序列前体 mRNA 的结合及剪接复合体装配。",
+    "selectedEpitope": "优先选择 RRM 结构域 β-sheet RNA 结合面邻近沟槽，避开高度保守 RNP1/RNP2 核心残基。",
+    "diseaseDirection": "病毒感染宿主因子与RNA剪接调控",
+    "domain": "HNRNPM 含多个 RNA recognition motif，2OT8 解析其 RRM 片段的折叠与寡聚晶体构象。",
+    "evidence": "HNRNPM-RNA结合与感染表型关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P52272 functional annotation",
+      "RCSB PDB 2OT8 experimental structure",
+      "RNA-binding protein and spliceosome literature"
+    ],
+    "referenceEntries": "UniProt P52272；RCSB PDB 2OT8；Open Targets HNRNPM",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RRM β-sheet RNA 结合面侧缘沟槽",
+        "可干扰 RNA 底物结合并保留部分特异性判别空间",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RRM α-helix 外侧非 RNA 接触面",
+        "适合作为构象识别或免疫检测表位，功能阻断预期较弱",
+        "备选"
+      ],
+      [
+        "Site C",
+        "RNP1/RNP2 保守 RNA 结合核心",
+        "保守性高且可能导致广泛 RNA 结合蛋白交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HNRNPM 为核内蛋白，治疗性抗体递送与抗原可及性风险高；建议限定为细胞内抗体、Fab/VHH 探针或体外功能阻断验证。",
+    "structurePrepZh": "以 2OT8 晶体结构为模板，保留 RRM 单体构象，检查 3.1 Å 分辨率下侧链置信度，并补全缺失环区后再进行表位建模。",
+    "structureRef": "RCSB PDB 2OT8，X-ray diffraction，3.1 Å",
+    "antibodies": [
+      "commercial anti-HNRNPM antibody clone 1D8",
+      "commercial anti-hnRNP M polyclonal antibody"
+    ],
+    "interfaceFocus": "RRM β-sheet RNA结合面与侧缘沟槽",
+    "designMode": "细胞内探针抗体",
+    "candidates": [
+      {
+        "target": "HNRNPA1",
+        "rationale": "HNRNPA1 同属 hnRNP RNA 结合蛋白家族，参与前体 mRNA 剪接与病毒 RNA 代谢调控，可作为同一 RNA 加工宿主因子网络的比较靶点。"
+      },
+      {
+        "target": "SRSF1",
+        "rationale": "SRSF1 是剪接体相关 SR 蛋白，调控外显子选择和病毒感染中的宿主 RNA 剪接程序，适合用于剪接通路层面的功能对照。"
+      },
+      {
+        "target": "DDX5",
+        "rationale": "DDX5 是 RNA 解旋酶并参与剪接复合体和病毒 RNA 相关宿主反应，与 HNRNPM 同处 RNA 代谢调控网络。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

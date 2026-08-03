@@ -1,0 +1,65 @@
+{
+  "gene": "KIR2DL3",
+  "generatedAt": "2026-08-03T13:43:12.631Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KIR2DL3 是抑制性 NK 细胞受体，通过识别 HLA-C1 等位基因上的 MHC-I 分子并招募 SHP-1/SHP-2，降低 NK 细胞对 AML、骨髓瘤及部分实体瘤细胞的杀伤活性。该靶点为 I 型跨膜免疫受体，D1/D2 两个胞外 Ig-like 结构域直接暴露于免疫突触，具备抗体可及性。相较广泛阻断 HLA-I 或下游磷酸酶，KIR2DL3 的配体结合界面更集中，且可在 NK 细胞抑制轴中实现较高选择性的检查点解除。",
+    "mechanism": "阻断 KIR2DL3 胞外 D1/D2 结构域与 HLA-C1-肽复合物的结合，削弱 ITIM 介导的 SHP-1/SHP-2 招募并增强 NK 细胞效应功能。",
+    "selectedEpitope": "优先覆盖 D1-D2 夹角处 HLA-C1 接触面，避开同源 KIR 保守糖基化邻域。",
+    "diseaseDirection": "NK细胞检查点肿瘤免疫",
+    "domain": "胞外区含两个 Ig-like C2-type 结构域 D1 与 D2，胞内长尾含 ITIM 抑制基序。",
+    "evidence": "KIR2DL3-HLA-C1抑制轴结构与肿瘤免疫证据",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P43628 functional annotation",
+      "RCSB PDB 6PAG X-ray structure",
+      "KIR-HLA-C NK cell inhibition literature"
+    ],
+    "referenceEntries": "UniProt P43628；RCSB PDB 6PAG；Open Targets KIR2DL3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "D1-D2 夹角的 HLA-C1 结合界面",
+        "直接阻断受体-配体识别，最符合解除 NK 抑制的机制设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "D1 结构域 α1/α2 螺旋接触邻近面",
+        "可干扰 MHC-I 对接，同时保留构象稳定性评估空间",
+        "备选"
+      ],
+      [
+        "Site C",
+        "D2 远端同源 KIR 保守表面",
+        "可能引发 KIR2DL1/KIR2DL2 交叉反应，需进行选择性筛选",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "KIR 家族胞外结构域序列相似度较高，需重点排除 KIR2DL1、KIR2DL2 和激活型 KIR2DS 交叉结合，并控制对正常 NK 教育过程的影响。",
+    "structurePrepZh": "以 6PAG 晶体结构提取 KIR2DL3 胞外 D1/D2 构象，补全缺失侧链、校验二硫键与糖基化位点，并保留 HLA-C1 接触界面用于表位映射。",
+    "structureRef": "RCSB PDB 6PAG，X-ray diffraction，2.501 Å",
+    "antibodies": [
+      "Lirilumab",
+      "IPH2101"
+    ],
+    "interfaceFocus": "D1-D2 夹角与 HLA-C1 对接界面",
+    "designMode": "阻断型检查点抗体",
+    "candidates": [
+      {
+        "target": "KIR2DL1",
+        "rationale": "KIR2DL1 同属抑制性 KIR 受体，识别 HLA-C2 并抑制 NK 细胞活化，是 KIR-HLA 免疫检查点轴中的平行靶点。"
+      },
+      {
+        "target": "KIR2DL2",
+        "rationale": "KIR2DL2 与 KIR2DL3 同属 HLA-C1 识别受体，在 NK 细胞抑制性信号中具有功能重叠，适合作为选择性与组合阻断评估对象。"
+      },
+      {
+        "target": "HLA-C",
+        "rationale": "HLA-C 是 KIR2DL3 的直接配体，其 C1 等位基因决定受体结合与 NK 细胞抑制强度，可用于通路层面的配体依赖性验证。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

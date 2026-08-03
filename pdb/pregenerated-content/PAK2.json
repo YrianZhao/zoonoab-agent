@@ -1,0 +1,65 @@
+{
+  "gene": "PAK2",
+  "generatedAt": "2026-08-03T20:26:54.809Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PAK2是RAC1/CDC42效应激酶，参与细胞骨架重塑、黏附迁移和血细胞发育相关信号，Open Targets显示其与Knobloch综合征、淋巴细胞计数和血小板计数等表型存在遗传关联。PAK2为胞内丝氨酸/苏氨酸激酶，天然抗原可及性不利于常规外源性抗体阻断，但其结构域界面适合开展机制研究型胞内抗体、VHH或递送型抗体设计。相较上游RAC1/CDC42，PAK2具有更明确的激酶结构口袋和自抑制调控界面，可作为PAK通路中结构驱动设计优先级较高的节点。",
+    "mechanism": "通过结合PAK2自抑制调控区或激酶N叶/C叶界面，干扰RAC1/CDC42诱导的构象释放及ATP底物磷酸转移过程。",
+    "selectedEpitope": "优先瞄准p21结合/自抑制区与激酶N叶连接界面，避开高度保守ATP口袋核心。",
+    "diseaseDirection": "PAK-Rho GTPase发育与血液表型",
+    "domain": "PAK2含N端p21结合/自抑制区、SH3结合基序及C端丝氨酸/苏氨酸激酶结构域。",
+    "evidence": "PAK2结构、遗传关联与Rho GTPase通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q13177功能与结构域注释",
+      "RCSB PDB 9D51晶体结构记录",
+      "Reactome Rho GTPase效应器信号通路"
+    ],
+    "referenceEntries": "UniProt Q13177；RCSB PDB 9D51；Open Targets PAK2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "p21结合/自抑制区与激酶N叶连接界面",
+        "可干扰RAC1/CDC42介导的激活构象转换，机制辨识度较高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "激酶C叶底物结合沟邻近区域",
+        "可能影响底物定位与磷酸转移，但需避免与PAK1/PAK3高度同源面交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP结合裂隙及保守催化环周边",
+        "功能相关性强但保守性高，选择性和脱靶风险较大",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PAK2为胞内激酶，常规抗体药物可及性不足；设计宜限定为胞内VHH、递送型抗体或结构验证工具，并强化PAK1/PAK3交叉反应筛选。",
+    "structurePrepZh": "基于PDB 9D51保留抗原链A、B，补全缺失侧链与氢原子，校验磷酸化或配体状态，并进行PAK家族同源面比对。",
+    "structureRef": "RCSB PDB 9D51，X射线晶体结构，2.1 Å",
+    "antibodies": [
+      "PAK2 phospho-Ser141研究抗体",
+      "PAK2 total protein研究抗体"
+    ],
+    "interfaceFocus": "自抑制区-激酶N叶调控界面",
+    "designMode": "胞内VHH机制阻断",
+    "candidates": [
+      {
+        "target": "RAC1",
+        "rationale": "RAC1直接结合PAK2的p21结合结构域并驱动PAK激活，是同一Rho GTPase-PAK轴的上游节点。"
+      },
+      {
+        "target": "CDC42",
+        "rationale": "CDC42同样通过PAK2 p21结合结构域诱导构象激活，适合作为PAK2激活通路的候选调控靶点。"
+      },
+      {
+        "target": "PAK1",
+        "rationale": "PAK1与PAK2同属I类PAK家族，共享RAC1/CDC42依赖性激活机制，可用于同通路选择性与补偿机制评估。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "TPST2",
+  "generatedAt": "2026-08-03T17:27:01.325Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TPST2催化分泌途径和膜蛋白胞外酪氨酸残基硫酸化，影响趋化因子受体、GPCR配体结合及蛋白分选过程；遗传关联数据显示其与体重指数及神经退行性疾病存在中等强度关联。该蛋白定位于高尔基腔面，催化结构域位于腔内而非细胞质，具备分泌通路内抗原可及性，但体内完整抗体进入高尔基腔受限。相较完全胞内酶，TPST2具有明确晶体结构和可解析的PAPS/底物结合沟槽，适合作为机制验证型抗体或胞内递送抗体设计对象，优先级低于细胞表面受体但高于缺乏结构依据的同类酶靶点。",
+    "mechanism": "抗体结合TPST2催化沟槽邻近区域，空间阻断蛋白底物酪氨酸肽段进入活性位点，从而抑制PAPS依赖的酪氨酸硫酸化反应。",
+    "selectedEpitope": "优先覆盖催化结构域中PAPS结合位点邻近的底物肽结合沟槽边缘，避免深埋保守催化残基。",
+    "diseaseDirection": "代谢表型与神经退行性疾病",
+    "domain": "II型跨膜高尔基酶，含短胞质尾、单跨膜段、腔内茎区及催化硫转移酶结构域。",
+    "evidence": "TPST2结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt O60704功能与亚细胞定位注释",
+      "RCSB PDB 9WWE晶体结构记录",
+      "酪氨酸硫酸化与趋化因子受体功能文献"
+    ],
+    "referenceEntries": "UniProt O60704；RCSB PDB 9WWE；Open Targets TPST2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域PAPS结合位点邻近底物肽沟槽",
+        "可直接干扰蛋白底物进入并抑制硫酸基转移",
+        "优先"
+      ],
+      [
+        "Site B",
+        "腔内催化结构域外侧非保守环区",
+        "利于获得高特异性结合并降低与TPST1交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "跨膜近端茎区或高度保守核心折叠面",
+        "可能影响构象稳定性但功能阻断不确定，且结构暴露度需复核",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TPST2为高尔基腔内酶，常规抗体体内递送效率受限；应优先采用细胞内递送、纳米抗体或体外机制验证策略，并评估TPST1交叉反应。",
+    "structurePrepZh": "以9WWE链A为模板，保留催化结构域坐标，校正缺失侧链和糖基化状态，标注PAPS及底物肽结合相关残基后进行表面聚类。",
+    "structureRef": "RCSB PDB 9WWE，X-ray diffraction，1.75 Å",
+    "antibodies": [
+      "TPST2研究级抗体",
+      "TPST1/TPST2交叉反应筛查抗体"
+    ],
+    "interfaceFocus": "PAPS口袋邻近底物肽结合沟槽",
+    "designMode": "胞内递送阻断",
+    "candidates": [
+      {
+        "target": "TPST1",
+        "rationale": "TPST1与TPST2共同催化蛋白酪氨酸硫酸化，处于同一高尔基硫酸化通路；联合评估可区分同工酶补偿效应。"
+      },
+      {
+        "target": "SLC35B2",
+        "rationale": "SLC35B2负责将PAPS转运入高尔基腔，为TPST催化反应提供硫酸基供体；其抑制可上游降低酪氨酸硫酸化水平。"
+      },
+      {
+        "target": "PAPSS2",
+        "rationale": "PAPSS2合成PAPS并为高尔基硫酸化反应提供供体底物，遗传变异与骨骼和代谢表型相关，适合作为同一硫酸化轴的上游候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

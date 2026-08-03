@@ -1,0 +1,65 @@
+{
+  "gene": "ABCC2",
+  "generatedAt": "2026-08-03T09:49:32.359Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ABCC2/MRP2 是肝细胞毛细胆管侧膜 ATP 依赖性外排转运体，负责胆红素葡萄糖醛酸、胆汁酸缀合物及多种有机阴离子向胆汁排泄，功能缺陷可导致 Dubin-Johnson 综合征和胆汁淤积相关生化异常。该靶点为多跨膜膜受体样转运蛋白，胞外环位于胆管腔侧，具备抗体识别的可及性，但表位需避开跨膜核心疏水区。相较于广泛分布的摄取或外排转运体，ABCC2 具有明确的肝胆定位、遗传疾病因果证据和高分辨率实验结构支持，适合作为机制验证型抗体设计靶点。",
+    "mechanism": "通过结合 ABCC2 胞外环或腔侧门控界面，稳定外向开放构象或阻断底物进入外排通道，从而影响胆红素葡萄糖醛酸的 ATP 依赖性胆汁排泄。",
+    "selectedEpitope": "优先选择 TMD1/TMD2 腔侧胞外环及外向开放门控入口周边，避开 NBD ATP 结合位点。",
+    "diseaseDirection": "肝胆转运障碍与胆汁淤积",
+    "domain": "ABCC2 含 N 端跨膜结构域、两个核心跨膜结构域 TMD1/TMD2 及两个胞质核苷酸结合结构域 NBD1/NBD2。",
+    "evidence": "ABCC2 肝胆外排功能与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q92887 functional annotation",
+      "RCSB PDB 9C12 cryo-EM structure",
+      "OMIM Dubin-Johnson syndrome genetic evidence"
+    ],
+    "referenceEntries": "UniProt: Q92887; RCSB PDB: 9C12; HGNC: ABCC2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "TMD1/TMD2 胆管腔侧胞外环与外向开放入口",
+        "可直接干预底物进入外排通道，兼具抗原可及性和构象选择性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N 端跨膜结构域腔侧外露环区",
+        "适合作为肝胆膜定位型结合表位，降低对 ATP 水解核心的直接扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "NBD1/NBD2 ATP 结合与二聚化界面",
+        "机制相关性强但位于胞质侧，完整抗体可及性差且存在功能广泛抑制风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ABCC2 为多跨膜转运体，胞外环短且构象依赖性强，应规避高度保守跨膜束和胞质 NBD 界面，优先采用构象锁定抗原进行筛选。",
+    "structurePrepZh": "以 PDB 9C12 抗原链 A 为模板，保留跨膜区整体构象，标注胞外侧、糖基化位点和柔性环区，并采用膜环境约束评估表位暴露度。",
+    "structureRef": "RCSB PDB 9C12, human ABCC2 cryo-EM, 2.75 Å",
+    "antibodies": [
+      "M2III-6",
+      "EAG5"
+    ],
+    "interfaceFocus": "TMD 腔侧外排入口与胞外环构象界面",
+    "designMode": "构象表位阻断",
+    "candidates": [
+      {
+        "target": "ABCB11",
+        "rationale": "ABCB11/BSEP 负责胆汁酸由肝细胞向胆汁外排，功能缺陷导致进行性家族性肝内胆汁淤积，与 ABCC2 同属肝胆小管膜外排转运轴。"
+      },
+      {
+        "target": "ABCB4",
+        "rationale": "ABCB4/MDR3 将磷脂酰胆碱转运至胆汁，维持胆汁胶束稳定，其缺陷可造成胆汁淤积和胆管损伤，属于同一肝胆分泌通路。"
+      },
+      {
+        "target": "SLCO1B1",
+        "rationale": "SLCO1B1/OATP1B1 介导肝细胞基底外侧有机阴离子摄取，与 ABCC2 的胆管侧外排共同决定胆红素和药物阴离子的肝内转运平衡。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

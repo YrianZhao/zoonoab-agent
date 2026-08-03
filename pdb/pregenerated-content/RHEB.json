@@ -1,0 +1,65 @@
+{
+  "gene": "RHEB",
+  "generatedAt": "2026-08-03T20:57:00.869Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RHEB 是小型 GTP 酶，直接结合并激活 mTORC1 复合体中的 MTOR 激酶结构域附近界面，TSC1-TSC2 复合体通过促进 RHEB-GTP 水解抑制该轴。RHEB 失衡与局灶性皮质发育不良 II 型、神经发育异常及 mTORC1 过度活化相关疾病具有机制联系。该蛋白主要定位于胞内内膜系统，抗原可及性不具备常规细胞表面抗体优势，因而更适合作为机制验证或胞内递送抗体设计靶点。相较上游生长因子受体，RHEB 位于 TSC-mTORC1 轴的近端开关节点，可更直接评估 GTPase-效应器界面阻断价值。",
+    "mechanism": "设计胞内递送型抗体阻断 RHEB-GTP 与 MTOR catalytic domain/N-heat repeat 附近效应器界面的结合，降低 mTORC1 对 S6K 与 4E-BP1 的磷酸化输出。",
+    "selectedEpitope": "优先覆盖 Switch I/Switch II 与 GTP 依赖效应器结合面，避开核苷酸口袋核心以降低非特异性构象干扰。",
+    "diseaseDirection": "mTORC1过度活化相关神经发育疾病",
+    "domain": "RHEB 为约184 aa Ras 家族小型 GTP 酶，含 P-loop、Switch I、Switch II 与 C 端 CAAX 膜锚定基序。",
+    "evidence": "RHEB-TSC-mTORC1轴结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q15382 functional annotation",
+      "RCSB PDB 6BSX X-ray structure",
+      "TSC1/TSC2-mTORC1 pathway literature"
+    ],
+    "referenceEntries": "UniProt Q15382；RCSB PDB 6BSX；Open Targets RHEB",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Switch I/Switch II 效应器结合界面",
+        "直接干预 RHEB-GTP 与 mTORC1 的功能性接触，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "P-loop 邻近但不侵入核苷酸结合口袋的外侧表面",
+        "可稳定特定构象并影响效应器识别，但需避免广泛 GTPase 交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端 CAAX 邻近膜锚定区域",
+        "可能影响亚细胞定位，但结构柔性与膜环境依赖性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RHEB 属胞内小型 GTP 酶，常规抗体难以到达作用位点；需采用细胞内递送、内体逃逸或 intrabody 格式，并严格评估 Ras 家族同源交叉反应。",
+    "structurePrepZh": "以 6BSX 高分辨率晶体结构为模板，保留 GTP/GDP 相关构象信息，补建柔性 C 端缺失片段，并标注 Switch I/II 构象状态用于表位分层。",
+    "structureRef": "RCSB PDB 6BSX，X-ray diffraction，1.65 Å",
+    "antibodies": [
+      "无已批准 RHEB 靶向抗体",
+      "研究级抗 RHEB 单克隆抗体"
+    ],
+    "interfaceFocus": "Switch I/II-mTORC1效应器接触面",
+    "designMode": "胞内阻断型抗体设计",
+    "candidates": [
+      {
+        "target": "MTOR",
+        "rationale": "MTOR 是 mTORC1 的催化核心，直接接收 RHEB-GTP 激活信号；靶向其复合体构象界面可验证同一通路下游输出。"
+      },
+      {
+        "target": "TSC2",
+        "rationale": "TSC2 是 RHEB 的 GTPase-activating protein，功能缺失导致 RHEB-GTP 累积和 mTORC1 过度活化，是同轴上游抑制节点。"
+      },
+      {
+        "target": "RRAGA",
+        "rationale": "RRAGA 参与氨基酸依赖的 mTORC1 溶酶体募集，与 RHEB 介导的激活步骤共同决定 mTORC1 信号强度。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "SHPRH",
+  "generatedAt": "2026-08-03T16:31:46.822Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SHPRH 是核内 SWI/SNF2 家族染色质重塑相关 E3 泛素连接酶，参与 PCNA 多泛素化、模板转换型 DNA 损伤耐受及基因组稳定性维持，其 Open Targets 关联信号以神经退行性疾病为最高分方向。该蛋白主要定位于细胞核，缺乏分泌型或膜受体样胞外结构域，因此常规体内阻断型抗体抗原可及性不足。相较于 EGFR、TNF 或免疫检查点等胞外靶点，SHPRH 的优势在于结构化 RING 结构域已具实验晶体结构，可用于机制研究、胞内抗体或降解偶联分子设计，但作为传统治疗抗体主靶点优先级较低。",
+    "mechanism": "设计分子应结合 SHPRH RING 结构域的 E2 酶对接面，阻断其与 UBE2N/UBE2V2 复合体协同催化 PCNA K164 后续多泛素链延伸。",
+    "selectedEpitope": "优先覆盖 4QN1 所示 RING 结构域锌配位折叠邻近的 E2 结合界面，避免破坏核心 Cys/His 配位位点。",
+    "diseaseDirection": "神经退行性疾病与DNA损伤耐受",
+    "domain": "SHPRH 含 SNF2 ATPase、PHD、RING finger、H15 linker histone 样区及螺旋酶相关结构域。",
+    "evidence": "SHPRH-DNA损伤耐受与神经退行性关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q149N8 functional annotation",
+      "RCSB PDB 4QN1 X-ray structure",
+      "DNA damage tolerance and PCNA ubiquitination literature"
+    ],
+    "referenceEntries": "UniProt Q149N8；RCSB PDB 4QN1；Open Targets SHPRH",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RING结构域E2酶对接面",
+        "可直接干预E3-E2复合体形成并抑制PCNA多泛素化",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RING结构域外侧非锌配位环区",
+        "利于获得构象识别分子并降低破坏折叠核心风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Cys/His锌配位核心附近",
+        "可能导致结构域失折叠和非特异性构象扰动，需严格规避",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SHPRH 为核内蛋白，天然抗原可及性不适合常规胞外抗体阻断；建议定位为胞内抗体、Fab片段结构探针或降解偶联识别模块。",
+    "structurePrepZh": "以 4QN1 A 链 RING 结构域为模板，保留锌离子配位几何，补全缺失侧链并标注E2结合候选面后开展对接。",
+    "structureRef": "RCSB PDB 4QN1，X-ray diffraction，2.48 Å",
+    "antibodies": [
+      "暂无获批SHPRH靶向抗体",
+      "暂无临床阶段SHPRH靶向抗体"
+    ],
+    "interfaceFocus": "RING结构域E2酶结合面与锌配位邻近环区",
+    "designMode": "胞内抗体/结构探针",
+    "candidates": [
+      {
+        "target": "UBE2N",
+        "rationale": "UBE2N 与 UBE2V2 形成 E2 复合体，参与 PCNA K63 型多泛素链延伸，是 SHPRH 介导 DNA 损伤耐受的直接酶学伙伴。"
+      },
+      {
+        "target": "UBE2V2",
+        "rationale": "UBE2V2 作为 UBE2N 的无催化亚基决定链型装配特征，与 SHPRH-PCNA 轴处于同一模板转换通路。"
+      },
+      {
+        "target": "PCNA",
+        "rationale": "PCNA 是 DNA 损伤耐受通路中的核心滑动夹，其 K164 泛素化状态决定跨损伤合成与模板转换分支选择。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

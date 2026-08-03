@@ -1,0 +1,65 @@
+{
+  "gene": "ATG4A",
+  "generatedAt": "2026-08-03T10:39:59.606Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ATG4A是自噬相关半胱氨酸蛋白酶，催化ATG8家族蛋白C端加工及脂质化后去偶联，参与自噬体形成与自噬通量维持；肿瘤细胞可依赖自噬适应缺氧、营养应激和治疗压力。该蛋白主要定位于胞质，缺乏天然胞外结构域或分泌特征，抗原可及性不支持常规体内阻断型抗体开发，更适合结构验证、胞内递送抗体或降解偶联策略。其优先级低于EGFR、ERBB2、PDCD1等胞外可及肿瘤靶点，但2.1 Å晶体结构可支持高精度活性位点邻近表位设计。",
+    "mechanism": "通过胞内递送抗体占据ATG4A催化沟槽，干扰LC3/GABARAP底物C端进入Cys77-His280-Asp278催化三联体区域，抑制ATG8前体加工与去脂质化循环。",
+    "selectedEpitope": "优先围绕催化Cys77邻近底物结合沟槽及N端调控环设计构象表位。",
+    "diseaseDirection": "自噬依赖性肿瘤应激适应",
+    "domain": "ATG4A为木瓜蛋白酶样半胱氨酸蛋白酶折叠，含催化Cys77、Asp278、His280及ATG8结合沟槽。",
+    "evidence": "ATG4A自噬酶结构与肿瘤关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q8WYN0功能注释",
+      "RCSB PDB 2P82晶体结构",
+      "自噬ATG8加工与肿瘤应激适应文献"
+    ],
+    "referenceEntries": "UniProt Q8WYN0；RCSB PDB 2P82；Open Targets ATG4A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Cys77邻近催化沟槽与ATG8底物C端进入通道",
+        "直接干扰底物定位，最接近酶活抑制机制",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端调控环及底物结合沟槽外缘",
+        "可通过构象约束降低ATG8家族底物加工效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化三联体的保守酶核心表面",
+        "可能影响有限且存在ATG4同源蛋白交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ATG4A为胞内酶，常规抗体体内可及性不足；需采用细胞穿透、内体逃逸或抗体降解偶联形式，并严格评估ATG4B同源交叉反应。",
+    "structurePrepZh": "以2P82四条抗原链比对构建单体工作模型，补全缺失侧链，保留催化沟槽构象并进行质子化、能量最小化和同源蛋白表面差异标注。",
+    "structureRef": "RCSB PDB 2P82，human ATG4A，X-ray 2.1 Å",
+    "antibodies": [
+      "抗ATG4A研究级单克隆抗体",
+      "抗ATG4A研究级多克隆抗体"
+    ],
+    "interfaceFocus": "Cys77-His280-Asp278催化三联体周边底物沟槽",
+    "designMode": "胞内抑制型抗体",
+    "candidates": [
+      {
+        "target": "ATG4B",
+        "rationale": "ATG4B是ATG8家族加工与去脂质化的主要半胱氨酸蛋白酶，在自噬通量维持中功能更突出，肿瘤自噬依赖场景下具有更强机制优先级。"
+      },
+      {
+        "target": "MAP1LC3B",
+        "rationale": "MAP1LC3B是ATG4加工和脂质化循环的核心ATG8家族底物，可作为自噬体形成与自噬通量调控的直接节点。"
+      },
+      {
+        "target": "BECN1",
+        "rationale": "BECN1参与PIK3C3复合体介导的自噬起始，与ATG4A处于同一自噬过程网络，可从上游限制自噬体成核。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

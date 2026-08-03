@@ -1,0 +1,65 @@
+{
+  "gene": "RAB5C",
+  "generatedAt": "2026-08-03T20:40:17.714Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RAB5C 是早期内体小 GTP 酶，参与网格蛋白依赖性内吞后货物分选、内体融合及受体循环，其遗传关联主要指向神经发育异常等复杂表型。该蛋白为胞质侧膜相关 GTPase，缺乏稳定胞外结构域或分泌暴露形式，抗原天然可及性不符合常规体内阻断抗体开发。相较 EGFR、TFRC 或 LDLR 等同属内吞通路且具有胞外结构域的靶点，RAB5C 更适合作为结构生物学与胞内功能干预研究对象，抗体优先级应限定于细胞内抗体或研究级构象探针。",
+    "mechanism": "设计分子应识别 RAB5C GTPase 核苷酸结合构象，干扰 Switch I/II 与效应蛋白 EEA1、RABEP1 的结合，而非胞外配体阻断。",
+    "selectedEpitope": "优先覆盖 GTPase 结构域 Switch I/Switch II 邻近效应蛋白结合面，避免核苷酸口袋核心。",
+    "diseaseDirection": "神经发育与内吞运输异常",
+    "domain": "RAB5C 含保守小 GTPase 结构域，包含 P-loop、Switch I、Switch II 及 C 端膜定位区。",
+    "evidence": "RAB5C 内体运输与神经发育关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P51148 functional annotation",
+      "RCSB PDB 4KYI experimental structure",
+      "Reactome endosomal sorting and Rab regulation pathways"
+    ],
+    "referenceEntries": "UniProt P51148；RCSB PDB 4KYI；Reactome R-HSA-8856828",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Switch I/Switch II 效应蛋白结合面",
+        "可区分 GTPase 活化构象并阻断 EEA1/RABEP1 招募",
+        "优先"
+      ],
+      [
+        "Site B",
+        "α3-β5-α4 外侧保守 GTPase 表面",
+        "利于获得构象识别探针，降低直接竞争核苷酸风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "P-loop 与 GDP/GTP 结合口袋周边",
+        "高度保守且可能影响核苷酸结合，交叉反应与功能扰动风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RAB5 亚型间序列与构象高度保守，需评估 RAB5A/RAB5B 交叉反应；因靶点胞内定位，体内抗体成药性受限，宜采用 intrabody 或结构探针策略。",
+    "structurePrepZh": "以 4KYI 多链晶体结构提取单体 GTPase 域，校核核苷酸、镁离子及缺失环区，按 RAB5C 序列统一编号后进行表面聚类分析。",
+    "structureRef": "RCSB PDB 4KYI，X-ray diffraction，3.075 Å",
+    "antibodies": [
+      "commercial anti-RAB5C clone EPR7425",
+      "commercial anti-RAB5 isoform antibody clone D11"
+    ],
+    "interfaceFocus": "Switch I/II 与 EEA1/RABEP1 结合界面",
+    "designMode": "胞内构象探针",
+    "candidates": [
+      {
+        "target": "RAB5A",
+        "rationale": "RAB5A 与 RAB5C 同属早期内体 Rab5 模块，直接参与早期内体融合和 PI3P 阳性内体成熟，是验证内吞运输异常机制的近缘候选靶点。"
+      },
+      {
+        "target": "RABEP1",
+        "rationale": "RABEP1 是 Rab5 效应蛋白，可与活化 Rab5 结合并促进早期内体融合，适合作为 Rab5C 效应复合体界面的通路候选靶点。"
+      },
+      {
+        "target": "EEA1",
+        "rationale": "EEA1 通过 FYVE 结构域识别 PI3P 并与 Rab5-GTP 协同定位于早期内体，其界面可用于评估 Rab5 依赖性内体 tethering 过程。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

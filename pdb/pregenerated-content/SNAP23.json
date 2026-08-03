@@ -1,0 +1,65 @@
+{
+  "gene": "SNAP23",
+  "generatedAt": "2026-08-03T16:45:24.523Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SNAP23 作为 SNARE 复合体组分，参与囊泡与质膜融合，直接影响突触递质释放、血小板颗粒分泌及髓系细胞脱颗粒等过程，与神经退行性变及血液系统表型具有明确关联。其定位于胞质侧膜相关复合体，理论上抗体可通过识别暴露的胞质结构片段或工程化递送策略实现结合，抗原信息可借助已解析晶体结构进行精确约束。相较同通路中 STX1A、VAMP2 等核心膜融合蛋白，SNAP23 具备更广泛的外周膜装配参与度和更直接的分泌调控节点属性，适合作为跨疾病分泌障碍轴的优先设计靶点。",
+    "mechanism": "通过结合 SNAP23 的 SNARE 核心螺旋区，阻断其与 STX/VAMP 形成稳定四螺旋束，从而抑制膜融合。",
+    "selectedEpitope": "优先锁定 SNARE motif 的中段螺旋界面，覆盖复合体装配接触位点。",
+    "diseaseDirection": "神经退行性与分泌障碍",
+    "domain": "N 端调控区与 C 端 SNARE motif 组成的膜融合核心区域",
+    "evidence": "SNAP23 分泌复合体抗体设计证据包",
+    "evidenceSources": [
+      "UniProt O00161",
+      "RCSB PDB 1NHL",
+      "Open Targets Platform",
+      "Human Protein Atlas"
+    ],
+    "referenceEntries": "UniProt:O00161；PDB:1NHL；Open Targets:SNAP23",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SNARE motif 中段螺旋面",
+        "直接干扰四螺旋束装配，优先级最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N 端调控连接区",
+        "可降低复合体预组织效率，利于功能抑制",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端末端贴膜区",
+        "靠近膜近端界面但保守性较高，需谨慎评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SNAP23 为胞质侧蛋白，常规裸抗体可及性有限；宜优先考虑胞内递送、细胞内抗体或结合结构约束后的人源化设计。SNARE 核心区保守性较高，需同步评估对 SNAP25/其他 SNARE 家族的交叉反应风险。",
+    "structurePrepZh": "以 PDB 1NHL 为主模板重建 SNAP23 结合构象，补全缺失侧链并进行界面能量最小化；结合保守性映射筛除高同源表位。",
+    "structureRef": "RCSB PDB 1NHL；Wang et al., SNARE complex structure",
+    "antibodies": [
+      "mAb 9E10-like anti-SNAP23 类抗体",
+      "anti-SNAP23 rabbit monoclonal"
+    ],
+    "interfaceFocus": "SNARE motif 四螺旋束装配界面",
+    "designMode": "structure-guided",
+    "candidates": [
+      {
+        "target": "STX1A",
+        "rationale": "与 SNAP23 同属 SNARE 复合体核心组分，直接参与质膜融合装配。作为互补抑制靶点，可用于验证膜融合通路的上游协同阻断效果。"
+      },
+      {
+        "target": "VAMP2",
+        "rationale": "VAMP2 是与 SNAP23 配对的 vesicle SNARE，决定四螺旋束形成的另一关键界面。针对该节点的并行设计有助于构建同通路多靶点比较体系。"
+      },
+      {
+        "target": "SYT1",
+        "rationale": "SYT1 调控 Ca2+ 依赖性囊泡融合，位于 SNAP23 介导膜融合的功能上游。其与 SNAP23 属同一神经递质释放轴，适合作为机制验证候选靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

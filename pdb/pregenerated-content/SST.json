@@ -1,0 +1,65 @@
+{
+  "gene": "SST",
+  "generatedAt": "2026-08-03T16:56:44.749Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SST编码的somatostatin为分泌型肽类配体，位于细胞外空间并可直接被抗体接触，具备明确的抗原可及性优势。其在内分泌抑制轴中通过结合SSTR家族阻断GH、TSH及多种胃肠激素释放，参与胰腺神经内分泌肿瘤、生长激素过度分泌及胃肠激素失衡相关病理过程。相较于SSTR1/2/3/4/5等膜受体靶点，直接靶向SST更适合用于中和游离配体、解析配体驱动事件并降低受体亚型偏倚带来的机制不确定性。结合其高分辨率冷冻电镜结构信息，可优先围绕受体结合核心区构建中和型抗体策略。",
+    "mechanism": "抗体中和游离SST，阻断其与SSTR1-5配体结合，解除对GH及胃肠激素分泌的抑制。",
+    "selectedEpitope": "优先覆盖SST环状核心及SSTR识别关键残基，避免N/C端非关键柔性区。",
+    "diseaseDirection": "内分泌与神经内分泌肿瘤",
+    "domain": "分泌肽配体，无经典结构域；以环状核心和受体结合界面为主。",
+    "evidence": "SST中和抗体设计证据包",
+    "evidenceSources": [
+      "UniProt: P61278",
+      "RCSB PDB: 7T10",
+      "Open Targets Platform",
+      "Human Protein Atlas"
+    ],
+    "referenceEntries": "UniProt P61278; RCSB 7T10; Open Targets SST entry",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "环状核心受体结合界面",
+        "直接遮蔽SSTR识别面，最有利于中和活性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端相邻暴露残基",
+        "可增强结合覆盖并改善亲和力",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端柔性区",
+        "对受体结合贡献有限，存在表位异质性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SST为短肽配体，构象柔性与加工形式差异会影响表位稳定性；优先采用结构约束抗原并验证对天然SST-14的交叉识别。",
+    "structurePrepZh": "建议以7T10为模板提取配体-受体结合构象，结合SST-14序列进行表位映射，并在酸性与中性条件下评估构象保持性。",
+    "structureRef": "RCSB PDB 7T10冷冻电镜结构",
+    "antibodies": [
+      "anti-somatostatin monoclonal antibodies",
+      "somatostatin-neutralizing antibodies"
+    ],
+    "interfaceFocus": "SSTR识别核心与环状约束区",
+    "designMode": "neutralization",
+    "candidates": [
+      {
+        "target": "SSTR2",
+        "rationale": "SSTR2是SST最关键的高亲和力受体之一，常主导抑制性信号传递。与SST并列分析有助于界定中和抗体对受体轴的功能读出。"
+      },
+      {
+        "target": "SSTR5",
+        "rationale": "SSTR5介导SST对内分泌细胞分泌的抑制作用，且与临床内分泌表型密切相关。作为同通路候选靶点，可用于验证配体阻断后的受体层效应。"
+      },
+      {
+        "target": "GH1",
+        "rationale": "GH1位于SST-SSTR轴的下游效应端，SST中和后可观察GH释放变化。将其纳入同通路评估有助于建立抗体药效与生物标志物的对应关系。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

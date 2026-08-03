@@ -1,0 +1,65 @@
+{
+  "gene": "NLRP1",
+  "generatedAt": "2026-08-03T20:19:00.892Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NLRP1是角质形成细胞和上皮屏障相关炎症通路中的胞质模式识别受体，致病性功能获得突变可促使炎症小体装配、caspase-1激活及IL-1β/IL-18成熟释放，驱动角膜、掌跖和喉部角化异常伴自身炎症表型。该蛋白主要定位于胞质，天然抗原可及性弱于膜受体或分泌因子，抗体策略更适合围绕可递送胞内抗体、研究级Fab/VHH或外周下游炎症因子阻断进行设计。相较同通路中广泛表达且系统性抑制风险较高的CASP1或GSDMD，NLRP1具有明确遗传因果关联和疾病亚型富集优势，可作为机制验证与精确干预优先靶点。",
+    "mechanism": "设计结合NLRP1 PYD结构域的胞内抗体，阻断NLRP1 PYD与ASC/PYCARD PYD的同型相互作用，抑制ASC斑点形成及caspase-1募集。",
+    "selectedEpitope": "优先覆盖PYD六螺旋束中α2-α3及α5界面，干扰PYD-PYD聚合接触。",
+    "diseaseDirection": "上皮自身炎症与角化异常",
+    "domain": "NLRP1含N端PYD、NACHT、LRR、FIIND与C端CARD；4IM6解析人源PYD结构。",
+    "evidence": "NLRP1炎症小体遗传关联与PYD结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProtKB Q9C000功能与结构域注释",
+      "RCSB PDB 4IM6晶体结构记录",
+      "OMIM/ClinVar NLRP1相关自身炎症变异"
+    ],
+    "referenceEntries": "UniProt Q9C000；RCSB PDB 4IM6；HGNC:14374",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PYD α2-α3酸性/疏水界面",
+        "可能阻断ASC PYD同型聚合起始接触",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PYD α5-α6外露螺旋面",
+        "可降低炎症小体平台装配并保留结构稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PYD核心疏水折叠区",
+        "影响折叠稳定性和特异性，易产生构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NLRP1为胞质蛋白，常规抗体体内可及性受限；需采用细胞递送VHH、intrabody或研究验证格式，并避免破坏PYD整体折叠导致非特异聚集。",
+    "structurePrepZh": "以4IM6链A为PYD模板，补全缺失侧链并评估晶体接触；结合AlphaFold全长模型映射NACHT、FIIND和CARD相对可及性。",
+    "structureRef": "RCSB PDB 4IM6，人NLRP1 PYD，X-ray 1.65 Å",
+    "antibodies": [
+      "研究级anti-NLRP1抗体",
+      "canakinumab"
+    ],
+    "interfaceFocus": "NLRP1 PYD-ASC/PYCARD PYD装配界面",
+    "designMode": "胞内VHH/Fab验证",
+    "candidates": [
+      {
+        "target": "PYCARD",
+        "rationale": "PYCARD编码ASC，是NLRP1炎症小体中连接PYD识别与CARD介导caspase-1募集的核心接头蛋白，阻断其PYD界面可直接抑制ASC斑点形成。"
+      },
+      {
+        "target": "CASP1",
+        "rationale": "CASP1位于NLRP1炎症小体下游，负责切割pro-IL-1β、pro-IL-18和GSDMD；抑制其活化可降低炎症性细胞因子成熟与焦亡。"
+      },
+      {
+        "target": "IL1B",
+        "rationale": "IL1B是caspase-1激活后的关键效应细胞因子，介导上皮炎症放大；其分泌蛋白属性使抗体阻断具有更高体内可及性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

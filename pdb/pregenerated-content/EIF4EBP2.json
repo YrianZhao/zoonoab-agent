@@ -1,0 +1,65 @@
+{
+  "gene": "EIF4EBP2",
+  "generatedAt": "2026-08-03T19:05:27.005Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "EIF4EBP2是翻译起始调控因子，主要通过结合EIF4E并限制eIF4F复合体装配，处于PI3K-AKT-mTORC1介导的蛋白翻译控制轴下游；其与阿尔茨海默病及相关表型存在遗传和组学关联，但Open Targets最高疾病得分较低。该蛋白为胞内可溶性调控蛋白，天然抗原可及性不具备分泌蛋白或膜受体优势，因此更适合作为机制验证或胞内递送抗体设计对象。相比mTOR通路中的上游激酶或膜受体，EIF4EBP2可直接聚焦EIF4E结合界面，机制读出更接近翻译起始终端效应，但成药优先级低于胞外可及靶点。",
+    "mechanism": "设计抗体阻断EIF4EBP2的EIF4E结合基序与EIF4E背侧结合沟槽相互作用，改变eIF4F装配与帽依赖性翻译起始状态。",
+    "selectedEpitope": "优先覆盖N端YXXXXLΦ型EIF4E结合基序及其邻近磷酸化调控片段。",
+    "diseaseDirection": "神经退行性疾病与翻译调控",
+    "domain": "EIF4EBP2为小型无经典结构域胞内蛋白，含EIF4E结合基序及多位点mTORC1磷酸化调控区。",
+    "evidence": "EIF4EBP2翻译起始调控与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q13542功能与序列注释",
+      "RCSB PDB 3AM7晶体结构记录",
+      "mTORC1-4E-BP-eIF4E翻译起始通路文献"
+    ],
+    "referenceEntries": "UniProt Q13542；RCSB PDB 3AM7；Open Targets EIF4EBP2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端EIF4E结合基序及邻近螺旋诱导区",
+        "直接竞争EIF4E结合，机制明确且便于结构验证",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Thr37/Thr46等mTORC1磷酸化调控邻近片段",
+        "可影响磷酸化依赖构象转换与EIF4E释放过程",
+        "备选"
+      ],
+      [
+        "Site C",
+        "低复杂度柔性C端区域",
+        "结构稳定性和表位成形性不足，交叉反应风险需评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "EIF4EBP2为胞内蛋白，常规抗体难以到达作用位点；设计应优先采用胞内递送、细胞穿透格式或作为结构机制抗体，并严格评估EIF4EBP家族交叉反应。",
+    "structurePrepZh": "以3AM7实验晶体结构为模板，保留抗原链A、B并校验缺失柔性片段；结合UniProt序列映射EIF4E结合基序和磷酸化位点。",
+    "structureRef": "RCSB PDB 3AM7，X-ray diffraction，2.2 Å",
+    "antibodies": [
+      "抗EIF4EBP2研究级抗体",
+      "磷酸化EIF4EBP1/2交叉识别抗体"
+    ],
+    "interfaceFocus": "EIF4E结合基序与磷酸化调控邻近界面",
+    "designMode": "胞内机制抗体设计",
+    "candidates": [
+      {
+        "target": "EIF4E",
+        "rationale": "EIF4E是4E-BP蛋白直接结合对象，也是帽依赖性翻译起始和eIF4F复合体形成的核心节点；靶向其结合沟槽可直接干预EIF4G或4E-BP竞争性结合。"
+      },
+      {
+        "target": "MTOR",
+        "rationale": "MTORC1通过磷酸化4E-BP家族成员解除其对EIF4E的抑制，是EIF4EBP2上游的关键激酶节点；其疾病相关性和通路证据更为广泛。"
+      },
+      {
+        "target": "RPTOR",
+        "rationale": "RPTOR是mTORC1复合体支架组分，参与底物招募并影响4E-BP磷酸化效率；调节该节点可改变EIF4EBP2所处翻译控制轴的活性状态。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

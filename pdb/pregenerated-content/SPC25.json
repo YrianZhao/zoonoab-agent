@@ -1,0 +1,65 @@
+{
+  "gene": "SPC25",
+  "generatedAt": "2026-08-03T21:17:45.896Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SPC25 是 NDC80 动粒复合体的核心亚基，参与 SPC24-SPC25 与 NDC80-NUF2 长杆状复合体装配，并维持动粒-微管附着及有丝分裂染色体分离，其异常主要指向细胞周期失衡、染色体不稳定和肿瘤增殖生物学。该蛋白位于细胞内动粒复合体，缺乏天然胞外结构域或分泌特征，常规体内阻断抗体的抗原可及性不足，更适合结构验证、胞内递送抗体或研究级结合分子开发。相较于微管蛋白等广泛表达靶点，SPC25 处于动粒连接模块的专一装配界面，具备更明确的复合体界面解析价值，但作为治疗性抗体主靶点优先级应低于可及性更高的膜受体或分泌因子。",
+    "mechanism": "通过结合 SPC25 C 端 RWD-like 结构域与 SPC24 的异二聚界面，干扰 SPC24-SPC25 亚复合体稳定及其与 NDC80-NUF2 杆状复合体装配。",
+    "selectedEpitope": "优先覆盖 SPC25 RWD-like 结构域中 SPC24 接触面及保守疏水核心外缘，避免仅选择柔性尾段。",
+    "diseaseDirection": "有丝分裂异常与肿瘤增殖",
+    "domain": "SPC25 含 N 端卷曲螺旋段及 C 端 RWD-like 结构域，参与 NDC80 复合体动粒端装配。",
+    "evidence": "SPC25-NDC80 动粒复合体结构与疾病关联证据",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9HBM1 functional annotation",
+      "RCSB PDB 2VE7 X-ray structure",
+      "NDC80 kinetochore complex mitosis literature"
+    ],
+    "referenceEntries": "UniProt Q9HBM1；RCSB PDB 2VE7；Open Targets SPC25",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C 端 RWD-like 结构域的 SPC24 异二聚接触面",
+        "直接针对复合体装配界面，可用于阻断 SPC24-SPC25 稳定结合",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N 端卷曲螺旋近端与 NDC80-NUF2 杆状复合体衔接区域",
+        "有助于识别长杆状复合体装配状态并干扰亚复合体对接",
+        "备选"
+      ],
+      [
+        "Site C",
+        "暴露柔性环区或非保守表面片段",
+        "免疫原性可能较高但功能阻断相关性弱，需规避低保守与构象不稳定区域",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SPC25 为细胞内动粒蛋白，常规抗体难以到达天然作用位点；设计应定位为结构探针、胞内抗体或递送平台验证，并严格评估有丝分裂毒性。",
+    "structurePrepZh": "以 PDB 2VE7 的 SPC24-SPC25 复合体链为模板，补全缺失侧链，标注卷曲螺旋与 RWD-like 结构域界面，并保留生物装配体用于表位评估。",
+    "structureRef": "Ciferri et al., NDC80 complex structure, PDB 2VE7",
+    "antibodies": [
+      "研究级 anti-SPC25 antibody",
+      "研究级 anti-NDC80 complex antibody"
+    ],
+    "interfaceFocus": "SPC25-SPC24 RWD-like 异二聚界面",
+    "designMode": "胞内结构阻断",
+    "candidates": [
+      {
+        "target": "SPC24",
+        "rationale": "SPC24 与 SPC25 形成动粒端异二聚模块，是同一 NDC80 复合体装配界面的直接互作伙伴。靶向 SPC24 可从互补界面验证 SPC24-SPC25 稳定性对动粒功能的贡献。"
+      },
+      {
+        "target": "NDC80",
+        "rationale": "NDC80 是 NDC80 复合体连接动粒与微管的关键亚基，其 CH domain 直接参与微管结合。相较 SPC25，NDC80 更接近动粒-微管附着功能端点。"
+      },
+      {
+        "target": "NUF2",
+        "rationale": "NUF2 与 NDC80 构成微管结合端亚复合体，并通过长卷曲螺旋与 SPC24-SPC25 模块连接。该靶点适合作为同一动粒-微管附着通路的功能对照。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "IQGAP1",
+  "generatedAt": "2026-08-03T13:32:11.788Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IQGAP1 是细胞内支架蛋白，在肿瘤中通过结合 RAC1/CDC42、BRAF/MEK/ERK 组分及 β-catenin 复合体促进增殖、迁移和侵袭。该蛋白主要定位于胞质、细胞皮层和细胞连接区，缺乏稳定胞外结构域或分泌形式，天然抗体可及性明显受限。相较 EGFR、VEGFA 等已高度拥挤的胞外靶点，IQGAP1 更适合作为细胞内互作界面验证、递送型抗体或胞内抗体设计的探索性优先靶点。",
+    "mechanism": "通过胞内抗体阻断 IQGAP1 GRD 区域与活化 RAC1/CDC42 的结合，削弱其对 MAPK 与细胞骨架迁移复合体的支架化组装。",
+    "selectedEpitope": "优先覆盖 GRD 结构域 GTPase 结合界面，兼顾 C 端 RGCT 近端调控面。",
+    "diseaseDirection": "肿瘤侵袭与RAS-MAPK异常",
+    "domain": "IQGAP1 含 CHD、WW、IQ 重复、GRD 和 RGCT 区域；3FAY 对应 GRD 片段结构。",
+    "evidence": "IQGAP1肿瘤支架功能与GRD界面证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProtKB P46940 功能与亚细胞定位注释",
+      "RCSB PDB 3FAY X射线晶体结构",
+      "PubMed 中 IQGAP1-RAC1/CDC42 与 MAPK 支架研究"
+    ],
+    "referenceEntries": "UniProt P46940；RCSB PDB 3FAY；Open Targets IQGAP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "GRD结构域RAC1/CDC42结合面",
+        "直接干预小GTP酶依赖的迁移与MAPK支架功能",
+        "优先"
+      ],
+      [
+        "Site B",
+        "GRD外侧保守螺旋束区域",
+        "可稳定识别结构域构象并降低界面邻近互作",
+        "备选"
+      ],
+      [
+        "Site C",
+        "RGCT近端调控连接区",
+        "可能影响β-catenin和皮层定位相关复合体，但结构覆盖不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IQGAP1 为胞内非分泌蛋白，常规抗体难以直接到达靶点；设计应标注递送依赖性，并优先采用胞内抗体、VHH或细胞穿透偶联策略。",
+    "structurePrepZh": "以3FAY链A为GRD结构模板，补全缺失残基注释，去除结晶水与非功能性组分，并映射RAC1/CDC42互作残基。",
+    "structureRef": "RCSB PDB 3FAY，X-ray diffraction，2.2 Å",
+    "antibodies": [
+      "无临床获批IQGAP1靶向抗体",
+      "研究级抗IQGAP1抗体"
+    ],
+    "interfaceFocus": "GRD与RAC1/CDC42效应子样结合界面",
+    "designMode": "胞内VHH阻断",
+    "candidates": [
+      {
+        "target": "KRAS",
+        "rationale": "KRAS 是 RAS-MAPK 通路上游驱动因子，Noonan/Costello相关RASopathy及多种癌症中具有明确致病机制。其活化信号可通过 RAF-MEK-ERK 轴与 IQGAP1 支架功能发生功能耦联。"
+      },
+      {
+        "target": "BRAF",
+        "rationale": "BRAF 是 IQGAP1 可支架化组织的 MAPK 级联核心激酶。阻断或调控 BRAF 相关复合体可与 IQGAP1 界面设计形成同通路验证关系。"
+      },
+      {
+        "target": "MAP2K1",
+        "rationale": "MAP2K1/MEK1 位于 RAF 与 ERK 之间，是 RAS-MAPK 信号传递的关键节点。IQGAP1 对 MAPK 模块的空间组织使其与 MAP2K1 具有明确通路相关性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

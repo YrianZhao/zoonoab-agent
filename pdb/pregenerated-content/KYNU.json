@@ -1,0 +1,65 @@
+{
+  "gene": "KYNU",
+  "generatedAt": "2026-08-03T13:47:35.744Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KYNU编码犬尿氨酸酶，是色氨酸-犬尿氨酸分解通路中将3-羟基犬尿氨酸裂解为3-羟基邻氨基苯甲酸的PLP依赖酶，遗传缺陷可导致羟基犬尿氨酸尿相关脑病及多系统发育异常。该蛋白主要定位于胞质，不具备跨膜段或分泌信号肽，天然抗原可及性低于典型膜受体，因此更适合作为细胞内酶功能研究或递送型抗体设计对象。相比通路内上游IDO1/TDO2等免疫调控靶点，KYNU具有人源高分辨率晶体结构与明确催化口袋，可为构象选择、活性位点邻近表位和机制型结合分子设计提供较高结构确定性。",
+    "mechanism": "设计抗体应阻断KYNU催化沟槽内PLP辅基邻近底物进入路径，干扰3-羟基犬尿氨酸与活性位点残基的定位及裂解反应。",
+    "selectedEpitope": "优先覆盖N端帽状结构与PLP结合催化核心交界处的底物通道入口，避免直接依赖高度保守PLP锚定位点。",
+    "diseaseDirection": "色氨酸-犬尿氨酸代谢异常",
+    "domain": "KYNU为PLP依赖型犬尿氨酸酶，包含N端调节/帽状区域和TIM-barrel样催化核心，活性位点位于亚基界面附近沟槽。",
+    "evidence": "KYNU结构与犬尿氨酸代谢疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q16719功能与亚细胞定位注释",
+      "RCSB PDB 3E9K人KYNU晶体结构",
+      "OMIM/MONDO羟基犬尿氨酸尿相关疾病注释"
+    ],
+    "referenceEntries": "UniProt Q16719；RCSB PDB 3E9K；Open Targets KYNU",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PLP结合催化核心邻近的底物通道入口",
+        "可通过空间位阻限制3-羟基犬尿氨酸进入催化沟槽，具备机制阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端帽状结构与催化结构域交界面",
+        "可能影响活性口袋构象闭合与底物定位，兼具选择性与结构可塑性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PLP Schiff碱锚定残基周边高度保守内核",
+        "与同源PLP酶保守性较高且埋藏程度大，抗体可及性和选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "KYNU为胞质酶，常规体液抗体难以进入细胞发挥作用；设计应标注递送需求，并优先避开与PLP辅基直接竞争的深埋保守位点。",
+    "structurePrepZh": "以3E9K链A为模板，保留PLP辅基和关键活性位点残基，补全缺失侧链、校正质子化状态，并评估催化沟槽可及性。",
+    "structureRef": "RCSB PDB 3E9K，人源KYNU 1.7 Å X射线晶体结构",
+    "antibodies": [
+      "暂无获批KYNU治疗性抗体",
+      "研究级抗KYNU单克隆抗体"
+    ],
+    "interfaceFocus": "PLP邻近底物通道及N端帽状交界面",
+    "designMode": "胞内酶阻断型",
+    "candidates": [
+      {
+        "target": "IDO1",
+        "rationale": "IDO1催化色氨酸向犬尿氨酸通路的限速起始步骤，与KYNU同属犬尿氨酸代谢轴，并在肿瘤免疫抑制中具有明确机制证据。"
+      },
+      {
+        "target": "TDO2",
+        "rationale": "TDO2同样催化色氨酸生成犬尿氨酸，位于KYNU上游，可改变进入下游KYNU反应的代谢通量。"
+      },
+      {
+        "target": "KMO",
+        "rationale": "KMO将犬尿氨酸羟化为3-羟基犬尿氨酸，是KYNU直接上游底物供给节点，影响神经毒性犬尿氨酸代谢物平衡。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

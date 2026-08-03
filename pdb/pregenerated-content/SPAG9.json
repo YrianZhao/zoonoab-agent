@@ -1,0 +1,65 @@
+{
+  "gene": "SPAG9",
+  "generatedAt": "2026-08-03T16:50:45.097Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SPAG9编码JIP4/related scaffold family成员，参与JNK级联组装并影响应激与炎症相关信号转导，在神经退行性疾病相关网络中具备明确的通路位置。该蛋白以胞内支架蛋白为主，抗原可及性受限，但其已获得高分辨率晶体结构支持，便于界面表位解析与构象约束设计。相较于同类胞内支架靶点，SPAG9兼具较广疾病关联谱和可结构化干预潜力，更适合作为机制导向的抗体发现主靶点。",
+    "mechanism": "抗体拟阻断SPAG9介导的JNK模块装配及其与上游激酶复合体的结合，削弱应激相关信号复合物形成。",
+    "selectedEpitope": "优先覆盖JNK docking与螺旋束界面，避免破坏全局折叠。",
+    "diseaseDirection": "神经退行性疾病",
+    "domain": "以coiled-coil支架区及JNK结合界面为主，结构连续性较高。",
+    "evidence": "SPAG9结构-疾病-表位整合证据包",
+    "evidenceSources": [
+      "Open Targets Platform",
+      "UniProt: O60271",
+      "RCSB PDB: 2W83",
+      "Protein Data Bank / EXPERIMENTAL_RCSB"
+    ],
+    "referenceEntries": "UniProt O60271; RCSB PDB 2W83; Homo sapiens SPAG9",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "JNK结合界面附近的coiled-coil表面",
+        "直接干预支架复合物装配，优先用于功能阻断型抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "相邻螺旋束外露面",
+        "利于获得高亲和结合并减少对核心折叠的扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远端低保守外表面",
+        "降低功能干预强度，适合做构象探针或对照克隆",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SPAG9为胞内蛋白，天然膜表位不可及，常规全长抗体体内阻断存在递送风险；建议优先采用结构导向的Fab或VHH筛选，并结合细胞内递送体系验证。",
+    "structurePrepZh": "基于2W83对A-E链界面进行重装配检查，优先保留完整寡聚状态并标注柔性末端；表位映射前需评估界面暴露与保守性。",
+    "structureRef": "RCSB PDB 2W83, 1.93 Å X-ray",
+    "antibodies": [
+      "anti-SPAG9多克隆抗体",
+      "JIP4相关支架蛋白单抗"
+    ],
+    "interfaceFocus": "JNK docking位点与coiled-coil二聚界面",
+    "designMode": "structure-guided",
+    "candidates": [
+      {
+        "target": "MAPK8",
+        "rationale": "MAPK8/JNK1与SPAG9处于同一应激-JNK通路轴，是其下游功能读出靶点。其作为激酶催化端具有成熟药理学参考，可用于联动验证抗SPAG9的通路抑制效果。"
+      },
+      {
+        "target": "MAPK9",
+        "rationale": "MAPK9/JNK2与MAPK8共同构成JNK信号输出模块，和SPAG9支架装配关系直接相关。作为同通路候选，可用于评估不同JNK亚型依赖性。"
+      },
+      {
+        "target": "MAP2K7",
+        "rationale": "MAP2K7是JNK上游关键激酶，负责驱动JNK激活并依赖支架复合体效率。将其作为候选靶点有助于验证SPAG9抗体对上游装配事件的影响边界。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

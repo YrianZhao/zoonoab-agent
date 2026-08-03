@@ -1,0 +1,65 @@
+{
+  "gene": "FBXO4",
+  "generatedAt": "2026-08-03T12:29:10.511Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FBXO4是SCF型E3泛素连接酶复合体的底物识别亚基，可通过F-box结构域招募SKP1并经LRR结构域识别底物，参与细胞周期蛋白D1等蛋白的泛素化降解，其失衡与细胞增殖调控异常相关。该蛋白主要定位于细胞内，缺乏经典胞外结构域或分泌特征，天然抗体可及性弱，因此更适合作为结构生物学与细胞内递送抗体研究靶点，而非常规膜外阻断靶点。相比仅具遗传统计关联的代谢测量性状靶点，FBXO4具备实验晶体结构与明确SCF复合体装配界面，优先级依据主要来自可解析界面和可验证的蛋白互作机制。",
+    "mechanism": "设计抗体阻断FBXO4 F-box结构域与SKP1结合，或干扰LRR结构域介导的底物识别，从而影响SCFFBXO4复合体装配及底物泛素化。",
+    "selectedEpitope": "优先覆盖F-box/SKP1结合界面邻近螺旋束，备选靶向LRR凹面底物识别沟槽。",
+    "diseaseDirection": "细胞周期与肿瘤增殖调控",
+    "domain": "FBXO4含N端F-box结构域及C端富亮氨酸重复LRR结构域，3L82解析其二聚相关结构区域。",
+    "evidence": "FBXO4结构互作与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9UKT5蛋白功能注释",
+      "RCSB PDB 3L82晶体结构记录",
+      "SCF E3泛素连接酶与cyclin D1降解研究文献"
+    ],
+    "referenceEntries": "UniProt Q9UKT5；RCSB PDB 3L82；Open Targets FBXO4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "F-box结构域SKP1结合界面邻近螺旋",
+        "可直接干预SCF复合体装配，机制验证路径明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "LRR结构域内侧凹面底物识别区域",
+        "可能阻断底物招募并改变泛素化选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "二聚化相关外侧疏水界面",
+        "可能影响构象稳定性，但细胞内可及性和特异性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FBXO4为细胞内E3连接酶组分，传统抗体难以到达作用位点；设计应优先采用细胞内递送、intrabody或结构验证体系，并避免跨LRR保守面产生非特异结合。",
+    "structurePrepZh": "以3L82链A/B为模板进行缺失残基检查、二聚界面标注和F-box/LRR结构域分区，保留实验构象用于表位暴露度与界面热点评估。",
+    "structureRef": "RCSB PDB 3L82，X-ray diffraction，2.4 Å",
+    "antibodies": [
+      "FBXO4研究级多克隆抗体",
+      "FBXO4研究级单克隆抗体"
+    ],
+    "interfaceFocus": "F-box-SKP1装配面与LRR底物结合凹面",
+    "designMode": "细胞内界面阻断",
+    "candidates": [
+      {
+        "target": "SKP1",
+        "rationale": "SKP1是SCF复合体核心适配蛋白，直接结合FBXO4的F-box结构域；靶向该互作轴可验证FBXO4复合体装配依赖性。"
+      },
+      {
+        "target": "CCND1",
+        "rationale": "CCND1编码cyclin D1，是FBXO4相关泛素化降解研究中的关键底物；其稳定性改变直接连接细胞周期G1/S调控。"
+      },
+      {
+        "target": "CUL1",
+        "rationale": "CUL1构成SCF E3连接酶支架并连接SKP1-F-box底物识别模块与RBX1催化模块；同属FBXO4介导的泛素化通路核心节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

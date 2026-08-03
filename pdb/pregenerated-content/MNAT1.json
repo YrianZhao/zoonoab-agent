@@ -1,0 +1,65 @@
+{
+  "gene": "MNAT1",
+  "generatedAt": "2026-08-03T14:17:29.874Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MNAT1是CDK7-CCNH-MNAT1组成的CDK activating kinase与TFIIH相关亚基，参与CDK1/2/4/6 T-loop磷酸化及RNA polymerase II转录起始调控，HIV Tat依赖转录延伸与宿主P-TEFb/TFIIH网络存在机制关联。该蛋白主要定位于细胞核CAK/TFIIH复合体，缺乏天然胞外结构域或分泌特征，抗原可及性不利于常规体内阻断抗体。相较CDK7或CCNH，MNAT1含RING finger并提供复合体装配界面，适合作为结构生物学验证与细胞内抗体/降解偶联设计的优先探索节点。",
+    "mechanism": "以内源性细胞内Fab或VHH阻断MNAT1与CDK7-CCNH装配界面，削弱CAK复合体稳定性并降低CDK7介导的底物T-loop磷酸化。",
+    "selectedEpitope": "优先覆盖MNAT1 C端MAT1同源区与CDK7/CCNH接触面，避开N端RING锌指核心。",
+    "diseaseDirection": "HIV宿主转录依赖通路",
+    "domain": "MNAT1含N端C3HC4型RING finger及C端MAT1同源区，参与CAK/TFIIH复合体装配。",
+    "evidence": "MNAT1-CAK/TFIIH结构与HIV宿主转录证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P51948功能与亚细胞定位注释",
+      "RCSB PDB 6TUN晶体结构信息",
+      "CAK/TFIIH介导RNA polymerase II转录调控文献"
+    ],
+    "referenceEntries": "UniProt:P51948；RCSB PDB:6TUN；Open Targets:MNAT1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端MAT1同源区CDK7/CCNH装配界面",
+        "直接干预CAK复合体稳定性，具备明确结构机制",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RING finger邻近外露环区",
+        "可用于构象锁定或复合体募集验证，但需避免破坏锌配位折叠",
+        "备选"
+      ],
+      [
+        "Site C",
+        "TFIIH复合体埋藏接触面",
+        "界面可能高度遮蔽，抗体进入和结合构象风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MNAT1为核内非分泌蛋白，常规体内抗体可及性不足；建议限定为细胞内抗体、intrabody或递送型VHH，并优先验证复合体装配干预。",
+    "structurePrepZh": "以6TUN实验结构为模板，保留A/B/C/D链复合体界面，补全缺失侧链并校验锌指配位、质子化状态与晶体接触。",
+    "structureRef": "RCSB PDB 6TUN，X-ray diffraction，2.07 Å",
+    "antibodies": [
+      "抗MNAT1研究级单克隆抗体",
+      "抗MAT1研究级多克隆抗体"
+    ],
+    "interfaceFocus": "MNAT1-CDK7-CCNH复合体装配界面",
+    "designMode": "细胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "CDK7",
+        "rationale": "CDK7是CAK催化亚基并作为TFIIH激酶参与RNA polymerase II CTD磷酸化，位于HIV依赖宿主转录调控同一轴线。其酶活性与复合体装配均具有明确药理学验证基础。"
+      },
+      {
+        "target": "CCNH",
+        "rationale": "CCNH编码Cyclin H，是CDK7活化和CAK复合体稳定所需调节亚基。干预CCNH-CDK7-MNAT1界面可在同一CAK通路内削弱宿主转录激酶功能。"
+      },
+      {
+        "target": "ERCC3",
+        "rationale": "ERCC3编码XPB，是TFIIH核心解旋酶亚基，参与启动子开放与RNA polymerase II转录起始。其与CAK模块共同构成HIV宿主转录依赖网络中的真实复合体节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

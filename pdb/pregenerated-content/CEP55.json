@@ -1,0 +1,65 @@
+{
+  "gene": "CEP55",
+  "generatedAt": "2026-08-03T11:17:38.208Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CEP55 是胞质中体与中心体相关蛋白，参与胞质分裂末期 midbody 组装，并通过与 ALIX/PDCD6IP 和 TSG101 结合招募 ESCRT 复合体完成膜切割。CEP55 双等位基因功能缺失与 MARCH 综合征相关，病理基础为神经、肾脏及胚胎发育过程中细胞分裂和脱落异常。该蛋白缺乏分泌型或膜外结构域，抗原可及性不利于常规细胞外抗体药物，较适合作为胞内结合抗体、研究级 Fab/VHH 或递送型抗体工程靶点。相较 ESCRT 核心组分，CEP55 位于胞质分裂特异性招募节点，通路定位更聚焦，但开发优先级受胞内定位限制。",
+    "mechanism": "设计分子应阻断 CEP55 GPPX3Y 基序与 ALIX V 结构域或 TSG101 UEV 结构域的结合，抑制 ESCRT 招募至 midbody。",
+    "selectedEpitope": "优先覆盖 C 端 EABR 区域内 ALIX/TSG101 结合基序及其邻近二聚化构象表面。",
+    "diseaseDirection": "遗传性胞质分裂缺陷与MARCH综合征",
+    "domain": "CEP55 含中心体定位区、卷曲螺旋二聚化区及 C 端 ESCRT/ALIX 结合区域。",
+    "evidence": "CEP55-ESCRT轴与MARCH综合征证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q53EZ4 功能与变异注释",
+      "RCSB PDB 3E1R X射线晶体结构",
+      "CEP55 双等位基因变异与 MARCH 综合征文献"
+    ],
+    "referenceEntries": "UniProt Q53EZ4；RCSB PDB 3E1R；Open Targets CEP55",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端 EABR 区域 ALIX/TSG101 结合基序邻近表面",
+        "直接干预 CEP55 介导的 ESCRT 招募，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "卷曲螺旋二聚化界面外露沟槽",
+        "可影响 CEP55 寡聚化与 midbody 平台形成，适合构象依赖抗体筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "中心体定位相关 N 端区域",
+        "可能干扰细胞周期定位，但结构覆盖与可及性证据不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CEP55 为胞内非分泌蛋白，常规抗体难以到达作用位点；设计应限定为胞内抗体、递送型抗体或机制验证工具，并避免误判为细胞外可药靶点。",
+    "structurePrepZh": "以 PDB 3E1R 的 A、B、C 链为结构模板，检查寡聚状态、缺失环区和晶体接触；需补建未解析的 C 端结合基序并进行构象采样。",
+    "structureRef": "RCSB PDB 3E1R，X-ray diffraction，2.0 Å",
+    "antibodies": [
+      "无获批 CEP55 靶向治疗性抗体",
+      "研究级抗 CEP55 单克隆抗体"
+    ],
+    "interfaceFocus": "CEP55 EABR-ALIX/TSG101结合界面",
+    "designMode": "胞内抗体/递送型",
+    "candidates": [
+      {
+        "target": "PDCD6IP",
+        "rationale": "PDCD6IP 编码 ALIX，是 CEP55 在 midbody 招募 ESCRT 机器的直接结合因子；其 V 结构域与 CEP55 GPPX3Y 基序相互作用，是同一胞质分裂脱落通路节点。"
+      },
+      {
+        "target": "TSG101",
+        "rationale": "TSG101 是 ESCRT-I 组分，其 UEV 结构域结合 CEP55 并参与 ESCRT 复合体定位；干预该节点可影响膜切割前的 ESCRT 装配。"
+      },
+      {
+        "target": "CHMP4B",
+        "rationale": "CHMP4B 是 ESCRT-III 关键亚基，位于 CEP55-ALIX/TSG101 下游并直接参与胞质分裂末期膜收缩与切割；适合作为同通路机制参照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

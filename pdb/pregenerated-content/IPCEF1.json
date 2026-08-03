@@ -1,0 +1,65 @@
+{
+  "gene": "IPCEF1",
+  "generatedAt": "2026-08-03T19:58:22.465Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IPCEF1为细胞内衔接蛋白，包含IPCEF1 N端结构域并与cytohesin家族鸟嘌呤核苷酸交换因子形成复合体，参与ARF小GTP酶活化及膜转运调控。现有Open Targets关联以药物反应、甲状腺功能减退、哮喘和血细胞性状为主，但缺乏明确的胞外配体-受体轴或已验证的抗体可阻断疾病机制。由于IPCEF1并非分泌蛋白或跨膜受体，天然抗原可及性显著弱于IL4R、TSHR等同类疾病相关可及靶点，因此仅适合作为结构生物学研究抗原或胞内递送抗体探索靶点，主靶点优先级较低。",
+    "mechanism": "设计重点为阻断IPCEF1与cytohesin交换因子调控模块的蛋白-蛋白相互作用，干预cytohesin介导的ARF小GTP酶活化复合体装配。",
+    "selectedEpitope": "优先覆盖5MR1所示IPCEF1 N端结构域的cytohesin结合沟槽及相邻保守疏水界面。",
+    "diseaseDirection": "胞内信号转运与免疫炎症关联",
+    "domain": "IPCEF1含N端IPCEF1同源结构域，5MR1解析其高分辨率折叠核心，缺乏跨膜区和胞外结构域。",
+    "evidence": "IPCEF1结构与Open Targets疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q8WWN9 functional annotation",
+      "RCSB PDB 5MR1 X-ray structure",
+      "cytohesin-ARF GEF pathway literature"
+    ],
+    "referenceEntries": "UniProt: Q8WWN9；RCSB PDB: 5MR1；Open Targets: IPCEF1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端IPCEF1结构域cytohesin结合沟槽",
+        "可直接干扰IPCEF1-cytohesin复合体形成，机制指向性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "折叠核心外侧保守疏水斑块",
+        "有利于稳定构象识别并提高结构抗原免疫原性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守且埋藏的β折叠核心区域",
+        "天然可及性有限，易产生非阻断性结合或构象依赖风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IPCEF1为胞内蛋白，常规抗体难以进入活细胞发挥阻断作用；建议限定为结构验证、细胞内递送抗体或降解型分子平台开发。",
+    "structurePrepZh": "以5MR1链A为模板，保留高置信折叠核心，补全缺失环区并标注晶体接触面，避免将晶格界面误判为功能表位。",
+    "structureRef": "RCSB PDB 5MR1，X-ray diffraction，1.2 Å，Homo sapiens IPCEF1",
+    "antibodies": [
+      "无已获批抗IPCEF1治疗性抗体",
+      "研究级抗IPCEF1抗体"
+    ],
+    "interfaceFocus": "IPCEF1 N端结构域cytohesin结合界面",
+    "designMode": "胞内PPI阻断",
+    "candidates": [
+      {
+        "target": "CYTH1",
+        "rationale": "CYTH1为cytohesin家族ARF鸟嘌呤核苷酸交换因子，与IPCEF1处于同一ARF GTP酶调控网络，可作为复合体功能验证靶点。"
+      },
+      {
+        "target": "CYTH2",
+        "rationale": "CYTH2参与ARF小GTP酶活化及膜转运调控，与IPCEF1相关互作网络具有机制一致性，适合用于通路层面对照。"
+      },
+      {
+        "target": "ARF1",
+        "rationale": "ARF1为cytohesin GEF活化的下游小GTP酶，位于IPCEF1-cytohesin复合体调控轴下游，可用于评价ARF活化状态改变。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "MYCBP",
+  "generatedAt": "2026-08-03T14:29:41.321Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MYCBP为细胞内MYC结合蛋白，主要参与MYC转录调控复合体相关过程，目前Open Targets关联以绝经、身高、血小板体积、甘油三酯测量和白细胞数量等性状为主，疾病因果证据强度有限。该蛋白缺乏跨膜区和分泌信号肽，天然抗原可及性不符合治疗性阻断抗体对胞外靶点的常规要求，但可作为结构抗原用于细胞内蛋白检测、结构探针或递送型抗体片段探索。相比MYC通路中EGFR、CD19、PDCD1等可及性明确的膜受体或免疫检查点靶点，MYCBP优先级较低；其优势主要在于已有2YY0晶体结构可支持高分辨率表位约束设计。",
+    "mechanism": "设计抗体片段可结合MYCBP折叠核心表面，空间阻断MYCBP与MYC相关调控复合体的蛋白互作界面，抑制MYC依赖性转录调节。",
+    "selectedEpitope": "优先选择2YY0中MYCBP折叠核心的暴露α螺旋-环区界面，避开寡聚接触面与晶体堆积区。",
+    "diseaseDirection": "MYC转录调控相关性状",
+    "domain": "MYCBP为小型细胞内MYC结合蛋白，2YY0解析其结构核心，未注释胞外结构域或跨膜区。",
+    "evidence": "MYCBP结构与MYC通路关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病-靶点关联",
+      "UniProt Q99417蛋白功能与亚细胞定位注释",
+      "RCSB PDB 2YY0晶体结构记录",
+      "Reactome与Gene Ontology MYC相关转录调控注释"
+    ],
+    "referenceEntries": "UniProt: Q99417；RCSB PDB: 2YY0；Open Targets: MYCBP",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "2YY0折叠核心暴露α螺旋-环区",
+        "具备结构可定义性，适合构建构象识别型Fab或VHH",
+        "优先"
+      ],
+      [
+        "Site B",
+        "MYCBP分子表面带电沟槽邻近区域",
+        "可能干预MYC相关蛋白互作，但需实验确认界面归属",
+        "备选"
+      ],
+      [
+        "Site C",
+        "链A/B/C/D晶体接触邻近表面",
+        "存在晶体堆积伪界面风险，需剔除非生理性接触",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MYCBP为细胞内非分泌蛋白，常规抗体体内可及性不足。设计应定位为结构探针、诊断抗体或递送型片段，并优先验证细胞内结合与功能相关性。",
+    "structurePrepZh": "以2YY0四条抗原链为模板进行链一致性比对，去除晶体接触伪界面、水分子和低置信侧链，保留稳定折叠核心用于表位建模。",
+    "structureRef": "RCSB PDB 2YY0，X-ray diffraction，2.4 Å",
+    "antibodies": [
+      "暂无已批准MYCBP治疗性抗体",
+      "商业化抗MYCBP研究抗体"
+    ],
+    "interfaceFocus": "MYCBP折叠核心暴露螺旋-环区与潜在MYC互作面",
+    "designMode": "细胞内靶点探针设计",
+    "candidates": [
+      {
+        "target": "MYC",
+        "rationale": "MYC是该调控轴的核心转录因子，驱动细胞增殖、代谢和分化相关基因表达；但其细胞内定位和无序结构使常规抗体药物开发难度较高。"
+      },
+      {
+        "target": "MAX",
+        "rationale": "MAX与MYC形成异二聚体并结合E-box DNA序列，是MYC转录活性所需的直接伴侣；其同样属于核内蛋白，更适合结构与机制研究而非传统胞外抗体阻断。"
+      },
+      {
+        "target": "MGA",
+        "rationale": "MGA与MAX形成复合体并拮抗MYC-MAX依赖性转录程序，处于同一MYC/MAX网络；该靶点可用于比较MYC通路激活与抑制模块的结构化干预策略。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "RTCB",
+  "generatedAt": "2026-08-03T16:15:59.797Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RTCB 是 tRNA 剪接连接酶复合体的催化亚基，负责将 2',3'-环磷酸与 5'-羟基 RNA 末端连接，参与未折叠蛋白反应中 XBP1 mRNA 剪接后的外显子连接及神经细胞应激适应。其 Open Targets 关联以神经退行性疾病为首，但 RTCB 为胞内酶，缺乏天然胞外结构域，常规完整抗体直接结合活细胞抗原的可及性受限。相较分泌因子或膜受体类靶点，RTCB 的优先级主要来自明确催化结构、疾病遗传/组学关联及可开展胞内递送抗体或结构引导抑制性结合体设计的机制可解析性。",
+    "mechanism": "通过胞内递送型 Fab/VHH 结合 RTCB 催化裂隙，阻断 RNA 5'-OH 与 2',3'-环磷酸末端在 His-Cys-His 催化中心附近的定位与连接反应。",
+    "selectedEpitope": "优先覆盖催化核心裂隙及 GTP/金属离子依赖的 RNA 末端结合沟槽，避免完全遮蔽保守折叠核心。",
+    "diseaseDirection": "神经退行性疾病与细胞应激",
+    "domain": "RTCB 为胞内 RNA 连接酶，含保守 RtcB 催化核心，形成 RNA 末端结合沟槽及金属依赖活性中心。",
+    "evidence": "RTCB RNA连接酶结构与神经应激证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q9Y3I0 功能与亚细胞定位注释",
+      "RCSB PDB 8ODO X射线晶体结构",
+      "tRNA剪接与XBP1 mRNA连接相关文献"
+    ],
+    "referenceEntries": "UniProt: Q9Y3I0; RCSB PDB: 8ODO; Open Targets: RTCB",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化核心裂隙及RNA末端结合沟槽",
+        "可直接干预2',3'-环磷酸与5'-OH RNA末端连接",
+        "优先"
+      ],
+      [
+        "Site B",
+        "GTP/金属离子邻近结合区域",
+        "可能削弱酶促活化与底物配位，适合变构抑制设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "多聚体或晶体接触外表面区域",
+        "抗原可及但功能耦合不确定，需排除非生理界面",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RTCB 缺乏胞外暴露，常规抗体成药性受递送限制；设计应优先采用胞内递送 VHH/Fab，并通过酶活与RNA连接实验验证功能阻断。",
+    "structurePrepZh": "以 8ODO 各抗原链进行序列一致性与晶体接触检查，保留催化金属及配体邻近残基，去除非生理晶体接触后定义可设计表面。",
+    "structureRef": "RCSB PDB 8ODO, X-ray diffraction, 2.2 Å",
+    "antibodies": [
+      "暂无获批抗RTCB治疗性抗体",
+      "暂无公开临床阶段抗RTCB抗体"
+    ],
+    "interfaceFocus": "催化裂隙、RNA结合沟槽与金属配位邻域",
+    "designMode": "胞内抑制型抗体设计",
+    "candidates": [
+      {
+        "target": "ERN1",
+        "rationale": "ERN1/IRE1α 在内质网应激中剪接 XBP1 mRNA，位于 RTCB 介导外显子连接的上游同一 UPR 分支，且具有可药物调控的激酶/RNase结构域。"
+      },
+      {
+        "target": "XBP1",
+        "rationale": "XBP1 是 IRE1α-RTCB 轴的直接转录因子产物，其剪接成熟依赖 RTCB 连接反应，代表同一内质网应激适应通路的关键功能节点。"
+      },
+      {
+        "target": "TSEN2",
+        "rationale": "TSEN2 属 tRNA 剪接内切酶复合体组分，负责产生 RTCB 连接所需的 tRNA 外显子末端，处于同一 tRNA 剪接-RNA修复通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

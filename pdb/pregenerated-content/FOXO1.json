@@ -1,0 +1,65 @@
+{
+  "gene": "FOXO1",
+  "generatedAt": "2026-08-03T12:36:50.616Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FOXO1是胰岛素/PI3K-AKT通路下游转录因子，参与糖异生、细胞周期、凋亡及造血细胞分化等过程，Open Targets遗传关联集中于红细胞、嗜酸性粒细胞、单核细胞和血小板数量性状。该蛋白主要定位于细胞核和胞质，缺乏天然胞外结构域或分泌特征，作为体内阻断型抗体靶点的抗原可及性明显受限。相较于同通路膜受体或分泌因子，FOXO1更适合作为结构验证、细胞内递送抗体或研究级结合分子设计对象，优先级低于INSR、IGF1R等细胞表面靶点。",
+    "mechanism": "设计分子可结合FOXO1 forkhead DNA结合域，阻断其与胰岛素响应元件DNA的识别，从而抑制FOXO1依赖的转录复合物装配。",
+    "selectedEpitope": "优先覆盖forkhead结构域H3识别螺旋及邻近翼状环的DNA结合界面。",
+    "diseaseDirection": "血液细胞数量性状与代谢调控",
+    "domain": "FOXO1含N端AKT磷酸化调控区、forkhead DNA结合域及C端转录激活区。",
+    "evidence": "FOXO1遗传关联与forkhead结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q12778 functional annotation",
+      "RCSB PDB 8A62 X-ray structure",
+      "PI3K-AKT-FOXO transcriptional regulation literature"
+    ],
+    "referenceEntries": "UniProt Q12778；RCSB PDB 8A62；Open Targets FOXO1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "forkhead结构域H3识别螺旋-DNA主沟结合面",
+        "直接阻断FOXO1对靶基因响应元件的序列识别",
+        "优先"
+      ],
+      [
+        "Site B",
+        "forkhead翼状环与DNA磷酸骨架接触区域",
+        "削弱DNA结合稳定性并保留结构域特异性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "AKT磷酸化位点邻近调控片段",
+        "可能影响14-3-3结合和核质转运，但柔性高且构象依赖强",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FOXO1为细胞内转录因子，常规抗体难以进入作用区室；forkhead家族结构保守，需通过负筛FOXO3、FOXO4降低交叉反应。",
+    "structurePrepZh": "采用8A62中A、B链实验结构，保留forkhead核心折叠，补全缺失侧链并评估晶体接触对DNA结合面的影响。",
+    "structureRef": "RCSB PDB 8A62，X-ray diffraction，1.6 Å",
+    "antibodies": [
+      "研究用anti-FOXO1单克隆抗体",
+      "研究用anti-phospho-FOXO1抗体"
+    ],
+    "interfaceFocus": "forkhead H3识别螺旋与翼状环DNA结合界面",
+    "designMode": "细胞内结合分子设计",
+    "candidates": [
+      {
+        "target": "INSR",
+        "rationale": "INSR位于细胞膜，是胰岛素/PI3K-AKT-FOXO1通路的上游受体，胞外结构域可及性优于FOXO1，适合抗体调节受体配体结合或构象激活。"
+      },
+      {
+        "target": "IGF1R",
+        "rationale": "IGF1R通过PI3K-AKT信号抑制FOXO转录活性，属于同一AKT-FOXO调控轴，且为成熟的膜受体抗体靶点。"
+      },
+      {
+        "target": "AKT1",
+        "rationale": "AKT1直接磷酸化FOXO1并促进14-3-3介导的胞质滞留，是FOXO1活性控制的核心激酶，但其细胞内定位同样限制常规抗体可及性。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

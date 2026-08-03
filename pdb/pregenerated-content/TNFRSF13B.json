@@ -1,0 +1,65 @@
+{
+  "gene": "TNFRSF13B",
+  "generatedAt": "2026-08-03T17:22:08.276Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TNFRSF13B编码TACI，是BAFF/APRIL介导B细胞成熟、免疫球蛋白类别转换与浆细胞分化的关键受体，遗传缺陷与CVID2和IgA缺乏症直接相关。该蛋白为II型膜受体，胞外富含半胱氨酸结构域可直接暴露于体液环境，具备抗体识别与阻断配体结合的可及性。相比同通路中广泛表达且生存必需性更强的BAFF-R，TACI同时整合BAFF与APRIL信号，更适合作为调节异常B细胞活化和抗体产生的优先节点。",
+    "mechanism": "抗体结合TACI胞外CRD2配体结合面，阻断BAFF或APRIL与TACI的三聚体界面接触，抑制下游NF-κB与NFAT依赖性B细胞活化信号。",
+    "selectedEpitope": "优先靶向CRD2中与BAFF/APRIL接触的DxL基序邻近界面，避免完全遮蔽CRD1折叠核心。",
+    "diseaseDirection": "原发性免疫缺陷与B细胞免疫调节",
+    "domain": "II型膜蛋白；胞外区含两个富半胱氨酸结构域CRD1与CRD2，近膜区连接跨膜螺旋与胞内信号尾。",
+    "evidence": "TACI-BAFF/APRIL轴免疫缺陷证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt O14836功能与结构域注释",
+      "RCSB PDB 1XU1晶体结构",
+      "ClinVar与OMIM中TNFRSF13B变异-免疫缺陷记录"
+    ],
+    "referenceEntries": "UniProt O14836；RCSB PDB 1XU1；OMIM 604907；Open Targets TNFRSF13B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CRD2配体结合面及DxL基序邻近区域",
+        "可直接阻断BAFF/APRIL与TACI的关键接触，功能抑制确定性较高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CRD1-CRD2连接区外侧暴露面",
+        "可能稳定非配体结合构象并产生变构阻断，保留较好选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "CRD1半胱氨酸折叠核心区域",
+        "该区域富含二硫键并参与结构稳定，抗体结合可能诱导错误构象或交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TACI胞外区富含二硫键且与BCMA、BAFF-R同属TNFR家族，需规避保守CRD骨架表位，优先筛选配体界面特异性克隆并评估BAFF/APRIL双配体阻断谱。",
+    "structurePrepZh": "以1XU1高分辨率晶体结构为模板，保留TACI胞外CRD构象，校正二硫键、缺失侧链与寡聚状态，并标注BAFF/APRIL结合界面残基。",
+    "structureRef": "RCSB PDB 1XU1，X-ray diffraction，1.9 Å，人TACI胞外结构",
+    "antibodies": [
+      "Atacicept",
+      "Telitacicept"
+    ],
+    "interfaceFocus": "CRD2配体结合面与BAFF/APRIL三聚体接触区",
+    "designMode": "阻断型界面抗体",
+    "candidates": [
+      {
+        "target": "TNFSF13B",
+        "rationale": "TNFSF13B编码BAFF，是TACI、BAFF-R和BCMA的核心配体；靶向BAFF可从上游降低异常B细胞存活与免疫球蛋白产生信号。"
+      },
+      {
+        "target": "TNFSF13",
+        "rationale": "TNFSF13编码APRIL，可通过TACI和BCMA支持浆细胞存活及抗体分泌；其与TACI同处BAFF/APRIL免疫调节轴。"
+      },
+      {
+        "target": "TNFRSF13C",
+        "rationale": "TNFRSF13C编码BAFF-R，是BAFF依赖性成熟B细胞存活的主要受体；可作为同通路中更偏向BAFF选择性阻断的候选靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

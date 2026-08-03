@@ -1,0 +1,65 @@
+{
+  "gene": "NANOS1",
+  "generatedAt": "2026-08-03T14:34:05.098Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NANOS1编码含C2HC型锌指的RNA结合蛋白，参与生殖细胞发育与精子发生相关mRNA转录后调控，其遗传变异与畸形精子症、无精子症或少精子症及精子发生失败存在明确关联。该蛋白主要为胞内RNA结合因子，缺乏天然胞外结构域或分泌暴露特征，抗体作为常规阻断药物的抗原可及性受限，更适合作为结构验证、细胞内递送抗体或研究级结合分子开发对象。相较于同通路中膜受体或分泌因子，NANOS1的疾病遗传关联更直接且PDB 4CQO提供实验结构支撑，但成药优先级应低于具有胞外可及界面的FSHR、KITLG等靶点。",
+    "mechanism": "设计结合NANOS1 C端C2HC锌指RNA结合界面的抗体片段，干预其与靶mRNA 3′UTR相关核糖核蛋白复合体的结合。",
+    "selectedEpitope": "优先覆盖C2HC锌指折叠的RNA结合沟槽及相邻碱性残基面。",
+    "diseaseDirection": "男性不育与精子发生障碍",
+    "domain": "NANOS1含N端低复杂度区和C端保守C2HC型锌指RNA结合结构域。",
+    "evidence": "NANOS1男性不育遗传关联与锌指结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q8WY41蛋白功能注释",
+      "RCSB PDB 4CQO实验晶体结构",
+      "人类精子发生与NANOS家族RNA调控文献"
+    ],
+    "referenceEntries": "UniProt: Q8WY41；RCSB PDB: 4CQO；Open Targets: NANOS1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端C2HC锌指RNA结合沟槽",
+        "直接干预NANOS1识别靶mRNA的核心界面，适合功能阻断型片段筛选",
+        "优先"
+      ],
+      [
+        "Site B",
+        "锌指结构域外侧保守疏水-碱性面",
+        "可获得构象特异结合并降低对锌配位核心的扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端低复杂度柔性区域",
+        "可能提供线性表位，但结构无序性高且功能阻断确定性较低",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NANOS1为胞内RNA结合蛋白，常规抗体难以到达作用位点；应优先采用VHH、细胞内抗体或递送体系，并避免破坏锌配位导致非特异构象塌陷。",
+    "structurePrepZh": "以PDB 4CQO抗原链A-D为模板，检查锌离子配位、缺失残基与晶体接触界面，保留保守锌指构象后进行表面电荷与RNA结合面标注。",
+    "structureRef": "RCSB PDB 4CQO，X-ray diffraction，2.8 Å",
+    "antibodies": [
+      "研究级anti-NANOS1抗体",
+      "研究级anti-NANOS family抗体"
+    ],
+    "interfaceFocus": "C2HC锌指RNA结合沟槽与碱性残基面",
+    "designMode": "胞内VHH验证",
+    "candidates": [
+      {
+        "target": "NANOS2",
+        "rationale": "NANOS2同属NANOS家族RNA结合调控因子，在雄性生殖细胞维持和减数分裂抑制中发挥关键作用，与精子发生障碍通路高度相关。"
+      },
+      {
+        "target": "DAZL",
+        "rationale": "DAZL是生殖细胞特异RNA结合蛋白，调控精子发生相关mRNA翻译，与无精子症和男性不育遗传机制处于同一转录后调控网络。"
+      },
+      {
+        "target": "PIWIL1",
+        "rationale": "PIWIL1参与piRNA通路和生殖细胞基因组稳定性维持，是精子发生失败相关通路中的真实调控节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

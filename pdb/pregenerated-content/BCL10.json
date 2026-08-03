@@ -1,0 +1,65 @@
+{
+  "gene": "BCL10",
+  "generatedAt": "2026-08-03T10:47:38.242Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BCL10 是 CBM 信号复合体的核心适配蛋白，在 BCR、TCR 及部分先天免疫受体刺激后连接 CARD11 与 MALT1，驱动 IKK-NF-κB 与 JNK 活化；其异常聚集或持续激活与 MALT 淋巴瘤、DLBCL 及免疫缺陷表型相关。BCL10 属于胞内适配蛋白，天然抗原可及性低于膜受体或分泌因子，因此更适合作为细胞内递送抗体、intrabody 或降解偶联分子设计对象。相较于广泛下游节点 IKBKB 或 RELA，BCL10 位于抗原受体近端且通路选择性更高；相较于 CARD11，BCL10 CARD 寡聚化界面具有结构模板支持，可形成更明确的界面阻断设计优先级。",
+    "mechanism": "阻断 BCL10 CARD 与上游 CARD11 CARD 的同型 CARD-CARD 聚集，并削弱 BCL10 对 MALT1 的募集，从而抑制 CBM 复合体介导的 NF-κB 激活。",
+    "selectedEpitope": "优先覆盖 BCL10 N端 CARD 结构域寡聚化界面，聚焦 6BZE 纤维装配中的 CARD-CARD 接触面。",
+    "diseaseDirection": "B细胞淋巴瘤与免疫缺陷",
+    "domain": "BCL10 含 N端 CARD 结构域及 C端富 Ser/Thr 调控区；6BZE 主要解析 CARD 寡聚纤维构象。",
+    "evidence": "BCL10-CBM复合体与淋巴瘤通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt O95999 functional annotation",
+      "RCSB PDB 6BZE electron microscopy structure",
+      "NF-κB CBM complex lymphoma literature"
+    ],
+    "referenceEntries": "UniProt O95999；RCSB PDB 6BZE；Open Targets BCL10",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端 CARD 结构域 type I/II CARD-CARD 寡聚化界面",
+        "直接干预 BCL10 纤维化装配与 CARD11 诱导聚集，机制指向性最强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CARD 外侧保守带电表面及相邻环区",
+        "可降低同型聚集稳定性并保留一定构象选择性，适合作为备选阻断表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端 Ser/Thr 富集调控区",
+        "区域柔性高且结构模板不足，可能影响磷酸化调控但表位成药性不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BCL10 为胞内蛋白，常规抗体难以直接进入细胞；设计宜限定为 intrabody、递送型 Fab/VHH 或降解平台，并避免破坏 CARD 折叠核心导致非特异聚集。",
+    "structurePrepZh": "以 6BZE 电镜结构中 A-H 链 CARD 纤维为模板，补齐缺失侧链并评估链间接触；C端无序区不宜作为刚性对接核心。",
+    "structureRef": "RCSB PDB 6BZE；human BCL10 CARD filament EM structure",
+    "antibodies": [
+      "anti-BCL10 clone EP606Y",
+      "anti-BCL10 clone 151"
+    ],
+    "interfaceFocus": "CARD-CARD 寡聚化与 CARD11募集界面",
+    "designMode": "胞内阻断型",
+    "candidates": [
+      {
+        "target": "CARD11",
+        "rationale": "CARD11 是 BCR/TCR 下游 CBM 复合体的支架蛋白，其 CARD 结构域启动 BCL10 聚集；靶向 CARD11-BCL10 接触可在同一近端通路阻断 NF-κB 激活。"
+      },
+      {
+        "target": "MALT1",
+        "rationale": "MALT1 与 BCL10 共同组成 CBM 复合体并提供旁胱天蛋白酶样蛋白酶活性；抑制其募集或蛋白酶功能已在 ABC-DLBCL 与 MALT 淋巴瘤中具有明确机制依据。"
+      },
+      {
+        "target": "IKBKB",
+        "rationale": "IKBKB 是 CBM 复合体下游 IKK 复合体催化亚基，介导 IκBα 磷酸化和 NF-κB 核转位；作为下游节点可覆盖 BCL10 过度激活导致的转录输出。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

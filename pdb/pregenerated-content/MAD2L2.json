@@ -1,0 +1,65 @@
+{
+  "gene": "MAD2L2",
+  "generatedAt": "2026-08-03T13:59:52.466Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAD2L2编码REV7，是REV3L依赖DNA聚合酶ζ的非催化亚基，并在Fanconi贫血通路与REV1/REV3L协同介导跨损伤合成和复制叉损伤耐受。其疾病关联集中于Fanconi贫血、急性髓系白血病和骨髓增生异常综合征，符合DNA修复缺陷驱动的血液系统疾病机制。然而MAD2L2为核内蛋白，缺乏天然胞外结构域或分泌特征，抗原可及性显著弱于膜受体和分泌型靶点，因此仅适合细胞内递送抗体、intrabody或研究型Fab/VHH设计。相较FANCD2、FANCI等大型核内修复因子，MAD2L2结构域较小且已有高分辨率实验结构，利于界面阻断型分子设计，但成药优先级受限于细胞内可达性。",
+    "mechanism": "设计抗体阻断MAD2L2 HORMA结构域与REV3L REV7-binding motif或REV1 C端区域的结合，削弱聚合酶ζ装配和跨损伤合成。",
+    "selectedEpitope": "优先覆盖HORMA结构域安全带样闭合区及REV3L肽结合沟槽，直接干预REV7复合物装配。",
+    "diseaseDirection": "DNA修复缺陷相关血液肿瘤",
+    "domain": "MAD2L2主要由REV7型HORMA结构域构成，形成可夹持REV3L肽段的闭合构象。",
+    "evidence": "MAD2L2-REV7在Fanconi贫血与TLS通路中的结构机制证据",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9UI95功能与亚细胞定位注释",
+      "RCSB PDB 6BCD X射线晶体结构",
+      "Fanconi anemia DNA损伤耐受与聚合酶ζ文献"
+    ],
+    "referenceEntries": "UniProt Q9UI95；RCSB PDB 6BCD；Open Targets MAD2L2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "HORMA安全带样闭合区与REV3L肽结合沟槽",
+        "可直接阻断REV7-REV3L复合物形成，机制明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "REV1 C端结合相关外侧疏水界面",
+        "有助于削弱REV1介导的TLS复合物募集",
+        "备选"
+      ],
+      [
+        "Site C",
+        "HORMA核心折叠保守疏水内核邻近面",
+        "可能影响蛋白稳定性且易产生非特异构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAD2L2为核内非分泌蛋白，常规抗体难以到达作用位点；设计应优先采用VHH、intrabody或递送载体，并规避保守折叠核心。",
+    "structurePrepZh": "以6BCD高分辨率晶体结构为模板，保留抗原链A/B并校验HORMA闭合构象，补全缺失侧链后进行界面电荷与疏水斑块标注。",
+    "structureRef": "RCSB PDB 6BCD，X-ray diffraction，1.43 Å",
+    "antibodies": [
+      "抗REV7研究级单克隆抗体",
+      "抗MAD2L2研究级多克隆抗体"
+    ],
+    "interfaceFocus": "HORMA安全带与REV3L肽结合沟槽",
+    "designMode": "细胞内界面阻断",
+    "candidates": [
+      {
+        "target": "REV3L",
+        "rationale": "REV3L为DNA聚合酶ζ催化亚基，与MAD2L2形成TLS核心复合物；干预其REV7结合基序可同向抑制跨损伤合成。"
+      },
+      {
+        "target": "REV1",
+        "rationale": "REV1通过C端结构域募集聚合酶ζ并促进损伤旁路复制，是MAD2L2相关TLS通路中的上游支架因子。"
+      },
+      {
+        "target": "FANCD2",
+        "rationale": "FANCD2是Fanconi贫血DNA交联修复通路的中心效应因子，其单泛素化状态决定修复复合物在损伤位点的装配。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

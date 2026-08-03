@@ -1,0 +1,65 @@
+{
+  "gene": "MT3",
+  "generatedAt": "2026-08-03T20:13:04.912Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MT3为胞内金属硫蛋白，主要通过半胱氨酸簇结合锌、铜等金属离子，参与金属稳态、氧化还原缓冲及神经细胞应激反应；Open Targets关联以脂质和载脂蛋白测量表型为主，提示其更适合作为机制研究或伴随标志物而非经典可中和致病轴靶点。该蛋白缺乏跨膜区和稳定分泌定位，天然抗原可及性弱，完整抗体难以在细胞外直接接触内源性MT3。相比同脂质代谢通路中的APOA1、PCSK9或CETP等可及性更高靶点，MT3的抗体开发优先级较低，宜采用胞内抗体或检测型抗体策略。",
+    "mechanism": "设计抗体以识别MT3α/β金属硫簇构象，干预其Zn2+/Cu+配位稳定性或用于捕获金属结合状态，而非经典阻断受体-配体相互作用。",
+    "selectedEpitope": "优先选择N端β结构域与C端α结构域连接区附近的构象表位，避开核心Cys金属配位簇。",
+    "diseaseDirection": "脂质代谢表型与金属稳态研究",
+    "domain": "MT3由β结构域和α结构域组成，富含半胱氨酸并形成金属-硫簇，无胞外结构域或跨膜段。",
+    "evidence": "MT3金属硫簇结构与脂质表型遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB P25713功能与定位注释",
+      "RCSB PDB 2FJ4溶液NMR结构",
+      "人类金属硫蛋白家族金属结合文献"
+    ],
+    "referenceEntries": "UniProtKB:P25713；RCSB PDB:2FJ4；Open Targets:MT3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "β-α结构域连接区及邻近暴露环",
+        "有利于获得区分MT3构象状态的检测型抗体，并降低破坏金属簇折叠的风险",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端α结构域非配位外露面",
+        "可作为构象依赖性识别区域，用于区分金属结合与去金属状态",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Cys富集金属配位核心",
+        "高度保守且直接参与Zn2+/Cu+配位，抗体结合可能诱导结构扰动并降低特异性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MT3为胞内小分子量金属结合蛋白，天然抗体可及性不足；需优先限定为检测抗体、胞内抗体或递送型抗体，并避免靶向高度保守Cys簇。",
+    "structurePrepZh": "以2FJ4的溶液NMR模型集合评估构象异质性，保留金属离子配位信息，标注半胱氨酸簇并筛选非配位暴露表面。",
+    "structureRef": "RCSB PDB 2FJ4；human MT3 solution NMR structure",
+    "antibodies": [
+      "anti-MT3 monoclonal antibody",
+      "anti-metallothionein 3 antibody"
+    ],
+    "interfaceFocus": "β-α连接区与非配位外露面",
+    "designMode": "检测/胞内抗体模式",
+    "candidates": [
+      {
+        "target": "APOA1",
+        "rationale": "APOA1是HDL主要载脂蛋白，直接参与胆固醇外排和HDL颗粒成熟；其循环可及性显著优于MT3，适合抗体检测或功能调节研究。"
+      },
+      {
+        "target": "CETP",
+        "rationale": "CETP介导胆固醇酯在HDL与apoB脂蛋白之间转运，与胆固醇酯和HDL相关表型处于同一脂质代谢轴。"
+      },
+      {
+        "target": "PCSK9",
+        "rationale": "PCSK9通过结合LDLR并促进其溶酶体降解调控血浆LDL胆固醇水平，是脂蛋白代谢通路中已验证的胞外可及抗体靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

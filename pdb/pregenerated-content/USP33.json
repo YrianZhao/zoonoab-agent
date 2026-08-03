@@ -1,0 +1,65 @@
+{
+  "gene": "USP33",
+  "generatedAt": "2026-08-03T17:45:16.975Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "USP33 是胞内去泛素化酶，参与β2肾上腺素受体回收、ROBO1/SLIT轴与VHL/HIF相关调控；现有 Open Targets 关联以肺功能、体格与代谢性测量性状为主，缺乏可直接支持抗体阻断的单一疾病驱动轴。其抗原可及性不具备常规抗体优势，因蛋白主要定位于胞质与内膜系统，PDB 2UZG 仅覆盖溶液NMR解析的结构片段，并非天然胞外结构域。相较受体、配体或分泌因子类同通路靶点，USP33作为抗体主靶点优先级较低，更适合胞内递送抗体、降解耦联或作为机制验证靶点。",
+    "mechanism": "通过胞内递送抗体结合USP33催化结构域邻近界面，空间阻碍其识别泛素化底物或调节泛素链结合，从而影响底物去泛素化稳定性。",
+    "selectedEpitope": "优先评估2UZG覆盖片段中溶剂暴露且远离催化Cys-His-Asp三联体的结构化表面。",
+    "diseaseDirection": "肺功能与代谢性状机制验证",
+    "domain": "USP33含USP催化结构域及调控性插入区，2UZG为人源蛋白NMR结构片段。",
+    "evidence": "USP33遗传关联与去泛素化机制证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB Q8TEY7 functional annotation",
+      "RCSB PDB 2UZG solution NMR structure",
+      "文献报道USP33调控ROBO1、β2AR与VHL/HIF相关底物"
+    ],
+    "referenceEntries": "UniProt Q8TEY7；RCSB PDB 2UZG；Open Targets USP33",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "2UZG片段溶剂暴露结构化表面",
+        "有利于获得构象选择性结合分子并降低催化位点直接干扰风险",
+        "优先"
+      ],
+      [
+        "Site B",
+        "USP催化结构域底物结合沟槽邻近区",
+        "可能阻断泛素化底物进入或限制泛素链定位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化Cys-His-Asp三联体周边保守核心",
+        "保守性高且存在交叉反应与酶活完全抑制风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "USP33为胞内酶，常规抗体难以到达作用位点；设计应标注递送依赖性，并避免靶向高度保守USP催化核心以降低脱靶风险。",
+    "structurePrepZh": "以2UZG的NMR模型集合评估构象一致性，补充AlphaFold全长模型定位催化域与柔性插入区，剔除低置信柔性末端后进行表位筛选。",
+    "structureRef": "RCSB PDB 2UZG，人USP33片段溶液NMR结构",
+    "antibodies": [
+      "暂无获批USP33治疗性抗体",
+      "研究级抗USP33抗体"
+    ],
+    "interfaceFocus": "底物结合沟槽与NMR片段暴露面",
+    "designMode": "胞内抗体验证",
+    "candidates": [
+      {
+        "target": "ROBO1",
+        "rationale": "ROBO1与SLIT配体构成轴突导向和细胞迁移相关通路，USP33可调节ROBO1相关信号复合体；ROBO1为跨膜受体，胞外Ig/FNIII结构域具备更高抗体可及性。"
+      },
+      {
+        "target": "SLIT2",
+        "rationale": "SLIT2是ROBO受体配体，位于同一SLIT-ROBO通路并可通过分泌蛋白形式被抗体直接中和；其配体-受体界面比胞内USP33更适合阻断型抗体设计。"
+      },
+      {
+        "target": "ADRB2",
+        "rationale": "USP33参与β2肾上腺素受体去泛素化和受体再循环调控；ADRB2为细胞膜GPCR，胞外环区可作为抗体或抗体样分子调节入口。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

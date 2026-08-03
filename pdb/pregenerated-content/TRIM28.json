@@ -1,0 +1,65 @@
+{
+  "gene": "TRIM28",
+  "generatedAt": "2026-08-03T21:31:09.135Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TRIM28/KAP1 是核内转录共抑制支架蛋白，通过 RBCC 区域结合 KRAB-ZNF，并招募 SETDB1、NuRD 与 HP1 形成异染色质抑制复合体，参与肾母细胞瘤、神经退行性疾病及病毒潜伏相关转录调控。该蛋白缺乏天然胞外结构域或分泌特征，常规体内阻断抗体抗原可及性不足，更适合结构引导的胞内抗体、VHH 或研究级构象探针设计。相较广泛染色质调节因子，TRIM28 具备明确的 KRAB-ZNF 结合界面与高分辨率结构基础，优先级主要来自可解析的蛋白互作节点而非传统膜表面药物可及性。",
+    "mechanism": "通过胞内 VHH/Fab 阻断 TRIM28 RBCC 区域与 KRAB-ZNF 蛋白结合，削弱 SETDB1-HP1 依赖的异染色质沉默复合体装配。",
+    "selectedEpitope": "优先覆盖 RBCC 超螺旋表面的 KRAB-ZNF 结合沟槽，避开泛素化和磷酸化调控位点。",
+    "diseaseDirection": "肾母细胞瘤与染色质转录沉默",
+    "domain": "TRIM28 含 RING、B-box1/2、coiled-coil、HP1 box、PHD 与 bromodomain 等核内调控结构域。",
+    "evidence": "TRIM28染色质共抑制与肿瘤关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q13263 functional annotation",
+      "RCSB PDB 9OSC X-ray structure",
+      "KRAB-ZNF/TRIM28/SETDB1 heterochromatin literature"
+    ],
+    "referenceEntries": "UniProt Q13263；RCSB PDB 9OSC；Open Targets TRIM28",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RBCC coiled-coil KRAB-ZNF结合界面",
+        "直接干预TRIM28对KRAB锌指蛋白的招募，是机制阻断优先区域",
+        "优先"
+      ],
+      [
+        "Site B",
+        "B-box/coiled-coil连接区外露面",
+        "可能改变RBCC构象稳定性并影响复合体装配，适合作为变构备选表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PHD-bromodomain区域",
+        "涉及SUMO E3活性和染色质识别功能，但结构域功能多效性较强，需控制脱靶表型",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TRIM28为核内蛋白，常规抗体难以到达抗原；设计应限定为胞内抗体、VHH表达载体或细胞递送体系，并评估全局转录去抑制风险。",
+    "structurePrepZh": "以9OSC中A、C链为抗原模板，保留RBCC二聚体相关构象，去除结晶缓冲组分并校正缺失侧链、质子化状态与界面水分子。",
+    "structureRef": "RCSB PDB 9OSC，X-ray diffraction，1.77 Å",
+    "antibodies": [
+      "anti-TRIM28 clone 20C1",
+      "anti-KAP1/TRIM28 clone 3F3"
+    ],
+    "interfaceFocus": "RBCC超螺旋KRAB-ZNF结合沟槽",
+    "designMode": "胞内VHH/Fab构象阻断",
+    "candidates": [
+      {
+        "target": "SETDB1",
+        "rationale": "SETDB1 是 TRIM28 复合体招募的H3K9甲基转移酶，负责建立H3K9me3抑制标记；干预其与TRIM28轴可削弱异染色质沉默。"
+      },
+      {
+        "target": "CBX5",
+        "rationale": "CBX5/HP1α 通过TRIM28 HP1 box相关机制参与异染色质压缩，是TRIM28介导基因沉默通路中的下游效应节点。"
+      },
+      {
+        "target": "CHD4",
+        "rationale": "CHD4 是NuRD染色质重塑复合体核心ATPase，可与TRIM28共抑制网络协同维持转录沉默，适合作为同通路表型验证靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

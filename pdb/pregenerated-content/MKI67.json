@@ -1,0 +1,65 @@
+{
+  "gene": "MKI67",
+  "generatedAt": "2026-08-03T14:15:16.033Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MKI67 编码核内增殖标志物 Ki-67，主要在有丝分裂染色体周边层富集，并参与染色体表面组织、核仁重建及细胞周期进程标记。其疾病关联多反映增殖状态、组织生长及肿瘤病理分级中的伴随指标，而非已验证的胞外致病驱动轴。由于 Ki-67 为核内非分泌蛋白，天然抗原可及性显著弱于膜受体或分泌因子，抗体药物开发优先级低于 EGFR、ERBB2、PD-1/PD-L1 等具有胞外可阻断界面的靶点；更适合作为诊断或细胞内递送抗体研究对象。",
+    "mechanism": "设计抗体可识别 Ki-67 FHA 结构域表面构象，干扰其与磷酸化蛋白配体的结合，用于细胞周期状态检测或细胞内递送验证。",
+    "selectedEpitope": "优先选择 FHA 结构域磷酸肽结合沟槽邻近环区，避免核心 β 折叠保守面。",
+    "diseaseDirection": "肿瘤增殖标志物与细胞周期评估",
+    "domain": "Ki-67 含 N 端 FHA 结构域、PP1 结合区、大量 Ki-67 repeat 及 C 端 LR 结构域。",
+    "evidence": "MKI67 增殖标志物结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P46013 functional annotation",
+      "RCSB PDB 5J28 experimental structure",
+      "Human Protein Atlas pathology and subcellular localization"
+    ],
+    "referenceEntries": "UniProt P46013；RCSB PDB 5J28；HGNC:7107",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "FHA 结构域磷酸肽结合沟槽邻近环区",
+        "可形成构象依赖识别并保留结构域特异性，适合诊断抗体或胞内抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FHA 结构域外侧 β 折叠边缘与暴露转角",
+        "抗原表面暴露度较高，可能获得稳定结合但功能阻断强度有限",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Ki-67 repeat 区域保守重复序列",
+        "重复性强且构象异质，易产生交叉反应或批次依赖性识别",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险来自核内定位、缺乏天然胞外可及性及重复区低复杂度序列。建议限定为诊断抗体、细胞内抗体或递送平台验证，避免直接设定为常规胞外阻断药物靶点。",
+    "structurePrepZh": "以 PDB 5J28 的 FHA 结构域为模板，检查 A-D 链晶体接触、缺失残基与环区构象；去除非生物学晶体界面后进行表面电荷和沟槽可及性评估。",
+    "structureRef": "RCSB PDB 5J28，Ki-67 FHA domain，X-ray 2.0 Å",
+    "antibodies": [
+      "MIB-1",
+      "SP6"
+    ],
+    "interfaceFocus": "FHA 磷酸肽结合沟槽及邻近暴露环区",
+    "designMode": "诊断/胞内抗体",
+    "candidates": [
+      {
+        "target": "PCNA",
+        "rationale": "PCNA 是 DNA 复制滑动夹核心因子，与细胞增殖指数和肿瘤细胞周期活性密切相关，常与 Ki-67 共同用于增殖状态评估。"
+      },
+      {
+        "target": "TOP2A",
+        "rationale": "TOP2A 在 S/G2/M 期高表达并参与 DNA 拓扑调控，是增殖性肿瘤和细胞周期活跃状态的重要分子标志物。"
+      },
+      {
+        "target": "MCM2",
+        "rationale": "MCM2 属复制许可复合体成员，位于 DNA 复制起始通路上，可补充 Ki-67 对增殖细胞群的检测覆盖。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

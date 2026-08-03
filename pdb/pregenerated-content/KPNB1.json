@@ -1,0 +1,65 @@
+{
+  "gene": "KPNB1",
+  "generatedAt": "2026-08-03T13:47:02.791Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KPNB1编码importin-β1，是经典核输入通路核心受体，介导含经典核定位信号货物经importin-α适配后进入细胞核；HIV、流感病毒、登革病毒及结核感染均可依赖宿主核转运过程完成病毒蛋白入核或宿主转录重编程。KPNB1为胞内核转运蛋白，天然抗原可及性弱于膜受体或分泌蛋白，因此抗体设计更适合定位于细胞内递送抗体、VHH或研究级阻断分子。相较KPNA家族单一适配蛋白，KPNB1处于核孔复合体结合与RanGTP释放货物的汇聚节点，通路控制层级更高，但成药性风险亦需优先评估。",
+    "mechanism": "阻断KPNB1 HEAT重复结构与importin-α IBB区或RanGTP的结合，抑制经典核输入复合体装配与核内货物释放。",
+    "selectedEpitope": "优先覆盖N端HEAT重复RanGTP结合沟槽，并避开高度保守疏水核心。",
+    "diseaseDirection": "感染性疾病宿主核输入通路",
+    "domain": "KPNB1由串联HEAT重复构成超螺旋结构，形成RanGTP、核孔蛋白FG重复和importin-α结合界面。",
+    "evidence": "KPNB1宿主核输入与感染疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt Q14974功能注释",
+      "RCSB PDB 1QGR晶体结构",
+      "核输入通路与病毒复制文献证据"
+    ],
+    "referenceEntries": "UniProt Q14974；RCSB PDB 1QGR；Open Targets KPNB1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端HEAT重复RanGTP结合界面",
+        "可干预Ran依赖货物释放与受体循环，机制指向明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "中部HEAT重复importin-α IBB结合沟槽",
+        "可阻断经典NLS货物复合体装配，适合功能阻断筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "FG核孔蛋白结合相关外表面",
+        "可能影响核孔转运但界面分散且保守性高，需控制毒性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "KPNB1为必需胞内宿主因子，系统性阻断可能导致广泛核输入抑制与细胞毒性；建议采用可控递送、低亲和力调谐或感染场景限定验证。",
+    "structurePrepZh": "以1QGR晶体结构为模板，分离抗原链A/B并校正缺失环区；保留HEAT重复构象，标注RanGTP、IBB与FG结合相关界面用于表位约束。",
+    "structureRef": "Cingolani等解析importin-β核转运受体结构，PDB 1QGR，2.3 Å",
+    "antibodies": [
+      "抗KPNB1研究级单克隆抗体",
+      "抗Importin beta-1纳米抗体候选"
+    ],
+    "interfaceFocus": "RanGTP结合沟槽与IBB结合界面",
+    "designMode": "胞内阻断型",
+    "candidates": [
+      {
+        "target": "KPNA2",
+        "rationale": "KPNA2是经典NLS货物的importin-α适配蛋白，与KPNB1共同形成核输入复合体；在病毒蛋白入核和感染相关转录调控中具有同通路关联。"
+      },
+      {
+        "target": "RAN",
+        "rationale": "RAN通过GTP结合状态调控KPNB1货物释放和受体循环，是核质转运方向性的核心小GTP酶。"
+      },
+      {
+        "target": "NUP153",
+        "rationale": "NUP153为核孔复合体核篮组分，含FG重复并参与importin-β介导的核孔转运步骤，可作为同一核输入轴的界面靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

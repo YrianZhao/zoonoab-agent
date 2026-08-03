@@ -1,0 +1,65 @@
+{
+  "gene": "CDC42",
+  "generatedAt": "2026-08-03T18:23:15.812Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CDC42 是 Rho GTPase 家族小 GTP 酶，参与 WASP/WAVE、PAK、IQGAP 等效应器介导的肌动蛋白重塑、细胞极性、囊泡运输与造血细胞功能调控，其生殖系变异与血小板减少、淋巴水肿、发育迟缓及免疫异常表型相关。该蛋白主要定位于胞质和膜内侧，缺乏天然胞外结构域或分泌型抗原形态，因此常规外源性抗体可及性显著受限。与同通路中具有胞外可及性的受体或配体相比，CDC42 更适合作为机制验证或细胞内递送抗体研究靶点，优先级需低于可直接药物化的膜受体节点。",
+    "mechanism": "通过细胞内递送抗体阻断 CDC42 Switch I/II 区域与 PAK1 CRIB 结构域或 WASP GBD 的结合，抑制下游肌动蛋白聚合信号。",
+    "selectedEpitope": "优先聚焦 GTP 酶核心 Switch I/Switch II 效应器结合面，避开核苷酸结合口袋高保守残基。",
+    "diseaseDirection": "血小板发育与免疫失调相关疾病",
+    "domain": "CDC42 含 Rho 型小 GTP 酶结构域，包含 P-loop、Switch I、Switch II 与 C 端 CAAX 膜定位基序。",
+    "evidence": "CDC42 结构功能与疾病遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P60953 functional annotation",
+      "RCSB PDB 2NGR experimental structure",
+      "ClinVar and OMIM CDC42-related disorder records"
+    ],
+    "referenceEntries": "UniProt P60953；RCSB PDB 2NGR；HGNC CDC42",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Switch I/Switch II 效应器结合界面",
+        "可直接干预 CDC42 与 PAK1、WASP 等 CRIB/GBD 效应器相互作用",
+        "优先"
+      ],
+      [
+        "Site B",
+        "α5 螺旋及邻近 C 端膜定位侧面",
+        "可能影响膜近端构象和效应器装配，但需避免 CAAX 加工依赖差异",
+        "备选"
+      ],
+      [
+        "Site C",
+        "P-loop 核苷酸结合区域",
+        "区域高度保守且参与 GDP/GTP 结合，脱靶和功能广泛抑制风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CDC42 为细胞内小 GTP 酶，常规抗体难以到达作用位点；设计应限定于胞内抗体、递送抗体或研究级 Fab/VHH，并严格评估 Rho 家族交叉反应。",
+    "structurePrepZh": "以 2NGR 晶体结构为模板，保留抗原链 A/B 中完整 GTP 酶核心，校验 GDP/GTP 类核苷酸、Mg2+及 Switch 区构象后进行界面建模。",
+    "structureRef": "RCSB PDB 2NGR，X-ray diffraction，1.9 Å",
+    "antibodies": [
+      "无临床批准抗 CDC42 治疗性抗体",
+      "研究用抗 CDC42 单克隆抗体"
+    ],
+    "interfaceFocus": "Switch I/II 与 CRIB/GBD 效应器结合面",
+    "designMode": "胞内递送抗体设计",
+    "candidates": [
+      {
+        "target": "WAS",
+        "rationale": "WAS 编码 WASP，是 CDC42-GTP 的直接效应器，参与造血细胞肌动蛋白重塑；其遗传缺陷与免疫失调和血小板异常密切相关。"
+      },
+      {
+        "target": "PAK1",
+        "rationale": "PAK1 通过 CRIB 结构域结合活化 CDC42，并将信号传递至细胞骨架与迁移调控模块，是 CDC42 下游可验证的效应节点。"
+      },
+      {
+        "target": "DOCK8",
+        "rationale": "DOCK8 作为 CDC42 相关鸟嘌呤核苷酸交换因子参与免疫细胞骨架组织和迁移，缺陷可导致免疫缺陷及皮肤病毒感染易感。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

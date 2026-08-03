@@ -1,0 +1,65 @@
+{
+  "gene": "LYAR",
+  "generatedAt": "2026-08-03T13:58:40.335Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "LYAR为核仁定位的C2HC型锌指蛋白，参与核糖体生物发生、rRNA加工及细胞增殖相关转录调控，在结直肠癌等增殖性疾病中具有表达和预后关联。该蛋白主要位于细胞核/核仁，缺乏天然胞外结构域或分泌形式，抗体抗原可及性低于膜受体和分泌因子，因此更适合作为细胞内机制研究或递送型抗体工程对象。相较EGFR、VEGFA等同疾病方向的经典胞外靶点，LYAR的优先级依据主要来自肿瘤细胞增殖依赖性和核糖体生成轴特异性，而非直接体内阻断可及性。",
+    "mechanism": "设计目标为干扰LYAR锌指/碱性区与核酸或核糖核蛋白复合体的结合，削弱rRNA加工与核仁增殖程序。",
+    "selectedEpitope": "优先评估C2HC锌指邻近核酸结合面，避免遮蔽结构核心锌配位残基。",
+    "diseaseDirection": "结直肠癌与增殖性肿瘤",
+    "domain": "LYAR含N端Ly1样区域、C2HC型锌指及富含碱性残基的核仁定位/核酸结合区。",
+    "evidence": "LYAR核仁功能与肿瘤增殖证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9NX58功能与亚细胞定位注释",
+      "RCSB PDB 6ZMI电镜结构记录",
+      "肿瘤核糖体生物发生与LYAR表达研究文献"
+    ],
+    "referenceEntries": "UniProt Q9NX58；RCSB PDB 6ZMI；Open Targets LYAR",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C2HC锌指邻近核酸结合面",
+        "可能阻断LYAR与核酸/核糖核蛋白复合体相互作用",
+        "优先"
+      ],
+      [
+        "Site B",
+        "富碱性核仁定位区外露片段",
+        "可用于识别核仁定位构象并支持细胞内抗体设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "锌配位核心及疏水折叠核心",
+        "易影响整体折叠并产生非特异构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "LYAR为细胞内核仁蛋白，常规治疗性抗体难以到达靶点；应优先采用细胞内递送、intrabody或研究级Fab/VHH验证策略。",
+    "structurePrepZh": "以6ZMI电镜坐标为结构参考，需确认LYAR链归属、保留锌指配位几何，并剔除非相关复合体链后进行表面可及性评估。",
+    "structureRef": "RCSB PDB 6ZMI，2.6 Å electron microscopy structure",
+    "antibodies": [
+      "暂无获批抗LYAR治疗性抗体",
+      "研究级抗LYAR单克隆抗体"
+    ],
+    "interfaceFocus": "锌指邻近核酸结合面与富碱性核仁定位区",
+    "designMode": "细胞内抗体探索",
+    "candidates": [
+      {
+        "target": "MYC",
+        "rationale": "MYC驱动核糖体生物发生、rRNA转录和肿瘤细胞增殖，与LYAR相关的核仁增殖程序处于同一肿瘤生长轴。其抗体可及性同样受细胞内定位限制。"
+      },
+      {
+        "target": "UBF1",
+        "rationale": "UBF1参与RNA聚合酶I介导的rDNA转录，是核糖体生物发生通路中的关键转录因子，可作为LYAR功能轴的同通路参照靶点。"
+      },
+      {
+        "target": "RRP1B",
+        "rationale": "RRP1B定位于核仁并参与rRNA加工及核糖体装配相关过程，与LYAR同属核仁核糖体生成网络。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

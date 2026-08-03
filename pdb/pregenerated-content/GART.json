@@ -1,0 +1,65 @@
+{
+  "gene": "GART",
+  "generatedAt": "2026-08-03T12:42:26.576Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GART 是嘌呤从头合成通路中的三功能胞质酶，催化 GAR 合成、GAR 甲酰化及 AIR 合成步骤，肿瘤细胞可通过增强核苷酸供给支持复制压力与增殖。该蛋白并非分泌蛋白或膜受体，天然抗原可及性低，常规细胞外阻断型抗体开发存在显著进入限制。相较同通路中胞外可及性同样不足的代谢酶，GART 的高分辨率人源晶体结构与肿瘤遗传依赖证据更利于开展胞内递送抗体、intrabody 或降解偶联格式的结构指导设计。",
+    "mechanism": "通过胞内抗体结合 GART GAR transformylase 催化沟槽，阻断 GAR 与10-formyl-THF 进入活性位点并抑制嘌呤从头合成通量。",
+    "selectedEpitope": "优先靶向 GARTfase 结构域中 GAR/10-formyl-THF 结合催化沟槽邻近构象表位。",
+    "diseaseDirection": "肺癌与胸膜间皮瘤代谢依赖",
+    "domain": "N端 GARS、中央 GARTfase 与C端 AIRS 三功能酶结构域组成胞质多酶蛋白。",
+    "evidence": "GART嘌呤从头合成与肺胸膜肿瘤证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProtKB P22102 功能与结构域注释",
+      "RCSB PDB 4EW1 人源GART晶体结构",
+      "Reactome 嘌呤核苷酸从头生物合成通路"
+    ],
+    "referenceEntries": "UniProtKB P22102；RCSB PDB 4EW1；Reactome de novo IMP biosynthesis",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "GARTfase 催化沟槽及 GAR/10-formyl-THF 结合邻域",
+        "直接干预底物与一碳供体结合，机制可验证性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "GARS ATP/PRPP/甘氨酸结合裂隙邻近构象面",
+        "可抑制 GAR 生成步骤，适合作为替代功能阻断位点",
+        "备选"
+      ],
+      [
+        "Site C",
+        "AIRS ATP/FGAM 结合区及结构域连接界面",
+        "可能影响 AIR 生成或构象耦联，但需避免广泛保守核苷酸结合表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GART 为胞内代谢酶，常规抗体难以到达作用位点；设计应采用胞内表达、递送载体或降解偶联策略，并规避高度保守ATP结合残基导致的选择性风险。",
+    "structurePrepZh": "以4EW1链A为模板，补全缺失侧链与质子化状态，保留催化区关键残基邻域，移除非设计相关小分子后进行表面口袋与构象表位映射。",
+    "structureRef": "RCSB PDB 4EW1，X-ray diffraction，1.522 Å，人源GART结构",
+    "antibodies": [
+      "无获批GART靶向抗体",
+      "研究级抗GART检测抗体"
+    ],
+    "interfaceFocus": "GAR transformylase 底物沟槽与叶酸供体入口",
+    "designMode": "胞内功能阻断抗体",
+    "candidates": [
+      {
+        "target": "PPAT",
+        "rationale": "PPAT 催化嘌呤从头合成的限速起始步骤，将 PRPP 转化为 5-phosphoribosylamine；与 GART 同属 IMP 生物合成通路，适合代谢依赖性肿瘤联合评估。"
+      },
+      {
+        "target": "PFAS",
+        "rationale": "PFAS 催化 FGAR 酰胺化生成 FGAM，位于 GART 上游步骤；抑制该节点可减少后续 AIR 生成，与 GART 阻断具有通路连续性。"
+      },
+      {
+        "target": "ATIC",
+        "rationale": "ATIC 催化嘌呤从头合成末端 AICAR transformylase 与 IMP cyclohydrolase 反应；作为同一路径下游节点，可用于比较末端阻断与GART中段阻断的抗肿瘤效应。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

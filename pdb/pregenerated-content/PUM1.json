@@ -1,0 +1,65 @@
+{
+  "gene": "PUM1",
+  "generatedAt": "2026-08-03T15:45:24.643Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PUM1为胞内RNA结合蛋白，通过Pumilio同源结构域识别靶mRNA的Pumilio response element并募集CCR4-NOT等去腺苷酸化复合体，影响神经发育与神经退行性疾病相关转录后稳态。其疾病关联以PUM1单倍剂量不足导致的脊髓小脑共济失调47型及神经发育异常最为明确。PUM1缺乏天然胞外结构域或分泌形式，抗原可及性不利于常规治疗性抗体；但1IB2提供高分辨率RNA结合结构域，可支持体外结合试剂、细胞内抗体或降解耦联研究。相较同通路RNA结合因子，PUM1具备明确人类遗传剂量效应与已解析重复结构域，结构驱动设计优先级较高。",
+    "mechanism": "设计分子应识别PUM1 PUF重复结构域的RNA结合凹面，阻断其与UGUANAUA样Pumilio response element的碱基特异性相互作用。",
+    "selectedEpitope": "优先覆盖PUF repeats 4-8形成的RNA结合凹面及关键碱基识别位点。",
+    "diseaseDirection": "神经发育与脊髓小脑共济失调",
+    "domain": "PUM1含C端Pumilio同源PUF结构域，由8个α螺旋重复构成RNA结合支架。",
+    "evidence": "PUM1遗传剂量与PUF-RNA结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q14671功能与结构域注释",
+      "RCSB PDB 1IB2晶体结构记录",
+      "PUM1单倍剂量不足相关神经疾病文献"
+    ],
+    "referenceEntries": "UniProt Q14671；RCSB PDB 1IB2；Open Targets PUM1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PUF repeats 4-8 RNA结合凹面",
+        "直接竞争PRE序列结合，最适合功能阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PUF repeats 1-3 N端凹面延伸区",
+        "可干扰RNA定位与结合配准，适合作为协同表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PUF重复外侧凸面",
+        "抗原性可能较好但功能阻断不确定，需避免仅获得非中和结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PUM1为胞内蛋白，常规抗体组织可及性受限；建议限定为研究级Fab/VHH、细胞内抗体或递送耦联格式，并规避高度保守RNA结合残基导致的交叉反应风险。",
+    "structurePrepZh": "以1IB2抗原链A为模板，保留PUF重复核心并移除非目标核酸或结晶添加物；对RNA结合凹面残基进行编号校准、质子化和界面可及性评估。",
+    "structureRef": "RCSB PDB 1IB2，PUM1 PUF结构域X射线结构，1.9 Å",
+    "antibodies": [
+      "无临床获批PUM1靶向抗体",
+      "研究级抗PUM1抗体"
+    ],
+    "interfaceFocus": "PUF重复RNA识别凹面与碱基配对残基",
+    "designMode": "胞内靶点阻断型",
+    "candidates": [
+      {
+        "target": "PUM2",
+        "rationale": "PUM2与PUM1同属Pumilio RNA结合家族，识别相近PRE序列并参与神经系统转录后调控，可作为同通路冗余与选择性评估靶点。"
+      },
+      {
+        "target": "CNOT1",
+        "rationale": "CNOT1为CCR4-NOT去腺苷酸化复合体支架蛋白，处于PUM介导mRNA降解下游，适合用于验证PUM1募集去腺苷酸化机器的通路依赖性。"
+      },
+      {
+        "target": "CNOT7",
+        "rationale": "CNOT7为CCR4-NOT复合体催化去腺苷酸化亚基之一，参与PUM1靶mRNA poly(A)尾缩短过程，可作为同一转录后抑制轴的功能候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

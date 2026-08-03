@@ -1,0 +1,65 @@
+{
+  "gene": "SMG7",
+  "generatedAt": "2026-08-03T16:44:27.072Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SMG7 是 NMD 终末效应复合体的重要支架因子，参与无义介导的 mRNA 降解，并通过与 UPF1 及后续去帽/去腺苷化因子协同决定异常转录本清除效率，因此可作为RNA稳态失衡相关表型的机制锚点。其蛋白具备明确的胞内可及结构域，且已有高分辨率晶体结构可用于表位映射与界面约束，适合开展结构导向抗体设计。相较同通路中更偏催化或多亚基装配的因子，SMG7 具有更清晰的结构可塑性与已知结合界面，便于围绕 UPF1 识别轴建立优先级更高的干预假设。",
+    "mechanism": "阻断 SMG7 与 UPF1 磷酸化尾部的结合，抑制下游去帽复合体招募，从而延缓异常转录本降解。",
+    "selectedEpitope": "优先覆盖 C 端 UPF1 结合界面及邻近保守凹槽，避免破坏全局折叠。",
+    "diseaseDirection": "RNA稳态与NMD通路",
+    "domain": "SMG7 主要含 N 端 14-3-3 样磷酸肽识别域及 C 端 C-terminal domain。",
+    "evidence": "SMG7-NMD结构与疾病关联证据包",
+    "evidenceSources": [
+      "UniProt Q92540",
+      "RCSB PDB 1YA0",
+      "Open Targets Platform",
+      "文献数据库 PubMed"
+    ],
+    "referenceEntries": "UniProt: Q92540；PDB: 1YA0；SMG7_HUMAN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端 UPF1 结合沟槽",
+        "直接干预复合体装配，适合作为主表位",
+        "优先"
+      ],
+      [
+        "Site B",
+        "14-3-3样结构域表面保守环区",
+        "有助于稳定构象性阻断，适合备选方案",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离核心界面的外露螺旋面",
+        "可能影响蛋白稳定性而非特异结合，风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险在于 SMG7 为胞内蛋白，常规全长抗体细胞可及性有限；应优先采用胞内递送或考虑胞内表达型结合分子。表位设计需严格避开全局折叠核心，以降低对蛋白稳定性的非特异扰动。",
+    "structurePrepZh": "以 1YA0 为模板完成链 A/B 对齐、缺失残基补建与界面电荷评估，并结合保守位点与表面可及性筛选抗原窗口。",
+    "structureRef": "Dandapat et al., SMG7 structural study, PDB 1YA0",
+    "antibodies": [
+      "暂无成熟临床同类抗体",
+      "暂无公开成熟成药抗体"
+    ],
+    "interfaceFocus": "UPF1 结合界面及其邻近保守表面",
+    "designMode": "structure-guided",
+    "candidates": [
+      {
+        "target": "UPF1",
+        "rationale": "UPF1 与 SMG7 构成 NMD 核心识别轴，是同一疾病通路中的直接上游靶点。干预 UPF1 磷酸化依赖装配可与 SMG7 表位设计形成互补验证路径。"
+      },
+      {
+        "target": "SMG6",
+        "rationale": "SMG6 是 NMD 下游内切核酸酶，和 SMG7 同属异常 mRNA 清除模块。其作为同通路候选靶点可用于区分支架识别与切割执行两个层面的干预效应。"
+      },
+      {
+        "target": "EIF4A3",
+        "rationale": "EIF4A3 属于 EJC 复合体核心组分，决定 NMD 底物识别前置步骤。将其纳入候选集有助于覆盖 SMG7 所在 RNA 监控网络的上游入口。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

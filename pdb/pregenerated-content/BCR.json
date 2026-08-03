@@ -1,0 +1,65 @@
+{
+  "gene": "BCR",
+  "generatedAt": "2026-08-03T10:48:46.131Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BCR在费城染色体易位中与ABL1形成BCR-ABL1融合酪氨酸激酶，是慢性粒细胞白血病和部分急性淋巴细胞白血病的核心致病驱动因子。天然BCR主要为胞质蛋白，抗原可及性不具备膜外靶点优势，因此更适合发展为细胞内靶向抗体片段或降解偶联识别模块。相比泛癌增殖通路靶点，BCR融合断点及其寡聚化结构域具有疾病特异性，可提高对白血病克隆的选择性。",
+    "mechanism": "设计抗体片段识别BCR N端coiled-coil寡聚化界面，阻断BCR介导的ABL1跨磷酸化聚集，从而降低BCR-ABL1激酶持续活化。",
+    "selectedEpitope": "优先锁定BCR N端coiled-coil四聚化界面及邻近BCR-ABL1融合保留区。",
+    "diseaseDirection": "BCR-ABL1阳性白血病",
+    "domain": "BCR含N端coiled-coil寡聚化区、Ser/Thr激酶样区、RhoGEF DH-PH区及C端RacGAP区。",
+    "evidence": "BCR-ABL1融合驱动白血病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P11274功能与结构域注释",
+      "RCSB PDB 5N7E晶体结构",
+      "WHO/ELN关于BCR-ABL1阳性白血病分类与诊疗证据"
+    ],
+    "referenceEntries": "UniProt:P11274；RCSB PDB:5N7E；Open Targets:BCR",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端coiled-coil寡聚化界面",
+        "干预BCR-ABL1聚集与ABL1跨磷酸化，疾病机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "BCR-ABL1融合断点邻近保留序列",
+        "提高融合蛋白选择性，适合细胞内Fab或VHH筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "DH-PH RhoGEF结构域表面",
+        "可能影响BCR调控Rho家族GTP酶，但与BCR-ABL1驱动机制间接",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BCR缺乏胞外暴露，常规治疗性抗体递送受限；应限定为细胞内抗体、VHH或递送型格式，并避免识别ABL1同源保守激酶区域。",
+    "structurePrepZh": "以5N7E实验晶体结构链A、B为模板，保留寡聚化相关界面，去除非关键晶体接触并映射BCR-ABL1融合保留片段。",
+    "structureRef": "RCSB PDB 5N7E，X-ray diffraction，1.647 Å",
+    "antibodies": [
+      "anti-BCR-ABL1 junction antibody",
+      "anti-BCR monoclonal antibody 7C6"
+    ],
+    "interfaceFocus": "BCR coiled-coil寡聚化与融合断点邻域",
+    "designMode": "细胞内抗体设计",
+    "candidates": [
+      {
+        "target": "ABL1",
+        "rationale": "ABL1是BCR-ABL1融合蛋白的激酶效应端，抑制其ATP结合区或构象激活状态可直接阻断白血病驱动信号。"
+      },
+      {
+        "target": "STAT5A",
+        "rationale": "STAT5A是BCR-ABL1下游关键转录效应因子，参与白血病细胞存活和增殖基因表达，可作为同一致病轴的下游干预节点。"
+      },
+      {
+        "target": "CRKL",
+        "rationale": "CRKL是BCR-ABL1经典磷酸化底物，其磷酸化水平反映融合激酶活性，并连接白血病细胞黏附、迁移和增殖信号。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

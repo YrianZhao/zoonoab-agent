@@ -1,0 +1,65 @@
+{
+  "gene": "DAPP1",
+  "generatedAt": "2026-08-03T11:49:25.467Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DAPP1 编码 B 细胞适配蛋白 Bam32，含 SH2 与 PH 结构域，参与 BCR 激活后由 PI3K 生成的 PIP3 招募过程，并连接 B 细胞迁移、黏附及血液细胞性状相关信号。该蛋白主要定位于细胞质膜内侧与胞质，不具备分泌蛋白或跨膜胞外结构域特征，因此抗原可及性显著弱于 CD19、CD20、BTK 上游受体类靶点。其优先级主要来自遗传关联与高分辨率结构可用性，适合作为胞内功能阻断抗体或结构生物学验证对象，而非常规体内中和抗体首选靶点。",
+    "mechanism": "设计抗体应阻断 DAPP1 PH 结构域与 PI(3,4,5)P3/PI(3,4)P2 头基结合，或干扰其 SH2 结构域识别磷酸化 BCR 信号复合物，从而削弱膜招募与下游适配信号。",
+    "selectedEpitope": "优先覆盖 PH 结构域磷酸肌醇结合口袋周边碱性环区，兼顾 1FAO 可解析界面。",
+    "diseaseDirection": "血液细胞性状与BCR免疫信号",
+    "domain": "DAPP1 含 N 端 SH2 结构域与 C 端 PH 结构域，1FAO 对应人源 PH 结构域晶体结构。",
+    "evidence": "DAPP1-BCR/PI3K 血液性状证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联与遗传证据",
+      "UniProt Q9UN19 蛋白功能与结构域注释",
+      "RCSB PDB 1FAO X-ray PH 结构域结构",
+      "Reactome/GO B cell receptor 与 phosphoinositide signaling 注释"
+    ],
+    "referenceEntries": "UniProt Q9UN19；RCSB PDB 1FAO；Open Targets DAPP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PH 结构域磷酸肌醇结合口袋及邻近碱性环",
+        "直接阻断 PIP3/PIP2 头基结合与膜定位，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PH 结构域外侧 β 折叠-环区可溶暴露面",
+        "适合获得构象识别抗体，用于结构稳定化与细胞内干预验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SH2 结构域磷酸酪氨酸结合沟槽",
+        "可干扰磷酸化信号复合物识别，但需额外结构建模与交叉反应评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DAPP1 缺乏胞外可及抗原面，常规系统给药抗体难以触达胞内靶点；建议定位为细胞内抗体、VHH 递送或体外机制验证设计。",
+    "structurePrepZh": "以 1FAO A 链 PH 结构域为模板，补全缺失侧链并保留磷酸肌醇结合口袋电荷特征；SH2 区域需采用 AlphaFold 或同源结构补充。",
+    "structureRef": "Ferguson et al., DAPP1/Bam32 PH domain crystal structure, PDB 1FAO",
+    "antibodies": [
+      "anti-DAPP1 research antibody",
+      "anti-Bam32 research antibody"
+    ],
+    "interfaceFocus": "PH 结构域 PIP3 头基结合口袋",
+    "designMode": "胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "BTK",
+        "rationale": "BTK 位于 BCR-PI3K 信号轴下游并同样依赖 PH 结构域介导膜募集，是 B 细胞活化与血液免疫表型研究中的成熟同通路靶点。"
+      },
+      {
+        "target": "PIK3CD",
+        "rationale": "PIK3CD 编码 PI3Kδ 催化亚基，负责产生 DAPP1 PH 结构域识别的 PIP3，是 DAPP1 膜招募的上游驱动因子。"
+      },
+      {
+        "target": "CD79B",
+        "rationale": "CD79B 是 BCR 复合物信号转导亚基，其磷酸化 ITAM 启动 SYK-BTK-PI3K 信号级联，与 DAPP1 所处适配信号网络直接相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "RALB",
+  "generatedAt": "2026-08-03T20:42:55.926Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RALB 是 Ral 小 GTP 酶家族成员，参与血小板颗粒分泌、整合素活化及细胞内囊泡运输过程，其遗传关联信号集中于血小板体积、血小板计数和血小板压积等血液学表型。RALB 为胞内 GDP/GTP 结合蛋白，天然抗原可及性弱于膜受体或分泌蛋白，但其高分辨率晶体结构有利于体外构象表位和功能界面抗体开发。相较于上游广泛表达的 RAS 或 RAP 小 GTP 酶，RALB 在 RalGEF-Ral-effector 轴中位置更接近效应器选择节点，具备更明确的界面阻断优先级。",
+    "mechanism": "阻断 GTP 结合态 RALB 的 switch I/II 区域与 RalBP1、SEC5 或 EXO84 等效应蛋白 Ral-binding domain 的结合，削弱血小板分泌与膜运输相关输出。",
+    "selectedEpitope": "优先锁定 GTP 酶结构域 switch I、switch II 及邻近 α2 螺旋构成的效应器结合界面。",
+    "diseaseDirection": "血小板数量与体积相关血液表型",
+    "domain": "RALB 含保守小 GTP 酶核心结构域，包括 P-loop、switch I、switch II、GTP/GDP 结合口袋及 C 端高变区。",
+    "evidence": "RALB 血小板表型遗传关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 血小板体积与计数关联数据",
+      "UniProtKB P11234 RALB 功能与结构域注释",
+      "RCSB PDB 6ZRN 高分辨率晶体结构",
+      "Reactome Ral GTPase signaling 与囊泡运输通路注释"
+    ],
+    "referenceEntries": "UniProt P11234；RCSB PDB 6ZRN；Open Targets RALB",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "switch I/switch II 效应器结合面",
+        "直接竞争 RalBP1、SEC5、EXO84 的 Ral-binding domain 结合，功能阻断价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "P-loop 与核苷酸结合口袋邻近区域",
+        "可稳定 GDP/GTP 结合构象或限制构象转换，但需避免非特异性识别其他小 GTP 酶",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端高变区及膜定位相关区段",
+        "可能影响亚细胞定位相关功能，但柔性高且结构解析覆盖有限，成药表位不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RALB 属胞内小 GTP 酶，常规体内抗体递送与抗原可及性存在显著限制；建议定位为结构引导的胞内抗体、VHH 或体外功能阻断工具分子开发。",
+    "structurePrepZh": "以 6ZRN 晶体结构为模板，保留抗原链 A-D 中分辨率完整链，校核核苷酸、Mg2+及 switch 区构象，去除非功能性晶体接触后进行界面建模。",
+    "structureRef": "RCSB PDB 6ZRN，X-ray diffraction，1.482 Å",
+    "antibodies": [
+      "抗 RALB 研究级单克隆抗体",
+      "抗 RalA/B 研究级交叉反应抗体"
+    ],
+    "interfaceFocus": "switch I/II 与 Ral-binding domain 结合界面",
+    "designMode": "胞内界面阻断型",
+    "candidates": [
+      {
+        "target": "RALA",
+        "rationale": "RALA 与 RALB 同属 Ral 小 GTP 酶分支，并共享 RalGEF 激活和 RalBP1/外囊复合体效应器结合机制，可作为同通路旁系靶点比较。"
+      },
+      {
+        "target": "RALBP1",
+        "rationale": "RALBP1 是 RALB-GTP 的经典效应蛋白，介导囊泡运输、细胞骨架和转运相关输出，阻断其 Ral-binding domain 可验证 RALB 轴功能依赖性。"
+      },
+      {
+        "target": "EXOC2",
+        "rationale": "EXOC2/SEC5 为外囊复合体组分并可结合 Ral-GTP，参与分泌囊泡定向运输，与血小板分泌相关机制处于同一 Ral effector 通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

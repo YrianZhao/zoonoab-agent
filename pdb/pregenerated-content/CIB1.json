@@ -1,0 +1,65 @@
+{
+  "gene": "CIB1",
+  "generatedAt": "2026-08-03T11:24:05.883Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CIB1是EF-hand钙结合适配蛋白，可与整合素αIIb胞质尾部、PAK1及多种激酶调控复合物相互作用，参与细胞黏附、迁移、血小板活化及应激相关信号节点。其Open Targets关联覆盖神经退行性疾病、冠状动脉疾病及肿瘤，但CIB1主要定位于胞质或膜内侧，天然抗原可及性弱于典型分泌因子或跨膜受体胞外结构域。作为抗体主靶点的优先级应限定于细胞内抗体、递送型Fab/VHH或结构生物学工具抗体场景；相较同通路整合素胞外靶点，CIB1优势在于结构分辨率高且可直接干预整合素胞质尾部结合界面。",
+    "mechanism": "通过结合CIB1疏水配体结合沟槽，阻断CIB1与整合素αIIb胞质尾部及PAK1相关复合物的装配。",
+    "selectedEpitope": "优先覆盖C端EF-hand III/IV形成的疏水沟槽及αIIb尾肽结合界面。",
+    "diseaseDirection": "黏附迁移与血管炎症相关疾病",
+    "domain": "CIB1含N端EF-hand I/II样结构及C端EF-hand III/IV钙结合核心，形成配体结合沟槽。",
+    "evidence": "CIB1结构与整合素黏附通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q99828功能与亚细胞定位注释",
+      "RCSB PDB 6OCX晶体结构",
+      "整合素αIIbβ3血小板活化与CIB1互作研究"
+    ],
+    "referenceEntries": "UniProt: Q99828；RCSB PDB: 6OCX；HGNC: CIB1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端EF-hand III/IV疏水配体结合沟槽",
+        "直接竞争整合素αIIb胞质尾部结合，适合功能阻断型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端EF-hand I/II邻近构象调节面",
+        "可能影响钙依赖构象稳定性及配体沟槽暴露，适合变构型设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "钙离子配位环及高度保守EF-hand核心",
+        "保守性高且可能扰动整体折叠，存在交叉反应与稳定性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CIB1缺乏胞外暴露结构域，常规循环抗体难以触达靶点；应采用细胞内递送、胞内VHH或工具抗体策略，并规避保守钙结合环。",
+    "structurePrepZh": "以6OCX高分辨率晶体结构为模板，保留钙离子与关键侧链构象，按链A或代表性单体建立抗原模型并评估多链晶体接触。",
+    "structureRef": "RCSB PDB 6OCX，X-ray diffraction，1.9 Å",
+    "antibodies": [
+      "CIB1研究级单克隆抗体",
+      "CIB1研究级多克隆抗体"
+    ],
+    "interfaceFocus": "EF-hand III/IV疏水沟槽与αIIb尾肽结合面",
+    "designMode": "胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "ITGA2B",
+        "rationale": "ITGA2B编码整合素αIIb，是CIB1已验证互作对象；其与ITGB3形成血小板αIIbβ3受体，直接参与血小板黏附和聚集。"
+      },
+      {
+        "target": "ITGB3",
+        "rationale": "ITGB3与ITGA2B组成αIIbβ3整合素复合物，是血小板活化、血栓形成及血管事件通路中的核心膜受体，胞外结构域更适合传统抗体阻断。"
+      },
+      {
+        "target": "PAK1",
+        "rationale": "PAK1与CIB1处于细胞迁移和存活相关信号网络中，CIB1可参与PAK1相关复合物调控；该节点适合评估黏附迁移表型的替代干预策略。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

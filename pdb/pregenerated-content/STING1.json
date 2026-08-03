@@ -1,0 +1,65 @@
+{
+  "gene": "STING1",
+  "generatedAt": "2026-08-03T21:20:19.923Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "STING1是cGAS-STING固有免疫轴的核心接头蛋白，结合2′3′-cGAMP后招募并激活TBK1，诱导IRF3磷酸化和I型干扰素转录；功能获得性变异可驱动SAVI等干扰素病的持续炎症。其C端配体结合结构域可形成胞质侧二聚体并存在明确小分子结合口袋，结构解析度高，便于精确界面建模。相较上游cGAS或下游TBK1，STING1处于环核苷酸识别与信号装配交汇点，疾病遗传证据和结构可设计性更集中，适合作为优先验证靶点。",
+    "mechanism": "抗体片段拟结合STING1 C端二聚体配体结合囊袋或盖环区域，阻断2′3′-cGAMP诱导的闭合构象及TBK1信号复合体装配。",
+    "selectedEpitope": "优先锁定C端配体结合结构域二聚体界面及lid region，覆盖cGAMP诱导构象转换关键面。",
+    "diseaseDirection": "I型干扰素病与抗病毒炎症",
+    "domain": "STING1含N端四跨膜区和胞质C端配体结合结构域，CTD以二聚体识别环二核苷酸。",
+    "evidence": "STING1结构、遗传与干扰素病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与关联评分",
+      "UniProt Q86WV6功能与结构域注释",
+      "RCSB PDB 4EMT晶体结构",
+      "cGAS-STING-TBK1-IRF3通路文献"
+    ],
+    "referenceEntries": "UniProt Q86WV6；RCSB PDB 4EMT；Open Targets STING1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端配体结合结构域二聚体沟槽与lid region",
+        "直接干预2′3′-cGAMP结合后闭合构象，抑制STING活化",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CTD二聚体外侧TBK1信号装配邻近面",
+        "可能削弱STING寡聚化后对TBK1复合体的空间组织",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端跨膜区胞质近膜连接段",
+        "膜环境依赖强且构象异质性高，抗体可及性和成药性需严格评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "STING1为内质网膜胞质侧蛋白，常规全长IgG难以进入胞内；应优先采用细胞内递送Fab/VHH或结构引导筛选，并避免破坏保守折叠核心。",
+    "structurePrepZh": "以4EMT中A、B链CTD二聚体为模板，保留配体结合囊袋与关键水分子信息，补全缺失环区后进行质子化和二聚体界面能量最小化。",
+    "structureRef": "RCSB PDB 4EMT，STING CTD X-ray结构，1.5 Å",
+    "antibodies": [
+      "无已上市抗STING1治疗性抗体",
+      "研究级抗STING/STING1单克隆抗体"
+    ],
+    "interfaceFocus": "CTD二聚体沟槽、lid region与TBK1装配邻近面",
+    "designMode": "胞内VHH/Fab阻断",
+    "candidates": [
+      {
+        "target": "CGAS",
+        "rationale": "CGAS位于STING1上游，识别胞质DNA并催化生成2′3′-cGAMP；抑制CGAS可减少STING1配体供给，适用于DNA感知驱动的干扰素病。"
+      },
+      {
+        "target": "TBK1",
+        "rationale": "TBK1由活化STING1平台招募并磷酸化IRF3，是I型干扰素转录启动的关键激酶；阻断该节点可限制STING下游信号放大。"
+      },
+      {
+        "target": "IRF3",
+        "rationale": "IRF3是STING-TBK1轴下游转录因子，磷酸化后二聚化并进入细胞核诱导IFNB1等基因；该节点反映通路终末效应强度。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

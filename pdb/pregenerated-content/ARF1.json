@@ -1,0 +1,65 @@
+{
+  "gene": "ARF1",
+  "generatedAt": "2026-08-03T10:32:45.939Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ARF1 是小型 GTP 酶，参与 COPI 被膜募集、Golgi-ER 逆向运输及分泌通路稳态，Open Targets 显示其与脑室周围结节性异位症、神经退行性疾病及 HIV 感染存在遗传和功能关联。ARF1 为胞质侧膜结合 GTP 酶，缺乏稳定胞外结构域，常规体内阻断型抗体可及性受限，但其构象明确、开关区可用于体外结构生物学、细胞内抗体或递送型抗体设计。相较于同通路中多亚基被膜蛋白，ARF1 位于膜运输调控枢纽，GTP/GDP 构象转换界面清晰，适合作为机制验证和构象选择性结合分子的优先建模靶点。",
+    "mechanism": "设计构象选择性抗体阻断 ARF1-GTP 开关区与 COPI coatomer 或 Golgi 膜效应蛋白相互作用，抑制被膜募集与逆向囊泡运输。",
+    "selectedEpitope": "优先覆盖 Switch I/Switch II 与 interswitch 区域，锁定 GTP 态效应蛋白结合面。",
+    "diseaseDirection": "神经发育与膜运输异常",
+    "domain": "ARF1 含小型 GTP 酶核心结构域，包含 P-loop、Switch I、Switch II 及 C 端螺旋区。",
+    "evidence": "ARF1膜运输与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt P84077 功能注释",
+      "RCSB PDB 1HUR 晶体结构",
+      "ARF1-COPI/Golgi运输机制文献"
+    ],
+    "referenceEntries": "UniProt:P84077；RCSB PDB:1HUR；Open Targets:ARF1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Switch I/Switch II效应蛋白结合面",
+        "直接干预ARF1-GTP与coatomer募集界面，具备最高机制相关性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "P-loop邻近核苷酸结合沟槽外缘",
+        "可用于识别核苷酸依赖构象，但需避免非特异影响GTP酶家族保守位点",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端两亲性螺旋及膜结合区域",
+        "参与膜锚定但含疏水特征并依赖肉豆蔻酰化，抗体成药性与可及性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ARF1 为细胞内膜结合蛋白，常规胞外抗体难以直接作用；建议采用细胞内抗体、递送型Fab/VHH或体外机制探针策略，并严格评估ARF家族交叉反应。",
+    "structurePrepZh": "以1HUR晶体结构为模板，保留抗原链A/B中完整小GTP酶结构域，校核GDP/GTP类似物状态、Mg2+配位及Switch区构象后进行表位建模。",
+    "structureRef": "RCSB PDB 1HUR，X-ray diffraction，2.0 Å",
+    "antibodies": [
+      "ARF1 monoclonal antibody clone 1D9",
+      "anti-ARF1 antibody EPR2725"
+    ],
+    "interfaceFocus": "Switch I/II与coatomer效应蛋白结合界面",
+    "designMode": "胞内构象阻断",
+    "candidates": [
+      {
+        "target": "ARFGEF1",
+        "rationale": "ARFGEF1 编码 brefeldin A sensitive ARF guanine nucleotide-exchange factor，促进ARF1从GDP态转为GTP态，位于同一Golgi膜运输激活轴。"
+      },
+      {
+        "target": "COPB1",
+        "rationale": "COPB1 是COPI coatomer复合体β亚基，受ARF1-GTP募集至Golgi膜，直接参与逆向囊泡被膜形成。"
+      },
+      {
+        "target": "GBF1",
+        "rationale": "GBF1 是主要Golgi定位ARF GEF，激活ARF1并维持COPI依赖的Golgi-ER运输，适合作为同通路上游调控靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

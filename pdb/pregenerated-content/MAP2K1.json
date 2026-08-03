@@ -1,0 +1,65 @@
+{
+  "gene": "MAP2K1",
+  "generatedAt": "2026-08-03T14:02:02.809Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAP2K1编码MEK1，是RAS-RAF-MEK-ERK级联中的双特异性激酶，直接磷酸化ERK1/2并驱动黑色素瘤及RASopathy相关异常增殖信号。该蛋白主要定位于胞质，缺乏稳定胞外结构域或分泌特征，抗体抗原可及性不及膜受体型靶点，因此更适合作为细胞内递送抗体、胞内抗体或结构引导结合分子研究对象。其优先级来自明确的驱动通路位置、丰富的人源晶体结构与已验证小分子抑制剂药理学基础，相比上游RAS/RAF异构体具有更清晰的激酶构象调控界面。",
+    "mechanism": "设计结合MEK1激酶结构域调控界面，阻断BRAF对MEK1活化环Ser218/Ser222的有效磷酸化，或稳定非活化构象以降低ERK1/2底物磷酸化。",
+    "selectedEpitope": "优先覆盖激酶结构域N-lobe、αC螺旋及活化环邻近构象调控面。",
+    "diseaseDirection": "RAS-RAF-MEK-ERK相关肿瘤与RASopathy",
+    "domain": "MEK1含N端调控区、核心蛋白激酶结构域及活化环，3EQC覆盖催化结构域构象。",
+    "evidence": "MAP2K1疾病关联与MEK1结构药理证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q02750功能与结构域注释",
+      "RCSB PDB 3EQC晶体结构记录",
+      "ClinVar与COSMIC中MAP2K1致病变异记录"
+    ],
+    "referenceEntries": "UniProt Q02750；RCSB PDB 3EQC；Open Targets MAP2K1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶N-lobe/αC螺旋调控界面",
+        "可影响ATP结合裂隙邻近构象与激酶活化状态，适合构象锁定型结合设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "活化环Ser218/Ser222邻近区域",
+        "可干预RAF介导的MEK1磷酸化识别，但需避免完全遮蔽高度保守催化核心",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C-lobe ERK底物对接相关表面",
+        "可能削弱ERK1/2结合与磷酸转移，因激酶家族保守性需严格评估选择性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAP2K1为胞内激酶，常规抗体难以天然进入细胞；设计应限定为胞内递送、内抗体或研究级结合分子，并重点规避MAP2K2交叉反应。",
+    "structurePrepZh": "以3EQC链A为模板，保留催化结构域主链构象，检查缺失环区、配体占位和磷酸化位点状态，补建柔性活化环后进行表面可及性评估。",
+    "structureRef": "RCSB PDB 3EQC，MEK1晶体结构，1.8 Å X射线衍射",
+    "antibodies": [
+      "phospho-MEK1/2 Ser217/221 antibody",
+      "MEK1 monoclonal antibody"
+    ],
+    "interfaceFocus": "αC螺旋、活化环与ERK对接面",
+    "designMode": "胞内抗体/构象锁定",
+    "candidates": [
+      {
+        "target": "BRAF",
+        "rationale": "BRAF位于MAP2K1上游，直接磷酸化MEK1活化环Ser218/Ser222，是黑色素瘤MAPK通路中的核心致癌激酶。"
+      },
+      {
+        "target": "MAPK1",
+        "rationale": "MAPK1编码ERK2，是MEK1的直接下游底物，承接MEK依赖性磷酸化并调控增殖与存活转录程序。"
+      },
+      {
+        "target": "KRAS",
+        "rationale": "KRAS通过RAF激活MEK-ERK级联，突变型KRAS可持续驱动MAP2K1相关信号输出，适合作为同通路上游候选节点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

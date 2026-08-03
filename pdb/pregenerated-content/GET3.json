@@ -1,0 +1,65 @@
+{
+  "gene": "GET3",
+  "generatedAt": "2026-08-03T12:45:02.335Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GET3/TRC40是尾锚定膜蛋白靶向通路的胞质ATPase，负责结合疏水性C端跨膜段并递送至内质网膜受体复合体，蛋白稳态缺陷可影响心肌细胞膜蛋白装配与扩张型心肌病相关表型。该抗原主要位于胞质，不具备典型膜受体或分泌蛋白的体内抗体可及性优势，因此更适合作为结构生物学参照、细胞内递送抗体或研究级结合分子设计对象。其优先级低于同通路的ER膜受体CAMLG/GET2和WRB/GET1，但8CQZ提供人源GET3二聚体实验结构，可支持高可信界面表位建模与功能阻断验证。",
+    "mechanism": "设计结合GET3二聚体疏水沟槽或ATPase构象界面的抗体片段，阻断尾锚定底物跨膜段结合，或干扰GET3向WRB-CAMLG受体复合体递交底物。",
+    "selectedEpitope": "优先覆盖GET3二聚体中央疏水底物结合沟槽及其邻近ATPase开闭构象界面。",
+    "diseaseDirection": "扩张型心肌病蛋白稳态方向",
+    "domain": "GET3含P-loop NTPase/ATPase核心结构域，形成同源二聚体并构成尾锚定底物结合沟槽。",
+    "evidence": "GET3尾锚定蛋白递送与心肌病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联数据",
+      "UniProt O43681功能与亚细胞定位注释",
+      "RCSB PDB 8CQZ人源GET3实验结构",
+      "TRC/GET尾锚定蛋白内质网靶向通路文献"
+    ],
+    "referenceEntries": "UniProt O43681；RCSB PDB 8CQZ；HGNC GET3/TRC40",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "二聚体中央疏水底物结合沟槽",
+        "直接竞争尾锚定底物跨膜段结合，功能阻断价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ATPase核心的二聚体开闭构象界面",
+        "可能限制ATP依赖构象转换并降低底物装载效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "保守P-loop核苷酸结合邻域",
+        "高度保守且可能影响基础ATPase功能，脱靶与细胞毒性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GET3为胞质蛋白，常规治疗性抗体难以到达作用位点；建议限定为细胞内抗体、递送型片段或体外机制验证，并规避高度保守ATP结合基序。",
+    "structurePrepZh": "以8CQZ链A/B构建人源GET3二聚体模型，补全缺失环区，检查核苷酸状态与二聚体界面，保留功能相关构象用于表位映射。",
+    "structureRef": "RCSB PDB 8CQZ，X-ray diffraction，2.8 Å",
+    "antibodies": [
+      "暂无获批GET3靶向抗体",
+      "研究级anti-TRC40/GET3抗体"
+    ],
+    "interfaceFocus": "底物疏水沟槽与GET1/GET2递交相关表面",
+    "designMode": "胞内功能阻断",
+    "candidates": [
+      {
+        "target": "WRB",
+        "rationale": "WRB/GET1是内质网膜上的GET3受体组分，参与接收GET3递送的尾锚定底物；其膜蛋白属性较GET3具有更明确的抗原可及性。"
+      },
+      {
+        "target": "CAMLG",
+        "rationale": "CAMLG/GET2与WRB共同构成GET3受体复合体，直接参与尾锚定蛋白插入内质网膜；其腔面或膜近端区域可作为通路内替代干预点。"
+      },
+      {
+        "target": "ASNA1",
+        "rationale": "ASNA1是GET3的同义基因符号，代表同一TRC40 ATPase节点；可用于数据库交叉检索与遗传证据整合，但不应作为独立替代靶点重复开发。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

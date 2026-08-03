@@ -1,0 +1,65 @@
+{
+  "gene": "KHK",
+  "generatedAt": "2026-08-03T13:41:36.387Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KHK编码酮己糖激酶，是果糖代谢通路中将果糖磷酸化为果糖-1-磷酸的关键胞质酶，遗传缺失与essential fructosuria直接相关，并与碳水化合物代谢异常及代谢表型测量存在遗传学关联。该蛋白主要定位于胞质，缺乏天然胞外结构域或分泌特征，抗体作为常规胞外阻断药物的抗原可及性较弱，更适合用于结构生物学、细胞内递送或诊断捕获场景。相较于下游醛缩酶或转运蛋白，KHK位于果糖专一性代谢入口，底物选择性和疾病因果证据更集中，因此在机制验证型抗体设计中具有较高优先级。",
+    "mechanism": "设计抗体需阻断KHK催化裂缝中ATP结合区与果糖结合区的构象闭合，干扰果糖向果糖-1-磷酸的磷酸转移反应。",
+    "selectedEpitope": "优先覆盖KHK催化结构域ATP结合P-loop及果糖结合口袋邻近构象闭合界面。",
+    "diseaseDirection": "果糖代谢异常与碳水化合物代谢病",
+    "domain": "KHK为同源二聚体胞质激酶，含核苷酸结合折叠、P-loop样磷酸结合区及果糖结合催化裂缝。",
+    "evidence": "KHK果糖代谢遗传关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联数据",
+      "UniProt P50053功能与定位注释",
+      "RCSB PDB 2HLZ晶体结构记录",
+      "人类果糖代谢通路与essential fructosuria文献"
+    ],
+    "referenceEntries": "UniProt:P50053；RCSB PDB:2HLZ；Open Targets:KHK",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ATP结合P-loop及催化裂缝入口",
+        "可直接干扰磷酸供体定位与催化构象闭合",
+        "优先"
+      ],
+      [
+        "Site B",
+        "果糖结合口袋邻近α/β结构域界面",
+        "有利于限制底物进入并稳定非催化构象",
+        "备选"
+      ],
+      [
+        "Site C",
+        "二聚体远端外露表面",
+        "可用于捕获或检测，但对酶活阻断预期较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "KHK为胞内代谢酶，体内抗体可及性是主要界面风险；设计应优先定位于催化裂缝并结合细胞内递送或体外诊断应用。",
+    "structurePrepZh": "以2HLZ高分辨率晶体结构为模板，保留生物学同源二聚体，校核配体结合口袋、缺失环区与晶体接触后再进行表位建模。",
+    "structureRef": "RCSB PDB 2HLZ，X-ray diffraction，1.85 Å",
+    "antibodies": [
+      "暂无获批KHK靶向抗体",
+      "研究级抗KHK检测抗体"
+    ],
+    "interfaceFocus": "ATP-P-loop、果糖口袋与催化裂缝闭合界面",
+    "designMode": "胞内酶阻断型",
+    "candidates": [
+      {
+        "target": "SLC2A5",
+        "rationale": "SLC2A5编码GLUT5，是肠道和代谢组织中主要果糖转运蛋白，位于KHK上游并决定果糖进入细胞的底物流量。其多跨膜胞外环具有抗体可及性，适合作为同通路膜靶点。"
+      },
+      {
+        "target": "ALDOB",
+        "rationale": "ALDOB催化果糖-1-磷酸裂解为二羟基丙酮磷酸和甘油醛，是KHK下游果糖代谢节点，遗传缺陷导致遗传性果糖不耐受。其机制关联明确，但同样属于胞内酶。"
+      },
+      {
+        "target": "TKFC",
+        "rationale": "TKFC具有三酮糖激酶活性，可参与果糖代谢中甘油醛向甘油醛-3-磷酸的转化，连接KHK/ALDOB下游产物进入糖酵解。该靶点可作为果糖代谢通路下游补充验证节点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "ISM1",
+  "generatedAt": "2026-08-03T13:33:19.423Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ISM1为分泌型基质相关蛋白，含血小板反应蛋白1型重复序列与C端AMOP结构域，可在细胞外微环境中参与整合素αvβ5介导的细胞黏附、内皮细胞存活及组织形态相关过程。Open Targets显示其与身高、握力、瘦体重等人体测量性状存在遗传关联，提示其可能位于生长发育和肌骨组织稳态相关通路节点。作为分泌蛋白，ISM1抗原可及性优于胞内调控因子，适合以中和抗体解析其配体样功能。相较下游转录或代谢靶点，ISM1更便于通过抗体直接阻断胞外蛋白-受体界面，具有较高的结构驱动设计优先级。",
+    "mechanism": "通过抗体占据ISM1 AMOP结构域受体结合面，阻断其与整合素αvβ5的结合，从而干预ISM1介导的细胞黏附和内皮细胞存活信号。",
+    "selectedEpitope": "优先锁定C端AMOP结构域潜在整合素结合界面，避免完全覆盖N端TSR钙结合样区域。",
+    "diseaseDirection": "人体测量与肌骨发育性状",
+    "domain": "ISM1为分泌蛋白，N端含TSR1重复序列，C端含AMOP结构域，PDB 9C6T解析二聚体样构象。",
+    "evidence": "ISM1结构与人体测量性状遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病-靶点关联",
+      "UniProt B1AKI9蛋白注释",
+      "RCSB PDB 9C6T晶体结构",
+      "GWAS Catalog人体测量性状遗传证据"
+    ],
+    "referenceEntries": "UniProt:B1AKI9；RCSB PDB:9C6T；Open Targets:ISM1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端AMOP结构域受体结合面",
+        "直接阻断ISM1与整合素αvβ5的功能性相互作用",
+        "优先"
+      ],
+      [
+        "Site B",
+        "TSR1-AMOP连接区及邻近可及面",
+        "稳定构象并可能限制受体结合所需的结构取向",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端TSR1重复序列暴露面",
+        "可用于结合型抗体开发，但可能影响基质相互作用并带来功能解释复杂性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PDB 9C6T分辨率为3.41 Å，侧链构象与柔性环区需谨慎处理；建议以AMOP核心界面为主，结合氢键网络和保守性过滤降低非特异结合风险。",
+    "structurePrepZh": "采用9C6T抗原链A、B构建分泌型二聚体模型，补全缺失侧链并优化糖基化邻近区域；对柔性环采用多构象采样后进入表位筛选。",
+    "structureRef": "RCSB PDB 9C6T，human ISM1，X-ray，3.41 Å",
+    "antibodies": [
+      "抗ISM1中和抗体候选",
+      "抗ISM1结合型研究抗体"
+    ],
+    "interfaceFocus": "AMOP结构域整合素αvβ5结合界面",
+    "designMode": "结构驱动中和设计",
+    "candidates": [
+      {
+        "target": "ITGAV",
+        "rationale": "ITGAV编码整合素αv亚基，是αvβ5受体复合物的配对组成部分，位于ISM1介导细胞黏附和内皮细胞反应的同一胞外受体轴。"
+      },
+      {
+        "target": "ITGB5",
+        "rationale": "ITGB5编码整合素β5亚基，与ITGAV形成αvβ5复合物，是ISM1功能性结合受体的关键组成部分，适合作为受体侧干预靶点。"
+      },
+      {
+        "target": "GRP78",
+        "rationale": "GRP78由HSPA5编码，细胞表面GRP78已报道参与ISM1诱导的细胞凋亡相关相互作用，可作为ISM1胞外配体样功能研究的同通路候选节点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

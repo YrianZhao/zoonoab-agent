@@ -1,0 +1,65 @@
+{
+  "gene": "SIRT7",
+  "generatedAt": "2026-08-03T21:10:38.018Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SIRT7是核仁定位的NAD依赖性去乙酰化酶，参与rDNA转录、DNA损伤应答、染色质稳态与应激适应，其异常表达与肝细胞癌、乳腺癌及部分神经退行性病变中的转录重编程和基因组稳定性改变相关。该蛋白主要位于细胞核/核仁，缺乏天然胞外结构域或分泌特征，完整抗体作为细胞外阻断药物的抗原可及性较弱，更适合细胞内递送抗体片段或研究级结合分子设计。相较于同属SIRT1、SIRT6等广泛参与代谢稳态的靶点，SIRT7在核糖体生物发生、Pol I转录和肿瘤增殖依赖性中的功能更集中，但治疗优先级需受限于细胞内可及性和酶口袋竞争性小分子可开发性。",
+    "mechanism": "通过结合SIRT7催化核心邻近NAD/乙酰赖氨酸底物沟槽，阻断其与乙酰化组蛋白底物及NAD辅因子的构象耦联，从而抑制去乙酰化反应。",
+    "selectedEpitope": "优先覆盖Rossmann样NAD结合域与Zn结合亚域形成的底物入口沟槽外缘，避开高度保守催化残基。",
+    "diseaseDirection": "肿瘤转录调控与神经退行性疾病",
+    "domain": "SIRT7含保守sirtuin催化核心，由Rossmann样NAD结合域和小型Zn结合结构域构成。",
+    "evidence": "SIRT7结构、肿瘤转录调控与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9NRC8功能与亚细胞定位注释",
+      "RCSB PDB 6G0S晶体结构记录",
+      "文献报道的SIRT7-rDNA转录与DNA损伤应答研究"
+    ],
+    "referenceEntries": "UniProt: Q9NRC8; RCSB PDB: 6G0S; Ensembl: ENSG00000187531",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "NAD结合Rossmann折叠与底物沟槽交界面",
+        "可干扰辅因子结合和乙酰赖氨酸底物定位，具备功能阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Zn结合小亚域外侧构象支撑面",
+        "可通过稳定非活性构象影响底物入口开放，适合构象选择性结合",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守催化核心深部口袋",
+        "与SIRT家族保守位点重叠，选择性风险和交叉反应风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SIRT7为细胞核/核仁内酶，常规抗体难以到达作用位点；设计宜采用VHH、细胞穿透或胞内抗体格式，并强化SIRT1/6交叉反应筛选。",
+    "structurePrepZh": "以6G0S高分辨率晶体结构为模板，保留催化核心链并校验NAD/配体邻近残基，补全缺失环区后进行质子化和界面能量优化。",
+    "structureRef": "RCSB PDB 6G0S, X-ray diffraction, 1.48 Å",
+    "antibodies": [
+      "无已获批SIRT7治疗性抗体",
+      "研究级抗SIRT7检测抗体"
+    ],
+    "interfaceFocus": "NAD结合沟槽、底物入口与Zn结合亚域边界",
+    "designMode": "胞内VHH阻断",
+    "candidates": [
+      {
+        "target": "SIRT1",
+        "rationale": "SIRT1同属NAD依赖性去乙酰化酶，参与DNA损伤应答、p53去乙酰化和肿瘤细胞应激适应，可作为同家族通路参照靶点。"
+      },
+      {
+        "target": "SIRT6",
+        "rationale": "SIRT6调控染色质修复、端粒稳态和代谢相关转录程序，与SIRT7共同连接基因组稳定性和肿瘤发生机制。"
+      },
+      {
+        "target": "POLR1A",
+        "rationale": "POLR1A是RNA聚合酶I核心亚基，处于SIRT7促进rDNA转录和核糖体生物发生的同一功能轴，可用于通路层级验证。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

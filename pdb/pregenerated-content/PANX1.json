@@ -1,0 +1,65 @@
+{
+  "gene": "PANX1",
+  "generatedAt": "2026-08-03T15:04:01.264Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PANX1编码七聚体膜通道pannexin 1，可在细胞损伤、炎症刺激或膜电位变化后释放ATP，促进P2RX7相关炎症小体活化，并与肝细胞损伤标志物ALT、AST升高存在遗传关联。PANX1为四跨膜蛋白，含两个胞外环，抗原表位位于细胞外侧，适合以完整膜通道构象开展抗体识别设计。相较于下游IL1B或NLRP3等胞内炎症节点，PANX1具备膜表面可及性与上游ATP释放控制优势，优先级更适合阻断型抗体开发。",
+    "mechanism": "抗体结合PANX1胞外孔口与ECL1/ECL2界面，限制通道开放构象，抑制ATP外排及后续P2RX7介导的NLRP3炎症小体活化。",
+    "selectedEpitope": "优先靶向胞外孔口周围ECL1-ECL2构象表位，兼顾七聚体亚基间界面稳定性。",
+    "diseaseDirection": "炎症性肝损伤与细胞损伤通路",
+    "domain": "PANX1含四个跨膜螺旋、两个胞外环和胞质N/C端，组装为七聚体离子通道。",
+    "evidence": "PANX1结构与炎症ATP释放证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q96RD7蛋白功能与拓扑注释",
+      "RCSB PDB 6WBF冷冻电镜结构",
+      "PANX1-ATP-P2RX7-NLRP3炎症通路文献"
+    ],
+    "referenceEntries": "UniProt Q96RD7；RCSB PDB 6WBF；Open Targets PANX1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "胞外孔口ECL1/ECL2构象界面",
+        "直接限制通道开放与ATP外排，具有明确阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "相邻亚基胞外环交界面",
+        "可能干扰七聚体孔道门控构象，适合构象依赖抗体筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "跨膜螺旋近膜外侧区域",
+        "膜嵌入环境限制可及性，需避免依赖脂质暴露的非稳健表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PANX1胞外环较短且构象受膜环境影响，需采用纳米盘或去垢剂稳定构象，并排除交叉阻断PANX2/PANX3的非特异结合。",
+    "structurePrepZh": "以6WBF七聚体冷冻电镜结构为模板，保留A-G链装配状态，补全胞外环缺失侧链并在膜模拟环境中评估孔口表位可及性。",
+    "structureRef": "RCSB PDB 6WBF，human PANX1 channel cryo-EM structure",
+    "antibodies": [
+      "anti-PANX1 extracellular loop antibody",
+      "PANX1 blocking antibody clone D9M1C"
+    ],
+    "interfaceFocus": "胞外孔口、ECL1/ECL2及亚基间环区界面",
+    "designMode": "通道阻断型",
+    "candidates": [
+      {
+        "target": "P2RX7",
+        "rationale": "P2RX7是PANX1释放ATP后的关键嘌呤能受体，可驱动K+外流和NLRP3炎症小体活化，属于同一细胞损伤炎症轴。"
+      },
+      {
+        "target": "NLRP3",
+        "rationale": "NLRP3位于PANX1-ATP-P2RX7信号下游，介导CASP1激活和IL1B成熟，是炎症小体通路核心节点。"
+      },
+      {
+        "target": "IL1B",
+        "rationale": "IL1B为NLRP3炎症小体活化后的主要效应细胞因子，可反映PANX1相关危险信号释放后的炎症输出。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

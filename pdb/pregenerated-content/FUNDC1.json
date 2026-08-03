@@ -1,0 +1,65 @@
+{
+  "gene": "FUNDC1",
+  "generatedAt": "2026-08-03T12:38:30.246Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FUNDC1是线粒体外膜有丝分裂样受体，参与缺氧诱导的线粒体自噬，并通过LC3结合基序招募MAP1LC3/GABARAP家族调控受损线粒体清除；该过程与肝细胞癌、乳腺癌等肿瘤中的代谢适应、低氧耐受和线粒体质量控制相关。FUNDC1主要定位于线粒体外膜，其功能性N端结构域面向胞质而非经典细胞表面抗原，抗体可及性弱于分泌因子或质膜受体，适合以细胞内递送抗体片段或研究级阻断分子推进。相较同通路中高度冗余的LC3/GABARAP成员，FUNDC1处于缺氧线粒体自噬的受体端，靶向其LC3结合界面可更直接干预受体-自噬体连接步骤，因而具有机制验证优先级。",
+    "mechanism": "阻断FUNDC1 N端LC3-interacting region与MAP1LC3B疏水口袋的结合，抑制FUNDC1介导的线粒体外膜向自噬体膜锚定。",
+    "selectedEpitope": "优先覆盖N端LC3-interacting region核心基序及邻近磷酸化调控位点，限制LC3B结合。",
+    "diseaseDirection": "肿瘤低氧适应与线粒体自噬",
+    "domain": "FUNDC1含N端胞质区、FUN14结构域及跨膜区；PDB 5GMV解析LC3B结合肽复合物。",
+    "evidence": "FUNDC1介导缺氧线粒体自噬证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q8IVP5功能与亚细胞定位注释",
+      "RCSB PDB 5GMV晶体结构记录",
+      "缺氧诱导FUNDC1-LC3相互作用文献"
+    ],
+    "referenceEntries": "UniProt Q8IVP5；RCSB PDB 5GMV；Open Targets FUNDC1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端LC3-interacting region与LC3B疏水口袋接触面",
+        "直接阻断FUNDC1-LC3B相互作用，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "LIR邻近Ser13/Tyr18等磷酸化调控区域",
+        "影响LIR暴露与LC3亲和力，可作为变构干预表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "跨膜邻近FUN14结构域外侧区域",
+        "结构可及性和抗体递送可行性受限，需谨慎评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FUNDC1并非细胞表面受体，常规全长抗体难以进入线粒体外膜胞质侧界面；建议采用VHH、intrabody或递送系统验证。",
+    "structurePrepZh": "以5GMV中LC3B-FUNDC1肽复合物为模板，保留LIR肽与LC3B接触残基，补充缺失N端柔性区并标注磷酸化位点。",
+    "structureRef": "Kuang et al., FUNDC1 LIR bound to LC3B, PDB 5GMV",
+    "antibodies": [
+      "研究级anti-FUNDC1抗体",
+      "研究级anti-LC3B抗体"
+    ],
+    "interfaceFocus": "FUNDC1 LIR- LC3B疏水口袋界面",
+    "designMode": "胞内阻断型VHH",
+    "candidates": [
+      {
+        "target": "MAP1LC3B",
+        "rationale": "MAP1LC3B是FUNDC1 LIR直接结合的自噬体膜蛋白，位于同一线粒体自噬受体-自噬体连接步骤。靶向其LIR结合沟槽可广谱影响受体招募。"
+      },
+      {
+        "target": "GABARAPL1",
+        "rationale": "GABARAPL1属于ATG8家族，可与多种LIR基序结合并参与选择性自噬膜延伸。其与FUNDC1通路同属受体介导线粒体自噬轴。"
+      },
+      {
+        "target": "ULK1",
+        "rationale": "ULK1在缺氧线粒体自噬中磷酸化FUNDC1 Ser17并增强其与LC3结合，是FUNDC1上游激酶节点。靶向ULK1可调节FUNDC1依赖性线粒体自噬启动。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

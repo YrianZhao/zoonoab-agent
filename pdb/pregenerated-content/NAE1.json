@@ -1,0 +1,65 @@
+{
+  "gene": "NAE1",
+  "generatedAt": "2026-08-03T14:33:03.815Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NAE1与UBA3组成NEDD8活化酶E1，催化NEDD8腺苷化并形成硫酯中间体，驱动Cullin neddylation及CRL泛素连接酶活化，在AML与MDS中支持细胞周期、DNA损伤应答和抗凋亡蛋白周转。该蛋白为胞内核质酶复合体，天然抗原可及性弱，适合作为胞内机制研究、递送型抗体片段或降解偶联策略的设计对象。相较下游多种CRL底物，NAE1处于neddylation级联上游且结构解析充分，优先级主要来自通路枢纽性与可结构化建模优势，但成药性低于膜受体或分泌靶点。",
+    "mechanism": "设计分子应阻断NAE1-UBA3异源二聚体内NEDD8腺苷化位点与NEDD8 C端甘氨酸的定位，或干扰NAE1结合NEDD8后向UBA3催化半胱氨酸转硫酯过程。",
+    "selectedEpitope": "优先覆盖NAE1腺苷化结构域近NEDD8结合沟槽及UBA3界面邻近区域，避免完全埋藏ATP口袋。",
+    "diseaseDirection": "髓系肿瘤与neddylation通路",
+    "domain": "NAE1为NEDD8 E1调节亚基，含腺苷化相关结构域并与UBA3形成异源二聚体复合酶。",
+    "evidence": "NAE1-NEDD8活化酶结构与髓系肿瘤证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q13564功能注释",
+      "RCSB PDB 1TT5晶体结构",
+      "NEDD8-CRL通路及pevonedistat临床研究文献"
+    ],
+    "referenceEntries": "UniProt Q13564；RCSB PDB 1TT5；Reactome NEDD8 activation",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "腺苷化结构域NEDD8 C端定位沟槽",
+        "直接干扰NEDD8腺苷化与底物定位，机制判读清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "NAE1-UBA3异源二聚体界面邻近面",
+        "可能削弱E1复合体装配或转硫酯构象耦联",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP结合口袋深部保守区域",
+        "保守性高且空间埋藏，抗体可及性和选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NAE1为胞内蛋白，常规抗体难以进入核质空间；设计应限定为细胞内递送、intrabody或研究级Fab/VHH，并严格评估与UBA1等E1酶保守界面交叉反应。",
+    "structurePrepZh": "以1TT5晶体结构为模板，保留NAE1-UBA3复合体和NEDD8相关构象信息，补全缺失环区、校正质子化状态，并标注ATP/NEDD8结合邻域。",
+    "structureRef": "RCSB PDB 1TT5，2.6 Å X-ray human NAE-NEDD8复合体",
+    "antibodies": [
+      "anti-NAE1 research antibody",
+      "anti-APPBP1/NAE1 research antibody"
+    ],
+    "interfaceFocus": "NEDD8定位沟槽与NAE1-UBA3耦联界面",
+    "designMode": "胞内酶复合体阻断",
+    "candidates": [
+      {
+        "target": "UBA3",
+        "rationale": "UBA3为NEDD8活化酶催化亚基，携带催化半胱氨酸并与NAE1共同完成NEDD8腺苷化和转硫酯反应，是同一E1步骤的直接伴侣靶点。"
+      },
+      {
+        "target": "NEDD8",
+        "rationale": "NEDD8是该级联的泛素样底物，其C端甘氨酸被NAE1-UBA3活化并转移至E2酶，阻断其E1结合可直接抑制Cullin neddylation。"
+      },
+      {
+        "target": "UBE2M",
+        "rationale": "UBE2M/UBC12是NEDD8通路核心E2酶，接受UBA3硫酯化NEDD8并促进Cullin修饰，处于NAE1下游同一neddylation通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

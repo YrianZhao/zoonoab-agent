@@ -1,0 +1,65 @@
+{
+  "gene": "SNAI1",
+  "generatedAt": "2026-08-03T16:45:28.890Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SNAI1是上皮-间质转化核心转录抑制因子，可通过锌指结构域结合E-box序列并抑制CDH1等上皮基因转录，在肿瘤侵袭、纤维化和发育异常相关通路中具有明确机制地位。该蛋白主要定位于细胞核，不具备经典胞外结构域、分泌蛋白或膜受体特征，因此完整IgG体内阻断的抗原可及性弱。相较于TGFBR1、TGFB1或AXL等同通路且胞外可及靶点，SNAI1作为抗体主靶点优先级较低，更适合作为结构验证、细胞内抗体或递送型VHH设计对象。",
+    "mechanism": "设计重点为阻断SNAI1 C2H2锌指结构域与E-box DNA的碱基沟识别，并削弱其对CDH1启动子抑制复合体的招募。",
+    "selectedEpitope": "优先覆盖C端C2H2锌指DNA结合面，避开锌配位核心残基以降低构象破坏风险。",
+    "diseaseDirection": "EMT相关肿瘤侵袭与纤维化",
+    "domain": "SNAI1含N端SNAG转录抑制结构域及C端多枚C2H2型锌指DNA结合结构域。",
+    "evidence": "SNAI1结构与EMT转录抑制证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt O95863功能与定位注释",
+      "RCSB PDB 4QLI晶体结构",
+      "EMT与CDH1转录抑制相关文献"
+    ],
+    "referenceEntries": "UniProt O95863；RCSB PDB 4QLI；Open Targets SNAI1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端C2H2锌指DNA结合界面",
+        "直接干预E-box识别，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SNAG结构域邻近共抑制因子招募面",
+        "可能削弱LSD1/HDAC相关抑制复合体招募",
+        "备选"
+      ],
+      [
+        "Site C",
+        "锌指核心锌配位残基周边",
+        "易破坏整体折叠并产生非特异构象效应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SNAI1为核内转录因子，天然抗体可及性不足；建议限定为细胞内抗体、VHH递送或PROTAC适配研究，并设置DNA结合活性验证。",
+    "structurePrepZh": "以4QLI高分辨率晶体结构为模板，保留锌离子与配位几何，补全缺失柔性片段后进行DNA结合面可及性评估。",
+    "structureRef": "RCSB PDB 4QLI，X-ray diffraction，1.45 Å",
+    "antibodies": [
+      "anti-SNAI1研究级单克隆抗体",
+      "anti-SNAI1 ChIP级抗体"
+    ],
+    "interfaceFocus": "C2H2锌指-E-box DNA识别界面",
+    "designMode": "细胞内VHH设计",
+    "candidates": [
+      {
+        "target": "TGFB1",
+        "rationale": "TGFB1是诱导SMAD依赖性EMT并上调SNAI1表达的上游配体，分泌蛋白抗原可及性显著优于核内SNAI1。"
+      },
+      {
+        "target": "TGFBR2",
+        "rationale": "TGFBR2介导TGFB配体结合并启动TGFBR1磷酸化，是SNAI1诱导轴的膜受体节点，适合阻断型抗体设计。"
+      },
+      {
+        "target": "AXL",
+        "rationale": "AXL与EMT、侵袭和治疗耐受相关，并可与SNAI1高表达状态形成正相关表型；其胞外Ig样和FNIII结构域具备抗体开发可及性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

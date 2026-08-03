@@ -1,0 +1,65 @@
+{
+  "gene": "POLR2D",
+  "generatedAt": "2026-08-03T15:26:12.738Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "POLR2D是RNA聚合酶II核心复合体亚基，参与mRNA转录起始与延伸，病毒感染中多种病毒依赖宿主Pol II转录环境完成病毒或宿主应答基因表达，因此在HIV、登革热和流感相关数据中呈现疾病关联。该蛋白定位于细胞核内RNA聚合酶II复合体，不具备天然胞外结构域或分泌特征，完整抗体直接结合活细胞抗原的可及性不足，更适合胞内递送抗体片段或研究级结构阻断设计。相较于TFIID、Mediator等大型转录调控节点，POLR2D具有明确的Pol II核心结构定位和PDB实验结构支持，但因广泛基础转录功能带来安全窗限制，优先级应低于病毒特异性或细胞表面宿主因子。",
+    "mechanism": "设计分子可阻断POLR2D与RNA聚合酶II核心邻近亚基的装配界面，干扰Pol II复合体稳定性及病毒依赖的宿主转录支持。",
+    "selectedEpitope": "优先覆盖POLR2D在Pol II核心复合体中的亚基装配界面螺旋束，避免保守折叠核心深埋区。",
+    "diseaseDirection": "病毒感染宿主转录依赖方向",
+    "domain": "POLR2D为RNA聚合酶II RPB4/7相关核心亚基组成部分，结构以保守折叠和亚基接触界面为主。",
+    "evidence": "POLR2D宿主Pol II转录依赖与病毒感染证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt O15514功能与亚细胞定位注释",
+      "RCSB PDB 2C35实验结构记录",
+      "RNA聚合酶II核心复合体结构与转录机制文献"
+    ],
+    "referenceEntries": "UniProt: O15514; RCSB PDB: 2C35; Ensembl: ENSG00000144231",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Pol II核心复合体亚基装配界面",
+        "可用于阻断POLR2D参与聚合酶II稳定组装",
+        "优先"
+      ],
+      [
+        "Site B",
+        "外露环区及相邻短螺旋表面",
+        "利于获得结合分子并降低对深埋折叠核心的扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守折叠核心与核酸酶样结构邻近区",
+        "可能影响基础转录并带来广泛细胞毒性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "POLR2D为核内基础转录机器亚基，天然抗体可及性差且功能保守；建议限定为胞内抗体片段、PROTAC适配研究或体外机制验证。",
+    "structurePrepZh": "以PDB 2C35实验结构为模板，保留POLR2D相关链及邻近亚基界面，补全缺失侧链并标注深埋接触面与溶剂暴露面。",
+    "structureRef": "RCSB PDB 2C35，X-ray diffraction，2.7 Å，人源Pol II复合体结构",
+    "antibodies": [
+      "无获批POLR2D治疗性抗体",
+      "抗RNA polymerase II研究用抗体"
+    ],
+    "interfaceFocus": "POLR2D-Pol II核心邻近亚基装配界面",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "POLR2A",
+        "rationale": "POLR2A编码RNA聚合酶II最大催化亚基，是病毒依赖宿主mRNA转录环境的核心节点；其疾病通路关联与Pol II复合体功能直接一致。"
+      },
+      {
+        "target": "POLR2B",
+        "rationale": "POLR2B为RNA聚合酶II第二大亚基，与POLR2A共同形成催化中心和DNA/RNA结合通道，可作为同一宿主转录依赖轴的替代结构靶点。"
+      },
+      {
+        "target": "POLR2E",
+        "rationale": "POLR2E属于RNA聚合酶II核心亚基，参与复合体装配稳定性；与POLR2D同处Pol II复合体，可用于比较亚基界面阻断策略。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

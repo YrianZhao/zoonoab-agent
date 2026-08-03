@@ -1,0 +1,65 @@
+{
+  "gene": "CHMP5",
+  "generatedAt": "2026-08-03T11:23:05.378Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CHMP5是ESCRT-III相关复合体成员，参与HIV-1出芽过程中Gag-p6招募ESCRT机器后的膜颈切割步骤，疾病关联以HIV感染最为突出。该蛋白主要定位于胞质侧内体膜及多泡体装配界面，并非经典分泌蛋白或细胞外膜受体，抗原天然可及性低于CD4、CCR5等细胞表面靶点。其优先级主要来自高分辨率结构与宿主因子机制价值，适合作为机制验证或胞内递送抗体设计对象，而不宜优先作为常规裸抗体治疗靶点。",
+    "mechanism": "通过结合CHMP5与CHMP4/ESCRT-III装配相关螺旋界面，干扰ESCRT-III聚合与VPS4介导的复合体重塑，从而抑制HIV-1膜出芽末端切割。",
+    "selectedEpitope": "优先覆盖CHMP5核心α螺旋束中参与ESCRT-III装配的疏水沟槽与带电结合面。",
+    "diseaseDirection": "HIV感染宿主因子干预",
+    "domain": "CHMP5为ESCRT-III相关CHMP蛋白，含N端α螺旋核心束及C端调控区，4TXR覆盖结构化核心区域。",
+    "evidence": "CHMP5-ESCRT介导HIV出芽结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9NZZ3功能与亚细胞定位注释",
+      "RCSB PDB 4TXR晶体结构记录",
+      "HIV-1 Gag-p6招募ESCRT出芽机制文献"
+    ],
+    "referenceEntries": "UniProt Q9NZZ3；RCSB PDB 4TXR；Open Targets CHMP5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "α螺旋核心束CHMP4/ESCRT-III装配界面",
+        "直接干扰ESCRT-III聚合与膜切割复合体形成，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "核心束外侧带电表面与潜在适配蛋白接触区",
+        "可影响CHMP5在ESCRT网络中的蛋白互作选择性，保留构象稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "疏水核心及高度保守折叠维持区域",
+        "可能导致非特异性构象扰动并影响细胞基础内体分选功能",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CHMP5为胞内宿主蛋白，裸抗体难以到达作用位点；ESCRT通路参与细胞膜修复、胞质分裂及内体分选，需控制递送范围与界面选择性。",
+    "structurePrepZh": "以4TXR高分辨率晶体结构为模板，保留A、B、C链构象差异，补全缺失柔性末端并评估螺旋束界面保守性。",
+    "structureRef": "RCSB PDB 4TXR，X射线晶体结构，1.0 Å",
+    "antibodies": [
+      "抗CHMP5研究级抗体",
+      "胞内递送型抗ESCRT互作阻断抗体"
+    ],
+    "interfaceFocus": "ESCRT-III装配螺旋束互作面",
+    "designMode": "胞内阻断型",
+    "candidates": [
+      {
+        "target": "TSG101",
+        "rationale": "TSG101识别HIV-1 Gag-p6的PTAP基序并招募ESCRT-I，是病毒出芽早期宿主因子，靶向其Gag结合界面可阻断ESCRT级联启动。"
+      },
+      {
+        "target": "PDCD6IP",
+        "rationale": "PDCD6IP/ALIX结合HIV-1 Gag-p6的YPXnL基序并连接CHMP4，是ESCRT-III招募的重要旁路节点，与CHMP5处于同一病毒出芽通路。"
+      },
+      {
+        "target": "CHMP4B",
+        "rationale": "CHMP4B是ESCRT-III聚合和膜颈收缩的核心亚基，位于CHMP5功能邻近层级，具备更直接的膜切割执行机制关联。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

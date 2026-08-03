@@ -1,0 +1,65 @@
+{
+  "gene": "MYCN",
+  "generatedAt": "2026-08-03T14:29:40.825Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MYCN编码核内bHLH-LZ转录因子，扩增或过表达可驱动神经母细胞瘤等肿瘤中的E-box依赖性转录程序，并通过与MAX异源二聚维持增殖与代谢基因表达。该蛋白不具备分泌或膜受体特征，天然抗原可及性不利于常规胞外抗体，但其bHLH-LZ二聚化界面可作为细胞内抗体、递送型Fab或VHH的结构化干预位点。相较于间接抑制上游受体或下游效应因子，直接靶向MYCN-MAX界面更接近致癌转录复合体核心节点，适合作为高优先级的细胞内抗体设计模型。",
+    "mechanism": "通过结合MYCN bHLH-LZ区域，阻断MYCN与MAX形成异源二聚体，降低复合体对E-box DNA序列的结合与转录激活能力。",
+    "selectedEpitope": "优先锁定bHLH-LZ螺旋束中MAX结合面及DNA结合邻近碱性区。",
+    "diseaseDirection": "MYCN驱动肿瘤转录依赖",
+    "domain": "MYCN含N端转录调控区、Myc box保守区及C端bHLH-LZ DNA结合/二聚化结构域。",
+    "evidence": "MYCN-MAX转录复合体结构与疾病遗传证据",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P04198功能与结构域注释",
+      "RCSB PDB 5G1X晶体结构记录",
+      "神经母细胞瘤MYCN扩增与转录依赖研究"
+    ],
+    "referenceEntries": "UniProt P04198；RCSB PDB 5G1X；Open Targets MYCN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端bHLH-LZ的MAX异源二聚化界面",
+        "直接破坏MYCN-MAX复合体装配，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "bHLH碱性区与E-box DNA结合邻近表面",
+        "可削弱DNA识别或稳定性，适合与二聚化阻断策略联用",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端转录调控区及Myc box区域",
+        "区域柔性较高且结构可解析度有限，表位构象风险较大",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MYCN为核内转录因子，常规抗体难以进入细胞核；设计需采用细胞内抗体、VHH递送或降解偶联策略，并规避MYC家族保守界面交叉反应。",
+    "structurePrepZh": "以5G1X中MYCN bHLH-LZ复合体为结构模板，保留抗原链A/B中可解析螺旋区，补全缺失侧链并评估MAX结合面与DNA邻近面的暴露性。",
+    "structureRef": "PDB 5G1X；X-ray diffraction，1.72 Å，MYCN bHLH-LZ结构",
+    "antibodies": [
+      "细胞内抗MYC家族VHH概念抗体",
+      "递送型抗转录因子Fab工程抗体"
+    ],
+    "interfaceFocus": "bHLH-LZ异源二聚化面与E-box邻近碱性区",
+    "designMode": "细胞内界面阻断",
+    "candidates": [
+      {
+        "target": "MAX",
+        "rationale": "MAX是MYCN形成DNA结合异源二聚体的必需伙伴，阻断MAX参与复合体装配可抑制MYCN依赖转录程序。"
+      },
+      {
+        "target": "AURKA",
+        "rationale": "AURKA可与MYCN形成稳定复合体并保护MYCN免于蛋白酶体降解，是MYCN扩增肿瘤中维持MYCN蛋白稳定性的同通路节点。"
+      },
+      {
+        "target": "BRD4",
+        "rationale": "BRD4参与维持MYCN驱动的超级增强子转录活性，抑制该轴可下调MYCN依赖的致癌转录网络。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "TERT",
+  "generatedAt": "2026-08-03T21:28:04.610Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TERT是端粒酶催化亚基，负责在TERC RNA模板指导下延长端粒重复序列，端粒维持缺陷与先天性角化不良、端粒相关肺纤维化和骨髓衰竭具有明确遗传关联。该蛋白主要定位于细胞核内端粒酶核糖核蛋白复合体，缺乏天然胞外结构域或分泌可及性，因此常规体内抗体阻断的抗原可及性明显受限。其优先级来自高疾病遗传证据和可解析催化结构，但相较TGFBR2、PDGFR或整合素等膜受体型纤维化靶点，更适合作为细胞内递送抗体、抗体片段或研究型构象探针靶点。",
+    "mechanism": "通过胞内递送抗体片段结合TERT逆转录酶结构域，干扰TERT与TERC模板-引物复合体的催化定位，抑制端粒重复序列延伸。",
+    "selectedEpitope": "优先锁定RT结构域掌心区邻近模板-引物结合沟槽，避开高度保守催化Asp位点直接遮挡。",
+    "diseaseDirection": "端粒生物学异常与肺纤维化",
+    "domain": "TERT含TEN结构域、RNA结合结构域、逆转录酶结构域及C端扩展结构域，形成端粒酶催化核心。",
+    "evidence": "TERT端粒维持缺陷疾病遗传与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt O14746功能与亚细胞定位注释",
+      "RCSB PDB 5MEO实验结构记录",
+      "端粒酶复合体结构与端粒病文献"
+    ],
+    "referenceEntries": "UniProt O14746；RCSB PDB 5MEO；Open Targets TERT",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RT结构域掌心区模板-引物结合沟槽边缘",
+        "有望干扰TERT对TERC模板-端粒DNA底物的催化定位",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RNA结合结构域与TERC相邻界面",
+        "可作为阻断TERT-TERC装配或稳定性的变构表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "TEN结构域端粒DNA募集相关表面",
+        "可能影响底物招募，但构象依赖性和复合体背景较强",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TERT为核内酶，常规抗体体内可及性不足；设计应限定为胞内递送Fab/VHH、细胞穿透格式或体外构象探针，并评估端粒酶正常组织毒性。",
+    "structurePrepZh": "以5MEO实验结构为核心模板，保留催化结构域及关键核酸邻近界面，补齐缺失环区并标注TERT-TERC相关功能残基。",
+    "structureRef": "RCSB PDB 5MEO，X-ray diffraction，1.772 Å",
+    "antibodies": [
+      "抗TERT研究级单克隆抗体 Y182",
+      "抗TERT研究级单克隆抗体 2C4"
+    ],
+    "interfaceFocus": "RT掌心区模板-引物结合沟槽",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "TERC",
+        "rationale": "TERC提供端粒酶RNA模板并与TERT组成催化核心，是端粒维持和端粒病通路中的直接功能伙伴。其RNA属性不适合常规抗体阻断，但适合作为复合体装配验证节点。"
+      },
+      {
+        "target": "DKC1",
+        "rationale": "DKC1参与端粒酶RNA稳定和H/ACA核糖核蛋白装配，突变可导致先天性角化不良。该靶点可用于评估端粒酶复合体成熟与端粒维护缺陷。"
+      },
+      {
+        "target": "RTEL1",
+        "rationale": "RTEL1是端粒复制与T环解旋相关解旋酶，遗传变异与端粒相关肺纤维化和骨髓衰竭相关。其位于同一端粒稳态疾病轴，可作为TERT功能缺陷的通路候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

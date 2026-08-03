@@ -1,0 +1,65 @@
+{
+  "gene": "EEF1B2",
+  "generatedAt": "2026-08-03T18:56:36.666Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "EEF1B2编码真核翻译延伸因子1β2，是EEF1B复合体的鸟嘌呤核苷酸交换亚基，促进EEF1A-GDP向EEF1A-GTP再循环并维持蛋白质翻译延伸。其Open Targets关联以神经退行性疾病、发育迟缓和智力障碍为主，提示翻译稳态异常与神经发育及神经元功能受损存在关联。该蛋白主要为胞质可溶性翻译因子，缺乏天然胞外结构域或膜受体暴露特征，抗原可及性不适合作为常规体内阻断抗体靶点。相较于具有细胞表面可及性的同通路受体或分泌因子，EEF1B2的优先级较低，更适合研究级胞内结合体或递送型抗体片段设计。",
+    "mechanism": "设计目标为结合EEF1B2催化交换结构域，干扰其与EEF1A-GDP复合物的接触，从而降低EEF1A核苷酸交换效率并影响翻译延伸循环。",
+    "selectedEpitope": "优先评估EEF1Bα/β样催化结构域中邻近EEF1A结合面的保守沟槽，避免直接覆盖高度保守核苷酸交换核心。",
+    "diseaseDirection": "神经发育与神经退行性疾病",
+    "domain": "EEF1B2含N端调控区及C端EEF1Bα/β样鸟嘌呤核苷酸交换结构域，结构以可溶性胞质域为主。",
+    "evidence": "EEF1B2翻译延伸复合体与神经疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProtKB P24534功能与亚细胞定位注释",
+      "RCSB PDB 5DQS晶体结构记录",
+      "Gene Ontology翻译延伸与核苷酸交换功能注释"
+    ],
+    "referenceEntries": "UniProtKB:P24534；RCSB PDB:5DQS；Open Targets:EEF1B2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端EEF1Bα/β样催化域邻近EEF1A结合沟槽",
+        "可直接测试阻断EEF1B2与EEF1A-GDP接触的功能效应",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化域外侧保守螺旋-环区",
+        "有利于获得高亲和结合并降低对催化核心完全遮蔽的风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端调控区或柔性片段",
+        "结构可塑性较高且功能阻断确定性不足，需结合HDX或突变验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "EEF1B2为胞内可溶性蛋白，体内抗体可达性受限；设计宜定位为研究级Fab/VHH、细胞内抗体或递送系统验证，避免宣称常规胞外阻断疗法。",
+    "structurePrepZh": "以5DQS中A、D链为抗原模板，保留解析稳定的催化域坐标，补全缺失侧链并检查晶体接触界面，去除非功能性对称配体干扰。",
+    "structureRef": "RCSB PDB 5DQS，X-ray diffraction，2.1 Å",
+    "antibodies": [
+      "无已批准同靶点治疗性抗体",
+      "研究级抗EEF1B2抗体"
+    ],
+    "interfaceFocus": "EEF1A接触沟槽及GEF催化域外缘",
+    "designMode": "胞内靶向验证",
+    "candidates": [
+      {
+        "target": "EEF1A1",
+        "rationale": "EEF1A1是翻译延伸循环中的GTP依赖性氨酰-tRNA递送因子，与EEF1B2构成直接功能耦合节点，适合用于同轴通路对照。"
+      },
+      {
+        "target": "EEF1G",
+        "rationale": "EEF1G是EEF1B复合体支架亚基，参与组织EEF1B2与其他交换因子组分的复合体装配，可用于评估复合体层面的调控策略。"
+      },
+      {
+        "target": "EEF1D",
+        "rationale": "EEF1D同属EEF1B鸟嘌呤核苷酸交换因子组成部分，与EEF1B2共同支持EEF1A再活化，适合作为冗余交换功能的候选比较靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "NOTCH1",
+  "generatedAt": "2026-08-03T14:47:28.044Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NOTCH1 是 Notch 信号通路核心跨膜受体，配体诱导的构象变化与蛋白水解释放 NICD 可驱动 CLL、头颈鳞癌及多类肿瘤中的转录异常。其大型胞外 EGF 重复序列和负调控区暴露于细胞表面，具备抗体识别与构象锁定的可及性优势。相较 DLL/JAG 配体或下游转录复合体，NOTCH1 可在受体近端阻断信号启动，并可利用高分辨率结构开展结构域定向设计，优先级较高。",
+    "mechanism": "抗体结合 NOTCH1 负调控区，稳定 LNR-HD 自抑制构象，阻断 ADAM 金属蛋白酶对 S2 位点的配体依赖性切割。",
+    "selectedEpitope": "优先靶向 NRR 的 LNR-A/B/C 与 HD 近邻界面，避免直接覆盖广泛保守钙结合 EGF 重复区。",
+    "diseaseDirection": "Notch驱动肿瘤与血液恶性病变",
+    "domain": "NOTCH1 含36个胞外EGF样重复、LNR重复、异二聚化HD区、跨膜段及胞内RAM/ANK/PEST结构域。",
+    "evidence": "NOTCH1通路异常与受体近端阻断证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P46531 functional annotation",
+      "RCSB PDB 2F8Y experimental structure",
+      "NOTCH1 NRR antibody inhibition literature"
+    ],
+    "referenceEntries": "UniProt P46531；RCSB PDB 2F8Y；Open Targets ENSG00000148400",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "NRR中LNR重复与HD结构域交界面",
+        "稳定自抑制构象并阻断S2切割暴露，具备机制优先性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "EGF11-12配体结合模块邻近区域",
+        "可干扰DLL/JAG配体结合，但需控制对生理Notch配体识别的广谱抑制",
+        "备选"
+      ],
+      [
+        "Site C",
+        "HD结构域靠近S2蛋白水解位点区域",
+        "可能强效抑制激活切割，但存在构象依赖性与可开发性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NOTCH1生理功能广泛，NRR抑制需避免过度泛Notch毒性。建议采用肿瘤选择性表达场景验证，并排除EGF钙结合保守表位的交叉反应。",
+    "structurePrepZh": "以2F8Y晶体结构作为NRR构象模板，补全缺失侧链并保留关键二硫键；对LNR-HD界面进行糖基化与钙离子环境兼容性评估。",
+    "structureRef": "Gordon et al., NOTCH1 negative regulatory region crystal structure, PDB 2F8Y",
+    "antibodies": [
+      "brontictuzumab",
+      "OMP-52M51"
+    ],
+    "interfaceFocus": "LNR重复-HD自抑制界面与S2切割屏蔽区",
+    "designMode": "构象锁定阻断",
+    "candidates": [
+      {
+        "target": "NOTCH2",
+        "rationale": "NOTCH2 属同一 Notch 受体通路，可通过相似的配体诱导蛋白水解机制激活NICD转录程序，适合作为受体选择性与旁路补偿评估靶点。"
+      },
+      {
+        "target": "DLL4",
+        "rationale": "DLL4 是 NOTCH1 的膜结合配体之一，参与配体-受体结合和机械牵引激活过程；阻断 DLL4-NOTCH1 相互作用可在通路上游抑制信号启动。"
+      },
+      {
+        "target": "JAG1",
+        "rationale": "JAG1 是 NOTCH1 的经典配体，在肿瘤微环境与血管相关 Notch 激活中具有通路相关性，可作为配体侧干预的候选靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

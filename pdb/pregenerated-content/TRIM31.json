@@ -1,0 +1,65 @@
+{
+  "gene": "TRIM31",
+  "generatedAt": "2026-08-03T17:29:12.947Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TRIM31为胞内E3泛素连接酶，参与RIG-I、MAVS及NLRP3相关先天免疫信号，并可影响炎症、肿瘤免疫微环境及血液细胞表型。该蛋白缺乏分泌形式和稳定胞外结构域，天然抗原可及性不利于常规阻断型抗体，但适合发展胞内递送抗体片段或研究级构象探针。相较同通路中TNF、IL6等可及性更高靶点，TRIM31的临床可成药性优先级较低；其优势主要在于可直接解析泛素化复合物装配节点。",
+    "mechanism": "以胞内抗体片段干扰TRIM31 B-box/Coiled-coil介导的自聚化，降低其对MAVS或NLRP3复合体相关底物的泛素化调节能力。",
+    "selectedEpitope": "优先覆盖2YSJ所示B-box结构域锌结合核心邻近的蛋白互作面，避免直接破坏金属配位残基。",
+    "diseaseDirection": "炎症免疫与肿瘤免疫调控",
+    "domain": "TRIM31含RING、B-box、Coiled-coil及C端PRY/SPRY结构域，2YSJ对应B-box结构域。",
+    "evidence": "TRIM31先天免疫泛素化节点证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9BZY9功能与结构域注释",
+      "RCSB PDB 2YSJ溶液NMR结构",
+      "TRIM31调控MAVS/NLRP3相关文献"
+    ],
+    "referenceEntries": "UniProt Q9BZY9；RCSB PDB 2YSJ；Open Targets TRIM31",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "B-box结构域暴露螺旋及环区互作面",
+        "可能阻断TRIM31自聚化或底物复合物装配，适合胞内抗体片段筛选",
+        "优先"
+      ],
+      [
+        "Site B",
+        "B-box与Coiled-coil连接邻近区域",
+        "可干扰构象耦联与多聚体稳定性，但需补充全长结构模型",
+        "备选"
+      ],
+      [
+        "Site C",
+        "锌离子配位核心及保守半胱氨酸/组氨酸簇",
+        "结构稳定性依赖区域，结合可能导致非特异性失折叠与选择性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TRIM31为胞内蛋白，常规Fab难以到达作用位点；B-box锌结合核心保守性较高，需规避金属配位残基并验证TRIM家族选择性。",
+    "structurePrepZh": "以2YSJ NMR模型簇评估B-box构象异质性，补充AlphaFold全长模型定位RING、Coiled-coil及PRY/SPRY相对关系。",
+    "structureRef": "RCSB PDB 2YSJ；TRIM31 B-box solution NMR structure",
+    "antibodies": [
+      "研究级抗TRIM31抗体",
+      "胞内单域抗体筛选格式"
+    ],
+    "interfaceFocus": "B-box暴露螺旋、锌结合邻近互作面",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "MAVS",
+        "rationale": "MAVS是RIG-I样受体抗病毒信号的线粒体接头蛋白，与TRIM31介导的泛素化调节处于同一先天免疫轴。其功能节点更接近下游IFN诱导复合体形成。"
+      },
+      {
+        "target": "DDX58",
+        "rationale": "DDX58编码RIG-I，是上游病毒RNA感知受体，可通过MAVS驱动I型干扰素信号。与TRIM31相关通路具有明确的上下游关系。"
+      },
+      {
+        "target": "NLRP3",
+        "rationale": "NLRP3炎性小体受到TRIM31相关泛素化调节，参与IL-1β成熟及炎症放大。该节点与炎症疾病和肿瘤微环境均存在机制关联。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

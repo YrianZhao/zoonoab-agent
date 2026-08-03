@@ -1,0 +1,65 @@
+{
+  "gene": "SCN3A",
+  "generatedAt": "2026-08-03T16:21:53.163Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SCN3A编码Nav1.3电压门控钠通道α亚基，发育期脑组织表达较高，致病性变异可改变钠电流激活、失活或持续电流，促进神经元异常放电并驱动癫痫及发育性癫痫性脑病。该蛋白为多跨膜离子通道，四个同源结构域的胞外环、孔区外庭及电压感受器外侧面可作为抗体可及抗原区域。相较于广泛表达的Nav1.1、Nav1.2等同家族靶点，SCN3A在特定发育性癫痫遗传证据中具有较高疾病关联度，适合作为机制验证优先靶点。",
+    "mechanism": "抗体结合Nav1.3胞外孔区外庭或电压感受器外侧环，稳定非导通构象，降低异常钠内流及持续电流，抑制神经元高频异常放电。",
+    "selectedEpitope": "优先覆盖Domain IV S5-S6胞外孔环及外庭边缘，兼顾Domain II电压感受器S3-S4外侧环。",
+    "diseaseDirection": "遗传性癫痫与发育性癫痫性脑病",
+    "domain": "Nav1.3含四个同源跨膜结构域DI-DIV，每域含S1-S4电压感受器与S5-S6孔形成区。",
+    "evidence": "SCN3A癫痫遗传关联与Nav1.3结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q9NY46功能与拓扑注释",
+      "RCSB PDB 7W77冷冻电镜结构",
+      "ClinVar与遗传性癫痫变异证据"
+    ],
+    "referenceEntries": "UniProt: Q9NY46; RCSB PDB: 7W77; Open Targets: SCN3A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DIV S5-S6胞外孔环及外庭入口",
+        "邻近离子选择性孔外侧，可通过构象稳定降低异常钠通道开放概率",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DII S3-S4电压感受器外侧环",
+        "可能影响电压感受器外移及激活门控，适合构象调节型抗体设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "DI-DII胞外短环及糖基化邻近区域",
+        "可及性受糖基化和膜近端取向影响，需避免非特异性家族交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "Nav家族孔区高度保守，存在SCN1A、SCN2A、SCN8A交叉识别风险；设计应聚焦SCN3A特异胞外环差异位点并进行同源通道反筛。",
+    "structurePrepZh": "以7W77冷冻电镜结构为模板，保留跨膜区取向与关键糖基化位点注释，补全低置信度胞外环并评估膜环境下表位暴露。",
+    "structureRef": "RCSB PDB 7W77, human Nav1.3 cryo-EM structure, 3.3 Å",
+    "antibodies": [
+      "Pan-Nav extracellular-loop blocking antibody",
+      "Nav1.7 extracellular-domain modulatory antibody"
+    ],
+    "interfaceFocus": "孔区外庭、DIV门控环与DII电压感受器外侧面",
+    "designMode": "构象调节型抗体",
+    "candidates": [
+      {
+        "target": "SCN1A",
+        "rationale": "SCN1A编码Nav1.1，是遗传性癫痫和Dravet综合征核心钠通道靶点；与SCN3A同属神经元电压门控钠通道兴奋性通路。"
+      },
+      {
+        "target": "SCN2A",
+        "rationale": "SCN2A编码Nav1.2，致病变异可导致发育性癫痫性脑病和自闭症谱系相关表型；其门控异常同样影响动作电位启动与传播。"
+      },
+      {
+        "target": "SCN8A",
+        "rationale": "SCN8A编码Nav1.6，功能获得性变异可增强神经元持续钠电流并诱发癫痫；适合作为同通路疗效与选择性比较靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

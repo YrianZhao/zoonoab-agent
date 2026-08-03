@@ -1,0 +1,65 @@
+{
+  "gene": "DUSP5",
+  "generatedAt": "2026-08-03T18:48:45.352Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DUSP5是核定位双特异性磷酸酶，主要去磷酸化ERK1/2的Thr/Tyr激活环位点，参与MAPK信号负反馈调节，并与炎症性肠病、单核细胞数量及骨密度相关性状存在遗传学关联。然而DUSP5为胞内核蛋白，缺乏分泌形式或跨膜胞外结构域，天然抗体可及性不具备优势。相较IL23R、TNF或整合素等同类炎症通路胞外靶点，DUSP5更适合作为机制研究或细胞内递送抗体策略的探索靶点，临床可开发优先级应审慎评估。",
+    "mechanism": "细胞内抗体需结合DUSP5催化结构域或ERK结合相关表面，干扰DUSP5对ERK1/2磷酸化Thr-Glu-Tyr基序的去磷酸化。",
+    "selectedEpitope": "优先评估催化结构域靠近HCX5R活性位点外缘的非催化口袋，避免直接覆盖保守磷酸酶核心。",
+    "diseaseDirection": "炎症性肠病与MAPK调控",
+    "domain": "DUSP5含N端非催化调节区及C端VH1样双特异性磷酸酶催化结构域。",
+    "evidence": "DUSP5-MAPK负反馈与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q16690 functional annotation",
+      "RCSB PDB 2G6Z crystal structure",
+      "MAPK/ERK phosphatase literature evidence"
+    ],
+    "referenceEntries": "UniProt Q16690；RCSB PDB 2G6Z；Open Targets DUSP5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域活性位点外缘环区",
+        "可调节底物进入并降低直接命中高度保守催化半胱氨酸的风险",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域ERK底物结合相关表面",
+        "有望阻断DUSP5与ERK1/2底物复合物形成",
+        "备选"
+      ],
+      [
+        "Site C",
+        "HCX5R磷酸酶保守催化核心",
+        "序列保守性高且可能引发广泛DUSP交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DUSP5为胞内核定位蛋白，常规抗体难以触达抗原；催化核心保守性高，需采用细胞内递送格式并加强DUSP家族选择性筛选。",
+    "structurePrepZh": "以2G6Z中A、B、C链催化结构域为模板，去除结晶添加物，校正缺失环区与质子化状态，并标注保守催化位点。",
+    "structureRef": "RCSB PDB 2G6Z，X-ray diffraction，2.7 Å",
+    "antibodies": [
+      "无已批准DUSP5靶向治疗性抗体",
+      "研究级抗DUSP5检测抗体"
+    ],
+    "interfaceFocus": "DUSP催化口袋外缘与ERK底物结合面",
+    "designMode": "胞内抗体探索",
+    "candidates": [
+      {
+        "target": "MAPK1",
+        "rationale": "MAPK1编码ERK2，是DUSP5直接去磷酸化底物，位于同一MAPK负反馈轴。其激活状态与炎症细胞转录反应及组织稳态调节相关。"
+      },
+      {
+        "target": "MAPK3",
+        "rationale": "MAPK3编码ERK1，与ERK2共同构成DUSP5主要底物池。靶向该节点可用于解析DUSP5相关ERK信号输出。"
+      },
+      {
+        "target": "IL23R",
+        "rationale": "IL23R位于克罗恩病相关炎症通路上游，可通过JAK-STAT并与MAPK信号交叉影响髓系和T细胞炎症反应。其膜受体胞外结构域具备更明确的抗体可及性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

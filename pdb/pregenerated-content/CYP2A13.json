@@ -1,0 +1,65 @@
+{
+  "gene": "CYP2A13",
+  "generatedAt": "2026-08-03T11:47:08.264Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CYP2A13 是气道上皮高表达的微粒体细胞色素 P450 酶，可催化烟草特异性亚硝胺 NNK、NNN 等前致癌物代谢活化，形成 DNA 加合物并参与肺癌、鼻咽癌及慢阻肺相关毒性通路。该蛋白为内质网膜锚定酶，主要催化结构域位于胞质侧而非典型细胞外抗原，可及性弱于分泌蛋白或膜受体。其优先级主要来自呼吸道局部致癌物活化的组织特异性，相比广泛表达的 CYP2A6 更具肺部暴露场景选择性，但更适合作为机制验证或胞内递送抗体设计对象。",
+    "mechanism": "抗体需进入细胞后结合 CYP2A13 底物进入通道或血红素邻近环区，阻碍 NNK 与活性中心定位并降低代谢活化。",
+    "selectedEpitope": "优先选择血红素远端底物识别位点 SRS1/SRS5 邻近入口环，避免直接破坏血红素保守配位区。",
+    "diseaseDirection": "烟草相关肺癌与呼吸道毒性",
+    "domain": "N 端内质网膜锚定区连接胞质侧 P450 催化结构域，含保守血红素结合 Cys 配位基序。",
+    "evidence": "CYP2A13 呼吸道致癌物活化证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q16696 functional annotation",
+      "RCSB PDB 2PG5 crystal structure",
+      "烟草亚硝胺代谢活化与肺癌文献"
+    ],
+    "referenceEntries": "UniProt Q16696；RCSB PDB 2PG5；Open Targets CYP2A13",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SRS1/SRS5 底物进入通道外缘",
+        "阻断 NNK/NNN 进入催化腔，兼顾结构可及性与功能抑制",
+        "优先"
+      ],
+      [
+        "Site B",
+        "F/G loop 与 B-C loop 形成的通道口",
+        "限制底物通道构象开闭，降低前致癌物定位效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "血红素结合 Cys-loop 邻近保守核心",
+        "功能相关性高但跨 P450 保守性强，存在选择性与构象风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CYP2A13 缺乏胞外结构域，常规抗体难以到达内质网胞质侧催化结构域；宜采用细胞内递送、内体逃逸或作为体外抑制抗体策略。",
+    "structurePrepZh": "以 2PG5 高分辨率晶体结构为模板，保留血红素辅基，校正底物通道环区构象并标注 SRS 区域用于界面筛选。",
+    "structureRef": "RCSB PDB 2PG5，X-ray 1.95 Å，人 CYP2A13",
+    "antibodies": [
+      "anti-CYP2A13 research antibody",
+      "anti-cytochrome P450 2A family antibody"
+    ],
+    "interfaceFocus": "SRS1/SRS5 与 F/G loop 底物通道口",
+    "designMode": "胞内抑制抗体设计",
+    "candidates": [
+      {
+        "target": "CYP2A6",
+        "rationale": "CYP2A6 同属 CYP2A 亚家族，可代谢尼古丁及烟草亚硝胺，并与 CYP2A13 共享烟草暴露相关代谢活化轴。其系统表达更广，适合作为选择性评估与脱靶风险参照。"
+      },
+      {
+        "target": "CYP2B6",
+        "rationale": "CYP2B6 参与多种外源化合物和烟草相关底物代谢，处于同一外源物生物转化网络。与 CYP2A13 联合比较可解析前致癌物代谢活化的旁路贡献。"
+      },
+      {
+        "target": "CYP1A1",
+        "rationale": "CYP1A1 是芳香烃受体诱导的外源物代谢酶，参与烟草烟雾多环芳烃代谢活化并与肺癌风险相关。其与 CYP2A13 位于烟草致癌物代谢通路的互补节点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

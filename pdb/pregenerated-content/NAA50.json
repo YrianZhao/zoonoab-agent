@@ -1,0 +1,65 @@
+{
+  "gene": "NAA50",
+  "generatedAt": "2026-08-03T14:32:28.755Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NAA50为NatE复合体催化亚基，参与蛋白N端α-乙酰化，影响细胞骨架、蛋白稳定性与生长相关表型；现有遗传关联主要集中于骨骼系统异常、瘦体重及骨密度相关性状。该蛋白为细胞内乙酰转移酶，天然抗原可及性不具备分泌蛋白或膜受体优势，因此更适合作为机制研究、细胞内递送抗体或降解型分子设计靶点。相比同通路中广泛表达且承担核心NatA功能的NAA10/NAA15，NAA50具备高分辨率晶体结构与明确催化口袋，适合优先开展结构约束型结合体设计，但常规裸抗体成药优先级较低。",
+    "mechanism": "通过结合NAA50乙酰辅酶A结合沟槽或肽底物进入通道，阻断Ac-CoA与N端底物肽的协同定位，从而抑制N端α-乙酰转移反应。",
+    "selectedEpitope": "优先靶向GNAT乙酰转移酶折叠中的Ac-CoA结合沟槽及底物肽入口边缘。",
+    "diseaseDirection": "骨骼发育与体成分相关性状",
+    "domain": "NAA50主要由GNAT样N-α乙酰转移酶催化结构域构成，含Ac-CoA结合位点与底物肽结合沟槽。",
+    "evidence": "NAA50结构与骨骼性状遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9GZZ1功能注释",
+      "RCSB PDB 6WFN晶体结构",
+      "N-terminal acetyltransferase复合体文献"
+    ],
+    "referenceEntries": "UniProt: Q9GZZ1；RCSB PDB: 6WFN；Open Targets: NAA50",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Ac-CoA结合沟槽及保守催化核心邻近区域",
+        "可直接干扰辅因子结合与乙酰基转移几何构型",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端底物肽进入通道外缘与相邻α螺旋表面",
+        "有望阻断底物肽定位，同时降低对深口袋小分子位点的依赖",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化沟槽的GNAT结构域背面表面",
+        "结合可行性较高但功能阻断不确定，需依赖变构验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NAA50为胞内酶，常规IgG难以到达作用位点；设计应优先评估细胞内递送、VHH工程化或降解偶联策略，并避免干扰同源GNAT酶保守位点导致选择性不足。",
+    "structurePrepZh": "以6WFN链A为模板，保留催化结构域主链与关键侧链构象，标注Ac-CoA/底物结合沟槽；补全缺失残基后进行质子化、局部能量优化与表面可及性分析。",
+    "structureRef": "RCSB PDB 6WFN，1.07 Å X射线晶体结构",
+    "antibodies": [
+      "无临床阶段NAA50抗体",
+      "研究级anti-NAA50抗体"
+    ],
+    "interfaceFocus": "Ac-CoA沟槽、底物肽入口及催化核心边缘",
+    "designMode": "胞内酶抑制型",
+    "candidates": [
+      {
+        "target": "NAA10",
+        "rationale": "NAA10为NatA催化亚基，参与蛋白N端乙酰化并与发育异常、骨骼表型和生长缺陷存在明确遗传疾病关联，可作为同一N端乙酰化轴的功能参照靶点。"
+      },
+      {
+        "target": "NAA15",
+        "rationale": "NAA15为NatA辅助亚基，调控NAA10底物识别与复合体稳定性；其变异与神经发育及骨骼发育异常相关，适合用于通路级优先级比较。"
+      },
+      {
+        "target": "NAA20",
+        "rationale": "NAA20为NatB催化亚基，属于N端乙酰转移酶网络成员，参与特定N端甲硫氨酸保留底物的乙酰化，可用于评估Nat复合体家族内选择性与补偿机制。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

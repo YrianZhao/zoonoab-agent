@@ -1,0 +1,65 @@
+{
+  "gene": "PREX1",
+  "generatedAt": "2026-08-03T20:37:34.225Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PREX1 是 PIP3 与 Gβγ 共同调控的 Rac 鸟嘌呤核苷酸交换因子，参与 PI3K-GPCR 轴下游的 Rac1 激活、内皮细胞迁移和血管张力相关表型；Open Targets 关联集中于血压与血管性状，提示其在心血管调控网络中具有遗传学支持。该蛋白主要为胞质信号酶，天然抗原可及性弱于膜受体或分泌蛋白，因此更适合作为胞内机制研究、结构引导型抑制抗体或递送型抗体片段开发对象。相较上游 PI3K 或 GPCR 节点，PREX1 位于 Rac 激活近端，结构域边界清晰且 PDB 5D3X 分辨率较高，可支持针对催化核心构象界面的高精度表位设计。",
+    "mechanism": "阻断 PREX1 DH 结构域与 Rac1 的结合界面，抑制 Rac1 GDP-GTP 交换，从而降低 PI3K-GPCR 轴诱导的 Rac1 活化。",
+    "selectedEpitope": "优先锁定 DH-PH 催化核心中 DH 结构域 Rac1 结合沟槽及其邻近 PH 结构域构象支撑面。",
+    "diseaseDirection": "血压调控与血管功能表型",
+    "domain": "PREX1 含 DH-PH 催化核心、DEP、PDZ 及 C 端 IP4P 样结构域；5D3X 覆盖关键结构片段。",
+    "evidence": "PREX1 血压遗传关联与 Rac-GEF 结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt Q8TCU6 功能与结构域注释",
+      "RCSB PDB 5D3X X 射线晶体结构",
+      "PI3K-Gβγ-PREX1-Rac1 信号通路文献"
+    ],
+    "referenceEntries": "UniProt Q8TCU6；RCSB PDB 5D3X；Open Targets PREX1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DH 结构域 Rac1 结合沟槽",
+        "直接干预 Rac1 装载与核苷酸交换，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DH-PH 结构域相邻构象界面",
+        "稳定非活化构象并削弱催化核心对 Rac1 的几何匹配",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PH 结构域磷脂结合相关表面",
+        "可能影响 PIP3 依赖膜定位，但需避免非特异性磷脂界面干扰",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PREX1 为胞内蛋白，常规全长 IgG 难以直接到达靶点；设计宜采用细胞内递送 Fab/VHH 或作为结构验证抗体，并严格评估与 PREX2、TIAM1 等 Rac-GEF 的同源界面交叉反应。",
+    "structurePrepZh": "以 5D3X 高分辨率晶体结构为模板，补全缺失侧链与质子化状态，按抗原链 A、B 分别评估晶体接触、可溶暴露面及 DH-PH 界面构象稳定性。",
+    "structureRef": "RCSB PDB 5D3X，X-ray diffraction，1.69 Å",
+    "antibodies": [
+      "抗 PREX1 研究级单克隆抗体",
+      "抗 PREX1 研究级多克隆抗体"
+    ],
+    "interfaceFocus": "DH-Rac1 结合沟槽与 DH-PH 构象界面",
+    "designMode": "胞内抑制型片段抗体",
+    "candidates": [
+      {
+        "target": "RAC1",
+        "rationale": "RAC1 是 PREX1 的直接小 GTP 酶底物，处于同一 PI3K-GPCR-PREX1-Rac 轴下游；靶向其效应器结合构象可验证 Rac 活化依赖性机制。"
+      },
+      {
+        "target": "PIK3CA",
+        "rationale": "PIK3CA 参与生成 PIP3，为 PREX1 PH 结构域介导的膜募集提供脂质信号；该节点位于同一上游 PI3K-PIP3 调控通路。"
+      },
+      {
+        "target": "PREX2",
+        "rationale": "PREX2 是同源 PIP3 依赖 Rac-GEF，参与相近的 PI3K-Rac 信号输出；可作为选择性评估和同通路替代靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

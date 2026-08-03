@@ -1,0 +1,65 @@
+{
+  "gene": "PTPRC",
+  "generatedAt": "2026-08-03T15:44:17.612Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PTPRC编码CD45，是白细胞广泛表达的受体型蛋白酪氨酸磷酸酶，通过去磷酸化LCK、FYN等Src家族激酶调节TCR/BCR阈值，遗传缺陷可导致T-B+重症联合免疫缺陷。其胞外区由富糖基化黏蛋白样区、半胱氨酸富集区及FNIII样结构域组成，位于细胞表面，具备抗体可及性。相较下游JAK3或LCK等胞内酶，PTPRC更适合抗体介导的外部识别与细胞选择性调控，优先级更高。",
+    "mechanism": "抗体结合CD45胞外FNIII样结构域或近膜区，改变受体空间构象与二聚化状态，从而影响胞内磷酸酶结构域对LCK/FYN抑制性酪氨酸位点的去磷酸化。",
+    "selectedEpitope": "优先选择5FN7中D1-D2胞外FNIII样结构域界面，避开高度糖基化黏蛋白样N端。",
+    "diseaseDirection": "原发性免疫缺陷与白细胞调控",
+    "domain": "I型膜蛋白，胞外含黏蛋白样区、半胱氨酸富集区与多个FNIII样结构域，胞内含双磷酸酶结构域。",
+    "evidence": "CD45免疫缺陷遗传关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P08575功能与结构域注释",
+      "RCSB PDB 5FN7 X射线晶体结构",
+      "OMIM及原发性免疫缺陷遗传学文献"
+    ],
+    "referenceEntries": "UniProt P08575；RCSB PDB 5FN7；Open Targets PTPRC",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "D1-D2 FNIII样结构域界面",
+        "可能影响CD45胞外构象组织与近膜信号输出，结构可解析度较高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "近膜FNIII样结构域外露面",
+        "有利于调节受体排列并保留白细胞表面识别选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端黏蛋白样高度糖基化区",
+        "糖链异质性高且剪接异构体差异明显，易产生表位不稳定性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CD45在多数造血细胞广泛表达，阻断性抗体存在泛白细胞调控风险；设计宜限定构象调节表位并评估剪接异构体覆盖范围。",
+    "structurePrepZh": "以5FN7抗原链A、B为模板，保留解析明确的FNIII样结构域，补充缺失环区并标注潜在N-糖基化位点用于表位排除。",
+    "structureRef": "RCSB PDB 5FN7，X-RAY DIFFRACTION，2.3 Å",
+    "antibodies": [
+      "Iomab-B anti-CD45",
+      "BC8 anti-CD45"
+    ],
+    "interfaceFocus": "D1-D2 FNIII界面与近膜构象调节面",
+    "designMode": "构象调节型抗体",
+    "candidates": [
+      {
+        "target": "JAK3",
+        "rationale": "JAK3缺陷与T-B+重症联合免疫缺陷相关，并在共同γ链细胞因子受体信号中控制淋巴细胞发育；虽为胞内激酶，不适合作为常规抗体直接靶点。"
+      },
+      {
+        "target": "IL2RG",
+        "rationale": "IL2RG编码共同γ链，是IL-2、IL-4、IL-7、IL-9、IL-15和IL-21受体复合物共享亚基，与SCID通路密切相关且具细胞表面可及性。"
+      },
+      {
+        "target": "LCK",
+        "rationale": "LCK是CD45直接去磷酸化调控的Src家族激酶，决定TCR起始信号阈值；其通路相关性强，但胞内定位限制了抗体药物可及性。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "TEK",
+  "generatedAt": "2026-08-03T17:12:11.607Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TEK/ANGPT1-2轴是血管稳定性与内皮存活的关键调控通路，TEK异常激活或失衡与静脉畸形、先天性青光眼及部分肿瘤血管微环境密切相关。该靶点为跨膜受体酪氨酸激酶，胞外 Ig 样结构域暴露充分，具备较高抗体可及性与成药性。相较于直接抑制配体的策略，围绕 TEK 进行受体层阻断更利于精准干预配体诱导的受体二聚与磷酸化事件，且在同类血管生成靶点中兼具疾病相关性与结构可操作性优势。",
+    "mechanism": "抗体结合 TEK 胞外 Ig-like 结构域，阻断 ANGPT1/ANGPT2 介导的受体活化与二聚化，抑制下游磷酸化信号。",
+    "selectedEpitope": "优先覆盖 Ig2-Ig3 配体结合与二聚化界面，避免保守折叠核心以维持特异性。",
+    "diseaseDirection": "血管畸形/肿瘤血管",
+    "domain": "胞外 Ig-like 结构域与跨膜区外侧连接段",
+    "evidence": "TEK抗体设计证据包",
+    "evidenceSources": [
+      "UniProt: Q02763",
+      "RCSB PDB: 3BEA",
+      "Open Targets Platform",
+      "文献: TEK/ANGPT1-2 血管稳定性研究"
+    ],
+    "referenceEntries": "UniProt Q02763; PDB 3BEA; TEK (TIE2) human receptor tyrosine kinase",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Ig2-Ig3 配体/二聚化接口",
+        "优先阻断 ANGPT1 触发的受体激活",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Ig3 外侧暴露环区",
+        "兼顾配体干预与表位可及性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "靠近 Ig1 的远端表面",
+        "可能影响构象但对配体阻断不够直接",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "需避免命中高度保守的 Ig 折叠骨架，以降低对同家族受体的交叉反应。优先选择暴露环区与二聚化界面，并结合竞争结合实验验证配体阻断强度。",
+    "structurePrepZh": "基于 3BEA 对胞外链 A 进行缺失残基补全、糖基化位点标注与界面暴露评估，随后开展构象对接与表位分层筛选。",
+    "structureRef": "PDB 3BEA；X-ray diffraction，2.02 Å",
+    "antibodies": [
+      "trebananib",
+      "soluble TIE2-Fc"
+    ],
+    "interfaceFocus": "Ig2-Ig3 配体结合与受体二聚界面",
+    "designMode": "structure-guided",
+    "candidates": [
+      {
+        "target": "ANGPT1",
+        "rationale": "ANGPT1 是 TEK 的核心激动配体，参与血管成熟与内皮稳定维持。与 TEK 联合分析可界定抗体应优先阻断的配体接触面。"
+      },
+      {
+        "target": "ANGPT2",
+        "rationale": "ANGPT2 通过扰动 TEK 信号平衡参与血管重塑、炎症相关血管异常及肿瘤血管生成。其与 TEK 同属关键轴心，适合作为同通路优先比较对象。"
+      },
+      {
+        "target": "PIK3R1",
+        "rationale": "PIK3R1 位于 TEK 下游 PI3K-AKT 生存轴，反映受体阻断后最直接的信号输出变化。可用于评估抗体对 TEK 功能抑制的通路读出。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

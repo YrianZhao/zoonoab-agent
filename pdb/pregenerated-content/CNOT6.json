@@ -1,0 +1,65 @@
+{
+  "gene": "CNOT6",
+  "generatedAt": "2026-08-03T11:30:43.851Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CNOT6 是 CCR4-NOT 去腺苷酸化复合体的催化亚基，参与 mRNA poly(A) 尾缩短、转录后稳态调控及神经元蛋白稳态网络，遗传关联提示其与神经退行性疾病和溶酶体储积病表型相关。该蛋白主要定位于胞质和细胞核，缺乏经典胞外结构域或分泌特征，因此抗体药物可及性弱于膜受体和分泌因子，更适合作为细胞内功能阻断或结构生物学验证靶点。相比同通路的多亚基支架蛋白，CNOT6 具有明确的核酸外切酶催化结构域和可解析的复合体界面，利于围绕催化槽或亚基装配界面进行机制性抗体设计，但成药优先级需低于细胞表面可及靶点。",
+    "mechanism": "抗体应阻断 CNOT6 催化结构域与 poly(A) RNA 底物的结合，或干扰其与 CNOT1 支架介导的 CCR4-NOT 复合体装配，从而抑制靶 mRNA 去腺苷酸化。",
+    "selectedEpitope": "优先覆盖 ExoIII 样核酸酶结构域的 RNA 结合沟槽及 Mg2+ 依赖催化中心邻近环区。",
+    "diseaseDirection": "神经退行性疾病相关RNA稳态",
+    "domain": "CNOT6 含 N 端调控区及 C 端 DEDD 型 ExoIII 样核酸外切酶催化结构域。",
+    "evidence": "CNOT6-CCR4-NOT复合体与RNA稳态证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9ULM6 functional annotation",
+      "RCSB PDB 7AX1 experimental structure",
+      "CCR4-NOT deadenylase complex literature"
+    ],
+    "referenceEntries": "UniProt Q9ULM6；RCSB PDB 7AX1；Open Targets CNOT6",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C 端 ExoIII 样核酸酶催化槽及 RNA 结合沟槽",
+        "可直接限制 poly(A) RNA 底物进入并抑制去腺苷酸化活性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CNOT6 与 CCR4-NOT 复合体支架亚基邻近装配界面",
+        "可干扰催化亚基在复合体中的定位，适合功能阻断验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化中心的保守结构核心区域",
+        "可能影响蛋白折叠稳定性且物种保守性高，选择性窗口有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CNOT6 为细胞内蛋白，常规抗体体内可及性不足；催化核心保守性较高，需避开 CNOT6L 交叉反应并采用细胞内递送或研究级抗体策略。",
+    "structurePrepZh": "以 7AX1 的 A、B 链为实验结构模板，补全缺失环区并校正催化金属邻近残基质子化状态，保留复合体界面用于表位评估。",
+    "structureRef": "RCSB PDB 7AX1，X-ray diffraction，3.3 Å",
+    "antibodies": [
+      "研究级 anti-CNOT6 antibody",
+      "研究级 anti-CCR4-NOT complex antibody"
+    ],
+    "interfaceFocus": "RNA结合沟槽与复合体装配界面",
+    "designMode": "细胞内阻断型",
+    "candidates": [
+      {
+        "target": "CNOT6L",
+        "rationale": "CNOT6L 是 CCR4 型去腺苷酸化旁系酶，与 CNOT6 共享 mRNA poly(A) 尾缩短功能，可用于区分同源催化亚基的冗余与特异作用。"
+      },
+      {
+        "target": "CNOT7",
+        "rationale": "CNOT7 是 CAF1 型去腺苷酸化亚基，与 CCR4-NOT 复合体共同执行 mRNA 去腺苷酸化，是同一 RNA 稳态通路中的核心催化节点。"
+      },
+      {
+        "target": "CNOT1",
+        "rationale": "CNOT1 是 CCR4-NOT 复合体支架亚基，负责组织 CNOT6、CNOT7 等功能模块，适合作为复合体装配和底物招募机制的候选靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "BCL9",
+  "generatedAt": "2026-08-03T10:48:11.788Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BCL9 是经典 Wnt/β-catenin 转录复合体的核内辅激活因子，通过与 CTNNB1 的 N 端 Armadillo repeat 区域结合，促进 MYC、CCND1 等增殖相关基因转录，在结直肠腺癌和结肠腺癌中具有明确通路关联。该蛋白不属于分泌蛋白或膜受体，天然抗原可及性低，抗体策略应定位于胞内递送抗体、intrabody 或结构启发的结合模块开发。相较于上游 FZD/LRP6 受体，BCL9 位于 APC/CTNNB1 突变下游，具有绕过上游冗余配体输入、直接干预致癌转录复合体的优先级优势。",
+    "mechanism": "阻断 BCL9 HD2 结构域与 CTNNB1 Armadillo repeat 1 的疏水沟槽结合，削弱 β-catenin 招募 BCL9/PYGO 转录辅激活轴。",
+    "selectedEpitope": "优先覆盖 BCL9 HD2 α螺旋中 Leu366、Leu373、Leu377 介导的 CTNNB1 结合界面。",
+    "diseaseDirection": "Wnt驱动结直肠腺癌",
+    "domain": "BCL9 含保守同源结构域 HD1、HD2 与 HD3；2VPB 对应 HD2 与 β-catenin 结合片段。",
+    "evidence": "BCL9-β-catenin转录复合体结构与肿瘤证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt O00512 功能与结构域注释",
+      "RCSB PDB 2VPB X射线晶体结构",
+      "Wnt/β-catenin 结直肠癌通路文献"
+    ],
+    "referenceEntries": "UniProt: O00512; RCSB PDB: 2VPB; Open Targets: BCL9",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "HD2 α螺旋的 CTNNB1 结合面",
+        "直接竞争 β-catenin Armadillo repeat 1 结合，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "HD2 螺旋两端的稳定化邻近表面",
+        "可增强界面覆盖并提高构象选择性，适合作为扩展表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "非界面侧溶剂暴露残基",
+        "结合可行但不一定破坏 BCL9-CTNNB1 相互作用，需功能筛选确认",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BCL9 为核内蛋白，常规抗体难以到达作用位点；需采用细胞穿透、胞内抗体或递送系统，并避免干扰 β-catenin 与 TCF 的广泛必需相互作用。",
+    "structurePrepZh": "以 2VPB 高分辨率晶体结构为模板，保留 BCL9 HD2 与 CTNNB1 复合界面，补全缺失侧链并评估螺旋肽段构象稳定性。",
+    "structureRef": "PDB 2VPB, BCL9 HD2-β-catenin complex, 1.59 Å",
+    "antibodies": [
+      "无获批抗BCL9治疗性抗体",
+      "研究级抗BCL9抗体"
+    ],
+    "interfaceFocus": "BCL9 HD2-CTNNB1 Armadillo repeat 1界面",
+    "designMode": "胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "CTNNB1",
+        "rationale": "CTNNB1 编码 β-catenin，是经典 Wnt 通路核心转录效应因子；其 Armadillo repeat 区域直接结合 BCL9，是同一致癌转录复合体的中心节点。"
+      },
+      {
+        "target": "PYGO1",
+        "rationale": "PYGO1 与 BCL9/PYGO 轴共同参与 β-catenin 依赖性转录激活；干预该模块可削弱 Wnt 靶基因表达。"
+      },
+      {
+        "target": "TCF7L2",
+        "rationale": "TCF7L2 是 β-catenin 在结直肠上皮中主要 DNA 结合转录因子之一，与 BCL9 所在转录复合体处于同一 Wnt 致癌通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

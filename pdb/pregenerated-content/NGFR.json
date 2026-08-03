@@ -1,0 +1,65 @@
+{
+  "gene": "NGFR",
+  "generatedAt": "2026-08-03T14:41:51.272Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NGFR编码p75NTR，是TNF受体超家族成员，可结合NGF、BDNF、NT3、NT4及前神经营养因子，并通过与NTRK受体、SORT1或LINGO1复合调节神经元存活、凋亡、轴突再生及肿瘤细胞侵袭表型。该靶点为单跨膜受体，含四个胞外半胱氨酸富集结构域，抗体可直接识别配体结合面或共受体界面，抗原可及性优于胞内适配蛋白。相较NTRK激酶类靶点，NGFR更适合以抗体选择性干预胞外配体-受体装配，并可降低对广泛激酶催化活性的非选择性影响。",
+    "mechanism": "阻断NGF或proNGF与NGFR胞外CRD2-CRD4区域结合，抑制NGFR-SORT1或NGFR-NTRK复合体形成及下游JNK/NF-κB信号偏置。",
+    "selectedEpitope": "优先覆盖CRD2-CRD3配体结合沟槽，并避开CRD1远端糖基化邻近区域。",
+    "diseaseDirection": "神经营养因子通路与肿瘤侵袭",
+    "domain": "I型膜蛋白，胞外区含CRD1-CRD4，随后为跨膜螺旋及胞内死亡结构域。",
+    "evidence": "NGFR胞外配体识别与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P08138功能与结构域注释",
+      "RCSB PDB 3EWV晶体结构记录",
+      "神经营养因子-p75NTR信号通路文献"
+    ],
+    "referenceEntries": "UniProt P08138；RCSB PDB 3EWV；HGNC NGFR",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CRD2-CRD3配体结合界面",
+        "直接干预NGF/proNGF识别，具备机制阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CRD4近膜侧受体装配面",
+        "可能影响NGFR与共受体复合体构象稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "CRD1远端暴露区",
+        "空间可及但对核心配体结合贡献较弱，需验证功能相关性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CRD结构富含二硫键，构象表位依赖性强；设计应维持天然折叠，规避保守半胱氨酸及潜在糖基化邻近位点。",
+    "structurePrepZh": "以3EWV中抗原链A、E为模板，保留胞外CRD构象，补齐缺失环区并评估二硫键、糖基化和晶体接触对表位暴露的影响。",
+    "structureRef": "He and Garcia, p75NTR胞外结构晶体研究；PDB 3EWV",
+    "antibodies": [
+      "ME20.4",
+      "NGFR5"
+    ],
+    "interfaceFocus": "CRD2-CRD3神经营养因子结合沟槽",
+    "designMode": "阻断型Fab/VHH",
+    "candidates": [
+      {
+        "target": "NGF",
+        "rationale": "NGF是NGFR和NTRK1共享配体，直接位于神经营养因子受体轴上；中和NGF可从配体端抑制NGFR相关受体装配。"
+      },
+      {
+        "target": "NTRK1",
+        "rationale": "NTRK1与NGFR共同响应NGF并决定存活与分化信号偏置；靶向其胞外配体结合区可作为同通路受体端干预策略。"
+      },
+      {
+        "target": "SORT1",
+        "rationale": "SORT1与NGFR形成proNGF高亲和复合体，促进凋亡相关信号；阻断SORT1参与的复合体形成可补充NGFR界面阻断。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

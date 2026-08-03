@@ -1,0 +1,65 @@
+{
+  "gene": "DGKA",
+  "generatedAt": "2026-08-03T11:56:02.528Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DGKA为胞内二酰甘油激酶，催化二酰甘油转化为磷脂酸，可降低DAG依赖的PKC/RasGRP信号并促进T细胞功能抑制，在肿瘤免疫微环境中与T细胞无反应状态相关。该蛋白并非分泌蛋白或膜受体，天然抗体可及性不足，抗体设计更适合作为细胞内递送抗体、降解抗体或构象探针开发。相比同通路的广泛表达PKC家族，DGKA具有更明确的免疫抑制节点属性和可解析催化结构，适合作为机制验证优先靶点。",
+    "mechanism": "通过结合DGKA催化结构域邻近ATP/二酰甘油结合沟槽，阻断底物进入或稳定非活性构象，抑制DAG向磷脂酸转化。",
+    "selectedEpitope": "优先锁定催化结构域C1端附近底物进入沟槽及ATP结合裂隙外缘构象表位。",
+    "diseaseDirection": "肿瘤免疫抑制与血液肿瘤",
+    "domain": "DGKA含EF-hand调控区、C1结构域串联区及C端二酰甘油激酶催化结构域。",
+    "evidence": "DGKA肿瘤免疫调控与结构可设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P23743功能与结构域注释",
+      "RCSB PDB 6IIE晶体结构记录",
+      "肿瘤T细胞无反应与DGKA功能研究文献"
+    ],
+    "referenceEntries": "UniProt P23743；RCSB PDB 6IIE；Open Targets DGKA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域ATP结合裂隙外缘",
+        "可能直接干扰磷酸转移反应并稳定低活性构象",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域底物进入沟槽周边",
+        "有望阻断二酰甘油接近催化中心，保留较高机制特异性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "EF-hand/C1调控区柔性连接面",
+        "可能影响膜结合调控，但构象异质性和可成药性不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DGKA为胞内酶，常规抗体难以到达天然靶点位置；应采用细胞内递送、intrabody或PROTAB样策略，并避免与DGK家族保守催化位点交叉反应。",
+    "structurePrepZh": "以6IIE链A为结构模板，补全缺失环区并校正质子化状态；围绕催化裂隙、保守残基和DGK同源结构进行界面可塑性评估。",
+    "structureRef": "RCSB PDB 6IIE，X-ray diffraction，2.142 Å",
+    "antibodies": [
+      "抗DGKA研究级单克隆抗体",
+      "抗DGKA免疫组化验证抗体"
+    ],
+    "interfaceFocus": "催化裂隙外缘与底物进入沟槽",
+    "designMode": "胞内酶构象阻断",
+    "candidates": [
+      {
+        "target": "DGKZ",
+        "rationale": "DGKZ同属二酰甘油激酶家族，可调节DAG/PA脂质信号并影响T细胞受体下游响应，适合作为DGKA通路补偿节点评估。"
+      },
+      {
+        "target": "PRKCQ",
+        "rationale": "PRKCQ为DAG依赖性PKC家族成员，是TCR/CD28信号向NF-κB和AP-1传递的关键效应分子，可用于比较DGKA抑制后DAG信号恢复效应。"
+      },
+      {
+        "target": "RASGRP1",
+        "rationale": "RASGRP1为DAG结合型Ras鸟嘌呤核苷酸交换因子，连接TCR诱导DAG积累与Ras-ERK活化，是DGKA调控轴下游真实通路节点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

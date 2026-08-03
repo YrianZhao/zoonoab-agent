@@ -1,0 +1,65 @@
+{
+  "gene": "KIF15",
+  "generatedAt": "2026-08-03T13:42:08.020Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KIF15是有丝分裂驱动蛋白，在纺锤体双极化过程中与微管及TPX2协同，支持中心体分离和染色体分配；其异常表达与多种增殖性肿瘤的细胞周期依赖性生长相关。该蛋白主要定位于细胞质和有丝分裂纺锤体，不具备经典胞外结构域或分泌特征，天然抗原可及性弱，抗体设计更适合定位于细胞内递送或研究级功能阻断场景。相较EG5/KIF11等已高度开发的纺锤体马达靶点，KIF15可作为EG5抑制逃逸背景下的补偿性纺锤体马达节点，具有差异化机制优先级。",
+    "mechanism": "阻断KIF15马达结构域与微管表面的结合，并干扰TPX2介导的KIF15募集，从而削弱纺锤体双极化维持。",
+    "selectedEpitope": "优先覆盖N端马达结构域的微管结合环区及α4/α5邻近界面。",
+    "diseaseDirection": "有丝分裂依赖性肿瘤增殖",
+    "domain": "KIF15含N端驱动蛋白马达结构域、颈连接区及C端卷曲螺旋二聚化区。",
+    "evidence": "KIF15纺锤体马达与肿瘤增殖证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q9NS87功能与亚细胞定位注释",
+      "RCSB PDB 4BN2晶体结构记录",
+      "有丝分裂纺锤体双极化与KIF15/TPX2文献"
+    ],
+    "referenceEntries": "UniProt: Q9NS87; RCSB PDB: 4BN2; HGNC: KIF15",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端马达结构域微管结合环区",
+        "直接削弱KIF15-微管结合，功能阻断价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "马达结构域ATP结合口袋邻近构象表面",
+        "可诱导马达循环构象限制，但需避免ATP口袋保守性风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "颈连接区至卷曲螺旋起始段",
+        "可能影响二聚化取向和步进耦联，结构暴露与构象异质性需验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "KIF15为细胞内马达蛋白，常规抗体难以到达作用位点；需优先评估细胞内递送、内体逃逸与微管马达家族交叉反应风险。",
+    "structurePrepZh": "以4BN2晶体结构解析马达结构域构象，补全缺失环区并标注ATP类似物、镁离子及链间接触后进行表位可及性评估。",
+    "structureRef": "RCSB PDB 4BN2, human KIF15 motor domain X-ray structure",
+    "antibodies": [
+      "anti-KIF15 research antibody",
+      "anti-KIF15/KLP2 diagnostic antibody"
+    ],
+    "interfaceFocus": "马达结构域微管结合面与TPX2募集相关表面",
+    "designMode": "细胞内功能阻断",
+    "candidates": [
+      {
+        "target": "KIF11",
+        "rationale": "KIF11/EG5同属有丝分裂纺锤体双极化核心马达，与KIF15存在功能互补关系；联合评估可覆盖EG5依赖与KIF15补偿性逃逸状态。"
+      },
+      {
+        "target": "TPX2",
+        "rationale": "TPX2参与纺锤体组装并促进KIF15定位于微管，是KIF15发挥纺锤体维持功能的关键伴侣蛋白。"
+      },
+      {
+        "target": "AURKA",
+        "rationale": "AURKA调控TPX2相关纺锤体装配网络，与KIF15所在有丝分裂纺锤体通路相连，适合作为同通路增殖阻断候选节点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

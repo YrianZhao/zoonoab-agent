@@ -1,0 +1,65 @@
+{
+  "gene": "GPAM",
+  "generatedAt": "2026-08-03T12:53:27.193Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GPAM编码线粒体甘油-3-磷酸酰基转移酶，催化甘油-3-磷酸与长链脂酰-CoA生成溶血磷脂酸，是三酰甘油和磷脂合成的限速入口之一，并与血浆胆固醇、磷脂比例及脂蛋白相关表型存在遗传关联。该蛋白定位于线粒体外膜，主要催化结构域面向胞质侧，理论上较胞内可溶酶更接近膜表面药物结合界面，但完整抗体进入细胞内或线粒体外膜环境的可及性受限。相较下游脂质代谢酶，GPAM处于甘油脂合成通量起始节点，靶向其催化口袋邻近构象界面更有利于影响脂质合成通量，因此适合作为结构引导型细胞内抗体或工程化递送抗体的探索靶点。",
+    "mechanism": "通过结合GPAM胞质侧催化结构域的甘油-3-磷酸/脂酰-CoA邻近界面，阻碍底物进入活性沟槽并限制酰基转移构象转换。",
+    "selectedEpitope": "优先覆盖磷酸酰基转移酶催化核心的底物入口沟槽及脂酰-CoA结合通道边缘。",
+    "diseaseDirection": "血脂异常与甘油脂代谢",
+    "domain": "N端跨膜锚定区连接胞质侧磷酸酰基转移酶催化结构域，含脂酰-CoA与甘油-3-磷酸结合区域。",
+    "evidence": "GPAM脂质合成与血脂表型结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform遗传关联与表型评分",
+      "UniProt Q9HCL2功能与亚细胞定位注释",
+      "RCSB PDB 8E4Y冷冻电镜结构",
+      "人类脂质代谢GWAS与脂蛋白表型研究"
+    ],
+    "referenceEntries": "UniProt Q9HCL2；RCSB PDB 8E4Y；Open Targets GPAM",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化核心底物入口沟槽与保守H(X)4D基序邻近区域",
+        "直接干预甘油-3-磷酸酰基转移反应，功能阻断价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "脂酰-CoA疏水通道外缘及膜近端开口区域",
+        "限制长链脂酰-CoA进入催化位点，可实现非竞争性空间阻断",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端跨膜锚定区及膜嵌入界面",
+        "结构稳定性和抗原制备难度较高，且表位暴露受膜环境影响",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GPAM为线粒体外膜酶，常规抗体胞内递送与线粒体外膜可及性不足；宜采用VHH、胞内抗体或递送工程，并避免破坏膜蛋白整体折叠。",
+    "structurePrepZh": "以8E4Y抗原链A为模板，保留催化结构域与关键底物通道，补全低置信环区，结合膜模拟环境评估表位暴露与构象稳定性。",
+    "structureRef": "RCSB PDB 8E4Y，human GPAM cryo-EM structure, 3.4 Å",
+    "antibodies": [
+      "暂无获批GPAM靶向抗体",
+      "暂无临床阶段GPAM功能阻断抗体"
+    ],
+    "interfaceFocus": "催化沟槽、脂酰-CoA入口与膜近端开口",
+    "designMode": "结构引导型胞内阻断",
+    "candidates": [
+      {
+        "target": "AGPAT2",
+        "rationale": "AGPAT2催化溶血磷脂酸进一步酰基化生成磷脂酸，位于GPAM下游甘油脂合成通路；遗传缺陷与脂肪营养不良及脂质代谢异常相关。"
+      },
+      {
+        "target": "DGAT1",
+        "rationale": "DGAT1催化二酰甘油与脂酰-CoA生成三酰甘油，是甘油脂合成末端关键酶；其活性直接影响三酰甘油储存和脂蛋白脂质负荷。"
+      },
+      {
+        "target": "LPIN1",
+        "rationale": "LPIN1作为磷脂酸磷酸酶将磷脂酸转化为二酰甘油，连接GPAM启动的磷脂酸生成与三酰甘油合成分支，适合作为同通路调控节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

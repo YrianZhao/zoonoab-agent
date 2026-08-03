@@ -1,0 +1,65 @@
+{
+  "gene": "PIAS1",
+  "generatedAt": "2026-08-03T15:16:13.489Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PIAS1是细胞核内SUMO E3连接酶和STAT1转录抑制因子，可通过SP-RING结构域促进底物SUMO化，并与活化STAT1结合抑制其DNA结合活性，参与干扰素应答、造血表型和骨骼发育相关转录网络。该蛋白主要定位于细胞核，不具备胞外结构域、分泌蛋白或膜受体特征，因此常规治疗性抗体的抗原可及性明显受限。相较JAK、STAT或细胞因子受体等同通路胞外或酶活靶点，PIAS1更适合作为机制验证、结构表位映射或细胞内递送抗体工程研究靶点，临床转化优先级应低于可从胞外直接阻断的通路节点。",
+    "mechanism": "设计分子应干预PIAS1 SP-RING结构域与SUMO-conjugating enzyme UBE2I/UBC9的结合，削弱PIAS1介导底物SUMO化及其对STAT1转录活性的抑制。",
+    "selectedEpitope": "优先覆盖SP-RING锌结合折叠中UBC9识别界面，避免破坏核心锌配位残基。",
+    "diseaseDirection": "干扰素-STAT1转录调控相关表型",
+    "domain": "PIAS1含SAP结构域、PINIT区、SP-RING型SUMO E3连接酶结构域及酸性C端调控区。",
+    "evidence": "PIAS1-STAT1/SUMO化通路结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病-靶点关联",
+      "UniProt O75925功能与定位注释",
+      "RCSB PDB 1V66溶液NMR结构",
+      "STAT1转录抑制与SUMO E3连接酶文献"
+    ],
+    "referenceEntries": "UniProt O75925；RCSB PDB 1V66；Open Targets PIAS1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SP-RING结构域UBC9结合界面邻近表面",
+        "直接影响PIAS1 SUMO E3连接酶复合物装配，机制指向明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PINIT区与SP-RING相邻调控表面",
+        "可能影响构象稳定性及底物招募，但功能验证依赖细胞内体系",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SP-RING锌配位核心及疏水折叠内部",
+        "易造成非特异性折叠破坏并降低结构选择性，不宜作为首选",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PIAS1为核内蛋白，传统Fab或VHH难以到达作用位点；需采用细胞内抗体、递送载体或降解偶联策略，并严控SP-RING锌指折叠稳定性风险。",
+    "structurePrepZh": "以PDB 1V66的A链NMR构象集为模板，进行代表构象聚类、锌配位约束检查、缺失区标注，并映射UBC9结合相关表面。",
+    "structureRef": "RCSB PDB 1V66；PIAS1 SP-RING结构域NMR研究",
+    "antibodies": [
+      "暂无获批PIAS1靶向抗体",
+      "研究级抗PIAS1检测抗体"
+    ],
+    "interfaceFocus": "SP-RING-UBC9结合面及邻近调控表面",
+    "designMode": "细胞内表位验证",
+    "candidates": [
+      {
+        "target": "STAT1",
+        "rationale": "STAT1是PIAS1直接调控的转录因子，PIAS1可结合活化STAT1并抑制其DNA结合活性；该节点更贴近干扰素信号输出端。"
+      },
+      {
+        "target": "UBE2I",
+        "rationale": "UBE2I/UBC9是SUMO化级联的E2酶，与PIAS1 SP-RING结构域形成功能复合物；靶向该相互作用可评估SUMO E3活性依赖机制。"
+      },
+      {
+        "target": "JAK1",
+        "rationale": "JAK1位于干扰素受体-STAT1激活轴上游，负责促进STAT1磷酸化；该靶点与PIAS1调控的STAT1通路处于同一信号网络。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

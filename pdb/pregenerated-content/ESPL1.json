@@ -1,0 +1,65 @@
+{
+  "gene": "ESPL1",
+  "generatedAt": "2026-08-03T12:22:38.988Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ESPL1编码separase，是有丝分裂后期切割cohesin复合体RAD21亚基并触发姐妹染色单体分离的半胱氨酸蛋白酶，细胞周期失衡、染色体不稳定性及增殖异常与多种肿瘤和造血表型相关。该蛋白主要定位于细胞核和胞质，缺乏分泌型或膜外结构域，天然抗原可及性不利于常规体内阻断抗体，更适合用于结构验证、细胞内递送抗体或研究级结合体设计。其优先级低于CDK、Aurora kinase或PLK等可药性更成熟的细胞周期靶点，但9HN0提供2.8 Å冷冻电镜结构，可支持针对调控界面和催化沟槽的高分辨率表位工程。",
+    "mechanism": "设计结合体占据separase催化结构域邻近底物识别沟槽，阻断ESPL1对cohesin亚基RAD21裂解位点的结合与切割。",
+    "selectedEpitope": "优先覆盖C端caspase-like催化结构域的底物结合沟槽及RAD21识别邻近环区。",
+    "diseaseDirection": "细胞周期异常与染色体不稳定性",
+    "domain": "ESPL1含N端HEAT-repeat调控区、securin结合相关区及C端caspase-like蛋白酶催化结构域。",
+    "evidence": "ESPL1细胞周期调控与结构表位证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联统计",
+      "UniProt Q14674功能与亚细胞定位注释",
+      "RCSB PDB 9HN0冷冻电镜结构",
+      "cohesin-RAD21裂解与separase调控文献"
+    ],
+    "referenceEntries": "UniProt: Q14674; RCSB PDB: 9HN0; HGNC: ESPL1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端caspase-like催化结构域底物结合沟槽",
+        "直接干预RAD21裂解底物进入与定位，机制验证价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端HEAT-repeat调控区与securin调控界面邻近区域",
+        "可评估对separase构象抑制和调控复合体形成的影响",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化沟槽的暴露柔性环区",
+        "结合可及性可能较好，但功能阻断相关性弱且构象异质性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ESPL1为细胞内蛋白，常规抗体体内可及性不足；应优先限定为结构探针、细胞内抗体或递送偶联形式，并避免遮蔽高度保守催化残基导致非特异蛋白酶交叉风险。",
+    "structurePrepZh": "以9HN0抗原链A、B为模板，保留高置信度催化结构域与调控界面，去除低置信柔性片段后进行质子化、缺失侧链修复和界面可及性评估。",
+    "structureRef": "RCSB PDB 9HN0, human separase cryo-EM, 2.8 Å",
+    "antibodies": [
+      "无获批ESPL1治疗性抗体",
+      "研究级anti-separase抗体"
+    ],
+    "interfaceFocus": "RAD21底物识别沟槽与securin调控界面",
+    "designMode": "细胞内靶点验证",
+    "candidates": [
+      {
+        "target": "RAD21",
+        "rationale": "RAD21是cohesin复合体可被separase切割的核心kleisin亚基，处于姐妹染色单体分离通路的直接下游。其裂解状态可作为ESPL1功能阻断的通路读出。"
+      },
+      {
+        "target": "PTTG1",
+        "rationale": "PTTG1编码securin，可直接结合并抑制separase活性，是ESPL1激活前的关键负调控因子。针对该轴的设计可用于解析separase释放与细胞周期转换机制。"
+      },
+      {
+        "target": "CCNB1",
+        "rationale": "CCNB1-CDK1活性维持有丝分裂状态，并通过APC/C介导的cyclin B降解参与securin降解同步调控。该靶点与ESPL1同属后期启动和染色体分离控制网络。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

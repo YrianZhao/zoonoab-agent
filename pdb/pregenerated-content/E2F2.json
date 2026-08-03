@@ -1,0 +1,65 @@
+{
+  "gene": "E2F2",
+  "generatedAt": "2026-08-03T18:52:40.740Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "E2F2 是细胞周期 G1/S 转换转录调控网络成员，与 RB1–E2F 轴共同调控 DNA 复制、细胞增殖及造血细胞分化相关基因表达，Open Targets 关联信号主要集中于红细胞体积、红细胞分布宽度及白细胞计数等血液学表型。该蛋白为核内转录因子，天然抗原可及性显著弱于膜受体或分泌蛋白，常规治疗性抗体难以直接进入细胞核发挥阻断作用。其优先级低于同通路中具有细胞表面可及性的上游受体或配体，但可作为机制研究、细胞内抗体或递送型抗体片段设计的结构验证靶点。",
+    "mechanism": "设计目标聚焦阻断 E2F2 DNA 结合域与靶基因启动子 E2F consensus motif 的结合，或干扰 E2F2–DP1 异二聚体形成以削弱转录激活复合物稳定性。",
+    "selectedEpitope": "优先覆盖 winged-helix DNA 结合域的识别螺旋与 DNA 大沟接触面，避免破坏非目标折叠核心。",
+    "diseaseDirection": "血液学表型与细胞周期调控",
+    "domain": "E2F2 含 N 端 DNA 结合域、DP 二聚化域、转录激活区及 RB 家族蛋白结合区。",
+    "evidence": "E2F2-RB细胞周期轴与血液表型证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q14209 functional annotation",
+      "RCSB PDB 1N4M X-ray structure",
+      "Reactome Cell Cycle and E2F-mediated regulation"
+    ],
+    "referenceEntries": "UniProt Q14209；RCSB PDB 1N4M；Open Targets E2F2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DNA 结合域识别螺旋及相邻 loop",
+        "直接遮挡 E2F motif 识别界面，适合验证转录阻断机制",
+        "优先"
+      ],
+      [
+        "Site B",
+        "E2F2-DP 二聚化结构域界面",
+        "干扰 E2F2 与 DP1/TFDP1 形成稳定 DNA 结合复合物",
+        "备选"
+      ],
+      [
+        "Site C",
+        "RB 结合相关转录激活区",
+        "区域构象柔性较高且核内可及性不足，需结合递送策略评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "E2F2 为核内转录因子，常规抗体药物可及性不足；建议限定为细胞内抗体、纳米抗体递送或结构机制验证场景。",
+    "structurePrepZh": "以 1N4M 晶体结构为模板，保留 E2F2-DP-DNA 复合物界面，补全缺失柔性片段并标注 DNA 接触残基。",
+    "structureRef": "RCSB PDB 1N4M，2.2 Å X-ray E2F-DP-DNA complex",
+    "antibodies": [
+      "anti-E2F2 clone TFE25",
+      "anti-E2F2 clone 5A6"
+    ],
+    "interfaceFocus": "DNA 大沟识别面与 DP 二聚化界面",
+    "designMode": "细胞内抗体/递送型",
+    "candidates": [
+      {
+        "target": "TFDP1",
+        "rationale": "TFDP1 与 E2F2 形成异二聚体并增强 E2F DNA 结合能力，是同一 E2F 转录调控复合物的核心伴侣靶点。"
+      },
+      {
+        "target": "RB1",
+        "rationale": "RB1 通过结合 E2F 转录激活区抑制 E2F 依赖性 G1/S 转录程序，是 RB1–E2F 细胞周期检查点的关键抑制因子。"
+      },
+      {
+        "target": "CCND1",
+        "rationale": "CCND1-CDK4/6 介导 RB1 磷酸化并释放 E2F 转录活性，位于 E2F2 上游的同一细胞周期调控轴。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

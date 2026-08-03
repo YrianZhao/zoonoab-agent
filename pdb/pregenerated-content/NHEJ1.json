@@ -1,0 +1,65 @@
+{
+  "gene": "NHEJ1",
+  "generatedAt": "2026-08-03T14:41:51.369Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NHEJ1编码Cernunnos-XLF，是经典非同源末端连接通路的核内DNA修复因子，参与DNA双链断裂末端桥接、XRCC4-LIG4复合体协同连接及V(D)J重排，双等位基因缺陷可导致Cernunnos-XLF缺陷和联合免疫缺陷。该蛋白并非膜受体或分泌抗原，天然细胞外可及性有限，抗体设计更适合作为结构识别、细胞内递送抗体或研究级阻断工具。相较于通路中必需且广泛致死相关的XRCC4、LIG4等因子，NHEJ1具有明确人类免疫缺陷遗传证据和已解析头结构域晶体结构，适合开展界面导向的功能干预设计。",
+    "mechanism": "抗体结合NHEJ1头结构域二聚化与XRCC4相互作用相关表面，阻断NHEJ1促进XRCC4-LIG4介导DNA末端连接的支架功能。",
+    "selectedEpitope": "优先覆盖2QM4头结构域二聚化界面及邻近XRCC4结合相关凹面。",
+    "diseaseDirection": "联合免疫缺陷与NHEJ修复异常",
+    "domain": "NHEJ1含N端球状头结构域、卷曲螺旋茎区及C端柔性尾部，2QM4解析其头结构域。",
+    "evidence": "NHEJ1遗传缺陷与经典NHEJ通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q9H9Q4功能与亚细胞定位注释",
+      "RCSB PDB 2QM4晶体结构记录",
+      "OMIM/ClinVar免疫缺陷相关变异证据"
+    ],
+    "referenceEntries": "UniProt Q9H9Q4；RCSB PDB 2QM4；HGNC NHEJ1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端头结构域二聚化界面",
+        "可干预XLF同源二聚体形成及DNA末端桥接支架功能",
+        "优先"
+      ],
+      [
+        "Site B",
+        "头结构域侧向XRCC4结合相关表面",
+        "有望削弱NHEJ1与XRCC4-LIG4复合体协同装配",
+        "备选"
+      ],
+      [
+        "Site C",
+        "卷曲螺旋茎区预测暴露面",
+        "结构柔性较高且2QM4未完整覆盖，需结合全长模型验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NHEJ1为核内DNA修复蛋白，常规治疗性抗体难以直接触达；设计应限定为胞内递送、内体逃逸或研究级Fab/VHH，并避免干扰保守折叠核心造成非特异失活。",
+    "structurePrepZh": "以2QM4抗原链A-D为模板，保留头结构域二聚体生物学装配，补建缺失侧链并标注卷曲螺旋和C端尾部为低置信柔性区域。",
+    "structureRef": "RCSB PDB 2QM4，X-ray diffraction，2.3 Å",
+    "antibodies": [
+      "研究级抗NHEJ1/XLF抗体",
+      "研究级抗Cernunnos-XLF抗体"
+    ],
+    "interfaceFocus": "头结构域二聚化面与XRCC4结合相关表面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "XRCC4",
+        "rationale": "XRCC4与LIG4形成连接酶复合体，并与NHEJ1协同稳定DNA断裂末端，是经典NHEJ通路中与NHEJ1直接功能耦合的核心因子。"
+      },
+      {
+        "target": "LIG4",
+        "rationale": "LIG4负责DNA双链断裂末端最终连接，缺陷可导致联合免疫缺陷和放射敏感表型，与NHEJ1处于同一V(D)J重排修复轴。"
+      },
+      {
+        "target": "DCLRE1C",
+        "rationale": "DCLRE1C/Artemis参与V(D)J重排发夹末端开放，缺陷导致T-B-重症联合免疫缺陷，与NHEJ1共同构成免疫受体重排所需的NHEJ通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

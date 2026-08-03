@@ -1,0 +1,65 @@
+{
+  "gene": "ILK",
+  "generatedAt": "2026-08-03T13:28:55.681Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ILK 是整合素黏附复合体中的胞内假激酶支架蛋白，通过与 PINCH、parvin 形成 IPP 复合体连接 β1/β3 整合素黏附斑与肌动蛋白骨架，参与心肌机械应力适应、肌节稳定和心肌重构，因而与肥厚型及扩张型心肌病具有机制关联。ILK 不具备经典胞外结构域或分泌形式，完整蛋白作为体内阻断型抗体靶点的抗原可及性受限，更适合作为结构抗原用于细胞内递送抗体、intrabody 或研究级结合分子设计。相较同通路中广泛表达且胞外可及的整合素亚基，ILK 的优势在于 4HI8 提供高分辨率激酶样结构域界面，可支持针对 IPP 复合体装配界面的精细表位设计，但转化优先级应低于真正膜外可及靶点。",
+    "mechanism": "设计分子优先阻断 ILK 激酶样结构域与 α-parvin CH2 结构域的结合界面，削弱 IPP 复合体对整合素黏附斑与肌动蛋白骨架的桥接。",
+    "selectedEpitope": "优先覆盖 ILK C 端激酶样结构域的 α-parvin 结合沟槽，避开 ATP 样口袋深部保守疏水核心。",
+    "diseaseDirection": "心肌病与整合素黏附重构",
+    "domain": "ILK 含 N 端 ankyrin repeat 区域和 C 端假激酶结构域，4HI8 解析其与 α-parvin CH2 复合物。",
+    "evidence": "ILK-IPP 黏附复合体与心肌病证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q13418 功能与结构域注释",
+      "RCSB PDB 4HI8 晶体结构记录",
+      "整合素-IPP 复合体与心肌重构文献"
+    ],
+    "referenceEntries": "UniProt Q13418；RCSB PDB 4HI8；Open Targets ILK",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "假激酶结构域 α-parvin CH2 结合界面",
+        "直接干预 ILK-parvin 相互作用，机制最清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N 端 ankyrin repeat 的 PINCH 结合相关表面",
+        "可影响 IPP 复合体上游装配，但 4HI8 未覆盖该区域",
+        "备选"
+      ],
+      [
+        "Site C",
+        "假激酶结构域 ATP 样裂隙邻近区域",
+        "结构保守性较高且 ILK 为假激酶，选择性与功能收益需谨慎评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ILK 为胞内蛋白，常规系统给药抗体难以到达抗原；建议限定为 intrabody、细胞递送抗体或结构验证工具，并严格评估 IPP 复合体广泛组织功能风险。",
+    "structurePrepZh": "以 4HI8 链 A/B 复合体为模板，保留 ILK-α-parvin 界面构象，补充缺失侧链并去除晶体水后进行界面残基标注与表位聚类。",
+    "structureRef": "PDB 4HI8；human ILK pseudokinase-parvin complex",
+    "antibodies": [
+      "研究级 anti-ILK antibody",
+      "细胞内抗体或 intrabody 工程候选"
+    ],
+    "interfaceFocus": "ILK 假激酶结构域与 α-parvin CH2 界面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "ITGB1",
+        "rationale": "ITGB1 是 ILK 黏附通路的上游整合素 β 亚基，胞外结构域可及性优于 ILK，可通过阻断配体结合或构象激活影响黏附信号输入。"
+      },
+      {
+        "target": "ITGB3",
+        "rationale": "ITGB3 参与整合素介导的黏附斑形成和心血管重构过程，具有成熟的胞外抗体干预先例，适合作为同通路可及性更高的候选靶点。"
+      },
+      {
+        "target": "PARVA",
+        "rationale": "PARVA 编码 α-parvin，是 IPP 复合体中直接结合 ILK 的组分；靶向其与 ILK 的界面可用于验证同一黏附骨架连接轴的功能贡献。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

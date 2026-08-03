@@ -1,0 +1,65 @@
+{
+  "gene": "PTPRE",
+  "generatedAt": "2026-08-03T15:44:17.018Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PTPRE编码受体型蛋白酪氨酸磷酸酶PTPε，参与去磷酸化SRC家族激酶调控位点，并影响血管平滑肌收缩、内皮反应性及血压稳态相关信号。该蛋白具有胞外区、单次跨膜区及胞内催化性磷酸酶结构域，膜受体拓扑为抗体识别胞外构象提供理论可及性，但已解析结构主要覆盖胞内磷酸酶域。相比直接靶向广泛表达的下游激酶，PTPRE位于受体型磷酸酶节点，可作为血压调控通路中较上游的磷酸化状态调节靶点，需优先采用功能阻断与构象选择相结合的验证策略。",
+    "mechanism": "抗体设计以阻断PTPε胞外区潜在二聚化或配体样相互作用为核心，间接限制胞内磷酸酶域对SRC家族激酶调控位点的去磷酸化。",
+    "selectedEpitope": "优先锁定胞外近膜区构象表位，并避开跨膜邻近糖基化热点；6D4D胞内PTP域仅用于构象风险参照。",
+    "diseaseDirection": "血压稳态与血管张力调控",
+    "domain": "PTPRE为单次跨膜受体型磷酸酶，含胞外段、跨膜螺旋及胞内PTP催化结构域。",
+    "evidence": "PTPRE血压性状遗传关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P23469蛋白功能与结构域注释",
+      "RCSB PDB 6D4D晶体结构记录",
+      "GWAS Catalog血压性状遗传关联证据"
+    ],
+    "referenceEntries": "UniProt P23469；RCSB PDB 6D4D；Open Targets PTPRE",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "胞外近膜构象表位",
+        "可能影响受体构象耦联与二聚化状态，适合功能阻断抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "胞外远膜可及环区",
+        "抗原可及性较好，适合筛选结合抗体并评估构象选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "胞内PTP催化域邻近区域",
+        "6D4D提供高分辨率结构参照，但细胞外抗体难以直接作用胞内位点",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PTPRE胞外区功能配体与高分辨率结构证据有限，抗体设计应避免仅依据胞内PTP域外推阻断机制，并需进行细胞膜构象与功能磷酸化读出验证。",
+    "structurePrepZh": "6D4D为PTPRE胞内磷酸酶结构域X射线结构，分辨率1.765 Å；建模时应补充胞外区预测结构并标注跨膜拓扑边界。",
+    "structureRef": "RCSB PDB 6D4D，PTPRE磷酸酶结构域晶体结构",
+    "antibodies": [
+      "抗PTPRE研究级单克隆抗体",
+      "抗受体型PTP胞外域阻断抗体框架"
+    ],
+    "interfaceFocus": "胞外近膜构象界面与受体二聚化相关区域",
+    "designMode": "构象阻断型设计",
+    "candidates": [
+      {
+        "target": "SRC",
+        "rationale": "SRC家族激酶是PTPRE去磷酸化调控的重要下游节点，参与血管收缩和内皮反应性信号。作为同一酪氨酸磷酸化调控轴的候选靶点，可用于机制对照与通路验证。"
+      },
+      {
+        "target": "PTPN11",
+        "rationale": "PTPN11编码SHP2，属于蛋白酪氨酸磷酸酶网络成员，并参与RAS-MAPK及血管发育相关信号。其与PTPRE同属磷酸酶介导的磷酸化稳态调节通路，可作为替代磷酸酶节点评估。"
+      },
+      {
+        "target": "PTPRJ",
+        "rationale": "PTPRJ为受体型蛋白酪氨酸磷酸酶，能够调节生长因子受体和SRC相关信号，并与血管细胞功能相关。其膜受体拓扑与PTPRE相近，适合作为同类受体型PTP设计参照。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

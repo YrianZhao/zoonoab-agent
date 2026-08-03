@@ -1,0 +1,65 @@
+{
+  "gene": "ERN2",
+  "generatedAt": "2026-08-03T12:22:39.768Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ERN2编码IRE1β，是内质网应激未折叠蛋白反应中的跨膜感受器，其腔内结构域识别错误折叠蛋白并驱动二聚化/寡聚化，进而激活胞质激酶与RNase模块，影响XBP1剪接及ERN1相关信号。其抗原可及性主要来自内质网腔内结构域，结构上属于可被抗体识别的大型可溶性样腔内折叠单元，但细胞表面可及性有限，更适合细胞内递送或研究型阻断抗体策略。相较ERN1，ERN2在肠上皮和黏液分泌细胞中更具组织偏向性，且与炎症性肠病遗传易感及黏膜应激稳态相关，具备较高通路特异性优先级。",
+    "mechanism": "抗体结合ERN2腔内感应结构域的二聚化界面，阻断错误折叠蛋白诱导的IRE1β自缔合，从而降低胞质RNase活化与XBP1 mRNA剪接。",
+    "selectedEpitope": "优先锁定IRE1β腔内结构域二聚化界面及MHC样沟槽邻近区域，避免跨膜近端柔性区。",
+    "diseaseDirection": "内质网应激与炎症性肠病",
+    "domain": "I型跨膜蛋白，含N端内质网腔内感应结构域、单跨膜区、胞质激酶样结构域及RNase结构域。",
+    "evidence": "ERN2-IRE1β内质网应激通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与关联评分",
+      "UniProt Q76MJ5功能与亚细胞定位注释",
+      "RCSB PDB 9I3F X射线晶体结构",
+      "UPR/IRE1β炎症性肠病相关文献"
+    ],
+    "referenceEntries": "UniProt Q76MJ5；RCSB PDB 9I3F；Open Targets ERN2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "腔内感应结构域二聚化界面",
+        "可直接干预IRE1β自缔合与下游RNase活化，机制可验证性强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "腔内MHC样沟槽及错误折叠蛋白结合邻近面",
+        "可能削弱应激配体样结合与构象重排，适合功能筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "跨膜近端腔内柔性连接区",
+        "可能影响构象传递，但柔性和保守性风险较高，需结构约束设计",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ERN2主要定位于内质网膜，常规胞外抗体难以到达靶点；需优先评估细胞内递送、纳米抗体或研究型工具抗体场景，并规避ERN1交叉反应。",
+    "structurePrepZh": "以9I3F抗原链为模板，保留腔内结构域生物学装配体，补全缺失侧链并校正糖基化位点，按二聚化界面进行表面可及性与保守性评估。",
+    "structureRef": "RCSB PDB 9I3F，human IRE1β luminal domain，1.9 Å X-ray",
+    "antibodies": [
+      "抗IRE1β研究级单克隆抗体",
+      "抗IRE1α/IRE1β通路阻断型工具抗体"
+    ],
+    "interfaceFocus": "腔内结构域二聚化臂与MHC样沟槽边缘",
+    "designMode": "胞内递送阻断抗体",
+    "candidates": [
+      {
+        "target": "ERN1",
+        "rationale": "ERN1编码IRE1α，是同一UPR-IRE1分支的核心感受器，介导XBP1剪接与RIDD反应；与ERN2形成明确的功能同源对照。"
+      },
+      {
+        "target": "XBP1",
+        "rationale": "XBP1是IRE1 RNase剪接的直接下游转录因子，控制内质网蛋白折叠与分泌细胞稳态，适合作为通路药效读出与候选干预节点。"
+      },
+      {
+        "target": "HSPA5",
+        "rationale": "HSPA5编码BiP/GRP78，可结合IRE1腔内结构域并维持非激活状态，是UPR感应器释放与激活过程的关键伴侣蛋白。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "TLR1",
+  "generatedAt": "2026-08-03T17:18:59.055Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TLR1是细胞表面先天免疫受体，与TLR2形成异二聚体识别细菌三酰化脂肽，驱动MyD88依赖性NF-κB与MAPK炎症转录程序，在哮喘、变应性鼻炎及中性粒细胞相关炎症表型中具有明确通路关联。其富含亮氨酸重复序列的胞外结构域直接暴露于细胞外，可作为抗体结合与配体阻断的可及抗原面。相较于下游MYD88、IRAK4或NF-κB节点，TLR1位于配体识别入口，具备更高通路选择性，并可避免广泛抑制多种TLR共享信号造成的系统性免疫风险。",
+    "mechanism": "阻断TLR1胞外LRR结构域与TLR2形成脂肽诱导的活化异二聚体，抑制三酰化脂肽结合后TIR结构域近端化及MyD88募集。",
+    "selectedEpitope": "优先覆盖TLR1 LRR9-LRR12脂酰链结合沟槽及TLR2异二聚化界面。",
+    "diseaseDirection": "气道过敏炎症与先天免疫调控",
+    "domain": "I型膜受体，胞外LRRNT-LRR-LRRCT配体识别区，跨膜螺旋及胞内TIR信号结构域。",
+    "evidence": "TLR1-TLR2脂肽识别与气道炎症证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q15399功能与结构域注释",
+      "RCSB PDB 7NUW晶体结构",
+      "TLR1/TLR2异二聚体脂肽识别文献"
+    ],
+    "referenceEntries": "UniProt Q15399；RCSB PDB 7NUW；Open Targets TLR1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "LRR9-LRR12脂酰链结合沟槽及TLR2接触面",
+        "可直接干预Pam3CSK4类三酰化脂肽诱导的TLR1-TLR2活化",
+        "优先"
+      ],
+      [
+        "Site B",
+        "LRR14-LRR18侧向凸面",
+        "利于获得高亲和结合分子，并可能通过空间位阻削弱受体复合体稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "LRRNT近N端帽区",
+        "结构可及但远离核心配体沟槽，功能阻断概率较低且需避免非阻断型结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TLR1与TLR6均可与TLR2组成异二聚体，表位应避开高度保守LRR骨架面，优先锁定TLR1特异性脂酰链口袋与异二聚化残基。",
+    "structurePrepZh": "以7NUW链A为抗原模板，补全缺失侧链并保留糖基化位点注释；去除非必要晶体接触分子后评估LRR凹面与TLR2界面可及性。",
+    "structureRef": "RCSB PDB 7NUW，X-ray，1.9 Å，人源TLR1胞外结构",
+    "antibodies": [
+      "GD2.F4",
+      "TLR1-blocking monoclonal antibody OPN-305 related class comparator"
+    ],
+    "interfaceFocus": "LRR9-LRR12配体沟槽与TLR2异二聚化界面",
+    "designMode": "阻断型界面抗体设计",
+    "candidates": [
+      {
+        "target": "TLR2",
+        "rationale": "TLR2是TLR1的必需异二聚化伙伴，直接参与细菌脂肽识别并启动同一MyD88-NF-κB炎症轴。靶向TLR2可实现更强的上游通路阻断，但选择性风险高于TLR1。"
+      },
+      {
+        "target": "CD14",
+        "rationale": "CD14作为模式识别共受体可促进多种微生物脂质递呈至TLR复合体，并参与气道炎症放大。其细胞外GPI锚定特征提供抗体可及性。"
+      },
+      {
+        "target": "MYD88",
+        "rationale": "MYD88是TLR1-TLR2活化后的核心适配蛋白，介导IRAK复合体招募与炎症因子转录。该节点通路相关性强，但胞内定位使其不适合作为常规抗体主靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

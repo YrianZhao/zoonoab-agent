@@ -1,0 +1,65 @@
+{
+  "gene": "STK11",
+  "generatedAt": "2026-08-03T16:59:41.691Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "STK11/LKB1 是AMPK相关激酶网络的上游丝氨酸/苏氨酸激酶，失活突变可削弱细胞能量应激感知、mTORC1抑制与细胞极性维持，是Peutz-Jeghers综合征及多类肿瘤易感的重要驱动因素。该蛋白为胞内激酶，天然抗原可及性不具备常规细胞表面抗体优势，因此更适合探索细胞内递送抗体、降解抗体或研究级构象抗体。相较于下游多节点效应分子，STK11处于AMPK-mTOR轴上游且具明确遗传证据，但其胞内定位使成药优先级低于可分泌或膜受体靶点。",
+    "mechanism": "设计抗体应阻断STK11激酶结构域与STRADα-MO25复合体的构象稳定界面，削弱LKB1激酶活化及对AMPK相关激酶底物的磷酸化。",
+    "selectedEpitope": "优先覆盖激酶结构域C叶与STRADα接触面，避开高度保守ATP结合裂隙。",
+    "diseaseDirection": "肿瘤抑制缺失与AMPK-mTOR轴",
+    "domain": "STK11含N端调控区、中央丝氨酸/苏氨酸激酶结构域及C端法呢基化相关调控尾区。",
+    "evidence": "STK11遗传失活与AMPK-mTOR通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q15831功能与结构域注释",
+      "RCSB PDB 2WTK晶体结构记录",
+      "COSMIC/ClinVar肿瘤与胚系变异证据"
+    ],
+    "referenceEntries": "UniProt Q15831；RCSB PDB 2WTK；HGNC STK11",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域C叶-STRADα构象稳定界面",
+        "可干预LKB1复合体活化构象，适合构象选择性抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "激酶结构域N叶与αC螺旋邻近区域",
+        "有助于识别活化状态差异，并可能影响催化构象转换",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP结合裂隙及催化环邻近保守区域",
+        "保守性高且可能产生广谱激酶交叉反应，需严格特异性筛选",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "STK11为胞内肿瘤抑制激酶，常规裸抗体难以到达作用位点；设计应限定为胞内递送、内体逃逸偶联或研究级构象探针，并规避保守激酶口袋。",
+    "structurePrepZh": "以2WTK晶体复合物为模板，保留STK11激酶结构域及STRADα/MO25相关界面，补全缺失侧链、校正质子化状态，并标注突变热点。",
+    "structureRef": "RCSB PDB 2WTK；LKB1-STRADα-MO25复合体晶体结构",
+    "antibodies": [
+      "anti-LKB1 clone Ley37D/G6",
+      "anti-LKB1 clone 27D10"
+    ],
+    "interfaceFocus": "STK11激酶C叶与STRADα稳定化界面",
+    "designMode": "胞内构象抗体",
+    "candidates": [
+      {
+        "target": "STRADA",
+        "rationale": "STRADA编码STRADα，是LKB1复合体的假激酶支架组分，可通过变构方式稳定STK11活化构象，属于同一LKB1-AMPK通路核心节点。"
+      },
+      {
+        "target": "CAB39",
+        "rationale": "CAB39/MO25与STK11-STRAD复合体结合并增强LKB1激酶活性，是调节AMPK相关激酶磷酸化输出的真实通路组分。"
+      },
+      {
+        "target": "PRKAA1",
+        "rationale": "PRKAA1编码AMPKα1催化亚基，是STK11直接磷酸化的下游底物之一，连接能量应激感知与mTORC1抑制。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

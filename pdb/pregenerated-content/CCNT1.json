@@ -1,0 +1,65 @@
+{
+  "gene": "CCNT1",
+  "generatedAt": "2026-08-03T18:20:35.223Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CCNT1编码P-TEFb复合体的Cyclin T1亚基，通过结合CDK9促进RNA polymerase II CTD磷酸化，并为HIV Tat依赖的病毒转录延伸提供关键宿主辅因子。该蛋白主要定位于细胞核，不属于分泌蛋白或膜受体，天然抗原可及性不利于常规胞外抗体干预，但可用于结构导向的细胞内抗体、递送型Fab或研究级结合分子设计。相较于广谱转录因子，CCNT1具有明确的Tat识别界面与P-TEFb装配界面，疾病关联最高指向HIV感染，因而在病毒转录宿主依赖机制研究中优先级高于非特异性转录调控靶点。",
+    "mechanism": "设计结合分子阻断HIV Tat与CCNT1 cyclin box区域的相互作用，抑制Tat募集P-TEFb至TAR RNA并降低CDK9介导的RNA polymerase II转录延伸磷酸化。",
+    "selectedEpitope": "优先覆盖Cyclin T1 Tat识别沟槽及cyclin box H1-H3螺旋界面，避开广泛保守CDK9核心结合面。",
+    "diseaseDirection": "HIV转录延伸宿主因子干预",
+    "domain": "CCNT1含N端cyclin box折叠域，可结合CDK9并参与HIV Tat识别；C端富含转录调控相关低复杂度区域。",
+    "evidence": "CCNT1-P-TEFb介导HIV Tat转录延伸证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt O60563功能与亚细胞定位注释",
+      "RCSB PDB 3MI9晶体结构记录",
+      "HIV Tat-P-TEFb-TAR转录延伸机制文献"
+    ],
+    "referenceEntries": "UniProt: O60563; RCSB PDB: 3MI9; Open Targets: CCNT1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "cyclin box内Tat识别沟槽及邻近H1-H3螺旋面",
+        "直接干预Tat招募P-TEFb，机制与HIV转录依赖性高度匹配",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CCNT1-CDK9装配界面边缘非催化接触区",
+        "可削弱P-TEFb复合体稳定性，但需控制宿主转录毒性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端低复杂度转录调控区域",
+        "结构无序程度较高且表位构象不稳定，成药性与特异性风险较大",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CCNT1为核内宿主转录因子，常规抗体难以到达作用位点。设计应限定为细胞内抗体、递送型Fab或机制验证工具，并严格规避CDK9保守装配核心以降低广谱转录抑制风险。",
+    "structurePrepZh": "以PDB 3MI9的2.1 Å X射线结构为模板，保留抗原链A、B、C中解析良好的cyclin box构象，补全缺失环区并标注Tat/CDK9相关界面残基用于表位分层。",
+    "structureRef": "RCSB PDB 3MI9, X-ray diffraction, 2.1 Å",
+    "antibodies": [
+      "intracellular anti-CCNT1 scFv工具抗体",
+      "anti-Tat/P-TEFb interface research antibody"
+    ],
+    "interfaceFocus": "Tat识别沟槽与cyclin box螺旋束界面",
+    "designMode": "细胞内阻断型",
+    "candidates": [
+      {
+        "target": "CDK9",
+        "rationale": "CDK9与CCNT1组成P-TEFb复合体，直接磷酸化RNA polymerase II CTD并支持HIV Tat依赖的转录延伸，是同一宿主转录延伸轴的核心酶亚基。"
+      },
+      {
+        "target": "SUPT5H",
+        "rationale": "SUPT5H编码DSIF亚基SPT5，参与RNA polymerase II暂停与释放过程，并接受P-TEFb调控，位于Tat-P-TEFb促进转录延伸的下游功能节点。"
+      },
+      {
+        "target": "NELFE",
+        "rationale": "NELFE为NELF复合体亚基，参与启动子近端暂停；P-TEFb通过磷酸化暂停调控因子促进转录延伸，NELFE属于同一转录暂停释放通路。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

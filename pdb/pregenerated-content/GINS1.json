@@ -1,0 +1,65 @@
+{
+  "gene": "GINS1",
+  "generatedAt": "2026-08-03T12:47:14.548Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GINS1 是 CMG 解旋酶复合体中 GINS 四聚体的 PSF1 亚基，参与 CDC45-MCM2-7-GINS 复制叉装配与 DNA 链解旋；其双等位基因缺陷可导致复制应激、胎儿生长受限及联合免疫缺陷。该蛋白定位于细胞核内复制机器，不具备分泌蛋白、膜受体或稳定胞外结构域特征，天然抗原可及性显著弱于细胞表面检查点或细胞因子靶点。相较于同通路的细胞外不可及靶点，GINS1 的优先级主要来自明确的人类遗传疾病关联和已解析晶体结构，但更适合机制研究型胞内抗体或递送型抗体策略，而非常规体液阻断抗体开发。",
+    "mechanism": "设计抗体需阻断 GINS1 与 GINS2/GINS3/GINS4 形成稳定 GINS 核心界面，干扰其并入 CDC45-MCM2-7 复合体并削弱复制叉解旋活性。",
+    "selectedEpitope": "优先覆盖 GINS1 A-domain 与 B-domain 之间参与 GINS 亚基装配的保守界面。",
+    "diseaseDirection": "复制应激相关免疫缺陷",
+    "domain": "GINS1 含 N 端 A-domain 与 C 端 B-domain，构成 GINS 复合体支架界面。",
+    "evidence": "GINS1 复制叉装配与遗传免疫缺陷证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q14691 功能与亚细胞定位注释",
+      "RCSB PDB 2E9X 晶体结构记录",
+      "人类 GINS1 缺陷相关联合免疫缺陷文献"
+    ],
+    "referenceEntries": "UniProt Q14691；RCSB PDB 2E9X；Open Targets GINS1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "A-domain/B-domain 邻近的亚基装配界面",
+        "可能干扰 GINS 四聚体稳定性与 CMG 复合体装配",
+        "优先"
+      ],
+      [
+        "Site B",
+        "GINS1 外露螺旋束与环区连接面",
+        "利于获得构象识别抗体并用于结构探针开发",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守疏水核心与埋藏界面",
+        "可及性较低且易影响折叠稳定性，需避免非特异聚集风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GINS1 为核内复制因子，常规抗体难以进入作用位点；设计应优先采用胞内表达抗体、细胞穿透递送或降解偶联验证体系。",
+    "structurePrepZh": "以 PDB 2E9X 多链晶体结构为模板，保留 GINS 复合体装配链，补全缺失侧链并标注保守界面残基用于表位筛选。",
+    "structureRef": "RCSB PDB 2E9X，X-ray diffraction，2.3 Å",
+    "antibodies": [
+      "抗-GINS1 研究级单克隆抗体",
+      "抗-PSF1 免疫组化抗体"
+    ],
+    "interfaceFocus": "GINS1-GINS2/GINS4 装配接触面",
+    "designMode": "胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "GINS2",
+        "rationale": "GINS2 是 GINS 四聚体核心亚基，与 GINS1 协同稳定复制叉装配；同属 CMG 解旋酶形成与 DNA 复制起始通路。"
+      },
+      {
+        "target": "GINS3",
+        "rationale": "GINS3 参与 GINS 复合体组装并连接 CMG 复制机器，其功能异常可造成复制叉稳定性下降，适合作为同通路比较靶点。"
+      },
+      {
+        "target": "MCM7",
+        "rationale": "MCM7 属 MCM2-7 解旋酶环核心成员，与 CDC45 和 GINS 共同形成 CMG 复合体；其界面可用于评估复制解旋阻断策略。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "MAPK7",
+  "generatedAt": "2026-08-03T14:04:19.102Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAPK7/ERK5 是非经典 MAPK 通路的胞内丝氨酸/苏氨酸激酶，主要由 MAP2K5 磷酸化激活并调控 MEF2、MYC 等转录程序，参与血管生成、炎症应答和肿瘤细胞增殖。该蛋白缺乏天然胞外结构域或分泌形式，完整 IgG 难以直接接近胞内抗原，抗体设计更适合采用细胞内递送或研究级胞内抗体策略。相比同通路的上游膜受体，MAPK7 位于信号汇聚节点且结构分辨率较高，但临床抗体成药优先级低于可直接表面暴露的受体型靶点。",
+    "mechanism": "采用胞内抗体阻断 MAPK7 激酶结构域与 MAP2K5 识别界面或MEF2结合相关构象，抑制ERK5磷酸化级联与核内转录输出。",
+    "selectedEpitope": "优先锁定N端激酶结构域C-lobe的MAP2K5对接沟槽及活化环邻近构象表位。",
+    "diseaseDirection": "ERK5通路相关肿瘤与炎症",
+    "domain": "N端含典型蛋白激酶结构域，C端为长调控尾部并含转录激活相关区域。",
+    "evidence": "MAPK7结构与ERK5通路抗体设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt Q13164功能注释",
+      "RCSB PDB 5BYZ晶体结构",
+      "MAP2K5-ERK5信号通路文献"
+    ],
+    "referenceEntries": "UniProt Q13164；RCSB PDB 5BYZ；Open Targets MAPK7",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域C-lobe对接沟槽",
+        "干预MAP2K5识别与ERK5激活，机制最直接",
+        "优先"
+      ],
+      [
+        "Site B",
+        "活化环与ATP结合裂隙邻近区域",
+        "可稳定非活化构象，但需避免ATP位点选择性风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端调控尾部转录激活相关片段",
+        "可能影响核内转录功能，但结构无序度高且表位稳定性不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAPK7为胞内激酶，常规抗体可及性不足；设计应标注递送依赖性，并优先评估胞内稳定性、激酶同源性选择性及MAPK家族交叉反应。",
+    "structurePrepZh": "以5BYZ链A为模板，保留解析明确的激酶结构域，补全缺失侧链并校正磷酸化状态；C端低置信尾部不宜作为刚性对接核心。",
+    "structureRef": "RCSB PDB 5BYZ，X-ray diffraction，1.65 Å",
+    "antibodies": [
+      "抗ERK5研究抗体",
+      "抗磷酸化ERK5研究抗体"
+    ],
+    "interfaceFocus": "MAP2K5对接沟槽与活化环构象界面",
+    "designMode": "胞内抗体探索",
+    "candidates": [
+      {
+        "target": "MAP2K5",
+        "rationale": "MAP2K5是ERK5通路的直接上游激酶，负责磷酸化并激活MAPK7；干预该节点可降低ERK5级联输出。"
+      },
+      {
+        "target": "MEF2C",
+        "rationale": "MEF2C是ERK5下游转录效应因子之一，参与ERK5介导的增殖和分化相关转录程序，适合作为同通路功能验证靶点。"
+      },
+      {
+        "target": "KSR2",
+        "rationale": "KSR2可作为MAPK信号支架蛋白参与ERK5通路复合体组织，与MAP2K5-MAPK7轴存在功能关联，适合用于通路层级比较。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

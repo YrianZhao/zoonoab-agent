@@ -1,0 +1,65 @@
+{
+  "gene": "MDM4",
+  "generatedAt": "2026-08-03T14:08:37.355Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MDM4通过N端p53结合结构域与TP53转录激活区结合，抑制p53介导的细胞周期停滞与凋亡，是p53失活型肿瘤中的重要负调控节点。其主要定位于细胞核和胞质，缺乏天然胞外结构域，常规体内抗体可及性受限，更适合作为细胞内递送抗体、intrabody或结构引导的蛋白互作阻断模型。相较于直接靶向TP53，MDM4在TP53野生型且MDM4扩增或高表达肿瘤中具有更明确的抑制解除逻辑，并可与MDM2轴形成互补优先级。",
+    "mechanism": "阻断MDM4 N端疏水沟槽与TP53转录激活区α螺旋的结合，解除MDM4对p53转录活性的抑制。",
+    "selectedEpitope": "优先覆盖N端p53结合结构域疏水沟槽及α2螺旋邻近界面。",
+    "diseaseDirection": "TP53野生型肿瘤与骨髓衰竭相关通路",
+    "domain": "MDM4含N端p53结合结构域、酸性区、锌指样区域及C端RING结构域。",
+    "evidence": "MDM4-p53轴结构与肿瘤遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt O15151功能与定位注释",
+      "RCSB PDB 3FEA晶体结构",
+      "TP53-MDM2/MDM4通路肿瘤生物学文献"
+    ],
+    "referenceEntries": "UniProt: O15151; RCSB PDB: 3FEA; Gene: MDM4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端p53结合结构域疏水沟槽",
+        "直接竞争TP53转录激活区结合，最符合功能阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "p53结合结构域α2螺旋外侧邻近面",
+        "可通过空间位阻削弱p53肽段装配，兼顾亲和力成熟窗口",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端RING结构域二聚化相关界面",
+        "可能影响MDM2/MDM4复合体，但结构与功能耦合需进一步验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MDM4为细胞内蛋白，常规抗体药物难以到达作用位点；应限定为递送抗体、intrabody或体外机制验证，并避免误判为膜表面抗原。",
+    "structurePrepZh": "以3FEA高分辨率晶体结构提取MDM4 N端p53结合结构域，保留关键疏水沟槽残基，去除非界面溶剂并校正质子化状态。",
+    "structureRef": "RCSB PDB 3FEA，X-ray diffraction，1.33 Å",
+    "antibodies": [
+      "HDM4/MDMX研究级单克隆抗体",
+      "p53-MDM4轴细胞内阻断型intrabody"
+    ],
+    "interfaceFocus": "p53肽段结合疏水沟槽与α2螺旋边界",
+    "designMode": "胞内PPI阻断",
+    "candidates": [
+      {
+        "target": "MDM2",
+        "rationale": "MDM2与MDM4共同负调控p53，MDM2直接结合并促进TP53泛素化降解，是同一p53抑制轴的核心可干预节点。"
+      },
+      {
+        "target": "TP53",
+        "rationale": "TP53是MDM4抑制作用的直接底物，其转录激活区与MDM4 N端口袋结合；作为通路中心节点可用于机制分层与联合策略评估。"
+      },
+      {
+        "target": "ATM",
+        "rationale": "ATM在DNA损伤反应中磷酸化并激活p53通路，同时影响MDM2/MDM4介导的p53调控，是同一应激响应网络中的上游调节因子。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

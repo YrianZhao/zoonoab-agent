@@ -1,0 +1,65 @@
+{
+  "gene": "GABARAP",
+  "generatedAt": "2026-08-03T12:40:10.712Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GABARAP 是 ATG8 家族泛素样蛋白，参与自噬体形成、膜延伸及选择性自噬受体识别，神经退行性疾病中蛋白质聚集体清除障碍与该通路密切相关。该蛋白主要定位于胞质并通过 C 端脂质化锚定自噬膜，天然抗原可及性低于经典膜受体或分泌蛋白，因此更适合作为胞内机制研究、递送型抗体片段或靶向降解平台的设计对象。相较上游广泛应激调控因子，GABARAP 直接提供 LIR 结合槽与膜结合界面，结构分辨率高且构象定义明确，具有更适合结构引导设计的优先级。",
+    "mechanism": "设计分子可阻断 GABARAP 疏水 LIR docking site 与 SQSTM1、NBR1 等自噬受体 LIR 基序的结合，干预选择性自噬货物装载。",
+    "selectedEpitope": "优先覆盖 N 端 α1/α2 螺旋与 β2-α3 区域构成的 LIR 结合槽边缘。",
+    "diseaseDirection": "神经退行性疾病与选择性自噬",
+    "domain": "ATG8/GABARAP 泛素样核心结构域，含 N 端双螺旋帽和 C 端 ubiquitin-like β-grasp 折叠。",
+    "evidence": "GABARAP 自噬受体识别与神经退行性疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传与关联评分",
+      "UniProt O95166 功能与亚细胞定位注释",
+      "RCSB PDB 6HYO 高分辨率晶体结构",
+      "ATG8-LIR 选择性自噬结构生物学文献"
+    ],
+    "referenceEntries": "UniProt O95166；RCSB PDB 6HYO；Open Targets GABARAP",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N 端 α1/α2 螺旋与 LIR 结合槽入口",
+        "可干预 LIR 基序对接并保留结构可解析性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "β2-α3 loop 及 HP1/HP2 疏水口袋周缘",
+        "靠近 ATG8-LIR 核心识别界面，适合竞争性阻断",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端 Gly116 脂质化邻近表面",
+        "可能影响膜锚定相关构象，但易干扰加工与脂质化状态",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GABARAP 属胞内自噬蛋白，常规全长抗体细胞内可及性不足；设计宜采用 VHH、细胞递送抗体片段或研究级胞内结合分子，并避免破坏全局折叠。",
+    "structurePrepZh": "以 6HYO 链 A 为模板，保留高分辨率主链与侧链构象；补充氢原子、校正质子化状态，并围绕 LIR 结合槽定义可设计网格。",
+    "structureRef": "RCSB PDB 6HYO，X-ray diffraction，1.07 Å",
+    "antibodies": [
+      "研究级 anti-GABARAP monoclonal antibody",
+      "研究级 anti-ATG8/GABARAP family antibody"
+    ],
+    "interfaceFocus": "LIR docking site、HP1/HP2 疏水口袋及 α1/α2 螺旋面",
+    "designMode": "胞内VHH阻断设计",
+    "candidates": [
+      {
+        "target": "MAP1LC3B",
+        "rationale": "MAP1LC3B 同属 ATG8 家族，参与自噬体膜延伸和 LIR 依赖性货物受体招募，是神经退行性疾病蛋白聚集清除通路中的核心并行节点。"
+      },
+      {
+        "target": "SQSTM1",
+        "rationale": "SQSTM1/p62 通过 LIR 基序结合 LC3/GABARAP 蛋白并连接泛素化货物，是选择性自噬货物识别与聚集体清除的关键受体。"
+      },
+      {
+        "target": "ATG7",
+        "rationale": "ATG7 是 LC3/GABARAP 脂质化级联中的 E1 样酶，控制 ATG8 家族蛋白与磷脂酰乙醇胺偶联，位于同一自噬体生物发生通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "ABCC8",
+  "generatedAt": "2026-08-03T09:49:33.252Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ABCC8编码胰岛β细胞KATP通道调节亚基SUR1，与KCNJ11形成ATP敏感钾通道，决定膜去极化、钙内流与胰岛素分泌阈值；其功能缺失导致先天性高胰岛素性低血糖，功能增强与新生儿糖尿病及2型糖尿病相关。SUR1为多跨膜膜蛋白，含胞外环和可暴露构象表面，具备膜受体样抗原可及性，但主要调控位点位于跨膜与胞内核苷酸结合结构域。相较下游代谢酶或胞内信号蛋白，ABCC8处于胰岛素分泌电兴奋耦联的核心离子通道节点，遗传证据强且疾病方向明确，优先级高于间接调节靶点。",
+    "mechanism": "抗体设计以稳定SUR1胞外构象为目标，干预SUR1与Kir6.2复合体的构象耦联，改变KATP通道开放概率并调节胰岛素释放阈值。",
+    "selectedEpitope": "优先选择SUR1跨膜束TMD0/TMD1外侧胞外环及邻近复合体构象界面，避免胞内NBD1/NBD2位点。",
+    "diseaseDirection": "胰岛素分泌异常与糖尿病",
+    "domain": "SUR1含TMD0、TMD1、TMD2三组跨膜区及胞内NBD1/NBD2，形成KATP通道调节模块。",
+    "evidence": "ABCC8-KATP通道胰岛素分泌证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q09428功能与结构域注释",
+      "RCSB PDB 7S5V冷冻电镜结构",
+      "OMIM先天性高胰岛素血症与新生儿糖尿病条目"
+    ],
+    "referenceEntries": "UniProt Q09428；RCSB PDB 7S5V；HGNC ABCC8",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "TMD0/TMD1胞外环邻近膜外构象面",
+        "可及性相对较高，适合构象稳定型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "TMD2外侧胞外环与跨膜束顶部区域",
+        "可能影响SUR1跨膜构象传递，需保留通道复合体完整性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "NBD1/NBD2核苷酸结合与二聚化界面",
+        "位于胞内，抗体可及性低且存在ATP/ADP结合干扰风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ABCC8胞外环短且糖基化、膜环境依赖性强，需基于7S5V保留脂质/通道复合体构象，优先筛选不破坏Kir6.2装配的表位。",
+    "structurePrepZh": "采用7S5V抗原链E作为SUR1结构模板，补全缺失胞外环并标注跨膜边界、糖基化位点和与Kir6.2接触面后进行抗体对接。",
+    "structureRef": "RCSB PDB 7S5V，human KATP channel cryo-EM structure",
+    "antibodies": [
+      "MAB2877 anti-SUR1",
+      "N289/16 anti-SUR1"
+    ],
+    "interfaceFocus": "SUR1胞外环与跨膜束顶部构象面",
+    "designMode": "膜蛋白构象抗体",
+    "candidates": [
+      {
+        "target": "KCNJ11",
+        "rationale": "KCNJ11编码Kir6.2孔形成亚基，与ABCC8/SUR1共同组成胰岛β细胞KATP通道，直接控制钾电流与膜去极化阈值。其遗传变异同样关联新生儿糖尿病和高胰岛素性低血糖。"
+      },
+      {
+        "target": "GCK",
+        "rationale": "GCK作为β细胞葡萄糖传感酶调控ATP/ADP比值，上游决定KATP通道关闭程度和胰岛素分泌启动。其突变与MODY2、永久性新生儿糖尿病及低血糖表型相关。"
+      },
+      {
+        "target": "CACNA1D",
+        "rationale": "CACNA1D编码L型电压门控钙通道CaV1.3，位于KATP通道关闭后的下游钙内流环节，促进胰岛素颗粒胞吐。该节点与β细胞电兴奋-分泌耦联处于同一功能通路。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

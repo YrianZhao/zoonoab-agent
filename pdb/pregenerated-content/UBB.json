@@ -1,0 +1,65 @@
+{
+  "gene": "UBB",
+  "generatedAt": "2026-08-03T17:37:45.454Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "UBB编码多聚泛素前体，成熟泛素通过与底物赖氨酸形成异肽键，参与蛋白酶体降解、DNA损伤应答、NF-κB信号和病原体相关宿主防御。其疾病关联覆盖HIV感染、肿瘤、结核和囊性纤维化等，但成熟泛素主要位于胞内，且胞外游离泛素可及性与疾病特异性有限。相较于膜受体或分泌型炎症因子，UBB作为抗体主靶点的优先级偏低，更适合作为胞内泛素化轴机制研究或递送型抗体设计对象。",
+    "mechanism": "通过识别成熟泛素Ile44疏水斑块或C端Gly-Gly邻近面，阻断泛素与UBA/UBL结合域及去泛素化酶识别界面的相互作用。",
+    "selectedEpitope": "优先评估β1-β5外露面Ile44疏水斑块，避开C端Gly76连接位点。",
+    "diseaseDirection": "感染、肿瘤与蛋白稳态异常",
+    "domain": "成熟泛素为76 aa β-grasp折叠，含β-sheet、α1螺旋及C端Gly-Gly连接尾。",
+    "evidence": "UBB泛素化网络与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProtKB P0CG47功能注释",
+      "RCSB PDB 4XOF高分辨率晶体结构",
+      "Reactome泛素依赖蛋白降解通路"
+    ],
+    "referenceEntries": "UniProt P0CG47；RCSB PDB 4XOF；Reactome ubiquitination",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Ile44-Leu8-Val70疏水斑块",
+        "覆盖多数UBA结构域识别核心，可用于阻断泛素受体结合",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Phe4-Thr12-Lys6邻近β1/β2区域",
+        "邻近K6连接位点，可区分部分链型构象但需验证选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Arg72-Leu73-Arg74-Gly75-Gly76 C端尾部",
+        "接近E1/E2/E3连接和DUB切割位点，干预强但存在广泛蛋白稳态风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "成熟泛素高度保守且广泛胞内表达，系统性阻断可能扰动蛋白稳态；建议限定胞外游离泛素检测、递送策略或链型选择性验证。",
+    "structurePrepZh": "采用4XOF链A作为成熟泛素模板，保留高分辨率主链构象，补全氢原子并标注Ile44斑块、Lys连接位点和C端尾部。",
+    "structureRef": "RCSB PDB 4XOF，X-ray diffraction，1.15 Å",
+    "antibodies": [
+      "FK2",
+      "P4D1"
+    ],
+    "interfaceFocus": "Ile44疏水斑块与C端Gly-Gly连接尾",
+    "designMode": "胞内抗原谨慎模式",
+    "candidates": [
+      {
+        "target": "PSMB5",
+        "rationale": "PSMB5为26S蛋白酶体β5催化亚基，位于泛素-蛋白酶体降解轴下游；其抑制与肿瘤细胞蛋白稳态压力和凋亡诱导直接相关。"
+      },
+      {
+        "target": "NFKB1",
+        "rationale": "NFKB1处于泛素依赖IκB降解后的炎症转录通路核心，连接感染、肿瘤和免疫激活病理过程；但其核内定位限制常规抗体可及性。"
+      },
+      {
+        "target": "TNF",
+        "rationale": "TNF为NF-κB炎症轴中的分泌型细胞因子，抗原可及性显著优于UBB；其在感染炎症和肿瘤微环境中具有明确可阻断配体活性。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

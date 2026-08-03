@@ -1,0 +1,65 @@
+{
+  "gene": "GSTZ1",
+  "generatedAt": "2026-08-03T19:21:23.850Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GSTZ1编码谷胱甘肽转移酶ζ1，亦为maleylacetoacetate isomerase，参与酪氨酸分解通路中maleylacetoacetate向fumarylacetoacetate的谷胱甘肽依赖异构化，其功能缺陷与maleylacetoacetate isomerase deficiency存在直接机制关联。该蛋白主要定位于细胞质和线粒体基质，缺乏跨膜段或稳定分泌特征，天然抗原可及性不及胞外膜受体；抗体设计更适合采用细胞内递送、诊断捕获或降解偶联研究场景。其优先级依据在于具备1.9 Å人源实验晶体结构和明确酶活口袋，相比通路中结构证据较弱或活性位点构象不充分的候选靶点，更利于开展结构约束型表位与结合界面设计。",
+    "mechanism": "设计抗体片段结合GSTZ1二聚体邻近的谷胱甘肽结合沟槽，空间阻断GSH与maleylacetoacetate底物进入催化位点，从而抑制异构化反应。",
+    "selectedEpitope": "优先覆盖N端硫氧还蛋白样结构域的GSH结合位点及C端α螺旋束形成的底物入口边缘。",
+    "diseaseDirection": "酪氨酸分解代谢缺陷",
+    "domain": "GSTZ1含N端GST硫氧还蛋白样结构域、C端α螺旋结构域及二聚体界面。",
+    "evidence": "GSTZ1酪氨酸分解通路结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB O43708功能与亚细胞定位注释",
+      "RCSB PDB 1FW1人源GSTZ1晶体结构",
+      "OMIM/ClinVar中MAAI缺陷相关遗传证据"
+    ],
+    "referenceEntries": "UniProt O43708；RCSB PDB 1FW1；Open Targets GSTZ1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端结构域GSH结合沟槽与催化半胱氨酸邻近区域",
+        "直接干预辅因子结合和底物异构化，机制可解释性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端/C端结构域交界处的疏水底物入口边缘",
+        "可限制maleylacetoacetate进入活性口袋，降低酶促周转",
+        "备选"
+      ],
+      [
+        "Site C",
+        "同源二聚体界面外周α螺旋接触面",
+        "可能影响二聚体稳定性，但需避免破坏保守GST折叠造成非特异结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GSTZ1为细胞内代谢酶，常规抗体体内可及性受限；建议优先开发Fab/VHH用于胞内递送、结构探针或诊断捕获，并评估GST家族交叉反应。",
+    "structurePrepZh": "以1FW1链A为模板，补全缺失侧链与质子化状态，保留催化口袋几何信息，按同源二聚体生物组装评估可成药表面。",
+    "structureRef": "PDB 1FW1，human GSTZ1 X-ray structure, 1.9 Å",
+    "antibodies": [
+      "暂无获批抗GSTZ1治疗性抗体",
+      "研究级anti-GSTZ1 monoclonal antibody"
+    ],
+    "interfaceFocus": "GSH结合沟槽、底物入口及二聚体界面",
+    "designMode": "胞内酶结构阻断",
+    "candidates": [
+      {
+        "target": "FAH",
+        "rationale": "FAH位于酪氨酸分解通路下游，催化fumarylacetoacetate水解；其缺陷导致酪氨酸血症I型，与GSTZ1相关代谢中间体积累具有同通路联系。"
+      },
+      {
+        "target": "HPD",
+        "rationale": "HPD催化4-hydroxyphenylpyruvate生成homogentisate，是酪氨酸降解早期关键酶；药理抑制HPD可降低下游毒性代谢物流量。"
+      },
+      {
+        "target": "HGD",
+        "rationale": "HGD催化homogentisate转化为maleylacetoacetate，其反应产物直接进入GSTZ1/MAAI步骤，适合作为同一代谢轴的候选调控靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

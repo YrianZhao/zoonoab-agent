@@ -1,0 +1,65 @@
+{
+  "gene": "MECR",
+  "generatedAt": "2026-08-03T14:09:46.432Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MECR 编码线粒体 trans-2-enoyl-CoA reductase，是线粒体脂肪酸合成 II 通路中催化 trans-2-enoyl-ACP 还原为 acyl-ACP 的关键酶，其缺陷可影响硫辛酸生成、呼吸链复合体功能及神经系统能量代谢，符合视神经萎缩和基底节异常相关疾病机制。该蛋白主要定位于线粒体基质，并非天然胞外抗原或膜受体，因此抗体可及性不具备常规体内阻断优势，更适合结构验证、细胞内递送或研究型结合分子开发。与同通路多功能酶复合体相比，MECR 具有高分辨率实验结构和明确 NADPH/底物结合口袋，可为构象稳定型抗体或酶活调控型结合分子提供更清晰的优先设计依据。",
+    "mechanism": "设计结合分子覆盖 MECR 的 NADPH 结合沟槽或 enoyl-ACP 底物进入通道，空间阻断辅因子与底物酰基链定位，从而抑制还原反应构象闭合。",
+    "selectedEpitope": "优先覆盖 Rossmann-like NADPH 结合结构域邻近底物通道的催化沟槽边缘。",
+    "diseaseDirection": "线粒体神经退行性与视神经萎缩",
+    "domain": "MECR 为线粒体基质短链脱氢酶/还原酶样酶，含 NADPH 结合 Rossmann 折叠及底物酰基通道。",
+    "evidence": "MECR 线粒体脂肪酸合成与神经病变证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt Q9BV79 蛋白功能与亚细胞定位注释",
+      "RCSB PDB 1ZSY X-ray 晶体结构",
+      "OMIM/ClinVar MECR 相关视神经萎缩与肌张力障碍变异记录"
+    ],
+    "referenceEntries": "UniProt Q9BV79；RCSB PDB 1ZSY；Open Targets MECR",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "NADPH 结合 Rossmann 折叠沟槽及催化口袋入口",
+        "可直接干扰辅因子装配与还原反应构象闭合，适合功能阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "底物 acyl-ACP 酰基链进入通道外缘",
+        "可限制底物定位并保留较高表面可及性，适合构象选择性结合",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离活性位点的二聚体或晶体接触邻近表面",
+        "可能影响蛋白稳定性但功能相关性较弱，需排除非生理晶体界面",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MECR 为线粒体基质内酶，天然抗体体内可及性受限；设计应标注为细胞内递送、研究工具或靶向降解适配场景，并避免选择高度保守 NADPH 核心残基导致广泛交叉反应。",
+    "structurePrepZh": "以 1ZSY 链 A 为模板，补全缺失侧链并保留催化口袋构象；检查配体、晶体接触和线粒体前导肽边界后进行表面电荷与口袋可及性评估。",
+    "structureRef": "PDB 1ZSY，human MECR，X-ray 1.75 Å",
+    "antibodies": [
+      "无临床批准 MECR 靶向抗体",
+      "无公开验证的功能性 MECR 单克隆抗体"
+    ],
+    "interfaceFocus": "NADPH 沟槽与 acyl-ACP 底物通道入口",
+    "designMode": "胞内酶构象阻断",
+    "candidates": [
+      {
+        "target": "MCAT",
+        "rationale": "MCAT 在线粒体脂肪酸合成 II 通路中负责将丙二酰基转移至 ACP，位于 MECR 上游；其异常同样可影响硫辛酸依赖性线粒体代谢。"
+      },
+      {
+        "target": "NDUFAB1",
+        "rationale": "NDUFAB1 是线粒体 acyl carrier protein，承载脂肪酸合成中间体并参与呼吸链复合体装配；与 MECR 底物转运和神经能量代谢机制直接相关。"
+      },
+      {
+        "target": "LIAS",
+        "rationale": "LIAS 催化硫辛酸合成的末端步骤，依赖线粒体脂肪酸合成提供辛酰基底物；其缺陷可导致线粒体能量代谢障碍和神经系统表型。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

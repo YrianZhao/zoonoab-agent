@@ -1,0 +1,65 @@
+{
+  "gene": "EIF5B",
+  "generatedAt": "2026-08-03T19:06:00.308Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "EIF5B是细胞质翻译起始因子，催化60S核糖体亚基加入并促进起始复合体成熟；其疾病关联主要反映神经退行性疾病、代谢表型及炎症测量性状中的翻译稳态改变。该蛋白为胞内GTP酶，不具备天然胞外结构域、分泌暴露或膜受体抗原可及性，常规治疗性抗体成药性受限。相较IL1R2等可及性更高的同数据集中靶点，EIF5B更适合作为结构机制研究、细胞内递送抗体片段或降解偶联平台的低优先级探索靶点。",
+    "mechanism": "以内化递送抗体片段阻断EIF5B GTPase结构域与核糖体起始复合体接触，干扰60S亚基加入及Met-tRNAi定位稳定化。",
+    "selectedEpitope": "优先评估GTPase G-domain邻近核糖体结合界面，避免完全覆盖保守核苷酸结合口袋。",
+    "diseaseDirection": "神经退行性疾病与翻译稳态",
+    "domain": "EIF5B含N端调控区、保守GTPase G-domain及C端Domain II-IV，参与核糖体亚基连接。",
+    "evidence": "EIF5B翻译起始复合体结构与疾病遗传关联证据",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt O60841功能与结构域注释",
+      "RCSB PDB 8PJ5冷冻电镜结构",
+      "GO translation initiation与ribosomal subunit joining注释"
+    ],
+    "referenceEntries": "UniProt O60841；RCSB PDB 8PJ5；Open Targets EIF5B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "G-domain邻近核糖体接触面",
+        "可能阻断EIF5B装配至翻译起始复合体并影响GTP依赖构象转换",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Domain IV靠近Met-tRNAi与核糖体界面",
+        "可干扰起始tRNA定位稳定化，具备较强机制指向性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守GTP/Mg2+结合口袋",
+        "功能关键但保守性高，存在选择性不足及广泛翻译毒性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "EIF5B为胞内必需翻译因子，常规抗体难以到达作用位点；设计应限定为细胞内递送Fab/VHH或机制验证工具，并严控广谱翻译抑制风险。",
+    "structurePrepZh": "以8PJ5冷冻电镜模型为核心，保留EIF5B与核糖体接触构象，补全缺失环区并标注G-domain、Domain II-IV及核苷酸邻近残基。",
+    "structureRef": "RCSB PDB 8PJ5，human EIF5B相关冷冻电镜结构，2.9 Å",
+    "antibodies": [
+      "无已批准EIF5B治疗性抗体",
+      "抗EIF5B研究级单克隆抗体"
+    ],
+    "interfaceFocus": "G-domain核糖体接触面与Domain IV起始tRNA邻近界面",
+    "designMode": "胞内递送型抗体片段",
+    "candidates": [
+      {
+        "target": "EIF2S1",
+        "rationale": "EIF2S1编码eIF2α，是翻译起始及整合应激反应的核心节点；其磷酸化状态直接调节Met-tRNAi装载与全局蛋白合成。"
+      },
+      {
+        "target": "EIF4E",
+        "rationale": "EIF4E介导mRNA 5'帽识别并控制帽依赖性翻译起始；在神经退行性疾病和代谢应激相关翻译稳态改变中具有明确通路关联。"
+      },
+      {
+        "target": "EIF2AK3",
+        "rationale": "EIF2AK3/PERK通过磷酸化EIF2S1抑制翻译起始，是内质网应激和神经退行性病理中已验证的上游调控激酶。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

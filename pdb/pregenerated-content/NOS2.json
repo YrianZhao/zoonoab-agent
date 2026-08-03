@@ -1,0 +1,65 @@
+{
+  "gene": "NOS2",
+  "generatedAt": "2026-08-03T14:47:26.388Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NOS2编码诱导型一氧化氮合酶，在银屑病角质形成细胞、髓系细胞和炎症浸润区上调，催化L-精氨酸生成NO并参与IL-17/TNF驱动的氧化氮化应激放大。该蛋白为胞内二聚体酶，缺乏天然胞外抗原可及性，常规外周抗体难以直接结合活细胞内酶结构，因此更适合探索细胞内递送抗体片段或机制验证型阻断分子。相较IL17A、TNF、IL23A等已高度成熟的胞外炎症靶点，NOS2优先级来自其处于炎症效应末端且具有高分辨率人源结构，可支持精确界面阻断设计，但成药递送风险高于膜受体或分泌因子。",
+    "mechanism": "设计分子阻断NOS2氧化酶结构域二聚化界面或干扰血红素/四氢生物蝶呤协同构象，降低L-精氨酸向NO和L-瓜氨酸的催化转化。",
+    "selectedEpitope": "优先覆盖氧化酶结构域二聚化界面及血红素邻近构象环，避免直接占据深埋辅因子口袋。",
+    "diseaseDirection": "银屑病炎症与NO应激",
+    "domain": "NOS2含N端氧化酶结构域、钙调蛋白结合区和C端还原酶结构域；6JWM对应人源氧化酶二聚体。",
+    "evidence": "NOS2银屑病炎症轴结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P35228功能与结构域注释",
+      "RCSB PDB 6JWM高分辨率晶体结构",
+      "银屑病皮损NOS2表达与NO应激文献"
+    ],
+    "referenceEntries": "UniProt P35228；RCSB PDB 6JWM；Open Targets NOS2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "氧化酶结构域二聚化界面",
+        "阻断活性二聚体形成并削弱电子转移耦联",
+        "优先"
+      ],
+      [
+        "Site B",
+        "血红素与BH4邻近构象环外缘",
+        "稳定非催化构象并降低底物氧化效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "L-精氨酸深部底物结合口袋",
+        "催化相关性强但空间埋藏且抗体可及性差",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NOS2为胞内酶，传统Fab难以到达胞质靶点；设计应标注递送依赖性，并优先评估细胞穿透、内体逃逸及与NOS1/NOS3同源结构的交叉反应风险。",
+    "structurePrepZh": "以6JWM链A/B构建氧化酶二聚体模型，保留血红素和BH4等关键辅因子用于界面判读，去除结晶缓冲组分并补全缺失侧链后进行表面能量评估。",
+    "structureRef": "Human inducible nitric oxide synthase oxygenase domain, PDB 6JWM",
+    "antibodies": [
+      "抗NOS2研究用单克隆抗体",
+      "抗iNOS胞内检测抗体"
+    ],
+    "interfaceFocus": "氧化酶二聚体界面及辅因子邻近环",
+    "designMode": "胞内酶界面阻断",
+    "candidates": [
+      {
+        "target": "IL17A",
+        "rationale": "IL-17A是银屑病核心致炎因子，可诱导角质形成细胞产生趋化因子并促进NOS2相关炎症效应，且为分泌型抗体高可及靶点。"
+      },
+      {
+        "target": "TNF",
+        "rationale": "TNF与IL-17信号协同放大银屑病皮损炎症，并可增强NOS2表达和NO相关炎症损伤，临床抗体验证充分。"
+      },
+      {
+        "target": "IL23A",
+        "rationale": "IL-23维持Th17细胞轴并驱动IL-17产生，位于NOS2上游炎症网络，适合作为同通路上游干预靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

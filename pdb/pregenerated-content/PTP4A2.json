@@ -1,0 +1,65 @@
+{
+  "gene": "PTP4A2",
+  "generatedAt": "2026-08-03T15:43:09.382Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PTP4A2编码PRL-2型蛋白酪氨酸磷酸酶，参与细胞生长、代谢稳态及神经系统相关表型的磷酸化调控；Open Targets显示其与神经退行性疾病、体型和代谢测量表型存在遗传关联。该蛋白为细胞内催化酶，天然抗原可及性弱于分泌因子或膜受体，抗体设计更适合作为结构验证、细胞内递送或VHH工程平台。相较PTP4A1和PTP4A3，PTP4A2在多组织稳态表型中关联更广，且6WUR提供人源实验结构，可优先支持结构约束型抗体设计。",
+    "mechanism": "通过结合PTP4A2催化口袋邻近的WPD环与P-loop区域，空间阻断底物磷酸酪氨酸进入活性位点并干扰Cys101介导的去磷酸化反应。",
+    "selectedEpitope": "优先选择PTP催化结构域中P-loop、WPD环及α4-α5邻近凹槽形成的功能性构象表位。",
+    "diseaseDirection": "神经退行性与代谢表型关联",
+    "domain": "PTP4A2由单一PRL型蛋白酪氨酸磷酸酶催化结构域构成，含HCX5R活性位点和C端CAAX膜定位基序。",
+    "evidence": "PTP4A2疾病遗传关联与6WUR结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease associations",
+      "UniProt Q12974 functional annotation",
+      "RCSB PDB 6WUR X-ray structure",
+      "Gene Ontology phosphatase activity annotations"
+    ],
+    "referenceEntries": "UniProt Q12974；RCSB PDB 6WUR；Open Targets PTP4A2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "P-loop与WPD环邻近催化沟槽",
+        "直接限制磷酸化底物进入活性位点，具备明确功能阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "α3-α4及α4-α5外侧螺旋面",
+        "可形成构象选择性结合并降低对PTP家族保守催化核心的交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端CAAX邻近膜定位区域",
+        "可能影响膜相关定位，但柔性和修饰依赖性增加结构不确定性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PTP4A2为胞内蛋白，常规抗体难以直接接触天然靶标；催化位点高度保守，需通过α螺旋外侧差异残基控制PTP4A1/PTP4A3交叉反应。",
+    "structurePrepZh": "以6WUR链A、B为实验模板，校验二聚体界面、缺失环区和活性位点构象；补全氢原子后保留催化沟槽构象用于表位建模。",
+    "structureRef": "RCSB PDB 6WUR，human PTP4A2 X-ray structure，2.882 Å",
+    "antibodies": [
+      "PTP4A2 research monoclonal antibody",
+      "anti-PRL-2 intracellular VHH prototype"
+    ],
+    "interfaceFocus": "P-loop/WPD环催化沟槽及α4-α5差异表面",
+    "designMode": "胞内VHH阻断设计",
+    "candidates": [
+      {
+        "target": "PTP4A1",
+        "rationale": "PTP4A1同属PRL磷酸酶亚家族，参与相近的细胞生长和代谢相关磷酸化调控，可作为选择性评估和旁系通路比较靶点。"
+      },
+      {
+        "target": "PTP4A3",
+        "rationale": "PTP4A3与PTP4A2共享PRL催化结构域和膜定位特征，在增殖、迁移及肿瘤相关信号中具有同源功能，适合作为特异性排除靶点。"
+      },
+      {
+        "target": "CNNM3",
+        "rationale": "CNNM3可与PRL家族磷酸酶形成复合物并参与镁离子稳态调节，是PTP4A2相关代谢和细胞稳态轴中的真实互作节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "RRAD",
+  "generatedAt": "2026-08-03T16:14:51.943Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RRAD 是 RGK 小 GTP 酶家族成员，可通过与电压门控钙通道 β 亚基及 CaV1.2 通道复合体相关组分相互作用，抑制心肌 L 型钙电流并影响心率表型。该蛋白主要为胞内小 GTP 酶，缺乏经典胞外结构域或分泌特征，抗原天然可及性不利于常规体内阻断型抗体，但适合开展重组蛋白结构表位识别、细胞内递送抗体或研究级构象探针设计。相较 CACNA1C 等多跨膜通道靶点，RRAD 具有高分辨率晶体结构和较小结构域尺度，利于精确解析 GTPase 核心构象表位；但因临床抗体可成药性弱，优先级应定位为机制验证型而非常规治疗抗体主靶点。",
+    "mechanism": "设计抗体优先阻断 RRAD GTPase 核心与 CaV β 亚基结合界面，削弱其对 CaV1.2 通道复合体的负向调控。",
+    "selectedEpitope": "优先覆盖 switch I/switch II 邻近的 GTPase 核心构象面，兼顾 CaVβ 结合相关暴露界面。",
+    "diseaseDirection": "心率调控与钙通道相关心血管表型",
+    "domain": "RRAD 含典型 Ras-like GTPase 核心结构域，包含 P-loop、switch I、switch II 与核苷酸结合口袋。",
+    "evidence": "RRAD-钙通道调控与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt P55042 蛋白功能注释",
+      "RCSB PDB 3Q72 晶体结构记录",
+      "RGK GTPase 调控 L 型钙通道文献证据"
+    ],
+    "referenceEntries": "UniProt:P55042；RCSB PDB:3Q72；Open Targets:RRAD",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "switch I/switch II 邻近构象面",
+        "可能干预 RRAD 与 CaVβ 相关结合界面，适合作为功能阻断表位",
+        "优先"
+      ],
+      [
+        "Site B",
+        "P-loop 与核苷酸结合口袋外缘",
+        "可识别 GTPase 构象状态，但需避免直接依赖不可及深口袋",
+        "备选"
+      ],
+      [
+        "Site C",
+        "晶体二聚体或非生理接触面",
+        "可能反映晶体堆积而非天然功能界面，需结合溶液构象验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RRAD 为胞内蛋白，体内抗体可及性与递送是主要风险；应优先定位为构象探针、细胞内抗体或递送平台依赖型设计。",
+    "structurePrepZh": "以 3Q72 的 A、B 链为模板，保留 GTPase 核心构象，检查核苷酸/离子状态、缺失环区与晶体接触后再进行表位建模。",
+    "structureRef": "RCSB PDB 3Q72，X-ray diffraction，1.655 Å",
+    "antibodies": [
+      "无已获批 RRAD 靶向抗体",
+      "无临床阶段 RRAD 阻断抗体"
+    ],
+    "interfaceFocus": "switch I/switch II 与 CaVβ 结合相关构象面",
+    "designMode": "胞内构象阻断",
+    "candidates": [
+      {
+        "target": "CACNA1C",
+        "rationale": "CACNA1C 编码 CaV1.2 α1C 亚基，是心肌 L 型钙通道孔形成组分，与 RRAD 介导的通道抑制处于同一钙电流调控轴。"
+      },
+      {
+        "target": "CACNB2",
+        "rationale": "CACNB2 编码 L 型钙通道 β2 亚基，是 RGK 蛋白调控 CaV 通道功能的重要结合节点，适合用于验证 RRAD-CaVβ 轴。"
+      },
+      {
+        "target": "CALM1",
+        "rationale": "CALM1 编码钙调蛋白，参与 CaV1.2 通道钙依赖性调控，与心肌钙信号和心率表型具有同一功能通路关联。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

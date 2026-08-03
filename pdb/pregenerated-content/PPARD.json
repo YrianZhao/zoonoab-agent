@@ -1,0 +1,65 @@
+{
+  "gene": "PPARD",
+  "generatedAt": "2026-08-03T15:29:30.457Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PPARD 是配体激活型核受体，参与脂质代谢、胆汁酸稳态、线粒体氧化及炎症转录程序，在原发性胆汁性胆管炎和胆汁淤积相关肝损伤中可影响肝细胞与免疫细胞代谢应答。该蛋白主要定位于细胞核，其天然抗原可及性弱，缺乏适合常规抗体药物直接结合的胞外结构域或分泌形式，因此更适合作为结构生物学驱动的细胞内功能阻断或研究级抗体靶点。相较于同通路中的 PPARA、PPARG 与 FXR，PPARD 在免疫代谢和肝胆疾病遗传关联中具有较广疾病覆盖，但抗体成药优先级低于膜受体或分泌因子，需采用胞内递送或结构探针策略。",
+    "mechanism": "设计抗体片段结合 PPARD 配体结合结构域，干扰激动剂诱导的 AF-2 构象稳定及 PPARD 与 RXRA 异二聚转录复合体的功能装配。",
+    "selectedEpitope": "优先瞄准配体结合结构域 C 端 helix 12/AF-2 共激活因子沟槽邻近界面。",
+    "diseaseDirection": "胆汁淤积与免疫代谢疾病",
+    "domain": "PPARD 含 N 端 AF-1、中央锌指 DNA 结合域、铰链区及 C 端配体结合域/AF-2。",
+    "evidence": "PPARD 肝胆免疫代谢关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q03181 functional annotation",
+      "RCSB PDB 2AWH X-ray ligand-binding domain structure",
+      "Nuclear Receptor Signaling Atlas and PPAR pathway literature"
+    ],
+    "referenceEntries": "UniProt Q03181；RCSB PDB 2AWH；Ensembl ENSG00000112033",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "LBD helix 12/AF-2 共激活因子结合沟槽",
+        "可干扰激动剂稳定构象与 LXXLL 共激活因子招募，机制可解释性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "LBD 配体结合腔入口及 helix 3/helix 5 邻近区域",
+        "可能影响脂肪酸样配体进入与局部构象重排，适合构象选择性抗体片段",
+        "备选"
+      ],
+      [
+        "Site C",
+        "DNA 结合域锌指表面及 RXRA/DNA 复合体邻近界面",
+        "理论上可阻断 PPRE 结合，但锌指保守性高且交叉反应风险较大",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PPARD 为胞内核受体，抗体进入细胞核和维持折叠稳定性是主要限制；AF-2 区域与其他 PPAR 亚型存在保守性，应强化亚型选择性筛选。",
+    "structurePrepZh": "以 2AWH 的 PPARD 配体结合域为模板，保留关键配体诱导构象信息，补全缺失环区并标注 helix 12、配体腔入口与共激活因子沟槽。",
+    "structureRef": "PDB 2AWH；human PPARδ LBD X-ray structure, 2.0 Å",
+    "antibodies": [
+      "PPARδ research antibody clone EPR3867",
+      "PPARδ research antibody clone H-74"
+    ],
+    "interfaceFocus": "LBD AF-2 沟槽、helix 12 与配体腔入口",
+    "designMode": "胞内Fab/VHH结构阻断",
+    "candidates": [
+      {
+        "target": "RXRA",
+        "rationale": "RXRA 是 PPARD 形成核受体异二聚体并识别 PPRE 的核心伴侣，阻断 PPARD-RXRA 复合体可直接影响同一转录调控轴。"
+      },
+      {
+        "target": "PPARA",
+        "rationale": "PPARA 与 PPARD 同属 PPAR 脂质感应核受体，在肝脏脂肪酸氧化、胆汁酸代谢和炎症调控中具有重叠疾病通路。"
+      },
+      {
+        "target": "NR1H4",
+        "rationale": "NR1H4/FXR 是胆汁酸感应核受体，与 PPAR 轴共同调控胆汁酸稳态和胆汁淤积性肝病相关转录网络。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

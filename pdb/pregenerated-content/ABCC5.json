@@ -1,0 +1,65 @@
+{
+  "gene": "ABCC5",
+  "generatedAt": "2026-08-03T09:49:39.843Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ABCC5编码MRP5，是多跨膜ATP结合盒转运体，可外排环核苷酸及核苷酸类似物，影响cGMP/cAMP稳态并与血细胞数量性状存在遗传关联。其抗原主要由胞外环暴露于质膜外侧，虽可及面积有限，但冷冻电镜结构支持面向胞外环构建构象依赖性抗体。相较ABCC家族中以药物外排或胆汁转运为主的成员，ABCC5在血液细胞计数相关性状中具有更明确的人群遗传信号，适合作为机制探索型膜蛋白抗体设计靶点。",
+    "mechanism": "优先设计结合ABCC5胞外环构象表位的抗体，空间限制底物进入跨膜腔或稳定外向/内向构象，从而抑制ATP驱动的cGMP外排。",
+    "selectedEpitope": "聚焦TMD1/TMD2顶部胞外环ECL3-ECL6邻近的转运腔入口构象表位。",
+    "diseaseDirection": "血液细胞数量性状与造血调控",
+    "domain": "ABCC5含两个跨膜结构域TMD1/TMD2和两个胞质核苷酸结合结构域NBD1/NBD2。",
+    "evidence": "ABCC5血细胞数量性状遗传关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB O15440功能与拓扑注释",
+      "RCSB PDB 8WI0冷冻电镜结构",
+      "GWAS Catalog血液细胞计数量性状关联记录"
+    ],
+    "referenceEntries": "UniProt O15440；RCSB PDB 8WI0；HGNC ABCC5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "TMD1/TMD2胞外侧转运腔入口及ECL3-ECL6邻接界面",
+        "可能限制底物通道开放并识别转运相关构象，适合功能阻断抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "TMD胞外环中远离核心入口的构象稳定区域",
+        "可用于构象捕获或成像型抗体，功能抑制预期较弱",
+        "备选"
+      ],
+      [
+        "Site C",
+        "NBD1/NBD2胞质ATP结合与二聚化界面",
+        "功能相关性强但细胞外不可及，不适合作为常规抗体药物表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ABCC5胞外环短且构象依赖性高，表位面积可能不足；应避免跨ABCC家族保守跨膜螺旋区域，优先筛选人源ABCC5特异性构象抗体。",
+    "structurePrepZh": "以8WI0抗原链A、B为结构模板，保留跨膜区构象并标注胞外侧环区；补全缺失环段时需限制为表位定位参考。",
+    "structureRef": "RCSB PDB 8WI0，human ABCC5 cryo-EM structure，2.93 Å",
+    "antibodies": [
+      "ABCC5研究级单克隆抗体",
+      "MRP5胞外环识别抗体"
+    ],
+    "interfaceFocus": "胞外转运腔入口与ECL3-ECL6构象界面",
+    "designMode": "膜蛋白构象阻断",
+    "candidates": [
+      {
+        "target": "ABCC4",
+        "rationale": "ABCC4/MRP4同属环核苷酸外排转运轴，可调节cAMP/cGMP稳态，并与血小板和免疫细胞功能相关，适合作为同通路比较靶点。"
+      },
+      {
+        "target": "PDE3A",
+        "rationale": "PDE3A降解cAMP/cGMP并参与血小板反应性调控，与ABCC5共同影响细胞内环核苷酸水平，可用于通路层面的功能对照。"
+      },
+      {
+        "target": "PDE5A",
+        "rationale": "PDE5A特异性调控cGMP降解，与ABCC5介导的cGMP外排共同决定cGMP稳态，适合作为同一环核苷酸调控网络候选靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

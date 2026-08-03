@@ -1,0 +1,65 @@
+{
+  "gene": "MAP3K2",
+  "generatedAt": "2026-08-03T14:03:11.413Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAP3K2为胞内丝裂原活化蛋白激酶激酶激酶，参与MEK5-ERK5轴及应激相关MAPK级联，遗传关联提示其与血栓、免疫细胞计数及神经退行性表型存在统计联系。该蛋白缺乏天然胞外结构域或分泌形式，完整抗体难以直接进入胞内，因此抗原可及性低于膜受体或可溶性配体。其结构分辨率较高，可支持胞内抗体、Fab晶体学工具或VHH细胞内阻断体设计；相较同通路下游激酶，MAP3K2处于级联上游，具备节点级调控价值，但成药优先级应低于具有胞外可及性的靶点。",
+    "mechanism": "设计胞内VHH或Fab片段结合MAP3K2激酶结构域ATP结合裂隙或底物结合沟槽，阻断其对MAP2K5的磷酸转移与ERK5级联激活。",
+    "selectedEpitope": "优先聚焦激酶结构域N叶β折叠-αC螺旋邻近ATP口袋外缘，避免直接覆盖高度保守铰链区。",
+    "diseaseDirection": "MAPK/ERK5相关炎症与血管疾病",
+    "domain": "MAP3K2包含N端调控区及C端丝氨酸/苏氨酸蛋白激酶结构域，PDB 6LDW解析其催化核心构象。",
+    "evidence": "MAP3K2结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q9Y2U5功能与结构域注释",
+      "RCSB PDB 6LDW X射线晶体结构",
+      "MAP3K2-MAP2K5-ERK5通路文献证据"
+    ],
+    "referenceEntries": "UniProt: Q9Y2U5；RCSB PDB: 6LDW；Open Targets: MAP3K2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域N叶αC螺旋与ATP口袋外缘",
+        "可干扰活性构象稳定及底物磷酸转移，兼顾结构可设计性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C叶底物结合沟槽及活化环邻近区域",
+        "有望阻断MAP2K5底物定位，但需控制对构象动态的依赖",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守铰链区与ATP腺嘌呤结合位点",
+        "选择性风险较高，易与其他MAP3K激酶交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAP3K2为胞内激酶，常规抗体递送与靶点可及性构成主要风险；应采用VHH细胞内表达或递送体系，并避开保守ATP铰链表位以提高选择性。",
+    "structurePrepZh": "以6LDW高分辨率晶体结构为模板，保留催化结构域主链，补全缺失侧链与质子化状态，去除非功能性晶体接触链后进行表面聚类分析。",
+    "structureRef": "RCSB PDB 6LDW，X-ray diffraction，1.6 Å",
+    "antibodies": [
+      "暂无获批MAP3K2治疗性抗体",
+      "MAP3K2研究级抗体"
+    ],
+    "interfaceFocus": "ATP口袋外缘、αC螺旋、底物结合沟槽",
+    "designMode": "胞内VHH阻断设计",
+    "candidates": [
+      {
+        "target": "MAP2K5",
+        "rationale": "MAP2K5是MAP3K2下游直接激酶底物，连接MAP3K2与ERK5激活。靶向其MAP3K2识别界面可更接近通路传递节点。"
+      },
+      {
+        "target": "MAPK7",
+        "rationale": "MAPK7编码ERK5，是MAP2K5的直接下游效应激酶，参与血管内皮、炎症及应激反应相关转录程序。"
+      },
+      {
+        "target": "MAP3K3",
+        "rationale": "MAP3K3与MAP3K2同属MEKK家族，并可参与MEK5-ERK5通路激活，是同一MAPK级联中的平行上游调控节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

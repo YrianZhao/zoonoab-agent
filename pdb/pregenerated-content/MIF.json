@@ -1,0 +1,65 @@
+{
+  "gene": "MIF",
+  "generatedAt": "2026-08-03T14:15:13.686Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MIF 是炎症性关节炎中促炎细胞因子网络的重要上游调节因子，可促进巨噬细胞、滑膜成纤维细胞和 T 细胞释放 TNF、IL6 与 IL1B，并通过 CD74/CD44 受体复合体放大 ERK1/2 与 NF-κB 相关炎症转录。该蛋白为可分泌同源三聚体，受体结合面与催化口袋均位于抗体可及的胞外环境，具备直接中和条件。相较于单一下游细胞因子，MIF 位于先天免疫与滑膜炎症放大的交汇节点，且 Open Targets 在类风湿关节炎中给出较高关联得分，优先级较高。",
+    "mechanism": "阻断 MIF 三聚体与 CD74 胞外区结合，抑制 CD74/CD44 复合体介导的 ERK1/2 激活及下游 TNF、IL6 炎症因子诱导。",
+    "selectedEpitope": "优先覆盖 MIF 三聚体外侧 CD74 结合相关界面，并避开 N 端 Pro1 催化口袋深部。",
+    "diseaseDirection": "类风湿关节炎与慢性炎症",
+    "domain": "MIF 为约12.5 kDa 分泌型同源三聚体，每个亚基含 α/β 互嵌折叠及 N 端互补催化口袋。",
+    "evidence": "MIF-CD74 炎症轴与类风湿关节炎证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传与文献关联",
+      "UniProtKB P14174 蛋白功能与定位注释",
+      "RCSB PDB 3DJH 高分辨率晶体结构",
+      "类风湿关节炎滑膜 MIF/CD74 轴研究文献"
+    ],
+    "referenceEntries": "UniProtKB: P14174; RCSB PDB: 3DJH; Open Targets: MIF",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "三聚体外侧 CD74 结合相关表面",
+        "直接阻断 MIF-CD74 相互作用，适合中和型抗体优先设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "亚基间沟槽与三聚体边缘界面",
+        "可能影响受体结合构象或三聚体稳定性，可作为功能调制表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端 Pro1 邻近催化口袋",
+        "口袋较浅且邻近保守催化核心，抗体进入受限并存在功能解释复杂性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MIF 体积小且三聚体界面紧凑，可成药表面有限；抗体设计宜聚焦受体结合外侧面，避免仅依赖催化口袋占位造成效力不足。",
+    "structurePrepZh": "以 3DJH 的 A、B、C 链重建生物学三聚体，补全氢原子并校正质子化状态，保留高分辨率晶体构象用于表面聚类。",
+    "structureRef": "RCSB PDB 3DJH, X-ray diffraction, 1.25 Å",
+    "antibodies": [
+      "Imalumab",
+      "BaxB01"
+    ],
+    "interfaceFocus": "MIF 三聚体外侧 CD74 结合面",
+    "designMode": "分泌因子中和",
+    "candidates": [
+      {
+        "target": "CD74",
+        "rationale": "CD74 是 MIF 的主要细胞表面受体，参与 CD74/CD44 复合体形成并驱动 ERK1/2 炎症信号，可作为同一轴的受体端干预靶点。"
+      },
+      {
+        "target": "CD44",
+        "rationale": "CD44 作为 CD74 共受体参与 MIF 诱导的信号转导，在滑膜炎症和免疫细胞活化中具有通路相关性。"
+      },
+      {
+        "target": "CXCR4",
+        "rationale": "MIF 可作为非经典趋化因子与 CXCR4 结合，促进免疫细胞趋化和炎症浸润，适合作为 MIF 相关炎症迁移通路候选靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "BCL2L11",
+  "generatedAt": "2026-08-03T10:47:38.987Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BCL2L11编码BIM，是BH3-only促凋亡蛋白，通过BH3螺旋结合BCL2、BCL2L1和MCL1等抗凋亡蛋白，释放或激活BAX/BAK以推动线粒体外膜通透化。该靶点与肿瘤细胞凋亡逃逸和部分神经退行性细胞死亡过程相关，但其主要功能区位于细胞内，天然抗原可及性显著弱于膜受体或分泌蛋白。相较BCL2、MCL1等同通路抗凋亡靶点，BCL2L11更适合作为结构机制与胞内递送抗体研究对象，常规体内中和抗体优先级较低。",
+    "mechanism": "抗体需识别BIM BH3螺旋并阻断其与BCL2家族抗凋亡蛋白疏水沟槽结合，从而改变BAX/BAK依赖性线粒体凋亡阈值。",
+    "selectedEpitope": "优先围绕BH3 α螺旋核心疏水面设计，覆盖与BCL2沟槽结合的i、i+4、i+7疏水残基。",
+    "diseaseDirection": "肿瘤凋亡调控与神经退行性疾病",
+    "domain": "BIM含BH3-only促凋亡结构域，PDB 2WH6呈BH3肽段与BCL2家族结合构象。",
+    "evidence": "BCL2L11-BH3介导线粒体凋亡证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与功能关联",
+      "UniProt O43521蛋白功能注释",
+      "RCSB PDB 2WH6晶体结构",
+      "BCL2家族线粒体凋亡通路文献"
+    ],
+    "referenceEntries": "UniProt O43521；RCSB PDB 2WH6；Open Targets BCL2L11",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "BH3 α螺旋疏水结合面",
+        "直接覆盖BCL2/BCL2L1/MCL1识别核心，可用于竞争性阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "BH3螺旋N端邻近带电区",
+        "可增强构象选择性并降低对其他BH3-only蛋白的交叉识别",
+        "备选"
+      ],
+      [
+        "Site C",
+        "BH3螺旋C端保守酸性残基邻域",
+        "参与抗凋亡蛋白沟槽配对，保守性较高，需控制脱靶交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BCL2L11为胞内促凋亡蛋白，常规抗体组织可及性受限；BH3基序短且保守，需采用构象锁定抗原和交叉反应筛选。",
+    "structurePrepZh": "以2WH6中BH3肽段结合构象为模板，保留抗原链A、B可解析残基，补充侧链质子化并标注疏水面与保守位点。",
+    "structureRef": "RCSB PDB 2WH6，X-ray diffraction，1.5 Å",
+    "antibodies": [
+      "抗BIM克隆C34C5",
+      "抗BIM克隆Y36"
+    ],
+    "interfaceFocus": "BH3螺旋-抗凋亡BCL2疏水沟槽界面",
+    "designMode": "胞内表位阻断设计",
+    "candidates": [
+      {
+        "target": "BCL2",
+        "rationale": "BCL2是BIM BH3结构域的直接结合对象，维持肿瘤细胞抗凋亡状态；其抑制剂和结构证据最充分，可作为同通路优先参照靶点。"
+      },
+      {
+        "target": "BCL2L1",
+        "rationale": "BCL2L1编码BCL-XL，与BIM发生BH3-疏水沟槽相互作用并抑制BAX/BAK活化，属于线粒体凋亡逃逸核心节点。"
+      },
+      {
+        "target": "MCL1",
+        "rationale": "MCL1是BIM的重要抗凋亡结合伙伴，在多类肿瘤耐药中维持线粒体完整性；与BCL2L11处于同一BH3依赖性凋亡调控轴。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

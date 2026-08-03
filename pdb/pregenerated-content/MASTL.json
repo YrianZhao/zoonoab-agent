@@ -1,0 +1,65 @@
+{
+  "gene": "MASTL",
+  "generatedAt": "2026-08-03T14:05:21.757Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MASTL编码Greatwall激酶，主要通过磷酸化ENSA/ARPP19抑制PP2A-B55复合体，从而维持细胞周期M期磷酸化状态；其与神经退行性疾病的遗传关联提示细胞周期异常与神经元应激轴可能存在相关性。MASTL为胞内丝氨酸/苏氨酸激酶，天然抗原可及性弱，不属于典型胞外抗体靶点，抗体策略更适合定位于结构验证、细胞内递送或降解偶联探索。相较于广泛表达且复合体依赖性更强的PP2A亚基，MASTL具有单一催化结构域与明确底物轴，优先级主要来自机制聚焦性和实验结构可用性。",
+    "mechanism": "设计抗体阻断MASTL激酶结构域底物结合沟槽与ENSA/ARPP19磷酸化位点肽段的结合，降低PP2A-B55抑制信号。",
+    "selectedEpitope": "优先覆盖激酶N/C叶之间ATP-底物结合裂隙邻近表面，避开深部ATP口袋。",
+    "diseaseDirection": "神经退行性疾病细胞周期异常",
+    "domain": "MASTL含N端激酶叶、C端激酶叶及AGC样激酶调控区域，8V5H覆盖催化核心。",
+    "evidence": "MASTL-ENSA/ARPP19-PP2A-B55轴结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q96GX5功能与结构域注释",
+      "RCSB PDB 8V5H晶体结构记录",
+      "文献报道Greatwall激酶调控ENSA/ARPP19与PP2A-B55"
+    ],
+    "referenceEntries": "UniProt Q96GX5；RCSB PDB 8V5H；Open Targets MASTL",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶N/C叶夹缝外缘及底物肽结合沟槽",
+        "可干扰ENSA/ARPP19底物定位，具机制特异性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端激酶叶表面与AGC样调控区邻近界面",
+        "可能影响催化构象稳定性，适合作为变构抑制位点",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP结合口袋周边保守催化环区域",
+        "同源激酶保守性高，交叉反应与选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MASTL为胞内激酶，常规抗体体内可及性不足；设计宜限定为结构探针、胞内递送抗体或降解平台，并强化激酶同源选择性评估。",
+    "structurePrepZh": "以8V5H链A为模板，补全缺失环区并保留催化核心构象；对ATP口袋、底物沟槽与暴露调控表面进行分区标注。",
+    "structureRef": "RCSB PDB 8V5H，X-ray diffraction，2.74 Å",
+    "antibodies": [
+      "无已获批MASTL治疗性抗体",
+      "研究级抗MASTL检测抗体"
+    ],
+    "interfaceFocus": "ENSA/ARPP19底物沟槽与激酶叶间裂隙",
+    "designMode": "胞内靶向抗体设计",
+    "candidates": [
+      {
+        "target": "ENSA",
+        "rationale": "ENSA是MASTL直接磷酸化底物，磷酸化后结合并抑制PP2A-B55复合体，处于同一Greatwall通路核心节点。"
+      },
+      {
+        "target": "ARPP19",
+        "rationale": "ARPP19与ENSA同属MASTL底物，磷酸化后介导PP2A-B55抑制，适合用于底物竞争或通路读出设计。"
+      },
+      {
+        "target": "PPP2R2A",
+        "rationale": "PPP2R2A编码PP2A-B55α调节亚基，是MASTL-ENSA/ARPP19轴下游受抑制磷酸酶复合体成员，可作为同通路功能验证靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

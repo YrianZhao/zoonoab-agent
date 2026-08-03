@@ -1,0 +1,65 @@
+{
+  "gene": "PRSS8",
+  "generatedAt": "2026-08-03T15:37:44.682Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PRSS8编码膜锚定型丝氨酸蛋白酶prostasin，可通过蛋白水解调节上皮钠通道ENaC活性；遗传关联数据提示其与阿尔茨海默病及神经退行性表型存在统计关联，但直接致病机制仍需功能验证。该蛋白具有胞外胰蛋白酶样催化结构域并以GPI锚定形式暴露于细胞表面，抗体可及性优于胞内蛋白酶调控因子。相较于广泛表达的炎症或淀粉样蛋白处理节点，PRSS8具备明确胞外酶活口袋与成熟结构模板，适合作为机制探索型抗体设计靶点。",
+    "mechanism": "抗体阻断PRSS8催化沟槽及底物结合外位点，抑制其对ENaC γ亚基等蛋白底物的蛋白水解激活。",
+    "selectedEpitope": "优先覆盖胰蛋白酶样结构域催化三联体邻近底物结合沟槽与活化环外侧界面。",
+    "diseaseDirection": "阿尔茨海默病与神经退行性疾病",
+    "domain": "PRSS8为胞外胰蛋白酶样丝氨酸蛋白酶结构域，成熟酶含His-Asp-Ser催化三联体。",
+    "evidence": "PRSS8神经退行性关联与结构可设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联数据",
+      "UniProt Q16651功能与亚细胞定位注释",
+      "RCSB PDB 3GYL高分辨率晶体结构",
+      "MEROPS丝氨酸蛋白酶家族与底物机制注释"
+    ],
+    "referenceEntries": "UniProt Q16651；RCSB PDB 3GYL；MEROPS S01.238",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化沟槽周边及S1底物结合袋外缘",
+        "可直接干预蛋白底物进入与切割构象，机制可解释性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "活化环与底物识别环形成的外位点区域",
+        "有望变构限制底物定位，同时降低完全覆盖催化残基的交叉反应风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化沟槽的保守β桶支架表面",
+        "抗原可及但功能阻断概率较低，且可能缺乏疾病相关效应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PRSS8与多种胰蛋白酶样丝氨酸蛋白酶共享保守催化折叠，应避开高度保守催化残基直接同源面，优先利用PRSS8特异性环区提升选择性。",
+    "structurePrepZh": "采用3GYL链B作为抗原模板，保留成熟胞外蛋白酶结构域，校验催化三联体、二硫键和表面环区构象，去除晶体缓冲组分后进行质子化与界面网格化。",
+    "structureRef": "Human prostasin catalytic domain crystal structure, PDB 3GYL, 1.3 Å",
+    "antibodies": [
+      "PRS-050类抗prostasin研究抗体",
+      "抗human prostasin中和研究抗体"
+    ],
+    "interfaceFocus": "S1口袋外缘、活化环及底物识别环",
+    "designMode": "酶活阻断型",
+    "candidates": [
+      {
+        "target": "SCNN1G",
+        "rationale": "SCNN1G编码ENaC γ亚基，是PRSS8介导蛋白水解激活的关键底物，位于同一上皮钠转运调控轴。靶向其胞外调控区可直接评估ENaC活性改变与疾病表型的联系。"
+      },
+      {
+        "target": "SCNN1A",
+        "rationale": "SCNN1A编码ENaC α亚基，与β、γ亚基共同构成功能性通道复合体，是PRSS8下游离子转运效应节点。其胞外结构域具备抗体结合可及性。"
+      },
+      {
+        "target": "ST14",
+        "rationale": "ST14编码matriptase，可参与prostasin相关上皮蛋白酶级联并调节膜蛋白水解环境。该膜型丝氨酸蛋白酶同样具有胞外催化结构域，适合进行通路内比较设计。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

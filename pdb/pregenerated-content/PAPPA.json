@@ -1,0 +1,65 @@
+{
+  "gene": "PAPPA",
+  "generatedAt": "2026-08-03T15:04:02.565Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PAPPA 是分泌型金属蛋白酶，可裂解 IGFBP2、IGFBP4 和 IGFBP5，增加局部游离 IGF-I/IGF-II，从而影响 IGF1R 介导的生长、代谢和组织重塑轴。其抗原位于胞外分泌环境，成熟酶包含可直接接触抗体的蛋白酶结构域和 CCP 模块，具备良好的抗原可及性。相较于直接阻断 IGF1R 或 IGF 配体，靶向 PAPPA 更偏向局部 IGF 生物利用度调节，有利于在生长表型、体重和瘦体重相关通路中形成更具空间选择性的干预优先级。",
+    "mechanism": "抗体阻断 PAPPA 蛋白酶结构域与 IGFBP4 底物结合/裂解界面，降低局部 IGF 从 IGFBP 复合物释放并抑制 IGF1R 激活。",
+    "selectedEpitope": "优先覆盖金属蛋白酶催化裂隙邻近的 IGFBP 底物识别外周环区。",
+    "diseaseDirection": "IGF轴相关生长与代谢表型",
+    "domain": "PAPPA 为分泌型多结构域蛋白，含 metzincin 金属蛋白酶结构域、补体控制蛋白样 CCP 模块及 LNR 模块。",
+    "evidence": "PAPPA-IGFBP-IGF轴结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt Q13219 蛋白功能与结构域注释",
+      "RCSB PDB 8A7D 冷冻电镜结构",
+      "文献报道的 PAPPA 介导 IGFBP4 裂解与 IGF 生物利用度调控"
+    ],
+    "referenceEntries": "UniProt Q13219；RCSB PDB 8A7D；Open Targets PAPPA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "金属蛋白酶结构域催化裂隙邻近底物识别面",
+        "可直接削弱 IGFBP4 结合与蛋白水解，机制清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CCP 模块参与底物定位的外侧界面",
+        "可能干扰 IGFBP 底物招募并保留催化区结构完整性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "LNR/远端柔性连接区暴露表面",
+        "可及性较高但与底物裂解因果关系较弱，需功能筛选确认",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "催化裂隙邻近表位可能受糖基化、金属离子配位和构象柔性影响；建议避开保守金属结合核心，优先设计跨底物识别外周环的阻断型抗体。",
+    "structurePrepZh": "以 8A7D 冷冻电镜模型提取 C、P、Q 抗原链，补全缺失侧链并标注糖基化位点、金属结合位点和底物可接近表面后进行表位聚类。",
+    "structureRef": "RCSB PDB 8A7D，human PAPPA cryo-EM structure，3.06 Å",
+    "antibodies": [
+      "mAb 1/41",
+      "mAb 234-5"
+    ],
+    "interfaceFocus": "IGFBP4 底物识别面与催化裂隙外周环",
+    "designMode": "阻断型中和抗体",
+    "candidates": [
+      {
+        "target": "IGF1R",
+        "rationale": "IGF1R 是 IGF-I/IGF-II 的受体酪氨酸激酶，位于 PAPPA 释放 IGF 后的下游信号节点。阻断 IGF1R 可直接抑制 PI3K-AKT 与 MAPK 轴激活。"
+      },
+      {
+        "target": "IGF1",
+        "rationale": "IGF1 是 PAPPA 通过裂解 IGFBP 增加生物利用度的核心配体，直接决定 IGF1R 激活水平。其通路位置与生长、体重和瘦体重表型高度一致。"
+      },
+      {
+        "target": "IGFBP4",
+        "rationale": "IGFBP4 是 PAPPA 的经典蛋白水解底物，被裂解后释放结合的 IGF。稳定 IGFBP4 或阻断其与 PAPPA 的切割相互作用可从底物端限制局部 IGF 活性。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

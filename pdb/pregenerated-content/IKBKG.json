@@ -1,0 +1,65 @@
+{
+  "gene": "IKBKG",
+  "generatedAt": "2026-08-03T13:25:00.445Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IKBKG/NEMO是IKK复合体的调节亚基，通过识别K63/M1多聚泛素链并募集IKKα/IKKβ，促进NF-κB激活；其功能缺陷与色素失禁、外胚层发育不良伴免疫缺陷及X连锁自炎症表型直接相关。该蛋白主要定位于胞质IKK信号复合体，并非天然分泌蛋白或细胞表面膜受体，完整蛋白抗体的体内可及性受限；抗体设计更适合作为结构验证、胞内递送或降解平台的结合模块。相较下游转录因子RELA或NFKB1，IKBKG位于TNF、IL-1R、TLR及NOD2通路汇聚节点，且8U7C提供高分辨率实验结构，利于围绕关键寡聚化界面开展精确表位设计。",
+    "mechanism": "结合IKBKG卷曲螺旋/寡聚化界面，阻断NEMO多聚化及其与IKKα/IKKβ信号复合体的稳定装配，从而降低刺激依赖性NF-κB激活。",
+    "selectedEpitope": "优先覆盖8U7C中NEMO二聚/四聚装配界面的卷曲螺旋疏水脊，避免选择埋藏核心残基。",
+    "diseaseDirection": "NF-κB免疫缺陷与自炎症疾病",
+    "domain": "IKBKG含N端IKK结合区、中央卷曲螺旋/亮氨酸拉链区、C端UBAN及锌指泛素结合模块。",
+    "evidence": "IKBKG-NF-κB遗传免疫病结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9Y6K9功能与结构域注释",
+      "RCSB PDB 8U7C晶体结构",
+      "OMIM/ClinVar IKBKG致病变异记录"
+    ],
+    "referenceEntries": "UniProt Q9Y6K9；RCSB PDB 8U7C；Open Targets IKBKG",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "8U7C卷曲螺旋寡聚化界面",
+        "可干预NEMO装配并影响IKK复合体稳定性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端UBAN泛素链结合邻近区域",
+        "可评估阻断M1/K63多聚泛素链识别的潜力",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端IKKα/IKKβ结合相关片段",
+        "可能直接影响激酶复合体组装，但需避免广泛构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IKBKG为胞内支架蛋白，常规抗体体内结合可及性不足；建议定位为细胞内递送抗体、VHH或PROTAC/降解平台结合臂，并严格评估NF-κB全局抑制风险。",
+    "structurePrepZh": "以8U7C链A-D为抗原装配模板，保留生物学寡聚状态，补全缺失侧链、校正质子化状态，并标注卷曲螺旋界面与泛素结合相关区域。",
+    "structureRef": "RCSB PDB 8U7C，X-ray diffraction，1.44 Å",
+    "antibodies": [
+      "抗NEMO研究级单克隆抗体",
+      "抗IKBKG胞内VHH/纳米抗体候选"
+    ],
+    "interfaceFocus": "NEMO卷曲螺旋寡聚化界面与UBAN邻域",
+    "designMode": "胞内靶点VHH设计",
+    "candidates": [
+      {
+        "target": "CHUK",
+        "rationale": "CHUK编码IKKα，是IKK复合体催化亚基之一，与IKBKG共同介导NF-κB通路激活；其激酶功能位于同一信号轴。"
+      },
+      {
+        "target": "IKBKB",
+        "rationale": "IKBKB编码IKKβ，直接磷酸化IκBα并促使NF-κB释放入核，是IKBKG支架功能的核心下游效应酶。"
+      },
+      {
+        "target": "NFKBIA",
+        "rationale": "NFKBIA编码IκBα，是IKK复合体磷酸化并诱导降解的直接底物，位于IKBKG调控的经典NF-κB通路下游。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

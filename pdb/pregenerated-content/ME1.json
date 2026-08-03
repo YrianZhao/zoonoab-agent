@@ -1,0 +1,65 @@
+{
+  "gene": "ME1",
+  "generatedAt": "2026-08-03T14:09:10.867Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ME1编码胞质NADP依赖性苹果酸酶，催化L-苹果酸氧化脱羧生成丙酮酸、CO2和NADPH，连接TCA中间代谢、丙酮酸供给、脂质合成还原力与氧化还原稳态；Open Targets关联以柠檬酸、丙酮酸、甘氨酸和碳酸氢盐等代谢表型为主，符合其在中心碳代谢中的酶学角色。ME1为胞质可溶性代谢酶，缺乏天然胞外结构域或膜受体可及性，作为体内阻断型抗体靶点的抗原可及性弱，但纯化蛋白和高分辨率四聚体结构支持体外、胞内递送或研究级抗体设计。相比同通路中高度冗余或线粒体定位的ME2、ME3，ME1具有明确的人源晶体结构与胞质NADPH生成定位优势，因此更适合开展结构约束的功能表位抗体工程。",
+    "mechanism": "抗体应阻断ME1四聚体亚基界面或苹果酸/NADP结合口袋邻近构象变化，抑制L-苹果酸与NADP依赖性氧化脱羧反应。",
+    "selectedEpitope": "优先覆盖ME1单体C端二聚化/四聚化界面，兼顾NADP结合沟槽邻近构象环。",
+    "diseaseDirection": "中心碳代谢与代谢表型",
+    "domain": "ME1含N端Rossmann样NADP结合区、中央催化结构域及C端寡聚化界面，形成同源四聚体酶。",
+    "evidence": "ME1中心碳代谢结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProtKB P48163功能与亚细胞定位注释",
+      "RCSB PDB 7X11人源ME1晶体结构",
+      "BRENDA/Reactome苹果酸-丙酮酸代谢通路注释"
+    ],
+    "referenceEntries": "UniProtKB:P48163；RCSB PDB:7X11；Reactome:苹果酸代谢",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端寡聚化结构域亚基界面",
+        "干预同源四聚体稳定性，可能降低催化构象协同",
+        "优先"
+      ],
+      [
+        "Site B",
+        "NADP结合Rossmann样结构域外侧沟槽",
+        "邻近辅因子结合位点，可设计变构抑制型抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化口袋金属/底物结合核心周边",
+        "功能相关性高但口袋深且保守，抗体进入性与选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ME1为胞质酶，常规抗体难以在完整细胞内接触靶点；催化核心与ME2/ME3存在保守性，需避开高度保守金属结合残基并强化ME1特异界面表位。",
+    "structurePrepZh": "以7X11四聚体生物组装为模板，保留A-D链界面，校验NADP/金属或配体状态，补全缺失环区后进行表面可及性与同源蛋白保守性标注。",
+    "structureRef": "RCSB PDB 7X11，Homo sapiens ME1，X-ray 2.07 Å",
+    "antibodies": [
+      "抗ME1研究级单克隆抗体",
+      "抗ME1多克隆验证抗体"
+    ],
+    "interfaceFocus": "C端寡聚化界面与NADP沟槽邻近环区",
+    "designMode": "结构约束变构阻断",
+    "candidates": [
+      {
+        "target": "ME2",
+        "rationale": "ME2为线粒体NAD依赖性苹果酸酶，参与苹果酸向丙酮酸的转化，与ME1同属苹果酸酶介导的中心碳代谢节点，可作为代谢通量补偿评估靶点。"
+      },
+      {
+        "target": "ME3",
+        "rationale": "ME3为线粒体NADP依赖性苹果酸酶，与ME1共享苹果酸氧化脱羧反应类型，适合用于同源选择性与亚细胞代谢分工比较。"
+      },
+      {
+        "target": "MDH1",
+        "rationale": "MDH1催化胞质苹果酸与草酰乙酸互变，位于ME1上游苹果酸供给环节，可用于构建苹果酸-丙酮酸代谢通路的联合调控参照。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

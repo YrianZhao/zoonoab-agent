@@ -1,0 +1,65 @@
+{
+  "gene": "STXBP1",
+  "generatedAt": "2026-08-03T17:01:56.601Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "STXBP1编码Munc18-1，是突触小泡胞吐SNARE装配的核心胞质蛋白，致病性失功能变异可削弱STX1A/SNAP25/VAMP2介导的神经递质释放，驱动发育性癫痫性脑病和智力障碍。该靶点主要定位于胞质侧，缺乏天然胞外结构域，常规体内阻断型抗体可及性受限，但重组蛋白结构完整、可支持体外构象抗体或细胞内递送抗体片段设计。相较广泛表达的离子通道靶点，STXBP1具有更强的单基因疾病因果证据和结构可解释性，适合作为机制验证与构象稳定化抗体的优先靶点。",
+    "mechanism": "设计抗体片段稳定STXBP1闭合构象或遮蔽STX1A结合沟槽，调节STXBP1与syntaxin-1A的结合及SNARE复合体装配效率。",
+    "selectedEpitope": "优先聚焦Domain 1与Domain 3a形成的syntaxin-1A结合沟槽边缘，兼顾致病变异邻近构象热点。",
+    "diseaseDirection": "发育性癫痫性脑病",
+    "domain": "STXBP1由Domain 1、Domain 2和Domain 3a/3b组成，形成拱形构象并夹持syntaxin-1A。",
+    "evidence": "STXBP1-DEE突触胞吐机制证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P61764功能与亚细胞定位注释",
+      "RCSB PDB 6L03晶体结构数据",
+      "ClinVar/OMIM STXBP1脑病致病变异记录"
+    ],
+    "referenceEntries": "UniProt P61764；RCSB PDB 6L03；OMIM 602926",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Domain 1-Domain 3a的syntaxin-1A结合沟槽边缘",
+        "可直接影响STXBP1识别syntaxin-1A并解析SNARE装配调控机制",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Domain 3a/3b交界的构象转换区域",
+        "适合筛选构象稳定化抗体片段，用于评估开放-闭合状态平衡",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Domain 2外侧保守疏水核心邻近区域",
+        "可能影响蛋白折叠稳定性，需避免诱导非特异构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "STXBP1为胞质蛋白，体内抗体可及性和递送是主要限制；建议定位为结构生物学、功能验证或细胞内抗体片段项目，并避免覆盖高度保守折叠核心。",
+    "structurePrepZh": "以PDB 6L03链A/F为结构模板，保留高置信度结构域，检查缺失环区、晶体接触和配体状态，并映射DEE相关错义变异位点。",
+    "structureRef": "RCSB PDB 6L03，X-ray diffraction，2.084 Å",
+    "antibodies": [
+      "STXBP1克隆N357/1",
+      "STXBP1克隆4H3"
+    ],
+    "interfaceFocus": "STXBP1-syntaxin-1A结合沟槽及Domain 3a构象铰链",
+    "designMode": "细胞内构象抗体",
+    "candidates": [
+      {
+        "target": "STX1A",
+        "rationale": "STX1A是STXBP1的直接结合syntaxin伴侣，参与突触小泡融合前SNARE复合体形成；其界面抗体可用于解析STXBP1依赖性胞吐缺陷。"
+      },
+      {
+        "target": "SNAP25",
+        "rationale": "SNAP25与STX1A、VAMP2共同构成神经元SNARE核心复合体，是STXBP1调控突触释放通路的下游关键节点。"
+      },
+      {
+        "target": "VAMP2",
+        "rationale": "VAMP2位于突触小泡膜并作为v-SNARE参与囊泡融合，适合作为同一神经递质释放通路中的候选机制靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

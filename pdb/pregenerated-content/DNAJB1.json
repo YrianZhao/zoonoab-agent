@@ -1,0 +1,65 @@
+{
+  "gene": "DNAJB1",
+  "generatedAt": "2026-08-03T12:00:28.092Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DNAJB1 属于胞内 Hsp40 伴侣蛋白，其 J 结构域通过 HPD 基序激活 HSPA/Hsp70 ATPase 循环，在蛋白稳态应激中具有明确分子功能。其最具特异性的肿瘤关联来自纤维板层型肝细胞癌中 DNAJB1-PRKACA 融合，融合保留 PRKACA 激酶结构域并驱动异常 PKA 信号。DNAJB1 本体缺乏天然分泌或跨膜胞外结构域，完整蛋白作为治疗性抗体靶点的抗原可及性较弱；优先级主要来自融合新抗原和疾病特异性，而非优于典型膜受体靶点的可及性。",
+    "mechanism": "抗体设计宜聚焦 DNAJB1-PRKACA 融合连接区，选择性识别 DNAJB1 N 端序列与 PRKACA 激酶结构域交界的新表位，而非阻断天然胞内 Hsp40-Hsp70 相互作用。",
+    "selectedEpitope": "优先评估融合连接肽表位；结构建模参考 3AGX 的 J 结构域 α 螺旋束，避开保守 HPD 功能基序。",
+    "diseaseDirection": "纤维板层型肝细胞癌融合抗原",
+    "domain": "DNAJB1 含 N 端 J 结构域、G/F 富集区及 C 端底物结合相关区域；3AGX 覆盖 J 结构域。",
+    "evidence": "DNAJB1-PRKACA 融合与肝胆肿瘤证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P25685 functional annotation",
+      "RCSB PDB 3AGX X-ray structure",
+      "Fibrolamellar hepatocellular carcinoma fusion literature"
+    ],
+    "referenceEntries": "UniProt P25685；RCSB PDB 3AGX；Open Targets DNAJB1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DNAJB1-PRKACA 融合连接区新表位",
+        "疾病特异性最高，可区分融合蛋白与野生型 DNAJB1",
+        "优先"
+      ],
+      [
+        "Site B",
+        "J 结构域 α2-α3 螺旋外露面",
+        "可利用 3AGX 高分辨率结构进行构象约束设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "HPD 基序邻近 Hsp70 结合功能面",
+        "高度保守且位于胞内伴侣相互作用界面，脱靶和功能干扰风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DNAJB1 为胞内蛋白，常规抗体难以到达天然抗原；设计应限定于融合连接区诊断、递送型抗体或细胞内抗体场景，并避免交叉识别野生型 Hsp40 家族成员。",
+    "structurePrepZh": "采用 3AGX 的 A、B 链 J 结构域作为结构模板，补全缺失环区并单独构建 DNAJB1-PRKACA 融合连接肽模型，标注 HPD 保守位点。",
+    "structureRef": "RCSB PDB 3AGX，X-ray diffraction，1.85 Å",
+    "antibodies": [
+      "抗 DNAJB1 研究级抗体",
+      "抗 PRKACA 研究级抗体"
+    ],
+    "interfaceFocus": "融合连接肽及 J 结构域 α2-α3 外露面",
+    "designMode": "融合新抗原识别",
+    "candidates": [
+      {
+        "target": "PRKACA",
+        "rationale": "PRKACA 是 DNAJB1-PRKACA 融合的激酶效应端，保留催化结构域并介导异常 PKA 活性，是同一驱动事件中的核心功能靶点。"
+      },
+      {
+        "target": "PRKAR1A",
+        "rationale": "PRKAR1A 编码 PKA I 型调节亚基，参与约束 PRKACA 活性；其失衡与 PKA 通路异常激活相关，可作为融合驱动通路的调节节点。"
+      },
+      {
+        "target": "CREB1",
+        "rationale": "CREB1 是 PKA 磷酸化下游转录因子，承接异常 PRKACA 信号并影响肿瘤相关转录程序，适合同通路药效读出与联合靶点评估。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

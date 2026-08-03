@@ -1,0 +1,65 @@
+{
+  "gene": "CUL4B",
+  "generatedAt": "2026-08-03T11:43:52.601Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CUL4B 是核内 CRL4B E3 泛素连接酶支架蛋白，致病性变异可扰乱 DDB1-底物受体复合体装配、组蛋白 H2A 单泛素化及神经发育相关转录调控，符合 X 连锁智力障碍和癫痫表型的遗传机制。该蛋白主要定位于细胞核和胞质，缺乏天然胞外结构域或分泌特征，常规体内阻断型抗体可及性受限。其优先级来自明确的人类遗传学关联、可解析的 DDB1 结合结构界面及 CRL4B 复合体核心支架地位，但更适合作为机制研究型胞内抗体或降解/递送平台靶点，而非传统膜外抗体药物靶点。",
+    "mechanism": "设计胞内结合分子阻断 CUL4B N 端 cullin repeat 与 DDB1 BPA/BPC 结构域结合，抑制 CRL4B 底物适配体装配与后续泛素转移。",
+    "selectedEpitope": "优先瞄准 CUL4B N 端 DDB1 结合界面及 cullin repeat 1-3 暴露沟槽。",
+    "diseaseDirection": "X连锁智力障碍与神经发育疾病",
+    "domain": "CUL4B 含 N 端 cullin repeat 支架区、C 端 WHB/RBX1 结合区及保守 neddylation 位点。",
+    "evidence": "CUL4B-CRL4B神经发育遗传与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProtKB Q13620 功能与定位注释",
+      "RCSB PDB 4A64 结构解析数据",
+      "OMIM/ClinVar CUL4B 致病变异记录"
+    ],
+    "referenceEntries": "UniProt Q13620；RCSB PDB 4A64；Open Targets CUL4B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端cullin repeat 1-3的DDB1结合界面",
+        "直接干预CUL4B-DDB1复合体装配，机制验证价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端WHB与RBX1邻近支架区域",
+        "可能影响E2招募空间构象和泛素转移效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "neddylation位点周边保守表面",
+        "邻近CUL4活化调控核心，需避免干扰同源cullin选择性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CUL4B 为胞内非分泌蛋白，抗体递送与细胞核可及性是主要风险；表位应避开 CUL4A 高保守面以提高选择性。",
+    "structurePrepZh": "以 PDB 4A64 为模板整理抗原链 A-D，保留 CUL4B-DDB1 接触区域，补全缺失环区并进行同源蛋白界面对齐。",
+    "structureRef": "RCSB PDB 4A64，X-ray diffraction，2.57 Å",
+    "antibodies": [
+      "无获批同靶点治疗性抗体",
+      "研究级抗CUL4B抗体"
+    ],
+    "interfaceFocus": "CUL4B-DDB1装配界面与RBX1邻近面",
+    "designMode": "胞内阻断型",
+    "candidates": [
+      {
+        "target": "DDB1",
+        "rationale": "DDB1 是 CRL4B 复合体的核心适配蛋白，连接 CUL4B 与 DCAF 底物受体；干预其界面可直接影响同一泛素化通路。"
+      },
+      {
+        "target": "DCAF1",
+        "rationale": "DCAF1 是 DDB1-CUL4 复合体底物受体之一，参与细胞周期和转录调控；其复合体依赖性使其适合作为 CRL4 轴候选节点。"
+      },
+      {
+        "target": "RBX1",
+        "rationale": "RBX1 与 CUL4B C 端结合并招募 E2 泛素结合酶，是 CRL4B 催化活性的必要 RING 组分。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

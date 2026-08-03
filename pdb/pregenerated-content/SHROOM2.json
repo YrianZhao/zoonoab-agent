@@ -1,0 +1,65 @@
+{
+  "gene": "SHROOM2",
+  "generatedAt": "2026-08-03T16:31:45.773Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SHROOM2为细胞内肌动蛋白骨架调控蛋白，含PDZ结构域及ASD1/ASD2相关区域，可通过Rho激酶相关收缩网络影响细胞形态、迁移与上皮结构维持，其遗传与表达证据在神经退行性疾病、结直肠癌和前列腺癌中显示中等强度关联。该蛋白不属于分泌蛋白或典型跨膜受体，天然抗原可及性弱，作为常规细胞外阻断抗体靶点存在显著递送限制；若进行抗体设计，更适合定位于细胞内抗体、递送型Fab或研究级构象探针。相比同通路中ROCK1、ROCK2等可药性更明确的酶类节点，SHROOM2的优先级主要来自骨架装配支架位点的特异性和结构域选择性，而非临床抗体成药便利性。",
+    "mechanism": "设计抗体应阻断SHROOM2 ASD2区域与ROCK相关卷曲螺旋界面的结合，从而削弱肌球蛋白轻链磷酸化驱动的肌动蛋白收缩装配。",
+    "selectedEpitope": "优先覆盖5F4Y所示ASD2同源二聚及ROCK结合相关螺旋界面，避免仅选择非功能性暴露表面。",
+    "diseaseDirection": "骨架重塑相关肿瘤与神经退行性疾病",
+    "domain": "SHROOM2含N端PDZ结构域、中央ASD1区域及C端ASD2卷曲螺旋结构域，5F4Y对应ASD2片段。",
+    "evidence": "SHROOM2疾病遗传关联与ASD2结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q13796蛋白结构域注释",
+      "RCSB PDB 5F4Y晶体结构记录",
+      "SHROOM蛋白ASD2介导ROCK结合文献"
+    ],
+    "referenceEntries": "UniProt Q13796；RCSB PDB 5F4Y；Open Targets SHROOM2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ASD2卷曲螺旋ROCK结合界面",
+        "直接干预SHROOM2介导的ROCK募集与收缩骨架装配",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ASD2二聚化相关螺旋表面",
+        "可能影响支架构象稳定性与多聚装配",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PDZ结构域配体结合沟槽",
+        "结构功能相关但不在5F4Y范围内，需另行建模验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SHROOM2为细胞内蛋白，缺乏胞外抗原可及性，常规治疗性抗体风险高。建议限定为细胞内抗体、递送偶联形式或结构功能验证探针。",
+    "structurePrepZh": "以5F4Y链A/B为ASD2结构模板，保留生物学二聚体，检查3.293 Å分辨率下侧链取向并补全缺失残基后再进行表位建模。",
+    "structureRef": "PDB 5F4Y，SHROOM2 ASD2晶体结构，X射线3.293 Å",
+    "antibodies": [
+      "暂无获批SHROOM2靶向抗体",
+      "暂无临床期SHROOM2抗体"
+    ],
+    "interfaceFocus": "ASD2卷曲螺旋二聚体与ROCK结合面",
+    "designMode": "细胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "ROCK1",
+        "rationale": "ROCK1是SHROOM家族ASD2区域募集的下游激酶，直接调控肌球蛋白轻链磷酸化和肌动蛋白收缩，在肿瘤细胞迁移与神经细胞骨架异常中具有同通路相关性。"
+      },
+      {
+        "target": "ROCK2",
+        "rationale": "ROCK2与ROCK1共同构成RhoA-ROCK收缩轴，是SHROOM介导细胞形态改变的重要效应节点，并在神经系统和肿瘤微环境中具有明确功能证据。"
+      },
+      {
+        "target": "RHOA",
+        "rationale": "RHOA位于ROCK激活上游，驱动肌动蛋白应力纤维和细胞收缩信号，与SHROOM2相关骨架重塑过程处于同一RhoA-ROCK通路框架。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

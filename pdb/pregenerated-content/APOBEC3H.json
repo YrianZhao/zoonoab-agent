@@ -1,0 +1,65 @@
+{
+  "gene": "APOBEC3H",
+  "generatedAt": "2026-08-03T10:31:10.604Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "APOBEC3H 属于胞内胞苷脱氨酶，参与抗逆转录病毒限制，通过编辑病毒单链 DNA 诱导 G-to-A 超突变并抑制病毒复制。Open Targets 关联主要集中于血细胞计数、体成分和身高等遗传性表型，尚不构成明确的胞外疾病驱动通路。该蛋白缺乏分泌信号肽、跨膜区和胞外结构域，抗原可及性不符合常规治疗性抗体直接结合条件；因此其优先级低于具有胞外可及性的同通路病毒进入或免疫检查点相关靶点，更适合作为结构生物学与细胞内递送格式的探索对象。",
+    "mechanism": "设计目标应聚焦阻断 APOBEC3H 催化口袋与单链 DNA 底物结合，干扰锌依赖性胞苷脱氨反应，而非依赖细胞表面受体阻断。",
+    "selectedEpitope": "优先评估锌配位催化核心邻近的 ssDNA 结合沟槽及二聚界面，而非常规胞外表位。",
+    "diseaseDirection": "抗病毒限制与血液性状遗传关联",
+    "domain": "APOBEC3H 为单结构域锌依赖胞苷脱氨酶，含保守 H-X-E-X23-28-P-C-X2-4-C 催化基序。",
+    "evidence": "APOBEC3H 结构与抗病毒限制证据包",
+    "evidenceSources": [
+      "Open Targets Platform 遗传关联数据",
+      "UniProt Q6NTF7 蛋白功能与定位注释",
+      "RCSB PDB 5W45 晶体结构记录",
+      "APOBEC3H 抗 HIV-1 限制与 Vif 拮抗文献"
+    ],
+    "referenceEntries": "UniProt Q6NTF7；RCSB PDB 5W45；Open Targets APOBEC3H",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化锌中心邻近 ssDNA 结合沟槽",
+        "可用于构建抑制底物进入的胞内抗体或工程化结合蛋白",
+        "优先"
+      ],
+      [
+        "Site B",
+        "APOBEC3H 二聚化/寡聚化界面",
+        "干扰功能性组装可能降低脱氨酶活性并改变核酸结合状态",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化核心的外周可溶性表面",
+        "结构可及但功能耦合较弱，易产生非抑制性结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为靶点胞内定位导致常规 Fab 难以到达作用位点；催化核心高度带电且邻近核酸结合面，需控制交叉反应与核酸依赖性聚集。",
+    "structurePrepZh": "以 5W45 A、B 链构建同源二聚体模型，保留锌离子与催化残基几何约束，补全缺失侧链并评估晶体接触对界面判断的影响。",
+    "structureRef": "RCSB PDB 5W45，APOBEC3H X-ray structure，2.486 Å",
+    "antibodies": [
+      "无已批准抗 APOBEC3H 治疗性抗体",
+      "研究级 anti-APOBEC3H monoclonal antibody"
+    ],
+    "interfaceFocus": "锌催化中心、ssDNA 结合沟槽与二聚界面",
+    "designMode": "胞内结合体探索",
+    "candidates": [
+      {
+        "target": "APOBEC3G",
+        "rationale": "APOBEC3G 与 APOBEC3H 同属抗逆转录病毒限制因子，可通过胞苷脱氨和非脱氨机制抑制 HIV-1 复制，并受 Vif 介导降解调控。"
+      },
+      {
+        "target": "APOBEC3F",
+        "rationale": "APOBEC3F 参与同一宿主抗病毒限制网络，对逆转录病毒 cDNA 产生编辑压力，可作为 APOBEC3 轴功能补偿与选择性评估靶点。"
+      },
+      {
+        "target": "VIF",
+        "rationale": "HIV-1 Vif 通过招募宿主泛素连接酶复合体诱导 APOBEC3 蛋白降解，是 APOBEC3H 抗病毒限制通路中的直接病毒拮抗因子。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

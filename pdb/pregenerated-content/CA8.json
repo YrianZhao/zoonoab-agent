@@ -1,0 +1,65 @@
+{
+  "gene": "CA8",
+  "generatedAt": "2026-08-03T10:56:32.980Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CA8为催化失活的碳酸酐酶样蛋白，主要通过结合ITPR1调节小脑浦肯野细胞内质网钙释放，CA8功能缺失与失衡综合征及遗传性共济失调存在明确遗传关联。该蛋白缺乏经典跨膜区和分泌信号，主要定位于胞质，因此抗原天然可及性低，抗体设计更适用于研究级细胞内递送、胞内抗体或结构功能阻断场景。相较一般神经退行性候选靶点，CA8具有高分辨率实验结构和明确CA8-ITPR1相互作用机制，适合作为机制验证优先靶点，但药物化抗体开发优先级需低于胞外受体或分泌型靶点。",
+    "mechanism": "设计抗体阻断CA8碳酸酐酶样结构域与ITPR1胞质调控区结合，解除CA8对IP3受体介导钙释放的异常调节。",
+    "selectedEpitope": "优先覆盖CA8碳酸酐酶样折叠中ITPR1结合相关外露沟槽，避开高度保守疏水核心。",
+    "diseaseDirection": "遗传性小脑共济失调",
+    "domain": "CA8包含单一碳酸酐酶样催化失活结构域，保留CA折叠但缺乏锌依赖催化活性。",
+    "evidence": "CA8-ITPR1钙释放轴与共济失调证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P35219功能与亚细胞定位注释",
+      "RCSB PDB 2W2J高分辨率晶体结构",
+      "CA8突变相关失衡综合征与小脑共济失调文献"
+    ],
+    "referenceEntries": "UniProt P35219；RCSB PDB 2W2J；Open Targets CA8",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "碳酸酐酶样结构域外露沟槽及ITPR1结合邻近面",
+        "可直接干预CA8-ITPR1相互作用，适合机制阻断型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化失活CA折叠中残余活性位点周边环区",
+        "构象稳定且结构解析清晰，可作为构象识别与功能探针表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "β折叠核心邻近保守疏水面",
+        "可能影响整体折叠稳定性并提高交叉反应风险，需谨慎评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CA8为胞内非分泌蛋白，常规抗体体内可及性受限；设计应优先定位为胞内抗体、递送抗体或体外机制工具，并严格评估CA家族同源性。",
+    "structurePrepZh": "采用PDB 2W2J链A作为抗原模板，保留高可信主链与外露环区，去除晶体水和非关键配体后进行质子化、缺失残基检查及表面电荷标注。",
+    "structureRef": "RCSB PDB 2W2J，X-ray diffraction，1.6 Å",
+    "antibodies": [
+      "研究级anti-CA8抗体",
+      "CA8胞内抗体候选格式"
+    ],
+    "interfaceFocus": "CA8-ITPR1结合沟槽及邻近外露环",
+    "designMode": "胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "ITPR1",
+        "rationale": "ITPR1为IP3受体钙通道核心组分，直接与CA8发生功能性相互作用，是同一小脑钙稳态通路中的关键靶点。"
+      },
+      {
+        "target": "ITPR2",
+        "rationale": "ITPR2属于IP3受体家族，参与内质网钙释放调控，可作为CA8相关钙信号网络的旁路评估靶点。"
+      },
+      {
+        "target": "ITPR3",
+        "rationale": "ITPR3同为IP3介导钙释放通道亚型，与ITPR1共享配体门控机制，适合用于选择性和通路冗余风险比较。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

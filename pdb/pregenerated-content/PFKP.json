@@ -1,0 +1,65 @@
+{
+  "gene": "PFKP",
+  "generatedAt": "2026-08-03T15:13:59.611Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PFKP编码血小板型磷酸果糖激酶，是糖酵解限速酶PFK-1的同工酶，催化果糖-6-磷酸与ATP生成果糖-1,6-二磷酸并连接葡萄糖利用、乳酸生成及血小板代谢表型。该蛋白为胞质四聚体酶，缺乏天然胞外结构域或分泌特征，抗体抗原可及性显著低于膜受体与分泌蛋白，需限定为细胞内递送抗体、降解抗体或研究级构象探针策略。相较HK、PKM、LDHA等同通路酶，PFKP位于糖酵解承诺步骤并具有明确四聚体结构基础，可优先用于变构界面与寡聚状态识别设计，但不宜作为常规细胞外中和抗体首选靶点。",
+    "mechanism": "抗体设计以识别PFKP四聚体构象为核心，阻断F6P/ATP结合口袋附近构象转换或干扰亚基间界面稳定性，从而降低PFK-1催化通量。",
+    "selectedEpitope": "优先选择N端催化结构域与C端调控结构域邻近的亚基界面，避开高度保守ATP结合核心。",
+    "diseaseDirection": "糖酵解代谢与血小板表型",
+    "domain": "PFKP由重复PFK结构域构成，形成同源四聚体，含F6P/ATP催化位点及变构调控结合区域。",
+    "evidence": "PFKP糖酵解限速酶与血小板代谢证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q01813功能与亚细胞定位注释",
+      "RCSB PDB 4XZ2晶体结构记录",
+      "糖酵解PFK-1催化机制与变构调控文献"
+    ],
+    "referenceEntries": "UniProt Q01813；RCSB PDB 4XZ2；Open Targets PFKP",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "亚基间四聚体界面及调控结构域外缘",
+        "有利于锁定寡聚构象并干扰酶活调控",
+        "优先"
+      ],
+      [
+        "Site B",
+        "F6P/ATP催化口袋邻近环区",
+        "可影响底物进入与催化构象转换",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守核苷酸结合核心",
+        "同工酶交叉反应与功能毒性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PFKP为胞质代谢酶，常规抗体难以到达天然抗原；需采用细胞内递送、intrabody或PROTAC样降解格式，并严格评估PFKM/PFKL交叉反应。",
+    "structurePrepZh": "以4XZ2四聚体生物装配体为模板，补全缺失环区并保留催化与变构配体信息，用于界面可及性和同工酶保守性比对。",
+    "structureRef": "RCSB PDB 4XZ2，人源PFKP X射线晶体结构2.67 Å",
+    "antibodies": [
+      "研究级抗PFKP抗体",
+      "抗PFK-1同工酶研究抗体"
+    ],
+    "interfaceFocus": "四聚体亚基界面与催化-调控结构域交界",
+    "designMode": "细胞内构象抗体",
+    "candidates": [
+      {
+        "target": "PFKL",
+        "rationale": "PFKL同属PFK-1限速酶家族，参与果糖-6-磷酸向果糖-1,6-二磷酸转化，可用于比较肝型同工酶在糖酵解通量中的疾病贡献。"
+      },
+      {
+        "target": "PFKM",
+        "rationale": "PFKM为肌型PFK-1同工酶，与PFKP共享催化反应和四聚体酶学机制，适合作为同通路选择性与交叉反应风险评估靶点。"
+      },
+      {
+        "target": "ALDOA",
+        "rationale": "ALDOA位于PFK-1下游，催化果糖-1,6-二磷酸裂解为三碳糖磷酸，连接PFKP活性变化与乳酸生成表型。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

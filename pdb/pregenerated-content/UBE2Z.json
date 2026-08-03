@@ -1,0 +1,65 @@
+{
+  "gene": "UBE2Z",
+  "generatedAt": "2026-08-03T17:39:22.077Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "UBE2Z 是胞内泛素结合酶 E2，参与泛素由 E1 向底物或 E3 复合体转移，Open Targets 关联主要集中于单核细胞计数、血小板计数及血小板压积等血液学性状。其疾病关联更符合造血细胞内蛋白稳态和泛素化调控背景，而非经典可中和的胞外配体或膜受体轴。由于 UBE2Z 缺乏分泌型或胞外结构域，完整抗体药物的抗原可及性较弱；优先级低于同通路中可靶向胞外受体或细胞表面调控分子的对象，更适合作为机制研究或胞内递送抗体片段探索靶点。",
+    "mechanism": "设计以内源化抗体片段阻断 UBE2Z 催化半胱氨酸周边与 E1/E3 结合界面，抑制泛素转硫酯转移及后续底物泛素化。",
+    "selectedEpitope": "优先覆盖 UBC catalytic core 中催化 Cys 附近的 E1/E3 结合沟槽。",
+    "diseaseDirection": "血液学性状与泛素化稳态",
+    "domain": "UBE2Z 主要由保守 UBC 催化结构域构成，含活性半胱氨酸及 E1/E3 结合表面。",
+    "evidence": "UBE2Z 结构与血液学性状遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProtKB Q9H832 功能注释",
+      "RCSB PDB 5A4P 晶体结构",
+      "GWAS Catalog 血细胞性状关联记录"
+    ],
+    "referenceEntries": "UniProt Q9H832；RCSB PDB 5A4P；Open Targets UBE2Z",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "UBC 催化核心活性 Cys 邻近沟槽",
+        "可干扰泛素转硫酯中间体形成及 E1/E3 交接",
+        "优先"
+      ],
+      [
+        "Site B",
+        "UBC 结构域 E3 识别表面",
+        "有望降低特定 E3 复合体招募而保留部分结构稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "UBC 核心折叠保守疏水面",
+        "保守性高且可能影响蛋白折叠，需避免非特异结构扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "UBE2Z 为胞内酶，常规抗体难以到达作用位点；设计应限定为细胞内递送 Fab/VHH，并避开高度保守 UBC 折叠核心以降低交叉反应风险。",
+    "structurePrepZh": "以 5A4P 链 A 为模板，补全缺失侧链并保留 UBC 催化核心构象；对活性 Cys、E1/E3 结合面及晶体接触区进行界面区分。",
+    "structureRef": "RCSB PDB 5A4P，X-ray diffraction，2.1 Å",
+    "antibodies": [
+      "暂无获批 UBE2Z 靶向抗体",
+      "暂无临床阶段 UBE2Z 靶向抗体"
+    ],
+    "interfaceFocus": "活性 Cys 邻近沟槽与 E1/E3 结合面",
+    "designMode": "胞内阻断型片段",
+    "candidates": [
+      {
+        "target": "UBA1",
+        "rationale": "UBA1 是泛素激活酶 E1，位于泛素转移级联上游，直接向 E2 酶装载泛素；其功能与血细胞蛋白稳态和泛素化通量相关。"
+      },
+      {
+        "target": "UBE2D3",
+        "rationale": "UBE2D3 为经典泛素结合酶 E2，参与多种 E3 介导的底物泛素化，与 UBE2Z 同属泛素转移级联中的 E2 功能层。"
+      },
+      {
+        "target": "CUL3",
+        "rationale": "CUL3 是 Cullin-RING E3 连接酶骨架蛋白，连接 E2 泛素转移与底物识别复合体，在造血细胞蛋白稳态调控中具有明确通路相关性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

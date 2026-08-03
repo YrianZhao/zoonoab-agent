@@ -1,0 +1,65 @@
+{
+  "gene": "PC",
+  "generatedAt": "2026-08-03T15:06:12.980Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PC 编码线粒体丙酮酸羧化酶，催化丙酮酸羧化生成草酰乙酸，是补充三羧酸循环中间体、糖异生和神经代谢稳态的核心酶；遗传缺陷可导致乳酸酸中毒和丙酮酸羧化酶缺乏症。该蛋白主要定位于线粒体基质，不具备天然胞外结构域或分泌特征，抗原可及性弱，常规体内阻断型抗体优先级受限。相较于同通路中可直接酶替代或代谢补偿的节点，PC 的结构解析度和疾病因果证据较强，更适合作为机制验证、胞内递送抗体或诊断捕获抗体的研究型靶点。",
+    "mechanism": "抗体设计宜聚焦阻断生物素羧基载体蛋白结构域与羧基转移酶活性位点间的构象转运，干扰丙酮酸向草酰乙酸的羧化反应。",
+    "selectedEpitope": "优先选择 BCCP-CT 结构域邻近界面，覆盖生物素臂进入羧基转移酶通道的构象窗口。",
+    "diseaseDirection": "线粒体代谢病与乳酸酸中毒",
+    "domain": "PC 含生物素羧化酶、羧基转移酶、BCCP 及别构调控结构域，形成同源四聚体酶复合体。",
+    "evidence": "PC 缺陷相关代谢病结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P11498 functional annotation",
+      "RCSB PDB 3BG3 experimental structure",
+      "OMIM pyruvate carboxylase deficiency records"
+    ],
+    "referenceEntries": "UniProt P11498；RCSB PDB 3BG3；Open Targets PC",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "BCCP 与羧基转移酶结构域接触界面",
+        "可能阻断生物素臂递送羧基中间体，直接影响催化循环",
+        "优先"
+      ],
+      [
+        "Site B",
+        "生物素羧化酶 ATP/碳酸氢盐结合沟槽外缘",
+        "可干扰底物进入或局部构象闭合，但需避免非特异性酶口袋结合",
+        "备选"
+      ],
+      [
+        "Site C",
+        "四聚体装配界面及乙酰辅酶A别构调控邻近区",
+        "可能影响酶复合体稳定性，存在保守界面和构象异质性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PC 为线粒体基质酶，缺乏细胞外可及性，体内治疗抗体递送风险高；设计宜限定于胞内递送平台、细胞裂解液检测或结构机制研究。",
+    "structurePrepZh": "以 3BG3 四聚体结构为模板，保留 A-D 链装配关系，补全缺失环区并核查生物素化赖氨酸、金属离子和底物类似物状态。",
+    "structureRef": "St. Maurice et al., human pyruvate carboxylase structure, PDB 3BG3",
+    "antibodies": [
+      "anti-pyruvate carboxylase antibody",
+      "anti-PC monoclonal antibody"
+    ],
+    "interfaceFocus": "BCCP 生物素臂转运通道与 CT 活性界面",
+    "designMode": "胞内酶靶向抗体",
+    "candidates": [
+      {
+        "target": "PDHA1",
+        "rationale": "PDHA1 编码丙酮酸脱氢酶 E1 α 亚基，位于丙酮酸进入线粒体氧化代谢的并行节点；缺陷同样可导致先天性乳酸酸中毒。"
+      },
+      {
+        "target": "PCCA",
+        "rationale": "PCCA 编码丙酰辅酶A羧化酶 α 亚基，与 PC 同属生物素依赖性线粒体羧化酶，参与有机酸代谢异常相关通路。"
+      },
+      {
+        "target": "PCCB",
+        "rationale": "PCCB 编码丙酰辅酶A羧化酶 β 亚基，与 PCCA 共同构成线粒体羧化酶复合体，可作为生物素依赖羧化酶疾病网络中的比较靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

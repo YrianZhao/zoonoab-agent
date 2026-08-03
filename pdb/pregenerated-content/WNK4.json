@@ -1,0 +1,65 @@
+{
+  "gene": "WNK4",
+  "generatedAt": "2026-08-03T17:52:58.394Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "WNK4 是远曲小管盐重吸收通路的胞内丝氨酸/苏氨酸激酶，致病性变异可增强 SPAK/OSR1 轴对 NCC 的磷酸化，导致假性低醛固酮症 II 型相关高血压与高钾血症。该蛋白主要定位于胞质，缺乏天然胞外结构域或分泌形式，抗原可及性不利于体内阻断型抗体，但适合结构验证、细胞内递送抗体或研究级构象探针设计。相较 NCC 或 MR 等膜蛋白效应端靶点，WNK4 位于遗传病因上游且具有高分辨率激酶结构，可优先用于机制解析型抗体工程而非常规外周给药抗体开发。",
+    "mechanism": "设计抗体结合 WNK4 激酶结构域催化裂隙邻近区域，空间阻断底物肽与 ATP 配位构象形成，从而降低 SPAK/OSR1 磷酸化输出。",
+    "selectedEpitope": "优先覆盖激酶结构域 N-lobe 与 C-lobe 间催化裂隙及活化环邻近构象表面。",
+    "diseaseDirection": "PHAII 型盐敏感性高血压",
+    "domain": "WNK4 含 N 端激酶结构域、调控性酸性基序与 C 端共卷曲区域；4CHB 覆盖激酶催化核心。",
+    "evidence": "WNK4-SPAK/OSR1-NCC 轴疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt Q96J92 功能与变异注释",
+      "RCSB PDB 4CHB 晶体结构记录",
+      "OMIM 假性低醛固酮症 II 型条目"
+    ],
+    "referenceEntries": "UniProt Q96J92；RCSB PDB 4CHB；Open Targets WNK4；OMIM PHAII",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域催化裂隙、αC 螺旋与活化环邻近表面",
+        "可干预底物进入与活性构象稳定，最贴近 WNK4 激酶功能输出",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N-lobe β 折叠外侧与 ATP 结合袋边缘非保守暴露面",
+        "有利于获得构象选择性结合，同时降低与其他 WNK 家族成员交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守 ATP 结合铰链区与催化赖氨酸邻近残基",
+        "功能相关性强但家族保守性高，存在选择性不足与构象干扰风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "WNK4 为胞内激酶，常规抗体体内可及性受限；应优先采用细胞内递送、VHH/intrabody 或体外构象探针策略，并严格评估 WNK1/3 交叉反应。",
+    "structurePrepZh": "以 4CHB 高分辨率晶体结构为模板，保留激酶核心链，补全缺失侧链，校正质子化状态，并标注 ATP 口袋、αC 螺旋与活化环。",
+    "structureRef": "RCSB PDB 4CHB，human WNK4 kinase domain，X-ray 1.56 Å",
+    "antibodies": [
+      "研究级 anti-WNK4 antibody",
+      "研究级 anti-phospho-WNK4 antibody"
+    ],
+    "interfaceFocus": "催化裂隙、αC 螺旋、活化环与底物结合面",
+    "designMode": "胞内激酶构象抗体",
+    "candidates": [
+      {
+        "target": "STK39",
+        "rationale": "STK39 编码 SPAK，是 WNK4 下游直接磷酸化激酶，负责将信号传递至 NCC；阻断该节点可削弱盐重吸收通路输出。"
+      },
+      {
+        "target": "OSR1",
+        "rationale": "OSR1 与 SPAK 同属 WNK 下游效应激酶，可被 WNK4 激活并参与离子转运体磷酸化调控，是同一通路的并行候选节点。"
+      },
+      {
+        "target": "SLC12A3",
+        "rationale": "SLC12A3 编码 NCC，是 WNK4-SPAK/OSR1 轴的关键远端效应转运体；其膜蛋白属性提供更明确的胞外抗原可及性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

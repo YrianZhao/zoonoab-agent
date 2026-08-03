@@ -1,0 +1,65 @@
+{
+  "gene": "AGO2",
+  "generatedAt": "2026-08-03T10:19:32.109Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "AGO2是RNA诱导沉默复合体的核心催化组分，通过PAZ结构域结合小RNA 3′端、MID结构域识别5′磷酸并由PIWI结构域介导靶RNA切割，参与miRNA/siRNA依赖的转录后调控。其疾病关联涵盖AGO2相关神经发育综合征、甲状腺功能异常及肿瘤表型，提示小RNA沉默轴在发育、内分泌稳态和癌症转录网络中具有病理相关性。AGO2主要定位于胞质及RISC复合体内，缺乏经典胞外结构域，因此常规细胞外阻断型抗体可及性较弱，但可作为胞内递送抗体、研究级Fab或结构稳定化抗体的设计对象。相较DICER1、DROSHA等核酸酶加工因子，AGO2具有高分辨率结构基础和明确的小RNA/靶RNA结合沟槽，适合开展机制验证型抗体设计，但治疗转化优先级需低于可及性更强的膜受体或分泌靶点。",
+    "mechanism": "通过抗体结合AGO2 PAZ-MID-PIWI邻近沟槽，干扰小RNA 3′端锚定、5′磷酸识别或PIWI催化构象，从而抑制RISC装载与靶RNA切割。",
+    "selectedEpitope": "优先选择PAZ结构域小RNA 3′端结合口袋邻近环区，兼顾MID-PIWI核酸通道界面的构象阻断。",
+    "diseaseDirection": "小RNA沉默轴相关神经发育与肿瘤",
+    "domain": "AGO2含N端结构域、PAZ、MID及PIWI RNase H样催化结构域，形成小RNA导向的RNA结合沟槽。",
+    "evidence": "AGO2-RISC结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9UKV8功能与亚细胞定位注释",
+      "RCSB PDB 3LUC晶体结构记录",
+      "AGO2介导miRNA/siRNA沉默机制文献"
+    ],
+    "referenceEntries": "UniProt Q9UKV8；RCSB PDB 3LUC；Open Targets AGO2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PAZ结构域小RNA 3′端结合口袋邻近环区",
+        "可直接影响小RNA末端锚定与RISC稳定性，适合构建功能阻断型Fab",
+        "优先"
+      ],
+      [
+        "Site B",
+        "MID-PIWI交界处5′磷酸识别沟槽外缘",
+        "可能干扰导向RNA定位及催化构象耦联，具备机制验证价值",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PIWI结构域RNase H样催化核心附近",
+        "靠近核酸结合与催化残基，存在核酸竞争、构象保守性及脱靶风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "AGO2为胞内RISC蛋白，天然抗体可及性有限；设计应限定为胞内递送、结构探针或研究级阻断抗体，并规避高度保守催化核心。",
+    "structurePrepZh": "以3LUC高分辨率晶体结构为模板，保留AGO2核心结构域，补全缺失环区并评估PAZ、MID、PIWI沟槽的核酸结合构象。",
+    "structureRef": "RCSB PDB 3LUC，X-ray diffraction，1.691 Å",
+    "antibodies": [
+      "anti-AGO2 clone 2E12-1C9",
+      "anti-AGO2 clone 11A9"
+    ],
+    "interfaceFocus": "PAZ小RNA 3′端口袋与MID-PIWI核酸沟槽",
+    "designMode": "胞内机制阻断",
+    "candidates": [
+      {
+        "target": "DICER1",
+        "rationale": "DICER1负责前体miRNA加工并向AGO蛋白装载小RNA，处于同一miRNA生成与RISC成熟通路。其疾病关联覆盖神经发育和肿瘤易感表型。"
+      },
+      {
+        "target": "DROSHA",
+        "rationale": "DROSHA是Microprocessor复合体核心核酸酶，介导pri-miRNA核内初始切割，与AGO2共同维持miRNA沉默轴。其异常可改变下游AGO2可利用的小RNA谱。"
+      },
+      {
+        "target": "DGCR8",
+        "rationale": "DGCR8识别pri-miRNA并与DROSHA形成Microprocessor复合体，位于AGO2上游的miRNA生物发生通路。该靶点适合用于比较上游加工阻断与下游RISC阻断效应。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "STK26",
+  "generatedAt": "2026-08-03T21:20:21.533Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "STK26/MST4为胞内丝氨酸/苏氨酸激酶，参与细胞极性、迁移与存活相关信号，在胃癌、肝细胞癌和结直肠癌等肿瘤证据中呈现遗传和表达层面关联。该蛋白缺乏跨膜段和分泌信号肽，天然抗原可及性不适合作为完整抗体的细胞表面阻断靶点，需定位于胞内递送抗体、降解抗体或研究级结合分子设计。相较EGFR、MET等同类肿瘤通路膜受体，STK26优先级受限于Open Targets关联得分较低和胞内定位，但其高分辨率激酶结构有利于构建构象选择性结合界面。",
+    "mechanism": "设计胞内递送抗体结合STK26激酶结构域ATP结合裂缝邻近区域，阻碍催化赖氨酸与底物磷酸受体构象耦联，从而抑制STK26介导的下游磷酸化事件。",
+    "selectedEpitope": "优先覆盖激酶N叶β折叠、αC螺旋与ATP结合口袋边缘的构象复合表位。",
+    "diseaseDirection": "胃癌与肝细胞癌信号干预",
+    "domain": "STK26主要包含N端丝氨酸/苏氨酸蛋白激酶结构域及C端调控区，5YF4解析激酶核心。",
+    "evidence": "STK26肿瘤关联与激酶结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9P289蛋白注释",
+      "RCSB PDB 5YF4晶体结构",
+      "人类蛋白激酶组与MST家族功能文献"
+    ],
+    "referenceEntries": "UniProt Q9P289；RCSB PDB 5YF4；Open Targets STK26",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N叶β片层-αC螺旋-ATP口袋边缘",
+        "邻近催化构象转换核心，可形成构象选择性抑制界面",
+        "优先"
+      ],
+      [
+        "Site B",
+        "激酶C叶底物结合沟槽周边",
+        "可能干扰底物肽进入与催化环定位，适合功能阻断筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "保守ATP深口袋内部",
+        "激酶家族保守性高，抗体进入受限且交叉反应风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "STK26为胞内激酶，常规IgG难以到达天然靶点；激酶核心保守性较高，需避开ATP深口袋保守残基并进行MST家族交叉反应评估。",
+    "structurePrepZh": "采用5YF4的A/B链激酶结构域作为抗原模板，校正缺失侧链、质子化状态与晶体接触，保留催化裂缝构象用于表位建模。",
+    "structureRef": "RCSB PDB 5YF4，X-ray diffraction，1.897 Å",
+    "antibodies": [
+      "STK26研究级单克隆抗体",
+      "MST4研究级兔单克隆抗体"
+    ],
+    "interfaceFocus": "αC螺旋、催化裂缝与底物沟槽",
+    "designMode": "胞内构象阻断",
+    "candidates": [
+      {
+        "target": "STK24",
+        "rationale": "STK24/MST3与STK26同属GCKIII激酶亚家族，参与细胞迁移、极性与肿瘤相关存活信号，可作为同通路旁系节点用于选择性比较。"
+      },
+      {
+        "target": "STK25",
+        "rationale": "STK25/MST4同源激酶参与细胞骨架与代谢应激相关信号，与STK26共享上游调控特征，适合用于家族交叉反应与替代靶点评估。"
+      },
+      {
+        "target": "PDCD10",
+        "rationale": "PDCD10/CCM3可与GCKIII激酶复合并影响其稳定性和定位，是STK26相关信号复合体中的真实调控因子。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

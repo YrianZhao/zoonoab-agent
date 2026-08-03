@@ -1,0 +1,65 @@
+{
+  "gene": "ATG16L1",
+  "generatedAt": "2026-08-03T10:39:59.282Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ATG16L1参与ATG5–ATG12–ATG16L1复合体形成，定位LC3脂质化反应至隔离膜，对潘氏细胞颗粒外排、细菌清除和肠黏膜稳态具有关键作用，其T300A风险变体与克罗恩病和炎症性肠病易感性相关。该蛋白主要为胞内自噬支架蛋白，天然抗体可及性弱，因此更适合采用细胞内递送抗体片段或结构机制验证型分子设计。相较于上游PRR或炎症因子靶点，ATG16L1位于遗传证据明确的自噬执行节点，可直接评估疾病相关变体对复合体装配和功能输出的影响。",
+    "mechanism": "稳定或阻断ATG16L1卷曲螺旋区与ATG5–ATG12复合体的装配界面，改变LC3/GABARAP脂质化复合体在隔离膜上的定位效率。",
+    "selectedEpitope": "优先覆盖N端ATG5结合卷曲螺旋二聚化界面，避开WD40 β-propeller保守折叠核心。",
+    "diseaseDirection": "克罗恩病与炎症性肠病自噬轴",
+    "domain": "ATG16L1含N端ATG5结合区、中央卷曲螺旋区及C端WD40 β-propeller结构域。",
+    "evidence": "ATG16L1自噬复合体与IBD遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q676U5功能与结构域注释",
+      "RCSB PDB 7F69 X射线晶体结构",
+      "GWAS与功能研究中的ATG16L1 T300A克罗恩病证据"
+    ],
+    "referenceEntries": "UniProt Q676U5；RCSB PDB 7F69；Open Targets ATG16L1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端ATG5结合卷曲螺旋界面",
+        "直接影响ATG5–ATG12–ATG16L1复合体装配，适合机制型阻断或稳定化设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "中央卷曲螺旋二聚化区域",
+        "可调节ATG16L1寡聚状态与隔离膜定位几何构型，适合作为构象调控表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端WD40 β-propeller外侧环区",
+        "可能影响膜相关蛋白互作，但保守折叠面较多，需避免破坏整体结构稳定性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ATG16L1为胞内蛋白，常规全长IgG难以进入细胞；建议采用Fab/VHH片段并结合细胞内递送或蛋白降解验证体系，避免靶向高度保守折叠核心。",
+    "structurePrepZh": "以7F69中A、C链为结构模板，补全缺失环区并标注卷曲螺旋、WD40叶片及疾病相关T300邻近区域，保留晶体界面用于可及性评估。",
+    "structureRef": "RCSB PDB 7F69，human ATG16L1，1.5 Å X-ray",
+    "antibodies": [
+      "研究级anti-ATG16L1 monoclonal antibody",
+      "研究级anti-ATG16L1 polyclonal antibody"
+    ],
+    "interfaceFocus": "ATG5结合面、卷曲螺旋二聚界面、T300邻近环区",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "ATG5",
+        "rationale": "ATG5与ATG12偶联后直接结合ATG16L1，是LC3脂质化E3样复合体的核心组成部分，可作为同一自噬执行节点的替代干预靶点。"
+      },
+      {
+        "target": "ATG12",
+        "rationale": "ATG12通过共价偶联ATG5形成ATG12–ATG5复合体，并与ATG16L1共同促进LC3/GABARAP脂质化，疾病通路位置与ATG16L1高度相邻。"
+      },
+      {
+        "target": "MAP1LC3B",
+        "rationale": "MAP1LC3B是自噬体膜脂质化的关键底物，其加工和PE偶联依赖ATG5–ATG12–ATG16L1复合体，可用于评估同一自噬通路输出端调控。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

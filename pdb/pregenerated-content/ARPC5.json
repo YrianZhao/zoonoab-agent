@@ -1,0 +1,65 @@
+{
+  "gene": "ARPC5",
+  "generatedAt": "2026-08-03T10:36:40.182Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ARPC5是Arp2/3复合体的核心小亚基，参与WASP/WAVE介导的肌动蛋白分支成核，影响免疫细胞迁移、吞噬突触形成及神经元棘突结构稳定性。该蛋白位于胞质多蛋白复合体内部，并非典型分泌蛋白或细胞膜外抗原，天然抗体可及性显著弱于膜受体靶点，因此更适合细胞内递送抗体片段或机制研究型阻断分子设计。相较ARPC1B等同复合体免疫缺陷强关联亚基，ARPC5具有人源Arp2/3全复合体实验结构支持，可用于界面级表位建模，但转化优先级应低于具备明确胞外可及性的免疫通路靶点。",
+    "mechanism": "以内递送Fab或VHH结合ARPC5邻近ARPC4/ARPC2的复合体界面，干扰Arp2/3构象稳定及VCA激活耦联，降低分支肌动蛋白成核效率。",
+    "selectedEpitope": "优先覆盖ARPC5 C端α螺旋束与ARPC4接触面，避开深埋核心疏水面。",
+    "diseaseDirection": "免疫缺陷与神经退行性疾病",
+    "domain": "ARPC5为约16 kDa Arp2/3小亚基，主要由α螺旋束构成，嵌入复合体外周支架。",
+    "evidence": "ARPC5-Arp2/3复合体结构与疾病遗传证据",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB O15511功能与定位注释",
+      "RCSB PDB 6UHC冷冻电镜结构",
+      "WASP/WAVE-Arp2/3肌动蛋白成核文献"
+    ],
+    "referenceEntries": "UniProt O15511；RCSB PDB 6UHC；ComplexPortal Arp2/3 complex",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ARPC5 C端α螺旋束-ARPC4邻接界面",
+        "可能影响复合体局部稳定及激活构象传递，适合作为功能阻断表位",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ARPC5暴露外周螺旋环区",
+        "抗体结合可及性相对较高，适合构象识别与复合体定位探针开发",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ARPC5深埋疏水核心与多亚基接触区",
+        "结构保守且可及性低，易造成折叠扰动和非特异复合体破坏",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ARPC5为胞质复合体亚基，常规治疗性抗体难以进入细胞；建议限定为内递送VHH、细胞穿透偶联或体外机制验证场景。",
+    "structurePrepZh": "以PDB 6UHC全复合体为模板，保留A-I链装配关系，补全缺失侧链并标注低分辨率区域后进行界面可及性评估。",
+    "structureRef": "RCSB PDB 6UHC，human Arp2/3 complex cryo-EM structure",
+    "antibodies": [
+      "无已批准ARPC5治疗性抗体",
+      "研究级anti-ARPC5抗体"
+    ],
+    "interfaceFocus": "ARPC5-ARPC4邻接面及外周螺旋环区",
+    "designMode": "细胞内VHH/Fab阻断",
+    "candidates": [
+      {
+        "target": "ARPC1B",
+        "rationale": "ARPC1B同属Arp2/3复合体，遗传缺陷与免疫缺陷、血小板异常及炎症表型直接相关，疾病因果证据强于ARPC5。"
+      },
+      {
+        "target": "WAS",
+        "rationale": "WAS编码WASP，是CDC42依赖的Arp2/3激活因子，Wiskott-Aldrich综合征和联合免疫缺陷中的通路位置明确。"
+      },
+      {
+        "target": "WASF2",
+        "rationale": "WASF2为WAVE调控复合体成员，可连接RAC1信号与Arp2/3介导的片状伪足形成，适合评估同一肌动蛋白重塑轴。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

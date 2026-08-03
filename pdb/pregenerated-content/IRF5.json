@@ -1,0 +1,65 @@
+{
+  "gene": "IRF5",
+  "generatedAt": "2026-08-03T19:58:22.352Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IRF5是TLR7/9-MyD88通路下游转录因子，促进I型干扰素、IL6、TNF及IL12B等炎症基因转录，遗传变异与系统性红斑狼疮和类风湿关节炎风险密切相关。该蛋白主要位于胞质与细胞核，缺乏天然胞外结构域，作为常规抗体药物抗原可及性低；仅适合细胞内递送抗体、研究级胞内阻断或靶向降解平台评估。相较IFNAR1、TNFSF13B等胞外免疫靶点，IRF5优先级受递送可行性限制，但其位于多条自身免疫炎症轴的转录汇聚点，具备机制验证价值。",
+    "mechanism": "阻断IRF5 DNA结合域与干扰素刺激反应元件结合，或干扰IRF5同源二聚化及CBP/p300共激活因子募集，从而降低炎症基因转录。",
+    "selectedEpitope": "优先评估N端DNA结合域翼状螺旋中与DNA主沟接触的识别螺旋及邻近环区。",
+    "diseaseDirection": "系统性红斑狼疮与自身免疫炎症",
+    "domain": "IRF5含N端DNA结合域、连接区、C端IRF-association domain及自抑制调控尾部。",
+    "evidence": "IRF5自身免疫遗传关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q13568功能与结构域注释",
+      "RCSB PDB 3DSH晶体结构记录",
+      "GWAS Catalog系统性红斑狼疮风险位点证据"
+    ],
+    "referenceEntries": "UniProt Q13568；RCSB PDB 3DSH；Open Targets IRF5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端DNA结合域识别螺旋与DNA接触面",
+        "直接抑制IRF5结合ISRE样DNA元件，机制明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端IRF-association domain二聚化界面",
+        "干扰磷酸化后IRF5二聚化及转录复合体形成",
+        "备选"
+      ],
+      [
+        "Site C",
+        "自抑制尾部与IAD邻近调控区域",
+        "构象可塑性高，可能影响活化状态但表位稳定性不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IRF5为细胞内转录因子，常规IgG难以到达作用位点；应优先采用细胞穿透、胞内抗体或降解偶联策略，并设置DNA结合选择性评估。",
+    "structurePrepZh": "以3DSH抗原链A为结构模板，补全缺失环区并标注DNA结合残基；C端IAD需另行整合可用同源或预测结构用于界面评估。",
+    "structureRef": "RCSB PDB 3DSH，X-ray diffraction，2.0 Å",
+    "antibodies": [
+      "抗IRF5研究级单克隆抗体",
+      "抗IRF5 ChIP级验证抗体"
+    ],
+    "interfaceFocus": "DNA结合识别螺旋、IAD二聚化面",
+    "designMode": "胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "TLR7",
+        "rationale": "TLR7位于内体膜并识别RNA配体，经MYD88激活IRF5及NF-κB，是SLE干扰素轴上游可干预节点。其腔内结构域较IRF5更适合抗体或抗体样分子识别。"
+      },
+      {
+        "target": "MYD88",
+        "rationale": "MYD88连接TLR7/9与IRAK4、TRAF6并促进IRF5活化，是同一炎症通路的核心适配蛋白。该靶点同样存在胞内可及性挑战，但机制位置明确。"
+      },
+      {
+        "target": "IFNAR1",
+        "rationale": "IFNAR1介导I型干扰素信号放大，与IRF5驱动的IFN转录程序形成病理反馈环。其为细胞表面受体亚基，抗原可及性和抗体成药性优于IRF5。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

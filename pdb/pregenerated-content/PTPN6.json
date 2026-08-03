@@ -1,0 +1,65 @@
+{
+  "gene": "PTPN6",
+  "generatedAt": "2026-08-03T15:43:46.459Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PTPN6编码SHP-1，是含SH2结构域的胞内蛋白酪氨酸磷酸酶，在BCR、Fc受体、JAK/STAT及免疫抑制受体通路中去磷酸化SYK、JAK及受体ITIM复合体相关底物，影响弥漫大B细胞淋巴瘤、AML及自身免疫表型。该蛋白为胞质非受体酶，天然抗原可及性不适合常规细胞外阻断抗体，需采用胞内递送抗体片段或研究级构象抗体策略。其优先级来自高分辨率催化结构、明确免疫造血通路位置及广泛疾病遗传/表达关联，但临床开发优先性低于CD19、CD22、PDCD1等表面靶点。",
+    "mechanism": "通过结合PTP催化结构域邻近pTyr底物结合沟槽，遮蔽WPD环与Q环协同催化构象，抑制PTPN6对SYK、JAK2及ITIM复合体底物的去磷酸化。",
+    "selectedEpitope": "优先覆盖PTP结构域pTyr结合口袋外缘及WPD环邻近构象面，避免直接深插催化半胱氨酸口袋。",
+    "diseaseDirection": "B细胞淋巴瘤与髓系白血病免疫信号",
+    "domain": "N端SH2、C端SH2及C端PTP催化结构域；4GRZ对应高分辨率催化结构域构象。",
+    "evidence": "PTPN6免疫造血信号与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB P29350功能与结构域注释",
+      "RCSB PDB 4GRZ X射线晶体结构",
+      "造血细胞BCR/JAK-STAT负调控文献"
+    ],
+    "referenceEntries": "UniProt P29350；RCSB PDB 4GRZ；Open Targets PTPN6",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PTP结构域pTyr结合沟槽外缘与WPD环邻近面",
+        "可干预底物进入及催化闭合构象，具备机制阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PTP结构域背侧非催化保守表面",
+        "可用于构象识别或胞内定位研究，直接功能阻断预期较弱",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化Cys所在PTP signature深口袋",
+        "高度保守且小分子样口袋狭窄，抗体可达性与选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PTPN6为胞内磷酸酶，常规抗体难以到达天然靶位；PTP催化口袋保守性高，需规避PTPN11等同源磷酸酶交叉反应。",
+    "structurePrepZh": "以4GRZ链A为模板，保留PTP催化结构域主构象，检查WPD环、底物结合沟槽及缺失残基，移除结晶添加物后进行质子化与表面电荷评估。",
+    "structureRef": "RCSB PDB 4GRZ，X-ray diffraction，1.3732 Å",
+    "antibodies": [
+      "抗SHP-1克隆C-19",
+      "抗SHP-1克隆D11G5"
+    ],
+    "interfaceFocus": "PTP底物结合沟槽、WPD环与Q环邻近构象面",
+    "designMode": "胞内抗体片段阻断",
+    "candidates": [
+      {
+        "target": "SYK",
+        "rationale": "SYK是BCR及Fc受体近端酪氨酸激酶，属于PTPN6去磷酸化调控的同一免疫受体信号轴；在B细胞淋巴瘤中具有更直接的药理干预依据。"
+      },
+      {
+        "target": "JAK2",
+        "rationale": "JAK2参与造血细胞细胞因子受体JAK/STAT通路，PTPN6可负向调节该轴的磷酸化状态；其与AML及炎症性免疫疾病存在明确通路关联。"
+      },
+      {
+        "target": "CD22",
+        "rationale": "CD22为B细胞表面ITIM受体，可募集PTPN6形成抑制性信号复合体；其胞外可及性显著优于PTPN6，适合作为同通路抗体设计候选。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

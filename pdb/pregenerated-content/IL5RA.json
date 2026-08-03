@@ -1,0 +1,65 @@
+{
+  "gene": "IL5RA",
+  "generatedAt": "2026-08-03T13:27:43.010Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IL5RA是IL-5受体α链，介导IL-5对嗜酸性粒细胞分化、募集与存活信号的特异性识别，在哮喘和嗜酸性炎症中位于上游配体捕获节点。该靶点为I型跨膜受体，胞外细胞因子受体同源结构域可直接作为抗体结合抗原，膜近端定位亦支持效应细胞介导的嗜酸性粒细胞清除。相较于下游JAK-STAT节点，IL5RA具有细胞谱系选择性和已验证临床可药性，优先级高于广谱炎症信号靶点。",
+    "mechanism": "阻断IL-5与IL5RA胞外结构域的结合，并通过抗体Fc介导ADCC清除IL5RA阳性嗜酸性粒细胞。",
+    "selectedEpitope": "优先覆盖IL5RA胞外D2-D3细胞因子结合界面，干扰IL-5配体识别并保留Fc效应构型。",
+    "diseaseDirection": "哮喘与嗜酸性炎症",
+    "domain": "IL5RA含N端胞外区、单跨膜螺旋和胞内尾部；胞外区包括D1及D2-D3细胞因子受体同源模块。",
+    "evidence": "IL5RA嗜酸性炎症抗体设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与药物证据",
+      "UniProt Q01344蛋白功能与结构域注释",
+      "RCSB PDB 1OBX高分辨率晶体结构",
+      "已上市抗IL5RA抗体benralizumab临床药理证据"
+    ],
+    "referenceEntries": "UniProt Q01344；RCSB PDB 1OBX；Open Targets IL5RA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "D2-D3细胞因子受体同源结构域的IL-5结合面",
+        "直接阻断IL-5捕获，机制清晰且与疾病驱动轴一致",
+        "优先"
+      ],
+      [
+        "Site B",
+        "膜远端D1结构域外露环区",
+        "可提供高可及性结合位点，适合优化亲和力与空间避让",
+        "备选"
+      ],
+      [
+        "Site C",
+        "膜近端连接区及糖基化邻近表面",
+        "可能受糖链和膜面空间限制影响，需避免遮挡Fc效应构型",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "需评估D2-D3界面糖基化、构象柔性和与IL-3RA/CSF2RA家族同源区的交叉反应风险，优先筛选人源IL5RA特异表位。",
+    "structurePrepZh": "以1OBX晶体结构提取IL5RA胞外链A、B，补全缺失环区并标注糖基化位点，采用IL-5结合界面约束进行表位建模。",
+    "structureRef": "RCSB PDB 1OBX，IL-5受体α胞外结构晶体解析",
+    "antibodies": [
+      "benralizumab",
+      "BIW-8405"
+    ],
+    "interfaceFocus": "D2-D3配体结合面与膜近端Fc取向",
+    "designMode": "阻断加ADCC",
+    "candidates": [
+      {
+        "target": "IL5",
+        "rationale": "IL5是IL5RA的直接配体，驱动嗜酸性粒细胞成熟、活化和存活；中和IL5可在同一疾病轴上阻断受体激活。"
+      },
+      {
+        "target": "CSF2RB",
+        "rationale": "CSF2RB为IL-5受体复合物共享β链，参与IL5RA配体结合后的JAK-STAT信号传导；靶向该节点可影响IL-5依赖性效应信号。"
+      },
+      {
+        "target": "CCR3",
+        "rationale": "CCR3介导嗜酸性粒细胞对CCL11等趋化因子的迁移响应，与IL-5驱动的嗜酸性炎症共同促进哮喘气道浸润。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

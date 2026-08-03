@@ -1,0 +1,65 @@
+{
+  "gene": "HSPA6",
+  "generatedAt": "2026-08-03T13:18:51.729Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HSPA6为应激诱导型Hsp70家族成员，主要参与蛋白质折叠、错误折叠蛋白复性与细胞应激存活反应；其与银屑病等炎症性疾病存在遗传和表达层面的关联，但Open Targets最高关联得分较低，疾病因果证据有限。该蛋白通常定位于胞质，缺乏稳定跨膜区或经典分泌信号，抗原天然可及性弱于细胞表面受体或分泌型细胞因子。相较TNF、IL23A、IL17A等银屑病通路中可及且已有强机制验证的靶点，HSPA6更适合作为应激伴侣蛋白研究型靶点而非优先治疗性抗体靶点。",
+    "mechanism": "抗体设计以阻断HSPA6核苷酸结合结构域与Hsp40辅伴侣蛋白的功能耦联为目标，干扰ATP水解驱动的底物结合与释放循环。",
+    "selectedEpitope": "优先覆盖NBD的ATP结合裂隙邻近亚结构域IB/IIB界面，避免深腔内不可及残基。",
+    "diseaseDirection": "银屑病与炎症应激通路",
+    "domain": "HSPA6含N端核苷酸结合结构域、C端底物结合结构域及EEVD样伴侣蛋白互作尾部。",
+    "evidence": "HSPA6应激伴侣蛋白与银屑病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P17066功能与亚细胞定位注释",
+      "RCSB PDB 3FE1实验结构数据",
+      "Hsp70伴侣蛋白ATPase循环文献"
+    ],
+    "referenceEntries": "UniProtKB P17066；RCSB PDB 3FE1；Open Targets HSPA6",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "NBD亚结构域IB/IIB邻近ATP结合裂隙",
+        "可能干扰ATPase构象转换与辅伴侣蛋白耦联",
+        "优先"
+      ],
+      [
+        "Site B",
+        "底物结合结构域β夹层外侧环区",
+        "可能影响多肽底物装载，但需完整SBD结构支持",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端EEVD样尾部及柔性连接区",
+        "构象柔性高且同源Hsp70交叉反应风险较大",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HSPA6胞内定位导致完整抗体递送与靶点可及性受限，且Hsp70家族同源性高；设计需强化家族成员选择性并评估细胞内递送策略。",
+    "structurePrepZh": "以3FE1晶体结构链A/B/C核苷酸结合结构域为模板，补全缺失环区并去除晶体接触伪界面后进行表位暴露度评估。",
+    "structureRef": "RCSB PDB 3FE1，X-ray diffraction，2.2 Å",
+    "antibodies": [
+      "anti-HSPA6研究级单克隆抗体",
+      "anti-Hsp70家族交叉反应抗体"
+    ],
+    "interfaceFocus": "NBD ATP裂隙周边与Hsp40耦联表面",
+    "designMode": "胞内伴侣蛋白阻断",
+    "candidates": [
+      {
+        "target": "HSPA1A",
+        "rationale": "HSPA1A为诱导型Hsp70核心成员，与HSPA6共享热休克应激与蛋白稳态网络；其表达和功能研究更充分，可作为同通路伴侣蛋白参照靶点。"
+      },
+      {
+        "target": "DNAJB1",
+        "rationale": "DNAJB1为Hsp40家族辅伴侣蛋白，可通过J结构域刺激Hsp70 ATPase活性；阻断其与Hsp70功能耦联可影响同一蛋白折叠循环。"
+      },
+      {
+        "target": "HSP90AA1",
+        "rationale": "HSP90AA1与Hsp70共同参与应激条件下客户蛋白成熟和炎症相关蛋白稳态维持，是同一蛋白稳态应激轴中的可验证节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

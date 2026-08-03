@@ -1,0 +1,65 @@
+{
+  "gene": "PDE3B",
+  "generatedAt": "2026-08-03T20:29:39.017Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PDE3B为胞内cGMP抑制型cAMP磷酸二酯酶，在脂肪细胞与肝代谢调控中水解cAMP，从而影响PKA介导的脂解、胰岛素信号反馈及血浆甘油三酯相关表型。该靶点主要定位于胞内膜相关区及胞质催化结构域，天然抗原可及性弱，不适合作为经典体内阻断型抗体靶点；其可行性更偏向结构生物学抗体、细胞内递送抗体或研究级构象稳定抗体。相比同通路中膜受体或分泌因子，PDE3B的遗传关联与代谢表型证据较强，但抗体成药优先级低于可直接接触循环抗体的INSR、ADRB3或ANGPTL3等靶点。",
+    "mechanism": "设计抗体宜阻断PDE3B催化口袋邻近区域与cAMP底物进入通道的构象耦联，或稳定非活性构象以降低cAMP水解效率。",
+    "selectedEpitope": "优先瞄准催化结构域M-loop/H-loop邻近底物通道外缘，避免深部金属结合催化核心。",
+    "diseaseDirection": "脂质代谢与心代谢性状",
+    "domain": "PDE3B含N端膜定位调控区及C端PDEase催化结构域，1SO2覆盖催化核心。",
+    "evidence": "PDE3B脂质代谢遗传关联与催化结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q13370 functional annotation",
+      "RCSB PDB 1SO2 X-ray structure",
+      "GWAS Catalog lipid and anthropometric trait evidence"
+    ],
+    "referenceEntries": "UniProt Q13370；RCSB PDB 1SO2；Open Targets PDE3B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域M-loop/H-loop及底物通道外缘",
+        "可干预cAMP进入与活性构象转换，适合构象稳定型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端催化结构域外表面保守性较低环区",
+        "有利于获得PDE3B选择性结合，降低PDE3A交叉反应风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "金属离子结合位点及深部催化口袋",
+        "高度保守且埋藏，抗体难以进入，并可能产生非选择性抑制",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PDE3B为胞内酶，循环抗体难以到达天然靶点；设计应定位为体外结构抗体、胞内递送格式或降解偶联工具，并严格评估PDE3A交叉反应。",
+    "structurePrepZh": "以1SO2催化结构域为模板，保留催化金属与关键配体信息，补全缺失环区并标注M-loop、H-loop和底物通道外缘用于表位筛选。",
+    "structureRef": "RCSB PDB 1SO2，human PDE3B catalytic domain，2.4 Å",
+    "antibodies": [
+      "研究级anti-PDE3B antibody",
+      "研究级anti-phospho-PDE3B antibody"
+    ],
+    "interfaceFocus": "M-loop/H-loop邻近底物进入通道",
+    "designMode": "胞内酶构象抗体",
+    "candidates": [
+      {
+        "target": "PDE3A",
+        "rationale": "PDE3A与PDE3B同属PDE3家族，均水解cAMP并参与心血管与代谢组织中的cAMP信号调节，可作为选择性评估与同通路对照靶点。"
+      },
+      {
+        "target": "ADRB3",
+        "rationale": "ADRB3通过Gs蛋白升高脂肪细胞cAMP并驱动PKA依赖性脂解，位于PDE3B调控的同一cAMP代谢轴上，且为膜受体、抗原可及性更优。"
+      },
+      {
+        "target": "INSR",
+        "rationale": "INSR激活PI3K-AKT通路并通过PDE3B相关机制降低脂肪细胞cAMP信号，参与胰岛素抗脂解效应，是同一代谢调控网络中的上游膜受体。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

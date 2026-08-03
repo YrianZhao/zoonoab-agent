@@ -1,0 +1,65 @@
+{
+  "gene": "MCL1",
+  "generatedAt": "2026-08-03T20:09:06.107Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MCL1 是 BCL2 家族抗凋亡蛋白，通过其 BH3 结合沟槽结合并中和 BIM、NOXA、BAK 等促凋亡 BH3-only 或效应蛋白，在肿瘤细胞存活、治疗耐受和线粒体凋亡阈值维持中具有明确机制作用。该蛋白主要定位于线粒体外膜胞质侧及胞质，缺乏经典胞外结构域或分泌特征，作为常规外源性抗体靶点的抗原可及性较低，更适合细胞内递送抗体片段或研究型胞内结合体策略。相较 BCL2、BCL2L1 等同家族靶点，MCL1 对多种血液肿瘤和实体瘤的凋亡依赖性更突出，但因心肌和造血细胞安全性窗口有限，优先级应定位为结构验证充分的高机制价值、较高递送挑战靶点。",
+    "mechanism": "设计结合 MCL1 BH3 结合沟槽的胞内抗体片段，阻断 MCL1 与 BIM、NOXA 或 BAK BH3 螺旋相互作用，解除 BAK/BAX 介导的线粒体外膜通透化抑制。",
+    "selectedEpitope": "优先覆盖 BH1-BH3 形成的疏水 BH3 结合沟槽，尤其 p2/p3 疏水口袋及 Arg263 附近盐桥区域。",
+    "diseaseDirection": "肿瘤凋亡耐受与线粒体凋亡通路",
+    "domain": "MCL1 含 BCL2-like 折叠核心，由 BH1、BH2、BH3 区域构成疏水配体沟槽，C 端具跨膜锚定区。",
+    "evidence": "MCL1 结构与凋亡依赖性证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt Q07820 功能与亚细胞定位注释",
+      "RCSB PDB 2NL9 高分辨率晶体结构",
+      "BCL2 家族 BH3 结合与线粒体凋亡研究文献"
+    ],
+    "referenceEntries": "UniProt Q07820；RCSB PDB 2NL9；Open Targets MCL1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "BH1-BH3 疏水 BH3 结合沟槽 p2/p3 口袋",
+        "直接竞争 BIM、NOXA、BAK BH3 螺旋结合，机制阻断价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "α2-α5 螺旋围成的配体沟槽边缘与 Arg263 极性锚点",
+        "可增强对 BH3 配体盐桥网络的干扰并提高构象选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端跨膜邻近区及非沟槽外表面",
+        "结构柔性和膜邻近效应较强，抗体可及性与功能阻断确定性较低",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MCL1 为胞内线粒体外膜相关蛋白，常规 IgG 难以进入作用位点；需采用胞内抗体、VHH 递送或降解偶联策略，并评估心肌与造血毒性风险。",
+    "structurePrepZh": "以 PDB 2NL9 的 MCL1 核心结构为模板，保留 BH3 结合沟槽构象，去除结晶配体后进行缺失环建模、质子化和口袋水分子审查。",
+    "structureRef": "RCSB PDB 2NL9，MCL1 BH3 结合沟槽晶体结构，1.55 Å",
+    "antibodies": [
+      "胞内抗体片段候选需新设计",
+      "MCL1 研究级检测抗体"
+    ],
+    "interfaceFocus": "BH3 螺旋结合沟槽与疏水口袋",
+    "designMode": "胞内VHH阻断设计",
+    "candidates": [
+      {
+        "target": "BCL2L1",
+        "rationale": "BCL2L1 编码 BCL-XL，同属线粒体凋亡抗凋亡轴，可结合 BIM、BAD、BAK 等 BH3 配体并抑制凋亡执行。其与 MCL1 在肿瘤细胞生存依赖中常呈互补或代偿关系。"
+      },
+      {
+        "target": "BCL2",
+        "rationale": "BCL2 是经典抗凋亡 BCL2 家族成员，通过 BH3 结合沟槽隔离促凋亡蛋白，已在血液肿瘤中形成明确药理验证。其通路位置与 MCL1 高度一致，适合作为同轴比较靶点。"
+      },
+      {
+        "target": "BCL2L11",
+        "rationale": "BCL2L11 编码 BIM，是激活线粒体凋亡的 BH3-only 蛋白，可直接结合 MCL1、BCL2 和 BCL-XL。围绕 BIM-MCL1 相互作用可建立功能性竞争和通路读出体系。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

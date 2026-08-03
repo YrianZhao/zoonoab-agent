@@ -1,0 +1,65 @@
+{
+  "gene": "PYGO2",
+  "generatedAt": "2026-08-03T15:47:03.710Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PYGO2是Wnt/β-catenin转录复合体的核内共调节因子，其PHD finger识别组蛋白H3K4me3并协同BCL9/β-catenin驱动增殖与干性相关基因表达，在肝细胞癌、肺癌等肿瘤生物学中具有机制关联。该蛋白主要定位于细胞核，不具备胞外结构域、分泌蛋白或膜受体特征，天然抗原可及性不利于常规细胞外抗体药物。相较EGFR、WNT配体或FZD受体等同通路可及靶点，PYGO2更适合作为结构引导的细胞内抗体、VHH或研究级功能阻断工具，临床抗体优先级应低于膜表面Wnt通路节点。",
+    "mechanism": "以内源化VHH阻断PYGO2 PHD finger与H3K4me3尾肽结合，并干扰其与BCL9依赖的β-catenin转录复合体装配。",
+    "selectedEpitope": "优先覆盖PHD finger芳香笼及H3K4me3肽结合沟槽，避免破坏锌指核心折叠。",
+    "diseaseDirection": "Wnt驱动实体瘤与肝癌方向",
+    "domain": "PYGO2含N端NHD样BCL9结合区与C端Cys4-His-Cys3型PHD finger，PDB 4UP0解析其PHD结构。",
+    "evidence": "PYGO2-Wnt转录复合体结构与肿瘤证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9BRQ0 functional annotation",
+      "RCSB PDB 4UP0 X-ray structure",
+      "Wnt/β-catenin transcriptional coactivator literature"
+    ],
+    "referenceEntries": "UniProt Q9BRQ0；RCSB PDB 4UP0；Open Targets PYGO2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PHD finger H3K4me3结合芳香笼与相邻肽沟槽",
+        "直接阻断甲基化组蛋白尾肽识别，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PHD finger外侧可溶暴露环区",
+        "可获得构象特异结合并降低锌配位扰动风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PHD finger锌配位Cys/His核心邻近区域",
+        "可能影响折叠稳定性并产生非特异变性表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PYGO2为核内蛋白，常规抗体体内可及性不足；设计宜限定为细胞内递送VHH或机制研究Fab，并规避锌配位核心以降低构象破坏风险。",
+    "structurePrepZh": "以4UP0高分辨率X射线结构为模板，保留PHD finger锌离子配位状态，补全缺失侧链并标注H3K4me3结合沟槽用于表位建模。",
+    "structureRef": "RCSB PDB 4UP0，PYGO2 PHD finger，1.28 Å X-ray",
+    "antibodies": [
+      "研究级抗PYGO2抗体",
+      "研究级抗PYGO2 PHD结构域抗体"
+    ],
+    "interfaceFocus": "PHD芳香笼-H3K4me3尾肽识别界面",
+    "designMode": "细胞内VHH阻断",
+    "candidates": [
+      {
+        "target": "CTNNB1",
+        "rationale": "CTNNB1编码β-catenin，是经典Wnt通路转录复合体核心节点；抑制其与TCF/LEF或共激活因子装配可直接削弱Wnt驱动转录。"
+      },
+      {
+        "target": "BCL9",
+        "rationale": "BCL9连接β-catenin与PYGO蛋白，是PYGO2进入Wnt转录复合体的关键桥接因子；其β-catenin结合界面具有明确的通路机制价值。"
+      },
+      {
+        "target": "FZD7",
+        "rationale": "FZD7为细胞膜Frizzled受体，参与Wnt配体介导的β-catenin信号激活；相较PYGO2具有更优抗体可及性，适合细胞外阻断策略。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

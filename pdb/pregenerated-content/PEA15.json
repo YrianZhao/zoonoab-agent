@@ -1,0 +1,65 @@
+{
+  "gene": "PEA15",
+  "generatedAt": "2026-08-03T15:11:49.755Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PEA15是胞内适配蛋白，含N端死亡效应结构域并通过磷酸化C端调控ERK1/2胞质滞留、FADD结合及凋亡相关信号，在肝细胞癌等疾病中与MAPK通路和细胞存活表型相关。该蛋白缺乏分泌信号肽、跨膜区和稳定胞外结构域，天然抗原可及性不符合常规治疗性抗体优先标准。相较EGFR、MET或ERK通路上游膜受体，PEA15更适合作为胞内机制研究或细胞内抗体探索靶点，主靶点优先级应低于可直接结合胞外结构域的同通路靶点。",
+    "mechanism": "设计分子以阻断PEA15 DED结构域与ERK1/2对接界面，并干预其限制ERK核转位的胞质滞留作用。",
+    "selectedEpitope": "优先聚焦N端DED结构域表面ERK/FADD结合相关凹槽及磷酸化C端邻近调控界面。",
+    "diseaseDirection": "肝细胞癌与MAPK存活通路",
+    "domain": "PEA15由N端死亡效应结构域和无序C端尾部组成，Ser104与Ser116磷酸化调节结合谱。",
+    "evidence": "PEA15-MAPK与肝癌关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q15121功能与修饰注释",
+      "RCSB PDB 4IZA晶体结构记录",
+      "MAPK/ERK通路及PEA15互作研究文献"
+    ],
+    "referenceEntries": "UniProt Q15121；RCSB PDB 4IZA；Open Targets PEA15",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端DED结构域ERK/FADD结合相关表面",
+        "可直接影响PEA15介导的ERK胞质滞留与死亡受体适配复合体结合",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Ser104/Ser116邻近C端调控区",
+        "有助于识别磷酸化状态相关构象或构建机制性细胞内抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "DED核心疏水折叠面",
+        "可能扰动整体折叠并产生非特异构象效应，需避免深度埋藏位点",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PEA15为胞内非分泌蛋白，常规IgG难以到达作用位点；建议限定为研究级Fab/VHH或细胞内抗体，并评估递送与脱靶风险。",
+    "structurePrepZh": "以4IZA晶体结构为模板，保留DED结构域坐标，补充无序C端注释，标记Ser104与Ser116并进行界面暴露度评估。",
+    "structureRef": "RCSB PDB 4IZA，X-ray diffraction，1.93 Å",
+    "antibodies": [
+      "抗PEA15研究用单克隆抗体",
+      "抗磷酸化PEA15 Ser116抗体"
+    ],
+    "interfaceFocus": "DED结构域ERK/FADD对接面",
+    "designMode": "胞内VHH/Fab探索",
+    "candidates": [
+      {
+        "target": "MAPK1",
+        "rationale": "MAPK1编码ERK2，是PEA15直接结合并限制核转位的核心激酶，处于同一MAPK/ERK信号轴。"
+      },
+      {
+        "target": "MAPK3",
+        "rationale": "MAPK3编码ERK1，与ERK2共同参与PEA15介导的胞质滞留和增殖信号调节，可作为同通路机制验证靶点。"
+      },
+      {
+        "target": "EGFR",
+        "rationale": "EGFR位于RAS-RAF-MEK-ERK通路上游且具备胞外配体结合域，抗原可及性和抗体药物可开发性显著优于PEA15。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

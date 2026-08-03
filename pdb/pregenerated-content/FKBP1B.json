@@ -1,0 +1,65 @@
+{
+  "gene": "FKBP1B",
+  "generatedAt": "2026-08-03T12:34:43.584Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FKBP1B编码FKBP12.6，是胞质型免疫亲和蛋白，主要与心肌和骨骼肌肌浆网Ryanodine receptor复合体结合并稳定钙释放通道闭合状态，疾病关联更多体现钙稳态、代谢表型和组织损伤风险的遗传统计信号。该蛋白缺乏跨膜区和分泌信号肽，抗原天然可及性不具备细胞外抗体药物靶点优势，更适合作为细胞内机制研究或递送型抗体片段验证对象。相较RYR2、CASQ2等同轴钙释放通路靶点，FKBP1B结构小、晶体分辨率高且配体结合口袋明确，适合开展高精度结构表位与胞内干预工具抗体设计，但临床外周阻断优先级较低。",
+    "mechanism": "设计抗体片段结合FKBP1B的FK506/rapamycin结合口袋邻近环区，干扰其与RYR2胞质调控区的稳定结合，从而改变RYR2钙释放通道闭合稳定性。",
+    "selectedEpitope": "优先覆盖FKBP结构域80s环与疏水配体结合口袋边缘，避免完全占据催化核心。",
+    "diseaseDirection": "钙稳态异常与心肌节律疾病",
+    "domain": "FKBP1B为单结构域FK506-binding protein fold，含β折叠包裹α螺旋及脯氨酰异构酶活性口袋。",
+    "evidence": "FKBP1B-RYR钙释放复合体结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P68106功能与亚细胞定位注释",
+      "RCSB PDB 5HKG高分辨率晶体结构",
+      "RYR2-FKBP12.6钙通道调控文献"
+    ],
+    "referenceEntries": "UniProt P68106；RCSB PDB 5HKG；Open Targets FKBP1B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "80s loop与FK506结合口袋外缘",
+        "靠近功能结合面，利于调节RYR复合体相互作用",
+        "优先"
+      ],
+      [
+        "Site B",
+        "α螺旋背侧与β-sheet外表面",
+        "结构稳定且远离催化口袋，适合构建识别型Fab/VHH",
+        "备选"
+      ],
+      [
+        "Site C",
+        "疏水配体结合口袋深部",
+        "可能直接竞争天然配体和免疫抑制剂样分子，功能扰动强但选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FKBP1B为胞内小分子量蛋白，常规抗体难以到达作用位点；需采用胞内抗体、递送型VHH或研究级Fab，并严格评估FKBP1A交叉反应。",
+    "structurePrepZh": "以5HKG链A为模板，保留高置信主链构象，检查配体口袋、柔性环区和晶体接触界面，补全氢原子后进行表面电荷映射。",
+    "structureRef": "RCSB PDB 5HKG，X-ray diffraction，1.5 Å",
+    "antibodies": [
+      "抗FKBP12.6研究级单克隆抗体",
+      "抗FKBP1B多克隆抗体"
+    ],
+    "interfaceFocus": "FK506结合口袋外缘与RYR2结合相关环区",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "RYR2",
+        "rationale": "RYR2是心肌肌浆网钙释放通道，直接与FKBP1B形成调控复合体；靶向其胞质调控区可更直接影响异常钙泄漏。"
+      },
+      {
+        "target": "CASQ2",
+        "rationale": "CASQ2参与肌浆网腔内钙缓冲并调节RYR2释放阈值，与FKBP1B处于同一心肌钙稳态网络。"
+      },
+      {
+        "target": "TRDN",
+        "rationale": "TRDN连接CASQ2与RYR2复合体，维持钙释放单元结构完整性；其遗传异常与儿茶酚胺敏感性室性心律失常相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

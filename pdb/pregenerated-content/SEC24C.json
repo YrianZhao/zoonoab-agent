@@ -1,0 +1,65 @@
+{
+  "gene": "SEC24C",
+  "generatedAt": "2026-08-03T16:24:41.354Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SEC24C是COPII被膜复合体的货物选择亚基，参与内质网至高尔基体运输，并可影响脂质代谢、神经发育相关蛋白的分泌与膜定位。该蛋白主要位于胞质侧COPII出芽位点，不具备天然胞外结构域或分泌抗原可及性，因此常规体内阻断型抗体成药性受限。其优先级来自明确的实验结构、COPII货物识别机制可解析性及Open Targets中代谢表型与22q11.2缺失综合征关联；但相较膜受体或分泌因子，更适合作为机制研究或细胞内递送抗体开发靶点。",
+    "mechanism": "设计抗体应阻断SEC24C货物结合沟槽与含ER出口信号货物肽段的相互作用，或干扰其与SEC23形成的COPII内层被膜界面。",
+    "selectedEpitope": "优先覆盖SEC24C货物识别结构域中的B-site/C-site沟槽及邻近SEC23接触面。",
+    "diseaseDirection": "代谢表型与神经发育疾病",
+    "domain": "SEC24C含β-sandwich、α-helical trunk及货物结合相关结构域，构成COPII内层被膜货物选择平台。",
+    "evidence": "SEC24C-COPII货物选择与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P53992功能与亚细胞定位注释",
+      "RCSB PDB 6PU1晶体结构",
+      "COPII SEC23/SEC24货物识别机制文献"
+    ],
+    "referenceEntries": "UniProt P53992；RCSB PDB 6PU1；Open Targets SEC24C",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "货物结合B-site/C-site沟槽及邻近保守凹面",
+        "可直接削弱ER出口信号货物识别，适合机制阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SEC23-SEC24C复合界面外缘α螺旋区域",
+        "可干扰COPII内层被膜装配，但需避免完全破坏基础分泌",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离货物沟槽的保守结构核心表面",
+        "功能阻断价值有限且跨同源蛋白保守性较高，选择性风险较大",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SEC24C为胞内COPII组分，抗体进入细胞与胞质暴露是主要风险；建议采用细胞内递送Fab/VHH并严格评估SEC24A/B/D交叉反应。",
+    "structurePrepZh": "以6PU1中A、B链为结构模板，保留SEC24C与伴随COPII界面信息，补全缺失环区并标注货物结合沟槽、SEC23接触面及保守残基。",
+    "structureRef": "RCSB PDB 6PU1，X射线晶体结构，2.28 Å",
+    "antibodies": [
+      "抗SEC24C研究级抗体",
+      "细胞内递送型抗SEC24家族VHH"
+    ],
+    "interfaceFocus": "货物结合沟槽与SEC23接触界面",
+    "designMode": "胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "SEC23A",
+        "rationale": "SEC23A与SEC24C形成COPII内层被膜异源复合体，并承担Sar1-GAP相关功能；靶向该节点可影响同一ER至高尔基体运输通路。"
+      },
+      {
+        "target": "SAR1A",
+        "rationale": "SAR1A是COPII小GTP酶，直接驱动ER膜出芽与SEC23/SEC24募集；其GTP循环是SEC24C货物选择发生的上游装配步骤。"
+      },
+      {
+        "target": "SEC31A",
+        "rationale": "SEC31A参与COPII外层被膜形成，并与SEC13组成外壳支架；该靶点位于SEC24C介导货物装载后的同一囊泡生成通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

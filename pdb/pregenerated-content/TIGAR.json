@@ -1,0 +1,65 @@
+{
+  "gene": "TIGAR",
+  "generatedAt": "2026-08-03T17:17:17.457Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TIGAR为p53诱导的果糖-2,6-二磷酸酶样代谢调控蛋白，可降低果糖-2,6-二磷酸水平并抑制PFK1驱动的糖酵解通量，同时促进磷酸戊糖途径供给NADPH，参与糖尿病相关代谢应激与氧化还原稳态调节。该蛋白主要定位于胞质并可发生线粒体相关分布，并非典型分泌蛋白或跨膜受体，天然抗原可及性不利于常规细胞外阻断抗体。相较于INSR、SLC2A4等膜表面代谢靶点，TIGAR更适合作为结构生物学与胞内递送抗体片段的探索靶点，优先级应定位为机制验证型而非传统治疗抗体首选靶点。",
+    "mechanism": "胞内抗体片段可占据TIGAR催化口袋，干扰其对果糖-2,6-二磷酸的去磷酸化，从而解除PFK1抑制并改变糖酵解与NADPH生成平衡。",
+    "selectedEpitope": "优先靶向HAD样磷酸酶催化核心邻近的底物结合沟槽，避开高度保守催化残基直接封闭。",
+    "diseaseDirection": "糖尿病与代谢稳态异常",
+    "domain": "TIGAR含HAD样磷酸酶折叠核心，具果糖-2,6-二磷酸酶活性相关催化口袋。",
+    "evidence": "TIGAR代谢调控与糖尿病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9NQ88功能注释",
+      "RCSB PDB 3DCY晶体结构",
+      "p53-TIGAR糖酵解与氧化还原调控文献"
+    ],
+    "referenceEntries": "UniProt Q9NQ88；RCSB PDB 3DCY；Open Targets TIGAR",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "HAD样催化核心底物结合沟槽周缘",
+        "可通过空间占位削弱果糖-2,6-二磷酸进入催化位点",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域外侧非保守表面环区",
+        "适合获得高选择性结合体并用于构象锁定或细胞内示踪",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守催化残基邻近区域",
+        "可能提升功能阻断强度，但存在交叉识别HAD家族蛋白风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TIGAR为胞内酶类靶点，常规IgG难以到达作用位点；建议采用VHH、intrabody或递送偶联策略，并严格评估HAD样磷酸酶家族交叉反应。",
+    "structurePrepZh": "以3DCY链A为结构模板，补全缺失侧链与氢原子，校正质子化状态，并围绕催化口袋及非保守环区进行表面可及性分析。",
+    "structureRef": "RCSB PDB 3DCY，X-ray，1.748 Å，人源TIGAR结构",
+    "antibodies": [
+      "抗TIGAR研究级单克隆抗体",
+      "抗TIGAR多克隆抗体"
+    ],
+    "interfaceFocus": "催化口袋入口与底物结合沟槽",
+    "designMode": "胞内VHH阻断",
+    "candidates": [
+      {
+        "target": "TP53",
+        "rationale": "TP53位于TIGAR上游，可转录诱导TIGAR并重塑糖酵解、氧化还原与细胞应激反应，是同一p53代谢调控轴的核心节点。"
+      },
+      {
+        "target": "PFKFB3",
+        "rationale": "PFKFB3调节果糖-2,6-二磷酸生成，与TIGAR在PFK1活性控制上形成功能对向关系，直接影响糖酵解通量。"
+      },
+      {
+        "target": "PFKP",
+        "rationale": "PFKP编码血小板型PFK1亚基，是果糖-2,6-二磷酸调控糖酵解限速步骤的直接执行酶，适合用于通路级联验证。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

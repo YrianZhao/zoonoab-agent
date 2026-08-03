@@ -1,0 +1,65 @@
+{
+  "gene": "ARHGEF1",
+  "generatedAt": "2026-08-03T10:34:27.949Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ARHGEF1编码p115-RhoGEF，参与Gα12/Gα13偶联受体信号向RhoA的传递，影响淋巴细胞迁移、黏附和免疫稳态，Open Targets显示其与免疫缺陷表型存在中等强度遗传关联。该蛋白主要为胞内信号转导因子，缺乏稳定胞外结构域，抗原天然可及性弱，需定位为细胞内功能阻断或研究级抗体靶点。相较于同通路中多种GPCR上游受体，ARHGEF1位于Gα13-RhoA轴的汇聚节点，更适合解析RhoA激活界面与免疫异常机制，但治疗性抗体优先级低于膜受体或分泌型靶点。",
+    "mechanism": "抗体设计聚焦阻断ARHGEF1 RGS样结构域与活化Gα13/Gα12的结合，或干扰DH-PH模块介导的RhoA GDP-GTP交换。",
+    "selectedEpitope": "优先覆盖RGS样结构域Gα13结合面，备选评估DH结构域RhoA结合沟槽。",
+    "diseaseDirection": "免疫缺陷与RhoA信号异常",
+    "domain": "ARHGEF1含N端RGS样结构域、中央DH催化结构域、PH结构域及C端调控区。",
+    "evidence": "ARHGEF1-Gα13-RhoA免疫信号证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q92888功能与结构域注释",
+      "RCSB PDB 1IAP晶体结构记录",
+      "GPCR-Gα12/13-RhoA信号通路文献"
+    ],
+    "referenceEntries": "UniProt Q92888；RCSB PDB 1IAP；Open Targets ARHGEF1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RGS样结构域Gα13结合界面",
+        "可直接削弱Gα13依赖性ARHGEF1激活，机制验证价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DH结构域RhoA结合沟槽邻近区",
+        "可干扰RhoA装载与核苷酸交换，适合功能阻断设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PH结构域及C端调控表面",
+        "可能影响膜定位或构象调节，但机制依赖背景且表位风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ARHGEF1为胞内蛋白，体内治疗性抗体递送与抗原可及性风险显著；宜采用Fab/VHH胞内表达、细胞穿透格式或体外机制抗体验证。",
+    "structurePrepZh": "以1IAP高分辨率晶体结构作为RGS样结构域模板，补充AlphaFold或同源模型覆盖DH-PH区，并标注Gα13/RhoA界面残基。",
+    "structureRef": "RCSB PDB 1IAP，X-ray diffraction，1.9 Å",
+    "antibodies": [
+      "抗ARHGEF1研究级单克隆抗体",
+      "抗p115-RhoGEF研究级抗体"
+    ],
+    "interfaceFocus": "RGS样结构域-Gα13结合面",
+    "designMode": "胞内功能阻断",
+    "candidates": [
+      {
+        "target": "GNA13",
+        "rationale": "GNA13编码Gα13，是ARHGEF1上游直接结合并激活其RhoGEF功能的核心信号蛋白，处于同一GPCR-Gα13-RhoA免疫迁移通路。"
+      },
+      {
+        "target": "RHOA",
+        "rationale": "RHOA是ARHGEF1催化激活的直接小GTP酶效应节点，调控细胞骨架重塑、黏附和淋巴细胞迁移。"
+      },
+      {
+        "target": "S1PR1",
+        "rationale": "S1PR1为免疫细胞迁出相关GPCR，可通过异源三聚体G蛋白影响Rho家族小GTP酶网络，是免疫细胞迁移轴中的膜受体候选靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

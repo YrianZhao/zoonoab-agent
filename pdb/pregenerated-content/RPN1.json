@@ -1,0 +1,65 @@
+{
+  "gene": "RPN1",
+  "generatedAt": "2026-08-03T16:11:34.995Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RPN1是寡糖基转移酶复合体的内质网膜亚基，参与新生分泌蛋白和膜蛋白的N-连接糖基化，遗传关联信号主要指向单核细胞、血小板、红细胞体积及病毒感染相关表型。该蛋白为多跨膜内质网驻留蛋白，主要可及结构位于ER腔侧而非细胞外空间，因此体内常规抗体成药可及性受限。相较于可直接靶向的细胞表面免疫受体或分泌因子，RPN1更适合作为糖基化通路机制验证或胞内递送抗体设计靶点，优先级需低于同通路中外露性更强的终末效应分子。",
+    "mechanism": "设计抗体应聚焦阻断RPN1腔侧结构域与OST复合体邻近底物结合区域的空间协同，从而干扰新生多肽进入N-糖基化反应界面。",
+    "selectedEpitope": "优先选择ER腔侧N端可溶结构域中靠近OST复合体底物通道的非糖基化暴露面。",
+    "diseaseDirection": "血细胞性状与病毒感染易感性",
+    "domain": "RPN1含大型ER腔侧N端结构域、单次跨膜锚定区及短胞质尾，属于OST复合体膜亚基。",
+    "evidence": "RPN1糖基化复合体与血液免疫表型证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P04843 ribophorin I annotation",
+      "RCSB PDB 9N9J electron microscopy structure",
+      "Gene Ontology oligosaccharyltransferase complex annotation"
+    ],
+    "referenceEntries": "UniProt P04843；RCSB PDB 9N9J；HGNC RPN1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ER腔侧N端折叠域邻近OST底物通道界面",
+        "可能影响新生多肽与糖基化催化复合体的定位协同",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ER腔侧远端暴露环区",
+        "结构可及性较好，可用于结合型工具抗体验证RPN1构象",
+        "备选"
+      ],
+      [
+        "Site C",
+        "跨膜螺旋及膜近端界面",
+        "疏水环境和复合体装配依赖性高，抗体可达性与构象稳定性风险较大",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RPN1定位于内质网膜，缺乏细胞表面暴露优势，常规抗体难以在完整细胞内达到靶点；建议限定为胞内递送抗体、工程化内体逃逸载体或体外机制探针。",
+    "structurePrepZh": "以9N9J冷冻电镜模型提取RPN1链并保留OST复合体邻近亚基作为界面参照，补全缺失环区、标注糖基化位点并评估膜平面方向。",
+    "structureRef": "RCSB PDB 9N9J，human OST complex cryo-EM，3.2 Å",
+    "antibodies": [
+      "Anti-RPN1 rabbit polyclonal antibody",
+      "Anti-ribophorin I monoclonal antibody"
+    ],
+    "interfaceFocus": "ER腔侧底物通道邻近面与OST复合体接触区",
+    "designMode": "胞内递送抗体",
+    "candidates": [
+      {
+        "target": "STT3A",
+        "rationale": "STT3A是OST复合体催化亚基，直接催化N-糖链转移至新生多肽Asn-X-Ser/Thr位点，处于RPN1同一N-糖基化通路核心位置。"
+      },
+      {
+        "target": "DDOST",
+        "rationale": "DDOST为OST复合体亚基，参与底物识别与复合体稳定，可作为RPN1相关糖基化复合体功能验证的同通路候选靶点。"
+      },
+      {
+        "target": "STT3B",
+        "rationale": "STT3B介导翻译后或遗漏位点的N-糖基化补偿，与STT3A-RPN1所在OST网络共同维持分泌蛋白糖基化完整性。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

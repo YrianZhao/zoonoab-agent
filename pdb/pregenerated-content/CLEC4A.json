@@ -1,0 +1,65 @@
+{
+  "gene": "CLEC4A",
+  "generatedAt": "2026-08-03T11:26:50.333Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CLEC4A编码髓系细胞表达的C型凝集素受体DCIR，可通过胞内ITIM基序募集磷酸酶并限制免疫受体介导的髓系细胞活化，与中性粒细胞、单核细胞数量等白细胞表型存在遗传关联。其C型凝集素样结构域位于胞外，属于膜受体可及抗原，适合抗体识别并干预配体结合或受体聚集。相比下游胞内信号分子，CLEC4A具有明确胞外结构模板和髓系谱系定位，优先级更适合开展抗体阻断或受体调节设计。",
+    "mechanism": "抗体结合CLEC4A胞外C型凝集素样结构域，阻断糖基化配体接触及受体聚集，从而改变ITIM依赖性磷酸酶招募与髓系细胞活化阈值。",
+    "selectedEpitope": "优先覆盖CTLD糖识别环及Ca2+邻近表面，兼顾阻断配体接触并避免破坏结构核心。",
+    "diseaseDirection": "髓系免疫与白细胞数量表型",
+    "domain": "I型跨膜受体，胞外C型凝集素样结构域，胞质侧含ITIM抑制性信号基序。",
+    "evidence": "CLEC4A髓系免疫调节与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9UMR7蛋白功能与结构域注释",
+      "RCSB PDB 5B1X晶体结构",
+      "免疫受体ITIM介导髓系调控文献"
+    ],
+    "referenceEntries": "UniProt Q9UMR7；RCSB PDB 5B1X；Open Targets CLEC4A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CTLD糖识别环与Ca2+邻近结合面",
+        "直接干预糖基化配体识别，具有最高功能阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CTLD侧向暴露β片层外缘",
+        "保持结构稳定性的同时提供高可及结合面，适合调节型抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "CTLD二聚体或晶体接触邻近界面",
+        "可能影响受体聚集状态，但需区分生理界面与晶体堆积",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CTLD存在保守糖识别表面，需降低与CLEC4家族同源受体交叉反应；晶体多链接触界面应经溶液状态验证后纳入设计。",
+    "structurePrepZh": "以5B1X实验结构为模板，筛选完整CTLD链并补全缺失侧链，保留Ca2+相关构象信息，去除非生理晶体冗余链用于表位评估。",
+    "structureRef": "RCSB PDB 5B1X，CLEC4A CTLD X-ray 2.902 Å",
+    "antibodies": [
+      "Anti-human DCIR clone 216110",
+      "Anti-human DCIR clone 505806"
+    ],
+    "interfaceFocus": "CTLD糖识别环、Ca2+邻近面及潜在聚集界面",
+    "designMode": "阻断型/调节型",
+    "candidates": [
+      {
+        "target": "CLEC7A",
+        "rationale": "CLEC7A同属髓系C型凝集素受体，参与单核细胞和中性粒细胞对β-葡聚糖的识别及Syk-CARD9炎症信号，可作为同通路髓系免疫调控候选靶点。"
+      },
+      {
+        "target": "CLEC4E",
+        "rationale": "CLEC4E在髓系细胞中识别损伤相关和微生物糖脂配体，并经FcRγ-Syk-CARD9轴驱动炎症因子产生，与白细胞炎症表型具有通路相关性。"
+      },
+      {
+        "target": "SYK",
+        "rationale": "SYK是多种髓系C型凝集素受体下游关键激酶，连接受体聚集与CARD9依赖炎症转录程序，可作为同一髓系免疫受体网络中的候选节点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

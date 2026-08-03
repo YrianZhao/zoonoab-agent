@@ -1,0 +1,65 @@
+{
+  "gene": "PARP10",
+  "generatedAt": "2026-08-03T20:27:26.823Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PARP10属于胞内单ADP-核糖转移酶，参与蛋白ADP-核糖化、NF-κB/MYC相关转录调控及DNA损伤应答；Open Targets关联主要集中于脂质组学表型，但其并非经典分泌因子或膜受体，疾病因果证据强度有限。5LX6解析的是催化结构域，具备高分辨率结构基础，但天然抗原位点位于胞内，常规治疗性抗体难以直接结合活细胞内PARP10。相较PCSK9、LDLR或APOB等同属脂质代谢表型通路且具备胞外可及性的靶点，PARP10更适合作为结构生物学验证或细胞内递送抗体研究靶点，优先级应低于可分泌或膜表面脂质调控靶点。",
+    "mechanism": "设计抗体应以阻断PARP10催化结构域与NAD+底物结合、干扰单ADP-核糖转移活性为核心机制。",
+    "selectedEpitope": "优先评估5LX6催化结构域NAD+结合沟槽邻近环区，避免直接覆盖高度保守催化残基。",
+    "diseaseDirection": "脂质代谢表型与细胞应激调控",
+    "domain": "PARP10含N端RNA识别基序、G-rich区域、泛素相互作用基序及C端PARP催化结构域。",
+    "evidence": "PARP10结构与脂质表型遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q53GL7功能与结构域注释",
+      "RCSB PDB 5LX6晶体结构记录",
+      "PARP家族单ADP-核糖转移酶文献证据"
+    ],
+    "referenceEntries": "UniProt Q53GL7；RCSB PDB 5LX6；Open Targets PARP10",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端PARP催化结构域NAD+结合沟槽邻近环区",
+        "可直接影响底物进入与催化构象稳定性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域外侧非保守螺旋-环表面",
+        "有利于获得PARP10选择性结合抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "保守H-Y-E样催化核心及疏水底物口袋",
+        "跨PARP家族同源性较高，选择性风险较大",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PARP10为胞内酶，常规抗体存在细胞进入与靶点可及性限制；建议采用细胞内抗体、递送型VHH或仅用于结构功能验证。",
+    "structurePrepZh": "以5LX6链A/B催化结构域为模板，保留高置信晶体坐标，补全缺失环区并标注NAD+结合沟槽、保守催化残基与非保守表面。",
+    "structureRef": "RCSB PDB 5LX6，PARP10 catalytic domain，1.25 Å X-ray",
+    "antibodies": [
+      "无已批准PARP10治疗性抗体",
+      "研究级抗PARP10检测抗体"
+    ],
+    "interfaceFocus": "PARP催化结构域NAD+结合沟槽及邻近非保守环",
+    "designMode": "胞内酶抑制型",
+    "candidates": [
+      {
+        "target": "PCSK9",
+        "rationale": "PCSK9通过结合LDLR表皮生长因子样A结构域促进LDLR降解，直接调节LDL胆固醇水平；其为分泌蛋白，抗体可及性和临床验证度显著优于PARP10。"
+      },
+      {
+        "target": "LDLR",
+        "rationale": "LDLR介导LDL颗粒摄取，是胆固醇稳态核心膜受体；其胞外配体结合重复区具备抗体识别可及性，但需谨慎避免阻断生理性LDL清除。"
+      },
+      {
+        "target": "APOB",
+        "rationale": "APOB是LDL/VLDL颗粒主要结构蛋白，与脂蛋白颗粒浓度及胆固醇运输直接相关；其循环可及性较高，但抗原体量和构象异质性增加表位设计复杂度。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

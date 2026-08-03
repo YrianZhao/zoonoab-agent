@@ -1,0 +1,65 @@
+{
+  "gene": "CREBBP",
+  "generatedAt": "2026-08-03T11:38:25.653Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CREBBP 是核内转录共激活因子和赖氨酸乙酰转移酶，突变可削弱组蛋白及转录因子乙酰化，驱动 Rubinstein-Taybi 综合征、Menke-Hennekam 综合征及部分 B 细胞淋巴瘤相关转录失衡。该蛋白主要定位于细胞核，不具备经典胞外结构域或分泌暴露特征，因此天然抗体可及性不优于膜受体或分泌因子。其优先级主要来自高疾病遗传证据、明确的 KAT 结构域晶体结构和可进行胞内递送抗体片段或结构探针设计的机制价值，而非传统体内中和抗体开发优势。",
+    "mechanism": "设计胞内递送抗体片段结合 CREBBP KAT 催化结构域，阻断乙酰辅酶A结合槽及底物赖氨酸进入通道，抑制组蛋白H3/H4乙酰化反应。",
+    "selectedEpitope": "优先靶向 KAT 结构域乙酰辅酶A结合沟槽邻近的催化核心与底物通道边缘。",
+    "diseaseDirection": "遗传发育综合征与B细胞淋巴瘤",
+    "domain": "CREBBP 含 KIX、Bromodomain、PHD/RING、KAT、ZZ 与 TAZ 结构域；3P1C 覆盖 KAT 催化区。",
+    "evidence": "CREBBP KAT结构与疾病遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q92793 功能与结构域注释",
+      "RCSB PDB 3P1C X射线晶体结构",
+      "COSMIC/ClinVar CREBBP 致病变异记录"
+    ],
+    "referenceEntries": "UniProt Q92793；RCSB PDB 3P1C；Open Targets CREBBP",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "KAT结构域乙酰辅酶A结合槽及催化核心邻近环区",
+        "可直接干预辅因子结合和乙酰转移反应，机制可验证性较高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "KAT结构域底物赖氨酸进入通道外缘",
+        "有助于限制组蛋白尾部底物定位，保留较高结构选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "KAT结构域保守疏水核心和结构稳定元件",
+        "可能影响折叠稳定性但易产生非特异构象扰动，需谨慎评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CREBBP 为核内大分子蛋白，常规抗体难以到达作用位点；应采用细胞内递送 Fab、VHH 或降解偶联策略，并规避与 EP300 高保守区域交叉反应。",
+    "structurePrepZh": "以 3P1C 的 A、B 链 KAT 结构域为模板，补全缺失侧链、校正质子化状态，保留辅因子邻近口袋用于界面约束建模。",
+    "structureRef": "RCSB PDB 3P1C，CREBBP KAT结构域，1.82 Å",
+    "antibodies": [
+      "抗-CREBBP研究级单克隆抗体",
+      "抗-CBP/p300 KAT结构域研究抗体"
+    ],
+    "interfaceFocus": "KAT催化核心、乙酰辅酶A槽与底物通道",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "EP300",
+        "rationale": "EP300 与 CREBBP 同属 p300/CBP 转录共激活因子家族，具有同源 KAT 结构域，并在组蛋白乙酰化和淋巴瘤转录调控中承担相近功能。"
+      },
+      {
+        "target": "KMT2D",
+        "rationale": "KMT2D 与 CREBBP 均参与增强子活性和染色质转录调控，二者突变在弥漫大 B 细胞淋巴瘤中常见，并共同影响 B 细胞表观遗传状态。"
+      },
+      {
+        "target": "BCL6",
+        "rationale": "BCL6 是生发中心 B 细胞转录抑制因子，CREBBP 失活可削弱对 BCL6 靶基因调控网络的乙酰化制衡，二者位于 DLBCL 转录失衡轴内。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

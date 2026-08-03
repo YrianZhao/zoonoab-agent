@@ -1,0 +1,65 @@
+{
+  "gene": "EIF4A1",
+  "generatedAt": "2026-08-03T12:14:55.442Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "EIF4A1 是 eIF4F 翻译起始复合体的 DEAD-box RNA 解旋酶，参与解开 5′UTR 二级结构并促进核糖体扫描，肿瘤和病毒感染可依赖其维持高翻译通量。该蛋白主要定位于胞质，缺乏天然胞外结构域或分泌形式，作为常规治疗性抗体靶点的抗原可及性明显受限。相较 EGFR、TNF 或 PDCD1 等可及性成熟靶点，EIF4A1 的优先级应定位于结构引导的胞内递送抗体、降解偶联或研究级阻断分子，而非直接膜表面抗体开发。",
+    "mechanism": "阻断 EIF4A1 与 ATP、RNA 及 eIF4G 支架蛋白的协同结合，抑制 eIF4F 介导的 5′UTR 解旋与 43S 前起始复合体扫描。",
+    "selectedEpitope": "优先覆盖 RecA-like N 端结构域的 ATP/RNA 结合沟槽及 eIF4G 邻近界面。",
+    "diseaseDirection": "翻译起始依赖性肿瘤与病毒感染",
+    "domain": "EIF4A1 含两个 RecA-like 解旋酶结构域，夹持 ATP 与 RNA 底物并发生构象闭合。",
+    "evidence": "EIF4A1 翻译起始解旋酶结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt P60842 功能与亚细胞定位注释",
+      "RCSB PDB 5ZBZ 高分辨率晶体结构",
+      "eIF4F 翻译起始复合体与病毒宿主因子研究文献"
+    ],
+    "referenceEntries": "UniProt P60842；RCSB PDB 5ZBZ；Open Targets EIF4A1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RecA-like N 端结构域 Walker A/ATP 结合邻近沟槽",
+        "可干扰 ATP 结合与解旋酶构象循环，适合胞内阻断分子设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N 端与 C 端 RecA-like 结构域之间的 RNA 夹持裂隙",
+        "可阻断 RNA 底物装载并削弱 5′UTR 解旋活性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守 DEAD-box 催化核心表面",
+        "保守性高且与同源解旋酶交叉反应风险较大，需严格选择性评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "EIF4A1 为胞内保守解旋酶，常规抗体难以进入作用位点，且与 EIF4A2 等同源蛋白存在交叉反应风险；建议采用胞内递送格式并开展同源选择性筛选。",
+    "structurePrepZh": "以 5ZBZ 链 A 为模板，补全缺失侧链与质子化状态，保留 ATP/RNA 结合沟槽构象特征，并标注 DEAD-box 保守基序。",
+    "structureRef": "RCSB PDB 5ZBZ，X-ray diffraction，1.31 Å",
+    "antibodies": [
+      "研究级 anti-EIF4A1 antibody",
+      "研究级 anti-DDX2A antibody"
+    ],
+    "interfaceFocus": "ATP 结合沟槽、RNA 夹持裂隙与 eIF4G 邻近面",
+    "designMode": "胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "EIF4G1",
+        "rationale": "EIF4G1 是 eIF4F 复合体支架蛋白，连接 EIF4E、EIF4A1 与 PABP；干预 EIF4A1-EIF4G1 装配可直接削弱帽依赖性翻译起始。"
+      },
+      {
+        "target": "EIF4E",
+        "rationale": "EIF4E 识别 m7G 帽结构并招募 eIF4F 复合体，是与 EIF4A1 同属帽依赖性翻译起始通路的核心节点。"
+      },
+      {
+        "target": "EIF4A2",
+        "rationale": "EIF4A2 是 EIF4A1 的高度同源 DEAD-box 解旋酶，可在 eIF4F 相关翻译调控中产生功能重叠，适合作为选择性与旁路补偿评估靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

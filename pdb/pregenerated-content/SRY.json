@@ -1,0 +1,65 @@
+{
+  "gene": "SRY",
+  "generatedAt": "2026-08-03T16:56:18.205Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SRY是胚胎性别决定级联的上游转录调控因子，突变或功能异常可直接导致46,XY sex reversal、46,XY完全性腺发育不全及相关DSD表型，疾病关联具有明确的致病链条。其为核内DNA结合蛋白，抗原可及性主要受限于核定位与蛋白-蛋白/蛋白-DNA界面，适合以结构解析驱动的表位干预而非传统膜蛋白阻断。相较同通路下的下游性腺分化基因，SRY位于触发层级，且9BVD提供实验结构基础，优先级体现在对病理性转录启动事件的直接干预潜力。",
+    "mechanism": "通过干预HMG box介导的DNA结合与转录复合体组装，削弱SRY对SOX9启动前激活事件的触发作用。",
+    "selectedEpitope": "优先覆盖HMG box的DNA接触面及核心转角残基，避免破坏整体折叠但阻断核酸结合。",
+    "diseaseDirection": "46,XY DSD/性别反转",
+    "domain": "HMG box DNA结合结构域，核心为高度保守的折叠核及DNA接触界面。",
+    "evidence": "SRY-DSD结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform",
+      "UniProt Q05066",
+      "RCSB PDB 9BVD",
+      "文献报道的SRY HMG box-DNA复合体研究"
+    ],
+    "referenceEntries": "UniProt: Q05066; PDB: 9BVD; Open Targets SRY",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "HMG box主DNA接触面",
+        "直接阻断序列特异性DNA结合，抑制下游性别决定启动",
+        "优先"
+      ],
+      [
+        "Site B",
+        "HMG box转角/疏水核心邻近面",
+        "降低DNA结合构象稳定性，保留可表征构象用于筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "核定位信号邻近外露环区",
+        "仅适合调节核内富集，不宜作为单独中和位点",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险在于SRY为细胞内核蛋白，抗体需依赖胞内递送或仅适用于研究型检测体系；DNA结合面高度保守，需避免因过度扰动导致非特异性构象塌陷。",
+    "structurePrepZh": "建议以9BVD为核心模板完成链重建与缺失残基核查，统一HMG box编号并标注DNA接触残基；随后进行表面可及性与保守性映射以限定可设计界面。",
+    "structureRef": "RCSB 9BVD, X-ray diffraction 2.48 A",
+    "antibodies": [
+      "SRY-HMG box研究性阻断抗体",
+      "SOX家族HMG box交叉反应对照抗体"
+    ],
+    "interfaceFocus": "HMG box DNA major-groove contact surface",
+    "designMode": "结构驱动阻断",
+    "candidates": [
+      {
+        "target": "SOX9",
+        "rationale": "SOX9是SRY下游最关键的转录因子，位于性腺决定通路的执行层。其与SRY同属该通路的真实下游靶点，适合作为功能读出与联动验证对象。"
+      },
+      {
+        "target": "SF1",
+        "rationale": "SF1参与SRY/SOX9驱动的睾丸分化转录网络，并与SRY协同调控相关基因表达。作为同一疾病通路中的转录协同因子，可用于构建机制闭环验证。"
+      },
+      {
+        "target": "WT1",
+        "rationale": "WT1在性腺发育早期与SRY相关调控网络存在功能连接，影响支持细胞命运决定。其属于46,XY DSD相关通路中的真实伴随靶点，适合用于通路层面的交叉验证。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

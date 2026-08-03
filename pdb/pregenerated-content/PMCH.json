@@ -1,0 +1,65 @@
+{
+  "gene": "PMCH",
+  "generatedAt": "2026-08-03T15:23:58.236Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PMCH编码前体肽，经加工产生melanin-concentrating hormone，参与下丘脑能量稳态、摄食行为与体重调控，并通过MCHR1介导G蛋白偶联受体信号。该靶点为分泌性神经肽前体，成熟MCH位于细胞外液环境中，抗体具有直接结合循环或局部释放肽段的可及性优势。相较下游GPCR靶点，PMCH肽段拦截可在受体激活前阻断配体输入，适合作为体重与代谢表型相关通路的优先抗体设计入口。",
+    "mechanism": "抗体结合成熟MCH环状肽核心区域，阻断MCH与MCHR1胞外结合口袋的配体识别，从而抑制受体激活及其下游Gi/q信号输入。",
+    "selectedEpitope": "优先覆盖成熟MCH二硫键约束环及C端酰胺邻近面，避免仅识别前体非成熟片段。",
+    "diseaseDirection": "能量稳态与体重调控",
+    "domain": "PMCH为分泌性前体蛋白，含信号肽、NEI肽段与C端成熟MCH神经肽区域。",
+    "evidence": "PMCH-MCHR1轴能量代谢证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt P20382功能与加工注释",
+      "RCSB PDB 8WST冷冻电镜结构",
+      "文献报道的MCH-MCHR1配体受体药理学"
+    ],
+    "referenceEntries": "UniProt P20382；RCSB PDB 8WST；Open Targets PMCH",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "成熟MCH二硫键约束环核心面",
+        "直接遮蔽受体识别决定簇，最有利于中和MCHR1结合",
+        "优先"
+      ],
+      [
+        "Site B",
+        "成熟MCH C端酰胺邻近区域",
+        "可干扰受体结合构象与配体定位，适合作为亲和力增强表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PMCH前体NEI或连接肽区域",
+        "可能不能中和成熟MCH功能，需确认加工状态与体内暴露比例",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "成熟MCH肽段短且构象受二硫键限制，线性表位抗体可能难以保持中和活性；设计应优先采用构象约束抗原并验证与MCHR1竞争结合。",
+    "structurePrepZh": "以8WST中PMCH相关抗原链为结构模板，保留成熟MCH二硫键与末端修饰状态，剔除非相关链后进行表面暴露和受体接触面映射。",
+    "structureRef": "RCSB PDB 8WST，2.4 Å冷冻电镜结构",
+    "antibodies": [
+      "anti-MCH neutralizing antibody",
+      "anti-PMCH polyclonal antibody"
+    ],
+    "interfaceFocus": "成熟MCH环状核心与MCHR1配体口袋接触面",
+    "designMode": "分泌肽中和",
+    "candidates": [
+      {
+        "target": "MCHR1",
+        "rationale": "MCHR1是成熟MCH的主要受体，直接介导摄食、能量消耗和体重相关神经内分泌信号。靶向其胞外配体结合入口可阻断PMCH-MCH轴。"
+      },
+      {
+        "target": "MCHR2",
+        "rationale": "MCHR2为MCH受体家族成员，可结合MCH并触发GPCR信号，在部分组织中构成同一配体受体轴的替代节点。"
+      },
+      {
+        "target": "AGRP",
+        "rationale": "AGRP位于下丘脑摄食调控网络中，与MCH系统共同影响能量摄入和体重表型；其分泌肽属性亦提供抗体干预的抗原可及性。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

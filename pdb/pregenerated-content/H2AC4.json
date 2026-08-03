@@ -1,0 +1,65 @@
+{
+  "gene": "H2AC4",
+  "generatedAt": "2026-08-03T19:29:12.049Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "H2AC4编码复制依赖型组蛋白H2A，主要参与核小体组装、染色质压缩与DNA可及性调控，其疾病关联多来自感染和肿瘤中的染色质状态改变，而非经典胞外配体-受体轴。该蛋白定位于细胞核，缺乏分泌信号肽、跨膜区和稳定胞外结构域，天然抗原可及性显著低于膜受体或分泌蛋白。相较PD-L1、EGFR、VEGFA等同疾病方向中可直接被抗体接触的靶点，H2AC4作为常规治疗性抗体主靶点优先级较低，更适合作为染色质相关机制研究或细胞内递送抗体探索对象。",
+    "mechanism": "设计目标应聚焦阻断H2AC4与H2B形成的组蛋白二聚体界面，或干扰其在核小体中与DNA磷酸骨架的接触，从而改变局部染色质装配稳定性。",
+    "selectedEpitope": "优先评估H2A折叠结构中与H2B接触的α2-α3螺旋束界面，避免选择高度保守且强DNA结合区域。",
+    "diseaseDirection": "感染与肿瘤染色质调控",
+    "domain": "H2AC4由N端可修饰尾部和保守histone-fold核心组成，核心含三段α螺旋并参与H2A-H2B二聚体及核小体装配。",
+    "evidence": "H2AC4染色质装配与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P04908功能与定位注释",
+      "RCSB PDB 3AZG核小体晶体结构",
+      "核小体H2A-H2B二聚体结构与染色质文献"
+    ],
+    "referenceEntries": "UniProt P04908；RCSB PDB 3AZG；Open Targets H2AC4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "histone-fold核心α2-α3螺旋束的H2B二聚化界面",
+        "可用于设计阻断H2A-H2B二聚体稳定性的功能性结合分子",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端组蛋白尾部及赖氨酸富集修饰区域",
+        "可识别乙酰化、泛素化等修饰状态，适合机制研究型抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "核小体内DNA接触面及酸性斑块邻近区域",
+        "高度保守且与核小体结构维持相关，存在广泛交叉反应和功能扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "H2AC4为核内高度保守组蛋白，抗体递送、同源H2A交叉反应和全局染色质毒性风险较高。建议限定为细胞内递送、修饰特异或研究诊断场景。",
+    "structurePrepZh": "以3AZG中核小体复合物链为模板，保留H2A-H2B二聚体及邻近DNA用于界面判读，去除非目标重复链后进行同源链比对与保守性标注。",
+    "structureRef": "RCSB PDB 3AZG，2.4 Å X射线核小体结构",
+    "antibodies": [
+      "抗H2A泛抗体",
+      "抗ubiquityl-H2A Lys119抗体"
+    ],
+    "interfaceFocus": "H2A-H2B二聚化界面与核小体DNA接触面",
+    "designMode": "细胞内递送探索",
+    "candidates": [
+      {
+        "target": "H2BC4",
+        "rationale": "H2BC4编码H2B组蛋白，与H2A形成核心二聚体并共同参与核小体装配，是同一染色质结构轴中的直接相互作用靶点。"
+      },
+      {
+        "target": "H2AX",
+        "rationale": "H2AX为H2A变体，在DNA损伤应答中经Ser139磷酸化形成γH2AX，连接肿瘤基因组不稳定性与感染诱导DNA损伤通路。"
+      },
+      {
+        "target": "RNF2",
+        "rationale": "RNF2是PRC1复合物E3泛素连接酶，催化H2A Lys119单泛素化，属于H2A修饰及染色质沉默通路的关键上游调控因子。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

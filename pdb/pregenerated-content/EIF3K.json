@@ -1,0 +1,65 @@
+{
+  "gene": "EIF3K",
+  "generatedAt": "2026-08-03T19:05:26.978Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "EIF3K为eIF3复合体非催化性支架亚基，参与43S预起始复合体募集与mRNA翻译起始调控；其疾病关联信号主要集中于神经发育异常和心律失常表型，但Open Targets最高分较低，提示遗传或功能证据仍偏弱。EIF3K为细胞内翻译起始因子，缺乏天然胞外结构域或分泌形式，常规抗体可及性明显低于膜受体、分泌因子和细胞表面黏附分子。其优先级主要来自已有高分辨率实验结构和明确复合体界面，可支持细胞内递送抗体、intrabody或结构生物学验证；相较同通路核心亚基EIF3A、EIF3B，EIF3K体量较小且结构域边界清晰，但作为传统治疗性抗体靶点优先级较低。",
+    "mechanism": "设计抗体片段结合EIF3K HAM/WH结构域复合界面，阻断其与eIF3核心亚基的装配接触，从而干扰eIF3介导的43S预起始复合体稳定化。",
+    "selectedEpitope": "优先覆盖1RZ4中HAM结构域与翼状螺旋样结构域交界的复合体暴露面，避开疏水核心。",
+    "diseaseDirection": "神经发育与心律失常相关翻译调控",
+    "domain": "EIF3K含N端HEAT/ARM样HAM结构域及C端翼状螺旋样结构域，形成紧凑胞内折叠。",
+    "evidence": "EIF3K翻译起始复合体结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q9UBQ5功能与亚细胞定位注释",
+      "RCSB PDB 1RZ4 X射线晶体结构",
+      "eIF3复合体翻译起始机制文献"
+    ],
+    "referenceEntries": "UniProt Q9UBQ5；RCSB PDB 1RZ4；Open Targets EIF3K",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "HAM结构域与翼状螺旋样结构域交界暴露面",
+        "可能影响EIF3K在eIF3复合体中的界面组织，适合功能阻断型片段设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "翼状螺旋样结构域外侧带电螺旋面",
+        "溶剂可及性较好，适合获得稳定结合抗体并用于细胞内定位研究",
+        "备选"
+      ],
+      [
+        "Site C",
+        "HAM结构域内部疏水沟槽及折叠核心邻近区域",
+        "可能造成构象扰动但表位埋藏风险较高，需避免选择不可及残基",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "EIF3K为胞内抗原，常规IgG难以到达作用位点；建议采用细胞内抗体、递送型VHH或Fab验证，并严格区分结构结合与细胞功能效应。",
+    "structurePrepZh": "以1RZ4链A为模板，补全缺失侧链并评估晶体接触；表位筛选需基于溶剂可及性、保守性和eIF3复合体装配界面联合判定。",
+    "structureRef": "PDB 1RZ4，human EIF3K，X-ray 2.1 Å",
+    "antibodies": [
+      "抗EIF3K研究级单克隆抗体",
+      "抗EIF3K多克隆验证抗体"
+    ],
+    "interfaceFocus": "HAM/WH交界面及eIF3装配相关暴露表面",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "EIF3A",
+        "rationale": "EIF3A是eIF3复合体核心支架亚基，直接参与43S预起始复合体组织和mRNA翻译起始调控；与EIF3K处于同一翻译起始复合体通路。"
+      },
+      {
+        "target": "EIF3B",
+        "rationale": "EIF3B为eIF3核心装配亚基，连接多个eIF3组分并支持核糖体预起始复合体形成；适合作为同通路结构与功能对照靶点。"
+      },
+      {
+        "target": "EIF3L",
+        "rationale": "EIF3L与EIF3K同属eIF3周边模块成员，参与复合体稳定和翻译起始调控；可用于评估周边亚基干预对通路输出的差异。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

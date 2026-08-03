@@ -1,0 +1,65 @@
+{
+  "gene": "CCNB1",
+  "generatedAt": "2026-08-03T18:19:16.236Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CCNB1编码细胞周期蛋白B1，是CDK1复合物的调节亚基，驱动G2/M转换和有丝分裂进入；其异常表达与肿瘤增殖、染色体不稳定及多种疾病表型相关。该蛋白主要定位于胞质和细胞核，不具备分泌蛋白或膜受体的天然胞外可及性，因此常规体内中和抗体成药性受限，更适合作为结构验证、胞内递送抗体或研究级结合分子靶点。相较于同通路中WEE1、CDC25和CDK1等酶类节点，CCNB1提供了可直接干预Cyclin B1-CDK1复合物装配界面的蛋白-蛋白相互作用窗口，但优先级应低于具有细胞表面可及性的抗原。",
+    "mechanism": "通过结合Cyclin B1 cyclin box折叠的CDK1识别界面，阻断CCNB1与CDK1形成活性M期促进因子复合物。",
+    "selectedEpitope": "优先覆盖cyclin box N端螺旋束中CDK1接触面，避免非功能性远端螺旋表位。",
+    "diseaseDirection": "细胞周期失衡与肿瘤增殖",
+    "domain": "人Cyclin B1含N端调控区、破坏盒以及C端cyclin box双重复螺旋结构域。",
+    "evidence": "CCNB1-CDK1有丝分裂驱动轴结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联记录",
+      "UniProtKB P14635功能与亚细胞定位注释",
+      "RCSB PDB 6GU2 X射线晶体结构",
+      "Reactome Cell Cycle, Mitotic通路注释"
+    ],
+    "referenceEntries": "UniProt P14635；RCSB PDB 6GU2；Reactome R-HSA-69278",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "cyclin box N端螺旋束CDK1结合界面",
+        "直接阻断CCNB1-CDK1复合物形成，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "cyclin box C端重复螺旋外侧面",
+        "可获得稳定结合分子，用于构象识别与检测开发",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端破坏盒及柔性调控区",
+        "序列功能重要但结构柔性较高，表位构象稳定性不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CCNB1缺乏天然胞外暴露，体内抗体难以直接到达靶点；设计应标注为胞内递送、细胞穿透抗体或研究工具方向，并严格评估细胞周期毒性。",
+    "structurePrepZh": "以6GU2晶体结构为模板，保留抗原链A、B、C中可解析cyclin box区域，补充缺失柔性片段注释并进行界面残基暴露度分析。",
+    "structureRef": "RCSB PDB 6GU2，X-ray diffraction，2.0 Å",
+    "antibodies": [
+      "V152",
+      "GNS1"
+    ],
+    "interfaceFocus": "Cyclin box螺旋束-CDK1装配界面",
+    "designMode": "胞内PPI阻断",
+    "candidates": [
+      {
+        "target": "CDK1",
+        "rationale": "CDK1与CCNB1形成M期促进因子，是G2/M转换的核心催化亚基；抑制该节点可直接阻断Cyclin B1依赖性底物磷酸化。"
+      },
+      {
+        "target": "WEE1",
+        "rationale": "WEE1通过Tyr15抑制性磷酸化负向调控CDK1活性，与CCNB1-CDK1轴共同决定G2/M检查点强度。"
+      },
+      {
+        "target": "CDC25C",
+        "rationale": "CDC25C去除CDK1抑制性磷酸化并促进CCNB1-CDK1激活，是有丝分裂进入通路中的同轴调控节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

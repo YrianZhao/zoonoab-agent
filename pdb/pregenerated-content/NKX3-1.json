@@ -1,0 +1,65 @@
+{
+  "gene": "NKX3-1",
+  "generatedAt": "2026-08-03T14:43:01.544Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NKX3-1 是前列腺上皮谱系限定的同源盒转录因子，在前列腺癌中常发生表达降低、等位基因缺失或功能受损，并影响 AR 依赖性分化程序、PSA/KLK3 调控及基因组稳定性维护。其抗原本体为核内 DNA 结合蛋白，缺乏天然胞外结构域或分泌形式，常规完整抗体难以直接接触内源性蛋白，因此更适合作为细胞内抗原识别、TCR-mimic 或递送型抗体设计的研究靶点。相较于 PSA/KLK3、PSMA/FOLH1 等已高度拥挤的前列腺癌抗原，NKX3-1 具有更强的谱系特异性和疾病分层价值，但抗体成药优先级受抗原可及性限制，应定位为机制验证与细胞内靶向优先项目。",
+    "mechanism": "设计分子应识别 NKX3-1 homeodomain 的 DNA 结合界面，阻断其与前列腺谱系调控元件中 TAAGTA 类 homeobox 基序的结合。",
+    "selectedEpitope": "优先覆盖 homeodomain 第三螺旋识别区及 N 端臂 DNA 小沟接触残基。",
+    "diseaseDirection": "前列腺癌谱系与AR通路",
+    "domain": "NKX3-1 含 N 端转录调控区、保守 homeodomain DNA 结合结构域及 C 端调控区。",
+    "evidence": "NKX3-1 前列腺癌谱系抗原证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB Q99801 functional annotation",
+      "RCSB PDB 2L9R solution NMR structure",
+      "TCGA/癌症基因组前列腺癌表达与缺失数据"
+    ],
+    "referenceEntries": "UniProt Q99801；RCSB PDB 2L9R；Ensembl ENSG00000167034",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "homeodomain 第三螺旋 DNA 主沟识别面",
+        "直接干预 DNA 序列识别，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "homeodomain N 端臂及小沟接触区域",
+        "可削弱 DNA 结合稳定性，适合作为协同阻断表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "homeodomain 疏水核心与折叠稳定区",
+        "可能影响构象完整性但易产生非特异构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NKX3-1 为核内转录因子，天然抗原可及性低；常规 Fab/VHH 需结合细胞内递送、TCR-mimic 或降解平台评估，避免仅按胞外抗原流程推进。",
+    "structurePrepZh": "以 2L9R NMR 构象集合为模板，保留 homeodomain 稳定构象，评估 DNA 接触残基暴露度，并进行多模型表位一致性筛选。",
+    "structureRef": "RCSB PDB 2L9R；NKX3-1 homeodomain solution NMR structure",
+    "antibodies": [
+      "commercial anti-NKX3.1 diagnostic antibody",
+      "NKX3.1 immunohistochemistry antibody clone EP356"
+    ],
+    "interfaceFocus": "homeodomain-DNA 主沟识别界面",
+    "designMode": "细胞内抗原阻断",
+    "candidates": [
+      {
+        "target": "AR",
+        "rationale": "AR 是前列腺癌核心转录驱动因子，并与 NKX3-1 共同维持前列腺谱系调控网络。其通路地位明确，但核内受体属性同样限制常规抗体可及性。"
+      },
+      {
+        "target": "KLK3",
+        "rationale": "KLK3/PSA 是 AR 调控下游分泌型前列腺标志物，与 NKX3-1 相关的谱系分化状态密切相关。分泌蛋白属性提供更高抗体可及性，适合诊断或捕获型抗体设计。"
+      },
+      {
+        "target": "FOLH1",
+        "rationale": "FOLH1/PSMA 是前列腺癌细胞表面膜蛋白，广泛用于前列腺癌靶向递送与影像。相较 NKX3-1，其胞外结构域可及性更优，适合作为同疾病方向的抗体工程候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

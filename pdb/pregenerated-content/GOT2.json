@@ -1,0 +1,65 @@
+{
+  "gene": "GOT2",
+  "generatedAt": "2026-08-03T19:14:06.097Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GOT2编码线粒体天冬氨酸氨基转移酶，是苹果酸-天冬氨酸穿梭与氨基酸代谢中的核心酶，双等位基因功能缺陷可导致发育性癫痫性脑病并伴随能量代谢异常。该蛋白主要定位于线粒体基质，并非典型胞外抗原，天然抗原可及性较弱，抗体策略更适合用于细胞内递送、诊断捕获或结构功能研究。相较于同通路中广泛分布且代谢冗余更高的转运体或脱氢酶，GOT2具有明确遗传疾病关联、高分辨率晶体结构和可解析二聚体界面，因此在机制验证型抗体设计中具备优先级。",
+    "mechanism": "抗体通过结合GOT2二聚体界面或PLP依赖催化沟槽邻近区域，阻碍底物天冬氨酸/α-酮戊二酸进入活性位点或干扰功能性二聚体稳定性。",
+    "selectedEpitope": "优先选择大结构域与小结构域交界处、靠近PLP催化沟槽且不直接覆盖高度保守PLP结合赖氨酸的构象表位。",
+    "diseaseDirection": "遗传发育性癫痫与线粒体代谢异常",
+    "domain": "GOT2为PLP依赖氨基转移酶，含N端线粒体导入肽、小结构域、大催化结构域及同源二聚体界面。",
+    "evidence": "GOT2遗传癫痫与线粒体氨基转移证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P00505功能与亚细胞定位注释",
+      "RCSB PDB 9YB6高分辨率晶体结构",
+      "OMIM与ClinVar中GOT2缺陷相关临床变异记录"
+    ],
+    "referenceEntries": "UniProt:P00505；RCSB PDB:9YB6；Open Targets:GOT2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "二聚体界面邻近的大结构域构象表面",
+        "可能削弱功能性同源二聚体稳定性，适合构建机制抑制型抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "小结构域-大结构域交界的催化沟槽入口",
+        "可限制天冬氨酸与α-酮戊二酸进入PLP依赖活性位点",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PLP结合核心及高度保守催化残基周边",
+        "功能相关性强但保守性高，存在交叉反应和构象扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GOT2为线粒体基质酶，常规抗体体内可及性不足；设计应限定于递送型胞内抗体、诊断试剂或体外机制探针，并规避GOT1交叉反应表面。",
+    "structurePrepZh": "采用9YB6中A、B链同源二聚体作为建模基础，保留PLP辅因子与关键催化残基，补全柔性环区并标注线粒体导入肽缺失区域。",
+    "structureRef": "RCSB PDB 9YB6，X-ray diffraction，1.5 Å",
+    "antibodies": [
+      "商业化抗GOT2单克隆抗体",
+      "商业化抗AST2/GOT2多克隆抗体"
+    ],
+    "interfaceFocus": "二聚体界面与PLP催化沟槽入口",
+    "designMode": "胞内机制抗体设计",
+    "candidates": [
+      {
+        "target": "GOT1",
+        "rationale": "GOT1为胞质天冬氨酸氨基转移酶，与GOT2共同维持苹果酸-天冬氨酸穿梭和氨基酸转氨平衡，可作为同轴代谢通路对照靶点。"
+      },
+      {
+        "target": "SLC25A12",
+        "rationale": "SLC25A12编码线粒体天冬氨酸-谷氨酸载体AGC1，参与将GOT2生成的天冬氨酸输出至胞质，并与发育性癫痫性脑病存在遗传关联。"
+      },
+      {
+        "target": "MDH2",
+        "rationale": "MDH2在线粒体内将草酰乙酸与苹果酸互相转化，是苹果酸-天冬氨酸穿梭中与GOT2功能耦联的关键脱氢酶。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "REPS2",
+  "generatedAt": "2026-08-03T20:53:34.838Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "REPS2编码POB1样EH结构域蛋白，参与RALBP1/RLIP76相关的网格蛋白介导内吞与受体转运调节，在前列腺癌中曾被报道具有肿瘤抑制相关特征，但Open Targets关联强度较低且多为遗传或表达关联。该蛋白主要为胞质适配蛋白，缺乏跨膜区、分泌信号肽和稳定胞外结构域，常规抗体药物的抗原可及性明显受限。相较于同通路中EGFR、TFRC或LRP1等细胞表面内吞货物受体，REPS2更适合作为机制研究抗原或胞内递送格式探索靶点，治疗性抗体主靶点优先级较低。",
+    "mechanism": "抗体设计宜定位为胞内结合体，阻断REPS2 EH结构域与含NPF基序内吞伴侣蛋白的结合，干扰RALBP1相关受体内吞复合物装配。",
+    "selectedEpitope": "优先覆盖EH结构域NPF肽结合沟槽及邻近保守疏水口袋，避免仅选择柔性端部表面。",
+    "diseaseDirection": "前列腺癌内吞调控研究",
+    "domain": "REPS2含N端EH结构域及C端脯氨酸富集区，PDB 1IQ3对应溶液NMR解析的EH结构域。",
+    "evidence": "REPS2内吞适配蛋白与前列腺癌关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与表达关联",
+      "UniProt Q8NFH8功能与结构域注释",
+      "RCSB PDB 1IQ3溶液NMR结构记录",
+      "文献报道REPS2/POB1参与RALBP1相关内吞调控"
+    ],
+    "referenceEntries": "UniProt Q8NFH8；RCSB PDB 1IQ3；Open Targets REPS2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "EH结构域NPF结合沟槽",
+        "直接竞争NPF基序伴侣蛋白结合，最符合功能阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "EH结构域α螺旋外侧稳定表面",
+        "可用于构象识别与结构稳定型结合，功能阻断依赖空间位阻",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端脯氨酸富集柔性区",
+        "可能参与蛋白互作但结构无序度高，表位一致性与成药性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "REPS2为胞质蛋白，常规IgG难以到达作用位点；疾病关联得分有限，需以细胞内抗体、递送抗体或研究级Fab验证为主。",
+    "structurePrepZh": "以PDB 1IQ3的NMR模型集建立EH结构域构象集合，校验NPF结合沟槽、保守残基暴露度及柔性环区稳定性。",
+    "structureRef": "RCSB PDB 1IQ3，human REPS2 EH domain，solution NMR",
+    "antibodies": [
+      "REPS2研究级多克隆抗体",
+      "REPS2研究级单克隆抗体"
+    ],
+    "interfaceFocus": "EH结构域NPF肽结合沟槽",
+    "designMode": "胞内阻断探索",
+    "candidates": [
+      {
+        "target": "RALBP1",
+        "rationale": "RALBP1/RLIP76是REPS2互作网络中的关键内吞与转运相关蛋白，直接连接REPS2适配功能和受体内吞复合物装配。"
+      },
+      {
+        "target": "EPS15",
+        "rationale": "EPS15为含EH结构域的网格蛋白介导内吞核心适配蛋白，与REPS家族处于同一内吞调控轴，具备明确的内吞复合物功能背景。"
+      },
+      {
+        "target": "EPN1",
+        "rationale": "EPN1编码epsin-1，含NPF基序并参与AP2/CLTC依赖的膜货物内吞，可作为REPS2相关NPF-EH互作通路的可比靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

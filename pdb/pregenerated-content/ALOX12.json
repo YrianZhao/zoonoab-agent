@@ -1,0 +1,65 @@
+{
+  "gene": "ALOX12",
+  "generatedAt": "2026-08-03T10:24:30.120Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ALOX12催化花生四烯酸生成12S-HETE，参与血小板活化、炎症脂质介质生成及血管炎症过程，在炎症、风湿性疾病与静脉血栓形成中具有通路关联。该蛋白主要为胞质非血红素脂氧合酶，缺乏典型胞外结构域，抗体抗原可及性弱于膜受体或分泌因子，因此更适合细胞内递送抗体、结构探针或外泌体相关抗原场景。相较于同通路上游PLA2或下游GPCR，ALOX12具有已解析人源晶体结构和明确催化腔，可支持界面级表位设计，但作为常规治疗性抗体靶点优先级应低于胞外可及靶点。",
+    "mechanism": "设计抗体结合ALOX12催化结构域入口或膜结合相关β-barrel界面，空间阻碍花生四烯酸进入非血红素铁催化腔，从而降低12S-HETE生成。",
+    "selectedEpitope": "优先覆盖C端催化结构域底物进入通道邻近螺旋与铁配位腔外缘，避免直接依赖埋藏催化残基。",
+    "diseaseDirection": "炎症与血栓脂质介质通路",
+    "domain": "ALOX12含N端PLAT样β-barrel膜结合结构域及C端脂氧合酶催化结构域，催化核心含非血红素铁。",
+    "evidence": "ALOX12炎症血栓脂质通路结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与表型关联",
+      "UniProt P18054人源ALOX12功能注释",
+      "RCSB PDB 3D3L人源12S-lipoxygenase晶体结构",
+      "脂氧合酶-花生四烯酸代谢与12-HETE文献证据"
+    ],
+    "referenceEntries": "UniProt P18054；RCSB PDB 3D3L；Open Targets ALOX12",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端催化结构域底物通道入口邻近螺旋",
+        "可阻碍花生四烯酸进入催化腔，机制指向明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端PLAT样β-barrel膜结合结构域外露面",
+        "可能干扰膜磷脂定位与底物募集，适合构建功能阻断抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "非血红素铁配位核心周围深埋区域",
+        "催化残基保守且埋藏，可及性与选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ALOX12为胞内酶，常规抗体难以到达作用位点；建议限定为细胞内递送抗体、研究级结构抗体或诊断捕获抗体，并评估ALOX15等同源酶交叉反应。",
+    "structurePrepZh": "以3D3L A、B链为人源二聚体/晶体不对称单元参考，补全缺失侧链，保留非血红素铁与关键催化腔构象，进行同源酶表面保守性比对。",
+    "structureRef": "RCSB PDB 3D3L；人源ALOX12 X射线结构2.6 Å",
+    "antibodies": [
+      "研究级anti-ALOX12 monoclonal antibody",
+      "研究级anti-12-lipoxygenase antibody"
+    ],
+    "interfaceFocus": "底物通道入口、PLAT膜结合面及同源酶差异表面",
+    "designMode": "胞内酶结构阻断",
+    "candidates": [
+      {
+        "target": "PLA2G4A",
+        "rationale": "PLA2G4A释放膜磷脂中的花生四烯酸，为ALOX12底物供应上游节点；其调控可影响炎症脂质介质生成。"
+      },
+      {
+        "target": "ALOX15",
+        "rationale": "ALOX15同属脂氧合酶家族，参与花生四烯酸及亚油酸氧化代谢，并与炎症和免疫调节相关；适合作为同通路选择性评估参照。"
+      },
+      {
+        "target": "PTGS2",
+        "rationale": "PTGS2与ALOX12竞争利用花生四烯酸底物，驱动前列腺素类炎症介质生成；在炎症通路中具有明确疾病关联和药理学验证基础。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

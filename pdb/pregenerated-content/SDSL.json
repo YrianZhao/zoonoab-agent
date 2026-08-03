@@ -1,0 +1,65 @@
+{
+  "gene": "SDSL",
+  "generatedAt": "2026-08-03T16:23:36.093Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SDSL编码丝氨酸脱水酶样蛋白，属于胞内吡哆醛磷酸依赖性酶家族，现有Open Targets信号主要来自蛋白定量、血液细胞计数及肝胆酶测量等遗传或蛋白组学关联，尚不能支持其作为细胞外致病通路节点。该蛋白缺乏经典分泌信号肽、跨膜区及稳定胞外结构域，抗原在完整细胞或体液环境中的可及性较低，不具备常规阻断型抗体靶点优势。相较于同类血液炎症或黏附表型中的SELP、SELPLG、IL5RA等膜表面或分泌通路靶点，SDSL优先级应定位为结构验证和细胞内机制研究靶点，而非治疗性抗体主靶点。",
+    "mechanism": "抗体难以在胞外阻断SDSL催化口袋与小分子底物或PLP辅因子的相互作用；可作为细胞内结合探针识别PLP依赖酶折叠域并干扰底物进入催化裂隙。",
+    "selectedEpitope": "优先避开PLP催化赖氨酸邻近区，选择2RKB可暴露的PLP依赖酶核心折叠域外侧螺旋-环区。",
+    "diseaseDirection": "血液炎症表型与肝胆代谢测量",
+    "domain": "SDSL为PLP依赖性脱水酶样胞内酶，含保守催化核心折叠域及多聚体装配界面。",
+    "evidence": "SDSL结构可解析性与人群表型关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病-靶点关联",
+      "UniProt Q96GA7蛋白功能与亚细胞定位注释",
+      "RCSB PDB 2RKB晶体结构记录",
+      "Ensembl/GTEx组织表达与遗传注释"
+    ],
+    "referenceEntries": "UniProt Q96GA7；RCSB PDB 2RKB；Open Targets SDSL",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "核心折叠域外侧螺旋-环暴露面",
+        "远离催化口袋，适合获得结构识别型抗体或细胞内探针",
+        "优先"
+      ],
+      [
+        "Site B",
+        "亚基装配界面邻近外周片段",
+        "可能影响寡聚体稳定性，但需评估界面保守性与构象遮挡",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PLP结合催化裂隙周边区域",
+        "功能相关性较强，但小分子辅因子邻近区易产生空间冲突和低可及性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SDSL为胞内酶且疾病关联强度中等偏低，治疗性抗体可及性风险较高；建议限定为结构探针、递送型抗体片段或靶点验证用途。",
+    "structurePrepZh": "以2RKB五条抗原链进行同源链比对，保留高置信折叠核心，检查PLP结合区、晶体接触面及多聚体界面后再定义可及表位。",
+    "structureRef": "RCSB PDB 2RKB，X-ray diffraction，2.8 Å",
+    "antibodies": [
+      "无获批SDSL靶向抗体",
+      "无临床阶段SDSL阻断抗体"
+    ],
+    "interfaceFocus": "PLP催化裂隙与亚基装配界面外缘",
+    "designMode": "胞内结构探针设计",
+    "candidates": [
+      {
+        "target": "SELP",
+        "rationale": "SELP编码P-selectin，位于血小板和内皮细胞表面，直接介导与SELPLG/PSGL-1的黏附相互作用，符合P-selectin glycoprotein ligand 1 measurement相关通路的抗体可及性要求。"
+      },
+      {
+        "target": "SELPLG",
+        "rationale": "SELPLG编码PSGL-1，是P-selectin的主要糖蛋白配体，位于白细胞表面；阻断SELP-SELPLG结合可具体干预白细胞滚动和血小板-白细胞黏附。"
+      },
+      {
+        "target": "IL5RA",
+        "rationale": "IL5RA为嗜酸性粒细胞谱系关键膜受体，与eosinophil count表型直接相关；抗体可通过阻断IL5结合或诱导效应细胞清除降低嗜酸性炎症负荷。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

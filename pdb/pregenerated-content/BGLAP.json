@@ -1,0 +1,65 @@
+{
+  "gene": "BGLAP",
+  "generatedAt": "2026-08-03T10:48:49.622Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BGLAP编码骨钙素，是由成骨细胞分泌的维生素K依赖性γ-羧基化骨基质蛋白，参与羟基磷灰石结合、骨重塑及骨-肾-内分泌轴相关表型。其为分泌型小分子蛋白，抗原位点位于循环或骨基质暴露构象，具备较高抗体可及性。相较细胞内骨代谢调控因子，BGLAP更适合作为体液标志物捕获或构象选择性干预靶点，但治疗性阻断优先级需低于具有明确受体-配体轴的膜受体靶点。",
+    "mechanism": "抗体结合BGLAP的Gla富集面，阻断γ-羧基谷氨酸残基与羟基磷灰石钙离子晶面的配位结合，改变骨基质沉积相关相互作用。",
+    "selectedEpitope": "优先覆盖N端Gla残基簇及α1-α2螺旋间矿物结合面，保留C端构象识别。",
+    "diseaseDirection": "骨代谢与肾功能相关表型",
+    "domain": "BGLAP为49氨基酸分泌蛋白，含N端γ-羧基谷氨酸富集区和折叠性α螺旋核心。",
+    "evidence": "BGLAP骨基质结合与肾功能关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P02818功能与亚细胞定位注释",
+      "RCSB PDB 8XS1实验结构记录",
+      "骨钙素羧化状态与骨矿化文献证据"
+    ],
+    "referenceEntries": "UniProt:P02818；RCSB PDB:8XS1；HGNC:BGLAP",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端Gla残基簇及钙配位矿物结合面",
+        "直接干预羟基磷灰石结合，机制可解释性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "α1-α2螺旋外侧构象面",
+        "利于获得构象选择性抗体并减少对羧化残基完全依赖",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端柔性尾部及非结构化暴露区",
+        "免疫原性可能较好，但与核心功能界面关联较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BGLAP分子量小且含羧化依赖构象，表位可能受维生素K依赖修饰和钙离子状态影响；设计需区分羧化型与未羧化型。",
+    "structurePrepZh": "以8XS1中抗原链A为模板，保留关键Gla修饰和钙结合几何，去除抗体链H、L后进行抗原表面与柔性区评估。",
+    "structureRef": "RCSB PDB 8XS1，X射线晶体结构，2.3 Å",
+    "antibodies": [
+      "anti-osteocalcin monoclonal antibody OC4-30",
+      "anti-osteocalcin monoclonal antibody OCG3"
+    ],
+    "interfaceFocus": "Gla残基簇-钙离子-羟基磷灰石结合界面",
+    "designMode": "分泌蛋白构象阻断",
+    "candidates": [
+      {
+        "target": "PTH",
+        "rationale": "PTH通过PTH1R调控成骨细胞活性与骨重塑，并影响肾脏钙磷稳态；其与BGLAP同属骨-肾矿物代谢轴。"
+      },
+      {
+        "target": "PTH1R",
+        "rationale": "PTH1R是PTH/PTHLH信号的膜受体，直接调节成骨细胞分化和骨基质相关基因表达，具备明确的胞外配体结合结构域。"
+      },
+      {
+        "target": "SOST",
+        "rationale": "SOST由骨细胞分泌并抑制LRP5/6介导的Wnt信号，是骨形成负调控因子，与BGLAP相关骨形成表型处于同一骨重塑网络。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "USP37",
+  "generatedAt": "2026-08-03T17:45:18.040Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "USP37为胞内去泛素化酶，参与复制压力应答、细胞周期进程及底物蛋白稳定性调控，现有遗传关联主要指向脂质测量、血细胞计数及体格性状，缺乏明确可直接抗体阻断的疾病配体-受体轴。该蛋白不具有分泌信号肽、跨膜区或天然胞外结构域，常规全长抗体难以在完整细胞外环境中接触功能性催化结构域。相较于PCSK9、ANGPTL3或APOA1等同属脂质表型相关且具备血浆可及性的靶点，USP37作为治疗性抗体主靶点优先级较低，更适合作为结构生物学或胞内递送抗体片段研究对象。",
+    "mechanism": "设计策略以胞内递送抗体片段结合USP37催化结构域邻近泛素结合沟槽，干扰泛素化底物进入催化半胱氨酸中心，从而抑制底物去泛素化反应。",
+    "selectedEpitope": "优先覆盖USP结构域催化裂隙周边及泛素C端结合沟槽，避免直接依赖高度保守催化三联体残基。",
+    "diseaseDirection": "脂质表型与细胞周期相关研究",
+    "domain": "USP37含N端调控区、中央USP型催化结构域及C端调控序列，3U12覆盖催化结构域片段。",
+    "evidence": "USP37结构与遗传关联可行性证据包",
+    "evidenceSources": [
+      "Open Targets Platform 遗传关联与表型关联",
+      "UniProtKB Q86T82 蛋白功能与结构域注释",
+      "RCSB PDB 3U12 X射线晶体结构",
+      "文献报道USP37去泛素化酶功能与细胞周期调控"
+    ],
+    "referenceEntries": "UniProtKB: Q86T82; RCSB PDB: 3U12; Open Targets: USP37",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "USP催化结构域泛素C端结合沟槽邻近区域",
+        "可通过空间位阻限制泛素化底物定位，具有功能抑制设计价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "USP结构域外侧非保守环区",
+        "有利于获得USP37选择性结合分子，但功能阻断强度需实验确认",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化半胱氨酸、组氨酸、天冬氨酸构成的保守活性中心",
+        "序列保守性高且小分子口袋特征明显，抗体选择性和成药性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "USP37为胞内酶，常规抗体存在抗原不可及风险；建议限定为细胞内抗体、递送型VHH或研究级阻断分子，并优先评估USP家族交叉反应。",
+    "structurePrepZh": "以3U12中A、B链催化结构域为模板，补全缺失环区并标注催化残基、泛素结合沟槽及非保守表面斑块后开展表位筛选。",
+    "structureRef": "RCSB PDB 3U12，USP37催化结构域晶体结构，2.08 Å",
+    "antibodies": [
+      "暂无获批USP37治疗性抗体",
+      "暂无临床阶段USP37阻断抗体"
+    ],
+    "interfaceFocus": "泛素C端结合沟槽与催化裂隙边缘",
+    "designMode": "胞内VHH抑制",
+    "candidates": [
+      {
+        "target": "PCSK9",
+        "rationale": "PCSK9直接结合LDLR并促进其溶酶体降解，是低密度脂蛋白胆固醇代谢通路中已验证的分泌型抗体靶点，抗原可及性显著优于USP37。"
+      },
+      {
+        "target": "ANGPTL3",
+        "rationale": "ANGPTL3为肝源性分泌蛋白，可抑制LPL和内皮脂肪酶活性，位于甘油三酯和高密度脂蛋白胆固醇调控通路中，适合中和抗体设计。"
+      },
+      {
+        "target": "APOA1",
+        "rationale": "APOA1是HDL主要载脂蛋白，参与ABCA1介导的胆固醇外排和HDL成熟过程，与HDL胆固醇测量表型具有直接生物学关联。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

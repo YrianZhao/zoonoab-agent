@@ -1,0 +1,65 @@
+{
+  "gene": "OSBP",
+  "generatedAt": "2026-08-03T14:59:36.317Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "OSBP参与内质网-高尔基体膜接触位点的胆固醇与PI4P对向转运，影响高尔基体脂质组成、囊泡运输及神经元膜稳态，因而与神经退行性疾病相关表型存在通路层面关联。该蛋白主要为胞质脂质转运蛋白，并非分泌蛋白或经典膜受体，天然抗原可及性弱于胞外靶点，抗体设计更适合采用细胞内递送或结构生物学验证场景。相较一般脂质代谢调节因子，OSBP具备已解析ORD结构和明确甾醇结合口袋，可在同通路靶点中优先用于机制型结合分子设计。",
+    "mechanism": "抗体结合OSBP的ORD甾醇结合口袋邻近区域，阻断胆固醇装载及与PI4P耦联的脂质交换循环。",
+    "selectedEpitope": "优先覆盖ORD甾醇结合口袋入口及盖帽螺旋邻近界面。",
+    "diseaseDirection": "神经退行性疾病脂质稳态",
+    "domain": "OSBP含PH结构域、FFAT基序及C端ORD脂质结合结构域。",
+    "evidence": "OSBP脂质转运与神经退行性疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P22059功能与结构域注释",
+      "RCSB PDB 7V62晶体结构记录",
+      "文献报道的OSBP介导ER-高尔基体胆固醇/PI4P交换机制"
+    ],
+    "referenceEntries": "UniProt:P22059；RCSB PDB:7V62；Open Targets:OSBP",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ORD甾醇结合口袋入口与盖帽螺旋",
+        "干预胆固醇装载和释放，机制指向性最强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ORD膜接触相关疏水表面",
+        "可能影响脂质转运过程中的膜界面定位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PH结构域PI4P/ARF1相关结合面",
+        "可能干扰高尔基体募集，但结构背景与脱靶风险需额外评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "OSBP为胞内蛋白，常规外源抗体难以到达作用位点；建议采用细胞内抗体、VHH递送或体外机制验证，并避免破坏保守疏水核心导致非特异聚集。",
+    "structurePrepZh": "以PDB 7V62抗原链A-D为结构模板，保留ORD核心构象，检查配体、缺失环区及晶体接触界面后再进行表位建模。",
+    "structureRef": "RCSB PDB 7V62，X-ray diffraction，3.25 Å",
+    "antibodies": [
+      "无已批准OSBP靶向治疗性抗体",
+      "研究级抗OSBP抗体"
+    ],
+    "interfaceFocus": "ORD甾醇口袋入口与盖帽螺旋界面",
+    "designMode": "胞内VHH/Fab机制阻断",
+    "candidates": [
+      {
+        "target": "VAPB",
+        "rationale": "VAPB通过与OSBP的FFAT基序结合，将OSBP锚定于内质网膜接触位点，是同一ER-高尔基体脂质交换轴的关键组成部分。"
+      },
+      {
+        "target": "PI4KB",
+        "rationale": "PI4KB在高尔基体生成PI4P，为OSBP介导的胆固醇/PI4P对向转运提供驱动力，属于同一脂质稳态通路。"
+      },
+      {
+        "target": "ARF1",
+        "rationale": "ARF1参与OSBP PH结构域在高尔基体膜上的募集，并与PI4P共同定义OSBP定位界面，可作为同通路膜运输调节靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

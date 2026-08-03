@@ -1,0 +1,65 @@
+{
+  "gene": "NFKB2",
+  "generatedAt": "2026-08-03T14:41:52.673Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NFKB2编码NF-κB2 p100/p52，是非经典NF-κB通路的核心转录因子，NIK–IKKα介导的p100加工异常可导致B细胞成熟、淋巴器官发育和抗体类别转换缺陷，与普通变异型免疫缺陷及部分淋巴瘤相关。该蛋白主要定位于胞质和细胞核，并非分泌蛋白或膜受体，抗原天然可及性弱，抗体策略更适合用于胞内递送、研究级阻断或结构生物学工具分子。相较于CD40、BAFFR等上游膜受体，NFKB2位于非经典NF-κB信号汇聚节点，能够直接覆盖多种上游受体异常后的转录效应，因此在机制验证和精准分层研究中具有较高优先级。",
+    "mechanism": "阻断p52 Rel同源结构域与κB DNA元件结合，或干扰p52与RELB形成转录复合物，从而抑制非经典NF-κB靶基因转录。",
+    "selectedEpitope": "优先选择Rel同源结构域DNA识别环及二聚化界面邻近区域，兼顾阻断DNA结合与RELB复合体装配。",
+    "diseaseDirection": "免疫缺陷与淋巴瘤通路",
+    "domain": "N端Rel homology domain介导DNA结合、二聚化和核定位；C端含ankyrin repeats并构成p100抑制区。",
+    "evidence": "NFKB2非经典NF-κB免疫缺陷证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q00653功能与结构域注释",
+      "RCSB PDB 1A3Q晶体结构",
+      "ClinVar与OMIM免疫缺陷相关变异记录"
+    ],
+    "referenceEntries": "UniProt Q00653；RCSB PDB 1A3Q；Open Targets ENSG00000077150",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Rel同源结构域κB DNA结合界面",
+        "可直接阻断p52识别κB启动子元件，机制读出清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Rel同源结构域二聚化界面",
+        "有望干扰p52-RELB异源二聚体形成，适合功能抑制型抗体设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "核定位序列及柔性连接区邻近表面",
+        "可能影响核转位或复合体构象，但柔性高且构象依赖性较强",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NFKB2为胞内转录因子，常规治疗性抗体难以到达作用位点；建议限定为胞内递送抗体、intrabody、VHH工具分子或结构阻断验证体系。",
+    "structurePrepZh": "以1A3Q中人源NF-κB2 Rel同源结构域复合体为模板，保留生物学相关链并校正缺失侧链、质子化状态和DNA接触界面。",
+    "structureRef": "RCSB PDB 1A3Q，X-ray diffraction，2.1 Å",
+    "antibodies": [
+      "研究级anti-NF-kB p100/p52 antibody",
+      "研究级anti-NFKB2 antibody"
+    ],
+    "interfaceFocus": "p52-DNA结合沟槽与p52-RELB二聚化界面",
+    "designMode": "胞内阻断型设计",
+    "candidates": [
+      {
+        "target": "NFKB1",
+        "rationale": "NFKB1编码p105/p50，与NFKB2同属NF-κB转录因子家族，参与免疫缺陷和炎症相关转录调控，可作为经典NF-κB轴的对照靶点。"
+      },
+      {
+        "target": "RELB",
+        "rationale": "RELB是非经典NF-κB通路中p52的主要异源二聚化伙伴，直接决定p52转录复合体的靶基因选择性。"
+      },
+      {
+        "target": "NIK",
+        "rationale": "NIK由MAP3K14编码，是非经典NF-κB通路上游关键激酶，驱动IKKα介导的p100加工并促进p52生成。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

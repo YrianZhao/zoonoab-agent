@@ -1,0 +1,65 @@
+{
+  "gene": "CDC25C",
+  "generatedAt": "2026-08-03T18:23:16.481Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CDC25C 是细胞周期 G2/M 转换中的双特异性磷酸酶，通过去磷酸化并激活 CDK1-CCNB1 复合物推动有丝分裂进入；其异常表达或活性升高与多种肿瘤增殖表型相关，但 Open Targets 所示阿尔茨海默病及血管性表型关联强度中等，主要反映细胞周期异常、神经元损伤或血管应激的间接遗传关联。CDC25C 为胞内磷酸酶，缺乏天然胞外结构域，抗原可及性不具备常规治疗性抗体优势，更适合作为胞内递送抗体、研究级结合体或降解平台识别模块。相较 CDK1、CCNB1 等同轴核心节点，CDC25C 的催化口袋和调控界面结构明确，可用于高特异结合体筛选；但作为常规膜外抗体靶点优先级较低。",
+    "mechanism": "设计结合体占据 CDC25C 催化结构域活性沟槽或底物识别面，阻断 CDC25C 对 CDK1 Tyr15/Thr14 的去磷酸化，从而抑制 CDK1-CCNB1 促有丝分裂活化。",
+    "selectedEpitope": "优先覆盖催化结构域 PTPase 活性位点邻近底物结合沟槽，避开高度保守催化半胱氨酸核心。",
+    "diseaseDirection": "肿瘤细胞周期与神经退行性关联",
+    "domain": "CDC25C 含 N 端调控区和 C 端双特异性磷酸酶催化结构域；3BZI 覆盖催化结构域。",
+    "evidence": "CDC25C 结构与细胞周期功能证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProtKB P30307 功能与结构域注释",
+      "RCSB PDB 3BZI X-ray 结构记录",
+      "Reactome Cell Cycle, Mitotic 通路注释"
+    ],
+    "referenceEntries": "UniProt P30307；RCSB PDB 3BZI；Reactome CDC25C",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域底物识别沟槽及活性位点邻近区域",
+        "可直接干扰 CDK1 磷酸化位点进入催化中心，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C 端催化结构域外周可溶性螺旋-环区",
+        "利于获得构象特异结合体，并降低对催化半胱氨酸保守核心的依赖",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PTPase 家族保守催化环周边",
+        "保守性高，可能与 CDC25A/CDC25B 交叉反应，需严格选择性筛选",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CDC25C 为胞内抗原，常规 IgG 难以到达作用位点；建议定位于研究抗体、细胞内抗体递送或靶向降解识别模块，并强化 CDC25A/B 选择性评估。",
+    "structurePrepZh": "以 3BZI 链 A/E 催化结构域为模板，校验缺失环、晶体接触和质子化状态；保留催化沟槽构象用于表位聚类与对接。",
+    "structureRef": "RCSB PDB 3BZI，X-ray diffraction，2.1 Å",
+    "antibodies": [
+      "抗 CDC25C 克隆 5H9",
+      "抗 CDC25C 克隆 DCS-193"
+    ],
+    "interfaceFocus": "CDK1 底物进入沟槽与 PTPase 催化环邻域",
+    "designMode": "胞内靶点结合体设计",
+    "candidates": [
+      {
+        "target": "CDK1",
+        "rationale": "CDK1 是 CDC25C 的直接底物，Tyr15/Thr14 去磷酸化后与 CCNB1 形成活化促有丝分裂激酶复合物，是同一 G2/M 检查点轴的核心效应节点。"
+      },
+      {
+        "target": "CCNB1",
+        "rationale": "CCNB1 与 CDK1 形成 M-phase promoting factor，决定有丝分裂进入；其表达升高常见于高增殖肿瘤，并与 CDC25C 功能输出直接耦联。"
+      },
+      {
+        "target": "WEE1",
+        "rationale": "WEE1 磷酸化抑制 CDK1 Tyr15，与 CDC25C 构成相反方向的 G2/M 调控模块；该节点在 DNA 损伤检查点和复制压力应答中具有明确治疗相关性。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

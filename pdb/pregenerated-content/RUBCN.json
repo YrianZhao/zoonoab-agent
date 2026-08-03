@@ -1,0 +1,65 @@
+{
+  "gene": "RUBCN",
+  "generatedAt": "2026-08-03T16:16:00.797Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RUBCN 是自噬-内体成熟轴的负向调节因子，可通过结合 PIK3C3/VPS34 复合体相关组分抑制自噬体成熟与内体-溶酶体运输，Open Targets 数据提示其与神经发育迟缓、共济失调及眼震等表型存在遗传关联。该蛋白主要定位于胞质侧内体、自噬体及吞噬体相关复合物，不具备经典分泌蛋白或细胞外膜受体特征，因此天然抗原可及性不利于常规体内阻断型抗体。其优先级仅适用于细胞内抗体、降解型抗体片段或机制验证型分子设计；相较 LAMP2、TFEB 等更具细胞表面或转录调控可干预性的同通路靶点，RUBCN 的优势在于结构域复合物界面清晰，可用于解析自噬抑制节点。",
+    "mechanism": "设计分子以阻断 RUBCN RUN/Cys-rich 区域与 Beclin-1-PIK3C3 复合体相关界面，解除其对自噬体成熟和内体转运的抑制。",
+    "selectedEpitope": "优先覆盖 6WCW 所示 RUN/Cys-rich 结构域的蛋白互作界面，避开埋藏疏水核心。",
+    "diseaseDirection": "神经发育异常与自噬通路疾病",
+    "domain": "RUBCN 含 N 端 RUN 结构域、中央卷曲螺旋区及 C 端 Cys-rich/Rubicon 同源区，参与自噬复合物装配。",
+    "evidence": "RUBCN 自噬抑制与神经表型关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q92622 functional annotation",
+      "RCSB PDB 6WCW X-ray structure",
+      "Autophagy and endolysosomal pathway literature"
+    ],
+    "referenceEntries": "UniProt: Q92622; RCSB PDB: 6WCW; Gene: RUBCN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RUN/Cys-rich 结构域外露蛋白互作面",
+        "有望干扰 RUBCN 与自噬调控复合体结合，适合机制阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "卷曲螺旋邻近可及螺旋束表面",
+        "可能影响复合物装配构象，适合作为变构型表位备选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "结构域疏水核心及半胱氨酸稳定区域",
+        "埋藏度较高且可能破坏整体折叠，易产生非特异构象效应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RUBCN 为胞内蛋白，常规全长 IgG 难以到达作用位点；设计宜采用胞内递送 Fab、VHH 或降解耦联策略，并严格评估自噬通量过度激活风险。",
+    "structurePrepZh": "以 6WCW 的 A、B 链为模板进行缺失残基建模、质子化和界面溶剂暴露分析，保留实验构象中的二聚或复合物接触关系。",
+    "structureRef": "RCSB PDB 6WCW, X-ray diffraction, 2.8 Å",
+    "antibodies": [
+      "无已批准 RUBCN 靶向治疗性抗体",
+      "研究级 anti-RUBCN/Rubicon 抗体"
+    ],
+    "interfaceFocus": "RUN/Cys-rich 结构域互作界面",
+    "designMode": "胞内VHH/Fab设计",
+    "candidates": [
+      {
+        "target": "BECN1",
+        "rationale": "BECN1 是 PIK3C3/VPS34 自噬起始复合体核心组分，与 RUBCN 共同调控自噬体成熟及内体运输。其位于同一自噬调控轴，可作为复合物层面机制对照靶点。"
+      },
+      {
+        "target": "PIK3C3",
+        "rationale": "PIK3C3/VPS34 产生磷脂酰肌醇 3-磷酸并驱动自噬膜动态，RUBCN 对该复合体具有抑制性调节作用。该靶点可用于评估上游脂激酶节点与 RUBCN 阻断策略的差异。"
+      },
+      {
+        "target": "UVRAG",
+        "rationale": "UVRAG 与 BECN1-PIK3C3 复合体协同促进自噬体成熟和内体融合，功能上与 RUBCN 的抑制作用相对。该靶点适合用于同通路互作网络和表型救援分析。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

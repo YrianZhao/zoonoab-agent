@@ -1,0 +1,65 @@
+{
+  "gene": "NRP2",
+  "generatedAt": "2026-08-03T14:50:44.693Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NRP2为跨膜neuropilin共受体，参与VEGF-C/VEGFR3与semaphorin信号轴，影响淋巴管生成、肿瘤侵袭和免疫细胞迁移等疾病相关过程。其a1/a2、b1/b2胞外结构域暴露于细胞表面，b1结构域含VEGF-C C端精氨酸结合口袋，具备抗体阻断的可及性。相较仅靶向VEGFR3或VEGF-C，NRP2位于配体递呈与共受体复合体形成环节，可同时干预VEGF-C依赖性淋巴管生成及部分semaphorin介导迁移信号，具有较高设计优先级。",
+    "mechanism": "阻断NRP2 b1结构域与VEGF-C C端CendR基序结合，削弱VEGF-C向VEGFR3复合体递呈并抑制淋巴管生成信号。",
+    "selectedEpitope": "优先锁定b1结构域CendR配体结合口袋及邻近L1环，避免干扰a结构域折叠核心。",
+    "diseaseDirection": "肿瘤淋巴管生成与转移",
+    "domain": "NRP2胞外区包含CUB样a1/a2、凝血因子V/VIII样b1/b2与MAM样c结构域。",
+    "evidence": "NRP2-VEGF-C共受体轴抗体设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与表型关联",
+      "UniProt O60462蛋白结构域与亚细胞定位注释",
+      "RCSB PDB 6TJT晶体结构解析数据",
+      "VEGF-C/VEGFR3/neuropilin淋巴管生成文献证据"
+    ],
+    "referenceEntries": "UniProt O60462；RCSB PDB 6TJT；Open Targets NRP2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "b1结构域CendR配体结合口袋及L1环",
+        "直接阻断VEGF-C C端精氨酸依赖性结合，机制明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "b1-b2结构域相邻外露面",
+        "可能干扰配体递呈构象与共受体复合体装配",
+        "备选"
+      ],
+      [
+        "Site C",
+        "a1/a2 CUB样semaphorin结合相关表面",
+        "可能影响SEMA3F/SEMA3B相关迁移信号，但功能选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "b1口袋与内源性VEGF家族配体识别相关，需评估VEGF-A/VEGF-C交叉阻断谱；a结构域表位可能影响semaphorin生理信号，应采用功能选择性筛选。",
+    "structurePrepZh": "以6TJT高分辨率晶体结构为模板，保留抗原链A、B、D、F中完整胞外结构域，补全缺失侧链并校正糖基化邻近表面可及性。",
+    "structureRef": "RCSB PDB 6TJT，X-ray diffraction，1.31 Å",
+    "antibodies": [
+      "Anti-NRP2 antibody clone 2G11",
+      "Anti-NRP2 antibody clone 3G9"
+    ],
+    "interfaceFocus": "b1结构域VEGF-C CendR结合界面",
+    "designMode": "阻断型表位设计",
+    "candidates": [
+      {
+        "target": "FLT4",
+        "rationale": "FLT4编码VEGFR3，是VEGF-C/VEGF-D驱动淋巴管生成的主要受体酪氨酸激酶，与NRP2处于同一配体递呈与受体激活轴。"
+      },
+      {
+        "target": "VEGFC",
+        "rationale": "VEGFC为NRP2与VEGFR3共享配体，成熟VEGF-C通过C端碱性基序结合NRP2并促进淋巴内皮信号。"
+      },
+      {
+        "target": "VEGFD",
+        "rationale": "VEGFD同属VEGFR3淋巴管生成配体，在肿瘤淋巴转移和淋巴管扩增中与NRP2相关通路存在功能交汇。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

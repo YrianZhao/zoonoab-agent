@@ -1,0 +1,65 @@
+{
+  "gene": "ATP6V1H",
+  "generatedAt": "2026-08-03T10:42:42.848Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ATP6V1H 为胞内液泡型质子泵 V1 结构域亚基，参与 V-ATPase 介导的内体、溶酶体及吞噬体酸化；该过程与 HIV 入侵后内吞体成熟、结核分枝杆菌吞噬体处理及神经退行性疾病中的溶酶体稳态异常相关。该蛋白不具备经典胞外结构域或分泌形式，完整抗体在天然细胞环境中的抗原可及性受限，更适合作为结构生物学验证、胞内递送抗体或研究级功能阻断对象。相较于膜外可及的通路节点，ATP6V1H 的优先级主要来自高分辨率人源 V-ATPase 复合物结构、明确的亚基界面和跨疾病溶酶体酸化机制价值，但治疗性常规抗体开发优先级低于胞外病原受体或细胞表面免疫靶点。",
+    "mechanism": "设计抗体阻断 ATP6V1H 与 V1 外周柄相关亚基的装配界面，干扰 V1-Vo 偶联所需构象稳定性，从而降低 ATP 水解驱动的质子转运效率。",
+    "selectedEpitope": "优先覆盖 ATP6V1H C 端结构域与外周柄接触面，避开高度保守核心折叠区。",
+    "diseaseDirection": "溶酶体酸化与感染相关疾病",
+    "domain": "ATP6V1H 含 N 端亚基相互作用区及 C 端 helical domain，位于 V1 外周柄调控界面。",
+    "evidence": "ATP6V1H 溶酶体酸化通路结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9UI12 functional annotation",
+      "RCSB PDB 6WM2 cryo-EM human V-ATPase structure",
+      "Gene Ontology lysosomal acidification and proton-transporting ATPase complex annotations"
+    ],
+    "referenceEntries": "UniProt Q9UI12；RCSB PDB 6WM2；Open Targets ATP6V1H",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C 端 helical domain 外周柄接触面",
+        "可能阻断 ATP6V1H 参与 V1-Vo 偶联稳定化，具备机制验证价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N 端亚基相互作用区暴露侧",
+        "可用于干扰 V1 复合物装配或构象调节，但需评估复合物遮挡",
+        "备选"
+      ],
+      [
+        "Site C",
+        "保守核心折叠及复合物埋藏界面",
+        "抗原可及性低且存在广泛保守性，易产生非特异结构扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ATP6V1H 为胞内复合物亚基，常规抗体难以进入内体或细胞质环境；建议采用 VHH、胞内抗体或递送体系，并优先进行复合物构象可及性评估。",
+    "structurePrepZh": "以 6WM2 人源 V-ATPase cryo-EM 模型为模板，提取 ATP6V1H 链并保留邻近外周柄亚基用于界面标注，补全缺失环区后进行表面可及性计算。",
+    "structureRef": "RCSB PDB 6WM2，human V-ATPase cryo-EM，3.1 Å",
+    "antibodies": [
+      "无已获批 ATP6V1H 靶向抗体",
+      "研究级抗 ATP6V1H 多克隆抗体"
+    ],
+    "interfaceFocus": "ATP6V1H C 端外周柄装配界面",
+    "designMode": "胞内阻断型设计",
+    "candidates": [
+      {
+        "target": "ATP6V1A",
+        "rationale": "ATP6V1A 为 V1 催化头部核心亚基，直接参与 ATP 水解，处于同一 V-ATPase 介导的溶酶体酸化通路。其功能效应更接近质子泵能量输入端，但胞内可及性同样受限。"
+      },
+      {
+        "target": "ATP6V0A1",
+        "rationale": "ATP6V0A1 属于 Vo 膜内质子转运结构域，参与溶酶体和突触囊泡酸化，与神经退行性疾病相关溶酶体功能障碍处于同一机制轴。其多跨膜结构使传统抗体表位设计需聚焦腔面或胞外/胞内环区。"
+      },
+      {
+        "target": "TCIRG1",
+        "rationale": "TCIRG1 编码 V-ATPase a3 亚基，是溶酶体相关酸化与骨吸收酸化的重要 Vo 组分，属于同一质子泵复合物通路。相较 ATP6V1H，其疾病遗传证据更集中，但组织分布和安全性窗口需严格评估。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

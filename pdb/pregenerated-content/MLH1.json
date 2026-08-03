@@ -1,0 +1,65 @@
+{
+  "gene": "MLH1",
+  "generatedAt": "2026-08-03T14:16:22.884Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MLH1是DNA错配修复通路核心支架蛋白，与PMS2形成MutLα复合物并协调MSH2-MSH6识别后的修复切口与后续DNA合成，胚系或体细胞失活直接驱动Lynch综合征和微卫星不稳定型结直肠癌。MLH1为核内DNA修复蛋白，并非天然分泌蛋白或膜受体，常规体内阻断抗体的抗原可及性受限；其结构化N端ATPase结构域和C端PMS2结合区更适合用于胞内研究抗体、诊断抗体或递送型抗体设计。相较MSH6、PMS2等同通路靶点，MLH1位于MutLα装配与修复执行的枢纽位置，疾病遗传证据强、结构解析度高，优先用于机制表征和伴随诊断抗体开发。",
+    "mechanism": "设计抗体识别MLH1 N端ATPase或C端PMS2结合界面，用于阻断MLH1-PMS2复合物装配或稳定捕获MLH1缺失/错构状态。",
+    "selectedEpitope": "优先覆盖N端ATPase结构域ATP结合邻近环区，备选C端PMS2结合界面非保守外露面。",
+    "diseaseDirection": "Lynch综合征与MSI结直肠癌",
+    "domain": "MLH1含N端GHL ATPase结构域、柔性连接区及C端MutLα二聚化/PMS2结合结构域。",
+    "evidence": "MLH1错配修复缺陷与Lynch综合征证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P40692功能与结构域注释",
+      "RCSB PDB 9P5C晶体结构记录",
+      "ClinVar/OMIM Lynch综合征致病变异记录"
+    ],
+    "referenceEntries": "UniProt P40692；RCSB PDB 9P5C；HGNC:7127",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端ATPase结构域ATP结合邻近环区",
+        "可报告MLH1构象状态并干预ATP依赖性MutLα功能",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端PMS2结合与MutLα二聚化界面外缘",
+        "适合评估MLH1-PMS2复合物装配及错配修复缺陷",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端保守ATP口袋核心残基簇",
+        "高度保守且可能影响构象稳定性，需避免强选择压力或交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MLH1为核内蛋白，体内抗体可及性不足；设计应定位于诊断、细胞内递送或研究级功能阻断，并控制ATPase保守位点交叉反应风险。",
+    "structurePrepZh": "以9P5C高分辨率晶体结构为模板，保留抗原链A/B/C/E，补全缺失柔性环区并标注ATPase与PMS2结合相关界面。",
+    "structureRef": "RCSB PDB 9P5C，X-ray diffraction，1.93 Å",
+    "antibodies": [
+      "G168-728",
+      "ES05"
+    ],
+    "interfaceFocus": "ATPase邻近环区与PMS2结合界面外缘",
+    "designMode": "胞内诊断抗体设计",
+    "candidates": [
+      {
+        "target": "PMS2",
+        "rationale": "PMS2与MLH1形成MutLα复合物，是同一错配修复执行模块的直接结合伙伴；其缺失同样导致Lynch综合征相关肿瘤易感。"
+      },
+      {
+        "target": "MSH2",
+        "rationale": "MSH2与MSH6组成MutSα复合物，负责识别碱基错配并招募MLH1-PMS2；在MSI结直肠癌和Lynch综合征中具有明确致病关联。"
+      },
+      {
+        "target": "MSH6",
+        "rationale": "MSH6参与MutSα识别单碱基错配和小插入缺失环，是MLH1上游同通路关键因子；其致病变异可产生错配修复缺陷表型。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

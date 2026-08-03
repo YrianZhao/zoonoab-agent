@@ -1,0 +1,65 @@
+{
+  "gene": "HSBP1",
+  "generatedAt": "2026-08-03T13:17:47.460Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HSBP1为胞内热休克转录因子结合蛋白，主要通过与HSF1相互作用抑制热休克反应相关转录活性，其疾病关联集中于神经退行性疾病与蛋白稳态应激背景。该蛋白缺乏分泌信号肽、跨膜区或稳定胞外结构域，天然抗原可及性不支持常规体内中和抗体开发，更适合细胞内抗体、递送型Fab/VHH或机制验证型分子设计。相较HSP90AA1、HSPA1A等高度保守且系统性必需的伴侣蛋白，HSBP1处于HSF1负反馈调节节点，理论上具有更明确的通路定位，但成药优先级受胞内可及性限制。",
+    "mechanism": "设计分子应阻断HSBP1螺旋卷曲三聚体表面与HSF1调控区的结合，从而削弱HSBP1介导的HSF1转录抑制作用。",
+    "selectedEpitope": "优先覆盖HSBP1螺旋卷曲结构域三聚体外侧的HSF1结合相关疏水/带电界面。",
+    "diseaseDirection": "蛋白稳态应激与神经退行性疾病",
+    "domain": "HSBP1为小型胞内蛋白，核心为α螺旋卷曲结构域，可形成平行三聚体装配界面。",
+    "evidence": "HSBP1-HSF1热休克反应调控证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB O75506 functional annotation",
+      "RCSB PDB 3CI9 crystal structure",
+      "PubMed literature on HSBP1 regulation of HSF1"
+    ],
+    "referenceEntries": "UniProt O75506；RCSB PDB 3CI9；Ensembl ENSG00000160447",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "螺旋卷曲三聚体外侧HSF1结合相关界面",
+        "直接干预HSBP1-HSF1相互作用，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "三聚体端部暴露螺旋面",
+        "有利于获得构象识别分子，可辅助稳定或扰动寡聚状态",
+        "备选"
+      ],
+      [
+        "Site C",
+        "三聚体核心疏水装配界面",
+        "界面埋藏且构象依赖强，抗体可及性与选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HSBP1为胞内非膜蛋白，体内抗体可及性为主要风险；应优先采用细胞内VHH、递送型抗体或体外机制验证体系，并避免将其定位为常规胞外中和靶点。",
+    "structurePrepZh": "以3CI9晶体结构A、B链为模板，补全缺失残基并评估生物学装配体；保留螺旋卷曲三聚体构象用于界面映射与表位聚类。",
+    "structureRef": "RCSB PDB 3CI9，X-ray diffraction，1.8 Å",
+    "antibodies": [
+      "无已获批HSBP1治疗性抗体",
+      "无临床阶段HSBP1同类抗体"
+    ],
+    "interfaceFocus": "HSBP1螺旋卷曲外侧HSF1结合面",
+    "designMode": "胞内阻断型VHH",
+    "candidates": [
+      {
+        "target": "HSF1",
+        "rationale": "HSF1是热休克反应核心转录因子，直接驱动HSPA、HSPB等伴侣蛋白表达；其与HSBP1处于同一蛋白稳态应激调控轴。"
+      },
+      {
+        "target": "HSP90AA1",
+        "rationale": "HSP90AA1参与HSF1伴侣复合物调控，并在蛋白折叠应激与神经退行性疾病相关通路中具有明确作用。"
+      },
+      {
+        "target": "HSPA1A",
+        "rationale": "HSPA1A为HSF1诱导的主要热休克蛋白之一，反映下游蛋白稳态保护反应，可作为同通路功能调节候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

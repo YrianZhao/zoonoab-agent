@@ -1,0 +1,65 @@
+{
+  "gene": "GGA3",
+  "generatedAt": "2026-08-03T12:45:39.317Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GGA3 是网格蛋白适配运输相关的胞质蛋白，参与 TGN/内体间货物分选，并可通过调节 BACE1 溶酶体转运影响淀粉样前体蛋白加工，因而与神经退行性疾病存在机制相关性。该蛋白缺乏跨膜段和分泌形式，抗原天然可及性弱，仅适合作为胞内抗体、递送型抗体片段或研究级功能阻断模型。相较于 APP、BACE1 等直接病理节点，GGA3 的临床遗传关联强度较低，但其 VHS-GAT 货物识别模块具有明确结构基础，可作为内吞分选通路机制验证的优先探索靶点。",
+    "mechanism": "设计抗体片段阻断 GGA3 VHS 结构域与 acidic-cluster dileucine 货物基序结合，干扰 BACE1 向溶酶体分选并评估 APP 加工变化。",
+    "selectedEpitope": "优先覆盖 VHS 结构域货物肽结合沟槽及邻近保守碱性残基界面。",
+    "diseaseDirection": "神经退行性疾病与内体分选",
+    "domain": "GGA3 含 N 端 VHS、ARF 结合 GAT、铰链区及 C 端 GAE 结构域。",
+    "evidence": "GGA3-BACE1内体分选结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt Q9NZ52 蛋白功能注释",
+      "RCSB PDB 1JUQ X射线晶体结构",
+      "内体-溶酶体分选与BACE1降解文献"
+    ],
+    "referenceEntries": "UniProt Q9NZ52；RCSB PDB 1JUQ；HGNC GGA3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "VHS结构域货物肽结合沟槽",
+        "可直接阻断酸性簇-双亮氨酸基序识别，适合功能阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "GAT结构域ARF结合表面",
+        "可干扰GGA3向TGN膜募集，但需避免广泛影响ARF依赖运输",
+        "备选"
+      ],
+      [
+        "Site C",
+        "GAE结构域辅助蛋白结合界面",
+        "可能影响clathrin相关装配，功能多效性和脱靶风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GGA3 为胞内运输适配蛋白，常规抗体难以到达作用位点；建议采用胞内表达Fab/VHH或递送系统，并设置GGA1/GGA2选择性评估。",
+    "structurePrepZh": "以1JUQ晶体结构解析VHS结构域构象，补全缺失环区并去除非目标链；结合货物肽复合物信息标定结合沟槽。",
+    "structureRef": "RCSB PDB 1JUQ；GGA VHS结构域晶体学研究",
+    "antibodies": [
+      "研究级抗GGA3抗体",
+      "胞内VHH候选片段"
+    ],
+    "interfaceFocus": "VHS货物肽沟槽与GAT-ARF结合面",
+    "designMode": "胞内阻断型",
+    "candidates": [
+      {
+        "target": "BACE1",
+        "rationale": "BACE1 是 APP β位点切割酶，位于同一淀粉样蛋白生成通路下游效应节点。靶向其胞外催化结构域可直接降低Aβ生成。"
+      },
+      {
+        "target": "APP",
+        "rationale": "APP 是淀粉样蛋白前体，受内体分选和BACE1切割共同影响。抗体可识别胞外Aβ区域或构象表位，用于调节加工与清除。"
+      },
+      {
+        "target": "SORL1",
+        "rationale": "SORL1 参与 APP 从内体向高尔基体回收，属于同一内体分选-淀粉样蛋白代谢轴。增强或稳定其配体结合功能具有明确疾病机制依据。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

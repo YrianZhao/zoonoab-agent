@@ -1,0 +1,65 @@
+{
+  "gene": "PLCG2",
+  "generatedAt": "2026-08-03T15:20:43.021Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PLCG2 是 B 细胞受体、Fc 受体及血小板 GPVI 信号下游的脂肪酶效应分子，获得性功能突变可导致抗体缺陷、免疫失调及自炎症表型。该蛋白主要为胞内酶，天然抗原可及性弱，但 PDB 2W2X 提供了调控核心结构，可支持构象稳定型胞内递送抗体或研究级抑制抗体设计。相较上游多受体靶点，PLCG2 位于多条免疫受体通路的汇聚节点，遗传疾病证据强，适合作为机制验证优先靶点。",
+    "mechanism": "设计抗体结合 PLCG2 nSH2-cSH2 调控模块，稳定自抑制构象，阻断磷酸化受体适配体与 SH2 结构域结合及 PLCG2 膜募集。",
+    "selectedEpitope": "优先覆盖 nSH2/cSH2 磷酸酪氨酸结合沟槽及其与催化核心的调控界面。",
+    "diseaseDirection": "原发免疫缺陷与自炎症",
+    "domain": "PLCG2 含 PH、EF hand、催化 X/Y、分裂 PH、nSH2、cSH2 与 SH3 调控结构域。",
+    "evidence": "PLCG2 遗传免疫失调与结构调控证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt P16885 功能与结构域注释",
+      "RCSB PDB 2W2X X 射线晶体结构",
+      "OMIM/Orphanet PLCG2 相关抗体缺陷与免疫失调记录"
+    ],
+    "referenceEntries": "UniProt P16885；RCSB PDB 2W2X；Open Targets PLCG2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "nSH2/cSH2 磷酸酪氨酸识别沟槽",
+        "直接干预受体磷酸化基序结合与膜募集",
+        "优先"
+      ],
+      [
+        "Site B",
+        "cSH2 与催化核心邻近调控界面",
+        "稳定自抑制状态，降低构象激活概率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SH3 结构域外露环区",
+        "可能影响蛋白互作但与催化激活耦合较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PLCG2 为胞内蛋白，常规体内抗体难以到达作用位点；应优先定位为胞内递送抗体、细胞内抗体或结构验证工具，并规避高度保守催化区交叉反应。",
+    "structurePrepZh": "以 2W2X 的人源 PLCG2 调控结构域为模板，检查链 A-D 构象一致性，补全缺失环区并保留 SH2 口袋关键残基用于对接约束。",
+    "structureRef": "RCSB PDB 2W2X，X-ray diffraction，2.3 Å",
+    "antibodies": [
+      "抗-PLCG2 研究级单克隆抗体",
+      "抗-PLCγ2 磷酸化位点抗体"
+    ],
+    "interfaceFocus": "nSH2/cSH2 受体磷酸肽结合界面",
+    "designMode": "胞内调控抗体设计",
+    "candidates": [
+      {
+        "target": "BTK",
+        "rationale": "BTK 位于 BCR 信号中 PLCG2 上游，直接磷酸化并促进 PLCG2 激活；其药物可及性与临床验证程度较高。"
+      },
+      {
+        "target": "BLNK",
+        "rationale": "BLNK 是 BCR 信号支架蛋白，招募 BTK 与 PLCG2 形成激活复合体；干预该节点可影响 PLCG2 的定位与磷酸化。"
+      },
+      {
+        "target": "SYK",
+        "rationale": "SYK 介导 ITAM 受体早期磷酸化信号并驱动 BLNK-BTK-PLCG2 轴，是免疫受体信号放大的关键上游激酶。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

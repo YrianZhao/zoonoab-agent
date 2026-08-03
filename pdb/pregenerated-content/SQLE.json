@@ -1,0 +1,65 @@
+{
+  "gene": "SQLE",
+  "generatedAt": "2026-08-03T16:54:07.786Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SQLE是胆固醇生物合成通路中将squalene氧化为2,3-氧化鲨烯的关键限速酶，上游脂质代谢失衡与神经退行性疾病、阿尔茨海默病及帕金森病的膜脂稳态异常具有明确关联。其蛋白位于内质网膜并具有可被抗体设计覆盖的胞质侧催化区与跨膜邻近界面，尽管并非经典胞外靶点，但在细胞内递送或胞内抗体框架下具有直接可干预性。相较同通路中HMGCR等更上游靶点，SQLE位于胆固醇合成的关键分流节点，抑制后可更直接降低甾醇积累且避免更广泛的甲羟戊酸支路扰动，因此具备更清晰的通路选择性与优先级。",
+    "mechanism": "结合催化口袋及底物通道，阻断squalene进入并抑制其向2,3-氧化鲨烯的单加氧反应，降低甾醇合成通量。",
+    "selectedEpitope": "优先覆盖催化核心口袋入口与底物通道门控区，避免仅接触表面疏水补丁。",
+    "diseaseDirection": "神经退行性疾病/脂质代谢",
+    "domain": "内质网膜相关单加氧酶催化区与底物通道核心界面",
+    "evidence": "SQLE疾病关联与结构抗原证据包",
+    "evidenceSources": [
+      "Open Targets Platform",
+      "UniProt: Q14534",
+      "RCSB PDB: 6C6N",
+      "Protein Data Bank experimental structure"
+    ],
+    "referenceEntries": "UniProt Q14534; RCSB PDB 6C6N; human SQLE; X-ray 2.3 A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化口袋入口/底物通道门控区",
+        "优先封闭squalene进入路径，利于直接抑制酶活",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FAD邻近辅助界面",
+        "可干扰氧化反应构象耦联，但需避免影响过广",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远端表面环区",
+        "适合提高结合稳定性，但对功能抑制贡献有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SQLE为膜相关胞内酶，常规外周抗体可及性有限，需优先采用胞内递送、纳米抗体或可穿膜格式；同时应避免与FAD结合稳定性区域过度重叠导致非特异构象扰动。",
+    "structurePrepZh": "基于6C6N去除晶体接触干扰，保留A/B链功能性界面，按膜蛋白方向重建催化区取向并标注底物通道残基。",
+    "structureRef": "PDB 6C6N; human SQLE crystal structure",
+    "antibodies": [
+      "暂无成熟临床同类抗体",
+      "SQLE研究型抑制性抗体/纳米抗体概念体"
+    ],
+    "interfaceFocus": "底物通道入口、催化口袋边缘",
+    "designMode": "intracellular-enzyme blockade",
+    "candidates": [
+      {
+        "target": "HMGCR",
+        "rationale": "同属胆固醇生物合成通路的上游限速节点，适合作为并行通路验证对象。其抑制可与SQLE形成机制对照，用于界定胆固醇依赖性表型。"
+      },
+      {
+        "target": "SREBF2",
+        "rationale": "作为甾醇稳态转录调控核心因子，与SQLE构成反馈环路。干预该靶点可用于评估SQLE抑制后代偿性转录上调的通路影响。"
+      },
+      {
+        "target": "NPC1",
+        "rationale": "参与胆固醇细胞内转运并与甾醇稳态密切相关，适合作为同疾病脂质失衡网络中的功能关联靶点。其扰动可辅助解析SQLE相关代谢重编程。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

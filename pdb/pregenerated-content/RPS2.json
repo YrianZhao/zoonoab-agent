@@ -1,0 +1,65 @@
+{
+  "gene": "RPS2",
+  "generatedAt": "2026-08-03T16:12:39.262Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RPS2为40S核糖体小亚基核心蛋白，参与mRNA解码平台与翻译起始复合体稳定，在病毒感染中可影响宿主翻译资源占用及病毒蛋白合成。该蛋白主要定位于胞质核糖体并缺乏天然胞外结构域，抗原可及性不支持常规体内阻断型抗体开发，更适合细胞内递送抗体或研究级结构探针。相比同通路中EIF4E、RPS6等节点，RPS2具有明确核糖体结构坐标和保守复合体界面，但因胞内必需性与广泛表达，治疗优先级应低于具有胞外可及性的疾病靶点。",
+    "mechanism": "设计抗体应结合RPS2暴露螺旋与邻近rRNA接触面，干扰其在40S小亚基中的装配或构象稳定，而非阻断胞外配体受体相互作用。",
+    "selectedEpitope": "优先选择RPS2 N端延伸区及表面α螺旋邻近40S外侧暴露面，避开深埋rRNA结合核心。",
+    "diseaseDirection": "病毒感染与翻译调控研究",
+    "domain": "RPS2为40S核糖体小亚基蛋白，含N端延伸区、中央α/β核心及与18S rRNA接触界面。",
+    "evidence": "RPS2核糖体结构与感染关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与关联评分",
+      "UniProt P15880蛋白定位与功能注释",
+      "RCSB PDB 5VYC人源核糖体结构",
+      "Reactome真核翻译与核糖体装配通路"
+    ],
+    "referenceEntries": "UniProt:P15880；RCSB PDB:5VYC；Reactome:Translation",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端延伸区与40S外侧可及表面",
+        "利于获得识别天然核糖体构象的结构探针，空间可及性相对较高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "中央α螺旋表面暴露片段",
+        "可用于构象选择性结合并评估RPS2在40S装配中的局部稳定作用",
+        "备选"
+      ],
+      [
+        "Site C",
+        "18S rRNA深埋结合核心界面",
+        "高度保守且可及性低，可能影响基础翻译并带来显著细胞毒性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RPS2为胞内必需核糖体蛋白，常规抗体难以到达作用位点；设计应限定为细胞内递送、Fab结构探针或体外功能验证，避免宣称系统性阻断治疗用途。",
+    "structurePrepZh": "5VYC分辨率为6.0 Å，应采用核糖体复合体坐标进行链映射、缺失区校正与rRNA邻近界面标注，并以AlphaFold模型辅助局部表位定义。",
+    "structureRef": "PDB 5VYC：人源80S核糖体X射线结构，6.0 Å",
+    "antibodies": [
+      "Anti-RPS2 clone EPR10826",
+      "Anti-RPS2 clone 3B3"
+    ],
+    "interfaceFocus": "40S外侧暴露面及18S rRNA邻近界面",
+    "designMode": "胞内结构探针设计",
+    "candidates": [
+      {
+        "target": "EIF4E",
+        "rationale": "EIF4E介导mRNA 5′ cap识别并控制翻译起始，是病毒蛋白合成和宿主翻译重编程中的关键节点。其功能界面较RPS2更接近可药性调控位点。"
+      },
+      {
+        "target": "RPS6",
+        "rationale": "RPS6同属40S小亚基并受mTOR通路磷酸化调控，连接营养信号、翻译效率和感染应答。其疾病研究证据较丰富，可作为核糖体功能调控的平行靶点。"
+      },
+      {
+        "target": "EIF2S1",
+        "rationale": "EIF2S1是eIF2复合体α亚基，参与应激诱导翻译抑制与病毒感染中的宿主抗病毒反应。其磷酸化状态直接影响起始tRNA递送和全局翻译控制。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

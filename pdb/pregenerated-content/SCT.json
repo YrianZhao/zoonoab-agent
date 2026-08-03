@@ -1,0 +1,65 @@
+{
+  "gene": "SCT",
+  "generatedAt": "2026-08-03T21:08:28.044Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SCT编码分泌素前体，其成熟肽通过结合SCTR激活Gs-cAMP信号，参与胰腺外分泌、胆汁分泌、胃酸抑制及代谢调节，疾病关联集中于2型糖尿病、肺纤维化及胆管癌等方向。成熟分泌素为可溶性循环肽，抗原可及性优于多数胞内代谢调节因子，适合通过抗体捕获阻断配体-受体结合。相较SCTR等七跨膜受体，SCT结构短、关键结合面清晰，工程化抗体可直接中和配体活性并降低膜蛋白制备复杂度。Open Targets关联分值整体偏低，宜作为机制验证型优先靶点而非高确定性临床靶点。",
+    "mechanism": "抗体结合成熟分泌素N端受体识别面，阻断SCT与SCTR胞外结构域及跨膜口袋的配体结合，从而抑制SCTR介导的Gs-cAMP激活。",
+    "selectedEpitope": "优先覆盖成熟分泌素N端α螺旋受体结合面及N端His-Ser-Asp基序邻近区域。",
+    "diseaseDirection": "代谢疾病与纤维化相关通路",
+    "domain": "SCT为分泌型前体蛋白，经加工生成27 aa成熟分泌素肽，属于胰高血糖素/分泌素肽家族。",
+    "evidence": "SCT-SCTR轴疾病关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt P09683分泌素条目",
+      "RCSB PDB 6WZG冷冻电镜结构",
+      "GPCRdb/Class B1 GPCR配体结合注释"
+    ],
+    "referenceEntries": "UniProt: P09683; RCSB PDB: 6WZG; SCTR: P47872",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "成熟分泌素N端1-10位受体激活核心",
+        "直接干预SCTR识别与激活，最符合中和抗体设计目标",
+        "优先"
+      ],
+      [
+        "Site B",
+        "成熟肽中段α螺旋疏水受体接触面",
+        "可增强配体遮蔽并提高复合物稳定性，适合作为扩展结合面",
+        "备选"
+      ],
+      [
+        "Site C",
+        "前体蛋白信号肽或C端加工肽区域",
+        "不代表循环成熟活性肽，可能产生非功能性结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "成熟分泌素肽段较短，线性表位可能与VIP、PACAP、GIP、GLP-1等同家族肽存在局部相似性；需强化SCT特异残基识别并避免交叉中和。",
+    "structurePrepZh": "以6WZG中SCT-SCTR-G蛋白复合物提取成熟SCT肽链，保留受体接触构象，去除非目标G蛋白链并标注N端受体嵌入口袋界面。",
+    "structureRef": "RCSB PDB 6WZG，SCTR-Gs-Secretin复合物冷冻电镜结构",
+    "antibodies": [
+      "抗分泌素中和抗体",
+      "抗SCTR阻断抗体"
+    ],
+    "interfaceFocus": "SCT N端激活段与SCTR跨膜结合口袋",
+    "designMode": "配体中和型",
+    "candidates": [
+      {
+        "target": "SCTR",
+        "rationale": "SCTR为SCT的同源受体，直接介导SCT诱导的Gs-cAMP信号。靶向SCTR胞外域或配体入口可实现受体侧阻断。"
+      },
+      {
+        "target": "ADCYAP1",
+        "rationale": "ADCYAP1编码PACAP，属于同一Class B1 GPCR肽激素网络，可通过PAC1、VPAC1和VPAC2受体调控cAMP信号。其通路与分泌素轴在神经内分泌和代谢调控中存在功能交叉。"
+      },
+      {
+        "target": "VIP",
+        "rationale": "VIP为分泌素/胰高血糖素肽家族成员，经VPAC1和VPAC2激活Gs-cAMP信号。该靶点适合作为同类肽激素通路中的选择性与交叉反应性比较对象。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

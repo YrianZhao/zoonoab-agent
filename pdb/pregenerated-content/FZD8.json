@@ -1,0 +1,65 @@
+{
+  "gene": "FZD8",
+  "generatedAt": "2026-08-03T12:40:08.518Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FZD8 是 Wnt/β-catenin 与非经典 Wnt 信号的七次跨膜受体，胞外半胱氨酸富集结构域可结合脂修饰 Wnt 配体，参与生殖系统发育、组织纤维化及肿瘤相关 Wnt 通路异常。其 N 端 CRD 位于细胞外，具有明确配体结合口袋和晶体结构支撑，适合开展阻断型抗体设计。相较于胞内通路因子 CTNNB1 或 GSK3B，FZD8 具备更高抗原可及性；相较多个 FZD 同源受体，FZD8 可围绕 CRD 特异性环区进行选择性工程化，因此具备较高设计优先级。",
+    "mechanism": "抗体结合 FZD8 胞外 CRD，阻断 Wnt 配体棕榈油酰基插入 CRD 疏水沟槽并限制 FZD8 与 LRP5/6 共受体复合物形成。",
+    "selectedEpitope": "优先覆盖 CRD 的 Wnt 脂酰基结合沟槽及相邻 FZD8 特异性环区。",
+    "diseaseDirection": "Wnt通路相关生殖与肿瘤疾病",
+    "domain": "FZD8 含 N 端胞外 CRD、七次跨膜螺旋及胞内 C 端 PDZ 结合基序。",
+    "evidence": "FZD8-Wnt配体识别与CRD结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProtKB Q9H461 功能与结构域注释",
+      "RCSB PDB 6NDZ 晶体结构条目",
+      "Wnt-Frizzled CRD 配体结合结构研究"
+    ],
+    "referenceEntries": "UniProt Q9H461；RCSB PDB 6NDZ；HGNC FZD8",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CRD疏水配体结合沟槽",
+        "直接竞争 Wnt 脂酰基结合，阻断受体激活",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CRD外侧FZD8特异性环区",
+        "提升受体亚型选择性并降低同源FZD交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "CRD保守二硫键核心邻近面",
+        "结构稳定性敏感且同源保守性高，需控制亲和力与交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FZD家族CRD保守性较高，需避开高度保守二硫键核心并强化FZD8特异性环区识别，同时评估Wnt通路生理稳态抑制风险。",
+    "structurePrepZh": "以6NDZ中FZD8胞外CRD链为模板，保留二硫键与关键钙离子/糖基化注释，去除非抗原链后进行质子化、缺失环建模与表面可及性评估。",
+    "structureRef": "RCSB PDB 6NDZ，X-ray diffraction，2.264 Å",
+    "antibodies": [
+      "OMP-18R5",
+      "Ipafricept"
+    ],
+    "interfaceFocus": "CRD疏水沟槽与FZD8特异性环区",
+    "designMode": "阻断型Fab/VHH设计",
+    "candidates": [
+      {
+        "target": "WNT4",
+        "rationale": "WNT4 是女性生殖系统发育和卵巢功能相关的 Wnt 配体，可通过 Frizzled 受体参与组织分化信号；与FZD8同属Wnt配体-受体轴。"
+      },
+      {
+        "target": "LRP6",
+        "rationale": "LRP6 是经典 Wnt/β-catenin 信号的共受体，参与 Wnt-FZD-LRP6 三元复合物形成；靶向该节点可从共受体层面抑制通路激活。"
+      },
+      {
+        "target": "RSPO1",
+        "rationale": "RSPO1 通过增强 Frizzled/LRP 受体可用性放大 Wnt 信号，并与女性生殖发育异常存在明确遗传关联；适合作为同通路调节候选靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

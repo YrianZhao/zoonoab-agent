@@ -1,0 +1,65 @@
+{
+  "gene": "QRFP",
+  "generatedAt": "2026-08-03T15:47:07.668Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "QRFP编码前体肽，经加工形成QRFP-26/43等酰胺化神经肽，可激活GPR103/QRFPR并影响摄食、能量稳态、神经内分泌及疼痛相关轴线。其成熟肽为分泌型配体，抗体可直接识别循环或局部释放肽段，抗原可及性优于多跨膜GPCR本体。相较直接靶向QRFPR，配体中和策略可降低跨膜受体构象异质性带来的筛选复杂度，并适合围绕8ZH8配体-受体复合物解析结合界面。",
+    "mechanism": "中和抗体结合QRFP成熟肽C端RFamide识别面，阻断QRFP与QRFPR正构配体结合口袋的相互作用，抑制受体激活。",
+    "selectedEpitope": "优先覆盖成熟QRFP肽C端RFamide基序及邻近疏水残基，避开前体非成熟区。",
+    "diseaseDirection": "代谢-神经内分泌与疼痛调控",
+    "domain": "QRFP为分泌型神经肽前体，成熟活性肽段位于前体加工区，C端含保守RFamide酰胺化基序。",
+    "evidence": "QRFP-QRFPR配体识别与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P83859功能与加工注释",
+      "RCSB PDB 8ZH8冷冻电镜结构",
+      "IUPHAR/BPS Guide to Pharmacology配体-受体注释"
+    ],
+    "referenceEntries": "UniProt P83859；RCSB PDB 8ZH8；QRFPR受体通路注释",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "成熟QRFP肽C端RFamide及邻近受体插入口袋残基",
+        "直接阻断QRFPR正构识别，机制最清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "成熟肽中段参与受体胞外前庭接触的疏水/带电面",
+        "增强配体捕获并减少游离肽构象逃逸",
+        "备选"
+      ],
+      [
+        "Site C",
+        "前体肽N端非成熟加工区域",
+        "可能不覆盖主要活性配体，功能中和相关性较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "成熟QRFP肽分子量小且柔性高，单独免疫原性与构象固定性有限；建议采用载体偶联或结构约束肽段，并严控与其他RFamide肽交叉反应。",
+    "structurePrepZh": "以8ZH8中QRFP-QRFPR复合物为模板，保留配体链与受体结合口袋接触残基，补全氢原子并评估RFamide末端酰胺化状态。",
+    "structureRef": "RCSB PDB 8ZH8，human QRFPR-G蛋白复合物冷冻电镜结构",
+    "antibodies": [
+      "抗QRFP中和抗体（同类研究级）",
+      "抗NPFF/RFamide肽类抗体（交叉反应评估参照）"
+    ],
+    "interfaceFocus": "QRFP C端RFamide-QRFPR正构口袋界面",
+    "designMode": "分泌肽中和",
+    "candidates": [
+      {
+        "target": "QRFPR",
+        "rationale": "QRFPR为QRFP的同源受体，直接介导QRFP诱导的GPCR信号转导。靶向受体胞外环或正构口袋可作为配体中和之外的同通路拮抗策略。"
+      },
+      {
+        "target": "NPFF",
+        "rationale": "NPFF属于RFamide神经肽系统，与疼痛调控和神经内分泌轴相关。其C端RFamide基序提供同类肽能通路的选择性与交叉反应风险参照。"
+      },
+      {
+        "target": "NPBWR1",
+        "rationale": "NPBWR1为神经肽B/W受体，参与摄食、能量稳态和神经内分泌调节。该GPCR轴与QRFP-QRFPR在代谢和中枢调控方向上具有通路邻近性。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "GRPR",
+  "generatedAt": "2026-08-03T19:18:04.260Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GRPR是胃泌素释放肽GRP/neuromedin B相关神经肽轴中的G蛋白偶联受体，配体结合后可驱动Gq/11-PLCβ-Ca2+信号并促进肿瘤细胞增殖、迁移和神经内分泌样表型。该靶点为七跨膜膜受体，N端胞外段及三个胞外环可被抗体接近，适合构建配体阻断型或构象稳定型抗体。相较于下游MAPK、PI3K等胞内节点，GRPR具备肿瘤相关表达、膜表面可及性和配体-受体界面可干预性，优先级更高。",
+    "mechanism": "抗体结合GRPR胞外配体入口与ECL2区域，阻断GRP进入正构结合口袋，从而抑制Gq/11介导的PLCβ激活、Ca2+释放及下游ERK信号。",
+    "selectedEpitope": "优先靶向N端胞外段-ECL2构成的配体入口边缘，兼顾TM3/TM5/TM6顶部构象约束。",
+    "diseaseDirection": "肿瘤与神经内分泌肿瘤方向",
+    "domain": "A类GPCR七跨膜结构，含胞外N端、ECL1-ECL3及正构肽配体结合腔。",
+    "evidence": "GRPR肿瘤关联与结构可及性证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联证据",
+      "UniProt P30550功能与拓扑注释",
+      "RCSB PDB 7W41实验结构记录",
+      "GPCRdb受体结构域与保守位点注释"
+    ],
+    "referenceEntries": "UniProt P30550；RCSB PDB 7W41；GPCRdb GRPR_HUMAN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端胞外段与ECL2形成的配体入口",
+        "直接覆盖GRP进入正构口袋的通道，利于获得竞争性拮抗抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ECL1-ECL2及TM3/TM5胞外端邻近界面",
+        "可限制受体活化构象转换，并降低完全依赖配体竞争的风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ECL3与TM6/TM7胞外端区域",
+        "可能影响受体活化后构象，但靠近柔性环区且亚型选择性需严格评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GRPR与NMBR、BRS3同属bombesin受体家族，胞外口袋存在同源性；设计需避开高度保守跨膜核心，重点验证亚型选择性和激动样构象风险。",
+    "structurePrepZh": "以7W41链A为结构模板，补全缺失胞外环并保留受体活化相关构象注释；去除非抗原组分后进行膜法向校准、糖基化位点标注和胞外可及性评估。",
+    "structureRef": "RCSB PDB 7W41，human GRPR X-ray structure，2.952 Å",
+    "antibodies": [
+      "GRPR特异性研究级单克隆抗体",
+      "GRPR靶向放射免疫/成像抗体片段"
+    ],
+    "interfaceFocus": "GRP结合入口、ECL2顶端与TM6胞外端",
+    "designMode": "配体阻断型Fab/VHH设计",
+    "candidates": [
+      {
+        "target": "GRP",
+        "rationale": "GRP是GRPR的内源性肽配体，直接驱动GRPR介导的Gq/11-PLCβ信号；中和GRP可从配体端抑制同一促增殖轴。"
+      },
+      {
+        "target": "NMBR",
+        "rationale": "NMBR是bombesin样肽受体家族成员，可响应neuromedin B并与GRPR共享相近的神经肽信号网络；在肿瘤神经内分泌相关通路中具有并行干预价值。"
+      },
+      {
+        "target": "BRS3",
+        "rationale": "BRS3属于同一bombesin受体亚家族，结构上与GRPR相近并参与相关GPCR信号输出；可作为家族选择性评估和联合靶向策略的候选靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

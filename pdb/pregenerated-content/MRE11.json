@@ -1,0 +1,65 @@
+{
+  "gene": "MRE11",
+  "generatedAt": "2026-08-03T14:19:38.200Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MRE11是MRN复合体的核心核酸酶，与RAD50和NBN共同识别DNA双链断裂并启动ATM依赖性损伤应答，胚系缺陷与共济失调样疾病、遗传性肿瘤易感和乳腺卵巢癌风险相关。该蛋白主要定位于细胞核，天然抗原可及性不如膜受体或分泌蛋白，抗体设计更适合采用胞内递送、研究级阻断或结构验证场景。相较ATM等大型激酶，MRE11具有高分辨率结构、明确的RAD50结合界面和核酸酶活性沟槽，可形成更清晰的结构约束型优先设计靶点。",
+    "mechanism": "通过抗体占据MRE11核酸酶结构域或RAD50结合界面，阻断DNA断端结合、MRE11-RAD50装配及MRN复合体介导的ATM激活。",
+    "selectedEpitope": "优先覆盖N端磷酸二酯酶样核酸酶结构域的DNA结合沟槽，并避开催化金属离子保守残基。",
+    "diseaseDirection": "DNA损伤修复与遗传性肿瘤易感",
+    "domain": "MRE11含N端磷酸二酯酶样核酸酶结构域、capping结构域及C端RAD50/NBN相互作用区域。",
+    "evidence": "MRE11-MRN复合体与肿瘤易感证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt功能与变异注释",
+      "RCSB PDB 8K00晶体结构",
+      "ClinVar与OMIM胚系变异证据"
+    ],
+    "referenceEntries": "UniProt P49959；RCSB PDB 8K00；Open Targets MRE11",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端核酸酶结构域DNA结合沟槽邻近区域",
+        "可干扰DNA断端结合与切除起始，机制指向明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RAD50相互作用界面邻近表面",
+        "可削弱MRN复合体装配，适合界面阻断型抗体设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化金属离子结合中心周围保守区域",
+        "功能关键但保守性高，存在交叉反应和构象扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MRE11为核内蛋白，体内抗体可及性受限；催化中心保守且带电，应优先选择可接近的非催化界面并评估胞内递送策略。",
+    "structurePrepZh": "以8K00的A、B链为抗原模板，保留高置信二聚体界面，检查缺失环区、金属离子和晶体接触后再进行表位建模。",
+    "structureRef": "RCSB PDB 8K00，X射线晶体结构，1.4 Å",
+    "antibodies": [
+      "anti-MRE11 clone 12D7",
+      "anti-MRE11 clone 31H4"
+    ],
+    "interfaceFocus": "核酸酶沟槽与RAD50结合界面",
+    "designMode": "胞内靶点阻断",
+    "candidates": [
+      {
+        "target": "RAD50",
+        "rationale": "RAD50与MRE11共同构成MRN复合体，其ATPase头部和coiled-coil结构参与DNA断裂端桥接，是同一双链断裂识别通路的直接功能伙伴。"
+      },
+      {
+        "target": "NBN",
+        "rationale": "NBN负责MRN复合体募集和ATM信号放大，NBN缺陷同样与染色体不稳定和肿瘤易感相关，可作为MRN装配调控方向的候选靶点。"
+      },
+      {
+        "target": "ATM",
+        "rationale": "ATM由MRN复合体在DNA双链断裂位点激活，介导H2AX、CHK2和p53磷酸化，是MRE11相关疾病通路的下游核心激酶。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

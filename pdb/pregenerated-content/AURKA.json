@@ -1,0 +1,65 @@
+{
+  "gene": "AURKA",
+  "generatedAt": "2026-08-03T10:43:14.767Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "AURKA 是有丝分裂纺锤体装配、中心体成熟和染色体分离的丝氨酸/苏氨酸激酶，异常活化可驱动细胞周期失衡并与多种肿瘤及神经退行性病理中的细胞应激轴相关。该蛋白主要定位于细胞质、中心体和纺锤体，并非典型分泌蛋白或细胞表面受体，天然抗原可及性弱于膜受体类靶点，抗体策略更适合采用胞内递送抗体、降解型抗体偶联平台或研究级构象探针。相较于同类有丝分裂激酶，AURKA 拥有高分辨率催化结构与明确的激活环构象信息，便于开展结构约束型表位设计，但作为常规治疗性抗体主靶点的优先级低于胞外可及靶点。",
+    "mechanism": "抗体构象探针可结合 AURKA 激酶结构域激活环邻近区域，限制 Thr288 磷酸化相关活化构象并干扰 TPX2 诱导的催化稳定化。",
+    "selectedEpitope": "优先评估激酶结构域 N-lobe/C-lobe 交界及激活环邻近非 ATP 口袋表位。",
+    "diseaseDirection": "细胞周期异常与神经退行性疾病",
+    "domain": "AURKA 含 N 端调控区和 C 端蛋白激酶结构域，1MQ4 覆盖催化核心构象。",
+    "evidence": "AURKA 结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProtKB O14965 功能与定位注释",
+      "RCSB PDB 1MQ4 X-ray 晶体结构",
+      "Reactome 细胞周期与有丝分裂通路注释"
+    ],
+    "referenceEntries": "UniProt O14965；RCSB PDB 1MQ4；Reactome AURKA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域激活环及 Thr288 邻近构象面",
+        "可用于识别活化状态并限制催化构象稳定化",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N-lobe αC 螺旋与 C-lobe 交界表面",
+        "有利于干扰 TPX2 结合后诱导的活性构象重排",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP 结合裂隙周边保守催化口袋",
+        "保守性高且易影响选择性，需避免与 AURKB/AURKC 交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "AURKA 为胞内激酶，常规抗体难以接触天然抗原；设计应限定为胞内递送、细胞穿透或研究级构象抗体，并强化 AURKB/AURKC 选择性评估。",
+    "structurePrepZh": "以 1MQ4 链 A 为模板，保留激酶核心二级结构，补全缺失侧链并标注激活环、ATP 口袋和 TPX2 相关构象界面。",
+    "structureRef": "RCSB PDB 1MQ4，1.9 Å X-ray AURKA kinase domain",
+    "antibodies": [
+      "抗磷酸化 AURKA Thr288 抗体",
+      "抗 AURKA 总蛋白抗体"
+    ],
+    "interfaceFocus": "激活环、αC 螺旋及 TPX2 稳定化界面",
+    "designMode": "胞内构象抗体设计",
+    "candidates": [
+      {
+        "target": "AURKB",
+        "rationale": "AURKB 同属 Aurora 激酶家族，参与染色体乘客复合体介导的染色体分离和胞质分裂，是细胞周期异常通路中的真实关联节点。"
+      },
+      {
+        "target": "TPX2",
+        "rationale": "TPX2 直接结合并激活 AURKA，保护其激活环磷酸化状态，是 AURKA 依赖性纺锤体装配机制中的上游调控因子。"
+      },
+      {
+        "target": "PLK1",
+        "rationale": "PLK1 与 AURKA 共同调控 G2/M 转换、中心体成熟和纺锤体形成，在异常有丝分裂及增殖性疾病网络中具有通路一致性。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "IL23R",
+  "generatedAt": "2026-08-03T13:27:09.793Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IL23R 是 IL-23/Th17 炎症轴的受体亚基，与 IL12RB1 共同结合 IL-23 后激活 JAK2/TYK2-STAT3 信号，驱动 IL17A、IL17F 与 IL22 等效应因子表达，在炎症性肠病、银屑病、克罗恩病和溃疡性结肠炎中具有明确疾病关联。IL23R 为细胞膜受体，N 端胞外免疫球蛋白样结构域可直接作为抗体可及抗原，适合构建阻断型抗体。相较于下游 IL-17 效应因子，IL23R 位于致病 Th17 细胞维持环节上游，具备更聚焦的通路干预价值，并可避免广泛抑制 IL-12 信号。",
+    "mechanism": "阻断 IL-23 p19/p40 异二聚体与 IL23R 胞外区的结合，削弱 IL23R-IL12RB1 受体复合物装配及 JAK2/TYK2-STAT3 激活。",
+    "selectedEpitope": "优先覆盖 IL23R 胞外 D1-D2 细胞因子结合界面，兼顾 D2-D3 受体装配邻近面。",
+    "diseaseDirection": "IL-23/Th17介导炎症疾病",
+    "domain": "IL23R 含 N 端信号肽、胞外免疫球蛋白样 D1-D3 区、跨膜螺旋及胞内信号尾部。",
+    "evidence": "IL23R炎症通路与结构阻断证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q5VWK5 functional annotation",
+      "RCSB PDB 5MZV X-ray structure",
+      "IL-23/IL23R/IL12RB1 Th17 pathway literature"
+    ],
+    "referenceEntries": "UniProt Q5VWK5；RCSB PDB 5MZV；Open Targets IL23R",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "胞外 D1-D2 的 IL-23 接触界面",
+        "直接阻断 IL-23 与 IL23R 结合，具备最高功能阻断潜力",
+        "优先"
+      ],
+      [
+        "Site B",
+        "D2-D3 邻近受体复合物装配面",
+        "干扰 IL23R 与 IL12RB1 协同形成信号复合物，可作为别构阻断策略",
+        "备选"
+      ],
+      [
+        "Site C",
+        "D3 远端或近膜非配体界面",
+        "可能影响空间构象但功能相关性较弱，需避免非阻断型结合体富集",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "D1-D2 配体界面可能存在糖基化和构象柔性影响，应在保留 IL23R 特异性的同时排除与 IL12RB1 或其他 I 型细胞因子受体交叉反应。",
+    "structurePrepZh": "以 5MZV 晶体结构为模板提取人 IL23R 胞外链，补全缺失环区并标注糖基化位点，保留 IL-23 接触残基用于界面约束建模。",
+    "structureRef": "RCSB PDB 5MZV，2.8 Å X-ray diffraction",
+    "antibodies": [
+      "Risankizumab",
+      "Guselkumab"
+    ],
+    "interfaceFocus": "IL23R D1-D2 与 IL-23 接触面",
+    "designMode": "受体阻断抗体设计",
+    "candidates": [
+      {
+        "target": "IL23A",
+        "rationale": "IL23A 编码 IL-23 p19 亚基，是 IL-23/Th17 轴的配体核心；抗 p19 抗体已验证可阻断 IL-23 与受体复合物结合。"
+      },
+      {
+        "target": "IL12B",
+        "rationale": "IL12B 编码 IL-23 p40 亚基，同时参与 IL-12 和 IL-23；靶向该亚基可抑制 IL-23 配体形成，但通路选择性低于 IL23A 或 IL23R。"
+      },
+      {
+        "target": "IL12RB1",
+        "rationale": "IL12RB1 是 IL-23 受体复合物的共同受体亚基，参与 IL-23 结合和信号复合物稳定化；其抗体策略可作为受体复合物装配阻断方向。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "UAP1",
+  "generatedAt": "2026-08-03T17:36:39.128Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "UAP1催化UTP与GlcNAc-1-phosphate生成UDP-GlcNAc，是己糖胺生物合成通路终末限速节点之一，影响蛋白N/O-GlcNAc糖基化及免疫细胞代谢状态。该蛋白为胞质可溶性酶，缺乏天然胞外结构域，作为常规细胞外阻断抗体靶点的可及性弱于膜受体或分泌因子。其优先级主要来自高分辨率实验结构与明确代谢酶活性口袋，可用于胞内递送抗体片段或机制研究抗体设计，但临床阻断优先级低于同通路可药物化转运或免疫表面靶点。",
+    "mechanism": "设计抗体片段占据UAP1底物结合裂隙，干扰UTP、GlcNAc-1-phosphate与催化环的协同定位，从而降低UDP-GlcNAc生成。",
+    "selectedEpitope": "优先聚焦N端催化Rossmann样结构域与中央糖基结合裂隙邻近构象环。",
+    "diseaseDirection": "免疫代谢与感染易感性",
+    "domain": "UAP1含N端催化/核苷酸结合区、中央糖基磷酸结合区及C端稳定结构域。",
+    "evidence": "UAP1结构酶学与免疫代谢关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联数据",
+      "UniProt Q16222功能与亚细胞定位注释",
+      "RCSB PDB 6Z2F高分辨率晶体结构",
+      "己糖胺生物合成通路与UDP-GlcNAc代谢文献"
+    ],
+    "referenceEntries": "UniProt Q16222；RCSB PDB 6Z2F；Reactome HBP相关条目",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端催化结构域-底物结合裂隙边缘",
+        "可直接干扰UTP/GlcNAc-1-phosphate定位与焦磷酸化反应",
+        "优先"
+      ],
+      [
+        "Site B",
+        "中央糖基磷酸结合区邻近可变环",
+        "有利于构象锁定并降低底物进入效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端结构稳定域外露面",
+        "远离催化中心，功能阻断效应不确定，适合作为检测抗体表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "UAP1为胞质酶，完整抗体难以到达天然作用位点；建议优先采用胞内递送Fab/VHH或降解偶联策略，并避免干扰保守ATP/UTP结合样位点导致特异性不足。",
+    "structurePrepZh": "以6Z2F链A/B为模板，保留高置信单体构象，去除结晶缓冲组分，标注底物结合裂隙、催化环及二聚体接触面用于表位排除。",
+    "structureRef": "RCSB PDB 6Z2F，X-ray diffraction，1.7 Å",
+    "antibodies": [
+      "无获批UAP1治疗性抗体",
+      "研究级抗UAP1检测抗体"
+    ],
+    "interfaceFocus": "底物结合裂隙与催化构象环",
+    "designMode": "胞内酶抑制型",
+    "candidates": [
+      {
+        "target": "GFPT1",
+        "rationale": "GFPT1催化己糖胺生物合成通路首步，将果糖-6-磷酸转化为葡糖胺-6-磷酸，是UDP-GlcNAc供应的上游限速节点。"
+      },
+      {
+        "target": "GNPNAT1",
+        "rationale": "GNPNAT1位于UAP1上游，催化葡糖胺-6-磷酸乙酰化生成GlcNAc-6-phosphate，与UAP1共同决定HBP通量。"
+      },
+      {
+        "target": "PGM3",
+        "rationale": "PGM3催化GlcNAc-6-phosphate与GlcNAc-1-phosphate互变，为UAP1提供直接底物并影响蛋白糖基化水平。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

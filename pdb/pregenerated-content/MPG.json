@@ -1,0 +1,65 @@
+{
+  "gene": "MPG",
+  "generatedAt": "2026-08-03T14:18:36.384Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MPG编码N-methylpurine DNA glycosylase，是碱基切除修复通路中识别3-甲基腺嘌呤、7-甲基鸟嘌呤及次黄嘌呤等烷基化碱基损伤的核内DNA糖基化酶。其Open Targets关联主要集中于血液学和生理测量性状，当前疾病遗传关联强度有限，缺乏明确可药性疾病通路定位。MPG为胞内核蛋白，天然抗原可及性不具备分泌蛋白或膜受体优势，因此不宜作为常规治疗性抗体优先靶点；相比细胞表面DDR相关受体或免疫检查点靶点，其抗体成药优先级较低，更适合作为结构识别试剂或细胞内递送抗体探索对象。",
+    "mechanism": "设计抗体应定位于MPG催化裂隙，阻断受损碱基翻转后进入疏水识别口袋，并干扰MPG与含烷基化嘌呤DNA底物的结合。",
+    "selectedEpitope": "优先覆盖DNA结合沟槽与催化口袋邻近环区，避开高度保守核心以降低交叉反应风险。",
+    "diseaseDirection": "碱基切除修复与血液性状关联",
+    "domain": "MPG主要由N端调控区和C端烷基腺嘌呤DNA糖基化酶催化结构域组成，活性位点位于DNA结合裂隙内。",
+    "evidence": "MPG碱基切除修复结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联数据",
+      "UniProt P29372功能与亚细胞定位注释",
+      "RCSB PDB 3UBY X射线晶体结构",
+      "碱基切除修复通路与DNA糖基化酶文献"
+    ],
+    "referenceEntries": "UniProt P29372；RCSB PDB 3UBY；Reactome BER通路",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DNA结合裂隙与催化口袋邻近环区",
+        "可直接阻断损伤碱基识别及底物DNA进入，具备机制验证价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端催化结构域外侧非保守螺旋面",
+        "适合构建高特异性结合抗体，用于结构探针或检测应用",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端柔性调控区预测暴露片段",
+        "构象异质性较高且3UBY中结构覆盖可能不足，亲和力成熟风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MPG为核内可溶性酶，治疗性抗体进入细胞核的递送障碍显著；建议限定为细胞内递送格式、结构探针或诊断抗体，并严格评估BER通路毒性。",
+    "structurePrepZh": "以3UBY抗原链A-D为模板，保留分辨率2.0 Å的催化结构域坐标，补建缺失柔性区并进行质子化、DNA结合裂隙网格定义和同源蛋白保守性标注。",
+    "structureRef": "RCSB PDB 3UBY，人源MPG X-ray结构，2.0 Å",
+    "antibodies": [
+      "MPG研究级单克隆抗体",
+      "MPG免疫组化验证抗体"
+    ],
+    "interfaceFocus": "DNA结合沟槽、催化口袋及底物翻转通道",
+    "designMode": "胞内酶抑制型",
+    "candidates": [
+      {
+        "target": "OGG1",
+        "rationale": "OGG1同属碱基切除修复DNA糖基化酶，负责识别8-氧鸟嘌呤损伤；与MPG共同反映BER起始步骤的损伤碱基识别轴。"
+      },
+      {
+        "target": "APEX1",
+        "rationale": "APEX1在DNA糖基化酶切除损伤碱基后切割AP位点，是MPG下游BER反应的关键核酸内切酶。"
+      },
+      {
+        "target": "XRCC1",
+        "rationale": "XRCC1作为BER支架蛋白协调POLB、LIG3及修复复合体装配，可作为MPG相关修复通路完整性评估靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

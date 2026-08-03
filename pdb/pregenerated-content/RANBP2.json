@@ -1,0 +1,65 @@
+{
+  "gene": "RANBP2",
+  "generatedAt": "2026-08-03T20:44:10.783Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RANBP2是核孔复合体胞质丝大型支架蛋白，RANBP2突变与家族性急性坏死性脑病相关，并影响核质转运、SUMO化调控及病毒核输入/核输出过程。该蛋白主要定位于胞内核孔胞质面，并非经典分泌蛋白或膜受体，完整蛋白作为体内抗体抗原的可及性受限；其可及性优势主要体现在可重组暴露的结构域片段与胞内递送抗体设计。相较于广泛必需的核孔核心蛋白，RANBP2具有明确遗传疾病关联和高分辨率结构片段，可优先用于机制验证型Fab/VHH与胞内抗体工程。",
+    "mechanism": "设计抗体阻断RANBP2 Ran-binding结构域与Ran-GTP相互作用，干预核质转运复合物在核孔胞质侧的解离与循环。",
+    "selectedEpitope": "优先靶向Ran-binding domain与Ran-GTP接触界面，避开锌指及SUMO E3样区域保守催化表面。",
+    "diseaseDirection": "急性坏死性脑病与病毒感染",
+    "domain": "RANBP2含N端亮氨酸富集区、多个Ran-binding domain、锌指区、FG重复区及Cyclophilin样结构域。",
+    "evidence": "RANBP2遗传脑病与核质转运证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt P49792功能注释",
+      "RCSB PDB 7MNK晶体结构",
+      "ClinVar与OMIM RANBP2相关变异记录"
+    ],
+    "referenceEntries": "UniProt P49792；RCSB PDB 7MNK；Open Targets RANBP2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Ran-binding domain的Ran-GTP结合沟槽邻近环区",
+        "可直接阻断RANBP2与Ran-GTP结合并验证核转运机制",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FG重复区附近的核转运受体接触表面",
+        "可能影响importin/exportin复合物在胞质丝的停靠",
+        "备选"
+      ],
+      [
+        "Site C",
+        "锌指区或SUMO E3样调控区域保守界面",
+        "保守性较高且可能干扰多底物SUMO化，脱靶功能风险较大",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RANBP2为胞内核孔蛋白，常规抗体体内可及性不足；建议采用重组结构域筛选、细胞内递送VHH或机制验证Fab，并避免广泛抑制必需核转运。",
+    "structurePrepZh": "以7MNK高分辨率晶体结构为模板，保留抗原链A-D中完整结构域，补全缺失侧链，去除非界面晶体接触后进行界面聚类。",
+    "structureRef": "RCSB PDB 7MNK，X-ray diffraction，1.1 Å",
+    "antibodies": [
+      "抗RANBP2研究级单克隆抗体",
+      "抗NUP358/RANBP2研究级抗体"
+    ],
+    "interfaceFocus": "Ran-binding domain与Ran-GTP接触界面",
+    "designMode": "胞内抗体机制验证",
+    "candidates": [
+      {
+        "target": "RAN",
+        "rationale": "RAN是RANBP2结合的核心小GTP酶，直接驱动核质转运循环；靶向RAN-GTP相互作用轴可用于同一路径机制比较。"
+      },
+      {
+        "target": "XPO1",
+        "rationale": "XPO1介导CRM1依赖性核输出，并与Ran-GTP形成输出复合物；该轴与病毒蛋白核输出和感染复制过程密切相关。"
+      },
+      {
+        "target": "KPNA2",
+        "rationale": "KPNA2参与经典核输入复合物形成，属于RAN依赖核质转运网络；在病毒感染及细胞应激核输入过程中具有可验证关联。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

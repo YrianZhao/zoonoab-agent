@@ -1,0 +1,65 @@
+{
+  "gene": "STK39",
+  "generatedAt": "2026-08-03T17:00:32.106Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "STK39编码的SPAK激酶参与WNK-SPAK/OSR1离子转运轴，并可通过调控NKCC1/NCC等底物磷酸化影响肾脏盐转运与体液稳态，因此在体重和帕金森病相关表型中具有可解释的疾病关联背景。该蛋白为细胞内激酶，抗体可及性低于膜受体或分泌蛋白，故更适合基于结构信息开展功能抑制型表位设计，而非依赖天然细胞表面暴露。相较同通路上游WNK1/WNK4，STK39处于效应执行层，且已有高分辨率晶体结构可用于界面精确定义，因而具有更直接的药理干预优先级。",
+    "mechanism": "优先阻断STK39激酶结构域与底物/调控蛋白结合界面，抑制其对NKCC1、NCC等底物的磷酸化。",
+    "selectedEpitope": "聚焦激酶N-lobe与活性口袋邻近的ATP结合区及底物识别面，避免催化核心保守残基。",
+    "diseaseDirection": "盐转运-体重调控",
+    "domain": "N端激酶结构域及其活性裂缝，C端调控区参与蛋白互作。",
+    "evidence": "STK39结构与疾病关联证据包",
+    "evidenceSources": [
+      "UniProt Q9UEW8",
+      "RCSB PDB 7O86",
+      "Open Targets Platform",
+      "Gene Ontology / Reactome"
+    ],
+    "referenceEntries": "UniProt: Q9UEW8; PDB: 7O86; Homo sapiens STK39",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶N-lobe与ATP结合区邻域",
+        "利于竞争性抑制催化活性并影响底物磷酸化",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C-lobe底物识别面",
+        "有助于干扰底物装载与构象稳定",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端调控区互作界面",
+        "可能影响上游激活复合体装配，但特异性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "STK39为细胞内激酶，细胞外可及性不足是主要风险；设计应依托7O86解析保守性较低的表面口袋，并优先评估对同源激酶交叉反应。",
+    "structurePrepZh": "采用7O86晶体结构进行链A/B界面整理、缺失侧链补全与保守位点比对，并对激酶活性构象进行分子对接预筛。",
+    "structureRef": "RCSB PDB 7O86, X-ray 1.73 Å",
+    "antibodies": [
+      "WNK1抑制性抗体文献工具抗体",
+      "SPAK/STK39研究性单抗"
+    ],
+    "interfaceFocus": "ATP口袋邻域与底物结合面",
+    "designMode": "结构导向",
+    "candidates": [
+      {
+        "target": "WNK1",
+        "rationale": "WNK1位于STK39上游，是WNK-SPAK轴的关键激酶，抑制其激活可同步降低STK39下游信号。其与STK39处于同一离子转运疾病通路，适合作为联动验证靶点。"
+      },
+      {
+        "target": "WNK4",
+        "rationale": "WNK4与WNK1共同调控SPAK/STK39活化，并参与肾小管盐重吸收调节。该靶点与STK39在同一通路中具有明确上下游关系。"
+      },
+      {
+        "target": "SLC12A3",
+        "rationale": "SLC12A3是SPAK/STK39相关通路的重要下游转运体，反映同一盐转运轴的功能输出。作为通路效应端候选，可用于验证抗体干预后的功能读出。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

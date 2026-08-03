@@ -1,0 +1,65 @@
+{
+  "gene": "ETV6",
+  "generatedAt": "2026-08-03T12:23:44.271Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ETV6 是核内 ETS 家族转录因子，参与造血干祖细胞分化、巨核细胞发育及白血病相关转录调控，胚系或体细胞异常与血小板减少症、急性髓系白血病和多种血液肿瘤相关。该蛋白缺乏天然胞外结构域、分泌形式或膜受体暴露面，完整蛋白并不具备常规治疗性抗体直接结合的抗原可及性优势。相比 MPL、THPO 或 KIT 等同属造血疾病通路且具有胞外可及结构的靶点，ETV6 更适合作为机制分层、结构生物学验证或细胞内递送抗体片段研究对象，主靶点优先级应低于可药物化膜蛋白靶点。",
+    "mechanism": "设计以内源递送抗体片段结合 ETV6 ETS DNA 结合域为核心，阻断其识别 GGAA/T 核心序列并干扰异常转录复合物装配。",
+    "selectedEpitope": "优先覆盖 ETS 域 DNA 识别螺旋与翼状环邻近界面，避免深埋疏水核心。",
+    "diseaseDirection": "血小板减少症与髓系白血病",
+    "domain": "ETV6 含 N 端 PNT/HLH 寡聚化结构域、中部调控区及 C 端 ETS DNA 结合域。",
+    "evidence": "ETV6 造血异常与白血病结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt P41212 功能与结构域注释",
+      "RCSB PDB 7TW9 晶体结构记录",
+      "OMIM 与 ClinVar 胚系 ETV6 变异证据"
+    ],
+    "referenceEntries": "UniProt P41212；RCSB PDB 7TW9；Open Targets ETV6",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C 端 ETS 域 DNA 识别螺旋及翼状环",
+        "直接竞争 DNA 主沟识别界面，可检验转录阻断机制",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N 端 PNT/HLH 寡聚化结构域表面沟槽",
+        "可能干扰 ETV6 自聚化或融合蛋白复合物形成",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ETS 域保守疏水核心与家族同源面",
+        "ETS 家族保守性高，交叉反应和折叠扰动风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ETV6 为核内转录因子，常规抗体难以到达作用位点；建议限定为细胞内递送 Fab/VHH、降解偶联或研究级功能阻断设计。",
+    "structurePrepZh": "以 7TW9 高分辨率晶体结构为 ETS 域模板，补全缺失侧链，保留 DNA 结合面构象，分离晶体接触后进行表面可及性评估。",
+    "structureRef": "RCSB PDB 7TW9，X-ray diffraction，1.41 Å",
+    "antibodies": [
+      "ETV6 研究级单克隆抗体",
+      "ETV6/TEL 免疫组化抗体"
+    ],
+    "interfaceFocus": "ETS 域 DNA 识别螺旋-主沟结合面",
+    "designMode": "胞内抗体片段",
+    "candidates": [
+      {
+        "target": "MPL",
+        "rationale": "MPL 是血小板生成素受体，位于巨核细胞和造血祖细胞膜表面，与血小板减少和骨髓增殖性疾病处于同一造血调控轴。其胞外细胞因子受体结构域具有明确抗体可及性。"
+      },
+      {
+        "target": "THPO",
+        "rationale": "THPO 编码血小板生成素，直接激活 MPL-JAK2-STAT 信号促进巨核细胞成熟和血小板生成。作为分泌性配体，其配体-受体界面适合中和抗体或激动性抗体策略参照。"
+      },
+      {
+        "target": "RUNX1",
+        "rationale": "RUNX1 是造血转录调控核心因子，胚系异常同样导致血小板减少和髓系恶性肿瘤易感。其与 ETV6 同处造血分化和白血病转录网络，但同属核内因子，抗体开发需依赖胞内递送策略。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

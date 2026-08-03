@@ -1,0 +1,65 @@
+{
+  "gene": "GAPDH",
+  "generatedAt": "2026-08-03T12:42:25.718Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GAPDH是糖酵解第六步的胞质酶，催化甘油醛-3-磷酸与NAD+反应生成1,3-二磷酸甘油酸，并在氧化应激下发生核转位、S-亚硝基化及蛋白互作改变，参与神经退行性疾病相关细胞死亡过程。该蛋白主要定位于胞质，缺乏稳定跨膜区和分泌信号，抗原体内可及性弱，较适合作为机制研究、细胞内递送抗体或构象探针开发对象。与TNF、IL6R、C5等同类疾病方向中胞外可及靶点相比，GAPDH的治疗性抗体优先级较低，但27FM提供1.46 Å四聚体实验结构，适合进行高分辨率构象表位与蛋白互作干预设计。",
+    "mechanism": "设计抗体优先阻断GAPDH二聚体界面及NAD+结合沟槽邻近构象，抑制其异常寡聚化、核转位相关蛋白互作和氧化应激依赖性功能重编程。",
+    "selectedEpitope": "优先选择Rossmann样NAD+结合域邻近二聚化界面，避开高度保守催化Cys152核心位点。",
+    "diseaseDirection": "神经退行性疾病与氧化应激",
+    "domain": "N端Rossmann NAD+结合域与C端催化结构域共同形成同源四聚体活性酶。",
+    "evidence": "GAPDH神经退行性疾病结构与功能证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联证据",
+      "UniProtKB P04406功能与定位注释",
+      "RCSB PDB 27FM高分辨率晶体结构",
+      "神经退行性疾病中GAPDH氧化修饰与核转位文献"
+    ],
+    "referenceEntries": "UniProtKB:P04406；RCSB PDB:27FM；Open Targets:GAPDH",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "NAD+结合域邻近A/B二聚体界面",
+        "可干预构象稳定性与异常蛋白互作，结构分辨率支持精细设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端催化结构域外侧非催化环区",
+        "降低直接抑制基础糖酵解风险，可作为构象识别表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Cys152所在催化沟槽核心区域",
+        "功能保守性强且可能广泛影响基础代谢，需严格限制亲和力和用途",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GAPDH为高丰度胞内管家酶，体内抗体可及性与安全窗均受限；建议定位为胞内递送、研究级构象抗体或降解系统配体，避免系统性完全抑制糖酵解。",
+    "structurePrepZh": "以27FM四聚体晶体结构为模板，保留A-D链生物学装配，校验NAD+结合口袋、催化Cys152及二聚体界面残基，补全缺失侧链后进行表面电荷与保守性映射。",
+    "structureRef": "RCSB PDB 27FM，人源GAPDH X射线结构，1.46 Å",
+    "antibodies": [
+      "抗GAPDH克隆6C5",
+      "抗GAPDH克隆14C10"
+    ],
+    "interfaceFocus": "A/B二聚体界面与NAD+结合沟槽边缘",
+    "designMode": "胞内构象阻断",
+    "candidates": [
+      {
+        "target": "SIAH1",
+        "rationale": "SIAH1可与S-亚硝基化GAPDH形成复合物并促进其核转位，参与氧化应激诱导的神经元死亡轴。阻断GAPDH-SIAH1互作具有更明确的病理事件指向。"
+      },
+      {
+        "target": "NOS1",
+        "rationale": "NOS1产生的一氧化氮可驱动GAPDH S-亚硝基化，是GAPDH异常核转位与下游细胞死亡信号的上游来源之一。该节点适合评估氧化应激依赖通路干预。"
+      },
+      {
+        "target": "PARP1",
+        "rationale": "PARP1参与DNA损伤和应激性细胞死亡过程，并与GAPDH相关核内应激反应处于同一神经退行性损伤背景。其酶活性与病理读出较明确，便于机制验证。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "SLC30A3",
+  "generatedAt": "2026-08-03T16:37:56.102Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SLC30A3编码ZnT3锌转运体，主要将胞质Zn2+转运入突触小泡，其遗传关联涉及发热惊厥及脂质、肾功能相关表型，但Open Targets最高分仅中等，提示疾病因果证据仍需谨慎解释。该蛋白为多跨膜转运体，抗体可及表位主要限于腔面/胞外环区，较分泌蛋白或单跨膜受体可及性受限。相较APOE、LDLR等脂质通路靶点，SLC30A3具有高分辨率人源实验结构与明确转运构象信息，适合作为结构约束型探索靶点，但优先级应低于临床验证更充分的脂质代谢受体靶点。",
+    "mechanism": "抗体设计宜阻断腔面门控环区构象转换，限制Zn2+结合后向囊泡腔侧释放，而非假定其直接调控脂蛋白受体信号。",
+    "selectedEpitope": "优先聚焦跨膜螺旋束腔面出口及TM2-TM3、TM4-TM5环区邻近门控界面。",
+    "diseaseDirection": "神经兴奋性与脂质代谢表型",
+    "domain": "六跨膜ZnT转运核心，含胞质侧C端结构域并以二聚体形式执行锌离子转运。",
+    "evidence": "SLC30A3结构与人群遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q99726功能与定位注释",
+      "RCSB PDB 9JJ1冷冻电镜结构",
+      "人类ZnT/SLC30转运体家族文献"
+    ],
+    "referenceEntries": "UniProt Q99726；RCSB PDB 9JJ1；Open Targets SLC30A3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "腔面出口门控区及TM2-TM3/TM4-TM5环",
+        "最可能影响Zn2+释放口构象转换，具备功能阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "二聚体外侧跨膜螺旋暴露面邻近腔侧区域",
+        "可用于构象选择性结合，降低直接干扰金属结合位点风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "胞质侧C端结构域及胞质入口区",
+        "细胞外抗体可及性差，除非采用胞内递送或体外工具抗体",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SLC30A3为多跨膜囊泡转运体，天然细胞外暴露面积有限，需优先验证抗原拓扑、囊泡定位与表位可及性，避免选择保守金属结合核心导致家族交叉反应。",
+    "structurePrepZh": "以PDB 9JJ1链A、B二聚体为模板，保留跨膜区构象，标注腔面与胞质侧方向，去除非抗原组分后进行环区柔性与糖基化/膜环境评估。",
+    "structureRef": "RCSB PDB 9JJ1，人源SLC30A3冷冻电镜结构，2.72 Å",
+    "antibodies": [
+      "尚无获批SLC30A3治疗性抗体",
+      "商业化抗SLC30A3研究抗体"
+    ],
+    "interfaceFocus": "腔面出口门控环与二聚体跨膜界面",
+    "designMode": "结构约束探索",
+    "candidates": [
+      {
+        "target": "APOE",
+        "rationale": "APOE处于脂蛋白颗粒代谢与清除通路核心，遗传证据与血脂、神经退行性疾病关联更强，且分泌/脂蛋白结合形式具有较好抗体可及性。"
+      },
+      {
+        "target": "LDLR",
+        "rationale": "LDLR介导APOE/APOB脂蛋白摄取，是血脂水平调控的关键受体，胞外配体结合重复结构域适合阻断或调节型抗体设计。"
+      },
+      {
+        "target": "PCSK9",
+        "rationale": "PCSK9通过结合LDLR EGF-A结构域促进LDLR降解，属于已被临床验证的脂质代谢通路靶点，可作为同方向高优先级参照。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

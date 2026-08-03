@@ -1,0 +1,65 @@
+{
+  "gene": "AGA",
+  "generatedAt": "2026-08-03T10:11:56.573Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "AGA 编码溶酶体天冬氨酰葡萄糖胺酶，负责水解糖蛋白降解产物中 N4-(β-N-acetylglucosaminyl)-L-asparagine 的酰胺键，功能缺失直接导致 aspartylglucosaminuria 的底物蓄积、神经发育受损和智力障碍表型。该蛋白为可分泌至溶酶体腔内的可溶性酶，成熟 α/β 亚基复合体具有可在体外重组呈递的结构域，适合开展替代酶递送、酶稳定化或构象识别型抗体设计。相比同一溶酶体糖蛋白降解轴中的间接调控因子，AGA 具有明确的单基因致病性、已解析晶体结构和可量化底物读出，因此作为机制验证型抗体工程靶点优先级较高。",
+    "mechanism": "通过结合成熟 AGA α/β 亚基复合体的非催化邻近表面，稳定活性构象并避免遮挡 Thr206 催化亲核中心及底物结合槽。",
+    "selectedEpitope": "优先选择 β 亚基催化沟槽外侧、α/β 亚基界面邻近但不覆盖 Thr206 的构象表位。",
+    "diseaseDirection": "溶酶体贮积病与神经发育异常",
+    "domain": "AGA 为 Ntn 水解酶，前体自加工形成 α、β 亚基；β 亚基 N 端 Thr206 构成催化亲核中心。",
+    "evidence": "AGA 结构与天冬氨酰葡萄糖胺尿症证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt P20933 功能与亚细胞定位注释",
+      "RCSB PDB 1APY 晶体结构",
+      "OMIM / MONDO aspartylglucosaminuria 疾病条目"
+    ],
+    "referenceEntries": "UniProt P20933；RCSB PDB 1APY；MONDO:0008830",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "β 亚基催化沟槽外侧构象面",
+        "有利于稳定成熟酶构象，同时降低直接抑制底物水解风险",
+        "优先"
+      ],
+      [
+        "Site B",
+        "α/β 亚基界面邻近非催化表面",
+        "可用于识别正确自加工后的成熟复合体并增强构象选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Thr206 催化中心及底物结合槽周边",
+        "可能阻断 N-acetylglucosaminylasparagine 进入活性位点，存在功能抑制风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "AGA 为溶酶体腔内可溶性酶，抗体进入溶酶体效率有限；表位应避开 Thr206 活性中心和底物结合槽，优先采用稳定化或递送辅助设计。",
+    "structurePrepZh": "以 1APY 晶体结构为模板，保留成熟 α/β 亚基装配状态，校验自加工裂解位点、糖基化位点和活性中心质子化状态后进行表位映射。",
+    "structureRef": "Human aspartylglucosaminidase crystal structure, PDB 1APY, 2.0 Å",
+    "antibodies": [
+      "暂无已获批 AGA 靶向治疗性抗体",
+      "抗 AGA 研究级单克隆抗体"
+    ],
+    "interfaceFocus": "β 亚基外侧沟槽与 α/β 亚基装配界面",
+    "designMode": "构象稳定化抗体设计",
+    "candidates": [
+      {
+        "target": "GNPTAB",
+        "rationale": "GNPTAB 参与溶酶体酶甘露糖-6-磷酸标记生成，缺陷会影响多种溶酶体水解酶递送，与 AGA 所在溶酶体酶运输和糖蛋白降解过程相关。"
+      },
+      {
+        "target": "GNPTG",
+        "rationale": "GNPTG 编码 GlcNAc-1-phosphotransferase γ 亚基，参与溶酶体酶分选标签形成，可作为改善溶酶体酶定位轴的同通路候选靶点。"
+      },
+      {
+        "target": "IGF2R",
+        "rationale": "IGF2R 即阳离子非依赖性甘露糖-6-磷酸受体，介导溶酶体酶从高尔基体和胞外环境向溶酶体递送，是 AGA 酶替代递送策略相关的真实通路节点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

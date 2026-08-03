@@ -1,0 +1,65 @@
+{
+  "gene": "DECR1",
+  "generatedAt": "2026-08-03T11:53:48.225Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DECR1是线粒体不饱和脂肪酸β氧化辅助酶，催化2,4-dienoyl-CoA还原为trans-3-enoyl-CoA；其缺陷可导致白质脑病伴进行性脑病，反映能量代谢与神经髓鞘稳态受损。该蛋白主要定位于线粒体基质，缺乏天然胞外结构域或分泌特征，抗体抗原可及性弱，因此更适合作为机制验证、胞内递送抗体或诊断捕获抗体靶点。相较于同通路膜外可及靶点，DECR1的优势在于遗传病因关联直接、晶体结构分辨率高且催化口袋明确，但治疗性常规抗体优先级应低于可从胞外干预的代谢受体或转运相关靶点。",
+    "mechanism": "设计抗体需阻断DECR1催化沟槽对2,4-dienoyl-CoA底物及NADPH辅因子的结合，抑制烯酰-CoA还原反应。",
+    "selectedEpitope": "优先覆盖Rossmann样NADPH结合域与底物结合沟槽邻近界面，避免仅选择四聚体远端表面。",
+    "diseaseDirection": "线粒体脂肪酸β氧化缺陷与神经退行性病变",
+    "domain": "DECR1为NADP依赖氧化还原酶，含Rossmann样辅因子结合折叠、底物酰基链结合沟槽及寡聚化界面。",
+    "evidence": "DECR1结构、遗传缺陷与脂肪酸β氧化证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q16698功能与亚细胞定位注释",
+      "RCSB PDB 1W6U人源DECR1晶体结构",
+      "OMIM/ClinVar中DECR1缺陷相关白质脑病记录"
+    ],
+    "referenceEntries": "UniProt Q16698；RCSB PDB 1W6U；Open Targets DECR1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Rossmann样NADPH结合域邻近催化沟槽",
+        "可直接干扰辅因子定位与氢转移构象，适合功能阻断抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "底物酰基-CoA结合沟槽入口及周缘螺旋",
+        "有望限制2,4-dienoyl-CoA进入催化中心，兼具构象选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "四聚体寡聚化界面外侧区域",
+        "可能影响装配稳定性，但界面保守性与胞内可及性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DECR1为线粒体基质酶，常规抗体难以到达天然作用位点；设计应定位为胞内递送、纳米抗体融合或体外诊断试剂，并评估NADPH酶家族交叉反应。",
+    "structurePrepZh": "以1W6U四聚体晶体结构为模板，保留生物装配体并校正NADPH/底物口袋构象，去除非结构水后进行界面溶剂可及性与保守性标注。",
+    "structureRef": "RCSB PDB 1W6U，人源DECR1，X-ray 1.75 Å",
+    "antibodies": [
+      "Abcam anti-DECR1 antibody",
+      "Proteintech anti-DECR1 antibody"
+    ],
+    "interfaceFocus": "NADPH结合沟槽、底物入口与四聚体界面",
+    "designMode": "胞内酶阻断型",
+    "candidates": [
+      {
+        "target": "ACADVL",
+        "rationale": "ACADVL参与线粒体长链脂肪酸β氧化初始脱氢步骤，其缺陷可导致能量代谢障碍，与DECR1位于同一脂肪酸氧化病理轴。"
+      },
+      {
+        "target": "HADHA",
+        "rationale": "HADHA编码线粒体三功能蛋白α亚基，负责长链脂肪酸β氧化中的水合与脱氢反应，可作为同通路代谢瓶颈节点。"
+      },
+      {
+        "target": "CPT2",
+        "rationale": "CPT2介导长链脂酰基从肉碱形式转回脂酰-CoA进入线粒体β氧化，其功能异常与脂肪酸氧化缺陷疾病相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

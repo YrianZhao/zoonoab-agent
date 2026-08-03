@@ -1,0 +1,65 @@
+{
+  "gene": "P4HTM",
+  "generatedAt": "2026-08-03T15:01:51.334Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "P4HTM是内质网膜相关2-氧戊二酸依赖性脯氨酰4-羟化酶，参与HIF-α羟化及缺氧适应性转录反应，其遗传缺陷与低张力、低通气、智力发育受损、癫痫及自主神经功能异常综合征相关。该蛋白具有面向内质网腔的催化结构域，较胞质酶更适合在细胞工程或胞内递送抗体框架中进行构象识别。相较PHD1-3等可溶性同类羟化酶，P4HTM的膜锚定定位与神经发育表型关联更集中，适合作为缺氧感知异常相关疾病的优先探索靶点。",
+    "mechanism": "抗体结合P4HTM内质网腔催化结构域，遮挡Fe(II)/2-氧戊二酸邻近底物沟槽，阻断HIF-α脯氨酸底物肽进入羟化位点。",
+    "selectedEpitope": "优先锁定6TP5催化JmjC样双链β螺旋结构域的底物结合沟槽外缘，避免直接螯合金属中心。",
+    "diseaseDirection": "缺氧感知异常与神经发育障碍",
+    "domain": "N端跨膜锚定区连接内质网腔侧催化区，核心为2OG-Fe(II)依赖双链β螺旋羟化酶结构域。",
+    "evidence": "P4HTM缺氧羟化酶结构与疾病遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q9NXG6功能与亚细胞定位注释",
+      "RCSB PDB 6TP5晶体结构记录",
+      "人类遗传学与HIF羟化酶通路文献"
+    ],
+    "referenceEntries": "UniProt Q9NXG6；RCSB PDB 6TP5；Open Targets P4HTM",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "JmjC样催化结构域底物肽结合沟槽外缘",
+        "可变构限制HIF-α底物进入并保留较高结构特异性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化核心周边2OG结合口袋邻近环区",
+        "可能影响辅因子定位及催化构象，但需规避金属配位残基",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端跨膜段近膜连接区",
+        "可提供定位选择性，但结构柔性和抗体可及性不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "P4HTM主要位于内质网膜，常规外源抗体难以到达靶腔侧表位；设计宜采用胞内表达Fab/VHH或递送型抗体，并避免干扰保守Fe(II)配位位点导致非特异交叉反应。",
+    "structurePrepZh": "以6TP5的A-F链晶体结构为模板，保留催化结构域和关键辅因子邻近残基，去除晶体接触冗余链后评估沟槽可及性与保守性。",
+    "structureRef": "RCSB PDB 6TP5，P4HTM催化结构域X射线结构，2.25 Å",
+    "antibodies": [
+      "暂无获批P4HTM靶向抗体",
+      "研究级抗P4HTM多克隆抗体"
+    ],
+    "interfaceFocus": "底物肽沟槽、2OG邻近环区及催化核心外缘",
+    "designMode": "胞内抗体构象阻断",
+    "candidates": [
+      {
+        "target": "EGLN1",
+        "rationale": "EGLN1/PHD2是HIF-α脯氨酰羟化的核心氧传感酶，与P4HTM同属2OG依赖HIF羟化调控轴，直接决定VHL识别前的羟化标记形成。"
+      },
+      {
+        "target": "VHL",
+        "rationale": "VHL识别羟化后的HIF-α并招募E3泛素连接酶复合体介导降解，是P4HTM相关缺氧感知通路的下游关键节点。"
+      },
+      {
+        "target": "HIF1A",
+        "rationale": "HIF1A是P4HTM及PHD羟化反应的功能性底物之一，其稳定化驱动缺氧应答基因转录，适合作为通路效应端候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

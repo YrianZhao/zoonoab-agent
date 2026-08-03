@@ -1,0 +1,65 @@
+{
+  "gene": "CASP1",
+  "generatedAt": "2026-08-03T11:01:00.755Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CASP1 是炎症小体通路的核心效应半胱天冬酶，负责切割 pro-IL-1β、pro-IL-18 及 gasdermin D，驱动炎症因子成熟与焦亡放大，在感染、SARS 相关炎症反应及代谢性脂肪性肝炎中具有机制关联。该蛋白主要为胞质酶原及活化酶复合体，缺乏天然胞外结构域，抗原可及性不如膜受体或分泌因子，需优先考虑胞内递送抗体片段或以细胞裂解释放构象作为研究型抗原。相较上游 NLRP3 或 PYCARD，CASP1 位于 IL-1β/IL-18 成熟与 GSDMD 裂解的共同执行节点，通路收敛性较强，但成药形式风险高于经典胞外靶点。",
+    "mechanism": "设计分子阻断 CASP1 p20/p10 催化沟槽对 pro-IL-1β、pro-IL-18 与 GSDMD 底物四肽基序的识别，抑制炎症因子成熟和焦亡执行。",
+    "selectedEpitope": "优先覆盖 p20 大亚基催化半胱氨酸邻近底物结合沟槽及 p20-p10 异二聚界面。",
+    "diseaseDirection": "炎症小体介导感染与炎症疾病",
+    "domain": "含 N 端 CARD 结构域、p20 大亚基和 p10 小亚基；1SC3 解析催化核心异四聚体。",
+    "evidence": "CASP1 炎症小体效应节点结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P29466 functional annotation",
+      "RCSB PDB 1SC3 crystal structure",
+      "Inflammasome IL-1β/IL-18/GSDMD pathway literature"
+    ],
+    "referenceEntries": "UniProt P29466；RCSB PDB 1SC3；Reactome inflammasome pathway",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "p20 催化半胱氨酸周围底物结合沟槽",
+        "直接干预 IL-1β、IL-18 与 GSDMD 底物进入催化中心",
+        "优先"
+      ],
+      [
+        "Site B",
+        "p20-p10 异二聚体界面及活性构象稳定区",
+        "干扰成熟酶复合体装配或降低催化构象稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端 CARD 与 PYCARD CARD 互作界面",
+        "理论上可阻断炎症小体募集，但 1SC3 未覆盖该结构域且构象证据不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CASP1 为胞内蛋白，常规抗体难以到达作用位点；建议采用 VHH、细胞穿透模块或 PROTAC/递送系统联用，并严格评估 CASP3/4/5 交叉反应。",
+    "structurePrepZh": "以 1SC3 的 A、B 链催化核心为模板，补全缺失侧链并保留活性位点构象；CARD 区域需另行采用同源模型或独立结构约束。",
+    "structureRef": "RCSB PDB 1SC3，human caspase-1 crystal structure，1.8 Å",
+    "antibodies": [
+      "Belnacasan-like CASP1 inhibitor benchmark",
+      "Anti-CASP1 p20 research antibody"
+    ],
+    "interfaceFocus": "p20 底物沟槽与 p20-p10 活性异二聚界面",
+    "designMode": "胞内酶阻断型",
+    "candidates": [
+      {
+        "target": "NLRP3",
+        "rationale": "NLRP3 是多种感染和代谢炎症中驱动 CASP1 激活的上游传感器，抑制其寡聚化可降低 ASC speck 形成与 CASP1 成熟。"
+      },
+      {
+        "target": "PYCARD",
+        "rationale": "PYCARD/ASC 连接传感器与 CASP1 CARD 结构域，是炎症小体组装的适配蛋白，阻断 CARD-CARD 或 PYD-PYD 相互作用可抑制 CASP1 招募。"
+      },
+      {
+        "target": "GSDMD",
+        "rationale": "GSDMD 是 CASP1 下游焦亡执行蛋白，其 N 端片段成孔导致细胞裂解和炎症放大，适合作为焦亡执行层面的同通路候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

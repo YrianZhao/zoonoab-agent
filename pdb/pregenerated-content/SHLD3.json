@@ -1,0 +1,65 @@
+{
+  "gene": "SHLD3",
+  "generatedAt": "2026-08-03T16:31:19.095Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SHLD3 是盾构复合体（shieldin）组成部分，参与 53BP1-RIF1 轴介导的 DNA 双链断裂修复途径，并通过限制 DNA 末端切除影响同源重组与非同源末端连接的平衡。该蛋白主要定位于细胞内核内修复复合体，既无胞外结构域也非膜蛋白，天然抗原可及性较弱，因此仅适合在蛋白递送、细胞内抗体或结构生物学验证场景中作为主靶点。相较于 BRCA1、TP53BP1、RIF1 等同一通路核心节点，SHLD3 处于更下游的 shieldin 组装界面，具备更明确的复合体特异性，但可成药暴露面更有限，优先级应服务于机制探针而非常规治疗抗体。",
+    "mechanism": "通过阻断 SHLD3 与 shieldin 复合体伴侣亚基的装配，削弱其对 DNA 断裂末端的结合与末端切除抑制。",
+    "selectedEpitope": "优先选择 N 端复合体装配界面及保守螺旋束表面，避免深埋于核心折叠的位点。",
+    "diseaseDirection": "DNA损伤修复",
+    "domain": "以复合体装配相关的保守核心区为主，缺乏已知胞外结构域。",
+    "evidence": "SHLD3 结构与DNA修复证据包",
+    "evidenceSources": [
+      "UniProt: Q6ZNX1",
+      "RCSB PDB: 6M7B",
+      "Open Targets Platform",
+      "PubMed: shieldin complex DNA repair studies"
+    ],
+    "referenceEntries": "UniProt Q6ZNX1; PDB 6M7B; shieldin complex 条目",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端复合体装配界面",
+        "优先干预与伴侣亚基结合",
+        "优先"
+      ],
+      [
+        "Site B",
+        "中央保守螺旋表面",
+        "可用于稳定性干预与构象锁定",
+        "备选"
+      ],
+      [
+        "Site C",
+        "埋藏核心折叠区",
+        "可能破坏整体折叠，开发风险高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "靶点为核内修复蛋白，缺乏胞外暴露界面，常规抗体可及性受限；优先考虑结构探针、胞内递送抗体或纳米抗体格式，并避免破坏整体折叠。",
+    "structurePrepZh": "建议基于6M7B对四聚体界面进行重建与链间接触注释，补充分辨率外柔性环区并进行保守性映射。",
+    "structureRef": "PDB 6M7B, X-ray diffraction, 1.77 Å",
+    "antibodies": [
+      "尚无明确临床同类抗体",
+      "尚无明确公开同类抗体"
+    ],
+    "interfaceFocus": "盾构复合体装配界面",
+    "designMode": "structural_probe",
+    "candidates": [
+      {
+        "target": "TP53BP1",
+        "rationale": "与SHLD3同属53BP1-RIF1-shieldin DNA末端保护轴，是上游关键募集因子。作为同通路核心靶点，更适合用于机制对照与组合验证。"
+      },
+      {
+        "target": "RIF1",
+        "rationale": "RIF1 直接参与将 shieldin 招募至断裂位点，并决定末端切除抑制方向。其通路位置与 SHLD3 紧密耦联，适合作为同轴候选靶点。"
+      },
+      {
+        "target": "BRCA1",
+        "rationale": "BRCA1 在该轴中拮抗 53BP1-RIF1-shieldin 介导的末端保护，决定 DNA 修复通路选择。作为互作通路中的平衡节点，具有明确同源疾病通路关联。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

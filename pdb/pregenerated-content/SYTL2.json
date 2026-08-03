@@ -1,0 +1,65 @@
+{
+  "gene": "SYTL2",
+  "generatedAt": "2026-08-03T17:06:12.073Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SYTL2 在 Open Targets 中呈现多疾病关联，且与骨骼生长表型及睡眠呼吸暂停、银屑病关节炎等疾病信号存在一致性，提示其参与与膜运输和囊泡对接相关的病理网络。该蛋白具备明确的胞内外膜相关定位特征，虽然并非经典分泌蛋白，但其结构域暴露于细胞质侧，适合围绕复合体装配界面开展阻断性抗体工程。相较于同类膜转运调控因子，SYTL2 的结构信息可用性较高，且现有高分辨率晶体结构有利于精确锁定 Rab 结合相关界面并提高表位设计优先级。",
+    "mechanism": "阻断 SYTL2 与 RAB8A 等小 GTP 酶的结合，削弱囊泡对接与膜转运复合体装配。",
+    "selectedEpitope": "优先选择 C2 相关界面及 Rab 结合邻域，覆盖复合体装配核心残基。",
+    "diseaseDirection": "膜运输与睡眠呼吸暂停",
+    "domain": "含 synaptotagmin-like C2A/C2B 相关区域及 Rab 结合界面",
+    "evidence": "SYTL2 结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform",
+      "UniProt Q9HCH5",
+      "RCSB PDB 3BC1",
+      "文献报道的 SYTL2-RAB8A 互作研究"
+    ],
+    "referenceEntries": "UniProt: Q9HCH5; PDB: 3BC1; Open Targets SYTL2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C2A-Rab 结合邻域",
+        "直接干预复合体装配，适合阻断型设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C2B 外露环区",
+        "可作为稳定结合与构象锁定位点",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离结合面的表面片段",
+        "亲和力风险较高，适合作为非阻断对照",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "该靶点以胞内侧界面为主，抗体可及性受限，需优先评估胞内递送或纳米抗体格式。避免选择远离 Rab 互作面的松散表面，以降低功能阻断失败风险。",
+    "structurePrepZh": "建议以 3BC1 为核心模板完成链 A/B/E/F 的重装配，补全缺失环区并进行界面能量最小化，再映射保守暴露残基。",
+    "structureRef": "RCSB PDB 3BC1 高分辨率晶体结构",
+    "antibodies": [
+      "尚无公认临床同类抗体",
+      "SYTL2 结合界面研究性抗体"
+    ],
+    "interfaceFocus": "Rab 结合界面与 C2A 邻接表面",
+    "designMode": "结构导向阻断设计",
+    "candidates": [
+      {
+        "target": "RAB8A",
+        "rationale": "RAB8A 是 SYTL2 已知互作伙伴，位于同一囊泡转运通路中。围绕 SYTL2-RAB8A 接触面设计抗体，可直接验证阻断机制。"
+      },
+      {
+        "target": "RAB11A",
+        "rationale": "RAB11A 参与内吞回收与囊泡运输网络，和 SYTL2 所属膜转运模块具有通路一致性。可作为同路径候选靶点用于比较阻断策略。"
+      },
+      {
+        "target": "RAB27A",
+        "rationale": "RAB27A 属于 exocytic vesicle trafficking 轴线中的关键小 GTP 酶，和 SYTL 家族功能网络重叠。适合用于同通路候选靶点筛选与机制交叉验证。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

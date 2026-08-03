@@ -1,0 +1,65 @@
+{
+  "gene": "TRIM63",
+  "generatedAt": "2026-08-03T17:30:15.092Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TRIM63编码肌肉特异性E3泛素连接酶MuRF1，参与心肌蛋白稳态与肌节蛋白降解，遗传变异与家族性肥厚型心肌病及心肌病表型相关。该蛋白主要定位于胞质肌节M线和Z线相关区域，并非分泌蛋白或经典膜受体，抗原天然可及性弱，需以细胞内递送抗体或研究级结合抗体为主要设计场景。相较TNF、IL6等非心肌特异炎症靶点，TRIM63更贴近肌节蛋白稳态异常这一心肌病机制，但作为治疗性常规抗体靶点优先级受限于胞内定位。",
+    "mechanism": "设计结合RING/B-box相关界面的细胞内抗体，阻断TRIM63与E2泛素结合酶及肌节底物的复合物形成，降低靶蛋白泛素化。",
+    "selectedEpitope": "优先避开高保守RING催化锌指，选择B-box/coiled-coil暴露界面以干扰二聚化或底物招募。",
+    "diseaseDirection": "遗传性肥厚型心肌病",
+    "domain": "TRIM63含N端RING锌指、B-box结构域、coiled-coil二聚化区及C端COS-box/SPRY相关区域。",
+    "evidence": "TRIM63心肌病遗传关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt Q969Q1功能与定位注释",
+      "RCSB PDB 3DDT X射线晶体结构",
+      "ClinVar与OMIM心肌病变异记录"
+    ],
+    "referenceEntries": "UniProt Q969Q1；RCSB PDB 3DDT；Open Targets TRIM63",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "B-box/coiled-coil邻近暴露界面",
+        "可干扰TRIM63寡聚化与底物复合物装配，兼顾结构可设计性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RING结构域E2结合邻近面",
+        "可能直接削弱E2泛素结合酶招募，但需避免破坏锌配位核心",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守锌指折叠核心",
+        "保守性高且构象依赖强，交叉反应和折叠干扰风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TRIM63为胞内E3连接酶，常规抗体难以到达作用位点；设计应限定为细胞内抗体、递送型VHH或机制研究工具，并严格评估TRIM家族交叉结合。",
+    "structurePrepZh": "以3DDT晶体结构链A/B/C为模板，检查锌配位、缺失片段与寡聚状态；补全未解析柔性区后进行界面暴露度和保守性评估。",
+    "structureRef": "RCSB PDB 3DDT，X-ray diffraction，1.9 Å",
+    "antibodies": [
+      "暂无获批TRIM63靶向治疗性抗体",
+      "研究级anti-MuRF1/TRIM63抗体"
+    ],
+    "interfaceFocus": "E2结合面与B-box/coiled-coil装配界面",
+    "designMode": "胞内抗体/VHH设计",
+    "candidates": [
+      {
+        "target": "MYH7",
+        "rationale": "MYH7编码β-肌球蛋白重链，是肥厚型心肌病核心肌节基因；其蛋白稳态与肌节结构异常与TRIM63相关通路存在病理交汇。"
+      },
+      {
+        "target": "MYBPC3",
+        "rationale": "MYBPC3是肥厚型心肌病最常见致病基因之一，参与肌节收缩调控；与TRIM63介导的肌节蛋白质量控制方向一致。"
+      },
+      {
+        "target": "LMNA",
+        "rationale": "LMNA变异与遗传性心肌病和心肌结构稳态异常相关，可作为心肌病遗传网络中的互补风险靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

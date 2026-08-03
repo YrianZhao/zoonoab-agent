@@ -1,0 +1,65 @@
+{
+  "gene": "CLEC4M",
+  "generatedAt": "2026-08-03T11:27:29.639Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CLEC4M（L-SIGN）是II型跨膜C型凝集素受体，可通过颈区四聚化增强糖链配体结合，并介导多种病原体糖基化包膜蛋白黏附、内吞与转运，因而与白细胞数量、单核细胞计数及肝相关指标存在遗传关联。其C端C-type lectin-like domain位于胞外，并依赖Ca2+识别高甘露糖或岩藻糖化糖链，抗原可及性适合阻断型抗体设计。相较胞内适配蛋白或下游炎症因子，CLEC4M处于病原体-宿主黏附入口界面，结构解析度高且配体结合位点明确，优先级更适合开展结构引导的抗体工程。",
+    "mechanism": "阻断CLEC4M胞外CRD中Ca2+依赖糖链结合口袋与病原体高甘露糖化包膜糖蛋白的相互作用，降低黏附、捕获与跨细胞转运。",
+    "selectedEpitope": "优先覆盖CRD长环区及Ca2+配位糖链结合口袋周边，干扰甘露糖配体进入。",
+    "diseaseDirection": "感染黏附与先天免疫调控",
+    "domain": "II型膜蛋白，含胞质短尾、跨膜段、胞外颈区重复序列及C端C-type lectin-like domain。",
+    "evidence": "CLEC4M胞外凝集素结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform遗传关联与表型关联数据",
+      "UniProt Q9H2X3蛋白功能与结构域注释",
+      "RCSB PDB 1XPH晶体结构记录",
+      "文献报道L-SIGN结合病毒包膜糖蛋白及高甘露糖配体"
+    ],
+    "referenceEntries": "UniProt Q9H2X3；RCSB PDB 1XPH；Open Targets CLEC4M",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CRD Ca2+依赖糖链结合口袋及EPN基序邻近长环",
+        "直接竞争高甘露糖配体结合，最适合阻断型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CRD外侧β折叠-环区构象表面",
+        "可稳定结合胞外结构域并产生变构性配体阻断",
+        "备选"
+      ],
+      [
+        "Site C",
+        "颈区重复序列与四聚化邻近界面",
+        "可能影响多价结合，但重复序列柔性和同源交叉反应风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CRD糖链结合口袋含Ca2+配位残基，抗体设计需避免依赖非生理金属构象；颈区与DC-SIGN同源性较高，应进行CLEC4M/CLEC4L交叉反应排查。",
+    "structurePrepZh": "采用1XPH链A作为CRD模板，保留Ca2+及关键糖链识别残基注释；补建缺失环区并对颈区四聚化状态进行独立建模评估。",
+    "structureRef": "PDB 1XPH，CLEC4M carbohydrate-recognition domain，1.41 Å X-ray",
+    "antibodies": [
+      "120604",
+      "H200"
+    ],
+    "interfaceFocus": "CRD Ca2+配位位点、EPN基序与糖链入口长环",
+    "designMode": "阻断型Fab/VHH",
+    "candidates": [
+      {
+        "target": "CD209",
+        "rationale": "CD209（DC-SIGN）与CLEC4M同属C型凝集素受体，识别高甘露糖化病原体糖蛋白并参与树突状细胞黏附与病原体捕获，可作为同通路对照与选择性评估靶点。"
+      },
+      {
+        "target": "CLEC4G",
+        "rationale": "CLEC4G（LSECtin）为肝窦内皮相关C型凝集素，参与糖基化病原体和糖蛋白配体识别，与肝脏先天免疫黏附轴相关，适合作为肝相关凝集素通路候选靶点。"
+      },
+      {
+        "target": "MBL2",
+        "rationale": "MBL2编码可溶性甘露糖结合凝集素，通过识别病原体甘露糖结构并启动凝集素补体途径，与CLEC4M共享糖链模式识别逻辑，可用于扩展病原体糖链识别干预策略。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

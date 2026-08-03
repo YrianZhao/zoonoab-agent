@@ -1,0 +1,65 @@
+{
+  "gene": "SMAD2",
+  "generatedAt": "2026-08-03T16:43:26.050Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SMAD2 是 TGF-β/activin/NODAL 通路的受体调控型 SMAD，受 TGFBR1 或 ACVR1B 磷酸化后与 SMAD4 形成转录复合物，参与 Loeys-Dietz 综合征、先天性心脏发育异常及结直肠腺癌相关的转录程序。该蛋白主要为胞内转录信号转导分子，天然抗原可及性低于膜受体或分泌配体，因此更适合发展胞内递送抗体、intrabody 或结构验证型结合分子。其优先级来自高疾病关联广度、明确的 TGF-β 轴节点位置及高分辨率实验结构可用于精确界面设计；相较上游配体，SMAD2 更贴近通路核内效应层，但成药形式需严格限定。",
+    "mechanism": "设计结合 SMAD2 MH2 结构域的分子，阻断其磷酸化 C 端介导的 SMAD4 结合或干扰 SMAD2 与 SARA/受体复合物的装配。",
+    "selectedEpitope": "优先聚焦 MH2 结构域中与磷酸化 C 端尾部及 SMAD4 复合界面相邻的保守沟槽。",
+    "diseaseDirection": "TGF-β相关遗传病与肿瘤",
+    "domain": "SMAD2 含 N 端 MH1 DNA 结合域、连接区及 C 端 MH2 蛋白互作与受体磷酸化调控域。",
+    "evidence": "SMAD2-TGFβ轴疾病关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q15796 functional annotation",
+      "RCSB PDB 6YIA X-ray structure",
+      "TGF-β/SMAD signaling pathway literature"
+    ],
+    "referenceEntries": "UniProt Q15796；RCSB PDB 6YIA；Open Targets SMAD2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "MH2 结构域磷酸化尾部/SMAD4 复合界面邻近沟槽",
+        "直接干预 SMAD2-SMAD4 转录复合物装配，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "MH2 结构域 L3 loop 与受体识别相关表面",
+        "可影响 TGFBR1 对 SMAD2 的识别与 C 端 SSXS 磷酸化效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "MH1 DNA 结合域 β-hairpin 邻近区域",
+        "可能影响 DNA 结合但易干扰广泛核内功能，选择性与安全窗需验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SMAD2 为胞内蛋白，常规抗体难以进入胞质或细胞核；设计应优先定位为 intrabody、递送型 VHH 或结构探针，并避免破坏 SMAD3 共享保守界面导致选择性不足。",
+    "structurePrepZh": "以 PDB 6YIA 的高分辨率 X 射线结构为模板，保留抗原链 A/P 中可解析结构域，校正缺失环区、质子化状态及磷酸化尾部建模后进行界面评估。",
+    "structureRef": "RCSB PDB 6YIA，X-ray diffraction，1.3 Å",
+    "antibodies": [
+      "抗-SMAD2磷酸化检测试剂抗体",
+      "抗-SMAD2/3研究级单克隆抗体"
+    ],
+    "interfaceFocus": "MH2 磷酸化尾部结合沟槽与 L3 loop",
+    "designMode": "胞内抗体/VHH设计",
+    "candidates": [
+      {
+        "target": "TGFBR1",
+        "rationale": "TGFBR1 直接磷酸化 SMAD2 C 端 SSXS motif，是 TGF-β 轴中更具膜表面可及性的上游激酶受体节点。"
+      },
+      {
+        "target": "TGFB1",
+        "rationale": "TGFB1 为激活 SMAD2/3 通路的核心分泌配体，抗体可通过阻断 TGFB1 与 TGFBR2/TGFBR1 受体复合物形成降低下游信号。"
+      },
+      {
+        "target": "SMAD4",
+        "rationale": "SMAD4 与磷酸化 SMAD2 形成核内转录复合物，是同一 TGF-β/SMAD 通路的共同中介节点，适合用于复合体界面比较设计。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

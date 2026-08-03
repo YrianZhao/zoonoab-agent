@@ -1,0 +1,65 @@
+{
+  "gene": "PPP1R13B",
+  "generatedAt": "2026-08-03T15:30:39.067Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PPP1R13B编码ASPP1，是p53家族转录调控复合物的核内支架蛋白，可通过其ankyrin-repeat/SH3区域结合TP53、TP63和TP73并影响促凋亡基因转录；现有Open Targets关联主要集中于维生素D水平、血液学和代谢测量性状，缺乏明确的胞外疾病通路定位。该蛋白不属于分泌蛋白或膜受体，天然抗原可及性不支持常规体内阻断型抗体开发，仅适合结构验证、胞内递送抗体或研究级结合体设计。相比具有细胞外结构域的同通路受体或配体，PPP1R13B作为主靶点优先级较低，但6HL5提供高分辨率结构基础，可用于机制性表位和工具抗体开发。",
+    "mechanism": "设计抗体结合ASPP1 ankyrin-repeat/SH3结构域，竞争性阻断其与TP53 DNA结合核心结构域的复合界面，从而削弱ASPP1介导的p53促凋亡转录增强作用。",
+    "selectedEpitope": "优先覆盖6HL5中ankyrin-repeat与SH3相邻沟槽的TP53结合界面，避免仅针对柔性连接区。",
+    "diseaseDirection": "p53凋亡轴与血液代谢性状",
+    "domain": "ASPP1含N端富脯氨酸区域、中央调控区及C端ankyrin repeats-SH3结构域，6HL5解析C端复合界面。",
+    "evidence": "PPP1R13B结构与p53家族互作证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q96KQ4功能与亚细胞定位注释",
+      "RCSB PDB 6HL5晶体结构记录",
+      "文献报道ASPP1/ASPP2调控p53家族凋亡转录活性"
+    ],
+    "referenceEntries": "UniProt Q96KQ4；RCSB PDB 6HL5；Open Targets PPP1R13B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端ankyrin-repeat/SH3复合沟槽",
+        "覆盖TP53家族核心结构域结合界面，最适合竞争性阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SH3结构域RT-loop与邻近β链表面",
+        "可形成构象依赖识别并降低对线性柔性片段的依赖",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端富脯氨酸低复杂度区域",
+        "结构无序程度高且易产生非特异结合，体内阻断价值有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PPP1R13B为核内蛋白，缺乏天然胞外可及性，常规抗体药物成药性风险较高；设计宜限定为Fab/VHH结构探针、胞内抗体或递送体系验证。",
+    "structurePrepZh": "以6HL5链A、S为模板进行生物装配体核查，保留ankyrin-repeat/SH3折叠核心，去除晶体接触伪界面并标注TP53结合残基。",
+    "structureRef": "RCSB PDB 6HL5，X-ray diffraction，1.98 Å",
+    "antibodies": [
+      "研究级anti-ASPP1抗体",
+      "细胞内VHH/intrabody候选形式"
+    ],
+    "interfaceFocus": "ASPP1 C端ankyrin-repeat/SH3与TP53核心域界面",
+    "designMode": "胞内结构探针",
+    "candidates": [
+      {
+        "target": "TP53",
+        "rationale": "TP53是ASPP1调控的核心转录因子，ASPP1通过结合其DNA结合核心结构域增强促凋亡靶基因转录，处于同一p53凋亡轴。"
+      },
+      {
+        "target": "TP73",
+        "rationale": "TP73同属p53家族，可与ASPP1发生功能性互作并参与凋亡相关转录调控，适合作为同通路机制比较靶点。"
+      },
+      {
+        "target": "PPP1R13L",
+        "rationale": "PPP1R13L编码iASPP，是ASPP家族成员，可结合并抑制p53家族介导的凋亡转录，与PPP1R13B构成同一调控网络中的功能对照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

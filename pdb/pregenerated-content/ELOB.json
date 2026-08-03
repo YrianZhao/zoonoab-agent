@@ -1,0 +1,65 @@
+{
+  "gene": "ELOB",
+  "generatedAt": "2026-08-03T12:16:01.439Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ELOB编码elongin B，是EloB/EloC复合体组成成分，可作为VHL、SOCS盒蛋白及HIV Vif相关泛素连接酶复合体的适配模块，参与底物识别复合体稳定化；在HIV感染中，Vif利用EloB/EloC-CUL5通路促进APOBEC3G降解。该蛋白主要为胞内适配蛋白，天然抗原可及性弱，不具备典型膜受体或分泌蛋白优势，抗体策略更适合结构生物学验证、胞内递送或降解复合体界面干预。相较直接靶向CUL5等核心泛素化骨架，ELOB具有较小结构域、明确EloB/EloC界面及Vif复合体结构信息，适合作为高分辨率界面抗体设计的优先模型靶点。",
+    "mechanism": "抗体结合ELOB的EloC/Vif邻近界面，阻断HIV Vif募集EloB/EloC-CUL5复合体并削弱APOBEC3G泛素化降解。",
+    "selectedEpitope": "优先覆盖ubiquitin-like fold中与ELOC相邻并邻近Vif结合面的β片层-α螺旋界面。",
+    "diseaseDirection": "HIV感染与宿主抗病毒限制因子通路",
+    "domain": "ELOB为约118 aa小型胞内蛋白，核心为ubiquitin-like β-grasp fold，与ELOC形成稳定异二聚体。",
+    "evidence": "ELOB-Vif-ELOC-CUL5轴抗HIV结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q15370功能与亚细胞定位注释",
+      "RCSB PDB 4AJY X射线晶体结构",
+      "HIV Vif-EloB/EloC-CUL5-APOBEC3G泛素化研究文献"
+    ],
+    "referenceEntries": "UniProt Q15370；RCSB PDB 4AJY；Open Targets ELOB",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ELOB ubiquitin-like fold邻近ELOC结合界面的β片层-α螺旋面",
+        "可干预EloB/EloC稳定装配并影响Vif复合体形成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ELOB暴露环区及C端邻近复合体外侧表面",
+        "有利于获得高亲和结合克隆，适合结构示踪与占位验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ELOB与ELOC深埋疏水核心接触面",
+        "界面埋藏度高且可能破坏蛋白折叠，需避免非特异构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ELOB为胞内蛋白，常规治疗性抗体难以到达作用位点；设计应优先限定为胞内抗体、递送抗体片段或结构验证抗体，并评估EloB/EloC基础功能干扰风险。",
+    "structurePrepZh": "以4AJY高分辨率晶体结构为模板，保留ELOB相关链并重建缺失侧链，标注ELOC、Vif及CUL5邻近界面后进行表面可及性分析。",
+    "structureRef": "RCSB PDB 4AJY，X-ray diffraction，1.73 Å",
+    "antibodies": [
+      "无获批ELOB靶向治疗性抗体",
+      "研究级anti-Elongin B抗体"
+    ],
+    "interfaceFocus": "ELOB-ELOC界面及Vif募集邻近表面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "ELOC",
+        "rationale": "ELOC与ELOB形成elongin BC核心复合体，是HIV Vif募集CUL5泛素连接酶所需适配因子；靶向该界面可直接影响Vif复合体稳定性。"
+      },
+      {
+        "target": "CBFB",
+        "rationale": "CBFB是HIV Vif稳定折叠及APOBEC3G降解活性所需宿主辅因子，与EloB/EloC-CUL5轴处于同一Vif依赖泛素化通路。"
+      },
+      {
+        "target": "CUL5",
+        "rationale": "CUL5构成Vif-EloB/EloC E3泛素连接酶的cullin骨架，负责连接底物识别模块与泛素转移组件，是APOBEC3G降解通路的核心节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

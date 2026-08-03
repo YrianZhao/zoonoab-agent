@@ -1,0 +1,65 @@
+{
+  "gene": "PNKP",
+  "generatedAt": "2026-08-03T15:24:02.077Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PNKP 是核内 DNA 单链断裂修复与非同源末端连接中的末端加工酶，致病变异可造成 DNA 断端 5'-羟基与 3'-磷酸处理失败，并与共济失调、小头畸形、癫痫及发育迟缓表型高度相关。该蛋白主要定位于细胞核和线粒体，缺乏天然胞外结构域或分泌特征，抗体抗原可及性不适合常规体内阻断，但可用于细胞内递送、结构生物学捕获或诊断检测。相比 XRCC1、LIG3 等大型支架或连接酶，PNKP 具有明确催化口袋、解析度 1.4 Å 的实验结构和直接致病遗传证据，适合作为机制验证型抗体设计靶点。",
+    "mechanism": "设计抗体阻断 PNKP 磷酸酶沟槽与受损 DNA 3'-磷酸末端结合，或稳定闭合构象以抑制 5'-激酶/3'-磷酸酶末端加工活性。",
+    "selectedEpitope": "优先覆盖 FHA 结构域磷酸肽结合面或磷酸酶结构域 DNA 3'-端进入沟槽。",
+    "diseaseDirection": "DNA修复缺陷神经发育疾病",
+    "domain": "PNKP 含 N 端 FHA 结构域、中央 3'-磷酸酶结构域及 C 端 5'-激酶结构域。",
+    "evidence": "PNKP DNA断端修复与神经发育疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt Q96T60 功能与定位注释",
+      "RCSB PDB 2BRF X射线晶体结构",
+      "OMIM/Orphanet PNKP相关神经发育综合征记录"
+    ],
+    "referenceEntries": "UniProt Q96T60；RCSB PDB 2BRF；Open Targets PNKP",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "FHA结构域磷酸化XRCC1/CK2样肽结合沟槽",
+        "干扰PNKP向DNA损伤修复复合物募集，适合机制型阻断抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "3'-磷酸酶结构域催化沟槽及DNA末端进入面",
+        "直接限制3'-磷酸断端进入活性位点，可评估构象锁定策略",
+        "备选"
+      ],
+      [
+        "Site C",
+        "5'-激酶结构域ATP结合邻近区域",
+        "可能影响激酶活性但与保守核苷酸结合位点重叠，脱靶风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PNKP 为细胞内核酶，常规抗体体内可及性不足；设计应定位于研究级胞内抗体、递送型抗体片段或诊断捕获抗体，并避免高度保守ATP结合界面。",
+    "structurePrepZh": "以2BRF链A为结构模板，保留高分辨率坐标并补全缺失柔性环；按FHA、磷酸酶和激酶结构域分别标注催化残基、DNA结合沟槽与磷酸肽结合面。",
+    "structureRef": "RCSB PDB 2BRF，human PNKP，X-ray 1.4 Å",
+    "antibodies": [
+      "商业抗PNKP单克隆抗体",
+      "商业抗PNKP多克隆抗体"
+    ],
+    "interfaceFocus": "FHA磷酸肽沟槽与磷酸酶DNA断端沟槽",
+    "designMode": "胞内机制抗体设计",
+    "candidates": [
+      {
+        "target": "XRCC1",
+        "rationale": "XRCC1 通过磷酸化位点与PNKP FHA结构域结合，负责单链断裂修复复合物募集，是同一DNA末端修复通路中的核心支架蛋白。"
+      },
+      {
+        "target": "APTX",
+        "rationale": "APTX 参与异常DNA连接中间体修复，其缺陷同样导致共济失调伴眼动失用等神经系统表型，适合作为PNKP相关修复缺陷的并行靶点。"
+      },
+      {
+        "target": "LIG3",
+        "rationale": "LIG3 与XRCC1协同完成单链断裂修复和线粒体DNA修复中的DNA末端连接，位于PNKP末端加工之后的同一修复轴。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

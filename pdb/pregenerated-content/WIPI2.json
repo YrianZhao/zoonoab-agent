@@ -1,0 +1,65 @@
+{
+  "gene": "WIPI2",
+  "generatedAt": "2026-08-03T17:52:57.866Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "WIPI2是PI3P结合型β-propeller自噬效应蛋白，定位于早期自噬体形成位点并招募ATG16L1，促进LC3脂质化和自噬膜延伸；其遗传关联涉及神经发育异常、神经退行性疾病及红细胞性状，符合自噬稳态失衡的疾病背景。该蛋白主要为胞质膜相关适配因子，缺乏稳定胞外结构域或分泌暴露特征，因此常规体内阻断抗体的抗原可及性受限，更适合结构验证、细胞内抗体或递送型抗体策略。相较上游PIK3C3复合体或下游ATG8家族蛋白，WIPI2处于PI3P识别与ATG16L1招募的衔接节点，结构清晰且界面明确，具备较高机制解析优先级。",
+    "mechanism": "阻断WIPI2 β-propeller上ATG16L1结合界面，抑制ATG16L1被招募至PI3P阳性隔离膜，从而降低LC3/ATG8脂质化效率。",
+    "selectedEpitope": "优先覆盖WIPI2 β-propeller blade 2-3附近ATG16L1结合沟槽，避开PI3P结合FRRG基序。",
+    "diseaseDirection": "自噬相关神经发育与神经退行性疾病",
+    "domain": "WIPI2由七叶WD40 β-propeller构成，含PI3P识别FRRG基序及ATG16L1结合表面。",
+    "evidence": "WIPI2自噬膜招募与ATG16L1界面证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9Y4P8功能与亚细胞定位注释",
+      "RCSB PDB 7F69高分辨率晶体结构",
+      "自噬通路文献：WIPI2介导ATG16L1招募与LC3脂质化"
+    ],
+    "referenceEntries": "UniProt Q9Y4P8；RCSB PDB 7F69；HGNC:32225；Open Targets WIPI2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "β-propeller blade 2-3的ATG16L1结合沟槽",
+        "直接干预WIPI2-ATG16L1相互作用，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FRRG基序邻近的PI3P识别面外缘",
+        "可影响WIPI2在PI3P阳性膜上的驻留，但需避免完全遮蔽磷脂结合口袋导致非特异膜效应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "β-propeller顶面保守WD重复骨架区",
+        "结构稳定但功能选择性较低，可能影响折叠或多蛋白弱相互作用",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "WIPI2为胞质蛋白，天然抗体难以进入细胞并接触靶点；建议限定为细胞内抗体、递送型Fab/VHH或结构探针用途，并优先验证ATG16L1界面特异性。",
+    "structurePrepZh": "采用PDB 7F69链A或链C作为抗原模板，保留WD40 β-propeller完整构象，检查晶体接触界面、缺失环区及FRRG基序取向后再进行表位建模。",
+    "structureRef": "RCSB PDB 7F69，human WIPI2 X-ray structure，1.5 Å",
+    "antibodies": [
+      "研究级抗WIPI2单克隆抗体",
+      "研究级抗WIPI2多克隆抗体"
+    ],
+    "interfaceFocus": "ATG16L1结合沟槽与PI3P识别面邻近区域",
+    "designMode": "细胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "ATG16L1",
+        "rationale": "ATG16L1是WIPI2直接招募的下游效应蛋白，参与LC3脂质化复合体定位；靶向其WIPI2结合区域可在同一自噬膜延伸节点进行干预。"
+      },
+      {
+        "target": "PIK3C3",
+        "rationale": "PIK3C3/VPS34复合体生成PI3P，为WIPI2定位于早期自噬膜提供脂质信号；其位于WIPI2上游并控制自噬起始膜标记。"
+      },
+      {
+        "target": "BECN1",
+        "rationale": "BECN1是PIK3C3自噬复合体核心组分，调节PI3P产生和自噬起始；与WIPI2处于同一PI3P依赖性自噬通路轴。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

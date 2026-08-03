@@ -1,0 +1,65 @@
+{
+  "gene": "PMAIP1",
+  "generatedAt": "2026-08-03T15:23:22.422Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PMAIP1/NOXA 是 p53 诱导的 BH3-only 促凋亡蛋白，通过 BH3 α螺旋结合并中和 MCL1 与 BCL2A1，释放 BAK/BAX 介导线粒体外膜通透化，因而与神经退行性损伤及造血细胞稳态异常存在机制关联。该蛋白主要定位于线粒体外膜胞质侧，不具备分泌蛋白或细胞外受体样可及性，常规体内阻断抗体成药性受限。其优先级低于同通路中具有明确胞外配体或受体结构的靶点，但可作为结构机制验证、细胞内抗体或递送型抗体片段设计对象。",
+    "mechanism": "以内源化或细胞内抗体片段占据 PMAIP1 BH3 螺旋，阻断其与 MCL1 BH3 结合沟槽相互作用，从而调节 MCL1 依赖性凋亡阈值。",
+    "selectedEpitope": "优先围绕 BH3 α螺旋疏水面及 MCL1 结合界面设计，避免破坏非特异线粒体定位片段。",
+    "diseaseDirection": "神经退行性疾病与细胞凋亡",
+    "domain": "短型 BH3-only 蛋白，核心为促凋亡 BH3 α螺旋，缺乏典型胞外结构域。",
+    "evidence": "PMAIP1-MCL1 凋亡轴结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q13794 functional annotation",
+      "RCSB PDB 3MQP X-ray structure",
+      "BCL2 family apoptosis pathway literature"
+    ],
+    "referenceEntries": "UniProt Q13794; RCSB PDB 3MQP; Open Targets PMAIP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "BH3 α螺旋 MCL1 结合疏水面",
+        "直接覆盖关键结合残基，适合竞争性阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "BH3 螺旋邻近带电侧链区",
+        "可提高结合选择性并降低对 BCL2 家族广谱交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端线粒体定位相关疏水片段",
+        "可能影响亚细胞定位且抗原可及性不稳定，需谨慎评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PMAIP1 为胞内线粒体相关短蛋白，传统抗体难以到达作用位点；建议限定为细胞内抗体、递送型 Fab/VHH 或机制研究用途。",
+    "structurePrepZh": "以 PDB 3MQP 中 PMAIP1 BH3 螺旋与 MCL1 复合物为模板，保留界面侧链构象并补全缺失氢原子后进行表位映射。",
+    "structureRef": "RCSB PDB 3MQP, X-ray diffraction 2.24 Å",
+    "antibodies": [
+      "无已批准 PMAIP1 靶向抗体",
+      "PMAIP1/NOXA 研究级抗体"
+    ],
+    "interfaceFocus": "BH3 螺旋-MCL1 疏水沟槽界面",
+    "designMode": "细胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "MCL1",
+        "rationale": "MCL1 是 PMAIP1/NOXA 的直接结合伙伴，位于线粒体凋亡通路核心节点；其 BH3 结合沟槽已有明确结构和药理学验证。"
+      },
+      {
+        "target": "BCL2L1",
+        "rationale": "BCL2L1/BCL-XL 抑制 BAK/BAX 激活并维持线粒体完整性，与 PMAIP1 调控的 BCL2 家族网络处于同一凋亡通路。"
+      },
+      {
+        "target": "BAX",
+        "rationale": "BAX 是线粒体外膜通透化的执行蛋白，受 BH3-only 蛋白间接激活；其构象转换决定下游半胱天冬酶级联启动。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

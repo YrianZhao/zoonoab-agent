@@ -1,0 +1,65 @@
+{
+  "gene": "KLHL22",
+  "generatedAt": "2026-08-03T20:00:14.184Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KLHL22 为 Cullin3-RBX1 E3 泛素连接酶复合体的底物适配蛋白，主要通过 Kelch β-propeller 识别胞内底物并介导泛素化降解，与有丝分裂进程和肿瘤细胞周期调控存在生物学关联。该蛋白为胞质定位蛋白，缺乏分泌信号肽、跨膜区及天然胞外结构域，因此完整抗体作为体内阻断药物的抗原可及性较弱。相较 EGFR、VEGFA 或免疫检查点等可及性明确且临床验证充分的肿瘤靶点，KLHL22 更适合作为结构生物学驱动的胞内功能研究或递送型抗体片段探索靶点，优先级应低于膜受体和分泌因子。",
+    "mechanism": "设计分子应阻断 KLHL22 Kelch β-propeller 底物结合沟槽与周期调控底物的相互作用，从而干预 CUL3-KLHL22 介导的底物泛素化。",
+    "selectedEpitope": "优先覆盖 Kelch β-propeller 顶面底物结合沟槽及相邻 BC/DE 环区，避免泛化选择保守骨架面。",
+    "diseaseDirection": "肿瘤细胞周期与泛素化调控",
+    "domain": "KLHL22 含 BTB/POZ 结构域、BACK 区域及 C 端 Kelch 重复 β-propeller 底物识别结构域。",
+    "evidence": "KLHL22-CUL3 泛素连接酶结构与肿瘤关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt Q53GT1 蛋白功能与结构域注释",
+      "RCSB PDB 8W4J 电子显微镜结构",
+      "文献报道的 CUL3-KLHL22 底物适配机制"
+    ],
+    "referenceEntries": "UniProt: Q53GT1; RCSB PDB: 8W4J; Gene: KLHL22",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Kelch β-propeller 顶面底物结合沟槽",
+        "最可能直接阻断底物招募并影响泛素化选择性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "BTB/POZ 结构域 CUL3 结合邻近界面",
+        "可用于干扰 KLHL22 与 CUL3 复合体装配，但需控制广谱 CRL 干扰风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Kelch β-propeller 保守侧面骨架区域",
+        "结构稳定但功能阻断概率较低，且可能产生非特异结合背景",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "KLHL22 为胞内靶点，常规 IgG 难以接触天然抗原；建议限定为体外结构验证、细胞内抗体片段或递送体系，并评估 CUL3 复合体广谱干扰风险。",
+    "structurePrepZh": "以 PDB 8W4J 抗原链为模板，保留 KLHL22 相关链并校正多聚装配；补全缺失环区、标注 BTB-BACK-Kelch 边界后进行界面建模。",
+    "structureRef": "RCSB PDB 8W4J, cryo-EM structure at 3.06 Å",
+    "antibodies": [
+      "暂无已批准 KLHL22 靶向治疗性抗体",
+      "暂无临床阶段 KLHL22 阻断抗体"
+    ],
+    "interfaceFocus": "Kelch 顶面底物沟槽与 BTB-CUL3 装配界面",
+    "designMode": "胞内靶点探索",
+    "candidates": [
+      {
+        "target": "CUL3",
+        "rationale": "CUL3 是 KLHL22 依赖型 CRL 复合体的核心支架蛋白，直接连接 BTB 适配体与 RBX1 催化模块，处于同一泛素化通路。"
+      },
+      {
+        "target": "RBX1",
+        "rationale": "RBX1 为 CUL3-RING E3 连接酶的催化组分，负责招募 E2 泛素结合酶并促进底物泛素转移。"
+      },
+      {
+        "target": "KEAP1",
+        "rationale": "KEAP1 属于典型 BTB-Kelch 类 CUL3 底物适配蛋白，与 KLHL22 共享 CUL3 依赖型底物识别和泛素化降解机制。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

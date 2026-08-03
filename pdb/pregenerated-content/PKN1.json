@@ -1,0 +1,65 @@
+{
+  "gene": "PKN1",
+  "generatedAt": "2026-08-03T20:33:34.225Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PKN1 是胞内丝氨酸/苏氨酸蛋白激酶，参与 RhoA/Rac1 小 GTP 酶下游的细胞骨架、应激反应与神经元信号调控，其与神经退行性疾病、阿尔茨海默病和帕金森病存在遗传与功能层面的关联。该靶点缺乏天然胞外结构域，常规完整抗体难以直接结合细胞内激酶结构，因此更适合作为细胞内递送抗体片段或研究型抑制分子设计对象。相较于上游广泛表达的 RHOA 或 RAC1，PKN1 激酶结构域具备高分辨率实验结构，便于围绕催化沟槽与调控界面开展结构约束设计，但治疗转化优先级需低于可及性更强的膜受体或分泌靶点。",
+    "mechanism": "设计分子阻断 PKN1 激酶结构域 ATP 结合裂隙及底物结合沟槽，抑制其对下游蛋白底物的磷酸转移反应。",
+    "selectedEpitope": "优先靶向激酶结构域 N-lobe/C-lobe 之间的 ATP 结合裂隙及活化环邻近构象表面。",
+    "diseaseDirection": "神经退行性疾病通路",
+    "domain": "PKN1 含 N 端 HR1 Rho 结合区、C2-like 区及 C 端 AGC 激酶催化结构域。",
+    "evidence": "PKN1 神经退行性疾病结构设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt Q16512 蛋白功能与结构域注释",
+      "RCSB PDB 4OTH X-ray 晶体结构",
+      "Reactome Rho GTPase 与细胞骨架调控通路"
+    ],
+    "referenceEntries": "UniProt Q16512；RCSB PDB 4OTH；Open Targets PKN1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域 ATP 结合裂隙与铰链区邻近表面",
+        "直接干预催化构象与核苷酸结合，结构可解释性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C-lobe 底物识别沟槽及活化环周边区域",
+        "可能阻断蛋白底物进入磷酸转移位点，适合变构抑制设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端 HR1 RhoA 结合结构域预测界面",
+        "可影响 RhoA 依赖性激酶激活，但 4OTH 不覆盖该区域，结构不确定性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PKN1 为胞内激酶，常规抗体可及性不足；ATP 裂隙与 AGC 激酶家族保守性较高，需强化选择性筛选并考虑细胞内递送格式。",
+    "structurePrepZh": "采用 4OTH 抗原链 A 的 1.8 Å 晶体结构作为激酶结构域模板，补全缺失侧链、校正质子化状态并保留催化口袋构象。",
+    "structureRef": "RCSB PDB 4OTH，human PKN1 kinase domain，X-ray 1.8 Å",
+    "antibodies": [
+      "研究级 anti-PKN1 monoclonal antibody",
+      "研究级 anti-PKN1 phospho-specific antibody"
+    ],
+    "interfaceFocus": "ATP 铰链区、活化环与底物结合沟槽",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "RHOA",
+        "rationale": "RHOA 是 PKN1 上游小 GTP 酶，可通过结合 PKN1 N 端 HR1 区促进其激活，处于同一 Rho GTPase 信号轴。"
+      },
+      {
+        "target": "RAC1",
+        "rationale": "RAC1 参与 Rho 家族小 GTP 酶调控网络，与神经元细胞骨架重塑和应激反应相关，可作为同通路调节节点。"
+      },
+      {
+        "target": "ROCK1",
+        "rationale": "ROCK1 是 RhoA 下游效应激酶，与 PKN1 共同介导细胞骨架和收缩相关信号，具备更明确的药理学验证基础。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

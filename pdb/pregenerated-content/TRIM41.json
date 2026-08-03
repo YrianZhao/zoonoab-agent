@@ -1,0 +1,65 @@
+{
+  "gene": "TRIM41",
+  "generatedAt": "2026-08-03T17:29:09.534Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TRIM41 为胞内 E3 泛素连接酶，Open Targets 关联主要集中于 IGF-1 测量、身高、骨骼异常及代谢表型，提示其可能参与生长轴与骨代谢相关遗传网络。该蛋白缺乏胞外结构域、分泌形式或膜受体特征，天然抗原可及性不适合常规治疗性抗体直接阻断。与 IGF1R、FGF23 或 ACVR1 等同疾病方向可及靶点相比，TRIM41 优先级较低，更适合作为结构生物学研究抗体、胞内递送抗体或降解机制探针靶点。",
+    "mechanism": "设计抗体应定位于TRIM41 B-box结构域界面，用于干扰TRIM41介导的蛋白复合体装配或泛素连接酶构象组织，而非胞外配体阻断。",
+    "selectedEpitope": "优先选择2EGM所覆盖B-box锌结合结构域的保守折叠外露面，避开Zn2+配位核心残基。",
+    "diseaseDirection": "生长轴与骨骼代谢表型",
+    "domain": "TRIM41含RING、B-box和coiled-coil三联结构，2EGM对应B-box锌结合小结构域。",
+    "evidence": "TRIM41生长与骨代谢遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB Q8WV44 functional annotation",
+      "RCSB PDB 2EGM solution NMR structure",
+      "Human Protein Atlas expression annotation"
+    ],
+    "referenceEntries": "UniProt Q8WV44；RCSB PDB 2EGM；Ensembl ENSG00000146063",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "B-box结构域外露螺旋/环区非锌配位面",
+        "保留结构稳定性并利于获得构象识别抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "B-box与邻近连接区的潜在复合体装配边缘",
+        "可能干扰TRIM41局部构象组织和相互作用界面",
+        "备选"
+      ],
+      [
+        "Site C",
+        "RING结构域催化相关锌结合区域",
+        "可能影响E2结合与E3活性但锌指保守性高、脱靶风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TRIM41为胞内蛋白，治疗性抗体存在可及性限制。锌结合核心表位易破坏折叠并增加TRIM家族交叉反应，应优先采用外露非催化面。",
+    "structurePrepZh": "以2EGM NMR模型集合评估B-box构象一致性，补充AlphaFold全长模型定位RING、B-box和coiled-coil相对边界，并标注锌配位残基。",
+    "structureRef": "RCSB PDB 2EGM；human TRIM41 B-box solution NMR structure",
+    "antibodies": [
+      "无获批TRIM41治疗性抗体",
+      "研究级anti-TRIM41抗体"
+    ],
+    "interfaceFocus": "B-box外露非锌配位面与连接区边缘",
+    "designMode": "胞内靶点研究抗体",
+    "candidates": [
+      {
+        "target": "IGF1R",
+        "rationale": "IGF1R是IGF-1生长轴的细胞表面受体，可直接介导IGF1/IGF2诱导的PI3K-AKT与MAPK信号，抗体可及性和机制可验证性优于TRIM41。"
+      },
+      {
+        "target": "FGF23",
+        "rationale": "FGF23为分泌性骨源性激素，参与磷酸盐稳态和骨矿化异常，与骨骼代谢表型处于同一疾病方向，适合中和型抗体设计。"
+      },
+      {
+        "target": "ACVR1",
+        "rationale": "ACVR1为BMP通路I型受体，遗传变异与骨骼发育异常密切相关，胞外配体结合区提供明确抗体阻断表位。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

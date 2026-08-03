@@ -1,0 +1,65 @@
+{
+  "gene": "PDK3",
+  "generatedAt": "2026-08-03T15:10:39.667Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PDK3通过磷酸化丙酮酸脱氢酶复合体E1α亚基抑制丙酮酸进入三羧酸循环，PDK3活性增强可促成丙酮酸氧化受限、乳酸生成增加及神经能量代谢异常，与X连锁Charcot-Marie-Tooth病6型及先天性乳酸酸中毒具有明确机制关联。PDK3为线粒体基质内可溶性激酶，并非天然胞外抗原，完整抗体的细胞可及性受限，需优先采用细胞内递送抗体片段或降解偶联策略评估。相较PDK1、PDK2和PDK4，PDK3对PDH复合体抑制更强且与神经病变遗传证据关联更集中，因此在代谢性神经病变机制验证中具有较高优先级。",
+    "mechanism": "设计抗体片段阻断PDK3 ATP结合口袋邻近构象区或PDH-E2脂酰结构域结合界面，抑制其对PDHA1 Ser293/Ser300/Ser232的磷酸化。",
+    "selectedEpitope": "优先覆盖N端调节结构域与C端HisKA样催化结构域之间的PDH-E2脂酰结构域结合沟槽。",
+    "diseaseDirection": "代谢性周围神经病变与乳酸酸中毒",
+    "domain": "PDK3含N端调节/脂酰结构域结合区、C端组氨酸激酶样ATP结合催化结构域，并形成二聚体构象。",
+    "evidence": "PDK3-PDH轴神经代谢疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q15120功能与亚细胞定位注释",
+      "RCSB PDB 1Y8O晶体结构记录",
+      "PDK3致X连锁Charcot-Marie-Tooth病6型文献"
+    ],
+    "referenceEntries": "UniProt Q15120；RCSB PDB 1Y8O；Open Targets PDK3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端调节结构域与脂酰结构域结合沟槽",
+        "可干扰PDK3募集至PDH复合体，降低底物近邻磷酸化效率",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端ATP结合催化结构域入口及ATP盖区邻近表面",
+        "可变构限制ATP结合与催化构象转换，需避免直接依赖深埋小分子口袋",
+        "备选"
+      ],
+      [
+        "Site C",
+        "二聚体界面及疏水核心邻近区域",
+        "可能影响激酶构象稳定性，但保守性较高且构象埋藏导致可成药性受限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PDK3定位于线粒体基质，常规IgG难以到达抗原；建议限定为细胞内Fab/VHH、线粒体递送或PROTAB样平台，并严格评估PDK家族交叉反应。",
+    "structurePrepZh": "以1Y8O中A、B链二聚体为模板，补全缺失环区并保留ATP结合区构象；进行同源家族表面保守性、二聚体界面和脂酰结构域结合区标注。",
+    "structureRef": "RCSB PDB 1Y8O，human PDK3 X-ray structure，2.48 Å",
+    "antibodies": [
+      "无已批准PDK3治疗性抗体",
+      "研究级抗PDK3单克隆抗体"
+    ],
+    "interfaceFocus": "PDH-E2脂酰结构域结合沟槽与ATP盖区",
+    "designMode": "细胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "PDHA1",
+        "rationale": "PDHA1编码PDH E1α亚基，是PDK3直接磷酸化底物；其磷酸化状态决定PDH复合体活性与丙酮酸氧化通量。"
+      },
+      {
+        "target": "PDP1",
+        "rationale": "PDP1去磷酸化并激活PDH复合体，与PDK3在同一PDH磷酸化开关中形成拮抗调控，适合作为通路平衡节点。"
+      },
+      {
+        "target": "DLAT",
+        "rationale": "DLAT编码PDH复合体E2组分，其脂酰结构域介导PDK3募集至PDH复合体，是阻断PDK3底物定位的重要同通路靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

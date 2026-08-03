@@ -1,0 +1,65 @@
+{
+  "gene": "AIM2",
+  "generatedAt": "2026-08-03T10:21:11.233Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "AIM2 是胞质 DNA 传感器，HIN200 结构域结合双链 DNA 后通过 PYD 招募 ASC/PYCARD，驱动 caspase-1 炎症小体活化、IL-1β/IL-18 成熟及 GSDMD 介导的焦亡，符合银屑病和白细胞计数表型中的先天免疫炎症机制。该蛋白为胞内非分泌抗原，天然抗体可及性弱，但 HIN200-DNA 结合面具有清晰晶体结构，可用于细胞内抗体、递送型 Fab/VHH 或机制验证型阻断分子设计。相比 IL1B、CASP1 等下游效应因子，AIM2 位于 dsDNA 触发炎症小体的上游识别节点，具备更强通路选择性，适合作为 AIM2 轴特异性干预靶点。",
+    "mechanism": "阻断 AIM2 HIN200 结构域与胞质双链 DNA 磷酸骨架的结合，抑制 PYD 介导的 ASC 斑点形成及 caspase-1 活化。",
+    "selectedEpitope": "优先覆盖 HIN200 OB-fold 正电 DNA 结合沟槽，避开疏水核心并保留构象稳定性。",
+    "diseaseDirection": "炎症小体相关自身炎症",
+    "domain": "AIM2 含 N 端 PYD 结构域和 C 端 HIN200 DNA 结合结构域；4O7Q 解析 HIN 结构域。",
+    "evidence": "AIM2炎症小体结构与疾病遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt O14862 functional annotation",
+      "RCSB PDB 4O7Q X-ray structure",
+      "PubMed AIM2 inflammasome and psoriasis literature"
+    ],
+    "referenceEntries": "UniProt O14862；RCSB PDB 4O7Q；Open Targets AIM2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "HIN200 OB-fold DNA 结合沟槽及正电残基簇",
+        "可直接削弱 dsDNA 结合并阻断炎症小体上游触发",
+        "优先"
+      ],
+      [
+        "Site B",
+        "HIN200 外侧非 DNA 接触凸面",
+        "利于获得构象结合分子，可用于定位或变构干预筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "HIN200 疏水核心及结构域折叠支撑区",
+        "可能影响蛋白稳定性并产生非特异构象扰动，需谨慎规避",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "AIM2 为胞内蛋白，常规循环抗体难以到达作用位点；宜采用细胞内递送、VHH 胞内表达或研究级 Fab，并严格评估与 IFI16 等 HIN200 家族蛋白交叉反应。",
+    "structurePrepZh": "以 4O7Q 的 A 链 HIN200 结构域为模板，补全缺失侧链、校正质子化状态，标注 DNA 结合正电沟槽并屏蔽晶体接触界面。",
+    "structureRef": "Jin et al., AIM2 HIN domain-dsDNA recognition structural studies",
+    "antibodies": [
+      "Anti-AIM2 clone 3B10",
+      "Anti-AIM2 clone D5X7K"
+    ],
+    "interfaceFocus": "HIN200-DNA 磷酸骨架结合沟槽",
+    "designMode": "胞内阻断型",
+    "candidates": [
+      {
+        "target": "PYCARD",
+        "rationale": "PYCARD/ASC 是 AIM2 PYD 下游接头蛋白，介导 ASC speck 装配并连接 caspase-1 激活，属于同一 AIM2 炎症小体通路。"
+      },
+      {
+        "target": "CASP1",
+        "rationale": "CASP1 是 AIM2 炎症小体的核心效应蛋白，负责切割 pro-IL-1β、pro-IL-18 和 GSDMD，可作为下游炎症放大节点。"
+      },
+      {
+        "target": "IL1B",
+        "rationale": "IL1B 是 AIM2-caspase-1 轴释放的关键促炎细胞因子，与银屑病和白细胞炎症反应密切相关，具备较高胞外抗体可及性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

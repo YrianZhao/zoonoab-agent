@@ -1,0 +1,65 @@
+{
+  "gene": "NOS1",
+  "generatedAt": "2026-08-03T14:47:26.474Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NOS1编码神经型一氧化氮合酶，在神经元和部分肿瘤组织中通过钙调蛋白依赖性催化L-精氨酸生成NO，影响NMDA受体相关兴奋性、血管舒张及应激反应通路。该蛋白主要为胞质酶，天然抗原可及性低于膜受体或分泌蛋白，因此更适合定位于可内化递送、细胞内抗体片段或结构机制研究型抗体策略。相较于上游非特异性神经递质靶点，NOS1具备高分辨率实验结构和明确催化结构域，可在机制验证中获得更精确的界面约束。",
+    "mechanism": "抗体片段结合NOS1氧化酶结构域二聚化界面，干扰血红素邻近构象稳定性，降低L-精氨酸向NO和L-瓜氨酸的催化转化。",
+    "selectedEpitope": "优先覆盖氧化酶结构域Domain II样二聚化界面及血红素邻近可及环区。",
+    "diseaseDirection": "神经精神应激与NO信号异常",
+    "domain": "NOS1含N端PDZ结构域、氧化酶结构域、钙调蛋白结合区及C端还原酶结构域。",
+    "evidence": "NOS1结构与神经NO通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProtKB P29475功能注释",
+      "RCSB PDB 5UO1晶体结构",
+      "Reactome一氧化氮信号通路"
+    ],
+    "referenceEntries": "UniProt P29475；RCSB PDB 5UO1；Ensembl ENSG00000089250",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "氧化酶结构域二聚化界面",
+        "直接影响NOS1活性二聚体稳定性，适合抑制型抗体片段设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "血红素结合口袋邻近外露环区",
+        "可间接扰动底物通道和辅因子构象，但需避免深口袋不可及性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "钙调蛋白结合区附近线性片段",
+        "可能影响CaM依赖激活，但柔性较高且构象表位稳定性不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NOS1为胞内酶，常规循环抗体难以到达作用位点；建议采用细胞内递送Fab、VHH或蛋白降解偶联验证，并严格评估NOS2、NOS3交叉反应。",
+    "structurePrepZh": "以5UO1中A、B链氧化酶二聚体为模板，保留血红素和关键辅因子坐标，补全缺失环区并标注二聚化界面残基。",
+    "structureRef": "RCSB PDB 5UO1，1.9 Å X射线晶体结构",
+    "antibodies": [
+      "anti-NOS1 clone N1-20",
+      "anti-nNOS clone K20"
+    ],
+    "interfaceFocus": "氧化酶二聚化界面与血红素邻近环区",
+    "designMode": "胞内抑制型片段",
+    "candidates": [
+      {
+        "target": "GRIN1",
+        "rationale": "GRIN1编码NMDA受体必需亚基，NMDA受体介导Ca2+内流可激活钙调蛋白依赖NOS1，是神经NO生成上游关键节点。"
+      },
+      {
+        "target": "CALM1",
+        "rationale": "CALM1编码钙调蛋白，直接结合NOS1钙调蛋白结合区并促进电子从还原酶结构域向氧化酶结构域转移。"
+      },
+      {
+        "target": "NOS3",
+        "rationale": "NOS3同属一氧化氮合酶家族，参与血管内皮NO生成和血流调节，可作为NO生物合成轴中的同通路比较靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "SKP2",
+  "generatedAt": "2026-08-03T21:10:36.698Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SKP2是SCF泛素连接酶复合体的F-box底物识别亚基，通过促进CDKN1B/p27等细胞周期抑制因子泛素化降解，参与细胞周期失衡、神经元细胞周期再进入及退行性病变相关应激过程。该蛋白主要定位于细胞核和胞质，不具备天然胞外结构域或分泌特征，抗原可及性低于膜受体和分泌因子，更适合细胞内递送抗体或研究型结合分子设计。其优先级来自高分辨率复合物结构、明确的F-box/LRR底物识别界面及相对上游细胞周期调控节点属性，但作为常规体内抗体药物靶点需低于可胞外干预靶点。",
+    "mechanism": "设计结合LRR凹面与CKS1结合邻近界面，阻断SKP2-CKS1介导的磷酸化CDKN1B/p27招募，降低其SCF复合体依赖性泛素化。",
+    "selectedEpitope": "优先锁定LRR底物结合凹面及CKS1邻近界面，避免直接覆盖F-box-SKP1核心装配面。",
+    "diseaseDirection": "神经退行性疾病与细胞周期异常",
+    "domain": "SKP2含N端F-box结构域与C端富亮氨酸重复LRR结构域，LRR负责底物识别。",
+    "evidence": "SKP2结构复合物与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q13309功能与亚细胞定位注释",
+      "RCSB PDB 1FS1晶体结构记录",
+      "SCF-SKP2-CKS1-p27泛素化机制文献"
+    ],
+    "referenceEntries": "UniProt Q13309；RCSB PDB 1FS1；Open Targets SKP2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "LRR结构域底物结合凹面及p27招募邻近区",
+        "直接干预底物识别，利于阻断CDKN1B/p27降解机制",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CKS1结合邻近界面与LRR外侧沟槽",
+        "可削弱磷酸化p27协同招募，兼顾选择性与结构稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端F-box与SKP1装配界面",
+        "可能破坏SCF核心复合体但选择性风险较高，需谨慎评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SKP2为细胞内蛋白，常规抗体组织可及性受限；设计宜采用细胞内递送格式，并严格规避广泛干扰SCF家族核心装配导致的泛素稳态风险。",
+    "structurePrepZh": "以1FS1高分辨率晶体结构为模板，保留SKP2相关链并校正缺失环区、质子化状态与LRR界面侧链构象，用于表位暴露度评估。",
+    "structureRef": "RCSB PDB 1FS1，X-ray diffraction，1.8 Å",
+    "antibodies": [
+      "抗SKP2研究级单克隆抗体",
+      "细胞内抗体/intrabody格式结合分子"
+    ],
+    "interfaceFocus": "LRR凹面、CKS1邻近区、F-box-SKP1界面",
+    "designMode": "细胞内阻断型",
+    "candidates": [
+      {
+        "target": "CKS1B",
+        "rationale": "CKS1B与SKP2协同识别磷酸化CDKN1B/p27，是SCF-SKP2介导p27泛素化的关键辅因子。干预该节点可降低底物招募效率。"
+      },
+      {
+        "target": "CDKN1B",
+        "rationale": "CDKN1B/p27是SKP2-CKS1复合体的经典底物，其稳定性直接影响G1/S细胞周期转换。围绕其降解界面可构建同通路保护性干预策略。"
+      },
+      {
+        "target": "SKP1",
+        "rationale": "SKP1连接F-box蛋白与CUL1-RBX1核心泛素连接酶，是SCF复合体装配的中心支架。该靶点可用于评估SCF-SKP2装配依赖性机制。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

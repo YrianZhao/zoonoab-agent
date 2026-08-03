@@ -1,0 +1,65 @@
+{
+  "gene": "NSD1",
+  "generatedAt": "2026-08-03T14:51:16.698Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NSD1 是核内组蛋白甲基转移酶，主要催化 H3K36 甲基化并参与转录调控；NSD1 单倍剂量不足与 Sotos 综合征明确相关，NUP98-NSD1 融合可驱动急性髓系白血病的 HOXA/MEIS1 程序。该蛋白并非分泌蛋白或膜受体，天然抗原可及性不适合常规细胞外治疗性抗体，但其 SET 催化结构域具有高分辨率晶体结构，适用于体外结合抗体、细胞内递送抗体或结构生物学工具抗体设计。相较缺乏结构模板的染色质调控因子，NSD1 具备疾病遗传证据强、结构域边界清晰、催化口袋可解析等优势，优先用于机制验证型抗体开发。",
+    "mechanism": "抗体结合 NSD1 SET 结构域底物结合沟槽，阻断组蛋白 H3K36 肽段进入催化界面并干扰 SAM 依赖甲基转移反应。",
+    "selectedEpitope": "优先覆盖 SET 结构域底物肽结合沟槽及 post-SET 邻近构象稳定界面。",
+    "diseaseDirection": "Sotos 综合征与AML表观遗传调控",
+    "domain": "NSD1 含 PWWP、PHD 指、SAC、SET 与 post-SET 结构域；3OOI 对应催化 SET 区域。",
+    "evidence": "NSD1 疾病遗传与SET结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q96L73 蛋白功能注释",
+      "RCSB PDB 3OOI 晶体结构",
+      "ClinVar/OMIM NSD1 相关遗传变异证据"
+    ],
+    "referenceEntries": "UniProt Q96L73；RCSB PDB 3OOI；Open Targets ENSG00000165671",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SET 结构域底物肽结合沟槽",
+        "可直接阻断 H3K36 底物定位，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "post-SET 邻近催化构象稳定界面",
+        "可能降低催化环区稳定性并削弱甲基转移活性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离活性位点的 SET 外侧保守折叠面",
+        "结合可用于检测或结构捕获，但功能阻断不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NSD1 为核内蛋白，常规抗体难以到达天然作用位点；设计宜定位为工具抗体、细胞内抗体或递送抗体，并评估与 NSD2/NSD3 SET 区域交叉反应。",
+    "structurePrepZh": "以 3OOI 链 A 为模板，保留 SET 催化结构域坐标，校正缺失侧链与质子化状态，并标注 SAM/底物沟槽邻近残基用于表位建模。",
+    "structureRef": "RCSB PDB 3OOI，X-ray diffraction，1.75 Å，human NSD1 SET domain",
+    "antibodies": [
+      "商业抗 NSD1 单克隆抗体",
+      "抗 NUP98-NSD1 融合蛋白研究抗体"
+    ],
+    "interfaceFocus": "H3K36 底物沟槽与 post-SET 催化邻接面",
+    "designMode": "细胞内功能阻断",
+    "candidates": [
+      {
+        "target": "NUP98",
+        "rationale": "NUP98-NSD1 融合是 AML 中与 NSD1 直接相关的致病事件，融合蛋白通过异常转录激活维持 HOXA/MEIS1 白血病程序。"
+      },
+      {
+        "target": "KMT2A",
+        "rationale": "KMT2A 参与 HOXA 基因座表观遗传激活，并与多类 AML 转录维持程序相关；其染色质调控轴与 NUP98-NSD1 AML 表型存在通路交集。"
+      },
+      {
+        "target": "MEIS1",
+        "rationale": "MEIS1 是 NUP98-NSD1 AML 中被异常激活的核心白血病转录因子之一，可作为同一致病转录输出通路的下游候选靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

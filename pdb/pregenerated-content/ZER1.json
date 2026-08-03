@@ -1,0 +1,65 @@
+{
+  "gene": "ZER1",
+  "generatedAt": "2026-08-03T17:58:47.787Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ZER1是CUL2-RING E3泛素连接酶复合体的底物受体适配蛋白，主要通过N端BC-box与ELOB/ELOC连接，并以C端富含亮氨酸重复结构参与底物识别；其疾病证据目前以甲状腺功能减退、脂质测量性状和血液细胞计数的遗传关联为主，尚缺乏明确的细胞外致病配体轴。该蛋白定位于细胞内泛素化机器，缺少分泌蛋白、膜受体或稳定胞外结构域特征，天然抗原可及性不支持常规体内阻断型抗体开发。相较PCSK9、TSHR等同类疾病方向中具有胞外可及性和已验证药理窗口的靶点，ZER1更适合作为结构生物学与细胞内降解复合体机制研究靶点，抗体设计优先级应定位为研究级结合分子。",
+    "mechanism": "设计结合ZER1 LRR凹面的胞内抗体，干扰其底物招募界面或稳定构象，用于解析CUL2-ELOB/ELOC-ZER1复合体介导的底物泛素化。",
+    "selectedEpitope": "优先覆盖C端LRR结构域内侧凹面及相邻β-螺旋转角，避免BC-box核心装配界面。",
+    "diseaseDirection": "遗传代谢性状与甲状腺功能关联",
+    "domain": "ZER1含N端BC-box样ELOB/ELOC结合区及C端富含亮氨酸重复底物识别结构域。",
+    "evidence": "ZER1泛素连接酶适配体结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q7Z7L7 functional annotation",
+      "RCSB PDB 7XYT experimental structure",
+      "CUL2-RING E3 ubiquitin ligase literature"
+    ],
+    "referenceEntries": "UniProt Q7Z7L7；RCSB PDB 7XYT；Open Targets ZER1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端LRR内侧凹面底物识别面",
+        "可获得高特异性胞内结合分子并探测底物招募功能",
+        "优先"
+      ],
+      [
+        "Site B",
+        "LRR外侧凸面及末端帽状区域",
+        "结构稳定且抗原性较好，适合作为非阻断型结合表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端BC-box样ELOB/ELOC结合界面",
+        "可能扰动CUL2复合体装配，但与保守适配体界面相邻，交叉反应和功能毒性需谨慎",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ZER1为细胞内蛋白，常规抗体递送与体内可及性风险较高；建议限定为Fab/VHH胞内表达、结构探针或PROTAC机制验证用途。",
+    "structurePrepZh": "以7XYT高分辨率晶体结构为模板，保留ZER1链并检查ELOB/ELOC接触界面，补建缺失环区后进行LRR凹面表位聚类。",
+    "structureRef": "RCSB PDB 7XYT，X-ray diffraction，1.5 Å",
+    "antibodies": [
+      "无临床验证抗ZER1治疗性抗体",
+      "研究级抗ZER1多克隆抗体"
+    ],
+    "interfaceFocus": "LRR底物识别凹面与BC-box装配界面",
+    "designMode": "胞内抗体探针设计",
+    "candidates": [
+      {
+        "target": "CUL2",
+        "rationale": "CUL2是ZER1所属CRL2 E3泛素连接酶复合体的核心支架蛋白，决定底物受体与RBX1催化模块的空间装配。其功能位于同一泛素化通路，但同样属于细胞内靶点。"
+      },
+      {
+        "target": "ELOB",
+        "rationale": "ELOB与ELOC共同形成Elongin BC复合体，直接结合ZER1的BC-box样区域并连接CUL2支架。该节点可用于验证ZER1复合体装配依赖性。"
+      },
+      {
+        "target": "ELOC",
+        "rationale": "ELOC是BC-box底物受体适配体系的关键装配因子，参与稳定ZER1-CUL2复合体。其与ZER1处于同一CRL2泛素连接酶通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

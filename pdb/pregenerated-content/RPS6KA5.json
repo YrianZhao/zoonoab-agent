@@ -1,0 +1,65 @@
+{
+  "gene": "RPS6KA5",
+  "generatedAt": "2026-08-03T16:13:45.601Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RPS6KA5编码MSK1，是ERK1/2与p38 MAPK下游的核内丝氨酸/苏氨酸激酶，可磷酸化CREB、ATF1及组蛋白H3，参与应激反应、炎症转录与代谢表型调控。该蛋白主要定位于细胞核和胞质，缺乏分泌型或跨膜胞外结构域，天然抗原可及性不适合常规细胞外阻断抗体。相较于TNF、IL6R等同通路可及靶点，RPS6KA5更适合作为结构生物学与胞内递送抗体研究对象，开发优先级应低于具备胞外抗原暴露的节点。",
+    "mechanism": "设计抗体需结合MSK1 N端激酶结构域邻近ATP结合裂缝，阻断底物肽进入催化沟槽或干扰激活环构象稳定。",
+    "selectedEpitope": "优先评估N端激酶结构域ATP结合裂缝外缘与激活环邻近表面，避免深口袋竞争性设计。",
+    "diseaseDirection": "MAPK应激转录与代谢表型",
+    "domain": "MSK1含N端AGC样激酶结构域、连接区及C端CaMK样激酶结构域，1VZO覆盖N端催化域。",
+    "evidence": "RPS6KA5-MAPK应激转录证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt O75582功能与亚细胞定位注释",
+      "RCSB PDB 1VZO晶体结构记录",
+      "Reactome MAPK信号与CREB磷酸化通路"
+    ],
+    "referenceEntries": "UniProt O75582；RCSB PDB 1VZO；HGNC RPS6KA5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端激酶结构域ATP结合裂缝外缘及激活环邻近面",
+        "可能影响催化构象与底物进入，结构分辨率支持界面建模",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端激酶结构域C-lobe底物结合沟槽周边",
+        "可探索阻断CREB/ATF1底物肽定位，但需验证选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "保守ATP结合铰链区深部表面",
+        "与多种激酶高度保守，交叉反应和构象遮挡风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RPS6KA5缺乏胞外可及表位，常规抗体难以在完整细胞中结合天然靶点；建议限定为胞内抗体、递送抗体或结构验证用途。",
+    "structurePrepZh": "以1VZO抗原链A为模板，补全缺失侧链并校正质子化状态；保留激酶核心构象，移除结晶缓冲成分后进行表面可及性评估。",
+    "structureRef": "PDB 1VZO，human MSK1 N-terminal kinase domain，1.8 Å",
+    "antibodies": [
+      "Anti-MSK1 clone EP796Y",
+      "Anti-phospho-MSK1 Ser376 antibody"
+    ],
+    "interfaceFocus": "ATP裂缝外缘、激活环与底物沟槽",
+    "designMode": "胞内抗体探索",
+    "candidates": [
+      {
+        "target": "MAPK1",
+        "rationale": "ERK2位于RPS6KA5上游，可直接磷酸化并激活MSK1，处于同一MAPK-MSK-CREB应激转录轴。"
+      },
+      {
+        "target": "MAPK14",
+        "rationale": "p38α是RPS6KA5的重要上游激酶，连接炎症应激信号与MSK1介导的CREB和组蛋白H3磷酸化。"
+      },
+      {
+        "target": "CREB1",
+        "rationale": "CREB1是MSK1下游转录因子底物，Ser133磷酸化参与应激和代谢相关基因表达调控。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "ZBTB7A",
+  "generatedAt": "2026-08-03T17:58:15.509Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ZBTB7A 是POK家族转录因子，参与胎儿血红蛋白抑制、淋巴细胞增殖和造血分化调控，其功能异常与持续性胎儿血红蛋白、淋巴样增生及神经发育表型相关。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌形式，抗体抗原可及性不足，因此更适合作为机制研究或细胞内递送抗体探索靶点。相较于BCL11A等同通路核心因子，ZBTB7A具备已解析BTB/POZ结构基础，可用于结构约束型结合分子设计，但治疗抗体优先级低于可外泌或膜表面靶点。",
+    "mechanism": "设计分子以内源递送为前提，阻断ZBTB7A BTB/POZ结构域同源二聚化及其与转录共抑制复合体的装配，从而解除靶基因转录抑制。",
+    "selectedEpitope": "优先覆盖BTB/POZ二聚化界面α螺旋束，避免锌指DNA结合区产生广谱转录干扰。",
+    "diseaseDirection": "胎儿血红蛋白与造血调控",
+    "domain": "N端BTB/POZ蛋白互作结构域，C端C2H2锌指DNA结合结构域。",
+    "evidence": "ZBTB7A结构与造血转录抑制证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt O95365功能与亚细胞定位注释",
+      "RCSB PDB 2IF5晶体结构记录",
+      "造血发育与胎儿血红蛋白调控文献"
+    ],
+    "referenceEntries": "UniProt O95365；RCSB PDB 2IF5；Open Targets ZBTB7A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "BTB/POZ二聚化界面α螺旋束",
+        "直接干预ZBTB7A同源二聚化和共抑制复合体装配，机制可验证性较高。",
+        "优先"
+      ],
+      [
+        "Site B",
+        "BTB/POZ外侧蛋白互作沟槽",
+        "可能影响转录共抑制因子募集，保留部分结构稳定性，适合作为变构阻断方案。",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端C2H2锌指DNA结合区域",
+        "可阻断DNA结合但易产生广泛转录网络扰动，且2IF5未覆盖该区域。",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ZBTB7A为核内转录因子，常规抗体难以到达作用位点；需采用细胞内递送、内体逃逸或降解偶联策略，并优先评估全局转录毒性。",
+    "structurePrepZh": "以2IF5链A为BTB/POZ结构模板，补全缺失侧链并保留二聚体生物学装配；C端锌指区域需另行建模且不作为首选表位。",
+    "structureRef": "RCSB PDB 2IF5，X-ray diffraction，2.0 Å",
+    "antibodies": [
+      "研究级抗ZBTB7A单克隆抗体",
+      "研究级抗LRF/POKEMON抗体"
+    ],
+    "interfaceFocus": "BTB/POZ二聚体界面与共抑制因子结合面",
+    "designMode": "细胞内阻断型",
+    "candidates": [
+      {
+        "target": "BCL11A",
+        "rationale": "BCL11A是胎儿血红蛋白沉默通路的核心转录抑制因子，与ZBTB7A共同参与γ-珠蛋白表达抑制。其遗传证据强，但同样存在核内可及性限制。"
+      },
+      {
+        "target": "KLF1",
+        "rationale": "KLF1位于红系分化和血红蛋白转换调控网络上游，可调控BCL11A表达并影响β样珠蛋白基因程序。该靶点适合用于通路分层验证。"
+      },
+      {
+        "target": "HBG1",
+        "rationale": "HBG1编码γ-珠蛋白，是ZBTB7A/BCL11A介导胎儿血红蛋白沉默的直接功能输出节点。其表达变化可作为抗体设计机制验证读出。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

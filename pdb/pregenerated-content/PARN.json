@@ -1,0 +1,65 @@
+{
+  "gene": "PARN",
+  "generatedAt": "2026-08-03T15:05:11.273Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PARN编码poly(A)-specific ribonuclease，参与mRNA去腺苷酸化并促进TERC等端粒酶RNA组分成熟，功能缺陷可导致端粒维持不足，驱动先天性角化不良、端粒长度异常及肺纤维化易感。PARN主要定位于细胞核与胞质，催化结构域不具备天然胞外暴露特征，作为常规阻断型抗体靶点的抗原可及性弱于膜受体或分泌蛋白。其优先级依据在于疾病遗传证据和结构可解析度较高，适合作为细胞内递送抗体、降解偶联或机制验证抗体的研究型靶点，但临床可成药性需低于TERT、TERC轴相关可外显干预节点。",
+    "mechanism": "设计抗体识别PARN核酸酶催化沟槽邻近界面，空间阻断poly(A) RNA底物进入DEDD催化中心并干扰TERC成熟相关核糖核蛋白复合物装配。",
+    "selectedEpitope": "优先覆盖DEDD核酸酶结构域催化沟槽边缘及RNA结合凹槽，避免直接跨越高度保守金属配位残基。",
+    "diseaseDirection": "端粒生物学异常与肺纤维化",
+    "domain": "PARN含N端DEDD型3'-5'外切核酸酶催化域、R3H RNA结合域及C端RNA识别基序样区域。",
+    "evidence": "PARN端粒维持与肺纤维化遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt O95453功能与亚细胞定位注释",
+      "RCSB PDB 3CTR晶体结构记录",
+      "OMIM与ClinVar中PARN相关端粒病变异证据"
+    ],
+    "referenceEntries": "UniProt O95453；RCSB PDB 3CTR；Open Targets PARN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DEDD核酸酶结构域RNA结合沟槽边缘",
+        "可阻断poly(A)底物进入催化中心，适合功能抑制型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "R3H结构域预测RNA结合表面",
+        "可干扰RNA底物定位与复合物装配，保留催化中心选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "DEDD催化核心金属配位残基邻近区域",
+        "序列保守性高且易产生非特异交叉反应，需避免深度嵌入催化核心",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PARN为细胞内核酸酶，抗体天然进入细胞效率有限；建议采用细胞内递送Fab/VHH、降解偶联或体外机制验证模式，并严格评估RNase家族交叉反应。",
+    "structurePrepZh": "以3CTR链A为结构模板，补全缺失环区并校验催化金属与RNA结合沟槽构象；抗原建模应保留DEDD核心折叠并标注保守酸性残基。",
+    "structureRef": "RCSB PDB 3CTR，X-ray diffraction，2.1 Å",
+    "antibodies": [
+      "研究级anti-PARN monoclonal antibody",
+      "研究级anti-PARN recombinant antibody"
+    ],
+    "interfaceFocus": "DEDD催化沟槽与R3H RNA结合界面",
+    "designMode": "细胞内功能抗体",
+    "candidates": [
+      {
+        "target": "TERT",
+        "rationale": "TERT编码端粒酶逆转录酶，是端粒延长反应的催化核心；与PARN缺陷共同指向端粒维持不足及肺纤维化相关端粒病通路。"
+      },
+      {
+        "target": "TERC",
+        "rationale": "TERC为端粒酶RNA模板，PARN参与其3'端成熟与稳定；TERC异常直接导致端粒酶活性下降和先天性角化不良表型。"
+      },
+      {
+        "target": "DKC1",
+        "rationale": "DKC1参与H/ACA核糖核蛋白组装并稳定TERC，是先天性角化不良和端粒维持缺陷中的核心同通路因子。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

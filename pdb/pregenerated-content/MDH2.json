@@ -1,0 +1,65 @@
+{
+  "gene": "MDH2",
+  "generatedAt": "2026-08-03T20:09:04.595Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MDH2编码线粒体苹果酸脱氢酶，位于三羧酸循环与苹果酸-天冬氨酸穿梭交汇处，双等位基因致病变异可导致发育性癫痫性脑病51型等线粒体代谢性脑病。该蛋白为线粒体基质内可溶性酶，并非经典胞外抗原，完整抗体体内可及性较低，适合作为结构抗原用于体外结合分子或细胞内递送抗体片段设计。相较多数间接代谢调节因子，MDH2具有高分辨率人源晶体结构和明确NAD/苹果酸催化口袋，可优先开展机制性阻断或变构稳定表位评估，但治疗性抗体优先级受亚细胞定位限制。",
+    "mechanism": "设计抗体片段结合MDH2 NAD结合Rossmann折叠邻近环区或二聚体界面，干扰NADH/NAD+与底物苹果酸-草酰乙酸催化构象耦联。",
+    "selectedEpitope": "优先评估NAD结合结构域与催化结构域夹角处动态环区，避开高度保守催化残基核心。",
+    "diseaseDirection": "线粒体代谢性脑病与癫痫",
+    "domain": "MDH2含N端线粒体定位肽、NAD结合Rossmann结构域及C端催化/二聚化结构域。",
+    "evidence": "MDH2线粒体代谢脑病结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P40926功能与亚细胞定位注释",
+      "RCSB PDB 2DFD人源MDH2晶体结构",
+      "OMIM与ClinVar致病变异记录"
+    ],
+    "referenceEntries": "UniProt:P40926；RCSB PDB:2DFD；Open Targets:MDH2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "NAD结合Rossmann结构域入口环及邻近催化裂隙边缘",
+        "可影响辅因子进入与催化构象闭合，适合机制阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端催化结构域二聚体接触面外缘",
+        "可能调节二聚体稳定性并改变酶活构象，需保留特异性窗口",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守苹果酸/草酰乙酸催化残基核心区域",
+        "保守性强且构象埋藏度较高，易产生交叉反应或低可及性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MDH2为线粒体基质蛋白，常规抗体难以进入靶细胞与线粒体；建议限定为体外结构探针、降解递送模块或细胞内VHH工程化方向。",
+    "structurePrepZh": "以PDB 2DFD的A-D链四聚体晶体坐标为模板，校正辅因子/配体状态、补全缺失环区并按成熟线粒体蛋白编号映射表位。",
+    "structureRef": "RCSB PDB 2DFD，X-ray，1.9 Å，人源MDH2",
+    "antibodies": [
+      "抗MDH2研究级单克隆抗体",
+      "抗MDH2免疫检测抗体"
+    ],
+    "interfaceFocus": "NAD结合口袋入口与催化裂隙夹角区",
+    "designMode": "细胞内VHH/结构探针",
+    "candidates": [
+      {
+        "target": "MDH1",
+        "rationale": "MDH1参与苹果酸-天冬氨酸穿梭的胞质侧反应，与MDH2共同维持NADH还原当量转运；可作为同一代谢通路的旁路调节靶点。"
+      },
+      {
+        "target": "GOT2",
+        "rationale": "GOT2在线粒体内催化天冬氨酸与α-酮戊二酸转氨反应，是苹果酸-天冬氨酸穿梭的核心组成部分，与MDH2功能耦联。"
+      },
+      {
+        "target": "SLC25A11",
+        "rationale": "SLC25A11编码线粒体2-氧戊二酸/苹果酸转运体，直接负责苹果酸跨内膜交换，处于MDH2相关还原当量穿梭通路中。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

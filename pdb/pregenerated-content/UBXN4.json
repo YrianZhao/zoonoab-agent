@@ -1,0 +1,65 @@
+{
+  "gene": "UBXN4",
+  "generatedAt": "2026-08-03T17:40:23.562Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "UBXN4编码含UBX结构域的胞内适配蛋白，主要参与p97/VCP依赖的泛素化蛋白质量控制，其遗传关联集中于白细胞、单核细胞及中性粒细胞数量表型，并延伸至神经退行性疾病相关蛋白稳态失衡。该蛋白不具备分泌型或跨膜胞外结构域，完整蛋白作为常规细胞外抗体靶点的抗原可及性受限，仅适合以胞内递送抗体、研究级结合体或降解调控工具形式开发。相较于VCP、UFD1或NPLOC4等核心复合物组分，UBXN4作为适配因子可能提供更高的复合物选择性，但因临床抗体可及性弱，优先级应低于具有胞外可及性的炎症或髓系免疫轴靶点。",
+    "mechanism": "设计结合UBX结构域的抗体片段，阻断UBXN4与VCP/p97 N结构域的适配结合，从而干预VCP募集至特定泛素化底物复合物。",
+    "selectedEpitope": "优先覆盖UBX结构域β-grasp折叠中VCP N结构域结合面，避开高度保守疏水核心。",
+    "diseaseDirection": "髓系白细胞数量与蛋白稳态异常",
+    "domain": "UBXN4含C端UBX结构域，呈泛素样β-grasp折叠，介导与AAA+ ATPase VCP/p97相互作用。",
+    "evidence": "UBXN4遗传关联与VCP适配复合物证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q92575功能与结构域注释",
+      "RCSB PDB 2KXJ溶液NMR结构",
+      "VCP/p97-UBX适配蛋白复合物文献"
+    ],
+    "referenceEntries": "UniProt: Q92575；RCSB PDB: 2KXJ；Ensembl: ENSG00000136827",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "UBX结构域VCP N结构域结合面",
+        "可直接阻断UBXN4-VCP适配相互作用，机制指向性最强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "UBX β1-β2环及邻近外露面",
+        "具备构象识别潜力，可用于稳定特定UBX构象或筛选变构结合体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "UBX疏水核心与保守β片层内侧",
+        "可能影响折叠稳定性且跨UBX蛋白保守性较高，选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "UBXN4为胞内蛋白，常规抗体难以到达天然作用位点；设计宜限定为Fab/VHH胞内表达、递送型抗体片段或结构生物学工具，并重点评估UBX家族交叉反应。",
+    "structurePrepZh": "以2KXJ的NMR构象集合为模板，进行构象聚类、缺失区标注和表面保守性分析；对UBX-VCP界面需结合同源UBX复合物结构建模。",
+    "structureRef": "RCSB PDB 2KXJ，human UBXN4 UBX domain solution NMR",
+    "antibodies": [
+      "抗UBXN4研究级抗体",
+      "抗VCP/p97研究级抗体"
+    ],
+    "interfaceFocus": "UBX结构域与VCP/p97 N结构域结合界面",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "VCP",
+        "rationale": "VCP/p97是UBXN4招募的AAA+ ATPase核心组分，直接驱动泛素化底物提取和蛋白质量控制，与神经退行性疾病及免疫细胞稳态相关。"
+      },
+      {
+        "target": "UFD1",
+        "rationale": "UFD1与NPLOC4共同形成VCP辅因子复合物，参与泛素化底物识别，与UBXN4处于同一VCP依赖蛋白稳态通路。"
+      },
+      {
+        "target": "NPLOC4",
+        "rationale": "NPLOC4是VCP-UFD1-NPLOC4复合物的底物适配组分，连接泛素化底物处理与内质网相关降解过程，可作为同通路机制参照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

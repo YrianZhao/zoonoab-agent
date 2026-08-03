@@ -1,0 +1,65 @@
+{
+  "gene": "ERG",
+  "generatedAt": "2026-08-03T12:21:27.802Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ERG 是 ETS 家族转录因子，参与血管内皮与造血谱系发育，胚系 ERG 变异与 lymphatic malformation 14 相关，且影响血细胞数量性状。该蛋白主要定位于细胞核，DNA 结合 ETS 结构域并非天然胞外抗原，抗体可及性不具备膜受体或分泌蛋白优势，因此更适合结构验证、细胞内递送抗体或降解偶联策略。相较 VEGFC、FLT4 等同通路胞外靶点，ERG 的疾病遗传因果性更直接，但常规治疗性阻断抗体优先级较低。",
+    "mechanism": "设计抗体结合 ERG ETS 结构域的 DNA 识别界面，阻断其与 GGAA/T 核心 ETS 结合位点相互作用，从而抑制靶基因转录复合物装配。",
+    "selectedEpitope": "优先覆盖 ETS 域第三α螺旋与翼状环的 DNA major-groove 识别面。",
+    "diseaseDirection": "淋巴管畸形与血液数量性状",
+    "domain": "ERG 含 N 端转录调控区与 C 端 ETS DNA 结合域；4IRG 覆盖 ETS 结构域。",
+    "evidence": "ERG 遗传关联与 ETS 结构域抗体设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P11308 functional annotation",
+      "RCSB PDB 4IRG X-ray structure",
+      "OMIM lymphatic malformation 14 genetic evidence"
+    ],
+    "referenceEntries": "UniProt P11308；RCSB PDB 4IRG；Open Targets ERG",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ETS 域 H3 识别螺旋及 DNA major-groove 接触面",
+        "直接干预 GGAA/T DNA 识别，机制指向性最强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ETS 域翼状环与β链邻近 DNA 磷酸骨架接触区",
+        "可削弱 DNA 结合稳定性，并保留较好结构可塑性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ETS 域疏水核心或家族保守折叠面",
+        "易影响折叠稳定性且 ETS 家族交叉反应风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ERG 为核内转录因子，常规抗体难以到达作用位点；ETS 域高度保守，需通过差异残基筛选降低 FLI1、ETS1 等交叉结合风险。",
+    "structurePrepZh": "以 4IRG 链 A 为模板，补全缺失侧链并保留 ETS 域折叠；去除非目标小分子后标注 DNA 结合面和保守残基。",
+    "structureRef": "RCSB PDB 4IRG，X-ray diffraction，1.7 Å",
+    "antibodies": [
+      "Anti-ERG clone EPR3864",
+      "Anti-ERG clone 9FY"
+    ],
+    "interfaceFocus": "ETS H3 螺旋-DNA major-groove 识别界面",
+    "designMode": "胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "FLT4",
+        "rationale": "FLT4 编码 VEGFR3，是淋巴管发育和淋巴管畸形通路中的核心膜受体；其胞外结构域抗原可及性优于 ERG。"
+      },
+      {
+        "target": "VEGFC",
+        "rationale": "VEGFC 是 VEGFR3 的主要配体，驱动淋巴管内皮增殖和迁移；中和抗体可直接阻断 VEGFC-FLT4 相互作用。"
+      },
+      {
+        "target": "PIK3CA",
+        "rationale": "PIK3CA 介导 VEGFC/VEGFR3 下游 PI3K-AKT 信号，在多种血管和淋巴管过度生长疾病中具有遗传证据；但其为胞内酶，抗体开发需采用胞内递送或替代药物形式。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "ARHGAP35",
+  "generatedAt": "2026-08-03T10:34:26.283Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ARHGAP35编码p190A RhoGAP，作为RhoA、Rac1与Cdc42的GTPase激活蛋白，调节细胞骨架张力、黏附迁移和有丝分裂相关Rho信号，在子宫内膜癌和肺鳞癌中主要体现为突变或功能失衡型肿瘤关联。该蛋白为胞内大分子调控因子，缺乏天然胞外结构域，常规阻断型抗体抗原可及性不足，更适合构建胞内递送抗体、细胞内抗体或研究级结合分子。优先级依据在于其Open Targets疾病关联广泛且已有1.5 Å实验结构支持界面设计，但相较EGFR、AXL等膜受体类同通路靶点，开发优先级应限定于机制验证与胞内抗体平台。",
+    "mechanism": "设计抗体阻断ARHGAP35 GAP结构域与RhoA-GTP开关区结合，抑制其促进GTP水解的催化复合体形成。",
+    "selectedEpitope": "优先靶向GAP结构域RhoA结合沟槽邻近的催化界面，规避保守疏水核心。",
+    "diseaseDirection": "肿瘤Rho GTPase信号异常",
+    "domain": "ARHGAP35含N端GTP结合样结构域、中央FF结构域及C端RhoGAP催化结构域。",
+    "evidence": "ARHGAP35肿瘤突变与RhoGAP结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9NRY4蛋白功能注释",
+      "RCSB PDB 6WAY实验晶体结构",
+      "COSMIC/TCGA肿瘤突变数据"
+    ],
+    "referenceEntries": "UniProt Q9NRY4；RCSB PDB 6WAY；Open Targets ARHGAP35",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端RhoGAP结构域RhoA-GTP结合沟槽",
+        "可直接干预GAP-RhoA催化复合体形成，机制指向明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RhoGAP结构域外围可溶暴露环区",
+        "有利于获得高亲和力结合分子，并降低催化核心保守性风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端GTP结合样结构域核苷酸邻近区域",
+        "功能耦联证据较弱，且可能影响非目标构象状态判读",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ARHGAP35为胞内蛋白，体内抗体递送和细胞通透性为主要风险；建议定位于胞内抗体、蛋白降解偶联或结构功能验证场景。",
+    "structurePrepZh": "以6WAY高分辨率晶体结构为模板，保留抗原链A与V中解析完整的GAP结构域，补全缺失侧链并进行质子化与界面能量最小化。",
+    "structureRef": "RCSB PDB 6WAY，X-ray diffraction，1.5 Å",
+    "antibodies": [
+      "研究级抗ARHGAP35抗体",
+      "研究级抗p190A RhoGAP抗体"
+    ],
+    "interfaceFocus": "RhoGAP催化精氨酸指与RhoA开关区界面",
+    "designMode": "胞内抗体设计",
+    "candidates": [
+      {
+        "target": "RHOA",
+        "rationale": "RHOA是ARHGAP35直接调控的核心小GTP酶，其GTP结合状态驱动肌动蛋白应力纤维、黏附和迁移表型。该节点更接近通路执行端，但胞内定位同样限制常规抗体可及性。"
+      },
+      {
+        "target": "ROCK1",
+        "rationale": "ROCK1位于RHOA下游，介导肌球蛋白轻链磷酸化和细胞收缩张力，是RhoA通路中与肿瘤侵袭表型相关的真实效应分子。其作为胞内激酶更适合小分子或降解策略，也可用于通路验证。"
+      },
+      {
+        "target": "EGFR",
+        "rationale": "EGFR可通过GEF-Rho GTPase轴促进RHOA/RAC1相关迁移和增殖信号，并在肺鳞癌等实体瘤中具有明确膜受体抗原可及性。相较ARHGAP35，EGFR更适合常规阻断型抗体开发。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

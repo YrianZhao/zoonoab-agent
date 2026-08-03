@@ -1,0 +1,65 @@
+{
+  "gene": "VAV3",
+  "generatedAt": "2026-08-03T17:47:31.998Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "VAV3 是细胞内 Rho/Rac 家族小 GTPase 的鸟嘌呤核苷酸交换因子，参与免疫细胞迁移、细胞骨架重塑及受体下游信号整合，其 Open Targets 关联主要集中于甲状腺功能、嗜酸粒细胞计数及感染免疫表型。该蛋白并非分泌蛋白或膜受体，缺乏天然胞外抗原可及性，因此不适合作为常规阻断型抗体的优先靶点。相较 TSHR、TSHB 或 IL5RA 等同类疾病通路中具有胞外结构域的靶点，VAV3 的抗体开发优先级较低，更适合作为细胞内机制研究或降解型分子设计参考。",
+    "mechanism": "抗体策略难以直接阻断胞内 VAV3 与 Rac1/RhoA 的 GEF 反应界面；可考虑胞内递送抗体片段干预 DH-PH 模块介导的 GTPase 结合与核苷酸交换。",
+    "selectedEpitope": "优先评估 DH 结构域与 Rac/Rho 小 GTPase 结合界面，避免仅针对非功能性外露环区设计。",
+    "diseaseDirection": "甲状腺功能与免疫炎症表型",
+    "domain": "VAV3 含 CH、酸性区、DH、PH、锌指及 SH2/SH3 模块，2D86 对应其调控结构域片段。",
+    "evidence": "VAV3 疾病遗传关联与胞内可及性证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9UKW4 functional annotation",
+      "RCSB PDB 2D86 solution NMR structure",
+      "Gene Ontology Rho guanyl-nucleotide exchange factor activity"
+    ],
+    "referenceEntries": "UniProt Q9UKW4；RCSB PDB 2D86；Open Targets VAV3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DH 结构域小 GTPase 结合面",
+        "可干预 Rac/Rho 结合及 GDP-GTP 交换反应",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PH-锌指邻近调控界面",
+        "可能影响膜脂结合与 GEF 构象激活耦联",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SH2/SH3 适配蛋白结合区域",
+        "界面多配体共享，存在广泛信号适配干扰风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "VAV3 为胞内信号蛋白，常规 IgG 难以到达作用位点；建议将其标注为低可及性靶点，并优先采用胞内递送片段或替代胞外靶点方案。",
+    "structurePrepZh": "采用 2D86 NMR 构象集合进行代表构象筛选，补充 AlphaFold 全长模型以定位 DH-PH 与 SH2/SH3 模块相对关系。",
+    "structureRef": "RCSB PDB 2D86，human VAV3 NMR structural entry",
+    "antibodies": [
+      "暂无获批 VAV3 靶向治疗性抗体",
+      "研究级 anti-VAV3 monoclonal antibody"
+    ],
+    "interfaceFocus": "DH-Rac/Rho 结合界面与 PH 调控邻面",
+    "designMode": "胞内片段抗体探索",
+    "candidates": [
+      {
+        "target": "TSHR",
+        "rationale": "TSHR 是甲状腺刺激激素通路的细胞表面 GPCR，具有明确胞外配体结合结构域，较 VAV3 更适合阻断型抗体设计。"
+      },
+      {
+        "target": "TSHB",
+        "rationale": "TSHB 编码促甲状腺激素 β 亚基，直接参与 TSH-TSHR 轴，对甲状腺功能异常表型具有更直接的内分泌机制关联。"
+      },
+      {
+        "target": "IL5RA",
+        "rationale": "IL5RA 是嗜酸粒细胞分化和存活通路中的细胞表面受体，与嗜酸粒细胞计数表型相关，抗体可通过阻断 IL-5 受体信号发挥作用。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

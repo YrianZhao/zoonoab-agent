@@ -1,0 +1,65 @@
+{
+  "gene": "NPY4R",
+  "generatedAt": "2026-08-03T14:49:39.783Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NPY4R 是胰多肽 PPY 的 Gi/o 偶联受体，参与摄食调节、能量摄入、胃肠运动及自主神经相关代谢信号，Open Targets 中与肥胖及心血管测量表型存在遗传关联。该靶点为七跨膜 GPCR，配体结合口袋位于胞外前庭并由 ECL2、ECL3 与跨膜束外侧共同构成，具备可直接识别的膜外抗原界面。相比 NPY1R、NPY2R 等同家族受体，NPY4R 对 PPY 选择性较高，且已有 7X9C 实验结构支持构象表位设计，优先级适合机制型阻断抗体探索。",
+    "mechanism": "阻断 PPY C 端酰胺化肽段进入 NPY4R 胞外前庭，干扰其与跨膜束深部结合口袋及 ECL2 的接触，从而抑制受体 Gi/o 激活。",
+    "selectedEpitope": "优先覆盖 ECL2 与 TM5-TM7 胞外口袋入口，限制 PPY C 端进入正构结合腔。",
+    "diseaseDirection": "肥胖与代谢-自主神经调控",
+    "domain": "A 类 GPCR 七跨膜结构，含胞外 N 端、ECL1-ECL3、胞内环及 C 端尾部。",
+    "evidence": "NPY4R-PPY 结构与代谢遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P50391 NPY4R human entry",
+      "RCSB PDB 7X9C cryo-EM receptor complex",
+      "GPCRdb class A neuropeptide receptor annotation"
+    ],
+    "referenceEntries": "UniProt P50391；RCSB PDB 7X9C；GPCRdb NPY4R_HUMAN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ECL2-TM5/TM6/TM7 胞外前庭入口",
+        "直接遮挡 PPY C 端进入正构口袋，具备受体选择性阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N 端胞外段与 ECL1 邻近区域",
+        "可增强膜外锚定并提高构象表位面积，但单独阻断能力需验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "TM 束上缘高度保守残基周边",
+        "邻近同家族受体保守神经肽结合区，存在交叉反应和构象扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NPY 受体家族胞外口袋存在保守性，需避开 NPY1R、NPY2R、NPY5R 共享残基；建议以 ECL2 差异位点和口袋入口构象为特异性核心。",
+    "structurePrepZh": "以 7X9C cryo-EM 模型提取 NPY4R 受体链，保留 PPY 结合构象用于界面映射，去除 G 蛋白及非设计链后进行膜外环建模与质子化检查。",
+    "structureRef": "RCSB PDB 7X9C，human NPY4R-Gi-PPY cryo-EM structure",
+    "antibodies": [
+      "NPY4R-blocking exploratory antibody",
+      "anti-GPCR extracellular loop antibody format"
+    ],
+    "interfaceFocus": "ECL2 与 TM6/TM7 胞外口袋入口",
+    "designMode": "GPCR构象阻断",
+    "candidates": [
+      {
+        "target": "PPY",
+        "rationale": "PPY 是 NPY4R 的主要内源性配体，抗体中和可直接降低 PPY-NPY4R 轴的受体激活，适合同一路径的配体端干预。"
+      },
+      {
+        "target": "NPY2R",
+        "rationale": "NPY2R 属于同一神经肽 Y 受体家族，参与食欲、能量稳态及自主神经调节，可作为代谢疾病方向的并行 GPCR 靶点。"
+      },
+      {
+        "target": "NPY1R",
+        "rationale": "NPY1R 介导 NPY 相关摄食和血管张力反应，与 NPY4R 处于相邻神经肽信号网络，适合用于通路层级比较与选择性评估。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

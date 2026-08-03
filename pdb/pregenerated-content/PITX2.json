@@ -1,0 +1,65 @@
+{
+  "gene": "PITX2",
+  "generatedAt": "2026-08-03T15:19:32.154Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PITX2 是同源盒转录因子，参与眼前节、牙颅面与心脏左右轴发育基因调控，功能缺失与 Axenfeld-Rieger 综合征及前节发育异常具有明确遗传关联。其主要功能结构域位于细胞核内 DNA 结合 homeodomain，并非天然胞外抗原，完整蛋白不具备常规治疗性抗体的可及性优势。相较于可分泌因子或膜受体，PITX2 更适合作为机制研究、细胞内递送抗体或诊断性结合分子设计靶点；其优先级依据在于疾病遗传证据强、结构域边界清晰且 PDB 2L7F 提供了人源 homeodomain 的实验结构约束。",
+    "mechanism": "设计分子以结合 PITX2 homeodomain 的 DNA 识别螺旋，阻断其与 TAATCC 类顺式元件的特异性结合，从而干预下游发育基因转录调控。",
+    "selectedEpitope": "优先覆盖 homeodomain α3 识别螺旋及其相邻 DNA 大沟接触面，避免破坏整体折叠核心。",
+    "diseaseDirection": "眼前节发育异常与ARS",
+    "domain": "PITX2 含 N 端转录调控区、保守 homeodomain DNA 结合域及 C 端调控区，2L7F 覆盖 homeodomain。",
+    "evidence": "PITX2遗传眼前节发育异常证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt Q99697 功能与结构域注释",
+      "RCSB PDB 2L7F solution NMR 结构",
+      "OMIM Axenfeld-Rieger syndrome 1 遗传证据"
+    ],
+    "referenceEntries": "UniProt Q99697；RCSB PDB 2L7F；Open Targets PITX2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "homeodomain α3 DNA识别螺旋与大沟接触面",
+        "直接竞争 PITX2-DNA 结合，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "homeodomain N端臂及α1邻近DNA小沟接触区",
+        "可削弱 DNA 结合稳定性并保留α3选择性空间",
+        "备选"
+      ],
+      [
+        "Site C",
+        "homeodomain疏水折叠核心及α2-α3内部界面",
+        "可能导致非特异性构象破坏，表位可开发性较低",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PITX2 为核内转录因子，常规抗体难以进入细胞核；治疗设计需依赖细胞内递送、intrabody 或降解平台，并严格评估同源盒蛋白交叉反应。",
+    "structurePrepZh": "以 2L7F NMR 构象簇为模板，筛选代表性低能构象，补充缺失侧链与质子化状态，并映射 homeodomain 保守位点。",
+    "structureRef": "RCSB PDB 2L7F：human PITX2 homeodomain NMR structure",
+    "antibodies": [
+      "抗PITX2研究级单克隆抗体",
+      "抗PITX2多克隆抗体"
+    ],
+    "interfaceFocus": "homeodomain α3识别螺旋-DNA大沟界面",
+    "designMode": "细胞内Fab/VHH",
+    "candidates": [
+      {
+        "target": "FOXC1",
+        "rationale": "FOXC1 与 PITX2 均为 Axenfeld-Rieger 综合征和眼前节发育异常的核心转录因子，参与神经嵴来源眼前节组织发育调控。"
+      },
+      {
+        "target": "CYP1B1",
+        "rationale": "CYP1B1 变异与前节发育异常和先天性青光眼相关，可作为同一眼前节发育疾病网络中的遗传风险靶点。"
+      },
+      {
+        "target": "COL4A1",
+        "rationale": "COL4A1 与眼前节异常、角膜及虹膜发育缺陷相关，处于基底膜结构维持与前节组织形态发生疾病网络中。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

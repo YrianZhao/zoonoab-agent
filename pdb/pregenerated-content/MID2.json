@@ -1,0 +1,65 @@
+{
+  "gene": "MID2",
+  "generatedAt": "2026-08-03T14:14:13.848Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MID2编码含RING-B-box-coiled-coil与C端纤维连接蛋白III型结构域的细胞内E3泛素连接酶，遗传证据主要指向X连锁非综合征性智力障碍及神经发育表型，其疾病机制与微管相关蛋白、蛋白磷酸酶2A调控亚基及神经元细胞骨架稳态异常相关。该蛋白缺乏分泌形式和跨膜胞外结构域，天然抗原可及性不符合常规治疗性抗体阻断策略，但其已解析FN3样结构域可作为结构生物学验证、胞内递送抗体或研究级结合分子开发对象。相较分泌因子或膜受体类靶点，MID2的临床抗体优先级较低；其优先价值在于X连锁智力障碍遗传关联较集中且7QRZ高分辨率结构支持精细表位工程。",
+    "mechanism": "设计结合MID2 C端FN3样结构域的胞内抗体片段，干预MID2与微管相关底物或调节因子形成稳定复合物，从而影响其E3泛素连接酶介导的底物泛素化。",
+    "selectedEpitope": "优先覆盖7QRZ所示C端FN3样结构域β夹层外露环区，避开疏水核心并保留折叠稳定性。",
+    "diseaseDirection": "X连锁智力障碍与神经发育疾病",
+    "domain": "MID2含N端RING、B-box1/2、coiled-coil及C端COS/FN3样结构域，7QRZ覆盖C端FN3样结构域。",
+    "evidence": "MID2神经发育遗传关联与7QRZ结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9UJV3功能与结构域注释",
+      "RCSB PDB 7QRZ X射线晶体结构",
+      "ClinVar/OMIM中MID2相关X连锁智力障碍记录"
+    ],
+    "referenceEntries": "UniProt Q9UJV3；RCSB PDB 7QRZ；Open Targets MID2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端FN3样结构域β片层连接外露环",
+        "可在高分辨率结构上定义凸面表位，适合获得构象依赖结合分子",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FN3样结构域侧向β链边缘与邻近环区",
+        "可能影响MID2与蛋白互作界面的局部识别，适合备选抑制型设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "FN3样结构域β夹层疏水核心邻近区域",
+        "靠近折叠稳定核心，抗体结合可能诱导非特异构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MID2为胞内蛋白，常规IgG难以到达作用位点；应优先采用细胞内递送、纳米抗体或研究级Fab策略，并严格评估与MID1等RBCC家族成员的交叉反应。",
+    "structurePrepZh": "以7QRZ链A为模板，保留实验坐标并补全缺失侧链；进行质子化、晶体接触排查和表面环区柔性评估后开展表位建模。",
+    "structureRef": "RCSB PDB 7QRZ，MID2 C端结构域，1.57 Å X射线结构",
+    "antibodies": [
+      "MID2研究级多克隆抗体",
+      "MID2研究级单克隆抗体"
+    ],
+    "interfaceFocus": "FN3样结构域外露环区及β链侧缘",
+    "designMode": "胞内结合分子设计",
+    "candidates": [
+      {
+        "target": "MID1",
+        "rationale": "MID1与MID2同属RBCC/TRIM样E3泛素连接酶家族，并与X连锁神经发育异常及微管相关蛋白复合体调控有关，适合作为同通路比较靶点。"
+      },
+      {
+        "target": "PPP2R2A",
+        "rationale": "PPP2R2A编码PP2A调节亚基，MID家族蛋白可通过影响PP2A相关复合体改变微管相关蛋白磷酸化状态，是神经元细胞骨架稳态通路中的功能节点。"
+      },
+      {
+        "target": "MAPT",
+        "rationale": "MAPT编码tau蛋白，是神经元微管稳定和磷酸化调控的核心底物，与MID/PP2A轴所涉及的细胞骨架稳态异常具有同一病理方向关联。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

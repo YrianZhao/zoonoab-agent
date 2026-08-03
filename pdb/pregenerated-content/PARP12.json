@@ -1,0 +1,65 @@
+{
+  "gene": "PARP12",
+  "generatedAt": "2026-08-03T20:28:21.054Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PARP12为胞内单ADP核糖基转移酶，含锌指RNA结合模块并参与干扰素诱导的抗病毒与炎症应答，可通过ADP核糖化及RNA结合影响病毒复制、应激颗粒和免疫细胞功能相关通路。其Open Targets关联以淋巴细胞计数、白细胞数量及体成分性状为主，提示更适合作为机制研究或靶向递送抗体设计对象，而非传统细胞外阻断型抗体靶点。抗原可及性存在明确限制：PARP12不属于分泌蛋白或膜受体，常规体内中和抗体难以接触天然靶标；但PDB 8XPX提供高分辨率实验结构，可支持针对结构域界面的胞内抗体、VHH或降解递送格式开发。相比同家族缺乏可解析构象的靶点，PARP12的结构可用性与干扰素通路定位构成优先级依据。",
+    "mechanism": "以内体逃逸或胞内表达型VHH结合PARP12催化结构域邻近NAD+结合沟槽，阻断NAD+与催化口袋配位并干扰底物蛋白ADP核糖化。",
+    "selectedEpitope": "优先锁定PARP样催化结构域NAD+结合沟槽外缘及供体结合环，避免深口袋不可及残基。",
+    "diseaseDirection": "干扰素炎症与免疫细胞数量性状",
+    "domain": "PARP12含N端CCCH型锌指、WWE结构域及C端PARP样催化结构域，8XPX解析催化区构象。",
+    "evidence": "PARP12结构与干扰素免疫通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病-靶点关联",
+      "UniProt Q9H0J9功能与结构域注释",
+      "RCSB PDB 8XPX晶体结构记录",
+      "InterPro/Reactome干扰素诱导抗病毒应答注释"
+    ],
+    "referenceEntries": "UniProt Q9H0J9；RCSB PDB 8XPX；HGNC PARP12",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PARP样催化结构域NAD+结合沟槽外缘",
+        "可阻断NAD+供体结合并抑制ADP核糖基转移反应",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域底物进入面及可变环",
+        "可能干扰底物蛋白靠近催化中心，保留较好抗体可及性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "结构域核心疏水折叠面",
+        "保守性较高且构象稳定性风险较大，易产生家族交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PARP12为胞内蛋白，常规循环抗体缺乏天然抗原可及性；设计宜限定为胞内VHH、递送型抗体或研究级结合体，并严格评估PARP家族交叉反应。",
+    "structurePrepZh": "以8XPX的A、B链为实验结构模板，保留催化结构域完整构象，检查晶体接触、缺失环区与配体口袋质子化状态后进行表位建模。",
+    "structureRef": "RCSB PDB 8XPX，X-ray diffraction，1.75 Å",
+    "antibodies": [
+      "PARP12研究级抗体",
+      "anti-PARP12 monoclonal antibody"
+    ],
+    "interfaceFocus": "NAD+结合沟槽外缘与底物进入面",
+    "designMode": "胞内VHH抑制设计",
+    "candidates": [
+      {
+        "target": "PARP9",
+        "rationale": "PARP9同属干扰素诱导的ADP核糖化相关免疫调控网络，并与DTX3L形成复合体参与抗病毒和巨噬细胞炎症转录调节。其与PARP12处于相近的干扰素应答背景，可作为通路内比较靶点。"
+      },
+      {
+        "target": "PARP14",
+        "rationale": "PARP14为单ADP核糖基转移酶，参与STAT6依赖性免疫转录调控及炎症反应，与PARP12共享PARP家族催化机制。其疾病关联更偏免疫炎症，可用于评估同家族选择性窗口。"
+      },
+      {
+        "target": "DTX3L",
+        "rationale": "DTX3L是干扰素诱导的E3泛素连接酶，并与PARP9协同调节ADP核糖化相关抗病毒通路。该靶点可作为PARP12相关先天免疫网络中的非PARP节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "ASH2L",
+  "generatedAt": "2026-08-03T10:37:46.842Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ASH2L是MLL/SET1组蛋白H3K4甲基转移酶复合体的核心亚基，通过与RBBP5、DPY30及WDR5协同维持H3K4甲基化，影响神经发育与神经退行性疾病相关转录程序。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌特征，抗体可及性不适合常规体内阻断，但适用于细胞内递送抗体、结构探针或降解偶联策略。相比催化性KMT2家族成员，ASH2L作为复合体装配支架具有明确蛋白互作界面，5F6L提供高分辨率结构依据，因此在机制验证型抗体设计中具有较高优先级。",
+    "mechanism": "设计抗体阻断ASH2L SPRY结构域与RBBP5 conserved region的结合，削弱MLL/SET1复合体对H3K4甲基转移活性的装配性激活。",
+    "selectedEpitope": "优先覆盖SPRY结构域RBBP5结合沟槽及邻近保守带，避免破坏全局折叠核心。",
+    "diseaseDirection": "神经发育与神经退行性疾病",
+    "domain": "ASH2L含N端PHD finger、Winged-helix样区域、SPRY结构域及C端SDI基序。",
+    "evidence": "ASH2L-MLL/SET1复合体互作与疾病遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q9UBL3功能与定位注释",
+      "RCSB PDB 5F6L晶体结构",
+      "MLL/SET1复合体H3K4甲基化文献"
+    ],
+    "referenceEntries": "UniProt Q9UBL3；RCSB PDB 5F6L；Open Targets ASH2L",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SPRY结构域RBBP5结合沟槽",
+        "直接干预ASH2L-RBBP5装配界面，机制指向性最强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SPRY结构域邻近保守外表面",
+        "可作为别构干预或结构稳定型识别位点",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PHD finger或C端SDI相关区域",
+        "可能影响染色质或DPY30相关功能，但结构覆盖与可及性需验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ASH2L为核内蛋白，常规抗体体内可及性不足；建议采用细胞内抗体、VHH递送或降解偶联设计，并控制对保守折叠核心的非特异干扰。",
+    "structurePrepZh": "以5F6L晶体结构为模板，保留抗原链J、B、A中ASH2L与互作肽段界面，补全缺失环区并进行质子化、界面残基标注及糖基化排除。",
+    "structureRef": "RCSB PDB 5F6L，X-ray diffraction，1.9 Å",
+    "antibodies": [
+      "细胞内抗ASH2L VHH候选",
+      "ASH2L结构探针型Fab候选"
+    ],
+    "interfaceFocus": "ASH2L SPRY-RBBP5互作沟槽",
+    "designMode": "细胞内界面阻断",
+    "candidates": [
+      {
+        "target": "RBBP5",
+        "rationale": "RBBP5与ASH2L共同构成MLL/SET1复合体的核心装配轴，直接参与H3K4甲基转移活性增强。靶向其ASH2L结合区可验证同一复合体界面依赖机制。"
+      },
+      {
+        "target": "WDR5",
+        "rationale": "WDR5是MLL/SET1复合体装配平台，连接KMT2家族催化亚基与RBBP5-ASH2L模块。其WIN位点和复合体界面已被广泛用于表观遗传药物设计。"
+      },
+      {
+        "target": "DPY30",
+        "rationale": "DPY30通过结合ASH2L C端SDI基序增强SET1/MLL复合体H3K4甲基化活性，是ASH2L同一表观遗传调控通路中的真实互作组分。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

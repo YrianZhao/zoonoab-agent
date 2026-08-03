@@ -1,0 +1,65 @@
+{
+  "gene": "GADD45A",
+  "generatedAt": "2026-08-03T12:41:16.489Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GADD45A 是DNA损伤应答与细胞周期检查点网络中的应激诱导蛋白，可与 PCNA、CDK1/CCNB1 及 p38/JNK 相关模块相互作用，影响造血细胞增殖、凋亡与血细胞数量性状。该蛋白主要为胞内核质蛋白，天然抗原可及性不具备分泌蛋白或膜受体优势，因此更适合作为胞内功能阻断抗体、细胞递送抗体或研究级抗体设计对象。相比 TP53、CDKN1A 等上游广泛调控因子，GADD45A 位于损伤应答执行层，分子界面更集中，结构表位设计的机制解析优先级较高。",
+    "mechanism": "设计抗体阻断 GADD45A 与 PCNA 或 CDK1/CCNB1 复合体的结合界面，干预DNA修复耦联复制及G2/M检查点维持。",
+    "selectedEpitope": "优先覆盖2KG4中GADD45A核心折叠的PCNA/CDK1结合相关沟槽及保守疏水-带电界面。",
+    "diseaseDirection": "血液数量性状与DNA损伤应答",
+    "domain": "GADD45A为小型酸性应激蛋白，含保守GADD45核心折叠，无跨膜段和分泌信号肽。",
+    "evidence": "GADD45A-DNA损伤应答与血液性状证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProtKB P24522 功能注释",
+      "RCSB PDB 2KG4 溶液NMR结构",
+      "文献报道的GADD45A-PCNA/CDK1相互作用研究"
+    ],
+    "referenceEntries": "UniProtKB:P24522；RCSB PDB:2KG4；HGNC:GADD45A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "核心折叠中PCNA结合相关沟槽",
+        "直接阻断GADD45A参与PCNA依赖复制修复复合体的装配",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CDK1/CCNB1相互作用邻近带电表面",
+        "用于削弱G2/M检查点相关激酶复合体结合并解析细胞周期效应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "柔性N/C端低复杂度暴露片段",
+        "免疫原性可能较高但构象稳定性与功能阻断价值有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GADD45A为胞内非分泌蛋白，常规治疗性抗体难以直接接触天然靶点；宜采用细胞内递送、内体逃逸或研究级Fab/VHH策略，并避免破坏全局折叠导致非特异效应。",
+    "structurePrepZh": "以2KG4溶液NMR构象簇为模板，筛选代表性低能构象，补齐氢原子并评估柔性端区；表位建模需进行构象集合交叉验证。",
+    "structureRef": "RCSB PDB 2KG4；human GADD45A solution NMR structure",
+    "antibodies": [
+      "anti-GADD45A clone 4T-27",
+      "anti-GADD45A clone H-165"
+    ],
+    "interfaceFocus": "PCNA结合沟槽与CDK1/CCNB1邻近界面",
+    "designMode": "胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "TP53",
+        "rationale": "TP53位于DNA损伤应答上游，可转录诱导GADD45A并连接细胞周期停滞与凋亡程序，是同一损伤检查点通路的核心调控节点。"
+      },
+      {
+        "target": "CDKN1A",
+        "rationale": "CDKN1A编码p21，是TP53依赖细胞周期阻滞的重要执行因子，与GADD45A共同参与DNA损伤后的增殖抑制网络。"
+      },
+      {
+        "target": "PCNA",
+        "rationale": "PCNA是DNA复制与修复滑动夹蛋白，可与GADD45A发生功能性相互作用，是评估GADD45A介导修复复合体装配的直接通路候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

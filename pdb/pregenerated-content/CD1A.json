@@ -1,0 +1,65 @@
+{
+  "gene": "CD1A",
+  "generatedAt": "2026-08-03T11:08:47.334Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CD1A编码MHC-I样脂质抗原呈递分子，在朗格汉斯细胞和树突状细胞表面将皮肤来源脂质呈递给CD1a限制性T细胞，驱动IL-22、IL-17A、IFN-γ等炎症效应，与银屑病、特应性皮炎及血液免疫细胞计数表型存在机制关联。CD1a为细胞表面跨膜糖蛋白，抗原结合平台由胞外α1/α2结构域形成，β2微球蛋白辅助稳定，抗体可直接访问其胞外复合体。相较可溶性炎症因子或广泛表达的共刺激分子，CD1A具有较集中的抗原呈递功能和皮肤树突状细胞富集特征，适合作为上游脂质抗原呈递阻断靶点优先评估。",
+    "mechanism": "抗体阻断CD1a α1/α2抗原结合沟及其TCR接触面，抑制CD1a-脂质复合物与CD1a限制性TCR结合，从而降低脂质抗原诱导的T细胞炎症活化。",
+    "selectedEpitope": "优先覆盖α1/α2平台远端TCR接触面并邻近A′、F′脂质结合沟开口。",
+    "diseaseDirection": "皮肤炎症与免疫细胞表型",
+    "domain": "N端胞外α1、α2抗原结合结构域与α3免疫球蛋白样结构域，伴β2M稳定复合物。",
+    "evidence": "CD1A脂质抗原呈递与炎症T细胞证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与表型关联",
+      "UniProt P06126蛋白功能与定位注释",
+      "RCSB PDB 5J1A晶体结构数据",
+      "CD1a限制性T细胞及皮肤炎症文献"
+    ],
+    "referenceEntries": "UniProt:P06126；RCSB PDB:5J1A；Ensembl:ENSG00000158477",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "α1/α2抗原结合平台TCR接触面",
+        "直接阻断CD1a-脂质复合物与TCR识别，是功能拮抗设计核心区域",
+        "优先"
+      ],
+      [
+        "Site B",
+        "A′与F′脂质结合沟开口周缘",
+        "可干扰脂质头基暴露和TCR可识别构象，适合构象依赖抗体筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "α3结构域及β2M邻近界面",
+        "可能影响复合体稳定性但易产生非特异构象扰动，应避免强去稳定化设计",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CD1A与CD1B、CD1C存在结构同源性，需规避保守β2M结合面并强化α1/α2沟口差异残基选择；设计中应评估交叉反应性与抗原呈递完全阻断风险。",
+    "structurePrepZh": "以5J1A的A、B链复合体为模板，保留CD1a胞外域与β2M构象，校正缺失侧链、糖基化位点和脂质沟配体状态后进行表面可及性分析。",
+    "structureRef": "RCSB PDB 5J1A，X射线晶体结构，1.86 Å分辨率",
+    "antibodies": [
+      "OKT6",
+      "NA1/34"
+    ],
+    "interfaceFocus": "α1/α2平台TCR接触面与脂质沟开口",
+    "designMode": "阻断型构象抗体",
+    "candidates": [
+      {
+        "target": "CD1B",
+        "rationale": "CD1B同属CD1脂质抗原呈递通路，负责呈递较长链微生物和自身脂质；可作为CD1A旁路呈递活性的机制对照靶点。"
+      },
+      {
+        "target": "CD1C",
+        "rationale": "CD1C在树突状细胞脂质抗原呈递中与CD1A功能相邻，参与T细胞识别多种脂质抗原；适合用于评估CD1家族选择性与补偿机制。"
+      },
+      {
+        "target": "B2M",
+        "rationale": "B2M稳定CD1A及其他MHC-I样分子的胞外复合体，是CD1A抗原呈递构象维持的共同组分；可用于界面依赖性验证但不宜作为高选择性治疗主靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

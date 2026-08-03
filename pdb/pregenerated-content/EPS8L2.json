@@ -1,0 +1,65 @@
+{
+  "gene": "EPS8L2",
+  "generatedAt": "2026-08-03T12:20:25.871Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "EPS8L2 编码 EPS8 家族肌动蛋白调控适配蛋白，遗传证据主要指向常染色体隐性听力损失，其机制与内耳毛细胞静纤毛束发育和肌动蛋白丝组织异常相关。该蛋白主要为胞内适配蛋白，缺乏典型分泌段或跨膜胞外结构域，因此天然抗体可及性弱，不宜作为常规细胞外中和抗体的一线靶点。相较于 MYO15A、WHRN、EPS8 等同一毛细胞静纤毛通路靶点，EPS8L2 的结构片段已解析且遗传关联较集中，可作为细胞内递送抗体片段或机制验证型结合分子设计的优先研究对象。",
+    "mechanism": "设计结合 EPS8L2 SH3 结构域的细胞内抗体片段，干预其与富脯氨酸配体的结合界面，从而解析静纤毛肌动蛋白束稳定相关复合物功能。",
+    "selectedEpitope": "优先覆盖 SH3 结构域 RT-loop、n-Src loop 与配体结合沟槽边缘。",
+    "diseaseDirection": "遗传性听力损失与静纤毛病变",
+    "domain": "PDB 1WWU 对应人 EPS8L2 SH3 结构域，属胞内蛋白互作模块。",
+    "evidence": "EPS8L2 听觉毛细胞肌动蛋白调控证据包",
+    "evidenceSources": [
+      "Open Targets Platform 遗传疾病关联",
+      "UniProt Q9H6S3 蛋白功能与结构域注释",
+      "RCSB PDB 1WWU 溶液 NMR 结构",
+      "OMIM/ClinVar 听力损失相关变异记录"
+    ],
+    "referenceEntries": "UniProt Q9H6S3；RCSB PDB 1WWU；Open Targets EPS8L2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SH3 配体结合沟槽及 RT-loop",
+        "直接覆盖富脯氨酸序列识别界面，适合功能阻断型片段设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "n-Src loop 与 distal loop 外侧面",
+        "可调节 SH3 结构域构象与配体进入路径，适合别构型结合分子",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SH3 β-折叠核心保守疏水面",
+        "结构保守性高，可能增加 EPS8 家族交叉反应与折叠扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "EPS8L2 为胞内适配蛋白，常规抗体体内可及性不足；建议限定为细胞内 VHH、递送型 Fab 或机制探针，并评估 EPS8/EPS8L1 交叉结合。",
+    "structurePrepZh": "采用 1WWU NMR 构象集合进行代表构象筛选，补充氢原子与环区质控，重点保留 SH3 配体结合沟槽的构象多样性。",
+    "structureRef": "RCSB PDB 1WWU，human EPS8L2 SH3 domain，solution NMR",
+    "antibodies": [
+      "无已获批 EPS8L2 靶向抗体",
+      "无公开临床阶段 EPS8L2 抗体"
+    ],
+    "interfaceFocus": "SH3 富脯氨酸配体结合沟槽",
+    "designMode": "胞内结合片段设计",
+    "candidates": [
+      {
+        "target": "EPS8",
+        "rationale": "EPS8 与 EPS8L2 同属 EPS8 家族，参与内耳毛细胞静纤毛肌动蛋白丝长度和束形态维持，是同一听觉毛细胞结构通路中的关键调控因子。"
+      },
+      {
+        "target": "MYO15A",
+        "rationale": "MYO15A 介导静纤毛尖端蛋白复合物定位，其缺陷导致遗传性耳聋；与 EPS8/EPS8L2 相关肌动蛋白束成熟过程处于同一细胞结构轴。"
+      },
+      {
+        "target": "WHRN",
+        "rationale": "WHRN 编码 whirlin，参与静纤毛延伸和尖端复合物组织，并与 MYO15A-EPS8 功能模块共同影响毛细胞机械感受结构。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

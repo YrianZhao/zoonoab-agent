@@ -1,0 +1,65 @@
+{
+  "gene": "LCAT",
+  "generatedAt": "2026-08-03T13:49:52.954Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "LCAT 是血浆 HDL 成熟通路的核心分泌酶，催化卵磷脂中脂肪酸转移至游离胆固醇，生成胆固醇酯并驱动 HDL 颗粒重塑；其缺陷可导致 LCAT deficiency 与 Fish-eye disease。该蛋白为可溶性血浆抗原，暴露于循环系统，便于抗体直接结合酶表面构象表位并调节底物或脂蛋白结合。相较 APOA1、ABCA1 等同通路靶点，LCAT 具有明确疾病因果性、可解析酶结构和可直接干预的催化/界面结合模块，优先级较高。",
+    "mechanism": "抗体结合 LCAT 膜结合域或 lid 区域，调节其与 HDL/APOA1 及磷脂底物界面的接触，从而改变胆固醇酯化反应效率。",
+    "selectedEpitope": "优先覆盖膜结合域与 lid 区域邻近界面，保留催化三联体空间构象。",
+    "diseaseDirection": "HDL代谢异常与LCAT缺陷",
+    "domain": "LCAT 含 N 端帽区、膜结合域、可移动 lid 结构及 α/β 水解酶催化核心。",
+    "evidence": "LCAT-HDL成熟轴结构与遗传疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt P04180 功能与变异注释",
+      "RCSB PDB 5BV7 晶体结构",
+      "OMIM 与 Orphanet LCAT deficiency/Fish-eye disease 条目"
+    ],
+    "referenceEntries": "UniProt P04180；RCSB PDB 5BV7；MONDO:0018999",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "膜结合域与 lid 区域邻近表面",
+        "影响 LCAT 与 HDL 磷脂界面的结合，可用于功能调节型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N 端帽区外露环与稳定表面",
+        "利于获得高亲和力结合体，适合作为非催化位点构象捕获表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化核心 Ser181-Asp345-His377 周边",
+        "可能直接干扰底物进入，但存在抑制正常酯化活性和构象保守性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "催化核心附近表位可能造成过度酶抑制，应优先筛选调节 HDL 结合而非完全阻断催化的抗体，并监测胆固醇酯化活性。",
+    "structurePrepZh": "以 5BV7 晶体结构为模板，保留 LCAT 主链、二硫键与糖基化邻近位点，去除非抗原链后进行缺失环建模和质子化优化。",
+    "structureRef": "RCSB PDB 5BV7，human LCAT X-ray structure, 2.45 Å",
+    "antibodies": [
+      "MEDI6012",
+      "anti-LCAT monoclonal antibody clone 9A10"
+    ],
+    "interfaceFocus": "膜结合域-lid-HDL磷脂接触界面",
+    "designMode": "功能调节型抗体",
+    "candidates": [
+      {
+        "target": "APOA1",
+        "rationale": "APOA1 是 HDL 主要载脂蛋白并作为 LCAT 激活因子参与胆固醇酯化，位于同一 HDL 成熟通路。靶向其 LCAT 结合相关构象可影响 HDL 功能状态。"
+      },
+      {
+        "target": "ABCA1",
+        "rationale": "ABCA1 介导细胞胆固醇与磷脂外排至 APOA1，形成新生 HDL，是 LCAT 底物颗粒生成的上游节点。该靶点与低 HDL 和胆固醇转运障碍具有明确遗传关联。"
+      },
+      {
+        "target": "CETP",
+        "rationale": "CETP 介导 HDL 胆固醇酯向含 ApoB 脂蛋白转移，位于 LCAT 生成胆固醇酯后的脂蛋白重塑环节。其干预可改变 HDL-C 水平与胆固醇酯分布。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

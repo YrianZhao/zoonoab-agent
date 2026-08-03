@@ -1,0 +1,65 @@
+{
+  "gene": "IGF1",
+  "generatedAt": "2026-08-03T13:23:21.013Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IGF1 是 GH–IGF 轴的核心分泌性生长因子，通过结合 IGF1R 驱动 PI3K–AKT 与 MAPK 信号，直接参与生长迟缓、体成分及神经发育相关表型。其成熟肽为可溶性胞外配体，整体暴露于体液环境，抗体可直接接近受体结合面并阻断配体-受体复合物形成。相较于靶向广泛表达的受体型激酶，IGF1 配体中和更适合实现轴向信号的上游截断，并可降低对受体胞内结构域不可及性的依赖。",
+    "mechanism": "中和抗体结合 IGF1 成熟肽受体识别面，阻断 IGF1 与 IGF1R 胞外 L1/αCT 区域结合，抑制受体自磷酸化及下游 AKT、ERK 激活。",
+    "selectedEpitope": "优先覆盖 IGF1 B/C 区邻近 IGF1R 结合面，兼顾 A 区稳定螺旋外侧表位。",
+    "diseaseDirection": "GH–IGF轴相关生长与代谢疾病",
+    "domain": "IGF1 成熟肽含 B、C、A、D 区，形成胰岛素样三维折叠并由三对二硫键稳定。",
+    "evidence": "IGF1疾病遗传关联与结构可成药性证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P05019 functional annotation",
+      "RCSB PDB 1TGR X-ray structure",
+      "GH–IGF1 axis and IGF1R signaling literature"
+    ],
+    "referenceEntries": "UniProtKB:P05019；RCSB PDB:1TGR；Open Targets:IGF1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "B/C 区受体结合邻面",
+        "直接竞争 IGF1R 识别，适合构建中和型抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "A 区螺旋外侧非二硫键核心面",
+        "保留构象稳定性并提供高亲和结合窗口",
+        "备选"
+      ],
+      [
+        "Site C",
+        "二硫键核心及疏水折叠内侧",
+        "可能影响抗原天然构象并增加交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IGF1 与 IGF2 及胰岛素样折叠蛋白存在结构同源性，需避开高度保守核心面，并通过 IGF2、INS 交叉结合筛选控制选择性风险。",
+    "structurePrepZh": "以 1TGR 高分辨率晶体结构提取 IGF1 成熟肽构象，校验三对二硫键、去除非抗原链冗余，并标注受体结合相关暴露残基。",
+    "structureRef": "PDB 1TGR；human IGF1 X-ray diffraction, 1.42 Å",
+    "antibodies": [
+      "MEDI-573",
+      "xentuzumab"
+    ],
+    "interfaceFocus": "IGF1R 结合面与 IGF2同源保守区边界",
+    "designMode": "配体中和抗体设计",
+    "candidates": [
+      {
+        "target": "IGF1R",
+        "rationale": "IGF1R 是 IGF1 的主要受体，介导 GH–IGF 轴下游 PI3K–AKT 与 MAPK 信号；靶向其胞外 L1/αCT 配体结合区可直接阻断 IGF1 依赖性激活。"
+      },
+      {
+        "target": "IGF2",
+        "rationale": "IGF2 与 IGF1 共享 IGF1R 信号入口，并在生长调控和体成分表型中具有重叠生物学作用；其配体中和策略可用于评估同轴冗余信号。"
+      },
+      {
+        "target": "IGFBP3",
+        "rationale": "IGFBP3 是循环 IGF1 的主要结合蛋白，调节 IGF1 半衰期与组织可利用性；该节点适合用于 GH–IGF 轴中配体生物利用度调控方向的比较设计。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

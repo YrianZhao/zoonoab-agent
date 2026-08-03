@@ -1,0 +1,65 @@
+{
+  "gene": "USP20",
+  "generatedAt": "2026-08-03T17:44:12.056Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "USP20为胞内去泛素化酶，参与β2肾上腺素受体、HIF1A、STING及DNA损伤相关蛋白的去泛素化稳态，Open Targets关联以肾功能表型、结缔组织和骨肿瘤为主，提示其在蛋白降解与应激适应轴中具有疾病相关性。该蛋白缺乏天然胞外结构域或分泌形式，完整抗体直接作用的抗原可及性较低，仅适合胞内抗体、递送型抗体片段或研究级结合分子设计。与可直接药物化的膜受体或分泌因子相比，USP20作为常规治疗性抗体靶点优先级偏低；其优势在于已有USP结构域实验结构可支持界面选择和构象稳定型结合体开发。",
+    "mechanism": "设计结合USP20催化USP结构域Cys/His/Asp催化沟槽或泛素结合外位点的胞内抗体片段，阻断USP20与泛素化底物或泛素链的识别，从而抑制底物去泛素化。",
+    "selectedEpitope": "优先聚焦USP催化结构域的泛素结合沟槽邻近环区，避免仅覆盖远端非功能表面。",
+    "diseaseDirection": "肿瘤与肾功能相关表型",
+    "domain": "USP20含N端调控区、DUSP样结构域及C端USP催化结构域；6KCZ对应实验解析片段结构。",
+    "evidence": "USP20去泛素化功能与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9Y2K6功能与结构域注释",
+      "RCSB PDB 6KCZ实验结构记录",
+      "去泛素化酶USP家族底物识别与催化文献"
+    ],
+    "referenceEntries": "UniProt Q9Y2K6；RCSB PDB 6KCZ；Open Targets USP20",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "USP催化结构域泛素结合沟槽及邻近可塑环",
+        "可直接干扰泛素链进入与底物去泛素化反应，功能阻断价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DUSP样调控结构域表面片段",
+        "可能影响底物适配或构象稳定，但需验证其与底物选择性的关系",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化中心的保守折叠核心表面",
+        "功能抑制不确定且可能仅产生非中和结合，应限制为结构探针用途",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "USP20为胞内酶，常规抗体难以进入作用位点；USP家族催化结构域保守性较高，需通过非保守环区和外位点提升选择性。",
+    "structurePrepZh": "以6KCZ NMR模型集评估构象离散度，补充AlphaFold全长模型定位缺失区，并对催化沟槽、泛素结合面和低保守环区进行表面聚类。",
+    "structureRef": "RCSB PDB 6KCZ；human USP20 solution NMR structure",
+    "antibodies": [
+      "研究级抗USP20抗体",
+      "胞内抗体片段工程候选"
+    ],
+    "interfaceFocus": "USP催化沟槽与泛素结合外位点",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "USP33",
+        "rationale": "USP33为USP20近缘去泛素化酶，亦参与β2肾上腺素受体及蛋白稳态调控，可作为同一去泛素化调节轴的选择性对照靶点。"
+      },
+      {
+        "target": "HIF1A",
+        "rationale": "HIF1A是USP20报道底物之一，其稳定性受泛素化-去泛素化平衡调节，与肿瘤缺氧适应和肾脏病理应激相关。"
+      },
+      {
+        "target": "STING1",
+        "rationale": "STING1处于USP20调控的先天免疫信号轴中，USP20介导的去泛素化可影响STING信号强度，适合作为通路级候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

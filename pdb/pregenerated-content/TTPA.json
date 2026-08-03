@@ -1,0 +1,65 @@
+{
+  "gene": "TTPA",
+  "generatedAt": "2026-08-03T17:33:56.075Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TTPA 是维生素E稳态通路的胞内脂质转运蛋白，致病变异可降低α-生育酚从肝细胞向循环脂蛋白的转运，导致共济失调和视网膜病变。该蛋白缺乏跨膜段和分泌信号，天然抗原可及性弱，不适合作为常规体内阻断型抗体靶点，但可用于胞内递送抗体、研究级构象探针或诊断抗体开发。相比脂蛋白受体或氧化应激下游靶点，TTPA 与遗传性维生素E缺乏具有更直接的因果证据和高分辨率结构基础，因此优先作为机制验证型抗体设计对象。",
+    "mechanism": "设计抗体结合TTPA CRAL-TRIO脂质结合腔入口或α-生育酚结合邻近环区，阻断α-生育酚进入疏水腔并干扰其向膜磷脂受体界面的转移。",
+    "selectedEpitope": "优先定位CRAL-TRIO结构域脂质结合腔入口及盖帽螺旋邻近环区，避免深埋疏水腔核心。",
+    "diseaseDirection": "遗传性维生素E缺乏与共济失调",
+    "domain": "TTPA主要由CRAL-TRIO脂质结合结构域构成，形成容纳α-生育酚的疏水腔和可调节入口环区。",
+    "evidence": "TTPA维生素E转运缺陷结构功能证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProtKB P49638功能与变异注释",
+      "RCSB PDB 1R5L高分辨率晶体结构",
+      "OMIM与Orphanet维生素E缺乏共济失调条目"
+    ],
+    "referenceEntries": "UniProt P49638；RCSB PDB 1R5L；Orphanet 96；MONDO:0010188",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CRAL-TRIO脂质结合腔入口及盖帽螺旋邻近环区",
+        "可直接影响α-生育酚进入结合腔和构象门控，适合功能阻断验证",
+        "优先"
+      ],
+      [
+        "Site B",
+        "α-生育酚结合腔外侧可溶表面环区",
+        "有利于获得构象识别抗体并降低深腔疏水表位带来的开发风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "疏水腔内部与脂质尾部接触残基区域",
+        "功能相关性高但埋藏程度大，完整抗体难以有效进入且易产生非特异疏水相互作用",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TTPA为胞内可溶蛋白，体内抗体可及性有限；建议定位为细胞内递送抗体、VHH或诊断构象探针，并避免强疏水深腔表位。",
+    "structurePrepZh": "采用PDB 1R5L链A作为抗原模板，保留α-生育酚配体用于界面定义，补全缺失侧链并评估入口环区构象柔性。",
+    "structureRef": "RCSB PDB 1R5L，X-ray diffraction，1.5 Å，人源TTPA结构",
+    "antibodies": [
+      "无已批准抗TTPA治疗性抗体",
+      "研究级抗TTPA多克隆/单克隆抗体"
+    ],
+    "interfaceFocus": "脂质结合腔入口、盖帽螺旋与可动环区",
+    "designMode": "胞内构象探针",
+    "candidates": [
+      {
+        "target": "SCARB1",
+        "rationale": "SCARB1参与维生素E和脂蛋白相关脂质摄取，与TTPA介导的α-生育酚分配共同影响组织维生素E稳态。其细胞表面受体特征提供更高的抗体可及性。"
+      },
+      {
+        "target": "APOB",
+        "rationale": "APOB是含载脂蛋白B脂蛋白颗粒的核心结构蛋白，参与α-生育酚在循环中的运输。该节点与TTPA肝细胞装载维生素E后的血浆转运阶段相衔接。"
+      },
+      {
+        "target": "MTTP",
+        "rationale": "MTTP负责载脂蛋白B脂蛋白装配和分泌，影响α-生育酚进入循环脂蛋白的效率。其通路位置与TTPA介导的肝脏维生素E输出具有功能连续性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

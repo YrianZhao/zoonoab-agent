@@ -1,0 +1,65 @@
+{
+  "gene": "MECP2",
+  "generatedAt": "2026-08-03T14:09:49.423Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MECP2 是甲基化 CpG 结合蛋白，主要位于细胞核内，通过 MBD 识别甲基化 DNA，并经 NCoR/SMRT 复合体调控神经元基因转录；其功能缺失是 Rett 综合征及多种 X 连锁神经发育障碍的核心遗传机制。该蛋白不属于分泌蛋白或膜受体，天然抗原可及性低，常规体内阻断型抗体开发受限，但其已解析的结构域片段适合用于体外结合分子、细胞内抗体或递送型抗体的结构引导设计。相较于下游广泛转录调控因子，MECP2 处于疾病因果链上游，遗传证据强、结构分辨率高，因此可作为机制验证与细胞内调控型抗体工程的优先靶点。",
+    "mechanism": "设计分子可结合 MECP2 MBD 的甲基化 DNA 识别界面，阻断其与甲基化 CpG DNA 的结合，或干预 TRD 区域与 NCoR/SMRT 复合体的相互作用。",
+    "selectedEpitope": "优先选择 MBD 结构域的甲基化 CpG-DNA 接触面及相邻碱性沟槽，避免覆盖无序低复杂度区。",
+    "diseaseDirection": "Rett综合征与神经发育障碍",
+    "domain": "MECP2 含 N 端无序区、MBD 甲基化 DNA 结合域、TRD 转录抑制域及 C 端无序调控区。",
+    "evidence": "MECP2神经发育疾病遗传与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProtKB P51608 功能与结构域注释",
+      "RCSB PDB 6OGK X射线晶体结构",
+      "OMIM 与 ClinVar MECP2 致病变异记录"
+    ],
+    "referenceEntries": "UniProt P51608；RCSB PDB 6OGK；Open Targets MECP2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "MBD甲基化CpG-DNA识别沟槽",
+        "直接干预MECP2与甲基化DNA结合，适合机制阻断型设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "MBD外侧稳定折叠面",
+        "可形成高亲和结合并作为构象探针，降低DNA竞争风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "TRD/NCoR相互作用相关区域",
+        "具有调控共抑制复合体募集潜力，但结构柔性与功能选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MECP2为核内蛋白，体内抗体可及性与递送是主要风险；应优先采用细胞内抗体、递送偶联或体外机制探针策略，并严格评估DNA结合非特异性。",
+    "structurePrepZh": "以6OGK高分辨率晶体结构为模板，保留MBD折叠核心，检查DNA或配体接触残基、晶体接触面及缺失无序区后再进行表位建模。",
+    "structureRef": "RCSB PDB 6OGK，X-ray diffraction，1.65 Å",
+    "antibodies": [
+      "Mecp2 monoclonal antibody clone D4F3",
+      "MECP2 monoclonal antibody clone 4F3"
+    ],
+    "interfaceFocus": "MBD甲基化CpG识别沟槽与TRD共抑制因子界面",
+    "designMode": "细胞内抗体设计",
+    "candidates": [
+      {
+        "target": "TBL1XR1",
+        "rationale": "TBL1XR1 是 NCoR/SMRT 共抑制复合体组分，参与 MECP2 介导的转录抑制复合体稳定与调控。其神经发育疾病关联支持同通路机制研究。"
+      },
+      {
+        "target": "NCOR1",
+        "rationale": "NCOR1 是 MECP2 转录抑制域招募的核心共抑制因子之一，参与组蛋白去乙酰化复合体介导的转录调控。干预该轴可用于解析 MECP2 相关转录失衡机制。"
+      },
+      {
+        "target": "HDAC3",
+        "rationale": "HDAC3 是 NCoR/SMRT 复合体的关键酶活组分，执行去乙酰化并影响 MECP2 依赖性基因抑制。其位于同一染色质转录调控通路下游，具备明确机制连接。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

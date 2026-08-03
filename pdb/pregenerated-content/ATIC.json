@@ -1,0 +1,65 @@
+{
+  "gene": "ATIC",
+  "generatedAt": "2026-08-03T10:39:59.076Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ATIC催化嘌呤从头合成末两步反应，影响AICAR转甲酰化与IMP环化，ATIC缺陷可导致AICA-ribosiduria，肿瘤细胞亦可依赖嘌呤生物合成维持核苷酸供给。该蛋白主要为胞质双功能酶，缺乏天然胞外结构域或分泌特征，因此常规体内阻断型抗体的抗原可及性受限，更适合细胞内递送抗体、降解偶联或结构辅助发现策略。相较PPAT、GART等上游酶，ATIC直接位于IMP生成终点且具备高分辨率人源实验结构，利于围绕催化沟槽和二聚体界面进行高置信度表位建模。",
+    "mechanism": "通过抗体片段占据AICAR transformylase底物沟槽或IMP cyclohydrolase活性口袋，阻断FAICAR/IMP相关中间体与ATIC催化残基的结合。",
+    "selectedEpitope": "优先锁定AICAR transformylase结构域叶酸辅因子-底物结合沟槽邻近环区，兼顾二聚体界面变构位点。",
+    "diseaseDirection": "嘌呤从头合成异常与肿瘤代谢",
+    "domain": "ATIC为同源二聚体双功能胞质酶，含N端IMP cyclohydrolase结构域与C端AICAR transformylase结构域。",
+    "evidence": "ATIC结构酶学与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB P31939功能与定位注释",
+      "RCSB PDB 5UZ0人源ATIC晶体结构",
+      "OMIM/ClinVar AICA-ribosiduria相关遗传证据"
+    ],
+    "referenceEntries": "UniProt P31939；RCSB PDB 5UZ0；Open Targets ENSG00000138363",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端AICAR transformylase叶酸辅因子与AICAR底物结合沟槽",
+        "直接干预转甲酰化反应，机制可验证性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端IMP cyclohydrolase活性口袋周边保守环区",
+        "可阻断FAICAR环化为IMP，适合小型抗体片段进入沟槽",
+        "备选"
+      ],
+      [
+        "Site C",
+        "同源二聚体装配界面",
+        "具备变构抑制潜力，但界面保守性与细胞内可及性需严格评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ATIC为胞质代谢酶，天然抗体难以进入细胞；应优先采用细胞内递送Fab/VHH、降解偶联或mRNA表达型intrabody，并规避高度保守催化残基引发的脱靶风险。",
+    "structurePrepZh": "以5UZ0高分辨率晶体结构为模板，保留生物学二聚体，补全缺失侧链并检查配体、离子和晶体接触后再进行表位可及性评估。",
+    "structureRef": "RCSB PDB 5UZ0，人源ATIC X射线晶体结构，1.79 Å",
+    "antibodies": [
+      "抗ATIC研究级单克隆抗体",
+      "抗ATIC兔单克隆抗体"
+    ],
+    "interfaceFocus": "AICAR transformylase底物沟槽与二聚体界面",
+    "designMode": "细胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "GART",
+        "rationale": "GART参与嘌呤从头合成早期GAR转甲酰化等反应，与ATIC同属IMP生物合成通路；其代谢节点可用于比较上游通量抑制与末端阻断效果。"
+      },
+      {
+        "target": "PAICS",
+        "rationale": "PAICS催化AIR羧化与SAICAR合成，位于ATIC上游并在增殖性肿瘤中具有代谢依赖性；适合作为同通路代谢脆弱性候选靶点。"
+      },
+      {
+        "target": "ADSL",
+        "rationale": "ADSL催化SAICAR裂解并参与嘌呤从头合成与嘌呤核苷酸循环，功能上连接ATIC底物前体供给；遗传缺陷亦与神经发育异常相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

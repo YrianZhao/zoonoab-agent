@@ -1,0 +1,65 @@
+{
+  "gene": "CTDSPL",
+  "generatedAt": "2026-08-03T11:42:10.506Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CTDSPL为核内CTD小磷酸酶样蛋白，主要通过FCPH催化结构域去磷酸化RNA聚合酶II CTD及相关磷酸化底物，可能影响造血细胞转录程序，与红细胞计数、血红蛋白、血细胞比容及血小板体积等血液性状存在遗传关联。该蛋白缺乏分泌信号肽、跨膜区和稳定胞外结构域，天然抗原可及性不适合体内阻断型抗体，但可作为细胞内靶点用于结构识别、检测抗体或递送型抗体片段探索。相较造血通路中具有胞外可及性的受体或细胞因子，CTDSPL的抗体成药优先级较低；其优先价值主要来自高分辨率实验结构和明确FCPH催化口袋，可支持机制验证型分子设计。",
+    "mechanism": "设计分子应结合FCPH结构域催化沟槽，遮挡DXDXT样催化基序邻近底物进入路径，抑制CTDSPL与磷酸化CTD肽段的识别和去磷酸化反应。",
+    "selectedEpitope": "优先覆盖FCPH催化结构域底物沟槽及金属依赖催化基序周边环区。",
+    "diseaseDirection": "血液性状与造血转录调控",
+    "domain": "CTDSPL主要包含N端低复杂度区和C端FCPH磷酸酶催化结构域，2HHL覆盖催化核心。",
+    "evidence": "CTDSPL血液性状遗传关联与FCPH结构证据",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB O15194功能与亚细胞定位注释",
+      "RCSB PDB 2HHL晶体结构条目",
+      "GWAS Catalog血液学性状关联记录"
+    ],
+    "referenceEntries": "UniProt O15194；RCSB PDB 2HHL；Open Targets CTDSPL",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "FCPH催化沟槽与DXDXT样催化基序邻近区域",
+        "可直接干扰磷酸化底物进入与催化几何构型，适合功能阻断验证",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FCPH结构域底物结合沟槽外侧保守环区",
+        "可能削弱CTD样磷酸化肽段识别，同时降低对催化残基的构象扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化口袋的FCPH外表面晶体接触区域",
+        "适合作为结合型或检测型抗体表位，但功能阻断价值有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CTDSPL为核内酶，常规抗体难以到达胞内靶点；催化口袋较浅且保守，需优先评估跨CTD磷酸酶家族选择性与细胞递送可行性。",
+    "structurePrepZh": "以2HHL的A-D链为实验结构模板，去除晶体缓冲组分，保留催化结构域构象，检查多聚体界面、缺失环区及催化位点质子化状态。",
+    "structureRef": "RCSB PDB 2HHL，X-ray diffraction，2.1 Å",
+    "antibodies": [
+      "无已批准CTDSPL治疗性抗体",
+      "商业化抗CTDSPL研究抗体"
+    ],
+    "interfaceFocus": "FCPH催化沟槽及底物进入通道",
+    "designMode": "胞内靶点验证型",
+    "candidates": [
+      {
+        "target": "POLR2A",
+        "rationale": "POLR2A编码RNA聚合酶II最大亚基，其CTD重复序列是CTD磷酸酶调控转录延伸与终止的核心底物，处于同一转录磷酸化调控轴。"
+      },
+      {
+        "target": "CTDSP1",
+        "rationale": "CTDSP1与CTDSPL同属小CTD磷酸酶家族，具有FCPH催化结构域，可调节RNA聚合酶II CTD及相关磷酸化底物，适合作为家族选择性比较靶点。"
+      },
+      {
+        "target": "CTDSP2",
+        "rationale": "CTDSP2为同源CTD小磷酸酶，参与相近的CTD去磷酸化调控网络，可用于评估抗体或结合分子对同族催化结构域的交叉反应风险。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

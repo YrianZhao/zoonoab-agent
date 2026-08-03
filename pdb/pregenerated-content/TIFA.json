@@ -1,0 +1,65 @@
+{
+  "gene": "TIFA",
+  "generatedAt": "2026-08-03T17:17:18.188Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TIFA是胞内TRAF6适配蛋白，FHA结构域识别磷酸化TIFA并促进TIFA寡聚化，继而招募TRAF6介导NF-κB与炎症因子转录，相关疾病证据主要指向炎症、创伤修复及肿瘤微环境。该蛋白缺乏分泌形式和跨膜胞外结构域，天然抗原可及性不利于常规循环抗体，因此更适合胞内递送抗体、intrabody或结构验证型结合分子设计。相较TNF、IL1B等上游炎症靶点，TIFA位于TRAF6装配节点，可更聚焦地干预TIFA-TRAF6轴，但因遗传关联得分较低，优先级应定位为机制探索型靶点。",
+    "mechanism": "设计结合TIFA FHA结构域磷酸肽识别沟槽或二聚化界面的抗体片段，阻断磷酸化TIFA介导的寡聚化及TRAF6招募。",
+    "selectedEpitope": "优先覆盖FHA结构域磷酸苏氨酸结合口袋及邻近TIFA二聚化界面。",
+    "diseaseDirection": "炎症-NF-κB与肿瘤微环境",
+    "domain": "TIFA主要含N端TRAF6结合区与C端forkhead-associated FHA结构域，6A33解析其FHA构象。",
+    "evidence": "TIFA-TRAF6-NF-κB炎症轴证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q96CG3功能与亚细胞定位注释",
+      "RCSB PDB 6A33晶体结构记录",
+      "TIFA磷酸化寡聚化与TRAF6激活相关文献"
+    ],
+    "referenceEntries": "UniProt Q96CG3；RCSB PDB 6A33；Open Targets TIFA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "FHA结构域磷酸苏氨酸识别沟槽",
+        "直接干预pTIFA识别与TIFA寡聚化启动，机制最清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FHA结构域二聚化/装配邻近界面",
+        "限制TIFA信号复合体形成并降低TRAF6募集效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端TRAF6结合区邻近片段",
+        "可能影响TRAF6结合，但结构覆盖不足且构象柔性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TIFA为胞内适配蛋白，常规抗体药物可及性不足；应采用VHH、intrabody或递送系统，并避免完全遮蔽FHA保守折叠核心造成非特异构象失稳。",
+    "structurePrepZh": "以6A33中A、I链为抗原模板，保留FHA结构域核心与关键磷酸肽识别残基，补全缺失环区并评估晶体接触对界面暴露的影响。",
+    "structureRef": "RCSB PDB 6A33，X-ray diffraction，2.1 Å",
+    "antibodies": [
+      "暂无获批TIFA靶向抗体",
+      "研究级anti-TIFA抗体"
+    ],
+    "interfaceFocus": "FHA磷酸肽结合沟槽与寡聚化界面",
+    "designMode": "胞内VHH/intrabody",
+    "candidates": [
+      {
+        "target": "TRAF6",
+        "rationale": "TRAF6是TIFA下游直接结合与E3泛素连接酶节点，介导K63连接泛素化并驱动NF-κB/MAPK炎症信号。"
+      },
+      {
+        "target": "IRAK1",
+        "rationale": "IRAK1参与TLR/IL-1R至TRAF6的炎症信号传递，与TIFA-TRAF6轴同属NF-κB激活网络。"
+      },
+      {
+        "target": "NFKB1",
+        "rationale": "NFKB1编码NF-κB p105/p50，是TIFA-TRAF6信号输出端的核心转录因子成分，可作为通路活性验证靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

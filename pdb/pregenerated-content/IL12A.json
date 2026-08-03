@@ -1,0 +1,65 @@
+{
+  "gene": "IL12A",
+  "generatedAt": "2026-08-03T13:25:32.471Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IL12A编码IL-12/IL-23共享p35样细胞因子亚基p35，并与IL12B编码的p40组成IL-12，驱动IL12RB1/IL12RB2受体复合物介导的STAT4活化和Th1炎症反应，在克罗恩病、银屑病及银屑病关节炎中具有明确通路关联。该靶点作为分泌型异源二聚细胞因子亚基，抗体可直接接触循环或局部炎症微环境中的可溶性抗原，具备良好抗原可及性。相较于细胞内JAK/STAT节点，IL12A更适合实现细胞因子选择性阻断；相较共享p40靶向策略，p35定向设计更偏向IL-12轴并可降低对IL-23通路的同步抑制。",
+    "mechanism": "阻断IL-12 p35/p40异源二聚体与IL12RB1/IL12RB2受体复合物的结合，抑制STAT4磷酸化及IFN-γ驱动的Th1炎症放大。",
+    "selectedEpitope": "优先覆盖p35四螺旋束中与IL12RB2受体接触相关的外露螺旋面，避免干扰p40装配核心。",
+    "diseaseDirection": "炎症性肠病与银屑病免疫炎症",
+    "domain": "IL12A为分泌型细胞因子p35亚基，呈四α螺旋束结构，并与IL12B/p40形成IL-12异源二聚体。",
+    "evidence": "IL12A-IL-12轴炎症疾病遗传与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P29459功能与序列注释",
+      "RCSB PDB 1F45晶体结构",
+      "IL-12受体-STAT4信号通路文献"
+    ],
+    "referenceEntries": "UniProt:P29459；RCSB PDB:1F45；Open Targets:IL12A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "p35四螺旋束外露受体结合面",
+        "可阻断IL-12与IL12RB2结合并保留较高功能阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "p35与p40异源二聚体周边可及界面",
+        "可降低成熟IL-12复合物稳定性，但需评估对抗原构象的依赖",
+        "备选"
+      ],
+      [
+        "Site C",
+        "p35疏水核心邻近区域",
+        "可能影响蛋白折叠或产生构象依赖风险，工程化窗口较窄",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "p35单独稳定性弱且天然以p35/p40异源二聚体发挥功能，需区分游离p35与成熟IL-12表位；应避免完全埋藏的p40接触面导致低可及性。",
+    "structurePrepZh": "以PDB 1F45晶体结构为模板，保留IL-12异源二聚体构象，校正缺失侧链与糖基化邻近区域，并标注p35外露螺旋面用于表位筛选。",
+    "structureRef": "PDB 1F45；X-ray diffraction，2.8 Å human IL-12 structure",
+    "antibodies": [
+      "Ustekinumab",
+      "Briakinumab"
+    ],
+    "interfaceFocus": "p35受体结合外露螺旋面及p35-p40邻近边界",
+    "designMode": "细胞因子阻断型",
+    "candidates": [
+      {
+        "target": "IL12B",
+        "rationale": "IL12B编码p40亚基，是IL-12和IL-23共享组成部分；靶向p40已在银屑病、银屑病关节炎和炎症性肠病中获得临床验证。"
+      },
+      {
+        "target": "IL12RB1",
+        "rationale": "IL12RB1为IL-12与IL-23受体复合物共享受体链，阻断其配体结合可同时影响Th1和Th17相关炎症信号。"
+      },
+      {
+        "target": "IL12RB2",
+        "rationale": "IL12RB2是IL-12受体特异性信号链，参与STAT4活化；相较共享受体链，其靶向更偏向IL-12-Th1炎症轴。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "DDX10",
+  "generatedAt": "2026-08-03T11:52:41.590Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DDX10为核仁相关DEAD-box RNA解旋酶，参与核糖体RNA加工与核糖体生物发生；该过程可影响增殖性肿瘤细胞的蛋白合成负荷，并在部分造血及实体肿瘤关联数据中呈现疾病信号。DDX10主要定位于细胞核/核仁，缺乏天然胞外结构域、分泌形式或膜受体特征，常规完整抗体难以直接结合活细胞表面抗原，因此抗原可及性明显受限。相较CD20、EGFR或PD-L1等同类可成药胞外靶点，DDX10更适合作为结构生物学与细胞内干预研究靶点，抗体设计优先级应低于具备明确胞外可及性的疾病通路节点。",
+    "mechanism": "设计以内源递送型抗体片段阻断DDX10 RecA-like解旋酶核心与RNA/ATP结合构象耦联，干扰rRNA加工复合体装配。",
+    "selectedEpitope": "优先覆盖DEAD-box解旋酶RecA-like核心的ATP/RNA结合沟槽邻近保守motif界面。",
+    "diseaseDirection": "核糖体生物发生相关肿瘤方向",
+    "domain": "DDX10含DEAD-box RNA解旋酶核心，包含N端与C端RecA-like结构域及保守ATPase/RNA结合motif。",
+    "evidence": "DDX10结构与肿瘤关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt Q13206蛋白功能注释",
+      "RCSB PDB 2PL3晶体结构",
+      "Reactome核糖体RNA加工与核糖体生物发生通路"
+    ],
+    "referenceEntries": "UniProt: Q13206; RCSB PDB: 2PL3; Gene: DDX10",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RecA-like核心ATP/RNA结合沟槽邻近保守motif",
+        "可直接干预解旋酶催化构象与核酸结合",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端与C端RecA-like结构域相对运动界面",
+        "有利于锁定非生产性构象并抑制ATPase耦联",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化沟槽的溶剂暴露螺旋/环区",
+        "结构可及但功能阻断不确定，需避免仅获得结合型抗体",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DDX10为细胞内核仁蛋白，常规抗体药物缺乏天然抗原可及性；设计应限定为细胞内递送Fab/VHH或研究级阻断工具，并验证对同源DEAD-box蛋白的选择性。",
+    "structurePrepZh": "以PDB 2PL3链A为结构模板，补全缺失环区并标注DEAD-box保守motif、ATP/RNA结合沟槽及结构域间界面，去除非功能性晶体接触后进行表位分层。",
+    "structureRef": "RCSB PDB 2PL3, X-ray, 2.15 Å, chain A",
+    "antibodies": [
+      "无已批准DDX10治疗性抗体",
+      "研究级抗DDX10检测抗体"
+    ],
+    "interfaceFocus": "RecA-like结构域间沟槽与核酸结合面",
+    "designMode": "细胞内阻断型",
+    "candidates": [
+      {
+        "target": "DDX21",
+        "rationale": "DDX21同属核仁RNA解旋酶，参与rRNA加工与核糖体生物发生，在肿瘤细胞核糖体生成压力中具有更明确的功能研究基础。"
+      },
+      {
+        "target": "NPM1",
+        "rationale": "NPM1为核仁磷酸蛋白，参与核糖体组装与核仁应激，并在急性髓系白血病中具有明确遗传学疾病关联。"
+      },
+      {
+        "target": "RPL5",
+        "rationale": "RPL5参与5S RNP复合体和核糖体生物发生，并通过核糖体应激轴影响MDM2-TP53调控网络，属于同一核糖体生成相关疾病通路节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

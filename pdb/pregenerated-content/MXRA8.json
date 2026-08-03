@@ -1,0 +1,65 @@
+{
+  "gene": "MXRA8",
+  "generatedAt": "2026-08-03T14:29:06.636Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MXRA8 是多种关节炎相关甲病毒的细胞进入受体，可通过其 Ig-like 结构域与病毒包膜 E2/E1 糖蛋白复合体结合，介导病毒吸附与入侵。该蛋白为细胞表面糖基化膜蛋白，胞外区充分暴露，抗体可直接覆盖病毒结合界面。相较于下游炎症因子或非特异性基质标志物，MXRA8 位于感染起始步骤，具有阻断病原进入的前置干预优势；但 Open Targets 中以肺功能、疝和形态学表型为主的关联提示其慢性疾病遗传证据强度有限，优先适用于抗病毒进入阻断方向。",
+    "mechanism": "抗体覆盖 MXRA8 胞外 Ig-like 结构域上的 E2/E1 接触面，阻断 chikungunya 等甲病毒包膜糖蛋白与受体结合并抑制病毒入胞。",
+    "selectedEpitope": "优先靶向 D1-D2 Ig-like 结构域外侧的病毒糖蛋白结合界面，避免跨膜近端柔性区。",
+    "diseaseDirection": "甲病毒感染与病毒性关节炎",
+    "domain": "MXRA8 含两个胞外 Ig-like 结构域、单跨膜区和短胞质尾，是 I 型膜受体样蛋白。",
+    "evidence": "MXRA8-甲病毒受体结合结构与感染阻断证据",
+    "evidenceSources": [
+      "RCSB PDB 6JO8 X-ray MXRA8-CHIKV E2/E1复合体结构",
+      "UniProt Q9BRK3 MXRA8 蛋白注释",
+      "Open Targets Platform MXRA8 疾病关联数据",
+      "Nature 2018/Cell Host Microbe 相关 MXRA8 甲病毒受体研究"
+    ],
+    "referenceEntries": "UniProt Q9BRK3；RCSB PDB 6JO8；Open Targets MXRA8",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "D1-D2 Ig-like 结构域病毒糖蛋白结合界面",
+        "直接阻断 E2/E1 与 MXRA8 的受体配对，功能阻断价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "D1 结构域远端暴露环区",
+        "可形成空间遮挡并降低病毒吸附效率，适合亲和力优化",
+        "备选"
+      ],
+      [
+        "Site C",
+        "D2 近膜端及潜在糖基化邻近区域",
+        "构象柔性和糖链遮蔽可能影响表位稳定性，需谨慎评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "6JO8 分辨率约 3.5 Å，侧链定位和糖链可见性有限；设计应交叉评估 AlphaFold 模型、糖基化位点和细胞表面构象。",
+    "structurePrepZh": "以 6JO8 中 MXRA8 与病毒 E2/E1 复合体为模板，保留胞外 D1-D2 区，移除冗余链并重建缺失侧链后进行界面能量分析。",
+    "structureRef": "RCSB PDB 6JO8：MXRA8 bound to arthritogenic alphavirus glycoproteins",
+    "antibodies": [
+      "MXRA8-Fc receptor decoy",
+      "anti-MXRA8 blocking antibody"
+    ],
+    "interfaceFocus": "D1-D2 与 CHIKV E2/E1 受体结合界面",
+    "designMode": "受体阻断型抗体",
+    "candidates": [
+      {
+        "target": "CHIKV E2",
+        "rationale": "CHIKV E2 是直接接触 MXRA8 的病毒包膜糖蛋白亚基，靶向其受体结合面可从病毒端阻断吸附。"
+      },
+      {
+        "target": "CHIKV E1",
+        "rationale": "CHIKV E1 与 E2 共同形成包膜刺突复合体，并参与膜融合过程，是同一病毒进入通路中的结构性干预靶点。"
+      },
+      {
+        "target": "NRAMP2",
+        "rationale": "NRAMP2/SLC11A2 被报道可作为部分甲病毒进入相关宿主因子，适合在 MXRA8 依赖性不足的细胞背景中作为补充验证靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

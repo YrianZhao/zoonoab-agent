@@ -1,0 +1,65 @@
+{
+  "gene": "CD14",
+  "generatedAt": "2026-08-03T11:07:37.579Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CD14是先天免疫脂多糖识别轴的关键共受体，可与LBP转运的LPS及MD-2/TLR4复合体协同，促进炎症因子释放，并参与登革热等感染相关免疫激活过程。CD14具有GPI锚定膜型与可溶型形式，富含亮氨酸重复的胞外马蹄形结构暴露充分，适合抗体进入并识别配体结合面。相较下游TLR4或MYD88等信号节点，CD14处于配体递呈早期且抗原可及性更高，具备更明确的阻断型抗体设计优先级。",
+    "mechanism": "阻断LPS或内源性糖脂配体进入CD14疏水结合口袋，抑制CD14向MD-2/TLR4递呈配体并降低TLR4二聚化诱导的炎症信号。",
+    "selectedEpitope": "优先靶向N端LRR马蹄形疏水口袋入口及LPS结合边缘，兼顾配体阻断与构象稳定性。",
+    "diseaseDirection": "感染炎症与先天免疫异常",
+    "domain": "CD14为GPI锚定糖蛋白，胞外区由LRR样马蹄形结构构成，N端形成疏水配体结合口袋。",
+    "evidence": "CD14-LPS-TLR4先天免疫轴结构与疾病证据",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联证据",
+      "UniProt P08571功能与亚细胞定位注释",
+      "RCSB PDB 4GLP晶体结构记录",
+      "CD14介导LPS递呈至MD-2/TLR4的文献证据"
+    ],
+    "referenceEntries": "UniProt P08571；RCSB PDB 4GLP；Open Targets CD14",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端LRR疏水口袋入口及LPS结合边缘",
+        "直接干预LPS装载与向MD-2/TLR4递呈，阻断价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "LRR马蹄形外侧凸面暴露环区",
+        "抗原可及性较好，可用于非竞争性结合或构象约束设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端近GPI锚定连接区及柔性糖基化邻近区域",
+        "空间异质性与膜近端遮挡风险较高，功能阻断相关性有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "4GLP分辨率约4.0 Å，侧链定位与环区构象需谨慎解释；应避开高度糖基化和膜近端柔性区，优先采用多模板与糖型建模校正界面。",
+    "structurePrepZh": "以4GLP链A为抗原模板，补全缺失环区、检查二硫键与N糖基化位点，保留胞外LRR骨架并对配体口袋进行局部能量优化。",
+    "structureRef": "PDB 4GLP；human CD14 ectodomain X-ray structure",
+    "antibodies": [
+      "IC14",
+      "MEM-18"
+    ],
+    "interfaceFocus": "LPS结合疏水口袋与MD-2/TLR4递呈相关面",
+    "designMode": "阻断型Fab/VHH设计",
+    "candidates": [
+      {
+        "target": "TLR4",
+        "rationale": "TLR4与MD-2构成LPS识别受体复合体，是CD14递呈配体后的直接信号受体；阻断其胞外LRR二聚化界面可抑制同一炎症轴。"
+      },
+      {
+        "target": "LY96",
+        "rationale": "LY96编码MD-2，直接结合LPS并与TLR4形成激活复合体；其疏水口袋是CD14-LPS递呈后的核心受体位点。"
+      },
+      {
+        "target": "LBP",
+        "rationale": "LBP负责从细菌膜或脂蛋白颗粒转运LPS至CD14，位于CD14上游；干预LBP-CD14配体转移可降低同一通路的起始输入。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "POLR2K",
+  "generatedAt": "2026-08-03T15:26:43.751Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "POLR2K为RNA聚合酶I、II、III共同小亚基，参与Pol II预起始复合物形成和mRNA转录延伸，病毒感染中可影响宿主转录资源与病毒复制所需转录环境。该蛋白定位于细胞核内聚合酶复合体，缺乏天然胞外结构域或分泌形式，常规体内中和抗体抗原可及性不具备优势，仅适合作为体外结构探针或胞内递送抗体探索。相较CCR5、CD4、CXCR4等HIV进入通路膜靶点，POLR2K的可成药性与抗体可达性较弱，因此优先级应低于同通路可及膜受体。",
+    "mechanism": "抗体设计宜作为结构阻断探针，干扰POLR2K与POLR2L及邻近Pol II核心亚基的装配界面，从而破坏聚合酶复合体稳定性。",
+    "selectedEpitope": "优先评估POLR2K暴露螺旋及其与POLR2L异源二聚体界面邻近区域，避免深埋核心接触面。",
+    "diseaseDirection": "病毒感染宿主转录依赖方向",
+    "domain": "POLR2K为约58 aa锌结合样小亚基，含保守Cys富集结构并嵌入RNA聚合酶核心复合体。",
+    "evidence": "POLR2K宿主转录复合体与病毒感染关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P53803功能与亚细胞定位注释",
+      "RCSB PDB 7AE1冷冻电镜结构",
+      "RNA polymerase II复合体结构与转录机制文献"
+    ],
+    "referenceEntries": "UniProt:P53803；RCSB PDB:7AE1；Open Targets:POLR2K",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "POLR2K外露螺旋与POLR2L界面边缘",
+        "可用于构建阻断装配或稳定复合物构象的Fab探针",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Cys富集锌结合样折叠外侧可及面",
+        "有利于获得构象识别抗体，但需避免破坏非特异金属配位区域",
+        "备选"
+      ],
+      [
+        "Site C",
+        "聚合酶核心深埋接触面",
+        "抗体空间进入受限，且易依赖复合体解离构象，成药风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "POLR2K为核内多聚酶共同小亚基，天然抗体难以到达靶位点；建议限定为结构生物学Fab、细胞内递送抗体或降解偶联探索。",
+    "structurePrepZh": "以7AE1中POLR2K对应链为核心，保留邻近POLR2L及Pol II接触亚基用于界面判定，去除低置信柔性片段后进行表面可及性分析。",
+    "structureRef": "RCSB PDB 7AE1，human RNA polymerase II complex，EM 2.8 Å",
+    "antibodies": [
+      "无获批POLR2K治疗性抗体",
+      "无公开临床阶段POLR2K抗体"
+    ],
+    "interfaceFocus": "POLR2K-POLR2L异源二聚体边缘界面",
+    "designMode": "结构探针型Fab",
+    "candidates": [
+      {
+        "target": "CD4",
+        "rationale": "CD4是HIV gp120的主要宿主受体，位于细胞表面且胞外结构域充分可及，抗体可直接阻断病毒包膜蛋白与受体结合。"
+      },
+      {
+        "target": "CCR5",
+        "rationale": "CCR5是HIV入侵关键共受体，膜外环与gp120-V3相关构象参与病毒进入，具有明确的抗体阻断和临床验证基础。"
+      },
+      {
+        "target": "CXCR4",
+        "rationale": "CXCR4介导X4嗜性HIV株进入宿主细胞，胞外N端和外环区域可作为抗体表位，适合进入阻断策略。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

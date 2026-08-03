@@ -1,0 +1,65 @@
+{
+  "gene": "RBM4B",
+  "generatedAt": "2026-08-03T20:50:19.927Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RBM4B为核内RNA结合蛋白，主要参与前体mRNA选择性剪接与转录后调控；现有遗传关联提示其与MODY、体重表型及肾病表型存在低强度统计关联，但尚缺乏明确的细胞外致病配体-受体轴证据。该蛋白不属于分泌蛋白或膜受体，RRM结构域位于细胞内，天然抗体抗原可及性较差，常规治疗性抗体开发适配度有限。相比HNF1A、HNF4A、GCK等MODY核心驱动基因，RBM4B的疾病关联分值较低且机制证据间接，因此更适合作为机制研究或胞内递送抗体探索靶点，而非优先级最高的常规阻断型抗体靶点。",
+    "mechanism": "设计以内化递送或胞内抗体形式干扰RBM4B RRM结构域与靶RNA顺式元件结合，改变其参与的选择性剪接复合体装配。",
+    "selectedEpitope": "优先覆盖RRM β-sheet RNA结合面及RNP1/RNP2邻近残基，避免仅识别柔性末端片段。",
+    "diseaseDirection": "MODY及代谢遗传表型探索",
+    "domain": "RBM4B含N端RNA recognition motif样RNA结合结构域，2DGT解析其RRM折叠核心。",
+    "evidence": "RBM4B遗传关联与RRM结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9BQ04功能与结构域注释",
+      "RCSB PDB 2DGT溶液NMR结构",
+      "RNA结合蛋白选择性剪接文献证据"
+    ],
+    "referenceEntries": "UniProt Q9BQ04；RCSB PDB 2DGT；Open Targets RBM4B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RRM β-sheet RNA结合面/RNP1-RNP2邻近区域",
+        "直接竞争RNA结合并干扰剪接相关复合体装配",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RRM α-螺旋外侧非RNA结合面",
+        "有利于获得构象稳定结合分子，可用于检测或结构探针",
+        "备选"
+      ],
+      [
+        "Site C",
+        "RRM末端柔性连接区",
+        "构象异质性较高，表位稳定性和功能阻断相关性不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为靶点胞内定位导致常规抗体难以到达作用位点；建议限定为细胞内抗体、递送型Fab/VHH或研究级结合分子设计。",
+    "structurePrepZh": "以2DGT NMR模型集评估RRM核心一致性，保留低RMSD构象用于对接，并标注RNP1/RNP2及RNA结合面残基。",
+    "structureRef": "RCSB PDB 2DGT，human RBM4B RRM solution NMR structure",
+    "antibodies": [
+      "暂无获批RBM4B治疗性抗体",
+      "研究级抗RBM4B抗体"
+    ],
+    "interfaceFocus": "RRM β-sheet RNA结合界面与RNP基序",
+    "designMode": "胞内递送抗体探索",
+    "candidates": [
+      {
+        "target": "HNF1A",
+        "rationale": "HNF1A是MODY3核心致病转录因子，直接调控胰岛β细胞成熟和葡萄糖反应基因表达；其疾病因果证据显著强于RBM4B。"
+      },
+      {
+        "target": "HNF4A",
+        "rationale": "HNF4A位于MODY相关β细胞转录调控网络上游，与HNF1A形成功能互作轴，具有明确单基因糖尿病关联。"
+      },
+      {
+        "target": "GCK",
+        "rationale": "GCK编码葡萄糖激酶，是β细胞葡萄糖感应通路关键酶，MODY2致病机制清晰，可作为同一疾病方向的高置信参照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

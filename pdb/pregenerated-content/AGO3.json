@@ -1,0 +1,65 @@
+{
+  "gene": "AGO3",
+  "generatedAt": "2026-08-03T18:05:44.242Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "AGO3 是 Argonaute 家族 RISC 复合体核心组分，参与 miRNA/siRNA 引导的靶 mRNA 识别与转录后沉默，肿瘤中小 RNA 调控网络异常可改变增殖、凋亡和分化相关转录本稳定性。AGO3 为胞内 RNA 结合蛋白，缺乏天然胞外结构域，完整抗体直接结合活细胞抗原的可及性受限，更适合胞内递送抗体片段或降解偶联策略。相较 AGO2，AGO3 催化活性和疾病证据较弱，但 5VM9 提供人源实验结构，可支持家族选择性界面建模，因此作为探索性优先级靶点具有结构驱动设计价值。",
+    "mechanism": "设计胞内递送抗体片段结合 AGO3 PAZ-MID/PIWI 小 RNA 装载构象界面，阻断 guide RNA 5端锚定与靶 mRNA 配对复合体稳定化。",
+    "selectedEpitope": "优先覆盖 MID 结构域 5端磷酸结合口袋邻近界面，并延伸至 PIWI 裂隙边缘。",
+    "diseaseDirection": "肿瘤小RNA沉默通路",
+    "domain": "AGO3 含 N、PAZ、MID 与 PIWI 结构域，形成结合小 RNA 与靶 RNA 的双叶状构架。",
+    "evidence": "AGO3-RISC结构与肿瘤小RNA调控证据包",
+    "evidenceSources": [
+      "Open Targets Platform AGO3 disease association",
+      "UniProt Q9H9G7 functional annotation",
+      "RCSB PDB 5VM9 human AGO3 crystal structure",
+      "Argonaute-RISC small RNA silencing literature"
+    ],
+    "referenceEntries": "UniProt Q9H9G7；RCSB PDB 5VM9；Open Targets AGO3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "MID 结构域 5端磷酸结合口袋及 PIWI 邻近裂隙",
+        "可干扰 guide RNA 装载与 RISC 构象稳定，是功能阻断首选区域",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PAZ 结构域 3端小 RNA 结合沟槽",
+        "可影响小 RNA 末端定位，适合作为非催化变构阻断表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 结构域与 L1/L2 连接区外露面",
+        "结构可及但功能耦合不确定，且家族保守性可能带来选择性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "AGO3 为胞内蛋白，常规抗体药物可及性不足；Argonaute 家族结构保守，需避开 AGO1/2/4 高保守 RNA 结合核心并验证细胞内递送效率。",
+    "structurePrepZh": "以 5VM9 晶体结构为模板，保留 A-D 链中解析完整链用于建模，补全缺失环区、校正质子化状态，并映射 AGO 家族保守位点。",
+    "structureRef": "RCSB PDB 5VM9，human AGO3 X-ray structure，3.28 Å",
+    "antibodies": [
+      "anti-AGO3 monoclonal antibody clone 2A3",
+      "anti-AGO3 monoclonal antibody clone 4B1"
+    ],
+    "interfaceFocus": "MID 5端磷酸口袋与 PIWI RNA结合裂隙",
+    "designMode": "胞内阻断型Fab/VHH",
+    "candidates": [
+      {
+        "target": "AGO2",
+        "rationale": "AGO2 是 RISC 中具切割活性的核心 Argonaute，直接介导小 RNA 引导的靶 RNA 沉默；其肿瘤小 RNA 通路证据和功能可验证性通常强于 AGO3。"
+      },
+      {
+        "target": "DICER1",
+        "rationale": "DICER1 负责前体 miRNA 加工并向 Argonaute 装载成熟小 RNA，上游控制 RISC 可用 guide RNA 池，属于同一 miRNA 生物发生与沉默轴。"
+      },
+      {
+        "target": "TARBP2",
+        "rationale": "TARBP2 与 DICER 复合体协同促进 miRNA 加工和 AGO 装载，连接 miRNA 生物发生与 RISC 形成，可作为同通路调控节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

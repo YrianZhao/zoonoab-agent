@@ -1,0 +1,65 @@
+{
+  "gene": "NUP214",
+  "generatedAt": "2026-08-03T14:55:13.439Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NUP214 是核孔复合体胞质侧关键核孔蛋白，参与CRM1/XPO1依赖的核输出以及多种RNA病毒核质转运过程，并可通过NUP214融合或重排参与T细胞急性淋巴细胞白血病发生。该靶点主要定位于核孔胞质丝，缺乏常规细胞外结构域或分泌形式，完整抗体进入活细胞核孔环境的可及性受限。相较于同通路中具有明确胞外结构的抗病毒或白血病表面靶点，NUP214更适合作为机制研究或胞内抗体平台靶点，优先级应低于可直接药物化的膜受体靶点。",
+    "mechanism": "设计分子应阻断NUP214 FG重复区与XPO1-货物-RanGTP复合体的结合，干扰CRM1依赖核输出及病毒核输出利用过程。",
+    "selectedEpitope": "优先评估2OIT覆盖的NUP214 C端结构域可及沟槽，避开高柔性FG重复低复杂度区。",
+    "diseaseDirection": "病毒感染与T-ALL核输出异常",
+    "domain": "NUP214含N端β螺旋区、中央FG重复区及C端保守结构域，定位核孔胞质面。",
+    "evidence": "NUP214核输出、病毒感染与白血病证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P35658 nucleoporin Nup214 annotation",
+      "RCSB PDB 2OIT experimental crystal structure",
+      "Literature evidence on NUP214-XPO1 nuclear export and SET-NUP214 leukemia"
+    ],
+    "referenceEntries": "UniProt P35658；RCSB PDB 2OIT；Open Targets NUP214",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "2OIT覆盖的C端结构域保守沟槽及相邻环区",
+        "结构分辨率高，利于构象锁定与界面阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "NUP214中央FG重复区中XPO1接触相关FG基序簇",
+        "可直接干预核输出受体结合，但柔性高且表位成形性有限",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端β螺旋支架与核孔装配相关界面",
+        "可能影响核孔稳定性，存在广泛细胞毒性与选择性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NUP214为胞内核孔蛋白，常规抗体难以到达作用位点；FG重复区低复杂度和高柔性增加交叉反应与成药风险，宜采用胞内表达抗体或递送平台验证。",
+    "structurePrepZh": "以PDB 2OIT链A为模板，保留高置信结构域并补充缺失环区；FG重复区需单独以无序区模型标注，不宜直接作为刚性对接表面。",
+    "structureRef": "RCSB PDB 2OIT，X射线晶体结构，1.65 Å",
+    "antibodies": [
+      "anti-NUP214 research antibody",
+      "anti-CAN/NUP214 monoclonal antibody"
+    ],
+    "interfaceFocus": "NUP214 C端沟槽与FG基序-XPO1接触界面",
+    "designMode": "胞内抗体探索",
+    "candidates": [
+      {
+        "target": "XPO1",
+        "rationale": "XPO1是CRM1依赖核输出核心受体，直接结合NUP214 FG重复区并介导蛋白及RNA相关货物输出，是同一核输出通路中更明确的功能节点。"
+      },
+      {
+        "target": "RAN",
+        "rationale": "RAN以RanGTP形式稳定XPO1-货物复合体并驱动核输出方向性，与NUP214介导的核孔转运步骤处于同一分子通路。"
+      },
+      {
+        "target": "NUP98",
+        "rationale": "NUP98同属FG核孔蛋白，参与核孔选择性屏障与核质转运，并在白血病相关融合事件中具有明确疾病关联。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

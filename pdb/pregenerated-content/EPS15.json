@@ -1,0 +1,65 @@
+{
+  "gene": "EPS15",
+  "generatedAt": "2026-08-03T12:20:26.515Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "EPS15是EGFR内吞与受体分选通路中的胞质衔接蛋白，参与AP-2、泛素化货物及ESCRT相关复合体的组装，其遗传关联主要反映生长、肺功能、糖代谢和心房颤动等复杂性状背景。该蛋白缺乏跨膜区和分泌形式，天然抗原可及性不优于膜受体或分泌配体，因此更适合作为细胞内机制验证或递送型抗体设计模型。相比EGFR、AP2M1或HGS等同通路节点，EPS15的抗体药物优先级较低，但4RHG提供高分辨率EH结构域信息，可支持结构约束表位设计。",
+    "mechanism": "设计重点为阻断EPS15 EH结构域与含NPF基序内吞伴侣蛋白的结合，削弱EGFR内吞复合体装配与早期内体分选。",
+    "selectedEpitope": "优先覆盖EH结构域NPF肽结合沟槽及邻近保守芳香族/酸性残基界面。",
+    "diseaseDirection": "EGFR内吞分选与复杂性状遗传关联",
+    "domain": "EPS15含N端三个EH结构域、中部卷曲螺旋区、泛素相互作用区及DPF重复AP-2结合区。",
+    "evidence": "EPS15-EGFR内吞通路结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P42566蛋白功能注释",
+      "RCSB PDB 4RHG晶体结构",
+      "内吞衔接蛋白EH-NPF相互作用文献"
+    ],
+    "referenceEntries": "UniProt:P42566; RCSB PDB:4RHG; Gene:EPS15",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "EH结构域NPF结合沟槽",
+        "直接竞争内吞伴侣蛋白NPF基序结合，机制可解释性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "EH结构域相邻保守螺旋-环区",
+        "可通过空间位阻扰动肽结合口袋构象，适合亲和力成熟",
+        "备选"
+      ],
+      [
+        "Site C",
+        "EH结构域远端晶体接触面",
+        "可能影响结构稳定性或产生非功能性结合，需排除晶体堆积伪表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "EPS15为胞质蛋白，常规抗体难以到达作用位点；宜采用胞内递送、VHH或研究级Fab策略，并避免靶向EH结构域高度保守核心造成同源蛋白交叉反应。",
+    "structurePrepZh": "以4RHG抗原链A、B为模板，保留EH结构域完整坐标，去除晶体缓冲小分子，检查链间晶体接触并标注NPF肽结合口袋。",
+    "structureRef": "RCSB PDB 4RHG，X-ray diffraction，1.581 Å",
+    "antibodies": [
+      "抗EPS15研究级单克隆抗体",
+      "抗EPS15多克隆抗体"
+    ],
+    "interfaceFocus": "EH结构域NPF结合沟槽及邻近环区",
+    "designMode": "胞内靶点结构引导设计",
+    "candidates": [
+      {
+        "target": "EGFR",
+        "rationale": "EGFR是EPS15介导内吞分选的上游受体货物，配体激活后经内吞进入早期内体，抗体可直接阻断EGF-EGFR结合或受体二聚化。"
+      },
+      {
+        "target": "AP2M1",
+        "rationale": "AP2M1属于网格蛋白介导内吞的AP-2复合体核心亚基，与EPS15协同招募内吞货物和包被结构，是同一受体内吞模块的关键节点。"
+      },
+      {
+        "target": "HGS",
+        "rationale": "HGS参与ESCRT-0介导的泛素化EGFR识别与内体分选，位于EPS15相关EGFR降解通路下游，适合用于分选机制比较。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

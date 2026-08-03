@@ -1,0 +1,65 @@
+{
+  "gene": "SPIRE1",
+  "generatedAt": "2026-08-03T16:52:23.956Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SPIRE1为细胞内肌动蛋白成核因子，核心功能集中于微丝装配与细胞骨架重塑，已与红细胞表型、血红蛋白测定及血细胞比容等相关性状形成稳定关联，提示其处于造血与红细胞稳态相关网络中。该蛋白具有明确可解析的结构信息，但并非分泌蛋白或膜受体，抗原可及性受限，因此更适合采用细胞内递送或胞内结合形式进行功能扰动。相较于同通路中的上游调控因子，SPIRE1直接参与肌动蛋白成核与条带化微丝形成，结构功能联系更紧密，适合作为机制验证与通路分层干预的优先靶点。",
+    "mechanism": "通过结合SPIRE1的WH2/肌动蛋白结合相关界面，阻断其与actin单体及formin协同成核复合体的装配。",
+    "selectedEpitope": "优先覆盖WH2样肽段及其邻近F-actin结合界面，避免保守螺旋核心。",
+    "diseaseDirection": "造血与红细胞性状",
+    "domain": "N端WH2样actin结合区与C端SPIRE盒介导的调控区",
+    "evidence": "SPIRE1-红细胞性状结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform",
+      "UniProt Q08AE8",
+      "RCSB PDB 2YLE",
+      "Human Protein Atlas"
+    ],
+    "referenceEntries": "UniProt: Q08AE8; PDB: 2YLE; Open Targets target associations",
+    "epitopeRowsZh": [
+      [
+        "WH2样区",
+        "N端肌动蛋白结合肽段",
+        "优先干预actin单体招募与成核起始",
+        "优先"
+      ],
+      [
+        "SPIRE盒邻近区",
+        "调控/支架界面",
+        "用于干扰与formin协同装配",
+        "备选"
+      ],
+      [
+        "高度保守核心螺旋",
+        "结构稳定核心",
+        "脱靶与折叠扰动风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SPIRE1为胞内靶点，抗体可及性受限，常规外周给药难以直接覆盖。建议优先采用VHH或胞内表达型结合体，并避免针对高度保守的actin结合核心，以降低对同源骨架蛋白的交叉识别风险。",
+    "structurePrepZh": "以2YLE为模板进行链A/B装配体界面整理，补全缺失侧链并保留一条代表性复合构象。随后进行保守性比对与溶剂暴露分析，锁定可用于结合的表面暴露肽段。",
+    "structureRef": "RCSB PDB 2YLE, X-ray diffraction, 1.8 A",
+    "antibodies": [
+      "未检索到SPIRE1临床级同类抗体",
+      "未检索到SPIRE1公开成熟抗体"
+    ],
+    "interfaceFocus": "WH2样actin结合面与SPIRE协同界面",
+    "designMode": "胞内功能阻断",
+    "candidates": [
+      {
+        "target": "DAAM1",
+        "rationale": "DAAM1与SPIRE1同属formin相关肌动蛋白成核网络，参与微丝延伸与细胞骨架重塑。其可作为SPIRE1通路层面的并行对照靶点，用于验证actin成核模块的疾病相关性。"
+      },
+      {
+        "target": "FMN1",
+        "rationale": "FMN1编码formin家族成员，与SPIRE1共同调控肌动蛋白装配和细胞骨架动力学。该靶点适合作为同通路候选，以比较不同成核轴的干预窗口。"
+      },
+      {
+        "target": "ACTB",
+        "rationale": "ACTB是SPIRE1直接作用的肌动蛋白单体基础组分，处于同一骨架聚合通路下游。其适合作为机制参照靶点，但因普遍必需性较强，干预需更严格评估安全性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

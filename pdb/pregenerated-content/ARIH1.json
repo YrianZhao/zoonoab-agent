@@ -1,0 +1,65 @@
+{
+  "gene": "ARIH1",
+  "generatedAt": "2026-08-03T10:35:34.658Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ARIH1 是胞质型 RBR E3 泛素连接酶，参与 neddylated cullin-RING ligase 激活后的底物泛素转移，在蛋白稳态、线粒体质量控制和应激相关降解轴中具有疾病关联。Open Targets 显示其与神经退行性疾病及血管表型存在遗传和功能证据关联，符合蛋白稳态失衡相关疾病方向。该蛋白缺乏胞外结构域或分泌特征，天然抗原可及性不利于常规体内阻断抗体，但其已解析 RBR 结构域可支持胞内抗体、VHH 或研究型构象探针设计。相较于上游泛素系统泛靶点，ARIH1 具有明确 RBR 催化构象和 CRL 依赖激活特征，适合作为机制验证型优先靶点。",
+    "mechanism": "通过结合 RING2 催化半胱氨酸邻近构象界面，限制 ARIH1 与 E2~泛素及 neddylated CRL 复合物的功能耦联，抑制泛素转移中间体形成。",
+    "selectedEpitope": "优先覆盖 RBR 模块中 RING1-IBR-RING2 构象转换界面，避开深埋锌配位核心。",
+    "diseaseDirection": "蛋白稳态与神经退行性疾病",
+    "domain": "ARIH1 含 UBA、RING1、IBR、RING2 及 Ariadne 相关 RBR 催化模块。",
+    "evidence": "ARIH1 RBR 泛素连接酶疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB Q9Y4X5 functional annotation",
+      "RCSB PDB 5UDH experimental structure",
+      "RBR E3 ligase and CRL activation literature"
+    ],
+    "referenceEntries": "UniProt Q9Y4X5；RCSB PDB 5UDH；Open Targets ARIH1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RING2 催化半胱氨酸邻近外露面",
+        "可干预 E2~泛素到 RING2 的硫酯转移步骤",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RING1-IBR 连接臂构象界面",
+        "可稳定非活化构象并削弱 RBR 结构域重排",
+        "备选"
+      ],
+      [
+        "Site C",
+        "锌结合 RING/IBR 核心区域",
+        "结构保守且金属配位敏感，易产生折叠扰动和非特异效应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ARIH1 为胞内酶，常规抗体药物可及性受限；宜定位为胞内 VHH、递送型抗体片段或机制探针，避免破坏锌指整体折叠。",
+    "structurePrepZh": "以 PDB 5UDH 多链晶体结构为模板，保留 RBR 域金属配位信息，补全缺失环区并评估晶体接触对表位暴露的影响。",
+    "structureRef": "RCSB PDB 5UDH，X-ray diffraction，3.24 Å",
+    "antibodies": [
+      "暂无获批 ARIH1 靶向抗体",
+      "研究级 anti-ARIH1 antibody"
+    ],
+    "interfaceFocus": "RING2 催化面与 RING1-IBR 构象转换界面",
+    "designMode": "胞内VHH构象阻断",
+    "candidates": [
+      {
+        "target": "RBX1",
+        "rationale": "RBX1 是 cullin-RING ligase 的 RING 组分，负责招募 E2 酶并与 neddylated CRL 活化状态直接相关。其与 ARIH1 同属 CRL-泛素化功能轴。"
+      },
+      {
+        "target": "NEDD8",
+        "rationale": "NEDD8 修饰 cullin 后促进 CRL 活化，并为 ARIH1 介导的泛素转移提供功能激活背景。干预该节点可验证 neddylation-CRL-ARIH1 通路依赖性。"
+      },
+      {
+        "target": "UBE2L3",
+        "rationale": "UBE2L3 是与 RBR E3 泛素连接酶功能相关的 E2 泛素结合酶，可参与泛素向 RBR 催化中心转移。其适合作为 ARIH1 泛素转移机制的同通路候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

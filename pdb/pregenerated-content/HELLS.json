@@ -1,0 +1,65 @@
+{
+  "gene": "HELLS",
+  "generatedAt": "2026-08-03T19:45:17.502Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HELLS 是 SNF2 样染色质重塑 ATPase，与 CDCA7 协同维持 DNA 甲基化和异染色质稳定，其双等位基因缺陷可导致 ICF 综合征相关的着丝粒不稳定、免疫缺陷和面容异常。该蛋白主要定位于细胞核并作用于核小体底物，不具备分泌蛋白或膜受体的天然胞外可及性，常规治疗性抗体难以直接结合活细胞内靶点。其优先级主要来自明确的人类遗传病因学、已有高分辨率冷冻电镜结构及可解析的核小体结合界面；相较 DNMT3B 等同通路酶类靶点，HELLS-CDCA7 轴更直接反映 ICF4 型染色质重塑缺陷，适合作为结构机制研究和胞内递送抗体设计模型。",
+    "mechanism": "通过结合 HELLS ATPase lobe 与核小体 DNA 接触面，阻断 HELLS 对核小体 DNA 的重定位并干扰 CDCA7 依赖的异染色质甲基化维持。",
+    "selectedEpitope": "优先锁定 SNF2 ATPase lobe 1/2 夹缝邻近核小体 DNA 结合沟，避开高度保守 Walker A/P-loop 催化核心。",
+    "diseaseDirection": "ICF综合征与染色质甲基化缺陷",
+    "domain": "HELLS 含 N 端调控区、SNF2_N ATPase 结构域、Helicase_C 结构域及核小体 DNA 结合界面。",
+    "evidence": "HELLS-CDCA7染色质重塑与ICF综合征证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt Q9NRZ9 蛋白功能注释",
+      "RCSB PDB 9Z05 冷冻电镜结构",
+      "OMIM/ClinVar ICF4致病变异记录"
+    ],
+    "referenceEntries": "UniProt Q9NRZ9；RCSB PDB 9Z05；Open Targets HELLS",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ATPase lobe 1/2 夹缝邻近核小体 DNA 结合沟",
+        "可直接干扰核小体 DNA 结合与转位构象变化，机制验证价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CDCA7 依赖构象稳定相关外露面",
+        "适合评估 HELLS-CDCA7 复合体装配或稳定性，但需确认界面暴露程度",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Walker A/P-loop 与 ATP 结合催化核心周边",
+        "功能影响可能强，但保守性高且易产生交叉反应与构象扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HELLS 为核内 ATPase，天然抗原可及性低，治疗性抗体需依赖胞内递送或研究级 intrabody 平台；设计应避开高度保守 ATPase 催化基序以降低非特异风险。",
+    "structurePrepZh": "以 PDB 9Z05 冷冻电镜模型为模板，保留 HELLS 多链构象与核小体相关链，补全缺失环区并标注 ATPase lobe、DNA 接触面和保守催化基序。",
+    "structureRef": "RCSB PDB 9Z05，human HELLS complex，EM 2.86 Å",
+    "antibodies": [
+      "研究级抗-HELLS抗体",
+      "抗-LSH/HELLS免疫检测抗体"
+    ],
+    "interfaceFocus": "SNF2 ATPase夹缝与核小体DNA接触界面",
+    "designMode": "胞内抗体机制探针",
+    "candidates": [
+      {
+        "target": "CDCA7",
+        "rationale": "CDCA7 与 HELLS 协同介导异染色质 DNA 甲基化维持，CDCA7 缺陷同样导致 ICF 综合征表型，是同一 HELLS-CDCA7 通路中的核心伴侣因子。"
+      },
+      {
+        "target": "DNMT3B",
+        "rationale": "DNMT3B 负责从头 DNA 甲基化，其致病变异是 ICF1 型主要原因，与 HELLS-CDCA7 轴共同收敛于着丝粒重复序列低甲基化。"
+      },
+      {
+        "target": "ZBTB24",
+        "rationale": "ZBTB24 参与维持染色质甲基化网络，致病变异导致 ICF2 型，并与 CDCA7/HELLS 相关甲基化缺陷处于同一疾病机制框架。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

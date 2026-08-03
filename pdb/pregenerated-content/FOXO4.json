@@ -1,0 +1,65 @@
+{
+  "gene": "FOXO4",
+  "generatedAt": "2026-08-03T12:36:52.158Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FOXO4是细胞内forkhead转录因子，参与PI3K-AKT应激轴下游的细胞周期停滞、凋亡抵抗及细胞衰老程序，Open Targets显示其与神经退行性疾病及多类实体瘤存在遗传和表达关联。该蛋白不具备胞外结构域、分泌形式或膜受体拓扑，天然抗原可及性不支持常规体内阻断型抗体。相较EGFR、IGF1R等同通路膜受体，FOXO4更适合作为结构验证与细胞内递送抗体设计靶点，优先级应定位于研究级或递送平台依赖型干预。",
+    "mechanism": "设计分子应阻断FOXO4 forkhead DNA结合域与靶基因启动子DAF-16家族识别序列的结合，或干扰其与应激调控辅因子的核内复合物形成。",
+    "selectedEpitope": "优先覆盖forkhead结构域翼状螺旋H3及相邻wing区DNA接触界面。",
+    "diseaseDirection": "神经退行性疾病与肿瘤衰老通路",
+    "domain": "FOXO4含N端调控区、forkhead DNA结合域及C端转录调控区，3L2C解析核心DNA结合结构域。",
+    "evidence": "FOXO4疾病关联与forkhead结构域证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P98177功能与结构域注释",
+      "RCSB PDB 3L2C晶体结构记录",
+      "PI3K-AKT-FOXO细胞命运调控文献"
+    ],
+    "referenceEntries": "UniProt P98177；RCSB PDB 3L2C；Open Targets FOXO4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "forkhead结构域H3识别螺旋与DNA大沟接触面",
+        "直接削弱FOXO4序列特异性DNA结合，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "forkhead wing1/wing2邻近DNA磷酸骨架结合区",
+        "可辅助降低DNA亲和力并增加构象选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端AKT磷酸化调控邻域",
+        "该区域柔性较高且3L2C未完整覆盖，结构设计不确定性较大",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FOXO4为核内蛋白，常规抗体难以到达作用位点；建议仅在细胞穿透抗体、胞内抗体或递送系统条件下推进，并严控FOXO家族交叉反应。",
+    "structurePrepZh": "以3L2C中FOXO4 forkhead结构域实验构象为模板，补全缺失侧链并保留DNA接触面注释，剔除晶体堆积伪界面后进行表位评估。",
+    "structureRef": "RCSB PDB 3L2C，X-ray，1.868 Å，人源FOXO4结构域",
+    "antibodies": [
+      "抗FOXO4研究级单克隆抗体",
+      "FOXO4-DRI干扰肽参照分子"
+    ],
+    "interfaceFocus": "forkhead H3识别螺旋-DNA大沟界面",
+    "designMode": "胞内递送抗体设计",
+    "candidates": [
+      {
+        "target": "AKT1",
+        "rationale": "AKT1位于PI3K-AKT-FOXO轴上游，可通过磷酸化FOXO4促进其核外转位，属于同一细胞存活与应激通路核心节点。"
+      },
+      {
+        "target": "PIK3CA",
+        "rationale": "PIK3CA编码PI3K催化亚基，是AKT激活和FOXO转录抑制的上游驱动因子，在多类实体瘤中具有明确致癌突变证据。"
+      },
+      {
+        "target": "SIRT1",
+        "rationale": "SIRT1可去乙酰化FOXO转录因子并改变其应激应答输出，与FOXO4共同参与细胞衰老、DNA损伤反应和代谢应激调控。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "BCL3",
+  "generatedAt": "2026-08-03T18:09:47.998Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BCL3是核内转录共调节因子，通过ankyrin repeat结构域结合NF-κB家族p50/NFKB1或p52/NFKB2同源二聚体，调节炎症、存活和肿瘤相关转录程序。其疾病关联覆盖结直肠腺癌、胆管癌、乳腺癌及神经退行性疾病，提示NF-κB依赖转录失衡具有病理相关性。然而BCL3缺乏分泌型或细胞表面胞外结构域，抗原可及性不符合常规治疗性抗体靶点标准；因此优先级低于TNFRSF、IL1R或细胞因子等同通路可及靶点，更适合细胞内递送抗体片段或结构生物学验证。",
+    "mechanism": "设计目标为阻断BCL3 ankyrin repeat与NFKB1 p50或NFKB2 p52二聚体的结合，削弱BCL3介导的NF-κB靶基因转录共激活。",
+    "selectedEpitope": "优先覆盖ankyrin repeat凹面中与p50/p52接触的重复单元界面，避免仅选择非功能性外凸表面。",
+    "diseaseDirection": "NF-κB相关肿瘤与炎症转录异常",
+    "domain": "BCL3含中央ankyrin repeat结构域，两端为转录调控相关低复杂度区域，整体定位于细胞核。",
+    "evidence": "BCL3-NF-κB转录复合物结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB P20749功能与定位注释",
+      "RCSB PDB 1K1A晶体结构",
+      "NF-κB/BCL3转录调控相关文献"
+    ],
+    "referenceEntries": "UniProt:P20749；RCSB PDB:1K1A；HGNC:BCL3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ankyrin repeat凹面p50/p52结合界面",
+        "直接干预BCL3-NFKB1/NFKB2复合物形成，功能相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ankyrin repeat外侧保守螺旋表面",
+        "可用于稳定构象识别或结构探针开发，但阻断效应需实验证实",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端或C端低复杂度转录调控区",
+        "柔性高且结构解析不足，表位稳定性与成药性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BCL3为核内非分泌蛋白，常规Fab难以进入细胞核。建议限定为细胞内抗体片段、递送平台或机制验证工具，避免按胞外抗原流程推进。",
+    "structurePrepZh": "以1K1A链A为结构模板，补全缺失侧链并标注ankyrin repeat连续界面；低复杂度末端不宜用于刚性对接约束。",
+    "structureRef": "RCSB PDB 1K1A，X-ray diffraction，1.86 Å",
+    "antibodies": [
+      "无已获批BCL3靶向抗体",
+      "研究级抗BCL3抗体"
+    ],
+    "interfaceFocus": "ankyrin repeat凹面NF-κB结合界面",
+    "designMode": "细胞内阻断型",
+    "candidates": [
+      {
+        "target": "NFKB1",
+        "rationale": "NFKB1编码p50，是BCL3结合的核心NF-κB亚基之一；干预p50同源二聚体相关复合物可影响BCL3依赖转录输出。"
+      },
+      {
+        "target": "NFKB2",
+        "rationale": "NFKB2编码p52，是BCL3参与非经典NF-κB转录调控的重要结合伙伴；与BCL3位于同一转录调控轴。"
+      },
+      {
+        "target": "RELA",
+        "rationale": "RELA/p65是经典NF-κB通路的关键转录亚基，与BCL3相关炎症及肿瘤转录网络存在通路交汇，可作为同通路比较靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "KL",
+  "generatedAt": "2026-08-03T13:43:42.840Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KL 编码的 α-klotho 是 FGF23 信号的关键共受体，参与肾脏磷酸盐重吸收、维生素D代谢及代谢稳态调节，其功能缺陷与高磷酸盐性肿瘤性钙质沉着症及糖代谢异常相关。KL 主要以单跨膜蛋白形式呈现大型胞外 KL1/KL2 区域，并可经剪切形成可溶性蛋白，具备较好的抗体可及性。相较于直接靶向 FGFR 家族激酶结构域，KL 的胞外共受体界面更适合设计阻断或稳定特定配体复合物的抗体，靶向选择性更清晰。",
+    "mechanism": "抗体设计可阻断 FGF23 与 α-klotho-FGFR1c 复合物的结合界面，抑制 FGF23 依赖性受体激活及下游 ERK1/2 磷酸化。",
+    "selectedEpitope": "优先覆盖 KL2 结构域中参与 FGF23 C端肽结合的沟槽及邻近 FGFR1c 接触面。",
+    "diseaseDirection": "磷酸盐稳态与糖代谢疾病",
+    "domain": "α-klotho 胞外区由 KL1 与 KL2 两个糖苷酶样结构域组成，连接单跨膜段及短胞内尾部。",
+    "evidence": "KL-FGF23-FGFR1c 复合物结构与疾病遗传证据",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt Q9UEF7 蛋白功能与结构域注释",
+      "RCSB PDB 5W21 X射线晶体结构",
+      "FGF23-KL-FGFR1c 复合物结构与功能研究文献"
+    ],
+    "referenceEntries": "UniProt Q9UEF7；RCSB PDB 5W21；Open Targets KL",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "KL2 结构域 FGF23 C端肽结合沟槽",
+        "直接干预 FGF23 对 α-klotho 的高特异性识别，机制清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "KL2-FGFR1c 近端复合物接触面",
+        "可削弱共受体对 FGFR1c 的装配效率，降低配体依赖性信号",
+        "备选"
+      ],
+      [
+        "Site C",
+        "KL1/KL2 结构域间连接与糖基化邻近区域",
+        "可能影响构象稳定性，但存在糖链遮挡及非特异构象效应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "KL 胞外区存在糖基化与构象依赖界面，需避免选择高度保守折叠核心或糖链密集区域；优先评估抗体对基础 KL 稳定性与 FGF23 信号选择性的影响。",
+    "structurePrepZh": "以 PDB 5W21 的 KL-FGF23-FGFR1c 复合物为模板，保留抗原链 A/B/C 中可解析胞外结构，补全缺失侧链并标注糖基化位点与配体接触残基。",
+    "structureRef": "PDB 5W21，X-ray diffraction，3.0 Å",
+    "antibodies": [
+      "Burosumab",
+      "anti-FGF23 neutralizing antibody"
+    ],
+    "interfaceFocus": "KL2-FGF23 C端肽沟槽与FGFR1c邻接界面",
+    "designMode": "界面阻断型抗体",
+    "candidates": [
+      {
+        "target": "FGF23",
+        "rationale": "FGF23 是 KL 依赖性内分泌信号的直接配体，驱动 FGFR1c 复合物激活并调节肾脏磷酸盐排泄与维生素D代谢。"
+      },
+      {
+        "target": "FGFR1",
+        "rationale": "FGFR1c 与 α-klotho 共同构成 FGF23 的主要受体复合物，是同一磷酸盐稳态通路中的近端信号转导节点。"
+      },
+      {
+        "target": "GALNT3",
+        "rationale": "GALNT3 通过 O-糖基化保护 FGF23 免于蛋白水解失活，其遗传缺陷与高磷酸盐性家族性肿瘤性钙质沉着症相关。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

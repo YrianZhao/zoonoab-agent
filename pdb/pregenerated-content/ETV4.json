@@ -1,0 +1,65 @@
+{
+  "gene": "ETV4",
+  "generatedAt": "2026-08-03T12:23:41.750Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ETV4 为 PEA3 亚族 ETS 转录因子，在前列腺癌中可作为 MAPK、PI3K 与雄激素受体相关转录程序的下游效应分子，促进侵袭、迁移和肿瘤进展。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌暴露位点，常规体内阻断型抗体的抗原可及性受限。相较于同通路的膜受体或分泌因子，ETV4 更适合作为机制研究、细胞内递送抗体或结构引导型结合分子开发的探索靶点，优先级应低于 ERBB、FGFR 或 IGF1R 等可及性更高的上游靶点。",
+    "mechanism": "设计分子应阻断 ETV4 ETS DNA 结合结构域与 GGAA/T 核心基序 DNA 的识别，抑制其驱动的侵袭和迁移相关转录输出。",
+    "selectedEpitope": "优先覆盖 ETS 结构域中识别螺旋及 DNA 主沟接触面，干扰 GGAA/T 基序结合。",
+    "diseaseDirection": "前列腺癌及尤文肉瘤转录依赖",
+    "domain": "ETV4 含 N 端转录激活区与 C 端 ETS DNA 结合结构域，4CO8 覆盖 ETS 核心折叠。",
+    "evidence": "ETV4 转录因子结构与肿瘤通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P43268 functional annotation",
+      "RCSB PDB 4CO8 X-ray structure",
+      "ETS transcription factor oncology literature"
+    ],
+    "referenceEntries": "UniProt P43268；RCSB PDB 4CO8；Open Targets ETV4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ETS 结构域 H3 识别螺旋及 DNA 主沟接触面",
+        "直接竞争 ETV4 对 GGAA/T 核心基序的识别，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ETS 结构域翼状环与磷酸骨架邻近区域",
+        "可削弱 DNA 结合稳定性，并保留结构选择性优化空间",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ETS 核心疏水折叠背面",
+        "可能影响蛋白稳定性而非直接阻断 DNA 识别，功能相关性需验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ETV4 为核内转录因子，天然抗体难以进入细胞核；需采用细胞内递送、intrabody 或降解偶联策略，并严格评估 ETS 家族交叉反应。",
+    "structurePrepZh": "以 4CO8 高分辨率晶体结构为模板，补全缺失侧链和氢原子，保留 ETS 核心构象并映射 DNA 接触残基用于表位约束。",
+    "structureRef": "RCSB PDB 4CO8，ETV4 ETS domain，X-ray 1.05 Å",
+    "antibodies": [
+      "ETV4 research antibody clone EP1707Y",
+      "ETV4 research antibody clone OTI2E6"
+    ],
+    "interfaceFocus": "ETS H3 识别螺旋-DNA 主沟界面",
+    "designMode": "细胞内抗体探索",
+    "candidates": [
+      {
+        "target": "ERBB2",
+        "rationale": "ERBB2 可激活 MAPK 与 PI3K 级联并增强前列腺癌侵袭性转录程序，位于 ETV4 上游且具有胞外受体结构域，抗体可及性显著更优。"
+      },
+      {
+        "target": "FGFR1",
+        "rationale": "FGFR1 信号可通过 RAS-MAPK 轴诱导 ETS 转录因子活性，并与前列腺癌进展和间质-上皮信号有关；其胞外 Ig-like 结构域适合阻断型抗体设计。"
+      },
+      {
+        "target": "IGF1R",
+        "rationale": "IGF1R 通过 PI3K-AKT 与 MAPK 通路支持肿瘤细胞存活和侵袭，并可汇入 ETV4 相关转录输出；膜受体构型为抗体药物提供可及表位。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

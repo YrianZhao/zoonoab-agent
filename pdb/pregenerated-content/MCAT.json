@@ -1,0 +1,65 @@
+{
+  "gene": "MCAT",
+  "generatedAt": "2026-08-03T14:07:03.651Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MCAT为线粒体脂肪酸合成通路中催化malonyl-CoA向ACP转移的基质酶，影响硫辛酸合成、呼吸链复合体功能及线粒体稳态，遗传证据与视神经萎缩和神经退行性表型相关。该蛋白定位于线粒体基质，缺乏天然胞外结构域或分泌特征，抗原可及性不适合常规细胞外中和抗体，更适合作为胞内递送抗体或结构验证模型。相较膜受体类线粒体疾病靶点，MCAT具备1.55 Å实验晶体结构和明确催化口袋，可为抑制型结合分子设计提供较高结构优先级，但转化优先级受胞内递送限制。",
+    "mechanism": "通过结合MCAT催化口袋邻近区域，阻断malonyl-CoA与酰基载体蛋白4'-磷酸泛酰巯基乙胺臂的有效定位，抑制malonyl基团转移反应。",
+    "selectedEpitope": "优先覆盖α/β水解酶样折叠的催化沟槽及His/Ser/Asp催化三联体周边入口环区。",
+    "diseaseDirection": "线粒体功能障碍与视神经退行性疾病",
+    "domain": "MCAT为线粒体基质α/β水解酶样转酰基酶，含催化Ser-His-Asp三联体和malonyl-CoA结合沟槽。",
+    "evidence": "MCAT线粒体脂肪酸合成与神经退行性证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q8IVS2功能与亚细胞定位注释",
+      "RCSB PDB 2C2N人源MCAT晶体结构",
+      "Reactome线粒体脂肪酸合成与硫辛酸代谢通路"
+    ],
+    "referenceEntries": "UniProt Q8IVS2；RCSB PDB 2C2N；Reactome mtFAS通路",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化沟槽入口及malonyl-CoA结合邻域",
+        "可直接干扰底物进入与转酰基反应几何构型",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ACP磷酸泛酰臂接近面及相邻正电荷表面",
+        "有望阻断ACP有效停靠并降低转移效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "二聚体界面远离催化口袋的保守疏水面",
+        "可能影响构象稳定性，但功能阻断证据较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MCAT为线粒体基质蛋白，常规Fab或VHH难以自然进入作用位点；设计应优先评估胞内递送、线粒体靶向肽融合及催化位点保守性导致的脱靶风险。",
+    "structurePrepZh": "以2C2N链A/B为实验模板，保留催化残基与底物沟槽构象，去除结晶非功能组分后进行质子化、缺失侧链修复和二聚体状态评估。",
+    "structureRef": "RCSB PDB 2C2N，人源MCAT 1.55 Å X射线晶体结构",
+    "antibodies": [
+      "无临床已知同类抗体",
+      "无获批MCAT靶向抗体"
+    ],
+    "interfaceFocus": "催化沟槽入口、ACP接近面与催化三联体邻域",
+    "designMode": "胞内抑制型VHH",
+    "candidates": [
+      {
+        "target": "NDUFS2",
+        "rationale": "NDUFS2为线粒体复合体I核心亚基，处于MCAT功能受损可影响的氧化磷酸化病理轴中；其遗传缺陷与线粒体脑病和神经退行性表型相关。"
+      },
+      {
+        "target": "LIAS",
+        "rationale": "LIAS催化硫辛酸合成关键步骤，依赖线粒体脂肪酸合成供给辛酰基底物；与MCAT共同连接mtFAS、蛋白脂酰化和呼吸代谢障碍。"
+      },
+      {
+        "target": "OPA1",
+        "rationale": "OPA1是线粒体内膜动力学和视神经萎缩核心靶点，与MCAT相关视神经退行性疾病方向共享线粒体稳态受损机制。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

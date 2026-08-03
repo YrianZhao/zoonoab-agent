@@ -1,0 +1,65 @@
+{
+  "gene": "EFR3A",
+  "generatedAt": "2026-08-03T19:00:03.289Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "EFR3A为质膜磷脂酰肌醇4-激酶复合体支架蛋白，参与PI4P生成并影响PI(4,5)P2稳态，遗传关联主要指向体重、BMI及血液表型等复杂性状。该蛋白定位于质膜胞质侧，缺乏经典胞外结构域或分泌形式，抗体直接结合天然细胞表面抗原的可及性有限。相较PI4KA等催化亚基，EFR3A在复合体膜锚定与TTC7-FAM126募集中具有节点作用，但作为抗体主靶点的优先级低于具有胞外可及性的代谢受体，宜定位为结构验证型或胞内递送型抗体设计对象。",
+    "mechanism": "设计抗体阻断EFR3A与TTC7A/TTC7B复合体的结合界面，干扰PI4KA在质膜的稳定招募，从而降低局部PI4P合成。",
+    "selectedEpitope": "优先覆盖EFR3A HEAT-repeat支架中TTC7结合面，避开预测膜接触疏水区。",
+    "diseaseDirection": "代谢性状与血液表型遗传关联",
+    "domain": "EFR3A为多螺旋HEAT-repeat样胞质支架蛋白，含N端膜定位区及TTC7结合支架面。",
+    "evidence": "EFR3A-PI4KA质膜复合体结构与遗传关联证据",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q14156蛋白定位与功能注释",
+      "RCSB PDB 9BAX电子显微镜结构",
+      "PI4KA-EFR3-TTC7-FAM126复合体机制研究"
+    ],
+    "referenceEntries": "UniProt Q14156；RCSB PDB 9BAX；Open Targets EFR3A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "HEAT-repeat支架的TTC7A/TTC7B接触界面",
+        "可直接削弱PI4KA膜招募复合体装配，机制可验证性较高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端近膜定位区邻近可溶暴露螺旋面",
+        "可能影响EFR3A质膜驻留，但需避免疏水膜接触面导致低成药性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离复合体界面的保守HEAT-repeat核心面",
+        "可能仅产生结合示踪作用，功能阻断效应不确定且存在构象稳定性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "EFR3A为胞质侧膜相关蛋白，常规抗体难以进入细胞并接触天然靶点；建议采用细胞内递送抗体、VHH或结构生物学验证路径，并设置PI4P读出。",
+    "structurePrepZh": "基于PDB 9BAX解析EFR3A所在链及TTC7/PI4KA邻近界面，补全低分辨率缺失环区，保留复合体装配状态用于表位可及性评估。",
+    "structureRef": "RCSB PDB 9BAX，cryo-EM，3.65 Å，人源PI4K复合体",
+    "antibodies": [
+      "无获批EFR3A靶向抗体",
+      "研究级抗EFR3A抗体"
+    ],
+    "interfaceFocus": "EFR3A-TTC7结合界面与近膜定位面",
+    "designMode": "胞内递送阻断型",
+    "candidates": [
+      {
+        "target": "PI4KA",
+        "rationale": "PI4KA为同一质膜PI4P生成复合体的催化亚基，直接决定PI4P合成输出；其酶活性读出明确，但胞内定位同样限制常规抗体可及性。"
+      },
+      {
+        "target": "TTC7A",
+        "rationale": "TTC7A连接EFR3A与PI4KA复合体装配，阻断其支架相互作用可干扰PI4KA质膜定位；该靶点与肠上皮和免疫相关表型具有已知遗传疾病关联。"
+      },
+      {
+        "target": "FAM126A",
+        "rationale": "FAM126A参与PI4KA复合体稳定化并支持质膜PI4P生成，是EFR3A通路内的装配辅助因子；可作为复合体完整性和功能读出的候选节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

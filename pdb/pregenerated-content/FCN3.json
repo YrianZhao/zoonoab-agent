@@ -1,0 +1,65 @@
+{
+  "gene": "FCN3",
+  "generatedAt": "2026-08-03T12:31:27.357Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FCN3编码ficolin-3，是凝集素补体通路的可溶性模式识别分子，可识别乙酰化糖基和损伤相关分子并招募MASP蛋白酶启动C4/C2裂解；其缺陷与ficolin-3缺乏相关免疫缺陷和补体缺陷直接相关。该靶点为分泌型血浆蛋白，胶原样区与纤维蛋白原样识别结构域均具备抗体可及性，适合构建阻断或检测型抗体。相较下游C3/C5等广谱补体节点，FCN3位于凝集素通路上游，具有更高通路选择性，可降低对经典途径和旁路途径的系统性干扰。",
+    "mechanism": "阻断FCN3纤维蛋白原样结构域对乙酰化配体的结合，或干预其胶原样区与MASP-2复合体装配，从而选择性抑制凝集素途径C4/C2转化酶形成。",
+    "selectedEpitope": "优先覆盖FReD结构域S1配体结合口袋邻近环区，兼顾三聚体界面外侧可及表面。",
+    "diseaseDirection": "凝集素补体通路相关免疫缺陷",
+    "domain": "FCN3含N端信号肽、短N端区、胶原样区和C端纤维蛋白原样识别结构域，天然形成寡聚体。",
+    "evidence": "FCN3凝集素补体通路与缺陷疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt O75636功能与结构域注释",
+      "RCSB PDB 2J5Z晶体结构记录",
+      "ficolin-3缺乏与凝集素途径补体缺陷文献"
+    ],
+    "referenceEntries": "UniProt: O75636; RCSB PDB: 2J5Z; Open Targets: FCN3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "FReD结构域S1乙酰基配体结合口袋邻近环区",
+        "直接削弱FCN3识别乙酰化糖基和DAMP配体，具备明确阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "纤维蛋白原样结构域三聚体外侧暴露面",
+        "利于获得高亲和检测或非完全阻断抗体，并保留较好构象稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "胶原样区MASP结合相关区域",
+        "可能干预MASP-2装配，但存在柔性高、寡聚依赖和构象异质性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FCN3与FCN1、FCN2在FReD折叠上存在同源性，需规避保守糖结合核心残基导致交叉反应；应优先筛选FCN3特异环区表位。",
+    "structurePrepZh": "以2J5Z的A、B、C链三聚体为结构模板，补全缺失侧链并保留钙离子及关键配体口袋构象，用于表面可及性与界面分析。",
+    "structureRef": "PDB 2J5Z, X-ray diffraction, 1.73 Å, human ficolin-3 FReD",
+    "antibodies": [
+      "anti-human ficolin-3 clone 4H5",
+      "anti-human ficolin-3 clone GN5"
+    ],
+    "interfaceFocus": "FReD S1配体口袋与三聚体外侧环区",
+    "designMode": "阻断与检测并行",
+    "candidates": [
+      {
+        "target": "MASP2",
+        "rationale": "MASP2是FCN3识别复合体下游丝氨酸蛋白酶，负责裂解C4和C2形成C3转化酶；阻断MASP2可直接抑制凝集素途径效应放大。"
+      },
+      {
+        "target": "MBL2",
+        "rationale": "MBL2同属凝集素补体通路模式识别分子，可通过MASP复合体启动C4/C2裂解；其缺陷和感染易感性与补体防御功能相关。"
+      },
+      {
+        "target": "C4B",
+        "rationale": "C4B是经典途径和凝集素途径共同下游底物，裂解后参与C3转化酶C4b2a形成；可作为评估FCN3-MASP轴功能输出的同通路候选节点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

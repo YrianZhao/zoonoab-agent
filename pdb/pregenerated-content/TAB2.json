@@ -1,0 +1,65 @@
+{
+  "gene": "TAB2",
+  "generatedAt": "2026-08-03T17:06:18.376Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TAB2编码的支架蛋白参与TAK1-MAP3K7与IKK复合体上游信号整合，在炎症与心脏发育相关通路中具有关键调控作用，其变异已与先天性心脏畸形及TAB2相关综合征明确关联。该蛋白为胞内适配体，缺乏经典细胞外抗原可及性，因而更适合作为机制解析或递送型抗体工程的结构靶标，而非常规膜外阻断靶点。相较同通路中TNF、IL1R1等上游受体，TAB2更直接反映TAK1复合体装配缺陷的病理核心，但抗体成药可达性受限，需优先依托已解析结构进行界面干预设计。",
+    "mechanism": "阻断TAB2与TAK1及泛素化适配复合体的装配界面，削弱下游NF-kB/MAPK激活。",
+    "selectedEpitope": "优先覆盖CUE相关装配界面及与TAK1结合的表面沟槽，避免扰动全局折叠。",
+    "diseaseDirection": "先天性心脏畸形/TAB2相关病",
+    "domain": "含CUE样结构域及C端适配界面，介导复合体组装",
+    "evidence": "TAB2结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform",
+      "UniProt Q9NYJ8",
+      "RCSB PDB 2WWZ",
+      "PubMed/文献报道"
+    ],
+    "referenceEntries": "UniProt: Q9NYJ8; RCSB PDB: 2WWZ; Homo sapiens TAB2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CUE样结构域邻近TAK1结合面",
+        "直接干预复合体装配，利于机制验证",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端适配界面外侧表面",
+        "可降低构象扰动风险，适合备选设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "界面远端保守疏水核心",
+        "可能影响折叠稳定性与蛋白互作谱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TAB2为胞内支架蛋白，天然抗原可及性较低，且界面多为浅表蛋白-蛋白互作面。宜优先采用结构引导的Fab/VHH界面阻断策略，并重点规避保守疏水核心以减少折叠破坏。",
+    "structurePrepZh": "基于2WWZ的A/B/C链复合体进行链重建与界面清理，补全缺失侧链并评估结合口袋电荷分布。建议在高分辨率坐标上开展表位热区映射与突变扫描。",
+    "structureRef": "RCSB PDB: 2WWZ, X-ray diffraction, 1.4 A",
+    "antibodies": [
+      "无成熟临床抗TAB2抗体",
+      "无公认同类阻断抗体"
+    ],
+    "interfaceFocus": "TAK1结合面与CUE样结构域邻接区",
+    "designMode": "structure-guided",
+    "candidates": [
+      {
+        "target": "MAP3K7",
+        "rationale": "与TAB2共同构成TAK1信号轴核心复合体，是TAB2界面阻断后最直接受影响的同通路靶点。其作为激酶节点可用于验证上游装配抑制是否传导至MAPK/NF-kB输出。"
+      },
+      {
+        "target": "TNF",
+        "rationale": "TNF-TNFR1轴是TAB2所处炎症级联的经典上游输入之一，且为可及性良好的分泌配体/膜受体通路成员。适合作为同疾病通路中的功能参照靶点。"
+      },
+      {
+        "target": "IL1R1",
+        "rationale": "IL1R1通过TAB2-TAK1相关分支驱动NF-kB与JNK激活，与炎症和发育异常表型具有通路一致性。其膜受体属性也便于与TAB2的胞内复合体靶向策略形成对照。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

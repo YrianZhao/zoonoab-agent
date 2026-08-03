@@ -1,0 +1,65 @@
+{
+  "gene": "METTL3",
+  "generatedAt": "2026-08-03T14:13:06.133Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "METTL3是m6A甲基转移酶复合体的催化亚基，与METTL14形成异源复合体并催化RNA腺苷N6甲基化，影响神经退行性疾病相关转录本的稳定性、剪接与翻译效率。该蛋白主要定位于细胞核，缺乏胞外结构域或分泌特征，天然抗原可及性不利于常规体内阻断抗体，更适合作为细胞内结合抗体或递送型抗体片段设计对象。相较于下游m6A读取蛋白，METTL3处于写入复合体上游催化核心，结构解析度较高且与METTL14界面明确，因此在机制验证型分子设计中具有较高优先级。",
+    "mechanism": "抗体片段结合METTL3甲基转移酶结构域，阻断其与METTL14稳定复合或干扰SAM结合口袋邻近构象，从而降低RNA腺苷N6甲基转移反应效率。",
+    "selectedEpitope": "优先选择METTL3-METTL14异源二聚化界面邻近的MT-A70催化结构域暴露面。",
+    "diseaseDirection": "神经退行性疾病与RNA表观修饰",
+    "domain": "METTL3含N端低复杂度区及C端MT-A70甲基转移酶结构域，5IL2覆盖其催化核心并呈METTL14复合体构象。",
+    "evidence": "METTL3-m6A写入复合体结构与疾病关联证据",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q86U44蛋白功能注释",
+      "RCSB PDB 5IL2晶体结构",
+      "METTL3-METTL14 m6A甲基转移酶复合体文献"
+    ],
+    "referenceEntries": "UniProt Q86U44；RCSB PDB 5IL2；Open Targets METTL3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "MT-A70结构域中METTL14结合界面邻近区域",
+        "可削弱METTL3-METTL14异源复合体稳定性并影响m6A写入活性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SAM结合口袋外缘及催化沟槽相邻暴露面",
+        "可能通过构象限制干扰甲基供体定位，但需避免直接小分子口袋竞争设计偏差",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端低复杂度区或柔性连接区域",
+        "结构解析不足且表位构象异质性高，结合后功能效应不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "METTL3为细胞内核蛋白，常规抗体难以到达作用位点；设计应优先采用VHH、intrabody或递送偶联策略，并严格评估METTL14交叉界面特异性。",
+    "structurePrepZh": "以5IL2中METTL3/METTL14复合体为模板，保留A、B链相互作用界面，补全缺失柔性片段并校正SAM相关口袋邻近残基质子化状态。",
+    "structureRef": "RCSB PDB 5IL2；METTL3-METTL14甲基转移酶复合体晶体结构",
+    "antibodies": [
+      "细胞内抗METTL3研究抗体",
+      "抗METTL3单克隆检测抗体"
+    ],
+    "interfaceFocus": "MT-A70催化核心与METTL14异源二聚化界面",
+    "designMode": "细胞内VHH阻断",
+    "candidates": [
+      {
+        "target": "METTL14",
+        "rationale": "METTL14是m6A写入复合体的RNA结合支架，与METTL3形成稳定异源二聚体；靶向其METTL3结合界面可协同削弱复合体催化功能。"
+      },
+      {
+        "target": "WTAP",
+        "rationale": "WTAP参与METTL3-METTL14复合体核内定位与底物募集，是同一m6A writer复合体通路中的调控组分。"
+      },
+      {
+        "target": "VIRMA",
+        "rationale": "VIRMA参与m6A甲基化复合体对特定转录本和3'UTR区域的定位选择，可作为METTL3上游复合体功能调节的候选节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

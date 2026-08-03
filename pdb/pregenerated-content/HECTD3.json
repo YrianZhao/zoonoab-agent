@@ -1,0 +1,65 @@
+{
+  "gene": "HECTD3",
+  "generatedAt": "2026-08-03T13:10:05.542Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HECTD3为胞内HECT型E3泛素连接酶，主要通过与E2泛素结合酶及底物蛋白形成催化复合体介导泛素转移；现有Open Targets关联以蛋白水平、脂蛋白胆固醇和体格性状测量为主，疾病因果证据强度有限。该蛋白缺乏分泌形式和跨膜胞外结构域，天然抗体的抗原可及性不具优势，更适合作为细胞内功能调控或结构生物学研究靶点。相较于PCSK9、ANGPTL3、LPL等脂质代谢通路中可分泌或胞外可及靶点，HECTD3作为治疗性抗体主靶点优先级较低；若开展抗体设计，应定位于细胞内递送抗体片段或研究级结合分子。",
+    "mechanism": "设计分子可结合HECT结构域催化叶或E2结合面，干扰HECTD3与UBE2D家族E2酶的硫酯转移复合体形成。",
+    "selectedEpitope": "优先聚焦HECT结构域N-lobe/C-lobe邻近E2结合沟槽，避免直接覆盖保守催化半胱氨酸。",
+    "diseaseDirection": "脂质测量性状与蛋白水平关联",
+    "domain": "HECTD3含N端低复杂度区域及C端HECT E3连接酶结构域，PDB 9R6V覆盖催化核心区域。",
+    "evidence": "HECTD3结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform遗传与疾病关联",
+      "UniProt Q5T447蛋白功能注释",
+      "RCSB PDB 9R6V晶体结构条目",
+      "InterPro HECT E3 ubiquitin ligase结构域注释"
+    ],
+    "referenceEntries": "UniProt Q5T447；RCSB PDB 9R6V；Open Targets HECTD3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "HECT结构域E2结合沟槽邻近N-lobe界面",
+        "可能阻断E2酶装载与泛素转移复合体形成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "HECT N-lobe/C-lobe相对运动铰链区域",
+        "可通过构象限制削弱催化循环，但需验证构象依赖性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "HECT C-lobe催化半胱氨酸周边保守口袋",
+        "功能相关性高但保守性强，存在交叉反应和催化位点耐受风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HECTD3为胞内酶，常规IgG难以进入细胞；建议采用VHH、intrabody或递送偶联策略，并严格评估HECT家族保守界面交叉反应。",
+    "structurePrepZh": "以9R6V中A、B链为抗原模板，保留高分辨率HECT核心构象，补全缺失侧链并标注催化半胱氨酸与E2结合面。",
+    "structureRef": "RCSB PDB 9R6V，X-ray diffraction，1.61 Å",
+    "antibodies": [
+      "无已批准HECTD3靶向抗体",
+      "研究级抗HECTD3多克隆抗体"
+    ],
+    "interfaceFocus": "HECT结构域E2结合沟槽与催化叶界面",
+    "designMode": "胞内VHH/intrabody",
+    "candidates": [
+      {
+        "target": "PCSK9",
+        "rationale": "PCSK9为分泌蛋白，通过结合LDLR表皮生长因子样A结构域促进LDLR降解，与HDL及胆固醇测量性状同属脂质代谢关联网络，抗原可及性和临床验证程度显著更高。"
+      },
+      {
+        "target": "ANGPTL3",
+        "rationale": "ANGPTL3为肝源性分泌蛋白，可抑制LPL和内皮脂肪酶活性，直接影响甘油三酯、LDL-C和HDL-C代谢，是脂质表型抗体干预的成熟候选靶点。"
+      },
+      {
+        "target": "CETP",
+        "rationale": "CETP介导HDL与apoB脂蛋白之间胆固醇酯转运，与高密度脂蛋白胆固醇测量密切相关；其血浆可及性优于胞内E3连接酶。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

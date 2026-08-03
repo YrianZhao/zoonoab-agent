@@ -1,0 +1,64 @@
+{
+  "gene": "MAP2K2",
+  "generatedAt": "2026-08-03T20:06:26.485Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAP2K2编码MEK2，是RAS-RAF-MEK-ERK级联中的双特异性激酶，负责磷酸化ERK1/2并驱动黑色素瘤、RASopathy及心面皮肤综合征相关增殖信号。该蛋白主要定位于胞质侧，不具备分泌型或跨膜胞外结构域，天然抗原可及性不利于常规体内中和抗体，但其激酶结构域具有高分辨率晶体结构，适合开展结构约束的细胞内抗体或研究级Fab/VHH设计。相比上游RAS或RAF家族，MAP2K2处于ERK激活的直接近端节点，变异功能解释清晰且与MAP2K1存在通路冗余，适合作为机制验证优先靶点而非传统可及性优先靶点。",
+    "mechanism": "设计分子应阻断MEK2激酶结构域对ERK1/2底物的结合与磷酸转移，或稳定非活化构象以抑制ERK Thr-Glu-Tyr基序磷酸化。",
+    "selectedEpitope": "优先覆盖激酶结构域C-lobe底物结合沟及activation segment邻近界面。",
+    "diseaseDirection": "RAS-MAPK驱动肿瘤与RASopathy",
+    "domain": "MEK2含N端调控区、激酶结构域及activation segment，4H3Q覆盖催化核心构象。",
+    "evidence": "MAP2K2-RAS-MAPK疾病关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P36507功能与结构域注释",
+      "RCSB PDB 4H3Q晶体结构记录",
+      "RAS-RAF-MEK-ERK通路与RASopathy文献"
+    ],
+    "referenceEntries": "UniProt P36507；RCSB PDB 4H3Q；Open Targets MAP2K2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C-lobe底物结合沟与activation segment邻近区域",
+        "可干扰ERK1/2结合及催化构象转换，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N-lobe αC-helix与ATP结合裂隙外缘",
+        "可稳定非活化激酶构象，但需避免完全依赖保守ATP口袋",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化裂隙的表面螺旋束区域",
+        "结构暴露性较好但对ERK磷酸化抑制的功能耦合不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAP2K2为胞内激酶，体内抗体递送与抗原可及性风险显著；设计宜定位于细胞内抗体、VHH递送或结构生物学验证场景。",
+    "structurePrepZh": "以4H3Q链A/B为模板，保留激酶核心二级结构，校验缺失环区、磷酸化状态、配体占位及晶体接触界面。",
+    "structureRef": "PDB 4H3Q，MEK2晶体结构，X-ray 2.2 Å",
+    "antibodies": [
+      "抗MEK1/2研究抗体克隆L38C12",
+      "抗MEK2研究抗体克隆EPR16717"
+    ],
+    "interfaceFocus": "ERK底物结合沟与activation segment",
+    "designMode": "胞内VHH/Fab结构阻断",
+    "candidates": [
+      {
+        "target": "MAP2K1",
+        "rationale": "MAP2K1编码MEK1，与MEK2共同磷酸化ERK1/2，是RAS-MAPK通路中功能最接近的并行节点。联合评估可覆盖MEK家族冗余。"
+      },
+      {
+        "target": "BRAF",
+        "rationale": "BRAF位于MEK2上游并直接磷酸化MEK1/2，V600E等突变是黑色素瘤RAS-MAPK激活的核心驱动因素。"
+      },
+      {
+        "target": "ERK2"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "TRIM16",
+  "generatedAt": "2026-08-03T17:28:07.082Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TRIM16为胞内TRIM家族支架蛋白，参与黑色素瘤细胞中自噬、蛋白稳态及炎症相关转录调控，其疾病证据以遗传关联和表达相关性为主。该蛋白缺乏经典信号肽、跨膜区和稳定胞外结构域，天然抗原可及性不支持常规细胞表面抗体阻断。相较于PDCD1、CTLA4或KIT等同疾病场景中具有明确膜外药物界面的靶点，TRIM16作为抗体主靶点优先级较低，更适合结构生物学验证、胞内递送抗体或降解偶联探索。",
+    "mechanism": "胞内抗体需结合TRIM16 B-box/coiled-coil区域，干扰其寡聚化及与自噬货物受体复合体的装配。",
+    "selectedEpitope": "优先评估7QS3解析的TRIM16结构域暴露螺旋束界面，避开保守疏水核心。",
+    "diseaseDirection": "黑色素瘤与蛋白稳态异常",
+    "domain": "TRIM16含N端B-box样锌结合区域、中央coiled-coil及C端SPRY/B30.2样区域。",
+    "evidence": "TRIM16疾病关联与胞内结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt O95361蛋白定位与结构域注释",
+      "RCSB PDB 7QS3晶体结构记录",
+      "黑色素瘤中TRIM16表达与自噬调控研究文献"
+    ],
+    "referenceEntries": "UniProt O95361；RCSB PDB 7QS3；Open Targets TRIM16",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "7QS3暴露螺旋束侧面及邻近极性残基簇",
+        "有利于获得构象识别抗体并干扰蛋白复合体装配",
+        "优先"
+      ],
+      [
+        "Site B",
+        "coiled-coil潜在二聚化界面边缘区域",
+        "可用于测试对TRIM16寡聚化状态的调制作用",
+        "备选"
+      ],
+      [
+        "Site C",
+        "锌结合或高度保守疏水核心附近",
+        "易影响折叠稳定性并增加家族交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TRIM16主要位于胞内，常规Fab或VHH难以到达内源靶点；需优先采用细胞内递送、内体逃逸或外泌体递送策略，并严格评估TRIM家族交叉反应。",
+    "structurePrepZh": "以7QS3链A为模板，补全缺失侧链并保留晶体解析构象；对锌结合位点、寡聚化界面和晶体接触区进行分层标注。",
+    "structureRef": "RCSB PDB 7QS3，X射线晶体结构，1.75 Å",
+    "antibodies": [
+      "暂无获批TRIM16靶向治疗性抗体",
+      "研究级抗TRIM16抗体"
+    ],
+    "interfaceFocus": "暴露螺旋束、coiled-coil寡聚化界面",
+    "designMode": "胞内抗体探索",
+    "candidates": [
+      {
+        "target": "SQSTM1",
+        "rationale": "SQSTM1/p62为选择性自噬货物受体，参与黑色素瘤细胞蛋白聚集体清除及NF-κB相关应激反应，与TRIM16介导的自噬组织过程处于同一蛋白稳态网络。"
+      },
+      {
+        "target": "BECN1",
+        "rationale": "BECN1是PI3KC3自噬起始复合体核心成分，决定自噬体成核过程，可作为TRIM16相关自噬通路的上游功能节点。"
+      },
+      {
+        "target": "MAP1LC3B",
+        "rationale": "MAP1LC3B参与自噬体膜延伸及货物装载，是评估TRIM16相关选择性自噬活性的直接通路标志和潜在干预节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

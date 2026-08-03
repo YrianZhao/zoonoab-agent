@@ -1,0 +1,65 @@
+{
+  "gene": "FYB1",
+  "generatedAt": "2026-08-03T12:39:05.862Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FYB1编码ADAP衔接蛋白，参与GPVI、CLEC2及整合素αIIbβ3相关的血小板活化与聚集通路，遗传缺陷可导致血小板减少和血小板功能异常。该蛋白主要定位于胞质，缺乏跨膜区和稳定胞外结构域，抗原可及性显著弱于膜受体或分泌蛋白，因此更适合作为机制验证抗原而非常规体内阻断抗体靶点。其优先级来自血小板疾病遗传关联和已解析SH3结合片段结构，但相较GP6、ITGA2B等同通路膜蛋白，抗体成药可达性较低，应采用胞内递送或研究级结合分子策略。",
+    "mechanism": "通过结合FYB1富脯氨酸SH3结合区，干预其与SKAP1/SKAP2及FYN相关信号复合体装配，削弱血小板受体诱导的整合素活化。",
+    "selectedEpitope": "优先覆盖1RI9所示富脯氨酸SH3结合肽段构象及邻近PxxP基序界面。",
+    "diseaseDirection": "遗传性血小板减少与血小板功能异常",
+    "domain": "FYB1为胞质衔接蛋白，含富脯氨酸区、多个酪氨酸磷酸化位点及C端SH3样结构域。",
+    "evidence": "FYB1血小板疾病遗传关联与衔接复合体证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt O15117功能与亚细胞定位注释",
+      "RCSB PDB 1RI9溶液NMR结构记录",
+      "血小板GPVI/CLEC2-ADAP/SKAP信号文献"
+    ],
+    "referenceEntries": "UniProt O15117；RCSB PDB 1RI9；Open Targets FYB1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "富脯氨酸SH3结合肽段/PxxP基序",
+        "直接覆盖FYB1与SH3结构域识别界面，适合验证复合体装配阻断",
+        "优先"
+      ],
+      [
+        "Site B",
+        "酪氨酸磷酸化位点邻近线性片段",
+        "可用于区分受体激活后磷酸化状态并追踪信号复合体形成",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端SH3样结构域非催化表面",
+        "结构可作为结合抗原，但功能界面与抗体可及性存在不确定性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FYB1为胞内衔接蛋白，常规IgG难以到达活细胞胞质；设计宜限定为细胞裂解检测、胞内递送Fab/VHH或机制研究工具。",
+    "structurePrepZh": "以PDB 1RI9的NMR模型簇评估肽段构象一致性，补充AlphaFold全长模型定位无序区并标注磷酸化位点。",
+    "structureRef": "RCSB PDB 1RI9，FYB1相关肽段溶液NMR结构",
+    "antibodies": [
+      "研究级anti-FYB1/ADAP抗体",
+      "磷酸化FYB1检测抗体"
+    ],
+    "interfaceFocus": "PxxP-SH3识别界面与磷酸化信号装配区",
+    "designMode": "胞内靶点工具抗体",
+    "candidates": [
+      {
+        "target": "GP6",
+        "rationale": "GPVI是血小板胶原受体，位于FYB1上游并通过FcRγ-SYK-SLP76-ADAP轴驱动血小板活化；其胞外免疫球蛋白样结构域具备更高抗体可及性。"
+      },
+      {
+        "target": "CLEC1B",
+        "rationale": "CLEC2参与血小板ITAM样信号并可招募SYK及下游ADAP相关衔接复合体；作为膜表面C型凝集素样受体，适合阻断配体结合或受体聚集。"
+      },
+      {
+        "target": "ITGA2B",
+        "rationale": "ITGA2B与ITGB3形成整合素αIIbβ3，是ADAP/SKAP通路下游血小板聚集效应器；其大型胞外结构域已有成熟抗体阻断先例。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

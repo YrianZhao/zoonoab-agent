@@ -1,0 +1,65 @@
+{
+  "gene": "PRKCB",
+  "generatedAt": "2026-08-03T15:35:04.465Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PRKCB编码胞内丝氨酸/苏氨酸激酶PKCβ，参与BCR、FcεRI、KIT及造血细胞增殖存活相关信号，其异常活化与急性髓系白血病、肥大细胞白血病和系统性肥大细胞增多症存在遗传及药理学关联。该蛋白主要定位于胞质并经DAG/Ca2+依赖方式募集至膜内侧，缺乏稳定胞外结构域或分泌型抗原可及性，因此传统循环抗体直接阻断可及性受限。相较KIT、FLT3、IL3RA等同通路膜靶点，PRKCB更适合作为机制验证或胞内递送抗体工程对象，而非优先常规治疗性抗体主靶点。",
+    "mechanism": "设计目标为干扰PKCβ C1结构域与DAG/磷脂膜结合，或遮蔽激酶结构域ATP结合裂隙，抑制下游MAPK、NF-κB与造血细胞存活信号。",
+    "selectedEpitope": "优先评估C1A/C1B DAG结合沟槽邻近表面，备选为激酶C叶底物识别区，避免深埋ATP口袋。",
+    "diseaseDirection": "AML及肥大细胞增殖性疾病",
+    "domain": "PRKCB含C2钙/磷脂结合区、双C1 DAG结合区、铰链区及C端丝氨酸/苏氨酸激酶结构域。",
+    "evidence": "PRKCB造血肿瘤信号与结构可设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P05771功能与结构域注释",
+      "RCSB PDB 9C5F X射线晶体结构",
+      "Reactome/KEGG BCR、FcεRI、KIT相关信号通路"
+    ],
+    "referenceEntries": "UniProt:P05771；RCSB PDB:9C5F；Open Targets:PRKCB",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C1A/C1B结构域DAG-磷脂结合沟槽周缘",
+        "可阻断膜募集起始事件，机制与PKCβ活化直接相关",
+        "优先"
+      ],
+      [
+        "Site B",
+        "激酶结构域C叶底物结合与活化环邻近表面",
+        "可能影响底物定位和催化构象，适用于胞内递送抗体设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C2结构域Ca2+/磷脂结合界面",
+        "参与膜定位但同源保守性较高，存在PKC家族交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PRKCB为胞内激酶，常规抗体难以到达作用位点；C1、C2和激酶核心在PKC家族中保守，需优先筛除PRKCA、PRKCG及PRKCD交叉结合。",
+    "structurePrepZh": "以9C5F实验结构链A/B为模板，补建缺失柔性环并校正磷酸化相关残基状态；分别生成C1、C2及激酶域表面可及性模型。",
+    "structureRef": "RCSB PDB 9C5F，X-ray diffraction，2.41 Å",
+    "antibodies": [
+      "anti-PKC beta antibody clone MC5",
+      "anti-PKC beta II antibody clone E-3"
+    ],
+    "interfaceFocus": "C1-DAG膜结合界面与激酶底物识别面",
+    "designMode": "胞内递送抗体",
+    "candidates": [
+      {
+        "target": "KIT",
+        "rationale": "KIT为肥大细胞增殖和系统性肥大细胞增多症中的关键受体酪氨酸激酶，突变激活可驱动下游PI3K、MAPK和PKC相关信号。其胞外免疫球蛋白样结构域具备良好抗体可及性。"
+      },
+      {
+        "target": "FLT3",
+        "rationale": "FLT3突变是急性髓系白血病的重要驱动事件，可激活RAS-MAPK、PI3K-AKT及造血细胞存活通路。其胞外配体结合区适合阻断性或受体内吞型抗体设计。"
+      },
+      {
+        "target": "IL3RA",
+        "rationale": "IL3RA在AML白血病干/祖细胞和浆细胞样树突细胞相关疾病中常被用作表面靶点，参与IL-3依赖的JAK-STAT与存活信号。其细胞外细胞因子受体结构域提供明确抗体结合窗口。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

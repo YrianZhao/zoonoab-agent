@@ -1,0 +1,65 @@
+{
+  "gene": "EEF2K",
+  "generatedAt": "2026-08-03T18:57:51.310Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "EEF2K是Ca2+/calmodulin依赖性非典型α-激酶，磷酸化EEF2 Thr56并抑制翻译延伸，参与营养应激、AMPK-mTOR轴及神经退行性应激适应。该蛋白为胞内激酶，天然抗体可及性有限，需采用细胞内递送抗体、intrabody或降解耦联形式评估。相较膜受体或分泌因子，EEF2K抗体开发优先级受抗原可及性限制，但其酶活口袋和钙调蛋白调控界面具有结构明确性，适合作为机制验证型分子设计靶点。",
+    "mechanism": "阻断EEF2K催化结构域与ATP/EEF2底物构象耦联，或干扰CaM结合诱导的激酶激活，从而降低EEF2 Thr56磷酸化水平。",
+    "selectedEpitope": "优先覆盖N端α-激酶催化域ATP邻近沟槽及底物进入面，避开深埋活性口袋。",
+    "diseaseDirection": "神经退行性疾病与代谢应激通路",
+    "domain": "EEF2K含N端非典型α-激酶催化域、CaM调控区及C端底物识别相关区域。",
+    "evidence": "EEF2K翻译延伸抑制与应激适应证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt O00418功能与结构域注释",
+      "RCSB PDB 8GM4晶体结构记录",
+      "文献报道的EEF2 Thr56磷酸化调控机制"
+    ],
+    "referenceEntries": "UniProt O00418；RCSB PDB 8GM4；Open Targets EEF2K",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "α-激酶催化域ATP邻近沟槽与底物进入面",
+        "可干扰催化构象及EEF2底物定位，适合功能阻断型intrabody设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CaM调控区邻近激酶N端激活界面",
+        "可抑制Ca2+/calmodulin依赖性激活，机制指向性明确",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端底物识别相关柔性区域",
+        "可能影响EEF2招募，但构象柔性较高且结构覆盖不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "EEF2K为胞内蛋白，常规抗体难以接触天然抗原；建议限定为细胞内抗体、递送Fab/VHH或靶向降解验证，并优先排除保守ATP口袋交叉反应风险。",
+    "structurePrepZh": "以8GM4 A/B链为结构模板，保留催化域关键构象，补全缺失环区并标注ATP邻近沟槽、CaM调控邻近面及潜在底物进入路径。",
+    "structureRef": "RCSB PDB 8GM4，X-ray diffraction，2.12 Å",
+    "antibodies": [
+      "抗EEF2K研究级单克隆抗体",
+      "抗phospho-EEF2 Thr56检测抗体"
+    ],
+    "interfaceFocus": "ATP邻近沟槽、底物进入面与CaM激活界面",
+    "designMode": "胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "EEF2",
+        "rationale": "EEF2是EEF2K的直接底物，其Thr56磷酸化导致核糖体转位受抑；该节点可用于同一翻译延伸抑制轴的下游功能读出。"
+      },
+      {
+        "target": "CALM1",
+        "rationale": "CALM1编码钙调蛋白，是Ca2+依赖性激活EEF2K的关键结合因子；干预该相互作用可验证CaM-EEF2K激活机制。"
+      },
+      {
+        "target": "MTOR",
+        "rationale": "MTOR位于营养感知与蛋白质合成调控网络核心，并与EEF2K活性抑制存在功能耦联；适合作为同一应激-翻译调控通路的上游参照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

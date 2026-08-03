@@ -1,0 +1,65 @@
+{
+  "gene": "CYP1A1",
+  "generatedAt": "2026-08-03T11:47:10.678Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CYP1A1为芳香烃受体通路诱导的内质网膜结合型血红素单加氧酶，参与外源性芳香烃、药物及脂质相关底物氧化，其遗传与表达证据更多指向肾功能相关表型和环境暴露反应，而非经典细胞表面受体轴。该蛋白主体催化结构域位于胞质侧并依赖膜锚定和血红素辅基，天然抗原可及性显著弱于分泌蛋白或胞外膜受体，体内阻断性抗体开发存在构象与递送限制。与AHR、ARNT等同通路调控节点相比，CYP1A1具备高分辨率实验结构和明确底物结合腔信息，适合作为机制研究、细胞内抗体或结构辅助结合分子设计的低优先级主靶点。",
+    "mechanism": "设计分子以结合CYP1A1血红素邻近底物进入通道，空间阻断芳香烃底物进入催化腔并削弱NADPH-P450还原酶介导的电子转移耦联。",
+    "selectedEpitope": "优先覆盖F/G环与I螺旋邻近的底物通道口，避开深埋血红素配位核心。",
+    "diseaseDirection": "肾功能表型与外源物代谢",
+    "domain": "N端跨膜锚定区连接胞质P450催化结构域，含血红素结合Cys配位基序和底物结合腔。",
+    "evidence": "CYP1A1结构与AHR诱导代谢证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProtKB P04798功能与亚细胞定位注释",
+      "RCSB PDB 4I8V晶体结构记录",
+      "人源AHR-CYP1A1外源物代谢通路文献"
+    ],
+    "referenceEntries": "UniProt P04798；RCSB PDB 4I8V；HGNC CYP1A1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "F/G环与底物通道入口",
+        "可干预底物进入并保留较高结构可及性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C螺旋至B-C环外侧面",
+        "可能影响还原酶接近与催化域构象稳定",
+        "备选"
+      ],
+      [
+        "Site C",
+        "血红素结合环及Cys配位基序周边",
+        "催化关键但深埋且保守性高，易产生非特异风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CYP1A1缺乏胞外结构域，常规体内抗体难以接近胞质催化域；宜限定为细胞内抗体、Fab结构探针或体外功能阻断模型。",
+    "structurePrepZh": "以4I8V链A为主模板，保留血红素辅基并校正缺失侧链；去除晶体冗余链后评估通道口环区柔性。",
+    "structureRef": "RCSB PDB 4I8V，X-ray，2.6 Å，人源CYP1A1",
+    "antibodies": [
+      "anti-CYP1A1 clone 1A3",
+      "anti-CYP1A1 polyclonal antibody"
+    ],
+    "interfaceFocus": "底物通道入口与还原酶接触邻近面",
+    "designMode": "细胞内阻断型",
+    "candidates": [
+      {
+        "target": "AHR",
+        "rationale": "AHR是二噁英及多环芳烃感知受体，上游诱导CYP1A1转录；其配体结合与核转位过程直接决定同一外源物代谢通路强度。"
+      },
+      {
+        "target": "ARNT",
+        "rationale": "ARNT与活化AHR形成异源二聚体并结合XRE元件，驱动CYP1A1表达；干预该复合体可从转录层面调节通路输出。"
+      },
+      {
+        "target": "POR",
+        "rationale": "POR向CYP1A1提供NADPH来源电子，是P450催化循环的必要还原酶；阻断CYP1A1-POR耦联可降低氧化代谢活性。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

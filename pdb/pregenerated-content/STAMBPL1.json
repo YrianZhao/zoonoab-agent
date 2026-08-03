@@ -1,0 +1,65 @@
+{
+  "gene": "STAMBPL1",
+  "generatedAt": "2026-08-03T16:58:37.272Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "STAMBPL1编码去泛素化酶AMSH-like protease，其JAMM/MPN+金属蛋白酶结构域可切割Lys63连接多聚泛素链，影响内吞体蛋白分选、受体周转及细胞应激反应。Open Targets显示其与家族性胸主动脉瘤、主动脉夹层及平滑肌功能异常相关，提示其可能参与血管平滑肌稳态失衡过程。该蛋白以胞内酶为主，抗原天然可及性弱于分泌因子或膜受体，因此抗体设计更适合用于胞内递送、结构探针或外泌体/损伤释放抗原识别场景。相比泛化的基质降解或炎症靶点，STAMBPL1具备高分辨率实验结构和明确催化口袋，便于开展机制型表位约束设计。",
+    "mechanism": "通过抗体片段结合JAMM/MPN+催化沟槽邻近区域，空间阻断Lys63多聚泛素链进入Zn2+依赖性切割位点，降低STAMBPL1去泛素化活性。",
+    "selectedEpitope": "优先覆盖JAMM/MPN+结构域Zn2+催化中心周缘及泛素链结合沟槽外侧环区。",
+    "diseaseDirection": "遗传性胸主动脉瘤与血管平滑肌异常",
+    "domain": "STAMBPL1含MIT结构域及C端JAMM/MPN+金属蛋白酶结构域，2ZNR解析其催化结构域。",
+    "evidence": "STAMBPL1血管疾病遗传关联与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q96FJ0功能与结构域注释",
+      "RCSB PDB 2ZNR X射线晶体结构",
+      "JAMM/MPN+去泛素化酶及内吞分选文献"
+    ],
+    "referenceEntries": "UniProt Q96FJ0；RCSB PDB 2ZNR；Open Targets STAMBPL1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "JAMM/MPN+催化沟槽与Zn2+结合位点周缘",
+        "可直接限制Lys63多聚泛素链底物进入催化中心，适合功能阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域外侧底物识别环与泛素结合面",
+        "有望干扰底物定位，同时降低对金属配位核心的构象扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "MIT结构域介导的ESCRT相关蛋白结合区域",
+        "可能影响内吞体复合物招募，但2ZNR未覆盖该区域，结构约束不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "STAMBPL1主要定位于胞内，常规全长IgG难以进入靶细胞；建议采用Fab/VHH并结合胞内递送体系，避免直接破坏Zn2+配位残基导致非特异构象失稳。",
+    "structurePrepZh": "以2ZNR链A为模板，保留催化Zn2+及关键配位残基，补全缺失侧链并质子化金属结合环境；表位网格限定于JAMM/MPN+沟槽可及面。",
+    "structureRef": "RCSB PDB 2ZNR，1.2 Å X-ray，human STAMBPL1 catalytic domain",
+    "antibodies": [
+      "暂无获批STAMBPL1靶向抗体",
+      "研究级抗STAMBPL1抗体"
+    ],
+    "interfaceFocus": "Zn2+催化中心周缘与Lys63泛素链进入沟槽",
+    "designMode": "胞内酶功能阻断",
+    "candidates": [
+      {
+        "target": "ACTA2",
+        "rationale": "ACTA2突变是家族性胸主动脉瘤和多系统平滑肌功能障碍综合征的核心遗传因素，直接影响血管平滑肌收缩骨架稳定性。"
+      },
+      {
+        "target": "MYH11",
+        "rationale": "MYH11编码平滑肌肌球蛋白重链，位于血管平滑肌收缩装置通路，与胸主动脉瘤和主动脉夹层存在明确遗传关联。"
+      },
+      {
+        "target": "MYLK",
+        "rationale": "MYLK调控肌球蛋白轻链磷酸化和血管平滑肌收缩功能，其变异与家族性胸主动脉夹层相关，可作为同一平滑肌收缩稳态轴的候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

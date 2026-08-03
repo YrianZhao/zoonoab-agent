@@ -1,0 +1,65 @@
+{
+  "gene": "SLC8A1",
+  "generatedAt": "2026-08-03T16:41:06.629Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SLC8A1 编码 NCX1，是质膜 Na+/Ca2+ 交换体的核心成员，直接决定细胞膜跨钠钙转运平衡，并与心肌兴奋收缩耦联、血管张力及肾小管钙稳态相关，因而可嵌入多类钙依赖性疾病通路。该蛋白为多跨膜膜转运体，胞外环暴露有限但具可达性，适合围绕构象外翻状态和外环门控位点进行抗体干预。相较于广泛分布的离子通道，SLC8A1 具备明确转运循环节点与较强疾病关联信号，可作为更聚焦的膜蛋白设计优先级靶点。",
+    "mechanism": "抗体优先阻断胞外环参与的构象转换与离子交换入口，抑制 Na+/Ca2+ 交换循环。",
+    "selectedEpitope": "优先锁定胞外 loop 6-7 与 loop 2-3 交界的构象门控区，避免跨膜螺旋核心。",
+    "diseaseDirection": "钙稳态相关心肾骨代谢疾病",
+    "domain": "典型 10-TM Na+/Ca2+ exchanger，胞外环短、构象依赖性强。",
+    "evidence": "SLC8A1 抗体设计证据包",
+    "evidenceSources": [
+      "UniProt: P32418",
+      "RCSB PDB: 8SGI",
+      "Open Targets Platform",
+      "Human Protein Atlas"
+    ],
+    "referenceEntries": "UniProt P32418；RCSB 8SGI；Open Targets SLC8A1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "胞外 loop 6-7 门控区",
+        "可直接干预交换体外翻构象并影响底物进入",
+        "优先"
+      ],
+      [
+        "Site B",
+        "胞外 loop 2-3 近膜连接区",
+        "适于获得构象选择性结合，利于功能抑制",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离功能位点的表面外露环段",
+        "便于提升结合但未必产生强功能阻断",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "跨膜核心高度保守且疏水性强，设计应回避膜埋藏区域，仅保留胞外环与构象敏感残基；需优先验证抗体是否影响离子通量而非仅改变表面结合。",
+    "structurePrepZh": "以 8SGI 冷冻电镜结构为模板，提取胞外环可及残基并标注糖基化位点与膜边界；结合构象状态进行表位暴露性筛选。",
+    "structureRef": "8SGI cryo-EM structure of human NCX1",
+    "antibodies": [
+      "KJY-1",
+      "SEA0400"
+    ],
+    "interfaceFocus": "胞外门控环与近膜构象接口",
+    "designMode": "构象阻断型",
+    "candidates": [
+      {
+        "target": "ATP2A2",
+        "rationale": "SERCA2a 与细胞内 Ca2+ 再摄取和钙稳态维持直接相关，与 SLC8A1 共同构成心肌钙循环网络。适合在同一疾病通路中作为功能对照与组合靶点参照。"
+      },
+      {
+        "target": "CACNA1C",
+        "rationale": "Cav1.2 负责钙内流，是 SLC8A1 交换底物来源的重要上游节点。两者同属心血管与兴奋性组织钙稳态通路，可用于通路级联的协同设计。"
+      },
+      {
+        "target": "RYR2",
+        "rationale": "RyR2 决定肌浆网钙释放并影响细胞质钙瞬变幅度，与 SLC8A1 在心肌钙循环中形成耦联关系。适合作为同通路候选靶点进行病理机制联动分析。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

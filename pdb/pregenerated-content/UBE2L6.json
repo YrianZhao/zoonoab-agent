@@ -1,0 +1,65 @@
+{
+  "gene": "UBE2L6",
+  "generatedAt": "2026-08-03T17:38:48.351Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "UBE2L6编码干扰素诱导型E2连接酶UBCH8，主要介导ISG15向底物蛋白偶联，参与抗病毒与炎症应答中的ISGylation轴。其Open Targets关联以肾小球滤过率、血清肌酐及血小板性状为主，提示疾病证据更偏遗传关联与免疫炎症表型，而非已验证的细胞外配体通路。该蛋白为细胞内酶，天然抗原可及性弱，相比IL6、IFNAR1等同炎症轴膜受体或分泌因子，作为常规阻断抗体靶点优先级较低；若用于平台展示，更适合结构识别型胞内抗体或研究级Fab设计。",
+    "mechanism": "设计抗体应优先阻断UBE2L6活性沟槽与ISG15供体或E3连接酶界面的结合，干预ISG15向底物赖氨酸转移。",
+    "selectedEpitope": "优先覆盖E2 catalytic core中Cys86邻近活性沟槽及ISG15结合面，避免仅选择远端低功能表面。",
+    "diseaseDirection": "干扰素-ISG15炎症与肾功能表型",
+    "domain": "UBE2L6为约153 aa的E2 catalytic core蛋白，含保守催化半胱氨酸Cys86及E3结合表面。",
+    "evidence": "UBE2L6-ISG15轴结构与疾病遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联与遗传表型数据",
+      "UniProt O14933功能注释与蛋白结构域信息",
+      "RCSB PDB 1WZV晶体结构记录",
+      "ISG15/干扰素诱导ISGylation通路文献证据"
+    ],
+    "referenceEntries": "UniProt O14933；RCSB PDB 1WZV；Open Targets UBE2L6",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Cys86邻近活性沟槽与ISG15供体结合面",
+        "可直接削弱硫酯转移与ISGylation反应，功能阻断价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "E2 catalytic core背侧E3连接酶识别界面",
+        "可能干扰UBE2L6与E3复合物装配，适合机制型抑制抗体设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端或远离活性位点的溶剂暴露螺旋表面",
+        "结构可及但功能耦合弱，需以结合稳定性和构象效应验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "UBE2L6为细胞内E2酶，常规抗体难以进入胞质并实现药效；建议定位为胞内抗体、递送抗体片段或结构生物学验证工具。",
+    "structurePrepZh": "采用1WZV中A、B链评估单体E2核心构象，保留催化Cys86邻近区域，去除晶体接触干扰后进行表面聚类与界面标注。",
+    "structureRef": "RCSB PDB 1WZV，human UBE2L6 X-ray structure, 2.1 Å",
+    "antibodies": [
+      "暂无获批抗UBE2L6治疗性抗体",
+      "研究级抗UBE2L6单克隆抗体"
+    ],
+    "interfaceFocus": "Cys86活性沟槽、ISG15供体结合面与E3识别面",
+    "designMode": "胞内阻断型Fab/VHH",
+    "candidates": [
+      {
+        "target": "ISG15",
+        "rationale": "ISG15是UBE2L6催化转移的泛素样修饰分子，位于同一干扰素诱导ISGylation通路；分泌型或胞外ISG15形式也具有更高抗体可及性。"
+      },
+      {
+        "target": "IFNAR1",
+        "rationale": "IFNAR1介导I型干扰素信号上游输入，诱导UBE2L6与ISG15表达；其膜受体胞外结构域适合阻断抗体设计。"
+      },
+      {
+        "target": "STAT1",
+        "rationale": "STAT1是I型干扰素JAK-STAT通路的核心转录因子，驱动ISG程序包括UBE2L6表达；但其细胞内定位使抗体成药性同样受限。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

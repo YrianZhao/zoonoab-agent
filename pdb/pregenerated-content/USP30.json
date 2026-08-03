@@ -1,0 +1,65 @@
+{
+  "gene": "USP30",
+  "generatedAt": "2026-08-03T17:44:42.615Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "USP30是外线粒体膜锚定去泛素化酶，去除PINK1-PRKN通路在线粒体外膜底物上的泛素链，抑制线粒体自噬并影响线粒体质量控制；其遗传关联覆盖线粒体DNA测量与神经退行性疾病表型。该蛋白催化结构域朝向胞质侧，虽非分泌抗原，但在膜外侧胞质环境中具备细胞内抗体或递送型抗体片段干预可及性。相较广泛调控E3连接酶或核心自噬因子，USP30具有线粒体外膜定位和酶活口袋明确的优势，靶向选择性更利于降低全局泛素系统扰动。",
+    "mechanism": "结合USP30催化结构域，遮蔽Ub远端结合沟槽与Cys-His-Asp催化中心邻近界面，阻断其识别并水解线粒体外膜底物泛素链。",
+    "selectedEpitope": "优先锁定USP催化结构域Ub结合沟槽及催化Cys邻近环区，避免跨膜锚定段。",
+    "diseaseDirection": "线粒体质量控制与神经退行性疾病",
+    "domain": "N端跨膜锚定于外线粒体膜，C端胞质侧USP催化结构域含保守Cys-His-Asp三联体。",
+    "evidence": "USP30线粒体自噬与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt Q70CQ3功能与定位注释",
+      "RCSB PDB 9F6G晶体结构",
+      "PINK1-PRKN介导线粒体自噬文献"
+    ],
+    "referenceEntries": "UniProt Q70CQ3；RCSB PDB 9F6G；Open Targets USP30",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "USP催化结构域Ub结合沟槽及活性Cys邻近环区",
+        "直接干扰泛素底物定位与去泛素化反应，功能阻断价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域远端可溶性外露螺旋-环区",
+        "可用于构象稳定或别构抑制，降低直接活性位点交叉反应风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端跨膜锚定段及膜近端低可及区域",
+        "结构暴露度与抗体接近性受膜环境限制，成药性不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "USP30为胞内线粒体外膜蛋白，常规循环抗体难以天然进入胞质；宜采用细胞内抗体、VHH或递送载体策略，并严控USP家族交叉反应。",
+    "structurePrepZh": "以9F6G高分辨率晶体结构提取抗原链A/B，保留USP催化结构域，校验活性位点、Ub结合沟槽与缺失环区后进行表面可及性建模。",
+    "structureRef": "RCSB PDB 9F6G，X-ray diffraction，1.5 Å",
+    "antibodies": [
+      "抗USP30研究级单克隆抗体",
+      "抗USP30重组兔单克隆抗体"
+    ],
+    "interfaceFocus": "Ub结合沟槽、催化Cys邻近环区与底物进入面",
+    "designMode": "胞内阻断型VHH",
+    "candidates": [
+      {
+        "target": "PINK1",
+        "rationale": "PINK1在线粒体损伤后磷酸化泛素和PRKN，启动同一线粒体自噬通路；调节该节点可增强受损线粒体标记。"
+      },
+      {
+        "target": "PRKN",
+        "rationale": "PRKN是PINK1招募的E3泛素连接酶，在线粒体外膜底物上延伸泛素链；其功能与USP30去泛素化作用直接拮抗。"
+      },
+      {
+        "target": "MFN2",
+        "rationale": "MFN2是PRKN介导泛素化和降解的重要外线粒体膜底物，参与线粒体动力学与线粒体自噬质量控制。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

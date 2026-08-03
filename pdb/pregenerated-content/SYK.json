@@ -1,0 +1,65 @@
+{
+  "gene": "SYK",
+  "generatedAt": "2026-08-03T17:04:55.912Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SYK是Fc受体、B细胞受体及多类免疫受体下游的关键非受体型酪氨酸激酶，异常激活可放大自身免疫、血小板清除及炎症放大环路，与免疫缺陷伴系统性炎症、ITP及体液免疫异常具有直接通路关联。其为胞内激酶而非典型胞外抗原，整体可及性低于膜受体，但可借助构象选择性抗体实现对活化态调控，适合以结构导向策略优先处理。相较于同通路上游受体，SYK位于信号汇聚节点，阻断后可同时压制FcγR和BCR介导的信号传递，具有更高的通路收敛优势与疾病覆盖度。",
+    "mechanism": "通过稳定SYK非活化构象并阻断SH2-kinase联动，抑制ITAM磷酸化后底物结合与下游磷酸转导。",
+    "selectedEpitope": "优先锁定N端SH2串联域与连接区构象界面，避免ATP口袋竞争。",
+    "diseaseDirection": "免疫炎症/自身免疫",
+    "domain": "N端双SH2域、插入区及C端蛋白激酶催化域组成的非受体酪氨酸激酶。",
+    "evidence": "SYK结构与免疫疾病证据包",
+    "evidenceSources": [
+      "UniProt: P43405",
+      "RCSB PDB: 3BUW",
+      "Open Targets Platform",
+      "PubMed: SYK signaling in BCR/FcR pathways"
+    ],
+    "referenceEntries": "UniProt P43405; PDB 3BUW; Open Targets SYK disease associations",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端SH2-SH2界面",
+        "优先稳定自抑制构象，降低受体招募与激活",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SH2-激酶连接区",
+        "可干预构象传递并削弱活化态维持",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端激酶结构域活化环附近",
+        "可能直接影响催化活性，但需规避保守性与脱靶风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SYK为胞内酶，表位需兼顾可达性与构象特异性；应优先选择暴露且参与自抑制维持的界面，避免高度保守的催化核心区域。",
+    "structurePrepZh": "基于3BUW进行链A-D重组与缺失环修补，优先保留SH2串联域及连接区几何约束，并标注活化相关表面残基。",
+    "structureRef": "PDB 3BUW, X-ray diffraction, 1.45 A",
+    "antibodies": [
+      "fostamatinib相关SYK抑制抗体文献体系",
+      "SYK构象阻断型研究抗体报道"
+    ],
+    "interfaceFocus": "SH2串联域、自抑制界面与连接区",
+    "designMode": "构象选择性阻断",
+    "candidates": [
+      {
+        "target": "LYN",
+        "rationale": "LYN位于BCR信号上游并可磷酸化ITAM，为SYK募集的真实上游节点。联合评估有助于辨别上游激酶驱动与SYK中心化阻断的疾病贡献。"
+      },
+      {
+        "target": "FCGR2A",
+        "rationale": "FCGR2A通过ITAM样信号激活SYK，参与免疫复合物介导的炎症与血小板清除。其与SYK同处FcγR-SYK轴，适合作为通路对照靶点。"
+      },
+      {
+        "target": "BLNK",
+        "rationale": "BLNK是BCR-SYK下游支架蛋白，直接承接SYK磷酸化信号并组织后续效应复合体。纳入该靶点有助于覆盖B细胞受体通路的同轴验证。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

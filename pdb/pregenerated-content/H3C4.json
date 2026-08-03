@@ -1,0 +1,65 @@
+{
+  "gene": "H3C4",
+  "generatedAt": "2026-08-03T19:35:22.711Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "H3C4编码复制依赖性组蛋白H3.1，主要位于核小体核心并参与染色质包装、转录调控及DNA损伤应答，疾病关联多反映肿瘤细胞染色质状态改变或感染过程中宿主染色质调控异常。该蛋白不具有天然胞外结构域、分泌形式或膜受体特征，完整蛋白作为常规细胞外抗体靶点的抗原可及性较弱。相较PDCD1、CTLA4或EGFR等可及性更高且具备明确阻断机制的同疾病方向靶点，H3C4更适合作为胞内组蛋白修饰状态识别、核小体复合物检测或研究级抗体开发靶点，治疗性优先级应降低。",
+    "mechanism": "抗体设计宜定位为识别H3.1在核小体中的特定构象或修饰状态，结合H3 N端尾部或组蛋白折叠域表面，区分核小体H3表位而非阻断胞外配体受体相互作用。",
+    "selectedEpitope": "优先选择H3 N端尾部K4/K9/K27邻近修饰敏感区，备选组蛋白折叠域α1-α2暴露面。",
+    "diseaseDirection": "肿瘤表观遗传与感染宿主反应",
+    "domain": "组蛋白H3含N端可修饰尾部及C端histone-fold结构域，参与H3-H4四聚体和核小体装配。",
+    "evidence": "H3C4核小体结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB P68431组蛋白H3.1条目",
+      "RCSB PDB 1Q3L核小体晶体结构",
+      "Gene Ontology染色质组织与核小体装配注释"
+    ],
+    "referenceEntries": "UniProtKB P68431；RCSB PDB 1Q3L；Open Targets H3C4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "H3 N端尾部K4-K9邻近修饰区",
+        "适合开发修饰特异性抗体，用于表观遗传状态检测与染色质研究",
+        "优先"
+      ],
+      [
+        "Site B",
+        "histone-fold α1-α2外露表面",
+        "可识别核小体构象表位，但需规避H3家族高度保守序列导致的交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "H3-H4四聚体核心界面",
+        "界面埋藏度高且参与核小体稳定，天然抗原可及性有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "H3C4为核内高度保守组蛋白，胞外治疗性可及性不足，且H3同源蛋白交叉反应风险高；设计应限定修饰依赖性表位并进行同源序列排除。",
+    "structurePrepZh": "以1Q3L核小体晶体结构提取H3链并保留DNA和H4邻近链用于界面判读，补充N端尾部缺失或柔性区建模以评估修饰表位。",
+    "structureRef": "RCSB PDB 1Q3L，1.64 Å X射线核小体结构",
+    "antibodies": [
+      "抗Histone H3抗体",
+      "抗H3K27me3抗体"
+    ],
+    "interfaceFocus": "H3 N端尾部修饰位点与核小体外露面",
+    "designMode": "研究级表位抗体",
+    "candidates": [
+      {
+        "target": "EZH2",
+        "rationale": "EZH2为PRC2复合物催化亚基，直接介导H3K27三甲基化并驱动多种肿瘤中的转录沉默状态。其与H3修饰通路处于同一表观遗传调控轴。"
+      },
+      {
+        "target": "KDM6A",
+        "rationale": "KDM6A去除H3K27me3标记，功能上拮抗PRC2介导的染色质沉默。该靶点与H3修饰状态及肿瘤表观遗传失衡密切相关。"
+      },
+      {
+        "target": "SETD2",
+        "rationale": "SETD2催化H3K36三甲基化，参与转录延伸、DNA损伤修复和肿瘤抑制相关染色质调控。其与H3C4同属组蛋白H3修饰通路。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

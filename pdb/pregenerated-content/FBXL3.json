@@ -1,0 +1,65 @@
+{
+  "gene": "FBXL3",
+  "generatedAt": "2026-08-03T12:29:11.785Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FBXL3是SCF型E3泛素连接酶复合体的底物识别亚基，通过LRR结构域结合CRY1/CRY2并促进其泛素化降解，从而调节CLOCK-BMAL1昼夜节律转录回路；人类FBXL3变异与发育迟缓、身材矮小及昼夜节律表型存在遗传学关联。该蛋白主要为胞内核质蛋白，天然抗原可及性不具备分泌蛋白或膜受体优势，因此抗体设计更适宜定位为结构生物学验证、细胞内递送抗体或研究级阻断工具。相较于上游转录因子CLOCK、ARNTL，FBXL3具有明确的CRY结合沟槽和已解析复合物结构，可直接围绕底物识别界面建立更高确定性的表位设计优先级。",
+    "mechanism": "抗体片段结合FBXL3 LRR凹面底物识别界面，阻断FBXL3与CRY1/CRY2的接触，降低CRY蛋白被SCF复合体泛素化降解的效率。",
+    "selectedEpitope": "优先覆盖LRR重复形成的凹面CRY结合界面，避开N端F-box的SKP1结合区域。",
+    "diseaseDirection": "昼夜节律与神经发育异常",
+    "domain": "FBXL3含N端F-box结构域和C端富亮氨酸重复LRR结构域，LRR负责CRY底物识别。",
+    "evidence": "FBXL3-CRY昼夜节律泛素化轴证据包",
+    "evidenceSources": [
+      "Open Targets Platform遗传关联数据",
+      "UniProt Q9UKT7功能与亚细胞定位注释",
+      "RCSB PDB 4I6J晶体结构记录",
+      "昼夜节律SCF-FBXL3-CRY降解通路文献"
+    ],
+    "referenceEntries": "UniProt Q9UKT7；RCSB PDB 4I6J；Open Targets FBXL3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "LRR凹面CRY底物结合沟槽",
+        "直接干预FBXL3-CRY1/CRY2识别，机制验证价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "LRR外侧凸面非保守环区",
+        "可用于获得高特异性结合抗体，但功能阻断概率较低",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端F-box与SKP1结合界面",
+        "可能影响SCF复合体装配，但易产生广泛E3连接酶功能扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FBXL3为胞内蛋白，常规治疗性抗体难以到达作用位点；功能阻断需采用细胞内递送Fab/VHH或研究级抗体格式，并评估昼夜节律广泛扰动风险。",
+    "structurePrepZh": "以PDB 4I6J实验结构为模板，保留FBXL3抗原链A/B/C中分辨率较完整链，校正缺失环区、质子化状态及LRR界面侧链构象。",
+    "structureRef": "RCSB PDB 4I6J，X-ray diffraction，2.7 Å",
+    "antibodies": [
+      "研究级anti-FBXL3抗体",
+      "细胞内递送型anti-FBXL3 VHH候选"
+    ],
+    "interfaceFocus": "LRR凹面CRY1/CRY2识别界面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "CRY1",
+        "rationale": "CRY1是FBXL3识别并促降解的核心昼夜节律抑制因子，直接位于同一CLOCK-BMAL1负反馈通路中。围绕CRY1稳定性调控可验证FBXL3阻断后的下游效应。"
+      },
+      {
+        "target": "CRY2",
+        "rationale": "CRY2同为FBXL3底物并参与昼夜节律转录负反馈，其降解速率影响周期长度与相位调控。该靶点可作为FBXL3-CRY轴的平行验证节点。"
+      },
+      {
+        "target": "SKP1",
+        "rationale": "SKP1与FBXL3的F-box结构域结合并构成SCF E3连接酶复合体，是CRY泛素化反应的装配节点。干预该节点可评估复合体装配对底物降解的贡献。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

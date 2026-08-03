@@ -1,0 +1,65 @@
+{
+  "gene": "LNX1",
+  "generatedAt": "2026-08-03T13:55:21.543Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "LNX1为含RING指结构域的E3泛素连接酶支架蛋白，可通过PDZ结构域识别NUMB等胞内底物并影响Notch相关细胞命运调控；现有关联信号以体重、BMI及平滑肌增殖相关表型为主，但因果疾病机制仍需谨慎界定。该蛋白主要定位于胞质并非分泌蛋白或跨膜受体，天然抗原可及性低于典型细胞表面靶点，抗体策略更适合结构生物学验证、胞内递送或研究级阻断。其优先级来自5H7R高分辨率PDZ结构域实验结构及明确肽结合沟槽，相比缺乏结构模板的同通路胞内支架蛋白更利于界面定向设计。",
+    "mechanism": "设计抗体结合LNX1 PDZ结构域肽结合沟槽，阻断其与NUMB C端PDZ结合基序的识别，从而干预LNX1介导的NUMB复合物组装与泛素化调控。",
+    "selectedEpitope": "优先覆盖5H7R所示PDZ结构域αB/βB肽结合沟槽及羧基端配体锚定位点。",
+    "diseaseDirection": "代谢表型与Notch-NUMB调控",
+    "domain": "LNX1含N端RING指结构域、NPAY基序及多重PDZ结构域；5H7R解析其PDZ模块。",
+    "evidence": "LNX1结构域界面与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q8TBB1 functional annotation",
+      "RCSB PDB 5H7R X-ray structure",
+      "NUMB-LNX1 PDZ interaction literature"
+    ],
+    "referenceEntries": "UniProt Q8TBB1；RCSB PDB 5H7R；Open Targets LNX1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PDZ肽结合沟槽αB/βB界面",
+        "直接竞争NUMB类C端PDZ配体结合，机制验证价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PDZ结构域外侧β折叠支撑面",
+        "可通过构象稳定或空间位阻削弱配体装配，适合作为变构备选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "RING指结构域邻近锌结合区域",
+        "理论上影响E3连接酶构象，但金属配位界面保守且脱靶风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "LNX1为胞内蛋白，常规抗体难以在活细胞内直接接触靶点；需优先限定为体外阻断、细胞内递送抗体或VHH格式，并评估PDZ家族交叉反应。",
+    "structurePrepZh": "以5H7R链D为PDZ结构域模板，保留配体结合沟槽侧链构象，补全缺失氢原子并进行质子化、能量最小化及PDZ同源结构比对。",
+    "structureRef": "RCSB PDB 5H7R，X-ray diffraction，1.7 Å",
+    "antibodies": [
+      "anti-LNX1 research antibody",
+      "anti-NUMB pathway research antibody"
+    ],
+    "interfaceFocus": "PDZ αB/βB沟槽与C端肽锚定位点",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "NUMB",
+        "rationale": "NUMB是LNX1 PDZ结构域识别的关键底物，并参与Notch受体内吞与信号抑制；靶向NUMB-LNX1界面可直接验证同一调控轴。"
+      },
+      {
+        "target": "NOTCH1",
+        "rationale": "NOTCH1位于NUMB调控的细胞命运通路核心，受NUMB介导的内吞和降解影响；其胞外受体结构更适合常规抗体拮抗设计。"
+      },
+      {
+        "target": "MIB1",
+        "rationale": "MIB1是Notch配体泛素化相关E3连接酶，参与同一Notch信号激活过程；与LNX1同属泛素化调控层级，可作为通路内替代干预节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

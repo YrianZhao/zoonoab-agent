@@ -1,0 +1,65 @@
+{
+  "gene": "SAGE1",
+  "generatedAt": "2026-08-03T21:08:00.416Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SAGE1 属于癌睾抗原家族，主要作为肿瘤相关免疫识别抗原参与肉瘤及多类实体瘤的抗原呈递过程，而非脂蛋白代谢通路的经典效应分子。其蛋白缺乏明确跨膜区和分泌信号肽，抗原可及性主要依赖肿瘤细胞加工后经 HLA-I 复合物呈递，天然构象抗体直接结合完整细胞外抗原的优势有限。相较 CETP、APOC3、ANGPTL3 等脂质代谢分泌靶点，SAGE1 的 Open Targets 脂代谢疾病关联分值较低且机制间接，因此更适合作为肿瘤抗原呈递轴的探索性免疫靶点，而非降脂抗体优先主靶点。",
+    "mechanism": "设计方向以识别 SAGE1 衍生肽-HLA-I 复合物为核心，阻断或模拟 TCR 对肿瘤抗原呈递复合物的特异性识别界面。",
+    "selectedEpitope": "优先选择 8HPP 中结构化 SAGE1 片段暴露面，结合预测 HLA-I 结合肽段的中央隆起残基设计 TCR-mimic 表位。",
+    "diseaseDirection": "肿瘤抗原呈递与免疫识别",
+    "domain": "SAGE1 为胞内癌睾抗原，缺乏经典胞外结构域；8HPP 提供其结构化片段的实验晶体构象。",
+    "evidence": "SAGE1 肿瘤抗原呈递与结构可设计性证据包",
+    "evidenceSources": [
+      "UniProt Q9NXZ1 蛋白注释",
+      "RCSB PDB 8HPP 晶体结构",
+      "Open Targets Platform 疾病关联数据",
+      "癌睾抗原与 HLA-I 抗原呈递文献"
+    ],
+    "referenceEntries": "UniProt Q9NXZ1；RCSB PDB 8HPP；Open Targets SAGE1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SAGE1 衍生肽-HLA-I 复合物中央暴露残基",
+        "有利于获得肿瘤抗原特异性 TCR-mimic 抗体并降低 HLA 骨架交叉反应",
+        "优先"
+      ],
+      [
+        "Site B",
+        "8HPP 结构化片段中溶剂暴露环区",
+        "可用于构象抗体筛选与结构验证，但需确认细胞内抗原天然可及性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "保守疏水核心及晶体接触界面",
+        "可能反映折叠稳定或晶体堆积而非生理暴露表位，存在假阳性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SAGE1 非分泌、非膜表面抗原，常规抗体难以直接接触完整靶蛋白；宜采用肽-HLA 复合物筛选，并严格评估 HLA 等位型限制与交叉反应。",
+    "structurePrepZh": "以 8HPP 抗原链 A、B、C 为模板，去除晶体接触冗余链后进行缺失残基评估、质子化、界面暴露面积计算及肽-HLA 建模对接。",
+    "structureRef": "RCSB PDB 8HPP，X-ray diffraction，3.0 Å",
+    "antibodies": [
+      "Tebentafusp",
+      "Afamitresgene autoleucel"
+    ],
+    "interfaceFocus": "SAGE1 肽中央暴露残基与 HLA-I 肽槽边缘",
+    "designMode": "TCR-mimic 抗体设计",
+    "candidates": [
+      {
+        "target": "MAGEA4",
+        "rationale": "MAGEA4 为癌睾抗原，可经 HLA-I 呈递并已形成 TCR/TCR-mimic 免疫治疗证据链，适合作为同类抗原呈递轴候选。"
+      },
+      {
+        "target": "NY-ESO-1",
+        "rationale": "NY-ESO-1 由 CTAG1B 编码，是经典肿瘤睾丸抗原，具有明确的肽-HLA 免疫识别机制和临床转化基础。"
+      },
+      {
+        "target": "PRAME",
+        "rationale": "PRAME 在多种肿瘤中异常表达，其 HLA-I 呈递肽段可被 TCR 样分子识别，具备与 SAGE1 相同的肿瘤抗原呈递设计逻辑。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

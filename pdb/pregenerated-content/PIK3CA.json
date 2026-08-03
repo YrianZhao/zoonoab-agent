@@ -1,0 +1,65 @@
+{
+  "gene": "PIK3CA",
+  "generatedAt": "2026-08-03T15:17:22.047Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PIK3CA编码PI3Kα催化亚基p110α，致病性激活突变可增强PIP2向PIP3转化，驱动AKT-mTOR信号并导致PIK3CA相关过度生长谱系等疾病。该蛋白为胞内脂质激酶，天然抗原可及性弱，因此抗体策略更适合定位于结构解析、胞内递送抗体片段或研究级构象阻断工具。相比PIK3CB等同家族催化亚基，PIK3CA在人类过度生长综合征中的遗传因果证据更集中，且4JPS提供p110α/p85α复合体高分辨率结构，利于界面表位设计。",
+    "mechanism": "设计抗体片段阻断p110α与p85α nSH2/iSH2调控界面，限制抑制性构象释放并降低膜磷脂底物PIP2向PIP3的催化转化。",
+    "selectedEpitope": "优先靶向p110α helical结构域与p85α nSH2接触界面，覆盖E542/E545突变邻近构象热点。",
+    "diseaseDirection": "PIK3CA相关过度生长谱系",
+    "domain": "p110α含ABD、RBD、C2、helical与kinase结构域；4JPS解析其与p85α调节亚基复合构象。",
+    "evidence": "PIK3CA遗传激活与PI3Kα结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P42336功能与结构域注释",
+      "RCSB PDB 4JPS晶体结构",
+      "ClinVar/OMIM中PIK3CA相关过度生长突变记录"
+    ],
+    "referenceEntries": "UniProt P42336；RCSB PDB 4JPS；Open Targets ENSG00000121879",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "helical结构域-p85α nSH2调控界面",
+        "可针对E542/E545邻近变构热点稳定受抑制构象",
+        "优先"
+      ],
+      [
+        "Site B",
+        "kinase结构域C-lobe与活化环邻近区域",
+        "可能干扰ATP结合裂隙旁构象与底物定位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ABD与p85α iSH2结合界面",
+        "该界面对复合体稳定性关键，阻断风险可能引发非选择性失稳",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PIK3CA为胞内酶，常规体内抗体难以直接接触抗原；建议采用VHH、intrabody或递送型Fab，并避免破坏p85α必需稳定界面造成非特异效应。",
+    "structurePrepZh": "以4JPS中A、B链复合体为模板，保留p110α-p85α界面构象，补全缺失环区并标注E542/E545及H1047热点用于表位约束。",
+    "structureRef": "Miller et al., PI3Kα/p85α complex structure, PDB 4JPS, 2.2 Å",
+    "antibodies": [
+      "研究级anti-PIK3CA monoclonal antibody",
+      "研究级anti-p110α monoclonal antibody"
+    ],
+    "interfaceFocus": "p110α helical域-nSH2调控界面",
+    "designMode": "胞内构象阻断",
+    "candidates": [
+      {
+        "target": "PIK3R1",
+        "rationale": "PIK3R1编码p85α调节亚基，直接与p110α形成PI3Kα复合体；其nSH2/iSH2界面决定p110α抑制性构象与突变释放机制。"
+      },
+      {
+        "target": "AKT1",
+        "rationale": "AKT1位于PI3K-PIP3下游，PH结构域募集至膜后被PDK1和mTORC2磷酸化；其激活突变同样参与过度生长相关表型。"
+      },
+      {
+        "target": "MTOR",
+        "rationale": "MTOR为AKT下游核心效应节点，整合生长因子与营养信号促进细胞生长；PIK3CA激活最终可增强mTORC1相关蛋白合成与生长程序。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

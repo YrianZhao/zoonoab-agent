@@ -1,0 +1,65 @@
+{
+  "gene": "DNMBP",
+  "generatedAt": "2026-08-03T18:36:36.653Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DNMBP编码TUBA蛋白，主要作为Cdc42相关鸟嘌呤核苷酸交换因子和支架蛋白参与肌动蛋白重塑、膜运输及上皮连接稳定，其遗传关联信号集中于先天性白内障和肾小球滤过相关表型，提示其可能影响晶状体上皮结构维持与肾小管上皮细胞骨架稳态。该蛋白缺乏经典分泌信号肽和跨膜区，主要定位于胞质侧，因此作为常规细胞外抗体靶点的抗原可及性不足；现有PDB 4CC2提供高分辨率结构片段，更适合支持胞内结合蛋白、VHH或研究级构象探针设计。相较于同通路中具有明确胞外配体或受体界面的靶点，DNMBP的治疗性抗体优先级较低，但其结构质量和疾病遗传关联可支持机制验证型抗体工具开发。",
+    "mechanism": "设计结合DNMBP结构片段的胞内抗体，干预其与Cdc42调控复合体或肌动蛋白装配相关蛋白的局部结合，从而解析细胞骨架重塑对晶状体上皮稳态的影响。",
+    "selectedEpitope": "优先选择4CC2解析的BAR/SH3相关结构片段中保守、非埋藏的蛋白互作沟槽邻近表面。",
+    "diseaseDirection": "先天性白内障与上皮骨架稳态",
+    "domain": "DNMBP含N端BAR结构域、DH-PH样GEF模块、多个SH3结构域及C端脯氨酸富集互作区。",
+    "evidence": "DNMBP遗传关联与细胞骨架互作证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q6XZF7功能与结构域注释",
+      "RCSB PDB 4CC2晶体结构记录",
+      "Reactome/Rho GTPase与肌动蛋白调控通路注释"
+    ],
+    "referenceEntries": "UniProt: Q6XZF7; RCSB PDB: 4CC2; Gene: DNMBP",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "4CC2解析结构片段的保守互作沟槽外缘",
+        "可能影响DNMBP介导的蛋白复合体装配，适合构象阻断型胞内抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SH3结构域RT-Src环与n-Src环邻近表面",
+        "可用于识别脯氨酸富集配体结合构象，支持互作探针设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "BAR结构域推定膜结合阳离子面",
+        "可能影响膜曲率识别，但与磷脂界面重叠，存在功能与特异性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DNMBP为胞内支架/GEF相关蛋白，常规IgG难以到达作用位点；治疗性抗体开发风险高，宜采用VHH、细胞内表达格式或作为机制研究探针。",
+    "structurePrepZh": "以4CC2的A-D链为模板进行链一致性检查、缺失片段标注、晶体接触排除及保守性映射，优先保留真实可及互作表面。",
+    "structureRef": "RCSB PDB 4CC2，X射线晶体结构，1.55 Å",
+    "antibodies": [
+      "无已批准DNMBP治疗性抗体",
+      "研究级抗DNMBP多克隆抗体"
+    ],
+    "interfaceFocus": "SH3配体结合沟槽与BAR膜结合面",
+    "designMode": "胞内VHH探针设计",
+    "candidates": [
+      {
+        "target": "CDC42",
+        "rationale": "CDC42是DNMBP相关GEF调控轴的核心小GTP酶，直接控制肌动蛋白聚合、细胞极性和上皮连接稳定，处于同一Rho GTPase骨架通路。"
+      },
+      {
+        "target": "WASL",
+        "rationale": "WASL/N-WASP连接CDC42信号与Arp2/3介导的肌动蛋白成核，是DNMBP相关细胞骨架重塑网络中的关键效应分子。"
+      },
+      {
+        "target": "DNM2",
+        "rationale": "DNM2参与内吞和膜重塑过程，并与dynamin-binding蛋白功能网络相连，可作为膜运输与骨架耦联机制的同通路候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

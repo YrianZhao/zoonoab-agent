@@ -1,0 +1,65 @@
+{
+  "gene": "CYTH1",
+  "generatedAt": "2026-08-03T18:29:09.342Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CYTH1编码cytohesin 1，是ARF小GTP酶鸟嘌呤核苷酸交换因子，参与胰岛素刺激下ARF6活化、膜转运及整合素依赖黏附过程，因而与2型糖尿病、HbA1c及肾小球滤过相关表型存在遗传关联。该蛋白主要定位于胞质侧，含PH结构域介导膜磷脂结合，天然抗原可及性弱于分泌蛋白或胞外受体，因此更适合机制研究型胞内抗体或递送型抗体片段设计。相较于胰岛素受体等上游广泛信号节点，CYTH1位于ARF6膜交通分支，理论上可实现更聚焦的代谢膜转运调控，但成药优先级受胞内可及性限制。",
+    "mechanism": "阻断CYTH1 Sec7结构域与ARF6 switch区结合，抑制ARF6由GDP向GTP装载，从而干预胰岛素相关膜转运与黏附信号输出。",
+    "selectedEpitope": "优先覆盖Sec7结构域ARF结合沟槽及催化谷氨酸邻近界面，避免单纯靶向PH膜结合面。",
+    "diseaseDirection": "2型糖尿病与代谢肾功能表型",
+    "domain": "CYTH1含N端coiled-coil、中心Sec7催化结构域、C端PH结构域及多碱性膜定位区。",
+    "evidence": "CYTH1代谢表型遗传关联与Sec7-ARF结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q15438功能与结构域注释",
+      "RCSB PDB 4A4P X射线晶体结构",
+      "ARF GTPase交换因子与胰岛素膜交通文献"
+    ],
+    "referenceEntries": "UniProt Q15438；RCSB PDB 4A4P；Open Targets CYTH1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Sec7结构域ARF6结合沟槽与催化谷氨酸邻近面",
+        "直接干扰CYTH1-ARF6复合物形成及核苷酸交换反应",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PH结构域磷脂结合口袋及β1-β2环周边",
+        "削弱膜PIP3/PIP2依赖募集，间接降低局部GEF活性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端coiled-coil调控区暴露螺旋面",
+        "可能影响自抑制或蛋白复合物装配，但结构和功能确定性较低",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CYTH1为胞内蛋白，常规全长IgG难以到达作用界面；设计应限定为细胞内抗体、VHH或递送偶联格式，并评估CYTH2/3/4 Sec7同源性带来的交叉反应。",
+    "structurePrepZh": "以4A4P链A/B为实验结构模板，补全缺失环区并标注Sec7、PH及多碱性区；对ARF6结合沟槽进行保守性和同源蛋白比对后定义可设计表面。",
+    "structureRef": "RCSB PDB 4A4P，2.0 Å X-ray human cytohesin 1结构",
+    "antibodies": [
+      "无临床批准CYTH1靶向抗体",
+      "研究级anti-CYTH1抗体"
+    ],
+    "interfaceFocus": "Sec7-ARF6结合沟槽与PH磷脂结合口袋",
+    "designMode": "胞内VHH阻断设计",
+    "candidates": [
+      {
+        "target": "ARF6",
+        "rationale": "ARF6是CYTH1 Sec7结构域的直接小GTP酶底物，位于同一膜交通与胰岛素相关转运分支；靶向其switch区可直接限制GTP依赖效应子招募。"
+      },
+      {
+        "target": "INSR",
+        "rationale": "INSR是2型糖尿病通路的上游受体酪氨酸激酶，驱动PI3K-PIP3生成并促进cytohesin膜募集；胞外受体结构使抗体可及性显著优于CYTH1。"
+      },
+      {
+        "target": "PIK3R1",
+        "rationale": "PIK3R1编码PI3K调节亚基，连接胰岛素受体信号与PIP3产生，影响PH结构域蛋白的膜定位；其遗传变异与胰岛素抵抗及糖代谢异常相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

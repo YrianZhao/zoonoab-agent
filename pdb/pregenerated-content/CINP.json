@@ -1,0 +1,65 @@
+{
+  "gene": "CINP",
+  "generatedAt": "2026-08-03T11:25:16.017Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CINP为细胞核内CDK2相互作用蛋白，参与复制起始、复制压力应答及基因组稳定性维持，其与神经发育异常和神经退行性疾病的遗传关联更适合作为机制研究靶点而非直接体液药物靶点。CINP缺乏经典分泌信号肽、跨膜区和稳定胞外结构域，抗原天然可及性显著低于膜受体或分泌蛋白，需采用胞内递送抗体片段或研究级结合分子策略。相较于ATR、CHEK1等同通路激酶，CINP结构较小且已有2.0 Å晶体结构支持界面解析，但其成药优先级受限于胞内定位和疾病因果证据强度。",
+    "mechanism": "设计结合分子阻断CINP与CDK2/复制压力复合体相关蛋白的结合界面，用于干预复制起始与DNA损伤应答复合物装配。",
+    "selectedEpitope": "优先覆盖8CIH二聚体暴露沟槽及保守α螺旋-β折叠界面，避开晶体接触区。",
+    "diseaseDirection": "神经发育与复制压力相关疾病",
+    "domain": "CINP为小型核内蛋白，缺乏跨膜和胞外结构域，8CIH显示同源二聚体样折叠界面。",
+    "evidence": "CINP复制压力与神经表型遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q9BW66功能与亚细胞定位注释",
+      "RCSB PDB 8CIH晶体结构记录",
+      "DNA复制压力与ATR-CHEK1通路文献"
+    ],
+    "referenceEntries": "UniProt Q9BW66；RCSB PDB 8CIH；Open Targets CINP",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "二聚体暴露沟槽及保守螺旋侧面",
+        "可能影响CINP复合体装配，结构可塑性较低",
+        "优先"
+      ],
+      [
+        "Site B",
+        "β折叠外侧溶剂暴露面",
+        "适合获得高亲和结合体并保留结构稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "晶体堆积邻近界面",
+        "可能受晶体接触影响，需经溶液构象验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CINP为核内非分泌蛋白，常规抗体难以到达靶点；建议定位为结构生物学工具或采用细胞内递送VHH，并验证复合体界面真实性。",
+    "structurePrepZh": "以8CIH链A/B为抗原模型，去除晶体水和非生物学接触，评估二聚体界面、保守性和溶剂可及性后再定义免疫原。",
+    "structureRef": "RCSB PDB 8CIH，X-ray diffraction，2.0 Å",
+    "antibodies": [
+      "暂无获批CINP靶向抗体",
+      "暂无临床阶段CINP同类抗体"
+    ],
+    "interfaceFocus": "CINP二聚体沟槽与CDK2相关结合面",
+    "designMode": "胞内VHH工具抗体",
+    "candidates": [
+      {
+        "target": "ATR",
+        "rationale": "ATR是复制压力应答核心激酶，感知RPA包被单链DNA并启动CHEK1磷酸化，位于CINP相关基因组稳定性网络的上游关键节点。"
+      },
+      {
+        "target": "CHEK1",
+        "rationale": "CHEK1为ATR下游效应激酶，调控复制叉稳定和细胞周期检查点，与CINP涉及的复制压力应答处于同一功能通路。"
+      },
+      {
+        "target": "CDK2",
+        "rationale": "CDK2是CINP命名来源的相互作用蛋白，控制G1/S转换和复制起始，适合作为解析CINP复合体功能的同通路候选节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

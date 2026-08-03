@@ -1,0 +1,65 @@
+{
+  "gene": "PPM1K",
+  "generatedAt": "2026-08-03T15:30:38.790Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PPM1K为线粒体PP2C家族磷酸酶，去磷酸化并激活支链α-酮酸脱氢酶复合体E1α亚基BCKDHA，直接影响亮氨酸、异亮氨酸和缬氨酸分解代谢。Open Targets关联信号主要集中于支链氨基酸测量和轻型枫糖尿病，符合BCKDH通路遗传与代谢表型。该蛋白定位于线粒体基质，缺乏天然胞外结构域，抗原可及性不适合常规体内阻断抗体，但适合结构验证、胞内递送抗体或研究级结合分子开发。相较于转运体或非特异代谢酶，PPM1K位于BCKDH磷酸化开关节点，机制解释更集中，优先级来自明确底物关系和已解析催化结构。",
+    "mechanism": "设计结合分子遮蔽PPM1K催化沟槽或BCKDHA磷酸化肽结合面，阻断PPM1K与BCKDHA Ser293邻近底物序列的识别并抑制去磷酸化。",
+    "selectedEpitope": "优先聚焦PP2C催化结构域金属离子结合沟槽邻近的底物肽识别边缘，避免直接占据保守金属配位残基。",
+    "diseaseDirection": "支链氨基酸代谢异常",
+    "domain": "含线粒体定位序列及PP2C型Mg2+/Mn2+依赖磷酸酶催化结构域，2IQ1覆盖成熟酶核心。",
+    "evidence": "PPM1K-BCKDH支链氨基酸代谢证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt Q8N3J5功能注释",
+      "RCSB PDB 2IQ1晶体结构",
+      "BCKDH复合体磷酸化调控文献"
+    ],
+    "referenceEntries": "UniProt Q8N3J5；RCSB PDB 2IQ1；Open Targets PPM1K",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PP2C催化沟槽邻近底物肽结合边缘",
+        "可干扰BCKDHA磷酸化片段进入活性位点，机制最直接",
+        "优先"
+      ],
+      [
+        "Site B",
+        "成熟酶核心外侧非保守螺旋-环区",
+        "利于获得选择性结合分子并降低PP2C家族交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Mg2+/Mn2+金属配位催化中心",
+        "保守性高且可能影响构象稳定，需避免诱导非选择性结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PPM1K为线粒体基质蛋白，天然抗原可及性低，常规抗体药物成药性受限。设计应定位为胞内递送、降解偶联或机制研究工具，并强化PP2C家族选择性筛选。",
+    "structurePrepZh": "以2IQ1链A为模板，移除结晶添加物并保留催化金属环境用于界面判读；补建缺失环区后标注底物肽进入方向与保守酸性残基。",
+    "structureRef": "RCSB PDB 2IQ1，human PPM1K X-ray 2.25 Å",
+    "antibodies": [
+      "研究级抗PPM1K抗体",
+      "胞内递送型抗PPM1K VHH候选"
+    ],
+    "interfaceFocus": "PP2C催化沟槽与BCKDHA底物肽识别面",
+    "designMode": "胞内靶点结合分子设计",
+    "candidates": [
+      {
+        "target": "BCKDHA",
+        "rationale": "BCKDHA编码BCKDH E1α亚基，是PPM1K去磷酸化的直接底物；其Ser293磷酸化状态决定复合体活性并关联枫糖尿病样代谢表型。"
+      },
+      {
+        "target": "BCKDK",
+        "rationale": "BCKDK磷酸化并抑制BCKDH复合体，与PPM1K构成同一磷酸化开关的拮抗调控节点；抑制BCKDK可增强支链氨基酸分解。"
+      },
+      {
+        "target": "DBT",
+        "rationale": "DBT编码BCKDH E2转酰基酶组分，位于同一支链α-酮酸氧化通路；遗传缺陷可导致枫糖尿病相关代谢异常。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

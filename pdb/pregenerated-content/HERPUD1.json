@@ -1,0 +1,65 @@
+{
+  "gene": "HERPUD1",
+  "generatedAt": "2026-08-03T19:45:15.213Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HERPUD1是内质网膜相关蛋白，参与内质网相关降解（ERAD）及未折叠蛋白应答，其遗传关联主要集中于脂质测量、胆固醇酯和磷脂水平等代谢表型，提示其可能通过内质网蛋白稳态影响脂质代谢网络。该蛋白主要定位于内质网膜，含胞质侧泛素样结构域和跨膜区，缺乏典型细胞外可及结构域，因此作为常规体内阻断抗体靶点的抗原可及性受限。相较于APOB、PCSK9或ANGPTL3等分泌或血浆可及脂质通路靶点，HERPUD1更适合作为机制研究或胞内递送抗体片段探索靶点，优先级应低于可直接药物化的同通路胞外靶点。",
+    "mechanism": "设计重点为识别HERPUD1胞质侧泛素样结构域，干预其与ERAD泛素-蛋白酶体系统组分的结合，而非阻断细胞外配体-受体相互作用。",
+    "selectedEpitope": "优先聚焦1WGD所解析的N端泛素样结构域表面β片层-α螺旋邻近界面。",
+    "diseaseDirection": "脂质代谢与内质网蛋白稳态",
+    "domain": "HERPUD1含N端泛素样结构域、富含应激响应区域及C端跨膜区，主要面向胞质侧。",
+    "evidence": "HERPUD1脂质表型遗传关联与ERAD结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q15011功能与亚细胞定位注释",
+      "RCSB PDB 1WGD溶液NMR结构记录",
+      "内质网相关降解与未折叠蛋白应答文献"
+    ],
+    "referenceEntries": "UniProt Q15011；RCSB PDB 1WGD；Open Targets HERPUD1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端泛素样结构域β-grasp折叠外露面",
+        "适合获得结构域特异结合抗体，用于解析ERAD相关分子识别",
+        "优先"
+      ],
+      [
+        "Site B",
+        "泛素样结构域α螺旋与β片层邻近沟槽",
+        "可能影响与泛素系统辅助因子的弱相互作用，适合作为功能筛选表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端跨膜邻近区及膜内区",
+        "膜嵌入和构象异质性较高，重组抗原制备及抗体可及性风险较大",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HERPUD1缺乏细胞外药物可及表位，常规IgG难以在完整细胞内接触靶点；建议定位为胞内抗体、递送型VHH或研究级结合分子。",
+    "structurePrepZh": "以1WGD的NMR构象簇建立泛素样结构域模型，保留代表性低能构象并评估柔性环区，跨膜区需另行用AlphaFold或膜环境模型补足。",
+    "structureRef": "RCSB PDB 1WGD，human HERPUD1 ubiquitin-like domain，solution NMR",
+    "antibodies": [
+      "无已批准HERPUD1治疗性抗体",
+      "研究级抗HERPUD1多克隆抗体"
+    ],
+    "interfaceFocus": "N端泛素样结构域潜在ERAD组分结合面",
+    "designMode": "胞内抗体探索",
+    "candidates": [
+      {
+        "target": "PCSK9",
+        "rationale": "PCSK9为分泌蛋白，通过结合LDLR并促进其溶酶体降解升高LDL胆固醇，抗体阻断PCSK9-LDLR相互作用具有明确临床验证。"
+      },
+      {
+        "target": "ANGPTL3",
+        "rationale": "ANGPTL3为肝源性分泌因子，可抑制脂蛋白脂肪酶和内皮脂肪酶，参与甘油三酯、LDL-C和HDL-C代谢调控，抗体可直接中和循环蛋白。"
+      },
+      {
+        "target": "APOB",
+        "rationale": "APOB是含apoB脂蛋白颗粒的核心结构蛋白，位于脂质运输通路中心，但其大分子颗粒构象复杂，作为抗体靶点更适合特定脂蛋白识别或递送策略。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "BIRC6",
+  "generatedAt": "2026-08-03T10:49:54.949Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BIRC6编码巨型IAP家族蛋白BRUCE/Apollon，含BIR结构域与C端UBC样泛素结合酶结构域，可通过结合并泛素化促凋亡因子SMAC/DIABLO、caspase-9等分子抑制线粒体凋亡，在多种肿瘤细胞存活和治疗抵抗中具有机制关联。该蛋白主要定位于胞质并参与胞内泛素化过程，天然抗原可及性不具备膜受体或分泌蛋白优势，因此更适合采用胞内递送抗体片段、研究级阻断抗体或降解耦联策略。相较于BIRC2、BIRC3、XIAP等IAP成员，BIRC6兼具BIR识别模块和UBC样催化模块，提供更直接干预抗凋亡泛素化轴的优先级，但成药形式需优先评估细胞内递送可行性。",
+    "mechanism": "阻断BIRC6 BIR结构域与SMAC/DIABLO或caspase-9 N端IAP结合基序的相互作用，解除对线粒体凋亡效应分子的抑制。",
+    "selectedEpitope": "优先覆盖3CEG所示BIR结构域IBM结合沟槽及相邻α螺旋边缘，干预SMAC样肽结合。",
+    "diseaseDirection": "肿瘤凋亡耐受与治疗抵抗",
+    "domain": "BIRC6为约528 kDa胞质蛋白，N端含BIR结构域，C端含UBC样泛素结合酶结构域。",
+    "evidence": "BIRC6抗凋亡泛素化轴结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q9NR09功能与亚细胞定位注释",
+      "RCSB PDB 3CEG晶体结构记录",
+      "IAP家族凋亡调控与肿瘤耐药文献"
+    ],
+    "referenceEntries": "UniProt Q9NR09；RCSB PDB 3CEG；Open Targets BIRC6",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "BIR结构域IBM结合沟槽",
+        "直接阻断SMAC/DIABLO样IAP结合基序识别，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "BIR结构域邻近α螺旋与β折叠支撑面",
+        "稳定覆盖配体结合口袋边缘，可提高阻断构象选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离IBM沟槽的BIR外侧保守表面",
+        "可能影响结构稳定但缺乏明确功能界面，存在非阻断性结合风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BIRC6为胞内巨型蛋白，常规外源抗体难以到达作用位点；宜采用VHH、intrabody或递送耦联格式，并避免靶向高度保守BIR核心造成IAP家族交叉反应。",
+    "structurePrepZh": "以3CEG中A、B链BIR结构域为模板，保留解析残基与配体结合沟槽，补充缺失侧链并进行质子化、能量最小化和界面溶剂可及性评估。",
+    "structureRef": "RCSB PDB 3CEG，BIRC6 BIR结构域X射线结构，2.008 Å",
+    "antibodies": [
+      "抗BIRC6研究级单克隆抗体",
+      "抗BIRC6兔单克隆抗体"
+    ],
+    "interfaceFocus": "BIR结构域IBM肽结合沟槽",
+    "designMode": "胞内阻断型VHH",
+    "candidates": [
+      {
+        "target": "XIAP",
+        "rationale": "XIAP同属IAP介导的凋亡抑制通路，BIR结构域直接结合并抑制caspase-3、caspase-7和caspase-9，是肿瘤凋亡耐受的经典可验证节点。"
+      },
+      {
+        "target": "BIRC2",
+        "rationale": "BIRC2/cIAP1通过RING依赖性泛素化调控TNF受体复合体和NF-κB相关存活信号，与IAP抗凋亡网络处于同一疾病机制框架。"
+      },
+      {
+        "target": "DIABLO",
+        "rationale": "DIABLO/SMAC是线粒体释放的IAP拮抗因子，其N端IBM序列结合BIR结构域并解除IAP对caspase的抑制，可作为同轴机制参照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

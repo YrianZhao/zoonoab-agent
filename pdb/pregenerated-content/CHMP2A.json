@@ -1,0 +1,65 @@
+{
+  "gene": "CHMP2A",
+  "generatedAt": "2026-08-03T11:21:57.033Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CHMP2A 是 ESCRT-III 复合体核心亚基，参与内体膜重塑、胞质分裂末期脱离、病毒出芽及受损内吞-溶酶体稳态，因而与神经退行性疾病和 HIV 等病毒感染表型存在通路关联。该蛋白主要为胞质侧 ESCRT 组装因子，天然抗原可及性弱于分泌蛋白或跨膜受体，但其聚合构象中的螺旋束与 CHMP3 结合界面可通过结构抗原或细胞内抗体策略进行精确识别。相较于 VPS4A、TSG101 等多功能上游因子，CHMP2A 位于 ESCRT-III 收缩与解聚前的执行层级，结构界面明确，适合作为机制探针型抗体或胞内递送抗体设计的优先探索靶点。",
+    "mechanism": "抗体结合 CHMP2A ESCRT-III 聚合体暴露的 α1-α2 螺旋束或 CHMP3 结合面，阻断 CHMP2A 与 CHMP3/IST1 的装配及 VPS4 招募前复合体成熟。",
+    "selectedEpitope": "优先锁定 N 端 α1-α2 螺旋束聚合界面及 CHMP3 接触面，避免完全埋藏的卷曲螺旋核心。",
+    "diseaseDirection": "神经退行性疾病与病毒出芽",
+    "domain": "CHMP2A 含 ESCRT-III 核心螺旋束结构，N 端 α1-α4 介导聚合，C 端 MIM 区域参与 VPS4 结合。",
+    "evidence": "CHMP2A-ESCRT-III结构与疾病通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "RCSB PDB 7ZCG 冷冻电镜结构",
+      "UniProt O43633 功能注释",
+      "ESCRT-III 介导病毒出芽与内体膜切割文献"
+    ],
+    "referenceEntries": "UniProt: O43633；RCSB PDB: 7ZCG；Open Targets: CHMP2A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N 端 α1-α2 螺旋束外侧与聚合接触面",
+        "可干预 ESCRT-III 丝状体装配并具有构象选择性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CHMP3/IST1 互作相关 α2-α3 邻近界面",
+        "有利于阻断异源 ESCRT-III 亚基配对与复合体成熟",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端 MIM/VPS4 结合相关柔性区",
+        "可能影响 VPS4 招募，但柔性高且构象异质性较强",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CHMP2A 为胞质蛋白，常规抗体难以直接进入作用位点；应优先采用胞内递送、intrabody 或结构探针设计，并评估 ESCRT 基础功能抑制导致的细胞毒性。",
+    "structurePrepZh": "以 7ZCG 抗原链 A、B 为模板，保留 ESCRT-III 聚合构象，补全缺失侧链并标注螺旋束界面、CHMP3 接触残基及 C 端柔性区。",
+    "structureRef": "RCSB PDB 7ZCG，cryo-EM 3.3 Å，人源 ESCRT-III 相关结构",
+    "antibodies": [
+      "抗 CHMP2A 研究级单克隆抗体",
+      "抗 ESCRT-III 构象探针抗体"
+    ],
+    "interfaceFocus": "α1-α2 聚合界面与 CHMP3 接触面",
+    "designMode": "胞内抗体/构象阻断",
+    "candidates": [
+      {
+        "target": "CHMP3",
+        "rationale": "CHMP3 与 CHMP2A 共同构成 ESCRT-III 下游装配模块，直接参与膜颈收缩及病毒出芽所需的聚合网络。靶向该界面可作为 CHMP2A 阻断策略的互补验证。"
+      },
+      {
+        "target": "VPS4A",
+        "rationale": "VPS4A 是 AAA ATPase，负责解聚和回收 ESCRT-III 聚合体，位于 CHMP2A 复合体成熟后的关键执行步骤。其功能干预可影响同一病毒出芽和内体膜重塑通路。"
+      },
+      {
+        "target": "TSG101",
+        "rationale": "TSG101 为 ESCRT-I 组分，可识别病毒 Gag p6 PTAP 基序并启动 HIV 出芽相关 ESCRT 招募。其处于 CHMP2A 上游，适合作为同一 ESCRT 依赖病毒释放通路的候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

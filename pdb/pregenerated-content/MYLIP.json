@@ -1,0 +1,65 @@
+{
+  "gene": "MYLIP",
+  "generatedAt": "2026-08-03T14:30:49.783Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MYLIP/IDOL是LXR诱导的E3泛素连接酶，可通过泛素化LDLR胞质尾部促进其溶酶体降解，从而降低肝细胞LDL摄取并影响LDL-C、总胆固醇和ApoB相关表型。该蛋白主要为胞内E3酶，抗原可及性弱于典型膜受体或分泌蛋白，作为抗体主靶点更适合采用胞内递送抗体、降解调节工具或研究型结合抗体策略。其优先级来自人群遗传学和脂质表型关联，但在成药可及性方面低于PCSK9、ANGPTL3等循环分泌靶点，因此需以结构验证和功能阻断可行性为前置筛选标准。",
+    "mechanism": "阻断MYLIP FERM结构域识别LDLR胞质NPxY样基序，抑制LDLR泛素化与溶酶体降解，增强LDL受体介导的LDL颗粒摄取。",
+    "selectedEpitope": "优先覆盖FERM F3亚结构域的LDLR尾部结合沟槽，避免RBR催化核心保守锌结合位点。",
+    "diseaseDirection": "血脂异常与动脉粥样硬化风险",
+    "domain": "MYLIP含N端FERM结构域和C端RBR型E3泛素连接酶结构域，介导受体识别与泛素转移。",
+    "evidence": "MYLIP-IDOL-LDLR轴脂质调控证据包",
+    "evidenceSources": [
+      "Open Targets Platform脂质表型遗传关联",
+      "UniProt Q8WY64功能与结构域注释",
+      "RCSB PDB 13SQ实验晶体结构",
+      "LXR-IDOL-LDLR降解通路文献证据"
+    ],
+    "referenceEntries": "UniProt Q8WY64；RCSB PDB 13SQ；Open Targets MYLIP",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "FERM F3亚结构域LDLR胞质尾部结合沟槽",
+        "直接干预MYLIP识别LDLR并降低受体泛素化",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FERM F1-F2相邻外露面及结构域间界面",
+        "可通过构象约束削弱受体结合或复合物装配",
+        "备选"
+      ],
+      [
+        "Site C",
+        "RBR催化结构域RING2/HECT样活性区域附近",
+        "保守金属结合与催化位点风险较高，需避免非特异酶抑制",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MYLIP为胞内蛋白，常规循环抗体难以进入作用位点；建议优先开发细胞内递送Fab/VHH或作为结构生物学验证抗体，并严格评估E3保守域交叉反应。",
+    "structurePrepZh": "以PDB 13SQ高分辨率晶体结构为模板，保留抗原链A-D中完整FERM区域，补建缺失环区并标注LDLR尾部结合相关沟槽。",
+    "structureRef": "RCSB PDB 13SQ，X-ray diffraction，1.301 Å",
+    "antibodies": [
+      "抗MYLIP研究级单克隆抗体",
+      "抗IDOL研究级多克隆抗体"
+    ],
+    "interfaceFocus": "FERM F3受体尾部识别沟槽",
+    "designMode": "胞内阻断型",
+    "candidates": [
+      {
+        "target": "LDLR",
+        "rationale": "LDLR是MYLIP/IDOL直接泛素化底物，决定LDL颗粒摄取效率；增强或稳定LDLR可与MYLIP阻断策略形成同一通路验证。"
+      },
+      {
+        "target": "PCSK9",
+        "rationale": "PCSK9通过结合LDLR胞外EGF-A结构域促进LDLR降解，与MYLIP共同汇聚于LDLR蛋白丰度调控，是更具抗体可及性的同通路靶点。"
+      },
+      {
+        "target": "NR1H3",
+        "rationale": "NR1H3/LXRα可诱导MYLIP转录并连接胆固醇感应与LDLR降解程序，适合作为上游通路节点用于机制分层。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

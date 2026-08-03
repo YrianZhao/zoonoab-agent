@@ -1,0 +1,65 @@
+{
+  "gene": "KIF23",
+  "generatedAt": "2026-08-03T13:43:14.405Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KIF23编码MKLP1，是centralspindlin复合体核心马达亚基，与CYK4/RACGAP1共同组织中央纺锤体并驱动胞质分裂；其功能异常可导致红系祖细胞胞质分裂失败，形成先天性红细胞生成异常性贫血III型相关多核红细胞前体。KIF23为细胞内微管马达蛋白，常规完整抗体难以直接结合天然胞内抗原，抗原可及性显著弱于分泌蛋白或膜受体，因此更适合作为细胞内功能阻断抗体、胞内抗体或结构机制验证靶点。相比一般有丝分裂调控因子，KIF23具备明确的人类遗传病关联、可解析的马达结构域和centralspindlin装配节点属性，优先级主要来自机制特异性而非体内抗体成药可及性。",
+    "mechanism": "设计抗体结合KIF23马达结构域微管结合面或颈部二聚化邻近界面，阻断其ATP依赖性微管结合及centralspindlin定位，从而干扰胞质分裂沟形成。",
+    "selectedEpitope": "优先覆盖N端kinesin马达结构域α4-α6微管结合面，避开高度保守ATP口袋。",
+    "diseaseDirection": "红系胞质分裂异常与CDA III",
+    "domain": "KIF23含N端kinesin马达结构域、颈部/卷曲螺旋二聚化区及C端RACGAP1结合调控区。",
+    "evidence": "KIF23结构与红系胞质分裂遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q02241功能与结构域注释",
+      "RCSB PDB 3VHX晶体结构记录",
+      "OMIM/Orphanet先天性红细胞生成异常性贫血III型资料"
+    ],
+    "referenceEntries": "UniProt Q02241；RCSB PDB 3VHX；Open Targets KIF23",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端马达结构域α4-α6微管结合界面",
+        "可直接阻断KIF23与微管晶格结合，机制读出明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "马达结构域颈部连接区及二聚化邻近表面",
+        "可能影响马达构象耦联和centralspindlin装配几何",
+        "备选"
+      ],
+      [
+        "Site C",
+        "P-loop、Switch I/II邻近ATP结合口袋",
+        "高度保守且易产生泛kinesin交叉反应，成药选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "KIF23为胞内抗原，常规抗体体内可及性不足；马达ATP口袋保守性高，应优先选择非催化、KIF23特异性外露构象表面。",
+    "structurePrepZh": "以3VHX晶体结构链A-H为模板，保留马达结构域生物学装配，校正缺失环区并标注ATP类似物、微管结合面和链间界面。",
+    "structureRef": "RCSB PDB 3VHX，X-ray diffraction，2.81 Å",
+    "antibodies": [
+      "anti-KIF23 clone 2H12",
+      "anti-MKLP1 polyclonal antibody"
+    ],
+    "interfaceFocus": "马达结构域微管结合面与颈部构象耦联区",
+    "designMode": "胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "RACGAP1",
+        "rationale": "RACGAP1/CYK4与KIF23形成centralspindlin复合体，是中央纺锤体组装和RhoA活化定位的直接功能伙伴。靶向其KIF23结合或调控界面可验证同一胞质分裂通路。"
+      },
+      {
+        "target": "ECT2",
+        "rationale": "ECT2受centralspindlin招募至中央纺锤体后促进RhoA核苷酸交换，是收缩环形成的关键下游节点。其异常会影响与KIF23相关的胞质分裂执行过程。"
+      },
+      {
+        "target": "RHOA",
+        "rationale": "RHOA是centralspindlin-ECT2轴激活的直接小GTP酶，驱动肌动球蛋白收缩环装配。该节点与KIF23处于同一胞质分裂沟形成通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

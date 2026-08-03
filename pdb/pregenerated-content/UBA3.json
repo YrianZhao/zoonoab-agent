@@ -1,0 +1,65 @@
+{
+  "gene": "UBA3",
+  "generatedAt": "2026-08-03T17:36:42.556Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "UBA3 是 NEDD8 激活酶复合体的催化亚基，与 NAE1 共同驱动 NEDD8 与 cullin 蛋白连接，维持 CRL 泛素连接酶活性；在急性髓系白血病和骨髓增生异常综合征中，该轴影响细胞周期、DNA 损伤应答和蛋白稳态。UBA3 为胞内酶，天然抗原可及性弱，作为常规细胞外中和抗体靶点并不占优，更适合作为结构指导的胞内结合体或降解型抗体片段研究对象。其优先级主要来自 5JJM 高分辨率复合物结构和 MLN4924 临床机制验证，相比下游单一 CRL 底物，靶向 UBA3 可在 NEDD8 激活起始步骤产生更上游的通路阻断。",
+    "mechanism": "设计结合体占据 UBA3 ATP/腺苷酸化口袋或 NEDD8 结合沟槽，阻断 NEDD8 腺苷酸化及硫酯转移至 UBA3 催化半胱氨酸。",
+    "selectedEpitope": "优先靶向腺苷酸化结构域的 ATP-NEDD8 交界口袋，并避开 NAE1 稳定界面。",
+    "diseaseDirection": "血液肿瘤与 NEDD8-CRL 通路",
+    "domain": "UBA3 含腺苷酸化结构域、催化半胱氨酸半结构域和泛素折叠样结构域，与 NAE1 形成 NAE 异二聚体。",
+    "evidence": "UBA3-NEDD8 激活轴结构与血液肿瘤证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt Q8TBC4 蛋白功能注释",
+      "RCSB PDB 5JJM X 射线晶体结构",
+      "NEDD8 activating enzyme 抑制剂 pevonedistat 机制研究"
+    ],
+    "referenceEntries": "UniProt Q8TBC4；RCSB PDB 5JJM；Reactome NEDDylation",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "腺苷酸化结构域 ATP-NEDD8 结合口袋",
+        "可直接阻断 NEDD8 腺苷酸化起始步骤，机制最清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化半胱氨酸半结构域邻近硫酯转移界面",
+        "可干扰 NEDD8 从腺苷酸化中间体转移至 UBA3 催化半胱氨酸",
+        "备选"
+      ],
+      [
+        "Site C",
+        "UBA3-NAE1 异二聚体接触界面",
+        "可能破坏复合体装配，但界面保守且存在构象稳定性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "UBA3 位于胞内，经典抗体药物递送受限；ATP 口袋保守性较高，应优先设计跨口袋与邻近非保守环区的构象表位以提高选择性。",
+    "structurePrepZh": "以 5JJM 为模板分离 UBA3-NAE1-NEDD8 复合体链，保留 ATP 类配体和催化中心邻近残基，补全缺失侧链并进行质子化状态校正。",
+    "structureRef": "RCSB PDB 5JJM，2.15 Å X-ray NAE 复合物结构",
+    "antibodies": [
+      "抗 UBA3 研究级单克隆抗体",
+      "抗 NAE1 研究级单克隆抗体"
+    ],
+    "interfaceFocus": "ATP-NEDD8 腺苷酸化口袋与催化半胱氨酸通道",
+    "designMode": "胞内结构阻断",
+    "candidates": [
+      {
+        "target": "NAE1",
+        "rationale": "NAE1 与 UBA3 形成 NEDD8 activating enzyme 异二聚体，参与 NEDD8 腺苷酸化底物定位；靶向该亚基可影响同一 NEDD8 激活起始复合物。"
+      },
+      {
+        "target": "NEDD8",
+        "rationale": "NEDD8 是 UBA3-NAE1 直接激活的类泛素修饰分子，其与 cullin 连接驱动 CRL 活化；阻断其装载或转移可抑制同一 neddylation 通路。"
+      },
+      {
+        "target": "DCUN1D1",
+        "rationale": "DCUN1D1 促进 cullin neddylation 的 E3 辅助步骤，并与 UBA3 下游的 NEDD8 转移过程同属 CRL 激活轴；在肿瘤中具有扩增和通路增强证据。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

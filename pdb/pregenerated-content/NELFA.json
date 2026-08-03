@@ -1,0 +1,65 @@
+{
+  "gene": "NELFA",
+  "generatedAt": "2026-08-03T20:18:30.952Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NELFA 是负性转录延伸因子 NELF 复合体的组成亚基，参与 RNA polymerase II 启动后暂停并影响 HIV 转录延伸过程，疾病关联主要集中于 HIV 感染及血液学数量性状。该蛋白为细胞核内转录调控因子，不具备胞外结构域、分泌蛋白或膜受体特征，天然抗原可及性不适合作为体内阻断型抗体靶点。相较 CCR5、CXCR4、CD4 或 HIV Env 等同通路可及靶点，NELFA 的抗体开发优先级较低，更适合作为结构生物学验证抗原或细胞内研究型结合分子靶点。",
+    "mechanism": "设计以内源性研究阻断为主，结合 NELFA N 端复合体装配界面，干扰 NELF-A 与 NELF-C/D 及 Pol II 暂停复合体的稳定相互作用。",
+    "selectedEpitope": "优先覆盖 5L3X 中 NELFA 可解析的 N 端复合体装配界面，避开低复杂度柔性片段。",
+    "diseaseDirection": "HIV 转录延伸与宿主因子调控",
+    "domain": "NELFA 含 N 端 NELF 复合体装配区及 C 端 RNA 识别样结构域，整体定位于细胞核。",
+    "evidence": "NELFA 结构与 HIV 转录暂停证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt Q9H3P2 蛋白定位与功能注释",
+      "RCSB PDB 5L3X X 射线晶体结构",
+      "文献报道的 NELF/P-TEFb 介导 HIV 转录调控研究"
+    ],
+    "referenceEntries": "UniProt Q9H3P2；RCSB PDB 5L3X；Open Targets NELFA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "NELFA N 端 NELF 复合体装配界面",
+        "可用于干扰 NELF 复合体稳定性并验证 Pol II 暂停机制",
+        "优先"
+      ],
+      [
+        "Site B",
+        "5L3X 中链 A/B 可解析外露螺旋束区域",
+        "适合获得构象依赖型研究抗体并辅助复合体结构捕获",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端 RNA 识别样结构域及柔性连接区",
+        "可能影响 RNA 结合相关功能，但构象异质性与胞内可及性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NELFA 为核内蛋白，常规抗体难以进入细胞核；建议限定为体外机制验证、结构抗体或胞内表达型 VHH，并进行亚细胞递送风险评估。",
+    "structurePrepZh": "以 PDB 5L3X 链 A、B 为模板，保留实验可解析区域，补充缺失环区建模并标注复合体接触面、低复杂度区与潜在磷酸化位点。",
+    "structureRef": "RCSB PDB 5L3X，X-ray diffraction，2.75 Å",
+    "antibodies": [
+      "研究级抗 NELFA 单克隆抗体",
+      "研究级抗 NELF-A 多克隆抗体"
+    ],
+    "interfaceFocus": "NELFA 与 NELF-C/D 复合体装配接触面",
+    "designMode": "胞内研究型阻断",
+    "candidates": [
+      {
+        "target": "CDK9",
+        "rationale": "CDK9 是 P-TEFb 催化亚基，可磷酸化 Pol II CTD 和负性延伸因子，直接促进 HIV Tat 依赖的转录延伸释放。"
+      },
+      {
+        "target": "CCNT1",
+        "rationale": "CCNT1 与 CDK9 组成 P-TEFb，并与 HIV Tat/TAR 轴协同招募至病毒转录复合体，是同一转录延伸通路的关键宿主因子。"
+      },
+      {
+        "target": "SUPT5H",
+        "rationale": "SUPT5H 编码 DSIF 复合体亚基 SPT5，与 NELF 共同维持 Pol II 启动后暂停，并在 P-TEFb 磷酸化后参与延伸转换。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

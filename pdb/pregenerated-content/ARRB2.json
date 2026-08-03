@@ -1,0 +1,65 @@
+{
+  "gene": "ARRB2",
+  "generatedAt": "2026-08-03T10:36:37.351Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ARRB2 是胞内β-arrestin支架蛋白，参与GPCR脱敏、内吞及ERK/MAPK、PI3K-AKT等信号复合体组织，其疾病关联主要反映RAS/MAPK相关肿瘤、Noonan综合征、Costello综合征和心肌肥厚通路中的信号重塑。该蛋白缺乏天然胞外结构域或分泌形式，完整抗体在常规细胞外给药场景中的抗原可及性受限，更适合作为胞内结合体、递送抗体片段或结构生物学阻断工具开发。相较于上游RTK或RAS/MAPK核心激酶，ARRB2位于GPCR偏向性信号与受体内吞交汇点，可用于解析受体特异性β-arrestin依赖信号，优先级应定位为机制验证型而非传统可成药膜外靶点。",
+    "mechanism": "设计胞内Fab或VHH阻断ARRB2与磷酸化GPCR尾部及受体核心腔的结合，抑制β-arrestin介导的受体脱敏、网格蛋白/AP2募集和ERK信号支架形成。",
+    "selectedEpitope": "优先覆盖N-domain磷酸受体尾结合沟槽及central crest受体核心界面，避免单纯选择柔性C-tail表位。",
+    "diseaseDirection": "RAS/MAPK相关肿瘤与发育综合征",
+    "domain": "ARRB2含N-domain、C-domain、极性核心、central crest及C端clathrin/AP2结合区，整体为胞内支架蛋白。",
+    "evidence": "ARRB2介导GPCR-β-arrestin信号结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P32121功能与亚细胞定位注释",
+      "RCSB PDB 9UYM冷冻电镜复合物结构",
+      "GPCR-β-arrestin脱敏与内吞机制文献"
+    ],
+    "referenceEntries": "UniProt P32121；RCSB PDB 9UYM；Open Targets ARRB2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N-domain磷酸化受体尾结合沟槽与极性核心邻近面",
+        "可干预ARRB2识别磷酸化GPCR尾部并稳定活化构象，机制指向明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "central crest及C-domain受体核心结合界面",
+        "可阻断ARRB2与活化GPCR跨膜核心的二级接触，适合构象选择性抗体片段",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端clathrin/AP2结合区域及柔性尾部",
+        "可能影响内吞衔接蛋白募集，但柔性高且构象异质性增加筛选风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ARRB2为胞内蛋白，常规IgG难以触达活细胞内抗原；建议采用细胞内VHH、Fab结构探针或递送系统，并严格评估ARRB1交叉反应。",
+    "structurePrepZh": "以PDB 9UYM冷冻电镜模型为模板，保留ARRB2抗原链并校验受体接触面、缺失环区和磷酸化肽密度；对柔性C端进行截短或多构象建模。",
+    "structureRef": "RCSB PDB 9UYM，3.5 Å cryo-EM GPCR-ARRB2复合物",
+    "antibodies": [
+      "intrabody30",
+      "Fab30"
+    ],
+    "interfaceFocus": "磷酸化GPCR尾结合沟槽与central crest界面",
+    "designMode": "胞内阻断型片段设计",
+    "candidates": [
+      {
+        "target": "HRAS",
+        "rationale": "HRAS是Costello综合征和RAS/MAPK驱动肿瘤的核心小GTP酶，与ARRB2相关疾病谱在MAPK信号输出层面重叠。其突变直接驱动RAF-MEK-ERK级联活化。"
+      },
+      {
+        "target": "PTPN11",
+        "rationale": "PTPN11编码SHP2，是Noonan综合征和RTK/RAS/MAPK通路激活的重要节点。该靶点与ARRB2共同影响ERK信号强度和持续性。"
+      },
+      {
+        "target": "RAF1",
+        "rationale": "RAF1位于RAS下游并参与Noonan综合征、心肌肥厚及肿瘤相关MAPK传导。其信号输出可与β-arrestin支架化ERK激活形成通路交叉。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

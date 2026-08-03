@@ -1,0 +1,65 @@
+{
+  "gene": "FEM1C",
+  "generatedAt": "2026-08-03T12:31:25.397Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FEM1C是CRL2FEM1C E3泛素连接酶底物识别亚基，参与识别C端精氨酸降解信号并介导靶蛋白泛素化，与神经发育异常、共济失调及神经退行性表型存在遗传学关联。该蛋白主要为胞内适配蛋白，并非经典可及性良好的分泌蛋白或膜受体，因此抗体策略更适合结构验证、细胞内递送抗体或研究级阻断分子。相较通路中核心CUL2/RBX1等泛素化骨架组分，FEM1C具备更明确的底物识别界面和较高分辨率结构依据，适合作为选择性机制探针的优先靶点。",
+    "mechanism": "抗体结合FEM1C ankyrin repeat底物识别凹槽，阻断C端精氨酸降解信号肽段与FEM1C的相互作用，抑制CRL2FEM1C底物招募。",
+    "selectedEpitope": "优先锁定ankyrin repeat形成的C-degron结合凹槽及邻近带电残基网络。",
+    "diseaseDirection": "神经发育与共济失调相关疾病",
+    "domain": "FEM1C含多个ankyrin repeat，形成弯曲螺旋重复支架并承担底物识别功能。",
+    "evidence": "FEM1C结构与神经系统遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q96JP0功能与亚细胞定位注释",
+      "RCSB PDB 6XKC X射线晶体结构",
+      "CRL2FEM1C C-degron识别机制研究文献"
+    ],
+    "referenceEntries": "UniProt Q96JP0；RCSB PDB 6XKC；Open Targets FEM1C",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ankyrin repeat内侧C-degron结合凹槽",
+        "直接干预底物C端精氨酸识别，机制验证价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ankyrin repeat外侧保守螺旋表面",
+        "可作为构象稳定或变构干预表位，降低与底物肽竞争依赖",
+        "备选"
+      ],
+      [
+        "Site C",
+        "CUL2复合体潜在装配邻近区域",
+        "可能影响E3复合体组装，但界面功能需进一步结构映射",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FEM1C缺乏天然胞外暴露，常规治疗性抗体成药性受限；建议定位为细胞内递送抗体、Fab结构探针或体外机制阻断分子。",
+    "structurePrepZh": "以PDB 6XKC为模板保留抗原链A-F，去除晶体缓冲组分，检查ankyrin repeat凹槽残基、缺失环区与链间晶体接触。",
+    "structureRef": "PDB 6XKC，X-ray diffraction，2.03 Å",
+    "antibodies": [
+      "暂无获批FEM1C靶向抗体",
+      "暂无临床阶段FEM1C同类抗体"
+    ],
+    "interfaceFocus": "ankyrin repeat底物肽结合凹槽",
+    "designMode": "胞内机制阻断",
+    "candidates": [
+      {
+        "target": "CUL2",
+        "rationale": "CUL2是CRL2FEM1C泛素连接酶复合体的核心支架蛋白，参与连接底物识别模块与RBX1催化模块，处于同一泛素化通路。"
+      },
+      {
+        "target": "RBX1",
+        "rationale": "RBX1为CRL2复合体RING组分，负责招募E2泛素结合酶并促进泛素转移，可作为同一E3连接酶轴的催化端候选靶点。"
+      },
+      {
+        "target": "ELOB",
+        "rationale": "ELOB编码Elongin B，是CUL2型VHL-box E3连接酶适配复合体组分，参与稳定底物受体模块并支持CRL2FEM1C装配。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

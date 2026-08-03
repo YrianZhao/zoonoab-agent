@@ -1,0 +1,65 @@
+{
+  "gene": "H2AX",
+  "generatedAt": "2026-08-03T19:29:14.406Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "H2AX是核小体核心组蛋白H2A变体，DNA双链断裂后Ser139磷酸化形成γH2AX，招募MDC1、RNF8/RNF168及53BP1等DNA损伤应答因子，参与肿瘤基因组不稳定性与放疗、化疗应答。该蛋白主要位于细胞核核小体内，天然抗原可及性显著弱于膜受体或分泌蛋白，因此更适合作为细胞内标志物识别、病理检测或递送型抗体工程靶点。相较ATM、ATR等大型激酶，γH2AX具有明确损伤诱导修饰位点和成熟病理应用基础，但作为治疗性阻断靶点优先级受限。",
+    "mechanism": "抗体设计应聚焦识别H2AX Ser139磷酸化C端尾部，区分γH2AX与未磷酸化H2AX，并避免干扰核小体H2A-H2B二聚体装配界面。",
+    "selectedEpitope": "优先选择C端SQEY磷酸化尾部Ser139邻近线性表位，规避组蛋白折叠域核小体接触面。",
+    "diseaseDirection": "肿瘤DNA损伤应答标志物",
+    "domain": "H2AX含N端尾部、组蛋白折叠域及C端SQEY基序；PDB 3U3Z解析核小体内H2A.X链。",
+    "evidence": "H2AX-γH2AX DNA损伤应答证据包",
+    "evidenceSources": [
+      "Open Targets Platform肿瘤关联数据",
+      "UniProt P16104功能与修饰注释",
+      "RCSB PDB 3U3Z核小体晶体结构",
+      "DNA双链断裂γH2AX-MDC1修复复合体文献"
+    ],
+    "referenceEntries": "UniProt P16104；RCSB PDB 3U3Z；Open Targets H2AX",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端Ser139磷酸化SQEY尾部",
+        "可实现γH2AX特异识别，适合肿瘤DNA损伤检测与药效监测",
+        "优先"
+      ],
+      [
+        "Site B",
+        "核小体外露的H2AX L1/L2环区",
+        "可能提供构象依赖识别，但易受核小体包装与染色质状态影响",
+        "备选"
+      ],
+      [
+        "Site C",
+        "组蛋白折叠域H2A-H2B二聚体界面",
+        "高度保守且参与核小体装配，存在交叉反应与功能扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "H2AX为细胞核内组蛋白，膜外可及性不足；治疗性抗体需考虑递送限制。应采用磷酸化肽负筛策略降低H2A家族交叉识别。",
+    "structurePrepZh": "以3U3Z中H2A.X链A、B为模板，保留核小体构象用于可及性评估；C端尾部柔性区域需结合磷酸化肽建模补全。",
+    "structureRef": "RCSB PDB 3U3Z，X-ray diffraction，1.5 Å核小体结构",
+    "antibodies": [
+      "Anti-γH2AX clone JBW301",
+      "Anti-γH2AX clone 2F3"
+    ],
+    "interfaceFocus": "Ser139磷酸化C端尾部与MDC1识别轴",
+    "designMode": "磷酸化表位特异识别",
+    "candidates": [
+      {
+        "target": "ATM",
+        "rationale": "ATM在DNA双链断裂后直接磷酸化H2AX Ser139，是γH2AX形成的上游核心激酶，位于同一DNA损伤应答通路。"
+      },
+      {
+        "target": "MDC1",
+        "rationale": "MDC1通过BRCT结构域识别γH2AX磷酸化C端尾部，放大损伤位点修复因子招募信号。"
+      },
+      {
+        "target": "TP53BP1",
+        "rationale": "53BP1在RNF8/RNF168泛素化级联后富集于γH2AX标记的损伤染色质，调控双链断裂修复通路选择。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

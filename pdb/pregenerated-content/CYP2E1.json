@@ -1,0 +1,65 @@
+{
+  "gene": "CYP2E1",
+  "generatedAt": "2026-08-03T18:28:36.420Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CYP2E1 是内质网膜锚定的血红素依赖单加氧酶，参与乙醇、丙酮、脂肪酸及多种小分子底物氧化，并可在催化循环中产生反应性氧物种，因而与代谢应激、脂质指标及卵巢功能相关表型存在遗传和功能关联。该蛋白主体催化结构域面向胞质侧，N 端为膜锚定区，天然并非典型细胞外抗体靶点，抗原可及性较分泌蛋白或细胞表面受体受限。其优先级主要来自高质量实验结构和明确底物通道/血红素结合腔信息；相较同通路可分泌或膜外暴露靶点，CYP2E1更适合用于机制研究型结合分子、细胞内递送抗体片段或体外功能阻断设计。",
+    "mechanism": "抗体片段结合 CYP2E1 催化结构域近端底物进入通道，空间阻断小分子底物向血红素铁中心定位，从而降低氧化代谢和ROS生成。",
+    "selectedEpitope": "优先覆盖 F-G loop 与 B-C loop 邻近底物通道入口，避免直接压迫血红素核心。",
+    "diseaseDirection": "代谢应激与卵巢功能异常",
+    "domain": "N端内质网膜锚定区连接胞质型P450催化结构域，含血红素结合保守Cys配位位点。",
+    "evidence": "CYP2E1代谢氧化应激结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt P05181 功能与亚细胞定位注释",
+      "RCSB PDB 3E6I X射线晶体结构",
+      "人源CYP2E1底物代谢与ROS生成文献"
+    ],
+    "referenceEntries": "UniProt P05181；RCSB PDB 3E6I；Open Targets CYP2E1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "F-G loop/B-C loop底物通道入口",
+        "可阻断底物进入催化腔并保留血红素结构完整性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "G helix与I helix外侧暴露面",
+        "适合获得构象识别抗体并降低对保守血红素位点的交叉风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "血红素近端Cys配位区周边",
+        "该区域高度保守且接近催化核心，可能影响折叠稳定性与同源P450选择性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CYP2E1为胞内/内质网膜相关酶，常规全长IgG难以到达催化结构域；建议采用Fab/VHH并结合细胞内递送或体外酶学筛选验证。",
+    "structurePrepZh": "以3E6I链A或B为模板，保留血红素辅基用于通道判定，去除结晶溶剂与非关键小分子后进行质子化和环区完整性检查。",
+    "structureRef": "Human CYP2E1 crystal structure, PDB 3E6I, 2.2 Å",
+    "antibodies": [
+      "anti-CYP2E1 monoclonal antibody clone 1-98-1",
+      "anti-CYP2E1 monoclonal antibody clone H-40"
+    ],
+    "interfaceFocus": "底物通道入口与血红素腔外缘",
+    "designMode": "胞内酶抑制型",
+    "candidates": [
+      {
+        "target": "CYP1A2",
+        "rationale": "CYP1A2同属肝脏细胞色素P450外源物与饮食相关底物代谢网络，参与咖啡因等小分子氧化代谢，可作为同类代谢表型比较靶点。"
+      },
+      {
+        "target": "ADH1B",
+        "rationale": "ADH1B位于乙醇氧化上游，将乙醇转化为乙醛，与CYP2E1共同影响醇代谢负荷和氧化应激强度。"
+      },
+      {
+        "target": "ALDH2",
+        "rationale": "ALDH2催化乙醛向乙酸转化，是乙醇代谢通路关键解毒节点，与CYP2E1介导的乙醇诱导代谢应激存在功能耦联。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

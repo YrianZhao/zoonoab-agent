@@ -1,0 +1,65 @@
+{
+  "gene": "KDM1B",
+  "generatedAt": "2026-08-03T13:41:02.143Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KDM1B为FAD依赖性赖氨酸去甲基化酶，主要作用于H3K4甲基化状态，影响心肌细胞转录程序；Open Targets中其与心房颤动、QT间期和心房扑动存在遗传关联。该蛋白为细胞核内酶，天然抗原可及性不具备膜受体或分泌蛋白优势，因此更适合细胞内递送抗体片段或结构引导的抑制性结合分子探索。相比离子通道类心律靶点，KDM1B具有高分辨率催化结构和明确辅因子结合口袋，可优先用于表观遗传调控轴的机制验证型抗体设计。",
+    "mechanism": "设计结合SWIRM/AOL催化区邻近界面的胞内抗体片段，空间阻断组蛋白H3尾肽进入FAD依赖性氧化去甲基化沟槽。",
+    "selectedEpitope": "优先锁定AOL胺氧化酶结构域的底物肽沟槽及FAD邻近入口环区。",
+    "diseaseDirection": "心律失常表观遗传调控",
+    "domain": "KDM1B含N端锌指样区域、SWIRM结构域及C端AOL胺氧化酶催化结构域。",
+    "evidence": "KDM1B心律性状遗传关联与催化结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病-靶点关联",
+      "UniProt Q8NB78功能与结构域注释",
+      "RCSB PDB 4HSU晶体结构记录",
+      "Gene Ontology组蛋白去甲基化功能注释"
+    ],
+    "referenceEntries": "UniProt Q8NB78；RCSB PDB 4HSU；Open Targets KDM1B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "AOL催化结构域FAD邻近底物肽入口",
+        "可直接干预H3K4底物进入和催化取向",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SWIRM-AOL结构域连接界面",
+        "可能稳定非催化构象并影响底物沟槽成形",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端锌指样区域外露片段",
+        "结构可塑性较高且功能阻断证据有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "KDM1B为核内蛋白，常规抗体细胞外给药难以到达靶点；建议采用VHH、intrabody或递送偶联格式，并严格评估KDM1A交叉反应。",
+    "structurePrepZh": "以4HSU晶体结构链A/B/C为模板，保留FAD相关构象信息，补全缺失环区后进行质子化、界面溶剂暴露和同源酶保守性标注。",
+    "structureRef": "RCSB PDB 4HSU，KDM1B晶体结构，1.988 Å",
+    "antibodies": [
+      "暂无获批KDM1B治疗性抗体",
+      "研究级抗KDM1B单克隆抗体"
+    ],
+    "interfaceFocus": "FAD邻近底物沟槽与SWIRM-AOL连接界面",
+    "designMode": "胞内VHH阻断",
+    "candidates": [
+      {
+        "target": "KDM1A",
+        "rationale": "KDM1A与KDM1B同属LSD家族FAD依赖性组蛋白去甲基化酶，参与H3K4/H3K9甲基化调控；其结构和抑制剂证据更丰富，可作为同通路选择性对照靶点。"
+      },
+      {
+        "target": "HDAC1",
+        "rationale": "HDAC1与组蛋白去乙酰化复合体相关，参与染色质压缩和心肌转录调控；可用于评估表观遗传抑制轴对心律相关基因表达的影响。"
+      },
+      {
+        "target": "RCOR1",
+        "rationale": "RCOR1是LSD1/CoREST转录抑制复合体核心组分，可连接去甲基化酶与染色质调控模块；适合作为KDM1B相关染色质抑制网络的候选节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

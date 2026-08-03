@@ -1,0 +1,65 @@
+{
+  "gene": "SAMTOR",
+  "generatedAt": "2026-08-03T16:19:46.828Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SAMTOR是胞质S-腺苷甲硫氨酸感受蛋白，通过感知SAM水平并影响GATOR1-KICSTOR-mTORC1轴，将甲硫氨酸代谢状态耦联至细胞生长信号。其疾病关联主要集中于血小板计数、胆红素代谢及卒中等复杂性状，提示代谢-造血与血管风险通路存在遗传关联。SAMTOR并非分泌蛋白或经典膜受体，天然抗原可及性弱；抗体设计更适合作为细胞内机制研究、结构稳定化或递送型抗体格式。相较mTOR、RRAGA等高度保守且多功能核心节点，SAMTOR位于营养感知上游，具备更聚焦的甲硫氨酸/SAM响应特征，但治疗性抗体优先级受胞内定位限制。",
+    "mechanism": "设计抗体可结合SAMTOR的SAM结合口袋邻近界面或KICSTOR相关接触面，干预SAMTOR构象状态及其对GATOR1-mTORC1抑制轴的调节。",
+    "selectedEpitope": "优先覆盖SAM结合口袋外缘及α螺旋束构象转换界面，避免完全埋入口袋导致亲和成熟受限。",
+    "diseaseDirection": "代谢-造血与mTORC1营养感知",
+    "domain": "SAMTOR为胞质小型SAM感受蛋白，含保守α螺旋束折叠及SAM结合腔，无跨膜区和胞外结构域。",
+    "evidence": "SAMTOR-mTORC1营养感知结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q1RMZ1蛋白功能注释",
+      "RCSB PDB 9O5D冷冻电镜结构",
+      "mTORC1氨基酸感知与GATOR-KICSTOR通路文献"
+    ],
+    "referenceEntries": "UniProt: Q1RMZ1; RCSB PDB: 9O5D; Open Targets: SAMTOR",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SAM结合口袋外缘及相邻α螺旋束表面",
+        "可稳定或干预SAM依赖构象状态，适合机制型Fab/VHH筛选",
+        "优先"
+      ],
+      [
+        "Site B",
+        "推定KICSTOR/GATOR调节相关外露界面",
+        "可能影响SAMTOR对mTORC1上游抑制复合体的功能耦联",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守疏水核心与寡聚装配接触面",
+        "结构埋藏度高且易影响整体折叠，存在非特异构象扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SAMTOR为胞内蛋白，常规抗体难以直接到达作用位点；应优先定位为结构生物学、靶点验证或递送型抗体项目，并严格评估细胞内递送效率。",
+    "structurePrepZh": "以PDB 9O5D冷冻电镜模型为模板，保留抗原链A-E进行构象比对，修补缺失侧链并标注SAM结合腔、外露螺旋面及复合体接触界面。",
+    "structureRef": "RCSB PDB 9O5D, cryo-EM structure, 3.34 Å",
+    "antibodies": [
+      "暂无获批SAMTOR靶向抗体",
+      "暂无公开临床期SAMTOR抗体"
+    ],
+    "interfaceFocus": "SAM结合腔外缘与KICSTOR耦联表面",
+    "designMode": "胞内机制抗体设计",
+    "candidates": [
+      {
+        "target": "MTOR",
+        "rationale": "MTOR编码mTORC1催化核心，位于SAMTOR下游并直接整合营养、能量和生长因子信号；其通路证据充分，但结构域复杂且系统性抑制风险较高。"
+      },
+      {
+        "target": "RRAGA",
+        "rationale": "RRAGA为Rag GTPase核心成员，介导氨基酸状态向溶酶体定位的mTORC1传递；与SAMTOR-GATOR调控轴处于同一营养感知网络。"
+      },
+      {
+        "target": "DEPDC5",
+        "rationale": "DEPDC5是GATOR1复合体组成部分，参与抑制Rag GTPase并限制mTORC1活化；其位置更接近SAMTOR影响的上游抑制模块。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

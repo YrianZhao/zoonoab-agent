@@ -1,0 +1,65 @@
+{
+  "gene": "ABHD6",
+  "generatedAt": "2026-08-03T09:55:05.635Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ABHD6 是丝氨酸水解酶家族的单酰甘油脂肪酶，水解 2-arachidonoylglycerol 并影响内源性大麻素与花生四烯酸脂质信号，因而与神经炎症、阿尔茨海默病、多发性硬化和帕金森病等方向存在机制关联。该蛋白为膜相关酶，催化结构域位于胞质侧，因此完整 IgG 对天然构象的直接可及性受限，更适合采用细胞内递送片段、VHH 或研究级构象抗体策略。相较 FAAH、MGLL 等同通路酶，ABHD6 在神经免疫细胞和突触脂质调控中具有更局部化的 2-AG 水解作用，具备差异化调控优先级。",
+    "mechanism": "构象抗体阻断 ABHD6 催化三联体邻近底物入口，限制 2-arachidonoylglycerol 进入活性腔，从而降低其水解为花生四烯酸和甘油。",
+    "selectedEpitope": "优先覆盖 α/β 水解酶折叠中催化沟入口与盖帽螺旋邻近界面，避开跨膜锚定区。",
+    "diseaseDirection": "神经炎症与神经退行性疾病",
+    "domain": "N 端单跨膜锚定区连接胞质侧 α/β 水解酶催化结构域，含 Ser-His-Asp 催化三联体。",
+    "evidence": "ABHD6 脂质水解与神经炎症证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9BV23 functional annotation",
+      "RCSB PDB 7OTS X-ray structure",
+      "Literature on ABHD6-mediated 2-AG hydrolysis"
+    ],
+    "referenceEntries": "UniProt Q9BV23；RCSB PDB 7OTS；Open Targets ABHD6",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化沟入口与盖帽螺旋邻近表面",
+        "可直接限制 2-AG 进入活性腔，具备功能阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "α/β 水解酶核心结构域远离催化丝氨酸的稳定环区",
+        "利于获得构象识别抗体，可用于检测或结构捕获",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端跨膜锚定区及膜近端短肽段",
+        "天然膜环境依赖强、抗原制备难度高且可及性有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ABHD6 活性结构域为胞质侧膜相关区域，常规外源抗体难以进入细胞；设计宜限定为 VHH、细胞内抗体或递送型片段，并设置酶活筛选。",
+    "structurePrepZh": "以 7OTS 的 A/B 链为模板，保留催化结构域构象，检查配体、突变和缺失片段；跨膜区需通过 AlphaFold 或膜模型补足定位信息。",
+    "structureRef": "Human ABHD6 crystal structure, RCSB PDB 7OTS, 1.792 Å",
+    "antibodies": [
+      "研究级 anti-ABHD6 antibody",
+      "intracellular anti-ABHD6 VHH candidate"
+    ],
+    "interfaceFocus": "催化 Ser 邻近底物入口与盖帽螺旋界面",
+    "designMode": "胞内酶抑制型",
+    "candidates": [
+      {
+        "target": "MGLL",
+        "rationale": "MGLL 同样水解 2-AG，是内源性大麻素降解通路的核心酶；与 ABHD6 联合评估可区分全局与局部 2-AG 调控效应。"
+      },
+      {
+        "target": "FAAH",
+        "rationale": "FAAH 负责降解 anandamide，并与 2-AG 轴共同塑造内源性大麻素信号；在神经炎症和疼痛相关通路中具有明确机制关联。"
+      },
+      {
+        "target": "CNR1",
+        "rationale": "CNR1 是 2-AG 的主要受体之一，位于 ABHD6 上游功能输出端；靶向该受体可直接调节突触与神经免疫信号。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

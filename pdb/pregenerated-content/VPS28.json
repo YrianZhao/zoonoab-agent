@@ -1,0 +1,65 @@
+{
+  "gene": "VPS28",
+  "generatedAt": "2026-08-03T17:48:36.629Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "VPS28 是 ESCRT-I 复合体亚基，参与 HIV-1 Gag p6 中 PTAP late-domain 招募 TSG101-ESCRT-I 后的病毒出芽与膜裂解过程，疾病关联以 HIV 感染和病毒感染最为突出。该蛋白主要定位于胞质 ESCRT 复合体，缺乏稳定胞外结构域或分泌形式，常规体内中和抗体可及性有限。其优先级主要来自病毒出芽宿主依赖节点和高分辨率实验结构支持；但相较 CD4、CCR5 或 CXCR4 等膜表面 HIV 进入靶点，抗体成药性应定位为细胞内递送抗体片段或结构生物学验证方向。",
+    "mechanism": "通过细胞内抗体片段占据 VPS28 N端与 TSG101/ESCRT-I 装配界面，削弱 Gag-TSG101 招募后的 ESCRT-I 稳定化与病毒颗粒出芽。",
+    "selectedEpitope": "优先靶向 VPS28 N端 ESCRT-I core 复合体装配界面，避开高度保守疏水核心。",
+    "diseaseDirection": "HIV感染与病毒出芽通路",
+    "domain": "VPS28 含 N端 ESCRT-I core 结合区及 C端螺旋结构域，参与 ESCRT-I 架构稳定。",
+    "evidence": "VPS28-ESCRT-I介导HIV出芽证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt Q9UK41 功能与定位注释",
+      "RCSB PDB 6VME 晶体结构记录",
+      "HIV-1 Gag p6 PTAP-TSG101-ESCRT-I 出芽机制文献"
+    ],
+    "referenceEntries": "UniProt Q9UK41；RCSB PDB 6VME；Open Targets VPS28",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端 ESCRT-I core 装配界面",
+        "干扰 VPS28 对 ESCRT-I 复合体稳定化，适合机制型细胞内抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端螺旋束暴露面",
+        "可作为结构识别与复合体构象锁定表位，降低直接破坏核心折叠风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "保守疏水折叠核心",
+        "可能诱导非特异聚集或破坏蛋白整体稳定性，表位可开发性较低",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "VPS28 为胞内宿主蛋白，常规抗体组织可及性不足；建议采用 VHH、intrabody 或递送系统，并严格评估 ESCRT 基础内吞与胞质分裂毒性。",
+    "structurePrepZh": "以 6VME 晶体结构为模板，补全缺失侧链与质子化状态，保留 ESCRT-I 相关界面构象，标注复合体接触残基用于表位分层。",
+    "structureRef": "RCSB PDB 6VME，X-ray diffraction，2.19 Å",
+    "antibodies": [
+      "暂无获批VPS28靶向抗体",
+      "暂无临床阶段VPS28靶向抗体"
+    ],
+    "interfaceFocus": "VPS28-ESCRT-I core装配界面",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "TSG101",
+        "rationale": "TSG101 识别 HIV-1 Gag p6 PTAP late-domain 并招募 ESCRT-I，是病毒出芽通路中更上游的直接病毒-宿主接触节点。其 UEV 结构域具有明确配体结合口袋，机制验证优先级高。"
+      },
+      {
+        "target": "VPS37A",
+        "rationale": "VPS37A 是 ESCRT-I 复合体组成亚基，与 TSG101、VPS28 共同维持复合体架构并支持膜出芽过程。靶向其复合体界面可用于评估 ESCRT-I 装配依赖性。"
+      },
+      {
+        "target": "CHMP4B",
+        "rationale": "CHMP4B 属 ESCRT-III 核心聚合亚基，位于 ESCRT-I/II 下游并直接参与膜颈收缩与裂解。其与病毒释放终末步骤相关，适合作为同一出芽通路候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

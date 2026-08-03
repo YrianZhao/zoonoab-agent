@@ -1,0 +1,65 @@
+{
+  "gene": "FLAD1",
+  "generatedAt": "2026-08-03T12:34:42.717Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FLAD1编码FAD合成酶，催化FMN腺苷酰化生成FAD，直接影响线粒体黄素依赖性酰基-CoA脱氢酶、ETF/ETFDH电子转移体系及脂肪酸β氧化功能；其遗传缺陷与脂质代谢异常肌病和多种酰基-CoA脱氢酶缺乏症具有明确关联。该蛋白主要定位于胞质和线粒体，缺乏稳定胞外结构域或分泌特征，抗体可及性不具备常规细胞外阻断优势，更适合作为结构验证、细胞内递送抗体或机制研究靶点。相较ACAD家族下游酶，FLAD1位于FAD供给上游节点，可同时影响多个黄素酶活性，因此在黄素代谢障碍分层研究中具有较高优先级，但治疗性抗体开发需严格限定递送场景。",
+    "mechanism": "抗体设计以结合FAD合成酶催化腔邻近区域为核心，干预FMN、ATP与腺苷酰转移催化残基的构象耦联，用于抑制或报告FAD生成状态。",
+    "selectedEpitope": "优先选择C端FADS催化结构域中FMN/ATP结合沟槽外缘，避开深埋活性位点并覆盖构象敏感环区。",
+    "diseaseDirection": "黄素代谢障碍与线粒体脂肪酸氧化缺陷",
+    "domain": "FLAD1含N端钼蝶呤结合样结构域和C端FAD合成酶腺苷酰转移结构域，8ROM解析抗原链A。",
+    "evidence": "FLAD1黄素辅因子合成与脂肪酸氧化疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q8NFF5功能与亚细胞定位注释",
+      "RCSB PDB 8ROM X射线晶体结构",
+      "ClinVar/OMIM中FLAD1相关黄素代谢缺陷记录"
+    ],
+    "referenceEntries": "UniProt Q8NFF5；RCSB PDB 8ROM；Open Targets FLAD1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端FADS结构域FMN/ATP结合沟槽外缘及相邻柔性环",
+        "可报告或限制底物进入相关构象，结构解析度高，适于Fab精细识别",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端钼蝶呤结合样结构域暴露α/β表面",
+        "远离催化中心，适合作为非阻断型检测抗体或构象捕获位点",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端催化腔深部核苷酸结合口袋",
+        "功能相关性强但表位凹陷且保守性较高，易产生亲和力与选择性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FLAD1为细胞内代谢酶，常规抗体难以天然到达靶点；设计应优先用于结构生物学、诊断检测或细胞内递送平台，并评估黄素酶保守口袋交叉反应。",
+    "structurePrepZh": "以8ROM链A为模板，保留高分辨率坐标并校验FMN/ATP相关残基；去除非关键晶体接触分子，标注柔性环和潜在构象异质区。",
+    "structureRef": "RCSB PDB 8ROM，human FLAD1，X-ray，1.69 Å",
+    "antibodies": [
+      "无已批准FLAD1治疗性抗体",
+      "商业化抗FLAD1研究抗体"
+    ],
+    "interfaceFocus": "FADS催化沟槽外缘与构象敏感环区",
+    "designMode": "细胞内靶点研究型抗体",
+    "candidates": [
+      {
+        "target": "ETFDH",
+        "rationale": "ETFDH在线粒体电子转移黄素蛋白通路中接收ETF电子并向泛醌传递，缺陷可导致多种酰基-CoA脱氢酶缺乏症，与FLAD1相关疾病谱高度重叠。"
+      },
+      {
+        "target": "ETFA",
+        "rationale": "ETFA编码电子转移黄素蛋白α亚基，是脂肪酸β氧化中多种酰基-CoA脱氢酶的电子受体，FAD供应不足会影响该通路整体电子流。"
+      },
+      {
+        "target": "ACADM",
+        "rationale": "ACADM为中链酰基-CoA脱氢酶，依赖FAD作为辅因子催化脂肪酸β氧化初始脱氢反应，是FLAD1缺陷下游功能受损的代表性黄素酶。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

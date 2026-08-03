@@ -1,0 +1,65 @@
+{
+  "gene": "MTOR",
+  "generatedAt": "2026-08-03T20:13:55.768Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MTOR 是 PI3K-AKT-TSC-RHEB-mTOR 通路的核心丝氨酸/苏氨酸激酶，驱动 mTORC1 对 S6K、4E-BP1 与自噬调控节点的磷酸化，过度活化与皮质发育异常、过度生长综合征及透明细胞肾癌相关。该蛋白主要定位于胞内 mTORC1/mTORC2 复合物，天然抗原可及性弱，较适合作为结构机制验证或胞内递送抗体设计对象。其疾病遗传证据强且结构解析分辨率高；但相较 EGFR、VEGFA 等可及性更高靶点，优先级应限定于具备胞内递送或研究级干预平台的场景。",
+    "mechanism": "通过胞内递送抗体阻断 MTOR 激酶域与底物招募/催化构象耦联，抑制 S6K 与 4E-BP1 磷酸化输出。",
+    "selectedEpitope": "优先靶向 FRB-kinase linker 与激酶 N-lobe 邻近构象界面，干扰激酶活化构象稳定。",
+    "diseaseDirection": "mTOR 通路过度活化相关疾病",
+    "domain": "MTOR 含 HEAT 重复、FAT、FRB、激酶域与 FATC 结构域，4DRI 覆盖 FRB 相关片段。",
+    "evidence": "MTOR 通路遗传疾病与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联证据",
+      "UniProt P42345 蛋白功能与结构域注释",
+      "RCSB PDB 4DRI X-ray 晶体结构",
+      "PI3K-AKT-mTOR 通路文献与癌症基因组证据"
+    ],
+    "referenceEntries": "UniProt: P42345; RCSB PDB: 4DRI; HGNC: MTOR",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "FRB 结构域雷帕霉素-FKBP12 结合沟槽邻近面",
+        "可利用高分辨率结构定义构象热点，适合开发构象锁定型胞内抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FRB 与激酶域连接区相邻构象界面",
+        "可能削弱激酶活化构象耦联，并影响 mTORC1 信号输出",
+        "备选"
+      ],
+      [
+        "Site C",
+        "保守激酶 ATP 结合裂隙周边",
+        "功能相关性强但与 PI3K 相关激酶家族保守性高，选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MTOR 为胞内大分子激酶，常规抗体难以到达作用位点；需采用胞内递送、intrabody 或片段抗体策略，并规避保守 ATP 口袋交叉反应。",
+    "structurePrepZh": "以 4DRI 高分辨率晶体结构提取抗原链 A、B，补全缺失侧链并保留 FRB 关键构象，用于界面热点与可成药表面评估。",
+    "structureRef": "RCSB PDB 4DRI, X-ray diffraction, 1.45 Å",
+    "antibodies": [
+      "无临床获批抗 MTOR 治疗性抗体",
+      "研究级 anti-mTOR 抗体"
+    ],
+    "interfaceFocus": "FRB 配体结合沟槽及激酶构象耦联界面",
+    "designMode": "胞内递送抗体设计",
+    "candidates": [
+      {
+        "target": "PIK3CA",
+        "rationale": "PIK3CA 位于 MTOR 上游 PI3K-AKT 通路，激活性突变可促进 AKT-mTORC1 信号增强，与过度生长和多种肿瘤相关。"
+      },
+      {
+        "target": "AKT1",
+        "rationale": "AKT1 通过磷酸化 TSC2 与 PRAS40 解除 mTORC1 抑制，是连接 PI3K 激活与 MTOR 输出的核心激酶节点。"
+      },
+      {
+        "target": "TSC2",
+        "rationale": "TSC2 与 TSC1 形成 RHEB-GAP 复合物，抑制 RHEB-GTP 介导的 mTORC1 激活；失功能改变与皮质发育异常及结节性硬化相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

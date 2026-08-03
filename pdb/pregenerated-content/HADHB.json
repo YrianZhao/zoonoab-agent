@@ -1,0 +1,65 @@
+{
+  "gene": "HADHB",
+  "generatedAt": "2026-08-03T19:38:42.080Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HADHB编码线粒体三功能蛋白β亚基，承担长链脂肪酸β氧化中3-酮酰-CoA硫解酶活性，遗传缺陷可导致线粒体三功能蛋白缺乏症及长链3-羟酰-CoA脱氢酶缺乏相关表型。该蛋白主要定位于线粒体基质，并非经典胞外抗体靶点，抗原可及性劣于分泌蛋白或膜受体，但其酶复合体表面结构域可支持离体诊断、结构探针或细胞内递送抗体策略。相较脂肪酸氧化通路中多个下游代谢酶，HADHB具有明确人源实验结构、较高遗传疾病关联得分及复合体界面信息，因此在机制验证型抗体设计中具有优先级。",
+    "mechanism": "设计抗体阻断HADHB与HADHA在三功能蛋白复合体中的稳定装配界面，或占据β亚基硫解酶底物结合沟槽，干预长链3-酮酰-CoA硫解反应。",
+    "selectedEpitope": "优先覆盖HADHB硫解酶结构域近HADHA接触面的外露α螺旋与环区，避免深埋催化口袋。",
+    "diseaseDirection": "线粒体脂肪酸β氧化缺陷",
+    "domain": "HADHB为线粒体三功能蛋白β亚基，含硫解酶N端/C端折叠并参与α2β2复合体装配。",
+    "evidence": "HADHB脂肪酸β氧化疾病关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform遗传关联与疾病评分",
+      "UniProt P55084功能注释与亚细胞定位",
+      "RCSB PDB 6DV2人源线粒体三功能蛋白结构",
+      "OMIM/ClinVar中HADHB致病变异记录"
+    ],
+    "referenceEntries": "UniProt P55084；RCSB PDB 6DV2；Open Targets HADHB",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "β亚基硫解酶结构域邻近HADHA装配界面的外露螺旋-环区",
+        "可用于干预α/β亚基复合体稳定性并保留较高表面可及性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "硫解酶底物结合沟槽入口周边可及环区",
+        "可能影响长链3-酮酰-CoA进入催化区域，适合功能阻断筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "β亚基多聚体内部接触面及深埋催化残基附近",
+        "结构保守且可及性有限，易产生构象依赖或脱靶交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HADHB为线粒体基质蛋白，常规体内抗体难以到达天然抗原；设计应限定于离体检测、递送抗体或结构功能研究，并严格评估复合体保守界面交叉反应。",
+    "structurePrepZh": "以6DV2实验结构为模板，保留HADHA-HADHB复合体装配状态，校正缺失环区与质子化状态，按链间界面和硫解酶沟槽定义可及表面。",
+    "structureRef": "PDB 6DV2，人源线粒体三功能蛋白X射线结构，3.6 Å",
+    "antibodies": [
+      "commercial anti-HADHB antibody",
+      "commercial anti-mitochondrial trifunctional protein beta antibody"
+    ],
+    "interfaceFocus": "HADHA-HADHB装配界面与硫解酶沟槽入口",
+    "designMode": "结构引导阻断型",
+    "candidates": [
+      {
+        "target": "HADHA",
+        "rationale": "HADHA编码三功能蛋白α亚基，承担长链脂肪酸β氧化中的烯酰-CoA水合酶和3-羟酰-CoA脱氢酶活性，与HADHB共同构成致病复合体。其与HADHB的装配界面是同一疾病通路中的直接机制节点。"
+      },
+      {
+        "target": "ACADVL",
+        "rationale": "ACADVL编码极长链酰-CoA脱氢酶，位于线粒体长链脂肪酸β氧化上游步骤，缺陷可导致长链脂肪酸氧化障碍。该靶点与HADHA/HADHB共同决定长链底物进入后续氧化循环。"
+      },
+      {
+        "target": "CPT2",
+        "rationale": "CPT2参与长链脂肪酸进入线粒体后的酰基转移步骤，CPT2缺陷与长链脂肪酸氧化障碍和能量代谢危象相关。其位于HADHB作用前的同一线粒体脂肪酸利用通路。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

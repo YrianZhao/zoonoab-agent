@@ -1,0 +1,65 @@
+{
+  "gene": "RAP1GAP",
+  "generatedAt": "2026-08-03T15:53:47.299Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RAP1GAP是胞内Rap1小GTP酶的GTPase激活蛋白，通过促进Rap1-GTP水解为Rap1-GDP，影响整合素活化、细胞黏附及神经元突触可塑性等过程；其与神经退行性疾病及骨代谢相关表型存在遗传关联。该蛋白主要定位于胞质，缺乏天然胞外结构域或分泌暴露特征，抗原可及性不符合常规治疗性抗体直接阻断模式。相较于同通路中的ITGB1、ITGAL或SEMA4D等膜表面靶点，RAP1GAP更适合作为结构机制研究、细胞内递送抗体或研究型抑制工具的低优先级靶点。",
+    "mechanism": "设计抗体应识别RAP1GAP催化结构域近Rap1结合界面，阻断RAP1-GTP与GAP催化面结合，从而降低Rap1-GTP水解促进作用。",
+    "selectedEpitope": "优先评估GAP催化结构域的Rap1结合面及催化环邻近区域，避免深埋保守核心。",
+    "diseaseDirection": "神经退行性疾病与黏附信号",
+    "domain": "RAP1GAP含N端调控区和C端Rap1 GAP催化结构域，1SRQ覆盖催化核心二聚体构象。",
+    "evidence": "RAP1GAP-Rap1轴疾病遗传关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProtKB P47736功能与定位注释",
+      "RCSB PDB 1SRQ晶体结构记录",
+      "Rap1-整合素黏附信号通路文献"
+    ],
+    "referenceEntries": "UniProt P47736；RCSB PDB 1SRQ；Open Targets RAP1GAP",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "GAP催化结构域Rap1结合界面",
+        "可直接干扰RAP1GAP与Rap1-GTP复合物形成，机制指向明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化环及邻近α螺旋外露面",
+        "可能影响GAP催化构象稳定性，适合作为别构抑制表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化核心保守折叠内部邻近面",
+        "保守性高且可及性有限，存在交叉反应和低结合效率风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RAP1GAP为胞内蛋白，常规抗体难以到达作用位点；需优先采用细胞内抗体、递送体系或研究级Fab/VHH，并严格评估同源GAP交叉反应。",
+    "structurePrepZh": "以1SRQ多链晶体结构为模板，保留催化结构域链A优先建模，去除晶体接触冗余链，补全缺失环区并标注Rap1结合预测面。",
+    "structureRef": "RCSB PDB 1SRQ，X-ray diffraction，2.9 Å",
+    "antibodies": [
+      "研究级anti-RAP1GAP抗体",
+      "细胞内VHH工程化候选"
+    ],
+    "interfaceFocus": "Rap1-GTP结合面与GAP催化环",
+    "designMode": "胞内功能阻断",
+    "candidates": [
+      {
+        "target": "RAP1A",
+        "rationale": "RAP1A是RAP1GAP的直接小GTP酶底物，处于同一Rap1-GTP/Rap1-GDP转换轴，可用于解析黏附和突触信号输出。"
+      },
+      {
+        "target": "ITGB1",
+        "rationale": "ITGB1是Rap1介导整合素活化与细胞黏附的重要膜受体效应端，具备胞外结构域可及性，较适合常规抗体阻断。"
+      },
+      {
+        "target": "TLN1",
+        "rationale": "TLN1连接Rap1-RIAM信号与整合素胞质尾部激活，是Rap1驱动黏附通路的关键下游节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "RPS3A",
+  "generatedAt": "2026-08-03T16:13:47.298Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RPS3A为40S核糖体小亚基组成蛋白，参与翻译起始复合物和核糖体装配，其疾病关联多反映肌营养不良、病毒感染和浆细胞瘤中的蛋白稳态与翻译压力改变。该蛋白主要定位于胞质核糖体，缺乏分泌信号肽、跨膜区和稳定胞外结构域，天然抗原可及性不支持常规细胞表面抗体阻断。相较EGFR、IL6R等可及性更强的膜受体或分泌因子，RPS3A作为抗体主靶点优先级偏低，更适合作为胞内机制研究抗体或递送型胞内抗体设计对象。",
+    "mechanism": "设计重点为结合RPS3A外露螺旋-环区，干扰其与18S rRNA及邻近40S核糖体蛋白的装配界面。",
+    "selectedEpitope": "优先选择40S小亚基中RPS3A外露碱性螺旋与邻近环区，避开深埋rRNA结合面。",
+    "diseaseDirection": "翻译稳态与病毒感染相关疾病",
+    "domain": "RPS3A为小型核糖体蛋白，含保守核糖体蛋白S3Ae结构域，富含α螺旋并结合18S rRNA。",
+    "evidence": "RPS3A核糖体装配与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P61247 functional annotation",
+      "RCSB PDB 5VYC human 40S ribosomal subunit structure",
+      "Reactome eukaryotic translation initiation and ribosome assembly pathways"
+    ],
+    "referenceEntries": "UniProt P61247；RCSB PDB 5VYC；Reactome translation entries",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RPS3A外露α螺旋-环连接区",
+        "利于获得构象识别抗体，并可降低对深埋rRNA界面的非特异干扰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "18S rRNA邻近的碱性结合面边缘",
+        "可用于验证RPS3A装配界面功能，但需控制对核糖体整体稳定性的影响",
+        "备选"
+      ],
+      [
+        "Site C",
+        "40S小亚基内部埋藏面",
+        "结构可及性差，完整核糖体中抗体进入受限，功能阻断风险高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RPS3A为胞内核糖体蛋白，常规抗体难以到达天然作用位点；宜采用细胞内表达抗体、递送型VHH或免疫检测抗体策略。",
+    "structurePrepZh": "5VYC分辨率为6.0 Å，应结合AlphaFold模型与同源核糖体结构校正侧链，保留40S复合物环境评估可及性。",
+    "structureRef": "RCSB PDB 5VYC，X-ray human 40S ribosomal subunit",
+    "antibodies": [
+      "anti-RPS3A research antibody",
+      "anti-ribosomal protein S3A monoclonal antibody"
+    ],
+    "interfaceFocus": "18S rRNA结合边缘与外露螺旋环区",
+    "designMode": "胞内抗体/VHH验证",
+    "candidates": [
+      {
+        "target": "RPS6",
+        "rationale": "RPS6同属40S核糖体小亚基并参与翻译调控，在mTORC1-S6K轴下游反映细胞生长和蛋白合成状态。其通路证据更直接连接增殖与代谢应激。"
+      },
+      {
+        "target": "EIF4E",
+        "rationale": "EIF4E为帽依赖性翻译起始关键因子，与RPS3A所在核糖体翻译过程同属蛋白合成通路。阻断EIF4E与m7G帽或EIF4G相互作用具有更明确的功能干预逻辑。"
+      },
+      {
+        "target": "EIF3A",
+        "rationale": "EIF3A是eIF3复合物核心亚基，介导40S小亚基招募至mRNA并参与翻译起始复合物形成。其与40S核糖体功能耦合紧密，适合作为同通路机制候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

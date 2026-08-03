@@ -1,0 +1,65 @@
+{
+  "gene": "PPP3CC",
+  "generatedAt": "2026-08-03T15:32:16.847Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PPP3CC编码钙调神经磷酸酶催化亚基γ，参与Ca2+/钙调蛋白依赖的去磷酸化反应，并可影响NFAT相关转录与神经元突触信号稳态；其与阿尔茨海默病、帕金森病及神经退行性疾病存在遗传关联。该蛋白为胞内丝/苏氨酸磷酸酶催化亚基，天然抗原可及性不具备膜受体或分泌蛋白优势，因此更适合作为结构生物学与胞内递送抗体的机制验证靶点。相较泛化的下游神经炎症标志物，PPP3CC具有高分辨率实验结构与明确催化口袋，可支持针对调控界面的精细化抗体片段设计，但优先级需低于可直接胞外阻断的通路靶点。",
+    "mechanism": "设计胞内Fab或VHH阻断PPP3CC催化结构域与PPP3R调节亚基或钙调蛋白激活构象耦联，限制底物去磷酸化复合物形成。",
+    "selectedEpitope": "优先覆盖催化结构域外侧的PPP3R结合邻近界面，避开金属催化中心深口袋。",
+    "diseaseDirection": "神经退行性疾病与突触稳态",
+    "domain": "PPP3CC含N端丝/苏氨酸磷酸酶催化结构域，C端连接调节区与自抑制片段。",
+    "evidence": "PPP3CC神经退行性疾病结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P48454功能与结构域注释",
+      "RCSB PDB 7U0T晶体结构",
+      "Reactome钙调神经磷酸酶-NFAT通路"
+    ],
+    "referenceEntries": "UniProt:P48454；RCSB PDB:7U0T；Open Targets:PPP3CC",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域外侧PPP3R调节亚基结合邻近面",
+        "可能干扰调节亚基装配并影响活化复合物稳定性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域与C端调节区连接周边",
+        "可锁定非活化构象并降低底物进入效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "双金属催化中心及磷酸底物结合沟槽",
+        "高度保守且易产生选择性与交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PPP3家族催化域保守性高，需通过PPP3CA、PPP3CB同源结构交叉筛选；胞内靶点需配置递送体系或采用intrabody验证。",
+    "structurePrepZh": "以7U0T链A/B为模板，补全缺失侧链并校正金属离子、配体和质子化状态，保留催化域构象用于界面建模。",
+    "structureRef": "RCSB PDB 7U0T，X-ray diffraction，2.45 Å",
+    "antibodies": [
+      "抗PPP3CC研究级单克隆抗体",
+      "抗Calcineurin A泛反应研究抗体"
+    ],
+    "interfaceFocus": "PPP3R结合邻近面与调节区连接界面",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "PPP3R1",
+        "rationale": "PPP3R1编码钙调神经磷酸酶B调节亚基，与PPP3催化亚基形成Ca2+依赖性复合物，是同一钙调神经磷酸酶通路的直接装配节点。"
+      },
+      {
+        "target": "CALM1",
+        "rationale": "CALM1编码钙调蛋白，Ca2+结合后促进钙调神经磷酸酶活化并解除自抑制构象，位于PPP3CC上游激活步骤。"
+      },
+      {
+        "target": "NFATC2",
+        "rationale": "NFATC2是钙调神经磷酸酶去磷酸化底物之一，去磷酸化后发生核转位并介导NFAT依赖性转录反应。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

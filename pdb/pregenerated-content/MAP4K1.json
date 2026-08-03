@@ -1,0 +1,65 @@
+{
+  "gene": "MAP4K1",
+  "generatedAt": "2026-08-03T14:03:10.266Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAP4K1/HPK1是造血细胞富集的丝氨酸/苏氨酸激酶，在TCR信号中磷酸化SLP-76并促进其与14-3-3蛋白结合，从而负向限制T细胞活化。该靶点主要为胞内激酶，天然抗原可及性不利于常规阻断型抗体，但7R9N提供高分辨率催化结构，可支持胞内递送抗体片段或研究型构象抗体设计。相较于广泛表达的近端TCR激酶，MAP4K1具有免疫细胞谱系选择性和免疫检查点样负调控属性，优先级主要来自肿瘤免疫增强与机制验证价值。",
+    "mechanism": "通过识别MAP4K1激酶N叶/C叶ATP结合裂隙邻近构象，阻断ATP占位及底物SLP-76磷酸化，削弱14-3-3介导的负调控复合体形成。",
+    "selectedEpitope": "优先靶向激酶结构域铰链区与αC螺旋邻近构象表位，覆盖ATP结合裂隙边缘。",
+    "diseaseDirection": "肿瘤免疫增强与T细胞活化",
+    "domain": "MAP4K1含N端丝氨酸/苏氨酸激酶结构域、富脯氨酸区及C端CNH调控结构域。",
+    "evidence": "MAP4K1免疫负调控与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB Q92918 functional annotation",
+      "RCSB PDB 7R9N X-ray kinase-domain structure",
+      "TCR-SLP76-14-3-3 signaling literature"
+    ],
+    "referenceEntries": "UniProt Q92918；RCSB PDB 7R9N；Open Targets MAP4K1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域铰链区与ATP结合裂隙边缘",
+        "可直接干预ATP结合构象和催化活性，适合胞内抗体片段设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "αC螺旋及N叶调控面",
+        "可能稳定非活化构象并降低底物磷酸化效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守催化环与DFG基序邻近区",
+        "保守性高，存在MAP4K家族交叉反应与脱靶风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAP4K1为胞内激酶，常规IgG难以直接作用于天然靶点；建议定位为胞内Fab/VHH、递送抗体或结构验证工具，并严格评估MAP4K家族选择性。",
+    "structurePrepZh": "以7R9N的A、B链激酶结构域为模板，去除结晶添加物并保留催化口袋构象，补全缺失侧链后进行同源家族保守性比对。",
+    "structureRef": "RCSB PDB 7R9N，1.5 Å X-ray MAP4K1 kinase domain",
+    "antibodies": [
+      "研究级anti-HPK1抗体",
+      "研究级anti-MAP4K1抗体"
+    ],
+    "interfaceFocus": "ATP结合裂隙、铰链区、αC螺旋调控面",
+    "designMode": "胞内VHH/Fab构象抑制",
+    "candidates": [
+      {
+        "target": "LCK",
+        "rationale": "LCK是TCR近端信号的Src家族激酶，负责CD3 ITAM磷酸化并启动ZAP70募集；与MAP4K1处于同一T细胞受体信号网络。"
+      },
+      {
+        "target": "ZAP70",
+        "rationale": "ZAP70结合磷酸化CD3ζ链并磷酸化LAT和SLP-76，是TCR信号向下游适配体复合体传递的关键节点。"
+      },
+      {
+        "target": "LCP2",
+        "rationale": "LCP2编码SLP-76，是MAP4K1的功能底物之一；其磷酸化状态直接影响14-3-3结合与T细胞活化阈值。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

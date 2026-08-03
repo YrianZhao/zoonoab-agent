@@ -1,0 +1,65 @@
+{
+  "gene": "CBX2",
+  "generatedAt": "2026-08-03T18:15:44.995Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CBX2 是 Polycomb repressive complex 1 的染色质识别组分，通过 chromodomain 结合 H3K27me3 并参与性腺发育相关基因的表观遗传沉默，CBX2 功能缺陷与 46,XY complete gonadal dysgenesis 存在明确遗传关联。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌暴露特征，抗体作为常规细胞外阻断剂的抗原可及性不足，更适合作为结构生物学驱动的胞内靶向抗体或研究级 binder 设计对象。相较于 PRC1 中多结构域支架蛋白，CBX2 的 chromodomain 具有高分辨率实验结构和清晰的组蛋白尾肽识别沟槽，便于开展界面聚焦的 Fab/VHH 设计，但成药优先级低于可胞外递送的膜受体或分泌因子靶点。",
+    "mechanism": "设计分子阻断 CBX2 chromodomain 与 H3K27me3 组蛋白尾肽的芳香笼识别及邻近酸性沟槽接触，削弱 PRC1 在靶染色质位点的募集。",
+    "selectedEpitope": "优先覆盖 chromodomain 芳香笼及 H3K27me3 肽结合沟槽边缘，避免干扰整体折叠核心。",
+    "diseaseDirection": "性发育异常与PRC1表观遗传调控",
+    "domain": "CBX2 含 N 端 chromodomain、低复杂度区及 C 端 Pc box；3H91 对应 chromodomain 晶体结构。",
+    "evidence": "CBX2-PRC1性腺发育表观遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q14781 functional annotation",
+      "RCSB PDB 3H91 X-ray chromodomain structure",
+      "ClinVar/OMIM reports on CBX2 and 46,XY gonadal dysgenesis"
+    ],
+    "referenceEntries": "UniProt Q14781；RCSB PDB 3H91；Open Targets CBX2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "chromodomain 芳香笼与 H3K27me3 结合沟槽",
+        "直接竞争三甲基赖氨酸识别，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "chromodomain β-折叠外侧及肽沟槽入口",
+        "可通过空间位阻削弱组蛋白尾肽进入，保留折叠稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "chromodomain 疏水核心邻近保守面",
+        "可能影响结构稳定性并增加跨 CBX 家族交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CBX2 为核内表观遗传蛋白，常规抗体难以到达作用位点；需采用胞内递送、intrabody 或细胞渗透格式，并严格评估 CBX 家族同源性导致的选择性风险。",
+    "structurePrepZh": "以 3H91 的 A-D 链 chromodomain 为模板，校验晶体对称接触、保留关键芳香笼残基构象，并补充缺失柔性区注释。",
+    "structureRef": "RCSB PDB 3H91，CBX2 chromodomain，1.5 Å X-ray",
+    "antibodies": [
+      "抗-CBX2研究级单克隆抗体",
+      "抗-H3K27me3表观遗传标志抗体"
+    ],
+    "interfaceFocus": "H3K27me3芳香笼及肽结合沟槽",
+    "designMode": "胞内阻断型binder",
+    "candidates": [
+      {
+        "target": "EZH2",
+        "rationale": "EZH2 为 PRC2 催化亚基，负责 H3K27 三甲基化并生成 CBX2 chromodomain 识别的染色质标记，位于同一 Polycomb 抑制轴上。"
+      },
+      {
+        "target": "SUZ12",
+        "rationale": "SUZ12 是 PRC2 复合体核心结构组分，对 EZH2 甲基转移酶活性和 H3K27me3 沉积必不可少，可作为上游表观遗传调控节点。"
+      },
+      {
+        "target": "RNF2",
+        "rationale": "RNF2/RING1B 是 PRC1 的 E3 泛素连接酶亚基，催化 H2AK119ub 并与 CBX2 介导的 PRC1 染色质募集功能相衔接。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

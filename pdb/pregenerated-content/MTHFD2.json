@@ -1,0 +1,65 @@
+{
+  "gene": "MTHFD2",
+  "generatedAt": "2026-08-03T14:27:28.190Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MTHFD2是线粒体一碳代谢酶，催化5,10-亚甲基四氢叶酸氧化及5,10-甲烯基四氢叶酸水解，支持嘌呤、胸苷酸与NADPH生成；其在多种增殖性疾病和免疫代谢重编程中上调，但Open Targets最高关联指向神经退行性疾病，提示疾病证据需谨慎分层。该蛋白定位于线粒体基质，缺乏胞外结构域和分泌特征，天然抗体抗原可及性显著弱于膜受体或分泌因子。作为抗体主靶点的优先级低于MTHFD2小分子抑制或可及性更高的通路节点，抗体策略更适合用于细胞内递送、诊断检测或靶向降解平台验证。",
+    "mechanism": "通过胞内递送抗体阻断MTHFD2催化口袋对NADP+与亚甲基四氢叶酸底物的结合，抑制线粒体一碳单位向核苷酸合成与还原力生成的供给。",
+    "selectedEpitope": "优先锁定NADP+结合沟槽邻近的Rossmann样结构域边缘，避免完全覆盖深部催化口袋。",
+    "diseaseDirection": "线粒体一碳代谢与神经退行性疾病",
+    "domain": "MTHFD2含N端线粒体定位序列及双功能脱氢酶/环水解酶催化结构域，形成二聚体酶活构象。",
+    "evidence": "MTHFD2结构、代谢功能与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB P13995功能与亚细胞定位注释",
+      "RCSB PDB 5TC4晶体结构记录",
+      "线粒体一碳代谢与MTHFD2功能研究文献"
+    ],
+    "referenceEntries": "UniProt P13995；RCSB PDB 5TC4；Open Targets MTHFD2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Rossmann样NADP+结合沟槽外缘",
+        "可干扰辅因子结合并保留抗体结合几何可行性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "二聚体界面邻近螺旋束区域",
+        "可能削弱功能性二聚体稳定性，适合构象锁定策略",
+        "备选"
+      ],
+      [
+        "Site C",
+        "深部叶酸底物催化口袋",
+        "口袋埋藏且空间狭窄，完整抗体进入受限，需小型化结合模块",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MTHFD2为线粒体基质蛋白，常规抗体难以到达天然靶位点；设计应优先采用胞内递送、VHH或抗体片段，并设置酶活抑制验证。",
+    "structurePrepZh": "以5TC4链A为结构模板，保留催化结构域与辅因子结合区信息，补全缺失环区并评估二聚体界面构象稳定性。",
+    "structureRef": "RCSB PDB 5TC4，X-ray diffraction，1.89 Å",
+    "antibodies": [
+      "无已批准MTHFD2治疗性抗体",
+      "研究级抗MTHFD2检测抗体"
+    ],
+    "interfaceFocus": "NADP+结合沟槽与二聚体界面邻近区",
+    "designMode": "胞内递送抗体片段",
+    "candidates": [
+      {
+        "target": "SHMT2",
+        "rationale": "SHMT2在线粒体一碳代谢中生成5,10-亚甲基四氢叶酸，为MTHFD2提供上游底物；其与增殖及应激代谢重编程具有明确通路联系。"
+      },
+      {
+        "target": "MTHFD1L",
+        "rationale": "MTHFD1L催化线粒体10-甲酰四氢叶酸向甲酸生成，位于MTHFD2下游一碳流出口；联合评估可覆盖线粒体叶酸循环通量。"
+      },
+      {
+        "target": "MTHFD1",
+        "rationale": "MTHFD1是胞质三功能一碳代谢酶，承接线粒体输出的一碳单位用于核苷酸合成；可作为同一叶酸一碳网络的可比功能节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

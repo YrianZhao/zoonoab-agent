@@ -1,0 +1,65 @@
+{
+  "gene": "DOK5",
+  "generatedAt": "2026-08-03T18:38:39.712Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DOK5为胞内衔接蛋白，含PH结构域与PTB结构域，主要参与RET、TRK等受体酪氨酸激酶下游信号复合体组装。Open Targets关联以血细胞体积、血小板体积及代谢性表型为主，但当前证据更接近遗传关联或数量性状关联，缺乏明确胞外疾病驱动机制。该蛋白不具备分泌蛋白、膜受体或稳定胞外结构域特征，完整抗体药物可及性显著弱于RET、NTRK1或NGF等同通路胞外靶点，因此仅适合作为细胞内研究抗体或递送型抗体探索的低优先级靶点。",
+    "mechanism": "设计抗体应以阻断DOK5 PTB结构域识别受体磷酸化NPxY样基序或干扰PH结构域膜磷脂结合为目标，抑制下游信号复合体募集。",
+    "selectedEpitope": "优先聚焦PTB结构域磷酸肽结合沟槽周边，避免深埋疏水核心并评估PH-PTB相对构象。",
+    "diseaseDirection": "血液数量性状与RTK信号研究",
+    "domain": "DOK5含N端PH结构域和中央PTB结构域，缺乏跨膜段与胞外结构域。",
+    "evidence": "DOK5遗传关联与胞内衔接结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9P104蛋白功能与结构域注释",
+      "RCSB PDB 1J0W晶体结构记录",
+      "文献报道DOK家族参与受体酪氨酸激酶下游信号转导"
+    ],
+    "referenceEntries": "UniProt Q9P104；RCSB PDB 1J0W；Open Targets DOK5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PTB结构域磷酸肽结合沟槽边缘",
+        "可用于阻断DOK5识别受体磷酸化基序并干扰信号复合体组装",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PH结构域磷脂结合表面",
+        "可探索影响膜定位，但需验证构象暴露与细胞内递送可行性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PH-PTB结构域间连接区",
+        "柔性较高且结构保守性不足，可能产生低亲和或构象依赖风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DOK5为胞内非分泌蛋白，常规抗体难以到达作用位点；建议限定为研究抗体、细胞内抗体或递送体系，并优先验证磷酸肽竞争活性。",
+    "structurePrepZh": "以1J0W抗原链A/B为模板，检查晶体对称关系、缺失环区与质子化状态，保留PH/PTB核心并标注磷酸肽结合残基。",
+    "structureRef": "RCSB PDB 1J0W，X-ray diffraction，2.5 Å",
+    "antibodies": [
+      "抗DOK5研究抗体",
+      "抗DOK家族PTB结构域研究抗体"
+    ],
+    "interfaceFocus": "PTB磷酸肽结合沟槽及PH磷脂结合面",
+    "designMode": "胞内抗体探索",
+    "candidates": [
+      {
+        "target": "RET",
+        "rationale": "RET为DOK5上游受体酪氨酸激酶之一，胞外结构域可被抗体直接结合；阻断配体共受体复合体介导的RET激活较DOK5更具药物可及性。"
+      },
+      {
+        "target": "NTRK1",
+        "rationale": "NTRK1可通过神经营养因子刺激形成受体磷酸化位点并募集衔接蛋白，胞外Ig样结构域适合抗体干预NGF结合或受体激活。"
+      },
+      {
+        "target": "NGF",
+        "rationale": "NGF为NTRK1通路的可溶性配体，抗体可直接中和NGF与NTRK1/p75NTR的相互作用，抗原可及性优于胞内DOK5。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

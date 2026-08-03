@@ -1,0 +1,65 @@
+{
+  "gene": "KIF1B",
+  "generatedAt": "2026-08-03T13:42:08.995Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KIF1B 是神经元轴突运输相关驱动蛋白，KIF1B 变异与 Charcot-Marie-Tooth disease type 2A1 及神经退行性表型相关，其病理机制主要涉及线粒体与突触囊泡货物沿微管的远端运输障碍。KIF1B 为胞内马达蛋白，天然抗原可及性不具备分泌蛋白或膜受体优势，因此更适合作为机制验证、胞内递送抗体或研究级结合分子设计对象。相较于广泛表达的微管或通用马达复合体成分，KIF1B 具有更明确的遗传疾病关联和结构域边界，可优先用于解析轴突运输缺陷中的致病界面。",
+    "mechanism": "设计结合 KIF1B motor domain 的抗体片段，阻断其微管结合面或 ATPase 构象转换界面，从而干预 KIF1B 介导的货物沿微管运输。",
+    "selectedEpitope": "优先覆盖 motor domain 内微管结合相关 loop L11/L12 与 helix α4 邻近界面。",
+    "diseaseDirection": "遗传性周围神经病变与轴突运输障碍",
+    "domain": "KIF1B 含 N 端 kinesin motor domain、颈部连接区及 C 端货物结合相关区域。",
+    "evidence": "KIF1B 轴突运输与CMT2A1遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt O60333 functional annotation",
+      "RCSB PDB 2EH0 solution NMR structure",
+      "ClinVar and OMIM KIF1B neuropathy records"
+    ],
+    "referenceEntries": "UniProt O60333；RCSB PDB 2EH0；Open Targets KIF1B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "motor domain 微管结合 loop L11/L12 与 α4 邻近面",
+        "可直接影响马达结构域与微管的结合及力产生循环",
+        "优先"
+      ],
+      [
+        "Site B",
+        "motor domain nucleotide-binding pocket 周边 P-loop/Switch 区域",
+        "可探测 ATP 结合与水解相关构象状态，但需避免非特异抑制同源 kinesin",
+        "备选"
+      ],
+      [
+        "Site C",
+        "颈部连接区及 motor-neck junction",
+        "可能影响马达步进构象，但结构柔性较高且表位稳定性不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "KIF1B 为胞内蛋白，常规治疗性抗体难以到达作用位点；设计应限定为胞内递送片段、细胞内抗体或体外机制探针，并评估 kinesin 家族交叉反应。",
+    "structurePrepZh": "以 PDB 2EH0 的链 A 为结构模板，保留 NMR 构象集合代表模型，补全缺失氢原子并映射 motor domain 保守微管结合与核苷酸结合残基。",
+    "structureRef": "RCSB PDB 2EH0；human KIF1B motor domain NMR structure",
+    "antibodies": [
+      "anti-KIF1B research antibody",
+      "anti-kinesin motor domain antibody"
+    ],
+    "interfaceFocus": "motor domain 微管结合面与ATPase构象开关区",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "MFN2",
+        "rationale": "MFN2 是 CMT2A 的经典致病基因，参与线粒体融合及轴突线粒体稳态，与 KIF1B 相关轴突能量运输障碍处于同一神经轴突退行性病理框架。"
+      },
+      {
+        "target": "KIF5A",
+        "rationale": "KIF5A 编码神经元 kinesin 重链，参与微管依赖性轴突运输，其变异可导致遗传性痉挛性截瘫及 CMT2 样周围神经病变。"
+      },
+      {
+        "target": "DYNC1H1",
+        "rationale": "DYNC1H1 介导微管负端方向运输，在轴突运输与神经元维持中与 kinesin 系统功能互补，遗传变异可引发神经发育和周围神经病变。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

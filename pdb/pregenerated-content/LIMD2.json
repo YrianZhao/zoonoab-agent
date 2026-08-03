@@ -1,0 +1,65 @@
+{
+  "gene": "LIMD2",
+  "generatedAt": "2026-08-03T13:53:07.103Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "LIMD2 为含单一 LIM 锌指结构域的胞内衔接蛋白，现有 Open Targets 关联主要集中于 IGF-1 测量值、白细胞数量、红细胞计数和血小板体积等数量性状，疾病因果强度有限。其蛋白定位以胞质和细胞骨架相关区室为主，缺乏跨膜区、分泌信号肽或稳定胞外结构域，因此常规抗体难以直接接触天然抗原。相较于 IGF1、IGF1R、CSF3R、MPL 等同类可及靶点，LIMD2 的抗原可及性和可阻断配体-受体界面均不占优，作为主抗体靶点应定位为低优先级探索对象。",
+    "mechanism": "抗体策略仅适用于细胞内递送或研究级胞内结合体，拟结合 LIM 锌指表面以干扰其与细胞骨架或衔接蛋白复合物的接触。",
+    "selectedEpitope": "优先评估 LIM 结构域锌配位核心外侧的蛋白互作面，避开 Cys/His 锌配位残基。",
+    "diseaseDirection": "血液数量性状与IGF轴相关探索",
+    "domain": "LIMD2 主要由单一 LIM 锌指结构域构成，含保守 Cys/His 配位锌离子的双锌指折叠。",
+    "evidence": "LIMD2 遗传关联与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform 遗传关联与性状评分",
+      "UniProt Q9BT23 蛋白定位与结构域注释",
+      "RCSB PDB 2LZU 溶液 NMR 结构记录",
+      "AlphaFold/InterPro LIM domain 注释交叉验证"
+    ],
+    "referenceEntries": "UniProt Q9BT23；RCSB PDB 2LZU；InterPro LIM domain",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "LIM 结构域非锌配位外侧互作面",
+        "可用于设计胞内结合体以干扰潜在蛋白复合物装配",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N/C 端邻近 LIM 结构域的柔性边缘区",
+        "可能提升结合可塑性，但结构稳定性和构象均一性需验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Cys/His 锌配位核心及疏水折叠内核",
+        "干预风险涉及结构失折叠和非特异金属配位，成药解释性较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "LIMD2 缺乏天然胞外暴露界面，常规 Fab 或 VHH 难以在体内接触靶点；建议限定为胞内递送、PROTAC 招募或机制研究场景。",
+    "structurePrepZh": "以 2LZU NMR 构象簇为起点，保留锌离子及配位几何，筛选代表构象后进行氢原子补全、质子化和界面可及性评估。",
+    "structureRef": "RCSB PDB 2LZU，human LIMD2 LIM domain，solution NMR",
+    "antibodies": [
+      "暂无已获批 LIMD2 靶向抗体",
+      "暂无公开临床阶段 LIMD2 抗体"
+    ],
+    "interfaceFocus": "LIM 锌指非配位蛋白互作面",
+    "designMode": "胞内结合体探索",
+    "candidates": [
+      {
+        "target": "IGF1R",
+        "rationale": "IGF1R 是 IGF-1 轴的细胞表面受体，具备明确胞外配体结合域，可通过抗体阻断 IGF1/IGF2 介导的受体激活。相较 LIMD2，其疾病通路可及性和抗体药物可设计性更高。"
+      },
+      {
+        "target": "IGF1",
+        "rationale": "IGF1 为分泌型生长因子，与 IGF-1 measurement 性状直接相关，可通过中和抗体阻断其与 IGF1R 的结合。该靶点抗原暴露充分，适合配体中和策略。"
+      },
+      {
+        "target": "MPL",
+        "rationale": "MPL 是血小板生成素受体，与血小板生成和血小板体积调控相关，胞外细胞因子受体结构域适合抗体识别。其血液数量性状关联的机制可解释性优于胞内 LIMD2。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

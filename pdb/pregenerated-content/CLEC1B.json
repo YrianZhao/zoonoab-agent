@@ -1,0 +1,65 @@
+{
+  "gene": "CLEC1B",
+  "generatedAt": "2026-08-03T11:26:50.884Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CLEC1B编码血小板受体CLEC-2，在血小板活化、血栓形成及肿瘤相关血小板反应中通过结合PDPN触发SYK依赖性信号。该靶点为II型跨膜C型凝集素样受体，关键配体结合面位于胞外CTLD，具备抗体直接识别与阻断的可及性优势。相较于下游SYK、PLCG2等胞内节点，CLEC1B具有更高的抗原可成药性，并可在受体-配体起始界面实现通路选择性干预。",
+    "mechanism": "阻断CLEC-2胞外CTLD与PDPN的PLAG样酸性基序结合，抑制CLEC1B半ITAM磷酸化及SYK募集，降低血小板活化。",
+    "selectedEpitope": "优先锁定CTLD长环区与PDPN结合沟槽，覆盖Ca2+依赖凝集素样表面的配体接触残基。",
+    "diseaseDirection": "血小板活化与肿瘤血栓通路",
+    "domain": "II型跨膜蛋白，胞外区由单一C型凝集素样结构域构成，胞内含半ITAM信号基序。",
+    "evidence": "CLEC1B血小板受体与PDPN轴证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9P126功能与结构域注释",
+      "RCSB PDB 2C6U晶体结构记录",
+      "血小板CLEC-2/PDPN/SYK信号通路文献"
+    ],
+    "referenceEntries": "UniProt Q9P126；RCSB PDB 2C6U；Open Targets CLEC1B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CTLD长环区及PDPN结合沟槽",
+        "直接阻断CLEC-2与PDPN相互作用，机制清晰且与功能界面重合",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CTLD侧面β折叠外露面",
+        "可用于构建非竞争性结合抗体，辅助稳定受体外域构象",
+        "备选"
+      ],
+      [
+        "Site C",
+        "CTLD近膜端与二聚化相关表面",
+        "可能影响受体聚集及血小板活化阈值，但需规避非预期激动效应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CLEC-2抗体存在受体交联诱导血小板活化风险，设计应优先采用阻断型、低交联构型并评估血小板聚集。",
+    "structurePrepZh": "以2C6U抗原链A为模板，补全缺失侧链并保留CTLD二硫键；结合UniProt边界校准胞外结构域。",
+    "structureRef": "RCSB PDB 2C6U，CLEC-2胞外CTLD晶体结构，1.6 Å",
+    "antibodies": [
+      "AYP1",
+      "INU1"
+    ],
+    "interfaceFocus": "CTLD配体结合沟槽与长环区",
+    "designMode": "阻断型界面抗体",
+    "candidates": [
+      {
+        "target": "PDPN",
+        "rationale": "PDPN是CLEC-2的主要细胞表面配体，其PLAG样结构域直接驱动血小板CLEC-2活化；阻断PDPN可从配体侧抑制同一轴。"
+      },
+      {
+        "target": "SYK",
+        "rationale": "SYK是CLEC-2半ITAM磷酸化后的核心下游激酶，介导LAT、SLP76和PLCG2信号放大；适合作为通路验证与联合干预节点。"
+      },
+      {
+        "target": "GP6",
+        "rationale": "GPVI同属血小板ITAM相关受体网络，通过FcRγ链招募SYK并促进血小板活化；与CLEC-2共享血栓形成相关信号框架。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

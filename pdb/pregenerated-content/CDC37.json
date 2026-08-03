@@ -1,0 +1,65 @@
+{
+  "gene": "CDC37",
+  "generatedAt": "2026-08-03T11:12:03.666Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CDC37 是 HSP90 伴侣机器的专属性共伴侣，负责招募 CDK4、CDK6、RAF1 等激酶客户蛋白并促进其稳定成熟，肿瘤细胞常依赖该轴维持增殖与存活信号。该蛋白主要为胞质共伴侣，并非经典可分泌抗原或膜受体，抗原可及性弱于胞外靶点，抗体策略更适合定位为细胞内递送抗体或机制验证型分子。相较广谱 HSP90 抑制，CDC37 位于激酶客户蛋白装载界面，理论上可提高对致癌激酶网络的选择性，但成药优先级需低于具有天然胞外可及性的同通路受体靶点。",
+    "mechanism": "阻断 CDC37 N 端激酶结合区与 CDK4/RAF1 等客户激酶的相互作用，并干扰中部结构域与 HSP90 N 端结构域形成装载复合体。",
+    "selectedEpitope": "优先覆盖 N 端激酶客户蛋白结合区及其与 HSP90 装载构象耦联表面。",
+    "diseaseDirection": "肿瘤激酶伴侣依赖通路",
+    "domain": "CDC37 含 N 端激酶结合区、中部 HSP90 结合结构域及 C 端二聚化相关区域。",
+    "evidence": "CDC37-HSP90 激酶客户蛋白装载证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联",
+      "UniProt Q16543 功能注释",
+      "RCSB PDB 2W0G 晶体结构",
+      "HSP90-CDC37-激酶客户蛋白复合体文献"
+    ],
+    "referenceEntries": "UniProt: Q16543; RCSB PDB: 2W0G; Gene: CDC37",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N 端激酶客户蛋白结合区",
+        "直接削弱 CDK4、CDK6、RAF1 等客户激酶装载，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "中部 HSP90 结合结构域界面",
+        "干扰 CDC37-HSP90 复合体形成，可降低激酶成熟效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端二聚化相关表面",
+        "可能影响构象稳定性，但对客户激酶装载的直接性较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CDC37 缺乏天然胞外暴露，常规抗体难以到达胞质靶点；设计需结合细胞内递送、内体逃逸或 intrabody 平台，并严格评估广泛激酶稳态扰动风险。",
+    "structurePrepZh": "以 PDB 2W0G 链 A 为结构模板，补全缺失环区并标注磷酸化相关位点；结合 AlphaFold 或复合体模型映射 HSP90 与客户激酶界面。",
+    "structureRef": "PDB 2W0G, X-ray diffraction, 1.88 Å, human CDC37",
+    "antibodies": [
+      "anti-CDC37 research antibody",
+      "anti-phospho-CDC37 Ser13 antibody"
+    ],
+    "interfaceFocus": "CDC37-客户激酶与 CDC37-HSP90 装载界面",
+    "designMode": "胞内递送抗体",
+    "candidates": [
+      {
+        "target": "HSP90AA1",
+        "rationale": "HSP90AA1 与 CDC37 共同形成激酶客户蛋白成熟复合体，是 RAF、CDK 与多类致癌激酶稳定性的核心伴侣节点。"
+      },
+      {
+        "target": "CDK4",
+        "rationale": "CDK4 是 CDC37-HSP90 依赖性客户激酶之一，直接驱动 RB1 磷酸化和 G1/S 细胞周期推进，适合作为同通路功能节点。"
+      },
+      {
+        "target": "RAF1",
+        "rationale": "RAF1 依赖 HSP90-CDC37 维持构象稳定并连接 RAS-MAPK 增殖信号，具有明确肿瘤通路相关性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

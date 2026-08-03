@@ -1,0 +1,65 @@
+{
+  "gene": "STX12",
+  "generatedAt": "2026-08-03T17:01:16.856Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "STX12 参与内体膜融合与囊泡运输，位于晚期内体/回收内体相关膜交通网络中，与神经退行性疾病及免疫稳态异常的疾病关联具有机制一致性。该蛋白为膜相关 SNARE，具备胞外不可及性，直接抗体开发更适合采用功能阻断型或构象选择型策略来干预复合体组装。相较于同通路中更广泛表达的核心 SNARE，STX12 在膜运输节点上具有更明确的亚细胞定位与通路指向性，利于提高靶点分层与机制验证的优先级。",
+    "mechanism": "阻断 STX12 与 VTI1B、STX7 介导的 SNARE 复合体装配，抑制内体膜融合与货物回收。",
+    "selectedEpitope": "优先选择 SNARE motif 暴露面及复合体装配界面，避免完全埋藏于四螺旋束核心的残基。",
+    "diseaseDirection": "神经退行性疾病/膜运输异常",
+    "domain": "N 端短胞质区、中心 SNARE motif、C 端跨膜锚定区",
+    "evidence": "STX12 抗体设计证据包",
+    "evidenceSources": [
+      "UniProt: Q86Y82",
+      "RCSB PDB: 2DNX",
+      "Open Targets Platform",
+      "文献与结构数据库交叉注释"
+    ],
+    "referenceEntries": "UniProt Q86Y82；RCSB PDB 2DNX；Open Targets STX12 条目",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SNARE motif 的 N 端暴露螺旋面",
+        "有利于干预初始配对与复合体装配",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N 端胞质短区邻近连接段",
+        "可能影响构象转换与暴露状态",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端跨膜邻近区",
+        "膜锚定强、可及性较差且存在构象偏差风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "STX12 为膜相关胞内 SNARE，胞外可及性不足，常规阻断型抗体命中率偏低。建议优先采用结合结构约束的构象识别策略，并结合细胞内递送或替代格式验证功能。",
+    "structurePrepZh": "基于 2DNX 进行同源构象整理，保留 SNARE motif 的螺旋配对状态并标注膜锚定邻域，必要时结合缺失片段建模。",
+    "structureRef": "RCSB 2DNX，SOLUTION NMR 结构",
+    "antibodies": [
+      "未见成熟临床同类抗体",
+      "SNARE 复合体构象识别抗体"
+    ],
+    "interfaceFocus": "SNARE motif 螺旋配对界面",
+    "designMode": "structure-guided",
+    "candidates": [
+      {
+        "target": "VTI1B",
+        "rationale": "VTI1B 与 STX12 同属内体 SNARE 复合体组成部分，属于同一膜融合通路的真实候选节点。并行评估其有助于区分复合体核心依赖性与单靶点干预效应。"
+      },
+      {
+        "target": "STX7",
+        "rationale": "STX7 是晚期内体/溶酶体相关膜融合的重要 SNARE，与 STX12 在复合体装配层面直接耦联。作为同通路候选靶点，可用于验证膜运输异常在疾病表型中的因果链条。"
+      },
+      {
+        "target": "VAMP8",
+        "rationale": "VAMP8 参与内体与溶酶体相关膜融合，是与 STX12 同一囊泡运输轴上的下游配对组分。其纳入有助于覆盖 SNARE 复合体的另一侧界面并提升通路验证完整性。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "CHMP4A",
+  "generatedAt": "2026-08-03T11:22:27.024Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CHMP4A 是 ESCRT-III 复合体核心亚基，参与 HIV-1 出芽、包膜病毒膜切割及冠状病毒复制相关内膜重塑过程，疾病关联主要集中于病毒感染和神经退行性疾病。该蛋白为胞质侧膜重塑因子，天然抗原可及性弱，不符合常规细胞外阻断型抗体靶点特征；抗体设计更适合定位为胞内递送抗体、研究级构象捕获或病毒装配机制干预。相较于病毒蛋白或细胞表面受体，CHMP4A 的优势在于宿主依赖性较强、病毒逃逸压力较低，但优先级受限于胞内可及性和广泛细胞功能风险。",
+    "mechanism": "通过结合 CHMP4A α1-α2 核心螺旋及聚合界面，干扰 ESCRT-III 丝状体装配，降低 VPS4 依赖的膜颈切割效率。",
+    "selectedEpitope": "优先覆盖 N 端 α1/α2 发卡样核心螺旋的 ESCRT-III 聚合界面，避免完全遮蔽保守疏水核心。",
+    "diseaseDirection": "病毒感染与宿主膜切割通路",
+    "domain": "CHMP4A 属 Snf7/CHMP4 家族，含 N 端四螺旋核心结构及 C 端自抑制与调控区。",
+    "evidence": "CHMP4A-ESCRT-III 病毒出芽结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9BY43 functional annotation",
+      "RCSB PDB 3C3O X-ray structure",
+      "ESCRT-III mediated HIV-1 budding literature"
+    ],
+    "referenceEntries": "UniProt Q9BY43；RCSB PDB 3C3O；Open Targets CHMP4A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N 端 α1/α2 核心螺旋聚合界面",
+        "直接干扰 CHMP4A 参与 ESCRT-III 丝状体装配，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "α3/α4 螺旋束外侧暴露面",
+        "可用于构象识别或稳定非聚合状态，功能阻断强度需实验验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端自抑制调控区及 MIT 结合相关区域",
+        "可能影响 VPS4/调控因子募集，但保守性和细胞功能扰动风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CHMP4A 为胞内 ESCRT-III 亚基，常规抗体难以到达作用位点；设计应采用胞内递送、纳米抗体表达或研究级工具抗体策略，并控制对基础膜修复功能的干扰。",
+    "structurePrepZh": "以 PDB 3C3O 链 A/B 为结构模板，补全缺失侧链并评估晶体接触；结合 AlphaFold 全长模型标注 C 端调控区柔性。",
+    "structureRef": "PDB 3C3O，X-ray diffraction，2.15 Å，human CHMP4A",
+    "antibodies": [
+      "anti-CHMP4A research antibody",
+      "anti-CHMP4B research antibody"
+    ],
+    "interfaceFocus": "α1/α2 发卡螺旋介导的 ESCRT-III 聚合界面",
+    "designMode": "胞内功能阻断型",
+    "candidates": [
+      {
+        "target": "TSG101",
+        "rationale": "TSG101 属 ESCRT-I 组分，可通过 UEV 结构域识别 HIV-1 Gag p6 PTAP 基序，是病毒出芽通路中更靠近病毒蛋白招募步骤的宿主靶点。"
+      },
+      {
+        "target": "CHMP4B",
+        "rationale": "CHMP4B 与 CHMP4A 同属 ESCRT-III Snf7 亚家族，直接参与膜颈收缩和切割，具有与病毒出芽及细胞膜修复相关的共同通路基础。"
+      },
+      {
+        "target": "VPS4A",
+        "rationale": "VPS4A 是 AAA ATPase，负责 ESCRT-III 聚合体解离和循环利用；干预 VPS4A-ESCRT-III 相互作用可影响病毒颗粒释放终末步骤。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

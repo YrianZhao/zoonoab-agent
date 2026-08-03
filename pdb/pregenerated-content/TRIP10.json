@@ -1,0 +1,65 @@
+{
+  "gene": "TRIP10",
+  "generatedAt": "2026-08-03T17:30:16.996Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TRIP10编码CIP4，是F-BAR/SH3适配蛋白，参与膜弯曲、肌动蛋白重塑及受体内吞过程；其Open Targets关联主要集中于肾小球滤过率、血压及血清γ-谷氨酰转移酶等复杂性状，提示更多为遗传关联而非已验证可阻断疾病驱动轴。该蛋白主要定位于胞质侧内吞与细胞骨架复合体，缺乏稳定胞外结构域或分泌形式，抗原可及性显著弱于膜受体和可溶性配体。相较于同通路中具有胞外配体结合面或可药性外域的靶点，TRIP10作为常规治疗性抗体主靶点优先级较低，更适合细胞内递送抗体片段或机制研究型抗体设计。",
+    "mechanism": "以细胞内抗体片段阻断TRIP10 SH3结构域与WASP/N-WASP脯氨酸富集区结合，干扰内吞位点肌动蛋白聚合耦联。",
+    "selectedEpitope": "优先覆盖SH3结构域RT-Src环及疏水沟槽，竞争结合PxxP基序配体界面。",
+    "diseaseDirection": "肾功能与血压相关内吞调控",
+    "domain": "TRIP10含N端F-BAR膜弯曲结构域、中部HR1区及C端SH3蛋白互作结构域。",
+    "evidence": "TRIP10内吞-肌动蛋白互作与复杂性状遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q15642功能与亚细胞定位注释",
+      "RCSB PDB 2EFK晶体结构记录",
+      "F-BAR/SH3介导内吞与肌动蛋白调控文献"
+    ],
+    "referenceEntries": "UniProt Q15642；RCSB PDB 2EFK；Open Targets TRIP10",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端SH3结构域PxxP配体结合沟槽",
+        "可直接竞争WASP/N-WASP等脯氨酸富集配体结合，机制最清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "F-BAR二聚体凹面膜结合界面",
+        "可能削弱磷脂膜结合及膜弯曲能力，适用于细胞内功能阻断设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "F-BAR二聚化核心疏水界面",
+        "结构保守且埋藏面积较大，抗体可及性和选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TRIP10为胞内蛋白，常规IgG难以到达作用位点；建议采用VHH、intrabody或递送系统，并严格评估F-BAR家族交叉反应。",
+    "structurePrepZh": "以2EFK抗原链A为模板，补全缺失侧链并校正质子化状态；保留SH3配体结合面构象用于对接与表位聚类。",
+    "structureRef": "RCSB PDB 2EFK，X-ray diffraction，2.3 Å",
+    "antibodies": [
+      "无获批TRIP10治疗性抗体",
+      "研究级抗TRIP10/CIP4抗体"
+    ],
+    "interfaceFocus": "SH3-PxxP结合沟槽与F-BAR膜结合凹面",
+    "designMode": "细胞内VHH阻断",
+    "candidates": [
+      {
+        "target": "NCKAP1",
+        "rationale": "NCKAP1是WAVE调控复合体组成部分，连接RAC1信号与Arp2/3介导的肌动蛋白成核，位于TRIP10相关膜动态和细胞骨架重塑网络中。"
+      },
+      {
+        "target": "WASL",
+        "rationale": "WASL编码N-WASP，可通过脯氨酸富集区与SH3结构域适配蛋白结合并激活Arp2/3复合体，是TRIP10下游肌动蛋白装配耦联节点。"
+      },
+      {
+        "target": "DNM2",
+        "rationale": "DNM2参与网格蛋白介导内吞囊泡剪切，与F-BAR/SH3适配蛋白协同调控受体内吞和膜重塑过程。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

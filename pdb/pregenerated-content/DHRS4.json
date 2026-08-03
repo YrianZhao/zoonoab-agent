@@ -1,0 +1,65 @@
+{
+  "gene": "DHRS4",
+  "generatedAt": "2026-08-03T11:56:00.516Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DHRS4为胞质型短链脱氢酶/还原酶，主要参与视黄醇、羰基化合物及甾体相关代谢，Open Targets关联信号以代谢物测量和饮酒行为等数量性状为主，缺乏明确的疾病驱动通路证据。该蛋白不属于分泌蛋白或膜受体，天然抗原可及性不足，完整抗体难以在生理状态下接触胞内酶活位点。相比具有胞外配体结合域或膜近端阻断界面的同类可成药靶点，DHRS4更适合作为结构生物学或细胞内递送抗体研究对象，主靶点优先级应保持谨慎。",
+    "mechanism": "胞内递送抗体可遮蔽DHRS4的NADP(H)辅因子结合Rossmann折叠口袋或底物进入沟槽，干扰羰基底物与催化四联体附近残基的定位。",
+    "selectedEpitope": "优先评估NADP(H)结合Rossmann折叠邻近底物沟槽外缘，避免完全埋藏的催化口袋。",
+    "diseaseDirection": "代谢表型与酒精相关性状",
+    "domain": "短链脱氢酶/还原酶催化结构域，含N端Rossmann样辅因子结合折叠及C端底物识别区。",
+    "evidence": "DHRS4结构与代谢性状关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform遗传与性状关联记录",
+      "UniProt Q9BTZ2功能注释",
+      "RCSB PDB 3O4R晶体结构",
+      "短链脱氢酶/还原酶家族结构功能文献"
+    ],
+    "referenceEntries": "UniProt Q9BTZ2；RCSB PDB 3O4R；Open Targets DHRS4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Rossmann折叠外侧NADP(H)结合沟槽边缘",
+        "可能影响辅因子结合构象，结构解析度支持定位",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端底物识别环及底物进入沟槽外缘",
+        "可干扰羰基底物进入催化区，适合构象选择设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "亚基间接触面或晶体堆积相关界面",
+        "可能受四聚体/晶体环境影响，生理相关性需验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "核心风险为胞内定位导致常规抗体不可及，且疾病关联分值较低。建议限定为细胞内递送抗体、intrabody或机制探针设计，并进行酶活抑制验证。",
+    "structurePrepZh": "采用3O4R的1.7 Å X射线结构，分离A-D链并评估寡聚状态；保留辅因子/配体信息用于口袋定义，去除晶体水后进行质子化与界面复核。",
+    "structureRef": "RCSB PDB 3O4R，human DHRS4 X-ray structure, 1.7 Å",
+    "antibodies": [
+      "无已批准DHRS4治疗性抗体",
+      "研究级抗DHRS4检测抗体"
+    ],
+    "interfaceFocus": "NADP(H)结合沟槽与底物进入通道",
+    "designMode": "胞内酶阻断",
+    "candidates": [
+      {
+        "target": "ADH1B",
+        "rationale": "ADH1B参与乙醇氧化为乙醛，与饮酒行为和酒精代谢表型存在明确遗传关联；但同属胞内酶，抗体可及性同样受限。"
+      },
+      {
+        "target": "ALDH2",
+        "rationale": "ALDH2催化乙醛氧化为乙酸，是酒精代谢不耐受和饮酒相关表型的核心酶；适合作为同通路机制参照靶点。"
+      },
+      {
+        "target": "RDH10",
+        "rationale": "RDH10参与视黄醇氧化生成视黄醛，与DHRS4同处视黄醇/羰基还原代谢网络；可用于比较短链脱氢酶家族底物选择性。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

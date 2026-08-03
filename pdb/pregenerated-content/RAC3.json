@@ -1,0 +1,65 @@
+{
+  "gene": "RAC3",
+  "generatedAt": "2026-08-03T15:50:27.239Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RAC3 是神经系统富集表达的小 GTPase，致病变异可扰动 GDP/GTP 循环、PAK 结合和肌动蛋白骨架重塑，导致神经发育障碍、脑结构异常和智力障碍表型。该蛋白主要定位于胞内，缺乏跨膜段和分泌型胞外结构域，天然抗原可及性不适合常规体内阻断抗体开发，但可作为结构生物学和胞内结合体工程的研究靶点。相较于 RAC1 等广泛表达同源蛋白，RAC3 具有更明确的神经发育疾病遗传关联和脑组织偏向性，适合优先用于机制验证型胞内抗体或细胞递送抗体设计。",
+    "mechanism": "设计胞内结合体占据 RAC3 Switch I/II 区域，阻断 GTP-RAC3 与 PAK1 CRIB 结构域及相关效应蛋白的结合。",
+    "selectedEpitope": "优先靶向 GTPase 结构域 Switch I 与 Switch II 效应蛋白结合面。",
+    "diseaseDirection": "神经发育障碍与脑结构异常",
+    "domain": "RAC3 为小 GTPase，含 P-loop、Switch I、Switch II 和 C 端 CAAX 膜定位基序。",
+    "evidence": "RAC3 神经发育疾病遗传与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P60763 functional annotation",
+      "RCSB PDB 2QME X-ray structure",
+      "ClinGen/OMIM RAC3-related neurodevelopmental reports"
+    ],
+    "referenceEntries": "UniProt P60763；RCSB PDB 2QME；Open Targets RAC3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Switch I/Switch II 效应蛋白结合界面",
+        "可直接阻断 PAK1 CRIB 等下游效应蛋白识别",
+        "优先"
+      ],
+      [
+        "Site B",
+        "P-loop 与核苷酸结合沟槽邻近区域",
+        "可影响 GDP/GTP 状态稳定性，但需避免交叉干扰同源 GTPase",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端多碱性区与 CAAX 膜定位邻近区域",
+        "可能影响膜定位，但柔性高且结构解析覆盖有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RAC3 为胞内小 GTPase，常规抗体体内可及性不足；RAC1/RAC2 同源性高，需通过 Switch 区差异残基控制选择性。",
+    "structurePrepZh": "以 2QME 高分辨率晶体结构为模板，保留核苷酸结合状态信息，补建柔性环区并标注 Switch I/II 与 C 端未解析片段。",
+    "structureRef": "RCSB PDB 2QME，X-ray diffraction，1.75 Å",
+    "antibodies": [
+      "抗 Rac1/2/3 克隆 23A8",
+      "抗 RAC3 研究级单克隆抗体"
+    ],
+    "interfaceFocus": "Switch I/II 与 PAK CRIB 结合界面",
+    "designMode": "胞内结合体设计",
+    "candidates": [
+      {
+        "target": "PAK1",
+        "rationale": "PAK1 是 RAC3-GTP 的经典下游效应蛋白，CRIB 结构域直接识别活化 RAC GTPase，并连接肌动蛋白骨架和神经形态发生过程。"
+      },
+      {
+        "target": "PAK3",
+        "rationale": "PAK3 与神经发育和智力障碍具有明确遗传关联，是 RAC/CDC42 通路在神经元中的关键效应激酶。"
+      },
+      {
+        "target": "DOCK7",
+        "rationale": "DOCK7 属于 RAC 激活相关鸟嘌呤核苷酸交换因子网络，参与神经元极性和轴突形成，可作为 RAC3 上游调控节点评估。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

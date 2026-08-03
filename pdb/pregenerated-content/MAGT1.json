@@ -1,0 +1,65 @@
+{
+  "gene": "MAGT1",
+  "generatedAt": "2026-08-03T14:01:30.484Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAGT1缺陷导致XMEN综合征，核心机制包括Mg2+稳态异常及寡糖转移酶复合体STT3B分支功能受损，影响NKG2D糖基化与免疫细胞抗病毒/抗肿瘤效应。MAGT1为多跨膜内质网膜蛋白，在寡糖转移酶复合体中形成可结构解析的膜内界面，但天然胞外可及性有限，抗体更适合采用重组外露环或构象纳米盘抗原进行研究型结合设计。相较STT3B、TUSC3等同通路成分，MAGT1具有明确的单基因免疫缺陷疾病关联和PDB实验结构支撑，因此在机制验证型抗体设计中优先级较高。",
+    "mechanism": "设计抗体结合MAGT1膜外/腔面可及环区或构象界面，用于阻断或标记MAGT1参与STT3B寡糖转移酶复合体装配及底物进入相关相互作用。",
+    "selectedEpitope": "优先选择6S7T中MAGT1腔面外露环及邻近跨膜螺旋入口界面，避免深埋膜内疏水面。",
+    "diseaseDirection": "原发免疫缺陷与病毒相关肿瘤",
+    "domain": "MAGT1含多段跨膜螺旋及腔面环区，是STT3B型寡糖转移酶复合体的膜内辅助亚基。",
+    "evidence": "MAGT1免疫缺陷与OST复合体结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9H0U3功能与拓扑注释",
+      "RCSB PDB 6S7T冷冻电镜结构",
+      "XMEN综合征与NKG2D糖基化文献"
+    ],
+    "referenceEntries": "UniProt Q9H0U3；RCSB PDB 6S7T；Open Targets MAGT1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "腔面外露环及跨膜螺旋入口",
+        "保留构象可及性，适合构建构象依赖型Fab/VHH筛选",
+        "优先"
+      ],
+      [
+        "Site B",
+        "STT3B复合体邻近膜内装配界面外缘",
+        "可用于检测MAGT1复合体装配状态，但需控制膜模拟体系",
+        "备选"
+      ],
+      [
+        "Site C",
+        "深埋跨膜疏水螺旋束核心",
+        "抗原暴露不足且易产生非天然疏水结合，成药与验证风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAGT1主要位于内质网膜，细胞表面可及性不足，治疗性阻断价值受限；建议定位为机制探针或胞内递送抗体，并采用纳米盘保持天然构象。",
+    "structurePrepZh": "以6S7T冷冻电镜模型提取MAGT1链，保留邻近STT3B复合体界面信息，补全缺失环区后置入膜模拟环境进行表位暴露评估。",
+    "structureRef": "PDB 6S7T，人源STT3B型寡糖转移酶复合体冷冻电镜结构",
+    "antibodies": [
+      "研究级anti-MAGT1抗体",
+      "研究级anti-NKG2D抗体"
+    ],
+    "interfaceFocus": "MAGT1腔面环区与OST复合体装配外缘",
+    "designMode": "构象探针抗体设计",
+    "candidates": [
+      {
+        "target": "STT3B",
+        "rationale": "STT3B是MAGT1所在寡糖转移酶复合体的催化核心，直接参与蛋白N-连接糖基化，适合评估同一糖基化缺陷轴的功能影响。"
+      },
+      {
+        "target": "TUSC3",
+        "rationale": "TUSC3与MAGT1同属OST复合体辅助亚基家族，参与N-糖基化质量控制，可作为MAGT1功能冗余与补偿机制的对照靶点。"
+      },
+      {
+        "target": "KLRK1",
+        "rationale": "KLRK1编码NKG2D，其表达和糖基化受MAGT1缺陷影响，是XMEN综合征中NK/T细胞抗病毒与抗肿瘤效应受损的关键下游节点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

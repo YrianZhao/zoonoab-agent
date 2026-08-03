@@ -1,0 +1,65 @@
+{
+  "gene": "OTUB1",
+  "generatedAt": "2026-08-03T14:59:34.519Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "OTUB1为胞质OTU家族去泛素化酶，参与蛋白稳态、DNA损伤应答与神经退行性疾病相关的泛素-蛋白酶体调控。其疾病关联以神经退行性疾病为最高评分方向，但OTUB1并非分泌蛋白或膜受体，天然抗原可及性弱，更适合细胞内抗体、VHH或递送型抗体片段设计。相较于泛素通路中高度冗余的E3连接酶，OTUB1具有明确催化OTU结构域和非催化性抑制E2泛素转移的界面，可形成更聚焦的结构干预策略。",
+    "mechanism": "设计VHH或胞内Fab阻断OTUB1与泛素/E2~Ub复合物的结合，干预Cys91催化中心及近端泛素结合沟槽介导的去泛素化活性。",
+    "selectedEpitope": "优先覆盖OTU催化结构域Cys91邻近泛素结合沟槽及N端α螺旋调控界面。",
+    "diseaseDirection": "神经退行性疾病蛋白稳态",
+    "domain": "OTUB1含N端调控螺旋与OTU去泛素化催化结构域，核心催化残基包括Cys91、His265与Asp267。",
+    "evidence": "OTUB1去泛素化与神经退行性疾病关联证据",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q96FW1功能与亚细胞定位注释",
+      "RCSB PDB 2ZFY晶体结构解析",
+      "OTUB1-E2泛素转移抑制与蛋白稳态文献"
+    ],
+    "referenceEntries": "UniProt Q96FW1；RCSB PDB 2ZFY；Open Targets OTUB1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "OTU结构域Cys91邻近泛素结合沟槽",
+        "可直接阻断底物泛素进入催化口袋并限制去泛素化反应",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端α螺旋与E2~Ub复合物调控界面",
+        "可干预OTUB1非催化性抑制E2泛素转移的构象协同",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化三联体的OTU外侧保守表面",
+        "可能影响蛋白互作但功能耦合不确定，需结合突变验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "OTUB1为胞内酶，常规抗体难以到达作用位点；应优先采用VHH、胞内抗体或递送偶联策略，并避免完全遮蔽高度保守OTU折叠导致脱靶风险。",
+    "structurePrepZh": "以2ZFY链A为结构模板，补全缺失侧链并校正质子化状态；围绕Cys91、His265、Asp267及泛素结合沟槽建立表位网格。",
+    "structureRef": "RCSB PDB 2ZFY，X-ray，1.69 Å，人源OTUB1结构",
+    "antibodies": [
+      "抗OTUB1研究级单克隆抗体",
+      "细胞内VHH候选抗体片段"
+    ],
+    "interfaceFocus": "Cys91催化口袋与泛素近端结合沟槽",
+    "designMode": "胞内VHH阻断",
+    "candidates": [
+      {
+        "target": "UCHL1",
+        "rationale": "UCHL1为神经元富集去泛素化酶，参与泛素稳态维持，并与帕金森病及神经退行性改变相关。"
+      },
+      {
+        "target": "USP14",
+        "rationale": "USP14定位于蛋白酶体并调节底物去泛素化，是蛋白降解通路中与神经退行性蛋白聚集相关的真实节点。"
+      },
+      {
+        "target": "VCP",
+        "rationale": "VCP/p97参与泛素化底物提取和蛋白质质量控制，其突变与多系统蛋白病和神经退行性疾病存在明确关联。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

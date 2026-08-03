@@ -1,0 +1,65 @@
+{
+  "gene": "TRMT2A",
+  "generatedAt": "2026-08-03T17:30:19.501Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TRMT2A为胞内tRNA甲基转移酶，参与tRNA 5-甲基尿苷修饰与翻译稳态维持，Open Targets关联主要来自身高、骨密度、BMI、甘油三酯及SHBG测量等复杂性状遗传证据，尚缺乏明确可阻断的细胞外疾病通路机制。该蛋白不属于分泌蛋白、膜受体或胞外结构域抗原，天然抗原可及性不支持常规治疗性抗体直接结合。相较可及性更高的内分泌或代谢通路膜受体，TRMT2A作为抗体主靶点优先级较低，更适合作为结构生物学或细胞内递送抗体研究对象。",
+    "mechanism": "以内递送Fab或VHH占据TRMT2A催化结构域，干扰tRNA底物与SAM依赖甲基转移活性位点的结合。",
+    "selectedEpitope": "优先评估催化Rossmann样甲基转移酶结构域的tRNA/SAM邻近沟槽，但避免深埋辅因子口袋。",
+    "diseaseDirection": "复杂性状遗传关联与代谢表型",
+    "domain": "TRMT2A含N端RNA结合相关区域及C端FAD/SAM依赖甲基转移酶样催化结构域，PDB 7NTO覆盖高分辨率胞内结构。",
+    "evidence": "TRMT2A结构与复杂性状遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform遗传关联数据",
+      "UniProt Q8IZ69功能注释",
+      "RCSB PDB 7NTO晶体结构",
+      "GTEx与人群性状GWAS共定位证据"
+    ],
+    "referenceEntries": "UniProt Q8IZ69；RCSB PDB 7NTO；Open Targets TRMT2A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域tRNA结合沟槽邻近区域",
+        "可能通过位阻削弱tRNA底物定位，适合功能阻断型胞内抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SAM/FAD依赖甲基转移酶样结构域外侧保守螺旋面",
+        "结构稳定且可形成构象锁定，适合变构干预而降低辅因子竞争风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "深部辅因子结合口袋与高度保守催化残基周边",
+        "保守性高且口袋埋藏，抗体可及性与选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TRMT2A为胞内酶，常规抗体难以到达作用位点；需限定为细胞内递送抗体、intrabody或研究级阻断工具，并评估tRNA修饰广泛扰动风险。",
+    "structurePrepZh": "以7NTO链A为模板进行缺失环补全、质子化状态校正和催化沟槽标注；保留关键辅因子邻近残基用于表位排除与界面约束。",
+    "structureRef": "RCSB PDB 7NTO，1.23 Å X射线晶体结构",
+    "antibodies": [
+      "暂无已获批TRMT2A靶向抗体",
+      "暂无临床阶段TRMT2A阻断抗体"
+    ],
+    "interfaceFocus": "tRNA底物沟槽与催化结构域外侧变构面",
+    "designMode": "胞内递送抗体设计",
+    "candidates": [
+      {
+        "target": "SHBG",
+        "rationale": "SHBG与TRMT2A共同出现在性激素结合球蛋白测量相关遗传表型中，且为分泌型血浆糖蛋白，抗原可及性显著优于胞内酶。"
+      },
+      {
+        "target": "GHR",
+        "rationale": "GHR处于身高与生长激素轴的明确疾病通路中，胞外受体结构域可被抗体阻断或调节，机制可直接定位于GH-GHR结合界面。"
+      },
+      {
+        "target": "LEPR",
+        "rationale": "LEPR参与BMI和能量稳态相关瘦素信号通路，具有胞外细胞因子受体结构域，可作为代谢表型方向的可及性更高候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

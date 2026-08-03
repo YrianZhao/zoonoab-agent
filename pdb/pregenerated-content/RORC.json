@@ -1,0 +1,65 @@
+{
+  "gene": "RORC",
+  "generatedAt": "2026-08-03T16:08:14.946Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RORC编码核受体RORγ/RORγt，是Th17细胞分化程序的关键转录调控因子，可驱动IL17A、IL17F、IL23R等炎症效应基因表达，并参与银屑病、强直性脊柱炎及炎症性肠病相关IL-23/Th17轴。该蛋白主要定位于细胞核，5APH结构覆盖配体结合结构域，天然抗原可及性弱于膜受体或分泌因子，因此更适合作为细胞内靶向递送抗体片段或结构引导型结合分子设计对象。其优先级低于IL17A、IL23A、IL23R等胞外通路节点，但在需要直接抑制Th17谱系转录核心因子时具有上游调控优势。",
+    "mechanism": "设计结合RORC配体结合结构域AF-2表面或配体口袋邻近区，阻断共激活因子LXXLL基序募集并抑制IL17A/IL17F转录激活。",
+    "selectedEpitope": "优先靶向LBD的helix 12 AF-2共激活因子结合沟槽及其邻近helix 3/4/5界面。",
+    "diseaseDirection": "IL-23/Th17炎症免疫疾病",
+    "domain": "RORC含N端DNA结合结构域与C端配体结合结构域；5APH解析C端LBD构象。",
+    "evidence": "RORC-Th17转录轴结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P51449功能与结构域注释",
+      "RCSB PDB 5APH晶体结构记录",
+      "Th17细胞分化与IL-17通路文献证据"
+    ],
+    "referenceEntries": "UniProt P51449；RCSB PDB 5APH；Open Targets RORC",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "LBD helix 12 AF-2共激活因子结合沟槽",
+        "可直接干扰LXXLL共激活因子识别并抑制转录激活构象",
+        "优先"
+      ],
+      [
+        "Site B",
+        "LBD配体结合口袋入口及helix 3/5邻近面",
+        "有利于稳定非激活构象并影响配体诱导的AF-2重排",
+        "备选"
+      ],
+      [
+        "Site C",
+        "LBD疏水核心外侧保守核受体折叠面",
+        "保守性较高且可能影响蛋白稳定性，需规避非特异核受体交叉结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RORC为核内转录因子，常规全长抗体难以到达作用位点；需采用细胞递送型Fab/VHH，并重点评估ROR家族及其他核受体交叉反应。",
+    "structurePrepZh": "以5APH中A、C链LBD为模板，保留高分辨率主链构象，校正配体、晶体接触与缺失侧链后进行AF-2界面表面建模。",
+    "structureRef": "RCSB PDB 5APH，X-ray diffraction，1.54 Å",
+    "antibodies": [
+      "无已批准抗RORC治疗性抗体",
+      "RORγt细胞内结合抗体片段研究工具"
+    ],
+    "interfaceFocus": "AF-2 helix 12与LXXLL共激活因子沟槽",
+    "designMode": "细胞内VHH/Fab",
+    "candidates": [
+      {
+        "target": "IL17A",
+        "rationale": "IL17A是RORγt驱动Th17程序的核心效应细胞因子，位于同一IL-23/Th17炎症轴下游，且为分泌蛋白，抗体可及性显著优于RORC。"
+      },
+      {
+        "target": "IL23A",
+        "rationale": "IL23A与IL12B形成IL-23，维持Th17细胞扩增与RORγt依赖性炎症表型，是该通路上游、临床可验证的胞外细胞因子节点。"
+      },
+      {
+        "target": "IL23R",
+        "rationale": "IL23R介导IL-23信号输入并促进STAT3依赖的RORC表达和Th17稳定化，膜受体胞外区适合阻断性抗体设计。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

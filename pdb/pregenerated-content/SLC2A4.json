@@ -1,0 +1,65 @@
+{
+  "gene": "SLC2A4",
+  "generatedAt": "2026-08-03T16:37:53.042Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SLC2A4编码GLUT4，是胰岛素响应性葡萄糖转运体，在脂肪细胞和骨骼肌中介导葡萄糖摄取，并通过胰岛素抵抗、代谢综合征和血管功能异常间接关联血压表型。该蛋白为12次跨膜膜转运体，存在多段胞外环，可作为膜表面抗原进行构象选择性识别。相较于胰岛素受体等上游广泛信号节点，GLUT4更贴近葡萄糖摄取执行环节，适合用于构象稳定、转运状态标记或组织递送型抗体设计，但阻断型开发需审慎控制代谢风险。",
+    "mechanism": "抗体可结合GLUT4胞外环构象表位，稳定外向开放或闭合状态，干预葡萄糖进入中央转运腔的构象转换。",
+    "selectedEpitope": "优先选择跨膜螺旋TM1/TM2与TM7/TM8相邻胞外环形成的外侧门控构象界面。",
+    "diseaseDirection": "代谢性高血压与胰岛素抵抗",
+    "domain": "GLUT4属于MFS转运体，含N端6个跨膜螺旋与C端6个跨膜螺旋组成的两叶结构。",
+    "evidence": "GLUT4代谢-血压关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P14672功能与拓扑注释",
+      "RCSB PDB 7WSM冷冻电镜结构",
+      "胰岛素刺激GLUT4转位与葡萄糖摄取研究文献"
+    ],
+    "referenceEntries": "UniProt P14672；RCSB PDB 7WSM；Open Targets SLC2A4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "TM1/TM2与TM7/TM8之间的胞外门控环区",
+        "接近外向开放入口，适合构象选择性抗体稳定转运状态",
+        "优先"
+      ],
+      [
+        "Site B",
+        "TM5/TM6邻近中央腔外侧入口区域",
+        "可能影响底物通道局部构象，适合非完全阻断型调节设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "胞质侧N端、C端调控尾部及胞内环",
+        "细胞外可及性不足，且可能干扰转位调控解释",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GLUT4为核心葡萄糖摄取执行蛋白，强阻断可能诱发胰岛素抵抗样效应。宜采用构象标记、组织递送或部分调节策略，并排除与GLUT1等同源转运体交叉反应。",
+    "structurePrepZh": "以7WSM抗原链A、B为模板，保留跨膜束构象并补全缺失胞外环；结合膜平面定位评估胞外可及面，避免将胞内环误设为抗体表位。",
+    "structureRef": "RCSB PDB 7WSM，human GLUT4 cryo-EM structure，3.25 Å",
+    "antibodies": [
+      "anti-GLUT4 clone 1F8",
+      "anti-GLUT4 clone EPR3915"
+    ],
+    "interfaceFocus": "外向门控入口与胞外环构象界面",
+    "designMode": "构象选择性膜蛋白抗体",
+    "candidates": [
+      {
+        "target": "INSR",
+        "rationale": "INSR位于胰岛素信号通路上游，调控PI3K-AKT轴并驱动GLUT4转位，是胰岛素抵抗相关血压表型的重要通路节点。"
+      },
+      {
+        "target": "AKT2",
+        "rationale": "AKT2介导胰岛素刺激后的代谢分支信号，促进AS160/TBC1D4磷酸化和GLUT4囊泡转位，适合作为同通路机制参照靶点。"
+      },
+      {
+        "target": "TBC1D4",
+        "rationale": "TBC1D4是GLUT4囊泡转运的Rab-GAP调控因子，其磷酸化状态直接影响GLUT4向质膜转位，连接胰岛素信号与葡萄糖摄取执行环节。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "BACH1",
+  "generatedAt": "2026-08-03T10:45:25.499Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BACH1是核内BTB-bZIP转录抑制因子，通过Maf识别元件调控血红素代谢、红系分化及氧化应激应答相关基因，Open Targets关联主要集中于血红蛋白、红细胞分布宽度及肝酶测量性状。该蛋白并非分泌蛋白或膜受体，天然抗原可及性不支持常规体内阻断型抗体开发，仅适合结构生物学试剂、细胞内抗体或降解/递送型工程抗体探索。相比同通路的HMOX1、NFE2L2等功能节点，BACH1具备高分辨率实验结构与明确二聚化/核酸识别模块，适合作为机制验证优先靶点，但治疗性抗体优先级低于胞外可及靶点。",
+    "mechanism": "工程抗体可靶向BACH1 bZIP-Maf界面或DNA结合面，阻断其与小Maf蛋白及Maf识别元件DNA形成转录抑制复合体。",
+    "selectedEpitope": "优先覆盖bZIP亮氨酸拉链二聚化界面及邻近碱性DNA结合区。",
+    "diseaseDirection": "红系表型与氧化应激调控",
+    "domain": "BACH1含N端BTB/POZ结构域、CNC-bZIP转录因子区及血红素结合CP基序。",
+    "evidence": "BACH1红系与血红素代谢结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病-性状关联数据",
+      "UniProt O14867功能与结构域注释",
+      "RCSB PDB 9GRA高分辨率晶体结构",
+      "文献报道BACH1-Maf-MARE转录抑制机制"
+    ],
+    "referenceEntries": "UniProt: O14867; RCSB PDB: 9GRA; Ensembl: ENSG00000156273",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "bZIP亮氨酸拉链二聚化界面",
+        "阻断BACH1与小Maf形成DNA结合异二聚体，机制指向性最强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "碱性DNA结合区邻近MARE接触面",
+        "干扰BACH1复合体识别Maf识别元件，可用于转录抑制功能验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "BTB/POZ同源二聚化与辅因子结合区域",
+        "可能影响蛋白复合体装配，但构象依赖性高且胞内递送风险较大",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BACH1为核内转录因子，缺乏胞外可及表位，常规全长IgG难以直接作用于天然靶点；建议限定为Fab/VHH结构探针或细胞内递送格式。",
+    "structurePrepZh": "以9GRA抗原链A、B为模板，保留解析良好的bZIP相关界面，检查晶体接触、缺失环区及DNA/伴侣链依赖构象后再进行表位建模。",
+    "structureRef": "RCSB PDB 9GRA，X-ray diffraction，1.47 Å",
+    "antibodies": [
+      "抗BACH1研究级单克隆抗体",
+      "抗BACH1 ChIP验证抗体"
+    ],
+    "interfaceFocus": "bZIP-Maf二聚化界面与MARE DNA结合面",
+    "designMode": "胞内结构阻断",
+    "candidates": [
+      {
+        "target": "MAFK",
+        "rationale": "MAFK是BACH1形成转录抑制复合体的小Maf伙伴，直接参与MARE序列识别，适合作为同一DNA结合复合体的界面参照靶点。"
+      },
+      {
+        "target": "HMOX1",
+        "rationale": "HMOX1是BACH1抑制的血红素降解关键效应基因，位于血红素代谢与氧化应激通路下游，可用于评价BACH1阻断后的功能释放。"
+      },
+      {
+        "target": "NFE2L2",
+        "rationale": "NFE2L2与小Maf蛋白共同激活抗氧化反应元件，与BACH1在ARE/MARE调控轴上呈功能拮抗关系，是同通路机制比较的重要节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

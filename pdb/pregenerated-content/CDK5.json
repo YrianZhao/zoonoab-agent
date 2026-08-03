@@ -1,0 +1,65 @@
+{
+  "gene": "CDK5",
+  "generatedAt": "2026-08-03T11:13:14.036Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CDK5在神经元中由CDK5R1/p35或其截短产物p25激活，异常激活可促进Tau、APP相关底物及突触蛋白异常磷酸化，参与阿尔茨海默病和其他神经退行性病变。该蛋白为胞内丝氨酸/苏氨酸激酶，天然抗原可及性弱，不具备经典治疗性抗体直接阻断优势，但可作为结构引导的胞内递送抗体或研究级抑制型结合体靶点。相比MAPK、GSK3B等广泛激酶，CDK5的神经元激活因子依赖性和p25病理激活特征更具疾病机制选择性，优先级适合定位于中枢神经退行性疾病机制验证与递送抗体设计。",
+    "mechanism": "通过结合CDK5催化裂隙邻近的ATP结合口袋或T-loop调控区，限制CDK5与CDK5R1/p25形成活性构象并降低Tau等底物磷酸化。",
+    "selectedEpitope": "优先锁定N端小叶ATP结合裂隙边缘与T-loop邻近构象表位，避开高度保守催化核心深部。",
+    "diseaseDirection": "神经退行性疾病与Tau病理",
+    "domain": "CDK5含典型蛋白激酶结构域，由N端β折叠小叶、C端α螺旋小叶、铰链区和活化环组成。",
+    "evidence": "CDK5神经退行性病理结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q00535功能与结构域注释",
+      "RCSB PDB 4AU8晶体结构数据",
+      "阿尔茨海默病Tau磷酸化与CDK5/p25文献证据"
+    ],
+    "referenceEntries": "UniProt Q00535；RCSB PDB 4AU8；Open Targets CDK5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ATP结合裂隙外缘及铰链区邻近表面",
+        "可干扰ATP定位或稳定非活性构象，具备明确酶活抑制设计价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "T-loop与C端小叶底物进入沟附近",
+        "可能影响底物肽进入及活化环构象，适合构象选择性结合体设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端小叶保守β片层核心区域",
+        "与CDK家族保守性较高，存在交叉识别和脱靶抑制风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CDK5为胞内激酶，常规抗体难以到达作用位点；催化口袋保守性高，需通过外侧构象表位、递送系统或细胞内抗体格式降低脱靶风险。",
+    "structurePrepZh": "采用4AU8高分辨率晶体结构作为模板，校正链A/B构象、补全缺失侧链，标注ATP口袋、铰链区、T-loop及潜在CDK5R1结合界面。",
+    "structureRef": "RCSB PDB 4AU8，X-ray diffraction，1.9 Å",
+    "antibodies": [
+      "抗CDK5研究级单克隆抗体",
+      "抗CDK5磷酸化状态检测抗体"
+    ],
+    "interfaceFocus": "ATP口袋外缘、铰链区、T-loop构象界面",
+    "designMode": "胞内递送抑制型",
+    "candidates": [
+      {
+        "target": "CDK5R1",
+        "rationale": "CDK5R1编码p35，钙蛋白酶切割生成p25后可导致CDK5持续异常激活，是CDK5病理激活轴的直接调控因子。"
+      },
+      {
+        "target": "MAPT",
+        "rationale": "MAPT编码Tau蛋白，是CDK5异常活化后的关键磷酸化底物，Tau过度磷酸化与阿尔茨海默病神经纤维缠结形成直接相关。"
+      },
+      {
+        "target": "CAPN1",
+        "rationale": "CAPN1介导p35向p25的蛋白水解转换，可放大CDK5持续激酶活性，位于同一CDK5/p25神经退行性病理通路上游。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

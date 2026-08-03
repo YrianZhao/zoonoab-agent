@@ -1,0 +1,65 @@
+{
+  "gene": "POLM",
+  "generatedAt": "2026-08-03T15:26:11.909Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "POLM编码DNA polymerase mu，是非同源末端连接通路中的Pol X家族聚合酶，参与V(D)J重组及DNA双链断裂末端填补，其功能异常可影响基因组稳定性并与神经退行性疾病关联。该蛋白主要定位于细胞核，缺乏分泌区段或跨膜胞外结构域，天然抗体可及性弱，不适合作为常规细胞外阻断型抗体靶点。相较于同通路中具有细胞表面可及性的免疫受体或损伤反应配体，POLM的优先级应限定于胞内递送抗体、结构探针或降解偶联分子探索场景。",
+    "mechanism": "设计分子应结合POLM聚合酶催化裂隙，阻断模板/引物DNA与dNTP在Palm-Thumb界面的协同定位，抑制NHEJ末端填补反应。",
+    "selectedEpitope": "优先覆盖Palm催化核心邻近的DNA引物结合沟槽及Thumb夹持界面。",
+    "diseaseDirection": "DNA损伤修复与神经退行性疾病",
+    "domain": "N端BRCT结构域连接C端Pol X聚合酶核心，包含8-kDa、Palm、Fingers和Thumb亚结构域。",
+    "evidence": "POLM结构与DNA末端修复功能证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9NP87功能与定位注释",
+      "RCSB PDB 4LZG晶体结构",
+      "DNA double-strand break repair and NHEJ pathway literature"
+    ],
+    "referenceEntries": "UniProt Q9NP87；RCSB PDB 4LZG；HGNC POLM",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Palm催化核心与DNA引物结合沟槽",
+        "直接干预模板/引物定位及金属离子依赖催化构象",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Thumb亚结构域DNA夹持界面",
+        "削弱POLM对断裂末端DNA的稳定结合，适合构象阻断设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端BRCT蛋白互作模块",
+        "可能影响NHEJ复合体招募，但结构柔性及功能冗余风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "POLM为核内酶，缺乏胞外抗原可及性，常规抗体成药性风险高；应优先采用胞内递送、intrabody或研究级结构探针策略。",
+    "structurePrepZh": "以4LZG高分辨率晶体结构为模板，保留聚合酶核心与核酸/配体相互作用信息，校正缺失环区并评估催化沟槽可结合性。",
+    "structureRef": "RCSB PDB 4LZG，X-ray，1.599 Å，human POLM",
+    "antibodies": [
+      "无已获批POLM治疗性抗体",
+      "研究级anti-POLM抗体"
+    ],
+    "interfaceFocus": "Palm-Thumb DNA结合裂隙与催化金属位点邻域",
+    "designMode": "胞内结构阻断",
+    "candidates": [
+      {
+        "target": "LIG4",
+        "rationale": "LIG4是经典非同源末端连接的DNA连接酶核心成员，负责XRCC4复合体介导的断裂末端封闭，与POLM处于同一双链断裂修复通路。"
+      },
+      {
+        "target": "XRCC4",
+        "rationale": "XRCC4作为LIG4稳定化与支架因子参与NHEJ末端连接复合体装配，可作为POLM功能上下游修复节点的候选干预靶点。"
+      },
+      {
+        "target": "PRKDC",
+        "rationale": "PRKDC编码DNA-PKcs，与Ku复合体共同识别DNA双链断裂并启动NHEJ信号，是POLM介导末端填补前的关键通路节点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

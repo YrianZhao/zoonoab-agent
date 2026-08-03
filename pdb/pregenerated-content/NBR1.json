@@ -1,0 +1,65 @@
+{
+  "gene": "NBR1",
+  "generatedAt": "2026-08-03T14:35:14.665Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NBR1 是选择性自噬货物受体，参与泛素化蛋白聚集体、受损细胞器及信号复合物向自噬系统递送，其自噬通量异常与神经退行性疾病中的蛋白稳态失衡相关。该蛋白主要定位于胞质自噬体相关结构，并非分泌蛋白或经典膜受体，天然抗原可及性低于胞外靶点，因此更适合用于细胞内机制研究、递送型抗体或胞内抗体设计。相较于更上游的自噬核心蛋白，NBR1 兼具 PB1 寡聚化、UBA 泛素识别与 LIR 介导的 ATG8 家族结合节点特征，可在货物选择层面提供更高机制分辨率。",
+    "mechanism": "阻断 NBR1 PB1 结构域介导的自聚集或其与 PB1 蛋白互作，可削弱受体聚合驱动的泛素化货物聚集与自噬递送。",
+    "selectedEpitope": "优先覆盖 2BKF 所示 PB1 结构域酸性/碱性互补界面，干预 NBR1 寡聚化成核。",
+    "diseaseDirection": "神经退行性疾病与蛋白稳态异常",
+    "domain": "NBR1 含 N 端 PB1 结构域、ZZ 锌指、LIR 基序、卷曲螺旋区及 C 端 UBA 结构域。",
+    "evidence": "NBR1 选择性自噬货物受体证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q14596 functional annotation",
+      "RCSB PDB 2BKF experimental structure",
+      "Reactome selective autophagy pathway annotation"
+    ],
+    "referenceEntries": "UniProt Q14596；RCSB PDB 2BKF；Reactome autophagy annotations",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PB1 结构域 OPCA 酸性表面及互补结合界面",
+        "可干预 PB1 介导的寡聚化与货物受体聚集成核",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PB1 结构域 β-折叠外侧保守暴露面",
+        "可作为构象识别表位并降低对核心折叠稳定性的扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "NBR1 线性 LIR 基序邻近区域",
+        "可能影响 ATG8/LC3 家族结合，但柔性较高且结构约束不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NBR1 为胞内货物受体，常规全长抗体难以天然接触靶点；建议采用胞内抗体、VHH 递送或细胞模型验证，并避免破坏 PB1 全局折叠。",
+    "structurePrepZh": "以 2BKF 链 A 的高分辨率 PB1 结构域为模板，补全侧链质子化状态，标注 OPCA 表面、电荷互补区及晶体接触界面后开展表位筛选。",
+    "structureRef": "RCSB PDB 2BKF；human NBR1 PB1 domain X-ray structure",
+    "antibodies": [
+      "anti-NBR1 clone 4BR",
+      "anti-NBR1 clone D2E6"
+    ],
+    "interfaceFocus": "PB1 OPCA 酸性斑块与互补碱性结合面",
+    "designMode": "胞内表位阻断",
+    "candidates": [
+      {
+        "target": "SQSTM1",
+        "rationale": "SQSTM1/p62 与 NBR1 同属选择性自噬货物受体，参与泛素化蛋白聚集体经 LC3/GABARAP 系统递送，在神经退行性蛋白稳态异常中具有直接通路关联。"
+      },
+      {
+        "target": "MAP1LC3B",
+        "rationale": "MAP1LC3B 是自噬体膜 ATG8 家族成员，可通过 LIR 基序结合 NBR1 等货物受体，是受体-自噬体连接环节的核心节点。"
+      },
+      {
+        "target": "GABARAPL2",
+        "rationale": "GABARAPL2/GATE-16 属 ATG8 家族成员，参与选择性自噬受体装载与自噬体成熟，可作为同一货物递送轴上的替代调控靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

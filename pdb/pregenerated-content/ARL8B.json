@@ -1,0 +1,65 @@
+{
+  "gene": "ARL8B",
+  "generatedAt": "2026-08-03T10:36:41.092Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ARL8B为溶酶体定位小GTP酶，参与溶酶体顺行运输、mTORC1定位及自噬-溶酶体功能调节，但现有Open Targets关联主要为性状或测量表型，缺乏明确疾病驱动机制。该蛋白位于胞质侧并依赖膜锚定定位，缺少稳定胞外结构域或分泌形式，抗体在完整细胞环境中的抗原可及性不具备常规治疗性抗体优势。相较于同一溶酶体-mTORC1轴上的LAMP1、TFRC或EGFR等可及性更高靶点，ARL8B更适合作为结构生物学或细胞内递送抗体研究靶点，优先级需谨慎界定。",
+    "mechanism": "通过结合ARL8B GTPase核心的switch I/II邻近界面，阻断其与SKIP/PLEKHM2或HOPS效应蛋白复合物的相互作用，干预溶酶体驱动蛋白募集。",
+    "selectedEpitope": "优先覆盖GTPase结构域switch I/II及效应蛋白结合面，避免核苷酸结合口袋深部作为主表位。",
+    "diseaseDirection": "溶酶体运输与自噬调控",
+    "domain": "ARL8B主要由小GTP酶核心结构域构成，含P-loop、switch I、switch II及C端膜定位相关区域。",
+    "evidence": "ARL8B溶酶体运输轴结构与功能证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病-靶点关联数据",
+      "UniProt Q9NVJ2蛋白功能与亚细胞定位注释",
+      "RCSB PDB 8JCA晶体结构条目",
+      "ARL8B-SKIP/HOPS介导溶酶体运输文献"
+    ],
+    "referenceEntries": "UniProt: Q9NVJ2; RCSB PDB: 8JCA; Gene: ARL8B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "switch I/switch II效应蛋白结合界面",
+        "可直接干预PLEKHM2/SKIP或HOPS相关效应蛋白识别，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "GTPase核心α3-β5邻近外露面",
+        "有利于获得构象选择性结合分子，并降低与核苷酸结合位点竞争风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "P-loop核苷酸结合区域",
+        "序列保守性高且功能位点深埋，易产生ARF/ARL家族交叉反应及构象干扰",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ARL8B为胞内膜相关小GTP酶，常规抗体可及性不足；设计应限定为细胞内递送抗体、Fab结构探针或体外功能阻断验证。",
+    "structurePrepZh": "以8JCA链A/B为模板，保留GTPase核心构象，核查核苷酸或类似物占位、Mg2+配位及switch区晶体接触后再定义表位。",
+    "structureRef": "RCSB PDB 8JCA，X-ray diffraction，1.65 Å",
+    "antibodies": [
+      "抗ARL8B研究级单克隆抗体",
+      "抗ARL8B研究级多克隆抗体"
+    ],
+    "interfaceFocus": "switch I/II效应蛋白结合面",
+    "designMode": "胞内靶点结构探针",
+    "candidates": [
+      {
+        "target": "PLEKHM2",
+        "rationale": "PLEKHM2/SKIP是ARL8B效应蛋白，连接溶酶体与驱动蛋白运输复合体；该节点与ARL8B处于同一溶酶体顺行运输轴。"
+      },
+      {
+        "target": "BORCS5",
+        "rationale": "BORCS5属于BORC复合体组分，参与ARL8B向溶酶体膜募集与活化；靶向该复合体可从上游影响ARL8B依赖性溶酶体定位。"
+      },
+      {
+        "target": "RPTOR",
+        "rationale": "RPTOR是mTORC1核心支架组分，ARL8B介导的溶酶体定位与mTORC1营养感应功能相连；该靶点代表同一溶酶体营养信号通路的下游功能节点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

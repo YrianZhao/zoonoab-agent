@@ -1,0 +1,65 @@
+{
+  "gene": "CHCHD4",
+  "generatedAt": "2026-08-03T11:20:50.933Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CHCHD4 是线粒体膜间隙二硫键中继系统的核心氧化还原酶，负责将含双半胱氨酸基序的底物蛋白氧化折叠并导入膜间隙，功能受损可影响呼吸链装配、能量代谢和乳酸酸中毒相关表型。该蛋白定位于线粒体膜间隙而非细胞表面，天然抗原可及性不具备常规体内阻断抗体优势，但重组抗原和晶体结构支持体外机制抗体、结构探针和细胞内递送抗体设计。相较于下游单一呼吸链组分，CHCHD4 位于蛋白导入与氧化折叠上游节点，可同时连接 COX 装配、线粒体代谢异常和发育受限相关病理，因此更适合作为机制验证型优先靶点。",
+    "mechanism": "抗体通过结合 CHCHD4 的 CPC 氧化还原活性区邻近沟槽，阻断其与 CHCHD4 底物 CHCH 结构域蛋白的瞬时结合及二硫键转移过程。",
+    "selectedEpitope": "优先覆盖 CHCHD4 CHCH 结构域内 CPC 基序邻近底物结合沟槽，避免完全遮蔽结构性二硫键核心。",
+    "diseaseDirection": "线粒体代谢异常与乳酸酸中毒",
+    "domain": "CHCHD4 含 N 端线粒体靶向区及 Mia40/CHCH 氧化还原结构域，包含保守 CPC 活性基序和双 CX9C 二硫键框架。",
+    "evidence": "CHCHD4 线粒体氧化折叠通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt Q8N4Q1 功能与定位注释",
+      "RCSB PDB 8VGY 晶体结构数据",
+      "线粒体 MIA/ERV1 二硫键中继系统文献"
+    ],
+    "referenceEntries": "UniProt: Q8N4Q1; RCSB PDB: 8VGY; Gene: CHCHD4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CPC 活性基序邻近底物结合沟槽",
+        "可直接干预底物氧化折叠与二硫键转移，适合机制阻断抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CHCH 结构域外侧螺旋束暴露面",
+        "有利于获得高亲和结构识别抗体，并可作为构象稳定探针",
+        "备选"
+      ],
+      [
+        "Site C",
+        "双 CX9C 二硫键稳定核心区域",
+        "区域保守且与折叠稳定性高度耦合，强结合可能诱导非特异构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CHCHD4 为线粒体膜间隙蛋白，体内常规抗体难以到达作用位点；建议定位为结构探针、体外功能阻断或细胞内递送格式，并严格评估氧化还原依赖构象。",
+    "structurePrepZh": "以 PDB 8VGY 的 A、C 链作为抗原模板，保留关键二硫键与 CPC 活性位点构象，补全缺失侧链并进行质子化、二硫键约束和界面溶剂检查。",
+    "structureRef": "RCSB PDB 8VGY, X-ray diffraction, 2.3 Å",
+    "antibodies": [
+      "无获批 CHCHD4 靶向治疗性抗体",
+      "研究级抗 CHCHD4 单克隆抗体"
+    ],
+    "interfaceFocus": "CPC 活性区与 CHCH 底物结合沟槽",
+    "designMode": "细胞内机制抗体",
+    "candidates": [
+      {
+        "target": "GFER",
+        "rationale": "GFER/ERV1 是线粒体膜间隙二硫键中继系统的下游氧化酶，负责再氧化 CHCHD4 并将电子传递至细胞色素 c 或氧。其与 CHCHD4 处于同一 MIA 氧化折叠通路。"
+      },
+      {
+        "target": "COX17",
+        "rationale": "COX17 是 CHCHD4 依赖导入和氧化折叠的膜间隙铜伴侣蛋白，参与细胞色素 c 氧化酶装配。该节点与线粒体呼吸链缺陷和乳酸升高具有直接通路联系。"
+      },
+      {
+        "target": "COA7",
+        "rationale": "COA7 为含半胱氨酸基序的线粒体蛋白，参与复合体 IV 装配并与线粒体疾病表型相关。其成熟和稳定性与膜间隙氧化折叠环境密切相关。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

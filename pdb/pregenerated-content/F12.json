@@ -1,0 +1,65 @@
+{
+  "gene": "F12",
+  "generatedAt": "2026-08-03T12:25:53.550Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "F12编码凝血因子XII，是接触激活系统的起始酶原；其活化为FXIIa后可激活血浆前激肽释放酶并促进高分子量激肽原裂解，从而增加缓激肽生成，与遗传性血管性水肿及接触系统异常密切相关。该蛋白为血浆分泌型蛋白，抗体可直接识别循环抗原及活化构象，抗原可及性优于胞内凝血调控因子。相较下游KLKB1或KNG1，F12位于通路上游，抑制其活化可同时限制激肽释放酶放大环路与缓激肽生成，具备更高通路拦截优先级。",
+    "mechanism": "抗体阻断FXII酶原在接触表面或激肽释放酶作用下向FXIIa转化，并限制FXIIa对血浆前激肽释放酶的蛋白水解激活。",
+    "selectedEpitope": "优先靶向催化结构域邻近活化环与底物结合沟槽，避免完全遮蔽保守催化三联体造成非选择性交叉风险。",
+    "diseaseDirection": "遗传性血管性水肿与接触系统",
+    "domain": "F12含Fibronectin type II、EGF样、Fibronectin type I、kringle、富脯氨酸区及C端丝氨酸蛋白酶结构域。",
+    "evidence": "F12接触激活-缓激肽轴抗体设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P00748功能与结构域注释",
+      "RCSB PDB 7PRJ高分辨率晶体结构",
+      "遗传性血管性水肿F12功能获得性变异研究"
+    ],
+    "referenceEntries": "UniProt P00748；RCSB PDB 7PRJ；Open Targets F12",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端丝氨酸蛋白酶结构域活化环及S1底物识别沟槽周边",
+        "可限制FXIIa底物进入并抑制KLKB1激活，机制最直接",
+        "优先"
+      ],
+      [
+        "Site B",
+        "kringle结构域与相邻富脯氨酸连接区暴露面",
+        "可能干扰接触表面定位及构象转换，兼顾酶原状态识别",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Fibronectin type II与EGF样N端模块区域",
+        "表面可及但与催化活性耦合较弱，需验证对接触激活的影响",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "丝氨酸蛋白酶催化域高度保守，需避开胰蛋白酶样蛋白酶共享表面；建议优先筛选结合F12特异性外周环区且不影响非目标凝血蛋白的抗体。",
+    "structurePrepZh": "以7PRJ抗原链A为模板，保留高置信催化域坐标，补充缺失柔性环并标注糖基化位点；构建酶原与FXIIa相关构象用于表位可及性比较。",
+    "structureRef": "RCSB PDB 7PRJ，X-ray diffraction，1.2 Å",
+    "antibodies": [
+      "Garadacimab",
+      "3F7"
+    ],
+    "interfaceFocus": "活化环、S1底物沟槽及kringle邻接外周面",
+    "designMode": "阻断型抗体设计",
+    "candidates": [
+      {
+        "target": "KLKB1",
+        "rationale": "KLKB1编码血浆前激肽释放酶，是FXIIa的直接底物并可反向激活F12；抑制KLKB1可降低KNG1裂解和缓激肽释放。"
+      },
+      {
+        "target": "KNG1",
+        "rationale": "KNG1编码高分子量激肽原，是激肽释放酶生成缓激肽的直接底物；靶向其裂解相关区域可干预水肿效应分子产生。"
+      },
+      {
+        "target": "BDKRB2",
+        "rationale": "BDKRB2编码缓激肽B2受体，介导缓激肽诱导的血管通透性增加；受体阻断可在效应端抑制血管性水肿反应。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

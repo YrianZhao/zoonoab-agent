@@ -1,0 +1,65 @@
+{
+  "gene": "CACNA1D",
+  "generatedAt": "2026-08-03T10:56:31.229Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CACNA1D编码L型电压门控钙通道CaV1.3的α1D孔道亚基，参与肾上腺球状带细胞、窦房结及神经内分泌细胞的膜去极化诱导Ca2+内流，获得功能突变可增强Ca2+依赖性醛固酮合成并关联高血压、醛固酮腺瘤及心律异常。该蛋白为多跨膜离子通道，S5-S6孔道环及部分S1-S2、S3-S4胞外环可作为膜表面抗原入口，但可及面积显著受膜环境限制。相较下游CYP11B2或细胞内CaM调控节点，CACNA1D位于病理Ca2+内流上游，具有更直接的通道门控干预价值，但抗体成药性优先级需低于典型单跨膜受体。抗体设计应优先探索胞外孔道口构象选择性结合，而非依赖细胞内调控结构域。",
+    "mechanism": "通过结合CaV1.3胞外S5-S6孔道环及外 vestibule 区域，阻碍Ca2+经α1D孔道进入细胞，降低Ca2+/钙调蛋白依赖性转录信号及CYP11B2介导的醛固酮合成。",
+    "selectedEpitope": "优先锁定重复结构域III/IV的S5-S6胞外孔道环与外孔口构象界面。",
+    "diseaseDirection": "原发性醛固酮增多与心血管离子通道病",
+    "domain": "CaV1.3 α1D含四个同源重复结构域I-IV，每个含S1-S6跨膜螺旋及P-loop孔道区。",
+    "evidence": "CACNA1D疾病遗传学与CaV1.3通道结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q01668功能与拓扑注释",
+      "RCSB PDB 3LV3实验晶体结构记录",
+      "人类CACNA1D获得功能突变与醛固酮腺瘤文献"
+    ],
+    "referenceEntries": "UniProt: Q01668; RCSB PDB: 3LV3; Open Targets: CACNA1D",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Domain III/IV S5-S6胞外孔道环及外孔口",
+        "最接近Ca2+通透路径，适合构建通道阻断型抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "S3-S4胞外连接区邻近电压感受器外侧端",
+        "可能影响电压感受器构象耦联，具备变构抑制潜力",
+        "备选"
+      ],
+      [
+        "Site C",
+        "长胞内C端IQ/钙调蛋白结合调控区",
+        "结构功能关键但抗体在完整细胞中不可及，常规治疗抗体适配性低",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CACNA1D为多跨膜通道，胞外环短且构象依赖强，需避免与CACNA1C等L型通道保守孔道区交叉反应，建议引入同源通道反筛。",
+    "structurePrepZh": "3LV3可作为实验结构参考，但需核验其覆盖片段与CaV1.3胞外拓扑的一致性；设计前应结合AlphaFold或同源CaV结构补全跨膜孔道构象。",
+    "structureRef": "RCSB PDB 3LV3, X-ray diffraction, 1.94 Å",
+    "antibodies": [
+      "无临床获批CACNA1D阻断抗体",
+      "研究级抗CaV1.3胞外区抗体"
+    ],
+    "interfaceFocus": "S5-S6外孔口、P-loop选择性滤过器外侧",
+    "designMode": "膜通道胞外阻断",
+    "candidates": [
+      {
+        "target": "CACNA1C",
+        "rationale": "CACNA1C编码CaV1.2，同属L型电压门控钙通道并参与心血管平滑肌和心肌Ca2+内流；可作为同通路疗效与选择性边界比较靶点。"
+      },
+      {
+        "target": "KCNJ5",
+        "rationale": "KCNJ5获得功能突变可导致肾上腺球状带细胞去极化，继发激活电压门控Ca2+通道并促进醛固酮合成，是原发性醛固酮增多症同一电兴奋-钙信号轴节点。"
+      },
+      {
+        "target": "CYP11B2",
+        "rationale": "CYP11B2编码醛固酮合酶，位于Ca2+信号下游并直接执行醛固酮生物合成；适合作为通路终末效应靶点对照，但其线粒体定位限制抗体直接干预。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

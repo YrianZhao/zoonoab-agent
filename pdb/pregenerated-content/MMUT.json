@@ -1,0 +1,65 @@
+{
+  "gene": "MMUT",
+  "generatedAt": "2026-08-03T14:17:32.903Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MMUT 编码线粒体甲基丙二酰-CoA变位酶，催化 L-methylmalonyl-CoA 向 succinyl-CoA 的腺苷钴胺素依赖性重排，是丙酸、奇数链脂肪酸及支链氨基酸分解进入三羧酸循环的关键节点；其缺陷直接导致甲基丙二酸血症和甲基丙二酸尿症。该蛋白为线粒体基质酶，天然抗原可及性弱，抗体设计更适合作为细胞内递送、构象稳定或诊断捕获抗体路线，而非经典膜表面阻断抗体。相较上游代谢酶，MMUT 与 mut0/mut- 型疾病的因果证据和结构分辨率更明确，适合优先开展结构引导型结合分子设计。",
+    "mechanism": "设计抗体结合 MMUT 催化桶状结构域或钴胺素结合域，稳定突变敏感构象，避免遮挡 methylmalonyl-CoA 与 adenosylcobalamin 进入催化腔。",
+    "selectedEpitope": "优先选择催化 TIM-barrel 外侧非底物通道表位，避开钴胺素结合口袋与二聚体界面。",
+    "diseaseDirection": "甲基丙二酸血症代谢病",
+    "domain": "MMUT 含 N 端底物结合 TIM-barrel 催化域、连接区及 C 端腺苷钴胺素结合域。",
+    "evidence": "MMUT 缺陷相关甲基丙二酸血症证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P22033 functional annotation",
+      "RCSB PDB 8DYL X-ray structure",
+      "OMIM MMUT-related methylmalonic acidemia"
+    ],
+    "referenceEntries": "UniProt P22033；RCSB PDB 8DYL；Open Targets MMUT",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "TIM-barrel 外侧远离底物通道的构象稳定面",
+        "可获得高特异性结合并降低对催化底物进入的干扰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C 端腺苷钴胺素结合域外缘非口袋区域",
+        "适合识别辅因子结合域构象差异并用于诊断捕获",
+        "备选"
+      ],
+      [
+        "Site C",
+        "亚基二聚体界面邻近区域",
+        "可能影响 MMUT 同源二聚体装配或酶活，需严格功能筛查",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MMUT 位于线粒体基质，常规抗体体内可及性受限；设计应优先用于胞内递送、体外诊断或结构伴侣，并避开催化腔和辅因子口袋。",
+    "structurePrepZh": "以 8DYL 抗原链 B 为模板，保留成熟蛋白构象，检查辅因子、底物类似物及晶体接触，标注催化腔、钴胺素口袋和二聚体界面。",
+    "structureRef": "RCSB PDB 8DYL，X-ray diffraction，1.9 Å",
+    "antibodies": [
+      "anti-MMUT monoclonal antibody",
+      "anti-methylmalonyl-CoA mutase antibody"
+    ],
+    "interfaceFocus": "催化域外侧、钴胺素域外缘与二聚体界面",
+    "designMode": "结构引导胞内抗体",
+    "candidates": [
+      {
+        "target": "MMAA",
+        "rationale": "MMAA 参与腺苷钴胺素依赖性 MMUT 活化，其缺陷同样导致甲基丙二酸血症；与 MMUT 处于同一线粒体钴胺素代谢功能轴。"
+      },
+      {
+        "target": "MMAB",
+        "rationale": "MMAB 编码 ATP:cob(I)alamin adenosyltransferase，负责生成 MMUT 所需腺苷钴胺素辅因子；其功能缺陷造成 cblB 型甲基丙二酸血症。"
+      },
+      {
+        "target": "MCEE",
+        "rationale": "MCEE 催化 D-methylmalonyl-CoA 向 L-methylmalonyl-CoA 的差向异构化，为 MMUT 提供直接底物；异常可造成甲基丙二酸升高。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "DNTT",
+  "generatedAt": "2026-08-03T18:37:24.092Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DNTT编码末端脱氧核苷酸转移酶TdT，主要在早期B/T淋巴祖细胞中催化V(D)J重排连接处的非模板核苷酸添加，影响抗原受体多样性与淋巴细胞发育。该蛋白为核内DNA聚合酶家族成员，缺乏胞外结构域、分泌形式或膜受体特征，因此天然抗原可及性不支持体内阻断型抗体。其疾病关联主要集中于淋巴细胞计数、免疫发育及血液肿瘤标志物层面；相较CD19、CD3E、RAG1等同通路可及靶点，DNTT更适合作为胞内标志物检测或结构生物学验证靶点，治疗性抗体优先级较低。",
+    "mechanism": "抗体设计宜定位于检测用途，通过识别TdT聚合酶核心构象表位区分DNTT阳性淋巴祖细胞，而非阻断胞外配体-受体相互作用。",
+    "selectedEpitope": "优先选择Palm/Fingers聚合酶核心外露螺旋环区，避开DNA结合沟与金属离子催化位点。",
+    "diseaseDirection": "淋巴细胞发育与血液肿瘤标志物",
+    "domain": "DNTT含BRCT样N端区及Pol X家族聚合酶核心，包含8-kDa、Palm、Fingers和Thumb亚结构域。",
+    "evidence": "DNTT淋巴祖细胞标志物与Pol X结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProtKB P04053功能注释",
+      "RCSB PDB 5W4E晶体结构",
+      "造血淋巴细胞V(D)J重排文献"
+    ],
+    "referenceEntries": "UniProtKB:P04053；RCSB PDB:5W4E；HGNC:DNTT",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Palm/Fingers核心外露环与邻近螺旋面",
+        "利于构建构象型检测抗体，降低对催化口袋的干扰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端BRCT样结构域可及表面",
+        "可能提供DNTT特异识别位点，适合免疫组化或流式胞内染色",
+        "备选"
+      ],
+      [
+        "Site C",
+        "DNA结合沟、8-kDa结构域及催化金属离子邻近区域",
+        "高度功能保守且易受核酸结合构象影响，交叉反应和构象遮蔽风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DNTT为核内酶，缺乏细胞表面可及性，治疗性抗体递送与作用机制不成立；建议限定于固定透化样本检测或研究级结构抗体开发。",
+    "structurePrepZh": "以5W4E实验晶体结构为模板，保留抗原链A/B/D中完整TdT构象，去除非目标配体后评估缺失环、晶体接触面和DNA结合沟暴露状态。",
+    "structureRef": "RCSB PDB 5W4E；X-ray diffraction，2.18 Å",
+    "antibodies": [
+      "Anti-TdT diagnostic antibody clone EP266",
+      "Anti-TdT diagnostic antibody clone SEN28"
+    ],
+    "interfaceFocus": "Palm/Fingers外露构象面与BRCT样结构域",
+    "designMode": "胞内标志物检测抗体",
+    "candidates": [
+      {
+        "target": "RAG1",
+        "rationale": "RAG1与RAG2共同介导V(D)J重组的DNA切割步骤，处于DNTT上游同一抗原受体重排通路。其同为核内蛋白，更适合机制研究而非体内阻断抗体。"
+      },
+      {
+        "target": "RAG2",
+        "rationale": "RAG2参与识别重组信号序列并稳定RAG复合体，是早期淋巴细胞发育和V(D)J重排的核心因子。与DNTT联合检测可增强淋巴祖细胞分化状态判读。"
+      },
+      {
+        "target": "CD19",
+        "rationale": "CD19标记B细胞谱系并在B淋巴母细胞白血病中具有明确表面可及性。相较DNTT，其膜蛋白属性更适合治疗性抗体或CAR识别设计。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

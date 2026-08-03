@@ -1,0 +1,65 @@
+{
+  "gene": "TAT",
+  "generatedAt": "2026-08-03T17:09:05.929Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TAT编码肝脏细胞质酪氨酸氨基转移酶，催化酪氨酸与α-酮戊二酸转氨生成4-羟基苯丙酮酸，是酪氨酸分解代谢的首个关键步骤；TAT缺陷直接导致酪氨酸血症II型并引起角膜、皮肤及神经系统损害。该蛋白为胞内可溶性PLP依赖性酶，天然抗原可及性低，不具备常规治疗性阻断抗体的胞外靶点优势，但纯化酶抗原结构明确，适合用于机制研究型抗体、细胞内递送抗体或诊断捕获抗体开发。相较同通路下游酶HPD、HGD和FAH，TAT具有疾病因果证据更直接、PDB结构可用且二聚体催化构象清晰的优先级优势。",
+    "mechanism": "抗体设计宜阻断TAT同源二聚体界面或遮挡PLP结合口袋入口，削弱底物酪氨酸进入及催化赖氨酸相关转氨反应。",
+    "selectedEpitope": "优先选择大结构域催化裂隙边缘与二聚化界面相邻表位，避开深埋PLP口袋核心残基。",
+    "diseaseDirection": "酪氨酸血症II型代谢病",
+    "domain": "TAT为PLP依赖性氨基转移酶，含N端小结构域、C端大催化结构域及同源二聚体界面。",
+    "evidence": "TAT结构与酪氨酸血症II型因果证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P17735功能与变异注释",
+      "RCSB PDB 3DYD晶体结构",
+      "OMIM与Orphanet酪氨酸血症II型记录"
+    ],
+    "referenceEntries": "UniProt P17735；RCSB PDB 3DYD；MONDO:0010160；Orphanet:28378",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "大催化结构域裂隙入口及PLP口袋邻近环区",
+        "可空间阻碍酪氨酸底物进入，利于获得功能抑制型抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "A/B链同源二聚体界面外侧可及区域",
+        "可能干扰二聚体稳定性并降低催化构象完整性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "深部PLP结合口袋与保守催化赖氨酸邻域",
+        "功能相关性强但凹陷、保守且可及性不足，亲和成熟风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TAT为胞内酶，体内中和抗体递送与抗原暴露构成主要风险；建议定位为诊断、结构探针或细胞内递送抗体，并避免高度保守催化核心导致交叉反应。",
+    "structurePrepZh": "采用3DYD的A、B链二聚体作为建模单元，保留PLP辅因子用于口袋边界判定，补全缺失侧链并进行质子化与界面能量最小化。",
+    "structureRef": "RCSB PDB 3DYD，human TAT X-ray structure，2.3 Å",
+    "antibodies": [
+      "commercial anti-TAT antibody",
+      "research-grade anti-tyrosine aminotransferase antibody"
+    ],
+    "interfaceFocus": "催化裂隙入口与A/B链二聚化界面",
+    "designMode": "胞内酶结构探针",
+    "candidates": [
+      {
+        "target": "HPD",
+        "rationale": "HPD催化4-羟基苯丙酮酸进一步转化为尿黑酸，位于TAT下游同一酪氨酸分解通路；其抑制与酪氨酸代谢重定向具有明确机制联系。"
+      },
+      {
+        "target": "HGD",
+        "rationale": "HGD负责尿黑酸氧化裂解，是酪氨酸降解通路的连续下游酶；其遗传缺陷导致尿黑酸尿症，具备真实代谢病关联。"
+      },
+      {
+        "target": "FAH",
+        "rationale": "FAH催化延胡索酰乙酰乙酸水解，是酪氨酸分解末端步骤；其缺陷导致酪氨酸血症I型，与TAT同属酪氨酸降解疾病轴。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

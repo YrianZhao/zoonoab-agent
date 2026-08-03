@@ -1,0 +1,65 @@
+{
+  "gene": "TFAM",
+  "generatedAt": "2026-08-03T21:28:30.344Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TFAM是线粒体DNA复制、包装与转录启动的核心核编码因子，其功能缺陷与mtDNA depletion syndrome 15及神经退行性疾病中的线粒体基因组拷贝数下降相关。该蛋白定位于线粒体基质并与mtDNA结合，天然抗原可及性低于膜受体或分泌蛋白，作为常规细胞外阻断抗体靶点存在递送限制。其优先级主要来自明确的人类遗传学关联、高分辨率结构可用性及与mtDNA维持通路的中心节点地位，较下游呼吸链组分更适合用于机制验证型胞内结合分子设计。",
+    "mechanism": "设计分子拟阻断TFAM HMG-box与mtDNA小沟及LSP启动子区域的结合，干扰DNA弯曲、包装与转录启动复合体形成。",
+    "selectedEpitope": "优先覆盖HMG-box A及连接肽参与DNA弯曲的结合面，避免完全遮蔽非特异性稳定折叠核心。",
+    "diseaseDirection": "线粒体DNA耗竭与神经退行性疾病",
+    "domain": "TFAM含线粒体靶向肽、HMG-box A、连接肽、HMG-box B及C端转录激活尾区。",
+    "evidence": "TFAM-mtDNA维持轴结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联评分",
+      "UniProt Q00059功能与亚细胞定位注释",
+      "RCSB PDB 3FGH X射线晶体结构",
+      "OMIM及ClinVar线粒体DNA耗竭综合征相关记录"
+    ],
+    "referenceEntries": "UniProt Q00059；RCSB PDB 3FGH；Open Targets TFAM",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "HMG-box A与连接肽DNA结合/弯曲界面",
+        "直接干预TFAM诱导mtDNA弯曲和启动子占位，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "HMG-box B邻近DNA小沟接触面",
+        "可削弱第二HMG结构域对DNA构象稳定作用，适合作为阻断备选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端转录激活尾区附近",
+        "可能影响POLRMT-TFB2M转录启动协同，但柔性较高且结构解析不完整",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TFAM为线粒体基质内DNA结合蛋白，抗体递送与细胞内定位是主要界面风险；宜采用细胞内抗体或可递送VHH策略，并严格评估mtDNA全局耗竭毒性。",
+    "structurePrepZh": "以3FGH抗原链A为结构模板，保留HMG-box折叠与DNA接触残基注释，补建缺失柔性尾区时应区分结构约束界面与低置信度区域。",
+    "structureRef": "RCSB PDB 3FGH，human TFAM X-ray 1.35 Å",
+    "antibodies": [
+      "抗TFAM克隆18G102B2E11",
+      "抗TFAM克隆EPR12285"
+    ],
+    "interfaceFocus": "HMG-box A/连接肽-mtDNA小沟接触界面",
+    "designMode": "胞内阻断型VHH",
+    "candidates": [
+      {
+        "target": "POLG",
+        "rationale": "POLG编码线粒体DNA聚合酶催化亚基，与TFAM共同维持mtDNA复制与拷贝数稳定，是线粒体DNA耗竭综合征的核心通路靶点。"
+      },
+      {
+        "target": "TWNK",
+        "rationale": "TWNK编码线粒体DNA解旋酶，参与复制叉解旋过程；其缺陷可导致mtDNA耗竭或多重缺失，与TFAM所在mtDNA维护轴高度相关。"
+      },
+      {
+        "target": "POLRMT",
+        "rationale": "POLRMT为线粒体RNA聚合酶，需与TFAM及TFB2M协同启动线粒体转录，适合作为TFAM转录启动机制的同通路候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

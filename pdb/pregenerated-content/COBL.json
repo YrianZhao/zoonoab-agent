@@ -1,0 +1,65 @@
+{
+  "gene": "COBL",
+  "generatedAt": "2026-08-03T11:31:49.682Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "COBL编码含WH2重复的肌动蛋白成核因子，主要参与神经元形态发生、轴突分支及上皮顶端肌动蛋白束装配；现有遗传关联多集中于身高、红细胞体积和行为表型，尚缺乏可直接支持抗体干预的疾病通路因果证据。该蛋白为胞内细胞骨架调控蛋白，4PL8结构对应WH2结构域与肌动蛋白复合体，抗原天然可及性显著弱于分泌蛋白或膜受体。与同类可成药细胞外靶点相比，COBL更适合作为结构生物学和细胞内递送抗体研究靶点，主靶点优先级应谨慎评估。",
+    "mechanism": "设计分子应阻断COBL WH2基序与G-actin疏水沟及D-loop邻近表面的结合，从而削弱COBL介导的肌动蛋白单体募集与丝状肌动蛋白成核。",
+    "selectedEpitope": "优先覆盖WH2基序的肌动蛋白结合α螺旋及C端LRAP样基序界面。",
+    "diseaseDirection": "细胞骨架与神经发育表型",
+    "domain": "COBL含多个C端WH2重复结构域，可直接结合肌动蛋白单体并促进肌动蛋白成核。",
+    "evidence": "COBL-WH2肌动蛋白复合体结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform遗传关联数据",
+      "UniProt O75128功能与结构域注释",
+      "RCSB PDB 4PL8晶体结构记录",
+      "COBL介导肌动蛋白成核与神经元形态发生研究文献"
+    ],
+    "referenceEntries": "UniProt O75128；RCSB PDB 4PL8；Open Targets COBL",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "WH2 α螺旋-肌动蛋白疏水沟结合面",
+        "直接竞争COBL与G-actin结合，机制指向性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "WH2 C端LRAP样基序邻近界面",
+        "干扰肌动蛋白单体稳定装配，可作为协同阻断位点",
+        "备选"
+      ],
+      [
+        "Site C",
+        "WH2非结合侧暴露表面",
+        "可能具有结合可行性，但功能阻断相关性有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "COBL为胞内蛋白，常规抗体难以到达天然作用位点；应优先采用细胞内抗体、递送偶联或结构探针策略，并避免将遗传关联直接外推为治疗适应证。",
+    "structurePrepZh": "以4PL8中COBL WH2-肌动蛋白复合体为模板，保留抗原肽段与肌动蛋白界面，补全缺失侧链、校正质子化状态并标注界面残基。",
+    "structureRef": "RCSB PDB 4PL8，X-ray diffraction，2.0 Å",
+    "antibodies": [
+      "尚无获批COBL靶向治疗性抗体",
+      "COBL研究级检测抗体"
+    ],
+    "interfaceFocus": "WH2螺旋与G-actin疏水沟界面",
+    "designMode": "细胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "ACTB",
+        "rationale": "ACTB编码β-肌动蛋白，是COBL WH2结构域直接结合的肌动蛋白单体组分；其位于同一细胞骨架装配轴，但广泛表达导致治疗窗口较窄。"
+      },
+      {
+        "target": "ACTG1",
+        "rationale": "ACTG1编码γ-肌动蛋白，可作为WH2结构域结合的肌动蛋白单体来源之一；适合用于解析COBL相关肌动蛋白成核复合体的同通路验证。"
+      },
+      {
+        "target": "WASL",
+        "rationale": "WASL/N-WASP同属肌动蛋白聚合调控网络，连接上游信号与Arp2/3复合体介导的分支成核；可作为细胞骨架重塑通路中的替代调控节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

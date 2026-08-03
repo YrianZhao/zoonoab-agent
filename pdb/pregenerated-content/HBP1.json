@@ -1,0 +1,65 @@
+{
+  "gene": "HBP1",
+  "generatedAt": "2026-08-03T19:41:16.548Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HBP1 为HMG-box转录因子，主要定位于细胞核并通过结合DNA调控细胞周期、Wnt/β-catenin及炎症相关转录程序；其遗传关联信号涉及1型糖尿病、单核细胞计数及代谢表型，但当前疾病证据强度中等且多为遗传关联。该蛋白缺乏分泌形式或稳定胞外结构域，天然抗原可及性不适合常规体内阻断型抗体。与同通路中CTNNB1、TCF7L2或CD3E等更具药物可及性的靶点相比，HBP1更适合作为结构生物学验证或细胞内递送抗体研究对象，主靶点优先级应谨慎设定。",
+    "mechanism": "设计分子以内源递送形式结合HBP1 HMG-box DNA结合面，阻断其与特异性DNA小沟的接触，从而干预HBP1介导的转录调控复合体形成。",
+    "selectedEpitope": "优先聚焦HMG-box中L形三螺旋DNA结合面及碱性沟槽边缘，避免完全覆盖疏水核心。",
+    "diseaseDirection": "自身免疫与免疫细胞表型",
+    "domain": "HBP1含N端调控区及C端HMG-box DNA结合结构域；3QVE解析其HMG-box折叠。",
+    "evidence": "HBP1遗传关联与HMG-box结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt O60381功能与亚细胞定位注释",
+      "RCSB PDB 3QVE晶体结构",
+      "HBP1调控Wnt/β-catenin转录文献"
+    ],
+    "referenceEntries": "UniProt O60381；RCSB PDB 3QVE；Open Targets HBP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "HMG-box DNA结合面三螺旋束外侧碱性沟槽",
+        "可直接竞争HBP1与DNA小沟结合，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "HMG-box螺旋1-螺旋2转角及邻近溶剂暴露面",
+        "有利于构建构象选择性结合分子并降低核心扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "HMG-box疏水核心及结构稳定螺旋内侧",
+        "可能导致非特异性构象破坏，难以形成选择性功能阻断",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HBP1为核内转录因子，常规抗体难以到达作用位点；应限定为细胞内递送Fab/VHH或体外机制验证，并设置DNA结合竞争实验。",
+    "structurePrepZh": "以3QVE抗原链A/B/C比对评估晶体接触，保留HMG-box单体构象，补全缺失侧链并标注DNA结合正电荷斑块。",
+    "structureRef": "RCSB PDB 3QVE，X-ray diffraction，2.04 Å",
+    "antibodies": [
+      "无已获批HBP1治疗性抗体",
+      "研究级抗HBP1抗体"
+    ],
+    "interfaceFocus": "HMG-box DNA小沟结合面",
+    "designMode": "细胞内递送阻断",
+    "candidates": [
+      {
+        "target": "CTNNB1",
+        "rationale": "CTNNB1编码β-catenin，是HBP1负向调控的Wnt转录轴核心效应分子；其蛋白互作界面可用于同通路机制研究。"
+      },
+      {
+        "target": "TCF7L2",
+        "rationale": "TCF7L2与β-catenin形成转录复合体并参与糖代谢和免疫相关遗传风险，是HBP1相关Wnt转录网络中的真实节点。"
+      },
+      {
+        "target": "CD3E",
+        "rationale": "CD3E属于1型糖尿病免疫发病通路中的T细胞受体复合体组成部分，具备胞外结构域可及性，抗体干预可行性高于核内HBP1。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

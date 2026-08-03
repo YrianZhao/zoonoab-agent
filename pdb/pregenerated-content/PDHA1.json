@@ -1,0 +1,65 @@
+{
+  "gene": "PDHA1",
+  "generatedAt": "2026-08-03T15:09:34.794Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PDHA1编码线粒体丙酮酸脱氢酶复合体E1α亚基，致病变异削弱E1催化丙酮酸氧化脱羧，导致乳酸酸中毒、能量生成不足及Leigh综合征相关神经退行性损伤。该蛋白为线粒体基质内酶亚基，天然抗原可及性不具备胞外或分泌靶点优势，因此不适合作为常规体内阻断型抗体主靶点。其优先级主要来自明确的单基因病因学、已有高分辨率人源E1结构及可用于胞内递送或体外诊断抗体开发的构象表位，而非膜受体类靶点的药物可及性。",
+    "mechanism": "抗体设计宜聚焦识别PDHA1构象或突变相关表位，用于稳定/检测E1α-E1β装配状态，而非阻断胞外配体-受体相互作用。",
+    "selectedEpitope": "优先选择E1α参与E1α/E1β异四聚体装配且远离TPP催化口袋的外露螺旋-环区。",
+    "diseaseDirection": "线粒体能量代谢遗传病",
+    "domain": "PDHA1为E1α催化亚基，含TPP依赖脱羧核心折叠及与PDHB形成异四聚体的装配界面。",
+    "evidence": "PDHA1缺陷与丙酮酸脱氢酶通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P08559 functional annotation",
+      "RCSB PDB 2OZL human PDH E1 structure",
+      "OMIM pyruvate dehydrogenase E1-alpha deficiency"
+    ],
+    "referenceEntries": "UniProtKB:P08559；RCSB PDB:2OZL；Open Targets:PDHA1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "E1α外露装配邻近螺旋-环区，避开TPP结合口袋",
+        "利于识别天然折叠并降低催化位点干扰风险",
+        "优先"
+      ],
+      [
+        "Site B",
+        "E1α与E1β异二聚体界面边缘区域",
+        "可报告E1复合体装配状态，适合构象选择性抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "TPP/Mg2+依赖催化中心邻近保守口袋",
+        "高度保守且可能影响酶活，治疗性阻断价值有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PDHA1位于线粒体基质，体内抗体递送与抗原可及性为主要风险；设计应优先定位诊断、细胞内抗体或递送平台验证。",
+    "structurePrepZh": "以2OZL高分辨率晶体结构为模板，保留E1α/E1β异四聚体装配关系，校验TPP、Mg2+及界面残基构象后进行表位暴露度评估。",
+    "structureRef": "RCSB PDB 2OZL，X-ray diffraction，1.9 Å",
+    "antibodies": [
+      "Anti-PDHA1 clone 9H9AF5",
+      "Anti-PDHA1 phospho-Ser293 antibody"
+    ],
+    "interfaceFocus": "E1α-E1β装配界面及TPP邻近构象区",
+    "designMode": "胞内/诊断抗体",
+    "candidates": [
+      {
+        "target": "PDHB",
+        "rationale": "PDHB编码E1β亚基，与PDHA1共同形成E1异四聚体；其缺陷同样削弱丙酮酸脱氢酶复合体活性并导致PDH缺乏表型。"
+      },
+      {
+        "target": "DLAT",
+        "rationale": "DLAT编码PDH复合体E2二氢硫辛酰转乙酰酶，是E1产物向乙酰辅酶A转移的核心通路节点，适合作为同一复合体装配与功能评估靶点。"
+      },
+      {
+        "target": "DLD",
+        "rationale": "DLD编码E3二氢硫辛酰脱氢酶，为PDH复合体再氧化硫辛酰基所必需；其异常可造成乳酸酸中毒及线粒体能量代谢障碍。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

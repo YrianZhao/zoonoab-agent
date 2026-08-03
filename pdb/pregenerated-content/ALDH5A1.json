@@ -1,0 +1,65 @@
+{
+  "gene": "ALDH5A1",
+  "generatedAt": "2026-08-03T10:23:22.388Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ALDH5A1编码琥珀酸半醛脱氢酶，在线粒体GABA分解通路中催化琥珀酸半醛氧化为琥珀酸，其缺陷导致GHB与GABA积累并引发发育性癫痫性脑病。该蛋白为线粒体基质内可溶性酶，缺乏天然胞外结构域，抗体抗原可及性不具备体内阻断优势，更适合作为结构验证、细胞内递送或诊断捕获场景。相比GABRA1、ABAT等同通路神经靶点，ALDH5A1具有明确单基因病因和2.0 Å实验结构支持，但治疗性抗体优先级受限于细胞内定位。",
+    "mechanism": "抗体设计宜定位于构象识别或递送型干预，结合NAD结合域邻近构象表面，干扰底物琥珀酸半醛进入催化半胱氨酸活性位点。",
+    "selectedEpitope": "优先选择NAD结合Rossmann样结构域与催化结构域交界的非保守构象表面。",
+    "diseaseDirection": "SSADH缺乏症与癫痫谱系",
+    "domain": "线粒体醛脱氢酶，含NAD结合Rossmann样结构域、催化结构域及寡聚化界面。",
+    "evidence": "ALDH5A1结构与GABA分解通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P51649 functional annotation",
+      "RCSB PDB 2W8N X-ray structure",
+      "OMIM SSADH deficiency clinical genetics"
+    ],
+    "referenceEntries": "UniProt P51649；RCSB PDB 2W8N；MONDO:0010083",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Rossmann样NAD结合域外侧构象环",
+        "利于识别酶构象状态并避开高度保守催化核心",
+        "优先"
+      ],
+      [
+        "Site B",
+        "NAD结合域与催化结构域交界面",
+        "可能影响底物通道开放及辅因子相关构象转换",
+        "备选"
+      ],
+      [
+        "Site C",
+        "寡聚化界面邻近区域",
+        "可能干扰天然四聚体稳定性但存在同源酶交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ALDH5A1为线粒体基质蛋白，常规抗体难以到达作用位点；催化核心保守性较高，应优先选择非保守构象表面并评估ALDH家族交叉反应。",
+    "structurePrepZh": "采用PDB 2W8N链A作为模板，补全缺失侧链、校正质子化状态，保留NAD相关口袋环境用于表位可及性与保守性评估。",
+    "structureRef": "Human SSADH crystal structure, PDB 2W8N, 2.0 Å",
+    "antibodies": [
+      "anti-ALDH5A1 diagnostic antibody",
+      "anti-SSADH research antibody"
+    ],
+    "interfaceFocus": "NAD结合口袋外缘与催化域交界",
+    "designMode": "细胞内递送型Fab/VHH",
+    "candidates": [
+      {
+        "target": "ABAT",
+        "rationale": "ABAT编码GABA转氨酶，位于ALDH5A1上游，将GABA转化为琥珀酸半醛，是同一GABA分解通路的核心酶。"
+      },
+      {
+        "target": "GAD1",
+        "rationale": "GAD1催化谷氨酸生成GABA，影响GABA能神经递质池，与SSADH缺陷相关的GABA/GHB代谢失衡处于同一神经代谢轴。"
+      },
+      {
+        "target": "GABRA1",
+        "rationale": "GABRA1编码GABA-A受体α1亚基，介导GABA积累后的抑制性突触信号输出，与癫痫表型具有直接通路关联且具备膜表面可及性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

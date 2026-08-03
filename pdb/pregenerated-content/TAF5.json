@@ -1,0 +1,65 @@
+{
+  "gene": "TAF5",
+  "generatedAt": "2026-08-03T17:07:19.897Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TAF5 是 TFIID 复合体的核心组分，参与TBP依赖性转录起始并影响多类疾病相关转录程序，在感染与代谢表型中具有间接但可追踪的通路连接。其蛋白为核内因子，抗原可及性主要受限于细胞内定位，因而更适合作为机制研究或递送型抗体策略的主靶点，而非经典膜表面阻断靶标。相较同属转录起始复合体的其他亚基，TAF5具有明确结构基础与较成熟的PDB参考，可为界面定位、复合体干扰与构象映射提供更稳定的设计依据。",
+    "mechanism": "通过识别TAF5卷曲螺旋/支架界面，干扰其在TFIID中的装配并削弱TAF5与复合体伙伴的稳定接触，从而抑制TBP依赖性启动复合体形成。",
+    "selectedEpitope": "优先覆盖TAF5支架域中介导复合体装配的螺旋束界面，避开高度保守折叠核心。",
+    "diseaseDirection": "感染与转录调控",
+    "domain": "TAF5以N端转录辅助区和C端HEAT样支架区为主，后者承担复合体装配界面功能。",
+    "evidence": "TAF5结构-疾病关联证据包",
+    "evidenceSources": [
+      "UniProt Q15542",
+      "RCSB PDB 2NXP",
+      "Open Targets Platform",
+      "NCBI Gene TAF5"
+    ],
+    "referenceEntries": "UniProt: Q15542; PDB: 2NXP; Gene: TAF5; AlphaFold/结构数据库可交叉验证",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端支架域螺旋束外侧面",
+        "优先干预复合体装配，利于构象阻断",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端辅助区与伙伴接触片段",
+        "适合验证蛋白-蛋白相互作用依赖性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "折叠核心保守疏水面",
+        "可能扰动整体稳定性且脱靶风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TAF5为核内蛋白，常规全长抗体进入受限，需优先评估胞内递送、纳米抗体或功能片段格式；避免攻击高度保守折叠核心。",
+    "structurePrepZh": "基于2.17 Å晶体结构进行链重组、缺失环补建与界面暴露评估，优先提取可溶支架域并标注伙伴接触残基。",
+    "structureRef": "2NXP晶体结构及TAF5相关复合体文献",
+    "antibodies": [
+      "TAF5相关研究性结合抗体",
+      "TFIID复合体亚基功能阻断抗体"
+    ],
+    "interfaceFocus": "TFIID装配界面与伙伴接触螺旋面",
+    "designMode": "structure-guided",
+    "candidates": [
+      {
+        "target": "TAF1",
+        "rationale": "TAF1与TAF5同属TFIID复合体核心网络，均参与TBP依赖性转录起始。其可作为同通路功能对照靶点，用于验证复合体干预对转录装配的协同影响。"
+      },
+      {
+        "target": "TBP",
+        "rationale": "TBP是TAF5所在通路中的直接结合伙伴，构成TFIID装配与启动子识别的核心枢纽。针对TBP可用于界定TAF5抗体对TBP招募环节的抑制边界。"
+      },
+      {
+        "target": "TAF6",
+        "rationale": "TAF6与TAF5共同构成TFIID内部的稳定支架模块，二者在复合体稳态与装配中具有紧密功能耦联。将其纳入候选可支持同通路结构互证与机制分层。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "AKT1",
+  "generatedAt": "2026-08-03T10:22:19.255Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "AKT1是PI3K–AKT–mTOR通路的核心丝氨酸/苏氨酸激酶，E17K等激活突变可增强膜定位并驱动Proteus综合征、乳腺癌及多癌种中的增殖和存活信号。该蛋白主要位于胞质并通过PH结构域与质膜PIP3结合，缺乏稳定暴露于细胞外空间的天然抗原可及性，因此更适合抗体片段、细胞内抗体或递送型抗体策略。相较PIK3CA、MTOR等上游或下游节点，AKT1处于信号汇聚位置且具备明确突变热点和高分辨率结构依据，适合作为机制验证优先靶点，但常规表面抗体开发优先级低于膜受体型靶点。",
+    "mechanism": "以细胞内抗体片段结合AKT1 PH结构域磷脂结合口袋，阻断其与PIP3相互作用，抑制膜募集及T308/S473激活磷酸化。",
+    "selectedEpitope": "优先靶向PH结构域PIP3结合沟槽及E17邻近构象界面。",
+    "diseaseDirection": "PI3K-AKT通路驱动肿瘤与过度生长综合征",
+    "domain": "AKT1含N端PH结构域、中央蛋白激酶催化结构域及C端调控疏水基序。",
+    "evidence": "AKT1结构与PI3K-AKT疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P31749功能与结构域注释",
+      "RCSB PDB 1UNQ晶体结构记录",
+      "ClinVar/COSMIC中AKT1 E17K致病与肿瘤突变证据"
+    ],
+    "referenceEntries": "UniProt:P31749；RCSB PDB:1UNQ；HGNC:AKT1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PH结构域PIP3结合沟槽与E17邻近区域",
+        "可阻断膜定位，是AKT1激活起始步骤的关键功能界面",
+        "优先"
+      ],
+      [
+        "Site B",
+        "激酶结构域ATP结合裂隙外侧构象表面",
+        "可作为变构抑制或构象锁定设计区域，需避免直接模拟小分子ATP竞争模式",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端疏水基序与S473调控区域",
+        "与激酶完全激活相关，但柔性较高且同源AKT亚型保守性强",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "AKT1为胞内激酶，常规IgG难以到达作用位点；PH结构域与AKT2/AKT3同源性较高，应强化AKT1突变邻近界面的选择性筛选。",
+    "structurePrepZh": "以1UNQ高分辨率晶体结构为PH结构域模板，补全缺失氢原子与质子化状态，标注PIP3结合残基和E17突变邻近表面。",
+    "structureRef": "RCSB PDB 1UNQ，AKT1 PH结构域X射线晶体结构",
+    "antibodies": [
+      "MK-2206功能参照",
+      "Ipatasertib功能参照"
+    ],
+    "interfaceFocus": "PH结构域PIP3结合沟槽与E17构象热点",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "PIK3CA",
+        "rationale": "PIK3CA编码PI3K p110α催化亚基，产生PIP3并直接促进AKT1膜募集；其激活突变与乳腺癌和PI3K-AKT通路异常高度相关。"
+      },
+      {
+        "target": "PTEN",
+        "rationale": "PTEN去磷酸化PIP3并负向调控AKT1激活，功能缺失可导致AKT持续活化；其在Cowden综合征和多种肿瘤中具有明确遗传证据。"
+      },
+      {
+        "target": "MTOR",
+        "rationale": "MTOR是AKT下游关键效应节点，介导蛋白合成、代谢和细胞生长信号；AKT1异常激活可通过mTORC1轴促进肿瘤进展。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

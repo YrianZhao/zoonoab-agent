@@ -1,0 +1,65 @@
+{
+  "gene": "DHX35",
+  "generatedAt": "2026-08-03T11:57:06.457Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DHX35属于DEAH-box RNA解旋酶，主要定位于细胞核/核糖核蛋白复合体，参与RNA加工相关分子过程；Open Targets提示其与神经退行性疾病存在遗传学关联，但目前缺乏明确可药物化的胞外疾病通路机制。该蛋白并非分泌蛋白、膜受体或具有胞外结构域的抗原，完整抗体难以在生理条件下接触细胞内构象表位，抗原可及性不具备常规治疗性抗体优势。相较TREM2、CD33、SORT1等具有细胞表面或腔面可及性的神经退行性疾病相关靶点，DHX35更适合作为机制研究或胞内结合分子探索对象，作为抗体主靶点优先级较低。",
+    "mechanism": "以胞内递送型结合分子阻断DHX35解旋酶核心与RNA底物结合，并干扰RecA-like ATPase构象循环。",
+    "selectedEpitope": "优先评估Helicase C-terminal与RNA结合沟槽邻近界面，避免ATP口袋深埋区域。",
+    "diseaseDirection": "神经退行性疾病机制研究",
+    "domain": "含DEAH-box解旋酶ATP结合核心、Helicase C-terminal区及RNA结合相关结构面。",
+    "evidence": "DHX35结构与神经退行性疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9H5Z1蛋白功能注释",
+      "RCSB PDB 9S2F冷冻电镜结构",
+      "InterPro/ Pfam DEAH-box解旋酶结构域注释"
+    ],
+    "referenceEntries": "UniProt Q9H5Z1；RCSB PDB 9S2F；Open Targets DHX35",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Helicase C-terminal与RNA结合沟槽邻近表面",
+        "可能影响RNA底物装载与解旋构象转换",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RecA-like 1/2结构域间构象闭合界面",
+        "可用于稳定非活化构象并抑制ATPase循环",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Walker A/DEAH基序附近ATP结合口袋",
+        "口袋深埋且保守性高，抗体可及性与选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DHX35为胞内核相关酶，常规IgG难以进入作用部位；建议限定为胞内递送、细胞穿透或研究级VHH策略，并严格评估同源解旋酶交叉反应。",
+    "structurePrepZh": "以9S2F冷冻电镜模型为模板，补全低置信环区，标注DEAH、Walker A/B及RNA结合沟槽，保留构象状态用于界面筛选。",
+    "structureRef": "RCSB PDB 9S2F，human DHX35 cryo-EM structure, 3.14 Å",
+    "antibodies": [
+      "无已获批DHX35治疗性抗体",
+      "研究级抗DHX35抗体"
+    ],
+    "interfaceFocus": "RNA结合沟槽与RecA结构域闭合界面",
+    "designMode": "胞内VHH探索",
+    "candidates": [
+      {
+        "target": "TREM2",
+        "rationale": "TREM2位于小胶质细胞表面并调节脂质感知、吞噬和存活信号，是神经退行性疾病免疫通路中抗体可及性更高的靶点。"
+      },
+      {
+        "target": "CD33",
+        "rationale": "CD33为小胶质细胞髓系受体，其胞外Ig样结构域可被抗体识别，并与阿尔茨海默病相关吞噬调控通路相连。"
+      },
+      {
+        "target": "SORT1",
+        "rationale": "SORT1编码sortilin，位于分泌/内吞运输通路并具有腔面Vps10p结构域，参与神经元蛋白转运和神经退行性疾病相关蛋白稳态。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

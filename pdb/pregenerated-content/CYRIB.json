@@ -1,0 +1,65 @@
+{
+  "gene": "CYRIB",
+  "generatedAt": "2026-08-03T11:48:15.857Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CYRIB 与红细胞相关数量性状存在遗传关联，但其主要生物学功能为胞内 Rac1 结合蛋白，参与调节肌动蛋白骨架、细胞迁移和膜突起形成。该蛋白缺乏经典分泌信号肽、跨膜区和稳定胞外结构域，天然状态下抗体可及性较弱，作为常规治疗性抗体靶点存在显著限制。相较于同一 Rac1-肌动蛋白调控轴中的膜受体或分泌因子，CYRIB 的优先级应主要定位于结构生物学验证、胞内递送抗体或研究级结合分子开发，而非优先外周阻断型抗体项目。",
+    "mechanism": "设计分子可干预 CYRIB 与 Rac1 及相关肌动蛋白调控复合物的界面，从而影响 Rac1 依赖的膜突起和细胞迁移过程。",
+    "selectedEpitope": "优先围绕 7AJK 中 CYRIB 折叠核心的 Rac1 结合邻近凹面设计，避免埋藏疏水核心。",
+    "diseaseDirection": "红细胞性状与细胞骨架调控",
+    "domain": "CYRIB 为胞质蛋白，含保守 CYRI/DUF1394 样折叠核心，无胞外结构域或跨膜段。",
+    "evidence": "CYRIB-Rac1 细胞骨架调控证据包",
+    "evidenceSources": [
+      "Open Targets Platform 遗传关联数据",
+      "UniProt Q9NUQ9 蛋白注释",
+      "RCSB PDB 7AJK 晶体结构",
+      "CYRI-B/Rac1 调控肌动蛋白动力学相关文献"
+    ],
+    "referenceEntries": "UniProt Q9NUQ9；RCSB PDB 7AJK；Open Targets CYRIB",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Rac1 结合邻近凹面与保守 CYRI 核心外露环区",
+        "可能直接影响 CYRIB-Rac1 功能界面，适合机制验证型结合分子",
+        "优先"
+      ],
+      [
+        "Site B",
+        "折叠核心远端亲水外露螺旋-环连接区",
+        "有利于获得稳定结合抗体，用于结构捕获或细胞内示踪",
+        "备选"
+      ],
+      [
+        "Site C",
+        "二聚体/晶体接触邻近区域及疏水埋藏面",
+        "可能受晶体堆积影响且构象可及性不确定，需结构复核",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CYRIB 为胞内蛋白，缺乏天然抗体可及性；应优先采用细胞内抗体、递送抗体或研究级 Fab/VHH，并严格区分晶体接触与真实功能界面。",
+    "structurePrepZh": "以 7AJK 链 A/B 为模板，去除晶体添加物并评估链间界面；结合 AlphaFold/UniProt 注释校正缺失环区和可及表面。",
+    "structureRef": "RCSB PDB 7AJK，X-ray diffraction，3.1 Å",
+    "antibodies": [
+      "暂无获批抗 CYRIB 治疗性抗体",
+      "暂无临床阶段抗 CYRIB 抗体"
+    ],
+    "interfaceFocus": "CYRIB-Rac1 结合邻近凹面及外露环区",
+    "designMode": "胞内机制验证型",
+    "candidates": [
+      {
+        "target": "RAC1",
+        "rationale": "RAC1 是 CYRIB 直接功能相关的小 GTP 酶，驱动肌动蛋白聚合、膜突起和细胞迁移；其与 CYRIB 处于同一 Rac1-肌动蛋白调控轴。"
+      },
+      {
+        "target": "CYFIP1",
+        "rationale": "CYFIP1 是 WAVE 调控复合物成员，连接 Rac1 活化信号与 Arp2/3 介导的肌动蛋白成核，属于同一细胞骨架重塑通路。"
+      },
+      {
+        "target": "WASF2",
+        "rationale": "WASF2/WAVE2 位于 Rac1 下游并促进 Arp2/3 依赖的片状伪足形成，可作为 CYRIB 相关迁移与骨架表型的通路候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

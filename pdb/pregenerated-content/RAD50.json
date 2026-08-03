@@ -1,0 +1,65 @@
+{
+  "gene": "RAD50",
+  "generatedAt": "2026-08-03T20:41:37.715Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RAD50 是 MRN 复合体的核心 ATPase 与结构支架，参与 DNA 双链断裂识别、断端桥接、ATM 激活及同源重组修复，胚系缺陷与 Nijmegen breakage syndrome-like disorder 和遗传性肿瘤易感综合征相关。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌特征，常规完整抗体抗原可及性受限，更适合核内递送抗体片段或研究型胞内结合分子设计。相较同通路的多功能检查点激酶，RAD50 的 Walker A/B、coiled-coil 与 zinc-hook 结构域提供明确复合体装配和 ATP 依赖构象调控界面，适合作为 MRN 复合体机制验证与合成致死策略中的高优先级靶点。",
+    "mechanism": "结合 RAD50 ATPase 头部二聚化界面或 coiled-coil 邻近构象节点，阻断 RAD50 与 MRE11/NBN 介导的 MRN 复合体装配、DNA 断端桥接及 ATM 募集激活。",
+    "selectedEpitope": "优先靶向 ATPase head 的 Walker A/B 邻近二聚化界面，备选 coiled-coil 根部与 MRE11 接触面。",
+    "diseaseDirection": "DNA损伤修复缺陷与遗传性肿瘤易感",
+    "domain": "RAD50 含 N/C 端 ABC-ATPase 头部、长 coiled-coil 臂及中央 CXXC zinc-hook 二聚化结构域。",
+    "evidence": "RAD50-MRN复合体与DNA双链断裂修复证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联数据",
+      "UniProt Q92878 蛋白功能与结构域注释",
+      "RCSB PDB 5GOX X射线晶体结构",
+      "MRN复合体介导ATM激活与DNA断端修复文献"
+    ],
+    "referenceEntries": "UniProt Q92878；RCSB PDB 5GOX；Open Targets RAD50",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ATPase head Walker A/B 邻近二聚化界面",
+        "可干预 ATP 依赖头部闭合与 DNA 断端桥接，机制读出清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "coiled-coil 根部及 MRE11 结合邻近区域",
+        "可削弱 MRN 复合体装配稳定性，适合构象阻断型片段设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "中央 CXXC zinc-hook 二聚化区域",
+        "参与远端 RAD50 分子桥接，但金属配位和保守性较高，脱靶与构象风险需控制",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RAD50 为核内 DNA 修复蛋白，常规抗体难以到达作用位点；应优先采用胞内递送 Fab/VHH、纳米载体或降解偶联策略，并避免干扰高度保守 ATP 结合核心导致广泛细胞毒性。",
+    "structurePrepZh": "以 PDB 5GOX 的 A、B 链为抗原结构基础，补全缺失环区并校验 ATPase 头部二聚体界面、金属配位残基及 MRE11 接触邻近面后进行表位建模。",
+    "structureRef": "PDB 5GOX；X-RAY DIFFRACTION，2.405 Å，人源RAD50结构",
+    "antibodies": [
+      "RAD50研究级单克隆抗体",
+      "抗RAD50胞内免疫检测抗体"
+    ],
+    "interfaceFocus": "ATPase头部二聚化界面与MRE11结合邻近面",
+    "designMode": "胞内阻断片段设计",
+    "candidates": [
+      {
+        "target": "MRE11",
+        "rationale": "MRE11 与 RAD50、NBN 共同形成 MRN 复合体，负责 DNA 断端结合和核酸酶加工；靶向其与 RAD50 的装配界面可直接削弱双链断裂修复。"
+      },
+      {
+        "target": "NBN",
+        "rationale": "NBN 介导 MRN 复合体募集 ATM 并连接 DNA 损伤检查点信号，NBN 缺陷与 Nijmegen breakage syndrome 直接相关，适合作为同通路替代节点。"
+      },
+      {
+        "target": "ATM",
+        "rationale": "ATM 是 MRN 复合体招募和激活的关键检查点激酶，负责磷酸化 H2AX、CHK2 和 p53 等底物；其位置处于 RAD50 下游损伤应答放大环节。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

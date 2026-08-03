@@ -1,0 +1,65 @@
+{
+  "gene": "CBX4",
+  "generatedAt": "2026-08-03T18:16:11.539Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CBX4为Polycomb repressive complex 1相关染色质调控蛋白，主要通过chromodomain识别H3K27me3并参与转录沉默，与骨骼发育、体成分和造血表型的遗传关联具有机制一致性。该蛋白定位于细胞核，缺乏天然胞外结构域或分泌特征，常规体内抗体可及性不具优势，更适合作为研究级细胞内抗原或递送型抗体工程靶点。相比膜受体类靶点，CBX4的优先级依据在于3I8Z提供高分辨率chromodomain结构，可支持精确定义H3K27me3结合槽表位并解析功能阻断设计边界。",
+    "mechanism": "通过抗体片段占据CBX4 chromodomain芳香笼及邻近肽结合槽，阻断其与H3K27me3组蛋白尾肽的结合，削弱PRC1相关染色质定位。",
+    "selectedEpitope": "优先靶向chromodomain芳香笼与H3K27me3肽结合槽周缘，避免完全覆盖折叠核心疏水面。",
+    "diseaseDirection": "骨骼发育与体成分遗传表型",
+    "domain": "CBX4含N端chromodomain、C端Pc box及SUMO E3连接酶相关功能区；3I8Z覆盖chromodomain。",
+    "evidence": "CBX4染色质识别与发育表型证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB O00257 functional annotation",
+      "RCSB PDB 3I8Z X-ray chromodomain structure",
+      "Polycomb PRC1 and H3K27me3 recognition literature"
+    ],
+    "referenceEntries": "UniProt O00257；RCSB PDB 3I8Z；Open Targets CBX4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "chromodomain芳香笼及H3K27me3结合槽",
+        "直接竞争甲基化组蛋白尾肽识别，功能阻断价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "chromodomain肽结合槽外侧带电边缘",
+        "可能改变组蛋白尾肽定位并保留较好结构稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "chromodomain折叠核心疏水面",
+        "易干扰整体折叠或产生非特异疏水结合，需降低优先级",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CBX4为核内蛋白，体内抗体可及性受限；建议定位为细胞内递送抗体、intrabody或体外功能阻断工具，并严格评估CBX同源chromodomain交叉反应。",
+    "structurePrepZh": "以3I8Z链A为模板，补全缺失侧链并质子化芳香笼邻近残基；结合H3K27me3识别模式映射可成药凹槽与同源保守位点。",
+    "structureRef": "RCSB PDB 3I8Z，1.51 Å X-ray human CBX4 chromodomain",
+    "antibodies": [
+      "CBX4研究级单克隆抗体",
+      "CBX4 chromodomain识别抗体"
+    ],
+    "interfaceFocus": "H3K27me3识别芳香笼与肽结合槽",
+    "designMode": "细胞内表位阻断",
+    "candidates": [
+      {
+        "target": "EZH2",
+        "rationale": "EZH2为PRC2催化亚基，负责H3K27三甲基化沉积，位于CBX4识别事件上游。抑制EZH2可降低CBX4 chromodomain可结合的H3K27me3标记。"
+      },
+      {
+        "target": "EED",
+        "rationale": "EED识别H3K27me3并促进PRC2变构激活，是H3K27me3维持回路的核心组分。其功能与CBX4介导的Polycomb染色质定位处于同一表观遗传通路。"
+      },
+      {
+        "target": "RING1B",
+        "rationale": "RING1B由RNF2编码，是PRC1核心E3连接酶并参与H2AK119单泛素化。CBX4相关PRC1复合物的染色质效应与RING1B催化功能直接耦联。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

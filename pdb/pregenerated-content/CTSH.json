@@ -1,0 +1,65 @@
+{
+  "gene": "CTSH",
+  "generatedAt": "2026-08-03T11:43:18.828Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CTSH 编码溶酶体半胱氨酸蛋白酶 cathepsin H，参与抗原加工、蛋白周转及炎症相关蛋白水解，遗传和表达证据支持其与1型糖尿病及肿瘤相关表型存在关联。该蛋白可作为前酶进入内吞-溶酶体通路，并存在可检测的血清水平，成熟酶外露活性沟槽和minichain相关区域为抗体识别提供结构基础。相较多种胞内蛋白酶，CTSH具备高分辨率人源晶体结构和疾病遗传关联信号，适合优先开展构象选择性抑制型抗体设计。",
+    "mechanism": "通过抗体占据CTSH成熟酶活性沟槽邻近的底物进入界面，阻断底物肽链与Cys25-His159催化中心的正确配位并抑制其氨肽酶活性。",
+    "selectedEpitope": "优先靶向成熟cathepsin H活性裂隙周边及minichain稳定界面，避开高度保守催化三联体核心残基。",
+    "diseaseDirection": "1型糖尿病与炎症蛋白水解",
+    "domain": "CTSH为木瓜蛋白酶样半胱氨酸蛋白酶，含前肽、minichain及成熟催化结构域。",
+    "evidence": "CTSH疾病遗传关联与高分辨率结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB P09668蛋白功能注释",
+      "RCSB PDB 6CZS晶体结构",
+      "MEROPS半胱氨酸蛋白酶家族注释"
+    ],
+    "referenceEntries": "UniProt P09668；RCSB PDB 6CZS；MEROPS C01.040",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "成熟酶活性沟槽入口与底物结合外缘",
+        "可直接限制底物进入并形成非催化残基依赖的抑制表位",
+        "优先"
+      ],
+      [
+        "Site B",
+        "minichain与催化结构域接触界面",
+        "有望干扰CTSH氨肽酶特异性构象稳定，提升功能选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Cys25-His159-Asn175催化中心近邻",
+        "抑制效力潜力高但与其他cathepsin保守性较强，需严格选择性筛选",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CTSH活性中心与CTSB、CTSL、CTSS等同族蛋白存在保守性，抗体应偏向沟槽外缘和minichain依赖构象表位，并进行同族交叉反应排查。",
+    "structurePrepZh": "以6CZS的人源CTSH高分辨率晶体结构为模板，保留成熟酶链和minichain，校正质子化状态、二硫键及催化残基构象后开展表位建模。",
+    "structureRef": "RCSB PDB 6CZS，X-ray，1.66 Å，人源cathepsin H",
+    "antibodies": [
+      "anti-cathepsin H monoclonal antibody clone 1D10",
+      "anti-cathepsin H monoclonal antibody clone EPR8536"
+    ],
+    "interfaceFocus": "活性沟槽入口与minichain稳定界面",
+    "designMode": "构象抑制型抗体",
+    "candidates": [
+      {
+        "target": "CTSB",
+        "rationale": "CTSB同属溶酶体木瓜蛋白酶样半胱氨酸蛋白酶，参与抗原加工和炎症组织蛋白水解，可作为CTSH通路内功能对照靶点。"
+      },
+      {
+        "target": "CTSS",
+        "rationale": "CTSS在抗原呈递细胞中参与MHC class II相关抗原加工，与自身免疫炎症通路高度相关，适合评估免疫调节方向的替代策略。"
+      },
+      {
+        "target": "CTSL",
+        "rationale": "CTSL参与溶酶体蛋白降解和抗原处理，与CTSH共享半胱氨酸蛋白酶网络，可用于比较蛋白水解轴的选择性干预价值。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

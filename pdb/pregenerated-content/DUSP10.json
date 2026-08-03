@@ -1,0 +1,65 @@
+{
+  "gene": "DUSP10",
+  "generatedAt": "2026-08-03T18:46:34.277Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DUSP10编码MKP5，是胞内双特异性磷酸酶，主要通过去磷酸化p38 MAPK与JNK调节炎症因子转录、粒细胞反应和免疫细胞数量性状。该蛋白缺乏胞外结构域或分泌形式，天然抗原可及性不支持常规细胞表面抗体阻断，抗体设计更适合作为胞内递送型Fab/VHH或结构生物学验证工具。相比上游MAPK激酶，DUSP10具有催化结构域与MAPK结合选择性，可用于解析p38/JNK负反馈节点，但作为治疗性抗体主靶点优先级低于可及性更高的膜受体或分泌因子。",
+    "mechanism": "胞内抗体片段拟结合DUSP10催化结构域邻近MAPK结合面，空间阻断DUSP10对p38/JNK磷酸化TXY基序的底物接近。",
+    "selectedEpitope": "优先覆盖DSP催化结构域底物结合沟槽外缘，避开Cys催化残基直接共价敏感区。",
+    "diseaseDirection": "炎症免疫与血液细胞数量性状",
+    "domain": "N端含MAPK结合相关调控区，C端为双特异性磷酸酶催化结构域；1ZZW解析催化域。",
+    "evidence": "DUSP10-MAPK炎症调控与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联与免疫细胞数量性状数据",
+      "UniProt Q9Y6W6功能注释与亚细胞定位",
+      "RCSB PDB 1ZZW人源DUSP10晶体结构",
+      "MAPK phosphatase家族对p38/JNK去磷酸化文献"
+    ],
+    "referenceEntries": "UniProt Q9Y6W6；RCSB PDB 1ZZW；HGNC DUSP10",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域底物结合沟槽与MAPK接触外缘",
+        "可阻断p38/JNK底物进入并保留构象识别特异性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化域非催化表面、靠近保守DSP折叠侧面",
+        "适合构象稳定与结构捕获，功能阻断强度需验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PTP催化核心含HCX5R保守基序区域",
+        "保守性高且可能干扰折叠或产生交叉反应，需谨慎设计",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DUSP10为胞内酶，常规抗体难以到达天然靶点；应限定为胞内递送VHH/Fab、PRObody样递送验证或结构工具抗体，并评估DUSP家族交叉反应。",
+    "structurePrepZh": "采用1ZZW的A/B链催化域作为模板，补全缺失侧链、校正质子化状态，标注催化Cys和保守DSP基序后进行表面聚类。",
+    "structureRef": "RCSB PDB 1ZZW，X-ray diffraction，1.6 Å",
+    "antibodies": [
+      "抗DUSP10研究级单克隆抗体",
+      "抗MKP5研究级多克隆抗体"
+    ],
+    "interfaceFocus": "催化沟槽外缘与MAPK底物进入路径",
+    "designMode": "胞内VHH/Fab工具抗体",
+    "candidates": [
+      {
+        "target": "MAPK14",
+        "rationale": "MAPK14编码p38α，是DUSP10去磷酸化的核心底物之一，直接参与炎症因子转录与粒细胞应答。其通路位置更接近效应激酶节点。"
+      },
+      {
+        "target": "MAPK8",
+        "rationale": "MAPK8编码JNK1，与DUSP10介导的应激MAPK负反馈相关，参与免疫细胞活化和炎症转录程序。可作为同一p38/JNK通路的功能候选靶点。"
+      },
+      {
+        "target": "MAP2K6",
+        "rationale": "MAP2K6是p38 MAPK上游激酶，磷酸化激活p38的TGY基序，与DUSP10介导的去磷酸化形成同一信号轴的相反调控节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

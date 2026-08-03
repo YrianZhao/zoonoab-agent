@@ -1,0 +1,65 @@
+{
+  "gene": "PRC1",
+  "generatedAt": "2026-08-03T15:32:49.638Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PRC1 是有丝分裂后期至胞质分裂阶段的微管交联蛋白，通过与中央纺锤体微管、KIF4A 等因子协同定位，参与细胞周期进程与染色体分离异常相关的肿瘤增殖表型。PRC1 为胞内微管结合蛋白，天然抗原可及性不具备分泌蛋白或膜受体优势，因此更适合作为胞内递送抗体、细胞内抗体或研究型阻断分子设计对象。相较于 CDK1、AURKB、PLK1 等上游激酶，PRC1 位于中央纺锤体结构执行层，结构域界面明确且 PDB 3NRX 提供高分辨率二聚化结构，适合开展机制验证型界面阻断设计。",
+    "mechanism": "阻断 PRC1 二聚化杆状结构与微管束装配界面的构象稳定，削弱其对反平行微管的交联与中央纺锤体组织能力。",
+    "selectedEpitope": "优先覆盖 PRC1 spectrin-like dimerization core 的二聚化沟槽与暴露螺旋面。",
+    "diseaseDirection": "肿瘤细胞周期与胞质分裂异常",
+    "domain": "PRC1 含 N 端 Cdk 磷酸化调控区、中央 spectrin-like 微管结合/二聚化区域及 C 端 KIF4A 结合区。",
+    "evidence": "PRC1 细胞周期结构执行层证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt O43663 functional annotation",
+      "RCSB PDB 3NRX X-ray structure",
+      "cell-cycle and cytokinesis literature"
+    ],
+    "referenceEntries": "UniProt O43663；RCSB PDB 3NRX；Open Targets PRC1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "3NRX spectrin-like 二聚化核心暴露螺旋界面",
+        "可干扰 PRC1 二聚体稳定性并影响中央纺锤体微管交联",
+        "优先"
+      ],
+      [
+        "Site B",
+        "中央杆状结构外侧微管结合相关正电表面",
+        "可降低 PRC1 与微管束的结合效率，适合功能阻断验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端磷酸化调控区邻近柔性片段",
+        "构象异质性较高且结构解析不足，需结合磷酸化状态评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PRC1 属胞内抗原，常规治疗性抗体难以直接到达作用位点；建议采用胞内递送 Fab/VHH、细胞穿透融合或作为机制研究抗体推进。",
+    "structurePrepZh": "以 3NRX 链 A/B 二聚体为模板，保留 spectrin-like 核心构象，补充缺失柔性区注释，并标注潜在磷酸化位点与微管结合面。",
+    "structureRef": "RCSB PDB 3NRX，1.75 Å X-ray PRC1 core structure",
+    "antibodies": [
+      "anti-PRC1 research antibody",
+      "anti-PRC1 intracellular binder candidate"
+    ],
+    "interfaceFocus": "二聚化核心沟槽与微管结合外侧面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "KIF4A",
+        "rationale": "KIF4A 与 PRC1 协同定位于中央纺锤体并调节反平行微管重叠区长度，是同一胞质分裂执行模块中的关键运动蛋白。"
+      },
+      {
+        "target": "AURKB",
+        "rationale": "AURKB 作为染色体乘客复合体激酶调控中央纺锤体与胞质分裂检查点，其异常活性与肿瘤细胞有丝分裂错误密切相关。"
+      },
+      {
+        "target": "PLK1",
+        "rationale": "PLK1 参与有丝分裂推进、中央纺锤体成熟与胞质分裂调控，与 PRC1 所属细胞周期通路存在明确功能耦联。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

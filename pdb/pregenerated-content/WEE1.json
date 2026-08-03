@@ -1,0 +1,65 @@
+{
+  "gene": "WEE1",
+  "generatedAt": "2026-08-03T17:52:55.480Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "WEE1 是核内丝氨酸/苏氨酸激酶，通过磷酸化 CDK1 Tyr15 维持 G2/M 检查点，肿瘤细胞在复制压力或 TP53 缺陷背景下依赖该轴避免有丝分裂灾难。该蛋白不具备胞外结构域或分泌特征，常规完整抗体难以直接结合天然抗原，抗原可及性主要限于细胞内递送抗体片段或降解偶联策略。相较 CHK1、ATR 等同通路激酶，WEE1 位于 CDK1 抑制的近端节点，临床小分子验证充分，适合作为细胞内抗体工程与结构导向抑制界面探索的优先靶点。",
+    "mechanism": "设计细胞内抗体片段结合 WEE1 激酶结构域 ATP 结合裂隙或底物识别邻近面，阻断 WEE1 对 CDK1 Tyr15 的磷酸化。",
+    "selectedEpitope": "优先锁定激酶结构域 N/C 叶之间 ATP 结合裂隙及活化环邻近构象面。",
+    "diseaseDirection": "复制压力相关肿瘤与G2/M检查点",
+    "domain": "WEE1 含 N 端调控区与 C 端蛋白激酶结构域；1X8B 覆盖催化结构域。",
+    "evidence": "WEE1-CDK1 G2/M检查点结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传与药理关联",
+      "UniProt P30291 功能与结构域注释",
+      "RCSB PDB 1X8B 晶体结构记录",
+      "PubMed WEE1 抑制与复制压力肿瘤研究"
+    ],
+    "referenceEntries": "UniProtKB P30291；RCSB PDB 1X8B；Open Targets WEE1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域 ATP 结合裂隙与铰链区邻近面",
+        "可直接干扰 ATP 定位并抑制催化活性，结构解析度支持精细设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C 叶底物结合沟槽及 CDK1 识别邻近区域",
+        "有望阻断 WEE1 对 CDK1 Tyr15 的底物磷酸化过程",
+        "备选"
+      ],
+      [
+        "Site C",
+        "活化环及保守催化环周边构象区域",
+        "可能影响激酶构象，但保守性高且交叉反应风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "WEE1 为细胞内核质激酶，天然抗体可及性不足；应采用内抗体、VHH 或递送偶联模式，并严格评估激酶家族保守表位交叉反应。",
+    "structurePrepZh": "以 1X8B 链 A 为模板，保留激酶结构域坐标，校验铰链区、活化环和 ATP 裂隙构象，去除非关键结晶配体后进行界面网格化。",
+    "structureRef": "RCSB PDB 1X8B，human WEE1 kinase domain，1.81 Å",
+    "antibodies": [
+      "暂无获批 WEE1 靶向抗体",
+      "研究级 anti-WEE1 monoclonal antibody"
+    ],
+    "interfaceFocus": "ATP裂隙、铰链区与CDK1底物识别面",
+    "designMode": "细胞内VHH抑制",
+    "candidates": [
+      {
+        "target": "CDK1",
+        "rationale": "CDK1 是 WEE1 的直接底物，Tyr15 磷酸化状态决定 G2/M 进入，处于同一检查点执行轴。"
+      },
+      {
+        "target": "CHEK1",
+        "rationale": "CHK1 在复制压力下促进 WEE1 依赖性 CDK1 抑制，并与 G2/M 检查点维持具有功能耦联。"
+      },
+      {
+        "target": "ATR",
+        "rationale": "ATR 是复制压力应答上游激酶，可激活 CHK1 并增强 WEE1-CDK1 检查点通路依赖性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

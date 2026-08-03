@@ -1,0 +1,65 @@
+{
+  "gene": "GUCA2B",
+  "generatedAt": "2026-08-03T19:23:58.165Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GUCA2B编码尿鸟苷素，属肠上皮分泌性内源肽，可结合并激活GUCY2C，促进cGMP生成并调控CFTR介导的氯离子和水分泌；该轴与肠液稳态、腹泻表型及结直肠上皮稳态相关。成熟肽为分泌型抗原，含稳定二硫键约束的小肽构象，具有良好的体液可及性。相比直接靶向跨膜GUCY2C，GUCA2B抗原尺度小、配体界面明确，适合构建中和型抗体或亲和捕获分子以解析配体驱动信号。",
+    "mechanism": "阻断成熟GUCA2B与GUCY2C胞外配体结合域的结合，降低受体鸟苷酸环化酶活化及细胞内cGMP生成。",
+    "selectedEpitope": "优先覆盖成熟尿鸟苷素二硫键约束环及受体识别面，保留构象依赖性识别。",
+    "diseaseDirection": "肠上皮cGMP分泌调控",
+    "domain": "前体含信号肽和前肽区，C端成熟尿鸟苷素为二硫键稳定的分泌活性肽。",
+    "evidence": "GUCA2B-GUCY2C肠上皮信号证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q16661功能与序列注释",
+      "RCSB PDB 1UYA溶液NMR结构",
+      "文献报道的尿鸟苷素-GUCY2C-cGMP轴"
+    ],
+    "referenceEntries": "UniProt Q16661；RCSB PDB 1UYA；Open Targets GUCA2B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "成熟肽二硫键约束环与受体识别面",
+        "直接干预GUCY2C结合，适合中和型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "成熟肽N端邻近构象支撑区",
+        "可增强构象锁定与配体捕获，但中和效力需验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "前肽区非成熟活性片段",
+        "可能不代表体内活性配体暴露状态，转化价值有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "成熟肽体积小且二硫键构象敏感，线性肽免疫可能偏离天然构象；建议采用环化或结构约束抗原并进行GUCY2C竞争筛选。",
+    "structurePrepZh": "以1UYA的链A溶液NMR模型集为构象参考，保留二硫键连接，聚类代表构象后标注受体识别面用于表位建模。",
+    "structureRef": "RCSB PDB 1UYA，human uroguanylin solution NMR",
+    "antibodies": [
+      "无已批准GUCA2B抗体",
+      "研究级抗尿鸟苷素抗体"
+    ],
+    "interfaceFocus": "成熟肽受体结合环与二硫键稳定核心",
+    "designMode": "构象中和抗体设计",
+    "candidates": [
+      {
+        "target": "GUCY2C",
+        "rationale": "GUCY2C是GUCA2B的肠上皮受体，配体结合后直接催化cGMP生成，是同一分泌调控轴的核心膜受体靶点。"
+      },
+      {
+        "target": "GUCA2A",
+        "rationale": "GUCA2A编码鸟苷素，同样激活GUCY2C并参与肠腔电解质和水分泌调节，可作为同通路配体对照靶点。"
+      },
+      {
+        "target": "CFTR",
+        "rationale": "CFTR位于GUCY2C-cGMP信号下游，介导氯离子分泌并驱动肠液外排，是该通路功能输出端的真实疾病相关靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

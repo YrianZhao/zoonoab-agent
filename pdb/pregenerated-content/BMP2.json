@@ -1,0 +1,65 @@
+{
+  "gene": "BMP2",
+  "generatedAt": "2026-08-03T10:51:01.389Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BMP2 是 TGF-β 超家族分泌型形态发生因子，通过结合 BMPR1A/BMPR1B 与 BMPR2 形成受体复合物，驱动 SMAD1/5/9 磷酸化并调控软骨形成、骨发育和骨稳态。其遗传变异与短身材、面容异常、骨骼畸形及 Brachydactyly type A2 等骨发育疾病存在明确关联，疾病通路定位清晰。BMP2 为可溶性二聚体配体，抗原可及性优于胞内 SMAD 因子。相较下游转录调控节点，BMP2 更适合作为配体拦截型抗体靶点，具备较高机制可验证性与结构设计优先级。",
+    "mechanism": "阻断 BMP2 二聚体与 BMPR1A/BMPR1B 及 BMPR2 胞外结构域的结合，抑制受体复合物形成和下游 SMAD1/5/9 激活。",
+    "selectedEpitope": "优先覆盖 BMP2 成熟二聚体腕部及指尖受体结合面，干预 type I/type II 受体装配。",
+    "diseaseDirection": "骨发育异常与BMP信号疾病",
+    "domain": "BMP2 含 N 端信号肽、前肽区及 C 端成熟 TGF-β 样半胱氨酸结二聚体结构域。",
+    "evidence": "BMP2骨形态发生信号与骨发育疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P12643 functional annotation",
+      "RCSB PDB 2H62 X-ray structure",
+      "OMIM and ClinVar skeletal dysplasia records"
+    ],
+    "referenceEntries": "UniProt P12643；RCSB PDB 2H62；Open Targets BMP2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "成熟 BMP2 二聚体腕部凹面受体结合界面",
+        "可直接削弱 BMPR1A/BMPR1B 结合并抑制信号启动",
+        "优先"
+      ],
+      [
+        "Site B",
+        "BMP2 指尖环区与 type II 受体接触面",
+        "可干预 BMPR2 招募，适合作为中和型备选表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "二聚体核心半胱氨酸结及保守疏水核心邻近区",
+        "结构保守且可能影响折叠稳定性，需避免诱导非特异交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BMP 家族配体结构高度保守，需重点排除 BMP4、BMP7 等同源蛋白交叉结合；表位应避开核心折叠区并聚焦受体界面差异残基。",
+    "structurePrepZh": "以 2H62 高分辨率晶体结构为模板，保留成熟二聚体构象，校验链 A-D 生物装配体、二硫键和受体结合面暴露状态。",
+    "structureRef": "RCSB PDB 2H62，X-ray diffraction，1.85 Å",
+    "antibodies": [
+      "NOGGIN-derived BMP antagonist reference",
+      "Anti-BMP2 neutralizing antibody clone 3G7"
+    ],
+    "interfaceFocus": "成熟二聚体腕部凹面与指尖受体结合界面",
+    "designMode": "配体中和阻断",
+    "candidates": [
+      {
+        "target": "BMPR1B",
+        "rationale": "BMPR1B 是 BMP2/BMP4 信号的 type I 受体，参与软骨分化和肢端骨发育；其变异与 brachydactyly type A2 直接相关。"
+      },
+      {
+        "target": "BMPR1A",
+        "rationale": "BMPR1A 与 BMP2 形成受体复合物并介导 SMAD1/5/9 激活，是骨形态发生通路中的近端膜受体节点。"
+      },
+      {
+        "target": "BMPR2",
+        "rationale": "BMPR2 作为 type II 受体参与 BMP2 配体捕获和 type I 受体磷酸化，是配体-受体装配过程中的关键共受体。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "RABGEF1",
+  "generatedAt": "2026-08-03T20:41:37.315Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RABGEF1为Rab5鸟嘌呤核苷酸交换因子，参与早期内体形成、受体内吞与髓系细胞信号受体转运，其遗传关联主要集中于白细胞数量、中性粒细胞计数和单核细胞比例等造血免疫表型。该蛋白主要定位于胞质并与膜相关内吞复合体结合，缺乏稳定胞外结构域或分泌暴露特征，抗体直接结合完整细胞表面抗原的可及性有限。相较于CXCR2、CSF3R等同属髓系细胞数量调控轴且具有胞外结构域的靶点，RABGEF1更适合作为机制研究或细胞内递送抗体设计的探索性靶点，优先级低于可直接阻断配体-受体界面的膜受体。",
+    "mechanism": "设计抗体应阻断RABGEF1 Vps9催化域与Rab5-GDP的结合，抑制GDP释放和Rab5活化，从而干预早期内体成熟与髓系受体内吞转运。",
+    "selectedEpitope": "优先聚焦Vps9结构域Rab5结合沟槽及催化界面，避免仅选择远离底物结合面的非功能表面。",
+    "diseaseDirection": "白细胞数量与髓系免疫调控",
+    "domain": "RABGEF1含N端A20样锌指、coiled-coil区及C端Vps9 Rab-GEF催化结构域。",
+    "evidence": "RABGEF1内吞调控与血液细胞性状证据包",
+    "evidenceSources": [
+      "Open Targets Platform遗传关联与免疫细胞数量表型",
+      "UniProt Q9UJ41功能注释与亚细胞定位",
+      "RCSB PDB 4N3X晶体结构解析记录",
+      "文献报道的Rab5-GDP交换与早期内体调控研究"
+    ],
+    "referenceEntries": "UniProt Q9UJ41；RCSB PDB 4N3X；Open Targets RABGEF1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Vps9催化结构域Rab5结合沟槽",
+        "可直接干预RABGEF1与Rab5-GDP复合物形成，功能阻断价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Vps9结构域邻近α螺旋支架面",
+        "可能通过构象限制削弱GEF催化效率，适合作为变构型备选表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端A20样锌指或非催化柔性区",
+        "结构可塑性较高且与Rab5交换反应距离较远，功能相关性需谨慎验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RABGEF1为胞内蛋白，常规抗体药物难以到达天然作用位点；建议限定为胞内递送抗体、细胞渗透抗体或结构机制验证用途，并优先评估脱靶内吞效应。",
+    "structurePrepZh": "以4N3X的2.0 Å X射线结构为模板，保留Vps9催化域完整链，修复缺失侧链并标准化质子化状态后进行Rab5结合界面映射。",
+    "structureRef": "RCSB PDB 4N3X，X-ray diffraction，2.0 Å",
+    "antibodies": [
+      "无已批准靶向RABGEF1治疗性抗体",
+      "研究级抗RABGEF1抗体"
+    ],
+    "interfaceFocus": "Vps9催化域Rab5-GDP结合与交换界面",
+    "designMode": "胞内功能阻断",
+    "candidates": [
+      {
+        "target": "RAB5A",
+        "rationale": "RAB5A是RABGEF1催化激活的核心早期内体小GTP酶，直接位于同一内吞运输通路下游。其活化状态决定早期内体融合和受体转运效率。"
+      },
+      {
+        "target": "CSF3R",
+        "rationale": "CSF3R是中性粒细胞生成和数量维持的关键膜受体，与中性粒细胞计数表型高度相关。其胞外配体结合域具备更明确的抗体可及性。"
+      },
+      {
+        "target": "CXCR2",
+        "rationale": "CXCR2介导中性粒细胞对CXCL1、CXCL8等趋化因子的募集反应，处于白细胞数量和髓系炎症迁移通路中。作为多跨膜受体，其胞外环可作为功能阻断抗体设计入口。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "STAMBP",
+  "generatedAt": "2026-08-03T16:58:25.294Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "STAMBP 通过去泛素化调控内吞体分选与受体转运，并与神经发育异常及 microcephaly-capillary malformation syndrome 的病理过程存在明确关联，因此具备疾病通路层面的靶点价值。该蛋白在细胞内侧发挥作用，缺乏典型胞外可及性，作为抗体主靶点的抗原暴露优势弱于膜受体或分泌蛋白，更多适合以结构指导的胞内递送型抗体或纳米抗体策略评估。相较同通路中更直接可及的上游受体与配体靶点，STAMBP 更接近致病节点本身，适合作为机制验证与通路精细干预的优先候选。",
+    "mechanism": "结合并遮蔽 STAMBP 识别位点，抑制其与泛素化底物及内吞体分选复合体的相互作用，削弱去泛素化功能。",
+    "selectedEpitope": "优先覆盖催化核心邻近的底物结合面及结构稳定环区，避免仅针对远端柔性尾部。",
+    "diseaseDirection": "神经发育/微头畸形",
+    "domain": "STAM 结合相关去泛素化核心结构域，链 A 覆盖催化折叠核心。",
+    "evidence": "STAMBP 结构与疾病关联证据包",
+    "evidenceSources": [
+      "UniProt: O95630",
+      "RCSB PDB: 3RZV",
+      "Open Targets Platform",
+      "OMIM: microcephaly-capillary malformation syndrome"
+    ],
+    "referenceEntries": "UniProt O95630；PDB 3RZV；Open Targets STAMBP 条目",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化核心邻近界面",
+        "可直接干预底物识别与去泛素化活性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "STAM 结合相关表面",
+        "有利于阻断复合体装配与定位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远端柔性环/末端区",
+        "可及性有限且功能外推风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "靶点主要位于胞内，常规全长抗体难以自然进入作用位点；优先考虑胞内递送、VHH 或结构约束型 Fab，并避免仅依赖远端非保守表面。",
+    "structurePrepZh": "建议基于 3RZV 对链 A 进行局部重建与缺失环补模，统一质子化状态并标注催化口袋、STAM 相关界面及表面保守位点。",
+    "structureRef": "Ka et al., 3RZV, X-ray diffraction, 1.67 A",
+    "antibodies": [
+      "无成熟临床同类抗体公开记录",
+      "未见针对 STAMBP 的代表性已知治疗抗体"
+    ],
+    "interfaceFocus": "催化口袋邻域与 STAM 结合界面",
+    "designMode": "结构驱动",
+    "candidates": [
+      {
+        "target": "HGS",
+        "rationale": "HGS 编码 HRS，是 ESCRT-0 关键组分，与 STAMBP 同属内吞体分选通路。干预该轴可用于比较上游分选复合体与去泛素化节点的致病贡献。"
+      },
+      {
+        "target": "TSG101",
+        "rationale": "TSG101 参与 ESCRT-I 介导的货物分选，与 STAMBP 共同决定内吞体运输命运。作为同通路节点，适合用于通路层面的对照设计。"
+      },
+      {
+        "target": "UBQLN2",
+        "rationale": "UBQLN2 参与泛素化蛋白稳态与神经退行性过程，和 STAMBP 的蛋白质稳态失衡表型存在通路交叉。可用于评估神经相关泛素网络的并行干预空间。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

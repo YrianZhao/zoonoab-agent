@@ -1,0 +1,65 @@
+{
+  "gene": "CASP2",
+  "generatedAt": "2026-08-03T18:13:53.067Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CASP2编码半胱天冬酶-2，是PIDDosome相关DNA损伤应答和细胞凋亡网络中的胞质启动型半胱天冬酶，遗传变异与CASP2缺陷相关神经发育异常具有明确关联。该蛋白主要定位于胞质和细胞核，成熟酶及CARD前结构域并非天然胞外抗原，因此常规体内阻断型抗体可及性较弱，更适合作为细胞内递送抗体、研究级Fab或构象稳定工具抗体设计对象。相比下游效应半胱天冬酶，CASP2处于PIDD1-CRADD复合体下游的近端节点，具有解析启动型凋亡装配与酶活调控的优先价值，但成药优先级低于膜受体或分泌型炎症因子靶点。",
+    "mechanism": "通过结合CASP2大/小亚基催化沟槽或二聚化界面，抑制底物进入半胱氨酸活性位点，并干扰成熟CASP2二聚体形成。",
+    "selectedEpitope": "优先覆盖p20大亚基与p10小亚基形成的活性位点邻近沟槽及二聚体界面。",
+    "diseaseDirection": "神经发育异常与凋亡调控",
+    "domain": "N端CARD结构域介导适配体装配，C端含p20大亚基和p10小亚基催化结构域。",
+    "evidence": "CASP2遗传关联与凋亡结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProtKB P42575功能与定位注释",
+      "RCSB PDB 6Y8D晶体结构记录",
+      "PIDDosome-CASP2凋亡通路文献"
+    ],
+    "referenceEntries": "UniProt P42575；RCSB PDB 6Y8D；Open Targets CASP2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "p20/p10催化沟槽邻近区域",
+        "可直接限制底物肽进入Cys活性中心，适合抑制型构象抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "成熟酶二聚化界面",
+        "可干扰CASP2活性二聚体稳定化，用于酶活调控研究",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端CARD适配体结合面",
+        "理论上可阻断CRADD募集，但6Y8D不覆盖完整CARD且胞内可及性受限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CASP2为胞内蛋白，体内抗体递送和靶向可及性为主要风险；设计应定位为细胞内抗体、Fab结构探针或递送偶联格式。",
+    "structurePrepZh": "以6Y8D的A、B链为成熟催化结构模板，保留催化半胱氨酸邻近残基，补充缺失环区并评估二聚体界面构象。",
+    "structureRef": "RCSB PDB 6Y8D，X-ray diffraction，1.51 Å",
+    "antibodies": [
+      "Anti-CASP2 clone 10C6",
+      "Anti-CASP2 clone EPR16799"
+    ],
+    "interfaceFocus": "p20/p10催化沟槽与二聚体界面",
+    "designMode": "胞内构象抗体",
+    "candidates": [
+      {
+        "target": "PIDD1",
+        "rationale": "PIDD1作为PIDDosome上游支架蛋白参与DNA损伤诱导的CASP2激活，与CASP2处于同一凋亡启动通路。其结构装配界面可用于研究CASP2募集前的复合体形成。"
+      },
+      {
+        "target": "CRADD",
+        "rationale": "CRADD通过死亡结构域和CARD结构域连接PIDD1与CASP2，是PIDDosome介导CASP2活化的直接适配体。阻断CRADD-CASP2 CARD相互作用可抑制CASP2募集。"
+      },
+      {
+        "target": "BID",
+        "rationale": "BID是CASP2可切割的促凋亡BCL2家族底物之一，连接CASP2激活与线粒体凋亡放大环节。其通路位置适合评估CASP2下游效应。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

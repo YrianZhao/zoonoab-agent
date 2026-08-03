@@ -1,0 +1,65 @@
+{
+  "gene": "YOD1",
+  "generatedAt": "2026-08-03T17:56:08.767Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "YOD1是内质网相关降解通路中的去泛素化酶，可调节错误折叠蛋白从内质网向胞质逆转运后的泛素链修饰，与蛋白质稳态、分泌负荷及肾小球滤过相关表型存在遗传关联。然而YOD1为胞内胞质侧酶，缺乏天然胞外结构域或分泌形式，常规完整抗体的抗原可及性受限。其优先级主要来自高分辨率催化结构与明确酶学界面，而非膜受体类靶点的可及性优势；相较难以定位的小分子泛素网络节点，YOD1更适合用于胞内递送抗体片段或结构引导抑制性结合体设计。",
+    "mechanism": "设计结合体占据YOD1 OTU催化结构域的泛素远端结合沟槽，阻断K48型泛素链底物与催化半胱氨酸邻近界面的定位。",
+    "selectedEpitope": "优先靶向OTU结构域催化裂隙及泛素结合沟槽周缘，避开核心折叠保守疏水区。",
+    "diseaseDirection": "肾功能与蛋白质稳态表型",
+    "domain": "YOD1含N端泛素调控相关区域及C端OTU去泛素化酶催化结构域，4BOQ覆盖催化核心。",
+    "evidence": "YOD1结构与肾功能遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB Q5VVQ6功能注释",
+      "RCSB PDB 4BOQ晶体结构",
+      "内质网相关降解与OTU去泛素化酶研究文献"
+    ],
+    "referenceEntries": "UniProt Q5VVQ6；RCSB PDB 4BOQ；Open Targets YOD1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "OTU催化裂隙与泛素C端结合沟槽",
+        "可直接干预底物泛素链定位与催化周转，适合抑制型片段设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "OTU结构域外侧可溶暴露环区",
+        "有利于获得高亲和结合体，可作为构象锁定或非竞争性调节位点",
+        "备选"
+      ],
+      [
+        "Site C",
+        "OTU核心β折叠与保守疏水内核邻近面",
+        "序列与折叠保守性较高，存在交叉反应和构象扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "YOD1为胞内酶，常规抗体难以接触天然靶点；建议采用VHH、intrabody或递送型Fab，并严格评估OTU家族交叉反应。",
+    "structurePrepZh": "以4BOQ链A为模板，补全缺失侧链并质子化催化残基，保留催化裂隙水网络用于界面筛选。",
+    "structureRef": "RCSB PDB 4BOQ，X-ray diffraction，1.47 Å",
+    "antibodies": [
+      "无获批抗YOD1治疗性抗体",
+      "研究级抗YOD1抗体"
+    ],
+    "interfaceFocus": "OTU催化裂隙与泛素远端结合沟槽",
+    "designMode": "胞内抑制型VHH/Fab",
+    "candidates": [
+      {
+        "target": "VCP",
+        "rationale": "VCP/p97驱动ERAD底物从内质网膜复合体中抽提，并与YOD1存在功能耦联，是同一蛋白质稳态通路中的核心ATPase节点。"
+      },
+      {
+        "target": "SYVN1",
+        "rationale": "SYVN1/HRD1是ERAD通路的内质网膜E3泛素连接酶，负责错误折叠底物泛素化，与YOD1的去泛素化步骤构成相反调控界面。"
+      },
+      {
+        "target": "SEL1L",
+        "rationale": "SEL1L是HRD1复合体支架蛋白，参与底物识别与ERAD复合体稳定化，可作为同一内质网蛋白降解轴的候选节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

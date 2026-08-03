@@ -1,0 +1,65 @@
+{
+  "gene": "HMBS",
+  "generatedAt": "2026-08-03T13:14:24.961Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HMBS编码羟甲基胆烷合酶，是血红素生物合成通路中催化卟胆原脱氨并形成羟甲基胆烷的关键胞质酶；其功能缺陷导致急性间歇性卟啉病中ALA和PBG上游前体蓄积并引发神经内脏症状。该蛋白不属于分泌蛋白或膜受体，天然抗原可及性低，抗体策略更适合作为细胞内机制验证、递送型抗体或体外诊断捕获体系。相比ALAD、UROS等同通路酶，HMBS与急性间歇性卟啉病的遗传因果证据最直接，Open Targets关联得分最高，因此具备优先机制研究价值。",
+    "mechanism": "设计抗体识别HMBS保守构象表位，用于捕获或调节携带二吡咯甲烷辅因子的催化构象，干预PBG进入活性沟槽及链延伸中间体稳定。",
+    "selectedEpitope": "优先覆盖Domain 1/2间活性沟槽边缘，避开Domain 3铰链高柔性区。",
+    "diseaseDirection": "急性肝性卟啉病机制验证",
+    "domain": "HMBS由三个α/β结构域组成，Domain 1与2形成催化裂隙，Domain 3携带二吡咯甲烷辅因子结合位点。",
+    "evidence": "HMBS-AIP遗传因果与结构抗原证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P08397功能与变异注释",
+      "RCSB PDB 7AAK晶体结构",
+      "血红素生物合成通路与急性卟啉病文献"
+    ],
+    "referenceEntries": "UniProt P08397；RCSB PDB 7AAK；MONDO:0008294",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Domain 1/2催化裂隙外缘",
+        "邻近PBG底物进入路径，适合构象捕获与功能阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Domain 3辅因子承载区域外侧",
+        "可报告二吡咯甲烷辅因子相关构象，适合检测型抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Domain 1-3铰链连接面",
+        "构象可变且可能影响折叠稳定性，需降低强阻断设计权重",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HMBS为胞质酶，体内抗体可及性受限；功能阻断可能加重血红素合成缺陷，宜优先开发诊断、构象探针或递送验证型分子。",
+    "structurePrepZh": "采用7AAK 1.7 Å晶体结构，保留抗原链A/B并核查辅因子、突变和晶体接触；表位建模需区分生理单体与晶体堆积界面。",
+    "structureRef": "RCSB PDB 7AAK，human HMBS X-ray structure 1.7 Å",
+    "antibodies": [
+      "commercial anti-HMBS antibody",
+      "polyclonal anti-hydroxymethylbilane synthase antibody"
+    ],
+    "interfaceFocus": "Domain 1/2活性沟槽与Domain 3辅因子邻域",
+    "designMode": "胞内酶构象抗体",
+    "candidates": [
+      {
+        "target": "ALAS1",
+        "rationale": "ALAS1催化肝脏血红素合成限速步骤，其诱导增加ALA和PBG生成，是急性肝性卟啉病发作中上游前体蓄积的核心驱动因子。"
+      },
+      {
+        "target": "ALAD",
+        "rationale": "ALAD位于HMBS上游，催化ALA缩合生成PBG，与HMBS共同决定卟啉前体流量，适合用于同通路代谢节点比较。"
+      },
+      {
+        "target": "UROS",
+        "rationale": "UROS位于HMBS下游，催化羟甲基胆烷环化生成尿卟啉原III，可用于评估HMBS产物去向及血红素生物合成连续步骤。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

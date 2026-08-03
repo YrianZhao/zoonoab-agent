@@ -1,0 +1,65 @@
+{
+  "gene": "ASB11",
+  "generatedAt": "2026-08-03T10:37:46.551Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ASB11 为含 ankyrin repeat 与 SOCS box 的细胞内 Cullin5 型 E3 泛素连接酶适配蛋白，疾病关联主要体现为遗传学层面的 VEGF-D、甘油三酯、身高及部分肿瘤性状信号。该蛋白缺乏分泌型或跨膜胞外结构域，天然抗原可及性不符合常规治疗性抗体优先条件，仅适用于细胞内递送抗体、研究级结合工具或蛋白互作阻断验证。与 VEGFD、FLT4、VEGFR2 等同通路可及性靶点相比，ASB11 的优先级较低，但 4UUC 高分辨率 ankyrin repeat 结构可支持精确表位建模与机制探针设计。",
+    "mechanism": "设计性结合 ASB11 ankyrin repeat 凹面，阻断其与底物蛋白的识别界面，并间接干扰 SOCS box 介导的 Elongin B/C-Cullin5 复合物底物递送。",
+    "selectedEpitope": "优先覆盖 ankyrin repeat 内侧凹面及相邻 repeat 间转角，定位潜在底物识别界面。",
+    "diseaseDirection": "VEGF-D相关血管生成与肿瘤研究",
+    "domain": "N端 ankyrin repeat 结构域已解析；C端 SOCS box 负责 Elongin B/C 结合。",
+    "evidence": "ASB11遗传关联与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q8WXH4 functional annotation",
+      "RCSB PDB 4UUC X-ray structure",
+      "E3 ubiquitin ligase SOCS box complex literature"
+    ],
+    "referenceEntries": "UniProt Q8WXH4；RCSB PDB 4UUC；Open Targets ASB11",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ankyrin repeat 凹面底物结合沟槽",
+        "最可能干预底物识别，适合机制型阻断抗体或胞内抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ankyrin repeat 外侧凸面保守螺旋区",
+        "结构稳定且可成形，但功能阻断概率低于凹面界面",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端 SOCS box/Elongin B-C 结合区",
+        "可能影响 E3 复合物装配，但4UUC未覆盖完整界面，建模不确定性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ASB11 为细胞内蛋白，常规抗体难以到达作用位点；ankyrin repeat 保守面存在交叉反应风险，需以同源蛋白 ASB 家族排除筛选。",
+    "structurePrepZh": "采用 4UUC 链 A 作为 ankyrin repeat 模板，补全缺失侧链并进行质子化；SOCS box 区域需引入 AlphaFold 或同源复合物模型辅助评估。",
+    "structureRef": "RCSB PDB 4UUC，X-ray diffraction，1.8 Å",
+    "antibodies": [
+      "无已批准ASB11靶向抗体",
+      "研究级抗ASB11抗体"
+    ],
+    "interfaceFocus": "ankyrin repeat 凹面底物识别界面",
+    "designMode": "胞内抗体研究模式",
+    "candidates": [
+      {
+        "target": "VEGFD",
+        "rationale": "VEGF-D 是 Open Targets 关联中最强的 VEGF-D measurement 直接分子对象，作为分泌型配体具备优良抗原可及性，可通过中和抗体阻断受体结合。"
+      },
+      {
+        "target": "FLT4",
+        "rationale": "FLT4/VEGFR3 是 VEGF-D 的经典受体，参与淋巴管生成与肿瘤转移相关通路；胞外免疫球蛋白样结构域适合抗体阻断设计。"
+      },
+      {
+        "target": "KDR",
+        "rationale": "KDR/VEGFR2 可参与 VEGF-D 加工后配体信号传递，并驱动血管生成反应；其胞外配体结合域已有成熟抗体药物学验证基础。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

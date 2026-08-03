@@ -1,0 +1,65 @@
+{
+  "gene": "OAZ1",
+  "generatedAt": "2026-08-03T14:56:15.532Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "OAZ1为鸟氨酸脱羧酶抗酶，主要通过结合并抑制ODC1、促进ODC1非泛素化蛋白酶体降解来限制多胺合成，间接关联肿瘤细胞增殖与代谢适应。该蛋白为胞质内小型调控蛋白，缺乏天然胞外结构域或分泌暴露特征，常规抗体药物的抗原可及性不足。相较ODC1、AMD1或多胺转运相关膜蛋白，OAZ1更适合作为结构机制与胞内干预研究靶点，而非优先开发传统细胞外阻断型抗体。",
+    "mechanism": "设计抗体片段识别OAZ1的ODC1结合界面，竞争性阻断OAZ1与ODC1复合体形成，从而改变ODC1稳定性与多胺合成通量。",
+    "selectedEpitope": "优先覆盖4ZGY中OAZ1核心折叠的ODC1接触面，避免选择埋藏二聚体或晶体堆积界面。",
+    "diseaseDirection": "多胺代谢与肿瘤增殖方向",
+    "domain": "OAZ1为无经典分泌信号肽的胞质抗酶蛋白，含ODC1结合所需C端功能区。",
+    "evidence": "OAZ1-ODC1多胺代谢调控证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt reviewed entry P54368",
+      "RCSB PDB 4ZGY X-ray结构",
+      "ODC1非泛素化降解与多胺稳态文献"
+    ],
+    "referenceEntries": "UniProt:P54368; RCSB PDB:4ZGY; Gene:OAZ1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端ODC1结合功能区暴露面",
+        "可用于竞争OAZ1-ODC1相互作用并解析多胺代谢调控",
+        "优先"
+      ],
+      [
+        "Site B",
+        "核心折叠外侧非保守溶剂暴露区",
+        "适合获得结构识别抗体片段，降低干扰内源结合界面的风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "链A/B晶体接触或埋藏界面",
+        "可能反映晶体堆积而非生理表位，需结合溶液实验验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "OAZ1定位于胞质，传统IgG难以进入细胞，体内阻断可及性风险高；建议限定为胞内抗体、VHH或结构生物学工具抗体方向。",
+    "structurePrepZh": "以4ZGY链A、B为实验结构模板，去除晶体添加物与非生理接触，标注ODC1结合相关残基并进行溶剂可及性评估。",
+    "structureRef": "RCSB PDB 4ZGY, X-ray diffraction, 2.63 Å",
+    "antibodies": [
+      "暂无获批OAZ1靶向治疗性抗体",
+      "抗OAZ1研究级单克隆抗体"
+    ],
+    "interfaceFocus": "OAZ1 C端ODC1结合界面",
+    "designMode": "胞内VHH工具抗体",
+    "candidates": [
+      {
+        "target": "ODC1",
+        "rationale": "ODC1是多胺生物合成限速酶，也是OAZ1直接结合并促降解的核心底物，疾病机制相关性更直接。"
+      },
+      {
+        "target": "AMD1",
+        "rationale": "AMD1参与脱羧S-腺苷甲硫氨酸生成，支持亚精胺和精胺合成，与ODC1共同维持肿瘤细胞多胺供应。"
+      },
+      {
+        "target": "SAT1",
+        "rationale": "SAT1介导多胺乙酰化分解与外排，是多胺稳态通路中的关键分解代谢节点，可作为代谢通量调节候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

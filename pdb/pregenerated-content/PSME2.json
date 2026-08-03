@@ -1,0 +1,65 @@
+{
+  "gene": "PSME2",
+  "generatedAt": "2026-08-03T15:40:29.697Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PSME2编码免疫蛋白酶体激活复合体PA28β亚基，与PSME1形成PA28αβ环状复合体，结合20S蛋白酶体α环并促进抗原肽生成，参与MHC-I抗原呈递及炎症相关蛋白稳态。该蛋白主要定位于胞质和细胞核，缺乏胞外结构域或分泌特征，天然抗体可及性不利，作为常规体内阻断抗体靶点优先级较低。其优势在于已有高分辨率20S-PA28结构可支持机制表位研究，但相较TREM2、TNF或补体轴等神经炎症可及靶点，转化优先级应定位为细胞内递送抗体或结构验证工具靶点。",
+    "mechanism": "设计分子应阻断PA28αβ复合体C端尾部与20S蛋白酶体α环口袋结合，抑制PA28介导的20S门控开放与肽底物进入。",
+    "selectedEpitope": "优先锁定PA28β七聚环外缘及C端HbYX样尾部邻近的20S结合界面。",
+    "diseaseDirection": "神经退行性疾病与免疫蛋白酶体轴",
+    "domain": "PSME2为PA28β亚基，含蛋白酶体激活因子PA28结构域，形成环状复合体并以C端尾部结合20Sα环。",
+    "evidence": "PSME2-PA28免疫蛋白酶体结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与关联评分",
+      "UniProt Q9UL46蛋白功能与亚细胞定位注释",
+      "RCSB PDB 7NAO冷冻电镜20S-PA28复合体结构",
+      "免疫蛋白酶体抗原加工与MHC-I呈递文献"
+    ],
+    "referenceEntries": "UniProt: Q9UL46; RCSB PDB: 7NAO; Open Targets: PSME2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PA28β C端尾部及20S α环结合口袋邻近界面",
+        "直接干预PA28驱动的20S门控开放，机制可解释性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PA28β与PA28α亚基环状装配接触面",
+        "可能破坏PA28αβ复合体稳定性，适合作为装配抑制策略",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PA28β环外侧非20S接触螺旋面",
+        "结构暴露度较高但对功能耦合较弱，需验证变构效应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PSME2为胞内蛋白，常规抗体难以到达天然作用位点；建议采用细胞内递送Fab、intrabody或VHH格式，并规避PA28α/β高度保守界面导致的交叉反应。",
+    "structurePrepZh": "以7NAO冷冻电镜模型为模板，保留PSME2、PSME1与20S蛋白酶体接触链，补全缺失C端尾部坐标并标注PA28-20S界面残基。",
+    "structureRef": "RCSB PDB 7NAO, cryo-EM human 20S proteasome-PA28 complex",
+    "antibodies": [
+      "抗PSME2研究级单克隆抗体",
+      "抗PA28β研究级抗体"
+    ],
+    "interfaceFocus": "PA28β C端尾部-20S α环门控界面",
+    "designMode": "胞内递送阻断抗体",
+    "candidates": [
+      {
+        "target": "PSME1",
+        "rationale": "PSME1编码PA28α亚基，与PSME2共同形成PA28αβ激活复合体，处于同一免疫蛋白酶体抗原加工通路。靶向PSME1可从复合体装配层面干预PA28功能。"
+      },
+      {
+        "target": "PSMB8",
+        "rationale": "PSMB8编码免疫蛋白酶体β5i催化亚基，直接决定炎症诱导蛋白酶体的胰凝乳蛋白酶样切割活性。其位于同一MHC-I抗原加工与神经炎症相关蛋白稳态通路。"
+      },
+      {
+        "target": "TAP1",
+        "rationale": "TAP1参与将蛋白酶体生成的抗原肽转运至内质网并加载MHC-I分子，是PA28下游抗原呈递轴的关键组成。该靶点适用于评估抗原加工-呈递通路的系统性干预。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

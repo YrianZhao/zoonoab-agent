@@ -1,0 +1,65 @@
+{
+  "gene": "MAPK8IP2",
+  "generatedAt": "2026-08-03T14:04:15.982Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAPK8IP2编码JIP2支架蛋白，参与JNK模块中MAPK8/JNK1、MAP2K7/MKK7与上游MAP3K的组装，对应激性MAPK信号的空间组织具有调节作用；其Open Targets关联以代谢物比值、胆酸测量及心率等表型为主，疾病证据强度偏探索性。该蛋白主要为胞内支架蛋白，缺乏分泌型或跨膜胞外结构域，天然抗体可及性不具备优势。与TNF受体、IL1受体或可溶性细胞因子等同属应激炎症通路的胞外靶点相比，MAPK8IP2优先级较低，更适合作为结构生物学与细胞内递送抗体设计的研究型靶点。",
+    "mechanism": "设计抗体需结合JIP2的JNK结合/支架界面，阻断MAPK8与MAPK8IP2复合物形成，从而削弱MKK7-JNK模块在支架上的局部装配。",
+    "selectedEpitope": "优先覆盖JIP家族JNK结合结构域附近的MAPK8对接界面，并避开保守PDZ折叠核心。",
+    "diseaseDirection": "应激MAPK信号与代谢表型",
+    "domain": "MAPK8IP2含N端JNK结合区、中央支架区及C端PDZ结构域，PDB 8RPP提供高分辨率结构片段。",
+    "evidence": "MAPK8IP2-JNK支架功能与表型关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病-靶点关联",
+      "UniProt Q13387蛋白功能注释",
+      "RCSB PDB 8RPP晶体结构记录",
+      "JIP家族MAPK支架蛋白文献"
+    ],
+    "referenceEntries": "UniProt Q13387；RCSB PDB 8RPP；Open Targets MAPK8IP2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "JNK结合/对接结构域周边界面",
+        "可直接干扰MAPK8与MAPK8IP2支架复合物形成，机制可验证性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端PDZ结构域配体结合沟槽",
+        "可能影响JIP2与含PDZ结合基序伴侣蛋白的装配，适合变构或复合物选择性设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "保守折叠核心与多链晶体接触面",
+        "该区域易产生构象稳定性干扰或晶体堆积假阳性，需结合溶液状态验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAPK8IP2为胞内蛋白，常规抗体难以到达天然作用位点；设计应标注细胞内递送、intrabody或降解偶联策略，并避免将其作为标准胞外阻断抗体靶点。",
+    "structurePrepZh": "以8RPP链A-D比对确认生物学装配与晶体接触，补全缺失环区并保留PDZ沟槽及JNK对接区构象用于表位评估。",
+    "structureRef": "RCSB PDB 8RPP，X-ray diffraction，1.867 Å",
+    "antibodies": [
+      "无获批抗MAPK8IP2治疗性抗体",
+      "研究级抗JIP2抗体"
+    ],
+    "interfaceFocus": "MAPK8对接区与PDZ配体结合沟槽",
+    "designMode": "胞内阻断型",
+    "candidates": [
+      {
+        "target": "MAPK8",
+        "rationale": "MAPK8/JNK1是MAPK8IP2支架复合物的直接激酶组分，位于同一应激MAPK通路；抑制其与底物或支架结合可更直接影响JNK输出。"
+      },
+      {
+        "target": "MAP2K7",
+        "rationale": "MAP2K7/MKK7是JNK通路的直接上游激酶，并可通过支架复合物促进MAPK8激活；其节点位置适合评估通路级阻断。"
+      },
+      {
+        "target": "MAP3K5",
+        "rationale": "MAP3K5/ASK1响应氧化与炎症应激并激活MKK4/7-JNK级联，与MAPK8IP2所在JNK模块处于同一信号轴。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

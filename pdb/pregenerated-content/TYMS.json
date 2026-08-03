@@ -1,0 +1,65 @@
+{
+  "gene": "TYMS",
+  "generatedAt": "2026-08-03T17:36:08.525Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TYMS催化dUMP与5,10-亚甲基四氢叶酸生成dTMP，是胸苷酸合成与DNA复制修复的限速酶，肿瘤细胞对该通路依赖性增强，且TYMS表达升高与氟嘧啶耐药相关。该蛋白为胞内同源二聚体酶，并非天然分泌蛋白或膜受体，完整抗体进入细胞受限，抗原可及性主要适用于胞内递送抗体、降解抗体或研究级构象探针。相比DHFR、RRM1等同通路靶点，TYMS具有高分辨率人源晶体结构、明确催化口袋与二聚化界面，适合作为结构驱动型胞内抗体工程的优先模型靶点。",
+    "mechanism": "设计胞内抗体阻断TYMS二聚化界面或遮蔽dUMP/叶酸辅因子结合口袋，抑制dTMP生成并削弱肿瘤细胞DNA合成能力。",
+    "selectedEpitope": "优先锁定3ED7中催化口袋邻近的dUMP/辅因子结合沟槽，并兼顾C端构象环稳定区。",
+    "diseaseDirection": "肿瘤DNA合成与氟嘧啶耐药",
+    "domain": "TYMS为胞质同源二聚体酶，单体含TIM桶样α/β催化核心、保守半胱氨酸催化位点及C端活性环。",
+    "evidence": "TYMS肿瘤增殖依赖与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与药理关联",
+      "UniProt P04818人源TYMS功能注释",
+      "RCSB PDB 3ED7 X射线晶体结构",
+      "肿瘤氟嘧啶治疗与TYMS表达耐药研究文献"
+    ],
+    "referenceEntries": "UniProt:P04818；RCSB PDB:3ED7；Open Targets:TYMS",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "dUMP与5,10-亚甲基四氢叶酸结合沟槽",
+        "直接干扰底物和辅因子结合，机制可验证性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "同源二聚体界面邻近α螺旋与β折叠接触面",
+        "可能破坏活性二聚体装配，适合胞内构象抗体筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端活性环及溶剂暴露柔性片段",
+        "可用于构象锁定，但柔性与同源性带来亲和力和选择性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TYMS为胞内酶，常规体液抗体难以到达作用位点；应优先采用胞内表达、细胞穿透递送或抗体降解耦联策略，并严格评估正常增殖组织毒性。",
+    "structurePrepZh": "以3ED7链A为模板，补全缺失侧链与质子化状态，保留催化口袋关键残基构象，按生理二聚体组装评估界面可成药性。",
+    "structureRef": "Human thymidylate synthase crystal structure, PDB 3ED7, 1.56 Å",
+    "antibodies": [
+      "抗TYMS免疫组化诊断抗体克隆TS106",
+      "抗TYMS研究抗体克隆EPR4545"
+    ],
+    "interfaceFocus": "催化口袋入口、辅因子沟槽与二聚体接触面",
+    "designMode": "胞内构象阻断",
+    "candidates": [
+      {
+        "target": "DHFR",
+        "rationale": "DHFR再生四氢叶酸并维持TYMS所需一碳叶酸循环，是胸苷酸合成通路的核心酶。与TYMS联合分析可覆盖叶酸辅因子供给端。"
+      },
+      {
+        "target": "MTHFD1",
+        "rationale": "MTHFD1参与胞质一碳代谢并生成5,10-亚甲基四氢叶酸，为TYMS反应提供关键甲基供体。该节点适合评估上游代谢通量限制。"
+      },
+      {
+        "target": "RRM1",
+        "rationale": "RRM1是核糖核苷酸还原酶大亚基，控制脱氧核苷酸池供给，与TYMS共同支撑DNA复制。其通路位置适合用于抗增殖组合靶点比较。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

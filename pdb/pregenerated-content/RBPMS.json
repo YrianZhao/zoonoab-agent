@@ -1,0 +1,65 @@
+{
+  "gene": "RBPMS",
+  "generatedAt": "2026-08-03T20:52:18.575Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RBPMS为胞内RNA结合蛋白，主要通过RRM结构域识别RNA序列并参与mRNA加工、稳定性及细胞谱系相关转录后调控；Open Targets关联以血细胞计数和血液学数量性状为主，但其疾病证据更符合功能遗传学关联而非抗体可阻断通路。该蛋白缺乏分泌型或跨膜胞外结构域，天然抗原可及性不支持常规治疗性抗体在完整细胞外环境中结合。相较于同类血液学通路中的细胞表面受体或可溶性细胞因子，RBPMS作为抗体主靶点优先级较低，更适合结构生物学验证、胞内递送抗体或研究型结合分子设计。",
+    "mechanism": "设计分子可结合RRM β折叠RNA识别面，竞争性阻断RBPMS与靶RNA的碱基堆叠和氢键识别作用。",
+    "selectedEpitope": "优先考察RRM结构域β1-β3-β5片层形成的RNA结合面及RNP1/RNP2基序邻近区域。",
+    "diseaseDirection": "血液细胞数量性状与造血调控",
+    "domain": "RBPMS含保守RNA recognition motif，5CYJ解析其RRM折叠核心及RNA结合相关表面。",
+    "evidence": "RBPMS血液数量性状遗传关联与RRM结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q93062蛋白功能注释",
+      "RCSB PDB 5CYJ晶体结构记录",
+      "GWAS Catalog血细胞计数相关遗传学证据"
+    ],
+    "referenceEntries": "UniProt Q93062；RCSB PDB 5CYJ；Open Targets RBPMS",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RRM β片层RNA识别面，涵盖RNP1/RNP2邻近残基",
+        "可直接干预RNA结合，是机制验证价值最高区域",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RRM外侧α螺旋与环区构成的非RNA结合表面",
+        "有利于获得结构稳定结合分子，可用于检测或构象锁定",
+        "备选"
+      ],
+      [
+        "Site C",
+        "RRM核心疏水折叠内部及高度保守结构支撑残基",
+        "易影响蛋白折叠且表面暴露不足，工程化风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RBPMS为胞内蛋白，治疗性抗体存在细胞进入与靶点可及性限制；设计应定位为胞内递送抗体、intrabody或研究型Fab/VHH，并避免破坏RRM整体折叠。",
+    "structurePrepZh": "以5CYJ链A/B为模板，保留RRM结构域单体构象，补全缺失侧链并评估晶体接触；RNA结合面需结合保守RNP基序进行表面标注。",
+    "structureRef": "RCSB PDB 5CYJ，X-ray diffraction，1.79 Å",
+    "antibodies": [
+      "无已获批同靶点治疗性抗体",
+      "研究级抗RBPMS抗体"
+    ],
+    "interfaceFocus": "RRM β片层RNA识别面与RNP1/RNP2基序",
+    "designMode": "胞内靶向研究型设计",
+    "candidates": [
+      {
+        "target": "RBM20",
+        "rationale": "RBM20为RNA结合剪接因子，参与mRNA剪接调控并与血液及心肌相关遗传性状存在功能关联，可作为同类RNA加工轴的胞内机制参照靶点。"
+      },
+      {
+        "target": "HNRNPA1",
+        "rationale": "HNRNPA1通过RRM结构域结合前体mRNA并调控剪接与mRNA代谢，适合用于比较RRM介导RNA识别界面的可干预性。"
+      },
+      {
+        "target": "SRSF2",
+        "rationale": "SRSF2是剪接体相关RNA结合蛋白，突变与克隆性造血和髓系肿瘤相关，属于血液疾病中转录后调控通路的真实节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

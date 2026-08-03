@@ -1,0 +1,65 @@
+{
+  "gene": "TOB1",
+  "generatedAt": "2026-08-03T17:23:45.033Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TOB1属于BTG/TOB抗增殖蛋白家族，可通过N端BTG结构域与CAF1/CCR4-NOT去腺苷化复合体成分相互作用，影响mRNA稳定性与细胞周期相关转录后调控，并在免疫细胞数量性状及神经退行性疾病遗传关联中呈现中等证据信号。该蛋白主要定位于胞质和细胞核，缺乏跨膜区和天然分泌特征，抗原可及性不具备常规治疗性抗体优势，更适合作为结构生物学验证、细胞内抗体或研究级结合分子靶点。相较ERBB2、EGFR等同名关联网络中的膜受体靶点，TOB1的优势在于PDB 2Z15提供实验解析的BTG结构域构象，可支持结构约束的表位设计；但其临床转化优先级应低于胞外可及靶点。",
+    "mechanism": "设计结合分子阻断TOB1 BTG结构域与CNOT7/CAF1结合界面，干预CCR4-NOT介导的mRNA去腺苷化复合体募集。",
+    "selectedEpitope": "优先覆盖BTG结构域中CAF1结合沟槽及保守Box A/Box B邻近界面。",
+    "diseaseDirection": "神经退行性与免疫细胞数量性状",
+    "domain": "TOB1含N端BTG/TOB同源结构域，C端富含调控序列并含PAM2样基序。",
+    "evidence": "TOB1结构域与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P50616 functional annotation",
+      "RCSB PDB 2Z15 X-ray structure",
+      "BTG/TOB-CCR4-NOT interaction literature"
+    ],
+    "referenceEntries": "UniProt P50616；RCSB PDB 2Z15；Open Targets TOB1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "BTG结构域CAF1/CNOT7结合沟槽",
+        "直接干预TOB1募集CCR4-NOT去腺苷化模块",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Box A与Box B保守基序邻近表面",
+        "可稳定识别TOB家族功能核心并影响蛋白互作构象",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端PAM2样基序邻近区域",
+        "可能影响PABP相关互作，但结构柔性高且PDB 2Z15覆盖不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TOB1为胞内蛋白，常规抗体难以到达天然作用位点；建议限定为研究抗体、胞内抗体或递送型格式，并严格评估BTG家族交叉反应。",
+    "structurePrepZh": "以2Z15抗原链A-D比对BTG核心结构，去除晶体接触伪界面，补全缺失侧链并标注保守互作残基用于表位筛选。",
+    "structureRef": "RCSB PDB 2Z15，X-ray diffraction，2.3 Å",
+    "antibodies": [
+      "TOB1研究级单克隆抗体",
+      "TOB1多克隆验证抗体"
+    ],
+    "interfaceFocus": "BTG结构域CAF1/CNOT7结合界面",
+    "designMode": "胞内靶点研究抗体",
+    "candidates": [
+      {
+        "target": "CNOT7",
+        "rationale": "CNOT7是CCR4-NOT复合体CAF1去腺苷化酶成分，与TOB1 BTG结构域发生直接结合，位于同一mRNA去腺苷化调控轴。"
+      },
+      {
+        "target": "CNOT8",
+        "rationale": "CNOT8为CAF1同源去腺苷化酶，可与BTG/TOB家族蛋白协同调控mRNA deadenylation，是TOB1相关转录后调控通路的并行节点。"
+      },
+      {
+        "target": "CNOT1",
+        "rationale": "CNOT1是CCR4-NOT复合体支架蛋白，组织CNOT7/CNOT8等催化亚基装配，代表TOB1募集去腺苷化机器的核心复合体节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

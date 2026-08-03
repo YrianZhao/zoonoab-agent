@@ -1,0 +1,65 @@
+{
+  "gene": "ABL1",
+  "generatedAt": "2026-08-03T09:55:03.466Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ABL1在BCR-ABL1阳性慢性粒细胞白血病和部分急性淋巴细胞白血病中通过融合激酶形式驱动持续性酪氨酸磷酸化，激活CRKL、STAT5、PI3K-AKT和RAS-MAPK等下游信号。ABL1本体为胞内非受体酪氨酸激酶，缺乏天然胞外可及抗原结构，因此常规外源性治疗抗体成药性受限，但其高分辨率激酶结构适合开展胞内结合蛋白、递送型抗体片段或研究级构象锁定分子设计。相较同通路下游节点，ABL1/BCR-ABL1位于白血病驱动轴上游且具有明确遗传病因证据，优先级高于单一旁路效应分子。",
+    "mechanism": "设计抗体片段结合ABL1激酶结构域ATP结合裂隙邻近构象界面，稳定非活化构象并阻断底物肽进入催化沟槽。",
+    "selectedEpitope": "优先选择激酶结构域N-lobe αC螺旋与activation loop邻近构象界面。",
+    "diseaseDirection": "BCR-ABL1阳性白血病",
+    "domain": "ABL1含SH3、SH2、酪氨酸激酶结构域及C端F-actin结合区；1BBZ覆盖激酶结构域。",
+    "evidence": "ABL1/BCR-ABL1白血病驱动证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P00519功能与结构域注释",
+      "RCSB PDB 1BBZ晶体结构记录",
+      "BCR-ABL1白血病临床与药理学文献"
+    ],
+    "referenceEntries": "UniProt P00519；RCSB PDB 1BBZ；Open Targets ABL1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域N-lobe αC螺旋与activation loop构象界面",
+        "有利于稳定非活化构象并限制催化活性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SH2-kinase linker邻近调控表面",
+        "可干预SH2介导的激酶活化耦联，但需匹配完整构象模型",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP结合口袋深部铰链区",
+        "与小分子抑制剂位点高度重叠且空间狭窄，抗体可达性较差",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ABL1为胞内激酶，常规抗体难以到达天然靶点；设计应限定为细胞内递送、TCR样展示策略或体外机制验证，并规避ATP口袋保守残基交叉反应。",
+    "structurePrepZh": "以1BBZ高分辨率激酶结构域为模板，补全缺失侧链并评估配体、磷酸化状态和activation loop构象；必要时叠合活化与非活化ABL1结构。",
+    "structureRef": "PDB 1BBZ，ABL1 kinase domain，X-ray 1.65 Å",
+    "antibodies": [
+      "anti-BCR-ABL1 diagnostic antibody",
+      "ABL1 phospho-specific antibody"
+    ],
+    "interfaceFocus": "αC螺旋、activation loop与底物结合沟槽",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "BCR",
+        "rationale": "BCR与ABL1形成BCR-ABL1融合蛋白，是CML核心致病事件；其融合连接区可提供肿瘤特异性新表位。"
+      },
+      {
+        "target": "STAT5B",
+        "rationale": "STAT5B是BCR-ABL1持续激酶活性的重要下游转录效应分子，参与白血病细胞存活和增殖信号维持。"
+      },
+      {
+        "target": "CRKL",
+        "rationale": "CRKL是BCR-ABL1直接磷酸化底物之一，其磷酸化水平常作为ABL1融合激酶活性读出，位于同一白血病信号轴。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

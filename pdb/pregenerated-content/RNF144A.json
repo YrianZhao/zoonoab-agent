@@ -1,0 +1,65 @@
+{
+  "gene": "RNF144A",
+  "generatedAt": "2026-08-03T16:05:59.789Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RNF144A 为含 RING 指结构域的 E3 泛素连接酶，参与底物泛素化并影响蛋白质稳态；遗传关联提示其与神经退行性疾病表型存在中等强度联系，但疾病因果机制仍需功能验证。该蛋白主要定位于细胞内膜相关区室，缺乏经典分泌信号肽和稳定胞外结构域，因此常规外源性抗体的抗原可及性不足。相较于具有胞外结构域的神经退行性疾病靶点，RNF144A 不具备优先抗体成药属性，更适合作为机制研究或细胞内递送抗体探索靶点。",
+    "mechanism": "设计重点为干预 RING 指结构域与 E2 泛素结合酶的接触界面，抑制泛素转移复合物形成及底物泛素化反应。",
+    "selectedEpitope": "优先评估 RING 指 Zn2+ 配位核心邻近的 E2 结合面，避免直接破坏金属配位折叠。",
+    "diseaseDirection": "神经退行性疾病蛋白稳态方向",
+    "domain": "RNF144A 含 N 端 RING finger 结构域及跨膜相关区域，PDB 1WIM 覆盖 RING 指片段。",
+    "evidence": "RNF144A 神经退行性疾病遗传关联与RING结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P50876 functional annotation",
+      "RCSB PDB 1WIM solution NMR structure",
+      "InterPro RING-type zinc finger domain annotation"
+    ],
+    "referenceEntries": "UniProt P50876；RCSB PDB 1WIM；Open Targets RNF144A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RING 指结构域 E2 结合面",
+        "可直接阻断 E2 招募并降低 E3 连接酶活性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RING 指非配位外露环区",
+        "有利于获得构象选择性结合并减少金属核心扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Cys/His Zn2+ 配位核心",
+        "可能破坏整体折叠并产生非特异构象效应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RNF144A 缺乏可确认的胞外抗原区域，常规抗体难以到达胞内 RING 结构域；建议限定为细胞内递送抗体、intrabody 或机制验证设计。",
+    "structurePrepZh": "以 1WIM 的 NMR 构象集合为模板，保留 Zn2+ 配位几何并进行构象聚类，优先选择 E2 结合面稳定暴露模型。",
+    "structureRef": "RCSB PDB 1WIM：human RNF144A RING finger NMR structure",
+    "antibodies": [
+      "无临床批准同靶点抗体",
+      "无公开验证的阻断型同靶点抗体"
+    ],
+    "interfaceFocus": "RING-E2 泛素结合酶接触界面",
+    "designMode": "细胞内抗体探索",
+    "candidates": [
+      {
+        "target": "UBE2D1",
+        "rationale": "UBE2D 家族 E2 酶可与多种 RING 型 E3 连接酶形成泛素转移复合物，是评估 RNF144A 泛素化轴的直接功能节点。"
+      },
+      {
+        "target": "UBE2D2",
+        "rationale": "UBE2D2 属于 RING-E3 常用 E2 泛素结合酶网络，可作为同一泛素化反应通路中的可替代验证靶点。"
+      },
+      {
+        "target": "UBE2D3",
+        "rationale": "UBE2D3 参与 RING 依赖性泛素转移反应，适合用于比较 RNF144A-E2 界面阻断对蛋白稳态调控的影响。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

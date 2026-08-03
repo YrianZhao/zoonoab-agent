@@ -1,0 +1,65 @@
+{
+  "gene": "ARHGEF16",
+  "generatedAt": "2026-08-03T10:34:29.864Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ARHGEF16 是含 RHOGEF/DH 结构域的胞内 Rho 小 GTP 酶鸟嘌呤核苷酸交换因子，理论上可通过促进 Rho 家族 GTP 酶 GDP-GTP 交换影响肌动蛋白骨架、细胞迁移与上皮屏障相关过程。Open Targets 关联信号主要集中于胱抑素 C、肾小球滤过率、血小板体积等数量性状，提示其与肾功能和血液表型存在遗传关联，但缺乏明确可药性疾病通路验证。该蛋白定位于胞内且无已知分泌型或跨膜胞外结构域，天然抗原可及性不支持常规治疗性抗体直接结合；因此其优先级低于同通路中具备细胞外可及性的受体或配体，更适合作为结构生物学与细胞内递送抗体探索靶点。",
+    "mechanism": "胞内抗体需结合 ARHGEF16 RHOGEF/DH 催化界面，阻断其与 Rho 家族 GTP 酶的复合物形成，从而抑制 GDP 释放与 GTP 装载。",
+    "selectedEpitope": "优先评估 1X6B 所示 RHOGEF/DH 折叠中与小 GTP 酶结合的 α 螺旋沟槽界面。",
+    "diseaseDirection": "肾功能数量性状与Rho GTP酶信号",
+    "domain": "ARHGEF16 含胞内 RHOGEF/DH 催化结构域，负责与 Rho 家族 GTP 酶结合并促进核苷酸交换。",
+    "evidence": "ARHGEF16遗传关联与RHOGEF结构可药性证据包",
+    "evidenceSources": [
+      "Open Targets Platform 遗传关联与性状证据",
+      "UniProt Q5VV41 蛋白结构域与亚细胞定位注释",
+      "RCSB PDB 1X6B 溶液 NMR 结构条目",
+      "InterPro/Pfam RHOGEF 结构域家族注释"
+    ],
+    "referenceEntries": "UniProt Q5VV41；RCSB PDB 1X6B；Open Targets ARHGEF16",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RHOGEF/DH 催化沟槽及小 GTP 酶结合界面",
+        "直接干预 ARHGEF16 与 Rho 家族 GTP 酶的复合物形成，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DH 结构域外侧稳定螺旋束区域",
+        "可用于构象锁定或变构干预，但需验证是否影响核苷酸交换活性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化沟槽的溶剂暴露环区",
+        "抗原性可能较好，但与 GEF 催化功能耦合有限，功能阻断风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为靶点胞内定位导致常规抗体不可及，且疾病关联多为数量性状遗传信号。建议限定为细胞内抗体、递送型 VHH 或机制验证试剂，不宜直接按胞外阻断抗体推进。",
+    "structurePrepZh": "以 PDB 1X6B 的 NMR 构象集合为基础，筛选代表性低能模型，补全缺失侧链并标注 RHOGEF/DH 保守催化面；需结合 AlphaFold 模型评估全长上下文。",
+    "structureRef": "RCSB PDB 1X6B，human ARHGEF16 RHOGEF domain，solution NMR",
+    "antibodies": [
+      "无已批准 ARHGEF16 靶向抗体",
+      "无公开临床阶段 ARHGEF16 抗体"
+    ],
+    "interfaceFocus": "DH催化沟槽与Rho GTP酶结合面",
+    "designMode": "胞内VHH机制验证",
+    "candidates": [
+      {
+        "target": "RHOA",
+        "rationale": "RHOA 是 Rho GTP 酶通路核心效应节点，参与肌动蛋白应力纤维、细胞收缩和屏障调控；其与 RHOGEF 催化轴处于同一分子功能模块。"
+      },
+      {
+        "target": "ROCK1",
+        "rationale": "ROCK1 位于 RHOA 下游，介导肌球蛋白轻链磷酸化和细胞骨架张力变化；相较 ARHGEF16，其通路功能与药理学验证更充分。"
+      },
+      {
+        "target": "ROCK2",
+        "rationale": "ROCK2 是 RHOA-ROCK 轴的重要激酶成员，与血管、肾小球和细胞骨架相关病理过程存在明确联系；可作为同通路下游干预靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

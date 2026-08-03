@@ -1,0 +1,65 @@
+{
+  "gene": "PCNA",
+  "generatedAt": "2026-08-03T15:07:52.809Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PCNA 是DNA复制与损伤旁路合成的滑动夹，作为同源三聚体招募DNA聚合酶、FEN1、LIG1及多种修复因子；在ATM相关DNA损伤反应缺陷背景下，PCNA依赖性复制压力可影响基因组稳定性。PCNA主要定位于细胞核，天然抗原可及性不具备分泌蛋白或膜受体优势，常规体内阻断抗体成药性受限。其优先级来自高分辨率三维结构、明确的PIP-box结合口袋和泛素化位点，较ATM/ATR等大型激酶更适合作为结构指导的细胞内抗体或研究型Fab设计靶点。",
+    "mechanism": "抗体结合PCNA前侧面PIP-box结合口袋，阻断FEN1、LIG1、POLH等PIP-box蛋白与PCNA相互作用，削弱复制叉成熟及损伤旁路合成。",
+    "selectedEpitope": "优先覆盖IDCL环与C端尾部形成的PIP-box结合槽，避开三聚体内环DNA滑动界面。",
+    "diseaseDirection": "DNA损伤修复与复制压力相关疾病",
+    "domain": "PCNA由两个拓扑相似结构域组成，单体经头尾相接形成环状同源三聚体滑动夹。",
+    "evidence": "PCNA结构与DNA损伤反应功能证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P12004功能与定位注释",
+      "RCSB PDB 1U7B晶体结构",
+      "DNA复制夹与PIP-box互作结构研究文献"
+    ],
+    "referenceEntries": "UniProt:P12004; RCSB PDB:1U7B; Gene:PCNA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "IDCL环-疏水口袋-C端尾部PIP-box结合槽",
+        "直接竞争FEN1、LIG1、POLH等PCNA结合因子，机制可验证性高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "三聚体外侧面邻近K164泛素化区域",
+        "可干预TLS因子募集与损伤诱导的PCNA修饰依赖识别",
+        "备选"
+      ],
+      [
+        "Site C",
+        "三聚体内孔DNA接触面及亚基界面",
+        "可能影响滑动夹装载和DNA结合，但构象保守且功能毒性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PCNA为细胞核内必需蛋白，缺乏胞外可及性，系统性阻断存在增殖组织毒性风险；宜限定为细胞内递送抗体、Fab工具分子或条件性肿瘤细胞递送策略。",
+    "structurePrepZh": "以1U7B同源三聚体为模板，保留A、B链并补全对称三聚体构象；评估IDCL环、C端柔性尾部和K164邻近表面的构象可塑性。",
+    "structureRef": "RCSB PDB 1U7B，X-ray 1.88 Å，人源PCNA结构",
+    "antibodies": [
+      "PC10",
+      "16D10"
+    ],
+    "interfaceFocus": "IDCL环-C端尾部PIP-box结合槽",
+    "designMode": "细胞内阻断型Fab",
+    "candidates": [
+      {
+        "target": "ATM",
+        "rationale": "ATM是DNA双链断裂反应的核心激酶，与共济失调-毛细血管扩张相关表型直接相关；其通路缺陷可增强PCNA依赖性复制压力。"
+      },
+      {
+        "target": "ATR",
+        "rationale": "ATR感知复制压力并调控CHK1通路，与PCNA介导的复制叉稳定和损伤耐受处于同一DNA损伤应答网络。"
+      },
+      {
+        "target": "RAD18",
+        "rationale": "RAD18催化PCNA K164单泛素化，驱动跨损伤合成聚合酶募集，是PCNA损伤耐受分支的直接上游调控因子。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

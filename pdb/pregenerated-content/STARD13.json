@@ -1,0 +1,65 @@
+{
+  "gene": "STARD13",
+  "generatedAt": "2026-08-03T16:58:29.253Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "STARD13 参与 RhoA 相关骨架重塑与细胞迁移调控，其失衡可影响血管张力、内皮稳态及造血相关表型，且 Open Targets 显示其与血压、血细胞计数及血红蛋白性状存在一致关联。该蛋白为胞内 RhoGAP，并非分泌蛋白或膜受体，抗原可及性弱于典型药靶，因此更适合作为机制验证或胞内递送抗体的设计对象，而非首选表面阻断靶点。相比同通路中的 RhoA、ROCK1/ROCK2 或 ARHGDIA 等节点，STARD13 处于上游 GAP 调控层，具备解释疾病表型与解析信号起点的优势。",
+    "mechanism": "通过识别 STARD13 的 RhoGAP 结构域，干扰其对 RhoA 的 GTP 水解促进作用，维持 RhoA 活化状态并改变下游肌动蛋白重排。",
+    "selectedEpitope": "优先覆盖 RhoGAP 催化沟槽及与 RhoA 接触的保守界面，避免远端低复杂度区。",
+    "diseaseDirection": "血压与血液性状",
+    "domain": "N 端调控区与 C 端 RhoGAP 核心结构域",
+    "evidence": "STARD13 结构-疾病关联证据包",
+    "evidenceSources": [
+      "UniProt Q9Y3M8",
+      "RCSB PDB 2PSO",
+      "Open Targets Platform",
+      "AlphaFold/结构域注释数据库"
+    ],
+    "referenceEntries": "UniProt: Q9Y3M8; PDB: 2PSO; Homo sapiens STARD13",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RhoGAP 催化核心与 RhoA 结合面",
+        "直接干扰 GAP-RhoA 识别与催化",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C 端保守螺旋束外侧面",
+        "利于稳定结合并降低构象扰动风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端低保守调控区",
+        "可及性较高但与催化功能耦联较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "STARD13 为胞内抗原，天然可及性受限，常规成药性弱于膜蛋白。设计上宜优先采用细胞内递送或蛋白降解联用策略，并避免仅覆盖高度柔性的非结构化片段。",
+    "structurePrepZh": "以 2PSO 为核心模板补全缺失环区并校正链 A/B/C 装配关系，结合保守性映射标注 RhoGAP 接触面后进行表位分层。",
+    "structureRef": "RCSB 2PSO X-ray 2.8 A",
+    "antibodies": [
+      "抗 RhoGAP 结构域研究性抗体",
+      "STARD13/ARHGAP30 同源识别抗体"
+    ],
+    "interfaceFocus": "RhoGAP 催化沟槽与 RhoA 识别界面",
+    "designMode": "胞内机制阻断",
+    "candidates": [
+      {
+        "target": "RHOA",
+        "rationale": "RHOA 是 STARD13 直接作用底物，二者构成同一 Rho GTPase 调控轴。围绕 RHOA 可验证 STARD13 抑制效应在 GTP 装载与骨架重塑中的位置。"
+      },
+      {
+        "target": "ROCK1",
+        "rationale": "ROCK1 位于 RhoA 下游效应层，与 STARD13 共同构成血管张力和迁移调控通路。纳入该节点有助于评估 STARD13 干预对效应激酶输出的传递效率。"
+      },
+      {
+        "target": "ROCK2",
+        "rationale": "ROCK2 与 ROCK1 同属 RhoA-ROCK 轴关键效应分子，适合用于比较不同效应分支对表型的贡献。其与 STARD13 同处于血压相关信号链，具备真实通路一致性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

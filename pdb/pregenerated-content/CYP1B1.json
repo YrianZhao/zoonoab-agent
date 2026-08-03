@@ -1,0 +1,65 @@
+{
+  "gene": "CYP1B1",
+  "generatedAt": "2026-08-03T18:28:37.093Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CYP1B1是内质网膜锚定的血红素单加氧酶，参与眼前节发育相关代谢稳态；双等位基因功能缺失突变可导致原发性先天性青光眼和前节发育异常。该靶点催化结构域主要位于胞质侧并依赖血红素口袋完成底物氧化，天然抗原可及性明显弱于分泌蛋白或外向型膜受体。其疾病遗传证据强、结构信息明确，但作为抗体药物主靶点的优先级低于可直接胞外阻断的ANGPT/TEK轴靶点，更适合作为细胞内功能研究或递送型抗体设计对象。",
+    "mechanism": "设计目标应聚焦阻断CYP1B1血红素邻近底物进入通道，抑制芳香族底物与活性位点结合及NADPH-P450还原酶介导的电子转移耦联。",
+    "selectedEpitope": "优先评估F/G螺旋及B-C环构成的底物通道入口，避免直接遮蔽血红素保守核心导致非特异构象破坏。",
+    "diseaseDirection": "先天性青光眼与眼前节发育异常",
+    "domain": "N端内质网膜锚定区连接胞质P450催化结构域，含保守血红素结合Cys配位基序和底物识别环区。",
+    "evidence": "CYP1B1遗传性青光眼结构与功能证据包",
+    "evidenceSources": [
+      "Open Targets Platform遗传关联与疾病评分",
+      "UniProt Q16678功能注释与变异记录",
+      "RCSB PDB 3PM0晶体结构条目",
+      "OMIM与ClinVar中CYP1B1相关青光眼变异"
+    ],
+    "referenceEntries": "UniProt Q16678；RCSB PDB 3PM0；Open Targets ENSG00000138061",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "F/G螺旋与B-C环底物通道入口",
+        "可干预底物进入活性腔，结构暴露度相对较高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "血红素远端I螺旋邻近区域",
+        "可影响氧活化与底物定位，但需避免破坏P450保守折叠",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端血红素结合Cys口袋",
+        "高度保守且深埋，跨CYP选择性和抗体可及性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CYP1B1为胞内侧内质网膜酶，常规抗体难以到达催化结构域；设计应标注递送依赖性、CYP家族交叉反应及血红素口袋保守性风险。",
+    "structurePrepZh": "以3PM0链A为模板，补全缺失环区并保留血红素辅基；对底物通道入口、膜近端取向和CYP家族保守残基进行界面分层标注。",
+    "structureRef": "Human CYP1B1 crystal structure, PDB 3PM0, 2.7 Å",
+    "antibodies": [
+      "Abcam ab185954",
+      "Santa Cruz sc-374228"
+    ],
+    "interfaceFocus": "F/G螺旋-底物通道入口及血红素远端腔",
+    "designMode": "胞内酶抑制型",
+    "candidates": [
+      {
+        "target": "TEK",
+        "rationale": "TEK是ANGPT-TIE2血管发育通路核心受体酪氨酸激酶，突变与原发性先天性青光眼及Schlemm管发育异常相关。其胞外Ig样、EGF样和纤连蛋白III结构域具备抗体可及性。"
+      },
+      {
+        "target": "ANGPT1",
+        "rationale": "ANGPT1是TEK受体的分泌型配体，维持眼前节血管和Schlemm管发育信号。作为分泌蛋白，其配体-受体结合界面适合中和或激动型抗体工程评估。"
+      },
+      {
+        "target": "MYOC",
+        "rationale": "MYOC突变与开角型青光眼及小梁网蛋白稳态异常相关，属于同一眼压调控和前节病理方向的真实疾病靶点。其分泌/细胞外基质相关定位较CYP1B1更有利于抗体结合。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

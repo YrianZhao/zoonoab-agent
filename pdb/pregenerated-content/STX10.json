@@ -1,0 +1,65 @@
+{
+  "gene": "STX10",
+  "generatedAt": "2026-08-03T21:22:58.061Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "STX10 是内膜系统 SNARE 蛋白，参与从内体至反式高尔基网络的囊泡融合，其遗传关联主要见于骨关节炎、静脉血栓栓塞及脂质相关表型，但 Open Targets 关联强度较低且多为间接遗传证据。STX10 主要定位于细胞内高尔基体/内体膜，功能性 SNARE 结构域位于胞质侧，缺乏抗体药物可直接结合的胞外结构域或分泌型抗原暴露优势。相较于同通路中具有明确胞外可及性和疾病效应证据的炎症或凝血靶点，STX10 作为常规外源抗体主靶点优先级较低，更适合结构生物学验证或细胞内递送抗体格式探索。",
+    "mechanism": "设计目标为结合 STX10 的胞质 SNARE motif，阻断其与 STX16、VTI1A、VAMP3/VAMP4 形成跨膜 SNARE 复合体，从而影响内体至TGN囊泡融合。",
+    "selectedEpitope": "优先评估 4DND 所覆盖 N 端调控三螺旋 Habc 结构域表面沟槽，避免直接依赖跨膜区附近不可溶片段。",
+    "diseaseDirection": "骨关节炎与血栓遗传关联探索",
+    "domain": "STX10 含 N 端 Habc 调控结构域、C 端胞质 SNARE motif 及单次跨膜锚定区。",
+    "evidence": "STX10 结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB O60499 syntaxin-10 annotation",
+      "RCSB PDB 4DND X-ray structure",
+      "SNARE-mediated endosome-to-TGN trafficking literature"
+    ],
+    "referenceEntries": "UniProt O60499；RCSB PDB 4DND；Open Targets STX10",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Habc 结构域暴露螺旋束沟槽",
+        "结构分辨率高，适合获得构象稳定结合体并解析结合界面",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Habc 与 SNARE motif 连接区附近",
+        "可能影响调控构象与伴侣蛋白装配，但需确认结构覆盖和柔性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端 SNARE motif 及跨膜邻近区",
+        "功能相关性较强，但胞内定位、膜邻近性和构象依赖带来显著开发风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "核心风险为抗原胞内定位导致常规抗体不可及，且疾病关联分数偏低。建议限定为细胞内递送抗体、intrabody 或结构探针设计。",
+    "structurePrepZh": "以 4DND 链 A 为模板进行缺失残基、质子化状态和晶体接触评估；保留 Habc 稳定构象，单独建模 SNARE motif 时需采用同源或复合体约束。",
+    "structureRef": "RCSB PDB 4DND，human STX10 X-ray，1.4 Å",
+    "antibodies": [
+      "无获批抗 STX10 治疗性抗体",
+      "研究级抗 STX10 抗体"
+    ],
+    "interfaceFocus": "Habc 螺旋束表面沟槽及 SNARE 调控界面",
+    "designMode": "胞内靶点探索",
+    "candidates": [
+      {
+        "target": "STX16",
+        "rationale": "STX16 与 STX10 同属内体至反式高尔基网络 SNARE 复合体成分，直接参与囊泡融合复合体装配。其疾病优先级同样受限于胞内定位。"
+      },
+      {
+        "target": "VTI1A",
+        "rationale": "VTI1A 是 STX10/STX16 相关 Qa/Qb/Qc/R-SNARE 复合体中的关键 SNARE 蛋白，可作为同一膜运输轴的机制验证靶点。"
+      },
+      {
+        "target": "VAMP4",
+        "rationale": "VAMP4 参与内体至TGN逆向运输 SNARE 复合体，与 STX10 处于同一囊泡融合通路，适合用于复合体阻断策略比较。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

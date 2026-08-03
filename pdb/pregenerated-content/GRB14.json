@@ -1,0 +1,65 @@
+{
+  "gene": "GRB14",
+  "generatedAt": "2026-08-03T12:56:12.571Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GRB14是胰岛素受体信号的胞内适配蛋白，其BPS区域可结合胰岛素受体激酶结构域并抑制受体催化活性，遗传学研究将其与2型糖尿病、HbA1c和血糖表型相关联。该蛋白主要定位于胞质侧，不具备分泌蛋白或膜外结构域特征，抗体药物的天然抗原可及性弱于典型膜受体靶点。其优先级主要来自明确的人类遗传关联和已解析的IRK结合结构；相较INSR、IGF1R等关键受体，直接靶向GRB14更具通路选择性，但需采用胞内递送抗体或研究级结合分子策略。",
+    "mechanism": "设计结合GRB14 BPS/SH2邻近界面的胞内抗体，阻断GRB14与胰岛素受体激酶结构域的抑制性结合，解除对INSR自磷酸化和下游IRS信号的负调控。",
+    "selectedEpitope": "优先覆盖BPS区域与SH2结构域邻近的胰岛素受体激酶结合界面。",
+    "diseaseDirection": "2型糖尿病与胰岛素抵抗",
+    "domain": "GRB14含N端RA样区域、PH结构域、BPS抑制区及C端SH2结构域。",
+    "evidence": "GRB14-胰岛素受体信号遗传与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q14449功能与结构域注释",
+      "RCSB PDB 2AUG晶体结构",
+      "人类GWAS血糖与2型糖尿病相关研究"
+    ],
+    "referenceEntries": "UniProt Q14449；RCSB PDB 2AUG；Open Targets GRB14",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "BPS区域-胰岛素受体激酶结合界面",
+        "直接竞争GRB14对INSR激酶结构域的抑制性结合，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端SH2结构域磷酸酪氨酸结合沟槽",
+        "干扰受体磷酸化位点识别，可削弱GRB14募集和稳定结合",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PH结构域膜脂结合相关表面",
+        "可能影响膜定位，但细胞内脂质界面保守且功能外推不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GRB14为胞内蛋白，常规抗体难以到达作用位点；BPS/SH2界面与GRB7/GRB10家族存在同源性，应强化选择性筛选并考虑细胞内递送格式。",
+    "structurePrepZh": "以PDB 2AUG链A、B为结构模板，保留BPS/SH2相关界面，校正缺失环区与质子化状态，并标注INSR激酶接触残基用于对接约束。",
+    "structureRef": "RCSB PDB 2AUG，X-ray diffraction，2.3 Å",
+    "antibodies": [
+      "胞内抗体intrabody研究格式",
+      "细胞穿透抗体工程格式"
+    ],
+    "interfaceFocus": "BPS抑制区与SH2磷酸酪氨酸结合沟槽",
+    "designMode": "胞内阻断型抗体设计",
+    "candidates": [
+      {
+        "target": "INSR",
+        "rationale": "INSR是胰岛素信号通路的核心受体酪氨酸激酶，直接决定IRS磷酸化和葡萄糖代谢响应。其胞外α亚基具备抗体可及性，但激动或拮抗效应需严格控制。"
+      },
+      {
+        "target": "IGF1R",
+        "rationale": "IGF1R与INSR共享相近的受体酪氨酸激酶结构和下游PI3K-AKT轴，并与代谢及生长表型相关。其膜外配体结合区适合抗体设计，但需避免与INSR交叉干扰。"
+      },
+      {
+        "target": "PTPN1",
+        "rationale": "PTPN1编码PTP1B，可去磷酸化INSR和IRS蛋白，是胰岛素信号负调控节点。该靶点与GRB14同属胰岛素抵抗相关负调控轴，但同样属于胞内蛋白，抗体成药性受递送限制。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

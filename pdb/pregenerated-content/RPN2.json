@@ -1,0 +1,65 @@
+{
+  "gene": "RPN2",
+  "generatedAt": "2026-08-03T16:11:34.642Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RPN2 是寡糖基转移酶复合体的内质网膜亚基，参与新生多肽 N-糖基化，并可影响病毒包膜蛋白及宿主分泌/膜蛋白的成熟质量控制，其疾病关联集中于登革热和 COVID-19 等感染表型。RPN2 的主要功能结构域位于内质网腔侧，天然抗原可及性受内质网定位限制，适合定位于胞内递送抗体、intrabody 或结构引导型结合分子开发。相较 STT3A/STT3B 等催化核心亚基，RPN2 具有更明确的非催化支架界面与较少直接催化抑制毒性风险，优先适合作为复合体装配和底物递送界面的选择性干预靶点。",
+    "mechanism": "设计分子结合 RPN2 腔侧结构域，干扰其与寡糖基转移酶复合体邻近亚基及新生多肽糖基化底物的空间配位，从而削弱病毒糖蛋白成熟。",
+    "selectedEpitope": "优先靶向 RPN2 腔侧 β-螺旋/寡糖基转移酶复合体接触面，避开跨膜锚定区。",
+    "diseaseDirection": "病毒感染宿主糖基化通路",
+    "domain": "RPN2 为单跨膜内质网膜蛋白，含大型内质网腔侧结构域、近 C 端跨膜螺旋及短胞质尾部。",
+    "evidence": "RPN2-寡糖基转移酶复合体与感染遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P04844 ribophorin II annotation",
+      "RCSB PDB 9N9J cryo-EM structure",
+      "OST complex N-linked glycosylation literature"
+    ],
+    "referenceEntries": "UniProt P04844；RCSB PDB 9N9J；Open Targets RPN2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "腔侧 β-螺旋复合体接触界面",
+        "可干扰 RPN2 在 OST 复合体中的支架配位与底物递送",
+        "优先"
+      ],
+      [
+        "Site B",
+        "腔侧远端暴露环区",
+        "利于获得高亲和结合体，但功能阻断效应需实验证实",
+        "备选"
+      ],
+      [
+        "Site C",
+        "跨膜螺旋邻近膜界面",
+        "构象受膜环境约束，抗体可及性和表达折叠风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RPN2 位于内质网腔侧，常规胞外抗体难以直接进入作用位点；应采用胞内表达、递送系统或小型化 VHH，并严格评估全局 N-糖基化毒性。",
+    "structurePrepZh": "以 9N9J cryo-EM 模型提取人源 RPN2 链，补全缺失环区并保留腔侧折叠；跨膜区用于定位约束，不作为主要抗原免疫区域。",
+    "structureRef": "RCSB PDB 9N9J，human OST complex cryo-EM，3.2 Å",
+    "antibodies": [
+      "anti-RPN2 research antibody",
+      "anti-ribophorin II monoclonal antibody"
+    ],
+    "interfaceFocus": "RPN2 腔侧 OST 装配与底物邻近界面",
+    "designMode": "胞内递送阻断",
+    "candidates": [
+      {
+        "target": "STT3A",
+        "rationale": "STT3A 是寡糖基转移酶复合体的催化亚基，负责共翻译 N-糖基化，可作为同一病毒糖蛋白成熟依赖通路中的功能验证靶点。"
+      },
+      {
+        "target": "STT3B",
+        "rationale": "STT3B 介导部分翻译后 N-糖基化，与 RPN2 同属 OST 复合体，可用于比较不同 OST 催化模块对病毒糖蛋白成熟的贡献。"
+      },
+      {
+        "target": "RPN1",
+        "rationale": "RPN1 是 OST 复合体相关内质网膜糖蛋白亚基，与 RPN2 共同参与新生多肽糖基化环境组织，适合作为同复合体支架干预候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

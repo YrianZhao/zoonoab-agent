@@ -1,0 +1,65 @@
+{
+  "gene": "SORBS1",
+  "generatedAt": "2026-08-03T21:16:28.634Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SORBS1编码含sorbin同源区和多个SH3结构域的胞内适配蛋白，参与胰岛素受体底物、CAP/CBL复合体与肌动蛋白骨架相关信号整合，其遗传关联主要指向肾小球滤过率、血清肌酐和胱抑素C等肾功能表型。该蛋白并非分泌蛋白或膜受体，天然抗原可及性弱，不具备常规体内阻断抗体的胞外靶向优势；可行性主要限于结构生物学、细胞内抗体或降解偶联研究。相比EGFR、VEGFA或TNFRSF成员等可及性更强的同病理轴靶点，SORBS1作为主靶点优先级较低，但其高分辨率SH3结构可支持机制探针型抗体设计。",
+    "mechanism": "设计分子以结合SORBS1 SH3结构域的PxxP配体识别沟槽，干扰SORBS1与CBL、ABL1或肌动蛋白调控复合体中富脯氨酸基序的适配蛋白相互作用。",
+    "selectedEpitope": "优先覆盖C端SH3结构域RT-loop、n-Src loop及PxxP配体结合沟槽边缘。",
+    "diseaseDirection": "肾功能与代谢信号相关表型",
+    "domain": "SORBS1含N端sorbin同源区、多个富脯氨酸区及C端三联SH3结构域；2O9S解析其SH3折叠。",
+    "evidence": "SORBS1肾功能表型遗传关联与SH3结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProtKB Q9BX66功能与结构域注释",
+      "RCSB PDB 2O9S X射线晶体结构",
+      "GWAS Catalog肾小球滤过率与肌酐相关位点"
+    ],
+    "referenceEntries": "UniProt Q9BX66；RCSB PDB 2O9S；Open Targets SORBS1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SH3结构域PxxP配体结合沟槽及RT-loop邻近面",
+        "直接影响富脯氨酸配体识别，适合构建机制阻断型胞内抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "n-Src loop与β链外侧形成的辅助结合面",
+        "可调节配体选择性并降低完全占据保守沟槽带来的交叉反应风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SH3核心β折叠疏水内核邻近区域",
+        "结构保守且可能影响折叠稳定性，抗体结合易产生非特异构象干扰",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SORBS1为胞内适配蛋白，常规抗体体内可及性不足；SH3沟槽高度保守，应通过同源SH3蛋白交叉筛选与细胞内递送策略控制风险。",
+    "structurePrepZh": "以2O9S链A为模板进行质子化、晶体接触检查和缺失环建模，保留SH3配体沟槽构象并标注RT-loop与n-Src loop。",
+    "structureRef": "RCSB PDB 2O9S，0.83 Å X-ray human SORBS1 SH3 domain",
+    "antibodies": [
+      "无已获批SORBS1靶向抗体",
+      "研究级anti-SORBS1/anti-CAP抗体"
+    ],
+    "interfaceFocus": "SH3-PxxP配体沟槽与RT-loop选择性界面",
+    "designMode": "胞内抗体机制探针",
+    "candidates": [
+      {
+        "target": "IRS1",
+        "rationale": "IRS1位于胰岛素受体下游，与PI3K-AKT代谢信号及肾功能相关代谢表型存在真实通路联系；但其同样以胞内蛋白为主，适合机制研究而非传统阻断抗体。"
+      },
+      {
+        "target": "CBL",
+        "rationale": "CBL可与CAP/SORBS1相关复合体协同调节胰岛素刺激后的信号转导和膜转运过程，是同一适配复合体轴上的关键E3连接酶。"
+      },
+      {
+        "target": "INSR",
+        "rationale": "INSR位于SORBS1相关胰岛素信号轴上游，具备胞外受体结构域，抗原可及性和抗体调节可行性显著优于SORBS1。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

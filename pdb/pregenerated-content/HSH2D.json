@@ -1,0 +1,65 @@
+{
+  "gene": "HSH2D",
+  "generatedAt": "2026-08-03T13:17:50.973Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HSH2D为造血细胞表达的胞内衔接蛋白，含SH2结构域并参与抗原受体相关酪氨酸磷酸化信号复合体装配，其遗传关联主要集中于红细胞体积、单核细胞计数和红细胞计数等血液性状。该蛋白缺乏跨膜区和分泌信号肽，天然抗原可及性不支持常规细胞外阻断型抗体开发，更适合作为结构抗原、检测抗体或细胞内递送抗体片段的研究对象。相较CD3、CD19、CSF1R等同类造血通路膜靶点，HSH2D的治疗性抗体优先级较低，但其NMR解析SH2结构域可为磷酸肽识别界面抗体设计提供明确结构基础。",
+    "mechanism": "以抗体片段占据HSH2D SH2结构域磷酸酪氨酸结合沟槽，阻断其与免疫受体信号复合体中磷酸化基序的结合。",
+    "selectedEpitope": "优先覆盖SH2结构域pTyr结合口袋及BG环邻近沟槽，避免核心β折叠疏水面。",
+    "diseaseDirection": "造血细胞计数与免疫信号",
+    "domain": "HSH2D为胞内造血衔接蛋白，主要结构单元为C端SH2结构域，识别磷酸酪氨酸肽段。",
+    "evidence": "HSH2D血液性状遗传关联与SH2结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q96JZ2蛋白注释",
+      "RCSB PDB 2CS0溶液NMR结构",
+      "造血细胞抗原受体信号复合体文献"
+    ],
+    "referenceEntries": "UniProt: Q96JZ2；RCSB PDB: 2CS0；Open Targets: HSH2D",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SH2结构域pTyr结合口袋及BG环沟槽",
+        "直接竞争磷酸化基序结合，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SH2结构域EF环与邻近αB螺旋外侧",
+        "可通过变构方式削弱磷酸肽定位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SH2核心β片层保守疏水面",
+        "保守性高且可能影响折叠稳定性，选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HSH2D为胞内蛋白，常规抗体难以到达天然作用位点；建议定位为VHH、intrabody或递送型Fab，并严格评估SH2家族交叉反应。",
+    "structurePrepZh": "采用2CS0的A链NMR模型集合，筛选代表性低能构象，补全缺失侧链并进行pTyr肽结合沟槽表面电荷分析。",
+    "structureRef": "RCSB PDB 2CS0，human HSH2D SH2 domain NMR structure",
+    "antibodies": [
+      "无临床批准同靶点抗体",
+      "研究级anti-HSH2D检测抗体"
+    ],
+    "interfaceFocus": "SH2 pTyr口袋、BG环与αB螺旋邻近面",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "CD3E",
+        "rationale": "CD3E位于T细胞受体复合体胞外部分，是抗原受体信号启动的膜近端靶点；相较HSH2D具备明确细胞表面可及性。"
+      },
+      {
+        "target": "LCK",
+        "rationale": "LCK介导TCR/CD3 ITAM酪氨酸磷酸化，是HSH2D相关磷酸化信号网络的上游激酶；但其为胞内激酶，更适合小分子或细胞内抗体策略。"
+      },
+      {
+        "target": "ZAP70",
+        "rationale": "ZAP70通过SH2结构域识别磷酸化ITAM并放大T细胞抗原受体信号，与HSH2D同处酪氨酸磷酸化衔接网络。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

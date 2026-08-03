@@ -1,0 +1,65 @@
+{
+  "gene": "PTPN11",
+  "generatedAt": "2026-08-03T15:43:45.225Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PTPN11编码SHP2磷酸酶，作为RAS/MAPK通路中连接受体酪氨酸激酶、GRB2/SOS1与RAS活化的关键信号节点，其功能获得性变异驱动Noonan综合征、LEOPARD综合征和幼年型粒单核细胞白血病。该蛋白主要位于胞质，缺乏天然胞外结构域或分泌形式，抗原可及性不适合作为传统细胞表面阻断抗体靶点，需定位为结构生物学支持的胞内结合抗体或递送型抗体设计对象。相比上游多种受体酪氨酸激酶，PTPN11位于多条生长因子信号汇聚点，疾病遗传证据强、结构解析精度高，适合优先开展机制验证型抗体片段设计。",
+    "mechanism": "设计胞内抗体片段稳定N-SH2/PTP自抑制构象，阻断N-SH2结构域与磷酸酪氨酸适配蛋白结合后诱导的PTP催化域开放。",
+    "selectedEpitope": "优先覆盖N-SH2与PTP催化域自抑制界面，兼顾N-SH2 pTyr结合沟槽邻近环区。",
+    "diseaseDirection": "RAS/MAPK通路遗传发育病与髓系白血病",
+    "domain": "SHP2含N-SH2、C-SH2及PTP催化结构域，C端含调控性酪氨酸位点。",
+    "evidence": "PTPN11-SHP2遗传变异与RAS/MAPK异常证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q06124功能与结构域注释",
+      "RCSB PDB 3ZM1晶体结构记录",
+      "ClinVar与OMIM中PTPN11相关综合征变异证据"
+    ],
+    "referenceEntries": "UniProt Q06124；RCSB PDB 3ZM1；Open Targets PTPN11",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N-SH2/PTP自抑制界面",
+        "稳定闭合构象并抑制SHP2催化域变构激活",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N-SH2磷酸酪氨酸结合沟槽",
+        "竞争受体或适配蛋白pTyr基序结合，降低上游信号招募",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PTP催化口袋周边",
+        "可能直接影响底物进入，但与保守磷酸酶催化位点选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PTPN11为胞内蛋白，常规IgG难以到达作用位点；PTP催化区保守性较高，应优先采用构象界面表位并评估PTPN6等同源蛋白交叉反应。",
+    "structurePrepZh": "以3ZM1链A为结构模板，保留N-SH2、C-SH2与PTP域相对取向，检查晶体配体、缺失环区、质子化状态及疾病突变位点映射。",
+    "structureRef": "RCSB PDB 3ZM1，X-ray diffraction，1.4 Å",
+    "antibodies": [
+      "胞内抗SHP2构象纳米抗体候选",
+      "抗SHP2研究级单克隆抗体"
+    ],
+    "interfaceFocus": "N-SH2/PTP闭合构象界面与pTyr结合沟槽",
+    "designMode": "胞内构象锁定",
+    "candidates": [
+      {
+        "target": "SOS1",
+        "rationale": "SOS1是RAS鸟嘌呤核苷酸交换因子，位于PTPN11下游并直接促进RAS-GTP形成；其遗传变异同样关联Noonan综合征。"
+      },
+      {
+        "target": "GRB2",
+        "rationale": "GRB2通过SH2结构域结合受体磷酸酪氨酸并招募SOS1，是SHP2参与RTK-RAS信号转导的核心适配蛋白。"
+      },
+      {
+        "target": "KRAS",
+        "rationale": "KRAS是RAS/MAPK级联的关键小GTP酶，接受SOS1介导的核苷酸交换并驱动RAF-MEK-ERK信号，在髓系肿瘤中具有明确通路相关性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

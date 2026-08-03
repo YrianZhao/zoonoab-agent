@@ -1,0 +1,65 @@
+{
+  "gene": "GTF2A1",
+  "generatedAt": "2026-08-03T13:00:07.139Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GTF2A1编码TFIIA大亚基，与GTF2A2共同稳定TBP结合TATA盒启动子，并参与RNA polymerase II起始复合体装配；其疾病关联主要反映HIV转录依赖宿主基础转录机器及免疫细胞表型相关遗传信号。该蛋白为核内转录因子，不具备天然胞外结构域或分泌形式，抗体抗原可及性明显弱于膜受体或分泌因子，因此更适合体外结构探针、细胞内抗体或降解偶联验证。优先级低于CD4、CCR5、CXCR4等HIV入侵通路可及靶点，但1NVP提供人源TFIIA-TBP-DNA复合体高分辨率界面，适合开展机制性阻断表位设计。",
+    "mechanism": "阻断GTF2A1/GTF2A2异二聚体与TBP-DNA复合体的接触，削弱TFIIA对TBP-TATA盒结合的稳定作用，从而抑制Pol II启动子起始复合体形成。",
+    "selectedEpitope": "优先靶向1NVP中GTF2A1参与TBP邻近结合的β桶/连接界面，避开核心折叠保守疏水区。",
+    "diseaseDirection": "HIV宿主转录依赖方向",
+    "domain": "GTF2A1为TFIIA大亚基，含N端α螺旋束与C端β桶样结构域，和GTF2A2组成功能性TFIIA。",
+    "evidence": "GTF2A1-TFIIA基础转录复合体证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P52655功能注释",
+      "RCSB PDB 1NVP晶体结构",
+      "TFIIA-TBP-TATA盒转录起始复合体文献"
+    ],
+    "referenceEntries": "UniProt P52655；RCSB PDB 1NVP；Ensembl ENSG00000174173",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "GTF2A1靠近TBP-DNA复合体的C端β桶外露界面",
+        "可直接干扰TFIIA稳定TBP-TATA盒复合体的关键接触",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端α螺旋束中面向复合体外侧的溶剂暴露面",
+        "适合获得构象识别抗体并降低对折叠核心的扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "GTF2A1-GTF2A2异二聚体内部接触面",
+        "可能破坏TFIIA装配但存在高保守性与构象遮蔽风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GTF2A1为核内基础转录因子，常规治疗性抗体难以到达作用位点；设计宜定位为细胞内抗体、结构阻断工具或递送体系验证，并严格评估广泛转录毒性。",
+    "structurePrepZh": "以1NVP为模板保留GTF2A1/GTF2A2、TBP与TATA盒DNA复合体构象，校正链注释、缺失残基与界面质子化状态后进行表位暴露度分析。",
+    "structureRef": "RCSB PDB 1NVP；人TFIIA-TBP-TATA盒复合体X射线结构",
+    "antibodies": [
+      "抗GTF2A1研究用单克隆抗体",
+      "抗TFIIA大亚基研究用抗体"
+    ],
+    "interfaceFocus": "GTF2A1-TBP-DNA邻近稳定界面",
+    "designMode": "细胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "TBP",
+        "rationale": "TBP直接识别TATA盒并作为TFIIA结合平台，是Pol II启动子起始复合体的核心节点；其界面阻断可更直接影响转录起始。"
+      },
+      {
+        "target": "GTF2A2",
+        "rationale": "GTF2A2与GTF2A1共同构成功能性TFIIA小亚基，参与稳定TBP-DNA复合体；与GTF2A1处于同一基础转录起始模块。"
+      },
+      {
+        "target": "TAF1",
+        "rationale": "TAF1为TFIID核心亚基并调节TBP相关启动子识别，与TFIIA共同参与Pol II转录起始复合体形成。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

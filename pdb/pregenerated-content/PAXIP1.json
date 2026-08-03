@@ -1,0 +1,65 @@
+{
+  "gene": "PAXIP1",
+  "generatedAt": "2026-08-03T15:06:13.200Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PAXIP1为核内染色质相关支架蛋白，参与DNA双链断裂应答、同源重组修复及组蛋白H3K4甲基化复合体募集，其遗传关联主要指向神经退行性疾病与认知表型。该蛋白不具备分泌信号肽、跨膜区或稳定胞外结构域，抗原在完整细胞环境中的抗体可及性显著受限。相较于同通路中膜受体或分泌因子，PAXIP1更适合作为机制研究或细胞内递送抗体靶点，常规治疗性抗体开发优先级偏低。",
+    "mechanism": "采用细胞内递送Fab或VHH阻断PAXIP1 BRCT重复结构域与磷酸化DNA损伤应答蛋白的结合，干预损伤位点支架复合物装配。",
+    "selectedEpitope": "优先覆盖BRCT5-BRCT6磷酸肽结合沟槽及相邻带正电界面，避免破坏整体折叠核心。",
+    "diseaseDirection": "神经退行性疾病与认知表型",
+    "domain": "PAXIP1含多个BRCT重复结构域，3SQD解析其C端串联BRCT区域，形成磷酸化配体识别模块。",
+    "evidence": "PAXIP1-DNA损伤应答与神经表型证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q6ZW49功能与结构域注释",
+      "RCSB PDB 3SQD晶体结构记录",
+      "DNA损伤应答与染色质修复文献"
+    ],
+    "referenceEntries": "UniProt Q6ZW49；RCSB PDB 3SQD；Open Targets PAXIP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端BRCT5-BRCT6磷酸肽结合沟槽",
+        "直接干预PAXIP1对磷酸化损伤应答配体的识别，机制可解释性较强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "BRCT串联结构域间连接面",
+        "可能影响BRCT相对取向与支架装配，适合构象调节型抗体设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "BRCT折叠核心保守疏水面",
+        "存在影响蛋白稳定性和非特异性结合风险，需降低亲和力驱动筛选权重",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PAXIP1为核内蛋白，常规抗体难以到达作用位点；设计应限定为细胞内递送Fab/VHH或研究级阻断分子，并避免靶向高度保守BRCT折叠核心。",
+    "structurePrepZh": "以3SQD中A-D链为模板进行缺失残基评估、质子化状态校正和晶体接触排查，保留C端BRCT结构域用于表位建模。",
+    "structureRef": "RCSB PDB 3SQD，X-ray diffraction，2.153 Å",
+    "antibodies": [
+      "无获批PAXIP1靶向抗体",
+      "研究级抗PAXIP1抗体"
+    ],
+    "interfaceFocus": "BRCT磷酸配体结合沟槽与结构域间界面",
+    "designMode": "细胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "ATM",
+        "rationale": "ATM为DNA双链断裂应答上游激酶，可磷酸化多种修复因子并驱动损伤信号放大，与PAXIP1处于同一DNA损伤应答网络。"
+      },
+      {
+        "target": "TP53BP1",
+        "rationale": "TP53BP1参与双链断裂位点染色质识别和修复通路选择，其BRCT相关支架功能与PAXIP1介导的损伤复合物装配具有通路关联。"
+      },
+      {
+        "target": "MDC1",
+        "rationale": "MDC1识别γH2AX并募集DNA损伤应答复合物，是PAXIP1相关修复信号轴中的真实上游支架因子。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

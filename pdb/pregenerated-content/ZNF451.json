@@ -1,0 +1,65 @@
+{
+  "gene": "ZNF451",
+  "generatedAt": "2026-08-03T18:01:28.864Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ZNF451 是以 SUMO E3 连接酶活性为核心的核内蛋白，参与 SUMO2/3 链延伸、DNA 损伤应答与转录调控，其遗传关联覆盖神经退行性疾病、端粒长度表型和卵巢肿瘤等方向。该蛋白主要定位于细胞核，不具备典型胞外结构域、分泌蛋白或膜受体特征，因此常规体内阻断型抗体的抗原可及性较弱。其优先级主要来自已解析的催化结构域与 SUMO 通路机制明确性；相较缺乏结构模板的同类核内 SUMO 调节因子，更适合作为细胞内抗体、Fab/VHH 结构探针或机制验证型分子设计靶点。",
+    "mechanism": "设计分子阻断 ZNF451 SP-RING 区域与 SUMO2-Ubc9 复合体的协同结合，抑制 SUMO 链延伸相关底物修饰。",
+    "selectedEpitope": "优先覆盖 SP-RING 催化核心邻近 SUMO2/Ubc9 结合界面，避免锌配位残基直接扰动导致构象塌陷。",
+    "diseaseDirection": "SUMO化异常相关神经退行与肿瘤",
+    "domain": "ZNF451 含 N 端 SUMO 相互作用基序、串联锌指及 SP-RING 型 SUMO E3 催化核心。",
+    "evidence": "ZNF451-SUMO E3结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9Y4E5 functional annotation",
+      "RCSB PDB 5D2M X-ray structure",
+      "SUMO2/3 chain extension and Ubc9-dependent SUMOylation literature"
+    ],
+    "referenceEntries": "UniProt Q9Y4E5；RCSB PDB 5D2M；Open Targets ZNF451",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SP-RING催化核心邻近Ubc9/SUMO2复合体界面",
+        "可直接干预E3介导的SUMO链延伸反应",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端SUMO相互作用基序相关结合沟槽",
+        "有助于削弱SUMO非共价招募与底物定位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "锌指结构域金属配位核心周边",
+        "可能影响折叠稳定性，需规避锌配位残基",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ZNF451 为核内抗原，体内抗体递送与靶点可及性是主要风险；设计宜定位于细胞内VHH或结构探针，并避开保守锌配位核心。",
+    "structurePrepZh": "以5D2M实验晶体结构为模板，保留SP-RING相关链与锌离子配位信息，补建缺失柔性环并标注SUMO2/Ubc9界面。",
+    "structureRef": "PDB 5D2M，X-ray diffraction，2.4 Å",
+    "antibodies": [
+      "无获批ZNF451靶向抗体",
+      "研究级抗ZNF451抗体"
+    ],
+    "interfaceFocus": "SP-RING与SUMO2-Ubc9复合体接触面",
+    "designMode": "细胞内VHH机制阻断",
+    "candidates": [
+      {
+        "target": "UBE2I",
+        "rationale": "UBE2I 编码 Ubc9，是 SUMO 化级联反应中唯一的 E2 结合酶，直接与 ZNF451 协同催化 SUMO 转移。其位于同一 SUMOylation 通路核心节点。"
+      },
+      {
+        "target": "SUMO2",
+        "rationale": "SUMO2 是 ZNF451 促进 SUMO2/3 链延伸的直接修饰单元，参与应激反应、DNA 损伤和蛋白稳态调节。其与主靶点具有明确复合体层面的功能耦联。"
+      },
+      {
+        "target": "SENP6",
+        "rationale": "SENP6 是去SUMO化蛋白酶，主要限制多聚SUMO链积累，与 ZNF451 介导的 SUMO 链延伸形成同一通路内的拮抗调节关系。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

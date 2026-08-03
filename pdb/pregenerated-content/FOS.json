@@ -1,0 +1,65 @@
+{
+  "gene": "FOS",
+  "generatedAt": "2026-08-03T12:36:16.133Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FOS编码AP-1转录因子亚基，主要通过与JUN形成亮氨酸拉链异二聚体并结合TRE/CRE样DNA元件，参与炎症细胞因子、上皮应激和黏膜免疫相关基因转录；Open Targets显示其与克罗恩病和炎症性肠病存在遗传与表达层面的疾病关联。该蛋白为核内转录因子，天然抗原可及性弱，不具备膜受体或分泌蛋白优势，因此更适合作为胞内机制研究、降解偶联或递送型抗体格式的探索靶点。相较TNF、IL23A或IL6R等胞外炎症靶点，FOS的优先级优势在于处于AP-1转录复合体下游整合节点，可覆盖多类促炎刺激汇聚后的转录输出，但成药性风险高于经典胞外靶点。",
+    "mechanism": "设计抗体应优先阻断FOS碱性亮氨酸拉链区与JUN的二聚化界面，或干扰FOS-JUN复合体对TRE DNA序列的结合，从而降低AP-1依赖性炎症基因转录。",
+    "selectedEpitope": "优先靶向bZIP结构域中亮氨酸拉链二聚化界面，兼顾邻近碱性DNA结合区构象表位。",
+    "diseaseDirection": "炎症性肠病与黏膜炎症",
+    "domain": "FOS含N端转录激活区及C端bZIP结构域，bZIP介导JUN二聚化和DNA结合。",
+    "evidence": "FOS/AP-1炎症转录轴结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P01100功能与结构域注释",
+      "RCSB PDB 1A02 X射线晶体结构",
+      "AP-1转录因子在肠道炎症中的文献证据"
+    ],
+    "referenceEntries": "UniProt:P01100；RCSB PDB:1A02；Open Targets:FOS",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "bZIP亮氨酸拉链FOS-JUN二聚化界面",
+        "直接削弱AP-1异二聚体形成，机制明确且结构约束清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "bZIP碱性DNA结合区邻近TRE接触面",
+        "可干扰FOS-JUN复合体结合DNA，但需避免非特异核酸结合风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端转录激活区柔性片段",
+        "可能影响共激活因子募集，但结构无序程度高且表位稳定性不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FOS为核内蛋白，常规抗体难以进入细胞核；bZIP区与JUN家族界面保守，需控制交叉反应，并考虑细胞递送或胞内抗体策略。",
+    "structurePrepZh": "以PDB 1A02提取FOS相关链与JUN-DNA复合体界面，补全缺失侧链，标注bZIP二聚化面、DNA接触残基及保守位点。",
+    "structureRef": "PDB 1A02，AP-1 bZIP-DNA复合体晶体结构，2.7 Å",
+    "antibodies": [
+      "anti-FOS research antibody",
+      "anti-c-Fos monoclonal antibody 2H2"
+    ],
+    "interfaceFocus": "FOS-JUN亮氨酸拉链与TRE DNA接触面",
+    "designMode": "胞内阻断型设计",
+    "candidates": [
+      {
+        "target": "JUN",
+        "rationale": "JUN是FOS形成AP-1异二聚体的核心配对亚基，直接参与TRE DNA结合和炎症转录输出，处于同一AP-1通路。"
+      },
+      {
+        "target": "JUNB",
+        "rationale": "JUNB可与FOS家族成员形成AP-1复合体，在免疫细胞活化和炎症基因调控中具有通路相关性。"
+      },
+      {
+        "target": "FOSL1",
+        "rationale": "FOSL1属于FOS家族AP-1亚基，可与JUN蛋白二聚化并调节上皮应激和炎症相关转录程序。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

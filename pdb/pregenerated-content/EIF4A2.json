@@ -1,0 +1,65 @@
+{
+  "gene": "EIF4A2",
+  "generatedAt": "2026-08-03T19:05:26.279Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "EIF4A2编码DEAD-box RNA解旋酶eIF4AII，参与eIF4F复合体介导的mRNA 5′端扫描与翻译起始，在神经发育相关基因表达稳态中具有通路关联。该蛋白主要定位于胞质翻译起始复合体，缺乏跨膜区和天然胞外结构域，常规体内阻断型抗体的抗原可及性受限，更适合作为结构验证、胞内递送抗体或研究级结合分子靶点。相比膜受体或分泌因子靶点，EIF4A2的优先级主要来自高分辨率实验结构与明确ATP/RNA结合沟槽，可支持精细表位设计，但转化优先级低于可胞外成药的同通路调控因子。",
+    "mechanism": "抗体结合EIF4A2 RecA-like结构域间裂隙，空间阻碍ATP依赖性RNA结合与构象闭合，从而抑制eIF4F复合体中的mRNA扫描步骤。",
+    "selectedEpitope": "优先覆盖N端与C端RecA-like结构域夹角处的ATP/RNA结合沟槽边缘。",
+    "diseaseDirection": "神经发育障碍与翻译起始调控",
+    "domain": "EIF4A2含两个RecA-like解旋酶核心结构域，包含DEAD-box ATPase与RNA结合基序。",
+    "evidence": "EIF4A2翻译起始与神经发育关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q14240 functional annotation",
+      "RCSB PDB 3BOR X-ray structure",
+      "DEAD-box helicase and eIF4F translation initiation literature"
+    ],
+    "referenceEntries": "UniProt Q14240；RCSB PDB 3BOR；Open Targets EIF4A2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RecA-like N/C结构域间ATP-RNA结合沟槽边缘",
+        "可阻碍RNA装载与ATP依赖构象闭合，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端RecA-like结构域的eIF4G结合相关表面",
+        "可能干扰eIF4A2进入eIF4F复合体，适合功能阻断验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "DEAD-box ATPase保守基序邻近区域",
+        "高度保守且可能影响同源解旋酶选择性，需严格评估交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "EIF4A2为胞内蛋白，天然抗体难以进入作用位点；DEAD-box家族同源性高，需通过非保守环区提高选择性，并明确递送策略。",
+    "structurePrepZh": "以3BOR链A为模板，补全缺失侧链与氢原子，保留ATP/RNA结合沟槽几何约束，标注保守基序用于交叉反应过滤。",
+    "structureRef": "RCSB PDB 3BOR，X-ray diffraction，1.85 Å",
+    "antibodies": [
+      "research anti-EIF4A2 antibody",
+      "research anti-DDX2B antibody"
+    ],
+    "interfaceFocus": "RecA-like结构域间裂隙及RNA结合沟槽",
+    "designMode": "胞内靶点结合验证",
+    "candidates": [
+      {
+        "target": "EIF4A1",
+        "rationale": "EIF4A1同属eIF4F翻译起始复合体核心RNA解旋酶，参与mRNA扫描过程；可作为同通路功能冗余与选择性评估靶点。"
+      },
+      {
+        "target": "EIF4G1",
+        "rationale": "EIF4G1是eIF4F支架蛋白，直接招募EIF4A与EIF4E并组织翻译起始复合体；其界面可用于阻断复合体装配。"
+      },
+      {
+        "target": "EIF4E",
+        "rationale": "EIF4E识别mRNA 5′ cap结构并启动eIF4F复合体装配，与EIF4A2处于同一cap依赖性翻译起始通路。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

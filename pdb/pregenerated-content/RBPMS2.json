@@ -1,0 +1,65 @@
+{
+  "gene": "RBPMS2",
+  "generatedAt": "2026-08-03T15:57:09.626Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RBPMS2为胞内RNA结合蛋白，主要通过RRM结构域参与mRNA加工和转录后调控，目前Open Targets关联以血细胞计数、血压测量和肿瘤表型为主，尚缺乏明确可药物化疾病驱动通路证据。该蛋白无经典信号肽、跨膜区或分泌形式，抗原天然可及性低，不具备常规治疗性抗体直接结合优势。相比细胞表面受体、分泌细胞因子或免疫检查点靶点，RBPMS2的疾病因果性、胞外暴露和阻断型抗体机制均较弱，因此仅适合作为研究型胞内抗原或递送型抗体探索靶点。",
+    "mechanism": "采用递送型胞内抗体阻断RBPMS2 RRM结构域与靶mRNA富含嘌呤/尿嘧啶序列的结合，从而干预其mRNA加工复合物装配。",
+    "selectedEpitope": "优先覆盖RRM β-sheet RNA结合面及RNP1/RNP2基序邻近沟槽，避免仅选择非功能性末端区域。",
+    "diseaseDirection": "血液表型与肿瘤转录后调控",
+    "domain": "RBPMS2含N端RNA recognition motif，PDB 2M9K为RRM结构域NMR构象，C端低复杂度区域未充分解析。",
+    "evidence": "RBPMS2胞内RRM结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q6ZRY4蛋白定位与结构域注释",
+      "RCSB PDB 2M9K溶液NMR结构",
+      "Pfam RNA recognition motif家族注释"
+    ],
+    "referenceEntries": "UniProt Q6ZRY4；RCSB PDB 2M9K；Open Targets RBPMS2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RRM β-sheet表面及RNP1/RNP2 RNA结合基序",
+        "可直接竞争RNA结合，最符合功能阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RRM α-螺旋侧面及RNA结合沟槽边缘",
+        "可能通过空间位阻影响核糖核蛋白复合物装配",
+        "备选"
+      ],
+      [
+        "Site C",
+        "柔性C端低复杂度区或未解析尾部",
+        "结构异质性高且功能表位不确定，成药解释力较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RBPMS2为胞内非分泌蛋白，常规抗体难以到达作用位点；建议限定为细胞内递送抗体、intrabody或研究诊断型设计，并强化RNA结合验证。",
+    "structurePrepZh": "以2M9K NMR ensemble筛选代表构象，保留RRM核心折叠并标注RNP1/RNP2残基，需补充AlphaFold模型评估未解析C端柔性。",
+    "structureRef": "RCSB PDB 2M9K：human RBPMS2 RRM solution NMR",
+    "antibodies": [
+      "无已批准RBPMS2治疗性抗体",
+      "研究级anti-RBPMS2检测抗体"
+    ],
+    "interfaceFocus": "RRM β-sheet RNA结合面与RNP基序",
+    "designMode": "胞内递送阻断",
+    "candidates": [
+      {
+        "target": "RBPMS",
+        "rationale": "RBPMS与RBPMS2同属RNA结合蛋白家族，含同源RRM结构域并参与转录后RNA调控，可作为同家族功能参照靶点。"
+      },
+      {
+        "target": "ELAVL1",
+        "rationale": "ELAVL1为经典AU-rich element结合蛋白，调控炎症、造血和肿瘤相关mRNA稳定性，与RBPMS2同处转录后调控疾病网络。"
+      },
+      {
+        "target": "IGF2BP2",
+        "rationale": "IGF2BP2通过RNA结合调控代谢和肿瘤相关转录本稳定性，在血液及肿瘤表型相关转录后调控通路中具有更强疾病遗传证据。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

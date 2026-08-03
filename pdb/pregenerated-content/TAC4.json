@@ -1,0 +1,65 @@
+{
+  "gene": "TAC4",
+  "generatedAt": "2026-08-03T21:26:50.015Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TAC4编码血激肽类前体，成熟肽hemokinin-1可结合TACR1/NK1受体并诱导Gq/PLCβ/Ca2+信号，参与神经免疫炎症、血管通透性及造血相关调控。其抗原形式为分泌性前体加工片段，成熟肽位于胞外液环境，理论上具有抗体可及性，但短肽表位空间有限。相较于TACR1等膜受体，TAC4更适合配体中和策略；但Open Targets关联以测量性状为主、疾病因果证据弱，优先级应低于受体轴中证据更充分的TACR1和TAC1。",
+    "mechanism": "中和hemokinin-1成熟肽，阻断其C端Tachykinin基序与TACR1正构配体口袋结合，从而抑制NK1受体Gq介导的PLCβ-Ca2+信号。",
+    "selectedEpitope": "优先覆盖hemokinin-1成熟肽C端FXGLM-NH2样Tachykinin受体识别基序，并保留N端延伸区特异性接触。",
+    "diseaseDirection": "神经免疫炎症与NK1轴",
+    "domain": "TAC4为分泌性前体蛋白，含信号肽及可加工tachykinin肽段；2MOC对应溶液NMR短肽构象。",
+    "evidence": "TAC4-hemokinin-1/NK1受体轴证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt Q86UU9功能与序列注释",
+      "RCSB PDB 2MOC溶液NMR结构",
+      "tachykinin-NK1受体配体识别文献"
+    ],
+    "referenceEntries": "UniProt Q86UU9；RCSB PDB 2MOC；Open Targets TAC4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "hemokinin-1 C端Tachykinin受体识别基序",
+        "直接阻断TACR1正构结合，具备明确中和机制",
+        "优先"
+      ],
+      [
+        "Site B",
+        "成熟肽N端延伸区及邻近转角构象",
+        "提高TAC4来源肽段选择性，降低与TAC1/TAC3肽交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "前体非成熟加工区线性片段",
+        "可能识别未加工前体而非活性配体，药效转化不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TAC4成熟肽较短且与其他tachykinin共享C端基序，存在亲和力窗口窄和交叉反应风险；设计应引入N端特异性接触并严格筛除TAC1/TAC3结合。",
+    "structurePrepZh": "采用2MOC的NMR构象集合评估肽段柔性，保留成熟肽关键C端酰胺化语境；建模时需补充前体加工边界与溶液构象采样。",
+    "structureRef": "RCSB PDB 2MOC，human hemokinin-1 solution NMR",
+    "antibodies": [
+      "抗substance P中和抗体",
+      "NK1轴配体中和抗体原型"
+    ],
+    "interfaceFocus": "hemokinin-1 C端与TACR1正构口袋结合界面",
+    "designMode": "短肽配体中和",
+    "candidates": [
+      {
+        "target": "TACR1",
+        "rationale": "TACR1为hemokinin-1和substance P的NK1受体，直接承接Gq/PLCβ/Ca2+信号，抗体可针对胞外环或N端结构域调节配体结合。"
+      },
+      {
+        "target": "TAC1",
+        "rationale": "TAC1编码substance P等tachykinin配体，与TAC4共享NK1受体轴并在神经源性炎症和疼痛通路中证据更充分，可作为同轴配体中和参照靶点。"
+      },
+      {
+        "target": "TACR2",
+        "rationale": "TACR2为NK2受体，参与tachykinin家族配体驱动的平滑肌收缩和炎症反应，可用于评估同家族受体选择性与通路旁路风险。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

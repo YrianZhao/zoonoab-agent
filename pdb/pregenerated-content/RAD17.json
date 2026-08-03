@@ -1,0 +1,65 @@
+{
+  "gene": "RAD17",
+  "generatedAt": "2026-08-03T15:51:34.575Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RAD17是DNA损伤检查点夹钳装载复合体核心亚基，参与将RAD9-RAD1-HUS1夹钳装载至受损DNA位点，并促进ATR-CHK1复制压力应答。其疾病关联覆盖头颈鳞癌和乳腺癌，但该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌特征，抗原可及性明显受限。相较EGFR、PD-L1等膜受体肿瘤靶点，RAD17更适合作为胞内机制研究或递送型抗体探索靶点，常规治疗性抗体优先级较低。",
+    "mechanism": "设计目标为阻断RAD17 ATPase模块与RFC2-5夹钳装载复合体界面，削弱9-1-1夹钳装载及ATR-CHK1检查点激活。",
+    "selectedEpitope": "优先覆盖RAD17 AAA+ ATPase核心与RFC样亚基接触面，避开高度保守ATP结合口袋。",
+    "diseaseDirection": "复制压力与DNA损伤应答肿瘤",
+    "domain": "RAD17含RFC样AAA+ ATPase结构域，参与五聚体夹钳装载器装配及DNA损伤位点识别。",
+    "evidence": "RAD17 DNA损伤检查点结构与肿瘤关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProtKB O75943功能注释",
+      "RCSB PDB 8GNN实验结构",
+      "DNA damage response与ATR-CHK1通路文献"
+    ],
+    "referenceEntries": "UniProt O75943；RCSB PDB 8GNN；Open Targets RAD17",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "AAA+ ATPase核心与RFC2-5装配界面",
+        "可干扰夹钳装载器构象协同及复合体稳定性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RAD17与9-1-1夹钳邻近接触区域",
+        "有助于削弱RAD9-RAD1-HUS1装载至损伤DNA",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Walker A/B ATP结合保守基序附近",
+        "保守性高且存在交叉反应风险，需避免直接覆盖催化核心",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RAD17为核内蛋白，常规抗体难以到达作用位点；建议限定为细胞内递送抗体、研究级Fab或降解平台适配设计。",
+    "structurePrepZh": "以8GNN实验结构链A-D为模板，保留复合体界面构象，补全缺失环区并标注ATPase保守基序和RFC接触残基。",
+    "structureRef": "RCSB PDB 8GNN，X-ray diffraction，2.119 Å",
+    "antibodies": [
+      "暂无获批抗RAD17治疗性抗体",
+      "研究级抗RAD17单克隆抗体"
+    ],
+    "interfaceFocus": "AAA+ ATPase-RFC样亚基装配界面",
+    "designMode": "胞内递送Fab探索",
+    "candidates": [
+      {
+        "target": "ATR",
+        "rationale": "ATR是复制压力应答的上游激酶，直接磷酸化CHK1并维持S/G2检查点，处于RAD17介导夹钳装载后的同一DNA损伤应答轴。"
+      },
+      {
+        "target": "CHEK1",
+        "rationale": "CHEK1是ATR通路关键效应激酶，调控细胞周期停滞和复制叉稳定性，与RAD17功能输出高度耦联。"
+      },
+      {
+        "target": "RAD9A",
+        "rationale": "RAD9A是RAD9-RAD1-HUS1检查点夹钳组成亚基，属于RAD17装载的直接功能复合体，适合作为同通路比较靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "METTL1",
+  "generatedAt": "2026-08-03T14:11:59.745Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "METTL1 是催化 tRNA、部分 miRNA 与 mRNA 中 N7-甲基鸟苷修饰的胞内 RNA 甲基转移酶，可与 WDR4 形成复合体并影响翻译效率、密码子偏好和神经发育相关蛋白表达，其遗传证据与神经退行性疾病、神经元迁移异常及肿瘤表型存在关联。该蛋白主要定位于胞质和细胞核，不具备分泌蛋白或膜受体样胞外结构域，因此常规体内阻断型抗体的抗原可及性受限，更适合作为细胞内靶点开展结构验证、胞内抗体或递送型结合分子设计。相较于上游泛化的应激或转录调控因子，METTL1 具有高分辨率晶体结构、明确 SAM 依赖催化口袋及 WDR4 依赖复合体机制，适合作为表观转录组翻译控制轴中的优先结构设计靶点。",
+    "mechanism": "设计结合分子优先阻断 METTL1 与 WDR4 复合体形成，或占据 SAM/鸟嘌呤底物邻近催化沟槽，从而降低 RNA m7G 修饰生成。",
+    "selectedEpitope": "优先选择 Rossmann-like 甲基转移酶核心域中 WDR4 结合邻近面及 SAM 口袋外缘构象表位。",
+    "diseaseDirection": "神经发育异常与肿瘤翻译调控",
+    "domain": "METTL1 含 SAM 依赖 Rossmann-like 甲基转移酶催化核心，N 端区域参与复合体稳定与底物识别。",
+    "evidence": "METTL1-m7G RNA甲基化疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9UBP6 functional annotation",
+      "RCSB PDB 3CKK X-ray structure",
+      "PubMed studies on METTL1-WDR4 m7G modification"
+    ],
+    "referenceEntries": "UniProt Q9UBP6；RCSB PDB 3CKK；Open Targets METTL1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "WDR4 复合体结合邻近的催化核心外侧面",
+        "干扰 METTL1-WDR4 组装，具有机制选择性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SAM 结合口袋外缘与保守催化沟槽周边",
+        "可能限制甲基供体进入并稳定非活性构象",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守 Rossmann 折叠内部疏水核心邻近区",
+        "保守性高且可及性不足，存在交叉反应与构象扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "METTL1 为胞内酶，常规 IgG 难以直接到达抗原；设计应限定为胞内抗体、递送型 Fab/VHH 或体外结构验证，并避免靶向高度保守 SAM 结合残基导致选择性不足。",
+    "structurePrepZh": "以 3CKK 链 A 为结构模板，保留高分辨率催化核心坐标，补建缺失柔性片段，标注 SAM 口袋、保守催化残基及潜在 WDR4 接触面后开展表位筛选。",
+    "structureRef": "RCSB PDB 3CKK；human METTL1 X-ray 1.55 Å",
+    "antibodies": [
+      "暂无获批 METTL1 靶向治疗性抗体",
+      "研究级 anti-METTL1 monoclonal antibody"
+    ],
+    "interfaceFocus": "WDR4 接触面与 SAM 口袋外缘",
+    "designMode": "胞内抗体/结构阻断",
+    "candidates": [
+      {
+        "target": "WDR4",
+        "rationale": "WDR4 是 METTL1 催化 tRNA m7G 修饰所需的复合体伴侣，稳定 METTL1 并促进底物 RNA 识别；其遗传异常同样与神经发育缺陷相关。"
+      },
+      {
+        "target": "DCP2",
+        "rationale": "DCP2 可识别并水解 m7G 加帽 RNA，是 m7G 相关 RNA 稳态通路中的关键去帽酶；与 METTL1 共同处于 RNA m7G 修饰和周转调控轴。"
+      },
+      {
+        "target": "EIF4E",
+        "rationale": "EIF4E 结合 m7G 帽结构并驱动帽依赖翻译起始，连接 m7G 识别与肿瘤翻译增强表型；其功能方向与 METTL1 介导的翻译调控具有通路相关性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

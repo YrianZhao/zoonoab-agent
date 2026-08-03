@@ -1,0 +1,65 @@
+{
+  "gene": "CASP3",
+  "generatedAt": "2026-08-03T11:00:58.298Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CASP3是执行型半胱天冬酶，位于线粒体内源性凋亡通路与死亡受体外源性凋亡通路的共同下游，负责切割PARP1、ICAD/DFFA等底物并驱动细胞凋亡执行阶段，在神经退行性疾病中的过度凋亡损伤具有明确机制关联。该蛋白主要为胞质酶原及活化酶形式，并非天然分泌蛋白或膜受体，常规体内阻断抗体的抗原可及性受限，更适合细胞内递送抗体、研究级构象抗体或诊断捕获抗体策略。相比CASP7等同源执行型半胱天冬酶，CASP3底物谱、疾病遗传与蛋白检测证据更充分，且1NME提供高分辨率活化酶结构，具备优先开展结构约束表位设计的依据。",
+    "mechanism": "通过抗体结合CASP3活性位点邻近的L2/L4底物结合沟槽，空间阻断底物P1 Asp进入催化Cys163-His121位点，抑制PARP1等底物切割。",
+    "selectedEpitope": "优先选择p17大亚基L2/L4环与p12小亚基界面形成的底物结合沟槽边缘表位。",
+    "diseaseDirection": "神经退行性疾病凋亡调控",
+    "domain": "CASP3由N端前结构域、p17大亚基催化结构域和p12小亚基组成，活化后形成异四聚体酶。",
+    "evidence": "CASP3凋亡执行节点与结构可设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB P42574功能与结构注释",
+      "RCSB PDB 1NME晶体结构",
+      "Reactome Apoptosis通路注释"
+    ],
+    "referenceEntries": "UniProt P42574；RCSB PDB 1NME；Reactome R-HSA-109581",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "p17大亚基L2/L4环及底物结合沟槽边缘",
+        "邻近Cys163-His121催化中心，可直接阻断底物肽进入活性位点",
+        "优先"
+      ],
+      [
+        "Site B",
+        "p17-p12亚基装配界面外缘",
+        "可能稳定非活性构象或干扰活化酶四聚体构象完整性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端前结构域切割区域",
+        "酶原加工相关但在成熟活化结构中缺失，构象一致性和药效相关性较低",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CASP3为胞内蛋白，常规抗体难以进入胞质；活性沟槽与CASP7高度保守，需通过外周环区差异位点提高选择性，并评估细胞递送可行性。",
+    "structurePrepZh": "以1NME活化CASP3异四聚体为模板，保留A、B链催化单元，校正催化位点质子化状态，标注L2/L4环、p17-p12界面及保守半胱天冬酶核心。",
+    "structureRef": "Rotonda et al., Nat Struct Biol, human caspase-3 structure",
+    "antibodies": [
+      "Cleaved Caspase-3 Asp175 antibody",
+      "Caspase-3 monoclonal antibody clone 3G2"
+    ],
+    "interfaceFocus": "L2/L4底物沟槽与p17-p12装配界面",
+    "designMode": "胞内酶阻断抗体",
+    "candidates": [
+      {
+        "target": "CASP7",
+        "rationale": "CASP7与CASP3同属执行型半胱天冬酶，参与凋亡执行阶段底物切割；可作为选择性评估和并行阻断设计的同通路候选靶点。"
+      },
+      {
+        "target": "CASP9",
+        "rationale": "CASP9是凋亡小体中的起始半胱天冬酶，位于CASP3上游并直接促成CASP3酶原加工，适合用于内源性凋亡轴上游干预比较。"
+      },
+      {
+        "target": "BCL2L1",
+        "rationale": "BCL2L1编码Bcl-xL，调控线粒体外膜通透化并影响CASP9-CASP3级联启动，是神经细胞凋亡通路中的关键上游调节节点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

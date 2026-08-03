@@ -1,0 +1,65 @@
+{
+  "gene": "STAT5B",
+  "generatedAt": "2026-08-03T21:20:23.713Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "STAT5B 是 JAK-STAT 通路的胞内转录因子，介导生长激素受体、IL-2R、IL-7R、IL-15R 等受体激活后的基因转录，其胚系功能缺陷与生长激素不敏感合并免疫失调及联合免疫缺陷直接相关，体细胞异常活化亦见于多种肿瘤。该蛋白缺乏胞外结构域或分泌形式，天然抗原可及性不利于常规外源性抗体，但其结构化 SH2 磷酸肽结合界面适合胞内抗体、VHH 或递送型抗体片段设计。相较上游多配体细胞因子受体，STAT5B 位于多条疾病相关细胞因子信号的汇聚节点，具有更高通路整合优先级，但成药策略应限定为细胞内递送或研究级功能阻断。",
+    "mechanism": "通过占据 STAT5B SH2 结构域磷酸酪氨酸结合沟槽，阻断其与受体磷酸化尾部及 STAT5B 分子间 pY-SH2 互作，从而抑制二聚化与核转录活化。",
+    "selectedEpitope": "优先锁定 SH2 结构域磷酸肽结合口袋及二聚化界面，避免覆盖保守 DNA 结合核心。",
+    "diseaseDirection": "免疫缺陷与JAK-STAT相关肿瘤",
+    "domain": "STAT5B 含 N 端结构域、卷曲螺旋区、DNA 结合域、连接区、SH2 域及 C 端转录激活区。",
+    "evidence": "STAT5B-JAK-STAT疾病关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传与肿瘤关联数据",
+      "UniProt P51692 功能注释与结构域信息",
+      "RCSB PDB 6MBZ X 射线晶体结构",
+      "ClinVar/OMIM STAT5B 免疫失调与生长障碍变异证据"
+    ],
+    "referenceEntries": "UniProt P51692；RCSB PDB 6MBZ；Open Targets STAT5B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SH2 域磷酸酪氨酸结合沟槽",
+        "直接干预 pY 肽识别及 STAT5B 活化二聚化，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SH2 域邻近二聚化界面",
+        "可削弱 STAT5B 分子间 SH2-pY 互作，适合构象稳定型片段",
+        "备选"
+      ],
+      [
+        "Site C",
+        "DNA 结合域表面正电区域",
+        "可能影响 DNA 结合但同源保守性高，存在选择性与脱靶风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "STAT5B 为胞内核质穿梭蛋白，常规抗体难以到达作用位点；SH2 域与 STAT5A 高度同源，需通过差异残基约束提升亚型选择性。",
+    "structurePrepZh": "以 PDB 6MBZ 链 A/B 为模板，补全缺失环区并校正磷酸肽结合位点质子化状态；优先保留 SH2 域界面用于片段对接。",
+    "structureRef": "RCSB PDB 6MBZ，X-ray diffraction，3.21 Å",
+    "antibodies": [
+      "抗STAT5B研究抗体",
+      "抗磷酸STAT5B Tyr699研究抗体"
+    ],
+    "interfaceFocus": "SH2-pY结合沟槽与二聚化界面",
+    "designMode": "胞内VHH阻断",
+    "candidates": [
+      {
+        "target": "JAK2",
+        "rationale": "JAK2 位于生长激素受体及多种细胞因子受体下游，直接磷酸化 STAT5B 并驱动其活化；其异常激活与骨髓增殖性肿瘤及免疫信号失衡密切相关。"
+      },
+      {
+        "target": "GHR",
+        "rationale": "GHR 是 STAT5B 介导生长激素反应的上游受体，配体结合后通过 JAK2-STAT5B 轴诱导 IGF1 等靶基因表达；该通路与生长激素不敏感表型高度一致。"
+      },
+      {
+        "target": "IL2RB",
+        "rationale": "IL2RB 参与 IL-2 和 IL-15 受体复合体信号转导，可经 JAK1/JAK3 激活 STAT5B；其功能异常与 T 细胞、NK 细胞发育和免疫缺陷相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

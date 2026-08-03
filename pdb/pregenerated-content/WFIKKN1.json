@@ -1,0 +1,65 @@
+{
+  "gene": "WFIKKN1",
+  "generatedAt": "2026-08-03T17:52:55.648Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "WFIKKN1为分泌型多结构域调节蛋白，含WAP、Kazal、免疫球蛋白样、Kunitz和netrin样结构域，可结合并拮抗GDF8/myostatin与GDF11等TGF-β家族配体，从而影响肌肉量、体重及代谢表型。作为可溶性胞外蛋白，其抗原可及性优于胞内代谢调控因子，适合开展中和或配体阻断型抗体设计。相较下游SMAD转录节点或广泛TGF-β受体，WFIKKN1具备更上游、配体选择性更强的干预窗口，但疾病遗传关联强度中等，宜作为机制探索型优先靶点。",
+    "mechanism": "抗体阻断WFIKKN1与GDF8/GDF11的结合界面，削弱其对肌生成抑制性配体的拮抗作用，重塑GDF8/ACVR2B-ALK4/5信号输入。",
+    "selectedEpitope": "优先覆盖netrin样结构域的GDF8/GDF11结合面，并避开高度保守Kunitz折叠核心。",
+    "diseaseDirection": "肌肉代谢与体重调控相关表型",
+    "domain": "分泌蛋白，含N端信号肽、WAP、Kazal、Ig样、Kunitz及C端netrin样结构域。",
+    "evidence": "WFIKKN1-GDF8/GDF11轴抗体设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联与遗传证据",
+      "UniProt Q96NZ8蛋白结构域与分泌定位注释",
+      "RCSB PDB 2DDI溶液NMR结构信息",
+      "文献报道WFIKKN1/WFIKKN2结合并调节GDF8与GDF11活性"
+    ],
+    "referenceEntries": "UniProt Q96NZ8；RCSB PDB 2DDI；Open Targets WFIKKN1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端netrin样结构域推定GDF8/GDF11结合面",
+        "可直接阻断WFIKKN1与TGF-β家族配体相互作用，机制指向性最强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Ig样结构域与相邻连接区暴露面",
+        "可能影响多结构域空间取向及配体结合构象，适合作为变构阻断策略",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Kunitz/Kazal样蛋白酶抑制折叠区域",
+        "保守二硫键核心较多，交叉反应和构象扰动风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "WFIKKN1含多个富二硫键结构域，构象表位依赖正确折叠；应避免针对保守Kunitz/Kazal核心设计，优先筛选不交叉识别WFIKKN2的克隆。",
+    "structurePrepZh": "以PDB 2DDI的NMR构象集为局部结构参考，结合AlphaFold全长模型补足多结构域空间关系，并保留二硫键约束进行表位聚类。",
+    "structureRef": "RCSB PDB 2DDI，human WFIKKN1 solution NMR structure",
+    "antibodies": [
+      "Bimagrumab",
+      "Domagrozumab"
+    ],
+    "interfaceFocus": "netrin样结构域与GDF8/GDF11接触界面",
+    "designMode": "配体阻断型中和抗体",
+    "candidates": [
+      {
+        "target": "MSTN",
+        "rationale": "MSTN编码GDF8，是WFIKKN1调控的核心肌生成抑制性配体；直接中和MSTN可在同一肌肉量调控轴上增强机制验证。"
+      },
+      {
+        "target": "GDF11",
+        "rationale": "GDF11与WFIKKN1存在结合调节关系，并通过Activin II型受体及ALK4/5介导SMAD2/3信号；适合作为旁系配体比较靶点。"
+      },
+      {
+        "target": "ACVR2B",
+        "rationale": "ACVR2B是GDF8/GDF11的主要II型受体之一，位于WFIKKN1调节轴下游；受体阻断可验证配体可用性改变对信号输出的贡献。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

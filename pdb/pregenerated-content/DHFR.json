@@ -1,0 +1,65 @@
+{
+  "gene": "DHFR",
+  "generatedAt": "2026-08-03T11:55:59.612Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DHFR催化二氢叶酸还原为四氢叶酸，维持胸苷酸与嘌呤合成，在巨幼细胞性贫血、白血病及炎症性疾病中与叶酸代谢依赖性增殖相关。该蛋白为胞质可溶性酶，缺乏天然胞外结构域或分泌特征，抗体抗原可及性显著弱于膜受体和分泌因子。相较TYMS、SHMT1等同通路酶，DHFR已有高分辨率结构和临床小分子抑制经验，适合作为胞内递送抗体或结构机制验证的优先模型靶点。",
+    "mechanism": "通过抗体片段占据DHFR叶酸/NADPH结合裂隙，阻断二氢叶酸与催化残基网络配位，降低四氢叶酸再生并抑制DNA前体合成。",
+    "selectedEpitope": "优先覆盖Met20 loop邻近叶酸结合口袋与NADPH腺苷结合沟槽边缘。",
+    "diseaseDirection": "叶酸代谢与增殖性疾病",
+    "domain": "DHFR为单结构域胞质还原酶，含中央β折叠、周边α螺旋及Met20活性环。",
+    "evidence": "DHFR叶酸代谢依赖性增殖证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt P00374功能注释",
+      "RCSB PDB 1KMV晶体结构",
+      "叶酸拮抗剂药理学与临床文献"
+    ],
+    "referenceEntries": "UniProt P00374；RCSB PDB 1KMV；Open Targets DHFR",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Met20 loop与叶酸结合裂隙入口",
+        "直接干扰底物进入和催化构象闭合",
+        "优先"
+      ],
+      [
+        "Site B",
+        "NADPH结合沟槽腺苷/烟酰胺邻近面",
+        "可削弱辅因子装配并形成变构抑制",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离活性口袋的β折叠外侧面",
+        "结构稳定但功能阻断效力不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DHFR为胞内酶，常规抗体难以到达作用位点；设计应优先采用细胞内递送、内体逃逸或胞内抗体格式，并避免干扰同源还原酶交叉反应。",
+    "structurePrepZh": "以1KMV高分辨率晶体结构为模板，保留活性口袋构象信息，校正质子化状态、辅因子/配体邻近残基及Met20 loop构象。",
+    "structureRef": "RCSB PDB 1KMV，X-ray diffraction，1.05 Å",
+    "antibodies": [
+      "抗DHFR研究级单克隆抗体",
+      "抗DHFR胞内抗体片段"
+    ],
+    "interfaceFocus": "叶酸结合口袋、NADPH沟槽与Met20 loop",
+    "designMode": "胞内酶阻断型",
+    "candidates": [
+      {
+        "target": "TYMS",
+        "rationale": "TYMS利用5,10-亚甲基四氢叶酸催化dUMP生成dTMP，位于DHFR下游核苷酸合成节点。其抑制可与DHFR阻断共同削弱DNA合成。"
+      },
+      {
+        "target": "SHMT1",
+        "rationale": "SHMT1生成一碳单位并支持四氢叶酸循环，为胸苷酸和嘌呤合成提供底物来源。该节点与DHFR共同维持叶酸依赖性增殖代谢。"
+      },
+      {
+        "target": "MTHFD1",
+        "rationale": "MTHFD1参与胞质一碳叶酸代谢中甲酰基与亚甲基四氢叶酸转换，连接叶酸循环与嘌呤合成。其通路位置与DHFR具有明确代谢耦合关系。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

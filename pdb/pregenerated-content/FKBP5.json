@@ -1,0 +1,65 @@
+{
+  "gene": "FKBP5",
+  "generatedAt": "2026-08-03T12:34:41.727Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FKBP5编码胞内免疫亲和素FKBP51，参与糖皮质激素受体复合物调节，并通过与HSP90伴侣复合物结合影响NR3C1成熟、核转位及免疫细胞转录反应。Open Targets关联信号主要集中于淋巴细胞计数、嗜酸性粒细胞计数、甲状腺功能减退及白细胞亚群比例，提示其与免疫内分泌稳态存在遗传学关联。该蛋白缺乏天然胞外结构域或分泌形式，抗原可及性不适合常规细胞外中和抗体，因此优先定位为结构生物学驱动的胞内结合抗体或研究级Fab/VHH设计靶点。相较同通路上游激素受体，FKBP5的FK1结构域具有高分辨率晶体结构和明确配体结合口袋，便于开展界面阻断型分子设计。",
+    "mechanism": "通过结合FKBP51的FK1催化结构域，阻断其与HSP90-糖皮质激素受体伴侣复合物的功能性装配界面，从而干预NR3C1复合物成熟与核转位效率。",
+    "selectedEpitope": "优先覆盖FK1结构域FK506结合口袋邻近环区及HSP90协同装配相关表面。",
+    "diseaseDirection": "免疫内分泌与白细胞性状",
+    "domain": "FKBP51含N端FK1催化结构域、FK2样结构域及C端TPR结构域；3O5Q解析FK1结构域。",
+    "evidence": "FKBP5免疫内分泌遗传关联与FK1结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB Q13451 functional annotation",
+      "RCSB PDB 3O5Q X-ray crystal structure",
+      "HSP90-NR3C1 chaperone complex literature"
+    ],
+    "referenceEntries": "UniProt Q13451；RCSB PDB 3O5Q；Open Targets FKBP5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "FK1结构域FK506结合口袋周缘β折叠-环区",
+        "可直接干预配体结合口袋构象与催化域功能，结构分辨率支持精细设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FK1结构域外侧保守表面及HSP90协同装配邻近界面",
+        "有助于削弱FKBP51在伴侣复合物中的定位和构象稳定作用",
+        "备选"
+      ],
+      [
+        "Site C",
+        "TPR结构域HSP90 C端MEEVD肽结合沟槽",
+        "功能相关性强，但3O5Q不覆盖该区域，需引入同源或独立结构模板",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FKBP5为胞内蛋白，常规治疗性抗体递送与抗原可及性风险较高；宜优先采用VHH、细胞内抗体或结构探针策略，并避免与FKBP4高度保守口袋产生交叉结合。",
+    "structurePrepZh": "以3O5Q链A为FK1域模板，保留高分辨率主链构象，检查晶体配体、溶剂与缺失残基；TPR相关界面需另行整合全长或结构域模型。",
+    "structureRef": "RCSB PDB 3O5Q，human FKBP51 FK1 domain，0.96 Å X-ray",
+    "antibodies": [
+      "无获批FKBP5治疗性抗体",
+      "抗FKBP51研究级单克隆抗体"
+    ],
+    "interfaceFocus": "FK1配体口袋、FKBP4差异残基及TPR-MEEVD轴",
+    "designMode": "胞内阻断型VHH/Fab",
+    "candidates": [
+      {
+        "target": "NR3C1",
+        "rationale": "NR3C1编码糖皮质激素受体，是FKBP5负反馈调节的核心受体节点；其活化状态直接决定免疫细胞糖皮质激素转录反应。"
+      },
+      {
+        "target": "HSP90AA1",
+        "rationale": "HSP90AA1参与糖皮质激素受体伴侣复合物组装，并与FKBP51的TPR结构域通过C端MEEVD基序发生相互作用。"
+      },
+      {
+        "target": "FKBP4",
+        "rationale": "FKBP4编码FKBP52，与FKBP51同属HSP90受体复合物免疫亲和素，可在糖皮质激素受体成熟和转运过程中产生相反或互补调节。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "OS9",
+  "generatedAt": "2026-08-03T14:59:35.654Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "OS9 是内质网相关降解通路中的凝集素样识别因子，参与识别错误折叠糖蛋白并将其递交至 SEL1L-HRD1 复合体；在囊性纤维化中，该轴影响 ΔF508-CFTR 等折叠缺陷蛋白的降解命运。OS9 为内质网腔内可溶性/腔面蛋白，具有可建模的 MRH 凝集素结构域，但并非经典细胞表面或分泌抗原，体内抗体可及性需依赖胞内递送策略。相比下游泛素化酶复合体，OS9 位于糖蛋白底物识别步骤，结构域边界清晰，适合作为机制验证型抗体设计优先靶点。",
+    "mechanism": "抗体结合 OS9 MRH 凝集素结构域，阻断其对修剪 N-糖链的识别及与 SEL1L 介导的 ERAD 递交界面耦联。",
+    "selectedEpitope": "优先覆盖 MRH 结构域糖链结合沟槽邻近环区，避免完全占据保守甘露糖识别核心。",
+    "diseaseDirection": "ERAD-囊性纤维化蛋白稳态",
+    "domain": "OS9 含 N 端 MRH 凝集素结构域及 C 端 ER 腔内区域，3AIH 覆盖糖链识别相关折叠。",
+    "evidence": "OS9-ERAD 糖蛋白质控结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联",
+      "UniProt Q13438 功能注释",
+      "RCSB PDB 3AIH 晶体结构",
+      "ERAD/CFTR 折叠质控文献证据"
+    ],
+    "referenceEntries": "UniProt Q13438；RCSB PDB 3AIH；Open Targets OS9",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "MRH 结构域糖链结合沟槽邻近环区",
+        "可干预错误折叠糖蛋白识别并保留一定选择性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "MRH 结构域外侧非保守螺旋-环表面",
+        "有利于获得高亲和结合并降低对保守凝集素核心的直接扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "MRH 保守甘露糖结合残基集中区域",
+        "可能产生强功能阻断，但存在广泛干扰 ER 糖蛋白质控的风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "OS9 位于内质网腔内，常规抗体体内可及性有限；功能阻断可能广泛影响 ERAD，应采用细胞内递送、条件性结合或研究级 Fab/VHH 验证。",
+    "structurePrepZh": "以 3AIH 的 A-D 链为模板进行同源链比对，保留 MRH 结构域主链，检查晶体接触、缺失环区、糖链结合口袋及质子化状态。",
+    "structureRef": "RCSB PDB 3AIH，X-ray diffraction，2.1 Å",
+    "antibodies": [
+      "无已批准 OS9 靶向治疗抗体",
+      "研究级 anti-OS9 antibody"
+    ],
+    "interfaceFocus": "MRH 糖链结合沟槽与 SEL1L 递交耦联面",
+    "designMode": "胞内递送型阻断",
+    "candidates": [
+      {
+        "target": "SEL1L",
+        "rationale": "SEL1L 是 HRD1 复合体的支架蛋白，与 OS9 协同将错误折叠糖蛋白递交至 ERAD 通路，适合作为同轴验证靶点。"
+      },
+      {
+        "target": "SYVN1",
+        "rationale": "SYVN1/HRD1 是 ERAD 核心 E3 泛素连接酶，位于 OS9 底物识别步骤下游，直接决定底物泛素化与逆转运。"
+      },
+      {
+        "target": "EDEM1",
+        "rationale": "EDEM1 参与错误折叠糖蛋白 N-糖链修剪与 ERAD 标记，与 OS9 共同构成内质网糖蛋白质量控制网络。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

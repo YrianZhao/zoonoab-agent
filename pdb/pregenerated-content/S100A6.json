@@ -1,0 +1,65 @@
+{
+  "gene": "S100A6",
+  "generatedAt": "2026-08-03T16:18:07.825Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "S100A6 是钙结合 S100 家族成员，可在钙依赖构象下与细胞骨架、应激反应及髓系细胞活化相关蛋白发生相互作用，遗传关联信号主要集中于单核细胞、中性粒细胞和髓系白细胞计数表型。该蛋白可存在于胞外环境并参与炎症相关旁分泌信号，作为分泌/胞外可检测抗原具备抗体可及性。相较缺乏高分辨率结构的同类炎症标志蛋白，S100A6 具备 1.15 Å 实验晶体结构，利于开展构象表位和界面阻断型抗体设计；但疾病关联强度偏低，应定位为机制验证优先靶点。",
+    "mechanism": "阻断 Ca2+ 结合后 S100A6 暴露的疏水靶蛋白结合面，抑制其与胞外或细胞表面效应蛋白形成复合物。",
+    "selectedEpitope": "优先覆盖 EF-hand II 后的 helix III/IV 疏水靶蛋白结合沟槽，并避开核心 Ca2+ 配位残基。",
+    "diseaseDirection": "髓系炎症与白细胞计数表型",
+    "domain": "S100A6 含两个 EF-hand 钙结合结构域，Ca2+ 诱导 helix III/IV 重排并形成靶蛋白结合面。",
+    "evidence": "S100A6 髓系细胞计数关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProtKB P06703 蛋白功能注释",
+      "RCSB PDB 1K8U 高分辨率晶体结构",
+      "S100 家族钙依赖靶蛋白结合文献"
+    ],
+    "referenceEntries": "UniProt P06703；RCSB PDB 1K8U；Open Targets S100A6",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "helix III/IV 之间的 Ca2+ 诱导疏水结合沟槽",
+        "直接遮蔽 S100A6 靶蛋白结合界面，适合阻断型 Fab/VHH 设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C 端 helix IV 外侧与二聚体边缘区域",
+        "可限制构象适配和复合物装配，同时保留较高表面可及性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "EF-hand Ca2+ 配位环邻近区域",
+        "可能影响钙结合构象，但存在保守性高与脱靶交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "S100 家族 EF-hand 区域序列和构象保守性较高，需通过负筛排除 S100A8、S100A9、S100A12 等交叉结合，并优先选择非配位界面残基。",
+    "structurePrepZh": "采用 PDB 1K8U 链 A 作为抗原模型，保留 Ca2+ 相关构象信息，补全侧链质子化状态并标注 EF-hand 环与 helix III/IV 界面。",
+    "structureRef": "RCSB PDB 1K8U，X-ray diffraction，1.15 Å",
+    "antibodies": [
+      "抗 S100A6 单克隆抗体 clone CACY-100",
+      "抗 S100A6 单克隆抗体 clone 5B10"
+    ],
+    "interfaceFocus": "helix III/IV 钙依赖疏水靶蛋白结合面",
+    "designMode": "结构引导阻断设计",
+    "candidates": [
+      {
+        "target": "S100A8",
+        "rationale": "S100A8 与 S100A9 形成 calprotectin 复合物，是髓系细胞和中性粒细胞炎症反应中的核心 DAMP 分子，疾病通路相关性强于 S100A6。"
+      },
+      {
+        "target": "S100A9",
+        "rationale": "S100A9 参与髓系细胞活化、趋化和炎症放大，并通过 S100A8/A9 复合物与 TLR4、RAGE 相关炎症轴相连，适合作为同通路优先候选靶点。"
+      },
+      {
+        "target": "AGER",
+        "rationale": "AGER 编码 RAGE，是多种 S100 蛋白胞外信号的受体节点；阻断配体-受体相互作用可在同一 S100 炎症轴上实现更上游的信号拦截。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "EGF",
+  "generatedAt": "2026-08-03T19:00:01.814Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "EGF 是 EGFR 配体轴的核心可溶性生长因子，可通过结合 EGFR 胞外结构域 I/III 诱导受体构象重排、二聚化及下游 RAS-MAPK、PI3K-AKT 信号激活，在多类上皮来源肿瘤增殖与存活中具有明确机制关联。EGF 为分泌型胞外抗原，成熟肽直接暴露于肿瘤微环境和体液空间，抗体可及性优于胞内激酶或转录调控因子。相较直接靶向 EGFR 受体，配体中和策略可更聚焦阻断 EGF 依赖性旁分泌/自分泌刺激，并可作为受体阻断抗体的互补设计方向。",
+    "mechanism": "中和抗体阻断 EGF 成熟肽与 EGFR 胞外结构域 I/III 的结合，抑制配体诱导的 EGFR 二聚化及受体酪氨酸磷酸化。",
+    "selectedEpitope": "优先覆盖 EGF 成熟肽中与 EGFR Domain I/III 接触的受体结合面，避开二硫键核心稳定区。",
+    "diseaseDirection": "EGFR配体依赖性肿瘤",
+    "domain": "EGF 前体含信号肽、前肽区、EGF-like 成熟生长因子结构域及跨膜/胞质尾区。",
+    "evidence": "EGF-EGFR配体轴肿瘤机制证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease associations",
+      "UniProtKB P01133 functional annotation",
+      "RCSB PDB 1NQL experimental structure",
+      "EGF-EGFR ligand-receptor structural and signaling literature"
+    ],
+    "referenceEntries": "UniProtKB: P01133; RCSB PDB: 1NQL; HGNC: EGF",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "EGF成熟肽EGFR结合界面",
+        "直接竞争EGFR胞外Domain I/III结合，具备中和优先级",
+        "优先"
+      ],
+      [
+        "Site B",
+        "成熟肽外露环区邻近受体接触面",
+        "可通过空间位阻削弱配体装配，同时保留构象稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "三对二硫键维持的结构核心",
+        "可能影响折叠识别但存在构象依赖和交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "EGF成熟肽体积较小且由三对二硫键稳定，表位可用面积有限；设计需避免仅识别变性构象，并评估与TGFA、HBEGF等EGFR配体的交叉反应。",
+    "structurePrepZh": "以1NQL晶体结构为模板，保留成熟EGF样结构域和二硫键约束，补充缺失侧链并进行质子化、糖基化位点与多链冗余状态校验。",
+    "structureRef": "RCSB PDB 1NQL, X-ray diffraction, 2.8 Å",
+    "antibodies": [
+      "Panitumumab",
+      "Cetuximab"
+    ],
+    "interfaceFocus": "EGF与EGFR胞外Domain I/III结合面",
+    "designMode": "配体中和抗体",
+    "candidates": [
+      {
+        "target": "EGFR",
+        "rationale": "EGFR 是 EGF 的同源受体，直接介导配体诱导的受体二聚化、酪氨酸磷酸化及肿瘤促增殖信号，是同一轴线中临床验证程度最高的节点。"
+      },
+      {
+        "target": "TGFA",
+        "rationale": "TGFA 与 EGF 同属 EGFR 配体，可驱动 EGFR 依赖性自分泌刺激；在配体冗余背景下可作为联合或替代中和靶点。"
+      },
+      {
+        "target": "HBEGF",
+        "rationale": "HBEGF 是膜结合前体经剪切释放的 EGFR/ERBB4 配体，参与肿瘤微环境中的旁分泌生长刺激，与 EGF 共享受体通路。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

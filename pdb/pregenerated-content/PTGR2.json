@@ -1,0 +1,65 @@
+{
+  "gene": "PTGR2",
+  "generatedAt": "2026-08-03T15:42:42.587Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PTGR2编码15-氧代前列腺素13-还原酶，参与前列腺素、脂氧素及白三烯B4等二十烷酸代谢物的还原失活，可能通过影响炎症脂质介质稳态与中枢神经系统自身免疫表型相关。该蛋白为胞质可溶性酶，缺乏天然胞外结构域，抗体可及性弱于膜受体或分泌因子，因而更适合作为结构验证、细胞内递送抗体或研究级抑制工具靶点。相比PTGER、LTB4R等同通路细胞表面GPCR，PTGR2具有高分辨率晶体结构和明确NADPH结合口袋，利于结构约束设计，但治疗抗体优先级应低于可直接胞外阻断的受体靶点。",
+    "mechanism": "设计抗体以占据PTGR2底物进入沟槽或遮蔽NADPH邻近催化界面，阻断15-氧代前列腺素与催化口袋结合并抑制还原反应。",
+    "selectedEpitope": "优先覆盖短链脱氢酶/还原酶折叠中NADPH结合Rossmann样沟槽与底物口袋入口交界区。",
+    "diseaseDirection": "炎症脂质介质与中枢自身免疫",
+    "domain": "PTGR2为胞质短链脱氢酶/还原酶样酶，含Rossmann样NADPH结合核心及疏水底物结合口袋。",
+    "evidence": "PTGR2结构与二十烷酸代谢疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q8N8N7功能注释",
+      "RCSB PDB 2ZB4晶体结构",
+      "脂质介质代谢与炎症通路文献"
+    ],
+    "referenceEntries": "UniProt Q8N8N7；RCSB PDB 2ZB4；Open Targets PTGR2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "NADPH结合Rossmann样沟槽邻近底物入口",
+        "可直接干扰辅因子定位与底物进入，具备机制验证价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "疏水底物结合口袋外缘可及环区",
+        "可能产生变构阻断并减少对保守辅因子位点的依赖",
+        "备选"
+      ],
+      [
+        "Site C",
+        "蛋白核心β-α折叠保守面",
+        "结构保守且可及性有限，存在交叉反应与低功能阻断风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PTGR2为胞质酶，常规抗体难以进入细胞，成药可及性为主要风险；宜限定为细胞内递送抗体、VHH或体外机制探针，并避开高度保守NADPH结合残基。",
+    "structurePrepZh": "采用2ZB4抗原链A作为模板，保留实验坐标并校验辅因子/配体邻近口袋；补全缺失侧链、质子化催化残基后进行表面可及性与保守性评估。",
+    "structureRef": "RCSB PDB 2ZB4，X-ray diffraction，1.63 Å",
+    "antibodies": [
+      "暂无获批PTGR2靶向抗体",
+      "PTGR2研究级多克隆抗体"
+    ],
+    "interfaceFocus": "NADPH结合沟槽与底物入口交界面",
+    "designMode": "胞内酶抑制型",
+    "candidates": [
+      {
+        "target": "PTGES",
+        "rationale": "PTGES催化PGE2生物合成，位于前列腺素炎症轴上游；作为膜相关酶，其调控PGE2生成与自身免疫炎症放大相关。"
+      },
+      {
+        "target": "PTGER4",
+        "rationale": "PTGER4为PGE2受体EP4，参与免疫细胞cAMP信号与炎症调节；其胞外环和配体结合腔提供较PTGR2更直接的抗体可及性。"
+      },
+      {
+        "target": "ALOX5",
+        "rationale": "ALOX5驱动白三烯合成，是二十烷酸炎症介质通路关键酶；与PTGR2共同影响白三烯及相关脂质介质稳态。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

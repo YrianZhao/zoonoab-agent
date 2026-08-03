@@ -1,0 +1,65 @@
+{
+  "gene": "FKBP4",
+  "generatedAt": "2026-08-03T12:34:42.333Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FKBP4编码FKBP52，是HSP90伴侣复合物中的免疫亲和素，参与雄激素受体等甾体激素受体的成熟、微管相关转运与核转位，因而与睾酮测量、前列腺特异抗原水平和性激素结合球蛋白等雄激素轴表型具有机制相关性。该蛋白主要为胞质伴侣蛋白，并非分泌蛋白或典型膜受体，天然抗原可及性弱，抗体设计更适合定位于细胞内递送、研究级阻断或降解耦联验证场景。相较于直接靶向雄激素受体，FKBP4位于HSP90-AR伴侣复合物的调控节点，可在受体配体结合之外干预受体成熟过程，但成药优先级低于具有胞外结构域的膜靶点。",
+    "mechanism": "阻断FKBP4 TPR结构域与HSP90 C端MEEVD基序结合，削弱FKBP4募集至AR-HSP90复合物并干扰雄激素受体成熟与核转位。",
+    "selectedEpitope": "优先覆盖TPR结构域肽结合沟槽及HSP90 MEEVD结合界面，避免深埋FK1催化口袋。",
+    "diseaseDirection": "雄激素受体轴相关表型",
+    "domain": "FKBP4含FK1与FK2样PPIase结构域、钙调蛋白结合区及C端TPR伴侣蛋白结合结构域。",
+    "evidence": "FKBP4-HSP90-雄激素受体轴证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q02790功能与结构域注释",
+      "RCSB PDB 4LAY晶体结构",
+      "甾体受体-HSP90伴侣复合物文献"
+    ],
+    "referenceEntries": "UniProt Q02790；RCSB PDB 4LAY；Ensembl ENSG00000004478",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端TPR结构域HSP90 MEEVD结合沟槽",
+        "直接阻断FKBP4与HSP90伴侣复合物装配，机制指向明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FK1结构域脯氨酰异构酶活性口袋周缘",
+        "可影响PPIase相关构象调节，但抗体进入口袋受限",
+        "备选"
+      ],
+      [
+        "Site C",
+        "FK2样结构域与连接区外露面",
+        "结构可及但与核心疾病机制耦合较弱，需功能验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FKBP4为胞内蛋白，常规抗体难以到达天然作用位点；建议限定为细胞内递送抗体、intrabody或研究工具抗体，并优先验证TPR-HSP90界面阻断。",
+    "structurePrepZh": "以4LAY链A为模板进行质子化、缺失残基检查与界面残基标注；结合UniProt结构域边界映射TPR沟槽和FK1口袋。",
+    "structureRef": "RCSB PDB 4LAY，X射线晶体结构，1.7 Å",
+    "antibodies": [
+      "FKBP4/FKBP52研究级单克隆抗体",
+      "FKBP4/FKBP52免疫检测抗体"
+    ],
+    "interfaceFocus": "TPR结构域-HSP90 MEEVD肽结合界面",
+    "designMode": "胞内阻断型抗体",
+    "candidates": [
+      {
+        "target": "AR",
+        "rationale": "AR是雄激素轴核心转录因子，FKBP4通过HSP90伴侣复合物促进其成熟与核转位；直接干预AR可更接近前列腺相关表型的效应端。"
+      },
+      {
+        "target": "HSP90AA1",
+        "rationale": "HSP90AA1是FKBP4 TPR结构域结合的主要伴侣蛋白之一，参与稳定甾体受体复合物；其与FKBP4处于同一受体成熟通路。"
+      },
+      {
+        "target": "STIP1",
+        "rationale": "STIP1通过TPR结构域组织HSP70-HSP90伴侣复合物转换，与FKBP4共享HSP90伴侣装配节点，可作为同通路伴侣复合物调控靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

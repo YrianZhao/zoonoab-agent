@@ -1,0 +1,65 @@
+{
+  "gene": "IGF2R",
+  "generatedAt": "2026-08-03T13:24:26.164Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IGF2R编码阳离子非依赖性甘露糖-6-磷酸受体，参与溶酶体酶分选、IGF-II清除以及含甘露糖-6-磷酸配体的内吞转运，其遗传关联涉及冠状动脉疾病和脂质表型。该受体为I型跨膜糖蛋白，具有大型胞外重复结构域，抗原可及性优于胞内分选因子。相较单纯下游脂质代谢酶，IGF2R位于配体摄取与蛋白稳态交汇点，具备以抗体调节配体结合和内吞命运的优先设计价值。",
+    "mechanism": "通过结合IGF2R胞外M6P结合重复结构域，阻断甘露糖-6-磷酸化配体与受体口袋相互作用，改变配体内吞与转运效率。",
+    "selectedEpitope": "优先覆盖PDB 1GP0所示胞外重复结构域的M6P结合口袋邻近环区，避免跨膜近端非特异界面。",
+    "diseaseDirection": "心血管代谢与脂质表型",
+    "domain": "IGF2R含15个胞外同源重复结构域、单跨膜区和短胞质尾；M6P结合位点主要位于重复结构域3、5、9。",
+    "evidence": "IGF2R心血管代谢关联与结构表位证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P11717功能与结构域注释",
+      "RCSB PDB 1GP0高分辨率晶体结构",
+      "文献报道的CI-MPR配体结合与内吞机制"
+    ],
+    "referenceEntries": "UniProt:P11717；RCSB PDB:1GP0；Open Targets:IGF2R",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "重复结构域3的甘露糖-6-磷酸结合口袋邻近环区",
+        "可直接干预M6P化配体识别，机制清晰且结构分辨率支持充分",
+        "优先"
+      ],
+      [
+        "Site B",
+        "重复结构域5或9的M6P结合相关凹槽外缘",
+        "具备配体结合调节潜力，可作为多位点阻断或亲和力优化方向",
+        "备选"
+      ],
+      [
+        "Site C",
+        "胞外重复结构域间连接区或跨膜近端区域",
+        "可能影响构象与内吞聚集，但功能后果不易预测且脱靶风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IGF2R广泛参与溶酶体酶分选与IGF-II清除，完全阻断可能影响蛋白稳态；建议采用局部表位、可调亲和力和功能偏向筛选。",
+    "structurePrepZh": "以1GP0抗原链A为模板，补全缺失侧链并保留关键糖/磷酸识别残基；结合AlphaFold全长模型映射重复结构域空间可及性。",
+    "structureRef": "RCSB PDB 1GP0，X-ray diffraction，1.4 Å",
+    "antibodies": [
+      "2G11",
+      "MEM-238"
+    ],
+    "interfaceFocus": "M6P结合口袋、邻近β折叠边缘与可及环区",
+    "designMode": "阻断型Fab/VHH设计",
+    "candidates": [
+      {
+        "target": "M6PR",
+        "rationale": "M6PR编码阳离子依赖性甘露糖-6-磷酸受体，与IGF2R共同参与M6P标记溶酶体酶的识别和转运，可作为同一分选通路的替代调节点。"
+      },
+      {
+        "target": "GNPTAB",
+        "rationale": "GNPTAB编码GlcNAc-1-磷酸转移酶核心亚基，负责生成溶酶体酶M6P识别标记，位于IGF2R介导内吞分选的上游。"
+      },
+      {
+        "target": "IGF2",
+        "rationale": "IGF2是IGF2R结合并清除的重要配体，抗体干预IGF2-IGF2R相互作用可用于解析IGF-II轴相关的代谢和生长信号影响。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

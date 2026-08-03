@@ -1,0 +1,65 @@
+{
+  "gene": "KDR",
+  "generatedAt": "2026-08-03T13:41:34.140Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KDR编码VEGFR-2，是VEGF-A驱动肿瘤血管生成的核心受体，配体结合后诱导受体二聚化与激酶区磷酸化，促进内皮细胞增殖、迁移和血管通透性升高。KDR为单跨膜受体酪氨酸激酶，免疫球蛋白样胞外结构域暴露于血管内皮表面，抗体可直接识别配体结合界面或二聚化相关区域。相较VEGFA等可溶性配体，KDR受体端阻断可同时限制VEGF-A、VEGF-C和VEGF-D相关激活输入，且肿瘤适应症证据覆盖肝细胞癌、肾细胞癌、非小细胞肺癌等高血管生成肿瘤，具备较高优先级。",
+    "mechanism": "阻断VEGF-A与KDR胞外Ig样D2-D3配体结合界面接触，抑制KDR二聚化、自磷酸化及下游PLCγ-ERK和PI3K-AKT促血管生成信号。",
+    "selectedEpitope": "优先定位Ig样Domain 2-3的VEGF结合凹面，兼顾D3近膜侧二聚化构象约束位点。",
+    "diseaseDirection": "肿瘤血管生成相关实体瘤",
+    "domain": "KDR胞外区含7个Ig样结构域，D2-D3介导VEGF结合，D4-D7参与受体构象稳定和二聚化。",
+    "evidence": "KDR/VEGFR-2肿瘤血管生成抗体设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProtKB P35968功能与结构域注释",
+      "RCSB PDB 2XIR晶体结构记录",
+      "VEGF-A/VEGFR-2配体-受体结构与抗血管生成研究"
+    ],
+    "referenceEntries": "UniProt P35968；RCSB PDB 2XIR；HGNC:6307",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Ig样D2-D3 VEGF-A结合界面",
+        "直接阻断VEGF-A与KDR结合，预期抑制受体二聚化和激酶激活",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Ig样D3侧面及D3-D4连接区",
+        "通过限制配体结合后构象重排削弱信号复合体形成",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Ig样D4-D7远端二聚化相关表面",
+        "可能影响受体排列，但功能阻断依赖构象背景且表位验证要求较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "D2-D3界面与VEGF结合高度重叠，需避免产生弱阻断但高亲和占位抗体；应评估与VEGFR-1同源结构域的交叉反应及正常血管修复相关毒性。",
+    "structurePrepZh": "以2XIR高分辨率晶体结构提取KDR抗原链A，补全缺失侧链并标准化糖基化邻近残基；表位建模需映射D2-D3配体结合残基。",
+    "structureRef": "RCSB PDB 2XIR，X-ray diffraction，1.5 Å",
+    "antibodies": [
+      "Ramucirumab",
+      "Tanibirumab"
+    ],
+    "interfaceFocus": "VEGF-A结合凹面与D2-D3受体二聚化邻近界面",
+    "designMode": "受体阻断型抗体设计",
+    "candidates": [
+      {
+        "target": "VEGFA",
+        "rationale": "VEGFA是KDR的主要促血管生成配体，直接驱动内皮细胞KDR二聚化和磷酸化；配体中和可与受体端阻断形成同通路策略对照。"
+      },
+      {
+        "target": "FLT1",
+        "rationale": "FLT1编码VEGFR-1，与VEGFA共享配体轴并参与肿瘤血管生成调控；其胞外配体捕获特征可影响VEGF可用性和KDR激活水平。"
+      },
+      {
+        "target": "FLT4",
+        "rationale": "FLT4编码VEGFR-3，可由VEGF-C和VEGF-D激活，并与KDR在血管及淋巴管生成网络中存在通路交叉；适合用于抗血管生成扩展靶点评估。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

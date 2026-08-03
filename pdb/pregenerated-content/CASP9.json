@@ -1,0 +1,65 @@
+{
+  "gene": "CASP9",
+  "generatedAt": "2026-08-03T11:00:58.295Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CASP9 是内源性线粒体凋亡通路的关键起始半胱天冬酶，在细胞色素 c 释放后经 APAF1 凋亡小体募集并激活下游 CASP3/CASP7，参与神经退行性疾病中的神经元凋亡放大。该蛋白主要定位于胞质且缺乏天然胞外结构域，抗原可及性不适合常规体内阻断抗体，更适合作为细胞内递送抗体或研究级构象探针。相较 BAX、CYCS 等上游节点，CASP9 具有高分辨率催化结构和明确激活界面，可为机制性抑制分子设计提供更直接的结构依据。",
+    "mechanism": "通过结合 CASP9 催化大亚基-小亚基界面或二聚化相关表面，限制活性构象形成，并削弱对 CASP3/CASP7 前体底物的裂解。",
+    "selectedEpitope": "优先评估催化结构域二聚化界面邻近区域，避开保守催化 Cys-His 位点以降低交叉反应风险。",
+    "diseaseDirection": "神经退行性疾病凋亡通路",
+    "domain": "CASP9 含 N 端 CARD 结构域及 C 端半胱天冬酶催化大、小亚基结构域。",
+    "evidence": "CASP9 内源性凋亡与神经退行性疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P55211 functional annotation",
+      "RCSB PDB 3D9T X-ray structure",
+      "Reactome intrinsic apoptotic signaling pathway"
+    ],
+    "referenceEntries": "UniProt P55211；RCSB PDB 3D9T；Reactome apoptosis pathway",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域二聚化界面邻近外露面",
+        "可能稳定非活化构象并降低底物加工效率",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CARD 结构域 APAF1 CARD 结合相关表面",
+        "可干预凋亡小体募集，但需完整 CARD 结构模型支持",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化 Cys-His 活性中心周边保守沟槽",
+        "功能相关性高但保守性强，存在选择性与构象遮蔽风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CASP9 为胞内酶，常规抗体体内可及性受限；应优先采用胞内递送、intrabody 或结构探针定位，并严格评估与其他 caspase 催化域的交叉结合。",
+    "structurePrepZh": "以 3D9T 高分辨率晶体结构为核心模板，保留抗原链 A-D 的催化域构象，补充缺失环区并分别标注 CARD 缺失对表位评估的限制。",
+    "structureRef": "RCSB PDB 3D9T，X-ray diffraction，1.5 Å",
+    "antibodies": [
+      "Anti-caspase-9 clone C9",
+      "Anti-cleaved caspase-9 Asp315 antibody"
+    ],
+    "interfaceFocus": "催化域二聚化界面与底物结合沟槽边缘",
+    "designMode": "胞内抗体/构象探针",
+    "candidates": [
+      {
+        "target": "APAF1",
+        "rationale": "APAF1 通过 CARD-CARD 相互作用募集 CASP9 并形成凋亡小体，是同一内源性凋亡通路中更上游的复合体装配节点。"
+      },
+      {
+        "target": "CASP3",
+        "rationale": "CASP3 是 CASP9 直接激活的执行者半胱天冬酶，介导多种结构和修复蛋白裂解，适合评估下游凋亡执行阻断策略。"
+      },
+      {
+        "target": "BAX",
+        "rationale": "BAX 促进线粒体外膜通透化并触发细胞色素 c 释放，位于 CASP9 激活之前，是神经元凋亡放大的关键上游节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

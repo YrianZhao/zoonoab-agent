@@ -1,0 +1,65 @@
+{
+  "gene": "SNX14",
+  "generatedAt": "2026-08-03T16:48:43.208Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SNX14 与常染色体隐性脊髓小脑共济失调20及相关神经发育异常具有明确遗传学关联，提示其参与疾病核心病理过程。该蛋白为含 PX 结构域的胞内 sorting nexin，存在可解析的结构基础，但缺乏典型胞外抗原可及性，因此更适合作为机制验证与功能阻断型抗体设计对象而非表面受体靶点。相较同通路中更游离的脂质稳态调控因子，SNX14 在内质网-脂滴接触位点及膜运输调控中的位置更靠近疾病表型源头，具备优先级。",
+    "mechanism": "阻断 SNX14 PX 结构域与磷脂酰肌醇磷酸的结合，干扰其膜定位及后续脂质转运复合体装配。",
+    "selectedEpitope": "优先覆盖 PX 结构域脂质结合口袋及邻近环区，避免干扰非目标折叠。",
+    "diseaseDirection": "神经发育/共济失调",
+    "domain": "PX 结构域及其邻近膜结合界面；蛋白为胞内 sorting nexin。",
+    "evidence": "SNX14 疾病关联与结构设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform",
+      "UniProt: Q9Y5W7",
+      "RCSB PDB: 4BGJ",
+      "文献结构与功能注释数据库"
+    ],
+    "referenceEntries": "UniProt Q9Y5W7；RCSB PDB 4BGJ；Open Targets SNX14",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PX 结构域脂质结合槽",
+        "优先阻断膜定位与磷脂识别",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PX 结构域周边环区",
+        "适合提升结合选择性并降低结构扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离核心折叠的表面暴露位点",
+        "可用于弱干预，但对功能抑制贡献有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SNX14 为胞内蛋白，常规全长抗体进入细胞受限，需优先考虑细胞内递送、胞内表达抗体或 VHH 方案。表位应避开 PX 结构域核心折叠面，以降低失稳风险。",
+    "structurePrepZh": "基于 4BGJ 进行缺失残基补建与侧链优化，保留 PX 结构域局部构象并标注膜结合面。建议结合 AlphaFold 全长模型校正无序区与链间边界。",
+    "structureRef": "RCSB PDB 4BGJ；PX 结构域晶体结构文献",
+    "antibodies": [
+      "PX 结构域阻断型胞内抗体",
+      "靶向脂质结合口袋的 VHH"
+    ],
+    "interfaceFocus": "PX 结构域磷脂识别界面",
+    "designMode": "intracellular-blockade",
+    "candidates": [
+      {
+        "target": "SNX17",
+        "rationale": "同属 sorting nexin 家族，参与膜运输与内吞货物分选，适合作为 SNX14 相关膜交通网络的比较靶点。其功能轴与内膜系统异常表型具有相邻机制关联。"
+      },
+      {
+        "target": "PIKFYVE",
+        "rationale": "负责生成 PI(3,5)P2，与多种 PX 结构域蛋白的膜定位机制直接相关，可作为上游脂质环境对照靶点。其与 SNX14 的膜识别过程处于同一脂质调控通路。"
+      },
+      {
+        "target": "OSBPL2",
+        "rationale": "脂质结合与胞内脂质转运相关，和 SNX14 在脂质稳态与膜接触位点调控中具有通路一致性。可用于同病理轴的机制联动验证。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

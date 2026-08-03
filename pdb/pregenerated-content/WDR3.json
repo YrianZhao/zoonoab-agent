@@ -1,0 +1,65 @@
+{
+  "gene": "WDR3",
+  "generatedAt": "2026-08-03T17:51:53.891Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "WDR3 是 18S rRNA 加工与小核糖体亚基生物发生相关的核仁 WD-repeat 支架蛋白，Open Targets 关联主要集中于中性粒细胞、白细胞和淋巴细胞数量等血液表型，提示其与造血细胞核糖体生成和增殖状态存在遗传关联。该蛋白主要定位于细胞核/核仁，缺乏分泌信号肽、跨膜区或稳定胞外结构域，天然抗原可及性不符合常规治疗性抗体靶点特征。相较 CD45、CSF3R、CXCR4 等同属血液细胞数量调控场景且具有胞外可及结构的靶点，WDR3 更适合作为结构生物学或细胞内递送抗体研究靶点，治疗抗体开发优先级应下调。",
+    "mechanism": "抗体设计宜聚焦阻断 WDR3 WD40 β-propeller 表面与核糖体生物发生复合体蛋白或 pre-rRNA 加工因子的结合，而非胞外配体阻断。",
+    "selectedEpitope": "优先评估 WD40 β-propeller 顶面沟槽及相邻 blade 间环区，规避核心折叠保守疏水面。",
+    "diseaseDirection": "血液细胞数量与核糖体生物发生",
+    "domain": "WDR3 含多段 WD repeat，折叠为 WD40 β-propeller 支架结构，主要承担蛋白复合体装配界面功能。",
+    "evidence": "WDR3 血液表型遗传关联与核仁结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9UNX4 functional annotation",
+      "RCSB PDB 7MQA electron microscopy structure",
+      "Gene Ontology ribosome biogenesis annotation"
+    ],
+    "referenceEntries": "UniProt Q9UNX4；RCSB PDB 7MQA；Open Targets WDR3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "WD40 β-propeller 顶面沟槽与 blade 间环区",
+        "可能参与复合体伴侣蛋白结合，适合阻断型或结构探针抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "β-propeller 侧面暴露环及非保守带电斑块",
+        "可提高抗原特异性，适合作为构象识别表位备选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "WD repeat 保守核心 β-strand 与折叠稳定区",
+        "保守性高且可能影响整体折叠，易产生非特异或构象破坏风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "WDR3 为核内/核仁蛋白，常规抗体难以进入活细胞并接触内源靶点；建议定位为细胞内递送抗体、intrabody 或结构验证工具抗体项目。",
+    "structurePrepZh": "以 PDB 7MQA 冷冻电镜模型提取 WDR3 链并补全缺失侧链，结合 AlphaFold/UniProt 注释校验 WD repeat 边界与暴露环构象。",
+    "structureRef": "RCSB PDB 7MQA，2.7 Å cryo-EM human ribosome biogenesis complex",
+    "antibodies": [
+      "无已获批 WDR3 靶向抗体",
+      "研究级 anti-WDR3 antibody"
+    ],
+    "interfaceFocus": "WD40 顶面沟槽与 blade 间环区",
+    "designMode": "细胞内抗体/工具抗体",
+    "candidates": [
+      {
+        "target": "CSF3R",
+        "rationale": "CSF3R 是粒细胞集落刺激因子受体，直接调控中性粒细胞生成和成熟，且为细胞表面受体，抗体可及性显著优于 WDR3。"
+      },
+      {
+        "target": "CXCR4",
+        "rationale": "CXCR4 参与白细胞归巢、骨髓保留和外周血细胞分布调控，胞外环和配体结合口袋可支持阻断 CXCL12-CXCR4 相互作用。"
+      },
+      {
+        "target": "PTPRC",
+        "rationale": "PTPRC/CD45 是白细胞共同抗原，广泛表达于造血细胞表面并调节淋巴细胞受体信号，适合血液免疫细胞定向抗体设计。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

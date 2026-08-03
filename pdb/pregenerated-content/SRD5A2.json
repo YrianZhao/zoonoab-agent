@@ -1,0 +1,65 @@
+{
+  "gene": "SRD5A2",
+  "generatedAt": "2026-08-03T16:54:46.806Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SRD5A2催化睾酮还原为二氢睾酮，是前列腺增生、雄激素性脱发及前列腺癌中雄激素轴放大的关键酶节点。该蛋白为内质网膜多跨膜NADPH依赖性氧化还原酶，催化腔位于膜内侧疏水环境，缺乏稳定、大尺度胞外结构域，抗体可及性明显受限。相较于AR、KLK3或CYP17A1等雄激素通路靶点，SRD5A2具有明确遗传与药理学验证，但更适合作为小分子或细胞内递送抗体研究靶点，常规体内阻断抗体优先级较低。",
+    "mechanism": "设计分子需阻断睾酮进入SRD5A2膜内底物腔，或干扰NADPH结合构象，从而降低二氢睾酮生成。",
+    "selectedEpitope": "优先评估7BW1中膜内底物入口及NADPH邻近胞质环界面，避免依赖短小腔内疏水片段。",
+    "diseaseDirection": "雄激素依赖性前列腺与毛囊疾病",
+    "domain": "SRD5A2为七跨膜样内质网膜酶，含膜内甾体底物结合腔及胞质侧NADPH结合区域。",
+    "evidence": "SRD5A2雄激素代谢轴结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与药理关联",
+      "UniProt P31213功能与亚细胞定位注释",
+      "RCSB PDB 7BW1人SRD5A2晶体结构",
+      "5α-reductase抑制剂在BPH与雄激素性脱发中的临床证据"
+    ],
+    "referenceEntries": "UniProt P31213；RCSB PDB 7BW1；Open Targets SRD5A2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "胞质侧NADPH结合邻近环区",
+        "可能影响辅因子结合构象，具备相对可建模界面",
+        "优先"
+      ],
+      [
+        "Site B",
+        "膜内甾体底物入口周缘",
+        "可探索阻断睾酮进入催化腔，但需膜环境构象约束",
+        "备选"
+      ],
+      [
+        "Site C",
+        "跨膜螺旋疏水核心催化腔",
+        "抗体难以进入且疏水表位成药性差，常规抗体设计风险高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SRD5A2缺乏胞外大结构域，天然构象依赖膜脂环境；常规Fab体内可及性不足，建议限定为细胞内递送、膜蛋白体外构象探针或VHH工程化探索。",
+    "structurePrepZh": "以7BW1链A为模板，保留NADPH及抑制剂邻近构象信息，补全缺失环区并嵌入ER样脂膜后进行表位可及性评估。",
+    "structureRef": "RCSB PDB 7BW1，human SRD5A2 X-ray structure，2.8 Å",
+    "antibodies": [
+      "无已获批SRD5A2治疗性抗体",
+      "研究级抗SRD5A2检测抗体"
+    ],
+    "interfaceFocus": "NADPH结合口袋周缘与膜内底物入口",
+    "designMode": "膜酶构象阻断",
+    "candidates": [
+      {
+        "target": "AR",
+        "rationale": "AR是二氢睾酮下游核受体，直接驱动雄激素应答基因转录；其与SRD5A2处于同一雄激素信号轴，但主要为细胞内核受体靶点。"
+      },
+      {
+        "target": "CYP17A1",
+        "rationale": "CYP17A1参与雄激素生物合成上游步骤，临床上已通过抑制雄激素生成验证其前列腺癌治疗价值；同属雄激素代谢通路关键酶。"
+      },
+      {
+        "target": "HSD17B3",
+        "rationale": "HSD17B3催化雄烯二酮向睾酮转化，为SRD5A2提供底物来源；其遗传缺陷同样导致46,XY性发育异常。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "OPN1SW",
+  "generatedAt": "2026-08-03T14:58:33.081Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "OPN1SW编码人短波敏感视锥视蛋白，11-cis-retinal结合后作为蓝光感受型GPCR介导视锥光转导，遗传变异可导致蓝色觉缺陷和tritanopia。该蛋白为七跨膜受体，胞外环和N端糖基化区域可作为抗体识别窗口，但天然膜嵌入构象限制了完整胞外表位面积。相较于光转导通路中多为胞内或膜内定位的GNAT2、PDE6H等靶点，OPN1SW具有明确的人源结构模板和疾病遗传证据，适合作为结构验证与构象抗体开发的优先模型靶点。",
+    "mechanism": "抗体设计以稳定OPN1SW胞外环构象为主，避免干扰11-cis-retinal结合腔；功能型分子可阻断光激活后胞内侧与GNAT2转ducin复合体的构象耦联。",
+    "selectedEpitope": "优先选择N端胞外段及ECL2邻近视黄醛结合腔入口的构象表位，避开跨膜核心保守残基。",
+    "diseaseDirection": "遗传性色觉缺陷与视锥光转导",
+    "domain": "七跨膜视蛋白GPCR，含N端胞外段、三段胞外环、视黄醛结合跨膜腔及胞内G蛋白耦联面。",
+    "evidence": "OPN1SW结构与色觉缺陷遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProtKB P03999功能与变异注释",
+      "RCSB PDB 8Y02冷冻电镜结构",
+      "OMIM/Orphanet蓝色觉缺陷与tritanopia记录"
+    ],
+    "referenceEntries": "UniProt P03999；RCSB PDB 8Y02；MONDO_0008610；Orphanet_88629",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端胞外段与ECL2外侧构象面",
+        "胞外可及性较高，可用于构象特异结合与结构捕获",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ECL1-ECL2邻近跨膜螺旋束入口",
+        "可能影响光激活相关环区重排，适合作为功能调节备选表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "胞内TM5-TM6-TM7 G蛋白耦联界面",
+        "与GNAT2结合相关但抗体可及性低，需透膜或片段化体系验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "OPN1SW跨膜核心疏水性强，天然胞外环短且构象依赖视黄醛状态；设计宜采用膜模拟体系并避免针对保守跨膜残基产生非特异结合。",
+    "structurePrepZh": "以PDB 8Y02为模板保留抗原链A、B、G、R、S中OPN1SW构象，补全缺失胞外环并在膜环境中进行质子化与能量最小化。",
+    "structureRef": "RCSB PDB 8Y02，人短波敏感视蛋白冷冻电镜结构，2.61 Å",
+    "antibodies": [
+      "抗人S-opsin免疫组化抗体",
+      "抗OPN1SW多克隆抗体"
+    ],
+    "interfaceFocus": "N端胞外段、ECL2及视黄醛腔入口",
+    "designMode": "膜蛋白构象抗体设计",
+    "candidates": [
+      {
+        "target": "GNAT2",
+        "rationale": "GNAT2为视锥转ducinα亚基，直接接收光激活视蛋白的构象信号，是同一视锥光转导通路的关键胞内效应因子。"
+      },
+      {
+        "target": "PDE6H",
+        "rationale": "PDE6H编码视锥cGMP磷酸二酯酶γ亚基，位于GNAT2下游并调节cGMP水解，参与光刺激后的离子通道关闭过程。"
+      },
+      {
+        "target": "CNGA3",
+        "rationale": "CNGA3为视锥cGMP门控阳离子通道α亚基，响应PDE6介导的cGMP下降并改变视锥膜电位，是色觉缺陷相关通路终端效应靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

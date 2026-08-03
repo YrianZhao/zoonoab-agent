@@ -1,0 +1,65 @@
+{
+  "gene": "HPN",
+  "generatedAt": "2026-08-03T19:51:50.956Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HPN编码hepsin，为GPI锚定的II型跨膜丝氨酸蛋白酶，可在前列腺癌等上皮肿瘤中促进HGF前体、pro-uPA和层粘连蛋白相关底物的蛋白水解激活，增强侵袭与基质重塑。其催化性胰蛋白酶样丝氨酸蛋白酶结构域位于胞外侧，抗体可直接接触并阻断底物进入活性沟槽。相比多种可溶性蛋白酶，HPN具有膜定位与肿瘤上皮富集特征，更利于形成局部药效并降低全身性凝血蛋白酶抑制风险。",
+    "mechanism": "阻断hepsin胞外蛋白酶结构域与HGF前体或pro-uPA底物的结合，限制蛋白水解激活及下游MET/uPA介导的侵袭信号。",
+    "selectedEpitope": "优先靶向胰蛋白酶样催化结构域的S1底物结合口袋及邻近活性沟槽外缘。",
+    "diseaseDirection": "前列腺癌侵袭与转移",
+    "domain": "HPN含短胞内尾、跨膜/GPI锚定区、SRCR样区及胞外胰蛋白酶样丝氨酸蛋白酶结构域。",
+    "evidence": "HPN胞外蛋白酶结构域抗体阻断证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB P05981功能与结构域注释",
+      "RCSB PDB 1Z8G X射线晶体结构",
+      "前列腺癌hepsin介导HGF与pro-uPA激活研究"
+    ],
+    "referenceEntries": "UniProtKB:P05981；RCSB PDB:1Z8G；Open Targets:HPN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域S1底物结合口袋及活性沟槽外缘",
+        "直接限制多肽底物进入，适合功能阻断型Fab筛选",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域60-loop、99-loop与自激活邻近表面",
+        "可变构影响底物定位，兼顾保守催化三联体外侧选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SRCR样区与蛋白酶结构域连接区",
+        "可能影响空间构象或膜近端取向，但功能阻断确定性较低",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "催化口袋周边与胰蛋白酶样蛋白酶家族存在保守性，需避开催化三联体核心并强化HPN特异环区识别。",
+    "structurePrepZh": "采用1Z8G高分辨率晶体结构提取HPN催化结构域，补全缺失侧链、校正二硫键与糖基化位点后开展表面口袋评估。",
+    "structureRef": "RCSB PDB 1Z8G，hepsin丝氨酸蛋白酶结构域，1.55 Å",
+    "antibodies": [
+      "Fab25",
+      "HepIn-13"
+    ],
+    "interfaceFocus": "S1口袋、活性沟槽与底物识别环",
+    "designMode": "酶活阻断抗体",
+    "candidates": [
+      {
+        "target": "MET",
+        "rationale": "MET为HGF受体，位于HPN介导pro-HGF激活后的同一侵袭信号轴；阻断HGF-MET结合可在受体层面抑制下游迁移与增殖信号。"
+      },
+      {
+        "target": "HGF",
+        "rationale": "HGF是HPN蛋白水解激活的关键底物之一，成熟HGF驱动MET磷酸化；中和HGF可减少配体依赖性MET通路活化。"
+      },
+      {
+        "target": "PLAU",
+        "rationale": "PLAU编码uPA，是HPN可激活的纤溶酶原激活系统成员；抑制uPA有助于降低细胞外基质降解与肿瘤侵袭。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

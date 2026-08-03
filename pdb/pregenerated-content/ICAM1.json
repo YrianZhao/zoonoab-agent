@@ -1,0 +1,65 @@
+{
+  "gene": "ICAM1",
+  "generatedAt": "2026-08-03T13:21:06.174Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ICAM1是内皮细胞与免疫细胞黏附级联中的关键膜受体，通过与整合素LFA-1及Mac-1结合促进白细胞滚动后的牢固黏附和跨内皮迁移，参与炎症、血管内皮激活及神经炎症相关疾病过程。其五个免疫球蛋白样胞外结构域完全暴露于细胞表面，抗原可及性优于胞内信号分子。相比下游趋化因子或广谱炎症因子，ICAM1位于细胞黏附执行界面，结构域定位清晰且已有高分辨率晶体结构支持表位设计，因此具备较高抗体开发优先级。",
+    "mechanism": "阻断ICAM1胞外D1与LFA-1整合素αLβ2的结合，并削弱D3与Mac-1 αMβ2相互作用，从而抑制白细胞牢固黏附和跨内皮迁移。",
+    "selectedEpitope": "优先覆盖D1结构域LFA-1结合面，兼顾D1-D2相对取向以避免非特异性构象扰动。",
+    "diseaseDirection": "炎症黏附与神经炎症疾病",
+    "domain": "I型跨膜糖蛋白，胞外区含5个Ig样结构域，D1介导LFA-1结合，D3参与Mac-1结合。",
+    "evidence": "ICAM1白细胞黏附轴抗体设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与表型关联",
+      "UniProt P05362功能与结构域注释",
+      "RCSB PDB 1IAM晶体结构记录",
+      "整合素LFA-1/Mac-1与ICAM1黏附机制文献"
+    ],
+    "referenceEntries": "UniProt P05362；RCSB PDB 1IAM；Open Targets ICAM1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "D1结构域LFA-1结合界面",
+        "直接阻断αLβ2整合素介导的白细胞牢固黏附",
+        "优先"
+      ],
+      [
+        "Site B",
+        "D3结构域Mac-1结合相关表面",
+        "抑制αMβ2依赖性黏附与髓系细胞迁移",
+        "备选"
+      ],
+      [
+        "Site C",
+        "D4-D5近膜区及糖基化邻近表面",
+        "可能影响空间排布但易受糖基化和膜近端遮挡影响",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ICAM1存在多位点N-糖基化和广泛生理性内皮表达，表位应避开高度糖基化位点并控制亲和力窗口，以降低广泛免疫抑制和内皮结合风险。",
+    "structurePrepZh": "以1IAM晶体结构作为D1-D2建模模板，补齐缺失侧链并标注糖基化位点；D3-D5可采用AlphaFold或同源模型进行复合表位评估。",
+    "structureRef": "PDB 1IAM，human ICAM-1 D1-D2，X-ray 2.1 Å",
+    "antibodies": [
+      "Enlimomab",
+      "Alicaforsen"
+    ],
+    "interfaceFocus": "D1整合素LFA-1结合面与D3 Mac-1界面",
+    "designMode": "阻断型黏附界面",
+    "candidates": [
+      {
+        "target": "ITGAL",
+        "rationale": "ITGAL编码LFA-1的αL亚基，是ICAM1 D1结构域的主要受体侧结合组分；靶向该节点可直接干预同一白细胞黏附轴。"
+      },
+      {
+        "target": "ITGB2",
+        "rationale": "ITGB2编码β2整合素公共亚基，参与LFA-1和Mac-1形成；其与ICAM1介导的白细胞黏附和迁移过程处于同一通路。"
+      },
+      {
+        "target": "ITGAM",
+        "rationale": "ITGAM编码Mac-1的αM亚基，与ICAM1 D3相关界面结合并调节髓系细胞黏附；适合作为髓系炎症迁移方向的候选靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

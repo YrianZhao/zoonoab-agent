@@ -1,0 +1,65 @@
+{
+  "gene": "CLEC4D",
+  "generatedAt": "2026-08-03T11:26:49.683Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CLEC4D 是髓系细胞表达的 C 型凝集素受体，参与真菌、分枝杆菌及坏死相关糖脂配体识别，并通过 FcRγ-SYK-CARD9 轴放大先天免疫炎症反应，与结肠炎、系统性红斑狼疮及肿瘤炎症微环境具有通路关联。该靶点为 II 型跨膜受体，C 端 C-type lectin-like 胞外结构域直接暴露于细胞表面，适合抗体识别与配体阻断。相较于下游 SYK 或 CARD9 等胞内节点，CLEC4D 具有更高抗原可及性，并可在受体-配体入口层面实现更具选择性的髓系炎症调节。",
+    "mechanism": "阻断 CLEC4D 胞外 CTLD 与微生物糖脂或坏死相关配体结合，抑制 FcRγ 依赖的 SYK 磷酸化及 CARD9-BCL10-MALT1 炎症信号装配。",
+    "selectedEpitope": "优先覆盖 CTLD 长环区与糖配体结合沟槽，避开钙结合保守位点以降低构象扰动风险。",
+    "diseaseDirection": "炎症性肠病与自身免疫炎症",
+    "domain": "II 型跨膜蛋白，含短胞质尾、跨膜区及 C 端 C-type lectin-like 胞外结构域。",
+    "evidence": "CLEC4D 髓系凝集素炎症轴证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt Q8WXI8 蛋白注释",
+      "RCSB PDB 3WHD 晶体结构",
+      "C-type lectin receptor-SYK-CARD9 通路文献"
+    ],
+    "referenceEntries": "UniProt Q8WXI8；RCSB PDB 3WHD；Open Targets CLEC4D",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CTLD 糖配体结合沟槽及相邻长环",
+        "直接干预配体识别并保留受体整体折叠稳定性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CTLD 外侧非保守凸面",
+        "适合构建高特异性结合抗体并降低同源 CLEC4E 交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "CTLD 保守钙结合/二硫键邻近区域",
+        "可能影响结构稳定性或产生同源受体交叉结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CLEC4D 与 CLEC4E、CLEC4A 等 CTLD 具有局部同源性，需排除保守糖结合与钙协调区域交叉反应；建议优先筛选非保守环区表位。",
+    "structurePrepZh": "采用 PDB 3WHD 的 A、C 链作为抗原模板，补全缺失侧链、校正二硫键和糖基化位点注释，并保留 CTLD 构象用于表位聚类。",
+    "structureRef": "PDB 3WHD，X-ray diffraction，2.29 Å，人源 CLEC4D CTLD",
+    "antibodies": [
+      "anti-CLEC4D monoclonal antibody clone 9B9",
+      "anti-CLEC4D monoclonal antibody clone 4C7"
+    ],
+    "interfaceFocus": "CTLD 配体结合沟槽与非保守长环界面",
+    "designMode": "阻断型表位设计",
+    "candidates": [
+      {
+        "target": "SYK",
+        "rationale": "SYK 是 CLEC4D 经 FcRγ 免疫受体酪氨酸基序募集后的核心激酶节点，直接连接髓系 CLR 激活与炎症转录反应。"
+      },
+      {
+        "target": "CARD9",
+        "rationale": "CARD9 位于 CLEC4D-SYK 下游，介导 BCL10-MALT1 信号复合体形成，是真菌与髓系炎症通路中的关键适配蛋白。"
+      },
+      {
+        "target": "CLEC4E",
+        "rationale": "CLEC4E 与 CLEC4D 同属髓系 C 型凝集素受体，可识别分枝杆菌糖脂并汇入 FcRγ-SYK-CARD9 炎症轴，适合作为同通路比较靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

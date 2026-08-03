@@ -1,0 +1,65 @@
+{
+  "gene": "CPT1A",
+  "generatedAt": "2026-08-03T11:37:17.633Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CPT1A催化长链酰基辅酶A与肉碱生成酰基肉碱，是肝脏线粒体长链脂肪酸β氧化进入步骤的限速酶；其遗传缺陷可导致低酮性低血糖、肝功能异常及脂肪酸氧化障碍。该蛋白以内线粒体膜整合蛋白形式存在，主要催化结构域朝向胞质侧，抗原可及性不具备常规体内抗体治疗优势，更适合作为细胞内靶向递送或结构探针开发对象。相较ACADM、HADHA等下游线粒体酶，CPT1A位于肉碱穿梭入口，能够更直接影响长链脂肪酸通量，因此在机制验证和代谢表型研究中优先级较高。",
+    "mechanism": "抗体片段拟结合CPT1A胞质侧催化区，干扰长链酰基-CoA、肉碱或调节因子丙二酰-CoA相关构象稳定，从而改变酰基肉碱生成效率。",
+    "selectedEpitope": "优先覆盖胞质侧催化结构域邻近底物进入沟槽及丙二酰-CoA调节相关界面。",
+    "diseaseDirection": "脂肪酸氧化障碍与肝代谢病",
+    "domain": "N端含双跨膜锚定区，C端为胞质侧肉碱酰基转移酶催化结构域。",
+    "evidence": "CPT1A脂肪酸氧化缺陷与代谢表型证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P50416 functional annotation",
+      "RCSB PDB 2LE3 solution NMR structure",
+      "OMIM CPT1A deficiency clinical genetics"
+    ],
+    "referenceEntries": "UniProt P50416；RCSB PDB 2LE3；MONDO:0009705",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "胞质侧催化结构域底物通道邻近区域",
+        "有望影响长链酰基-CoA与肉碱转酰基反应构象",
+        "优先"
+      ],
+      [
+        "Site B",
+        "丙二酰-CoA敏感调节相关N端胞质片段",
+        "可用于解析CPT1A别构抑制与代谢调节机制",
+        "备选"
+      ],
+      [
+        "Site C",
+        "跨膜锚定区疏水螺旋邻近表面",
+        "膜环境依赖性强，重组抗原构象与可开发性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CPT1A为内线粒体膜蛋白且缺乏胞外暴露区域，常规循环抗体难以到达作用位点；建议限定为细胞内递送Fab/VHH、抗原捕获或构象研究用途。",
+    "structurePrepZh": "以2LE3的NMR模型集为局部结构参考，需补充AlphaFold全长模型并显式标注跨膜区、胞质催化域及柔性N端调节片段。",
+    "structureRef": "RCSB PDB 2LE3；human CPT1A solution NMR entry",
+    "antibodies": [
+      "研究级anti-CPT1A antibody",
+      "研究级anti-CPT1A monoclonal antibody"
+    ],
+    "interfaceFocus": "底物通道、肉碱结合邻近区及丙二酰-CoA调节界面",
+    "designMode": "胞内靶向片段设计",
+    "candidates": [
+      {
+        "target": "SLC25A20",
+        "rationale": "SLC25A20编码肉碱-酰基肉碱转位酶，负责酰基肉碱跨内线粒体膜转运，与CPT1A处于同一肉碱穿梭通路。"
+      },
+      {
+        "target": "CPT2",
+        "rationale": "CPT2在线粒体基质侧将酰基肉碱重新转化为酰基-CoA，是CPT1A下游的长链脂肪酸β氧化入口酶。"
+      },
+      {
+        "target": "ACADVL",
+        "rationale": "ACADVL催化极长链酰基-CoA脱氢，是CPT1A介导底物进入线粒体后衔接的β氧化早期步骤。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

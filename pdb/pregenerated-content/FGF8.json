@@ -1,0 +1,65 @@
+{
+  "gene": "FGF8",
+  "generatedAt": "2026-08-03T12:33:00.194Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FGF8 是分泌型成纤维细胞生长因子，在胚胎发育、嗅球形成、GnRH 神经元迁移及骨发育中通过激活 FGFR1/FGFR2 与 heparan sulfate 依赖性受体复合物驱动 MAPK 和 PI3K 信号。FGF8 功能不足与低促性腺激素性性腺功能减退及 Kallmann 综合征相关，异常表达亦可参与肿瘤增殖和旁分泌生长因子环路。作为可溶性胞外配体，FGF8 抗原可及性优于胞内发育调控因子。相较下游 ERK/PI3K 节点，FGF8 更适合通过抗体实现配体选择性中和，并降低广泛信号抑制风险。",
+    "mechanism": "中和抗体阻断 FGF8 与 FGFR1c/FGFR2c D2-D3 区域及 heparan sulfate 的复合物装配，从而抑制受体二聚化和下游 MAPK 激活。",
+    "selectedEpitope": "优先覆盖 FGF 核心β-trefoil 中 FGFR D3 结合面及 heparin 结合沟槽邻近区域。",
+    "diseaseDirection": "发育内分泌疾病与肿瘤旁分泌信号",
+    "domain": "FGF8 为分泌型配体，含信号肽和保守 FGF β-trefoil 核心结构域，介导 FGFR 与糖胺聚糖结合。",
+    "evidence": "FGF8-FGFR发育轴与疾病遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P55075 functional annotation",
+      "RCSB PDB 2FDB experimental structure",
+      "ClinVar/OMIM hypogonadotropic hypogonadism and Kallmann syndrome records"
+    ],
+    "referenceEntries": "UniProt P55075；RCSB PDB 2FDB；Open Targets FGF8",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "FGF核心结构域FGFR D3结合面",
+        "直接阻断FGF8-FGFR1c/FGFR2c识别，具备中和优先级",
+        "优先"
+      ],
+      [
+        "Site B",
+        "β-trefoil表面的heparin结合沟槽邻近区",
+        "干扰FGF8-heparan sulfate辅助装配，削弱受体二聚化",
+        "备选"
+      ],
+      [
+        "Site C",
+        "FGF核心远端保守β折叠支架区",
+        "可能影响蛋白稳定性但中和相关性较弱，需避免交叉保守表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FGF家族核心折叠保守性较高，需避开跨FGF同源保守面；优先设计覆盖FGF8特异残基簇的构象表位以提升选择性。",
+    "structurePrepZh": "以PDB 2FDB中FGF8抗原链M、P、N、R为模板，保留实验构象，检查缺失环区、晶体接触和糖胺聚糖结合面暴露性。",
+    "structureRef": "RCSB PDB 2FDB，X-ray diffraction，2.28 Å",
+    "antibodies": [
+      "anti-FGF8 neutralizing antibody clone 1E6",
+      "anti-FGF8 monoclonal antibody clone 4A2"
+    ],
+    "interfaceFocus": "FGFR D2-D3结合面与heparan sulfate结合沟槽",
+    "designMode": "配体中和型抗体设计",
+    "candidates": [
+      {
+        "target": "FGFR1",
+        "rationale": "FGFR1 是 FGF8 在 GnRH 神经元迁移和嗅觉发育中的关键受体，FGF8-FGFR1 轴与低促性腺激素性性腺功能减退及 Kallmann 综合征具有明确遗传关联。"
+      },
+      {
+        "target": "FGFR2",
+        "rationale": "FGFR2 可结合 FGF8 并介导发育及骨形成相关信号，是 FGF8 驱动的 FGFR-MAPK 通路中的同级受体节点。"
+      },
+      {
+        "target": "KLB",
+        "rationale": "KLB 并非 FGF8 经典共受体，主要参与内分泌 FGF19/21/23 通路，因此不宜作为 FGF8 同通路优先候选。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

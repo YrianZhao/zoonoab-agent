@@ -1,0 +1,65 @@
+{
+  "gene": "EIF5",
+  "generatedAt": "2026-08-03T12:14:54.358Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "EIF5 是翻译起始复合体中的胞内GTP酶激活因子，促进eIF2-GTP在起始密码子识别后的GTP水解，Open Targets关联主要来自血细胞计数性状而非明确细胞外疾病驱动轴。该蛋白缺乏分泌信号肽、跨膜区或稳定胞外结构域，完整抗体在生理条件下难以接近抗原。相较CD分子、细胞因子受体等同类血液表型靶点，EIF5抗体成药优先级较低，更适合作为结构验证或胞内递送抗体研究对象。",
+    "mechanism": "设计抗体需阻断EIF5 C端结构域与eIF2β、eIF3c等翻译起始因子的结合，削弱eIF2-GTP水解促进作用。",
+    "selectedEpitope": "优先覆盖EIF5 C端HEAT样结构域中eIF2β/eIF3c结合沟槽，避免仅识别非功能性远端表面。",
+    "diseaseDirection": "血液细胞计数相关性状",
+    "domain": "EIF5含N端GAP结构域与C端HEAT样结构域；2IU1解析人源C端结构域。",
+    "evidence": "EIF5翻译起始与血液表型遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P55010 functional annotation",
+      "RCSB PDB 2IU1 X-ray structure",
+      "Gene Ontology translation initiation annotations"
+    ],
+    "referenceEntries": "UniProt P55010；RCSB PDB 2IU1；HGNC EIF5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端HEAT样结构域eIF2β/eIF3c结合沟槽",
+        "直接干预翻译起始复合体装配界面，功能阻断价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端结构域保守螺旋束外侧面",
+        "可获得高亲和结合并用于构象探针，但功能抑制依赖空间位阻",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端GAP结构域催化邻近区域",
+        "理论上影响eIF2-GTP水解，但2IU1不覆盖该区域且构象证据不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "EIF5为胞内蛋白，常规抗体递送与靶点可及性风险显著；应优先评估细胞内递送、内体逃逸或intradiabody格式，并避免将其定位为常规膜表面抗体靶点。",
+    "structurePrepZh": "以2IU1链A为模板进行缺失残基检查、质子化与侧链优化；需补充全长AlphaFold模型以映射N端GAP结构域和柔性连接区。",
+    "structureRef": "PDB 2IU1，human EIF5 CTD，1.8 Å X-ray",
+    "antibodies": [
+      "无获批EIF5靶向抗体",
+      "研究级anti-EIF5抗体"
+    ],
+    "interfaceFocus": "C端HEAT样结构域翻译因子结合沟槽",
+    "designMode": "胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "EIF2S1",
+        "rationale": "EIF2α是eIF2三聚体核心亚基，参与起始复合体形成与应激性磷酸化调控；与EIF5处于同一翻译起始功能模块。"
+      },
+      {
+        "target": "EIF2B5",
+        "rationale": "EIF2B5是eIF2B鸟嘌呤核苷酸交换因子催化亚基，控制eIF2-GDP向eIF2-GTP再生；与EIF5共同决定eIF2循环通量。"
+      },
+      {
+        "target": "EIF3C",
+        "rationale": "EIF3C为eIF3复合体亚基，可与EIF5 C端结构域相互作用并参与43S预起始复合体组织，适合作为同通路界面候选靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

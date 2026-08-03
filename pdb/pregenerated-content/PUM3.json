@@ -1,0 +1,65 @@
+{
+  "gene": "PUM3",
+  "generatedAt": "2026-08-03T15:45:56.545Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PUM3 为胞内 RNA 结合蛋白，主要通过 PUF repeat 结构域识别 RNA 序列并参与转录后调控；现有 Open Targets 关联多来自性状或遗传关联，缺乏可直接归因的细胞外致病轴。该蛋白不具备分泌蛋白、跨膜受体或胞外结构域特征，常规抗体难以在完整细胞环境中接触天然抗原。相较于同类可药靶点，PUM3 的抗原可及性与疾病因果证据均不足，优先级应低于具有明确胞外配体-受体相互作用的靶点；若推进设计，更适合作为结构验证或细胞内递送抗体研究对象。",
+    "mechanism": "设计目标限定为阻断 PUM3 PUF repeat 凹面与靶 RNA 碱基的序列特异性结合，干预其转录后 RNA 识别复合物形成。",
+    "selectedEpitope": "优先覆盖 PUF repeat RNA 结合凹面及相邻螺旋重复界面，避免仅选择远端非功能表面。",
+    "diseaseDirection": "遗传性状关联与神经精神表型",
+    "domain": "PUM3 含典型 PUF/Pumilio RNA 结合重复结构域，由多段α螺旋重复形成RNA识别凹面。",
+    "evidence": "PUM3结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q15397 functional annotation",
+      "RCSB PDB 4WZR experimental structure",
+      "Human Protein Atlas subcellular localization"
+    ],
+    "referenceEntries": "UniProt Q15397；RCSB PDB 4WZR；Ensembl ENSG00000134086",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PUF repeat RNA结合凹面",
+        "直接竞争RNA碱基识别界面，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PUF重复单元侧向螺旋界面",
+        "可能通过构象限制削弱RNA结合亲和力",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离RNA结合面的外侧凸面",
+        "功能阻断依据较弱，适合结构示踪而非拮抗设计",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PUM3为胞内抗原，常规Fab或VHH缺乏天然可及性；需配置细胞内递送、纳米抗体胞内表达或降解偶联策略，并严控RNA结合蛋白交叉反应。",
+    "structurePrepZh": "以4WZR链A/B为结构模板，保留PUF重复核心，核查缺失环区、晶体接触和RNA结合凹面残基暴露状态后进行表位建模。",
+    "structureRef": "RCSB PDB 4WZR，X-ray diffraction，2.154 Å",
+    "antibodies": [
+      "暂无获批PUM3靶向抗体",
+      "暂无临床阶段PUM3阻断抗体"
+    ],
+    "interfaceFocus": "PUF repeat凹面RNA识别残基",
+    "designMode": "胞内抗原探索",
+    "candidates": [
+      {
+        "target": "PUM1",
+        "rationale": "PUM1同属Pumilio RNA结合蛋白家族，利用PUF重复结构域识别RNA并参与转录后调控，可作为同一RNA调控轴的比较靶点。"
+      },
+      {
+        "target": "PUM2",
+        "rationale": "PUM2与PUM1/PUM3具有保守PUF RNA结合机制，在神经发育和神经功能相关转录后调控中具有更充分的生物学研究基础。"
+      },
+      {
+        "target": "NANOS1",
+        "rationale": "NANOS1可与Pumilio家族蛋白协同介导靶mRNA翻译抑制或降解，属于同一Pumilio-Nanos转录后调控模块。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

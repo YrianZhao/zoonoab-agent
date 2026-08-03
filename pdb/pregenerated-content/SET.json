@@ -1,0 +1,65 @@
+{
+  "gene": "SET",
+  "generatedAt": "2026-08-03T16:27:53.189Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SET 是核内原癌蛋白，参与蛋白磷酸酶2A（PP2A）抑制、染色质调控与SET-CAN相关白血病机制，在急性淋巴细胞白血病及神经发育异常中具有明确遗传和功能关联。该蛋白主要定位于细胞核且缺乏天然胞外结构域，抗原可及性不具备常规细胞表面抗体优势，更适合开展细胞内递送抗体或研究级功能阻断分子设计。相比广泛表达的上游转录调控因子，SET具有已解析高分辨率结构和明确的PP2A结合抑制界面，可优先用于结构约束的表位设计与机制验证。",
+    "mechanism": "抗体结合SET酸性C端及其邻近二聚化表面，阻断SET与PP2A催化亚基相互作用，解除PP2A受抑状态并影响下游磷酸化稳态。",
+    "selectedEpitope": "优先靶向SET二聚化相关N端折叠区与酸性C端PP2A接触邻域的连续构象界面。",
+    "diseaseDirection": "血液肿瘤与神经发育疾病",
+    "domain": "SET含N端二聚化结构域、中央折叠核心及富含酸性残基的C端尾区，具核定位特征。",
+    "evidence": "SET-PP2A抑制轴与白血病结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q01105蛋白功能注释",
+      "RCSB PDB 7MTO晶体结构",
+      "PP2A抑制与SET-CAN白血病文献"
+    ],
+    "referenceEntries": "UniProt Q01105；RCSB PDB 7MTO；Open Targets SET",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "酸性C端PP2A结合邻域",
+        "直接干预SET介导的PP2A抑制，机制可检验性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端二聚化相关折叠界面",
+        "可能削弱SET二聚体稳定性并改变功能复合物装配",
+        "备选"
+      ],
+      [
+        "Site C",
+        "中央保守折叠核心表面",
+        "结构稳定但同源保守性较高，存在非特异结合与功能扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SET为核内蛋白，体内抗体可及性和递送效率为主要风险；设计应优先定位功能界面，避免泛核心表位导致非特异构象扰动。",
+    "structurePrepZh": "以7MTO链A为结构模板，补全缺失柔性尾区注释，保留二聚化界面信息，并对酸性C端区域进行构象采样。",
+    "structureRef": "RCSB PDB 7MTO，X-ray diffraction，1.791 Å",
+    "antibodies": [
+      "研究级anti-SET monoclonal antibody",
+      "研究级anti-TAF-Iβ antibody"
+    ],
+    "interfaceFocus": "SET酸性C端-PP2A催化亚基接触面",
+    "designMode": "细胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "PPP2CA",
+        "rationale": "PPP2CA编码PP2A催化亚基，是SET抑制作用的直接功能对象；围绕该节点可验证SET-PP2A轴对肿瘤磷酸化稳态的影响。"
+      },
+      {
+        "target": "PPME1",
+        "rationale": "PPME1通过去甲基化调节PP2A全酶装配，与SET共同影响PP2A活性状态，属于同一PP2A失活通路中的可干预节点。"
+      },
+      {
+        "target": "CIP2A",
+        "rationale": "CIP2A为肿瘤中常见PP2A内源性抑制因子，与SET在PP2A抑制网络中功能并列，可作为同通路替代或联合验证靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

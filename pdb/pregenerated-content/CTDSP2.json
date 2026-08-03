@@ -1,0 +1,65 @@
+{
+  "gene": "CTDSP2",
+  "generatedAt": "2026-08-03T11:42:46.526Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CTDSP2为核内RNA聚合酶II C端结构域小磷酸酶，主要去磷酸化Pol II CTD Ser5/Ser7位点并影响转录延伸与基因表达程序；其Open Targets关联以中枢神经系统自身免疫、身高及IGF-1相关性状为主，但疾病因果证据强度有限。该蛋白缺乏跨膜区和分泌信号肽，天然抗原可及性不符合常规治疗性抗体靶点标准，仅适合细胞内递送抗体片段、研究级阻断抗体或结构辅助工具抗体开发。相较同通路中可直接干预胞外细胞因子的靶点，CTDSP2优先级较低；其优势在于已有2.51 Å实验晶体结构支持催化口袋与底物结合界面的精细化表位设计。",
+    "mechanism": "设计抗体片段遮挡FCPH催化结构域的Pol II CTD结合沟槽，阻断CTDSP2对CTD Ser5/Ser7磷酸化肽段的识别与去磷酸化。",
+    "selectedEpitope": "优先覆盖FCPH催化结构域中DXDXT活性基序邻近的Pol II CTD肽结合沟槽。",
+    "diseaseDirection": "中枢神经系统自身免疫相关转录调控",
+    "domain": "CTDSP2含N端低复杂度区及C端FCPH磷酸酶结构域，2Q5E解析其催化核心。",
+    "evidence": "CTDSP2结构与自身免疫遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt O14595蛋白功能与定位注释",
+      "RCSB PDB 2Q5E晶体结构记录",
+      "RNA polymerase II CTD去磷酸化相关文献"
+    ],
+    "referenceEntries": "UniProt O14595；RCSB PDB 2Q5E；Open Targets CTDSP2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "FCPH结构域DXDXT活性基序周边CTD肽结合沟槽",
+        "直接阻断Pol II CTD底物进入催化中心，机制可验证性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FCPH结构域远端保守表面及底物定位辅助界面",
+        "可通过变构方式削弱底物定位，降低完全催化位点占据带来的交叉反应风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端低复杂度区预测柔性片段",
+        "结构稳定性与表位成形性不足，且功能阻断机制不明确",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CTDSP2为核内酶，抗体药物天然递送受限；应优先定位为细胞内抗体片段或研究工具，并严格评估与CTDSP家族催化核心的交叉反应。",
+    "structurePrepZh": "以2Q5E A链为主模板，去除晶体接触冗余链与非功能性小分子，补建缺失柔性环并标注DXDXT活性基序及底物沟槽。",
+    "structureRef": "RCSB PDB 2Q5E，X-ray diffraction，2.51 Å",
+    "antibodies": [
+      "研究级anti-CTDSP2抗体",
+      "细胞内递送型anti-CTDSP2 VHH候选"
+    ],
+    "interfaceFocus": "FCPH催化口袋与Pol II CTD肽结合沟槽",
+    "designMode": "细胞内阻断型",
+    "candidates": [
+      {
+        "target": "POLR2A",
+        "rationale": "POLR2A编码RNA聚合酶II最大亚基，其CTD重复序列是CTDSP2直接去磷酸化底物，处于同一Pol II CTD磷酸化循环。"
+      },
+      {
+        "target": "CTDSP1",
+        "rationale": "CTDSP1与CTDSP2同属小CTD磷酸酶家族，参与Pol II CTD Ser5去磷酸化，适合作为通路内选择性与补偿机制评估靶点。"
+      },
+      {
+        "target": "SSU72",
+        "rationale": "SSU72是Pol II CTD Ser5磷酸酶，参与转录终止与RNA加工相关CTD去磷酸化，可作为同一CTD磷酸化调控轴的替代干预节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

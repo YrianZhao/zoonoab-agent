@@ -1,0 +1,65 @@
+{
+  "gene": "SPCS3",
+  "generatedAt": "2026-08-03T16:50:47.839Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SPCS3是内质网信号肽酶复合体的亚基之一，参与分泌蛋白与膜蛋白前体信号肽切除，失衡后可影响蛋白分泌稳态并与神经退行性病变表型相关。该蛋白定位于内质网膜并具有胞外可达的腔面环区，具备抗体可及性优势，适合围绕复合体装配界面与底物进入通道开展阻断设计。相较于直接靶向广泛必需的催化核心亚基，SPCS3在底物识别与复合体稳定中的位置更利于获得选择性抑制窗口，因此优先级更高。",
+    "mechanism": "抗体占据SPCS3腔面暴露环及复合体接触界面，阻断信号肽酶复合体装配与底物信号肽进入通道。",
+    "selectedEpitope": "优先覆盖腔面暴露环及SPCS3-SPCS1/SEC11C接触界面，避免催化核心直接遮挡。",
+    "diseaseDirection": "神经退行性疾病相关",
+    "domain": "内质网膜小亚基，腔面暴露环与跨膜邻近区。",
+    "evidence": "SPCS3疾病关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform",
+      "UniProt P61009",
+      "RCSB PDB 9RJB",
+      "Electron microscopy structure 2.6 A"
+    ],
+    "referenceEntries": "UniProt: P61009; RCSB PDB: 9RJB; Homo sapiens SPCS3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "腔面暴露环1及邻近界面",
+        "优先覆盖复合体装配接触面并提升可及性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "跨膜区外侧邻接环",
+        "可用于稳定性干预但对构象扰动较弱",
+        "备选"
+      ],
+      [
+        "Site C",
+        "复合体远端表面",
+        "降低非特异干扰但抑制效力可能不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "该靶点位于多亚基膜复合体中，表位若过度接近跨膜核心可能增加构象依赖性与膜环境敏感性。宜优先选择腔面暴露且远离催化核心的接触环，并通过复合体状态验证筛除低占位克隆。",
+    "structurePrepZh": "建议以9RJB冷冻电镜模型为模板，补全缺失环区并统一膜定向，按复合体状态进行表位映射。对腔面环与相邻亚基接触残基实施柔性约束优化，以提高抗体对可达界面的识别精度。",
+    "structureRef": "PDB 9RJB, cryo-EM 2.6 A",
+    "antibodies": [
+      "无成熟临床抗体记录的同类信号肽酶亚基抗体",
+      "针对内质网膜复合体界面的研究性单抗"
+    ],
+    "interfaceFocus": "SPCS3腔面环与SPCS1/SEC11C接触界面",
+    "designMode": "structure-guided",
+    "candidates": [
+      {
+        "target": "SPCS1",
+        "rationale": "SPCS1与SPCS3同属信号肽酶复合体，参与底物进入与复合体稳定，可作为同一路径的机制对照靶点。其复合体界面信息有助于判定SPCS3表位是否覆盖关键装配面。"
+      },
+      {
+        "target": "SEC11C",
+        "rationale": "SEC11C是信号肽酶复合体的催化亚基，和SPCS3共同决定信号肽切除效率。围绕SEC11C的底物通道干预可与SPCS3设计形成互补验证。"
+      },
+      {
+        "target": "SPCS2",
+        "rationale": "SPCS2同属信号肽酶复合体辅助亚基，与SPCS3在复合体稳态和底物处理上具有同通路关联。并行比较有助于区分亚基特异性干预与复合体级别抑制。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

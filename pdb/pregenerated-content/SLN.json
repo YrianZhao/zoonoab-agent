@@ -1,0 +1,65 @@
+{
+  "gene": "SLN",
+  "generatedAt": "2026-08-03T16:42:20.415Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SLN编码骨骼肌与心肌肌质网小膜蛋白sarcolipin，可与SERCA钙泵结合并降低Ca2+转运偶联效率，影响肌质网钙回收、心肌舒缩和能量代谢。该蛋白为单跨膜微小调节因子，主要可及区域局限于腔侧C端与胞质侧N端短肽，抗体进入细胞内肌质网膜环境的可及性显著受限。相较于SERCA2a、磷酸受纳蛋白PLN等同通路靶点，SLN的疾病关联强度较低且胞外抗原窗口不足，因此更适合作为机制验证或胞内递送抗体研究靶点，而非优先常规治疗性抗体靶点。",
+    "mechanism": "设计抗体应阻断SLN跨膜螺旋与SERCA泵M2/M6/M9附近膜内界面的结合，解除其对SERCA介导Ca2+回收入肌质网的抑制。",
+    "selectedEpitope": "优先瞄准SLN跨膜α螺旋SERCA接触面及C端腔侧尾部交界区。",
+    "diseaseDirection": "钙稳态相关心肌与肌病方向",
+    "domain": "SLN为31个氨基酸单跨膜蛋白，含N端胞质短区、中央跨膜α螺旋及C端腔侧RSYQY尾部。",
+    "evidence": "SLN-SERCA钙泵调控与结构可及性证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB O00631功能与亚细胞定位注释",
+      "RCSB PDB 1JDM溶液NMR结构",
+      "SERCA调节复合物及肌质网钙稳态文献"
+    ],
+    "referenceEntries": "UniProtKB: O00631; RCSB PDB: 1JDM; Open Targets: SLN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "跨膜α螺旋SERCA接触面",
+        "可直接干预SLN对SERCA钙泵的抑制性结合，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端腔侧RSYQY尾部及膜近端区",
+        "位于肌质网腔侧，较跨膜核心更具抗体接近可能，可影响复合物稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端胞质短肽区",
+        "序列过短且构象柔性高，可能产生低亲和力或非功能性结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SLN抗原尺寸极小且主要位于肌质网膜内，天然胞外暴露不足；需优先采用膜模拟体系筛选，并评估胞内递送、交叉反应与构象依赖性风险。",
+    "structurePrepZh": "以PDB 1JDM的NMR构象集为基础，保留代表性跨膜螺旋构象，嵌入脂质膜或去污剂胶束环境后标注N端、C端及SERCA接触面。",
+    "structureRef": "PDB 1JDM; solution NMR structure of human sarcolipin",
+    "antibodies": [
+      "抗sarcolipin研究级抗体",
+      "抗SERCA调节复合物研究级抗体"
+    ],
+    "interfaceFocus": "SLN跨膜螺旋与SERCA膜内结合界面",
+    "designMode": "膜蛋白构象阻断",
+    "candidates": [
+      {
+        "target": "ATP2A2",
+        "rationale": "ATP2A2编码SERCA2，是心肌和慢肌肌质网Ca2+回收的核心泵蛋白，与SLN处于同一钙稳态调控轴。其结构和疾病证据更充分，但作为多跨膜酶类靶点需谨慎评估功能激动或抑制策略。"
+      },
+      {
+        "target": "PLN",
+        "rationale": "PLN编码磷酸受纳蛋白，是SERCA2a的经典抑制性调节因子，与SLN共享肌质网钙泵调控机制。其在心力衰竭和心肌收缩功能中的证据链强于SLN。"
+      },
+      {
+        "target": "RYR2",
+        "rationale": "RYR2编码心肌兰尼碱受体，负责肌质网Ca2+释放，与SERCA回收共同维持心肌钙循环。该靶点与冠状动脉疾病相关心肌功能异常存在通路交叉，可作为钙稳态疾病方向候选。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

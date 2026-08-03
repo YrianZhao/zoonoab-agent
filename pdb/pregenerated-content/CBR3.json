@@ -1,0 +1,65 @@
+{
+  "gene": "CBR3",
+  "generatedAt": "2026-08-03T11:02:07.638Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CBR3为胞质NADPH依赖性短链脱氢/还原酶，参与多种内源性及外源性羰基化合物还原，现有疾病关联以血清CBR3水平、前列腺癌及代谢表型为主，但其并非经典细胞表面或分泌抗原。2HRB提供高分辨率酶结构，可支持结合口袋与构象表面分析，但天然抗原可及性不足，体内抗体阻断需依赖细胞内递送或检测型抗体场景。相较AKR1C3等同类羰基代谢靶点，CBR3临床通路验证较弱，优先级更适合结构生物学验证、伴随诊断或胞内抗体探索，而非直接治疗性表面阻断。",
+    "mechanism": "抗体设计宜定位于NADPH结合沟槽邻近表面，空间遮挡辅因子进入或限制底物羰基靠近催化Tyr-Lys-Ser三联体。",
+    "selectedEpitope": "优先覆盖Rossmann样NADPH结合域的辅因子入口环与催化口袋边缘，避免深埋活性位点不可及区域。",
+    "diseaseDirection": "羰基代谢与前列腺癌标志物方向",
+    "domain": "CBR3属于短链脱氢/还原酶折叠，含Rossmann样NADPH结合核心及羰基底物结合口袋。",
+    "evidence": "CBR3结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB O75828功能注释",
+      "RCSB PDB 2HRB晶体结构",
+      "短链脱氢/还原酶家族催化机制文献"
+    ],
+    "referenceEntries": "UniProt O75828；RCSB PDB 2HRB；Open Targets CBR3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "NADPH结合沟槽入口及相邻表面环",
+        "可通过空间位阻干扰辅因子结合，适合功能阻断或构象探针设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "底物结合口袋外缘与催化Tyr-Lys-Ser邻近区域",
+        "可限制羰基底物定位，但需避免仅识别深埋疏水腔",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SDR核心β折叠背面保守结构面",
+        "结构稳定但功能相关性弱，且家族同源交叉反应风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CBR3为胞内酶，天然抗体可及性是主要风险；需优先限定为检测抗体、胞内抗体或递送体系，并严格评估CBR1/CBR4交叉反应。",
+    "structurePrepZh": "以2HRB链A为模板，保留NADPH结合口袋几何信息，补全缺失侧链并标注保守SDR催化残基后进行表面表位聚类。",
+    "structureRef": "Human carbonyl reductase 3 crystal structure, PDB 2HRB, 1.9 Å",
+    "antibodies": [
+      "anti-CBR3 research antibody",
+      "anti-CBR3 monoclonal antibody clone OTI2C4"
+    ],
+    "interfaceFocus": "NADPH入口沟槽与催化口袋外缘",
+    "designMode": "胞内酶表位阻断",
+    "candidates": [
+      {
+        "target": "CBR1",
+        "rationale": "CBR1同属NADPH依赖性羰基还原酶，参与药物及脂质羰基代谢；可作为同通路同源酶用于选择性与交叉反应评估。"
+      },
+      {
+        "target": "CBR4",
+        "rationale": "CBR4为羰基还原酶家族成员，具有相关氧化还原代谢功能；纳入比较有助于界定CBR3特异表位。"
+      },
+      {
+        "target": "AKR1C3",
+        "rationale": "AKR1C3参与NADPH依赖性羰基与类固醇代谢，并与前列腺癌雄激素合成相关；其疾病通路证据强，可作为优先级参照靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

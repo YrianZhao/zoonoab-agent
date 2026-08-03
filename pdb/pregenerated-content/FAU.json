@@ -1,0 +1,65 @@
+{
+  "gene": "FAU",
+  "generatedAt": "2026-08-03T12:28:37.085Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FAU编码泛素样结构域与核糖体蛋白S30融合前体，成熟S30为40S小亚基组成成分，主要参与核糖体装配与翻译过程；其疾病关联多来自神经退行性疾病、肌营养不良及病毒感染背景中的蛋白稳态和翻译应激信号，而非经典细胞表面配体-受体轴。该蛋白定位以胞内核糖体复合物为主，缺乏稳定胞外结构域、分泌形式或膜受体特征，抗原可及性显著弱于可溶性细胞因子和跨膜受体。相较同通路中EIF2AK2、RPLP0或CXCL10等可被胞外抗体或功能阻断策略更直接覆盖的靶点，FAU更适合作为疾病生物学标志物或胞内机制研究对象，作为治疗性抗体主靶点优先级较低。",
+    "mechanism": "抗体策略仅可设定为结合FAU/S30暴露肽段以干预其在40S核糖体中的蛋白-核糖体RNA接触，但细胞内可及性限制使功能阻断可行性较低。",
+    "selectedEpitope": "优先评估S30成熟区中远离rRNA核心接触面的外露α螺旋/环区肽段，避免泛素样结构域保守疏水面。",
+    "diseaseDirection": "翻译应激与病毒感染相关疾病",
+    "domain": "FAU前体含N端泛素样结构域及C端核糖体蛋白S30成熟区，S30嵌入40S小亚基。",
+    "evidence": "FAU核糖体定位与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P62861功能与亚细胞定位注释",
+      "RCSB PDB 28LN冷冻电镜核糖体结构",
+      "Reactome核糖体装配与翻译通路注释"
+    ],
+    "referenceEntries": "UniProt P62861；RCSB PDB 28LN；Open Targets FAU",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "S30成熟区外露环区/短螺旋面",
+        "较可能在核糖体表面形成可识别构象，适合制备检测型抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FAU N端泛素样结构域非保守溶剂面",
+        "可用于区分前体或游离形式，但需排除与泛素家族交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "S30与18S rRNA及邻近核糖体蛋白接触界面",
+        "功能相关但高度埋藏，构象依赖强且抗体可及性差",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为胞内核糖体定位导致治疗性抗体不可及，且S30序列保守性高，需进行泛素家族与核糖体蛋白交叉反应筛查。",
+    "structurePrepZh": "以PDB 28LN中人源40S核糖体环境提取FAU/S30链段，补全缺失侧链并标注rRNA、邻近蛋白和溶剂可及面积。",
+    "structureRef": "RCSB PDB 28LN，2.7 Å冷冻电镜人源核糖体结构",
+    "antibodies": [
+      "抗FAU/S30研究级多克隆抗体",
+      "抗RPS30/FAU研究级单克隆抗体"
+    ],
+    "interfaceFocus": "S30表面环区与18S rRNA邻近界面",
+    "designMode": "低优先级检测抗体设计",
+    "candidates": [
+      {
+        "target": "EIF2AK2",
+        "rationale": "EIF2AK2/PKR在病毒双链RNA感知后磷酸化EIF2S1，直接触发翻译抑制与抗病毒应激；其在流感和冠状病毒感染通路中与FAU相关的翻译应激背景一致。"
+      },
+      {
+        "target": "EIF2S1",
+        "rationale": "EIF2S1是整合应激反应的核心底物，其Ser51磷酸化决定全局翻译起始抑制；适合作为FAU相关核糖体翻译异常的同通路机制节点。"
+      },
+      {
+        "target": "CXCL10",
+        "rationale": "CXCL10由干扰素抗病毒通路诱导并作为分泌趋化因子驱动炎症细胞募集；相较胞内FAU，其胞外可及性更适合阻断型抗体开发。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

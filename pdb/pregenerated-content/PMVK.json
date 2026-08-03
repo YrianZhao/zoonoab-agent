@@ -1,0 +1,65 @@
+{
+  "gene": "PMVK",
+  "generatedAt": "2026-08-03T15:24:00.522Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PMVK编码磷酸甲羟戊酸激酶，是甲羟戊酸途径中将5-phosphomevalonate磷酸化为5-diphosphomevalonate的胞质酶，遗传变异与汗孔角化症及免疫细胞计数性状相关。该蛋白缺乏跨膜区和分泌信号，天然抗原可及性不符合常规体内阻断抗体靶点特征，更适宜作为结构抗原用于细胞内递送抗体或研究型结合分子设计。相较同通路HMGCR等已高度药物化靶点，PMVK具有高分辨率人源晶体结构和明确底物结合口袋，可优先用于构象选择性抗体片段开发，但转化优先级需受胞内定位限制约束。",
+    "mechanism": "设计结合分子覆盖PMVK ATP结合沟槽或磷酸甲羟戊酸结合位点，空间阻断ATP与底物协同定位，抑制磷酸转移反应。",
+    "selectedEpitope": "优先锁定GHMP激酶核心结构中的ATP结合P-loop邻近沟槽及底物结合裂隙边缘。",
+    "diseaseDirection": "甲羟戊酸通路相关角化异常",
+    "domain": "PMVK为胞质GHMP激酶家族酶，含N端ATP结合核心、底物结合裂隙和C端盖状区域。",
+    "evidence": "PMVK结构与甲羟戊酸通路疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q15126功能与亚细胞定位注释",
+      "RCSB PDB 3CH4人源PMVK晶体结构",
+      "Reactome甲羟戊酸及胆固醇生物合成通路"
+    ],
+    "referenceEntries": "UniProt Q15126；RCSB PDB 3CH4；Reactome mevalonate pathway",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ATP结合P-loop及邻近催化沟槽",
+        "直接干预ATP进入与磷酸转移构象组织，适合抑制型片段设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "磷酸甲羟戊酸底物结合裂隙边缘",
+        "可阻断底物定位并提高对催化状态构象的选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端盖状结构外表面",
+        "结构暴露度较好但功能阻断证据较弱，适合非抑制型识别分子",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PMVK为胞内代谢酶，常规IgG体内可及性不足；设计应限定为Fab/VHH片段、细胞内递送格式或体外机制验证用途。",
+    "structurePrepZh": "以3CH4链B为抗原模板，保留催化口袋构象信息，移除结晶水与非关键小分子后进行质子化、缺失侧链修复和口袋网格定义。",
+    "structureRef": "Human phosphomevalonate kinase crystal structure, PDB 3CH4, 1.76 Å",
+    "antibodies": [
+      "无已批准PMVK靶向治疗性抗体",
+      "研究级抗PMVK检测抗体"
+    ],
+    "interfaceFocus": "ATP结合沟槽与底物结合裂隙交界面",
+    "designMode": "胞内酶抑制型片段",
+    "candidates": [
+      {
+        "target": "MVK",
+        "rationale": "MVK位于同一甲羟戊酸途径上游，催化mevalonate生成5-phosphomevalonate；其遗传缺陷与炎症性甲羟戊酸激酶缺乏相关，可作为通路机制对照靶点。"
+      },
+      {
+        "target": "MVD",
+        "rationale": "MVD紧邻PMVK下游，催化5-diphosphomevalonate脱羧生成isopentenyl diphosphate；与PMVK共享代谢通量控制背景，适合并行评估下游节点干预价值。"
+      },
+      {
+        "target": "FDPS",
+        "rationale": "FDPS位于异戊二烯焦磷酸下游分支，参与法呢基焦磷酸生成并影响蛋白异戊二烯化；可用于比较PMVK上游阻断与下游异戊二烯化节点调控差异。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

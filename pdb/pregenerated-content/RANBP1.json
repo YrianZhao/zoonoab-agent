@@ -1,0 +1,65 @@
+{
+  "gene": "RANBP1",
+  "generatedAt": "2026-08-03T15:52:42.849Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RANBP1参与Ran-GTP核质转运循环，可结合Ran-GTP并促进RanGAP1介导的GTP水解，影响病毒蛋白核输入、细胞周期与核孔运输稳态。该蛋白主要为胞质可溶性Ran调控因子，缺乏稳定胞外结构域或分泌形式，因此作为常规治疗性抗体抗原的可及性较弱，更适合细胞内递送抗体片段或机制研究抗体。相较于CCR5、CXCR4、TNF等同疾病方向中具有明确胞外可及性的靶点，RANBP1的优先级应定位为探索性细胞内靶点，而非首选体内阻断抗体靶点。",
+    "mechanism": "以细胞内抗体片段阻断RANBP1 Ran-binding domain与Ran-GTP的结合，削弱RanGAP1促进的Ran-GTP水解与核质转运循环重置。",
+    "selectedEpitope": "优先覆盖Ran-binding domain中Ran-GTP接触面，避开高度保守疏水核心以保留折叠稳定性。",
+    "diseaseDirection": "HIV感染与核质转运异常",
+    "domain": "RANBP1含Ran-binding domain，可识别Ran-GTP并与RanGAP1协同调控GTP水解。",
+    "evidence": "RANBP1-Ran轴核质转运与HIV关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P43487功能注释",
+      "RCSB PDB 1K5D实验结构",
+      "Ran-GTP核质转运与病毒复制文献"
+    ],
+    "referenceEntries": "UniProt:P43487; RCSB PDB:1K5D; Open Targets:RANBP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Ran-binding domain的Ran-GTP结合界面",
+        "直接干预RANBP1-Ran-GTP复合体形成，机制指向性最强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Ran-binding domain外侧暴露螺旋-环区",
+        "可用于构建高特异性结合抗体，降低对核心界面的构象扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "保守疏水核心及折叠稳定区域",
+        "可能诱导非特异性失折叠或交叉反应，功能解释风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RANBP1为胞内可溶蛋白，体内抗体可及性是主要风险。建议采用VHH、intrabody或递送系统验证，并严格区分结合阻断与蛋白失稳效应。",
+    "structurePrepZh": "以PDB 1K5D实验晶体结构为模板，保留代表性抗原链，校正缺失侧链与质子化状态，并映射Ran-GTP接触残基。",
+    "structureRef": "RCSB PDB 1K5D; X-ray diffraction 2.7 Å",
+    "antibodies": [
+      "无已获批RANBP1靶向抗体",
+      "研究级抗RANBP1抗体"
+    ],
+    "interfaceFocus": "RANBP1-Ran-GTP结合界面",
+    "designMode": "胞内VHH阻断",
+    "candidates": [
+      {
+        "target": "RAN",
+        "rationale": "RAN是RANBP1直接结合的GTP酶核心节点，控制核质转运方向性与Ran-GTP/Ran-GDP循环，可作为同一通路的机制验证靶点。"
+      },
+      {
+        "target": "RANGAP1",
+        "rationale": "RANGAP1与RANBP1协同促进Ran-GTP水解，位于同一Ran循环终止步骤，适合用于区分RANBP1结合阻断与GTP水解调控效应。"
+      },
+      {
+        "target": "XPO1",
+        "rationale": "XPO1依赖Ran-GTP介导核输出，并与HIV Rev介导的病毒RNA核输出相关，是同一核质转运疾病通路中可药物化程度更高的节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

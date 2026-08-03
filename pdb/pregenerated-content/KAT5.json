@@ -1,0 +1,65 @@
+{
+  "gene": "KAT5",
+  "generatedAt": "2026-08-03T13:36:39.591Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KAT5/TIP60 是核内 MYST 家族赖氨酸乙酰转移酶，参与组蛋白 H4/H2A 乙酰化、ATM 依赖性 DNA 损伤应答、转录调控及神经发育相关染色质稳态，Open Targets 显示其与神经发育异常、神经退行性疾病和肿瘤存在广泛遗传与功能关联。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌特征，因此常规体内阻断型抗体的抗原可及性不具优势，但重组结构域可支持体外结构抗体、胞内抗体或递送型抗体设计。相较同通路中高度冗余的组蛋白修饰酶，KAT5 具有明确的催化 MYST 结构域晶体结构和可验证的乙酰辅酶 A 结合口袋，适合作为机制验证优先靶点。",
+    "mechanism": "通过抗体结合 KAT5 MYST 催化结构域，空间阻断乙酰辅酶A与赖氨酸底物进入活性沟槽，抑制组蛋白和ATM底物乙酰化反应。",
+    "selectedEpitope": "优先靶向 MYST 催化结构域中乙酰辅酶A结合沟槽邻近的底物识别界面，避免完全覆盖保守锌结合核心。",
+    "diseaseDirection": "神经发育异常与肿瘤染色质调控",
+    "domain": "KAT5 含N端染色质结合区域、保守 MYST 乙酰转移酶结构域及C2HC型锌指样催化核心。",
+    "evidence": "KAT5染色质乙酰化与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q92993 functional annotation",
+      "RCSB PDB 2OU2 experimental structure",
+      "MYST acetyltransferase and DNA damage response literature"
+    ],
+    "referenceEntries": "UniProt: Q92993; RCSB PDB: 2OU2; HGNC: KAT5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "MYST结构域乙酰辅酶A结合沟槽邻近底物进入面",
+        "可直接干扰辅因子与赖氨酸底物协同定位，利于获得功能阻断抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域外侧非保守螺旋-环区",
+        "结构暴露度较高，可用于稳定结合型抗体或构象探针开发",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C2HC锌结合催化核心及高度保守残基周边",
+        "序列保守且结构稳定性敏感，存在交叉反应和扰动折叠风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "KAT5为核内酶，天然抗原可及性限制显著；抗体设计应定位于结构验证、胞内递送或intrabody策略，并严格评估MYST家族交叉反应。",
+    "structurePrepZh": "以PDB 2OU2链A为模板，保留催化结构域主构象，检查缺失环区、锌结合位点和配体邻近残基后进行表面可及性标注。",
+    "structureRef": "RCSB PDB 2OU2; X-ray diffraction, 2.3 Å",
+    "antibodies": [
+      "anti-TIP60 clone C7",
+      "anti-KAT5 polyclonal antibody"
+    ],
+    "interfaceFocus": "MYST催化沟槽与底物赖氨酸进入界面",
+    "designMode": "胞内功能阻断抗体",
+    "candidates": [
+      {
+        "target": "ATM",
+        "rationale": "ATM 是 DNA 双链断裂应答核心激酶，KAT5 介导的乙酰化可促进 ATM 激活；二者位于同一 DNA 损伤应答轴。"
+      },
+      {
+        "target": "H2AX",
+        "rationale": "H2AX 是 DNA 损伤后 γH2AX 信号平台的核心组蛋白变体，与 KAT5 参与的染色质损伤应答和修复复合体募集密切相关。"
+      },
+      {
+        "target": "EP400",
+        "rationale": "EP400 是 TIP60/p400 染色质重塑复合体成员，与 KAT5 协同调控组蛋白乙酰化、转录和基因组稳定性。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "CAND1",
+  "generatedAt": "2026-08-03T10:58:45.130Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CAND1 是细胞内 cullin-RING E3 泛素连接酶循环调控因子，可结合未 neddylation 的 CUL1-RBX1 复合体并促进底物受体交换，从而影响蛋白稳态与脂质代谢相关调控网络。Open Targets 关联信号主要集中于 HDL 胆固醇、胆固醇酯和磷脂比例等脂质表型，提示其更适合作为机制研究靶点而非经典可药性膜抗原。CAND1 缺乏胞外结构域或分泌暴露形式，完整 IgG 体内中和可及性明显低于膜受体或分泌因子，因此抗体设计优先限定为结构生物学、胞内递送或细胞内抗体场景。",
+    "mechanism": "设计分子拟阻断 CAND1 HEAT-repeat 超螺旋与未 neddylation CUL1-RBX1 的结合界面，干预 CRL 复合体装配重塑与底物受体交换。",
+    "selectedEpitope": "优先覆盖 CAND1 N/C 端 HEAT-repeat 形成的 CUL1 夹持界面，避开高度埋藏疏水核心。",
+    "diseaseDirection": "脂质代谢表型与蛋白稳态调控",
+    "domain": "CAND1 由连续 HEAT/TPR-like α螺旋重复构成，形成弯曲超螺旋支架并包裹 CUL1。",
+    "evidence": "CAND1-CRL 装配调控与脂质表型遗传关联证据",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProtKB Q86VP6 功能注释",
+      "RCSB PDB 1U6G 晶体结构记录",
+      "CAND1-CUL1-RBX1 结构与 CRL 循环文献"
+    ],
+    "referenceEntries": "UniProt Q86VP6；RCSB PDB 1U6G；Open Targets CAND1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CUL1 接触面邻近的 CAND1 HEAT-repeat 内凹界面",
+        "直接干预 CAND1 对未 neddylation CUL1 的夹持结合",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N 端 HEAT-repeat 臂部的 RBX1/CUL1 邻近接触区",
+        "可能削弱复合体稳定性，适合作为非竞争性构象调节表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离 CUL1 接触面的外凸 HEAT-repeat 表面",
+        "可及性较好但功能阻断相关性较弱，需结合突变验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CAND1 为胞内蛋白，常规抗体体内可及性不足；应优先用于结构阻断验证、细胞内抗体或递送平台，并通过 CUL1 竞争结合实验确认功能表位。",
+    "structurePrepZh": "以 PDB 1U6G 的 X-ray 结构为模板，保留 CAND1-CUL1-RBX1 复合体界面，补全缺失环区并评估 3.1 Å 分辨率下侧链构象不确定性。",
+    "structureRef": "Goldenberg et al., Cell 2004；PDB 1U6G CAND1-CUL1-RBX1",
+    "antibodies": [
+      "无已批准 CAND1 靶向治疗性抗体",
+      "研究级抗 CAND1 单克隆抗体"
+    ],
+    "interfaceFocus": "CAND1 HEAT-repeat 与 CUL1-RBX1 结合沟槽",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "CUL1",
+        "rationale": "CUL1 是 SCF 型 cullin-RING E3 连接酶核心支架，与 CAND1 直接形成复合体并参与 neddylation 依赖的 CRL 循环。"
+      },
+      {
+        "target": "RBX1",
+        "rationale": "RBX1 与 CUL1 C 端结合并招募 E2 泛素结合酶，是 CAND1-CUL1-RBX1 结构中的同一 CRL 装配轴关键组分。"
+      },
+      {
+        "target": "NEDD8",
+        "rationale": "NEDD8 修饰 CUL1 后促进 CAND1 解离并激活 CRL，因此位于同一 neddylation-CRL 动态调控通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

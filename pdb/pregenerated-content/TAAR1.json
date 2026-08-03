@@ -1,0 +1,65 @@
+{
+  "gene": "TAAR1",
+  "generatedAt": "2026-08-03T17:06:12.560Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TAAR1 为单跨膜A类GPCR，位于细胞膜并通过胞外配体结合与膜近端构象转换参与单胺能调控，其异常已与精神分裂症、广泛性焦虑障碍及帕金森病等神经精神疾病形成稳定关联。其抗原位于胞外环与七跨膜螺旋外侧界面，具备膜受体可及性优势，适合通过抗体介导的构象锁定或配体竞争实现功能干预。相较于多位于胞内的下游信号节点，TAAR1 更接近疾病上游输入端，且相较于广泛分布的胺类转运体，具有更明确的受体选择性与结构可塑性，优先级更高。",
+    "mechanism": "阻断胺类配体与TAAR1胞外口袋结合，并稳定受体非活化构象，抑制后续Gs/cAMP耦联。",
+    "selectedEpitope": "优先定位于ECL2及其邻近胞外口袋边缘，兼顾配体入口遮挡与构象锁定。",
+    "diseaseDirection": "精神神经疾病",
+    "domain": "七跨膜螺旋胞外口袋与ECL2/ECL3界面，兼具N端外露段",
+    "evidence": "TAAR1 抗体设计证据包",
+    "evidenceSources": [
+      "UniProt: Q96RJ0",
+      "RCSB PDB: 8W88",
+      "Open Targets Platform",
+      "Human Protein Atlas"
+    ],
+    "referenceEntries": "UniProt Q96RJ0；PDB 8W88；GPCRdb TAAR1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ECL2与TM5-TM6外侧口袋边缘",
+        "可直接干预配体进入并影响受体活化态平衡",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ECL1/ECL2交界及N端近膜区",
+        "适合形成构象限制并提高物种选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ECL3与TM7外侧界面",
+        "可能影响受体稳定性但对功能抑制特异性较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TAAR1 为低丰度膜受体且构象依赖性强，表位过深可能降低可结合性，过浅则削弱功能阻断。建议优先采用识别胞外口袋边缘的 Fab，并辅以冷冻电镜复核复合物构象。",
+    "structurePrepZh": "以8W88为主模板完成缺失环区修补、糖基化位点标注与胞外面定向，必要时结合同源模型补全柔性ECL2。",
+    "structureRef": "RCSB 8W88；TAAR1 cryo-EM structure",
+    "antibodies": [
+      "TAAR1功能阻断抗体（已报道同类）",
+      "GPCR胞外口袋识别抗体（同类策略）"
+    ],
+    "interfaceFocus": "ECL2、TM5-TM6外侧与配体入口",
+    "designMode": "structure-guided",
+    "candidates": [
+      {
+        "target": "DRD2",
+        "rationale": "与TAAR1同属单胺能精神疾病调控轴，DRD2为精神分裂症抗精神病药物核心靶点，适合作为功能网络参照。其为膜受体，且与TAAR1在单胺信号失衡场景中存在真实通路关联。"
+      },
+      {
+        "target": "SLC6A3",
+        "rationale": "多巴胺转运体参与单胺清除，与TAAR1共同决定突触间单胺可用性。其在帕金森病与精神疾病相关通路中均具生物学相关性，可作为同通路比较靶点。"
+      },
+      {
+        "target": "HTR2A",
+        "rationale": "5-HT2A 受体属于神经精神疾病关键GPCR靶点，与TAAR1共享胞外受体可及性与神经调控背景。其在精神分裂症相关网络中具有明确证据，可用于同类靶点优先级对照。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

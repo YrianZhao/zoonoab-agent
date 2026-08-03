@@ -1,0 +1,65 @@
+{
+  "gene": "RBPJ",
+  "generatedAt": "2026-08-03T20:52:18.695Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RBPJ是Notch通路的核心DNA结合转录因子，介导NICD-MAML复合体在CSL结合位点上的转录激活，异常Notch转录输出与Adams-Oliver综合征及多类肿瘤发生相关。该蛋白主要定位于细胞核，并非分泌蛋白或膜受体，天然抗原可及性弱，因此更适合采用细胞内递送型抗体片段或研究级结构阻断抗体策略。其优先级来自通路枢纽地位：相比单一Notch受体或配体，RBPJ整合多受体输入，可直接干预共同转录执行节点，但成药性风险高于胞外Notch靶点。",
+    "mechanism": "阻断RBPJ β-trefoil结构域与NICD RAM结构域结合，或干扰其与DNA CSL位点的接触，从而抑制NICD-MAML依赖性转录复合体形成。",
+    "selectedEpitope": "优先锚定β-trefoil结构域RAM结合沟槽，兼顾DNA结合域邻近正电荷界面。",
+    "diseaseDirection": "Notch通路相关发育异常与肿瘤",
+    "domain": "RBPJ含NTD、β-trefoil结构域及C端结构域，共同形成DNA结合与NICD-MAML装配界面。",
+    "evidence": "RBPJ-Notch转录复合体结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q06330功能与定位注释",
+      "RCSB PDB 2F8X晶体结构记录",
+      "Notch/RBPJ/NICD-MAML转录复合体文献"
+    ],
+    "referenceEntries": "UniProt Q06330；RCSB PDB 2F8X；Open Targets RBPJ",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "β-trefoil结构域NICD RAM结合沟槽",
+        "直接阻断RBPJ与NICD RAM结构域相互作用，抑制转录激活复合体装配",
+        "优先"
+      ],
+      [
+        "Site B",
+        "NTD与β-trefoil邻近的DNA结合正电荷表面",
+        "干扰RBPJ识别CSL DNA序列，适合构建功能阻断型片段",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端结构域MAML/NICD复合体邻近界面",
+        "可能影响三元复合体稳定性，但需避免非特异性扰动核心折叠",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RBPJ为核内DNA结合蛋白，常规抗体难以到达作用位点；建议限定为细胞内抗体、递送型Fab/VHH或机制验证工具分子。",
+    "structurePrepZh": "以2F8X实验晶体结构为模板，保留RBPJ与DNA、NICD、MAML界面信息，补全缺失环区并评估3.25 Å分辨率带来的侧链不确定性。",
+    "structureRef": "PDB 2F8X；Notch转录复合体X射线结构，3.25 Å",
+    "antibodies": [
+      "暂无获批RBPJ治疗性抗体",
+      "抗RBPJ研究级单克隆抗体"
+    ],
+    "interfaceFocus": "NICD RAM结合沟槽与CSL DNA接触面",
+    "designMode": "细胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "NOTCH1",
+        "rationale": "NOTCH1释放的NICD与RBPJ结合并驱动Notch靶基因转录，是同一转录激活轴的上游受体节点。其胞外负调控区和配体结合区较RBPJ更具抗体可及性。"
+      },
+      {
+        "target": "DLL4",
+        "rationale": "DLL4通过结合NOTCH1/NOTCH4触发受体裂解和NICD生成，位于RBPJ依赖性转录输出的配体启动环节。阻断DLL4-Notch相互作用可降低下游RBPJ转录激活。"
+      },
+      {
+        "target": "MAML1",
+        "rationale": "MAML1作为RBPJ-NICD复合体的转录共激活因子，稳定三元复合体并促进靶基因表达。其与RBPJ/NICD装配界面是同一Notch核内转录模块的候选干预节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

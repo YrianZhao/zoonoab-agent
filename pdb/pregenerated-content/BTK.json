@@ -1,0 +1,65 @@
+{
+  "gene": "BTK",
+  "generatedAt": "2026-08-03T10:53:16.127Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BTK 是 BCR、CXCR4 与 Fc 受体下游的非受体酪氨酸激酶，参与 PLCG2 磷酸化、Ca2+ 动员和 NF-κB/NFAT 激活，异常活化支持慢性淋巴细胞白血病等 B 细胞恶性肿瘤存活。BTK 为胞内蛋白，天然抗原可及性弱，但其 PH-TH、SH3、SH2 与激酶结构域具有明确可重组表达和结构解析基础，适合用于胞内靶向抗体片段、降解偶联或机制探针设计。相较 SYK、PIK3CD 等同通路激酶，BTK 具备更强的人类遗传学证据和成熟药理学验证，疾病关联得分高且结构信息充分，优先级较高。",
+    "mechanism": "设计抗体片段结合 BTK SH2-kinase 调控界面或激酶 N-lobe/C-lobe 裂隙，阻断底物 PLCG2 招募及 Tyr551/Tyr223 介导的活化构象传递。",
+    "selectedEpitope": "优先覆盖激酶结构域 ATP 裂隙邻近的 activation loop 与 SH2-kinase 调控界面。",
+    "diseaseDirection": "B细胞恶性肿瘤与先天免疫缺陷",
+    "domain": "BTK 含 PH、Tec homology、SH3、SH2 及 C端酪氨酸激酶结构域，1BTK 解析其 PH 结构域。",
+    "evidence": "BTK遗传学-结构-药理学综合证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB Q06187 functional annotation",
+      "RCSB PDB 1BTK X-ray structure",
+      "CLL BCR signaling and BTK inhibitor clinical literature"
+    ],
+    "referenceEntries": "UniProt Q06187；RCSB PDB 1BTK；Open Targets BTK",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域 activation loop 与 ATP 结合裂隙边缘",
+        "可限制催化活化构象并干扰底物磷酸化",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SH2 结构域磷酸酪氨酸结合沟槽及 SH2-kinase 邻接面",
+        "可阻断磷酸化适配蛋白和 PLCG2 相关复合体装配",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PH 结构域 PIP3 结合口袋邻近区域",
+        "可能影响膜募集，但需避免广泛干扰同源 PH 结构域选择性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BTK 为胞内激酶，常规全长 IgG 难以直接进入细胞；设计宜采用 VHH、intrabody 或递送偶联形式，并重点评估 Tec 家族同源性导致的交叉反应。",
+    "structurePrepZh": "以 1BTK PH 结构域作为膜募集表位参考，另需整合 BTK 激酶结构域和全长 AlphaFold 模型，补全缺失环区并标注 Tyr223、Tyr551 与 ATP 位点。",
+    "structureRef": "RCSB PDB 1BTK，BTK PH domain，1.6 Å X-ray",
+    "antibodies": [
+      "PRN1008 rilzabrutinib",
+      "Ibrutinib"
+    ],
+    "interfaceFocus": "PH-PIP3口袋、SH2结合沟槽、激酶活化环",
+    "designMode": "胞内VHH/intrabody",
+    "candidates": [
+      {
+        "target": "PLCG2",
+        "rationale": "PLCG2 是 BTK 直接磷酸化底物，驱动 IP3/DAG 生成和钙信号放大；其突变也与 BTK 抑制剂耐药相关。"
+      },
+      {
+        "target": "SYK",
+        "rationale": "SYK 位于 BCR 近端信号层级，磷酸化 BLNK 并促进 BTK-PLCG2 信号复合体形成，是同一 B 细胞受体通路的上游可干预节点。"
+      },
+      {
+        "target": "PIK3CD",
+        "rationale": "PIK3CD 产生 PIP3 以促进 BTK PH 结构域介导的膜募集，连接 BCR 存活信号与 PI3K-AKT 轴。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

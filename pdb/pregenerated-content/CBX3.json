@@ -1,0 +1,65 @@
+{
+  "gene": "CBX3",
+  "generatedAt": "2026-08-03T11:03:13.419Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CBX3编码HP1γ，是识别H3K9me2/3并参与异染色质压缩、转录沉默和DNA损伤应答的核内染色质结合蛋白；其肿瘤关联主要体现为细胞周期、基因组稳定性和表观遗传转录状态的改变。该蛋白缺乏胞外结构域、分泌信号肽和膜受体拓扑，天然抗原可及性不适合常规体内抗体阻断，但可作为胞内抗体、研究级Fab/VHH或递送型抗体片段的结构验证靶点。相比广泛胞外肿瘤靶点，CBX3的优势在于5T1I提供1.6 Å实验结构，chromodomain甲基赖氨酸识别口袋清晰，可支持高分辨率表位约束设计；其临床转化优先级应低于可直接暴露于细胞外空间的同通路靶点。",
+    "mechanism": "设计抗体片段遮蔽CBX3 chromodomain芳香笼，阻断其与H3K9me2/3肽段的甲基赖氨酸依赖性结合，削弱HP1γ介导的染色质定位。",
+    "selectedEpitope": "优先覆盖chromodomain β折叠-α螺旋邻近的H3K9me识别芳香笼与肽结合沟槽。",
+    "diseaseDirection": "肿瘤表观遗传调控与染色质稳态",
+    "domain": "CBX3含N端chromodomain、中央hinge区和C端chromoshadow dimerization domain。",
+    "evidence": "CBX3染色质识别结构与肿瘤关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q13185蛋白功能注释",
+      "RCSB PDB 5T1I晶体结构",
+      "HP1 chromodomain-H3K9me结构生物学文献"
+    ],
+    "referenceEntries": "UniProt Q13185；RCSB PDB 5T1I；Open Targets CBX3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "chromodomain H3K9me肽结合沟槽与芳香笼边缘",
+        "直接干预甲基化组蛋白识别，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "chromodomain外侧α螺旋及β片层暴露面",
+        "保留结构稳定性并提供片段结合面积，可作别构干预",
+        "备选"
+      ],
+      [
+        "Site C",
+        "chromoshadow结构域二聚化界面",
+        "可能影响HP1γ二聚化，但需避免破坏同源HP1家族保守界面选择性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CBX3为核内蛋白，体内抗体可及性和递送是主要限制；chromodomain在CBX1、CBX5中保守，需通过芳香笼邻近非保守残基提高选择性。",
+    "structurePrepZh": "以5T1I链A/B/C为实验模板，保留chromodomain核心折叠，检查晶体接触、缺失残基和质子化状态后进行表位暴露度评估。",
+    "structureRef": "RCSB PDB 5T1I，X-ray diffraction，1.6 Å",
+    "antibodies": [
+      "研究级anti-CBX3/HP1γ抗体",
+      "研究级anti-HP1γ单克隆抗体"
+    ],
+    "interfaceFocus": "chromodomain芳香笼与H3K9me肽结合沟槽",
+    "designMode": "胞内表位阻断",
+    "candidates": [
+      {
+        "target": "SUV39H1",
+        "rationale": "SUV39H1催化H3K9甲基化并生成CBX3识别的H3K9me2/3标记，位于同一异染色质建立通路上。该酶靶点更适合小分子或降解策略，可作为上游机制参照。"
+      },
+      {
+        "target": "CBX5",
+        "rationale": "CBX5编码HP1α，同样通过chromodomain识别H3K9me3并参与异染色质压缩。与CBX3同属HP1轴，可用于选择性和功能冗余风险评估。"
+      },
+      {
+        "target": "SETDB1",
+        "rationale": "SETDB1介导H3K9三甲基化并驱动转录沉默，在肿瘤表观遗传重编程中与HP1蛋白募集相关。其上游酶学作用可作为同通路干预候选。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

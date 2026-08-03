@@ -1,0 +1,65 @@
+{
+  "gene": "RRAS2",
+  "generatedAt": "2026-08-03T16:14:51.771Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RRAS2编码小GTP酶TC21，参与RAS/MAPK与PI3K-AKT信号轴，胚系或功能增强变异可促进Noonan综合征相关发育异常信号输出。该蛋白主要定位于质膜内侧并缺乏胞外结构域，天然抗原可及性不利于常规细胞外阻断抗体，因此更适合以重组蛋白结构为基础开展胞内递送型抗体片段或研究级构象捕获设计。相较于RAF、MEK等下游节点，RRAS2处于致病RASopathy信号的近端小GTP酶层级，可更直接区分RRAS2依赖的异常GTP态构象与广泛下游通路抑制效应。",
+    "mechanism": "设计抗体片段结合RRAS2 GTPase结构域Switch I/Switch II邻近界面，阻断其与RAF1 RBD或PI3K调节复合体的效应蛋白识别。",
+    "selectedEpitope": "优先覆盖GTPase结构域Switch I与Switch II效应蛋白结合面，避开核苷酸结合核心残基。",
+    "diseaseDirection": "RASopathy与Noonan综合征",
+    "domain": "RRAS2由保守小GTP酶G结构域及C端高变膜定位区组成，PDB 9B4Q覆盖催化核心。",
+    "evidence": "RRAS2-RASopathy结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联证据",
+      "UniProt P62070功能与亚细胞定位注释",
+      "RCSB PDB 9B4Q晶体结构记录",
+      "ClinVar与RASopathy相关变异资料"
+    ],
+    "referenceEntries": "UniProt P62070；RCSB PDB 9B4Q；Open Targets RRAS2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Switch I/Switch II效应蛋白结合界面",
+        "直接干扰RAF1 RBD与PI3K相关效应蛋白识别，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "G4-G5核苷酸状态感知邻近表面",
+        "有利于获得GTP态或GDP态构象选择性结合片段",
+        "备选"
+      ],
+      [
+        "Site C",
+        "P-loop与Mg2+/核苷酸结合核心",
+        "可能影响核苷酸结合并带来同源RAS家族交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RRAS2为胞内膜侧小GTP酶，常规抗体药物可及性不足；需采用细胞内递送、intrabody或降解偶联策略，并严格评估RAS家族同源性交叉结合。",
+    "structurePrepZh": "以9B4Q链A为模板，补全缺失侧链与质子化状态，保留核苷酸及Mg2+用于构象约束，并对Switch区柔性进行多构象采样。",
+    "structureRef": "RCSB PDB 9B4Q，X-ray diffraction，1.46 Å",
+    "antibodies": [
+      "抗RAS GTP态构象研究抗体片段",
+      "抗KRAS Switch区胞内抗体片段"
+    ],
+    "interfaceFocus": "Switch I/Switch II效应蛋白识别面",
+    "designMode": "胞内构象阻断",
+    "candidates": [
+      {
+        "target": "PTPN11",
+        "rationale": "PTPN11编码SHP2，是Noonan综合征与RAS/MAPK通路中最经典的上游调节节点，功能增强变异促进RAS-ERK信号持续激活。"
+      },
+      {
+        "target": "SOS1",
+        "rationale": "SOS1是RAS鸟嘌呤核苷酸交换因子，Noonan综合征相关变异可增强RAS装载GTP并放大MAPK信号。"
+      },
+      {
+        "target": "RAF1",
+        "rationale": "RAF1为RAS-GTP直接效应激酶，致病变异与Noonan综合征和心肌肥厚表型相关，处于RRAS2下游MAPK传导核心位置。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

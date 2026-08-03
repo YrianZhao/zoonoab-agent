@@ -1,0 +1,65 @@
+{
+  "gene": "MAGEA11",
+  "generatedAt": "2026-08-03T14:00:57.534Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAGEA11 属于癌睾抗原 MAGE-A 家族，在食管鳞癌、胃癌及头颈鳞癌中可异常表达，并通过增强雄激素受体转录活性、影响细胞周期与肿瘤细胞适应性参与肿瘤进展。该蛋白主要定位于细胞内，天然抗原可及性不符合常规裸抗体直接结合条件，但其肿瘤限制性表达及可形成 HLA 呈递肽-MHC 复合物，为 TCR-like 抗体或抗体偶联免疫平台提供可及性入口。相较广泛表达的细胞周期或转录调控靶点，MAGEA11 的癌睾抗原属性提供更高肿瘤选择性；但因 Open Targets 关联分值较低且缺乏膜外结构域，优先级应低于具有直接胞外可及性的受体型肿瘤靶点。",
+    "mechanism": "设计 TCR-like 抗体识别 MAGEA11 衍生肽与 HLA-I 复合物，阻断肿瘤细胞抗原呈递界面的免疫识别逃逸并介导效应细胞杀伤。",
+    "selectedEpitope": "优先解析 MAGE homology domain 中可被 HLA-I 呈递的线性肽段，并以肽-HLA 复合物暴露面为表位。",
+    "diseaseDirection": "鳞状细胞癌与胃癌免疫治疗",
+    "domain": "MAGEA11 含保守 MAGE homology domain，PDB 6WJH 覆盖多链晶体结构，缺乏跨膜区和胞外结构域。",
+    "evidence": "MAGEA11 癌睾抗原与肿瘤免疫靶向证据包",
+    "evidenceSources": [
+      "Open Targets Platform 肿瘤遗传与表达关联",
+      "UniProtKB P43364 蛋白功能与定位注释",
+      "RCSB PDB 6WJH X 射线晶体结构",
+      "Cancer-Testis Antigen 与 MAGE-A 家族肿瘤免疫文献"
+    ],
+    "referenceEntries": "UniProtKB: P43364；RCSB PDB: 6WJH；Open Targets: MAGEA11",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "MAGE homology domain 内 HLA-I 呈递肽暴露面",
+        "适合 TCR-like 抗体识别肿瘤细胞表面肽-MHC 复合物",
+        "优先"
+      ],
+      [
+        "Site B",
+        "MAGE homology domain 保守疏水沟槽邻近表面",
+        "可用于结构辅助筛选结合型抗体片段，但需验证细胞内抗原递送场景",
+        "备选"
+      ],
+      [
+        "Site C",
+        "MAGE-A 家族高度保守核心折叠区",
+        "存在 MAGEA 家族交叉反应风险，需进行同源蛋白排除筛选",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAGEA11 为细胞内蛋白，常规抗体难以直接接触天然抗原；设计应限定于肽-HLA 复合物识别，并系统评估 HLA 限制性、肽组交叉反应与正常组织癌睾抗原背景。",
+    "structurePrepZh": "以 6WJH 晶体结构提取 MAGE homology domain 单体，校正缺失侧链与晶体接触界面；另需建立候选 MAGEA11 肽-HLA-I 复合物模型用于表位筛选。",
+    "structureRef": "RCSB PDB 6WJH，X-ray diffraction，2.19 Å",
+    "antibodies": [
+      "TCR-like anti-MAGEA4 peptide-HLA antibody",
+      "TCR-like anti-NY-ESO-1 peptide-HLA antibody"
+    ],
+    "interfaceFocus": "MAGEA11 肽-HLA-I 复合物肽中央凸起区",
+    "designMode": "TCR-like 抗体设计",
+    "candidates": [
+      {
+        "target": "MAGEA4",
+        "rationale": "MAGEA4 为同属 MAGE-A 癌睾抗原，在多种鳞癌和胃癌中具有更充分的免疫治疗开发证据，可作为同通路抗原呈递靶点优先比较。"
+      },
+      {
+        "target": "MAGEA3",
+        "rationale": "MAGEA3 与 MAGEA11 同属 MAGE-A 肿瘤抗原家族，可通过 HLA-I 呈递肿瘤相关肽段；其既往临床免疫治疗研究提供了交叉反应风险评估基础。"
+      },
+      {
+        "target": "AR",
+        "rationale": "MAGEA11 可增强雄激素受体转录活性，AR 是其功能相关转录调控轴的核心节点；在激素依赖性肿瘤背景中可作为机制验证参照靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

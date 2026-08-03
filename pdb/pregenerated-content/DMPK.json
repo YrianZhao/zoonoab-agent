@@ -1,0 +1,65 @@
+{
+  "gene": "DMPK",
+  "generatedAt": "2026-08-03T11:59:23.136Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DMPK 与 1 型强直性肌营养不良存在明确遗传关联，致病核心主要由 DMPK 3′UTR CTG 重复扩增转录本滞留并隔离 MBNL 蛋白驱动，DMPK 蛋白激酶本身并非经典胞外致病配体。DMPK 为胞内丝氨酸/苏氨酸蛋白激酶，缺乏天然胞外结构域或分泌形式，抗原可及性显著弱于膜受体和分泌蛋白。其优先级更适合作为结构生物学与胞内递送抗体平台验证靶点；相较 MBNL1、CELF1 等直接 RNA 剪接病理节点，常规治疗性抗体开发优先级较低。",
+    "mechanism": "胞内抗体需结合 DMPK 激酶结构域 ATP 结合裂隙或底物识别面，阻断 ATP 定位及底物肽进入催化沟槽。",
+    "selectedEpitope": "优先评估激酶 N/C 叶交界的 ATP 结合裂隙与活化环邻近构象表位。",
+    "diseaseDirection": "1型强直性肌营养不良",
+    "domain": "DMPK 含 N 端丝氨酸/苏氨酸激酶结构域、卷曲螺旋区及 C 端膜相关疏水区。",
+    "evidence": "DMPK-DM1遗传关联与激酶结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB Q09013 functional annotation",
+      "RCSB PDB 1WT6 X-ray structure",
+      "OMIM and ClinVar DM1 CTG repeat evidence"
+    ],
+    "referenceEntries": "UniProt Q09013；RCSB PDB 1WT6；MONDO:0008056",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶 N/C 叶之间 ATP 结合裂隙及铰链区",
+        "可直接干扰 ATP 定位与催化构象形成，功能阻断价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "活化环与催化环邻近底物进入面",
+        "可能限制底物肽结合并稳定非活化构象，适合构象选择性设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端卷曲螺旋或膜相关疏水区邻近区域",
+        "结构可及性和抗原制备不确定，且与胞内定位相关风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DMPK 为胞内激酶，常规 IgG 难以触达天然抗原；应限定为胞内抗体、递送型 Fab/VHH 或研究级构象探针，并避免宣称胞外阻断机制。",
+    "structurePrepZh": "以 1WT6 高分辨率晶体结构为模板，保留激酶结构域链 A/B/D 构象，校正缺失环区、质子化状态与 ATP 口袋侧链取向。",
+    "structureRef": "RCSB PDB 1WT6，X-ray diffraction，1.6 Å",
+    "antibodies": [
+      "无已批准DMPK治疗性抗体",
+      "研究级抗DMPK单克隆抗体"
+    ],
+    "interfaceFocus": "ATP铰链区、催化环、活化环底物面",
+    "designMode": "胞内构象阻断",
+    "candidates": [
+      {
+        "target": "MBNL1",
+        "rationale": "MBNL1 被 DMPK CTG 重复扩增 RNA 隔离是 DM1 剪接异常的核心机制节点，直接关联肌肉、心脏和中枢表型。"
+      },
+      {
+        "target": "CELF1",
+        "rationale": "CELF1 在 DM1 中异常上调并改变多种前体 mRNA 剪接程序，与 MBNL 功能丧失共同驱动病理剪接网络。"
+      },
+      {
+        "target": "CNBP",
+        "rationale": "CNBP 为 2 型强直性肌营养不良致病基因，其重复扩增 RNA 毒性机制与 DM1 属同一强直性肌营养不良 RNA 病理轴。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

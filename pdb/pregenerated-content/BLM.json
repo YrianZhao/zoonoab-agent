@@ -1,0 +1,65 @@
+{
+  "gene": "BLM",
+  "generatedAt": "2026-08-03T18:09:49.688Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BLM 是核内 RecQ 解旋酶，参与同源重组、复制叉稳定和 Holliday junction 处理；双等位基因失活导致 Bloom 综合征，并显著增加多癌种易感性。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌形式，抗体抗原可及性弱，因此更适合作为细胞内机制研究或递送型抗体片段验证靶点。相较于可直接阻断的膜受体类肿瘤靶点，BLM 的优先级依据在于遗传因果证据强、结构分辨率高且解旋酶核心界面明确，可支持机制型结合分子设计。",
+    "mechanism": "结合 BLM 解旋酶核心的 ATPase/核酸结合界面，阻断 DNA 底物装载或 ATP 驱动构象转换，从而干扰复制叉修复与同源重组过程。",
+    "selectedEpitope": "优先覆盖 RecA-like ATPase 裂隙邻近 DNA 结合沟槽，避开高度保守 P-loop 催化残基。",
+    "diseaseDirection": "遗传性癌症易感与DNA修复缺陷",
+    "domain": "BLM 含 N 端调控区、RecA-like 解旋酶核心、RQC 结构域及 HRDC DNA 结合结构域。",
+    "evidence": "BLM 遗传性癌症易感与结构机制证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt P54132 功能与定位注释",
+      "RCSB PDB 7XV0 晶体结构记录",
+      "Bloom 综合征与 RecQ 解旋酶文献证据"
+    ],
+    "referenceEntries": "UniProt P54132；RCSB PDB 7XV0；MONDO_0008876",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RecA-like ATPase 裂隙邻近 DNA 结合沟槽",
+        "可干扰 DNA 底物装载和 ATP 驱动解旋构象转换，机制关联明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RQC winged-helix DNA 识别面",
+        "可削弱 BLM 对 DNA 结构底物的识别，适合构建功能阻断型片段",
+        "备选"
+      ],
+      [
+        "Site C",
+        "HRDC 结构域表面酸碱斑块",
+        "可能影响辅助 DNA 结合或蛋白构象稳定，但功能阻断强度需验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BLM 为核内蛋白，常规抗体难以进入细胞核；设计宜采用 Fab/VHH 结构验证、细胞递送或胞内抗体策略，并严格评估 RecQ 家族交叉反应。",
+    "structurePrepZh": "以 7XV0 高分辨率晶体结构为模板，保留抗原链 A/B 中完整解旋酶核心，补全缺失侧链并标注 ATPase、DNA 结合及保守催化位点。",
+    "structureRef": "RCSB PDB 7XV0，X-ray diffraction，1.5 Å",
+    "antibodies": [
+      "抗 BLM 研究级单克隆抗体",
+      "抗 BLM 多克隆检测抗体"
+    ],
+    "interfaceFocus": "ATPase 裂隙、DNA 结合沟槽与 RQC 识别面",
+    "designMode": "胞内机制阻断",
+    "candidates": [
+      {
+        "target": "WRN",
+        "rationale": "WRN 同属 RecQ 解旋酶家族，参与 DNA 复制应激应答和基因组稳定性维持；其缺陷与 Werner 综合征及肿瘤易感相关。"
+      },
+      {
+        "target": "TOP3A",
+        "rationale": "TOP3A 与 BLM-RMI 复合体协同完成双 Holliday junction 溶解，是同源重组中抑制交叉重组的重要酶学组分。"
+      },
+      {
+        "target": "RMI1",
+        "rationale": "RMI1 是 BLM-TOP3A-RMI 复合体的结构性成员，稳定 dissolvasome 并促进同源重组中间体解析。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

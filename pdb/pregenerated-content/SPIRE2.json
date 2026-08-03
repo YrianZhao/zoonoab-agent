@@ -1,0 +1,65 @@
+{
+  "gene": "SPIRE2",
+  "generatedAt": "2026-08-03T16:53:06.424Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SPIRE2 为胞内肌动蛋白成核因子，主要通过 KIND/FMN2 结合、WH2 串联结构域招募肌动蛋白单体并参与肌动蛋白丝装配。Open Targets 关联以毛发颜色、神经退行性疾病、基底细胞癌和皮肤肿瘤等遗传或表达相关证据为主，但缺乏明确的胞外暴露位点。由于 SPIRE2 不是分泌蛋白或膜受体，常规抗体药物的抗原可及性显著弱于同通路中细胞表面受体或分泌调节因子，因此更适合作为机制研究抗体或胞内递送抗体的探索靶点。",
+    "mechanism": "抗体设计宜阻断 SPIRE2 KIND 结构域与 FMN2 N 端相互作用，或遮蔽 WH2 区域的肌动蛋白单体结合界面，从而干预 SPIRE2-FMN2 协同成核复合体形成。",
+    "selectedEpitope": "优先聚焦 5JCY 所示 KIND 结构域的 FMN2 结合沟槽及相邻保守螺旋界面。",
+    "diseaseDirection": "细胞骨架重塑与皮肤肿瘤遗传关联",
+    "domain": "SPIRE2 含 N 端 KIND 结构域、多个 WH2 肌动蛋白结合基序及 C 端膜相关 FYVE 样区域。",
+    "evidence": "SPIRE2 结构域互作与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q8WWL2 functional annotation",
+      "RCSB PDB 5JCY X-ray structure",
+      "Actin nucleation and SPIRE-FMN literature"
+    ],
+    "referenceEntries": "UniProt Q8WWL2；RCSB PDB 5JCY；Open Targets SPIRE2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "KIND 结构域 FMN2 结合沟槽",
+        "直接阻断 SPIRE2-FMN2 复合体形成，机制明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "KIND 结构域保守螺旋外侧面",
+        "可稳定识别折叠核心并变构削弱 FMN2 结合",
+        "备选"
+      ],
+      [
+        "Site C",
+        "WH2 肌动蛋白结合基序邻近区域",
+        "可能干预 G-actin 招募，但柔性高且结构覆盖不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SPIRE2 为胞内蛋白，体内抗体可及性受限；KIND 界面与同源 SPIRE 蛋白存在保守性，需控制交叉反应并优先用于研究级或递送型设计。",
+    "structurePrepZh": "以 5JCY 的 A、B 链为结构模板，保留高分辨率 KIND 折叠核心，补建缺失侧链并标注 FMN2 结合相关保守残基。",
+    "structureRef": "RCSB PDB 5JCY；1.8 Å X-ray KIND domain structure",
+    "antibodies": [
+      "anti-SPIRE2 research antibody",
+      "anti-SPIRE family intracellular antibody"
+    ],
+    "interfaceFocus": "KIND-FMN2 结合沟槽与保守螺旋界面",
+    "designMode": "胞内互作阻断",
+    "candidates": [
+      {
+        "target": "FMN2",
+        "rationale": "FMN2 与 SPIRE2 形成协同肌动蛋白成核复合体，直接处于同一细胞骨架装配通路。其 N 端 SPIRE 结合区域可作为互作阻断研究靶点。"
+      },
+      {
+        "target": "ACTB",
+        "rationale": "ACTB 编码 β-肌动蛋白，是 SPIRE2 WH2 结构域招募的核心单体底物，位于同一肌动蛋白聚合通路。该靶点适合用于通路读出和复合体形成验证。"
+      },
+      {
+        "target": "SPIRE1",
+        "rationale": "SPIRE1 与 SPIRE2 同属 Spire 肌动蛋白成核因子家族，并共享 KIND-FMN 互作和 WH2 介导的肌动蛋白结合机制。其纳入有助于评估选择性与家族补偿效应。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

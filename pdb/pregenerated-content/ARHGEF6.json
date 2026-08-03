@@ -1,0 +1,65 @@
+{
+  "gene": "ARHGEF6",
+  "generatedAt": "2026-08-03T10:34:58.361Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ARHGEF6编码αPIX，是Rac1/Cdc42的小GTP酶鸟嘌呤核苷酸交换因子，参与突触肌动蛋白重塑、树突棘成熟和PAK信号组织，遗传变异与X连锁非综合征性智力障碍相关。该蛋白主要定位于胞质侧支架复合体，缺乏天然胞外结构域或分泌形式，抗原可及性不适合作为常规体内阻断抗体靶点，更适合细胞内研究抗体、递送型抗体片段或结构探针开发。相较于同通路下游PAK或RAC1，ARHGEF6处于Rac/Cdc42激活复合体上游，具有疾病遗传证据指向性，但抗体药物化优先级受细胞内定位限制，应列为机制验证优先而非经典治疗抗体优先靶点。",
+    "mechanism": "设计抗体片段结合ARHGEF6 SH3结构域的多脯氨酸配体结合沟槽，干扰其与GIT1/PAK复合体相关蛋白的装配，从而影响Rac1/Cdc42局部激活。",
+    "selectedEpitope": "优先覆盖1UJY所示SH3结构域RT-Src环及n-Src环围成的PxxP配体结合界面。",
+    "diseaseDirection": "X连锁智力障碍与突触发育",
+    "domain": "ARHGEF6含SH3、DH、PH及GIT结合区；1UJY解析其N端SH3结构域溶液构象。",
+    "evidence": "ARHGEF6突触Rho GTPase通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q15052功能与结构域注释",
+      "RCSB PDB 1UJY溶液NMR结构",
+      "OMIM/ClinVar智力障碍相关变异记录"
+    ],
+    "referenceEntries": "UniProt Q15052；RCSB PDB 1UJY；Open Targets ARHGEF6",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SH3结构域RT-Src环与n-Src环形成的PxxP配体结合沟槽",
+        "可直接干扰SH3介导的支架蛋白结合，适合机制阻断型片段设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DH-PH模块中Rac1/Cdc42交换反应相关催化界面",
+        "理论上可抑制GEF催化活性，但需额外全长或结构模型支持",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离配体沟槽的SH3外侧β片层表面",
+        "构象稳定但功能阻断价值有限，可能仅适合作为检测抗体表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ARHGEF6为胞内蛋白，常规IgG难以到达作用位点；SH3家族界面保守性较高，需通过交叉反应筛查排除与ARHGEF7及其他SH3蛋白的非特异结合。",
+    "structurePrepZh": "以1UJY的NMR构象簇为模板，保留代表性低能构象并比较RT-Src环、n-Src环柔性；DH-PH区域需采用AlphaFold或同源结构补全。",
+    "structureRef": "RCSB PDB 1UJY；human αPIX SH3 domain NMR structure",
+    "antibodies": [
+      "研究级anti-ARHGEF6抗体",
+      "研究级anti-αPIX抗体"
+    ],
+    "interfaceFocus": "SH3结构域PxxP配体结合沟槽",
+    "designMode": "胞内抗体片段",
+    "candidates": [
+      {
+        "target": "PAK3",
+        "rationale": "PAK3位于Rac/Cdc42下游并参与神经元形态发生，致病变异同样与X连锁智力障碍相关；其激酶活性与突触发育表型具有明确功能联系。"
+      },
+      {
+        "target": "RAC1",
+        "rationale": "RAC1是ARHGEF6催化激活的核心小GTP酶，调控肌动蛋白骨架与树突棘结构；该节点可用于验证GEF上游扰动对小GTP酶活化状态的影响。"
+      },
+      {
+        "target": "GIT1",
+        "rationale": "GIT1与PIX/PAK复合体共同定位于黏附和突触相关支架区域，参与Rac/Cdc42信号空间组织；其复合体装配与ARHGEF6功能机制直接相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "CDKN1B",
+  "generatedAt": "2026-08-03T18:24:35.076Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CDKN1B编码p27Kip1，是细胞周期G1/S限制点的关键抑制因子，通过结合Cyclin E/A-CDK2复合物抑制Rb磷酸化与E2F依赖转录，其胚系失活与multiple endocrine neoplasia type 4存在明确遗传关联。该蛋白主要为细胞内核质蛋白，不具备天然胞外结构域或分泌抗原可及性，因此常规体内阻断型抗体成药性受限，更适合作为结构机制展示或细胞内递送抗体设计模型。相较于同通路中上游促分裂因子，CDKN1B在肿瘤抑制轴中处于CDK复合物直接制动节点，结构复合物分辨率较高，便于精确解析抑制界面与设计约束。",
+    "mechanism": "通过稳定p27Kip1与Cyclin A-CDK2结合界面，限制CDK2催化裂隙构象与Cyclin结合面活化，抑制Rb磷酸化驱动的G1/S转换。",
+    "selectedEpitope": "优先覆盖p27 N端KID中Cyclin A结合段及CDK2抑制段的复合界面，避免破坏关键抑制构象。",
+    "diseaseDirection": "MEN4与细胞周期失控肿瘤",
+    "domain": "p27Kip1含N端激酶抑制结构域KID，涵盖Cyclin结合D1段、连接区与CDK2结合D2段，C端富含调控位点。",
+    "evidence": "CDKN1B-p27Kip1细胞周期抑制证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P46527功能与亚细胞定位注释",
+      "RCSB PDB 7OR8晶体结构记录",
+      "MEN4相关CDKN1B胚系变异文献"
+    ],
+    "referenceEntries": "UniProt:P46527；RCSB PDB:7OR8；Open Targets:CDKN1B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端KID的Cyclin A结合D1段邻近界面",
+        "可评估抗体对Cyclin结合构象的稳定或竞争效应，适合结构机制验证",
+        "优先"
+      ],
+      [
+        "Site B",
+        "KID连接区至CDK2结合D2段界面",
+        "直接邻近CDK2催化调控区域，适合设计稳定抑制复合物的构象选择抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端无序调控区及磷酸化位点附近",
+        "柔性高且构象异质性强，可能影响表达、纯化与表位重现性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CDKN1B为细胞内肿瘤抑制蛋白，天然抗原可及性不足；抗体设计应定位于体外结构探针、细胞内递送抗体或降解/稳定化策略，并避免干扰p27抑制功能。",
+    "structurePrepZh": "以7OR8实验晶体结构为模板，保留抗原链A、P中可解析KID片段，检查复合物配体、缺失残基与晶体接触后进行质子化和界面能量最小化。",
+    "structureRef": "RCSB PDB 7OR8，X-ray diffraction，1.8 Å",
+    "antibodies": [
+      "anti-p27Kip1 clone SX53G8",
+      "anti-p27Kip1 clone D69C12"
+    ],
+    "interfaceFocus": "p27 KID-Cyclin A-CDK2三元复合界面",
+    "designMode": "细胞内结构抗体",
+    "candidates": [
+      {
+        "target": "CDK2",
+        "rationale": "CDK2是p27Kip1直接抑制的细胞周期激酶，驱动Cyclin E/A依赖的G1/S转换；其催化活性与肿瘤细胞增殖通路紧密相关。"
+      },
+      {
+        "target": "CCNE1",
+        "rationale": "CCNE1编码Cyclin E1，与CDK2形成促G1/S转换复合物，是p27Kip1抑制轴的直接功能对手；扩增或高表达可削弱细胞周期制动。"
+      },
+      {
+        "target": "RB1",
+        "rationale": "RB1位于CDK2下游，Rb磷酸化状态决定E2F转录释放；其功能状态是评估p27-CDK2轴抗增殖效应的核心通路读出。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

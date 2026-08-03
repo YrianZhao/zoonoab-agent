@@ -1,0 +1,65 @@
+{
+  "gene": "AGO1",
+  "generatedAt": "2026-08-03T10:19:31.793Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "AGO1 是 Argonaute 家族 RISC 复合物核心蛋白，参与 miRNA/siRNA 引导的靶 mRNA 识别与转录后沉默，其遗传变异与语言发育迟缓、行为异常及癫痫相关神经发育障碍存在较强关联。该蛋白主要定位于胞质并结合小 RNA 与靶 RNA，不具备经典分泌蛋白或膜受体型胞外抗原可及性，因此更适合作为细胞内抗体、降解抗体或研究型结合分子设计对象。相较 AGO2，AGO1 缺乏主要切割活性但保留稳定的核酸结合与 GW182/TNRC6 招募功能，适合解析非切割型 RISC 调控在神经发育疾病中的贡献，优先级建立在明确结构模板与疾病遗传证据的结合基础上。",
+    "mechanism": "设计分子阻断 AGO1 PAZ 结构域与 miRNA 3′端结合，或干扰 MID/PIWI 沟槽对引导 RNA 5′磷酸端的固定，从而削弱 RISC 靶 mRNA 识别与沉默复合物组装。",
+    "selectedEpitope": "优先覆盖 PAZ 结构域小 RNA 3′端结合口袋邻近环区，避免深度核酸结合沟槽内完全埋藏位点。",
+    "diseaseDirection": "神经发育障碍与RNA沉默异常",
+    "domain": "AGO1 含 N、PAZ、MID 与 PIWI 结构域，形成容纳引导 RNA 的双叶构象。",
+    "evidence": "AGO1-RISC结构与神经发育遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q9UL18 功能与结构域注释",
+      "RCSB PDB 4KRE X射线晶体结构",
+      "ClinVar/OMIM 神经发育表型遗传证据"
+    ],
+    "referenceEntries": "UniProt Q9UL18；RCSB PDB 4KRE；Open Targets AGO1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PAZ结构域3′端RNA结合口袋外缘",
+        "可干扰小RNA锚定并具有相对明确结构边界",
+        "优先"
+      ],
+      [
+        "Site B",
+        "MID-PIWI交界的5′磷酸识别沟槽邻近面",
+        "有望削弱引导RNA定位，但需规避深埋核酸界面",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N结构域与PAZ结构域构象连接区",
+        "可能影响RISC构象动态，功能效应依赖构象状态",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "AGO1 为胞内蛋白，常规循环抗体难以到达靶位点；应采用细胞内递送、intrabody 或降解偶联策略，并避免与 AGO2/AGO3/AGO4 保守核酸结合核心发生交叉反应。",
+    "structurePrepZh": "以 4KRE 高分辨率晶体结构为模板，保留 AGO1 蛋白链并标注核酸接触残基；补全缺失环区、统一质子化状态后进行表面可及性与保守性评估。",
+    "structureRef": "RCSB PDB 4KRE，人源 AGO1 复合物晶体结构",
+    "antibodies": [
+      "anti-AGO1 clone 4B8",
+      "anti-AGO1 polyclonal antibody"
+    ],
+    "interfaceFocus": "PAZ小RNA 3′端口袋与MID-PIWI核酸沟槽",
+    "designMode": "胞内结合分子设计",
+    "candidates": [
+      {
+        "target": "AGO2",
+        "rationale": "AGO2 是 RISC 复合物中具有内切切割活性的核心 Argonaute 蛋白，与 AGO1 共享 miRNA/siRNA 引导的转录后沉默通路，可作为功能互补或选择性对照靶点。"
+      },
+      {
+        "target": "TNRC6A",
+        "rationale": "TNRC6A/GW182 通过 AGO 结合基序连接 Argonaute 与 CCR4-NOT 去腺苷酸化复合物，是 miRNA 介导 mRNA 抑制的下游效应节点。"
+      },
+      {
+        "target": "DICER1",
+        "rationale": "DICER1 负责前体 miRNA 加工并向 Argonaute 装载成熟小 RNA，位于 AGO1-RISC 形成的上游关键步骤，且与神经发育及肿瘤易感表型相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

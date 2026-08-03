@@ -1,0 +1,65 @@
+{
+  "gene": "MAP1LC3A",
+  "generatedAt": "2026-08-03T14:02:04.526Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAP1LC3A编码LC3A，是自噬体膜延伸与底物装载过程中的ATG8家族核心蛋白，参与LC3脂质化、选择性自噬受体募集及肿瘤细胞应激适应，黑色素瘤等肿瘤中的自噬依赖性可影响存活与治疗耐受。该蛋白主要为胞质自噬体相关蛋白，缺乏经典胞外结构域或分泌特征，完整抗体直接结合活细胞表面抗原的可及性有限，更适合作为胞内递送抗体、研究级Fab/VHH或结构验证型分子设计对象。相较于ULK1、BECN1等上游激酶或支架蛋白，LC3A具有高分辨率实验结构与明确LIR结合沟槽，便于开展结构约束的界面阻断设计，但作为治疗性常规抗体靶点的优先级低于胞外或膜受体类自噬调控靶点。",
+    "mechanism": "设计分子阻断LC3A疏水口袋HP1/HP2与LIR基序中芳香族和疏水残基的结合，抑制SQSTM1等受体装载至自噬体膜。",
+    "selectedEpitope": "优先覆盖LC3A ubiquitin-like核心折叠上的LIR docking site，即HP1/HP2疏水沟槽及邻近α2-β2环区。",
+    "diseaseDirection": "肿瘤自噬与黑色素瘤耐受",
+    "domain": "LC3A为ATG8样ubiquitin-like结构域蛋白，含N端α螺旋帽与β-grasp核心折叠。",
+    "evidence": "MAP1LC3A自噬受体界面结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9H492功能与亚细胞定位注释",
+      "RCSB PDB 7RA0高分辨率晶体结构",
+      "ATG8-LIR相互作用与选择性自噬文献"
+    ],
+    "referenceEntries": "UniProt Q9H492；RCSB PDB 7RA0；Open Targets MAP1LC3A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "LIR docking site的HP1/HP2疏水口袋及α2-β2邻近沟槽",
+        "直接竞争SQSTM1、NBR1等LIR受体结合，机制清晰且结构可约束",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端α1/α2螺旋帽与β-grasp核心交界面",
+        "可能影响LC3A局部构象与受体识别取向，适合构象调节型分子筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端Gly120附近脂质化加工区域",
+        "接近ATG4切割与LC3-PE偶联位点，但易干扰广泛自噬基础过程",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAP1LC3A为胞内自噬体相关蛋白，常规抗体可及性不足；建议采用细胞内递送VHH、Fab片段或PROTAC/递送平台验证，并严格评估ATG8家族交叉反应。",
+    "structurePrepZh": "以7RA0链A为模板，保留ubiquitin-like核心折叠，补全缺失侧链并进行质子化状态校正；围绕LIR沟槽定义抗体对接约束面。",
+    "structureRef": "RCSB PDB 7RA0，X-ray diffraction，1.36 Å",
+    "antibodies": [
+      "Anti-LC3A/B clone D3U4C",
+      "Anti-LC3A clone EP1528Y"
+    ],
+    "interfaceFocus": "HP1/HP2疏水口袋与LIR基序结合沟槽",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "SQSTM1",
+        "rationale": "SQSTM1/p62通过LIR基序结合LC3并介导泛素化底物选择性自噬，是LC3A同一自噬货物装载轴的关键受体。"
+      },
+      {
+        "target": "ATG4B",
+        "rationale": "ATG4B负责LC3前体C端加工及LC3-PE去脂化，直接控制LC3循环与自噬体成熟。"
+      },
+      {
+        "target": "ATG7",
+        "rationale": "ATG7作为E1样酶驱动LC3与磷脂酰乙醇胺偶联，是LC3脂质化级联反应的上游必需节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

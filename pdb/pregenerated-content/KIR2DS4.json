@@ -1,0 +1,65 @@
+{
+  "gene": "KIR2DS4",
+  "generatedAt": "2026-08-03T13:43:44.604Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KIR2DS4为活化型KIR受体，表达于NK细胞及部分T细胞，可识别HLA-C等MHC-I配体并经带正电跨膜区募集DAP12，影响ITAM依赖的细胞毒与细胞因子反应，在病毒感染相关免疫调控中具有疾病通路关联。该蛋白为I型膜受体，D1-D2免疫球蛋白样胞外结构域完全暴露于细胞表面，具备抗体结合与受体-配体阻断的抗原可及性。相较仅具有抑制ITIM尾部的KIR2DL成员，KIR2DS4可直接连接活化轴，适合作为解析NK细胞活化阈值的优先干预靶点；但Open Targets关联得分较低，应定位为机制验证优先而非强遗传证据靶点。",
+    "mechanism": "抗体结合KIR2DS4的D1-D2配体识别面，阻断其与HLA-C类MHC-I分子的接触，从而削弱DAP12介导的ITAM磷酸化与NK细胞活化信号。",
+    "selectedEpitope": "优先锁定D1-D2交界处及D1域HLA-C接触面，覆盖3H8N结构中的配体识别槽边缘。",
+    "diseaseDirection": "病毒感染相关NK细胞免疫调控",
+    "domain": "胞外区含两个C2型Ig样结构域D1与D2，短胞质尾缺乏ITIM，经跨膜赖氨酸关联DAP12。",
+    "evidence": "KIR2DS4结构与NK细胞活化证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB P43632功能与结构域注释",
+      "RCSB PDB 3H8N晶体结构",
+      "KIR-HLA识别与DAP12信号文献"
+    ],
+    "referenceEntries": "UniProt P43632；RCSB PDB 3H8N；Open Targets KIR2DS4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "D1-D2交界处HLA-C识别面",
+        "直接覆盖KIR配体结合界面，最适合构建阻断型Fab或VHH",
+        "优先"
+      ],
+      [
+        "Site B",
+        "D1域外侧β折叠环区",
+        "可形成高可及性结合位点，适合稳定受体构象并辅助阻断",
+        "备选"
+      ],
+      [
+        "Site C",
+        "D2域近膜端保守Ig样骨架面",
+        "可能影响受体取向，但同源KIR交叉反应风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "KIR家族胞外Ig样结构域同源性较高，需规避KIR2DL1、KIR2DL2、KIR2DL3等共享保守面，优先筛选KIR2DS4特异性环区接触。",
+    "structurePrepZh": "以3H8N链A为抗原模板，补全缺失侧链并校验糖基化与二硫键状态；保留D1-D2相对取向用于界面建模。",
+    "structureRef": "X-ray structure of human KIR2DS4, PDB 3H8N, 2.5 Å",
+    "antibodies": [
+      "Clone 179315",
+      "Clone JJC11.6"
+    ],
+    "interfaceFocus": "D1-D2配体识别面与KIR特异性环区",
+    "designMode": "阻断型界面抗体设计",
+    "candidates": [
+      {
+        "target": "HLA-C",
+        "rationale": "HLA-C是多种KIR2D受体的主要MHC-I配体，位于同一NK细胞识别轴；靶向其KIR接触面可直接调节KIR介导的免疫识别。"
+      },
+      {
+        "target": "TYROBP",
+        "rationale": "TYROBP编码DAP12，是KIR2DS4通过跨膜带电残基募集的ITAM适配蛋白；该节点决定受体结合后的下游活化信号强度。"
+      },
+      {
+        "target": "KIR2DL1",
+        "rationale": "KIR2DL1识别HLA-C2并通过ITIM传递抑制信号，与KIR2DS4共同塑造NK细胞活化阈值，适合作为同一KIR-HLA通路的对照或组合靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

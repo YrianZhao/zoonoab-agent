@@ -1,0 +1,65 @@
+{
+  "gene": "RELB",
+  "generatedAt": "2026-08-03T15:59:20.988Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RELB 是非经典 NF-κB 通路的核心转录因子亚基，与 NFKB2/p52 形成异二聚体后进入细胞核，驱动免疫细胞分化、抗原呈递和炎症基因表达，遗传缺陷与免疫缺陷、反复感染及自身免疫表型相关。该蛋白主要定位于胞质和细胞核，不具备天然胞外结构域或分泌特征，抗体抗原可及性弱，需定位为细胞内研究型或递送增强型抗体设计对象。相较上游受体或可分泌配体，RELB 更接近通路转录输出节点，具有通路特异性机制解析价值，但成药优先级低于 CD40、LTBR、BAFFR 等膜受体靶点。",
+    "mechanism": "设计抗体阻断 RELB Rel homology domain 与 NFKB2/p52 的二聚化界面或干扰其 DNA 结合面，从而抑制非经典 NF-κB 转录复合体装配。",
+    "selectedEpitope": "优先聚焦 Rel homology domain 二聚化界面，避开高度保守 DNA 结合正电荷沟槽。",
+    "diseaseDirection": "免疫缺陷与自身免疫炎症",
+    "domain": "RELB 含 N 端 Rel homology domain，介导 DNA 结合、二聚化、核定位及 IκB 相关调控。",
+    "evidence": "RELB 非经典 NF-κB 免疫疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt Q01201 功能与亚细胞定位注释",
+      "RCSB PDB 8G8R 晶体结构记录",
+      "NF-κB 非经典通路免疫缺陷文献"
+    ],
+    "referenceEntries": "UniProt: Q01201；RCSB PDB: 8G8R；Open Targets: RELB",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Rel homology domain 二聚化界面",
+        "可直接阻断 RELB 与 NFKB2/p52 异二聚体形成，机制可解释性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Rel homology domain DNA 结合环及邻近碱性表面",
+        "可抑制 κB DNA 元件结合，但保守性较高，需控制交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "核定位序列及柔性连接区邻近区域",
+        "可能影响核转位或复合体构象，但结构柔性高且表位稳定性不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RELB 为细胞内转录因子，常规抗体难以到达作用位点；RHD 保守性高，需通过精细表位选择降低与 RELA、REL、NFKB1 的交叉识别。",
+    "structurePrepZh": "基于 8G8R 的 A、B 链解析 Rel homology domain 构象，补全缺失侧链并标注二聚化界面、DNA 结合面及保守残基后开展表位筛选。",
+    "structureRef": "RCSB PDB 8G8R，X-ray diffraction，2.6 Å",
+    "antibodies": [
+      "抗-RELB 研究级单克隆抗体",
+      "抗-NF-κB p65/RelA 研究级单克隆抗体"
+    ],
+    "interfaceFocus": "RHD 二聚化界面与 κB DNA 结合面",
+    "designMode": "细胞内阻断型",
+    "candidates": [
+      {
+        "target": "NFKB2",
+        "rationale": "NFKB2 经加工形成 p52，与 RELB 形成非经典 NF-κB 转录复合体，是同一通路中直接互作的核心伴侣亚基。"
+      },
+      {
+        "target": "LTBR",
+        "rationale": "LTBR 是非经典 NF-κB 通路的膜受体上游节点，可通过 NIK 稳定化诱导 NFKB2 加工及 RELB 核转位，抗体可及性优于 RELB。"
+      },
+      {
+        "target": "CD40",
+        "rationale": "CD40 激活 B 细胞和抗原呈递细胞中的非经典 NF-κB 信号，位于 RELB 上游并具有明确胞外结构域，适合抗体调节策略。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

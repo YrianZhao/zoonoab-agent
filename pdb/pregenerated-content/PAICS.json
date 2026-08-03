@@ -1,0 +1,65 @@
+{
+  "gene": "PAICS",
+  "generatedAt": "2026-08-03T15:02:58.056Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PAICS 催化嘌呤从头合成通路第六、七步反应，PAICS 双功能酶缺陷可导致 AIR/SAICAR 代谢异常并引发罕见代谢病表型。该蛋白为胞质同源二聚体酶，缺乏天然胞外结构域或分泌特征，抗原可及性不具备常规治疗性抗体优势，更适合作为细胞内靶点机制研究或递送型抗体片段探索。相较于同通路中具有全身必需性的多酶复合环节，PAICS 具备明确人源晶体结构和疾病遗传关联证据，优先级主要来自结构可设计性与代谢缺陷机制可解释性，而非经典膜表面抗体成药性。",
+    "mechanism": "设计以内源递送型 Fab/VHH 阻断 PAICS AIR carboxylase 活性位点或 SAICAR synthase ATP/底物结合口袋，抑制 AIR 向 CAIR 及 CAIR 向 SAICAR 的转化。",
+    "selectedEpitope": "优先瞄准 AIR carboxylase 结构域催化沟槽邻近构象环，避免完全依赖二聚体核心埋藏界面。",
+    "diseaseDirection": "嘌呤代谢缺陷与肿瘤代谢",
+    "domain": "PAICS 含 N 端 AIR carboxylase 结构域与 C 端 SAICAR synthase 结构域，形成胞质同源二聚体。",
+    "evidence": "PAICS 嘌呤从头合成与遗传缺陷证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P22234 functional annotation",
+      "RCSB PDB 6YB8 X-ray structure",
+      "OMIM/MONDO PAICS deficiency annotation"
+    ],
+    "referenceEntries": "UniProt P22234；RCSB PDB 6YB8；MONDO:0859244",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "AIR carboxylase 催化沟槽及底物进入环",
+        "可能直接干扰 AIR/CAIR 结合与催化构象稳定",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SAICAR synthase ATP 与 CAIR 结合口袋边缘",
+        "可阻断 ATP 依赖性 SAICAR 合成反应并提供功能抑制读出",
+        "备选"
+      ],
+      [
+        "Site C",
+        "同源二聚体界面中央核心区域",
+        "界面多为埋藏疏水接触，抗体可及性与构象选择风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PAICS 为胞质代谢酶，常规抗体难以到达天然作用位点；需采用细胞递送、内体逃逸或胞内抗体格式，并优先验证不破坏非目标蛋白互作的特异性。",
+    "structurePrepZh": "以 6YB8 A/B 链构建人源同源二聚体模型，补全缺失侧链和氢原子，标注 ATP/底物口袋、二聚体界面及保守催化残基邻域。",
+    "structureRef": "RCSB PDB 6YB8，X-ray diffraction，2.36 Å",
+    "antibodies": [
+      "无已获批 PAICS 靶向抗体",
+      "无临床阶段 PAICS 中和抗体"
+    ],
+    "interfaceFocus": "AIR carboxylase 催化沟槽与 SAICAR synthase 底物口袋",
+    "designMode": "胞内酶抑制型",
+    "candidates": [
+      {
+        "target": "PPAT",
+        "rationale": "PPAT 催化嘌呤从头合成起始限速步骤，将 PRPP 转化为 phosphoribosylamine；与 PAICS 同属 IMP 生物合成轴，可作为上游代谢通量控制靶点。"
+      },
+      {
+        "target": "GART",
+        "rationale": "GART 在 PAICS 上游连续催化 GAR 转甲酰化、FGAM 合成及 AIR 合成步骤；其产物 AIR 直接进入 PAICS 反应，适合用于通路级联合验证。"
+      },
+      {
+        "target": "ADSL",
+        "rationale": "ADSL 催化 SAICAR 裂解生成 AICAR，是 PAICS 下游相邻酶；其遗传缺陷同样关联嘌呤代谢异常，可用于区分底物积累与下游阻断效应。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

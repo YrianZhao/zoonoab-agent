@@ -1,0 +1,65 @@
+{
+  "gene": "ARHGAP26",
+  "generatedAt": "2026-08-03T10:34:23.401Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ARHGAP26编码GRAF1，是Rho家族GTP酶激活蛋白，可促进RHOA、CDC42等小GTP酶GTP水解并限制细胞骨架、黏附与造血细胞迁移信号；其遗传异常与幼年型粒单核细胞白血病等髓系疾病存在关联。该蛋白主要定位于胞内并含膜结合相关BAR/PH模块，天然抗原可及性弱，常规胞外阻断抗体成药性受限。相比CSF3R、PTPN11、NRAS等同通路可及或可药靶点，ARHGAP26更适合作为机制研究或细胞内递送抗体探索靶点，优先级应低于膜受体与分泌因子靶点。",
+    "mechanism": "设计内化递送型Fab或VHH，干预ARHGAP26 GAP结构域与RHOA/CDC42 Switch I/II区域结合，从而改变GTP水解调控。",
+    "selectedEpitope": "优先评估GAP结构域Rho GTPase结合沟槽邻近螺旋界面，避免破坏BAR结构域整体折叠。",
+    "diseaseDirection": "髓系白血病与Rho-GTPase信号",
+    "domain": "ARHGAP26含N端BAR结构域、PH结构域、SH3结构域及C端RhoGAP催化结构域。",
+    "evidence": "ARHGAP26结构域与髓系疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB Q9UNA1 functional annotation",
+      "RCSB PDB 1UGV solution NMR structure",
+      "Rho GTPase signaling and JMML pathway literature"
+    ],
+    "referenceEntries": "UniProt Q9UNA1；RCSB PDB 1UGV；Open Targets ARHGAP26",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RhoGAP结构域GTPase结合沟槽邻近螺旋",
+        "可直接影响ARHGAP26与RHOA/CDC42的催化复合物形成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SH3结构域配体结合面",
+        "可能调节含脯氨酸基序适配蛋白结合并影响定位复合物",
+        "备选"
+      ],
+      [
+        "Site C",
+        "BAR结构域二聚化与膜曲率识别界面",
+        "涉及膜结合和二聚化，阻断风险较高且胞内可及性受限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ARHGAP26为胞内蛋白，常规抗体难以到达作用位点；建议采用细胞穿透、内体逃逸或靶向降解耦联策略，并严格评估Rho通路广泛毒性。",
+    "structurePrepZh": "以1UGV的NMR构象集合为结构起点，筛选代表构象并补全缺失区域；GAP结构域需结合AlphaFold模型或同源复合物进行界面定位。",
+    "structureRef": "RCSB PDB 1UGV，human ARHGAP26 domain solution NMR",
+    "antibodies": [
+      "无获批ARHGAP26靶向治疗性抗体",
+      "无公开临床阶段ARHGAP26抗体"
+    ],
+    "interfaceFocus": "RhoGAP催化沟槽与RHOA/CDC42 Switch区界面",
+    "designMode": "胞内递送抗体探索",
+    "candidates": [
+      {
+        "target": "PTPN11",
+        "rationale": "PTPN11编码SHP2，是RAS/MAPK通路关键磷酸酶，体细胞或胚系激活突变是JMML核心驱动因素之一。其疾病因果证据强，但作为胞内酶更适合小分子或递送型抗体策略。"
+      },
+      {
+        "target": "NRAS",
+        "rationale": "NRAS激活突变直接增强RAS/MAPK信号，是JMML和其他髓系肿瘤的重要驱动事件。该靶点与ARHGAP26相关的Rho/Ras小GTP酶网络同属髓系增殖信号轴。"
+      },
+      {
+        "target": "CSF3R",
+        "rationale": "CSF3R为粒细胞集落刺激因子受体，位于细胞膜表面并参与JAK/STAT与RAS/MAPK信号输入。相比胞内ARHGAP26，CSF3R具有更明确的抗原可及性和抗体阻断可行性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

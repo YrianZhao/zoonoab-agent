@@ -1,0 +1,65 @@
+{
+  "gene": "PDCD1LG2",
+  "generatedAt": "2026-08-03T15:08:25.598Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PDCD1LG2编码PD-L2，是PD-1免疫检查点通路中的配体，可与T细胞PD-1结合并抑制TCR/CD28依赖性效应功能，参与肿瘤免疫逃逸。该蛋白为I型跨膜糖蛋白，IgV样胞外结构域直接暴露于细胞表面，具备抗体识别和阻断的可及性。相较部分胞内免疫调节因子，PD-L2具有明确受体-配体界面和高分辨率复合物结构；相较PD-L1，PD-L2在部分肿瘤及抗原呈递细胞中呈更受限表达，可支持差异化免疫检查点干预策略。",
+    "mechanism": "通过抗体占据PD-L2 IgV样结构域的PD-1结合面，阻断PDCD1LG2与PDCD1相互作用，解除PD-1介导的T细胞抑制信号。",
+    "selectedEpitope": "优先锁定IgV样N端结构域的PD-1结合界面，覆盖GFCC′相关β片层接触区。",
+    "diseaseDirection": "肿瘤免疫检查点治疗",
+    "domain": "PD-L2为I型膜蛋白，胞外区含N端IgV样结构域和膜近端IgC样结构域。",
+    "evidence": "PD-L2/PD-1轴肿瘤免疫抑制证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9BQ51功能与结构域注释",
+      "RCSB PDB 6UMT晶体结构记录",
+      "PD-1/PD-L2免疫检查点机制文献"
+    ],
+    "referenceEntries": "UniProt Q9BQ51；RCSB PDB 6UMT；Open Targets PDCD1LG2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "IgV样结构域PD-1结合面，邻近GFCC′β片层界面",
+        "直接阻断PD-L2与PD-1受体结合，机制清晰且结构可验证",
+        "优先"
+      ],
+      [
+        "Site B",
+        "IgV样结构域非核心受体结合边缘区",
+        "可通过空间位阻削弱PD-1结合，同时降低对核心折叠稳定性的干扰",
+        "备选"
+      ],
+      [
+        "Site C",
+        "膜近端IgC样结构域及连接区",
+        "表面可及性可能受膜距离和糖基化影响，功能阻断效应不一定充分",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IgV样结构域存在潜在N糖基化和同源配体交叉识别风险，设计需避开保守折叠核心并重点验证PD-L1交叉反应性。",
+    "structurePrepZh": "以6UMT实验晶体结构为模板，保留抗原链A/B中完整胞外结构域，补全缺失侧链并评估糖基化位点对表位暴露的影响。",
+    "structureRef": "RCSB PDB 6UMT，X-ray diffraction，1.986 Å",
+    "antibodies": [
+      "Enoblituzumab",
+      "AMP-224"
+    ],
+    "interfaceFocus": "PD-L2 IgV样结构域PD-1受体结合面",
+    "designMode": "阻断型抗体设计",
+    "candidates": [
+      {
+        "target": "PDCD1",
+        "rationale": "PDCD1编码PD-1，是PD-L2的直接受体；靶向PD-1可同时阻断PD-L1和PD-L2介导的免疫抑制信号。"
+      },
+      {
+        "target": "CD274",
+        "rationale": "CD274编码PD-L1，与PD-L2共享PD-1受体并共同构成PD-1检查点轴；其肿瘤表达和临床验证程度较高。"
+      },
+      {
+        "target": "CTLA4",
+        "rationale": "CTLA4属于T细胞共抑制检查点，与PD-1轴共同限制抗肿瘤T细胞活化；联合或序贯阻断具有明确免疫治疗逻辑。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

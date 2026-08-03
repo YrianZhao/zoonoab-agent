@@ -1,0 +1,65 @@
+{
+  "gene": "XPC",
+  "generatedAt": "2026-08-03T17:55:07.034Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "XPC 是核苷酸切除修复全局基因组修复分支的核心损伤识别因子，负责与 RAD23B/CETN2 形成复合体并识别紫外线诱导的环丁烷嘧啶二聚体和 6-4 光产物所造成的 DNA 双螺旋畸变，其功能缺陷直接导致着色性干皮病 C 组和皮肤癌易感性。该蛋白主要定位于细胞核并结合受损 DNA，不具备天然胞外结构域、分泌蛋白或膜受体可及性，因此常规体内阻断型抗体成药性受限，但可作为结构抗体、细胞内抗体或检测型抗体的高价值抗原。相较于 NER 通路中下游切割因子，XPC 位于损伤识别起始环节，疾病遗传证据强且 2OBH 高分辨率结构支持界面级表位设计，因而在机制验证与伴随诊断抗体开发中具有优先级。",
+    "mechanism": "抗体设计可聚焦阻断 XPC 损伤识别结构域与畸变 DNA 的结合界面，干预 XPC-RAD23B 复合体对受损双链 DNA 的初始装载。",
+    "selectedEpitope": "优先覆盖 XPC BHD2-BHD3 损伤 DNA 识别沟槽及β-hairpin插入界面。",
+    "diseaseDirection": "着色性干皮病与DNA修复缺陷",
+    "domain": "XPC 含 transglutaminase-homology 区域及 BHD1、BHD2、BHD3 β-hairpin DNA 结合结构域。",
+    "evidence": "XPC介导全局基因组NER损伤识别证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt Q01831 功能与亚细胞定位注释",
+      "RCSB PDB 2OBH XPC-DNA复合体晶体结构",
+      "核苷酸切除修复通路文献与ClinVar变异证据"
+    ],
+    "referenceEntries": "UniProt Q01831；RCSB PDB 2OBH；Open Targets XPC",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "BHD2-BHD3 损伤DNA结合沟槽与β-hairpin插入区",
+        "直接干预XPC识别畸变DNA的关键分子界面，适合机制阻断抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "BHD1邻近DNA磷酸骨架接触面",
+        "可削弱复合体在受损DNA上的稳定停留，保留较高结构可解释性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "RAD23B结合相关区域或复合体内部接触面",
+        "可能影响XPC稳定性与核内装配，但界面部分埋藏且细胞内可及性有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "XPC为核内DNA结合蛋白，缺乏胞外抗原可及性；治疗型抗体需采用细胞内递送或intrabody策略，常规Fab更适合体外检测和结构验证。",
+    "structurePrepZh": "以2OBH晶体结构为模板，保留XPC-DNA及复合体链信息，校正缺失侧链、质子化状态和DNA接触残基后进行表位暴露度评估。",
+    "structureRef": "PDB 2OBH，XPC复合体识别受损DNA的1.8 Å晶体结构",
+    "antibodies": [
+      "抗XPC克隆D-10",
+      "抗XPC克隆3.26"
+    ],
+    "interfaceFocus": "BHD2-BHD3与受损DNA双螺旋畸变接触面",
+    "designMode": "细胞内/检测抗体设计",
+    "candidates": [
+      {
+        "target": "RAD23B",
+        "rationale": "RAD23B 与 XPC 形成稳定损伤识别复合体，参与全局基因组核苷酸切除修复起始步骤。其界面抗体可用于解析XPC复合体装配与功能缺陷。"
+      },
+      {
+        "target": "CETN2",
+        "rationale": "CETN2 是 XPC 复合体辅助亚基，可调节XPC稳定性和DNA损伤识别效率。针对该因子的抗体适合补充评估复合体构象状态。"
+      },
+      {
+        "target": "ERCC2",
+        "rationale": "ERCC2/XPD 是 TFIIH 复合体解旋酶亚基，位于XPC招募后的NER验证与开链步骤。其疾病谱与着色性干皮病通路一致，可作为下游机制候选靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

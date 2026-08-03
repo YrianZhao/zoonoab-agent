@@ -1,0 +1,65 @@
+{
+  "gene": "ELMO2",
+  "generatedAt": "2026-08-03T19:06:46.355Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ELMO2是DOCK家族鸟嘌呤核苷酸交换因子复合体的胞内适配蛋白，参与RAC1激活、细胞迁移、吞噬清除及细胞骨架重塑，其疾病关联集中于血管畸形、神经退行性疾病和感染相关炎症过程。该蛋白缺乏分泌区段或跨膜胞外结构域，抗原可及性不符合常规体内阻断抗体开发条件，但其结构域可用于胞内递送抗体或研究级构象干预设计。相比RAC1等高度保守且广泛必需的下游节点，ELMO2位于DOCK复合体装配界面，具备更明确的蛋白互作选择性与结构解析基础，适合作为机制验证型优先靶点。",
+    "mechanism": "通过结合ELMO2 N端自抑制与DOCK结合相关界面，干扰ELMO2-DOCK复合体装配，降低DOCK介导的RAC1-GDP向RAC1-GTP转换。",
+    "selectedEpitope": "优先覆盖ELMO2 Ras-binding domain与邻近自抑制螺旋界面，锁定抑制性构象。",
+    "diseaseDirection": "血管畸形与神经炎症相关迁移通路",
+    "domain": "ELMO2含N端RBD、ELMO inhibitory domain、ELMO domain及C端PH结构域样区域。",
+    "evidence": "ELMO2-DOCK-RAC1轴结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q96JJ3功能与结构域注释",
+      "RCSB PDB 6IDX晶体结构记录",
+      "Reactome/KEGG RAC1与细胞迁移通路注释"
+    ],
+    "referenceEntries": "UniProt Q96JJ3；RCSB PDB 6IDX；Open Targets ELMO2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RBD与自抑制螺旋邻接界面",
+        "稳定ELMO2闭合构象，限制DOCK复合体激活",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ELMO domain介导的DOCK结合相关表面",
+        "直接削弱ELMO2-DOCK互作，适合构象阻断验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端PH样膜定位相关区域",
+        "可能影响膜关联与复合体定位，但同源结构保守性带来选择性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ELMO2为胞内蛋白，常规全长IgG难以到达作用位点；宜采用胞内递送Fab/VHH或细胞模型验证，并规避RBD保守疏水核心。",
+    "structurePrepZh": "以PDB 6IDX链A/C为模板，补全缺失侧链与环区，校验晶体接触，保留功能性结构域界面用于抗原构象建模。",
+    "structureRef": "RCSB PDB 6IDX，X-ray diffraction，1.699 Å",
+    "antibodies": [
+      "ELMO2 intracellular Fab concept",
+      "ELMO2-targeting VHH concept"
+    ],
+    "interfaceFocus": "RBD-自抑制螺旋与DOCK结合界面",
+    "designMode": "胞内构象阻断",
+    "candidates": [
+      {
+        "target": "DOCK1",
+        "rationale": "DOCK1与ELMO2形成复合体并作为RAC1鸟嘌呤核苷酸交换因子核心组分，直接驱动细胞迁移和吞噬相关RAC1激活。"
+      },
+      {
+        "target": "RAC1",
+        "rationale": "RAC1是ELMO2-DOCK轴的直接小GTP酶效应分子，其GTP结合状态控制肌动蛋白重塑、膜皱褶形成及迁移表型。"
+      },
+      {
+        "target": "CRK",
+        "rationale": "CRK适配蛋白可连接上游受体信号与DOCK-ELMO复合体募集，参与RAC1依赖性细胞迁移通路调控。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

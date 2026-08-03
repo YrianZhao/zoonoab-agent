@@ -1,0 +1,65 @@
+{
+  "gene": "CRH",
+  "generatedAt": "2026-08-03T11:38:26.115Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CRH是下丘脑-垂体-肾上腺轴的核心神经肽，通过结合CRHR1/CRHR2诱导ACTH释放并影响应激、睡眠觉醒及神经兴奋性，遗传学数据提示其与睡眠相关高运动性癫痫和体重代谢表型存在关联。CRH为分泌型肽类抗原，成熟肽位于细胞外液和神经内分泌微环境中，天然具备抗体可及性。相较胞内转录调控因子或中枢低可及靶点，CRH可通过配体中和直接阻断受体激活，机制更明确；但因其生理轴向作用广泛，应优先采用精细亲和力与组织暴露控制策略。",
+    "mechanism": "中和抗体结合成熟CRH受体识别面，阻断CRH与CRHR1/CRHR2胞外N端结构域的相互作用，从而降低Gs-cAMP介导的ACTH释放信号。",
+    "selectedEpitope": "优先覆盖CRH成熟肽中部α螺旋受体结合面，避开非成熟前体区。",
+    "diseaseDirection": "神经内分泌应激与睡眠癫痫",
+    "domain": "CRH前体经加工形成41 aa成熟分泌肽，PDB 3EHU呈α螺旋构象片段。",
+    "evidence": "CRH-CRHR轴神经兴奋与HPA通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P06850蛋白功能注释",
+      "RCSB PDB 3EHU晶体结构记录",
+      "IUPHAR/BPS Guide to Pharmacology受体-配体注释"
+    ],
+    "referenceEntries": "UniProt P06850；RCSB PDB 3EHU；Open Targets CRH",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "成熟CRH中部α螺旋受体结合面",
+        "直接竞争CRHR1/CRHR2识别，最适合中和型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "成熟肽N端邻近受体激活相关区域",
+        "可削弱受体活化构象形成，但需避免过度影响构象稳定",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端酰胺化邻近区域",
+        "可能影响受体选择性与肽稳定性，存在交叉识别和构象依赖风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CRH为短肽抗原，线性表位空间有限，易产生与相关神经肽的交叉反应；需进行CRH家族肽序列排除筛选，并控制HPA轴过度抑制风险。",
+    "structurePrepZh": "以3EHU抗原链A-F解析成熟肽构象，保留α螺旋主构象并评估晶体接触；补充CRHR1/CRHR2复合物模型用于受体界面映射。",
+    "structureRef": "RCSB PDB 3EHU，X-ray diffraction，1.96 Å",
+    "antibodies": [
+      "anti-CRH neutralizing antibody",
+      "anti-CRF monoclonal antibody"
+    ],
+    "interfaceFocus": "成熟CRHα螺旋与CRHR1/CRHR2识别界面",
+    "designMode": "分泌肽中和设计",
+    "candidates": [
+      {
+        "target": "CRHR1",
+        "rationale": "CRHR1是CRH的主要GPCR受体，介导垂体ACTH释放和中枢应激反应；靶向其胞外N端或正构位点可直接阻断CRH驱动信号。"
+      },
+      {
+        "target": "CRHR2",
+        "rationale": "CRHR2同属CRH受体通路，参与应激适应、心血管及代谢调节；与CRH中和策略具有明确的配体-受体通路一致性。"
+      },
+      {
+        "target": "POMC",
+        "rationale": "POMC位于CRH诱导ACTH生成的下游垂体环节，连接HPA轴激活与糖皮质激素释放；适合作为通路药效和疾病机制参照靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

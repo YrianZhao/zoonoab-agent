@@ -1,0 +1,65 @@
+{
+  "gene": "CAPN1",
+  "generatedAt": "2026-08-03T18:12:59.546Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CAPN1编码钙依赖性半胱氨酸蛋白酶calpain-1的大催化亚基，参与神经元钙稳态失衡后的底物有限水解，并与轴突退行、突触蛋白降解和神经退行性病变相关。该蛋白主要定位于胞质，缺乏稳定胞外结构域或分泌形式，天然抗原可及性不利于常规阻断型抗体。其优先级主要来自高分辨率实验结构和明确的催化结构域机制，但相较于膜受体或分泌炎症因子，更适合作为细胞内结合抗体、递送型抗体片段或结构生物学验证靶点。",
+    "mechanism": "以内源化或细胞内递送抗体结合CAPN1催化核心CysPc结构域，遮蔽Cys115-His272-Asn296催化三联体邻近底物沟槽，抑制钙激活后的底物水解。",
+    "selectedEpitope": "优先覆盖Domain II蛋白酶核心CysPc底物结合沟槽及催化半胱氨酸邻近环区。",
+    "diseaseDirection": "神经退行与遗传性痉挛性截瘫",
+    "domain": "CAPN1含N端锚定螺旋、Domain IIa/IIb半胱氨酸蛋白酶核心、C2样Domain III和penta-EF-hand Domain IV。",
+    "evidence": "CAPN1神经退行相关结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProtKB P07384功能与结构域注释",
+      "RCSB PDB 7W7O高分辨率晶体结构",
+      "OMIM与ClinVar痉挛性截瘫CAPN1变异记录"
+    ],
+    "referenceEntries": "UniProt P07384；RCSB PDB 7W7O；Open Targets CAPN1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Domain IIa/IIb催化裂隙与Cys115邻近底物沟槽",
+        "直接干预底物进入和催化构象形成，机制最清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Domain IV penta-EF-hand钙结合区及构象耦联界面",
+        "可能削弱钙依赖性激活与结构域重排，适合变构抑制设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Domain III C2样结构域外露环区",
+        "表面可成药性较好但与催化抑制关联间接，需功能筛选确认",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CAPN1为胞内蛋白，常规IgG难以到达作用位点；需采用细胞穿透、内体逃逸或基因编码intrabody策略，并控制与CAPN2等calpain家族成员的交叉反应。",
+    "structurePrepZh": "以7W7O链A为模板，保留催化核心和钙结合结构域，补全缺失环区并校验催化残基质子化状态，表位建模需避开高度保守家族核心面。",
+    "structureRef": "RCSB PDB 7W7O；human calpain-1 X-ray structure 1.59 Å",
+    "antibodies": [
+      "Anti-CAPN1 clone 15C10",
+      "Anti-CAPN1 clone EPR3323"
+    ],
+    "interfaceFocus": "CysPc催化裂隙、底物沟槽与EF-hand变构界面",
+    "designMode": "细胞内抑制抗体",
+    "candidates": [
+      {
+        "target": "CAPN2",
+        "rationale": "CAPN2与CAPN1同属经典钙依赖性calpain蛋白酶，参与神经元钙超载后的底物水解和细胞骨架损伤；可作为同通路功能冗余与选择性评估靶点。"
+      },
+      {
+        "target": "CAST",
+        "rationale": "CAST编码calpastatin，是CAPN1和CAPN2的内源性特异性抑制因子；其与calpain催化结构域的抑制界面可为阻断型抗体或肽样表位设计提供机制参照。"
+      },
+      {
+        "target": "CAPNS1",
+        "rationale": "CAPNS1编码经典calpain小调节亚基，与CAPN1形成异二聚体并影响蛋白稳定性和钙依赖性激活；靶向该复合体界面可干预同一calpain激活轴。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

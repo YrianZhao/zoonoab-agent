@@ -1,0 +1,65 @@
+{
+  "gene": "IFNLR1",
+  "generatedAt": "2026-08-03T13:23:23.686Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IFNLR1为III型干扰素受体特异性亚基，与IL10RB共同组成IFN-λ受体复合物，介导JAK1/TYK2-STAT1/STAT2-IRF9轴并诱导上皮抗病毒与炎症基因表达；该轴与银屑病皮肤炎症及慢性HCV感染免疫应答存在明确关联。IFNLR1为单跨膜受体，胞外D1/D2细胞因子受体同源结构域可直接作为抗体可及抗原。相较广泛表达的IL10RB，IFNLR1具有更强配体特异性与上皮限制性表达特征，便于在同通路中实现更高选择性的阻断设计。",
+    "mechanism": "抗体阻断IFNLR1胞外D1/D2结构域与IFNL1/IFNL2/IFNL3的结合，抑制IL10RB共受体募集及下游JAK1/TYK2-STAT转导。",
+    "selectedEpitope": "优先覆盖IFNLR1 D1-D2配体结合沟槽及邻近IL10RB装配界面，避免跨膜近端低可及片段。",
+    "diseaseDirection": "银屑病及上皮抗病毒炎症",
+    "domain": "N端信号肽后为胞外D1/D2细胞因子受体同源区，随后为单跨膜段及胞内尾部。",
+    "evidence": "IFNLR1结构-通路-疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与证据评分",
+      "UniProt Q8IU57蛋白功能与结构域注释",
+      "RCSB PDB 3OG6晶体结构记录",
+      "IFN-λ受体复合物JAK-STAT通路文献"
+    ],
+    "referenceEntries": "UniProt Q8IU57；RCSB PDB 3OG6；Open Targets IFNLR1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "D1-D2交界处IFN-λ配体结合沟槽",
+        "可直接阻断IFNL1/2/3与IFNLR1结合并抑制受体复合物启动",
+        "优先"
+      ],
+      [
+        "Site B",
+        "D2结构域外侧邻近IL10RB装配面",
+        "干扰共受体募集，适合构建非配体竞争型阻断抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "D2近膜端及柔性连接区",
+        "可能影响构象稳定性但空间可及性与功能阻断确定性较低",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "需规避与IL10RB共享受体界面相邻的非特异电荷斑块，降低交叉结合风险；优先筛选不识别变性线性片段的构象抗体。",
+    "structurePrepZh": "以3OG6实验晶体结构提取IFNLR1胞外链，补全缺失侧链、校正糖基化邻近构象，并保留D1-D2相对取向用于表位建模。",
+    "structureRef": "RCSB PDB 3OG6，X-ray diffraction，2.097 Å",
+    "antibodies": [
+      "anti-IFNLR1 blocking antibody MMHLR-1",
+      "anti-IFNLR1 blocking antibody MMHLR-2"
+    ],
+    "interfaceFocus": "IFN-λ结合沟槽与IL10RB募集界面",
+    "designMode": "阻断型Fab/VHH设计",
+    "candidates": [
+      {
+        "target": "IFNL1",
+        "rationale": "IFNL1为IFNLR1的III型干扰素配体，可直接驱动同一IFNLR1-IL10RB受体轴；中和配体可作为受体阻断策略的上游替代方案。"
+      },
+      {
+        "target": "IFNL3",
+        "rationale": "IFNL3通过IFNLR1和IL10RB激活STAT1/STAT2抗病毒转录程序，并与HCV免疫遗传学关联密切；适合作为慢性病毒感染方向的同通路候选靶点。"
+      },
+      {
+        "target": "IL10RB",
+        "rationale": "IL10RB为IFN-λ受体复合物的共享共受体，参与配体结合后的受体装配与JAK-STAT信号传递；但因同时服务IL-10家族多条通路，选择性风险高于IFNLR1。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

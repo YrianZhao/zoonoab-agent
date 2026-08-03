@@ -1,0 +1,65 @@
+{
+  "gene": "OTULIN",
+  "generatedAt": "2026-08-03T15:00:44.635Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "OTULIN 是线性泛素链特异性去泛素化酶，维持 LUBAC 介导的 M1-linked ubiquitin 信号稳态，其功能缺陷可导致 NF-κB 与细胞死亡相关炎症轴失衡，并与 OTULIN 相关自身炎症综合征高度相关。该蛋白主要定位于胞质并通过 N 端 PUB-interacting motif 与 HOIP 结合，缺乏经典胞外结构域或分泌特征，因此抗体可及性不优于膜受体或分泌因子。其优先级主要来自明确的单基因疾病因果关系、高分辨率催化结构与线性泛素通路特异性；相较 TNF、IL1B 等下游炎症因子，OTULIN 更接近 M1 泛素稳态的疾病起点，但更适合作为细胞内抗体或机制验证靶点。",
+    "mechanism": "设计抗体应结合 OTU 催化结构域的泛素结合沟槽，阻断 M1-linked diubiquitin 远端泛素与 S1 位点接触，抑制底物进入催化 Cys-His-Asn 三联体。",
+    "selectedEpitope": "优先覆盖 OTU 结构域 S1 泛素结合面与催化沟槽边缘，避开完全埋藏的催化半胱氨酸位点。",
+    "diseaseDirection": "自身炎症与线性泛素稳态异常",
+    "domain": "OTULIN 含 N 端 HOIP 结合 PIM 区段与 C 端 OTU 去泛素化酶结构域，3ZNV 覆盖催化结构域。",
+    "evidence": "OTULIN 线性泛素信号与自身炎症证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB Q96BN8 functional annotation",
+      "RCSB PDB 3ZNV X-ray structure",
+      "Human genetic studies of OTULIN-related autoinflammation"
+    ],
+    "referenceEntries": "UniProt Q96BN8；RCSB PDB 3ZNV；Open Targets OTULIN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "OTU 结构域 S1 泛素结合沟槽及催化裂隙邻近环区",
+        "可直接干扰 M1-linked ubiquitin 底物定位，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "OTU 结构域远端泛素接触面外围 α 螺旋与环区",
+        "有利于降低催化构象适配，但可能需要高亲和力构象选择",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端 PUB-interacting motif 对应 HOIP 结合线性基序",
+        "可影响 OTULIN-LUBAC 招募，但 3ZNV 未覆盖且线性表位构象不稳定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "OTULIN 为胞内酶，常规治疗性抗体难以到达靶点；设计应限定为胞内抗体、递送型抗体片段或体外机制探针，并避免非特异阻断 OTU 家族保守表面。",
+    "structurePrepZh": "以 3ZNV 链 A 为模板进行缺失残基、质子化状态与催化位点检查；结合 OTULIN-泛素复合物同源信息标注 S1/S1′ 底物结合面。",
+    "structureRef": "RCSB PDB 3ZNV，1.3 Å X-ray OTULIN OTU domain",
+    "antibodies": [
+      "无获批靶向 OTULIN 治疗性抗体",
+      "研究级 anti-OTULIN 抗体"
+    ],
+    "interfaceFocus": "OTU 催化裂隙与 M1 泛素结合沟槽",
+    "designMode": "胞内抗体设计",
+    "candidates": [
+      {
+        "target": "RNF31",
+        "rationale": "RNF31/HOIP 是 LUBAC 催化亚基，负责生成 M1-linked ubiquitin 链，与 OTULIN 共同维持线性泛素信号平衡。靶向其结构域界面可影响 NF-κB 激活与炎症输出。"
+      },
+      {
+        "target": "SHARPIN",
+        "rationale": "SHARPIN 是 LUBAC 复合体组成部分，参与稳定 HOIP-HOIL1L-SHARPIN 复合物并调节 TNFR1 下游线性泛素化。其疾病通路与 OTULIN 所控制的 M1 泛素轴直接相连。"
+      },
+      {
+        "target": "RBCK1",
+        "rationale": "RBCK1/HOIL1L 是 LUBAC 组成亚基，影响线性泛素链装配及免疫炎症信号强度。RBCK1 缺陷与免疫异常和炎症表型相关，适合作为同通路比较靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

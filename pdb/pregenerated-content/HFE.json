@@ -1,0 +1,65 @@
+{
+  "gene": "HFE",
+  "generatedAt": "2026-08-03T13:11:12.666Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HFE 是MHC-I样膜蛋白，通过与β2-微球蛋白形成复合体并结合转铁蛋白受体1，影响细胞铁摄取与肝细胞铁调素调控轴，遗传缺陷与1型血色病高度相关。其α1/α2胞外平台和α3样结构域暴露于细胞表面，具备抗体识别可及性。相较于胞内铁代谢酶，HFE具有明确疾病遗传证据、可解析胞外复合物结构和可直接干预的蛋白互作界面，优先级较高。",
+    "mechanism": "通过抗体结合HFE胞外α1/α2平台或TfR1接触面，阻断HFE与转铁蛋白受体1的相互作用，重塑铁摄取与铁调素调控信号。",
+    "selectedEpitope": "优先覆盖α1/α2平台中TfR1结合界面，避开β2-微球蛋白核心装配面。",
+    "diseaseDirection": "遗传性铁过载与血色病",
+    "domain": "HFE含α1、α2 MHC-I样平台结构域、α3免疫球蛋白样结构域、跨膜区及短胞质尾。",
+    "evidence": "HFE结构-遗传-铁稳态证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q30201功能与结构域注释",
+      "RCSB PDB 1A6Z晶体结构",
+      "血色病HFE C282Y与H63D遗传研究"
+    ],
+    "referenceEntries": "UniProt Q30201；RCSB PDB 1A6Z；Open Targets HFE",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "α1/α2平台TfR1结合面",
+        "可直接阻断HFE-TfR1互作并影响铁摄取调控",
+        "优先"
+      ],
+      [
+        "Site B",
+        "α3免疫球蛋白样结构域外侧面",
+        "远离β2M装配核心，适合构建非竞争性结合抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "β2-微球蛋白邻近装配界面",
+        "可能扰动HFE折叠、成熟运输与复合物稳定性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HFE与经典MHC-I样分子存在结构相似性，需规避保守β2M装配面并进行HLA交叉反应筛查；优先筛选TfR1竞争性克隆。",
+    "structurePrepZh": "以1A6Z中HFE-β2M复合物为模板，保留糖基化位点邻近空间约束，标注C282Y/H63D变异位置并重建胞外单体表面。",
+    "structureRef": "Lebron等解析HFE与β2-微球蛋白晶体结构，PDB 1A6Z",
+    "antibodies": [
+      "MEM-HFE/02",
+      "8C10"
+    ],
+    "interfaceFocus": "α1/α2平台TfR1接触面与α3外侧面",
+    "designMode": "界面阻断型设计",
+    "candidates": [
+      {
+        "target": "TFRC",
+        "rationale": "TFRC编码转铁蛋白受体1，是HFE直接结合伙伴，位于细胞铁摄取通路核心节点；其胞外二聚体结构明确，适合抗体阻断转铁蛋白结合或HFE竞争界面。"
+      },
+      {
+        "target": "HAMP",
+        "rationale": "HAMP编码铁调素，是HFE-TfR2/HJV/BMP信号轴下游效应分子，直接控制铁输出蛋白降解；在铁过载疾病中具有明确功能关联。"
+      },
+      {
+        "target": "TFR2",
+        "rationale": "TFR2参与肝细胞铁感知并与HFE共同调控HAMP表达，遗传缺陷可导致血色病样铁过载；其胞外受体结构提供抗体干预可及性。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

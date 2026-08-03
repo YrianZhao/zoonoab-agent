@@ -1,0 +1,65 @@
+{
+  "gene": "ELL2",
+  "generatedAt": "2026-08-03T19:06:47.444Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ELL2 是 RNA polymerase II 转录延伸因子，参与超级延伸复合体相关转录调控，并与免疫球蛋白重链分泌型 mRNA 加工及浆细胞抗体分泌程序相关；Open Targets 关联信号主要集中于血液学表型与血浆蛋白测量指标，提示其疾病关联更偏向转录调控层面的遗传证据。ELL2 为核内转录因子样蛋白，缺乏分泌型或膜受体样胞外结构域，因此天然抗体抗原可及性弱，不适合作为常规细胞外阻断抗体主靶点。相较于 CD19、BCMA、IL6R 等同类疾病方向中具备细胞表面或分泌可及性的靶点，ELL2 的优先级主要体现在机制研究和细胞内递送抗体设计，而非传统治疗性抗体开发。",
+    "mechanism": "通过细胞内抗体片段干预 ELL2 N 端延伸活性区与 RNA polymerase II 延伸复合体组分的结合，削弱转录延伸效率。",
+    "selectedEpitope": "优先覆盖 5JW9 中 ELL2 N 端 elongation factor 活性结构域的保守表面沟槽，避开深埋疏水核心。",
+    "diseaseDirection": "血液学表型与浆细胞转录调控",
+    "domain": "ELL2 含 N 端转录延伸活性区、中段调控区及 C 端保守结构域，5JW9 覆盖其结构化功能片段。",
+    "evidence": "ELL2 转录延伸与血液表型遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB O00472 functional annotation",
+      "RCSB PDB 5JW9 experimental structure",
+      "literature evidence on ELL2 in RNA polymerase II elongation and plasma cell immunoglobulin secretion"
+    ],
+    "referenceEntries": "UniProtKB: O00472; RCSB PDB: 5JW9; Ensembl: ENSG00000118985",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N 端 elongation factor 活性结构域表面沟槽",
+        "可能影响 ELL2 与转录延伸复合体的功能性接触，适合细胞内 Fab/VHH 探针设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "5JW9 可解析结构片段的链间暴露面",
+        "可用于构象稳定型结合分子筛选，但需排除晶体堆积界面假阳性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守疏水核心及核内蛋白折叠支撑区",
+        "结合可能导致非特异性失稳或低可开发性，不宜作为阻断型表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ELL2 缺乏胞外可及性，传统抗体难以到达核内靶点；设计应限定为细胞内递送 Fab/VHH、研究级抑制剂或降解耦联分子验证。",
+    "structurePrepZh": "以 5JW9 的 A、B 链为模板进行缺失残基修补、晶体接触面评估和质子化状态标准化，并标注保守功能表面。",
+    "structureRef": "RCSB PDB 5JW9, X-ray diffraction, 2.003 Å",
+    "antibodies": [
+      "无获批 ELL2 治疗性抗体",
+      "研究级抗 ELL2 抗体"
+    ],
+    "interfaceFocus": "N 端延伸活性区与 Pol II 延伸复合体接触面",
+    "designMode": "细胞内抗体设计",
+    "candidates": [
+      {
+        "target": "CDK9",
+        "rationale": "CDK9 是 P-TEFb 的催化亚基，直接磷酸化 RNA polymerase II CTD Ser2 并促进转录延伸；与 ELL2 同属转录延伸调控轴。"
+      },
+      {
+        "target": "AFF4",
+        "rationale": "AFF4 是超级延伸复合体支架蛋白，可组织 ELL 家族蛋白与 P-TEFb 形成转录延伸复合体，具有明确的同通路机制关联。"
+      },
+      {
+        "target": "CCNT1",
+        "rationale": "CCNT1 与 CDK9 组成 P-TEFb，参与释放 promoter-proximal pausing 并驱动 Pol II 延伸，是 ELL2 相关转录延伸网络中的核心因子。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

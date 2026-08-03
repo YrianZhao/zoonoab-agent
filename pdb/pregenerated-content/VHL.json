@@ -1,0 +1,65 @@
+{
+  "gene": "VHL",
+  "generatedAt": "2026-08-03T17:48:35.400Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "VHL编码pVHL肿瘤抑制蛋白，是VBC E3泛素连接酶复合体的底物识别亚基，通过识别羟脯氨酸化HIF-α并促进其泛素化降解，失活可驱动VHL病、嗜铬细胞瘤和红细胞增多相关HIF转录程序。该蛋白为细胞内适配蛋白，天然抗原可及性不利于常规胞外阻断抗体，但可作为结构验证、细胞内递送抗体或蛋白降解调控工具的设计对象。相比直接靶向广泛表达的HIF下游分泌因子，VHL处于氧感知通路上游且具备高分辨率复合物结构，适合开展界面型结合分子与机制探针优先设计。",
+    "mechanism": "设计结合pVHL β-domain底物结合沟槽的抗体片段，竞争羟脯氨酸化HIF-α CODD肽段与pVHL的相互作用，改变VBC复合体对HIF-α的识别。",
+    "selectedEpitope": "优先锁定pVHL β-domain中HIF-α羟脯氨酸结合沟槽及邻近疏水口袋。",
+    "diseaseDirection": "VHL-HIF氧感知通路疾病",
+    "domain": "pVHL含N端β-domain底物识别区与C端α-domain，α-domain介导Elongin C结合。",
+    "evidence": "VHL-HIF轴结构与遗传疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProtKB P40337功能注释",
+      "RCSB PDB 4AJY晶体结构",
+      "ClinVar/OMIM VHL病致病变异记录"
+    ],
+    "referenceEntries": "UniProt P40337；RCSB PDB 4AJY；OMIM 608537",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "β-domain羟脯氨酸HIF-α肽段结合沟槽",
+        "直接竞争底物识别界面，机制清晰且结构可约束",
+        "优先"
+      ],
+      [
+        "Site B",
+        "α-domain与Elongin C接触邻近面",
+        "可干预VBC复合体装配，但需避免非特异性复合体破坏",
+        "备选"
+      ],
+      [
+        "Site C",
+        "β-domain远离底物沟槽的保守折叠核心",
+        "易影响蛋白稳定性并产生构象伪阳性，功能选择性不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "VHL为细胞内蛋白，常规治疗性抗体递送受限；应采用Fab/VHH片段、细胞内表达或递送体系，并重点排除折叠破坏型结合。",
+    "structurePrepZh": "以4AJY为模板分离pVHL链，保留HIF-α肽段和VBC复合体界面用于口袋定义，补全缺失侧链并进行质子化与能量最小化。",
+    "structureRef": "RCSB PDB 4AJY，1.73 Å X-ray复合物结构",
+    "antibodies": [
+      "anti-VHL antibody clone Ig32",
+      "anti-VHL antibody clone VHL40"
+    ],
+    "interfaceFocus": "β-domain羟脯氨酸底物结合沟槽",
+    "designMode": "细胞内界面阻断",
+    "candidates": [
+      {
+        "target": "HIF1A",
+        "rationale": "HIF1A编码HIF-1α，是VHL介导羟脯氨酸依赖性识别与降解的核心底物，直接连接缺氧反应与肿瘤血管生成转录程序。"
+      },
+      {
+        "target": "EPAS1",
+        "rationale": "EPAS1编码HIF-2α，在VHL缺陷性肾癌和嗜铬细胞瘤中具有明确驱动作用，是同一VHL-HIF氧感知通路的关键效应节点。"
+      },
+      {
+        "target": "EGLN1",
+        "rationale": "EGLN1编码PHD2脯氨酰羟化酶，负责HIF-α羟基化并形成VHL识别标记，位于VHL上游的氧依赖性传感步骤。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

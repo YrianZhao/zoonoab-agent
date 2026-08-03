@@ -1,0 +1,65 @@
+{
+  "gene": "LAMTOR2",
+  "generatedAt": "2026-08-03T20:03:41.227Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "LAMTOR2 是 Ragulator 复合体的组成亚基，参与晚期内体/溶酶体表面 mTORC1 与 MAPK 信号装配；双等位基因缺陷可导致 p14 缺陷相关原发性免疫缺陷，并伴中性粒细胞发育异常。该蛋白主要定位于胞质侧溶酶体膜适配复合体，缺乏经典胞外结构域或分泌形式，抗体可及性弱于典型膜受体。其优先级主要来自明确的人类遗传疾病因果证据和高分辨率 Ragulator 结构，而非抗体成药可及性；相较 LAMTOR1，LAMTOR2 结构解析更适合开展机制验证型结合分子设计。",
+    "mechanism": "设计分子以阻断 LAMTOR2 与 LAMTOR3 形成 p14-MP1 异二聚体，削弱 Ragulator 对 Rag GTPase 的支架装配并降低溶酶体 mTORC1 招募。",
+    "selectedEpitope": "优先覆盖 LAMTOR2 N端螺旋束中与 LAMTOR3 形成异二聚体的疏水界面。",
+    "diseaseDirection": "p14缺陷原发性免疫缺陷",
+    "domain": "LAMTOR2 为小型 Ragulator 亚基，含四螺旋束样结构，与 LAMTOR3 组成稳定异二聚体。",
+    "evidence": "LAMTOR2-Ragulator免疫缺陷结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q9Y2Q5 蛋白功能注释",
+      "RCSB PDB 6B9X 高分辨率晶体结构",
+      "人类 p14 缺陷原发性免疫缺陷遗传研究"
+    ],
+    "referenceEntries": "UniProt Q9Y2Q5；RCSB PDB 6B9X；Open Targets LAMTOR2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "LAMTOR2-LAMTOR3 异二聚体疏水界面",
+        "直接干预 p14-MP1 复合体稳定性，机制验证价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "面向 LAMTOR1/LAMTOR4/LAMTOR5 的 Ragulator 装配邻近面",
+        "可影响五聚体支架组装，但需避免广泛构象扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离复合体界面的溶剂暴露螺旋外侧",
+        "结合可行但功能阻断效应不确定，主要适合检测抗体",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "LAMTOR2 位于细胞内溶酶体膜胞质侧，常规抗体难以到达天然靶点；建议定位为胞内递送抗体、细胞内抗体或结构机制验证工具。",
+    "structurePrepZh": "以 PDB 6B9X 的 Ragulator 复合体为模板，保留 A-E 链装配关系，补全缺失侧链并评估 LAMTOR2-LAMTOR3 界面保守性。",
+    "structureRef": "RCSB PDB 6B9X，X-ray diffraction，1.42 Å",
+    "antibodies": [
+      "抗 LAMTOR2/p14 研究用单克隆抗体",
+      "抗 Ragulator 复合体研究用抗体"
+    ],
+    "interfaceFocus": "LAMTOR2-LAMTOR3异二聚体界面",
+    "designMode": "胞内机制阻断",
+    "candidates": [
+      {
+        "target": "LAMTOR3",
+        "rationale": "LAMTOR3 与 LAMTOR2 形成 p14-MP1 异二聚体，是 Ragulator 复合体稳定装配的直接互作亚基。阻断该界面可在同一溶酶体 mTORC1 通路内验证机制。"
+      },
+      {
+        "target": "LAMTOR1",
+        "rationale": "LAMTOR1 锚定 Ragulator 复合体于晚期内体/溶酶体膜，并连接 Rag GTPase 介导的 mTORC1 招募。其膜锚定功能处于同一营养感应通路上游。"
+      },
+      {
+        "target": "RRAGA",
+        "rationale": "RRAGA 是 Rag GTPase 复合体成员，受 Ragulator 调控后招募 mTORC1 至溶酶体表面。其与 LAMTOR2 所在复合体属于同一氨基酸感应-mTORC1 轴。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

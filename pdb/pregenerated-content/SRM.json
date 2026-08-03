@@ -1,0 +1,65 @@
+{
+  "gene": "SRM",
+  "generatedAt": "2026-08-03T16:55:20.179Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SRM编码亚精胺合成酶，催化脱羧S-腺苷甲硫氨酸向腐胺转移氨丙基生成亚精胺，处于多胺生物合成核心步骤；多胺稳态与骨骼发育、细胞增殖及代谢表型存在遗传和功能关联。该蛋白为细胞质可溶性酶，缺乏天然胞外结构域，抗体抗原可及性弱，需限定于细胞内递送、降解偶联或结构探针应用。相较于膜受体类通路靶点，SRM的优先级主要来自高分辨率晶体结构与明确催化口袋，而非常规治疗性抗体可及性。",
+    "mechanism": "抗体需结合SRM二聚体界面或催化口袋邻近环区，阻断腐胺与脱羧S-腺苷甲硫氨酸在活性位点的协同定位，从而抑制亚精胺生成。",
+    "selectedEpitope": "优先评估TIM桶状催化结构域中二聚体界面及活性口袋入口环区，避免深埋辅因子结合位点。",
+    "diseaseDirection": "多胺代谢与骨骼发育异常",
+    "domain": "SRM为细胞质同源二聚体酶，含N端β链结构域与C端TIM桶状催化结构域，活性位点位于亚基界面附近。",
+    "evidence": "SRM多胺生物合成结构与疾病遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P19623功能与亚细胞定位注释",
+      "RCSB PDB 2O07 X射线晶体结构",
+      "Reactome多胺生物合成通路注释"
+    ],
+    "referenceEntries": "UniProt P19623；RCSB PDB 2O07；Reactome polyamine biosynthesis",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端TIM桶状催化结构域活性口袋入口环区",
+        "可能干扰腐胺底物进入并影响催化构象，结构解析度支持精细设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "同源二聚体亚基接触界面邻近区域",
+        "可能削弱二聚体稳定性或改变活性位点几何构型",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端β链结构域远离活性口袋表面",
+        "抗原表面可成药性较有限，功能阻断相关性需实验验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SRM为胞内酶，常规抗体难以到达天然作用位点；应优先采用细胞内抗体、递送载体或PROTAB样降解设计，并以酶活抑制实验验证功能效应。",
+    "structurePrepZh": "以PDB 2O07的A、B链同源二聚体为模板，保留催化口袋周边残基，检查配体、晶体接触和缺失环区后进行质子化与界面标注。",
+    "structureRef": "PDB 2O07，human spermidine synthase，1.89 Å X-ray",
+    "antibodies": [
+      "暂无获批SRM靶向抗体",
+      "SRM研究级检测抗体"
+    ],
+    "interfaceFocus": "活性口袋入口环区与A/B链二聚体界面",
+    "designMode": "胞内酶阻断型",
+    "candidates": [
+      {
+        "target": "ODC1",
+        "rationale": "ODC1催化鸟氨酸生成腐胺，是SRM上游多胺生物合成限速步骤；其抑制可降低SRM底物供应并影响同一代谢轴。"
+      },
+      {
+        "target": "AMD1",
+        "rationale": "AMD1生成脱羧S-腺苷甲硫氨酸，为SRM提供氨丙基供体；与SRM存在直接代谢耦联关系。"
+      },
+      {
+        "target": "SMS",
+        "rationale": "SMS利用亚精胺生成精胺，位于SRM下游多胺转化通路；其遗传缺陷与骨骼及神经发育表型相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

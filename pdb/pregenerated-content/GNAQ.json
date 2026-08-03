@@ -1,0 +1,65 @@
+{
+  "gene": "GNAQ",
+  "generatedAt": "2026-08-03T12:50:37.005Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GNAQ 是 Gq/11 信号轴的胞内异源三聚体 G 蛋白 α 亚基，Q209 或 R183 等激活突变可降低 GTP 水解并持续驱动 PLCB-IP3-DAG、PKC 与 MAPK/YAP 相关信号，在葡萄膜黑色素瘤、Sturge-Weber 综合征及血管畸形中具有明确疾病关联。该蛋白缺乏天然胞外结构域或分泌形式，常规外源性抗体难以直接接触完整细胞内抗原，因此更适合作为细胞内抗体、递送型 Fab/VHH 或降解偶联平台的结构引导靶点。相较下游 MAPK 或 PKC 节点，GNAQ 位于突变驱动通路上游且具有可解析的 GTPase 口袋、Switch 区与效应蛋白结合界面，可为突变构象选择性阻断提供更高机制特异性。",
+    "mechanism": "设计细胞内递送抗体阻断 GNAQ Switch II/α3 区域与 PLCB3 的效应蛋白结合，并稳定非生产性构象，削弱PIP2水解产生IP3和DAG的驱动信号。",
+    "selectedEpitope": "优先靶向Ras-like GTPase结构域的Switch II-α3效应蛋白界面，兼顾Q209邻近构象差异。",
+    "diseaseDirection": "葡萄膜黑色素瘤与血管畸形",
+    "domain": "GNAQ含N端α螺旋结构域与Ras-like GTPase结构域，Switch I/II介导核苷酸状态和效应蛋白识别。",
+    "evidence": "GNAQ突变驱动Gq信号疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P50148功能与变异注释",
+      "RCSB PDB 8THK冷冻电镜结构",
+      "葡萄膜黑色素瘤GNAQ/GNA11突变文献"
+    ],
+    "referenceEntries": "UniProt P50148；RCSB PDB 8THK；Open Targets GNAQ",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Switch II-α3效应蛋白结合面",
+        "可直接干预PLCB结合并区分活化构象",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Switch I与核苷酸结合口袋邻近区",
+        "有助于锁定GDP/GTP相关构象但需避免影响广泛G蛋白保守位点",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端α螺旋结构域与Gβγ接触面",
+        "可能扰动异源三聚体装配，选择性和细胞毒性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GNAQ为胞内蛋白，常规抗体药物可及性不足；Switch区在Gα家族中较保守，需通过突变邻近构象、亲和选择和细胞内递送策略降低脱靶风险。",
+    "structurePrepZh": "以8THK实验冷冻电镜模型为模板，保留GNAQ抗原链并核查核苷酸、受体及伴侣蛋白接触界面，补全缺失环区后进行Switch区构象聚类。",
+    "structureRef": "RCSB PDB 8THK，2.6 Å冷冻电镜人源Gq复合物结构",
+    "antibodies": [
+      "scFv或intrabody构象选择性抗GNAQ原型",
+      "递送型VHH细胞内Gαq结合分子"
+    ],
+    "interfaceFocus": "Switch II-α3与PLCB效应蛋白界面",
+    "designMode": "胞内构象阻断",
+    "candidates": [
+      {
+        "target": "GNA11",
+        "rationale": "GNA11与GNAQ同属Gq/11 α亚基，在葡萄膜黑色素瘤中具有互斥性激活突变，并驱动相同PLCB-PKC-MAPK信号轴。"
+      },
+      {
+        "target": "PLCB3",
+        "rationale": "PLCB3是Gαq/11直接效应蛋白，结合活化GNAQ后水解PIP2生成IP3和DAG，位于突变GNAQ下游的核心传导节点。"
+      },
+      {
+        "target": "CYSLTR2",
+        "rationale": "CYSLTR2编码Gq偶联受体，其L129Q激活突变可通过GNAQ/GNA11信号促进葡萄膜黑色素瘤相关通路活化。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

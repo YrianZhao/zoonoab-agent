@@ -1,0 +1,65 @@
+{
+  "gene": "PARP16",
+  "generatedAt": "2026-08-03T15:05:10.771Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PARP16 是内质网膜相关 mono-ADP-ribosyltransferase，可在未折叠蛋白反应中 ADP-核糖基化 PERK 与 IRE1α，影响 ER stress 适应与抗病毒应答。其催化结构域位于胞质侧，跨膜锚定限制了常规胞外抗体可及性，因此更适合定位于细胞内递送抗体片段或结构引导型抑制抗体研究。相较分泌型炎症因子或典型膜受体，PARP16 的抗体开发优先级受抗原可及性约束，但其具备高分辨率催化域结构与明确酶学界面，适合作为机制验证型靶点。",
+    "mechanism": "通过识别 PARP16 催化域 NAD+ 结合沟槽，阻断其与 PERK、IRE1α 底物近端构象结合及 ADP-核糖基转移反应。",
+    "selectedEpitope": "优先覆盖催化域 NAD+ 结合口袋邻近螺旋-环区，兼顾底物进入沟槽边缘残基。",
+    "diseaseDirection": "病毒感染相关ER应激通路",
+    "domain": "PARP16 含 N 端跨膜锚定区与 C 端 PARP 催化结构域，催化域位于胞质侧。",
+    "evidence": "PARP16结构与ER应激抗病毒证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q8N5Y8 functional annotation",
+      "RCSB PDB 6HXS X-ray structure",
+      "PARP16-mediated UPR signaling literature"
+    ],
+    "referenceEntries": "UniProt Q8N5Y8；RCSB PDB 6HXS；Open Targets PARP16",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PARP催化域NAD+结合沟槽及邻近环区",
+        "直接干预辅因子结合与催化构象，最适合功能阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化域底物进入沟槽外缘表面",
+        "可能削弱 PERK/IRE1α 近端结合，保留较好结构可塑性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端跨膜区近膜胞质侧片段",
+        "结构暴露度和构象稳定性不足，且不利于常规抗体结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PARP16 缺乏胞外结构域，常规全长抗体难以在完整细胞外侧结合；建议采用胞内递送 Fab/VHH、纳米抗体表达或以结构域抑制为验证路径。",
+    "structurePrepZh": "以 6HXS 的 A、B、C 链催化域为模板，补全缺失侧链、校正质子化状态，并围绕 NAD+ 结合沟槽定义抗原表面。",
+    "structureRef": "RCSB PDB 6HXS，PARP16 catalytic domain，2.05 Å",
+    "antibodies": [
+      "无已获批PARP16抗体药物",
+      "研究级anti-PARP16抗体"
+    ],
+    "interfaceFocus": "NAD+结合沟槽与底物进入界面",
+    "designMode": "胞内酶域阻断",
+    "candidates": [
+      {
+        "target": "EIF2AK3",
+        "rationale": "EIF2AK3/PERK 是未折叠蛋白反应的核心 ER stress 传感器，PARP16 可通过 ADP-核糖基化影响其激活状态，适合作为同通路功能参照靶点。"
+      },
+      {
+        "target": "ERN1",
+        "rationale": "ERN1/IRE1α 与 PARP16 共同参与 UPR 分支调控，PARP16 介导的修饰可促进其应激相关信号输出。"
+      },
+      {
+        "target": "ATF6",
+        "rationale": "ATF6 是 ER stress 的另一经典传感分支，与 PERK、IRE1α 共同定义 UPR 网络，可用于比较 PARP16 靶向对不同 UPR 分支的选择性影响。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

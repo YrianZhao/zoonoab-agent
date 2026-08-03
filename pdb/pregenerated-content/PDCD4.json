@@ -1,0 +1,65 @@
+{
+  "gene": "PDCD4",
+  "generatedAt": "2026-08-03T15:08:31.009Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PDCD4 是细胞内翻译抑制因子和肿瘤抑制蛋白，可通过 MA3 结构域结合 EIF4A1/EIF4A2 并抑制 eIF4F 依赖性翻译起始，在炎症、代谢应激和免疫细胞表型相关疾病数据中呈现遗传与表达层面的关联。该蛋白主要定位于胞质和细胞核，不具备分泌蛋白或膜受体的天然抗原可及性，因此不适合作为常规体内阻断型抗体靶点，更适合细胞内抗体、VHH 或研究级构象探针策略。相较于同通路中的胞外或膜受体靶点，PDCD4 的优先级优势在于已有高分辨率结构可支持 EIF4A 结合界面的精细化设计，但成药可及性风险显著高于 IL6R、TNFRSF1A 等可外部给药靶点。",
+    "mechanism": "通过细胞内 VHH 结合 PDCD4 MA3 结构域的 EIF4A 识别界面，竞争性阻断 PDCD4 与 EIF4A1/EIF4A2 相互作用，从而解除其对翻译起始复合体的抑制。",
+    "selectedEpitope": "优先覆盖 C 端 MA3 结构域中 EIF4A 结合沟槽及相邻螺旋束界面。",
+    "diseaseDirection": "代谢炎症与免疫细胞表型",
+    "domain": "PDCD4 含 N 端 RNA 结合相关区域及两个 MA3 结构域，C 端 MA3 介导 EIF4A 结合。",
+    "evidence": "PDCD4 翻译调控与代谢炎症证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt Q53EL6 蛋白功能注释",
+      "RCSB PDB 9TES 晶体结构",
+      "PDCD4-EIF4A 翻译起始调控文献"
+    ],
+    "referenceEntries": "UniProt Q53EL6；RCSB PDB 9TES；Open Targets PDCD4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C 端 MA3 结构域 EIF4A 结合沟槽",
+        "直接干预 PDCD4-EIF4A 相互作用，机制指向性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "MA3 双结构域相对取向界面",
+        "可稳定特定构象并影响 EIF4A 结合构象选择",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端低复杂度及 RNA 结合相关区域",
+        "柔性较高且结构约束不足，表位一致性与功能解释风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PDCD4 缺乏胞外暴露，常规治疗性抗体难以到达胞质靶点。设计应限定为细胞内递送 VHH、细胞模型工具抗体或结构探针，并避免宣称经典体液阻断机制。",
+    "structurePrepZh": "以 9TES 的 A、B 链为结构模板，优先保留高分辨率 MA3 折叠核心，校验缺失环区、晶体接触面与 EIF4A 结合文献残基后再进行表位建模。",
+    "structureRef": "RCSB PDB 9TES，X-ray diffraction，1.217 Å",
+    "antibodies": [
+      "研究级抗 PDCD4 单克隆抗体",
+      "研究级抗 PDCD4 多克隆抗体"
+    ],
+    "interfaceFocus": "MA3 结构域 EIF4A 结合沟槽",
+    "designMode": "细胞内VHH探针",
+    "candidates": [
+      {
+        "target": "EIF4A1",
+        "rationale": "EIF4A1 是 PDCD4 直接结合的 DEAD-box RNA 解旋酶，位于 eIF4F 翻译起始复合体核心位置。围绕该节点可评估 PDCD4 解除或增强翻译抑制的通路效应。"
+      },
+      {
+        "target": "EIF4A2",
+        "rationale": "EIF4A2 同样可与 PDCD4 的 MA3 结构域发生相互作用，并参与翻译起始调控。其与 EIF4A1 的功能重叠使其成为验证 PDCD4 机制选择性的合理候选。"
+      },
+      {
+        "target": "EIF4G1",
+        "rationale": "EIF4G1 是 eIF4F 复合体支架蛋白，连接 EIF4E、EIF4A 与 mRNA 招募过程。PDCD4 对 EIF4A 功能的抑制会影响 EIF4G1 依赖的翻译起始装配。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

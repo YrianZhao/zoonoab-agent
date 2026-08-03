@@ -1,0 +1,65 @@
+{
+  "gene": "UBE2I",
+  "generatedAt": "2026-08-03T17:38:49.134Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "UBE2I编码SUMO偶联酶UBC9，是SUMO化级联中将SUMO转移至底物赖氨酸残基的核心E2酶，参与DNA损伤应答、抗病毒反应和神经退行性疾病相关蛋白稳态。该蛋白主要定位于细胞核和细胞质，不具备胞外结构域、分泌特征或膜受体可及性，因此常规外源性抗体成药可及性较弱，更适合作为胞内结合体或研究级干预靶点。相较SUMO1/2/3等广泛底物修饰因子，UBE2I位于SUMO转移反应的酶促枢纽，结构解析充分且活性界面明确，但作为治疗性抗体主靶点优先级低于具有胞外可及性的炎症或病毒进入通路靶点。",
+    "mechanism": "胞内抗体或VHH可阻断UBE2I催化半胱氨酸Cys93附近与SUMO及底物ψKxE基序的结合，抑制SUMO向底物赖氨酸转移。",
+    "selectedEpitope": "优先覆盖UBC催化核心Cys93周边及N端底物识别沟槽，避开高度保守疏水核心。",
+    "diseaseDirection": "SUMO化相关神经退行与病毒感染",
+    "domain": "UBE2I为单一UBC折叠E2催化结构域，含活性Cys93、SUMO结合面和底物识别沟槽。",
+    "evidence": "UBE2I SUMO化枢纽结构与疾病关联证据",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P63279功能与亚细胞定位注释",
+      "RCSB PDB 2GRR晶体结构记录",
+      "SUMO化级联与UBC9底物识别文献"
+    ],
+    "referenceEntries": "UniProt:P63279；RCSB PDB:2GRR；HGNC:UBE2I",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Cys93催化环及邻近SUMO转移界面",
+        "直接干预硫酯转移和SUMO底物装载步骤",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端α1螺旋与β1-β2邻近底物识别沟槽",
+        "可能阻断ψKxE底物基序定位，兼顾选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "UBC折叠保守疏水核心及全局稳定区",
+        "易影响蛋白折叠并产生非特异失活风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "UBE2I为胞内必需酶且序列高度保守，常规抗体递送与安全窗均受限；宜采用胞内VHH、可诱导表达体系或降解型工具分子验证。",
+    "structurePrepZh": "以2GRR高分辨率晶体结构为模板，保留抗原链A/B用于构象比对，补全氢原子并标注Cys93、SUMO结合面和底物沟槽。",
+    "structureRef": "RCSB PDB 2GRR，X-ray diffraction，1.3 Å",
+    "antibodies": [
+      "anti-UBE2I/UBC9 monoclonal antibody",
+      "anti-SUMO E2 enzyme UBC9 antibody"
+    ],
+    "interfaceFocus": "Cys93催化环、SUMO结合面与底物沟槽",
+    "designMode": "胞内VHH阻断",
+    "candidates": [
+      {
+        "target": "SUMO1",
+        "rationale": "SUMO1是UBE2I转移至底物的成熟修饰蛋白，直接处于同一SUMO化级联。干预SUMO1装载可用于区分单SUMO化相关病理贡献。"
+      },
+      {
+        "target": "SUMO2",
+        "rationale": "SUMO2参与应激诱导性SUMO链形成，与DNA损伤、抗病毒应答和蛋白稳态密切相关。其与UBE2I共同决定多SUMO化底物谱。"
+      },
+      {
+        "target": "SAE1",
+        "rationale": "SAE1与UBA2组成SUMO E1激活酶复合体，位于UBE2I上游并负责SUMO腺苷化和硫酯化。该节点可作为SUMO化级联上游阻断候选。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

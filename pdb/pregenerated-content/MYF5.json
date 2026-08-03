@@ -1,0 +1,65 @@
+{
+  "gene": "MYF5",
+  "generatedAt": "2026-08-03T14:29:42.807Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MYF5是骨骼肌发生早期决定因子，致病变异与外眼肌麻痹、肋骨及椎体发育异常等先天性肌源性疾病相关，其机制主要涉及肌生成调控程序受损。该蛋白为核内bHLH转录因子，并非分泌蛋白或细胞膜受体，天然抗原可及性不适合体内阻断型抗体；其优势在于PDB 7Z5K提供实验结构，可用于研究级构象识别抗体或细胞内递送抗体设计。相较缺乏高分辨率结构的肌发生调控因子，MYF5可直接围绕bHLH-DNA/E蛋白复合界面开展结构约束设计，但作为治疗性常规抗体靶点优先级低于可及性更高的胞外通路靶点。",
+    "mechanism": "设计抗体应识别MYF5 bHLH区域，阻断其与E蛋白异源二聚化或干扰MYF5-DNA E-box结合，从而抑制异常肌生成转录复合物装配。",
+    "selectedEpitope": "优先选择bHLH螺旋-环-螺旋二聚化界面，兼顾DNA结合碱性区邻近构象表位。",
+    "diseaseDirection": "先天性肌发生与骨骼发育异常",
+    "domain": "MYF5含N端转录调控区、核心bHLH结构域及C端调控区，7Z5K覆盖结构化DNA结合/二聚化模块。",
+    "evidence": "MYF5肌发生调控与先天畸形证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P13349功能与结构域注释",
+      "RCSB PDB 7Z5K晶体结构",
+      "OMIM与文献中的MYF5相关发育异常记录"
+    ],
+    "referenceEntries": "UniProt P13349；RCSB PDB 7Z5K；Open Targets MYF5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "bHLH螺旋2与环区二聚化界面",
+        "可直接干扰MYF5与TCF3/TCF12等E蛋白形成转录活性异源二聚体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "碱性DNA结合区邻近E-box接触面",
+        "有助于阻断MYF5识别CANNTG类E-box序列，但需避免非特异核酸结合干扰",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端低复杂度转录调控区",
+        "可能区分MYF5同源因子，但结构柔性高、构象表位稳定性不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MYF5定位于细胞核，缺乏胞外暴露结构，常规IgG体内可及性不足；建议定位为研究抗体、细胞内抗体或递送型VHH项目，并严格评估MYOD1、MYOG、MYF6交叉反应。",
+    "structurePrepZh": "以7Z5K抗原链A、B、E、F为模板，保留bHLH核心与DNA/伴侣蛋白相对构象，补全缺失侧链并标注同源肌调节因子保守位点。",
+    "structureRef": "RCSB PDB 7Z5K，X-ray diffraction，2.28 Å",
+    "antibodies": [
+      "Anti-MYF5 clone C-20",
+      "Anti-MYF5 clone EPR20258"
+    ],
+    "interfaceFocus": "bHLH二聚化面与E-box DNA接触面",
+    "designMode": "细胞内构象阻断",
+    "candidates": [
+      {
+        "target": "MYOD1",
+        "rationale": "MYOD1与MYF5同属肌源性bHLH转录因子，参与骨骼肌谱系决定并通过E蛋白异源二聚体结合E-box调控下游肌生成基因。"
+      },
+      {
+        "target": "MYOG",
+        "rationale": "MYOG位于肌发生分化阶段下游，与MYF5/MYOD1共同驱动肌管形成相关转录程序，可作为同一肌生成调控轴的功能候选靶点。"
+      },
+      {
+        "target": "TCF3",
+        "rationale": "TCF3编码E12/E47类E蛋白，是MYF5 bHLH因子形成DNA结合异源二聚体的关键伴侣，靶向该节点可影响MYF5依赖性转录复合物装配。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

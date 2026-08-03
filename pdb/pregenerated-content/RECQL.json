@@ -1,0 +1,65 @@
+{
+  "gene": "RECQL",
+  "generatedAt": "2026-08-03T15:58:16.896Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RECQL 是 DNA 解旋酶家族成员，参与复制叉稳定、同源重组修复与基因组完整性维持，其功能缺陷与早老样综合征及遗传性肿瘤易感相关。该蛋白主要定位于细胞核而非细胞表面，抗原天然可及性弱，因此更适合作为胞内抗体、递送型抗体片段或研究级功能阻断抗体靶点。与同通路中缺乏高分辨率结构片段的修复因子相比，RECQL 已具备 2.0 Å 实验结构，可支持解旋酶核心界面的精确表位设计，但转化优先级需低于可外周给药的膜受体或分泌靶点。",
+    "mechanism": "通过抗体片段结合 RECQL 解旋酶核心结构域，干扰 ATPase 构象耦联或 ssDNA 结合沟槽，阻断复制叉修复所需的 DNA 解旋活性。",
+    "selectedEpitope": "优先覆盖 RecA-like helicase 核心的 ATP 结合裂隙邻近构象界面，避免完全遮蔽保守 P-loop 催化残基。",
+    "diseaseDirection": "DNA修复缺陷与遗传性肿瘤易感",
+    "domain": "RECQL 含 N 端解旋酶 ATPase 核心、RQC 区域及 C 端核酸结合相关区段。",
+    "evidence": "RECQL DNA修复功能与遗传肿瘤风险证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt P46063 功能与定位注释",
+      "RCSB PDB 2V1X 晶体结构记录",
+      "RecQ helicase DNA repair literature"
+    ],
+    "referenceEntries": "UniProt P46063；RCSB PDB 2V1X；Open Targets RECQL",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RecA-like ATPase 核心裂隙邻近构象界面",
+        "可干扰 ATP 结合、构象转换与解旋酶催化循环",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RQC 结构域的核酸识别相关表面",
+        "可能削弱 RECQL 与 DNA 底物的稳定结合",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守 Walker A/P-loop 催化基序正上方",
+        "催化阻断潜力高但交叉反应与构象适配风险较大",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RECQL 为核内蛋白，常规抗体药物难以到达作用位点；需优先采用胞内表达抗体、细胞递送 Fab/VHH 或研究验证体系，并评估 RecQ 家族保守表位交叉反应。",
+    "structurePrepZh": "以 PDB 2V1X 的 A、B 链为模板进行同源链比对、缺失环建模和质子化处理，保留 ATPase 核心构象用于表位可及性与保守性评估。",
+    "structureRef": "PDB 2V1X，X-ray diffraction，2.0 Å，human RECQL fragment",
+    "antibodies": [
+      "RECQL research antibody clone EPR12234",
+      "RECQL polyclonal antibody HPA029971"
+    ],
+    "interfaceFocus": "ATPase裂隙、DNA结合沟槽与RQC表面",
+    "designMode": "胞内功能阻断",
+    "candidates": [
+      {
+        "target": "BLM",
+        "rationale": "BLM 属 RecQ 解旋酶家族，参与同源重组中 DNA 末端加工和 Holliday junction 解离；其缺陷导致 Bloom 综合征并显著增加肿瘤易感性。"
+      },
+      {
+        "target": "WRN",
+        "rationale": "WRN 同时具有解旋酶和核酸外切酶活性，维持端粒稳定和复制叉修复；其遗传缺陷与 Werner 综合征及癌症风险升高相关。"
+      },
+      {
+        "target": "BRCA1",
+        "rationale": "BRCA1 是同源重组修复和复制叉保护的核心调控因子，与 RECQL 共同影响 DNA 损伤应答网络；其突变驱动遗传性乳腺卵巢癌综合征。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

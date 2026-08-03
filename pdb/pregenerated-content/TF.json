@@ -1,0 +1,65 @@
+{
+  "gene": "TF",
+  "generatedAt": "2026-08-03T21:28:30.088Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TF 编码血浆转铁蛋白，是维持血清铁转运、红系造血供铁和组织铁稳态的核心分泌蛋白；其缺陷与无转铁蛋白血症、先天性无转铁蛋白血症及血清铁水平异常直接相关。转铁蛋白在循环中高度可及，N、C 两个叶状胞外可溶结构域均暴露于抗体识别环境，并通过与 TFRC 结合介导细胞摄铁。相较于胞内铁代谢酶类靶点，TF 具备天然分泌抗原优势、高分辨率结构基础和明确配体-受体界面，因此更适合开展结构引导的抗体工程设计。",
+    "mechanism": "设计抗体阻断铁负载 TF 与 TFRC 胞外结构域结合，抑制受体介导内吞摄铁，并精确调节循环铁递送。",
+    "selectedEpitope": "优先靶向 C-lobe 与 TFRC 结合相关界面，避开深部铁结合裂隙以降低干扰铁配位风险。",
+    "diseaseDirection": "铁稳态异常与红系造血疾病",
+    "domain": "转铁蛋白由同源 N-lobe 与 C-lobe 构成，各含两个亚结构域并形成 Fe3+ 结合裂隙。",
+    "evidence": "TF 铁转运疾病关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt P02787 人转铁蛋白功能注释",
+      "RCSB PDB 1RYO 高分辨率晶体结构",
+      "TF-TFRC 受体介导摄铁通路文献"
+    ],
+    "referenceEntries": "UniProt:P02787；RCSB PDB:1RYO；Open Targets:TF",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C-lobe 外侧受体结合相关面",
+        "有利于阻断 holo-TF 与 TFRC 结合并调节细胞摄铁",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N-lobe 暴露螺旋与环区",
+        "可形成高可及性结合表位，适合作为非竞争性结合臂",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N/C-lobe 铁结合裂隙邻近区域",
+        "可能影响 Fe3+ 与碳酸根配位稳定性，需控制亲和力和空间位阻",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TF 为高丰度血浆蛋白，过强中和可能干扰系统性铁递送；建议优先设计受体界面选择性抗体，并评估铁负载状态依赖性。",
+    "structurePrepZh": "采用 1RYO 链 A 作为抗原模板，保留铁结合构象信息，标注 N-lobe、C-lobe、糖基化位点及 TFRC 结合相关暴露面。",
+    "structureRef": "RCSB PDB 1RYO，human serum transferrin，1.2 Å X-ray",
+    "antibodies": [
+      "M-A712",
+      "HTF-14"
+    ],
+    "interfaceFocus": "C-lobe 受体结合面与铁结合裂隙邻区",
+    "designMode": "受体界面阻断",
+    "candidates": [
+      {
+        "target": "TFRC",
+        "rationale": "TFRC 是铁负载转铁蛋白的细胞表面受体，直接介导转铁蛋白内吞摄铁；其胞外结构域可作为同一摄铁轴上的替代抗体靶点。"
+      },
+      {
+        "target": "HFE",
+        "rationale": "HFE 与 TFRC 相互作用并调节转铁蛋白结合及铁稳态信号，在遗传性铁过载疾病通路中具有明确机制地位。"
+      },
+      {
+        "target": "HAMP",
+        "rationale": "HAMP 编码 hepcidin，是系统性铁输出调控的关键分泌肽，与转铁蛋白供铁状态共同决定血清铁稳态。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

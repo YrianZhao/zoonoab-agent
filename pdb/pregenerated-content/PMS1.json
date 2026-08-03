@@ -1,0 +1,65 @@
+{
+  "gene": "PMS1",
+  "generatedAt": "2026-08-03T15:23:56.555Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PMS1参与DNA错配修复体系，主要通过与MLH1形成MutLβ复合物参与复制错误修复，其功能缺陷可导致微卫星不稳定并增加Lynch综合征及结直肠癌风险。PMS1为核内DNA修复蛋白，并非分泌蛋白或细胞表面膜受体，天然抗原可及性不适合常规体内阻断型抗体。相较EGFR、PDCD1等胞外肿瘤靶点，PMS1更适合作为机制研究、诊断检测或胞内递送抗体工程的低优先级探索靶点。",
+    "mechanism": "设计抗体可识别PMS1 C端MLH1结合相关区域，用于干扰或检测MutLβ复合物形成及错配修复缺陷状态。",
+    "selectedEpitope": "优先围绕2CS1覆盖的PMS1 C端MutL同源结构域表面，避开疏水核心并关注MLH1结合界面邻近环区。",
+    "diseaseDirection": "错配修复缺陷相关肿瘤",
+    "domain": "PMS1含N端ATPase样MutL结构域与C端MutL同源二聚化/MLH1结合结构域。",
+    "evidence": "PMS1错配修复缺陷与肿瘤易感证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P54277功能注释",
+      "RCSB PDB 2CS1结构条目",
+      "ClinVar/OMIM Lynch综合征相关变异记录"
+    ],
+    "referenceEntries": "UniProt P54277；RCSB PDB 2CS1；Open Targets PMS1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端MutL同源结构域MLH1结合界面邻近暴露环",
+        "可用于阻断或报告MutLβ复合物形成，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端结构域远离二聚化核心的溶剂暴露螺旋面",
+        "适合制备检测型抗体，降低对折叠稳定性的干扰",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端ATPase样结构域核苷酸结合口袋邻近区域",
+        "结构同源性较高且胞内可及性差，存在交叉反应与递送限制",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PMS1为核内蛋白，体内可及性和治疗递送风险较高；应优先定位为诊断、机制验证或胞内抗体递送探索，并进行MLH1/PMS2交叉反应排查。",
+    "structurePrepZh": "以2CS1 NMR构象集为模板，筛选代表性低能构象，补充缺失侧链并标注C端MutL同源结构域界面残基用于表位建模。",
+    "structureRef": "RCSB PDB 2CS1，human PMS1 C-terminal domain NMR structure",
+    "antibodies": [
+      "研究级anti-PMS1 monoclonal antibody",
+      "研究级anti-PMS1 polyclonal antibody"
+    ],
+    "interfaceFocus": "PMS1 C端MutL同源域与MLH1结合界面",
+    "designMode": "胞内检测型抗体",
+    "candidates": [
+      {
+        "target": "MLH1",
+        "rationale": "MLH1是MutL复合物核心支架蛋白，与PMS1形成MutLβ并与Lynch综合征及微卫星不稳定肿瘤高度相关。其疾病证据强度通常高于PMS1。"
+      },
+      {
+        "target": "MSH2",
+        "rationale": "MSH2参与MutSα和MutSβ复合物识别错配碱基及插入缺失环，是错配修复通路上游关键组分。其胚系缺陷是Lynch综合征的重要病因。"
+      },
+      {
+        "target": "PMS2",
+        "rationale": "PMS2与MLH1形成MutLα复合物，承担主要错配修复内切核酸酶功能。相较PMS1，PMS2在经典MMR缺陷肿瘤中的机制和临床证据更充分。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

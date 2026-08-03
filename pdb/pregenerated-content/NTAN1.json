@@ -1,0 +1,65 @@
+{
+  "gene": "NTAN1",
+  "generatedAt": "2026-08-03T14:53:00.591Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NTAN1编码N端天冬酰胺酰胺酶，是N-degron通路中将N端Asn脱酰胺为Asp的细胞质酶，影响底物经ATE1精氨酰化及UBR识别后的蛋白降解；Open Targets关联主要集中于磷脂酰胆碱水平与脂肪酸组成等代谢表型。该蛋白并非分泌蛋白或膜受体，缺乏天然胞外抗原可及性，常规体内阻断型抗体成药性受限。相较于同通路中E3识别因子UBR家族，NTAN1具有高分辨率晶体结构与明确催化口袋，更适合作为结构验证、胞内抗体或研究级结合分子设计靶点。",
+    "mechanism": "设计胞内结合抗体阻断NTAN1催化口袋对N端Asn底物的结合，抑制Asn向Asp的脱酰胺反应，降低后续ATE1精氨酰化与UBR介导降解。",
+    "selectedEpitope": "优先覆盖NTAN1催化裂隙及底物N端Asn结合沟槽周边环区，避免仅选择远端非功能表面。",
+    "diseaseDirection": "脂质代谢表型与N-degron通路",
+    "domain": "NTAN1为细胞质N端天冬酰胺酰胺酶，晶体结构呈催化酰胺酶折叠并形成底物结合裂隙。",
+    "evidence": "NTAN1结构与脂质代谢关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q96AB6 functional annotation",
+      "RCSB PDB 6A0E X-ray structure",
+      "N-degron pathway literature"
+    ],
+    "referenceEntries": "UniProt Q96AB6；RCSB PDB 6A0E；Open Targets NTAN1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化裂隙与N端Asn底物结合沟槽",
+        "直接干预底物识别与脱酰胺反应，功能阻断价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化口袋邻近可溶性表面环区",
+        "可通过空间位阻削弱底物进入，兼顾亲和力与结构可塑性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离活性中心的二聚体或晶体接触邻近表面",
+        "功能相关性不确定，需排除晶体堆积伪界面影响",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NTAN1为胞内酶，缺乏胞外可及性，常规抗体难以在体内直接结合；建议限定为胞内抗体、递送型抗体片段或机制研究探针。",
+    "structurePrepZh": "采用PDB 6A0E的A/B链进行同源状态比对，去除晶体添加物与非生物接触，保留催化裂隙周边残基用于表位网格定义。",
+    "structureRef": "RCSB PDB 6A0E，X-ray diffraction，1.947 Å",
+    "antibodies": [
+      "暂无临床同类抗体",
+      "研究级anti-NTAN1抗体"
+    ],
+    "interfaceFocus": "催化裂隙、底物N端Asn结合沟槽",
+    "designMode": "胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "NTAQ1",
+        "rationale": "NTAQ1在N-degron通路中催化N端Gln脱酰胺，与NTAN1共同生成可被ATE1进一步修饰的N端酸性残基。其功能位置与NTAN1相邻，适合作为同通路比较靶点。"
+      },
+      {
+        "target": "ATE1",
+        "rationale": "ATE1将Arg转移至N端Asp或Glu底物，是NTAN1脱酰胺产物进入Arg/N-degron分支的关键酶。干预ATE1可影响后续UBR识别与蛋白降解。"
+      },
+      {
+        "target": "UBR1",
+        "rationale": "UBR1识别精氨酰化N-degron并介导泛素化，是NTAN1上游底物改造后的下游E3连接酶节点。其与NTAN1处于同一蛋白稳态调控通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

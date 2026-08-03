@@ -1,0 +1,65 @@
+{
+  "gene": "FAS",
+  "generatedAt": "2026-08-03T12:28:04.903Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FAS编码TNFR超家族死亡受体CD95，FASL结合后诱导受体聚集并招募FADD和caspase-8形成DISC，异常失活可导致自身免疫性淋巴增殖综合征并影响淋巴样肿瘤免疫监视。FAS为I型跨膜受体，N端胞外富含半胱氨酸结构域可直接作为抗体识别抗原，膜表面暴露性明确。相较于下游FADD或CASP8等胞内分子，FAS具备更高抗体可及性，并且已有配体阻断和受体激动抗体结构证据支持表位工程优先级。",
+    "mechanism": "通过识别FAS胞外CRD2-CRD3配体结合界面，阻断或重塑FAS与FASLG三聚体的相互作用，从而调节DISC组装与caspase-8活化。",
+    "selectedEpitope": "优先聚焦CRD2-CRD3交界的FASLG结合面，并规避保守二硫键核心。",
+    "diseaseDirection": "自身免疫淋巴增殖与淋巴瘤",
+    "domain": "FAS含N端信号肽、三个胞外富半胱氨酸结构域、单跨膜区及胞内死亡结构域。",
+    "evidence": "FAS-CD95死亡受体结构与疾病遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P25445 functional annotation",
+      "RCSB PDB 3TJE X-ray structure",
+      "ClinVar/OMIM ALPS-FAS pathogenic variant records"
+    ],
+    "referenceEntries": "UniProt P25445；RCSB PDB 3TJE；TNFRSF6/FAS",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CRD2-CRD3交界的FASLG接触面",
+        "可直接干预FAS-FASLG结合并影响受体三聚化",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CRD1远端暴露环区",
+        "有利于获得非竞争性结合分子并降低配体界面扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "CRD3近膜侧与受体聚集相关区域",
+        "可能影响受体构象聚集，但需控制激动性细胞毒风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FAS抗体可能产生激动性聚集并诱导非目标细胞凋亡；设计应区分阻断型与激动型构象，优先采用低Fc交联活性的验证体系。",
+    "structurePrepZh": "以3TJE中FAS胞外结构为模板，保留关键二硫键与糖基化邻近位点，补全缺失侧链后进行界面残基标注和抗体可及性评估。",
+    "structureRef": "RCSB PDB 3TJE，FAS胞外结构X射线晶体学1.93 Å",
+    "antibodies": [
+      "APO-1",
+      "DX2"
+    ],
+    "interfaceFocus": "CRD2-CRD3配体结合面与受体聚集界面",
+    "designMode": "结构引导表位设计",
+    "candidates": [
+      {
+        "target": "FASLG",
+        "rationale": "FASLG是FAS的直接三聚体配体，驱动FAS聚集和DISC形成；阻断FASLG可在同一凋亡通路上游调节FAS信号。"
+      },
+      {
+        "target": "FADD",
+        "rationale": "FADD通过死亡结构域与FAS胞内死亡结构域结合并招募procaspase-8，是FAS介导凋亡信号的核心适配蛋白。"
+      },
+      {
+        "target": "CASP8",
+        "rationale": "CASP8在DISC中被激活并启动外源性凋亡级联，其遗传缺陷与ALPS样免疫失衡和淋巴细胞凋亡异常相关。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "CAMLG",
+  "generatedAt": "2026-08-03T10:58:46.585Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CAMLG 是内质网膜多跨膜蛋白，参与 TRC40/GET 途径中尾锚定膜蛋白向内质网膜的插入，并与钙调控和蛋白稳态应激相关，Open Targets 显示其与神经退行性疾病、帕金森病和阿尔茨海默病存在遗传及功能层面关联。该靶点主体位于内质网膜内，天然抗原可及性弱于细胞表面受体或分泌蛋白，因此更适合作为胞内递送抗体、结构探针或研究级阻断分子设计对象。相较于同通路中广泛承担基础蛋白转运功能的 ASNA1，CAMLG 作为受体复合体膜端组分具有明确跨膜结构界面和 8CR1 实验结构支持，便于开展结构约束型表位设计。",
+    "mechanism": "通过抗体结合 CAMLG 胞质侧 GET 受体复合体界面，干扰 ASNA1-尾锚定底物复合物向 CAMLG/WRB 膜受体的交接。",
+    "selectedEpitope": "优先覆盖 CAMLG 胞质侧与 WRB 形成的 GET 受体复合体结合沟槽及 ASNA1 交接界面。",
+    "diseaseDirection": "神经退行性疾病与蛋白稳态异常",
+    "domain": "CAMLG 为内质网膜多跨膜蛋白，含胞质侧结构区及多个跨膜螺旋，参与 WRB-CAMLG 受体复合体形成。",
+    "evidence": "CAMLG-GET通路结构与神经退行性疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt P49069 功能与亚细胞定位注释",
+      "RCSB PDB 8CR1 冷冻电镜结构",
+      "TRC40/GET 尾锚定蛋白插入通路文献"
+    ],
+    "referenceEntries": "UniProtKB P49069；RCSB PDB 8CR1；Open Targets CAMLG",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "胞质侧 CAMLG/WRB 复合体界面邻近 ASNA1 交接沟槽",
+        "可直接影响尾锚定底物从 ASNA1 递交至内质网膜受体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "跨膜螺旋束外侧稳定性界面",
+        "有助于锁定受体构象并作为结构识别表位，但功能阻断强度需验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "膜内疏水跨膜核心区域",
+        "抗体可及性低且易受去垢剂或脂质环境影响，免疫原设计风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CAMLG 并非经典细胞外抗体靶点，内质网定位限制体内抗体可及性；建议定位于胞内抗体、递送抗体或机制研究抗体，并保留脂质环境验证。",
+    "structurePrepZh": "以 8CR1 冷冻电镜模型为模板，保留 CAMLG 与 WRB 复合体界面，补全缺失环区，按内质网膜取向嵌入脂质双层后进行表位暴露评估。",
+    "structureRef": "RCSB PDB 8CR1，human GET receptor complex，EM 3.2 Å",
+    "antibodies": [
+      "研究级抗-CAMLG多克隆抗体",
+      "研究级抗-CAMLG单克隆抗体"
+    ],
+    "interfaceFocus": "CAMLG/WRB胞质侧受体沟槽与ASNA1交接面",
+    "designMode": "胞内结构阻断型",
+    "candidates": [
+      {
+        "target": "WRB",
+        "rationale": "WRB 与 CAMLG 共同构成内质网 GET 受体复合体，是 ASNA1-尾锚定底物复合物膜端识别与插入过程的直接协同组分。"
+      },
+      {
+        "target": "ASNA1",
+        "rationale": "ASNA1/TRC40 在胞质中结合尾锚定底物并将其递送至 WRB-CAMLG 受体，处于同一尾锚定蛋白插入通路的上游交接节点。"
+      },
+      {
+        "target": "GET4",
+        "rationale": "GET4 与 BAG6、UBL4A 共同参与尾锚定底物装载至 ASNA1，连接蛋白质质量控制与内质网膜插入过程。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "PDLIM2",
+  "generatedAt": "2026-08-03T15:10:38.981Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PDLIM2为细胞内PDZ-LIM支架蛋白，可通过核内泛素化降解机制限制NF-κB p65/RELA与STAT转录因子活性，并与炎症、免疫细胞数量及神经退行性疾病遗传关联相关。该蛋白主要定位于细胞质、肌动蛋白骨架及细胞核，不具备分泌蛋白或膜受体的天然抗原可及性，常规体内阻断抗体成药性受限。相比TNF、IL6R或CD40等同通路胞外靶点，PDLIM2更适合作为机制研究或细胞内递送抗体探索靶点，优先级应低于可直接暴露于细胞外空间的炎症通路节点。",
+    "mechanism": "设计抗体应优先用于细胞内递送或结构探针，阻断PDZ结构域与C端PDZ结合基序蛋白的相互作用，或干扰LIM结构域介导的RELA/STAT调控复合体装配。",
+    "selectedEpitope": "优先聚焦2PA1所解析PDZ结构域的羧基端肽结合沟槽及αB/βB界面。",
+    "diseaseDirection": "炎症免疫与神经退行性关联",
+    "domain": "PDLIM2含N端PDZ结构域与C端LIM锌指结构域，连接区参与细胞骨架定位。",
+    "evidence": "PDLIM2炎症转录调控与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q96JY6功能与定位注释",
+      "RCSB PDB 2PA1晶体结构记录",
+      "NF-κB/STAT终止调控相关文献证据"
+    ],
+    "referenceEntries": "UniProt: Q96JY6；RCSB PDB: 2PA1；Open Targets: PDLIM2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PDZ结构域羧基端肽结合沟槽",
+        "可直接干扰PDZ配体识别，用于验证支架复合体形成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PDZ结构域αB螺旋与βB折叠邻近界面",
+        "有利于获得构象选择性结合体并稳定解析构象",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端LIM锌指结构域金属配位邻近表面",
+        "可能影响RELA/STAT调控复合体，但需避免破坏锌指整体折叠",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PDLIM2缺乏胞外暴露区域，常规抗体难以在完整细胞内到达靶点；建议限定为胞内抗体、递送抗体或结构生物学工具分子。",
+    "structurePrepZh": "以2PA1链A的PDZ结构域为模板，补全缺失侧链、确认质子化状态，并将未解析C端LIM区采用AlphaFold模型分区评估。",
+    "structureRef": "RCSB PDB 2PA1，PDLIM2 PDZ结构域，X-ray 1.7 Å",
+    "antibodies": [
+      "PDLIM2研究级多克隆抗体",
+      "PDLIM2研究级单克隆抗体"
+    ],
+    "interfaceFocus": "PDZ羧基端配体结合沟槽",
+    "designMode": "胞内抗体/结构探针",
+    "candidates": [
+      {
+        "target": "RELA",
+        "rationale": "RELA是NF-κB经典通路核心转录因子，PDLIM2可促进其核内终止与降解；靶向RELA相关界面可直接评估炎症转录输出。"
+      },
+      {
+        "target": "STAT3",
+        "rationale": "PDLIM2参与限制STAT3介导的转录活性，STAT3在炎症、免疫细胞分化及神经炎症环境中具有明确通路地位。"
+      },
+      {
+        "target": "NFKBIA",
+        "rationale": "NFKBIA编码IκBα，是NF-κB通路的关键负调控因子，与PDLIM2共同构成RELA活性终止与炎症信号制动网络。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "VIP",
+  "generatedAt": "2026-08-03T17:48:36.680Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "VIP 是分泌型神经肽，主要通过 VPAC1、VPAC2 与 PAC1 等 B 类 GPCR 激活 Gs-cAMP-PKA 信号，并参与血管舒张、免疫抑制、平滑肌舒缩及昼夜节律调节。其成熟肽段位于胞外可溶环境，抗体可直接识别配体并阻断受体结合，抗原可及性优于胞内转录因子或下游激酶。相较 VPAC 受体阻断，配体中和更适合同时覆盖 VIP 介导的多受体输入，并降低受体组织分布差异带来的选择压力。",
+    "mechanism": "中和抗体结合 VIP 成熟肽受体识别面，阻断其与 VPAC1/VPAC2 胞外结构域及跨膜口袋的结合，抑制 cAMP 生成。",
+    "selectedEpitope": "优先覆盖 VIP 成熟肽 N 端受体激活段及中段α螺旋结合面，避开高度柔性末端。",
+    "diseaseDirection": "神经内分泌-血管免疫调节",
+    "domain": "VIP 前体含信号肽、PHM 相关肽段及28 aa成熟 VIP 分泌肽，功能表位集中于成熟肽。",
+    "evidence": "VIP 配体中和抗体设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传与关联评分",
+      "UniProt P01282 人源 VIP 前体注释",
+      "RCSB PDB 8E3Z 冷冻电镜复合物结构",
+      "IUPHAR/BPS Guide to Pharmacology VIP 受体配体资料"
+    ],
+    "referenceEntries": "UniProt P01282；RCSB PDB 8E3Z；Open Targets VIP",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "成熟 VIP N 端受体激活段",
+        "直接干预 VPAC 受体激活所需配体构象，适合作为中和主表位",
+        "优先"
+      ],
+      [
+        "Site B",
+        "成熟肽中段α螺旋受体结合面",
+        "可增强对 VPAC1/VPAC2 结合界面的空间遮挡，提高配体捕获稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端柔性尾部及前体邻近加工区",
+        "构象异质性较高且可能偏离受体关键接触面，需控制亲和力筛选偏倚",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "VIP 与 PACAP 受体网络存在功能交叉，需评估对 PACAP38/PACAP27 的交叉反应；短肽抗原表位面积有限，建议采用构象约束肽和竞争性受体结合筛选。",
+    "structurePrepZh": "以 PDB 8E3Z 中 VIP 抗原链为模板提取成熟肽构象，保留受体接触构象约束，补全缺失氢原子并进行肽端电荷状态校正。",
+    "structureRef": "RCSB PDB 8E3Z，2.7 Å cryo-EM VIP-受体复合物",
+    "antibodies": [
+      "anti-VIP neutralizing antibody",
+      "anti-VIP polyclonal antibody"
+    ],
+    "interfaceFocus": "VIP N 端插入区与中段α螺旋受体接触面",
+    "designMode": "分泌肽配体中和",
+    "candidates": [
+      {
+        "target": "VIPR1",
+        "rationale": "VIPR1 编码 VPAC1 受体，是 VIP 诱导 Gs-cAMP 信号的主要受体之一；阻断其胞外配体结合域可作为同一路径的受体端干预策略。"
+      },
+      {
+        "target": "VIPR2",
+        "rationale": "VIPR2 编码 VPAC2 受体，参与 VIP 相关昼夜节律、神经内分泌及免疫调节；其配体结合界面与 VIP 中和策略具有明确通路一致性。"
+      },
+      {
+        "target": "ADCYAP1R1",
+        "rationale": "ADCYAP1R1 编码 PAC1 受体，可被 VIP 低效激活并与 PACAP/VIP 轴共享 B 类 GPCR-cAMP 信号框架，适合作为通路邻近比较靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

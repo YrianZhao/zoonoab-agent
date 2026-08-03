@@ -1,0 +1,65 @@
+{
+  "gene": "RASSF5",
+  "generatedAt": "2026-08-03T15:54:56.776Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RASSF5编码Ras association domain family member 5，是Hippo/MST肿瘤抑制轴中的胞内支架蛋白，可通过SARAH结构域与MST1/2形成复合物并促进下游LATS1/2-YAP/TAZ调控。其Open Targets关联主要集中于血液细胞计数、心率及血清γ-谷氨酰转移酶等性状，提示遗传关联存在但疾病驱动性并非典型膜受体模式。RASSF5缺乏胞外结构域和分泌形式，常规治疗性抗体抗原可及性受限；相较EGFR、MET或TNF等同类可及靶点，优先级应定位为结构验证、胞内递送抗体或研究级阻断工具。",
+    "mechanism": "设计分子应阻断RASSF5 SARAH结构域与MST1/2 SARAH结构域异源缠绕相互作用，从而干预MST激酶复合物装配。",
+    "selectedEpitope": "优先覆盖RASSF5 C端SARAH结构域的MST1/2结合螺旋界面，避免Ras结合RA结构域非特异干预。",
+    "diseaseDirection": "Hippo通路与血液性状遗传关联",
+    "domain": "RASSF5含N端RA结构域、调控区及C端SARAH螺旋结构域；4OH8解析其二聚/复合界面。",
+    "evidence": "RASSF5-Hippo轴结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病-靶点遗传关联",
+      "UniProt Q8WWW0蛋白结构域注释",
+      "RCSB PDB 4OH8 X射线晶体结构",
+      "Hippo通路RASSF5-MST1/2相互作用文献"
+    ],
+    "referenceEntries": "UniProt: Q8WWW0；RCSB PDB: 4OH8；Open Targets: RASSF5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端SARAH结构域MST1/2结合螺旋界面",
+        "直接阻断RASSF5-MST1/2复合物装配，机制清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RA结构域Ras家族GTP酶结合面",
+        "可评估Ras依赖定位或复合物募集，但易影响多重小GTP酶互作",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SARAH结构域疏水核心与二聚稳定区",
+        "可能破坏折叠稳定性并诱导非特异构象效应，需谨慎设计",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RASSF5为胞内蛋白，常规抗体难以触达天然抗原；建议限定为胞内递送、细胞穿透格式或体外结构功能验证，并严格评估SARAH家族交叉反应。",
+    "structurePrepZh": "以4OH8中A、B链为结构模板，补全缺失侧链、校正质子化状态，保留SARAH螺旋复合物构象用于界面热点评估。",
+    "structureRef": "RCSB PDB 4OH8，X-ray diffraction，2.281 Å",
+    "antibodies": [
+      "anti-RASSF5 research antibody",
+      "anti-NORE1/RASSF5 research antibody"
+    ],
+    "interfaceFocus": "SARAH螺旋间MST结合与RASSF5二聚界面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "STK4",
+        "rationale": "STK4/MST1是RASSF5在Hippo通路中的直接SARAH结构域结合激酶，参与MST复合物形成与LATS级联激活。"
+      },
+      {
+        "target": "STK3",
+        "rationale": "STK3/MST2与RASSF5共享SARAH介导的复合物装配机制，是同一Hippo核心激酶轴中的并行候选靶点。"
+      },
+      {
+        "target": "LATS1",
+        "rationale": "LATS1位于RASSF5-MST复合物下游，负责磷酸化YAP/TAZ并限制其核内转录活性，适合作为通路级验证靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

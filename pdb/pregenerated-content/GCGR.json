@@ -1,0 +1,65 @@
+{
+  "gene": "GCGR",
+  "generatedAt": "2026-08-03T12:44:31.310Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GCGR 是胰高血糖素信号轴的核心 B 类 GPCR，介导胰高血糖素诱导的肝糖原分解、糖异生及血糖升高，在糖尿病和高胰高血糖素血症中具有明确病理驱动作用。其 N 端胞外结构域负责肽类配体初始识别，膜外环参与受体激活，具备抗体接近和阻断的结构基础。相比下游代谢酶或胞内信号节点，GCGR 位于配体-受体起始界面，抗体干预更具通路选择性和可成药优先级。",
+    "mechanism": "阻断胰高血糖素与 GCGR N 端胞外结构域及膜外结合口袋的协同识别，抑制受体构象激活及 Gs-cAMP 信号输出。",
+    "selectedEpitope": "优先覆盖 N 端胞外结构域配体结合沟槽，兼顾与 ECL1/ECL2 相邻的受体激活入口。",
+    "diseaseDirection": "糖尿病与高胰高血糖素血症",
+    "domain": "B 类 GPCR，含 N 端胞外配体结合结构域、七跨膜螺旋束及三段胞外环。",
+    "evidence": "GCGR 糖代谢疾病关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt P47871 功能与结构域注释",
+      "RCSB PDB 3CZF 晶体结构记录",
+      "胰高血糖素-GCGR-cAMP 肝糖输出通路文献"
+    ],
+    "referenceEntries": "UniProt: P47871; RCSB PDB: 3CZF; Open Targets: GCGR",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N 端胞外结构域配体结合沟槽",
+        "直接干扰胰高血糖素初始锚定，适合构建中和型抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ECL1/ECL2 邻近的胞外受体入口",
+        "可能限制配体 N 端插入跨膜核心并降低受体激活效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离配体界面的 N 端外侧表面",
+        "可及性较好但功能阻断效应不确定，需依赖细胞功能筛选验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GCGR 与 GLP1R、GIPR 等 B 类 GPCR 存在胞外结构域折叠相似性，应避开保守疏水核心，优先设计识别 GCGR 特异性配体接触残基的抗体。",
+    "structurePrepZh": "以 3CZF 的高分辨率胞外结构域为模板，补全缺失侧链并校验二硫键；跨膜区和胞外环建议结合 AlphaFold 或同源 GPCR 结构建立复合模型。",
+    "structureRef": "PDB 3CZF, human GCGR extracellular domain, X-ray 1.2 Å",
+    "antibodies": [
+      "REGN1193",
+      "REMD-477"
+    ],
+    "interfaceFocus": "胰高血糖素结合沟槽与 ECL2 入口",
+    "designMode": "配体阻断型中和抗体",
+    "candidates": [
+      {
+        "target": "GCG",
+        "rationale": "GCG 编码胰高血糖素前体，胰高血糖素是 GCGR 的直接配体；中和配体可在受体上游抑制同一升糖信号轴。"
+      },
+      {
+        "target": "GLP1R",
+        "rationale": "GLP1R 同属胰高血糖素肽受体家族并参与胰岛素分泌和血糖稳态；其激动策略与 GCGR 拮抗可形成互补的代谢调控方向。"
+      },
+      {
+        "target": "GIPR",
+        "rationale": "GIPR 是肠促胰岛素通路中的 B 类 GPCR，与 GLP1R 和 GCGR 共同调节糖脂代谢；可作为同一代谢疾病网络中的联合干预评估靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

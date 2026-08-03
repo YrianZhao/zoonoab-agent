@@ -1,0 +1,65 @@
+{
+  "gene": "CASP7",
+  "generatedAt": "2026-08-03T18:13:44.189Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CASP7 是执行性半胱天冬酶，参与晶状体上皮细胞凋亡、神经元损伤及黑素细胞应激性死亡等疾病相关过程，其异常激活可放大细胞死亡级联。该蛋白主要定位于胞质，缺乏天然胞外结构域或分泌特征，抗原可及性弱于膜受体和分泌因子，抗体策略更适合用于细胞内递送、研究级阻断或结构验证。相较上游死亡受体或炎症因子，CASP7 位于凋亡执行末端，机制读出直接，但成药优先级受细胞内可及性和同源 caspase 选择性限制。",
+    "mechanism": "阻断 CASP7 活性半胱氨酸 Cys186 邻近底物结合沟槽与含 Asp 切割位点底物的结合，抑制执行性蛋白水解。",
+    "selectedEpitope": "优先覆盖 p20 大亚基底物识别沟槽及 Cys186 周边环区，避开同源保守催化核心。",
+    "diseaseDirection": "凋亡相关白内障与神经退行性疾病",
+    "domain": "CASP7 含 N 端前结构域、p20 大亚基与 p10 小亚基，活化后形成二聚体执行性蛋白酶。",
+    "evidence": "CASP7 凋亡执行机制与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P55210 functional annotation",
+      "RCSB PDB 2QL9 experimental structure",
+      "Reactome apoptosis execution phase pathway"
+    ],
+    "referenceEntries": "UniProt P55210；RCSB PDB 2QL9；Reactome apoptosis",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "p20 大亚基底物结合沟槽与 Cys186 邻近环区",
+        "直接干预底物 Asp 位点进入催化中心，机制读出清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "p20-p10 大小亚基界面及活化构象稳定区域",
+        "可影响成熟酶构象稳定性，适合作为变构阻断表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "二聚体界面保守疏水核心",
+        "可能削弱活性二聚体形成，但同源 caspase 交叉反应风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CASP7 为胞内酶，常规抗体体内可及性不足；催化口袋与 CASP3 高度同源，需通过非保守环区筛选提高选择性。",
+    "structurePrepZh": "以 2QL9 X 射线结构为模板，保留成熟 p20/p10 链装配，校正催化位点质子化状态并标注底物沟槽。",
+    "structureRef": "RCSB PDB 2QL9，human caspase-7 X-ray structure",
+    "antibodies": [
+      "Anti-Caspase-7 clone C7",
+      "Cleaved Caspase-7 Asp198 antibody"
+    ],
+    "interfaceFocus": "Cys186 催化位点邻近底物结合沟槽",
+    "designMode": "胞内酶阻断抗体",
+    "candidates": [
+      {
+        "target": "CASP3",
+        "rationale": "CASP3 与 CASP7 同属执行性凋亡半胱天冬酶，负责切割 PARP1、ICAD 等底物，是同一凋亡执行阶段的核心节点。"
+      },
+      {
+        "target": "CASP9",
+        "rationale": "CASP9 位于线粒体内源性凋亡通路上游，通过 apoptosome 激活 CASP3/7，适合用于调节执行性半胱天冬酶级联。"
+      },
+      {
+        "target": "APAF1",
+        "rationale": "APAF1 与细胞色素 c 和 CASP9 形成 apoptosome，是内源性凋亡通路向 CASP7 激活传递的关键支架蛋白。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

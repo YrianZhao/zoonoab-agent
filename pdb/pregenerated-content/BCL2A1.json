@@ -1,0 +1,65 @@
+{
+  "gene": "BCL2A1",
+  "generatedAt": "2026-08-03T10:47:42.372Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BCL2A1 是抗凋亡 BCL-2 家族成员，通过 BH3 结合沟槽隔离 BIM、PUMA、BID 等促凋亡 BH3-only 蛋白，从而抑制 BAX/BAK 介导的线粒体外膜通透化。其遗传与表达证据主要集中于单核细胞、嗜酸性粒细胞和白细胞数量性状，符合髓系细胞存活调控轴的疾病关联机制。BCL2A1 为胞内线粒体相关蛋白，不具备常规细胞表面抗原可及性，因此抗体开发优先适用于胞内递送抗体、intrabody 或结构引导型结合分子验证；相较 BCL2、BCL2L1 等同家族靶点，BCL2A1 在髓系细胞存活偏倚和非冗余抗凋亡功能方面具有差异化优先级。",
+    "mechanism": "设计结合 BH3 结合沟槽的抗体片段，竞争性阻断 BCL2A1 与 BIM、PUMA 或 BID 的 BH3 α螺旋结合，解除对 BAX/BAK 激活的抑制。",
+    "selectedEpitope": "优先覆盖 α2-α5 形成的 BH3 疏水沟槽，聚焦 h2-h4 口袋与保守精氨酸相邻界面。",
+    "diseaseDirection": "髓系细胞存活与血液数量性状",
+    "domain": "BCL2A1 含典型 BCL-2 fold，由 BH1-BH4 区段形成疏水 BH3 配体结合沟槽。",
+    "evidence": "BCL2A1 髓系细胞存活与BH3沟槽结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联",
+      "UniProt Q16548 功能注释",
+      "RCSB PDB 5UUK 晶体结构",
+      "BCL-2 家族凋亡调控文献"
+    ],
+    "referenceEntries": "UniProt: Q16548; RCSB PDB: 5UUK; HGNC: BCL2A1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "BH3 结合沟槽 α2-α5 疏水口袋",
+        "直接竞争促凋亡 BH3-only 蛋白结合，机制最清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "BH1/BH2 区段邻近沟槽边缘",
+        "可通过变构方式降低 BH3 配体亲和力，并保留家族选择性优化空间",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端疏水跨膜锚定相邻区域",
+        "靠近膜定位区，构象和可及性受线粒体膜环境影响较大",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BCL2A1 为胞内抗凋亡蛋白，常规外源抗体难以进入作用位点；应采用细胞内表达、递送偶联或小型化片段策略，并严控与 BCL2、BCL2L1 的交叉反应。",
+    "structurePrepZh": "以 5UUK 高分辨率晶体结构为模板，保留抗原链 A/B 中完整 BCL-2 fold，校验 BH3 沟槽构象、缺失残基、侧链质子化和晶体接触界面。",
+    "structureRef": "RCSB PDB 5UUK, X-ray diffraction, 1.199 Å",
+    "antibodies": [
+      "BCL2A1 D9E3 rabbit mAb",
+      "BCL2A1 EPR12070 rabbit mAb"
+    ],
+    "interfaceFocus": "BH3 α螺旋结合沟槽与h2-h4疏水口袋",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "BCL2",
+        "rationale": "BCL2 同属抗凋亡 BCL-2 家族，通过 BH3 沟槽结合 BIM、PUMA 等促凋亡蛋白，是线粒体凋亡通路中已验证的存活节点。"
+      },
+      {
+        "target": "MCL1",
+        "rationale": "MCL1 在髓系细胞和多种血液系统恶性背景中维持细胞存活，与 BCL2A1 共享 BH3-only 蛋白隔离机制，适合作为同通路对照靶点。"
+      },
+      {
+        "target": "BCL2L1",
+        "rationale": "BCL2L1 编码 BCL-XL，可抑制 BAX/BAK 依赖性线粒体外膜通透化；其与 BCL2A1 的功能重叠有助于评估家族选择性和补偿性存活机制。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

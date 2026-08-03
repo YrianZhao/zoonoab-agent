@@ -1,0 +1,65 @@
+{
+  "gene": "PTPN2",
+  "generatedAt": "2026-08-03T15:43:47.617Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PTPN2编码胞内非受体型蛋白酪氨酸磷酸酶TC-PTP，可去磷酸化JAK1、JAK3、STAT1和STAT3等炎症信号节点，其功能缺失与类风湿关节炎、1型糖尿病及炎症性肠病易感性相关。该蛋白主要定位于细胞核和胞质，缺乏天然胞外结构域或分泌形式，抗原可及性不符合常规治疗性抗体阻断范式。相较TNF、IL6R、IL23R等同通路胞外靶点，PTPN2更适合作为结构生物学和胞内递送抗体研究靶点，优先级应限定于机制验证或细胞内抗体设计场景。",
+    "mechanism": "设计目标为识别PTPN2催化结构域邻近P-loop/WPD-loop界面，干预底物磷酸酪氨酸进入活性沟槽或稳定非催化构象。",
+    "selectedEpitope": "优先聚焦催化结构域P-loop、WPD-loop及pTyr结合沟槽周边构象表位。",
+    "diseaseDirection": "自身免疫与炎症性疾病",
+    "domain": "PTPN2含N端蛋白酪氨酸磷酸酶催化结构域，C端含核定位及亚型相关调控序列。",
+    "evidence": "PTPN2自身免疫遗传关联与催化结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联数据",
+      "UniProt P17706功能与亚细胞定位注释",
+      "RCSB PDB 7F5O晶体结构条目",
+      "GWAS与炎症性肠病/1型糖尿病易感性研究"
+    ],
+    "referenceEntries": "UniProt P17706；RCSB PDB 7F5O；Open Targets PTPN2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域P-loop/WPD-loop邻近活性沟槽",
+        "可直接影响底物pTyr结合与催化构象转换，适合机制型胞内抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域外围非保守表面环区",
+        "有利于提高PTPN2相对PTPN1等同源磷酸酶的选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守HCX5R催化核心附近",
+        "同源性高且可能引发广谱PTP交叉识别，需严格选择性评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PTPN2为胞内酶，常规抗体难以到达作用位点；催化核心与PTPN1同源性较高，需优先避开高度保守残基并验证细胞内递送策略。",
+    "structurePrepZh": "以7F5O高分辨率晶体结构为模板，保留催化结构域完整构象，校正缺失侧链、质子化状态及活性位点水网络后进行表面分区。",
+    "structureRef": "RCSB PDB 7F5O，X-ray diffraction，1.7 Å",
+    "antibodies": [
+      "暂无获批PTPN2治疗性抗体",
+      "研究级抗PTPN2检测抗体"
+    ],
+    "interfaceFocus": "P-loop、WPD-loop与pTyr结合沟槽界面",
+    "designMode": "胞内抗体探索",
+    "candidates": [
+      {
+        "target": "JAK1",
+        "rationale": "JAK1位于细胞因子受体下游并驱动STAT1/STAT3磷酸化，是PTPN2负调控轴的直接功能关联节点。其在自身免疫炎症中具有明确药理验证。"
+      },
+      {
+        "target": "STAT3",
+        "rationale": "STAT3是PTPN2去磷酸化调控的转录因子之一，参与IL-6和IL-23相关炎症反应。其异常活化与肠道炎症和免疫细胞分化密切相关。"
+      },
+      {
+        "target": "IL6R",
+        "rationale": "IL6R处于JAK-STAT炎症通路上游，为胞外膜受体，抗原可及性优于PTPN2。阻断IL-6与IL6R结合可降低下游JAK/STAT信号。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

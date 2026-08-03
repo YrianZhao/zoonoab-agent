@@ -1,0 +1,65 @@
+{
+  "gene": "TRMT1",
+  "generatedAt": "2026-08-03T17:30:15.948Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TRMT1编码tRNA甲基转移酶1，催化细胞内tRNA第26位鸟苷形成N2,N2-二甲基鸟苷，影响tRNA稳定性、翻译保真度与神经发育相关蛋白合成；其双等位基因缺陷与常染色体隐性智力发育障碍68型具有明确遗传关联。该蛋白主要定位于胞质和细胞核，不具备经典分泌蛋白或膜受体抗原可及性，因此更适合作为细胞内功能验证、结构表位结合试剂或递送型抗体片段开发对象。相较于上游非特异性翻译调控因子，TRMT1具有明确酶活口袋、tRNA底物结合界面和高分辨率实验结构，便于开展结构约束的抑制型抗体片段设计。",
+    "mechanism": "设计抗体片段结合TRMT1催化结构域邻近的tRNA结合沟槽，阻断tRNA底物进入SAM依赖甲基转移活性位点，从而抑制G26二甲基化反应。",
+    "selectedEpitope": "优先覆盖SAM依赖甲基转移酶结构域的tRNA结合沟槽及催化口袋边缘环区。",
+    "diseaseDirection": "神经发育障碍与智力障碍",
+    "domain": "TRMT1含N端延伸区、中央SAM依赖甲基转移酶催化域及C端TRAM样RNA结合域。",
+    "evidence": "TRMT1神经发育障碍遗传与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联数据",
+      "UniProt Q9NXH9蛋白功能与定位注释",
+      "RCSB PDB 9DW6实验晶体结构",
+      "OMIM/MONDO智力发育障碍68型疾病注释"
+    ],
+    "referenceEntries": "UniProt: Q9NXH9; RCSB PDB: 9DW6; MONDO:0032665",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "甲基转移酶催化域tRNA结合沟槽与活性位点入口",
+        "可直接阻断tRNA底物定位并干扰G26甲基化，机制最清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端TRAM样RNA结合域的RNA识别表面",
+        "可能削弱tRNA结合亲和力，适合构建非竞争性或变构抑制片段",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端延伸区及晶体接触相关暴露环",
+        "结构可及但功能耦合不确定，需避免仅获得构象报告型结合分子",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TRMT1为胞内酶，常规全长抗体难以到达作用位点；设计应优先采用VHH、intrabody或递送偶联形式，并验证对tRNA甲基化的功能抑制。",
+    "structurePrepZh": "以9DW6晶体结构为模板，保留抗原链A/B/C用于寡聚状态评估，补全缺失侧链、校正质子化状态，并标注SAM结合位点与RNA结合沟槽。",
+    "structureRef": "RCSB PDB 9DW6, X-ray diffraction, 1.9 Å",
+    "antibodies": [
+      "暂无获批TRMT1靶向抗体",
+      "研究级抗TRMT1检测抗体"
+    ],
+    "interfaceFocus": "催化域活性口袋入口与tRNA结合沟槽",
+    "designMode": "胞内酶抑制型VHH",
+    "candidates": [
+      {
+        "target": "WDR4",
+        "rationale": "WDR4与METTL1共同参与tRNA m7G修饰，缺陷同样与神经发育异常和智力障碍相关，可作为tRNA修饰障碍通路的并行靶点。"
+      },
+      {
+        "target": "METTL1",
+        "rationale": "METTL1是tRNA m7G甲基转移酶催化亚基，影响翻译稳态和神经发育相关转录后调控，与TRMT1同属tRNA甲基化功能网络。"
+      },
+      {
+        "target": "NSUN2",
+        "rationale": "NSUN2介导tRNA胞嘧啶甲基化，遗传缺陷可导致常染色体隐性智力障碍，适合作为tRNA表观转录组异常疾病方向的候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

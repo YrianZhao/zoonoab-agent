@@ -1,0 +1,65 @@
+{
+  "gene": "PDYN",
+  "generatedAt": "2026-08-03T15:11:47.182Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PDYN 编码前体肽 prodynorphin，经蛋白水解产生 dynorphin A、dynorphin B 与 α/β-neoendorphin，主要通过激活 κ-opioid receptor 参与神经元兴奋性、疼痛调制和小脑 Purkinje 细胞功能稳态；其变异与脊髓小脑性共济失调 23 型存在明确遗传关联。该靶点为分泌/加工型神经肽前体，成熟肽段位于胞外或突触外液环境，具备抗体识别的可及性优势。相较 OPRK1 等跨膜 GPCR 靶点，PDYN 肽段抗原结构更短、更利于界面阻断型抗体设计，并可直接针对致病相关 dynorphin 肽暴露面建立优先级。",
+    "mechanism": "抗体结合 dynorphin A/B 成熟肽段，阻断其与 OPRK1 胞外结合口袋的相互作用，降低 κ-阿片受体介导的神经调制信号。",
+    "selectedEpitope": "优先覆盖 dynorphin A N 端 YGGF opioid motif 及相邻碱性残基识别面。",
+    "diseaseDirection": "遗传性小脑共济失调",
+    "domain": "Prodynorphin 为分泌型前体肽，含信号肽及多个蛋白水解加工成熟 opioid peptide 区段。",
+    "evidence": "PDYN-OPRK1 神经肽轴与 SCA23 证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt P01213 蛋白功能与加工注释",
+      "RCSB PDB 8VJU 实验结构记录",
+      "OMIM 与文献报道的 SCA23 相关 PDYN 变异"
+    ],
+    "referenceEntries": "UniProt:P01213；RCSB PDB:8VJU；Open Targets:PDYN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "dynorphin A N 端 YGGF motif-OPRK1 识别核心",
+        "直接阻断 opioid receptor 结合，机制可解释性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "dynorphin B 成熟肽 N 端 opioid motif 区域",
+        "覆盖同源活性肽段，扩大对 PDYN 加工产物的中和范围",
+        "备选"
+      ],
+      [
+        "Site C",
+        "前体蛋白蛋白水解切割邻近碱性残基区",
+        "可能影响加工产物暴露，但存在加工依赖性与表位异质性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "成熟神经肽短小且与其他内源性 opioid peptides 存在 N 端基序相似性，应通过负筛选降低对 POMC/PENK 肽段的交叉反应。",
+    "structurePrepZh": "以 8VJU 中抗原链 A、C 为模板，保留成熟肽可解析片段，补充缺失柔性残基并进行肽段构象集合建模。",
+    "structureRef": "RCSB PDB 8VJU，X-ray diffraction，1.99 Å",
+    "antibodies": [
+      "anti-dynorphin A antibody",
+      "anti-dynorphin B antibody"
+    ],
+    "interfaceFocus": "dynorphin N 端 opioid motif 与 OPRK1 识别界面",
+    "designMode": "中和型肽段抗体",
+    "candidates": [
+      {
+        "target": "OPRK1",
+        "rationale": "OPRK1 是 dynorphin 肽的主要 κ-阿片受体，位于同一 PDYN-dynorphin 信号轴；阻断受体结合口袋可从受体端抑制 dynorphin 介导信号。"
+      },
+      {
+        "target": "PENK",
+        "rationale": "PENK 编码 enkephalin 前体，属于内源性 opioid peptide 系统；其加工肽与 opioid receptor 网络共同参与神经调制，可作为通路相关比较靶点。"
+      },
+      {
+        "target": "POMC",
+        "rationale": "POMC 产生 β-endorphin 等 opioid peptide，参与同一内源性阿片肽调控系统；用于评估 opioid peptide 家族交叉反应与选择性设计边界。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

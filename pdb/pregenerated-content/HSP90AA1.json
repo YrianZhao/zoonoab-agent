@@ -1,0 +1,65 @@
+{
+  "gene": "HSP90AA1",
+  "generatedAt": "2026-08-03T13:18:19.839Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HSP90AA1编码胞质型Hsp90α，是ATP依赖分子伴侣，稳定EGFR、HER2、ALK、MET、AKT等多种致癌客户蛋白并维持肿瘤生存信号。其经典功能位于胞内，但肿瘤应激条件下Hsp90α可外排至细胞外，促进LRP1相关侵袭、MMP2活化和组织重塑，形成可被抗体接近的分泌/膜周抗原池。相较单一受体酪氨酸激酶，Hsp90α位于多条癌症依赖通路的伴侣枢纽，适合作为细胞外促侵袭轴的优先抗体干预靶点。",
+    "mechanism": "抗体阻断胞外Hsp90α与LRP1及MMP2前体复合物的结合，抑制MMP2活化和肿瘤细胞侵袭迁移。",
+    "selectedEpitope": "优先覆盖N端结构域ATP结合口袋邻近的暴露环区，避开高保守ATP深腔以降低胞内伴侣交叉风险。",
+    "diseaseDirection": "肿瘤侵袭与转移抑制",
+    "domain": "Hsp90α包含N端ATPase结构域、中间客户蛋白结合结构域和C端二聚化结构域；1UYL解析N端结构域。",
+    "evidence": "HSP90AA1肿瘤伴侣枢纽与胞外侵袭轴证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P07900功能与亚细胞定位注释",
+      "RCSB PDB 1UYL晶体结构数据",
+      "Hsp90α-LRP1/MMP2肿瘤侵袭相关文献"
+    ],
+    "referenceEntries": "UniProt P07900；RCSB PDB 1UYL；Open Targets HSP90AA1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端ATPase结构域口袋边缘暴露环",
+        "可获得结构级设计约束，并有机会干扰胞外Hsp90α构象依赖相互作用",
+        "优先"
+      ],
+      [
+        "Site B",
+        "中间结构域客户蛋白结合相关表面",
+        "更贴近客户蛋白装配界面，但需补充同源模型或复合物结构验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端二聚化结构域MEEVD邻近区域",
+        "可能影响伴侣复合体装配，但高保守且易产生广泛生理伴侣功能风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HSP90AA1为胞内高丰度保守伴侣蛋白，抗体策略应限定胞外Hsp90α抗原池，并避免深度阻断ATP口袋及C端保守伴侣装配界面。",
+    "structurePrepZh": "以1UYL链A作为N端结构域模板，校正晶体配体和水分子，标注ATP口袋边缘环区并补充AlphaFold全长域边界映射。",
+    "structureRef": "RCSB PDB 1UYL，human Hsp90α N-terminal domain，1.4 Å",
+    "antibodies": [
+      "mAb 4C5",
+      "mAb 7D12"
+    ],
+    "interfaceFocus": "N端ATPase口袋边缘与胞外LRP1/MMP2结合相关表面",
+    "designMode": "胞外阻断型抗体",
+    "candidates": [
+      {
+        "target": "LRP1",
+        "rationale": "LRP1是胞外Hsp90α介导肿瘤细胞迁移和侵袭的重要受体节点，阻断该轴可抑制Hsp90α驱动的促侵袭信号。"
+      },
+      {
+        "target": "MMP2",
+        "rationale": "MMP2是胞外Hsp90α促进基质降解和肿瘤侵袭的关键效应蛋白，抗体干预可直接限制细胞外基质重塑。"
+      },
+      {
+        "target": "EGFR",
+        "rationale": "EGFR为Hsp90依赖性致癌客户蛋白之一，并在非小细胞肺癌等通路中与Hsp90伴侣功能共同维持增殖和存活信号。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

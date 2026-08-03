@@ -1,0 +1,65 @@
+{
+  "gene": "IL17RC",
+  "generatedAt": "2026-08-03T13:25:33.261Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IL17RC是IL-17受体复合体的关键组成亚基，与IL17RA共同介导IL-17A、IL-17F及IL-17A/F异源二聚体信号，驱动ACT1/TRAF6依赖的NF-κB和MAPK炎症转录程序；其遗传缺陷与慢性黏膜皮肤念珠菌病高度相关。IL17RC为I型跨膜受体，胞外fibronectin type III样结构域可被循环抗体直接识别，具备明确抗原可及性。相较下游ACT1或TRAF6等胞内节点，IL17RC更适合抗体干预，并可在配体-受体装配层面实现选择性阻断。",
+    "mechanism": "阻断IL-17F或IL-17A/F与IL17RC胞外D1-D2结构域的结合，抑制IL17RA-IL17RC受体复合体形成及ACT1募集。",
+    "selectedEpitope": "优先覆盖胞外D2结构域配体结合面及D1-D2夹角界面，干扰IL-17F介导的受体装配。",
+    "diseaseDirection": "IL-17通路相关黏膜免疫疾病",
+    "domain": "IL17RC含N端信号肽、胞外两段fibronectin type III样结构域、跨膜区及胞内SEFIR结构域。",
+    "evidence": "IL17RC-IL17通路结构与疾病遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q8NAC3功能与结构域注释",
+      "RCSB PDB 6HGA晶体结构",
+      "IL-17受体复合体与慢性黏膜皮肤念珠菌病遗传研究"
+    ],
+    "referenceEntries": "UniProt Q8NAC3；RCSB PDB 6HGA；Open Targets IL17RC",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "胞外D2结构域IL-17F结合界面",
+        "直接阻断配体结合并削弱IL17RA-IL17RC复合体装配",
+        "优先"
+      ],
+      [
+        "Site B",
+        "D1-D2结构域夹角与受体构象稳定区",
+        "通过构象约束降低IL-17A/F异源二聚体介导的受体聚合",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离配体界面的D1外侧暴露面",
+        "抗原可及性较好但功能阻断效应不确定，需依赖细胞活性筛选验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IL17RC参与宿主抗真菌黏膜防御，强效阻断可能增加念珠菌感染风险；建议采用可调亲和力设计并保留配体选择性评估。",
+    "structurePrepZh": "以6HGA中IL17RC抗原链为模板，保留胞外D1-D2结构域，补全缺失侧链并校正糖基化位点附近构象后开展表位建模。",
+    "structureRef": "RCSB PDB 6HGA，X-ray diffraction，2.6 Å",
+    "antibodies": [
+      "Bimekizumab",
+      "Secukinumab"
+    ],
+    "interfaceFocus": "IL-17F结合面与D1-D2夹角",
+    "designMode": "受体阻断型抗体设计",
+    "candidates": [
+      {
+        "target": "IL17RA",
+        "rationale": "IL17RA与IL17RC共同形成IL-17A/F信号受体复合体，是同一受体装配过程中的核心亚基。靶向IL17RA可更广泛抑制IL-17家族炎症信号。"
+      },
+      {
+        "target": "IL17F",
+        "rationale": "IL17F是IL17RC偏好结合的关键配体，参与黏膜上皮炎症因子诱导。中和IL17F可在配体层面降低IL17RC相关信号输入。"
+      },
+      {
+        "target": "IL17A",
+        "rationale": "IL17A与IL17F形成同源或异源二聚体并通过IL17RA-IL17RC复合体传递炎症信号。其临床抗体可成药性证据充分，适合作为同通路对照靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

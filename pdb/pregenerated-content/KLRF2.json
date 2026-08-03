@@ -1,0 +1,65 @@
+{
+  "gene": "KLRF2",
+  "generatedAt": "2026-08-03T13:46:31.845Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KLRF2编码NKp80，为NK细胞表面的C型凝集素样受体，可与髓系细胞和肿瘤细胞表达的AICL/CLEC2B相互作用，参与NK细胞活化及免疫突触形成。其抗原位点位于Ⅱ型跨膜受体的胞外C型凝集素样结构域，天然暴露于细胞表面，具备抗体识别与阻断配体结合的可及性优势。与下游胞内信号适配分子相比，KLRF2更适合作为抗体介入靶点；但Open Targets疾病关联强度偏低，应定位为免疫调节探索靶点而非高优先级疾病验证靶点。",
+    "mechanism": "阻断NKp80胞外C型凝集素样结构域与AICL/CLEC2B的结合，降低NK细胞-髓系或肿瘤细胞接触依赖性活化信号。",
+    "selectedEpitope": "优先覆盖CTLD配体结合面及二聚体邻近界面，避免破坏跨膜近端构象稳定区。",
+    "diseaseDirection": "NK细胞免疫调节与神经炎症探索",
+    "domain": "Ⅱ型跨膜C型凝集素样受体，胞外CTLD形成同源二聚体样排列并介导配体识别。",
+    "evidence": "KLRF2-NKp80结构与免疫配体阻断证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt D3W0D1蛋白功能与拓扑注释",
+      "RCSB PDB 4IOP晶体结构记录",
+      "NKp80-AICL相互作用及NK细胞活化文献"
+    ],
+    "referenceEntries": "UniProt:D3W0D1；RCSB PDB:4IOP；HGNC:KLRF2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "胞外CTLD配体结合面",
+        "直接阻断NKp80与AICL/CLEC2B相互作用，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CTLD二聚体邻近界面",
+        "可能干扰受体空间聚集与免疫突触稳定，适合功能筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "膜近端茎区或低分辨率暴露环",
+        "构象可塑性和结构解析不确定性较高，需避免非特异结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "4IOP分辨率为3.2 Å，多链晶体接触可能影响界面判读；表位设计宜结合糖基化、二聚体状态和细胞结合实验验证。",
+    "structurePrepZh": "以4IOP抗原链A-D为模板，保留胞外CTLD构象，评估晶体接触、缺失残基和潜在N-糖基化位点后构建抗体对接模型。",
+    "structureRef": "RCSB PDB 4IOP，NKp80胞外结构，X射线3.2 Å",
+    "antibodies": [
+      "5D12抗NKp80单克隆抗体",
+      "MA152抗NKp80单克隆抗体"
+    ],
+    "interfaceFocus": "CTLD配体结合面与二聚体邻近界面",
+    "designMode": "阻断型免疫受体抗体",
+    "candidates": [
+      {
+        "target": "CLEC2B",
+        "rationale": "CLEC2B编码AICL，是NKp80的已知细胞表面配体；靶向该配体可从相同受体-配体轴调节NK细胞与髓系细胞相互作用。"
+      },
+      {
+        "target": "KLRK1",
+        "rationale": "KLRK1编码NKG2D，是NK细胞活化受体并通过识别应激诱导配体驱动细胞毒反应；其疾病与肿瘤免疫证据强于KLRF2。"
+      },
+      {
+        "target": "KLRC1",
+        "rationale": "KLRC1编码NKG2A，属于NK细胞C型凝集素样受体家族；其与HLA-E形成抑制性检查点轴，可作为同一NK细胞免疫调节网络中的替代靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

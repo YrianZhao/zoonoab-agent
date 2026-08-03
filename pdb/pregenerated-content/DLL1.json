@@ -1,0 +1,65 @@
+{
+  "gene": "DLL1",
+  "generatedAt": "2026-08-03T11:58:14.709Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DLL1 是经典 Notch 配体，参与神经发生、体节形成、造血分化及肿瘤细胞命运调控，其异常表达或剂量改变可影响 Notch 受体剪切激活并关联神经发育异常和肿瘤进展。DLL1 为Ⅰ型跨膜蛋白，功能性 DSL 区域及多个 EGF-like 重复位于胞外侧，适合抗体直接识别并阻断受体结合。相较于胞内 Notch 转录复合体成员，DLL1 具有更高抗原可及性；相较部分冗余 Notch 配体，DLL1 在发育与造血表型中的遗传证据和结构可解析性更突出，适合作为优先设计靶点。",
+    "mechanism": "抗体结合 DLL1 胞外 MNNL-DSL-EGF1 区域，阻断 DLL1 与 NOTCH1/NOTCH2 负调控区及 EGF 重复区的接触，抑制配体诱导的 Notch 受体构象牵拉、ADAM 裂解和 NICD 释放。",
+    "selectedEpitope": "优先覆盖 DSL 与 EGF1 交界的 Notch 受体结合界面，并避开高度糖基化 EGF 重复区。",
+    "diseaseDirection": "Notch相关神经发育异常与肿瘤",
+    "domain": "胞外段含 N 端 MNNL 域、DSL 域及多个 EGF-like 重复，后接单跨膜区和短胞质尾。",
+    "evidence": "DLL1-Notch配体受体轴结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt O00548 functional annotation",
+      "RCSB PDB 4XBM experimental structure",
+      "Notch ligand-receptor structural and genetic literature"
+    ],
+    "referenceEntries": "UniProt O00548；RCSB PDB 4XBM；Open Targets DLL1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DSL-EGF1 受体结合界面",
+        "直接干预 DLL1 与 Notch 受体接触，具备明确阻断机制",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N 端 MNNL 与 DSL 邻近表面",
+        "可能影响配体构象稳定和受体结合几何，适合构象型抗体筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远端 EGF-like 重复区",
+        "结构重复性和糖基化风险较高，阻断效率可能依赖空间位阻",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DLL1 与 DLL4、JAG1 等 Notch 配体存在结构同源性，需在 DSL 保守面进行交叉反应评估；EGF 重复区糖基化和柔性较高，应优先采用构象稳定抗原验证。",
+    "structurePrepZh": "以 4XBM 晶体结构为模板提取抗原链 A、B，补全缺失侧链并检查二硫键、钙结合位点和糖基化位点，保留 DSL-EGF1 界面用于对接建模。",
+    "structureRef": "RCSB PDB 4XBM，X-ray diffraction，3.2 Å",
+    "antibodies": [
+      "Anti-DLL1 blocking antibody",
+      "OMP-21M18"
+    ],
+    "interfaceFocus": "DSL-EGF1介导的Notch受体结合面",
+    "designMode": "阻断型构象表位设计",
+    "candidates": [
+      {
+        "target": "NOTCH1",
+        "rationale": "NOTCH1 是 DLL1 的核心受体，配体结合后经 ADAM 与 γ-secretase 裂解释放 NICD，驱动 CSL/RBPJ 依赖转录。其与 DLL1 位于同一配体-受体激活轴。"
+      },
+      {
+        "target": "NOTCH2",
+        "rationale": "NOTCH2 可被 DLL1 激活并参与造血和组织分化调控，与 Open Targets 中血液学表型关联方向具有通路一致性。"
+      },
+      {
+        "target": "RBPJ",
+        "rationale": "RBPJ 是 Notch 细胞内结构域结合的核心 DNA 结合转录因子，位于 DLL1 诱导 Notch 信号的下游转录执行层。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

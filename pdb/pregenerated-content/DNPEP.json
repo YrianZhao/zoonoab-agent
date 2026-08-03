@@ -1,0 +1,65 @@
+{
+  "gene": "DNPEP",
+  "generatedAt": "2026-08-03T18:37:21.710Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DNPEP编码胞质天冬氨酰氨肽酶，参与N端酸性残基肽段降解和细胞内蛋白质稳态，Open Targets显示其与神经退行性疾病、阿尔茨海默病和帕金森病存在遗传及组学关联。该靶点为胞质金属肽酶，天然抗原可及性弱，常规体内阻断抗体不具备直接结合优势，因此更适合细胞内递送抗体、研究级抑制抗体或结构辅助筛选场景。相较APP、BACE1、PSEN1等上游淀粉样蛋白通路靶点，DNPEP优先级来自其高分辨率实验结构、明确催化腔和蛋白稳态关联，可作为神经退行性疾病蛋白降解轴的机制验证靶点。",
+    "mechanism": "设计抗体片段占据DNPEP催化腔入口，限制底物N端酸性肽段进入Zn2+依赖性金属肽酶活性中心，从而抑制肽键水解反应。",
+    "selectedEpitope": "优先覆盖M18氨肽酶催化腔入口及邻近寡聚化界面，避免直接螯合金属中心。",
+    "diseaseDirection": "神经退行性疾病蛋白稳态",
+    "domain": "DNPEP属于M18金属氨肽酶家族，含催化性金属结合核心与寡聚化相关界面。",
+    "evidence": "DNPEP神经退行性疾病关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与组学关联",
+      "UniProt Q9ULA0功能与亚细胞定位注释",
+      "RCSB PDB 4DYO晶体结构解析数据",
+      "MEROPS M18金属肽酶家族功能分类"
+    ],
+    "referenceEntries": "UniProt Q9ULA0；RCSB PDB 4DYO；MEROPS M18 peptidase",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化腔入口环区与底物通道边缘",
+        "可空间阻断酸性肽段进入活性中心，适合功能抑制型片段设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "寡聚化界面邻近外露面",
+        "可能影响活性构象或复合体稳定性，适合作为变构调节表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Zn2+配位核心深部口袋",
+        "区域高度保守且金属依赖性强，易产生选择性与构象扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DNPEP为胞质酶，常规抗体体内可及性受限；设计应优先采用细胞内递送Fab/VHH或体外机制抗体，并避开保守金属配位残基。",
+    "structurePrepZh": "以4DYO链A为模板，保留金属离子与催化腔构象，补全缺失侧链并评估寡聚化界面后开展表位映射。",
+    "structureRef": "RCSB PDB 4DYO，X-ray diffraction，2.2 Å，human DNPEP",
+    "antibodies": [
+      "目前无获批DNPEP治疗性抗体",
+      "研究级抗DNPEP检测抗体"
+    ],
+    "interfaceFocus": "催化腔入口、底物通道、寡聚化界面",
+    "designMode": "胞内酶抑制抗体",
+    "candidates": [
+      {
+        "target": "APP",
+        "rationale": "APP是阿尔茨海默病淀粉样蛋白生成通路核心底物，其加工产物Aβ与神经退行性病理直接相关。相较DNPEP，APP胞外结构域和Aβ相关表位具有更高抗体可及性。"
+      },
+      {
+        "target": "BACE1",
+        "rationale": "BACE1介导APP β位点切割，是Aβ生成的关键限速酶，处于同一阿尔茨海默病蛋白稳态病理轴。其胞外催化结构域可被抗体或蛋白工程分子直接靶向。"
+      },
+      {
+        "target": "PSEN1",
+        "rationale": "PSEN1是γ-分泌酶复合体催化核心，影响APP裂解与Aβ肽段组成，并与家族性阿尔茨海默病存在明确遗传关联。其跨膜复合体属性使抗体开发难度较高，但具有机制验证价值。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

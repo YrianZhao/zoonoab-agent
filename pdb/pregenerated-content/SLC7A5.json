@@ -1,0 +1,65 @@
+{
+  "gene": "SLC7A5",
+  "generatedAt": "2026-08-03T21:13:51.747Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SLC7A5编码LAT1，是与SLC3A2/CD98hc形成异二聚体的L型氨基酸转运体，介导亮氨酸、苯丙氨酸、酪氨酸和色氨酸等大中性氨基酸跨膜交换，并通过亮氨酸供给影响mTORC1营养感知轴。该靶点为多跨膜膜转运蛋白，胞外环区和异二聚体外向构象为抗体识别提供可及表面，但其主要底物结合腔位于膜内，应优先选择外侧门控相关表位。相较于下游mTOR或代谢酶类靶点，LAT1位于氨基酸摄取入口，具有更直接限制营养依赖性增殖和免疫代谢重编程的优先级。",
+    "mechanism": "抗体结合LAT1外向开放构象的胞外门控区，阻断底物进入SLC7A5跨膜转运腔，并干扰SLC7A5与SLC3A2稳定异二聚体的构象耦联。",
+    "selectedEpitope": "优先覆盖胞外环EL3/EL4及外侧门控螺旋入口，避开深膜内底物腔。",
+    "diseaseDirection": "氨基酸转运与肿瘤代谢",
+    "domain": "SLC7A5含12次跨膜α螺旋，N端胞内，胞外环参与外侧门控；与SLC3A2通过二硫键形成异二聚体。",
+    "evidence": "LAT1结构与氨基酸转运功能证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q01650功能与拓扑注释",
+      "RCSB PDB 7DSK冷冻电镜结构",
+      "LAT1-CD98hc氨基酸转运与肿瘤代谢文献"
+    ],
+    "referenceEntries": "UniProt Q01650；RCSB PDB 7DSK；Open Targets SLC7A5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "胞外环EL3/EL4与外侧门控入口",
+        "可在不进入膜内底物腔的条件下限制中性氨基酸进入转运通道",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SLC7A5-SLC3A2异二聚体外侧邻近界面",
+        "可能影响CD98hc稳定支架作用及LAT1构象转换",
+        "备选"
+      ],
+      [
+        "Site C",
+        "跨膜螺旋深部底物结合腔周围",
+        "结构上与底物选择性相关但抗体可及性低且膜环境依赖强",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SLC7A5为多跨膜转运体，胞外环较短且构象依赖明显；设计应采用膜环境保留构象，避免选择保守跨膜核心和低可及性表位。",
+    "structurePrepZh": "以7DSK冷冻电镜结构为模板，保留SLC7A5-SLC3A2异二聚体、二硫键信息及膜法向约束，重点标注胞外环与外向门控状态。",
+    "structureRef": "RCSB PDB 7DSK，human LAT1-CD98hc cryo-EM structure",
+    "antibodies": [
+      "JPH203（LAT1小分子抑制剂参照）",
+      "抗CD98hc功能阻断抗体"
+    ],
+    "interfaceFocus": "胞外门控入口与LAT1-CD98hc界面",
+    "designMode": "膜转运体阻断",
+    "candidates": [
+      {
+        "target": "SLC3A2",
+        "rationale": "SLC3A2/CD98hc是LAT1的重链伴侣，维持SLC7A5膜定位和异二聚体稳定性，处于同一大中性氨基酸转运复合体。"
+      },
+      {
+        "target": "MTOR",
+        "rationale": "mTORC1是LAT1介导亮氨酸摄取后的关键营养感知效应节点，可作为氨基酸供给-生长信号轴的下游候选靶点。"
+      },
+      {
+        "target": "RRAGA",
+        "rationale": "RagA GTPase参与氨基酸信号向mTORC1溶酶体募集的传递，与LAT1介导的亮氨酸供应同属氨基酸感知通路。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

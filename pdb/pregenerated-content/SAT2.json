@@ -1,0 +1,65 @@
+{
+  "gene": "SAT2",
+  "generatedAt": "2026-08-03T16:20:18.834Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SAT2为胞内GNAT样N-乙酰转移酶，主要参与多胺乙酰化与代谢稳态，Open Targets关联信号集中于N6-乙酰赖氨酸、睾酮、胆固醇及HDL磷脂等测量性状，提示其与细胞代谢表型存在遗传学关联。该蛋白缺乏跨膜区和分泌信号肽，天然抗原可及性不符合常规细胞外抗体阻断场景，更适合结构抗原、细胞内递送抗体或工具抗体开发。相比ODC1、SAT1等多胺通路核心酶，SAT2疾病证据较弱且功能注释有限，优先级应定位为探索性代谢靶点而非成熟治疗性抗体主靶点。",
+    "mechanism": "设计分子可识别SAT2乙酰辅酶A结合沟槽邻近区域，干预底物多胺与催化核心的空间配位，抑制N1-乙酰化反应。",
+    "selectedEpitope": "优先覆盖GNAT折叠乙酰辅酶A结合沟槽外缘及底物入口环区，避免深埋催化位点不可及区域。",
+    "diseaseDirection": "代谢表型与多胺稳态",
+    "domain": "SAT2为胞内GNAT乙酰转移酶样结构，含乙酰辅酶A结合核心折叠与底物结合沟槽。",
+    "evidence": "SAT2多胺乙酰化与代谢性状证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q96F10蛋白功能与定位注释",
+      "RCSB PDB 2BEI晶体结构数据",
+      "人类多胺代谢与GNAT乙酰转移酶文献"
+    ],
+    "referenceEntries": "UniProt: Q96F10; RCSB PDB: 2BEI; Gene: SAT2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "乙酰辅酶A结合沟槽外缘与底物入口环区",
+        "接近催化反应空间，可用于构建抑制型细胞内抗体或结构探针",
+        "优先"
+      ],
+      [
+        "Site B",
+        "GNAT核心折叠表面暴露螺旋-环连接区",
+        "结构稳定、免疫原性较可控，适合亲和捕获与检测抗体设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "二聚体界面邻近保守疏水斑块",
+        "可能影响构象稳定性，但存在保守性高和交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SAT2为胞内酶且非分泌抗原，常规IgG难以到达作用位点；建议限定为Fab/VHH结构探针、细胞内递送抗体或诊断工具抗体。",
+    "structurePrepZh": "采用2BEI中A、B链晶体结构，保留完整GNAT折叠并检查配体、缺失环区和界面晶体接触，按人源序列编号统一表位映射。",
+    "structureRef": "RCSB PDB 2BEI，X射线晶体结构，1.842 Å",
+    "antibodies": [
+      "暂无获批SAT2治疗性抗体",
+      "商业化SAT2检测抗体"
+    ],
+    "interfaceFocus": "乙酰辅酶A沟槽外缘与底物入口区",
+    "designMode": "胞内酶结构抗体",
+    "candidates": [
+      {
+        "target": "SAT1",
+        "rationale": "SAT1为多胺分解代谢中的主要精脒/精胺N1-乙酰转移酶，功能证据较SAT2更充分，可作为同通路优先验证靶点。"
+      },
+      {
+        "target": "ODC1",
+        "rationale": "ODC1催化鸟氨酸生成腐胺，是多胺生物合成限速酶，与细胞增殖和代谢重编程密切相关。"
+      },
+      {
+        "target": "AMD1",
+        "rationale": "AMD1生成脱羧S-腺苷甲硫氨酸，为精脒和精胺合成提供氨丙基供体，处于多胺合成关键节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

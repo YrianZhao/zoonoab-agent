@@ -1,0 +1,65 @@
+{
+  "gene": "HSPA1A",
+  "generatedAt": "2026-08-03T13:18:58.756Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HSPA1A编码诱导型Hsp70，参与蛋白质折叠稳态、应激颗粒调控及病毒蛋白成熟，在流感、登革热和COVID-19等感染过程中可支持病毒复制复合体稳定，并在COPD炎症应激中关联蛋白稳态失衡。HSPA1A主要为胞内伴侣蛋白，但在细胞应激、坏死或外泌体释放条件下可呈现膜相关或胞外可及形式，因而更适合发展阻断病理性胞外Hsp70功能的抗体策略。相较于广泛抑制Hsp90或核心蛋白酶体靶点，HSPA1A在应激诱导背景下具有更强疾病状态依赖性，且PDB 5AQW提供高分辨率核苷酸结合结构，有利于开展结构约束的表位风险评估。",
+    "mechanism": "抗体优先阻断胞外或膜相关HSPA1A与TLR2/TLR4-CD14样先天免疫识别复合体的结合，降低DAMP驱动的NF-κB炎症放大。",
+    "selectedEpitope": "优先选择核苷酸结合结构域外侧、远离ATP结合裂隙的可及螺旋-环区，避免干扰保守ATP口袋。",
+    "diseaseDirection": "感染炎症与COPD应激炎症",
+    "domain": "HSPA1A含N端核苷酸结合结构域、柔性连接区、底物结合β夹层及C端α螺旋盖结构域。",
+    "evidence": "HSPA1A感染炎症与胞外DAMP证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P0DMV8 functional annotation",
+      "RCSB PDB 5AQW X-ray structure",
+      "文献报道的胞外Hsp70-TLR2/TLR4炎症关联"
+    ],
+    "referenceEntries": "UniProt P0DMV8；RCSB PDB 5AQW；Open Targets HSPA1A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端核苷酸结合结构域外侧螺旋-环面",
+        "结构分辨率高且远离ATP催化核心，适合筛选胞外阻断型抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "底物结合结构域β夹层外缘",
+        "可能影响病理性配体或受体接触，但需补充全长结构建模",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP结合裂隙及核苷酸接触残基周边",
+        "高度保守且与胞内伴侣功能密切相关，存在广泛蛋白稳态干扰风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HSPA1A为高度保守胞内伴侣蛋白，直接抑制ATP酶活性可能产生蛋白稳态毒性；设计应聚焦胞外暴露构象并验证膜相关抗原可及性。",
+    "structurePrepZh": "以5AQW链A作为NBD高分辨率模板，补建缺失柔性区并与AlphaFold全长模型对齐，标注ATP口袋和潜在受体接触面。",
+    "structureRef": "PDB 5AQW，human Hsp70 NBD，1.53 Å X-ray",
+    "antibodies": [
+      "cmHsp70.1",
+      "cmHsp70.1-derived NK-engager formats"
+    ],
+    "interfaceFocus": "胞外Hsp70受体识别面与ATP口袋避让区",
+    "designMode": "胞外阻断型",
+    "candidates": [
+      {
+        "target": "TLR4",
+        "rationale": "TLR4参与Hsp70作为DAMP时的炎症识别轴，并驱动NF-κB介导的COPD和感染相关炎症放大。其胞外LRR结构域具备抗体可及性。"
+      },
+      {
+        "target": "TLR2",
+        "rationale": "TLR2可参与热休克蛋白诱导的先天免疫激活，与HSPA1A相关胞外炎症通路处于同一识别网络。阻断其胞外配体结合界面具有明确抗体设计入口。"
+      },
+      {
+        "target": "CD14",
+        "rationale": "CD14作为TLR4/TLR2共受体参与DAMP和病原相关分子识别，可放大Hsp70相关炎症信号。其GPI锚定胞外蛋白形态使抗体拦截具备可行性。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

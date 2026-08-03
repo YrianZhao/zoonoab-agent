@@ -1,0 +1,65 @@
+{
+  "gene": "PRKAR1A",
+  "generatedAt": "2026-08-03T15:35:05.071Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PRKAR1A编码PKA I型调节亚基α，失活突变可降低对PRKACA催化亚基的抑制，造成cAMP-PKA信号持续活化，是Carney complex、原发性色素性结节性肾上腺皮质病和部分肢端骨发育不全的重要遗传机制。该蛋白主要位于胞质并通过cAMP结合结构域调控激酶复合体，天然抗原可及性不具备典型膜外靶点优势，因此更适合作为结构机制验证、胞内递送抗体或研究级干预靶点。相较下游转录效应物，PRKAR1A位于PKA全酶变构控制节点，疾病遗传证据强且高分辨率结构可支持精确界面设计，优先级来源于机制确定性而非常规细胞表面可药性。",
+    "mechanism": "设计抗体片段结合PRKAR1A cAMP结合域或PRKACA接触界面，稳定调节亚基构象并限制催化亚基释放，从而抑制异常PKA活化。",
+    "selectedEpitope": "优先锁定CNB-B结构域cAMP结合口袋邻近变构环及A/B域界面，兼顾PRKACA调控构象。",
+    "diseaseDirection": "cAMP-PKA相关内分泌肿瘤综合征",
+    "domain": "PRKAR1A含N端二聚化/AKAP结合区、抑制假底物区及两个环核苷酸结合结构域CNB-A与CNB-B。",
+    "evidence": "PRKAR1A遗传失活与PKA异常活化证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P10644功能与结构域注释",
+      "RCSB PDB 5KJZ高分辨率晶体结构",
+      "ClinVar与OMIM中Carney complex相关变异记录"
+    ],
+    "referenceEntries": "UniProt P10644；RCSB PDB 5KJZ；OMIM PRKAR1A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CNB-B结构域cAMP结合口袋邻近PBC/αB-αC区域",
+        "可稳定低活化构象并干预cAMP诱导的变构转换",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CNB-A与CNB-B结构域夹角界面",
+        "有利于限制双结构域相对运动并增强构象锁定效应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端二聚化/AKAP结合区",
+        "可能影响亚细胞定位与支架蛋白结合，但结构覆盖和可及性需谨慎评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PRKAR1A为胞内蛋白，常规IgG难以到达作用位点；设计应优先采用可递送Fab/VHH，并避免干扰广泛PKA基础功能造成系统性毒性。",
+    "structurePrepZh": "以5KJZ链A为核心模板，补全缺失环区并保留cAMP结合域关键残基构象，去除晶体接触后评估可成药表面与变构耦联位点。",
+    "structureRef": "RCSB PDB 5KJZ，X-ray diffraction，1.347 Å",
+    "antibodies": [
+      "PRKAR1A研究级单克隆抗体",
+      "anti-PKA RI alpha验证抗体"
+    ],
+    "interfaceFocus": "CNB结构域变构环与PRKACA释放耦联界面",
+    "designMode": "胞内变构锁定",
+    "candidates": [
+      {
+        "target": "PRKACA",
+        "rationale": "PRKACA是PRKAR1A直接抑制的PKA催化亚基，PRKAR1A失活导致其释放并增强底物磷酸化，是同一cAMP-PKA疾病轴的核心效应靶点。"
+      },
+      {
+        "target": "PRKACB",
+        "rationale": "PRKACB编码PKA催化亚基β，可与调节亚基形成全酶复合体，在cAMP依赖性激酶活化通路中与PRKAR1A功能耦联。"
+      },
+      {
+        "target": "PDE11A",
+        "rationale": "PDE11A降解cAMP并限制PKA活化，其遗传改变与肾上腺皮质结节性病变风险相关，属于PRKAR1A相关cAMP-PKA病理通路的上游调节节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

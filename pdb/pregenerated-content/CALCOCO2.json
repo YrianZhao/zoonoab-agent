@@ -1,0 +1,65 @@
+{
+  "gene": "CALCOCO2",
+  "generatedAt": "2026-08-03T10:57:39.065Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CALCOCO2/NDP52 是细胞内自噬受体，参与选择性自噬、线粒体自噬及胞内病原体清除，通过 SKICH 区域结合 TBK1 并经 LC3/GABARAP 连接自噬膜，其遗传关联主要指向代谢测量性状和骨骼表型。该蛋白缺乏分泌信号肽和跨膜区，抗原可及性不符合常规体内治疗性抗体对胞外靶点的要求，更适合作为结构生物学、细胞内递送抗体或工具抗体设计对象。相比 SQSTM1、OPTN 等同类自噬受体，CALCOCO2 的 PDB 3VVV 提供高分辨率 SKICH 结构，适合界面阻断型表位设计，但因疾病因果证据和抗体可达性较弱，主靶点优先级应低于胞外或膜受体类疾病靶点。",
+    "mechanism": "设计抗体结合 CALCOCO2 SKICH 区域，阻断其与 TBK1 适配界面的结合，从而干预 TBK1 介导的选择性自噬受体调控。",
+    "selectedEpitope": "优先覆盖 SKICH 结构域中 TBK1 结合相关凸面及邻近保守沟槽，避免遮蔽全局折叠核心。",
+    "diseaseDirection": "选择性自噬与代谢表型",
+    "domain": "CALCOCO2 含 N 端 SKICH 结构域、卷曲螺旋区、LC3 相互作用区、锌指和 C 端泛素结合区。",
+    "evidence": "CALCOCO2 选择性自噬结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 遗传与疾病关联数据",
+      "UniProt Q13137 蛋白结构域与亚细胞定位注释",
+      "RCSB PDB 3VVV 晶体结构数据",
+      "自噬受体 CALCOCO2/NDP52 与 TBK1、LC3 相互作用文献"
+    ],
+    "referenceEntries": "UniProt Q13137；RCSB PDB 3VVV；Open Targets CALCOCO2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SKICH 结构域 TBK1 结合相关凸面",
+        "可用于阻断 CALCOCO2 与 TBK1 适配相互作用，机制指向明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SKICH 结构域外侧保守沟槽",
+        "保留结构可及性并利于获得构象识别抗体，适合工具抗体开发",
+        "备选"
+      ],
+      [
+        "Site C",
+        "卷曲螺旋及 LC3 相互作用区附近",
+        "可能影响受体寡聚化或 LC3/GABARAP 结合，但现有 3VVV 不覆盖该区域",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CALCOCO2 为胞内蛋白，常规抗体体内可及性不足；建议限定为细胞内递送抗体、纳米抗体或研究工具抗体，并避免跨结构域外推表位。",
+    "structurePrepZh": "以 3VVV 链 A 的高分辨率 SKICH 结构为模板，补全缺失侧链、校正质子化状态，并将未解析卷曲螺旋区排除出结构依赖表位建模。",
+    "structureRef": "RCSB PDB 3VVV，X-ray diffraction，1.35 Å",
+    "antibodies": [
+      "抗 CALCOCO2/NDP52 研究级单克隆抗体",
+      "抗 NDP52 免疫荧光/免疫印迹抗体"
+    ],
+    "interfaceFocus": "SKICH-TBK1 适配界面及保守凸面",
+    "designMode": "胞内工具抗体设计",
+    "candidates": [
+      {
+        "target": "SQSTM1",
+        "rationale": "SQSTM1/p62 是选择性自噬核心受体，连接泛素化底物与 LC3，并与代谢、骨稳态及炎症通路存在明确关联。"
+      },
+      {
+        "target": "OPTN",
+        "rationale": "OPTN 是 TBK1 调控的选择性自噬受体，参与线粒体自噬和病原体自噬，与 CALCOCO2 处于相近的泛素依赖自噬轴。"
+      },
+      {
+        "target": "TBK1",
+        "rationale": "TBK1 磷酸化并调控多个自噬受体，包括 CALCOCO2、OPTN 和 SQSTM1，是该通路中更上游的激酶节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

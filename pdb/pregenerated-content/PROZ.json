@@ -1,0 +1,65 @@
+{
+  "gene": "PROZ",
+  "generatedAt": "2026-08-03T15:37:10.773Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PROZ编码维生素K依赖性血浆糖蛋白protein Z，是凝血调控轴中ZPI对因子Xa抑制作用的辅因子，其缺乏与凝血平衡异常及血栓风险相关。该靶点为分泌型血浆蛋白，含可被循环抗体直接识别的Gla结构域、EGF样结构域和丝氨酸蛋白酶样结构域，抗原可及性较高。相较下游凝血酶或因子Xa，PROZ更适合用于研究性调节ZPI复合物形成与protein Z缺乏相关表型的分子工具开发，具有较明确的通路定位。",
+    "mechanism": "通过阻断PROZ与ZPI或膜磷脂表面的协同结合，干扰protein Z依赖的因子Xa抑制复合物形成。",
+    "selectedEpitope": "优先覆盖丝氨酸蛋白酶样结构域中ZPI结合相关外露界面，避免深埋核心区。",
+    "diseaseDirection": "凝血调控与protein Z缺乏",
+    "domain": "N端Gla结构域、两个EGF样结构域及C端无催化活性的丝氨酸蛋白酶样结构域。",
+    "evidence": "PROZ凝血辅因子功能与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P22891功能与结构域注释",
+      "RCSB PDB 3F1S晶体结构",
+      "凝血protein Z-ZPI-因子Xa通路文献"
+    ],
+    "referenceEntries": "UniProt P22891；RCSB PDB 3F1S；Open Targets PROZ",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端丝氨酸蛋白酶样结构域外露ZPI邻近界面",
+        "有利于阻断PROZ与ZPI形成抗凝复合物，机制验证价值高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端Gla结构域钙依赖膜结合面周边",
+        "可影响PROZ定位至磷脂膜表面，但需控制钙依赖构象影响",
+        "备选"
+      ],
+      [
+        "Site C",
+        "EGF样结构域连接区",
+        "可能改变分子取向或柔性，功能效应不确定且构象依赖较强",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "Gla结构域存在钙离子依赖构象和翻译后γ-羧化修饰风险；抗体筛选宜保留生理钙条件，并排除广泛交叉识别其他维生素K依赖凝血蛋白。",
+    "structurePrepZh": "以3F1S晶体结构为模板清理非目标分子，保留关键钙离子与二硫键约束，按链A/B评估界面一致性并补充缺失柔性环建模。",
+    "structureRef": "RCSB PDB 3F1S，X-ray diffraction，2.3 Å",
+    "antibodies": [
+      "抗protein Z检测抗体",
+      "抗PROZ功能研究抗体"
+    ],
+    "interfaceFocus": "ZPI结合邻近面与Gla膜定位面",
+    "designMode": "分泌蛋白阻断型",
+    "candidates": [
+      {
+        "target": "SERPINA10",
+        "rationale": "SERPINA10编码protein Z-dependent protease inhibitor，是PROZ抗凝辅因子功能的直接配对分子。靶向该节点可直接调节ZPI对因子Xa的抑制效率。"
+      },
+      {
+        "target": "F10",
+        "rationale": "F10编码凝血因子X/活化因子Xa，是protein Z-ZPI复合物的直接酶底物。该靶点处于同一抗凝调控轴的效应端，已有明确药理学验证基础。"
+      },
+      {
+        "target": "F2",
+        "rationale": "F2编码凝血酶原，是因子Xa介导凝血级联下游关键节点。其活化水平反映PROZ-ZPI-FXa轴对凝血放大的功能后果。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

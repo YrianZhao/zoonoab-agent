@@ -1,0 +1,65 @@
+{
+  "gene": "XRCC1",
+  "generatedAt": "2026-08-03T17:55:02.664Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "XRCC1是碱基切除修复与单链断裂修复的核内支架蛋白，通过招募POLB、LIG3、PNKP和PARP1参与DNA损伤应答，其缺陷与常染色体隐性小脑共济失调和神经退行性表型相关。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌形式，常规体内阻断型抗体的抗原可及性较弱，更适合作为结构生物学验证、细胞内抗体或研究级结合分子设计对象。相较膜受体或分泌因子，XRCC1的治疗抗体优先级较低；但其结构域互作界面清晰、疾病遗传证据明确，适合优先开展机制探针型Fab/VHH设计。",
+    "mechanism": "结合XRCC1 BRCT1结构域界面，阻断其与PARP1及磷酸化修复复合体的装配，从而干扰单链断裂修复支架形成。",
+    "selectedEpitope": "优先覆盖BRCT1结构域磷酸依赖互作沟槽及相邻保守环区，避开折叠核心疏水面。",
+    "diseaseDirection": "DNA修复缺陷与神经退行性疾病",
+    "domain": "XRCC1含N端POLB结合域、中央BRCT1结构域及C端BRCT2结构域，2W3O解析BRCT相关区域。",
+    "evidence": "XRCC1 DNA单链断裂修复证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P18887功能与亚细胞定位注释",
+      "RCSB PDB 2W3O晶体结构记录",
+      "DNA碱基切除修复与SSBR文献证据"
+    ],
+    "referenceEntries": "UniProt:P18887；RCSB PDB:2W3O；Open Targets:XRCC1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "BRCT1磷酸肽结合沟槽及邻近环区",
+        "可干预XRCC1修复复合体装配，机制验证价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "BRCT1外侧溶剂暴露α螺旋面",
+        "利于获得稳定结合分子，适合作为结构占位探针",
+        "备选"
+      ],
+      [
+        "Site C",
+        "BRCT结构域折叠核心与链间晶体接触面",
+        "可能影响蛋白稳定性或反映晶体堆积，需谨慎解释功能效应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "XRCC1为核内非分泌蛋白，体内抗体递送和抗原可及性风险高；建议限定为细胞内VHH、Fab结构探针或降解偶联策略前验证。",
+    "structurePrepZh": "以2W3O高分辨率晶体结构为模板，去除晶体接触伪界面，保留BRCT结构域主链与关键极性残基并评估多链装配状态。",
+    "structureRef": "RCSB PDB 2W3O，X-ray diffraction，1.85 Å",
+    "antibodies": [
+      "研究级抗XRCC1单克隆抗体",
+      "抗XRCC1免疫组化/免疫印迹抗体"
+    ],
+    "interfaceFocus": "BRCT1磷酸依赖互作沟槽与保守环区",
+    "designMode": "细胞内结合分子",
+    "candidates": [
+      {
+        "target": "PARP1",
+        "rationale": "PARP1识别DNA单链断裂并通过PARylation促进XRCC1募集，处于同一SSBR通路上游。其催化与蛋白互作节点具有明确药理学可干预性。"
+      },
+      {
+        "target": "LIG3",
+        "rationale": "LIG3与XRCC1形成修复复合体并完成DNA缺口连接，是单链断裂修复末端封闭步骤的核心因子。干预该轴可用于解析XRCC1依赖修复效应。"
+      },
+      {
+        "target": "POLB",
+        "rationale": "POLB在碱基切除修复中执行缺口填补，并通过N端区域与XRCC1功能耦联。其与XRCC1共同决定BER/SSBR修复效率。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

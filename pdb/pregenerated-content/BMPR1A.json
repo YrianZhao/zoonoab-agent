@@ -1,0 +1,65 @@
+{
+  "gene": "BMPR1A",
+  "generatedAt": "2026-08-03T10:50:59.478Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BMPR1A编码BMP I型丝氨酸/苏氨酸激酶受体，在BMP配体诱导的受体复合物中磷酸化SMAD1/5/8并维持肠上皮稳态，胚系失功能变异与幼年性息肉病和遗传性肿瘤易感综合征密切相关。该受体具有N端胞外配体结合结构域，抗原位点位于细胞表面，适合抗体识别并干预BMP配体结合。相较胞内SMAD或激酶结构域靶点，BMPR1A的胞外可及性与疾病遗传证据更直接，优先级高于多数下游信号节点。",
+    "mechanism": "抗体结合BMPR1A胞外配体结合域，阻断BMP2/BMP4与BMPR1A的接触界面，抑制I型/II型受体复合物形成及SMAD1/5/8磷酸化。",
+    "selectedEpitope": "优先覆盖BMPR1A胞外三指样配体结合域的BMP2接触面，兼顾β4-β5环与α1邻近界面。",
+    "diseaseDirection": "遗传性胃肠息肉与肿瘤易感",
+    "domain": "N端胞外配体结合域、单跨膜区及胞内GS区与丝氨酸/苏氨酸激酶结构域。",
+    "evidence": "BMPR1A遗传性息肉病与BMP受体结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt P36894功能与结构域注释",
+      "RCSB PDB 2H62晶体结构",
+      "OMIM与ClinVar胚系变异证据"
+    ],
+    "referenceEntries": "UniProt P36894；RCSB PDB 2H62；Open Targets BMPR1A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "胞外配体结合域BMP2/BMP4结合凹面",
+        "直接竞争BMP配体，最大化阻断受体复合物装配",
+        "优先"
+      ],
+      [
+        "Site B",
+        "β4-β5环及邻近α1螺旋外侧面",
+        "可能产生变构遮挡并保留较好抗体可及性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端保守二硫键核心邻近区域",
+        "结构保守且折叠敏感，存在交叉反应或构象扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BMPR1A与ACVR1、BMPR1B胞外域存在同源性，需避开高度保守二硫键核心并优先筛选BMPR1A特异环区表位。",
+    "structurePrepZh": "以2H62晶体结构提取BMPR1A胞外域链，补全侧链、校正二硫键与糖基化位点标注，并映射BMP配体接触残基。",
+    "structureRef": "RCSB PDB 2H62，1.85 Å X-ray BMPR1A胞外域结构",
+    "antibodies": [
+      "MAB2406",
+      "AF346"
+    ],
+    "interfaceFocus": "BMP2/BMP4配体结合凹面与受体复合物装配界面",
+    "designMode": "阻断型表位设计",
+    "candidates": [
+      {
+        "target": "SMAD4",
+        "rationale": "SMAD4是BMP/TGF-β通路共同SMAD，胚系变异同样导致幼年性息肉病；其遗传证据强，但胞内定位限制抗体药物直接可及性。"
+      },
+      {
+        "target": "BMPR2",
+        "rationale": "BMPR2为BMP II型受体，参与BMP配体诱导的BMPR1A受体复合物形成；其胞外域可及，可作为同一BMP受体轴的替代膜靶点。"
+      },
+      {
+        "target": "BMP4",
+        "rationale": "BMP4是BMPR1A的关键配体之一，直接驱动BMPR1A/BMPR2复合物活化；分泌蛋白属性有利于中和抗体设计。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

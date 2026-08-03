@@ -1,0 +1,65 @@
+{
+  "gene": "MEX3D",
+  "generatedAt": "2026-08-03T14:13:06.155Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MEX3D为细胞内RNA结合蛋白，含KH结构域并参与RNA转录后调控，现有疾病关联主要来自遗传学或组学层面的弱至中等强度信号，尚缺乏明确可抗体阻断的细胞外致病轴。其抗原可及性不具备常规治疗性抗体优势；蛋白未注释为分泌蛋白或膜受体，PDB 2DGR对应结构域亦为胞内RNA结合模块。相较同疾病方向中具有胞外配体或膜受体特征的靶点，MEX3D优先级较低，更适合作为机制研究或细胞内递送抗体探索靶点。",
+    "mechanism": "设计重点为阻断MEX3D KH结构域与靶RNA短序列的结合，干扰其对下游转录本稳定性或翻译效率的调控。",
+    "selectedEpitope": "优先覆盖KH结构域RNA结合沟槽及邻近保守GXXG环区，评估对RNA接触面的空间遮挡。",
+    "diseaseDirection": "代谢性疾病与肿瘤转录后调控",
+    "domain": "MEX3D含两个KH型RNA结合结构域及C端RING样区域，2DGR为溶液NMR解析的KH结构域片段。",
+    "evidence": "MEX3D疾病遗传关联与KH结构域可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q86XN8蛋白功能与结构域注释",
+      "RCSB PDB 2DGR溶液NMR结构记录",
+      "InterPro/Pfam KH RNA结合结构域注释"
+    ],
+    "referenceEntries": "UniProt Q86XN8；RCSB PDB 2DGR；Open Targets MEX3D",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "KH结构域RNA结合沟槽及GXXG环邻近面",
+        "直接遮挡RNA识别界面，最符合功能阻断设计逻辑",
+        "优先"
+      ],
+      [
+        "Site B",
+        "KH结构域α-螺旋与β折叠形成的外侧稳定面",
+        "可用于获得高亲和结合分子并辅助构象锁定",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离RNA结合沟槽的溶剂暴露表面",
+        "可能仅产生结合信号而缺乏明确功能抑制效应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险在于靶点胞内定位导致常规抗体难以到达作用位点；建议限定为细胞内递送抗体、纳米抗体或研究级阻断工具开发。",
+    "structurePrepZh": "以2DGR的NMR构象簇建立代表性模型，补齐缺失氢原子并进行KH结构域表面电荷、RNA结合沟槽与保守环区标注。",
+    "structureRef": "RCSB PDB 2DGR；human MEX3D KH domain NMR structure",
+    "antibodies": [
+      "无已批准MEX3D治疗性抗体",
+      "研究级抗MEX3D抗体"
+    ],
+    "interfaceFocus": "KH结构域RNA结合沟槽与GXXG环区",
+    "designMode": "胞内阻断探索",
+    "candidates": [
+      {
+        "target": "IGF1R",
+        "rationale": "IGF1R为膜受体酪氨酸激酶，参与胰岛素/IGF轴并与糖尿病、体脂和肿瘤增殖信号相关；其胞外配体结合域具备更明确的抗体可及性。"
+      },
+      {
+        "target": "INSR",
+        "rationale": "INSR是代谢疾病通路中的核心膜受体，直接介导胰岛素结合及下游PI3K-AKT信号；相较MEX3D，其疾病机制与细胞表面抗原属性更适合抗体工程评估。"
+      },
+      {
+        "target": "MSI2",
+        "rationale": "MSI2同属RNA结合蛋白并与肿瘤转录后调控和血清蛋白水平表型相关，可作为同类RNA调控轴中的机制对照靶点；但其胞内定位同样限制常规抗体治疗适配性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

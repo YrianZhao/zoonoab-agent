@@ -1,0 +1,65 @@
+{
+  "gene": "MITF",
+  "generatedAt": "2026-08-03T14:15:19.126Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MITF 是黑色素细胞谱系决定与黑色素瘤生存程序的核心转录因子，调控 TYR、DCT、PMEL、BCL2 等基因，并通过 bHLH-LZ 二聚化后结合 E-box/M-box DNA 元件驱动疾病相关转录网络。其主要功能结构域位于细胞核内，天然抗原可及性不具备膜受体或分泌蛋白优势，因此更适合作为胞内抗原结合分子、递送型抗体片段或机制验证型设计对象。相较于上游 KIT、EDNRB 等受体，MITF 位于黑色素细胞分化与黑色素瘤依赖性的汇聚节点，优先级来自通路收敛性与遗传疾病证据强度，但成药性风险高于经典胞外靶点。",
+    "mechanism": "设计分子优先阻断 MITF bHLH-LZ 二聚体与 E-box DNA 的碱性区结合界面，抑制其对 TYR、DCT、PMEL 等靶基因启动子/增强子的转录激活。",
+    "selectedEpitope": "优先锁定 bHLH 碱性区-DNA 接触面及邻近 HLH 二聚化界面，避免覆盖低保守柔性端区。",
+    "diseaseDirection": "黑色素细胞发育异常与黑色素瘤",
+    "domain": "MITF 含 N 端转录调控区、bHLH DNA 结合结构域及 C 端 leucine zipper 二聚化结构域。",
+    "evidence": "MITF 疾病遗传学与结构功能证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease associations",
+      "UniProtKB O75030 functional annotation",
+      "RCSB PDB 9H7Q X-ray structure",
+      "OMIM and ClinVar MITF variant records"
+    ],
+    "referenceEntries": "UniProt O75030；RCSB PDB 9H7Q；HGNC MITF",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "bHLH 碱性区-DNA 主沟接触界面",
+        "直接干预 E-box/M-box 识别，机制闭环明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "HLH 与 leucine zipper 二聚化界面",
+        "削弱 MITF 同源或异源二聚体形成，降低 DNA 结合能力",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端转录激活/调控区",
+        "可能影响共调节因子募集，但柔性高且结构约束不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MITF 为核内转录因子，常规抗体难以到达作用位点；建议采用 VHH、细胞内抗体或递送偶联策略，并严格评估 TFE3、TFEB 等 MiT/TFE 家族交叉结合风险。",
+    "structurePrepZh": "以 9H7Q 高分辨率晶体结构为模板，保留 bHLH-LZ 二聚体和 DNA 复合物构象，补全缺失柔性区并标注 DNA 接触残基与二聚化核心残基。",
+    "structureRef": "RCSB PDB 9H7Q；X-ray diffraction 1.72 Å",
+    "antibodies": [
+      "D5 anti-MITF research antibody",
+      "C5 anti-MITF research antibody"
+    ],
+    "interfaceFocus": "bHLH 碱性区-DNA 主沟与 HLH-LZ 二聚体界面",
+    "designMode": "胞内阻断型设计",
+    "candidates": [
+      {
+        "target": "SOX10",
+        "rationale": "SOX10 位于黑色素细胞发育通路上游，可直接促进 MITF 表达；其突变同样关联 Waardenburg 综合征和神经嵴来源细胞异常。"
+      },
+      {
+        "target": "PAX3",
+        "rationale": "PAX3 与 SOX10 协同激活 MITF 启动子，是 Waardenburg 综合征相关转录网络的重要节点，可作为同通路调控靶点。"
+      },
+      {
+        "target": "KIT",
+        "rationale": "KIT 通过 SCF-KIT 信号促进黑色素细胞存活并影响 MITF 依赖性分化程序；其胞外受体结构更适合常规抗体药物设计。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

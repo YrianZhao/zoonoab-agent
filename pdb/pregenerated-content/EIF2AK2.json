@@ -1,0 +1,65 @@
+{
+  "gene": "EIF2AK2",
+  "generatedAt": "2026-08-03T19:02:41.947Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "EIF2AK2/PKR是双链RNA激活的eIF2α激酶，介导病毒感染、细胞应激与神经炎症中的ISR通路，磷酸化EIF2S1 Ser51后抑制翻译起始并诱导应激颗粒和炎症反应。该蛋白主要定位于胞质，缺乏天然胞外结构域，抗体成药可及性低于膜受体或分泌因子，但其dsRNA结合结构域与激酶调控界面具备体外阻断和细胞内递送抗体设计价值。相较PERK、GCN2、HRI等同族eIF2α激酶，EIF2AK2与病毒dsRNA识别和HIV相关宿主抗病毒反应关联更直接，适合作为ISR-抗病毒交叉通路的机制验证优先靶点。",
+    "mechanism": "抗体阻断EIF2AK2 dsRNA结合结构域与双链RNA结合，或干扰激酶结构域二聚化/自磷酸化界面，从而降低EIF2S1 Ser51磷酸化。",
+    "selectedEpitope": "优先覆盖N端dsRBD1-dsRBD2的dsRNA结合沟槽，备选激酶结构域活化环邻近二聚化界面。",
+    "diseaseDirection": "ISR通路相关神经退行与病毒感染",
+    "domain": "N端含两个dsRNA结合结构域，C端为丝氨酸/苏氨酸蛋白激酶催化结构域。",
+    "evidence": "EIF2AK2-PKR结构与ISR疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与功能关联",
+      "UniProt P19525功能与结构域注释",
+      "RCSB PDB 8BI7晶体结构记录",
+      "Reactome Integrated Stress Response通路注释"
+    ],
+    "referenceEntries": "UniProt P19525；RCSB PDB 8BI7；HGNC EIF2AK2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "dsRBD1-dsRBD2双链RNA结合沟槽",
+        "直接阻断病毒或内源性dsRNA介导的PKR激活",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端激酶结构域二聚化与活化环邻近界面",
+        "抑制自磷酸化构象形成并降低EIF2S1磷酸化",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP结合裂隙周边保守催化区域",
+        "可能影响催化活性但与宿主激酶保守位点交叉风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "EIF2AK2为胞内激酶，常规抗体难以天然进入靶细胞；设计应限定为细胞内递送抗体、VHH融合递送或体外机制抗体，并规避保守ATP口袋。",
+    "structurePrepZh": "以8BI7高分辨率晶体结构为模板，保留抗原链A、B，校验缺失环区、磷酸化状态与二聚体界面后进行表位可及性分析。",
+    "structureRef": "RCSB PDB 8BI7，X-ray diffraction，1.4 Å",
+    "antibodies": [
+      "Anti-PKR clone B-10",
+      "Anti-phospho-PKR Thr446 monoclonal antibody"
+    ],
+    "interfaceFocus": "dsRNA结合沟槽与激酶二聚化自磷酸化界面",
+    "designMode": "胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "EIF2S1",
+        "rationale": "EIF2S1是PKR直接磷酸化底物，Ser51磷酸化是ISR翻译抑制的核心节点，适合作为下游效应调控靶点。"
+      },
+      {
+        "target": "DDX58",
+        "rationale": "DDX58/RIG-I同属病毒RNA识别通路关键因子，可连接病毒RNA感知、干扰素诱导与PKR相关抗病毒应答。"
+      },
+      {
+        "target": "IFIH1",
+        "rationale": "IFIH1/MDA5识别长双链RNA并诱导抗病毒先天免疫信号，与PKR共享病毒dsRNA驱动的炎症和干扰素通路背景。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

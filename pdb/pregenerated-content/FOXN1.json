@@ -1,0 +1,65 @@
+{
+  "gene": "FOXN1",
+  "generatedAt": "2026-08-03T12:36:56.976Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FOXN1 是胸腺上皮细胞谱系决定性转录因子，调控 PSMB11、DLL4、CCL25、CXCL12 等基因表达，缺陷可导致胸腺发育不全、T 细胞淋巴细胞减少和先天性免疫缺陷。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌形式，作为常规治疗性抗体靶点的抗原可及性明显受限，更适合用于结构验证、胞内递送抗体或研究级结合分子设计。相较 DLL4、IL7R 或 CXCL12 等同通路可及靶点，FOXN1 的优先级来自其上游主控地位和明确遗传证据，但开发优先级需受限于胞内抗原递送可行性。",
+    "mechanism": "设计分子需识别 FOXN1 forkhead DNA 结合结构域，干预其与靶基因启动子 forkhead motif 的结合或稳定构象。",
+    "selectedEpitope": "优先评估 forkhead 结构域翼状螺旋的 DNA 识别界面及邻近 wing loop。",
+    "diseaseDirection": "胸腺发育不全与T细胞免疫缺陷",
+    "domain": "FOXN1 含 forkhead/winged-helix DNA 结合结构域，6EL8 覆盖该结构域晶体构象。",
+    "evidence": "FOXN1胸腺上皮发育与免疫缺陷证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt O15353 蛋白功能注释",
+      "RCSB PDB 6EL8 晶体结构数据",
+      "OMIM/Orphanet 胸腺发育不全疾病记录"
+    ],
+    "referenceEntries": "UniProt O15353；RCSB PDB 6EL8；Open Targets FOXN1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "forkhead H3 识别螺旋及DNA大沟接触面",
+        "直接影响 FOXN1 与靶基因 forkhead motif 结合，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "forkhead wing loop 与相邻β片层边缘",
+        "可调节 DNA 结合稳定性并提供较突出的结构识别特征",
+        "备选"
+      ],
+      [
+        "Site C",
+        "结构域保守疏水核心邻近表面",
+        "可能影响折叠稳定性，但保守性高且易产生非特异交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FOXN1 为核内转录因子，常规抗体难以到达作用位点；需采用胞内递送、细胞穿透或降解偶联策略，并严格规避保守 forkhead 家族交叉反应。",
+    "structurePrepZh": "以 6EL8 的 A-F 链 forkhead 结构域为模板，保留高分辨率主链构象，检查缺失环区、晶体接触面和DNA结合面暴露状态后进行表位建模。",
+    "structureRef": "RCSB PDB 6EL8，X-ray diffraction，1.61 Å",
+    "antibodies": [
+      "无获批抗FOXN1治疗性抗体",
+      "抗FOXN1研究级单克隆抗体"
+    ],
+    "interfaceFocus": "forkhead H3识别螺旋与wing loop界面",
+    "designMode": "胞内靶向验证模式",
+    "candidates": [
+      {
+        "target": "DLL4",
+        "rationale": "DLL4 是 FOXN1 调控的胸腺上皮 Notch 配体，参与早期 T 细胞谱系承诺。其为跨膜蛋白胞外 EGF-like 结构域可及，抗体设计可行性高于 FOXN1。"
+      },
+      {
+        "target": "IL7R",
+        "rationale": "IL7R 介导 IL-7 依赖的 T 细胞存活和增殖，与胸腺 T 细胞发育缺陷处于同一免疫发育轴。其胞外细胞因子受体结构域适合阻断或调节型抗体设计。"
+      },
+      {
+        "target": "CXCL12",
+        "rationale": "CXCL12 是胸腺微环境趋化因子，参与胸腺细胞定位和发育迁移，并受胸腺上皮转录网络影响。作为分泌蛋白，其抗原暴露充分，适合中和抗体策略。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "IPO13",
+  "generatedAt": "2026-08-03T19:58:28.807Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IPO13 是核转运受体 importin-β 超家族成员，参与转录因子、核受体及部分蛋白质复合物的核质运输，神经炎症和神经退行性疾病关联更多反映核转运稳态异常而非经典胞外致病轴。该蛋白主要定位于胞质和细胞核，不具备分泌蛋白或膜受体胞外结构域特征，完整抗体在天然状态下抗原可及性受限。与 TNF、IL6R、CD20 等神经炎症相关胞外靶点相比，IPO13 的优先级应限定于结构验证、胞内递送抗体或研究级阻断工具开发，而非常规体内中和抗体首选靶点。",
+    "mechanism": "通过结合 IPO13 HEAT-repeat 超螺旋内侧货物结合面，阻断其与核定位信号货物及 RanGTP 调控界面的构象耦联，抑制 IPO13 介导的核输入/输出循环。",
+    "selectedEpitope": "优先覆盖 HEAT repeats 14-20 形成的凹面货物结合沟槽，避开高度保守 RanGTP 结合核心。",
+    "diseaseDirection": "神经炎症与神经退行性疾病",
+    "domain": "IPO13 由连续 HEAT/ARM-like repeats 构成 importin-β 型螺旋超结构，含货物结合面与 RanGTP 调控区。",
+    "evidence": "IPO13 核转运结构与神经疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB O94829 functional annotation",
+      "RCSB PDB 2X19 X-ray crystallographic structure",
+      "Reactome nuclear import and transport pathway annotation"
+    ],
+    "referenceEntries": "UniProt O94829；RCSB PDB 2X19；Ensembl ENSG00000117408",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C 端 HEAT repeats 14-20 凹面货物结合沟槽",
+        "可直接干扰货物蛋白结合，适合构建胞内阻断型 Fab/VHH",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N 端 HEAT repeats 1-8 RanGTP 调控邻近区域",
+        "可能影响 RanGTP 依赖构象转换，但需避免广泛 importin 交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "HEAT repeat 外凸保守骨架表面",
+        "结构稳定但功能阻断价值有限，且保守性较高导致选择性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IPO13 为胞内核转运蛋白，常规抗体组织可及性不足。设计应限定为胞内递送抗体、intrabody 或机制研究工具，并严格评估 importin-β 家族交叉结合。",
+    "structurePrepZh": "以 PDB 2X19 A/B 链为模板，补全缺失环区并保留 HEAT repeat 超螺旋构象；表位建模需区分货物结合凹面、RanGTP 邻近面与晶体接触界面。",
+    "structureRef": "RCSB PDB 2X19；human importin 13 X-ray structure, 2.8 Å",
+    "antibodies": [
+      "研究级 anti-IPO13 monoclonal antibody",
+      "研究级 anti-IPO13 polyclonal antibody"
+    ],
+    "interfaceFocus": "HEAT repeat 凹面货物结合沟槽",
+    "designMode": "胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "KPNA2",
+        "rationale": "KPNA2 为经典核输入通路中的 importin-α 适配蛋白，参与 NLS 货物识别，在神经炎症及肿瘤相关核转运异常中具有明确通路关联。其与 IPO13 同属核质运输稳态网络，可作为可比核输入调控靶点。"
+      },
+      {
+        "target": "KPNB1",
+        "rationale": "KPNB1 编码 importin-β1，是 RanGTP 依赖核输入循环的核心受体，直接连接货物复合物进入核孔复合体。其机制位置较 IPO13 更中心，但选择性和系统毒性风险更高。"
+      },
+      {
+        "target": "RAN",
+        "rationale": "RAN 是核转运方向性的 GTPase 开关，RanGTP/RanGDP 梯度驱动 importin 货物释放和循环复位。其与 IPO13 存在同一核转运调控轴，但因高度保守和全局必需性更适合作为机制参照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "TEC",
+  "generatedAt": "2026-08-03T17:11:44.266Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TEC 属于 Tec 家族非受体型酪氨酸激酶，主要位于造血细胞下游，参与 BCR、Fc 受体及整合素相关信号转导，在自身免疫与血小板反应中具有明确疾病关联。其蛋白为胞内激酶，抗体难以直接获得经典胞外抗原可及性，因此更适合作为递送性、胞内穿梭或构象选择性结合分子的设计对象。相较 BTK、ITK 等同通路靶点，TEC 在自身免疫和血小板表型中的关联更具分化性，且与 B 细胞/Fc 受体轴的交叉位置利于作为同通路优先干预节点。",
+    "mechanism": "通过结合 TEC 的 SH3/SH2-激酶邻接构象或激酶结构域，阻断其与底物及上游复合体的有效装配，抑制下游磷酸化传递。",
+    "selectedEpitope": "优先选择 SH2-kinase linker 与激酶活性口袋邻近表位，避免完全保守 ATP 结合核心。",
+    "diseaseDirection": "自身免疫与血小板通路",
+    "domain": "N 端 PH-TH 区、SH3、SH2 及 C 端 kinase domain 构成的胞内酪氨酸激酶结构。",
+    "evidence": "TEC 结构-疾病关联与同通路抗体设计证据包",
+    "evidenceSources": [
+      "UniProt: P42680",
+      "RCSB PDB: 2LUL",
+      "Open Targets Platform",
+      "PubMed: TEC family signaling in immune cells"
+    ],
+    "referenceEntries": "UniProt P42680; RCSB PDB 2LUL; Open Targets TEC",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SH2-kinase linker 近邻",
+        "有利于锁定自抑制构象并削弱底物招募",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N 端 PH-TH/SH3 联合界面",
+        "可能影响膜定位与蛋白互作，但特异性较弱",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP 结合核心周边保守区",
+        "抑制活性直接但家族选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险在于 TEC 为胞内酶，常规抗体难以触及；同时激酶家族保守性较高，需优先构建构象选择性结合并评估同源激酶交叉反应。",
+    "structurePrepZh": "建议基于 2LUL 建立 SH3-SH2-kinase 模块的同源补全模型，并进行自抑制构象与开放构象双态对比，随后开展表位暴露性评估。",
+    "structureRef": "RCSB PDB 2LUL; TEC kinase structural studies",
+    "antibodies": [
+      "BTK 抑制性抗体/结合分子文献体系",
+      "ITK 构象选择性结合分子文献体系"
+    ],
+    "interfaceFocus": "SH2-kinase linker 与活化环邻域",
+    "designMode": "intracellular",
+    "candidates": [
+      {
+        "target": "BTK",
+        "rationale": "BTK 与 TEC 同属 B 细胞受体及 Fc 受体信号轴，且在类风湿关节炎和自身免疫中具有更成熟的病理验证。作为同通路候选，可用于比较家族内节点抑制的选择性与效应分层。"
+      },
+      {
+        "target": "ITK",
+        "rationale": "ITK 与 TEC 同受体近端酪氨酸激酶网络相连，参与 T 细胞活化与自身免疫表型塑造。该靶点可作为 TEC 相关免疫调控通路的平行验证节点。"
+      },
+      {
+        "target": "SYK",
+        "rationale": "SYK 位于 BCR 与 Fc 受体上游，与 TEC 构成连续的信号级联，且在类风湿关节炎等疾病中具有明确关联。纳入该靶点有助于界定 TEC 上下游干预边界。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

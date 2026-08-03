@@ -1,0 +1,65 @@
+{
+  "gene": "CLEC4E",
+  "generatedAt": "2026-08-03T11:26:49.843Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CLEC4E编码Mincle，是髓系细胞表达的C型凝集素受体，可识别分枝杆菌trehalose-6,6-dimycolate及坏死细胞来源SAP130，并经FCER1G-SYK-CARD9轴诱导炎症因子产生，符合感染、银屑病及急性肾损伤相关炎症机制。其糖识别结构域位于胞外，属于膜受体外露抗原，具备抗体结合与阻断配体进入的可及性。相较于下游SYK或CARD9等胞内节点，CLEC4E更适合作为抗体药物优先靶点，可在受体层面实现通路选择性干预。",
+    "mechanism": "抗体阻断CLEC4E胞外C型凝集素结构域与TDM或SAP130的结合，抑制FCER1G招募后的SYK-CARD9-NF-κB炎症级联。",
+    "selectedEpitope": "优先覆盖C型凝集素结构域的Ca2+依赖糖结合沟槽及配体接触环区。",
+    "diseaseDirection": "感染与炎症性免疫疾病",
+    "domain": "II型跨膜受体，胞外C-type lectin-like domain构成主要配体识别模块。",
+    "evidence": "CLEC4E-Mincle炎症识别与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9ULY5功能与亚细胞定位注释",
+      "RCSB PDB 3WH2晶体结构数据",
+      "Mincle-SYK-CARD9先天免疫通路文献"
+    ],
+    "referenceEntries": "UniProt Q9ULY5；RCSB PDB 3WH2；Open Targets CLEC4E",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C型凝集素结构域Ca2+依赖糖结合沟槽及相邻长环",
+        "直接竞争TDM样糖脂配体与SAP130相关接触面，具备机制阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CTLD外侧β折叠暴露面与远端环区",
+        "有利于获得高亲和结合抗体，可作为非竞争性构象调节表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "近膜侧连接区及潜在糖基化邻近区域",
+        "可能受膜近端空间位阻和糖链异质性影响，需控制表位依赖性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "糖结合沟槽邻近Ca2+配位位点，需避免抗体诱导金属结合构象不稳定；近膜区域存在空间遮挡风险，宜优先筛选远离糖基化干扰的CTLD表位。",
+    "structurePrepZh": "以3WH2链A为结构模板，保留CTLD核心折叠与Ca2+结合相关残基，补充分辨率未解析环区并评估表面糖基化位点可及性。",
+    "structureRef": "Feinberg等解析人Mincle CTLD晶体结构，PDB 3WH2，1.3 Å",
+    "antibodies": [
+      "Anti-human Mincle clone 15H5",
+      "Anti-human Mincle clone 4A9"
+    ],
+    "interfaceFocus": "CTLD糖结合沟槽、Ca2+配位残基及配体接触环",
+    "designMode": "阻断型Fab/VHH设计",
+    "candidates": [
+      {
+        "target": "FCER1G",
+        "rationale": "FCER1G提供ITAM信号接头，介导CLEC4E受体激活后的SYK募集，是同一Mincle炎症通路的近端信号节点。"
+      },
+      {
+        "target": "SYK",
+        "rationale": "SYK直接结合FCER1G磷酸化ITAM并启动CARD9-BCL10-MALT1级联，可作为CLEC4E下游炎症放大的关键激酶节点。"
+      },
+      {
+        "target": "CARD9",
+        "rationale": "CARD9连接C型凝集素受体信号至NF-κB和炎症因子转录，在感染和炎症性疾病中具有明确通路相关性。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

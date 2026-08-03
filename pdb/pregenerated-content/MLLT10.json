@@ -1,0 +1,65 @@
+{
+  "gene": "MLLT10",
+  "generatedAt": "2026-08-03T14:16:22.511Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MLLT10为核内DOT1L复合物辅因子，含保守OM-LZ结构域，可通过招募DOT1L促进H3K79甲基化并参与MLL重排白血病等转录异常程序；Open Targets中乳腺癌关联得分亦提示其肿瘤相关性。该蛋白主要定位于细胞核，缺乏跨膜区和分泌特征，天然抗原可及性明显弱于膜受体或分泌蛋白，因此不适合作为常规细胞外抗体阻断靶点。其优先级低于同通路中可药性更明确的DOT1L酶活位点或MLL融合转录复合物节点，抗体设计更适宜限定为结构生物学验证、胞内递送抗体或降解偶联探索。",
+    "mechanism": "设计分子应阻断MLLT10 OM-LZ结构域与DOT1L的结合界面，削弱DOT1L募集至异常转录复合物并降低H3K79甲基化维持。",
+    "selectedEpitope": "优先瞄准OM-LZ结构域DOT1L结合沟槽及α螺旋疏水界面。",
+    "diseaseDirection": "血液肿瘤与转录表观遗传异常",
+    "domain": "MLLT10含N端PHD锌指样区域及C端OM-LZ结构域；5DAG解析OM-LZ折叠。",
+    "evidence": "MLLT10-DOT1L表观遗传复合物证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与肿瘤关联数据",
+      "UniProt P55197蛋白定位与功能注释",
+      "RCSB PDB 5DAG高分辨率X射线晶体结构",
+      "MLL-AF10白血病中DOT1L募集与H3K79甲基化研究"
+    ],
+    "referenceEntries": "UniProt P55197；RCSB PDB 5DAG；Open Targets MLLT10",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "OM-LZ结构域DOT1L结合沟槽",
+        "直接干预MLLT10-DOT1L复合物形成，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "OM-LZ α螺旋束疏水侧面",
+        "可影响构象稳定性及辅因子结合面暴露，适合作为备选变构表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离结合沟槽的溶剂暴露环区",
+        "结合可行性较高但功能阻断证据不足，需避免仅产生非中和结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MLLT10为核内蛋白，常规抗体难以进入作用区室；需采用胞内抗体、递送载体或PROTAC样偶联策略，并重点评估核内递送效率与非特异转录毒性。",
+    "structurePrepZh": "以5DAG链A为模板，保留OM-LZ结构域核心螺旋束，补全缺失侧链并校验锌结合或界面残基质子化状态后开展表位建模。",
+    "structureRef": "PDB 5DAG，human MLLT10 OM-LZ domain，1.6 Å X-ray",
+    "antibodies": [
+      "暂无获批抗MLLT10治疗性抗体",
+      "研究级抗MLLT10/AF10抗体"
+    ],
+    "interfaceFocus": "OM-LZ结构域DOT1L识别沟槽",
+    "designMode": "胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "DOT1L",
+        "rationale": "DOT1L是MLLT10募集的H3K79甲基转移酶，直接承担异常H3K79甲基化输出；其酶活和复合物结合均为同一白血病表观遗传通路核心节点。"
+      },
+      {
+        "target": "KMT2A",
+        "rationale": "KMT2A重排可与MLLT10形成致白血病融合转录程序，驱动HOXA/MEIS1等基因异常表达；该节点定义了MLLT10相关疾病通路的上游融合背景。"
+      },
+      {
+        "target": "MEN1",
+        "rationale": "MEN1编码menin，可维持KMT2A融合复合物在靶基因位点的染色质占位；抑制menin-KMT2A互作与MLLT10-DOT1L轴同属MLL重排白血病转录维持网络。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

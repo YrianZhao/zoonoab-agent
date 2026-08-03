@@ -1,0 +1,65 @@
+{
+  "gene": "UGDH",
+  "generatedAt": "2026-08-03T17:41:00.798Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "UGDH催化UDP-glucose氧化生成UDP-glucuronic acid，是糖胺聚糖与透明质酸生物合成的关键供体酶；其遗传变异与发育性癫痫性脑病84型相关，机制涉及细胞外基质糖基化不足影响神经发育。该蛋白主要为胞质可溶性代谢酶，天然抗原可及性低于膜受体或分泌蛋白，抗体策略更适合结构验证、细胞内递送或降解平台。相较下游糖基转移酶，UGDH位于UDP-葡糖醛酸供给上游，通路控制点集中且具高分辨率六聚体结构支持，因此具备优先机制解析价值。",
+    "mechanism": "设计抗体结合UGDH Rossmann样NAD结合域与UDP-glucose结合口袋邻近界面，阻碍NAD+、UDP-glucose进入催化中心并干扰六聚体构象稳定。",
+    "selectedEpitope": "优先覆盖NAD结合Rossmann结构域与中央催化结构域交界，兼顾底物通道入口和六聚体界面。",
+    "diseaseDirection": "发育性癫痫性脑病与糖胺聚糖代谢",
+    "domain": "UGDH含N端NAD结合Rossmann折叠、中央UDP-glucose结合催化域及C端二聚/六聚体稳定界面。",
+    "evidence": "UGDH结构功能与神经发育疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt O60701功能与变异注释",
+      "RCSB PDB 5VR8晶体结构",
+      "OMIM发育性癫痫性脑病84型条目"
+    ],
+    "referenceEntries": "UniProt O60701；RCSB PDB 5VR8；HGNC UGDH；OMIM DEE84",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "NAD结合Rossmann域与催化裂隙入口",
+        "可直接限制辅因子进入并降低氧化反应效率",
+        "优先"
+      ],
+      [
+        "Site B",
+        "UDP-glucose结合口袋邻近环区",
+        "有利于阻断底物定位，但需避免仅识别柔性构象",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端二聚化及六聚体装配界面",
+        "可影响寡聚体稳定性，但存在构象依赖和交叉界面遮挡风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "UGDH为胞质酶，常规抗体难以进入天然作用位点；建议限定为体外功能抗体、细胞内抗体、递送偶联或降解平台，并优先规避高度保守辅因子核心残基的非特异结合。",
+    "structurePrepZh": "以5VR8六聚体生物装配体为模板，保留A-F链构象差异，校验NAD/底物口袋邻近残基、界面水分子和缺失环区后进行表位暴露度评估。",
+    "structureRef": "Human UGDH crystal structure, RCSB PDB 5VR8, 1.999 Å",
+    "antibodies": [
+      "无临床获批抗UGDH抗体",
+      "研究级抗UGDH单克隆抗体"
+    ],
+    "interfaceFocus": "Rossmann域-催化域裂隙及六聚体界面",
+    "designMode": "细胞内酶阻断",
+    "candidates": [
+      {
+        "target": "SLC35D1",
+        "rationale": "SLC35D1转运UDP-glucuronic acid和UDP-N-acetylgalactosamine进入内质网/高尔基体，位于UGDH下游糖胺聚糖前体供给通路。其膜转运蛋白属性提供较UGDH更高的抗原可及性。"
+      },
+      {
+        "target": "EXT1",
+        "rationale": "EXT1参与肝素硫酸链延伸，依赖UGDH产生的UDP-glucuronic acid作为糖基供体。该节点与神经发育和细胞外基质糖基化异常具有同一代谢通路关联。"
+      },
+      {
+        "target": "EXT2",
+        "rationale": "EXT2与EXT1形成糖基转移酶复合体，催化肝素硫酸聚合过程。其功能位于UGDH下游，可作为糖胺聚糖生物合成异常的并行验证靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

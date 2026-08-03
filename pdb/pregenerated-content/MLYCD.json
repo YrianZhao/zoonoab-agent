@@ -1,0 +1,65 @@
+{
+  "gene": "MLYCD",
+  "generatedAt": "2026-08-03T14:16:22.074Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MLYCD编码malonyl-CoA decarboxylase，催化malonyl-CoA脱羧生成acetyl-CoA，直接影响线粒体脂肪酸氧化底物通量；其遗传缺陷导致malonic aciduria，并可继发心肌病、发育迟缓和代谢性酸中毒。该蛋白主要定位于线粒体、过氧化物酶体和胞质，不具备天然胞外结构域，抗体药物开发的抗原可及性弱，需定位为细胞内酶构象识别、递送型抗体或诊断抗体方向。相较脂肪酸氧化通路中膜转运蛋白，MLYCD具有明确酶活位点、实验晶体结构和单基因疾病因果证据，适合作为机制验证优先靶点，但不宜作为常规循环阻断抗体首选。",
+    "mechanism": "通过识别MLYCD二聚体催化结构域邻近malonyl-CoA结合沟槽，空间阻断底物进入脱羧活性中心并稳定低活性构象。",
+    "selectedEpitope": "优先覆盖TIM-barrel样催化核心的底物结合沟槽边缘及二聚体界面邻近环区。",
+    "diseaseDirection": "遗传代谢病与脂肪酸氧化异常",
+    "domain": "人MLYCD含N端靶向序列及C端malonyl-CoA decarboxylase催化结构域，形成同源寡聚体。",
+    "evidence": "MLYCD遗传缺陷与丙二酸尿症机制证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB O95822功能与亚细胞定位注释",
+      "RCSB PDB 2YGW人源MLYCD晶体结构",
+      "OMIM与ClinVar中MLYCD变异致病性记录"
+    ],
+    "referenceEntries": "UniProt O95822；RCSB PDB 2YGW；Open Targets MLYCD",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域底物结合沟槽邻近环区",
+        "可直接干预malonyl-CoA进入活性中心，适合功能阻断构型筛选",
+        "优先"
+      ],
+      [
+        "Site B",
+        "同源二聚体界面外侧可及面",
+        "可能影响寡聚体稳定性并改变催化构象，适合构象锁定抗体设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端靶向序列及柔性低保守区",
+        "结构不完整且构象异质性较高，易产生低功能相关结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MLYCD为细胞内代谢酶，常规抗体难以到达线粒体或过氧化物酶体内靶点；设计应优先用于诊断、构象探针或递送系统偶联验证。",
+    "structurePrepZh": "以2YGW的A、B链构建同源二聚体模型，补全缺失环区并保留催化核心；需评估晶体接触与生理二聚体界面的差异。",
+    "structureRef": "RCSB PDB 2YGW，X-ray diffraction，2.8 Å",
+    "antibodies": [
+      "commercial anti-MLYCD monoclonal antibody",
+      "commercial anti-MLYCD polyclonal antibody"
+    ],
+    "interfaceFocus": "底物结合沟槽、催化核心环区与二聚体界面",
+    "designMode": "细胞内酶构象抗体",
+    "candidates": [
+      {
+        "target": "ACACA",
+        "rationale": "ACACA催化acetyl-CoA羧化生成malonyl-CoA，与MLYCD共同决定malonyl-CoA稳态；其上游调节作用可影响脂肪酸合成与氧化平衡。"
+      },
+      {
+        "target": "CPT1A",
+        "rationale": "CPT1A受malonyl-CoA抑制并控制长链脂肪酸进入线粒体氧化，是MLYCD改变malonyl-CoA水平后直接影响的下游功能节点。"
+      },
+      {
+        "target": "CPT2",
+        "rationale": "CPT2参与线粒体内脂酰肉碱转化，与CPT1A共同构成长链脂肪酸β氧化入口通路，适合作为同一代谢轴的候选靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

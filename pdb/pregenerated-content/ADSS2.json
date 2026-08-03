@@ -1,0 +1,65 @@
+{
+  "gene": "ADSS2",
+  "generatedAt": "2026-08-03T10:18:58.369Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ADSS2催化IMP与天冬氨酸在GTP依赖条件下生成腺苷琥珀酸，是嘌呤核苷酸循环中连接AMP合成与细胞能量代谢的胞质酶；现有关联主要来自肌酐清除率、眼压、身高及阿尔茨海默病等遗传性状，疾病因果强度有限。ADSS2并非分泌蛋白或跨膜受体，缺乏天然胞外结构域，因此全长蛋白作为体内抗体药物靶点的抗原可及性较弱，更适合作为结构抗原或细胞内酶学研究靶点。相比ENTPD1、NT5E、ADORA2A等具有胞外催化区或膜受体可及性的嘌呤信号靶点，ADSS2的抗体成药优先级较低；若进入抗体设计，应优先定位为体外功能阻断或细胞内递送抗体策略。",
+    "mechanism": "抗体需阻断ADSS2活性中心附近IMP、天冬氨酸或GTP结合构象耦联，干扰腺苷琥珀酸生成，而非经典配体-受体胞外阻断。",
+    "selectedEpitope": "优先评估Rossmann样GTP结合核心邻近的活性沟槽外缘及构象环区，避免直接依赖埋藏催化残基。",
+    "diseaseDirection": "嘌呤代谢与肾功能遗传性状",
+    "domain": "ADSS2为胞质腺苷琥珀酸合成酶，含GTP结合P-loop/N型水解酶核心及IMP-天冬氨酸结合沟槽。",
+    "evidence": "ADSS2结构酶学与嘌呤代谢关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform遗传关联数据",
+      "UniProtKB P30520功能注释",
+      "RCSB PDB 2V40晶体结构",
+      "Reactome嘌呤核糖核苷酸代谢通路"
+    ],
+    "referenceEntries": "UniProt P30520；RCSB PDB 2V40；Reactome purine metabolism",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "活性沟槽外缘与IMP结合口袋邻近构象环",
+        "可能影响底物进入及催化闭合构象，适合体外抑制型抗体筛选",
+        "优先"
+      ],
+      [
+        "Site B",
+        "GTP结合P-loop周边溶剂暴露面",
+        "可干扰GTP结合相关构象稳定，但需规避高度保守核苷酸结合基序",
+        "备选"
+      ],
+      [
+        "Site C",
+        "二聚体界面及核心折叠内侧区域",
+        "界面保守且部分埋藏，抗体可及性与选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ADSS2为胞内代谢酶，体内抗体可及性不足；核苷酸结合位点保守性高，需避免与ADSS1或其他GTP结合酶产生交叉反应。",
+    "structurePrepZh": "以2V40链A为模板，补全缺失侧链并保留底物/核苷酸结合位点注释；按生理寡聚状态评估沟槽外缘与二聚体界面暴露性。",
+    "structureRef": "Human ADSS2 crystal structure, PDB 2V40, 1.9 Å X-ray",
+    "antibodies": [
+      "ADSS2研究级单克隆抗体",
+      "ADSS2研究级多克隆抗体"
+    ],
+    "interfaceFocus": "IMP/GTP结合沟槽外缘与构象环",
+    "designMode": "胞内酶构象阻断",
+    "candidates": [
+      {
+        "target": "ADSS1",
+        "rationale": "ADSS1与ADSS2催化同一腺苷琥珀酸合成反应，参与嘌呤核苷酸循环；可作为同工酶选择性和交叉反应风险评估靶点。"
+      },
+      {
+        "target": "ADSL",
+        "rationale": "ADSL位于ADSS反应下游，裂解腺苷琥珀酸生成AMP和延胡索酸；其功能改变可直接影响同一AMP合成支路通量。"
+      },
+      {
+        "target": "ATIC",
+        "rationale": "ATIC参与从头嘌呤生物合成末端步骤并生成IMP，位于ADSS2底物供给上游；适合用于嘌呤代谢通路层面的候选比较。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

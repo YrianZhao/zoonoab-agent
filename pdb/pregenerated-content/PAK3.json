@@ -1,0 +1,65 @@
+{
+  "gene": "PAK3",
+  "generatedAt": "2026-08-03T20:26:55.827Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PAK3 是 RAC1/CDC42 下游的脑表达丝氨酸/苏氨酸激酶，参与树突棘形态、突触可塑性与神经发育过程，其致病变异与 X 连锁非综合征性智力障碍和胼胝体发育异常相关。PAK3 为胞内激酶，天然抗原可及性不具备胞外靶向优势，因此更适合作为结构驱动的细胞内抗体、VHH 或研究级构象调节分子设计对象。相较广泛表达的 PAK1/PAK2，PAK3 在神经系统疾病遗传证据更集中，疾病方向优先级来自明确的人类遗传关联而非泛化增殖通路。",
+    "mechanism": "设计分子应稳定结合 PAK3 激酶结构域 ATP 结合裂隙邻近构象面或调节性 C-lobe 界面，干预 RAC1/CDC42 解除自抑制后形成的活化构象。",
+    "selectedEpitope": "优先评估激酶结构域 N-lobe/C-lobe 裂隙边缘及 activation loop 周边构象表位。",
+    "diseaseDirection": "神经发育障碍与智力障碍",
+    "domain": "PAK3 含 N 端 CRIB/自抑制调控区与 C 端丝氨酸/苏氨酸激酶结构域。",
+    "evidence": "PAK3 神经发育遗传关联与激酶结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt O75914 功能与结构域注释",
+      "RCSB PDB 6FD3 晶体结构记录",
+      "人类 PAK3 致病变异与 X 连锁智力障碍文献"
+    ],
+    "referenceEntries": "UniProt O75914；RCSB PDB 6FD3；Open Targets PAK3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域 N-lobe/C-lobe ATP 裂隙外缘",
+        "可影响催化构象与底物进入，适合构象锁定设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "activation loop 与 αC-helix 邻近调节面",
+        "可区分活化状态并干预激酶活性转换",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PAK 家族保守催化核心内部区域",
+        "同源性高且可能影响选择性，需避免跨 PAK1/PAK2 反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PAK3 为胞内蛋白，常规治疗性抗体递送受限；PAK 家族激酶域保守性高，应优先选择 PAK3 特异环区并进行 PAK1/PAK2 交叉反应排查。",
+    "structurePrepZh": "以 6FD3 A 链为模板，补全缺失侧链与质子化状态，移除非关键晶体组分，保留催化裂隙和调节环构象用于表位建模。",
+    "structureRef": "RCSB PDB 6FD3，PAK3 激酶结构域 X 射线结构，1.52 Å",
+    "antibodies": [
+      "anti-PAK3 research antibody",
+      "PAK-family kinase intracellular VHH prototype"
+    ],
+    "interfaceFocus": "ATP 裂隙外缘、αC-helix 与 activation loop",
+    "designMode": "胞内构象调节",
+    "candidates": [
+      {
+        "target": "RAC1",
+        "rationale": "RAC1 是 PAK3 上游小 GTP 酶，可与 PAK3 CRIB 区结合并解除自抑制，其异常信号影响神经元形态发生。"
+      },
+      {
+        "target": "CDC42",
+        "rationale": "CDC42 同样通过 CRIB 结构域激活 PAK3，参与树突棘形成和神经发育相关 Rho GTPase 通路。"
+      },
+      {
+        "target": "ARHGEF6",
+        "rationale": "ARHGEF6 编码 PIX/Cool 家族 Rho GTPase 交换因子，可调控 RAC1/CDC42-PAK 信号轴，并与 X 连锁智力障碍相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

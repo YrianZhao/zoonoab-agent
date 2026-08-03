@@ -1,0 +1,65 @@
+{
+  "gene": "RNF168",
+  "generatedAt": "2026-08-03T21:02:42.224Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RNF168是DNA双链断裂应答中的E3泛素连接酶，通过识别RNF8生成的泛素化染色质并催化H2A/H2AX Lys13/Lys15泛素化，促进53BP1募集；其功能缺陷与RIDDLE综合征的免疫缺陷、放射敏感性和发育异常直接相关。该蛋白主要定位于细胞核染色质，并非胞外分泌蛋白或膜受体，天然抗原可及性不利于常规治疗性抗体，但其结构化UIM/MIU泛素识别模块适合体外机制阻断型Fab或胞内递送抗体研究。相较于ATM、MDC1等大型多结构域DDR节点，RNF168具有明确的泛素链识别界面和可解析晶体结构，便于围绕特定蛋白-泛素相互作用建立高优先级结构设计模型。",
+    "mechanism": "抗体结合RNF168 MIU/UIM样泛素结合界面，阻断其与K63连接泛素化染色质的结合，从而抑制H2A/H2AX Lys13/Lys15泛素化扩增与53BP1募集。",
+    "selectedEpitope": "优先覆盖5XIS解析的MIU/UIM样泛素结合螺旋及疏水识别槽，干预泛素结合而避免RING催化核心。",
+    "diseaseDirection": "DNA损伤应答与RIDDLE综合征",
+    "domain": "RNF168含N端RING E3连接酶结构域、MIU/UIM样泛素结合模块及C端LRM泛素依赖募集区域。",
+    "evidence": "RNF168介导泛素化染色质应答证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联数据",
+      "UniProt Q8IYW5功能与结构域注释",
+      "RCSB PDB 5XIS晶体结构记录",
+      "RIDDLE综合征RNF168缺陷文献证据"
+    ],
+    "referenceEntries": "UniProt: Q8IYW5; RCSB PDB: 5XIS; Open Targets: RNF168",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "MIU/UIM样泛素结合螺旋与疏水槽",
+        "直接阻断RNF168识别泛素化染色质，机制验证价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "LRM相关泛素依赖募集区域",
+        "可影响损伤位点滞留与信号扩增，适合作为功能备选表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端RING结构域锌配位催化核心附近",
+        "可能干扰E2结合与泛素转移，但锌指稳定性和交叉反应风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RNF168为核内蛋白，常规抗体细胞可及性受限；RING锌指区域保守性较高，应优先选择泛素结合模块并结合胞内递送或体外研究体系。",
+    "structurePrepZh": "以5XIS晶体结构为模板，保留抗原链A-F中解析完整链，校验锌配位、缺失环区和晶体接触后构建表位可及性模型。",
+    "structureRef": "RCSB PDB 5XIS，X-ray diffraction，1.78 Å",
+    "antibodies": [
+      "抗RNF168研究级单克隆抗体",
+      "抗RNF168多克隆抗体"
+    ],
+    "interfaceFocus": "MIU/UIM-泛素结合疏水槽界面",
+    "designMode": "胞内机制阻断",
+    "candidates": [
+      {
+        "target": "RNF8",
+        "rationale": "RNF8在MDC1磷酸化平台下游生成初始K63连接泛素信号，是RNF168募集至DNA损伤位点的上游E3连接酶。"
+      },
+      {
+        "target": "MDC1",
+        "rationale": "MDC1结合γH2AX并招募RNF8，构成RNF168依赖泛素化扩增反应的关键支架节点。"
+      },
+      {
+        "target": "TP53BP1",
+        "rationale": "53BP1识别RNF168介导的H2A/H2AX泛素化与甲基化组蛋白标记，是该通路决定非同源末端连接修复选择的重要下游效应蛋白。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

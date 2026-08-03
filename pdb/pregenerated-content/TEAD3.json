@@ -1,0 +1,65 @@
+{
+  "gene": "TEAD3",
+  "generatedAt": "2026-08-03T17:11:41.749Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TEAD3是Hippo-YAP/TAZ转录轴的核内效应因子，参与TEAD-YAP/TAZ复合物形成并驱动多种增殖与分化相关基因转录，因而可在肿瘤及发育异常相关通路中形成可操作的分子干预节点。其蛋白具备明确的DNA结合TEA domain和可解析的蛋白互作表面，且已有高分辨率晶体结构可支持表位映射与界面约束设计，但作为核内转录因子，抗原可及性优于仅依赖瞬时构象暴露的胞内弱结构蛋白。相较TEAD1/TEAD4等同源成员，TEAD3在特定组织中的表达和疾病关联更具分层价值，可用于构建同轴但更具亚型选择性的抗体或胞内递送型结合分子策略。",
+    "mechanism": "阻断TEAD3与YAP/TAZ的转录共激活复合物形成，并干扰其与DNA结合位点的稳定占据。",
+    "selectedEpitope": "优先选择TEA domain上YAP结合界面及邻近构象锁定位点，避开保守DNA接触残基。",
+    "diseaseDirection": "Hippo通路相关疾病",
+    "domain": "N端TEA domain为核心DNA结合/共激活界面，C端介导调控构象。",
+    "evidence": "TEAD3-Hippo轴结构与疾病证据包",
+    "evidenceSources": [
+      "UniProt: Q99594",
+      "RCSB PDB: 8P0M",
+      "Open Targets Platform",
+      "Human Protein Atlas"
+    ],
+    "referenceEntries": "UniProt Q99594; RCSB 8P0M; TEAD family annotations",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "TEA domain中YAP/TAZ结合面",
+        "直接削弱共激活复合物装配，适合功能阻断型设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "TEA domain邻近构象稳定区",
+        "可通过空间位阻降低界面亲和力，利于提高选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "DNA接触表面保守残基周边",
+        "可能影响全家族转录因子活性，但选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TEAD家族同源性较高，界面保守性可能削弱亚型选择性；应优先利用8P0M解析的局部构象约束，并结合TEAD3特异侧链差异进行定点优化。",
+    "structurePrepZh": "建议基于8P0M进行链级清理、缺失残基补全与界面柔性评估，保留A-D链复合体构象以定义YAP/TAZ相关接触面。",
+    "structureRef": "RCSB PDB 8P0M; high-resolution TEAD complex structure",
+    "antibodies": [
+      "暂无明确临床同类抗体",
+      "TEAD家族界面阻断研究抗体"
+    ],
+    "interfaceFocus": "TEA domain-YAP/TAZ界面与邻近保守口袋",
+    "designMode": "structure-guided",
+    "candidates": [
+      {
+        "target": "YAP1",
+        "rationale": "YAP1是TEAD3的经典共激活伙伴，直接决定Hippo轴下游转录输出。与TEAD3联合考察有助于定义同一路径的功能阻断边界。"
+      },
+      {
+        "target": "WWTR1",
+        "rationale": "WWTR1/TAZ同样与TEAD3形成转录激活复合物，属于同一疾病通路中的真实互作节点。其界面信息可用于交叉验证表位设计的功能覆盖度。"
+      },
+      {
+        "target": "TEAD1",
+        "rationale": "TEAD1与TEAD3同属TEAD家族并共享YAP/TAZ依赖转录机制，适合作为同通路平行靶点评估选择性与家族交叉反应风险。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

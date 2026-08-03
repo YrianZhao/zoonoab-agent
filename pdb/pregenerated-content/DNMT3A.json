@@ -1,0 +1,65 @@
+{
+  "gene": "DNMT3A",
+  "generatedAt": "2026-08-03T18:37:21.473Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DNMT3A是髓系肿瘤中高频突变的DNA甲基转移酶，R882等突变可削弱四聚体形成并改变CpG甲基化谱，参与急性髓系白血病和骨髓增生异常综合征克隆演化。该蛋白主要定位于细胞核，不具备天然胞外结构域或分泌抗原可及性，常规体内抗体成药性受限，更适合作为结构机制研究或胞内递送抗体探索对象。其优先级来自明确的人类遗传学证据、8BA5高分辨率实验结构和可解析的DNMT3A-DNMT3L催化复合物界面，相比泛表观遗传调控因子具有更清晰的疾病等位基因与结构功能关联。",
+    "mechanism": "设计抗体阻断DNMT3A催化结构域与DNMT3L的激活界面，或干扰DNMT3A- DNMT3A四聚体界面，从而降低异常DNA甲基化复合物装配效率。",
+    "selectedEpitope": "优先覆盖催化结构域四聚体界面及DNMT3L结合面，重点避开SAM结合口袋深部。",
+    "diseaseDirection": "髓系肿瘤与表观遗传异常",
+    "domain": "DNMT3A含PWWP结构域、ADD锌指结构域和C端胞嘧啶-5 DNA甲基转移酶催化结构域。",
+    "evidence": "DNMT3A髓系肿瘤遗传学与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9Y6K1功能与结构域注释",
+      "RCSB PDB 8BA5实验晶体结构",
+      "COSMIC/ClinVar髓系肿瘤突变记录"
+    ],
+    "referenceEntries": "UniProt Q9Y6K1；RCSB PDB 8BA5；Open Targets DNMT3A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端催化结构域DNMT3A-DNMT3A四聚体界面",
+        "可直接干扰活性寡聚体形成，与R882热点机制高度相关",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域DNMT3L结合界面",
+        "可阻断DNMT3L介导的构象激活，适合构建界面型抑制抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PWWP结构域染色质结合沟槽",
+        "可能影响H3K36me3相关染色质定位，但需规避广泛核内功能干扰",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DNMT3A为核内酶，缺乏胞外抗原暴露，常规抗体难以到达作用位点；设计应限定为胞内递送抗体、intrabody或机制验证工具抗体。",
+    "structurePrepZh": "以8BA5链A为结构模板，补全缺失残基并标注催化结构域、DNMT3L接触面、四聚体界面和R882邻近区域后开展表位建模。",
+    "structureRef": "RCSB PDB 8BA5，X-ray diffraction，1.45 Å",
+    "antibodies": [
+      "无已批准DNMT3A治疗性抗体",
+      "研究级抗DNMT3A单克隆抗体"
+    ],
+    "interfaceFocus": "催化结构域寡聚化界面与DNMT3L接触面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "DNMT3B",
+        "rationale": "DNMT3B与DNMT3A同属de novo DNA甲基转移酶，在髓系肿瘤异常甲基化网络中具有功能互补性，可作为同通路表观遗传靶点。"
+      },
+      {
+        "target": "DNMT3L",
+        "rationale": "DNMT3L虽缺乏催化活性，但可与DNMT3A催化结构域形成激活复合物，是阻断DNMT3A复合物装配的直接同通路节点。"
+      },
+      {
+        "target": "TET2",
+        "rationale": "TET2介导5-甲基胞嘧啶氧化并与DNMT3A共同维持髓系细胞DNA甲基化稳态，二者突变均参与AML和MDS克隆演化。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

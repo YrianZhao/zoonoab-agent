@@ -1,0 +1,65 @@
+{
+  "gene": "TPX2",
+  "generatedAt": "2026-08-03T17:27:02.243Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TPX2 是有丝分裂纺锤体组装因子，参与 Aurora A 激酶激活、微管成核及染色体分离，在多种增殖性肿瘤中与基因组不稳定和不良预后相关。该蛋白主要定位于细胞核、纺锤体和微管，缺乏经典胞外结构域或分泌特征，因此作为常规细胞外阻断型抗体靶点的抗原可及性较弱。其优先级依据应限于细胞内递送抗体、降解偶联或研究型功能抗体场景；相较 EGFR、VEGFA 等可及性更高的同类肿瘤靶点，TPX2 的开发优先级较低，但在有丝分裂依赖肿瘤机制研究中具有明确价值。",
+    "mechanism": "通过胞内递送抗体结合 TPX2 Aurora A 结合区，阻断 TPX2 对 AURKA 的构象激活与 Ser/Thr 激酶活性稳定，从而干扰纺锤体微管成核。",
+    "selectedEpitope": "优先覆盖 TPX2 N 端 Aurora A 激活片段及其复合物界面，避免选择高度柔性低复杂度区。",
+    "diseaseDirection": "增殖性肿瘤与有丝分裂异常",
+    "domain": "TPX2 含 N 端 Aurora A 结合区、中部微管结合区及 C 端 Eg5/KIF11 相关调控区。",
+    "evidence": "TPX2-AURKA 纺锤体组装功能证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9ULW0 functional annotation",
+      "RCSB PDB 6VPM experimental structure",
+      "Cancer genomics and mitotic spindle literature"
+    ],
+    "referenceEntries": "UniProt Q9ULW0；RCSB PDB 6VPM；Open Targets TPX2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N 端 Aurora A 结合与激活界面",
+        "可直接干预 TPX2-AURKA 复合物形成及激酶激活",
+        "优先"
+      ],
+      [
+        "Site B",
+        "中部微管结合相关正电荷区域",
+        "可能削弱 TPX2 介导的微管成核和纺锤体定位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端 Eg5/KIF11 调控相关区域",
+        "构象柔性较高且结构信息有限，需控制交叉干扰风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TPX2 为细胞内非分泌蛋白，常规抗体难以到达作用位点；建议限定为胞内抗体、递送抗体或体外机制验证，并评估有丝分裂毒性。",
+    "structurePrepZh": "以 6VPM 晶体结构链 A、B 为模板，保留解析片段并标注缺失柔性区；需补充 TPX2 全长结构域边界与复合物界面映射。",
+    "structureRef": "RCSB PDB 6VPM，X-ray diffraction，1.58 Å",
+    "antibodies": [
+      "Anti-TPX2 research antibody",
+      "Anti-TPX2 monoclonal antibody clone 18D5"
+    ],
+    "interfaceFocus": "TPX2 N 端与 AURKA 激酶 N 叶结合界面",
+    "designMode": "胞内阻断型",
+    "candidates": [
+      {
+        "target": "AURKA",
+        "rationale": "AURKA 是 TPX2 直接结合并激活的有丝分裂激酶，位于同一纺锤体组装通路；抑制其活化可模拟 TPX2 功能阻断效应。"
+      },
+      {
+        "target": "KIF11",
+        "rationale": "KIF11/Eg5 与 TPX2 协同调控双极纺锤体形成，是有丝分裂进程中的真实功能关联靶点。"
+      },
+      {
+        "target": "PLK1",
+        "rationale": "PLK1 参与有丝分裂进入、纺锤体检查点和染色体分离调控，与 TPX2-AURKA 轴处于同一细胞周期异常疾病网络。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

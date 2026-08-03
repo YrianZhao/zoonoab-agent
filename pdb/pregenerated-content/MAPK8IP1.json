@@ -1,0 +1,65 @@
+{
+  "gene": "MAPK8IP1",
+  "generatedAt": "2026-08-03T14:04:16.281Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAPK8IP1编码JIP1支架蛋白，参与JNK/MAPK级联中MAPK8、MAP2K7与上游激酶的空间组装，并与神经退行性疾病及代谢性表型存在遗传关联。该蛋白主要为胞内支架蛋白，天然抗体可及性弱，作为常规细胞外阻断抗体靶点存在显著限制；仅可在胞内递送抗体、细胞穿透抗体或研究级结合分子场景中考虑。相较TNF、IL6R等可分泌或膜表面靶点，MAPK8IP1优先级较低，但其PDB 4H39提供高分辨率结构片段，可支持结构约束的JNK支架界面干预设计。",
+    "mechanism": "设计分子应阻断MAPK8/JNK与MAPK8IP1 JNK结合区的相互作用，削弱JIP1支架介导的JNK级联复合物装配。",
+    "selectedEpitope": "优先覆盖4H39所解析的JNK结合肽段构象及MAPK8对接沟槽接触界面。",
+    "diseaseDirection": "神经退行性疾病与代谢表型",
+    "domain": "MAPK8IP1含N端JNK结合区、SH3结构域、PTB结构域及C端转运相关序列。",
+    "evidence": "MAPK8IP1-JNK支架轴结构与疾病遗传证据",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9UQF2功能与结构域注释",
+      "RCSB PDB 4H39晶体结构记录",
+      "JIP1介导JNK级联装配相关文献"
+    ],
+    "referenceEntries": "UniProt Q9UQF2；RCSB PDB 4H39；Open Targets MAPK8IP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "4H39中JNK结合肽段与MAPK8对接沟槽接触面",
+        "直接干预MAPK8-JIP1复合物形成，机制可验证性较高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "MAPK8IP1 SH3结构域外露环区",
+        "可作为构象稳定或示踪结合位点，但疾病机制关联较间接",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PTB结构域磷酸肽识别沟槽邻近区域",
+        "可能影响蛋白互作网络，脱靶和功能扰动风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAPK8IP1为胞内支架蛋白，常规抗体难以到达作用位点；应优先采用胞内递送格式，并严格评估JNK广谱信号抑制风险。",
+    "structurePrepZh": "以4H39晶体结构为模板，保留抗原链A、B中解析的结合片段，补全缺失侧链并评估晶体接触对界面构象的影响。",
+    "structureRef": "RCSB PDB 4H39，X-ray diffraction，1.992 Å",
+    "antibodies": [
+      "研究级anti-JIP1 antibody",
+      "研究级anti-MAPK8IP1 antibody"
+    ],
+    "interfaceFocus": "JNK结合区与MAPK8对接沟槽界面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "MAPK8",
+        "rationale": "MAPK8/JNK1是MAPK8IP1支架复合物的直接结合激酶，位于同一应激激活JNK通路中；靶向其支架对接界面可直接验证JIP1依赖性信号装配。"
+      },
+      {
+        "target": "MAP2K7",
+        "rationale": "MAP2K7是JNK级联上游激酶，并可通过支架复合物促进MAPK8活化；其疾病相关性与神经应激和炎症性信号传导相吻合。"
+      },
+      {
+        "target": "MAP3K5",
+        "rationale": "MAP3K5/ASK1是氧化应激诱导JNK通路的上游MAP3K，参与神经元损伤和代谢应激反应；与MAPK8IP1所在通路具有明确上下游关系。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

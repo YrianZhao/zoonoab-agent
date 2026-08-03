@@ -1,0 +1,65 @@
+{
+  "gene": "ANKS3",
+  "generatedAt": "2026-08-03T10:27:09.587Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ANKS3 属于 NPHP–纤毛功能相关蛋白网络，遗传学证据提示其与左右轴建立异常及血压性状存在关联，但当前 Open Targets 关联强度为中低水平。该蛋白主要为胞内支架蛋白，包含 ankyrin repeat 与 SAM 结构域，天然抗原可及性显著弱于膜受体或分泌蛋白。相较于同通路中可位于纤毛膜或细胞连接界面的靶点，ANKS3 更适合作为机制研究或胞内递送抗体探索靶点，治疗性优先级需谨慎评估。",
+    "mechanism": "设计抗体需阻断 ANKS3 SAM 结构域介导的同源寡聚化或与 NPHP1/NEK7 相关复合物的蛋白互作，从而干预纤毛相关支架装配。",
+    "selectedEpitope": "优先覆盖 4NL9 所示 SAM 结构域聚合界面及带电沟槽，避免仅选择远离互作面的环区。",
+    "diseaseDirection": "纤毛病与左右轴发育异常",
+    "domain": "ANKS3 含 N 端 ankyrin repeat 区域及 C 端 SAM 结构域；4NL9 对应高分辨率 SAM 结构域。",
+    "evidence": "ANKS3 纤毛病遗传关联与 SAM 互作结构证据",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q6ZW76 functional annotation",
+      "RCSB PDB 4NL9 X-ray structure",
+      "NPHP-related ciliary protein interaction literature"
+    ],
+    "referenceEntries": "UniProt Q6ZW76；RCSB PDB 4NL9；Open Targets ANKS3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SAM 结构域同源寡聚化界面",
+        "直接干预 ANKS3 支架聚合与复合物装配，机制可验证性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SAM 结构域表面带电沟槽",
+        "可能影响 NPHP 相关互作蛋白结合，适合构建阻断型 Fab 或 VHH",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ANK repeat 预测蛋白结合面",
+        "结构覆盖不足且胞内可及性有限，需依赖建模与细胞内递送策略",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ANKS3 为胞内蛋白，常规抗体难以到达天然作用位点；应优先采用细胞内抗体、递送偶联或研究级阻断抗体策略，并验证对纤毛结构的特异影响。",
+    "structurePrepZh": "以 4NL9 高分辨率 X 射线结构作为 SAM 结构域模板，保留链间界面用于寡聚化分析，补充 AlphaFold 模型评估 ankyrin repeat 区域。",
+    "structureRef": "RCSB PDB 4NL9，human ANKS3 SAM domain，1.5 Å",
+    "antibodies": [
+      "研究级 anti-ANKS3 antibody",
+      "细胞内抗体或 intrabody 工程格式"
+    ],
+    "interfaceFocus": "SAM-SAM 寡聚化界面与带电互作沟槽",
+    "designMode": "胞内互作阻断",
+    "candidates": [
+      {
+        "target": "NPHP1",
+        "rationale": "NPHP1 是肾单位肾痨与纤毛连接区复合物核心成员，并与 ANKS3 处于同一纤毛病蛋白网络。其疾病遗传证据更强，适合作为同通路优先对照靶点。"
+      },
+      {
+        "target": "NEK7",
+        "rationale": "NEK7 被报道参与 ANKS3 相关蛋白互作网络，并与纤毛稳态和细胞周期调控存在联系。其激酶结构域提供小分子或抗体片段机制研究入口。"
+      },
+      {
+        "target": "INVS",
+        "rationale": "INVS 编码 inversin，是左右轴建立和肾单位肾痨相关纤毛通路的重要支架蛋白。其与 ANKS3 共享纤毛病及 laterality disorder 生物学背景。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

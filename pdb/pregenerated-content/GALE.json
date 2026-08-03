@@ -1,0 +1,65 @@
+{
+  "gene": "GALE",
+  "generatedAt": "2026-08-03T19:11:57.797Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GALE编码UDP-galactose-4-epimerase，是Leloir半乳糖代谢通路中催化UDP-galactose与UDP-glucose相互转化的胞质NAD依赖性酶，致病变异可导致GALE缺乏、半乳糖血症及血小板减少相关综合征。该蛋白并非分泌蛋白或膜受体，天然抗原可及性低，抗体策略更适合定位于细胞内递送、构象捕获或诊断型结合分子开发。相较GALT、GALK1等同通路酶，GALE具有0.95 Å实验晶体结构和明确二聚体界面，利于高精度表位建模与变构结合设计，但治疗性外周阻断优先级低于可及性更高的膜外靶点。",
+    "mechanism": "设计抗体结合GALE二聚体界面或NAD/UDP-糖邻近构象区，稳定非生产性构象，干扰UDP-galactose与催化口袋的正确定位。",
+    "selectedEpitope": "优先选择Rossmann样NAD结合域与底物结合域之间的催化裂隙边缘，避开高度保守催化残基。",
+    "diseaseDirection": "遗传性半乳糖代谢障碍",
+    "domain": "GALE为NAD依赖性短链脱氢酶/还原酶折叠，含N端Rossmann样辅因子结合域和C端底物结合域。",
+    "evidence": "GALE缺乏与Leloir通路结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q14376功能与亚细胞定位注释",
+      "RCSB PDB 9HI1高分辨率晶体结构",
+      "OMIM/ClinVar GALE致病变异记录"
+    ],
+    "referenceEntries": "UniProt Q14376；RCSB PDB 9HI1；Open Targets GALE",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Rossmann样NAD结合域与底物结合域交界裂隙",
+        "可影响UDP-糖底物进入与催化构象闭合，适合变构型结合设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "同源二聚体A/B链界面外缘",
+        "可能削弱稳定二聚体装配并改变活性位点几何构型",
+        "备选"
+      ],
+      [
+        "Site C",
+        "NAD结合口袋深部保守催化邻近区",
+        "保守性高且与内源辅因子竞争风险较大，易产生选择性与功能解释问题",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GALE为胞质代谢酶，常规抗体难以到达天然作用位点；建议限定为细胞内递送抗体、研究级构象探针或诊断捕获抗体，并避免直接覆盖保守NAD深口袋。",
+    "structurePrepZh": "以PDB 9HI1的A、B链二聚体为模板，保留NAD及UDP-糖相关配体环境用于口袋定义，补全氢原子并评估晶体接触对界面的影响。",
+    "structureRef": "RCSB PDB 9HI1，X-ray diffraction，0.95 Å",
+    "antibodies": [
+      "无获批GALE治疗性抗体",
+      "商业化抗GALE研究抗体"
+    ],
+    "interfaceFocus": "催化裂隙边缘与A/B链二聚体界面",
+    "designMode": "胞内靶向变构设计",
+    "candidates": [
+      {
+        "target": "GALT",
+        "rationale": "GALT同属Leloir半乳糖代谢通路，催化galactose-1-phosphate与UDP-glucose生成UDP-galactose，其缺陷是经典半乳糖血症的核心病因。"
+      },
+      {
+        "target": "GALK1",
+        "rationale": "GALK1在通路上游将galactose磷酸化为galactose-1-phosphate，遗传缺陷导致半乳糖激酶缺乏并与半乳糖代谢异常直接相关。"
+      },
+      {
+        "target": "PGM1",
+        "rationale": "PGM1连接glucose-1-phosphate与glucose-6-phosphate代谢，并影响UDP-glucose供给，临床上与糖基化异常和半乳糖代谢相关表型有关。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

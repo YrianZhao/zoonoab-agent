@@ -1,0 +1,65 @@
+{
+  "gene": "VCPKMT",
+  "generatedAt": "2026-08-03T17:47:28.861Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "VCPKMT为胞质赖氨酸甲基转移酶，催化VCP/p97 Lys315甲基化，影响ER相关降解与泛素化底物处理过程。该蛋白缺乏跨膜区和分泌特征，天然抗原可及性不利于常规细胞外阻断型抗体，更适合作为结构抗原用于细胞内递送抗体或研究型结合分子设计。其疾病遗传关联得分偏低，相比VCP、UBE4A等同通路可干预节点优先级较低；若推进，应以验证VCP甲基化轴为主要目的。",
+    "mechanism": "设计结合VCPKMT活性口袋邻近区域的抗体片段，空间阻断AdoMet结合或VCP Lys315底物肽进入甲基转移位点。",
+    "selectedEpitope": "优先覆盖Rossmann样甲基转移酶核心中AdoMet结合沟槽及底物肽通道边缘。",
+    "diseaseDirection": "ERAD-泛素蛋白稳态研究方向",
+    "domain": "VCPKMT含七β链Rossmann样Class I甲基转移酶催化核心，形成AdoMet结合口袋与VCP底物识别沟槽。",
+    "evidence": "VCPKMT结构与VCP甲基化轴证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9H867功能注释",
+      "RCSB PDB 4LG1晶体结构",
+      "VCP/p97 Lys315甲基化相关文献"
+    ],
+    "referenceEntries": "UniProt Q9H867；RCSB PDB 4LG1；Open Targets VCPKMT",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "AdoMet结合沟槽与催化核心入口",
+        "可直接干扰甲基供体定位，适合抑制型抗体片段设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "VCP Lys315底物肽识别通道边缘",
+        "可阻断底物进入并提高对VCPKMT功能界面的选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离活性口袋的外周螺旋表面",
+        "结构可及但功能阻断价值有限，主要用于捕获或检测",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为胞内定位导致常规抗体难以到达靶点，且AdoMet口袋保守性较高。建议采用胞内递送Fab/VHH并避开高度保守SAM结合基序以降低交叉反应。",
+    "structurePrepZh": "以4LG1高分辨率晶体结构为模板，保留A、B、C链构象比较，去除结晶添加物后标注AdoMet口袋、催化残基邻域及底物通道。",
+    "structureRef": "RCSB PDB 4LG1，X-ray diffraction，1.8 Å",
+    "antibodies": [
+      "暂无批准的VCPKMT靶向抗体",
+      "暂无临床阶段VCPKMT抗体"
+    ],
+    "interfaceFocus": "AdoMet口袋入口与VCP底物肽通道",
+    "designMode": "胞内阻断型片段",
+    "candidates": [
+      {
+        "target": "VCP",
+        "rationale": "VCP/p97是VCPKMT的直接甲基化底物并驱动ER相关降解中泛素化底物抽提，疾病通路相关性和药理可验证性强于上游甲基转移酶。"
+      },
+      {
+        "target": "UBE4A",
+        "rationale": "UBE4A参与ERAD相关泛素链延伸，并与VCP介导的蛋白质质量控制过程相连，可作为同一泛素-蛋白稳态轴的候选节点。"
+      },
+      {
+        "target": "SEL1L",
+        "rationale": "SEL1L是HRD1-SEL1L ERAD复合体组分，参与错误折叠蛋白识别与转运，位于VCP底物处理上游的同一ERAD通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "PDX1",
+  "generatedAt": "2026-08-03T20:30:06.730Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PDX1 是胰腺发育与β细胞成熟的核心同源盒转录因子，致病变异与胰腺发育不全、MODY4及永久性新生儿糖尿病直接相关，主要机制涉及胰岛素、SST、GCK等胰岛基因转录程序受损。该蛋白定位于细胞核，缺乏天然胞外结构域或分泌形式，抗原可及性不适合常规体内阻断型抗体，但可用于结构抗原、细胞内递送抗体或研究级结合分子设计。相比同通路转录因子，PDX1具备明确人类遗传证据、高分辨率DNA结合结构和疾病表型特异性，因此在机制验证与细胞内靶向设计中优先级较高。",
+    "mechanism": "设计分子可识别PDX1同源盒DNA结合结构域，干扰其与TAAT基序DNA的特异结合，从而改变胰岛β细胞关键基因启动子占位。",
+    "selectedEpitope": "优先覆盖Homeobox螺旋3与N端臂邻近DNA大沟识别界面，避免完全依赖柔性低复杂度区。",
+    "diseaseDirection": "胰腺发育异常与单基因糖尿病",
+    "domain": "PDX1含N端转录激活区、中央Homeobox DNA结合域及C端调控区；7KPK解析其与DNA复合物结构。",
+    "evidence": "PDX1遗传糖尿病与DNA结合结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P52945 functional annotation",
+      "RCSB PDB 7KPK X-ray structure",
+      "ClinVar/OMIM PDX1-related pancreatic agenesis and MODY4 records"
+    ],
+    "referenceEntries": "UniProt P52945；RCSB PDB 7KPK；HGNC:6107；OMIM 600733",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Homeobox螺旋3及DNA大沟识别面",
+        "直接关联TAAT基序识别，适合构建功能阻断型细胞内结合分子",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Homeobox N端臂与小沟接触区域",
+        "可削弱DNA结合稳定性，并保留与螺旋核心的组合表位机会",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端转录激活区或C端低复杂度调控区",
+        "可能影响共调控因子募集，但柔性高、结构约束弱，成药性验证风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PDX1为核内转录因子，常规抗体难以到达作用位点；设计应限定为研究级、递送型Fab/VHH或细胞内抗体，并避免宣称常规胞外阻断可行性。",
+    "structurePrepZh": "以7KPK中PDX1-DNA复合物为模板，保留抗原链A/B的Homeobox坐标，标注DNA接触残基并补建缺失柔性区用于表位暴露评估。",
+    "structureRef": "RCSB PDB 7KPK，X-ray diffraction，1.71 Å",
+    "antibodies": [
+      "Anti-PDX1 clone D59H3",
+      "Anti-PDX1 clone EPR3358"
+    ],
+    "interfaceFocus": "Homeobox-DNA大沟识别界面",
+    "designMode": "细胞内阻断型",
+    "candidates": [
+      {
+        "target": "INS",
+        "rationale": "INS是PDX1直接调控的β细胞功能基因，突变与新生儿糖尿病及MODY样表型相关，可作为同一胰岛β细胞转录网络的下游疾病节点。"
+      },
+      {
+        "target": "GCK",
+        "rationale": "GCK参与β细胞葡萄糖感知并受胰岛转录因子网络调控，致病变异导致MODY2，与PDX1相关MODY表型处于同一单基因糖尿病方向。"
+      },
+      {
+        "target": "HNF1A",
+        "rationale": "HNF1A是MODY3致病转录因子，与PDX1共同维持胰岛β细胞基因表达程序，适合作为单基因糖尿病通路中的比较靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

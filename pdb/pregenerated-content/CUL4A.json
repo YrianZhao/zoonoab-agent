@@ -1,0 +1,65 @@
+{
+  "gene": "CUL4A",
+  "generatedAt": "2026-08-03T11:43:55.207Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CUL4A 是 CRL4A E3 泛素连接酶支架蛋白，参与 DDB1-底物受体复合体介导的蛋白泛素化，在 DNA 损伤应答、细胞周期调控及血液肿瘤相关蛋白稳态中具有明确作用。该蛋白主要位于胞内并依赖 DDB1、RBX1 与底物受体形成多蛋白复合物，天然抗原可及性弱，较适合作为胞内降解、细胞内抗体或研究型抗体设计对象。相较泛素化通路中更广泛必需的蛋白酶体核心亚基，CUL4A 具有较明确的 CRL4A 复合体装配界面与肿瘤遗传关联，可作为血液肿瘤蛋白稳态轴的优先机制验证靶点。",
+    "mechanism": "设计分子阻断 CUL4A N 端螺旋束与 DDB1 适配蛋白结合，或干扰 C 端 RBX1 结合及 neddylation 依赖的 E2 招募，从而抑制 CRL4A 底物泛素化。",
+    "selectedEpitope": "优先覆盖 CUL4A N 端 DDB1 结合界面，备选 C 端 Cullin 同源域 RBX1/neddylation 邻近界面。",
+    "diseaseDirection": "血液肿瘤蛋白稳态调控",
+    "domain": "CUL4A 含 N 端 cullin repeat 螺旋束、中央支架区与 C 端 Cullin 同源域，介导 DDB1 与 RBX1 装配。",
+    "evidence": "CUL4A-CRL4A 血液肿瘤关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q13619 功能与亚细胞定位注释",
+      "RCSB PDB 2HYE 晶体结构记录",
+      "CRL4-DDB1 泛素连接酶复合体文献"
+    ],
+    "referenceEntries": "UniProt Q13619；RCSB PDB 2HYE；Open Targets CUL4A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N 端 cullin repeat 螺旋束的 DDB1 结合界面",
+        "可直接削弱 CRL4A 底物受体装配，机制指向明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C 端 Cullin 同源域的 RBX1 与 NEDD8 邻近区域",
+        "可影响 E2 招募和泛素转移活化，但需避免破坏构象稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "中央支架区保守螺旋表面",
+        "可能改变复合体几何构型，但同源 cullin 交叉反应风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CUL4A 为胞内支架蛋白，常规治疗性抗体递送与抗原可及性受限；设计应限定为细胞内抗体、PROTAC 结合模块或机制研究抗体，并严格评估 CUL4B 交叉反应。",
+    "structurePrepZh": "采用 2HYE 实验结构解析 CUL4A 复合体界面，补全缺失环区并标注 DDB1、RBX1 与 NEDD8 相关残基，保留生物装配体用于界面建模。",
+    "structureRef": "RCSB PDB 2HYE，X-ray diffraction，3.1 Å",
+    "antibodies": [
+      "CUL4A monoclonal antibody clone EPR3198",
+      "CUL4A monoclonal antibody clone DCS-35"
+    ],
+    "interfaceFocus": "DDB1 结合面与 RBX1/NEDD8 活化界面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "DDB1",
+        "rationale": "DDB1 是 CRL4A 的核心适配蛋白，连接 CUL4A 与 DCAF 底物受体；阻断该节点可直接影响 CRL4 复合体装配。"
+      },
+      {
+        "target": "RBX1",
+        "rationale": "RBX1 与 CUL4A C 端结合并招募 E2 泛素结合酶，是 CRL4A 催化泛素转移所需的 RING 组分。"
+      },
+      {
+        "target": "NEDD8",
+        "rationale": "NEDD8 修饰 cullin C 端 Lys 位点并增强 CRL 活性，靶向 neddylation 轴可抑制 CUL4A 依赖的泛素连接酶功能。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

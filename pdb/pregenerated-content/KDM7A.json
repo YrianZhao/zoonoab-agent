@@ -1,0 +1,65 @@
+{
+  "gene": "KDM7A",
+  "generatedAt": "2026-08-03T13:41:02.930Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KDM7A为核内JmjC家族赖氨酸去甲基化酶，可去除H3K9me2、H3K27me2及H4K20me1等抑制性组蛋白甲基化标记，影响细胞周期、分化和肿瘤相关转录程序。该蛋白缺乏胞外结构域且并非分泌蛋白，天然完整抗体抗原可及性较低，仅适合细胞内递送抗体片段或以结构辅助配体阻断为主的探索模式。相较于同通路中广泛必需的KDM1A或多成员冗余的KDM4亚家族，KDM7A具有可解析JmjC催化口袋和疾病遗传关联信号，可作为表观遗传酶选择性干预的研究优先靶点。",
+    "mechanism": "设计细胞内抗体片段占据KDM7A JmjC催化沟槽，阻断α-酮戊二酸、Fe(II)辅因子及甲基化组蛋白尾部底物的协同结合。",
+    "selectedEpitope": "优先覆盖JmjC结构域α-酮戊二酸/Fe(II)结合口袋邻近底物沟槽，避免远端柔性环区。",
+    "diseaseDirection": "肿瘤表观遗传调控",
+    "domain": "KDM7A含N端PHD锌指结构域和C端JmjC去甲基化催化结构域，3KV9解析催化核心。",
+    "evidence": "KDM7A肿瘤表观遗传与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q6ZMT4功能与结构域注释",
+      "RCSB PDB 3KV9晶体结构记录",
+      "JmjC组蛋白去甲基化酶机制文献"
+    ],
+    "referenceEntries": "UniProt Q6ZMT4；RCSB PDB 3KV9；Open Targets KDM7A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "JmjC催化口袋及α-酮戊二酸/Fe(II)结合邻域",
+        "直接干扰辅因子与底物协同定位，具备机制明确的功能阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "JmjC底物结合沟槽及组蛋白尾部接触面",
+        "可阻断甲基化赖氨酸底物进入催化中心，利于选择性抑制设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PHD锌指结构域潜在组蛋白尾部识别面",
+        "可能影响染色质定位，但3KV9未覆盖该区域且构象证据不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "KDM7A为核内酶，常规抗体难以到达作用位点；JmjC口袋在家族内保守，需强化选择性筛选并采用细胞内递送或intrabody格式。",
+    "structurePrepZh": "以3KV9链A为模板，补全缺失侧链和氢原子，保留金属/辅因子结合位点约束，并对催化口袋周边环区进行构象采样。",
+    "structureRef": "RCSB PDB 3KV9，X-ray diffraction，2.29 Å",
+    "antibodies": [
+      "细胞内VHH/intrabody原型",
+      "催化口袋阻断型Fab研究抗体"
+    ],
+    "interfaceFocus": "JmjC金属-αKG口袋与底物沟槽",
+    "designMode": "细胞内阻断设计",
+    "candidates": [
+      {
+        "target": "KDM6A",
+        "rationale": "KDM6A同属JmjC组蛋白去甲基化酶，作用于H3K27甲基化状态，参与肿瘤表观遗传调控。其遗传失活在多种癌种中具有明确证据。"
+      },
+      {
+        "target": "KDM6B",
+        "rationale": "KDM6B催化H3K27me3/me2去甲基化，与炎症诱导转录和肿瘤微环境相关程序相连。其催化结构域与KDM7A处于相近的JmjC依赖机制框架。"
+      },
+      {
+        "target": "KDM4A",
+        "rationale": "KDM4A为JmjC依赖H3K9/H3K36去甲基化酶，调节癌细胞增殖和基因组稳定性相关转录网络。其与KDM7A共享α-酮戊二酸和Fe(II)依赖催化机制。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

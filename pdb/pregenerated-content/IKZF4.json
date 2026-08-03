@@ -1,0 +1,65 @@
+{
+  "gene": "IKZF4",
+  "generatedAt": "2026-08-03T13:25:31.638Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IKZF4编码转录因子Eos，参与调控调节性T细胞稳定性及免疫耐受相关基因表达，疾病关联主要指向哮喘、1型糖尿病等免疫介导疾病，但其致病作用发生于细胞核内转录调控层面。IKZF4缺乏胞外结构域、分泌形式或膜受体构型，天然抗原可及性不支持常规治疗性抗体直接结合。相较CTLA4、IL2RA、IL7R等同属免疫耐受通路且具有胞外可及结构的靶点，IKZF4仅适合作为机制研究或细胞内递送抗体探索靶点，优先级应低于可药性更明确的膜受体或配体靶点。",
+    "mechanism": "设计目标限定为细胞内递送抗体阻断IKZF4锌指DNA结合域与靶基因调控序列的结合，干预Treg相关转录复合物形成。",
+    "selectedEpitope": "优先评估NMR结构覆盖的C2H2锌指DNA识别螺旋与相邻环区，避免破坏锌配位核心。",
+    "diseaseDirection": "免疫耐受与自身免疫炎症",
+    "domain": "IKZF4含N端DNA结合C2H2锌指簇及C端二聚化锌指结构，主要定位于细胞核。",
+    "evidence": "IKZF4免疫耐受转录调控证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt Q9H2S9功能注释",
+      "RCSB PDB 2MA7结构条目",
+      "Treg稳定性与IKZF家族文献证据"
+    ],
+    "referenceEntries": "UniProt Q9H2S9；RCSB PDB 2MA7；Open Targets IKZF4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C2H2锌指DNA识别螺旋外侧面",
+        "可直接影响DNA主沟识别界面，适合功能阻断型胞内抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "相邻锌指间连接环与表面暴露残基",
+        "有望改变锌指相对取向并削弱序列特异性DNA结合",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Cys/His锌配位核心邻近区域",
+        "该区域高度保守且构象依赖性强，结合可能导致非特异性折叠扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IKZF4为核内转录因子，常规抗体难以进入细胞核；锌指结构保守性较高，需重点控制IKZF家族交叉反应与锌配位破坏风险。",
+    "structurePrepZh": "以2MA7 NMR构象集合为模板筛选稳定代表构象，补全缺失氢原子并保留锌配位几何，标注DNA结合面用于表位约束。",
+    "structureRef": "RCSB PDB 2MA7，IKZF4锌指结构，solution NMR",
+    "antibodies": [
+      "暂无临床阶段IKZF4靶向抗体",
+      "研究级抗IKZF4/Eos抗体"
+    ],
+    "interfaceFocus": "锌指DNA识别螺旋与指间连接界面",
+    "designMode": "胞内抗体探索",
+    "candidates": [
+      {
+        "target": "CTLA4",
+        "rationale": "CTLA4是Treg免疫抑制功能的核心膜受体，可通过与CD80/CD86竞争性结合调控共刺激信号，抗原可及性显著优于IKZF4。"
+      },
+      {
+        "target": "IL2RA",
+        "rationale": "IL2RA编码CD25，参与高亲和力IL-2受体复合物形成并维持Treg稳态；其胞外结构域适合抗体介导的阻断或细胞群调节。"
+      },
+      {
+        "target": "FOXP3",
+        "rationale": "FOXP3与IKZF4共同定义Treg转录程序并存在功能协同，但同属核内转录因子，适合作为机制候选而非优先抗体治疗靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

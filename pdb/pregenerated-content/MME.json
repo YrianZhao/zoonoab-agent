@@ -1,0 +1,65 @@
+{
+  "gene": "MME",
+  "generatedAt": "2026-08-03T14:16:56.419Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MME编码膜金属内肽酶 neprilysin，是锌依赖性外肽酶，可降解利钠肽、缓激肽、P物质、内皮素等血管活性肽，其活性改变与心力衰竭、血压调控及MME相关轴突型Charcot-Marie-Tooth病存在明确关联。该蛋白为II型跨膜糖蛋白，催化结构域位于胞外腔面，天然抗原可及性优于胞内酶类靶点。相比ACE等同类肽酶，MME具有已验证临床药理学基础和高分辨率人源胞外结构，适合作为结构指导型抗体干预靶点。",
+    "mechanism": "抗体结合胞外催化腔入口或锌结合催化域周缘，空间阻断利钠肽等底物进入HEXXH金属蛋白酶活性中心，从而降低底物水解。",
+    "selectedEpitope": "优先覆盖M13金属肽酶催化结构域的底物结合沟槽入口及HEXXH锌结合基序邻近环区。",
+    "diseaseDirection": "心力衰竭与血压调控",
+    "domain": "II型膜蛋白，短胞内尾、单跨膜区，主要胞外区为M13锌依赖性金属内肽酶催化结构域。",
+    "evidence": "MME胞外金属肽酶结构与疾病遗传药理证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与药理关联",
+      "UniProt P08473功能与结构域注释",
+      "RCSB PDB 6SUK人源MME晶体结构",
+      "临床NEP抑制剂心力衰竭药理学研究"
+    ],
+    "referenceEntries": "UniProt P08473；RCSB PDB 6SUK；MEROPS M13.001",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化腔入口与S1/S2底物结合沟槽周缘",
+        "直接限制肽类底物进入活性中心，具备明确功能阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "HEXXH锌结合基序邻近外露环区",
+        "可通过构象约束影响金属催化中心几何排列",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化腔的胞外非催化表面",
+        "亲和捕获价值较高但功能抑制不确定，需避免仅产生结合型抗体",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "催化腔较深且部分区域保守，需避免抗体CDR过度插入导致交叉反应；建议优先筛选阻断底物通道而非直接配位锌离子的表位。",
+    "structurePrepZh": "以6SUK链A为模板，保留胞外催化结构域和关键锌离子，校正糖基化位点与缺失环区后进行表面可及性和底物通道分析。",
+    "structureRef": "RCSB PDB 6SUK，1.75 Å人源MME X射线晶体结构",
+    "antibodies": [
+      "Anti-CD10 monoclonal antibody HI10a",
+      "Anti-CD10 monoclonal antibody MEM-78"
+    ],
+    "interfaceFocus": "催化腔入口、S1/S2底物沟槽及HEXXH邻近环区",
+    "designMode": "结构引导阻断型",
+    "candidates": [
+      {
+        "target": "NPPB",
+        "rationale": "NPPB编码B型利钠肽前体，是MME降解通路中的关键心衰保护性肽源；调节其稳定性或活性可与NEP抑制方向形成同通路策略。"
+      },
+      {
+        "target": "NPR1",
+        "rationale": "NPR1为ANP/BNP的膜受体鸟苷酸环化酶，介导cGMP生成、利钠和血管舒张反应；其位于MME底物效应轴下游。"
+      },
+      {
+        "target": "ACE",
+        "rationale": "ACE与MME共同参与血管活性肽稳态，ACE抑制可降低血管紧张素II生成并增强缓激肽效应，是心衰与血压调控中的真实同通路靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

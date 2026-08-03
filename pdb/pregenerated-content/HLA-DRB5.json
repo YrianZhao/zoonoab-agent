@@ -1,0 +1,65 @@
+{
+  "gene": "HLA-DRB5",
+  "generatedAt": "2026-08-03T13:13:26.103Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HLA-DRB5编码HLA-DRβ5链，与HLA-DRA形成MHC II类HLA-DR异二聚体，负责结合外源性肽并呈递给CD4阳性T细胞TCR，参与过敏性鼻炎等免疫炎症疾病中的抗原特异性T细胞活化。该靶点为细胞表面MHC II膜受体复合物的胞外β链，肽结合沟和TCR接触面具有良好的抗体可及性。相较下游细胞因子或广泛免疫检查点，HLA-DRB5可在抗原呈递起始层面进行等位型或构象选择性干预，但需严格控制对全局MHC II功能的影响。",
+    "mechanism": "抗体阻断HLA-DRB5/DRA-肽复合物与CD4阳性T细胞TCR的接触，降低抗原特异性T细胞活化与后续Th2炎症放大。",
+    "selectedEpitope": "优先覆盖β1结构域α螺旋TCR接触面，避开肽锚定位点以降低广泛抗原呈递抑制风险。",
+    "diseaseDirection": "抗原呈递相关免疫炎症",
+    "domain": "HLA-DRβ5含胞外β1肽结合结构域、β2免疫球蛋白样结构域、跨膜段及胞质尾部。",
+    "evidence": "HLA-DRB5抗原呈递与免疫疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q30154功能与结构域注释",
+      "RCSB PDB 1FV1晶体结构记录",
+      "IMGT/HLA与MHC II抗原呈递文献"
+    ],
+    "referenceEntries": "UniProt: Q30154; RCSB PDB: 1FV1; HGNC: HLA-DRB5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "β1结构域α螺旋TCR接触面",
+        "可直接干预HLA-DR-肽复合物与TCR识别界面，具备机制优先级",
+        "优先"
+      ],
+      [
+        "Site B",
+        "β1结构域肽结合沟外缘",
+        "有助于改变特定肽-HLA构象稳定性，适合构象选择性抗体筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "β2免疫球蛋白样结构域近膜侧",
+        "抗原可及但功能阻断相关性较弱，并可能产生非阻断性结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HLA-DR分子高度多态且与HLA-DRA成复合物，表位需评估等位型交叉反应、肽依赖构象差异及全局CD4 T细胞免疫抑制风险。",
+    "structurePrepZh": "以1FV1高分辨率晶体结构为模板，保留HLA-DRA/HLA-DRB5异二聚体与装载肽，补全缺失侧链并标注TCR潜在接触面。",
+    "structureRef": "RCSB PDB 1FV1, X-ray diffraction, 1.9 Å",
+    "antibodies": [
+      "L243",
+      "TAL.1B5"
+    ],
+    "interfaceFocus": "β1α螺旋-TCR接触界面及肽沟外缘",
+    "designMode": "构象阻断型",
+    "candidates": [
+      {
+        "target": "HLA-DRA",
+        "rationale": "HLA-DRA为HLA-DR异二聚体的α链，与HLA-DRB5共同形成肽结合沟，是同一MHC II抗原呈递复合物的核心组成。"
+      },
+      {
+        "target": "CD4",
+        "rationale": "CD4与MHC II非多态区域结合并增强TCR信号转导，靶向该分子可在HLA-DR介导的CD4 T细胞活化环节产生通路级干预。"
+      },
+      {
+        "target": "CIITA",
+        "rationale": "CIITA是MHC II基因转录主调控因子，控制HLA-DRA和HLA-DRB基因表达，代表同一抗原呈递通路的上游调控节点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

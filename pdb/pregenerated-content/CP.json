@@ -1,0 +1,65 @@
+{
+  "gene": "CP",
+  "generatedAt": "2026-08-03T11:35:36.892Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CP编码的ceruloplasmin是血浆主要铜蓝蛋白，具有亚铁氧化酶活性，可将Fe2+氧化为Fe3+并促进铁与转铁蛋白装载；其功能缺失导致铁外排障碍和组织铁沉积，是aceruloplasminemia及相关神经退行性表型的核心分子事件。该蛋白为分泌型糖蛋白，六个铜氧化酶结构域整体暴露于血浆环境，抗原可及性优于胞内铁代谢酶。相较铁调素、铁转运蛋白等同轴靶点，CP兼具遗传疾病强关联、可解析胞外结构和可直接评估的酶活读数，适合作为抗体工程优先靶点。",
+    "mechanism": "设计抗体结合CP铜氧化酶结构域外侧构象表位，稳定其多铜中心邻近构象，或阻断病理性CP与细胞表面铁外排复合物的异常结合界面。",
+    "selectedEpitope": "优先选择Domain 4-6邻近三核铜中心的构象环区，避开催化铜配位残基。",
+    "diseaseDirection": "铁稳态失衡与神经退行性疾病",
+    "domain": "CP含六个cupredoxin样铜氧化酶结构域，包含单核铜位点与三核铜簇催化中心。",
+    "evidence": "CP结构、遗传缺陷与铁代谢疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P00450功能与结构域注释",
+      "RCSB PDB 4ENZ晶体结构记录",
+      "OMIM及文献中的aceruloplasminemia遗传证据"
+    ],
+    "referenceEntries": "UniProt P00450；RCSB PDB 4ENZ；MONDO_0011426",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Domain 4-6三核铜中心邻近构象环区",
+        "可调节亚铁氧化酶构象稳定性并保留催化残基空间",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Domain 1-3外侧糖蛋白暴露面",
+        "远离主要催化中心，适合获得结合型检测或递送抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "铜配位残基及结构域核心β折叠区",
+        "可能破坏金属结合、蛋白折叠或天然酶活，需严格规避",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CP为高丰度血浆蛋白，抗体可能产生靶点介导清除和铁稳态干扰；表位设计应避开铜配位残基并控制功能阻断强度。",
+    "structurePrepZh": "采用4ENZ链A作为抗原模板，补全缺失侧链与糖基化位点注释，保留铜离子坐标用于界面排除和构象评估。",
+    "structureRef": "Human ceruloplasmin X-ray structure, PDB 4ENZ, 2.6 Å",
+    "antibodies": [
+      "anti-ceruloplasmin diagnostic antibody",
+      "anti-human ceruloplasmin monoclonal antibody"
+    ],
+    "interfaceFocus": "Domain 4-6暴露环与三核铜中心周边",
+    "designMode": "构象稳定型抗体设计",
+    "candidates": [
+      {
+        "target": "SLC40A1",
+        "rationale": "SLC40A1编码ferroportin，是细胞铁外排通路的核心膜转运蛋白；CP的亚铁氧化酶活性促进其外排铁进入转铁蛋白装载流程。"
+      },
+      {
+        "target": "TF",
+        "rationale": "TF编码转铁蛋白，接受CP氧化后的Fe3+并介导血浆铁运输；其与CP共同定义细胞外铁转运与分配轴。"
+      },
+      {
+        "target": "TFR1",
+        "rationale": "TFR1介导转铁蛋白结合铁的细胞摄取，与CP-TF介导的铁输出后续运输环节处于同一系统性铁稳态通路。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

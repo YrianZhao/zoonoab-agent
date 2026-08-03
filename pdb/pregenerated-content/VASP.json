@@ -1,0 +1,65 @@
+{
+  "gene": "VASP",
+  "generatedAt": "2026-08-03T17:47:29.665Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "VASP是肌动蛋白调控蛋白，参与血小板黏附、整合素αIIbβ3活化及血栓形成过程，Open Targets脂质表型关联更可能反映血管-血小板风险网络而非经典胆固醇代谢靶点。VASP主要定位于胞质、黏着斑和细胞骨架结构，缺乏天然胞外结构域或分泌形式，完整蛋白并不具备常规抗体药物的抗原可及性优势。相较PCSK9、ANGPTL3或APOB等同脂质疾病轴可及靶点，VASP更适合作为机制研究、细胞内递送抗体或结构验证靶点，主靶点优先级应谨慎界定。",
+    "mechanism": "设计抗体拟阻断EVH1结构域与FPPPP基序配体结合，干预VASP募集至黏着斑和肌动蛋白装配复合体。",
+    "selectedEpitope": "优先覆盖EVH1结构域FPPPP肽结合沟槽及相邻疏水口袋。",
+    "diseaseDirection": "血小板-血管脂质风险表型",
+    "domain": "VASP含N端EVH1结构域、中央脯氨酸富集区和C端EVH2四聚化/肌动蛋白结合区。",
+    "evidence": "VASP结构域与血小板功能证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病-靶点关联",
+      "UniProt P50552功能与定位注释",
+      "RCSB PDB 1USE晶体结构记录",
+      "血小板P2Y12-cAMP/PKA-VASP磷酸化文献"
+    ],
+    "referenceEntries": "UniProt P50552；RCSB PDB 1USE；Open Targets VASP",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "EVH1结构域FPPPP配体结合沟槽",
+        "直接阻断VASP与含FPPPP基序蛋白相互作用，机制最清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "EVH1结构域外侧稳定折叠面",
+        "可用于构象锁定或结构捕获，降低直接竞争结合的亲和力风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "中央脯氨酸富集区或EVH2四聚化区",
+        "柔性高且结构异质性强，可能影响抗体开发稳定性与特异性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "VASP为胞内蛋白，常规系统给药抗体难以到达作用位点；建议限定为细胞内抗体、递送型抗体或体外功能阻断工具，并严格评估血小板功能风险。",
+    "structurePrepZh": "以1USE抗原链A为EVH1结构模板，保留高分辨率坐标，校验配体结合沟槽残基、缺失片段和晶体接触界面后再进行表位建模。",
+    "structureRef": "RCSB PDB 1USE，X-ray 1.3 Å，人VASP EVH1结构",
+    "antibodies": [
+      "抗VASP磷酸化Ser157研究抗体",
+      "抗VASP总蛋白诊断/研究抗体"
+    ],
+    "interfaceFocus": "EVH1-FPPPP基序结合沟槽",
+    "designMode": "胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "P2RY12",
+        "rationale": "P2Y12位于血小板ADP信号通路上游，抑制该受体可提升cAMP/PKA介导的VASP磷酸化并降低血小板活化，且为细胞表面GPCR。"
+      },
+      {
+        "target": "ITGA2B",
+        "rationale": "ITGA2B编码整合素αIIb，是血小板聚集终末通路核心受体亚基，与VASP相关的黏附和骨架重排功能处于同一血小板活化网络。"
+      },
+      {
+        "target": "ITGB3",
+        "rationale": "ITGB3编码整合素β3，与αIIb形成纤维蛋白原受体αIIbβ3，是血小板聚集和血栓形成的可及性膜靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

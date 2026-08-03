@@ -1,0 +1,65 @@
+{
+  "gene": "AKR1B1",
+  "generatedAt": "2026-08-03T10:22:15.845Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "AKR1B1编码醛糖还原酶，是多元醇通路限速酶，催化葡萄糖经NADPH依赖性还原生成山梨醇，参与糖尿病神经病变中的渗透压应激、氧化还原失衡和炎症放大。该蛋白主要为胞质可溶性酶，缺乏经典胞外结构域，抗体抗原可及性弱于膜受体或分泌蛋白，因此更适合定位于细胞内递送抗体、酶构象探针或诊断捕获抗体策略。与多元醇通路下游代谢酶相比，AKR1B1处于通路入口并具有高分辨率配体复合物结构和成熟小分子药理学证据，优先级主要来自机制明确性和结构可设计性。",
+    "mechanism": "抗体应定位于阻断AKR1B1活性口袋周缘与NADPH/醛糖底物进入通道的构象配合，限制Tyr48-His110催化网络介导的羰基还原反应。",
+    "selectedEpitope": "优先覆盖TIM桶C端活性口袋入口及loop A/B/C构象区，避免深埋NADPH结合槽作为单一表位。",
+    "diseaseDirection": "糖尿病神经病变与多元醇通路",
+    "domain": "AKR1B1为单结构域(α/β)8 TIM桶型醛酮还原酶，活性口袋位于桶C端并结合NADPH。",
+    "evidence": "AKR1B1多元醇通路结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProtKB P15121功能与注释",
+      "RCSB PDB 1US0高分辨率晶体结构",
+      "糖尿病并发症中醛糖还原酶药理学研究"
+    ],
+    "referenceEntries": "UniProtKB:P15121；RCSB PDB:1US0；Open Targets:AKR1B1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "活性口袋入口与loop A/B/C周缘",
+        "可干预底物进入和催化构象闭合，兼具结构可解析性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "NADPH结合Rossmann样沟槽邻近表面",
+        "可影响辅因子定位，但需避免与深埋保守位点产生低可及性风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "TIM桶外侧远离催化口袋表面",
+        "免疫原性和结合可及性较好，但功能阻断相关性较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "AKR1B1为胞质酶，常规治疗性抗体难以到达作用位点；设计应标注细胞内递送需求，并评估与AKR1B10等同源AKR成员的交叉反应。",
+    "structurePrepZh": "以1US0链A为模板，保留NADPH和抑制剂邻近残基用于口袋定义，补全缺失氢原子并校正质子化状态后进行表面聚类。",
+    "structureRef": "RCSB PDB 1US0，0.66 Å X-ray AKR1B1复合物结构",
+    "antibodies": [
+      "抗AKR1B1诊断抗体",
+      "抗醛糖还原酶研究级单克隆抗体"
+    ],
+    "interfaceFocus": "活性口袋入口、loop A/B/C及NADPH邻近沟槽",
+    "designMode": "胞内酶阻断型",
+    "candidates": [
+      {
+        "target": "SORD",
+        "rationale": "SORD编码山梨醇脱氢酶，位于多元醇通路AKR1B1下游，催化山梨醇向果糖转化；其通路位置适合用于联合评估山梨醇代谢通量。"
+      },
+      {
+        "target": "HK1",
+        "rationale": "HK1催化葡萄糖磷酸化并与进入多元醇通路的葡萄糖竞争底物池，在糖代谢重分配和神经组织能量稳态中具有通路相关性。"
+      },
+      {
+        "target": "GFPT1",
+        "rationale": "GFPT1是己糖胺生物合成通路限速酶，与高糖状态下葡萄糖旁路代谢共同参与糖尿病并发症相关细胞应激。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "SOCS6",
+  "generatedAt": "2026-08-03T16:49:41.744Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SOCS6 为细胞因子信号负调控因子，参与 JAK/STAT 相关稳态维持，并通过其 SH2 结构域识别磷酸化受体或激酶底物以限制异常信号持续化。Open Targets 显示其与神经退行性疾病及血液蛋白相关表型存在较高关联，提示其在疾病网络中的调节节点属性明确。该蛋白含有可被抗体策略利用的结构化界面，但作为胞内蛋白缺乏天然膜外可及性，因此在同类疾病调控靶点中更适合作为机制验证型或细胞内递送型抗体工程对象，而非经典膜表面阻断靶点。相比直接靶向下游广泛分布的激酶或受体，SOCS6 更接近信号选择性刹车位点，具有较高通路特异性与病理状态依赖性。",
+    "mechanism": "阻断 SOCS6 SH2 结构域与磷酸化靶蛋白结合，削弱其招募受体复合物并介导的负反馈抑制。",
+    "selectedEpitope": "优先覆盖 SH2 配体结合槽及 pTyr 识别口袋周边，避免干扰整体折叠。",
+    "diseaseDirection": "神经退行性疾病/血液表型",
+    "domain": "以 SH2 结构域为核心，C 端含 SOCS box；抗原链 A/P 对应结构化结合界面。",
+    "evidence": "SOCS6 结构与疾病关联证据包",
+    "evidenceSources": [
+      "UniProt: O14544",
+      "RCSB PDB: 2VIF",
+      "Open Targets Platform",
+      "Human Protein Atlas"
+    ],
+    "referenceEntries": "UniProt O14544；RCSB 2VIF；Open Targets SOCS6 条目",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SH2 pTyr 结合口袋",
+        "直接阻断底物识别，适合功能抑制型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SH2 β-sheet 外侧边缘",
+        "兼顾亲和力与构象稳定性，利于避免完全失活风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SOCS box 邻近表面",
+        "可能影响泛素化复合体组装，但结构耦联风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SOCS6 为胞内蛋白，天然可及性低，常规体液抗体难以直接作用；优先考虑细胞内递送或结合结构稳定的片段工程。应避免过度扰动 SH2 折叠核心，以降低失稳和非特异性结合风险。",
+    "structurePrepZh": "基于 2VIF 进行链 A/P 重建与缺失环段检查，优先保留 SH2 局部构象与配体口袋几何。建议在精修后进行表位暴露评估和保守位点映射。",
+    "structureRef": "2VIF, X-ray diffraction, 1.45 A",
+    "antibodies": [
+      "未见成熟临床同类抗体",
+      "未见标准化公开同类抗体"
+    ],
+    "interfaceFocus": "SH2 pTyr 识别槽及周边疏水夹层",
+    "designMode": "结构驱动抑制型",
+    "candidates": [
+      {
+        "target": "JAK2",
+        "rationale": "SOCS6 作用于细胞因子/JAK-STAT 负反馈网络，JAK2 为同一路径中关键激酶节点。其胞内激酶结构域已被广泛验证，适合与 SOCS6 机制形成互补比较。"
+      },
+      {
+        "target": "STAT3",
+        "rationale": "SOCS6 所在调控轴与 STAT3 转录输出紧密相连，STAT3 是该通路中最具代表性的效应分子之一。将其纳入候选集合有助于解析上游抑制与下游转录响应的耦联关系。"
+      },
+      {
+        "target": "IL6ST",
+        "rationale": "IL6ST 作为多种细胞因子受体复合物共受体，处于 SOCS 蛋白调控的上游信号输入端。其膜受体属性明确，适合与 SOCS6 形成同通路的可比抗原组。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

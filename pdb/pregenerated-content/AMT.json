@@ -1,0 +1,65 @@
+{
+  "gene": "AMT",
+  "generatedAt": "2026-08-03T10:25:38.561Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "AMT编码线粒体甘氨酸裂解系统T蛋白，催化与H蛋白脂酰赖氨酸臂相关的一碳单位转移反应，双等位基因致病变异可导致非酮性高甘氨酸血症。该蛋白位于线粒体基质，缺乏天然胞外结构域或分泌暴露面，抗原可及性不利于常规体内阻断抗体，但适合结构验证、胞内递送抗体或诊断捕获试剂开发。相较GLDC等同通路大型PLP酶，AMT具备2.0 Å实验晶体结构和明确H蛋白结合沟槽，表位定位与机制验证优先级较高。",
+    "mechanism": "设计抗体结合AMT表面H蛋白脂酰臂识别沟槽，阻断GCSH脂酰赖氨酸中间体与AMT活性位点对接，从而抑制甲烯基转移反应。",
+    "selectedEpitope": "优先覆盖AMT叶酸结合裂隙邻近的GCSH脂酰臂进入沟槽，避开深部PLP/THF催化核心。",
+    "diseaseDirection": "非酮性高甘氨酸血症",
+    "domain": "AMT为线粒体基质T蛋白，含叶酸依赖转移酶折叠及H蛋白脂酰臂结合沟槽。",
+    "evidence": "AMT-甘氨酸裂解系统遗传病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt P48728功能与定位注释",
+      "RCSB PDB 1WSR晶体结构",
+      "OMIM非酮性高甘氨酸血症遗传证据"
+    ],
+    "referenceEntries": "UniProt P48728；RCSB PDB 1WSR；Open Targets AMT",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "GCSH脂酰臂结合沟槽入口及邻近带正电表面",
+        "直接干预H蛋白中间体递送，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "叶酸结合裂隙外缘的可及环区",
+        "可形成变构阻断并降低对深部保守催化残基的依赖",
+        "备选"
+      ],
+      [
+        "Site C",
+        "同源二聚体界面附近暴露片段",
+        "可能影响构象稳定性，但需规避非特异聚集与构象依赖风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "AMT为线粒体基质蛋白，体内抗体可及性为主要风险；设计应限定为胞内递送、研究级抑制或诊断应用，并避免跨线粒体酶保守表面交叉反应。",
+    "structurePrepZh": "采用1WSR链A/B建立抗原模型，补全缺失侧链、校正质子化与辅因子邻域，保留二聚体状态用于界面表位评估。",
+    "structureRef": "PDB 1WSR，human AMT X-ray structure，2.0 Å",
+    "antibodies": [
+      "AMT研究级多克隆抗体",
+      "AMT诊断级单克隆抗体"
+    ],
+    "interfaceFocus": "GCSH脂酰臂沟槽与叶酸裂隙外缘",
+    "designMode": "胞内/诊断抗体设计",
+    "candidates": [
+      {
+        "target": "GLDC",
+        "rationale": "GLDC编码甘氨酸脱羧酶P蛋白，与AMT同属甘氨酸裂解系统，致病变异同样导致非酮性高甘氨酸血症。其催化甘氨酸脱羧并将氨甲基中间体转移至GCSH。"
+      },
+      {
+        "target": "GCSH",
+        "rationale": "GCSH编码甘氨酸裂解系统H蛋白，是GLDC与AMT之间转运脂酰臂中间体的核心载体。阻断其与AMT或GLDC的蛋白-辅基递送界面具有直接通路相关性。"
+      },
+      {
+        "target": "DLD",
+        "rationale": "DLD编码L蛋白二氢硫辛酰胺脱氢酶，负责再氧化GCSH脂酰臂并维持甘氨酸裂解循环。其功能缺陷可影响同一线粒体多酶复合体的通量。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

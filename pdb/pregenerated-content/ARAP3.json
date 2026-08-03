@@ -1,0 +1,65 @@
+{
+  "gene": "ARAP3",
+  "generatedAt": "2026-08-03T10:32:16.025Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ARAP3 是 PI3K 下游的 PIP3 依赖性 ArfGAP/RhoGAP 调控因子，参与中性粒细胞趋化、整合素依赖黏附和血管内皮迁移，因而与白细胞数量异常和上呼吸道炎症表型具有通路层面的关联。该蛋白主要为胞内信号支架与小 GTP 酶调节酶，缺乏天然胞外结构域，抗原可及性不利于常规体内阻断抗体。相较 CXCR2、ITGB2、PIK3CG 等同通路膜受体或酶靶点，ARAP3 作为主靶点优先级偏低，更适合作为结构生物学验证、细胞内递送抗体或研究级构象探针对象。",
+    "mechanism": "设计抗体应阻断 ARAP3 PH 结构域与 PIP3 头基结合，或干扰 RhoGAP 催化界面对 RhoA/Rac1 的识别，从而抑制小 GTP 酶失活循环。",
+    "selectedEpitope": "优先靶向 PH 结构域磷脂结合口袋周缘，备选覆盖 RhoGAP 催化沟槽邻近构象表面。",
+    "diseaseDirection": "炎症趋化与白细胞数量异常",
+    "domain": "ARAP3 含 SAM、多个 PH 结构域、ArfGAP、RhoGAP 与 ankyrin repeat 模块，PDB 7A9B解析其功能片段构象。",
+    "evidence": "ARAP3-PI3K-小GTP酶炎症迁移证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt Q8WWN8 功能与结构域注释",
+      "RCSB PDB 7A9B X射线晶体结构",
+      "文献报道的 PI3K/PIP3 依赖性中性粒细胞迁移研究"
+    ],
+    "referenceEntries": "UniProt Q8WWN8；RCSB PDB 7A9B；Open Targets ARAP3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PH结构域PIP3结合口袋周缘",
+        "可直接削弱膜募集与PI3K下游定位，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RhoGAP催化沟槽及GTP酶结合面",
+        "可能阻断RhoA/Rac1识别，但需避免影响整体折叠",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ankyrin repeat外侧重复表面",
+        "结构可成药性较好但功能阻断证据有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ARAP3为胞内蛋白，体内抗体可及性是主要界面风险；建议限定为细胞内抗体、递送型抗体或体外构象探针，并进行交叉结构域特异性筛选。",
+    "structurePrepZh": "以7A9B双链晶体结构为模板，保留解析链A/B，检查缺失环区和晶体接触界面，按功能结构域拆分后进行表位暴露度与保守性评估。",
+    "structureRef": "RCSB PDB 7A9B，X-ray diffraction，2.0 Å",
+    "antibodies": [
+      "研究级抗ARAP3多克隆抗体",
+      "研究级抗ARAP3单克隆抗体"
+    ],
+    "interfaceFocus": "PH-PIP3口袋与RhoGAP-GTP酶识别面",
+    "designMode": "胞内阻断探针",
+    "candidates": [
+      {
+        "target": "CXCR2",
+        "rationale": "CXCR2 是中性粒细胞趋化因子受体，直接驱动上呼吸道炎症中的白细胞募集，且为七跨膜受体，抗体可及性优于ARAP3。"
+      },
+      {
+        "target": "ITGB2",
+        "rationale": "ITGB2 介导白细胞整合素黏附和跨内皮迁移，与ARAP3调控的黏附迁移程序处于同一炎症细胞迁移轴。其胞外结构域适合阻断型抗体设计。"
+      },
+      {
+        "target": "PIK3CG",
+        "rationale": "PIK3CG 产生PIP3并位于ARAP3膜募集上游，是髓系细胞趋化信号的核心节点；虽为胞内激酶，但通路因果性强，适合作为机制参照靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

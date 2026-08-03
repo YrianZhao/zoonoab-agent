@@ -1,0 +1,65 @@
+{
+  "gene": "CDC25B",
+  "generatedAt": "2026-08-03T18:23:14.296Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CDC25B 是双特异性磷酸酶，催化去磷酸化 CDK1/CDK2 的抑制性 Thr14/Tyr15 位点，促进 G2/M 与 S 期检查点推进，细胞周期失衡可参与神经退行性疾病中的异常细胞周期再进入与应激性神经元损伤。该蛋白主要为胞内酶，天然抗原可及性不具备分泌蛋白或膜受体优势，因此更适合发展细胞内递送抗体片段或降解偶联策略。相较 CDK1、CDK2 等广泛必需激酶，CDC25B 的催化口袋与远端调控界面提供更具选择性的磷酸酶干预窗口，优先级应定位为机制验证型靶点。",
+    "mechanism": "抗体片段阻断 CDC25B 催化结构域识别 CDK1/CDK2 磷酸化底物，限制 Thr14/Tyr15 去磷酸化并抑制异常细胞周期推进。",
+    "selectedEpitope": "优先覆盖催化结构域 HCX5R 活性环邻近底物结合沟槽，避开保守磷酸酶核心深口袋。",
+    "diseaseDirection": "神经退行性疾病与细胞周期异常",
+    "domain": "CDC25B 含 N 端调控区与 C 端双特异性磷酸酶催化结构域，PDB 9T09 覆盖催化核心。",
+    "evidence": "CDC25B 细胞周期磷酸酶结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt reviewed entry P30305",
+      "RCSB PDB 9T09 X-ray structure",
+      "cell-cycle CDK inhibitory phosphorylation literature"
+    ],
+    "referenceEntries": "UniProt P30305；RCSB PDB 9T09；Open Targets CDC25B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域底物结合沟槽及 HCX5R 活性环周缘",
+        "可直接干扰 CDK1/CDK2 底物进入与磷酸酪氨酸定位，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化核心远端调控面及 C 端结构稳定界面",
+        "可能通过构象限制降低酶活，保守性压力低于活性位点",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守蛋白酪氨酸磷酸酶活性口袋中心",
+        "易产生 CDC25 家族交叉反应并影响亲和成熟可开发性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CDC25B 为胞内靶点，常规抗体难以到达作用位点；建议采用 VHH、细胞穿透递送或抗体降解平台，并严格评估 CDC25A/CDC25C 交叉反应。",
+    "structurePrepZh": "以 1.34 Å X-ray 结构 9T09 链 A 为模板，补全缺失侧链与质子化状态，标注催化半胱氨酸、底物沟槽和保守磷酸酶环。",
+    "structureRef": "RCSB PDB 9T09，human CDC25B catalytic domain, X-ray 1.34 Å",
+    "antibodies": [
+      "抗 CDC25B 研究级单克隆抗体",
+      "细胞内抗 CDC25B intrabody/VHH 原型"
+    ],
+    "interfaceFocus": "CDK 底物结合沟槽与 HCX5R 活性环周缘",
+    "designMode": "胞内VHH抑制",
+    "candidates": [
+      {
+        "target": "CDK1",
+        "rationale": "CDK1 是 CDC25B 的关键下游底物，Thr14/Tyr15 去磷酸化后驱动 G2/M 转换；其异常激活与神经元细胞周期再进入机制相关。"
+      },
+      {
+        "target": "CDK2",
+        "rationale": "CDK2 同样受 CDC25B 去磷酸化调控，参与 S 期推进与应激条件下的细胞周期异常激活，可作为同一路径的替代干预节点。"
+      },
+      {
+        "target": "WEE1",
+        "rationale": "WEE1 在 CDK1/CDK2 的 Tyr15 位点添加抑制性磷酸化，与 CDC25B 构成同一检查点调控轴，适合用于通路平衡验证。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

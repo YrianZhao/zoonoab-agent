@@ -1,0 +1,65 @@
+{
+  "gene": "H3C2",
+  "generatedAt": "2026-08-03T19:35:26.038Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "H3C2编码复制依赖性组蛋白H3.1，其蛋白产物参与核小体组装、染色质压缩及表观遗传调控，肿瘤和感染相关疾病中的关联更可能反映染色质状态改变、细胞周期活跃度及病毒利用宿主染色质机制，而非经典胞外药物靶点轴。该蛋白主要定位于细胞核并包埋于核小体内部，天然抗原可及性显著低于分泌蛋白或跨膜受体，抗体设计更适合用于胞内递送、染色质检测或研究级阻断体系。优先级低于PDCD1、CTLA4、EGFR等同疾病方向的膜受体或免疫检查点靶点；其优势在于P68431对应的H3.1序列保守、结构解析充分，适合开展精确定义的结构表位设计。",
+    "mechanism": "设计抗体可识别H3.1核小体外露N端尾部或α1螺旋邻近表面，阻断组蛋白修饰识别蛋白与H3尾部标记的结合，用于解析染色质调控机制。",
+    "selectedEpitope": "优先选择H3 N端尾部K4-K27修饰密集区及核小体外露入口邻近表面。",
+    "diseaseDirection": "肿瘤表观遗传与感染宿主因子",
+    "domain": "H3含N端可修饰尾部、histone-fold α1-α3螺旋及与H4形成二聚体界面。",
+    "evidence": "H3C2染色质结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P68431组蛋白H3.1功能注释",
+      "RCSB PDB 1Q3L核小体晶体结构",
+      "ENCODE与ChIP-seq组蛋白修饰数据"
+    ],
+    "referenceEntries": "UniProt P68431；RCSB PDB 1Q3L；Open Targets H3C2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "H3 N端尾部K4-K27修饰密集区",
+        "外露且承载甲基化、乙酰化等疾病相关染色质读码信号，适合制备修饰特异抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "α1螺旋及核小体DNA入口邻近区域",
+        "可干预H3-DNA局部接触或核小体结合构象，适合结构依赖型抗体探索",
+        "备选"
+      ],
+      [
+        "Site C",
+        "H3-H4 histone-fold二聚体核心界面",
+        "界面高度保守且多被核小体内部遮蔽，可能影响基础染色质装配并带来选择性不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "H3C2为核内高度保守组蛋白，胞外抗体成药可及性不足且旁系H3变体交叉反应风险高；建议限定为修饰特异、构象特异或递送型抗体设计。",
+    "structurePrepZh": "以1Q3L核小体结构为模板，保留抗原链A、P并校验H3链编号；补建柔性N端尾部缺失残基，标注K4、K9、K27等修饰位点。",
+    "structureRef": "PDB 1Q3L，1.64 Å核小体X射线晶体结构",
+    "antibodies": [
+      "抗H3K27me3抗体",
+      "抗H3K9ac抗体"
+    ],
+    "interfaceFocus": "H3尾部读码因子结合面与DNA入口邻近面",
+    "designMode": "胞内/修饰特异抗体",
+    "candidates": [
+      {
+        "target": "EZH2",
+        "rationale": "EZH2为PRC2催化亚基，直接催化H3K27三甲基化，与胶质瘤、乳腺癌和黑色素瘤中的染色质沉默轴密切相关。"
+      },
+      {
+        "target": "KMT2A",
+        "rationale": "KMT2A参与H3K4甲基化并调控转录激活状态，处于与H3 N端修饰读码相同的表观遗传调控通路。"
+      },
+      {
+        "target": "HDAC1",
+        "rationale": "HDAC1去除H3尾部赖氨酸乙酰化标记，影响染色质压缩和肿瘤相关转录程序，可作为H3乙酰化轴的同通路候选靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

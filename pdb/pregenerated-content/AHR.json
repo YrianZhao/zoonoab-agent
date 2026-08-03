@@ -1,0 +1,65 @@
+{
+  "gene": "AHR",
+  "generatedAt": "2026-08-03T18:05:43.755Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "AHR 是配体激活型转录因子，在银屑病和特应性皮炎中通过调控角质形成细胞分化、屏障基因表达及 IL-17/IL-22 相关炎症反应参与疾病通路。该蛋白主要定位于胞质并在配体结合后转入细胞核，缺乏天然胞外结构域，因此常规体内阻断性抗体抗原可及性较弱；其 PAS-B 配体结合腔可用于体外构象识别或细胞内递送抗体设计。相较 IL17A、IL23A 等已高度竞争化的炎症因子靶点，AHR 具有上游环境配体感知与屏障免疫整合优势，但抗体优先级应限定于研究型或递送型分子设计场景。",
+    "mechanism": "设计抗体识别 AHR PAS-B 配体结合结构域，干预配体诱导构象变化及 AHR-ARNT 转录复合体形成，从而降低靶基因转录激活。",
+    "selectedEpitope": "优先聚焦 PAS-B 配体结合腔入口及相邻 Hβ/Iβ 结构元件，避免核心疏水腔完全埋藏区域。",
+    "diseaseDirection": "炎症性皮肤病与屏障免疫",
+    "domain": "AHR 含 bHLH DNA 结合区、PAS-A 二聚化区、PAS-B 配体结合区及 C 端转录激活区。",
+    "evidence": "AHR 皮肤炎症与 PAS-B 结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt P35869 功能与结构域注释",
+      "RCSB PDB 5NJ8 X-ray 结构条目",
+      "银屑病与特应性皮炎中 AHR 免疫调控文献"
+    ],
+    "referenceEntries": "UniProt P35869；RCSB PDB 5NJ8；Open Targets AHR",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PAS-B 配体结合腔入口及周边螺旋-折叠片界面",
+        "有利于阻断配体进入并稳定非活化构象",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PAS-A/PAS-B 相邻外露面与构象耦联区域",
+        "可影响 AHR 与 ARNT 复合体装配的构象传递",
+        "备选"
+      ],
+      [
+        "Site C",
+        "bHLH DNA 结合区碱性片段附近",
+        "可能干预 DNA 结合但保守性高且核内可及性受限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "AHR 为胞内转录因子，传统全长 IgG 难以到达胞质或细胞核；建议采用细胞内递送 Fab、VHH 或降解偶联策略，并严格评估 CYP1A1 等靶基因扰动。",
+    "structurePrepZh": "以 PDB 5NJ8 的 AHR PAS-B 结构域为模板，补全缺失环区、校正质子化状态并保留配体结合腔构象，用于表位可及性与对接建模。",
+    "structureRef": "RCSB PDB 5NJ8，human AHR PAS-B，X-ray 3.3 Å",
+    "antibodies": [
+      "研究用抗 AHR 单克隆抗体 RPT1",
+      "研究用抗 AHR 单克隆抗体 FF3399"
+    ],
+    "interfaceFocus": "PAS-B 配体入口与 ARNT 构象耦联面",
+    "designMode": "胞内VHH/Fab",
+    "candidates": [
+      {
+        "target": "ARNT",
+        "rationale": "ARNT 是 AHR 激活后形成核内异二聚体的直接伙伴，阻断 AHR-ARNT 复合体可抑制 xenobiotic response element 依赖转录。"
+      },
+      {
+        "target": "IL17A",
+        "rationale": "IL17A 是银屑病炎症轴的核心效应细胞因子，与 AHR 调控的皮肤免疫失衡处于同一疾病网络，具有明确的胞外抗体可及性。"
+      },
+      {
+        "target": "IL23A",
+        "rationale": "IL23A 维持 Th17 细胞反应并驱动 IL-17 相关皮肤炎症，是银屑病通路中已验证的上游细胞因子靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

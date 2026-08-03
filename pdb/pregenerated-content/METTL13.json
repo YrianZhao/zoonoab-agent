@@ -1,0 +1,65 @@
+{
+  "gene": "METTL13",
+  "generatedAt": "2026-08-03T14:12:01.056Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "METTL13是胞内蛋白甲基转移酶，主要催化eEF1A N端Gly2与Lys55甲基化，影响翻译延伸因子功能与蛋白质稳态。Open Targets关联信号主要集中于血小板体积、血小板计数及红细胞计数等血液学性状，提示其可能通过造血细胞蛋白翻译调控影响血细胞生成或成熟。然而，METTL13缺乏分泌形式或跨膜胞外结构域，天然抗原可及性不具备常规治疗性抗体优势，因此更适合作为胞内机制研究、结构抗体或细胞内递送抗体探索靶点；相较于GP1BA、ITGA2B等血小板表面靶点，其抗体开发优先级较低。",
+    "mechanism": "设计抗体结合METTL13甲基转移酶结构域，遮蔽SAM结合沟槽或eEF1A底物识别界面，阻断甲基供体与底物肽段的催化定位。",
+    "selectedEpitope": "优先覆盖5WCJ所示METTL13甲基转移酶核心结构域的SAM结合口袋邻近螺旋-环区及底物肽进入通道。",
+    "diseaseDirection": "血小板与红细胞数量性状",
+    "domain": "METTL13含N端eEF1A Gly2甲基转移酶区及C端七β链SAM依赖性甲基转移酶结构域。",
+    "evidence": "METTL13-eEF1A甲基化与血液学性状证据包",
+    "evidenceSources": [
+      "Open Targets Platform 血小板体积与血细胞计数遗传关联",
+      "UniProt Q8N6R0 METTL13功能注释",
+      "RCSB PDB 5WCJ 人源METTL13晶体结构",
+      "蛋白甲基转移酶催化机制与eEF1A修饰文献"
+    ],
+    "referenceEntries": "UniProt Q8N6R0；RCSB PDB 5WCJ；Open Targets METTL13",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SAM结合口袋邻近保守催化环与α螺旋边缘",
+        "可直接干扰甲基供体定位，适合功能阻断型结构抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "eEF1A底物肽进入通道及带电识别面",
+        "有望阻断底物肽段结合并提高对催化构象的选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离活性中心的结构域外侧溶剂暴露面",
+        "结合可及但功能阻断价值有限，主要用于检测或构象捕获",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "METTL13为胞内酶，常规抗体难以到达作用位点；需采用细胞内递送、纳米抗体或降解偶联策略，并避免跨甲基转移酶家族保守SAM口袋导致脱靶。",
+    "structurePrepZh": "以5WCJ链A为模板，补全缺失侧链与氢原子，保留SAM口袋几何约束，评估活性中心环区构象并去除非生物学晶体接触。",
+    "structureRef": "RCSB PDB 5WCJ，X-ray diffraction，1.7 Å，人源METTL13",
+    "antibodies": [
+      "暂无获批METTL13治疗性抗体",
+      "抗METTL13研究级单克隆抗体"
+    ],
+    "interfaceFocus": "SAM结合沟槽与eEF1A底物肽通道",
+    "designMode": "胞内酶阻断型",
+    "candidates": [
+      {
+        "target": "EEF1A1",
+        "rationale": "EEF1A1是METTL13的直接甲基化底物，参与翻译延伸过程；其修饰状态可作为METTL13通路功能读出。"
+      },
+      {
+        "target": "EEF1A2",
+        "rationale": "EEF1A2与EEF1A1同属eEF1A延伸因子家族，METTL13可催化其保守N端或Lys55位点甲基化，适合作为同一底物轴候选靶点。"
+      },
+      {
+        "target": "METTL10",
+        "rationale": "METTL10同为eEF1A相关赖氨酸甲基转移酶，催化EEF1A Lys318甲基化，可用于比较eEF1A甲基化网络对血液学表型的贡献。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

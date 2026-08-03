@@ -1,0 +1,65 @@
+{
+  "gene": "RAD18",
+  "generatedAt": "2026-08-03T20:41:35.497Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RAD18是DNA损伤耐受通路中的E3泛素连接酶，主要通过与E2酶RAD6A/RAD6B协同催化PCNA Lys164单泛素化，促进跨损伤合成并维持复制叉稳定性，其遗传证据与神经退行性疾病等表型存在关联。该蛋白主要定位于细胞核，缺乏经典胞外结构域或分泌特征，天然抗原可及性不利于常规体内阻断型抗体开发，但适合结构生物学驱动的胞内研究抗体、递送型抗体片段或降解偶联策略探索。相比同通路中PCNA等高丰度核心复制因子，RAD18具有更明确的E3催化与RAD6结合界面，可在机制验证中提供较高通路节点选择性。",
+    "mechanism": "阻断RAD18 RING结构域与RAD6A/RAD6B E2酶的结合，抑制PCNA Lys164单泛素化及后续跨损伤合成募集。",
+    "selectedEpitope": "优先覆盖RING结构域E2结合面及相邻锌配位稳定区，避免破坏非特异折叠表面。",
+    "diseaseDirection": "DNA损伤耐受与神经退行性疾病",
+    "domain": "RAD18含N端RING型E3连接酶结构域、SAP样DNA结合区及C端RAD6结合相关区域。",
+    "evidence": "RAD18-DNA损伤耐受通路结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9NS91功能与结构域注释",
+      "RCSB PDB 8IR4晶体结构记录",
+      "DNA损伤耐受与PCNA泛素化文献"
+    ],
+    "referenceEntries": "UniProt: Q9NS91；RCSB PDB: 8IR4；Open Targets: RAD18",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RING结构域RAD6 E2结合界面",
+        "直接干预E2装载与PCNA单泛素化反应",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SAP样DNA结合区邻近正电表面",
+        "可能影响损伤位点染色质募集与底物定位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "锌配位核心及保守疏水折叠面",
+        "易导致构象塌陷或产生非特异失活表型",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RAD18为胞内核蛋白，体内抗体可及性受限；设计宜定位于机制研究、细胞内递送或降解平台，并规避锌指核心造成的非特异构象扰动。",
+    "structurePrepZh": "以8IR4高分辨率晶体结构为模板，校验抗原链A-D寡聚状态、锌离子配位、缺失环区及界面保守性后进行表位建模。",
+    "structureRef": "RCSB PDB 8IR4，X-ray diffraction，1.62 Å",
+    "antibodies": [
+      "commercial anti-RAD18 research antibody",
+      "RAD18 intracellular binder candidate"
+    ],
+    "interfaceFocus": "RING-RAD6结合面与SAP样DNA结合表面",
+    "designMode": "胞内机制抗体设计",
+    "candidates": [
+      {
+        "target": "RAD6A",
+        "rationale": "RAD6A是RAD18的E2结合伙伴，直接参与PCNA Lys164单泛素化反应；靶向其RAD18结合界面可用于验证同一DNA损伤耐受轴。"
+      },
+      {
+        "target": "RAD6B",
+        "rationale": "RAD6B与RAD18形成E2-E3催化复合体，是跨损伤合成启动所需的功能冗余E2酶；其界面干预可补充RAD6A相关机制验证。"
+      },
+      {
+        "target": "PCNA",
+        "rationale": "PCNA是RAD18-RAD6复合体的关键底物，Lys164单泛素化决定TLS聚合酶募集；靶向PCNA泛素化邻近界面可直接评估通路输出。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

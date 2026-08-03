@@ -1,0 +1,65 @@
+{
+  "gene": "CSF3R",
+  "generatedAt": "2026-08-03T11:40:34.878Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CSF3R是粒细胞集落刺激因子G-CSF的I型细胞因子受体，直接决定STAT3、STAT5、MAPK与PI3K-AKT介导的中性粒细胞生成、存活和动员，遗传缺陷与严重先天性中性粒细胞减少症密切相关，截短或激活性变异亦见于髓系肿瘤。该受体为单跨膜膜蛋白，胞外区含免疫球蛋白样结构域、细胞因子受体同源区和纤连蛋白III样结构域，抗体可直接接近配体结合与受体装配界面。相较下游JAK或STAT靶点，CSF3R具有细胞表面选择性、配体依赖性可阻断界面明确、结构证据可用等优势，适合作为抗体分子设计优先靶点。",
+    "mechanism": "抗体阻断G-CSF与CSF3R胞外细胞因子受体同源区的结合，并干扰受体二聚化装配，从而抑制JAK2介导的STAT3/STAT5磷酸化。",
+    "selectedEpitope": "优先覆盖胞外细胞因子受体同源区D2-D3的G-CSF结合面及二聚化邻近界面。",
+    "diseaseDirection": "中性粒细胞减少症与髓系肿瘤",
+    "domain": "CSF3R胞外区由N端Ig样结构域、D2-D3细胞因子受体同源区及膜近端纤连蛋白III样结构域组成。",
+    "evidence": "CSF3R-G-CSF轴结构与疾病遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q99062功能与结构域注释",
+      "RCSB PDB 2D9Q实验晶体结构",
+      "ClinVar与COSMIC中CSF3R变异记录"
+    ],
+    "referenceEntries": "UniProt Q99062；RCSB PDB 2D9Q；Open Targets CSF3R",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "D2-D3细胞因子受体同源区的G-CSF结合界面",
+        "直接阻断配体识别并抑制受体近端信号启动",
+        "优先"
+      ],
+      [
+        "Site B",
+        "D3与膜近端纤连蛋白III样结构域连接区域",
+        "可能干扰配体诱导的受体构象重排与二聚化稳定",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端Ig样结构域远端暴露面",
+        "抗原可及性较好，但对G-CSF结合阻断效应可能有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "需规避D2-D3保守半胱氨酸、WSXWS样基序及糖基化邻近区域，避免影响折叠稳定性；优先筛选不交叉干扰其他I型细胞因子受体的克隆。",
+    "structurePrepZh": "以2D9Q晶体结构为模板，保留抗原链A、B、C的胞外结构域，补全缺失环区并标注糖基化位点、二硫键与G-CSF结合面用于表位分层。",
+    "structureRef": "PDB 2D9Q；human G-CSF receptor extracellular complex",
+    "antibodies": [
+      "MOR103衍生抗CSF3R研究抗体",
+      "CSF3R blocking antibody clone LMM741"
+    ],
+    "interfaceFocus": "D2-D3配体结合面与受体装配界面",
+    "designMode": "阻断型界面抗体",
+    "candidates": [
+      {
+        "target": "CSF3",
+        "rationale": "CSF3编码G-CSF，是CSF3R的直接配体；中和CSF3可在配体层面阻断同一造血生长因子轴。"
+      },
+      {
+        "target": "JAK2",
+        "rationale": "JAK2与CSF3R胞内近膜区偶联，是G-CSF刺激后STAT3/STAT5激活的关键激酶节点；其通路位置与CSF3R信号转导直接相连。"
+      },
+      {
+        "target": "STAT3",
+        "rationale": "STAT3是CSF3R-JAK信号下游转录因子，参与粒细胞分化、炎症反应及髓系细胞存活程序；可作为下游药效与候选干预节点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

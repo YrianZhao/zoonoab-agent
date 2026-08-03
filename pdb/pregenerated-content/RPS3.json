@@ -1,0 +1,65 @@
+{
+  "gene": "RPS3",
+  "generatedAt": "2026-08-03T16:13:49.199Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RPS3是40S核糖体小亚基组成蛋白，参与mRNA解码平台形成，并在DNA损伤应答及NF-κB复合体转录调控中具有非核糖体功能；其疾病关联主要反映肌营养不良、病毒感染和炎症状态中的翻译稳态及宿主应答改变。该蛋白主要定位于胞质和细胞核，缺乏稳定胞外结构域或分泌形式，因此天然抗体可及性不足，作为常规细胞表面阻断型抗体靶点存在显著限制。相较CD55、ICAM1或TMPRSS2等同感染相关通路的膜蛋白，RPS3优先级较低，更适合作为细胞内机制研究、递送型抗体片段或结构生物学验证靶点。",
+    "mechanism": "设计重点为干预RPS3与18S rRNA及相邻40S核糖体蛋白的装配界面，或阻断其与NF-κB p65复合体相关相互作用。",
+    "selectedEpitope": "优先评估RPS3 N端核酸结合样结构域及中央保守折叠外露环，避开深埋18S rRNA结合面。",
+    "diseaseDirection": "病毒感染与翻译稳态异常",
+    "domain": "RPS3含N端S3-NTD样结构域和C端S3-CTD样α/β折叠，嵌入40S小亚基并接触18S rRNA。",
+    "evidence": "RPS3结构定位与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P23396功能与亚细胞定位注释",
+      "RCSB PDB 5VYC人源核糖体结构",
+      "文献报道RPS3参与NF-κB依赖转录调控"
+    ],
+    "referenceEntries": "UniProt:P23396；RCSB PDB:5VYC；HGNC:RPS3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端S3-NTD样外露环及邻近带正电表面",
+        "可能影响RNA结合相关构象，同时具备相对可建模表面",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端S3-CTD样结构域外侧α螺旋-环区",
+        "可用于识别游离或部分暴露RPS3，降低对核糖体核心装配面的干扰",
+        "备选"
+      ],
+      [
+        "Site C",
+        "18S rRNA及40S邻近蛋白接触界面",
+        "该区域高度保守且多为复合体埋藏界面，易产生构象依赖性和可及性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RPS3为细胞内核糖体蛋白，抗体进入细胞和抗原暴露均为主要风险；低分辨率结构需避免过度依赖侧链精确构象。",
+    "structurePrepZh": "以PDB 5VYC中RPS3链为模板提取单体及40S邻域，补全缺失环区，保留18S rRNA接触信息用于界面遮蔽标注。",
+    "structureRef": "PDB 5VYC，人源80S核糖体X射线结构，6.0 Å",
+    "antibodies": [
+      "commercial anti-RPS3 antibody",
+      "intracellular anti-RPS3 research antibody"
+    ],
+    "interfaceFocus": "18S rRNA结合面与40S邻近蛋白接触区",
+    "designMode": "细胞内靶点探索",
+    "candidates": [
+      {
+        "target": "RACK1",
+        "rationale": "RACK1位于40S小亚基表面，参与翻译调控并被多种病毒利用调节宿主蛋白合成，结构暴露度较RPS3更适合表面复合体识别策略。"
+      },
+      {
+        "target": "EIF4G1",
+        "rationale": "EIF4G1是帽依赖翻译起始支架蛋白，与EIF4E和PABP连接形成翻译起始复合体，适合围绕病毒感染中的宿主翻译依赖性进行机制比较。"
+      },
+      {
+        "target": "NFKB1",
+        "rationale": "NFKB1是NF-κB通路核心转录因子成员，与RPS3非核糖体功能共同涉及炎症和感染应答转录调控，可作为同一宿主应答轴候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

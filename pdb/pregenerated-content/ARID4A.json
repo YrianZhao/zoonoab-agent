@@ -1,0 +1,65 @@
+{
+  "gene": "ARID4A",
+  "generatedAt": "2026-08-03T10:35:36.043Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ARID4A 为核内染色质调控蛋白，含 ARID DNA 结合域与 Tudor/PWWP 相关读码模块，参与视网膜母细胞瘤蛋白相关转录抑制复合体及组蛋白修饰读取；Open Targets 关联主要集中于红细胞参数、炎症标志物和脂质表型，提示其与造血分化及代谢炎症相关转录程序存在遗传层面关联。该蛋白并非分泌蛋白或膜受体，天然抗原可及性弱，因此更适合作为细胞内靶点机制研究、胞内抗体或降解导向抗体片段的设计对象，而非常规体内中和抗体靶点。相比可直接药物化的细胞因子或膜受体，ARID4A 的优先级优势在于具备高分辨率实验结构和明确染色质结合结构域，可用于结构驱动的选择性界面干预；但其临床抗体开发优先级应低于胞外可及靶点。",
+    "mechanism": "通过抗体片段占据 ARID4A 读码结构域的配体结合沟槽，阻断其与甲基化组蛋白尾或染色质结合界面的相互作用，从而干预 RB 相关转录抑制复合体定位。",
+    "selectedEpitope": "优先靶向 6BPH 所示 Tudor/PWWP 样结构域的芳香笼及邻近肽结合沟槽，避免核心折叠疏水面。",
+    "diseaseDirection": "造血性状与炎症代谢遗传关联",
+    "domain": "ARID4A 含 N 端 ARID DNA 结合域、Tudor/PWWP 样染色质读码结构域及 C 端转录调控区。",
+    "evidence": "ARID4A 染色质读码与血液炎症表型证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt reviewed entry P29374",
+      "RCSB PDB 6BPH X-ray structure",
+      "Gene Ontology chromatin and transcription regulation annotations"
+    ],
+    "referenceEntries": "UniProt P29374；RCSB PDB 6BPH；Ensembl ENSG00000032219",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Tudor/PWWP 样结构域芳香笼与肽结合沟槽",
+        "可直接竞争组蛋白尾识别界面，适合功能阻断型胞内抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ARID DNA 结合域预测核酸结合表面",
+        "可能干预染色质定位，但需额外结构或突变证据确认界面",
+        "备选"
+      ],
+      [
+        "Site C",
+        "结构域核心 β 折叠疏水支撑区",
+        "易造成非特异性构象扰动与低选择性结合，不宜作为主表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ARID4A 为核内蛋白，常规抗体体内可及性不足；建议限定为胞内 Fab/VHH、细胞递送或 PROTAC/降解偶联验证，并优先评估同源读码结构域交叉反应。",
+    "structurePrepZh": "以 6BPH 链 A 为结构模板，保留解析区域并补全缺失侧链；对芳香笼、带电沟槽和晶体接触面进行分离标注，避免将晶体堆积界面误判为功能表位。",
+    "structureRef": "RCSB PDB 6BPH，X-ray diffraction，1.85 Å",
+    "antibodies": [
+      "暂无获批 ARID4A 靶向治疗性抗体",
+      "ARID4A 研究级检测抗体"
+    ],
+    "interfaceFocus": "Tudor/PWWP 芳香笼及组蛋白肽结合沟槽",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "RB1",
+        "rationale": "RB1 与 ARID4A 同属视网膜母细胞瘤蛋白相关转录抑制网络核心节点，可作为染色质抑制复合体功能关联验证靶点。"
+      },
+      {
+        "target": "HDAC1",
+        "rationale": "HDAC1 参与 RB 相关转录抑制和染色质去乙酰化，与 ARID4A 介导的转录沉默过程处于同一功能通路。"
+      },
+      {
+        "target": "RBBP4",
+        "rationale": "RBBP4 为组蛋白结合型染色质复合体亚基，常见于转录抑制与核小体重塑复合体，可用于比较染色质读码模块依赖性效应。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

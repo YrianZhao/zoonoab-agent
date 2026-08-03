@@ -1,0 +1,65 @@
+{
+  "gene": "SMYD2",
+  "generatedAt": "2026-08-03T16:45:22.572Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SMYD2 是依赖 SAM 的赖氨酸甲基转移酶，参与组蛋白及多种非组蛋白底物修饰，可通过影响细胞增殖、炎症与肿瘤相关转录程序介入疾病过程。其蛋白为可溶性胞内酶，整体不具备天然抗体可及性，因而更适合作为功能阻断型或递送型分子设计的主靶点而非经典膜抗原。相较同类甲基转移酶，SMYD2 具有清晰的晶体结构基础与已解析的底物结合口袋信息，便于围绕 SAM 结合区及底物识别界面建立高分辨率设计策略。",
+    "mechanism": "通过占据 SAM 结合口袋并干扰底物肽链进入，阻断 SMYD2 对组蛋白及非组蛋白底物的甲基化。",
+    "selectedEpitope": "优先覆盖 SET 催化口袋及底物入口邻域，避免直接遮挡 MYND 介导的蛋白互作骨架。",
+    "diseaseDirection": "炎症-肿瘤相关表观遗传调控",
+    "domain": "SET 催化结构域与邻近底物结合沟槽，MYND 结构域参与蛋白互作。",
+    "evidence": "SMYD2 结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform",
+      "UniProt Q9NRG4",
+      "RCSB PDB 4WUY",
+      "PubMed 结构与功能文献"
+    ],
+    "referenceEntries": "UniProt: Q9NRG4; PDB: 4WUY; Open Targets: SMYD2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SET 结构域 SAM 结合口袋",
+        "直接干扰辅因子结合，最适合构建抑制型抗体或纳米抗体界面",
+        "优先"
+      ],
+      [
+        "Site B",
+        "底物肽链入口沟槽",
+        "阻断底物进入催化中心，利于获得功能性抑制而非单纯结合",
+        "备选"
+      ],
+      [
+        "Site C",
+        "MYND 结构域表面",
+        "可用于调节蛋白互作网络，但对催化抑制的确定性较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SMYD2 为胞内酶，常规抗体难以直接接触天然靶标；需优先考虑胞内递送、细胞内抗体或替代结合分子。SET 催化区保守性较高，需同步评估选择性与同源酶交叉反应。",
+    "structurePrepZh": "以 4WUY 为核心模板补全缺失侧链与局部环区，统一 SAM 与底物模拟配体坐标后进行界面热点评估。建议对催化口袋、入口沟槽及 MYND 表面分别建立独立构象集合。",
+    "structureRef": "RCSB PDB 4WUY; X-ray 1.63 Å",
+    "antibodies": [
+      "无成熟临床同类抗体",
+      "无已确证 SMYD2 中和抗体"
+    ],
+    "interfaceFocus": "SET 催化口袋与底物入口沟槽",
+    "designMode": "intracellular-blocking",
+    "candidates": [
+      {
+        "target": "EZH2",
+        "rationale": "同属甲基转移酶通路，参与表观遗传沉默与肿瘤相关转录调控，可作为同轴比较靶点。其机制与 SMYD2 在酶学阻断策略上具有可比性。"
+      },
+      {
+        "target": "SUV39H1",
+        "rationale": "同为赖氨酸甲基转移酶，介导染色质甲基化标记沉积，与 SMYD2 共享表观遗传疾病通路。适合用于评估催化位点保守性带来的交叉反应风险。"
+      },
+      {
+        "target": "KMT2A",
+        "rationale": "属于同一组蛋白甲基转移酶疾病网络，参与转录激活与血液系统异常相关过程。可用于构建与 SMYD2 并行的疾病通路比较框架。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

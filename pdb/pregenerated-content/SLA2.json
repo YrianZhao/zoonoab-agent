@@ -1,0 +1,65 @@
+{
+  "gene": "SLA2",
+  "generatedAt": "2026-08-03T16:34:34.288Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SLA2编码胞内适配蛋白Src like adaptor 2，含SH3与SH2信号识别模块，主要参与免疫受体近端酪氨酸磷酸化复合物的装配调节；现有关联信号以体重、瘦体重、体成分和骨骼异常表型为主，但疾病通路层面的因果机制尚不充分。该蛋白缺乏分泌形式、跨膜区和稳定胞外结构域，天然抗原可及性不符合常规阻断型抗体靶点特征。与同通路中具有细胞表面可及性的FCGR、TCR/CD3或整合素相关靶点相比，SLA2更适合作为结构与机制研究对象，抗体设计优先级应定位为胞内蛋白检测、构象捕获或研究级工具抗体。",
+    "mechanism": "研究级抗体可识别SLA2 SH3-SH2模块构象，干预其与含脯氨酸基序或磷酸酪氨酸肽段的结合，用于解析免疫受体近端信号复合物装配。",
+    "selectedEpitope": "优先选择4M4Z所覆盖SH3-SH2连接区外侧非配体沟槽表位，避免遮蔽SH2磷酸肽结合袋。",
+    "diseaseDirection": "免疫信号与体成分相关表型",
+    "domain": "SLA2为胞内适配蛋白，包含N端SH3结构域、中央SH2结构域及C端富含酪氨酸调控区。",
+    "evidence": "SLA2结构域与遗传表型关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB Q9H6Q3蛋白功能注释",
+      "RCSB PDB 4M4Z晶体结构记录",
+      "免疫受体近端适配蛋白信号研究文献"
+    ],
+    "referenceEntries": "UniProtKB: Q9H6Q3; RCSB PDB: 4M4Z; Ensembl: ENSG00000101082",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SH3-SH2连接区外侧暴露面",
+        "利于获得构象识别抗体并降低对核心配体结合沟槽的直接干扰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SH2结构域磷酸酪氨酸结合袋邻近环区",
+        "可用于开发阻断磷酸肽识别的机制型工具抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SH3结构域脯氨酸富集肽结合沟槽",
+        "可能影响天然配体结合但保守性较高，需控制交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SLA2为胞内非分泌蛋白，体内治疗性抗体难以到达靶点；设计宜限定为检测、成像或细胞内递送研究场景，并重点评估SH3/SH2家族交叉反应。",
+    "structurePrepZh": "以4M4Z链A为结构模板，保留实验解析的SH3-SH2核心区，补建缺失环区并进行质子化、表面电荷和保守性映射。",
+    "structureRef": "RCSB PDB 4M4Z, X-ray diffraction, 2.1 Å, chain A",
+    "antibodies": [
+      "研究级anti-SLA2抗体",
+      "anti-SH2 domain工具抗体"
+    ],
+    "interfaceFocus": "SH2磷酸肽结合袋与SH3配体沟槽邻近界面",
+    "designMode": "研究级工具抗体设计",
+    "candidates": [
+      {
+        "target": "FCGR2A",
+        "rationale": "FCGR2A为免疫受体近端信号通路中的细胞表面Fc受体，能够通过ITAM相关复合物招募SYK并影响髓系细胞活化，抗原可及性优于胞内SLA2。"
+      },
+      {
+        "target": "SYK",
+        "rationale": "SYK是免疫受体酪氨酸磷酸化信号的核心激酶，位于SLA2相关适配蛋白网络下游；其机制证据强，但胞内定位使常规抗体开发受限。"
+      },
+      {
+        "target": "LCP2",
+        "rationale": "LCP2/SLP-76参与TCR和Fc受体信号复合物装配，与SLA2同属免疫受体近端适配网络，可作为解析细胞活化与代谢表型关联的候选机制节点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "ALOX5",
+  "generatedAt": "2026-08-03T10:24:29.199Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ALOX5催化花生四烯酸生成5-HPETE并进一步形成白三烯A4，是半胱氨酰白三烯和LTB4炎症轴的限速酶，参与哮喘、溃疡性结肠炎和关节炎中的中性粒细胞募集、支气管收缩与黏膜炎症。该蛋白主要为胞质可溶性酶，并非天然膜外抗原，因此抗体药物可及性弱于膜受体或分泌因子，更适合结构生物学表征、细胞内递送抗体或研究级阻断设计。相较下游受体，ALOX5位于白三烯合成上游，可同时降低LTB4与半胱氨酰白三烯生成，通路覆盖度较高，但成药优先级需受细胞内可及性限制约束。",
+    "mechanism": "抗体设计以阻断ALOX5催化结构域对花生四烯酸底物通道的进入，或干扰N端PLAT结构域介导的钙依赖膜结合，从而抑制5-HPETE与LTA4生成。",
+    "selectedEpitope": "优先靶向催化结构域底物进入通道邻近螺旋束，备选N端PLAT膜结合环区。",
+    "diseaseDirection": "白三烯介导炎症性疾病",
+    "domain": "ALOX5含N端C2样PLAT结构域及C端脂氧合酶催化结构域，催化核心结合非血红素铁。",
+    "evidence": "ALOX5白三烯炎症轴结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与药理关联",
+      "UniProt P09917功能与结构域注释",
+      "RCSB PDB 7TTK X射线晶体结构",
+      "KEGG/Reactome花生四烯酸与白三烯生物合成通路"
+    ],
+    "referenceEntries": "UniProt P09917；RCSB PDB 7TTK；Open Targets ALOX5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端催化结构域底物通道入口及相邻螺旋束",
+        "可阻断花生四烯酸进入催化腔并限制5-HPETE生成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端PLAT结构域钙依赖膜结合环区",
+        "可削弱ALOX5向核膜转位及与膜磷脂底物接触",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化核心铁配位残基邻近内埋区域",
+        "功能关键但结构内埋、抗体可达性低且易影响构象稳定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ALOX5为胞内可溶性酶，常规体液抗体难以接触天然抗原；设计应标注递送需求，并优先避免深埋铁配位核心表位。",
+    "structurePrepZh": "采用7TTK链A/B进行抗原建模，保留催化铁及关键配体信息，检查PLAT与催化结构域界面、缺失环区和晶体接触。",
+    "structureRef": "Human ALOX5 crystal structure, PDB 7TTK, 1.98 Å",
+    "antibodies": [
+      "研究级抗ALOX5单克隆抗体",
+      "研究级抗5-lipoxygenase抗体"
+    ],
+    "interfaceFocus": "底物通道入口、PLAT膜结合环与催化结构域界面",
+    "designMode": "胞内酶阻断型",
+    "candidates": [
+      {
+        "target": "ALOX5AP",
+        "rationale": "ALOX5AP/FLAP将花生四烯酸递送至ALOX5，是白三烯合成的膜相关辅助蛋白；膜定位特征使其相较ALOX5具有更高抗体可及性。"
+      },
+      {
+        "target": "LTA4H",
+        "rationale": "LTA4H将ALOX5产物LTA4水解生成LTB4，直接驱动中性粒细胞趋化；阻断该节点可选择性降低LTB4炎症臂。"
+      },
+      {
+        "target": "CYSLTR1",
+        "rationale": "CYSLTR1为LTC4、LTD4和LTE4受体，介导支气管收缩、血管通透性和黏液分泌；其膜受体属性适合抗体表位设计。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

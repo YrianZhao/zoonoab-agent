@@ -1,0 +1,65 @@
+{
+  "gene": "DUSP16",
+  "generatedAt": "2026-08-03T18:47:21.096Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DUSP16为胞内MAPK磷酸酶，主要通过去磷酸化JNK与p38 MAPK调节应激、炎症和心血管相关细胞反应，其遗传关联信号集中于血压、心率和体格表型。该蛋白缺乏跨膜区和分泌信号肽，天然抗原可及性不适合常规细胞外阻断抗体，需定位为结构生物学驱动的胞内结合分子或研究级抗体设计。相比上游激酶或受体，DUSP16对MAPK支路具有较高节点特异性，但因临床抗体可达性劣势，优先级应低于细胞表面心血管通路靶点。",
+    "mechanism": "设计结合DUSP16催化结构域或MAPK docking界面的胞内抗体，阻断其与JNK/p38底物结合或限制催化环构象，从而减少底物去磷酸化。",
+    "selectedEpitope": "优先覆盖催化结构域的MAPK底物结合沟槽及WPD样催化环邻近区域，避开高度保守活性位点中心。",
+    "diseaseDirection": "心血管数量性状与MAPK应激通路",
+    "domain": "DUSP16含N端MAPK结合/调控区域及C端双特异性磷酸酶催化结构域，2VSW覆盖催化核心。",
+    "evidence": "DUSP16结构与心血管遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9BY84蛋白功能注释",
+      "RCSB PDB 2VSW晶体结构",
+      "MAPK磷酸酶调控JNK/p38文献证据"
+    ],
+    "referenceEntries": "UniProt Q9BY84；RCSB PDB 2VSW；Open Targets DUSP16",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域底物结合沟槽与MAPK docking邻近面",
+        "可干预JNK/p38进入催化位点，具备机制验证价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化环及磷酸酪氨酸/磷酸苏氨酸识别口袋外缘",
+        "可能限制催化构象转换，但需避免直接模拟底物磷酸基团",
+        "备选"
+      ],
+      [
+        "Site C",
+        "DUSP家族高度保守HCX5R催化基序核心",
+        "保守性高且易产生广谱交叉反应，选择性设计风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DUSP16为胞内酶，常规治疗性抗体递送与抗原可及性受限；应优先用于胞内抗体、结构探针或降解偶联平台，并强化DUSP家族选择性筛选。",
+    "structurePrepZh": "以2VSW链A/B催化结构域为模板，补全缺失侧链，保留催化Cys周边构象，标注二聚体/晶体接触并剔除非生理界面干扰。",
+    "structureRef": "RCSB PDB 2VSW，X-ray diffraction，2.2 Å",
+    "antibodies": [
+      "研究级anti-DUSP16抗体",
+      "研究级anti-MKP7抗体"
+    ],
+    "interfaceFocus": "MAPK底物结合沟槽与催化环外缘",
+    "designMode": "胞内阻断型",
+    "candidates": [
+      {
+        "target": "MAPK8",
+        "rationale": "MAPK8编码JNK1，是DUSP16去磷酸化底物之一，处于同一应激MAPK通路，可用于验证DUSP16-JNK轴的疾病相关性。"
+      },
+      {
+        "target": "MAPK14",
+        "rationale": "MAPK14编码p38α，是DUSP16调控的关键MAPK支路成员，与炎症、血管反应和心血管表型存在明确通路联系。"
+      },
+      {
+        "target": "MAP2K7",
+        "rationale": "MAP2K7为JNK上游激酶，参与JNK磷酸化激活，与DUSP16介导的去磷酸化形成同一通路的相反调控节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

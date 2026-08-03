@@ -1,0 +1,65 @@
+{
+  "gene": "SPR",
+  "generatedAt": "2026-08-03T16:53:10.120Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SPR编码的sepiapterin reductase是四氢生物蝶呤再生通路末端还原酶，催化sepiapterin及6-pyruvoyl-tetrahydropterin衍生物生成BH4；其缺陷导致多巴胺、5-羟色胺及一氧化氮合成受限，与多巴反应性肌张力障碍和智力发育异常具有明确遗传关联。SPR为胞质可溶性酶，缺乏天然胞外结构域，抗体可及性不适合常规体内阻断型抗体，但适用于细胞内递送抗体、诊断捕获抗体及酶构象识别工具抗体开发。相较BH4通路中上游酶，SPR具有高分辨率人源晶体结构和明确NADP(H)/底物结合口袋，便于开展结构约束的表位设计与功能性构象探针筛选。",
+    "mechanism": "设计抗体识别SPR二聚体邻近NADP(H)结合沟槽的构象表位，干扰辅因子稳定结合或标记SPR缺陷构象，用于通路功能评估。",
+    "selectedEpitope": "优先靶向Rossmann样NADP(H)结合域外缘与二聚体界面相邻环区，避免完全埋藏催化口袋。",
+    "diseaseDirection": "BH4缺陷相关神经发育与肌张力障碍",
+    "domain": "人SPR为短链脱氢/还原酶家族胞质酶，含N端Rossmann样NADP(H)结合折叠及C端底物结合区。",
+    "evidence": "SPR-BH4合成通路与神经递质缺陷证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P35270功能与亚细胞定位注释",
+      "RCSB PDB 6I6V人SPR晶体结构",
+      "OMIM/ClinVar SPR缺陷相关变异证据"
+    ],
+    "referenceEntries": "UniProt P35270；RCSB PDB 6I6V；Open Targets SPR",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "NADP(H)结合Rossmann折叠外缘环区",
+        "邻近辅因子结合沟槽，可获得构象识别并降低深口袋不可及风险",
+        "优先"
+      ],
+      [
+        "Site B",
+        "A/B链二聚体界面周边非保守暴露面",
+        "有利于识别功能性二聚体状态，可作为构象捕获表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化残基邻近底物结合深沟槽",
+        "功能相关性强但空间埋藏度高，抗体进入受限且易影响折叠稳定性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SPR为胞质酶，常规治疗性抗体难以到达天然作用位点；设计应定位为细胞内递送、诊断或工具抗体，并避开高度保守催化核心以降低交叉反应风险。",
+    "structurePrepZh": "以6I6V的A、B链二聚体为建模基础，保留NADP(H)结合区几何约束，检查晶体接触、缺失残基、质子化状态及表面暴露性。",
+    "structureRef": "RCSB PDB 6I6V，人源SPR X-ray结构，1.43 Å",
+    "antibodies": [
+      "Anti-SPR diagnostic antibody",
+      "Anti-sepiapterin reductase monoclonal antibody"
+    ],
+    "interfaceFocus": "NADP(H)结合沟槽外缘与二聚体界面",
+    "designMode": "胞内酶构象抗体",
+    "candidates": [
+      {
+        "target": "GCH1",
+        "rationale": "GCH1是BH4从头合成通路限速酶，其功能缺陷同样导致多巴反应性肌张力障碍，位于SPR上游并决定BH4供给。"
+      },
+      {
+        "target": "PTS",
+        "rationale": "PTS催化6-pyruvoyl-tetrahydropterin生成，是BH4合成通路中连接GCH1与SPR的关键酶，缺陷可引起BH4缺乏相关神经递质异常。"
+      },
+      {
+        "target": "QDPR",
+        "rationale": "QDPR参与BH4再循环并维持芳香族氨基酸羟化酶辅因子供应，与高苯丙氨酸血症及神经递质缺陷表型相关。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

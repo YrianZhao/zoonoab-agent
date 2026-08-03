@@ -1,0 +1,65 @@
+{
+  "gene": "DIAPH3",
+  "generatedAt": "2026-08-03T11:57:09.735Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DIAPH3 编码细胞内成核延伸因子 mDia2，参与肌动蛋白丝装配、细胞骨架重塑和耳蜗毛细胞静纤毛维持，其增功能变异与常染色体显性非综合征性听力损失 DFNA1 明确相关。该蛋白主要定位于胞质，缺乏分泌型或跨膜胞外结构域，抗原可及性不符合常规治疗性抗体直接阻断模式，更适合作为结构生物学验证或胞内递送抗体研究对象。相较于同通路中可直接被胞外抗体接触的膜受体，DIAPH3 的优先级受限；但其疾病遗传因果性和 5UWP 高分辨率结构使其在机制验证型分子设计中具有明确价值。",
+    "mechanism": "设计分子以结合 DIAPH3 FH2 二聚化与肌动蛋白结合界面为核心，阻断 FH2 环状二聚体与肌动蛋白丝加端的持续结合，从而抑制异常肌动蛋白聚合。",
+    "selectedEpitope": "优先覆盖 FH2 结构域二聚化环及邻近肌动蛋白结合沟槽，避开高度保守疏水核心。",
+    "diseaseDirection": "遗传性听力损失与细胞骨架异常",
+    "domain": "DIAPH3 含 GBD、DID、FH1、FH2 与 DAD 区域；5UWP 对应 FH2 结构域二聚体。",
+    "evidence": "DIAPH3-FH2 结构与 DFNA1 遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProtKB Q9NSV4 功能与结构域注释",
+      "RCSB PDB 5UWP X 射线晶体结构",
+      "OMIM/ClinVar DFNA1 相关遗传变异记录"
+    ],
+    "referenceEntries": "UniProt Q9NSV4；RCSB PDB 5UWP；Open Targets DIAPH3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "FH2 二聚化臂与 lasso/post 界面邻近区域",
+        "可干扰 FH2 环状二聚体稳定性及肌动蛋白加端结合",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FH2 肌动蛋白结合沟槽外缘",
+        "有望削弱 DIAPH3 介导的肌动蛋白丝延伸过程",
+        "备选"
+      ],
+      [
+        "Site C",
+        "FH2 保守疏水核心与链间埋藏界面",
+        "结构保守且可及性有限，易影响折叠判读",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DIAPH3 为胞内蛋白，常规 Fab/VHH 难以到达胞质靶点；设计应限定为胞内递送、细胞模型验证或结构探针用途，并严格评估与 DIAPH1/DIAPH2 的交叉反应。",
+    "structurePrepZh": "以 5UWP 抗原链 A-D 构建 FH2 二聚体模型，保留生物学装配体并校正缺失侧链、质子化状态和链间界面接触。",
+    "structureRef": "RCSB PDB 5UWP；human DIAPH3 FH2 X-ray 2.054 Å",
+    "antibodies": [
+      "无已批准 DIAPH3 靶向抗体",
+      "研究级抗 DIAPH3 单克隆抗体"
+    ],
+    "interfaceFocus": "FH2 二聚化臂及肌动蛋白加端结合界面",
+    "designMode": "胞内靶点结构探针",
+    "candidates": [
+      {
+        "target": "DIAPH1",
+        "rationale": "DIAPH1 与 DIAPH3 同属 diaphanous-related formin 家族，参与 RhoA 调控的肌动蛋白聚合，并与遗传性听力损失 DFNA1/DFNA 相关细胞骨架病理存在通路交集。"
+      },
+      {
+        "target": "RHOA",
+        "rationale": "RHOA 通过结合 formin GBD/DID 调控 DIAPH 家族自抑制释放，是上游控制肌动蛋白骨架重塑的核心小 GTP 酶。"
+      },
+      {
+        "target": "ACTB",
+        "rationale": "ACTB 编码 β-肌动蛋白，是 DIAPH3-FH2 促进丝状肌动蛋白延伸的直接底物，位于同一细胞骨架装配轴。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

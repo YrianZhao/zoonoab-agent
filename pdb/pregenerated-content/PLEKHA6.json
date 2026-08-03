@@ -1,0 +1,65 @@
+{
+  "gene": "PLEKHA6",
+  "generatedAt": "2026-08-03T15:21:47.199Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PLEKHA6主要为含pleckstrin homology结构域的胞内支架样蛋白，Open Targets关联信号集中于血小板计数、红细胞计数、血红蛋白测量及尿素氮等数量性状，提示其更可能参与血液细胞表型或代谢相关遗传关联，而非已验证的细胞外致病轴。该蛋白缺乏分泌信号肽和跨膜胞外结构域，抗原可及性不符合常规治疗性抗体直接结合要求，仅适合以重组结构域开展研究型结合分子或细胞内抗体策略。与同通路中可外部药物化的造血细胞表面受体相比，PLEKHA6优先级较低；若作为主靶点，应以机制验证和结构探针开发为主要定位。",
+    "mechanism": "设计分子可结合PLEKHA6的PH结构域磷脂识别面，干扰其与膜磷脂头基的结合及膜定位过程，用于解析其对血液细胞表型关联的功能贡献。",
+    "selectedEpitope": "优先覆盖PH结构域β1-β2及β3-β4环邻近的磷脂头基结合口袋，避免核心折叠疏水面。",
+    "diseaseDirection": "血液数量性状与造血表型",
+    "domain": "PLEKHA6含pleckstrin homology样结构域；2D9Y为人源蛋白结构域的溶液NMR结构。",
+    "evidence": "PLEKHA6血液性状遗传关联与PH结构域证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9Y2H5蛋白功能与亚细胞定位注释",
+      "RCSB PDB 2D9Y溶液NMR结构条目",
+      "GWAS Catalog血液学数量性状遗传关联记录"
+    ],
+    "referenceEntries": "UniProt Q9Y2H5；RCSB PDB 2D9Y；Open Targets PLEKHA6",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PH结构域β1-β2/β3-β4环形成的磷脂头基结合面",
+        "可能阻断膜磷脂识别并影响PLEKHA6膜募集，最具机制可解释性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PH结构域外侧可溶暴露螺旋及邻近环区",
+        "有利于获得构象稳定结合分子，可作为结构探针表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PH结构域β夹心核心疏水折叠面",
+        "易干扰整体折叠并产生非特异构象效应，不宜作为首选阻断位点",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PLEKHA6为胞内蛋白，常规IgG难以进入细胞，体内成药性和抗原可及性风险高。建议定位为研究抗体、细胞内抗体或结构域结合探针，并设置膜定位功能实验验证。",
+    "structurePrepZh": "以2D9Y的NMR构象集合为起点，评估PH结构域保守磷脂结合环的构象波动，补充AlphaFold模型覆盖缺失片段，并进行表面电荷与可及性标注。",
+    "structureRef": "RCSB PDB 2D9Y，human PLEKHA6 PH domain solution NMR",
+    "antibodies": [
+      "无已批准PLEKHA6治疗性抗体",
+      "研究级抗PLEKHA6多克隆抗体"
+    ],
+    "interfaceFocus": "PH结构域磷脂头基结合环与膜定位界面",
+    "designMode": "胞内靶点探针模式",
+    "candidates": [
+      {
+        "target": "MPL",
+        "rationale": "MPL为血小板生成素受体，直接参与巨核细胞分化和血小板生成，位于细胞膜表面，抗体可及性和血小板计数表型相关性均优于PLEKHA6。"
+      },
+      {
+        "target": "THPO",
+        "rationale": "THPO编码血小板生成素，是MPL信号轴的可溶性配体，调控巨核细胞成熟和血小板产生，适合配体中和或受体配体相互作用阻断策略。"
+      },
+      {
+        "target": "EPOR",
+        "rationale": "EPOR为红细胞生成素受体，参与红系祖细胞存活与分化，与红细胞计数和血红蛋白表型位于同一造血数量性状方向，且具备膜受体抗原可及性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

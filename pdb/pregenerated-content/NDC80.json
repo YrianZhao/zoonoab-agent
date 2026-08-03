@@ -1,0 +1,65 @@
+{
+  "gene": "NDC80",
+  "generatedAt": "2026-08-03T14:36:19.875Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NDC80是动粒-微管连接核心复合体成分，N端CH结构域与微管晶格结合并参与有丝分裂染色体排列和纺锤体检查点维持，异常表达常见于增殖性肿瘤并与染色体不稳定相关。该蛋白主要定位于细胞核内动粒，缺乏分泌或稳定胞外结构域，抗原可及性明显弱于膜受体或分泌因子，较适合胞内递送抗体片段或研究型阻断分子。其优先级来自高分辨率结构、明确微管结合界面及动粒通路中心性；相比外周检查点蛋白，NDC80更直接控制动粒-微管负载连接，但成药性风险需前置评估。",
+    "mechanism": "阻断NDC80 N端CH结构域及尾部邻近区与微管β-微管蛋白表面的结合，削弱动粒-微管端附着并诱导有丝分裂停滞。",
+    "selectedEpitope": "优先锁定N端CH结构域微管结合面及邻近N端尾部调控区，避开复合体装配核心界面。",
+    "diseaseDirection": "增殖性肿瘤与染色体不稳定",
+    "domain": "NDC80含N端钙调蛋白样CH结构域、长卷曲螺旋杆状区，并与NUF2形成异二聚体。",
+    "evidence": "NDC80动粒-微管连接结构与肿瘤增殖证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt O14777功能与亚细胞定位注释",
+      "RCSB PDB 2IGP高分辨率晶体结构",
+      "文献报道NDC80复合体介导动粒-微管附着"
+    ],
+    "referenceEntries": "UniProt: O14777; RCSB PDB: 2IGP; HGNC: NDC80",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端CH结构域微管结合表面",
+        "可直接干预NDC80-微管相互作用，机制验证价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CH结构域与N端尾部邻近调控区",
+        "可能影响微管亲和力及Aurora B依赖调控敏感性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "卷曲螺旋二聚体装配界面",
+        "可能破坏NDC80-NUF2复合体稳定性，但保守性和构象风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NDC80为胞内核/动粒蛋白，常规抗体难以到达靶点；建议采用细胞内递送Fab、VHH或降解偶联策略，并严格评估有丝分裂毒性窗口。",
+    "structurePrepZh": "以PDB 2IGP链A为CH结构域模板，补全缺失侧链并标注微管结合面；长卷曲螺旋和N端无序尾部需结合AlphaFold模型辅助建模。",
+    "structureRef": "Ciferri et al., Ndc80 complex structure, PDB 2IGP",
+    "antibodies": [
+      "9G3抗NDC80/Hec1研究抗体",
+      "12G10抗NDC80/Hec1研究抗体"
+    ],
+    "interfaceFocus": "CH结构域微管结合面与N端尾部邻近区",
+    "designMode": "胞内阻断型VHH/Fab",
+    "candidates": [
+      {
+        "target": "NUF2",
+        "rationale": "NUF2与NDC80形成动粒外层异二聚体并共同维持微管附着，是同一NDC80复合体内的直接功能伙伴。"
+      },
+      {
+        "target": "SPC25",
+        "rationale": "SPC25位于NDC80复合体内端并连接动粒KMN网络，干预该节点可影响复合体在动粒上的稳定定位。"
+      },
+      {
+        "target": "SPC24",
+        "rationale": "SPC24与SPC25组成NDC80复合体内端模块，参与动粒锚定并处于同一染色体分离通路。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

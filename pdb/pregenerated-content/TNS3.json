@@ -1,0 +1,65 @@
+{
+  "gene": "TNS3",
+  "generatedAt": "2026-08-03T17:23:47.802Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TNS3编码tensin 3，是黏着斑相关胞内支架蛋白，通过PTB结构域连接β整合素胞质尾部并参与肌动蛋白骨架、Rho GTPase及FAK/Src黏着信号组织，在肿瘤侵袭和前列腺癌相关迁移表型中具有通路关联。该蛋白主要定位于胞质侧黏着斑，不具备经典分泌蛋白或细胞外结构域特征，因此完整IgG直接阻断活细胞表面抗原的可及性受限，更适合作为胞内机制验证或递送型抗体片段设计对象。相较于整合素或RTK等同类黏着通路膜靶点，TNS3的优势在于处于整合素尾部复合物下游的支架节点，可用于解析迁移与黏着重塑的特异界面，但治疗性优先级低于细胞外可及靶点。",
+    "mechanism": "设计抗体片段结合TNS3 PTB结构域，阻断其与β整合素胞质尾部NPxY基序的结合，削弱黏着斑复合物装配及下游迁移信号。",
+    "selectedEpitope": "优先覆盖PTB结构域磷酸酪氨酸结合沟槽及β整合素尾肽结合界面。",
+    "diseaseDirection": "肿瘤侵袭与黏着斑信号",
+    "domain": "TNS3含N端肌动蛋白结合区、SH2结构域及C端PTB结构域，参与黏着斑复合物装配。",
+    "evidence": "TNS3黏着斑结构域与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q68CZ2功能与亚细胞定位注释",
+      "RCSB PDB 9QN7晶体结构记录",
+      "黏着斑整合素-PTB结构域相互作用文献"
+    ],
+    "referenceEntries": "UniProt Q68CZ2；RCSB PDB 9QN7；Open Targets TNS3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PTB结构域β整合素尾肽结合沟槽",
+        "直接干预TNS3-整合素胞质尾相互作用，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SH2结构域磷酸酪氨酸识别口袋周边",
+        "可能影响黏着斑磷酸化蛋白招募，适合机制验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "结构域核心疏水折叠面",
+        "易影响蛋白稳定性并产生非特异构象效应，需避免深埋表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TNS3为胞内蛋白，常规抗体药物细胞进入效率有限；建议采用胞内递送Fab/VHH或研究级细胞内抗体，并避开高度保守折叠核心。",
+    "structurePrepZh": "以PDB 9QN7四条抗原链为模板，保留解析完整的PTB界面区域，补建缺失环区并评估晶体接触对表位暴露的影响。",
+    "structureRef": "RCSB PDB 9QN7，X-ray diffraction，2.76 Å",
+    "antibodies": [
+      "无已批准TNS3治疗性抗体",
+      "研究级抗TNS3检测抗体"
+    ],
+    "interfaceFocus": "PTB沟槽与β整合素NPxY尾肽界面",
+    "designMode": "胞内阻断型片段",
+    "candidates": [
+      {
+        "target": "ITGB1",
+        "rationale": "ITGB1位于同一整合素黏着斑通路，其胞外结构域可被抗体直接结合，较TNS3具有更高抗原可及性。阻断ITGB1配体结合可上游抑制黏着与迁移信号。"
+      },
+      {
+        "target": "PTK2",
+        "rationale": "PTK2/FAK是整合素黏着斑信号核心激酶，与TNS3相关黏着复合物共同调控细胞迁移和侵袭。其通路证据强，但抗体可及性同样受胞内定位限制。"
+      },
+      {
+        "target": "PXN",
+        "rationale": "PXN编码paxillin，是黏着斑支架蛋白并参与FAK/Src信号复合物形成。其与TNS3处于同一黏着斑重塑网络，适合并行机制分层研究。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "GPHN",
+  "generatedAt": "2026-08-03T12:53:26.415Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GPHN编码gephyrin，是钼辅因子生物合成中将钼插入钼蝶呤形成成熟Moco的关键酶，同时也是抑制性突触后支架蛋白。其遗传缺陷可导致钼辅因子缺乏C型和继发性亚硫酸氧化酶功能障碍，并与遗传性惊跳症及发育性癫痫性脑病相关。该蛋白主要定位于胞质和突触后致密区，缺乏经典分泌或跨膜胞外结构域，因此体内抗体可及性弱于膜受体和分泌蛋白；其优先级主要来自高分辨率实验结构、明确遗传因果性和可解析的寡聚化界面，而非天然抗体药物可及性。",
+    "mechanism": "设计抗体片段结合G-domain三聚化界面，阻断gephyrin寡聚化及其与GlyRβ/抑制性突触复合体的支架装配。",
+    "selectedEpitope": "优先覆盖G-domain三聚化界面邻近沟槽，避开保守Moco代谢催化核心残基。",
+    "diseaseDirection": "神经发育癫痫与钼辅因子缺乏",
+    "domain": "Gephyrin含N端G-domain、柔性C-domain连接区及C端E-domain，1JLJ解析N端G-domain三聚体结构。",
+    "evidence": "GPHN遗传病因与G-domain结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q9NQX3功能与亚细胞定位注释",
+      "RCSB PDB 1JLJ晶体结构记录",
+      "OMIM/ClinVar钼辅因子缺乏C型与GPHN变异证据"
+    ],
+    "referenceEntries": "UniProt Q9NQX3；RCSB PDB 1JLJ；Open Targets GPHN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端G-domain三聚化界面",
+        "可干预gephyrin寡聚化和突触支架装配，结构分辨率支持界面精细设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "G-domain外侧溶剂暴露螺旋-环区",
+        "降低对保守催化区域的干扰风险，适合获得结构识别型结合分子",
+        "备选"
+      ],
+      [
+        "Site C",
+        "G-domain保守核苷酸/钼蝶呤相关催化邻域",
+        "可能影响Moco合成功能并引入广泛代谢毒性，需严格回避或仅作机制探针",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GPHN为胞内蛋白，常规抗体难以在体内到达靶点；建议限定为细胞内递送抗体片段、研究型Fab/VHH或结构探针，并避免催化核心表位。",
+    "structurePrepZh": "以1JLJ三条抗原链构建G-domain三聚体模型，保留生物学装配界面，补全缺失侧链并校验晶体接触与真实寡聚化界面。",
+    "structureRef": "RCSB PDB 1JLJ，human gephyrin G-domain，1.6 Å X-ray",
+    "antibodies": [
+      "mAb7a",
+      "3B11"
+    ],
+    "interfaceFocus": "G-domain三聚化界面与外侧暴露沟槽",
+    "designMode": "胞内靶点结构探针",
+    "candidates": [
+      {
+        "target": "MOCS1",
+        "rationale": "MOCS1参与钼辅因子生物合成早期步骤，催化从GTP生成环状吡喃蝶呤单磷酸，是钼辅因子缺乏相关通路的真实上游节点。"
+      },
+      {
+        "target": "MOCS2",
+        "rationale": "MOCS2编码钼蝶呤合成酶亚基，负责将硫引入前体形成钼蝶呤，与GPHN共同决定成熟Moco生成。"
+      },
+      {
+        "target": "SUOX",
+        "rationale": "SUOX编码亚硫酸氧化酶，是依赖钼辅因子的下游酶；Moco缺陷导致其功能不足并驱动亚硫酸相关脑病表型。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

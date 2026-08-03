@@ -1,0 +1,65 @@
+{
+  "gene": "SYNJ2BP",
+  "generatedAt": "2026-08-03T21:25:33.054Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SYNJ2BP是线粒体外膜整合蛋白，含胞质侧PDZ结构域，可与RAB5A及细胞连接相关蛋白复合体相互作用，并被遗传学数据关联至LDL胆固醇、总胆固醇、apoB及高胆固醇血症表型。其抗原可及性主要来自面向胞质的PDZ结构域，不属于典型胞外抗体靶点，因此更适合细胞内递送抗体片段或机制验证型抗体设计。相较于经典脂质通路靶点PCSK9、LDLR或APOB，SYNJ2BP的临床可成药性证据较弱，但其高分辨率实验结构支持界面级表位建模，可作为脂质代谢遗传关联的探索性优先靶点。",
+    "mechanism": "设计抗体片段结合SYNJ2BP的PDZ配体结合沟槽，阻断其与RAB5A相关膜运输复合体或PDZ结合基序蛋白的相互作用。",
+    "selectedEpitope": "优先覆盖PDZ结构域αB/βB配体结合沟槽及羧基端肽识别口袋。",
+    "diseaseDirection": "脂质代谢与高胆固醇血症",
+    "domain": "SYNJ2BP含N端胞质PDZ结构域和C端跨膜锚定区，定位于线粒体外膜。",
+    "evidence": "SYNJ2BP脂质表型遗传关联与PDZ结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform脂质表型关联数据",
+      "UniProt P57105蛋白定位与结构域注释",
+      "RCSB PDB 2JIK X射线晶体结构",
+      "GWAS Catalog胆固醇与apoB相关遗传位点证据"
+    ],
+    "referenceEntries": "UniProt:P57105；RCSB PDB:2JIK；Open Targets:SYNJ2BP",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PDZ结构域αB/βB配体结合沟槽",
+        "直接干预C端PDZ结合基序识别，最适合功能阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PDZ结构域βA-βB环及邻近疏水口袋",
+        "可增强对配体进入路径的空间遮挡，适合作为辅助扩展表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PDZ结构域远端保守折叠核心表面",
+        "可能影响结构稳定性但功能选择性不足，需避免广泛交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SYNJ2BP缺乏胞外结构域，常规全长抗体难以进入细胞；建议采用VHH、intrabody或递送偶联策略，并以细胞内结合与功能阻断为核心验证。",
+    "structurePrepZh": "以2JIK的A、B链PDZ结构域为模板，保留高置信二级结构，去除晶体接触伪界面并补全缺失侧链后进行表位可及性评估。",
+    "structureRef": "RCSB PDB 2JIK，X-ray diffraction，1.35 Å",
+    "antibodies": [
+      "暂无获批SYNJ2BP靶向抗体",
+      "抗PDZ结构域研究级抗体"
+    ],
+    "interfaceFocus": "PDZ羧基端肽结合沟槽及βB/αB界面",
+    "designMode": "细胞内阻断型VHH",
+    "candidates": [
+      {
+        "target": "PCSK9",
+        "rationale": "PCSK9通过结合LDLR表皮生长因子样A结构域促进LDLR溶酶体降解，是高胆固醇血症中已验证的抗体干预靶点。"
+      },
+      {
+        "target": "LDLR",
+        "rationale": "LDLR直接介导LDL颗粒摄取并调控血浆LDL-C水平，与SYNJ2BP关联的胆固醇表型处于同一脂质稳态方向。"
+      },
+      {
+        "target": "APOB",
+        "rationale": "APOB是LDL和VLDL颗粒的核心载脂蛋白，Open Targets关联表型包括apoB测量值，适合作为脂蛋白颗粒水平的同通路候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

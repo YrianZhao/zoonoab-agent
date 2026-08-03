@@ -1,0 +1,65 @@
+{
+  "gene": "CLEC6A",
+  "generatedAt": "2026-08-03T11:27:28.313Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CLEC6A编码Dectin-2，是髓系细胞表面的C型凝集素受体，可识别真菌及分枝杆菌细胞壁糖类并通过FcRγ-SYK-CARD9轴诱导NF-κB依赖性炎症因子产生，在感染性炎症和肺部免疫反应中具有明确通路位置。该靶点为I型膜受体样胞外C型凝集素结构域，抗体可直接接近配体结合面或受体聚集界面。相较下游SYK、CARD9等胞内节点，CLEC6A具备更高抗原可及性和更窄的髓系受体定位，适合作为阻断型或调节型抗体优先靶点。",
+    "mechanism": "抗体结合CLEC6A胞外C型凝集素样结构域，阻断糖类配体诱导的受体聚集及FcRγ偶联，从而降低SYK-CARD9介导的炎症信号。",
+    "selectedEpitope": "优先覆盖C型凝集素样结构域的糖识别沟槽及邻近二聚化界面。",
+    "diseaseDirection": "感染性炎症与肺部免疫调节",
+    "domain": "单跨膜髓系受体，胞外区含C型凝集素样结构域，胞内尾较短并依赖FcRγ转导。",
+    "evidence": "CLEC6A-Dectin-2感染炎症通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联记录",
+      "UniProt Q6EIG7功能与结构域注释",
+      "RCSB PDB 8ROV晶体结构数据",
+      "文献报道Dectin-2/FcRγ/SYK/CARD9信号轴"
+    ],
+    "referenceEntries": "UniProt Q6EIG7；RCSB PDB 8ROV；Open Targets CLEC6A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C型凝集素样结构域糖识别沟槽",
+        "直接阻断病原糖类配体结合并抑制受体激活",
+        "优先"
+      ],
+      [
+        "Site B",
+        "结构域侧向二聚化或聚集界面",
+        "限制配体诱导的受体簇集，降低FcRγ-SYK信号启动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "膜近端连接区邻近表面",
+        "可能影响受体构象但易受糖基化和空间遮挡影响",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CLEC家族结构域同源性较高，需规避保守钙结合及糖结合残基导致的交叉反应；优先筛选CLEC6A特异暴露环区表位。",
+    "structurePrepZh": "以8ROV抗原链A、B为模板，保留胞外C型凝集素样结构域，检查晶体接触、糖基化位点和钙离子相关构象后进行表位建模。",
+    "structureRef": "RCSB PDB 8ROV，X-ray diffraction，2.36 Å",
+    "antibodies": [
+      "Anti-human Dectin-2 clone 15E2",
+      "Anti-human CLEC6A clone 11E7"
+    ],
+    "interfaceFocus": "糖识别沟槽与受体聚集界面",
+    "designMode": "阻断型抗体设计",
+    "candidates": [
+      {
+        "target": "SYK",
+        "rationale": "SYK是CLEC6A经FcRγ ITAM募集后的近端激酶，直接连接受体激活与CARD9-BCL10-MALT1复合体形成。其通路相关性强，但胞内定位使抗体开发可及性较低。"
+      },
+      {
+        "target": "CARD9",
+        "rationale": "CARD9是Dectin-2/CLEC6A信号向NF-κB转导的关键支架蛋白，遗传缺陷与真菌感染易感性相关。该节点适合机制参照，但不具备常规抗体靶向优势。"
+      },
+      {
+        "target": "CLEC7A",
+        "rationale": "CLEC7A/Dectin-1同属髓系C型凝集素抗真菌识别通路，可通过SYK-CARD9轴诱导炎症反应。与CLEC6A相比，其配体谱偏向β-葡聚糖，可作为同通路受体候选。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

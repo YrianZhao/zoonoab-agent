@@ -1,0 +1,65 @@
+{
+  "gene": "FCN2",
+  "generatedAt": "2026-08-03T12:31:27.712Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FCN2编码血浆凝集素通路识别分子ficolin-2，可通过纤维蛋白原样结构域识别乙酰化糖基或病原相关分子模式，并招募MASP1/MASP2形成凝集素补体激活复合物。该蛋白为分泌型寡聚血浆蛋白，抗原整体处于胞外体液环境，纤维蛋白原样头部结构域具有良好的抗体可及性。相较MASP蛋白等下游效应分子，FCN2位于凝集素通路起始识别层级，更适合通过阻断配体识别或MASP复合物装配实现通路选择性干预；但现有关联以蛋白测量性状为主，疾病治疗优先级需结合补体介导炎症证据进一步分层。",
+    "mechanism": "抗体结合FCN2纤维蛋白原样头部的糖基识别面，阻断其与乙酰化配体结合，并削弱FCN2-MASP1/MASP2复合物介导的凝集素补体启动。",
+    "selectedEpitope": "优先覆盖2J1G纤维蛋白原样结构域Ca2+依赖性配体结合口袋及邻近寡聚头部界面。",
+    "diseaseDirection": "凝集素补体通路相关炎症",
+    "domain": "FCN2含N端胶原样区、颈区及C端纤维蛋白原样识别结构域，2J1G解析其头部区域。",
+    "evidence": "FCN2凝集素补体识别与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q15485功能与结构域注释",
+      "RCSB PDB 2J1G晶体结构记录",
+      "凝集素补体通路与ficolin-MASP复合物文献"
+    ],
+    "referenceEntries": "UniProt Q15485；RCSB PDB 2J1G；Open Targets FCN2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "纤维蛋白原样结构域Ca2+依赖性乙酰化配体结合口袋",
+        "直接阻断FCN2识别病原相关糖基并抑制凝集素通路起始",
+        "优先"
+      ],
+      [
+        "Site B",
+        "纤维蛋白原样头部寡聚排列邻近界面",
+        "可能影响多价识别构象与MASP复合物有效装配",
+        "备选"
+      ],
+      [
+        "Site C",
+        "保守疏水核心及Ca2+配位残基近端",
+        "存在构象稳定性与交叉反应风险，需避免深埋或高度保守表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FCN2与FCN1、FCN3同属ficolin家族，头部结构域存在保守性；设计需排除保守Ca2+配位核心，优先选择FCN2特异暴露环区。",
+    "structurePrepZh": "以2J1G的A-H链为实验结构模板，保留纤维蛋白原样结构域装配状态，检查Ca2+、糖基配体及晶体接触后进行表面可及性评估。",
+    "structureRef": "RCSB PDB 2J1G，X-ray diffraction，1.95 Å",
+    "antibodies": [
+      "Anti-ficolin-2 monoclonal antibody GN4",
+      "Anti-ficolin-2 monoclonal antibody FCN219"
+    ],
+    "interfaceFocus": "乙酰化糖基结合口袋与头部寡聚界面",
+    "designMode": "阻断型抗体设计",
+    "candidates": [
+      {
+        "target": "MASP2",
+        "rationale": "MASP2是FCN2识别复合物下游的关键丝氨酸蛋白酶，负责裂解C4和C2形成C3转化酶；其抗体阻断可直接抑制凝集素补体效应放大。"
+      },
+      {
+        "target": "MASP1",
+        "rationale": "MASP1与FCN2复合物共同参与凝集素通路启动，并可促进MASP2活化；作为候选靶点可用于比较上游识别阻断与酶活抑制策略。"
+      },
+      {
+        "target": "FCN3",
+        "rationale": "FCN3为同一ficolin介导凝集素补体识别轴中的血浆模式识别分子，可与MASP蛋白形成复合物并触发补体激活，适合作为同通路替代识别靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

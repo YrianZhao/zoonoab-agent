@@ -1,0 +1,65 @@
+{
+  "gene": "MTA1",
+  "generatedAt": "2026-08-03T14:26:19.088Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MTA1 是 NuRD 染色质重塑复合体的支架组分，可通过招募 HDAC1/2 与 CHD4 参与转录抑制，并在乳腺癌侵袭、转移及激素受体相关转录网络中具有机制关联。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌特征，抗原可及性不适合常规体内阻断型抗体，更适合作为细胞内抗体、递送抗体或结构生物学验证靶点。相较 MBD3、RBBP4 等 NuRD 组分，MTA1 具有明确的转移相关功能注释、可用实验结构 4PBZ 以及较高疾病关联覆盖度，因此在机制探索型抗体设计中具备优先级。",
+    "mechanism": "设计抗体阻断 MTA1 ELM2-SANT 区域与 HDAC1/2 去乙酰化模块的装配界面，削弱 NuRD 介导的组蛋白去乙酰化与转录抑制。",
+    "selectedEpitope": "优先靶向 4PBZ 所示 ELM2-SANT 结构域的 HDAC 结合沟槽及相邻稳定螺旋面。",
+    "diseaseDirection": "肿瘤转移与染色质调控",
+    "domain": "MTA1 含 BAH、ELM2、SANT、GATA-like zinc finger 及 C 端转录调控区。",
+    "evidence": "MTA1-NuRD 复合体与肿瘤转移证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt Q13330 功能与亚细胞定位注释",
+      "RCSB PDB 4PBZ 实验晶体结构",
+      "NuRD 复合体与乳腺癌转移相关文献"
+    ],
+    "referenceEntries": "UniProt Q13330；RCSB PDB 4PBZ；Open Targets MTA1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ELM2-SANT 的 HDAC1/2 结合沟槽",
+        "可直接干预去乙酰化酶模块装配，机制清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SANT 结构域外露螺旋束侧面",
+        "利于构象识别并稳定捕获 NuRD 组装状态",
+        "备选"
+      ],
+      [
+        "Site C",
+        "BAH 结构域潜在染色质结合面",
+        "可能影响核小体相关功能，但结构覆盖与可及性需验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MTA1 为核内非分泌蛋白，体内抗体可及性受限；建议采用 intrabody、细胞递送 Fab/VHH 或体外复合体阻断验证策略。",
+    "structurePrepZh": "以 4PBZ 的 A/B 链为模板，保留 ELM2-SANT 核心折叠，补建缺失环区并评估晶体接触对表位暴露的影响。",
+    "structureRef": "RCSB PDB 4PBZ，X-ray diffraction，2.15 Å",
+    "antibodies": [
+      "研究级抗 MTA1 单克隆抗体",
+      "研究级抗 NuRD 复合体组分抗体"
+    ],
+    "interfaceFocus": "ELM2-SANT 与 HDAC 去乙酰化模块装配界面",
+    "designMode": "细胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "HDAC1",
+        "rationale": "HDAC1 是 NuRD 复合体的催化去乙酰化亚基，与 MTA1 ELM2-SANT 模块形成功能性装配界面；靶向该节点可直接影响组蛋白去乙酰化输出。"
+      },
+      {
+        "target": "CHD4",
+        "rationale": "CHD4 是 NuRD 复合体的 ATP 依赖性染色质重塑核心，参与核小体定位与转录抑制；其功能与 MTA1 所在复合体处于同一染色质调控通路。"
+      },
+      {
+        "target": "MBD3",
+        "rationale": "MBD3 是 NuRD 复合体的 DNA/染色质识别相关组分，可协同 MTA1 维持复合体定位与转录抑制活性，适合作为同通路替代靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

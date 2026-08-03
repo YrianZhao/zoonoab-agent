@@ -1,0 +1,65 @@
+{
+  "gene": "TICAM1",
+  "generatedAt": "2026-08-03T21:30:42.851Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TICAM1/TRIF 是TLR3与TLR4通路的关键信号接头，TIR结构域介导与受体TIR结构域及下游适配蛋白组装，驱动TBK1-IRF3型I干扰素轴和TRAF6-NF-κB炎症输出，因而与疱疹性脑炎及自身免疫性甲状腺炎等免疫失衡表型相关。该蛋白主要位于胞质侧而非经典胞外抗原，常规外源性抗体可及性受限；但其TIR结构域具备高分辨率实验结构，可支持细胞内递送抗体、VHH或研究级阻断分子设计。相较于上游TLR3/TLR4，TICAM1位于共同适配节点，更适合精确截断TRIF依赖性IRF3信号，同时避免完全覆盖MyD88依赖通路。",
+    "mechanism": "阻断TICAM1 TIR结构域与TLR3/TLR4 TIR结构域及TRAF3结合面组装，抑制TBK1介导的IRF3磷酸化与IFNB1转录。",
+    "selectedEpitope": "优先锁定TIR结构域BB loop与DD/EE loop邻近受体结合界面，干预TIR-TIR同源装配。",
+    "diseaseDirection": "抗病毒免疫与自身炎症调控",
+    "domain": "TICAM1含N端调控区、TRAF结合基序、RHIM样区域及C端TIR结构域；3RC4解析TIR结构域二聚体。",
+    "evidence": "TICAM1/TRIF通路结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q8IUC6功能与结构域注释",
+      "RCSB PDB 3RC4晶体结构记录",
+      "TLR3/TLR4-TRIF-IRF3信号通路文献"
+    ],
+    "referenceEntries": "UniProt Q8IUC6；RCSB PDB 3RC4；Reactome TLR3/TLR4 cascade",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "TIR结构域BB loop及邻近αB区域",
+        "直接参与TIR-TIR适配体装配，具备阻断受体接头复合物的设计价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DD loop/EE loop邻近溶剂暴露面",
+        "可调节TIR结构域二聚化与下游信号平台稳定性，适合构象锁定设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "TIR核心疏水折叠面",
+        "结构保守且埋藏比例较高，存在交叉反应和低可及性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TICAM1为胞内接头蛋白，常规治疗性抗体难以直接进入胞质；宜采用细胞内VHH、递送偶联或研究级阻断格式，并严格评估TLR广谱免疫抑制风险。",
+    "structurePrepZh": "以3RC4链A/B为模板，保留TIR结构域二聚体构象，补充缺失侧链与质子化状态，标注BB、DD、EE loop及晶体接触界面。",
+    "structureRef": "RCSB PDB 3RC4，human TICAM1 TIR domain，1.5 Å X-ray",
+    "antibodies": [
+      "抗TRIF/TICAM1研究级单克隆抗体",
+      "细胞内抗TRIF VHH候选格式"
+    ],
+    "interfaceFocus": "TIR-TIR受体适配体装配界面",
+    "designMode": "胞内阻断型VHH/Fab",
+    "candidates": [
+      {
+        "target": "TLR3",
+        "rationale": "TLR3通过胞内TIR结构域募集TICAM1并激活TRIF依赖性IRF3通路，是病毒RNA识别与疱疹性脑炎相关免疫通路中的上游受体靶点。"
+      },
+      {
+        "target": "TLR4",
+        "rationale": "TLR4经TRAM/TICAM2连接TICAM1，触发TRIF依赖性IFN与NF-κB输出；其胞外MD-2/LPS复合物界面具备更优抗体可及性。"
+      },
+      {
+        "target": "TBK1",
+        "rationale": "TBK1位于TICAM1下游并直接磷酸化IRF3，是TRIF介导抗病毒干扰素信号的核心激酶节点，适合与TICAM1阻断策略进行通路级比较。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

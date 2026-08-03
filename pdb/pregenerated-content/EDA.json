@@ -1,0 +1,65 @@
+{
+  "gene": "EDA",
+  "generatedAt": "2026-08-03T18:56:05.230Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "EDA编码TNF家族配体ectodysplasin A，其EDA-A1异构体通过结合EDAR启动EDARADD、TRAF6与NF-κB信号，调控毛囊、汗腺和牙胚等外胚层附属器发育。该蛋白为II型膜蛋白，经弗林蛋白酶加工后形成可分泌三聚体，TNF同源胞外结构域具备明确抗体可及性。相较于下游EDARADD或TRAF6等胞内节点，EDA更适合以抗体直接干预配体-受体识别界面，并具有明确遗传疾病关联和实验结构支撑。",
+    "mechanism": "通过识别EDA-A1 TNF同源三聚体受体结合面，阻断EDA与EDAR胞外CRD的结合，从而抑制EDARADD募集及下游NF-κB激活。",
+    "selectedEpitope": "优先靶向TNF同源结构域三聚体外侧的EDAR结合沟槽，避开核心三聚化界面。",
+    "diseaseDirection": "外胚层发育缺陷与牙发育异常",
+    "domain": "EDA含胞内短尾、跨膜区、胶原样区、弗林切割位点及C端TNF同源胞外结构域。",
+    "evidence": "EDA-EDAR轴遗传证据与晶体结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q92838功能与结构域注释",
+      "RCSB PDB 1RJ8晶体结构",
+      "OMIM与ClinVar中EDA相关致病变异记录"
+    ],
+    "referenceEntries": "UniProt Q92838；RCSB PDB 1RJ8；Open Targets EDA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "TNF同源结构域EDAR结合沟槽",
+        "直接阻断EDA-A1与EDAR胞外CRD相互作用，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "三聚体外侧亚基交界邻近区",
+        "可增强受体结合面遮挡并保留三聚体稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "TNF同源结构域三聚化核心界面",
+        "可能扰动天然三聚体装配并引入构象异质性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "EDA与TNF家族成员存在保守折叠，需排除对非靶TNF配体交叉反应；表位应避开三聚化核心，优先验证EDA-A1/EDA-A2异构体选择性。",
+    "structurePrepZh": "以1RJ8中A、B、D、E、F、G链构建TNF同源三聚体装配模型，补全缺失侧链、校正二硫键并标注受体结合面。",
+    "structureRef": "Hymowitz等解析EDA TNF结构域晶体结构，PDB 1RJ8",
+    "antibodies": [
+      "Edi200",
+      "Fc-EDA1"
+    ],
+    "interfaceFocus": "EDA-A1三聚体与EDAR CRD接触面",
+    "designMode": "阻断型界面抗体",
+    "candidates": [
+      {
+        "target": "EDAR",
+        "rationale": "EDAR为EDA-A1的同通路受体，胞外半胱氨酸富集结构域直接识别EDA并触发外胚层发育信号，适合设计阻断型或激动型抗体。"
+      },
+      {
+        "target": "EDARADD",
+        "rationale": "EDARADD是EDAR胞内死亡结构域衔接蛋白，遗传变异同样导致低汗性外胚层发育不良；其作为通路节点可用于机制验证，但抗体可及性低于EDA/EDAR。"
+      },
+      {
+        "target": "TRAF6",
+        "rationale": "TRAF6位于EDARADD下游并介导NF-κB激活，是EDA-EDAR发育通路的真实信号转导节点；其胞内定位限制治疗性抗体开发，但具有通路参照价值。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "NAGK",
+  "generatedAt": "2026-08-03T20:17:13.314Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NAGK催化N-乙酰氨基葡萄糖磷酸化生成GlcNAc-6-phosphate，连接氨基糖补救代谢与UDP-GlcNAc供给，Open Targets遗传关联主要指向嗜酸粒细胞计数和白细胞嗜酸粒细胞比例。该蛋白为胞内糖激酶，并非分泌蛋白或膜受体，天然抗体抗原可及性弱，因此更适合作为结构约束的细胞内功能抗体或研究级结合分子靶点。相较缺乏实验结构的同通路代谢酶，NAGK具有人源1.9 Å晶体结构和明确ATP/糖底物结合口袋，利于开展高分辨率界面设计，但治疗性抗体优先级低于可及性更好的细胞表面免疫靶点。",
+    "mechanism": "设计结合分子占据NAGK ATP结合裂隙或GlcNAc识别口袋，阻断ATP磷酸基转移至N-乙酰氨基葡萄糖的催化构象形成。",
+    "selectedEpitope": "优先锁定糖激酶催化核心的ATP结合裂隙与GlcNAc口袋边缘，避免完全依赖埋藏底物位点。",
+    "diseaseDirection": "嗜酸粒细胞性状与氨基糖代谢",
+    "domain": "NAGK为胞质糖激酶，含N端小叶和C端大叶构成的GHMP样激酶催化核心。",
+    "evidence": "NAGK结构与嗜酸粒细胞遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9UJ70功能与亚细胞定位注释",
+      "RCSB PDB 2CH5人源NAGK晶体结构",
+      "糖胺补救途径与UDP-GlcNAc代谢文献"
+    ],
+    "referenceEntries": "UniProt Q9UJ70；RCSB PDB 2CH5；Open Targets NAGK",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端小叶-ATP结合裂隙周缘",
+        "可干预ATP定位并限制催化闭合构象，结构分辨率支持精细设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端大叶GlcNAc识别口袋入口",
+        "可阻断糖底物进入或稳定非生产性构象，适合构象选择型结合",
+        "备选"
+      ],
+      [
+        "Site C",
+        "寡聚体晶体接触或远端溶剂暴露面",
+        "可能形成高亲和结合但功能抑制不确定，需避免晶体堆积伪界面",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NAGK为胞内代谢酶，常规抗体难以进入细胞质；底物口袋较深且保守，需控制交叉反应并优先验证细胞内递送或内抗体场景。",
+    "structurePrepZh": "以2CH5的A-D链比较构象一致性，保留催化核心单体，去除晶体接触伪界面并标注ATP与GlcNAc结合相关残基。",
+    "structureRef": "RCSB PDB 2CH5，人源NAGK 1.9 Å X射线晶体结构",
+    "antibodies": [
+      "无获批NAGK靶向治疗性抗体",
+      "研究级anti-NAGK抗体"
+    ],
+    "interfaceFocus": "ATP裂隙、GlcNAc口袋入口及小叶闭合界面",
+    "designMode": "胞内酶抑制型",
+    "candidates": [
+      {
+        "target": "GNPNAT1",
+        "rationale": "GNPNAT1催化GlcN-6-phosphate乙酰化，是UDP-GlcNAc生物合成通路的关键酶，与NAGK同属氨基糖代谢轴。其通路位置更接近de novo供给节点，可作为代谢通量比较靶点。"
+      },
+      {
+        "target": "PGM3",
+        "rationale": "PGM3将GlcNAc-6-phosphate转化为GlcNAc-1-phosphate，直接衔接NAGK产物下游步骤。该节点影响UDP-GlcNAc生成和蛋白糖基化底物供给。"
+      },
+      {
+        "target": "UAP1",
+        "rationale": "UAP1催化GlcNAc-1-phosphate生成UDP-GlcNAc，是氨基糖通路末端活化步骤。其产物参与N-糖基化、O-GlcNAc修饰和细胞免疫表型相关糖链合成。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

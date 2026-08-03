@@ -1,0 +1,65 @@
+{
+  "gene": "PSMD14",
+  "generatedAt": "2026-08-03T15:40:33.444Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PSMD14/Rpn11 是 26S 蛋白酶体 19S 调节颗粒 lid 亚复合体的 JAMM 金属蛋白酶，负责在底物进入 20S 核心前切割 Lys48 多聚泛素链，维持骨髓瘤和套细胞淋巴瘤细胞的蛋白稳态依赖。该蛋白位于胞内蛋白酶体复合物，天然抗体可及性弱，因此更适合细胞内递送抗体片段、降解偶联或结构引导的研究级抑制抗体策略。相较泛蛋白酶体催化亚基，PSMD14 的去泛素化活性位点更聚焦于底物脱泛素步骤，具备区分 19S 调节功能与 20S 蛋白水解活性的机制优先级。",
+    "mechanism": "阻断 PSMD14 MPN/JAMM 催化中心与底物多泛素链近端异肽键的定位，抑制 Rpn11 依赖性脱泛素化并阻滞底物转运入 20S 核心。",
+    "selectedEpitope": "优先覆盖 MPN/JAMM 结构域金属配位活性沟槽及泛素近端链定位界面。",
+    "diseaseDirection": "血液肿瘤蛋白稳态依赖",
+    "domain": "PSMD14 含 N 端 MPN/JAMM 去泛素化结构域，嵌入 19S lid 亚复合体并与 RPN5、RPN8 等亚基形成界面。",
+    "evidence": "PSMD14 蛋白酶体去泛素化与血液肿瘤证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt O00487 功能与结构域注释",
+      "RCSB PDB 22MM 26S 蛋白酶体电镜结构",
+      "文献报道的 Rpn11/JAMM 去泛素化机制"
+    ],
+    "referenceEntries": "UniProt: O00487; RCSB PDB: 22MM; HGNC: PSMD14",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "MPN/JAMM 催化沟槽及 Zn2+ 配位邻近环区",
+        "直接干预去泛素化反应的底物定位与异肽键切割",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RPN8-MPN 异源二聚体接触面邻近区域",
+        "可能改变 lid 亚复合体构象耦联并削弱 Rpn11 活性排列",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化中心的 19S lid 外周暴露面",
+        "抗原展示性较好但功能阻断关联较弱，需功能筛选确认",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PSMD14 为胞内蛋白酶体亚基，常规抗体难以到达天然靶点；应优先采用胞内递送 Fab/VHH、细胞穿透格式或作为结构验证工具抗体开发。",
+    "structurePrepZh": "以 PDB 22MM 电镜模型提取 PSMD14 链并保留 RPN8、RPN5 邻近亚基用于界面判读，补全缺失环区后进行质子化与金属配位约束检查。",
+    "structureRef": "RCSB PDB 22MM, human 26S proteasome, EM 3.42 Å",
+    "antibodies": [
+      "Anti-PSMD14 research antibody",
+      "Anti-Rpn11 intracellular antibody format"
+    ],
+    "interfaceFocus": "JAMM 催化沟槽与 RPN8 接触界面",
+    "designMode": "胞内功能阻断",
+    "candidates": [
+      {
+        "target": "PSMB5",
+        "rationale": "PSMB5 编码 20S 核心颗粒 β5 催化亚基，是骨髓瘤蛋白酶体抑制治疗的关键节点，与 PSMD14 同属泛素-蛋白酶体降解通路。"
+      },
+      {
+        "target": "PSMD4",
+        "rationale": "PSMD4/Rpn10 识别多泛素化底物并促进其递送至 19S 调节颗粒，位于 PSMD14 脱泛素化步骤上游，适合作为同通路底物识别干预靶点。"
+      },
+      {
+        "target": "PSMC2",
+        "rationale": "PSMC2 是 19S AAA-ATPase 环组成亚基，参与底物展开和向 20S 核心转运，与 PSMD14 介导的脱泛素化过程存在功能耦联。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

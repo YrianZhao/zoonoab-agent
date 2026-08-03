@@ -1,0 +1,65 @@
+{
+  "gene": "ANGEL2",
+  "generatedAt": "2026-08-03T10:26:42.314Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ANGEL2 为胞内 CCR4-NOT 相关 deadenylase 家族成员，主要参与 mRNA poly(A) 尾修剪与转录后稳态调控；现有 Open Targets 关联以身高、BMI、体脂比例、白细胞数量等复杂性状为主，疾病效应分散且因果机制尚未形成明确治疗轴。其可解析晶体结构提供了高分辨率催化结构域信息，但蛋白缺乏分泌型或膜外结构域，天然抗原可及性不符合常规体内抗体阻断条件。相较于同一 mRNA 去腺苷酸化通路中的 CNOT7、CNOT8 与 CNOT6L，ANGEL2 的药物优先级较低，更适合作为结构生物学验证或细胞内递送抗体探索靶点。",
+    "mechanism": "设计分子应结合 ANGEL2 催化沟槽，阻断 RNA 3′ poly(A) 末端进入 DEDD 样核酸酶活性位点，从而干扰底物去腺苷酸化反应。",
+    "selectedEpitope": "优先覆盖 DEDD 样核酸酶催化沟槽及邻近底物结合裂隙，避免仅针对远端非功能表面。",
+    "diseaseDirection": "复杂性状与代谢表型探索",
+    "domain": "ANGEL2 含胞内 nuclease-like deadenylase 催化结构域，PDB 6RW0 覆盖其折叠核心。",
+    "evidence": "ANGEL2 结构与复杂性状遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt Q5VTE6 蛋白注释",
+      "RCSB PDB 6RW0 晶体结构",
+      "CCR4-NOT/deadenylase 家族功能文献"
+    ],
+    "referenceEntries": "UniProt Q5VTE6；RCSB PDB 6RW0；Open Targets ANGEL2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DEDD 样催化沟槽与 RNA 3′端进入通道",
+        "直接干预 poly(A) 底物定位与去腺苷酸化反应",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化核心邻近的底物识别裂隙外缘",
+        "可能通过空间位阻削弱 RNA 底物结合，保留结构选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离活性位点的晶体可及环区",
+        "功能阻断依据不足，且胞内递送限制显著",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ANGEL2 为胞内酶，常规抗体难以到达天然作用位点；需采用细胞内抗体、递送偶联或体外结构探针策略，并严控家族同源交叉反应。",
+    "structurePrepZh": "以 6RW0 A 链为模板，保留催化核心并检查金属离子、缓冲分子及晶体接触；对缺失环区进行同源或 AlphaFold 辅助建模。",
+    "structureRef": "RCSB PDB 6RW0，X-ray diffraction，1.45 Å",
+    "antibodies": [
+      "暂无获批 ANGEL2 靶向抗体",
+      "暂无临床阶段 ANGEL2 阻断抗体"
+    ],
+    "interfaceFocus": "催化沟槽、DEDD 核酸酶基序与 RNA 入口裂隙",
+    "designMode": "胞内酶表位探索",
+    "candidates": [
+      {
+        "target": "CNOT7",
+        "rationale": "CNOT7 是 CCR4-NOT 复合体核心 deadenylase，直接参与 mRNA poly(A) 尾缩短；其通路位置更接近经典转录后调控轴。"
+      },
+      {
+        "target": "CNOT8",
+        "rationale": "CNOT8 与 CNOT7 同属 CAF1 deadenylase 亚家族，可在 CCR4-NOT 复合体中执行冗余或组织特异性去腺苷酸化功能。"
+      },
+      {
+        "target": "CNOT6L",
+        "rationale": "CNOT6L 属 CCR4 型 deadenylase，与 CNOT7/CNOT8 协同调控 mRNA 降解，适合作为同一去腺苷酸化通路的候选比较靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

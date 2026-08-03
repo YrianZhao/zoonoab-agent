@@ -1,0 +1,65 @@
+{
+  "gene": "LPL",
+  "generatedAt": "2026-08-03T20:04:15.888Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "LPL 是血浆甘油三酯水解通路的核心限速酶，催化乳糜微粒和 VLDL 中甘油三酯释放游离脂肪酸；其功能缺陷直接导致家族性脂蛋白脂肪酶缺乏症和 I 型高脂蛋白血症。LPL 为分泌型、内皮表面结合酶，可通过 GPIHBP1 锚定于毛细血管腔面，抗原可及性优于胞内脂质代谢酶。相较 APOC2、APOC3、ANGPTL3 等同通路调节因子，LPL 位于脂解执行端，结构和遗传因果证据更直接，适合作为机制验证型抗体设计靶点。",
+    "mechanism": "抗体设计以稳定 LPL 活性构象或阻断 ANGPTL4/ANGPTL3 介导的 LPL 失活界面为核心，增强 LPL 对乳糜微粒和 VLDL 甘油三酯的水解效率。",
+    "selectedEpitope": "优先覆盖 N 端催化结构域邻近 ANGPTL4 结合与二聚体稳定界面，避免遮挡 GPIHBP1 结合区和脂质底物通道。",
+    "diseaseDirection": "重度高甘油三酯血症与乳糜微粒血症",
+    "domain": "LPL 含 N 端 α/β 水解酶催化结构域、盖帽区和 C 端 PLAT 样脂质结合结构域。",
+    "evidence": "LPL 脂解轴结构、遗传与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P06858 functional annotation",
+      "RCSB PDB 6OAU X-ray structure",
+      "OMIM and ClinVar LPL deficiency genetics"
+    ],
+    "referenceEntries": "UniProt P06858；RCSB PDB 6OAU；Open Targets LPL",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N 端催化结构域外侧、ANGPTL4 失活相关界面邻近区域",
+        "有利于阻断抑制性调节蛋白诱导的构象失活并稳定活性二聚体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C 端 PLAT 样脂质结合结构域非 GPIHBP1 接触面",
+        "可调节脂蛋白颗粒结合取向，同时降低干扰内皮转运的风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化三联体和底物进入通道周边盖帽区",
+        "可能影响甘油三酯底物进入，需避免产生直接酶活抑制效应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为抗体遮挡 GPIHBP1 结合、脂蛋白颗粒识别或催化入口，导致功能性抑制；建议以活性保持、ANGPTL 拮抗和内皮结合保留为联合筛选标准。",
+    "structurePrepZh": "以 6OAU 晶体结构为模板，保留成熟 LPL 蛋白链并校正糖基化位点、二硫键和缺失环区；对二聚体界面、催化口袋和 C 端脂质结合面进行分区标注。",
+    "structureRef": "RCSB PDB 6OAU，human LPL X-ray structure，2.48 Å",
+    "antibodies": [
+      "5D2",
+      "88B8"
+    ],
+    "interfaceFocus": "ANGPTL4 接触面、二聚体稳定界面与 GPIHBP1 邻近区",
+    "designMode": "功能增强型抗体",
+    "candidates": [
+      {
+        "target": "GPIHBP1",
+        "rationale": "GPIHBP1 将 LPL 转运并锚定于毛细血管内皮腔面，是 LPL 介导脂蛋白脂解的直接伴侣蛋白。其缺陷同样导致乳糜微粒血症，适合作为同一脂解轴的候选靶点。"
+      },
+      {
+        "target": "APOC2",
+        "rationale": "APOC2 是 LPL 的必需辅因子，可增强 LPL 对富含甘油三酯脂蛋白的水解活性。针对 APOC2-LPL 功能轴的设计可用于提升脂解效率或机制分层验证。"
+      },
+      {
+        "target": "ANGPTL4",
+        "rationale": "ANGPTL4 可与 LPL 相互作用并促进其构象失活，是禁食和脂肪组织代谢状态下抑制 LPL 活性的关键调节因子。阻断 ANGPTL4-LPL 作用具有降低甘油三酯的明确通路依据。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

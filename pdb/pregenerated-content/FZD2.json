@@ -1,0 +1,65 @@
+{
+  "gene": "FZD2",
+  "generatedAt": "2026-08-03T12:39:34.285Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FZD2 是 WNT/Frizzled 受体家族成员，其半胱氨酸富集结构域结合 WNT 配体并参与非经典 WNT/PCP 与发育形态建成过程，FZD2 变异与常染色体显性 omodysplasia 和 Robinow 综合征具有明确遗传关联。该靶点为七跨膜受体，N 端胞外 CRD 可直接暴露于细胞外环境，适合抗体识别与配体阻断设计。相较于胞内信号组分 DVL 或 ROR 下游节点，FZD2 具备更高抗原可及性，并可在受体-配体入口层面实现通路选择性干预。",
+    "mechanism": "抗体结合 FZD2 N 端 CRD，阻断 WNT5A 或相关 WNT 配体与脂质结合沟槽及邻近受体接触面相互作用，降低 Frizzled 介导的 PCP 信号输入。",
+    "selectedEpitope": "优先覆盖 CRD 的 WNT 脂质结合沟槽边缘及相邻 α 螺旋面，避免深埋二硫键核心。",
+    "diseaseDirection": "骨骼发育异常与 WNT/PCP 通路",
+    "domain": "FZD2 含 N 端胞外半胱氨酸富集结构域、七跨膜螺旋区及胞内 C 端 PDZ 结合基序。",
+    "evidence": "FZD2-WNT 发育疾病关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 遗传疾病关联数据",
+      "UniProt Q14332 功能与结构域注释",
+      "RCSB PDB 7X8P 晶体结构记录",
+      "OMIM/MONDO Robinow 综合征与 omodysplasia 注释"
+    ],
+    "referenceEntries": "UniProt Q14332；RCSB PDB 7X8P；Open Targets FZD2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CRD 配体结合沟槽及 WNT 脂质接触边缘",
+        "直接竞争 WNT 配体结合，具备明确阻断机制",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CRD 外侧 α 螺旋束与受体二聚/聚集邻近面",
+        "可能影响配体诱导的受体构象组织，适合作为非竞争性调节表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "CRD 二硫键密集核心与保守半胱氨酸框架",
+        "结构保守且构象约束强，存在交叉反应与亲和成熟受限风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FZD 家族 CRD 保守性较高，需避开高度保守半胱氨酸框架并强化 FZD2 特异环区筛选；功能阻断实验应区分 WNT/β-catenin 与 PCP 输出。",
+    "structurePrepZh": "以 7X8P 抗原链 A-F 的 CRD 构象为模板，保留二硫键约束并校验糖基化位点；进行多链比对以识别稳定暴露环区。",
+    "structureRef": "RCSB PDB 7X8P，X-ray diffraction，2.24 Å",
+    "antibodies": [
+      "OMP-18R5",
+      "vantictumab"
+    ],
+    "interfaceFocus": "CRD 脂质沟槽边缘与配体接触环区",
+    "designMode": "配体阻断型抗体",
+    "candidates": [
+      {
+        "target": "WNT5A",
+        "rationale": "WNT5A 是非经典 WNT/PCP 轴的重要配体，可与 Frizzled 受体及 ROR 共受体协同驱动发育形态信号，适合作为同通路配体端干预靶点。"
+      },
+      {
+        "target": "ROR2",
+        "rationale": "ROR2 是 WNT5A 依赖非经典 WNT 信号的受体酪氨酸激酶样共受体，遗传变异与 Robinow 综合征相关，具备与 FZD2 相邻的疾病通路定位。"
+      },
+      {
+        "target": "DVL1",
+        "rationale": "DVL1 位于 Frizzled 受体下游并介导 WNT/PCP 信号转导，其变异可导致常染色体显性 Robinow 综合征，但胞内定位使其更适合作为机制参照而非优先抗体靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "VAT1",
+  "generatedAt": "2026-08-03T17:47:29.977Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "VAT1与中性粒细胞计数、淋巴细胞比例及髓系白细胞计数等血液性状存在遗传关联，但其作为胞内囊泡相关醌氧化还原酶的疾病机制尚未形成可直接阻断的细胞外轴。VAT1缺乏跨膜胞外结构域或分泌型抗原暴露，天然抗体可及性弱，需优先限定为胞内递送抗体、研究级结构探针或诊断捕获场景。相较CSF3R、CXCR2等同类白细胞调控膜受体，VAT1的临床干预优先级较低，但6K9Y提供高分辨率实验结构，适合开展结构验证型结合分子设计。",
+    "mechanism": "以胞内递送Fab或VHH结合VAT1醌氧化还原酶样口袋邻近环区，干扰其与辅因子/底物结合构象耦联。",
+    "selectedEpitope": "优先选择NADPH/醌氧化还原酶样折叠口袋边缘的构象环，避开深埋催化残基。",
+    "diseaseDirection": "血液细胞计数遗传性状",
+    "domain": "VAT1为胞内囊泡相关蛋白，含NADPH依赖醌氧化还原酶样α/β折叠结构域。",
+    "evidence": "VAT1血液性状遗传关联与6K9Y结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB Q99536 vesicle amine transport protein 1",
+      "RCSB PDB 6K9Y X-ray structure",
+      "GWAS Catalog blood cell trait associations"
+    ],
+    "referenceEntries": "UniProt Q99536；RCSB PDB 6K9Y；Open Targets VAT1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "醌氧化还原酶样口袋外缘构象环",
+        "可在保留折叠稳定性的同时影响辅因子/底物进入构象",
+        "优先"
+      ],
+      [
+        "Site B",
+        "亚基表面暴露α螺旋-β折叠连接区",
+        "利于获得结构特异性结合分子并用于胞内成像或捕获",
+        "备选"
+      ],
+      [
+        "Site C",
+        "深部NADPH结合口袋及高度保守催化邻近区域",
+        "可能影响蛋白稳定性并增加交叉反应与功能不确定性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "VAT1为胞内蛋白，常规治疗性抗体难以到达抗原；建议定位为胞内递送VHH、降解偶联或研究级结构探针，并严格评估同源酶交叉反应。",
+    "structurePrepZh": "采用6K9Y的A-D链实验结构，补全缺失侧链并检查晶体接触界面；按单体功能表面与寡聚状态分别开展表位可及性评估。",
+    "structureRef": "RCSB PDB 6K9Y，X-ray diffraction，2.2 Å",
+    "antibodies": [
+      "无临床批准抗VAT1抗体",
+      "研究级抗VAT1多克隆/单克隆抗体"
+    ],
+    "interfaceFocus": "醌氧化还原酶样口袋外缘及暴露环区",
+    "designMode": "胞内抗体探针设计",
+    "candidates": [
+      {
+        "target": "CSF3R",
+        "rationale": "CSF3R是粒细胞集落刺激因子受体，直接调控中性粒细胞生成与髓系扩增；作为细胞表面受体，其抗体可及性和疾病通路可解释性均优于VAT1。"
+      },
+      {
+        "target": "CXCR2",
+        "rationale": "CXCR2介导CXCL1、CXCL2、CXCL8等趋化因子驱动的中性粒细胞募集，与中性粒细胞计数和炎症浸润密切相关；胞外环与N端区域适合抗体或VHH阻断设计。"
+      },
+      {
+        "target": "IL6R",
+        "rationale": "IL6R参与炎症诱导的髓系细胞动员和急性期反应，并与多项血液炎症表型相关；其胞外细胞因子结合结构域已有明确抗体干预先例。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

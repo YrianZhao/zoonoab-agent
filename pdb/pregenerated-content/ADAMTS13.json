@@ -1,0 +1,65 @@
+{
+  "gene": "ADAMTS13",
+  "generatedAt": "2026-08-03T10:05:38.896Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ADAMTS13 是血浆分泌型金属蛋白酶，负责切割超大分子 von Willebrand factor（VWF）A2 结构域 Tyr1605-Met1606 位点，维持血小板黏附与微血栓形成的平衡。其遗传缺陷或自身抗体抑制可导致血栓性血小板减少性紫癜，疾病关联强度高且机制直接。作为分泌蛋白，ADAMTS13 全长位于血浆可及空间，远端 TSP1/CUB 模块与自身抗体表位相关，较凝血级联中广泛表达或高出血风险靶点更适合开展机制分层的抗体设计。",
+    "mechanism": "设计非抑制性或保护性抗体，避免阻断金属蛋白酶催化位点，同时遮蔽自身抗体易结合的 spacer-CUB 相关表面，稳定 ADAMTS13 对 VWF A2 的识别与切割功能。",
+    "selectedEpitope": "优先选择 spacer 结构域外侧与远端 CUB1-CUB2 暴露面，避开 metalloprotease-disintegrin 催化沟槽及 VWF 结合核心界面。",
+    "diseaseDirection": "血栓性血小板减少性紫癜",
+    "domain": "ADAMTS13 含信号肽、金属蛋白酶、disintegrin、TSP1、cysteine-rich、spacer、TSP1 repeats 及 CUB1-CUB2 结构域。",
+    "evidence": "ADAMTS13-VWF 轴与TTP抗体设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q76LX8 curated protein annotation",
+      "RCSB PDB 3GHM X-ray structure",
+      "TTP patient autoantibody and VWF cleavage literature"
+    ],
+    "referenceEntries": "UniProt Q76LX8；RCSB PDB 3GHM；Open Targets ADAMTS13",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "spacer 结构域外侧自身抗体热点邻近面",
+        "可用于自身抗体竞争或表位屏蔽，同时保留催化结构域功能",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CUB1-CUB2 远端暴露面",
+        "适合构建血浆中可及的非抑制性结合抗体，支持药代或稳定化设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "metalloprotease-disintegrin 与 VWF A2 识别邻近界面",
+        "存在干扰 Tyr1605-Met1606 剪切及底物定位的风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "需避免覆盖催化 Zn2+ 配位区域、exosite 与 VWF A2 结合界面；优先筛选不降低 FRETS-VWF73 切割活性的结合克隆。",
+    "structurePrepZh": "以 3GHM 实验晶体结构为局部模板，补全缺失环区并校正糖基化与二硫键注释；全长构象需结合 AlphaFold 或同源模型评估。",
+    "structureRef": "RCSB PDB 3GHM，X-ray diffraction，2.6 Å",
+    "antibodies": [
+      "Mab508",
+      "Mab II-1"
+    ],
+    "interfaceFocus": "spacer-CUB 暴露表面与 VWF 结合外位点",
+    "designMode": "保护性非抑制抗体",
+    "candidates": [
+      {
+        "target": "VWF",
+        "rationale": "VWF 是 ADAMTS13 的直接底物，A2 结构域展开后暴露 Tyr1605-Met1606 剪切位点；其多聚体大小直接决定 TTP 中血小板黏附与微血栓负荷。"
+      },
+      {
+        "target": "GP1BA",
+        "rationale": "GP1BA 编码血小板 GPIbα，是 VWF A1 结构域介导血小板黏附的关键受体；阻断 VWF-GPIbα 轴可降低微血管血小板聚集。"
+      },
+      {
+        "target": "GP1BB",
+        "rationale": "GP1BB 是 GPIb-IX-V 复合体组成部分，与 GP1BA 共同维持 VWF 依赖性血小板黏附受体功能；在同一 VWF-血小板黏附通路中具有机制相关性。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

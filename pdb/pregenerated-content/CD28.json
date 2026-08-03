@@ -1,0 +1,65 @@
+{
+  "gene": "CD28",
+  "generatedAt": "2026-08-03T11:08:45.436Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CD28是T细胞共刺激受体，通过结合CD80/CD86放大TCR诱导的IL2产生、克隆扩增和效应分化，在哮喘、嗜酸性粒细胞相关炎症及HIV感染相关免疫激活中具有明确通路位置。该靶点为I型跨膜蛋白，胞外IgV样结构域暴露于T细胞表面，适合抗体识别并实现配体竞争或非竞争性调节。相较下游细胞因子或胞内信号蛋白，CD28处于抗原呈递细胞与T细胞接触界面的上游节点，具备更直接的免疫共刺激干预价值。",
+    "mechanism": "阻断CD28胞外IgV样结构域与CD80/CD86的结合，降低CD28介导的PI3K募集、IL2转录和T细胞共刺激扩增。",
+    "selectedEpitope": "优先锁定IgV样结构域MYPPPY配体结合环及邻近FG环界面。",
+    "diseaseDirection": "T细胞共刺激炎症与感染免疫",
+    "domain": "CD28含N端胞外IgV样结构域、单次跨膜区及含YMNM基序的胞内尾部。",
+    "evidence": "CD28共刺激轴结构与疾病遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P10747功能与结构域注释",
+      "RCSB PDB 5GJI高分辨率晶体结构",
+      "免疫共刺激CD28-CD80/CD86通路文献"
+    ],
+    "referenceEntries": "UniProt P10747；RCSB PDB 5GJI；Open Targets CD28",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "IgV样结构域MYPPPY配体结合环与FG环邻接面",
+        "直接竞争CD80/CD86结合，适合拮抗型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "IgV样结构域二聚体外侧β链暴露面",
+        "可能形成非竞争性构象调节或受体聚集干预",
+        "备选"
+      ],
+      [
+        "Site C",
+        "近膜端连接区与糖基化邻近表面",
+        "空间可及性和糖链遮挡不确定，需降低亲和力驱动交联风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CD28具有激动性超抗体历史风险，表位应避免诱导受体强交联；建议以配体阻断、低Fc效应或Fc沉默格式开展验证。",
+    "structurePrepZh": "以5GJI抗原链A/B为模板，保留胞外IgV样结构域二聚体构象，补全缺失侧链并评估N糖基化及MYPPPY环柔性。",
+    "structureRef": "RCSB PDB 5GJI，0.9 Å X射线晶体结构",
+    "antibodies": [
+      "TGN1412",
+      "lulizumab pegol"
+    ],
+    "interfaceFocus": "MYPPPY环-CD80/CD86配体结合界面",
+    "designMode": "拮抗型表位设计",
+    "candidates": [
+      {
+        "target": "CD80",
+        "rationale": "CD80是CD28的主要B7家族配体之一，同时参与CTLA4竞争性抑制轴；靶向CD80可在同一共刺激界面调节T细胞活化。"
+      },
+      {
+        "target": "CD86",
+        "rationale": "CD86在抗原呈递细胞上提供早期CD28共刺激信号，与哮喘和炎症性T细胞反应密切相关，适合作为同通路替代靶点。"
+      },
+      {
+        "target": "CTLA4",
+        "rationale": "CTLA4与CD28竞争结合CD80/CD86并介导免疫抑制，是该轴的负调节受体；其结构与配体重叠关系可用于比较性表位设计。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

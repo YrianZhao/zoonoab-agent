@@ -1,0 +1,65 @@
+{
+  "gene": "SIRPA",
+  "generatedAt": "2026-08-03T21:09:45.593Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SIRPA 是髓系细胞表面的免疫抑制性受体，其 IgV 结构域与肿瘤细胞或造血细胞表面 CD47 结合后招募 SHP-1/SHP-2，抑制吞噬突触形成并削弱巨噬细胞清除功能。该靶点为单跨膜受体，N 端 IgV-IgC1-IgC1 胞外区充分暴露，适合抗体识别与界面阻断。相比直接靶向 CD47，SIRPA 限制于髓系细胞谱系表达，可降低红细胞广泛结合相关风险，并保留 CD47 与其他配体的生理相互作用，因此具有较高设计优先级。",
+    "mechanism": "阻断 SIRPA IgV 结构域与 CD47 IgV 样结构域的结合，解除 ITIM-SHP1/SHP2 介导的抗吞噬信号，增强巨噬细胞吞噬活性。",
+    "selectedEpitope": "优先覆盖 N 端 IgV 结构域 CD47 结合面，聚焦 FG 环、BC 环及邻近 β 折叠界面。",
+    "diseaseDirection": "肿瘤免疫与髓系检查点",
+    "domain": "SIRPA 胞外区含 N 端 IgV 样结构域及两个 IgC1 样结构域，胞内尾部含 ITIM 基序。",
+    "evidence": "SIRPA-CD47 髓系免疫检查点证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传与表型关联",
+      "UniProt P78324 蛋白结构域与功能注释",
+      "RCSB PDB 9TF5 晶体结构解析",
+      "SIRPA-CD47 免疫检查点与抗吞噬机制文献"
+    ],
+    "referenceEntries": "UniProt P78324；RCSB PDB 9TF5；Open Targets SIRPA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "IgV 结构域 CD47 结合面，含 BC/FG 环与前端 β 折叠",
+        "直接竞争 CD47-SIRPA 结合，机制清晰且功能读出明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "IgV 结构域侧向保守表面，邻近但不完全覆盖 CD47 接触区",
+        "可形成空间位阻并优化跨等位型结合谱",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远端 IgC1 样结构域或膜近端连接区",
+        "可能影响受体构象但阻断机制间接，需避免非功能性结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IgV 结合面存在 SIRPA 等位型多态性，需评估 SIRPA V1/V2/V8 覆盖性；应避免 FcγR 过度交联导致髓系细胞非特异激活。",
+    "structurePrepZh": "以 9TF5 高分辨率晶体结构提取抗原链 A、B、C，保留 IgV 结构域主链构象，补全缺失侧链并评估糖基化邻近位点可及性。",
+    "structureRef": "RCSB PDB 9TF5，X-ray diffraction，1.63 Å",
+    "antibodies": [
+      "ALX148",
+      "TTI-621"
+    ],
+    "interfaceFocus": "SIRPA IgV-CD47 结合界面与多态残基区",
+    "designMode": "界面阻断型抗体设计",
+    "candidates": [
+      {
+        "target": "CD47",
+        "rationale": "CD47 是 SIRPA 的直接配体，位于同一抗吞噬免疫检查点轴；阻断 CD47-SIRPA 结合可增强巨噬细胞吞噬，但需重点控制红细胞结合风险。"
+      },
+      {
+        "target": "THBS1",
+        "rationale": "THBS1 编码 thrombospondin-1，是 CD47 的已知配体并参与 CD47 相关免疫调节与细胞黏附信号，可作为 CD47 轴的替代调控节点。"
+      },
+      {
+        "target": "LILRB1",
+        "rationale": "LILRB1 是髓系细胞抑制性受体，可通过识别肿瘤细胞 HLA-I 传递抗吞噬信号，与 SIRPA-CD47 轴同属髓系免疫检查点通路。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "RAD52",
+  "generatedAt": "2026-08-03T15:51:35.887Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RAD52参与同源重组与单链退火修复，在BRCA1/2缺陷背景中可补偿DNA双链断裂修复并形成合成致死依赖。该蛋白主要为核内DNA修复因子，缺乏胞外结构域或分泌特征，天然抗原可及性不适合常规体内阻断抗体。其优先级仅适用于胞内递送抗体、intrabody或结构探针场景；相较PARP1、ATR等同通路可药靶，RAD52的抗体成药可及性较弱但寡聚环结构提供明确界面设计依据。",
+    "mechanism": "通过结合RAD52 N端寡聚环的DNA结合沟槽或亚基界面，阻断RAD52与ssDNA退火底物结合及RAD51装载辅助过程。",
+    "selectedEpitope": "优先覆盖N端残基1-209寡聚化环的ssDNA结合沟槽及相邻亚基接触界面。",
+    "diseaseDirection": "DNA修复缺陷肿瘤合成致死",
+    "domain": "RAD52含N端保守DNA结合与环状寡聚化结构域，C端参与RAD51、RPA等修复因子相互作用。",
+    "evidence": "RAD52同源重组修复与BRCA缺陷依赖证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P43351功能注释",
+      "RCSB PDB 5JRB晶体结构",
+      "DNA修复与合成致死研究文献"
+    ],
+    "referenceEntries": "UniProt P43351；RCSB PDB 5JRB；Open Targets RAD52",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端寡聚环ssDNA结合沟槽",
+        "直接干预RAD52介导的单链DNA退火反应",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端环状寡聚体相邻亚基界面",
+        "削弱RAD52十一聚体稳定性并降低DNA结合平台完整性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端RAD51/RPA相互作用区",
+        "理论上可阻断修复因子招募，但5JRB未解析该柔性区域",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RAD52为核内蛋白，常规抗体难以进入作用位点；应定位为胞内递送Fab/VHH或结构验证探针，并避免将其作为经典胞外阻断抗体开发。",
+    "structurePrepZh": "以5JRB中A-K链环状寡聚体为模板，保留生物学装配体，检查缺失C端柔性区并对DNA结合沟槽进行界面网格定义。",
+    "structureRef": "RCSB PDB 5JRB，X-ray diffraction，2.405 Å",
+    "antibodies": [
+      "抗RAD52研究级单克隆抗体",
+      "抗RAD52 ChIP/IF验证抗体"
+    ],
+    "interfaceFocus": "N端寡聚环ssDNA结合沟槽与亚基接触面",
+    "designMode": "胞内抗体/结构探针",
+    "candidates": [
+      {
+        "target": "PARP1",
+        "rationale": "PARP1参与单链断裂修复并在同源重组缺陷肿瘤中形成合成致死治疗轴，是RAD52依赖背景下的同类DNA损伤应答靶点。"
+      },
+      {
+        "target": "BRCA2",
+        "rationale": "BRCA2介导RAD51装载与同源重组修复，BRCA2缺陷可增强肿瘤细胞对RAD52介导备用修复途径的依赖。"
+      },
+      {
+        "target": "RAD51",
+        "rationale": "RAD51是同源重组链侵入反应的核心重组酶，RAD52可辅助其装载并与其处于同一DNA双链断裂修复网络。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

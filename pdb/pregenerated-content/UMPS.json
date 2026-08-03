@@ -1,0 +1,65 @@
+{
+  "gene": "UMPS",
+  "generatedAt": "2026-08-03T17:42:04.541Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "UMPS 是嘧啶从头合成通路的双功能胞质酶，催化乳清酸向 OMP 及 UMP 的连续转化；遗传性乳清酸尿症由 UMPS 功能缺陷导致乳清酸积累、尿嘧啶核苷酸不足及造血异常，疾病因果关系明确。该蛋白并非分泌蛋白或膜受体，天然抗原可及性弱，抗体策略更适合作为结构验证、细胞内递送或研究级抑制工具，而非经典体液阻断抗体。相较通路中上游 CAD、DHODH 等多结构域酶，UMPS 具有高分辨率人源晶体结构和明确催化口袋，适合开展构象选择型抗体或内体递送抗体的机制设计，但成药优先级受胞内定位限制。",
+    "mechanism": "通过结合 OPRTase 催化口袋邻近环区或 OMP decarboxylase 二聚体界面，限制乳清酸核苷酸化或 OMP 脱羧所需构象重排。",
+    "selectedEpitope": "优先选择 OMP decarboxylase 结构域二聚体界面邻近催化环，兼顾构象锁定与功能抑制。",
+    "diseaseDirection": "遗传性乳清酸尿症与嘧啶代谢异常",
+    "domain": "UMPS 含 N 端 orotate phosphoribosyltransferase 结构域与 C 端 OMP decarboxylase 结构域，形成双功能胞质酶。",
+    "evidence": "UMPS-乳清酸尿症结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联证据",
+      "UniProtKB P11172 功能与亚细胞定位注释",
+      "RCSB PDB 2QCF 人源 UMPS 晶体结构",
+      "OMIM/Orphanet 遗传性乳清酸尿症记录"
+    ],
+    "referenceEntries": "UniProt P11172；RCSB PDB 2QCF；MONDO:0009797；Orphanet:30",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C 端 OMP decarboxylase 二聚体界面及催化环邻近区域",
+        "可锁定脱羧活性所需构象并干扰二聚体依赖性活性组织",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N 端 orotate phosphoribosyltransferase 催化口袋边缘环区",
+        "可能阻断乳清酸与 PRPP 反应位点进入，适合抑制型抗体筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化中心的外周螺旋束表面",
+        "主要提供结构识别价值，直接功能抑制概率较低",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "UMPS 为胞质代谢酶，常规抗体难以到达天然靶点；设计宜限定为细胞内递送、intrabody 或结构生物学试剂，并避免误判为膜外抗原。",
+    "structurePrepZh": "以 2QCF A 链为模板，保留双结构域构象信息，检查配体、晶体接触及二聚体装配状态后进行表面可及性与催化环柔性评估。",
+    "structureRef": "RCSB PDB 2QCF，X-ray diffraction，1.22 Å，人源 UMPS",
+    "antibodies": [
+      "无已获批 UMPS 靶向治疗性抗体",
+      "研究级抗 UMPS 多克隆/单克隆抗体"
+    ],
+    "interfaceFocus": "OMP decarboxylase 二聚体界面与催化环",
+    "designMode": "胞内酶构象抑制",
+    "candidates": [
+      {
+        "target": "CAD",
+        "rationale": "CAD 催化嘧啶从头合成早期的氨甲酰磷酸合成、天冬氨酸转氨甲酰化及二氢乳清酸生成步骤，与 UMPS 同属 UMP 生物合成轴。其多酶复合结构可作为上游通量调控节点。"
+      },
+      {
+        "target": "DHODH",
+        "rationale": "DHODH 将二氢乳清酸氧化为乳清酸，直接提供 UMPS 的上游底物乳清酸；该节点与乳清酸水平和嘧啶核苷酸供给密切相关。"
+      },
+      {
+        "target": "SLC29A1",
+        "rationale": "SLC29A1 介导嘧啶核苷跨膜转运，参与核苷补救途径并可影响尿苷可利用性；在 UMPS 缺陷背景下具有通路补偿相关性。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

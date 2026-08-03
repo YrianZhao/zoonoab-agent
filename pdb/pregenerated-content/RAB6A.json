@@ -1,0 +1,65 @@
+{
+  "gene": "RAB6A",
+  "generatedAt": "2026-08-03T20:40:19.591Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RAB6A 是高尔基体相关小 GTP 酶，参与逆行囊泡运输、分泌通路组织及细胞内膜系统稳态，其遗传关联信号涉及休克、1型糖尿病及多项血清蛋白定量表型。该蛋白为胞内定位的 Ras 超家族成员，缺乏天然胞外结构域或分泌形式，常规抗体药物的抗原可及性明显受限。相较于同通路中具有胞外配体或膜受体特征的靶点，RAB6A 更适合作为机制验证、胞内抗体或递送型抗体工程对象，优先级应低于可直接体液暴露的免疫炎症轴靶点。",
+    "mechanism": "通过胞内抗体或递送型结合模块占据 RAB6A Switch I/II 区域，干扰其与效应蛋白 GCC2、BICD1/2 或 motor-adaptor 复合物的结合。",
+    "selectedEpitope": "优先覆盖 GTP 酶结构域 Switch I/II 与核苷酸结合沟槽邻近界面。",
+    "diseaseDirection": "免疫炎症与分泌运输相关疾病",
+    "domain": "RAB6A 含保守小 GTP 酶核心结构域，包含 P-loop、Switch I、Switch II 及 C 端膜锚定相关序列。",
+    "evidence": "RAB6A 结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProtKB P20340 蛋白功能注释",
+      "RCSB PDB 1YZQ 晶体结构",
+      "Reactome 囊泡介导运输通路注释"
+    ],
+    "referenceEntries": "UniProt P20340；RCSB PDB 1YZQ；Reactome RAB6 vesicle transport",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Switch I/Switch II 效应蛋白结合面",
+        "可阻断 RAB6A 与 GCC2、BICD 适配蛋白相互作用，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "P-loop 与核苷酸结合沟槽边缘",
+        "可影响 GTP/GDP 构象状态识别，但需避免非特异性干扰其他 RAB 蛋白",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端高变区及膜定位邻近区域",
+        "序列差异度较高但结构柔性强，晶体结构覆盖与构象稳定性需谨慎评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RAB6A 为胞内小 GTP 酶，常规 Fab/VHH 难以直接到达抗原；设计应限定于胞内抗体、细胞递送或研究级阻断体系，并严格评估 RAB6B/RAB6C 交叉反应。",
+    "structurePrepZh": "以 PDB 1YZQ 链 A 为模板，保留 GTP 酶核心结构域，校验核苷酸结合状态、缺失残基与晶体接触界面，剔除非生理晶体堆积后进行表位可及性分析。",
+    "structureRef": "PDB 1YZQ；1.78 Å X-ray human RAB6A structure",
+    "antibodies": [
+      "Anti-RAB6A research antibody",
+      "Intrabody-format anti-RAB GTPase binder"
+    ],
+    "interfaceFocus": "Switch I/II 效应蛋白结合界面",
+    "designMode": "胞内抗体验证模式",
+    "candidates": [
+      {
+        "target": "GCC2",
+        "rationale": "GCC2 是 RAB6 依赖性反式高尔基网络 tethering 因子，可作为同一逆行运输轴中更靠下游的效应蛋白节点。其大分子卷曲螺旋结构适合用于解析 RAB6A 介导的膜运输复合物。"
+      },
+      {
+        "target": "BICD2",
+        "rationale": "BICD2 是 RAB6A 连接动力蛋白-动力蛋白激活复合物的重要适配蛋白，参与高尔基体来源载荷的微管运输。阻断 RAB6A-BICD2 轴可用于评估囊泡运动环节的疾病相关贡献。"
+      },
+      {
+        "target": "DCTN1",
+        "rationale": "DCTN1 编码 dynactin p150Glued，是 RAB6A-BICD 复合物连接动力蛋白运输机器的核心组成部分。该靶点位于同一微管依赖性囊泡运输通路，可作为运动复合物层面的候选节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

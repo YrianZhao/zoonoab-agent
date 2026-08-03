@@ -1,0 +1,65 @@
+{
+  "gene": "SYNJ1",
+  "generatedAt": "2026-08-03T21:24:42.675Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SYNJ1编码突触小泡内吞相关磷脂酶synaptojanin 1，其Sac1与5-phosphatase活性调节PI(4,5)P2去磷酸化，影响网格蛋白包被小泡脱包被、突触传递与多巴胺能神经元稳态。该蛋白主要为胞质/突触前蛋白，缺乏天然胞外结构域，常规体内阻断抗体抗原可及性受限，更适合作为机制验证、细胞内递送抗体或结构辅助结合分子设计对象。相较于PRKN、PINK1等线粒体质量控制靶点，SYNJ1直接连接突触囊泡循环与早发帕金森样表型及发育性癫痫脑病遗传证据，适合优先开展结构域功能表位研究，但治疗性抗体优先级低于膜受体或分泌因子靶点。",
+    "mechanism": "设计结合5-phosphatase催化口袋邻近底物识别沟槽的抗体片段，阻断PI(4,5)P2头基进入活性位点，从而抑制SYNJ1介导的PIP2去磷酸化。",
+    "selectedEpitope": "优先靶向5-phosphatase结构域底物结合沟槽及催化环邻近构象表位，避开深埋催化残基。",
+    "diseaseDirection": "早发帕金森病与癫痫脑病",
+    "domain": "SYNJ1含N端Sac1样磷酸酶结构域、中央5-phosphatase结构域及C端富脯氨酸蛋白互作区。",
+    "evidence": "SYNJ1突触小泡循环遗传与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt O43426功能与结构域注释",
+      "RCSB PDB 2VJ0晶体结构",
+      "OMIM及ClinVar早发帕金森病/癫痫相关变异记录"
+    ],
+    "referenceEntries": "UniProt O43426；RCSB PDB 2VJ0；Open Targets SYNJ1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "5-phosphatase结构域底物结合沟槽与催化环外缘",
+        "可直接干预PI(4,5)P2识别，适合功能阻断型片段筛选",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Sac1样磷酸酶结构域膜磷脂结合界面",
+        "可能影响PI3P/PI4P相关膜定位与底物处理，可用于机制分型",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端富脯氨酸SH3结合区",
+        "涉及endophilin/amphiphysin等内吞蛋白互作，但柔性高且结构解析不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SYNJ1为胞内突触前蛋白，常规抗体难以到达作用位点；建议采用Fab/VHH片段、细胞内递送体系或体外结构-功能验证，并严格评估神经元毒性。",
+    "structurePrepZh": "以2VJ0高分辨率晶体结构为模板，保留链A主结构并核查链P/Q配体或结晶辅助组分，补全缺失环区后进行质子化与磷酸肌醇底物模拟对接。",
+    "structureRef": "RCSB PDB 2VJ0，X-ray diffraction，1.6 Å",
+    "antibodies": [
+      "SYNJ1研究级多克隆抗体",
+      "SYNJ1研究级单克隆抗体"
+    ],
+    "interfaceFocus": "5-phosphatase底物沟槽与催化环外缘",
+    "designMode": "胞内片段阻断",
+    "candidates": [
+      {
+        "target": "DNAJC6",
+        "rationale": "DNAJC6编码auxilin，参与网格蛋白包被小泡脱包被，与SYNJ1共同影响突触小泡内吞循环；其遗传变异同样关联早发帕金森样疾病。"
+      },
+      {
+        "target": "SH3GL2",
+        "rationale": "SH3GL2编码endophilin A1，可通过SH3结构域与SYNJ1富脯氨酸区互作，参与突触小泡内吞膜弯曲与蛋白复合体装配。"
+      },
+      {
+        "target": "DNM1",
+        "rationale": "DNM1编码神经元dynamin 1，介导突触小泡膜裂解步骤，并与SYNJ1所在内吞通路共同影响癫痫脑病相关突触功能。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

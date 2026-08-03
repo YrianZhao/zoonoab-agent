@@ -1,0 +1,65 @@
+{
+  "gene": "RACGAP1",
+  "generatedAt": "2026-08-03T20:41:37.517Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RACGAP1 是 centralspindlin 复合体组成因子，通过其 GAP 结构域调控 RAC1、CDC42 等 Rho 家族 GTPase 的水解状态，并参与胞质分裂与红系细胞终末分裂；其遗传变异与先天性红细胞生成异常性贫血 III 型相关。该蛋白主要定位于胞质、中体和纺锤体中区，缺乏经典分泌信号肽、跨膜区或稳定胞外结构域，因此抗原可及性不符合常规治疗性抗体优先标准。相较于可直接暴露于细胞外的细胞因子受体或膜受体靶点，RACGAP1 更适合作为结构生物学验证、细胞内递送抗体或研究级阻断工具的中低优先级靶点。",
+    "mechanism": "设计目标为阻断 RACGAP1 GAP 催化表面与 RAC1-GTP/CDC42-GTP 的结合，干扰 GTP 水解促进作用并影响 centralspindlin 介导的胞质分裂过程。",
+    "selectedEpitope": "优先覆盖 GAP 结构域的 Rho GTPase 结合沟槽及催化 arginine finger 邻近环区。",
+    "diseaseDirection": "先天性红细胞生成异常性贫血",
+    "domain": "RACGAP1 含 N 端 coiled-coil 区与 C 端 RhoGAP 结构域；5C2K 覆盖高分辨率 GAP 催化结构域。",
+    "evidence": "RACGAP1 结构域与红系胞质分裂证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt Q9H0H5 功能与亚细胞定位注释",
+      "RCSB PDB 5C2K X-ray 晶体结构",
+      "OMIM/Orphanet 先天性红细胞生成异常性贫血 III 型记录"
+    ],
+    "referenceEntries": "UniProt Q9H0H5；RCSB PDB 5C2K；Open Targets RACGAP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RhoGAP 催化沟槽与 arginine finger 邻近环区",
+        "可直接干预 RAC1/CDC42 结合及 GTP 水解促进作用",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RhoGAP 结构域外侧保守螺旋-环界面",
+        "有利于构建构象锁定型结合分子并辅助稳定晶体构象",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端 coiled-coil/centralspindlin 复合体装配相关区域",
+        "可能影响 MKLP1-KIF23 依赖复合体装配，但 5C2K 未覆盖该区",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RACGAP1 为胞内蛋白，常规抗体体内可及性有限；治疗开发需评估细胞内递送、蛋白降解偶联或研究工具抗体路径，避免将其作为传统胞外阻断抗体靶点。",
+    "structurePrepZh": "以 5C2K 链 A 为模板，保留 RhoGAP 结构域主链与催化环构象，补全缺失侧链后进行质子化、界面溶剂暴露分析和 RAC1 对接约束评估。",
+    "structureRef": "RCSB PDB 5C2K，X-ray diffraction，1.42 Å",
+    "antibodies": [
+      "无已获批 RACGAP1 治疗性抗体",
+      "研究级 anti-RACGAP1 monoclonal antibody"
+    ],
+    "interfaceFocus": "RhoGAP-RAC1/CDC42 催化结合界面",
+    "designMode": "胞内靶点工具抗体",
+    "candidates": [
+      {
+        "target": "KIF23",
+        "rationale": "KIF23 编码 MKLP1，是 centralspindlin 复合体中与 RACGAP1 直接结合的驱动蛋白亚基，参与中体形成和胞质分裂完成。"
+      },
+      {
+        "target": "RHOA",
+        "rationale": "RHOA 是胞质分裂收缩环形成的核心小 GTPase，与 RACGAP1/centralspindlin 介导的分裂沟定位通路处于同一细胞分裂轴。"
+      },
+      {
+        "target": "ECT2",
+        "rationale": "ECT2 是 Rho GTPase 鸟嘌呤核苷酸交换因子，可被 centralspindlin 招募至中区以激活 RHOA，功能上连接 RACGAP1 相关胞质分裂调控。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

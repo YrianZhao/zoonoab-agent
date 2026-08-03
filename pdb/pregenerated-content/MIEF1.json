@@ -1,0 +1,65 @@
+{
+  "gene": "MIEF1",
+  "generatedAt": "2026-08-03T14:15:16.019Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MIEF1定位于线粒体外膜，参与线粒体分裂调控，并通过招募或调节DRP1相关复合体影响线粒体形态稳态；其遗传关联最高指向optic atrophy 14，符合线粒体动力学异常导致视神经退行性损伤的疾病机制。该蛋白主要为胞质侧外膜锚定蛋白，并非典型分泌蛋白或细胞外受体，完整抗原在体内抗体可及性受限，但重组胞质结构域具备高分辨率结构支撑，适合体外结合抗体或胞内递送抗体片段设计。相比一般线粒体结构蛋白，MIEF1具有明确的人源晶体结构与疾病遗传信号，可优先用于机制验证型抗体工具开发，而非直接体内阻断型治疗抗体。",
+    "mechanism": "设计抗体片段阻断MIEF1胞质结构域与DRP1复合体的募集界面，干预线粒体外膜分裂位点装配并重塑异常线粒体动力学。",
+    "selectedEpitope": "优先覆盖MIEF1胞质结构域二聚体外露沟槽及DRP1募集相关界面，避开N端跨膜锚定区。",
+    "diseaseDirection": "线粒体动力学相关视神经退行性疾病",
+    "domain": "MIEF1含N端线粒体外膜跨膜锚定区及胞质侧MID51核心结构域，PDB 5X9C覆盖可溶性胞质结构域。",
+    "evidence": "MIEF1线粒体动力学与视神经萎缩遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9NQG6蛋白定位与功能注释",
+      "RCSB PDB 5X9C晶体结构记录",
+      "线粒体分裂因子MIEF1/MID51与DRP1功能研究文献"
+    ],
+    "referenceEntries": "UniProt: Q9NQG6；RCSB PDB: 5X9C；Gene: MIEF1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "MID51胞质核心结构域外露二聚体沟槽邻近区域",
+        "可能影响MIEF1构象装配及DRP1募集界面，适合作为机制阻断表位",
+        "优先"
+      ],
+      [
+        "Site B",
+        "胞质结构域侧向α螺旋与环区组合表面",
+        "结构暴露度较高，适合获得高亲和结合抗体并用于细胞内定位探针",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端跨膜锚定区近膜连接段",
+        "体内抗体可及性低且结构覆盖不足，易受膜环境影响",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MIEF1为线粒体外膜胞质侧蛋白，常规抗体难以在完整细胞内直接作用；建议定位为胞内抗体片段、递送型VHH或体外机制验证工具。",
+    "structurePrepZh": "采用PDB 5X9C的A、B链构建胞质结构域二聚体模型，补全缺失侧链、评估晶体接触，并剔除非功能性结晶界面。",
+    "structureRef": "Human MID51/MIEF1 cytosolic domain crystal structure, PDB 5X9C, 1.85 Å",
+    "antibodies": [
+      "抗MIEF1研究级单克隆抗体",
+      "抗MID51/MIEF1免疫检测抗体"
+    ],
+    "interfaceFocus": "MID51胞质结构域二聚体外露面及DRP1募集界面",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "DNM1L",
+        "rationale": "DNM1L编码DRP1，是线粒体分裂执行性GTP酶，与MIEF1处于同一线粒体分裂通路；调节DRP1募集或寡聚化可直接影响线粒体裂变。"
+      },
+      {
+        "target": "MFF",
+        "rationale": "MFF为线粒体外膜DRP1受体，与MIEF1共同参与DRP1在线粒体表面的定位；其胞质外露结构适合比较不同DRP1受体的阻断策略。"
+      },
+      {
+        "target": "FIS1",
+        "rationale": "FIS1是线粒体外膜分裂相关因子，参与DRP1依赖性线粒体动力学调控；可作为同通路中近膜受体样靶点进行并行验证。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

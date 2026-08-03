@@ -1,0 +1,65 @@
+{
+  "gene": "ALPL",
+  "generatedAt": "2026-08-03T10:24:26.806Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ALPL编码组织非特异性碱性磷酸酶，催化无机焦磷酸盐PPi水解并维持骨矿化所需的Pi/PPi平衡，其功能缺失直接导致低磷酸酶症及婴儿型、成人型低磷酸酶症。ALPL为GPI锚定的胞外膜相关酶，催化结构域完全位于细胞外侧，抗体可直接接近二聚体表面及底物进入通道。相较ANKH、ENPP1等同通路调节因子，ALPL与低磷酸酶症遗传因果关系最直接，Open Targets关联分值最高，适合作为机制验证与构象表位设计的优先靶点。",
+    "mechanism": "设计阻断型抗体结合ALPL胞外催化结构域底物入口或二聚体界面，抑制PPi接近金属依赖活性中心，从而调节PPi向Pi的水解反应。",
+    "selectedEpitope": "优先定位于胞外催化结构域的底物入口邻近环区，避开催化金属配位残基以降低完全失活风险。",
+    "diseaseDirection": "低磷酸酶症与骨矿化异常",
+    "domain": "ALPL由N端信号肽、胞外碱性磷酸酶催化结构域、C端GPI锚定信号组成，成熟蛋白以同源二聚体发挥酶活。",
+    "evidence": "ALPL低磷酸酶症遗传因果与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P05186功能与亚细胞定位注释",
+      "RCSB PDB 7YIW晶体结构数据",
+      "OMIM与ClinVar低磷酸酶症变异证据"
+    ],
+    "referenceEntries": "UniProt:P05186；RCSB PDB:7YIW；Open Targets:ALPL",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "胞外催化结构域底物入口邻近环区",
+        "可直接影响PPi进入活性中心，适合构建功能调节型抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "同源二聚体界面外侧可及面",
+        "可能干扰二聚体稳定性或构象动态，适合筛选变构抑制表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "金属离子配位活性中心核心区域",
+        "高保守且承担催化功能，存在强烈失活与交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ALPL活性中心高度保守，直接遮蔽金属配位位点可能造成广泛酶活抑制；设计宜聚焦底物入口周边非催化残基并评估组织非特异性表达风险。",
+    "structurePrepZh": "以7YIW晶体结构为模板，保留成熟胞外二聚体构象，校验金属离子、糖基化位点及GPI锚定近端缺失区，进行生理二聚体界面标注。",
+    "structureRef": "Human ALPL X-ray structure, PDB 7YIW, 2.89 Å",
+    "antibodies": [
+      "Burosumab",
+      "Asfotase alfa"
+    ],
+    "interfaceFocus": "底物入口环区与同源二聚体外侧界面",
+    "designMode": "酶活调节型抗体",
+    "candidates": [
+      {
+        "target": "ENPP1",
+        "rationale": "ENPP1生成胞外PPi，是ALPL所水解底物的上游来源；其功能改变同样影响骨矿化与病理性钙化平衡。"
+      },
+      {
+        "target": "ANKH",
+        "rationale": "ANKH参与细胞内外PPi转运，与ALPL共同维持矿化微环境中的PPi稳态，适合作为同通路替代调节节点。"
+      },
+      {
+        "target": "SLC20A2",
+        "rationale": "SLC20A2介导无机磷酸盐转运，位于Pi/PPi矿化稳态网络中，其异常与磷酸盐代谢和异位钙化表型相关。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "RBM15",
+  "generatedAt": "2026-08-03T20:49:05.783Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RBM15 是核内 RNA 结合蛋白，参与 m6A 甲基转移复合体的 RNA 招募，并影响剪接、转录后稳定性及造血相关转录程序；其遗传关联覆盖神经退行性疾病及血液学表型，但现有疾病证据更偏向调控网络相关性。该蛋白主要定位于细胞核，不具备分泌蛋白或膜受体的天然胞外可及性，作为常规体内抗体靶点存在显著递送障碍；其可及性优势仅限于纯化蛋白、细胞内抗体或研究型结构探针场景。相较 METTL3、METTL14、WTAP 等同通路核心酶或支架蛋白，RBM15 的 SPOC 结构域具有高分辨率实验结构并承载蛋白互作功能，适合优先开展机制验证型结合分子设计，但临床抗体开发优先级应低于可胞外暴露靶点。",
+    "mechanism": "设计分子可阻断 RBM15 SPOC 结构域与转录调控因子复合体组分的结合，从而干扰 RBM15 介导的 RNA 加工复合体招募。",
+    "selectedEpitope": "优先选择 SPOC 结构域保守蛋白互作沟槽及磷酸肽识别邻近界面。",
+    "diseaseDirection": "神经退行性疾病与RNA表观转录调控",
+    "domain": "RBM15 含 N 端 RNA 识别基序及 C 端 SPOC 结构域，7Z27 覆盖 SPOC 折叠核心。",
+    "evidence": "RBM15结构域、RNA调控与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q96T37 functional annotation",
+      "RCSB PDB 7Z27 X-ray structure",
+      "m6A RNA methylation complex literature"
+    ],
+    "referenceEntries": "UniProt Q96T37；RCSB PDB 7Z27；Open Targets RBM15",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SPOC结构域蛋白互作沟槽",
+        "覆盖功能性复合体结合界面，适合阻断互作型抗体片段设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SPOC结构域磷酸肽识别邻近表面",
+        "可调节转录调控因子招募，适合作为变构干预表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SPOC折叠核心疏水稳定区",
+        "结构保守且埋藏度较高，结合可能影响折叠稳定性并增加非特异风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RBM15 为核内蛋白，缺乏胞外抗原可及性，常规抗体体内阻断可行性较低；建议限定为细胞内抗体、Fab结构探针或体外机制验证。",
+    "structurePrepZh": "以 7Z27 A/B 链为结构模板，去除晶体接触冗余链与非功能性溶剂分子，保留 SPOC 结构域互作表面用于表位分层。",
+    "structureRef": "RCSB PDB 7Z27，X-ray diffraction，1.45 Å",
+    "antibodies": [
+      "暂无获批RBM15靶向抗体",
+      "暂无临床阶段RBM15阻断抗体"
+    ],
+    "interfaceFocus": "SPOC结构域蛋白互作沟槽",
+    "designMode": "细胞内Fab/VHH探针",
+    "candidates": [
+      {
+        "target": "METTL3",
+        "rationale": "METTL3 是 m6A 甲基转移复合体催化亚基，与 RBM15 共同参与 RNA 甲基化调控网络；其酶活位点与复合体界面适合小分子或细胞内结合分子机制研究。"
+      },
+      {
+        "target": "METTL14",
+        "rationale": "METTL14 与 METTL3 形成核心异二聚体并参与 RNA 底物识别，是 RBM15 招募 m6A 写入复合体下游功能的关键同通路节点。"
+      },
+      {
+        "target": "WTAP",
+        "rationale": "WTAP 是 m6A 写入复合体支架组分，参与 METTL3-METTL14 复合体定位与稳定，并与 RBM15 介导的 RNA 调控过程处于同一功能轴。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

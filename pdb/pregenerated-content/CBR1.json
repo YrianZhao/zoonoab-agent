@@ -1,0 +1,65 @@
+{
+  "gene": "CBR1",
+  "generatedAt": "2026-08-03T18:15:43.271Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CBR1为胞质短链脱氢/还原酶，参与醌类、前列腺素及多种羰基化合物的NADPH依赖性还原，其遗传关联主要指向IGF-1测量、神经退行性疾病及炎症相关蛋白定量性状。该蛋白缺乏分泌信号肽和跨膜区，天然抗原可及性不利于完整抗体在细胞外直接结合，因此更适合作为胞内靶点验证或细胞内抗体片段工程模型。相比同通路中分泌性或膜结合炎症靶点，CBR1的优势在于高分辨率晶体结构和明确辅因子结合口袋，可用于精确界面约束设计，但成药优先级应低于可外周阻断的IL6R、CRP相关炎症轴靶点。",
+    "mechanism": "设计目标为占据CBR1底物结合沟槽并干扰NADPH邻近羰基底物定位，阻断催化Tyr-Lys-Ser基序介导的氢转移反应。",
+    "selectedEpitope": "优先覆盖Rossmann折叠NADPH结合沟槽邻近的底物入口环及催化Tyr193周边界面。",
+    "diseaseDirection": "神经退行性与炎症代谢性状",
+    "domain": "CBR1由短链脱氢/还原酶Rossmann样α/β折叠构成，含NADPH结合区与羰基底物催化口袋。",
+    "evidence": "CBR1遗传关联与晶体结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProtKB P16152功能与亚细胞定位注释",
+      "RCSB PDB 1WMA高分辨率晶体结构",
+      "短链脱氢/还原酶家族催化机制文献"
+    ],
+    "referenceEntries": "UniProtKB P16152；RCSB PDB 1WMA；Open Targets CBR1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "NADPH结合沟槽与底物入口环邻近区域",
+        "可直接限制底物进入和辅因子依赖性催化构象形成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化Tyr193、Lys197及周边α螺旋暴露面",
+        "有利于干扰羰基底物定位与质子转移网络",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Rossmann核心β折叠保守面",
+        "家族保守性高且可能影响结构稳定性，选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CBR1为胞内可溶酶，常规抗体递送和天然抗原可及性受限；设计应限定为细胞内Fab/VHH、降解偶联或机制研究用途，并强化SDR家族选择性评估。",
+    "structurePrepZh": "以1WMA链A为模板，保留NADPH及关键活性位点几何关系，补全缺失侧链、校正质子化状态，并围绕底物入口环定义可结合表面。",
+    "structureRef": "PDB 1WMA；human CBR1 X-ray structure, 1.24 Å",
+    "antibodies": [
+      "暂无获批CBR1靶向抗体",
+      "研究级anti-CBR1抗体"
+    ],
+    "interfaceFocus": "NADPH口袋、底物入口环与催化Tyr193界面",
+    "designMode": "胞内酶口袋阻断",
+    "candidates": [
+      {
+        "target": "CRP",
+        "rationale": "CRP位于炎症急性期反应轴，与CBR1关联数据中的C反应蛋白测量性状处于同一炎症表型背景；其为分泌性五聚体蛋白，抗体可及性显著优于CBR1。"
+      },
+      {
+        "target": "IL6R",
+        "rationale": "IL6R介导IL-6驱动的急性期蛋白表达，包括肝源性CRP上调；作为膜受体及可溶受体靶点，具备成熟的抗体阻断机制。"
+      },
+      {
+        "target": "IGF1R",
+        "rationale": "IGF1R是IGF-1信号轴核心受体，与CBR1遗传关联中IGF-1测量性状处于同一内分泌代谢通路；其胞外配体结合结构域适合阻断型抗体设计。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

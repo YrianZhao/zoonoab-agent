@@ -1,0 +1,65 @@
+{
+  "gene": "LAT2",
+  "generatedAt": "2026-08-03T13:49:51.859Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "LAT2编码linker for activation of T cells family member 2，又称NTAL/LAB，是免疫受体信号中的跨膜衔接蛋白，可在B细胞、肥大细胞及髓系细胞中连接受体近端磷酸化事件与下游信号复合体装配。其疾病关联以血清球蛋白、白蛋白/球蛋白比值及血液蛋白水平表型为主，提示其与体液免疫活化和免疫球蛋白稳态相关。LAT2仅有短胞外段且主要功能位点位于胞内酪氨酸基序，抗原可及性显著弱于CD19、MS4A1等B细胞膜表面靶点；因此其作为抗体主靶点优先级偏研究型，适合用于靶点验证、细胞标记或递送策略，而非经典阻断型抗体开发。",
+    "mechanism": "抗体可结合LAT2短胞外近膜区，干扰LAT2在膜微区中的空间聚集与受体近端信号复合体定位，间接削弱SYK、GRB2相关衔接装配。",
+    "selectedEpitope": "优先探索N端短胞外肽段及近膜构象表位，避免将胞内SH2结合基序误设为可及抗体表位。",
+    "diseaseDirection": "体液免疫与血液蛋白稳态异常",
+    "domain": "LAT2为III型跨膜衔接蛋白，含短N端胞外区、单跨膜螺旋及富含酪氨酸基序的胞质尾部。",
+    "evidence": "LAT2免疫受体衔接信号与血液蛋白表型证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与表型关联",
+      "UniProt Q9GZY6蛋白功能与亚细胞定位注释",
+      "RCSB PDB 3MAZ X射线晶体结构记录",
+      "免疫受体信号通路中LAT2/NTAL功能研究文献"
+    ],
+    "referenceEntries": "UniProt Q9GZY6；RCSB PDB 3MAZ；HGNC:LAT2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端短胞外近膜肽段",
+        "唯一直接抗体可及区域，适合制备识别细胞表面LAT2的验证抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "跨膜螺旋胞外侧边界",
+        "可能影响膜微区定位与受体近端聚集，但构象依赖性高",
+        "备选"
+      ],
+      [
+        "Site C",
+        "胞质尾部磷酸化酪氨酸基序",
+        "参与GRB2、GAB2等信号蛋白招募，但常规抗体在完整细胞中不可及",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "LAT2胞外区极短，天然构象表位面积有限，存在低亲和力与低功能阻断风险；建议优先采用肽免疫结合细胞表面验证，并设置胞内抗体验证对照。",
+    "structurePrepZh": "PDB 3MAZ应先核验链A、B对应片段与LAT2全长拓扑关系，补充UniProt跨膜区注释，避免将晶体片段直接外推为胞外抗原结构。",
+    "structureRef": "RCSB PDB 3MAZ，X-ray diffraction，1.9 Å",
+    "antibodies": [
+      "Anti-LAT2/NTAL research antibody",
+      "Anti-LAB/LAT2 monoclonal antibody"
+    ],
+    "interfaceFocus": "N端胞外近膜区与膜微区聚集界面",
+    "designMode": "探索型表位设计",
+    "candidates": [
+      {
+        "target": "LAT",
+        "rationale": "LAT与LAT2同属T细胞活化衔接蛋白家族，在免疫受体近端信号中承担磷酸化平台功能；其在TCR信号通路中的机制证据更充分。"
+      },
+      {
+        "target": "SYK",
+        "rationale": "SYK位于BCR、Fc受体及肥大细胞受体信号近端，可磷酸化并驱动LAT2相关信号复合体形成，是同一免疫受体通路中的关键激酶节点。"
+      },
+      {
+        "target": "MS4A1",
+        "rationale": "MS4A1/CD20是B细胞膜受体复合体相关靶点，与体液免疫和免疫球蛋白相关表型具有通路关联，且胞外环更适合抗体识别。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "CUL5",
+  "generatedAt": "2026-08-03T11:43:55.165Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CUL5 是ECS型Cullin-RING E3泛素连接酶支架蛋白，HIV Vif可招募CUL5-ELOB/ELOC-CBFβ复合物并促使APOBEC3G泛素化降解，从而削弱宿主抗病毒限制因子。该蛋白主要为胞内支架蛋白，缺乏分泌型或膜外结构域，抗体抗原可及性低，需定位于结构生物学与胞内递送抗体设计场景。相较CCR5、CD4等胞外HIV相关靶点，CUL5更适合解析病毒劫持宿主E3连接酶的机制，但作为常规治疗性抗体主靶点优先级较低。",
+    "mechanism": "阻断HIV Vif依赖的CUL5-ELOB/ELOC复合物装配，抑制APOBEC3G被CRL5复合物泛素化并降解。",
+    "selectedEpitope": "优先评估CUL5 N端Vif适配复合物结合界面及C端RBX1结合邻近面。",
+    "diseaseDirection": "HIV感染宿主限制通路",
+    "domain": "CUL5含N端适配蛋白结合区、Cullin重复区及C端WHB/RBX1结合区。",
+    "evidence": "CUL5介导HIV Vif劫持CRL5证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt Q93034功能注释",
+      "RCSB PDB 3DPL晶体结构",
+      "HIV Vif-CUL5-APOBEC3G泛素化研究文献"
+    ],
+    "referenceEntries": "UniProt Q93034；RCSB PDB 3DPL；Open Targets CUL5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CUL5 N端适配复合物结合界面",
+        "可干预Vif-ELOB/ELOC招募CUL5形成CRL5复合物",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端WHB及RBX1邻近界面",
+        "可影响RING模块定位与泛素转移构象耦联",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Cullin重复区保守疏水核心外露面",
+        "保守性高且可能影响CUL5整体折叠，选择性窗口有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CUL5为胞内蛋白，常规抗体难以到达作用位点；设计宜采用胞内抗体、递送型VHH或结构验证工具抗体，并严格评估CUL家族交叉反应。",
+    "structurePrepZh": "以3DPL晶体结构为模板，保留抗原链C、R并校正缺失环区；结合UniProt结构域边界标注Vif适配复合物与RBX1邻近界面。",
+    "structureRef": "RCSB PDB 3DPL，X-ray diffraction，2.6 Å",
+    "antibodies": [
+      "暂无获批抗CUL5治疗性抗体",
+      "研究级抗CUL5单克隆抗体"
+    ],
+    "interfaceFocus": "Vif-ELOB/ELOC-CUL5装配界面",
+    "designMode": "胞内递送抗体设计",
+    "candidates": [
+      {
+        "target": "CBFB",
+        "rationale": "CBFβ是HIV Vif稳定装配并招募CRL5复合物的宿主辅因子，阻断其与Vif相互作用可降低APOBEC3G降解。"
+      },
+      {
+        "target": "ELOB",
+        "rationale": "ELOB与ELOC组成Elongin BC模块，连接Vif与CUL5支架，是Vif-CRL5泛素连接酶复合物形成的关键节点。"
+      },
+      {
+        "target": "APOBEC3G",
+        "rationale": "APOBEC3G是HIV Vif-CRL5复合物的主要抗病毒底物，保护其免于泛素化降解可增强宿主限制活性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

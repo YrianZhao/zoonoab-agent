@@ -1,0 +1,65 @@
+{
+  "gene": "CNNM2",
+  "generatedAt": "2026-08-03T11:30:07.211Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CNNM2 是肾远曲小管及神经系统镁稳态相关疾病的遗传学核心靶点，致病变异可破坏细胞膜镁外排/转运调控并导致原发性低镁血症、癫痫及神经发育异常。该蛋白为多跨膜膜蛋白，含胞外环区及胞内 Bateman/CBS 调控模块，膜定位使胞外环具备抗体可及性，但 4IYS 结构对应胞内 CBS 区域，需区分结构可解析性与抗体结合可及性。相较于下游离子稳态表型标志物，CNNM2 具有更直接的单基因疾病因果证据和较高 Open Targets 关联强度，适合作为机制验证优先靶点。",
+    "mechanism": "抗体设计宜聚焦胞外环阻断 CNNM2 与膜近端调控因子或构象转换相关界面，从而干预其镁转运调控活性；胞内 CBS 配体结合界面不适合作为常规抗体阻断位点。",
+    "selectedEpitope": "优先选择跨膜区之间的胞外环构象表位；4IYS 的 CBS1-CBS2 Bateman 模块用于变异映射与构象风险评估。",
+    "diseaseDirection": "遗传性低镁血症与神经系统疾病",
+    "domain": "CNNM2 含 N 端跨膜区、胞内 Bateman/CBS 双结构域及 C 端 CNBH 样调控区。",
+    "evidence": "CNNM2 镁稳态遗传病与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q9H8M5 蛋白功能与结构域注释",
+      "RCSB PDB 4IYS X 射线晶体结构",
+      "OMIM/Orphanet 原发性低镁血症遗传证据"
+    ],
+    "referenceEntries": "UniProt Q9H8M5；RCSB PDB 4IYS；Open Targets CNNM2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "跨膜区连接的胞外环构象表位",
+        "具备抗体可及性，可用于阻断膜外侧构象调控或配体接触",
+        "优先"
+      ],
+      [
+        "Site B",
+        "胞内 CBS1-CBS2 Bateman 结构域变异聚集面",
+        "适合结构解释、致病变异映射和胞内工具抗体开发",
+        "备选"
+      ],
+      [
+        "Site C",
+        "CBS 结构域核心腺苷酸结合沟槽",
+        "位于胞内且可能影响保守代谢物结合，体内阻断抗体开发风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险在于 4IYS 为胞内调控结构，不能直接代表可给药胞外表位；需结合跨膜拓扑、胞外环预测和细胞表面结合实验验证。",
+    "structurePrepZh": "以 4IYS 链 A 建立 CBS 区域高分辨率模型，补充 AlphaFold 跨膜全长模型并标注胞外环、变异位点及糖基化风险。",
+    "structureRef": "RCSB PDB 4IYS，CNNM2 胞内 CBS 结构，1.8 Å",
+    "antibodies": [
+      "无已获批 CNNM2 靶向抗体",
+      "抗 CNNM2 研究级抗体"
+    ],
+    "interfaceFocus": "胞外环可及表位与 CBS 变异聚集界面",
+    "designMode": "膜蛋白表位设计",
+    "candidates": [
+      {
+        "target": "TRPM6",
+        "rationale": "TRPM6 是远曲小管镁重吸收的关键离子通道，致病变异同样导致原发性低镁血症，与 CNNM2 处于同一镁稳态疾病轴。"
+      },
+      {
+        "target": "EGF",
+        "rationale": "EGF 通过 EGFR 信号维持远曲小管 TRPM6 表达与镁重吸收，EGF 缺陷可导致孤立性低镁血症，适合作为通路级候选靶点。"
+      },
+      {
+        "target": "EGFR",
+        "rationale": "EGFR 介导 EGF 对 TRPM6 的上皮调控，临床 EGFR 抑制可引发低镁血症，提示其与 CNNM2 相关镁稳态通路存在功能交叉。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "XRCC5",
+  "generatedAt": "2026-08-03T17:55:02.748Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "XRCC5编码Ku80，与XRCC6/Ku70形成Ku异二聚体并识别DNA双链断裂末端，是非同源末端连接修复通路的核心起始因子。其主要定位于细胞核并结合DNA，天然抗原可及性不具备典型胞外结构域、分泌蛋白或膜受体优势，因此更适合作为细胞内功能阻断、递送型抗体或研究级抗体设计对象。相比DNA-PKcs等大型激酶组分，Ku80在Ku异二聚体-DNA环形夹持界面中具有明确结构信息和可解析的蛋白互作界面，但作为常规治疗性抗体靶点优先级低于胞外可及的免疫或病毒入侵相关靶点。",
+    "mechanism": "抗体片段拟阻断Ku80与Ku70形成的DNA结合环对双链断裂DNA末端的夹持，削弱DNA-PK复合体装配与NHEJ起始。",
+    "selectedEpitope": "优先聚焦Ku80 vWA结构域与C端arm区构成的Ku70-DNA夹持界面邻近表面。",
+    "diseaseDirection": "DNA损伤修复与病毒感染相关",
+    "domain": "Ku80含N端vWA样结构域、中央Ku核心结构域和C端DNA-PKcs结合区，参与Ku异二聚体环状结构形成。",
+    "evidence": "XRCC5-Ku异二聚体结构与DNA修复证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P13010功能与定位注释",
+      "RCSB PDB 3RZ9晶体结构记录",
+      "DNA-PK/NHEJ通路文献与Reactome注释"
+    ],
+    "referenceEntries": "UniProt:P13010；RCSB PDB:3RZ9；Reactome NHEJ pathway",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Ku80 vWA样结构域邻近Ku70接触面",
+        "可干扰Ku异二聚体稳定构象并影响DNA末端装载",
+        "优先"
+      ],
+      [
+        "Site B",
+        "中央Ku核心结构域DNA通道外缘",
+        "有机会阻断双链DNA末端进入Ku环形夹持结构",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端DNA-PKcs结合区邻近区域",
+        "可能影响DNA-PKcs招募，但柔性较高且结构解析覆盖有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "XRCC5为核内DNA结合蛋白，常规抗体难以进入作用位点；需采用胞内递送、细胞穿透片段或仅定位于诊断/研究级应用，并规避DNA结合面高保守区域引发非特异核酸相关信号。",
+    "structurePrepZh": "以3RZ9中A、B链Ku异二聚体为模板，保留蛋白-蛋白界面并去除非目标晶体组分；补建缺失环区后评估DNA通道外缘、Ku70接触面和C端柔性片段可成药性。",
+    "structureRef": "RCSB PDB 3RZ9，2.29 Å X-ray Ku复合体结构",
+    "antibodies": [
+      "Ku80 monoclonal antibody clone 111",
+      "Ku70/Ku80 heterodimer antibody clone N3H10"
+    ],
+    "interfaceFocus": "Ku70-Ku80异二聚体界面及DNA通道外缘",
+    "designMode": "胞内阻断型抗体片段",
+    "candidates": [
+      {
+        "target": "XRCC6",
+        "rationale": "XRCC6编码Ku70，与XRCC5形成Ku异二聚体并共同识别DNA双链断裂末端，是同一NHEJ起始复合体的直接配对靶点。"
+      },
+      {
+        "target": "PRKDC",
+        "rationale": "PRKDC编码DNA-PKcs，由Ku复合体招募至DNA断裂末端并驱动DNA-PK活化，是NHEJ信号装配的核心激酶组分。"
+      },
+      {
+        "target": "LIG4",
+        "rationale": "LIG4编码DNA连接酶IV，在XRCC4/XLF辅助下完成断裂末端连接，处于Ku-DNA-PK介导NHEJ通路的下游执行阶段。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

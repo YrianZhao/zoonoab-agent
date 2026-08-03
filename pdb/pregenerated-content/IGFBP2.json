@@ -1,0 +1,65 @@
+{
+  "gene": "IGFBP2",
+  "generatedAt": "2026-08-03T13:24:26.440Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IGFBP2通过N端和C端IGFBP结构域结合IGF1/IGF2，改变IGF与IGF1R的可用性，并可经RGD样基序参与整合素相关黏附信号，在肿瘤进展、代谢表型和体组成性状中具有明确通路关联。IGFBP2为分泌型可溶蛋白，抗原位点位于胞外环境，具有优于胞内适配蛋白的抗体可及性。相较IGF1R等广泛表达受体，IGFBP2更偏向疾病相关配体调节节点，可通过配体隔离或界面阻断实现较细分的通路干预优先级。",
+    "mechanism": "阻断IGFBP2与IGF1/IGF2的高亲和结合界面，降低其对IGF配体可用性的调节，并抑制RGD相关整合素黏附信号输入。",
+    "selectedEpitope": "优先覆盖C端甲状腺球蛋白I型样结构域的IGF结合面，并避开高度柔性连接区。",
+    "diseaseDirection": "IGF轴相关肿瘤与体组成表型",
+    "domain": "IGFBP2含N端IGFBP结构域、中央柔性连接区及C端thyroglobulin type-I样结构域。",
+    "evidence": "IGFBP2-IGF轴结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P18065 functional annotation",
+      "RCSB PDB 2H7T solution NMR structure",
+      "Published IGFBP family IGF-binding studies"
+    ],
+    "referenceEntries": "UniProt P18065；RCSB PDB 2H7T；Open Targets IGFBP2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端thyroglobulin type-I样结构域IGF结合相关表面",
+        "可直接干预IGFBP2-IGF1/IGF2复合物形成，机制可验证性较高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端IGFBP结构域保守IGF接触区域",
+        "具备配体结合阻断潜力，但需评估家族同源性导致的交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "中央连接区及RGD邻近柔性片段",
+        "可能影响整合素相关黏附作用，但构象异质性较高且结构解析受限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IGFBP家族保守IGF结合界面存在交叉识别风险；中央连接区柔性高。设计应结合家族序列比对、HDX或突变扫描限定特异性表位。",
+    "structurePrepZh": "以PDB 2H7T的NMR构象集合为起点，保留抗原链A，进行构象聚类、缺失区建模和二硫键检查后用于表位可及性评估。",
+    "structureRef": "RCSB PDB 2H7T，human IGFBP2结构域SOLUTION NMR",
+    "antibodies": [
+      "xentuzumab",
+      "figitumumab"
+    ],
+    "interfaceFocus": "IGF1/IGF2结合面与RGD邻近黏附界面",
+    "designMode": "分泌蛋白阻断",
+    "candidates": [
+      {
+        "target": "IGF1",
+        "rationale": "IGF1是IGFBP2直接结合的生长因子配体，并通过IGF1R驱动生长与代谢相关信号。该节点可用于配体轴阻断或作为IGFBP2机制验证参照。"
+      },
+      {
+        "target": "IGF2",
+        "rationale": "IGF2同属IGFBP2结合配体，在IGF轴和肿瘤生长相关通路中具有关键作用。与IGFBP2联合评估可区分IGF1与IGF2依赖性疾病背景。"
+      },
+      {
+        "target": "IGF1R",
+        "rationale": "IGF1R是IGF1/IGF2的主要信号受体，介导PI3K-AKT与MAPK通路激活。其作为下游受体节点可用于比较配体结合蛋白阻断与受体阻断的药理差异。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

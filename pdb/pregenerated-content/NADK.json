@@ -1,0 +1,65 @@
+{
+  "gene": "NADK",
+  "generatedAt": "2026-08-03T20:15:15.491Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NADK催化NAD+磷酸化生成NADP+，维持NADPH供给并影响谷胱甘肽还原、脂质合成及氧化还原稳态，其遗传关联主要指向血压、肾功能、神经退行性疾病和血液学表型。该蛋白为细胞质可溶性激酶，天然抗原可及性不足，作为抗体主靶点更适合定位于细胞内递送抗体、降解抗体或研究级构象探针。相较同属NADPH稳态轴的膜外靶点，NADK具有人源晶体结构和催化口袋信息优势，但治疗性常规抗体优先级低于具备胞外可及性的受体或分泌因子。",
+    "mechanism": "构建抗体阻断NADK ATP结合沟槽与NAD+结合位点邻近界面，抑制磷酸转移形成NADP+，降低细胞NADPH再生能力。",
+    "selectedEpitope": "优先覆盖C端NAD激酶结构域的ATP/NAD结合沟槽边缘及二聚体邻近构象环。",
+    "diseaseDirection": "氧化还原代谢与心肾神经表型",
+    "domain": "人NADK含N端调控区及C端NAD激酶催化结构域，形成同源寡聚体并结合ATP与NAD+。",
+    "evidence": "NADK结构与遗传表型关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt O95544功能与定位注释",
+      "RCSB PDB 3PFN人NADK晶体结构",
+      "Reactome/KEGG NADP与NADPH代谢通路"
+    ],
+    "referenceEntries": "UniProt O95544；RCSB PDB 3PFN；HGNC NADK",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端NAD激酶结构域ATP/NAD+结合沟槽边缘",
+        "可直接干扰底物与供磷酸基团定位，具备机制阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "寡聚体界面邻近的催化结构域构象环",
+        "可能影响活性构象稳定和亚基装配，适合作为变构抑制表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化沟槽的溶剂暴露外侧螺旋面",
+        "结合可及性较好但功能抑制不确定，宜用于检测或捕获抗体",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NADK为胞内可溶性代谢酶，常规抗体难以到达天然作用位点；设计应限定为胞内递送、intrabody或PROTAC样降解平台，并避免干扰保守激酶折叠核心导致非特异交叉反应。",
+    "structurePrepZh": "以3PFN四条抗原链进行寡聚体界面核查，补全缺失侧链，保留催化结构域构象，去除非必要结晶分子后标注ATP/NAD+结合沟槽。",
+    "structureRef": "RCSB PDB 3PFN，X-ray 2.7 Å人NAD kinase结构",
+    "antibodies": [
+      "研究级anti-NADK monoclonal antibody",
+      "研究级anti-NADK polyclonal antibody"
+    ],
+    "interfaceFocus": "ATP/NAD+结合沟槽及寡聚体界面构象环",
+    "designMode": "胞内酶阻断型",
+    "candidates": [
+      {
+        "target": "NADPH",
+        "rationale": "NADPH为NADK产物NADP+还原后的核心还原当量，直接连接谷胱甘肽还原和氧化应激防御；但其为小分子代谢物，不适合作为常规抗体靶点。"
+      },
+      {
+        "target": "GSR",
+        "rationale": "GSR利用NADPH将氧化型谷胱甘肽还原为GSH，位于NADK下游氧化还原防御轴；其功能变化可影响血液和神经氧化应激表型。"
+      },
+      {
+        "target": "NOX4",
+        "rationale": "NOX4以NADPH为电子供体产生活性氧，参与血管、肾脏和心血管重塑相关氧化应激过程；其膜蛋白属性较NADK更具抗体可及性。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

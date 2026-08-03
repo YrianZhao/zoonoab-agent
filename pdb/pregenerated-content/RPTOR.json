@@ -1,0 +1,65 @@
+{
+  "gene": "RPTOR",
+  "generatedAt": "2026-08-03T16:13:47.429Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RPTOR 是 mTORC1 的支架与底物招募亚基，通过 TOS motif 识别连接 S6K1、4E-BP1 等底物，参与营养感知、自噬抑制、蛋白合成和代谢稳态，因而与神经退行性疾病、体重指数、HbA1c 和骨骼表型存在遗传关联。该蛋白主要定位于胞质 mTORC1 复合体，缺乏天然胞外结构域或分泌暴露特征，抗体可及性弱于膜受体和分泌因子。其优先级主要来自 8ERA 高分辨率冷冻电镜复合体结构与明确的 mTORC1 架构信息，适合作为细胞内递送抗体、Fab 结构探针或机制验证抗体靶点；相较 MTOR 激酶结构域，RPTOR 底物招募界面更利于实现复合体选择性调控。",
+    "mechanism": "抗体结合 RPTOR HEAT/WD40 邻近底物招募界面，阻断 TOS motif 底物与 mTORC1 的对接，降低 S6K1 与 4E-BP1 磷酸化。",
+    "selectedEpitope": "优先锁定 RPTOR WD40 β-propeller 的 TOS motif 底物结合沟槽及相邻 HEAT 重复界面。",
+    "diseaseDirection": "mTORC1代谢与神经退行性疾病",
+    "domain": "RPTOR 含 N 端 RNC 区、连续 HEAT 重复支架及 C 端 WD40 β-propeller 底物招募结构域。",
+    "evidence": "RPTOR-mTORC1结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q8N122 功能与结构域注释",
+      "RCSB PDB 8ERA 冷冻电镜结构",
+      "mTORC1 底物招募与 TOS motif 文献"
+    ],
+    "referenceEntries": "UniProt: Q8N122; RCSB PDB: 8ERA; Open Targets: RPTOR",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端 WD40 β-propeller 底物结合沟槽",
+        "直接干预 TOS motif 底物招募，机制选择性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "HEAT 重复与 mTOR 复合体接触邻近面",
+        "可能扰动 mTORC1 架构稳定性与底物定位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端 RNC/低保守柔性区域",
+        "结构异质性较高，易产生构象依赖或非功能性结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RPTOR 为胞内复合体支架蛋白，常规抗体难以进入细胞质；设计应优先用于递送抗体、细胞内抗体或结构探针，并避开 mTOR 结合核心导致广泛毒性。",
+    "structurePrepZh": "以 8ERA 中 RPTOR 链为模板，保留 mTORC1 复合体邻近链用于界面判定，去除非目标配体并评估 HEAT 与 WD40 区域构象一致性。",
+    "structureRef": "RCSB PDB 8ERA, human mTORC1 cryo-EM, 2.86 Å",
+    "antibodies": [
+      "RPTOR research monoclonal antibody",
+      "phospho-RPTOR Ser792 antibody"
+    ],
+    "interfaceFocus": "WD40底物招募沟槽与HEAT支架邻近界面",
+    "designMode": "胞内递送Fab/VHH",
+    "candidates": [
+      {
+        "target": "MTOR",
+        "rationale": "MTOR 是 mTORC1 催化核心，直接磷酸化 S6K1 与 4E-BP1；其疾病通路与 RPTOR 高度重叠，但激酶域保守性带来选择性风险。"
+      },
+      {
+        "target": "RICTOR",
+        "rationale": "RICTOR 是 mTORC2 特异支架亚基，可用于区分 mTORC1 与 mTORC2 对代谢、细胞存活和神经相关表型的贡献。"
+      },
+      {
+        "target": "AKT1",
+        "rationale": "AKT1 位于 PI3K-AKT-mTOR 轴上游，通过 TSC2 和 PRAS40 调节 mTORC1 活性；其遗传与代谢疾病关联支持联合通路评估。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

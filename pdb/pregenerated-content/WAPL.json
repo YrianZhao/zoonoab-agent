@@ -1,0 +1,65 @@
+{
+  "gene": "WAPL",
+  "generatedAt": "2026-08-03T17:50:14.771Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "WAPL 是 cohesin 释放因子，主要通过与 PDS5 蛋白及 cohesin 调控轴协同促进 RAD21-SMC3 门控界面开放，影响染色质环挤出、姐妹染色单体黏连和基因组结构维持。Open Targets 关联主要集中于血细胞计数、红细胞体积及代谢测量性状，提示其与造血细胞增殖或染色质组织相关表型存在遗传关联。该蛋白为核内染色质调控因子，天然抗原可及性不具备膜受体或分泌蛋白优势，因此更适合作为细胞内机制研究抗体、递送型抗体或蛋白互作阻断工具靶点。相比无结构信息的同类染色质调控因子，WAPL 已有 PDB 4K6J 实验结构支撑，可优先开展结构约束的界面抗体设计，但治疗性体内阻断优先级应低于可直接暴露于胞外空间的靶点。",
+    "mechanism": "设计抗体阻断 WAPL C 端结构域与 PDS5 结合界面，削弱 WAPL 介导的 cohesin 释放，稳定 RAD21-SMC3 闭合状态并改变染色质环停留时间。",
+    "selectedEpitope": "优先锁定 PDB 4K6J 中 WAPL C 端 PDS5 结合沟槽及相邻保守螺旋界面。",
+    "diseaseDirection": "血液性状与染色质结构调控",
+    "domain": "WAPL 含 N 端调控区及 C 端 Wapl 结构域，4K6J 覆盖其与 PDS5 相关的保守结合模块。",
+    "evidence": "WAPL-cohesin 释放轴结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 遗传关联与性状评分",
+      "UniProt Q7Z5K2 蛋白功能注释",
+      "RCSB PDB 4K6J X 射线晶体结构",
+      "cohesin 释放机制与 WAPL-PDS5 互作研究文献"
+    ],
+    "referenceEntries": "UniProt Q7Z5K2；RCSB PDB 4K6J；Open Targets WAPL",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C 端 WAPL 结构域的 PDS5 结合沟槽",
+        "直接干预 WAPL-PDS5 互作，机制可解释性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PDB 4K6J 可解析保守螺旋束外侧面",
+        "有利于获得构象识别抗体并辅助稳定结构状态",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离互作界面的柔性环区或低保守表面",
+        "可能产生结合但难以有效阻断 cohesin 释放功能",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "WAPL 为核内非分泌蛋白，常规抗体难以进入细胞核；应优先定位为结构探针、细胞内递送抗体或研究级阻断抗体，并避免夸大体内可及性。",
+    "structurePrepZh": "以 4K6J A、B 链为模板进行缺失残基检查、界面残基标注和质子化处理，保留与 PDS5 相关构象用于表位映射。",
+    "structureRef": "RCSB PDB 4K6J，X-ray diffraction，2.6205 Å",
+    "antibodies": [
+      "研究用抗 WAPL 多克隆抗体",
+      "研究用抗 WAPL 单克隆抗体"
+    ],
+    "interfaceFocus": "WAPL C 端结构域-PDS5 结合界面",
+    "designMode": "细胞内界面阻断",
+    "candidates": [
+      {
+        "target": "PDS5A",
+        "rationale": "PDS5A 是 WAPL 介导 cohesin 释放的核心结合伴侣，直接参与 WAPL 招募和 cohesin 动态调控。其与 WAPL 处于同一 cohesin 释放通路。"
+      },
+      {
+        "target": "PDS5B",
+        "rationale": "PDS5B 与 PDS5A 功能相近，参与 cohesin 复合体停留时间和染色质环结构调控，可作为 WAPL-PDS5 轴的平行候选节点。"
+      },
+      {
+        "target": "RAD21",
+        "rationale": "RAD21 是 cohesin kleisin 亚基，WAPL 促进的释放过程最终涉及 RAD21-SMC3 门控界面调节，适合作为同通路功能读出和替代干预靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

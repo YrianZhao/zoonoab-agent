@@ -1,0 +1,65 @@
+{
+  "gene": "NPM2",
+  "generatedAt": "2026-08-03T14:48:34.397Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NPM2为核仁/核质伴侣蛋白，主要参与卵母细胞染色质重塑、核小体装配及精子染色质去凝缩；Open Targets关联信号主要集中于红细胞体积、红细胞计数、平均红细胞血红蛋白量及血小板计数等血液数量性状。该蛋白定位于细胞核内，缺乏经典分泌信号肽、跨膜区或稳定胞外结构域，天然抗原可及性不支持常规体内阻断型抗体开发，更适合作为结构抗原或细胞内递送抗体研究对象。相较于EPO、EPOR、KITLG等同类造血调控轴靶点，NPM2的疾病关联得分较低且机制多为遗传关联推断，因此优先级应低于具有胞外可及性和明确配体-受体药理学窗口的靶点。",
+    "mechanism": "设计抗体可定位于NPM2核心五聚体装配界面，阻断其寡聚化稳定及组蛋白H2A-H2B伴侣结合，从而干预核小体装配相关分子复合物形成。",
+    "selectedEpitope": "优先覆盖NPM2核质蛋白核心结构域五聚体外周沟槽及寡聚化界面邻近区。",
+    "diseaseDirection": "血液细胞数量性状与造血表型",
+    "domain": "NPM2含N端nucleoplasmin样核心结构域，可形成五聚体/十聚体样寡聚体，C端富含酸性低复杂度区。",
+    "evidence": "NPM2结构、核小体伴侣功能与血液性状遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q86SE8功能与亚细胞定位注释",
+      "RCSB PDB 3T30晶体结构记录",
+      "核质蛋白家族染色质伴侣研究文献"
+    ],
+    "referenceEntries": "UniProt: Q86SE8; RCSB PDB: 3T30; Ensembl: ENSG00000158806",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端nucleoplasmin样核心五聚体外周沟槽",
+        "可能影响组蛋白结合与伴侣复合物装配，结构可解析度高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "核心结构域亚基间寡聚化界面邻近环区",
+        "可用于干预五聚体稳定性，但需避免完全依赖埋藏界面",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端酸性低复杂度尾部区域",
+        "柔性高且结构缺失风险较大，适合线性表位检测但不宜作为首选阻断表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NPM2为细胞内核蛋白，体内抗体可及性和药物递送为核心风险；寡聚化界面部分埋藏，应优先选择暴露环区与功能沟槽交叠表位。",
+    "structurePrepZh": "以PDB 3T30的1.9 Å X射线结构为模板，保留生物学寡聚体链集合，校验缺失柔性尾部、质子化状态及界面水分子后进行表位建模。",
+    "structureRef": "RCSB PDB 3T30, X-ray diffraction, 1.9 Å, human NPM2 core domain",
+    "antibodies": [
+      "暂无已批准NPM2靶向治疗抗体",
+      "暂无临床阶段NPM2阻断抗体"
+    ],
+    "interfaceFocus": "五聚体外周沟槽与亚基间暴露环区",
+    "designMode": "细胞内靶点研究型抗体",
+    "candidates": [
+      {
+        "target": "EPO",
+        "rationale": "EPO直接驱动红系祖细胞存活、增殖和分化，其分泌蛋白属性提供优良抗原可及性，且与红细胞计数和血红蛋白相关表型处于同一造血生物学方向。"
+      },
+      {
+        "target": "EPOR",
+        "rationale": "EPOR为红系细胞表面受体，通过结合EPO激活JAK2-STAT5信号，是红细胞生成调控轴中的可及膜受体靶点。"
+      },
+      {
+        "target": "JAK2",
+        "rationale": "JAK2位于EPOR下游并介导STAT5磷酸化，在红系生成及血小板生成异常中具有明确遗传和功能证据；但其为胞内激酶，抗体开发可及性弱于EPO/EPOR。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

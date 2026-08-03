@@ -1,0 +1,65 @@
+{
+  "gene": "IL17RB",
+  "generatedAt": "2026-08-03T13:25:32.642Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IL17RB是IL-17受体家族成员，主要作为IL-17B与IL-25/IL-17E的受体亚基参与上皮屏障炎症、2型免疫放大及组织损伤反应。该蛋白为I型跨膜受体，胞外区含两个fibronectin type III样结构域，抗体可直接接近配体结合面并干预受体复合物形成。相较于下游ACT1、TRAF6等胞内信号节点，IL17RB具备更明确的细胞外成药性；相较广泛阻断IL17RA，选择IL17RB更有利于聚焦IL-25/IL-17B相关轴线并降低对经典IL-17A/F防御通路的干扰。",
+    "mechanism": "阻断IL-25或IL-17B与IL17RB胞外D1-D2配体结合界面的结合，抑制IL17RB与IL17RA共受体复合物装配及后续SEFIR-ACT1信号募集。",
+    "selectedEpitope": "优先覆盖胞外D1-D2交界处的配体结合沟槽，并避开膜近端柔性糖基化密集区。",
+    "diseaseDirection": "IL-25/IL17RB介导炎症与2型免疫疾病",
+    "domain": "I型跨膜IL-17受体，胞外区由两个FNIII样结构域组成，胞内区含SEFIR信号结构域。",
+    "evidence": "IL17RB胞外结构与IL-25通路阻断证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联与遗传证据",
+      "UniProt Q9NRM6蛋白结构域与功能注释",
+      "RCSB PDB 9OT1电子显微结构数据",
+      "IL-17受体家族IL-25/IL17RB信号通路文献"
+    ],
+    "referenceEntries": "UniProt: Q9NRM6; RCSB PDB: 9OT1; Open Targets: IL17RB",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "胞外D1-D2交界配体结合沟槽",
+        "直接阻断IL-25/IL-17B结合并抑制共受体复合物形成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "D2结构域外侧受体装配相关表面",
+        "可通过空间位阻削弱IL17RA参与复合物装配",
+        "备选"
+      ],
+      [
+        "Site C",
+        "膜近端D2末端与连接区",
+        "可能影响受体构象但易受柔性与糖基化影响",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "需标注FNIII样结构域保守表面与潜在N-糖基化位点，避免选择高度保守或柔性膜近端区域，以降低交叉反应和亲和力不稳定风险。",
+    "structurePrepZh": "以9OT1电镜模型提取IL17RB胞外链，保留D1-D2配体结合构象，补全缺失侧链并评估糖基化、链间接触及抗原表面可及性。",
+    "structureRef": "RCSB PDB 9OT1, cryo-EM structure at 3.0 Å",
+    "antibodies": [
+      "Brodalumab",
+      "Ixekizumab"
+    ],
+    "interfaceFocus": "D1-D2配体结合沟槽与D2外侧装配面",
+    "designMode": "阻断型胞外受体抗体",
+    "candidates": [
+      {
+        "target": "IL25",
+        "rationale": "IL25是IL17RB的关键配体，可驱动上皮来源2型炎症反应。中和IL25可在配体层面阻断同一IL25-IL17RB轴线。"
+      },
+      {
+        "target": "IL17RA",
+        "rationale": "IL17RA作为IL17RB信号复合物的共受体参与下游ACT1募集。靶向该受体可抑制复合物装配，但需关注对IL-17A/F通路的广泛影响。"
+      },
+      {
+        "target": "TRAF3IP2",
+        "rationale": "TRAF3IP2编码ACT1，是IL-17受体SEFIR结构域下游衔接蛋白。其位于同一信号轴下游，适合作为机制验证和通路分层参照靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

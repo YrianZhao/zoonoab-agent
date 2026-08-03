@@ -1,0 +1,65 @@
+{
+  "gene": "SFMBT2",
+  "generatedAt": "2026-08-03T16:29:05.581Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SFMBT2为含四个MBT重复结构域的核内染色质结合蛋白，MBT结构域可识别甲基化赖氨酸并参与Polycomb相关转录调控，但现有Open Targets关联主要来自身高、吸烟起始、代谢物测量和单核细胞计数等遗传性状，尚缺乏明确可干预疾病通路证据。该蛋白定位以核内染色质相关复合体为主，不具备分泌蛋白、膜受体或稳定胞外结构域特征，天然抗原可及性不支持常规治疗性抗体直接阻断。相较于EGFR、TNF或IL6R等具有胞外可及性和临床验证机制的靶点，SFMBT2作为抗体主靶点优先级较低，更适合作为结构域识别、细胞内递送抗体或研究级结合分子开发对象。",
+    "mechanism": "设计分子宜聚焦阻断SFMBT2 MBT芳香笼与甲基化赖氨酸肽段的结合，干扰其在染色质上的甲基赖氨酸依赖性招募。",
+    "selectedEpitope": "优先覆盖MBT重复结构域甲基赖氨酸结合芳香笼及邻近肽结合沟槽。",
+    "diseaseDirection": "表观遗传调控与遗传性状关联",
+    "domain": "SFMBT2含N端串联MBT重复结构域，1WJR解析其MBT模块折叠与配体结合口袋特征。",
+    "evidence": "SFMBT2遗传关联与MBT结构域证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q5VUG0蛋白功能与定位注释",
+      "RCSB PDB 1WJR溶液NMR结构",
+      "MBT结构域甲基赖氨酸识别文献"
+    ],
+    "referenceEntries": "UniProt Q5VUG0；RCSB PDB 1WJR；Open Targets SFMBT2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "MBT结构域芳香笼与甲基赖氨酸结合口袋",
+        "直接竞争甲基化组蛋白或非组蛋白肽段结合，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "MBT结构域肽结合沟槽邻近环区",
+        "可通过空间位阻削弱底物肽段定位，适合亲和力精修",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离配体口袋的MBT外侧保守折叠面",
+        "可能影响结构稳定性但功能阻断不确定，需避免非特异构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险来自核内定位导致完整抗体难以到达作用位点，且Open Targets证据偏遗传性状而非明确疾病驱动；建议限定为研究级Fab/VHH或递送体系适配分子。",
+    "structurePrepZh": "以1WJR的NMR构象集合为基础，保留MBT核心折叠并评估芳香笼侧链构象；需补全缺失环区、统一质子化状态并进行构象聚类。",
+    "structureRef": "RCSB PDB 1WJR，human SFMBT2 MBT domain，solution NMR",
+    "antibodies": [
+      "无已获批SFMBT2治疗性抗体",
+      "无公开临床阶段SFMBT2单克隆抗体"
+    ],
+    "interfaceFocus": "MBT芳香笼及甲基赖氨酸肽结合沟槽",
+    "designMode": "细胞内表位阻断",
+    "candidates": [
+      {
+        "target": "EZH2",
+        "rationale": "EZH2为PRC2催化亚基，负责H3K27甲基化并与Polycomb介导的转录沉默通路相连；其疾病驱动证据和药物验证程度高于SFMBT2。"
+      },
+      {
+        "target": "EED",
+        "rationale": "EED识别H3K27me3并变构激活PRC2，是Polycomb甲基化维持环路中的真实结构域靶点；其配体结合口袋明确，适合结构导向设计。"
+      },
+      {
+        "target": "CBX7",
+        "rationale": "CBX7含chromodomain并识别H3K27me3，参与PRC1染色质招募；与SFMBT2同属甲基赖氨酸读取与Polycomb相关转录调控轴。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

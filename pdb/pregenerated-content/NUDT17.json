@@ -1,0 +1,65 @@
+{
+  "gene": "NUDT17",
+  "generatedAt": "2026-08-03T14:54:07.387Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NUDT17为胞内Nudix水解酶，催化核苷二磷酸衍生物水解，其Open Targets关联以尿酸测量和神经退行性疾病为主，但现有证据强度较低且缺乏明确的细胞外致病配体-受体轴。该蛋白不具备分泌信号肽、跨膜区或胞外结构域，天然抗原可及性不支持常规治疗性抗体阻断。相较于同一嘌呤代谢或神经炎症相关轴中的分泌因子、膜转运体和受体，NUDT17更适合作为结构生物学与细胞内结合体研究靶点，主靶点优先级应低于可直接从胞外空间干预的靶点。",
+    "mechanism": "设计分子以内吞递送或细胞内结合体形式占据NUDT17 Nudix催化沟槽，干扰底物二磷酸基团与Mg2+依赖催化残基网络的配位。",
+    "selectedEpitope": "优先覆盖Nudix折叠中催化沟槽及GX5EX7RE样Nudix基序邻近面，避免仅选择远端晶体接触面。",
+    "diseaseDirection": "嘌呤代谢与神经退行性疾病",
+    "domain": "NUDT17主要由单一Nudix水解酶折叠构成，含保守催化基序和核苷二磷酸底物结合沟槽。",
+    "evidence": "NUDT17结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB P0C025功能与定位注释",
+      "RCSB PDB 5LF8晶体结构记录",
+      "Nudix hydrolase家族保守催化机制文献"
+    ],
+    "referenceEntries": "UniProt P0C025；RCSB PDB 5LF8；Open Targets NUDT17",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Nudix催化沟槽及保守谷氨酸富集基序邻近区域",
+        "最可能阻断底物二磷酸基团结合与金属离子配位，适合功能抑制型结合体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "底物入口周边α螺旋-β折叠边缘面",
+        "可通过空间位阻限制核苷二磷酸底物进入，兼顾特异性与结构稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化沟槽的溶剂暴露外周表面",
+        "功能阻断不确定，且可能对应晶体堆积界面，需结合溶液构象验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NUDT17为胞内酶，常规Fab或VHH难以到达作用位点；应优先评估细胞内递送、intrabody表达或PROTAC样融合策略，并避免宣称直接胞外阻断。",
+    "structurePrepZh": "以5LF8链A为模板，补全缺失侧链并校验催化基序构象；去除晶体添加物后保留可能参与催化的金属配位位点用于表位建模。",
+    "structureRef": "RCSB PDB 5LF8，X射线晶体结构，2.56 Å",
+    "antibodies": [
+      "无获批NUDT17靶向抗体",
+      "无临床阶段NUDT17同类抗体"
+    ],
+    "interfaceFocus": "催化沟槽、Nudix基序及底物入口边缘",
+    "designMode": "细胞内结合体设计",
+    "candidates": [
+      {
+        "target": "XDH",
+        "rationale": "XDH编码黄嘌呤脱氢酶/氧化酶，直接催化黄嘌呤生成尿酸，是尿酸水平调控通路中机制明确的核心酶。其疾病关联和药理学可验证性强于NUDT17。"
+      },
+      {
+        "target": "SLC2A9",
+        "rationale": "SLC2A9编码尿酸转运体GLUT9，参与肾脏和肝脏尿酸转运并与血清尿酸水平和痛风遗传风险高度相关。作为膜转运蛋白，其胞外环理论上具备抗体识别空间。"
+      },
+      {
+        "target": "ABCG2",
+        "rationale": "ABCG2为ATP结合盒外排转运体，介导尿酸外排并与高尿酸血症和痛风风险相关。其多跨膜结构含胞外环，可作为尿酸转运轴中更具抗体可及性的候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

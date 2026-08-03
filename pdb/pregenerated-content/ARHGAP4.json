@@ -1,0 +1,65 @@
+{
+  "gene": "ARHGAP4",
+  "generatedAt": "2026-08-03T18:07:06.036Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ARHGAP4 是胞内 Rho GTPase activating protein，主要通过 RhoGAP 结构域促进 Rho 家族小 GTP 酶水解 GTP，从而影响细胞骨架、迁移及神经元形态相关过程。Open Targets 显示其与神经退行性疾病存在最高关联信号，但该蛋白缺乏天然胞外结构域或分泌形式，完整抗体的细胞外抗原可及性不具优势。相较 EGFR、TNF、CD20 等经典可及靶点，ARHGAP4 更适合作为胞内机制研究或细胞内抗体工程靶点，临床抗体优先级应谨慎定位。",
+    "mechanism": "以细胞内抗体阻断 ARHGAP4 RhoGAP 结构域与 RhoA/Rac1/Cdc42 开关区的结合，降低其促 GTP 水解作用。",
+    "selectedEpitope": "优先聚焦 RhoGAP 催化界面及 arginine finger 邻近沟槽，避免非功能性远端表面。",
+    "diseaseDirection": "神经退行性疾病与细胞骨架调控",
+    "domain": "ARHGAP4 含 N 端 F-BAR 样区域及 C 端 RhoGAP 催化结构域，2EPD 对应结构片段需核对边界。",
+    "evidence": "ARHGAP4 疾病遗传关联与 RhoGAP 结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P98171 functional annotation",
+      "RCSB PDB 2EPD solution NMR structure",
+      "Rho family GTPase GAP mechanism literature"
+    ],
+    "referenceEntries": "UniProtKB P98171；RCSB PDB 2EPD；Open Targets ARHGAP4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RhoGAP 催化沟槽及 arginine finger 邻近区域",
+        "直接干预 Rho GTPase 结合与 GTP 水解催化，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RhoGAP 结构域 GTPase 开关区识别面",
+        "可阻断 ARHGAP4 与 RhoA/Rac1/Cdc42 的蛋白-蛋白相互作用",
+        "备选"
+      ],
+      [
+        "Site C",
+        "F-BAR 样膜结合区域外露面",
+        "可能影响膜定位，但与 2EPD 催化结构证据衔接较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ARHGAP4 为胞内蛋白，常规抗体难以接触天然抗原；建议限定为 intrabody、细胞递送抗体或机制验证用途，并严格评估同源 RhoGAP 交叉反应。",
+    "structurePrepZh": "以 2EPD 的 NMR 构象集合为起点，筛选代表构象并补全缺失环区；结合 AlphaFold 全长模型映射结构域边界与保守催化残基。",
+    "structureRef": "RCSB PDB 2EPD，human ARHGAP4 solution NMR structure",
+    "antibodies": [
+      "研究级 anti-ARHGAP4 antibody",
+      "细胞内抗体工程候选格式"
+    ],
+    "interfaceFocus": "RhoGAP-GTPase 开关区结合界面",
+    "designMode": "细胞内抗体设计",
+    "candidates": [
+      {
+        "target": "RHOA",
+        "rationale": "RHOA 是 RhoGAP 底物轴的核心小 GTP 酶，直接连接肌动蛋白应力纤维形成、细胞收缩及神经元结构调控。"
+      },
+      {
+        "target": "RAC1",
+        "rationale": "RAC1 与 ARHGAP4 所属 RhoGAP 网络共同调节膜皱褶、迁移及神经发育相关细胞骨架动态，可作为同通路功能参照靶点。"
+      },
+      {
+        "target": "CDC42",
+        "rationale": "CDC42 是 Rho 家族小 GTP 酶成员，参与丝状伪足形成和极性建立，与 RhoGAP 催化调控处于同一分子通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

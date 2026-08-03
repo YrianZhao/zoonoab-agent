@@ -1,0 +1,65 @@
+{
+  "gene": "RXRG",
+  "generatedAt": "2026-08-03T16:17:04.218Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RXRG编码视黄酸X受体γ，是核内受体家族成员，可与RAR、PPAR、LXR等形成异源二聚体并调控维甲酸、脂质代谢与免疫炎症相关转录程序；其Open Targets关联以银屑病、皮肤T细胞淋巴瘤和神经退行性疾病为主，提示RXR依赖转录轴具有疾病相关性。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌形式，作为常规抗体药物靶点的抗原可及性不具优势，需定位于结构生物学抗体、胞内递送抗体或降解偶联策略。相较于上游细胞因子或膜受体，RXRG的优先级依据在于其配体结合结构域已有高分辨率实验结构，可支持构象选择性结合分子设计，但治疗性抗体开发优先级应低于可直接胞外阻断的IL23A、IL17A或TNF轴靶点。",
+    "mechanism": "设计抗体片段结合RXRG配体结合域，干扰9-cis-retinoic acid样配体占据及RXR异源二聚体共激活因子招募界面，从而改变RXR依赖转录复合物装配。",
+    "selectedEpitope": "优先聚焦配体结合域H3/H5与H12构象调控面，兼顾二聚化界面远离保守疏水核心的可成药凹面。",
+    "diseaseDirection": "银屑病炎症与皮肤淋巴瘤",
+    "domain": "RXRG含DNA结合域和C端配体结合域；7A79覆盖核受体LBD折叠及配体调控螺旋H12。",
+    "evidence": "RXRG核受体结构与炎症疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt reviewed entry P48443",
+      "RCSB PDB 7A79 X-ray diffraction structure",
+      "Nuclear Receptor Signaling Atlas and literature"
+    ],
+    "referenceEntries": "UniProt P48443；RCSB PDB 7A79；Ensembl ENSG00000143171",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "LBD H3/H5-H12配体诱导构象调控面",
+        "有望锁定拮抗或非激活构象并影响共激活因子结合",
+        "优先"
+      ],
+      [
+        "Site B",
+        "LBD异源二聚体界面邻近外露螺旋区",
+        "可用于干扰RXR与RAR/PPAR/LXR二聚体稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "DNA结合域锌指及核定位相关保守区域",
+        "序列保守且胞内可及性差，易影响核受体家族选择性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RXRG为核内受体，天然抗体难以进入细胞核；LBD疏水口袋保守性较高，需通过构象表位和家族成员交叉反应筛选降低脱靶风险。",
+    "structurePrepZh": "以7A79抗原链A-D为模板，保留LBD主链与关键配体邻近残基，检查缺失环、晶体接触面及链间构象差异后进行表位聚类。",
+    "structureRef": "RCSB PDB 7A79，2.05 Å X-ray RXRG LBD结构",
+    "antibodies": [
+      "抗RXRγ研究级单克隆抗体",
+      "抗RXR泛亚型研究级抗体"
+    ],
+    "interfaceFocus": "LBD H12共激活因子沟槽与二聚化外露面",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "RARA",
+        "rationale": "RARA与RXR形成RAR-RXR异源二聚体并介导维甲酸应答转录，在皮肤分化和免疫炎症轴中与RXRG处于同一核受体通路。"
+      },
+      {
+        "target": "PPARG",
+        "rationale": "PPARG依赖RXR作为异源二聚体伙伴调控脂质代谢、巨噬细胞极化和炎症转录，适合作为RXR相关免疫代谢通路参照靶点。"
+      },
+      {
+        "target": "NR1H3",
+        "rationale": "NR1H3编码LXRα，可与RXR形成异源二聚体并调控胆固醇代谢及炎症反应，与RXRG共享核受体二聚化和转录调控机制。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

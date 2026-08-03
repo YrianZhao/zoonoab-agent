@@ -1,0 +1,65 @@
+{
+  "gene": "UBL5",
+  "generatedAt": "2026-08-03T17:39:20.276Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "UBL5 是细胞内 ubiquitin-like 蛋白，参与 U5 snRNP 组装与前体 mRNA 剪接稳态，剪接异常与多类神经退行性疾病的 RNA 代谢失衡相关。该蛋白缺乏跨膜区和分泌信号肽，天然抗原可及性不利于常规体内中和抗体，适合作为细胞内结合体或结构探针开发对象。相比膜受体或分泌因子靶点，UBL5 的疾病关联得分较低且功能界面保守，优先级应低于具有明确胞外可及性和可药性机制的同通路靶点。",
+    "mechanism": "以内源性结合体阻断 UBL5 与 SART1 等 U5 snRNP 组装因子的结合界面，干预剪接体成熟相关蛋白互作。",
+    "selectedEpitope": "优先覆盖 ubiquitin-like β-grasp 折叠中外露 β-sheet/α-helix 邻近互作面。",
+    "diseaseDirection": "神经退行性疾病RNA剪接稳态",
+    "domain": "UBL5 为小型 ubiquitin-like β-grasp 结构域蛋白，缺乏典型C端双甘氨酸修饰位点。",
+    "evidence": "UBL5剪接体功能与神经退行关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9BZL1 functional annotation",
+      "RCSB PDB 4PYU X-ray structure",
+      "Reactome spliceosomal snRNP assembly pathway"
+    ],
+    "referenceEntries": "UniProt Q9BZL1；RCSB PDB 4PYU；Open Targets UBL5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "β-grasp核心外露β-sheet与α-helix邻接面",
+        "可能覆盖U5 snRNP装配相关蛋白互作界面，适合细胞内结合体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端柔性延伸区及邻近表面残基",
+        "可提供构象选择性和亲和力调节空间，但功能阻断不确定",
+        "备选"
+      ],
+      [
+        "Site C",
+        "疏水核心与高度保守折叠维持区域",
+        "可能破坏整体折叠并产生非特异构象效应，应避免作为主表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "UBL5 为细胞内小蛋白，常规抗体难以到达作用位点；功能界面保守且抗原面积有限，建议采用VHH或工程化胞内抗体并严格验证折叠稳定性。",
+    "structurePrepZh": "以4PYU的2.0 Å晶体结构为模板，筛选单体链进行质子化、缺失残基检查与生物组装状态核验，保留外露互作面用于表位建模。",
+    "structureRef": "RCSB PDB 4PYU，human UBL5 X-ray structure, 2.0 Å",
+    "antibodies": [
+      "无临床阶段抗UBL5治疗性抗体",
+      "研究级抗UBL5抗体"
+    ],
+    "interfaceFocus": "β-grasp外露面与U5 snRNP装配因子结合界面",
+    "designMode": "胞内VHH阻断",
+    "candidates": [
+      {
+        "target": "SART1",
+        "rationale": "SART1 是 U4/U6.U5 tri-snRNP 组装因子，与 UBL5 功能关联于剪接体成熟过程，适合作为同一剪接装配轴上的替代调控节点。"
+      },
+      {
+        "target": "PRPF8",
+        "rationale": "PRPF8 是 U5 snRNP 核心组分并参与剪接体催化中心组织，其突变与视网膜神经变性疾病相关，疾病机制证据强于 UBL5。"
+      },
+      {
+        "target": "SNRNP200",
+        "rationale": "SNRNP200 编码 U5 snRNP RNA 解旋酶，调控剪接体重排，并与遗传性视网膜退行性病变相关，处于同一RNA剪接稳态通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

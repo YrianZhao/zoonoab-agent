@@ -1,0 +1,65 @@
+{
+  "gene": "SETD7",
+  "generatedAt": "2026-08-03T16:28:27.419Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SETD7为核内SET结构域赖氨酸甲基转移酶，可甲基化组蛋白H3K4及多种非组蛋白底物，并影响代谢、炎症和转录调控网络；Open Targets关联主要集中于体重、BMI及脂质测量性状，提示其与代谢表型存在遗传和功能层面的联系。然而SETD7缺乏胞外结构域、分泌形式或膜受体构型，完整蛋白作为传统细胞外抗体药物抗原的可及性较弱。相较可被外周抗体直接阻断的代谢通路膜受体或分泌因子，SETD7更适合作为结构生物学驱动的胞内结合分子、细胞内抗体或降解型分子探索靶点，优先级应低于抗原可及性更高的同通路靶点。",
+    "mechanism": "设计分子应占据SET结构域SAM结合沟槽或底物赖氨酸进入通道，阻断SETD7与SAM及肽底物形成催化复合物，从而抑制赖氨酸单甲基化反应。",
+    "selectedEpitope": "优先靶向SET结构域催化裂隙周围的SAM结合口袋与底物肽通道交界面。",
+    "diseaseDirection": "代谢性状与脂质稳态",
+    "domain": "SETD7含N端MORN样重复区及C端SET甲基转移酶结构域，2F69解析催化域复合物构象。",
+    "evidence": "SETD7代谢表型关联与催化结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform遗传关联与疾病性状评分",
+      "UniProt Q8WTS6功能注释与结构域记录",
+      "RCSB PDB 2F69 X射线晶体结构",
+      "ChEMBL与PubMed中SETD7抑制剂及底物甲基化研究"
+    ],
+    "referenceEntries": "UniProt Q8WTS6；RCSB PDB 2F69；Open Targets ENSG00000145391",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SET结构域SAM结合沟槽及催化口袋边缘",
+        "可直接阻断甲基供体SAM定位，机制与酶活抑制高度耦合",
+        "优先"
+      ],
+      [
+        "Site B",
+        "底物肽结合通道与赖氨酸进入路径",
+        "可干扰底物赖氨酸进入催化中心，适合构建构象选择性结合分子",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SET结构域远端溶剂暴露螺旋面",
+        "结构可及但与催化界面距离较远，功能阻断概率较低",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SETD7为胞内核蛋白，常规Fab或IgG难以到达作用位点；应优先评估细胞内递送、VHH稳定性及对其他SET结构域甲基转移酶的交叉结合风险。",
+    "structurePrepZh": "以2F69高分辨率晶体结构为模板，保留SET结构域、SAM/类似物及底物相关坐标信息，补全缺失侧链并评估催化沟槽构象稳定性。",
+    "structureRef": "RCSB PDB 2F69，1.3 Å X-ray SETD7催化域结构",
+    "antibodies": [
+      "SETD7研究级单克隆抗体",
+      "SETD7兔单克隆抗体"
+    ],
+    "interfaceFocus": "SAM结合沟槽与底物赖氨酸通道",
+    "designMode": "胞内酶活阻断",
+    "candidates": [
+      {
+        "target": "PPARG",
+        "rationale": "PPARG为脂肪生成、胰岛素敏感性和体重调控的核心核受体，与SETD7相关代谢表型处于同一脂质与能量稳态网络。其药理学和遗传证据更充分，但作为核受体同样不适合常规胞外抗体直接阻断。"
+      },
+      {
+        "target": "LEPR",
+        "rationale": "LEPR介导瘦素信号并调控食欲、体重和能量消耗，与BMI和体重表型直接相关。其为细胞膜受体，胞外配体结合域具备更优抗体可及性。"
+      },
+      {
+        "target": "PCSK9",
+        "rationale": "PCSK9通过结合LDLR促进其降解并升高LDL胆固醇，处于脂质稳态疾病轴中。其为分泌蛋白，已有抗体药物验证，抗原可及性和转化优先级高于胞内SETD7。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

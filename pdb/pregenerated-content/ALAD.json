@@ -1,0 +1,65 @@
+{
+  "gene": "ALAD",
+  "generatedAt": "2026-08-03T10:22:46.611Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ALAD编码δ-氨基乙酰丙酸脱水酶，催化两分子5-氨基乙酰丙酸缩合生成卟胆原，是血红素生物合成早期关键酶；其遗传缺陷导致ALA蓄积并引发ALAD缺乏性卟啉病及急性肝卟啉病相关神经毒性。该蛋白主要为胞质可溶性同源寡聚酶，天然抗原可及性不及膜受体或分泌蛋白，因此更适合作为机制验证、细胞内递送抗体或诊断捕获抗体设计对象。相较同通路的膜不可及酶类，ALAD具备高分辨率人源晶体结构和明确金属依赖活性位点，便于开展结构约束的表位规避与功能干预设计。",
+    "mechanism": "设计抗体阻断ALAD活性口袋邻近的底物进入通道或寡聚体界面，干扰5-氨基乙酰丙酸结合及卟胆原生成。",
+    "selectedEpitope": "优先选择TIM桶状催化结构域中靠近活性位点入口但避开深层锌结合残基的构象表位。",
+    "diseaseDirection": "血红素生物合成与急性卟啉病",
+    "domain": "ALAD为金属依赖胞质酶，核心为TIM桶状催化结构域，形成同源寡聚体并含底物结合裂隙。",
+    "evidence": "ALAD缺乏性卟啉病结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P13716人源ALAD功能注释",
+      "RCSB PDB 1PV8晶体结构解析",
+      "OMIM与Orphanet卟啉病遗传证据"
+    ],
+    "referenceEntries": "UniProt:P13716；RCSB PDB:1PV8；MONDO:0013000",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域活性口袋入口及底物通道外缘",
+        "可阻断5-氨基乙酰丙酸进入并保留抗体可结合空间",
+        "优先"
+      ],
+      [
+        "Site B",
+        "同源寡聚体亚基接触界面邻近外露环区",
+        "可评估对四聚体/八聚体装配稳定性的构象干预",
+        "备选"
+      ],
+      [
+        "Site C",
+        "深层锌结合位点与保守催化残基周边",
+        "高度保守且埋藏，易产生构象不可及与广泛酶活干扰风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ALAD为胞内可溶酶，常规抗体体内可达性受限；设计应优先定位外露环与入口区，并规避保守金属配位核心。",
+    "structurePrepZh": "以1PV8中A、B链建立人源二聚体局部模型，补全缺失侧链、保留催化相关金属信息并标注寡聚界面。",
+    "structureRef": "Human ALAD X-ray structure, PDB 1PV8, 2.2 Å",
+    "antibodies": [
+      "抗ALAD诊断抗体克隆",
+      "抗ALAD多克隆抗体"
+    ],
+    "interfaceFocus": "活性口袋入口、底物通道与亚基接触外露环",
+    "designMode": "胞内酶表位设计",
+    "candidates": [
+      {
+        "target": "ALAS1",
+        "rationale": "ALAS1催化血红素生物合成限速步骤并生成5-氨基乙酰丙酸，是急性肝卟啉病中上游代谢通量控制节点。"
+      },
+      {
+        "target": "HMBS",
+        "rationale": "HMBS催化卟胆原向羟甲基胆素转化，其缺陷导致急性间歇性卟啉病，与ALAD同属血红素生物合成早期通路。"
+      },
+      {
+        "target": "FECH",
+        "rationale": "FECH负责将二价铁插入原卟啉IX生成血红素，是血红素合成末端关键酶，与卟啉代谢异常疾病相关。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "PLAUR",
+  "generatedAt": "2026-08-03T15:20:40.529Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PLAUR/uPAR通过结合尿激酶型纤溶酶原激活物PLAU，促进细胞表面纤溶酶生成、基质降解及白细胞黏附迁移，因而与炎症细胞计数、肿瘤侵袭和组织重塑过程相关。该靶点为GPI锚定膜受体，三个胞外LU结构域完全暴露于细胞外环境，适合抗体识别并阻断配体结合。相较下游纤溶酶或广谱蛋白酶靶点，PLAUR位于细胞表面起始复合物层级，具备更明确的空间选择性和较低的系统性纤溶干预风险。",
+    "mechanism": "阻断PLAUR D1结构域与PLAU氨基端生长因子样结构域结合，抑制细胞表面PLAU活化纤溶酶原并削弱白细胞迁移相关蛋白水解微环境。",
+    "selectedEpitope": "优先覆盖D1结构域中央配体结合腔及D1-D2邻接缘，干预PLAU ATF结合界面。",
+    "diseaseDirection": "炎症细胞迁移与肿瘤侵袭",
+    "domain": "PLAUR由D1、D2、D3三个LU/uPAR结构域组成，C端经GPI锚定于膜外侧。",
+    "evidence": "PLAUR细胞表面纤溶复合物抗体设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt Q03405功能与结构域注释",
+      "RCSB PDB 2FD6晶体结构",
+      "PLAU-uPAR纤溶与细胞迁移研究文献"
+    ],
+    "referenceEntries": "UniProt Q03405；RCSB PDB 2FD6；Open Targets PLAUR",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "D1结构域PLAU ATF结合腔",
+        "直接阻断PLAU-uPAR复合物形成，机制清晰且结构可解释性强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "D1-D2结构域邻接界面",
+        "稳定干预配体进入及受体构象配合，可作为非竞争性阻断策略",
+        "备选"
+      ],
+      [
+        "Site C",
+        "D3结构域近GPI锚定外侧面",
+        "可能影响膜近端复合物组织，但易受膜空间限制并增加功能不确定性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "D1配体结合腔存在较深凹面，常规Fab需优化CDR H3进入角度；D3近膜表位可能受GPI锚定和糖基化遮挡，宜降低优先级。",
+    "structurePrepZh": "以2FD6高分辨率晶体结构为模板，保留PLAUR胞外D1-D3构象，检查二硫键、糖基化位点及PLAU结合界面残基暴露状态。",
+    "structureRef": "RCSB PDB 2FD6，human uPAR crystal structure，1.9 Å",
+    "antibodies": [
+      "ATN-658",
+      "VIM-5"
+    ],
+    "interfaceFocus": "D1配体结合腔与D1-D2邻接缘",
+    "designMode": "阻断型表位设计",
+    "candidates": [
+      {
+        "target": "PLAU",
+        "rationale": "PLAU是PLAUR的直接配体，二者形成细胞表面尿激酶受体复合物并驱动局部纤溶酶生成。靶向PLAU可从配体侧抑制同一蛋白水解轴。"
+      },
+      {
+        "target": "SERPINE1",
+        "rationale": "SERPINE1编码PAI-1，是PLAU/tPA系统的主要抑制因子，参与调节纤溶酶原激活与细胞迁移平衡。其位于PLAUR-PLAU纤溶通路的关键调控节点。"
+      },
+      {
+        "target": "PLG",
+        "rationale": "PLG编码纤溶酶原，是PLAU激活产生纤溶酶的直接底物。该靶点位于PLAUR介导细胞表面蛋白水解级联的下游效应层。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

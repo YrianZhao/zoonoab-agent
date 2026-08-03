@@ -1,0 +1,65 @@
+{
+  "gene": "STK4",
+  "generatedAt": "2026-08-03T21:20:20.200Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "STK4编码MST1激酶，是Hippo通路核心丝氨酸/苏氨酸激酶，并参与T细胞存活、迁移与免疫突触稳定；双等位基因功能缺失可导致STK4缺陷相关联合免疫缺陷。该蛋白主要位于胞内，抗原天然可及性低于膜受体或分泌因子，但8PAV提供高分辨率激酶结构，适合用于研究型胞内递送抗体、细胞内抗体或构象选择性结合分子设计。相较下游转录因子TEAD及广泛表达的LATS激酶，STK4位于上游节点，疾病遗传证据更直接，优先级来自明确的人类免疫缺陷关联与可解析的催化结构界面。",
+    "mechanism": "设计分子优先阻断STK4激酶结构域ATP结合槽或底物识别沟，抑制其对MOB1、LATS1/2等底物复合体的磷酸转移。",
+    "selectedEpitope": "优先选择N端激酶结构域ATP结合裂隙邻近αC螺旋与活化环构象界面。",
+    "diseaseDirection": "原发性联合免疫缺陷",
+    "domain": "STK4含N端蛋白激酶结构域、C端SARAH二聚化结构域及自抑制调控区。",
+    "evidence": "STK4免疫缺陷与Hippo激酶结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q13043功能与结构域注释",
+      "RCSB PDB 8PAV晶体结构",
+      "OMIM与ClinVar STK4缺陷变异记录"
+    ],
+    "referenceEntries": "UniProt Q13043；RCSB PDB 8PAV；Open Targets STK4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域ATP结合裂隙、hinge区与αC螺旋邻近面",
+        "可直接干预催化构象与ATP占位，适合功能阻断型设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "激酶结构域底物识别面及活化环周边",
+        "可能影响MOB1/LATS底物复合体定位，具备构象选择性价值",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端SARAH二聚化结构域推定同源二聚界面",
+        "可影响MST1二聚化与自磷酸化，但8PAV若未覆盖该区需补充建模验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "STK4为胞内激酶，常规抗体难以到达天然作用位点；设计应标注递送依赖性，并避免与STK3等同源激酶保守ATP口袋产生交叉结合。",
+    "structurePrepZh": "以8PAV链A/B为模板，保留激酶核心构象，检查缺失环、磷酸化状态与配体占位；SARAH区需另行引入参考结构或同源模型。",
+    "structureRef": "RCSB PDB 8PAV，X-ray diffraction，1.9 Å",
+    "antibodies": [
+      "无临床获批抗STK4抗体",
+      "研究级抗MST1/STK4抗体"
+    ],
+    "interfaceFocus": "ATP口袋、αC螺旋、活化环与底物结合沟",
+    "designMode": "胞内构象阻断",
+    "candidates": [
+      {
+        "target": "STK3",
+        "rationale": "STK3编码MST2，是STK4同源Hippo上游激酶，与STK4共同磷酸化LATS1/2并参与淋巴细胞稳态调控。可作为同通路冗余节点的比较靶点。"
+      },
+      {
+        "target": "MOB1A",
+        "rationale": "MOB1A为MST1/2底物与支架蛋白，促进LATS1/2激活。阻断STK4-MOB1A轴可用于解析Hippo激酶复合体对免疫细胞功能的贡献。"
+      },
+      {
+        "target": "LATS1",
+        "rationale": "LATS1是STK4下游核心激酶，接受MST1/2介导的激活性磷酸化并调控YAP/TAZ活性。其位于同一Hippo通路下游，可作为通路效应层候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

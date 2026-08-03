@@ -1,0 +1,65 @@
+{
+  "gene": "FSCN1",
+  "generatedAt": "2026-08-03T12:38:00.973Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FSCN1编码肌动蛋白束化蛋白fascin-1，促进F-actin平行束形成并增强细胞突起、迁移与侵袭表型，在肿瘤转移及免疫细胞迁移相关表型中具有明确机制关联。该蛋白主要为胞质肌动蛋白结合蛋白，并非典型膜受体或分泌抗原，天然抗原可及性弱；若作为抗体靶点，应优先采用胞内递送抗体、细胞穿透VHH或研究级功能阻断抗体策略。相较于上游炎症因子或广谱细胞骨架蛋白，FSCN1更接近肌动蛋白束化执行节点，结构解析度高且具有可定义的F-actin结合沟槽，因此适合开展机制验证型抗体设计，但治疗成药性优先级低于细胞表面靶点。",
+    "mechanism": "抗体结合FSCN1肌动蛋白结合沟槽，阻断其与F-actin侧面的接触，抑制平行肌动蛋白束形成及细胞突起稳定化。",
+    "selectedEpitope": "优先锁定β-trefoil 1与β-trefoil 2之间的F-actin结合界面及周边保守沟槽。",
+    "diseaseDirection": "细胞迁移与炎症免疫相关疾病",
+    "domain": "FSCN1由四个β-trefoil结构域组成，形成紧凑双叶构象，含多个肌动蛋白结合界面。",
+    "evidence": "FSCN1结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q16658功能注释",
+      "RCSB PDB 6I18晶体结构",
+      "fascin-1肌动蛋白束化与细胞迁移研究文献"
+    ],
+    "referenceEntries": "UniProt: Q16658; RCSB PDB: 6I18; Gene: FSCN1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "β-trefoil 1/2交界的F-actin结合沟槽",
+        "直接干预FSCN1与F-actin结合，机制阻断价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "β-trefoil 3/4邻近的次级肌动蛋白接触面",
+        "可削弱束化复合物稳定性，适合作为构象调节表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离肌动蛋白界面的疏水核心外侧区域",
+        "功能阻断相关性较弱，且可能仅产生结合型抗体",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FSCN1缺乏胞外暴露，常规全长IgG难以进入胞质发挥作用；应将风险标注为递送受限，并优先评估VHH、细胞穿透融合或体外功能抗体模式。",
+    "structurePrepZh": "以6I18链A为模板，保留高分辨率主链与侧链构象，补全缺失环区后标注肌动蛋白结合残基并进行表面电荷分析。",
+    "structureRef": "PDB 6I18, human FSCN1 X-ray structure, 1.49 Å",
+    "antibodies": [
+      "抗FSCN1诊断抗体 clone 55K-2",
+      "抗FSCN1研究抗体 clone EP5902"
+    ],
+    "interfaceFocus": "F-actin结合沟槽与β-trefoil交界面",
+    "designMode": "胞内功能阻断",
+    "candidates": [
+      {
+        "target": "ACTB",
+        "rationale": "ACTB编码β-actin，是FSCN1束化反应的直接结构底物，位于同一肌动蛋白细胞骨架与迁移通路中；但其高度保守且广泛必需，抗体干预安全窗口有限。"
+      },
+      {
+        "target": "RHOA",
+        "rationale": "RHOA调控应力纤维形成和肌动蛋白重塑，位于细胞迁移与免疫细胞运动相关通路上游；其可作为机制对照靶点，但胞内定位同样限制常规抗体可及性。"
+      },
+      {
+        "target": "CDC42",
+        "rationale": "CDC42驱动丝状伪足形成并影响FSCN1依赖性突起结构稳定，属于同一肌动蛋白动力学网络；该靶点适合用于迁移表型联动验证。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

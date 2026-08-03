@@ -1,0 +1,65 @@
+{
+  "gene": "SETD3",
+  "generatedAt": "2026-08-03T16:27:57.518Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SETD3为胞内肌动蛋白His73 N3甲基转移酶，依赖SAM供甲基并与β-actin底物发生催化性结合；现有关联主要指向身高、心房颤动和血细胞计数等遗传性状，疾病因果强度有限。该蛋白缺乏分泌信号肽、跨膜区和稳定胞外结构域，完整抗体在生理状态下难以接触胞内催化口袋，抗原可及性不具备常规治疗性抗体优势。因此其作为主靶点更适合结构生物学、细胞内抗体或降解递送研究；相较膜受体或分泌因子，优先级应低于ACTB相关肌动蛋白调控轴中可药性更明确的节点。",
+    "mechanism": "细胞内抗体可结合SET结构域催化裂隙附近，阻断SETD3对β-actin His73位点的底物识别及SAM依赖甲基转移反应。",
+    "selectedEpitope": "优先评估SET结构域底物结合沟槽与SAM邻近催化口袋边缘表位。",
+    "diseaseDirection": "肌动蛋白甲基化与遗传性状",
+    "domain": "SETD3含N端SET甲基转移酶结构域及C端Rubisco LSMT-like辅助结构域。",
+    "evidence": "SETD3结构与ACTB His73甲基化证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q86TU7功能与亚细胞定位注释",
+      "RCSB PDB 6MBK晶体结构数据",
+      "蛋白甲基转移酶与肌动蛋白His73甲基化文献"
+    ],
+    "referenceEntries": "UniProt Q86TU7；RCSB PDB 6MBK；Open Targets SETD3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SET结构域底物结合沟槽及催化裂隙边缘",
+        "可干扰β-actin His73肽段定位并抑制甲基转移",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SAM结合口袋邻近但不直接覆盖保守辅因子位点的外缘",
+        "有望通过变构方式削弱供甲基构象配准",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端Rubisco LSMT-like结构域外表面",
+        "远离主要催化界面，功能阻断证据较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SETD3为胞内酶，常规Fab或IgG缺乏天然可及性；设计应限定为胞内抗体、递送型VHH或体外结构探针，并避免直接占据高度保守SAM结合核心造成选择性不足。",
+    "structurePrepZh": "以6MBK高分辨率晶体结构为模板，保留SET与C端辅助结构域，核查配体、晶体接触和多链装配状态，按单体功能构象重建催化裂隙。",
+    "structureRef": "RCSB PDB 6MBK，X-ray diffraction，1.69 Å",
+    "antibodies": [
+      "无已批准SETD3靶向抗体",
+      "研究级抗SETD3抗体"
+    ],
+    "interfaceFocus": "β-actin His73底物沟槽与SAM邻近催化界面",
+    "designMode": "胞内VHH阻断",
+    "candidates": [
+      {
+        "target": "ACTB",
+        "rationale": "ACTB编码β-actin，是SETD3的直接甲基化底物；His73甲基化影响肌动蛋白聚合动力学，处于同一肌动蛋白细胞骨架调控轴。"
+      },
+      {
+        "target": "METTL18",
+        "rationale": "METTL18为组氨酸甲基转移酶，催化核糖体蛋白RPL3的His245甲基化；与SETD3同属SAM依赖组氨酸甲基化功能类别，可作为蛋白组氨酸甲基化轴的对照候选。"
+      },
+      {
+        "target": "PRMT5",
+        "rationale": "PRMT5为SAM依赖蛋白精氨酸甲基转移酶，与血液细胞生成和心血管表型相关的表观遗传调控网络存在功能交叉；其可药性和疾病证据强于SETD3。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

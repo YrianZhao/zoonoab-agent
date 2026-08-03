@@ -1,0 +1,65 @@
+{
+  "gene": "SAR1B",
+  "generatedAt": "2026-08-03T16:20:19.216Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SAR1B 是 COPII 囊泡出芽过程中的小 GTP 酶，致病变异可破坏前乳糜微粒由内质网向高尔基体运输，导致乳糜微粒滞留病。该蛋白主要定位于细胞质侧内质网出口位点，并非分泌蛋白或跨膜受体，天然抗原可及性弱，抗体策略更适合结构生物学验证、细胞内递送或研究型阻断。相较于 SEC23/SEC24 等大型 COPII 组分，SAR1B 体积小、结构解析度高且疾病遗传证据直接，适合作为通路机制研究的优先抗原。",
+    "mechanism": "设计抗体阻断 SAR1B 的 switch I/II 区域与 SEC23A-SEC24 复合体结合，抑制 COPII 被膜装配及前乳糜微粒出口。",
+    "selectedEpitope": "优先覆盖 GTPase switch I/II 与 SEC23 结合界面，避开高度保守核苷酸结合口袋。",
+    "diseaseDirection": "乳糜微粒滞留病与COPII转运",
+    "domain": "SAR1B 为小型 Ras 样 GTPase，含 P-loop、switch I、switch II 及 C 端膜插入调控区。",
+    "evidence": "SAR1B-COPII介导脂蛋白转运证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9Y6B6 functional annotation",
+      "RCSB PDB 8E0A X-ray structure",
+      "OMIM chylomicron retention disease genetics"
+    ],
+    "referenceEntries": "UniProt Q9Y6B6；RCSB PDB 8E0A；Open Targets SAR1B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "switch I/switch II SEC23A结合界面",
+        "可直接干预SAR1B-COPII被膜装配相互作用",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端α螺旋及膜邻近调控面",
+        "可影响内质网膜招募与构象稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "P-loop核苷酸结合口袋周缘",
+        "功能关键但保守性高，交叉反应与构象干扰风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SAR1B 为胞内小GTP酶，常规抗体药物可及性受限；设计应定位于机制探针或需配套胞内递送平台，并严格评估与SAR1A交叉反应。",
+    "structurePrepZh": "以PDB 8E0A链A/B为模板，保留核苷酸相关构象信息，校正缺失侧链与质子化状态，并标注switch区及C端调控面。",
+    "structureRef": "RCSB PDB 8E0A，X-ray diffraction，1.797 Å",
+    "antibodies": [
+      "anti-SAR1B research antibody",
+      "anti-SAR1A/B research antibody"
+    ],
+    "interfaceFocus": "switch I/II-SEC23A结合界面",
+    "designMode": "胞内机制阻断",
+    "candidates": [
+      {
+        "target": "SEC23A",
+        "rationale": "SEC23A 是 COPII 内层被膜核心组分并作为 SAR1 GTPase activating protein，直接参与 SAR1B 依赖的囊泡出芽。其变异与蛋白分泌及脂质转运缺陷相关。"
+      },
+      {
+        "target": "SEC24D",
+        "rationale": "SEC24D 是 COPII 货物选择亚基，参与内质网出口货物装载，与 SAR1-SEC23 共同形成被膜内层装配平台。其处于同一 ER-to-Golgi 转运轴。"
+      },
+      {
+        "target": "MTTP",
+        "rationale": "MTTP 负责 ApoB 脂质化并生成前乳糜微粒，是肠上皮脂蛋白装配通路的关键节点。其功能缺陷与低β脂蛋白血症和乳糜微粒输出障碍相关。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

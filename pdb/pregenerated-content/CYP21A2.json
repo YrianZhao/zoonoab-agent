@@ -1,0 +1,65 @@
+{
+  "gene": "CYP21A2",
+  "generatedAt": "2026-08-03T18:28:38.386Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CYP21A2编码肾上腺类固醇21-羟化酶，其缺陷直接阻断孕酮和17-羟孕酮向去氧皮质酮及11-去氧皮质醇转化，是经典21-羟化酶缺乏型先天性肾上腺增生的核心病因。该蛋白为内质网膜锚定的微粒体P450酶，主体催化结构域位于胞质侧，天然抗体可及性弱，不适合作为常规细胞外阻断型抗体靶点。其优先级主要来自明确遗传因果性、可解析晶体结构和疾病评分优势，但相较ACTH受体或类固醇生成上游受体，抗体成药性需以结构探针或细胞内递送策略限定。",
+    "mechanism": "设计抗体片段识别CYP21A2催化域近血红素入口或POR结合面，干预电子转移或底物进入，用于机制验证而非经典胞外中和。",
+    "selectedEpitope": "优先评估催化域F/G环及血红素入口邻近区域，避开跨膜锚定段与高度保守P450核心折叠。",
+    "diseaseDirection": "先天性肾上腺增生与类固醇生成障碍",
+    "domain": "N端内质网膜锚定区连接胞质型P450催化结构域，含血红素结合Cys配位基序与底物结合腔。",
+    "evidence": "CYP21A2遗传因果与晶体结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProtKB P08686功能与亚细胞定位注释",
+      "RCSB PDB 4Y8W晶体结构记录",
+      "OMIM与ClinVar中CYP21A2致病变异证据"
+    ],
+    "referenceEntries": "UniProt P08686；RCSB PDB 4Y8W；Open Targets CYP21A2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "F/G环与底物入口通道外缘",
+        "可能影响孕酮类底物进入催化腔，结构可解释性较强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "POR电子转移结合面邻近碱性表面",
+        "可用于干预CYP21A2与P450氧化还原酶的功能性相互作用",
+        "备选"
+      ],
+      [
+        "Site C",
+        "血红素结合核心及Cys配位基序附近",
+        "高度保守且构象敏感，易产生交叉反应或破坏折叠稳定性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CYP21A2并非胞外抗原，常规全长IgG难以接触内质网胞质侧催化域；建议限定为Fab/VHH结构探针、胞内抗体或递送型验证体系。",
+    "structurePrepZh": "以4Y8W链A/B/C进行同源状态比对，保留血红素辅基并校正缺失侧链，标注底物通道、POR结合面和保守P450基序。",
+    "structureRef": "Human CYP21A2 X-ray structure, PDB 4Y8W, 2.64 Å",
+    "antibodies": [
+      "抗CYP21A2研究级单克隆抗体",
+      "抗P450c21免疫组化抗体"
+    ],
+    "interfaceFocus": "底物入口通道、POR结合面与血红素邻近环区",
+    "designMode": "胞内结构探针设计",
+    "candidates": [
+      {
+        "target": "MC2R",
+        "rationale": "MC2R为ACTH受体，位于肾上腺皮质类固醇生成上游，调控CYP21A2表达和甾体合成通量；其细胞表面七跨膜受体特征较CYP21A2更具抗体可及性。"
+      },
+      {
+        "target": "CYP11B1",
+        "rationale": "CYP11B1催化11-去氧皮质醇生成皮质醇，处于CYP21A2下游的糖皮质激素合成路径；可作为同一肾上腺甾体生成轴的机制参照靶点。"
+      },
+      {
+        "target": "CYP17A1",
+        "rationale": "CYP17A1参与17-羟化和雄激素前体生成，与CYP21A2缺陷后17-羟孕酮及雄激素前体积累存在同通路关联；其结构和药理学证据较充分。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

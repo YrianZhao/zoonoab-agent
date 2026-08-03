@@ -1,0 +1,65 @@
+{
+  "gene": "ATP1A1",
+  "generatedAt": "2026-08-03T10:40:30.134Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ATP1A1编码Na+/K+-ATPase α1催化亚基，维持跨膜Na+、K+电化学梯度，突变或功能异常可影响神经兴奋性、心肌收缩和肾小管离子稳态，与轴突型Charcot-Marie-Tooth病、房颤及心力衰竭等表型相关。该蛋白为多跨膜质膜泵，具有可被抗体识别的胞外环区，抗原位点位于细胞表面，具备膜受体样可及性。相较于下游离子通道或泛化代谢节点，ATP1A1处于Na+/K+稳态维持的上游核心位置，并已有高分辨率人源冷冻电镜结构支持精确表位建模，因此具备较高设计优先级。",
+    "mechanism": "抗体可结合ATP1A1胞外M1-M2、M3-M4或M7-M8环区，构象性阻断Na+/K+转运循环中的胞外门控转换，并干扰心苷类配体结合口袋邻近构象稳定。",
+    "selectedEpitope": "优先选择M1-M2与M3-M4胞外环邻近的构象表位，避开跨膜催化核心并覆盖E2-P胞外门控界面。",
+    "diseaseDirection": "神经轴突病变与心血管离子稳态异常",
+    "domain": "ATP1A1含10个跨膜螺旋、胞质A/N/P结构域及多个短胞外环，催化磷酸化位点位于胞质P结构域。",
+    "evidence": "ATP1A1离子泵结构与遗传疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt reviewed entry P05023功能注释",
+      "RCSB PDB 9WAJ人源ATP1A1冷冻电镜结构",
+      "ClinVar与OMIM ATP1A1变异表型记录"
+    ],
+    "referenceEntries": "UniProt P05023；RCSB PDB 9WAJ；Open Targets ENSG00000163399",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "M1-M2/M3-M4胞外环构象邻接区",
+        "靠近胞外门控通路，可调节离子泵E1/E2构象转换，且细胞表面可及性较高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "M7-M8胞外环及心苷结合口袋外缘",
+        "可影响心苷样配体结合口袋邻近构象，适合开发非竞争或变构型结合分子",
+        "备选"
+      ],
+      [
+        "Site C",
+        "胞质A/N/P催化结构域界面",
+        "结构信息丰富但位于胞内，常规抗体难以到达，除非采用细胞内递送策略",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ATP1A1为广泛表达的必需离子泵，强抑制可能引发心脏、神经和肾脏毒性。设计宜偏向低内吞、变构微调或组织递送限制，并避免完全阻断催化循环。",
+    "structurePrepZh": "以9WAJ冷冻电镜结构为模板，保留跨膜区、胞外环及关键离子/配体邻近残基；补全柔性胞外环缺失片段并在膜环境中评估表位暴露度。",
+    "structureRef": "RCSB PDB 9WAJ；human Na+/K+-ATPase cryo-EM structure",
+    "antibodies": [
+      "anti-ATP1A1 monoclonal antibody 464.6",
+      "anti-Na+/K+-ATPase alpha 1 antibody C464.6"
+    ],
+    "interfaceFocus": "胞外门控环与心苷结合口袋外缘",
+    "designMode": "膜泵变构抗体设计",
+    "candidates": [
+      {
+        "target": "ATP1B1",
+        "rationale": "ATP1B1编码Na+/K+-ATPase β1亚基，与ATP1A1形成成熟泵复合体并参与膜定位和离子转运稳定性，是同一Na+/K+泵通路中的直接复合物靶点。"
+      },
+      {
+        "target": "FXYD1",
+        "rationale": "FXYD1为Na+/K+-ATPase调节亚基，在心肌中调控泵活性并影响兴奋-收缩耦联相关离子稳态，适合作为心力衰竭方向的通路候选靶点。"
+      },
+      {
+        "target": "SLC8A1",
+        "rationale": "SLC8A1编码钠钙交换体NCX1，其活性依赖ATP1A1维持的Na+梯度，并直接参与心肌Ca2+外排与房颤、心衰相关离子稳态异常。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

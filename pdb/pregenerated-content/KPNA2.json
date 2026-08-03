@@ -1,0 +1,65 @@
+{
+  "gene": "KPNA2",
+  "generatedAt": "2026-08-03T13:46:32.450Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KPNA2是核输入受体importin-α家族成员，通过识别含经典核定位信号的病毒或宿主蛋白并与KPNB1形成核输入复合体，参与流感病毒核蛋白、SARS-CoV相关蛋白等入核过程。该蛋白主要定位于胞质和细胞核，缺乏天然胞外结构域或分泌特征，因此常规体内阻断抗体的抗原可及性受限，更适合作为细胞内递送抗体或研究型干预靶点。相较于广谱上游炎症因子，KPNA2位于核转运节点，具备跨病毒感染通路的机制聚合优势，但优先级低于具有胞外可及性的病毒受体或细胞因子靶点。",
+    "mechanism": "通过抗体结合KPNA2 ARM重复形成的NLS结合沟槽，阻断经典NLS货物与KPNA2的major/minor结合位点相互作用，并削弱其与KPNB1介导的核输入复合体装配。",
+    "selectedEpitope": "优先靶向ARM repeats 2-4的major NLS结合沟槽，覆盖碱性NLS肽识别界面。",
+    "diseaseDirection": "病毒感染核转运干预",
+    "domain": "KPNA2含N端importin-β结合IBB区及串联ARM重复结构域，ARM区形成NLS结合沟槽。",
+    "evidence": "KPNA2介导经典核输入与病毒感染证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P52292功能与亚细胞定位注释",
+      "RCSB PDB 4WV6晶体结构",
+      "病毒蛋白经典NLS依赖性核输入文献"
+    ],
+    "referenceEntries": "UniProt:P52292；RCSB PDB:4WV6；Open Targets:KPNA2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ARM repeats 2-4 major NLS结合沟槽",
+        "直接竞争经典NLS货物结合，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ARM repeats 6-8 minor NLS结合位点",
+        "可增强对双位点NLS货物的阻断覆盖",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端IBB/importin-β结合区邻近界面",
+        "可能影响KPNB1复合体形成，但构象调控复杂",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "KPNA2为细胞内核转运蛋白，常规抗体难以到达作用位点；设计应限定为细胞内抗体、递送型抗体或体外机制验证，并严控广泛核输入抑制导致的细胞毒性。",
+    "structurePrepZh": "以4WV6高分辨率晶体结构为模板，保留KPNA2 ARM重复核心，检查共晶肽、缺失环区及晶体接触，构建NLS结合沟槽抗原模型。",
+    "structureRef": "RCSB PDB 4WV6，X-ray diffraction，1.75 Å",
+    "antibodies": [
+      "抗KPNA2研究用单克隆抗体",
+      "抗importin-α家族研究用抗体"
+    ],
+    "interfaceFocus": "ARM重复NLS结合沟槽与IBB邻近界面",
+    "designMode": "细胞内阻断型",
+    "candidates": [
+      {
+        "target": "KPNB1",
+        "rationale": "KPNB1与KPNA2形成importin-α/β核输入复合体，是经典核输入通路的核心转运受体；阻断KPNA2-KPNB1装配可影响同一病毒蛋白入核轴。"
+      },
+      {
+        "target": "KPNA1",
+        "rationale": "KPNA1同属importin-α家族并识别经典NLS货物，在病毒蛋白核输入中与KPNA2存在功能重叠；可作为同通路旁系核输入靶点。"
+      },
+      {
+        "target": "RAN",
+        "rationale": "RAN GTPase调控核输入货物释放和转运循环，是KPNA2/KPNB1核转运通路的下游关键节点；干预该节点可验证核输入依赖性机制。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

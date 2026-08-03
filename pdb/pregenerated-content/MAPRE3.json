@@ -1,0 +1,65 @@
+{
+  "gene": "MAPRE3",
+  "generatedAt": "2026-08-03T14:04:14.079Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAPRE3/EB3是微管正端结合蛋白，参与调控微管动态、轴突与神经元形态维持；其遗传关联主要指向登革热及多项代谢或影像表型，但目前缺乏明确可药物化的胞外疾病驱动机制。该蛋白为胞内细胞骨架调节因子，抗原天然可及性显著低于膜受体或分泌蛋白，常规体内阻断抗体难以直接接触靶点。其优先级主要来自高分辨率晶体结构和可解析的钙调蛋白结合界面，而非相对同类胞外靶点的可及性优势，因此更适合作为结构生物学或胞内递送抗体探索靶点。",
+    "mechanism": "设计抗体需以胞内递送为前提，阻断MAPRE3 C端EBH结构域与SxIP样微管正端伙伴蛋白或钙调蛋白的结合界面。",
+    "selectedEpitope": "优先覆盖EBH结构域疏水沟槽及二聚体邻近面，避免干扰N端CH结构域整体折叠。",
+    "diseaseDirection": "登革热相关宿主细胞骨架调控",
+    "domain": "MAPRE3含N端钙调蛋白同源CH结构域、低复杂度连接区及C端EBH二聚化/伙伴蛋白结合结构域。",
+    "evidence": "MAPRE3结构与宿主微管动态证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9UPY8功能与结构域注释",
+      "RCSB PDB 3CO1晶体结构记录",
+      "EB家族微管正端结合蛋白文献"
+    ],
+    "referenceEntries": "UniProt Q9UPY8；RCSB PDB 3CO1；Open Targets MAPRE3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端EBH结构域疏水沟槽与SxIP伙伴蛋白结合面",
+        "直接干预EB3招募微管正端效应蛋白的核心相互作用",
+        "优先"
+      ],
+      [
+        "Site B",
+        "EBH二聚体界面邻近外露螺旋面",
+        "可能影响二聚体稳定性及伙伴蛋白复合物构象",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端CH结构域微管结合相关表面",
+        "可能阻断微管末端识别，但存在广泛细胞骨架毒性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAPRE3为胞内蛋白，常规抗体可及性不足；应采用细胞内递送、内体逃逸或intrabody策略，并严格评估微管稳态毒性。",
+    "structurePrepZh": "以3CO1链A为结构模板，补全缺失柔性区并标注EBH二聚体界面；结合AlphaFold全长模型评估CH结构域与连接区可及性。",
+    "structureRef": "PDB 3CO1，X射线晶体结构，1.4 Å，Homo sapiens MAPRE3片段",
+    "antibodies": [
+      "Anti-EB3 clone KT36",
+      "Anti-EB3 clone 2G4"
+    ],
+    "interfaceFocus": "EBH疏水沟槽、二聚体界面及钙调蛋白结合面",
+    "designMode": "胞内递送Fab/VHH",
+    "candidates": [
+      {
+        "target": "MAPRE1",
+        "rationale": "MAPRE1/EB1与MAPRE3同属EB家族，处于微管正端蛋白复合物通路，可作为微管动态调控的同通路参照靶点。"
+      },
+      {
+        "target": "MAPRE2",
+        "rationale": "MAPRE2/EB2共享EB家族CH与EBH结构域架构，可用于比较EB家族成员在宿主细胞骨架重塑中的功能差异。"
+      },
+      {
+        "target": "CLASP2",
+        "rationale": "CLASP2为微管正端追踪蛋白，含SxIP介导的EB蛋白结合机制，与MAPRE3共同参与微管末端稳定和皮质捕获过程。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "CALCA",
+  "generatedAt": "2026-08-03T10:57:37.831Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CALCA 编码的前体经组织特异性加工可产生 α-CGRP，其在偏头痛三叉神经血管通路中促进脑膜血管扩张、神经源性炎症与疼痛传入敏化。α-CGRP 为分泌性神经肽，循环和突触外空间可及性高，适合以中和抗体直接捕获游离配体。相较于受体复合物 CALCRL/RAMP1，配体中和可同时阻断外周神经释放的 α-CGRP 与受体结合，并具有已验证的临床可成药性优先级。",
+    "mechanism": "抗体结合 α-CGRP 构象表位，阻断其与 CALCRL/RAMP1 受体复合物的配体结合沟槽接触，抑制 cAMP 介导的三叉神经血管激活。",
+    "selectedEpitope": "优先覆盖 α-CGRP C 端 27-37 位受体识别区及中段螺旋邻近面，形成配体中和表位。",
+    "diseaseDirection": "偏头痛与三叉神经血管疼痛",
+    "domain": "CALCA 前体含信号肽、降钙素肽段与 α-CGRP 神经肽区；成熟 α-CGRP 为 37 aa 分泌肽。",
+    "evidence": "CALCA-CGRP 偏头痛配体中和证据包",
+    "evidenceSources": [
+      "Open Targets Platform CALCA-migraine association",
+      "UniProt P01258 CALCA human entry",
+      "RCSB PDB 7TYO cryo-EM structure",
+      "Clinical evidence from anti-CGRP monoclonal antibodies"
+    ],
+    "referenceEntries": "UniProt P01258；RCSB PDB 7TYO；Open Targets CALCA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "α-CGRP C 端 27-37 位受体识别区",
+        "直接竞争 CALCRL/RAMP1 配体结合沟槽，具备最高中和价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "成熟 α-CGRP 中段 8-18 位螺旋暴露面",
+        "可稳定捕获游离肽构象，并与 C 端表位形成扩展结合面",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端二硫环 2-7 位邻近区域",
+        "可能影响肽构象，但与降钙素家族保守结构存在交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "需避免与降钙素、胰淀素及 β-CGRP 保守序列产生非预期交叉结合；优先优化 C 端特异性接触并评估血浆半衰期影响。",
+    "structurePrepZh": "以 7TYO 中 α-CGRP 配体链为模板，保留成熟肽构象与受体接触残基，移除非目标受体链后进行肽柔性采样与表位暴露评估。",
+    "structureRef": "RCSB PDB 7TYO，2.7 Å cryo-EM CGRP receptor complex",
+    "antibodies": [
+      "Fremanezumab",
+      "Galcanezumab"
+    ],
+    "interfaceFocus": "α-CGRP C 端与 CALCRL/RAMP1 结合沟槽",
+    "designMode": "分泌肽中和抗体",
+    "candidates": [
+      {
+        "target": "CALCRL",
+        "rationale": "CALCRL 与 RAMP1 共同构成 CGRP 受体核心，直接介导 α-CGRP 结合后的 Gs-cAMP 信号，是同一偏头痛通路中的受体端干预靶点。"
+      },
+      {
+        "target": "RAMP1",
+        "rationale": "RAMP1 决定 CALCRL 对 CGRP 的配体选择性，并参与配体结合口袋形成；阻断其受体复合物界面可降低 CGRP 信号输入。"
+      },
+      {
+        "target": "ADCYAP1",
+        "rationale": "ADCYAP1 编码 PACAP，参与三叉神经血管系统的神经肽性疼痛传导，并与 CGRP 通路在偏头痛发作机制中存在功能交叉。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "ASIP",
+  "generatedAt": "2026-08-03T10:38:50.594Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ASIP是分泌型拮抗肽，通过与黑皮质素受体MC1R竞争α-MSH结合，抑制黑素细胞内cAMP生成并影响真黑素/褐黑素转换，与毛发颜色及色素沉着表型存在明确遗传关联。其成熟蛋白位于胞外环境，富含二硫键的C端半胱氨酸结结构域构成可直接识别的抗原表面，抗体可及性优于胞内色素合成酶。相较TYR、OCA2等下游色素生成靶点，ASIP处于配体-受体调控入口，适合构建阻断型或配体中和型分子探针。",
+    "mechanism": "抗体结合ASIP C端功能结构域，阻断ASIP与MC1R胞外配体结合口袋的相互作用，解除其对α-MSH-MC1R信号的竞争性拮抗。",
+    "selectedEpitope": "优先覆盖C端半胱氨酸结结构域中参与MC1R识别的暴露环区，避免破坏二硫键核心。",
+    "diseaseDirection": "毛发颜色与色素沉着调控",
+    "domain": "ASIP含N端信号肽、碱性中段及C端富半胱氨酸agouti结构域，1Y7J解析其C端折叠。",
+    "evidence": "ASIP-MC1R色素通路结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P42127功能与亚细胞定位注释",
+      "RCSB PDB 1Y7J溶液NMR结构",
+      "MC1R黑皮质素信号与色素生成文献"
+    ],
+    "referenceEntries": "UniProt P42127；RCSB PDB 1Y7J；Open Targets ASIP",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端agouti结构域受体识别暴露环",
+        "最可能干预ASIP-MC1R结合并形成中和活性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端半胱氨酸结外侧非保守表面",
+        "利于获得高选择性结合且降低交叉反应风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "二硫键稳定的疏水核心邻近区域",
+        "可能影响整体折叠稳定性，需避免构象破坏型设计",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ASIP分子量较小且二硫键密集，线性肽免疫可能偏离天然构象；建议采用氧化折叠抗原或构象展示体系筛选。",
+    "structurePrepZh": "以1Y7J NMR模型集评估构象一致性，保留天然二硫键约束并标注高柔性环区，用于表位聚类与对接约束。",
+    "structureRef": "PDB 1Y7J，human ASIP C-terminal domain，solution NMR",
+    "antibodies": [
+      "抗ASIP研究级多克隆抗体",
+      "抗ASIP研究级单克隆抗体"
+    ],
+    "interfaceFocus": "C端agouti结构域MC1R识别环面",
+    "designMode": "分泌配体中和",
+    "candidates": [
+      {
+        "target": "MC1R",
+        "rationale": "MC1R是ASIP与α-MSH共同作用的黑皮质素受体，直接决定cAMP介导的黑素合成方向。靶向其胞外配体结合区可验证同一色素调控轴。"
+      },
+      {
+        "target": "POMC",
+        "rationale": "POMC加工产生α-MSH，α-MSH与ASIP在MC1R上形成功能拮抗关系。调节该配体来源可影响同一MC1R-cAMP色素通路。"
+      },
+      {
+        "target": "TYR",
+        "rationale": "TYR是MC1R-cAMP-MITF轴下游黑素合成关键酶，决定黑素生成能力。其疾病关联覆盖白化病和色素沉着表型，可作为下游功能读出靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

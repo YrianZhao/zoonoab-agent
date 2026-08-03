@@ -1,0 +1,65 @@
+{
+  "gene": "ZNRF3",
+  "generatedAt": "2026-08-03T18:03:02.636Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ZNRF3是膜定位E3泛素连接酶，胞外PA结构域结合RSPO-LGR复合物后促进其清除，从而限制WNT/β-catenin信号；该轴与发育异常、骨量调控及多组织稳态相关。ZNRF3具备可抗体识别的胞外蛋白酶相关结构域，且8G4Y提供高分辨率实验结构，有利于界面级表位设计。相较下游β-catenin等胞内节点，ZNRF3位于配体-受体调控层，抗原可及性和选择性干预窗口更优。",
+    "mechanism": "抗体结合ZNRF3胞外PA结构域，阻断RSPO与ZNRF3形成复合界面，降低ZNRF3介导的WNT受体清除，从而增强FZD-LRP5/6信号持续性。",
+    "selectedEpitope": "优先覆盖ZNRF3胞外PA结构域的RSPO接触面，避开N端柔性糖基化邻近区。",
+    "diseaseDirection": "WNT通路相关发育与骨代谢疾病",
+    "domain": "ZNRF3含N端胞外PA结构域、单跨膜区及胞内RING型E3泛素连接酶结构域。",
+    "evidence": "ZNRF3-WNT调控轴结构与疾病遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联证据",
+      "UniProt Q9ULT6功能与结构域注释",
+      "RCSB PDB 8G4Y高分辨率晶体结构",
+      "WNT/RSPO/LGR/ZNRF3通路文献"
+    ],
+    "referenceEntries": "UniProt Q9ULT6；RCSB PDB 8G4Y；Open Targets ZNRF3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PA结构域RSPO结合界面",
+        "直接阻断ZNRF3与RSPO复合物形成，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PA结构域外侧保守凹面",
+        "可稳定占位并产生变构影响，适合亲和力成熟备选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PA结构域近膜端与糖基化邻近区域",
+        "空间可及性可能受膜面和糖链限制，需控制交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PA结构域存在保守折叠面，需评估RNF43同源交叉结合；近膜端表位可能受膜取向限制，宜优先选择RSPO界面外露环区。",
+    "structurePrepZh": "以8G4Y抗原链A、B为模板，保留胞外PA结构域坐标，补充缺失侧链并标注二硫键、糖基化位点和RSPO接触残基。",
+    "structureRef": "RCSB PDB 8G4Y，X-ray diffraction，1.41 Å",
+    "antibodies": [
+      "OMP-131R10",
+      "anti-ZNRF3 blocking antibody"
+    ],
+    "interfaceFocus": "PA结构域RSPO复合物接触界面",
+    "designMode": "阻断型界面抗体",
+    "candidates": [
+      {
+        "target": "RNF43",
+        "rationale": "RNF43与ZNRF3同属WNT受体负调控E3连接酶，介导FZD受体泛素化和内吞，是同一通路中的功能平行节点。"
+      },
+      {
+        "target": "RSPO2",
+        "rationale": "RSPO2通过结合LGR受体并拮抗ZNRF3/RNF43活性增强WNT信号，适合作为配体侧调控靶点。"
+      },
+      {
+        "target": "LGR5",
+        "rationale": "LGR5是RSPO受体，与RSPO共同调控ZNRF3/RNF43清除机制，位于同一WNT信号放大复合物。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

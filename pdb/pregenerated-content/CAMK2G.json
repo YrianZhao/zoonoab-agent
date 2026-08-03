@@ -1,0 +1,65 @@
+{
+  "gene": "CAMK2G",
+  "generatedAt": "2026-08-03T10:58:47.162Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CAMK2G编码CaMKIIγ，是钙/钙调蛋白依赖性丝氨酸/苏氨酸激酶，参与Ca2+-calmodulin介导的神经兴奋、转录调控与免疫细胞活化过程，Open Targets显示其与智力发育障碍、银屑病等表型存在遗传和功能关联。该蛋白主要定位于胞质和细胞内信号复合体，并非经典分泌蛋白或膜受体，天然抗原可及性不具备胞外靶点优势，因此更适合作为细胞内机制验证、构象探针或递送型抗体片段设计对象。相比CALM、PPP3CA等上游广泛调节因子，CAMK2G具有可解析的催化结构域与调控片段，亚型层面的病理关联更便于建立选择性干预窗口，但作为常规治疗性抗体主靶点优先级低于胞外炎症因子或受体。",
+    "mechanism": "设计抗体片段识别CAMK2G催化结构域或调控片段，阻断Ca2+/calmodulin结合后诱导的自抑制解除及T287自磷酸化相关构象转换。",
+    "selectedEpitope": "优先评估催化结构域C-lobe邻近调控片段结合沟槽，避免ATP结合裂缝作为主表位。",
+    "diseaseDirection": "神经发育与炎症免疫相关疾病",
+    "domain": "CAMK2G含N端蛋白激酶催化结构域、调控/自抑制片段及C端寡聚化关联结构域。",
+    "evidence": "CAMK2G疾病遗传关联与激酶结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q13555功能与结构域注释",
+      "RCSB PDB 2V7O X射线晶体结构",
+      "Reactome钙调蛋白依赖性激酶信号通路注释"
+    ],
+    "referenceEntries": "UniProt Q13555；RCSB PDB 2V7O；Open Targets CAMK2G",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域C-lobe与调控片段结合沟槽",
+        "可能干预自抑制解除和底物识别构象，兼具功能阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "调控片段calmodulin结合邻近区域",
+        "可用于阻断Ca2+/calmodulin诱导的激酶激活，但需控制亚型交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP结合裂缝及高度保守铰链区",
+        "保守性高且易影响多种激酶，选择性与安全性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CAMK2G为胞内激酶，常规抗体难以直接到达天然靶点；建议限定为胞内递送抗体、VHH构象探针或体外功能阻断工具，并严格评估CaMKII亚型交叉反应。",
+    "structurePrepZh": "以2V7O链A为结构模板，补全缺失侧链并校正质子化状态；对ATP结合区、调控片段结合沟槽及保守激酶核心进行界面分区标注。",
+    "structureRef": "RCSB PDB 2V7O，X-ray diffraction，2.25 Å",
+    "antibodies": [
+      "anti-CaMKII gamma research antibody",
+      "anti-phospho-CaMKII Thr287 antibody"
+    ],
+    "interfaceFocus": "催化C-lobe与自抑制调控片段界面",
+    "designMode": "胞内VHH/构象探针",
+    "candidates": [
+      {
+        "target": "CALM1",
+        "rationale": "CALM1编码钙调蛋白，是Ca2+信号驱动CaMKIIγ激活的直接结合因子；干预Ca2+/calmodulin轴可在同一通路上游影响CAMK2G活化。"
+      },
+      {
+        "target": "PPP3CA",
+        "rationale": "PPP3CA编码钙调神经磷酸酶催化亚基，与Ca2+/calmodulin信号共同连接神经活动依赖性转录和免疫细胞激活，是同一钙依赖信号网络中的关键效应节点。"
+      },
+      {
+        "target": "CREB1",
+        "rationale": "CREB1是CaMKII相关钙信号下游转录响应因子，参与神经发育和突触可塑性相关基因表达，可作为下游通路验证靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

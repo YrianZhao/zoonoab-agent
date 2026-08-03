@@ -1,0 +1,65 @@
+{
+  "gene": "TSFM",
+  "generatedAt": "2026-08-03T17:32:22.970Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TSFM编码线粒体翻译延伸因子Ts，负责促进TUFM结合GDP后的核苷酸交换，使TUFM重新装载GTP并维持线粒体蛋白合成；其缺陷可导致联合氧化磷酸化缺陷3型及严重线粒体病。该蛋白定位于线粒体基质，不属于分泌蛋白或细胞表面膜受体，天然抗原可及性明显低于胞外靶点。因其遗传证据与疾病关联强、结构条目可用于界面建模，优先级主要适用于机制验证、细胞内递送抗体或研究级结合分子设计，而非常规外周给药阻断型抗体。",
+    "mechanism": "设计结合分子阻断TSFM与TUFM-GDP复合体的交换界面，抑制GDP释放与GTP再装载，从而降低线粒体翻译延伸循环效率。",
+    "selectedEpitope": "优先覆盖TSFM核心EF-Ts样核苷酸交换界面及TUFM接触面，避开高度保守折叠核心。",
+    "diseaseDirection": "线粒体翻译缺陷与OXPHOS疾病",
+    "domain": "TSFM为线粒体基质蛋白，含EF-Ts样N端亚结构与核心交换因子结构域，参与TUFM核苷酸交换。",
+    "evidence": "TSFM线粒体翻译与联合氧化磷酸化缺陷证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P43897功能与亚细胞定位注释",
+      "RCSB PDB 2CP9溶液NMR结构",
+      "OMIM/Orphanet联合氧化磷酸化缺陷3型记录"
+    ],
+    "referenceEntries": "UniProt P43897；RCSB PDB 2CP9；Open Targets TSFM",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "EF-Ts样核心域的TUFM-GDP结合与核苷酸交换界面",
+        "可直接干预TSFM促进TUFM GDP释放的关键分子接触",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端辅助亚结构暴露面及邻近TUFM接触边界",
+        "有利于获得构象识别分子，并可作为非竞争性调节位点",
+        "备选"
+      ],
+      [
+        "Site C",
+        "保守折叠核心和疏水结构支架区域",
+        "突变或强结合可能影响全局稳定性，且可成药暴露性有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TSFM位于线粒体基质，常规抗体难以跨膜进入作用位点；设计应标注细胞内递送需求，并优先开发研究级Fab/VHH结合分子。",
+    "structurePrepZh": "以2CP9的A链NMR构象集为模板，进行模型聚类、缺失区补全、质子化与线粒体基质环境下界面电荷评估。",
+    "structureRef": "RCSB PDB 2CP9，human TSFM solution NMR structure",
+    "antibodies": [
+      "无已批准TSFM靶向治疗性抗体",
+      "研究级抗TSFM检测抗体"
+    ],
+    "interfaceFocus": "TSFM-TUFM核苷酸交换接触面",
+    "designMode": "细胞内界面阻断",
+    "candidates": [
+      {
+        "target": "TUFM",
+        "rationale": "TUFM是线粒体翻译延伸因子Tu，直接与TSFM组成核苷酸交换循环；其异常同样可影响线粒体蛋白合成和OXPHOS复合体装配。"
+      },
+      {
+        "target": "GFM1",
+        "rationale": "GFM1编码线粒体翻译延伸因子G，参与核糖体转位步骤；致病变异与联合氧化磷酸化缺陷和线粒体翻译障碍相关。"
+      },
+      {
+        "target": "MTFMT",
+        "rationale": "MTFMT参与线粒体起始甲酰化tRNA生成，位于同一线粒体蛋白合成轴；其缺陷可导致氧化磷酸化功能受损和线粒体病表型。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

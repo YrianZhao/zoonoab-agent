@@ -1,0 +1,65 @@
+{
+  "gene": "RAD51D",
+  "generatedAt": "2026-08-03T20:42:05.640Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RAD51D 是同源重组修复通路的 RAD51 旁系蛋白，致病性胚系变异会削弱 RAD51 装载与复制叉损伤修复，形成遗传性乳腺卵巢癌易感机制。该蛋白主要定位于细胞核内并参与 BCDX2 复合体，缺乏天然胞外结构域或分泌暴露，因此常规治疗性抗体抗原可及性受限，更适合结构生物学验证、细胞内递送抗体或研究级结合分子设计。相较 BRCA1、BRCA2 等大型多结构域修复因子，RAD51D 结构域更紧凑且具有高分辨率实验结构，可优先用于界面阻断型分子探针开发。",
+    "mechanism": "设计分子应阻断 RAD51D 与 RAD51B/RAD51C 在 BCDX2 复合体中的互作界面，削弱 RAD51 核蛋白丝形成与同源重组修复效率。",
+    "selectedEpitope": "优先覆盖 RecA-like ATPase 核心域中参与 RAD51B/RAD51C 装配的寡聚化界面。",
+    "diseaseDirection": "遗传性乳腺卵巢癌与卵巢癌易感",
+    "domain": "RAD51D 含 RecA-like ATPase 核心折叠，具 Walker A/B ATP 结合水解基序及蛋白互作界面。",
+    "evidence": "RAD51D 同源重组修复与卵巢癌易感证据包",
+    "evidenceSources": [
+      "Open Targets Platform 遗传关联与疾病评分",
+      "UniProt O75771 蛋白功能与亚细胞定位注释",
+      "RCSB PDB 8OUZ 冷冻电镜实验结构",
+      "ClinVar/OMIM RAD51D 癌症易感变异记录"
+    ],
+    "referenceEntries": "UniProt: O75771; RCSB PDB: 8OUZ; HGNC: RAD51D",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RecA-like ATPase 核心域的 RAD51B/RAD51C 装配界面",
+        "可直接干预 BCDX2 复合体形成，适合界面阻断型设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Walker A/B 邻近 ATP 结合沟槽外缘",
+        "可作为构象锁定或别构干预位点，但需避免非特异影响 ATPase 家族保守区",
+        "备选"
+      ],
+      [
+        "Site C",
+        "复合体内部埋藏疏水核心与链间紧密接触区",
+        "天然可及性低，可能依赖蛋白部分解折叠或复合体解离后暴露",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RAD51D 为核内 DNA 修复蛋白，缺乏细胞表面可及性；治疗性抗体需考虑细胞内递送、核定位与基因毒性窗口，常规外源抗体成药风险较高。",
+    "structurePrepZh": "以 8OUZ 四链复合体为模板，保留 A-D 链装配状态，补全缺失侧链并标注 Walker 基序、ATPase 核心域及链间接触残基。",
+    "structureRef": "RCSB PDB 8OUZ, cryo-EM structure at 2.2 Å",
+    "antibodies": [
+      "研究用抗 RAD51D 单克隆抗体",
+      "研究用抗 RAD51D 多克隆抗体"
+    ],
+    "interfaceFocus": "RAD51D-RAD51B/RAD51C 链间装配界面",
+    "designMode": "细胞内界面阻断",
+    "candidates": [
+      {
+        "target": "RAD51C",
+        "rationale": "RAD51C 与 RAD51D 同属同源重组修复旁系蛋白，并与 RAD51B、RAD51D、XRCC2 共同构成 BCDX2 复合体；其胚系变异同样与卵巢癌易感相关。"
+      },
+      {
+        "target": "RAD51B",
+        "rationale": "RAD51B 是 BCDX2 复合体装配组分，参与 RAD51 核蛋白丝形成与 DNA 双链断裂修复；靶向其与 RAD51C/RAD51D 的互作可影响同一修复轴。"
+      },
+      {
+        "target": "XRCC2",
+        "rationale": "XRCC2 是 RAD51 旁系蛋白复合体成员，参与同源重组修复和基因组稳定性维持；与 RAD51D 处于同一 DNA 损伤修复通路。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

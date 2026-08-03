@@ -1,0 +1,65 @@
+{
+  "gene": "MAP3K3",
+  "generatedAt": "2026-08-03T14:03:09.332Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAP3K3编码MEKK3，是CCM复合体下游内皮信号轴中的MAP3K激酶，参与KLF2/KLF4转录程序、内皮屏障稳态与血管畸形相关机制。该蛋白主要为胞内丝氨酸/苏氨酸激酶，天然抗原可及性弱，不具备分泌蛋白或膜受体的常规抗体优势，因此更适合细胞内递送抗体片段或研究级构象捕获设计。相比KRIT1、CCM2等支架蛋白，MAP3K3具有高分辨率激酶结构与明确催化口袋，适合作为机制验证和构象选择性分子设计的优先探索靶点。",
+    "mechanism": "设计胞内递送型Fab/VHH，结合MAP3K3激酶结构域ATP结合裂隙或活化环邻近面，阻断ATP定位及MEK5磷酸化所需构象转换。",
+    "selectedEpitope": "优先锁定激酶结构域N/C叶夹缝及活化环邻近构象表位，避免完全依赖保守ATP口袋。",
+    "diseaseDirection": "脑海绵状血管畸形与内皮病变",
+    "domain": "MAP3K3含N端调控区与C端丝氨酸/苏氨酸蛋白激酶结构域，2C60覆盖催化结构域。",
+    "evidence": "MAP3K3-CCM内皮信号与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q99759功能与结构域注释",
+      "RCSB PDB 2C60高分辨率晶体结构",
+      "CCM复合体-MEKK3-KLF2/4内皮信号文献"
+    ],
+    "referenceEntries": "UniProt Q99759；RCSB PDB 2C60；Open Targets MAP3K3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶N叶/C叶夹缝与活化环邻近面",
+        "可稳定非活化构象并干扰底物磷酸化构象转换",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C叶底物结合沟槽及αF/αG周边区域",
+        "可能降低MEK5等底物接近，保留一定靶点选择性空间",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守ATP结合铰链区",
+        "与多种激酶同源性高，交叉反应和脱靶风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAP3K3为胞内激酶，常规抗体难以到达作用位点；ATP口袋保守性高，宜采用构象复合表位并配置细胞内递送或intrabody策略。",
+    "structurePrepZh": "以2C60链A为模板，校正缺失环区与质子化状态，标注ATP结合裂隙、活化环和底物沟槽后进行表位可及性评估。",
+    "structureRef": "PDB 2C60，human MAP3K3 kinase domain，1.25 Å X-ray",
+    "antibodies": [
+      "研究级anti-MAP3K3抗体",
+      "研究级anti-phospho-MAP3K3抗体"
+    ],
+    "interfaceFocus": "激酶裂隙、活化环与底物沟槽交界面",
+    "designMode": "胞内构象阻断",
+    "candidates": [
+      {
+        "target": "CCM2",
+        "rationale": "CCM2是CCM复合体核心支架蛋白，可限制MEKK3活性并维持内皮稳态；其功能缺失与MEKK3-KLF2/4异常激活处于同一病理轴。"
+      },
+      {
+        "target": "KRIT1",
+        "rationale": "KRIT1与CCM2、PDCD10共同构成CCM复合体，调控内皮连接与MEKK3信号抑制；遗传缺陷与脑海绵状血管畸形直接相关。"
+      },
+      {
+        "target": "PDCD10",
+        "rationale": "PDCD10/CCM3参与CCM复合体稳定及内皮信号控制，其缺失可增强MEKK3-KLF2/KLF4通路活性，属于同一血管畸形通路节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "BAG1",
+  "generatedAt": "2026-08-03T10:45:27.332Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BAG1 是胞内 Hsp70/Hsc70 伴侣系统的核苷酸交换因子，通过 BAG 结构域结合 HSPA8/HSPA1A ATPase 结构域并影响蛋白质稳态、凋亡调控及乳腺肿瘤细胞存活。该蛋白主要定位于胞质和细胞核，缺乏跨膜区和分泌信号，天然抗原可及性不利于常规细胞外阻断抗体，因此更适合作为胞内递送抗体片段或结构引导的研究型抗体靶点。其优先级低于 HER2、EGFR 等膜受体型乳腺癌靶点，但 5AQM 高分辨率结构覆盖 BAG 结构域-Hsc70 界面，可为界面选择性分子设计提供明确结构依据。",
+    "mechanism": "通过抗体片段占据 BAG1 BAG 结构域的 Hsc70 结合沟槽，阻断 BAG1 与 HSPA8/HSPA1A ATPase 结构域结合，削弱其核苷酸交换促进作用。",
+    "selectedEpitope": "优先锁定 BAG 结构域三螺旋束中与 Hsc70 ATPase 结构域接触的疏水沟槽和带电界面。",
+    "diseaseDirection": "乳腺癌蛋白稳态与凋亡调控",
+    "domain": "BAG1 含 N 端泛素样区域及 C 端 BAG 结构域；5AQM 解析 C 端 BAG 结构域复合体。",
+    "evidence": "BAG1-Hsc70伴侣界面与乳腺癌关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q99933 functional annotation",
+      "RCSB PDB 5AQM X-ray structure",
+      "Published BAG1-Hsc70 cochaperone interaction studies"
+    ],
+    "referenceEntries": "UniProt Q99933；RCSB PDB 5AQM；Open Targets BAG1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "BAG 结构域与 Hsc70 ATPase 结构域结合沟槽",
+        "直接阻断 BAG1-Hsc70 相互作用，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "BAG 结构域三螺旋束外侧保守带电面",
+        "可影响复合体取向并提供较好结构稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端泛素样区域及可变剪接相关片段",
+        "结构覆盖不足且亚型差异可能影响特异性判读",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BAG1 为胞内蛋白，常规 IgG 难以进入作用位点；建议采用细胞内递送 Fab/VHH，并严格评估 HSP70 家族伴侣网络的非预期扰动。",
+    "structurePrepZh": "以 5AQM 抗原链 A-D 中 BAG 结构域为模板，保留与 Hsc70 接触残基，去除晶体非界面接触后进行界面能量与构象一致性评估。",
+    "structureRef": "RCSB PDB 5AQM，X-ray diffraction，1.63 Å",
+    "antibodies": [
+      "anti-BAG1 monoclonal antibody clone G3E2",
+      "anti-BAG1 monoclonal antibody clone 3.10G3E2"
+    ],
+    "interfaceFocus": "BAG 结构域-Hsc70 ATPase 结合界面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "HSPA8",
+        "rationale": "HSPA8 编码 Hsc70，是 BAG1 BAG 结构域的直接结合伴侣；靶向其 ATPase 结构域-BAG1 接触面可验证同一伴侣交换节点。"
+      },
+      {
+        "target": "HSPA1A",
+        "rationale": "HSPA1A 编码诱导型 Hsp70，可与 BAG 家族共伴侣协同维持肿瘤细胞蛋白稳态；其与 BAG1 轴线同属 Hsp70 伴侣通路。"
+      },
+      {
+        "target": "BCL2",
+        "rationale": "BAG1 可与抗凋亡蛋白 BCL2 功能耦联，支持肿瘤细胞存活；BCL2 代表同一存活与凋亡调控方向的可药理干预节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

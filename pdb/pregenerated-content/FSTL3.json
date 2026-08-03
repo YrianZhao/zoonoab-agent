@@ -1,0 +1,65 @@
+{
+  "gene": "FSTL3",
+  "generatedAt": "2026-08-03T12:38:00.995Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FSTL3是分泌型糖蛋白，可结合并中和activin A、myostatin/GDF8及相关TGF-β超家族配体，从而影响SMAD2/3依赖的细胞增殖、代谢稳态与纤维化相关转录程序。其抗原位于胞外分泌环境，FS结构域与Kazal样模块均具有抗体可及性，适合以结构引导方式设计阻断型抗体。相较于直接靶向多种TGF-β家族配体，FSTL3具有配体整合节点属性，可在同一轴线上调节activin/myostatin信号，优先级来自较清晰的配体结合结构和疾病遗传关联支持。",
+    "mechanism": "抗体阻断FSTL3与activin A或GDF8的结合界面，解除FSTL3对配体的包埋性抑制，恢复配体与ACVR2A/ACVR2B受体复合物相互作用。",
+    "selectedEpitope": "优先覆盖N端结构域与FS1结构域形成的TGF-β配体结合凹槽，聚焦3SEK中配体接触界面。",
+    "diseaseDirection": "TGF-β超家族信号相关疾病",
+    "domain": "FSTL3含信号肽、N端结构域、两个follistatin样结构域及Kazal样蛋白酶抑制模块。",
+    "evidence": "FSTL3-activin/GDF轴结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt O95633功能与结构域注释",
+      "RCSB PDB 3SEK晶体结构记录",
+      "TGF-β超家族activin/myostatin信号文献"
+    ],
+    "referenceEntries": "UniProt O95633；RCSB PDB 3SEK；Open Targets FSTL3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端结构域-FS1配体结合凹槽",
+        "直接干预FSTL3包埋activin/GDF配体的核心界面，适合阻断型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FS2结构域外侧暴露面",
+        "可能稳定构象并产生变构干预，保留一定配体选择性优化空间",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Kazal样模块近保守二硫键区域",
+        "结构保守且可能影响蛋白折叠稳定性，需避免诱导非特异构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FSTL3与多种TGF-β家族配体存在交叉结合，界面抗体需评估对activin A、GDF8及GDF11的选择性，并避免破坏全局折叠。",
+    "structurePrepZh": "采用3SEK中人源FSTL3抗原链B、C进行建模，补全缺失侧链、校正二硫键与糖基化位点，并保留配体接触残基用于界面标注。",
+    "structureRef": "RCSB PDB 3SEK，X-ray diffraction，2.401 Å",
+    "antibodies": [
+      "REGN1033",
+      "Bimagrumab"
+    ],
+    "interfaceFocus": "FSTL3与activin/GDF配体接触凹槽",
+    "designMode": "结构引导阻断",
+    "candidates": [
+      {
+        "target": "INHBA",
+        "rationale": "INHBA编码activin A亚基，是FSTL3直接结合并中和的核心配体，位于同一activin-SMAD2/3信号轴。靶向该配体可用于验证FSTL3阻断策略的通路方向性。"
+      },
+      {
+        "target": "MSTN",
+        "rationale": "MSTN/GDF8是FSTL3可结合的TGF-β超家族配体，参与肌肉、代谢及组织重塑相关SMAD2/3信号。其与FSTL3共享配体捕获和受体竞争机制。"
+      },
+      {
+        "target": "ACVR2B",
+        "rationale": "ACVR2B是activin A、myostatin及GDF11等配体的II型受体，处于FSTL3调控轴下游。靶向该受体可直接改变配体-受体复合物形成。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "TNFAIP3",
+  "generatedAt": "2026-08-03T17:21:41.806Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TNFAIP3编码A20，是TNF、IL-1R和TLR诱导NF-κB通路的关键负反馈调节因子，通过去泛素化与泛素编辑限制RIPK1、NEMO等信号复合物活化，其单倍剂量不足与Behçet样家族性自身炎症、银屑病和系统性红斑狼疮相关。该蛋白主要定位于胞质，天然抗原可及性弱，抗体设计更适合采用细胞内递送抗体片段或机制研究型结合分子。相比下游广谱NF-κB节点，TNFAIP3具有明确遗传因果证据和疾病分层价值，可作为A20缺陷炎症轴的优先验证靶点。",
+    "mechanism": "稳定或模拟A20 OTU结构域与K63/M1泛素链底物结合，增强对RIPK1、TRAF6及NEMO复合物的泛素编辑，降低IKK复合物持续激活。",
+    "selectedEpitope": "优先覆盖OTU催化结构域Cys103邻近底物沟槽及泛素结合界面，避免直接遮蔽催化残基。",
+    "diseaseDirection": "A20缺陷相关自身炎症与自身免疫",
+    "domain": "A20含N端OTU去泛素化结构域和C端七个锌指结构域，ZnF4识别K63链，ZnF7识别M1线性泛素链。",
+    "evidence": "TNFAIP3遗传缺陷与NF-κB炎症轴证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P21580功能与结构域注释",
+      "RCSB PDB 3VUX晶体结构",
+      "A20 haploinsufficiency与Behçet样自身炎症文献"
+    ],
+    "referenceEntries": "UniProt:P21580；RCSB PDB:3VUX；HGNC:TNFAIP3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "OTU结构域泛素底物结合沟槽邻近区",
+        "有利于构建稳定化或底物定位型抗体片段，增强A20介导的去泛素化效率",
+        "优先"
+      ],
+      [
+        "Site B",
+        "OTU结构域远端非催化表面",
+        "可用于构象稳定和细胞内示踪，降低干扰Cys103催化中心的风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Cys103催化中心及ZnF4/ZnF7泛素链识别界面",
+        "可能阻断K63或M1泛素链识别并削弱A20抑炎功能，需进行功能筛除",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TNFAIP3为胞质蛋白，常规治疗性抗体难以进入作用位点；建议采用VHH、intrabody或递送偶联策略，并严格排除抑制OTU催化活性的克隆。",
+    "structurePrepZh": "以3VUX高分辨率晶体结构为OTU结构域模板，校正链A/B/C/E/F/G构象差异，补充缺失侧链并标注Cys103催化区域。",
+    "structureRef": "RCSB PDB 3VUX，X-ray diffraction，1.699 Å",
+    "antibodies": [
+      "抗A20研究级单克隆抗体",
+      "抗TNFAIP3研究级多克隆抗体"
+    ],
+    "interfaceFocus": "OTU泛素底物沟槽与催化半胱氨酸邻近界面",
+    "designMode": "细胞内VHH设计",
+    "candidates": [
+      {
+        "target": "TNF",
+        "rationale": "TNF是诱导TNFAIP3表达并驱动RIPK1-TRADD-TRAF2复合物形成的上游炎症因子，已在银屑病和Behçet相关炎症中具备可干预性。"
+      },
+      {
+        "target": "NFKB1",
+        "rationale": "NFKB1编码NF-κB p50亚基，位于A20负反馈调控的核心转录通路内，可反映A20缺陷导致的NF-κB持续激活状态。"
+      },
+      {
+        "target": "RIPK1",
+        "rationale": "RIPK1是TNFR1信号复合物中受K63和M1泛素修饰调控的关键节点，A20通过编辑其泛素链限制IKK激活与炎症信号扩增。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

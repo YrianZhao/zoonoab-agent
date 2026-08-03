@@ -1,0 +1,65 @@
+{
+  "gene": "OGDH",
+  "generatedAt": "2026-08-03T14:57:25.894Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "OGDH编码α-酮戊二酸脱氢酶复合体E1组分，催化α-酮戊二酸氧化脱羧并向琥珀酰辅酶A生成步骤供碳，其功能缺陷可导致2-酮戊二酸尿症并与线粒体能量代谢障碍、神经退行性病变相关。该蛋白主要定位于线粒体基质，并非分泌蛋白或经典膜受体，天然抗原可及性不利于体内阻断型抗体，但重组可溶性结构域适合用于结构识别、检测或细胞内递送抗体设计。相比同通路中多亚基膜外不可及性相近的线粒体酶，OGDH具有高分辨率实验结构和明确辅因子结合口袋，可优先用于构象特异性结合分子开发。",
+    "mechanism": "设计抗体识别E1o催化核心邻近TPP结合沟槽，阻断α-酮戊二酸进入活性位点或稳定非催化构象，从而抑制OGDH复合体底物转化。",
+    "selectedEpitope": "优先覆盖TPP依赖性催化结构域的底物入口沟槽及二聚体界面边缘，避免完全埋藏活性中心。",
+    "diseaseDirection": "线粒体代谢病与神经退行性疾病",
+    "domain": "N端线粒体靶向序列后接TPP依赖性E1o催化结构域，形成同源二聚体催化核心。",
+    "evidence": "OGDH线粒体代谢病结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProtKB Q02218功能与定位注释",
+      "RCSB PDB 3ERY晶体结构记录",
+      "OMIM与ClinVar相关代谢病变异资料"
+    ],
+    "referenceEntries": "UniProt Q02218；RCSB PDB 3ERY；Open Targets OGDH",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "TPP依赖性催化结构域底物入口沟槽",
+        "可干预α-酮戊二酸进入活性位点，适合构象阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "E1o同源二聚体界面邻近暴露面",
+        "可能影响催化核心装配或稳定性，适合作为变构表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "TPP焦磷酸结合深部口袋周边",
+        "功能相关性强但空间埋藏度高，抗体可及性和选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "OGDH为线粒体基质酶，体内抗体递送与抗原可及性为主要限制；设计宜定位为检测、结构探针或细胞内抗体平台，并评估与DLST、DLD复合体界面交叉影响。",
+    "structurePrepZh": "以3ERY中A、B、P、Q链建立生物装配体，保留TPP及金属离子等辅因子坐标，补全缺失侧链并标注二聚体界面与底物入口。",
+    "structureRef": "RCSB PDB 3ERY，X射线晶体结构，1.95 Å",
+    "antibodies": [
+      "commercial anti-OGDH antibody",
+      "anti-OGDH immunohistochemistry antibody"
+    ],
+    "interfaceFocus": "TPP结合沟槽、底物入口与E1o二聚体界面",
+    "designMode": "胞内酶构象识别",
+    "candidates": [
+      {
+        "target": "DLST",
+        "rationale": "DLST为α-酮戊二酸脱氢酶复合体E2二氢硫辛酰转琥珀酰酶组分，直接承接OGDH产生的中间体并参与琥珀酰辅酶A生成。"
+      },
+      {
+        "target": "DLD",
+        "rationale": "DLD为复合体E3二氢硫辛酰脱氢酶组分，负责再氧化硫辛酰胺并维持OGDH复合体催化循环，遗传缺陷可造成线粒体代谢异常。"
+      },
+      {
+        "target": "SUCLG1",
+        "rationale": "SUCLG1编码琥珀酰辅酶A合成酶α亚基，位于OGDH下游的三羧酸循环步骤，与琥珀酰辅酶A利用和线粒体能量代谢连续相关。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

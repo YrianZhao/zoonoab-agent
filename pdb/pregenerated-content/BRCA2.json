@@ -1,0 +1,65 @@
+{
+  "gene": "BRCA2",
+  "generatedAt": "2026-08-03T10:52:07.205Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BRCA2是同源重组修复核心支架蛋白，介导RAD51装载至受损DNA并维持复制叉稳定，其胚系或体细胞缺陷与范可尼贫血D1型、乳腺癌及卵巢癌易感性直接相关。该蛋白主要定位于细胞核且缺乏天然胞外结构域，完整蛋白并不具备常规治疗性抗体的抗原可及性优势；可行设计更适合研究级胞内抗原识别、降解偶联或外源递送抗体片段。相比PARP1等下游合成致死靶点，BRCA2位于HR缺陷判定的上游病因节点，适合作为机制分层和结构域功能干预的高优先级研究靶点。",
+    "mechanism": "设计抗体片段识别BRCA2 BRC重复或DNA结合域，干预BRCA2与RAD51或DNA底物的装配界面，从而阻断RAD51核蛋白丝形成与同源重组修复。",
+    "selectedEpitope": "优先选择BRC重复区RAD51结合沟槽，备选DNA结合域中OB fold与DSS1邻近界面。",
+    "diseaseDirection": "HR缺陷肿瘤与范可尼贫血通路",
+    "domain": "BRCA2含N端PALB2结合区、8个BRC重复、DNA结合域、OB folds及C端RAD51结合位点。",
+    "evidence": "BRCA2同源重组修复与肿瘤易感性证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P51587功能与结构域注释",
+      "RCSB PDB 8C3N晶体结构记录",
+      "ClinVar与COSMIC BRCA2致病变异资料"
+    ],
+    "referenceEntries": "UniProt P51587；RCSB PDB 8C3N；Open Targets ENSG00000139618",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "BRC重复区RAD51结合基序",
+        "直接干预BRCA2-RAD51装载界面，机制明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DNA结合域OB fold与DSS1邻近表面",
+        "可影响ssDNA结合与BRCA2构象稳定",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端RAD51结合与磷酸化调控区域",
+        "可能影响细胞周期依赖性RAD51结合，但构象与修饰状态依赖较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BRCA2为核内大分子蛋白，体内抗体可及性受限；应优先采用Fab/VHH胞内表达、递送载体或PROTAC偶联验证，并避免破坏非目标DNA修复复合物。",
+    "structurePrepZh": "以8C3N高分辨率晶体结构为局部模板，补全缺失柔性片段，保留链A/B生物学装配并标注RAD51或DSS1相关界面。",
+    "structureRef": "RCSB PDB 8C3N，X射线晶体结构，1.21 Å",
+    "antibodies": [
+      "Anti-BRCA2 clone 5.23",
+      "Anti-BRCA2 clone Ab-1"
+    ],
+    "interfaceFocus": "BRC重复-RAD51结合槽及OB fold-DSS1界面",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "RAD51",
+        "rationale": "RAD51是BRCA2直接装载的重组酶，负责形成ssDNA核蛋白丝，是同源重组修复通路中最邻近的功能执行节点。"
+      },
+      {
+        "target": "PALB2",
+        "rationale": "PALB2连接BRCA1与BRCA2并招募BRCA2至DNA损伤位点，其缺陷同样导致HR修复障碍和乳腺癌易感性。"
+      },
+      {
+        "target": "BRCA1",
+        "rationale": "BRCA1参与DNA双链断裂末端切除和PALB2-BRCA2复合体募集，是同一HR缺陷肿瘤通路中的上游核心因子。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

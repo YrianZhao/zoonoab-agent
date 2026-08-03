@@ -1,0 +1,65 @@
+{
+  "gene": "APAF1",
+  "generatedAt": "2026-08-03T10:29:57.246Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "APAF1 是线粒体内源性凋亡通路的核心支架蛋白，细胞色素 c 与 dATP/ATP 诱导其寡聚化并募集 CASP9，形成 apoptosome 以驱动执行性半胱天冬酶级联。该靶点主要定位于胞质，缺乏分泌型或膜受体样胞外可及结构，因此更适合细胞内递送抗体片段、研究级阻断工具或降解偶联策略。相较下游 CASP3、CASP7 等广泛效应分子，APAF1 位于 apoptosome 装配节点，理论上可在较上游位置选择性干预细胞色素 c 依赖性凋亡轴，具有机制解析优先级。",
+    "mechanism": "阻断 APAF1 CARD 与 CASP9 CARD 的同型相互作用，或干扰 APAF1 寡聚化界面，从而抑制 apoptosome 招募并激活 CASP9。",
+    "selectedEpitope": "优先瞄准 N 端 CARD 的 CASP9 结合面，备选评估 NB-ARC 寡聚化界面。",
+    "diseaseDirection": "神经退行性疾病与凋亡调控",
+    "domain": "APAF1 含 N 端 CARD、中央 NB-ARC ATPase 区及 C 端 WD40 重复调控区。",
+    "evidence": "APAF1 apoptosome 结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传与关联评分",
+      "UniProt O14727 蛋白功能与结构域注释",
+      "RCSB PDB 1CY5 X 射线晶体结构",
+      "apoptosome 与 CASP9 激活机制文献"
+    ],
+    "referenceEntries": "UniProt: O14727; RCSB PDB: 1CY5; Open Targets: APAF1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N 端 CARD 的 CASP9 CARD 结合界面",
+        "直接阻断 procaspase-9 招募，机制明确且适合功能阻断验证",
+        "优先"
+      ],
+      [
+        "Site B",
+        "NB-ARC 核苷酸结合与寡聚化相关界面",
+        "可能干预 APAF1 构象转换和 apoptosome 装配，但需保留构象选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端 WD40 细胞色素 c 调控区域",
+        "理论上影响细胞色素 c 诱导激活，但结构柔性与重复序列增加交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "APAF1 为胞内蛋白，传统全长 IgG 难以到达作用位点；宜采用细胞内递送 Fab/VHH、intrabody 或 PROTAC 兼容格式，并严控凋亡广谱抑制风险。",
+    "structurePrepZh": "以 1CY5 高分辨率 CARD 结构为核心模板，补充 AlphaFold 或同源 apoptosome 复合物模型定位 CASP9 接触面，并校正缺失柔性区。",
+    "structureRef": "Riedl 等解析 APAF1 CARD 晶体结构，PDB 1CY5，1.3 Å",
+    "antibodies": [
+      "APAF1 monoclonal antibody clone 2E12",
+      "APAF1 monoclonal antibody clone 18H2"
+    ],
+    "interfaceFocus": "CARD-CARD 招募界面与 NB-ARC 寡聚化面",
+    "designMode": "胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "CASP9",
+        "rationale": "CASP9 是 APAF1 apoptosome 直接募集并激活的启动子 caspase，阻断其 CARD 介导装配可在同一内源性凋亡轴实现下游干预。"
+      },
+      {
+        "target": "CYCS",
+        "rationale": "CYCS 从线粒体释放后结合 APAF1 并触发 apoptosome 形成，是 APAF1 激活的上游配体节点。"
+      },
+      {
+        "target": "BAX",
+        "rationale": "BAX 促进线粒体外膜通透化并驱动细胞色素 c 释放，位于 APAF1 依赖性凋亡通路的上游控制步骤。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "RIT1",
+  "generatedAt": "2026-08-03T21:00:06.967Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RIT1 是小 GTP 酶 Ras 超家族成员，其致病性获得功能变异可增强 RAS-MAPK 轴信号输出，是 Noonan syndrome 与 RASopathy 的明确遗传机制之一。该蛋白主要定位于胞内膜相关区室，缺乏分泌或跨膜胞外结构域，天然抗体抗原可及性明显弱于受体型 RTK 或分泌配体。其优先级主要来自高置信遗传关联、实验结构可用性及可解析的核苷酸结合构象，但作为常规胞外中和抗体靶点的优先级低于同通路的 SOS1、PTPN11 或受体近膜节点。",
+    "mechanism": "设计以内源化或细胞内递送抗体片段为前提，阻断 RIT1 switch I/II 区与 RAF1 RBD 或效应蛋白界面的结合，降低异常 RAS-MAPK 信号传递。",
+    "selectedEpitope": "优先覆盖 GTPase 域 switch I/switch II 邻近效应蛋白结合面，并避开 GDP/GTP 核苷酸深袋。",
+    "diseaseDirection": "RASopathy 与 Noonan 综合征",
+    "domain": "RIT1 含单一 Ras-like GTPase 催化域，包含 P-loop、switch I、switch II 与核苷酸结合核心。",
+    "evidence": "RIT1-RASopathy 遗传结构与效应界面证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q92963 functional annotation",
+      "RCSB PDB 9MF1 experimental structure",
+      "ClinVar and literature reports of RIT1-associated Noonan syndrome"
+    ],
+    "referenceEntries": "UniProt Q92963；RCSB PDB 9MF1；Open Targets RIT1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "GTPase 域 switch I/switch II 效应蛋白结合面",
+        "可直接干扰 RIT1 与 RAF1 RBD 等下游效应蛋白耦联，机制关联度最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "P-loop 邻近核苷酸结合口袋边缘",
+        "可影响 GTP/GDP 结合构象稳定性，但需避免与高度保守核苷酸核心产生交叉风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "GTPase 域背面非效应界面暴露区",
+        "结构可成药性可能较好，但对 RAS-MAPK 信号阻断的功能相关性较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RIT1 为胞内小 GTP 酶，常规抗体难以到达靶点；设计应限定为细胞内递送 Fab/VHH 或研究型 intrabody，并重点评估 RAS 家族同源交叉反应。",
+    "structurePrepZh": "以 PDB 9MF1 链 A 为模板，保留核苷酸结合构象用于界面判读，补全缺失侧链并标注 switch I/II、P-loop 与保守 GTPase 基序。",
+    "structureRef": "RCSB PDB 9MF1，X-ray diffraction，2.2 Å",
+    "antibodies": [
+      "无获批 RIT1 靶向抗体",
+      "研究型 anti-RIT1 antibody"
+    ],
+    "interfaceFocus": "switch I/II 与 RAF1 RBD 识别界面",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "PTPN11",
+        "rationale": "PTPN11 编码 SHP2，是 RAS-MAPK 通路上游正调控节点，其获得功能变异为 Noonan syndrome 的主要遗传原因之一。该靶点已有变构抑制策略验证，通路优先级高。"
+      },
+      {
+        "target": "SOS1",
+        "rationale": "SOS1 是 RAS 鸟嘌呤核苷酸交换因子，促进 RAS-GDP 向 RAS-GTP 转换，并与 Noonan syndrome 遗传亚型相关。靶向其 RAS 结合或催化调控界面可降低通路激活。"
+      },
+      {
+        "target": "RAF1",
+        "rationale": "RAF1 是 RAS-GTP 下游直接效应激酶，致病变异可驱动 RASopathy 与 Noonan syndrome 表型。其与 RIT1/RAS 家族效应输出处于同一 MAPK 级联。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

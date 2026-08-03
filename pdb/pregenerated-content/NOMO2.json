@@ -1,0 +1,65 @@
+{
+  "gene": "NOMO2",
+  "generatedAt": "2026-08-03T14:46:18.732Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NOMO2 是 NODAL 调节蛋白家族成员，文献支持其与 NODAL/TGF-β 胚胎发育轴相关，但当前 Open Targets 关联主要来自血清蛋白水平、代谢物测量及行为表型，缺乏明确疾病因果机制。该蛋白为多跨膜内质网相关膜蛋白，抗原可及性主要受限于胞内定位与短腔面环区，并非典型细胞表面可及受体。相较 NODAL、ACVR1B、ACVR2B 等同轴可分泌配体或膜受体，NOMO2 的抗体成药优先级较低，更适合作为结构生物学与机制验证靶点而非直接阻断型治疗抗体首选靶点。",
+    "mechanism": "抗体策略宜聚焦阻断可及腔面环区与潜在伴侣蛋白界面，干预 NOMO2 对 NODAL 信号复合体成熟或定位的调节，而非直接拮抗 NODAL 受体结合。",
+    "selectedEpitope": "优先选择 9C7U 中抗原链 A/B/C 暴露的腔面环区及跨膜束外侧连接面，避免埋藏跨膜螺旋核心。",
+    "diseaseDirection": "NODAL/TGF-β发育信号相关",
+    "domain": "NOMO2 为多跨膜膜蛋白，包含预测跨膜螺旋束、短腔面/胞质连接环及膜近端结构界面。",
+    "evidence": "NOMO2结构与NODAL调节轴证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联统计",
+      "UniProt Q5JPE7 蛋白注释",
+      "RCSB PDB 9C7U 冷冻电镜结构",
+      "NODAL/TGF-β信号通路文献"
+    ],
+    "referenceEntries": "UniProt: Q5JPE7；RCSB PDB: 9C7U；Open Targets: NOMO2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "腔面暴露环区",
+        "最可能具备抗体可及性，可用于构象选择性识别",
+        "优先"
+      ],
+      [
+        "Site B",
+        "跨膜束外侧膜近端连接面",
+        "可能影响 NOMO2 构象稳定或伴侣蛋白接触",
+        "备选"
+      ],
+      [
+        "Site C",
+        "跨膜螺旋核心疏水面",
+        "结构埋藏且膜环境依赖强，抗体结合风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险来自内质网定位、胞外可及性不足及跨膜区疏水表位不可成药性；建议限定于暴露环区并结合膜蛋白构象验证。",
+    "structurePrepZh": "以 9C7U 冷冻电镜模型为模板，保留抗原链 A、B、C，补全缺失环区并在膜模拟环境中评估暴露度与构象稳定性。",
+    "structureRef": "RCSB PDB 9C7U，human NOMO2 cryo-EM structure，3.65 Å",
+    "antibodies": [
+      "无已批准NOMO2靶向抗体",
+      "无临床阶段NOMO2同类抗体"
+    ],
+    "interfaceFocus": "腔面环区与膜近端连接界面",
+    "designMode": "探索性膜蛋白抗体",
+    "candidates": [
+      {
+        "target": "NODAL",
+        "rationale": "NODAL 为该调节轴的可分泌 TGF-β 家族配体，抗体可直接阻断其与 ACVR1B/ACVR2B 受体复合体形成，抗原可及性优于 NOMO2。"
+      },
+      {
+        "target": "ACVR1B",
+        "rationale": "ACVR1B 是 NODAL 信号的 I 型受体，胞外配体结合域适合抗体识别，可用于抑制 NODAL 诱导的 SMAD2/3 磷酸化。"
+      },
+      {
+        "target": "ACVR2B",
+        "rationale": "ACVR2B 是 NODAL/Activin 轴关键 II 型受体，抗体阻断配体结合可在受体层面抑制下游 SMAD2/3 通路。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

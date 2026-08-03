@@ -1,0 +1,65 @@
+{
+  "gene": "RICTOR",
+  "generatedAt": "2026-08-03T20:58:44.929Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RICTOR 是 mTORC2 的必需支架亚基，介导 MTOR 与 MAPKAP1、MLST8 等组分装配，并促进 AKT Ser473、SGK1 与 PKC 家族磷酸化，参与胰岛素/IGF 轴、造血细胞成熟和血小板生成相关表型。其主要定位于胞内 mTORC2 复合体，天然抗原可及性弱于膜受体或分泌蛋白，因此更适合作为细胞内机制验证、递送型抗体片段或结构引导抑制分子设计对象。相较于直接靶向 MTOR 激酶结构域，RICTOR 提供 mTORC2 选择性干预窗口，可降低对 mTORC1 营养感应与蛋白合成通路的伴随影响，具备复合体选择性优先级。",
+    "mechanism": "阻断 RICTOR 与 MTOR HEAT-repeat 区域及 MAPKAP1 结合界面，破坏 mTORC2 装配，从而降低 AKT Ser473 与 SGK1 磷酸化。",
+    "selectedEpitope": "优先覆盖 RICTOR N 端 Armadillo/HEAT-like 螺旋重复与 MTOR 接触界面。",
+    "diseaseDirection": "mTORC2-IGF/AKT代谢与造血表型",
+    "domain": "RICTOR 为大型胞内支架蛋白，含多段 HEAT/Armadillo-like α螺旋重复，形成 mTORC2 装配界面。",
+    "evidence": "RICTOR-mTORC2结构与IGF/AKT通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q6R327 functional annotation",
+      "RCSB PDB 9ZBK cryo-EM structure",
+      "mTORC2-AKT/SGK phosphorylation literature"
+    ],
+    "referenceEntries": "UniProt Q6R327；RCSB PDB 9ZBK；Open Targets RICTOR",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端HEAT/Armadillo-like重复与MTOR接触面",
+        "直接干预mTORC2核心装配，具备复合体选择性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RICTOR-MAPKAP1/SIN1邻近装配界面",
+        "可削弱SIN1依赖性底物招募与复合体稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离核心界面的暴露螺旋重复外侧面",
+        "结合风险较低但功能阻断效应可能有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RICTOR 为胞内非分泌蛋白，常规全长抗体难以进入细胞。建议采用VHH、细胞内抗体或递送偶联策略，并避免破坏高度保守支架核心导致非选择性毒性。",
+    "structurePrepZh": "以9ZBK冷冻电镜模型为模板，保留RICTOR相关链与mTORC2邻近组分，补全缺失环区并标注MTOR、MAPKAP1接触残基用于界面筛选。",
+    "structureRef": "RCSB PDB 9ZBK，human mTORC2 cryo-EM，2.6 Å",
+    "antibodies": [
+      "RICTOR research monoclonal antibody",
+      "phospho-RICTOR Ser1235 monoclonal antibody"
+    ],
+    "interfaceFocus": "RICTOR-MTOR与RICTOR-MAPKAP1装配界面",
+    "designMode": "胞内VHH界面阻断",
+    "candidates": [
+      {
+        "target": "MTOR",
+        "rationale": "MTOR 是 mTORC2 催化核心并直接磷酸化 AKT Ser473、SGK1 和 PKC 底物；与 RICTOR 处于同一复合体，但选择性风险高于 RICTOR。"
+      },
+      {
+        "target": "MAPKAP1",
+        "rationale": "MAPKAP1/SIN1 是 mTORC2 特异组分，参与复合体定位与底物识别；靶向其与 RICTOR/MTOR 的界面可实现 mTORC2 选择性调控。"
+      },
+      {
+        "target": "MLST8",
+        "rationale": "MLST8 是 mTOR 复合体共同核心亚基，稳定激酶结构域并支持底物磷酸化；在同一 mTORC2 装配轴中可作为结构对照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

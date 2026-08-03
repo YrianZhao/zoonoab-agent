@@ -1,0 +1,65 @@
+{
+  "gene": "SLC43A2",
+  "generatedAt": "2026-08-03T16:38:57.009Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SLC43A2 编码的大中性氨基酸转运体 LAT4 参与膜转运稳态，Open Targets 证据显示其与红细胞计数、清蛋白、肾小球滤过率及总蛋白等表型存在一致关联，提示其在氨基酸供给与全身代谢表型耦联中具有疾病相关性。该蛋白位于细胞膜并具有胞外可及环区，适合以抗体直接干预转运复合体的构象转换，较胞内代谢酶更具抗原可及性优势。相较同通路中多为广泛表达的转运家族成员，SLC43A2 兼具膜暴露界面与可借助结构数据进行构象选择性设计的优势，适合作为主靶点推进抗体分子设计。",
+    "mechanism": "通过结合胞外环区并稳定外向构象，阻断 LAT4 与底物及协同转运构象转换的耦联，抑制中性氨基酸跨膜摄取。",
+    "selectedEpitope": "优先覆盖胞外环与外向构象门控界面，规避底物通道深部保守位点。",
+    "diseaseDirection": "代谢与肾脏表型",
+    "domain": "多跨膜转运体，重点关注胞外环及外向构象暴露面。",
+    "evidence": "SLC43A2 抗体设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform",
+      "UniProt Q8N370",
+      "RCSB PDB 9JBS",
+      "Human Protein Atlas"
+    ],
+    "referenceEntries": "UniProt: Q8N370; RCSB PDB: 9JBS; SLC43A2/LAT4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "胞外环1及邻近外向门控面",
+        "便于干预底物入口与构象切换，适合高优先级阻断",
+        "优先"
+      ],
+      [
+        "Site B",
+        "胞外环3暴露区",
+        "可增强构象选择性并降低对保守跨膜核心的干扰",
+        "备选"
+      ],
+      [
+        "Site C",
+        "底物通道近膜口区域",
+        "可能受构象波动影响，且存在与同家族转运体交叉风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "多跨膜蛋白表位易受构象状态影响，且胞外暴露面积有限。应优先采用构象锁定策略并结合低交叉保守性表位筛选，以降低家族交叉反应。",
+    "structurePrepZh": "基于 9JBS 进行膜定向重建与环区精修，补全缺失侧链并按外向构象评估可达表位。",
+    "structureRef": "RCSB PDB 9JBS; cryo-EM structure of SLC43A2",
+    "antibodies": [
+      "LAT1 阻断性抗体作为同类参照",
+      "SLC7 家族构象选择性抗体作为同类参照"
+    ],
+    "interfaceFocus": "胞外环-门控界面与底物入口邻域",
+    "designMode": "构象阻断",
+    "candidates": [
+      {
+        "target": "SLC7A5",
+        "rationale": "LAT1 与 SLC43A2 同属中性氨基酸转运网络，均参与肿瘤与代谢适应相关的底物供给。其可作为同通路替代靶点，用于比较底物摄取阻断的网络效应。"
+      },
+      {
+        "target": "SLC7A8",
+        "rationale": "LAT2 与 SLC43A2 在大中性氨基酸转运轴上具有功能相关性，适合纳入同通路候选集合。该靶点有助于评估家族层面的冗余补偿与联用价值。"
+      },
+      {
+        "target": "SLC3A2",
+        "rationale": "SLC3A2 为多种 LAT 复合体的重要伴侣链，直接影响氨基酸转运体在膜上的稳定性与表达。将其作为候选可用于验证复合体依赖型阻断策略。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

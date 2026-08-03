@@ -1,0 +1,65 @@
+{
+  "gene": "NSD2",
+  "generatedAt": "2026-08-03T14:51:50.433Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NSD2 是核内组蛋白赖氨酸甲基转移酶，催化 H3K36me2 沉积并影响染色质转录程序；其功能异常与 Wolf-Hirschhorn syndrome、Rauch-Steindl syndrome 及急性淋巴细胞白血病等疾病存在明确遗传和肿瘤表观遗传关联。该蛋白定位于细胞核，缺乏天然胞外结构域或分泌特征，抗体药物可及性不具备常规膜受体优势，需限定为细胞内递送抗体、降解偶联或结构生物学阻断工具方向。相较于泛化表观遗传调控因子，NSD2 具有明确 SET 催化结构域、疾病突变热点和高分辨率实验结构支持，适合优先开展机制验证型抗体设计。",
+    "mechanism": "抗体片段结合 NSD2 SET 结构域底物结合沟槽或自抑制调控界面，阻断核小体 H3K36 尾部进入催化位点并抑制 H3K36me2 生成。",
+    "selectedEpitope": "优先靶向 SET 域底物结合沟槽邻近的 AWS-SET 连接区，避开高度保守 SAM 结合核心。",
+    "diseaseDirection": "表观遗传异常与白血病方向",
+    "domain": "NSD2 含 PWWP、HMG、PHD finger、AWS、SET 及 post-SET 区域，催化功能集中于 C 端 SET 模块。",
+    "evidence": "NSD2 表观遗传致病与 SET 域结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt O96028 蛋白功能与结构域注释",
+      "RCSB PDB 9FOC X-ray 晶体结构",
+      "ClinVar 与文献报道的 NSD2 致病变异"
+    ],
+    "referenceEntries": "UniProt O96028；RCSB PDB 9FOC；Open Targets ENSG00000109685",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SET 域底物肽结合沟槽及 AWS-SET 连接区",
+        "可直接干扰组蛋白 H3K36 尾部定位，具有明确催化抑制价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "post-SET 区域邻近锌结合折叠外侧面",
+        "可能影响催化构象稳定性，适合构象锁定型抗体片段设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SAM 结合口袋周边保守催化核心",
+        "与 NSD 家族及其他 SET 蛋白保守性较高，选择性和脱靶风险需严格评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NSD2 为核内酶，常规抗体难以到达作用位点；设计应聚焦 VHH、细胞穿透递送或体内表达抗体，并进行 NSD1、NSD3 交叉反应性筛选。",
+    "structurePrepZh": "以 9FOC 的 A、B 链为实验结构模板，补全缺失侧链、校验锌配位与配体状态，保留 SET 域构象用于界面建模。",
+    "structureRef": "RCSB PDB 9FOC，X-ray diffraction，1.618 Å",
+    "antibodies": [
+      "细胞内抗 NSD2 VHH 候选片段",
+      "抗 SET 域构象阻断型 Fab 候选片段"
+    ],
+    "interfaceFocus": "SET 底物沟槽、AWS-SET 连接区与 post-SET 构象面",
+    "designMode": "细胞内抗体阻断",
+    "candidates": [
+      {
+        "target": "NSD1",
+        "rationale": "NSD1 与 NSD2 同属 NSD 组蛋白甲基转移酶家族，作用于 H3K36 甲基化轴；其结构相似性可用于选择性和家族交叉反应风险评估。"
+      },
+      {
+        "target": "NSD3",
+        "rationale": "NSD3 与 NSD2 共享 AWS-SET-post-SET 催化架构，并参与 H3K36 甲基化相关转录调控；在肿瘤表观遗传通路中具有并行验证价值。"
+      },
+      {
+        "target": "KMT2A",
+        "rationale": "KMT2A 是急性白血病中关键染色质修饰因子，其重排驱动异常转录程序；与 NSD2 同属白血病表观遗传调控网络，可作为联合机制研究靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "MAF1",
+  "generatedAt": "2026-08-03T14:00:56.671Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAF1是RNA polymerase III转录的保守性负调节因子，通过抑制tRNA、5S rRNA等Pol III转录产物影响细胞生长、代谢应激与肿瘤相关生物合成状态。现有疾病关联以自身炎症、肝细胞癌和泛肿瘤表型为主，但关联强度中等且多为遗传或组学证据。MAF1主要定位于细胞核和胞质，不具备分泌蛋白、膜受体或稳定胞外结构域特征，抗原可及性显著弱于IL10RA等同通路可及靶点，因此作为常规治疗性抗体主靶点优先级较低，更适合结构生物学验证或细胞内递送抗体策略。",
+    "mechanism": "设计目标为结合MAF1中央保守结构域，阻断其与RNA polymerase III复合体及TFIIIB相关界面的接触，从而解除对Pol III转录起始的抑制。",
+    "selectedEpitope": "优先评估3NR5所示MAF1中央保守折叠中Pol III/TFIIIB结合相关外露沟槽表位。",
+    "diseaseDirection": "炎症免疫失衡与肿瘤代谢",
+    "domain": "MAF1为小型保守调控蛋白，含中央MAF1保守结构域及可磷酸化调控区，缺乏跨膜段和胞外域。",
+    "evidence": "MAF1-Pol III转录抑制与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9H063功能与亚细胞定位注释",
+      "RCSB PDB 3NR5晶体结构记录",
+      "RNA polymerase III转录调控研究文献"
+    ],
+    "referenceEntries": "UniProt Q9H063；RCSB PDB 3NR5；Open Targets MAF1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "中央保守结构域外露沟槽及Pol III结合相关界面",
+        "可直接干预MAF1与转录复合体的功能性接触，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "保守折叠周边带电表面与构象稳定区域",
+        "适合获得高亲和结合分子并用于结构占位或细胞内成像验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "磷酸化调控区邻近柔性片段",
+        "构象异质性较高且可能受细胞状态影响，需避免仅识别非功能构象",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAF1缺乏天然胞外可及性，传统Fab或VHH难以在体内直接接触靶点；设计宜限定为细胞内递送抗体、研究级阻断分子或降解偶联验证。",
+    "structurePrepZh": "以3NR5链A为模板，补全缺失柔性片段并标注磷酸化位点；在表位筛选中保留中央保守折叠，排除晶体接触伪界面。",
+    "structureRef": "RCSB PDB 3NR5，human MAF1 X-ray，1.55 Å",
+    "antibodies": [
+      "无获批MAF1靶向治疗性抗体",
+      "研究级anti-MAF1检测抗体"
+    ],
+    "interfaceFocus": "MAF1中央保守域的Pol III/TFIIIB接触面",
+    "designMode": "细胞内抗体验证",
+    "candidates": [
+      {
+        "target": "POLR3A",
+        "rationale": "POLR3A是RNA polymerase III最大催化亚基，位于MAF1直接调控的同一Pol III转录轴；其遗传与免疫炎症表型存在关联，但作为核内酶复合体同样存在抗体可及性限制。"
+      },
+      {
+        "target": "POLR3B",
+        "rationale": "POLR3B是Pol III核心亚基，参与病毒核酸感知相关免疫表型及Pol III转录功能；与MAF1处于同一转录调控复合体层级，可作为机制验证候选。"
+      },
+      {
+        "target": "IL10RA",
+        "rationale": "IL10RA是IL-10抗炎信号的细胞表面受体亚基，与自身炎症和免疫失衡方向高度相关；相较MAF1具备明确胞外结构域和更优抗体可及性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

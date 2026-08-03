@@ -1,0 +1,65 @@
+{
+  "gene": "RANBP3",
+  "generatedAt": "2026-08-03T20:44:11.678Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RANBP3参与Ran依赖性核质运输调控，可影响CRM1/XPO1介导的核输出过程，核质运输失衡与神经退行性疾病、帕金森病和阿尔茨海默病中的蛋白稳态异常存在关联。该蛋白主要定位于细胞核并缺乏跨膜区或分泌特征，天然抗原可及性不优于胞外受体，抗体策略更适合定位为结构生物学验证或细胞内递送形式。相比XPO1、RAN等核心必需节点，RANBP3作为调节因子可能提供更细分的通路干预窗口，但作为常规治疗性抗体主靶点优先级应低于细胞表面或分泌型神经炎症靶点。",
+    "mechanism": "通过结合RANBP3的Ran结合结构域界面，干扰其与Ran-GTP及XPO1核输出复合体的协同作用，从而影响Ran依赖性蛋白核输出调控。",
+    "selectedEpitope": "优先评估Ran结合结构域中靠近Ran-GTP结合面的构象表位，避免覆盖高度保守疏水核心。",
+    "diseaseDirection": "神经退行性疾病核质运输异常",
+    "domain": "RANBP3含N端调控区及C端Ran结合相关结构域，PDB 2Y8G解析其Ran结合结构区域。",
+    "evidence": "RANBP3核质运输与神经退行性疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q9H6Z4蛋白定位与功能注释",
+      "RCSB PDB 2Y8G晶体结构数据",
+      "Ran-GTP/XPO1核输出通路文献证据"
+    ],
+    "referenceEntries": "UniProt Q9H6Z4；RCSB PDB 2Y8G；Open Targets RANBP3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Ran结合结构域的Ran-GTP接触邻近面",
+        "可直接检验RANBP3-Ran功能界面阻断潜力",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端结构域远离核心折叠的外露环区",
+        "利于获得构象特异性结合分子并降低折叠干扰",
+        "备选"
+      ],
+      [
+        "Site C",
+        "保守疏水核心与结构域内部β折叠区域",
+        "可能破坏整体折叠或产生非特异性构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RANBP3为细胞内核蛋白，常规抗体难以天然进入作用位点；需采用细胞内抗体、递送偶联或仅作为机制验证工具，并评估核质运输广泛干预风险。",
+    "structurePrepZh": "以2Y8G链A、B为结构模板，保留高分辨率坐标并校验缺失环区、晶体接触面和Ran结合界面残基暴露度后进行表位建模。",
+    "structureRef": "RCSB PDB 2Y8G，X射线晶体结构，1.61 Å",
+    "antibodies": [
+      "无已批准抗RANBP3治疗性抗体",
+      "研究级抗RANBP3多克隆/单克隆抗体"
+    ],
+    "interfaceFocus": "Ran-GTP接触面及XPO1复合体邻近调节界面",
+    "designMode": "细胞内抗体/机制验证",
+    "candidates": [
+      {
+        "target": "XPO1",
+        "rationale": "XPO1是CRM1依赖核输出通路的核心转运受体，直接识别含NES货物并与Ran-GTP形成核输出复合体，疾病机制证据和药理学可干预性更强。"
+      },
+      {
+        "target": "RAN",
+        "rationale": "RAN通过GTP/GDP循环驱动核质运输方向性，是RANBP3功能依赖的直接相互作用节点，可用于解析核输出异常在神经退行性疾病中的贡献。"
+      },
+      {
+        "target": "RANGAP1",
+        "rationale": "RANGAP1促进Ran-GTP水解并调节核质运输循环终止，与RANBP3同属Ran循环调控网络，适合作为通路级对照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

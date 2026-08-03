@@ -1,0 +1,65 @@
+{
+  "gene": "GLO1",
+  "generatedAt": "2026-08-03T12:48:25.753Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GLO1编码胞质金属依赖性glyoxalase I，催化甲基乙二醛与谷胱甘肽形成S-D-lactoylglutathione，是羰基应激与AGE前体清除通路的核心限速酶。该蛋白缺乏跨膜区和分泌信号，主要定位于胞质，天然抗原可及性不足，作为体内中和抗体靶点优先级低于膜受体或分泌因子。现有Open Targets关联以血清蛋白定量、代谢表型和偏头痛等遗传统计信号为主，疾病因果链弱于同通路中可直接调控细胞外AGE-RAGE轴的靶点，因此更适合结构验证或细胞内递送抗体探索。",
+    "mechanism": "候选抗体需结合GLO1二聚体活性沟槽邻近区域，空间阻断谷胱甘肽-甲基乙二醛半硫缩醛进入Zn2+催化中心并干扰底物定位。",
+    "selectedEpitope": "优先评估二聚体界面与Zn2+活性口袋入口周缘，避开深埋金属配位残基。",
+    "diseaseDirection": "羰基应激与AGE代谢相关疾病",
+    "domain": "GLO1为同源二聚体金属酶，单体呈glyoxalase/bleomycin resistance protein/dioxygenase样折叠，活性位点位于二聚体界面。",
+    "evidence": "GLO1羰基应激酶活与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联与遗传统计证据",
+      "UniProt Q04760蛋白定位、功能与催化注释",
+      "RCSB PDB 3W0T人源GLO1高分辨率晶体结构",
+      "Reactome/KEGG甲基乙二醛解毒与谷胱甘肽代谢通路"
+    ],
+    "referenceEntries": "UniProt Q04760；RCSB PDB 3W0T；HGNC:GLO1；Reactome glyoxalase pathway",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "二聚体界面活性沟槽入口",
+        "可阻断底物半硫缩醛进入催化中心并限制构象定位",
+        "优先"
+      ],
+      [
+        "Site B",
+        "单体外侧α/β折叠暴露环区",
+        "利于获得结合抗体并用于结构探针开发，但功能抑制概率较低",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Zn2+配位活性口袋深部",
+        "高度保守且空间狭窄，直接靶向易产生交叉反应和亲和力成熟困难",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GLO1为胞质二聚体酶，常规抗体难以在体内到达靶点；设计应优先限定为细胞内递送、纳米抗体或体外结构功能验证场景。",
+    "structurePrepZh": "以3W0T高分辨率晶体结构为模板，保留二聚体生物学装配、Zn2+及关键催化残基，补全缺失侧链并评估晶体接触对表位暴露的影响。",
+    "structureRef": "RCSB PDB 3W0T，人源GLO1 X射线晶体结构，1.351 Å",
+    "antibodies": [
+      "无获批GLO1治疗性抗体",
+      "研究级抗GLO1检测抗体"
+    ],
+    "interfaceFocus": "二聚体活性沟槽入口及Zn2+催化中心周缘",
+    "designMode": "细胞内酶抑制探索",
+    "candidates": [
+      {
+        "target": "AGER",
+        "rationale": "AGER编码RAGE，位于细胞膜表面并识别AGE等配体，是羰基应激下游炎症放大的关键受体；其胞外V-C1-C2结构域具备优良抗体可及性。"
+      },
+      {
+        "target": "MGST1",
+        "rationale": "MGST1参与谷胱甘肽依赖性亲电代谢与氧化应激防御，与GLO1同属谷胱甘肽相关解毒网络；但其多跨膜定位使抗体功能设计需聚焦胞外环。"
+      },
+      {
+        "target": "GSR",
+        "rationale": "GSR维持还原型谷胱甘肽再生，为GLO1底物体系提供GSH还原力支持；其胞内酶定位限制常规抗体可及性，适合作为通路机制参照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

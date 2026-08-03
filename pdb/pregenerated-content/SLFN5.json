@@ -1,0 +1,65 @@
+{
+  "gene": "SLFN5",
+  "generatedAt": "2026-08-03T16:42:19.064Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SLFN5为干扰素诱导的胞内免疫调节蛋白，参与抗病毒应答、病毒复制限制及炎症相关转录调控，Open Targets显示其与viral load、COVID-19及严重急性呼吸综合征存在疾病关联。该蛋白主要定位于细胞核和胞质，不属于分泌蛋白、膜受体或典型胞外抗原，天然抗原可及性不利于常规治疗性抗体结合，因此更适合作为结构生物学验证、胞内递送抗体或研究型结合分子靶点。相较IFNAR1、ACE2、TMPRSS2等更直接可及的同通路靶点，SLFN5的优先级优势在于具备1.85 Å实验结构和明确的干扰素应答关联，可支持高分辨率表位设计，但临床抗体开发优先级需审慎评估。",
+    "mechanism": "设计结合分子阻断SLFN5 N端核酸结合沟槽与病毒或宿主核酸底物接触，并干扰其在干扰素诱导抗病毒转录复合体中的功能界面。",
+    "selectedEpitope": "优先覆盖N端Schlafen核心结构域的核酸结合沟槽及相邻带正电荷表面，避免深埋催化样核心。",
+    "diseaseDirection": "抗病毒感染与干扰素免疫调节",
+    "domain": "SLFN5含N端Schlafen核心结构域及C端超家族I样ATPase/解旋酶相关结构域，PDB 7Q3Z解析其结构单元。",
+    "evidence": "SLFN5抗病毒免疫结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q08AF3蛋白功能与定位注释",
+      "RCSB PDB 7Q3Z晶体结构记录",
+      "干扰素诱导SLFN家族抗病毒功能文献"
+    ],
+    "referenceEntries": "UniProt Q08AF3；RCSB PDB 7Q3Z；Open Targets SLFN5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端Schlafen核心结构域核酸结合沟槽及正电荷边缘",
+        "可直接阻断核酸底物识别，机制指向性最强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Schlafen核心结构域外侧保守螺旋-环区",
+        "利于获得构象特异性结合分子，并减少对深层折叠核心扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "二聚体或晶体接触相关界面",
+        "可能影响构象装配，但需区分生理界面与晶体堆积",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SLFN5为胞内蛋白，缺乏天然胞外可及性，常规抗体体内成药风险较高；建议定位为胞内递送抗体、VHH或结构探针设计，并验证细胞内递送效率。",
+    "structurePrepZh": "以7Q3Z的A、B链为模板，保留高置信度Schlafen结构域，检查晶体接触、缺失片段及质子化状态，映射保守正电荷核酸结合面。",
+    "structureRef": "RCSB PDB 7Q3Z，X-ray diffraction，1.85 Å",
+    "antibodies": [
+      "无已批准SLFN5治疗性抗体",
+      "研究级抗SLFN5检测抗体"
+    ],
+    "interfaceFocus": "N端Schlafen核酸结合沟槽与正电荷表面",
+    "designMode": "胞内靶点研究型设计",
+    "candidates": [
+      {
+        "target": "IFNAR1",
+        "rationale": "IFNAR1为I型干扰素受体复合体关键亚基，位于SLFN5上游，介导JAK-STAT信号并诱导ISG表达，具有明确胞外结构域和成熟抗体可及性。"
+      },
+      {
+        "target": "IFNAR2",
+        "rationale": "IFNAR2与IFNAR1共同识别I型干扰素并启动STAT1/STAT2-IRF9抗病毒转录程序，是调节SLFN5表达的同通路膜受体靶点。"
+      },
+      {
+        "target": "STAT1",
+        "rationale": "STAT1是干扰素刺激基因转录激活的核心转录因子，连接IFNAR信号与SLFN5等ISG表达；但其胞内定位使抗体开发同样偏向研究型或递送策略。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

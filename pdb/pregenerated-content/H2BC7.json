@@ -1,0 +1,65 @@
+{
+  "gene": "H2BC7",
+  "generatedAt": "2026-08-03T19:32:47.128Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "H2BC7编码核心组蛋白H2B，主要通过核小体装配、染色质可及性及DNA损伤应答影响肿瘤转录程序，并可在感染或细胞死亡背景下作为胞外核小体/DAMP成分参与免疫炎症反应。其常规定位为核内蛋白，并非经典分泌蛋白或膜受体；抗原可及性主要依赖坏死、NETosis或循环核小体释放后的胞外暴露，因此更适合胞外核小体中和或检测型抗体策略。相较于单一转录因子类核内靶点，H2B在核小体颗粒中具有稳定结构参照和可重复暴露界面，但治疗优先级低于PD-L1、HER2等膜表面肿瘤靶点，宜作为感染炎症和肿瘤伴随核小体标志物方向的谨慎优先靶点。",
+    "mechanism": "抗体结合胞外核小体H2B表面α1-L1-α2区域，阻断核小体与TLR2/TLR4或补体相关识别分子的促炎接触。",
+    "selectedEpitope": "优先选择H2B histone-fold的α1-L1-α2外露面，避开H2A-H2B二聚体核心埋藏界面。",
+    "diseaseDirection": "感染炎症与肿瘤胞外核小体",
+    "domain": "H2BC7含N端尾部及histone-fold三螺旋核心，参与H2A-H2B二聚体和核小体组装。",
+    "evidence": "H2BC7胞外核小体暴露与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P62807蛋白功能与定位注释",
+      "RCSB PDB 6ACO核小体X射线结构",
+      "核小体DAMP与TLR介导炎症文献"
+    ],
+    "referenceEntries": "UniProt P62807；RCSB PDB 6ACO；Open Targets H2BC7",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "H2B histone-fold α1-L1-α2外露面",
+        "保留核小体颗粒可及性，适合识别胞外核小体并减少核心装配干扰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端尾部赖氨酸富集区",
+        "线性表位免疫原性较高，但易受乙酰化、泛素化等修饰状态影响",
+        "备选"
+      ],
+      [
+        "Site C",
+        "H2A-H2B二聚体埋藏界面",
+        "结构保守且在完整核小体中可及性有限，可能产生非特异核组蛋白交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "H2BC7为高度保守核内组蛋白，存在同源组蛋白交叉反应和胞内不可及风险；设计应限定于胞外核小体构象表位并开展修饰依赖性评估。",
+    "structurePrepZh": "以6ACO中H2B抗原链A、B为模板，保留核小体构象邻近H2A/DNA约束，补全柔性尾部缺失并标注乙酰化、泛素化潜在位点。",
+    "structureRef": "RCSB PDB 6ACO，1.71 Å X-ray nucleosome structure",
+    "antibodies": [
+      "anti-Histone H2B antibody EP957Y",
+      "anti-Histone H2B antibody 2H7"
+    ],
+    "interfaceFocus": "H2B α1-L1-α2外露面与DNA邻近带电界面",
+    "designMode": "核小体构象抗体",
+    "candidates": [
+      {
+        "target": "H2AC18",
+        "rationale": "H2A与H2B共同形成H2A-H2B二聚体，是胞外核小体DAMP颗粒的同一结构单元；可作为核小体复合物识别的并行靶点。"
+      },
+      {
+        "target": "HMGB1",
+        "rationale": "HMGB1为细胞损伤后释放的核内DAMP，可与核酸和TLR4/RAGE轴共同驱动感染炎症反应；其胞外可及性优于核心组蛋白。"
+      },
+      {
+        "target": "TLR4",
+        "rationale": "TLR4参与识别组蛋白、HMGB1等DAMP并诱导NF-κB炎症信号，是胞外核小体促炎效应的受体侧候选靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

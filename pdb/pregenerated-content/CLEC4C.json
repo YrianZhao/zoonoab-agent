@@ -1,0 +1,65 @@
+{
+  "gene": "CLEC4C",
+  "generatedAt": "2026-08-03T11:26:50.579Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CLEC4C编码浆细胞样树突状细胞特异性受体BDCA-2，受体交联可通过FcεRIγ-SYK-BLNK轴抑制TLR7/9诱导的I型干扰素产生，直接关联系统性红斑狼疮的干扰素异常激活。该蛋白为II型跨膜C型凝集素受体，胞外C-type lectin-like domain可作为抗体可及抗原，适合构建细胞表面受体交联型抗体。相较于广泛表达的TLR7、TLR9或IFNAR1，CLEC4C在浆细胞样树突状细胞上更具谱系选择性，具备更高的细胞靶向优先级。",
+    "mechanism": "抗体结合CLEC4C胞外CTLD并诱导受体交联，增强FcεRIγ-ITAM依赖性SYK信号，从而抑制TLR7/9介导的IFN-α释放。",
+    "selectedEpitope": "优先靶向CTLD糖识别面邻近可交联外侧环区，避开Ca2+结合核心并保留双价交联几何。",
+    "diseaseDirection": "系统性红斑狼疮干扰素轴",
+    "domain": "II型跨膜蛋白，含短胞质尾、跨膜区及胞外C-type lectin-like domain。",
+    "evidence": "CLEC4C-BDCA-2与狼疮干扰素通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与表达关联",
+      "UniProt Q8WTT0功能与亚细胞定位注释",
+      "RCSB PDB 4ZES晶体结构数据",
+      "系统性红斑狼疮pDC-I型干扰素通路文献"
+    ],
+    "referenceEntries": "UniProt Q8WTT0；RCSB PDB 4ZES；Open Targets CLEC4C",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CTLD外侧环区及糖识别面邻近区域",
+        "利于诱导BDCA-2受体交联并保留结构稳定性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CTLD二聚体可及侧面界面",
+        "可支持双价Fab构型形成受体聚簇，需评估空间取向",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Ca2+结合位点及保守糖结合核心",
+        "可能影响折叠稳定性或产生非预期凝集素功能干扰",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "需控制抗体交联强度与Fc效应功能，避免pDC过度耗竭或非特异免疫细胞活化；优先评估沉默Fc与双价构型。",
+    "structurePrepZh": "以4ZES中A、B链CTLD为抗原模板，补全缺失侧链、校验二硫键和Ca2+配位状态，并进行糖识别环柔性评估。",
+    "structureRef": "RCSB PDB 4ZES，CLEC4C胞外CTLD晶体结构，1.65 Å",
+    "antibodies": [
+      "litifilimab",
+      "BIIB059"
+    ],
+    "interfaceFocus": "CTLD外侧环、糖识别面邻近区及二聚体可及侧面",
+    "designMode": "受体交联激动型",
+    "candidates": [
+      {
+        "target": "TLR7",
+        "rationale": "TLR7在浆细胞样树突状细胞中识别RNA核酸并驱动IRF7依赖性I型干扰素产生，是CLEC4C下游被抑制的核心炎症通路节点。"
+      },
+      {
+        "target": "TLR9",
+        "rationale": "TLR9识别CpG DNA并促进pDC分泌IFN-α，与TLR7共同构成狼疮核酸感知和干扰素放大轴。"
+      },
+      {
+        "target": "IFNAR1",
+        "rationale": "IFNAR1介导I型干扰素受体信号，将pDC来源IFN-α转化为JAK-STAT依赖的干扰素刺激基因表达，处于同一疾病效应通路下游。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

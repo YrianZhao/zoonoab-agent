@@ -1,0 +1,65 @@
+{
+  "gene": "DUSP6",
+  "generatedAt": "2026-08-03T18:48:45.771Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DUSP6是胞内ERK1/2特异性双特异性磷酸酶，通过去磷酸化MAPK1/MAPK3的Thr-Glu-Tyr激活环限制RAS-RAF-MEK-ERK信号输出，FGF8-FGFR1轴异常与Kallmann综合征的嗅神经元和GnRH神经元发育缺陷相关。该蛋白为胞质定位酶，天然抗原可及性不具备常规细胞表面抗体优势，因此更适合作为结构生物学验证、细胞内递送抗体或研究级抑制性结合分子开发对象。相比上游FGFR1、FGF8或KLB等更具药物可及性的同通路靶点，DUSP6的优先级主要来自其ERK反馈节点特异性和1MKP实验结构支持，但成药路径需优先评估胞内递送可行性。",
+    "mechanism": "设计结合DUSP6催化口袋及ERK结合相关界面的胞内抗体，遮蔽HCX5R催化环或干扰DUSP6识别磷酸化ERK1/2，从而减少ERK去磷酸化。",
+    "selectedEpitope": "优先覆盖催化结构域PTP活性位点周边的HCX5R环与底物进入沟槽，兼顾ERK docking相关表面。",
+    "diseaseDirection": "FGF-FGFR-MAPK发育通路疾病",
+    "domain": "DUSP6含N端非催化调控区和C端双特异性磷酸酶催化结构域，1MKP覆盖催化核心。",
+    "evidence": "DUSP6-MAPK反馈节点与Kallmann相关证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB Q16828 functional annotation",
+      "RCSB PDB 1MKP X-ray structure",
+      "MAPK/FGF-FGFR developmental pathway literature"
+    ],
+    "referenceEntries": "UniProt Q16828；RCSB PDB 1MKP；Open Targets DUSP6",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PTP催化域HCX5R活性环及底物沟槽",
+        "可直接遮蔽磷酸化ERK底物进入并抑制催化去磷酸化",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域远端ERK识别相关表面",
+        "可干扰DUSP6与ERK1/2结合，降低底物选择性识别",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化核心疏水内核邻近低暴露区域",
+        "结构保守且可及性不足，存在构象扰动和非特异风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DUSP6为胞内酶，常规抗体难以到达作用位点；催化口袋保守性较高，需通过构象表位和细胞内递送策略降低交叉反应风险。",
+    "structurePrepZh": "以1MKP链A为结构模板，补全缺失侧链和质子化状态，标注PTP催化半胱氨酸、底物沟槽及可溶剂暴露表面。",
+    "structureRef": "RCSB PDB 1MKP，human DUSP6 catalytic domain，2.35 Å",
+    "antibodies": [
+      "研究级anti-DUSP6 antibody",
+      "研究级anti-MKP3 antibody"
+    ],
+    "interfaceFocus": "PTP活性环、底物进入沟槽与ERK识别面",
+    "designMode": "胞内抗体探索",
+    "candidates": [
+      {
+        "target": "FGFR1",
+        "rationale": "FGFR1位于FGF信号上游，是Kallmann综合征经典致病通路成员，胞外Ig样结构域具备更强抗体可及性。"
+      },
+      {
+        "target": "FGF8",
+        "rationale": "FGF8是FGFR1配体并参与嗅板和GnRH神经元发育，阻断FGF8-FGFR1相互作用具有明确分子机制。"
+      },
+      {
+        "target": "MAPK3",
+        "rationale": "MAPK3/ERK1是DUSP6直接去磷酸化底物，处于同一FGF-FGFR-MAPK级联通路，但胞内定位同样限制常规抗体开发。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "CAPN2",
+  "generatedAt": "2026-08-03T10:59:53.706Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CAPN2编码钙依赖性半胱氨酸蛋白酶calpain-2，其在神经退行性病变中可介导细胞骨架蛋白、突触相关蛋白及APP加工相关底物的异常蛋白水解，参与阿尔茨海默病相关突触损伤与神经元应激。该蛋白主要为胞质酶，并非典型胞外抗原；抗体设计更适合定位于细胞内递送、研究级抑制抗体或构象稳定工具抗体。相较广泛表达且冗余性更高的蛋白水解酶网络，CAPN2具有明确催化裂隙、钙调控结构域和实验晶体结构支持，便于开展结构约束型抗体设计，但成药优先级受抗原可及性限制。",
+    "mechanism": "抗体应阻断CAPN2催化核心PC1/PC2形成的底物结合裂隙，干扰催化Cys105-His262-Asn286三联体对底物肽键的定位与水解。",
+    "selectedEpitope": "优先靶向Domain IIa/IIb催化裂隙邻近底物进入面，避开高度保守钙结合核心。",
+    "diseaseDirection": "阿尔茨海默病与神经退行性损伤",
+    "domain": "CAPN2含N端锚定区、Domain II催化蛋白酶核心、Domain III C2样区及Domain IV penta-EF-hand钙结合区。",
+    "evidence": "CAPN2结构与阿尔茨海默病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB P17655功能与结构域注释",
+      "RCSB PDB 2NQA晶体结构记录",
+      "calpain介导神经元蛋白水解与突触损伤文献"
+    ],
+    "referenceEntries": "UniProtKB:P17655；RCSB PDB:2NQA；Open Targets:CAPN2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Domain IIa/IIb催化裂隙底物入口面",
+        "可直接遮挡底物肽链进入并限制催化三联体有效构象",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Domain III C2样区与催化核心相邻调控界面",
+        "可能稳定非活化构象并影响膜相关激活过程",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Domain IV penta-EF-hand钙结合区",
+        "钙结合基序保守且与CAPNS1装配相关，交叉反应和功能扰动风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CAPN2为胞内酶，常规外源抗体难以接触天然抗原；设计应优先用于胞内递送、intrabody或工具抗体，并严格评估CAPN1同源交叉反应。",
+    "structurePrepZh": "以2NQA高分辨率晶体结构为模板，保留催化核心与钙结合结构域，补全缺失环区并标注CAPNS1相关界面用于排除非特异表位。",
+    "structureRef": "RCSB PDB 2NQA；human calpain-2 X-ray structure, 2.2 Å",
+    "antibodies": [
+      "Anti-CAPN2 monoclonal antibody",
+      "Anti-calpain 2 catalytic subunit antibody"
+    ],
+    "interfaceFocus": "Domain IIa/IIb催化裂隙与底物进入通道",
+    "designMode": "胞内抑制抗体设计",
+    "candidates": [
+      {
+        "target": "CAPN1",
+        "rationale": "CAPN1与CAPN2同属经典calpain蛋白酶，在钙依赖性蛋白水解和神经元细胞骨架重塑中具有通路相关性。其同源性也提示需作为选择性反筛靶点。"
+      },
+      {
+        "target": "CAPNS1",
+        "rationale": "CAPNS1为经典calpain小亚基，参与CAPN1/CAPN2异源二聚体稳定与活化，是calpain酶复合体功能调控的真实通路节点。"
+      },
+      {
+        "target": "CAST",
+        "rationale": "CAST编码calpastatin，是内源性calpain抑制蛋白，可直接抑制CAPN2蛋白水解活性，适合作为同一蛋白水解调控轴的机制参照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

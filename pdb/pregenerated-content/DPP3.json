@@ -1,0 +1,65 @@
+{
+  "gene": "DPP3",
+  "generatedAt": "2026-08-03T18:40:01.402Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DPP3为胞质锌依赖性二肽基肽酶，可结合并稳定KEAP1，竞争性削弱KEAP1-CUL3介导的NRF2泛素化降解，从而增强抗氧化转录程序并影响肿瘤应激适应。该蛋白并非经典分泌蛋白或膜受体，天然抗原可及性弱，抗体策略需限定于胞内递送、细胞裂解释放标志物检测或工程化内体逃逸格式。相较EGFR、ERBB2等乳腺癌常规膜靶点，DPP3优先级依据在于其结构解析度高、KEAP1-NRF2轴功能界面明确，适合作为机制验证型抗体设计靶点。",
+    "mechanism": "设计抗体阻断DPP3 ETGE样基序与KEAP1 Kelch结构域结合，恢复KEAP1对NRF2的泛素化降解。",
+    "selectedEpitope": "优先覆盖DPP3上结构域KEAP1结合ETGE样环区及邻近可及沟槽。",
+    "diseaseDirection": "KEAP1-NRF2轴相关肿瘤",
+    "domain": "DPP3含N端与C端催化结构域，形成双叶夹钳样锌金属肽酶核心。",
+    "evidence": "DPP3-KEAP1-NRF2轴结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9NY33蛋白功能注释",
+      "RCSB PDB 5E33晶体结构",
+      "KEAP1-NRF2氧化应激通路文献"
+    ],
+    "referenceEntries": "UniProt Q9NY33；RCSB PDB 5E33；Open Targets DPP3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ETGE样KEAP1结合环区及邻近沟槽",
+        "直接干预DPP3-KEAP1相互作用，机制指向性最强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端与C端结构域夹缝外侧可及面",
+        "可形成构象锁定，间接影响底物进入和界面呈递",
+        "备选"
+      ],
+      [
+        "Site C",
+        "锌结合催化中心邻近深沟",
+        "可能影响酶活但存在金属位点保守性与脱靶风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DPP3主要定位于胞质，常规抗体难以进入靶区；应优先评估胞内递送格式、抗原释放检测用途及KEAP1界面特异性。",
+    "structurePrepZh": "以5E33链A/B为模板，保留锌离子与催化核心构象，补全柔性环区并标注KEAP1结合相关表面。",
+    "structureRef": "RCSB PDB 5E33，人DPP3 X射线晶体结构，1.837 Å",
+    "antibodies": [
+      "暂无获批抗DPP3治疗性抗体",
+      "研究级抗DPP3单克隆抗体"
+    ],
+    "interfaceFocus": "DPP3 ETGE样基序-KEAP1 Kelch界面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "KEAP1",
+        "rationale": "KEAP1直接识别NRF2 ETGE/DLG基序并介导NRF2降解，同时也可与DPP3竞争性结合，是同一氧化应激通路的核心节点。"
+      },
+      {
+        "target": "NFE2L2",
+        "rationale": "NFE2L2编码NRF2，是KEAP1-DPP3调控轴的下游转录因子，驱动抗氧化与药物耐受相关基因表达。"
+      },
+      {
+        "target": "CUL3",
+        "rationale": "CUL3与KEAP1构成E3泛素连接酶复合体，负责NRF2泛素化降解，是DPP3解除NRF2抑制机制中的真实通路组分。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

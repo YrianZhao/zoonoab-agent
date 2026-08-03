@@ -1,0 +1,65 @@
+{
+  "gene": "GNA13",
+  "generatedAt": "2026-08-03T12:50:03.502Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GNA13编码异源三聚体G蛋白α13亚基，参与GPCR下游RhoGEF-RHOA轴，在生发中心B细胞迁移、存活选择与淋巴瘤相关信号重塑中具有机制关联。该蛋白主要定位于质膜内侧并缺乏天然胞外结构域，抗原可及性低于膜受体或分泌蛋白，因此更适合作为胞内机制验证或递送型抗体设计靶点。相较上游多配体GPCR，GNA13位于Gα13信号汇聚节点，可直接评估GTP酶开关界面与效应蛋白结合界面的功能贡献，但成药优先级需低于可外源结合的受体类靶点。",
+    "mechanism": "通过结合Gα13开关II/α3邻近界面，阻断活化GNA13与ARHGEF1等RGS-RhoGEF的相互作用，抑制RHOA-GTP形成。",
+    "selectedEpitope": "优先覆盖Ras-like GTPase结构域的Switch II-α3效应蛋白结合面，并避开核苷酸结合核心。",
+    "diseaseDirection": "淋巴瘤相关GPCR-Gα13-RHOA信号轴",
+    "domain": "GNA13含N端α螺旋结构域与Ras-like GTPase结构域，Switch I/II/III调控核苷酸状态及效应蛋白结合。",
+    "evidence": "GNA13淋巴瘤遗传关联与Gα13结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q14344功能与亚细胞定位注释",
+      "RCSB PDB 8IKL冷冻电镜结构",
+      "淋巴瘤中GNA13/RHOA通路突变研究文献"
+    ],
+    "referenceEntries": "UniProt Q14344；RCSB PDB 8IKL；Open Targets GNA13",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Switch II-α3效应蛋白结合界面",
+        "直接干预Gα13与RGS-RhoGEF结合，功能阻断价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "α螺旋结构域与Ras-like结构域交界面",
+        "可能稳定非活化构象并影响核苷酸依赖构象转换",
+        "备选"
+      ],
+      [
+        "Site C",
+        "P-loop及鸟嘌呤核苷酸结合口袋周边",
+        "高度保守且影响基础GTP酶功能，选择性与安全性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GNA13为胞内G蛋白且与GNA12等同源蛋白界面保守，常规外源抗体难以到达作用位点；建议采用胞内抗体或递送型格式并强化同源选择性筛选。",
+    "structurePrepZh": "以PDB 8IKL抗原链R/A/B/Y为结构模板，保留Gα13核心链并校核核苷酸、受体复合物及缺失环区，补全Switch区域用于界面建模。",
+    "structureRef": "RCSB PDB 8IKL，2.33 Å冷冻电镜人源Gα13复合物结构",
+    "antibodies": [
+      "commercial anti-GNA13 clone EPR5437",
+      "commercial anti-GNA13 clone 2A12"
+    ],
+    "interfaceFocus": "Switch II-α3与RGS-RhoGEF结合面",
+    "designMode": "胞内抗体阻断",
+    "candidates": [
+      {
+        "target": "GNA12",
+        "rationale": "GNA12与GNA13同属G12/13家族，均连接GPCR至RhoGEF-RHOA信号轴，可作为通路冗余与选择性评估靶点。"
+      },
+      {
+        "target": "ARHGEF1",
+        "rationale": "ARHGEF1为Gα13下游RGS-RhoGEF效应蛋白，介导Gα13信号向RHOA-GTP转换，适合验证效应界面阻断策略。"
+      },
+      {
+        "target": "RHOA",
+        "rationale": "RHOA是GNA13-ARHGEF轴的核心小GTP酶输出节点，在生发中心B细胞生物学和淋巴瘤相关通路中具有明确功能联系。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

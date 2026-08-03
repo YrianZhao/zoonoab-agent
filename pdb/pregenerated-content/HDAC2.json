@@ -1,0 +1,65 @@
+{
+  "gene": "HDAC2",
+  "generatedAt": "2026-08-03T19:43:03.255Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HDAC2 是核内锌依赖性组蛋白去乙酰化酶，参与 NuRD、Sin3 和 CoREST 复合体介导的染色质压缩，在肿瘤、皮肤T细胞淋巴瘤、骨髓瘤及神经退行性疾病中通过抑制抑癌基因和分化相关基因转录发挥作用。该蛋白主要定位于细胞核，缺乏胞外结构域或分泌特征，天然抗原可及性不适合常规完整抗体药物介入，更适合作为结构生物学对照或胞内递送抗体片段探索对象。相较于同通路中具有膜外可及性的受体类靶点，HDAC2 的药物优先级更偏向小分子抑制剂；若开展抗体设计，应优先采用可胞内表达或递送的 VHH/Fab 片段验证催化口袋或复合体结合界面功能。",
+    "mechanism": "阻断 HDAC2 催化结构域内 Zn2+ 依赖性乙酰赖氨酸底物进入通道，或干扰其与 Sin3/NuRD/CoREST 复合体支架蛋白的结合。",
+    "selectedEpitope": "优先围绕催化核心外缘与底物进入沟槽设计，避开深部 Zn2+ 配位残基以降低非特异性金属结合风险。",
+    "diseaseDirection": "肿瘤表观遗传调控与神经退行性疾病",
+    "domain": "HDAC2 以单一 HDAC 催化结构域为主，含 Zn2+ 结合活性中心及乙酰赖氨酸底物通道。",
+    "evidence": "HDAC2 表观遗传抑制与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q92769 functional annotation",
+      "RCSB PDB 7KBG X-ray structure",
+      "ChEMBL/DrugBank HDAC inhibitor pharmacology"
+    ],
+    "referenceEntries": "UniProt Q92769；RCSB PDB 7KBG；Open Targets HDAC2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域底物进入沟槽外缘",
+        "可直接限制乙酰赖氨酸底物接近 Zn2+ 活性中心",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化核心周边蛋白复合体结合面",
+        "有望削弱 HDAC2 纳入 Sin3/NuRD/CoREST 转录抑制复合体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Zn2+ 配位活性中心深部区域",
+        "结构保守性高且易产生同工酶交叉反应，需谨慎设计",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HDAC2 为胞内核蛋白，常规抗体难以到达作用位点；HDAC1/HDAC3 同源性较高，表位需避开高度保守催化残基并强调同工酶选择性验证。",
+    "structurePrepZh": "采用 7KBG 高分辨率晶体结构，保留催化 Zn2+ 与关键配体环境，清理结晶添加物后进行同源同工酶表面对比与可成药沟槽标注。",
+    "structureRef": "RCSB PDB 7KBG；human HDAC2 X-ray structure 1.26 Å",
+    "antibodies": [
+      "intracellular anti-HDAC2 research antibody",
+      "HDAC2 chromatin immunoprecipitation antibody"
+    ],
+    "interfaceFocus": "催化沟槽外缘及复合体支架结合面",
+    "designMode": "胞内抗体片段探索",
+    "candidates": [
+      {
+        "target": "HDAC1",
+        "rationale": "HDAC1 与 HDAC2 共同参与 Sin3、NuRD 和 CoREST 转录抑制复合体，是肿瘤表观遗传沉默通路中的同源核心酶。其结构相似性适合用于选择性与交叉反应风险评估。"
+      },
+      {
+        "target": "SIN3A",
+        "rationale": "SIN3A 是 HDAC1/2 转录抑制复合体的支架蛋白，负责招募组蛋白去乙酰化活性至靶基因启动子区域。干扰该复合体界面可作为 HDAC2 功能阻断的上游策略。"
+      },
+      {
+        "target": "CHD4",
+        "rationale": "CHD4 是 NuRD 复合体的 ATP 依赖性染色质重塑亚基，与 HDAC1/2 协同介导染色质压缩和转录抑制。该靶点适合用于同一表观遗传抑制轴的组合机制评估。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

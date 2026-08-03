@@ -1,0 +1,65 @@
+{
+  "gene": "DENND10",
+  "generatedAt": "2026-08-03T11:54:55.973Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DENND10（FAM45A）目前主要由遗传关联提示其与中性粒细胞计数、血小板压积、房颤和脂质性状相关，但缺乏明确的致病配体-受体轴或可药物化疾病通路机制。该蛋白为含DENN结构域的胞内蛋白，DENN结构域通常参与小GTP酶调控，天然抗原可及性低于分泌因子或膜受体。相较CSF3R、MPL等同类血液表型相关膜受体，DENND10作为常规阻断型抗体主靶点优先级较低，更适合作为结构生物学验证或胞内递送抗体探索靶点。",
+    "mechanism": "设计目标聚焦阻断DENND10 DENN模块与潜在Rab小GTP酶界面的结合，以干预其可能的鸟嘌呤核苷酸交换相关复合体形成。",
+    "selectedEpitope": "优先覆盖DENN核心结构域的推定Rab-GTPase结合沟槽，避开低分辨率柔性环区。",
+    "diseaseDirection": "血液细胞性状与心代谢遗传关联",
+    "domain": "DENND10含DENN相关结构模块，现有8P0V为低分辨率冷冻电镜结构，链K-O可用于同源界面参照。",
+    "evidence": "DENND10遗传关联与DENN结构域抗体可行性证据包",
+    "evidenceSources": [
+      "Open Targets Platform遗传疾病关联",
+      "UniProt Q8TCE6蛋白功能与定位注释",
+      "RCSB PDB 8P0V冷冻电镜结构条目",
+      "DENN结构域介导Rab GTPase调控文献"
+    ],
+    "referenceEntries": "UniProt: Q8TCE6; RCSB PDB: 8P0V; Gene: DENND10/FAM45A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DENN核心折叠的推定Rab结合沟槽",
+        "最符合功能阻断设计，可测试DENN-Rab界面依赖性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DENN结构域外侧稳定螺旋束表面",
+        "有利于获得构象识别抗体并辅助结构锁定",
+        "备选"
+      ],
+      [
+        "Site C",
+        "低分辨率模型中的柔性环区与链间接触边缘",
+        "结构不确定性较高，易产生非功能性结合或构象依赖偏差",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DENND10为胞内蛋白，常规治疗性抗体难以到达作用位点；8P0V分辨率为6.5 Å，侧链与环区定位有限，需结合AlphaFold模型和突变扫描校正界面。",
+    "structurePrepZh": "以8P0V链K-O作为实验构象模板，补全缺失片段并与UniProt序列及AlphaFold模型比对；低置信环区不纳入核心表位定义。",
+    "structureRef": "RCSB PDB 8P0V, cryo-EM structure at 6.5 Å",
+    "antibodies": [
+      "暂无公开获批DENND10抗体",
+      "研究级抗DENND10/FAM45A抗体"
+    ],
+    "interfaceFocus": "DENN核心折叠与潜在Rab结合沟槽",
+    "designMode": "胞内靶点探索型",
+    "candidates": [
+      {
+        "target": "CSF3R",
+        "rationale": "CSF3R是粒细胞集落刺激因子受体，直接调控中性粒细胞生成与动员；其胞外受体结构域具备更明确的抗体阻断可及性。"
+      },
+      {
+        "target": "MPL",
+        "rationale": "MPL编码血小板生成素受体，处于血小板生成和血小板压积调控核心通路；膜受体属性使其较DENND10更适合经典抗体工程。"
+      },
+      {
+        "target": "IL6R",
+        "rationale": "IL6R参与炎症驱动的造血和心血管风险通路，且已有抗体药物验证其可药物化；可作为血液炎症表型相关抗体设计参照靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

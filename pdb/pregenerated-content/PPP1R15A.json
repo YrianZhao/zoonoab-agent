@@ -1,0 +1,65 @@
+{
+  "gene": "PPP1R15A",
+  "generatedAt": "2026-08-03T15:31:11.241Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PPP1R15A/GADD34是整合应激反应中应激诱导的PP1调节亚基，可招募PPP1CA去磷酸化EIF2S1 Ser51，从而促进翻译恢复；该轴与神经退行性疾病中的蛋白稳态压力和细胞存活调节相关。该蛋白主要位于胞质及内质网相关膜面，缺乏稳定胞外结构域，天然抗体可及性不及分泌因子或跨膜受体。其优先级主要来自明确的ISR节点功能和4XPN复合物结构支持，但作为治疗性抗体主靶点的可成药性低于EIF2AK3/PERK等膜相关应激感受器，应定位为机制验证或细胞内递送抗体设计方向。",
+    "mechanism": "设计分子应阻断PPP1R15A C端RVxF样PP1结合界面与PPP1CA相互作用，抑制其招募PP1去磷酸化EIF2S1 Ser51。",
+    "selectedEpitope": "优先覆盖PPP1R15A C端PP1结合短肽界面及4XPN中与PPP1CA接触残基。",
+    "diseaseDirection": "神经退行性疾病与整合应激反应",
+    "domain": "PPP1R15A含N端低复杂度区和C端PP1结合调节区，4XPN解析其C端肽段-PP1复合物。",
+    "evidence": "PPP1R15A-PP1-eIF2α应激轴结构与疾病证据",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt O75807功能与亚细胞定位注释",
+      "RCSB PDB 4XPN晶体结构",
+      "整合应激反应与eIF2α去磷酸化文献"
+    ],
+    "referenceEntries": "UniProt O75807；RCSB PDB 4XPN；Open Targets PPP1R15A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端PP1结合短肽/RVxF样结合界面",
+        "直接竞争PPP1CA结合，机制最清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "4XPN中PPP1R15A邻近PP1催化沟槽的接触面",
+        "可变构削弱复合物稳定性并降低EIF2S1去磷酸化",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端低复杂度非结构化区域",
+        "结构不稳定且疾病机制界面证据不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PPP1R15A为胞内应激蛋白，常规Fab或VHH难以直接到达靶点；需采用细胞内递送、内体逃逸或纳米抗体胞内表达策略，并严控PP1广谱抑制风险。",
+    "structurePrepZh": "以4XPN中PPP1R15A肽段-PPP1CA复合物为模板，保留抗原接触残基，补全缺失侧链并评估短肽构象在游离态的稳定性。",
+    "structureRef": "RCSB PDB 4XPN，X-ray diffraction，2.285 Å",
+    "antibodies": [
+      "anti-GADD34研究级抗体",
+      "anti-PPP1R15A研究级抗体"
+    ],
+    "interfaceFocus": "PPP1R15A C端PP1结合槽接触界面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "EIF2AK3",
+        "rationale": "EIF2AK3/PERK是内质网应激感受器，可磷酸化EIF2S1并启动ISR；其腔内结构域位于ER腔侧，较PPP1R15A更接近抗体工程可及模式。"
+      },
+      {
+        "target": "EIF2S1",
+        "rationale": "EIF2S1是PPP1R15A-PP1复合物的直接去磷酸化底物，Ser51磷酸化状态决定翻译起始抑制强度；适合作为同轴药效读出和机制干预节点。"
+      },
+      {
+        "target": "PPP1R15B",
+        "rationale": "PPP1R15B/CReP与PPP1R15A同属PP1调节亚基，同样促进EIF2S1去磷酸化，但偏向基础稳态调节；可用于区分应激诱导与组成型去磷酸化通路贡献。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

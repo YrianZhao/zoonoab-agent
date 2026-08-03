@@ -1,0 +1,65 @@
+{
+  "gene": "PKP1",
+  "generatedAt": "2026-08-03T15:19:32.806Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PKP1是桥粒斑块蛋白，连接桥粒钙黏蛋白复合体与中间丝网络，PKP1缺陷可削弱表皮角质形成细胞间黏附并导致plakophilin deficiency相关单纯型大疱性表皮松解症。该蛋白主要定位于胞内桥粒斑块及细胞核，天然抗原可及性低，但其armadillo repeat结构域具有明确晶体结构，可用于研究型胞内抗体、递送型抗体片段或机制验证工具分子设计。相较于DSG1、DSC1等跨膜桥粒钙黏蛋白，PKP1更接近致病遗传缺陷的核心节点，适合作为结构驱动的疾病机制解析与功能补偿策略优先靶点。",
+    "mechanism": "设计分子应稳定PKP1 armadillo repeat构象，增强其与桥粒斑块组分及角蛋白中间丝连接复合体的装配，而非阻断胞外配体结合。",
+    "selectedEpitope": "优先选择armadillo repeat超螺旋外侧、避开预测桥粒复合体结合面的构象表位。",
+    "diseaseDirection": "遗传性表皮黏附缺陷",
+    "domain": "PKP1含N端头部结构域与C端armadillo repeat结构域；1XM9覆盖其armadillo repeat核心折叠。",
+    "evidence": "PKP1桥粒结构功能与表皮松解证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q13835功能与亚细胞定位注释",
+      "RCSB PDB 1XM9晶体结构记录",
+      "人类遗传性plakophilin deficiency病例与桥粒生物学文献"
+    ],
+    "referenceEntries": "UniProt Q13835；RCSB PDB 1XM9；MONDO:0011472",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "armadillo repeat超螺旋凸面非保守暴露区",
+        "利于获得构象稳定型结合分子，降低干扰复合体装配风险",
+        "优先"
+      ],
+      [
+        "Site B",
+        "armadillo repeat凹面连续沟槽邻近区",
+        "可用于调节蛋白互作界面，但需验证是否影响桥粒斑块结合",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端头部结构域及蛋白复合体结合区域",
+        "可能干扰PKP1与桥粒组分或中间丝连接，功能风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PKP1为胞内桥粒蛋白，常规抗体难以直接进入细胞；应优先定位为胞内抗体、递送型Fab/VHH或结构验证试剂，并避免破坏桥粒装配界面。",
+    "structurePrepZh": "以1XM9链A为模板，补全缺失侧链与环区，保留armadillo repeat整体曲率；结合AlphaFold模型评估未解析N端区域与潜在互作面。",
+    "structureRef": "Choi与Weis等解析PKP1 armadillo repeat晶体结构，PDB 1XM9",
+    "antibodies": [
+      "PKP1 clone PP1-5C2",
+      "PKP1 clone 10B2"
+    ],
+    "interfaceFocus": "armadillo repeat外侧暴露面与凹面沟槽",
+    "designMode": "胞内递送型抗体设计",
+    "candidates": [
+      {
+        "target": "DSP",
+        "rationale": "DSP编码desmoplakin，是连接桥粒斑块与角蛋白中间丝的核心组分，与PKP1处于同一表皮桥粒黏附轴。其功能缺陷同样可削弱机械稳定性。"
+      },
+      {
+        "target": "DSG1",
+        "rationale": "DSG1为桥粒钙黏蛋白，介导角质形成细胞间黏附，并与PKP1所在桥粒斑块复合体功能耦联。其胞外结构域可及性较高，适合作为同通路抗体靶点参照。"
+      },
+      {
+        "target": "DSC1",
+        "rationale": "DSC1属于桥粒钙黏蛋白家族，参与表皮上层细胞间黏附，与DSG1和PKP1共同维持桥粒结构完整性。其跨膜受体属性提供了更直接的抗体可及性。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

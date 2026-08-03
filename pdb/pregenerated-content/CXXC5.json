@@ -1,0 +1,65 @@
+{
+  "gene": "CXXC5",
+  "generatedAt": "2026-08-03T11:46:04.448Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CXXC5 是核内转录调控蛋白，可与 Dishevelled 结合并抑制 Wnt/β-catenin 信号，影响成骨分化、骨量维持及体组成相关表型。该靶点缺乏跨膜区和分泌信号肽，天然抗原可及性不符合常规细胞外抗体阻断策略，因此更适合作为细胞内结合分子或研究级结构抗体开发对象。相较 WNT 配体或 LRP5/6 等胞外节点，CXXC5 位于通路下游负调控层级，具备干预成骨抑制因子的机制特异性，但药物递送与胞内可达性构成优先级限制。",
+    "mechanism": "设计结合分子遮蔽 CXXC5 C端 CXXC型锌指邻近的 Dishevelled 结合界面，阻断 CXXC5-DVL 相互作用，解除其对β-catenin依赖转录的抑制。",
+    "selectedEpitope": "优先覆盖5W9S解析的C端CXXC型锌指表面及邻近DVL结合沟槽，避免破坏锌配位核心。",
+    "diseaseDirection": "体组成与骨量调控方向",
+    "domain": "CXXC5含C端CXXC型锌指结构域，5W9S覆盖其折叠核心，天然定位以细胞核为主。",
+    "evidence": "CXXC5-Wnt负调控与体组成遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q7LFL8蛋白功能与定位注释",
+      "RCSB PDB 5W9S晶体结构数据",
+      "CXXC5-DVL相互作用及Wnt/β-catenin文献证据"
+    ],
+    "referenceEntries": "UniProt Q7LFL8；RCSB PDB 5W9S；Open Targets CXXC5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端CXXC型锌指外侧DVL结合相关表面",
+        "直接干预CXXC5-DVL复合物形成，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "锌指结构域远端稳定表面环区",
+        "可用于构象锁定或结构抗体筛选，降低锌配位干扰",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Cys/His参与的锌离子配位核心邻域",
+        "可能破坏结构折叠并引入非特异构象风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CXXC5为细胞内核蛋白，传统抗体难以到达作用位点；设计宜限定为胞内抗体、VHH递送或结构研究工具，并规避锌配位残基。",
+    "structurePrepZh": "以5W9S的A/B/C链为模板进行链一致性评估，补全缺失侧链、保留锌离子配位几何，并标注可能的DVL结合表面。",
+    "structureRef": "RCSB PDB 5W9S，X-ray diffraction，2.1 Å",
+    "antibodies": [
+      "无已获批CXXC5治疗性抗体",
+      "研究级抗CXXC5抗体"
+    ],
+    "interfaceFocus": "CXXC锌指外侧DVL结合界面",
+    "designMode": "胞内阻断型",
+    "candidates": [
+      {
+        "target": "DVL1",
+        "rationale": "DVL1是CXXC5结合的Dishevelled家族成员，位于Wnt/β-catenin通路的受体后信号转导层级，可作为验证CXXC5-DVL轴的同通路节点。"
+      },
+      {
+        "target": "LRP5",
+        "rationale": "LRP5是经典Wnt共受体，与骨量和体组成表型具有明确遗传关联；其胞外结构域可及性优于CXXC5，适合常规抗体调节策略。"
+      },
+      {
+        "target": "SOST",
+        "rationale": "SOST编码硬化蛋白，可结合LRP5/6并抑制Wnt信号，是骨形成负调控轴中的成熟胞外靶点，机制与CXXC5同属Wnt抑制网络。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

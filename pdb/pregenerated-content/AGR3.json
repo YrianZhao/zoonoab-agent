@@ -1,0 +1,65 @@
+{
+  "gene": "AGR3",
+  "generatedAt": "2026-08-03T10:19:59.798Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "AGR3 属于蛋白二硫键异构酶相关家族，主要定位于内质网并可在上皮来源肿瘤环境中出现分泌或胞外可检测状态。Open Targets 数据显示其与皮肤黑色素瘤、皮肤癌及皮肤肿瘤具有中等遗传和表达关联，但目前缺乏明确的黑色素瘤驱动性受体通路证据。相较于 BRAF、KIT、PDCD1 等已高度拥挤靶点，AGR3 的优先级主要来自差异表达与可分泌抗原探索价值，适合作为诊断、递送或肿瘤微环境抗原捕获方向的探索性抗体靶点。",
+    "mechanism": "抗体设计宜优先结合 AGR3 PDI-like 结构域表面，阻断其潜在胞外伴侣蛋白结合界面，并用于捕获分泌型 AGR3，而非假定直接抑制已确证受体信号。",
+    "selectedEpitope": "优先选择 PDI-like thioredoxin fold 中远离 CXXS 催化样基序的溶剂暴露环区，兼顾特异性与构象稳定性。",
+    "diseaseDirection": "皮肤黑色素瘤与皮肤肿瘤探索",
+    "domain": "AGR3 含 N 端信号肽、单一 PDI-like thioredoxin 折叠结构域及 C 端内质网保留样序列。",
+    "evidence": "AGR3 黑色素瘤关联与结构可设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q8TD06 functional annotation",
+      "RCSB PDB 3PH9 X-ray structure",
+      "Protein disulfide isomerase family comparative annotation"
+    ],
+    "referenceEntries": "UniProt Q8TD06；RCSB PDB 3PH9；Open Targets AGR3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PDI-like thioredoxin fold 溶剂暴露环区",
+        "利于获得构象依赖性结合并降低对保守催化样核心的干扰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "α/β 核心边缘的非保守表面片段",
+        "可提升 AGR3 相对 AGR2 等同源蛋白的选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "CXXS 催化样基序邻近区域",
+        "该区域家族保守性较高，存在交叉反应与功能解释不确定性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "AGR3 并非经典跨膜受体，胞外暴露依赖分泌或肿瘤微环境释放状态；需优先验证肿瘤样本表面/胞外蛋白丰度，并规避 AGR2 同源交叉反应。",
+    "structurePrepZh": "以 3PH9 的 A、B 链晶体结构为模板，保留成熟蛋白 PDI-like 结构域，检查二聚体晶格界面、缺失残基及表面电荷后进行抗原模型质控。",
+    "structureRef": "RCSB PDB 3PH9，AGR3 X-ray structure，1.83 Å",
+    "antibodies": [
+      "anti-AGR3 research antibody clone EPR21778",
+      "anti-AGR3 polyclonal antibody"
+    ],
+    "interfaceFocus": "PDI-like 结构域非保守表面环与同源差异位点",
+    "designMode": "探索性抗原捕获",
+    "candidates": [
+      {
+        "target": "BRAF",
+        "rationale": "BRAF 是皮肤黑色素瘤 MAPK 通路核心驱动基因，V600 突变可持续激活 MEK-ERK 信号。其通路证据强于 AGR3，但蛋白主要位于胞内，更适合小分子或细胞内靶向策略。"
+      },
+      {
+        "target": "KIT",
+        "rationale": "KIT 是部分黑色素瘤，尤其黏膜型和肢端型黑色素瘤中的受体酪氨酸激酶驱动靶点。其胞外免疫球蛋白样结构域具备抗体可及性，可作为同疾病方向的膜受体型候选。"
+      },
+      {
+        "target": "PDCD1",
+        "rationale": "PDCD1 编码 PD-1，参与黑色素瘤免疫逃逸中的 T 细胞抑制轴。阻断 PD-1 与 PD-L1/PD-L2 相互作用已有明确临床验证，是同疾病免疫通路中的高证据候选。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

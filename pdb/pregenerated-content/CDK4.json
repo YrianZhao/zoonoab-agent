@@ -1,0 +1,65 @@
+{
+  "gene": "CDK4",
+  "generatedAt": "2026-08-03T18:24:35.674Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CDK4 是细胞周期 G1/S 转换的核心丝氨酸/苏氨酸激酶，通过与 CCND1/2/3 形成复合物并磷酸化 RB1，释放 E2F 转录程序，驱动乳腺癌、黑色素瘤和小细胞肺癌等肿瘤增殖。该靶点为胞内激酶，天然抗体可及性弱，但其结构域清晰、晶体结构分辨率较高，适合作为胞内递送抗体、细胞内抗体或研究型阻断分子的结构设计对象。相比泛 CDK 靶点，CDK4 在 CCND-CDK4/6-RB 轴中具有明确肿瘤依赖性，且与 CDK6 存在可区分界面残基，为选择性干预提供优先级依据。",
+    "mechanism": "设计分子优先阻断 CDK4 与 Cyclin D 的激活界面，限制 T-loop 构象稳定化并降低 RB1 磷酸化，从而抑制 E2F 依赖性转录释放。",
+    "selectedEpitope": "优先覆盖 N-lobe αC-helix 与 Cyclin D 接触面，兼顾 ATP 裂缝邻近但避免完全模拟小分子抑制剂位点。",
+    "diseaseDirection": "肿瘤细胞周期依赖性增殖",
+    "domain": "CDK4 含典型蛋白激酶结构域，由 N-lobe β-sheet/αC-helix、铰链区、C-lobe 和活化环组成。",
+    "evidence": "CDK4 细胞周期致癌依赖性证据包",
+    "evidenceSources": [
+      "Open Targets Platform 肿瘤遗传与药理关联",
+      "UniProt P11802 蛋白功能与结构域注释",
+      "RCSB PDB 9CSK X-ray 晶体结构",
+      "COSMIC/TCGA 中 CCND-CDK4-RB 通路异常证据"
+    ],
+    "referenceEntries": "UniProt P11802；RCSB PDB 9CSK；Open Targets CDK4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N-lobe αC-helix 与 Cyclin D 结合界面",
+        "可直接干扰 CDK4 激活复合物形成，机制明确且与肿瘤通路耦合紧密",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C-lobe 底物结合沟槽及 RB1 识别邻近区域",
+        "可能降低 RB1 招募与磷酸化效率，适合作为功能阻断备选表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP 结合裂缝与铰链区",
+        "保守性高，易产生 CDK 家族交叉反应，需严格控制选择性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CDK4 为胞内激酶，常规抗体难以接触天然抗原；设计宜定位为胞内递送抗体或 intrabody，并重点规避 CDK6、CDK2 保守激酶口袋交叉结合。",
+    "structurePrepZh": "以 9CSK 晶体结构为模板，保留 CDK4 激酶结构域主链，补全缺失侧链与质子化状态，标注 Cyclin D 接触界面、ATP 裂缝和活化环构象。",
+    "structureRef": "RCSB PDB 9CSK，X-ray diffraction，2.253 Å",
+    "antibodies": [
+      "intracellular anti-CDK4 research antibody",
+      "anti-CDK4 diagnostic monoclonal antibody"
+    ],
+    "interfaceFocus": "αC-helix/Cyclin D 激活界面与 RB1 底物沟槽",
+    "designMode": "胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "CDK6",
+        "rationale": "CDK6 与 CDK4 共同接受 Cyclin D 激活并磷酸化 RB1，是同一 G1/S 检查点轴的并列激酶；其选择性差异需作为交叉反应评估核心。"
+      },
+      {
+        "target": "CCND1",
+        "rationale": "CCND1 编码 Cyclin D1，直接结合并激活 CDK4/6，在乳腺癌等肿瘤中常见扩增或过表达，是 CDK4 复合物形成的上游驱动因子。"
+      },
+      {
+        "target": "RB1",
+        "rationale": "RB1 是 CDK4/6 的关键底物，其磷酸化解除对 E2F 的抑制；RB1 状态决定 CDK4 靶向策略的功能依赖性和患者分层价值。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

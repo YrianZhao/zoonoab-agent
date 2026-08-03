@@ -1,0 +1,65 @@
+{
+  "gene": "CEBPB",
+  "generatedAt": "2026-08-03T11:15:21.062Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CEBPB 是炎症与代谢应激反应中的转录因子，可与 DNA CCAAT/enhancer 元件结合并调控 IL6、TNF、IL1B 等炎症基因表达，在神经炎症、单核细胞分化及 2 型糖尿病相关通路中具有遗传和表达层面的疾病关联。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌特征，完整 IgG 难以直接接触内源抗原，因此更适合作为结构验证、细胞内递送抗体或降解偶联策略的探索性靶点。相较经典胞外炎症因子，CEBPB 位于转录调控上游，可同时影响多条髓系炎症输出，但抗原可及性劣势使其优先级应低于 IL6R、TNF 或 CSF1R 等膜表面或可溶性靶点。",
+    "mechanism": "阻断 CEBPB 碱性亮氨酸拉链结构域与 DNA CCAAT/enhancer 元件结合，或干扰其 bZIP 介导的同源/异源二聚化，从而降低炎症基因转录激活。",
+    "selectedEpitope": "优先覆盖 bZIP 结构域的碱性 DNA 结合面及亮氨酸拉链二聚化界面。",
+    "diseaseDirection": "神经炎症与代谢炎症",
+    "domain": "CEBPB 含 N 端转录激活区、调控区及 C 端 bZIP DNA 结合/二聚化结构域。",
+    "evidence": "CEBPB 炎症转录调控与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联证据",
+      "UniProt P17676 蛋白功能与亚细胞定位注释",
+      "RCSB PDB 6MG1 X 射线晶体结构",
+      "文献报道的 C/EBPβ 髓系炎症转录调控研究"
+    ],
+    "referenceEntries": "UniProt P17676；RCSB PDB 6MG1；Open Targets CEBPB",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C 端 bZIP 碱性 DNA 结合面",
+        "可直接阻断 CEBPB 与靶基因增强子 DNA 结合，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "亮氨酸拉链二聚化界面",
+        "可干扰 CEBPB 同源二聚体或与 CEBPA、CEBPD 的异源二聚体形成",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端转录激活区",
+        "区域柔性较高且结构解析不足，可能影响共调控因子结合但成药性不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险来自核内定位和缺乏胞外暴露，常规抗体难以到达作用位点；建议采用细胞内抗体、VHH 递送或抗体-降解模块验证。",
+    "structurePrepZh": "以 6MG1 的高分辨率晶体结构为模板，保留 bZIP 二聚体与 DNA 复合物界面，补充缺失柔性片段并评估链间构象一致性。",
+    "structureRef": "RCSB PDB 6MG1，X-ray diffraction，1.75 Å",
+    "antibodies": [
+      "抗 CEBPB 研究级单克隆抗体",
+      "抗 C/EBPβ ChIP 验证抗体"
+    ],
+    "interfaceFocus": "bZIP-DNA 接触面与亮氨酸拉链二聚化槽",
+    "designMode": "细胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "IL6",
+        "rationale": "IL6 是 CEBPB 调控的关键炎症输出因子，并参与神经炎症和代谢炎症放大；作为分泌蛋白，其抗原可及性显著优于核内转录因子。"
+      },
+      {
+        "target": "TNF",
+        "rationale": "TNF 位于髓系炎症通路核心，与 CEBPB 相关炎症转录程序具有功能交叉；可溶性和膜结合形式均已有明确抗体干预依据。"
+      },
+      {
+        "target": "CSF1R",
+        "rationale": "CSF1R 调控单核-巨噬细胞谱系存活与活化，处于 CEBPB 参与的髓系炎症网络上游；膜受体胞外结构域适合抗体阻断设计。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

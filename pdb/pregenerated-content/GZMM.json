@@ -1,0 +1,65 @@
+{
+  "gene": "GZMM",
+  "generatedAt": "2026-08-03T19:26:35.115Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GZMM编码颗粒酶M，是NK细胞和细胞毒性淋巴细胞颗粒中的丝氨酸蛋白酶，参与穿孔素介导进入靶细胞后的底物切割、细胞死亡和炎症放大。该蛋白为分泌颗粒蛋白，成熟酶具有可溶性胰凝乳蛋白酶样催化结构域，适合以活性沟槽或底物结合外环作为抗体可及表位。相较穿孔素或多种膜内信号分子，GZMM具有高分辨率实验结构和明确催化中心，便于开展结构约束的中和抗体设计；但Open Targets疾病遗传关联强度偏低，应优先定位为细胞毒颗粒通路机制验证靶点。",
+    "mechanism": "抗体结合GZMM催化沟槽邻近外环，空间阻断蛋白底物进入Ser-His-Asp催化三联体，抑制其颗粒酶样蛋白水解活性。",
+    "selectedEpitope": "优先靶向胰凝乳蛋白酶样结构域的底物结合沟槽及S1口袋邻近外环。",
+    "diseaseDirection": "细胞毒颗粒炎症与肿瘤免疫",
+    "domain": "成熟GZMM为胰凝乳蛋白酶样丝氨酸蛋白酶结构域，含催化三联体和底物结合口袋。",
+    "evidence": "GZMM结构与细胞毒颗粒通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P51124功能与亚细胞定位注释",
+      "RCSB PDB 2ZGC晶体结构",
+      "文献报道的NK细胞颗粒酶M底物切割研究"
+    ],
+    "referenceEntries": "UniProt P51124；RCSB PDB 2ZGC；Open Targets GZMM",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "S1底物结合口袋及活性沟槽外缘",
+        "可直接阻断底物进入催化中心，最适合中和型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域暴露外环与底物识别面",
+        "保留活性位点邻近性，同时降低直接扰动催化残基构象的风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端激活肽切割邻近区域",
+        "可能影响酶原成熟或构象稳定性，但成熟颗粒酶状态依赖性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GZMM与多种颗粒酶共享胰凝乳蛋白酶样折叠，需避开高度保守催化三联体核心，优先利用GZMM特异外环提高选择性。",
+    "structurePrepZh": "以2ZGC链A为抗原模板，补全缺失侧链并校正质子化状态，保留催化沟槽几何用于表位可及性与抗体对接评估。",
+    "structureRef": "PDB 2ZGC，human granzyme M，1.96 Å X-ray",
+    "antibodies": [
+      "anti-granzyme M antibody clone 4B2G4",
+      "anti-granzyme M antibody clone EPR21910"
+    ],
+    "interfaceFocus": "S1口袋、催化沟槽外环与底物进入路径",
+    "designMode": "结构约束中和设计",
+    "candidates": [
+      {
+        "target": "PRF1",
+        "rationale": "PRF1编码穿孔素，是细胞毒颗粒通路中介导颗粒酶进入靶细胞的核心效应分子，与GZMM处于同一细胞杀伤轴。"
+      },
+      {
+        "target": "GZMB",
+        "rationale": "GZMB为经典颗粒酶成员，通过切割caspase相关底物诱导靶细胞凋亡，可作为GZMM同通路的功能对照靶点。"
+      },
+      {
+        "target": "GNLY",
+        "rationale": "GNLY编码granulysin，存在于细胞毒淋巴细胞颗粒中并参与抗微生物和细胞毒效应，适合用于颗粒效应分子组合评估。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

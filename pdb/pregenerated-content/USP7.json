@@ -1,0 +1,65 @@
+{
+  "gene": "USP7",
+  "generatedAt": "2026-08-03T17:45:18.350Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "USP7是去泛素化酶，维持多种蛋白底物稳定性；杂合功能缺失突变与Hao-Fountain综合征存在明确遗传关联，并影响神经发育相关蛋白稳态。其催化结构域位于细胞内，天然抗原可及性弱，不具备经典胞外抗体阻断优势，因此更适合作为细胞内抗体、递送型Fab或研究级构象调控抗体靶点。相较于泛泛靶向蛋白酶体或泛素本身，USP7具有单基因疾病关联和高分辨率催化结构支持，便于开展机制性表位设计与选择性验证。",
+    "mechanism": "抗体结合USP7催化结构域Cys223-His464-Asp481邻近沟槽，阻碍泛素C端进入催化位点并抑制底物去泛素化。",
+    "selectedEpitope": "优先覆盖催化结构域thumb-palm交界的泛素结合沟槽，避开高度保守催化三联体核心。",
+    "diseaseDirection": "神经发育障碍与蛋白稳态异常",
+    "domain": "USP7含N端TRAF样底物识别域、中央催化USP结构域及C端UBL结构域串联调控区。",
+    "evidence": "USP7遗传关联与去泛素化结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q93009功能与结构域注释",
+      "RCSB PDB 2FOJ晶体结构记录",
+      "Hao-Fountain综合征USP7变异遗传研究"
+    ],
+    "referenceEntries": "UniProt Q93009；RCSB PDB 2FOJ；Open Targets USP7",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化USP结构域thumb-palm交界泛素结合沟槽",
+        "直接干预泛素C端定位，具备明确酶活抑制读出",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端TRAF样结构域底物肽结合表面",
+        "可阻断USP7与特定底物或适配蛋白相互作用，选择性较高",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化三联体Cys223-His464-Asp481近核心区域",
+        "抑制潜力强但保守性和构象敏感性高，需严格评估交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "USP7为细胞内酶，常规抗体难以进入作用区室；应采用细胞内递送、intrabody或降解偶联策略，并控制与USP家族同源沟槽的交叉结合。",
+    "structurePrepZh": "以2FOJ高分辨率X射线结构为催化域模板，补全缺失侧链、校正质子化状态，并映射泛素结合沟槽及催化残基邻域。",
+    "structureRef": "RCSB PDB 2FOJ，human USP7 catalytic domain，1.6 Å",
+    "antibodies": [
+      "研究级anti-USP7 monoclonal antibody",
+      "研究级anti-HAUSP/USP7 antibody"
+    ],
+    "interfaceFocus": "USP催化域泛素C端结合沟槽",
+    "designMode": "细胞内酶构象阻断",
+    "candidates": [
+      {
+        "target": "MDM2",
+        "rationale": "MDM2是p53通路中的E3泛素连接酶，USP7可通过去泛素化调节MDM2稳定性；该节点适合用于同一泛素-蛋白稳态轴的功能对照。"
+      },
+      {
+        "target": "TP53",
+        "rationale": "TP53蛋白稳定性受MDM2介导泛素化及USP7相关去泛素化网络影响，是USP7功能验证中常用的下游蛋白稳态读出。"
+      },
+      {
+        "target": "USP47",
+        "rationale": "USP47与USP7同属去泛素化酶家族，并参与DNA损伤与蛋白稳态调控；可作为选择性评估和同通路去泛素化节点比较靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

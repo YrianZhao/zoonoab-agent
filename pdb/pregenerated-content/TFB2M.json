@@ -1,0 +1,65 @@
+{
+  "gene": "TFB2M",
+  "generatedAt": "2026-08-03T21:29:20.789Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TFB2M是线粒体转录起始复合体组分，参与POLRMT介导的线粒体DNA转录起始，并通过促进启动子融解影响氧化磷酸化相关基因表达。该蛋白主要定位于线粒体基质，缺乏天然胞外结构域或分泌特征，因此常规体内中和抗体可及性不足，更适合作为结构引导的胞内递送抗体或机制探针靶点。相较于广泛表达且多功能的线粒体代谢酶，TFB2M在POLRMT-TFAM转录起始轴中功能节点更集中，结构复合物信息明确，适合开展界面阻断型分子设计；但其Open Targets疾病遗传关联强度整体有限，转化优先级应低于具有胞外可及性的同通路或疾病相关受体靶点。",
+    "mechanism": "设计分子阻断TFB2M与POLRMT在启动子转录起始复合体中的接触，削弱启动子DNA融解和线粒体RNA合成起始。",
+    "selectedEpitope": "优先覆盖TFB2M与POLRMT接触面及N端延伸区邻近界面，避免干扰保守催化样折叠核心。",
+    "diseaseDirection": "线粒体转录与代谢表型",
+    "domain": "TFB2M含线粒体靶向序列及rRNA甲基转移酶样折叠核心，具有POLRMT结合相关表面。",
+    "evidence": "TFB2M线粒体转录起始结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9H5Q4功能与定位注释",
+      "RCSB PDB 6ERO晶体结构",
+      "线粒体POLRMT-TFAM-TFB2M转录起始研究文献"
+    ],
+    "referenceEntries": "UniProt Q9H5Q4；RCSB PDB 6ERO；Open Targets TFB2M",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "POLRMT结合界面邻近的TFB2M表面",
+        "直接削弱转录起始复合体装配，机制可验证性较高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端延伸区及启动子DNA融解相关邻近区域",
+        "可能影响起始泡形成与DNA稳定结合，适合作为功能调节表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "rRNA甲基转移酶样折叠保守核心",
+        "结构保守且潜在脱靶风险较高，易影响非预期蛋白相互作用",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TFB2M为线粒体基质蛋白，常规抗体难以到达作用位点；设计应限定为细胞内递送格式、抗体片段或研究级结合分子，并重点评估线粒体毒性。",
+    "structurePrepZh": "以6ERO高分辨率晶体结构为模板，保留抗原链A、B中可解析区域，补充缺失柔性片段并标注POLRMT接触面用于表位分层。",
+    "structureRef": "RCSB PDB 6ERO，X-ray diffraction，1.75 Å",
+    "antibodies": [
+      "暂无获批TFB2M治疗性抗体",
+      "暂无临床阶段TFB2M阻断抗体"
+    ],
+    "interfaceFocus": "TFB2M-POLRMT复合体接触面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "POLRMT",
+        "rationale": "POLRMT是线粒体RNA聚合酶，直接催化线粒体基因转录起始与延伸。其与TFB2M和TFAM共同构成同一线粒体转录起始轴。"
+      },
+      {
+        "target": "TFAM",
+        "rationale": "TFAM负责线粒体DNA包装并招募POLRMT至启动子，是TFB2M依赖性转录起始复合体的上游结构因子。"
+      },
+      {
+        "target": "TEFM",
+        "rationale": "TEFM调节POLRMT转录延伸和抗终止过程，位于线粒体转录调控通路下游，可作为同轴功能调节候选。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "TAP2",
+  "generatedAt": "2026-08-03T17:07:58.503Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TAP2与TAP1组成肽转运复合体，将胞质蛋白酶体产生的抗原肽转运入内质网腔，供HLA-I装载并维持MHC I抗原呈递；其功能缺陷可导致MHC class I deficiency 2和HLA-I低表达相关免疫缺陷。TAP2为内质网膜ABC转运蛋白，腔侧环区可在内质网腔环境中形成抗体可及构象，但其主要膜内与胞质ATP结合结构域限制常规细胞外抗体进入。相较下游HLA-I重链或β2M，TAP2位于抗原肽供给步骤的上游瓶颈，更适合用于机制验证型胞内递送抗体或结构辅助结合分子设计。",
+    "mechanism": "稳定TAP1-TAP2复合体腔侧构象，增强抗原肽进入内质网后的HLA-I装载效率，或阻断异常构象介导的转运失衡。",
+    "selectedEpitope": "优先聚焦TAP2腔侧环与TAP1界面邻近区域，避开跨膜肽通道和胞质NBD催化位点。",
+    "diseaseDirection": "MHC I缺陷与抗原呈递障碍",
+    "domain": "TAP2含多跨膜TMD肽转运结构域和胞质NBD ATP结合水解结构域。",
+    "evidence": "TAP2介导HLA-I抗原肽装载证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt Q03519功能注释",
+      "RCSB PDB 9O9D冷冻电镜结构",
+      "OMIM/Orphanet MHC I deficiency 2注释"
+    ],
+    "referenceEntries": "UniProt Q03519；RCSB PDB 9O9D；Open Targets TAP2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "TAP2腔侧环区及TAP1邻近界面",
+        "可影响肽转运出口与HLA-I装载耦联，且相对适合抗体片段识别",
+        "优先"
+      ],
+      [
+        "Site B",
+        "TAP2-TAP1跨膜二聚化界面外周",
+        "有助于稳定转运复合体构象，但需避免破坏必要异源二聚化",
+        "备选"
+      ],
+      [
+        "Site C",
+        "胞质NBD ATP结合与Walker基序附近",
+        "直接影响ATP水解循环，但细胞内可及性低且催化保守性带来选择性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TAP2主要定位于内质网膜，常规外源抗体可及性不足；宜采用细胞内递送、内质网定位抗体片段或结构验证工具分子策略。",
+    "structurePrepZh": "以9O9D冷冻电镜模型为模板，保留TAP1-TAP2复合体构象，标注TMD、NBD、腔侧环及ATP/肽通道相关区域。",
+    "structureRef": "RCSB PDB 9O9D，2.44 Å cryo-EM人TAP复合体结构",
+    "antibodies": [
+      "anti-TAP2 clone 429.3",
+      "anti-TAP2 clone TAP2-17"
+    ],
+    "interfaceFocus": "TAP2腔侧环与TAP1-TAP2转运出口界面",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "TAP1",
+        "rationale": "TAP1与TAP2形成异源ABC转运复合体，是抗原肽跨内质网膜转运的共同核心组分；其缺陷同样导致HLA-I抗原呈递下降。"
+      },
+      {
+        "target": "TAPBP",
+        "rationale": "TAPBP编码tapasin，连接TAP复合体与HLA-I肽装载复合体，促进高亲和力肽装载并维持MHC I表面表达。"
+      },
+      {
+        "target": "B2M",
+        "rationale": "β2微球蛋白是稳定HLA-I复合体的必需亚基，位于TAP依赖性抗原呈递通路下游，其缺陷可造成MHC I表达显著降低。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

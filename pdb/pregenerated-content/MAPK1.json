@@ -1,0 +1,65 @@
+{
+  "gene": "MAPK1",
+  "generatedAt": "2026-08-03T14:03:09.017Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAPK1/ERK2是RAS-RAF-MEK-ERK级联中的核心丝氨酸/苏氨酸激酶，受MEK1/2磷酸化后调控转录因子、细胞周期与分化程序，RASopathy与肿瘤中该通路异常激活具有明确疾病关联。该蛋白主要为胞内激酶，天然抗原可及性不具备膜受体或分泌蛋白优势，因此抗体策略更适合定位于细胞内递送型Fab/VHH、结构生物学阻断或研究级功能干预。相较RAF或MEK，MAPK1位于通路下游汇聚节点，可直接覆盖多种上游驱动突变引发的ERK输出，优先级来自通路终端效应整合价值与高分辨率结构可用于界面精细设计。",
+    "mechanism": "设计抗体阻断MAPK1与MEK1/2的 docking groove或D-domain底物结合界面，抑制ERK2磷酸化循环及其对ELK1、RSK等底物的识别。",
+    "selectedEpitope": "优先靶向ERK2 C端公共 docking groove与CD位点周边，覆盖D-domain底物/MEK结合界面。",
+    "diseaseDirection": "RASopathy与MAPK通路肿瘤",
+    "domain": "MAPK1为典型双叶蛋白激酶结构，含N端β折叠小叶、C端α螺旋大叶及TEY激活环。",
+    "evidence": "MAPK1结构与RAS-MAPK疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P28482 MAPK1 annotation",
+      "RCSB PDB 2Y9Q experimental structure",
+      "Reactome RAS-RAF-MEK-ERK signaling pathway"
+    ],
+    "referenceEntries": "UniProt:P28482；RCSB PDB:2Y9Q；HGNC:6871",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端公共 docking groove/CD位点周边",
+        "可阻断MEK与D-domain底物对ERK2的对接识别，功能干预价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "TEY激活环及其邻近C端大叶表面",
+        "可能影响Thr185/Tyr187磷酸化构象与活化状态识别，适合状态选择性抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP结合裂隙及铰链区附近",
+        "与保守激酶口袋高度重叠，选择性与构象可及性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAPK1为胞内保守激酶，常规抗体难以到达天然作用位点；设计应优先采用细胞内递送VHH/Fab，并避开高度保守ATP口袋以提高选择性。",
+    "structurePrepZh": "以2Y9Q高分辨率X射线结构为模板，保留抗原链A或B单体，校正缺失侧链与质子化状态，并标注TEY激活环和docking groove。",
+    "structureRef": "RCSB PDB 2Y9Q，human ERK2 X-ray structure，1.55 Å",
+    "antibodies": [
+      "anti-ERK1/2 clone E10",
+      "anti-phospho-p44/42 MAPK Thr202/Tyr204 clone D13.14.4E"
+    ],
+    "interfaceFocus": "D-domain docking groove与TEY激活环邻域",
+    "designMode": "胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "MAP2K1",
+        "rationale": "MAP2K1/MEK1直接磷酸化MAPK1的TEY基序，是RAS-MAPK级联中MAPK1的上游激活激酶；Noonan综合征和肿瘤中MEK-ERK轴异常活化具有明确关联。"
+      },
+      {
+        "target": "MAP2K2",
+        "rationale": "MAP2K2/MEK2与MEK1共同激活ERK1/2，处于同一RAS-RAF-MEK-ERK通路；其功能冗余性使其成为评估ERK输出抑制的关键候选靶点。"
+      },
+      {
+        "target": "BRAF",
+        "rationale": "BRAF位于MAP2K1/2上游并直接磷酸化MEK，是RAS-MAPK通路中常见肿瘤驱动节点；阻断BRAF-MEK信号传递可降低下游MAPK1活化。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

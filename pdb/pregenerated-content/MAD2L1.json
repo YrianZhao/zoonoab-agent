@@ -1,0 +1,65 @@
+{
+  "gene": "MAD2L1",
+  "generatedAt": "2026-08-03T13:59:49.373Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAD2L1 是纺锤体组装检查点核心组分，通过与 CDC20 结合形成有丝分裂检查点复合体并抑制 APC/C-CDC20，维持染色体正确分离；其失衡与染色体不稳定、非整倍体和多种肿瘤增殖表型相关。该蛋白主要定位于细胞核、动粒和有丝分裂检查点复合体，缺乏稳定胞外结构域或分泌形式，抗原可及性显著弱于膜受体和分泌因子。与同通路中具有胞外可及性的上游生长因子受体相比，MAD2L1 更适合作为机制研究或细胞内递送抗体设计对象，作为常规治疗性抗体主靶点优先级较低。",
+    "mechanism": "设计目标为干预 MAD2L1 与 CDC20 的闭合构象结合界面，削弱 MCC 对 APC/C-CDC20 的抑制并改变纺锤体检查点持续时间。",
+    "selectedEpitope": "优先评估 MAD2L1 HORMA 结构域中 CDC20-MAD2 结合沟槽及安全带构象转换区域。",
+    "diseaseDirection": "染色体不稳定相关肿瘤机制",
+    "domain": "MAD2L1 含单一 HORMA 结构域，可在开放型与闭合型构象间转换并包夹结合肽段。",
+    "evidence": "MAD2L1 纺锤体检查点与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q13257 functional annotation",
+      "RCSB PDB 2VFX X-ray structure",
+      "Reactome spindle assembly checkpoint pathway"
+    ],
+    "referenceEntries": "UniProt Q13257；RCSB PDB 2VFX；Reactome SAC/MCC",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "HORMA 结构域 CDC20 结合沟槽与安全带闭合界面",
+        "直接对应 MAD2L1-CDC20 相互作用，机制阻断价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "开放型至闭合型构象转换相关 N/C 端安全带区域",
+        "可影响 MAD2L1 构象锁定与 MCC 装配动力学",
+        "备选"
+      ],
+      [
+        "Site C",
+        "HORMA 核心疏水折叠面及寡聚晶体接触区域",
+        "可能影响蛋白稳定性但特异性和可开发性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAD2L1 为细胞内核/动粒蛋白，常规抗体难以到达作用位点；需优先考虑细胞内递送、intrabody 或降解偶联策略，并避免破坏全局 HORMA 折叠。",
+    "structurePrepZh": "以 2VFX 高分辨率晶体结构为模板，保留代表性 MAD2L1 链，校正缺失侧链、质子化状态和构象异质性后映射 CDC20 结合界面。",
+    "structureRef": "RCSB PDB 2VFX，X-ray diffraction，1.95 Å",
+    "antibodies": [
+      "无已获批 MAD2L1 治疗性抗体",
+      "研究级 anti-MAD2L1/MAD2 抗体"
+    ],
+    "interfaceFocus": "HORMA 安全带与 CDC20 肽段结合沟槽",
+    "designMode": "细胞内表位阻断",
+    "candidates": [
+      {
+        "target": "BUB1B",
+        "rationale": "BUB1B/BubR1 是 MCC 关键组分，与 CDC20 和 BUB3 共同抑制 APC/C 活性，处于同一纺锤体组装检查点通路。其干预可影响检查点维持与有丝分裂退出。"
+      },
+      {
+        "target": "BUB1",
+        "rationale": "BUB1 参与动粒检查点信号建立并促进 MAD1-MAD2 轴募集，位于 MAD2L1 上游调控层级。该靶点适合评估 SAC 信号放大环节。"
+      },
+      {
+        "target": "CDC20",
+        "rationale": "CDC20 是 MAD2L1 直接结合对象，也是 APC/C 激活因子；阻断 CDC20 与 MAD2L1 或 APC/C 的界面可直接改变 MCC 装配和 APC/C 底物降解。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

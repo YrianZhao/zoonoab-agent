@@ -1,0 +1,65 @@
+{
+  "gene": "NUDT1",
+  "generatedAt": "2026-08-03T14:54:03.124Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NUDT1/MTH1为胞质Nudix水解酶，负责水解8-oxo-dGTP、2-OH-dATP等氧化损伤核苷三磷酸，降低其错误掺入DNA的概率；该机制在氧化应激较高的肿瘤细胞中与基因组稳定性维持相关。该蛋白并非分泌蛋白或膜受体，天然抗原可及性不支持常规细胞外阻断型抗体，抗体设计更适合用于结构验证、细胞内递送或靶向降解研究。相比同通路的上游ROS生成因子，NUDT1具有高分辨率实验结构和明确催化口袋，便于开展构象选择性结合分子设计，但作为治疗性抗体主靶点优先级低于可及性更高的膜蛋白或分泌靶点。",
+    "mechanism": "抗体结合NUDT1催化口袋邻近Nudix基序，遮挡氧化嘌呤核苷三磷酸进入并干扰Mg2+依赖水解构象形成。",
+    "selectedEpitope": "优先覆盖Nudix box催化沟槽及底物结合口袋边缘，避免仅识别远端非功能环区。",
+    "diseaseDirection": "氧化DNA损伤与肿瘤应激适应",
+    "domain": "NUDT1为单结构域Nudix水解酶，含Nudix box催化基序和氧化核苷三磷酸结合沟槽。",
+    "evidence": "NUDT1氧化核苷酸清除与肿瘤应激证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P36639功能注释",
+      "RCSB PDB 5ANV晶体结构",
+      "DNA氧化损伤与MTH1功能研究文献"
+    ],
+    "referenceEntries": "UniProt P36639；RCSB PDB 5ANV；Open Targets NUDT1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Nudix box催化沟槽及Mg2+依赖水解构象邻近区域",
+        "可直接影响8-oxo-dGTP等底物进入与催化构象形成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "氧化嘌呤核苷三磷酸结合口袋外缘环区",
+        "有利于获得构象选择性结合并减少完全遮挡催化残基的亲和力损失",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化口袋的溶剂暴露表面",
+        "主要适用于检测或捕获，不宜作为功能阻断首选表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NUDT1为胞质酶，常规抗体难以到达天然作用位点；应优先标注为研究型或递送依赖型设计，并评估与其他Nudix家族成员的交叉反应。",
+    "structurePrepZh": "以5ANV链A为抗原模型，保留高分辨率催化口袋构象，检查配体、离子与晶体接触，去除非生理小分子后进行质子化和环区完整性校验。",
+    "structureRef": "RCSB PDB 5ANV，X射线晶体结构，1.16 Å",
+    "antibodies": [
+      "无已批准NUDT1治疗性抗体",
+      "研究级抗NUDT1/MTH1抗体"
+    ],
+    "interfaceFocus": "Nudix box催化沟槽与底物结合口袋边缘",
+    "designMode": "胞内酶表位阻断",
+    "candidates": [
+      {
+        "target": "OGG1",
+        "rationale": "OGG1参与8-oxoG碱基切除修复，与NUDT1同属氧化DNA损伤应答轴，可作为损伤修复依赖性评估的同通路靶点。"
+      },
+      {
+        "target": "MUTYH",
+        "rationale": "MUTYH切除与8-oxoG错配的腺嘌呤，功能上连接氧化碱基修复与突变负荷控制，适合用于同轴通路比较。"
+      },
+      {
+        "target": "NTHL1",
+        "rationale": "NTHL1参与氧化嘧啶损伤的碱基切除修复，与氧化应激导致的DNA损伤处理网络相关，可作为修复通路备选靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

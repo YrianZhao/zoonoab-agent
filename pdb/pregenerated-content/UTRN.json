@@ -1,0 +1,65 @@
+{
+  "gene": "UTRN",
+  "generatedAt": "2026-08-03T17:46:24.744Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "UTRN编码utrophin，是肌营养不良蛋白相关的细胞骨架连接蛋白，可将肌动蛋白细胞骨架与肌膜糖蛋白复合体关联，影响肌膜稳定性与机械应力耐受。该蛋白主要定位于胞质侧骨架网络，1BHD仅覆盖N端肌动蛋白结合结构域，因此整体抗原可及性弱于典型分泌蛋白或跨膜受体，抗体策略更适合外周机制验证、胞内递送或结构探针开发。相比DMD，UTRN在Duchenne肌营养不良补偿通路中具有更低免疫原性替代潜力，但作为常规体内阻断型抗体靶点的优先级应低于膜外可及的DAG复合体成员。",
+    "mechanism": "设计抗体识别UTRN N端CH1-CH2肌动蛋白结合域，干预或标记其与F-actin的结合界面，用于解析肌膜骨架锚定功能。",
+    "selectedEpitope": "优先覆盖N端CH1-CH2串联结构域的肌动蛋白结合面外缘，避开高度保守疏水核心。",
+    "diseaseDirection": "肌营养不良与肌膜稳定性",
+    "domain": "1BHD解析UTRN N端肌动蛋白结合域，包含两个calponin homology结构域CH1与CH2。",
+    "evidence": "UTRN肌动蛋白结合域结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB P46939功能与亚细胞定位注释",
+      "RCSB PDB 1BHD晶体结构记录",
+      "Duchenne肌营养不良utrophin补偿机制文献"
+    ],
+    "referenceEntries": "UniProtKB:P46939；RCSB PDB:1BHD；Open Targets:UTRN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CH1-CH2肌动蛋白结合面外缘",
+        "可直接报告或干预F-actin结合构象，适合功能型Fab筛选",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CH2远端溶剂暴露螺旋束",
+        "结构稳定且可及性较好，适合作为非阻断型检测表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "CH1/CH2结构域间铰链邻近区域",
+        "可能影响结构域相对取向，但保守性与构象敏感性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "UTRN缺乏胞外结构域，体内常规抗体可及性受限；建议限定为结构探针、细胞内递送抗体或体外功能验证，并严格评估与DMD同源结构域交叉反应。",
+    "structurePrepZh": "以1BHD链A/B为模板，去除晶体接触冗余并保留CH1-CH2构象；对缺失侧链、质子化状态和同源保守面进行标准化建模。",
+    "structureRef": "RCSB PDB 1BHD，human utrophin actin-binding domain，2.0 Å",
+    "antibodies": [
+      "MANCHO3",
+      "DRP3/20C5"
+    ],
+    "interfaceFocus": "CH1-CH2肌动蛋白结合界面及结构域间取向",
+    "designMode": "胞内结构探针型",
+    "candidates": [
+      {
+        "target": "DMD",
+        "rationale": "DMD编码dystrophin，与UTRN同属肌动蛋白-肌膜连接轴核心蛋白，是Duchenne肌营养不良的直接致病基因，可作为同通路参照靶点。"
+      },
+      {
+        "target": "DAG1",
+        "rationale": "DAG1编码dystroglycan，连接胞外基质与细胞内dystrophin/utrophin复合体，其胞外α-dystroglycan部分较UTRN更具抗体可及性。"
+      },
+      {
+        "target": "SGCA",
+        "rationale": "SGCA为肌膜sarcoglycan复合体成员，参与稳定dystrophin-associated glycoprotein complex，位于同一肌膜稳定性通路并具膜蛋白开发价值。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

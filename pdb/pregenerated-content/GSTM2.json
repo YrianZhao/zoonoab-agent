@@ -1,0 +1,65 @@
+{
+  "gene": "GSTM2",
+  "generatedAt": "2026-08-03T19:20:02.510Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GSTM2 属于胞质谷胱甘肽 S-转移酶 μ 家族，参与谷胱甘肽依赖的亲电化合物解毒与氧化应激缓冲，在神经退行性疾病相关的氧化损伤与脂质过氧化背景中具有生物学关联。该蛋白并非膜受体或分泌蛋白，天然抗原可及性弱，抗体策略更适合作为胞内蛋白检测、构象捕获或递送型抗体研究，而不宜优先设定为常规细胞外阻断靶点。其优先级主要来自高分辨率晶体结构与明确的二聚体/底物结合口袋信息；相比缺乏结构模型的同类 GSTM 靶点，更适合开展结构约束型表位设计与特异性识别验证。",
+    "mechanism": "抗体设计宜聚焦识别 GSTM2 μ类特异构象，阻断或报告其谷胱甘肽结合位点邻近构象及二聚体界面状态，而非设定细胞外受体-配体阻断机制。",
+    "selectedEpitope": "优先选择N端谷胱甘肽结合结构域外缘与C端α螺旋域交界处，避开高度保守催化残基。",
+    "diseaseDirection": "神经退行性疾病氧化应激方向",
+    "domain": "GSTM2 含N端硫氧还蛋白样GSH结合域与C端全α螺旋疏水底物结合域，功能性同源二聚体形成催化单元。",
+    "evidence": "GSTM2结构与神经退行性氧化应激证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传与关联评分",
+      "UniProtKB P28161 蛋白功能与亚细胞定位注释",
+      "RCSB PDB 2C4J X射线晶体结构",
+      "GST mu家族谷胱甘肽转移酶结构功能文献"
+    ],
+    "referenceEntries": "UniProtKB:P28161；RCSB PDB:2C4J；Open Targets:GSTM2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端GSH结合域外缘与C端α螺旋域交界面",
+        "兼具构象特异性与同工酶区分潜力，适合Fab构象识别",
+        "优先"
+      ],
+      [
+        "Site B",
+        "二聚体界面邻近α4/α5螺旋区域",
+        "可报告二聚体装配状态，但需避免破坏非目标GST同源保守界面",
+        "备选"
+      ],
+      [
+        "Site C",
+        "GSH结合位点核心及催化酪氨酸邻近区域",
+        "功能相关性强但家族保守性高，存在交叉反应与酶活扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GSTM2为胞质酶，体内可及性与治疗阻断可行性有限；表位设计需规避GST μ家族保守催化口袋，优先验证GSTM1/GSTM4交叉反应。",
+    "structurePrepZh": "以2C4J高分辨率晶体结构为模板，保留功能性二聚体用于界面分析，去除结晶缓冲小分子后标注GSH结合口袋与同工酶可变环区。",
+    "structureRef": "RCSB PDB 2C4J，1.35 Å X-ray human GSTM2 structure",
+    "antibodies": [
+      "anti-GSTM2 monoclonal antibody",
+      "anti-GST mu class antibody"
+    ],
+    "interfaceFocus": "GSH结合域外缘、α螺旋底物口袋与二聚体界面",
+    "designMode": "胞内酶构象识别",
+    "candidates": [
+      {
+        "target": "GSTM1",
+        "rationale": "GSTM1同属GST μ家族，参与谷胱甘肽依赖解毒与氧化应激应答，并在血清GST μ相关性状中具有直接关联。可作为交叉反应评估与同通路比较靶点。"
+      },
+      {
+        "target": "GSTM4",
+        "rationale": "GSTM4与GSTM2共享μ类GST结构框架及谷胱甘肽结合机制，Open Targets关联数据中包含血清GSTM4水平性状。适合用于家族选择性与疾病氧化应激轴验证。"
+      },
+      {
+        "target": "GSTM3",
+        "rationale": "GSTM3为同一GST μ家族成员，参与相似的谷胱甘肽缀合解毒反应。其纳入有助于解析神经退行性疾病相关氧化应激通路中的同工酶冗余性。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

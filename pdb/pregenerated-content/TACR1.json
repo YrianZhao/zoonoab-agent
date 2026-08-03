@@ -1,0 +1,65 @@
+{
+  "gene": "TACR1",
+  "generatedAt": "2026-08-03T17:06:15.058Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TACR1 编码的 neurokinin-1 receptor 是 P 物质的高亲和力受体，在恶心、呕吐及神经源性炎症中处于上游触发环节，并与多种肿瘤相关症状表型相连。该靶点为七跨膜膜受体，胞外环与正构配体结合口袋具备明确抗原可及性，适于以阻断配体识别为目标的抗体设计。相较于同通路的神经肽配体靶向策略，直接覆盖受体可获得更长的作用持续性与更高的受体选择性，因此优先级较高。",
+    "mechanism": "抗体占据受体胞外口袋及细胞外环，阻断 Substance P 与 TACR1 结合并抑制受体激活。",
+    "selectedEpitope": "优先覆盖 ECL2 及邻近正构配体口袋入口，兼顾 ECL1/ECL3 稳定接触位点。",
+    "diseaseDirection": "恶心呕吐与肿瘤支持治疗",
+    "domain": "Class A GPCR 七跨膜区；重点为 N 端、ECL2 及口袋入口",
+    "evidence": "TACR1 结构与疾病关联证据包",
+    "evidenceSources": [
+      "UniProt:P25103",
+      "RCSB PDB:6HLP",
+      "Open Targets Platform",
+      "GPCRdb/TACR1"
+    ],
+    "referenceEntries": "UniProt P25103; RCSB 6HLP; human TACR1, NK1 receptor",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ECL2-口袋入口",
+        "直接干预 Substance P 识别，最利于拮抗功能获得",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N 端与 ECL1 交界",
+        "可增强构象锁定并降低配体进入效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ECL3 外侧环区",
+        "有助于补充亲和力，但单独阻断效力可能不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GPCR 胞外表位面积有限且构象状态依赖性强，需优先采用稳定化构象筛选与膜环境复合物建模；避免仅依赖线性环区表位。",
+    "structurePrepZh": "建议以 6HLP 为核心模板重建胞外环与配体入口，保留膜近端几何约束，并结合多构象采样评估口袋暴露度。",
+    "structureRef": "6HLP, X-ray diffraction, 2.2 Å",
+    "antibodies": [
+      "aprepitant 类 NK1R 拮抗抗体概念参考",
+      "其他 TACR1/NK1R 拮抗性单抗概念"
+    ],
+    "interfaceFocus": "ECL2 及口袋入口界面",
+    "designMode": "阻断型拮抗设计",
+    "candidates": [
+      {
+        "target": "TACR3",
+        "rationale": "同属 tachykinin 受体家族，参与神经肽介导的疼痛与炎症相关信号，可作为通路选择性对照靶点。其结构与药理学特征有助于评估 NK 受体家族交叉识别风险。"
+      },
+      {
+        "target": "TACR2",
+        "rationale": "与 TACR1 共享 tachykinin 信号轴，介导 neurokinin A 相关效应，适合作为同通路比较靶点。对其家族保守位点的识别可用于优化受体亚型选择性。"
+      },
+      {
+        "target": "TAC1",
+        "rationale": "编码 Substance P 等 tachykinin 配体，是 TACR1 上游真实配体来源，可用于构建配体-受体双层干预框架。与受体端联用时，有助于验证阻断机制的通路一致性。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

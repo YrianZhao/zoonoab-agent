@@ -1,0 +1,65 @@
+{
+  "gene": "CCNF",
+  "generatedAt": "2026-08-03T18:20:33.803Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CCNF编码cyclin F，是SCF^cyclin F E3泛素连接酶复合体的底物识别亚基，ALS/FTD相关突变可扰乱蛋白稳态、DNA损伤应答及神经元应激耐受。该蛋白主要定位于细胞核和胞质，不具备经典跨膜胞外结构域或分泌特征，因此抗原可及性明显弱于膜受体和分泌因子，常规完整抗体直接作用存在进入细胞限制。其优先级主要来自遗传学关联和结构可解析性，相比同通路中广泛必需的泛素化核心酶，CCNF具有更明确的疾病突变聚焦和底物选择界面，可作为机制研究型胞内抗体或递送抗体设计靶点。",
+    "mechanism": "设计分子应干预cyclin F与SKP1或特定底物磷酸降解子之间的结合，抑制异常SCF^cyclin F介导的底物泛素化失衡。",
+    "selectedEpitope": "优先锁定F-box/SKP1结合界面及cyclin-like底物识别沟槽，评估构象选择性表位。",
+    "diseaseDirection": "ALS/FTD神经退行性疾病",
+    "domain": "cyclin F含N端F-box结构域、cyclin-like折叠及PEST样调控区，参与SCF复合体装配与底物识别。",
+    "evidence": "CCNF遗传关联与SCF复合体结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProtKB P41002功能与定位注释",
+      "RCSB PDB 9CB3冷冻电镜结构",
+      "ALS/FTD相关CCNF突变功能研究文献"
+    ],
+    "referenceEntries": "UniProt P41002；RCSB PDB 9CB3；Open Targets CCNF",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "F-box与SKP1结合界面",
+        "可阻断SCF^cyclin F复合体装配，机制清晰且结构可定位",
+        "优先"
+      ],
+      [
+        "Site B",
+        "cyclin-like底物识别沟槽",
+        "可能干预磷酸化底物降解子结合，适合构象选择性设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PEST样调控区及柔性片段",
+        "区域可能参与稳定性调控，但柔性高、结构不确定性较大",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CCNF为胞内非分泌蛋白，常规抗体可及性不足；宜采用胞内抗体、VHH递送或降解偶联策略，并避免干扰广泛必需SCF核心功能。",
+    "structurePrepZh": "以9CB3电镜模型为模板，保留抗原链A/B/C中解析可靠区域，补充分辨率较低环区注释并标记F-box界面残基。",
+    "structureRef": "RCSB PDB 9CB3，human cyclin F相关冷冻电镜结构",
+    "antibodies": [
+      "commercial anti-cyclin F antibody",
+      "research-grade anti-CCNF antibody"
+    ],
+    "interfaceFocus": "F-box–SKP1界面与cyclin-like底物沟槽",
+    "designMode": "胞内抗体/VHH递送",
+    "candidates": [
+      {
+        "target": "SKP1",
+        "rationale": "SKP1是SCF^cyclin F复合体的直接连接亚基，决定F-box蛋白装配。靶向其与CCNF的结合界面可用于验证复合体依赖性机制。"
+      },
+      {
+        "target": "CUL1",
+        "rationale": "CUL1构成SCF E3泛素连接酶支架，参与将底物识别模块连接至RBX1催化模块。其通路位置适合评估SCF泛素化轴对神经退行性表型的贡献。"
+      },
+      {
+        "target": "RBX1",
+        "rationale": "RBX1是SCF复合体的RING-box催化组分，负责招募E2泛素结合酶。与CCNF同属SCF泛素化通路，但因广泛必需性需以机制验证而非系统性阻断为主。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

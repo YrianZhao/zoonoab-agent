@@ -1,0 +1,65 @@
+{
+  "gene": "RHPN2",
+  "generatedAt": "2026-08-03T16:02:39.871Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RHPN2为胞内RhoA效应蛋白，含Rho结合结构域并参与肌动蛋白骨架、细胞黏附及迁移相关过程；其与结直肠癌等疾病的遗传关联提示可能参与肿瘤侵袭表型。该蛋白不具备分泌蛋白或膜受体特征，天然抗原可及性不利于常规细胞外抗体药物，需优先定位于结构生物学、细胞内递送抗体或研究级阻断工具。相比膜表面同通路靶点，RHPN2的优先级主要来自高分辨率实验结构和明确Rho GTPase结合界面，而非临床可及性优势。",
+    "mechanism": "设计分子应阻断RHPN2 Rho结合结构域与GTP结合型RhoA的效应子界面相互作用，削弱RhoA介导的细胞骨架重塑和迁移信号。",
+    "selectedEpitope": "优先覆盖HR1/Rho结合结构域的RhoA效应子结合沟槽及相邻α螺旋界面。",
+    "diseaseDirection": "结直肠癌侵袭迁移与Rho通路",
+    "domain": "RHPN2含N端HR1/Rho结合结构域、中央卷曲螺旋区及C端PDZ结构域样模块。",
+    "evidence": "RHPN2结构与RhoA通路疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q8IUC4蛋白结构域注释",
+      "RCSB PDB 2VSV晶体结构",
+      "Rho GTPase效应子相互作用文献"
+    ],
+    "referenceEntries": "UniProt Q8IUC4；RCSB PDB 2VSV；Open Targets RHPN2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "HR1/Rho结合结构域的RhoA效应子结合沟槽",
+        "可直接干预RHPN2与活化RhoA的结合，机制定义清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "HR1结构域相邻α螺旋外侧保守面",
+        "可能通过空间位阻稳定破坏RhoA复合物形成，适合作为备选构象表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离Rho结合界面的晶体接触区域",
+        "功能阻断价值有限，且可能反映晶体堆积而非生理界面",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RHPN2为胞内蛋白，常规抗体难以到达作用位点；抗体设计应限定为细胞内递送、intrabody或机制验证工具，并规避晶体接触假阳性表位。",
+    "structurePrepZh": "以2VSV链A/B为模板，保留HR1结构域核心构象，去除非生理晶体接触，检查缺失残基、界面保守性及RhoA对接方向。",
+    "structureRef": "RCSB PDB 2VSV，X-ray diffraction，1.82 Å",
+    "antibodies": [
+      "无已批准RHPN2靶向抗体",
+      "研究级抗RHPN2抗体"
+    ],
+    "interfaceFocus": "HR1结构域RhoA结合沟槽与α螺旋界面",
+    "designMode": "胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "RHOA",
+        "rationale": "RHOA为RHPN2的直接上游小GTP酶，GTP结合型RHOA通过效应子界面招募RHPN2并驱动细胞骨架重塑。"
+      },
+      {
+        "target": "ROCK1",
+        "rationale": "ROCK1是RHOA通路的经典下游效应激酶，参与肌球蛋白轻链磷酸化、细胞收缩和迁移表型。"
+      },
+      {
+        "target": "ROCK2",
+        "rationale": "ROCK2与ROCK1共同介导RHOA依赖性细胞骨架和黏附调控，是同一Rho信号轴中的真实可干预节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "HAUS5",
+  "generatedAt": "2026-08-03T19:39:56.981Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HAUS5 是 augmin/HAUS 复合体亚基，参与有丝分裂纺锤体微管成核并影响染色体分离，异常可与增殖失衡和肿瘤细胞有丝分裂压力相关。该蛋白主要定位于胞内纺锤体与中心体相关复合物，缺乏天然胞外结构域，常规治疗性抗体可及性受限，更适合作为细胞内结构生物学与靶向递送抗体片段评估对象。相较分泌型或膜受体肿瘤靶点，其 Open Targets 关联强度较低且疾病特异性不足，因此优先级应低于可直接胞外阻断的同通路调控节点。",
+    "mechanism": "设计策略聚焦阻断 HAUS5 与 HAUS 复合体相邻亚基界面，干扰 augmin 依赖的 γ-TuRC 招募和纺锤体微管成核。",
+    "selectedEpitope": "优先覆盖 HAUS5 在 7SQK augmin 复合体中的亚基接触面及长螺旋束暴露侧。",
+    "diseaseDirection": "有丝分裂异常相关肿瘤",
+    "domain": "HAUS5 为 augmin 复合体结构亚基，主要呈螺旋束构象并参与多亚基装配界面。",
+    "evidence": "HAUS5-augmin 复合体与有丝分裂疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联",
+      "UniProt O94927 蛋白功能注释",
+      "RCSB PDB 7SQK 冷冻电镜结构",
+      "文献报道的 augmin-γ-TuRC 微管成核机制"
+    ],
+    "referenceEntries": "UniProt O94927；RCSB PDB 7SQK；Open Targets HAUS5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "HAUS5 与相邻 HAUS 亚基的装配界面",
+        "可直接干扰 augmin 复合体稳定性与 γ-TuRC 招募平台形成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "HAUS5 螺旋束外侧暴露面",
+        "适合构建结构识别型 Fab/VHH，用于构象锁定与细胞内验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "多亚基复合体核心埋藏界面",
+        "抗体可及性较低，且可能依赖复合体解离后才暴露",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HAUS5 为胞内蛋白，体内抗体递送与抗原可及性是主要限制；8.0 Å 结构分辨率较低，界面设计需结合 AlphaFold 或同源模型精修。",
+    "structurePrepZh": "以 7SQK 多链冷冻电镜模型为起点，保留 HAUS5 所在复合体邻近链，进行缺失片段建模、质子化、界面残基标注与低分辨率约束优化。",
+    "structureRef": "RCSB PDB 7SQK，human augmin complex cryo-EM structure",
+    "antibodies": [
+      "无获批 HAUS5 靶向抗体",
+      "研究级抗 HAUS5 抗体"
+    ],
+    "interfaceFocus": "HAUS5-HAUS 复合体亚基接触界面",
+    "designMode": "胞内靶点验证型",
+    "candidates": [
+      {
+        "target": "HAUS6",
+        "rationale": "HAUS6 是 augmin 复合体亚基，参与纺锤体微管成核平台装配，与 HAUS5 处于同一有丝分裂微管调控轴。"
+      },
+      {
+        "target": "HAUS8",
+        "rationale": "HAUS8 参与 augmin 复合体稳定性及 γ-TuRC 招募，适合作为同通路复合体界面阻断的候选比较靶点。"
+      },
+      {
+        "target": "TUBG1",
+        "rationale": "TUBG1 编码 γ-tubulin，是 γ-TuRC 微管成核核心成分，位于 augmin 介导纺锤体微管生成的下游执行节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

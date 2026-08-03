@@ -1,0 +1,65 @@
+{
+  "gene": "PTPA",
+  "generatedAt": "2026-08-03T15:43:10.924Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PTPA（PPP2R4）是PP2A磷酸酶成熟与激活过程中的胞内伴侣样调节因子，可促进PP2A催化亚基构象重排和金属离子依赖性活化，进而影响神经元磷酸化稳态。其与早发帕金森病相关表型存在遗传关联，但该蛋白主要定位于胞质/胞核，不具备天然胞外结构域、分泌特征或膜受体可及性。相较LRRK2、SNCA或PINK1等同通路靶点，PTPA更适合机制探针或胞内递送抗体格式，作为常规体内阻断型抗体主靶点的优先级较低。",
+    "mechanism": "抗体设计宜定位为胞内结合探针，阻断PTPA与PP2A催化亚基PPP2CA的接触界面，干预催化亚基金属中心重构与PP2A全酶成熟。",
+    "selectedEpitope": "优先覆盖2IXM所示PTPA核心α螺旋束中PPP2CA结合凹面，避开高度保守ATP/Mg2+结合残基。",
+    "diseaseDirection": "神经退行性疾病与磷酸化稳态",
+    "domain": "PTPA为胞内PP2A磷酸酶激活因子，2IXM解析其保守核心折叠，含ATP/Mg2+结合相关结构区。",
+    "evidence": "PTPA-PP2A激活轴与帕金森相关证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q15257功能与亚细胞定位注释",
+      "RCSB PDB 2IXM晶体结构记录",
+      "PP2A holoenzyme maturation and phosphatase activation literature"
+    ],
+    "referenceEntries": "UniProt Q15257；RCSB PDB 2IXM；HGNC: PPP2R4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PTPA核心α螺旋束的PPP2CA结合凹面",
+        "直接干预PTPA-PP2A催化亚基复合物形成，机制指向性最强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ATP/Mg2+结合邻近构象调节环区",
+        "可影响PTPA介导的催化亚基构象成熟，但需保留选择性窗口",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守疏水核心及结构稳定化界面",
+        "可能造成非特异构象扰动或折叠识别偏差，功能解释风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PTPA缺乏胞外暴露，常规抗体药物可及性不足；建议限定为胞内递送Fab/VHH、细胞内抗体或结构功能验证工具。",
+    "structurePrepZh": "以2IXM链A为结构模板，补全缺失侧链并校正质子化状态；结合UniProt序列编号映射功能残基与保守界面。",
+    "structureRef": "RCSB PDB 2IXM，human PTPA X-ray structure, 1.5 Å",
+    "antibodies": [
+      "PTPA research antibody clone EPR11219",
+      "anti-PPP2R4 polyclonal antibody"
+    ],
+    "interfaceFocus": "PPP2CA结合凹面与ATP/Mg2+邻近调节区",
+    "designMode": "胞内VHH/Fab探针",
+    "candidates": [
+      {
+        "target": "PPP2CA",
+        "rationale": "PPP2CA是PP2A催化亚基，直接接受PTPA介导的构象成熟与金属中心调节，是同一PP2A磷酸化稳态轴的核心效应节点。"
+      },
+      {
+        "target": "PPP2R1A",
+        "rationale": "PPP2R1A编码PP2A支架亚基，组织催化亚基与调节亚基形成全酶复合物，可影响PP2A底物选择性和神经元磷酸化稳态。"
+      },
+      {
+        "target": "PPP2R2A",
+        "rationale": "PPP2R2A编码PP2A B55α调节亚基，参与PP2A底物招募与去磷酸化选择性，属于PTPA-PP2A成熟后功能输出通路中的真实调节节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

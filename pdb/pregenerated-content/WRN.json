@@ -1,0 +1,65 @@
+{
+  "gene": "WRN",
+  "generatedAt": "2026-08-03T17:54:00.112Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "WRN 是 RecQ 家族核内 DNA 解旋酶，参与复制叉稳定、同源重组、端粒维护与 DNA 双链断裂修复；其胚系缺陷导致 Werner 综合征，并与基因组不稳定相关肿瘤表型有关。该蛋白主要定位于细胞核和核仁，缺乏胞外结构域或分泌特征，天然抗原可及性不适合常规完整细胞表面阻断抗体。相较 EGFR、PDCD1 等膜受体靶点，WRN 的优先级更适合作为结构生物学验证、细胞内递送抗体片段或降解偶联策略的研究型靶点，而非传统外周给药抗体主靶点。",
+    "mechanism": "抗体片段拟结合 WRN ATPase/RecQ 解旋酶核心，空间阻断 ATP 结合构象转换或 DNA 底物进入通道，从而抑制 WRN 介导的复制应激修复。",
+    "selectedEpitope": "优先覆盖 RecA-like ATPase 结构域 Walker A/B 邻近沟槽及 DNA 结合通道边缘。",
+    "diseaseDirection": "基因组不稳定与肿瘤复制应激",
+    "domain": "WRN 含 N 端外切酶区、RecQ ATPase 解旋酶核心、RQC、HRDC 及核定位序列。",
+    "evidence": "WRN DNA 修复依赖性与疾病遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q14191 functional annotation",
+      "RCSB PDB 10AK experimental structure",
+      "Werner syndrome and RecQ helicase literature"
+    ],
+    "referenceEntries": "UniProt Q14191；RCSB PDB 10AK；Open Targets WRN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ATPase 核心 Walker A/B 邻近构象沟槽",
+        "可干预 ATP 水解驱动的解旋酶构象循环",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RecQ C-terminal RQC 与 DNA 结合通道边缘",
+        "有望削弱 WRN 对复制叉或端粒 DNA 底物的装载",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端外切酶催化区周边保守表面",
+        "可能影响核酸加工但同源保守性较高，选择性需严格评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "WRN 为核内酶，常规抗体难以进入作用位点；建议采用细胞内递送 Fab/VHH、纳米抗体表达或降解偶联模式，并规避高度保守 ATP 口袋导致的交叉反应。",
+    "structurePrepZh": "以 PDB 10AK 链 A 为结构模板，保留实验解析核心区域，补建缺失环区并标注 ATPase、RQC 与核酸结合界面，进行质子化和界面可及性评估。",
+    "structureRef": "RCSB PDB 10AK，X-ray diffraction，1.37 Å",
+    "antibodies": [
+      "无已批准抗 WRN 治疗性抗体",
+      "研究级抗 WRN 单克隆抗体"
+    ],
+    "interfaceFocus": "ATPase 催化沟槽与 DNA 底物结合通道",
+    "designMode": "细胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "BLM",
+        "rationale": "BLM 同属 RecQ 解旋酶，参与同源重组中间体解离和复制叉维护，与基因组不稳定和肿瘤易感性处于相近 DNA 修复通路。"
+      },
+      {
+        "target": "RECQL4",
+        "rationale": "RECQL4 参与 DNA 复制启动和损伤修复，其遗传缺陷导致基因组不稳定综合征，可作为 RecQ 依赖 DNA 维护轴的比较靶点。"
+      },
+      {
+        "target": "ATR",
+        "rationale": "ATR 是复制应激应答核心激酶，感知 RPA 包被单链 DNA 并激活 CHK1，与 WRN 维持复制叉稳定的功能通路直接相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

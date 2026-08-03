@@ -1,0 +1,65 @@
+{
+  "gene": "PFAS",
+  "generatedAt": "2026-08-03T15:12:55.992Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PFAS是胞质嘌呤从头合成多酶复合体的核心酰胺转移酶，催化FGAM生成步骤，为高增殖细胞提供IMP前体，其遗传关联主要指向造血表型及端粒生物学相关综合征。该蛋白缺乏分泌信号肽、跨膜区和稳定胞外结构域，常规体内中和抗体的抗原可及性较弱，更适合作为细胞内递送抗体或结构功能探针开发对象。相较于同通路中已有较明确小分子抑制经验的PPAT、GART、ATIC，PFAS具有完整实验冷冻电镜结构支持，可优先用于构象表位约束与催化界面干预设计。",
+    "mechanism": "通过细胞内递送抗体结合PFAS谷氨酰胺酰胺转移酶域与FGAM合成酶域耦联界面，干扰氨通道传递及FGAM底物转化。",
+    "selectedEpitope": "优先靶向谷氨酰胺酰胺转移酶域邻近合成酶域的结构域耦联界面，避开高度保守催化残基核心。",
+    "diseaseDirection": "嘌呤代谢与造血表型",
+    "domain": "PFAS含N端谷氨酰胺酰胺转移酶样结构域及C端FGAM合成酶相关催化结构域，形成胞质多域酶。",
+    "evidence": "PFAS嘌呤从头合成与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProtKB O15067功能与定位注释",
+      "RCSB PDB 9NB3冷冻电镜结构",
+      "Reactome嘌呤核苷酸从头生物合成通路"
+    ],
+    "referenceEntries": "UniProt O15067；RCSB PDB 9NB3；Reactome Purine biosynthesis",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "谷氨酰胺酰胺转移酶域-合成酶域耦联界面",
+        "可能阻断氨转移通道与催化构象耦合，具备功能干预价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端FGAM合成酶域底物结合沟槽邻近非保守环区",
+        "可影响底物进入或产物释放，同时保留一定选择性设计空间",
+        "备选"
+      ],
+      [
+        "Site C",
+        "酰胺转移酶催化半胱氨酸邻近核心口袋",
+        "催化核心高度保守，存在同源酶交叉结合与酶活完全抑制风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PFAS为胞质酶，常规抗体难以直接到达作用位点；建议限定于细胞内递送抗体、intrabody或研究级功能抗体，并进行同源酰胺转移酶交叉反应筛查。",
+    "structurePrepZh": "以PDB 9NB3链A为抗原模板，补全缺失环区并校验低分辨率侧链构象；保留多域相对取向用于界面表位建模。",
+    "structureRef": "RCSB PDB 9NB3，human PFAS cryo-EM structure，3.19 Å",
+    "antibodies": [
+      "暂无已获批PFAS靶向治疗性抗体",
+      "研究级anti-PFAS抗体"
+    ],
+    "interfaceFocus": "酰胺转移酶域与FGAM合成酶域耦联界面",
+    "designMode": "细胞内递送抗体",
+    "candidates": [
+      {
+        "target": "PPAT",
+        "rationale": "PPAT催化嘌呤从头合成早期限速步骤，将PRPP转化为5-磷酸核糖胺；与PFAS处于同一IMP生物合成通路，可作为上游代谢通量干预靶点。"
+      },
+      {
+        "target": "GART",
+        "rationale": "GART编码三功能嘌呤生物合成酶，参与GAR合成、GAR甲酰化及AIR合成；其产物供给PFAS上游底物FGAR，适合通路级联合验证。"
+      },
+      {
+        "target": "ATIC",
+        "rationale": "ATIC催化IMP生成前的AICAR甲酰化及IMP环化终末步骤；与PFAS共同支撑嘌呤从头合成，适合作为下游功能对照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

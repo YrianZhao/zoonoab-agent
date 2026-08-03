@@ -1,0 +1,65 @@
+{
+  "gene": "CPS1",
+  "generatedAt": "2026-08-03T11:36:44.309Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CPS1是肝线粒体尿素循环限速酶，催化氨、碳酸氢盐与ATP生成氨甲酰磷酸，遗传缺陷可导致高氨血症型carbamoyl phosphate synthetase I deficiency。该蛋白主要定位于线粒体基质，并非天然分泌蛋白或细胞膜受体，抗原可及性弱，因此抗体设计更适合作为结构验证、细胞内递送或诊断捕获场景。相较尿素循环中同样胞内定位的下游酶，CPS1具有高分辨率人源晶体结构和明确疾病因果证据，适合优先开展结构域特异性结合分子设计。",
+    "mechanism": "设计抗体阻断NAGS生成的N-乙酰谷氨酸与CPS1变构激活口袋结合，抑制CPS1构象激活及氨甲酰磷酸生成。",
+    "selectedEpitope": "优先锁定C端变构结构域的N-乙酰谷氨酸结合口袋邻近环区，兼顾构象选择性。",
+    "diseaseDirection": "尿素循环缺陷与高氨血症",
+    "domain": "CPS1含谷氨酰胺酰胺转移样区、两个ATP抓握催化区及C端NAG变构调控结构域。",
+    "evidence": "CPS1尿素循环缺陷结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P31327功能与亚细胞定位注释",
+      "RCSB PDB 6UEL人源CPS1晶体结构",
+      "OMIM与ClinVar中CPS1缺陷相关变异证据"
+    ],
+    "referenceEntries": "UniProt:P31327；RCSB PDB:6UEL；MONDO:0009376",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端N-乙酰谷氨酸变构结合口袋邻近环区",
+        "可干预NAG依赖性构象激活，适合机制型抑制抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ATP抓握催化结构域B/C交界面",
+        "邻近ATP依赖磷酸化反应核心，可用于构象锁定或活性状态识别",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端谷氨酰胺酰胺转移样结构域表面",
+        "远离主要变构激活位点，且功能贡献相对间接，需避免低效结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CPS1为线粒体基质酶，体内抗体可及性受限；宜优先开发诊断、结构探针或递送耦联格式，并避免遮挡高度保守ATP结合基序造成非特异交叉风险。",
+    "structurePrepZh": "以6UEL双链晶体结构为模板，保留催化与变构结构域完整构象，校正缺失侧链、质子化状态和配体邻近残基后进行表位暴露性评估。",
+    "structureRef": "Human CPS1 crystal structure, PDB 6UEL, 1.9 Å",
+    "antibodies": [
+      "HPA021400",
+      "ab45956"
+    ],
+    "interfaceFocus": "NAG变构口袋及ATP抓握域交界面",
+    "designMode": "胞内酶结构探针",
+    "candidates": [
+      {
+        "target": "NAGS",
+        "rationale": "NAGS合成CPS1必需变构激活剂N-乙酰谷氨酸，是同一高氨血症通路中的上游调控节点。其缺陷同样导致尿素循环起始受阻。"
+      },
+      {
+        "target": "OTC",
+        "rationale": "OTC利用CPS1产物氨甲酰磷酸生成瓜氨酸，是尿素循环线粒体阶段的直接下游酶。OTC缺陷与高氨血症具有明确因果关联。"
+      },
+      {
+        "target": "ASS1",
+        "rationale": "ASS1位于尿素循环胞质阶段，催化瓜氨酸与天冬氨酸生成精氨代琥珀酸。其缺陷导致瓜氨酸血症并与氮清除障碍同通路相关。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

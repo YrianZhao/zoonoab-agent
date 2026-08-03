@@ -1,0 +1,65 @@
+{
+  "gene": "CCM2",
+  "generatedAt": "2026-08-03T18:19:18.851Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CCM2 是 CCM1/KRIT1、CCM3/PDCD10 与 MEKK3 相关内皮稳态复合体的支架蛋白，其失功能可解除对 MEKK3-KLF2/KLF4 转录轴的抑制，促进脑海绵状血管畸形发生。该蛋白主要为胞质支架蛋白，缺乏天然胞外结构域，抗原可及性不利于常规循环抗体直接结合。相较 VEGFR2、TIE2 等膜受体靶点，CCM2 更贴近遗传致病核心机制，但更适合作为结构抗原、细胞内抗体或递送型抗体设计对象，优先级应定位于机制验证与精准通路干预。",
+    "mechanism": "设计分子应稳定 CCM2 PTB 结构域与 KRIT1 NPXY 基序结合，或阻断 CCM2 与 MAP3K3 复合物界面以抑制 MEKK3-KLF2/KLF4 异常激活。",
+    "selectedEpitope": "优先围绕 PTB 结构域 NPXY 肽结合沟槽及邻近 β 折叠-α 螺旋界面设计构象表位。",
+    "diseaseDirection": "脑海绵状血管畸形通路",
+    "domain": "CCM2 含 N 端 PTB 结构域及 C 端 harmonin-homology domain，介导 KRIT1 与 MEKK3 复合体装配。",
+    "evidence": "CCM2-CCM复合体与脑海绵状血管畸形证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9BSQ5 functional annotation",
+      "RCSB PDB 4FQN crystal structure",
+      "CCM complex and MEKK3-KLF2/KLF4 pathway literature"
+    ],
+    "referenceEntries": "UniProt Q9BSQ5；RCSB PDB 4FQN；MONDO_0031037",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PTB结构域NPXY结合沟槽",
+        "可用于模拟或稳定KRIT1结合构象，直接关联CCM复合体装配",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PTB结构域外侧β片层-α螺旋邻接面",
+        "具备构象特异性识别价值，可降低对核心折叠稳定性的扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "潜在CCM2二聚或晶体接触界面",
+        "可能受晶体堆积影响，需结合溶液状态与突变数据复核",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CCM2 为胞内支架蛋白，常规抗体体内可及性不足；建议采用细胞内抗体、递送型Fab/VHH或作为结构免疫原开展机制验证。",
+    "structurePrepZh": "以4FQN高分辨率晶体结构为模板，保留抗原链A-D用于界面比较，去除晶体添加物并校验PTB沟槽构象一致性。",
+    "structureRef": "RCSB PDB 4FQN，X-ray diffraction，1.9 Å",
+    "antibodies": [
+      "无获批抗CCM2治疗性抗体",
+      "实验级抗CCM2研究抗体"
+    ],
+    "interfaceFocus": "PTB-NPXY结合沟槽与MEKK3相关装配界面",
+    "designMode": "胞内抗体设计",
+    "candidates": [
+      {
+        "target": "KRIT1",
+        "rationale": "KRIT1 与 CCM2 通过 NPXY-PTB 相互作用形成 CCM 复合体，是家族性脑海绵状血管畸形的核心致病基因之一。其复合体稳定性直接影响内皮屏障与 MEKK3-KLF2/KLF4 轴。"
+      },
+      {
+        "target": "PDCD10",
+        "rationale": "PDCD10/CCM3 是 CCM 复合体组成因子，突变与更严重的脑海绵状血管畸形表型相关。其与 CCM2 相关复合物共同维持内皮细胞连接和血管稳定性。"
+      },
+      {
+        "target": "MAP3K3",
+        "rationale": "MAP3K3 编码 MEKK3，是 CCM 缺失后驱动 KLF2/KLF4 异常转录激活的关键激酶。靶向该节点可在通路下游抑制病理性内皮重编程。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

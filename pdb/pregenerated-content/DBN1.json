@@ -1,0 +1,65 @@
+{
+  "gene": "DBN1",
+  "generatedAt": "2026-08-03T11:49:25.461Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DBN1编码肌动蛋白结合蛋白drebrin 1，主要参与神经元树突棘形态、突触可塑性及细胞骨架重塑，其Open Targets关联信号集中于认知表型和血细胞数量性状，但当前疾病关联多为遗传统计相关，缺乏明确的可药化致病轴。DBN1为胞内细胞骨架调节蛋白，不具备分泌蛋白或膜受体型胞外结构域，天然抗体可及性明显受限。相较于同一突触细胞骨架通路中的胞外受体或黏附分子，DBN1更适合作为机制研究或细胞内递送抗体靶点，治疗性常规抗体优先级较低。",
+    "mechanism": "通过细胞内递送抗体结合DBN1肌动蛋白结合区，干扰DBN1与F-actin侧向结合及束化作用，从而改变树突棘肌动蛋白重塑。",
+    "selectedEpitope": "优先考察5ZZ9所覆盖的ABD/ADF-H样肌动蛋白结合界面，避开高度保守疏水核心。",
+    "diseaseDirection": "神经突触可塑性与认知表型",
+    "domain": "DBN1含N端ADF-H样肌动蛋白结合结构域及C端富脯氨酸调控区，整体为胞内蛋白。",
+    "evidence": "DBN1突触细胞骨架与认知遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联与遗传证据",
+      "UniProt Q16643蛋白功能与亚细胞定位注释",
+      "RCSB PDB 5ZZ9晶体结构数据",
+      "文献报道的drebrin-F-actin结合及树突棘调控研究"
+    ],
+    "referenceEntries": "UniProt: Q16643; RCSB PDB: 5ZZ9; Open Targets: DBN1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ADF-H样结构域F-actin结合沟槽邻近区域",
+        "可直接影响DBN1与肌动蛋白丝结合，适合机制阻断型胞内抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "5ZZ9结构中外露螺旋-环区",
+        "有利于获得构象识别抗体，可用于结构探针或细胞内成像验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守折叠核心及疏水埋藏面",
+        "可能破坏蛋白整体稳定性并产生交叉反应风险，不宜作为常规表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DBN1为胞内抗原，常规IgG难以到达作用位点；建议限定为intracellular Fab/VHH、递送系统或研究试剂方向，并严格评估ACTB相关交叉反应。",
+    "structurePrepZh": "以PDB 5ZZ9实验结构为模板，按链A-F比对保守界面，补全缺失环区并标注溶剂可及残基、F-actin结合残基及晶体接触面。",
+    "structureRef": "RCSB PDB 5ZZ9, X-ray diffraction, 2.3 Å",
+    "antibodies": [
+      "commercial anti-DBN1 clone M2F6",
+      "commercial anti-Drebrin clone 4D3"
+    ],
+    "interfaceFocus": "ADF-H样肌动蛋白结合沟槽与外露螺旋环区",
+    "designMode": "胞内VHH/Fab机制探针",
+    "candidates": [
+      {
+        "target": "ACTB",
+        "rationale": "ACTB编码β-actin，是DBN1直接结合的F-actin组成亚基，处于同一肌动蛋白骨架重塑轴；但其高度保守且广泛表达，药物选择性风险较高。"
+      },
+      {
+        "target": "ACTG1",
+        "rationale": "ACTG1编码γ-actin，与DBN1介导的细胞骨架组织和神经元形态维持相关，可作为同一肌动蛋白网络的机制参照靶点。"
+      },
+      {
+        "target": "CDC42",
+        "rationale": "CDC42通过Rho GTPase通路调控肌动蛋白聚合、树突棘形态和突触结构，与DBN1功能收敛于神经元细胞骨架重塑。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

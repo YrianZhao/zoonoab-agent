@@ -1,0 +1,65 @@
+{
+  "gene": "HGFAC",
+  "generatedAt": "2026-08-03T13:11:10.952Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HGFAC编码肝细胞生长因子激活因子，是分泌型丝氨酸蛋白酶，可将单链pro-HGF切割为具有活性的异二聚体HGF，从而增强HGF-MET轴介导的上皮修复、侵袭和组织重塑。该靶点为循环与局部组织液中的可溶性蛋白，包含可抗体识别的胞外蛋白酶结构域，抗原可及性优于胞内激酶或转录因子。相比直接阻断MET，HGFAC位于配体成熟的上游蛋白水解步骤，具有降低HGF生成而保留部分基础受体生物学的差异化干预价值。",
+    "mechanism": "抗体阻断HGFAC催化结构域对单链pro-HGF切割位点的识别，抑制成熟HGF生成并降低HGF-MET复合物形成。",
+    "selectedEpitope": "优先覆盖胰蛋白酶样丝氨酸蛋白酶结构域的底物结合沟槽与催化口袋邻近外环。",
+    "diseaseDirection": "HGF-MET轴相关肿瘤与纤维化",
+    "domain": "HGFAC为分泌型酶原蛋白，含N端纤连蛋白样区域、Kringle结构域及C端丝氨酸蛋白酶结构域。",
+    "evidence": "HGFAC介导pro-HGF活化的结构与遗传证据",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB Q04756功能与结构域注释",
+      "RCSB PDB 2R0L晶体结构记录",
+      "HGF-MET通路与pro-HGF蛋白水解活化文献"
+    ],
+    "referenceEntries": "UniProt Q04756；RCSB PDB 2R0L；HGNC:HGFAC",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "丝氨酸蛋白酶结构域底物结合沟槽及S1口袋周边外环",
+        "直接干扰pro-HGF进入催化位点，机制可验证性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "蛋白酶结构域远端暴露环与酶原构象稳定界面",
+        "可通过构象锁定降低催化效率，并减少完全占据催化口袋的选择压力",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端Kringle及纤连蛋白样结构域表面",
+        "可能影响底物定位或组织结合，但与催化抑制的直接相关性较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HGFAC蛋白酶结构域与凝血和纤溶相关丝氨酸蛋白酶存在同源性，表位设计需避开高度保守催化三联体核心并强化HGFAC特异外环识别。",
+    "structurePrepZh": "以2R0L晶体结构为模板，保留抗原蛋白酶结构域构象，校正缺失侧链、二硫键和糖基化位点，并评估抗体结合对底物沟槽的空间遮挡。",
+    "structureRef": "RCSB PDB 2R0L，X-ray diffraction，2.2 Å",
+    "antibodies": [
+      "anti-HGFAC neutralizing antibody",
+      "anti-HGFAC inhibitory monoclonal antibody"
+    ],
+    "interfaceFocus": "底物结合沟槽、S1口袋及催化外环",
+    "designMode": "阻断型中和抗体",
+    "candidates": [
+      {
+        "target": "HGF",
+        "rationale": "HGF是HGFAC直接加工生成的MET配体，阻断HGF可抑制HGF-MET复合物形成，是同一配体成熟与受体激活通路中的核心候选靶点。"
+      },
+      {
+        "target": "MET",
+        "rationale": "MET为HGF受体酪氨酸激酶，介导下游PI3K-AKT、RAS-MAPK和STAT信号，是HGFAC上游蛋白水解活化事件的主要效应受体。"
+      },
+      {
+        "target": "SPINT1",
+        "rationale": "SPINT1编码HAI-1，是HGFAC及相关蛋白酶活性的生理抑制因子，参与限制pro-HGF向活性HGF转化的同一蛋白水解调控网络。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

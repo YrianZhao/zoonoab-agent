@@ -1,0 +1,65 @@
+{
+  "gene": "PLS3",
+  "generatedAt": "2026-08-03T20:36:14.523Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PLS3编码T-plastin，为肌动蛋白束化蛋白，参与成骨细胞骨基质矿化、骨细胞机械感受及细胞骨架稳定，遗传缺陷与X连锁骨质疏松伴骨折和低骨量表型相关。该蛋白主要定位于胞质肌动蛋白骨架，不属于分泌蛋白或经典膜受体，天然抗原可及性明显弱于细胞外骨代谢因子。作为抗体靶点的优先级低于RANKL、SOST等细胞外可阻断靶点，更适合定位为机制验证或细胞内递送抗体探索对象。",
+    "mechanism": "通过胞内递送抗体结合PLS3的肌动蛋白结合模块，干扰其与F-actin束化界面相互作用，从而评估骨细胞骨架力学耦联功能。",
+    "selectedEpitope": "优先考察C端actin-binding domain 2中CH3-CH4构成的F-actin结合沟槽邻近表位。",
+    "diseaseDirection": "遗传性骨质疏松与骨折风险",
+    "domain": "PLS3含N端钙调控区及两个串联actin-binding domains，每个ABD由两个calponin-homology结构域组成。",
+    "evidence": "PLS3骨质疏松遗传关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P13797蛋白功能注释",
+      "RCSB PDB 1AOA晶体结构记录",
+      "人类PLS3突变相关骨质疏松文献"
+    ],
+    "referenceEntries": "UniProt:P13797；RCSB PDB:1AOA；Open Targets:PLS3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端ABD2的CH3-CH4肌动蛋白结合沟槽",
+        "最接近F-actin束化功能界面，适合阻断型胞内抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端ABD1的CH1-CH2模块外侧保守曲面",
+        "可用于构建功能干预或构象识别抗体，需评估同源plastin交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端EF-hand钙结合调控区邻近区域",
+        "调控意义存在但结构柔性较高，且非直接肌动蛋白结合界面",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PLS3为胞内骨架蛋白，常规抗体难以到达天然作用位点；建议限定为细胞内抗体、递送抗体或研究级工具抗体，并严格评估LCP1/PLS1交叉反应。",
+    "structurePrepZh": "以1AOA实验结构链A为核心模板，补全缺失柔性环区并校验CH结构域边界；对低置信柔性片段避免作为主表位。",
+    "structureRef": "RCSB PDB 1AOA，X-ray diffraction，2.4 Å",
+    "antibodies": [
+      "研究级anti-PLS3 monoclonal antibody",
+      "研究级anti-T-plastin antibody"
+    ],
+    "interfaceFocus": "CH结构域F-actin结合沟槽及束化界面",
+    "designMode": "胞内递送抗体探索",
+    "candidates": [
+      {
+        "target": "SOST",
+        "rationale": "SOST编码骨细胞分泌的sclerostin，可结合LRP5/6抑制WNT信号，是骨形成抑制通路中的细胞外高可及性靶点。相较PLS3，具备更直接的阻断抗体开发基础。"
+      },
+      {
+        "target": "TNFSF11",
+        "rationale": "TNFSF11编码RANKL，通过结合TNFRSF11A/RANK促进破骨细胞分化和骨吸收，是骨质疏松治疗中已验证的细胞外配体靶点。"
+      },
+      {
+        "target": "LRP5",
+        "rationale": "LRP5为WNT共受体，遗传变异与骨量调控密切相关，并处于骨形成机械响应与WNT信号轴。其胞外β-propeller结构域提供抗体结合与配体调节可能性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

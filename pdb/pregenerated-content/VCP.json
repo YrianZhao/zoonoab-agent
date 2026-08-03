@@ -1,0 +1,65 @@
+{
+  "gene": "VCP",
+  "generatedAt": "2026-08-03T21:32:01.007Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "VCP是AAA+ ATPase家族核心蛋白，参与ER相关降解、泛素依赖蛋白质稳态、自噬与线粒体质量控制；致病突变可导致IBMPFD、ALS/FTD谱系及周围神经病变，疾病机制与错误折叠蛋白清除障碍和神经肌肉退行性改变相关。VCP主要定位于胞质、细胞核及细胞器相关复合体，缺乏经典胞外结构域或分泌特征，抗体直接结合天然细胞外抗原的可及性受限。相较膜受体或分泌型神经炎症靶点，VCP更适合作为细胞内机制验证或递送型抗体工程靶点；其高分辨率结构与明确ATPase构象界面为结构引导设计提供优先依据。",
+    "mechanism": "通过结合N-domain与D1 ATPase环的构象耦联界面，干预VCP与泛素适配蛋白及底物转运复合体的装配。",
+    "selectedEpitope": "优先覆盖N-domain适配蛋白结合面及N-D1 linker构象门控区域。",
+    "diseaseDirection": "神经肌肉退行性疾病与ALS/FTD",
+    "domain": "VCP含N-domain、D1与D2两个AAA+ ATPase结构域，形成六聚体ATP依赖 unfoldase。",
+    "evidence": "VCP神经肌肉退行性疾病结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P55072功能与亚细胞定位注释",
+      "RCSB PDB 5B6C高分辨率晶体结构",
+      "OMIM与ClinVar VCP致病变异记录"
+    ],
+    "referenceEntries": "UniProt P55072；RCSB PDB 5B6C；Open Targets VCP",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N-domain双亚结构域适配蛋白结合面",
+        "可阻断UBXD、UFD1-NPL4等辅因子招募，适合机制型抑制设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N-D1 linker及D1环入口构象界面",
+        "可影响N-domain相对D1环的构象切换，利于调节底物处理周期",
+        "备选"
+      ],
+      [
+        "Site C",
+        "D1/D2 ATP结合口袋邻近区域",
+        "与高度保守ATPase催化核心接近，存在广泛构象扰动与脱靶风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "VCP为胞内六聚体ATPase，常规抗体难以进入天然作用位点；建议限定为细胞内递送、intrabody或结构验证场景，避免直接开发未递送的外周阻断抗体。",
+    "structurePrepZh": "以PDB 5B6C链A/B为结构模板，补全缺失侧链并保留六聚体相关界面信息；按ATPase构象状态标注N-domain、D1与D2边界。",
+    "structureRef": "Banerjee et al., VCP/p97 high-resolution structure, PDB 5B6C",
+    "antibodies": [
+      "anti-VCP clone 5",
+      "anti-p97/VCP clone EPR3307"
+    ],
+    "interfaceFocus": "N-domain辅因子结合面与N-D1构象耦联界面",
+    "designMode": "胞内递送型Fab/VHH",
+    "candidates": [
+      {
+        "target": "SQSTM1",
+        "rationale": "SQSTM1/p62参与泛素化蛋白自噬清除，并与VCP相关蛋白质稳态网络共同影响ALS/FTD及肌病病理。其聚集与自噬通量异常可作为同一蛋白稳态通路的替代干预节点。"
+      },
+      {
+        "target": "TBK1",
+        "rationale": "TBK1调控自噬受体磷酸化、线粒体质量控制及神经炎症反应，遗传缺陷与ALS/FTD直接相关。其位于VCP相关蛋白清除与选择性自噬轴的上游调节层。"
+      },
+      {
+        "target": "OPTN",
+        "rationale": "OPTN是选择性自噬受体，参与泛素化货物与线粒体自噬识别，突变与ALS和青光眼相关。其功能缺陷与VCP介导的蛋白质质量控制障碍具有通路交集。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

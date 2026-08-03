@@ -1,0 +1,65 @@
+{
+  "gene": "STEEP1",
+  "generatedAt": "2026-08-03T16:59:35.002Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "STEEP1参与STING1从内质网输出过程，其异常可影响先天免疫信号的时序与强度，并与X连锁智力障碍及乳腺癌相关表型形成疾病关联。该蛋白位于膜相关细胞内区室，具有明确的胞内可及构象界面，适合在复合物稳定状态下进行结构导向抗体干预。相较于直接靶向STING1本体，优先选择STEEP1有利于上游限制STING1转运激活，降低对下游广泛炎症节点的非特异性扰动。",
+    "mechanism": "阻断STEEP1与STING1的装配及内质网外运复合体形成，从而抑制STING1向高尔基体转运。",
+    "selectedEpitope": "优先覆盖STING1结合界面及膜近端保守螺旋面，避免远端柔性区。",
+    "diseaseDirection": "神经发育障碍/肿瘤免疫",
+    "domain": "内质网膜相关胞质侧结构域与STING1结合界面",
+    "evidence": "STEEP1结构与疾病关联证据包",
+    "evidenceSources": [
+      "UniProt Q9H5V9",
+      "RCSB PDB 8C6J",
+      "Open Targets Platform",
+      "Human Protein Atlas"
+    ],
+    "referenceEntries": "UniProt: Q9H5V9; PDB: 8C6J; Open Targets: STEEP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "STING1结合界面核心螺旋簇",
+        "优先阻断复合物组装，直接削弱ER输出步骤",
+        "优先"
+      ],
+      [
+        "Site B",
+        "膜近端稳定折叠表面",
+        "利于提高结合选择性并维持构象识别",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远端柔性环区",
+        "可及性较高但对功能抑制贡献有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险在于靶点位于细胞内膜相关界面，常规IgG可及性受限，且复合物构象可能依赖膜环境。建议优先采用胞内递送体系或VHH/Fab片段，并以复合物状态进行表位映射。",
+    "structurePrepZh": "建议基于8C6J去除低置信度柔性片段，保留膜近端稳定核心并重建复合物界面。进行STEEP1-STING1对接约束时，应同步考虑膜锚定方向与界面遮蔽效应。",
+    "structureRef": "RCSB PDB 8C6J; EM 2.8 A",
+    "antibodies": [
+      "抗STING1中和抗体类分子",
+      "抗ER出口复合体界面抗体类分子"
+    ],
+    "interfaceFocus": "STING1装配界面与膜近端螺旋束",
+    "designMode": "structure-guided",
+    "candidates": [
+      {
+        "target": "STING1",
+        "rationale": "STEEP1功能直接依赖于STING1转运轴，二者构成同一疾病通路中的核心上游节点。优先联动验证可明确抗体阻断是否足以抑制STING1外运与后续信号激活。"
+      },
+      {
+        "target": "TMEM173",
+        "rationale": "TMEM173编码STING1，是STEEP1介导ER输出的直接受体/底物节点，属于同一分子装配通路。以其为并行候选可用于界定复合物界面并校正功能性表位筛选。"
+      },
+      {
+        "target": "TBK1",
+        "rationale": "TBK1位于STING1激活后的下游信号轴，参与I型干扰素与炎症基因转录放大。纳入该节点有助于在同一先天免疫通路中比较上游阻断与下游抑制的效应边界。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

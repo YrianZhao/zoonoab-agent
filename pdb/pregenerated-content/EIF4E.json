@@ -1,0 +1,65 @@
+{
+  "gene": "EIF4E",
+  "generatedAt": "2026-08-03T12:14:49.439Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "EIF4E是帽依赖性翻译起始核心因子，通过结合m7G mRNA 5′帽并招募EIF4G形成eIF4F复合体，影响突触可塑性、神经发育和部分病毒RNA翻译相关病理过程。该蛋白主要定位于胞质和细胞核，不具备胞外结构域、分泌蛋白或膜受体特征，天然抗原可及性不利于常规体内阻断抗体。其优先级主要来自高分辨率结构、明确的m7G帽结合口袋和可药性调控界面；相较同通路胞内因子，EIF4E处于帽识别限速节点，但更适合作为结构抗体、胞内抗体或研究级结合分子设计对象。",
+    "mechanism": "设计分子可占据EIF4E的m7G帽结合口袋，阻断mRNA 5′帽与Trp56、Trp102芳香夹层相互作用，并削弱EIF4G依赖的eIF4F装配。",
+    "selectedEpitope": "优先覆盖帽结合凹槽及Trp56/Trp102邻近环区，兼顾EIF4G结合面的构象耦联位点。",
+    "diseaseDirection": "神经发育与翻译起始调控",
+    "domain": "EIF4E为单结构域帽结合蛋白，含保守β片层-α螺旋折叠及m7GTP结合芳香夹层。",
+    "evidence": "EIF4E帽依赖性翻译与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB P06730功能与定位注释",
+      "RCSB PDB 4TPW晶体结构记录",
+      "eIF4E-eIF4G-mTOR/4E-BP翻译调控文献"
+    ],
+    "referenceEntries": "UniProt P06730；RCSB PDB 4TPW；Open Targets EIF4E",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "m7G帽结合口袋及Trp56/Trp102芳香夹层周边",
+        "直接竞争5′帽结合，最接近翻译起始功能阻断机制",
+        "优先"
+      ],
+      [
+        "Site B",
+        "EIF4G/4E-BP共享结合面的背侧螺旋沟槽",
+        "可干扰EIF4G招募或稳定4E-BP样抑制构象",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离帽口袋的β片层外侧保守表面",
+        "功能耦联证据有限，且可能仅产生非阻断结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "EIF4E为胞内非分泌蛋白，常规抗体体内可及性不足；建议限定为胞内抗体、细胞递送格式或结构研究抗体，并避免影响广泛基础翻译造成非特异毒性。",
+    "structurePrepZh": "以4TPW高分辨率晶体结构为模板，保留m7GTP或帽类似物坐标用于口袋定义，校正质子化状态、晶体接触和链A/B构象差异后开展表位建模。",
+    "structureRef": "RCSB PDB 4TPW，X-ray diffraction，1.5 Å",
+    "antibodies": [
+      "无获批EIF4E治疗性抗体",
+      "抗EIF4E研究级单克隆抗体"
+    ],
+    "interfaceFocus": "m7G帽口袋与EIF4G/4E-BP结合沟槽",
+    "designMode": "胞内阻断型抗体设计",
+    "candidates": [
+      {
+        "target": "EIF4G1",
+        "rationale": "EIF4G1是eIF4F支架蛋白，直接与EIF4E结合并招募EIF4A，处于同一帽依赖性翻译起始复合体。靶向其EIF4E结合区可阻断复合体装配。"
+      },
+      {
+        "target": "EIF4A1",
+        "rationale": "EIF4A1是eIF4F复合体RNA解旋酶，负责解除5′UTR二级结构以促进核糖体扫描。其功能与EIF4E介导的帽识别共同驱动翻译起始。"
+      },
+      {
+        "target": "EIF4EBP1",
+        "rationale": "EIF4EBP1为EIF4E结合蛋白，竞争EIF4G结合并受mTORC1磷酸化调控。增强或模拟EIF4EBP1-EIF4E相互作用可抑制帽依赖性翻译。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

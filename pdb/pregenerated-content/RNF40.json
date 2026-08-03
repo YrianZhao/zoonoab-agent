@@ -1,0 +1,65 @@
+{
+  "gene": "RNF40",
+  "generatedAt": "2026-08-03T16:07:09.730Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RNF40与RNF20形成BRE1A/B E3泛素连接酶复合体，催化组蛋白H2B Lys120单泛素化，影响转录延伸、DNA损伤应答和染色质稳态，其异常可与神经退行性病变及肿瘤相关转录失衡相联系。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌暴露特征，常规循环抗体可及性不足，更适合作为细胞内递送抗体、intrabody或降解偶联策略的设计对象。相较许多间接染色质调控因子，RNF40具有明确的RNF20异源二聚界面、RING催化模块和H2Bub1读出终点，机制验证路径更清晰，但因抗原可及性限制应列为条件优先靶点。",
+    "mechanism": "设计抗体阻断RNF40与RNF20的稳定复合体界面，削弱BRE1A/B对组蛋白H2B Lys120的单泛素化催化活性。",
+    "selectedEpitope": "优先覆盖RNF40 C端RING/邻近卷曲螺旋复合体界面，干扰RNF20配对与E2酶定位。",
+    "diseaseDirection": "神经退行性疾病与染色质稳态异常",
+    "domain": "RNF40含N端低复杂度区、卷曲螺旋二聚化区域及C端RING型E3连接酶结构域。",
+    "evidence": "RNF40-BRE1A/B-H2Bub1染色质调控证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProtKB O75150功能与亚细胞定位注释",
+      "RCSB PDB 8GUJ冷冻电镜结构",
+      "H2B Lys120单泛素化与转录调控文献"
+    ],
+    "referenceEntries": "UniProt O75150；RCSB PDB 8GUJ；Open Targets RNF40",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端RING结构域及RNF20邻近复合体界面",
+        "直接干扰E3催化构象与E2酶装配，机制可验证性高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "卷曲螺旋异源二聚化区域",
+        "阻断RNF40-RNF20复合体稳定性，适合构建功能抑制型intrabody",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端低复杂度或柔性区域",
+        "结构有序性和功能界面确定性较低，易产生非特异结合风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RNF40为核内蛋白，传统抗体药物进入细胞核效率有限；建议限定于细胞内抗体、递送抗体或研究级功能阻断格式，并规避高度柔性无序片段。",
+    "structurePrepZh": "以8GUJ冷冻电镜模型为模板，保留RNF40-RNF20复合体相关链，补充缺失环区并评估RING结构域金属配位状态与界面保守性。",
+    "structureRef": "RCSB PDB 8GUJ，human RNF20-RNF40复合体冷冻电镜结构",
+    "antibodies": [
+      "RNF40研究级单克隆抗体",
+      "RNF40染色质免疫沉淀抗体"
+    ],
+    "interfaceFocus": "RNF40-RNF20二聚界面与RING催化邻域",
+    "designMode": "细胞内功能阻断",
+    "candidates": [
+      {
+        "target": "RNF20",
+        "rationale": "RNF20是RNF40的核心复合体伴侣，共同构成BRE1A/B E3连接酶并催化H2B Lys120单泛素化。靶向RNF20可从同一复合体层面验证H2Bub1依赖机制。"
+      },
+      {
+        "target": "UBE2A",
+        "rationale": "UBE2A是参与组蛋白H2B单泛素化的E2泛素结合酶，可与BRE1复合体功能耦联。其调控位点位于同一泛素转移反应轴，适合作为机制对照靶点。"
+      },
+      {
+        "target": "WAC",
+        "rationale": "WAC参与RNF20-RNF40复合体募集并促进转录相关H2B单泛素化。该靶点位于同一染色质转录延伸通路，可用于评估复合体定位依赖性。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "POLD2",
+  "generatedAt": "2026-08-03T15:25:08.457Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "POLD2 是 DNA polymerase δ 复合体的辅助亚基，参与 PCNA 依赖的滞后链合成、DNA 损伤修复与复制压力应答；其异常表达与白血病、非小细胞肺癌和胰腺癌等高增殖肿瘤的复制适应性相关。该蛋白主要定位于细胞核，不具备分泌蛋白或膜受体的天然胞外可及性，因此不适合作为常规体内表面结合抗体靶点。其设计优先级低于 PDCD1、CD19、EGFR 等同疾病领域可及性更高的胞外靶点，但可作为细胞内功能阻断抗体、递送型抗体或研究级结合分子开发对象。",
+    "mechanism": "通过结合 POLD2 与 POLD3/POLD1 复合体装配界面，干扰 polymerase δ 四亚基稳定组装，削弱 PCNA 依赖的 DNA 链延伸与复制修复能力。",
+    "selectedEpitope": "优先覆盖 POLD2 N 端寡核苷酸/寡糖结合样折叠中与 POLD3 接触的复合体装配界面。",
+    "diseaseDirection": "复制压力相关血液肿瘤与实体瘤",
+    "domain": "POLD2 含 N 端 OB-fold 样结构和 C 端锌指样结构域，介导 polymerase δ 复合体稳定化。",
+    "evidence": "POLD2 复制复合体结构与肿瘤遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProtKB P49005 功能注释",
+      "RCSB PDB 3E0J X 射线晶体结构",
+      "DNA polymerase δ 复合体复制与修复文献"
+    ],
+    "referenceEntries": "UniProt P49005；RCSB PDB 3E0J；Open Targets POLD2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N 端 OB-fold 样结构的 POLD3 接触面",
+        "可阻断 accessory subunit 间装配并降低复合体稳定性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C 端锌指样区域邻近 POLD1/POLD2 连接界面",
+        "可能影响 polymerase δ 核心复合体构象稳定",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离亚基界面的溶剂暴露环区",
+        "结合可行性较高但功能阻断效应不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "POLD2 为核内蛋白，体内抗体可及性和递送效率是主要限制；应优先用于细胞内抗体、纳米抗体递送或结构验证体系。",
+    "structurePrepZh": "以 3E0J 多链晶体结构为模板，保留 POLD2 相关链并标注 POLD1/POLD3 接触残基，补全缺失环区后进行界面能量评估。",
+    "structureRef": "RCSB PDB 3E0J，human DNA polymerase delta subcomplex",
+    "antibodies": [
+      "研究级 anti-POLD2 antibody",
+      "细胞内抗体或 VHH 工程化候选"
+    ],
+    "interfaceFocus": "POLD2-POLD3 装配界面与 POLD1 邻近支撑面",
+    "designMode": "细胞内阻断型",
+    "candidates": [
+      {
+        "target": "POLD1",
+        "rationale": "POLD1 是 DNA polymerase δ 催化亚基，与 POLD2 共同维持复制链延伸；直接干预催化核心可更强地影响肿瘤复制压力耐受。"
+      },
+      {
+        "target": "POLD3",
+        "rationale": "POLD3 是 polymerase δ 辅助亚基并参与 PCNA 相关复制过程，与 POLD2 存在复合体装配关系，适合作为同一复制通路的替代界面靶点。"
+      },
+      {
+        "target": "PCNA",
+        "rationale": "PCNA 作为复制滑动夹招募 polymerase δ 至复制叉，阻断 PCNA 与 POLD 复合体相互作用可影响 DNA 合成和损伤修复。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

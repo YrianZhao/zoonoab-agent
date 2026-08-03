@@ -1,0 +1,65 @@
+{
+  "gene": "NANP",
+  "generatedAt": "2026-08-03T14:34:10.743Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NANP编码N-乙酰神经氨酸磷酸酶，催化N-乙酰神经氨酸-9-磷酸去磷酸化，是胞质唾液酸从头合成通路的代谢酶；现有关联主要来自肾小球滤过率、胱抑素C、尿酸等量化性状，提示肾功能与代谢表型相关性，但缺乏明确的抗体可干预疾病轴。该蛋白定位于胞质，天然状态下不具备胞外结构域、分泌蛋白或膜受体可及性，常规治疗性抗体难以接触其催化位点。与同通路中具有细胞表面可及性的唾液酸转运或唾液酸化糖蛋白靶点相比，NANP作为主抗体靶点优先级较低，更适合作为结构生物学验证或细胞内递送抗体研究对象。",
+    "mechanism": "设计目标为阻断NANP催化口袋对N-乙酰神经氨酸-9-磷酸的结合，并干扰Mg2+依赖性磷酸单酯水解构象稳定。",
+    "selectedEpitope": "优先覆盖HAD样磷酸酶核心折叠的催化口袋邻近环区，避开高度保守金属结合残基。",
+    "diseaseDirection": "肾功能与唾液酸代谢相关性状",
+    "domain": "NANP为胞质HAD样水解酶，含Rossmann样α/β核心与催化磷酸酶口袋。",
+    "evidence": "NANP结构与肾功能性状关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform trait associations",
+      "UniProt Q8TBE9 functional annotation",
+      "RCSB PDB 4KNV X-ray structure",
+      "Reactome sialic acid metabolism pathway"
+    ],
+    "referenceEntries": "UniProt Q8TBE9；RCSB PDB 4KNV；HGNC NANP",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "HAD样核心催化口袋邻近可变环",
+        "有利于空间遮挡底物进入并限制催化构象转换",
+        "优先"
+      ],
+      [
+        "Site B",
+        "α/β核心外侧非保守螺旋-环表面",
+        "适合作为高特异性结合表位，降低对同源磷酸酶交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "金属离子与磷酸基团结合残基周边",
+        "区域保守且可能影响构象稳定，需避免非特异性同源酶识别",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险来自胞质定位导致抗体可及性不足，且HAD样催化核心保守性较高；宜采用细胞内递送格式或转向胞外通路靶点。",
+    "structurePrepZh": "以4KNV A、B链晶体结构为模板，去除晶体缓冲组分，保留催化口袋金属/配体信息用于表位邻域判定并评估二聚界面影响。",
+    "structureRef": "RCSB PDB 4KNV，X-ray diffraction，1.993 Å",
+    "antibodies": [
+      "无已获批NANP靶向抗体",
+      "无临床阶段NANP靶向抗体"
+    ],
+    "interfaceFocus": "催化口袋入口环与HAD核心外侧表面",
+    "designMode": "胞内酶阻断验证",
+    "candidates": [
+      {
+        "target": "GNE",
+        "rationale": "GNE催化唾液酸从头合成早期限速步骤，与NANP处于同一唾液酸生物合成通路；但同为胞内酶，抗体可及性仍受限制。"
+      },
+      {
+        "target": "NANS",
+        "rationale": "NANS生成N-乙酰神经氨酸-9-磷酸，是NANP直接上游酶，能够影响相同代谢节点；其胞质定位决定其更适合小分子或胞内抗体策略。"
+      },
+      {
+        "target": "SLC17A5",
+        "rationale": "SLC17A5编码溶酶体膜唾液酸转运蛋白，与唾液酸稳态处于同一代谢网络；膜蛋白属性相较NANP提供更明确的抗原可及性窗口。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

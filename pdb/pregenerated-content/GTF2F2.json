@@ -1,0 +1,65 @@
+{
+  "gene": "GTF2F2",
+  "generatedAt": "2026-08-03T19:21:24.213Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GTF2F2编码TFIIF小亚基RAP30，是RNA polymerase II起始复合物的核心转录因子，参与Pol II招募、启动子清除和早期延伸；其疾病关联多集中于病毒感染与神经退行性疾病相关转录稳态异常。该蛋白主要定位于细胞核，不具备分泌型或胞外结构域，天然抗体抗原可及性显著弱于膜受体或分泌因子。其优先级仅适合作为机制研究或细胞内递送抗体探索靶点，相比CD4、CCR5、CXCR4等HIV通路可及靶点的成药优先级较低。",
+    "mechanism": "通过细胞内抗体阻断GTF2F2与GTF2F1形成TFIIF复合体，削弱TFIIF辅助RNA polymerase II结合启动子DNA并进入早期转录延伸的能力。",
+    "selectedEpitope": "优先靶向RAP30 dimerization domain中与GTF2F1/RAP74相邻的保守疏水界面。",
+    "diseaseDirection": "病毒感染相关宿主转录调控",
+    "domain": "GTF2F2含N端RAP30 dimerization domain及C端winged-helix DNA结合结构域，均为核内结构域。",
+    "evidence": "GTF2F2-Pol II转录起始复合物证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProtKB P13984功能注释",
+      "RCSB PDB 1F3U晶体结构",
+      "RNA polymerase II通用转录因子文献"
+    ],
+    "referenceEntries": "UniProt P13984；RCSB PDB 1F3U；Open Targets GTF2F2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端RAP30 dimerization domain的TFIIF复合体界面",
+        "可干预GTF2F2与GTF2F1装配，机制明确但需细胞内递送",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端winged-helix结构域的DNA接触面",
+        "可能削弱TFIIF对启动子DNA附近复合体的稳定作用",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守折叠核心与疏水埋藏面",
+        "易影响整体折叠并带来广泛转录毒性，应避免强结合设计",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GTF2F2为核内必需转录因子，常规抗体难以到达抗原；建议限定为细胞内抗体、降解偶联或递送平台验证，并严格评估全局转录毒性。",
+    "structurePrepZh": "以1F3U高分辨率晶体结构为模板，保留GTF2F2相关链并校正多聚体界面；补全缺失环区后标注GTF2F1结合面与DNA结合面。",
+    "structureRef": "RCSB PDB 1F3U，X-ray diffraction，1.7 Å",
+    "antibodies": [
+      "暂无获批GTF2F2治疗性抗体",
+      "暂无临床阶段GTF2F2同类抗体"
+    ],
+    "interfaceFocus": "GTF2F2-GTF2F1复合体装配界面",
+    "designMode": "细胞内抗体探索",
+    "candidates": [
+      {
+        "target": "POLR2A",
+        "rationale": "POLR2A编码RNA polymerase II最大亚基，是TFIIF参与招募和稳定的核心转录机器组分；与GTF2F2处于同一Pol II转录起始通路。"
+      },
+      {
+        "target": "GTF2F1",
+        "rationale": "GTF2F1编码TFIIF大亚基RAP74，直接与GTF2F2组成TFIIF复合体；其界面干预可更直接影响TFIIF装配。"
+      },
+      {
+        "target": "TBP",
+        "rationale": "TBP是TFIID的核心DNA结合因子，负责TATA盒识别并启动Pol II前起始复合物组装；与GTF2F2共同参与Pol II依赖转录起始。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

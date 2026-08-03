@@ -1,0 +1,65 @@
+{
+  "gene": "GET1",
+  "generatedAt": "2026-08-03T12:45:04.259Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GET1是GET复合体膜插入模块的核心亚基，参与尾锚定蛋白由GET3递送至内质网膜后的插入过程，可影响多种膜蛋白和囊泡运输相关蛋白的成熟。Open Targets关联主要集中于血小板体积、血小板计数和血小板压积等数量性状，提示其可能通过蛋白稳态与膜系统装配影响巨核细胞和血小板生成。GET1为多跨膜内质网膜蛋白，胞质侧含有可识别GET3-尾锚定蛋白复合物的结构域，抗体可及性低于典型细胞表面受体，但其已有实验晶体结构支持界面级设计。相较缺乏结构模板的同通路组分，GET1具备PDB 8CQZ结构依据和明确GET3结合界面，适合作为机制验证型胞内靶点抗体设计优先对象。",
+    "mechanism": "设计抗体阻断GET1胞质结构域与GET3的结合界面，抑制GET3递送尾锚定底物至内质网膜后的装载和插入步骤。",
+    "selectedEpitope": "优先覆盖GET1胞质GET3结合螺旋束界面，避开跨膜段埋藏面。",
+    "diseaseDirection": "血小板生成与蛋白稳态方向",
+    "domain": "GET1含多跨膜内质网锚定区及胞质GET3识别结构域，8CQZ解析GET1/GET2复合界面。",
+    "evidence": "GET1结构与血小板性状遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt O00258功能与亚细胞定位注释",
+      "RCSB PDB 8CQZ晶体结构记录",
+      "GET通路尾锚定蛋白膜插入机制研究"
+    ],
+    "referenceEntries": "UniProt O00258；RCSB PDB 8CQZ；HGNC GET1/WRB",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "胞质GET3结合螺旋束界面",
+        "直接干预GET3-GET1底物递送复合物装配",
+        "优先"
+      ],
+      [
+        "Site B",
+        "GET1-GET2胞质复合物邻近界面",
+        "可能改变受体复合体构象并降低插入效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "跨膜螺旋外周或膜埋藏邻近区",
+        "结构可及性和抗体结合空间受限，需谨慎评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GET1主要定位于内质网膜，天然细胞外可及性不足，常规治疗性抗体递送受限；建议定位于胞内抗体、Fab片段或机制探针设计。",
+    "structurePrepZh": "以8CQZ中A、B链为抗原模板，保留GET1/GET2复合体构象，补全缺失环区并标注跨膜段与胞质暴露面后进行表位筛选。",
+    "structureRef": "RCSB PDB 8CQZ，X-ray diffraction，2.8 Å",
+    "antibodies": [
+      "暂无获批抗GET1治疗性抗体",
+      "抗WRB/GET1研究级抗体"
+    ],
+    "interfaceFocus": "GET1胞质域与GET3结合界面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "GET2",
+        "rationale": "GET2与GET1共同构成内质网膜受体复合体，协同接收GET3递送的尾锚定底物，属于同一GET膜插入通路。"
+      },
+      {
+        "target": "GET3",
+        "rationale": "GET3是ATP依赖性尾锚定蛋白递送因子，直接与GET1/GET2受体复合体相互作用，阻断其受体结合可验证同一路径功能。"
+      },
+      {
+        "target": "GET4",
+        "rationale": "GET4参与上游尾锚定底物装载复合体，调控GET3获得底物的效率，可作为GET通路上游干预候选靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

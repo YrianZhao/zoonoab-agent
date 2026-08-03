@@ -1,0 +1,65 @@
+{
+  "gene": "S100A14",
+  "generatedAt": "2026-08-03T16:18:07.161Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "S100A14 属于 EF-hand S100 钙结合蛋白家族，Open Targets 数据显示其与单核细胞、血小板、中性粒细胞、嗜碱性粒细胞及嗜酸性粒细胞计数等血液细胞表型存在遗传关联，提示其可能参与炎症细胞稳态或髓系细胞相关调控网络。该蛋白主要为胞内钙结合蛋白，但文献报道 S100A14 可在部分上皮肿瘤和炎症微环境中出现膜相关或胞外释放形式，因此抗原可及性弱于经典分泌因子，需优先验证胞外暴露。相比 S100A8/A9 等强炎症放大因子，S100A14 的疾病证据强度较低但结构可解析、家族同源性明确，适合作为探索性抗体设计靶点而非最高优先级临床阻断靶点。",
+    "mechanism": "设计抗体优先阻断胞外 S100A14 二聚体表面与潜在受体或细胞外配体的接触界面，限制其在炎症细胞表型相关网络中的旁分泌作用。",
+    "selectedEpitope": "优先覆盖 C 端 EF-hand 钙结合螺旋与二聚体外侧疏水沟槽相邻区域，避开高度保守钙配位残基。",
+    "diseaseDirection": "血液细胞计数与炎症表型",
+    "domain": "S100A14 含两个 EF-hand 钙结合基序，形成 S100 家族特征性同源二聚体结构。",
+    "evidence": "S100A14 血液细胞表型遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9HCY8 functional annotation",
+      "RCSB PDB 2M0R solution NMR structure",
+      "S100 family calcium-binding protein literature"
+    ],
+    "referenceEntries": "UniProt Q9HCY8；RCSB PDB 2M0R；Open Targets S100A14",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C 端 EF-hand 后螺旋及二聚体外侧沟槽",
+        "兼具结构暴露与功能界面阻断潜力，适合构建中和型抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N 端 EF-hand 邻近表面螺旋束",
+        "可提供家族内差异化表位，但需评估构象稳定性和钙依赖变化",
+        "备选"
+      ],
+      [
+        "Site C",
+        "二聚体核心疏水界面",
+        "可能影响二聚体稳定性，但界面埋藏较深且家族保守性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险在于 S100A14 以胞内定位为主，胞外抗原丰度和疾病因果性需实验确认；设计中应强化家族特异性筛选，降低与 S100A8、S100A9、S100A7 等同源蛋白交叉反应。",
+    "structurePrepZh": "以 2M0R NMR 构象集合为起点，保留 A/B 二聚体并进行代表构象聚类；补充钙结合状态建模、溶剂暴露分析和同源 S100 蛋白表面保守性比对。",
+    "structureRef": "RCSB PDB 2M0R；human S100A14 solution NMR structure",
+    "antibodies": [
+      "抗 S100A14 研究级单克隆抗体",
+      "抗 S100A14 免疫组化验证抗体"
+    ],
+    "interfaceFocus": "EF-hand 后螺旋与二聚体外侧配体结合沟槽",
+    "designMode": "探索性阻断设计",
+    "candidates": [
+      {
+        "target": "S100A8",
+        "rationale": "S100A8 与 S100A9 形成钙结合异源二聚体，是髓系细胞炎症反应和中性粒细胞相关表型中的经典 S100 家族节点，疾病通路证据更强。"
+      },
+      {
+        "target": "S100A9",
+        "rationale": "S100A9 参与 calprotectin 复合物形成并可通过 TLR4 和 RAGE 相关轴放大先天免疫炎症信号，适合作为同通路阳性参照靶点。"
+      },
+      {
+        "target": "AGER",
+        "rationale": "AGER 编码 RAGE，是多种胞外 S100 蛋白的已知受体，位于 S100 介导炎症信号传递的受体端，具有明确的细胞表面可及性。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "GDNF",
+  "generatedAt": "2026-08-03T12:44:36.085Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GDNF是TGF-β超家族神经营养因子，通过GFRα1募集RET并诱导RET二聚化与酪氨酸激酶激活，参与肠神经嵴细胞迁移、存活和分化，通路缺陷与Hirschsprung病直接相关。该蛋白为分泌型二硫键稳定同源二聚体，成熟配体在胞外空间与GFRα1结合，抗体对抗原具有良好可及性。相较下游RET激酶或膜锚定GFRα1，GDNF配体阻断可在受体复合体形成前截断信号，并避免直接靶向广泛表达的激酶结构域，具备较高设计优先级。",
+    "mechanism": "抗体结合GDNF成熟二聚体的GFRα1结合面，阻断GDNF-GFRα1复合体形成，继而抑制GFRα1介导的RET二聚化和自磷酸化。",
+    "selectedEpitope": "优先覆盖成熟GDNF二聚体指状β链外凸区及二聚体邻近GFRα1结合面。",
+    "diseaseDirection": "肠神经发育与RET信号相关疾病",
+    "domain": "GDNF含N端信号肽、前肽及成熟TGF-β样半胱氨酸结结构域，形成二硫键稳定二聚体。",
+    "evidence": "GDNF-GFRα1-RET轴疾病遗传与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P39905功能与加工注释",
+      "RCSB PDB 2V5E晶体结构",
+      "RET/GDNF通路Hirschsprung病遗传研究"
+    ],
+    "referenceEntries": "UniProt P39905；RCSB PDB 2V5E；Open Targets GDNF",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "成熟GDNF二聚体GFRα1结合面邻近指状β链",
+        "可直接阻断配体-共受体识别并抑制RET复合体装配",
+        "优先"
+      ],
+      [
+        "Site B",
+        "二聚体中央半胱氨酸结外侧可及面",
+        "有利于获得高亲和结合并可能产生变构性受体阻断",
+        "备选"
+      ],
+      [
+        "Site C",
+        "二聚体界面核心及保守二硫键邻近区域",
+        "可能影响蛋白折叠稳定性或与TGF-β样保守结构交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GDNF为同源二聚体且含保守半胱氨酸结，需规避埋藏二聚体核心与二硫键附近表位，优先选择受体结合外凸面以降低构象破坏和交叉反应风险。",
+    "structurePrepZh": "以2V5E实验晶体结构为模板，保留成熟GDNF二聚体链并校验二硫键；补建缺失侧链、优化质子化状态后用于表位暴露度和对接筛选。",
+    "structureRef": "RCSB PDB 2V5E，X-ray diffraction，2.35 Å",
+    "antibodies": [
+      "抗GDNF中和抗体",
+      "抗GDNF配体阻断抗体"
+    ],
+    "interfaceFocus": "GDNF-GFRα1结合面与二聚体外凸β链",
+    "designMode": "配体阻断型中和",
+    "candidates": [
+      {
+        "target": "GFRA1",
+        "rationale": "GFRα1是GDNF的GPI锚定共受体，直接结合GDNF并将配体呈递给RET；靶向其配体结合结构域可阻断同一GDNF-RET信号轴。"
+      },
+      {
+        "target": "RET",
+        "rationale": "RET是GDNF-GFRα1复合体激活的受体酪氨酸激酶，也是Hirschsprung病和多种肿瘤中的核心通路节点；胞外钙黏蛋白样结构域可作为抗体干预入口。"
+      },
+      {
+        "target": "NRTN",
+        "rationale": "NRTN属于GDNF配体家族，主要通过GFRα2并可激活RET，处于同一RET神经营养因子信号网络；可作为通路内配体层面的比较候选靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

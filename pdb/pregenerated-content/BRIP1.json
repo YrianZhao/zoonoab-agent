@@ -1,0 +1,65 @@
+{
+  "gene": "BRIP1",
+  "generatedAt": "2026-08-03T10:52:08.824Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BRIP1编码FANCJ DNA解旋酶，在Fanconi anemia/同源重组修复网络中促进复制叉稳定、链间交联修复及BRCA1相关DNA损伤应答，其胚系失活与Fanconi anemia J型、乳腺癌及卵巢癌易感性相关。该蛋白主要定位于细胞核并缺乏分泌型或跨膜胞外结构域，作为治疗性抗体直接阻断靶点的抗原可及性受限，更适宜作为胞内病理标志物或研究级结合分子靶点。其优先级来自明确遗传因果证据、PDB 1T15高分辨率BRCT结合界面结构及与BRCA1/Fanconi通路的核心连接性，但相较HER2、PD-L1等膜表面肿瘤靶点，成药可及性优先级应审慎下调。",
+    "mechanism": "设计结合BRIP1 BRCA1结合区的抗体片段，用于阻断BRIP1磷酸化基序与BRCA1 BRCT结构域的相互作用并扰动DNA损伤灶募集。",
+    "selectedEpitope": "优先覆盖BRIP1 Ser990磷酸化肽段与BRCA1 tandem BRCT磷酸肽结合沟槽接触界面。",
+    "diseaseDirection": "Fanconi anemia与遗传性乳腺卵巢癌",
+    "domain": "BRIP1含N端DEAH样DNA解旋酶ATPase核心及C端BRCA1结合磷酸化基序。",
+    "evidence": "BRIP1-Fanconi/BRCA1 DNA修复证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB Q9BX63 functional annotation",
+      "RCSB PDB 1T15 experimental structure",
+      "ClinVar and OMIM hereditary cancer/Fanconi anemia records"
+    ],
+    "referenceEntries": "UniProt Q9BX63；RCSB PDB 1T15；HGNC BRIP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端Ser990磷酸化BRCA1结合基序",
+        "直接对应BRCA1 BRCT识别界面，适合机制性阻断与结构验证",
+        "优先"
+      ],
+      [
+        "Site B",
+        "解旋酶ATPase核心的核苷酸结合邻近表面",
+        "可用于构建功能干扰型胞内结合分子，但需避免非特异性抑制保守P-loop区域",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端低复杂度及柔性连接区",
+        "抗原性可能较高但构象异质性强，功能关联与结构约束不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BRIP1为核内DNA修复酶，常规抗体难以进入细胞核；建议定位为研究级Fab/VHH或细胞内递送格式，并优先采用结构界面验证。",
+    "structurePrepZh": "以PDB 1T15中BRCA1 BRCT-磷酸化BRIP1肽复合物为模板，保留磷酸化Ser990并校正缺失氢原子、电荷与界面水分子。",
+    "structureRef": "PDB 1T15；BRCA1 BRCT结合FANCJ磷酸肽晶体结构",
+    "antibodies": [
+      "抗BRIP1/FANCJ研究用单克隆抗体",
+      "抗磷酸化BRIP1 Ser990研究用抗体"
+    ],
+    "interfaceFocus": "BRIP1 pSer990肽-BRCA1 BRCT结合沟槽",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "BRCA1",
+        "rationale": "BRCA1通过BRCT结构域识别BRIP1磷酸化基序并组织DNA损伤应答，是同源重组修复和遗传性乳腺卵巢癌通路的核心节点。"
+      },
+      {
+        "target": "FANCD2",
+        "rationale": "FANCD2单泛素化是Fanconi anemia通路激活的关键步骤，位于链间交联修复与复制叉保护的中心位置。"
+      },
+      {
+        "target": "PALB2",
+        "rationale": "PALB2连接BRCA1与BRCA2并促进RAD51装载，与BRIP1同属BRCA相关同源重组修复网络，具有明确遗传性肿瘤风险关联。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

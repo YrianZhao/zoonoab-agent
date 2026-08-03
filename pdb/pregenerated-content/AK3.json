@@ -1,0 +1,65 @@
+{
+  "gene": "AK3",
+  "generatedAt": "2026-08-03T10:21:10.763Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "AK3为线粒体基质腺苷酸激酶，催化GTP/ITP与AMP之间的磷酸基转移，主要维持线粒体腺嘌呤核苷酸稳态。Open Targets关联信号集中于血小板计数、白细胞数量及体格测量等性状，但现有证据更支持代谢遗传关联，而非细胞外配体-受体疾病通路。AK3缺乏胞外结构域、分泌形式或膜受体特征，完整蛋白在天然状态下对循环抗体不可及，因此相较CD41/CD61、TPO/MPL等血小板生成通路靶点，作为治疗性抗体主靶点优先级较低，更适合作为胞内酶结构生物学或研究级结合体对象。",
+    "mechanism": "研究型抗体可结合AK3 CORE-LID/NMP界面，空间阻碍AMP与GTP/ITP在催化裂隙内协同定位，从而抑制磷酸基转移反应。",
+    "selectedEpitope": "优先选择CORE与LID结构域邻近催化裂隙的构象表位，避开高度保守P-loop催化残基。",
+    "diseaseDirection": "血细胞数量性状与线粒体核苷酸代谢",
+    "domain": "AK3含CORE结构域、AMP结合NMP结构域及LID结构域，形成可闭合的核苷酸结合催化裂隙。",
+    "evidence": "AK3结构与血液数量性状遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB Q9UIJ7 functional annotation",
+      "RCSB PDB 1ZD8 X-ray structure",
+      "Human Protein Atlas subcellular localization"
+    ],
+    "referenceEntries": "UniProt Q9UIJ7；RCSB PDB 1ZD8；Open Targets AK3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CORE-LID结构域闭合界面邻近底物裂隙",
+        "可直接干扰核苷酸结合构象转换，适合抑制型研究抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "NMP结构域AMP结合口袋外缘",
+        "有助于影响AMP进入与定位，兼顾构象特异性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "P-loop及催化镁离子邻近保守区域",
+        "序列保守性高且与同源腺苷酸激酶交叉反应风险较大",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "AK3为线粒体基质胞内酶，天然抗体可及性不足；治疗开发风险高。设计应限定为细胞内递送、研究诊断或结构探针场景，并严格评估AK家族交叉反应。",
+    "structurePrepZh": "采用1ZD8链A高分辨率晶体结构，补全缺失侧链并保留催化裂隙构象信息；建模时标注CORE、NMP与LID相对位置及保守核苷酸结合残基。",
+    "structureRef": "PDB 1ZD8，人AK3晶体结构，X-ray 1.48 Å",
+    "antibodies": [
+      "商业抗AK3多克隆抗体",
+      "商业抗AK3单克隆抗体"
+    ],
+    "interfaceFocus": "CORE-LID闭合界面与NMP底物入口",
+    "designMode": "研究型胞内酶结合体",
+    "candidates": [
+      {
+        "target": "THPO",
+        "rationale": "THPO是血小板生成素，可通过MPL驱动巨核细胞增殖和成熟，与血小板计数性状处于直接疾病通路。其分泌蛋白属性使抗体可及性显著优于AK3。"
+      },
+      {
+        "target": "MPL",
+        "rationale": "MPL为血小板生成素受体，是JAK2-STAT信号介导巨核细胞生成的核心膜受体。胞外配体结合区适合抗体阻断或激动设计。"
+      },
+      {
+        "target": "JAK2",
+        "rationale": "JAK2位于THPO-MPL下游，调控巨核细胞谱系扩增并与血细胞数量异常密切相关。其为同一血小板生成轴的关键节点，但更适合小分子或胞内结合体策略。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

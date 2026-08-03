@@ -1,0 +1,65 @@
+{
+  "gene": "CDC25A",
+  "generatedAt": "2026-08-03T11:11:00.261Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CDC25A 是核内双特异性磷酸酶，主要通过去磷酸化 CDK1、CDK2 的抑制性 Thr14/Tyr15 位点推动细胞周期 G1/S 与 G2/M 转换；其异常表达与增殖性肿瘤通路关联明确，但与神经退行性疾病的 Open Targets 关联更多提示细胞周期再进入与神经元应激轴相关。该蛋白缺乏跨膜段和分泌特征，天然抗原可及性不适合作为常规细胞外治疗抗体靶点，宜定位于结构验证、胞内递送抗体或研究级抑制抗体设计。相比 CDK 家族催化核心，CDC25A 的催化口袋及底物识别沟槽可直接截断上游磷酸酶激活步骤，靶点优先级应限于可实现胞内作用形式的场景。",
+    "mechanism": "抗体应阻断 CDC25A 催化结构域与磷酸化 CDK2/CDK1 底物界面的结合，并遮蔽 Cys430 所在活性位点环，抑制 Thr14/Tyr15 去磷酸化。",
+    "selectedEpitope": "优先覆盖催化结构域活性位点环及底物结合沟槽，避开高度柔性的 N 端调控区。",
+    "diseaseDirection": "细胞周期异常与神经退行性关联",
+    "domain": "CDC25A 含 N 端调控区与 C 端 Rhodanese-like 双特异性磷酸酶催化结构域。",
+    "evidence": "CDC25A 结构与细胞周期通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P30304 functional annotation",
+      "RCSB PDB 1C25 X-ray structure",
+      "Reactome cell cycle checkpoint pathway"
+    ],
+    "referenceEntries": "UniProt P30304；RCSB PDB 1C25；Reactome CDC25/CDK regulation",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域活性位点环与 Cys430 邻近区域",
+        "直接阻断磷酸酯底物进入并抑制 CDK 去磷酸化",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域底物识别沟槽及带正电残基簇",
+        "干扰 CDC25A 与磷酸化 CDK1/CDK2 的结合取向",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端调控区磷酸化与蛋白互作片段",
+        "区域柔性高且 1C25 未覆盖，结构约束不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CDC25A 为胞内核质蛋白，常规 IgG 难以触达天然靶点；设计应限定为胞内抗体、递送抗体片段或体外机制探针，并严格评估 CDC25B/C 交叉反应。",
+    "structurePrepZh": "以 1C25 链 A 催化结构域为模板，补全缺失侧链、校正质子化状态，保留活性位点 Cys430 构象并标注底物结合沟槽。",
+    "structureRef": "RCSB PDB 1C25，human CDC25A catalytic domain，2.3 Å X-ray",
+    "antibodies": [
+      "研究级 anti-CDC25A monoclonal antibody",
+      "研究级 anti-CDC25A phospho-regulation antibody"
+    ],
+    "interfaceFocus": "Cys430 活性位点环与 CDK 底物结合沟槽",
+    "designMode": "胞内抑制抗体设计",
+    "candidates": [
+      {
+        "target": "CDK2",
+        "rationale": "CDK2 是 CDC25A 去磷酸化激活的核心底物，直接控制 G1/S 转换；靶向 CDK2 可在同一细胞周期轴上阻断异常增殖信号。"
+      },
+      {
+        "target": "CDK1",
+        "rationale": "CDK1 的 Thr14/Tyr15 抑制性磷酸化受 CDC25A/CDC25B/CDC25C 调控，参与 G2/M 进入；其与 CDC25A 位于同一有丝分裂推进通路。"
+      },
+      {
+        "target": "WEE1",
+        "rationale": "WEE1 通过磷酸化 CDK1/CDK2 的抑制性位点与 CDC25A 形成功能拮抗模块，是细胞周期检查点调控中的真实同通路靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

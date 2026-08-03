@@ -1,0 +1,65 @@
+{
+  "gene": "IL1R1",
+  "generatedAt": "2026-08-03T13:26:36.772Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IL1R1是IL-1α与IL-1β的信号型受体，在类风湿关节炎中介导滑膜巨噬细胞、成纤维样滑膜细胞和内皮细胞的NF-κB/MAPK炎症转录反应，促进IL6、PTGS2、MMPs及趋化因子表达。该靶点具有连续胞外免疫球蛋白样结构域，配体结合界面位于细胞外，可被抗体直接阻断。相较于下游炎症因子，IL1R1位于IL-1轴受体入口，可同时限制IL-1α与IL-1β驱动的信号，并具备Anakinra等临床通路验证基础，优先级较高。",
+    "mechanism": "抗体阻断IL-1β/IL-1α与IL1R1胞外D1-D3结构域结合，并抑制IL1RAP募集，从而终止TIR复合体介导的MYD88依赖性炎症信号。",
+    "selectedEpitope": "优先覆盖D2-D3配体结合沟槽及IL1RAP募集邻近界面，避免完全依赖柔性D1端部表位。",
+    "diseaseDirection": "类风湿关节炎与IL-1炎症轴",
+    "domain": "IL1R1含胞外三个Ig-like结构域D1-D3、单跨膜区及胞内TIR信号结构域。",
+    "evidence": "IL1R1结构与炎症疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P14778功能与结构域注释",
+      "RCSB PDB 4GAF晶体结构记录",
+      "IL-1/IL1R1/IL1RAP受体复合体机制文献"
+    ],
+    "referenceEntries": "UniProt P14778；RCSB PDB 4GAF；Open Targets IL1R1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "D2-D3配体结合沟槽",
+        "直接竞争IL-1β/IL-1α结合，阻断受体激活起始事件",
+        "优先"
+      ],
+      [
+        "Site B",
+        "D3邻近IL1RAP募集界面",
+        "抑制辅助受体装配，降低MYD88信号复合体形成",
+        "备选"
+      ],
+      [
+        "Site C",
+        "D1远端Ig-like结构域外侧面",
+        "可能影响配体定位，但与核心阻断机制距离较远",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "D2-D3核心界面需规避与IL1RN天然拮抗剂结合模式的非选择性干扰评估；应优先筛选可阻断激动性配体而不增强受体聚集的克隆。",
+    "structurePrepZh": "以4GAF的IL1R1胞外区为结构模板，保留抗原链A、B用于界面比对，补全缺失侧链并标准化糖基化位点邻近构象后开展表位建模。",
+    "structureRef": "RCSB PDB 4GAF，X-ray diffraction，2.15 Å",
+    "antibodies": [
+      "MEDI8968",
+      "canakinumab"
+    ],
+    "interfaceFocus": "D2-D3配体结合沟槽与D3辅助受体邻近面",
+    "designMode": "阻断型受体抗体",
+    "candidates": [
+      {
+        "target": "IL1B",
+        "rationale": "IL1B是IL1R1的主要炎症性激动配体，在类风湿关节炎滑膜炎症中驱动IL1R1依赖性NF-κB/MAPK信号。中和IL1B可在配体层面降低受体激活。"
+      },
+      {
+        "target": "IL1A",
+        "rationale": "IL1A同样通过IL1R1启动炎症反应，尤其与组织损伤和细胞膜相关IL-1信号有关。其阻断可补充IL1B中和策略。"
+      },
+      {
+        "target": "IL1RAP",
+        "rationale": "IL1RAP是IL1R1信号转导所需的辅助受体，参与形成IL-1配体-IL1R1-IL1RAP三元复合体。靶向该分子可抑制受体复合体装配。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

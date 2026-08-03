@@ -1,0 +1,65 @@
+{
+  "gene": "NOXO1",
+  "generatedAt": "2026-08-03T14:47:26.211Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NOXO1是NOX1氧化酶复合体的胞质组织蛋白，通过PX结构域定位膜磷脂并经SH3结构域募集NOXA1，促进NOX1依赖性ROS生成；该轴与氧化应激、线粒体功能紊乱及血细胞表型调节存在机制关联。该蛋白并非分泌蛋白或跨膜受体，天然抗原可及性弱，因此更适合采用胞内递送抗体片段或细胞穿透型VHH策略，而非常规细胞外阻断抗体。相较NOX1等多跨膜酶亚基，NOXO1具有明确的PX结构域NMR结构和可解析的蛋白-脂质/蛋白-蛋白界面，适合作为复合体装配抑制的结构导向靶点。",
+    "mechanism": "阻断NOXO1 PX结构域与膜磷脂结合，或干扰其SH3结构域介导的NOXA1募集，从而抑制NOX1复合体装配和ROS生成。",
+    "selectedEpitope": "优先覆盖PX结构域磷oinositide结合口袋及相邻膜定位界面。",
+    "diseaseDirection": "氧化应激与线粒体相关疾病",
+    "domain": "NOXO1含N端PX结构域、串联SH3结构域及富脯氨酸区，参与膜定位和NOXA1装配。",
+    "evidence": "NOXO1-NOX1氧化酶复合体结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q8NFA2功能与结构域注释",
+      "RCSB PDB 2L73溶液NMR结构",
+      "NOX1/NOXO1/NOXA1复合体ROS生成文献"
+    ],
+    "referenceEntries": "UniProt Q8NFA2；RCSB PDB 2L73；Open Targets NOXO1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PX结构域磷oinositide结合口袋及膜结合面",
+        "阻断膜定位，削弱NOX1复合体装配起始步骤",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SH3结构域潜在NOXA1富脯氨酸结合沟槽",
+        "干扰NOXO1-NOXA1募集界面，抑制活化复合体形成",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PX结构域远离脂质口袋的暴露环区",
+        "可提高结合可开发性，但功能阻断效应需实验证实",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NOXO1为胞质蛋白，常规抗体难以到达作用位点；设计应优先采用细胞内抗体、细胞穿透VHH或递送载体，并规避PX结构域保守脂质结合残基引发的交叉反应风险。",
+    "structurePrepZh": "以PDB 2L73的NOXO1 PX结构域NMR构象集为模板，筛选代表性低能构象，补充缺失氢原子并标注磷oinositide结合残基用于表位建模。",
+    "structureRef": "RCSB PDB 2L73，human NOXO1 PX domain，solution NMR",
+    "antibodies": [
+      "intracellular anti-NOXO1 VHH prototype",
+      "cell-penetrating anti-PX-domain Fab prototype"
+    ],
+    "interfaceFocus": "PX脂质结合口袋与SH3-NOXA1装配界面",
+    "designMode": "胞内阻断VHH设计",
+    "candidates": [
+      {
+        "target": "NOX1",
+        "rationale": "NOX1是NOXO1组织的催化膜亚基，直接负责电子转移和ROS生成；抑制NOX1可在同一氧化酶通路中降低下游氧化应激负荷。"
+      },
+      {
+        "target": "NOXA1",
+        "rationale": "NOXA1是NOX1复合体的活化亚基，与NOXO1 SH3结构域协同促进酶复合体组装；靶向该界面可削弱NOX1活化。"
+      },
+      {
+        "target": "CYBA",
+        "rationale": "CYBA编码p22phox，是NOX1稳定性和膜复合体形成所需亚基；其与NOX1共同构成膜端氧化酶核心。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

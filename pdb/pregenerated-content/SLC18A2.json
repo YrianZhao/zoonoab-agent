@@ -1,0 +1,65 @@
+{
+  "gene": "SLC18A2",
+  "generatedAt": "2026-08-03T16:35:44.073Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SLC18A2编码VMAT2，负责将胞质单胺递质转运入突触囊泡，是多巴胺、5-羟色胺、去甲肾上腺素及组胺囊泡储存的关键节点；其功能缺陷可导致脑多巴胺-5羟色胺囊泡转运病和婴儿期肌张力障碍-帕金森综合征。该蛋白为多跨膜囊泡膜转运体，胞质侧与腔内侧环区在构象循环中具有可及表面，但抗体进入神经元囊泡腔的可及性受限。相较下游受体靶点，SLC18A2更接近单胺递质装载环节，遗传证据与结构解析基础较强，适合作为机制验证型抗体设计靶点，但治疗性优先级需结合递送策略审慎评估。",
+    "mechanism": "设计抗体优先阻断SLC18A2腔内门控区构象转换，干扰单胺底物与质子偶联转运循环中的结合和释放步骤。",
+    "selectedEpitope": "优先针对腔内侧TM1-TM2与TM7-TM8环区邻近门控界面，避免深埋底物口袋。",
+    "diseaseDirection": "神经递质囊泡转运障碍",
+    "domain": "VMAT2为12次跨膜MFS样转运体，含N端六跨膜束与C端六跨膜束形成中央底物通道。",
+    "evidence": "SLC18A2神经单胺囊泡转运结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q05940功能与拓扑注释",
+      "RCSB PDB 8JSW冷冻电镜结构",
+      "OMIM及Orphanet单胺转运相关疾病记录"
+    ],
+    "referenceEntries": "UniProt Q05940；RCSB PDB 8JSW；Open Targets SLC18A2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "腔内侧TM1-TM2/TM7-TM8门控环邻近区域",
+        "可能影响囊泡腔侧门控开闭与底物释放构象，具备功能阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "胞质侧TM4-TM5与TM10-TM11连接环周边",
+        "可用于识别转运体胞质开放构象并评估构象选择性结合",
+        "备选"
+      ],
+      [
+        "Site C",
+        "中央跨膜底物结合腔深部",
+        "底物与质子偶联位点保守且埋藏，抗体可及性低并可能引发非特异构象干扰",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SLC18A2位于突触囊泡膜，细胞外可及性并不等同于传统质膜受体；抗体递送、囊泡腔进入及跨膜区疏水界面稳定性为主要风险。",
+    "structurePrepZh": "以8JSW链A为模板，保留跨膜螺旋相对取向并重建缺失环区；按囊泡腔侧与胞质侧拓扑分别标注可及表面。",
+    "structureRef": "RCSB PDB 8JSW，human VMAT2 cryo-EM 2.84 Å",
+    "antibodies": [
+      "无已批准抗SLC18A2治疗性抗体",
+      "研究级抗VMAT2单克隆抗体"
+    ],
+    "interfaceFocus": "腔内门控环与中央底物通道入口",
+    "designMode": "构象阻断型",
+    "candidates": [
+      {
+        "target": "SLC6A3",
+        "rationale": "DAT负责突触间隙多巴胺再摄取，与VMAT2共同决定胞质多巴胺供应和囊泡再装载效率，是多巴胺稳态通路中的同轴靶点。"
+      },
+      {
+        "target": "SLC6A4",
+        "rationale": "SERT调控5-羟色胺再摄取，SLC18A2随后介导其囊泡储存；两者共同影响5-羟色胺能神经传递强度。"
+      },
+      {
+        "target": "TH",
+        "rationale": "酪氨酸羟化酶为多巴胺生物合成限速酶，其产物供给与SLC18A2介导的囊泡装载构成儿茶酚胺代谢-储存通路。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

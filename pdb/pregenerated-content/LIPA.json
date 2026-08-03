@@ -1,0 +1,65 @@
+{
+  "gene": "LIPA",
+  "generatedAt": "2026-08-03T20:04:13.249Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "LIPA编码溶酶体酸性脂肪酶，催化溶酶体内胆固醇酯和甘油三酯水解；功能缺失直接导致胆固醇酯贮积病、Wolman病和溶酶体酸性脂肪酶缺乏症，并可通过肝脂质沉积与动脉粥样硬化风险相关联。该蛋白属于可溶性溶酶体酶，存在可重组制备并在内吞递送后进入溶酶体的抗原形式，适合开展构象表位结合与酶递送型抗体设计。相较于下游脂质代谢调节因子，LIPA处于致病酶缺陷的直接节点，遗传证据和疾病特异性更强，优先级高于间接炎症或脂蛋白转运靶点。",
+    "mechanism": "设计抗体结合LIPA非催化表面并保留Ser-His-Asp催化三联体可及性，通过受体介导内吞增强LIPA递送至溶酶体，促进胆固醇酯和甘油三酯水解。",
+    "selectedEpitope": "优先选择α/β水解酶折叠外侧、远离催化口袋与lid区域的稳定构象表位。",
+    "diseaseDirection": "溶酶体脂质贮积与动脉粥样硬化",
+    "domain": "LIPA为可溶性溶酶体酸性脂肪酶，含α/β水解酶核心、催化三联体及底物进入相关lid结构。",
+    "evidence": "LIPA遗传缺陷与溶酶体脂质水解证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P38571功能与亚细胞定位注释",
+      "RCSB PDB 6V7N晶体结构",
+      "OMIM/ClinVar LIPA致病变异记录"
+    ],
+    "referenceEntries": "UniProt P38571；RCSB PDB 6V7N；Open Targets LIPA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "α/β水解酶核心外侧非催化凸面",
+        "降低酶活阻断风险，适合构象稳定结合与递送设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "lid区域邻近但不覆盖底物入口的边缘表面",
+        "可调节底物通道构象，需验证对酸性pH酶活的影响",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化口袋周边及Ser-His-Asp三联体邻近区域",
+        "可能阻碍胆固醇酯进入或抑制水解活性，需避免强占位结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为抗体占据底物入口或稳定非活性lid构象而降低酶活；设计应避开催化三联体，优先筛选酸性pH下不抑制水解的克隆。",
+    "structurePrepZh": "以6V7N中A-D链为抗原模板，保留成熟酶构象并校正糖基化位点；按溶酶体酸性pH评估质子化状态、二硫键和表面电荷。",
+    "structureRef": "RCSB PDB 6V7N，X-ray diffraction，2.62 Å",
+    "antibodies": [
+      "Sebelipase alfa相关抗LAL分析抗体",
+      "LIPA enzyme-capture monoclonal antibody"
+    ],
+    "interfaceFocus": "非催化外侧凸面与lid边缘界面",
+    "designMode": "递送增强型Fab/VHH",
+    "candidates": [
+      {
+        "target": "LDLR",
+        "rationale": "LDLR介导低密度脂蛋白内吞，向溶酶体递送胆固醇酯底物；其功能与LIPA介导的溶酶体脂质水解处于同一胆固醇酯代谢轴。"
+      },
+      {
+        "target": "NPC1",
+        "rationale": "NPC1负责溶酶体游离胆固醇外运，位于LIPA水解生成游离胆固醇后的下游环节；缺陷可造成溶酶体胆固醇积聚。"
+      },
+      {
+        "target": "NPC2",
+        "rationale": "NPC2在溶酶体腔内结合并转运游离胆固醇，与NPC1协同完成LIPA水解产物输出，是同一溶酶体胆固醇处理通路的真实节点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

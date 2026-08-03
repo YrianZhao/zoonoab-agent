@@ -1,0 +1,65 @@
+{
+  "gene": "GSDMD",
+  "generatedAt": "2026-08-03T19:18:03.989Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GSDMD 是炎症小体通路的关键执行蛋白，经 CASP1 或 CASP4/5 裂解后释放 N 端成孔结构域，介导焦亡和 IL-1β、IL-18 释放，因而与中性粒细胞、CRP及肝损伤相关炎症表型存在机制关联。其成熟全长蛋白主要位于胞质，抗原天然可及性弱，但裂解后的 N 端可在质膜内侧寡聚成孔，抗体设计更适合采用细胞内递送、构象捕获或研究级阻断策略。相比上游炎症小体传感器，GSDMD 位于多条炎症小体的共同下游执行节点，具有通路汇聚优势，但成药优先级受限于胞内定位与膜孔瞬时构象。",
+    "mechanism": "抗体结合 GSDMD N 端成孔结构域，阻断其与酸性磷脂结合及寡聚化界面装配，从而抑制膜孔形成、焦亡和 IL-1β释放。",
+    "selectedEpitope": "优先覆盖 N 端成孔结构域的脂质结合面与寡聚化界面，避开柔性连接区和裂解位点邻近高动态片段。",
+    "diseaseDirection": "炎症小体焦亡相关炎症疾病",
+    "domain": "GSDMD 含 N 端成孔结构域、柔性连接区及 C 端自抑制结构域，D275 为炎症性半胱天冬酶主要裂解位点。",
+    "evidence": "GSDMD炎症小体焦亡执行节点证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P57764 functional annotation",
+      "RCSB PDB 9E0V experimental structure",
+      "Inflammasome pyroptosis literature"
+    ],
+    "referenceEntries": "UniProt P57764；RCSB PDB 9E0V；Open Targets GSDMD",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N 端成孔结构域寡聚化界面",
+        "可直接干预孔环装配，是抑制焦亡执行功能的优先表位",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N 端酸性磷脂结合面",
+        "可降低 GSDMD-N 与质膜 PI(4,5)P2、心磷脂等脂质相互作用",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端自抑制结构域结合面",
+        "可能稳定全长自抑制构象，但胞内可及性和裂解后有效性存在限制",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GSDMD 为胞质蛋白，常规系统给药抗体难以进入作用位点；建议限定为胞内抗体、递送偶联抗体或机制验证抗体，并评估对宿主抗感染焦亡反应的抑制风险。",
+    "structurePrepZh": "以 PDB 9E0V 的 A、B 链为抗原模板，保留高分辨率有序区域，补全缺失环区并标注 D275 裂解位点、N 端脂质结合面及寡聚化界面。",
+    "structureRef": "RCSB PDB 9E0V，X-ray diffraction，1.635 Å",
+    "antibodies": [
+      "Anti-GSDMD clone EPR19828",
+      "Anti-GSDMD clone 17G2"
+    ],
+    "interfaceFocus": "N 端脂质结合面与孔环寡聚化界面",
+    "designMode": "胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "CASP1",
+        "rationale": "CASP1 位于炎症小体下游蛋白酶节点，可裂解 GSDMD 并成熟 IL-1β、IL-18，是抑制经典炎症小体焦亡的上游候选靶点。"
+      },
+      {
+        "target": "NLRP3",
+        "rationale": "NLRP3 是多种无菌炎症刺激的炎症小体传感器，激活后招募 ASC 和 CASP1，间接驱动 GSDMD 裂解与焦亡。"
+      },
+      {
+        "target": "PYCARD",
+        "rationale": "PYCARD/ASC 连接炎症小体传感器与 CASP1，其寡聚化斑点形成是 CASP1 激活和 GSDMD 裂解的重要平台。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "CGAS",
+  "generatedAt": "2026-08-03T11:20:14.985Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CGAS 是胞质 DNA 感知通路的核心酶，结合异常胞质双链 DNA 后合成 2′3′-cGAMP，并激活 STING-TBK1-IRF3 轴诱导 I 型干扰素与炎症因子表达，参与病毒感染、肿瘤免疫和自身炎症病理。该蛋白主要定位于胞质和细胞核，缺乏天然胞外结构域，因此更适合作为细胞内递送抗体、VHH 或研究型阻断分子的设计对象。相较于下游广谱炎症因子，CGAS 位于 DNA 感知起始节点，阻断其 DNA 结合或催化构象可更直接限制通路放大，具有明确的机制优先级。",
+    "mechanism": "阻断 CGAS 催化核心与胞质双链 DNA 的结合界面，或干扰 ATP/GTP 底物进入核苷酸转移酶活性口袋，从而抑制 2′3′-cGAMP 生成及后续 STING 激活。",
+    "selectedEpitope": "优先覆盖 NTase 催化结构域与 Mab21 DNA 结合平台交界，聚焦 DNA 诱导二聚化和活性构象稳定界面。",
+    "diseaseDirection": "胞质DNA感知与抗病毒炎症",
+    "domain": "人 CGAS 含 N 端无序调控区、C 端 NTase 核苷酸转移酶结构域及 Mab21 DNA 结合结构域。",
+    "evidence": "CGAS-STING通路结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt Q8N884 蛋白功能与定位注释",
+      "RCSB PDB 4LEV X 射线晶体结构",
+      "cGAS-STING 胞质 DNA 感知通路文献"
+    ],
+    "referenceEntries": "UniProt: Q8N884; RCSB PDB: 4LEV; Ensembl: ENSG00000164430",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "NTase-Mab21 结构域 DNA 结合平台及正电荷沟槽",
+        "可直接削弱双链 DNA 结合和 cGAS 活化构象形成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化口袋邻近的 ATP/GTP 底物进入区域",
+        "可通过空间位阻限制 2′3′-cGAMP 合成反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端无序调控区及核定位相关低复杂度区域",
+        "构象柔性高且结构解析不足，表位稳定性和功能阻断可预测性较低",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CGAS 为非分泌型胞内酶，常规抗体难以天然进入细胞；设计应优先采用细胞内递送、VHH 或融合递送格式，并规避与底物核酸的非特异相互作用。",
+    "structurePrepZh": "以 4LEV 晶体结构提取人 CGAS 催化核心链 A/B，补全缺失侧链、校正质子化状态，并标注 DNA 结合面、催化口袋和二聚化相关界面。",
+    "structureRef": "RCSB PDB 4LEV; human cGAS catalytic domain X-ray structure",
+    "antibodies": [
+      "anti-cGAS monoclonal antibody clone D1D3G",
+      "anti-cGAS monoclonal antibody clone E9"
+    ],
+    "interfaceFocus": "DNA结合正电荷沟槽与NTase催化口袋边缘",
+    "designMode": "胞内阻断型VHH",
+    "candidates": [
+      {
+        "target": "TMEM173",
+        "rationale": "TMEM173 编码 STING，是 cGAMP 的直接受体并位于 CGAS 下游；阻断 cGAMP-STING 结合可抑制 TBK1 和 IRF3 激活。"
+      },
+      {
+        "target": "TBK1",
+        "rationale": "TBK1 是 STING 复合体招募的关键激酶，负责磷酸化 IRF3；其抑制可限制 I 型干扰素转录输出。"
+      },
+      {
+        "target": "IRF3",
+        "rationale": "IRF3 是 CGAS-STING 通路的核心转录因子，磷酸化二聚化后驱动 IFNB1 等抗病毒基因表达，适合作为下游通路验证靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "GAB1",
+  "generatedAt": "2026-08-03T12:40:08.060Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GAB1是MET、EGFR及多种受体酪氨酸激酶下游的支架蛋白，通过磷酸化位点募集PI3K、SHP2等效应分子，参与RAS-MAPK与PI3K-AKT信号放大，因而与肿瘤增殖、迁移和耐药相关。该蛋白主要为胞质适配蛋白，缺乏经典胞外结构域，作为常规细胞外抗体药物靶点的抗原可及性弱于膜受体或分泌因子。其优先级主要来自通路汇聚节点价值和高分辨率结构支持，但相较MET、EGFR等同通路膜受体，更适合作为细胞内递送抗体、研究级Fab或VHH结构干预靶点。",
+    "mechanism": "通过结合GAB1的PH结构域或效应蛋白结合界面，阻断其膜定位及与GRB2/SHP2/PI3K复合体装配，削弱RTK下游MAPK与AKT信号传递。",
+    "selectedEpitope": "优先覆盖PH结构域磷脂结合口袋邻近面，限制PIP3依赖膜定位并保留构象选择性。",
+    "diseaseDirection": "RTK驱动肿瘤信号转导",
+    "domain": "GAB1含N端PH结构域、中部富脯氨酸GRB2结合区及多处酪氨酸磷酸化效应蛋白结合位点。",
+    "evidence": "GAB1介导RTK致癌信号的结构与遗传证据",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q13480蛋白功能注释",
+      "RCSB PDB 9EIK高分辨率晶体结构",
+      "RTK-GAB1-SHP2/PI3K信号通路文献"
+    ],
+    "referenceEntries": "UniProt Q13480；RCSB PDB 9EIK；Open Targets GAB1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PH结构域磷脂结合口袋邻近表面",
+        "干预PIP3依赖膜募集，抑制RTK信号复合体起始装配",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PH结构域外侧保守构象面",
+        "用于构象锁定和结构探针开发，降低直接口袋竞争带来的亲和力风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "富脯氨酸GRB2结合区及磷酸化酪氨酸邻近区域",
+        "理论上可影响GRB2或效应蛋白招募，但柔性高且结构解析覆盖有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GAB1为胞内支架蛋白，常规抗体难以进入胞质；应优先采用VHH、细胞内抗体或递送偶联策略，并避免靶向高度柔性无序区。",
+    "structurePrepZh": "以PDB 9EIK链A、B为结构模板，保留PH结构域稳定核心，检查缺失环区、晶体接触面及磷脂结合口袋构象后开展表位建模。",
+    "structureRef": "RCSB PDB 9EIK，X-ray diffraction，1.25 Å",
+    "antibodies": [
+      "研究级anti-GAB1抗体",
+      "研究级phospho-GAB1抗体"
+    ],
+    "interfaceFocus": "PH结构域磷脂结合面与膜定位界面",
+    "designMode": "胞内VHH/Fab干预",
+    "candidates": [
+      {
+        "target": "MET",
+        "rationale": "MET活化后可通过GAB1募集SHP2和PI3K，是GAB1依赖侵袭与增殖信号的上游膜受体，具备更直接的胞外抗体可及性。"
+      },
+      {
+        "target": "EGFR",
+        "rationale": "EGFR属于与GAB1耦联的RTK通路节点，可通过GRB2-GAB1复合体促进MAPK和PI3K-AKT信号，在多种肿瘤中具有成熟抗体开发先例。"
+      },
+      {
+        "target": "PTPN11",
+        "rationale": "PTPN11编码SHP2，是GAB1磷酸化后募集的关键效应磷酸酶，介导RAS-MAPK信号传递；适合作为同通路下游机制验证靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

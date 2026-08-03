@@ -1,0 +1,65 @@
+{
+  "gene": "TASL",
+  "generatedAt": "2026-08-03T17:08:27.038Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TASL是SLC15A4依赖的关键信号衔接蛋白，参与内体TLR7/TLR8/TLR9介导的IRF5激活与I型干扰素及炎症因子诱导，在系统性红斑狼疮和类风湿关节炎相关免疫失衡中具有明确疾病关联。其蛋白位于胞内溶酶体相关膜复合体界面，但可通过稳定复合体构象、阻断TASL-SLC15A4装配或干预TASL-C末端功能片段暴露实现抗体/胞内结合物设计，靶点可及性优于大多数纯胞内适配蛋白。相较于TLR7、TLR9等直接受体，TASL更靠近信号放大节点，兼具通路选择性与炎症抑制潜力，适合作为优先级较高的机制靶点。",
+    "mechanism": "阻断TASL与SLC15A4复合体装配，抑制TLR7/9下游IRF5募集与激活，降低I型干扰素转录。",
+    "selectedEpitope": "优先覆盖SLC15A4结合界面及C端功能片段邻近区，避免破坏整体折叠。",
+    "diseaseDirection": "SLE/RA免疫炎症",
+    "domain": "以SLC15A4结合界面及C端功能区为主的胞内适配蛋白区域",
+    "evidence": "TASL结构与自身免疫证据包",
+    "evidenceSources": [
+      "Open Targets Platform",
+      "UniProt Q9HAI6",
+      "RCSB PDB 8JZU",
+      "已发表TASL-SLC15A4结构研究"
+    ],
+    "referenceEntries": "UniProt: Q9HAI6；PDB: 8JZU；Open Targets TASL",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SLC15A4结合界面核心残基簇",
+        "优先阻断复合体组装并保留折叠稳定性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端功能片段邻近表面",
+        "适于干预下游信号装配但需避免构象扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离结合界面的外露环区",
+        "可作为低风险结合位点但功能抑制可能较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险在于靶点为胞内蛋白，常规全长IgG可及性有限；宜优先考虑VHH、细胞内递送抗体或替代性结合分子。需避免选择破坏核心折叠的表位，以免导致非特异性失活。",
+    "structurePrepZh": "建议基于8JZU进行链A/B界面重建与缺失环建模，标注SLC15A4接触残基并开展表位可达性与保守性映射，随后进行界面驱动对接筛选。",
+    "structureRef": "RCSB PDB 8JZU；cryo-EM 3.05 Å",
+    "antibodies": [
+      "TASL-SLC15A4界面阻断性结合物",
+      "TLR信号复合体干预型VHH"
+    ],
+    "interfaceFocus": "SLC15A4装配界面与C端功能区",
+    "designMode": "界面阻断型",
+    "candidates": [
+      {
+        "target": "SLC15A4",
+        "rationale": "SLC15A4是TASL的直接膜锚定伙伴，也是内体TLR-IRF5通路的上游必需因子。围绕其胞内侧结合界面设计可与TASL形成同通路双点干预。"
+      },
+      {
+        "target": "TLR7",
+        "rationale": "TLR7与TASL共同位于内体核酸感知轴，抑制其配体依赖激活可与TASL阻断形成协同。该靶点在系统性红斑狼疮中疾病关联明确。"
+      },
+      {
+        "target": "IRF5",
+        "rationale": "IRF5位于TASL依赖信号的下游转录节点，干预其募集或激活可直接削弱I型干扰素程序。与TASL同属自身免疫炎症关键轴，适合作为配套候选。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

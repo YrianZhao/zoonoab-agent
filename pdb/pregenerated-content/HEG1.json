@@ -1,0 +1,65 @@
+{
+  "gene": "HEG1",
+  "generatedAt": "2026-08-03T13:10:03.420Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HEG1 是内皮细胞表面跨膜糖蛋白，作为 KRIT1/CCM1 复合体的膜近端锚定因子，参与维持血管内皮连接稳定性与腔面完整性，其功能异常与 CCM 通路相关血管屏障缺陷及肾小球滤过表型具有机制关联。该蛋白具有大型胞外区、EGF-like 重复结构和黏蛋白样区，抗原位点位于细胞外环境，适合抗体识别与界面阻断设计。相较于细胞内 CCM1、CCM2 或 PDCD10，HEG1 的膜受体属性提供更高抗原可及性，因此在抗体工程中具有优先开发价值。",
+    "mechanism": "通过结合 HEG1 胞外 EGF-like 区域，阻断其同源聚集或配体样界面构象稳定，进而干预 HEG1 对 KRIT1/CCM1 膜定位复合体的上游组织作用。",
+    "selectedEpitope": "优先覆盖 PDB 4HDQ 所解析的 N 端 EGF-like 结构域钙结合界面及相邻暴露环区。",
+    "diseaseDirection": "血管内皮屏障与肾小球功能",
+    "domain": "HEG1 含信号肽、大型胞外 EGF-like 重复区、黏蛋白样区、单跨膜区及短胞质尾。",
+    "evidence": "HEG1-CCM 内皮屏障轴抗体设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt Q9ULI3 蛋白结构域注释",
+      "RCSB PDB 4HDQ 晶体结构数据",
+      "HEG1-KRIT1/CCM 复合体血管发育文献"
+    ],
+    "referenceEntries": "UniProt Q9ULI3；RCSB PDB 4HDQ；Open Targets HEG1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N 端钙结合 EGF-like 结构域暴露环与折叠核心边缘",
+        "结构分辨率高，利于获得构象依赖型阻断抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "相邻 EGF-like 重复结构域间连接区",
+        "可影响胞外区构象排列与受体样聚集状态",
+        "备选"
+      ],
+      [
+        "Site C",
+        "黏蛋白样富糖基化胞外区",
+        "可及性较高但糖基化异质性可能削弱表位一致性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HEG1 胞外区存在潜在糖基化与柔性连接段，需避开高度可变黏蛋白样区域，优先选择 4HDQ 支持的稳定 EGF-like 构象表位。",
+    "structurePrepZh": "以 4HDQ 的 A、B、C 链为实验结构模板，保留钙结合 EGF-like 构象，补充缺失环区并标注糖基化风险位点。",
+    "structureRef": "RCSB PDB 4HDQ，X-ray diffraction，1.95 Å",
+    "antibodies": [
+      "anti-HEG1 clone SKM9-2",
+      "anti-HEG1 clone SKM10-2"
+    ],
+    "interfaceFocus": "EGF-like 钙结合环与结构域间连接界面",
+    "designMode": "胞外构象阻断",
+    "candidates": [
+      {
+        "target": "KRIT1",
+        "rationale": "KRIT1/CCM1 是 HEG1 胞质尾结合因子，连接 HEG1 膜定位信号与内皮连接稳定通路；但其为细胞内蛋白，抗体药物可及性较低。"
+      },
+      {
+        "target": "CCM2",
+        "rationale": "CCM2 与 KRIT1、PDCD10 构成 CCM 信号复合体，参与内皮屏障和血管形态维持；其通路相关性强但主要位于胞内。"
+      },
+      {
+        "target": "PDCD10",
+        "rationale": "PDCD10/CCM3 是 CCM 复合体关键组分，突变与脑海绵状血管畸形机制相关；可作为同通路机制验证靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

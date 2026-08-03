@@ -1,0 +1,65 @@
+{
+  "gene": "ATRIP",
+  "generatedAt": "2026-08-03T10:43:11.573Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ATRIP是ATR激酶复合体的适配蛋白，主要通过结合RPA包被的单链DNA并募集ATR参与复制压力和DNA损伤检查点反应。其遗传关联集中于Aicardi-Goutieres综合征、系统性红斑狼疮及RVCL等核酸感知异常相关疾病，提示DNA损伤应答与先天免疫异常存在交叉关联。ATRIP为胞内核蛋白，天然抗原可及性显著弱于分泌因子或膜受体，因此更适合作为机制验证、结构引导的胞内递送抗体或研究级结合分子靶点。相比STING、IFNAR1等通路外周节点，ATRIP更接近复制压力感知起点，优先级依据在于可解析ATR-ATRIP装配与RPA-ssDNA招募界面的上游机制。",
+    "mechanism": "设计结合ATRIP N端卷曲螺旋寡聚化界面或RPA70N结合区域的抗体片段，干预ATRIP向RPA包被ssDNA募集ATR的复合体装配。",
+    "selectedEpitope": "优先覆盖ATRIP N端卷曲螺旋二聚化界面，并避开深埋疏水核心以保留可成药表面。",
+    "diseaseDirection": "DNA损伤应答与自身炎症",
+    "domain": "ATRIP含N端卷曲螺旋/RPA结合区域及C端ATR相互作用片段，4NB3解析其寡聚化结构基础。",
+    "evidence": "ATRIP-ATR复制压力检查点证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q8WXE1功能注释",
+      "RCSB PDB 4NB3晶体结构",
+      "DNA损伤检查点与RPA-ssDNA募集文献"
+    ],
+    "referenceEntries": "UniProt Q8WXE1；RCSB PDB 4NB3；Open Targets ATRIP",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端卷曲螺旋寡聚化界面",
+        "可干预ATRIP寡聚化与检查点复合体空间装配，结构分辨率高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RPA70N相互作用邻近表面",
+        "可降低ATRIP向RPA包被ssDNA的募集效率，适合机制阻断验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATR相互作用C端区域",
+        "可能直接影响ATR结合，但结构覆盖不足且胞内构象依赖较强",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ATRIP位于细胞核内且缺乏胞外可及结构，常规治疗性抗体成药性受限；建议采用Fab/VHH胞内递送、细胞穿透或研究级结构探针策略。",
+    "structurePrepZh": "以4NB3高分辨率晶体结构为核心模板，保留A-D链寡聚状态，校验卷曲螺旋界面、缺失片段及晶体接触后再进行表位建模。",
+    "structureRef": "RCSB PDB 4NB3，X-ray diffraction，1.35 Å",
+    "antibodies": [
+      "无已获批同靶点抗体",
+      "研究级抗ATRIP抗体"
+    ],
+    "interfaceFocus": "ATRIP卷曲螺旋寡聚化与RPA70N邻近界面",
+    "designMode": "胞内Fab/VHH机制探针",
+    "candidates": [
+      {
+        "target": "ATR",
+        "rationale": "ATR是ATRIP募集并激活的核心PIKK家族激酶，直接执行复制压力检查点信号传递；与ATRIP处于同一ATR-CHK1轴。"
+      },
+      {
+        "target": "RPA1",
+        "rationale": "RPA1编码RPA70，是ATRIP识别RPA包被单链DNA的重要结合节点；干预该节点可影响ATRIP在损伤位点的定位。"
+      },
+      {
+        "target": "CHEK1",
+        "rationale": "CHEK1是ATR激活后的关键下游效应激酶，介导细胞周期检查点和复制叉稳定；适合作为同通路功能读出靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

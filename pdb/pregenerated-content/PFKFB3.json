@@ -1,0 +1,65 @@
+{
+  "gene": "PFKFB3",
+  "generatedAt": "2026-08-03T15:12:53.394Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PFKFB3催化果糖-2,6-二磷酸生成，增强PFK1介导的糖酵解通量，在肿瘤代谢重编程、炎症细胞活化及血管内皮应答中具有明确通路作用。该蛋白主要定位于胞质，缺乏天然胞外结构域或分泌特征，抗原可及性不支持常规治疗性抗体直接阻断，因此更适合作为胞内抗原结合工具或递送型抗体设计对象。相较GLUT1、LDHA等广泛代谢靶点，PFKFB3位于果糖-2,6-二磷酸控制节点，对糖酵解门控具有更高调节杠杆，但其抗体成药优先级需低于可及性更佳的膜受体靶点。",
+    "mechanism": "设计抗体片段优先识别PFKFB3激酶结构域ATP/果糖-6-磷酸邻近构象，阻碍底物进入催化口袋并降低果糖-2,6-二磷酸生成。",
+    "selectedEpitope": "优先覆盖N端2-激酶结构域的ATP结合沟槽及F6P入口邻近环区。",
+    "diseaseDirection": "肿瘤代谢重编程与炎症糖酵解",
+    "domain": "PFKFB3含N端6-磷酸果糖-2-激酶结构域与C端果糖-2,6-二磷酸酶结构域。",
+    "evidence": "PFKFB3糖酵解门控与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q16875功能与定位注释",
+      "RCSB PDB 5AK0晶体结构",
+      "PFKFB3肿瘤代谢与炎症糖酵解文献"
+    ],
+    "referenceEntries": "UniProt Q16875；RCSB PDB 5AK0；Open Targets PFKFB3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端2-激酶结构域ATP结合沟槽与F6P入口邻近环区",
+        "可直接干扰底物定位和催化构象，适合功能阻断型片段设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "激酶结构域与磷酸酶结构域连接界面",
+        "可能影响双功能酶构象耦联与结构稳定性，可作为变构调节表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端果糖-2,6-二磷酸酶结构域催化邻近区域",
+        "PFKFB3磷酸酶活性较弱，单独阻断该区域的疾病相关效应不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PFKFB3为胞内代谢酶，常规IgG难以到达胞质靶点；应标注递送依赖性、脱靶代谢扰动及同源PFKFB家族交叉反应风险。",
+    "structurePrepZh": "以5AK0链A为结构模板，补全缺失环区并保留催化口袋关键残基构象；去除结晶非功能组分后进行质子化和界面网格定义。",
+    "structureRef": "RCSB PDB 5AK0，X-ray diffraction，2.03 Å",
+    "antibodies": [
+      "无已获批PFKFB3治疗性抗体",
+      "PFKFB3研究级单克隆抗体"
+    ],
+    "interfaceFocus": "ATP结合沟槽、F6P入口环区及激酶-磷酸酶连接面",
+    "designMode": "胞内酶阻断型",
+    "candidates": [
+      {
+        "target": "HK2",
+        "rationale": "HK2催化葡萄糖磷酸化并驱动糖酵解起始步骤，与PFKFB3共同支持肿瘤细胞高糖酵解表型。其在线粒体外膜相关定位也使代谢和凋亡耦联效应具有疾病相关性。"
+      },
+      {
+        "target": "PFKP",
+        "rationale": "PFKP编码血小板型PFK1，是果糖-2,6-二磷酸直接变构激活的糖酵解限速酶。与PFKFB3处于同一F2,6BP-PFK1调控轴，可作为下游功能节点候选。"
+      },
+      {
+        "target": "LDHA",
+        "rationale": "LDHA将丙酮酸还原为乳酸，维持NAD+再生并支撑高通量糖酵解。其与PFKFB3共同构成肿瘤Warburg代谢通路的关键执行模块。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

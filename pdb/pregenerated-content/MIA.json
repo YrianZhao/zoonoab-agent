@@ -1,0 +1,65 @@
+{
+  "gene": "MIA",
+  "generatedAt": "2026-08-03T14:14:07.715Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MIA为黑色素瘤细胞分泌蛋白，可通过与整合素α4β1、α5β1及细胞外基质成分相互作用，削弱细胞黏附并促进侵袭迁移。其为小型分泌型SH3样结构域蛋白，抗原位点位于胞外环境，具备良好的抗体可及性和体液药物暴露条件。相比许多细胞内黑色素瘤相关因子，MIA更适合以中和抗体直接阻断分泌蛋白介导的黏附调控轴，具有明确的界面干预优先级。",
+    "mechanism": "通过抗体占据MIA SH3样结构域的配体结合沟槽，阻断MIA与整合素及纤维连接蛋白相关黏附界面的结合，抑制黑色素瘤细胞脱附、迁移和侵袭。",
+    "selectedEpitope": "优先覆盖SH3样β桶结构的RT-loop/n-Src-loop相邻配体结合沟槽，兼顾整合素结合界面遮挡。",
+    "diseaseDirection": "黑色素瘤侵袭转移干预",
+    "domain": "MIA为分泌型小蛋白，核心为单一SH3样β桶结构域，含可形成配体结合沟槽的环区。",
+    "evidence": "MIA黑色素瘤分泌因子与黏附调控证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q16674功能与亚细胞定位注释",
+      "RCSB PDB 1I1J X射线晶体结构",
+      "黑色素瘤MIA促进细胞脱附与侵袭相关文献"
+    ],
+    "referenceEntries": "UniProt: Q16674；RCSB PDB: 1I1J；Open Targets: MIA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SH3样结构域RT-loop/n-Src-loop邻近配体结合沟槽",
+        "直接遮挡MIA与整合素/基质相关配体结合面，适合中和型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "β桶外侧保守疏水斑块及相邻环区",
+        "可能影响MIA介导的细胞黏附调节，可作为构象表位备选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离配体沟槽的β折叠背面区域",
+        "结合风险较低但功能阻断价值有限，需避免仅产生非中和结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MIA分子量较小且表面环区有限，需避免抗体表位过度依赖晶体接触面；应优先筛选能阻断整合素/基质结合的构象表位。",
+    "structurePrepZh": "以1I1J高分辨率晶体结构为模板，保留成熟分泌蛋白核心结构，检查A、B链晶体构象一致性并去除非生理晶体接触。",
+    "structureRef": "PDB 1I1J，human MIA，X-ray，1.39 Å",
+    "antibodies": [
+      "anti-MIA monoclonal antibody 6F7",
+      "anti-MIA monoclonal antibody 9B10"
+    ],
+    "interfaceFocus": "SH3样配体结合沟槽及整合素黏附界面",
+    "designMode": "分泌蛋白中和",
+    "candidates": [
+      {
+        "target": "ITGA4",
+        "rationale": "ITGA4编码整合素α4亚基，是MIA影响α4β1介导细胞黏附的同轴靶点；阻断该界面可干预黑色素瘤细胞与基质环境的相互作用。"
+      },
+      {
+        "target": "ITGB1",
+        "rationale": "ITGB1编码β1整合素亚基，与α4或α5形成黏附受体复合物，是MIA调节细胞脱附和迁移过程中的关键受体组成。"
+      },
+      {
+        "target": "FN1",
+        "rationale": "FN1编码纤维连接蛋白，是β1整合素介导细胞外基质黏附的重要配体；其与MIA-整合素黏附调控轴处于同一细胞外基质通路。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

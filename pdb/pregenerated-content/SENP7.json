@@ -1,0 +1,65 @@
+{
+  "gene": "SENP7",
+  "generatedAt": "2026-08-03T16:25:51.257Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SENP7 是SUMO特异性去修饰蛋白酶，主要通过去除多聚SUMO2/3链影响染色质相关蛋白、DNA损伤反应与转录稳态；Open Targets 关联信号以血细胞计数和体液性状为主，但其疾病关联更偏遗传性数量性状而非明确可阻断的胞外致病轴。SENP7为核内酶，缺乏天然胞外结构域、分泌形式或膜受体拓扑，完整抗体在常规给药条件下难以接近活性位点。相较于同通路中具有胞外配体或膜受体属性的造血调控靶点，SENP7作为抗体主靶点优先级较低，更适合作为结构生物学参照、胞内递送抗体或酶活调控片段的探索对象。",
+    "mechanism": "通过胞内递送抗体或内抗体占据SENP7催化结构域底物结合沟槽，阻断其与多聚SUMO2/3修饰底物的识别及去SUMO化反应。",
+    "selectedEpitope": "优先聚焦催化结构域Cys-His-Asp活性中心邻近的SUMO结合沟槽，避免直接覆盖保守催化残基。",
+    "diseaseDirection": "血液数量性状与造血调控",
+    "domain": "SENP7含N端调控区及C端Ulp/SENP半胱氨酸蛋白酶催化结构域，7R2E解析其催化核心。",
+    "evidence": "SENP7结构与血液性状遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB Q9BQF6功能与亚细胞定位注释",
+      "RCSB PDB 7R2E晶体结构记录",
+      "SUMO2/3去修饰酶家族结构与底物识别研究"
+    ],
+    "referenceEntries": "UniProt Q9BQF6；RCSB PDB 7R2E；Open Targets SENP7",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域SUMO底物结合沟槽及邻近外环",
+        "最可能干预SENP7对多聚SUMO2/3链底物的识别，具备机制验证价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化核心远端非保守外表面螺旋-环区",
+        "可用于构建高选择性结合分子，降低与SENP1/2/6等同源酶交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Cys-His-Asp催化三联体直接邻域",
+        "虽具酶活抑制潜力，但保守性高且可能影响构象稳定性，需谨慎设计",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SENP7为核内蛋白，常规抗体递送与抗原可及性风险显著；设计应限定为内抗体、细胞穿透格式或体外机制探针，并严格评估SENP家族选择性。",
+    "structurePrepZh": "以7R2E链A-D催化结构域为模板，移除结晶缓冲组分，保留功能性界面构象；按链间晶体接触与单体状态分别评估可成药表面。",
+    "structureRef": "RCSB PDB 7R2E，X-ray diffraction，1.74 Å",
+    "antibodies": [
+      "抗SENP7研究级单克隆抗体",
+      "抗SUMO2/3链研究级抗体"
+    ],
+    "interfaceFocus": "SUMO2/3底物结合沟槽与催化核心邻近外环",
+    "designMode": "胞内抗体探索",
+    "candidates": [
+      {
+        "target": "SENP6",
+        "rationale": "SENP6同属SUMO2/3链编辑酶，参与维持多聚SUMO化蛋白稳态，与SENP7处于相同SUMO去修饰通路。其功能冗余与互补关系有助于解析血液性状关联中的SUMO链调控轴。"
+      },
+      {
+        "target": "SUMO2",
+        "rationale": "SUMO2是SENP7识别和编辑的主要SUMO链组成单元之一，处于同一去SUMO化底物通路。靶向SUMO2/3链可作为评估SENP7底物占据和通路输出的替代策略。"
+      },
+      {
+        "target": "UBE2I",
+        "rationale": "UBE2I编码UBC9，是SUMO化级联反应的核心E2连接酶，与SENP7介导的去SUMO化共同决定SUMO修饰动态平衡。其位于同一SUMO修饰通路，可用于上下游机制对照。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

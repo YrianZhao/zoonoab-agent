@@ -1,0 +1,65 @@
+{
+  "gene": "RGS12",
+  "generatedAt": "2026-08-03T20:54:55.376Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RGS12 属于调节 G 蛋白信号转导家族，可通过 RGS 结构域促进 Gα 亚基 GTP 水解并终止 GPCR 信号，遗传关联数据提示其与血脂、胆固醇酯及磷脂比例等代谢表型存在关联。该蛋白主要为胞内支架型信号调节蛋白，天然抗原可及性显著弱于分泌因子或细胞膜受体，因此常规中和抗体成药性受限。相较 LDLR、PCSK9、APOB 等脂质代谢通路中可直接暴露于血浆或细胞表面的靶点，RGS12 更适合作为机制研究或胞内递送抗体探索对象，主靶点优先级应谨慎评估。",
+    "mechanism": "设计以内体逃逸或胞内递送抗体阻断 RGS12 RGS 结构域与活化 Gα-GTP 的结合，降低其对 Gα 的 GTPase 加速作用，延长相关 GPCR-G 蛋白信号输出。",
+    "selectedEpitope": "优先覆盖 RGS domain 的 Gα 接触面 α4-α7 区域，避免仅选择远离效应界面的外周螺旋。",
+    "diseaseDirection": "脂质代谢与胆固醇表型",
+    "domain": "RGS12 为多结构域胞内蛋白，含 PDZ、PTB、RGS、Ras/Rap 结合域及 GoLoco/GPR 基序。",
+    "evidence": "RGS12脂质表型遗传关联与RGS结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病-靶点关联",
+      "UniProtKB O14924 蛋白功能与结构域注释",
+      "RCSB PDB 2EBZ 溶液NMR结构",
+      "Gene Ontology G protein signaling regulator annotation"
+    ],
+    "referenceEntries": "UniProt O14924；RCSB PDB 2EBZ；Open Targets RGS12",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RGS结构域Gα结合沟槽及α4-α7螺旋界面",
+        "直接干预RGS12与Gα亚基复合物形成，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RGS结构域相邻保守螺旋束外侧面",
+        "可作为变构干预位点，降低正交阻断带来的亲和成熟约束",
+        "备选"
+      ],
+      [
+        "Site C",
+        "RGS核心折叠疏水内核或高度保守RGS家族共享表面",
+        "可能影响折叠稳定性并增加RGS家族交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RGS12 为胞内蛋白，常规抗体难以到达作用位点；RGS结构域家族保守性较高，应优先筛选RGS12特异环区并配置胞内递送策略。",
+    "structurePrepZh": "以PDB 2EBZ的NMR模型集合为基础，评估构象聚类与低置信柔性区，保留RGS结构域核心并映射Gα结合保守残基。",
+    "structureRef": "RCSB PDB 2EBZ，human RGS12 RGS domain NMR structure",
+    "antibodies": [
+      "暂无获批抗RGS12治疗性抗体",
+      "研究级抗RGS12抗体"
+    ],
+    "interfaceFocus": "RGS结构域与Gα亚基结合沟槽",
+    "designMode": "胞内递送阻断抗体",
+    "candidates": [
+      {
+        "target": "PCSK9",
+        "rationale": "PCSK9 是分泌蛋白，通过结合 LDLR EGF-A 结构域促进 LDLR 降解，直接影响血浆 LDL 胆固醇水平，抗原可及性和临床验证程度均显著优于 RGS12。"
+      },
+      {
+        "target": "LDLR",
+        "rationale": "LDLR 为肝细胞表面脂蛋白受体，介导 LDL 摄取并处于胆固醇清除核心环节；其胞外配体结合重复区提供明确的抗体可及表位。"
+      },
+      {
+        "target": "APOB",
+        "rationale": "APOB 是 VLDL、IDL 和 LDL 颗粒的主要结构载脂蛋白，直接参与含 ApoB 脂蛋白装配与受体识别，适合作为脂质代谢通路候选干预节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

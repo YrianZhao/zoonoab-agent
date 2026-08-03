@@ -1,0 +1,65 @@
+{
+  "gene": "BMPR1B",
+  "generatedAt": "2026-08-03T10:51:01.998Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BMPR1B 是 BMP/TGF-β 超家族信号轴中的I型丝氨酸/苏氨酸激酶受体，参与 BMP2、BMP4、GDF5 等配体诱导的 SMAD1/5/8 磷酸化，对软骨分化、骨骼模式形成和肢体发育具有直接机制关联。Open Targets 中其与短指畸形 A2、肢中段发育不良和骨发育异常呈较高遗传关联，符合骨骼发育疾病通路干预靶点特征。BMPR1B 为单跨膜受体，N端胞外配体结合结构域可直接作为抗体可及抗原。相较于下游 SMAD 或胞内激酶区，胞外受体界面更适合通过抗体实现选择性阻断或配体偏向性调节。",
+    "mechanism": "抗体结合 BMPR1B 胞外配体结合域，阻断 GDF5/BMP2 与受体复合物形成，抑制 BMPR1B 介导的 SMAD1/5/8 激活。",
+    "selectedEpitope": "优先覆盖胞外富半胱氨酸配体结合域的指状环区及 GDF5/BMP 接触面。",
+    "diseaseDirection": "骨骼发育异常与 BMP 信号疾病",
+    "domain": "BMPR1B 含N端胞外富半胱氨酸配体结合域、单跨膜螺旋及胞内GS区和激酶结构域。",
+    "evidence": "BMPR1B-BMP骨发育通路结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt O00238 功能与结构域注释",
+      "RCSB PDB 3MDY X射线晶体结构",
+      "OMIM 与 ClinVar 骨骼发育变异记录"
+    ],
+    "referenceEntries": "UniProt O00238；RCSB PDB 3MDY；Open Targets BMPR1B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "胞外配体结合域凸面指状环与GDF5/BMP接触界面",
+        "直接阻断配体结合并保持受体选择性，适合作为中和抗体主表位",
+        "优先"
+      ],
+      [
+        "Site B",
+        "胞外富半胱氨酸域近膜侧非保守环区",
+        "可形成受体亚型选择性结合，降低对BMPR1A/ACVR1交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "保守半胱氨酸核心及二硫键支撑区域",
+        "可能影响结构折叠或诱导非特异构象扰动，需控制亲和力与构象依赖性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BMPR1B 胞外域与 BMPR1A、ACVR1 存在同源保守面，需避开高度保守二硫键核心，优先选择非保守配体接触环区以降低交叉反应。",
+    "structurePrepZh": "以 3MDY 中 BMPR1B 胞外域链为模板，保留二硫键和配体接触残基，去除晶体接触冗余链并进行质子化、糖基化位点评估与界面能量校正。",
+    "structureRef": "RCSB PDB 3MDY，2.05 Å X-ray BMPR1B胞外域结构",
+    "antibodies": [
+      "anti-BMPR1B monoclonal antibody AF505",
+      "anti-BMPR1B monoclonal antibody MAB505"
+    ],
+    "interfaceFocus": "配体结合指状环与受体亚型非保守面",
+    "designMode": "受体-配体阻断",
+    "candidates": [
+      {
+        "target": "GDF5",
+        "rationale": "GDF5 是 BMPR1B 上游关键配体，遗传变异与短指畸形和关节发育异常相关。靶向 GDF5 可在同一 BMP 受体通路中调节配体驱动信号。"
+      },
+      {
+        "target": "BMPR1A",
+        "rationale": "BMPR1A 是与 BMPR1B 同属 BMP I型受体的近缘靶点，共同介导 BMP2/BMP4 诱导的 SMAD1/5/8 信号。其可作为通路内选择性与交叉反应评估参照。"
+      },
+      {
+        "target": "ACVR2B",
+        "rationale": "ACVR2B 是 BMP/GDF 配体复合物中的II型受体成分，可与I型受体共同形成活化复合物。靶向该节点可从受体复合物装配层面调节同一信号轴。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

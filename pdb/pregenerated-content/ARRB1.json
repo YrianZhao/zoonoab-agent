@@ -1,0 +1,65 @@
+{
+  "gene": "ARRB1",
+  "generatedAt": "2026-08-03T10:36:35.201Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ARRB1编码β-arrestin 1，是GPCR脱敏、内吞与β-arrestin偏向性信号的细胞内支架蛋白，在RAS/MAPK相关肿瘤、肥厚型心肌病及RASopathy表型中具有通路关联。其抗原本体位于胞质侧，缺乏天然胞外结构域或分泌形式，常规体内阻断型抗体可及性较弱，更适合作为结构抗原开展细胞内抗体、VHH或研究级构象探针设计。相较膜受体类上游靶点，ARRB1可直接解析GPCR复合物后端适配界面，但药物化抗体优先级低于具有胞外可及性的同通路受体与配体。",
+    "mechanism": "通过识别ARRB1的活化构象界面，干扰其与磷酸化GPCR C端及clathrin/AP2适配复合体的结合。",
+    "selectedEpitope": "优先聚焦N/C结构域夹角及polar core重排邻近面，避免高度保守的受体磷酸肽结合沟。",
+    "diseaseDirection": "GPCR-β-arrestin与RAS/MAPK相关疾病",
+    "domain": "ARRB1由N端arrestin结构域、C端arrestin结构域和可调控C尾组成，形成双叶夹持构象。",
+    "evidence": "ARRB1结构抗原与GPCR适配界面证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P49407功能与结构域注释",
+      "RCSB PDB 8AS4晶体结构记录",
+      "β-arrestin介导GPCR脱敏与内吞文献"
+    ],
+    "referenceEntries": "UniProt:P49407；RCSB PDB:8AS4；HGNC:ARRB1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端与C端arrestin结构域夹角的活化构象面",
+        "有利于获得区分ARRB1构象状态的VHH或Fab探针",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端arrestin结构域外侧clathrin/AP2邻近结合面",
+        "可用于评估ARRB1介导内吞适配功能的阻断潜力",
+        "备选"
+      ],
+      [
+        "Site C",
+        "受体磷酸肽结合沟及polar core保守区域",
+        "可能影响泛arrestin核心功能并产生选择性不足风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ARRB1为胞内蛋白，体内抗体递送与抗原可及性是主要限制；设计宜定位为细胞内VHH、构象稳定剂或机制研究抗体，并加强ARRB2交叉反应评估。",
+    "structurePrepZh": "以8AS4中A、B链为结构模板，校验晶体接触、缺失环区与C尾可见性；建模时保留双结构域相对取向并标注保守核心位点。",
+    "structureRef": "RCSB PDB 8AS4，X-ray diffraction，2.3 Å",
+    "antibodies": [
+      "anti-β-arrestin 1 clone D7F4",
+      "anti-β-arrestin 1 clone E274"
+    ],
+    "interfaceFocus": "GPCR磷酸尾结合沟与AP2/clathrin适配面",
+    "designMode": "胞内VHH构象探针",
+    "candidates": [
+      {
+        "target": "ARRB2",
+        "rationale": "ARRB2与ARRB1同属β-arrestin适配蛋白，参与GPCR脱敏、内吞及偏向性信号。其高度同源性使其成为选择性与交叉反应控制的关键对照靶点。"
+      },
+      {
+        "target": "GRK2",
+        "rationale": "GRK2对活化GPCR进行磷酸化，为β-arrestin募集提供磷酸化条码。该节点位于ARRB1上游，可用于比较阻断受体磷酸化与阻断arrestin适配的机制差异。"
+      },
+      {
+        "target": "AP2B1",
+        "rationale": "AP2B1编码AP-2复合体β2亚基，参与β-arrestin依赖性网格蛋白介导内吞。该靶点与ARRB1处于同一GPCR内吞适配通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

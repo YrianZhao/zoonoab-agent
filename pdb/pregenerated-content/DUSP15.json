@@ -1,0 +1,65 @@
+{
+  "gene": "DUSP15",
+  "generatedAt": "2026-08-03T18:47:22.239Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DUSP15 是胞内双特异性蛋白磷酸酶，Open Targets 关联主要集中于 HDL 脂质组成、胆固醇酯和甘油三酯比例等脂质表型，提示其可能参与细胞内磷酸化网络对脂质代谢状态的调节。该蛋白缺乏跨膜段和分泌信号肽，天然抗原可及性不具备胞外靶点优势，因此更适合作为机制研究或胞内递送抗体片段探索对象。相较 LDLR、PCSK9、CETP 等脂质通路胞外或分泌靶点，DUSP15 的抗体成药优先级较低，但其已有人源晶体结构可支持催化口袋与底物识别面的结构化设计。",
+    "mechanism": "通过胞内递送抗体片段占据 DUSP15 催化裂隙，阻断底物磷酸化残基进入 HCX5R 活性位点并抑制去磷酸化反应。",
+    "selectedEpitope": "优先覆盖蛋白酪氨酸磷酸酶催化结构域的 P-loop/HCX5R 活性位点邻近底物结合沟槽。",
+    "diseaseDirection": "脂质代谢表型与 HDL 组成",
+    "domain": "DUSP15 含单一双特异性磷酸酶催化结构域，PDB 1YZ4 展示人源催化核心二聚晶胞链。",
+    "evidence": "DUSP15 脂质表型遗传关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 遗传关联与疾病表型汇总",
+      "UniProtKB Q9H1R2 蛋白功能与亚细胞定位注释",
+      "RCSB PDB 1YZ4 人源 DUSP15 晶体结构",
+      "AlphaFold/PDBe-KB 结构域与保守位点注释"
+    ],
+    "referenceEntries": "UniProtKB: Q9H1R2；RCSB PDB: 1YZ4；Open Targets: DUSP15",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域 P-loop/HCX5R 活性位点邻近底物沟槽",
+        "可直接干预底物磷酸基团进入催化半胱氨酸区域",
+        "优先"
+      ],
+      [
+        "Site B",
+        "WPD/通用酸环及其相邻可变环面",
+        "可能限制催化环构象闭合并降低底物周转效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "晶体链 A/B 接触面及非保守外周表面",
+        "可能反映晶体堆积而非生理调控界面，需验证可成药性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DUSP15 为胞内酶，常规抗体难以到达作用位点；需采用胞内递送 Fab、VHH 或抗体片段融合策略，并严控与其他 DUSP/PTP 家族成员的活性位点交叉反应。",
+    "structurePrepZh": "以 1YZ4 链 A 或链 B 的催化结构域为模板，去除晶体缓冲分子并补全缺失侧链；保留活性位点保守残基构象用于表位网格定义。",
+    "structureRef": "RCSB PDB 1YZ4，X-ray diffraction，2.4 Å，人源 DUSP15",
+    "antibodies": [
+      "无已获批 DUSP15 靶向抗体",
+      "研究级抗 DUSP15 抗体"
+    ],
+    "interfaceFocus": "HCX5R 活性位点与底物结合沟槽",
+    "designMode": "胞内抑制型片段",
+    "candidates": [
+      {
+        "target": "PCSK9",
+        "rationale": "PCSK9 为分泌蛋白，通过结合 LDLR EGF-A 结构域促进 LDLR 溶酶体降解，是脂质代谢通路中抗体可及性和临床验证程度更高的靶点。"
+      },
+      {
+        "target": "LDLR",
+        "rationale": "LDLR 是细胞表面脂蛋白受体，直接介导 LDL 颗粒摄取，与血浆胆固醇和脂蛋白组成表型密切相关。"
+      },
+      {
+        "target": "CETP",
+        "rationale": "CETP 为血浆分泌型脂质转运蛋白，介导 HDL 与 apoB 脂蛋白之间胆固醇酯和甘油三酯交换，疾病表型与 HDL 脂质组成高度一致。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

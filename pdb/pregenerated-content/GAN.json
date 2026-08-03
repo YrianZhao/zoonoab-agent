@@ -1,0 +1,65 @@
+{
+  "gene": "GAN",
+  "generatedAt": "2026-08-03T12:42:20.026Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GAN 编码的 gigaxonin 是 BTB-Kelch 型 E3 泛素连接酶适配蛋白，致病性缺失会削弱中间丝蛋白的泛素化清除，导致巨轴索神经病及外周神经变性表型。该蛋白主要定位于胞质，缺乏天然分泌或跨膜胞外结构域，因此抗体抗原可及性弱，常规体内阻断型抗体成药性不占优势。其优先级主要来自强遗传因果证据和明确蛋白降解机制，但相较 NGF、NTRK1 等可及性更高的神经病理通路靶点，更适合作为细胞内机制研究或递送型抗体工程对象。",
+    "mechanism": "设计目标为稳定识别 gigaxonin BTB 结构域表面，干预其与 CUL3 E3 连接酶复合体的装配或用于细胞内递送检测异常蛋白降解轴。",
+    "selectedEpitope": "优先覆盖 BTB 二聚化及 CUL3 结合邻近界面，避开高度埋藏疏水核心。",
+    "diseaseDirection": "遗传性巨轴索神经病",
+    "domain": "gigaxonin 含 N 端 BTB 结构域、BACK 区段及 C 端 Kelch 重复底物识别结构域。",
+    "evidence": "GAN 遗传神经病与结构机制证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9H2C0 functional annotation",
+      "RCSB PDB 2PPI experimental structure",
+      "OMIM giant axonal neuropathy genetic evidence"
+    ],
+    "referenceEntries": "UniProt Q9H2C0；RCSB PDB 2PPI；MONDO:0000128",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "BTB 结构域 CUL3 结合邻近表面",
+        "可评估阻断 CUL3-gigaxonin 复合体装配的功能效应",
+        "优先"
+      ],
+      [
+        "Site B",
+        "BTB 二聚化界面外缘暴露环区",
+        "利于获得构象敏感抗体并解析寡聚状态",
+        "备选"
+      ],
+      [
+        "Site C",
+        "BTB 疏水核心及晶体接触区域",
+        "可能影响折叠稳定性且天然可及性有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GAN 为胞内蛋白，常规抗体难以到达天然作用位点；建议限定为胞内抗体、递送型抗体或结构探针，并严格评估 BTB 同源蛋白交叉反应。",
+    "structurePrepZh": "采用 2PPI 链 A 作为 BTB 结构域模板，补全缺失侧链并标注晶体接触面；Kelch 区域需另行同源建模或 AlphaFold 辅助。",
+    "structureRef": "RCSB PDB 2PPI，X-ray，2.4 Å，人源 gigaxonin BTB",
+    "antibodies": [
+      "commercial anti-gigaxonin antibody",
+      "research-use anti-GAN antibody"
+    ],
+    "interfaceFocus": "BTB-CUL3 装配面与二聚化外缘环区",
+    "designMode": "胞内抗体/结构探针",
+    "candidates": [
+      {
+        "target": "CUL3",
+        "rationale": "CUL3 是 BTB-Kelch 适配蛋白招募的核心 E3 泛素连接酶支架，直接参与 gigaxonin 介导的底物泛素化复合体形成。"
+      },
+      {
+        "target": "NEFL",
+        "rationale": "NEFL 编码神经丝轻链，是巨轴索神经病中异常积聚的中间丝相关蛋白之一，可作为下游病理负荷与药效读出靶点。"
+      },
+      {
+        "target": "PRPH",
+        "rationale": "PRPH 编码 peripherin，中间丝稳态紊乱与轴突肿胀表型相关，位于 GAN 缺陷导致的细胞骨架蛋白清除异常通路中。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

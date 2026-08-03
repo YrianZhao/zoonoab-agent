@@ -1,0 +1,65 @@
+{
+  "gene": "ADAM17",
+  "generatedAt": "2026-08-03T10:05:01.315Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ADAM17是TNF-α、IL-6R、EGFR配体及多种膜蛋白外域剪切的关键金属蛋白酶，在炎症性皮肤和肠道疾病中可放大TNF与IL-6 trans-signaling，并影响上皮屏障修复。其催化/去整合素/富半胱氨酸等胞外结构域位于细胞表面，具备抗体可及性。相比广谱MMP或下游细胞因子靶点，ADAM17位于配体释放上游，具备多通路节点干预价值，但需避免广泛抑制导致组织修复风险。",
+    "mechanism": "阻断ADAM17催化结构域与膜结合TNF-α、IL6R或AREG等底物近膜区的结合，降低炎症介质外域剪切释放。",
+    "selectedEpitope": "优先锁定催化结构域外侧底物进入沟及非锌结合外缘，避免直接螯合催化锌位点。",
+    "diseaseDirection": "炎症性皮肤肠道疾病",
+    "domain": "ADAM17含前结构域、金属蛋白酶催化结构域、去整合素样、富半胱氨酸、跨膜和胞质尾区。",
+    "evidence": "ADAM17炎症剪切轴抗体设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与治疗关联",
+      "UniProt P78536蛋白结构域与功能注释",
+      "RCSB PDB 2DDF晶体结构条目",
+      "TNF-α与IL-6R外域剪切机制文献"
+    ],
+    "referenceEntries": "UniProt:P78536; RCSB PDB:2DDF; Open Targets:ADAM17",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域底物结合沟外侧环区",
+        "可阻断底物近膜肽段进入催化沟，兼顾选择性与功能抑制",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域远离HEXXH锌结合基序的外表面",
+        "可形成别构限制并降低金属蛋白酶家族交叉抑制风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "锌结合活性中心及Met-turn邻近区域",
+        "功能抑制强但家族保守性高，存在选择性与安全性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ADAM17参与TNF释放、EGFR配体加工及组织修复，过度抑制可能影响上皮再生。设计应偏向底物选择性或别构表位，并评估与ADAM10交叉反应。",
+    "structurePrepZh": "以2DDF高分辨率催化结构域为模板，校正金属离子、糖基化缺失与链间构象，结合AlphaFold全长模型定位胞外结构域可及面。",
+    "structureRef": "RCSB PDB 2DDF, X-ray diffraction, 1.7 Å",
+    "antibodies": [
+      "D1(A12)",
+      "MEDI3622"
+    ],
+    "interfaceFocus": "催化结构域底物进入沟与外侧可变环",
+    "designMode": "阻断/别构抑制",
+    "candidates": [
+      {
+        "target": "TNF",
+        "rationale": "TNF是ADAM17剪切释放的核心炎症底物，直接参与皮肤和肠道炎症放大，已有抗TNF治疗验证该轴的疾病相关性。"
+      },
+      {
+        "target": "IL6R",
+        "rationale": "ADAM17介导膜结合IL-6R脱落并形成可溶性IL-6R，促进IL-6 trans-signaling，是炎症反应和屏障损伤中的同通路节点。"
+      },
+      {
+        "target": "EGFR",
+        "rationale": "ADAM17释放AREG、TGF-α等EGFR配体，连接炎症刺激与上皮修复/增殖信号，适合作为ADAM17剪切轴的通路参照靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

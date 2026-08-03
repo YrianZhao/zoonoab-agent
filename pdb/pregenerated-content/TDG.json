@@ -1,0 +1,65 @@
+{
+  "gene": "TDG",
+  "generatedAt": "2026-08-03T17:11:06.182Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TDG 是碱基切除修复通路中的关键 DNA 糖基化酶，负责识别并切除 T:G 错配及多种氧化脱氨损伤，直接影响基因组稳定性与表观遗传重编程。其蛋白主要位于细胞核内，缺乏抗体可直接结合的胞外结构域，因此更适合用于机制验证、细胞内递送型抗体或胞内结合分子的设计框架。相比同通路中更具经典药理可及性的 PARP1、UNG 或 MBD4，TDG 的疾病关联更偏向修复失衡与甲基化调控节点，适合用于高特异性功能阻断策略。其在人类多疾病关联中呈现广泛但低到中等强度的信号，提示其作为通路枢纽具有研究价值，但开发优先级应以结构驱动和机制验证为主。",
+    "mechanism": "阻断 TDG 与错配碱基及 AP 位点 DNA 的结合，抑制其切除碱基并后续招募 BER 复合体。",
+    "selectedEpitope": "优先覆盖 DNA 结合裂隙与催化口袋邻近环区，避免直接破坏整体折叠。",
+    "diseaseDirection": "DNA修复与表观遗传",
+    "domain": "N 端无序调控区与 C 端催化 glycosylase 核心域",
+    "evidence": "TDG 结构与疾病通路证据包",
+    "evidenceSources": [
+      "UniProt: Q13569",
+      "RCSB PDB: 4Z47",
+      "Open Targets Platform",
+      "PDBe/InterPro domain annotation"
+    ],
+    "referenceEntries": "UniProt Q13569; PDB 4Z47; InterPro TDG glycosylase core",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C 端催化核心邻近 DNA 结合沟槽",
+        "可优先干预底物识别与催化装配",
+        "优先"
+      ],
+      [
+        "Site B",
+        "连接催化核心的表面环区",
+        "适合降低 DNA 进入与产物释放效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端低复杂度调控区",
+        "可能影响蛋白互作但构象异质性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TDG 为核内酶且无胞外表位，常规治疗性抗体可及性有限；优先采用胞内递送、纳米抗体或功能阻断型 Fab 进行验证，避免选择高度保守催化残基导致脱靶修复毒性。",
+    "structurePrepZh": "以 4Z47 为核心模板补全缺失环区并保留 DNA 结合构象，优先进行表面电荷与保守性映射；对 A/C/D 链界面做装配一致性检查。",
+    "structureRef": "X-ray 1.45 Å, PDB 4Z47",
+    "antibodies": [
+      "无成熟临床同类抗体",
+      "无已知 TDG 直接治疗性抗体"
+    ],
+    "interfaceFocus": "DNA 结合裂隙、催化环与底物进入通道",
+    "designMode": "结构阻断",
+    "candidates": [
+      {
+        "target": "MBD4",
+        "rationale": "与 TDG 同属碱基切除修复相关核内酶，参与甲基化背景下的错配修复与基因组稳定性维持。可作为同通路对照靶点，用于区分 5mC/5hmC 相关修复轴的功能依赖。"
+      },
+      {
+        "target": "UNG",
+        "rationale": "UNG 同为 DNA 糖基化酶，负责尿嘧啶切除并连接到 BER 通路。作为同类修复节点，适合用于比较底物特异性与催化口袋阻断策略。"
+      },
+      {
+        "target": "PARP1",
+        "rationale": "PARP1 与 TDG 均处于 DNA 损伤响应与修复网络中，且 TDG 相关修复事件可招募 PARP1 介导的信号放大。该靶点适合作为通路级联验证的真实同路候选。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

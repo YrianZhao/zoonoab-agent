@@ -1,0 +1,65 @@
+{
+  "gene": "C4A",
+  "generatedAt": "2026-08-03T10:55:21.701Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "C4A是经典途径与凝集素途径C3转化酶形成的核心前体，其裂解产物C4b与C2结合生成C4b2a，驱动下游C3活化；C4A缺陷与经典途径补体缺陷及系统性红斑狼疮风险密切相关。C4A为血浆分泌型补体蛋白，抗体可直接接触循环抗原及其活化片段，具备良好的抗原可及性。相较于更下游的C3或C5，C4A位于经典/凝集素途径上游分支，可在保留替代途径部分功能的前提下实现更具通路选择性的干预。",
+    "mechanism": "阻断C4b中MG环带与C2的结合界面，抑制C4b2前体装配及C4b2a经典途径C3转化酶形成。",
+    "selectedEpitope": "优先覆盖C4b暴露的C2结合相关MG结构域界面，避开硫酯核心反应位点。",
+    "diseaseDirection": "经典途径补体缺陷与自身免疫",
+    "domain": "C4A由β链MG1-6、α链MG7-8/CUB/硫酯结构域及C345c末端组成。",
+    "evidence": "C4A经典补体途径与自身免疫证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P0C0L4功能与结构域注释",
+      "RCSB PDB 1HZF晶体结构",
+      "补体经典途径C4b-C2转化酶机制文献"
+    ],
+    "referenceEntries": "UniProt P0C0L4；RCSB PDB 1HZF；MONDO补体缺陷条目",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C4b MG结构域C2结合界面",
+        "直接抑制C4b-C2复合物形成，机制明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C345c末端结构域邻近区域",
+        "可能影响转化酶装配构象，适合作为别构阻断位点",
+        "备选"
+      ],
+      [
+        "Site C",
+        "CUB-硫酯结构域核心区域",
+        "靠近共价沉积功能位点，存在干扰宿主清除功能风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "C4A参与免疫复合物清除与病原防御，过度阻断可能增加感染或免疫复合物沉积风险；宜采用片段选择性和可逆结合设计。",
+    "structurePrepZh": "以1HZF抗原链A为模板，补全缺失环区并标注C4A/C4B同源差异位点，保留糖基化与二硫键约束用于表位评估。",
+    "structureRef": "RCSB PDB 1HZF，2.3 Å X射线晶体结构",
+    "antibodies": [
+      "anti-human C4 monoclonal antibody",
+      "anti-C4d monoclonal antibody"
+    ],
+    "interfaceFocus": "C4b-C2装配界面及C345c邻近区",
+    "designMode": "阻断型Fab/VHH",
+    "candidates": [
+      {
+        "target": "C2",
+        "rationale": "C2与C4b结合并被裂解形成C4b2a，是经典与凝集素途径C3转化酶的直接组成部分，适合与C4A形成同通路阻断策略。"
+      },
+      {
+        "target": "C1S",
+        "rationale": "C1S在C1复合物中裂解C4和C2，位于经典途径C4活化上游，可通过抑制底物裂解降低C4b生成。"
+      },
+      {
+        "target": "MASP2",
+        "rationale": "MASP2在凝集素途径中裂解C4和C2，连接病原识别与C4b2a生成，是C4相关补体活化的真实上游靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

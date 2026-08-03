@@ -1,0 +1,65 @@
+{
+  "gene": "GLI3",
+  "generatedAt": "2026-08-03T12:48:20.785Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GLI3 是 Hedgehog 通路末端锌指转录因子，发育期 GLI3 抑制型与激活型比例失衡可导致多指、Greig 头颅多并指综合征和 Pallister-Hall 综合征等形态发生异常。该蛋白主要定位于细胞核，缺乏天然胞外结构域，抗原可及性不适合常规体内阻断抗体，但其锌指-DNA 复合物结构适合体外结构识别试剂和细胞内抗体研究。相较上游 PTCH1、SMO、SHH 等膜受体或分泌配体，GLI3 更直接代表疾病终末转录输出节点，因此在机制验证、结构表位映射和变体功能分层中具有优先价值。",
+    "mechanism": "设计抗体识别 GLI3 C2H2 锌指 DNA 结合域，空间阻断锌指与靶 DNA 大沟的碱基特异接触，从而干预 GLI3 转录复合物结合。",
+    "selectedEpitope": "优先覆盖第4至第5个 C2H2 锌指的 DNA 大沟识别面及相邻连接区。",
+    "diseaseDirection": "Hedgehog 发育异常与多指综合征",
+    "domain": "GLI3 含N端调控区、中央五个 C2H2 锌指 DNA 结合域及C端转录激活区。",
+    "evidence": "GLI3-Hedgehog 发育畸形证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P10071 functional annotation",
+      "RCSB PDB 4BLD X-ray structure",
+      "OMIM GLI3-related developmental disorders"
+    ],
+    "referenceEntries": "UniProt P10071；RCSB PDB 4BLD；HGNC:4319；Ensembl ENSG00000106571",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "锌指4-5与DNA大沟接触界面",
+        "直接干预 GLI3 碱基识别与转录靶序列结合",
+        "优先"
+      ],
+      [
+        "Site B",
+        "锌指2-3结构稳定核心外侧面",
+        "可用于构象特异识别并降低对DNA界面的完全依赖",
+        "备选"
+      ],
+      [
+        "Site C",
+        "锌指间柔性连接区及锌配位邻近区域",
+        "可能影响折叠稳定性且存在跨 GLI 家族保守性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GLI3 为核内转录因子，常规抗体体内可及性受限；锌指区与 GLI1/GLI2 保守性较高，需通过差异残基约束提高选择性。",
+    "structurePrepZh": "以 PDB 4BLD 的 GLI3 锌指-DNA 复合物为模板，保留锌离子配位几何与DNA界面，按链一致性筛选高质量构象用于表位建模。",
+    "structureRef": "PDB 4BLD；GLI family zinc finger-DNA complex X-ray structure",
+    "antibodies": [
+      "anti-GLI3 clone 6F5",
+      "anti-GLI3 clone H-280"
+    ],
+    "interfaceFocus": "C2H2锌指4-5的DNA大沟识别界面",
+    "designMode": "胞内靶点结构识别",
+    "candidates": [
+      {
+        "target": "GLI2",
+        "rationale": "GLI2 是 Hedgehog 通路末端转录激活因子，与 GLI3 共同决定靶基因输出；其功能比较可用于区分激活型与抑制型 GLI 轴。"
+      },
+      {
+        "target": "SHH",
+        "rationale": "SHH 是通路上游分泌配体，通过解除 PTCH1 对 SMO 的抑制驱动 GLI 转录程序，具备更高胞外抗原可及性。"
+      },
+      {
+        "target": "SMO",
+        "rationale": "SMO 是 Hedgehog 通路核心七跨膜信号转导受体，位于 PTCH1 下游并调控 GLI2/GLI3 加工与核转位。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "RELA",
+  "generatedAt": "2026-08-03T15:59:23.124Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RELA编码NF-κB p65亚基，是经典NF-κB炎症与免疫转录程序的核心转录因子，参与TNF、IL-1和Toll样受体刺激后的细胞因子、黏附分子及抗凋亡基因表达，因而与慢性黏膜皮肤溃疡、神经炎症及多发性硬化等疾病过程相关。该蛋白主要定位于胞质和细胞核，缺乏天然胞外结构域或分泌形式，完整抗体的抗原可及性明显弱于膜受体或可溶性细胞因子，因此更适合作为细胞内递送抗体片段或研究级阻断分子靶点。其优先级依据在于RELA位于NF-κB通路下游汇聚节点，相比单一上游受体可覆盖多源炎症输入，但开发风险高于TNF、IL1B或TLR4等可直接胞外拦截靶点。",
+    "mechanism": "设计分子应阻断RELA Rel homology domain与κB DNA元件结合，或干扰RELA与NFKB1形成转录活性二聚体，从而降低NF-κB依赖炎症基因转录。",
+    "selectedEpitope": "优先覆盖Rel homology domain的DNA结合环与二聚化界面邻近区域，避免仅识别柔性转录激活区。",
+    "diseaseDirection": "NF-κB介导炎症与神经免疫疾病",
+    "domain": "RELA含N端Rel homology domain，负责DNA结合、二聚化及IκB结合；C端含转录激活结构域。",
+    "evidence": "RELA/NF-κB炎症转录轴结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与药理关联",
+      "UniProt Q04206功能与亚细胞定位注释",
+      "RCSB PDB 6NV2高分辨率晶体结构",
+      "NF-κB经典通路炎症与神经免疫文献"
+    ],
+    "referenceEntries": "UniProt Q04206；RCSB PDB 6NV2；Open Targets RELA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Rel homology domain的κB DNA结合沟槽及识别环",
+        "可直接削弱RELA对靶基因启动子κB序列的结合",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Rel homology domain二聚化界面邻近区域",
+        "有机会干扰RELA与NFKB1/p50或RELA同源二聚体形成",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端转录激活结构域及磷酸化富集柔性区",
+        "构象异质性高且结构模板不足，易产生功能解释不确定性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RELA为细胞内核转录因子，常规抗体难以触达天然抗原；建议限定为细胞内递送Fab/VHH、降解偶联或机制研究场景，并严格评估广谱免疫抑制风险。",
+    "structurePrepZh": "以6NV2晶体结构提取RELA抗原链，补全缺失侧链并保留Rel homology domain关键界面；对DNA结合面、二聚化面及柔性环进行质子化和构象检查。",
+    "structureRef": "RCSB PDB 6NV2，X-ray diffraction，1.13 Å",
+    "antibodies": [
+      "抗RELA/p65研究级单克隆抗体",
+      "抗磷酸化RELA Ser536研究级抗体"
+    ],
+    "interfaceFocus": "RHD的κB DNA结合沟槽与二聚化界面",
+    "designMode": "细胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "NFKB1",
+        "rationale": "NFKB1编码p50亚基，与RELA形成经典NF-κB异源二聚体；阻断其二聚化或DNA结合可影响同一炎症转录轴。"
+      },
+      {
+        "target": "NFKBIA",
+        "rationale": "NFKBIA编码IκBα，直接结合并滞留RELA/NFKB1复合物于胞质，是经典NF-κB负调控节点；稳定该相互作用可抑制RELA核转位。"
+      },
+      {
+        "target": "IKBKB",
+        "rationale": "IKBKB编码IKKβ，负责磷酸化IκBα并触发其降解，是TNF、IL-1和TLR信号通向RELA激活的上游激酶节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

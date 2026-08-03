@@ -1,0 +1,65 @@
+{
+  "gene": "BAX",
+  "generatedAt": "2026-08-03T10:46:33.095Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BAX 是线粒体内源性凋亡通路的核心效应蛋白，受 BH3-only 蛋白激活后发生构象改变、寡聚化并促进线粒体外膜通透化，驱动细胞色素 c 释放和 caspase 级联激活。该靶点在多种肿瘤及神经退行性疾病中与凋亡阈值改变相关，但 BAX 主要定位于胞质并转位至线粒体外膜，缺乏稳定胞外结构域，抗原可及性显著弱于膜受体或分泌蛋白。相较 BCL2、BCL2L1 等同通路抗凋亡靶点，BAX 更适合机制验证、胞内递送抗体或结构生物学设计，作为常规体内阻断型抗体靶点优先级较低。",
+    "mechanism": "设计抗体应阻断 BAX α2-α5 区域构象转换或 α9 螺旋释放，抑制 BAX 二聚化、寡聚化及线粒体外膜插入。",
+    "selectedEpitope": "优先聚焦 α2 BH3 螺旋与 α5-α6 核心沟槽邻近界面，限制激活后寡聚化构象形成。",
+    "diseaseDirection": "肿瘤凋亡耐受与神经退行性损伤",
+    "domain": "BAX 属 BCL-2 家族多结构域蛋白，含 BH1、BH2、BH3 区域及 C 端 α9 膜锚定螺旋。",
+    "evidence": "BAX 内源性凋亡通路结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB Q07812 functional annotation",
+      "RCSB PDB 4ZIE experimental structure",
+      "BCL-2 family apoptosis pathway literature"
+    ],
+    "referenceEntries": "UniProt Q07812；RCSB PDB 4ZIE；Open Targets BAX",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "α2 BH3 螺旋及 α5 邻近沟槽",
+        "干预 BAX 激活构象与二聚化核心界面，具备明确机制读出",
+        "优先"
+      ],
+      [
+        "Site B",
+        "α9 C 端膜锚定螺旋结合沟槽",
+        "限制 α9 释放及线粒体外膜插入，适用于构象稳定型抗体设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "α1-α2 N 端激活暴露区域",
+        "可识别激活相关构象，但表位动态性较高且细胞内可及性受限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BAX 为胞内凋亡效应蛋白，常规抗体难以到达作用位点；需优先采用胞内抗体、递送载体或体外功能验证体系，并避免非选择性抑制生理凋亡。",
+    "structurePrepZh": "以 4ZIE 的 A、C 链为实验结构模板，保留解析度较高的螺旋核心，检查缺失环区、构象状态及二聚体界面后进行表位建模。",
+    "structureRef": "RCSB PDB 4ZIE，X-ray diffraction，1.797 Å",
+    "antibodies": [
+      "6A7 anti-BAX conformational antibody",
+      "2D2 anti-BAX antibody"
+    ],
+    "interfaceFocus": "BH3 螺旋、α5-α6 沟槽与 α9 膜锚定界面",
+    "designMode": "胞内构象调控抗体",
+    "candidates": [
+      {
+        "target": "BCL2",
+        "rationale": "BCL2 是内源性凋亡通路中的抗凋亡核心蛋白，可通过结合 BIM、BAX 等促凋亡因子提高肿瘤细胞凋亡阈值，且已有成熟药理学验证。"
+      },
+      {
+        "target": "BCL2L1",
+        "rationale": "BCL2L1 编码 BCL-XL，直接结合 BAX/BAK 及 BH3-only 蛋白并抑制线粒体外膜通透化，是肿瘤细胞凋亡逃逸的重要同通路节点。"
+      },
+      {
+        "target": "BAK1",
+        "rationale": "BAK1 与 BAX 同为线粒体外膜促凋亡执行蛋白，激活后形成寡聚孔道并促进细胞色素 c 释放，可作为 BAX 机制互补靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

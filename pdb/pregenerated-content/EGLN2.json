@@ -1,0 +1,65 @@
+{
+  "gene": "EGLN2",
+  "generatedAt": "2026-08-03T19:00:32.424Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "EGLN2/PHD1是HIF脯氨酰羟化酶家族成员，在氧依赖条件下羟化HIF-α亚基并促进VHL识别与泛素化降解，因而直接影响EPO反应、红细胞生成及贫血相关表型。该蛋白主要为细胞内2-氧戊二酸依赖性双加氧酶，并非天然胞外抗原，抗体可及性低于膜受体或分泌因子，需优先考虑细胞内递送或研究级功能抗体场景。相比EGLN1/PHD2，EGLN2在红细胞参数遗传关联中具有明确信号，但其抗体成药优先级受限于胞内定位，适合作为机制验证靶点而非首选常规阻断抗体靶点。",
+    "mechanism": "抗体设计以阻断EGLN2催化结构域对HIF-α氧依赖降解结构域脯氨酸位点的底物结合为核心，削弱羟化后VHL复合体介导的HIF-α降解。",
+    "selectedEpitope": "优先覆盖JmjC样催化结构域底物结合沟槽邻近区域，避开Fe(II)/2-氧戊二酸深部活性中心。",
+    "diseaseDirection": "贫血与慢性肾病相关缺氧应答",
+    "domain": "EGLN2含N端调控区及C端PHD/JmjC样双加氧酶催化结构域，5V1B覆盖催化核心。",
+    "evidence": "EGLN2缺氧应答与红细胞表型证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q96KS0功能与亚细胞定位注释",
+      "RCSB PDB 5V1B晶体结构记录",
+      "HIF脯氨酰羟化酶-VHL氧感知通路文献"
+    ],
+    "referenceEntries": "UniProt Q96KS0；RCSB PDB 5V1B；Open Targets EGLN2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PHD/JmjC样催化结构域底物结合沟槽边缘",
+        "干扰HIF-α ODDD肽段进入催化位点，具备明确功能阻断逻辑",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化核心外侧保守螺旋-环区",
+        "可用于构建高亲和结合抗体并降低直接金属配位位点干扰风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Fe(II)与2-氧戊二酸结合活性中心邻近深凹区域",
+        "区域高度保守且空间狭窄，易产生家族交叉反应与构象适配风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "EGLN2为细胞内酶，常规抗体体内可及性不足；设计应明确限定为胞内递送、细胞模型验证或结构生物学工具抗体，并严控EGLN1/EGLN3交叉反应。",
+    "structurePrepZh": "以5V1B链A为模板，补全缺失侧链并保留催化结构域构象；对金属与2-氧戊二酸结合位点进行标注，用于排除不可及深腔表位。",
+    "structureRef": "RCSB PDB 5V1B，X射线晶体结构，2.49 Å",
+    "antibodies": [
+      "EGLN2研究级单克隆抗体",
+      "PHD1免疫检测抗体"
+    ],
+    "interfaceFocus": "HIF-α ODDD底物沟槽及催化核心外缘",
+    "designMode": "胞内酶阻断型",
+    "candidates": [
+      {
+        "target": "EGLN1",
+        "rationale": "EGLN1/PHD2是HIF-α氧依赖羟化与VHL识别的主要调控酶，在贫血、慢性肾病缺氧应答及红细胞生成调控中证据更强。"
+      },
+      {
+        "target": "VHL",
+        "rationale": "VHL作为E3泛素连接酶识别羟化HIF-α，是EGLN羟化反应下游的直接执行因子，可用于同一氧感知降解轴的机制比较。"
+      },
+      {
+        "target": "EPOR",
+        "rationale": "EPOR位于红细胞生成通路下游，介导EPO诱导的JAK2-STAT5信号，具有膜受体抗原可及性并与贫血治疗方向直接相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

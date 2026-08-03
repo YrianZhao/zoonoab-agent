@@ -1,0 +1,65 @@
+{
+  "gene": "TXNRD1",
+  "generatedAt": "2026-08-03T17:36:05.995Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TXNRD1 是胞质硒蛋白氧化还原酶，维持硫氧还蛋白系统还原态并支持白血病及肿瘤细胞的抗氧化适应。该靶点主要位于细胞内，天然抗原可及性不及膜受体或分泌蛋白，抗体策略需优先考虑细胞内递送、降解偶联或研究级胞内抗体模式。相较广泛抗氧化酶，TXNRD1 在急性早幼粒细胞白血病、急性髓系白血病及多种肿瘤中具有较高遗传与药理学证据密度，且具备实验晶体结构支持界面设计，因此可作为氧化还原依赖肿瘤脆弱性的优先探索靶点。",
+    "mechanism": "抗体模块拟结合 TXNRD1 FAD/NADPH 邻近构象界面或 C 端 Sec-Gly 催化臂，阻断 NADPH 向 FAD 及硫氧还蛋白底物的电子传递。",
+    "selectedEpitope": "优先覆盖 FAD 结合域与 C 端硒半胱氨酸催化臂邻近区域，限制还原循环构象变化。",
+    "diseaseDirection": "白血病与氧化还原依赖肿瘤",
+    "domain": "同源二聚体黄素蛋白还原酶，含 FAD 结合域、NADPH 结合域、界面域及 C 端 Sec-Gly 活性基序。",
+    "evidence": "TXNRD1 肿瘤氧化还原依赖性证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q16881 功能与亚细胞定位注释",
+      "RCSB PDB 3QFA 晶体结构",
+      "硫氧还蛋白还原酶抑制剂抗肿瘤研究文献"
+    ],
+    "referenceEntries": "UniProt Q16881；RCSB PDB 3QFA；Open Targets TXNRD1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "FAD 结合域与 C 端 Sec-Gly 催化臂邻近界面",
+        "可干扰电子传递闭合构象，直接削弱还原酶循环",
+        "优先"
+      ],
+      [
+        "Site B",
+        "NADPH 结合 Rossmann 折叠周边沟槽",
+        "可限制辅因子进入或影响氢负离子转移几何构型",
+        "备选"
+      ],
+      [
+        "Site C",
+        "二聚体界面远端保守表面",
+        "可能影响稳定性但功能阻断不确定，且同源保守性带来选择性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TXNRD1 缺乏天然胞外暴露，常规治疗性抗体成药性受限。设计应标注胞内递送、细胞穿透或 PROTAC/降解偶联适配风险，并强化同源酶选择性评估。",
+    "structurePrepZh": "以 3QFA 四聚体晶体链 A-D 为结构起点，校验同源二聚体生物装配、FAD/NADP 配体状态、C 端硒半胱氨酸残基建模及缺失环区。",
+    "structureRef": "RCSB PDB 3QFA，2.2 Å X-ray human TXNRD1",
+    "antibodies": [
+      "抗 TXNRD1 研究级单克隆抗体",
+      "TXNRD1 intracellular antibody fragment"
+    ],
+    "interfaceFocus": "FAD/NADPH 电子传递沟槽与 C 端催化臂",
+    "designMode": "胞内功能阻断",
+    "candidates": [
+      {
+        "target": "TXN",
+        "rationale": "TXN 是 TXNRD1 的直接还原底物，参与维持蛋白二硫键还原态及肿瘤细胞氧化还原缓冲。阻断 TXNRD1-TXN 轴可增强氧化应激负荷。"
+      },
+      {
+        "target": "PRDX1",
+        "rationale": "PRDX1 依赖 TXN/TXNRD1 系统再生还原活性，清除过氧化物并支持白血病和肿瘤细胞存活。该节点适合评估同通路抗氧化依赖性。"
+      },
+      {
+        "target": "NFE2L2",
+        "rationale": "NFE2L2 驱动抗氧化反应元件转录程序，并可上调硫氧还蛋白系统相关抗氧化网络。其异常激活与肿瘤氧化应激耐受及治疗抵抗相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

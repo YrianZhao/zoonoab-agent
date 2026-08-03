@@ -1,0 +1,65 @@
+{
+  "gene": "PELI1",
+  "generatedAt": "2026-08-03T15:11:50.015Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PELI1为胞内Pellino家族E3泛素连接酶，参与TLR/IL-1R介导的MyD88-IRAK复合体信号，并通过泛素化调控炎症转录输出，与血压表型、肿瘤炎症微环境及免疫相关性状存在遗传关联。该蛋白不具备天然胞外结构域或分泌特征，常规体内阻断型抗体抗原可及性受限，更适合作为结构生物学驱动的胞内结合抗体、intrabody或研究级Fab/VHH设计对象。相较TNFR、IL1R等同通路膜受体，PELI1位于IRAK下游泛素化节点，具备解析信号放大环节的优先价值，但成药优先级应低于胞外可及靶点。",
+    "mechanism": "设计抗体结合PELI1 FHA样底物识别区域或RING相关构象界面，阻断其与磷酸化IRAK1/IRAK4适配复合体的结合，并干扰E2酶介导的泛素转移构象。",
+    "selectedEpitope": "优先覆盖FHA样磷酸肽识别沟槽邻近环区，兼顾RING结构域E2结合面外缘。",
+    "diseaseDirection": "炎症信号与肿瘤免疫调控",
+    "domain": "PELI1含N端FHA样底物识别区、中央Pellino保守核心及C端RING样E3连接酶结构域。",
+    "evidence": "PELI1结构与TLR/IL-1R炎症泛素化证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联数据",
+      "UniProt Q96FA3功能与结构域注释",
+      "RCSB PDB 9IF9 X射线晶体结构",
+      "TLR/IL-1R-MyD88-IRAK-Pellino信号研究文献"
+    ],
+    "referenceEntries": "UniProt Q96FA3；RCSB PDB 9IF9；Open Targets PELI1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "FHA样磷酸肽识别沟槽及邻近保守环区",
+        "可直接干扰PELI1识别磷酸化IRAK底物，适合功能阻断型胞内抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端RING样结构域E2酶结合面外缘",
+        "可能降低E2装载与泛素转移效率，需避免破坏整体折叠稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Pellino核心结构域远端晶体接触面",
+        "结构可及但功能相关性较弱，可能主要产生结合型而非阻断型分子",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PELI1为胞内酶类靶点，常规抗体体内递送与抗原可及性风险较高；宜优先采用VHH/intrabody或细胞内表达体系验证功能阻断。",
+    "structurePrepZh": "以PDB 9IF9抗原链A-D评估生物学装配体，去除晶体缓冲组分，保留稳定结构域并标注FHA样沟槽、RING样界面及晶体接触区。",
+    "structureRef": "RCSB PDB 9IF9，X-ray diffraction，2.55 Å",
+    "antibodies": [
+      "暂无获批PELI1靶向抗体",
+      "研究级抗PELI1抗体"
+    ],
+    "interfaceFocus": "FHA样磷酸IRAK识别沟槽与RING-E2外缘界面",
+    "designMode": "胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "MYD88",
+        "rationale": "MYD88位于TLR/IL-1R近端适配复合体核心，负责募集IRAK家族激酶，是PELI1上游炎症信号装配的关键节点。"
+      },
+      {
+        "target": "IRAK4",
+        "rationale": "IRAK4磷酸化并激活IRAK1，驱动后续Pellino参与的泛素化信号放大，在同一MyD88依赖性炎症通路中具备明确机制地位。"
+      },
+      {
+        "target": "TRAF6",
+        "rationale": "TRAF6为TLR/IL-1R下游E3泛素连接酶，介导K63型泛素链形成并促进TAK1-NF-κB轴激活，与PELI1处于同一炎症泛素化网络。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

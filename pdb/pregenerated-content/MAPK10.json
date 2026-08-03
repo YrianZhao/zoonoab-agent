@@ -1,0 +1,65 @@
+{
+  "gene": "MAPK10",
+  "generatedAt": "2026-08-03T14:03:43.094Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAPK10编码JNK3，为丝裂原活化蛋白激酶家族成员，主要参与应激刺激后的JNK级联反应，通过磷酸化JUN、ATF2等转录因子影响炎症、代谢应激与细胞凋亡相关转录程序。该蛋白为胞内丝氨酸/苏氨酸激酶，天然抗原可及性不具备分泌蛋白或膜受体优势，因而更适合作为机制研究或细胞内递送抗体探索靶点。相较于MAPK8和MAPK9，MAPK10在神经组织富集且同源背景下亚型选择性窗口更清晰，但作为传统体内阻断抗体主靶点的优先级低于具有胞外可及性的上游受体或细胞因子靶点。",
+    "mechanism": "设计抗体应定位于MAPK10激酶结构域，阻断ATP进入铰链区或遮蔽TPY激活环底物结合构象，从而抑制JNK3对JUN与ATF2的磷酸化。",
+    "selectedEpitope": "优先聚焦激酶结构域ATP结合裂缝邻近铰链区及TPY激活环构象界面。",
+    "diseaseDirection": "JNK应激炎症与代谢表型",
+    "domain": "MAPK10含典型蛋白激酶结构域，由N端β折叠小叶、C端α螺旋小叶、铰链区和TPY激活环组成。",
+    "evidence": "MAPK10-JNK3结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt reviewed entry P53779",
+      "RCSB PDB 2B1P X-ray structure",
+      "Reactome MAPK family signaling annotations"
+    ],
+    "referenceEntries": "UniProt P53779；RCSB PDB 2B1P；HGNC MAPK10",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ATP结合裂缝铰链区与催化小叶交界面",
+        "可直接干预ATP定位并限制激酶催化构象形成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "TPY激活环及邻近底物识别沟槽",
+        "有助于阻断JUN、ATF2等底物靠近磷酸转移位点",
+        "备选"
+      ],
+      [
+        "Site C",
+        "MAPK保守C端小叶疏水核心外侧面",
+        "同源MAPK保守性高，存在MAPK8/MAPK9交叉识别风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAPK10为胞内激酶，常规抗体难以在体内直接结合天然靶点；设计需强调细胞内递送、纳米抗体或研究级Fab，并严格评估MAPK8/MAPK9交叉反应。",
+    "structurePrepZh": "以2B1P链A为模板，保留激酶结构域主链与关键催化残基，检查铰链区、DFG基序和TPY激活环构象，去除非必要结晶组分后进行表面可及性分析。",
+    "structureRef": "RCSB PDB 2B1P，human JNK3 X-ray structure，1.9 Å",
+    "antibodies": [
+      "anti-JNK3 clone EP1594Y",
+      "anti-JNK3 clone C05"
+    ],
+    "interfaceFocus": "ATP铰链区、TPY激活环与底物结合沟槽",
+    "designMode": "胞内激酶抑制型",
+    "candidates": [
+      {
+        "target": "MAPK8",
+        "rationale": "MAPK8编码JNK1，与MAPK10同属JNK应激激酶轴，可磷酸化JUN并参与炎症和代谢应激转录反应；其广泛表达使其更适合评估通路级抑制效应。"
+      },
+      {
+        "target": "MAPK9",
+        "rationale": "MAPK9编码JNK2，与JNK3共享MAPK级联上游激活机制和底物谱，是判定JNK亚型选择性与功能冗余的重要同通路靶点。"
+      },
+      {
+        "target": "MAP2K7",
+        "rationale": "MAP2K7为JNK通路上游双特异性激酶，可直接磷酸化JNK家族TPY基序；阻断该节点可从上游降低MAPK10激活水平。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

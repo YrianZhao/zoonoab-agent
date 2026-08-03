@@ -1,0 +1,65 @@
+{
+  "gene": "UBE2M",
+  "generatedAt": "2026-08-03T17:38:50.476Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "UBE2M是NEDD8级联反应的E2结合酶，负责将NEDD8转移至cullin蛋白，进而激活CRL泛素连接酶并促进细胞周期、DNA复制和肿瘤相关蛋白降解。其疾病关联覆盖肝细胞癌、乳腺癌及子宫平滑肌瘤等增殖性疾病，提示NEDDylation轴具有病理相关性。该蛋白主要定位于胞质和细胞核，天然抗原可及性不具备膜受体或分泌蛋白优势，因而更适合作为细胞内机制研究、递送型抗体或片段抗体工程对象。相比上游NAE酶复合体，UBE2M结构更小、催化界面清晰，便于围绕NEDD8转硫酯与RBX1结合界面进行精确阻断设计。",
+    "mechanism": "阻断UBE2M与RBX1 RING结构域或NEDD8装载中间体的相互作用，抑制NEDD8向cullin底物转移并降低CRL活性。",
+    "selectedEpitope": "优先覆盖UBE2M催化半胱氨酸邻近沟槽及RBX1结合面，避免完全遮蔽保守E2核心折叠。",
+    "diseaseDirection": "NEDDylation驱动的肿瘤增殖",
+    "domain": "UBE2M含典型E2 ubiquitin-conjugating催化核心，包含保守催化Cys111及NEDD8/RBX1识别界面。",
+    "evidence": "UBE2M-NEDD8-CRL轴肿瘤相关证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与肿瘤关联",
+      "UniProt P61081功能与亚细胞定位注释",
+      "RCSB PDB 3TDU晶体结构解析",
+      "NEDD8-cullin-RING ligase通路文献"
+    ],
+    "referenceEntries": "UniProt:P61081；RCSB PDB:3TDU；Open Targets:UBE2M",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化Cys111邻近NEDD8转硫酯沟槽",
+        "直接干预NEDD8装载与转移步骤，机制可验证性高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RBX1 RING结合相关E2表面",
+        "阻断UBE2M被CRL复合体募集，降低cullin NEDDylation效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "E2核心折叠保守β-sheet/α-helix支架",
+        "可能影响整体稳定性但选择性风险较高，需避免广谱E2交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "UBE2M为细胞内酶且E2家族保守性较高，常规裸抗体成药可及性受限；设计应聚焦非保守界面并考虑细胞内递送或VHH格式。",
+    "structurePrepZh": "以3TDU高分辨率晶体结构为模板，保留UBE2M单体催化核心，校验Cys111、NEDD8接触面及晶体接触界面后进行表位聚类。",
+    "structureRef": "RCSB PDB 3TDU，X-ray diffraction，1.5 Å",
+    "antibodies": [
+      "无已获批抗UBE2M治疗性抗体",
+      "研究级抗UBE2M单克隆抗体"
+    ],
+    "interfaceFocus": "Cys111催化沟槽与RBX1结合表面",
+    "designMode": "细胞内阻断型",
+    "candidates": [
+      {
+        "target": "NAE1",
+        "rationale": "NAE1与UBA3组成NEDD8活化酶复合体，负责NEDD8级联反应起始步骤；其抑制可在UBE2M上游阻断cullin NEDDylation。"
+      },
+      {
+        "target": "UBA3",
+        "rationale": "UBA3是NEDD8 E1催化亚基，形成NEDD8-腺苷酸化及硫酯中间体；与UBE2M处于同一NEDDylation通路并具有明确肿瘤相关性。"
+      },
+      {
+        "target": "RBX1",
+        "rationale": "RBX1作为cullin-RING ligase的RING组分募集UBE2M并促进NEDD8转移；靶向该界面可干预CRL复合体激活。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

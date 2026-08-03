@@ -1,0 +1,65 @@
+{
+  "gene": "CCND2",
+  "generatedAt": "2026-08-03T18:19:43.734Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CCND2编码核内细胞周期调控蛋白cyclin D2，通过结合并激活CDK4/CDK6促进RB1磷酸化和G1/S期转换，生殖系或体细胞异常可导致脑过度生长相关综合征及增殖稳态紊乱。该蛋白并非分泌蛋白或膜受体，缺乏天然胞外抗原可及性，因此常规治疗性抗体开发优先级低于EGFR、IGF1R等可表面结合靶点。其优势主要在于高分辨率复合物结构可支持体外阻断型结合分子或细胞内递送抗体片段设计，并可直接聚焦cyclin D-CDK界面。",
+    "mechanism": "设计结合cyclin box折叠的抗体片段，空间阻断CCND2与CDK4/6的装配，从而降低CDK介导的RB1磷酸化。",
+    "selectedEpitope": "优先覆盖N端cyclin box内CDK4/6结合沟槽及α螺旋界面，避免泛D型cyclin保守核心。",
+    "diseaseDirection": "细胞周期异常与脑过度生长",
+    "domain": "CCND2含典型cyclin N/C双结构域，N端cyclin box介导CDK4/6结合，C端参与构象稳定。",
+    "evidence": "CCND2-CDK4/6-RB1轴结构与疾病遗传证据",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt reviewed entry P30279功能注释",
+      "RCSB PDB 6EI2高分辨率晶体结构",
+      "ClinVar/OMIM脑过度生长综合征相关变异记录"
+    ],
+    "referenceEntries": "UniProt P30279；RCSB PDB 6EI2；Open Targets CCND2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端cyclin box的CDK4/6结合沟槽",
+        "可直接阻断CCND2-CDK4/6复合物形成，机制可验证性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "cyclin box α螺旋束外侧变异表面",
+        "有利于提高CCND2相对CCND1/CCND3的选择性并降低交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端cyclin样结构域保守疏水核心邻近区",
+        "结构稳定但同源保守性较高，可能影响特异性并存在构象依赖风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CCND2为胞内核蛋白，完整抗体难以到达天然作用位点；建议限定为细胞内递送Fab/VHH或体外机制探针，并严格评估D型cyclin交叉结合。",
+    "structurePrepZh": "以6EI2晶体结构为模板，保留CCND2链并校正缺失侧链、质子化状态和晶体接触，映射CDK结合界面及疾病相关变异。",
+    "structureRef": "RCSB PDB 6EI2，X-ray diffraction，1.61 Å",
+    "antibodies": [
+      "无获批CCND2治疗性抗体",
+      "研究级anti-cyclin D2抗体"
+    ],
+    "interfaceFocus": "cyclin box-CDK4/6结合界面",
+    "designMode": "胞内阻断片段",
+    "candidates": [
+      {
+        "target": "CDK4",
+        "rationale": "CDK4与CCND2形成活性激酶复合物并磷酸化RB1，是同一G1/S细胞周期通路中的直接功能伙伴。其激酶活性更适合小分子抑制，但也可作为复合物界面研究靶点。"
+      },
+      {
+        "target": "CDK6",
+        "rationale": "CDK6同样受D型cyclin激活并驱动RB1磷酸化，与CCND2在增殖控制和发育异常机制中处于同一轴线。阻断CCND2-CDK6装配可作为互补机制策略。"
+      },
+      {
+        "target": "RB1",
+        "rationale": "RB1是CCND2-CDK4/6复合物的关键底物，磷酸化后释放E2F转录因子并推动S期基因表达。其状态可作为通路药效和疾病机制验证节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

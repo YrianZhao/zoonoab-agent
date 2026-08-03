@@ -1,0 +1,65 @@
+{
+  "gene": "BLNK",
+  "generatedAt": "2026-08-03T18:09:50.346Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BLNK是B细胞受体信号复合体的胞内衔接蛋白，磷酸化后招募SYK、BTK、PLCG2和VAV等效应分子，缺陷可导致前B细胞向成熟B细胞分化受阻并表现为无丙种球蛋白血症。该蛋白位于胞质侧，天然抗原可及性不符合常规治疗性抗体直接阻断要求，但可作为结构免疫原用于机制研究、细胞内递送抗体或诊断性结合分子开发。相比CD79A、CD79B等膜近端同通路靶点，BLNK处于多效应分子汇聚节点，疾病遗传证据更直接指向B细胞发育缺陷，因此在通路机制解析型抗体设计中具有优先级。",
+    "mechanism": "设计抗体结合BLNK SH2结构域磷酸肽结合沟槽，阻断其识别磷酸化适配体序列并干扰BCR信号复合体内效应蛋白装配。",
+    "selectedEpitope": "优先覆盖SH2结构域βB-βC环、FLVRES基序邻近磷酸酪氨酸结合口袋及BG环边缘。",
+    "diseaseDirection": "B细胞发育缺陷与无丙种球蛋白血症",
+    "domain": "BLNK含N端酸性酪氨酸磷酸化区、富脯氨酸区及C端SH2结构域，6YLU解析SH2折叠。",
+    "evidence": "BLNK-BCR信号与无丙种球蛋白血症证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q8WV28功能与变异注释",
+      "RCSB PDB 6YLU晶体结构记录",
+      "OMIM及原发性免疫缺陷病例研究"
+    ],
+    "referenceEntries": "UniProt Q8WV28；RCSB PDB 6YLU；Open Targets BLNK",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SH2结构域磷酸酪氨酸结合沟槽",
+        "可直接竞争磷酸化配体识别，机制可解释性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SH2结构域BG环与EF环外侧面",
+        "可变构影响配体定位并保留较好抗体可及构象",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SH2核心β折叠疏水支架邻近面",
+        "可能影响结构稳定性，存在非特异性构象扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BLNK为胞内蛋白，常规全长IgG难以到达作用位点；设计应限定为研究级阻断抗体、胞内递送格式或检测抗体，并避免破坏SH2整体折叠。",
+    "structurePrepZh": "以6YLU链A/B为SH2结构域模板，保留高分辨率坐标，检查晶体接触、缺失环区与磷酸肽结合口袋电荷状态后进行表位建模。",
+    "structureRef": "RCSB PDB 6YLU，X-ray diffraction，1.88 Å",
+    "antibodies": [
+      "抗BLNK克隆2B11",
+      "抗BLNK克隆3D1"
+    ],
+    "interfaceFocus": "SH2磷酸酪氨酸结合口袋与BG环",
+    "designMode": "胞内靶点研究抗体",
+    "candidates": [
+      {
+        "target": "BTK",
+        "rationale": "BTK位于BCR信号下游并与BLNK信号平台功能耦联，致病变异同样可导致X连锁无丙种球蛋白血症。其激酶结构域具备明确药理学可干预性。"
+      },
+      {
+        "target": "CD79A",
+        "rationale": "CD79A是BCR复合体Igα链，ITAM磷酸化后招募SYK并启动BLNK依赖信号装配。其膜受体特征提供优于BLNK的抗体可及性。"
+      },
+      {
+        "target": "SYK",
+        "rationale": "SYK识别CD79A/CD79B的磷酸化ITAM并促进BLNK磷酸化，是BLNK上游关键激酶。靶向SYK可在同一BCR通路中调节适配体复合体形成。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

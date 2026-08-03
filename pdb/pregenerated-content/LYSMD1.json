@@ -1,0 +1,65 @@
+{
+  "gene": "LYSMD1",
+  "generatedAt": "2026-08-03T13:59:49.076Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "LYSMD1含LysM样结构域，遗传关联主要集中于白细胞数量、中性粒细胞计数、嗜酸性粒细胞计数及中性粒细胞减少症，提示其可能参与造血或髓系细胞数量性状相关调控。该蛋白缺乏明确跨膜受体或经典分泌蛋白证据，抗原可及性相对受限，抗体开发需优先确认细胞表面或可溶性暴露状态。相较CSF3R、CXCR2等机制成熟靶点，LYSMD1的优势在于结构域已有实验NMR参考且遗传信号指向血细胞数量表型，但整体疾病因果证据和药理可干预性优先级较低。",
+    "mechanism": "设计抗体以占据LYSMD1 LysM样结构域潜在配体结合沟槽，阻断其与含糖胺聚糖或肽聚糖样糖链配体的结合；该机制需经配体筛选验证。",
+    "selectedEpitope": "优先覆盖LysM样结构域β折叠面与邻近环区形成的浅沟槽，避免核心疏水折叠面。",
+    "diseaseDirection": "血细胞数量与中性粒细胞减少",
+    "domain": "LYSMD1为含LysM样结构域蛋白，PDB 2DJP覆盖其NMR解析结构域，缺乏明确跨膜段注释。",
+    "evidence": "LYSMD1血细胞数量性状遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q96S90蛋白功能与结构域注释",
+      "RCSB PDB 2DJP溶液NMR结构",
+      "GWAS Catalog血细胞数量性状遗传关联"
+    ],
+    "referenceEntries": "UniProt Q96S90；RCSB PDB 2DJP；Open Targets LYSMD1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "LysM样结构域推定糖链结合沟槽及邻近环区",
+        "可能直接阻断糖链或微生物细胞壁样配体结合，适合功能阻断型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "LysM样结构域外侧α螺旋-环连接面",
+        "有利于获得构象选择性结合，可作为非竞争性调节或检测抗体表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "结构域核心β片层疏水稳定面",
+        "可能影响蛋白折叠稳定性并增加交叉反应或低亲和风险，不宜作为首选阻断表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "LYSMD1疾病关联分数偏低且功能机制未充分定义，抗原可及性存在不确定性；建议先验证细胞定位、可溶性形式及配体结合活性，再推进阻断抗体优化。",
+    "structurePrepZh": "以PDB 2DJP链A为结构模板，保留NMR代表构象并评估构象簇差异；补全缺失氢原子、标注LysM样沟槽与高柔性环区。",
+    "structureRef": "RCSB PDB 2DJP，human LYSMD1，solution NMR",
+    "antibodies": [
+      "无获批LYSMD1靶向抗体",
+      "无临床阶段LYSMD1同类抗体"
+    ],
+    "interfaceFocus": "LysM样结构域糖链结合沟槽与环区",
+    "designMode": "探索性功能阻断",
+    "candidates": [
+      {
+        "target": "CSF3R",
+        "rationale": "CSF3R是粒细胞集落刺激因子受体，直接介导G-CSF驱动的中性粒细胞生成与动员。其胞外细胞因子受体结构域具备明确抗体可及性。"
+      },
+      {
+        "target": "CSF3",
+        "rationale": "CSF3编码G-CSF，是中性粒细胞生成通路的核心可溶性配体。中和或调节CSF3-CSF3R相互作用可直接影响髓系粒细胞扩增。"
+      },
+      {
+        "target": "CXCR2",
+        "rationale": "CXCR2介导CXCL1、CXCL2、CXCL8等趋化因子驱动的中性粒细胞募集与外周分布。作为细胞表面GPCR，其胞外环和N端区域可作为抗体干预界面。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

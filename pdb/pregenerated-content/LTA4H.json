@@ -1,0 +1,65 @@
+{
+  "gene": "LTA4H",
+  "generatedAt": "2026-08-03T13:57:36.539Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "LTA4H 是花生四烯酸代谢通路中的胞质锌金属酶，催化 leukotriene A4 水解生成促炎介质 leukotriene B4，从而驱动 BLT1/BLT2 介导的中性粒细胞、单核细胞趋化与炎症放大。该靶点主要定位于细胞质而非典型胞外抗原，抗体直接结合天然胞内酶的可及性有限，因此更适合采用胞内递送抗体片段、细胞通透型 VHH 或机制验证型抗体策略。相比下游 GPCR 受体，LTA4H 位于 LTB4 生成的限速效应节点，可同时降低 BLT1 与 BLT2 轴激活，具备通路上游拦截优势，但成药优先级需受抗原可及性约束。",
+    "mechanism": "抗体片段结合 LTA4H 催化沟槽邻近区域，位阻性限制 LTA4 底物进入锌依赖性水解活性中心，降低 LTB4 生成。",
+    "selectedEpitope": "优先覆盖锌金属蛋白酶催化沟槽入口及 LTA4 底物结合通道外缘。",
+    "diseaseDirection": "LTB4介导炎症与髓系细胞趋化",
+    "domain": "LTA4H 含 N 端结构域、催化锌金属蛋白酶核心结构域及 C 端 α-螺旋结构域。",
+    "evidence": "LTA4H-LTB4炎症轴结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P09960 functional annotation",
+      "RCSB PDB 3B7S X-ray structure",
+      "KEGG arachidonic acid metabolism pathway"
+    ],
+    "referenceEntries": "UniProt P09960；RCSB PDB 3B7S；ChEMBL CHEMBL4105",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化沟槽入口与底物结合通道外缘",
+        "可直接干扰 LTA4 进入锌依赖性活性中心，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C 端 α-螺旋结构域邻近催化核心界面",
+        "可能通过构象约束影响底物通道开放，适合作为变构抑制表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化沟槽的 N 端氨肽酶相关表面",
+        "可能影响非 LTB4 生成相关功能，疾病机制特异性较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "LTA4H 为胞内酶，常规抗体难以到达天然作用位点；建议限定为递送型 Fab/VHH、细胞通透工程或体外机制验证用途。",
+    "structurePrepZh": "以 3B7S 高分辨率晶体结构为模板，保留催化锌离子与关键活性位点残基，去除非必要晶体配体后进行界面网格定义。",
+    "structureRef": "Thunnissen et al., LTA4H high-resolution crystal structure, PDB 3B7S",
+    "antibodies": [
+      "无已批准抗 LTA4H 治疗抗体",
+      "研究级抗 LTA4H 单克隆抗体"
+    ],
+    "interfaceFocus": "催化锌中心周围底物通道入口",
+    "designMode": "胞内酶抑制型",
+    "candidates": [
+      {
+        "target": "ALOX5",
+        "rationale": "ALOX5 催化花生四烯酸生成 5-HPETE 并进一步形成 LTA4，是 LTA4H 上游的关键白三烯合成酶。抑制该节点可减少 LTA4 与下游 LTB4 的生成。"
+      },
+      {
+        "target": "ALOX5AP",
+        "rationale": "ALOX5AP 促进 ALOX5 在核膜区域获得花生四烯酸底物，是白三烯生物合成复合体的重要组分。该靶点位于 LTA4 生成前端，适合用于同通路拦截。"
+      },
+      {
+        "target": "LTB4R",
+        "rationale": "LTB4R 编码 BLT1，是 LTB4 高亲和力受体，介导髓系细胞趋化、黏附与炎症募集。相比胞内 LTA4H，膜受体可及性更适合常规抗体设计。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

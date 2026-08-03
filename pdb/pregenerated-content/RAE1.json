@@ -1,0 +1,65 @@
+{
+  "gene": "RAE1",
+  "generatedAt": "2026-08-03T15:52:07.020Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RAE1是mRNA核输出复合体组成因子，与NUP98协同参与核孔复合体介导的RNA输出，病毒感染过程中可影响病毒RNA转运及宿主抗病毒转录程序。该蛋白主要定位于核孔复合体胞核侧及胞质侧纤维，不属于经典细胞表面抗原，抗体可及性弱于膜受体或分泌蛋白，因此更适合作为胞内机制研究或递送型抗体探索靶点。其优先级依据在于Open Targets提示其与流感、HIV感染及广义病毒感染存在较高遗传与功能关联，但相较IFNAR、CCR5等可药性更成熟靶点，成药开发风险更高。",
+    "mechanism": "设计抗体以结合RAE1 β-propeller表面，阻断RAE1与NUP98 GLEBS样结合界面形成稳定核输出复合体，干预病毒RNA依赖的核质转运过程。",
+    "selectedEpitope": "优先聚焦RAE1 WD40 β-propeller顶部NUP98结合沟槽及邻近环区，避免深埋保守疏水核心。",
+    "diseaseDirection": "病毒感染与宿主RNA核输出",
+    "domain": "RAE1由连续WD40重复形成七叶β-propeller结构，提供NUP98结合平台及核孔复合体定位界面。",
+    "evidence": "RAE1病毒感染关联与核输出结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P78406功能与亚细胞定位注释",
+      "RCSB PDB 3MMY晶体结构数据",
+      "核孔复合体mRNA输出与病毒复制文献"
+    ],
+    "referenceEntries": "UniProt P78406；RCSB PDB 3MMY；Open Targets RAE1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "WD40 β-propeller顶部NUP98结合沟槽",
+        "直接干预RAE1-NUP98复合体形成，机制指向性最强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "β-propeller外侧溶剂暴露环区",
+        "可提供较高结合可及性，适合构建构象识别型抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "WD40重复间保守β片层核心",
+        "结构保守且部分埋藏，易影响蛋白折叠并增加交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RAE1为胞内核孔相关蛋白，常规抗体体内可及性受限。宜标注为研究级或递送型抗体方向，并优先规避高度保守WD40核心区域。",
+    "structurePrepZh": "采用PDB 3MMY高分辨率晶体结构建立单体模型，检查A-H链构象一致性，保留WD40环区并去除非功能性晶体接触。",
+    "structureRef": "RCSB PDB 3MMY，X-ray diffraction，1.65 Å",
+    "antibodies": [
+      "抗RAE1研究用单克隆抗体",
+      "抗RAE1免疫检测抗体"
+    ],
+    "interfaceFocus": "RAE1-NUP98结合沟槽与WD40环区",
+    "designMode": "胞内递送型阻断",
+    "candidates": [
+      {
+        "target": "NUP98",
+        "rationale": "NUP98与RAE1形成mRNA核输出相关复合体，位于同一核孔介导RNA转运通路；其FG重复及GLEBS相关区域是病毒复制与宿主核输出调控的重要节点。"
+      },
+      {
+        "target": "XPO1",
+        "rationale": "XPO1介导富含NES货物蛋白的CRM1依赖性核输出，HIV Rev和多种病毒蛋白依赖该通路完成核质转运；与RAE1同属病毒感染相关核输出网络。"
+      },
+      {
+        "target": "NUP214",
+        "rationale": "NUP214为核孔胞质侧组成因子，参与XPO1货物释放及核质运输终末步骤；其功能与RAE1所在核孔运输环境共同影响病毒复制过程。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

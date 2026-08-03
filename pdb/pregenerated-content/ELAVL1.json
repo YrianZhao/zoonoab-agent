@@ -1,0 +1,65 @@
+{
+  "gene": "ELAVL1",
+  "generatedAt": "2026-08-03T12:15:59.863Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ELAVL1（HuR）为胞内RNA结合蛋白，通过RRM结构域结合AU-rich元件并稳定炎症、应激与细胞存活相关mRNA，在神经退行性疾病和病毒感染相关宿主反应中具有疾病关联。该蛋白主要定位于细胞核与细胞质，缺乏分泌型或跨膜胞外结构域，天然抗体可及性明显受限。相较膜受体或分泌因子，ELAVL1不适合作为常规体内阻断抗体优先靶点；其优先级应限定于细胞内递送抗体、intrabody或结构生物学验证场景。",
+    "mechanism": "通过细胞内抗体阻断ELAVL1 RRM与AU-rich RNA元件结合，干扰靶mRNA稳定化及核质转运相关复合物形成。",
+    "selectedEpitope": "优先覆盖RRM1/RRM2的RNA结合β片层沟槽，避开高度保守核心折叠面。",
+    "diseaseDirection": "神经退行性疾病与病毒感染炎症",
+    "domain": "ELAVL1含三个RNA recognition motif：RRM1、RRM2负责AU-rich RNA结合，RRM3参与蛋白/RNA复合物组装。",
+    "evidence": "ELAVL1-RNA识别结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt Q15717功能与亚细胞定位注释",
+      "RCSB PDB 6GD3晶体结构",
+      "PubMed HuR/ELAVL1 RNA稳定性研究文献"
+    ],
+    "referenceEntries": "UniProt Q15717；RCSB PDB 6GD3；Open Targets ELAVL1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RRM1/RRM2 RNA结合β片层沟槽",
+        "直接竞争AU-rich RNA元件结合，机制验证价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RRM间连接区及RNA结合沟槽边缘",
+        "可能影响RRM相对取向并削弱RNA复合物稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "RRM保守疏水核心或非暴露折叠面",
+        "易破坏蛋白整体折叠且抗体可达性有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ELAVL1为胞内抗原，常规IgG体内中和不可及；应采用intrabody、细胞穿透递送或体外机制抗体，并严格评估RRM家族交叉反应。",
+    "structurePrepZh": "以6GD3高分辨率晶体结构为模板，保留抗原链A/B/C/P中RNA结合构象，去除非关键晶体接触并标注RRM沟槽残基。",
+    "structureRef": "RCSB PDB 6GD3，X-ray diffraction，1.35 Å",
+    "antibodies": [
+      "Anti-HuR clone 3A2",
+      "Anti-HuR clone 19F12"
+    ],
+    "interfaceFocus": "RRM1/RRM2与AU-rich RNA结合沟槽",
+    "designMode": "胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "TARDBP",
+        "rationale": "TDP-43为RNA结合蛋白，参与RNA代谢异常和神经退行性疾病病理聚集，与ELAVL1同属RNA稳态失衡相关疾病轴。"
+      },
+      {
+        "target": "FUS",
+        "rationale": "FUS参与RNA加工、应激颗粒和神经退行性疾病通路，适合作为RNA结合蛋白病理网络中的候选靶点。"
+      },
+      {
+        "target": "TIA1",
+        "rationale": "TIA1调控应激颗粒装配并与RNA代谢及神经退行性疾病风险相关，可用于比较ELAVL1相关RNA稳态通路干预策略。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

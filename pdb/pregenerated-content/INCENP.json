@@ -1,0 +1,65 @@
+{
+  "gene": "INCENP",
+  "generatedAt": "2026-08-03T13:28:56.666Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "INCENP是染色体乘客复合体的支架蛋白，负责招募并激活AURKB以调控着丝粒-微管附着、纺锤体检查点和胞质分裂，异常表达可与前列腺癌及肾癌中的有丝分裂失衡相关。该蛋白主要定位于细胞核、着丝粒和中央纺锤体，缺乏稳定胞外结构域或分泌暴露特征，完整抗体直接结合活细胞靶点的可及性受限。相较AURKB、BIRC5等同复合体成员，INCENP具有明确的复合体装配支架功能和高分辨率结构片段，但作为抗体药物主靶点优先级低于具备胞外可及性的肿瘤抗原，更适合细胞内递送抗体、研究级阻断抗体或结构生物学验证。",
+    "mechanism": "抗体片段结合INCENP IN-box区域，阻断其与AURKB激酶结构域的结合及激活构象稳定，从而抑制CPC依赖的着丝粒校正和胞质分裂信号。",
+    "selectedEpitope": "优先靶向C端IN-box内AURKB结合螺旋及激活界面，避免选择无序低复杂度区。",
+    "diseaseDirection": "有丝分裂异常相关肿瘤",
+    "domain": "INCENP含N端CEN-box/着丝粒定位区、中段卷曲螺旋区及C端IN-box样AURKB结合激活结构域。",
+    "evidence": "INCENP-CPC有丝分裂肿瘤关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q9NQS7功能与亚细胞定位注释",
+      "RCSB PDB 2QFA晶体结构记录",
+      "染色体乘客复合体与AURKB调控文献"
+    ],
+    "referenceEntries": "UniProt Q9NQS7；RCSB PDB 2QFA；Open Targets INCENP",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端IN-box的AURKB结合螺旋界面",
+        "可直接干扰INCENP介导的AURKB激活，机制可验证性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "卷曲螺旋区暴露面及CPC装配相关片段",
+        "可能影响复合体空间组织，适合构象选择性抗体筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端CEN-box/着丝粒定位相关区域",
+        "区域柔性较高且结构信息不足，表位稳定性和可成药性需谨慎评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "INCENP为细胞内核定位蛋白，常规全长抗体难以进入活细胞；建议限定为细胞内递送抗体、intrabody、降解偶联或研究试剂方向，并避免宣称胞外阻断。",
+    "structurePrepZh": "以2QFA高分辨率晶体结构为核心模板，保留INCENP-AURKB相互作用界面，补全缺失柔性区并对晶体接触面进行生物学界面复核。",
+    "structureRef": "RCSB PDB 2QFA，X-ray diffraction，1.4 Å",
+    "antibodies": [
+      "抗INCENP研究级单克隆抗体",
+      "抗INCENP免疫荧光/免疫印迹抗体"
+    ],
+    "interfaceFocus": "IN-box与AURKB激酶结构域结合界面",
+    "designMode": "细胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "AURKB",
+        "rationale": "AURKB是染色体乘客复合体的催化激酶，直接磷酸化着丝粒和胞质分裂底物；与INCENP处于同一有丝分裂调控轴，机制干预证据更充分。"
+      },
+      {
+        "target": "BIRC5",
+        "rationale": "BIRC5/Survivin是CPC核心成员，参与复合体定位至着丝粒并与肿瘤细胞存活和有丝分裂进程相关，适合作为同通路替代干预节点。"
+      },
+      {
+        "target": "CDCA8",
+        "rationale": "CDCA8/Borealin与INCENP、BIRC5共同维持CPC定位和稳定性，干预该节点可影响染色体分离和胞质分裂过程。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

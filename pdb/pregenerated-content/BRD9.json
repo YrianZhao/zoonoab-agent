@@ -1,0 +1,65 @@
+{
+  "gene": "BRD9",
+  "generatedAt": "2026-08-03T18:11:07.150Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BRD9 是 ncBAF/SWI-SNF 染色质重塑复合体的专属性亚基，其溴结构域识别乙酰化赖氨酸并参与染色质结合，在神经发育和部分神经退行性疾病相关转录调控中具有遗传与功能关联。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌特征，抗体抗原可及性不具备常规体内阻断优势，更适合作为细胞内递送抗体或结构引导结合分子设计模型。相较 SMARCA4、SMARCC1 等核心 SWI-SNF 亚基，BRD9 具有更清晰的 ncBAF 复合体选择性和高分辨率溴结构域结构，因此在选择性识别设计中优先级较高。",
+    "mechanism": "设计分子应占据 BRD9 溴结构域乙酰赖氨酸结合口袋，阻断其与乙酰化组蛋白尾部的识别，削弱 ncBAF 复合体染色质定位。",
+    "selectedEpitope": "优先覆盖 BRD9 bromodomain 的 ZA loop、BC loop 与乙酰赖氨酸口袋边缘界面。",
+    "diseaseDirection": "神经退行性疾病相关染色质调控",
+    "domain": "BRD9 含 N 端溴结构域及 C 端 DUF3512 区域，4UIT 解析其溴结构域晶体结构。",
+    "evidence": "BRD9-ncBAF 染色质识别结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9H8M2 functional annotation",
+      "RCSB PDB 4UIT X-ray crystal structure",
+      "SWI-SNF/ncBAF complex functional literature"
+    ],
+    "referenceEntries": "UniProt Q9H8M2；RCSB PDB 4UIT；Open Targets BRD9",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ZA loop/BC loop 夹持的乙酰赖氨酸结合口袋",
+        "直接竞争乙酰化组蛋白尾部识别，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "溴结构域四螺旋束外侧保守沟槽",
+        "可获得结构稳定结合，但功能阻断需验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离配体口袋的晶体接触暴露面",
+        "可能受晶体堆积影响，疾病机制关联较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BRD9 为核内蛋白，常规抗体体内可及性不足；需采用细胞内递送、intrabody 或降解偶联策略，并严控与 BRD7 等溴结构域同源蛋白的交叉反应。",
+    "structurePrepZh": "以 4UIT 链 A 为模板，移除晶体配体与非关键水分子，保留溴结构域核心构象并检查 ZA/BC loop 质子化及口袋柔性。",
+    "structureRef": "RCSB PDB 4UIT，BRD9 bromodomain，1.3 Å X-ray",
+    "antibodies": [
+      "anti-BRD9 clone EPR23635-66",
+      "anti-BRD9 clone 2G7"
+    ],
+    "interfaceFocus": "乙酰赖氨酸口袋及 ZA/BC loop 边缘",
+    "designMode": "细胞内抗体设计",
+    "candidates": [
+      {
+        "target": "SMARCA4",
+        "rationale": "SMARCA4 是 SWI-SNF/BAF 复合体 ATPase 核心亚基，直接驱动染色质重塑并与神经系统疾病和肿瘤转录失衡相关。"
+      },
+      {
+        "target": "SMARCB1",
+        "rationale": "SMARCB1 是 BAF 复合体抑癌核心亚基，其功能缺失影响染色质可及性和神经发育相关转录程序。"
+      },
+      {
+        "target": "BRD7",
+        "rationale": "BRD7 为 PBAF 复合体溴结构域亚基，与 BRD9 同属 SWI-SNF 相关乙酰化染色质识别模块，可作为选择性评估参照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

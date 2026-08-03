@@ -1,0 +1,65 @@
+{
+  "gene": "MAGEA10",
+  "generatedAt": "2026-08-03T14:00:58.223Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAGEA10 属于癌睾抗原 MAGE-A 家族，在胃癌、肺癌及多种实体瘤中可出现异常表达，并通过 MAGE 同源结构域参与转录调控复合物及泛素连接酶相关蛋白互作，促进肿瘤细胞适应性存活。该蛋白主要为胞内抗原，天然抗体可及性弱，但可作为肿瘤抗原肽-MHC 复合物的特异性识别对象，适合采用 TCR-mimic 抗体策略。相较缺乏高分辨率结构模板的同家族成员，MAGEA10 具有 7QPJ 晶体结构支持，可在 MAGE homology domain 上进行肽段来源与构象约束分析，优先级主要来自结构可设计性与肿瘤限制性表达特征。",
+    "mechanism": "设计 TCR-mimic 抗体识别 MAGEA10 来源肽段与 HLA 形成的复合物，阻断该肿瘤抗原呈递单元与 TCR 样识别界面的结合并介导肿瘤细胞选择性清除。",
+    "selectedEpitope": "优先选择 MAGE homology domain 内可稳定加工呈递的 HLA 结合肽段-pMHC 复合物界面。",
+    "diseaseDirection": "肿瘤相关癌睾抗原免疫治疗",
+    "domain": "MAGEA10 含保守 MAGE homology domain，由双翼螺旋束构成，介导家族特异性蛋白互作。",
+    "evidence": "MAGEA10 肿瘤抗原结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P43363 curated protein annotation",
+      "RCSB PDB 7QPJ X-ray crystal structure",
+      "Cancer-testis antigen and MAGE-A family literature"
+    ],
+    "referenceEntries": "UniProt P43363；RCSB PDB 7QPJ；Open Targets MAGEA10",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "MAGE homology domain 来源 HLA 锚定位点肽段-pMHC 暴露面",
+        "适合构建 TCR-mimic 抗体，兼顾肿瘤特异性与抗原呈递依赖识别",
+        "优先"
+      ],
+      [
+        "Site B",
+        "MHD 螺旋束表面中可加工抗原肽来源区域",
+        "用于筛选替代 HLA 限制性肽段，支持不同人群等位基因覆盖",
+        "备选"
+      ],
+      [
+        "Site C",
+        "MHD 保守疏水核心及家族同源保守面",
+        "易产生 MAGE-A 家族交叉反应，需严格排除非目标同源肽识别",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAGEA10 为胞内蛋白，常规抗体难以直接结合天然抗原；应限定为 pMHC/TCR-mimic 设计，并重点评估 MAGE-A 家族同源肽交叉反应。",
+    "structurePrepZh": "以 7QPJ 高分辨率晶体结构提取 MAGE homology domain，补全缺失侧链并映射候选抗原肽，随后对接至目标 HLA 分子进行 pMHC 建模。",
+    "structureRef": "RCSB PDB 7QPJ；X-ray diffraction 1.54 Å",
+    "antibodies": [
+      "MAGEA4 pMHC TCR-mimic antibody",
+      "NY-ESO-1 pMHC TCR-mimic antibody"
+    ],
+    "interfaceFocus": "MAGEA10 肽段-HLA 槽上方 TCR 样结合面",
+    "designMode": "pMHC靶向TCR-mimic",
+    "candidates": [
+      {
+        "target": "MAGEA3",
+        "rationale": "MAGEA3 与 MAGEA10 同属 MAGE-A 癌睾抗原家族，在多种实体瘤中异常表达，可作为同类肿瘤抗原呈递通路的替代靶点。"
+      },
+      {
+        "target": "MAGEA4",
+        "rationale": "MAGEA4 具有较成熟的肿瘤抗原开发基础，其肽-MHC 复合物已被用于 TCR 工程和 TCR-mimic 识别研究。"
+      },
+      {
+        "target": "CTAG1B",
+        "rationale": "CTAG1B 编码 NY-ESO-1，是经典癌睾抗原，依赖抗原加工与 HLA 呈递参与同一肿瘤抗原免疫识别轴。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

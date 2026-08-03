@@ -1,0 +1,65 @@
+{
+  "gene": "VAV1",
+  "generatedAt": "2026-08-03T17:47:31.634Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "VAV1是造血细胞中富集表达的Rho/Rac鸟嘌呤核苷酸交换因子，参与TCR、BCR、Fc受体及整合素信号，将受体近端酪氨酸磷酸化事件传递至RAC1、CDC42和RHOA，影响免疫细胞迁移、吞噬、细胞骨架重排及血小板功能。该靶点与皮肤利什曼病、血小板计数和肿瘤免疫相关表型存在遗传与功能关联，符合免疫炎症和造血系统通路干预方向。然而，VAV1为胞内信号转导蛋白，缺乏天然胞外结构域，抗原可及性显著弱于膜受体或分泌因子，因此更适合细胞内抗体、递送型VHH或机制验证抗体策略。相比上游广泛免疫受体，VAV1处于多条造血细胞受体通路的汇聚节点，具有较高机制整合价值，但成药优先级应低于可直接胞外阻断的受体靶点。",
+    "mechanism": "设计抗体阻断VAV1 SH2结构域与磷酸化受体适配蛋白结合，或稳定其自抑制构象，抑制Dbl同源结构域介导的RAC1/CDC42核苷酸交换。",
+    "selectedEpitope": "优先覆盖SH2磷酸酪氨酸结合槽及其邻近SH3-SH2连接界面，干预受体近端募集。",
+    "diseaseDirection": "免疫炎症与造血细胞信号",
+    "domain": "VAV1含CH、酸性区、DH、PH、C1、SH2及双SH3结构域，6NEW解析调控区构象。",
+    "evidence": "VAV1免疫受体信号与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P15498功能与结构域注释",
+      "RCSB PDB 6NEW晶体结构记录",
+      "造血细胞TCR/BCR/Fc受体信号研究文献"
+    ],
+    "referenceEntries": "UniProt:P15498；RCSB PDB:6NEW；Open Targets:VAV1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SH2磷酸酪氨酸结合槽及BG环邻近区域",
+        "可阻断VAV1对磷酸化SLP-76、BLNK或FcR相关复合物的募集",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DH-PH催化模块与Rho GTPase结合界面",
+        "直接干预RAC1/CDC42结合及GDP-GTP交换，但需避免非特异构象扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端CH-酸性区自抑制调控界面",
+        "可能稳定自抑制状态，但磷酸化依赖构象变化带来表位异质性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "VAV1为胞内蛋白，常规外源抗体难以到达作用位点；建议定位为细胞内抗体、递送型VHH或机制验证分子，并控制SH2家族交叉反应。",
+    "structurePrepZh": "以6NEW链A为结构模板，补全缺失环区并标注SH2结合槽、DH-PH催化面和自抑制界面；保留关键磷酸酪氨酸识别残基用于对接约束。",
+    "structureRef": "RCSB PDB 6NEW，X-ray diffraction，2.5 Å，human VAV1",
+    "antibodies": [
+      "抗VAV1研究级单克隆抗体",
+      "抗VAV1磷酸化位点研究抗体"
+    ],
+    "interfaceFocus": "SH2磷酸肽结合槽与DH-PH催化界面",
+    "designMode": "胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "SYK",
+        "rationale": "SYK位于BCR、Fc受体和免疫受体ITAM信号上游，促进VAV1磷酸化和募集，是同一造血免疫受体通路中的关键激酶节点。"
+      },
+      {
+        "target": "LCK",
+        "rationale": "LCK在TCR信号中启动CD3 ITAM磷酸化并驱动下游LAT-SLP-76-VAV1复合物形成，适合与VAV1进行T细胞通路层级比较。"
+      },
+      {
+        "target": "RAC1",
+        "rationale": "RAC1是VAV1 DH结构域直接激活的Rho家族GTPase，介导肌动蛋白重排、吞噬和免疫细胞迁移等下游效应。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

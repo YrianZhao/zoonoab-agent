@@ -1,0 +1,65 @@
+{
+  "gene": "REST",
+  "generatedAt": "2026-08-03T20:53:35.445Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "REST 是锌指转录抑制因子，通过结合 RE1/NRSE DNA 元件并招募 RCOR1、SIN3A/HDAC 与 CoREST 复合体抑制神经元基因表达，遗传性牙龈纤维瘤病中 REST 功能改变与成纤维细胞增殖和细胞外基质沉积异常相关。该蛋白主要定位于细胞核，缺乏稳定胞外结构域或分泌形式，抗原可及性不适合常规细胞表面阻断抗体，但可作为结构抗原用于胞内递送抗体片段或研究级结合分子设计。相较同通路转录辅因子，REST 具有明确 DNA 结合锌指阵列和疾病遗传证据，优先级来自其通路上游调控地位与可解析的蛋白-DNA界面。",
+    "mechanism": "设计分子应阻断 REST C2H2 锌指阵列与 RE1/NRSE DNA 主沟的序列特异性接触，或干扰其招募 RCOR1 形成转录抑制复合体。",
+    "selectedEpitope": "优先锁定锌指4-8与RE1 DNA接触面邻近沟槽，兼顾DNA结合抑制与结构保守性评估。",
+    "diseaseDirection": "遗传性牙龈纤维瘤病与发育调控",
+    "domain": "REST 含N端SIN3结合区、九个C2H2锌指DNA结合域及C端CoREST结合区。",
+    "evidence": "REST-RE1轴疾病遗传与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform REST disease associations",
+      "UniProt Q13127 functional annotation",
+      "RCSB PDB 6DU2 X-ray structure",
+      "ClinGen/OMIM reports on REST-related gingival fibromatosis"
+    ],
+    "referenceEntries": "UniProt Q13127；RCSB PDB 6DU2；Open Targets REST",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C2H2锌指4-8的RE1 DNA结合界面",
+        "直接影响REST对NRSE序列识别，具备明确结构阻断逻辑",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端CoREST/RCOR1结合相关区域",
+        "可削弱转录抑制复合体装配，但需补充复合物结构约束",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端SIN3结合区附近线性片段",
+        "构象柔性较高且结构解析不足，存在亲和力与选择性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "REST为核内转录因子，常规治疗性抗体递送与抗原暴露风险较高；宜采用VHH、intrabody或递送偶联策略，并严格规避锌指家族交叉反应。",
+    "structurePrepZh": "以6DU2抗原链A-D为模板，保留锌离子与DNA接触构象，补全缺失环区并进行质子化、金属配位和界面水分子审查。",
+    "structureRef": "RCSB PDB 6DU2，X-ray diffraction，2.5 Å",
+    "antibodies": [
+      "REST D-8 research antibody",
+      "REST 12C11 research antibody"
+    ],
+    "interfaceFocus": "锌指-RE1 DNA主沟识别界面",
+    "designMode": "胞内VHH阻断设计",
+    "candidates": [
+      {
+        "target": "RCOR1",
+        "rationale": "RCOR1 是 CoREST 抑制复合体核心支架，与 REST C端抑制结构域协同招募去乙酰化和去甲基化组分，处于同一转录抑制通路。"
+      },
+      {
+        "target": "SIN3A",
+        "rationale": "SIN3A 与 REST N端抑制结构域结合并招募HDAC复合体，参与RE1靶基因染色质去乙酰化抑制。"
+      },
+      {
+        "target": "HDAC1",
+        "rationale": "HDAC1 是REST-SIN3/CoREST复合体执行组蛋白去乙酰化的催化组分，可作为同一表观遗传抑制轴的下游候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

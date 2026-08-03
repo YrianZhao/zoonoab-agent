@@ -1,0 +1,65 @@
+{
+  "gene": "RIN3",
+  "generatedAt": "2026-08-03T20:59:13.589Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RIN3 是 Ras/Rab 相关鸟嘌呤核苷酸交换因子，参与内吞体 Rab5/Rab31 轴的囊泡转运，并与血细胞数量性状和免疫细胞组成存在遗传关联。该蛋白主要为胞内适配与交换因子，缺乏典型跨膜胞外结构域，天然抗原可及性弱，抗体设计更适合定位为结构验证、细胞内递送或研究级阻断工具。相较于分泌型细胞因子或膜受体，RIN3 的优先级优势在于具备高分辨率实验结构和明确的 Rab 互作界面，可开展机制导向的界面抗体设计，但治疗性体内可及性需审慎评估。",
+    "mechanism": "设计抗体阻断 RIN3 Vps9 结构域与 Rab5/Rab31 小 GTP 酶的结合界面，抑制 GDP-GTP 交换与早期内吞体转运重编程。",
+    "selectedEpitope": "优先覆盖 3U23 所示 Vps9 催化核心的 Rab 结合沟槽及相邻α螺旋界面。",
+    "diseaseDirection": "免疫细胞数量性状与炎症遗传学",
+    "domain": "RIN3 含 SH2、proline-rich 区、RH/Vps9 GEF 模块及 RA 结构域；3U23 对应 Vps9 相关结构区域。",
+    "evidence": "RIN3 遗传关联与Vps9-Rab界面结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q8TB24 蛋白功能与结构域注释",
+      "RCSB PDB 3U23 X射线晶体结构",
+      "Rab5/Rab31 内吞体转运与Vps9 GEF文献"
+    ],
+    "referenceEntries": "UniProt Q8TB24；RCSB PDB 3U23；Open Targets RIN3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Vps9 催化核心Rab结合沟槽",
+        "直接干预 RIN3-Rab5/Rab31 复合体形成与核苷酸交换",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Vps9 相邻α螺旋支撑面",
+        "稳定结合催化域外侧并可能产生别构抑制效应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离Rab界面的晶体暴露环区",
+        "结构可及但功能阻断证据较弱，需避免仅获得非中和结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RIN3 为胞内蛋白，常规抗体体内可及性不足；应优先用于Fab/VHH结构探针、胞内抗体或递送体系，并严格验证对Rab结合和GEF活性的影响。",
+    "structurePrepZh": "以3U23链A、B为模板，保留Vps9结构域核心坐标，去除晶体缓冲成分，校验界面残基、质子化状态和缺失环区后用于抗原建模。",
+    "structureRef": "RCSB PDB 3U23；1.11 Å X-ray RIN3结构",
+    "antibodies": [
+      "研究级抗RIN3抗体",
+      "Rab GEF结构域结合型VHH候选"
+    ],
+    "interfaceFocus": "Vps9催化核心与Rab5/Rab31结合界面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "RAB5A",
+        "rationale": "RAB5A 是早期内吞体通路核心小GTP酶，直接接受 Vps9 家族GEF调控；靶向其效应器结合或核苷酸状态界面可验证同一内吞转运轴。"
+      },
+      {
+        "target": "RAB31",
+        "rationale": "RAB31 是 RIN3 可调控的Rab家族成员，参与内吞和受体转运过程；其与RIN3功能耦合使其适合作为同通路候选节点。"
+      },
+      {
+        "target": "RABGEF1",
+        "rationale": "RABGEF1 是经典 Vps9 结构域 Rab5 GEF，与RIN3处于同一Rab5内吞体激活网络；可作为机制对照或替代GEF靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

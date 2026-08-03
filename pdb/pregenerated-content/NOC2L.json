@@ -1,0 +1,65 @@
+{
+  "gene": "NOC2L",
+  "generatedAt": "2026-08-03T14:46:19.388Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NOC2L为核仁相关转录抑制因子，主要参与染色质转录调控与复制许可相关复合物功能，现有遗传关联以碱性磷酸酶测量、骨密度表型及神经退行性疾病为主，疾病机制仍偏向间接调控而非经典配体-受体轴。该蛋白定位于细胞核/核仁，缺乏分泌形式、跨膜区或稳定胞外结构域，抗原天然可及性不利于常规体内抗体药物作用。相较TNFSF11、SOST、TNFRSF11B等骨代谢通路中胞外可及且机制明确的靶点，NOC2L更适合作为结构生物学与细胞内结合工具抗体研究靶点，治疗性抗体优先级较低。",
+    "mechanism": "设计以内源性细胞内结合抗体阻断NOC2L与染色质/转录调控复合物界面的结合，用于解析其对下游骨代谢相关转录表型的影响。",
+    "selectedEpitope": "优先选择8FKV中可解析的NOC2L结构域暴露螺旋-环区，避开预测核酸结合面与复合物核心埋藏界面。",
+    "diseaseDirection": "骨代谢表型与神经退行性疾病关联",
+    "domain": "NOC2L为核内转录抑制相关蛋白，含NOC2样保守区域，结构用于界定暴露环区与复合物接触面。",
+    "evidence": "NOC2L遗传关联与核内结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9Y3T9蛋白定位与功能注释",
+      "RCSB PDB 8FKV冷冻电镜结构",
+      "AlphaFold/结构域保守性与表面可及性评估"
+    ],
+    "referenceEntries": "UniProt Q9Y3T9；RCSB PDB 8FKV；Open Targets NOC2L",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "8FKV可解析NOC2L暴露螺旋-环区",
+        "利于获得构象选择性结合体并降低干扰核心折叠风险",
+        "优先"
+      ],
+      [
+        "Site B",
+        "NOC2样保守区域边缘表面",
+        "可能影响转录调控复合物装配，适合机制探针设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "预测核酸/染色质接触邻近界面",
+        "可能产生功能阻断效应，但存在非特异核酸相关干扰风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NOC2L为核内蛋白，缺乏胞外抗原可及性，常规IgG难以在体内直接结合靶点；建议限定为细胞内Fab/VHH、降解偶联或研究工具抗体方向。",
+    "structurePrepZh": "以8FKV冷冻电镜模型为基础提取NOC2L可解析链段，补充缺失柔性区预测，标注保守面、埋藏界面与潜在核酸接触面。",
+    "structureRef": "RCSB PDB 8FKV，2.47 Å cryo-EM human complex structure",
+    "antibodies": [
+      "无已批准NOC2L治疗性抗体",
+      "研究级抗NOC2L抗体"
+    ],
+    "interfaceFocus": "暴露螺旋-环区与复合物装配边缘",
+    "designMode": "细胞内工具抗体",
+    "candidates": [
+      {
+        "target": "SOST",
+        "rationale": "SOST编码分泌型硬化蛋白，直接抑制LRP5/6介导的Wnt骨形成信号，与骨密度表型机制相关且抗原可及性显著优于NOC2L。"
+      },
+      {
+        "target": "TNFSF11",
+        "rationale": "TNFSF11编码RANKL，作为胞外配体驱动破骨细胞分化，是骨量调控中的经典可中和抗体靶点。"
+      },
+      {
+        "target": "TNFRSF11B",
+        "rationale": "TNFRSF11B编码骨保护素OPG，为RANKL天然诱饵受体，处于同一骨重塑轴，可作为通路机制比较与候选干预节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

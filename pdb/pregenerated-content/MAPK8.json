@@ -1,0 +1,65 @@
+{
+  "gene": "MAPK8",
+  "generatedAt": "2026-08-03T14:04:18.437Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAPK8/JNK1 是应激激活 MAPK 级联的细胞内丝氨酸/苏氨酸激酶，参与 AP-1 转录因子磷酸化、凋亡调控和炎症相关肿瘤信号，Open Targets 显示其与癌症及神经退行性疾病存在多证据关联。该蛋白主要定位于胞质和细胞核，缺乏天然胞外结构域，因此常规细胞外阻断型抗体可及性不足，但其高分辨率激酶结构支持体外结合体、细胞内抗体或递送型抗体片段设计。相较上游应激激酶，MAPK8 位于 JNK 分支核心节点，结构信息充分且底物结合沟槽明确，适合作为机制验证优先靶点。",
+    "mechanism": "设计结合体阻断 MAPK8 激酶结构域与 c-Jun 底物 docking 位点及催化裂隙的协同识别，抑制 Thr-Pro/Tyr-Pro 基序磷酸化。",
+    "selectedEpitope": "优先覆盖激酶 C 叶 D-recruitment groove 与底物 docking 界面，避开高度保守 ATP 结合口袋。",
+    "diseaseDirection": "肿瘤应激信号与神经退行性疾病",
+    "domain": "MAPK8 含典型蛋白激酶结构域，由 N 叶 β 折叠/C-helix 与 C 叶催化核心组成。",
+    "evidence": "MAPK8-JNK1 疾病关联与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P45983 functional annotation",
+      "RCSB PDB 2XRW X-ray structure",
+      "Reactome MAPK family signaling pathway"
+    ],
+    "referenceEntries": "UniProt P45983；RCSB PDB 2XRW；Open Targets MAPK8",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C 叶 D-recruitment groove/底物 docking 沟槽",
+        "可干扰 c-Jun 等底物招募，机制选择性优于 ATP 口袋竞争",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N 叶 C-helix 与活化环邻近构象界面",
+        "可稳定非活化构象并影响催化裂隙闭合",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP 结合铰链区与催化 Lys-Glu 网络周边",
+        "序列与结构保守性高，易产生 JNK2/JNK3 或其他 MAPK 交叉风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAPK8 为细胞内激酶，常规抗体难以直接到达靶点；应优先采用 VHH、intrabody 或递送偶联格式，并重点评估 MAPK9/MAPK10 交叉结合。",
+    "structurePrepZh": "以 2XRW 高分辨率晶体结构为模板，保留抗原链 A/B 的激酶核心构象，补全缺失侧链并标注活化环、ATP 口袋和 docking 沟槽。",
+    "structureRef": "RCSB PDB 2XRW；human JNK1 crystal structure 1.33 Å",
+    "antibodies": [
+      "anti-JNK1 clone EP1596Y",
+      "anti-phospho-SAPK/JNK Thr183/Tyr185 clone 81E11"
+    ],
+    "interfaceFocus": "C 叶 docking groove 与活化环邻近界面",
+    "designMode": "细胞内结合体设计",
+    "candidates": [
+      {
+        "target": "MAPK9",
+        "rationale": "MAPK9/JNK2 与 MAPK8 同属 JNK 分支，参与应激诱导 AP-1 激活和肿瘤细胞凋亡调控，可作为选择性与冗余补偿评估靶点。"
+      },
+      {
+        "target": "MAPK10",
+        "rationale": "MAPK10/JNK3 属同一 JNK 信号轴，在神经系统表达更突出，与神经退行性病理中的应激激酶活化相关。"
+      },
+      {
+        "target": "JUN",
+        "rationale": "JUN 编码 c-Jun，是 MAPK8 的经典磷酸化底物，位于同一 JNK-AP-1 转录调控通路下游，可用于通路药效读出和替代干预设计。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

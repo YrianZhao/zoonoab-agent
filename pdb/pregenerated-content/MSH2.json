@@ -1,0 +1,65 @@
+{
+  "gene": "MSH2",
+  "generatedAt": "2026-08-03T14:24:39.251Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MSH2是DNA错配修复通路的核心识别因子，与MSH6或MSH3形成MutSα/MutSβ复合物识别碱基错配和插入缺失环，胚系失活与Lynch综合征、CMMRD及结直肠癌高度相关。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌特征，因此常规治疗性抗体的抗原可及性受限，更适合作为结构验证、伴随诊断或细胞内递送抗体开发对象。相比MLH1、PMS2等下游修复因子，MSH2处于错配识别起始位点，且与MSH6/MSH3界面具有明确结构信息，优先级主要来自机制上游性和结构可解释性。",
+    "mechanism": "设计抗体应特异结合MSH2 ATPase夹钳或MSH2-MSH6异二聚界面，阻断MSH2与MSH6协同识别错配DNA或ATP依赖构象转换。",
+    "selectedEpitope": "优先选择MSH2 C端ATPase结构域邻近MSH6结合界面，避开高度保守核苷酸结合核心。",
+    "diseaseDirection": "错配修复缺陷相关肿瘤",
+    "domain": "MSH2含N端错配DNA结合区、connector/lever结构域、clamp区及C端ABC-ATPase样结构域。",
+    "evidence": "MSH2错配修复缺陷与Lynch综合征证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P43246功能与定位注释",
+      "RCSB PDB 8RAU实验晶体结构",
+      "ClinVar/OMIM MSH2胚系变异记录"
+    ],
+    "referenceEntries": "UniProt P43246；RCSB PDB 8RAU；HGNC:7325；OMIM:609309",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端ATPase结构域邻近MSH6异二聚界面",
+        "可干预MutSα复合物构象耦联并保留结构判读性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "clamp/lever结构域靠近错配DNA结合通道",
+        "可能影响MSH2-MSH6对错配DNA的夹持稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Walker A/B核苷酸结合核心及高度保守ATP口袋",
+        "保守性高且易产生非特异交叉反应或构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MSH2为核内蛋白，体内可及性不足；应明确定位于研究级、诊断级或细胞内递送抗体，并避免覆盖高度保守ATP结合基序。",
+    "structurePrepZh": "以8RAU晶体结构为模板，分离抗原链A-D并校验MSH2/MSH6链注释，补全缺失环区、质子化界面残基后用于表位暴露度评估。",
+    "structureRef": "RCSB PDB 8RAU，X射线晶体结构，2.33 Å",
+    "antibodies": [
+      "G219-1129",
+      "FE11"
+    ],
+    "interfaceFocus": "MSH2-MSH6异二聚界面与ATPase夹钳区",
+    "designMode": "核内靶点验证型",
+    "candidates": [
+      {
+        "target": "MSH6",
+        "rationale": "MSH6与MSH2形成MutSα复合物并负责单碱基错配和小插入缺失环识别，是Lynch综合征和MMR缺陷肿瘤中的同通路核心靶点。"
+      },
+      {
+        "target": "MLH1",
+        "rationale": "MLH1与PMS2形成MutLα复合物，接受MutSα/MutSβ错配识别信号并启动后续修复反应，胚系缺陷同样导致Lynch综合征。"
+      },
+      {
+        "target": "PMS2",
+        "rationale": "PMS2作为MutLα内切核酸酶组分参与错配链切除起始，其缺陷与CMMRD和Lynch相关肿瘤发生机制一致。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

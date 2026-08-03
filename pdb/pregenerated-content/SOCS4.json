@@ -1,0 +1,65 @@
+{
+  "gene": "SOCS4",
+  "generatedAt": "2026-08-03T21:15:35.700Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SOCS4 属于细胞内 SOCS 家族衔接蛋白，通过 SH2 结构域识别受磷酸化的酪氨酸位点，并经 SOCS box 招募 Elongin B/C-Cullin5 E3 泛素连接酶复合体，参与 JAK-STAT 与受体酪氨酸激酶信号的负反馈调控；其疾病关联以神经退行性疾病信号最突出，但仍属于中等强度遗传关联。SOCS4 为胞质蛋白，缺乏跨膜区、分泌信号肽和稳定胞外结构域，天然抗体抗原可及性显著弱于细胞表面受体或分泌因子。相较 IL6R、EGFR、JAK1 等同通路可及靶点，SOCS4 更适合作为机制验证或细胞内递送抗体研究对象，抗体开发优先级应审慎定位。",
+    "mechanism": "设计细胞内递送型抗体阻断 SOCS4 SH2 结构域与受磷酸化受体尾部酪氨酸基序结合，干预其招募 SOCS box-E3 泛素连接酶复合体介导的底物降解。",
+    "selectedEpitope": "优先覆盖 SH2 结构域磷酸酪氨酸结合沟槽及 BG loop 邻近界面。",
+    "diseaseDirection": "神经退行性疾病炎症信号调控",
+    "domain": "SOCS4 含中央 SH2 结构域和 C 端 SOCS box；2IZV 主要解析 SH2 样折叠核心。",
+    "evidence": "SOCS4 结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt Q8WXH5 蛋白功能与结构域注释",
+      "RCSB PDB 2IZV X 射线晶体结构",
+      "InterPro/Pfam SOCS family SH2-SOCS box 注释"
+    ],
+    "referenceEntries": "UniProt Q8WXH5；RCSB PDB 2IZV；Open Targets SOCS4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SH2 结构域磷酸酪氨酸结合沟槽",
+        "直接竞争受磷酸化底物结合，最契合功能阻断机制",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SH2 BG loop 与 EF loop 邻近表面",
+        "可变环区利于形成构象选择性结合并影响底物肽定位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端 SOCS box 相关结合面",
+        "可能影响 Elongin B/C 复合体装配，但结构覆盖与可及性需复核",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SOCS4 为胞内蛋白，常规抗体难以到达作用位点；SH2 家族口袋保守性较高，需强化选择性筛选并采用细胞内递送或内抗体格式。",
+    "structurePrepZh": "以 2IZV A/B/C 链为模板，保留解析完整的 SH2 核心，检查晶体接触、缺失环区和磷酸肽结合沟槽构象后进行表位建模。",
+    "structureRef": "RCSB PDB 2IZV，human SOCS4 SH2 domain，2.55 Å",
+    "antibodies": [
+      "暂无获批 SOCS4 靶向治疗性抗体",
+      "研究级抗 SOCS4 抗体"
+    ],
+    "interfaceFocus": "SH2 磷酸酪氨酸口袋与 BG loop 区域",
+    "designMode": "胞内递送抗体",
+    "candidates": [
+      {
+        "target": "IL6R",
+        "rationale": "IL6R 位于 IL-6/JAK-STAT 炎症轴上游，具备明确胞外结构域和成熟抗体可及性；该通路与神经炎症及慢性炎症放大机制相关。"
+      },
+      {
+        "target": "JAK1",
+        "rationale": "JAK1 是多种细胞因子受体复合体下游核心激酶，SOCS 蛋白通过负反馈限制其相关 STAT 磷酸化信号；虽为胞内靶点，但通路关联直接。"
+      },
+      {
+        "target": "STAT3",
+        "rationale": "STAT3 是 IL-6/JAK 轴关键转录因子，SOCS4 所属负反馈网络与 STAT 磷酸化输出相关；适合作为同通路机制对照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

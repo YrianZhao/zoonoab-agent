@@ -1,0 +1,65 @@
+{
+  "gene": "MAPK14",
+  "generatedAt": "2026-08-03T14:04:18.730Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAPK14编码p38α MAP kinase，是炎症应激、细胞因子诱导反应和神经炎症通路中的胞内丝氨酸/苏氨酸激酶，可调控ATF2、MAPKAPK2及下游炎症介质表达，与神经退行性疾病、阿尔茨海默病和中枢神经系统自身免疫病存在遗传与功能关联。该蛋白并非分泌蛋白或膜受体，天然抗原可及性弱，抗体策略更适合定位为胞内递送抗体、细胞内抗体或结构辅助型功能阻断分子。其优先级来自p38α在MAPK应激轴中的中心节点地位、丰富晶体结构和明确ATP/底物结合界面，相比上游MAP3K靶点具有更高结构可设计性与药理验证基础。",
+    "mechanism": "通过抗体片段结合MAPK14激酶结构域的底物 docking groove 或活化环邻近界面，阻断MAPK14与ATF2、MAPKAPK2等底物/伴侣蛋白结合，并限制Thr180/Tyr182活化环构象转换。",
+    "selectedEpitope": "优先选择C端叶底物结合沟槽与活化环邻近区域，避开高度保守ATP口袋以提高同源激酶选择性。",
+    "diseaseDirection": "神经炎症与神经退行性疾病",
+    "domain": "MAPK14为典型蛋白激酶催化结构域，含N端β折叠叶、αC螺旋、铰链区、活化环和C端α螺旋叶。",
+    "evidence": "MAPK14神经炎症疾病关联与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q16539功能与结构域注释",
+      "RCSB PDB 1IAN晶体结构",
+      "Reactome p38 MAPK signaling pathway"
+    ],
+    "referenceEntries": "UniProt Q16539；RCSB PDB 1IAN；Reactome R-HSA-171007",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端叶底物docking groove及CD结构域周边",
+        "直接干预MAPK14与ATF2/MAPKAPK2底物识别，较ATP口袋更利于选择性设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Thr180/Tyr182活化环邻近构象表面",
+        "可限制磷酸化后活化环构象稳定，但需避免影响同源MAPK共有表面",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP结合裂隙铰链区与Gly-rich loop",
+        "功能阻断潜力高但与MAPK11/MAPK12/MAPK13及其他激酶保守性强",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAPK14为胞内激酶，常规抗体难以到达天然作用位点；建议采用VHH、细胞穿透递送或胞内表达格式，并强化MAPK11/12/13交叉反应筛选。",
+    "structurePrepZh": "以1IAN链A为结构模板，补全缺失侧链与质子化状态，标注ATP口袋、活化环和底物沟槽，并进行同源MAPK表面保守性比对。",
+    "structureRef": "RCSB PDB 1IAN，human p38 MAP kinase X-ray structure, 2.0 Å",
+    "antibodies": [
+      "Anti-p38 MAPK clone D13E1",
+      "Anti-phospho-p38 MAPK Thr180/Tyr182 clone 28B10"
+    ],
+    "interfaceFocus": "底物docking groove、活化环、αC螺旋邻近界面",
+    "designMode": "胞内功能阻断",
+    "candidates": [
+      {
+        "target": "MAPKAPK2",
+        "rationale": "MAPKAPK2是MAPK14的经典下游底物，介导p38α信号对炎症因子mRNA稳定性和应激反应的调控，适合作为同轴功能验证靶点。"
+      },
+      {
+        "target": "TAB1",
+        "rationale": "TAB1可与p38α相互作用并促进非经典自磷酸化活化，在炎症和应激通路中连接上游刺激与MAPK14活性状态。"
+      },
+      {
+        "target": "DUSP1",
+        "rationale": "DUSP1去磷酸化并负向调控p38 MAPK活性，是同一应激炎症通路中的关键反馈调节节点，可用于评估通路调制方向。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

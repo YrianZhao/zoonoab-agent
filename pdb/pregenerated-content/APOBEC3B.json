@@ -1,0 +1,65 @@
+{
+  "gene": "APOBEC3B",
+  "generatedAt": "2026-08-03T10:31:04.410Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "APOBEC3B 是核内胞苷脱氨酶，可将单链 DNA 中胞苷脱氨为尿苷，形成 C>T 转换和 kataegis 突变特征，促进乳腺癌、黑色素瘤、结直肠癌及子宫内膜癌的基因组不稳定性。该蛋白缺乏跨膜段和分泌信号，抗原天然可及性不支持常规体内阻断抗体。相较膜受体类靶点，APOBEC3B 更适合作为结构验证和胞内递送抗体设计模型，优先级应限定于细胞内功能抑制与机制研究场景。",
+    "mechanism": "通过胞内递送抗体阻断 C 端催化结构域锌配位活性中心邻近 ssDNA 结合沟槽，抑制胞苷底物进入脱氨反应位点。",
+    "selectedEpitope": "优先覆盖 C 端 CDA 结构域活性中心周边 ssDNA 结合沟槽及环区界面。",
+    "diseaseDirection": "肿瘤突变发生与基因组不稳定",
+    "domain": "APOBEC3B 含 N 端假催化 CDA 样结构域和 C 端催化 CDA 结构域，5CQI 对应催化核心。",
+    "evidence": "APOBEC3B 肿瘤突变酶活与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9UH17 functional annotation",
+      "RCSB PDB 5CQI X-ray structure",
+      "COSMIC mutational signature SBS2/SBS13 literature"
+    ],
+    "referenceEntries": "UniProt Q9UH17；RCSB PDB 5CQI；Open Targets ENSG00000179750",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C 端 CDA 活性中心邻近 ssDNA 结合沟槽",
+        "可直接干扰底物定位并抑制胞苷脱氨酶活",
+        "优先"
+      ],
+      [
+        "Site B",
+        "α2-α3 周边环区与催化口袋边缘",
+        "有利于稳定非活性构象并降低底物进入效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "锌配位核心 HXE-PCX2-4C 基序正上方",
+        "功能相关性强但构象保守且存在交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "APOBEC3B 为胞内核定位酶，常规抗体难以到达作用位点；设计应采用胞内抗体、细胞穿透递送或研究级 Fab/VHH，并严格评估 APOBEC3A/3G 交叉结合。",
+    "structurePrepZh": "以 5CQI 链 A 为模板，保留锌离子和催化核心构象，补全缺失侧链并进行质子化状态校正，围绕 ssDNA 结合沟槽定义抗原表面。",
+    "structureRef": "RCSB PDB 5CQI，APOBEC3B 催化结构域晶体结构，1.68 Å",
+    "antibodies": [
+      "anti-APOBEC3B monoclonal antibody 5210-87-13",
+      "anti-APOBEC3B monoclonal antibody 2H10"
+    ],
+    "interfaceFocus": "CDA 活性中心、ssDNA 结合沟槽、锌配位邻域",
+    "designMode": "胞内抑制抗体设计",
+    "candidates": [
+      {
+        "target": "APOBEC3A",
+        "rationale": "APOBEC3A 与 APOBEC3B 同属 APOBEC3 胞苷脱氨酶家族，参与肿瘤 APOBEC 突变特征形成。其酶活强且可产生相近 SBS2/SBS13 突变谱，是同一突变发生通路中的关键比较靶点。"
+      },
+      {
+        "target": "UNG",
+        "rationale": "UNG 识别并切除 APOBEC 脱氨产生的尿嘧啶碱基，决定尿嘧啶损伤进入碱基切除修复或诱发突变的后续命运。其与 APOBEC3B 共同连接胞苷脱氨损伤和突变固定过程。"
+      },
+      {
+        "target": "REV1",
+        "rationale": "REV1 参与跨损伤 DNA 合成，可在尿嘧啶或无碱基位点相关损伤后促进突变耐受复制。其处于 APOBEC 诱导 DNA 损伤向可遗传突变转化的下游环节。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

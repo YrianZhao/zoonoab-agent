@@ -1,0 +1,65 @@
+{
+  "gene": "PAK4",
+  "generatedAt": "2026-08-03T15:02:57.436Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PAK4为Group II PAK丝氨酸/苏氨酸激酶，参与RAC1/CDC42下游细胞骨架重塑、增殖与存活调控，在前列腺癌、乳腺癌及神经系统疾病遗传证据中具有可检索关联。PAK4为胞内激酶而非天然胞外抗原，常规循环抗体可及性受限，抗体策略应限定于细胞内递送抗体、VHH胞内抗体或结构引导的研究级结合分子。相比PAK1等同家族成员，PAK4在多种实体瘤中呈扩增或高表达，并具有高分辨率激酶结构可用于界面约束设计，因此更适合作为结构驱动的验证靶点而非传统膜表面治疗抗体靶点。",
+    "mechanism": "设计分子应结合PAK4激酶结构域ATP结合裂隙或活化环邻近界面，阻断ATP及底物肽进入催化沟槽，从而抑制PAK4介导的LIMK、BAD等底物磷酸化。",
+    "selectedEpitope": "优先瞄准激酶N叶αC螺旋、铰链区与活化环共同形成的催化入口界面。",
+    "diseaseDirection": "肿瘤增殖与神经退行性疾病",
+    "domain": "PAK4含N端p21 GTPase结合/自抑制相关区及C端丝氨酸/苏氨酸激酶结构域。",
+    "evidence": "PAK4疾病遗传关联与激酶结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt O96013功能与结构域注释",
+      "RCSB PDB 2J0I晶体结构",
+      "PAK4肿瘤增殖与RAC1/CDC42通路文献"
+    ],
+    "referenceEntries": "UniProt O96013；RCSB PDB 2J0I；HGNC:16059",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域N叶αC螺旋-铰链区-ATP口袋边缘",
+        "可直接限制ATP进入及催化构象闭合，适合结构约束抑制设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "活化环与底物结合沟槽邻近区域",
+        "可干扰底物肽定位及催化环构象，适合功能阻断型胞内抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端GTPase结合/自抑制相关区",
+        "可能影响CDC42/RAC1调控界面，但2J0I未覆盖完整N端构象，结构依据不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PAK4为胞内激酶，传统抗体药物组织可及性不足；需采用细胞内递送、胞内VHH或降解偶联策略，并严格评估与PAK5、PAK6激酶域保守位点的交叉反应。",
+    "structurePrepZh": "以2J0I链A为模板，保留高分辨率激酶域坐标，补全缺失侧链并校正ATP口袋质子化状态；N端调控区需另行建模或排除。",
+    "structureRef": "RCSB PDB 2J0I，X射线晶体结构，1.6 Å",
+    "antibodies": [
+      "Abcam anti-PAK4研究抗体",
+      "Cell Signaling Technology anti-PAK4研究抗体"
+    ],
+    "interfaceFocus": "ATP结合裂隙、铰链区与活化环入口",
+    "designMode": "胞内抗体结构阻断",
+    "candidates": [
+      {
+        "target": "RAC1",
+        "rationale": "RAC1位于PAK4上游，作为小GTP酶参与PAK家族激活与细胞骨架重塑，在肿瘤迁移和增殖通路中与PAK4功能相连。"
+      },
+      {
+        "target": "CDC42",
+        "rationale": "CDC42可通过PAK家族调控肌动蛋白组织和细胞极性，是PAK4相关细胞形态与迁移轴的重要上游节点。"
+      },
+      {
+        "target": "LIMK1",
+        "rationale": "LIMK1为PAK下游肌动蛋白调控通路成员，通过磷酸化cofilin影响细胞骨架动态，可作为PAK4功能输出的同通路候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

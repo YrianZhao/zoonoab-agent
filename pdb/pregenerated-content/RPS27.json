@@ -1,0 +1,65 @@
+{
+  "gene": "RPS27",
+  "generatedAt": "2026-08-03T16:12:41.504Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RPS27为40S小核糖体亚基组成蛋白，参与mRNA翻译起始复合体稳定与核糖体蛋白失衡相关应激，Open Targets显示其与Blackfan-Diamond贫血及髓系白血病等核糖体病和造血异常存在遗传或表达关联。该蛋白主要定位于细胞内核糖体，天然抗原可及性显著弱于膜受体或分泌蛋白，因此抗体策略更适合采用细胞内递送、诊断捕获或T细胞受体样识别等研究型场景。相较RPS19、RPL5等经典核糖体病靶点，RPS27具有小型锌指样结构和可解析核糖体暴露面，适合进行结构约束的表位验证，但作为治疗性常规抗体靶点优先级偏低。",
+    "mechanism": "通过识别RPS27在40S亚基表面的锌指样暴露面，干扰其与18S rRNA及邻近核糖体蛋白的稳定接触，用于探测核糖体装配失衡相关病理状态。",
+    "selectedEpitope": "优先选择RPS27 C4型锌指样结构外侧暴露环及非rRNA深埋接触面。",
+    "diseaseDirection": "核糖体病与造血异常",
+    "domain": "RPS27为小型核糖体蛋白，含保守C4型锌指样结构，嵌入40S亚基并接触18S rRNA。",
+    "evidence": "RPS27核糖体结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB P42677功能与亚细胞定位注释",
+      "RCSB PDB 5VYC人源核糖体结构",
+      "OMIM与文献中的核糖体病造血异常研究"
+    ],
+    "referenceEntries": "UniProt P42677；RCSB PDB 5VYC；Open Targets RPS27",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "锌指样结构外侧暴露环",
+        "避开18S rRNA深埋界面，利于形成可结合抗原决定簇",
+        "优先"
+      ],
+      [
+        "Site B",
+        "40S亚基表面邻近蛋白接触边缘",
+        "可用于检测装配状态，但需规避邻近核糖体蛋白遮挡",
+        "备选"
+      ],
+      [
+        "Site C",
+        "18S rRNA结合核心面",
+        "高度保守且部分埋藏，存在构象遮蔽与交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RPS27为细胞内核糖体蛋白，常规抗体难以到达作用位点；5VYC分辨率较低，表位边界需结合AlphaFold模型、保守性分析和肽段验证共同限定。",
+    "structurePrepZh": "以5VYC中人源40S亚基链为模板提取RPS27坐标，补全缺失侧链并校验锌配位几何，随后标注18S rRNA和邻近蛋白接触面。",
+    "structureRef": "RCSB PDB 5VYC，X-ray人源核糖体结构，6.0 Å",
+    "antibodies": [
+      "抗RPS27研究用多克隆抗体",
+      "抗RPS27研究用单克隆抗体"
+    ],
+    "interfaceFocus": "锌指样外侧环与18S rRNA接触边界",
+    "designMode": "细胞内抗原验证",
+    "candidates": [
+      {
+        "target": "RPS19",
+        "rationale": "RPS19为40S小亚基蛋白，经典关联Blackfan-Diamond贫血，参与核糖体生物发生与造血缺陷通路。"
+      },
+      {
+        "target": "RPL5",
+        "rationale": "RPL5为60S大亚基蛋白，其缺陷可激活核糖体应激和TP53依赖性造血异常，与核糖体病机制相连。"
+      },
+      {
+        "target": "RPL11",
+        "rationale": "RPL11参与核糖体应激下MDM2结合与TP53稳定化，是核糖体蛋白失衡至细胞周期阻滞的重要节点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

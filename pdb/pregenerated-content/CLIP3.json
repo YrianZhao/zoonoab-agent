@@ -1,0 +1,65 @@
+{
+  "gene": "CLIP3",
+  "generatedAt": "2026-08-03T11:27:56.564Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CLIP3为胞内CAP-Gly结构域微管连接蛋白，主要参与微管结合、内膜系统运输与神经元细胞骨架稳态，其与神经退行性疾病的遗传关联提示可能影响轴突运输和蛋白稳态。该靶点缺乏胞外结构域、分泌形式或膜受体外露区，抗原可及性显著弱于典型抗体靶点，仅适合细胞内递送抗体片段或研究级结合分子设计。相较于同通路中TUBB3、MAPT等已高度验证靶点，CLIP3疾病关联分数较低且机制证据有限，优先级应定位为探索性低优先级靶点。",
+    "mechanism": "设计分子应结合CLIP3 CAP-Gly结构域的微管结合沟槽，阻断其识别α/β-微管蛋白C端EEY/F尾部基序，从而干预微管相关转运复合体装配。",
+    "selectedEpitope": "优先覆盖CAP-Gly结构域保守GKNDG样环区与邻近β折叠沟槽，竞争微管蛋白C端尾部结合。",
+    "diseaseDirection": "神经退行性疾病探索方向",
+    "domain": "CLIP3含N端CAP-Gly微管结合结构域及C端卷曲螺旋样连接区，2CP0解析CAP-Gly区域。",
+    "evidence": "CLIP3微管结合与神经退行性关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联数据",
+      "UniProt Q96DZ5功能与亚细胞定位注释",
+      "RCSB PDB 2CP0溶液NMR结构条目",
+      "CAP-Gly结构域微管蛋白尾部识别文献"
+    ],
+    "referenceEntries": "UniProt Q96DZ5；RCSB PDB 2CP0；Open Targets CLIP3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CAP-Gly保守微管蛋白尾部结合沟槽",
+        "直接竞争α/β-微管蛋白C端EEY/F基序，机制可解释性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CAP-Gly结构域外侧β折叠与环区组合表面",
+        "可获得高亲和结合并可能产生变构干扰，适合作为非竞争型表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "结构域核心疏水折叠面",
+        "可能影响蛋白稳定性但表位暴露不足，易产生构象依赖风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CLIP3为胞内抗原，常规IgG难以到达作用位点；建议采用VHH、intrabody或递送型Fab，并严格评估微管网络非特异扰动风险。",
+    "structurePrepZh": "以2CP0链A的NMR构象簇为模板，筛选代表性低能构象，补全缺失氢原子并保留CAP-Gly结合沟槽用于对接。",
+    "structureRef": "RCSB PDB 2CP0，human CLIP3 CAP-Gly domain，solution NMR",
+    "antibodies": [
+      "无已批准CLIP3治疗性抗体",
+      "研究级抗CLIP3抗体"
+    ],
+    "interfaceFocus": "CAP-Gly微管蛋白C端尾部识别沟槽",
+    "designMode": "胞内VHH探索设计",
+    "candidates": [
+      {
+        "target": "MAPT",
+        "rationale": "MAPT编码tau蛋白，直接调控神经元微管稳定性并在阿尔茨海默病等神经退行性疾病中形成病理聚集，通路证据强于CLIP3。"
+      },
+      {
+        "target": "TUBB3",
+        "rationale": "TUBB3为神经元β-微管蛋白同工型，是CAP-Gly蛋白识别的微管骨架组成部分，可作为微管动力学和轴突运输异常的同通路参照靶点。"
+      },
+      {
+        "target": "CLIP1",
+        "rationale": "CLIP1同属CAP-Gly微管加端结合蛋白，参与微管正端追踪和细胞内运输复合体组织，可用于评估CLIP家族功能冗余与选择性设计窗口。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

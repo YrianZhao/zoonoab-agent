@@ -1,0 +1,65 @@
+{
+  "gene": "MTPN",
+  "generatedAt": "2026-08-03T14:27:28.798Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MTPN编码myotrophin，为细胞内ankyrin-repeat蛋白，文献中与NF-κB相关转录调控、肌细胞肥大及细胞骨架相关过程有关；Open Targets关联信号主要集中于血小板体积、计数和分布宽度等血液学表型。该蛋白缺乏经典分泌信号肽和跨膜区，抗原可及性弱于胞外受体或可溶性因子，常规治疗性抗体开发需限定于细胞内递送抗体、研究级胞内结合抗体或诊断捕获场景。其优先级主要来自已解析的人源晶体结构PDB 3AAA和ankyrin-repeat凹面可成药界面，而相较ITGA2B、GP1BA、THPO/MPL等血小板通路胞外靶点，作为主靶点的临床阻断抗体优先级较低。",
+    "mechanism": "设计胞内结合抗体阻断MTPN ankyrin-repeat凹面与其蛋白互作伴侣结合，从而干预MTPN参与的NF-κB相关转录调控复合物装配。",
+    "selectedEpitope": "优先覆盖ankyrin-repeat内侧凹面连续沟槽，避开晶体接触区并保留可检测构象表位。",
+    "diseaseDirection": "血小板数量与体积相关表型",
+    "domain": "MTPN为约118 aa小型ankyrin-repeat蛋白，核心由多段α螺旋重复组成并形成凹面互作界面。",
+    "evidence": "MTPN结构与血小板表型关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P58546功能与亚细胞定位注释",
+      "RCSB PDB 3AAA晶体结构记录",
+      "GWAS Catalog血小板指数遗传关联数据"
+    ],
+    "referenceEntries": "UniProt:P58546；RCSB PDB:3AAA；Open Targets:MTPN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ankyrin-repeat凹面沟槽",
+        "覆盖潜在蛋白互作界面，适合阻断型胞内抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端外凸螺旋束侧面",
+        "构象稳定且远离部分凹面核心，可用于捕获或构象识别抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "晶体三聚体接触邻近区域",
+        "可能受晶体堆积影响，需以溶液构象和突变验证确认",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MTPN主要定位于细胞内，天然抗原暴露不足，常规Fab难以进入胞质；建议限定为胞内抗体、递送抗体或诊断试剂，并以互作阻断实验验证。",
+    "structurePrepZh": "以PDB 3AAA链A为主要建模模板，比较A、B、C链构象一致性，去除晶体接触伪界面并补全缺失侧链后进行表面电荷评估。",
+    "structureRef": "RCSB PDB 3AAA，X-ray diffraction，2.2 Å",
+    "antibodies": [
+      "无临床获批抗MTPN抗体",
+      "研究级抗MTPN多克隆/单克隆抗体"
+    ],
+    "interfaceFocus": "ankyrin-repeat凹面蛋白互作沟槽",
+    "designMode": "胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "ITGA2B",
+        "rationale": "ITGA2B编码血小板GPIIb，为αIIbβ3整合素胞外受体亚基，直接参与纤维蛋白原结合和血小板聚集；其抗原可及性显著优于MTPN。"
+      },
+      {
+        "target": "GP1BA",
+        "rationale": "GP1BA编码GPIbα，介导血小板与von Willebrand factor结合并启动黏附过程；该胞外黏附轴与血小板数量和功能表型高度相关。"
+      },
+      {
+        "target": "MPL",
+        "rationale": "MPL为血小板生成素受体，参与巨核细胞分化和血小板生成调控；膜受体胞外结构域适合抗体激动或阻断策略。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

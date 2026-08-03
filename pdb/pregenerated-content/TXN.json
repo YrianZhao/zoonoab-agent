@@ -1,0 +1,65 @@
+{
+  "gene": "TXN",
+  "generatedAt": "2026-08-03T17:35:37.248Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TXN编码胞质型硫氧还蛋白，参与NADPH-硫氧还蛋白还原酶系统，通过Cys32/Cys35活性位点维持蛋白二硫键还原状态，并与氧化应激、ASK1-MAPK凋亡轴及神经退行性疾病相关。该蛋白主要为胞内氧化还原酶，经典膜外抗原可及性弱；但在炎症和组织损伤环境中可发生非经典分泌，作为细胞外氧化还原调节因子具备有限抗体可及性。相较于广泛胞内且缺乏结构表位的同类氧化还原蛋白，TXN具有高分辨率人源实验结构和明确Cys-Gly-Pro-Cys催化基序，适合开展机制验证型阻断抗体设计，但优先级应低于稳定分泌蛋白或膜受体靶点。",
+    "mechanism": "抗体设计聚焦阻断细胞外TXN活性沟槽与含二硫键底物的接触，并限制Cys32/Cys35催化位点介导的硫醇-二硫键交换反应。",
+    "selectedEpitope": "优先覆盖Trx折叠N端Cys32-Gly-Pro-Cys35活性沟槽及其邻近底物结合面。",
+    "diseaseDirection": "氧化应激与神经退行性疾病",
+    "domain": "TXN为约12 kDa硫氧还蛋白折叠，含β-α-β-α-β-β-α二级结构和Cys32/Cys35活性基序。",
+    "evidence": "TXN氧化还原结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB P10599人源TXN功能注释",
+      "RCSB PDB 2IFQ高分辨率晶体结构",
+      "文献报道TXN-ASK1氧化应激凋亡调控机制"
+    ],
+    "referenceEntries": "UniProtKB:P10599；RCSB PDB:2IFQ；Gene:TXN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Cys32-Gly-Pro-Cys35活性沟槽及邻近底物结合面",
+        "可直接干预硫醇-二硫键交换反应，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Trx折叠α2/β3周边暴露面",
+        "有助于空间遮挡底物进入活性沟槽，并保留较好结构可及性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离活性位点的β折叠背面",
+        "可能仅产生结合型抗体而缺乏功能阻断效应，需功能筛选确认",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TXN主要定位胞内且无信号肽，体内抗体可及性受限；应将设计限定于细胞外TXN中和场景，并优先开展分泌水平、靶向占有率和功能阻断验证。",
+    "structurePrepZh": "采用2IFQ中人源TXN实验晶体结构，保留抗原链A/B/C用于构象一致性比较，去除结晶水和非必要小分子后进行质子化与二硫醇状态建模。",
+    "structureRef": "RCSB PDB 2IFQ，X-ray diffraction，1.2 Å",
+    "antibodies": [
+      "抗人Thioredoxin单克隆抗体克隆2B1",
+      "抗人Thioredoxin单克隆抗体克隆4C9"
+    ],
+    "interfaceFocus": "Cys32/Cys35活性沟槽与底物接触面",
+    "designMode": "胞外中和验证",
+    "candidates": [
+      {
+        "target": "TXNRD1",
+        "rationale": "TXNRD1为硫氧还蛋白还原酶，利用NADPH还原氧化型TXN，处于同一NADPH-TXN氧化还原轴。其药理学可干预性强，但作为胞内酶更适合小分子而非常规抗体。"
+      },
+      {
+        "target": "MAP3K5",
+        "rationale": "MAP3K5编码ASK1，氧化应激下由TXN解离后被激活，继而驱动JNK/p38 MAPK凋亡信号。该节点与神经退行性和炎症损伤机制相关，但胞内激酶抗体可及性有限。"
+      },
+      {
+        "target": "PRDX1",
+        "rationale": "PRDX1与TXN/TXNRD系统共同清除过氧化物，依赖TXN循环完成还原再生，属于同一抗氧化防御通路。其胞内定位同样限制治疗性抗体开发，但可作为通路伴随标志物。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

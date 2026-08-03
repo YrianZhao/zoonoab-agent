@@ -1,0 +1,65 @@
+{
+  "gene": "PAK1",
+  "generatedAt": "2026-08-03T15:02:55.620Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PAK1 是 RAC1/CDC42 下游丝氨酸-苏氨酸激酶，调控细胞骨架重塑、树突棘形态与突触发育，PAK1 功能失衡与宏头畸形、癫痫及语言发育迟缓相关神经发育障碍存在遗传和通路关联。PAK1 为胞内激酶，天然抗原可及性弱，不适合作为常规膜外阻断型抗体靶点，但其调控结构域和激酶结构域具备明确三维构象，可用于胞内递送抗体片段或研究型构象锁定分子设计。相较 RAC1、CDC42 等高保守小 GTP 酶，PAK1 具有更明确的疾病关联分值和可解析激酶结构，优先适合作为通路节点验证与胞内抗体工程开发对象。",
+    "mechanism": "设计胞内抗体片段结合 PAK1 激酶结构域催化裂隙邻近构象面，限制活化环构象转换并抑制底物蛋白磷酸化。",
+    "selectedEpitope": "优先锁定激酶结构域 N-lobe/C-lobe 交界及活化环邻近构象表位。",
+    "diseaseDirection": "神经发育障碍与癫痫通路",
+    "domain": "PAK1 含 N 端 p21 GTPase 结合/自抑制区及 C 端丝氨酸-苏氨酸激酶结构域。",
+    "evidence": "PAK1 神经发育障碍结构与通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q13153 functional annotation",
+      "RCSB PDB 3FXZ experimental structure",
+      "ClinVar/OMIM neurodevelopmental genetics evidence"
+    ],
+    "referenceEntries": "UniProt Q13153；RCSB PDB 3FXZ；Open Targets PAK1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域 N-lobe/C-lobe 催化裂隙邻近界面",
+        "可限制 ATP/底物定位与活化构象稳定化，适合抑制型胞内抗体片段",
+        "优先"
+      ],
+      [
+        "Site B",
+        "活化环及 DFG 基序周边构象面",
+        "可干预活化环开放状态并降低底物磷酸化效率，需控制激酶家族交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端 PBD/AID 与 RAC1/CDC42 结合相关区域",
+        "理论上可阻断 PAK1 与 GTP-RAC1/CDC42 结合，但 3FXZ 主要覆盖激酶域，需补充结构模板",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PAK1 为胞内蛋白，常规抗体体内可及性不足；设计应定位为胞内递送 Fab/VHH、PROTAC 招募模块或机制验证工具，并重点评估 PAK2/PAK3 同源性风险。",
+    "structurePrepZh": "以 3FXZ 链 A 为激酶域模板，保留高分辨率主链构象，检查配体、磷酸化状态与缺失环区，并与 AlphaFold 全长模型对齐补足调控域信息。",
+    "structureRef": "RCSB PDB 3FXZ，X-ray diffraction，1.64 Å",
+    "antibodies": [
+      "PAK1 phospho-specific research antibody",
+      "PAK1 total protein research antibody"
+    ],
+    "interfaceFocus": "激酶催化裂隙、活化环与 PBD/AID 调控界面",
+    "designMode": "胞内构象锁定",
+    "candidates": [
+      {
+        "target": "RAC1",
+        "rationale": "RAC1 是 PAK1 上游小 GTP 酶，GTP 结合状态下直接结合 PAK1 的 p21 GTPase 结合结构域并解除自抑制，属于同一神经发育与细胞骨架调控通路。"
+      },
+      {
+        "target": "CDC42",
+        "rationale": "CDC42 可与 PAK1 PBD 结合并触发 PAK1 激酶活化，参与神经元极性、迁移和突触结构调控，是同通路上游节点。"
+      },
+      {
+        "target": "PAK3",
+        "rationale": "PAK3 与 PAK1 同属 group I PAK，参与 Rho GTPase 依赖的神经元形态和认知发育调控，遗传变异与智力发育障碍相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "H2AC25",
+  "generatedAt": "2026-08-03T19:28:22.008Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "H2AC25编码复制依赖型组蛋白H2A，主要作为核小体核心组分参与染色质包装，并可影响病毒感染过程中宿主染色质状态与先天免疫相关转录环境。该蛋白为核内组蛋白，缺乏稳定胞外结构域、分泌特征或膜受体拓扑，完整蛋白作为常规治疗性抗体抗原的可及性较低。其优先级低于病毒入侵受体、分泌性炎症因子或细胞表面免疫调节分子；若用于抗体设计，更适合作为核小体复合物中的研究级识别抗原或细胞内递送抗体探索对象。",
+    "mechanism": "抗体设计以识别H2AC25所在核小体H2A-H2B表面为主，阻断或示踪其与DNA小沟及组蛋白伴侣的接触界面。",
+    "selectedEpitope": "优先选择H2A docking domain与L1 loop邻近的核小体外露酸性斑块边缘表位。",
+    "diseaseDirection": "病毒感染与宿主染色质调控",
+    "domain": "H2AC25含组蛋白折叠域、L1/L2环区及C端docking domain，参与H2A-H2B二聚体和核小体装配。",
+    "evidence": "H2AC25感染相关遗传关联与核小体结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q7L7L0蛋白功能注释",
+      "RCSB PDB 9ECP电子显微镜结构",
+      "Histone H2A核小体装配与染色质调控文献"
+    ],
+    "referenceEntries": "UniProt Q7L7L0；RCSB PDB 9ECP；Open Targets H2AC25",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "H2A docking domain与酸性斑块边缘",
+        "核小体表面暴露度相对较高，利于复合物选择性识别",
+        "优先"
+      ],
+      [
+        "Site B",
+        "L1 loop邻近H2A-H2B二聚体外侧面",
+        "可区分局部构象并降低对DNA结合面的直接干扰",
+        "备选"
+      ],
+      [
+        "Site C",
+        "组蛋白折叠核心疏水界面",
+        "埋藏于H2A-H2B二聚体内部，抗体可及性与构象保真风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "H2AC25为核内高度保守组蛋白，胞外暴露不足且同源H2A亚型交叉反应风险高；建议限定为核小体构象抗体或细胞内递送验证场景。",
+    "structurePrepZh": "以9ECP中H2A链为模板，保留核小体DNA和H2B相邻链用于界面判读，剔除低置信侧链并标注亚型保守位点。",
+    "structureRef": "RCSB PDB 9ECP，1.91 Å electron microscopy nucleosome structure",
+    "antibodies": [
+      "Epr17723",
+      "mAbcam 12231"
+    ],
+    "interfaceFocus": "H2A-H2B外侧面、酸性斑块边缘及DNA邻近面",
+    "designMode": "核小体构象抗体",
+    "candidates": [
+      {
+        "target": "H2BC12",
+        "rationale": "H2B与H2A形成核心二聚体并共同参与核小体装配，处于同一染色质结构调控轴。其与H2A界面可用于评估核小体复合物识别抗体的特异性。"
+      },
+      {
+        "target": "H3C1",
+        "rationale": "H3是核小体四聚体核心组分，参与病毒感染相关宿主染色质状态变化。其尾部修饰与转录调控读出关联明确，适合作为同通路对照靶点。"
+      },
+      {
+        "target": "H4C1",
+        "rationale": "H4与H3形成核小体中央四聚体，并通过组蛋白尾部乙酰化影响染色质开放性。该靶点可补充评估感染背景下核小体结构与表观遗传调控。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

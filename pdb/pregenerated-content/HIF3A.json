@@ -1,0 +1,65 @@
+{
+  "gene": "HIF3A",
+  "generatedAt": "2026-08-03T19:47:51.233Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HIF3A 是缺氧诱导因子 α 亚基家族成员，参与氧感受转录网络，并可通过与 ARNT 形成异源二聚体调控 HRE 依赖基因表达，其遗传关联主要指向血压与高血压表型。HIF3A 为胞内核转录因子，缺乏天然胞外结构域或分泌暴露面，常规抗体药物的抗原可及性明显受限。相较 VEGFA、FLT1、KDR 等同一缺氧血管轴中的胞外或分泌靶点，HIF3A 更适合作为机制验证或胞内递送抗体研究靶点，成药优先级低于膜受体和可溶性配体。",
+    "mechanism": "设计抗体需阻断 HIF3A PAS-B 区域与 ARNT PAS 结构域介导的异源二聚化，从而削弱 HRE 依赖转录复合物装配。",
+    "selectedEpitope": "优先聚焦 PAS-B 二聚化界面及相邻疏水沟槽，避免仅识别非功能性外周环区。",
+    "diseaseDirection": "缺氧应答与血压调控",
+    "domain": "HIF3A 含 bHLH、PAS-A、PAS-B 及氧依赖降解相关调控区；4WN5 覆盖 PAS-B 结构域。",
+    "evidence": "HIF3A 缺氧转录轴与血压遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9Y2N7 functional annotation",
+      "RCSB PDB 4WN5 X-ray structure",
+      "HIF-ARNT PAS domain structural literature"
+    ],
+    "referenceEntries": "UniProt Q9Y2N7；RCSB PDB 4WN5；Open Targets HIF3A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PAS-B 二聚化界面疏水核心",
+        "直接干预 HIF3A 与 ARNT PAS 区域装配，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PAS-B β 折叠外侧与连接环",
+        "具备结构可塑性，可用于提高结合特异性并辅助界面锁定",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离二聚化面的 PAS-B 外周表面",
+        "可能产生高亲和结合但功能阻断效应有限，需以细胞转录读出验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HIF3A 属胞内核蛋白，常规抗体难以到达天然作用位点；设计应限定为胞内递送、intrabody 或结构阻断验证，并严格评估 HIF1A/HIF2A 交叉反应。",
+    "structurePrepZh": "以 4WN5 高分辨率 PAS-B 晶体结构为模板，补全缺失侧链、校正质子化状态，并按 A/B 链界面定义功能性表位网格。",
+    "structureRef": "RCSB PDB 4WN5，X-ray diffraction，1.15 Å",
+    "antibodies": [
+      "无已批准 HIF3A 靶向治疗性抗体",
+      "研究级抗 HIF3A 单克隆抗体"
+    ],
+    "interfaceFocus": "PAS-B 与 ARNT 相关二聚化接触面",
+    "designMode": "胞内阻断型抗体",
+    "candidates": [
+      {
+        "target": "ARNT",
+        "rationale": "ARNT 是 HIF α 亚基共同异源二聚化伙伴，直接决定 HRE 结合复合物形成；其 PAS 结构域界面可用于解析缺氧转录装配机制。"
+      },
+      {
+        "target": "HIF1A",
+        "rationale": "HIF1A 是经典低氧应答 α 亚基，与 ARNT 形成转录复合物并诱导 VEGFA、EPO 等基因表达；与 HIF3A 同属 HIF-ARNT 缺氧通路。"
+      },
+      {
+        "target": "EPAS1",
+        "rationale": "EPAS1/HIF2A 参与血管和代谢相关低氧适应，与 ARNT 二聚化并调控重叠但不完全相同的 HRE 靶基因谱，适合作为同通路比较靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

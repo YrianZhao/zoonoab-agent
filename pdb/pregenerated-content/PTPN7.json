@@ -1,0 +1,65 @@
+{
+  "gene": "PTPN7",
+  "generatedAt": "2026-08-03T20:38:55.894Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PTPN7编码造血细胞富集的非受体型蛋白酪氨酸磷酸酶，可去磷酸化并限制MAPK通路中ERK1/2与p38的激活，因而与血小板计数、红细胞体积及白细胞分类等血液性状存在遗传关联。该蛋白为胞内磷酸酶，缺乏天然胞外结构域，作为传统抗体直接阻断靶点的抗原可及性明显受限，更适合细胞内抗体或降解偶联策略探索。相较于JAK2、MPL等膜近端血液调控靶点，PTPN7的优势在于具备高分辨率催化结构和明确底物调控轴，但抗体成药优先级应低于可直接接触的膜受体靶点。",
+    "mechanism": "通过胞内抗体结合PTPN7催化结构域近活性位点区域，干扰其识别ERK1/2或p38 MAPK磷酸化底物，削弱PTPN7介导的去磷酸化反应。",
+    "selectedEpitope": "优先选择PTP催化结构域WPD环、Q环及pTyr结合沟槽邻近构象表位。",
+    "diseaseDirection": "血液细胞性状与MAPK调控",
+    "domain": "PTPN7含N端KIM底物结合基序及C端经典PTP催化结构域，1ZC0覆盖催化域。",
+    "evidence": "PTPN7血液性状遗传关联与催化结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform血液性状关联数据",
+      "UniProt P35236蛋白功能与结构域注释",
+      "RCSB PDB 1ZC0晶体结构记录",
+      "MAPK底物去磷酸化功能研究文献"
+    ],
+    "referenceEntries": "UniProt P35236；RCSB PDB 1ZC0；Open Targets PTPN7",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PTP催化域pTyr结合沟槽及WPD环邻近面",
+        "最可能直接干扰底物磷酸酪氨酸定位与催化闭合",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化域KIM底物对接远端表面",
+        "可影响MAPK底物装载构象，降低直接活性位点竞争压力",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化核心保守Cys周围高保守口袋",
+        "保守性高且可能影响磷酸酶家族选择性，需严格交叉反应评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PTPN7为胞内抗原，常规IgG难以到达作用位点；活性沟槽高度保守，需优先控制PTPN6、PTPN11等磷酸酶交叉反应风险。",
+    "structurePrepZh": "以1ZC0链A为催化域模板，补全缺失侧链并校正质子化状态，围绕WPD环与pTyr结合沟槽建立构象集合。",
+    "structureRef": "RCSB PDB 1ZC0，human PTPN7 catalytic domain，1.85 Å",
+    "antibodies": [
+      "anti-PTPN7 research antibody",
+      "anti-STEP/PTPN5 intracellular antibody reference"
+    ],
+    "interfaceFocus": "WPD环、Q环与pTyr结合沟槽",
+    "designMode": "胞内抗体探索",
+    "candidates": [
+      {
+        "target": "MAPK1",
+        "rationale": "MAPK1编码ERK2，是PTPN7已报道去磷酸化底物之一，位于同一MAPK信号调控轴并参与造血细胞反应调节。"
+      },
+      {
+        "target": "MAPK14",
+        "rationale": "MAPK14编码p38α，是PTPN7负向调控的MAPK底物，参与炎症与造血细胞应激信号。"
+      },
+      {
+        "target": "JAK2",
+        "rationale": "JAK2位于造血细胞因子受体信号通路上游，直接影响血小板、红系及髓系细胞生成，且疾病遗传学证据强于PTPN7。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

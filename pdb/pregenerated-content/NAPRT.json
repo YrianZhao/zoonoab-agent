@@ -1,0 +1,65 @@
+{
+  "gene": "NAPRT",
+  "generatedAt": "2026-08-03T14:34:07.983Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NAPRT 是烟酸补救合成 NAD+ 通路的限速酶，催化烟酸与 PRPP 生成烟酸单核苷酸，在 NAD+ 代谢稳态、代谢物谱变化及肿瘤细胞能量适应中具有明确生化角色。该蛋白主要定位于胞质，缺乏经典胞外结构域或分泌特征，因此作为体内中和抗体靶点的抗原可及性弱于膜受体和分泌因子，更适合结构生物学抗体、细胞内递送抗体或诊断捕获抗体策略。相较 NAMPT 等同通路酶，NAPRT 在烟酸依赖性细胞群中具有更高通路选择性，可作为 NAD+ 补救通路分层设计的优先研究靶点。",
+    "mechanism": "抗体结合 NAPRT 二聚体活性口袋邻近界面，阻碍烟酸、PRPP 或 ATP 辅助结合构象的形成，从而抑制烟酸向烟酸单核苷酸的转化。",
+    "selectedEpitope": "优先覆盖 NAPRT 二聚体界面及底物结合沟槽边缘，避免完全埋藏催化残基区域。",
+    "diseaseDirection": "NAD+代谢与肿瘤代谢适应",
+    "domain": "NAPRT 属 phosphoribosyltransferase 折叠酶，形成同源二聚体，含 PRPP/烟酸结合活性沟槽。",
+    "evidence": "NAPRT介导烟酸补救NAD+合成证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt Q6XQN6 蛋白功能注释",
+      "RCSB PDB 4YUB 晶体结构",
+      "NAD+ salvage pathway 生化文献"
+    ],
+    "referenceEntries": "UniProt Q6XQN6；RCSB PDB 4YUB；Open Targets NAPRT",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "二聚体界面邻近底物结合沟槽",
+        "可能同时干扰构象稳定与底物进入，适合功能阻断型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PRPP/烟酸结合口袋外缘可及环区",
+        "保留抗体可及性并具备变构抑制潜力，适合作为备选表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "二聚体核心及深部催化残基区域",
+        "结构埋藏度较高，抗体进入受限，易产生低亲和或非阻断结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NAPRT 为胞内代谢酶，常规全长 IgG 体内阻断可及性受限。宜优先采用结构抗体、细胞内抗体递送或诊断捕获设计，并验证二聚体界面暴露度。",
+    "structurePrepZh": "以 4YUB 的 A、B 链二聚体为抗原模型，补全缺失环区，保留底物结合口袋几何信息，去除非必要晶体接触后进行表面可及性评估。",
+    "structureRef": "RCSB PDB 4YUB，human NAPRT X-ray structure，2.9 Å",
+    "antibodies": [
+      "anti-NAPRT research antibody",
+      "anti-NAPRT monoclonal antibody clone OTI2C6"
+    ],
+    "interfaceFocus": "二聚体界面与PRPP/烟酸结合沟槽外缘",
+    "designMode": "胞内酶结构阻断",
+    "candidates": [
+      {
+        "target": "NAMPT",
+        "rationale": "NAMPT 催化烟酰胺补救合成 NAD+ 的限速步骤，与 NAPRT 同属 NAD+ 补救代谢网络，是肿瘤代谢依赖性研究中的核心并行靶点。"
+      },
+      {
+        "target": "NMNAT1",
+        "rationale": "NMNAT1 催化 NMN 或 NaMN 向 NAD+ 或 NAAD 的腺苷酰转移反应，位于 NAPRT 下游，可用于评估通路级 NAD+ 合成依赖性。"
+      },
+      {
+        "target": "NADSYN1",
+        "rationale": "NADSYN1 催化 NAAD 酰胺化生成 NAD+，连接烟酸补救分支终末步骤，与 NAPRT 功能处于同一烟酸来源 NAD+ 合成通路。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

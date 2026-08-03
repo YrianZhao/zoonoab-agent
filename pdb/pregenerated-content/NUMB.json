@@ -1,0 +1,65 @@
+{
+  "gene": "NUMB",
+  "generatedAt": "2026-08-03T14:55:12.581Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NUMB 是胞内内吞适配蛋白，参与 Notch 受体内吞降解、细胞命运决定及上皮稳态调控，遗传关联主要指向肾小球滤过率、血清肌酐及血液学数量性状。该蛋白缺乏跨膜段和分泌形式，天然抗原可及性不适合常规治疗性阻断抗体，仅适合细胞内递送抗体、研究级结合分子或外泌体/裂解样本检测。相比 NOTCH 受体或 DLL/JAG 配体等同通路胞外靶点，NUMB 的疾病关联分数较低且抗体可及性受限，主靶点优先级应低于可直接结合胞外结构域的 Notch 通路节点。",
+    "mechanism": "设计分子应结合 NUMB PTB 结构域，干预其与含 NPxY 基序货物及内吞复合体的相互作用，从而影响 Notch 受体内吞命运。",
+    "selectedEpitope": "优先选择 PTB 结构域磷酸酪氨酸结合沟槽邻近面，避开高度保守疏水核心。",
+    "diseaseDirection": "肾功能数量性状与Notch稳态",
+    "domain": "NUMB 含 N 端 PTB 结构域、富脯氨酸区及 DPF/NPF 内吞适配基序。",
+    "evidence": "NUMB-Notch内吞调控与肾功能遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform NUMB disease association",
+      "UniProtKB P49757 NUMB human annotation",
+      "RCSB PDB 5NJJ X-ray structure record",
+      "Reactome Notch receptor processing and endocytosis pathway"
+    ],
+    "referenceEntries": "UniProt P49757；RCSB PDB 5NJJ；Open Targets NUMB",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PTB结构域NPxY肽结合沟槽及邻近环区",
+        "可直接影响货物识别与Notch内吞适配功能",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PTB结构域外侧β折叠-α螺旋暴露面",
+        "有利于获得构象稳定结合而降低正交位点干扰",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端富脯氨酸区及DPF/NPF基序附近",
+        "区域柔性高且同源短基序多，特异性与结构解析风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NUMB 为胞内蛋白，治疗性抗体进入胞质效率是主要界面风险；PTB沟槽保守性较高，需通过构象表位和交叉反应筛查提升选择性。",
+    "structurePrepZh": "以5NJJ晶体结构链A-H评估PTB域构象一致性，补全缺失环区并去除晶体接触伪界面后进行表位聚类。",
+    "structureRef": "RCSB PDB 5NJJ；X-ray diffraction 2.7 Å",
+    "antibodies": [
+      "Anti-NUMB clone C29G11",
+      "Anti-NUMB clone 275600"
+    ],
+    "interfaceFocus": "PTB沟槽、NPxY结合面与内吞适配环区",
+    "designMode": "胞内递送抗体",
+    "candidates": [
+      {
+        "target": "NOTCH1",
+        "rationale": "NOTCH1 是 NUMB 调控的核心受体，胞外 EGF 重复序列和负调控区具备抗体可及性，可直接阻断配体诱导的受体激活。"
+      },
+      {
+        "target": "JAG1",
+        "rationale": "JAG1 为 Notch 通路经典膜结合配体，参与肾发育和血管稳态，胞外 DSL 结构域适合配体阻断型抗体设计。"
+      },
+      {
+        "target": "DLL4",
+        "rationale": "DLL4 通过与 NOTCH1 结合驱动 Notch 信号激活，已有抗体阻断机制验证，可作为同通路更高可及性的替代靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

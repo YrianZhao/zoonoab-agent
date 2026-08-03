@@ -1,0 +1,65 @@
+{
+  "gene": "NFYA",
+  "generatedAt": "2026-08-03T14:41:52.404Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NFYA 是异源三聚体转录因子 NF-Y 的 DNA 结合与序列识别亚基，参与 CCAAT 启动子元件识别并调控细胞周期、代谢及应激相关基因转录；其疾病关联以神经退行性疾病和血液表型为主，但 Open Targets 最高关联分值较低，提示因果证据仍有限。NFYA 为核内转录因子，缺乏天然胞外结构域、分泌形式或膜受体拓扑，因此完整抗体在常规细胞外阻断场景中的抗原可及性不具优势。相较同通路中可药性更明确的细胞表面或分泌靶点，NFYA 更适合作为结构生物学验证、细胞内递送抗体片段或降解偶联策略的探索性靶点，优先级应低于具有直接胞外可及性的疾病靶点。",
+    "mechanism": "设计抗体片段结合 NFYA 与 NFYB/NFYC 形成的 DNA 识别界面，阻断 NF-Y 复合体对 CCAAT 启动子元件的稳定结合。",
+    "selectedEpitope": "优先覆盖 NFYA C 端 DNA 结合亚基界面及与 NFYB/NFYC 相邻的复合体接触面。",
+    "diseaseDirection": "神经退行性疾病与转录调控异常",
+    "domain": "NFYA 含 N 端转录激活区及 C 端 NF-YB/NF-YC 结合和 CCAAT DNA 识别功能区。",
+    "evidence": "NFYA-NF-Y复合体结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P23511 functional annotation",
+      "RCSB PDB 8QU4 experimental structure",
+      "NF-Y CCAAT-binding transcription factor literature"
+    ],
+    "referenceEntries": "UniProt:P23511；RCSB PDB:8QU4；Open Targets:NFYA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "NFYA C 端 DNA 识别面邻近 CCAAT 结合沟槽",
+        "直接干预 NF-Y 对启动子 CCAAT 元件的识别与稳定结合",
+        "优先"
+      ],
+      [
+        "Site B",
+        "NFYA 与 NFYB/NFYC 异源三聚体装配界面",
+        "破坏复合体组装可降低功能性 DNA 结合复合物形成",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端转录激活区暴露片段",
+        "可能影响转录辅因子募集，但结构柔性高且构象依赖性强",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NFYA 为核内抗原，常规抗体难以进入细胞核；设计宜限定为细胞内递送 Fab/VHH、纳米抗体表达或降解偶联验证，并避免干扰广泛基础转录造成毒性。",
+    "structurePrepZh": "以 8QU4 高分辨率晶体结构为模板，保留 A/B/C 复合体链用于界面判读，补全缺失柔性区并标注 DNA 结合面与三聚体装配界面。",
+    "structureRef": "RCSB PDB 8QU4，X-ray diffraction，1.38 Å",
+    "antibodies": [
+      "研究级抗NFYA单克隆抗体",
+      "研究级抗NFYA多克隆抗体"
+    ],
+    "interfaceFocus": "NFYA-DNA识别面与NFYA-NFYB/NFYC装配界面",
+    "designMode": "细胞内抗体片段",
+    "candidates": [
+      {
+        "target": "NFYB",
+        "rationale": "NFYB 是 NF-Y 异源三聚体的核心组分，与 NFYC 形成组蛋白折叠二聚体并支撑 NFYA 招募；靶向其复合体界面可影响同一 CCAAT 转录调控轴。"
+      },
+      {
+        "target": "NFYC",
+        "rationale": "NFYC 与 NFYB 共同构成 NF-Y 复合体的结构平台，并参与 NFYA 介导的启动子结合；其界面表位适合用于验证复合体装配依赖性。"
+      },
+      {
+        "target": "SP1",
+        "rationale": "SP1 与 NF-Y 常在细胞周期及应激相关启动子上协同调控转录，属于同类启动子调控网络中的真实转录因子节点；可作为转录复合体调控方向的对照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

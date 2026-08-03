@@ -1,0 +1,65 @@
+{
+  "gene": "TBC1D7",
+  "generatedAt": "2026-08-03T17:09:38.791Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TBC1D7是TSC1-TSC2复合体的稳定组分，参与抑制RHEB介导的mTORC1激活；双等位基因功能缺失可导致巨脑、癫痫和神经发育异常。该蛋白为胞内TBC结构域蛋白，天然抗原可及性不具备常规膜外抗体优势，更适合作为结构生物学验证或胞内递送抗体研究对象。相较于TSC1、TSC2等大型多结构域蛋白，TBC1D7结构紧凑且已有高分辨率晶体结构，适合开展界面阻断型Fab/VHH设计，但治疗优先级低于可直接暴露于细胞外环境的通路节点。",
+    "mechanism": "设计分子应阻断TBC1D7与TSC1/TSC2复合体相关界面的结合，削弱TSC复合体稳定性并影响RHEB-GTP水解调控。",
+    "selectedEpitope": "优先覆盖TBC结构域保守折叠外侧、已知TSC复合体结合相关疏水沟槽与带电界面。",
+    "diseaseDirection": "mTORC1相关神经发育异常",
+    "domain": "TBC1D7主要由TBC-like结构域构成，形成α螺旋富集折叠，缺乏跨膜段和分泌信号肽。",
+    "evidence": "TBC1D7-TSC-mTORC1神经发育疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9P0N9功能与亚细胞定位注释",
+      "RCSB PDB 3QWL晶体结构数据",
+      "TSC复合体调控RHEB-mTORC1通路文献"
+    ],
+    "referenceEntries": "UniProt: Q9P0N9；RCSB PDB: 3QWL；Open Targets: TBC1D7",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "TBC-like结构域外侧TSC复合体结合相关沟槽",
+        "有利于阻断TBC1D7与TSC复合体装配界面",
+        "优先"
+      ],
+      [
+        "Site B",
+        "α螺旋束顶端带电表面",
+        "适合构建构象识别抗体并增强结构选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "TBC-like核心折叠保守疏水内核邻近区域",
+        "可能影响蛋白稳定性且易产生非特异构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TBC1D7为胞内蛋白，常规抗体难以到达靶位点；应优先限定为结构探针、细胞内递送抗体或工程化VHH场景，并避免破坏整体折叠。",
+    "structurePrepZh": "以PDB 3QWL链A为模板，保留高可信TBC-like结构域坐标，检查晶体接触、缺失环区和界面暴露性后进行表位聚类。",
+    "structureRef": "RCSB PDB 3QWL，X-ray diffraction，1.9 Å，human TBC1D7",
+    "antibodies": [
+      "无已获批TBC1D7靶向抗体",
+      "研究级抗TBC1D7抗体"
+    ],
+    "interfaceFocus": "TBC-like结构域外侧复合体结合界面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "TSC1",
+        "rationale": "TSC1是TSC复合体支架组分，与TSC2共同限制RHEB驱动的mTORC1激活；其遗传异常与神经发育、癫痫和错构瘤疾病相关。"
+      },
+      {
+        "target": "TSC2",
+        "rationale": "TSC2编码RHEB-GAP核心催化组分，直接促进RHEB-GTP水解并抑制mTORC1；其功能缺失是TSC-mTOR通路疾病的关键上游事件。"
+      },
+      {
+        "target": "RHEB",
+        "rationale": "RHEB是mTORC1直接激活性小GTP酶，位于TSC复合体下游；干预RHEB-mTOR相互作用可在同一通路中直接调节mTORC1活性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

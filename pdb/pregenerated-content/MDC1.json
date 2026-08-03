@@ -1,0 +1,65 @@
+{
+  "gene": "MDC1",
+  "generatedAt": "2026-08-03T20:09:05.426Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MDC1是DNA损伤应答中的核内支架蛋白，通过BRCT结构域识别γH2AX并募集MRN复合体、ATM相关因子及泛素化级联组分，参与双链断裂检查点维持；其遗传与表达异常可影响基因组稳定性，并与精子发生缺陷、神经退行性表型及部分肿瘤风险相关。该蛋白主要定位于细胞核损伤灶，缺乏分泌型或膜受体样胞外结构域，因此完整蛋白并不具备常规治疗性抗体的抗原可及性优势，但可作为结构生物学抗体、胞内递送抗体片段或机制阻断工具靶点。相比ATM、ATR等催化激酶，MDC1的BRCT-磷酸肽识别界面结构明确且可直接读出γH2AX结合事件，适合优先开展界面型抗体片段设计与功能验证。",
+    "mechanism": "抗体片段结合MDC1 BRCT串联结构域的磷酸肽结合沟槽，阻断MDC1识别γH2AX Ser139磷酸化尾肽，从而削弱DNA双链断裂损伤灶支架装配。",
+    "selectedEpitope": "优先靶向BRCT1-BRCT2串联结构域的γH2AX磷酸肽结合沟槽及邻近正电荷识别区。",
+    "diseaseDirection": "DNA损伤应答与基因组不稳定疾病",
+    "domain": "MDC1含N端FHA结构域、中部SDT重复区与TQXF簇，C端为串联BRCT结构域并介导γH2AX结合。",
+    "evidence": "MDC1-BRCT介导DNA损伤检查点证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q14676功能与结构域注释",
+      "RCSB PDB 2ETX晶体结构",
+      "DNA双链断裂应答与γH2AX-MDC1互作研究文献"
+    ],
+    "referenceEntries": "UniProt Q14676；RCSB PDB 2ETX；Open Targets MDC1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端BRCT1-BRCT2磷酸肽结合沟槽",
+        "直接竞争γH2AX Ser139磷酸化尾肽结合，机制读出清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "BRCT串联结构域间连接界面",
+        "可能扰动BRCT相对取向并降低磷酸肽识别稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "FHA结构域磷酸蛋白结合面",
+        "可能影响上游损伤应答蛋白互作，但与PDB 2ETX结构不匹配",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MDC1为核内蛋白，体内抗体可及性受限；治疗开发需考虑胞内递送或降解策略，体外机制抗体验证应优先使用Fab/VHH片段。",
+    "structurePrepZh": "以PDB 2ETX的MDC1 C端BRCT结构为模板，保留链A/B中高分辨率构象，校验磷酸肽结合残基、晶体接触与缺失环区后再建模。",
+    "structureRef": "Stucki等解析MDC1 BRCT识别γH2AX磷酸肽结构；PDB 2ETX",
+    "antibodies": [
+      "抗MDC1研究级单克隆抗体",
+      "抗MDC1 BRCT结构域研究抗体"
+    ],
+    "interfaceFocus": "BRCT磷酸肽结合沟槽与γH2AX尾肽界面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "H2AFX",
+        "rationale": "H2AFX经Ser139磷酸化形成γH2AX，是MDC1 BRCT结构域的直接结合配体；靶向该节点可调控同一DNA双链断裂识别轴。"
+      },
+      {
+        "target": "ATM",
+        "rationale": "ATM是DNA双链断裂应答核心激酶，负责磷酸化H2AX并促进MDC1依赖的检查点信号扩增。"
+      },
+      {
+        "target": "NBN",
+        "rationale": "NBN为MRN复合体组分，参与双链断裂感知并与MDC1依赖损伤灶装配处于同一应答通路。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

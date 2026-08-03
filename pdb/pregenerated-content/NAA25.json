@@ -1,0 +1,65 @@
+{
+  "gene": "NAA25",
+  "generatedAt": "2026-08-03T14:31:56.637Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NAA25 是 NatB 乙酰转移酶复合体辅助亚基，参与新生肽链 N 端乙酰化，Open Targets 关联主要集中于血小板计数、红细胞体积、血压及脂质性状，提示其与造血和代谢表型存在遗传关联。该蛋白为胞内酶复合体组分，缺乏天然胞外结构域或分泌暴露特征，抗体抗原可及性不具备传统治疗性阻断优势。相较膜受体或分泌因子类同通路靶点，NAA25 更适合作为机制验证、细胞内递送抗体或结构生物学工具靶点，主靶点优先级应低于可直接结合胞外抗原的候选分子。",
+    "mechanism": "通过结合 NAA25 HEAT/TPR 样螺旋支架与 NAA20 接触界面，干扰 NatB 对底物 N 端甲硫氨酸后酸性残基肽链的定位与乙酰基转移。",
+    "selectedEpitope": "优先覆盖 NAA25 螺旋重复支架中参与 NAA20 装配的凹面界面，避免仅选择远离复合体界面的柔性环区。",
+    "diseaseDirection": "血液性状与代谢遗传关联",
+    "domain": "NAA25 为 NatB 辅助亚基，主要由 HEAT/TPR 样 α 螺旋重复结构组成，形成支架性蛋白结合界面。",
+    "evidence": "NAA25-NatB 结构与血液性状遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt Q14CX7 蛋白功能注释",
+      "RCSB PDB 7STX 冷冻电镜结构",
+      "NatB N 端乙酰化复合体结构与功能研究"
+    ],
+    "referenceEntries": "UniProt: Q14CX7; RCSB PDB: 7STX; Gene: NAA25",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "NAA25 螺旋重复凹面与 NAA20 结合界面",
+        "可直接干扰 NatB 复合体装配和底物定位，适合机制阻断型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "NAA25 外侧 HEAT/TPR 样螺旋束稳定表面",
+        "结构稳定且利于获得构象识别抗体，可用于复合体捕获与细胞内示踪",
+        "备选"
+      ],
+      [
+        "Site C",
+        "NAA25 末端柔性片段及低分辨率环区",
+        "可能产生非构象依赖结合但功能阻断价值有限，需规避构象异质性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NAA25 为胞内蛋白，常规抗体难以直接到达天然作用位点；设计应优先定位结构稳定界面，并结合细胞内递送、纳米抗体或降解偶联策略评估可成药性。",
+    "structurePrepZh": "以 PDB 7STX 冷冻电镜模型为模板，保留抗原链 A、B、C 中 NAA25 相关构象，补全缺失环区，标注 NAA20 接触残基并进行界面能量评估。",
+    "structureRef": "RCSB PDB 7STX, human NatB complex cryo-EM structure",
+    "antibodies": [
+      "anti-NAA25 research antibody",
+      "intracellular anti-NAA25 VHH prototype"
+    ],
+    "interfaceFocus": "NAA25-NAA20 复合体装配界面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "NAA20",
+        "rationale": "NAA20 是 NatB 催化亚基，与 NAA25 共同形成 N 端乙酰转移酶复合体；靶向其催化沟槽或 NAA25 结合界面可更直接影响乙酰基转移反应。"
+      },
+      {
+        "target": "NAA10",
+        "rationale": "NAA10 是 NatA 复合体催化亚基，同属新生肽链 N 端乙酰化通路；其遗传变异与发育及血液相关表型存在报道，可作为同类机制比较靶点。"
+      },
+      {
+        "target": "NAA15",
+        "rationale": "NAA15 是 NatA 辅助支架亚基，与 NAA10 装配并调控核糖体相关 N 端乙酰化，适合与 NAA25 进行乙酰化复合体支架靶向策略对照。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

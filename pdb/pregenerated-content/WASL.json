@@ -1,0 +1,65 @@
+{
+  "gene": "WASL",
+  "generatedAt": "2026-08-03T17:50:49.493Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "WASL编码N-WASP，是CDC42与PIP2调控的肌动蛋白成核促进因子，通过其VCA区激活ARP2/3复合体，参与细胞骨架重塑、吞噬样膜动态及血小板/造血细胞形态表型。该蛋白主要为胞质内调控因子，天然抗原可及性弱，不具备典型膜外结构域或分泌蛋白优势，因此更适合作为机制验证抗原或细胞内递送抗体设计对象。相较于同通路的ITGB3、GP1BA等血小板表面受体，WASL的成药优先级较低；其优势在于高分辨率结构支持对EVH1/WH1结构域界面的精细化表位工程。",
+    "mechanism": "阻断WASL EVH1/WH1结构域与WIPF1的WASP结合序列相互作用，削弱N-WASP稳定化及其后续VCA区介导的ARP2/3激活。",
+    "selectedEpitope": "优先覆盖EVH1/WH1结构域的WIPF1肽结合沟槽，避开疏水核心并保留构象稳定性。",
+    "diseaseDirection": "血小板与神经退行性相关细胞骨架通路",
+    "domain": "WASL含N端EVH1/WH1结构域、基础区、GBD/CRIB区、脯氨酸富集区及C端VCA区。",
+    "evidence": "WASL-ARP2/3肌动蛋白成核通路结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt O00401 functional annotation",
+      "RCSB PDB 4CC2 X-ray structure",
+      "Actin cytoskeleton and ARP2/3 pathway literature"
+    ],
+    "referenceEntries": "UniProt O00401；RCSB PDB 4CC2；Reactome R-HSA-2029480",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "EVH1/WH1结构域WIPF1结合沟槽",
+        "可直接干预WASL-WIPF1稳定化界面，结构分辨率支持精确互补设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "GBD/CRIB邻近CDC42调控界面",
+        "具备调节自抑制解除的潜在价值，但需依赖完整构象模型验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端VCA区ARP2/3与肌动蛋白结合片段",
+        "序列柔性高且构象依赖强，存在非特异性结合与功能冗余风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "WASL为胞内蛋白，常规抗体难以到达作用位点；建议限定为细胞内抗体、递送抗体或结构机制探针，并评估ACTR2/ACTR3通路广泛抑制风险。",
+    "structurePrepZh": "采用4CC2中A-D链高分辨率EVH1/WH1结构，去除结晶缓冲分子，检查肽结合沟槽、缺失环区及链间晶体接触后构建表位模型。",
+    "structureRef": "RCSB PDB 4CC2；1.55 Å X-ray WASL结构",
+    "antibodies": [
+      "抗N-WASP研究级单克隆抗体",
+      "抗N-WASP多克隆抗体"
+    ],
+    "interfaceFocus": "EVH1/WH1结构域WIPF1肽结合沟槽",
+    "designMode": "胞内表位阻断",
+    "candidates": [
+      {
+        "target": "WIPF1",
+        "rationale": "WIPF1与WASL EVH1/WH1结构域结合并稳定N-WASP，是同一肌动蛋白成核调控轴的直接互作因子。其界面适合作为WASL-WIP复合体功能调控的替代切入点。"
+      },
+      {
+        "target": "CDC42",
+        "rationale": "CDC42通过结合WASL的GBD/CRIB区解除自抑制构象，促进N-WASP激活ARP2/3复合体。该节点位于WASL上游，可调控膜动态与血小板细胞骨架重塑。"
+      },
+      {
+        "target": "ACTR2",
+        "rationale": "ACTR2是ARP2/3复合体核心亚基，接受WASL VCA区激活并参与分支肌动蛋白成核。其位于WASL下游效应复合体，适合用于通路级功能对照。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

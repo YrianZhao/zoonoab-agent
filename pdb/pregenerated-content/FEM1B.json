@@ -1,0 +1,65 @@
+{
+  "gene": "FEM1B",
+  "generatedAt": "2026-08-03T12:31:23.243Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FEM1B是CUL2-RBX1 E3泛素连接酶复合体的底物识别亚基，可通过ANK重复结构域结合含C端降解决定子的底物并介导泛素化降解，遗传证据提示其与神经发育异常和智力障碍表型相关。该蛋白主要为胞质蛋白，缺乏跨膜区和分泌信号，天然抗原可及性不利于常规细胞外阻断抗体开发，更适合作为结构抗原用于胞内递送抗体、VHH或研究级结合分子设计。相较于上游广谱泛素化组件，FEM1B具有明确底物识别ANK沟槽和可解析晶体结构，优先级来自结构可设计性而非传统膜表位可及性。",
+    "mechanism": "设计结合ANK重复底物识别沟槽的抗体片段，竞争性阻断FEM1B与C端 degron 底物肽结合，从而降低CUL2复合体介导的底物泛素化。",
+    "selectedEpitope": "优先覆盖ANK重复内凹底物结合沟槽及相邻螺旋-环连接区，避免干扰整体折叠核心。",
+    "diseaseDirection": "神经发育障碍与泛素化稳态",
+    "domain": "FEM1B含多段ankyrin repeat，形成弯曲螺旋支架并提供底物识别沟槽。",
+    "evidence": "FEM1B结构与神经发育遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9UK73 functional annotation",
+      "RCSB PDB 7EL6 X-ray structure",
+      "E3 ubiquitin ligase substrate-recognition literature"
+    ],
+    "referenceEntries": "UniProt Q9UK73；RCSB PDB 7EL6；Open Targets FEM1B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ANK重复内侧底物结合沟槽",
+        "可直接竞争C端degron底物肽结合，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ANK重复外侧凸面保守螺旋束",
+        "有利于获得高亲和结合分子，可用于构象锁定或检测",
+        "备选"
+      ],
+      [
+        "Site C",
+        "CUL2复合体装配相关邻近区域",
+        "可能影响E3复合体组装但存在泛素化网络广泛扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FEM1B为胞内蛋白，常规全长IgG难以到达作用位点；建议采用VHH、胞内抗体或递送体系，并优先验证底物竞争而非细胞外阻断。",
+    "structurePrepZh": "以7EL6链A/B为实验结构模板，清理晶体接触与非生物学界面，补全缺失侧链并评估ANK沟槽保守性和可成药表面。",
+    "structureRef": "RCSB PDB 7EL6，X-ray diffraction，2.802 Å",
+    "antibodies": [
+      "暂无临床同类抗体",
+      "可参考抗ANK重复蛋白研究级结合抗体"
+    ],
+    "interfaceFocus": "ANK内侧沟槽与C端degron结合界面",
+    "designMode": "胞内VHH阻断",
+    "candidates": [
+      {
+        "target": "CUL2",
+        "rationale": "CUL2是FEM1B所在CRL2 E3连接酶复合体的核心支架蛋白，与RBX1共同支持底物泛素转移，处于同一泛素化降解通路。"
+      },
+      {
+        "target": "RBX1",
+        "rationale": "RBX1为CRL复合体RING组分，负责招募E2泛素结合酶并促进泛素转移，可作为同通路下游催化界面参照靶点。"
+      },
+      {
+        "target": "ELOC",
+        "rationale": "ELOC参与Elongin B/C适配模块，连接底物受体与CUL2复合体，对CRL2类E3连接酶装配具有通路相关性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

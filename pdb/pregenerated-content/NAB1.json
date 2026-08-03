@@ -1,0 +1,65 @@
+{
+  "gene": "NAB1",
+  "generatedAt": "2026-08-03T14:33:03.349Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NAB1为EGR1/NGFI-A转录因子的转录共抑制因子，主要通过其NCD1区域结合EGR1抑制即刻早期基因转录，Open Targets关联信号集中于血压性状及原发性胆汁性胆管炎等遗传关联表型。该蛋白为细胞核内转录调控蛋白，缺乏天然胞外结构域、分泌形式或膜受体暴露面，常规体内阻断型抗体的抗原可及性不足。相较于同通路中EGR1或下游可分泌效应因子，NAB1更适合作为结构生物学和细胞内结合分子研究靶点，抗体设计优先级应限定于胞内递送抗体、Fab/VHH工具抗体或机制验证用途。",
+    "mechanism": "设计分子应结合NAB1 NCD1表面，空间阻断NAB1与EGR1抑制性复合物形成，从而解除对EGR1依赖转录程序的共抑制。",
+    "selectedEpitope": "优先覆盖PDB 2YUF所示NCD1结构域中EGR1结合相关疏水/带电界面，避免核心折叠区。",
+    "diseaseDirection": "血压调控与胆汁淤积免疫遗传",
+    "domain": "NAB1含N端EGR1结合相关NCD1结构域及C端保守NCD2抑制区域，整体为核内共抑制蛋白。",
+    "evidence": "NAB1-EGR1共抑制轴结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q13506功能与亚细胞定位注释",
+      "RCSB PDB 2YUF溶液NMR结构",
+      "EGR/NAB转录共抑制复合物文献"
+    ],
+    "referenceEntries": "UniProt Q13506；RCSB PDB 2YUF；Open Targets NAB1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "NCD1结构域EGR1结合相关外露界面",
+        "直接干预NAB1-EGR1复合物形成，机制验证价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "NCD1非核心外露螺旋/环区",
+        "适合获得构象识别Fab或VHH，用于结构捕获与细胞内探针",
+        "备选"
+      ],
+      [
+        "Site C",
+        "NCD1疏水核心与折叠稳定区域",
+        "可能扰动蛋白整体折叠并产生非特异性构象效应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NAB1为核内蛋白，体内抗体可及性是主要限制；建议定位为细胞内递送VHH、intrabody或结构工具抗体，并严格验证细胞内靶向效率。",
+    "structurePrepZh": "以2YUF的NMR构象集合为基础，进行构象聚类、缺失区建模和表面电荷评估；表位筛选需保留NCD1天然折叠状态。",
+    "structureRef": "RCSB PDB 2YUF，human NAB1 NCD1 solution NMR structure",
+    "antibodies": [
+      "暂无获批NAB1治疗性抗体",
+      "NAB1研究级单克隆抗体"
+    ],
+    "interfaceFocus": "NCD1介导的NAB1-EGR1结合界面",
+    "designMode": "胞内工具抗体设计",
+    "candidates": [
+      {
+        "target": "EGR1",
+        "rationale": "EGR1是NAB1直接结合的转录因子，NAB1通过抑制EGR1依赖转录发挥共抑制作用；同轴干预可用于解析血压及炎症相关转录程序。"
+      },
+      {
+        "target": "NAB2",
+        "rationale": "NAB2与NAB1同属EGR转录因子共抑制蛋白家族，参与相同EGR负反馈调控轴；可作为功能冗余与补偿机制评估靶点。"
+      },
+      {
+        "target": "EGR2",
+        "rationale": "EGR2同样可被NAB家族共抑制因子调节，处于EGR/NAB转录调控网络内；适合用于比较不同EGR成员的通路选择性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

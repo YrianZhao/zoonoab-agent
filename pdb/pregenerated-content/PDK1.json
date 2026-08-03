@@ -1,0 +1,65 @@
+{
+  "gene": "PDK1",
+  "generatedAt": "2026-08-03T15:10:41.380Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PDK1通过磷酸化并抑制丙酮酸脱氢酶复合体E1α亚基，限制丙酮酸进入三羧酸循环，促进肿瘤细胞糖酵解依赖性代谢重编程，在前列腺癌等疾病中具有明确通路关联。PDK1为线粒体基质定位激酶，天然状态下缺乏胞外结构域，抗原可及性不适合常规体内阻断抗体，但其可溶性结构域适合体外结构引导的结合蛋白、细胞内抗体或递送型抗体片段设计。相比LDHA等广泛代谢酶，PDK1位于PDH复合体调控节点，直接连接HIF-1诱导的糖酵解表型与线粒体氧化通量抑制，具备较高机制优先级。",
+    "mechanism": "结合PDK1催化结构域ATP结合口袋邻近构象区或PDH-E1α底物识别界面，阻断PDK1对PDHA1 Ser293位点的磷酸化作用。",
+    "selectedEpitope": "优先覆盖ATP-lid/催化裂隙外缘及PDHA1底物结合沟槽，避免完全埋藏核苷酸口袋。",
+    "diseaseDirection": "肿瘤代谢重编程与前列腺癌",
+    "domain": "PDK1由线粒体靶向序列及组氨酸激酶样催化结构域组成，含ATP结合口袋、lipoamide结合区和底物识别界面。",
+    "evidence": "PDK1-PDH轴肿瘤代谢抑制证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q15118功能与亚细胞定位注释",
+      "RCSB PDB 9M3O晶体结构记录",
+      "PDK1抑制PDHA1磷酸化相关文献"
+    ],
+    "referenceEntries": "UniProt: Q15118; RCSB PDB: 9M3O; Open Targets: PDK1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域ATP-lid外缘与构象调控环",
+        "可变构象区邻近催化中心，适合变构性抑制PDK1活性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PDHA1底物识别沟槽及E1α结合面",
+        "直接干扰PDK1对PDH复合体E1α亚基的定位与磷酸化",
+        "备选"
+      ],
+      [
+        "Site C",
+        "深部ATP结合口袋核心残基区域",
+        "口袋保守性较高且可及性有限，易产生激酶家族交叉结合风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PDK1为线粒体基质蛋白，常规胞外抗体药物可及性受限；设计应定位为细胞内递送抗体片段或体外研究级结合分子，并评估PDK2、PDK3、PDK4交叉反应。",
+    "structurePrepZh": "以9M3O链A为模板，保留催化结构域主链与关键配体邻近残基，补建缺失侧链并标注ATP口袋、lipoamide结合区和底物识别沟槽。",
+    "structureRef": "RCSB PDB 9M3O，X-ray diffraction，1.762 Å",
+    "antibodies": [
+      "无已批准抗PDK1治疗性抗体",
+      "研究级抗PDK1检测抗体"
+    ],
+    "interfaceFocus": "ATP-lid外缘、PDHA1底物沟槽、lipoamide结合区",
+    "designMode": "胞内靶向片段设计",
+    "candidates": [
+      {
+        "target": "PDHA1",
+        "rationale": "PDHA1是PDH复合体E1α亚基，Ser293等位点为PDK1直接磷酸化底物；该节点可用于评估PDK1抑制对丙酮酸氧化通量恢复的功能效应。"
+      },
+      {
+        "target": "DLD",
+        "rationale": "DLD编码PDH复合体E3组分，参与丙酮酸向乙酰辅酶A转化的氧化脱羧过程；其功能状态与PDK1介导的PDH复合体抑制处于同一代谢轴。"
+      },
+      {
+        "target": "PDP1",
+        "rationale": "PDP1去磷酸化并重新激活PDH复合体，与PDK1在PDHA1磷酸化状态上形成拮抗调控；该靶点适合用于同通路补偿机制分析。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

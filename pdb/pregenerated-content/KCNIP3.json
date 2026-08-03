@@ -1,0 +1,65 @@
+{
+  "gene": "KCNIP3",
+  "generatedAt": "2026-08-03T13:38:51.273Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KCNIP3为钙结合神经元钙传感蛋白，可通过EF-hand构象变化参与Kv4通道复合体调控，并作为DREAM转录调节因子影响钙依赖基因表达。该蛋白主要定位于胞质和细胞核，缺乏天然胞外结构域或分泌特征，常规体内抗体可及性弱，抗体策略更适合用于结构探针、细胞内递送或研究级阻断。相较Kv4孔道亚基，KCNIP3结构域较小且PDB 2E6W提供实验NMR约束，有利于围绕EF-hand界面开展精确表位设计，但成药优先级应低于膜表面可及靶点。",
+    "mechanism": "抗体结合KCNIP3 EF-hand核心区，阻断其与KCND2/KCND3 Kv4通道N端相互作用，从而干扰A型钾电流复合体装配。",
+    "selectedEpitope": "优先覆盖EF-hand 3/4邻近疏水沟槽及Kv4 N端结合面，避免完全遮蔽钙配位残基。",
+    "diseaseDirection": "钙信号与神经电生理调控",
+    "domain": "NCS家族钙结合蛋白，含四个EF-hand样基序，其中EF2-EF4构成主要Ca2+结合核心。",
+    "evidence": "KCNIP3钙结合与Kv4复合体调控证据包",
+    "evidenceSources": [
+      "Open Targets Platform遗传关联与性状关联数据",
+      "UniProt Q9Y2W7功能与亚细胞定位注释",
+      "RCSB PDB 2E6W溶液NMR结构记录",
+      "Kv4-KChIP通道复合体功能研究文献"
+    ],
+    "referenceEntries": "UniProt Q9Y2W7；RCSB PDB 2E6W；Open Targets KCNIP3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "EF-hand 3/4邻近疏水沟槽与Kv4 N端结合面",
+        "直接干预KCNIP3-KCND2/KCND3复合体装配，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "EF-hand 2/3外侧螺旋束暴露面",
+        "可作为构象选择性结合表位，降低对Ca2+配位核心的直接扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "EF-hand环区Ca2+配位残基周边",
+        "可能改变全局折叠或钙结合稳定性，需控制亲和力与构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "KCNIP3缺乏胞外可及性，体内中和抗体转化风险较高；建议定位为细胞内抗体、纳米抗体递送或机制验证工具，并评估EF-hand保守性导致的交叉反应。",
+    "structurePrepZh": "以PDB 2E6W的NMR模型集合为基础，保留代表性构象并比对Ca2+结合状态；对柔性N端与EF-hand环区进行构象采样后再开展表位筛选。",
+    "structureRef": "RCSB PDB 2E6W，human KCNIP3 solution NMR structure",
+    "antibodies": [
+      "研究级抗KCNIP3/DREAM抗体",
+      "研究级抗KChIP3抗体"
+    ],
+    "interfaceFocus": "EF-hand 3/4疏水沟槽及Kv4 N端结合界面",
+    "designMode": "细胞内阻断型",
+    "candidates": [
+      {
+        "target": "KCND2",
+        "rationale": "KCND2编码Kv4.2通道孔道亚基，与KCNIP3形成A型钾电流复合体；其N端为KChIP结合关键区域，处于同一神经兴奋性调控轴。"
+      },
+      {
+        "target": "KCND3",
+        "rationale": "KCND3编码Kv4.3通道孔道亚基，同样受KCNIP3/KChIP调节；在心肌与神经电生理疾病通路中具有明确功能关联。"
+      },
+      {
+        "target": "KCNIP2",
+        "rationale": "KCNIP2为KChIP家族同源钙传感调节因子，可调控Kv4通道膜表达与门控动力学；适合作为同一Kv4-KChIP通路的比较靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

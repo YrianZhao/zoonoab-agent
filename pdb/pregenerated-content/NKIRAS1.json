@@ -1,0 +1,65 @@
+{
+  "gene": "NKIRAS1",
+  "generatedAt": "2026-08-03T14:42:57.766Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NKIRAS1为胞内Ras样小GTP酶样蛋白，可与NF-κB抑制因子相关复合物发生相互作用，并影响NF-κB转录活性；Open Targets显示其与Blackfan-Diamond贫血等血液系统表型存在遗传关联。然而，NKIRAS1缺乏分泌信号肽、跨膜区和稳定胞外结构域，天然抗原可及性不符合常规治疗性抗体直接阻断模式。相较TNF、IL1B、CD40等同属NF-κB炎症轴且具备胞外可及性的靶点，NKIRAS1更适合作为机制研究或胞内递送抗体探索靶点，优先级应低于可直接成药的膜受体或分泌配体。",
+    "mechanism": "设计抗体需依赖胞内递送策略，阻断NKIRAS1与IκB相关复合物的结合界面，从而改变IκBα稳定性及NF-κB核转位。",
+    "selectedEpitope": "优先覆盖Ras样GTP酶折叠核心的Switch I/II邻近暴露面，避开核苷酸结合保守口袋。",
+    "diseaseDirection": "NF-κB相关炎症与血液表型",
+    "domain": "NKIRAS1主要由Ras样小GTP酶结构域构成，含P-loop、Switch I与Switch II功能区。",
+    "evidence": "NKIRAS1结构与NF-κB调控证据包",
+    "evidenceSources": [
+      "Open Targets Platform遗传关联数据",
+      "UniProt Q9NYS0功能注释",
+      "RCSB PDB 9QU1晶体结构",
+      "NF-κB/IκB调控通路文献"
+    ],
+    "referenceEntries": "UniProt Q9NYS0；RCSB PDB 9QU1；Open Targets NKIRAS1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Switch I/II邻近暴露界面",
+        "可能影响IκB相关复合物识别，具备机制验证价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "α螺旋外侧非保守表面",
+        "有利于获得选择性结合分子，降低与典型RAS家族交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "P-loop核苷酸结合区域",
+        "高度保守且功能敏感，可能产生广泛交叉结合或构象干扰",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NKIRAS1为胞内蛋白，常规抗体缺乏天然可及性；需采用细胞内递送、intrabody或研究级Fab/VHH策略，并重点评估RAS样家族交叉反应。",
+    "structurePrepZh": "以PDB 9QU1中A、B、C、F链为抗原模型，检查晶体接触、缺失环区和核苷酸结合状态，保留稳定折叠核心用于表位映射。",
+    "structureRef": "RCSB PDB 9QU1，X-ray diffraction，2.72 Å",
+    "antibodies": [
+      "无已批准NKIRAS1靶向抗体",
+      "无公开临床阶段NKIRAS1同类抗体"
+    ],
+    "interfaceFocus": "Switch I/II暴露面与IκB复合物结合界面",
+    "designMode": "胞内抗体探索",
+    "candidates": [
+      {
+        "target": "NFKBIA",
+        "rationale": "NFKBIA编码IκBα，是NF-κB经典通路中直接结合并滞留RELA/NFKB1的抑制因子，位于NKIRAS1相关调控轴下游。"
+      },
+      {
+        "target": "RELA",
+        "rationale": "RELA为NF-κB p65亚基，是IκBα释放后进入细胞核驱动炎症与应激转录程序的核心转录因子。"
+      },
+      {
+        "target": "TNF",
+        "rationale": "TNF通过TNFR1复合物激活IKK并促进IκBα磷酸化降解，是经典NF-κB通路上游且具备分泌抗原可及性的真实靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

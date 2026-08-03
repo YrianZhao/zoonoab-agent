@@ -1,0 +1,65 @@
+{
+  "gene": "TNPO3",
+  "generatedAt": "2026-08-03T17:23:45.320Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TNPO3编码Transportin-3，是核转运受体β家族成员，参与富含丝氨酸/精氨酸剪接因子等货物蛋白的核输入；TNPO3相关肢带型肌营养不良与核转运、RNA剪接调控及肌纤维稳态异常相关。该蛋白主要定位于胞质与细胞核，缺乏稳定胞外结构域，抗原天然可及性弱，较适合作为细胞内靶点研究或递送型抗体片段策略。相较于经典膜受体或分泌型炎症因子，TNPO3抗体开发优先级受限；其优势在于遗传疾病关联明确、PDB结构可用，并可围绕货物结合界面开展机制性阻断设计。",
+    "mechanism": "阻断TNPO3 HEAT重复超螺旋内侧沟槽与SR蛋白RS结构域及RanGTP相关构象转换界面的相互作用，抑制特定剪接因子核输入。",
+    "selectedEpitope": "优先覆盖HEAT重复内侧货物结合沟槽，避开高度保守RanGTP结合核心以降低广泛核转运干扰。",
+    "diseaseDirection": "遗传性肌营养不良与神经退行性疾病",
+    "domain": "Transportin-3由连续HEAT重复构成karyopherin-β样超螺旋，形成货物蛋白结合沟槽。",
+    "evidence": "TNPO3遗传关联与核转运结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q9Y5L0蛋白功能注释",
+      "RCSB PDB 4C0O晶体结构",
+      "OMIM与MONDO疾病本体注释"
+    ],
+    "referenceEntries": "UniProt: Q9Y5L0; RCSB PDB: 4C0O; Open Targets: TNPO3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "HEAT重复内侧货物结合沟槽",
+        "直接干预SR蛋白样货物识别，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端HEAT重复RanGTP构象调控邻近区",
+        "可影响核转运循环构象，但需控制广谱转运抑制风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "外侧保守HEAT重复骨架表面",
+        "结构稳定但功能阻断价值有限，且易产生非机制性结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TNPO3为胞内核转运蛋白，常规全长抗体难以触达天然抗原；设计应限定为细胞内递送Fab/VHH或研究级阻断分子，并评估全局剪接毒性。",
+    "structurePrepZh": "以4C0O晶体结构链A-D为模板，补全缺失环区并校验HEAT重复构象；去除非功能性晶体接触后定义货物结合沟槽表位。",
+    "structureRef": "RCSB PDB 4C0O, X-ray diffraction, 2.557 Å",
+    "antibodies": [
+      "暂无获批TNPO3靶向治疗性抗体",
+      "研究级抗TNPO3检测抗体"
+    ],
+    "interfaceFocus": "HEAT重复内侧货物结合沟槽与Ran调控邻近面",
+    "designMode": "胞内递送型阻断",
+    "candidates": [
+      {
+        "target": "TNPO1",
+        "rationale": "TNPO1同属transportin/karyopherin-β核输入受体，识别RNA结合蛋白货物并参与核质转运稳态，可作为核转运通路内的机制参照靶点。"
+      },
+      {
+        "target": "KPNA2",
+        "rationale": "KPNA2参与经典核定位信号货物的核输入，在神经退行性疾病和细胞应激相关核转运异常中具有通路相关性。"
+      },
+      {
+        "target": "RAN",
+        "rationale": "RAN通过GTP/GDP循环驱动importin/exportin货物释放与方向性转运，是TNPO3核输入循环的核心调控节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

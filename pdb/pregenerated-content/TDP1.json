@@ -1,0 +1,65 @@
+{
+  "gene": "TDP1",
+  "generatedAt": "2026-08-03T17:11:40.418Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TDP1参与修复拓扑异构酶 I 诱导的 DNA 单链断裂，是维持复制压力下基因组稳定性的关键核内酶，异常活性与神经退行性病变及肿瘤耐受表型均存在明确关联。其底物识别依赖可解析的催化口袋与底物结合沟槽，且结构信息充分，便于围绕活性位点构建抑制型抗体或胞内递送格式。相较同通路其他 DNA 修复因子，TDP1兼具明确疾病关联、结构可成药性与酶学抑制可验证性，优先级较高。",
+    "mechanism": "阻断 TDP1 催化口袋对 3'-磷酸化酪氨酰-DNA 末端的识别，抑制其切除 Tyr-DNA 共价键。",
+    "selectedEpitope": "优先覆盖催化中心入口及底物结合沟槽周缘，兼顾 HxD...N 催化基序邻近界面。",
+    "diseaseDirection": "DNA修复/神经退行与肿瘤",
+    "domain": "TDP1 C端催化核心含活性位点与底物结合沟槽，N端调控区辅助定位。",
+    "evidence": "TDP1结构-疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform",
+      "UniProt Q9NUW8",
+      "RCSB PDB 6DHU",
+      "EMBL-EBI PDBe"
+    ],
+    "referenceEntries": "UniProt: Q9NUW8; PDB: 6DHU; Homo sapiens TDP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化口袋入口与底物沟槽上缘",
+        "直接干预底物进入与定位，利于获得抑制性结合",
+        "优先"
+      ],
+      [
+        "Site B",
+        "HxD...N 催化基序邻近表面",
+        "可能影响催化几何构型与过渡态稳定",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端非催化调控区表面",
+        "适合构建构象偏置，但对酶活抑制不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TDP1为核内酶，天然抗体可及性有限，需优先考虑胞内递送或以 VHH/Fab 适配工程化进入细胞。催化口袋保守性较高，应避免仅依赖线性表位，建议以结构约束筛选构象依赖表位。",
+    "structurePrepZh": "基于 6DHU 进行链 A/B 清理、缺失侧链补全与质子化状态校正，并保留催化中心金属/配位环境的真实构象。建议以底物模拟片段进行复合物对接，优先评估入口环区柔性。",
+    "structureRef": "Zlotnicka et al., TDP1 crystal structure studies; PDB 6DHU",
+    "antibodies": [
+      "无已批准同类治疗性抗体",
+      "无成熟同类中和抗体"
+    ],
+    "interfaceFocus": "催化口袋入口、底物沟槽与活性基序邻域",
+    "designMode": "结构导向抑制",
+    "candidates": [
+      {
+        "target": "TOP1",
+        "rationale": "TDP1直接处理拓扑异构酶 I-DNA 复合物残留损伤，TOP1是其上游底物来源，属于同一 DNA 损伤修复轴。围绕 TOP1/TDP1 耐受机制联合评估有助于定义肿瘤敏感性窗口。"
+      },
+      {
+        "target": "PARP1",
+        "rationale": "PARP1参与单链断裂识别与招募修复复合体，和 TDP1 同属单链断裂修复网络。其与 TDP1 的功能耦联为联合抑制设计提供了真实同通路候选。"
+      },
+      {
+        "target": "LIG3",
+        "rationale": "LIG3介导单链断裂末端连接，是 TDP1 处理后修复流程的下游执行因子。与 TDP1 同处 BER/SSBR 通路，可用于构建修复阻断组合策略。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

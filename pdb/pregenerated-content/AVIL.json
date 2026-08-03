@@ -1,0 +1,65 @@
+{
+  "gene": "AVIL",
+  "generatedAt": "2026-08-03T10:43:49.995Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "AVIL编码肌动蛋白结合蛋白advillin，主要定位于细胞质并参与F-actin束化、细胞骨架重塑及轴突/上皮细胞形态维持；其与肾病综合征的遗传和关联证据提示其可能影响足细胞骨架稳定性，但并非经典分泌蛋白或膜受体。该蛋白缺乏天然胞外结构域，抗原可及性弱，常规体内阻断型抗体难以直接作用于完整细胞内靶点。相较NPHS1、NPHS2、PLCE1等同类肾病通路靶点，AVIL的优势在于具备实验NMR结构片段和明确肌动蛋白调控属性，但作为抗体药物主靶点的转化优先级应限定于胞内递送抗体、诊断抗体或机制研究工具抗体场景。",
+    "mechanism": "设计抗体应阻断advillin凝胶素样结构域与F-actin侧面结合界面的相互作用，削弱异常肌动蛋白束化和足细胞骨架重排。",
+    "selectedEpitope": "优先覆盖PDB 1UND所示C端headpiece样actin-binding结构域的疏水沟槽及带正电F-actin结合面。",
+    "diseaseDirection": "肾病综合征与足细胞骨架病变",
+    "domain": "Advillin含N端凝胶素同源重复区及C端villin/headpiece样肌动蛋白结合结构域，整体为胞内骨架调节蛋白。",
+    "evidence": "AVIL-肾病综合征骨架调控证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt O75366功能与亚细胞定位注释",
+      "RCSB PDB 1UND溶液NMR结构记录",
+      "人类足细胞肌动蛋白骨架与遗传性肾病文献"
+    ],
+    "referenceEntries": "UniProt: O75366; RCSB PDB: 1UND; Open Targets: AVIL",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端headpiece样结构域F-actin结合疏水沟槽",
+        "直接竞争肌动蛋白结合界面，适合功能阻断型胞内抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "凝胶素同源重复区推定actin侧面结合面",
+        "可能影响束化构象转换，需结合AlphaFold或同源结构精修",
+        "备选"
+      ],
+      [
+        "Site C",
+        "柔性连接区及低保守表面环",
+        "构象异质性较高，易产生非阻断结合或跨同源蛋白交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "AVIL为胞内蛋白，天然抗体可及性不足；建议定位于胞内递送、intrabody或检测抗体，并严格评估与villin/gelsolin家族同源表面的交叉反应。",
+    "structurePrepZh": "以1UND的NMR构象簇为核心，保留代表性低能构象；补建缺失区域需使用AlphaFold模型并标注低置信柔性片段。",
+    "structureRef": "RCSB PDB 1UND; human advillin headpiece NMR structure",
+    "antibodies": [
+      "抗AVIL研究级单克隆抗体",
+      "抗advillin免疫组化/免疫印迹抗体"
+    ],
+    "interfaceFocus": "headpiece样结构域F-actin结合沟槽",
+    "designMode": "胞内递送抗体",
+    "candidates": [
+      {
+        "target": "NPHS1",
+        "rationale": "NPHS1编码nephrin，是足细胞裂孔隔膜核心跨膜蛋白，与肾病综合征具有明确遗传因果关系；其胞外Ig样结构域抗原可及性优于AVIL。"
+      },
+      {
+        "target": "NPHS2",
+        "rationale": "NPHS2编码podocin，参与裂孔隔膜复合体和足细胞信号组织，突变可导致类固醇抵抗性肾病综合征；适合作为同一足细胞病变轴的机制对照靶点。"
+      },
+      {
+        "target": "PLCE1",
+        "rationale": "PLCE1与早发肾病综合征和足细胞发育/信号异常相关，可连接细胞骨架调控与肾小球滤过屏障缺陷；其证据链适合与AVIL进行通路层级比较。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

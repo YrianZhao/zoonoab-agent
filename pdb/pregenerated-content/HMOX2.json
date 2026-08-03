@@ -1,0 +1,65 @@
+{
+  "gene": "HMOX2",
+  "generatedAt": "2026-08-03T13:14:29.860Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HMOX2是组成型血红素加氧酶，催化血红素裂解生成胆绿素、一氧化碳和Fe2+，与氧化应激、神经炎症和血红素稳态异常相关。该蛋白主要为内质网膜锚定的胞质侧酶，缺乏典型胞外结构域，抗体抗原可及性弱于分泌因子或膜受体，因此更适合细胞内递送型抗体片段或研究级构象探针。相比HMOX1，HMOX2在神经组织中组成型表达且结构信息明确，可用于解析中枢神经系统自身免疫和偏头痛相关血红素代谢轴中的特异性调控节点，但成药优先级应审慎定位。",
+    "mechanism": "抗体片段结合HMOX2催化口袋邻近的血红素结合螺旋，阻碍血红素进入His45配位位点并削弱NADPH-细胞色素P450还原酶供电子耦联。",
+    "selectedEpitope": "优先覆盖近端血红素结合螺旋与催化口袋入口，避开C端膜锚定疏水段。",
+    "diseaseDirection": "神经炎症与血红素稳态异常",
+    "domain": "HMOX2含N端可溶性血红素加氧酶催化结构域，C端为内质网膜锚定区。",
+    "evidence": "HMOX2神经炎症与血红素代谢证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt P30519功能与定位注释",
+      "RCSB PDB 5UC9晶体结构",
+      "血红素加氧酶催化机制文献"
+    ],
+    "referenceEntries": "UniProt:P30519；RCSB PDB:5UC9；Open Targets:HMOX2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "血红素结合口袋入口及近端催化螺旋",
+        "可直接干扰血红素底物进入与His45轴向配位，机制可验证性较高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端可溶性催化结构域外侧螺旋束",
+        "适合构象识别和免疫检测，较少影响膜锚定但功能阻断强度可能有限",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端疏水膜锚定邻近区域",
+        "序列疏水且细胞内膜邻近，可及性和抗体开发稳定性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HMOX2为胞质侧内质网膜相关酶，常规胞外抗体难以触达；建议限定为细胞内抗体、递送型Fab/VHH或结构探针，并严格评估HMOX1交叉反应。",
+    "structurePrepZh": "以5UC9中可溶性催化结构域链A-D为模板，补全缺失侧链，保留血红素相关口袋几何约束，并移除晶体接触干扰界面。",
+    "structureRef": "RCSB PDB 5UC9，human HMOX2 X-ray structure，1.903 Å",
+    "antibodies": [
+      "anti-HMOX2 polyclonal antibody",
+      "anti-HMOX2 monoclonal antibody"
+    ],
+    "interfaceFocus": "血红素结合口袋入口与近端催化螺旋",
+    "designMode": "细胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "HMOX1",
+        "rationale": "HMOX1与HMOX2同属血红素降解通路，诱导型表达与炎症和氧化应激密切相关。其可作为通路内对照或联合调控候选靶点。"
+      },
+      {
+        "target": "BLVRA",
+        "rationale": "BLVRA催化胆绿素还原为胆红素，位于HMOX2下游抗氧化代谢分支。靶向该节点有助于解析血红素降解产物对神经炎症的贡献。"
+      },
+      {
+        "target": "CYB5R3",
+        "rationale": "CYB5R3参与细胞还原力和血红素相关氧化还原稳态，与血红素代谢应激响应存在功能关联。其适合作为氧化还原耦联通路的补充候选。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

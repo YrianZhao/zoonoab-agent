@@ -1,0 +1,65 @@
+{
+  "gene": "GLCE",
+  "generatedAt": "2026-08-03T12:47:53.385Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GLCE催化肝素/硫酸乙酰肝素生物合成中D-葡萄糖醛酸向L-艾杜糖醛酸的C5差向异构化，改变HS链构象与FGF、VEGF及BMP等生长因子结合能力，因而可影响代谢表型、血压调节和组织基质信号。该蛋白为高尔基体腔侧酶，天然并非经典细胞表面抗原，抗原可及性低于膜受体或分泌因子，抗体策略更适合采用细胞内递送、工程化抗体片段或作为结构验证探针。其优先级来自6I01高分辨率实验结构和明确催化位点，较HS链下游多配体靶点更利于开展机制性表位约束设计，但成药性风险需前置控制。",
+    "mechanism": "通过结合GLCE催化沟槽邻近区域，阻碍肝素/硫酸乙酰肝素多糖底物进入C5差向异构化位点，降低IdoA生成并改变HS-生长因子复合物形成。",
+    "selectedEpitope": "优先覆盖催化裂隙入口及多糖底物结合沟槽边缘，避免深埋核心折叠面。",
+    "diseaseDirection": "代谢体成分与血压相关通路",
+    "domain": "GLCE为高尔基体腔侧肝素/HS C5差向异构酶，含催化折叠核心和带正电多糖结合沟槽。",
+    "evidence": "GLCE-HS差向异构化结构与代谢遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt O94923功能与亚细胞定位注释",
+      "RCSB PDB 6I01 X射线晶体结构",
+      "肝素/硫酸乙酰肝素生物合成通路文献"
+    ],
+    "referenceEntries": "UniProt O94923；RCSB PDB 6I01；Reactome HS-GAG biosynthesis",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化裂隙入口与多糖底物结合沟槽",
+        "直接限制HS底物进入差向异构化位点，机制关联最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "沟槽外侧带正电表面斑块",
+        "可能干扰硫酸化多糖链定位，兼顾结合可及性与结构稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化核心远端保守折叠面",
+        "易产生非抑制性结合且可能影响折叠稳定性判读",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GLCE定位于高尔基体腔侧，常规抗体难以到达内源抗原；建议采用Fab/VHH结构探针、细胞内递送体系或体外酶抑制验证作为先导路径。",
+    "structurePrepZh": "以6I01的2.1 Å晶体结构为模板，保留完整催化核心链，校正缺失侧链、质子化状态和糖胺聚糖结合沟槽电荷分布。",
+    "structureRef": "RCSB PDB 6I01；human GLCE X-ray structure at 2.1 Å",
+    "antibodies": [
+      "暂无获批GLCE靶向治疗性抗体",
+      "研究级anti-GLCE抗体"
+    ],
+    "interfaceFocus": "催化裂隙入口与HS多糖结合沟槽",
+    "designMode": "胞内酶结构阻断",
+    "candidates": [
+      {
+        "target": "EXT1",
+        "rationale": "EXT1与EXT2共同催化HS链聚合，是GLCE上游同一肝素/硫酸乙酰肝素生物合成通路核心酶；调节该节点可改变后续GLCE可作用底物规模。"
+      },
+      {
+        "target": "EXT2",
+        "rationale": "EXT2参与HS多糖骨架延伸，与EXT1形成糖基转移酶复合体，位于GLCE介导差向异构化之前的同一路径。"
+      },
+      {
+        "target": "NDST1",
+        "rationale": "NDST1负责HS链N-脱乙酰/N-硫酸化，为后续C5差向异构化和2-O硫酸化提供结构背景，是GLCE功能耦联的真实通路节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

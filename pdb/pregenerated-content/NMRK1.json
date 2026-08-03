@@ -1,0 +1,65 @@
+{
+  "gene": "NMRK1",
+  "generatedAt": "2026-08-03T14:45:14.030Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NMRK1催化烟酰胺核糖磷酸化生成NMN，参与NAD+补救合成，与代谢物测量、脂质表型和造血相关数量性状存在遗传关联。该蛋白主要定位于胞质，缺乏跨膜区和稳定胞外结构域，抗体直接结合天然靶点的体内可及性明显受限。相较于膜受体或分泌型代谢调节靶点，NMRK1更适合作为结构生物学与胞内酶功能验证抗原，抗体设计优先级应低于同通路中具有胞外可及性的CD38等靶点。",
+    "mechanism": "设计抗体结合NMRK1核苷结合沟槽或ATP结合邻近界面，空间阻断烟酰胺核糖与催化口袋配位，从而抑制NMN生成。",
+    "selectedEpitope": "优先覆盖Rossmann样α/β激酶核心中核苷结合沟槽及ATP结合口袋边缘环区。",
+    "diseaseDirection": "NAD+代谢与数量性状关联",
+    "domain": "NMRK1为胞质烟酰胺核糖激酶，含保守磷酸核糖激酶样α/β催化核心。",
+    "evidence": "NMRK1结构与NAD+补救代谢证据包",
+    "evidenceSources": [
+      "Open Targets Platform遗传关联数据",
+      "UniProt Q9NWW6功能与亚细胞定位注释",
+      "RCSB PDB 2QT1晶体结构记录",
+      "KEGG/Reactome NAD+补救合成通路注释"
+    ],
+    "referenceEntries": "UniProt Q9NWW6；RCSB PDB 2QT1；Reactome NAD metabolism",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "核苷结合沟槽与催化口袋邻近环区",
+        "可直接干扰烟酰胺核糖底物进入与取向，适合功能阻断抗体筛选",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ATP结合口袋外缘及磷酸转移相关结构面",
+        "可能影响ATP定位和磷酸转移构象，但需避免仅识别小分子结合诱导构象",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离活性中心的α/β核心背面暴露面",
+        "结构可及但功能阻断价值有限，更适合捕获或检测抗体开发",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NMRK1为胞内酶，天然抗体药物可及性不足；设计宜定位为体外功能阻断、细胞内递送或检测抗体，并规避ATP结合家族保守表面导致的交叉反应。",
+    "structurePrepZh": "以2QT1链A为模板，保留高分辨率催化核心，校正缺失侧链、质子化状态及配体邻近残基构象后开展表位暴露性评估。",
+    "structureRef": "RCSB PDB 2QT1，X-ray diffraction，1.32 Å",
+    "antibodies": [
+      "无已获批NMRK1治疗性抗体",
+      "研究级抗NMRK1检测抗体"
+    ],
+    "interfaceFocus": "核苷结合沟槽与ATP口袋边缘",
+    "designMode": "胞内酶阻断设计",
+    "candidates": [
+      {
+        "target": "CD38",
+        "rationale": "CD38催化NAD+降解并位于细胞表面，处于同一NAD+代谢网络；其胞外酶结构域具有明确抗体可及性和成熟药物验证基础。"
+      },
+      {
+        "target": "NAMPT",
+        "rationale": "NAMPT催化烟酰胺补救通路限速步骤，与NMRK1共同调控NMN与NAD+供给；胞外NAMPT形式与炎症和代谢表型相关，可作为同通路替代调节节点。"
+      },
+      {
+        "target": "BST1",
+        "rationale": "BST1为GPI锚定细胞表面NADase/ADP-ribosyl cyclase家族成员，与CD38同属NAD+胞外代谢轴，抗原可及性优于胞质NMRK1。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

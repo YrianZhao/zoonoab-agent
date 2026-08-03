@@ -1,0 +1,65 @@
+{
+  "gene": "RIPK3",
+  "generatedAt": "2026-08-03T21:00:04.016Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RIPK3 是坏死性凋亡通路的核心丝氨酸/苏氨酸激酶，可通过 RHIM 介导与 RIPK1 或 TRIF 形成复合体，并磷酸化 MLKL，促进炎症性细胞死亡及病毒感染相关组织损伤。该蛋白主要定位于胞质，缺乏天然胞外结构域，常规全长抗体的细胞外可及性不足，但其激酶结构域具有高分辨率晶体结构，可支持胞内递送抗体、VHH 或研究级构象阻断分子设计。相比 RIPK1 等上游节点，RIPK3 更直接决定 MLKL 激活与坏死小体执行步骤，适合作为坏死性凋亡轴中机制验证优先级较高的靶点。",
+    "mechanism": "阻断 RIPK3 激酶结构域 ATP 结合裂隙或抑制 RHIM 依赖的 RIPK3-RIPK1/TRIF 装配，从而降低 MLKL 磷酸化与膜孔化执行。",
+    "selectedEpitope": "优先聚焦 N 端激酶结构域 ATP 结合裂隙邻近构象表面及活化环周边区域。",
+    "diseaseDirection": "病毒感染与坏死性炎症",
+    "domain": "RIPK3 含 N 端丝氨酸/苏氨酸激酶结构域及 C 端 RHIM 相互作用基序。",
+    "evidence": "RIPK3 坏死性凋亡通路结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt Q9Y572 蛋白功能注释",
+      "RCSB PDB 5ZCK 晶体结构",
+      "坏死性凋亡 RIPK1-RIPK3-MLKL 机制文献"
+    ],
+    "referenceEntries": "UniProt Q9Y572；RCSB PDB 5ZCK；Open Targets RIPK3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域 ATP 结合裂隙与铰链区邻近表面",
+        "可干扰核苷酸结合及催化构象稳定，适合功能阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "激酶结构域活化环及底物识别周边区域",
+        "可影响 MLKL 磷酸化所需的催化构象与底物定位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端 RHIM 介导的 RIPK1/TRIF 结合区域",
+        "理论上可阻断坏死小体装配，但结构柔性与抗原制备不确定性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RIPK3 为胞内激酶，常规抗体难以到达天然靶点；设计应定位于胞内递送抗体、VHH 或研究工具分子，并严格评估激酶同源性导致的交叉反应。",
+    "structurePrepZh": "以 5ZCK 的 A 链激酶结构域为模板，补全缺失侧链并校正质子化状态；ATP 裂隙、铰链区和活化环需进行构象与保守性联合标注。",
+    "structureRef": "RCSB PDB 5ZCK，X-ray diffraction，1.271 Å",
+    "antibodies": [
+      "抗 RIPK3 克隆 EPR9514",
+      "抗 RIPK3 克隆 1H2"
+    ],
+    "interfaceFocus": "ATP 结合裂隙、铰链区、活化环与 RHIM 装配界面",
+    "designMode": "胞内阻断型VHH",
+    "candidates": [
+      {
+        "target": "RIPK1",
+        "rationale": "RIPK1 通过 RHIM 与 RIPK3 形成坏死小体，是 TNF 诱导坏死性凋亡的上游装配节点。其干预可减少 RIPK3 募集与后续 MLKL 激活。"
+      },
+      {
+        "target": "MLKL",
+        "rationale": "MLKL 是 RIPK3 直接磷酸化的执行蛋白，寡聚化后转位至膜并破坏膜完整性。靶向 MLKL 可作用于坏死性凋亡的终末执行阶段。"
+      },
+      {
+        "target": "TLR3",
+        "rationale": "TLR3 经 TRIF 适配蛋白可连接 RIPK3 介导的病毒 RNA 诱导坏死性凋亡。该节点适用于病毒感染相关先天免疫炎症方向的上游干预。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

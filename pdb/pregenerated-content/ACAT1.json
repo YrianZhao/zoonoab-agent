@@ -1,0 +1,65 @@
+{
+  "gene": "ACAT1",
+  "generatedAt": "2026-08-03T09:55:04.607Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ACAT1编码线粒体乙酰辅酶A乙酰转移酶，催化乙酰乙酰辅酶A与辅酶A之间的硫解反应，是异亮氨酸降解和酮体代谢中的关键酶，双等位基因功能缺陷可导致β-酮硫解酶缺乏症。该蛋白主要定位于线粒体基质，不具备胞外结构域、分泌特征或膜受体构型，因此完整抗体在生理条件下的抗原可及性显著受限。尽管Open Targets显示其与β-酮硫解酶缺乏症具有较高遗传关联强度，但相较于可直接暴露于细胞外空间的受体或分泌因子，ACAT1更适合作为酶学、遗传验证或细胞内递送抗体研究靶点，常规治疗性抗体优先级较低。",
+    "mechanism": "设计分子以内源化或胞内递送为前提，阻断ACAT1活性位点Cys126介导的乙酰乙酰辅酶A硫解反应或干扰同源四聚体界面稳定性。",
+    "selectedEpitope": "优先评估活性位点邻近CoA结合沟槽与二聚体界面交界区，避免完全埋藏的催化半胱氨酸核心。",
+    "diseaseDirection": "β-酮硫解酶缺乏症与酮体代谢异常",
+    "domain": "ACAT1为线粒体硫解酶家族成员，含N端催化结构域、C端催化结构域及CoA结合环区，组装为同源四聚体。",
+    "evidence": "ACAT1遗传缺陷与酮体代谢通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProtKB P24752功能与亚细胞定位注释",
+      "RCSB PDB 2IB8人源ACAT1晶体结构",
+      "OMIM与临床β-酮硫解酶缺乏症资料"
+    ],
+    "referenceEntries": "UniProtKB:P24752；RCSB PDB:2IB8；Gene:ACAT1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CoA结合沟槽邻近可及环区",
+        "可影响底物辅酶A定位，适合功能阻断型分子设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "二聚体/四聚体装配界面外缘",
+        "可能削弱寡聚体稳定性并降低硫解酶活性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化Cys126深部活性中心",
+        "功能相关性高但空间埋藏明显，抗体可及性与成药性不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ACAT1为线粒体基质酶，常规Fab或VHH难以跨膜进入靶区；设计应标注胞内递送依赖性，并优先用于机制验证而非传统胞外阻断。",
+    "structurePrepZh": "以2IB8四聚体晶体结构为模板，保留A-D链生物学装配，校验CoA结合沟槽、催化残基与界面残基，去除非关键晶体水后进行质子化建模。",
+    "structureRef": "PDB 2IB8，X-ray diffraction，1.85 Å，人源ACAT1",
+    "antibodies": [
+      "无临床获批ACAT1靶向抗体",
+      "研究级抗ACAT1检测抗体"
+    ],
+    "interfaceFocus": "CoA结合沟槽外缘及寡聚体装配界面",
+    "designMode": "胞内酶靶向验证",
+    "candidates": [
+      {
+        "target": "OXCT1",
+        "rationale": "OXCT1编码琥珀酰辅酶A:3-氧酸辅酶A转移酶，位于酮体利用通路上游，影响乙酰乙酰辅酶A生成。其与ACAT1共同参与酮体分解代谢，可作为同通路代谢调控参照靶点。"
+      },
+      {
+        "target": "HMGCS2",
+        "rationale": "HMGCS2为线粒体3-羟基-3-甲基戊二酰辅酶A合酶，是肝脏酮体生成关键酶。其位于ACAT1相关酮体稳态网络中，适合用于疾病通路层面的上下游比较。"
+      },
+      {
+        "target": "BDH1",
+        "rationale": "BDH1催化β-羟丁酸与乙酰乙酸之间的可逆转化，直接决定酮体氧化还原平衡。该靶点与ACAT1同属酮体代谢轴，可用于评估代谢通量改变。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

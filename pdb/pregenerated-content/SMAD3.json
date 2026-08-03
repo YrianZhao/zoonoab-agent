@@ -1,0 +1,65 @@
+{
+  "gene": "SMAD3",
+  "generatedAt": "2026-08-03T16:43:21.865Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SMAD3 是 TGF-β 信号通路的核心受体调节型转录因子，TGFBR1 磷酸化其 C 端 SSXS 基序后促进 SMAD4 复合物入核，驱动结缔组织基质重塑、软骨稳态异常及胸主动脉壁病变。SMAD3 主要定位于胞质与细胞核，并非天然胞外抗原，常规阻断型抗体的抗原可及性不足。其优先级更多来自强遗传疾病关联与高分辨率结构基础；相较 TGF-β 配体或受体，SMAD3 更适合开发细胞内递送抗体、研究级 Fab/VHH 或降解偶联模块，而非标准循环抗体药物。",
+    "mechanism": "设计分子应阻断 SMAD3 MH2 结构域与磷酸化 C 端尾部及 SMAD4 的复合界面，抑制 SMAD3-SMAD4 入核转录复合物形成。",
+    "selectedEpitope": "优先聚焦 MH2 结构域 L3 loop 与三聚化界面，避开高度保守 DNA 结合 MH1 区域。",
+    "diseaseDirection": "TGF-β/SMAD3 结缔组织病变",
+    "domain": "SMAD3 含 N 端 MH1 DNA 结合域、连接区及 C 端 MH2 转录复合体形成域，末端含 SSXS 磷酸化基序。",
+    "evidence": "SMAD3 结构与 TGF-β 通路疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联",
+      "UniProtKB P84022 功能注释",
+      "RCSB PDB 6YIB 晶体结构",
+      "OMIM/ClinVar SMAD3 变异证据"
+    ],
+    "referenceEntries": "UniProt P84022；RCSB PDB 6YIB；Open Targets SMAD3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "MH2 结构域 L3 loop 及受体磷酸化识别邻近面",
+        "可干预 TGFBR1 磷酸化后构象识别与下游复合装配",
+        "优先"
+      ],
+      [
+        "Site B",
+        "MH2 三聚化界面与 SMAD4 接触面",
+        "有利于阻断 SMAD3-SMAD4 转录复合物形成",
+        "备选"
+      ],
+      [
+        "Site C",
+        "MH1 DNA 结合域 β-hairpin 区域",
+        "结构保守且可能影响多种 SMAD DNA 结合功能，选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SMAD3 为细胞内蛋白，常规抗体难以到达作用位点；建议采用细胞内递送 VHH、intrabody 或靶向降解构型，并重点评估 SMAD2 交叉反应。",
+    "structurePrepZh": "以 6YIB 高分辨率晶体结构为模板，保留抗原链 A/P 的 MH2 构象信息，补全缺失环区并标注 C 端磷酸化相关界面。",
+    "structureRef": "RCSB PDB 6YIB，X-ray diffraction，1.7 Å",
+    "antibodies": [
+      "抗 SMAD3 研究级单克隆抗体 EP568Y",
+      "抗 phospho-SMAD3 Ser423/425 单克隆抗体 C25A9"
+    ],
+    "interfaceFocus": "MH2 L3 loop、C 端 SSXS 邻近面与 SMAD4 接触界面",
+    "designMode": "细胞内抗体设计",
+    "candidates": [
+      {
+        "target": "TGFB1",
+        "rationale": "TGFB1 是 TGF-β 通路上游配体，可通过结合 TGFBR2 启动 SMAD2/3 磷酸化；胞外分泌蛋白属性使其中和抗体可及性显著优于 SMAD3。"
+      },
+      {
+        "target": "TGFBR2",
+        "rationale": "TGFBR2 结合 TGF-β 配体并招募 TGFBR1，是 SMAD3 激活的膜近端起始节点；其胞外配体结合域适合阻断型抗体设计。"
+      },
+      {
+        "target": "TGFBR1",
+        "rationale": "TGFBR1 直接磷酸化 SMAD3 C 端 SSXS 基序，是 SMAD3 通路激活的近端激酶；靶向受体胞外区可抑制受体复合体形成。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

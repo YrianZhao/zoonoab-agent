@@ -1,0 +1,65 @@
+{
+  "gene": "ADRM1",
+  "generatedAt": "2026-08-03T10:18:58.763Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ADRM1编码26S蛋白酶体19S调节颗粒泛素受体Rpn13，其Pru结构域识别K48连接多泛素链，并与去泛素化酶UCHL5协同调控底物进入蛋白酶体，浆细胞骨髓瘤等高蛋白合成肿瘤对该轴具有功能依赖性。该蛋白主要定位于蛋白酶体颗粒而非经典细胞表面抗原，抗原可及性弱于膜受体，但重组胞内结构域可支持体外阻断型抗体或细胞内抗体设计。相较于PSMB5等催化亚基，ADRM1提供泛素受体界面和UCHL5募集界面的非催化干预窗口，可作为蛋白酶体依赖性恶性浆细胞疾病中的机制验证优先靶点。",
+    "mechanism": "阻断ADRM1 Pru结构域与K48连接多泛素链的结合，并干扰ADRM1 C端区域对UCHL5的募集，降低泛素化底物向26S蛋白酶体递送效率。",
+    "selectedEpitope": "优先覆盖Pru结构域泛素结合沟槽及邻近Rpn2接触面，避免完全遮蔽蛋白酶体装配核心界面。",
+    "diseaseDirection": "浆细胞骨髓瘤与蛋白酶体依赖肿瘤",
+    "domain": "N端Pru结构域介导泛素结合；C端DEUBAD样区域参与UCHL5结合与去泛素化调控。",
+    "evidence": "ADRM1蛋白酶体泛素受体抗体设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q16186功能与结构域注释",
+      "RCSB PDB 5V1Y晶体结构记录",
+      "蛋白酶体Rpn13-UCHL5底物递送研究文献"
+    ],
+    "referenceEntries": "UniProt Q16186；RCSB PDB 5V1Y；Open Targets ADRM1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Pru结构域泛素结合沟槽",
+        "直接阻断K48多泛素链识别，具备明确功能读出",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Pru结构域Rpn2邻近接触面",
+        "可能削弱ADRM1在19S颗粒上的定位，适合构象调节型抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端UCHL5结合相关区域",
+        "可干扰去泛素化酶募集，但柔性较高且结构覆盖不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ADRM1为胞内蛋白酶体组分，常规抗体体内可及性受限；建议定位为体外功能阻断、细胞内抗体或递送平台联用设计。",
+    "structurePrepZh": "以5V1Y高分辨率晶体结构提取ADRM1抗原链，保留Pru折叠核心，去除结晶缓冲分子并校验多链界面一致性。",
+    "structureRef": "RCSB PDB 5V1Y，X-ray diffraction，1.421 Å",
+    "antibodies": [
+      "Rpn13/ADRM1功能阻断研究抗体",
+      "抗ADRM1免疫检测抗体"
+    ],
+    "interfaceFocus": "Pru泛素结合沟槽与Rpn2邻近界面",
+    "designMode": "胞内阻断型抗体",
+    "candidates": [
+      {
+        "target": "PSMB5",
+        "rationale": "PSMB5为20S蛋白酶体β5催化亚基，是硼替佐米和卡非佐米作用节点，与ADRM1同属蛋白酶体降解通路。其疾病验证强，但催化位点更适合小分子抑制。"
+      },
+      {
+        "target": "PSMD14",
+        "rationale": "PSMD14/Rpn11是19S颗粒金属蛋白酶型去泛素化酶，负责底物进入前的泛素链切除。其与ADRM1共同控制泛素化底物处理，适合作为同通路功能比较靶点。"
+      },
+      {
+        "target": "UCHL5",
+        "rationale": "UCHL5与ADRM1 C端区域结合并在蛋白酶体上执行去泛素化调节。阻断ADRM1-UCHL5轴可直接检验该受体复合物在肿瘤蛋白稳态中的贡献。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

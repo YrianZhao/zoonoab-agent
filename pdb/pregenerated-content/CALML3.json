@@ -1,0 +1,65 @@
+{
+  "gene": "CALML3",
+  "generatedAt": "2026-08-03T10:58:43.720Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CALML3编码钙调蛋白样钙结合蛋白，主要参与上皮细胞分化相关的Ca2+依赖性蛋白互作，当前Open Targets关联以血液代谢物、IL2RA测量及眼压等表型为主，缺乏明确致病通路与治疗性阻断证据。该蛋白为胞内EF-hand钙结合蛋白，并非分泌蛋白或膜受体，天然抗原可及性显著弱于胞外受体、细胞因子或可溶性配体。其优先级低于同通路中具有胞外结构域且存在明确药理阻断窗口的IL2RA、IL2RB和IL2RG，更适合作为机制研究抗原而非常规治疗性抗体主靶点。",
+    "mechanism": "抗体设计宜定位为胞内研究型结合剂，通过识别CALML3 Ca2+结合构象并干扰其与Ca2+依赖性效应蛋白的结合界面。",
+    "selectedEpitope": "优先覆盖N端EF-hand I/II附近暴露螺旋与Ca2+诱导构象界面。",
+    "diseaseDirection": "免疫表型与钙信号研究",
+    "domain": "CALML3含四个EF-hand钙结合基序，形成N端与C端两个球状钙结合叶。",
+    "evidence": "CALML3结构可成药性与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P27482蛋白功能注释",
+      "RCSB PDB 1GGZ晶体结构记录",
+      "EF-hand钙结合蛋白结构域文献"
+    ],
+    "referenceEntries": "UniProt P27482；RCSB PDB 1GGZ；Open Targets CALML3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端EF-hand I/II暴露螺旋与Ca2+结合环邻近面",
+        "可区分钙结合构象并用于功能性胞内结合剂筛选",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端EF-hand III/IV疏水口袋周边表面",
+        "可能覆盖效应蛋白识别面，适合构象依赖抗体设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "四个EF-hand核心Ca2+配位环",
+        "高度保守且可能产生CALM家族交叉反应，需严格负筛",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为胞内定位导致体内抗体可及性不足，且EF-hand区域与CALM1/2/3同源性高；建议以研究型Fab/VHH并加入家族成员负筛。",
+    "structurePrepZh": "采用1GGZ链A作为抗原模板，保留Ca2+结合构象信息，检查缺失残基、离子配位与同源保守面后再进行表位分层。",
+    "structureRef": "RCSB PDB 1GGZ，X-ray diffraction，1.5 Å",
+    "antibodies": [
+      "anti-CALML3 research antibody",
+      "anti-calmodulin family antibody"
+    ],
+    "interfaceFocus": "EF-hand叶间疏水沟槽与Ca2+依赖构象面",
+    "designMode": "胞内研究型结合剂",
+    "candidates": [
+      {
+        "target": "IL2RA",
+        "rationale": "IL2RA为IL-2受体α链，直接参与高亲和力IL-2受体复合物形成，并具有胞外结构域。相较CALML3，其在IL2RA测量相关免疫表型中具备更明确的抗体可及性与药理阻断依据。"
+      },
+      {
+        "target": "IL2RB",
+        "rationale": "IL2RB与IL2RG共同传递IL-2诱导的JAK1/JAK3-STAT5信号，是IL-2受体通路的核心膜受体亚基。其胞外配体结合界面可用于阻断IL-2介导的免疫细胞活化。"
+      },
+      {
+        "target": "IL2RG",
+        "rationale": "IL2RG为共同γ链，参与IL-2及多种γ链细胞因子受体复合物信号转导。作为膜受体亚基，其胞外结构域较CALML3更适合治疗性抗体表位设计。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

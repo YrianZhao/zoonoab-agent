@@ -1,0 +1,65 @@
+{
+  "gene": "MAOB",
+  "generatedAt": "2026-08-03T14:02:01.278Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAOB在线粒体外膜催化多巴胺、苯乙胺等单胺氧化脱氨，产生醛类代谢物、氨和过氧化氢；在帕金森病中可加重多巴胺耗竭与氧化应激损伤。该蛋白为外周膜相关黄素酶，主要催化结构域面向胞质侧，可作为细胞内靶向抗体或递送型抗体片段的设计对象，但并不具备经典胞外受体可及性。相较上游多巴胺受体或转运体，MAOB具有成熟小分子抑制剂遗传学与药理学证据，且1S3E高分辨率结构明确，适合开展结构约束的功能阻断分子设计。",
+    "mechanism": "设计分子应阻断底物进入MAOB疏水入口腔与FAD邻近催化腔，限制多巴胺氧化脱氨并降低H2O2生成。",
+    "selectedEpitope": "优先覆盖入口腔门控环与底物腔外缘，避免直接依赖深埋FAD位点。",
+    "diseaseDirection": "帕金森病与单胺代谢障碍",
+    "domain": "MAOB含N端ADP结合区、FAD结合催化核心及C端线粒体外膜锚定螺旋。",
+    "evidence": "MAOB结构酶学与帕金森病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P27338 monoamine oxidase B annotation",
+      "RCSB PDB 1S3E X-ray structure",
+      "MAO-B inhibitor clinical pharmacology literature"
+    ],
+    "referenceEntries": "UniProt P27338；RCSB PDB 1S3E；Open Targets MAOB",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "入口腔外缘与门控残基区域",
+        "可阻断底物进入催化腔，具备功能抑制潜力",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FAD结合催化核心邻近表面",
+        "可影响底物定位与氧化脱氨构象耦联",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端线粒体外膜锚定螺旋附近",
+        "可能影响膜定位但可及性与选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAOB为线粒体外膜胞质侧酶，常规循环抗体难以直接到达靶位点；需采用细胞内递送、纳米抗体或抗体偶联递送策略，并控制与MAOA同源催化区的交叉反应。",
+    "structurePrepZh": "以1S3E高分辨率二聚体结构为模板，保留FAD辅因子与关键水分子，评估入口腔、催化腔及膜锚定端的可及表面。",
+    "structureRef": "Binda et al., human MAO-B X-ray structure, PDB 1S3E",
+    "antibodies": [
+      "抗MAOB研究级单克隆抗体",
+      "抗MAOB免疫组化抗体"
+    ],
+    "interfaceFocus": "入口腔门控区与FAD邻近催化腔",
+    "designMode": "胞内酶阻断设计",
+    "candidates": [
+      {
+        "target": "MAOA",
+        "rationale": "MAOA与MAOB同属线粒体单胺氧化酶家族，参与5-羟色胺、去甲肾上腺素和多巴胺氧化脱氨；在抑郁障碍和单胺稳态异常中具有同通路相关性。"
+      },
+      {
+        "target": "SLC6A3",
+        "rationale": "SLC6A3编码多巴胺转运体，控制突触间隙多巴胺再摄取；其功能改变与帕金森病多巴胺能神经元通路密切相关。"
+      },
+      {
+        "target": "TH",
+        "rationale": "TH编码酪氨酸羟化酶，是多巴胺生物合成限速酶；与MAOB共同决定黑质纹状体通路中多巴胺合成与降解平衡。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "LCP1",
+  "generatedAt": "2026-08-03T13:50:25.933Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "LCP1编码L-plastin，为白细胞限制性表达的胞质F-actin交联蛋白，参与整合素黏附、免疫突触形成与迁移相关肌动蛋白束重塑，Open Targets关联主要集中于淋巴细胞计数和血小板表型等免疫血液学方向。该蛋白定位于胞质而非分泌蛋白或膜受体，缺乏天然胞外结构域，因此常规体内抗体阻断的抗原可及性低于CD18、ICAM1等细胞表面黏附靶点。其优先级应定位为结构机制研究、细胞内递送抗体或蛋白相互作用阻断验证靶点；相较同通路表面分子，LCP1的优势在于直接作用于肌动蛋白束化执行层，可解析白细胞迁移表型的细胞骨架终端机制。",
+    "mechanism": "通过结合LCP1肌动蛋白结合结构域附近界面，阻断其CH结构域与F-actin的结合及二聚/构象稳定化，从而削弱白细胞F-actin束化与黏附迁移。",
+    "selectedEpitope": "优先针对ABD2的CH3-CH4肌动蛋白结合沟槽邻近构象表位，避免EF-hand钙结合核心。",
+    "diseaseDirection": "免疫血液学与白细胞迁移异常",
+    "domain": "LCP1含N端EF-hand调控区及两个串联actin-binding domains，每个ABD由两个calponin-homology结构域组成。",
+    "evidence": "LCP1白细胞肌动蛋白束化结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P13796 functional annotation",
+      "RCSB PDB 6VEC electron microscopy structure",
+      "Actin cytoskeleton and leukocyte adhesion literature"
+    ],
+    "referenceEntries": "UniProt:P13796；RCSB PDB:6VEC；Open Targets:LCP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ABD2 CH3-CH4肌动蛋白结合沟槽邻近区域",
+        "可直接干预LCP1与F-actin结合，适合功能阻断型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ABD1 CH1-CH2外露螺旋束界面",
+        "可影响串联ABD构象协同与肌动蛋白束化效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端EF-hand钙结合调控区",
+        "可能影响构象调节但保守性与脱靶风险较高，需谨慎验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "LCP1为胞质蛋白，常规抗体体内可及性不足；建议采用细胞内递送、intrabody或ex vivo功能筛选，并严格评估plastin家族交叉反应。",
+    "structurePrepZh": "以6VEC低分辨率电镜模型为构象参考，补全缺失环区并校验CH结构域取向；表位建模需结合AlphaFold或同源结构交叉约束。",
+    "structureRef": "RCSB PDB 6VEC，human L-plastin EM structure，3.9 Å",
+    "antibodies": [
+      "anti-L-plastin clone LPL4A.1",
+      "anti-LCP1 polyclonal antibody"
+    ],
+    "interfaceFocus": "CH结构域-F-actin结合界面",
+    "designMode": "胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "ITGB2",
+        "rationale": "ITGB2编码CD18，为白细胞β2整合素核心亚基，位于LCP1上游黏附迁移通路；其胞外结构域可及性高，适合抗体阻断LFA-1/Mac-1介导的细胞黏附。"
+      },
+      {
+        "target": "ICAM1",
+        "rationale": "ICAM1是β2整合素配体，直接参与白细胞黏附和跨内皮迁移；阻断ICAM1与LFA-1相互作用可在细胞外层面干预同一迁移轴。"
+      },
+      {
+        "target": "ACTB",
+        "rationale": "ACTB编码β-actin，是LCP1介导F-actin束化的直接结构底物；虽同属细胞骨架执行层，但因高度保守且广泛表达，治疗性抗体优先级低于表面黏附分子。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

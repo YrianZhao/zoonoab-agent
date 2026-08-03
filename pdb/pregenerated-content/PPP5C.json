@@ -1,0 +1,65 @@
+{
+  "gene": "PPP5C",
+  "generatedAt": "2026-08-03T15:32:17.674Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PPP5C编码丝氨酸/苏氨酸蛋白磷酸酶PP5，主要作为胞内TPR结构域介导的HSP90伴侣复合物组分，参与DNA损伤应答、糖皮质激素受体调控、ATM/ATR相关磷酸化网络及炎症细胞稳态。Open Targets关联信号主要集中于淋巴细胞、嗜酸性粒细胞、嗜碱性粒细胞及代谢表型，提示其与免疫细胞计数和血液学数量性状存在遗传或功能关联。然而PPP5C为胞内催化酶，缺乏天然胞外结构域或分泌形式，抗原可及性显著弱于膜受体和分泌因子；其优先级更适合作为结构生物学验证或细胞内递送抗体探索靶点，而非传统治疗性阻断抗体首选靶点。",
+    "mechanism": "抗体设计宜聚焦细胞内递送形式，遮蔽TPR-HSP90结合沟槽或催化结构域底物进入面，干扰PPP5C与伴侣复合物及磷酸化底物的接触。",
+    "selectedEpitope": "优先选择N端TPR重复的HSP90 C端EEVD肽结合沟槽，备选催化结构域底物识别边缘。",
+    "diseaseDirection": "免疫血液数量性状与炎症调控",
+    "domain": "PPP5C含N端TPR伴侣蛋白结合区、中央自抑制连接区及C端PP2A样丝氨酸/苏氨酸磷酸酶催化结构域。",
+    "evidence": "PPP5C免疫血液表型与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联与遗传证据",
+      "UniProt P53041蛋白功能与结构域注释",
+      "RCSB PDB 4ZX2高分辨率X射线晶体结构",
+      "Reactome/文献中HSP90伴侣复合物与DNA损伤应答注释"
+    ],
+    "referenceEntries": "UniProt P53041；RCSB PDB 4ZX2；Open Targets PPP5C",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端TPR重复内侧HSP90 EEVD肽结合沟槽",
+        "可直接阻断PPP5C与HSP90伴侣复合物装配，机制明确且结构凹槽可用于VHH设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端磷酸酶催化结构域底物进入面周缘",
+        "有望限制底物肽接近金属依赖催化中心，但需避免完全模拟小分子抑制剂的广谱磷酸酶风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化核心金属结合活性位点邻近区域",
+        "保守性高，可能交叉识别PPM/PPP家族相关磷酸酶并影响必需细胞功能",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PPP5C定位于胞内，常规IgG难以到达作用位点；催化核心保守性较高。设计应优先采用可细胞内递送的VHH或工程化Fab，并避开高度保守金属配位残基。",
+    "structurePrepZh": "以PDB 4ZX2链A为抗原模型，保留TPR与催化结构域构象，校验晶体配体、金属离子和缺失环区；对TPR沟槽及催化入口进行溶剂可及性与保守性标注。",
+    "structureRef": "PDB 4ZX2，human PPP5C，X-ray diffraction，1.23 Å",
+    "antibodies": [
+      "无已获批PPP5C治疗性抗体",
+      "研究级抗PPP5C单克隆抗体"
+    ],
+    "interfaceFocus": "TPR-EEVD结合沟槽与催化入口边缘",
+    "designMode": "胞内靶向VHH/Fab",
+    "candidates": [
+      {
+        "target": "HSP90AA1",
+        "rationale": "HSP90AA1与PPP5C的TPR结构域通过C端EEVD基序形成伴侣复合物，处于同一蛋白稳态与应激反应网络。其客户蛋白调控与免疫炎症及肿瘤应激通路相关。"
+      },
+      {
+        "target": "HSP90AB1",
+        "rationale": "HSP90AB1同样通过C端EEVD基序招募TPR蛋白，包括PPP5C，维持伴侣复合物装配。该节点可作为PPP5C伴侣依赖功能的上游结构互作靶点。"
+      },
+      {
+        "target": "ATM",
+        "rationale": "ATM介导DNA损伤应答中的磷酸化信号，PPP5C被报道参与ATM相关磷酸化稳态调节。二者位于细胞应激与基因组稳定性通路，可用于同通路机制比较。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

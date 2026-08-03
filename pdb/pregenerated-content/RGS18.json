@@ -1,0 +1,65 @@
+{
+  "gene": "RGS18",
+  "generatedAt": "2026-08-03T20:55:20.543Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RGS18是血小板与造血细胞中表达的G蛋白信号调节因子，可通过RGS结构域加速Gαi/Gαq水解GTP，从而限制ADP、血栓素A2及趋化因子受体相关信号，疾病证据主要指向静脉血栓栓塞及血液蛋白定量性状。该蛋白为胞内可溶性调节蛋白，缺乏天然胞外结构域，常规循环抗体难以直接结合完整细胞内抗原，因此更适合作为结构验证、细胞内抗体或降解型分子设计靶点。相较于P2RY12、TBXA2R等膜受体，RGS18处于多条GPCR信号的负调控节点，具有通路整合优势，但抗体药物优先级受抗原可及性限制，应定位为探索性优先级。",
+    "mechanism": "设计分子可结合RGS结构域的Gα接触面，阻断RGS18与Gαi/Gαq复合物形成，降低其GTPase加速活性并延长血小板GPCR信号。",
+    "selectedEpitope": "优先覆盖RGS box内α5-α6及α7-α8附近的Gα结合界面，避免仅选择远离功能面的柔性环区。",
+    "diseaseDirection": "血栓形成与血小板GPCR信号",
+    "domain": "RGS18主要含胞内RGS box结构域，形成九螺旋束折叠并介导与Gα亚基结合。",
+    "evidence": "RGS18血栓相关遗传与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt Q9NS28功能注释",
+      "RCSB PDB 2JM5溶液NMR结构",
+      "血小板GPCR-RGS信号文献证据"
+    ],
+    "referenceEntries": "UniProt: Q9NS28；RCSB PDB: 2JM5；Ensembl: ENSG00000150681",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RGS box Gα结合面α5-α6/α7-α8螺旋区域",
+        "直接干预RGS18-Gα复合物形成，功能阻断价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RGS结构域外侧稳定螺旋束表面",
+        "适合获得构象识别抗体，用于结构验证或细胞内结合工具",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端非结构化或低保守柔性区域",
+        "可能免疫原性较高但与催化调节界面关联有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RGS18为胞内可溶蛋白，常规Fab或VHH不具备天然细胞进入能力；功能表位与Gα界面重叠时需评估RGS家族同源性导致的交叉反应。",
+    "structurePrepZh": "以PDB 2JM5的NMR构象集合为模板，保留RGS box稳定核心，进行构象聚类、缺失端区标注及Gα结合面映射后开展表位建模。",
+    "structureRef": "RCSB PDB 2JM5，human RGS18 RGS domain solution NMR",
+    "antibodies": [
+      "无已获批RGS18治疗性抗体",
+      "研究级anti-RGS18抗体"
+    ],
+    "interfaceFocus": "RGS box与Gαi/Gαq Switch区接触面",
+    "designMode": "胞内功能阻断",
+    "candidates": [
+      {
+        "target": "P2RY12",
+        "rationale": "P2RY12是血小板ADP-Gi信号核心受体，与RGS18调控的Gαi轴处于同一血栓形成通路，且为膜受体，抗原可及性显著优于RGS18。"
+      },
+      {
+        "target": "TBXA2R",
+        "rationale": "TBXA2R介导血栓素A2依赖的Gq/G12/13血小板激活，与RGS18负调控的GPCR信号网络相关，适合作为同通路膜靶点候选。"
+      },
+      {
+        "target": "ITGA2B",
+        "rationale": "ITGA2B编码血小板αIIb整合素，是GPCR激活下游聚集效应环节的关键受体，具备明确胞外结构域与血栓疾病关联。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

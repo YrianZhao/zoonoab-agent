@@ -1,0 +1,65 @@
+{
+  "gene": "CMPK1",
+  "generatedAt": "2026-08-03T11:29:35.173Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CMPK1为胞质核苷酸代谢酶，催化CMP、UMP及dCMP向相应二磷酸核苷酸转化，影响嘧啶核苷酸池稳态与免疫细胞增殖代谢。其Open Targets关联主要集中于中性粒细胞计数、淋巴细胞计数及神经炎症相关疾病，但该蛋白缺乏分泌信号肽和跨膜区，天然抗原可及性低。相比CD38、ITGAL等免疫细胞表面靶点，CMPK1更适合作为胞内功能验证或递送型抗体研究对象，作为常规治疗性抗体主靶点优先级较低。",
+    "mechanism": "设计胞内递送型抗体阻断CMPK1 P-loop与CMP/UMP磷酸基及Mg-ATP供体的结合，抑制嘧啶单磷酸磷酸化反应。",
+    "selectedEpitope": "优先覆盖P-loop/CORE结构域核苷酸结合沟槽，避开高度保守ATPase样骨架表面。",
+    "diseaseDirection": "免疫细胞计数与神经炎症代谢",
+    "domain": "单体核苷酸激酶折叠，含P-loop、NMP结合区、LID区及CORE催化核心。",
+    "evidence": "CMPK1嘧啶代谢与免疫表型遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProtKB P30085功能与亚细胞定位注释",
+      "RCSB PDB 1TEV晶体结构记录",
+      "核苷酸激酶家族催化机制文献"
+    ],
+    "referenceEntries": "UniProtKB:P30085；RCSB PDB:1TEV；HGNC:CMPK1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "P-loop与NMP结合沟槽邻近区域",
+        "直接干预CMP/UMP磷酸基定位及催化构象闭合",
+        "优先"
+      ],
+      [
+        "Site B",
+        "LID区与CORE结构域交界面",
+        "限制ATP结合后的LID闭合，降低磷酸转移效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "CORE结构域远端溶剂暴露面",
+        "结构可及但功能耦合弱，易产生非抑制性结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CMPK1为胞质酶，常规IgG难以到达天然抗原；活性位点保守且口袋较小，需采用胞内递送、片段抗体或降解偶联策略并验证细胞通透性。",
+    "structurePrepZh": "以1TEV链A为模板，补全缺失侧链和质子化状态，保留催化沟槽几何信息，围绕P-loop、NMP结合区和LID区定义可设计表面。",
+    "structureRef": "RCSB PDB 1TEV，human CMPK1，X-ray 2.1 Å",
+    "antibodies": [
+      "无已批准CMPK1治疗性抗体",
+      "研究级抗CMPK1检测抗体"
+    ],
+    "interfaceFocus": "P-loop、NMP结合沟槽与LID闭合界面",
+    "designMode": "胞内酶抑制型",
+    "candidates": [
+      {
+        "target": "CTPS1",
+        "rationale": "CTPS1催化UTP向CTP转化，是淋巴细胞增殖所需嘧啶合成通路关键酶；与免疫细胞扩增表型具有更直接的代谢机制联系。"
+      },
+      {
+        "target": "DHODH",
+        "rationale": "DHODH位于从头嘧啶合成通路，调控增殖细胞尿苷酸供给；其抑制剂已在自身免疫疾病中验证免疫调节可行性。"
+      },
+      {
+        "target": "ENTPD1",
+        "rationale": "ENTPD1为胞外核苷酸水解酶，调节免疫微环境ATP/ADP水平；其膜外催化结构域具备优于CMPK1的抗体可及性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

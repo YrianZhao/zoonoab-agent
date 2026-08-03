@@ -1,0 +1,65 @@
+{
+  "gene": "REV1",
+  "generatedAt": "2026-08-03T15:59:22.006Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "REV1为胞内DNA损伤跨损伤合成聚合酶，主要通过BRCT结构域、催化核心及C端相互作用区域协调PCNA依赖的DNA损伤旁路复制，其遗传关联可见于子宫平滑肌瘤等疾病表型。该蛋白定位于细胞核内复制叉和DNA损伤灶，不具备分泌蛋白或膜受体的天然胞外可及性，因此不适合作为传统体内治疗性抗体直接阻断靶点。若用于抗体设计，应优先定位为结构生物学、细胞内递送抗体或研究级结合分子靶点；相比REV3L、POLH等同类TLS因子，REV1的C端支架功能可同时影响多种Y家族聚合酶募集，机制整合度较高。",
+    "mechanism": "设计分子应阻断REV1与REV7或Y家族聚合酶的C端互作，削弱损伤复制叉处TLS聚合酶募集与模板旁路延伸。",
+    "selectedEpitope": "优先围绕4EXT所解析的REV1 C端结构域蛋白互作沟槽设计，覆盖REV7结合相关疏水界面。",
+    "diseaseDirection": "DNA损伤应答与子宫平滑肌瘤关联",
+    "domain": "REV1含N端BRCT结构域、DNA定向聚合酶核心结构域、PAD区及C端聚合酶互作结构域。",
+    "evidence": "REV1跨损伤合成与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform遗传关联与疾病表型数据",
+      "UniProt Q9UBZ9蛋白功能与结构域注释",
+      "RCSB PDB 4EXT晶体结构解析数据",
+      "DNA translesion synthesis文献中REV1-REV7/聚合酶互作研究"
+    ],
+    "referenceEntries": "UniProt Q9UBZ9；RCSB PDB 4EXT；Open Targets REV1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "REV1 C端结构域REV7/聚合酶互作沟槽",
+        "直接干预TLS聚合酶募集，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "BRCT结构域磷酸蛋白识别相关表面",
+        "可能影响DNA损伤应答复合体定位，但需验证细胞内可及性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "聚合酶核心催化结构域近DNA结合面",
+        "存在影响保守折叠与核酸结合的风险，选择性窗口较窄",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "REV1为核内胞质不可及抗原，传统IgG体内阻断可行性低；建议限定为胞内递送抗体、intrabody或结构探针，并规避催化核心保守位点。",
+    "structurePrepZh": "以4EXT晶体结构为C端结构域模板，保留抗原链A、B、C中构象完整链，补充缺失环区并评估晶体接触对互作沟槽的影响。",
+    "structureRef": "RCSB PDB 4EXT，X-ray diffraction，1.9 Å",
+    "antibodies": [
+      "研究级anti-REV1 antibody",
+      "细胞内递送型anti-REV1 intrabody"
+    ],
+    "interfaceFocus": "REV1 C端结构域疏水互作沟槽",
+    "designMode": "胞内靶点研究型",
+    "candidates": [
+      {
+        "target": "REV3L",
+        "rationale": "REV3L编码DNA聚合酶ζ催化亚基，是REV1介导TLS延伸步骤的关键同通路因子；干预REV1-REV3L轴可影响损伤旁路复制。"
+      },
+      {
+        "target": "MAD2L2",
+        "rationale": "MAD2L2编码REV7，与REV3L形成聚合酶ζ复合体并参与REV1相关TLS复合体装配，是REV1 C端互作网络中的真实功能伙伴。"
+      },
+      {
+        "target": "POLH",
+        "rationale": "POLH编码DNA聚合酶η，属于Y家族TLS聚合酶，可通过REV1 C端互作区域参与损伤位点聚合酶切换，处于同一DNA损伤旁路复制通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

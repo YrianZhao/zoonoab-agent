@@ -1,0 +1,65 @@
+{
+  "gene": "IL3",
+  "generatedAt": "2026-08-03T13:27:43.023Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IL3 是造血与过敏炎症轴中的关键细胞因子，可通过 IL3RA/CD123 与 CSF2RB 组成的受体复合物促进嗜碱性粒细胞、嗜酸性粒细胞和髓系祖细胞存活及扩增，并与特应性湿疹和嗜酸性粒细胞计数等表型相关。IL3 为分泌型四螺旋束细胞因子，抗原完全位于胞外环境，适合以中和抗体阻断其受体结合界面。相较直接靶向共享 β 链 CSF2RB，IL3 选择性更高，可降低对 GM-CSF 和 IL5 信号的广泛干扰风险，因此具有较优先的通路选择性设计价值。",
+    "mechanism": "中和抗体阻断 IL3 与 IL3RA 胞外细胞因子结合模块的结合，并抑制 CSF2RB 招募，从而降低 JAK2-STAT5 介导的髓系炎症细胞存活信号。",
+    "selectedEpitope": "优先覆盖 IL3 四螺旋束中 A/C 螺旋及 AB 环附近的 IL3RA 结合面。",
+    "diseaseDirection": "过敏炎症与嗜酸/嗜碱细胞异常",
+    "domain": "IL3 为分泌型短链四α螺旋束细胞因子，包含 A-D 螺旋和连接环区。",
+    "evidence": "IL3-IL3RA-CSF2RB 炎症轴抗体设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt P08700 蛋白功能与分泌定位注释",
+      "RCSB PDB 5UWC X-ray 复合物结构",
+      "IL3/GM-CSF/IL5 受体家族细胞因子信号文献"
+    ],
+    "referenceEntries": "UniProt: P08700; RCSB PDB: 5UWC; Open Targets: IL3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "A/C 螺旋与 AB 环受体结合面",
+        "直接遮蔽 IL3RA 识别界面，具备中和优先级",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C/D 螺旋邻近 CSF2RB 招募相关表面",
+        "可干扰高亲和受体复合物装配，适合作为补充中和策略",
+        "备选"
+      ],
+      [
+        "Site C",
+        "四螺旋束保守疏水核心邻近区域",
+        "可能影响蛋白稳定性或产生非特异构象选择，需控制亲和成熟压力",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IL3 与 GM-CSF、IL5 共享 CSF2RB 下游受体系统，表位应避免偏向共享 β 链模拟界面造成通路外推断，并需评估造血祖细胞抑制风险。",
+    "structurePrepZh": "以 5UWC 中 IL3 抗原链 G、I、A 为模板，保留成熟分泌蛋白构象，校验晶体接触、缺失环区和受体结合面暴露度后进行表位建模。",
+    "structureRef": "RCSB PDB 5UWC, X-ray diffraction, 2.4 Å",
+    "antibodies": [
+      "CSL362",
+      "Tagraxofusp"
+    ],
+    "interfaceFocus": "IL3RA 结合面及 CSF2RB 招募邻近表面",
+    "designMode": "分泌因子中和",
+    "candidates": [
+      {
+        "target": "IL3RA",
+        "rationale": "IL3RA/CD123 是 IL3 高亲和受体的特异性 α 链，直接决定 IL3 结合与受体复合物起始装配，适合作为同轴受体阻断靶点。"
+      },
+      {
+        "target": "CSF2RB",
+        "rationale": "CSF2RB 为 IL3、GM-CSF 与 IL5 共享 β 链，负责信号转导与 JAK2-STAT5 激活；其阻断可产生更广泛的髓系炎症抑制效应。"
+      },
+      {
+        "target": "IL5",
+        "rationale": "IL5 与 IL3 共享 CSF2RB 受体系统并促进嗜酸性粒细胞分化和存活，是嗜酸性炎症通路中的已验证细胞因子靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "DIAPH1",
+  "generatedAt": "2026-08-03T11:57:07.735Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DIAPH1编码的formin蛋白参与RhoA-介导的肌动蛋白聚合调控，致病变异与常染色体显性非综合征性听力损失、DIAPH1相关听力损失-血小板减少综合征及神经发育异常相关。该蛋白主要为胞内细胞骨架调节因子，天然抗原可及性显著弱于膜受体或分泌蛋白，因此更适合机制研究型细胞内递送抗体或结构探针策略。相较于MYH9、ACTB等广泛表达的细胞骨架靶点，DIAPH1具有更明确的遗传疾病因果证据与自抑制调控结构域信息，可作为RhoA-DIAPH1-actin轴的优先验证靶点。",
+    "mechanism": "通过结合DIAPH1 GTPase-binding/Diaphanous inhibitory domain界面，干预RhoA结合及DAD介导自抑制释放，调节FH2依赖的肌动蛋白丝延伸。",
+    "selectedEpitope": "优先锁定GBD-DID自抑制调控面及RhoA结合邻近螺旋束表位。",
+    "diseaseDirection": "遗传性听力损失与神经发育异常",
+    "domain": "DIAPH1含N端GBD/DID调控区、FH1脯氨酸富集区、FH2成核延伸区及C端DAD自抑制基序。",
+    "evidence": "DIAPH1遗传病因与结构调控证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt O60610功能与结构域注释",
+      "RCSB PDB 8FG1溶液NMR结构",
+      "OMIM/ClinVar DIAPH1致病变异记录"
+    ],
+    "referenceEntries": "UniProt: O60610；RCSB PDB: 8FG1；HGNC: DIAPH1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "GBD-DID螺旋束与RhoA结合邻近区域",
+        "可干预RhoA依赖的自抑制解除，适合机制型阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DID与C端DAD自抑制肽结合沟槽",
+        "可稳定自抑制构象并抑制异常formin活化",
+        "备选"
+      ],
+      [
+        "Site C",
+        "FH2二聚化与actin filament接触界面",
+        "可能直接影响肌动蛋白延伸，但功能保守性高且细胞骨架毒性风险较大",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DIAPH1为胞内蛋白，常规抗体难以到达作用位点；FH2界面保守且功能必需，应优先采用细胞内递送、VHH或结构探针验证。",
+    "structurePrepZh": "以PDB 8FG1的NMR构象集合评估GBD/DID表面稳定性，需补全缺失柔性区并结合AlphaFold全长模型定位FH1、FH2与DAD。",
+    "structureRef": "RCSB PDB 8FG1，human DIAPH1 solution NMR structure",
+    "antibodies": [
+      "DIAPH1研究级单克隆抗体",
+      "anti-mDia1 commercial monoclonal antibody"
+    ],
+    "interfaceFocus": "GBD-DID自抑制面及RhoA结合界面",
+    "designMode": "胞内VHH/结构探针",
+    "candidates": [
+      {
+        "target": "RHOA",
+        "rationale": "RHOA直接结合DIAPH1 N端GBD区域并解除DAD介导的自抑制，是RhoA-DIAPH1肌动蛋白调控轴的上游开关。"
+      },
+      {
+        "target": "ROCK1",
+        "rationale": "ROCK1为RhoA下游效应激酶，与DIAPH1共同调控肌动蛋白应力纤维、细胞形态及收缩相关过程，可作为同轴通路比较靶点。"
+      },
+      {
+        "target": "ACTB",
+        "rationale": "ACTB编码β-actin，是DIAPH1 FH2结构域促进聚合的直接细胞骨架底物，遗传变异亦与神经发育异常和听力表型相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

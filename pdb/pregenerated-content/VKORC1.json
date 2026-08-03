@@ -1,0 +1,65 @@
+{
+  "gene": "VKORC1",
+  "generatedAt": "2026-08-03T17:48:38.460Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "VKORC1 是维生素K循环的关键内质网膜酶，催化维生素K环氧化物还原，维持凝血因子 II、VII、IX、X 及蛋白 C、S 的γ-羧化底物供给，其功能异常与维生素K依赖性凝血因子联合缺乏及血栓相关疾病存在明确遗传和药理学关联。该靶点为多跨膜膜蛋白，抗体可及性主要受限于短腔面/胞质环区，较分泌型凝血因子不具天然抗原暴露优势，但结构解析提供了可用于界面约束设计的高分辨率模板。相较广泛调控凝血级联的下游因子，VKORC1 位于维生素K再循环上游，具备通路控制点价值；然而因其内质网定位和小型跨膜拓扑，优先级应定位为机制验证型或细胞内递送抗体设计，而非传统体液阻断抗体靶点。",
+    "mechanism": "通过结合 VKORC1 腔面环区及底物入口邻近跨膜界面，空间干扰维生素K环氧化物进入活性位点并影响 Cys132/Cys135 催化循环。",
+    "selectedEpitope": "优先评估 TM3-TM4 邻近的腔面环与底物入口周边界面，避开埋藏跨膜核心疏水面。",
+    "diseaseDirection": "维生素K循环与凝血异常",
+    "domain": "VKORC1 为约163 aa内质网多跨膜氧化还原酶，含4个跨膜螺旋及Cys132/Cys135催化基序。",
+    "evidence": "VKORC1维生素K循环与凝血疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9BQB6 functional annotation",
+      "RCSB PDB 6WVH X-ray structure",
+      "ClinVar/OMIM VKORC1-related coagulation deficiency records"
+    ],
+    "referenceEntries": "UniProt Q9BQB6；RCSB PDB 6WVH；Open Targets VKORC1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "TM3-TM4腔面环及底物入口邻近区域",
+        "可能影响维生素K环氧化物进入催化口袋，具备机制阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端短环及TM1外露边缘",
+        "可用于构建构象识别抗体，但对酶活抑制的直接性较弱",
+        "备选"
+      ],
+      [
+        "Site C",
+        "跨膜螺旋疏水核心与Cys132/Cys135埋藏邻域",
+        "结构保守且膜内埋藏，可及性低，易产生构象依赖和开发风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "VKORC1位于内质网膜，天然抗体难以进入细胞内腔面或膜内界面；建议采用重组纳米盘抗原、细胞内递送格式或仅作为机制研究型抗体项目推进。",
+    "structurePrepZh": "以6WVH链A/B为模板，保留跨膜螺旋构象并重建膜环境；去除非目标配体后进行质子化、环区补模和纳米盘展示建模。",
+    "structureRef": "Li et al., human VKORC1 X-ray structure, PDB 6WVH",
+    "antibodies": [
+      "暂无获批抗VKORC1治疗性抗体",
+      "研究级anti-VKORC1检测抗体"
+    ],
+    "interfaceFocus": "底物入口、TM3-TM4环区及催化半胱氨酸邻近通道",
+    "designMode": "结构约束阻断",
+    "candidates": [
+      {
+        "target": "GGCX",
+        "rationale": "GGCX 直接利用还原型维生素K催化凝血因子谷氨酸残基γ-羧化，位于VKORC1同一维生素K依赖性凝血成熟通路。其功能缺陷同样导致维生素K依赖性凝血因子联合缺乏。"
+      },
+      {
+        "target": "F7",
+        "rationale": "F7 编码凝血因子VII，其γ-羧化成熟依赖VKORC1维持的还原型维生素K供给，是维生素K依赖性凝血级联的关键下游效应因子。靶向其活化或组织因子结合界面可直接调节凝血启动。"
+      },
+      {
+        "target": "F9",
+        "rationale": "F9 编码凝血因子IX，属于维生素K依赖性凝血因子并参与内源性凝血途径放大。其成熟依赖GGCX与VKORC1耦联的维生素K循环，适合作为同通路替代干预节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

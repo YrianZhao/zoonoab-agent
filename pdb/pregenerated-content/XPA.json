@@ -1,0 +1,65 @@
+{
+  "gene": "XPA",
+  "generatedAt": "2026-08-03T17:55:01.653Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "XPA是核苷酸切除修复通路的核心支架因子，负责在紫外线诱导的DNA损伤位点组织RPA、ERCC1-XPF及TFIIH等修复组分，其遗传缺陷直接导致着色性干皮病A型并显著增加皮肤癌风险。该蛋白主要定位于细胞核而非经典胞外抗原，抗体设计更适合用于胞内递送、结构探针或功能阻断研究，抗原可及性低于膜受体和分泌蛋白。相较通路中大型多亚基因子，XPA具有明确的DNA结合核心结构域和疾病因果证据，适合作为机制验证优先靶点，但治疗性常规抗体开发优先级需谨慎评估。",
+    "mechanism": "通过结合XPA DNA结合核心域，阻断其与受损DNA及RPA的协同装配，干扰NER损伤验证与切除复合体募集。",
+    "selectedEpitope": "优先覆盖XPA DNA结合核心域的正电荷沟槽及RPA70相邻界面，避免完全遮蔽锌指结构稳定区。",
+    "diseaseDirection": "DNA修复缺陷与皮肤癌易感",
+    "domain": "XPA含N端调控区、中央锌依赖DNA结合核心域及C端ERCC1结合区。",
+    "evidence": "XPA-NER通路疾病因果与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P23025功能与结构域注释",
+      "RCSB PDB 6J44晶体结构",
+      "核苷酸切除修复通路文献证据"
+    ],
+    "referenceEntries": "UniProt:P23025；RCSB PDB:6J44；Open Targets:XPA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "中央DNA结合核心域正电荷沟槽",
+        "可直接干扰XPA识别受损DNA并削弱NER复合体成核",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RPA70相邻结合界面附近螺旋区",
+        "有助于阻断XPA-RPA协同定位并解析损伤验证步骤",
+        "备选"
+      ],
+      [
+        "Site C",
+        "锌结合结构域保守折叠核心",
+        "可能破坏整体折叠并产生非特异构象效应，需谨慎设计",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "XPA为核内DNA修复因子，常规抗体难以天然进入作用位点；设计应优先定位为胞内递送抗体、Fab结构探针或体外机制阻断工具。",
+    "structurePrepZh": "以6J44链A为抗原模板，保留锌配位关键残基与核心域构象，补全柔性末端缺失并标注DNA/RPA相关界面。",
+    "structureRef": "RCSB PDB 6J44，XPA核心域X射线晶体结构，2.06 Å",
+    "antibodies": [
+      "anti-XPA monoclonal antibody 12F5",
+      "anti-XPA monoclonal antibody D9"
+    ],
+    "interfaceFocus": "DNA结合沟槽与RPA协同装配界面",
+    "designMode": "胞内功能阻断",
+    "candidates": [
+      {
+        "target": "ERCC1",
+        "rationale": "ERCC1与XPF形成切口核酸酶复合体，并通过XPA定位至损伤位点，是NER切除步骤的同通路关键节点。"
+      },
+      {
+        "target": "ERCC4",
+        "rationale": "ERCC4编码XPF核酸酶，与ERCC1共同执行损伤DNA 5端切口，功能上位于XPA介导复合体装配之后。"
+      },
+      {
+        "target": "RPA1",
+        "rationale": "RPA1编码RPA70亚基，可与XPA及单链DNA协同稳定损伤识别中间体，是NER损伤验证阶段的真实互作靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "THAP4",
+  "generatedAt": "2026-08-03T17:16:11.227Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "THAP4为含THAP型锌指DNA结合结构域的核内蛋白，现有遗传关联主要集中于血小板计数、神经退行性疾病和甲状腺相关表型，但尚缺乏明确可药化的胞外疾病驱动机制。该蛋白不属于分泌蛋白、膜受体或胞外配体，天然抗原可及性不支持常规治疗性抗体直接结合。相较同通路中具有胞外配体或受体特征的靶点，THAP4更适合作为遗传学证据参照或细胞内机制研究对象，抗体设计优先级较低。",
+    "mechanism": "不建议设定阻断性治疗抗体机制；可采用细胞内研究抗体识别THAP结构域构象，用于检测THAP4-DNA结合复合物或蛋白表达定位。",
+    "selectedEpitope": "优先避开THAP锌指DNA结合面，选择THAP结构域外侧非DNA接触环区用于检测抗体设计。",
+    "diseaseDirection": "血小板计数与神经退行性表型",
+    "domain": "N端THAP型C2CH锌指DNA结合结构域，PDB 3IA8覆盖结构化THAP域。",
+    "evidence": "THAP4遗传关联与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q8WY91蛋白功能与亚细胞定位注释",
+      "RCSB PDB 3IA8晶体结构记录",
+      "AlphaFold/结构域数据库THAP锌指注释"
+    ],
+    "referenceEntries": "UniProt Q8WY91；RCSB PDB 3IA8；Open Targets THAP4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "THAP结构域外侧溶剂暴露环区",
+        "有利于构象识别且降低干扰DNA结合核心的风险",
+        "优先"
+      ],
+      [
+        "Site B",
+        "THAP结构域N端边缘螺旋/环连接区",
+        "适合制备结构域检测抗体，需评估同源THAP蛋白交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "THAP锌指DNA结合面及金属配位邻近区域",
+        "可能扰动折叠或DNA结合，且表位保守性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "THAP4为核内DNA结合蛋白，缺乏胞外可及性；治疗性抗体递送与靶点占有率风险较高，建议限定为科研检测或选择胞外替代靶点。",
+    "structurePrepZh": "以3IA8链A/B为THAP域模板，保留锌配位几何并校验缺失环区；表位筛选需剔除DNA结合面和高度保守残基。",
+    "structureRef": "RCSB PDB 3IA8，X-ray 1.792 Å，human THAP4 THAP domain",
+    "antibodies": [
+      "暂无获批THAP4治疗性抗体",
+      "商业化抗THAP4研究抗体"
+    ],
+    "interfaceFocus": "THAP锌指外侧环区与DNA结合面边界",
+    "designMode": "研究抗体优先",
+    "candidates": [
+      {
+        "target": "MPL",
+        "rationale": "MPL为血小板生成素受体，直接介导TPO驱动的巨核细胞成熟和血小板生成，具备明确膜受体胞外结构域，抗体可及性优于THAP4。"
+      },
+      {
+        "target": "THPO",
+        "rationale": "THPO编码血小板生成素，是MPL通路的分泌型配体，与血小板计数和巨核细胞生成机制直接相关，适合配体中和或稳定化抗体策略。"
+      },
+      {
+        "target": "JAK2",
+        "rationale": "JAK2位于MPL下游并参与血小板生成信号转导，但为胞内激酶，抗体治疗可及性受限；更适合作为通路药理学参照靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

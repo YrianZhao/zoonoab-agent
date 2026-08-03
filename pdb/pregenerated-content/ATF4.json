@@ -1,0 +1,65 @@
+{
+  "gene": "ATF4",
+  "generatedAt": "2026-08-03T10:39:21.895Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ATF4 是整合应激反应的核心转录因子，在 PERK-eIF2α-ATF4 轴中诱导 CHOP/DDIT3、ASNS、SLC7A11 等基因表达，参与神经退行性疾病中的蛋白稳态失衡、氧化应激和细胞死亡。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌特征，常规体内阻断抗体的抗原可及性受限，更适合作为结构生物学驱动的细胞内抗体、递送型 Fab/VHH 或机制验证工具靶点。相较上游 PERK 或 eIF2α，ATF4 位于应激转录输出汇聚节点，能够更直接区分 ATF4-DNA 结合与二聚化依赖的转录调控效应，因此在机制解析和选择性抑制设计中具有优先级。",
+    "mechanism": "通过结合 ATF4 bZIP 区域，阻断其与 C/EBP-ATF 复合 DNA 元件结合或干扰亮氨酸拉链介导的二聚化，从而抑制应激转录输出。",
+    "selectedEpitope": "优先靶向 bZIP 基本区-DNA 结合沟及邻近亮氨酸拉链二聚化界面。",
+    "diseaseDirection": "神经退行性疾病与整合应激反应",
+    "domain": "ATF4 含 N 端转录调控区及 C 端 bZIP 结构域，后者介导 DNA 识别和二聚化。",
+    "evidence": "ATF4 整合应激反应结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传与功能关联",
+      "UniProtKB P18848 蛋白功能与亚细胞定位注释",
+      "RCSB PDB 9TFU X-ray 结构解析数据",
+      "文献报道的 PERK-eIF2α-ATF4-CHOP 应激通路证据"
+    ],
+    "referenceEntries": "UniProt P18848；RCSB PDB 9TFU；Open Targets ATF4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C 端 bZIP 基本区及 DNA 接触面",
+        "直接削弱 ATF4 对 C/EBP-ATF 应答元件的序列识别，机制效应明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "亮氨酸拉链二聚化界面",
+        "干扰 ATF4 与同源或异源 bZIP 伙伴形成转录活性复合体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端转录调控区柔性片段",
+        "可能影响辅因子招募，但构象异质性高且结构约束不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ATF4 为核内转录因子，天然抗体药物可及性不足；建议采用细胞内递送型 VHH/Fab、降解偶联或体外机制验证设计，并严格评估 bZIP 家族交叉反应。",
+    "structurePrepZh": "以 PDB 9TFU 中 A、B 链为结构模板，保留 bZIP 二聚体构象，校正缺失侧链、质子化状态和 DNA 接触残基注释，用于界面表位建模。",
+    "structureRef": "RCSB PDB 9TFU，X-ray diffraction，1.997 Å",
+    "antibodies": [
+      "抗 ATF4 研究级单克隆抗体",
+      "抗 ATF4 ChIP 验证抗体"
+    ],
+    "interfaceFocus": "bZIP 基本区-DNA 接触面与亮氨酸拉链二聚化界面",
+    "designMode": "细胞内阻断型",
+    "candidates": [
+      {
+        "target": "EIF2AK3",
+        "rationale": "EIF2AK3/PERK 是内质网应激中磷酸化 EIF2S1 并诱导 ATF4 翻译的上游激酶，位于同一 PERK-eIF2α-ATF4 通路。其激酶结构域具备小分子优先性，抗体策略更适合探索胞外/腔内应激感知区域。"
+      },
+      {
+        "target": "EIF2S1",
+        "rationale": "EIF2S1 编码 eIF2α，Ser51 磷酸化后选择性增强 ATF4 翻译，是整合应激反应的直接信号节点。针对其磷酸化状态的抗体可用于通路分层和药效监测。"
+      },
+      {
+        "target": "DDIT3",
+        "rationale": "DDIT3/CHOP 是 ATF4 下游关键转录因子，参与长期应激条件下的凋亡和蛋白稳态破坏。其与 ATF4 同属应激转录网络，可作为下游效应阻断或生物标志物候选。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

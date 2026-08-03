@@ -1,0 +1,65 @@
+{
+  "gene": "SYTL4",
+  "generatedAt": "2026-08-03T17:06:11.036Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SYTL4与血小板体积、血小板分布宽度及多项蛋白测量表型相关，提示其处于膜运输与颗粒分泌相关的疾病表型网络中，具有明确的疾病关联机制。该蛋白含有可被抗体识别的胞质相关结构域，但缺乏经典分泌蛋白或跨膜受体所具备的天然胞外可及性，因此更适合用于结构解析、伴侣结合阻断或细胞内递送型抗体策略。相比同类Rab效应蛋白或囊泡转运调节因子，SYTL4具备已解析晶体结构且结构边界清晰的优势，可支持高置信度表位分区与界面优选。",
+    "mechanism": "阻断SYTL4与Rab小GTP酶及囊泡膜相关因子的结合界面，干预其介导的膜对接与颗粒外排。",
+    "selectedEpitope": "优先选择C2样结构域与Rab结合相关表面脊区，避开保守钙结合环。",
+    "diseaseDirection": "血小板分泌与膜运输",
+    "domain": "N端较长调控区结合C端C2样结构域；PDB 3FDW覆盖可成药界面。",
+    "evidence": "SYTL4结构与血小板表型证据包",
+    "evidenceSources": [
+      "UniProt Q96C24",
+      "RCSB PDB 3FDW",
+      "Open Targets Platform",
+      "Human Protein Atlas"
+    ],
+    "referenceEntries": "UniProt:Q96C24；RCSB:3FDW；Open Targets:SYTL4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C2样结构域Rab相互作用面",
+        "优先覆盖功能性蛋白互作界面，利于阻断膜对接",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C2样结构域侧翼保守疏水斑块",
+        "可用于补充界面封闭，但需避免影响折叠稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离钙结合环的外露转角",
+        "适合低干扰结合与构象捕获，但功能抑制能力较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SYTL4为胞质相关蛋白，常规膜外抗体可及性不足，且C2样结构域存在保守面。设计宜优先采用结构引导的界面封堵，并评估胞内递送或VHH格式。",
+    "structurePrepZh": "以PDB 3FDW为核心模板进行链A/B清理、缺失残基补全与界面注释，统一编号后开展表位聚类。",
+    "structureRef": "RCSB PDB 3FDW, X-ray 2.2 A",
+    "antibodies": [
+      "anti-Rab effector interface antibodies",
+      "anti-C2 domain binding antibodies"
+    ],
+    "interfaceFocus": "C2样结构域Rab结合界面",
+    "designMode": "structure-guided",
+    "candidates": [
+      {
+        "target": "RAB27A",
+        "rationale": "RAB27A与SYTL家族在分泌颗粒对接中直接配对，是同一膜运输通路的核心上游节点。围绕RAB27A-SYTL4互作设计可增强机制闭环。"
+      },
+      {
+        "target": "VAMP8",
+        "rationale": "VAMP8参与颗粒膜融合，位于SYTL4调控的下游终末步骤。与SYTL4联动布局有助于覆盖同一分泌通路的关键功能层级。"
+      },
+      {
+        "target": "MUNC13-4",
+        "rationale": "MUNC13-4与Rab依赖的分泌程序共同决定颗粒动员效率，已知属于血小板/免疫颗粒外排相关网络。其作为候选靶点可补足SYTL4相关通路的相邻调控位点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

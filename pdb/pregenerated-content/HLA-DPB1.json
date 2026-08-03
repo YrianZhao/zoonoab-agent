@@ -1,0 +1,65 @@
+{
+  "gene": "HLA-DPB1",
+  "generatedAt": "2026-08-03T13:13:26.099Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HLA-DPB1编码MHC II类DP分子的β链，与DPA1组成异源二聚体并在抗原呈递细胞表面呈递肽抗原，参与CD4 T细胞受体识别，在1型糖尿病、类风湿关节炎和系统性硬化症等自身免疫病中影响抗原特异性T细胞活化。该靶点为细胞表面MHC II膜蛋白，肽结合沟和TCR接触面位于胞外α1/β1平台结构，具备抗体可及性。相比下游细胞因子或广泛共刺激分子，HLA-DPB1更接近疾病相关抗原呈递起始环节，适合发展等位基因或构象选择性阻断策略。",
+    "mechanism": "抗体结合HLA-DP胞外肽-MHC平台，阻断HLA-DP-肽复合物与CD4 TCR的接触，降低自身抗原驱动的T细胞活化。",
+    "selectedEpitope": "优先靶向β1结构域α螺旋外侧的TCR接触面，避开肽锚定位点以保留构象选择性。",
+    "diseaseDirection": "自身免疫性抗原呈递调控",
+    "domain": "HLA-DPB1含胞外β1肽结合结构域、β2免疫球蛋白样结构域、跨膜区及短胞质尾。",
+    "evidence": "HLA-DPB1自身免疫抗原呈递证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P04440功能与结构域注释",
+      "RCSB PDB 4P5M晶体结构",
+      "MHC II抗原呈递与TCR识别文献"
+    ],
+    "referenceEntries": "UniProt P04440；RCSB PDB 4P5M；Open Targets HLA-DPB1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "β1结构域α螺旋TCR接触面",
+        "直接干预HLA-DP-肽复合物与TCR识别，具备机制优先级",
+        "优先"
+      ],
+      [
+        "Site B",
+        "β1肽结合沟外缘与β折叠平台邻近区",
+        "可调节肽-MHC构象稳定性，适合构象依赖型抗体筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "β2免疫球蛋白样结构域外露面",
+        "抗原可及性较好，但远离TCR核心界面，功能阻断不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HLA-DP多态性和肽依赖构象可能导致表位异质性；设计需控制等位基因选择性，并评估与其他MHC II分子的交叉反应。",
+    "structurePrepZh": "以4P5M高分辨率晶体结构为模板，保留DPA1/DPB1异源二聚体和结合肽，补全缺失侧链并标注β1平台界面。",
+    "structureRef": "RCSB PDB 4P5M，X-ray diffraction，1.7 Å",
+    "antibodies": [
+      "B7/21",
+      "IVA12"
+    ],
+    "interfaceFocus": "β1α螺旋TCR接触面与肽沟外缘",
+    "designMode": "阻断型构象表位",
+    "candidates": [
+      {
+        "target": "HLA-DPA1",
+        "rationale": "HLA-DPA1与HLA-DPB1共同形成HLA-DP异源二聚体，是同一抗原呈递复合物的α链；靶向其α1结构域可影响同一肽-MHC平台的TCR识别。"
+      },
+      {
+        "target": "CD4",
+        "rationale": "CD4作为辅助受体结合MHC II非多态区并增强TCR信号转导；阻断CD4-MHC II协同作用可降低自身反应性CD4 T细胞活化。"
+      },
+      {
+        "target": "HLA-DRA",
+        "rationale": "HLA-DRA为HLA-DR分子的α链，处于MHC II抗原呈递通路的平行核心节点；在自身免疫抗原呈递场景中可作为广谱MHC II调控候选靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

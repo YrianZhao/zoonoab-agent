@@ -1,0 +1,65 @@
+{
+  "gene": "MLXIPL",
+  "generatedAt": "2026-08-03T20:11:21.676Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MLXIPL编码转录因子ChREBP，是肝脏糖脂代谢通路中连接葡萄糖代谢与脂肪生成基因表达的关键节点，可与MLX形成异源二聚体并结合碳水化合物反应元件，驱动ACACA、FASN、SCD、PKLR等代谢基因转录。Open Targets关联信号主要集中于甘油三酯、VLDL胆固醇及脂肪酸数量等血脂性状，符合其在肝脏脂质合成和VLDL输出中的生物学角色。该蛋白为胞内核转录因子，天然抗体可及性弱，常规治疗性抗体优先级低于分泌型或膜受体靶点；若用于结构生物学、细胞内递送抗体或降解偶联设计，8BTQ提供的高分辨率结构可支持精确界面表位工程。",
+    "mechanism": "设计抗体片段结合MLXIPL bHLH-LZ区域，阻断其与MLX二聚化及DNA E-box/ChoRE识别，从而抑制脂肪生成转录复合物形成。",
+    "selectedEpitope": "优先覆盖bHLH-LZ二聚化界面及DNA结合碱性螺旋邻近面，避免仅选择远端非功能表面。",
+    "diseaseDirection": "代谢性血脂异常与脂肪生成",
+    "domain": "MLXIPL含低葡萄糖抑制结构域、Mondo保守区、核定位/输出调控区及C端bHLH-LZ DNA结合二聚化结构域。",
+    "evidence": "MLXIPL-ChREBP血脂遗传与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform血脂性状关联数据",
+      "UniProt Q9NP71功能与结构域注释",
+      "RCSB PDB 8BTQ X射线晶体结构",
+      "GWAS与肝脏脂肪生成转录调控研究"
+    ],
+    "referenceEntries": "UniProt Q9NP71；RCSB PDB 8BTQ；Open Targets MLXIPL",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端bHLH-LZ异源二聚化界面",
+        "可直接干预MLX结合并破坏转录复合物装配",
+        "优先"
+      ],
+      [
+        "Site B",
+        "碱性DNA结合螺旋及ChoRE识别邻近面",
+        "有望阻断MLXIPL-MLX复合物与靶基因启动子结合",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离二聚化与DNA结合面的溶剂暴露表面",
+        "功能阻断概率较低，适合作为捕获或检测表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MLXIPL为胞内核定位转录因子，系统给药抗体难以到达天然作用位点；建议限定为细胞内递送Fab/VHH、PROTAC适配或研究级阻断抗体方向。",
+    "structurePrepZh": "以8BTQ中A、B链为实验结构模板，保留bHLH-LZ二聚体构象，校验缺失环区、侧链质子化状态及DNA结合面电荷分布。",
+    "structureRef": "RCSB PDB 8BTQ，X-ray diffraction，1.6 Å",
+    "antibodies": [
+      "无获批抗MLXIPL治疗性抗体",
+      "研究级抗ChREBP抗体"
+    ],
+    "interfaceFocus": "MLXIPL-MLX二聚化界面与DNA结合碱性螺旋",
+    "designMode": "胞内VHH/Fab界面阻断",
+    "candidates": [
+      {
+        "target": "MLX",
+        "rationale": "MLX是MLXIPL形成转录活性复合物所必需的异源二聚化伙伴，干预MLX可影响ChREBP介导的ChoRE依赖性脂肪生成基因转录。"
+      },
+      {
+        "target": "SREBF1",
+        "rationale": "SREBF1与MLXIPL共同促进肝脏脂肪酸合成程序，均与甘油三酯和脂质稳态异常相关，可作为同一脂肪生成网络中的转录调控靶点。"
+      },
+      {
+        "target": "ACACA",
+        "rationale": "ACACA是MLXIPL/ChREBP下游脂肪酸合成关键酶，催化乙酰辅酶A羧化生成丙二酰辅酶A，直接连接转录调控与甘油三酯生成表型。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

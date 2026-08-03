@@ -1,0 +1,65 @@
+{
+  "gene": "NBN",
+  "generatedAt": "2026-08-03T14:34:41.506Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NBN编码nibrin，是MRE11-RAD50-NBN复合体的核心组分，参与DNA双链断裂识别、ATM募集与同源重组修复，胚系缺陷可导致Nijmegen breakage syndrome并增加白血病、乳腺癌等肿瘤易感性。该蛋白主要定位于细胞核，缺乏天然分泌或跨膜胞外结构域，抗原可及性不利于常规体内阻断抗体，但适合体外结构探针、细胞内抗体或递送型抗体片段开发。相比ATM、BRCA1等大型多结构域修复因子，NBN的N端FHA/BRCT模块具有明确磷酸肽识别界面与可解析结构，便于开展机制性表位设计。",
+    "mechanism": "设计抗体片段结合NBN N端FHA/BRCT磷酸肽识别沟槽，阻断其与MDC1等磷酸化DNA损伤应答蛋白的相互作用，从而干扰MRN复合体向损伤位点募集ATM。",
+    "selectedEpitope": "优先覆盖FHA结构域与BRCT1之间的磷酸肽结合沟槽，兼顾MDC1磷酸表位识别界面。",
+    "diseaseDirection": "DNA损伤修复缺陷与肿瘤易感",
+    "domain": "NBN含N端FHA结构域、串联BRCT1/BRCT2结构域及C端MRE11/ATM结合区域。",
+    "evidence": "NBN-DNA损伤应答与肿瘤易感证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt O60934 functional annotation",
+      "RCSB PDB 5WQD experimental structure",
+      "OMIM Nijmegen breakage syndrome genetics"
+    ],
+    "referenceEntries": "UniProt: O60934; RCSB PDB: 5WQD; HGNC: NBN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "FHA/BRCT1磷酸肽识别沟槽",
+        "直接干预NBN对磷酸化DNA损伤应答支架蛋白的识别，机制指向性最强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "BRCT1-BRCT2串联结构域连接界面",
+        "可能影响串联BRCT构象稳定性与磷酸配体结合几何，可作为变构阻断位点",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端MRE11与ATM结合相关区域",
+        "功能重要但结构覆盖不足且复合体界面保守，需避免破坏广泛DNA修复蛋白互作",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NBN为核内DNA修复蛋白，天然抗原可及性低，体内治疗性抗体可行性受限；建议定位于细胞内递送片段、结构探针或机制验证抗体。",
+    "structurePrepZh": "以5WQD晶体结构为模板，保留FHA/BRCT核心链并检查多链晶体接触，补建缺失环区后进行磷酸肽结合界面标注与抗体可达性评估。",
+    "structureRef": "RCSB PDB 5WQD, X-ray diffraction, 3.0 Å",
+    "antibodies": [
+      "anti-NBN clone 1D7",
+      "anti-NBS1 clone Y112"
+    ],
+    "interfaceFocus": "FHA/BRCT磷酸肽结合沟槽",
+    "designMode": "细胞内抗体片段",
+    "candidates": [
+      {
+        "target": "MRE11",
+        "rationale": "MRE11与RAD50、NBN共同组成MRN复合体，负责DNA双链断裂末端识别与核酸酶加工，是NBN同一损伤修复通路中的直接互作靶点。"
+      },
+      {
+        "target": "RAD50",
+        "rationale": "RAD50通过ATPase头部和长卷曲螺旋臂参与MRN复合体构象调控，与NBN共同促进ATM激活和断裂位点桥联。"
+      },
+      {
+        "target": "ATM",
+        "rationale": "ATM由MRN复合体招募并激活，是DNA双链断裂应答中的核心激酶，连接NBN依赖性损伤识别与下游检查点信号。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

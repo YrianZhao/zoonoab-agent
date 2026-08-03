@@ -1,0 +1,65 @@
+{
+  "gene": "SRXN1",
+  "generatedAt": "2026-08-03T16:56:21.380Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SRXN1编码的Sulfiredoxin 1位于氧化还原稳态网络中，负责还原过氧化应激后过氧化修饰的PRDX蛋白，因而与肿瘤细胞抗氧化适应、存活和耐受密切相关。其蛋白为胞内可溶性酶，抗体直接可及性弱于膜受体，但现有1.65 Å晶体结构可为结合面建模与表位工程提供清晰依据。相较于同通路中多为必需代谢酶或广泛表达应激因子，SRXN1在氧化应激依赖性肿瘤中的功能指向更集中，适合作为机制型干预靶点。",
+    "mechanism": "通过占据SRXN1催化口袋或PRDX结合面，阻断其与磷酸化PRDX的结合并抑制过氧化半胱氨酸还原反应。",
+    "selectedEpitope": "优先选择催化位点邻近的PRDX识别面，兼顾ATP结合口袋周边保守残基。",
+    "diseaseDirection": "氧化应激依赖肿瘤",
+    "domain": "SRXN1为胞内可溶性硫氧还蛋白样折叠酶，结构覆盖催化核心与底物结合沟槽。",
+    "evidence": "SRXN1-氧化还原应激-肿瘤证据包",
+    "evidenceSources": [
+      "UniProt: Q9BYN0",
+      "RCSB PDB: 1XW3",
+      "Open Targets Platform",
+      "GeneCards: SRXN1"
+    ],
+    "referenceEntries": "UniProt Q9BYN0；RCSB PDB 1XW3；Human Protein Atlas SRXN1",
+    "epitopeRowsZh": [
+      [
+        "Catalytic pocket",
+        "催化口袋及邻近PRDX结合沟槽",
+        "直接干预SRXN1酶活与底物识别",
+        "优先"
+      ],
+      [
+        "ATP-cofactor adjacent surface",
+        "ATP辅因子邻近表面",
+        "可削弱构象稳定性与酶促循环",
+        "备选"
+      ],
+      [
+        "Distal solvent-exposed loop",
+        "远端溶剂暴露环区",
+        "对功能抑制贡献有限，适合作为探针位点",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SRXN1为胞内靶点，常规全长抗体细胞内递送风险较高，优先考虑VHH、胞内抗体或递送体系。表位应避开高度保守的硫氧还蛋白样核心，以降低脱靶并保留对PRDX界面的特异性。",
+    "structurePrepZh": "建议以1XW3为主模板完成链A清理、缺失残基补模与质子化状态校正，并在PRDX复合界面假设下进行柔性对接。随后依据保守位点与表面电势筛选可封闭底物通道的结合热点。",
+    "structureRef": "RCSB PDB 1XW3, 1.65 Å X-ray structure of human SRXN1",
+    "antibodies": [
+      "TRX1/PRDX轴胞内抗体开发策略",
+      "Srxn1功能阻断型VHH探针"
+    ],
+    "interfaceFocus": "催化口袋、PRDX识别沟槽、ATP邻近界面",
+    "designMode": "structure-guided",
+    "candidates": [
+      {
+        "target": "PRDX1",
+        "rationale": "PRDX1是SRXN1最直接的底物轴成员，参与硫化/过氧化修复循环。与SRXN1联动干预可验证氧化还原修复通路的功能依赖性。"
+      },
+      {
+        "target": "PRDX2",
+        "rationale": "PRDX2同属SRXN1介导还原修复网络，且在多种肿瘤与氧化应激适应中具有明确作用。其与SRXN1构成真实同通路靶点对，适合联合机制验证。"
+      },
+      {
+        "target": "TXN",
+        "rationale": "TXN处于硫氧还蛋白还原网络上游，与SRXN1共同维持细胞抗氧化缓冲。选择TXN可构成同一氧化还原通路的互补干预节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "IPO5",
+  "generatedAt": "2026-08-03T13:31:07.363Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IPO5 是核转运受体 importin-β 家族成员，介导含核定位信号蛋白与 RanGTP 依赖性核输入，在病毒核蛋白转运、RNA 结合蛋白定位及神经退行性疾病相关蛋白稳态中具有间接疾病关联。该蛋白主要为胞质/核质可溶性转运因子，缺乏经典膜外结构域，抗体抗原可及性低于膜受体或分泌因子，因此更适合细胞内递送抗体片段或研究型阻断工具。相比 TNPO1、IPO7 等同类核转运靶点，IPO5 具有高分辨率人源实验结构支持，并与流感及神经退行性疾病关联数据重叠，优先级依据主要来自结构可设计性而非天然抗体药物可及性。",
+    "mechanism": "设计抗体片段占据 IPO5 HEAT-repeat 超螺旋内侧货物结合沟槽，阻断核定位货物蛋白与 IPO5 的结合，并干扰 RanGTP 诱导的货物释放循环。",
+    "selectedEpitope": "优先覆盖 HEAT-repeat 内侧凹面货物结合界面，避开高度柔性的外侧环区。",
+    "diseaseDirection": "病毒感染与神经退行性疾病",
+    "domain": "IPO5 由连续 HEAT repeats 构成 importin-β 型超螺旋结构，形成内侧货物结合沟槽。",
+    "evidence": "IPO5 核转运结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt O00410 functional annotation",
+      "RCSB PDB 6XTE experimental structure",
+      "Importin-β/RanGTP nuclear transport literature"
+    ],
+    "referenceEntries": "UniProt O00410；RCSB PDB 6XTE；Open Targets IPO5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "HEAT-repeat 内侧货物结合沟槽",
+        "直接阻断 NLS 样货物蛋白与 IPO5 的结合，机制可解释性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RanGTP 结合相关 HEAT-repeat 调控界面",
+        "可能干扰 RanGTP 介导的构象转换与货物释放，但需避免全局核转运毒性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "外侧 HEAT-repeat 凸面与柔性环区",
+        "空间可接近性可能较好，但与功能界面耦合较弱且构象异质性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IPO5 为细胞内必需核转运因子，常规抗体难以到达作用位点；建议采用细胞穿透 VHH、胞内抗体或递送载体，并严格评估核转运广谱抑制毒性。",
+    "structurePrepZh": "以 6XTE 人源 IPO5 链 A/C 为模板，保留稳定 HEAT-repeat 主体，去除非功能性晶体接触分子，补建缺失环区并标注货物结合沟槽。",
+    "structureRef": "RCSB PDB 6XTE，X-ray diffraction，2.27 Å",
+    "antibodies": [
+      "无已获批 IPO5 靶向治疗性抗体",
+      "研究级 anti-Importin 5 抗体"
+    ],
+    "interfaceFocus": "HEAT-repeat 内侧货物结合沟槽",
+    "designMode": "胞内阻断型设计",
+    "candidates": [
+      {
+        "target": "KPNA2",
+        "rationale": "KPNA2 为经典核输入通路中的 importin-α 适配因子，识别货物蛋白 NLS 并与 importin-β1 协同介导核输入；其疾病关联更偏向肿瘤与病毒感染中的核转运依赖过程。"
+      },
+      {
+        "target": "KPNB1",
+        "rationale": "KPNB1 是 importin-β1 核输入受体，直接参与 RanGTP 调控的核孔转运循环；与 IPO5 同属核转运受体网络，具有更明确的通路中心性。"
+      },
+      {
+        "target": "RAN",
+        "rationale": "RAN 通过 GTP/GDP 循环决定 importin 货物结合与释放方向性，是 IPO5 介导核输入过程的核心调控 GTPase；适合作为机制验证和组合通路参照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

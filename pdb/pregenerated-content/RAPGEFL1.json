@@ -1,0 +1,65 @@
+{
+  "gene": "RAPGEFL1",
+  "generatedAt": "2026-08-03T20:45:29.601Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RAPGEFL1 是 Rap 小 GTP 酶相关鸟嘌呤核苷酸交换因子样蛋白，现有 Open Targets 关联以神经退行性疾病及血液细胞数量表型为主，但其疾病机制证据更多提示细胞内 Rap 交换调控网络相关性，而非已验证的胞外配体-受体轴。该蛋白缺乏经典信号肽、跨膜区和稳定胞外结构域，天然抗原可及性不支持常规中和抗体开发。相较于同通路中具有胞外配体结合界面或膜受体特征的靶点，RAPGEFL1 的抗体优先级较低，更适合作为结构生物学参照或细胞内功能研究抗原。",
+    "mechanism": "抗体设计应定位于阻断 RAPGEFL1 与 Rap 小 GTP 酶或其调控复合物的胞内蛋白-蛋白相互作用，避免声称可直接中和胞外信号。",
+    "selectedEpitope": "优先评估 2DHZ 所覆盖折叠结构域的保守暴露面，聚焦潜在 Rap 结合邻近界面。",
+    "diseaseDirection": "神经退行性疾病相关细胞内Rap信号",
+    "domain": "RAPGEFL1 为胞内 RapGEF 样蛋白；2DHZ 为人源蛋白片段的溶液 NMR 结构。",
+    "evidence": "RAPGEFL1 疾病遗传关联与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9UHV5 protein annotation",
+      "RCSB PDB 2DHZ solution NMR structure",
+      "Rap small GTPase signaling literature"
+    ],
+    "referenceEntries": "UniProt: Q9UHV5；RCSB PDB: 2DHZ；Open Targets: RAPGEFL1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "2DHZ 折叠结构域暴露保守面",
+        "适合构建结构识别型 Fab，用于验证胞内构象和结合伴侣遮挡效应",
+        "优先"
+      ],
+      [
+        "Site B",
+        "推定 Rap 结合邻近表面",
+        "若与 RapGEF 功能界面重叠，可用于干预 Rap 交换复合物形成",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高柔性末端或低保守环区",
+        "构象异质性较高，跨实验体系复现性和功能阻断价值有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RAPGEFL1 缺乏胞外可及性，常规治疗性抗体递送与靶向暴露风险较高；建议限定为研究抗体、胞内抗体或结构探针设计。",
+    "structurePrepZh": "以 2DHZ NMR ensemble 为模板，筛选代表构象并标注柔性残基；需补充 AlphaFold 全长模型进行结构域边界与可及性比对。",
+    "structureRef": "RCSB PDB 2DHZ；human RAPGEFL1 solution NMR ensemble",
+    "antibodies": [
+      "暂无经临床验证的 RAPGEFL1 靶向抗体",
+      "研究级 anti-RAPGEFL1 antibody"
+    ],
+    "interfaceFocus": "Rap GTPase 结合邻近面与保守折叠核心外缘",
+    "designMode": "胞内结构探针",
+    "candidates": [
+      {
+        "target": "RAP1A",
+        "rationale": "RAP1A 是 RapGEF 调控网络的核心小 GTP 酶，直接参与 GDP/GTP 状态转换后的下游黏附与神经元信号调控。其与 RAPGEFL1 处于同一 Rap 信号轴。"
+      },
+      {
+        "target": "RAP1B",
+        "rationale": "RAP1B 与 RAP1A 同属 Rap 小 GTP 酶家族，参与血液细胞功能、整合素活化及细胞骨架调控，符合白细胞数量表型相关通路背景。"
+      },
+      {
+        "target": "RAPGEF1",
+        "rationale": "RAPGEF1 是经典 Rap 鸟嘌呤核苷酸交换因子，可通过 Crk 相关复合物连接受体信号与 Rap 激活，在同一 RapGEF-Rap 调控模块中具有更明确的机制注释。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

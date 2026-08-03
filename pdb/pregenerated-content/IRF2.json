@@ -1,0 +1,65 @@
+{
+  "gene": "IRF2",
+  "generatedAt": "2026-08-03T13:32:15.824Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IRF2是干扰素调控因子家族转录因子，可与IRF识别元件结合并竞争性限制IRF1介导的干扰素刺激基因转录，其遗传关联主要指向单核细胞数量及炎症相关血清蛋白水平。IRF2为核内DNA结合蛋白，缺乏稳定胞外结构域或分泌形式，常规体内抗体药物的抗原可及性明显受限。其优先级主要来自高分辨率DNA结合结构与免疫炎症遗传证据，适合作为机制验证、细胞内递送抗体片段或结构生物学抗体工具靶点，而非优先的常规膜外阻断抗体靶点。",
+    "mechanism": "设计抗体片段结合IRF2 N端DNA结合域，遮蔽识别螺旋与IRF-E/GAAA核心序列接触界面，阻断IRF2-DNA复合物形成。",
+    "selectedEpitope": "优先覆盖N端DNA结合域识别螺旋及L1-L3环邻近DNA沟结合面。",
+    "diseaseDirection": "干扰素炎症与单核细胞表型",
+    "domain": "IRF2含N端色氨酸重复DNA结合域及C端转录调控区域，PDB 8YTG覆盖DNA结合结构域。",
+    "evidence": "IRF2干扰素转录调控与免疫遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P14316功能与结构域注释",
+      "RCSB PDB 8YTG晶体结构",
+      "干扰素调控因子IRF-E DNA结合研究文献"
+    ],
+    "referenceEntries": "UniProt P14316；RCSB PDB 8YTG；Open Targets IRF2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端DNA结合域识别螺旋与IRF-E接触面",
+        "直接阻断IRF2与靶基因启动子DNA结合，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DNA结合域L1-L3环及相邻碱性沟槽区域",
+        "干扰DNA沟槽适配与复合物稳定性，可作为构象阻断位点",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离DNA界面的N端结构支撑面",
+        "可能形成稳定结合抗体但功能阻断效应不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IRF2为核内转录因子，体内抗体可及性与细胞内递送是主要风险；建议限定为VHH、intrabody或递送载体偶联格式，并避免依赖常规血浆暴露。",
+    "structurePrepZh": "采用8YTG高分辨率晶体结构作为模板，保留DNA复合物用于界面判定，检查A、B链构象一致性后选择完整DNA结合域建模。",
+    "structureRef": "RCSB PDB 8YTG，X-ray diffraction，1.45 Å",
+    "antibodies": [
+      "抗IRF2研究级单克隆抗体",
+      "抗IRF2 ChIP级抗体"
+    ],
+    "interfaceFocus": "DNA识别螺旋、L1-L3环与IRF-E接触面",
+    "designMode": "细胞内阻断型",
+    "candidates": [
+      {
+        "target": "IRF1",
+        "rationale": "IRF1与IRF2竞争结合相似IRF-E DNA元件，是干扰素应答基因转录激活的同通路核心因子。与IRF2联合分析可区分激活与抑制性IRF轴。"
+      },
+      {
+        "target": "STAT1",
+        "rationale": "STAT1在IFN受体-JAK信号下磷酸化并诱导IRF1等干扰素应答程序，是IRF2相关转录网络上游关键节点。其通路定位明确，疾病免疫表型证据较强。"
+      },
+      {
+        "target": "IFNAR1",
+        "rationale": "IFNAR1为I型干扰素受体复合物组成部分，介导IFN-I触发JAK1/TYK2-STAT信号并影响IRF家族转录输出。其胞外受体结构使抗体干预可及性优于IRF2。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

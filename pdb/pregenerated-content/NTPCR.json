@@ -1,0 +1,65 @@
+{
+  "gene": "NTPCR",
+  "generatedAt": "2026-08-03T14:53:00.882Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NTPCR与血细胞相关数量性状存在遗传关联，当前证据主要指向红细胞压积、红细胞计数、血红蛋白测量值及白细胞数量等血液表型，而非明确的受体配体型致病轴。该蛋白缺乏经典跨膜段和信号肽，已解析结构为胞内核苷三磷酸水解酶样结构域，因此完整IgG或Fab在体内直接结合天然抗原的可及性有限。相较于STAT5A、EPO受体或造血细胞因子受体等同表型相关靶点，NTPCR的优先级更适合作为机制研究或细胞内递送抗体设计对象，而不宜作为常规胞外阻断抗体的首选治疗靶点。",
+    "mechanism": "采用胞内递送型抗体片段占据NTPCR核苷酸结合沟槽，阻断ATP/GTP底物与保守水解位点结合，从而抑制其NTPase催化活性。",
+    "selectedEpitope": "优先瞄准2I3B中α/β折叠形成的核苷酸结合沟槽及邻近保守催化残基周边环区。",
+    "diseaseDirection": "血液数量性状与造血调控",
+    "domain": "NTPCR为癌症相关核苷三磷酸水解酶样蛋白，2I3B覆盖其可溶性催化结构域。",
+    "evidence": "NTPCR血液表型遗传关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB Q9BSD7蛋白功能与亚细胞定位注释",
+      "RCSB PDB 2I3B溶液NMR结构记录",
+      "GWAS Catalog血液学数量性状关联证据"
+    ],
+    "referenceEntries": "UniProt Q9BSD7；RCSB PDB 2I3B；Open Targets NTPCR",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "核苷酸结合沟槽与保守催化环",
+        "可直接干预ATP/GTP底物结合和水解反应，适合功能阻断型片段设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域外侧α螺旋-环区交界面",
+        "可能通过构象稳定化影响底物进入，免疫原性与构象特异性需联合评估",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化沟槽的溶剂暴露表面",
+        "结合可及但功能干预概率较低，主要适用于检测抗体或结构探针",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NTPCR缺乏胞外暴露结构，常规系统给药抗体难以接触天然靶点；设计应限定为胞内递送Fab、VHH或研究级结合探针，并避免宣称经典胞外阻断机制。",
+    "structurePrepZh": "以PDB 2I3B溶液NMR构象集合为模板，筛选代表性低能构象，补全缺失氢原子并标注核苷酸结合沟槽、柔性环区及保守催化位点。",
+    "structureRef": "RCSB PDB 2I3B，human NTPCR solution NMR structure",
+    "antibodies": [
+      "暂无获批NTPCR靶向抗体",
+      "暂无临床阶段NTPCR靶向抗体"
+    ],
+    "interfaceFocus": "催化沟槽、P-loop样区域及邻近柔性环",
+    "designMode": "胞内递送片段",
+    "candidates": [
+      {
+        "target": "STAT5A",
+        "rationale": "STAT5A水平为Open Targets关联表型之一，且STAT5A是EPO、GM-CSF和多种造血细胞因子受体下游的核心转录因子，直接连接血细胞生成信号。"
+      },
+      {
+        "target": "EPOR",
+        "rationale": "EPOR介导促红细胞生成素驱动的JAK2-STAT5信号，是红系祖细胞存活、增殖和血红蛋白相关表型的关键膜受体，抗原可及性优于胞内NTPCR。"
+      },
+      {
+        "target": "JAK2",
+        "rationale": "JAK2连接EPOR及多种造血细胞因子受体与STAT5磷酸化，遗传和药理学证据均支持其在红细胞和白细胞数量调控中的核心地位。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

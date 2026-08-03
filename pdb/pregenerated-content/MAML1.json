@@ -1,0 +1,65 @@
+{
+  "gene": "MAML1",
+  "generatedAt": "2026-08-03T20:06:26.026Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAML1 是 Notch 转录激活复合物的核心共激活因子，通过与 NOTCH 胞内结构域和 CSL/RBPJ 形成核内复合物，促进 HES、HEY 等靶基因转录，异常 Notch 活化与多种肿瘤发生和维持相关。该蛋白主要为核内转录共激活因子，缺乏天然胞外结构域或分泌型抗原可及性，因此常规外源性抗体阻断策略可及性受限。相较 NOTCH 受体胞外负调控位点，MAML1 的优先级更适合结构机制研究、细胞内抗体或递送型抗体片段设计，而非标准膜表面抗体药物开发。",
+    "mechanism": "设计分子应阻断 MAML1 N 端 α 螺旋与 NOTCH 胞内结构域 ankyrin-CSL/RBPJ 复合界面的结合，抑制 Notch 转录激活复合物装配。",
+    "selectedEpitope": "优先锁定 MAML1 N 端 Notch-CSL 结合螺旋界面，覆盖复合物装配所需疏水接触面。",
+    "diseaseDirection": "Notch 依赖性肿瘤通路",
+    "domain": "MAML1 含 N 端碱性转录复合物结合区及 C 端转录激活区，6SMV 覆盖复合物结合片段。",
+    "evidence": "MAML1-Notch 转录复合物结构与肿瘤关联证据",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q92585 functional annotation",
+      "RCSB PDB 6SMV experimental structure",
+      "Notch transcriptional activation complex structural literature"
+    ],
+    "referenceEntries": "UniProt Q92585；RCSB PDB 6SMV；Open Targets ENSG00000184384",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N 端 α 螺旋的 NOTCH1 ankyrin-CSL/RBPJ 复合物结合界面",
+        "直接干预 MAML1 招募和 Notch 转录复合物装配，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N 端碱性区邻近溶剂暴露侧链簇",
+        "可用于获得结合型胞内抗体片段，并辅助稳定构象识别",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离复合物界面的转录激活区相关片段",
+        "可能影响共激活功能但结构覆盖不足且阻断机制不直接",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAML1 为核内蛋白，常规抗体难以进入细胞核；应优先采用胞内抗体、VHH 或递送型片段，并避免选择非功能界面表位。",
+    "structurePrepZh": "以 6SMV 晶体结构解析 MAML1 结合片段，保留 NOTCH-CSL 复合物用于界面定义，补全缺失侧链并标注晶体接触。",
+    "structureRef": "RCSB PDB 6SMV，X-ray diffraction，2.14 Å",
+    "antibodies": [
+      "无获批抗 MAML1 治疗性抗体",
+      "研究级抗 MAML1 抗体"
+    ],
+    "interfaceFocus": "MAML1 N 端螺旋-Notch ankyrin-CSL 接触面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "NOTCH1",
+        "rationale": "NOTCH1 是同一 Notch 通路的上游受体，配体结合和受体裂解后产生胞内结构域并招募 MAML1；其胞外负调控区具备更优抗体可及性。"
+      },
+      {
+        "target": "RBPJ",
+        "rationale": "RBPJ/CSL 是 Notch 转录复合物的 DNA 结合核心，直接连接 NOTCH 胞内结构域与 MAML1；该靶点适合机制验证但同样受核内可及性限制。"
+      },
+      {
+        "target": "DLL4",
+        "rationale": "DLL4 是 Notch 受体配体，可通过阻断 DLL4-NOTCH 相互作用抑制下游 MAML1 依赖性转录激活，且作为膜配体具有较高抗体开发可及性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

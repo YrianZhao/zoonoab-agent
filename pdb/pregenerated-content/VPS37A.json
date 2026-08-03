@@ -1,0 +1,65 @@
+{
+  "gene": "VPS37A",
+  "generatedAt": "2026-08-03T17:49:43.731Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "VPS37A 是 ESCRT-I 复合体亚基，参与内体分选、膜颈缩窄与病毒出芽过程；HIV Gag p6 通过 PTAP 基序招募 TSG101-ESCRT-I 轴，VPS37A 作为复合体组成部分支持后续 ESCRT 组装。该蛋白主要为胞质侧复合体亚基，天然抗原可及性低于膜受体或分泌蛋白，因此更适合胞内递送抗体片段或机制验证型结合体设计。其优先级来自 8E22 实验结构覆盖 VHS/ubiquitin E2 variant-like 模块，可对 ESCRT-I 装配界面进行结构约束设计；相较缺乏结构模板的同通路亚基，VPS37A 具有更明确的界面建模基础。",
+    "mechanism": "设计结合体占据 VPS37A VHS/UEV-like 模块与 ESCRT-I 伴侣亚基邻近装配界面，干扰 VPS37A 纳入 TSG101-VPS28-VPS37A 复合体，从而降低 HIV Gag 介导的 ESCRT 募集效率。",
+    "selectedEpitope": "优先靶向 8E22 覆盖的 VPS37A N 端 VHS/UEV-like 折叠外露螺旋束及亚基装配邻近面。",
+    "diseaseDirection": "HIV感染与ESCRT病毒出芽",
+    "domain": "VPS37A 含 N 端 VHS/UEV-like ESCRT-I 结构模块，C 端区域参与复合体稳定与内体分选调控。",
+    "evidence": "VPS37A-ESCRT-I病毒出芽结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q8NEZ2 蛋白功能注释",
+      "RCSB PDB 8E22 溶液 NMR 结构",
+      "HIV Gag p6-TSG101-ESCRT 依赖性出芽文献"
+    ],
+    "referenceEntries": "UniProt Q8NEZ2；RCSB PDB 8E22；Open Targets VPS37A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端 VHS/UEV-like 螺旋束装配邻近面",
+        "可干扰 VPS37A 纳入 ESCRT-I 复合体，机制指向明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "VHS/UEV-like 模块远端外露环区",
+        "利于获得高亲和结合体，可作为结构示踪或降解招募位点",
+        "备选"
+      ],
+      [
+        "Site C",
+        "预测柔性 C 端低复杂度区域",
+        "构象异质性较高，可能影响表位稳定性与结构解释",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "VPS37A 非分泌、非跨膜，常规抗体难以进入胞质发挥作用；建议采用细胞内 VHH、递送型 Fab 或 PROTAC/降解偶联验证，并避免破坏广泛 ESCRT 基础功能导致细胞毒性。",
+    "structurePrepZh": "以 PDB 8E22 的链 X 为抗原模板，保留 NMR 构象集合用于界面柔性评估；补全缺失残基并标注低置信柔性区，优先在稳定二级结构面开展对接。",
+    "structureRef": "RCSB PDB 8E22，human VPS37A，solution NMR",
+    "antibodies": [
+      "暂无获批 VPS37A 靶向抗体",
+      "暂无临床阶段 VPS37A 靶向抗体"
+    ],
+    "interfaceFocus": "VHS/UEV-like模块ESCRT-I装配邻近面",
+    "designMode": "胞内VHH/Fab",
+    "candidates": [
+      {
+        "target": "TSG101",
+        "rationale": "TSG101 的 UEV 结构域直接识别 HIV Gag p6 PTAP 基序，是 HIV 出芽过程中 ESCRT-I 招募的核心入口靶点。"
+      },
+      {
+        "target": "VPS28",
+        "rationale": "VPS28 是 ESCRT-I 复合体结构桥接亚基，连接 TSG101/VPS37 复合体与下游 ESCRT 组装，适合评估复合体装配阻断策略。"
+      },
+      {
+        "target": "CHMP4B",
+        "rationale": "CHMP4B 属 ESCRT-III 核心亚基，参与膜颈收缩与切断步骤，处于 HIV 出芽所需 ESCRT 级联的下游执行环节。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

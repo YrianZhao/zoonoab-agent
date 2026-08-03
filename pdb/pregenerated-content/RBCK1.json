@@ -1,0 +1,65 @@
+{
+  "gene": "RBCK1",
+  "generatedAt": "2026-08-03T20:47:47.532Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RBCK1是LUBAC复合体催化亚基HOIL-1L，参与HOIP/RNF31介导的线性泛素链生成，并调节TNF、IL-1R及先天免疫受体下游NF-κB活化。RBCK1缺陷与多聚葡聚糖体肌病、免疫缺陷和化脓性感染相关，疾病机制以线性泛素化受损、炎症信号异常及糖原样聚集物累积为核心。该蛋白主要定位于胞质并非天然分泌蛋白或膜受体，完整蛋白抗体干预的抗原可及性受限；若用于设计，应优先采用胞内递送抗体片段或研究级构象探针。相较于下游炎症因子，RBCK1更接近遗传病因节点，可用于解析LUBAC功能缺陷的结构-功能关系，但治疗优先级低于胞外可及靶点。",
+    "mechanism": "设计抗体片段阻断RBCK1 UBL区域与RNF31/HOIP的复合体装配界面，削弱LUBAC线性泛素链形成并改变NF-κB信号输出。",
+    "selectedEpitope": "优先覆盖N端UBL结构域的LUBAC装配界面，避开RBR催化核心金属配位区。",
+    "diseaseDirection": "遗传性肌病与免疫缺陷",
+    "domain": "RBCK1含N端UBL结构域、NZF样泛素结合区、RBR E3连接酶核心及C端锌指区域。",
+    "evidence": "RBCK1-LUBAC缺陷相关肌病免疫病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9BYM8功能与结构域注释",
+      "RCSB PDB 8K6Q晶体结构记录",
+      "OMIM及ClinVar RBCK1致病变异资料"
+    ],
+    "referenceEntries": "UniProt Q9BYM8；RCSB PDB 8K6Q；Open Targets RBCK1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端UBL结构域与LUBAC装配相关表面",
+        "可阻断RBCK1参与HOIP/SHARPIN复合体稳定化，机制明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "NZF样泛素结合区域邻近环区",
+        "可影响多聚泛素链识别，适合构象探针与功能验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "RBR催化核心及锌指配位邻近区域",
+        "金属配位和折叠稳定性敏感，易产生非特异构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RBCK1为胞内E3连接酶，常规抗体难以到达作用位点；建议采用VHH、intrabody或递送体系，并严格评估LUBAC广泛免疫功能抑制风险。",
+    "structurePrepZh": "以8K6Q高分辨率晶体结构为模板，校验抗原链A-D一致性、锌离子配位、缺失环区和多聚状态后进行表面聚类。",
+    "structureRef": "RCSB PDB 8K6Q，X-ray diffraction，1.59 Å",
+    "antibodies": [
+      "暂无获批RBCK1靶向治疗抗体",
+      "研究级抗RBCK1/HOIL-1L抗体"
+    ],
+    "interfaceFocus": "UBL介导的LUBAC装配界面",
+    "designMode": "胞内VHH构象阻断",
+    "candidates": [
+      {
+        "target": "RNF31",
+        "rationale": "RNF31/HOIP是LUBAC的核心催化亚基，直接生成M1线性泛素链；与RBCK1处于同一NF-κB调控复合体。"
+      },
+      {
+        "target": "SHARPIN",
+        "rationale": "SHARPIN是LUBAC组成成分，可稳定HOIP与HOIL-1L复合体并影响TNF受体下游炎症信号。"
+      },
+      {
+        "target": "NEMO",
+        "rationale": "NEMO/IKBKG识别M1线性泛素链并连接LUBAC产物至IKK复合体活化，是同一通路的关键下游节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

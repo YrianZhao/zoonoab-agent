@@ -1,0 +1,65 @@
+{
+  "gene": "GHR",
+  "generatedAt": "2026-08-03T12:46:44.544Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GHR 是生长激素-IGF-1 轴的核心膜受体，GH 结合受体胞外结构域后诱导受体二聚化并激活 JAK2-STAT5 信号，直接影响线性生长、代谢和肢端肥大症相关病理过程。GHR 胞外结构域暴露于细胞表面，且已有 GH-GHR 复合物晶体结构支持抗原构象定义，具备良好的抗体可及性与结构设计基础。相较下游 JAK2、STAT5B 等胞内因子，GHR 更适合抗体介入；相较 GH 配体，受体靶向可直接阻断组织细胞对 GH 的响应，优先级更高。",
+    "mechanism": "抗体结合 GHR 胞外结构域，阻断 GH 与受体 Site 1/Site 2 结合及受体二聚化，从而抑制 JAK2-STAT5B 介导的 IGF1 转录诱导。",
+    "selectedEpitope": "优先靶向胞外 D1-D2 交界及 GH 结合 Site 1 邻近界面，兼顾阻断配体结合与二聚化装配。",
+    "diseaseDirection": "生长障碍与GH-IGF轴疾病",
+    "domain": "GHR 含胞外细胞因子受体同源区，包含 D1、D2 两个 fibronectin type III-like 结构域及 WSXWS 基序。",
+    "evidence": "GHR-GH复合物结构与疾病遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P10912 functional annotation",
+      "RCSB PDB 1AXI crystal structure",
+      "ClinVar and OMIM GHR-related disease records"
+    ],
+    "referenceEntries": "UniProt P10912；RCSB PDB 1AXI；HGNC:4263；Open Targets ENSG00000112964",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "D1-D2 交界处 GH Site 1 接触面",
+        "直接竞争 GH 初始结合并限制受体构象重排",
+        "优先"
+      ],
+      [
+        "Site B",
+        "D2 结构域近膜侧二聚化相关界面",
+        "干扰 GH 诱导的受体二聚化与 JAK2 近邻化",
+        "备选"
+      ],
+      [
+        "Site C",
+        "WSXWS 基序邻近保守折叠区域",
+        "可能影响受体折叠稳定性，需避免破坏非目标构象",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GHR 胞外区含保守细胞因子受体折叠与糖基化位点，表位设计需避开深埋折叠核心，优先选择配体接触外露界面并评估物种交叉反应。",
+    "structurePrepZh": "以 1AXI 中人源 GHR 胞外结构域复合物为模板，保留抗原链 A、B，校正缺失侧链与糖基化位点，分离 GH 接触界面用于表位映射。",
+    "structureRef": "RCSB PDB 1AXI，human growth hormone receptor complex，X-ray 2.1 Å",
+    "antibodies": [
+      "GHR05",
+      "anti-GHR monoclonal antibody 263"
+    ],
+    "interfaceFocus": "GH Site 1/Site 2 接触面与D2二聚化界面",
+    "designMode": "阻断型受体抗体",
+    "candidates": [
+      {
+        "target": "GH1",
+        "rationale": "GH1 编码生长激素，是 GHR 的直接配体；中和 GH 可上游抑制 GHR 二聚化及 JAK2-STAT5B 信号。"
+      },
+      {
+        "target": "JAK2",
+        "rationale": "JAK2 与 GHR 胞内段偶联，是 GH 刺激后 STAT5B 磷酸化的关键激酶；其活性决定受体信号强度。"
+      },
+      {
+        "target": "STAT5B",
+        "rationale": "STAT5B 是 GHR-JAK2 轴的主要转录效应因子，调控 IGF1 等生长相关基因表达，遗传缺陷与生长障碍相关。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

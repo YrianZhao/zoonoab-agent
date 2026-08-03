@@ -1,0 +1,65 @@
+{
+  "gene": "DDX17",
+  "generatedAt": "2026-08-03T11:52:41.164Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DDX17为核内DEAD-box RNA解旋酶，参与pre-mRNA剪接、miRNA加工及转录后RNA代谢，遗传和转录组证据提示其扰动与神经发育障碍及神经退行性疾病相关。该蛋白主要定位于细胞核和核质斑点，缺乏天然胞外结构域或分泌形式，完整抗体作为体内阻断药物的抗原可及性显著受限。相较膜受体或分泌因子，DDX17更适合作为结构生物学验证、细胞内递送抗体片段或研究级构象探针靶点，优先级应低于同通路中可胞外干预的受体类靶点。",
+    "mechanism": "设计抗体片段识别DDX17 RecA-like解旋酶核心，干扰其RNA结合沟槽或ATP依赖构象转换，从而抑制DDX17介导的RNA重塑复合物装配。",
+    "selectedEpitope": "优先聚焦RecA1/RecA2核心之间的RNA结合沟槽边缘及ATP酶构象耦联界面。",
+    "diseaseDirection": "神经发育与RNA代谢异常",
+    "domain": "DDX17含N端低复杂度区、DEAD-box RecA1与RecA2解旋酶核心及C端调控区。",
+    "evidence": "DDX17神经疾病关联与解旋酶结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q92841功能与亚细胞定位注释",
+      "RCSB PDB 6UV3晶体结构记录",
+      "RNA剪接与miRNA加工相关文献证据"
+    ],
+    "referenceEntries": "UniProt Q92841；RCSB PDB 6UV3；Open Targets DDX17",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RecA1/RecA2间RNA结合沟槽边缘",
+        "可直接影响RNA底物结合与解旋酶构象闭合",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DEAD-box ATP结合口袋邻近外露环区",
+        "有望变构干扰ATP依赖的构象循环，避开深埋核苷酸口袋",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端低复杂度或柔性调控片段",
+        "构象异质性高且结构解析覆盖不足，亲和力与特异性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DDX17为胞内核蛋白，常规IgG体内可及性不足；应采用Fab/VHH细胞内递送或内体逃逸策略，并严格评估与DDX5的同源性交叉反应。",
+    "structurePrepZh": "以6UV3高分辨率晶体结构提取A、B链，校正缺失柔性片段、质子化状态及配体环境，并标注RecA核心保守位点。",
+    "structureRef": "RCSB PDB 6UV3，X射线晶体结构，1.597 Å",
+    "antibodies": [
+      "研究级anti-DDX17抗体",
+      "细胞内递送型anti-DDX17 VHH候选"
+    ],
+    "interfaceFocus": "RecA核心RNA沟槽与ATP耦联外露环",
+    "designMode": "胞内抗体片段",
+    "candidates": [
+      {
+        "target": "DDX5",
+        "rationale": "DDX5与DDX17为近缘DEAD-box解旋酶，协同参与RNA剪接、miRNA加工及转录调控；其结构同源性使其适合作为通路内比较靶点及选择性评估对象。"
+      },
+      {
+        "target": "DGCR8",
+        "rationale": "DGCR8与DROSHA组成Microprocessor复合体，介导pri-miRNA识别与加工；该过程与DDX17参与的miRNA成熟调控处于同一RNA加工轴。"
+      },
+      {
+        "target": "DROSHA",
+        "rationale": "DROSHA是核内pri-miRNA切割核心核酸酶，DDX17可调节其相关miRNA加工效率；二者共同影响神经发育相关转录后调控网络。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "ID2",
+  "generatedAt": "2026-08-03T13:21:07.353Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ID2为核内HLH转录调控因子，通过与E蛋白类bHLH转录因子形成非DNA结合性异源二聚体，影响红系分化、细胞周期与肿瘤相关转录程序。该蛋白缺乏胞外结构域、分泌信号肽和膜受体拓扑，抗原天然可及性显著低于细胞表面或分泌靶点，因此仅适合作为胞内机制研究或递送型抗体探索靶点。其优先级主要来自红细胞性状和前列腺癌等遗传关联及已有HLH结构信息，但作为常规治疗性抗体主靶点的开发优先级低于同通路中具胞外可及性的受体或配体靶点。",
+    "mechanism": "设计阻断ID2 HLH结构域与E2A/TCF3等bHLH因子二聚化界面的胞内结合抗体，解除其对E蛋白DNA结合转录活性的抑制。",
+    "selectedEpitope": "优先覆盖HLH螺旋1-环-螺旋2二聚化界面，干扰ID2与E蛋白bHLH结构域配对。",
+    "diseaseDirection": "红系分化与前列腺癌转录调控",
+    "domain": "ID2主要包含N端调控区、中央HLH二聚化结构域及C端短尾，缺乏DNA结合碱性区。",
+    "evidence": "ID2遗传关联、HLH结构与转录抑制证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联数据",
+      "UniProt Q02363蛋白功能与定位注释",
+      "RCSB PDB 4AYA晶体结构条目",
+      "bHLH/ID蛋白红系分化与肿瘤转录调控文献"
+    ],
+    "referenceEntries": "UniProt Q02363；RCSB PDB 4AYA；Open Targets ID2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "HLH螺旋1-环-螺旋2二聚化界面",
+        "直接阻断ID2与TCF3/TCF12等E蛋白的异源二聚化，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "HLH环区及相邻螺旋转角区域",
+        "可能降低二聚体构象稳定性，并保留一定序列特异性窗口",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端非结构化调控片段",
+        "可用于检测或构象辅助识别，但功能阻断证据较弱且柔性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ID2为核内胞质/核定位蛋白，常规抗体难以到达作用位点；建议定位为胞内抗体、递送抗体或研究级阻断分子，并严格评估ID1/ID3/ID4交叉反应。",
+    "structurePrepZh": "以4AYA抗原链A、B为结构模板，保留HLH二聚化核心，补全缺失柔性端区注释，去除晶体接触伪界面后进行表面可及性与同源性筛查。",
+    "structureRef": "RCSB PDB 4AYA，X-ray diffraction，2.103 Å",
+    "antibodies": [
+      "anti-ID2 clone 4E12",
+      "anti-ID2 clone EPR18274"
+    ],
+    "interfaceFocus": "HLH二聚化疏水界面与E蛋白结合面",
+    "designMode": "胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "TCF3",
+        "rationale": "TCF3编码E2A bHLH转录因子，是ID2直接结合并抑制DNA结合活性的核心互作因子，处于同一ID-E蛋白转录调控轴。"
+      },
+      {
+        "target": "TCF12",
+        "rationale": "TCF12为E蛋白家族成员，可与ID蛋白通过HLH结构域形成非DNA结合复合物，参与细胞分化相关转录网络。"
+      },
+      {
+        "target": "ID1",
+        "rationale": "ID1与ID2同属ID蛋白家族，均通过缺乏碱性DNA结合区的HLH结构域拮抗E蛋白功能，是同一通路中的功能相近节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

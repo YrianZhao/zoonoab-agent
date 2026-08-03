@@ -1,0 +1,65 @@
+{
+  "gene": "AGO4",
+  "generatedAt": "2026-08-03T10:20:04.968Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "AGO4 是细胞内 Argonaute 家族成员，参与 miRNA/siRNA 介导的 RISC 复合体沉默过程，通过结合小 RNA 并识别靶 mRNA 调控转录后基因表达，其异常表达与肿瘤相关基因调控网络及免疫细胞计数性状存在遗传关联。该蛋白主要定位于胞质和核内，缺乏分泌型或膜受体样胞外结构域，因此天然抗原可及性不利于常规体内阻断型抗体。相较 EGFR、PDCD1、CTLA4 等同疾病领域中具有明确胞外可及界面的靶点，AGO4 更适合作为结构生物学验证、细胞内递送抗体或研究型 intrabody 设计对象，主靶点优先级应低于可成药胞外靶点。",
+    "mechanism": "通过细胞内抗体结合 AGO4 MID-PIWI 沟槽或 PAZ 结构域，阻断小 RNA 5′端锚定、3′端结合及靶 RNA 识别复合体装配。",
+    "selectedEpitope": "优先考察 MID-PIWI 小 RNA 结合沟槽邻近界面，避免深埋催化核心并保留构象选择性。",
+    "diseaseDirection": "肿瘤转录后调控与免疫细胞数量性状",
+    "domain": "AGO4 含 N、PAZ、MID 与 PIWI 结构域，形成 Argonaute 典型双叶状 RNA 结合架构。",
+    "evidence": "AGO4-RISC 结构与肿瘤遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q9HCK5 蛋白功能注释",
+      "RCSB PDB 6OON 晶体结构",
+      "Argonaute-RISC 小 RNA 结合机制研究"
+    ],
+    "referenceEntries": "UniProt: Q9HCK5; RCSB PDB: 6OON; Open Targets: AGO4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "MID-PIWI 小 RNA 5′端结合沟槽外缘",
+        "可干扰 guide RNA 锚定与 RISC 稳定装配，机制指向明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PAZ 结构域 3′端 RNA 结合口袋周边环区",
+        "可能削弱小 RNA 3′端固定，适合构象敏感型 intrabody 设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PIWI 核心保守折叠与核酸结合深沟",
+        "区域保守且部分埋藏，存在家族交叉反应与构象遮挡风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "AGO4 为细胞内非分泌蛋白，常规抗体体内可及性不足；需采用 intrabody、细胞穿透递送或体外机制探针策略，并重点评估 AGO1-4 家族交叉反应。",
+    "structurePrepZh": "以 6OON 的 A、B 链晶体结构为模板，去除非目标配体后保留 RNA 结合相关构象，补全缺失环区并标注 PAZ、MID、PIWI 结构域边界。",
+    "structureRef": "RCSB PDB 6OON, X-ray diffraction, 1.9 Å",
+    "antibodies": [
+      "研究级抗 AGO4 单克隆抗体",
+      "研究级抗 Argonaute 家族抗体"
+    ],
+    "interfaceFocus": "MID-PIWI RNA 锚定沟槽与 PAZ 3′端结合口袋",
+    "designMode": "细胞内抗体/intrabody",
+    "candidates": [
+      {
+        "target": "AGO1",
+        "rationale": "AGO1 同属 Argonaute-RISC 通路，参与 miRNA 介导的靶 mRNA 沉默。其功能与 AGO4 并行，适合作为家族选择性与补偿机制评估靶点。"
+      },
+      {
+        "target": "AGO2",
+        "rationale": "AGO2 是人类 Argonaute 家族中具有明确切割活性的核心 RISC 成员，直接介导 guide RNA 指导的靶 RNA 识别与切割。其机制证据强于 AGO4，是同通路中更具功能验证价值的候选靶点。"
+      },
+      {
+        "target": "TNRC6A",
+        "rationale": "TNRC6A 是 Argonaute 复合体下游 GW182 家族支架蛋白，连接 AGO-小 RNA 复合体与 mRNA 去腺苷化及翻译抑制 machinery。靶向该节点可评估 RISC 介导沉默通路的效应端调控。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

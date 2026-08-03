@@ -1,0 +1,65 @@
+{
+  "gene": "ECT2",
+  "generatedAt": "2026-08-03T18:55:14.816Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ECT2 是 Rho 家族小 GTP 酶的鸟嘌呤核苷酸交换因子，主要通过激活 RHOA、RAC1 与 CDC42 调控胞质分裂、细胞骨架重塑和有丝分裂进程；其异常表达与多种肿瘤增殖、侵袭及细胞周期失衡相关。该蛋白为胞内定位分子，缺乏天然胞外结构域，抗原可及性不利于常规外源性抗体，需优先定位于结构域功能干预、胞内递送抗体或研究级结合分子设计。相比无结构依据的细胞周期靶点，ECT2 已具备高分辨率实验结构，可围绕 BRCT 结构域界面建立可验证表位策略，但作为治疗性表面抗原的优先级低于膜受体或分泌因子。",
+    "mechanism": "设计结合分子占据 ECT2 BRCT 串联结构域的磷酸化配体识别沟槽，干扰其与细胞周期相关磷蛋白复合体的招募，并间接削弱 ECT2 对 Rho GTP 酶通路的时空激活。",
+    "selectedEpitope": "优先覆盖 tandem BRCT 的磷酸肽结合沟槽及两 BRCT 结构域夹角界面。",
+    "diseaseDirection": "肿瘤细胞周期与Rho GTP酶通路",
+    "domain": "ECT2 含 N 端 tandem BRCT 调控区、中部 DH 交换结构域及 PH 结构域。",
+    "evidence": "ECT2 结构域功能与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9H8V3 functional annotation",
+      "RCSB PDB 3L46 X-ray structure",
+      "Cancer genomics and Rho GTPase pathway literature"
+    ],
+    "referenceEntries": "UniProt Q9H8V3；RCSB PDB 3L46；Open Targets ECT2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "tandem BRCT 磷酸肽识别沟槽",
+        "可能阻断细胞周期磷蛋白招募，具备明确结构功能关联",
+        "优先"
+      ],
+      [
+        "Site B",
+        "BRCT1-BRCT2 结构域夹角界面",
+        "可稳定锁定调控构象并影响配体结合几何关系",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离配体沟槽的溶剂暴露环区",
+        "可获得结合信号但功能阻断概率较低，需避免仅产生非中和结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ECT2 为胞内蛋白，常规抗体难以到达天然作用位点；建议将该设计限定为胞内抗体、递送型抗体片段或结构机制验证用途。",
+    "structurePrepZh": "以 PDB 3L46 链 A/B 为结构模板，保留 BRCT 核心折叠，校验晶体接触、缺失环区与磷酸配体沟槽可及性。",
+    "structureRef": "RCSB PDB 3L46，X-ray diffraction，1.482 Å",
+    "antibodies": [
+      "暂无获批 ECT2 靶向治疗性抗体",
+      "研究级 anti-ECT2 monoclonal antibody"
+    ],
+    "interfaceFocus": "BRCT 磷酸肽沟槽与结构域夹角",
+    "designMode": "胞内功能阻断",
+    "candidates": [
+      {
+        "target": "RHOA",
+        "rationale": "RHOA 是 ECT2 下游直接小 GTP 酶之一，参与胞质分裂收缩环形成和肌动蛋白-肌球蛋白收缩调控。其与 ECT2 同属 Rho GTPase 细胞周期执行轴。"
+      },
+      {
+        "target": "RAC1",
+        "rationale": "RAC1 可受 ECT2 交换活性影响，调节细胞骨架重塑、迁移和增殖相关信号。该节点适合评估 ECT2 通路在肿瘤侵袭表型中的功能贡献。"
+      },
+      {
+        "target": "PLK1",
+        "rationale": "PLK1 在有丝分裂和胞质分裂中调控 ECT2 的定位与激活，是同一细胞周期调控网络中的上游激酶节点。其药理学可成药性强于胞内支架型抗原。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

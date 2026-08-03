@@ -1,0 +1,65 @@
+{
+  "gene": "CDK3",
+  "generatedAt": "2026-08-03T11:13:11.915Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CDK3 是细胞周期 G0/G1 转换相关丝氨酸/苏氨酸激酶，可与 cyclin C 或 cyclin E 复合并磷酸化 RB1，促进 E2F 转录程序释放，在肺癌、乳腺癌及淋巴系统肿瘤的增殖表型中具有通路关联。该蛋白主要定位于细胞核及胞质，不具备分泌型或跨膜胞外结构域，因此抗体抗原可及性显著弱于膜受体和分泌因子，需限定为胞内递送抗体或结构研究型结合分子。其优先级依据在于 7XQK 提供高分辨率实验结构，适合开展构象选择性结合设计；但相较 CDK4、CDK6 等同通路且临床验证更充分的靶点，CDK3 作为治疗性常规抗体主靶点优先级偏低。",
+    "mechanism": "设计分子拟结合 CDK3 激酶 N/C 叶裂隙附近，阻断 ATP 结合或 cyclin 诱导的活化构象形成，从而降低 RB1 磷酸化。",
+    "selectedEpitope": "优先覆盖 ATP 结合裂隙邻近的铰链区与 activation segment，兼顾 cyclin 接触面构象锁定。",
+    "diseaseDirection": "细胞周期驱动型肿瘤",
+    "domain": "CDK3 为单一蛋白激酶催化结构域，含 N 叶 β 折叠、C 螺旋、铰链区、催化环和 activation segment。",
+    "evidence": "CDK3 细胞周期与肿瘤关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q00526 functional annotation",
+      "RCSB PDB 7XQK experimental structure",
+      "Cell-cycle CDK-RB1-E2F pathway literature"
+    ],
+    "referenceEntries": "UniProt Q00526；RCSB PDB 7XQK；Open Targets CDK3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶铰链区及 ATP 结合裂隙边缘",
+        "可直接干扰腺嘌呤配位与底物磷酸转移构象",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PSTAIRE/C 螺旋邻近 cyclin 调控界面",
+        "可限制 cyclin 结合后活化构象稳定化",
+        "备选"
+      ],
+      [
+        "Site C",
+        "activation segment 与催化环周边",
+        "构象可塑性较高，需避免交叉识别其他 CDK",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CDK3 为胞内激酶，常规抗体难以到达天然抗原；ATP 裂隙在 CDK 家族中高度保守，需以构象表位和家族选择性筛选降低脱靶风险。",
+    "structurePrepZh": "以 7XQK A/B 链为模板，保留激酶核心构象，检查缺失环区、配体占位和晶体接触面，并进行质子化与侧链优化。",
+    "structureRef": "RCSB PDB 7XQK，X-ray diffraction，2.25 Å",
+    "antibodies": [
+      "暂无获批 CDK3 治疗性抗体",
+      "研究级 anti-CDK3 monoclonal antibody"
+    ],
+    "interfaceFocus": "ATP 裂隙、铰链区、C 螺旋及 activation segment",
+    "designMode": "胞内构象阻断",
+    "candidates": [
+      {
+        "target": "CDK4",
+        "rationale": "CDK4 与 cyclin D 复合并磷酸化 RB1，是 RB1-E2F 细胞周期轴中临床验证更充分的同通路激酶。其疾病关联和药理学可验证性强于 CDK3。"
+      },
+      {
+        "target": "CDK6",
+        "rationale": "CDK6 同属 G1 期 CDK-RB1 通路，参与淋巴系统肿瘤和乳腺癌增殖调控。与 CDK4 并列构成成熟的细胞周期干预节点。"
+      },
+      {
+        "target": "CCNE1",
+        "rationale": "CCNE1 编码 cyclin E1，可与 CDK2 并参与 G1/S 转换，与 CDK3 所在 RB1-E2F 释放程序处于同一细胞周期通路。其扩增与多种实体瘤增殖优势相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

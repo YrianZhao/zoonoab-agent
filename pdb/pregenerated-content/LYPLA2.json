@@ -1,0 +1,65 @@
+{
+  "gene": "LYPLA2",
+  "generatedAt": "2026-08-03T13:59:49.351Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "LYPLA2 为胞质型丝氨酸水解酶，主要催化溶血磷脂和蛋白棕榈酰化硫酯键水解，其与黑色素瘤的公开遗传关联得分较低，尚不足以支持其作为经典细胞表面抗体靶点。该蛋白缺乏跨膜区、分泌信号肽和稳定胞外结构域，天然抗原可及性明显弱于膜受体或分泌因子，常规阻断型抗体难以在完整细胞外环境中接触催化口袋。其优先级仅适用于结构引导的胞内递送抗体、降解抗体或研究级构象探针；相较 PDCD1、CTLA4、CD274 等黑色素瘤免疫通路靶点，临床转化优先级较低。",
+    "mechanism": "通过胞内递送抗体占据 LYPLA2 催化 Ser-His-Asp 三联体邻近沟槽，阻断溶血磷脂酰基链进入活性位点并抑制酯键水解。",
+    "selectedEpitope": "优先覆盖α/β水解酶折叠的催化沟槽入口及盖状螺旋邻近区域，避免仅选择远端非功能表面。",
+    "diseaseDirection": "黑色素瘤探索性胞内酶靶向",
+    "domain": "LYPLA2 含α/β水解酶核心结构域，具保守丝氨酸水解酶催化三联体和疏水底物结合沟槽。",
+    "evidence": "LYPLA2结构与黑色素瘤遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt O95372 functional annotation",
+      "RCSB PDB 5SYN X-ray structure",
+      "Alpha/beta hydrolase family catalytic motif literature"
+    ],
+    "referenceEntries": "UniProt O95372；RCSB PDB 5SYN；Open Targets LYPLA2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化沟槽入口与底物酰基链结合通道",
+        "可直接限制底物进入并形成酶活阻断构象",
+        "优先"
+      ],
+      [
+        "Site B",
+        "盖状螺旋及活性位点邻近环区",
+        "有利于稳定非活性构象并提高功能抑制选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "α/β水解酶核心远端外露表面",
+        "可用于检测或结构探针，但功能阻断相关性有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "LYPLA2 为胞内酶，常规 IgG 难以到达作用位点；需采用细胞穿透、内体逃逸或降解递送策略，并严格评估与 LYPLA1 等同源酶交叉反应。",
+    "structurePrepZh": "以 5SYN 高分辨率晶体结构为模板，保留催化残基、底物沟槽水分子与关键侧链构象，按人源序列校正缺失环区后开展表位建模。",
+    "structureRef": "RCSB PDB 5SYN，X-ray diffraction，1.64 Å",
+    "antibodies": [
+      "暂无获批抗 LYPLA2 治疗性抗体",
+      "研究级抗 LYPLA2 抗体"
+    ],
+    "interfaceFocus": "催化三联体邻近沟槽与盖状螺旋界面",
+    "designMode": "胞内酶抑制抗体",
+    "candidates": [
+      {
+        "target": "CD274",
+        "rationale": "CD274/PD-L1 通过结合 PDCD1 抑制 T 细胞效应功能，是黑色素瘤免疫逃逸通路中的已验证细胞表面靶点，抗原可及性和临床证据均优于 LYPLA2。"
+      },
+      {
+        "target": "PDCD1",
+        "rationale": "PDCD1/PD-1 位于活化 T 细胞表面，其与 CD274 或 PDCD1LG2 的相互作用可被抗体直接阻断，属于黑色素瘤免疫检查点治疗核心通路。"
+      },
+      {
+        "target": "CTLA4",
+        "rationale": "CTLA4 与 CD80/CD86 竞争性结合并抑制共刺激信号，在黑色素瘤免疫调节中具有明确治疗验证，可作为同一免疫治疗疾病方向的优先候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

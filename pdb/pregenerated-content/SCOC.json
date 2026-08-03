@@ -1,0 +1,65 @@
+{
+  "gene": "SCOC",
+  "generatedAt": "2026-08-03T16:22:29.465Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SCOC参与自噬相关膜运输过程，可通过与FEZ1等卷曲螺旋蛋白相互作用影响ULK1复合体相关自噬通量；自噬功能障碍与神经退行性疾病中的蛋白聚集和细胞稳态失衡相关。SCOC为胞内高尔基体/胞质侧蛋白，缺乏天然胞外结构域，抗体药物可及性明显弱于膜受体或分泌因子，因此更适合作为机制验证、细胞内抗体或递送型抗体探索靶点。相较MAPT、SNCA等直接病理蛋白，SCOC的疾病关联强度较低但结构分辨率高，适合开展结构约束的相互作用界面阻断研究，优先级应定位为探索性靶点。",
+    "mechanism": "设计抗体结合SCOC卷曲螺旋二聚体界面或FEZ1结合相关螺旋面，阻断SCOC介导的蛋白复合体装配，从而干预自噬膜运输调控。",
+    "selectedEpitope": "优先覆盖SCOC卷曲螺旋二聚化界面外露螺旋脊，兼顾FEZ1结合相关疏水面。",
+    "diseaseDirection": "神经退行性疾病-自噬通路",
+    "domain": "SCOC主要由短N端区域和C端卷曲螺旋结构组成，PDB 7AA7解析其二聚化螺旋构象。",
+    "evidence": "SCOC结构与自噬相互作用证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9UIL1蛋白功能注释",
+      "RCSB PDB 7AA7晶体结构",
+      "自噬调控与FEZ1-SCOC相互作用文献"
+    ],
+    "referenceEntries": "UniProt Q9UIL1；RCSB PDB 7AA7；Open Targets SCOC",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端卷曲螺旋二聚化界面外露螺旋脊",
+        "可直接干预SCOC二聚体稳定性与复合体装配",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FEZ1结合相关卷曲螺旋侧面",
+        "有利于阻断SCOC-FEZ1相互作用并解析自噬运输机制",
+        "备选"
+      ],
+      [
+        "Site C",
+        "二聚体核心疏水残基邻近区域",
+        "高度保守且埋藏比例较高，抗体可及性和特异性风险较大",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SCOC为胞内蛋白，常规抗体难以到达靶点；卷曲螺旋界面保守且局部埋藏，需优先采用细胞内抗体、递送偶联或体外机制验证策略。",
+    "structurePrepZh": "以7AA7高分辨率晶体结构为模板，保留抗原链A/B构建二聚体模型，去除非目标链并评估螺旋界面溶剂可及性。",
+    "structureRef": "RCSB PDB 7AA7，X-ray diffraction，1.45 Å",
+    "antibodies": [
+      "无已获批SCOC靶向抗体",
+      "研究级抗SCOC抗体"
+    ],
+    "interfaceFocus": "卷曲螺旋二聚体界面与FEZ1结合面",
+    "designMode": "细胞内阻断型",
+    "candidates": [
+      {
+        "target": "ULK1",
+        "rationale": "ULK1是自噬起始复合体核心激酶，位于SCOC相关自噬调控网络下游，可作为自噬通量调节的机制参照靶点。"
+      },
+      {
+        "target": "FEZ1",
+        "rationale": "FEZ1与SCOC存在直接蛋白相互作用，并参与自噬相关运输过程；其界面信息有助于构建SCOC复合体阻断策略。"
+      },
+      {
+        "target": "BECN1",
+        "rationale": "BECN1是自噬核化复合体关键成分，与神经退行性疾病中的自噬缺陷密切相关，可作为同一自噬通路的替代干预节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "UBE2V1",
+  "generatedAt": "2026-08-03T17:38:49.896Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "UBE2V1 是无催化半胱氨酸的 E2 变体，可与 UBE2N 形成异二聚体，促进 TRAF6 等 E3 连接酶介导的 K63 连接多聚泛素链生成，并参与 NF-κB、MAPK 与 DNA 损伤应答相关信号。其疾病关联以神经退行性疾病为主要方向，但 Open Targets 关联强度较低，提示更适合作为机制验证型靶点而非成熟治疗靶点。UBE2V1 为胞内可溶性泛素结合酶亚基，天然抗原可及性弱，不具备膜受体或分泌蛋白优势；若采用抗体策略，应优先定位于胞内递送抗体或结构生物学工具抗体。相比同通路的 TRAF6、UBE2N、TAK1 轴节点，UBE2V1 的优势在于 UBE2N-UBE2V1 界面结构明确且可直接干预 K63 泛素链装配选择性。",
+    "mechanism": "阻断 UBE2V1 与 UBE2N 的异二聚化界面，削弱 UBE2N 活性位点对 K63 泛素链延伸的构象支持，从而降低 TRAF6 依赖性 K63 多聚泛素信号。",
+    "selectedEpitope": "优先覆盖 UBE2V1 的 UBE2N 结合面及泛素受体沟槽邻近环区，避免仅识别远端非功能表面。",
+    "diseaseDirection": "神经退行性炎症与泛素信号",
+    "domain": "UBE2V1 由 UBC-like 折叠构成，缺失催化半胱氨酸，主要通过 UBE2N 结合界面调控 K63 泛素链合成。",
+    "evidence": "UBE2V1-UBE2N 介导 K63 泛素信号证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q13404 functional annotation",
+      "RCSB PDB 2A4D X-ray structure",
+      "TRAF6-UBE2N-UBE2V1 K63 ubiquitination literature"
+    ],
+    "referenceEntries": "UniProt Q13404；RCSB PDB 2A4D；HGNC UBE2V1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "UBE2N 异二聚化界面",
+        "直接干扰 UBE2V1-UBE2N 复合物形成，预期抑制 K63 泛素链装配",
+        "优先"
+      ],
+      [
+        "Site B",
+        "UBC-like 折叠的泛素受体沟槽邻近区",
+        "可能影响受体泛素定位与链延伸构象，适合功能阻断型抗体筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离 UBE2N 界面的外露螺旋/环区",
+        "结构可识别性较高但功能阻断相关性有限，主要适合作为检测抗体表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "UBE2V1 为胞内蛋白，常规治疗性抗体难以到达作用位点；设计宜限定为胞内递送、intrabody 或工具抗体，并严格评估 UBE2N 同源界面交叉反应。",
+    "structurePrepZh": "采用 PDB 2A4D 的 A 链作为抗原模板，保留 UBC-like 核心折叠，补全缺失侧链并标注 UBE2N 结合面与可溶表面暴露区。",
+    "structureRef": "RCSB PDB 2A4D，X-ray diffraction，1.69 Å",
+    "antibodies": [
+      "Anti-UBE2V1 monoclonal antibody",
+      "Anti-UBE2V1 recombinant antibody"
+    ],
+    "interfaceFocus": "UBE2V1-UBE2N 异二聚化界面",
+    "designMode": "胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "UBE2N",
+        "rationale": "UBE2N 是 UBE2V1 的催化性 E2 配对亚基，二者共同形成 K63 泛素链合成复合体；靶向 UBE2N 可更直接影响活性位点驱动的链延伸。"
+      },
+      {
+        "target": "TRAF6",
+        "rationale": "TRAF6 是与 UBE2N-UBE2V1 协同工作的 E3 连接酶，驱动炎症受体下游 K63 多聚泛素信号；其上游定位使其适合评估同一路径阻断。"
+      },
+      {
+        "target": "MAP3K7",
+        "rationale": "MAP3K7/TAK1 是 K63 泛素链招募复合体下游的关键激酶，连接 TRAF6 泛素信号与 NF-κB、MAPK 激活；适合作为通路效应层候选靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

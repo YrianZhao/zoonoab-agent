@@ -1,0 +1,65 @@
+{
+  "gene": "SRPRA",
+  "generatedAt": "2026-08-03T16:55:15.034Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SRPRA编码内质网膜上的SRP受体α亚基，参与将信号识别颗粒复合体对接至膜转位装置，是分泌蛋白与膜蛋白生物合成的关键节点。其疾病关联主要集中于中性粒细胞减少和Shwachman-Diamond综合征等核糖体-翻译后靶向失衡相关表型，提示该轴在造血细胞蛋白稳态中具有明确病理相关性。作为膜受体样胞质外暴露有限的内质网膜蛋白，SRPRA虽不具备经典细胞表面可及性，但其胞质侧长卷曲螺旋与受体复合体装配界面为阻断蛋白-蛋白相互作用提供了可设计空间；相较直接靶向普遍表达的翻译或核糖体成分，SRPRA具有更明确的通路节点特异性与机制可解释性。",
+    "mechanism": "阻断SRPRA与SRPRB及SRP复合体的装配，抑制核糖体-内质网膜对接与共翻译转位起始。",
+    "selectedEpitope": "优先锁定胞质侧长卷曲螺旋及SRPRB结合界面，避免覆盖跨膜锚定区。",
+    "diseaseDirection": "造血/蛋白转位异常",
+    "domain": "N端GTPase样胞质结构域、单跨膜区及C端胞质螺旋装配界面",
+    "evidence": "SRPRA结构与疾病关联证据包",
+    "evidenceSources": [
+      "UniProt: P08240",
+      "RCSB PDB: 2FH5",
+      "Open Targets Platform",
+      "AlphaFold Protein Structure Database"
+    ],
+    "referenceEntries": "UniProt P08240；RCSB 2FH5；Open Targets SRPRA条目",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "胞质侧GTPase样结构域邻近SRPRB结合界面",
+        "可直接干预受体复合体装配",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端长螺旋卷曲界面",
+        "适于破坏SRP受体二聚/协同构象",
+        "备选"
+      ],
+      [
+        "Site C",
+        "跨膜段近膜区",
+        "可及性较低且构象依赖性强",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "胞质侧界面可设计性较高，但膜环境与构象耦联会放大表位偏移风险；建议优先采用结构引导分层筛选，并用膜模拟体系验证结合模式。",
+    "structurePrepZh": "以2FH5为核心模板重建缺失柔性区，补齐膜邻近片段并标注链A/B界面；必要时结合同源建模与膜定位约束进行表位精修。",
+    "structureRef": "RCSB 2FH5晶体结构；SRP receptor相关结构文献",
+    "antibodies": [
+      "无成熟临床同类抗体",
+      "缺乏公认SRPRA阻断抗体"
+    ],
+    "interfaceFocus": "SRPRB对接面与胞质螺旋界面",
+    "designMode": "结构引导阻断",
+    "candidates": [
+      {
+        "target": "SRPRB",
+        "rationale": "SRPRA的直接配对受体亚基，二者共同构成SRP受体复合体。作为同一转位通路中的核心互作伙伴，适合作为机制验证和双靶点通路映射参考。"
+      },
+      {
+        "target": "SRP9",
+        "rationale": "SRP9是信号识别颗粒的组成成分，参与与SRP受体介导的共翻译转位过程。其位于同一蛋白靶向通路上，适合用于上游配体侧干预的比较分析。"
+      },
+      {
+        "target": "SRP14",
+        "rationale": "SRP14与SRP9共同构成SRP RNA结合模块，决定底物识别与受体对接效率。与SRPRA处于同一分泌蛋白转位轴，适合用于通路内功能对照。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

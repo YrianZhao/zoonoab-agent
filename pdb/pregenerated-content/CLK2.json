@@ -1,0 +1,65 @@
+{
+  "gene": "CLK2",
+  "generatedAt": "2026-08-03T11:28:32.939Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CLK2 是核内丝氨酸/苏氨酸蛋白激酶，主要通过磷酸化 SR 剪接因子影响前体 mRNA 可变剪接，并与神经退行性疾病中转录后调控异常相关。该蛋白并非分泌蛋白或膜受体，天然抗原可及性显著低于胞外靶点，因此常规阻断型抗体成药性受限，但其激酶结构域可作为结构引导的细胞内抗体或递送型 Fab/VHH 设计对象。相比 CLK 家族其他成员，CLK2 具备高分辨率人源晶体结构和 Open Targets 神经系统疾病关联信号，可优先用于探索剪接调控轴的结构化干预策略。",
+    "mechanism": "设计分子应阻断 CLK2 激酶结构域 ATP 结合口袋及底物结合沟槽对 SR 蛋白底物的定位，从而降低 SRSF 类剪接因子磷酸化。",
+    "selectedEpitope": "优先覆盖激酶结构域 N-lobe/C-lobe 裂隙附近的 ATP 结合口袋与铰链区邻域。",
+    "diseaseDirection": "神经退行性疾病与剪接异常",
+    "domain": "CLK2 含 N 端调控区及 C 端双叶激酶结构域，6FYL 覆盖催化结构域。",
+    "evidence": "CLK2 神经疾病关联与激酶结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProtKB P49760 功能与结构域注释",
+      "RCSB PDB 6FYL X 射线晶体结构",
+      "文献报道 CLK 激酶调控 SR 蛋白磷酸化与可变剪接"
+    ],
+    "referenceEntries": "UniProt P49760；RCSB PDB 6FYL；Open Targets CLK2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域 ATP 结合口袋、铰链区及相邻催化裂隙",
+        "可直接干预 ATP 依赖性催化构象与底物磷酸化过程",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C-lobe 底物结合沟槽及活化环邻近区域",
+        "有利于削弱 SR 蛋白底物定位并提高功能选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N-lobe 外侧远离催化裂隙的表面区域",
+        "结构可及但功能耦合较弱，需避免产生非中和结合体",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CLK2 为胞内激酶，常规抗体难以接触天然靶点；应优先采用细胞内递送、intrabody 或降解偶联策略，并评估 CLK1/CLK3/CLK4 交叉反应。",
+    "structurePrepZh": "以 6FYL 链 A 为模板，保留激酶结构域主链构象，去除非必要晶体配体与水分子，补全缺失侧链并标注铰链区、活化环和 ATP 口袋。",
+    "structureRef": "RCSB PDB 6FYL，X-ray diffraction，1.95 Å",
+    "antibodies": [
+      "无已获批 CLK2 靶向抗体",
+      "无临床阶段 CLK2 阻断抗体"
+    ],
+    "interfaceFocus": "ATP 口袋、铰链区、活化环与底物沟槽",
+    "designMode": "胞内递送型抗体设计",
+    "candidates": [
+      {
+        "target": "CLK1",
+        "rationale": "CLK1 与 CLK2 同属 CDC-like kinase 家族，均通过磷酸化 SR 蛋白调控可变剪接，可作为同一剪接调控轴的并行靶点。"
+      },
+      {
+        "target": "CLK3",
+        "rationale": "CLK3 参与 SR 剪接因子磷酸化网络，与 CLK2 在前体 mRNA 剪接调控中具有通路相关性，适合用于选择性与冗余性比较。"
+      },
+      {
+        "target": "SRSF1",
+        "rationale": "SRSF1 是 CLK 激酶调控的经典 SR 蛋白底物，其磷酸化状态直接影响剪接体组装和外显子选择。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

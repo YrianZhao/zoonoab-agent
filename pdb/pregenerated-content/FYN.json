@@ -1,0 +1,65 @@
+{
+  "gene": "FYN",
+  "generatedAt": "2026-08-03T12:39:07.862Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FYN为Src家族非受体酪氨酸激酶，参与BCR-ABL1阳性白血病、T/NK细胞淋巴瘤及多种肿瘤中的ABL/Src、TCR和整合素相关磷酸化网络。其疾病关联覆盖广，但蛋白定位于胞质侧且缺乏天然胞外结构域，抗原可及性弱，常规阻断型抗体难以直接作用于完整细胞表面。相较CD19、CD20或FLT3等膜受体，FYN更适合作为结构引导的胞内结合体、递送型抗体片段或降解偶联策略的研究靶点，而非优先细胞外抗体药物靶点。",
+    "mechanism": "设计胞内可递送结合体占据FYN SH2结构域磷酸酪氨酸结合沟槽或激酶ATP口袋，干扰BCR-ABL1/Src底物磷酸化复合物形成。",
+    "selectedEpitope": "优先评估SH2 pTyr结合沟槽与SH3-SH2调控界面；ATP口袋因保守性高仅作谨慎策略。",
+    "diseaseDirection": "血液肿瘤与Src信号异常",
+    "domain": "FYN含N端膜定位区、SH3、SH2、蛋白酪氨酸激酶结构域及C端抑制性调控尾部。",
+    "evidence": "FYN-Src家族激酶肿瘤信号证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P06241功能与结构域注释",
+      "RCSB PDB 3H0H晶体结构记录",
+      "Reactome Src family kinase signaling通路注释"
+    ],
+    "referenceEntries": "UniProt P06241；RCSB PDB 3H0H；HGNC FYN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SH2结构域磷酸酪氨酸结合沟槽",
+        "可阻断FYN与磷酸化受体/衔接蛋白的招募相互作用，选择性优于ATP口袋",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SH3结构域多脯氨酸配体结合面",
+        "可干扰FYN与含PxxP基序蛋白形成信号复合物，适合小型结合体筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "激酶结构域ATP结合裂隙",
+        "可抑制催化活性，但Src家族保守性高，存在广泛交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FYN为胞内激酶，抗体天然可及性不足；需采用细胞内递送、intrabody或偶联降解方案，并重点控制Src家族同源交叉结合。",
+    "structurePrepZh": "以3H0H链A为结构模板，补全缺失侧链并检查配体、磷酸化状态和构象；表位建模需区分SH2/SH3调控域与激酶域。",
+    "structureRef": "RCSB PDB 3H0H，X射线晶体结构，1.76 Å",
+    "antibodies": [
+      "抗FYN研究级单克隆抗体",
+      "抗Src家族激酶磷酸化位点抗体"
+    ],
+    "interfaceFocus": "SH2-pTyr沟槽与SH3配体结合面",
+    "designMode": "胞内结合体设计",
+    "candidates": [
+      {
+        "target": "ABL1",
+        "rationale": "BCR-ABL1阳性白血病中ABL1融合激酶驱动下游Src家族激酶活化，是与FYN处于同一致癌磷酸化网络的核心上游节点。"
+      },
+      {
+        "target": "LYN",
+        "rationale": "LYN同属Src家族激酶，在B细胞受体与BCR-ABL相关白血病信号中参与促存活磷酸化传导，可作为同通路替代或联合靶点。"
+      },
+      {
+        "target": "SRC",
+        "rationale": "SRC为Src家族代表性激酶，与FYN共享底物识别和黏附/生长因子信号模块，适合用于家族选择性与通路补偿风险评估。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

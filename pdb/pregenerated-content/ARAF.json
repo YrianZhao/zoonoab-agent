@@ -1,0 +1,65 @@
+{
+  "gene": "ARAF",
+  "generatedAt": "2026-08-03T10:32:15.585Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ARAF 是 RAF–MEK–ERK 通路中的胞内丝氨酸/苏氨酸激酶，参与 RAS 激活后的 MEK1/2 磷酸化，在癌症、RASopathy 相关 Noonan 综合征和低级别胶质瘤中具有明确通路关联。该蛋白主要定位于胞质侧并缺乏天然胞外结构域，抗原可及性不适合常规体内阻断型抗体，更适合结构引导的胞内抗体、VHH 或研究级构象探针设计。相比 MEK/ERK 等下游节点，ARAF 的激酶域结构可解析度高且可区分 RAF 家族构象状态，但作为治疗性抗体靶点优先级低于具有胞外可及性的 RTK 上游靶点。",
+    "mechanism": "设计分子应结合 ARAF 激酶域调控界面，稳定非活化构象或阻断 RAF 二聚化相关界面，从而降低 MEK1/2 磷酸化传递。",
+    "selectedEpitope": "优先聚焦激酶域 αC-helix、activation segment 邻近构象口袋及 RAF 二聚化界面。",
+    "diseaseDirection": "RAS-RAF-MEK-ERK 通路肿瘤",
+    "domain": "ARAF 含 RBD、CRD 调控区及 C 端蛋白激酶结构域，8VSL 覆盖激酶域构象。",
+    "evidence": "ARAF-MAPK 通路结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt P10398 功能与结构域注释",
+      "RCSB PDB 8VSL X-ray 结构记录",
+      "Reactome RAS-RAF-MEK-ERK 信号通路注释"
+    ],
+    "referenceEntries": "UniProt:P10398；RCSB PDB:8VSL；HGNC:ARAF",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶域 αC-helix 与 N-lobe 调控界面",
+        "可稳定非活化构象并干扰催化活性构象形成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RAF 激酶域二聚化相关界面",
+        "可阻断 RAF 分子间构象激活与下游 MEK 磷酸化",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP 结合裂隙邻近保守催化区",
+        "保守性高，易产生 RAF 家族交叉反应及激酶选择性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ARAF 为胞内激酶，体内抗体递送与抗原可及性风险较高；应优先定位为胞内 VHH、Fab 结构探针或降解偶联研究工具。",
+    "structurePrepZh": "以 8VSL 高分辨率晶体结构为模板，保留抗原链 A/P 中完整激酶域，校正缺失残基、磷酸化状态与构象异质性后建模。",
+    "structureRef": "RCSB PDB 8VSL，X-ray diffraction，1.42 Å",
+    "antibodies": [
+      "抗-ARAF 研究级单克隆抗体",
+      "抗-RAF 激酶域构象识别抗体"
+    ],
+    "interfaceFocus": "αC-helix、activation segment 与二聚化界面",
+    "designMode": "胞内构象阻断",
+    "candidates": [
+      {
+        "target": "BRAF",
+        "rationale": "BRAF 与 ARAF 同属 RAF 激酶家族，是 RAS-RAF-MEK-ERK 通路中更常见的肿瘤驱动节点；其 V600E 等突变在黑色素瘤和胶质瘤中具有强疾病证据。"
+      },
+      {
+        "target": "RAF1",
+        "rationale": "RAF1 编码 CRAF，与 ARAF 共享 RAF 二聚化和 MEK 磷酸化机制；其在 RASopathy、心肌肥厚和多类肿瘤 MAPK 激活中具有明确功能关联。"
+      },
+      {
+        "target": "MAP2K1",
+        "rationale": "MAP2K1 编码 MEK1，是 RAF 直接磷酸化底物；阻断 RAF-MEK 信号传递可在同一 MAPK 通路中实现更下游的通路控制。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

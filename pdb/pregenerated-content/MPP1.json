@@ -1,0 +1,65 @@
+{
+  "gene": "MPP1",
+  "generatedAt": "2026-08-03T14:18:36.926Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MPP1 是红细胞膜骨架相关 MAGUK 支架蛋白，参与 p55–glycophorin C–protein 4.1 复合体装配及膜皮质骨架稳定，其疾病证据主要来自神经退行性疾病、造血系统异常和肺泡表面活性物质相关疾病的遗传或表达关联。该蛋白以胞内膜骨架支架为主，并非典型分泌蛋白或跨膜受体，因此抗原可及性弱于外泌配体和细胞表面受体，需限定于细胞内递送、诊断抗体或研究级干预场景。相较同通路中的膜受体或外侧糖蛋白，MPP1 的优势在于结构域清晰、MAGUK 模块可解析、支架复合体界面明确，适合作为机制验证和蛋白复合体扰动设计靶点，但治疗抗体优先级应低于胞外可及靶点。",
+    "mechanism": "抗体结合 MPP1 SH3-GK 模块界面，阻断其与 protein 4.1R 及 glycophorin C 复合体的支架耦联，干扰膜骨架连接复合体稳定性。",
+    "selectedEpitope": "优先覆盖 3NEY 所示 SH3-GK 超模块沟槽及结构域间连接界面，避免仅选择非功能性远端表面。",
+    "diseaseDirection": "神经退行性与膜骨架异常",
+    "domain": "MPP1 含 N 端 L27 结构域、PDZ 结构域、SH3 结构域和 C 端 guanylate kinase-like 结构域。",
+    "evidence": "MPP1 膜骨架支架复合体与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q00013 functional annotation",
+      "RCSB PDB 3NEY X-ray structure",
+      "Erythrocyte p55-glycophorin C-protein 4.1 complex literature"
+    ],
+    "referenceEntries": "UniProt Q00013；RCSB PDB 3NEY；Open Targets MPP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SH3-GK 结构域间沟槽及近邻复合体结合面",
+        "可能影响 MAGUK 超模块构象与支架复合体装配，具最高机制相关性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PDZ 结构域配体结合沟槽周边可及环区",
+        "可用于阻断 C 端短肽样配体识别或稳定特定构象",
+        "备选"
+      ],
+      [
+        "Site C",
+        "L27 结构域远端同源寡聚化表面",
+        "可能影响多蛋白聚集，但结构外推和非特异支架扰动风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MPP1 主要定位于胞内膜骨架，常规抗体体内可及性不足；设计应优先用于胞内抗体、递送型抗体或构象识别试剂，并评估 MAGUK 家族交叉反应。",
+    "structurePrepZh": "以 3NEY 晶体结构为模板，保留 A-F 链用于界面比对，补建缺失环区并检查晶体接触，重点定义 SH3-GK 模块真实暴露面。",
+    "structureRef": "RCSB PDB 3NEY，X-ray diffraction，2.26 Å",
+    "antibodies": [
+      "商业抗 MPP1/p55 单克隆抗体",
+      "商业抗 MPP1/p55 多克隆抗体"
+    ],
+    "interfaceFocus": "SH3-GK 超模块沟槽与 protein 4.1R 复合体邻近面",
+    "designMode": "胞内支架界面阻断",
+    "candidates": [
+      {
+        "target": "GYPC",
+        "rationale": "GYPC 编码 glycophorin C，是红细胞膜 p55-MPP1 复合体的膜糖蛋白锚定组分，胞外结构域可及性明显优于 MPP1。"
+      },
+      {
+        "target": "EPB41",
+        "rationale": "EPB41 编码 protein 4.1R，直接连接 MPP1/GYPC 复合体与谱蛋白-肌动蛋白骨架，是同一膜骨架稳定通路的核心节点。"
+      },
+      {
+        "target": "SPTA1",
+        "rationale": "SPTA1 编码 α-spectrin，是 protein 4.1R 介导膜骨架网络的重要结构组分，可作为膜皮质骨架完整性相关的替代机制靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "IPO9",
+  "generatedAt": "2026-08-03T19:58:25.936Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IPO9编码核转运受体importin 9，主要介导组蛋白H2A-H2B及若干核定位信号货物的入核转运，其Open Targets关联主要集中于体成分、BMI、瘦体重和骨骼表型，提示其更接近遗传调控与细胞内蛋白稳态相关机制。该蛋白为可溶性胞质-核转运蛋白，缺乏跨膜区、分泌信号肽和稳定胞外结构域，因此天然抗原可及性不符合常规治疗性抗体阻断需求。相较于同通路中存在明确胞外可及性的内分泌或膜受体靶点，IPO9作为主靶点优先级较低，更适合作为结构生物学验证或细胞内递送抗体研究对象。",
+    "mechanism": "设计分子应阻断IPO9 HEAT重复内凹面与组蛋白H2A-H2B货物表面的结合界面，从而抑制IPO9介导的核输入复合物形成。",
+    "selectedEpitope": "优先聚焦HEAT重复形成的货物结合沟槽，覆盖H2A-H2B接触面而避开广泛保守RanGTP结合区域。",
+    "diseaseDirection": "体成分与骨骼表型遗传关联",
+    "domain": "IPO9由连续HEAT重复构成弯曲超螺旋α螺线结构，形成核转运货物结合内凹面。",
+    "evidence": "IPO9结构与体成分遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q96P70 functional annotation",
+      "RCSB PDB 6N1Z X-ray structure",
+      "literature on importin 9 histone H2A-H2B nuclear import"
+    ],
+    "referenceEntries": "UniProt Q96P70；RCSB PDB 6N1Z；Open Targets IPO9",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "HEAT重复内凹面货物结合沟槽",
+        "可直接竞争H2A-H2B结合，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端HEAT重复RanGTP调控邻近面",
+        "可能影响核转运循环构象转换，但需避免广谱核转运毒性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "外凸面远离货物界面的保守HEAT重复区",
+        "阻断效应不确定且易产生非功能性结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IPO9为细胞内可溶性核转运蛋白，常规抗体难以到达作用位点；建议仅在细胞内递送、内体逃逸或研究级intrabody框架下推进。",
+    "structurePrepZh": "以PDB 6N1Z为结构模板，保留抗原链A-F中完整HEAT重复构象，校正缺失环区并标注H2A-H2B货物结合界面。",
+    "structureRef": "PDB 6N1Z，X-ray diffraction，2.7 Å",
+    "antibodies": [
+      "无已获批IPO9靶向抗体",
+      "抗IPO9研究级检测抗体"
+    ],
+    "interfaceFocus": "HEAT重复内凹面H2A-H2B结合界面",
+    "designMode": "细胞内阻断型",
+    "candidates": [
+      {
+        "target": "RAN",
+        "rationale": "RAN通过RanGTP/RanGDP循环驱动importin类受体货物装载与释放，是IPO9核转运通路的核心调控因子。其作用位点同样位于细胞内，适合机制验证而非传统胞外抗体阻断。"
+      },
+      {
+        "target": "RANGAP1",
+        "rationale": "RANGAP1促进RanGTP水解并维持核质Ran梯度，直接影响IPO9介导核输入循环的方向性。该靶点可作为核转运通路功能调控的候选参照。"
+      },
+      {
+        "target": "NUTF2",
+        "rationale": "NUTF2介导RanGDP回输入核，维持Ran循环所需核内底物供给，与IPO9依赖性核输入处于同一核转运系统。其通路位置明确，但抗体药物可及性同样受限。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "NUP153",
+  "generatedAt": "2026-08-03T14:55:10.500Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NUP153 是核孔复合体核篮侧核孔蛋白，参与病毒基因组入核、病毒核输出复合体转运及宿主核质运输重编程，在 HIV 感染与流感病毒复制周期中具有疾病通路关联。该蛋白主要位于核孔核质侧，缺乏常规细胞外结构域或分泌特征，抗体抗原可及性弱，更适合细胞内递送抗体或研究级阻断构型。相较于 CXCR4、CCR5 或 IFNAR 等膜表面抗病毒靶点，NUP153 的优先级优势在于宿主依赖性强且病毒逃逸压力较低，但成药性优先级受细胞内定位限制。",
+    "mechanism": "通过结合 NUP153 C 端 FG 重复区或 RanGDP-NUP153 界面，干扰 HIV 前整合复合体及流感病毒核糖核蛋白经核孔复合体的核质转运。",
+    "selectedEpitope": "优先聚焦 C 端锌指/Ran 结合相关结构面，避开高度无序 FG 重复区的非特异结合风险。",
+    "diseaseDirection": "病毒感染宿主核转运干预",
+    "domain": "NUP153 含 N 端 NPC 锚定区、中央锌指区及 C 端 FG 重复核转运区。",
+    "evidence": "NUP153 病毒感染与核孔转运证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P49790 functional annotation",
+      "RCSB PDB 4U0C experimental structure",
+      "HIV and influenza host-factor nucleoporin studies"
+    ],
+    "referenceEntries": "UniProt P49790；RCSB PDB 4U0C；Open Targets NUP153",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C 端锌指/Ran 结合结构面",
+        "可用于阻断 Ran 依赖核转运复合体装配，结构约束较明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "核篮侧 NPC 锚定相关区域",
+        "可能影响 NUP153 在核孔复合体中的定位与病毒入核依赖性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "FG 重复低复杂度区域",
+        "参与转运受体结合但高度无序，存在交叉反应与亲和力筛选偏差",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NUP153 为核内侧核孔蛋白，天然抗体难以到达作用位点；建议限定为细胞内抗体、递送型 Fab/VHH 或机制验证工具分子。",
+    "structurePrepZh": "以 PDB 4U0C 链 A/B 为结构模板，补充缺失无序区注释，保留锌配位与界面残基，剔除晶体接触干扰位点。",
+    "structureRef": "RCSB PDB 4U0C，X-ray，1.77 Å，人源 NUP153 结构片段",
+    "antibodies": [
+      "anti-NUP153 monoclonal antibody QE5",
+      "anti-NUP153 monoclonal antibody SA1"
+    ],
+    "interfaceFocus": "Ran 结合面与核转运受体接触邻近区",
+    "designMode": "细胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "NUP98",
+        "rationale": "NUP98 为核孔 FG 核孔蛋白，参与病毒核质转运与宿主抗病毒反应调控，可作为同一核孔转运依赖通路的替代宿主因子。"
+      },
+      {
+        "target": "TNPO3",
+        "rationale": "TNPO3 是 HIV 前整合复合体入核相关转运因子，与 NUP153 共同处于病毒利用宿主核输入机制的功能轴。"
+      },
+      {
+        "target": "RAN",
+        "rationale": "RAN GTPase 驱动核质运输方向性，并与 NUP153 相关结构界面参与转运复合体循环，适合用于界面机制对照。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "TCF7L2",
+  "generatedAt": "2026-08-03T17:11:09.435Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TCF7L2是Wnt/β-catenin转录复合体的关键DNA结合组分，参与胰岛β细胞功能、肠上皮更新及肿瘤细胞增殖相关转录程序，因而与2型糖尿病及结直肠癌等疾病通路具有直接机制关联。该蛋白为核内转录因子，缺乏稳定胞外结构域和膜表位，抗原可及性显著低于典型膜受体或分泌蛋白，天然更适合以胞内递送抗体或替代性亲和分子进行干预。相较于同通路下的WNT3A、FZD7或CTNNB1，TCF7L2更贴近终末转录输出层，具有更强的通路收敛性与疾病表型解释力，适合作为主靶点开展机制导向设计。",
+    "mechanism": "阻断TCF7L2与β-catenin及TCF共因子复合，从而抑制Wnt靶基因转录激活。",
+    "selectedEpitope": "优先覆盖HMG样DNA结合域及β-catenin协同界面，避免破坏非特异DNA接触。",
+    "diseaseDirection": "代谢与肿瘤通路",
+    "domain": "N端β-catenin互作区，C端HMG样DNA结合域及转录调控区",
+    "evidence": "TCF7L2疾病关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform: TCF7L2-disease association profile",
+      "UniProt: Q9NQB0 human TCF7L2 annotation",
+      "RCSB PDB: 1JDH crystal structure",
+      "TCGA/文献中Wnt-TCF转录轴在结直肠癌与糖代谢中的研究"
+    ],
+    "referenceEntries": "UniProt Q9NQB0; RCSB PDB 1JDH; Open Targets TCF7L2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "HMG样DNA结合域核心面",
+        "优先干预DNA装载与转录复合体稳定性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "β-catenin协同接触区",
+        "削弱Wnt依赖性转录激活",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端转录调控尾区",
+        "降低共激活子招募能力，但特异性需谨慎评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "靶点为核内转录因子，细胞外可及性不足，常规全长抗体进入受限；设计上宜优先考虑细胞内递送Fab/VHH或替代分子。DNA结合界面保守性较高，需避免与其他TCF/LEF家族交叉。",
+    "structurePrepZh": "基于1.9 Å晶体结构对链A/B进行界面清理与缺失残基补全，标注DNA接触残基、β-catenin协同面及保守位点后再行表位分层。",
+    "structureRef": "RCSB PDB 1JDH; X-ray diffraction, 1.9 Å",
+    "antibodies": [
+      "TCF/LEF pathway inhibitory intrabodies",
+      "anti-beta-catenin transcription complex binders"
+    ],
+    "interfaceFocus": "HMG域DNA接触面与β-catenin协同界面",
+    "designMode": "intracellular",
+    "candidates": [
+      {
+        "target": "CTNNB1",
+        "rationale": "CTNNB1编码β-catenin，是TCF7L2形成转录激活复合体的核心共伴侣，直接决定Wnt靶基因转录输出。作为同一疾病通路的上游协同节点，可用于联动设计或竞争表位验证。"
+      },
+      {
+        "target": "WNT3A",
+        "rationale": "WNT3A位于Wnt信号起始端，驱动下游β-catenin稳定与TCF7L2转录激活，和主靶点同属Wnt致病轴。其为分泌蛋白，抗原可及性更高，适合作为并行验证靶点。"
+      },
+      {
+        "target": "FZD7",
+        "rationale": "FZD7是Wnt配体受体，常在结直肠癌等Wnt依赖性疾病中上游激活TCF7L2介导的转录程序。其膜受体属性使抗体设计更成熟，可作为同通路对照与组合靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

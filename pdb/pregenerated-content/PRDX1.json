@@ -1,0 +1,65 @@
+{
+  "gene": "PRDX1",
+  "generatedAt": "2026-08-03T15:34:00.300Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PRDX1 是典型 2-Cys 过氧化物还原酶，在过氧化氢清除、氧化还原稳态和炎症相关 DAMP 信号中具有明确作用；其细胞外释放形式可与 TLR4 复合体相关免疫识别过程相联系，参与神经炎症和先天免疫放大。PRDX1 以胞质蛋白为主，但在氧化应激、细胞损伤或炎症环境中可非经典分泌或外排，形成可被抗体识别的细胞外抗原池。相较广泛表达的下游氧化应激效应分子，PRDX1 具备高分辨率二聚体结构、明确催化半胱氨酸区域和炎症外泌可及性，适合作为阻断型或捕获型抗体设计优先靶点。",
+    "mechanism": "抗体优先阻断细胞外 PRDX1 与 TLR4/MD2 免疫识别复合体的结合，并干预其二聚体界面附近构象暴露，降低 DAMP 介导的 NF-κB 炎症激活。",
+    "selectedEpitope": "优先覆盖典型 2-Cys PRDX fold 二聚体界面及 Cys52 周边暴露环区，兼顾阻断外源 PRDX1 受体结合。",
+    "diseaseDirection": "神经炎症与氧化应激相关疾病",
+    "domain": "PRDX1 含保守 peroxiredoxin catalytic fold，核心位点包括 peroxidatic Cys52 与 resolving Cys173，常形成同源二聚体。",
+    "evidence": "PRDX1 氧化应激-DAMP 炎症轴证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt Q06830 功能与亚细胞定位注释",
+      "RCSB PDB 8Z54 高分辨率晶体结构",
+      "PRDX1-TLR4 相关神经炎症与先天免疫文献"
+    ],
+    "referenceEntries": "UniProt Q06830；RCSB PDB 8Z54；Open Targets PRDX1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "二聚体界面邻近 Cys52 催化环区",
+        "有利于干预 PRDX1 构象装配及受体识别相关表面",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C 端 resolving Cys173 邻近螺旋区域",
+        "可影响 2-Cys 反应循环相关构象，适合构建构象选择性抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守 catalytic pocket 深部区域",
+        "同源 PRDX 家族交叉反应风险较高，且抗体可及性受限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PRDX1 属胞内高丰度抗氧化酶，系统性中和可能影响正常红氧稳态；设计宜偏向细胞外释放型构象表位，并严格评估 PRDX2 等同源蛋白交叉反应。",
+    "structurePrepZh": "以 PDB 8Z54 A/B 链二聚体为建模单元，保留生物学二聚体界面，校验 Cys52、Cys173 氧化状态并去除非关键晶体添加物后进行表面表位映射。",
+    "structureRef": "RCSB PDB 8Z54，X-ray diffraction，1.45 Å",
+    "antibodies": [
+      "抗 PRDX1 中和抗体 clone 2E2",
+      "抗 PRDX1 单克隆抗体 clone 4C3"
+    ],
+    "interfaceFocus": "Cys52 催化环与同源二聚体界面",
+    "designMode": "胞外DAMP阻断",
+    "candidates": [
+      {
+        "target": "TLR4",
+        "rationale": "TLR4 是细胞外 PRDX1 诱导先天免疫炎症反应的重要受体轴组成部分，阻断该受体可直接降低 DAMP 介导的 NF-κB 激活。"
+      },
+      {
+        "target": "LY96",
+        "rationale": "LY96 编码 MD-2，是 TLR4 配体识别复合体的关键辅助蛋白，适合作为 PRDX1-TLR4 识别轴的界面调控候选靶点。"
+      },
+      {
+        "target": "MYD88",
+        "rationale": "MYD88 是 TLR4 下游经典炎症信号接头分子，与 PRDX1 诱导的先天免疫放大通路处于同一轴线，但其胞内定位使抗体直接干预可及性较低。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

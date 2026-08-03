@@ -1,0 +1,65 @@
+{
+  "gene": "MUC16",
+  "generatedAt": "2026-08-03T14:28:37.910Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MUC16编码细胞表面相关黏蛋白CA125，其膜近端SEA结构域重复区和胞外大片段在卵巢癌中高表达并脱落，是临床血清标志物与肿瘤细胞表面抗原。MUC16可通过其胞外糖蛋白区与间皮素结合，促进卵巢癌细胞在腹膜间皮表面的黏附和播散。该靶点具有暴露于细胞外空间的长胞外结构域，抗体可直接识别肿瘤细胞表面或脱落抗原；相较多数胞内驱动因子，MUC16兼具疾病相关性、抗原可及性和既有临床检测基础，优先级较高。",
+    "mechanism": "阻断MUC16胞外区与MSLN间皮素的结合，削弱卵巢癌细胞腹膜黏附，并可通过表面结合介导ADCC或递送载荷。",
+    "selectedEpitope": "优先靶向PDB 7SA9解析的MUC16 SEA结构域暴露环区，避开自切割界面并保留构象特异性。",
+    "diseaseDirection": "卵巢癌腹膜播散与CA125阳性肿瘤",
+    "domain": "MUC16为I型膜黏蛋白，含巨大N端糖基化胞外区、多重SEA结构域、跨膜段和短胞质尾。",
+    "evidence": "MUC16/CA125卵巢癌抗体设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q8WXI7蛋白注释",
+      "RCSB PDB 7SA9晶体结构",
+      "卵巢癌CA125与MUC16-MSLN黏附研究文献"
+    ],
+    "referenceEntries": "UniProt Q8WXI7；RCSB PDB 7SA9；Open Targets MUC16",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SEA结构域外露β片层-环区构象表面",
+        "有利于获得构象依赖抗体并降低对高度糖基化VNTR区的依赖",
+        "优先"
+      ],
+      [
+        "Site B",
+        "膜近端SEA重复区非自切割侧面",
+        "适合开发细胞表面结合抗体，支持效应功能或ADC递送",
+        "备选"
+      ],
+      [
+        "Site C",
+        "富含O-糖基化串联重复区",
+        "抗原丰度高但糖型异质性强，可能影响批次一致性与跨样本识别",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MUC16胞外区高度糖基化且可发生脱落，需区分膜结合抗原与可溶性CA125干扰；表位宜避开可变糖链密集区并评估正常间皮组织背景。",
+    "structurePrepZh": "以7SA9双链晶体结构为SEA结构域模板，补全缺失侧链、保留关键二硫键，标注糖基化位点与自切割相关界面后进行表位筛选。",
+    "structureRef": "RCSB PDB 7SA9，MUC16 SEA结构域晶体结构，1.69 Å",
+    "antibodies": [
+      "Oregovomab",
+      "Abagovomab"
+    ],
+    "interfaceFocus": "MUC16 SEA外露环区与MSLN结合相关胞外表面",
+    "designMode": "阻断结合与效应递送",
+    "candidates": [
+      {
+        "target": "MSLN",
+        "rationale": "MSLN与MUC16直接结合，参与卵巢癌细胞腹膜黏附；阻断MSLN端界面可与MUC16靶向形成同一黏附轴的互补策略。"
+      },
+      {
+        "target": "ITGB1",
+        "rationale": "ITGB1介导肿瘤细胞与细胞外基质黏附，在卵巢癌腹膜种植和迁移中与黏附通路功能相连；其胞外整合素结构适合抗体干预。"
+      },
+      {
+        "target": "EpCAM",
+        "rationale": "EPCAM为卵巢上皮肿瘤常见细胞表面抗原，参与肿瘤细胞黏附与上皮表型维持；可作为MUC16阳性卵巢癌表面靶向组合候选。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

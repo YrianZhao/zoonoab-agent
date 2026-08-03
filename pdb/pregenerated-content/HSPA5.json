@@ -1,0 +1,65 @@
+{
+  "gene": "HSPA5",
+  "generatedAt": "2026-08-03T13:18:53.356Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HSPA5/GRP78 是内质网伴侣蛋白，参与未折叠蛋白反应并与 PERK、IRE1、ATF6 的腔内结构域结合维持其非激活状态；在应激释放后促成 UPR 激活，与病毒感染、肿瘤适应性应激及神经退行性蛋白稳态失衡相关。HSPA5 主要定位于内质网腔，但在感染或肿瘤应激条件下可转位至细胞表面，形成可抗体识别的膜外抗原池。相较于直接靶向 PERK、IRE1 等胞内信号酶，细胞表面 HSPA5 具有更明确的抗原可及性，并可在应激细胞群中提供选择性干预窗口。",
+    "mechanism": "抗体结合细胞表面 HSPA5 的底物结合结构域，阻断其与病毒包膜蛋白或促存活配体的结合，并限制应激细胞表面伴侣功能。",
+    "selectedEpitope": "优先覆盖底物结合结构域 β-sandwich 肽结合沟槽及 α-helical lid 邻近界面。",
+    "diseaseDirection": "病毒感染与蛋白稳态应激疾病",
+    "domain": "HSPA5 含 N 端 ATPase 核苷酸结合结构域、C 端底物结合 β 域、α-helical lid 与 KDEL 保留序列。",
+    "evidence": "HSPA5 结构-疾病关联与表面伴侣证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProtKB P11021 功能与定位注释",
+      "RCSB PDB 5YP8 X 射线晶体结构",
+      "文献报道的细胞表面 GRP78 与病毒进入/应激存活研究"
+    ],
+    "referenceEntries": "UniProt P11021；RCSB PDB 5YP8；Open Targets HSPA5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "底物结合 β-sandwich 肽结合沟槽",
+        "可直接干扰 HSPA5 与外源蛋白或应激配体结合，功能阻断价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "α-helical lid 与底物结合域交界面",
+        "可能稳定非结合构象并削弱伴侣循环中的底物包埋过程",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端 ATPase 核苷酸结合裂隙",
+        "ATPase 口袋保守性高且多位于细胞内/腔内构象核心，选择性与可及性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HSPA5 常驻内质网且具 KDEL 保留信号，表面表达具有细胞状态依赖性；设计应优先验证应激细胞表面抗原密度并避免广泛阻断基础蛋白折叠功能。",
+    "structurePrepZh": "以 5YP8 高分辨率晶体结构为模板，保留抗原链 A/B 的结构域边界，补充缺失柔性环区并标注 ATPase 域与底物结合域界面。",
+    "structureRef": "RCSB PDB 5YP8，X-ray diffraction，1.448 Å",
+    "antibodies": [
+      "PAT-SM6",
+      "MAb159"
+    ],
+    "interfaceFocus": "SBDβ 肽结合沟槽与 lid 邻近构象界面",
+    "designMode": "表面GRP78阻断",
+    "candidates": [
+      {
+        "target": "EIF2AK3",
+        "rationale": "EIF2AK3/PERK 是 UPR 的内质网应激感受器，HSPA5 解离后 PERK 二聚化并磷酸化 EIF2α，驱动 ATF4 轴应激转录。该靶点与 HSPA5 位于同一 UPR 分支，但其激酶结构域胞内可及性限制抗体开发。"
+      },
+      {
+        "target": "ERN1",
+        "rationale": "ERN1/IRE1 是 HSPA5 调控的另一内质网应激传感器，HSPA5 解离促进 IRE1 寡聚化并启动 XBP1 mRNA 剪接。其疾病相关性与蛋白稳态应激密切相关，可作为通路验证候选。"
+      },
+      {
+        "target": "ATF6",
+        "rationale": "ATF6 的内质网腔内结构域受 HSPA5 结合约束，应激时释放并转运至高尔基体裂解释放转录因子片段。该靶点与 HSPA5 同属 UPR 初始感知模块。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

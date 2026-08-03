@@ -1,0 +1,65 @@
+{
+  "gene": "KSR1",
+  "generatedAt": "2026-08-03T13:47:41.272Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KSR1 是 RAS-RAF-MEK-ERK 级联中的支架蛋白，促进 RAF、MEK 与 ERK 在信号复合体内组装，增强 MAPK 通路输出，因而与 RASopathy 及肿瘤增殖信号具有明确机制关联。KSR1 主要为胞内蛋白，天然抗原可及性弱，不适合作为常规细胞外阻断抗体靶点；其结构化激酶样结构域可支持胞内递送抗体、intrabody 或研究级结合分子设计。相较直接抑制 RAF/MEK/ERK 催化位点，KSR1 的优先级在于靶向支架界面可干预复合体装配，具备通路选择性调控潜力，但需以递送可行性作为核心开发约束。",
+    "mechanism": "通过结合 KSR1 激酶样结构域的 MEK 结合界面，阻断 KSR1 与 MEK1/2 形成支架复合体，降低 RAF 介导的 MEK 磷酸化效率。",
+    "selectedEpitope": "优先覆盖 C1 激酶样结构域中 MEK 结合沟槽及 αG-αH 邻近构象界面。",
+    "diseaseDirection": "RAS-MAPK驱动肿瘤与RASopathy",
+    "domain": "KSR1 含 CA1-CA5 保守区，5VYK 覆盖 C1/CA5 激酶样结构域复合体构象。",
+    "evidence": "KSR1支架蛋白与RAS-MAPK疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q8IVT5 functional annotation",
+      "RCSB PDB 5VYK experimental structure",
+      "RAS-RAF-MEK-ERK pathway literature"
+    ],
+    "referenceEntries": "UniProt Q8IVT5；RCSB PDB 5VYK；Open Targets KSR1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CA5激酶样结构域MEK结合沟槽",
+        "直接干预KSR1-MEK复合体装配，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "αG-αH及C-lobe邻近支架界面",
+        "稳定别构构象并削弱MAPK模块组装效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP结合裂隙周边保守激酶折叠区域",
+        "保守性高且易产生RAF家族交叉结合风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "KSR1 为胞内支架蛋白，常规抗体难以到达作用位点；设计应聚焦胞内递送格式，并严格评估 RAF/KSR2 同源结构交叉反应。",
+    "structurePrepZh": "以 5VYK 高分辨率晶体结构为模板，保留抗原链 A/C 的激酶样结构域，校正缺失环区并标注 MEK 结合相关界面。",
+    "structureRef": "RCSB PDB 5VYK，X-ray diffraction，1.749 Å",
+    "antibodies": [
+      "研究级抗KSR1单克隆抗体",
+      "研究级抗KSR1多克隆抗体"
+    ],
+    "interfaceFocus": "KSR1-MEK结合沟槽与C-lobe支架界面",
+    "designMode": "胞内递送抗体设计",
+    "candidates": [
+      {
+        "target": "BRAF",
+        "rationale": "BRAF 是 RAS-MAPK 通路中 RAF 激酶核心成员，直接磷酸化 MEK1/2；其致癌突变在多种肿瘤中驱动 ERK 信号持续激活。"
+      },
+      {
+        "target": "MAP2K1",
+        "rationale": "MAP2K1 编码 MEK1，是 KSR1 支架复合体中的直接下游激酶；阻断其与 RAF/KSR 复合体耦联可降低 ERK 激活。"
+      },
+      {
+        "target": "EGFR",
+        "rationale": "EGFR 位于 RAS-MAPK 级联上游，通过 GRB2-SOS 轴促进 RAS-GTP 形成；其膜受体胞外结构域具备更优抗体可及性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

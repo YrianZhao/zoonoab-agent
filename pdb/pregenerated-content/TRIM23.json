@@ -1,0 +1,65 @@
+{
+  "gene": "TRIM23",
+  "generatedAt": "2026-08-03T17:29:11.522Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TRIM23 是胞内 tripartite motif 家族蛋白，包含 RING 相关泛素连接酶模块并参与先天免疫、NF-κB 与抗病毒信号调控；现有 Open Targets 关联主要指向体成分、身高、基础代谢率等遗传性数量性状，疾病方向证据较弱且缺乏明确抗体药物通路闭环。该蛋白不属于分泌蛋白或常规膜受体，天然抗原可及性不利于完整抗体在活细胞外阻断其功能，因此更适合作为结构生物学与细胞内靶向格式评估对象。相较于同通路中的 TNFRSF、IL1R 或 IFNAR 等胞外受体，TRIM23 的抗体成药优先级较低；若纳入设计，应优先采用可进入细胞或胞内表达的抗体片段策略。",
+    "mechanism": "以内源性胞内抗体片段结合 TRIM23 ARF-like GTPase 结构域，干扰其构象稳定性及与调控因子的结合，从而影响下游先天免疫信号复合体装配。",
+    "selectedEpitope": "优先锁定 5VZV 所示 ARF-like GTPase 结构域 Switch I/II 邻近构象表面。",
+    "diseaseDirection": "代谢体成分与先天免疫调控",
+    "domain": "TRIM23 含 N 端 RING/B-box/coiled-coil TRIM 模块及 C 端 ARF-like GTPase 结构域。",
+    "evidence": "TRIM23 遗传关联与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform 遗传关联数据",
+      "UniProt P36406 蛋白结构域注释",
+      "RCSB PDB 5VZV X 射线晶体结构",
+      "文献报道 TRIM23 参与先天免疫与泛素化调控"
+    ],
+    "referenceEntries": "UniProt: P36406; RCSB PDB: 5VZV; Gene: TRIM23",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ARF-like GTPase 结构域 Switch I/II 邻近表面",
+        "可能影响核苷酸依赖构象与效应因子识别，适合功能阻断型片段设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ARF-like GTPase 结构域 α 螺旋外露面",
+        "结构稳定且可形成构象选择性结合，但功能阻断需依赖后续验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "TRIM 家族保守 RING/B-box 区域",
+        "涉及泛素连接酶核心功能但同源性较高，存在选择性与脱靶风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TRIM23 为胞内蛋白，常规 Fab 或 IgG 难以到达作用位点；应标注细胞递送、胞内稳定性、TRIM 家族选择性及功能读出不确定性风险。",
+    "structurePrepZh": "以 5VZV 晶体结构链 A/B/C 为模板，去除晶体接触伪界面后评估 ARF-like GTPase 结构域可及表面、保守位点与构象柔性。",
+    "structureRef": "RCSB PDB 5VZV, X-ray diffraction, 1.812 Å",
+    "antibodies": [
+      "暂无获批 TRIM23 靶向抗体",
+      "暂无临床阶段 TRIM23 同类抗体"
+    ],
+    "interfaceFocus": "ARF-like GTPase Switch I/II 与效应因子结合面",
+    "designMode": "胞内片段抗体探索",
+    "candidates": [
+      {
+        "target": "TNF",
+        "rationale": "TNF 是 NF-κB 炎症通路上游可分泌细胞因子，抗原可及性显著优于 TRIM23，且抗体阻断 TNF 与 TNFRSF1A/TNFRSF1B 相互作用已有充分药理学验证。"
+      },
+      {
+        "target": "IL1B",
+        "rationale": "IL1B 通过 IL1R1 激活 MyD88-IRAK-TRAF6-NF-κB 轴，与 TRIM23 相关先天免疫调控处于相邻炎症网络；其分泌蛋白属性适合中和抗体设计。"
+      },
+      {
+        "target": "IFNAR1",
+        "rationale": "IFNAR1 是 I 型干扰素受体复合体的胞外受体链，处于抗病毒先天免疫通路核心节点；相比胞内 TRIM23，更适合采用阻断配体-受体结合的抗体策略。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "IL2RB",
+  "generatedAt": "2026-08-03T13:27:49.180Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IL2RB 是高亲和力 IL-2 受体与 IL-15 受体共享的 β 链，参与 IL-2/IL-15 依赖的 JAK1/JAK3-STAT5 轴，影响 T 细胞、NK 细胞及调节性 T 细胞稳态，因而与免疫缺陷伴自身免疫、多发性硬化、皮肤 T 细胞淋巴瘤及移植免疫相关。该蛋白为 I 型跨膜受体，胞外 D1/D2 细胞因子受体同源结构域暴露于细胞表面，适合抗体识别并直接阻断配体-受体复合物装配。相较仅靶向 IL2RA 的策略，IL2RB 同时覆盖 IL-2 与 IL-15 受体信号输入，具有更强的通路节点优先级，但需通过表位设计控制对保护性免疫细胞的广泛抑制风险。",
+    "mechanism": "抗体阻断 IL2RB 胞外 D1/D2 结构域与 IL-2 或 IL-15 受体复合物的接触，抑制 IL2RB 介导的 JAK1 招募及下游 STAT5 磷酸化。",
+    "selectedEpitope": "优先靶向 D1-D2 交界处的细胞因子结合面，覆盖 IL-2/IL-15 复合物中 β 链接触界面。",
+    "diseaseDirection": "自身免疫与T细胞淋巴增殖",
+    "domain": "IL2RB 胞外区含两个 fibronectin type III 样细胞因子受体同源结构域，后接跨膜区与胞内信号尾部。",
+    "evidence": "IL2RB-IL2/IL15轴疾病遗传与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt reviewed entry P14784",
+      "RCSB PDB 6E8K experimental structure",
+      "IL-2/IL-15 receptor signaling literature"
+    ],
+    "referenceEntries": "UniProt P14784；RCSB PDB 6E8K；Open Targets IL2RB",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "D1-D2 交界的细胞因子结合面",
+        "可直接干扰 IL-2/IL-15 与 IL2RB 的复合物装配，功能阻断价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "D2 结构域靠近 γc 共受体装配界面",
+        "可能削弱受体三元复合物稳定性，适合开发部分抑制型抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离配体结合面的膜远端暴露环区",
+        "结合可及性较好但功能阻断不确定，需避免仅产生非中和结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IL2RB 为 IL-2 与 IL-15 共享受体链，广泛阻断可能影响 NK 细胞、效应 T 细胞及 Treg 稳态；建议筛选可调节阻断强度的表位并评估细胞亚群选择性。",
+    "structurePrepZh": "以 6E8K 的 A、B 链作为抗原模板，保留胞外 D1/D2 受体域，去除非抗原配体或晶体辅助成分后进行缺失环建模、糖基化位点标注与界面暴露分析。",
+    "structureRef": "RCSB PDB 6E8K，X-ray diffraction，1.71 Å",
+    "antibodies": [
+      "Basiliximab",
+      "Daclizumab"
+    ],
+    "interfaceFocus": "D1-D2 配体结合面与γc装配邻近界面",
+    "designMode": "受体阻断型",
+    "candidates": [
+      {
+        "target": "IL2RA",
+        "rationale": "IL2RA 为高亲和力 IL-2 受体 α 链，决定 IL-2 捕获与受体复合物形成，已在移植排斥和免疫调节中具有抗体药物验证基础。"
+      },
+      {
+        "target": "IL2RG",
+        "rationale": "IL2RG 是 IL-2 与 IL-15 等共同 γ 链细胞因子受体的共享信号链，参与 JAK3-STAT5 激活，适合用于评估同通路更下游的受体复合物阻断策略。"
+      },
+      {
+        "target": "IL15RA",
+        "rationale": "IL15RA 介导 IL-15 高亲和力结合与反式呈递，驱动 NK 细胞和记忆 CD8 T 细胞维持，是 IL2RB 共享通路中具有细胞因子选择性的替代节点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "MGMT",
+  "generatedAt": "2026-08-03T14:14:13.323Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MGMT 是核内 DNA 修复酶，通过将 O6-甲基鸟嘌呤上的烷基转移至自身 Cys145，直接逆转烷化损伤并影响替莫唑胺、洛莫司汀等烷化治疗敏感性。该蛋白并非分泌蛋白或膜受体，天然抗原可及性不利于常规治疗性抗体；更适合作为细胞内抗原识别、研究型抗体或递送型抗体工程评估对象。相较同为 DNA 损伤应答通路的上游传感器，MGMT 具备明确催化口袋、成熟结构数据及强药物反应关联，因此在机制验证和伴随诊断方向具有优先级。",
+    "mechanism": "抗体设计以识别 MGMT C 端催化结构域为核心，阻断 O6-甲基鸟嘌呤底物进入活性口袋或干扰 Cys145 周围底物定位界面。",
+    "selectedEpitope": "优先覆盖 C 端催化域活性口袋邻近环区及 Cys145 底物定位沟槽。",
+    "diseaseDirection": "胶质瘤烷化治疗耐药与DNA修复",
+    "domain": "MGMT 含 N 端调控区与 C 端烷基转移酶催化域，Cys145 为受体半胱氨酸。",
+    "evidence": "MGMT结构与烷化治疗耐药证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt P16455 功能与序列注释",
+      "RCSB PDB 1QNT 晶体结构",
+      "胶质母细胞瘤 MGMT 启动子甲基化与替莫唑胺疗效研究"
+    ],
+    "referenceEntries": "UniProt P16455；RCSB PDB 1QNT；Open Targets MGMT",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C 端催化域 Cys145 邻近底物结合沟槽",
+        "直接干扰 O6-甲基鸟嘌呤定位与烷基转移反应",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化域 DNA 结合表面正电荷区域",
+        "可能削弱损伤 DNA 片段识别并支持机制型阻断",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端柔性调控区暴露片段",
+        "结构可塑性较高，适合检测抗体但阻断价值有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MGMT 为细胞内核蛋白，常规抗体难以到达天然靶位；治疗性设计需结合细胞递送、抗体片段或降解策略，并避免仅依赖体外结合评价。",
+    "structurePrepZh": "以 1QNT 的 A 链为模板，补全缺失侧链并保留催化 Cys145 构象，标注活性口袋、DNA 结合面及高柔性环区后开展表位建模。",
+    "structureRef": "Daniels et al., human MGMT crystal structure, PDB 1QNT",
+    "antibodies": [
+      "MT3.1",
+      "MT23.2"
+    ],
+    "interfaceFocus": "Cys145 活性口袋与DNA底物定位沟槽",
+    "designMode": "细胞内抗原阻断",
+    "candidates": [
+      {
+        "target": "MSH6",
+        "rationale": "MSH6 参与错配修复识别 O6-甲基鸟嘌呤诱导的错配损伤，其缺陷可促进烷化剂耐药并与 MGMT 介导的修复轴存在功能交叉。"
+      },
+      {
+        "target": "MLH1",
+        "rationale": "MLH1 是错配修复复合体核心成分，影响 O6-甲基鸟嘌呤损伤后的细胞毒性信号放大，适合作为同一 DNA 修复耐药通路的候选靶点。"
+      },
+      {
+        "target": "ATM",
+        "rationale": "ATM 介导 DNA 损伤应答和检查点激活，在烷化损伤后的细胞命运决定中与 MGMT 修复能力共同影响治疗反应。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

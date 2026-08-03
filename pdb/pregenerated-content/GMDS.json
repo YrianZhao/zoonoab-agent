@@ -1,0 +1,65 @@
+{
+  "gene": "GMDS",
+  "generatedAt": "2026-08-03T12:49:31.329Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GMDS编码GDP-甘露糖4,6-脱水酶，位于胞质GDP-L-岩藻糖从头合成通路上游，影响蛋白N-糖链和O-岩藻糖化底物供给，并可间接改变Notch等糖基化依赖信号轴。该蛋白为胞内可溶性代谢酶，天然抗原可及性弱，常规治疗性抗体难以直接结合活细胞内靶点，因此更适合作为结构抗原、机制研究或细胞内递送抗体设计对象。相较于同通路中多跨膜转运或广谱糖基转移酶，GMDS具有高分辨率实验结构和明确NADP结合催化口袋，适合开展构象稳定抗体、催化界面探针及递送型Fab/VHH筛选，但作为疾病干预主靶点优先级应低于可及性更佳的胞外受体靶点。",
+    "mechanism": "设计分子需结合GMDS Rossmann折叠邻近NADP/GDP-甘露糖结合沟槽，阻断底物与催化位点定位，从而抑制GDP-4-keto-6-deoxymannose生成。",
+    "selectedEpitope": "优先覆盖NADP结合Rossmann结构域与GDP-甘露糖催化沟槽边缘，避免仅选择远端柔性环。",
+    "diseaseDirection": "糖基化代谢与Notch相关表型",
+    "domain": "GMDS为胞质SDR样脱水酶，含N端Rossmann样NADP结合域和C端底物识别催化区。",
+    "evidence": "GMDS结构与GDP-岩藻糖合成通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt O60547功能与亚细胞定位注释",
+      "RCSB PDB 6GPK高分辨率晶体结构",
+      "KEGG/Reactome GDP-L-fucose biosynthesis通路注释"
+    ],
+    "referenceEntries": "UniProt O60547；RCSB PDB 6GPK；Reactome糖核苷酸代谢",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Rossmann样NADP结合域邻近催化沟槽",
+        "可直接干扰辅因子协同底物定位，适合功能阻断型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端GDP-甘露糖识别区及口袋入口环",
+        "有利于限制底物进入并形成构象锁定抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "寡聚体外侧非催化暴露面",
+        "结合风险较低但功能抑制效应不确定，主要用于检测或捕获",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GMDS为胞内可溶酶，常规抗体体内可及性不足；设计应采用细胞内递送、VHH胞内抗体或机制探针定位，并严控广泛糖基化抑制风险。",
+    "structurePrepZh": "以6GPK的A链或同源四链装配为模板，保留催化口袋邻近辅因子构象信息，补全缺失侧链并评估晶体接触对表位暴露的影响。",
+    "structureRef": "Human GMDS crystal structure, PDB 6GPK, 1.47 Å X-ray",
+    "antibodies": [
+      "暂无获批抗GMDS治疗性抗体",
+      "研究级抗GMDS检测抗体"
+    ],
+    "interfaceFocus": "NADP结合沟槽与GDP-甘露糖口袋入口",
+    "designMode": "胞内酶阻断设计",
+    "candidates": [
+      {
+        "target": "FX",
+        "rationale": "FX编码GDP-L-岩藻糖合成通路下游的双功能差向异构酶/还原酶，直接承接GMDS产物并生成GDP-L-岩藻糖，适合作为同通路代谢节点。"
+      },
+      {
+        "target": "SLC35C1",
+        "rationale": "SLC35C1负责将GDP-L-岩藻糖转运入高尔基体腔，是岩藻糖化底物供给进入分泌通路的关键转运步骤，疾病机制与GMDS产物利用相衔接。"
+      },
+      {
+        "target": "POFUT1",
+        "rationale": "POFUT1催化Notch EGF样重复区O-岩藻糖化，处于GDP-L-岩藻糖供给下游，并直接影响Notch受体配体识别与信号活性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

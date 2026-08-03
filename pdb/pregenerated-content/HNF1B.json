@@ -1,0 +1,65 @@
+{
+  "gene": "HNF1B",
+  "generatedAt": "2026-08-03T13:14:25.612Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HNF1B是胚胎肾脏、胰腺和泌尿生殖系统发育中的转录因子，致病变异可破坏其DNA结合与转录调控功能，导致肾囊肿-糖尿病综合征、MODY5及肾细胞癌易感相关表型。该蛋白主要定位于细胞核，并非天然胞外抗原或膜受体，抗体直接干预需限定于细胞内递送、研究级功能阻断或工程化胞内抗体场景。其优先级来自人类遗传证据强、疾病关联得分高且结构域信息明确；但相较于同通路的膜受体或分泌因子，常规治疗性抗体开发优先级应下调。",
+    "mechanism": "设计抗体阻断HNF1B同源域与靶基因启动子HNF1结合序列接触，或干扰POU样二聚化界面形成，从而削弱异常转录复合体稳定性。",
+    "selectedEpitope": "优先围绕homeobox DNA结合螺旋及其邻近DNA沟槽接触面设计胞内阻断表位。",
+    "diseaseDirection": "肾囊肿-糖尿病综合征/MODY5",
+    "domain": "HNF1B含N端二聚化结构域、POU特异样DNA结合区、homeobox结构域及C端转录调控区。",
+    "evidence": "HNF1B遗传病与结构功能证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联证据",
+      "UniProt P35680功能与亚细胞定位注释",
+      "RCSB PDB 5K9S晶体结构记录",
+      "ClinVar/OMIM HNF1B相关遗传变异证据"
+    ],
+    "referenceEntries": "UniProt P35680；RCSB PDB 5K9S；HGNC:11630；Ensembl ENSG00000108753",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "homeobox识别螺旋-DNA主沟接触面",
+        "可直接削弱HNF1B对靶启动子HNF1基序的结合",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端二聚化结构域及二聚体界面",
+        "有望干扰HNF1B二聚体稳定性并降低DNA结合 avidity",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端转录调控区柔性片段",
+        "结构无序度较高且表位构象不确定，需结合肽段验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HNF1B为核内转录因子，缺乏胞外可及性，常规IgG难以进入细胞核。建议定位为胞内抗体、递送型Fab/VHH或机制验证抗体，并严格评估HNF1A交叉反应。",
+    "structurePrepZh": "以PDB 5K9S的A、B、C链为模板，保留DNA结合复合体构象用于界面标注，补全缺失柔性区并评估同源二聚体与DNA接触残基。",
+    "structureRef": "RCSB PDB 5K9S，X-ray diffraction，2.4 Å，human HNF1B结构",
+    "antibodies": [
+      "研究级抗HNF1B单克隆抗体",
+      "抗HNF1B ChIP级抗体"
+    ],
+    "interfaceFocus": "homeobox-DNA主沟界面与N端二聚化界面",
+    "designMode": "胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "HNF1A",
+        "rationale": "HNF1A与HNF1B同属HNF1转录因子网络，调控胰岛β细胞成熟及肝胰代谢基因表达，亦与MODY和糖尿病通路直接相关。"
+      },
+      {
+        "target": "PAX2",
+        "rationale": "PAX2参与肾脏发育转录程序，并与HNF1B相关肾发育异常和囊性肾病表型存在通路交集，可作为肾发育轴候选靶点。"
+      },
+      {
+        "target": "PKHD1",
+        "rationale": "PKHD1位于HNF1B调控的肾小管/集合管囊性病变相关基因网络中，其异常与囊性肾病发生相关，适合作为下游疾病模块候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "ADAR",
+  "generatedAt": "2026-08-03T10:17:13.631Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ADAR 介导双链 RNA 中腺苷向肌苷的 A-to-I 编辑，限制内源性 dsRNA 被 MDA5/IFIH1 误识别，从而抑制 MAVS-TBK1-IRF3 轴驱动的 I 型干扰素反应；其功能缺陷与 Aicardi-Goutières 综合征 6 和 ADAR 相关 I 型干扰素病直接相关。ADAR 为胞内 RNA 编辑酶，不具备常规膜外抗原可及性，因此更适合作为机制验证、细胞内递送抗体或酶功能调节抗体的研究型靶点。相较下游 IFNAR1 或 JAK1，ADAR 位于自身核酸感知异常的上游因果节点，疾病遗传证据更直接，适合优先建立结构导向的功能调节设计框架。",
+    "mechanism": "设计抗体片段结合 ADAR 双链 RNA 结合结构域或脱氨酶结构域，干预其与 dsRNA 底物结合或影响催化构象，从而改变 A-to-I RNA 编辑效率及下游 MDA5 激活阈值。",
+    "selectedEpitope": "优先评估 dsRNA-binding domain 2/3 的 RNA 结合沟槽邻近表面，兼顾脱氨酶结构域底物进入通道。",
+    "diseaseDirection": "I型干扰素病与RNA编辑缺陷",
+    "domain": "ADAR 含 Z-DNA/RNA 结合区、三个 dsRNA 结合结构域及 C 端脱氨酶催化结构域。",
+    "evidence": "ADAR遗传缺陷与干扰素病机制证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P55265 functional annotation",
+      "RCSB PDB 1XMK experimental structure",
+      "Human genetics evidence for AGS6 and ADAR-related interferonopathy"
+    ],
+    "referenceEntries": "UniProt P55265；RCSB PDB 1XMK；Open Targets ADAR",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "dsRNA-binding domain 2/3 的 RNA 接触沟槽外缘",
+        "可阻断 ADAR 与双链 RNA 底物结合，直接影响编辑底物识别",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C 端脱氨酶结构域底物进入通道邻近区域",
+        "可能稳定或干扰催化构象，适合功能调节型抗体片段设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Z-DNA/RNA 结合结构域表面",
+        "与特定核酸构象识别相关，但疾病相关编辑缺陷的直接性较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ADAR 为胞内抗原，常规治疗性抗体组织可及性不足；设计应限定为胞内递送 Fab/VHH、细胞模型验证或结构机制探针，并避免非特异性核酸结合界面。",
+    "structurePrepZh": "以 1XMK 高分辨率晶体结构作为局部结构模板，补全未解析柔性区并映射 UniProt 结构域边界，结合 AlphaFold 模型评估全长构象可达性。",
+    "structureRef": "RCSB PDB 1XMK，X-ray diffraction，0.97 Å",
+    "antibodies": [
+      "anti-ADAR research antibody clone 15.8.6",
+      "anti-ADAR research antibody EPR15567"
+    ],
+    "interfaceFocus": "dsRNA结合沟槽与脱氨酶底物入口",
+    "designMode": "胞内功能调节",
+    "candidates": [
+      {
+        "target": "IFIH1",
+        "rationale": "IFIH1 编码 MDA5，是 ADAR 缺陷后识别内源性 dsRNA 并触发 MAVS 级联的关键传感器；抑制其 dsRNA 结合或寡聚化可降低干扰素异常激活。"
+      },
+      {
+        "target": "MAVS",
+        "rationale": "MAVS 位于 MDA5 下游，负责将异常 dsRNA 感知信号传递至 TBK1 和 IRF3；该节点适合用于通路级验证，但同样属于胞内靶点。"
+      },
+      {
+        "target": "IFNAR1",
+        "rationale": "IFNAR1 是 I 型干扰素受体复合体的细胞表面亚基，可阻断 IFN-α/β 与受体介导的 JAK-STAT 信号，抗原可及性优于 ADAR。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

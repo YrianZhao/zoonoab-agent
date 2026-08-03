@@ -1,0 +1,65 @@
+{
+  "gene": "DNMT1",
+  "generatedAt": "2026-08-03T18:37:23.398Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DNMT1 维持复制后半甲基化 CpG 的甲基化状态，异常活性可巩固肿瘤抑制基因沉默并参与 AML、MDS 等髓系肿瘤的表观遗传失衡。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌特征，因此常规体内阻断型抗体可及性较弱，更适合作为结构验证、细胞内递送抗体或降解偶联抗体的设计对象。相比 DNMT3A/DNMT3B，DNMT1 具有明确的维持甲基化酶功能、丰富晶体结构和临床甲基转移酶抑制剂验证基础，优先级来自机制确定性与结构可设计性。",
+    "mechanism": "抗体结合 DNMT1 催化结构域的 DNA 结合沟槽或 SAM/胞嘧啶翻转邻近界面，阻断半甲基化 DNA 与催化半胱氨酸介导的甲基转移复合物形成。",
+    "selectedEpitope": "优先锚定 C 端甲基转移酶结构域中 Target Recognition Domain 与 DNA 结合沟槽交界面。",
+    "diseaseDirection": "髓系肿瘤与表观遗传疾病",
+    "domain": "DNMT1 含 N 端 RFTS、CXXC、BAH1/BAH2 调控区及 C 端胞嘧啶-5 甲基转移酶催化结构域。",
+    "evidence": "DNMT1 表观遗传维持甲基化与髓系肿瘤证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt P26358 功能与亚细胞定位注释",
+      "RCSB PDB 6X9J 高分辨率晶体结构",
+      "DNA 甲基转移酶抑制剂在 AML/MDS 中的临床验证"
+    ],
+    "referenceEntries": "UniProt:P26358；RCSB PDB:6X9J；Open Targets:DNMT1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C 端催化结构域 TRD-DNA 结合沟槽",
+        "直接干预半甲基化 DNA 识别与胞嘧啶翻转，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RFTS 结构域与催化核心自抑制界面",
+        "可稳定非活化构象并抑制复制相关维持甲基化复合物形成",
+        "备选"
+      ],
+      [
+        "Site C",
+        "BAH1/BAH2 结构域外露环区",
+        "空间可及但与催化反应直接耦合较弱，需避免非功能性结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DNMT1 为核内酶，常规抗体药物组织与亚细胞可及性受限；设计应优先评估细胞内递送、片段稳定性及与 DNMT3A/DNMT3B 催化域的交叉反应风险。",
+    "structurePrepZh": "以 6X9J 晶体结构为模板，保留抗原链 A/C/D 中完整催化域坐标，校正缺失环区、质子化状态与配体邻近残基后进行界面建模。",
+    "structureRef": "RCSB PDB 6X9J；X-ray diffraction，1.79 Å",
+    "antibodies": [
+      "抗-DNMT1 研究级单克隆抗体",
+      "抗-DNMT1 细胞内验证抗体"
+    ],
+    "interfaceFocus": "TRD-DNA 结合沟槽与 RFTS 自抑制界面",
+    "designMode": "细胞内功能阻断",
+    "candidates": [
+      {
+        "target": "DNMT3A",
+        "rationale": "DNMT3A 参与从头 DNA 甲基化，并在 AML 中存在高频突变；与 DNMT1 同属 DNA 甲基化异常驱动的表观遗传通路。"
+      },
+      {
+        "target": "DNMT3B",
+        "rationale": "DNMT3B 负责胚胎和肿瘤相关从头甲基化，其异常表达可促进癌基因组甲基化重编程；可作为 DNMT1 维持甲基化轴的互补靶点。"
+      },
+      {
+        "target": "UHRF1",
+        "rationale": "UHRF1 识别半甲基化 DNA 与 H3K9me3，并招募 DNMT1 至复制染色质；阻断 UHRF1-DNMT1 轴可干预维持甲基化复合物装配。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

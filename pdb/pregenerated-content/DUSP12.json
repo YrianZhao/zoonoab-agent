@@ -1,0 +1,65 @@
+{
+  "gene": "DUSP12",
+  "generatedAt": "2026-08-03T12:06:34.483Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DUSP12 是细胞内双特异性磷酸酶，参与蛋白酪氨酸/丝氨酸/苏氨酸去磷酸化稳态，其遗传关联主要指向神经退行性疾病及血清蛋白性状，但现有证据未支持其作为经典细胞外抗体阻断靶点。该蛋白缺乏跨膜区和分泌信号肽，抗原可及性显著弱于膜受体或分泌因子，常规治疗性抗体难以在活细胞内接触其催化结构域。优先级仅适用于研究型胞内抗原识别、结构表征或递送型抗体平台；相较 MAPK、TNF 或补体通路中的可及靶点，DUSP12 的药物化优先级较低。",
+    "mechanism": "递送型抗体需结合 DUSP12 催化结构域邻近底物沟槽，空间阻断磷酸化底物进入 Cys-Ser/Thr/Tyr 磷酸酶活性中心。",
+    "selectedEpitope": "优先避开活性位点 Cys 环，选择催化结构域底物结合沟槽邻近暴露环区。",
+    "diseaseDirection": "神经退行性疾病遗传关联",
+    "domain": "DUSP12 含单一 DSPc 双特异性磷酸酶催化结构域，4KI9 覆盖人源催化核心。",
+    "evidence": "DUSP12 结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB Q9UNI6 functional annotation",
+      "RCSB PDB 4KI9 X-ray structure",
+      "Phosphatase family domain annotation"
+    ],
+    "referenceEntries": "UniProt Q9UNI6；RCSB PDB 4KI9；Open Targets DUSP12",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DSPc 催化结构域底物结合沟槽旁暴露环",
+        "可干扰底物进入活性中心且降低直接共价活性位点风险",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化核心外侧保守性较低的溶剂暴露螺旋面",
+        "适合构建高特异性研究抗体并减少同源 DUSP 交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "HCX5R 活性位点 P-loop 邻近区域",
+        "功能相关性强但高度保守，存在广泛磷酸酶交叉识别风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DUSP12 为胞内酶，常规抗体体内可及性不足；设计应限定为细胞内递送、降解偶联或研究抗体，并严格评估 DUSP 家族交叉反应。",
+    "structurePrepZh": "以 4KI9 A 链为模板，补全缺失侧链并校正质子化状态；保留催化 Cys 环构象，标注底物沟槽及保守 P-loop 区域。",
+    "structureRef": "RCSB PDB 4KI9，X-ray diffraction，2.0 Å",
+    "antibodies": [
+      "暂无获批 DUSP12 靶向抗体",
+      "commercial anti-DUSP12 research antibodies"
+    ],
+    "interfaceFocus": "DSPc 底物沟槽与活性位点邻近环",
+    "designMode": "胞内递送抗体",
+    "candidates": [
+      {
+        "target": "MAPK1",
+        "rationale": "MAPK1 属于神经退行性疾病相关 MAPK 信号轴核心激酶，磷酸化状态受多种磷酸酶调节；但其同样为胞内蛋白，适合机制研究而非常规抗体阻断。"
+      },
+      {
+        "target": "MAPK3",
+        "rationale": "MAPK3 与 MAPK1 共同构成 ERK1/2 通路，参与神经元应激和存活信号；其疾病通路关联明确，但抗体可及性仍受胞内定位限制。"
+      },
+      {
+        "target": "DUSP6",
+        "rationale": "DUSP6 是 ERK 通路负调控磷酸酶，与 DUSP12 同属双特异性磷酸酶功能网络；可作为同通路磷酸化稳态比较靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "CTDSP1",
+  "generatedAt": "2026-08-03T11:41:41.300Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CTDSP1为核内CTD小磷酸酶，主要去磷酸化RNA polymerase II C-terminal domain的Ser5位点，并参与转录延伸、基因表达关闭及神经发育相关转录调控。现有疾病关联主要集中于脂质、胆碱、磷脂酰胆碱和omega-3多不饱和脂肪酸测量性状，提示其遗传信号与代谢表型相关，但并非经典胞外致病配体或膜受体。由于CTDSP1缺乏分泌信号肽和胞外结构域，完整IgG难以直接进入细胞核，抗体药物优先级低于可及性更强的代谢通路膜受体或分泌蛋白；若开展抗体设计，更适合作为结构验证、细胞内抗体或靶向递送格式的探索靶点。",
+    "mechanism": "以细胞内抗体阻断CTDSP1催化口袋邻近底物结合沟槽与RNA polymerase II CTD Ser5磷酸化重复序列的结合，抑制其去磷酸化反应。",
+    "selectedEpitope": "优先覆盖DXDXT催化基序邻近底物结合沟槽，避开金属离子/磷酸根核心位点以降低非特异抑制风险。",
+    "diseaseDirection": "脂质代谢测量性状与转录调控",
+    "domain": "CTDSP1主要由FCP1样磷酸酶催化结构域构成，含保守DXDXT活性位点和底物结合沟槽。",
+    "evidence": "CTDSP1结构与代谢遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9GZU7功能与亚细胞定位注释",
+      "RCSB PDB 2GHT晶体结构记录",
+      "RNA polymerase II CTD磷酸化调控文献"
+    ],
+    "referenceEntries": "UniProt Q9GZU7；RCSB PDB 2GHT；Open Targets CTDSP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "FCP1样催化结构域底物结合沟槽，邻近DXDXT基序",
+        "可直接干预CTD磷酸化肽段识别，机制明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域外围α螺旋-环区构象界面",
+        "可通过变构方式影响底物进入，较少占据保守催化核心",
+        "备选"
+      ],
+      [
+        "Site C",
+        "DXDXT活性位点金属/磷酸根配位核心",
+        "保守性高且可能导致广谱磷酸酶交叉反应，需谨慎设计",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CTDSP1为核内酶且无胞外可及表位，常规抗体成药性受限。建议采用细胞内Fab/VHH或递送偶联策略，并严格评估CTDSP家族交叉反应。",
+    "structurePrepZh": "以2GHT高分辨率晶体结构为模板，保留抗原链A-D中构象完整链，校正缺失侧链、质子化状态和催化口袋水分子后开展表位建模。",
+    "structureRef": "RCSB PDB 2GHT，X-ray diffraction，1.8 Å",
+    "antibodies": [
+      "暂无获批CTDSP1治疗性抗体",
+      "暂无公开临床阶段CTDSP1同类抗体"
+    ],
+    "interfaceFocus": "底物结合沟槽与DXDXT邻近构象环",
+    "designMode": "细胞内抗体探索",
+    "candidates": [
+      {
+        "target": "CTDSP2",
+        "rationale": "CTDSP2同属CTD小磷酸酶家族，可去磷酸化RNA polymerase II CTD并参与转录调控；其通路位置与CTDSP1高度接近，适合作为选择性和补偿机制对照。"
+      },
+      {
+        "target": "CTDSPL",
+        "rationale": "CTDSPL为CTDSP相关磷酸酶，参与RNA polymerase II CTD磷酸化状态调节及细胞周期相关转录控制；可用于评估家族成员间功能冗余。"
+      },
+      {
+        "target": "POLR2A",
+        "rationale": "POLR2A编码RNA polymerase II最大亚基，其CTD重复序列是CTDSP1去磷酸化底物；该靶点位于同一CTD磷酸化转录调控轴的核心底物端。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

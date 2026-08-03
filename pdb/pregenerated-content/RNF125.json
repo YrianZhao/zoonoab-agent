@@ -1,0 +1,65 @@
+{
+  "gene": "RNF125",
+  "generatedAt": "2026-08-03T21:02:43.707Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RNF125 是含 RING 型 E3 泛素连接酶，参与先天免疫信号负调控，可通过促进 RIG-I、MDA5、MAVS 等抗病毒信号组分泛素化降解而限制 I 型干扰素通路。其疾病关联以 Tenorio syndrome、智力发育异常及免疫炎症相关表型为主，提示 RNF125 功能异常与发育及免疫稳态失衡相关。RNF125 为胞内膜相关/胞质蛋白，天然抗体可及性弱于分泌蛋白或膜受体，因此更适合作为结构验证、细胞内递送抗体或降解调节型分子设计靶点。相比上游模式识别受体，RNF125 位于泛素化调控节点，具有直接改变信号蛋白稳定性的机制优势，但抗体成药优先级低于胞外免疫受体。",
+    "mechanism": "设计分子可阻断 RNF125 RING 域与 E2 泛素结合酶的装配界面，抑制其对 RIG-I/MDA5/MAVS 的泛素化降解。",
+    "selectedEpitope": "优先锁定 RING 域锌指核心邻近的 E2 结合面，规避锌配位残基直接接触。",
+    "diseaseDirection": "先天免疫与发育异常",
+    "domain": "RNF125 含 N 端 C3HC4 RING 型锌指结构域及 C 端膜相关跨膜区。",
+    "evidence": "RNF125 结构与先天免疫泛素化证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt Q96EQ8 功能与结构域注释",
+      "RCSB PDB 5DKA X 射线晶体结构",
+      "文献报道 RNF125 调控 RIG-I/MDA5/MAVS 稳定性"
+    ],
+    "referenceEntries": "UniProt Q96EQ8；RCSB PDB 5DKA；Open Targets RNF125",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RING 域 E2 结合面及相邻 α/β 支架",
+        "可直接削弱 E2 装配并降低泛素转移活性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RING 域非锌配位外露环区",
+        "可稳定构象或形成变构抑制，降低金属位点扰动风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端膜相关区邻近片段",
+        "结构信息不足且构象依赖膜环境，抗体可及性与特异性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RNF125 主要位于胞内，常规抗体难以到达作用位点；RING 域锌配位残基高度保守，设计应避免破坏整体折叠并重点评估同源 RING 蛋白交叉反应。",
+    "structurePrepZh": "采用 5DKA 的 A、B 链 RING 域晶体结构，补全缺失侧链、保留锌离子配位几何，去除非功能性晶体接触后进行界面映射。",
+    "structureRef": "RCSB PDB 5DKA，X-ray diffraction，1.55 Å",
+    "antibodies": [
+      "无获批 RNF125 靶向抗体",
+      "研究级抗 RNF125 抗体"
+    ],
+    "interfaceFocus": "RING 域 E2 酶装配面与锌指核心周边",
+    "designMode": "胞内靶点阻断设计",
+    "candidates": [
+      {
+        "target": "DDX58",
+        "rationale": "DDX58 编码 RIG-I，是 RNF125 介导泛素化降解的上游抗病毒 RNA 识别受体，处于同一 I 型干扰素诱导通路。"
+      },
+      {
+        "target": "IFIH1",
+        "rationale": "IFIH1 编码 MDA5，可被 RNF125 负向调控并驱动病毒 RNA 诱导的干扰素信号，适合作为同通路机制参照靶点。"
+      },
+      {
+        "target": "MAVS",
+        "rationale": "MAVS 位于 RIG-I/MDA5 下游，是 RNF125 调控抗病毒信号强度的重要适配蛋白，具有明确的通路连接关系。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

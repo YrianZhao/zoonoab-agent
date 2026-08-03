@@ -1,0 +1,65 @@
+{
+  "gene": "PAIP2",
+  "generatedAt": "2026-08-03T15:02:56.011Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PAIP2为胞内poly(A)-binding protein结合调节因子，主要通过抑制PABPC1与poly(A)尾及翻译起始复合体的功能耦联影响mRNA稳定性与翻译效率；其Open Targets关联以网织红细胞计数、神经退行性疾病和心力衰竭等表型为主，但多为遗传或表达层面的中等强度证据。该蛋白缺乏跨膜区和分泌信号肽，天然抗原可及性不利于常规胞外抗体药物干预，更适合作为胞内机制研究或细胞内抗体格式探索对象。相较于同一mRNA翻译调控轴中的PABPC1、EIF4G1或PAN2等核心节点，PAIP2结构短小且PABP结合界面明确，适合进行高分辨率界面阻断设计，但成药优先级受胞内定位限制。",
+    "mechanism": "设计抗体阻断PAIP2的PAM2样基序及C端PABC结合区与PABPC1 RRM/PABC模块的结合，解除其对PABPC1介导poly(A)依赖翻译的抑制。",
+    "selectedEpitope": "优先覆盖PAIP2与PABPC1 PABC结构域结合的C端α螺旋界面，兼顾PAM2样PABP结合基序。",
+    "diseaseDirection": "mRNA翻译调控与血液表型",
+    "domain": "PAIP2为短小胞内酸性蛋白，含N端PABP结合PAM2样区域及C端PABC结合螺旋片段。",
+    "evidence": "PAIP2-PABPC1翻译抑制轴结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9BPZ3蛋白注释",
+      "RCSB PDB 3KUS晶体结构",
+      "PAIP2与PABPC1相互作用及翻译调控文献"
+    ],
+    "referenceEntries": "UniProt Q9BPZ3；RCSB PDB 3KUS；Open Targets PAIP2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端PABC结合α螺旋界面",
+        "直接阻断PAIP2与PABPC1 PABC结构域结合，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端PAM2样PABP结合基序邻近区域",
+        "干扰PAIP2对PABPC1多结构域结合的协同亲和力",
+        "备选"
+      ],
+      [
+        "Site C",
+        "非界面酸性柔性区",
+        "可能提供结合信号但难以产生明确功能阻断",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PAIP2为胞内可溶蛋白，常规IgG难以进入细胞；界面短小且可能存在构象柔性，建议采用细胞内VHH或递送型Fab并验证PABPC1选择性。",
+    "structurePrepZh": "以3KUS高分辨率晶体结构提取PAIP2抗原链，保留PABPC1结合界面用于约束建模，补全缺失柔性端并评估多链构象一致性。",
+    "structureRef": "RCSB PDB 3KUS，X-ray diffraction，1.4 Å",
+    "antibodies": [
+      "PAIP2 intracellular VHH prototype",
+      "PAIP2 interface-blocking Fab prototype"
+    ],
+    "interfaceFocus": "PAIP2 C端螺旋-PABPC1 PABC结合沟槽",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "PABPC1",
+        "rationale": "PABPC1是PAIP2的直接结合伙伴，连接poly(A)尾识别、mRNA稳定性和翻译起始复合体装配，是同一翻译调控轴的核心节点。"
+      },
+      {
+        "target": "EIF4G1",
+        "rationale": "EIF4G1与PABPC1共同促进mRNA闭环化和帽依赖翻译起始，适合作为PAIP2-PABP功能轴下游翻译起始耦联靶点。"
+      },
+      {
+        "target": "PAN2",
+        "rationale": "PAN2-PAN3去腺苷酸化复合体受PABP相关机制影响并调节poly(A)尾长度，与PAIP2介导的mRNA稳定性控制处于同一poly(A)代谢通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

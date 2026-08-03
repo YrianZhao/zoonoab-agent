@@ -1,0 +1,65 @@
+{
+  "gene": "ELMO1",
+  "generatedAt": "2026-08-03T19:06:46.362Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ELMO1 是 DOCK180–RAC1 鸟嘌呤核苷酸交换复合体的支架蛋白，参与吞噬细胞迁移、凋亡细胞清除及血小板相关细胞骨架重塑，遗传关联信号集中于血小板体积、计数和分布宽度等血液表型。该蛋白为胞内适配蛋白，天然抗原可及性弱，不具备经典循环抗体直接阻断优势，因此更适合细胞内抗体、递送型 Fab 或 VHH 机制验证设计。相较 RAC1 等广泛必需 GTPase，ELMO1 的 DOCK2/DOCK180 结合界面具有更明确的复合体装配选择性，可降低对全局小 GTPase 网络的非选择性干扰。",
+    "mechanism": "通过结合 ELMO1 EID/PH 区域，阻断 ELMO1 与 DOCK180/DOCK2 的复合体装配，抑制 DOCK 介导的 RAC1 激活及下游肌动蛋白重排。",
+    "selectedEpitope": "优先覆盖 ELMO1 EID 与相邻 PH 区域的 DOCK 结合界面，避开深埋疏水核心。",
+    "diseaseDirection": "血小板表型与免疫细胞迁移",
+    "domain": "ELMO1 含 N 端 RBD、ELMO 抑制结构域、PH 样结构域及 C 端富脯氨酸区。",
+    "evidence": "ELMO1-DOCK-RAC1 轴结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q92556 functional annotation",
+      "RCSB PDB 7Y4A experimental crystal structure",
+      "DOCK180/ELMO1/RAC1 signaling literature"
+    ],
+    "referenceEntries": "UniProt Q92556；RCSB PDB 7Y4A；Open Targets ELMO1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "EID/PH 邻接的 DOCK 结合界面",
+        "直接干预 ELMO1-DOCK 复合体形成，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RBD 与自抑制构象调节面",
+        "可能稳定非活化构象并降低 RAC1 交换复合体装配",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端富脯氨酸柔性区",
+        "构象异质性高且结构解析不足，抗体定位不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ELMO1 为胞内蛋白，常规抗体细胞外可及性不足；设计应定位为胞内抗体或递送验证分子，并严格评估 DOCK 家族界面选择性。",
+    "structurePrepZh": "以 7Y4A 高分辨率晶体结构为模板，保留抗原链 A-H 中完整可解析链，补全缺失柔性环并标注复合体界面残基。",
+    "structureRef": "RCSB PDB 7Y4A，X-ray diffraction，1.6 Å",
+    "antibodies": [
+      "无已获批同靶向治疗性抗体",
+      "研究级抗 ELMO1 抗体"
+    ],
+    "interfaceFocus": "EID/PH 区域的 DOCK 结合沟槽",
+    "designMode": "胞内阻断型",
+    "candidates": [
+      {
+        "target": "DOCK1",
+        "rationale": "DOCK1 与 ELMO1 形成复合体并促进 RAC1 激活，是同一细胞迁移与吞噬通路中的直接功能伙伴。靶向其 ELMO1 结合或 DHR2 催化区域可从复合体另一侧干预该轴。"
+      },
+      {
+        "target": "DOCK2",
+        "rationale": "DOCK2 是造血细胞中 RAC 激活的关键交换因子，与 ELMO1 协同调控免疫细胞迁移。其组织分布较 DOCK1 更偏免疫系统，适合血液免疫表型方向比较。"
+      },
+      {
+        "target": "RAC1",
+        "rationale": "RAC1 是 ELMO1-DOCK 复合体下游直接小 GTPase，控制肌动蛋白聚合与细胞迁移。由于其广泛基础功能，适合作为通路验证参照而非首选抗体主靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

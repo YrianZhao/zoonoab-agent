@@ -1,0 +1,65 @@
+{
+  "gene": "CCPG1",
+  "generatedAt": "2026-08-03T18:20:35.460Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CCPG1 是内质网膜相关自噬受体，参与内质网稳态、未折叠蛋白应激缓冲及神经发育相关细胞应激适应过程；其遗传关联信号在发育性癫痫性脑病中最高，提示内质网质量控制异常可能与神经元功能失衡相关。该蛋白主要为内质网跨膜蛋白，已解析结构对应胞质侧 ATG8/LC3 相互作用相关区域，并非典型细胞表面抗原，抗体可及性弱于分泌蛋白或膜表面受体。相较于同通路中可从细胞外直接阻断的应激配体或膜受体，CCPG1 更适合作为机制验证与胞内递送抗体探索靶点，优先级应低于具备天然胞外可及性的 PERK-ATF4 轴上游可干预节点。",
+    "mechanism": "设计抗体应阻断 CCPG1 胞质区与 LC3/GABARAP 家族 ATG8 蛋白的 LIR 依赖性结合，从而抑制其介导的选择性内质网自噬复合物装配。",
+    "selectedEpitope": "优先覆盖 CCPG1 胞质 intrinsically disordered 区域内 LIR 基序及其邻近 ATG8 结合界面。",
+    "diseaseDirection": "神经发育性癫痫与内质网稳态",
+    "domain": "单跨膜内质网蛋白，含胞质侧 FIP200 结合区与 LC3/GABARAP 识别 LIR 基序。",
+    "evidence": "CCPG1 介导内质网自噬与神经发育遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 遗传关联与疾病评分",
+      "UniProt Q9ULG6 蛋白定位与功能注释",
+      "RCSB PDB 7D0E X-ray 晶体结构",
+      "CCPG1 作为 ER-phagy 受体的机制研究文献"
+    ],
+    "referenceEntries": "UniProt Q9ULG6；RCSB PDB 7D0E；Open Targets CCPG1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "LIR 基序及 ATG8 结合沟槽接触面",
+        "直接竞争 LC3/GABARAP 结合，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "胞质侧 FIP200 相互作用相关片段",
+        "可能削弱自噬起始复合物募集，适合功能验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "跨膜近端短胞质连接区",
+        "结构可塑性与膜邻近遮挡风险较高，成药性有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CCPG1 缺乏细胞外结构域，常规治疗性抗体难以进入内质网胞质侧界面；建议采用胞内抗体、VHH 递送或研究级阻断抗体路线。",
+    "structurePrepZh": "以 7D0E 高分辨率晶体结构为核心模板，保留 CCPG1 肽段与 ATG8 结合构象，补建无序邻近残基并评估 LIR 侧链暴露。",
+    "structureRef": "RCSB PDB 7D0E；1.4 Å X-ray diffraction structure",
+    "antibodies": [
+      "研究级 anti-CCPG1 antibody",
+      "LC3/GABARAP 结合界面阻断型 VHH 原型"
+    ],
+    "interfaceFocus": "CCPG1 LIR 基序与 LC3/GABARAP 疏水口袋界面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "MAP1LC3B",
+        "rationale": "MAP1LC3B 是 CCPG1 LIR 基序直接结合的 ATG8 家族成员，参与自噬膜招募；靶向其 LIR 结合沟槽可验证 CCPG1 依赖性 ER-phagy 轴。"
+      },
+      {
+        "target": "GABARAP",
+        "rationale": "GABARAP 与多种选择性自噬受体 LIR 基序结合，并参与自噬体成熟；其与 CCPG1 的相互作用属于同一 ER-phagy 复合物装配过程。"
+      },
+      {
+        "target": "RB1CC1",
+        "rationale": "RB1CC1/FIP200 是自噬起始复合物核心组分，可与 CCPG1 胞质区域协同募集自噬机器；其位于 CCPG1 介导内质网自噬的同一功能通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

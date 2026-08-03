@@ -1,0 +1,65 @@
+{
+  "gene": "SKIL",
+  "generatedAt": "2026-08-03T16:34:01.254Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SKIL编码转录调控因子SnoN，可与SMAD2/3/4复合物相互作用并抑制TGF-β依赖性转录程序，在前列腺癌中涉及上皮-间质转化、细胞周期调控与肿瘤进展。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌特征，抗体抗原可及性不具备常规细胞表面靶点优势，因此更适合作为结构生物学验证、胞内递送抗体或研究级结合分子开发对象。相较于TGFBR2、TGFB1等胞外通路节点，SKIL的优先级主要来自其位于SMAD转录复合物下游的通路整合位置和PDB实验证据支持的结构片段，而临床抗体成药优先级应低于可直接胞外拦截的同通路靶点。",
+    "mechanism": "设计结合分子阻断SKIL的SAND样结构域与SMAD4 MH2结构域界面，解除其对TGF-β/SMAD转录复合物的抑制性装配作用。",
+    "selectedEpitope": "优先覆盖SKIL SAND样结构域中SMAD4结合界面，避开保守疏水核心与晶体接触区。",
+    "diseaseDirection": "前列腺癌与TGF-β/SMAD通路",
+    "domain": "SKIL含N端SAND样DNA结合相关结构域、DHD结构域及C端SMAD结合/调控区域。",
+    "evidence": "SKIL-SMAD结构与前列腺癌通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联证据",
+      "UniProtKB P12757功能与定位注释",
+      "RCSB PDB 3EQ5晶体结构记录",
+      "TGF-β/SMAD信号通路文献证据"
+    ],
+    "referenceEntries": "UniProtKB:P12757；RCSB PDB:3EQ5；Open Targets:SKIL",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SAND样结构域SMAD4结合界面",
+        "直接干预SKIL-SMAD复合物装配，机制可解释性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端SAND样结构域外露α螺旋/环区",
+        "利于获得构象识别分子，可作为结构探针表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "多聚体晶体接触邻近区域",
+        "可能受晶体堆积影响，需排除非生理性界面",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SKIL为胞内核蛋白，常规治疗性抗体难以进入作用位点；建议定位于研究级Fab/VHH、细胞递送格式或PROTAC/分子胶前验证结合分子。",
+    "structurePrepZh": "以3EQ5的SKIL相关链为模板，保留解析度可靠片段，去除晶体非生理接触，映射SMAD结合残基并进行构象聚类。",
+    "structureRef": "RCSB PDB 3EQ5，X-ray，2.45 Å，人源SKIL片段结构",
+    "antibodies": [
+      "研究级抗SnoN抗体",
+      "抗SKIL免疫检测抗体"
+    ],
+    "interfaceFocus": "SKIL SAND样结构域-SMAD4 MH2接触面",
+    "designMode": "胞内靶点结合分子设计",
+    "candidates": [
+      {
+        "target": "TGFB1",
+        "rationale": "TGFB1为TGF-β/SMAD通路上游分泌配体，可通过中和抗体阻断其与TGFBR2结合，抗原可及性显著优于SKIL。"
+      },
+      {
+        "target": "TGFBR2",
+        "rationale": "TGFBR2是细胞膜受体激酶，负责结合TGF-β配体并募集TGFBR1，适合设计阻断配体-受体装配的胞外抗体。"
+      },
+      {
+        "target": "SMAD4",
+        "rationale": "SMAD4是TGF-β通路共SMAD并与SKIL存在直接功能关联，可作为解析SKIL抑制复合物的同通路结构靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

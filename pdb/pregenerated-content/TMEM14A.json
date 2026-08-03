@@ -1,0 +1,65 @@
+{
+  "gene": "TMEM14A",
+  "generatedAt": "2026-08-03T17:20:34.822Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TMEM14A 为多跨膜线粒体相关膜蛋白，现有证据主要来自遗传关联、表达关联与蛋白测量性状，疾病因果机制尚未形成明确闭环。其与卵巢癌等疾病的关联得分较低，且 Top 关联多为分子测量表型，提示更适合作为探索性膜蛋白靶点而非成熟治疗靶点。抗原可及性方面，TMEM14A 缺乏典型长胞外结构域，跨膜螺旋间短环区对常规抗体可及性有限，因此优先级低于具有大胞外结构域的受体或分泌因子靶点。",
+    "mechanism": "拟通过抗体结合预测胞外短环或膜近端外露面，干扰 TMEM14A 与邻近膜蛋白或脂质环境的局部相互作用；该机制需以细胞表面可及性和功能互作实验验证。",
+    "selectedEpitope": "优先评估跨膜螺旋间预测胞外短环及膜外侧螺旋端部，避免选择埋入脂质双层的跨膜核心。",
+    "diseaseDirection": "卵巢癌探索性膜蛋白方向",
+    "domain": "TMEM14A 为小型多跨膜蛋白，包含多段疏水跨膜螺旋，缺乏可独立折叠的大型胞外结构域。",
+    "evidence": "TMEM14A 疾病关联与结构可及性证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传与表达关联",
+      "UniProt Q9Y6G1 蛋白注释",
+      "RCSB PDB 2LOO 溶液 NMR 结构",
+      "Human Protein Atlas 组织与亚细胞定位数据"
+    ],
+    "referenceEntries": "UniProt Q9Y6G1；RCSB PDB 2LOO；Open Targets TMEM14A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "跨膜螺旋间预测胞外短环",
+        "最可能形成抗体可及结合面，适合细胞结合筛选",
+        "优先"
+      ],
+      [
+        "Site B",
+        "膜外侧跨膜螺旋端部",
+        "可用于识别膜近端构象，但构象依赖性较强",
+        "备选"
+      ],
+      [
+        "Site C",
+        "跨膜疏水螺旋核心",
+        "主要埋入脂质双层，抗体结合可及性与开发可行性较低",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为胞外暴露面积不足、NMR 构象与天然膜环境差异及疾病因果证据较弱。建议先完成拓扑验证、细胞表面结合和功能扰动实验。",
+    "structurePrepZh": "以 PDB 2LOO 的 NMR 构象集为基础，保留代表性构象，结合 UniProt 跨膜注释和膜嵌入方向重建外侧可及环区。",
+    "structureRef": "RCSB PDB 2LOO；TMEM14A solution NMR structure",
+    "antibodies": [
+      "无已获批同靶点治疗性抗体",
+      "无公开临床阶段同靶点抗体"
+    ],
+    "interfaceFocus": "预测胞外短环与膜外侧螺旋端部",
+    "designMode": "探索性膜蛋白抗体",
+    "candidates": [
+      {
+        "target": "FOLR1",
+        "rationale": "FOLR1 是卵巢癌中具有明确细胞表面可及性的 GPI 锚定受体，已被抗体偶联药物验证，优先级高于胞外区域有限的 TMEM14A。"
+      },
+      {
+        "target": "MUC16",
+        "rationale": "MUC16/CA125 是卵巢癌经典膜相关黏蛋白抗原，具备肿瘤相关表达和胞外大结构域，适合抗体识别与递送策略。"
+      },
+      {
+        "target": "ERBB2",
+        "rationale": "ERBB2 在部分卵巢癌亚型中存在扩增或过表达，其胞外受体结构域可被抗体阻断二聚化和下游信号，机制与开发路径更清晰。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

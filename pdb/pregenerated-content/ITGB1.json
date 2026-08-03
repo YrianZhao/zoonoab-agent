@@ -1,0 +1,65 @@
+{
+  "gene": "ITGB1",
+  "generatedAt": "2026-08-03T13:34:20.558Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ITGB1编码β1整合素亚基，与多种α亚基形成VLA-4、VLA-5及胶原受体等异二聚体，介导白细胞黏附、迁移和组织浸润，在多发性硬化与克罗恩病相关炎症通路中参与免疫细胞进入靶组织。该蛋白为单次跨膜受体，具有大型胞外结构域，抗原可及性明确，适合设计阻断型抗体。相较于更广泛免疫抑制靶点，ITGB1位于细胞-基质黏附执行端，可直接干预整合素-配体结合，具备较高通路近端调控价值。",
+    "mechanism": "阻断ITGB1胞外βI样结构域与纤连蛋白、VCAM1或胶原配体结合，抑制整合素介导的免疫细胞黏附与跨内皮迁移。",
+    "selectedEpitope": "优先覆盖βI样结构域MIDAS邻近配体结合面，并避开高度保守金属离子核心残基。",
+    "diseaseDirection": "自身免疫炎症与白细胞黏附迁移",
+    "domain": "ITGB1胞外区包含PSI、hybrid、βI样、I-EGF重复及β-tail结构域，后接跨膜段。",
+    "evidence": "ITGB1炎症黏附通路与结构可设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与关联评分",
+      "UniProt P05556整合素β1功能与结构域注释",
+      "RCSB PDB 4WK0实验晶体结构",
+      "整合素β1介导白细胞黏附与迁移文献证据"
+    ],
+    "referenceEntries": "UniProt:P05556；RCSB PDB:4WK0；Open Targets:ITGB1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "βI样结构域MIDAS邻近配体结合面",
+        "直接干预RGD/基质配体识别，适合阻断型Fab设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "hybrid结构域与βI样结构域交界面",
+        "可能影响整合素构象激活与高亲和态转换",
+        "备选"
+      ],
+      [
+        "Site C",
+        "I-EGF重复区近膜柔性片段",
+        "构象异质性和糖基化风险较高，功能阻断确定性较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MIDAS金属配位核心高度保守，直接覆盖可能引发交叉反应或构象扰动；建议靶向邻近非配位环区并进行α亚基复合物选择性评估。",
+    "structurePrepZh": "以4WK0高分辨率晶体结构为模板，补全缺失侧链，标注金属离子、二硫键与糖基化位点，并按胞外构象定义抗体可达面。",
+    "structureRef": "RCSB PDB 4WK0，X-ray diffraction，1.78 Å",
+    "antibodies": [
+      "Natalizumab",
+      "Vedolizumab"
+    ],
+    "interfaceFocus": "βI样结构域MIDAS邻近配体结合界面",
+    "designMode": "阻断型界面抗体",
+    "candidates": [
+      {
+        "target": "ITGA4",
+        "rationale": "ITGA4与ITGB1形成VLA-4，介导白细胞与VCAM1结合，是多发性硬化中淋巴细胞跨内皮迁移的核心黏附轴。"
+      },
+      {
+        "target": "VCAM1",
+        "rationale": "VCAM1为VLA-4的重要内皮配体，阻断其与ITGA4/ITGB1结合可降低炎症细胞募集和组织浸润。"
+      },
+      {
+        "target": "FN1",
+        "rationale": "FN1编码纤连蛋白，是多种β1整合素异二聚体的基质配体，参与免疫细胞黏附、迁移及炎症组织重塑。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

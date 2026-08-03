@@ -1,0 +1,65 @@
+{
+  "gene": "KSR2",
+  "generatedAt": "2026-08-03T13:47:41.563Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KSR2是RAS-RAF-MEK-ERK级联中的支架蛋白，参与RAF、MEK与ERK复合体组织，并影响RASopathy、肿瘤及代谢疾病相关MAPK信号输出。其主要功能区位于细胞内，包括CA3、CA4与假激酶样CA5结构域，天然抗体可及性弱，不具备典型胞外抗原优势。相较EGFR、MET等膜受体靶点，KSR2更适合作为细胞内蛋白互作抑制剂或降解策略研究对象；若进入抗体工程，应优先采用胞内抗体或递送型VHH模式。",
+    "mechanism": "通过胞内抗体阻断KSR2 CA5区域与MEK1/2结合，干扰KSR2介导的RAF-MEK-ERK信号复合体装配。",
+    "selectedEpitope": "优先覆盖CA5假激酶结构域中MEK结合界面，避免ATP样口袋深部保守残基。",
+    "diseaseDirection": "RAS-MAPK相关肿瘤与RASopathy",
+    "domain": "KSR2含N端调控区、CA3富半胱氨酸区、CA4丝氨酸/苏氨酸富集区及C端CA5假激酶结构域。",
+    "evidence": "KSR2结构与RAS-MAPK疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q6VAB6功能与结构域注释",
+      "RCSB PDB 7JUR晶体结构记录",
+      "RAS-RAF-MEK-ERK支架复合体文献证据"
+    ],
+    "referenceEntries": "UniProt: Q6VAB6；RCSB PDB: 7JUR；Open Targets: KSR2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CA5假激酶结构域MEK结合界面",
+        "可直接干扰KSR2-MEK复合体形成，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CA5结构域远端变构面",
+        "可尝试稳定非生产性构象，降低MAPK复合体装配效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "CA3富半胱氨酸调控区",
+        "可能影响膜相关定位，但结构柔性与构象异质性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "KSR2为胞内支架蛋白，常规IgG难以进入细胞；需采用胞内VHH、递送偶联或mRNA表达策略，并重点评估MAPK通路广泛抑制风险。",
+    "structurePrepZh": "以7JUR抗原链B、C为结构模板，保留CA5核心折叠，校正缺失环区与质子化状态，并标注MEK互作相关表面。",
+    "structureRef": "RCSB PDB 7JUR，X-ray diffraction，2.82 Å",
+    "antibodies": [
+      "暂无获批KSR2靶向抗体",
+      "研究级抗KSR2抗体"
+    ],
+    "interfaceFocus": "CA5假激酶结构域MEK结合面",
+    "designMode": "胞内VHH阻断",
+    "candidates": [
+      {
+        "target": "BRAF",
+        "rationale": "BRAF是RAS-MAPK级联核心激酶，并与KSR支架复合体共同驱动MEK磷酸化；其致癌突变在多癌种中具有明确药理学可验证性。"
+      },
+      {
+        "target": "MAP2K1",
+        "rationale": "MAP2K1编码MEK1，是KSR2复合体直接组织的下游激酶；干预MEK1可在同一通路中更直接限制ERK活化。"
+      },
+      {
+        "target": "RAF1",
+        "rationale": "RAF1参与RAS依赖性MEK激活，并与KSR支架蛋白存在功能耦联；其在RASopathy和肿瘤MAPK异常激活中具有真实疾病关联。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "TGFB3",
+  "generatedAt": "2026-08-03T17:15:07.097Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TGFB3编码TGF-β3，是TGF-β配体家族成员，可与TGFBR2结合并招募TGFBR1，驱动SMAD2/3磷酸化及细胞外基质、血管壁稳态和发育相关转录程序。其疾病关联集中于Rienhoff综合征、Loeys-Dietz综合征及家族性胸主动脉瘤/夹层等TGF-β信号异常疾病，具有明确通路因果背景。成熟TGF-β3为分泌型二硫键稳定同源二聚体，抗体可直接接触其受体结合表面。相较于下游SMAD或胞内激酶节点，TGFB3位于配体端，具有更高抗原可及性，并可实现亚型选择性阻断。",
+    "mechanism": "中和抗体阻断成熟TGF-β3与TGFBR2胞外结构域结合，抑制TGFBR1复合体招募及SMAD2/3磷酸化。",
+    "selectedEpitope": "优先覆盖成熟TGF-β3二聚体指状区与TGFBR2结合界面，兼顾亚型特异性残基。",
+    "diseaseDirection": "TGF-β信号异常与主动脉病变",
+    "domain": "前体含信号肽、LAP前肽及C端成熟TGF-β3生长因子结构域，成熟体形成二硫键二聚体。",
+    "evidence": "TGFB3疾病关联与成熟配体结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P10600功能与序列注释",
+      "RCSB PDB 1TGJ晶体结构记录",
+      "TGF-β受体复合体结构与SMAD信号文献"
+    ],
+    "referenceEntries": "UniProt:P10600；RCSB PDB:1TGJ；Open Targets:TGFB3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "成熟TGF-β3指状区外侧TGFBR2结合面",
+        "直接竞争TGFBR2结合，具备中和机制确定性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "二聚体腕部及近二聚化界面邻近表面",
+        "可稳定遮挡受体复合体装配面，提高功能阻断深度",
+        "备选"
+      ],
+      [
+        "Site C",
+        "保守半胱氨酸结核心与二硫键密集区",
+        "结构保守且可能影响折叠稳定性，亚型选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TGF-β家族成熟结构域高度保守，需规避TGF-β1/2交叉结合；优先筛选TGFB3特异性外露残基并验证功能中和。",
+    "structurePrepZh": "以1TGJ抗原链A为成熟TGF-β3模板，补齐对称二聚体状态，校验二硫键、缺失环区及受体结合面可及性。",
+    "structureRef": "PDB 1TGJ；human TGF-β3 X-ray structure, 2.0 Å",
+    "antibodies": [
+      "Fresolimumab",
+      "SAR439459"
+    ],
+    "interfaceFocus": "成熟二聚体TGFBR2结合面与指状区环段",
+    "designMode": "配体中和抗体",
+    "candidates": [
+      {
+        "target": "TGFBR2",
+        "rationale": "TGFBR2是TGFB3的初始高亲和力受体，介导配体结合并启动TGFBR1招募；阻断该节点可直接抑制同一TGF-β受体轴。"
+      },
+      {
+        "target": "TGFBR1",
+        "rationale": "TGFBR1在配体-TGFBR2复合体形成后被招募并磷酸化SMAD2/3，是TGF-β信号向胞内传递的关键受体激酶。"
+      },
+      {
+        "target": "TGFB1",
+        "rationale": "TGFB1与TGFB3共享TGFBR2/TGFBR1-SMAD2/3通路，在纤维化、血管重塑和免疫调节中具有重叠病理作用，可作为同通路配体对照靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

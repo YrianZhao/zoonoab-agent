@@ -1,0 +1,65 @@
+{
+  "gene": "CUL1",
+  "generatedAt": "2026-08-03T11:43:54.704Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CUL1是SCF型E3泛素连接酶复合体的支架蛋白，通过连接RBX1催化核心与SKP1-F-box底物识别模块，促进细胞周期、DNA损伤应答及致癌蛋白降解异常相关的泛素化网络。该蛋白主要定位于胞质和细胞核，缺乏天然胞外结构域或分泌特征，抗体可及性显著弱于膜受体和分泌配体，因此更适合作为结构机制研究或胞内递送抗体开发对象。其优先级依据在于CUL1位于SCF复合体装配中枢，相比单一F-box蛋白具有更广泛的通路覆盖；但作为常规治疗性抗体靶点优先级低于可胞外阻断的EGFR、PDCD1或VEGFA等肿瘤相关靶点。",
+    "mechanism": "设计抗体拟阻断CUL1 N端螺旋束与SKP1-F-box模块结合，或干扰C端RBX1结合面，从而削弱SCF复合体底物泛素转移效率。",
+    "selectedEpitope": "优先聚焦CUL1 N端cullin repeat 1的SKP1结合界面，备选C端RBX1邻近界面。",
+    "diseaseDirection": "肿瘤泛素-蛋白酶体通路",
+    "domain": "CUL1含N端三段cullin repeats支架区、C端WHB结构域及RBX1结合/奈迪化调控区域。",
+    "evidence": "CUL1-SCF复合体结构与肿瘤泛素化证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB Q13616功能与定位注释",
+      "RCSB PDB 3TDU晶体结构记录",
+      "SCF E3泛素连接酶复合体机制文献"
+    ],
+    "referenceEntries": "UniProt Q13616；RCSB PDB 3TDU；Open Targets CUL1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端cullin repeat 1的SKP1结合界面",
+        "直接干扰SCF底物识别模块装配，机制可验证性较高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端RBX1结合面及WHB邻近区域",
+        "可能影响E2招募与泛素转移构象，但需避免破坏整体折叠",
+        "备选"
+      ],
+      [
+        "Site C",
+        "奈迪化位点Lys720周边调控表面",
+        "该区域构象动态且靠近核心调控位点，存在选择性与功能毒性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CUL1为胞内必需支架蛋白，常规抗体难以到达作用位点；设计应定位为胞内抗体、递送抗体或结构探针，并严格评估SCF全局抑制毒性。",
+    "structurePrepZh": "以3TDU高分辨率晶体结构为模板，保留CUL1相关链与关键复合体界面，补全缺失环区并标注SKP1、RBX1及奈迪化调控邻近表面。",
+    "structureRef": "RCSB PDB 3TDU，X-ray diffraction，1.5 Å",
+    "antibodies": [
+      "抗CUL1研究级单克隆抗体",
+      "抗CUL1免疫印迹/免疫沉淀抗体"
+    ],
+    "interfaceFocus": "CUL1-SKP1结合面与RBX1催化核心界面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "SKP1",
+        "rationale": "SKP1直接连接CUL1与F-box蛋白，是SCF底物识别模块装配的核心适配蛋白；干预该界面可影响同一泛素化通路。"
+      },
+      {
+        "target": "RBX1",
+        "rationale": "RBX1与CUL1 C端结合并招募E2泛素结合酶，决定SCF复合体的催化活性；其界面与CUL1功能紧密耦合。"
+      },
+      {
+        "target": "SKP2",
+        "rationale": "SKP2是SCF复合体中具有明确肿瘤关联的F-box底物识别蛋白，参与p27等细胞周期调控因子的泛素化降解。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

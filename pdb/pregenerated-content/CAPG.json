@@ -1,0 +1,65 @@
+{
+  "gene": "CAPG",
+  "generatedAt": "2026-08-03T10:59:52.146Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CAPG为胞质肌动蛋白加帽蛋白，参与巨噬细胞迁移、吞噬及血小板相关细胞骨架重塑，Open Targets关联以血小板体积、血小板计数和巨噬细胞CAPG测量为主。该蛋白缺乏跨膜区和分泌信号，天然抗原可及性弱，抗体设计更适合用于细胞内靶点检测、递送型抗体或研究级功能干预。相比直接选择血小板膜受体，CAPG的优先级主要来自遗传和蛋白测量关联及可用晶体结构支持，但作为常规体内阻断抗体靶点的转化优先级较低。",
+    "mechanism": "抗体结合CAPG gelsolin样核心结构，空间遮挡其肌动蛋白结合面，干预CAPG与F-actin末端的加帽相互作用。",
+    "selectedEpitope": "优先覆盖gelsolin样结构域中与肌动蛋白接触的疏水沟槽及相邻螺旋-环区。",
+    "diseaseDirection": "血小板表型与巨噬细胞骨架调控",
+    "domain": "CAPG由三个gelsolin样重复结构域组成，形成Ca2+调控的肌动蛋白加帽构象。",
+    "evidence": "CAPG结构与血液细胞骨架关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P40121蛋白功能注释",
+      "RCSB PDB 1J72晶体结构记录",
+      "gelsolin家族肌动蛋白加帽机制文献"
+    ],
+    "referenceEntries": "UniProt P40121；RCSB PDB 1J72；Open Targets CAPG",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "肌动蛋白结合沟槽及邻近螺旋-环区",
+        "可直接遮挡CAPG与F-actin末端结合界面，适合作为功能阻断表位",
+        "优先"
+      ],
+      [
+        "Site B",
+        "gelsolin样结构域间铰链界面",
+        "可能限制Ca2+依赖构象转换并降低加帽活性，适合构象调节型设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离肌动蛋白结合面的保守核心折叠区",
+        "功能阻断相关性较弱，且保守性可能增加交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CAPG为胞内蛋白，常规抗体体内可及性不足；需优先限定为检测、细胞递送或胞内抗体场景，并评估与gelsolin家族同源结构交叉反应。",
+    "structurePrepZh": "以PDB 1J72链A为模板，补全缺失侧链并校正质子化状态；保留Ca2+相关构象信息，标注肌动蛋白结合面与高保守区域。",
+    "structureRef": "RCSB PDB 1J72；human CAPG X-ray structure 2.5 Å",
+    "antibodies": [
+      "anti-CAPG clone 2E3",
+      "anti-CAPG polyclonal antibody"
+    ],
+    "interfaceFocus": "肌动蛋白结合沟槽与结构域铰链面",
+    "designMode": "胞内靶点研究型抗体",
+    "candidates": [
+      {
+        "target": "GSN",
+        "rationale": "GSN编码gelsolin，是同一家族肌动蛋白切割与加帽调控蛋白，参与血小板和免疫细胞骨架动态。其分泌型与胞内型异构体使抗体可及性策略更具扩展性。"
+      },
+      {
+        "target": "PFN1",
+        "rationale": "PFN1调控G-actin装载和肌动蛋白聚合，是血小板形态改变和巨噬细胞迁移所需的核心肌动蛋白通路因子。其与CAPG处于同一细胞骨架重塑网络。"
+      },
+      {
+        "target": "ACTB",
+        "rationale": "ACTB为β-actin，构成CAPG加帽作用的直接底物网络核心。作为候选靶点更适合机制验证和界面参照，但因高度保守和广泛表达不宜作为治疗性抗体优先靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "FBXO31",
+  "generatedAt": "2026-08-03T12:29:10.812Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FBXO31是SCF型E3泛素连接酶复合体的底物识别亚基，参与蛋白泛素化降解与DNA损伤后细胞周期调控，其遗传证据与常染色体隐性非综合征性智力障碍及神经发育表型相关。该蛋白主要定位于细胞内，缺乏胞外结构域、分泌特征或膜受体可及性，因此常规体内阻断型抗体开发可及性受限。相较于可直接药物化的细胞表面神经发育通路靶点，FBXO31更适合作为结构生物学验证、胞内抗体或研究级结合分子靶点，优先级应低于具有胞外抗原暴露的同通路分子。",
+    "mechanism": "设计分子拟结合FBXO31 F-box结构域邻近界面，干扰其与SKP1的装配，从而削弱SCF-FBXO31复合体对底物的泛素转移效率。",
+    "selectedEpitope": "优先评估F-box结构域SKP1结合面邻近螺旋束，避开保守疏水核心。",
+    "diseaseDirection": "神经发育障碍与认知表型",
+    "domain": "FBXO31含N端F-box结构域及C端底物识别相关区域，PDB 5VZT覆盖其结构化片段。",
+    "evidence": "FBXO31遗传关联与SCF复合体结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联评分",
+      "UniProt Q5XUX0蛋白功能与定位注释",
+      "RCSB PDB 5VZT晶体结构条目",
+      "SCF E3泛素连接酶复合体机制文献"
+    ],
+    "referenceEntries": "UniProt Q5XUX0；RCSB PDB 5VZT；Open Targets FBXO31",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "F-box结构域SKP1结合界面邻近螺旋",
+        "可用于构建干扰SCF装配的胞内结合分子",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端底物识别区域外露环段",
+        "有助于获得识别FBXO31构象状态的研究抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "F-box保守疏水核心及多聚体接触面",
+        "易影响折叠稳定性并产生非特异构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FBXO31为胞内F-box蛋白，缺乏天然胞外抗原可及性；设计应限定为胞内抗体、递送型格式或体外结构验证用途。",
+    "structurePrepZh": "以PDB 5VZT链A-D为模板，保留实验解析结构域，补全缺失环区并标注晶体接触界面，避免将晶格接触误判为功能表位。",
+    "structureRef": "RCSB PDB 5VZT，X射线晶体结构，2.7 Å",
+    "antibodies": [
+      "研究级抗FBXO31抗体",
+      "胞内抗体格式候选分子"
+    ],
+    "interfaceFocus": "F-box结构域SKP1装配界面",
+    "designMode": "胞内结合分子设计",
+    "candidates": [
+      {
+        "target": "SKP1",
+        "rationale": "SKP1是SCF复合体核心连接蛋白，直接结合F-box结构域并介导Cullin-RBX模块装配，与FBXO31处于同一E3泛素化机制轴。"
+      },
+      {
+        "target": "CUL1",
+        "rationale": "CUL1构成SCF E3泛素连接酶支架，决定SKP1-F-box底物识别模块与RBX1催化模块的空间组织，属于同一蛋白降解通路。"
+      },
+      {
+        "target": "RBX1",
+        "rationale": "RBX1招募E2泛素结合酶并支持泛素转移反应，是SCF复合体催化端的真实组成部分，可作为同通路机制参照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

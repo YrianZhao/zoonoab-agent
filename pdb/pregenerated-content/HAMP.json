@@ -1,0 +1,65 @@
+{
+  "gene": "HAMP",
+  "generatedAt": "2026-08-03T19:39:57.805Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HAMP编码肝素调节肽hepcidin，是铁稳态轴的核心分泌激素，通过结合并诱导SLC40A1/ferroportin内吞降解，限制肠道铁吸收和巨噬细胞铁释放，遗传缺陷与2B型血色病及遗传性血色病直接相关。成熟hepcidin为循环可及的25肽分泌抗原，无跨膜遮蔽，适合以中和型抗体捕获游离配体。相较HFE、TFR2、HJV等膜相关调节因子，HAMP位于通路末端效应层，阻断其与ferroportin结合可产生更直接、可量化的铁动员效应。",
+    "mechanism": "中和抗体结合成熟hepcidin，遮蔽其N端与SLC40A1胞外腔口的结合界面，阻断ferroportin内吞和溶酶体降解。",
+    "selectedEpitope": "优先覆盖成熟hepcidin N端1-9位及邻近β发夹约束面，保留二硫键稳定构象识别。",
+    "diseaseDirection": "铁稳态异常与血色病通路",
+    "domain": "HAMP前体含信号肽、前肽和成熟25肽；成熟肽由四对二硫键约束形成β发夹样结构。",
+    "evidence": "HAMP-hepcidin铁稳态与血色病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P81172功能与加工注释",
+      "RCSB PDB 3H0T晶体结构",
+      "ferroportin-hepcidin互作机制文献"
+    ],
+    "referenceEntries": "UniProt P81172；RCSB PDB 3H0T；Open Targets HAMP",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "成熟hepcidin N端DTHFPICIF片段及ferroportin结合面",
+        "直接阻断SLC40A1结合与内吞触发，适合中和抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "成熟肽中央β发夹外露面及Cys约束邻域",
+        "增强构象锁定与配体捕获，可作为高亲和力辅助表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端富Cys二硫键核心区域",
+        "结构保守但空间受限，抗体结合可能扰动折叠或降低选择性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "成熟hepcidin体积极小且二硫键密集，常规Fab可能存在表位覆盖不足或构象依赖性强的问题；建议采用构象稳定肽抗原和小型结合格式并行筛选。",
+    "structurePrepZh": "以3H0T高分辨率晶体结构提取抗原链A/B/C，校验四对二硫键、N端完整性及晶体接触面，构建成熟25肽构象集合用于表位映射。",
+    "structureRef": "PDB 3H0T；human hepcidin X-ray structure, 1.89 Å",
+    "antibodies": [
+      "LY2787106",
+      "12B9m"
+    ],
+    "interfaceFocus": "hepcidin N端与SLC40A1胞外腔口结合界面",
+    "designMode": "分泌肽中和设计",
+    "candidates": [
+      {
+        "target": "SLC40A1",
+        "rationale": "SLC40A1编码ferroportin，是hepcidin直接结合并诱导内吞降解的铁输出转运蛋白，位于同一铁稳态效应轴。"
+      },
+      {
+        "target": "HFE",
+        "rationale": "HFE参与肝细胞铁感知并调控HAMP表达，遗传缺陷导致遗传性血色病，是上游调节节点。"
+      },
+      {
+        "target": "HJV",
+        "rationale": "HJV作为BMP/SMAD通路共受体促进HAMP转录，突变与青少年型血色病相关，适合同通路机制对照。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

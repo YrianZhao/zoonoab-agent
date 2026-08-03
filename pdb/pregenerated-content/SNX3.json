@@ -1,0 +1,65 @@
+{
+  "gene": "SNX3",
+  "generatedAt": "2026-08-03T16:48:44.302Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SNX3与神经退行性疾病、帕金森病和阿尔茨海默病均存在稳定关联，其核心价值在于参与内体分选与受体回收，影响膜蛋白转运和溶酶体通路稳态。该蛋白具有胞内可及但结构明确的PX结构域，适合以结构导向方式解析功能界面并进行精确分子设计。相较于同通路中更具广泛药理风险的上游转运复合体，SNX3处于更聚焦的货物识别节点，具备较高的通路选择性与机制可解释性。",
+    "mechanism": "阻断SNX3的PX结构域与磷脂酰肌醇3-磷酸结合，干扰其内体膜定位及货物分选复合体组装。",
+    "selectedEpitope": "优先覆盖PX结构域的脂质结合口袋及其邻近正电荷环区，避免破坏整体折叠。",
+    "diseaseDirection": "神经退行性疾病",
+    "domain": "PX结构域为主，位于N端的磷脂酰肌醇3-磷酸识别界面",
+    "evidence": "SNX3结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform",
+      "UniProt O60493",
+      "RCSB PDB: 2YPS",
+      "已发表SNX3-PX结构研究"
+    ],
+    "referenceEntries": "UniProt O60493；RCSB PDB 2YPS；Open Targets SNX3条目",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PX结构域脂质结合槽",
+        "直接削弱膜定位能力，最符合功能抑制逻辑",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PX结构域入口环与邻近正电荷面",
+        "可降低PI3P亲和力并保留较好构象识别",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离口袋的表面外露螺旋区",
+        "适合构象锁定但对功能阻断确定性较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SNX3为胞内蛋白，常规全长IgG难以直接进入细胞，需优先考虑胞内递送或细胞内抗体格式。表位应避开PX折叠核心，以免造成非特异性失稳；优先以脂质结合界面为主，兼顾构象稳定性。",
+    "structurePrepZh": "以2.6 Å晶体结构为模板补全缺失侧链与质子化状态，按膜结合构象重建PI3P邻域电荷分布，并进行界面柔性采样。",
+    "structureRef": "RCSB PDB 2YPS，X射线晶体结构",
+    "antibodies": [
+      "暂无明确临床抗SNX3抗体",
+      "暂无公认功能性阻断抗SNX3抗体"
+    ],
+    "interfaceFocus": "PX域PI3P结合口袋及入口环",
+    "designMode": "structure-guided inhibition",
+    "candidates": [
+      {
+        "target": "SNX27",
+        "rationale": "SNX27与SNX3同属内体分选网络，参与货物回收与膜蛋白转运调控。其PDZ结构域介导的货物识别与SNX3相关通路具有明确的疾病相关性，可作为并行通路对照靶点。"
+      },
+      {
+        "target": "VPS35",
+        "rationale": "VPS35是retromer核心组分，与SNX3共同参与内体回收过程，并与神经退行性疾病密切相关。围绕retromer复合体的功能干预可为SNX3设计提供同通路参照。"
+      },
+      {
+        "target": "RAB7A",
+        "rationale": "RAB7A调控晚期内体与溶酶体运输，是SNX3依赖性货物分选所处运输轴的重要上游节点。其在溶酶体失衡和神经退行性疾病中的作用，使其成为同疾病通路中的合理候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

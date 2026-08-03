@@ -1,0 +1,65 @@
+{
+  "gene": "MTRR",
+  "generatedAt": "2026-08-03T14:28:36.437Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MTRR是甲硫氨酸合成酶还原酶，维持MTR处于活性还原态，支撑5-甲基四氢叶酸向同型半胱氨酸转甲基生成甲硫氨酸；其功能缺陷可导致cblE型甲基钴胺素缺乏、同型半胱氨酸升高及叶酸敏感性神经管缺陷。该蛋白为胞内黄素蛋白，还原酶结构域虽具明确晶体结构，但天然抗原可及性弱，需定位于研究型胞内抗体或递送型结合分子场景。相较叶酸转运体或上游代谢酶，MTRR更直接连接钴胺素再活化与MTR甲基转移循环，遗传疾病证据集中且结构分辨率较高，适合作为机制验证优先靶点。",
+    "mechanism": "设计结合分子阻断MTRR还原酶结构域与电子受体界面的构象耦联，干扰FAD/NADPH依赖电子转移至MTR钴胺素辅因子。",
+    "selectedEpitope": "优先覆盖2QTL还原酶结构域FAD邻近沟槽及NADPH结合面边缘，避开深埋黄素核心。",
+    "diseaseDirection": "钴胺素-叶酸一碳代谢遗传病",
+    "domain": "MTRR含黄素氧化还原酶模块，2QTL解析其C端FAD/NADPH依赖还原酶结构域。",
+    "evidence": "MTRR一碳代谢遗传病结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q9UBK8功能与结构域注释",
+      "RCSB PDB 2QTL晶体结构记录",
+      "OMIM/ClinVar中cblE型甲基钴胺素缺乏变异证据"
+    ],
+    "referenceEntries": "UniProt: Q9UBK8；RCSB PDB: 2QTL；Open Targets: MTRR",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "FAD邻近还原酶沟槽及电子转移界面",
+        "可能影响黄素介导的构象耦联与MTR再活化过程",
+        "优先"
+      ],
+      [
+        "Site B",
+        "NADPH结合面外缘可及环区",
+        "有利于构建变构型结合分子，降低直接竞争辅因子风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "深埋FAD结合核心与保守催化残基周边",
+        "高度保守且可及性有限，易产生非特异或折叠干扰",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MTRR为胞内代谢酶，常规循环抗体难以接触天然靶点；设计宜限定为细胞内抗体、递送型Fab/VHH或结构探针，并评估黄素酶同源交叉反应。",
+    "structurePrepZh": "采用2QTL链A作为抗原模板，保留FAD相关结构信息用于界面判读，补全缺失环区并标注NADPH/FAD邻近保守位点。",
+    "structureRef": "RCSB PDB 2QTL，X射线晶体结构，1.9 Å，Homo sapiens MTRR",
+    "antibodies": [
+      "无获批MTRR靶向治疗性抗体",
+      "研究级anti-MTRR检测抗体"
+    ],
+    "interfaceFocus": "FAD邻近沟槽与NADPH结合面外缘",
+    "designMode": "胞内抗体/结构探针",
+    "candidates": [
+      {
+        "target": "MTR",
+        "rationale": "MTR直接催化5-甲基四氢叶酸向同型半胱氨酸转甲基生成甲硫氨酸，是MTRR还原再活化的功能受体，位于同一钴胺素依赖再甲基化通路。"
+      },
+      {
+        "target": "MMACHC",
+        "rationale": "MMACHC参与细胞内钴胺素加工，其缺陷导致cblC型甲基丙二酸尿合并同型半胱氨酸尿，与MTRR相关疾病共享甲基钴胺素供给障碍机制。"
+      },
+      {
+        "target": "MTHFR",
+        "rationale": "MTHFR生成5-甲基四氢叶酸，为MTR反应提供甲基供体；其变异与同型半胱氨酸升高和叶酸敏感性神经管缺陷通路相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

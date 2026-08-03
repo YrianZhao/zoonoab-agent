@@ -1,0 +1,65 @@
+{
+  "gene": "TPH2",
+  "generatedAt": "2026-08-03T17:25:21.092Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TPH2催化色氨酸羟化生成5-羟色氨酸，是中枢5-羟色胺生物合成的限速酶，遗传与功能证据支持其与抑郁障碍、注意缺陷多动障碍及神经内分泌相关表型存在通路关联。该蛋白主要为胞质可溶性酶，并非经典胞外抗原，抗体可及性弱于膜受体或分泌蛋白，因此更适合细胞内递送抗体片段或结构生物学验证场景。相较于5-HT受体或转运体，TPH2位于5-羟色胺合成上游，具备源头调节优势，但成药优先级需受限于细胞内定位与神经元递送可行性。",
+    "mechanism": "抗体片段结合催化结构域入口或四氢生物蝶呤结合邻近界面，空间阻断色氨酸进入Fe2+依赖活性中心，降低5-羟色氨酸生成。",
+    "selectedEpitope": "优先选择催化结构域活性口袋外缘及底物进入通道，避开高度保守金属配位核心。",
+    "diseaseDirection": "中枢5-羟色胺合成相关疾病",
+    "domain": "TPH2含N端调控区、中央芳香族氨基酸羟化酶催化结构域及C端四聚化螺旋区。",
+    "evidence": "TPH2结构与5-羟色胺通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q8IWU9 functional annotation",
+      "RCSB PDB 4V06 X-ray structure",
+      "Reactome serotonin neurotransmitter release cycle"
+    ],
+    "referenceEntries": "UniProt Q8IWU9；RCSB PDB 4V06；Open Targets TPH2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域底物进入通道外缘",
+        "可阻断色氨酸接近Fe2+依赖活性中心，具备直接功能抑制价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "四氢生物蝶呤结合邻近表面",
+        "可能干扰辅因子定位并削弱羟化反应效率，需避免完全遮蔽保守核心",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端四聚化螺旋界面",
+        "可能影响酶寡聚状态，但界面保守且构象依赖性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TPH2为胞质酶，常规抗体难以到达天然作用位点；建议采用VHH、细胞穿透递送或胞内抗体格式，并严格评估与TPH1交叉反应。",
+    "structurePrepZh": "以PDB 4V06链A/B为模板，补全缺失侧链与质子化状态，保留催化金属和辅因子相关几何约束后进行表面聚类。",
+    "structureRef": "RCSB PDB 4V06，human TPH2 X-ray，2.63 Å",
+    "antibodies": [
+      "TPH2 research antibody clone S68-4",
+      "TPH2 polyclonal antibody"
+    ],
+    "interfaceFocus": "催化口袋入口、辅因子邻近面、四聚化螺旋界面",
+    "designMode": "胞内酶抑制型",
+    "candidates": [
+      {
+        "target": "SLC6A4",
+        "rationale": "SLC6A4编码5-羟色胺转运体，负责突触间隙5-HT再摄取，与TPH2同处5-羟色胺稳态通路，且膜蛋白定位提供更高抗原可及性。"
+      },
+      {
+        "target": "HTR1A",
+        "rationale": "HTR1A为5-羟色胺1A受体，介导中枢5-HT负反馈与神经调节效应，是抑郁和焦虑相关通路中的真实下游受体靶点。"
+      },
+      {
+        "target": "DDC",
+        "rationale": "DDC催化5-羟色氨酸脱羧生成5-羟色胺，与TPH2连续参与5-HT生物合成，可作为合成通路内的酶学候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

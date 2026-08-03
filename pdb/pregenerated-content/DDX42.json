@@ -1,0 +1,65 @@
+{
+  "gene": "DDX42",
+  "generatedAt": "2026-08-03T18:31:21.813Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DDX42 是核内 DEAD-box RNA 解旋酶，参与前体 mRNA 剪接、RNA 代谢及宿主抗病毒转录调控，其疾病关联主要集中于登革热、神经退行性疾病及血液表型。该蛋白缺乏稳定胞外结构域或分泌形式，天然抗原可及性不符合常规治疗性抗体靶点特征，因此更适合作为机制研究、细胞内递送抗体或结构引导结合分子设计对象。相较于可直接药物化的细胞表面受体，DDX42 的优先级优势在于已有高分辨率实验结构支持界面建模，但治疗性抗体开发优先级应低于同通路中可及性更高的模式识别受体或病毒蛋白靶点。",
+    "mechanism": "设计结合分子占据 DDX42 RecA-like 解旋酶核心的 RNA/ATP 邻近沟槽，阻断其与 RNA 底物及剪接复合体组分的功能性装配。",
+    "selectedEpitope": "优先评估 DEAD-box helicase ATP-binding 与 C-terminal helicase 结构域之间的 RNA 结合沟槽边缘表位。",
+    "diseaseDirection": "登革病毒感染与RNA代谢相关疾病",
+    "domain": "DDX42 含 N 端低复杂度区、DEAD-box ATP 结合解旋酶核心及 C 端 helicase 结构域。",
+    "evidence": "DDX42 结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB Q86XP3 functional annotation",
+      "RCSB PDB 8DPE experimental structure",
+      "RNA helicase and spliceosome biology literature"
+    ],
+    "referenceEntries": "UniProt Q86XP3；RCSB PDB 8DPE；Open Targets DDX42",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RecA-like 双结构域夹缝的 RNA 结合沟槽边缘",
+        "可能干扰 RNA 底物定位及解旋酶构象闭合",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DEAD-box ATP-binding 结构域外侧保守环区",
+        "可用于稳定非活性构象并辅助功能阻断设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端低复杂度或柔性延伸区域",
+        "结构稳定性与构象异质性较高，表位可重复性有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DDX42 为核内蛋白，常规抗体难以到达作用位点；保守解旋酶核心存在脱靶风险，宜采用细胞内递送格式并避开高度保守 ATP 口袋。",
+    "structurePrepZh": "以 PDB 8DPE 链 A 为模板，保留解析良好的解旋酶核心，补全缺失环区并标注 ATP/RNA 结合相关保守基序用于界面约束。",
+    "structureRef": "RCSB PDB 8DPE，X-ray，1.531 Å，human DDX42",
+    "antibodies": [
+      "无临床验证抗 DDX42 治疗性抗体",
+      "研究级抗 DDX42 多克隆抗体"
+    ],
+    "interfaceFocus": "RecA-like 核心夹缝与RNA结合沟槽",
+    "designMode": "细胞内抗体探索",
+    "candidates": [
+      {
+        "target": "DDX58",
+        "rationale": "DDX58 编码 RIG-I，是胞质病毒 RNA 识别受体，在登革病毒 RNA 感知及 I 型干扰素诱导中具有明确作用，属于同一抗病毒 RNA 识别通路。"
+      },
+      {
+        "target": "IFIH1",
+        "rationale": "IFIH1 编码 MDA5，可识别病毒双链 RNA 并通过 MAVS 促进抗病毒信号转导，与 DDX42 所属 RNA 代谢和病毒应答网络存在功能交汇。"
+      },
+      {
+        "target": "MAVS",
+        "rationale": "MAVS 是 RIG-I/MDA5 下游线粒体抗病毒信号接头，介导 IRF3 与 NF-κB 激活，是登革病毒感染宿主免疫通路中的真实节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

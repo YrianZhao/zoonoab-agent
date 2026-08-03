@@ -1,0 +1,65 @@
+{
+  "gene": "CCNDBP1",
+  "generatedAt": "2026-08-03T18:20:04.296Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CCNDBP1为细胞内核质蛋白，主要通过结合cyclin D1并影响CDK4/6相关G1期进程参与细胞周期调控；现有Open Targets关联以身高、血小板体积及遗传性球形红细胞增多症等性状为主，疾病因果强度有限。该蛋白缺乏经典分泌信号肽、跨膜区或稳定胞外结构域，天然抗原可及性不适合常规治疗性抗体直接结合。相比CDK4、CDK6或细胞表面造血调控受体等同类疾病相关节点，CCNDBP1优先级较低，更适合作为结构生物学或细胞内结合体研究靶点。",
+    "mechanism": "以胞内结合体阻断CCNDBP1与cyclin D1复合界面，干预cyclin D1-CDK4/6轴对G1/S转换的调节。",
+    "selectedEpitope": "优先聚焦3AY5可解析折叠核心中推定cyclin D1结合沟槽及相邻α螺旋界面。",
+    "diseaseDirection": "细胞周期与造血性状关联",
+    "domain": "CCNDBP1为核质定位小型蛋白，PDB 3AY5解析其折叠核心，缺乏胞外受体样结构域。",
+    "evidence": "CCNDBP1结构与细胞周期关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt O95273蛋白功能注释",
+      "RCSB PDB 3AY5晶体结构",
+      "文献报道cyclin D1结合与细胞周期调控"
+    ],
+    "referenceEntries": "UniProt O95273；RCSB PDB 3AY5；Open Targets CCNDBP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "折叠核心暴露沟槽及邻近α螺旋",
+        "可能覆盖cyclin D1结合界面，适合胞内Fab/VHH阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "晶体结构中可及环区",
+        "构象暴露度较高，可用于高亲和结合体筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "蛋白核心疏水面或晶体接触区",
+        "可能影响折叠稳定性且体内可及性不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险来自胞内定位导致常规抗体递送不可及，且疾病关联分数偏低。建议限定为胞内VHH、intrabody或研究级阻断工具设计。",
+    "structurePrepZh": "采用3AY5链A作为抗原模板，检查晶体接触、缺失残基和表面电荷分布，保留稳定折叠核心用于表位建模。",
+    "structureRef": "RCSB PDB 3AY5，X-ray diffraction，2.5 Å",
+    "antibodies": [
+      "无获批CCNDBP1治疗性抗体",
+      "无公开验证CCNDBP1临床抗体"
+    ],
+    "interfaceFocus": "cyclin D1结合沟槽与邻近α螺旋面",
+    "designMode": "胞内结合体设计",
+    "candidates": [
+      {
+        "target": "CCND1",
+        "rationale": "CCND1编码cyclin D1，是CCNDBP1直接结合对象，并与CDK4/6共同驱动G1期进程；其疾病通路位置更接近细胞周期执行层。"
+      },
+      {
+        "target": "CDK4",
+        "rationale": "CDK4与cyclin D1形成激酶复合物，介导RB1磷酸化并促进G1/S转换；该节点具有明确药理学可干预性。"
+      },
+      {
+        "target": "CDK6",
+        "rationale": "CDK6同属cyclin D依赖性G1期激酶，在造血细胞增殖和血液系统疾病中具有明确功能关联。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

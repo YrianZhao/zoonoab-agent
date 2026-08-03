@@ -1,0 +1,65 @@
+{
+  "gene": "SCML2",
+  "generatedAt": "2026-08-03T16:21:25.939Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SCML2为Polycomb group相关染色质调控蛋白，含MBT重复结构域并参与组蛋白甲基化标记识别，疾病关联主要集中于神经退行性疾病及男性生殖异常，其机制更符合表观遗传复合体失衡而非经典可溶性配体通路。该蛋白主要定位于细胞核，缺乏天然胞外结构域、分泌形式或膜受体拓扑，因此作为常规治疗性阻断抗体抗原的可及性明显受限。相较于同通路中具有细胞表面可及性的靶点，SCML2优先级较低；其更适合作为结构免疫原、细胞内抗体或研究型结合分子开发对象。",
+    "mechanism": "设计目标为结合SCML2 MBT结构域芳香笼邻近界面，干扰其对甲基化赖氨酸组蛋白肽段的识别与Polycomb染色质复合体定位。",
+    "selectedEpitope": "优先覆盖MBT重复结构域甲基赖氨酸结合口袋外缘及肽段进入沟槽，避免核心疏水芳香笼完全封闭。",
+    "diseaseDirection": "表观遗传调控与神经退行性疾病",
+    "domain": "SCML2含N端SCM样区域、多个MBT重复结构域及C端SAM结构域，2BIV解析MBT相关折叠。",
+    "evidence": "SCML2表观遗传结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联统计",
+      "UniProt Q9UQR0蛋白功能与结构域注释",
+      "RCSB PDB 2BIV晶体结构条目",
+      "Polycomb group蛋白MBT结构域甲基赖氨酸识别文献"
+    ],
+    "referenceEntries": "UniProt Q9UQR0；RCSB PDB 2BIV；Open Targets SCML2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "MBT结构域甲基赖氨酸结合沟槽外缘",
+        "可阻断组蛋白甲基化肽段结合并保持可成药表面轮廓",
+        "优先"
+      ],
+      [
+        "Site B",
+        "MBT重复间连接面与肽段入口区域",
+        "有利于变构削弱配体进入，降低对高度保守芳香笼的直接依赖",
+        "备选"
+      ],
+      [
+        "Site C",
+        "MBT核心芳香笼深部疏水口袋",
+        "保守性较高且易产生交叉识别风险，抗体可达性与选择性均需谨慎评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SCML2为核内蛋白，体内抗体可及性不足是主要风险；设计宜限定为研究型Fab/VHH、细胞内抗体或递送系统结合方案，并严格评估MBT家族交叉反应。",
+    "structurePrepZh": "以2BIV高分辨率晶体结构为模板，保留抗原链A/B/C中完整MBT折叠，校正缺失侧链、质子化状态及晶体接触后进行表位暴露度评估。",
+    "structureRef": "RCSB PDB 2BIV，X-ray diffraction，1.7 Å，human SCML2 MBT结构",
+    "antibodies": [
+      "无已获批SCML2治疗性抗体",
+      "研究级抗SCML2抗体"
+    ],
+    "interfaceFocus": "MBT甲基赖氨酸识别沟槽与重复间连接界面",
+    "designMode": "细胞内结合分子设计",
+    "candidates": [
+      {
+        "target": "EZH2",
+        "rationale": "EZH2为PRC2催化亚基，负责H3K27甲基化并与Polycomb介导的染色质沉默处于同一表观遗传轴；其疾病证据和药理学可验证性强于SCML2。"
+      },
+      {
+        "target": "EED",
+        "rationale": "EED识别H3K27me3并 allosterically 激活PRC2复合体，是Polycomb正反馈沉默机制的核心组分；结构域口袋明确，适合机制性结合分子设计。"
+      },
+      {
+        "target": "CBX7",
+        "rationale": "CBX7通过chromodomain识别H3K27me3并参与PRC1染色质募集，与SCML2同属Polycomb相关染色质调控网络；其甲基化组蛋白识别界面可作为同通路比较靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

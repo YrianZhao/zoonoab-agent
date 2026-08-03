@@ -1,0 +1,65 @@
+{
+  "gene": "AIRE",
+  "generatedAt": "2026-08-03T10:21:06.392Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "AIRE 是胸腺髓质上皮细胞中维持中枢免疫耐受的核内转录调控因子，通过促进组织限制性抗原表达并参与胸腺负选择，AIRE 功能缺陷可导致 APS-1/APECED 及多器官自身免疫。该蛋白主要定位于细胞核，天然抗原可及性不具备经典膜受体或分泌蛋白优势，因此常规体内阻断型抗体成药性受限，更适合结构机制研究、细胞内递送抗体或诊断性抗体开发。相较外周炎症因子，AIRE 在 APS-1 遗传病因中处于上游核心位置，遗传证据强且疾病特异性高，优先级依据主要来自病因锚定与结构表位可解释性。",
+    "mechanism": "抗体设计宜阻断 AIRE PHD1 指结构域与未甲基化 H3K4 尾部的结合，干扰其染色质识别与组织限制性抗原转录程序。",
+    "selectedEpitope": "优先靶向 PHD1 锌指结构域的 H3K4me0 肽结合沟槽及邻近芳香/酸性识别残基。",
+    "diseaseDirection": "中枢免疫耐受与 APS-1",
+    "domain": "AIRE 含 CARD/HSR 寡聚化区、SAND 区、PHD1/PHD2 锌指及富脯氨酸转录调控区。",
+    "evidence": "AIRE-APS-1遗传因果与PHD1结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt O43918 functional annotation",
+      "RCSB PDB 1XWH solution NMR structure",
+      "OMIM/Orphanet APS-1 clinical genetics"
+    ],
+    "referenceEntries": "UniProt O43918；RCSB PDB 1XWH；MONDO_0009411；Orphanet_3453",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PHD1 指结构域 H3K4me0 结合沟槽",
+        "可直接干预组蛋白尾部识别，机制与 AIRE 染色质定位高度相关",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PHD1 锌配位核心外侧保守表面",
+        "有助于获得构象选择性结合体，但需避免破坏整体折叠导致非特异构象效应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "CARD/HSR 寡聚化相关区域",
+        "理论上可影响 AIRE 聚集与转录复合体装配，但 1XWH 不覆盖该区域，结构依据不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "AIRE 为核内蛋白，抗体跨膜与核定位递送是主要界面风险；PHD 锌指区域高度依赖金属配位，设计需保留构象完整性并评估同源 PHD 结构域交叉反应。",
+    "structurePrepZh": "以 1XWH NMR 构象集合建立 PHD1 结构模型，保留 Zn2+ 配位几何，筛选代表性低能构象并标注 H3K4me0 结合沟槽用于表位建模。",
+    "structureRef": "RCSB PDB 1XWH；AIRE PHD1 solution NMR structure",
+    "antibodies": [
+      "anti-AIRE clone 6.1",
+      "anti-AIRE polyclonal antibody"
+    ],
+    "interfaceFocus": "PHD1-H3K4me0 组蛋白尾部识别界面",
+    "designMode": "胞内靶点机制型",
+    "candidates": [
+      {
+        "target": "FEZF2",
+        "rationale": "FEZF2 同样在胸腺髓质上皮细胞中促进组织限制性抗原表达，与 AIRE 共同维持中枢免疫耐受，可作为同通路转录调控候选靶点。"
+      },
+      {
+        "target": "RANK",
+        "rationale": "RANK 信号驱动胸腺髓质上皮细胞分化成熟，并影响 AIRE 阳性 mTEC 的形成，位于 AIRE 依赖耐受网络上游。"
+      },
+      {
+        "target": "CD40",
+        "rationale": "CD40-CD40L 信号参与 mTEC 成熟和 AIRE 表达诱导，具备明确膜受体可及性，适合作为同一中枢耐受轴的抗体可干预节点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

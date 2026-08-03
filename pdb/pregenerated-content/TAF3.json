@@ -1,0 +1,65 @@
+{
+  "gene": "TAF3",
+  "generatedAt": "2026-08-03T17:06:43.198Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TAF3为TFIID/相关转录起始复合体的组成因子，参与Pol II启动子识别与转录起始装配，其异常可通过改变宿主转录程序影响HIV感染及多系统表型。该蛋白主要定位于核内且缺乏胞外结构域，作为传统抗体靶点的可及性弱于膜受体，但在已获得高分辨率晶体结构支持下，仍适合以结构指导方式开展功能阻断型设计。相较于同通路内更直接但常具广泛毒性的核心转录因子，TAF3兼具疾病关联信号与相对可分层的界面特征，优先级体现在可围绕特定互作面进行精细化干预。",
+    "mechanism": "阻断TAF3与TBP/启动子复合体的装配界面，削弱TFIID对核心启动子的稳定占位。",
+    "selectedEpitope": "优先聚焦TBP结合面及TRFH相关互作表位，避开保守折叠核心。",
+    "diseaseDirection": "HIV感染相关转录调控",
+    "domain": "PHD finger与Tandem Repeat相关蛋白互作界面，伴随N端转录辅助区",
+    "evidence": "TAF3结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform",
+      "UniProt Q5VWG9",
+      "RCSB PDB 5WXH",
+      "Protein Data Bank"
+    ],
+    "referenceEntries": "UniProt Q5VWG9；RCSB PDB 5WXH；TAF3 human",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PHD finger邻近TBP装配界面",
+        "适于干预TFIID核心起始复合体形成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Tandem repeat外侧互作面",
+        "可用于降低非必要蛋白伴侣结合",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守折叠核心",
+        "虽具结构稳定性但易影响整体折叠",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "核内蛋白且界面多为蛋白-蛋白平坦接触面，抗体进入与功能封堵均具挑战；应优先采用结构引导的高亲和Fab或胞内递送型策略，并严格避开保守折叠核心。",
+    "structurePrepZh": "建议以5WXH为主模板完成链A/C/D/P重建、缺失侧链补全与界面能量最小化，并结合保守性映射标注可变互作面。",
+    "structureRef": "PDB 5WXH, 1.297 A X-ray structure",
+    "antibodies": [
+      "无明确已知TAF3特异治疗性抗体",
+      "结构同源界面阻断抗体可作工程参照"
+    ],
+    "interfaceFocus": "TBP装配界面与PHD finger邻接面",
+    "designMode": "structure-guided",
+    "candidates": [
+      {
+        "target": "TBP",
+        "rationale": "TBP与TAF3共同构成核心起始复合体，属于同一转录起始通路的直接节点。优先级较高，可作为TAF3阻断效果的功能对照靶点。"
+      },
+      {
+        "target": "TAF1",
+        "rationale": "TAF1与TAF3同属TFIID相关调控轴，参与启动子识别与转录起始调节。作为同通路候选靶点，可用于比较核心复合体不同亚基的可干预性。"
+      },
+      {
+        "target": "TATA-box binding protein associated factor 12",
+        "rationale": "TAF12与TAF3共同参与TFIID稳定性与启动子选择性调控。其属于同一转录起始网络，适合作为通路级联动验证对象。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

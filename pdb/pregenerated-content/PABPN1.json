@@ -1,0 +1,65 @@
+{
+  "gene": "PABPN1",
+  "generatedAt": "2026-08-03T20:25:41.060Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PABPN1 是核内 poly(A) 尾结合蛋白，参与前体 mRNA 3′端加工与 poly(A) 尾延伸，GCN 三核苷酸扩增导致的 N 端聚丙氨酸延长与眼咽型肌营养不良的核内聚集和肌细胞毒性直接相关。该蛋白主要定位于细胞核，不具备经典胞外结构域、分泌蛋白或膜受体可及性，因此完整抗体体内阻断的抗原可及性受限。其优先级主要来自单基因疾病因果证据、明确结构条目与突变机制；相比一般 RNA 结合蛋白，PABPN1 在 OPMD 中具有更高遗传特异性，但更适合细胞内递送抗体片段或研究级构象探针开发。",
+    "mechanism": "以内递送 VHH 或 intrabody 结合 PABPN1 RRM/RNA 结合面，干预其与 poly(A) RNA 及 CPSF/PAP 复合体协同作用，降低异常聚集核包涵体形成。",
+    "selectedEpitope": "优先靶向 RRM β-sheet RNA 结合沟及邻近 RNP1/RNP2 基序，避开非结构化低复杂度聚丙氨酸段。",
+    "diseaseDirection": "眼咽型肌营养不良",
+    "domain": "PABPN1 含 N 端低复杂度/聚丙氨酸区、中央 RNA recognition motif 与 C 端精氨酸富集区。",
+    "evidence": "PABPN1-OPMD 遗传因果与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProtKB Q86U42 功能与定位注释",
+      "RCSB PDB 3UCG X-ray 晶体结构",
+      "OMIM/ClinVar PABPN1 GCN 扩增致病证据"
+    ],
+    "referenceEntries": "UniProt Q86U42；RCSB PDB 3UCG；HGNC PABPN1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RRM β-sheet RNA 结合沟与 RNP1/RNP2 基序邻域",
+        "可直接干预 poly(A) RNA 识别并作为功能阻断型构象表位",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RRM 外侧 α-螺旋及保守疏水核心周边",
+        "有利于获得构象选择性结合并降低完全竞争 RNA 的风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端低复杂度聚丙氨酸延长区域",
+        "与 OPMD 聚集机制相关但柔性高、免疫原设计与特异性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PABPN1 为核内 RNA 结合蛋白，常规抗体难以接近生理抗原；设计应限定为细胞内递送 VHH/intrabody，并评估对正常 mRNA 加工的抑制风险。",
+    "structurePrepZh": "以 3UCG 链 A 为 RRM 模板，补全缺失侧链并保留关键保守残基；对非结构化 N/C 端采用低置信度处理，不作为刚性对接核心。",
+    "structureRef": "RCSB PDB 3UCG，X-ray diffraction，1.95 Å",
+    "antibodies": [
+      "研究级 anti-PABPN1 monoclonal antibody",
+      "研究级 anti-PABPN1 polyclonal antibody"
+    ],
+    "interfaceFocus": "RRM RNP1/RNP2-poly(A) RNA 识别界面",
+    "designMode": "细胞内VHH/intrabody",
+    "candidates": [
+      {
+        "target": "PAPOLA",
+        "rationale": "PAPOLA 编码 canonical poly(A) polymerase，与 PABPN1 协同延伸 mRNA poly(A) 尾，处于同一 3′端加工与 polyadenylation 通路。其酶活界面可作为调节 poly(A) 尾长度的替代节点。"
+      },
+      {
+        "target": "CPSF1",
+        "rationale": "CPSF1 是 cleavage and polyadenylation specificity factor 复合体核心亚基，参与识别 pre-mRNA polyadenylation 信号并招募 3′端加工复合体。其功能与 PABPN1 介导的 poly(A) 尾成熟相衔接。"
+      },
+      {
+        "target": "SYMPK",
+        "rationale": "SYMPK 作为 3′端加工复合体支架蛋白连接 CPSF、CstF 与 polyadenylation 机器，维持 mRNA cleavage/polyadenylation 复合体装配。该节点与 PABPN1 所在核内 mRNA 成熟通路一致。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "RXFP2",
+  "generatedAt": "2026-08-03T16:16:59.760Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RXFP2是INSL3的主要受体，介导胎儿睾丸下降所需的G蛋白偶联受体信号，遗传变异与隐睾症和腹股沟疝风险存在明确关联。该靶点为细胞膜七跨膜受体，具有大的胞外LRR结构域和LDLa模块，抗原位点位于细胞外且适合抗体识别。相比下游cAMP/PKA效应分子，RXFP2更接近疾病起始配体-受体事件，具备更高通路特异性和可成药优先级。",
+    "mechanism": "通过阻断INSL3与RXFP2胞外LRR结合面及LDLa介导的受体激活构象耦联，抑制Gs依赖性cAMP信号输入。",
+    "selectedEpitope": "优先覆盖LRR弧形配体结合面，兼顾LDLa-linker激活界面，避免跨膜核心低可及区。",
+    "diseaseDirection": "隐睾症与生殖发育通路",
+    "domain": "RXFP2含N端信号肽、LDLa模块、LRR胞外结构域及七跨膜GPCR核心。",
+    "evidence": "RXFP2-INSL3轴疾病遗传与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q8WXD0功能与结构域注释",
+      "RCSB PDB 2M96溶液NMR结构",
+      "INSL3-RXFP2生殖发育通路文献"
+    ],
+    "referenceEntries": "UniProt Q8WXD0；RCSB PDB 2M96；Open Targets RXFP2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "LRR胞外结构域配体结合凹面",
+        "直接竞争INSL3结合，具备阻断型抗体设计价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "LDLa模块及其邻近linker区域",
+        "干预LDLa介导的受体激活构象耦联，可形成非竞争性抑制",
+        "备选"
+      ],
+      [
+        "Site C",
+        "七跨膜胞外环ECL区域",
+        "可能影响GPCR构象转换，但结构可塑性高且表位稳定性有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "LRR区糖基化与柔性环可能遮蔽部分表位；需优先评估INSL3竞争能力、物种交叉反应及对RXFP1的选择性。",
+    "structurePrepZh": "以2M96的NMR构象簇为LDLa参考，补充AlphaFold或同源模型构建完整胞外区，并保留糖基化位点用于可及性筛选。",
+    "structureRef": "RCSB PDB 2M96，RXFP2 LDLa模块溶液NMR结构",
+    "antibodies": [
+      "2H8",
+      "4F8"
+    ],
+    "interfaceFocus": "INSL3结合LRR凹面与LDLa激活界面",
+    "designMode": "阻断型Fab/VHH设计",
+    "candidates": [
+      {
+        "target": "INSL3",
+        "rationale": "INSL3是RXFP2的内源性配体，直接驱动睾丸下降相关配体-受体轴；中和INSL3可作为同一路径的配体端干预策略。"
+      },
+      {
+        "target": "RXFP1",
+        "rationale": "RXFP1与RXFP2同属relaxin家族肽受体并共享类似LDLa-LRR-GPCR结构框架；其选择性评估有助于降低RXFP2抗体的家族交叉反应风险。"
+      },
+      {
+        "target": "RLN2",
+        "rationale": "RLN2是relaxin家族配体，主要作用于RXFP1并参与相关GPCR-cAMP轴；可作为同家族通路选择性与功能分化的对照靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

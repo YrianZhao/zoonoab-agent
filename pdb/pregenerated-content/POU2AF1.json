@@ -1,0 +1,65 @@
+{
+  "gene": "POU2AF1",
+  "generatedAt": "2026-08-03T15:28:27.117Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "POU2AF1编码B细胞特异性转录共激活因子OCA-B/BOB.1，可与OCT1/OCT2及免疫球蛋白八聚体元件复合，促进生发中心反应、浆细胞分化和免疫球蛋白基因转录；其遗传关联主要指向血清球蛋白、白蛋白/球蛋白比值及嗜酸性粒细胞相关表型，提示其处于体液免疫调控轴。该蛋白为核内转录共因子，缺乏天然胞外结构域或分泌暴露面，常规抗体直接成药可及性较低，更适合结构抗体、细胞内递送抗体或研究级阻断抗体策略。相较CD19、MS4A1等膜受体，POU2AF1具有更靠近免疫球蛋白转录输出端的机制解析价值，但因抗原可及性劣势，优先级应定位为机制验证和细胞内功能干预靶点。",
+    "mechanism": "阻断POU2AF1共激活结构域与OCT1/OCT2 POU结构域-DNA复合物的结合，降低免疫球蛋白启动子/增强子转录激活。",
+    "selectedEpitope": "优先覆盖OCA-B与OCT1 POU结构域复合界面，避开无序低复杂度转录激活区。",
+    "diseaseDirection": "体液免疫与血清球蛋白表型",
+    "domain": "POU2AF1为核内转录共激活因子，含OCT结合区及C端转录激活区，无跨膜或胞外结构域。",
+    "evidence": "POU2AF1体液免疫转录调控证据包",
+    "evidenceSources": [
+      "Open Targets Platform遗传关联与表型证据",
+      "UniProt Q16633功能注释",
+      "RCSB PDB 1CQT晶体结构记录",
+      "免疫球蛋白基因转录与生发中心B细胞文献"
+    ],
+    "referenceEntries": "UniProt Q16633；RCSB PDB 1CQT；Open Targets POU2AF1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "OCA-B/OCT1 POU结构域-DNA复合界面",
+        "直接干预POU2AF1招募至八聚体DNA复合物，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "POU2AF1保守OCT结合核心片段",
+        "适合获得构象敏感结合分子并验证共激活复合体装配",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端转录激活低复杂度区域",
+        "可能影响转录共激活，但柔性高、构象异质性强且成药验证困难",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "POU2AF1为核内蛋白，常规抗体难以进入细胞核；建议限定为Fab/VHH结构探针或采用细胞内递送平台，并严格评估OCT家族交叉干扰。",
+    "structurePrepZh": "以PDB 1CQT复合物为模板，保留OCA-B、OCT POU结构域及DNA界面，补全缺失侧链后进行质子化、界面残基标注和低分辨率不确定区过滤。",
+    "structureRef": "PDB 1CQT，OCA-B/OCT1/DNA复合物晶体结构，3.2 Å",
+    "antibodies": [
+      "anti-POU2AF1 clone C-20",
+      "anti-BOB.1/OCA-B clone SP92"
+    ],
+    "interfaceFocus": "OCA-B与OCT POU结构域-DNA三元界面",
+    "designMode": "细胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "POU2F2",
+        "rationale": "POU2F2编码OCT2，是B细胞免疫球蛋白基因八聚体元件识别的核心转录因子，与POU2AF1形成同一转录复合体。靶向其DNA结合或OCA-B结合界面可直接影响同一体液免疫转录轴。"
+      },
+      {
+        "target": "POU2F1",
+        "rationale": "POU2F1编码OCT1，可与POU2AF1共同装配在八聚体DNA序列上并介导转录激活。其结构域信息充分，适合作为同复合体机制参照靶点。"
+      },
+      {
+        "target": "PRDM1",
+        "rationale": "PRDM1编码BLIMP-1，是浆细胞分化和免疫球蛋白分泌程序的关键转录调控因子。其位于B细胞终末分化通路下游，可作为POU2AF1相关体液免疫异常的功能候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

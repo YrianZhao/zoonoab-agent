@@ -1,0 +1,65 @@
+{
+  "gene": "MRI1",
+  "generatedAt": "2026-08-03T20:11:22.311Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MRI1参与甲硫腺苷循环中的5-甲硫核糖-1-磷酸异构化反应，主要影响蛋氨酸回收、硫代代谢及细胞内代谢稳态；现有Open Targets关联以代谢物测量、脑脊液组成属性和内分泌系统表型为主，尚未形成明确的疾病驱动受体通路。MRI1为细胞内胞质代谢酶，不具备典型分泌蛋白、膜受体或稳定胞外结构域特征，完整抗体直接结合天然抗原的可及性较弱。相较于同通路中具有胞外可及性的转运体或受体类靶点，MRI1作为抗体主靶点优先级偏低，更适合作为代谢机制标志物或胞内递送型抗体工程探索对象。",
+    "mechanism": "抗体设计应聚焦阻断MRI1活性位点对5-甲硫核糖-1-磷酸底物的结合，干扰其异构化为5-甲硫核酮糖-1-磷酸的催化过程。",
+    "selectedEpitope": "优先评估TIM-barrel样催化口袋邻近环区及二聚体界面，避免完全埋藏的底物结合残基。",
+    "diseaseDirection": "甲硫腺苷循环与代谢表型",
+    "domain": "MRI1为胞质甲硫核糖-1-磷酸异构酶，晶体结构显示同源二聚体构象，核心为催化折叠域。",
+    "evidence": "MRI1代谢酶结构与Open Targets表型关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9BV20 functional annotation",
+      "RCSB PDB 4LDR experimental structure",
+      "methionine salvage pathway biochemical literature"
+    ],
+    "referenceEntries": "UniProt Q9BV20；RCSB PDB 4LDR；Reactome methionine salvage",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化口袋入口环区及底物进入通道",
+        "有机会变构阻断5-甲硫核糖-1-磷酸结合，适合胞内递送抗体片段评估",
+        "优先"
+      ],
+      [
+        "Site B",
+        "A/B链二聚体接触界面邻近区域",
+        "可能干扰二聚体稳定性并降低酶活，但需验证界面是否参与功能构象",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守且深埋的催化核心残基周边",
+        "理论功能相关性高，但抗体可及性差且易产生交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MRI1缺乏胞外暴露结构，常规IgG难以接触天然胞内抗原；设计宜限定为细胞内递送Fab/VHH或研究级抑制工具，并加强同源酶选择性评估。",
+    "structurePrepZh": "以PDB 4LDR的A、B链二聚体为模板，补全缺失侧链，保留催化口袋构象，去除结晶非相关分子后进行界面可及性分析。",
+    "structureRef": "RCSB PDB 4LDR，X-ray diffraction，2.292 Å",
+    "antibodies": [
+      "暂无临床获批MRI1抗体",
+      "暂无公开验证的抗MRI1治疗性抗体"
+    ],
+    "interfaceFocus": "催化口袋入口环区与A/B链二聚体界面",
+    "designMode": "胞内酶抑制型",
+    "candidates": [
+      {
+        "target": "MTAP",
+        "rationale": "MTAP位于甲硫腺苷循环上游，催化MTA生成5-甲硫核糖-1-磷酸和腺嘌呤，是同一代谢回收通路中的关键酶。其遗传缺失与多种肿瘤代谢脆弱性相关，疾病机制证据强于MRI1。"
+      },
+      {
+        "target": "APIP",
+        "rationale": "APIP具有甲硫核酮糖-1-磷酸脱水酶活性，连接MRI1下游步骤并参与蛋氨酸回收代谢。作为同通路胞内酶，其功能位置适合用于通路级对照与联合机制评估。"
+      },
+      {
+        "target": "AMD1",
+        "rationale": "AMD1参与S-腺苷甲硫氨酸相关多胺生物合成，与MTA生成及甲硫腺苷循环代谢负荷相互耦联。其在增殖性疾病中的代谢依赖性更明确，可作为相邻甲硫代谢轴候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

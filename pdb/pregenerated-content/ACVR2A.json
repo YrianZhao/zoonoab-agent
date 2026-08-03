@@ -1,0 +1,65 @@
+{
+  "gene": "ACVR2A",
+  "generatedAt": "2026-08-03T10:04:22.182Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ACVR2A是activin/TGF-β超家族信号轴的II型丝氨酸/苏氨酸激酶受体，可结合activin A、myostatin及部分GDF配体，并招募I型受体形成信号复合体，驱动SMAD2/3磷酸化，在肝细胞癌、结直肠腺癌及肾功能相关表型中具有通路关联。该靶点具有N端胞外配体结合结构域，位于细胞表面，适合抗体识别并阻断配体-受体装配。相较于胞内SMAD节点，ACVR2A具备更直接的抗原可及性与配体入口控制优势；相较共享配体靶向，受体端设计更利于限定ACVR2A依赖性信号分支。",
+    "mechanism": "抗体阻断activin A或GDF11等配体与ACVR2A胞外配体结合域接触，抑制ACVR1B/ACVR1C募集及SMAD2/3磷酸化。",
+    "selectedEpitope": "优先覆盖胞外富半胱氨酸配体结合域的β指状配体接触面，避开Fc样非功能暴露面。",
+    "diseaseDirection": "肿瘤与TGF-β/activin信号",
+    "domain": "ACVR2A含N端胞外配体结合域、单跨膜区及胞内丝氨酸/苏氨酸激酶结构域。",
+    "evidence": "ACVR2A结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P27037功能与结构域注释",
+      "RCSB PDB 3SOC晶体结构",
+      "TGF-β/activin-SMAD2/3通路文献"
+    ],
+    "referenceEntries": "UniProt P27037；RCSB PDB 3SOC；Open Targets ACVR2A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "胞外配体结合域β指状凹面及activin/GDF接触界面",
+        "直接阻断配体结合与II型受体起始装配",
+        "优先"
+      ],
+      [
+        "Site B",
+        "配体结合域邻近I型受体复合体装配边缘",
+        "干扰ACVR1B/ACVR1C募集并降低SMAD2/3激活",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离配体界面的结构支撑环与糖基化邻近表面",
+        "可能仅提供结合而缺乏功能阻断，需严格验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ACVR2A与ACVR2B在胞外配体结合域存在同源性，需通过界面残基差异控制选择性，并评估对正常activin生理信号的抑制窗口。",
+    "structurePrepZh": "以3SOC中ACVR2A胞外结构域为模板，校正缺失环区、二硫键与质子化状态，标注配体结合面及潜在N糖基化位点。",
+    "structureRef": "RCSB PDB 3SOC；ACVR2A胞外域X射线结构1.95 Å",
+    "antibodies": [
+      "Bimagrumab",
+      "Garetosmab"
+    ],
+    "interfaceFocus": "胞外配体结合域β指状配体接触界面",
+    "designMode": "受体阻断型抗体",
+    "candidates": [
+      {
+        "target": "INHBA",
+        "rationale": "INHBA编码activin A βA亚基，是ACVR2A上游配体来源；靶向配体可在同一activin-SMAD2/3通路中降低受体激活。"
+      },
+      {
+        "target": "ACVR2B",
+        "rationale": "ACVR2B与ACVR2A同属activin II型受体，可结合activin、myostatin及GDF11；作为并行受体节点，适合评估通路冗余与联合阻断价值。"
+      },
+      {
+        "target": "ACVR1B",
+        "rationale": "ACVR1B是activin受体复合体常见I型受体，受II型受体转磷酸化后激活SMAD2/3；靶向该节点可验证下游信号依赖性。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

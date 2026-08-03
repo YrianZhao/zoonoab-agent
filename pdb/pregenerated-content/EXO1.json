@@ -1,0 +1,65 @@
+{
+  "gene": "EXO1",
+  "generatedAt": "2026-08-03T19:10:02.603Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "EXO1 是核内 DNA 5′端外切酶，参与错配修复、同源重组末端切除与复制叉处理，其异常表达或变异可影响基因组稳定性并与多种癌症风险和肿瘤增殖表型相关。该蛋白不属于分泌蛋白或经典膜受体，天然抗原可及性低，抗体更适合作为细胞内机制研究、诊断检测或递送型抑制分子设计对象。相较于 MSH2、MLH1 等核心错配修复因子，EXO1 具有可解析的核酸酶活性中心和 PCNA/错配修复互作节点，便于围绕酶活抑制与蛋白互作阻断建立优先级明确的抗体工程策略。",
+    "mechanism": "通过抗体结合 EXO1 核酸酶催化沟槽或互作界面，阻断其与 DNA 末端底物、PCNA 或 MSH2-MSH6 复合物的功能性结合，抑制 DNA 末端切除。",
+    "selectedEpitope": "优先选择 N 端核酸酶结构域的金属离子依赖催化沟槽邻近区域，避开高度保守核心残基以降低非特异风险。",
+    "diseaseDirection": "肿瘤基因组稳定性与DNA修复",
+    "domain": "EXO1 含 N 端 Rad2/XPG 样核酸酶核心结构域及 C 端调控区，C 端介导 PCNA 和错配修复蛋白互作。",
+    "evidence": "EXO1癌症关联与DNA修复结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9UQ84 functional annotation",
+      "RCSB PDB 5V07 X-ray structure",
+      "DNA mismatch repair and homologous recombination literature"
+    ],
+    "referenceEntries": "UniProt Q9UQ84；RCSB PDB 5V07；Open Targets EXO1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端核酸酶结构域催化沟槽周缘",
+        "可干扰 DNA 末端底物进入与金属依赖切割构象形成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端 PCNA 结合基序邻近调控区",
+        "可阻断 EXO1 与 PCNA 的复制相关募集，但结构柔性较高",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端核酸酶核心高度保守催化残基区域",
+        "可能获得强抑制效应，但存在保守酶家族交叉识别与构象扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "EXO1 为核内蛋白，常规抗体难以直接进入细胞核；应优先定位于体外诊断、细胞内递送抗体或研究级抑制工具，并严格评估 FEN1/XPG 家族交叉反应。",
+    "structurePrepZh": "以 5V07 的 X 射线结构为模板，保留抗原链 Z、A、B 中解析完整的核酸酶核心，补全缺失侧链并标注金属结合与 DNA 底物模拟区域。",
+    "structureRef": "RCSB PDB 5V07，EXO1核酸酶结构，2.15 Å X射线",
+    "antibodies": [
+      "研究级抗EXO1单克隆抗体",
+      "研究级抗EXO1多克隆抗体"
+    ],
+    "interfaceFocus": "DNA底物结合沟槽与PCNA募集界面",
+    "designMode": "细胞内靶向抑制",
+    "candidates": [
+      {
+        "target": "MSH2",
+        "rationale": "MSH2 与 MSH6 形成 MutSα 复合物识别碱基错配并参与招募 EXO1，是错配修复通路上游关键节点。其肿瘤相关突变和免疫治疗预测价值明确。"
+      },
+      {
+        "target": "MSH6",
+        "rationale": "MSH6 与 MSH2 协同识别单碱基错配和小插入缺失环，可影响 EXO1 依赖的切除步骤。该靶点适合与 EXO1 共同构建错配修复状态评估组合。"
+      },
+      {
+        "target": "PCNA",
+        "rationale": "PCNA 通过滑动夹平台募集 EXO1 至复制相关 DNA 修复位点，并增强其底物处理效率。阻断 EXO1-PCNA 轴可聚焦复制压力和肿瘤 DNA 修复依赖性。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "PIK3R4",
+  "generatedAt": "2026-08-03T15:17:50.603Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PIK3R4编码VPS15，是PIK3C3/VPS34复合体的丝氨酸/苏氨酸激酶样调节亚基，参与内体成熟、自噬起始与病毒入侵后膜转运过程，在神经退行性疾病和病毒感染相关宿主通路中具有遗传与功能关联。该蛋白主要定位于胞质侧膜相关复合体，并非分泌蛋白或经典跨膜受体，因此抗原可及性弱于胞外靶点，抗体策略更适合结构机制研究、胞内递送抗体或降解偶联设计。相较于上游广谱PI3K调节因子，PIK3R4具有明确的VPS34复合体装配界面和高分辨率冷冻电镜结构，可用于更精确地区分复合体亚型并降低非选择性PI3K通路干扰。",
+    "mechanism": "阻断PIK3R4与PIK3C3、BECN1或ATG14/UVRAG的复合体装配界面，削弱VPS34复合体介导的PI3P生成与自噬膜成核。",
+    "selectedEpitope": "优先瞄准HEAT样重复与PIK3C3接触面，避开保守激酶样结构域核心。",
+    "diseaseDirection": "自噬-内体运输与病毒感染",
+    "domain": "PIK3R4含N端HEAT样重复区、中部支架区及C端蛋白激酶样结构域。",
+    "evidence": "PIK3R4自噬复合体结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q99570 functional annotation",
+      "RCSB PDB 9MHF cryo-EM structure",
+      "VPS34 complex autophagy and endosomal trafficking literature"
+    ],
+    "referenceEntries": "UniProt Q99570；RCSB PDB 9MHF；Open Targets PIK3R4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "HEAT样重复区与PIK3C3支架接触界面",
+        "直接干预VPS34复合体稳定性和PI3P生成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "BECN1/ATG14或UVRAG邻近装配界面",
+        "用于区分自噬起始复合体与内体复合体亚型",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端激酶样结构域保守核心表面",
+        "保守性高且可能影响非目标蛋白互作，选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PIK3R4为胞内膜相关蛋白，常规治疗性抗体可及性受限；建议采用胞内递送Fab/VHH、纳米抗体表达或降解偶联策略，并以界面选择性验证为核心。",
+    "structurePrepZh": "以9MHF冷冻电镜模型为模板，保留PIK3R4与PIK3C3、BECN1及ATG14/UVRAG相关链，补全缺失环区并标注复合体界面残基。",
+    "structureRef": "RCSB PDB 9MHF，human VPS34 complex cryo-EM，2.73 Å",
+    "antibodies": [
+      "PIK3R4 research antibody clones",
+      "VPS15 intracellular nanobody-format binders"
+    ],
+    "interfaceFocus": "PIK3R4-PIK3C3及BECN1装配界面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "PIK3C3",
+        "rationale": "PIK3C3/VPS34是同一复合体的催化亚基，直接生成PI3P并驱动自噬膜成核和内体成熟。靶向其调节界面可与PIK3R4形成机制互补。"
+      },
+      {
+        "target": "BECN1",
+        "rationale": "BECN1是VPS34复合体核心支架蛋白，连接PIK3C3-PIK3R4与ATG14或UVRAG亚型模块。其互作界面决定自噬起始复合体的组装状态。"
+      },
+      {
+        "target": "ATG14",
+        "rationale": "ATG14定义自噬起始型PIK3C3复合体，并参与招募复合体至内质网相关成核位点。该靶点适合用于同一自噬通路的亚型选择性干预。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

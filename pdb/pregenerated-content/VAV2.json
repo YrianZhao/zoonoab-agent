@@ -1,0 +1,65 @@
+{
+  "gene": "VAV2",
+  "generatedAt": "2026-08-03T17:47:33.404Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "VAV2 是 Rho/Rac 家族小 GTPase 的鸟嘌呤核苷酸交换因子，可通过 DH-PH-ZF 模块促进 RAC1、RHOA 等由 GDP 向 GTP 负载转换，参与吞噬细胞迁移、氧化爆发和宿主抗利什曼原虫免疫调控。该蛋白主要定位于胞内信号复合体，并非典型胞外抗原，因此抗体药物开发应优先限定为胞内递送抗体、研究级构象抗体或细胞内抗体策略。相较于 RAC1、RHOA 等高度同源小 GTPase，VAV2 的调控结构域组合更具选择性窗口，可在通路上游限制 GTPase 激活而减少直接靶向保守核苷酸结合口袋的交叉风险。",
+    "mechanism": "以内源递送抗体阻断 VAV2 DH 结构域与 RAC1/RHOA switch 区相互作用，抑制 GDP 释放和 GTP 负载形成。",
+    "selectedEpitope": "优先覆盖 DH 结构域 GTPase 结合沟槽及 PH 邻接调控界面，避免锌指核心保守折叠区。",
+    "diseaseDirection": "感染免疫与血液性状相关",
+    "domain": "VAV2 含 CH、Ac、DH、PH、C1/ZF、SH2、SH3 等调控结构域，4ROJ 覆盖结构域片段。",
+    "evidence": "VAV2-Rho GTPase 免疫调控证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProtKB P52735 功能与结构域注释",
+      "RCSB PDB 4ROJ X-ray 晶体结构",
+      "Reactome Rho GTPase 信号与免疫细胞迁移通路"
+    ],
+    "referenceEntries": "UniProt P52735；RCSB PDB 4ROJ；Open Targets ENSG00000160293",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DH 结构域 GTPase 结合沟槽",
+        "直接干预 RAC1/RHOA 结合与核苷酸交换反应，机制可验证性高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DH-PH 邻接调控界面",
+        "可能稳定非活化构象并降低交换活性，适合构象选择性抗体设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C1/ZF 保守折叠核心",
+        "结构保守且可能影响蛋白稳定性，存在非特异构象扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "VAV2 缺乏胞外可及性，常规循环抗体难以触达靶点；建议定位于胞内抗体、递送型 Fab/VHH 或机制研究试剂，并重点评估 VAV1/VAV3 交叉反应。",
+    "structurePrepZh": "以 4ROJ 晶体结构为模板，保留抗原链 A-F 中解析完整片段，补充缺失环区并进行质子化、二硫键和锌配位状态校验。",
+    "structureRef": "RCSB PDB 4ROJ，X-ray diffraction，1.95 Å",
+    "antibodies": [
+      "Anti-VAV2 clone D-7",
+      "Anti-VAV2 clone E-3"
+    ],
+    "interfaceFocus": "DH-GTPase 结合沟槽与 DH-PH 构象耦联界面",
+    "designMode": "胞内阻断型设计",
+    "candidates": [
+      {
+        "target": "RAC1",
+        "rationale": "RAC1 是 VAV2 交换活性的直接下游小 GTPase，参与吞噬细胞迁移、活性氧生成和病原体应答。与 VAV2 同处 Rho GTPase 免疫调控轴。"
+      },
+      {
+        "target": "RHOA",
+        "rationale": "RHOA 可作为 VAV2 调控的 Rho 家族效应节点，影响细胞骨架重塑和免疫细胞黏附迁移。其通路位置有助于解析 VAV2 介导的细胞运动表型。"
+      },
+      {
+        "target": "VAV1",
+        "rationale": "VAV1 是造血细胞富集的同源 GEF，参与 T 细胞和髓系细胞受体下游 Rho GTPase 激活。其与 VAV2 功能重叠，适合作为免疫通路候选比较靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

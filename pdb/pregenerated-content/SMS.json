@@ -1,0 +1,65 @@
+{
+  "gene": "SMS",
+  "generatedAt": "2026-08-03T16:45:26.221Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SMS编码的spermine synthase位于多胺代谢末端反应步骤，催化spermidine向spermine的转化，其失衡可直接扰动神经发育相关的多胺稳态，并与X连锁智力障碍谱系呈现明确遗传关联。该蛋白为可结构解析的细胞内酶，虽非经典胞外抗原，但4聚体晶体结构清晰，适合开展构象与活性位点导向的抑制性抗体工程。相较于同通路中上游合成酶，SMS处于更接近终产物控制的节点，具备更强的代谢通量调节优先级。",
+    "mechanism": "阻断spermidine与dcSAM在催化中心的配位，抑制spermine生成并扰动多胺平衡。",
+    "selectedEpitope": "催化位点入口与四聚体界面耦联区域",
+    "diseaseDirection": "X连锁智力障碍/多胺代谢",
+    "domain": "胞质酶催化核心与四聚体组装界面",
+    "evidence": "多胺代谢-SMS结构功能证据包",
+    "evidenceSources": [
+      "Open Targets Platform",
+      "UniProt P52788",
+      "RCSB PDB 3C6K",
+      "OMIM/Orphanet 疾病注释"
+    ],
+    "referenceEntries": "UniProt:P52788；RCSB PDB:3C6K；Open Targets SMS；OMIM/Orphanet关联",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化口袋入口及底物定位环",
+        "直接干预酶活性，利于获得功能性抑制抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "四聚体界面邻近表面",
+        "可能影响装配稳定性并间接削弱催化效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离活性中心的暴露环",
+        "有利于结合但对功能抑制贡献有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SMS为胞内可溶性酶，抗体进入细胞与到达胞质靶位是主要风险。应优先考虑胞内递送格式或VHH工程，并以活性位点干预而非单纯结合为设计目标。",
+    "structurePrepZh": "采用3C6K四聚体坐标进行链重建与口袋标定，保留催化残基、底物通道与界面水网络，进行缺失侧链修复和构象采样。",
+    "structureRef": "RCSB PDB 3C6K；X-ray diffraction 1.95 Å",
+    "antibodies": [
+      "暂无已知SMS治疗性抗体",
+      "暂无已知SMS选择性中和抗体"
+    ],
+    "interfaceFocus": "活性口袋入口及寡聚化界面",
+    "designMode": "structure-guided",
+    "candidates": [
+      {
+        "target": "AMD1",
+        "rationale": "AMD1编码S-腺苷甲硫氨酸脱羧酶，位于多胺生物合成上游并决定dcSAM供给，是SMS底物供给轴的真实同通路节点。其与SMS共同塑造多胺稳态，适合作为联合机制参照靶点。"
+      },
+      {
+        "target": "SRM",
+        "rationale": "SRM编码spermidine synthase，直接生成SMS所需底物spermidine，和SMS构成连续反应步骤。针对该轴的联动分析有助于界定底物流与终产物控制边界。"
+      },
+      {
+        "target": "SAT1",
+        "rationale": "SAT1通过多胺乙酰化与降解通路调节细胞内spermidine/spermine比值，是SMS功能失衡后的真实代谢对照靶点。其与SMS同属多胺稳态网络，适合用于疾病机制分层。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "RRN3",
+  "generatedAt": "2026-08-03T16:14:51.459Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RRN3 是 RNA polymerase I 起始复合体装配因子，通过连接磷酸化的 Pol I 与 SL1/TIF-IB 复合体促进 rDNA 启动子转录起始，影响核糖体生物发生和细胞生长程序。该蛋白主要定位于细胞核，缺乏胞外结构域或分泌特征，天然抗原可及性不支持常规治疗性抗体优先开发，更适合作为结构生物学或细胞内递送抗体模型。相比 EGFR、CD20 等膜受体靶点，RRN3 的疾病关联多为性状和组学关联且最高 Open Targets 得分中等，因此抗体设计优先级应低于可直接药理阻断的胞外靶点。",
+    "mechanism": "设计抗体应阻断 RRN3 与 RNA polymerase I 亚基 RPA43/POLR1F 的结合，削弱 Pol I 招募至 rDNA 启动子并降低转录起始复合体形成。",
+    "selectedEpitope": "优先覆盖 RRN3 HEAT-repeat 螺旋支架中与 Pol I stalk/RPA43 接触的界面。",
+    "diseaseDirection": "核糖体生物发生与细胞生长性状",
+    "domain": "RRN3 为 HEAT-repeat 富集的螺旋支架蛋白，形成弯曲超螺旋结构并提供 Pol I 结合界面。",
+    "evidence": "RRN3-Pol I 起始复合体结构与遗传关联证据",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "RCSB PDB 7OBA cryo-EM structure",
+      "UniProt Q9NYV6 functional annotation",
+      "RNA polymerase I transcription initiation literature"
+    ],
+    "referenceEntries": "UniProt: Q9NYV6; RCSB PDB: 7OBA; Open Targets: RRN3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "HEAT-repeat 支架的 Pol I stalk/RPA43 接触面",
+        "直接干预 RRN3-Pol I 招募界面，机制可验证性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RRN3 与 SL1/TBP-TAF1B 复合体邻近结合面",
+        "可能干扰 rDNA 启动子预起始复合体稳定化",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离 Pol I 接触面的保守螺旋核心区",
+        "易影响折叠稳定性但不一定产生特异阻断效应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RRN3 为核内蛋白，抗体细胞进入与核定位是主要成药风险；建议限定为细胞内递送 Fab/VHH 或机制研究抗体，并避免选择高度保守折叠核心表位。",
+    "structurePrepZh": "以 7OBA 冷冻电镜模型提取 RRN3 链并保留邻近 Pol I 接触亚基，进行缺失残基标注、界面残基映射和糖基化缺失确认。",
+    "structureRef": "RCSB PDB 7OBA, human Pol I initiation complex, cryo-EM 3.1 Å",
+    "antibodies": [
+      "无获批抗 RRN3 治疗性抗体",
+      "抗 RRN3 研究级单克隆抗体"
+    ],
+    "interfaceFocus": "RRN3-Pol I stalk/RPA43 招募界面",
+    "designMode": "细胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "POLR1A",
+        "rationale": "POLR1A 编码 RNA polymerase I 最大催化亚基，是 rRNA 转录机器的核心组成部分；抑制该轴可直接影响核糖体 RNA 合成。"
+      },
+      {
+        "target": "POLR1F",
+        "rationale": "POLR1F/RPA43 构成 Pol I stalk 区并与 RRN3 形成关键招募界面，是同一转录起始复合体内更直接的界面靶点。"
+      },
+      {
+        "target": "TAF1B",
+        "rationale": "TAF1B 是 SL1/TIF-IB 复合体成分，参与 rDNA 启动子识别并与 RRN3-Pol I 招募步骤功能耦联。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "ADM",
+  "generatedAt": "2026-08-03T10:08:45.506Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ADM编码肾上腺髓质素，是内皮与血管平滑肌相关的分泌性肽，可通过CLR/RAMP2或CLR/RAMP3受体复合物激活Gs-cAMP轴，参与血管舒张、通透性调节及血压稳态。其成熟肽为可溶性胞外配体，抗体可直接接触循环或组织微环境中的抗原，无需跨膜递送。相比直接靶向GPCR受体复合物，ADM配体中和更利于阻断多受体背景下的共同上游信号，并避免受体构象异质性带来的表位不稳定性。",
+    "mechanism": "通过结合ADM成熟肽的受体识别面，阻断其与CALCRL-RAMP2/RAMP3复合物的配体结合，从而抑制下游cAMP信号与血管舒张效应。",
+    "selectedEpitope": "优先覆盖ADM成熟肽C端α螺旋及酰胺化末端受体结合界面，保留环状N端作为构象辅助区。",
+    "diseaseDirection": "血管张力与心血管代谢表型",
+    "domain": "ADM前体经加工形成成熟肽，含N端二硫键环区、中央螺旋段及C端酰胺化受体识别末端。",
+    "evidence": "ADM-CLR/RAMP轴血管稳态证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P35318功能与成熟肽注释",
+      "RCSB PDB 4RWF晶体结构信息",
+      "ADM与CALCRL-RAMP2/RAMP3药理学文献"
+    ],
+    "referenceEntries": "UniProt P35318；RCSB PDB 4RWF；Open Targets ADM",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "成熟ADM C端α螺旋及酰胺化末端",
+        "直接覆盖CLR/RAMP受体识别面，适合中和型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端二硫键环区邻近表面",
+        "可稳定识别成熟肽构象，并辅助限制受体结合取向",
+        "备选"
+      ],
+      [
+        "Site C",
+        "前体肽加工片段或非成熟区",
+        "可能不参与成熟ADM-受体结合，功能阻断价值有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ADM成熟肽分子量较小且柔性较高，单独表位可能免疫原性与亲和力窗口受限；建议采用构象约束肽或受体复合物竞争筛选确认中和活性。",
+    "structurePrepZh": "以4RWF实验结构为受体结合构象参考，校验抗原链A、B、C的成熟肽边界、二硫键状态及C端酰胺化修饰后再进行表位建模。",
+    "structureRef": "RCSB PDB 4RWF，X-ray diffraction，1.76 Å",
+    "antibodies": [
+      "adrecizumab",
+      "anti-ADM neutralizing antibody"
+    ],
+    "interfaceFocus": "ADM C端螺旋-CLR/RAMP结合面",
+    "designMode": "分泌肽配体中和",
+    "candidates": [
+      {
+        "target": "CALCRL",
+        "rationale": "CALCRL编码CLR，是ADM受体复合物的核心GPCR亚基；靶向其胞外配体结合区域可直接影响ADM受体激活。"
+      },
+      {
+        "target": "RAMP2",
+        "rationale": "RAMP2与CALCRL组成主要ADM1受体并决定ADM高亲和识别；该亚基参与配体选择性和血管内皮相关信号。"
+      },
+      {
+        "target": "RAMP3",
+        "rationale": "RAMP3与CALCRL形成ADM2受体，同属ADM受体通路；其调节ADM结合谱和受体转运，适合作为通路内备选靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

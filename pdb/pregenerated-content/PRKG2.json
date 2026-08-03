@@ -1,0 +1,65 @@
+{
+  "gene": "PRKG2",
+  "generatedAt": "2026-08-03T15:36:10.815Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PRKG2 是 cGMP 依赖性丝氨酸/苏氨酸蛋白激酶，在 CNP–NPR2–cGMP 轴中促进软骨细胞肥大分化与长骨生长板成熟，遗传变异与肢中段发育不良、脊椎干骺端发育不良和身高表型存在明确关联。该蛋白主要为胞内激酶，缺乏天然胞外抗原可及性，作为常规体内阻断抗体靶点存在显著可及性限制。其优先级主要来自骨骼发育遗传证据和高分辨率激酶结构，而相较 NPR2 或 NPPC 等同轴胞外靶点，更适合细胞内递送抗体片段或结构引导型功能探针设计。",
+    "mechanism": "设计抗体片段结合 PRKG2 激酶结构域 ATP 结合裂隙或活化环邻近界面，阻碍底物进入催化沟槽并降低 cGMP 依赖性磷酸化输出。",
+    "selectedEpitope": "优先覆盖激酶结构域 N-lobe/C-lobe 之间 ATP 结合裂隙边缘及活化环邻近构象表位。",
+    "diseaseDirection": "骨骼发育异常与身高调控",
+    "domain": "PRKG2 含 N 端二聚化/自抑制调控区、cGMP 结合调控结构域及 C 端蛋白激酶催化结构域。",
+    "evidence": "PRKG2 骨骼发育遗传与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q13237 功能与结构域注释",
+      "RCSB PDB 5JIX X 射线晶体结构",
+      "OMIM/ClinVar 骨骼发育变异证据"
+    ],
+    "referenceEntries": "UniProt Q13237；RCSB PDB 5JIX；Open Targets PRKG2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域 ATP 结合裂隙边缘与铰链区",
+        "可直接干扰核苷酸结合和催化构象稳定，适合抑制型胞内抗体片段设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "活化环及底物结合沟槽邻近区域",
+        "有望限制底物肽定位和磷酸转移效率，需保留 PRKG2 选择性判别残基",
+        "备选"
+      ],
+      [
+        "Site C",
+        "保守催化环及 Mg2+/ATP 配位核心",
+        "功能相关性强但跨激酶家族保守性高，存在脱靶识别风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PRKG2 为胞内激酶，常规抗体难以到达天然作用位点；设计应采用胞内抗体、VHH 递送或结构探针路线，并严格评估激酶家族保守表位交叉反应。",
+    "structurePrepZh": "以 5JIX 链 A 为模板，保留催化结构域构象，校验铰链区、活化环和配体邻近残基，补全缺失侧链并去除非设计相关晶体组分。",
+    "structureRef": "RCSB PDB 5JIX，X-ray diffraction，1.47 Å",
+    "antibodies": [
+      "PRKG2 特异性研究级抗体",
+      "PKG 激酶结构域识别抗体"
+    ],
+    "interfaceFocus": "ATP 裂隙铰链区、活化环和底物沟槽",
+    "designMode": "胞内VHH/Fab结构引导",
+    "candidates": [
+      {
+        "target": "NPR2",
+        "rationale": "NPR2 是 CNP 受体鸟苷酸环化酶，位于 PRKG2 上游并生成 cGMP，是同一骨骼生长通路中更具胞外可及性的膜受体靶点。"
+      },
+      {
+        "target": "NPPC",
+        "rationale": "NPPC 编码 C 型利钠肽，是激活 NPR2–cGMP–PRKG2 轴的分泌配体，遗传和生理证据均支持其参与软骨内成骨与身高调控。"
+      },
+      {
+        "target": "PDE5A",
+        "rationale": "PDE5A 通过降解 cGMP 调节同一环核苷酸信号强度，可影响 NPR2/PRKG2 下游输出，但作为胞内酶更适合小分子或递送型抗体片段策略。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

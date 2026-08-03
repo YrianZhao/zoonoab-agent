@@ -1,0 +1,65 @@
+{
+  "gene": "SYVN1",
+  "generatedAt": "2026-08-03T21:26:48.763Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SYVN1编码内质网膜E3泛素连接酶Synoviolin/HRD1，是ER相关降解通路的核心组分，通过与SEL1L、UBE2J1/UBE2G2等因子协同泛素化错误折叠蛋白，影响蛋白稳态、内质网应激与神经退行性疾病相关蛋白毒性。该蛋白主体位于内质网膜及胞质侧RING催化区，天然抗原可及性弱于典型细胞表面受体，因此抗体设计更适合作为结构生物学验证、胞内递送抗体或降解复合体界面干预策略。相较于PERK、IRE1等广泛应激传感器，SYVN1处于底物泛素化执行节点，具备更直接调节ERAD底物流向的优先级价值，但成药形式需优先评估胞内递送可行性。",
+    "mechanism": "通过抗体结合SYVN1胞质侧RING-CTD邻近界面，阻断SYVN1与E2泛素结合酶或SEL1L-HRD1复合体构象耦联，从而抑制ERAD底物泛素化。",
+    "selectedEpitope": "优先锁定RING结构域及其C端调控区邻近E2结合面，避开跨膜螺旋疏水核心。",
+    "diseaseDirection": "ERAD蛋白稳态与神经退行性疾病",
+    "domain": "多跨膜内质网锚定区连接胞质侧RING-H2 E3连接酶结构域及C端调控区。",
+    "evidence": "SYVN1-HRD1复合体ERAD结构与疾病遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q86TM6功能与亚细胞定位注释",
+      "RCSB PDB 8KET冷冻电镜结构",
+      "ERAD/HRD1-SEL1L通路文献证据"
+    ],
+    "referenceEntries": "UniProt: Q86TM6; RCSB PDB: 8KET; HGNC: SYVN1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "胞质侧RING结构域E2结合邻近面",
+        "可直接干预E2酶招募与泛素转移步骤",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RING后C端调控区与复合体构象耦联界面",
+        "适合构象锁定并影响HRD1活性状态",
+        "备选"
+      ],
+      [
+        "Site C",
+        "多跨膜螺旋束外露环区",
+        "结构稳定性与抗体可及性受膜环境限制，需谨慎验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SYVN1缺乏细胞外暴露结构域，常规体内抗体难以到达内质网胞质侧表位；建议限定为胞内抗体、递送型VHH或机制验证抗体设计。",
+    "structurePrepZh": "以8KET冷冻电镜模型为核心，保留SYVN1相关链并补全缺失环区；跨膜区需在膜模拟环境中优化，RING区需校正锌配位几何。",
+    "structureRef": "RCSB PDB 8KET, cryo-EM structure at 3.3 Å",
+    "antibodies": [
+      "抗HRD1研究级单克隆抗体",
+      "抗SYVN1研究级单克隆抗体"
+    ],
+    "interfaceFocus": "RING-E2结合面与HRD1复合体构象耦联区",
+    "designMode": "胞内递送抗体",
+    "candidates": [
+      {
+        "target": "SEL1L",
+        "rationale": "SEL1L是HRD1/SYVN1 ERAD复合体的关键适配蛋白，负责底物识别与向HRD1递交；干预该界面可影响同一ERAD底物处理通路。"
+      },
+      {
+        "target": "OS9",
+        "rationale": "OS9参与内质网错误折叠糖蛋白识别，并通过SEL1L-HRD1轴递交底物；其位置更偏向底物选择步骤，适合作为通路上游候选靶点。"
+      },
+      {
+        "target": "UBE2J1",
+        "rationale": "UBE2J1是内质网膜相关E2泛素结合酶，可与HRD1/SYVN1协同完成底物泛素化；阻断E2-E3耦联具有明确分子机制。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

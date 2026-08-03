@@ -1,0 +1,65 @@
+{
+  "gene": "MALT1",
+  "generatedAt": "2026-08-03T14:02:01.359Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MALT1是CBM复合体中连接抗原受体信号与NF-κB激活的核心支架和半胱氨酸蛋白酶，遗传缺陷可导致联合免疫缺陷，异常活化则参与淋巴样肿瘤生存信号。其胞内定位决定天然完整蛋白并非经典可及性抗原，但3BFO所示paracaspase结构可用于细胞内递送抗体片段或研究型抑制性结合体设计。相较CARD11、BCL10等同通路支架蛋白，MALT1具有明确催化沟槽和底物结合界面，结构可成药性与机制验证优先级更高。",
+    "mechanism": "设计结合体占据MALT1 paracaspase催化沟槽或底物识别位点，阻断其对BCL10、RelB、A20等底物的蛋白水解，从而抑制CBM依赖性NF-κB信号放大。",
+    "selectedEpitope": "优先覆盖paracaspase结构域催化Cys-His邻近底物结合沟槽，兼顾Ig3-paracaspase连接界面。",
+    "diseaseDirection": "免疫缺陷与淋巴样肿瘤通路",
+    "domain": "MALT1含死亡结构域、两个Ig-like结构域、paracaspase催化结构域及C端Ig-like结构域。",
+    "evidence": "MALT1-CBM-NF-κB疾病机制与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9UDY8 functional annotation",
+      "RCSB PDB 3BFO X-ray structure",
+      "MALT1 paracaspase and CBM complex literature"
+    ],
+    "referenceEntries": "UniProt Q9UDY8；RCSB PDB 3BFO；Open Targets MALT1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "paracaspase催化沟槽与底物P1 Arg识别区",
+        "直接阻断底物进入并抑制蛋白酶活性，机制读出明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Ig3-paracaspase连接面及构象调控区域",
+        "可能限制活性构象形成并降低CBM信号放大",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化中心的paracaspase外侧表面",
+        "结合可及但功能阻断不确定，需避免仅产生非抑制性结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MALT1为胞内蛋白，常规IgG难以到达靶点；宜采用细胞内递送Fab/VHH或作为结构引导抑制剂验证模型，并严格评估TCR/BCR免疫功能抑制风险。",
+    "structurePrepZh": "以3BFO高分辨率晶体结构为模板，保留抗原链A-D中paracaspase核心构象，校正质子化状态、催化残基取向及晶体接触后进行表位网格化。",
+    "structureRef": "RCSB PDB 3BFO；MALT1 paracaspase X-ray 1.15 Å",
+    "antibodies": [
+      "研究级抗MALT1单克隆抗体",
+      "细胞内递送型MALT1抑制性VHH"
+    ],
+    "interfaceFocus": "催化沟槽、底物结合口袋与Ig3调控界面",
+    "designMode": "胞内抑制型Fab/VHH",
+    "candidates": [
+      {
+        "target": "CARD11",
+        "rationale": "CARD11位于抗原受体近端信号下游，募集BCL10-MALT1形成CBM复合体，是同一NF-κB通路的上游支架节点。"
+      },
+      {
+        "target": "BCL10",
+        "rationale": "BCL10直接连接CARD11与MALT1并参与CBM复合体组装，调控MALT1活化和淋巴细胞NF-κB信号传递。"
+      },
+      {
+        "target": "NFKB1",
+        "rationale": "NFKB1编码p105/p50，是MALT1-CBM信号下游的核心转录因子组成部分，反映同一路径的终末炎症与免疫转录输出。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

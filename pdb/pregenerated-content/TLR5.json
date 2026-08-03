@@ -1,0 +1,65 @@
+{
+  "gene": "TLR5",
+  "generatedAt": "2026-08-03T17:19:30.117Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TLR5是识别细菌鞭毛蛋白flagellin的I型跨膜模式识别受体，可通过TIR结构域募集MYD88并激活NF-κB、MAPK与炎症因子转录，在先天免疫细胞数量和炎症表型中具有明确通路位置。其富含亮氨酸重复序列的胞外结构域直接暴露于细胞表面，具备抗体结合与阻断配体识别的抗原可及性优势。相较于下游MYD88、IRAK4或NF-κB组分，TLR5位于配体识别入口，干预更具受体选择性，并可避免广泛抑制多条TLR通路的系统性风险。",
+    "mechanism": "抗体阻断TLR5胞外LRR结构域与flagellin D1保守区结合，抑制受体构象重排及MYD88依赖性炎症信号启动。",
+    "selectedEpitope": "优先覆盖TLR5 N端至中部LRR凹面中flagellin结合界面，避免跨膜近端非特异聚集区。",
+    "diseaseDirection": "先天免疫炎症与白细胞数量表型",
+    "domain": "TLR5含胞外LRRNT-LRR-LRRCT配体识别区、单跨膜区及胞内TIR信号结构域。",
+    "evidence": "TLR5-flagellin识别与炎症遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联与遗传证据",
+      "UniProt O60602功能与结构域注释",
+      "RCSB PDB 3J0A电子显微结构记录",
+      "TLR5识别flagellin并激活MYD88-NF-κB通路文献"
+    ],
+    "referenceEntries": "UniProt: O60602；RCSB PDB: 3J0A；HGNC: TLR5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "胞外LRR凹面flagellin D1结合界面",
+        "直接阻断配体识别并保留较高受体选择性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "LRRNT邻近N端配体进入侧面",
+        "可通过空间位阻削弱flagellin结合与受体激活",
+        "备选"
+      ],
+      [
+        "Site C",
+        "LRRCT及膜近端区域",
+        "可能影响受体构象但存在可及性和非特异交联风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "3J0A分辨率较低，界面细节需结合AlphaFold模型和同源LRR模板复核；设计应避免膜近端交联诱导受体聚集性激活。",
+    "structurePrepZh": "以3J0A作为低分辨率装配参考，提取TLR5胞外LRR区域，补全缺失环区并进行糖基化位点、flagellin界面与可及性校验。",
+    "structureRef": "RCSB PDB 3J0A；TLR5胞外结构域电子显微研究",
+    "antibodies": [
+      "BAY1834845",
+      "抗TLR5中和抗体85B152.5"
+    ],
+    "interfaceFocus": "LRR凹面flagellin D1结合沟槽",
+    "designMode": "配体阻断型抗体",
+    "candidates": [
+      {
+        "target": "TLR4",
+        "rationale": "TLR4同属先天免疫模式识别受体，通过识别脂多糖并募集MYD88/TRIF驱动NF-κB与炎症因子表达，可作为炎症通路平行入口靶点。"
+      },
+      {
+        "target": "MYD88",
+        "rationale": "MYD88是TLR5下游关键衔接蛋白，介导IRAK复合体形成和NF-κB激活，适合用于通路验证但胞内定位限制常规抗体可及性。"
+      },
+      {
+        "target": "IL1B",
+        "rationale": "IL1B是TLR5-MYD88-NF-κB炎症转录程序的重要效应因子之一，分泌型细胞因子具有抗体中和可及性并与白细胞炎症表型相关。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

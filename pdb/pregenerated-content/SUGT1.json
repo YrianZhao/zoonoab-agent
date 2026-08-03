@@ -1,0 +1,65 @@
+{
+  "gene": "SUGT1",
+  "generatedAt": "2026-08-03T21:22:59.340Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SUGT1 是 HSP90 伴侣体系与动粒 MIS12 复合体装配相关的胞内辅伴侣蛋白，可通过稳定 NLR 家族蛋白、参与有丝分裂动粒功能及蛋白质稳态影响炎症、细胞周期异常与神经退行性疾病表型。该蛋白缺乏跨膜区和分泌信号肽，天然抗原可及性不符合常规细胞外阻断抗体要求，更适合作为胞内机制研究、递送型抗体或结构域干预分子设计对象。相较于同通路中细胞外或膜受体靶点，SUGT1 的优先级主要来自其在 HSP90–CDC37 伴侣网络和动粒装配中的枢纽性，但药物开发优先级应低于具有天然胞外可及性的通路节点。",
+    "mechanism": "设计分子旨在结合 SUGT1 TPR 结构域，阻断其与 HSP90 C 端 MEEVD 基序及相关伴侣复合体的装配，削弱客户蛋白稳定化。",
+    "selectedEpitope": "优先覆盖 TPR 结构域凹槽与 α 螺旋重复形成的伴侣蛋白结合界面。",
+    "diseaseDirection": "神经退行性疾病与肿瘤蛋白稳态",
+    "domain": "SUGT1 含 N 端二聚化相关区、中央 CS 结构域及 C 端 SGS 区；1RL1 对应 TPR 结构域片段。",
+    "evidence": "SUGT1 伴侣装配与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB Q9Y2Z0 functional annotation",
+      "RCSB PDB 1RL1 solution NMR structure",
+      "Reactome cell cycle and chaperone pathway annotations"
+    ],
+    "referenceEntries": "UniProt Q9Y2Z0；RCSB PDB 1RL1；Open Targets SUGT1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "TPR 结构域螺旋凹槽及 HSP90 MEEVD 识别面",
+        "可直接干预 SUGT1–HSP90 伴侣复合体组装",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CS 结构域与伴侣复合体邻近结合面",
+        "可能影响 SUGT1 与 HSP90 机器的构象耦联",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SGS 区低复杂度或柔性片段",
+        "结构不确定性较高，易产生非特异结合与构象依赖偏差",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SUGT1 为胞内蛋白，常规抗体难以到达作用位点；需采用细胞内递送、VHH 胞内表达或降解耦联策略，并严格评估有丝分裂毒性。",
+    "structurePrepZh": "以 1RL1 NMR 构象集建立 TPR 结构域模型，筛选代表性低能构象，补全缺失氢原子并标注 HSP90 MEEVD 结合凹槽。",
+    "structureRef": "RCSB PDB 1RL1：human SUGT1 TPR domain NMR structure",
+    "antibodies": [
+      "无已批准 SUGT1 治疗性抗体",
+      "研究级 anti-SUGT1 monoclonal antibody"
+    ],
+    "interfaceFocus": "TPR 凹槽与 HSP90 C 端 MEEVD 结合界面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "HSP90AA1",
+        "rationale": "HSP90AA1 是 SUGT1 伴侣复合体的核心 ATP 依赖分子伴侣，直接参与客户蛋白折叠与稳定化；其药理学证据强于 SUGT1，但选择性设计挑战较高。"
+      },
+      {
+        "target": "CDC37",
+        "rationale": "CDC37 与 HSP90 共同稳定多种蛋白激酶客户蛋白，处于同一伴侣依赖蛋白稳态通路；干预 CDC37–HSP90 界面可影响肿瘤相关激酶网络。"
+      },
+      {
+        "target": "MIS12",
+        "rationale": "MIS12 是 SUGT1 注释相关动粒复合体的核心组分，参与染色体分离和有丝分裂进程；适合作为细胞周期异常和染色体不稳定研究中的同通路比较靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

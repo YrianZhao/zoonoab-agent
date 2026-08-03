@@ -1,0 +1,65 @@
+{
+  "gene": "CNOT3",
+  "generatedAt": "2026-08-03T11:30:04.264Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CNOT3是CCR4-NOT去腺苷酸化复合体的核心支架亚基，参与mRNA poly(A)尾缩短、转录后稳态维持与神经发育相关基因表达调控，遗传变异与伴语言迟缓、孤独症样表现和面容异常的神经发育障碍存在明确关联。该蛋白主要定位于胞质与细胞核内，缺乏天然胞外结构域，因此常规体内中和抗体的抗原可及性不足，更适合用于细胞内递送抗体、结构探针或降解偶联分子设计。相较仅参与催化反应的CCR4/CAF1核酸酶亚基，CNOT3位于NOT模块装配界面，具备更高的复合体组织节点价值，但抗体成药优先级应低于可及性良好的膜受体或分泌靶点。",
+    "mechanism": "以内源递送Fab或VHH结合CNOT3 NOT-box相关装配界面，干扰其与CNOT1/CNOT2形成稳定CCR4-NOT核心模块，从而改变靶mRNA去腺苷酸化效率。",
+    "selectedEpitope": "优先靶向PDB 4C0G中CNOT3 NOT模块与CNOT2/CNOT1接触邻近的保守螺旋束界面。",
+    "diseaseDirection": "神经发育障碍与转录后调控",
+    "domain": "CNOT3含N端低复杂度调控区与C端NOT-box/NOT模块结构域，后者参与CCR4-NOT核心复合体装配。",
+    "evidence": "CNOT3神经发育遗传关联与CCR4-NOT结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt O75175功能与亚细胞定位注释",
+      "RCSB PDB 4C0G人源CCR4-NOT模块晶体结构",
+      "OMIM与ClinVar神经发育相关变异记录"
+    ],
+    "referenceEntries": "UniProt O75175；RCSB PDB 4C0G；Open Targets CNOT3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CNOT3 C端NOT-box螺旋束与CNOT2邻近装配界面",
+        "可直接影响CCR4-NOT核心模块稳定性，适合机制验证型阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CNOT3 NOT模块外侧保守螺旋表面",
+        "有利于获得构象识别抗体，用于复合体定位、免疫沉淀与结构探针开发",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端低复杂度或柔性调控区预测片段",
+        "构象异质性较高且结构证据有限，表位稳定性和特异性需严格验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CNOT3为胞内核质蛋白，天然抗体可及性受限；设计应优先采用细胞内递送VHH/Fab、纳米抗体融合降解策略，并避免破坏广泛必需转录后调控造成非选择性毒性。",
+    "structurePrepZh": "以4C0G晶体结构为模板，保留CNOT3相关链及其CNOT1/CNOT2接触链，补全缺失侧链、标注保守界面残基，并过滤晶体接触导致的非生理表面。",
+    "structureRef": "RCSB PDB 4C0G，X-ray diffraction，2.4 Å",
+    "antibodies": [
+      "commercial anti-CNOT3 antibody",
+      "research-grade anti-CNOT3 monoclonal antibody"
+    ],
+    "interfaceFocus": "CNOT3-CNOT2/CNOT1核心装配界面",
+    "designMode": "胞内结构阻断",
+    "candidates": [
+      {
+        "target": "CNOT1",
+        "rationale": "CNOT1是CCR4-NOT复合体的中央支架，连接NOT模块与CAF1/CCR4去腺苷酸化酶亚基；其扰动可直接影响同一mRNA稳态调控通路。"
+      },
+      {
+        "target": "CNOT2",
+        "rationale": "CNOT2与CNOT3共同构成NOT模块并参与复合体装配稳定性，在神经发育相关转录后调控网络中与CNOT3处于同一功能单元。"
+      },
+      {
+        "target": "CNOT7",
+        "rationale": "CNOT7是CAF1型去腺苷酸化酶亚基，执行CCR4-NOT介导poly(A)尾缩短反应，可作为同一通路中更接近催化输出端的候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

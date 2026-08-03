@@ -1,0 +1,65 @@
+{
+  "gene": "SHFL",
+  "generatedAt": "2026-08-03T16:31:18.774Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SHFL编码的Shiftless为胞内抗病毒限制因子，可与病毒RNA及翻译延伸相关复合物相互作用，抑制程序性核糖体移码并限制病毒多聚蛋白表达；其与所列Open Targets表型的遗传关联主要为测量性状，尚不足以支持明确疾病驱动靶点定位。该蛋白缺乏跨膜区和分泌信号肽，主要定位于细胞内，天然抗原可及性不符合常规治疗性抗体对胞外抗原的要求。与可直接暴露于体液或细胞表面的同通路抗病毒因子相比，SHFL更适合作为结构生物学与细胞内递送抗体探索靶点，优先级应低于可药性更明确的胞外或膜受体靶点。",
+    "mechanism": "抗体需通过细胞内递送后结合SHFL保守结构面，干扰其与病毒RNA或翻译延伸复合物的接触，从而调节程序性核糖体移码抑制活性。",
+    "selectedEpitope": "优先覆盖9KBO结构中保守凹槽及邻近α螺旋-β片层界面，避免埋藏核心。",
+    "diseaseDirection": "抗病毒天然免疫与移码调控",
+    "domain": "SHFL为胞内可溶性蛋白，PDB 9KBO解析其折叠核心，多链晶体结构显示保守表面与潜在核酸结合界面。",
+    "evidence": "SHFL结构与抗病毒移码抑制证据包",
+    "evidenceSources": [
+      "UniProt Q9NUL5功能注释",
+      "RCSB PDB 9KBO晶体结构",
+      "Open Targets Platform遗传关联",
+      "PubMed中SHFL/SFL抗病毒限制研究"
+    ],
+    "referenceEntries": "UniProt Q9NUL5；RCSB PDB 9KBO；Open Targets SHFL",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "保守表面凹槽及邻近α螺旋界面",
+        "可能影响RNA或翻译复合物接触，具功能阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "晶体结构中溶剂暴露环区",
+        "便于抗体结合与构象识别，可用于结合型抗体设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "多链晶体接触面或埋藏疏水核心",
+        "可能反映晶体堆积而非生理界面，需避免高疏水表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SHFL为胞内蛋白，常规IgG难以到达作用位点；应限定为Fab/VHH细胞内递送或胞内抗体模式，并验证表位是否为生理功能界面。",
+    "structurePrepZh": "以9KBO的A-D链比对评估构象一致性，去除晶体水和非功能接触，保留保守暴露面用于表位聚类与可成药性评分。",
+    "structureRef": "RCSB PDB 9KBO，X-ray diffraction，2.0 Å",
+    "antibodies": [
+      "尚无获批SHFL治疗性抗体",
+      "尚无公开临床阶段SHFL抗体"
+    ],
+    "interfaceFocus": "保守凹槽、暴露环区及疑似核酸结合面",
+    "designMode": "胞内VHH探索",
+    "candidates": [
+      {
+        "target": "OAS1",
+        "rationale": "OAS1属于干扰素诱导抗病毒通路，可识别病毒双链RNA并生成2-5A激活RNase L，与SHFL同属宿主抗病毒限制网络。"
+      },
+      {
+        "target": "RNASEL",
+        "rationale": "RNASEL在OAS-RNase L轴中降解病毒和宿主RNA，功能上与SHFL介导的病毒RNA翻译限制共同抑制病毒复制。"
+      },
+      {
+        "target": "IFIT1",
+        "rationale": "IFIT1为干扰素刺激基因产物，可结合缺乏适当帽结构的病毒RNA并抑制翻译起始，与SHFL的翻译阶段抗病毒限制具有通路相关性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

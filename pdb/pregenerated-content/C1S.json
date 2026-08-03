@@ -1,0 +1,65 @@
+{
+  "gene": "C1S",
+  "generatedAt": "2026-08-03T10:54:16.938Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "C1S编码经典补体途径的丝氨酸蛋白酶C1s，活化后裂解C4与C2并形成C3转化酶C4b2a，异常激活可驱动遗传性血管性水肿及补体介导炎症。C1s为血浆分泌型酶原，并在C1复合物中暴露多个结构域，抗体可直接接近催化或底物识别界面。相较下游C3/C5阻断，C1s干预更偏向经典途径上游选择性，保留旁路与凝集素途径功能，具备较高优先级。",
+    "mechanism": "阻断活化C1s丝氨酸蛋白酶结构域对C4和C2的底物结合与裂解，抑制C4b2a形成并降低经典途径C3放大。",
+    "selectedEpitope": "优先覆盖SP结构域催化沟槽邻近的底物结合外位点，避免直接模拟催化三联体深口袋。",
+    "diseaseDirection": "经典补体通路炎症与血管性水肿",
+    "domain": "C1s含CUB1-EGF-CUB2-CCP1-CCP2-SP模块，1NZI覆盖催化性SP片段。",
+    "evidence": "C1s经典补体通路结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P09871功能与结构域注释",
+      "RCSB PDB 1NZI晶体结构数据",
+      "补体经典途径C4/C2裂解机制文献"
+    ],
+    "referenceEntries": "UniProt P09871；RCSB PDB 1NZI；Open Targets C1S",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SP结构域底物结合沟槽外缘及S1邻近环区",
+        "可干扰C4/C2进入催化位点，兼顾可及性与功能阻断",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CCP2-SP连接区及催化结构域外侧面",
+        "可能影响酶构象稳定与底物定位，适合构象型抗体筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化三联体所在深口袋周边核心区",
+        "功能相关性强但口袋狭窄且同源丝氨酸蛋白酶交叉反应风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "C1s与MASP及其他补体丝氨酸蛋白酶存在结构同源性，应避开高度保守催化核心，优先选择C1s特异外环与底物外位点。",
+    "structurePrepZh": "以1NZI高分辨率晶体结构为SP结构域模板，补全缺失侧链、校验二硫键与催化残基质子化，并映射C4/C2底物可及面。",
+    "structureRef": "RCSB PDB 1NZI，human complement C1s SP domain",
+    "antibodies": [
+      "sutimlimab",
+      "TNT009"
+    ],
+    "interfaceFocus": "SP底物结合沟槽、S1邻近环与CCP2-SP界面",
+    "designMode": "阻断型Fab/VHH设计",
+    "candidates": [
+      {
+        "target": "C1R",
+        "rationale": "C1R位于同一C1复合物并负责C1s酶原激活，阻断C1r-C1s级联可在经典途径更上游抑制补体启动。"
+      },
+      {
+        "target": "C4A",
+        "rationale": "C4是C1s的直接底物，C4裂解产生C4b并参与C4b2a形成，适合作为经典途径转化酶装配干预靶点。"
+      },
+      {
+        "target": "C2",
+        "rationale": "C2经C1s裂解后与C4b形成C3转化酶C4b2a，靶向C2可阻断经典及凝集素途径的下游放大步骤。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

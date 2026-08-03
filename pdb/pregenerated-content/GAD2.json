@@ -1,0 +1,65 @@
+{
+  "gene": "GAD2",
+  "generatedAt": "2026-08-03T12:41:18.630Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GAD2编码GAD65，是胰岛β细胞与神经元中催化谷氨酸脱羧生成GABA的PLP依赖性酶，GABA可通过胰岛内旁分泌机制影响胰岛素与胰高血糖素分泌，并与血糖、HbA1c及2型糖尿病表型存在遗传和免疫学关联。该蛋白主要为胞内酶，天然抗原可及性低于膜受体或分泌因子，但GAD65是1型糖尿病自身抗体的经典抗原，重组抗原和暴露构象表位适合体外抗体筛选与诊断型抗体开发。相较于非特异代谢酶，GAD2具有明确疾病生物标志物价值、已解析晶体结构和已知抗体表位基础，优先适合开展结构引导的结合抗体设计，而非直接体内阻断型治疗抗体。",
+    "mechanism": "抗体设计以识别GAD65构象表位为核心，稳定结合催化核心外侧或二聚体相关表面，避免干扰PLP结合位点，形成用于自身抗体竞争检测或抗原捕获的高特异结合体。",
+    "selectedEpitope": "优先选择GAD65中部PLP依赖性催化结构域外侧构象表位，避开活性位点赖氨酸与PLP口袋。",
+    "diseaseDirection": "糖尿病与血糖代谢标志物",
+    "domain": "GAD65含N端膜锚定相关区域、中部PLP结合催化域及C端二聚化/稳定化区域。",
+    "evidence": "GAD65糖尿病自身抗原与血糖性状证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt Q05329功能与定位注释",
+      "RCSB PDB 2OKK晶体结构",
+      "糖尿病GAD65自身抗体临床文献"
+    ],
+    "referenceEntries": "UniProt Q05329；RCSB PDB 2OKK；Open Targets GAD2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "中部催化域外侧构象表面",
+        "保留天然折叠识别，适合诊断捕获与自身抗体竞争分析",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端二聚化相关表面",
+        "可获得高构象特异性，但需评估是否影响二聚体稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PLP结合口袋及活性位点邻近区",
+        "可能干扰酶活和内源代谢功能，且小分子辅因子环境增加构象风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GAD65主要为胞内抗原，体内可及性有限，治疗性阻断价值需谨慎界定；设计宜聚焦体外诊断、抗原捕获和自身抗体竞争检测场景。",
+    "structurePrepZh": "以2OKK链A为模板，补全缺失侧链并保留PLP相关构象信息；表位建模需标注活性位点、二聚化界面和柔性N端区域。",
+    "structureRef": "RCSB PDB 2OKK，X-ray diffraction，2.3 Å",
+    "antibodies": [
+      "GAD65Ab",
+      "b96.11"
+    ],
+    "interfaceFocus": "催化域外侧构象表面与C端二聚化界面",
+    "designMode": "诊断结合抗体设计",
+    "candidates": [
+      {
+        "target": "GAD1",
+        "rationale": "GAD1编码GAD67，同样催化谷氨酸生成GABA，位于胰岛GABA代谢轴中；可作为GAD2同源性与交叉反应性评估的关键对照靶点。"
+      },
+      {
+        "target": "SLC6A1",
+        "rationale": "SLC6A1编码GABA转运体GAT1，参与GABA再摄取并影响局部GABA信号强度；与GAD2共同处于GABA生成和清除通路。"
+      },
+      {
+        "target": "ABAT",
+        "rationale": "ABAT编码GABA转氨酶，负责GABA分解代谢；其与GAD2共同决定GABA稳态，适合作为胰岛GABA代谢通路候选靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

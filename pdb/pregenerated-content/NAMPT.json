@@ -1,0 +1,65 @@
+{
+  "gene": "NAMPT",
+  "generatedAt": "2026-08-03T14:34:06.545Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NAMPT是NAD补救合成通路限速酶，催化烟酰胺与PRPP生成NMN，影响肾小球滤过、肌酐代谢相关表型中的细胞能量稳态、炎症应激与代谢适应。其胞内酶型为主要功能形式，同时存在可分泌的胞外NAMPT，可作为抗体可及抗原并参与炎症微环境调节。相较NAD通路中广泛胞内定位的下游酶，胞外NAMPT提供更明确的抗体干预窗口，但需优先避免完全依赖胞内酶抑制假设。",
+    "mechanism": "抗体设计以结合胞外NAMPT二聚体界面邻近区域为主，限制底物烟酰胺/PRPP进入催化沟槽或干扰二聚体稳定性，降低eNAMPT相关炎症活性。",
+    "selectedEpitope": "优先瞄准NAMPT同源二聚体界面与催化沟槽入口邻近环区，兼顾空间可及性与功能抑制。",
+    "diseaseDirection": "肾功能与代谢炎症相关疾病",
+    "domain": "NAMPT为二聚体α/β折叠酶，含烟酰胺结合口袋、PRPP结合位点及跨亚基催化界面。",
+    "evidence": "NAMPT-NAD补救通路与肾代谢表型证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P43490功能与定位注释",
+      "RCSB PDB 4LVA高分辨率晶体结构",
+      "Reactome NAD salvage pathway通路注释"
+    ],
+    "referenceEntries": "UniProt P43490；RCSB PDB 4LVA；Reactome NAD salvage",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "二聚体界面邻近催化沟槽入口",
+        "可能同时影响二聚体稳定性与底物进入，适合功能阻断型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "烟酰胺结合口袋外缘环区",
+        "靠近活性中心但避免深埋口袋，适合作为Fab侧向遮挡表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化中心的保守结构核心表面",
+        "功能关联较弱且可能产生非阻断结合，需以活性实验筛选确认",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NAMPT主要为胞内酶，抗体对胞内池不可及；应聚焦可检测胞外NAMPT并验证表位不依赖变性暴露，避免非特异炎症标志物结合。",
+    "structurePrepZh": "以4LVA的A/B链二聚体为模板，保留生物学装配体，去除小分子与结晶水后评估催化沟槽、二聚体界面及表面可及环区。",
+    "structureRef": "RCSB PDB 4LVA，human NAMPT晶体结构，1.55 Å",
+    "antibodies": [
+      "ALT-100",
+      "C269"
+    ],
+    "interfaceFocus": "A/B链二聚体界面及催化沟槽入口",
+    "designMode": "胞外酶阻断",
+    "candidates": [
+      {
+        "target": "NAPRT",
+        "rationale": "NAPRT参与烟酸依赖NAD补救合成，与NAMPT共同维持NAD代谢稳态；在代谢适应与组织能量应激研究中可作为同通路候选靶点。"
+      },
+      {
+        "target": "NMNAT1",
+        "rationale": "NMNAT1催化NMN转化为NAD，是NAMPT下游关键酶；其通路位置有助于解析NAMPT抑制后NAD生成瓶颈。"
+      },
+      {
+        "target": "NADSYN1",
+        "rationale": "NADSYN1参与NAD从烟酸腺嘌呤二核苷酸生成的末端步骤，与补救合成网络共同影响细胞NAD供应。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

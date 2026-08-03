@@ -1,0 +1,65 @@
+{
+  "gene": "EPGN",
+  "generatedAt": "2026-08-03T12:19:14.819Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "EPGN 是 EGFR 配体家族成员，其 EGF-like 结构域可结合并激活 EGFR，驱动 RAS–RAF–MEK–ERK 与 PI3K–AKT 轴，支持上皮来源肿瘤细胞增殖和存活。EPGN 为分泌型/膜近端加工释放配体，成熟胞外配体区抗原可及性较高，适合中和型抗体识别。相较直接靶向 EGFR，配体阻断策略有望选择性抑制 EPGN 依赖的受体激活，并降低对其他 EGFR 配体生理功能的广泛干扰，因此具备明确优先级。",
+    "mechanism": "中和抗体结合 EPGN 的 EGF-like 受体结合面，阻断其与 EGFR 胞外结构域 I/III 的配体识别接触，从而抑制 EGFR 二聚化和下游 ERK、AKT 磷酸化。",
+    "selectedEpitope": "优先覆盖 EGF-like domain 中与 EGFR 结合相关的 β-hairpin 及 C-terminal loop 构象表面。",
+    "diseaseDirection": "EGFR配体驱动肿瘤增殖",
+    "domain": "EPGN 含信号肽、前体区和成熟 EGF-like domain，保守六半胱氨酸形成三对二硫键维持受体结合构象。",
+    "evidence": "EPGN-EGFR配体轴肿瘤关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传与肿瘤关联评分",
+      "UniProt Q6UW88 蛋白功能与结构域注释",
+      "RCSB PDB 5WB8 X-ray 衍射结构记录",
+      "EGFR/ERBB 配体家族功能研究文献"
+    ],
+    "referenceEntries": "UniProt Q6UW88；RCSB PDB 5WB8；Open Targets EPGN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "EGF-like domain 受体结合β-hairpin/C-terminal loop",
+        "直接遮蔽 EGFR 识别界面，最适合中和型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "EGF-like domain N-terminal loop 与相邻二硫键约束表面",
+        "可稳定识别成熟配体构象并辅助降低受体结合亲和力",
+        "备选"
+      ],
+      [
+        "Site C",
+        "保守半胱氨酸核心及二硫键密集区",
+        "高度保守且构象依赖强，存在交叉反应或亲和成熟受限风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "EPGN 与 EREG、TGFA 等 EGFR 配体共享 EGF-like 折叠，需避开过度保守半胱氨酸核心，优先利用非保守环区提高选择性。",
+    "structurePrepZh": "以 5WB8 实验结构提取成熟 EGF-like domain，检查多链晶体堆积、二硫键完整性和缺失环区，对受体结合面进行构象约束建模。",
+    "structureRef": "RCSB PDB 5WB8，X-ray diffraction，3.0 Å",
+    "antibodies": [
+      "cetuximab",
+      "panitumumab"
+    ],
+    "interfaceFocus": "EGF-like domain 与 EGFR DⅠ/DⅢ配体结合界面",
+    "designMode": "配体中和阻断",
+    "candidates": [
+      {
+        "target": "EGFR",
+        "rationale": "EGFR 是 EPGN 的主要受体，位于同一 ERBB 配体-受体通路核心节点；靶向受体胞外域可直接抑制多配体驱动的受体激活。"
+      },
+      {
+        "target": "EREG",
+        "rationale": "EREG 同属 EGFR 配体家族，可在肿瘤微环境中促进 EGFR 磷酸化和 MAPK 信号；与 EPGN 并行评估有助于区分配体依赖性。"
+      },
+      {
+        "target": "TGFA",
+        "rationale": "TGFA 是经典 EGFR 激动配体，在多种上皮肿瘤中参与自分泌增殖环路；其阻断策略与 EPGN 中和设计具有可比性。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

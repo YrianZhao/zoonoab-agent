@@ -1,0 +1,65 @@
+{
+  "gene": "CHD1L",
+  "generatedAt": "2026-08-03T11:20:50.638Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CHD1L是核内SNF2样ATP依赖性染色质重塑酶，参与PARP1依赖的DNA损伤应答和染色质松弛过程，其疾病关联更偏向遗传性状、代谢及神经退行性疾病风险，而非经典胞外配体受体轴。该蛋白主要定位于细胞核，缺乏分泌信号肽、跨膜区和稳定胞外结构域，抗原可及性不符合常规治疗性抗体直接结合要求。相较于同通路中PARP1、PARG等具有明确药物学验证的酶靶点，CHD1L作为抗体主靶点优先级较低，更适合作为结构生物学和细胞内递送抗体片段研究对象。",
+    "mechanism": "胞内抗体片段可结合CHD1L SNF2 ATPase核心，阻碍其与PAR修饰PARP1或核小体底物的功能耦联，削弱DNA损伤位点染色质重塑。",
+    "selectedEpitope": "优先评估SNF2 ATPase lobe间构象界面及宏结构域PAR结合邻近面，避免深埋ATP口袋。",
+    "diseaseDirection": "DNA损伤应答与染色质重塑",
+    "domain": "CHD1L含N端宏结构域、SNF2样DEXDc/HELICc ATPase核心及C端调控区。",
+    "evidence": "CHD1L结构与PARP依赖DNA损伤应答证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q86WJ1功能与亚细胞定位注释",
+      "RCSB PDB 7EPU晶体结构记录",
+      "DNA损伤应答与PARP1-CHD1L染色质重塑文献"
+    ],
+    "referenceEntries": "UniProt Q86WJ1；RCSB PDB 7EPU；Open Targets CHD1L",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SNF2 ATPase lobe I/lobe II构象耦联界面",
+        "可能干扰ATP水解驱动的构象转换和核小体重塑",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端宏结构域PAR结合沟槽邻近表面",
+        "可评估阻断PAR依赖募集与PARP1损伤信号耦联",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP结合裂隙及高度保守Walker基序周边",
+        "保守性高且空间深埋，易产生选择性与可成药性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CHD1L为核内蛋白，常规IgG难以到达作用位点；建议限定为细胞内递送Fab/VHH、intrabody或PROTAC偶联验证，并严格评估同源ATPase交叉反应。",
+    "structurePrepZh": "以7EPU链A/B为模板，补全缺失环区并核查晶体接触；在3.5 Å分辨率限制下保留低置信度界面标注，结合AlphaFold模型交叉评估。",
+    "structureRef": "RCSB PDB 7EPU，X-ray diffraction，3.5 Å",
+    "antibodies": [
+      "暂无获批CHD1L靶向抗体",
+      "暂无临床验证CHD1L治疗性抗体"
+    ],
+    "interfaceFocus": "SNF2 ATPase构象界面与宏结构域PAR结合面",
+    "designMode": "胞内VHH/Fab探索",
+    "candidates": [
+      {
+        "target": "PARP1",
+        "rationale": "PARP1在DNA单链断裂识别后催化PAR合成，并通过PAR信号募集CHD1L参与染色质松弛，是该通路中药理学验证最充分的上游节点。"
+      },
+      {
+        "target": "PARG",
+        "rationale": "PARG水解PAR链并终止PARP1介导的损伤信号，可与CHD1L所依赖的PAR动态调控形成同一DNA损伤应答轴。"
+      },
+      {
+        "target": "XRCC1",
+        "rationale": "XRCC1作为碱基切除修复和单链断裂修复支架蛋白，与PARP1依赖修复复合体功能耦联，适合作为同通路修复节点比较。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

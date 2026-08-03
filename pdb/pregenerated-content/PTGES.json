@@ -1,0 +1,65 @@
+{
+  "gene": "PTGES",
+  "generatedAt": "2026-08-03T15:42:39.721Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PTGES编码微粒体前列腺素E合酶1（mPGES-1），在炎症诱导条件下将PGH2转化为PGE2，参与肾小球滤过改变、炎症性疼痛、肥胖相关炎症及肿瘤微环境中的PGE2轴。该靶点为膜结合MAPEG家族酶，催化腔位于内质网膜相关三聚体界面，抗体可及性受亚细胞定位限制。相较直接抑制上游COX-1/2，PTGES具有更靠近PGE2终产物的选择性优势，可降低对其他前列腺素分支的广泛干扰，因此适合作为结构约束型抗体或胞内递送抗体设计的优先评估靶点。",
+    "mechanism": "阻断PTGES三聚体界面邻近的PGH2/GSH结合通道，干扰PGH2进入催化腔及谷胱甘肽辅助异构化，从而降低PGE2生成。",
+    "selectedEpitope": "优先聚焦MAPEG三聚体界面外露环区及催化通道入口，避开跨膜螺旋疏水核心。",
+    "diseaseDirection": "PGE2炎症与肾代谢相关疾病",
+    "domain": "PTGES为MAPEG家族多跨膜同源三聚体酶，含膜内催化腔、GSH结合位点及PGH2进入通道。",
+    "evidence": "PTGES-PGE2轴结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt O14684功能与亚细胞定位注释",
+      "RCSB PDB 4AL0 X射线晶体结构",
+      "MAPEG家族mPGES-1催化机制研究文献"
+    ],
+    "referenceEntries": "UniProt: O14684; RCSB PDB: 4AL0; HGNC: PTGES",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "三聚体界面邻近催化通道入口环区",
+        "可阻断PGH2进入并影响GSH依赖异构化，具备机制相关性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "MAPEG三聚体外周亲水暴露面",
+        "有利于抗体结合与结构识别，但对催化抑制需进一步验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "跨膜螺旋束疏水核心及膜内GSH结合腔",
+        "结构保守且膜嵌入程度高，抗体可及性与成药性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PTGES主要定位于内质网和核膜，常规循环抗体难以进入胞内膜系统；建议采用VHH、胞内抗体或递送偶联策略，并以催化通道入口可及性为核心筛选指标。",
+    "structurePrepZh": "以4AL0高分辨率结构为模板，保留三聚体装配与GSH相关位点信息，补全缺失环区并进行膜环境取向建模。",
+    "structureRef": "RCSB PDB 4AL0, human mPGES-1 X-ray structure",
+    "antibodies": [
+      "无临床获批PTGES抗体",
+      "研究级抗PTGES检测抗体"
+    ],
+    "interfaceFocus": "三聚体界面催化通道入口与GSH邻近区域",
+    "designMode": "胞内VHH抑制设计",
+    "candidates": [
+      {
+        "target": "PTGS2",
+        "rationale": "PTGS2编码COX-2，催化花生四烯酸生成PGH2，是PTGES生成PGE2的直接上游酶，处于同一前列腺素E2生物合成通路。"
+      },
+      {
+        "target": "PTGER4",
+        "rationale": "PTGER4编码PGE2受体EP4，介导PGE2驱动的炎症、免疫调节和肿瘤微环境效应，适合下游受体阻断策略。"
+      },
+      {
+        "target": "PTGER2",
+        "rationale": "PTGER2编码PGE2受体EP2，与EP4共同承担cAMP依赖性PGE2信号转导，可作为PGE2轴下游调节候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

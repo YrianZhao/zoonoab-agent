@@ -1,0 +1,65 @@
+{
+  "gene": "DND1",
+  "generatedAt": "2026-08-03T12:01:36.728Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DND1为胞内RNA结合蛋白，主要通过结合mRNA 3′UTR富含U序列并拮抗miRNA介导的翻译抑制，参与生殖细胞稳态及肿瘤相关转录后调控。现有疾病关联信号以癌症、乳腺癌及肺功能表型为主，但关联强度较低，缺乏成熟抗体药物靶点所需的细胞外暴露特征。由于DND1定位于胞质/核周RNA调控复合体，常规抗体难以直接结合天然抗原；相较EGFR、ERBB2、PD-L1等同属肿瘤治疗路径中的膜蛋白靶点，其优先级应定位为结构验证与胞内递送抗体探索靶点。",
+    "mechanism": "设计抗体需结合DND1双RRM RNA结合面，阻断其与mRNA 3′UTR U-rich元件结合，从而削弱其对miRNA沉默复合体的拮抗作用。",
+    "selectedEpitope": "优先覆盖RRM1-RRM2串联结构中的RNA结合β折叠面及RNP1/RNP2邻近沟槽。",
+    "diseaseDirection": "肿瘤转录后调控与乳腺癌",
+    "domain": "DND1含两个N端RNA recognition motif结构域，C端为低复杂度调控区。",
+    "evidence": "DND1结构与肿瘤关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q8IYX4功能与定位注释",
+      "RCSB PDB 6LE1晶体结构数据",
+      "RNA结合蛋白与miRNA拮抗机制文献"
+    ],
+    "referenceEntries": "UniProt Q8IYX4；RCSB PDB 6LE1；Open Targets DND1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RRM1-RRM2 RNA结合β折叠面与RNP基序邻近区域",
+        "可直接干预DND1识别U-rich RNA元件的核心界面",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RRM1与RRM2相对取向形成的结构沟槽边缘",
+        "可能影响RNA跨结构域结合构象，适合构象选择性抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端低复杂度区及柔性连接区域",
+        "结构稳定性较低且表位异质性较高，需避免非特异结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DND1缺乏胞外结构域，天然状态下抗体可及性不足。设计应明确限定为细胞内递送抗体、intrabody或结构探针，不宜作为常规裸抗体治疗靶点。",
+    "structurePrepZh": "以PDB 6LE1链A为模板，保留RRM核心结构，补全缺失侧链并评估RNA结合面电荷分布；柔性C端不宜作为刚性对接核心。",
+    "structureRef": "RCSB PDB 6LE1，X-ray diffraction，2.3 Å",
+    "antibodies": [
+      "DND1研究级单克隆抗体",
+      "DND1研究级多克隆抗体"
+    ],
+    "interfaceFocus": "RRM β折叠RNA结合面与RNP基序沟槽",
+    "designMode": "胞内抗体探索",
+    "candidates": [
+      {
+        "target": "AGO2",
+        "rationale": "AGO2为miRNA诱导沉默复合体的核心催化组分，与DND1拮抗miRNA介导抑制的功能轴直接相关。其调控mRNA稳定性和翻译抑制，是同一转录后调控网络中的关键节点。"
+      },
+      {
+        "target": "DAZL",
+        "rationale": "DAZL为生殖细胞相关RNA结合蛋白，可调控靶mRNA翻译并与DND1功能背景存在交叉。其RNA结合机制适合作为同类RBP通路比较靶点。"
+      },
+      {
+        "target": "LIN28A",
+        "rationale": "LIN28A通过结合RNA并抑制let-7 miRNA成熟参与肿瘤和发育相关转录后调控。其与DND1同属miRNA/RNA结合蛋白调控网络，具备明确疾病机制关联。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

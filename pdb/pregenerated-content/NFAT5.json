@@ -1,0 +1,65 @@
+{
+  "gene": "NFAT5",
+  "generatedAt": "2026-08-03T14:40:49.194Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NFAT5 是渗透压应激反应的 Rel 同源结构域转录因子，可驱动 SLC5A3、SLC6A12、AKR1B1 等渗透保护基因表达，并与肾髓质浓缩功能及血清肌酐、尿素、尿酸等肾功能表型相关。该蛋白主要定位于细胞核和胞质，不具备分泌蛋白或膜受体样胞外结构域，抗体抗原可及性明显弱于典型细胞表面靶点。其优先级主要来自遗传与结构证据对渗透压通路的指向性，但相较 SLC5A3、SLC6A12 等膜转运体，常规治疗性抗体开发优先级较低，更适合作为细胞内递送抗体或机制验证型结合分子靶点。",
+    "mechanism": "设计结合 Rel 同源 DNA 结合域的抗体片段，阻断 NFAT5 与 tonicity-responsive enhancer 元件接触，抑制渗透保护基因转录激活。",
+    "selectedEpitope": "优先覆盖 Rel 同源结构域 DNA 接触环及二聚化邻近界面，避免仅识别非功能性远端表面。",
+    "diseaseDirection": "肾功能与渗透压应激表型",
+    "domain": "NFAT5 含 N 端调控区、Rel 同源 DNA 结合域及 C 端转录激活区，1IMH 覆盖 DNA 结合核心。",
+    "evidence": "NFAT5 渗透压应激与肾功能表型证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt O94916 functional annotation",
+      "RCSB PDB 1IMH X-ray structure",
+      "NFAT5/TonEBP osmoregulatory transcription literature"
+    ],
+    "referenceEntries": "UniProt O94916；RCSB PDB 1IMH；Open Targets NFAT5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Rel 同源结构域 DNA 主沟接触面",
+        "直接干扰 NFAT5 与 TonE/ORE 顺式元件结合，功能阻断价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Rel 同源结构域二聚化邻近界面",
+        "可能削弱稳定 DNA 结合复合体形成，适合构建变构抑制表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离 DNA 接触面的外周溶剂暴露区域",
+        "结合可行性较高但功能抑制不确定，需依赖细胞内递送验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NFAT5 缺乏胞外可及抗原面，常规全长 IgG 难以进入细胞核；建议限定为 Fab/VHH、胞内表达抗体或递送平台，并以转录报告实验验证功能。",
+    "structurePrepZh": "以 1IMH 四链晶体结构为模板，保留 Rel 同源 DNA 结合域构象，校正缺失侧链、质子化状态及链间界面后进行表位聚类。",
+    "structureRef": "RCSB PDB 1IMH，NFAT5 Rel homology domain，2.86 Å",
+    "antibodies": [
+      "anti-NFAT5 clone EPR17187",
+      "anti-NFAT5 clone 1B4"
+    ],
+    "interfaceFocus": "Rel 同源结构域 DNA 接触面与二聚化邻近界面",
+    "designMode": "细胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "SLC5A3",
+        "rationale": "SLC5A3 编码钠/肌醇转运体，是 NFAT5 诱导的经典渗透保护基因，参与高渗环境下细胞肌醇积累。作为多跨膜转运体，其胞外环可作为抗体可及表位探索对象。"
+      },
+      {
+        "target": "SLC6A12",
+        "rationale": "SLC6A12 编码甜菜碱/GABA 转运体，受 NFAT5 介导的渗透压应答调控，并参与肾髓质细胞有机渗透质稳态。其膜蛋白属性较 NFAT5 更适合细胞表面结合分子筛选。"
+      },
+      {
+        "target": "AKR1B1",
+        "rationale": "AKR1B1 是 NFAT5 下游醛糖还原酶，可促进山梨醇生成并参与高渗保护反应。该靶点与渗透压应激通路一致，但为胞内酶，抗体开发同样需要细胞内递送或替代抑制模式。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

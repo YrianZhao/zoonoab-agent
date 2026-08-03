@@ -1,0 +1,65 @@
+{
+  "gene": "CFLAR",
+  "generatedAt": "2026-08-03T11:19:44.087Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CFLAR编码c-FLIP，是死亡受体诱导凋亡复合体中的CASP8同源调节因子，可通过DED介导进入FADD-CASP8 DISC并抑制或重塑半胱天冬酶8活化，参与神经退行性疾病中的细胞死亡与炎症性细胞命运调控。该蛋白主要为胞内DISC组分，缺乏天然胞外结构域，抗体抗原可及性弱于TNFRSF死亡受体，但其DED折叠结构清晰，适合开展胞内递送抗体、降解型抗体或机制研究型结合分子设计。相较下游执行性CASP3/7，CFLAR位于CASP8激活前的通路分岔点，具备区分凋亡、坏死性凋亡与NF-κB相关信号输出的优先级价值。",
+    "mechanism": "设计分子应结合CFLAR DED1/DED2界面，阻断其与FADD或CASP8 DED同型相互作用，解除对CASP8 DISC装配和活化的竞争性调节。",
+    "selectedEpitope": "优先覆盖N端DED1-DED2串联结构的疏水电荷界面，聚焦与FADD/CASP8 DED接触面。",
+    "diseaseDirection": "神经退行性疾病与细胞死亡调控",
+    "domain": "CFLAR含两个N端death effector domains；长亚型C端含催化失活的caspase-like结构域。",
+    "evidence": "CFLAR-DISC细胞死亡通路结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与关联评分",
+      "UniProt O15519功能注释与亚型信息",
+      "RCSB PDB 3H11晶体结构记录",
+      "死亡受体DISC中FADD-CASP8-CFLAR相互作用文献"
+    ],
+    "referenceEntries": "UniProt O15519；RCSB PDB 3H11；Open Targets CFLAR",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DED1/DED2串联结构的FADD-CASP8同型结合界面",
+        "直接干预DISC募集与CASP8活化阈值，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DED2外侧带电螺旋表面",
+        "可能影响DED聚合链装配并改善构象选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "长亚型C端caspase-like结构域保守核心",
+        "胞内可及性有限且与caspase家族同源性带来交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CFLAR为胞内蛋白，常规治疗性抗体难以到达DISC复合体；设计应限定为胞内递送、细胞穿透或研究级Fab/VHH，并严格评估CASP8同源交叉反应。",
+    "structurePrepZh": "以PDB 3H11的A、B、C链为模板进行链选择、缺失残基建模和质子化处理；保留DED界面构象，去除非功能性晶体接触后开展表位映射。",
+    "structureRef": "RCSB PDB 3H11，X-ray diffraction，1.9 Å",
+    "antibodies": [
+      "G-11抗CFLAR单克隆抗体",
+      "NF6抗c-FLIP单克隆抗体"
+    ],
+    "interfaceFocus": "DED1/DED2介导的FADD-CASP8 DISC接触面",
+    "designMode": "胞内阻断型VHH/Fab",
+    "candidates": [
+      {
+        "target": "FADD",
+        "rationale": "FADD是死亡受体DISC的核心衔接蛋白，通过death domain连接受体并通过DED募集CASP8与CFLAR，处于同一凋亡启动复合体。"
+      },
+      {
+        "target": "CASP8",
+        "rationale": "CASP8是DISC内被CFLAR直接竞争和调节的起始半胱天冬酶，决定凋亡与坏死性凋亡抑制的通路输出。"
+      },
+      {
+        "target": "TNFRSF10B",
+        "rationale": "TNFRSF10B/DR5为TRAIL诱导外源性凋亡通路的细胞表面死亡受体，可通过FADD-CASP8-CFLAR轴传递DISC信号，抗原可及性优于胞内CFLAR。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

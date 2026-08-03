@@ -1,0 +1,65 @@
+{
+  "gene": "ABCC4",
+  "generatedAt": "2026-08-03T10:00:59.493Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ABCC4/MRP4 是多跨膜 ATP 结合盒转运蛋白，可外排 cAMP、cGMP、前列腺素及多种核苷酸类似物，影响血小板内环核苷酸稳态并与血小板计数、血小板压积等性状相关。该靶点具有位于质膜的胞外环结构，抗体可在细胞外侧接近转运通道入口及构象转换相关区域。相较胞内代谢酶或缺乏外露结构的同通路因子，ABCC4具备膜受体样可及性与冷冻电镜结构支持，适合作为结构引导的抗体设计靶点。",
+    "mechanism": "抗体结合ABCC4胞外环及跨膜束外侧入口，限制底物进入转运腔并干扰NBD驱动的外向开放构象转换，从而降低cAMP/cGMP等底物外排。",
+    "selectedEpitope": "优先锁定TMD1/TMD2胞外环围成的外侧底物入口及构象耦联界面。",
+    "diseaseDirection": "血小板性状与转运代谢调控",
+    "domain": "ABCC4含两个跨膜结构域TMD1/TMD2和两个胞内核苷酸结合域NBD1/NBD2，胞外环形成外侧入口。",
+    "evidence": "ABCC4血小板性状关联与膜转运结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt O15439功能与亚细胞定位注释",
+      "RCSB PDB 8XOK冷冻电镜结构",
+      "人类血小板环核苷酸转运与MRP4文献"
+    ],
+    "referenceEntries": "UniProt: O15439; RCSB PDB: 8XOK; Open Targets: ABCC4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "TMD1/TMD2胞外环围成的外侧底物入口",
+        "可直接阻断底物进入转运腔并具备细胞外可及性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "靠近外向开放构象的跨膜束外侧耦联界面",
+        "有望稳定非转运构象并降低ATP驱动的构象循环",
+        "备选"
+      ],
+      [
+        "Site C",
+        "NBD1/NBD2 ATP结合与二聚化界面",
+        "功能关键但位于胞内侧，完整抗体难以到达，适合机制参照而非常规抗体表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ABCC家族跨膜区保守性较高，需避开NBD保守ATP结合基序并强化胞外环特异性筛选；应评估ABCC1、ABCC5交叉反应风险。",
+    "structurePrepZh": "以8XOK抗原链A为模板，保留跨膜区与胞外环构象，标注膜平面、糖基化可能位点及胞外可及残基后开展表位聚类。",
+    "structureRef": "RCSB PDB 8XOK, human ABCC4 cryo-EM structure, 2.84 Å",
+    "antibodies": [
+      "M4I-10",
+      "M4I-80"
+    ],
+    "interfaceFocus": "胞外底物入口与跨膜束构象耦联区",
+    "designMode": "结构引导阻断型",
+    "candidates": [
+      {
+        "target": "PDE3A",
+        "rationale": "PDE3A降解血小板内cAMP，是环核苷酸稳态和血小板活化调控的关键节点，与ABCC4介导的cAMP外排处于同一功能轴。"
+      },
+      {
+        "target": "PDE5A",
+        "rationale": "PDE5A调控cGMP降解，参与血小板NO-cGMP信号制动，与ABCC4外排cGMP共同决定血小板环核苷酸水平。"
+      },
+      {
+        "target": "PTGS1",
+        "rationale": "PTGS1/COX-1驱动血小板血栓烷A2生成，位于血小板活化通路核心，可作为ABCC4相关血小板功能调节的同疾病方向候选节点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

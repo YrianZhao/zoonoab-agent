@@ -1,0 +1,65 @@
+{
+  "gene": "KPNA6",
+  "generatedAt": "2026-08-03T13:47:04.428Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KPNA6 是核转运受体 importin α 家族成员，主要通过识别含经典核定位信号的蛋白并与 KPNB1 形成转运复合物，参与细胞周期、DNA损伤应答及转录调控蛋白的核输入；其与卵巢肿瘤的遗传和表达关联提示可能反映增殖相关核转运依赖性。该蛋白定位于胞质和细胞核，缺乏跨膜区和天然分泌特征，完整蛋白作为体内阻断抗体靶点的抗原可及性有限，更适合作为结构验证、细胞内递送抗体或研究级结合分子设计对象。相较同通路内广泛必需的 KPNB1，KPNA6 的亚型特异性 ARM-repeat 识别槽提供了更高的选择性设计空间，但临床优先级应低于具有胞外可及性的肿瘤膜受体靶点。",
+    "mechanism": "设计分子可占据 KPNA6 ARM-repeat 形成的经典 NLS 结合沟槽，阻断含 NLS 货物蛋白与 KPNA6 的结合，并干扰其与 KPNB1 介导的核输入复合物装配。",
+    "selectedEpitope": "优先靶向 ARM repeats 2-4 的 major NLS 结合槽，覆盖酸性残基簇与货物肽接触界面。",
+    "diseaseDirection": "卵巢肿瘤核转运依赖性",
+    "domain": "KPNA6 含 N 端 importin-β 结合 IBB 区及 C 端串联 ARM-repeat 货物识别结构域。",
+    "evidence": "KPNA6 核输入通路与肿瘤关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt O60684 功能与定位注释",
+      "RCSB PDB 4UAD 晶体结构",
+      "Reactome 核蛋白输入通路注释"
+    ],
+    "referenceEntries": "UniProt: O60684; RCSB PDB: 4UAD; Reactome: nuclear import",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ARM repeats 2-4 的 major NLS 结合槽",
+        "直接竞争经典 NLS 货物结合，机制最清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ARM repeats 6-8 的 minor NLS 结合区域",
+        "可调节双位点 NLS 货物识别，兼顾选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端 IBB/KPNB1 结合相关区域",
+        "可能影响 importin α/β 复合物装配，但家族保守性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "KPNA6 为胞内核转运蛋白，常规抗体体内可及性不足；ARM 区域与其他 importin α 亚型同源性高，需通过差异残基约束提高亚型选择性。",
+    "structurePrepZh": "以 4UAD 抗原链 A/E 为结构模板，补全缺失环区并移除非目标配体后，保留 ARM-repeat 沟槽构象用于表位网格与对接评估。",
+    "structureRef": "RCSB PDB 4UAD，X-ray diffraction，2.42 Å",
+    "antibodies": [
+      "研究级 anti-KPNA6 monoclonal antibody",
+      "研究级 anti-importin alpha monoclonal antibody"
+    ],
+    "interfaceFocus": "ARM-repeat NLS 结合沟槽与 KPNB1 装配界面",
+    "designMode": "胞内递送抗体设计",
+    "candidates": [
+      {
+        "target": "KPNB1",
+        "rationale": "KPNB1 与 importin α 形成核输入复合物并介导穿越核孔，是经典核输入通路的核心转运受体；其肿瘤增殖依赖性证据更充分，但选择性和毒性风险更高。"
+      },
+      {
+        "target": "KPNA2",
+        "rationale": "KPNA2 是同属 importin α 家族的经典 NLS 受体，在多种肿瘤中与增殖、预后不良和核转运增强相关；可作为 KPNA6 亚型选择性比较靶点。"
+      },
+      {
+        "target": "RAN",
+        "rationale": "RAN GTPase 通过 Ran-GTP/Ran-GDP 循环驱动核输入复合物解离和方向性转运，是 KPNA6-KPNB1 通路下游必需节点；适合用于通路机制验证。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

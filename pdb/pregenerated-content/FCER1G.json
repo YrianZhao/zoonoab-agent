@@ -1,0 +1,65 @@
+{
+  "gene": "FCER1G",
+  "generatedAt": "2026-08-03T12:30:19.112Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FCER1G编码Fc受体共同γ链，是高亲和力IgE受体FCER1复合体的信号转导亚基，ITAM磷酸化后招募SYK并驱动肥大细胞、嗜碱性粒细胞脱颗粒，与哮喘、过敏性鼻炎和湿疹样皮炎的IgE介导炎症机制一致。该蛋白在受体复合体中以膜近端二聚跨膜螺旋和胞质ITAM发挥功能，抗原可及性低于典型胞外受体，但PDB 7Q5T提供了复合体装配界面解析，可支持界面型抗体或膜近端构象探针设计。相较于下游激酶SYK或LYN，FCER1G处于多种Fc受体信号的共同起始节点，具有更直接的受体复合体选择性干预价值，但需优先控制对广泛Fc受体免疫功能的影响。",
+    "mechanism": "阻断FCER1G跨膜二聚界面及其与FCER1A、MS4A2共同装配，降低IgE-FCER1交联后ITAM磷酸化和SYK募集。",
+    "selectedEpitope": "优先聚焦膜近端跨膜二聚螺旋外露侧及FCER1复合体装配界面构象表位。",
+    "diseaseDirection": "IgE介导过敏性气道炎症",
+    "domain": "FCER1G为I型Fc受体共同γ链，含短胞外段、单跨膜螺旋和胞质ITAM信号基序。",
+    "evidence": "FCER1G-IgE受体过敏炎症证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt P30273功能注释",
+      "RCSB PDB 7Q5T实验结构",
+      "IgE-FCER1肥大细胞脱颗粒文献"
+    ],
+    "referenceEntries": "UniProt P30273；RCSB PDB 7Q5T；Open Targets FCER1G",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "跨膜螺旋二聚界面及膜近端装配面",
+        "可干扰γ链同源二聚与FCER1复合体稳定性，最贴近信号起始机制",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FCER1A/MS4A2相邻复合体接触面",
+        "有助于阻断高亲和力IgE受体装配，但需依赖复合体构象呈递",
+        "备选"
+      ],
+      [
+        "Site C",
+        "胞质ITAM邻近区域",
+        "直接关联SYK募集，但胞内不可及性限制常规抗体成药性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FCER1G胞外段较短且关键ITAM位于胞内，常规抗体可及性受限；建议采用复合体构象筛选，并严格评估Fc受体广谱抑制风险。",
+    "structurePrepZh": "以7Q5T的2.2 Å X射线结构为模板，保留FCER1复合体多链装配关系，补全膜近端缺失片段并进行膜环境约束建模。",
+    "structureRef": "RCSB PDB 7Q5T，X-ray diffraction，2.2 Å",
+    "antibodies": [
+      "Ligelizumab",
+      "Omalizumab"
+    ],
+    "interfaceFocus": "γ链跨膜二聚与FCER1装配界面",
+    "designMode": "复合体界面阻断",
+    "candidates": [
+      {
+        "target": "FCER1A",
+        "rationale": "FCER1A为高亲和力IgE受体α链，直接结合IgE Fc区域；阻断IgE-FCER1A相互作用可抑制过敏原交联后的肥大细胞激活。"
+      },
+      {
+        "target": "MS4A2",
+        "rationale": "MS4A2编码FCER1β链，增强FCER1表面表达并放大γ链ITAM信号；其处于同一IgE受体复合体内，适合作为装配调控候选靶点。"
+      },
+      {
+        "target": "SYK",
+        "rationale": "SYK结合并磷酸化FCER1G的ITAM，是IgE受体下游脱颗粒信号的关键激酶；适合作为通路下游验证与联合干预靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

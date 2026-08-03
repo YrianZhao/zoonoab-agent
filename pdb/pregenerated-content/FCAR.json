@@ -1,0 +1,65 @@
+{
+  "gene": "FCAR",
+  "generatedAt": "2026-08-03T12:30:18.983Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FCAR编码髓系细胞表面的IgA Fc受体CD89，参与IgA免疫复合物结合、FcRγ链依赖性ITAM信号、单核细胞/中性粒细胞活化及IgA肾病相关炎症放大。该靶点为I型跨膜受体，配体结合位点位于胞外D1-D2免疫球蛋白样结构域，抗体可直接接近并干预IgA-FCAR界面。相较补体或下游炎症因子，FCAR处于IgA免疫复合物触发髓系效应的近端节点，更适合构建受体阻断型抗体以限制病灶性髓系激活。",
+    "mechanism": "阻断聚合性IgA或IgA免疫复合物与FCAR胞外D1-D2界面的结合，降低FcRγ链ITAM磷酸化及髓系细胞炎症效应。",
+    "selectedEpitope": "优先覆盖D1-D2交界处IgA Fc结合面，兼顾D1顶端可及环区以增强受体阻断效率。",
+    "diseaseDirection": "IgA肾病与髓系炎症",
+    "domain": "FCAR含两个胞外Ig样结构域D1、D2，单跨膜区及短胞质尾部，并与FcRγ链非共价偶联传导信号。",
+    "evidence": "FCAR-IgA免疫复合物轴结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P24071功能与结构域注释",
+      "RCSB PDB 9OFS晶体结构记录",
+      "IgA肾病中IgA免疫复合物与髓系Fc受体研究文献"
+    ],
+    "referenceEntries": "UniProt P24071；RCSB PDB 9OFS；Open Targets FCAR",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "D1-D2交界IgA Fc结合面",
+        "直接竞争IgA免疫复合物结合，适合受体阻断型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "D1结构域顶端暴露环区",
+        "空间可及性较高，可形成非竞争性位阻并增强亲和力",
+        "备选"
+      ],
+      [
+        "Site C",
+        "近膜D2基部与柔性连接区",
+        "可能影响受体构象或聚集，但接近膜面且构象异质性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "需避免交联FCAR诱导髓系细胞激活；优先筛选纯阻断、低或无Fc效应构型，并评估与IgA结合位点的竞争性。",
+    "structurePrepZh": "以9OFS高分辨率晶体结构为模板，保留抗原链A、C、G中完整胞外结构域，校正糖基化位点与缺失环区后开展界面建模。",
+    "structureRef": "RCSB PDB 9OFS，X-ray diffraction，1.95 Å",
+    "antibodies": [
+      "MIP8a",
+      "A77"
+    ],
+    "interfaceFocus": "D1-D2交界IgA Fc识别面",
+    "designMode": "受体阻断型",
+    "candidates": [
+      {
+        "target": "IGHA1",
+        "rationale": "IGHA1编码IgA1重链，是IgA免疫复合物形成及FCAR结合的直接配体来源；靶向病理性IgA1可从配体端降低FCAR触发。"
+      },
+      {
+        "target": "IGHG1",
+        "rationale": "IGHG1相关免疫复合物可通过Fcγ受体驱动髓系细胞炎症，与FCAR轴同属Fc受体介导的免疫复合物效应通路。"
+      },
+      {
+        "target": "FCER1G",
+        "rationale": "FCER1G编码FcRγ信号链，是FCAR跨膜偶联及ITAM信号传导所必需的近端适配分子，适合作为下游信号节点参照靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

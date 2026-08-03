@@ -1,0 +1,65 @@
+{
+  "gene": "NPFF",
+  "generatedAt": "2026-08-03T14:48:33.922Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NPFF 编码神经肽 FF 前体，经蛋白水解加工生成 RFamide 神经肽，主要通过 NPFFR1 与 NPFFR2 调节痛觉、阿片耐受、神经内分泌与能量代谢相关信号。该靶点为分泌型肽前体，成熟肽在胞外环境与膜受体结合，抗原片段具有明确的胞外可及性，但成熟肽尺寸较小，需以构象稳定化策略提高成药性。相比下游 GPCR 受体，直接靶向配体可同时影响 NPFFR1/NPFFR2 轴，并避免跨膜受体抗原制备复杂性，因此适合作为探索性阻断抗体设计靶点。",
+    "mechanism": "抗体结合成熟 NPFF/RFRP 肽段的 C 端 RFamide 识别区域，阻断其与 NPFFR1 或 NPFFR2 胞外结合口袋的配体进入与受体激活。",
+    "selectedEpitope": "优先覆盖成熟肽 C 端 Arg-Phe-NH2/RFamide 药效团及邻近疏水残基。",
+    "diseaseDirection": "神经肽调控、痛觉与代谢表型",
+    "domain": "NPFF 为分泌型前体蛋白，含信号肽及多个加工肽段，成熟活性肽共享 C 端 RFamide 基序。",
+    "evidence": "NPFF-RFamide 轴结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt O15130 蛋白注释",
+      "RCSB PDB 9JFY 电子显微结构",
+      "GPCRdb/文献中 NPFFR1-NPFFR2 配体识别研究"
+    ],
+    "referenceEntries": "UniProt O15130；RCSB PDB 9JFY；Open Targets NPFF",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "成熟 NPFF 肽 C 端 RFamide 基序及末端酰胺",
+        "直接遮蔽受体识别药效团，最可能产生配体中和作用",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RFamide 上游碱性/疏水残基延伸区",
+        "增强结合面积并提高对成熟肽构象的选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "前体蛋白非成熟加工区",
+        "可能提高免疫原性但未必阻断受体结合，需避免无效结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "成熟肽短小且柔性高，单独表位面积有限；建议采用环化或载体展示抗原，并筛选能识别天然酰胺化 C 端构象的抗体。",
+    "structurePrepZh": "以 9JFY 中 NPFF 相关配体链为模板，保留成熟肽与受体结合构象，补全末端酰胺化状态并进行局部能量优化。",
+    "structureRef": "RCSB PDB 9JFY，3.21 Å cryo-EM 人源复合物结构",
+    "antibodies": [
+      "尚无获批抗 NPFF 中和抗体",
+      "研究级抗 NPFF 多克隆抗体"
+    ],
+    "interfaceFocus": "RFamide C 端与 NPFFR1/NPFFR2 配体口袋界面",
+    "designMode": "小肽配体中和",
+    "candidates": [
+      {
+        "target": "NPFFR1",
+        "rationale": "NPFFR1 是 NPFF/RFamide 肽的同源 GPCR 受体之一，位于同一神经肽信号轴。靶向其胞外环和正构配体入口可直接阻断 NPFF 介导的受体激活。"
+      },
+      {
+        "target": "NPFFR2",
+        "rationale": "NPFFR2 与 NPFF 高亲和结合并参与痛觉调节和阿片相关适应反应。其配体结合口袋是同一通路内可替代的膜受体抗体设计靶点。"
+      },
+      {
+        "target": "NPVF",
+        "rationale": "NPVF 编码 RFRP/RFamide 相关肽，与 NPFF 共享 RFamide 受体识别轴并可激活 NPFFR1/NPFFR2。作为同通路配体靶点，可用于比较性中和策略设计。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

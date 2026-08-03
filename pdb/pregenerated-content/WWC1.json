@@ -1,0 +1,65 @@
+{
+  "gene": "WWC1",
+  "generatedAt": "2026-08-03T17:54:02.036Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "WWC1/KIBRA为细胞内支架蛋白，含WW结构域、C2样结构域及C端PDZ结合基序，参与Hippo通路中LATS1/2激酶复合体稳定及YAP/TAZ转录活性抑制。现有Open Targets关联主要集中于人体测量、神经影像和行为表型，缺乏明确的胞外致病轴。该蛋白不属于分泌蛋白或膜受体，抗原可及性显著低于EGFR、TNFRSF或整合素类胞外靶点，因此作为常规治疗性抗体主靶点优先级较低，更适合结构生物学探针或细胞内递送抗体片段探索。",
+    "mechanism": "通过胞内抗体片段结合WWC1 C2样结构域，干预其膜磷脂结合或与Hippo复合体组分的装配，从而影响LATS1/2对YAP/TAZ的抑制轴。",
+    "selectedEpitope": "优先评估PDB 2Z0U所示C2样结构域磷脂结合面及邻近保守环区，避免破坏整体折叠核心。",
+    "diseaseDirection": "Hippo通路与神经表型研究",
+    "domain": "WWC1含N端WW结构域、内部C2样结构域、谷氨酸富集区及C端PDZ结合基序。",
+    "evidence": "WWC1结构域功能与Hippo通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB Q8IX03功能注释",
+      "RCSB PDB 2Z0U晶体结构",
+      "Hippo通路WWC1/KIBRA文献证据"
+    ],
+    "referenceEntries": "UniProt Q8IX03；RCSB PDB 2Z0U；Open Targets WWC1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C2样结构域推定磷脂结合环区",
+        "可用于构建阻断膜定位或脂质结合的胞内功能抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C2样结构域外露β片层边缘",
+        "有利于获得构象识别探针并降低折叠扰动风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C2样结构域疏水核心邻近界面",
+        "可能影响结构稳定性，需避免选择埋藏残基作为主表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "WWC1为胞内蛋白，常规IgG难以进入靶细胞；治疗性抗体开发存在递送限制，宜采用VHH、intrabody或偶联递送体系并优先验证细胞内结合。",
+    "structurePrepZh": "以2Z0U链A/B为结构模板，检查晶体接触、缺失环区和保守表面；结合AlphaFold全长模型定位WW与PDZ相关功能片段。",
+    "structureRef": "RCSB PDB 2Z0U，X-ray 2.2 Å，human WWC1结构域",
+    "antibodies": [
+      "暂无获批WWC1治疗性抗体",
+      "研究级抗KIBRA/WWC1抗体"
+    ],
+    "interfaceFocus": "C2样结构域脂质结合面与外露环区",
+    "designMode": "胞内VHH探针",
+    "candidates": [
+      {
+        "target": "LATS1",
+        "rationale": "LATS1是Hippo通路核心激酶，与WWC1相关支架复合体共同限制YAP/TAZ活性；但同属胞内蛋白，更适合功能探针而非常规抗体。"
+      },
+      {
+        "target": "LATS2",
+        "rationale": "LATS2与LATS1功能冗余并接受上游Hippo复合体调控，可作为WWC1通路效应验证靶点；抗体设计需考虑细胞内递送。"
+      },
+      {
+        "target": "YAP1",
+        "rationale": "YAP1是Hippo通路下游转录共激活因子，其核定位和TEAD结合反映WWC1-LATS轴功能状态；适合作为通路药效读出与胞内阻断研究对象。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

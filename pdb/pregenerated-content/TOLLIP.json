@@ -1,0 +1,65 @@
+{
+  "gene": "TOLLIP",
+  "generatedAt": "2026-08-03T17:24:15.215Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TOLLIP参与TLR/IL-1R信号复合体调控，并通过限制IRAK1活化、衔接泛素化货物与内体转运影响炎症持续性；其遗传变异与特发性肺纤维化风险及黏蛋白表达调节存在报道关联。该蛋白主要为胞质衔接蛋白，缺乏天然胞外结构域，常规循环抗体可及性较差，需优先限定为胞内递送抗体或研究级干预策略。相较TLR4、IL1R1等膜受体，TOLLIP更接近负调控节点且疾病遗传证据相关，但因成药可及性不足，优先级应低于胞外受体型靶点。",
+    "mechanism": "胞内抗体阻断TOLLIP C2/CUE相关界面与泛素化货物或IRAK1调控复合体结合，改变TLR/IL-1R诱导的NF-κB炎症输出。",
+    "selectedEpitope": "优先覆盖C2结构域磷脂结合面邻近保守环区，避免完全遮蔽折叠核心。",
+    "diseaseDirection": "特发性肺纤维化炎症调控",
+    "domain": "TOLLIP含N端Tom1结合区、中央C2结构域及C端CUE泛素结合结构域。",
+    "evidence": "TOLLIP遗传关联与TLR炎症调控证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q9H0E2功能与结构域注释",
+      "RCSB PDB 1WGL溶液NMR结构",
+      "特发性肺纤维化TOLLIP遗传变异研究文献"
+    ],
+    "referenceEntries": "UniProt Q9H0E2；RCSB PDB 1WGL；Open Targets TOLLIP",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C2结构域膜结合面邻近环区",
+        "可能干预磷脂依赖定位并保留整体折叠稳定性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端CUE泛素结合结构域表面",
+        "用于阻断泛素化货物识别并解析内体转运功能",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端Tom1结合区域",
+        "序列柔性较高且结构模板不足，亲和成熟不确定性较大",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TOLLIP为胞内蛋白，系统给药抗体难以触达靶点；应采用胞内递送、细胞穿透格式或作为机制研究抗体，并严控TLR炎症失衡风险。",
+    "structurePrepZh": "以1WGL溶液NMR模型集评估C2结构域构象一致性，补充AlphaFold全长模型定位N端与CUE区，并标注低置信柔性片段。",
+    "structureRef": "RCSB PDB 1WGL，human TOLLIP C2 domain NMR structure",
+    "antibodies": [
+      "研究级anti-TOLLIP monoclonal antibody",
+      "研究级anti-TOLLIP recombinant antibody"
+    ],
+    "interfaceFocus": "C2膜结合面与CUE泛素结合表面",
+    "designMode": "胞内抗体设计",
+    "candidates": [
+      {
+        "target": "TLR4",
+        "rationale": "TLR4位于TOLLIP调控的先天免疫上游通路，细胞外LRR结构域可直接被抗体阻断以抑制LPS/内源性配体诱导炎症。其膜受体属性使抗原可及性优于TOLLIP。"
+      },
+      {
+        "target": "IL1R1",
+        "rationale": "IL1R1通过TIR结构域招募MyD88-IRAK轴，TOLLIP可调节该轴的下游活化。抗体可作用于胞外免疫球蛋白样结构域并阻断IL-1α/IL-1β结合。"
+      },
+      {
+        "target": "IL1RAP",
+        "rationale": "IL1RAP是IL-1受体信号复合体的共受体，参与MyD88-IRAK炎症通路组装。靶向其胞外结构域可削弱IL-1R复合体形成，具备明确抗体可及性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "ZAP70",
+  "generatedAt": "2026-08-03T17:57:11.195Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ZAP70是T细胞受体复合体近端酪氨酸激酶，结合CD3ζ链ITAM后磷酸化LAT和SLP76，驱动T细胞活化与胸腺选择；其功能缺陷与联合免疫缺陷和严重联合免疫缺陷具有明确因果关联。ZAP70为胞内激酶，抗原天然可及性弱，但其SH2串联结构域与激酶结构域具有高分辨率结构，可用于胞内递送抗体、intrabody或研究级构象选择抗体设计。相较下游LAT、LCP2等支架蛋白，ZAP70处于TCR信号放大起点，遗传证据强且结构信息精细，适合作为机制验证优先靶点。",
+    "mechanism": "设计抗体阻断ZAP70 tandem SH2与磷酸化CD3ζ ITAM结合，或稳定激酶结构域非活化构象，抑制LAT Tyr191/226及SLP76磷酸化。",
+    "selectedEpitope": "优先覆盖N端与C端SH2之间的磷酸ITAM结合沟槽，兼顾inter-SH2连接区构象锁定。",
+    "diseaseDirection": "TCR信号缺陷相关免疫病",
+    "domain": "ZAP70含N端tandem SH2结构域、interdomain A/B调控区及C端蛋白酪氨酸激酶结构域。",
+    "evidence": "ZAP70结构与TCR近端信号遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProtKB P43403功能与结构域注释",
+      "RCSB PDB 7SIY高分辨率晶体结构",
+      "ClinVar/OMIM ZAP70缺陷相关免疫缺陷记录"
+    ],
+    "referenceEntries": "UniProtKB P43403；RCSB PDB 7SIY；Open Targets ENSG00000115085",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "tandem SH2磷酸化ITAM结合沟槽",
+        "直接阻断ZAP70募集至CD3ζ链，干预TCR近端激活起始事件",
+        "优先"
+      ],
+      [
+        "Site B",
+        "inter-SH2连接区与SH2相邻构象界面",
+        "可稳定非结合构象并降低双SH2对双磷酸ITAM的亲和力",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端激酶结构域ATP结合裂隙周边",
+        "可能抑制催化活性，但与其他酪氨酸激酶保守性高，选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ZAP70为胞内蛋白，常规治疗性抗体递送受限；设计应限定为细胞内抗体、递送偶联格式或体外机制工具，并避开高保守ATP结合核心。",
+    "structurePrepZh": "以7SIY晶体结构为模板，保留抗原链A/Z，校正缺失侧链与质子化状态，分离配体或晶体接触后评估SH2沟槽可成药表面。",
+    "structureRef": "RCSB PDB 7SIY，X-ray diffraction，1.48 Å",
+    "antibodies": [
+      "anti-ZAP70 clone 1E7.2",
+      "anti-ZAP70 clone SBZAP"
+    ],
+    "interfaceFocus": "tandem SH2-磷酸化CD3ζ ITAM识别界面",
+    "designMode": "胞内阻断型抗体",
+    "candidates": [
+      {
+        "target": "CD247",
+        "rationale": "CD247编码TCR ζ链，含ITAM基序并直接招募ZAP70，是同一TCR近端信号轴的上游适配组分。靶向其磷酸化ITAM界面可验证ZAP70募集依赖性。"
+      },
+      {
+        "target": "LCK",
+        "rationale": "LCK磷酸化CD3ζ ITAM并激活ZAP70活化环，是ZAP70功能启动的上游Src家族激酶。其遗传和功能证据均指向T细胞免疫缺陷通路。"
+      },
+      {
+        "target": "LAT",
+        "rationale": "LAT是ZAP70直接磷酸化的膜结合支架蛋白，连接PLCγ1、GRB2和SLP76复合体。该靶点可作为ZAP70下游信号输出的通路候选。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

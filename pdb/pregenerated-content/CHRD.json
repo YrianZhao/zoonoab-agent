@@ -1,0 +1,65 @@
+{
+  "gene": "CHRD",
+  "generatedAt": "2026-08-03T11:23:03.117Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CHRD编码分泌型BMP拮抗蛋白chordin，通过富含半胱氨酸的vWC结构域结合BMP2、BMP4、BMP7等配体并限制BMP受体激活，参与骨生长、造血微环境与血小板相关性状调控。该蛋白为细胞外分泌抗原，天然暴露于基质和体液环境，抗体对配体结合界面具有较好的可及性。相较于直接靶向BMP受体，CHRD位于配体捕获层级，具备以中和或稳定配体拮抗复合物方式精细调节BMP梯度的优先级优势。",
+    "mechanism": "抗体结合CHRD vWC结构域的BMP接触面，阻断或稳定CHRD与BMP2/BMP4/BMP7的复合物形成，从而改变BMPR1A/BMPR2介导的SMAD1/5/9磷酸化输入。",
+    "selectedEpitope": "优先覆盖vWC结构域中BMP配体结合凹面及相邻二硫键稳定环区，避免破坏全局折叠。",
+    "diseaseDirection": "BMP轴相关生长与血小板性状",
+    "domain": "CHRD为分泌糖蛋白，含多个vWC富半胱氨酸结构域，负责BMP配体结合与拮抗。",
+    "evidence": "CHRD-BMP轴结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9H2X0功能与结构域注释",
+      "RCSB PDB 9QVV晶体结构记录",
+      "BMP信号通路与chordin功能文献"
+    ],
+    "referenceEntries": "UniProt Q9H2X0；RCSB PDB 9QVV；Open Targets CHRD",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "vWC结构域BMP配体结合界面",
+        "直接影响CHRD-BMP复合物形成，适合功能中和或稳定化设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "vWC相邻二硫键稳定环外侧面",
+        "可获得高亲和结合并降低对核心折叠的扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "结构域间柔性连接区",
+        "构象异质性较高，可能影响亲和成熟判读与结构复现性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "vWC结构域富含二硫键，表位设计需避开半胱氨酸配对核心；糖基化和柔性连接区可能降低表位均一性，宜采用结构约束筛选。",
+    "structurePrepZh": "以PDB 9QVV抗原链A、B为模板，补全缺失侧链，保留二硫键约束，评估糖基化位点与晶体接触对表位暴露的影响。",
+    "structureRef": "RCSB PDB 9QVV，X-ray diffraction，2.72 Å",
+    "antibodies": [
+      "anti-CHRD研究级中和抗体",
+      "anti-BMP4拮抗型抗体"
+    ],
+    "interfaceFocus": "vWC-BMP配体接触凹面及二硫键环",
+    "designMode": "分泌蛋白界面抗体",
+    "candidates": [
+      {
+        "target": "BMP4",
+        "rationale": "BMP4是CHRD直接结合并拮抗的核心配体，参与BMPR1A/BMPR2介导的SMAD1/5/9信号，适合作为同一BMP轴的配体端候选靶点。"
+      },
+      {
+        "target": "BMP2",
+        "rationale": "BMP2同属CHRD可结合的BMP配体，与骨生长和造血微环境调控相关，可用于比较配体阻断与CHRD调节策略。"
+      },
+      {
+        "target": "BMPR1A",
+        "rationale": "BMPR1A为BMP2/BMP4下游I型受体，连接配体可用性变化与SMAD1/5/9磷酸化输出，是同通路受体端验证靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

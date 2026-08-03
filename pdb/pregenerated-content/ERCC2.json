@@ -1,0 +1,65 @@
+{
+  "gene": "ERCC2",
+  "generatedAt": "2026-08-03T12:21:32.426Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ERCC2/XPD 是 TFIIH 核心解旋酶亚基，参与核苷酸切除修复中损伤 DNA 的局部解旋，并通过 TFIIH 参与 RNA polymerase II 转录起始；其致病变异与着色性干皮病 D 组、毛发硫营养不良和 COFS2 等 DNA 修复缺陷综合征直接相关。该蛋白主要位于细胞核内，缺乏天然胞外结构域或分泌特征，因此作为体内阻断型抗体靶点的抗原可及性不具优势，更适合用于细胞内递送抗体片段、结构探针或机制研究。相较 XPA、ERCC5 等同通路因子，ERCC2 具有高分辨率 TFIIH 复合物结构和明确 ATPase/解旋酶致病位点，可优先支持结构约束的表位设计与功能验证。",
+    "mechanism": "抗体片段可阻断 ERCC2 与 p44/GTF2H2 的激活界面或扰动 ATPase-解旋酶构象耦联，从而抑制损伤 DNA 开链与 TFIIH 修复活性。",
+    "selectedEpitope": "优先靶向 XPD helicase 2 与 Arch/FeS 邻近的 p44 接触面，避开埋藏 ATP 结合核心。",
+    "diseaseDirection": "核苷酸切除修复缺陷疾病",
+    "domain": "ERCC2 含 helicase 1、helicase 2、4Fe-4S、Arch 与 C 端 TFIIH 复合物结合区域。",
+    "evidence": "ERCC2-TFIIH 结构与 NER 遗传病证据包",
+    "evidenceSources": [
+      "Open Targets Platform ERCC2 疾病关联",
+      "UniProt P18074 功能与结构域注释",
+      "RCSB PDB 6TUN TFIIH 晶体结构",
+      "ClinVar/OMIM ERCC2 致病变异记录"
+    ],
+    "referenceEntries": "UniProt P18074；RCSB PDB 6TUN；Open Targets ERCC2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "helicase 2-Arch 邻近的 p44/GTF2H2 调控界面",
+        "可干扰 p44 对 XPD 解旋酶活性的刺激，机制验证价值高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FeS 结构域与 DNA 通道邻近外露环区",
+        "有助于影响损伤 DNA 定位与开链通道构象，适合片段抗体筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATPase Walker A/B 周边催化核心",
+        "功能相关性强但构象保守且多为埋藏区域，抗体可及性与选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ERCC2 为核内蛋白，完整抗体难以天然到达靶点；设计应限定为细胞内递送 Fab/VHH 或结构探针，并避免破坏 FeS 簇稳定性的非特异性表位。",
+    "structurePrepZh": "以 6TUN 中 ERCC2 所在 TFIIH 复合物链为模板，保留 p44 接触界面与金属簇注释，补全缺失环并评估界面溶剂可及性。",
+    "structureRef": "Greber et al., Nature 2019, human TFIIH core structure",
+    "antibodies": [
+      "anti-XPD clone 4E5",
+      "anti-ERCC2 polyclonal antibody"
+    ],
+    "interfaceFocus": "XPD-p44 调控界面与 DNA 通道入口",
+    "designMode": "细胞内抗体片段",
+    "candidates": [
+      {
+        "target": "ERCC3",
+        "rationale": "ERCC3/XPB 是 TFIIH 的另一 ATPase/helicase 亚基，参与转录起始和 NER 中损伤位点开链，与 ERCC2 处于同一 TFIIH-NER 功能模块。"
+      },
+      {
+        "target": "GTF2H2",
+        "rationale": "GTF2H2/p44 直接结合并刺激 ERCC2/XPD 解旋酶活性，靶向该界面可作为调控 XPD 功能的同通路替代策略。"
+      },
+      {
+        "target": "XPA",
+        "rationale": "XPA 在核苷酸切除修复中负责损伤验证并组织 TFIIH、RPA 与切割因子装配，遗传缺陷同样导致着色性干皮病表型。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

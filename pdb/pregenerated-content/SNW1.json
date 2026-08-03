@@ -1,0 +1,65 @@
+{
+  "gene": "SNW1",
+  "generatedAt": "2026-08-03T16:47:45.816Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SNW1是核内剪接与转录共调控因子，参与剪接体C复合体及多个转录调控网络，肿瘤关联主要来自异常RNA加工、细胞周期与转录程序失衡。该蛋白缺乏胞外结构域、分泌信号肽和跨膜区，完整抗体难以直接接触天然胞内抗原，因此抗原可及性显著弱于膜受体或分泌蛋白。相较EGFR、PD-L1或VEGFA等同属肿瘤治疗场景且抗体可及性明确的靶点，SNW1更适合作为机制研究或胞内递送抗体探索靶点，作为常规治疗性抗体主靶点优先级较低。",
+    "mechanism": "采用胞内递送Fab或VHH干预SNW1与剪接体C复合体蛋白界面，削弱其在pre-mRNA剪接与转录共调控中的支架作用。",
+    "selectedEpitope": "优先评估SNW/SKIP保守结构域暴露螺旋面，避开深埋剪接体装配核心界面。",
+    "diseaseDirection": "肿瘤RNA剪接与转录失衡",
+    "domain": "SNW1含N端低复杂度区、中央SNW/SKIP保守结构域及C端蛋白互作区，整体为核内非膜蛋白。",
+    "evidence": "SNW1肿瘤剪接体结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与肿瘤关联评分",
+      "UniProt Q13573蛋白定位与功能注释",
+      "RCSB PDB 6ID1剪接体复合物冷冻电镜结构",
+      "Reactome mRNA splicing与spliceosome通路注释"
+    ],
+    "referenceEntries": "UniProt Q13573；RCSB PDB 6ID1；Ensembl ENSG00000100603",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SNW/SKIP结构域外露螺旋束表面",
+        "可能阻断SNW1与剪接体伴侣蛋白的装配性接触，适合胞内VHH筛选",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端蛋白互作区相邻可及片段",
+        "可用于干预转录共调控复合物结合，但构象柔性较高",
+        "备选"
+      ],
+      [
+        "Site C",
+        "剪接体C复合体深埋装配界面",
+        "结构保守且可及性有限，抗体结合可能受复合物空间遮挡影响",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SNW1为核内胞内蛋白，常规体内抗体难以到达作用位点；建议限定为胞内抗体、递送偶联或体外机制验证场景。",
+    "structurePrepZh": "以PDB 6ID1中SNW1相关坐标为模板，分离抗原链后补全缺失区注释，并标记复合体埋藏界面与外露螺旋面。",
+    "structureRef": "PDB 6ID1，人剪接体C复合物冷冻电镜结构，2.86 Å",
+    "antibodies": [
+      "无获批SNW1靶向治疗性抗体",
+      "研究级抗SNW1/SKIP抗体"
+    ],
+    "interfaceFocus": "SNW/SKIP结构域外露螺旋面及C端互作区",
+    "designMode": "胞内VHH探索",
+    "candidates": [
+      {
+        "target": "SF3B1",
+        "rationale": "SF3B1是U2 snRNP核心剪接因子，肿瘤中存在明确热点突变并驱动异常3'剪接位点选择，属于同一RNA剪接失衡通路。"
+      },
+      {
+        "target": "SRSF2",
+        "rationale": "SRSF2调控外显子识别和剪接位点选择，其突变常见于髓系肿瘤并改变RNA结合特异性，与SNW1相关剪接体功能处于同一病理轴。"
+      },
+      {
+        "target": "U2AF1",
+        "rationale": "U2AF1参与3'剪接位点识别，肿瘤相关突变可重塑pre-mRNA剪接图谱，是RNA剪接异常肿瘤方向的真实候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

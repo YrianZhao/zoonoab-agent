@@ -1,0 +1,65 @@
+{
+  "gene": "PINK1",
+  "generatedAt": "2026-08-03T15:18:27.966Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PINK1是线粒体损伤应答中的丝氨酸/苏氨酸激酶，在去极化线粒体外膜累积后磷酸化泛素和Parkin，驱动PRKN介导的线粒体自噬；其失活突变与早发型帕金森病和Parkinson disease 6具有明确遗传关联。PINK1为线粒体外膜相关蛋白，成熟激酶结构域位于胞质侧，可在细胞透化、胞内递送抗体或研究级构象抗体场景中获得抗原可及性。相较下游多底物节点，PINK1处于损伤识别与Parkin招募的上游限速位置，结构化激酶域和泛素结合界面提供更明确的构象选择性设计依据。",
+    "mechanism": "稳定或调节PINK1激酶域构象，增强其对泛素Ser65及Parkin UBL Ser65的磷酸化，促进Parkin募集至损伤线粒体。",
+    "selectedEpitope": "优先覆盖PINK1激酶N叶-插入区邻近泛素结合面，避免ATP口袋直接阻断。",
+    "diseaseDirection": "早发型帕金森病线粒体自噬",
+    "domain": "含N端线粒体靶向序列、跨膜区及胞质侧丝氨酸/苏氨酸激酶结构域。",
+    "evidence": "PINK1-泛素-Parkin线粒体自噬证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9BXM7功能与结构域注释",
+      "RCSB PDB 9EII冷冻电镜结构",
+      "PINK1/Parkin介导线粒体自噬文献"
+    ],
+    "referenceEntries": "UniProt Q9BXM7；RCSB PDB 9EII；Open Targets PINK1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶N叶与PINK1特异插入区邻近泛素结合界面",
+        "有利于构象稳定并调节泛素Ser65磷酸化效率",
+        "优先"
+      ],
+      [
+        "Site B",
+        "激酶C叶远离ATP结合裂隙的外露螺旋面",
+        "适合作为构象识别或定位型结合表位，降低催化抑制风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP结合口袋及催化环邻近区域",
+        "可能直接抑制激酶活性并干扰生理底物磷酸化，需功能筛选确认",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PINK1为胞内线粒体相关激酶，常规循环抗体难以直接触达；设计应定位于研究型胞内抗体、递送型Fab/VHH或构象稳定工具分子。",
+    "structurePrepZh": "以9EII抗原链构建激酶域装配模型，保留可解析插入区与底物结合面，补全缺失环区并标注ATP口袋、催化环和泛素邻接界面。",
+    "structureRef": "RCSB PDB 9EII，human PINK1 cryo-EM structure，2.75 Å",
+    "antibodies": [
+      "BC100-494抗PINK1抗体",
+      "D8G3抗PINK1抗体"
+    ],
+    "interfaceFocus": "泛素Ser65底物结合面与激酶N叶插入区",
+    "designMode": "胞内构象调节",
+    "candidates": [
+      {
+        "target": "PRKN",
+        "rationale": "PRKN编码Parkin E3泛素连接酶，是PINK1磷酸化后被招募并激活的直接下游节点，参与损伤线粒体外膜蛋白泛素化。"
+      },
+      {
+        "target": "UBC",
+        "rationale": "泛素是PINK1的直接磷酸化底物，Ser65磷酸化泛素可放大Parkin募集与激活信号，属于同一线粒体自噬级联。"
+      },
+      {
+        "target": "VDAC1",
+        "rationale": "VDAC1位于线粒体外膜，可作为Parkin介导泛素化的外膜底物之一，反映PINK1-PRKN通路对损伤线粒体的标记过程。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "CHMP4C",
+  "generatedAt": "2026-08-03T11:23:02.698Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CHMP4C 是 ESCRT-III 复合体相关蛋白，参与胞质分裂末期的 abscission checkpoint，并通过与 ALIX、VPS4 轴协同调控膜颈切断与基因组稳定性；其异常可与肿瘤细胞分裂失衡及卵巢癌相关表型相联系。该蛋白主要定位于胞质内 ESCRT 装配界面，并非典型分泌蛋白或膜受体，抗原可及性不具备常规体内阻断抗体优势，更适合体外结构识别、细胞内递送抗体或研究级结合分子设计。相比 ESCRT 通路中更核心且广泛必需的 VPS4A、CHMP4B，CHMP4C 具有 abscission checkpoint 偏向性和相对特异的调控功能，可降低对基础 ESCRT 膜修复与内体分选过程的广泛干扰风险。",
+    "mechanism": "设计抗体结合 CHMP4C α螺旋核心装配面，干扰其与 ALIX Bro1 结构域及 VPS4 相关解聚轴的功能耦联，从而影响 ESCRT-III 介导的胞质分裂切断检查点。",
+    "selectedEpitope": "优先覆盖 CHMP4C ESCRT-III 核心 α1-α2 螺旋束及 Bro1 结合相关疏水沟槽，保留构象依赖识别。",
+    "diseaseDirection": "卵巢癌与ESCRT胞质分裂通路",
+    "domain": "CHMP4C 含 N 端 ESCRT-III α螺旋核心区及 C 端调控区，参与聚合与蛋白互作。",
+    "evidence": "CHMP4C结构与ESCRT-III功能证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q96CF2 functional annotation",
+      "RCSB PDB 5WA1 X-ray structure",
+      "ESCRT-III abscission checkpoint literature"
+    ],
+    "referenceEntries": "UniProt Q96CF2；RCSB PDB 5WA1；Open Targets CHMP4C",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "α1-α2 螺旋束装配界面",
+        "可能阻断 ESCRT-III 聚合与 ALIX 相关功能耦联，适合构象抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Bro1/ALIX 结合相关疏水沟槽邻近面",
+        "有助于干扰 CHMP4C 与 ALIX 介导的胞质分裂检查点连接",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端调控区及柔性尾部",
+        "序列可及但构象稳定性不足，可能产生低亲和或非功能性结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CHMP4C 为胞内蛋白，常规抗体难以在完整细胞内达到靶点；设计宜定位于结构验证、细胞内递送抗体或 VHH 工程，并规避 CHMP4A/B 高同源保守面。",
+    "structurePrepZh": "以 5WA1 的 A、B 链为模板，保留解析度 1.868 Å 的螺旋核心构象，补建缺失柔性片段并标注同源 CHMP4 家族保守残基。",
+    "structureRef": "RCSB PDB 5WA1，X-ray diffraction，1.868 Å",
+    "antibodies": [
+      "研究级 anti-CHMP4C antibody",
+      "研究级 anti-ESCRT-III/CHMP4 family antibody"
+    ],
+    "interfaceFocus": "α螺旋束聚合面与 ALIX-Bro1 结合邻近界面",
+    "designMode": "胞内靶向VHH设计",
+    "candidates": [
+      {
+        "target": "PDCD6IP",
+        "rationale": "PDCD6IP 编码 ALIX，是 CHMP4C 在 ESCRT 介导胞质分裂与膜颈切断过程中的关键互作因子，靶向其 Bro1 域可直接影响 CHMP4 蛋白募集。"
+      },
+      {
+        "target": "VPS4A",
+        "rationale": "VPS4A 是 ESCRT-III 聚合体解聚与循环利用所需的 AAA ATPase，与 CHMP4C 功能轴处于同一膜重塑通路，可作为调节 ESCRT 动态周转的候选靶点。"
+      },
+      {
+        "target": "CHMP4B",
+        "rationale": "CHMP4B 是 ESCRT-III 核心结构亚基，与 CHMP4C 同属 CHMP4 家族并共同参与胞质分裂末期膜切断，适合用于同通路比较设计。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

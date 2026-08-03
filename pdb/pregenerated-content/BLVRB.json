@@ -1,0 +1,65 @@
+{
+  "gene": "BLVRB",
+  "generatedAt": "2026-08-03T10:49:54.139Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BLVRB编码胆绿素还原酶B，参与血红素分解后的胆绿素还原及红细胞相关胆色素代谢，Open Targets关联主要集中于网织红细胞指标、胆红素测量和HbA1c测量，提示其与红系成熟及胆色素稳态相关。该蛋白为胞质可溶性黄素样还原酶，并非分泌蛋白或膜受体，天然抗原可及性不具备细胞表面优势，更适合体外机制研究、细胞内递送抗体或检测型抗体开发。相较HMOX1、BLVRA等同通路节点，BLVRB具有1.15 Å高分辨率人源晶体结构，可支持精细界面建模；但作为治疗性抗体主靶点优先级低于具有胞外可及性的通路靶点。",
+    "mechanism": "抗体策略以阻断BLVRB与NADPH/NADH辅因子及胆绿素底物进入Rossmann样结合沟槽为核心，降低胆绿素向胆红素的还原反应效率。",
+    "selectedEpitope": "优先覆盖Rossmann样NAD(P)H结合折叠邻近底物沟槽，而非远端非催化表面。",
+    "diseaseDirection": "红系指标与胆红素代谢",
+    "domain": "BLVRB为单结构域胞质氧化还原酶，含Rossmann样核苷酸结合折叠及疏水底物结合沟槽。",
+    "evidence": "BLVRB结构与红系胆色素代谢证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt P30043功能注释",
+      "RCSB PDB 1HDO晶体结构",
+      "血红素降解与胆绿素还原文献"
+    ],
+    "referenceEntries": "UniProt:P30043；RCSB PDB:1HDO；Open Targets:BLVRB",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "NAD(P)H结合Rossmann样折叠邻近沟槽",
+        "可直接干扰辅因子结合与电子转移，适合功能阻断型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "胆绿素底物结合沟槽外缘",
+        "有望限制底物进入催化口袋，同时保留较好抗原表面可塑性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化沟槽的稳定疏水核心邻近表面",
+        "功能阻断价值有限，且可能主要产生结合型而非抑制型抗体",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BLVRB为胞内可溶性酶，常规IgG难以到达天然作用位点；治疗开发需考虑细胞内递送、降解偶联或检测用途，避免将其作为常规胞外阻断靶点。",
+    "structurePrepZh": "以1HDO链A为模板，保留高分辨率主链与催化沟槽构象，补充氢原子、电荷和辅因子结合位点注释后开展抗体对接。",
+    "structureRef": "PDB 1HDO，X-ray diffraction，1.15 Å，人BLVRB结构",
+    "antibodies": [
+      "Anti-BLVRB检测抗体",
+      "Anti-biliverdin reductase B研究级抗体"
+    ],
+    "interfaceFocus": "NAD(P)H结合沟槽与底物入口边缘",
+    "designMode": "胞内酶阻断/检测型",
+    "candidates": [
+      {
+        "target": "BLVRA",
+        "rationale": "BLVRA催化胆绿素IXα向胆红素转化，与BLVRB同属胆绿素还原环节，是胆色素代谢通路中功能最接近的同源节点。"
+      },
+      {
+        "target": "HMOX1",
+        "rationale": "HMOX1催化血红素裂解生成胆绿素、一氧化碳和亚铁离子，位于BLVRB上游，是血红素降解和胆红素生成通路的关键限速节点。"
+      },
+      {
+        "target": "UGT1A1",
+        "rationale": "UGT1A1介导胆红素葡萄糖醛酸化并促进清除，处于胆红素代谢下游，与胆红素测量表型及黄疸相关疾病具有明确机制联系。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

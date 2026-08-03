@@ -1,0 +1,65 @@
+{
+  "gene": "SIAH2",
+  "generatedAt": "2026-08-03T16:32:20.492Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SIAH2编码胞内E3泛素连接酶，在乳腺癌中通过泛素化降解脯氨酰羟化酶PHD1/PHD3并稳定HIF-1α，增强缺氧适应、肿瘤侵袭及治疗耐受。该蛋白并非分泌蛋白或膜受体，天然抗原可及性弱，因此抗体策略更适合定位于细胞内递送抗体、intrabody或结构生物学先导验证。相比一般泛素化网络靶点，SIAH2具有明确底物结合沟槽和高分辨率同源二聚结构，适合开展界面阻断型分子设计，但临床抗体成药优先级低于胞外乳腺癌靶点。",
+    "mechanism": "阻断SIAH2底物结合结构域与PHD1/PHD3等底物降解基序相互作用，降低PHD泛素化，促进HIF-1α羟化降解。",
+    "selectedEpitope": "优先覆盖SBD底物结合沟槽及二聚体近邻面，避免直接依赖RING锌指催化区。",
+    "diseaseDirection": "乳腺癌缺氧适应与ER阳性乳腺癌",
+    "domain": "SIAH2含N端RING锌指、两个锌指样结构域及C端substrate-binding domain二聚化核心。",
+    "evidence": "SIAH2乳腺癌缺氧通路与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt O43255功能与结构域注释",
+      "RCSB PDB 5H9M晶体结构记录",
+      "乳腺癌HIF-1α/PHD泛素化通路文献"
+    ],
+    "referenceEntries": "UniProt: O43255；RCSB PDB: 5H9M；Open Targets: SIAH2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端SBD底物结合沟槽",
+        "直接干预PHD底物肽识别，机制指向性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SBD二聚体邻近界面",
+        "可能影响底物结合构象与二聚体稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端RING锌指催化区域",
+        "涉及E2结合与锌配位，保守性和脱靶风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SIAH2为胞内E3连接酶，常规抗体难以到达作用位点；需采用细胞内抗体、递送偶联或降解验证体系，并评估SIAH1同源交叉反应。",
+    "structurePrepZh": "以5H9M的A、B链二聚体为模板，补全缺失环区，保留SBD二聚构象，标注底物结合沟槽、锌结合位点及同源保守残基。",
+    "structureRef": "RCSB PDB 5H9M，X-ray diffraction，1.761 Å",
+    "antibodies": [
+      "无获批SIAH2治疗性抗体",
+      "研究级抗SIAH2抗体"
+    ],
+    "interfaceFocus": "SBD底物肽结合沟槽与二聚化邻近面",
+    "designMode": "胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "HIF1A",
+        "rationale": "HIF1A是SIAH2-PHD轴的下游效应因子，驱动缺氧转录程序并参与乳腺癌侵袭和耐受。"
+      },
+      {
+        "target": "EGLN3",
+        "rationale": "EGLN3/PHD3是SIAH2介导泛素化降解的关键底物，其稳定性直接影响HIF-1α羟化与降解。"
+      },
+      {
+        "target": "VHL",
+        "rationale": "VHL识别羟化HIF-1α并介导其泛素化降解，与SIAH2-PHD-HIF轴处于同一缺氧调控通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

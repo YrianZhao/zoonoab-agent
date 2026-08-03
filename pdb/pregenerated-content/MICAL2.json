@@ -1,0 +1,65 @@
+{
+  "gene": "MICAL2",
+  "generatedAt": "2026-08-03T14:14:12.785Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MICAL2为胞内黄素依赖性单加氧酶，催化肌动蛋白氧化并参与细胞骨架重塑，其遗传关联主要集中于白细胞数量、中性粒细胞计数和网织红细胞相关表型，提示其可能影响造血细胞形态转换或迁移过程。该蛋白缺乏分泌形式和经典胞外结构域，天然抗原可及性不符合治疗性抗体优先靶点标准，更适合用于胞内机制研究或细胞递送抗体格式探索。相较CSF3R、CXCR2等同属白细胞数量调控轴且具膜外可及结构的靶点，MICAL2的优先级较低；若作为主靶点，应以结构验证和细胞内功能阻断为限定场景。",
+    "mechanism": "通过占据MICAL2单加氧酶结构域的FAD/底物结合邻近界面，阻断其与F-actin底物接触并抑制肌动蛋白氧化介导的解聚。",
+    "selectedEpitope": "优先覆盖5SZH所示N端单加氧酶结构域底物结合沟槽邻近环区，避开深埋FAD位点。",
+    "diseaseDirection": "白细胞数量与造血表型",
+    "domain": "MICAL2含N端FAD依赖单加氧酶结构域、CH结构域、LIM结构域及C端卷曲螺旋区。",
+    "evidence": "MICAL2造血细胞数量遗传关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt O94851功能与结构域注释",
+      "RCSB PDB 5SZH晶体结构记录",
+      "MICAL家族肌动蛋白氧化与细胞骨架文献"
+    ],
+    "referenceEntries": "UniProt: O94851; RCSB PDB: 5SZH; Open Targets: MICAL2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "单加氧酶结构域底物结合沟槽邻近暴露环",
+        "可能干扰F-actin底物定位，适合功能阻断型胞内抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "单加氧酶结构域外侧保守螺旋-环界面",
+        "可稳定识别折叠构象并降低直接竞争FAD带来的亲和力风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "FAD结合口袋深部及高度保守催化残基周边",
+        "保守性高且可及性受限，易产生构象遮挡和选择性不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MICAL2为胞内抗原，常规IgG难以进入细胞；应标注递送依赖风险，并优先采用VHH、细胞穿透或胞内表达验证策略。",
+    "structurePrepZh": "以5SZH链A/B单加氧酶结构域为模板，保留FAD相关构象信息，补全缺失环区并评估链间晶体接触对表位暴露的影响。",
+    "structureRef": "RCSB PDB 5SZH, X-ray, 2.3 Å, human MICAL2",
+    "antibodies": [
+      "无获批MICAL2治疗性抗体",
+      "无公开临床阶段MICAL2阻断抗体"
+    ],
+    "interfaceFocus": "单加氧酶底物沟槽与F-actin接触面",
+    "designMode": "胞内VHH阻断设计",
+    "candidates": [
+      {
+        "target": "CSF3R",
+        "rationale": "CSF3R是粒细胞集落刺激因子受体，直接调控中性粒细胞生成与动员，且具有胞外细胞因子结合结构域，抗体可及性优于MICAL2。"
+      },
+      {
+        "target": "CXCR2",
+        "rationale": "CXCR2介导CXCL8等趋化因子驱动的中性粒细胞募集，位于白细胞数量和炎症迁移通路中，膜表面七跨膜受体构象可用于阻断型抗体探索。"
+      },
+      {
+        "target": "CXCL8",
+        "rationale": "CXCL8为分泌型趋化因子，通过CXCR1/CXCR2促进中性粒细胞趋化和活化，抗体中和可直接阻断配体-受体相互作用。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

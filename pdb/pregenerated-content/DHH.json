@@ -1,0 +1,65 @@
+{
+  "gene": "DHH",
+  "generatedAt": "2026-08-03T11:56:00.394Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DHH 编码 Desert hedgehog 配体，是 Hedgehog 通路中参与睾丸支持细胞-间质细胞通讯和外周神经发育的分泌型信号分子；DHH 功能缺陷与 46,XY 性腺发育不全及伴运动感觉神经病综合征具有明确遗传关联。成熟 N 端 Hedgehog 信号结构域位于胞外分泌环境，具备抗体识别和配体中和的可及性优势。相较下游 GLI 转录因子或细胞内调控因子，DHH 更适合作为抗体干预入口，可在受体结合前阻断 PTCH1 介导的通路激活。",
+    "mechanism": "抗体结合 DHH N 端信号结构域的受体识别表面，阻断 DHH 与 PTCH1 胞外结构域相互作用，从而限制 SMO 去抑制化及下游 GLI 转录响应。",
+    "selectedEpitope": "优先覆盖 DHH N 端 Hedgehog 信号结构域的 PTCH1 结合面及锌配位邻近沟槽。",
+    "diseaseDirection": "46,XY 性腺发育不全与神经病",
+    "domain": "DHH 前体经自切割产生 N 端 Hedgehog 信号结构域和 C 端自加工胆固醇转移结构域。",
+    "evidence": "DHH-Hedgehog 通路遗传关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt O43323 功能与结构域注释",
+      "RCSB PDB 2WFQ 晶体结构记录",
+      "OMIM/Orphanet 46,XY 性腺发育不全关联条目"
+    ],
+    "referenceEntries": "UniProt O43323；RCSB PDB 2WFQ；Open Targets DHH",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N 端 Hedgehog 信号结构域 PTCH1 受体结合面",
+        "直接阻断 DHH-PTCH1 识别，具备明确中和逻辑",
+        "优先"
+      ],
+      [
+        "Site B",
+        "锌配位中心邻近沟槽及保守环区",
+        "可干扰配体表面构象与受体接触，但需避免非特异金属依赖效应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离受体界面的结构稳定核心表面",
+        "结合可能不影响 PTCH1 识别，功能阻断价值有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DHH 与 SHH、IHH 的 N 端结构域高度同源，需避开跨同源配体保守核心表面，优先筛选 DHH 特异环区并验证 PTCH1 阻断活性。",
+    "structurePrepZh": "以 2WFQ 链 A 为抗原模板，补全缺失侧链、校验锌离子配位状态，去除结晶添加物后进行表面电荷与受体结合面标注。",
+    "structureRef": "PDB 2WFQ，human DHH N-terminal domain，1.85 Å",
+    "antibodies": [
+      "5E1",
+      "MEDI-5304"
+    ],
+    "interfaceFocus": "DHH N 端结构域 PTCH1 接触面",
+    "designMode": "配体中和抗体设计",
+    "candidates": [
+      {
+        "target": "PTCH1",
+        "rationale": "PTCH1 是 Hedgehog 配体受体，直接接收 DHH 信号并抑制 SMO；其胞外环可作为阻断配体-受体相互作用的替代抗体靶点。"
+      },
+      {
+        "target": "SMO",
+        "rationale": "SMO 是 PTCH1 下游的七跨膜信号转导蛋白，负责将 Hedgehog 受体解除抑制转化为细胞内信号输出。"
+      },
+      {
+        "target": "HHIP",
+        "rationale": "HHIP 是 Hedgehog 配体结合型负调控因子，可结合 DHH/SHH/IHH 并限制通路活性，适合作为同通路配体捕获机制的参照靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

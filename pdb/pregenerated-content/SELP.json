@@ -1,0 +1,65 @@
+{
+  "gene": "SELP",
+  "generatedAt": "2026-08-03T16:25:10.058Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SELP编码P-selectin，是血小板和内皮细胞活化后暴露于细胞表面的黏附受体，可通过结合白细胞PSGL-1促进血小板-白细胞聚集、血管炎症和镰状细胞病血管闭塞。其N端凝集素结构域、EGF样结构域及补体调控样重复位于胞外区，抗体可直接接近配体结合界面。相较于广泛阻断整合素或下游炎症因子，SELP干预更聚焦于活化血管黏附起始步骤，并已有临床抗体机制验证，优先级较高。",
+    "mechanism": "阻断P-selectin凝集素结构域与PSGL-1唾液酸化酪氨酸硫酸化N端表位结合，抑制血小板/内皮细胞介导的白细胞黏附与聚集。",
+    "selectedEpitope": "优先覆盖N端C型凝集素结构域的PSGL-1结合沟槽及钙依赖性糖识别邻近界面。",
+    "diseaseDirection": "镰状细胞病血管闭塞与炎症黏附",
+    "domain": "I型跨膜黏附受体，胞外区含C型凝集素结构域、EGF样结构域及多个SCR重复。",
+    "evidence": "SELP介导血管黏附与镰状细胞病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P16109功能与结构域注释",
+      "RCSB PDB 1G1S晶体结构数据",
+      "crizanlizumab临床机制与镰状细胞病研究文献"
+    ],
+    "referenceEntries": "UniProt:P16109；RCSB PDB:1G1S；HGNC:10721",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "凝集素结构域PSGL-1结合沟槽/糖识别区域",
+        "直接阻断P-selectin与PSGL-1的初始黏附相互作用，机制确定性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "凝集素-EGF样结构域连接面",
+        "可能限制配体结合所需构象排列，并保留较好的胞外可及性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远端SCR重复区外露表面",
+        "可及性较好但距离核心配体结合位点较远，功能阻断不确定性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "凝集素结构域含钙依赖性糖识别位点，需避免抗体仅识别非功能性糖基化差异。优先筛选可竞争PSGL-1结合且不诱导受体聚集的克隆。",
+    "structurePrepZh": "以1G1S高分辨率X射线结构为模板，保留凝集素与EGF样结构域构象，校验钙离子、糖识别残基及链间晶体接触后进行表位建模。",
+    "structureRef": "RCSB PDB 1G1S，P-selectin胞外片段X射线结构，1.9 Å",
+    "antibodies": [
+      "crizanlizumab",
+      "inclacumab"
+    ],
+    "interfaceFocus": "凝集素结构域PSGL-1结合沟槽及Ca2+邻近界面",
+    "designMode": "配体阻断型抗体设计",
+    "candidates": [
+      {
+        "target": "SELPLG",
+        "rationale": "SELPLG编码PSGL-1，是P-selectin在白细胞表面的核心配体，直接参与血小板/内皮细胞与白细胞黏附轴。靶向该配体可从相互作用另一侧阻断同一黏附通路。"
+      },
+      {
+        "target": "SELE",
+        "rationale": "SELE编码E-selectin，同属选择素介导的内皮-白细胞滚动黏附通路，在炎症性血管黏附和镰状细胞病血管闭塞中具有通路相关性。"
+      },
+      {
+        "target": "ITGAM",
+        "rationale": "ITGAM编码CD11b，是髓系白细胞黏附和活化的重要整合素亚基，位于选择素介导滚动后的牢固黏附环节，可作为同一血管炎症黏附级联的候选靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

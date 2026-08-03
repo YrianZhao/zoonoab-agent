@@ -1,0 +1,65 @@
+{
+  "gene": "TGFBR1",
+  "generatedAt": "2026-08-03T17:15:07.710Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TGFBR1是TGF-β受体复合体的I型丝氨酸/苏氨酸激酶，受TGFBR2转磷酸化后激活SMAD2/3，参与纤维化、肿瘤免疫抑制及主动脉壁重塑异常。该蛋白为单跨膜受体，胞外配体结合区域理论上具备抗体可及性，但4X2F解析的是胞内激酶结构域，抗体设计需优先补充胞外域模型与复合物证据。相较直接靶向广泛表达的TGF-β配体，TGFBR1可在受体层面限制ALK5依赖信号，具有通路节点清晰、遗传疾病证据强和药理验证充分的优先级优势。",
+    "mechanism": "抗体阻断TGFBR1胞外域参与TGF-β–TGFBR2受体复合体装配，抑制TGFBR2对TGFBR1 GS区的转磷酸化及后续SMAD2/3募集。",
+    "selectedEpitope": "优先覆盖TGFBR1胞外三指样结构域的受体复合体装配面，避免干扰膜近端非特异区域。",
+    "diseaseDirection": "TGF-β信号相关纤维化与肿瘤",
+    "domain": "TGFBR1包含N端胞外配体结合域、单跨膜螺旋、GS调控区及胞内丝氨酸/苏氨酸激酶域。",
+    "evidence": "TGFBR1遗传疾病与TGF-β受体信号证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P36897功能与结构域注释",
+      "RCSB PDB 4X2F晶体结构记录",
+      "TGF-β受体SMAD2/3信号通路文献"
+    ],
+    "referenceEntries": "UniProt:P36897；RCSB PDB:4X2F；HGNC:TGFBR1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端胞外三指样结构域的受体复合体装配面",
+        "可阻断TGF-β配体诱导的TGFBR2/TGFBR1异源复合体形成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "胞外域膜远端可及环区",
+        "有利于获得高可及性结合，但需验证是否影响复合体装配",
+        "备选"
+      ],
+      [
+        "Site C",
+        "胞内激酶域ATP结合裂隙及GS区邻近面",
+        "4X2F结构分辨率高但位于胞内，常规抗体不可及，仅适合机制参考",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TGFBR1胞外域结构证据弱于胞内激酶域，需避免仅依据4X2F定义抗体表位；应结合胞外域同源模型、复合体约束和细胞阻断实验筛选。",
+    "structurePrepZh": "以4X2F校验激酶域构象与变异位点，另行构建N端胞外域模型并标注糖基化、二硫键和膜近端方向用于表位筛选。",
+    "structureRef": "RCSB PDB 4X2F，human TGFBR1 kinase domain，1.49 Å",
+    "antibodies": [
+      "Fresolimumab",
+      "NIS793"
+    ],
+    "interfaceFocus": "胞外域受体复合体装配面与膜远端环区",
+    "designMode": "阻断型Fab/VHH设计",
+    "candidates": [
+      {
+        "target": "TGFB1",
+        "rationale": "TGFB1是TGFBR2/TGFBR1复合体的核心配体，直接驱动SMAD2/3激活；配体中和可在受体上游抑制同一通路。"
+      },
+      {
+        "target": "TGFBR2",
+        "rationale": "TGFBR2负责配体结合并转磷酸化TGFBR1，是受体复合体装配的近端节点；阻断其配体结合面可抑制ALK5激活。"
+      },
+      {
+        "target": "LTBP1",
+        "rationale": "LTBP1参与潜伏TGF-β复合体的基质定位与释放调控，在纤维化和组织重塑中影响TGF-β可利用性。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

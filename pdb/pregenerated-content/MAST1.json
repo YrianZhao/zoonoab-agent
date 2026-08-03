@@ -1,0 +1,65 @@
+{
+  "gene": "MAST1",
+  "generatedAt": "2026-08-03T20:07:42.516Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAST1 是胞内微管相关丝氨酸/苏氨酸激酶，致病变异与胼胝体增大、小脑发育不全及皮层畸形综合征相关，机制主要涉及神经发育过程中激酶调控和细胞骨架组织异常。该蛋白缺乏分泌形式、跨膜区及稳定胞外结构域，天然抗原可及性不利于常规外周给药抗体直接结合。相较膜受体或分泌因子靶点，其抗体成药优先级较低，但 PDB 3PS4 提供高分辨率激酶结构，适合开展胞内递送抗体片段或结构生物学验证型设计。",
+    "mechanism": "通过胞内递送抗体片段结合 MAST1 激酶结构域 ATP 结合裂隙或底物识别邻近界面，空间阻断底物肽进入并抑制催化磷酸转移。",
+    "selectedEpitope": "优先聚焦激酶结构域 N/C 叶之间 ATP 结合裂隙及 activation segment 邻近底物进入通道。",
+    "diseaseDirection": "神经发育异常与小脑发育不全",
+    "domain": "MAST1 含 N 端 DUF1908 区、中央丝氨酸/苏氨酸激酶结构域及 C 端 PDZ 结构域。",
+    "evidence": "MAST1 神经发育疾病与激酶结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB Q9Y2H9 functional annotation",
+      "RCSB PDB 3PS4 X-ray kinase-domain structure",
+      "ClinVar/OMIM neurodevelopmental variant evidence"
+    ],
+    "referenceEntries": "UniProt Q9Y2H9；RCSB PDB 3PS4；Open Targets MAST1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域 ATP 结合裂隙与铰链区邻近表面",
+        "直接干预 ATP 定位和催化构象，适合功能阻断型胞内抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "activation segment 与底物进入通道周边",
+        "可限制底物肽接近催化中心，兼顾选择性与功能抑制",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端 PDZ 结构域配体结合沟槽",
+        "可能影响支架蛋白相互作用，但与 3PS4 结构覆盖不一致，需补充结构验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAST1 为胞内激酶，常规抗体可及性不足；设计应限定为胞内抗体、递送型 Fab/VHH 或研究级阻断工具，并严格评估激酶家族交叉反应。",
+    "structurePrepZh": "以 PDB 3PS4 的 A-D 链激酶结构域为模板，去除结晶添加物，统一质子化状态，检查铰链区、activation segment 与链间晶体接触。",
+    "structureRef": "RCSB PDB 3PS4，1.85 Å X-ray human MAST1 kinase domain",
+    "antibodies": [
+      "无已获批 MAST1 靶向治疗性抗体",
+      "研究级 anti-MAST1 抗体"
+    ],
+    "interfaceFocus": "ATP 结合裂隙、铰链区及 activation segment",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "MAST2",
+        "rationale": "MAST2 为同属 MAST 微管相关丝氨酸/苏氨酸激酶家族成员，具有相似激酶-PDZ 模块，可作为同家族神经细胞骨架调控轴的选择性对照靶点。"
+      },
+      {
+        "target": "MAST3",
+        "rationale": "MAST3 与 MAST1 共享激酶结构域架构，部分遗传证据关联神经系统表型，适合用于评估 MAST 家族功能冗余和抗体交叉反应。"
+      },
+      {
+        "target": "TUBB2B",
+        "rationale": "TUBB2B 是神经元微管组成蛋白，致病变异可导致皮层发育畸形和小脑相关异常，与 MAST1 所涉微管组织和神经发育病理方向一致。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

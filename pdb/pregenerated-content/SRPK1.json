@@ -1,0 +1,65 @@
+{
+  "gene": "SRPK1",
+  "generatedAt": "2026-08-03T16:55:12.972Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SRPK1参与SRSF家族剪接因子的磷酸化，进而影响可变剪接程序；其异常可重塑神经退行性疾病相关转录后调控网络，并与COVID-19宿主剪接反应及红细胞表型相关联。该蛋白为激酶型胞内靶点，抗原可及性较膜蛋白受限，但高分辨率晶体结构为表位精确映射与构象依赖性设计提供了可靠基础。相较于多数下游剪接因子，SRPK1位于剪接调控上游，具备更清晰的通路收敛性与药理优先级。",
+    "mechanism": "通过占据ATP结合裂缝并稳定激酶非活性构象，阻断SRPK1对SRSF底物的磷酸化。",
+    "selectedEpitope": "优先锁定N-lobe ATP口袋及hinge邻域，避开高度保守催化环以降低脱靶。",
+    "diseaseDirection": "神经退行性疾病与病毒宿主剪接调控",
+    "domain": "N端激酶结构域，含ATP结合裂缝、hinge区及活化环。",
+    "evidence": "SRPK1结构与疾病关联证据包",
+    "evidenceSources": [
+      "UniProt: Q96SB4",
+      "RCSB PDB: 5NNG",
+      "Open Targets Platform",
+      "蛋白激酶-剪接调控相关文献"
+    ],
+    "referenceEntries": "UniProt Q96SB4；RCSB 5NNG；Human protein kinase domain annotation",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N-lobe ATP结合口袋与hinge界面",
+        "直接干预底物装载与ATP识别，利于获得高亲和抑制型抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "αC-helix邻近疏水边界",
+        "可偏置非竞争性构象锁定，兼顾选择性与构象敏感性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "活化环外侧表面",
+        "可能影响构象转换，但对催化抑制贡献不稳定，需谨慎评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "激酶家族ATP口袋保守性高，交叉识别风险显著；建议以构象特异性Fab或VHH结合非完全保守边界位点，并结合SRPK2等同源蛋白开展反筛。",
+    "structurePrepZh": "优先基于5NNG重建完整激酶域侧链与缺失原子，统一链A/B构象并标注ATP口袋、水网络及hinge残基后开展表位筛选。",
+    "structureRef": "RCSB PDB 5NNG；SRPK1晶体结构解析文献",
+    "antibodies": [
+      "AZD0991样式抑制型结合物",
+      "SRPK1研究性阻断抗体"
+    ],
+    "interfaceFocus": "ATP口袋、hinge区与αC-helix邻域",
+    "designMode": "结构导向抑制型",
+    "candidates": [
+      {
+        "target": "SRPK2",
+        "rationale": "与SRPK1同属SR蛋白激酶通路，功能冗余度高且在剪接调控中构成最直接的同源对照，可用于选择性与交叉反筛设计。"
+      },
+      {
+        "target": "SRSF1",
+        "rationale": "为SRPK1经典底物，位于同一磷酸化轴下游，适合作为机制验证与功能读出靶点，验证抗体对底物磷酸化的阻断效应。"
+      },
+      {
+        "target": "CLK1",
+        "rationale": "同样调控SR蛋白磷酸化并参与剪接网络，能够作为平行通路对照以界定SRPK1抑制对剪接程序的特异影响。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

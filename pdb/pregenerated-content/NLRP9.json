@@ -1,0 +1,65 @@
+{
+  "gene": "NLRP9",
+  "generatedAt": "2026-08-03T14:44:04.285Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NLRP9 属于胞内 NOD-like receptor 家族，包含 Pyrin、NACHT 和 LRR 模块，主要被报道参与肠上皮抗病毒炎症小体反应及 IL-18 相关黏膜免疫。现有 Open Targets 关联以性状和测量表型为主，疾病因果强度较低，且缺乏明确的胞外抗原暴露。其抗原可及性不具备膜受体或分泌蛋白优势，因此作为常规治疗性阻断抗体主靶点优先级低于 IL18、IL1B、CASP1 等同通路可分泌效应分子；更适合作为结构生物学或胞内递送抗体研究靶点。",
+    "mechanism": "抗体需采用胞内递送或细胞内抗体格式，干预 NLRP9 NACHT 结构域 ATP 结合/寡聚化界面，抑制其招募 ASC 并降低 caspase-1 介导的 IL-18 成熟。",
+    "selectedEpitope": "优先聚焦 6Z2G 所解析 NACHT 结构域的 NBD-HD1 邻近构象界面，避开深埋 ATP 结合口袋。",
+    "diseaseDirection": "肠黏膜炎症与抗病毒炎症小体",
+    "domain": "NLRP9 含 N 端 Pyrin、中央 NACHT ATPase 及 C 端 LRR；6Z2G 覆盖可解析胞内结构片段。",
+    "evidence": "NLRP9 炎症小体结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association profile",
+      "UniProt Q7RTR0 functional annotation",
+      "RCSB PDB 6Z2G X-ray structure record",
+      "Published NLRP9 intestinal inflammasome literature"
+    ],
+    "referenceEntries": "UniProt Q7RTR0；RCSB PDB 6Z2G；Open Targets NLRP9",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "NACHT NBD-HD1 构象界面",
+        "可能干预 ATPase 驱动的受体激活与寡聚化",
+        "优先"
+      ],
+      [
+        "Site B",
+        "NACHT HD2 邻近外露螺旋面",
+        "可用于稳定非活化构象并降低构象转换效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PYD 同型互作界面",
+        "理论上可阻断 ASC 招募，但需额外结构模型验证且胞内递送风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NLRP9 为胞内蛋白，常规抗体难以到达作用位点；需优先评估细胞穿透、胞内稳定性及与其他 NLR NACHT 结构域的交叉反应。",
+    "structurePrepZh": "以 6Z2G 链 A 为结构模板，补全缺失环区并标注 ATPase 保守基序；PYD 和 LRR 区域需采用 AlphaFold 或同源模型辅助。",
+    "structureRef": "RCSB PDB 6Z2G，X-ray diffraction，1.95 Å",
+    "antibodies": [
+      "无获批 NLRP9 靶向抗体",
+      "ASC speck 研究级抗体"
+    ],
+    "interfaceFocus": "NACHT ATPase 构象转换与寡聚化界面",
+    "designMode": "胞内抗体探索",
+    "candidates": [
+      {
+        "target": "IL18",
+        "rationale": "IL18 是 NLRP9 炎症小体轴下游成熟释放的关键细胞因子，属于分泌蛋白，抗体可及性显著优于胞内 NLRP9。"
+      },
+      {
+        "target": "CASP1",
+        "rationale": "CASP1 负责将 pro-IL-18 和 pro-IL-1β 裂解为成熟炎症因子，是经典炎症小体通路共同效应酶，但抗体策略同样面临胞内可及性限制。"
+      },
+      {
+        "target": "PYCARD",
+        "rationale": "PYCARD/ASC 通过 PYD-CARD 连接 NLR 受体与 caspase-1，是炎症小体装配核心接头蛋白，适合作为机制研究候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

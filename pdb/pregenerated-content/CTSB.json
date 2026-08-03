@@ -1,0 +1,65 @@
+{
+  "gene": "CTSB",
+  "generatedAt": "2026-08-03T11:42:47.334Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CTSB 编码溶酶体半胱氨酸蛋白酶 cathepsin B，可参与溶酶体蛋白水解、脂蛋白颗粒加工、炎症小体相关蛋白酶释放及肿瘤基质重塑，Open Targets 显示其与血脂、脂肪酸及胆固醇酯测量性状存在遗传和组学关联。该蛋白可在病理状态下分泌至胞外或定位于细胞表面，成熟酶及前体酶均具备抗体可及性。相较完全胞内溶酶体酶，CTSB 的胞外活性与疾病微环境更直接相关，且 8B4T 提供高分辨率实验结构，支持精确界面设计。",
+    "mechanism": "阻断 CTSB 成熟酶活性裂隙中 Cys29-His199 催化二联体邻近底物结合沟槽，限制其与胞外基质蛋白或脂蛋白相关底物的蛋白水解接触。",
+    "selectedEpitope": "优先覆盖 occluding loop 与活性裂隙边缘，兼顾底物结合沟槽入口而避免深埋催化残基。",
+    "diseaseDirection": "脂质代谢异常与炎症重塑",
+    "domain": "CTSB 含信号肽、前肽区及 papain-like 半胱氨酸蛋白酶成熟结构域，成熟酶具有 occluding loop。",
+    "evidence": "CTSB 脂质性状关联与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P07858 cathepsin B annotation",
+      "RCSB PDB 8B4T X-ray structure",
+      "MEROPS peptidase family C1 cathepsin B annotation"
+    ],
+    "referenceEntries": "UniProt P07858；RCSB PDB 8B4T；MEROPS C01.060",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "occluding loop 与 S2/S1 底物结合沟槽入口",
+        "可直接限制底物进入并保留抗体表面可及性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "前肽结合面及成熟酶 N 端邻近区域",
+        "适合识别分泌前体或前酶状态，增强病理选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化 Cys29-His199-Asn219 深部活性中心",
+        "高保守且凹陷，易产生跨 cathepsin 家族交叉反应与亲和力风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CTSB 与 CTSL、CTSS 等 C1 家族蛋白酶结构同源性较高，设计应避开高度保守催化核心，优先利用 occluding loop 的 CTSB 特异构象。",
+    "structurePrepZh": "采用 8B4T 抗原链 A 作为成熟酶模板，补全缺失侧链、校正质子化状态，并对活性裂隙邻近可及表面进行抗体停靠约束。",
+    "structureRef": "RCSB PDB 8B4T，X-ray diffraction，1.45 Å",
+    "antibodies": [
+      "CA074-like inhibitory antibody design reference",
+      "anti-cathepsin B neutralizing antibody clone 3E1"
+    ],
+    "interfaceFocus": "occluding loop、S2 pocket 与活性裂隙入口",
+    "designMode": "酶活阻断型",
+    "candidates": [
+      {
+        "target": "CTSL",
+        "rationale": "CTSL 同属溶酶体 C1 半胱氨酸蛋白酶，参与蛋白水解、抗原加工和组织重塑，可作为 CTSB 相关蛋白酶网络中的并行调控靶点。"
+      },
+      {
+        "target": "CTSS",
+        "rationale": "CTSS 在抗原递呈细胞和炎症环境中保持较强胞外活性，参与 MHC II 相关蛋白加工及炎症性代谢重塑，适合作为免疫炎症轴候选靶点。"
+      },
+      {
+        "target": "LIPA",
+        "rationale": "LIPA 编码溶酶体酸性脂肪酶，直接介导胆固醇酯和甘油三酯水解，与 CTSB 关联的脂质测量性状处于同一溶酶体脂质代谢框架。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

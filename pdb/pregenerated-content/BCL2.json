@@ -1,0 +1,65 @@
+{
+  "gene": "BCL2",
+  "generatedAt": "2026-08-03T18:08:27.966Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BCL2 是线粒体外膜抗凋亡蛋白，通过其 BH3 结合沟槽扣留 BIM、BAX、BAK 等促凋亡因子，抑制线粒体外膜通透化，在 CLL、DLBCL 与 AML 的细胞存活依赖中具有明确作用。该蛋白主要定位于细胞内线粒体外膜，缺乏经典胞外结构域，因此抗原天然可及性弱于膜受体或分泌蛋白，抗体策略更适合用于结构生物学、细胞内递送或研究级阻断模块。其优先级来自疾病遗传与药理学证据高度集中，且相较部分冗余 BCL2 家族成员，BCL2 在淋巴系肿瘤中的成药验证更充分。",
+    "mechanism": "抗体片段拟结合 BCL2 BH3 结合沟槽，阻断 BCL2 与 BIM、BAX 或 BAK BH3 α螺旋的相互作用，解除抗凋亡扣留。",
+    "selectedEpitope": "优先覆盖 BH1-BH3 形成的疏水 BH3 结合沟槽，兼顾 α2-α5 螺旋界面。",
+    "diseaseDirection": "血液肿瘤凋亡逃逸",
+    "domain": "BCL2 含 BH4、BH3、BH1、BH2 保守区及 C 端跨膜锚定段，核心为α螺旋束。",
+    "evidence": "BCL2 依赖性肿瘤凋亡调控证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProtKB P10415 蛋白功能注释",
+      "RCSB PDB 5VAU 晶体结构",
+      "BCL2 抑制剂临床药理与血液肿瘤研究"
+    ],
+    "referenceEntries": "UniProt P10415；RCSB PDB 5VAU；Open Targets BCL2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "BH1-BH3 疏水 BH3 结合沟槽",
+        "直接竞争 BIM/BAX/BAK BH3 螺旋结合，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "α2-α5 螺旋束外缘及沟槽入口",
+        "可通过空间位阻降低促凋亡 BH3 肽段装载效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端跨膜锚定邻近区域",
+        "膜邻近构象受脂质环境影响，结构可及性与成药窗口不稳定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BCL2 为细胞内线粒体外膜蛋白，常规抗体难以天然到达作用位点；设计宜采用 Fab/VHH 结构探针、细胞内抗体或递送偶联策略，并避免干扰非目标 BCL2 家族成员。",
+    "structurePrepZh": "以 5VAU 高分辨率晶体结构为模板，保留 BCL2 核心α螺旋束，核查配体占位、缺失环区与多链构象一致性后进行表面与沟槽建模。",
+    "structureRef": "RCSB PDB 5VAU；X-ray diffraction 1.754 Å",
+    "antibodies": [
+      "BCL2 clone 124",
+      "BCL2 clone E17"
+    ],
+    "interfaceFocus": "BH3 结合沟槽与 α2-α5 螺旋界面",
+    "designMode": "细胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "MCL1",
+        "rationale": "MCL1 同属抗凋亡 BCL2 家族，通过结合 BIM、BAK 等 BH3 蛋白维持肿瘤细胞存活，是 AML 等血液肿瘤中重要耐药补偿节点。"
+      },
+      {
+        "target": "BCL2L1",
+        "rationale": "BCL2L1 编码 BCL-XL，可扣留 BAX、BAK 与 BH3-only 蛋白，在线粒体凋亡通路中与 BCL2 构成并行抗凋亡轴。"
+      },
+      {
+        "target": "BCL2L11",
+        "rationale": "BCL2L11 编码 BIM，是促凋亡 BH3-only 蛋白，可直接结合并中和 BCL2、MCL1 与 BCL-XL，其释放状态决定 MOMP 启动阈值。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

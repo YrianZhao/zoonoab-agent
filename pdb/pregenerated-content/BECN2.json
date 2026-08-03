@@ -1,0 +1,65 @@
+{
+  "gene": "BECN2",
+  "generatedAt": "2026-08-03T10:48:47.194Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BECN2编码beclin 2，主要参与自噬起始复合体及GPCR降解相关内吞-溶酶体过程，其疾病关联信号目前以表型和遗传统计关联为主，缺乏明确的细胞外致病配体-受体轴。该蛋白为胞内自噬调控因子，不具备分泌蛋白或膜受体胞外结构域特征，常规抗体难以在完整细胞环境中直接接近天然抗原。相较EGFR、IL5RA等具备明确胞外可及性和临床抗体先例的同类疾病相关靶点，BECN2更适合作为机制研究或细胞内递送抗体探索靶点，优先级应低于可成药胞外靶点。",
+    "mechanism": "拟通过细胞内抗体阻断BECN2与BCL2家族蛋白在BH3样区域的结合，解除对BECN2复合体功能的抑制并改变自噬通量。",
+    "selectedEpitope": "优先聚焦BH3样螺旋及邻近BCL2结合界面，避免覆盖保守核心折叠区。",
+    "diseaseDirection": "自噬-溶酶体与炎症表型",
+    "domain": "BECN2含BH3样基序、卷曲螺旋结构域及进化保守结构域，参与BECN2复合体装配。",
+    "evidence": "BECN2自噬调控与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt A8MW95功能与结构域注释",
+      "RCSB PDB 8GT9实验晶体结构",
+      "PubMed收录BECN2自噬与GPCR降解研究"
+    ],
+    "referenceEntries": "UniProt A8MW95；RCSB PDB 8GT9；Open Targets BECN2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "BH3样螺旋/BCL2结合界面",
+        "可用于设计阻断BCL2家族蛋白结合的功能性胞内抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "卷曲螺旋结构域外露面",
+        "可干预BECN2复合体装配并评估自噬复合体构象调控",
+        "备选"
+      ],
+      [
+        "Site C",
+        "进化保守结构域核心折叠面",
+        "保守性高且可能影响整体稳定性，易产生非特异构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BECN2为胞内抗原，传统Fab或VHH难以天然进入细胞；应优先采用胞内表达、递送载体或降解偶联策略，并严格区分结合效应与自噬毒性。",
+    "structurePrepZh": "以PDB 8GT9链A-D为模板进行同源链比对、缺失片段建模和质子化处理，保留稳定二级结构并标注BH3样界面。",
+    "structureRef": "RCSB PDB 8GT9，X-ray diffraction，2.0 Å",
+    "antibodies": [
+      "无获批抗BECN2治疗性抗体",
+      "研究级抗BECN2检测抗体"
+    ],
+    "interfaceFocus": "BH3样螺旋与BCL2家族结合面",
+    "designMode": "胞内抗体探索",
+    "candidates": [
+      {
+        "target": "BECN1",
+        "rationale": "BECN1与BECN2同属beclin家族并参与PIK3C3复合体介导的自噬起始，是同一自噬通路中的核心调控节点。其机制研究基础更充分，但同样存在胞内可及性限制。"
+      },
+      {
+        "target": "PIK3C3",
+        "rationale": "PIK3C3编码VPS34，是BECN复合体产生磷脂酰肌醇3-磷酸的催化亚基，直接决定自噬膜成核。该靶点适合作为通路功能验证参照。"
+      },
+      {
+        "target": "ATG14",
+        "rationale": "ATG14将BECN1/PIK3C3复合体导向自噬起始位点，属于同一自噬成核模块。针对其复合体界面的干预可用于比较BECN2调控轴的特异性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

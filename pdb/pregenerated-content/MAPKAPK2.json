@@ -1,0 +1,65 @@
+{
+  "gene": "MAPKAPK2",
+  "generatedAt": "2026-08-03T20:07:43.626Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAPKAPK2是p38 MAPK通路下游丝氨酸/苏氨酸激酶，参与HSP27磷酸化、mRNA稳定性调控及TNF、IL6等炎症因子产生，与神经炎症、白细胞表型及中枢神经系统自身免疫相关。该蛋白主要定位于胞质和细胞核，不具备天然胞外结构域或分泌抗原特征，抗体设计更适合采用细胞内递送抗体片段或研究级阻断工具策略。相比上游MAPK14，MAPKAPK2处于炎症效应输出节点，理论上可降低对p38广泛底物网络的干扰，具备机制验证优先级。",
+    "mechanism": "以内源化递送抗体片段占据MAPKAPK2催化裂隙或p38结合界面，阻断MAPK14介导的激活磷酸化及HSPB1底物募集。",
+    "selectedEpitope": "优先覆盖激酶结构域ATP结合裂隙邻近的催化叶间界面，并避开高度保守ATP核心残基。",
+    "diseaseDirection": "神经炎症与自身免疫炎症",
+    "domain": "MAPKAPK2含N端激酶催化结构域、C端调控区、核输出序列及自抑制样区域。",
+    "evidence": "MAPKAPK2-p38炎症效应轴证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与表型关联",
+      "UniProt P49137功能与亚细胞定位注释",
+      "RCSB PDB 2OKR晶体结构记录",
+      "p38-MK2-HSP27炎症信号通路文献"
+    ],
+    "referenceEntries": "UniProt P49137；RCSB PDB 2OKR；Open Targets MAPKAPK2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域催化叶间沟槽及底物进入边缘",
+        "可干扰HSPB1等底物结合并抑制催化构象形成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端调控区与MAPK14结合相关表面",
+        "可阻断p38对MAPKAPK2的对接、磷酸化激活和核质转位调控",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP结合口袋深部保守铰链区",
+        "保守性高且与多种激酶同源区域相似，交叉反应风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAPKAPK2为细胞内激酶，常规循环抗体难以到达作用位点；宜采用VHH、细胞穿透或递送体系，并重点评估激酶同源性交叉结合。",
+    "structurePrepZh": "以2OKR中A、C、D、F链为抗原模型，保留激酶结构域构象，去除结晶配体和非关键水分子后进行缺失环区补建与质子化处理。",
+    "structureRef": "RCSB PDB 2OKR，X-ray diffraction，2.0 Å",
+    "antibodies": [
+      "抗MAPKAPK2研究级单克隆抗体",
+      "抗磷酸化MAPKAPK2研究级抗体"
+    ],
+    "interfaceFocus": "催化裂隙、底物结合沟槽与p38对接表面",
+    "designMode": "细胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "MAPK14",
+        "rationale": "MAPK14编码p38α，是MAPKAPK2的直接上游激酶，负责MAPKAPK2激活环磷酸化并驱动炎症因子表达。"
+      },
+      {
+        "target": "HSPB1",
+        "rationale": "HSPB1是MAPKAPK2经典下游底物，磷酸化后参与细胞骨架重塑、应激反应及炎症细胞功能调控。"
+      },
+      {
+        "target": "TAB1",
+        "rationale": "TAB1可参与p38 MAPK非经典激活过程，位于同一应激炎症信号轴上，适合作为上游调节节点候选。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

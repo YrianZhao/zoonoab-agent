@@ -1,0 +1,65 @@
+{
+  "gene": "TARBP2",
+  "generatedAt": "2026-08-03T17:07:58.509Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TARBP2是RISC loading complex的核心亚基，含双链RNA结合结构域并参与pre-miRNA向Dicer加工与Argonaute装载过程，miRNA成熟异常可影响神经退行性疾病及多类肿瘤中的转录后调控网络。该蛋白主要定位于胞质，不属于分泌蛋白或典型膜受体，天然抗原可及性弱，抗体设计更适合定位于细胞内递送、研究级阻断或结构机制验证场景。相较AGO2、DICER1等大型多结构域酶性靶点，TARBP2结构片段解析度高且dsRBD界面明确，可优先用于机制型结合分子开发，但治疗性抗体优先级低于细胞外可及靶点。",
+    "mechanism": "通过结合TARBP2 dsRBD界面，阻断其与双链pre-miRNA或Dicer复合体的相互作用，干扰RISC装载前的miRNA加工耦联。",
+    "selectedEpitope": "优先靶向dsRBD2的RNA结合沟槽及Dicer接触邻近面，避开高度保守折叠核心。",
+    "diseaseDirection": "miRNA加工异常相关神经退行与肿瘤",
+    "domain": "TARBP2含三个dsRNA-binding domains，N端dsRBD1/2结合双链RNA，C端介导Dicer复合体组装。",
+    "evidence": "TARBP2-RISC装载复合体结构与疾病遗传关联证据",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q15633功能与定位注释",
+      "RCSB PDB 6ZBK晶体结构",
+      "miRNA biogenesis与Dicer-TRBP复合体文献"
+    ],
+    "referenceEntries": "UniProt Q15633；RCSB PDB 6ZBK；Open Targets TARBP2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "dsRBD2双链RNA结合沟槽",
+        "可直接竞争pre-miRNA结合并检验RISC装载前复合体功能",
+        "优先"
+      ],
+      [
+        "Site B",
+        "dsRBD2外侧Dicer邻近接触面",
+        "有望干扰TARBP2-Dicer空间耦联，降低对RNA主链的非特异竞争",
+        "备选"
+      ],
+      [
+        "Site C",
+        "dsRBD折叠核心及链间晶体接触区",
+        "保守性高且可能影响蛋白稳定性，功能选择性和可开发性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TARBP2为胞内RNA结合蛋白，常规抗体难以到达天然作用位点；需优先评估细胞内递送、RNA非特异结合干扰及dsRBD保守性导致的交叉反应风险。",
+    "structurePrepZh": "以6ZBK高分辨率晶体结构为模板，保留抗原链A、B用于界面比对，校正缺失侧链、质子化状态及晶体接触后定义可设计表面。",
+    "structureRef": "RCSB PDB 6ZBK，X-ray diffraction，1.49 Å",
+    "antibodies": [
+      "研究级anti-TRBP/TARBP2 antibody",
+      "intracellular anti-dsRBD binder prototype"
+    ],
+    "interfaceFocus": "dsRBD2 RNA结合沟槽与Dicer邻近面",
+    "designMode": "胞内机制型Fab/VHH",
+    "candidates": [
+      {
+        "target": "DICER1",
+        "rationale": "DICER1与TARBP2共同构成pre-miRNA加工与RISC装载前复合体，是同一miRNA生物发生通路的关键RNase III酶。"
+      },
+      {
+        "target": "AGO2",
+        "rationale": "AGO2是RISC核心催化亚基，接受Dicer-TARBP2加工后的miRNA并执行靶mRNA沉默，适合用于下游功能对照。"
+      },
+      {
+        "target": "PRKRA",
+        "rationale": "PRKRA与TARBP2同属dsRNA结合蛋白并可参与Dicer复合体调节，在miRNA加工和应激相关RNA调控中具有通路相关性。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

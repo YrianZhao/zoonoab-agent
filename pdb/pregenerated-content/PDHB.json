@@ -1,0 +1,65 @@
+{
+  "gene": "PDHB",
+  "generatedAt": "2026-08-03T15:09:36.657Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PDHB编码线粒体丙酮酸脱氢酶复合体E1β亚基，参与E1α/E1β异四聚体催化丙酮酸氧化脱羧，是PDH缺陷相关乳酸酸中毒和神经发育异常的核心遗传节点。该蛋白为线粒体基质内酶，缺乏天然胞外结构域，抗体可及性不具备常规膜受体优势，更适合作为胞内递送抗体或研究级构象探针。相较PDHX、DLAT等复合体组分，PDHB与E1β缺陷疾病的遗传关联更直接，且2OZL提供高分辨率人源结构，便于针对亚基装配界面开展验证性分子设计。",
+    "mechanism": "设计抗体优先作为构象探针，结合PDHB参与E1α/E1β装配的界面，阻断或稳定E1β与PDHA1的相互作用并解析E1催化构象。",
+    "selectedEpitope": "优先覆盖E1β与E1α接触界面邻近的TPP结合沟槽外缘，避免深埋催化口袋。",
+    "diseaseDirection": "丙酮酸脱氢酶缺陷与神经代谢病",
+    "domain": "PDHB为E1β催化亚基，含硫胺素焦磷酸相关折叠核心及E1α/E1β异四聚体装配界面。",
+    "evidence": "PDHB遗传缺陷与PDH复合体功能障碍证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt reviewed entry P11177",
+      "RCSB PDB 2OZL晶体结构",
+      "OMIM丙酮酸脱氢酶E1β缺陷记录"
+    ],
+    "referenceEntries": "UniProt P11177；RCSB PDB 2OZL；Open Targets PDHB",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "E1α/E1β异源二聚体装配界面外露环区",
+        "可评估亚基装配依赖构象并干预PDHA1-PDHB相互作用",
+        "优先"
+      ],
+      [
+        "Site B",
+        "TPP结合沟槽周边非深埋表面",
+        "邻近催化核心，适合构象敏感型检测抗体设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "异四聚体内部β亚基核心接触面",
+        "结构保守且部分埋藏，易影响折叠稳定性并降低结合可及性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PDHB定位于线粒体基质，常规治疗性抗体难以到达靶点；设计应限定为胞内递送格式、细胞穿透抗体或体外构象研究工具，并规避高度保守催化残基。",
+    "structurePrepZh": "以2OZL人源晶体结构为模板，保留A-D链异四聚体装配状态，补全缺失侧链并标注TPP相关口袋及PDHA1接触界面后进行表位筛选。",
+    "structureRef": "RCSB PDB 2OZL，X-ray diffraction，1.9 Å",
+    "antibodies": [
+      "商业抗PDHB单克隆抗体",
+      "商业抗PDHB多克隆抗体"
+    ],
+    "interfaceFocus": "E1β-PDHA1装配界面与TPP沟槽外缘",
+    "designMode": "胞内构象探针",
+    "candidates": [
+      {
+        "target": "PDHA1",
+        "rationale": "PDHA1编码E1α亚基，与PDHB共同组成E1异四聚体，突变同样导致PDH缺陷；其与PDHB的装配界面是解析E1功能障碍的直接比较靶点。"
+      },
+      {
+        "target": "DLAT",
+        "rationale": "DLAT编码PDH复合体E2核心组分，承接E1生成的乙酰基并转移至辅酶A；该节点可用于评估E1缺陷对复合体整体通量的影响。"
+      },
+      {
+        "target": "DLD",
+        "rationale": "DLD编码E3二氢硫辛酰胺脱氢酶，参与PDH复合体电子再生步骤；其缺陷可造成相近的线粒体能量代谢表型。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

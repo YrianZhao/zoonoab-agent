@@ -1,0 +1,65 @@
+{
+  "gene": "CLSPN",
+  "generatedAt": "2026-08-03T11:28:31.579Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CLSPN编码claspin，是DNA复制压力应答中连接ATR-CHK1轴的核内支架蛋白，通过促进CHK1磷酸化维持复制叉稳定性与细胞周期检查点。现有关联信号主要集中于红细胞体积、平均红细胞血红蛋白量及网织红细胞体积等血液表型，可能反映造血细胞复制压力耐受与分化增殖调控。该蛋白并非分泌蛋白或膜受体，缺乏天然胞外抗原可及性，因此常规体内阻断抗体优先级低于TFRC、KIT等造血相关膜靶点；其优势在于已有高分辨率实验结构支持机制性表位建模，适合作为细胞内递送抗体或研究级结合分子设计对象。",
+    "mechanism": "设计分子应阻断claspin磷酸化检查点重复区与CHK1调控界面的结合，削弱ATR依赖的CHK1激活与复制叉检查点维持。",
+    "selectedEpitope": "优先覆盖claspin CHK1结合重复区的磷酸化基序邻近沟槽与保守带电界面。",
+    "diseaseDirection": "血液学数量性状与复制压力应答",
+    "domain": "claspin为核内复制检查点支架蛋白，含CHK1结合重复区、DNA/复制叉相关结合区及调控性磷酸化位点。",
+    "evidence": "CLSPN复制检查点与血液表型证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9HAW4功能与亚细胞定位注释",
+      "RCSB PDB 9TDZ高分辨率晶体结构",
+      "ATR-CHK1复制压力检查点文献证据"
+    ],
+    "referenceEntries": "UniProt Q9HAW4；RCSB PDB 9TDZ；Open Targets CLSPN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CHK1结合重复区磷酸化基序邻近界面",
+        "直接干预claspin介导的CHK1招募与激活",
+        "优先"
+      ],
+      [
+        "Site B",
+        "复制叉/DNA结合相关正电荷表面",
+        "可能削弱claspin在复制压力位点的定位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "晶体二聚体或链间接触区域",
+        "需区分生物学界面与晶体堆积，避免非功能性表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CLSPN为核内蛋白，抗体药物天然可及性不足；设计应限定为胞内递送、降解偶联或研究工具抗体，并验证9TDZ界面是否对应功能构象。",
+    "structurePrepZh": "以PDB 9TDZ链A、B为模板，保留高置信结构域，校正缺失环区与磷酸化位点状态，去除晶体接触伪界面后进行表位聚类。",
+    "structureRef": "RCSB PDB 9TDZ，X射线晶体结构，1.346 Å",
+    "antibodies": [
+      "研究级anti-CLSPN抗体",
+      "研究级anti-phospho-CLSPN抗体"
+    ],
+    "interfaceFocus": "CHK1结合重复区与磷酸化调控界面",
+    "designMode": "胞内功能阻断",
+    "candidates": [
+      {
+        "target": "ATR",
+        "rationale": "ATR是复制压力应答的上游激酶，直接磷酸化CHK1并依赖claspin支架增强检查点信号，属于同一ATR-CHK1通路核心节点。"
+      },
+      {
+        "target": "CHEK1",
+        "rationale": "CHEK1编码CHK1，是claspin招募并促进磷酸化的直接效应激酶，调控S期与G2/M检查点。"
+      },
+      {
+        "target": "TIMELESS",
+        "rationale": "TIMELESS与TIPIN参与复制叉保护，并与claspin共同维持复制压力条件下的检查点激活与叉稳定性。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

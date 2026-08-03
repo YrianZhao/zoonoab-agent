@@ -1,0 +1,65 @@
+{
+  "gene": "MAGIX",
+  "generatedAt": "2026-08-03T20:06:26.282Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAGIX 为 MAGUK 相关支架蛋白家族成员，Open Targets 信号主要集中于血小板计数、血小板减少及遗传性出血表型，提示其可能参与血小板生成或细胞骨架-连接复合体稳态。该蛋白缺乏典型分泌信号肽和跨膜区，主要定位于细胞内连接相关蛋白复合体，天然抗原可及性不支持常规完整抗体直接结合。相比 GP1BA、GP1BB、ITGA2B 等同通路膜表面靶点，MAGIX 更适合作为机制研究或胞内递送抗体格式的低优先级探索靶点。",
+    "mechanism": "采用胞内递送抗体或内抗体策略，阻断 MAGIX PDZ 结构域对含 C 端 PDZ 结合基序伙伴蛋白的识别，从而干扰连接复合体装配。",
+    "selectedEpitope": "优先锁定 2DJT 所示 PDZ 结构域肽结合沟槽及 αB/βB 邻近口袋。",
+    "diseaseDirection": "血小板减少与出血表型",
+    "domain": "MAGIX 含 MAGUK 家族相关 PDZ 蛋白互作结构域，2DJT 覆盖其溶液 NMR 解析片段。",
+    "evidence": "MAGIX 血小板表型遗传关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt Q9H6Y5 蛋白注释",
+      "RCSB PDB 2DJT 溶液 NMR 结构",
+      "血小板减少及巨血小板症遗传表型数据库记录"
+    ],
+    "referenceEntries": "UniProt Q9H6Y5；RCSB PDB 2DJT；Open Targets MAGIX",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PDZ 结构域羧基端肽结合沟槽",
+        "可竞争性阻断 MAGIX 对 PDZ 结合基序配体的识别",
+        "优先"
+      ],
+      [
+        "Site B",
+        "αB 螺旋与 βB 链邻近侧壁",
+        "可稳定构象并变构削弱配体肽结合",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PDZ 结构域疏水核心外侧保守面",
+        "可能影响折叠稳定性且选择性窗口有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAGIX 为胞内支架蛋白，常规抗体体内可及性差；PDZ 结构域保守性较高，需通过结构比对排除与其他 MAGUK/PDZ 蛋白交叉反应。",
+    "structurePrepZh": "以 2DJT 的 NMR 构象簇建立代表模型，补全缺失氢原子并评估 PDZ 结合沟槽构象一致性，保留多构象用于对接筛选。",
+    "structureRef": "RCSB PDB 2DJT；MAGIX PDZ domain solution NMR structure",
+    "antibodies": [
+      "胞内递送 Fab 探索格式",
+      "细胞内 VHH/intrabody 探索格式"
+    ],
+    "interfaceFocus": "PDZ 肽结合沟槽与 αB/βB 侧壁",
+    "designMode": "胞内互作阻断",
+    "candidates": [
+      {
+        "target": "GP1BA",
+        "rationale": "GP1BA 编码血小板 GPIbα，为 von Willebrand factor 结合受体复合体核心亚基，与血小板型出血障碍和巨血小板性血小板减少直接相关，且胞外结构域适合抗体阻断设计。"
+      },
+      {
+        "target": "GP1BB",
+        "rationale": "GP1BB 为 GPIb-IX-V 复合体组成部分，遗传缺陷可导致 Bernard-Soulier 综合征相关血小板减少；其膜受体胞外区具有较好的抗原可及性。"
+      },
+      {
+        "target": "ITGA2B",
+        "rationale": "ITGA2B 编码整合素 αIIb，是血小板聚集受体 αIIbβ3 的配体识别亚基，与血小板功能障碍及出血表型处于同一血小板止血通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

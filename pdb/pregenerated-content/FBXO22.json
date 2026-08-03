@@ -1,0 +1,65 @@
+{
+  "gene": "FBXO22",
+  "generatedAt": "2026-08-03T12:29:11.496Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FBXO22 是 SCF 型 E3 泛素连接酶复合体的底物识别亚基，通过 F-box 结构域募集 SKP1，并以 C 端底物结合区参与蛋白泛素化降解，遗传变异与 Tayoun-Maawali syndrome 及神经发育异常存在明确关联。该蛋白主要定位于细胞内，天然抗原可及性低于分泌蛋白或膜受体，因此更适合用于研究型胞内抗体、降解调控或结构干预设计。相较一般泛素通路酶类，FBXO22 具有可解析的 SCF 复合体结构与疾病遗传证据，可优先支持界面阻断型分子设计验证。",
+    "mechanism": "阻断 FBXO22 F-box 结构域与 SKP1 的结合，削弱 SCF-FBXO22 复合体装配并抑制其底物泛素化识别功能。",
+    "selectedEpitope": "优先覆盖 F-box–SKP1 结合界面，兼顾邻近螺旋束稳定区以增强构象锁定。",
+    "diseaseDirection": "神经发育与神经退行性疾病",
+    "domain": "N 端 F-box 结构域介导 SKP1 结合，C 端区域负责底物识别并形成 SCF 复合体功能界面。",
+    "evidence": "FBXO22 遗传关联与 SCF 复合体结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt Q8NEZ5 蛋白功能注释",
+      "RCSB PDB 8S7D 冷冻电镜结构",
+      "SCF E3 泛素连接酶复合体文献证据"
+    ],
+    "referenceEntries": "UniProt: Q8NEZ5; RCSB PDB: 8S7D; Open Targets: FBXO22",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "F-box 结构域与 SKP1 结合界面",
+        "直接干预 SCF-FBXO22 复合体装配，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "F-box 邻近螺旋束构象稳定区",
+        "可通过构象锁定降低 SKP1 亲和力，适合作为变构型表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端预测底物识别表面",
+        "可能影响底物结合，但底物谱与界面边界需进一步验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FBXO22 属胞内蛋白，常规治疗性抗体递送可及性受限；设计应优先定位于结构明确的 SKP1 结合界面，并避免跨 F-box 家族保守核心造成非选择性交叉反应。",
+    "structurePrepZh": "采用 PDB 8S7D 冷冻电镜模型，提取 FBXO22 抗原链 A-D，补全缺失侧链并评估 F-box–SKP1 界面残基暴露度与构象一致性。",
+    "structureRef": "RCSB PDB 8S7D，human SCF-FBXO22 complex，EM 3.2 Å",
+    "antibodies": [
+      "研究级 anti-FBXO22 antibody",
+      "胞内抗体设计型 scFv/Fab 原型"
+    ],
+    "interfaceFocus": "F-box–SKP1 装配界面与邻近螺旋束",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "SKP1",
+        "rationale": "SKP1 是 SCF 复合体核心适配蛋白，直接结合 FBXO22 的 F-box 结构域；干预该节点可验证 SCF-FBXO22 装配依赖性。"
+      },
+      {
+        "target": "CUL1",
+        "rationale": "CUL1 构成 SCF E3 泛素连接酶支架，连接 SKP1-F-box 底物识别模块与 RBX1 催化模块；其功能状态决定复合体泛素转移能力。"
+      },
+      {
+        "target": "RBX1",
+        "rationale": "RBX1 是 SCF 复合体 RING 组分，负责募集 E2 泛素结合酶；与 FBXO22 所属通路共同完成底物泛素化反应。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

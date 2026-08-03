@@ -1,0 +1,65 @@
+{
+  "gene": "RANGAP1",
+  "generatedAt": "2026-08-03T15:53:14.378Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RANGAP1 是 Ran-GTP 水解的核心激活因子，参与核质转运、纺锤体装配及病毒复制所依赖的宿主核输入过程，Open Targets 中与 HIV 感染存在遗传关联信号。该蛋白主要定位于细胞质、核孔复合体胞质丝及有丝分裂期纺锤体相关结构，不具备经典胞外结构域、分泌蛋白或膜受体可及性，因此抗体成药可及性弱。相较 CCR5、CXCR4、CD4 等 HIV 进入通路膜表面靶点，RANGAP1 更适合作为机制研究或胞内递送抗体探索靶点，优先级应低于可直接接触循环抗体的细胞表面因子。",
+    "mechanism": "设计抗体以结合 RANGAP1 LRR 催化沟槽邻近界面，空间阻断 Ran-GTP 与 RANGAP1 的接触，从而降低 Ran-GTP 水解激活效率。",
+    "selectedEpitope": "优先聚焦 LRR 弧形内侧的 Ran 结合面及催化精氨酸邻近环区。",
+    "diseaseDirection": "HIV宿主核质转运相关方向",
+    "domain": "RANGAP1 含 N 端亮氨酸重复序列催化结构域，C 端 SUMO 化区介导核孔定位。",
+    "evidence": "RANGAP1-Ran核质转运与HIV宿主依赖证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt P46060 蛋白功能与定位注释",
+      "RCSB PDB 2GRR 晶体结构记录",
+      "Ran GTPase cycle 与核质转运文献"
+    ],
+    "referenceEntries": "UniProt P46060；RCSB PDB 2GRR；Open Targets RANGAP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "LRR 弧形内侧 Ran-GTP 结合沟槽",
+        "直接干扰 Ran 与 RANGAP1 的催化复合物形成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化精氨酸邻近暴露环区",
+        "可能降低 GTP 水解激活效率并保留结构特异性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端 SUMO 化与核孔定位相关区域",
+        "可影响核孔锚定但结构信息不足且功能风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RANGAP1 为胞内蛋白，常规 IgG 难以进入作用位点；需标注递送依赖风险，并避免覆盖保守 LRR 核心导致广泛细胞毒性。",
+    "structurePrepZh": "以 2GRR 高分辨率晶体结构提取 A/B 链，补全缺失侧链与氢原子，映射 Ran 结合面及保守催化残基后进行表位分层。",
+    "structureRef": "RCSB PDB 2GRR，X-ray diffraction，1.3 Å",
+    "antibodies": [
+      "抗RANGAP1研究级单克隆抗体",
+      "抗RanGAP1免疫检测抗体"
+    ],
+    "interfaceFocus": "LRR内侧Ran-GTP结合沟槽",
+    "designMode": "胞内阻断探索",
+    "candidates": [
+      {
+        "target": "RAN",
+        "rationale": "RAN 是 Ran-GTP/Ran-GDP 循环的核心小 GTPase，直接与 RANGAP1 形成催化复合物并控制核质转运方向性。"
+      },
+      {
+        "target": "XPO1",
+        "rationale": "XPO1 依赖 Ran-GTP 介导核输出，HIV Rev-RRE 介导的病毒 RNA 核输出对该通路具有明确依赖性。"
+      },
+      {
+        "target": "TNPO3",
+        "rationale": "TNPO3 属于核转运受体家族，参与 HIV 复制周期中整合前复合物相关核转运过程，与 RANGAP1 所在 Ran 依赖核质运输网络相连。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

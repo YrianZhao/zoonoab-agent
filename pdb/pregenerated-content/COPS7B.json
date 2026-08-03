@@ -1,0 +1,65 @@
+{
+  "gene": "COPS7B",
+  "generatedAt": "2026-08-03T11:33:58.881Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "COPS7B是COP9 signalosome的非催化结构亚基，参与稳定CSN复合体并调控cullin-RING E3连接酶去NEDD8化，从而影响蛋白降解稳态、细胞周期与应激反应。现有疾病关联以肾细胞癌及血液、脂质表型为主，关联强度有限且多为遗传或表型证据，尚不足以支持典型胞外抗体阻断策略。该蛋白位于胞内多亚基复合体中，不具备分泌蛋白或膜受体的抗原可及性优势；与同通路中具有明确酶活口袋的COPS5相比，作为抗体主靶点优先级较低，更适合作为结构生物学或细胞内递送抗体探索对象。",
+    "mechanism": "通过细胞内递送型抗体结合COPS7B PCI结构域表面，干扰其与CSN复合体相邻亚基界面，间接削弱CSN介导的cullin去NEDD8化活性。",
+    "selectedEpitope": "优先评估PCI结构域中参与CSN支架装配的暴露螺旋束界面，避开高度埋藏核心。",
+    "diseaseDirection": "肿瘤蛋白稳态与肾癌方向",
+    "domain": "COPS7B为COP9 signalosome PCI家族亚基，含N端PCI螺旋重复区及C端winged-helix样结构域。",
+    "evidence": "COPS7B-CSN复合体结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9H9Q2功能与亚细胞定位注释",
+      "RCSB PDB 9EFQ冷冻电镜结构",
+      "COP9 signalosome去NEDD8化与CRL调控文献"
+    ],
+    "referenceEntries": "UniProt Q9H9Q2；RCSB PDB 9EFQ；Open Targets COPS7B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PCI结构域暴露螺旋束及亚基接触边缘",
+        "可能干扰CSN支架装配或局部构象稳定性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端winged-helix样结构域外露环区",
+        "适合作为结合型表位并降低对折叠核心的扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "复合体内部埋藏亚基界面",
+        "结构可及性低且易导致非特异性构象筛选偏差",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "COPS7B为胞内复合体亚基，常规IgG难以到达抗原；需采用细胞内递送、intrabody或降解偶联策略，并严格验证复合体选择性。",
+    "structurePrepZh": "以PDB 9EFQ冷冻电镜模型提取COPS7B链并保留邻近CSN亚基用于界面判定，补全缺失侧链后评估暴露度与保守性。",
+    "structureRef": "RCSB PDB 9EFQ，human COP9 signalosome EM structure",
+    "antibodies": [
+      "暂无获批COPS7B治疗性抗体",
+      "研究级anti-COPS7B抗体"
+    ],
+    "interfaceFocus": "PCI螺旋束亚基装配界面",
+    "designMode": "细胞内抗体探索",
+    "candidates": [
+      {
+        "target": "COPS5",
+        "rationale": "COPS5是CSN复合体催化亚基，含JAMM金属蛋白酶结构域，直接执行cullin去NEDD8化；其功能位置较COPS7B更接近通路效应节点。"
+      },
+      {
+        "target": "COPS2",
+        "rationale": "COPS2为CSN核心PCI亚基，参与复合体支架稳定和CRL调控；与COPS7B处于同一CSN-CRL蛋白稳态通路。"
+      },
+      {
+        "target": "CUL1",
+        "rationale": "CUL1是cullin-RING E3连接酶核心支架，受CSN去NEDD8化调控；可作为同一蛋白降解轴上的下游功能节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

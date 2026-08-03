@@ -1,0 +1,65 @@
+{
+  "gene": "ALPK1",
+  "generatedAt": "2026-08-03T10:24:30.229Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ALPK1 是胞内α激酶，参与细菌代谢物 ADP-heptose 识别后的先天免疫信号放大，并通过磷酸化 TIFA 促进 TIFA 寡聚化、TRAF6 招募及 NF-κB 激活。其遗传变异与 ROSAH 综合征相关，临床表型包括视网膜营养不良、视神经水肿、脾大和无汗等炎症性多系统表现。ALPK1 不具备天然胞外结构域，常规外源抗体可及性弱，但其结构化激酶域适合体外构象抗体、细胞内抗体或靶向递送抗体片段设计。相比下游 NF-κB 或 TRAF6，ALPK1 位于通路近端，具有更明确的疾病变异定位和较高通路选择性。",
+    "mechanism": "以抗体片段结合 ALPK1 激酶域 ATP/底物邻近界面，阻断 ALPK1 对 TIFA Thr9 的磷酸化，从而抑制 TIFA 寡聚化与 TRAF6 介导的 NF-κB 激活。",
+    "selectedEpitope": "优先覆盖激酶域 ATP 结合裂隙与底物肽进入沟槽，避开高度保守催化残基中心。",
+    "diseaseDirection": "ROSAH相关自身炎症与视网膜病变",
+    "domain": "ALPK1 含 N 端重复区和 C 端 atypical alpha kinase 催化结构域，9J4P 覆盖结构化激酶域。",
+    "evidence": "ALPK1-TIFA-NF-κB炎症轴结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt Q96QP1 功能与结构域注释",
+      "RCSB PDB 9J4P X-ray 晶体结构",
+      "ROSAH 综合征 ALPK1 致病变异文献"
+    ],
+    "referenceEntries": "UniProt Q96QP1；RCSB PDB 9J4P；Open Targets ALPK1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端α激酶域 ATP 结合裂隙周缘与底物进入沟槽",
+        "可直接干预 TIFA Thr9 磷酸化所需的催化构象与底物定位",
+        "优先"
+      ],
+      [
+        "Site B",
+        "激酶域 N/C 叶相对运动界面及调控环邻近区域",
+        "有望稳定非活化构象，降低 ATP 位点保守性带来的交叉反应风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化裂隙的表面暴露螺旋束区域",
+        "适合构象识别与检测型抗体，但功能阻断效应需实验验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ALPK1 为胞内靶点，常规抗体成药可及性受限；功能阻断设计宜采用 VHH、intrabody 或递送型片段，并严格评估激酶域保守表面交叉反应。",
+    "structurePrepZh": "以 9J4P 抗原链 A/B 为模板，补全缺失侧链，校正质子化状态，保留催化裂隙构象并标注 ATP、底物肽和致病变异邻近区域。",
+    "structureRef": "RCSB PDB 9J4P，human ALPK1 kinase domain，2.25 Å X-ray",
+    "antibodies": [
+      "ALPK1 intracellular VHH prototype",
+      "anti-ALPK1 research monoclonal antibody"
+    ],
+    "interfaceFocus": "ATP裂隙、底物肽沟槽与TIFA磷酸化定位界面",
+    "designMode": "胞内阻断型VHH",
+    "candidates": [
+      {
+        "target": "TIFA",
+        "rationale": "TIFA 是 ALPK1 的直接磷酸化底物，Thr9 磷酸化后驱动 FHA 结构域依赖性寡聚化，是同一炎症轴的核心接头蛋白。"
+      },
+      {
+        "target": "TRAF6",
+        "rationale": "TRAF6 被磷酸化 TIFA 复合体招募并介导下游 NF-κB 激活，适合作为 ALPK1-TIFA 轴下游信号放大的替代干预节点。"
+      },
+      {
+        "target": "NFKB1",
+        "rationale": "NFKB1 代表该通路的转录输出节点，参与炎症因子表达程序，可用于机制验证和下游药效标志物分层。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "DCUN1D4",
+  "generatedAt": "2026-08-03T11:51:37.174Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DCUN1D4为胞内DCN样E3辅助因子，参与cullin neddylation反应中UBE2M/NAE活化NEDD8向cullin底物的转移，进而影响CRL泛素连接酶活性。现有关联主要集中于肾小球滤过率、血清肌酐及体成分等复杂性状，提示其可能处于蛋白稳态与肾功能相关遗传网络，但疾病因果性与可药性证据有限。该蛋白缺乏跨膜区和分泌信号，天然抗原可及性不具备常规治疗抗体优势，更适合作为结构生物学、细胞内递送抗体或机制探针靶点。相比CUL1、RBX1、UBE2M等核心neddylation因子，DCUN1D4具有较清晰的DCUN1结构域晶体结构，可用于界面选择性分子识别设计。",
+    "mechanism": "抗体片段应阻断DCUN1D4的DCUN1结构域与UBE2M或cullin N端区域形成催化复合物，从而抑制NEDD8向cullin赖氨酸位点转移。",
+    "selectedEpitope": "优先锁定DCUN1结构域中UBE2M结合沟槽及疏水界面，避免仅针对非功能性晶体接触面。",
+    "diseaseDirection": "肾功能性状与蛋白稳态",
+    "domain": "DCUN1D4主要含保守DCUN1样结构域，参与neddylation E3辅助复合物装配。",
+    "evidence": "DCUN1D4结构与neddylation通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform遗传关联数据",
+      "UniProt Q92564蛋白功能注释",
+      "RCSB PDB 5V89晶体结构",
+      "Reactome NEDD8 conjugation to cullins通路"
+    ],
+    "referenceEntries": "UniProt Q92564；RCSB PDB 5V89；Reactome R-HSA-8951664",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DCUN1结构域UBE2M结合沟槽邻近保守疏水面",
+        "直接干预E2酶装配，机制可验证性较高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DCUN1结构域推定cullin结合侧面",
+        "可能阻断cullin底物招募，适合界面映射后优化",
+        "备选"
+      ],
+      [
+        "Site C",
+        "晶体中暴露但远离催化复合物界面的环区",
+        "易获得结合分子但功能阻断概率较低",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DCUN1D4为胞内蛋白，常规IgG难以到达作用位点；建议采用细胞内递送Fab/VHH或降解偶联验证，并优先评估与DCUN1D1-5家族同源界面的交叉反应。",
+    "structurePrepZh": "以PDB 5V89链A/C为模板，去除结晶添加物并补全缺失侧链；基于DCUN1D1-UBE2M-cullin复合物同源比对标注功能界面。",
+    "structureRef": "RCSB PDB 5V89，X-ray diffraction，1.55 Å",
+    "antibodies": [
+      "暂无获批DCUN1D4治疗抗体",
+      "暂无公开临床同类抗体"
+    ],
+    "interfaceFocus": "UBE2M结合沟槽与cullin装配侧面",
+    "designMode": "胞内Fab/VHH探针",
+    "candidates": [
+      {
+        "target": "UBE2M",
+        "rationale": "UBE2M是NEDD8转移反应的E2酶，与DCUN家族协同促进cullin neddylation。靶向其与DCUN1D4或cullin的复合物界面可直接验证同一通路的功能依赖性。"
+      },
+      {
+        "target": "NAE1",
+        "rationale": "NAE1与UBA3组成NEDD8活化酶，位于cullin neddylation通路上游。该节点具有明确药理学先例，可作为通路抑制强度与表型关联的参照靶点。"
+      },
+      {
+        "target": "CUL1",
+        "rationale": "CUL1是CRL复合物核心cullin底物，其neddylation状态决定SCF类泛素连接酶活性。与DCUN1D4同属NEDD8-cullin调控轴，适合进行底物端界面比较。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

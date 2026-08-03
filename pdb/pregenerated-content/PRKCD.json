@@ -1,0 +1,65 @@
+{
+  "gene": "PRKCD",
+  "generatedAt": "2026-08-03T15:35:04.767Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PRKCD编码的PKCδ参与B细胞受体、FcεRI及凋亡相关信号，可影响淋巴细胞增殖、肥大细胞活化和髓系白血病细胞存活。该蛋白主要为胞质丝氨酸/苏氨酸激酶，天然状态下缺乏稳定胞外结构域，抗体可及性显著弱于膜受体或分泌因子。其优先级来自强疾病遗传与功能关联及高分辨率激酶结构支持，但作为传统细胞外抗体靶点应低于KIT、FCER1A等同通路膜靶点。",
+    "mechanism": "抗体策略宜限定为胞内递送或研究级构象捕获，阻断ATP在激酶结构域催化裂隙结合，抑制底物磷酸化转移。",
+    "selectedEpitope": "优先识别激酶结构域N-lobe/C-lobe间ATP结合裂隙邻近构象表位。",
+    "diseaseDirection": "血液肿瘤与免疫失衡",
+    "domain": "PRKCD含C1二酰甘油结合区、C2样调节区及C端丝氨酸/苏氨酸激酶结构域。",
+    "evidence": "PRKCD疾病遗传与激酶结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q05655功能与亚细胞定位注释",
+      "RCSB PDB 1YRK晶体结构",
+      "Reactome免疫受体与PKC信号通路注释"
+    ],
+    "referenceEntries": "UniProt Q05655；RCSB PDB 1YRK；Open Targets PRKCD",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域ATP结合裂隙及铰链区",
+        "可直接干预ATP结合与催化构象，适合胞内递送型抑制抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "激酶结构域活化环邻近表面",
+        "可影响底物进入及活化环构象稳定性，适合作为变构抑制表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C1调节结构域DAG结合口袋周边",
+        "理论上可干预膜募集，但结构可及性和同源PKC亚型选择性需严格评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PRKCD为胞内激酶，常规循环抗体难以到达作用位点；需采用细胞内抗体、递送载体或降解偶联策略，并重点控制PKC家族交叉反应。",
+    "structurePrepZh": "以1YRK高分辨率晶体结构提取激酶结构域，补全缺失侧链、校正质子化状态，并围绕ATP裂隙与活化环建立构象集合。",
+    "structureRef": "RCSB PDB 1YRK，X射线晶体结构，1.7 Å",
+    "antibodies": [
+      "抗PKCδ研究级单克隆抗体",
+      "抗磷酸化PKCδ pTyr311抗体"
+    ],
+    "interfaceFocus": "ATP裂隙、铰链区与活化环界面",
+    "designMode": "胞内抑制抗体",
+    "candidates": [
+      {
+        "target": "KIT",
+        "rationale": "KIT是肥大细胞增殖和系统性肥大细胞增多症的核心膜受体酪氨酸激酶，胞外免疫球蛋白样结构域具备优良抗体可及性。"
+      },
+      {
+        "target": "FCER1A",
+        "rationale": "FCER1A编码高亲和力IgE受体α链，位于肥大细胞FcεRI信号上游，可通过阻断IgE结合降低肥大细胞活化。"
+      },
+      {
+        "target": "SYK",
+        "rationale": "SYK位于BCR和FcεRI免疫受体信号通路中PRKCD上游，参与ITAM依赖性信号放大；但其胞内定位同样限制常规抗体成药性。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "TAP1",
+  "generatedAt": "2026-08-03T17:07:50.629Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TAP1是MHC I抗原加工与递呈的核心转运因子，负责将胞质肽段转运入内质网腔并供HLA class I装载，其功能缺失与原发性免疫缺陷及多类免疫失衡疾病直接相关。该蛋白为内质网膜蛋白，具有明确胞外可间接可及的腔侧环区与跨膜拓扑特征，适合围绕腔侧暴露环和转运口门控界面进行抗体干预设计。相较于HLA分子本体，靶向TAP1可从抗原加工上游阻断异常递呈，且与TAP2共同构成异源复合体，优先级依据在于其处于抗原装载前端、对MHC I缺陷表型具有更直接的机制解释。",
+    "mechanism": "通过结合TAP1腔侧门控环与跨膜口门区域，阻断肽底物进入转运通道并削弱与TAP2的复合体协同。",
+    "selectedEpitope": "优先选择腔侧暴露环及转运口门控界面，避免直接遮挡ATP结合盒保守位点。",
+    "diseaseDirection": "抗原递呈缺陷/免疫缺陷",
+    "domain": "N端多跨膜转运区与C端ATP结合盒；腔侧环区为主要可及表位候选。",
+    "evidence": "TAP1抗原递呈缺陷靶向证据包",
+    "evidenceSources": [
+      "UniProt: Q03518",
+      "RCSB PDB: 1JJ7",
+      "Open Targets Platform",
+      "NCBI Gene: TAP1"
+    ],
+    "referenceEntries": "UniProt Q03518；RCSB PDB 1JJ7；Human TAP1 reference",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "跨膜口门邻近的腔侧环区",
+        "更可能影响底物进入与通道开闭，适合作为功能阻断表位",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端腔侧可及环与TAP2接触面邻区",
+        "可削弱异源二聚体协同，但需避免影响整体折叠稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端ATP结合盒表面",
+        "与ATP水解耦联紧密，保守性高且存在广泛交叉风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险来自TAP1-TAP2界面保守性高及跨膜区构象异质性；宜优先选择腔侧可及环并采用功能筛选验证对肽转运的抑制强度。",
+    "structurePrepZh": "建议基于1JJ7进行膜环境补全与缺失环区建模，保留TAP1/TAP2复合体构象并进行糖基化与跨膜约束校正。",
+    "structureRef": "Plot et al., Nature 2000; 1JJ7",
+    "antibodies": [
+      "抗TAP1功能性阻断抗体",
+      "抗TAP1单克隆抗体"
+    ],
+    "interfaceFocus": "腔侧门控环与TAP1-TAP2界面",
+    "designMode": "结构导向阻断",
+    "candidates": [
+      {
+        "target": "TAP2",
+        "rationale": "TAP2与TAP1共同构成抗原肽转运复合体，同属MHC I抗原加工通路，适合作为异源二聚体协同位点的并行验证靶点。其抑制效应可与TAP1形成互证。"
+      },
+      {
+        "target": "B2M",
+        "rationale": "B2M位于MHC I装载后续环节，与TAP1上游缺陷共同决定表面HLA I稳态，适合作为同通路递呈缺陷的对照靶点。其生物学作用明确且具有疾病相关性。"
+      },
+      {
+        "target": "NLRC5",
+        "rationale": "NLRC5是MHC I相关基因转录调控因子，虽非膜蛋白，但处于同一抗原递呈通路上游，可用于区分转录层与转运层干预的疾病机制边界。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "SPRTN",
+  "generatedAt": "2026-08-03T16:53:08.227Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SPRTN编码DNA依赖性金属蛋白酶，主要在DNA-蛋白交联修复中切割共价滞留于染色质的蛋白底物，双等位基因缺陷与早衰样特征及肝细胞癌易感综合征相关。该蛋白为核内DNA修复酶，不具备分泌型抗原或稳定胞外结构域，抗体抗原可及性明显弱于膜受体和分泌因子，因此更适合作为机制研究或胞内递送抗体模型靶点。其优先级依据在于6MDW提供1.5 Å高分辨率SprT催化结构域，可精确界定金属结合活性沟槽和底物进入界面；但相较EGFR、PD-1等临床可及性靶点，治疗性常规抗体开发优先级应审慎评估。",
+    "mechanism": "通过胞内递送抗体结合SprT催化结构域，空间阻断SPRTN与DNA-蛋白交联底物及单链DNA邻近界面的接触，抑制金属依赖性蛋白水解活性。",
+    "selectedEpitope": "优先覆盖SprT结构域Zn2+催化沟槽邻近底物进入面，避开高度保守金属配位残基直接占位。",
+    "diseaseDirection": "DNA修复缺陷与肿瘤易感",
+    "domain": "SPRTN含N端SprT样金属蛋白酶结构域，并具有DNA结合相关区域及C端调控基序。",
+    "evidence": "SPRTN结构域与DNA-蛋白交联修复证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9H040功能与结构域注释",
+      "RCSB PDB 6MDW晶体结构",
+      "DNA-蛋白交联修复相关遗传学研究"
+    ],
+    "referenceEntries": "UniProt Q9H040；RCSB PDB 6MDW；Open Targets SPRTN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SprT催化结构域底物进入沟槽邻近面",
+        "可阻断蛋白底物靠近金属催化中心，具备直接功能抑制价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SprT结构域外侧非催化暴露螺旋-环区",
+        "有利于获得高亲和结合体并降低完全封闭保守活性中心的脱靶风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Zn2+配位残基所在高度保守催化核心",
+        "可能产生强抑制但存在构象扰动、交叉反应和成药性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SPRTN为核内酶，常规抗体难以到达作用位点；设计应限定为胞内递送抗体、纳米抗体或研究级阻断工具，并严格评估保守金属蛋白酶界面交叉反应。",
+    "structurePrepZh": "以6MDW链A为结构模板，保留SprT结构域主链与金属配位环境，补建缺失侧链并评估晶体接触对候选表位暴露性的影响。",
+    "structureRef": "RCSB PDB 6MDW，SPRTN SprT结构域，1.5 Å X射线结构",
+    "antibodies": [
+      "暂无获批抗SPRTN治疗性抗体",
+      "研究级抗SPRTN检测抗体"
+    ],
+    "interfaceFocus": "SprT底物进入沟槽与金属催化中心邻近界面",
+    "designMode": "胞内阻断型VHH",
+    "candidates": [
+      {
+        "target": "FANCD2",
+        "rationale": "FANCD2参与复制压力和DNA交联损伤应答，与SPRTN共同维持DNA损伤复制叉稳定性，可作为同源DNA修复缺陷表型的通路候选靶点。"
+      },
+      {
+        "target": "BRCA1",
+        "rationale": "BRCA1介导同源重组修复和复制叉保护，其缺陷与基因组不稳定及肿瘤易感相关，适合用于DNA修复通路联合分层。"
+      },
+      {
+        "target": "DDB1",
+        "rationale": "DDB1参与核苷酸切除修复及Cullin-RING泛素连接酶复合体功能，可影响DNA损伤识别和修复蛋白稳态。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

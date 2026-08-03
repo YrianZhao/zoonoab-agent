@@ -1,0 +1,65 @@
+{
+  "gene": "SERPINB1",
+  "generatedAt": "2026-08-03T16:27:54.347Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SERPINB1主要定位于中性粒细胞和髓系细胞胞质，可抑制中性粒细胞弹性蛋白酶、蛋白酶3和组织蛋白酶G，从而限制炎症性蛋白酶介导的组织损伤。其Open Targets关联以蛋白测量、血液学表型、2型糖尿病和肿瘤为主，提示更适合作为髓系炎症状态和蛋白酶稳态相关生物标志物，而非经典胞外阻断型治疗靶点。SERPINB1缺乏信号肽且不属于膜受体或分泌蛋白，抗原可及性弱于ELANE、PRTN3等可释放至胞外炎症微环境的同通路蛋白酶，因此优先级宜定位为检测、细胞内递送或组织病理抗体开发。",
+    "mechanism": "抗体策略以识别SERPINB1的活性构象或蛋白酶复合物为核心，用于区分游离抑制剂与被ELANE、PRTN3或CTSG裂解后的构象状态。",
+    "selectedEpitope": "优先覆盖reactive center loop邻近β-sheet A插入界面，识别蛋白酶捕获相关构象。",
+    "diseaseDirection": "髓系炎症与蛋白酶稳态标志物",
+    "domain": "SERPINB1为无分泌信号肽的胞内clade B serpin，含保守serpin折叠、β-sheet A和C端reactive center loop。",
+    "evidence": "SERPINB1髓系蛋白酶抑制与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt P30740功能注释",
+      "RCSB PDB 4GA7实验结构",
+      "中性粒细胞丝氨酸蛋白酶抑制研究文献"
+    ],
+    "referenceEntries": "UniProt P30740；RCSB PDB 4GA7；Open Targets SERPINB1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "reactive center loop及其β-sheet A插入邻域",
+        "可报告抑制剂活化、蛋白酶捕获和裂解构象，适合构象选择性抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "serpin核心折叠外露α螺旋与β-sheet C侧面",
+        "结构稳定且远离关键裂解位点，适合总蛋白检测抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "分子间二聚体接触面或晶体堆积相关界面",
+        "可能反映4GA7晶体环境而非生理表位，需排除构象伪影",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SERPINB1为胞内蛋白，体内阻断可及性受限；RCL区域构象可变且易受蛋白酶裂解影响，需分别评估游离态、裂解态和复合态交叉反应。",
+    "structurePrepZh": "以4GA7链A或B建立单体抗原模型，去除晶体接触冗余，补全缺失侧链并标注RCL、β-sheet A及潜在裂解位点后进行表位暴露分析。",
+    "structureRef": "RCSB PDB 4GA7，X-ray diffraction，2.9 Å",
+    "antibodies": [
+      "commercial anti-SERPINB1 clone EPR13052",
+      "commercial anti-SERPINB1 clone 3E12"
+    ],
+    "interfaceFocus": "RCL-β-sheet A构象转换界面",
+    "designMode": "构象识别型Fab/VHH",
+    "candidates": [
+      {
+        "target": "ELANE",
+        "rationale": "ELANE编码中性粒细胞弹性蛋白酶，是SERPINB1的主要抑制底物之一；其胞外释放后直接驱动炎症组织蛋白降解，抗原可及性优于SERPINB1。"
+      },
+      {
+        "target": "PRTN3",
+        "rationale": "PRTN3编码蛋白酶3，与SERPINB1共同处于中性粒细胞丝氨酸蛋白酶稳态轴；其在ANCA相关血管炎中具有明确自身抗原和炎症机制关联。"
+      },
+      {
+        "target": "CTSG",
+        "rationale": "CTSG编码组织蛋白酶G，同为SERPINB1可抑制的中性粒细胞颗粒丝氨酸蛋白酶；靶向该酶可直接干预蛋白酶介导的炎症放大和基质损伤。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "AZIN1",
+  "generatedAt": "2026-08-03T10:44:22.104Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "AZIN1为胞质鸟氨酸脱羧酶样蛋白，主要通过高亲和力结合抗酶蛋白OAZ1/OAZ2，解除其对ODC1及多胺转运的抑制，从而影响多胺稳态、细胞增殖和代谢表型。现有关联信号主要集中于血脂测量、糖化血红蛋白及白细胞数量等表型，提示其可能处于代谢与造血细胞增殖相关网络，但并非经典胞外疾病驱动受体。由于AZIN1缺乏分泌型或膜外结构域，天然抗原可及性不支持常规治疗性抗体直接结合；其优先级低于ODC1通路中具细胞外可及性的调节节点，更适合作为机制研究或细胞内递送抗体设计对象。",
+    "mechanism": "设计目标为结合AZIN1与OAZ1/OAZ2接触界面，竞争性阻断AZIN1 sequestration antizyme，恢复OAZ介导的ODC1降解与多胺摄取抑制。",
+    "selectedEpitope": "优先聚焦AZIN1鸟氨酸脱羧酶样折叠中OAZ结合沟槽及二聚体邻近界面，避开深埋催化样核心。",
+    "diseaseDirection": "多胺代谢与血液代谢表型",
+    "domain": "AZIN1为ODC样PLP依赖酶折叠蛋白，含N端小结构域与C端TIM桶样催化样核心。",
+    "evidence": "AZIN1多胺稳态与代谢表型证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt O14977功能注释",
+      "RCSB PDB 4ZGZ晶体结构记录",
+      "多胺代谢ODC1-OAZ-AZIN调控文献"
+    ],
+    "referenceEntries": "UniProt O14977；RCSB PDB 4ZGZ；Open Targets AZIN1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "OAZ1/OAZ2结合沟槽邻近外露螺旋与环区",
+        "可竞争阻断AZIN1-antizyme相互作用，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ODC样二聚体界面附近可及表面",
+        "可能影响构象稳定性及antizyme结合亲和力，适合作为功能调节备选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PLP依赖酶样核心深部保守区域",
+        "保守性高且可及性有限，存在交叉反应与构象扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "AZIN1为胞内蛋白，常规抗体难以到达作用位点；4ZGZ分辨率较低，界面侧链定位不宜直接作为精细表位依据，需结合AlphaFold模型与突变验证。",
+    "structurePrepZh": "以4ZGZ链A-D为实验模板进行生物装配评估，清理低置信电子密度区域，并与人源AZIN1预测结构比对修正环区。",
+    "structureRef": "RCSB PDB 4ZGZ，X-ray diffraction，5.81 Å",
+    "antibodies": [
+      "无已获批AZIN1治疗性抗体",
+      "实验研究级抗AZIN1抗体"
+    ],
+    "interfaceFocus": "AZIN1-OAZ1/OAZ2结合沟槽与二聚体邻近面",
+    "designMode": "胞内靶点探索",
+    "candidates": [
+      {
+        "target": "ODC1",
+        "rationale": "ODC1是多胺生物合成限速酶，受OAZ介导降解调控，与AZIN1处于同一多胺稳态轴；其机制证据较AZIN1更直接。"
+      },
+      {
+        "target": "OAZ1",
+        "rationale": "OAZ1直接结合ODC1并促进其蛋白酶体降解，同时抑制多胺摄取；其与AZIN1的竞争性结合构成核心调控节点。"
+      },
+      {
+        "target": "SLC3A2",
+        "rationale": "SLC3A2参与多胺摄取相关转运复合体功能，并具有细胞表面可及性；相较胞内AZIN1，更适合常规抗体干预策略。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

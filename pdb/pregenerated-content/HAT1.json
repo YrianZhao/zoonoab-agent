@@ -1,0 +1,65 @@
+{
+  "gene": "HAT1",
+  "generatedAt": "2026-08-03T19:40:00.140Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HAT1 是细胞核内 I 型组蛋白乙酰转移酶，主要催化新生组蛋白 H4 Lys5 与 Lys12 乙酰化，参与染色质装配、DNA复制偶联核小体沉积和DNA损伤应答；其疾病关联更多反映表观遗传稳态、神经退行性病变及血压相关性状中的遗传证据。HAT1 缺乏典型分泌或跨膜胞外结构域，天然抗原可及性不支持常规体内阻断型抗体开发，但其催化结构域具有高分辨率晶体结构，可用于胞内抗体、纳米抗体或结构探针设计。相较于广泛作用的HDAC或多亚基染色质复合物靶点，HAT1具备明确乙酰辅酶A结合口袋和组蛋白H4底物沟槽，适合作为机制验证型抗体设计对象。",
+    "mechanism": "设计抗体阻断HAT1催化结构域与组蛋白H4 N端尾部底物沟槽的结合，并干扰乙酰辅酶A邻近催化构象稳定，从而抑制H4K5/K12乙酰化。",
+    "selectedEpitope": "优先靶向GNAT样催化核心中组蛋白H4底物结合沟槽邻近环区，避开深埋乙酰辅酶A口袋。",
+    "diseaseDirection": "表观遗传调控与神经退行性疾病",
+    "domain": "HAT1含N端乙酰转移酶催化结构域和C端辅助结合区域，形成乙酰辅酶A依赖性GNAT折叠。",
+    "evidence": "HAT1结构功能与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt O14929功能注释",
+      "RCSB PDB 6VO5晶体结构",
+      "文献报道HAT1介导H4K5/K12乙酰化"
+    ],
+    "referenceEntries": "UniProt: O14929; RCSB PDB: 6VO5; Gene: HAT1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "组蛋白H4 N端尾部底物结合沟槽邻近环区",
+        "可直接阻断HAT1识别H4底物并抑制H4K5/K12乙酰转移反应",
+        "优先"
+      ],
+      [
+        "Site B",
+        "乙酰辅酶A结合口袋外缘与催化核心表面",
+        "可变构影响辅因子定位，但需避免深口袋小分子竞争式不可及问题",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端辅助结合区域暴露面",
+        "可能影响蛋白复合物装配或底物递呈，但功能阻断因果性较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HAT1为胞内核蛋白，常规抗体递送与天然抗原可及性风险较高；建议定位于胞内抗体、VHH结构探针或外源递送验证体系。",
+    "structurePrepZh": "以6VO5高分辨率晶体结构为模板，保留催化结构域、辅因子邻近残基和底物沟槽构象，检查多链晶体接触对表位暴露的影响。",
+    "structureRef": "RCSB PDB 6VO5，HAT1晶体结构，1.6 Å",
+    "antibodies": [
+      "HAT1研究级单克隆抗体",
+      "HAT1研究级多克隆抗体"
+    ],
+    "interfaceFocus": "H4底物沟槽及乙酰辅酶A口袋外缘",
+    "designMode": "胞内阻断型VHH",
+    "candidates": [
+      {
+        "target": "RBBP7",
+        "rationale": "RBBP7与HAT1形成HAT-B相关复合物，参与新生组蛋白H4递呈和染色质装配，是同一组蛋白乙酰化装配轴上的真实互作因子。"
+      },
+      {
+        "target": "RBBP4",
+        "rationale": "RBBP4为组蛋白结合WD-repeat蛋白，可在染色质装配和组蛋白乙酰化相关复合物中调节H3/H4底物识别，适合作为同通路候选节点。"
+      },
+      {
+        "target": "CHAF1A",
+        "rationale": "CHAF1A是CAF-1复合物核心亚基，介导复制偶联核小体装配，并与HAT1标记的新生乙酰化组蛋白沉积过程功能相连。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

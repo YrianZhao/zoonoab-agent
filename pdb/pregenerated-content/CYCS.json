@@ -1,0 +1,65 @@
+{
+  "gene": "CYCS",
+  "generatedAt": "2026-08-03T11:46:03.690Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CYCS 编码线粒体细胞色素 c，是内源性凋亡通路中连接线粒体外膜通透化与 APAF1 凋亡小体装配的核心因子，CYCS 变异与常染色体显性血小板减少症相关。该蛋白在稳态下主要定位于线粒体膜间隙，并非经典胞外抗原，因此抗体可及性弱于分泌因子或膜受体。其优先级主要来自明确的人类遗传学证据和高分辨率结构支持，但作为治疗性抗体靶点的开发优先级低于同通路中具有胞外可及性的血小板生成调控靶点。",
+    "mechanism": "设计抗体旨在结合 CYCS 的 APAF1 识别相关表面，阻断细胞色素 c 与 APAF1 WD40 β-propeller 区域的结合，从而抑制凋亡小体装配。",
+    "selectedEpitope": "优先覆盖 heme 暴露面邻近的 Lys72/Lys73 与 Ω-loop 区域，干预 APAF1 结合界面。",
+    "diseaseDirection": "遗传性血小板减少与凋亡调控",
+    "domain": "CYCS 为单结构域小型血红素蛋白，含共价结合 heme c 及多段 Ω-loop 表面构象。",
+    "evidence": "CYCS 血小板减少症与凋亡通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt P99999 功能与变异注释",
+      "RCSB PDB 5TY3 高分辨率晶体结构",
+      "OMIM 常染色体显性血小板减少症遗传证据"
+    ],
+    "referenceEntries": "UniProt P99999；RCSB PDB 5TY3；Open Targets CYCS",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "heme 暴露面邻近 Lys72/Lys73 与 Ω-loop",
+        "贴近 APAF1 识别相关表面，具备阻断凋亡小体装配的机制价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N 端 α-螺旋与 C 端 α-螺旋交界面",
+        "构象稳定且结构解析清晰，可用于获得高亲和结合分子",
+        "备选"
+      ],
+      [
+        "Site C",
+        "heme c 结合口袋及 Cys14/Cys17 共价连接邻域",
+        "可能影响电子传递与天然折叠，存在功能非特异干扰风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CYCS 为线粒体内蛋白，天然胞外暴露有限，抗体递送与药效转化风险较高；宜限定为机制验证或胞内递送平台适配设计。",
+    "structurePrepZh": "以 5TY3 的 A/B 链为抗原模板，保留 heme c 辅基与关键 Ω-loop 构象，去除晶体溶剂后进行质子化与界面电荷评估。",
+    "structureRef": "RCSB PDB 5TY3，1.25 Å X-ray human CYCS",
+    "antibodies": [
+      "anti-cytochrome c clone 7H8.2C12",
+      "anti-cytochrome c clone 6H2.B4"
+    ],
+    "interfaceFocus": "APAF1 结合相关正电表面与 Ω-loop",
+    "designMode": "胞内靶点机制验证",
+    "candidates": [
+      {
+        "target": "APAF1",
+        "rationale": "APAF1 直接结合释放入胞质的 CYCS，并募集 CASP9 形成凋亡小体，是同一内源性凋亡通路中的核心装配因子。"
+      },
+      {
+        "target": "CASP9",
+        "rationale": "CASP9 是凋亡小体下游起始半胱天冬酶，介导执行者 caspase 激活，与 CYCS-APAF1 轴处于同一细胞死亡级联。"
+      },
+      {
+        "target": "BAX",
+        "rationale": "BAX 参与线粒体外膜通透化并促进 CYCS 从膜间隙释放，是 CYCS 进入胞质并启动凋亡小体形成的上游调控节点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "LDHC",
+  "generatedAt": "2026-08-03T13:51:00.753Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "LDHC 是睾丸型乳酸脱氢酶亚型，催化丙酮酸与乳酸之间的 NADH/NAD+ 依赖性转化，可能通过细胞代谢状态与乳酸稳态影响神经退行性疾病相关能量代谢表型。该蛋白主要为胞质酶，缺乏天然跨膜区和分泌信号，抗原可及性不及膜受体或分泌蛋白，因此更适合用于细胞内靶点检测、递送型抗体或构象稳定抗体研究。相比 LDHA、LDHB 等广泛表达同工酶，LDHC 组织分布更受限、结构同源性明确，便于建立高选择性表位筛选与同工酶交叉反应风险控制策略。",
+    "mechanism": "设计抗体优先识别 LDHC 四聚体外露构象表位，阻断 NADH/丙酮酸结合口袋邻近环区或稳定非活性构象，从而降低乳酸脱氢酶催化循环效率。",
+    "selectedEpitope": "优先选择 Rossmann NAD 结合域外侧环与底物口袋邻近 α/β 界面，避开 LDHA/LDHB 高保守核心催化残基。",
+    "diseaseDirection": "神经退行性疾病代谢表型",
+    "domain": "LDHC 为可溶性乳酸脱氢酶，含 N 端 Rossmann NAD 结合域、C 端底物结合域，并以同源四聚体发挥催化功能。",
+    "evidence": "LDHC 结构与代谢疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P07864 curated protein annotation",
+      "RCSB PDB 8ZKJ X-ray crystal structure",
+      "Gene Ontology lactate dehydrogenase activity annotation"
+    ],
+    "referenceEntries": "UniProtKB:P07864；RCSB PDB:8ZKJ；HGNC:6544",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "NAD 结合域外侧可及环区",
+        "邻近辅因子结合路径，可用于构象干预并提升同工酶选择性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C 端底物结合域表面螺旋-环区",
+        "靠近丙酮酸/乳酸结合口袋，可设计变构型或活性位点邻近阻断抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "四聚体亚基间界面",
+        "可能影响寡聚体稳定性，但界面保守且天然可及性受构象限制",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "LDHC 与 LDHA、LDHB 催化核心高度同源，活性位点抗体存在交叉反应风险；设计应聚焦外露非保守环区，并通过同工酶面板筛除广谱结合克隆。",
+    "structurePrepZh": "以 8ZKJ 的 A、B 链为抗原模板，补全缺失侧链并保留生理四聚体界面信息；去除结晶小分子后评估 NAD 结合域与底物口袋邻近表面可及性。",
+    "structureRef": "RCSB PDB 8ZKJ，X-ray diffraction，2.38 Å",
+    "antibodies": [
+      "anti-LDHC monoclonal antibody clone OTI1A2",
+      "anti-LDHC monoclonal antibody clone 4C3"
+    ],
+    "interfaceFocus": "NAD 结合域外侧环与底物口袋邻近界面",
+    "designMode": "胞内酶构象抗体",
+    "candidates": [
+      {
+        "target": "LDHA",
+        "rationale": "LDHA 与 LDHC 同属乳酸脱氢酶催化网络，参与丙酮酸向乳酸转化并影响乳酸积累与 NAD+/NADH 平衡；可作为同通路代谢重编程参照靶点。"
+      },
+      {
+        "target": "LDHB",
+        "rationale": "LDHB 催化乳酸与丙酮酸互转并在氧化代谢组织中表达较高，与 LDHC 共享辅因子依赖反应机制；适合作为同工酶选择性与功能补偿评估靶点。"
+      },
+      {
+        "target": "SLC16A1",
+        "rationale": "SLC16A1 编码 MCT1，负责乳酸跨膜转运，与 LDH 反应共同维持细胞乳酸通量和代谢耦联；在乳酸稳态通路中可作为膜可及替代靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

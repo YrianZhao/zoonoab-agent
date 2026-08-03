@@ -1,0 +1,65 @@
+{
+  "gene": "TLR2",
+  "generatedAt": "2026-08-03T17:19:32.290Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TLR2是先天免疫模式识别受体，识别分枝杆菌脂蛋白、脂阿拉伯甘露聚糖及多种细菌脂肽后与TLR1或TLR6形成异源二聚体，驱动MYD88依赖性NF-κB与MAPK炎症反应，因而与结核病和免疫缺陷表型存在明确通路关联。该蛋白为I型跨膜受体，胞外富含亮氨酸重复序列结构域直接暴露于细胞表面，具备抗体结合和阻断配体结合界面的可及性。相较MYD88、IRAK4等胞内节点，TLR2更适合抗体药物干预；相较下游炎症因子，阻断TLR2可更早限制病原相关分子模式诱导的炎症级联，具有较高设计优先级。",
+    "mechanism": "抗体阻断TLR2胞外LRR11-LRR14区域与细菌脂肽及TLR1/TLR6共受体的复合界面，抑制TLR2异源二聚化和MYD88募集。",
+    "selectedEpitope": "优先覆盖TLR2 LRR11-LRR14配体结合沟槽及TLR1/TLR6接触界面。",
+    "diseaseDirection": "结核病与先天免疫炎症",
+    "domain": "TLR2含N端胞外LRR结构域、单跨膜螺旋和胞内TIR信号结构域。",
+    "evidence": "TLR2结核病先天免疫阻断证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt O60603功能与结构域注释",
+      "RCSB PDB 2Z80晶体结构",
+      "TLR2-TLR1脂肽复合物结构与先天免疫文献"
+    ],
+    "referenceEntries": "UniProt: O60603; RCSB PDB: 2Z80; Open Targets: TLR2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "LRR11-LRR14配体结合沟槽",
+        "直接干预脂肽结合与受体活化，阻断效应最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "LRR9-LRR12侧向共受体接触面",
+        "限制TLR2与TLR1/TLR6异源二聚化，降低信号启动效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端LRRNT-LRR3弯曲外侧面",
+        "可获得高可及结合，但远离主配体沟槽，功能阻断需实验证实",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TLR2参与抗感染免疫，强阻断可能削弱宿主对分枝杆菌及革兰阳性菌的防御。设计宜偏向可调节阻断并避免跨TLR家族保守LRR表面交叉反应。",
+    "structurePrepZh": "以2Z80高分辨率X射线结构为模板，保留TLR2胞外LRR链，校正糖基化邻近区域、缺失环和脂肽结合沟槽构象后进行表位建模。",
+    "structureRef": "Jin et al., Cell, 2007; PDB 2Z80 TLR1-TLR2-lipopeptide complex",
+    "antibodies": [
+      "OPN-305",
+      "T2.5"
+    ],
+    "interfaceFocus": "LRR11-LRR14脂肽沟槽与TLR1/TLR6二聚化界面",
+    "designMode": "阻断型Fab/VHH设计",
+    "candidates": [
+      {
+        "target": "TLR1",
+        "rationale": "TLR1与TLR2形成异源二聚体识别三酰化细菌脂肽，是同一TLR2-MYD88炎症通路的直接共受体。靶向TLR1可选择性限制TLR2/TLR1轴。"
+      },
+      {
+        "target": "TLR6",
+        "rationale": "TLR6与TLR2形成复合物识别二酰化脂肽，参与细菌PAMP诱导的NF-κB激活。其胞外LRR结构域同样具备抗体可及性。"
+      },
+      {
+        "target": "CD14",
+        "rationale": "CD14参与多种微生物脂质配体递呈并促进TLR2介导的先天免疫激活，位于同一病原识别上游模块。阻断CD14可降低TLR2配体递送效率。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

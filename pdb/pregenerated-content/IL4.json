@@ -1,0 +1,65 @@
+{
+  "gene": "IL4",
+  "generatedAt": "2026-08-03T13:27:46.960Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IL4是2型炎症反应的核心细胞因子，可驱动IL4Rα复合受体介导的JAK1/JAK3-STAT6信号，促进IgE类别转换、嗜酸粒细胞相关炎症和特应性皮炎、哮喘等疾病表型。IL4为分泌型四螺旋束细胞因子，抗原整体位于胞外环境，天然可及性优于胞内转录因子或激酶节点。相较下游STAT6或JAK家族靶点，IL4阻断可在配体层面同时限制IL4Rα/γc受体复合体装配，具备更直接的抗体干预优先级。",
+    "mechanism": "通过结合IL4受体结合面，阻断IL4与IL4Rα的初始高亲和力相互作用，并抑制后续γc募集，降低STAT6磷酸化信号。",
+    "selectedEpitope": "优先覆盖IL4四螺旋束中A/C螺旋邻近的IL4Rα结合界面，兼顾构象稳定性。",
+    "diseaseDirection": "2型炎症与过敏性疾病",
+    "domain": "成熟IL4为分泌型短链四α螺旋束细胞因子，含A-D螺旋及AB、CD连接区。",
+    "evidence": "IL4-IL4Rα-STAT6轴抗体阻断证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P05112功能与分泌蛋白注释",
+      "RCSB PDB 2D48高分辨率晶体结构",
+      "IL4/IL4Rα受体复合体结构与2型炎症文献"
+    ],
+    "referenceEntries": "UniProt P05112；RCSB PDB 2D48；Open Targets IL4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "A/C螺旋组成的IL4Rα结合面",
+        "直接阻断IL4与IL4Rα高亲和力结合，机制确定性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "D螺旋及邻近CD环的γc募集相关界面",
+        "可干扰受体异二聚复合体形成，适合作为功能增强表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "AB环与非受体结合外露面",
+        "可获得高结合信号，但中和活性可能不足，需功能筛选确认",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IL4体积较小且受体结合面集中，抗体遮挡需避免仅结合非功能面；建议以受体竞争实验和STAT6磷酸化抑制作为核心筛选标准。",
+    "structurePrepZh": "以2D48链A为抗原模板，保留成熟细胞因子四螺旋束构象，补全缺失侧链并标注IL4Rα与γc相关界面用于表位约束。",
+    "structureRef": "RCSB PDB 2D48，human IL4 X-ray结构，1.65 Å",
+    "antibodies": [
+      "Pascolizumab",
+      "Dupilumab"
+    ],
+    "interfaceFocus": "IL4Rα结合面与γc募集邻近界面",
+    "designMode": "配体中和型抗体设计",
+    "candidates": [
+      {
+        "target": "IL4R",
+        "rationale": "IL4Rα是IL4和IL13共享的受体α链，阻断该节点可同时抑制两类2型炎症细胞因子信号。其胞外受体结构域具备明确抗体可及性。"
+      },
+      {
+        "target": "IL13",
+        "rationale": "IL13与IL4共同驱动STAT6依赖的气道黏液分泌、屏障炎症和特应性病变，是同一2型炎症通路中的并行配体靶点。"
+      },
+      {
+        "target": "IL2RG",
+        "rationale": "IL2RG编码共同γ链，参与I型IL4受体复合体形成并传递JAK3相关信号；其作为共享受体亚基需重点评估免疫安全窗口。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

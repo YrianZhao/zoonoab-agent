@@ -1,0 +1,65 @@
+{
+  "gene": "DTNA",
+  "generatedAt": "2026-08-03T18:46:02.018Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DTNA编码α-dystrobrevin，是肌营养不良蛋白相关糖蛋白复合体的胞内支架组分，参与连接肌膜稳定性、肌动蛋白骨架与肌肉损伤易感性，遗传关联指向肌病、横纹肌溶解倾向、肌营养不良及房颤等表型。该蛋白主要定位于胞质侧肌膜复合体和神经肌肉连接处，缺乏经典胞外结构域或分泌形式，因此整蛋白并非理想的常规细胞表面阻断抗体靶点。其优先级主要来自明确的人类遗传学和复合体结构生物学价值，适合作为胞内构象识别、检测型抗体或递送型抗体片段开发对象；相较同通路的胞外糖蛋白靶点，治疗性可及性较弱但机制定位更直接。",
+    "mechanism": "设计抗体片段识别DTNA卷曲螺旋区，干预或标记其与dystrophin/utrophin及syntrophin复合体的装配界面。",
+    "selectedEpitope": "优先覆盖2E5R所示α-dystrobrevin卷曲螺旋二聚化/蛋白互作界面，避开高度保守疏水核心。",
+    "diseaseDirection": "遗传性肌病与肌膜稳定性障碍",
+    "domain": "DTNA含N端EF-hand样区域、ZZ型锌指、卷曲螺旋互作区及C端可变剪接区。",
+    "evidence": "DTNA肌膜复合体遗传关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9Y4J8蛋白注释",
+      "RCSB PDB 2E5R溶液NMR结构",
+      "肌营养不良蛋白相关糖蛋白复合体文献"
+    ],
+    "referenceEntries": "UniProt Q9Y4J8；RCSB PDB 2E5R；Open Targets DTNA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "2E5R卷曲螺旋外侧带电互作面",
+        "有利于识别DTNA复合体装配构象并降低疏水核心扰动",
+        "优先"
+      ],
+      [
+        "Site B",
+        "卷曲螺旋末端暴露环区及邻近极性残基",
+        "适合构建构象敏感检测抗体，降低交叉识别风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "卷曲螺旋疏水二聚化核心",
+        "可能影响蛋白折叠稳定性且表位可及性有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DTNA为胞内支架蛋白，常规IgG难以进入靶细胞，治疗性阻断存在递送限制；建议优先定位为研究、诊断或细胞内抗体片段开发。",
+    "structurePrepZh": "以2E5R NMR构象集合评估卷曲螺旋保守性，筛除低置信柔性末端，并结合AlphaFold全长模型映射剪接异构体差异。",
+    "structureRef": "RCSB PDB 2E5R，human α-dystrobrevin结构域NMR结构",
+    "antibodies": [
+      "anti-alpha-dystrobrevin clone MANDRA1",
+      "anti-alpha-dystrobrevin clone 13H1"
+    ],
+    "interfaceFocus": "卷曲螺旋蛋白互作面与二聚化界面",
+    "designMode": "胞内构象识别",
+    "candidates": [
+      {
+        "target": "DMD",
+        "rationale": "DMD编码dystrophin，是肌营养不良蛋白相关糖蛋白复合体的核心骨架连接蛋白，与DTNA共同维持肌膜力学稳定性。"
+      },
+      {
+        "target": "UTRN",
+        "rationale": "UTRN编码utrophin，可与dystrobrevin和syntrophin组分形成相关肌膜支架复合体，是DMD缺陷背景下的重要补偿性通路节点。"
+      },
+      {
+        "target": "SNTA1",
+        "rationale": "SNTA1编码α1-syntrophin，属于DTNA所在肌膜支架复合体的直接结合组分，并参与离子通道和信号蛋白锚定。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "RPA1",
+  "generatedAt": "2026-08-03T16:08:13.084Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RPA1 是复制蛋白 A 复合体的大亚基，参与端粒单链 DNA 结合、复制压力应答和 ATR 通路激活，其遗传证据与端粒相关肺纤维化及骨髓衰竭表型存在关联。该蛋白主要定位于细胞核并结合 ssDNA，不具备分泌蛋白或细胞表面受体的天然抗原可及性，因此更适合作为胞内机制研究或递送型抗体片段设计对象。相较于同通路中具膜近端或分泌特征的靶点，RPA1 的优势在于高分辨率结构和明确的 OB-fold–ssDNA 界面，可支持精确表位定义，但整体优先级受细胞内可及性限制。",
+    "mechanism": "设计抗体片段阻断 RPA1 OB-fold 与端粒单链 DNA 的结合界面，干扰 RPA 复合体稳定装载及 ATR 复制压力信号起始。",
+    "selectedEpitope": "优先覆盖 DBD-A/DBD-B 的 ssDNA 结合沟槽及相邻碱基堆叠残基界面。",
+    "diseaseDirection": "端粒病与骨髓衰竭机制",
+    "domain": "RPA1 含 N 端 DBD-F、中央 DBD-A/DBD-B 与 C 端 DBD-C，均属 OB-fold DNA 结合结构域。",
+    "evidence": "RPA1 端粒维护与复制压力结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt P27694 功能与亚细胞定位注释",
+      "RCSB PDB 4O0A 高分辨率晶体结构",
+      "端粒维护与 ATR 复制压力应答文献"
+    ],
+    "referenceEntries": "UniProt P27694；RCSB PDB 4O0A；Open Targets RPA1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DBD-A/DBD-B ssDNA 结合沟槽",
+        "可直接竞争单链 DNA 结合并影响 RPA 复合体装载",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DBD-F 蛋白互作调控面",
+        "可能影响 ATRIP、DNA 损伤应答因子招募及检查点启动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "DBD-C 与 RPA2/RPA3 复合体邻近界面",
+        "存在破坏 RPA 三聚体稳定性的风险，需避免非选择性构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RPA1 为核内必需蛋白，系统性阻断可能引发复制毒性。设计宜采用可控递送、可逆亲和力与界面限定策略，避免广泛破坏 RPA 三聚体。",
+    "structurePrepZh": "以 4O0A 链 A 为模板，补全缺失侧链并保留 OB-fold 核心构象；去除晶体非功能性接触后标注 ssDNA 结合沟槽。",
+    "structureRef": "RCSB PDB 4O0A，X-ray diffraction，1.2 Å",
+    "antibodies": [
+      "抗 RPA70 研究级抗体",
+      "抗 RPA1/70 kDa 亚基抗体"
+    ],
+    "interfaceFocus": "OB-fold ssDNA 结合沟槽与 DBD-F 调控面",
+    "designMode": "胞内抗体片段",
+    "candidates": [
+      {
+        "target": "RPA2",
+        "rationale": "RPA2 是 RPA 三聚体核心亚基，参与 ssDNA 结合复合体稳定和 ATR 检查点信号传递，与 RPA1 同属复制压力与端粒维护通路。"
+      },
+      {
+        "target": "RPA3",
+        "rationale": "RPA3 与 RPA1、RPA2 共同形成异源三聚体，是 RPA 复合体装配与单链 DNA 结合功能所必需的同通路靶点。"
+      },
+      {
+        "target": "ATRIP",
+        "rationale": "ATRIP 通过识别 RPA 包被的 ssDNA 招募 ATR 至复制压力位点，是 RPA1 下游检查点激活轴中的关键连接因子。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

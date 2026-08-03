@@ -1,0 +1,65 @@
+{
+  "gene": "NAGLU",
+  "generatedAt": "2026-08-03T14:33:03.989Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NAGLU 是溶酶体肝素硫酸降解通路中的外切糖苷酶，负责水解非还原端 N-乙酰-α-D-葡萄糖胺残基；其功能缺陷导致底物蓄积，是黏多糖贮积症 IIIB 型的直接致病环节。该蛋白为可溶性溶酶体酶，具备成熟酶结构域和可工程化的胞外递送可及性，适合通过抗体介导转运或酶稳定化策略改善组织摄取。相较于同通路下游辅助酶，NAGLU 与 MPS IIIB 的遗传因果关系更直接，Open Targets 关联强度最高，具有优先建模与抗体递送设计价值。",
+    "mechanism": "构建抗体或双特异分子结合 NAGLU 非催化表面，同时保留底物沟槽活性，通过受体介导内吞促进 NAGLU 递送至溶酶体并恢复肝素硫酸降解。",
+    "selectedEpitope": "优先选择 TIM-barrel 催化结构域远离酸性催化残基与底物结合沟槽的外侧环区表位。",
+    "diseaseDirection": "黏多糖贮积症 IIIB 型酶递送",
+    "domain": "NAGLU 为 GH89 家族溶酶体糖苷酶，包含 N 端 β 结构域、中央 TIM-barrel 催化域及 C 端 β 夹层结构域。",
+    "evidence": "NAGLU-MPS IIIB 酶缺陷与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P54802 functional annotation",
+      "RCSB PDB 4XWH X-ray structure",
+      "OMIM mucopolysaccharidosis IIIB genetic evidence"
+    ],
+    "referenceEntries": "UniProt P54802；RCSB PDB 4XWH；GH89 glycosidase family",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C 端 β 夹层结构域外侧暴露环",
+        "远离催化沟槽，适合构建稳定结合与递送型抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N 端 β 结构域可及表面",
+        "可能提高抗原捕获效率，并降低对酶活性中心的空间干扰",
+        "备选"
+      ],
+      [
+        "Site C",
+        "TIM-barrel 催化域底物结合沟槽邻近区域",
+        "可能影响肝素硫酸底物进入及催化构象，应避免高亲和阻断",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "催化沟槽邻近表位存在抑制酶活风险，应通过底物水解实验筛除干扰型克隆，并优先保留中性或稳定化结合模式。",
+    "structurePrepZh": "以 4XWH 同源四链晶体结构为模板，提取成熟 NAGLU 单体，校正糖基化位点与酸性 pH 质子化状态后进行表面可及性评估。",
+    "structureRef": "RCSB PDB 4XWH，human NAGLU X-ray structure，2.32 Å",
+    "antibodies": [
+      "anti-NAGLU research antibody",
+      "TfR1-targeted NAGLU delivery bispecific antibody"
+    ],
+    "interfaceFocus": "非催化外侧环区与受体递送可兼容表面",
+    "designMode": "酶递送型抗体设计",
+    "candidates": [
+      {
+        "target": "SGSH",
+        "rationale": "SGSH 编码肝素 N-硫酸酯酶，位于同一肝素硫酸溶酶体降解通路上游，其缺陷导致 MPS IIIA，可作为通路内平行酶递送靶点。"
+      },
+      {
+        "target": "HGSNAT",
+        "rationale": "HGSNAT 参与肝素硫酸降解中葡萄糖胺残基乙酰化步骤，缺陷导致 MPS IIIC，与 NAGLU 共享底物蓄积病理基础。"
+      },
+      {
+        "target": "GNS",
+        "rationale": "GNS 编码 N-乙酰葡萄糖胺-6-硫酸酯酶，是肝素硫酸逐步降解通路成员，缺陷导致 MPS IIID，适合作为同通路候选靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

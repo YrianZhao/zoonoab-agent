@@ -1,0 +1,65 @@
+{
+  "gene": "TIAM1",
+  "generatedAt": "2026-08-03T17:17:17.714Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TIAM1是Rac1特异性鸟嘌呤核苷酸交换因子，参与突触发育、树突棘形态和兴奋性神经网络成熟，遗传证据将其与伴语言发育迟缓和癫痫的神经发育障碍相关联。该蛋白主要定位于胞内并通过DH-PH催化模块激活Rac1，天然抗原可及性弱于膜受体或分泌蛋白，因此更适合作为胞内功能干预或递送型抗体探索靶点。相较于Rac1等高度保守小GTP酶，TIAM1具有更具选择性的调控界面和结构域组合，可在同一Rac1轴中提供较高的通路特异性优先级。",
+    "mechanism": "设计抗体阻断TIAM1 DH结构域与Rac1 switch区结合，抑制GDP释放和GTP装载，从而降低TIAM1介导的Rac1激活。",
+    "selectedEpitope": "优先覆盖DH结构域Rac1结合沟槽及DH-PH连接界面，避免单纯选择远端非功能表面。",
+    "diseaseDirection": "神经发育障碍与癫痫方向",
+    "domain": "TIAM1含N端PH-CC-Ex结构域、PDZ结构域及C端催化DH-PH模块，3KZD解析其DH-PH区域。",
+    "evidence": "TIAM1-Rac1神经发育通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q13009功能与结构域注释",
+      "RCSB PDB 3KZD晶体结构记录",
+      "Rac1 GEF调控突触发育相关文献"
+    ],
+    "referenceEntries": "UniProt Q13009；RCSB PDB 3KZD；Open Targets TIAM1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DH结构域Rac1结合沟槽",
+        "直接干预Rac1 switch I/II识别与核苷酸交换反应",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DH-PH连接界面邻近区域",
+        "可能影响催化构象稳定性并增强功能阻断深度",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PH结构域远端非催化表面",
+        "功能关联间接，需避免仅产生结合而缺乏抑制效应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TIAM1为胞内蛋白，常规抗体组织可及性受限；建议采用胞内抗体、递送型Fab/VHH或细胞穿透策略，并严格评估Rac1轴脱靶效应。",
+    "structurePrepZh": "以3KZD链A为模板，保留DH-PH催化模块坐标，补充缺失环区并标注Rac1结合面；设计前需进行质子化、能量优化和界面可及性评估。",
+    "structureRef": "RCSB PDB 3KZD，TIAM1 DH-PH结构，1.3 Å X射线晶体学",
+    "antibodies": [
+      "TIAM1 intracellular inhibitory antibody",
+      "anti-TIAM1 research antibody"
+    ],
+    "interfaceFocus": "DH结构域Rac1 switch区结合界面",
+    "designMode": "胞内功能阻断",
+    "candidates": [
+      {
+        "target": "RAC1",
+        "rationale": "RAC1是TIAM1直接催化激活的小GTP酶，位于同一GEF-Rac1信号轴下游。其活化状态直接决定肌动蛋白重塑、树突棘成熟和神经元形态发育。"
+      },
+      {
+        "target": "DOCK7",
+        "rationale": "DOCK7是参与神经元极性和轴突形成的Rac/Cdc42鸟嘌呤核苷酸交换因子，与TIAM1同属Rho GTPase调控网络。其神经发育功能使其可作为同通路替代调控节点。"
+      },
+      {
+        "target": "PAK1",
+        "rationale": "PAK1是Rac1和Cdc42下游效应激酶，连接Rac1活化与细胞骨架及突触结构重塑。相较直接靶向Rac1，PAK1提供下游效应层面的可干预节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

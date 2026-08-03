@@ -1,0 +1,65 @@
+{
+  "gene": "MAPK11",
+  "generatedAt": "2026-08-03T20:07:44.895Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAPK11编码p38β MAPK，参与炎症应激、细胞周期与肿瘤相关转录反应，在结直肠癌和肝细胞癌等疾病中与MAPK级联异常激活相关。该蛋白为胞内丝氨酸/苏氨酸激酶，天然抗原可及性低，常规阻断型抗体成药性弱，需定位于胞内递送抗体或研究级构象探针策略。其优先级低于EGFR、MET等膜受体型结直肠癌靶点，但可作为p38通路亚型选择性调控的机制验证靶点。",
+    "mechanism": "以胞内抗体或递送型Fab/VHH占据ATP结合裂隙邻近构象面，干扰MAPK11与底物或上游MKK3/MKK6磷酸化复合物形成。",
+    "selectedEpitope": "优先选择N端激酶叶ATP口袋外缘与activation loop邻近构象表位，避免完全模拟小分子ATP竞争。",
+    "diseaseDirection": "结直肠癌相关MAPK应激通路",
+    "domain": "典型蛋白激酶结构域，含N端β折叠叶、C端α螺旋叶、DFG基序与Thr-Gly-Tyr激活环。",
+    "evidence": "MAPK11-p38β肿瘤应激通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q15759功能与结构域注释",
+      "RCSB PDB 3GP0晶体结构记录",
+      "KEGG MAPK signaling pathway通路注释"
+    ],
+    "referenceEntries": "UniProt Q15759；RCSB PDB 3GP0；HGNC MAPK11",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端激酶叶ATP结合裂隙外缘及hinge邻近面",
+        "可影响催化构象并保留亚型选择性设计空间",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端激酶叶activation loop与DFG基序周边",
+        "可干扰TGY激活环构象转换及底物识别",
+        "备选"
+      ],
+      [
+        "Site C",
+        "MAPK共用疏水底物停靠沟槽",
+        "可能阻断底物结合，但与MAPK14等同源激酶交叉反应风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAPK11为胞内激酶，常规抗体难以到达作用位点；p38亚型保守性高，需以MAPK11/MAPK14/MAPK13交叉筛选控制选择性风险。",
+    "structurePrepZh": "以3GP0链A为模板，保留激酶核心构象，校正缺失侧链与质子化状态，标注ATP口袋、DFG基序和TGY激活环。",
+    "structureRef": "RCSB PDB 3GP0，X-ray diffraction，1.9 Å",
+    "antibodies": [
+      "暂无获批MAPK11靶向治疗性抗体",
+      "研究级anti-p38 beta/MAPK11抗体"
+    ],
+    "interfaceFocus": "ATP裂隙外缘、hinge区、DFG-activation loop界面",
+    "designMode": "胞内构象抗体设计",
+    "candidates": [
+      {
+        "target": "MAPK14",
+        "rationale": "MAPK14编码p38α，是p38 MAPK通路中研究最充分的炎症与肿瘤应激节点，可与MAPK11进行亚型选择性和功能冗余比较。"
+      },
+      {
+        "target": "MAP2K6",
+        "rationale": "MAP2K6为p38通路上游激酶，直接磷酸化p38 MAPK的Thr-Gly-Tyr激活基序，适合作为上游激活轴候选靶点。"
+      },
+      {
+        "target": "MAP2K3",
+        "rationale": "MAP2K3同样可激活p38 MAPK级联，在炎症应激和肿瘤微环境信号中与MAPK11处于同一通路层级。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

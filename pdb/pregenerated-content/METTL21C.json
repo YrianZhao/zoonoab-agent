@@ -1,0 +1,65 @@
+{
+  "gene": "METTL21C",
+  "generatedAt": "2026-08-03T14:13:05.654Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "METTL21C为胞内赖氨酸甲基转移酶，主要催化AARS1等蛋白赖氨酸甲基化，现有Open Targets关联以生物标志物和性状关联为主，缺乏明确可阻断的疾病受体轴。该蛋白不属于分泌蛋白或膜受体，天然抗原可及性不适合作为常规体内阻断型抗体靶点，但可用于胞内递送抗体、结构探针或诊断结合试剂开发。相比细胞表面免疫或炎症通路靶点，其优先级较低；若坚持推进，应定位为结构验证型抗体发现而非治疗性阻断抗体项目。",
+    "mechanism": "设计抗体结合METTL21C七β链甲基转移酶核心邻近SAM结合沟槽，空间阻碍AARS1底物肽段进入催化界面并降低赖氨酸甲基转移反应。",
+    "selectedEpitope": "优先覆盖Rossmann样SAM结合沟槽外缘与底物肽结合面，避开高度保守SAM腺苷结合深槽。",
+    "diseaseDirection": "胞内甲基转移酶功能探针",
+    "domain": "METTL21C含AdoMet依赖性蛋白赖氨酸甲基转移酶结构域，PDB 4MTL解析同源二聚体链A/B。",
+    "evidence": "METTL21C结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB Q5VZV1 functional annotation",
+      "RCSB PDB 4MTL X-ray structure",
+      "SAM-dependent lysine methyltransferase family literature"
+    ],
+    "referenceEntries": "UniProt Q5VZV1；RCSB PDB 4MTL；Open Targets METTL21C",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SAM结合沟槽外缘与底物肽入口",
+        "可干预AARS1底物肽进入催化中心，适合作为功能阻断型结构表位",
+        "优先"
+      ],
+      [
+        "Site B",
+        "二聚体可及外侧α螺旋-环区",
+        "表面暴露度较高，利于获得构象识别抗体并用于结构捕获",
+        "备选"
+      ],
+      [
+        "Site C",
+        "保守SAM腺苷/核糖结合深槽",
+        "家族保守性较强且小分子口袋较深，抗体进入受限并存在交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为胞内定位导致体内抗原不可及，且催化口袋保守性较高。建议限定为细胞内递送抗体、VHH探针或体外功能抑制验证。",
+    "structurePrepZh": "以4MTL高分辨率晶体结构链A/B为模板，保留催化结构域构象，移除结晶缓冲成分并标注SAM口袋、二聚体界面及可及环区。",
+    "structureRef": "Human METTL21C crystal structure, PDB 4MTL, 1.65 Å",
+    "antibodies": [
+      "无已获批同靶点抗体",
+      "无临床阶段同靶点抗体"
+    ],
+    "interfaceFocus": "SAM沟槽外缘、底物肽入口及二聚体外侧环区",
+    "designMode": "胞内靶点探针设计",
+    "candidates": [
+      {
+        "target": "AARS1",
+        "rationale": "AARS1是METTL21C报道底物，处于同一蛋白赖氨酸甲基化功能轴。其胞内定位同样限制常规抗体治疗开发，更适合作为机制验证参照。"
+      },
+      {
+        "target": "METTL21A",
+        "rationale": "METTL21A属于同一家族AdoMet依赖性蛋白赖氨酸甲基转移酶，可作为甲基转移酶选择性评估的同通路旁系靶点。"
+      },
+      {
+        "target": "HSPA8",
+        "rationale": "HSPA8为METTL21A相关蛋白甲基化底物，参与同类分子伴侣赖氨酸甲基化网络，可用于评估家族通路内功能差异。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "KEAP1",
+  "generatedAt": "2026-08-03T13:41:33.830Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KEAP1是NRF2氧化应激通路的底物适配蛋白，通过Kelch结构域识别NFE2L2/NRF2的ETGE与DLG基序并促进其泛素化降解；KEAP1功能缺失或NRF2异常激活与肺腺癌、非小细胞肺癌及鳞状细胞肺癌的抗氧化适应和治疗耐受相关。该靶点主要为胞质蛋白，天然抗原可及性弱于膜受体或分泌蛋白，抗体设计更适合定位于细胞内递送、结构探针或降解调控平台。相较下游转录靶基因，KEAP1位于NRF2稳定性控制的核心节点，结构口袋清晰且1ZGK提供高分辨率Kelch结构依据，具备机制验证优先级。",
+    "mechanism": "设计抗体片段占据KEAP1 Kelch结构域NRF2-ETGE结合沟槽，阻断KEAP1与NFE2L2的高亲和识别并改变NRF2泛素化复合物装配。",
+    "selectedEpitope": "优先覆盖Kelch β-propeller底面NRF2-ETGE肽结合沟槽及关键带电残基簇。",
+    "diseaseDirection": "NRF2氧化应激与肺癌耐药方向",
+    "domain": "KEAP1含BTB二聚化结构域、IVR半胱氨酸感应区及C端Kelch/DGR β-propeller底物结合结构域。",
+    "evidence": "KEAP1-NRF2轴结构与肿瘤关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与肿瘤关联评分",
+      "UniProt Q14145功能注释与结构域记录",
+      "RCSB PDB 1ZGK Kelch结构解析数据",
+      "KEAP1-NFE2L2通路肺癌突变与功能研究文献"
+    ],
+    "referenceEntries": "UniProt Q14145；RCSB PDB 1ZGK；Open Targets KEAP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Kelch结构域底面ETGE结合沟槽",
+        "直接竞争NRF2高亲和基序，机制可解释性最强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Kelch β-propeller侧面邻近底物进入区域",
+        "可能形成位阻效应并保留部分选择性窗口",
+        "备选"
+      ],
+      [
+        "Site C",
+        "BTB二聚化/CUL3结合界面",
+        "理论上可影响E3连接酶复合物，但结构构象与胞内递送风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "KEAP1为胞内支架蛋白，常规抗体难以触达天然靶点；设计应限定为细胞内抗体、递送型Fab/VHH或机制探针，并避免广泛抑制正常抗氧化稳态。",
+    "structurePrepZh": "以1ZGK链A为Kelch结构模板，补全缺失侧链并保留NRF2肽结合口袋构象；对关键极性残基进行质子化检查和界面能量预评估。",
+    "structureRef": "PDB 1ZGK，human KEAP1 Kelch domain，1.35 Å X-ray",
+    "antibodies": [
+      "Anti-KEAP1 monoclonal antibody",
+      "Anti-NRF2 pathway intracellular antibody fragment"
+    ],
+    "interfaceFocus": "Kelch底面NRF2-ETGE识别沟槽",
+    "designMode": "胞内阻断型抗体片段",
+    "candidates": [
+      {
+        "target": "NFE2L2",
+        "rationale": "NFE2L2编码NRF2，是KEAP1直接底物及抗氧化转录程序核心因子；在肺癌中NRF2激活与代谢重编程和治疗耐受密切相关。"
+      },
+      {
+        "target": "CUL3",
+        "rationale": "CUL3与KEAP1 BTB结构域组成E3泛素连接酶复合物，直接决定NRF2泛素化效率；其功能异常可导致NRF2稳定化。"
+      },
+      {
+        "target": "RBX1",
+        "rationale": "RBX1是CUL3-RING E3连接酶的催化组分，参与泛素转移反应；与KEAP1-CUL3轴共同控制NRF2蛋白降解。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

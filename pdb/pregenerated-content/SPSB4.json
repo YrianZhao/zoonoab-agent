@@ -1,0 +1,65 @@
+{
+  "gene": "SPSB4",
+  "generatedAt": "2026-08-03T21:17:44.010Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SPSB4为SOCS box蛋白家族成员，其SPRY结构域介导底物识别，SOCS box可招募Elongin B/C-Cullin5-RBX2 E3泛素连接酶复合体，提示其可能参与蛋白稳态相关疾病表型。现有Open Targets关联主要集中于血小板计数、视网膜退行性变及胃肠道异常，关联强度中等且多为遗传或表型层面证据。该蛋白并非典型分泌蛋白或跨膜受体，抗原可及性弱于细胞表面靶点，因此更适合定位为结构验证、细胞内递送抗体或研究级结合分子开发靶点，而非优先体内阻断型治疗抗体靶点。其优先级依据在于6DN7提供1.4 Å高分辨率SPRY结构，可支持精确界面工程；相比缺乏结构模板的同类SOCS box蛋白，SPSB4更利于开展结构驱动的抗体片段设计。",
+    "mechanism": "设计抗体片段结合SPSB4的SPRY底物结合沟槽，阻断其与含线性识别基序底物肽的相互作用，从而干预后续SOCS box依赖的Cullin5型泛素化复合体底物递送。",
+    "selectedEpitope": "优先覆盖SPRY结构域凹面底物结合沟槽及邻近β发夹边缘，避免仅针对SOCS box柔性尾部。",
+    "diseaseDirection": "蛋白稳态相关血液与视网膜表型",
+    "domain": "SPSB4含N端SPRY/B30.2底物识别结构域及C端SOCS box，后者负责E3连接酶复合体装配。",
+    "evidence": "SPSB4结构与Open Targets疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病-靶点关联数据",
+      "UniProt Q96A44功能与结构域注释",
+      "RCSB PDB 6DN7晶体结构记录",
+      "SOCS box蛋白Cullin5型E3连接酶复合体文献"
+    ],
+    "referenceEntries": "UniProt: Q96A44; RCSB PDB: 6DN7; HGNC: SPSB4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SPRY结构域底物结合沟槽",
+        "直接竞争底物肽识别，最符合机制阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SPRY结构域β夹层侧面保守环区",
+        "可稳定构象并形成非竞争性变构抑制界面",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端SOCS box邻近区域",
+        "可能影响Elongin B/C结合，但柔性较高且结构覆盖不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SPSB4主要为胞内蛋白，常规全长IgG难以到达作用位点；宜采用细胞内递送Fab、VHH或研究型结合分子，并严格评估SPRY家族交叉反应。",
+    "structurePrepZh": "以6DN7高分辨率晶体结构为模板，保留SPRY结构域完整链，检查多聚体晶体接触、缺失尾区和构象水分子后进行表面沟槽建模。",
+    "structureRef": "RCSB PDB 6DN7, X-ray diffraction, 1.4 Å",
+    "antibodies": [
+      "暂无SPSB4临床抗体",
+      "暂无SPSB4同靶点批准抗体"
+    ],
+    "interfaceFocus": "SPRY凹面底物肽结合沟槽",
+    "designMode": "胞内靶点结构导向",
+    "candidates": [
+      {
+        "target": "SPSB1",
+        "rationale": "SPSB1同属SPRY-SOCS box蛋白，参与底物识别及Cullin5型E3泛素连接酶复合体装配，可作为同家族蛋白稳态通路候选靶点。"
+      },
+      {
+        "target": "SPSB2",
+        "rationale": "SPSB2通过SPRY结构域识别特定底物并经SOCS box连接Elongin-Cullin5轴，适合与SPSB4进行底物选择性和表位保守性比较。"
+      },
+      {
+        "target": "CUL5",
+        "rationale": "CUL5是SOCS box蛋白招募的Cullin骨架蛋白，位于同一E3泛素连接酶复合体通路核心，可用于评估下游泛素化复合体依赖性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

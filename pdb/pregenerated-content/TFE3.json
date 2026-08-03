@@ -1,0 +1,65 @@
+{
+  "gene": "TFE3",
+  "generatedAt": "2026-08-03T21:29:54.133Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TFE3 是 MiT/TFE 家族转录因子，Xp11.2 易位肾细胞癌中 TFE3 融合蛋白可导致异常核定位、DNA 结合与转录激活，驱动肿瘤相关基因表达。该蛋白主要为细胞核内转录因子，缺乏天然胞外结构域或分泌形式，抗原可及性不具备常规体内抗体阻断优势，更适合作为结构引导的细胞内结合分子研究靶点。其疾病证据集中于 TFE3 融合相关肾癌，相比一般下游转录产物更接近致病融合事件本身，但优先级低于膜受体或分泌型肿瘤抗原。",
+    "mechanism": "设计细胞内结合抗体片段阻断 TFE3 碱性区与 E-box DNA 的接触，或干扰 HLH-LZ 介导的二聚化，从而降低异常融合蛋白的转录激活能力。",
+    "selectedEpitope": "优先覆盖 bHLH-LZ 二聚化界面及邻近 DNA 结合碱性区，避免仅识别远端低复杂度区。",
+    "diseaseDirection": "TFE3融合阳性肾细胞癌",
+    "domain": "TFE3 含 N 端转录激活区、碱性 DNA 结合区、HLH 二聚化区与亮氨酸拉链区。",
+    "evidence": "TFE3融合肾癌结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P19532 functional annotation",
+      "RCSB PDB 7F09 experimental structure",
+      "WHO/renal cell carcinoma translocation literature"
+    ],
+    "referenceEntries": "UniProt P19532；RCSB PDB 7F09；Open Targets TFE3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "bHLH-LZ二聚化界面",
+        "阻断TFE3同源或异源二聚体形成，直接削弱DNA结合复合物装配",
+        "优先"
+      ],
+      [
+        "Site B",
+        "碱性DNA结合区邻近沟槽",
+        "遮挡E-box DNA接触面，适合细胞内Fab或VHH功能验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端转录激活低复杂度区",
+        "可能影响辅因子招募，但结构无序性高且表位稳定性有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TFE3 为核内转录因子，常规抗体难以进入细胞核，体内药物化风险较高。建议定位为胞内VHH、递送型Fab或研究级功能阻断分子。",
+    "structurePrepZh": "以PDB 7F09为模板整理抗原链A-D，保留bHLH-LZ核心构象，检查DNA或伴侣链接触面并补全缺失侧链后开展界面建模。",
+    "structureRef": "RCSB PDB 7F09，X-ray diffraction，2.6 Å",
+    "antibodies": [
+      "anti-TFE3 clone MRQ-37",
+      "anti-TFE3 clone D5"
+    ],
+    "interfaceFocus": "bHLH-LZ二聚化面与E-box DNA接触面",
+    "designMode": "胞内阻断型",
+    "candidates": [
+      {
+        "target": "TFEB",
+        "rationale": "TFEB 与 TFE3 同属 MiT/TFE 家族，可通过相似 bHLH-LZ 结构识别 CLEAR/E-box 元件，并与肾肿瘤相关转录程序存在通路交叉。"
+      },
+      {
+        "target": "MITF",
+        "rationale": "MITF 是 MiT/TFE 家族成员，可与 TFE3 共享二聚化和DNA识别逻辑，适合作为同家族转录因子选择性评估参照。"
+      },
+      {
+        "target": "ASPSCR1",
+        "rationale": "ASPSCR1 是 ASPSCR1-TFE3 融合事件的经典伴侣基因，参与TFE3融合肿瘤的致病分子背景，可作为融合轴相关候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

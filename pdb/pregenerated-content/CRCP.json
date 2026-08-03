@@ -1,0 +1,65 @@
+{
+  "gene": "CRCP",
+  "generatedAt": "2026-08-03T11:38:22.095Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CRCP 是 CGRP 受体功能复合体相关蛋白，参与降钙素基因相关肽信号的细胞内耦联与受体转运，CGRP 轴与神经源性炎症、痛觉传导及部分神经退行性疾病相关表型存在机制联系。CRCP 为膜相关受体组分，抗原可及性弱于典型分泌蛋白或多跨膜受体胞外结构域，需优先评估可暴露胞外环或复合体可及界面。相较 CALCRL、RAMP1 等已高度验证的胞外靶点，CRCP 的抗体成药优先级较低，但可作为解析 CGRP 受体复合体空间组织与非经典调控界面的探索性靶点。",
+    "mechanism": "通过识别 CRCP 在 CGRP 受体复合体中的可及界面，干扰其与 CALCRL/RAMP1 受体模块的空间耦联或稳定化作用，从而削弱 CGRP 诱导的受体信号输出。",
+    "selectedEpitope": "优先锁定 7AE1 复合体中 CRCP 暴露螺旋束外侧及亚基接触边缘，避开深埋跨膜样疏水界面。",
+    "diseaseDirection": "CGRP轴相关神经炎症与疼痛",
+    "domain": "CRCP 为小型膜相关受体组分，结构以螺旋束为主，缺乏典型大型胞外免疫球蛋白样结构域。",
+    "evidence": "CRCP-CGRP受体复合体结构与疾病遗传关联证据",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt O75575 蛋白功能注释",
+      "RCSB PDB 7AE1 冷冻电镜结构",
+      "CGRP receptor complex 相关文献"
+    ],
+    "referenceEntries": "UniProt: O75575; RCSB PDB: 7AE1; Open Targets: CRCP",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CRCP暴露螺旋束外侧面",
+        "相对可及，适合作为构象选择性结合表位",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CRCP与受体复合体接触边缘",
+        "可能干扰 CRCP 对 CALCRL/RAMP1 复合体的空间稳定作用",
+        "备选"
+      ],
+      [
+        "Site C",
+        "深埋疏水螺旋界面",
+        "结构保守且抗体可及性差，存在构象扰动和非特异结合风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CRCP 缺乏明确可药化胞外大结构域，抗体可及性与细胞表面暴露程度是核心风险；建议优先采用结构指导的构象表位筛选，并设置 CALCRL/RAMP1 交叉验证。",
+    "structurePrepZh": "以 7AE1 冷冻电镜模型为模板，保留 CRCP 相关链并标注复合体接触面；补全缺失侧链、评估膜取向及暴露面积后再进行表位建模。",
+    "structureRef": "RCSB PDB 7AE1, cryo-EM structure, 2.8 Å",
+    "antibodies": [
+      "Erenumab",
+      "Fremanezumab"
+    ],
+    "interfaceFocus": "CRCP暴露螺旋外侧与复合体接触边缘",
+    "designMode": "结构引导构象表位",
+    "candidates": [
+      {
+        "target": "CALCRL",
+        "rationale": "CALCRL 与 RAMP1 形成经典 CGRP 受体核心，是 CGRP 结合和信号传导的主要受体亚基；其胞外结构域具备更明确的抗体可及性。"
+      },
+      {
+        "target": "RAMP1",
+        "rationale": "RAMP1 决定 CALCRL 对 CGRP 的配体选择性，并贡献受体胞外配体结合界面；阻断该界面可直接影响 CGRP 识别。"
+      },
+      {
+        "target": "CALCA",
+        "rationale": "CALCA 编码 α-CGRP 前体，成熟 CGRP 是激活 CALCRL/RAMP1 受体复合体的关键配体；中和配体可在同一 CGRP 轴上降低下游信号。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

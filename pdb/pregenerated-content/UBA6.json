@@ -1,0 +1,65 @@
+{
+  "gene": "UBA6",
+  "generatedAt": "2026-08-03T17:37:14.058Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "UBA6是胞质E1泛素样修饰激活酶，催化ATP依赖的泛素及FAT10活化，并向UBE2Z等E2酶转硫酯，参与蛋白稳态、应激反应与免疫相关蛋白降解过程；Open Targets提示其与神经退行性疾病存在较高遗传关联。该蛋白并非分泌蛋白或膜受体，天然抗原可及性弱，抗体策略更适合定位于细胞内递送抗体、降解偶联或结构生物学阻断验证。相较泛素-蛋白酶体通路中高度必需且广泛表达的核心蛋白酶体亚基，UBA6具有较明确的E1催化界面和UBE2Z选择性转硫酯界面，便于开展机制限定型抗体设计。",
+    "mechanism": "阻断UBA6催化半胱氨酸结构域与UBE2Z的E1-E2转硫酯对接，抑制泛素/FAT10由UBA6向UBE2Z转移。",
+    "selectedEpitope": "优先覆盖催化半胱氨酸结构域邻近的E2结合沟槽，兼顾腺苷酸化结构域构象锁定。",
+    "diseaseDirection": "神经退行性疾病蛋白稳态通路",
+    "domain": "UBA6含腺苷酸化结构域、催化半胱氨酸结构域、泛素折叠结构域及C端泛素样结构域。",
+    "evidence": "UBA6结构与蛋白稳态通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProtKB A0AVT1功能注释",
+      "RCSB PDB 7SOL晶体结构",
+      "Reactome泛素化与蛋白降解通路注释"
+    ],
+    "referenceEntries": "UniProt A0AVT1；RCSB PDB 7SOL；Reactome UBA6通路",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化半胱氨酸结构域-E2结合沟槽",
+        "直接干预UBA6与UBE2Z转硫酯复合物形成，机制可验证性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "腺苷酸化结构域ATP/泛素邻近构象界面",
+        "限制泛素腺苷酸中间体形成或稳定性，适合构象锁定型抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端泛素样结构域远端暴露面",
+        "可能影响E2招募或构象调节，但功能阻断效应需实验证实",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "UBA6为胞内酶，常规抗体体内可及性不足；应优先采用细胞内递送、intrabody或VHH工程，并避免靶向ATP结合核心导致广谱交叉风险。",
+    "structurePrepZh": "以7SOL晶体结构为模板，保留抗原链A-D并校验生物组装体；补全缺失环区、质子化催化位点残基，标注ATP/泛素/E2邻近界面。",
+    "structureRef": "RCSB PDB 7SOL，human UBA6 X-ray structure，2.25 Å",
+    "antibodies": [
+      "commercial anti-UBA6 antibody",
+      "research-grade anti-UBE1L2/UBA6 antibody"
+    ],
+    "interfaceFocus": "UBA6催化半胱氨酸结构域与UBE2Z对接界面",
+    "designMode": "胞内阻断型抗体设计",
+    "candidates": [
+      {
+        "target": "UBE2Z",
+        "rationale": "UBE2Z是UBA6特异性E2转硫酯受体，直接位于同一泛素转移轴；靶向其UBA6结合界面可阻断下游底物泛素化。"
+      },
+      {
+        "target": "UBB",
+        "rationale": "UBB编码泛素前体，提供UBA6催化活化的泛素底物；其异常周转与蛋白稳态失衡及神经退行性病理相关。"
+      },
+      {
+        "target": "UBA1",
+        "rationale": "UBA1是经典泛素E1酶，与UBA6共同维持泛素活化入口；作为同通路参照靶点，可用于评估E1层级抑制的选择性与安全窗口。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

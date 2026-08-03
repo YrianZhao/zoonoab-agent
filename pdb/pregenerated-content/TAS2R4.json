@@ -1,0 +1,65 @@
+{
+  "gene": "TAS2R4",
+  "generatedAt": "2026-08-03T17:08:26.558Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TAS2R4 参与苦味感知相关的 GPCR 信号转导，并与代谢表型、饮食行为及部分疾病关联信号呈现交叉。该蛋白为膜受体，具有胞外可及性，适合以抗体直接识别其胞外环与跨膜外露界面，从而建立分子干预窗口。相较于广泛表达的炎症因子或下游效应分子，其作为上游受体具有更强的配体阻断与构象锁定潜力，且可借助已解析的实验结构提升表位筛选精度。",
+    "mechanism": "抗体优先阻断胞外环与配体进入通道，并稳定受体非活化构象，抑制 G 蛋白偶联激活。",
+    "selectedEpitope": "优先覆盖 ECL2 及其邻近口袋入口，兼顾 ECL1 形成的配体通道边界。",
+    "diseaseDirection": "代谢与饮食感知相关疾病",
+    "domain": "七次跨膜 GPCR；重点关注 ECL2、ECL3 与跨膜螺旋外露口袋边缘。",
+    "evidence": "TAS2R4 结构与疾病关联证据包",
+    "evidenceSources": [
+      "UniProt: Q9NYW5",
+      "RCSB PDB: 25ST",
+      "Open Targets Platform",
+      "GPCRdb"
+    ],
+    "referenceEntries": "UniProt Q9NYW5；RCSB 25ST；GPCRdb TAS2R4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ECL2-口袋入口",
+        "优先阻断配体识别并限制受体激活构象转换",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ECL1/ECL2 连接区",
+        "适合稳定胞外开口并降低配体可及性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ECL3 外侧边缘",
+        "可能影响受体表面暴露但构象耦联效应不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TAS2R4 属小型膜受体，胞外环短且构象柔性高，表位连续性风险较大。建议结合 25ST 结构进行局部约束建模，并优先采用识别构象稳定表位的 Fab 或 VHH。",
+    "structurePrepZh": "需基于 25ST 进行链映射、膜定向与缺失片段补模，重点保留胞外环及口袋入口的侧链取向。建议进行多构象采样以评估 ECL2 的可达性与抗体占位。",
+    "structureRef": "RCSB PDB 25ST；电子显微镜 3.0 Å 结构",
+    "antibodies": [
+      "无直接成熟治疗性抗体报道",
+      "同类 GPCR 胞外环识别抗体框架"
+    ],
+    "interfaceFocus": "ECL2 主入口及其邻近跨膜外露边界",
+    "designMode": "结构导向",
+    "candidates": [
+      {
+        "target": "TAS2R14",
+        "rationale": "TAS2R14 与 TAS2R4 同属苦味受体家族，具有相近的七跨膜受体构架，可作为同通路相关对照靶点。其胞外可及性与抗体界面设计逻辑一致，便于评估家族特异性。"
+      },
+      {
+        "target": "TAS2R10",
+        "rationale": "TAS2R10 参与苦味配体识别并与 TAS2R4 共享 GPCR 上游感知框架，适合作为同通路候选靶点。其结构层面的比较有助于区分家族保守位点与特异表位。"
+      },
+      {
+        "target": "GNAT3",
+        "rationale": "GNAT3 位于苦味受体下游的味觉信号转导轴中，能够作为通路层面的功能参照靶点。虽然其不可直接作为抗体胞外靶点，但可用于验证受体阻断后信号输出的通路一致性。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

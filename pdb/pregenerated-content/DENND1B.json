@@ -1,0 +1,65 @@
+{
+  "gene": "DENND1B",
+  "generatedAt": "2026-08-03T11:54:55.806Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DENND1B 是含 DENN 结构域的 Rab 鸟嘌呤核苷酸交换因子，参与内体运输与免疫细胞受体信号后膜交通过程，其遗传关联覆盖淋巴细胞计数、银屑病及黄斑变性等免疫和炎症相关表型。该蛋白主要为胞质侧支架/酶活性调控因子，缺乏经典分泌或跨膜胞外结构域，天然抗原可及性不支持常规细胞外中和抗体。相较 TNF、IL23A、IL17A 等同类炎症通路可及靶点，DENND1B 更适合作为机制验证或胞内递送抗体研究靶点，抗体开发优先级应低于直接可中和的细胞因子与受体靶点。",
+    "mechanism": "胞内抗体需干扰 DENN 模块介导的 Rab GTPase 结合，阻断 GDP-GTP 交换构象稳定化，从而改变内体运输依赖的免疫受体信号分选。",
+    "selectedEpitope": "优先覆盖 DENN 结构域的 Rab 结合沟槽及 longin-DENN 结构域间界面，避免仅选择远端晶体接触面。",
+    "diseaseDirection": "免疫炎症与淋巴细胞表型",
+    "domain": "DENND1B 含 N 端 longin 样区域及核心 DENN 结构域，构成 Rab GEF 催化模块。",
+    "evidence": "DENND1B 免疫遗传关联与 DENN 结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt Q6P3S1 蛋白功能注释",
+      "RCSB PDB 3TW8 X 射线晶体结构",
+      "GWAS Catalog 免疫和血液细胞性状关联"
+    ],
+    "referenceEntries": "UniProt Q6P3S1；RCSB PDB 3TW8；Open Targets DENND1B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DENN 核心结构域 Rab 结合沟槽",
+        "可能直接干扰 Rab GTPase 结合与 GEF 活性构象",
+        "优先"
+      ],
+      [
+        "Site B",
+        "longin-DENN 结构域间连接界面",
+        "可稳定非活性构象并影响催化模块相对取向",
+        "备选"
+      ],
+      [
+        "Site C",
+        "晶体多聚体外周暴露面",
+        "可能反映晶体堆积而非功能界面，需结合保守性验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DENND1B 为胞内蛋白，常规抗体难以进入靶细胞并接触功能界面；建议限定为胞内抗体、递送型 VHH 或机制探针方向，并严格评估同源 DENN 蛋白交叉反应。",
+    "structurePrepZh": "以 PDB 3TW8 的 2.1 Å 晶体结构为模板，保留功能性单体或生物学装配体，去除晶体添加物，补全缺失环区后进行界面保守性与溶剂暴露分析。",
+    "structureRef": "RCSB PDB 3TW8，human DENND1B DENN domain，2.1 Å",
+    "antibodies": [
+      "无已批准靶向 DENND1B 治疗性抗体",
+      "研究级抗 DENND1B 检测抗体"
+    ],
+    "interfaceFocus": "DENN-Rab 结合沟槽与结构域间调控界面",
+    "designMode": "胞内递送型抗体设计",
+    "candidates": [
+      {
+        "target": "TNF",
+        "rationale": "TNF 是银屑病和多种免疫炎症疾病中的核心促炎细胞因子，直接驱动 TNFR1/TNFR2 介导的 NF-κB 与炎症级联。其分泌型抗原高度可及，具备成熟抗体药物验证基础。"
+      },
+      {
+        "target": "IL23A",
+        "rationale": "IL23A 与 IL12B 形成 IL-23，维持 Th17 细胞扩增并促进 IL-17 轴炎症反应，是银屑病通路中的关键上游节点。阻断 IL-23 与 IL-23R 复合体形成具有明确治疗逻辑。"
+      },
+      {
+        "target": "IL17A",
+        "rationale": "IL17A 是 Th17 轴下游效应细胞因子，通过 IL17RA/IL17RC 诱导角质形成细胞产生 CXCL1、CXCL8 和抗菌肽。其分泌蛋白特征使中和抗体可直接阻断受体结合。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "ITGB1BP1",
+  "generatedAt": "2026-08-03T13:34:26.037Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ITGB1BP1编码β1整合素结合蛋白1，主要作为胞内适配蛋白连接ITGB1胞质尾部与黏附斑、细胞骨架及PI3K-AKT相关存活信号，其遗传关联覆盖神经退行性疾病和血压表型。该蛋白缺乏分泌型或胞外结构域，天然抗原可及性低于膜受体型整合素，因此更适合作为机制解析和胞内递送抗体设计靶点。相较同通路中的多跨膜或大复合体组分，ITGB1BP1结构域较小且已有高分辨率晶体结构，界面建模与结合位点约束更明确，但治疗性抗体优先级应低于可直接从胞外阻断的ITGB1相关受体。疾病通路优先级依据在于其位于β1整合素黏附信号下游近端，可用于干预整合素胞质尾部介导的黏附-存活耦联节点。",
+    "mechanism": "设计抗体片段阻断ITGB1BP1 PTB结构域与ITGB1 β链胞质尾部NPxY基序结合，削弱整合素依赖性黏附斑装配及AKT存活信号。",
+    "selectedEpitope": "优先覆盖PTB结构域磷酸酪氨酸结合沟槽及NPxY肽结合界面，避免核心β折叠疏水面。",
+    "diseaseDirection": "整合素黏附与神经退行性疾病",
+    "domain": "ITGB1BP1含N端膜相关区和C端PTB结构域，4JIF解析其双链晶体构象。",
+    "evidence": "ITGB1BP1整合素胞质适配机制证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt O14713功能与亚细胞定位注释",
+      "RCSB PDB 4JIF晶体结构记录",
+      "整合素β1胞质尾部-PTB结构域相互作用文献"
+    ],
+    "referenceEntries": "UniProt O14713；RCSB PDB 4JIF；Open Targets ITGB1BP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PTB结构域NPxY肽结合沟槽",
+        "直接竞争ITGB1胞质尾部结合，机制指向性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PTB结构域周边带正电表面",
+        "可能干扰磷脂膜邻近定位及整合素尾部装配",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PTB核心β夹层疏水内核邻近面",
+        "存在结构稳定性和非特异疏水结合风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ITGB1BP1为胞内蛋白，常规抗体难以直接到达作用位点；建议限定为胞内递送Fab/VHH、细胞穿透融合格式或机制验证工具抗体。",
+    "structurePrepZh": "以4JIF链A/B为模板，去除晶体接触冗余后评估PTB结合沟槽；补全缺失末端并映射ITGB1 NPxY肽对接约束。",
+    "structureRef": "RCSB PDB 4JIF，X-ray diffraction，1.701 Å",
+    "antibodies": [
+      "抗ITGB1BP1研究级抗体",
+      "抗β1整合素功能阻断抗体P5D2"
+    ],
+    "interfaceFocus": "PTB结构域与ITGB1胞质NPxY基序界面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "ITGB1",
+        "rationale": "ITGB1是ITGB1BP1直接结合的β1整合素亚基，位于同一黏附信号轴且具有胞外结构域，抗体可直接阻断配体结合或受体活化。"
+      },
+      {
+        "target": "TLN1",
+        "rationale": "TLN1通过FERM结构域结合β整合素胞质尾部并诱导整合素激活，是ITGB1BP1相关胞质尾部复合体的关键节点。"
+      },
+      {
+        "target": "PTK2",
+        "rationale": "PTK2/FAK位于整合素黏附斑信号下游，介导黏附依赖性细胞存活、迁移和PI3K-AKT通路连接。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

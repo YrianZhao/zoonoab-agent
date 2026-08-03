@@ -1,0 +1,65 @@
+{
+  "gene": "INS-IGF2",
+  "generatedAt": "2026-08-03T13:29:56.977Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "INS-IGF2 为胰岛素基因与 IGF2 基因读穿转录本编码产物，可能连接胰岛素样肽轴与 IGF 信号，对神经退行性疾病中代谢应激、神经元存活和蛋白稳态异常具有机制相关性。其成熟肽段属于分泌型/可溶性内分泌样配体，理论上具备较好的抗原可及性，适合以中和型抗体评估配体-受体相互作用。相较胞内代谢酶类靶点，INS-IGF2 的可成药性来自可直接阻断受体结合界面；但 Open Targets 关联强度中等且疾病谱较窄，优先级应定位为机制验证型靶点。",
+    "mechanism": "设计抗体阻断 INS-IGF2 胰岛素样核心肽段与 INSR 或 IGF1R 胞外配体结合口袋的接触，从而抑制异常胰岛素样受体信号输入。",
+    "selectedEpitope": "优先覆盖胰岛素样 B-chain/A-chain 折叠核心及受体结合面，避开二硫键稳定核心的深埋区域。",
+    "diseaseDirection": "神经退行性疾病代谢-IGF轴",
+    "domain": "INS-IGF2 含胰岛素样肽段特征，成熟区域由 B 链、C 肽样连接区和 A 链样结构组成，并依赖二硫键稳定。",
+    "evidence": "INS-IGF2 神经退行性疾病与胰岛素样信号证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt F8WCM5 protein annotation",
+      "RCSB PDB 7YQ3 electron microscopy structure",
+      "Reactome insulin receptor and IGF signaling pathway records"
+    ],
+    "referenceEntries": "UniProt F8WCM5；RCSB PDB 7YQ3；Open Targets INS-IGF2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "B-chain/A-chain 受体结合面",
+        "直接竞争 INSR/IGF1R 配体结合，具备中和机制可解释性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C 肽样连接区邻近暴露片段",
+        "有助于提高读穿产物选择性并降低与成熟胰岛素交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "二硫键邻近折叠核心",
+        "可能影响构象稳定但存在表位埋藏和交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为 INS 与 IGF2 同源结构导致交叉识别，并可能干扰生理性胰岛素/IGF 信号；应优先筛选读穿特异连接区或构象选择性表位。",
+    "structurePrepZh": "以 PDB 7YQ3 抗原链 A、B、E、F、G 为模板，保留二硫键与成熟肽构象，按 3.6 Å 电镜分辨率进行缺失残基建模和界面暴露评估。",
+    "structureRef": "RCSB PDB 7YQ3，electron microscopy，3.6 Å",
+    "antibodies": [
+      "XMetA",
+      "MEDI-573"
+    ],
+    "interfaceFocus": "INSR/IGF1R 配体结合接触面",
+    "designMode": "中和型配体阻断",
+    "candidates": [
+      {
+        "target": "IGF1R",
+        "rationale": "IGF1R 是 IGF2 与胰岛素样配体的重要受体，参与 PI3K-AKT 与 MAPK 介导的神经元存活和代谢信号。其胞外结构明确，已有抗体药物开发经验。"
+      },
+      {
+        "target": "INSR",
+        "rationale": "INSR 是胰岛素样肽轴的核心受体，脑内胰岛素信号与神经退行性疾病中的代谢障碍相关。靶向其胞外配体结合区可直接调节配体驱动的受体活化。"
+      },
+      {
+        "target": "IGF2",
+        "rationale": "IGF2 与 INS-IGF2 共享胰岛素样生长因子通路，并可通过 IGF1R 与 INSR-A 传递促存活和代谢信号。其作为分泌型配体具备良好抗原可及性。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "EHMT2",
+  "generatedAt": "2026-08-03T19:01:24.971Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "EHMT2/G9a 是核内组蛋白赖氨酸甲基转移酶，主要催化 H3K9 单甲基化与二甲基化，并与 GLP/EHMT1 协同维持转录抑制状态；其异常活性与肿瘤表观遗传沉默、肝细胞癌及乳腺癌进展相关，并在神经退行性疾病中影响应激与神经元基因表达程序。该蛋白缺乏天然胞外结构域或分泌形式，抗原可及性不符合常规治疗性抗体的细胞外阻断范式，更适合用于结构表位抗体、细胞内抗体或递送型抗体片段研究。相较同通路中可成药但结构界面较分散的转录复合物成员，EHMT2 具有高分辨率 SET 催化结构和明确的底物/SAM 结合口袋，适合作为表观遗传酶构象识别与功能阻断的优先模型靶点。",
+    "mechanism": "通过识别 EHMT2 SET 结构域底物肽结合沟槽，阻断 H3K9 肽段进入催化位点并干扰 SAM 依赖甲基转移反应。",
+    "selectedEpitope": "优先覆盖 SET 结构域底物赖氨酸通道及 post-SET 邻近催化界面。",
+    "diseaseDirection": "表观遗传肿瘤与神经退行性疾病",
+    "domain": "EHMT2 含 ankyrin repeat、pre-SET、SET 与 post-SET 区域，5VSC 覆盖催化 SET 核心。",
+    "evidence": "EHMT2 表观遗传催化结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q96KQ7 functional annotation",
+      "RCSB PDB 5VSC X-ray structure",
+      "ChEMBL/文献中 G9a 抑制剂药理证据"
+    ],
+    "referenceEntries": "UniProt Q96KQ7；RCSB PDB 5VSC；Open Targets EHMT2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SET 结构域底物 H3K9 肽结合沟槽与赖氨酸通道",
+        "可直接阻断底物定位和甲基转移反应，功能相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "post-SET 区域邻近 SAM/赖氨酸催化口袋外缘",
+        "有望稳定非催化构象并降低酶活，但需避免完全依赖小分子口袋",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ankyrin repeat 甲基赖氨酸识别面",
+        "可能影响甲基化组蛋白读取功能，但 5VSC 未覆盖该区域，结构外推风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "EHMT2 为核内酶，常规抗体难以到达内源靶点；建议定位为细胞内抗体、递送型 Fab/VHH 或结构验证试剂，并重点评估 EHMT1 交叉反应。",
+    "structurePrepZh": "以 5VSC 的 A/B 链 SET 结构域为模板，保留催化核心构象，校验配体、金属或辅因子状态，补全缺失环区后进行界面网格定义。",
+    "structureRef": "RCSB PDB 5VSC，1.4 Å X-ray human EHMT2 SET domain",
+    "antibodies": [
+      "anti-G9a clone D5R4R",
+      "anti-G9a clone C6H3"
+    ],
+    "interfaceFocus": "SET 底物肽沟槽、赖氨酸通道及 post-SET 催化边缘",
+    "designMode": "细胞内阻断型",
+    "candidates": [
+      {
+        "target": "EHMT1",
+        "rationale": "EHMT1/GLP 与 EHMT2 形成功能复合体，共同催化 H3K9me1/2 并维持转录抑制，是同一表观遗传甲基化轴的核心伴侣靶点。"
+      },
+      {
+        "target": "HDAC1",
+        "rationale": "HDAC1 与转录抑制复合物协同促进染色质压缩和肿瘤抑制基因沉默，在肿瘤表观遗传失衡中与 H3K9 甲基化状态具有功能耦联。"
+      },
+      {
+        "target": "DNMT1",
+        "rationale": "DNMT1 维持 DNA 甲基化并与 H3K9 甲基化介导的沉默染色质状态相互强化，属于肿瘤表观遗传沉默通路中的真实可干预节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

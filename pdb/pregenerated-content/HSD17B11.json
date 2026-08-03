@@ -1,0 +1,65 @@
+{
+  "gene": "HSD17B11",
+  "generatedAt": "2026-08-03T13:17:52.455Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HSD17B11 属于短链脱氢酶/还原酶家族，参与甾体和脂质相关代谢反应，其遗传关联主要集中于维生素D水平、尿酸、甘油三酯及肝酶测量性状，提示其与肝脏代谢稳态相关。该蛋白主要为细胞内/膜相关酶，并非经典分泌蛋白或细胞表面受体，天然抗原可及性弱，抗体策略更适合作为结构生物学验证、胞内递送或研究级抑制工具。相较于同通路中具有明确胞外配体结合位点的受体靶点，HSD17B11 的治疗性抗体优先级较低，但其高分辨率晶体结构和明确 NADP(H) 结合沟槽可支持机制性表位设计。",
+    "mechanism": "通过抗体或胞内递送抗体片段占据 SDR 催化沟槽邻近区域，空间阻断 NADP(H) 与甾体/脂质底物进入活性位点，从而抑制 HSD17B11 催化反应。",
+    "selectedEpitope": "优先覆盖 Rossmann 折叠 NADP(H) 结合沟槽与底物进入口周缘，避开高度保守核心折叠面。",
+    "diseaseDirection": "肝脏脂质与甾体代谢性状",
+    "domain": "短链脱氢酶/还原酶催化结构域，含 Rossmann 型辅因子结合折叠及保守 Tyr-Lys-Ser 催化区域。",
+    "evidence": "HSD17B11 代谢性状遗传关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt Q8NBQ5 蛋白功能注释",
+      "RCSB PDB 1YB1 晶体结构记录",
+      "短链脱氢酶/还原酶家族结构功能文献"
+    ],
+    "referenceEntries": "UniProt Q8NBQ5；RCSB PDB 1YB1；Open Targets HSD17B11",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Rossmann 折叠 NADP(H) 结合沟槽入口",
+        "可直接干扰辅因子结合与底物通道开放，机制可验证性较高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "底物结合口袋外缘及相邻可溶表面环区",
+        "可能限制甾体/脂质底物进入催化中心，适合构建非竞争性阻断构型",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SDR 保守催化核心及二聚体接触邻近区域",
+        "保守性高且存在构象稳定性风险，易产生家族交叉反应或影响折叠",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HSD17B11 缺乏胞外可及结构，常规抗体成药性受限；设计应限定于研究级阻断抗体、胞内递送格式或结构验证用途，并严格评估 SDR 家族交叉反应。",
+    "structurePrepZh": "以 1YB1 的 A、B 链为结构模板，校正缺失侧链、质子化状态和辅因子沟槽构象，并对二聚体界面与催化口袋进行分区标注。",
+    "structureRef": "RCSB PDB 1YB1，X-ray diffraction，1.95 Å",
+    "antibodies": [
+      "无已获批 HSD17B11 靶向抗体",
+      "无临床阶段 HSD17B11 治疗性抗体"
+    ],
+    "interfaceFocus": "NADP(H) 结合沟槽与底物入口环区",
+    "designMode": "胞内酶阻断设计",
+    "candidates": [
+      {
+        "target": "CYP2R1",
+        "rationale": "CYP2R1 催化维生素D 25-羟化，是维生素D水平遗传关联中的关键代谢酶，与 HSD17B11 共享代谢性状关联背景。其为细胞内/膜相关酶，适合作为同类代谢酶机制比较靶点。"
+      },
+      {
+        "target": "GC",
+        "rationale": "GC 编码维生素D结合蛋白，直接结合并转运 25-羟基维生素D，是维生素D水平通路中具有分泌蛋白可及性的真实靶点。相较 HSD17B11，其更符合常规抗体识别与配体阻断策略。"
+      },
+      {
+        "target": "SLC22A12",
+        "rationale": "SLC22A12 编码尿酸盐转运体 URAT1，参与肾小管尿酸重吸收，与尿酸测量性状具有明确机制联系。其多跨膜转运构象可作为尿酸代谢方向的膜蛋白抗体设计候选。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

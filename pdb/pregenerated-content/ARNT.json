@@ -1,0 +1,65 @@
+{
+  "gene": "ARNT",
+  "generatedAt": "2026-08-03T10:36:40.217Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ARNT 是 AHR、HIF1A 与 HIF2A 转录复合体的必需核转位伴侣，参与异生物代谢、缺氧适应、血管生成及肿瘤代谢重编程；其疾病关联覆盖神经退行性疾病、黑色素瘤及肝胆肿瘤。ARNT 属于细胞核内 bHLH-PAS 转录因子，天然抗原可及性显著弱于膜受体或分泌蛋白，因此抗体策略更适合结构域结合验证、细胞内递送抗体或降解偶联探索。优先级主要来自其作为多个通路枢纽共因子的网络中心性，以及 3F1P 提供高分辨率 PAS-B 结构，可支持精确界面表位设计；但相较 AHR、EPAS1 等上游可调控节点，成药可及性风险较高。",
+    "mechanism": "设计结合 ARNT PAS-B 结构域的抗体片段，阻断其与 AHR/HIF-α PAS 区域形成稳定异源二聚体，从而抑制复合体结合 XRE 或 HRE DNA 元件。",
+    "selectedEpitope": "优先覆盖 PAS-B β-sheet 外侧及异源二聚体接触面，避开深埋疏水核心。",
+    "diseaseDirection": "缺氧-AHR转录轴相关肿瘤",
+    "domain": "ARNT 含 N 端 bHLH DNA 结合区、PAS-A/PAS-B 二聚化结构域及 C 端转录激活区。",
+    "evidence": "ARNT缺氧与AHR转录复合体证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P27540 functional annotation",
+      "RCSB PDB 3F1P experimental structure",
+      "Reactome AHR and HIF transcriptional pathway records"
+    ],
+    "referenceEntries": "UniProt P27540；RCSB PDB 3F1P；Ensembl ENSG00000143437",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PAS-B β-sheet二聚化界面",
+        "可直接干扰ARNT与AHR/HIF-α PAS区装配",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PAS-B α螺旋外露面",
+        "保留结构稳定性的同时提供较好抗体结合平面",
+        "备选"
+      ],
+      [
+        "Site C",
+        "bHLH DNA结合邻近区域",
+        "可能影响DNA结合但同源保守性高且核内可及性受限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ARNT 为核内转录因子，常规抗体难以到达作用位点；建议采用 VHH、细胞穿透递送或体外结构阻断验证，并严格评估与 ARNT2 的交叉反应。",
+    "structurePrepZh": "以 3F1P 高分辨率晶体结构为模板，保留抗原链 A/B 的 PAS-B 构象，补全缺失侧链并标注二聚化相关外露残基。",
+    "structureRef": "RCSB PDB 3F1P，X-ray diffraction，1.17 Å",
+    "antibodies": [
+      "ARNT monoclonal antibody clone 2B10",
+      "ARNT/HIF-1β antibody clone H1beta234"
+    ],
+    "interfaceFocus": "PAS-B介导的AHR/HIF-α异源二聚体界面",
+    "designMode": "胞内VHH阻断",
+    "candidates": [
+      {
+        "target": "AHR",
+        "rationale": "AHR 与 ARNT 形成异源二聚体并结合 XRE 元件，驱动 CYP1A1 等解毒代谢与肿瘤免疫调控基因表达；其配体结合口袋提供更上游的可干预节点。"
+      },
+      {
+        "target": "HIF1A",
+        "rationale": "HIF1A 在缺氧条件下稳定并与 ARNT 组装 HIF-1 复合体，诱导 VEGFA、SLC2A1 等缺氧反应基因；在实体瘤缺氧适应中与 ARNT 处于同一转录轴。"
+      },
+      {
+        "target": "EPAS1",
+        "rationale": "EPAS1/HIF2A 同样依赖 ARNT 形成 HIF-2 转录复合体，调控血管生成、红细胞生成及肿瘤代谢适应；在肝癌和肾癌等缺氧相关肿瘤中具有明确通路关联。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

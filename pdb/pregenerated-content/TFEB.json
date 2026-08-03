@@ -1,0 +1,65 @@
+{
+  "gene": "TFEB",
+  "generatedAt": "2026-08-03T17:14:32.432Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TFEB是MiT/TFE家族转录因子，调控CLEAR元件驱动的溶酶体生物发生、自噬通量及肾小管应激适应，遗传或表达失衡与肾功能指标和代谢稳态表型相关。该蛋白主要位于胞质与细胞核之间，缺乏稳定胞外结构域或分泌形式，天然抗原可及性不适合传统体内阻断抗体。相较同通路的膜性溶酶体蛋白，TFEB适合作为结构引导的胞内Fab/VHH工具抗体靶点，用于干预DNA结合或二聚化并解析转录调控机制。",
+    "mechanism": "设计胞内Fab/VHH结合TFEB bHLH-LZ区，阻断其同源二聚化及对CLEAR E-box序列的DNA结合，从而抑制溶酶体与自噬基因转录激活。",
+    "selectedEpitope": "优先覆盖bHLH基础区-DNA接触面及亮氨酸拉链二聚化界面，避免仅选择远端柔性尾部。",
+    "diseaseDirection": "肾功能与溶酶体自噬稳态",
+    "domain": "TFEB含N端调控区、bHLH DNA结合区、亮氨酸拉链二聚化区及C端转录激活区。",
+    "evidence": "TFEB-CLEAR轴与肾功能表型结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P19484功能与结构域注释",
+      "RCSB PDB 7Y62 X射线晶体结构",
+      "MiT/TFE家族CLEAR元件转录调控文献"
+    ],
+    "referenceEntries": "UniProt:P19484；RCSB PDB:7Y62；Ensembl:ENSG00000112561",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "bHLH基础区与CLEAR E-box DNA接触面",
+        "可直接削弱TFEB识别靶基因启动子，机制可验证性高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "亮氨酸拉链二聚化界面",
+        "干预TFEB同源或MiT/TFE家族异源二聚体形成，适合构象阻断",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端磷酸化调控邻近柔性区",
+        "可能影响14-3-3依赖的胞质滞留，但结构柔性和表位稳定性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TFEB为胞内核转录因子，常规抗体递送与靶点可及性受限；建议采用胞内VHH、细胞穿透格式或外源表达验证，并严格评估MiT/TFE家族交叉反应。",
+    "structurePrepZh": "以7Y62的A、B链作为bHLH-LZ二聚体模板，补全缺失侧链，保留DNA结合界面注释，去除晶体接触伪界面后进行表位可及性评估。",
+    "structureRef": "RCSB PDB 7Y62，TFEB bHLH-LZ晶体结构，2.0 Å",
+    "antibodies": [
+      "抗TFEB研究级单克隆抗体",
+      "抗TFE3研究级交叉验证抗体"
+    ],
+    "interfaceFocus": "bHLH-DNA接触面与LZ二聚化沟槽",
+    "designMode": "胞内结构阻断",
+    "candidates": [
+      {
+        "target": "MITF",
+        "rationale": "MITF与TFEB同属MiT/TFE家族，可识别相近E-box/CLEAR样序列并形成相关二聚体，是评估家族选择性与转录网络补偿的重要候选。"
+      },
+      {
+        "target": "TFE3",
+        "rationale": "TFE3与TFEB共享bHLH-LZ架构并参与溶酶体、自噬及营养应激相关转录调控，可作为同通路替代或交叉反应风险靶点。"
+      },
+      {
+        "target": "MTOR",
+        "rationale": "MTORC1通过磷酸化TFEB促进其胞质滞留，是TFEB核转位和CLEAR转录程序的上游核心调控节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

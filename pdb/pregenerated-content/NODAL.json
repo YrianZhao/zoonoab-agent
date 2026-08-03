@@ -1,0 +1,65 @@
+{
+  "gene": "NODAL",
+  "generatedAt": "2026-08-03T14:46:17.298Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NODAL 是 TGF-β 超家族分泌型形态发生因子，通过与 ACVR1B/ACVR2A 或 ACVR2B 受体复合物及共受体 TDGF1 协同激活 SMAD2/3，参与左右轴形成和内脏异位相关发育通路。其成熟配体为胞外可扩散蛋白，抗原可及性优于胞内转录调控因子和受体激酶胞内区。相比下游 SMAD 或广谱 Activin 受体，NODAL 处于配体层级，具备更高通路选择性和更直接的中和设计窗口。",
+    "mechanism": "中和抗体阻断成熟 NODAL 与 ACVR2A/ACVR2B 及 ACVR1B 受体复合物的结合，抑制受体介导的 SMAD2/3 磷酸化。",
+    "selectedEpitope": "优先覆盖成熟 TGF-β 样 cystine-knot 二聚体的 type II 受体结合面及指状区凸缘。",
+    "diseaseDirection": "左右轴形成异常与内脏异位",
+    "domain": "NODAL 前体含信号肽、前肽区及 C 端成熟 TGF-β 样 cystine-knot 配体结构域。",
+    "evidence": "NODAL-SMAD2/3 轴与异位综合征证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q96S42 functional annotation",
+      "RCSB PDB 4N1D X-ray structure",
+      "TGF-β/NODAL receptor signaling literature"
+    ],
+    "referenceEntries": "UniProt Q96S42；RCSB PDB 4N1D；Open Targets NODAL",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "成熟配体 type II 受体结合面",
+        "直接阻断 ACVR2A/ACVR2B 招募，具备明确中和机制",
+        "优先"
+      ],
+      [
+        "Site B",
+        "cystine-knot 指状区与二聚体外侧凸缘",
+        "可干扰受体复合物装配并提高表位特异性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "二聚体核心半胱氨酸结与保守疏水核心邻近区",
+        "结构保守且可能影响折叠稳定性，需避免交叉反应和构象依赖风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NODAL 与 Activin/GDF 家族成熟结构域存在保守性，表位应避开高度保守 cystine-knot 核心，优先筛选受体结合面周边的 NODAL 特异残基。",
+    "structurePrepZh": "以 4N1D 抗原链 A 为结构模板，保留成熟配体构象，检查二硫键、缺失环区和晶体接触界面，并标注受体结合面可及残基。",
+    "structureRef": "PDB 4N1D，X-ray diffraction，1.912 Å",
+    "antibodies": [
+      "REGN910-3",
+      "anti-NODAL clone 3D1"
+    ],
+    "interfaceFocus": "成熟配体 type II 受体结合面",
+    "designMode": "配体中和抗体",
+    "candidates": [
+      {
+        "target": "ACVR1B",
+        "rationale": "ACVR1B 是 NODAL/Activin 通路的 type I 受体，介导 SMAD2/3 磷酸化。靶向其胞外配体结合区可作为阻断受体复合物形成的同通路策略。"
+      },
+      {
+        "target": "ACVR2B",
+        "rationale": "ACVR2B 是 NODAL 受体复合物中的 type II 受体，可先结合配体并招募 type I 受体。其胞外结构域适合评估配体-受体界面阻断。"
+      },
+      {
+        "target": "TDGF1",
+        "rationale": "TDGF1 是 NODAL 信号的 GPI 锚定共受体，增强 NODAL 对 ACVR1B/ACVR2 复合物的激活。阻断 TDGF1 参与可降低 NODAL 通路选择性激活。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

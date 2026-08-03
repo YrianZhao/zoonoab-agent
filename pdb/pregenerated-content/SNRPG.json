@@ -1,0 +1,65 @@
+{
+  "gene": "SNRPG",
+  "generatedAt": "2026-08-03T16:47:47.286Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SNRPG为Sm核心小核核糖核蛋白成分，参与U snRNP装配和前体mRNA剪接，其异常更可能通过RNA加工稳态影响神经退行性表型；Open Targets关联得分整体偏中低，提示疾病遗传支持有限。该蛋白主要定位于细胞核内snRNP复合体，并非分泌蛋白、膜受体或胞外结构域抗原，天然抗体可及性较差。相较CD20、TNF或IL6R等可及性明确靶点，SNRPG优先级仅适合机制研究、胞内递送抗体或诊断试剂开发，不宜作为常规治疗性阻断抗体首选。",
+    "mechanism": "设计抗体优先识别SNRPG Sm fold中与Sm环装配相关表面，干扰SNRPG与SNRPE/SNRPF邻近亚基及snRNA Sm位点复合体稳定性。",
+    "selectedEpitope": "推荐覆盖Sm fold β片层外露面及SNRPG-SNRPE邻接界面，避免深埋RNA结合沟槽。",
+    "diseaseDirection": "RNA剪接稳态与神经退行性疾病",
+    "domain": "SNRPG为Sm家族小蛋白，含保守Sm1/Sm2基序，形成β折叠Sm fold并参与七元Sm环。",
+    "evidence": "SNRPG结构、剪接复合体与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB P62308功能与定位注释",
+      "RCSB PDB 5XJL晶体结构条目",
+      "snRNP/Sm核心复合体结构与剪接文献"
+    ],
+    "referenceEntries": "UniProtKB:P62308；RCSB PDB:5XJL；Open Targets:SNRPG",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Sm fold外露β片层与SNRPE邻接边缘",
+        "可用于阻断Sm核心环装配界面，结构可解释性较强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Sm1/Sm2基序周边可溶剂暴露环区",
+        "有利于获得构象选择性结合，适合结构探针抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "snRNA结合沟槽及复合体深埋内表面",
+        "可能受RNA和邻近Sm亚基遮挡，抗体进入与成药性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SNRPG为核内RNP成分，常规抗体难以进入细胞核；设计应标注胞内递送或诊断用途，并规避高度保守Sm核心导致的交叉反应。",
+    "structurePrepZh": "以5XJL中SNRPG所在链为模板，保留Sm核心复合体邻近亚基用于界面判读，去除非目标链冗余并评估暴露度与保守性。",
+    "structureRef": "RCSB PDB 5XJL，X射线晶体结构，2.5 Å",
+    "antibodies": [
+      "anti-SNRPG研究级单克隆抗体",
+      "anti-Sm G自身抗体/诊断抗体"
+    ],
+    "interfaceFocus": "SNRPG-SNRPE/SNRPF邻接界面与Sm环外侧面",
+    "designMode": "胞内靶点研究抗体",
+    "candidates": [
+      {
+        "target": "SNRPE",
+        "rationale": "SNRPE为同一Sm核心snRNP复合体成员，与SNRPG共同参与U snRNP装配和剪接体形成，适合作为相邻界面验证靶点。"
+      },
+      {
+        "target": "SNRPF",
+        "rationale": "SNRPF与SNRPG同属Sm蛋白环组成部分，参与snRNA Sm位点结合，可用于比较Sm环不同亚基的装配依赖性。"
+      },
+      {
+        "target": "SNRPD1",
+        "rationale": "SNRPD1为七元Sm核心复合体成员，在snRNP成熟和前体mRNA剪接中发挥结构支架作用，与SNRPG处于同一RNA剪接通路。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

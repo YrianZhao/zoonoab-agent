@@ -1,0 +1,65 @@
+{
+  "gene": "IL11RA",
+  "generatedAt": "2026-08-03T13:25:29.847Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IL11RA编码白细胞介素11受体α链，是IL-11信号复合体的配体识别亚基；IL-11结合IL11RA后招募IL6ST/gp130并激活JAK-STAT3通路，参与骨发育、成骨细胞分化及颅缝闭合调控，其遗传异常与颅缝早闭和牙发育异常存在明确关联。IL11RA为细胞表面I型细胞因子受体，胞外D1-D3结构域直接暴露于抗体可及空间，适合开展阻断型抗体设计。相较下游JAK或STAT3等广泛信号节点，IL11RA具有更高通路入口选择性，可在IL-11轴内实现较窄谱干预并降低对其他gp130细胞因子信号的非特异影响。",
+    "mechanism": "抗体阻断IL-11与IL11RA胞外细胞因子结合模块的结合，抑制IL11RA-IL6ST信号复合体装配，从而降低JAK介导的STAT3磷酸化。",
+    "selectedEpitope": "优先覆盖D2-D3细胞因子结合模块中IL-11接触界面，兼顾D3近膜侧复合体装配面。",
+    "diseaseDirection": "颅缝早闭及骨发育异常",
+    "domain": "IL11RA胞外区由N端免疫球蛋白样D1域及D2-D3细胞因子受体同源结构域组成。",
+    "evidence": "IL11RA-IL11-gp130轴结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q14626功能与结构域注释",
+      "RCSB PDB 6O4P晶体结构记录",
+      "OMIM与人类颅缝早闭综合征遗传报道"
+    ],
+    "referenceEntries": "UniProt: Q14626; RCSB PDB: 6O4P; Open Targets: IL11RA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "D2-D3细胞因子结合模块的IL-11接触面",
+        "直接阻断IL-11识别并抑制受体复合体起始装配",
+        "优先"
+      ],
+      [
+        "Site B",
+        "D3近膜侧与IL6ST/gp130装配邻近区域",
+        "干扰IL11RA-IL6ST三元复合体稳定化，适合功能阻断筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端D1免疫球蛋白样结构域远端暴露面",
+        "抗原可及性较好，但对IL-11结合与信号阻断的功能相关性较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "D2-D3界面可能与配体结合热点高度重叠，需避免过度依赖柔性环区导致亲和力不稳定；应评估与IL6ST共享复合体邻近面的选择性。",
+    "structurePrepZh": "以6O4P实验晶体结构为模板，保留IL11RA胞外结构域，检查3.429 Å分辨率下缺失环区、糖基化位点及链间装配状态后进行表位建模。",
+    "structureRef": "RCSB PDB 6O4P，X-ray diffraction，3.429 Å",
+    "antibodies": [
+      "X203",
+      "Enxalugratug"
+    ],
+    "interfaceFocus": "IL-11结合面与IL6ST复合体装配邻近区",
+    "designMode": "阻断型Fab/VHH设计",
+    "candidates": [
+      {
+        "target": "IL11",
+        "rationale": "IL11是IL11RA的直接配体，处于同一IL-11-IL11RA-IL6ST轴；中和IL-11可在配体层面阻断受体复合体形成。"
+      },
+      {
+        "target": "IL6ST",
+        "rationale": "IL6ST/gp130是IL11RA配体结合后招募的共同信号转导亚基；靶向其复合体装配界面可抑制IL-11依赖性STAT3激活。"
+      },
+      {
+        "target": "JAK1",
+        "rationale": "JAK1参与gp130家族受体复合体下游STAT3磷酸化，是IL-11信号传递的关键激酶节点；但其通路选择性低于IL11RA。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

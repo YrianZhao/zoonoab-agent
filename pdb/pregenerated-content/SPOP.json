@@ -1,0 +1,65 @@
+{
+  "gene": "SPOP",
+  "generatedAt": "2026-08-03T16:53:07.551Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SPOP是CUL3-RBX1 E3泛素连接酶复合体的底物识别适配蛋白，MATH结构域突变可改变AR、DAXX、DEK、ERG等底物降解，在前列腺腺癌及部分神经发育疾病中具有明确遗传关联。SPOP主要定位于细胞核斑点并参与胞内蛋白泛素化，天然抗原可及性不具备膜受体或分泌蛋白优势，因此更适合作为机制研究、细胞内递送抗体或降解调控分子设计靶点。相较CUL3、RBX1等泛化E3核心组分，SPOP的MATH底物结合沟槽提供更高通路选择性，优先级来自其疾病热点突变聚集和底物选择界面的可解析结构基础。",
+    "mechanism": "设计分子阻断SPOP MATH结构域与底物SBC degron肽段结合，干预SPOP-CUL3复合体对AR、DAXX或ERG等底物的泛素化识别。",
+    "selectedEpitope": "优先靶向MATH结构域底物结合沟槽及突变热点邻近面，覆盖SBC degron识别界面。",
+    "diseaseDirection": "前列腺腺癌与神经发育异常",
+    "domain": "SPOP含N端MATH/TRAF样底物结合域、BTB/POZ二聚化与CUL3结合域及C端BACK结构域。",
+    "evidence": "SPOP底物识别结构与前列腺癌突变证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt O43791功能与结构域注释",
+      "RCSB PDB 3IVV晶体结构",
+      "TCGA前列腺腺癌SPOP突变研究"
+    ],
+    "referenceEntries": "UniProt O43791；RCSB PDB 3IVV；Open Targets SPOP",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "MATH结构域SBC degron结合沟槽",
+        "直接竞争底物肽识别，适合构建功能阻断型细胞内抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "MATH结构域前列腺癌热点突变邻近表面",
+        "可区分构象扰动区域并评估突变依赖性结合",
+        "备选"
+      ],
+      [
+        "Site C",
+        "BTB/POZ二聚化及CUL3结合界面",
+        "可能影响E3复合体装配，但界面保守且干预风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SPOP为胞内核蛋白，常规抗体药物难以直接到达靶点；建议限定为细胞内抗体、递送抗体片段或结构探针，并避免广泛破坏CUL3核心连接酶功能。",
+    "structurePrepZh": "以3IVV的A、D链为MATH结构域模板，保留高分辨率坐标，补全缺失侧链并评估晶体接触；结合底物肽复合物结构映射SBC结合沟槽。",
+    "structureRef": "Zhuang et al., SPOP MATH domain crystal structure, PDB 3IVV",
+    "antibodies": [
+      "SPOP (D3D2) Rabbit mAb",
+      "SPOP (EPR19584) Rabbit mAb"
+    ],
+    "interfaceFocus": "MATH结构域SBC degron识别沟槽",
+    "designMode": "胞内阻断型",
+    "candidates": [
+      {
+        "target": "CUL3",
+        "rationale": "CUL3是SPOP所属CRL3泛素连接酶复合体的核心支架，直接连接BTB适配蛋白与RBX1催化模块。其干预可影响同一底物泛素化轴，但选择性低于SPOP。"
+      },
+      {
+        "target": "RBX1",
+        "rationale": "RBX1为CRL3复合体RING催化亚基，负责招募E2泛素结合酶并促进泛素转移。该靶点处于SPOP-CUL3通路下游催化环节，适合机制对照。"
+      },
+      {
+        "target": "AR",
+        "rationale": "AR是前列腺腺癌核心驱动因子，也是SPOP突变背景下受影响的关键底物之一。围绕AR稳定性与转录活性的调控可与SPOP底物识别阻断形成同通路验证。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "KCNQ1",
+  "generatedAt": "2026-08-03T13:39:58.146Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KCNQ1 编码心肌 IKs 通道孔形成 α 亚基，其与 KCNE1 组装后介导动作电位复极电流；功能缺失可延长 QT 间期并导致 long QT syndrome 1、Jervell and Lange-Nielsen syndrome 1 及 Romano-Ward syndrome。该蛋白为多跨膜电压门控钾通道，S1-S6 跨膜区及连接环在质膜外侧形成可及抗原面，但胞外环面积有限，需优先采用结构约束设计。相较多种下游心律失常表型标志物，KCNQ1 位于复极电流形成的上游核心节点，且遗传证据与疾病评分高度集中，具备明确优先级。",
+    "mechanism": "抗体设计宜阻断或稳定 KCNQ1 胞外孔区构象，影响 S5-Pore-S6 区域离子通透与 KCNE1 调制后的 IKs 电流形成。",
+    "selectedEpitope": "优先聚焦 S5-Pore linker、P-loop turret 与 S6 外侧孔口邻近界面。",
+    "diseaseDirection": "遗传性长 QT 与心律失常",
+    "domain": "KCNQ1 含 S1-S4 电压感受结构域、S5-P-S6 孔结构域及胞内 C 端调控区。",
+    "evidence": "KCNQ1 心肌复极通道疾病遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt P51787 功能与变异注释",
+      "RCSB PDB 3HFE 实验结构记录",
+      "ClinVar/OMIM 长 QT 综合征遗传证据"
+    ],
+    "referenceEntries": "UniProt P51787；RCSB PDB 3HFE；Open Targets KCNQ1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "S5-Pore linker 与 P-loop turret 外侧孔口",
+        "邻近离子选择性滤过入口，可直接影响孔区构象与通透性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "S1-S2 或 S3-S4 胞外连接环",
+        "位于电压感受结构域外侧，可用于构象选择性结合",
+        "备选"
+      ],
+      [
+        "Site C",
+        "胞内 C 端钙调蛋白结合调控区",
+        "疾病突变富集但常规抗体可及性差，仅适合细胞内递送或研究工具",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "KCNQ1 胞外环短且靠近膜面，抗体空间位阻与功能扰动风险较高；应避免选择性滤过孔完全堵塞导致过度抑制，并评估心肌安全窗。",
+    "structurePrepZh": "以 3HFE 高分辨率实验结构作为结构片段参考，补充 AlphaFold 全长模型与膜环境取向，重建胞外环并标注糖基化与膜嵌入边界。",
+    "structureRef": "RCSB PDB 3HFE，X-ray diffraction，1.7 Å",
+    "antibodies": [
+      "无获批 KCNQ1 治疗性抗体",
+      "研究级抗 KCNQ1 胞外环抗体"
+    ],
+    "interfaceFocus": "孔区 turret、S5-Pore linker、S6 外口",
+    "designMode": "膜通道构象表位设计",
+    "candidates": [
+      {
+        "target": "KCNE1",
+        "rationale": "KCNE1 是 KCNQ1 形成心肌 IKs 电流的关键 β 亚基，调节通道门控动力学；其突变同样与长 QT 综合征和 Jervell-Lange-Nielsen 表型相关。"
+      },
+      {
+        "target": "KCNH2",
+        "rationale": "KCNH2 编码 hERG/IKr 通道，是心室复极另一核心钾电流通路，遗传变异与 long QT syndrome 2 及药物性 QT 延长密切相关。"
+      },
+      {
+        "target": "SCN5A",
+        "rationale": "SCN5A 编码心肌 Nav1.5 钠通道，晚钠电流增强可延长动作电位并导致 long QT syndrome 3；与 KCNQ1 共同决定复极-去极化电生理平衡。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

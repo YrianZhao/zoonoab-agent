@@ -1,0 +1,65 @@
+{
+  "gene": "PSMD4",
+  "generatedAt": "2026-08-03T15:40:27.950Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PSMD4是26S蛋白酶体19S调节颗粒的泛素受体，参与识别多聚泛素化底物并将其递送至蛋白酶体降解轴，浆细胞骨髓瘤和套细胞淋巴瘤对蛋白稳态与泛素-蛋白酶体系统高度依赖。该蛋白主要定位于胞内蛋白酶体复合体，缺乏天然胞外结构域，抗体抗原可及性不具备常规膜表面靶点优势，更适合结构验证、细胞内递送抗体或研究型结合分子设计。相较PSMA、PSMB等催化亚基，PSMD4的Rpn10/VWA scaffold与UIM泛素结合模块直接承担底物识别，具备解析底物招募界面的机制优先级，但成药形式需优先控制递送可行性风险。",
+    "mechanism": "设计结合体阻断PSMD4 UIM结构域与Lys48连接多聚泛素链的相互作用，削弱泛素化底物向26S蛋白酶体的招募。",
+    "selectedEpitope": "优先覆盖C端UIM1/UIM2泛素结合螺旋及其疏水识别面，避免干扰VWA核心折叠稳定性。",
+    "diseaseDirection": "血液肿瘤蛋白稳态依赖",
+    "domain": "PSMD4含N端VWA样结构域与C端两个泛素相互作用基序UIM，定位于19S调节颗粒Rpn10亚基。",
+    "evidence": "PSMD4蛋白酶体底物识别与血液肿瘤关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P55036功能与结构域注释",
+      "RCSB PDB 5GJR人源26S蛋白酶体冷冻电镜结构",
+      "蛋白酶体抑制剂在浆细胞骨髓瘤中的临床机制文献"
+    ],
+    "referenceEntries": "UniProt:P55036; RCSB PDB:5GJR; HGNC:9561",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端UIM1/UIM2泛素链结合界面",
+        "直接竞争多聚泛素底物识别，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端VWA样结构域外露环区",
+        "可用于获得构象识别分子并标记Rpn10装配状态",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Rpn10与19S调节颗粒邻近装配界面",
+        "可能影响蛋白酶体复合体稳定性，需避免广泛细胞毒性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PSMD4为胞内蛋白酶体亚基，常规治疗性抗体难以到达靶点；设计宜限定为细胞内递送、研究试剂或降解通路验证，并严控全局蛋白酶体抑制毒性。",
+    "structurePrepZh": "以5GJR冷冻电镜结构提取PSMD4/Rpn10链段，补全低置信柔性UIM区域并结合UniProt边界注释进行构象建模与表面暴露评估。",
+    "structureRef": "RCSB PDB 5GJR, human 26S proteasome cryo-EM, 3.5 Å",
+    "antibodies": [
+      "anti-PSMD4/Rpn10 research antibody",
+      "anti-ubiquitin chain interface antibody"
+    ],
+    "interfaceFocus": "UIM1/UIM2与Lys48多聚泛素链结合面",
+    "designMode": "胞内递送型Fab/VHH",
+    "candidates": [
+      {
+        "target": "PSMB5",
+        "rationale": "PSMB5编码20S蛋白酶体β5催化亚基，是硼替佐米和卡非佐米直接作用节点，与骨髓瘤蛋白稳态依赖机制一致。"
+      },
+      {
+        "target": "PSMD2",
+        "rationale": "PSMD2/Rpn1位于19S调节颗粒，参与泛素化底物受体适配和去泛素化酶招募，属于同一蛋白酶体底物处理通路。"
+      },
+      {
+        "target": "PSMD14",
+        "rationale": "PSMD14/Rpn11为19S调节颗粒去泛素化金属蛋白酶，负责底物进入20S核心前的泛素链切除，是蛋白酶体降解轴的关键酶性节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

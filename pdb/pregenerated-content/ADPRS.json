@@ -1,0 +1,65 @@
+{
+  "gene": "ADPRS",
+  "generatedAt": "2026-08-03T10:18:58.920Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ADPRS编码ARH3，是去除蛋白质ADP-核糖基化丝氨酸修饰的细胞内水解酶，双等位基因功能缺失与儿童起病应激诱发性神经退行性疾病、共济失调和癫痫相关，机制涉及DNA损伤应答及PARP依赖性ADP-核糖化稳态失衡。该蛋白定位于胞质、细胞核及线粒体基质，缺乏天然胞外结构域或分泌特征，因此作为常规体内阻断型抗体靶点的抗原可及性受限。其优势在于疾病遗传因果证据和高分辨率晶体结构明确，较PARP1等上游广谱酶更适合开展结构机制研究、细胞内递送抗体或研究级构象探针设计。",
+    "mechanism": "抗体设计宜阻断ARH3催化沟槽对ADP-核糖基化丝氨酸底物的识别，并干扰金属离子依赖性水解位点周围的底物定位。",
+    "selectedEpitope": "优先覆盖macrodomain样α/β水解酶核心的催化沟槽入口及ADP-核糖结合口袋边缘。",
+    "diseaseDirection": "遗传性神经退行性疾病",
+    "domain": "ARH3为ADP-ribosylhydrolase结构域蛋白，含Mg2+依赖性催化核心及ADP-核糖结合沟槽。",
+    "evidence": "ADPRS遗传神经退行性疾病结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q9NX46蛋白功能注释",
+      "RCSB PDB 7ARW晶体结构",
+      "OMIM及ClinVar中ADPRS双等位基因变异记录"
+    ],
+    "referenceEntries": "UniProt: Q9NX46; RCSB PDB: 7ARW; Open Targets: ADPRS",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化沟槽入口及ADP-核糖结合口袋边缘",
+        "可直接限制ADP-核糖基化丝氨酸底物进入并形成机制型抑制构象",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Mg2+依赖性催化中心邻近环区",
+        "有助于改变底物水解所需的金属配位环境，但需避免完全依赖离子接触",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化沟槽的α螺旋外表面",
+        "结构可及但功能阻断价值有限，更适合作为结合探针而非功能抗体",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ADPRS为细胞内酶，天然抗体难以到达作用位点；建议限定为细胞内递送抗体、intrabody或结构探针方向，并优先验证细胞摄取与亚细胞定位。",
+    "structurePrepZh": "以7ARW高分辨率晶体结构为模板，保留催化金属离子与关键水分子信息，检查A、B链构象差异后选择完整单体进行表位建模。",
+    "structureRef": "RCSB PDB 7ARW, X-ray diffraction, 1.31 Å",
+    "antibodies": [
+      "无已获批ADPRS靶向抗体",
+      "研究级anti-ADPRS/ARH3抗体"
+    ],
+    "interfaceFocus": "催化沟槽入口、ADP-核糖口袋、金属配位邻近环区",
+    "designMode": "细胞内酶构象阻断",
+    "candidates": [
+      {
+        "target": "PARP1",
+        "rationale": "PARP1催化DNA损伤应答中的蛋白ADP-核糖化，是ADPRS底物负荷形成的上游核心酶；其活性失衡可加重PAR链积累和细胞应激损伤。"
+      },
+      {
+        "target": "HPF1",
+        "rationale": "HPF1与PARP1/2形成复合物并将ADP-核糖化反应导向丝氨酸残基，位于ADPRS清除ADP-核糖基化丝氨酸修饰的同一修饰循环。"
+      },
+      {
+        "target": "PARG",
+        "rationale": "PARG负责降解聚ADP-核糖链，与ADPRS共同维持ADP-核糖化动态平衡；该节点可用于比较PAR链水解与丝氨酸单ADP-核糖水解的疾病贡献。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

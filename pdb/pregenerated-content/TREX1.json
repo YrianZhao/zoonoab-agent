@@ -1,0 +1,65 @@
+{
+  "gene": "TREX1",
+  "generatedAt": "2026-08-03T17:27:36.491Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TREX1 是胞质 DNA 降解酶，功能缺失会导致内源性 DNA 积累并激活 cGAS-STING-TBK1-IRF3 轴，驱动 I 型干扰素异常升高，与 Aicardi-Goutières 综合征、系统性红斑狼疮和冻疮样狼疮具有明确遗传与通路关联。该蛋白定位于内质网外膜胞质侧，催化结构域可形成可解析的二聚体界面，虽非典型分泌或细胞外抗原，但其胞质可及构象适合细胞内抗体、VHH 或递送型抗体片段设计。相较于下游 IFNAR1 或 JAK1 等广泛免疫调节靶点，TREX1 位于核酸感知通路上游病因节点，具备更高机制特异性和遗传证据优先级。",
+    "mechanism": "通过结合 TREX1 催化沟槽或二聚化界面，调节其与单链 DNA 底物及金属离子依赖活性中心的相互作用，从源头影响胞质 DNA 清除和 cGAS 激活阈值。",
+    "selectedEpitope": "优先聚焦 ExoI-ExoIII 催化核心邻近的 DNA 结合沟槽，并避开金属配位残基直接遮蔽。",
+    "diseaseDirection": "I型干扰素病与自身免疫炎症",
+    "domain": "TREX1 含 N 端 DEDD 家族 3'-5' 外切酶催化结构域，C 端疏水尾锚定内质网膜。",
+    "evidence": "TREX1-cGAS-STING干扰素病证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9NSU2 functional annotation",
+      "RCSB PDB 7TQO X-ray structure",
+      "ClinVar and OMIM TREX1 disease genetics"
+    ],
+    "referenceEntries": "UniProt Q9NSU2；RCSB PDB 7TQO；Open Targets TREX1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ExoI-ExoIII 催化核心周边 DNA 结合沟槽",
+        "可影响 TREX1 与单链 DNA 底物结合并调节核酸清除功能",
+        "优先"
+      ],
+      [
+        "Site B",
+        "TREX1 同源二聚体界面外缘",
+        "可改变二聚体稳定性或底物通道几何构象，适合构象选择型设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端疏水尾邻近膜锚定区",
+        "该区域结构柔性高且与膜定位相关，抗体片段可及性和构象均一性存在不确定性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TREX1 为胞内膜相关酶，常规循环抗体难以直接到达胞质侧抗原；宜采用 VHH、细胞内抗体或递送偶联策略，并避免完全抑制残余核酸清除造成干扰素放大风险。",
+    "structurePrepZh": "以 7TQO 的 A 链高分辨率晶体结构为模板，补全缺失侧链、校验金属配位与催化残基质子化状态，并单独评估 C 端膜锚定缺失对表位暴露的影响。",
+    "structureRef": "RCSB PDB 7TQO，X-ray diffraction，1.25 Å",
+    "antibodies": [
+      "无已批准 TREX1 靶向治疗性抗体",
+      "实验性抗 TREX1 研究抗体"
+    ],
+    "interfaceFocus": "DNA 结合沟槽、DEDD 活性中心邻域与二聚体界面",
+    "designMode": "胞内VHH调节",
+    "candidates": [
+      {
+        "target": "CGAS",
+        "rationale": "CGAS 直接识别 TREX1 缺陷后积累的胞质 DNA 并生成 cGAMP，是同一核酸感知通路中的关键上游传感器。"
+      },
+      {
+        "target": "TMEM173",
+        "rationale": "TMEM173 编码 STING，接受 cGAMP 信号并募集 TBK1，是 TREX1 缺陷相关 I 型干扰素激活的核心接头节点。"
+      },
+      {
+        "target": "IFNAR1",
+        "rationale": "IFNAR1 介导 I 型干扰素受体信号放大，与 TREX1 相关干扰素病的下游炎症效应直接相关，且具有细胞表面抗原可及性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

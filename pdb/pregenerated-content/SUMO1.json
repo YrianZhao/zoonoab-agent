@@ -1,0 +1,65 @@
+{
+  "gene": "SUMO1",
+  "generatedAt": "2026-08-03T17:02:51.814Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SUMO1参与蛋白SUMO化修饰，影响转录调控、DNA损伤应答与先天免疫相关蛋白稳定性，其异常与感染及发育异常表型具有可解释的通路联系。该蛋白为小分泌样胞质/核内修饰因子，虽非经典膜抗原，但在特定细胞内递送或胞外释放场景下具有明确的结构识别价值。相较SUMO2/3，SUMO1序列与表面电荷分布更具选择性，可为亚型特异性识别提供优先设计基础。",
+    "mechanism": "通过占据SUMO1疏水表面并阻断其与SIM基序及靶蛋白赖氨酸受体的接触，抑制SUMO化底物装载与链延伸。",
+    "selectedEpitope": "优先覆盖β2-α1邻近疏水口袋及β1-β2环面，以干扰SIM结合界面并提升亚型特异性。",
+    "diseaseDirection": "感染与发育异常相关通路",
+    "domain": "SUMO-like fold核心结构，β1-β2环、β2-α1界面及C端Gly-Gly成熟位点邻域。",
+    "evidence": "SUMO1结构与疾病关联证据包",
+    "evidenceSources": [
+      "UniProt: P63165",
+      "RCSB PDB: 2UYZ",
+      "Open Targets Platform",
+      "Protein Data Bank ligand-free SUMO1结构记录"
+    ],
+    "referenceEntries": "UniProt P63165; PDB 2UYZ; SUMO1 Homo sapiens",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "β2-α1疏水口袋邻近面",
+        "直接干预SIM样结合与底物识别，利于获得功能阻断型抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "β1-β2环及其侧向暴露残基",
+        "有助于区分SUMO1与SUMO2/3，提升亚型选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端Gly-Gly前成熟区附近",
+        "可影响成熟加工与底物接合，但存在对加工酶识别干扰风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SUMO1为高度保守的小型胞内蛋白，表位空间有限且与SUMO2/3同源性较高，交叉反应风险需重点控制。建议采用以功能界面为中心的分子对接与表面残基差异筛选，并同步评估亚型选择性。",
+    "structurePrepZh": "以2UYZ为核心模板重建生理状态单体构象，保留链A/B界面信息并校正缺失侧链；必要时结合成熟体与SIM复合物模型进行表位暴露度评估。",
+    "structureRef": "Li et al., X-ray structure of human SUMO1, PDB 2UYZ",
+    "antibodies": [
+      "抗SUMO1单克隆抗体Y-11",
+      "抗SUMO1多克隆抗体"
+    ],
+    "interfaceFocus": "β2-α1疏水槽与β1-β2环外缘",
+    "designMode": "intracellular-target",
+    "candidates": [
+      {
+        "target": "SUMO2",
+        "rationale": "SUMO2与SUMO1共同参与SUMO化级联并共享底物网络，适合作为同通路并行对照靶点，用于评估亚型选择性与功能冗余。"
+      },
+      {
+        "target": "SAE1",
+        "rationale": "SAE1位于SUMO激活起始步骤，上游抑制可同步影响SUMO1相关修饰过程，属于同一SUMO化通路的真实候选靶点。"
+      },
+      {
+        "target": "UBC9",
+        "rationale": "UBC9是SUMO E2连接酶，直接介导SUMO1向底物转移，具有明确的同通路机制关联和较强的功能干预价值。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

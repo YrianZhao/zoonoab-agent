@@ -1,0 +1,65 @@
+{
+  "gene": "TBL1X",
+  "generatedAt": "2026-08-03T17:10:03.869Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TBL1X 参与核受体共调控复合体与转录抑制/激活切换，在甲状腺激素相关发育异常及 X 连锁眼部表型中具有明确疾病关联，适合作为机制性干预靶点。其蛋白主要为胞内 WD40/稠密重复结构，缺乏典型胞外可及表位，因此更适合采用细胞内递送抗体或胞内结合体策略开展构象干预。相较于同通路的受体层靶点，TBL1X 更靠近转录复合体装配节点，具备干预共抑制子交换与辅因子招募的上游优势，且结构信息已由实验解析，可直接支持表位精细化设计。",
+    "mechanism": "结合 TBL1X 的 WD40 螺旋面，阻断其与 NCOR/SMRT 复合体及核受体辅因子的装配界面，抑制共抑制子交换。",
+    "selectedEpitope": "优先选择 WD40 repeat 外缘与伴侣蛋白接触面，覆盖复合体装配界面并避免核心 β-螺旋稳定区。",
+    "diseaseDirection": "甲状腺-眼部发育异常",
+    "domain": "C 端 WD40 repeat beta-propeller 为主，A/B 链对应稳定的螺旋折叠界面。",
+    "evidence": "TBL1X 疾病关联与结构设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform",
+      "UniProt O60907",
+      "RCSB PDB 2XTC",
+      "Protein Data Bank"
+    ],
+    "referenceEntries": "UniProt O60907; PDB 2XTC; Open Targets TBL1X page",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "WD40 repeat 4-6 外缘接触带",
+        "优先阻断共调控蛋白装配，适合构象干预",
+        "优先"
+      ],
+      [
+        "Site B",
+        "WD40 repeat 2-3 周边环区",
+        "可能影响伴侣识别，但保守性较高",
+        "备选"
+      ],
+      [
+        "Site C",
+        "beta-propeller 核心折叠面",
+        "结构稳定性风险高，易扰动整体折叠",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险来自胞内可及性不足与 WD40 结构保守性较高，应优先采用细胞内递送 Fab/VHH 并以表面外缘环区为主，避免核心折叠位点。",
+    "structurePrepZh": "建议基于 2XTC 进行链 A/B 重建与缺失环区补模，结合保守位点映射筛除高同源核心残基后再行表位分层。",
+    "structureRef": "RCSB PDB 2XTC；X-ray diffraction, 2.22 A",
+    "antibodies": [
+      "anti-WD40 domain binder reported in scaffold studies",
+      "intracellular VHH binders against beta-propeller proteins"
+    ],
+    "interfaceFocus": "WD40 外缘蛋白-蛋白相互作用界面",
+    "designMode": "胞内构象阻断",
+    "candidates": [
+      {
+        "target": "NCOR1",
+        "rationale": "NCOR1 与 TBL1X 同属核受体共抑制复合体轴，是最直接的功能协同节点。针对其界面设计可与 TBL1X 形成同通路联动验证。"
+      },
+      {
+        "target": "NCOR2",
+        "rationale": "NCOR2 与 TBL1X 在转录共抑制复合体中具有平行装配关系，适合作为同疾病通路候选靶点。其界面干预逻辑与 TBL1X 高度一致。"
+      },
+      {
+        "target": "THRA",
+        "rationale": "THRA 处于核受体信号上游，与 TBL1X 通过共抑制子交换直接耦合，适合构成疾病通路中的功能对照靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

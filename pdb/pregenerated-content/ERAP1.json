@@ -1,0 +1,65 @@
+{
+  "gene": "ERAP1",
+  "generatedAt": "2026-08-03T12:20:26.519Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ERAP1位于内质网腔内，负责将蛋白酶体来源肽段修剪为适合HLA-I装载的8–10mer抗原肽，直接影响银屑病和强直性脊柱炎中HLA-C*06:02、HLA-B*27相关抗原呈递谱。该蛋白并非经典细胞表面抗原，抗体进入内质网的可及性受限，但其可溶性腔内酶结构明确，适合用于机制验证、胞内递送抗体或工程化抗体片段设计。相比HLA-I本身或下游TCR靶点，ERAP1处于抗原肽编辑上游，具有同时重塑多肽库和疾病风险等位基因互作的优先级优势。",
+    "mechanism": "通过结合ERAP1催化腔入口或锌金属肽酶活性沟槽，阻断底物N端肽段进入GAMEN/HEXXH催化中心，抑制HLA-I配体前体肽修剪。",
+    "selectedEpitope": "优先覆盖Domain II催化沟槽入口及Domain IV调控闭合界面，避免直接依赖埋藏锌配位残基。",
+    "diseaseDirection": "HLA-I抗原呈递相关炎症疾病",
+    "domain": "ERAP1由Domain I–IV组成，Domain II含M1锌金属氨肽酶催化核心，Domain IV形成底物结合腔。",
+    "evidence": "ERAP1-HLA-I抗原肽修剪与炎症遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9NZ08功能与亚细胞定位注释",
+      "RCSB PDB 9GK6高分辨率晶体结构",
+      "银屑病与强直性脊柱炎ERAP1-HLA遗传互作研究"
+    ],
+    "referenceEntries": "UniProt Q9NZ08；RCSB PDB 9GK6；Open Targets ERAP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Domain II催化沟槽入口邻近GAMEN/HEXXH区域",
+        "限制底物N端进入催化中心，形成直接酶活阻断构型",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Domain IV底物结合腔内壁及Domain II-IV交界",
+        "干扰长肽定位与构象闭合，适合变构型抑制抗体片段",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端Domain I外露面远离催化腔区域",
+        "结构可及但对肽段修剪功能影响不确定，需功能筛选验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ERAP1为内质网腔内可溶酶，常规抗体体内可达性不足；建议限定为胞内递送、细胞内表达抗体或体外机制抗体验证场景。",
+    "structurePrepZh": "以9GK6链A为模板，保留锌离子和催化水相关约束，补全缺失侧链后标注Domain II-IV底物腔与构象铰链区。",
+    "structureRef": "RCSB PDB 9GK6，X-ray diffraction，1.327 Å",
+    "antibodies": [
+      "研究级抗ERAP1单克隆抗体",
+      "ERAP1抑制性抗体片段候选"
+    ],
+    "interfaceFocus": "Domain II催化入口与Domain IV底物腔界面",
+    "designMode": "胞内酶阻断抗体设计",
+    "candidates": [
+      {
+        "target": "ERAP2",
+        "rationale": "ERAP2与ERAP1同属内质网抗原肽修剪通路，参与HLA-I配体长度与序列选择；其遗传变异亦与炎症和免疫介导疾病相关。"
+      },
+      {
+        "target": "HLA-B",
+        "rationale": "HLA-B，尤其HLA-B*27，是强直性脊柱炎抗原呈递轴的核心分子；ERAP1修剪后的肽段直接影响HLA-B肽结合库和免疫识别。"
+      },
+      {
+        "target": "HLA-C",
+        "rationale": "HLA-C*06:02是银屑病主要遗传风险位点之一，ERAP1改变其呈递肽谱并影响病理性T细胞应答。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

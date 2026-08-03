@@ -1,0 +1,65 @@
+{
+  "gene": "MAFG",
+  "generatedAt": "2026-08-03T20:05:37.416Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAFG 是小 Maf 家族 bZIP 转录因子，主要通过与 CNC 家族因子形成异源二聚体并结合抗氧化反应元件，参与 NRF2/KEAP1 氧化应激转录网络；该网络在乳腺癌细胞抗氧化适应、代谢重编程和治疗耐受中具有明确机制关联。MAFG 属于核内 DNA 结合蛋白，缺乏天然胞外结构域、分泌形式或膜受体构象，常规体内阻断型抗体的抗原可及性不具优势，更适合作为结构免疫原或细胞内抗体研究模型。相比 EGFR、ERBB2 或 PD-L1 等具有胞外可及结构和成熟临床抗体先例的乳腺癌靶点，MAFG 的优先级应定位为低优先级、机制验证导向靶点，而非首选治疗性抗体靶点。",
+    "mechanism": "设计目标为结合 MAFG bZIP 区域，阻断其亮氨酸拉链二聚化或碱性区与 ARE DNA 的接触，从而干扰 MAFG-CNC 复合物介导的转录调控。",
+    "selectedEpitope": "优先评估 bZIP 亮氨酸拉链二聚化界面邻近螺旋面，并避开高度保守 DNA 磷酸骨架接触残基。",
+    "diseaseDirection": "乳腺癌氧化应激转录调控",
+    "domain": "MAFG 主要由 N 端低复杂度区和 C 端 bZIP 结构域构成，bZIP 包含碱性 DNA 结合区与亮氨酸拉链二聚化区。",
+    "evidence": "MAFG-NRF2/ARE 轴与乳腺癌关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传与文献关联",
+      "UniProt O15525 蛋白功能与结构域注释",
+      "RCSB PDB 7X5E 晶体结构条目",
+      "KEGG/Reactome NRF2-KEAP1 氧化应激通路注释"
+    ],
+    "referenceEntries": "UniProt O15525；RCSB PDB 7X5E；Open Targets MAFG",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C 端 bZIP 亮氨酸拉链二聚化界面",
+        "可干扰 MAFG 同源或异源二聚体形成，直接影响 DNA 结合复合物装配",
+        "优先"
+      ],
+      [
+        "Site B",
+        "bZIP 碱性区邻近 DNA 主沟接触面",
+        "可阻断 ARE 序列识别，但需控制对保守碱性残基的交叉反应风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端低复杂度柔性区域",
+        "可能提高免疫原性但结构约束弱，功能阻断相关性有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAFG 为核内转录因子，天然抗体递送与抗原可及性构成核心风险；bZIP 区域保守性较高，应通过家族同源性筛选降低对 MAFK、MAFF 的交叉结合。",
+    "structurePrepZh": "以 7X5E 晶体结构为模板，保留 bZIP 螺旋束与可解析链，去除结晶缓冲组分，补全缺失侧链并标注二聚化界面和 DNA 结合面。",
+    "structureRef": "RCSB PDB 7X5E，X-ray diffraction，2.3 Å",
+    "antibodies": [
+      "无获批 MAFG 治疗性抗体",
+      "研究级抗 MAFG 抗体"
+    ],
+    "interfaceFocus": "bZIP 亮氨酸拉链二聚界面与碱性 DNA 结合面",
+    "designMode": "细胞内靶点探索",
+    "candidates": [
+      {
+        "target": "NFE2L2",
+        "rationale": "NFE2L2 编码 NRF2，是 KEAP1-NRF2-ARE 通路的核心转录因子，直接驱动抗氧化和解毒基因表达；其疾病机制与 MAFG 异源二聚体功能密切相关。"
+      },
+      {
+        "target": "KEAP1",
+        "rationale": "KEAP1 通过 CUL3 依赖性泛素化调控 NRF2 稳定性，是同一氧化应激通路的上游负调控节点；KEAP1 失活可增强 NRF2-MAFG 转录输出。"
+      },
+      {
+        "target": "MAFK",
+        "rationale": "MAFK 为小 Maf 家族成员，可与 CNC 因子形成 bZIP 异源二聚体并结合 ARE 元件；其结构与功能可作为 MAFG 表位选择和交叉反应评估参照。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

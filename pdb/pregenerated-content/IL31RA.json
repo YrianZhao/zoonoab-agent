@@ -1,0 +1,65 @@
+{
+  "gene": "IL31RA",
+  "generatedAt": "2026-08-03T13:27:47.738Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IL31RA 是 IL-31 受体复合体的特异性配体结合亚基，与 OSMR 共同介导 IL-31 驱动的 JAK1/JAK2-STAT3/STAT5、MAPK 与 PI3K 信号，参与特应性皮炎、结节性痒疹和慢性瘙痒中的神经免疫炎症放大。该靶点为 I 型跨膜受体，胞外细胞因子受体同源区可直接暴露于组织间隙，适合抗体阻断 IL-31 结合或受体复合体装配。相较于广谱 JAK 或下游炎症因子，IL31RA 位于瘙痒轴上游且疾病遗传与临床药理证据集中，具备更高通路选择性和转化优先级。",
+    "mechanism": "抗体结合 IL31RA 胞外细胞因子受体同源区，阻断 IL-31 与 IL31RA 的初始识别，并抑制 IL31RA-OSMR 异源受体复合体形成，从而降低 JAK-STAT 介导的瘙痒炎症信号。",
+    "selectedEpitope": "优先覆盖 IL31RA D2-D3 细胞因子结合沟槽及 D3 邻近复合体装配界面。",
+    "diseaseDirection": "瘙痒性炎症皮肤病",
+    "domain": "单跨膜 I 型受体，胞外区含免疫球蛋白样结构域及两个 fibronectin type III 样细胞因子受体结构域。",
+    "evidence": "IL31RA-IL31 瘙痒炎症轴结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q8NI17 蛋白功能与结构域注释",
+      "RCSB PDB 9EZA X 射线晶体结构",
+      "IL-31/IL31RA/OSMR 轴临床药理与皮肤炎症文献"
+    ],
+    "referenceEntries": "UniProt Q8NI17；RCSB PDB 9EZA；HGNC:19316；Open Targets IL31RA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "D2-D3 细胞因子结合沟槽",
+        "直接竞争 IL-31 结合，预期产生受体阻断活性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "D3 远端邻近 OSMR 复合体装配面",
+        "干扰 IL31RA-OSMR 异源受体复合体形成，适合作为非竞争阻断策略",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端 Ig-like 结构域外露面",
+        "抗原可及性较好，但与配体结合核心距离较远，功能阻断需实验验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "D2-D3 区域可能含保守细胞因子受体折叠界面，需避免交叉识别同源受体。设计应保留糖基化位点建模并评估配体竞争与受体内吞影响。",
+    "structurePrepZh": "以 PDB 9EZA 的 IL31RA 胞外区为模板，保留抗原链 A-E 中分辨率最佳构象，补建缺失环区，标注二硫键、糖基化位点与配体接触残基。",
+    "structureRef": "RCSB PDB 9EZA，X-ray diffraction，2.147 Å，human IL31RA ECD",
+    "antibodies": [
+      "Nemolizumab",
+      "Vixarelimab"
+    ],
+    "interfaceFocus": "IL-31 接触面与 OSMR 复合体装配邻面",
+    "designMode": "受体阻断型抗体设计",
+    "candidates": [
+      {
+        "target": "IL31",
+        "rationale": "IL31 是 IL31RA 的直接配体，来源于 Th2 相关免疫细胞并驱动感觉神经和皮肤炎症反应。中和 IL31 可在配体层面阻断同一瘙痒轴。"
+      },
+      {
+        "target": "OSMR",
+        "rationale": "OSMR 是 IL31RA 的共受体亚基，参与 IL-31 诱导的异源受体复合体形成和下游 JAK-STAT 激活。靶向 OSMR 可抑制复合体装配，但需关注其在其他 IL-6 家族细胞因子通路中的共享作用。"
+      },
+      {
+        "target": "JAK1",
+        "rationale": "JAK1 位于 IL31RA-OSMR 复合体下游，是 IL-31 诱导 STAT 激活的关键激酶节点。其作为通路候选靶点具备明确药理学依据，但抗体可及性较差，更适合作为小分子或细胞内降解策略参照。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "PEBP1",
+  "generatedAt": "2026-08-03T15:11:47.800Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PEBP1/RKIP参与RAF1–MEK–ERK级联的负调控，并可通过结合RAF1及影响MEK磷酸化限制肿瘤细胞增殖、迁移和转移表型，Open Targets显示其与肿瘤及乳腺癌存在遗传与蛋白测量层面的关联。该蛋白主要为胞质可溶性磷脂酰乙醇胺结合蛋白，缺乏稳定胞外结构域，常规细胞表面阻断抗体的抗原可及性受限，更适合作为结构定义抗原用于胞内递送抗体或研究级结合分子开发。相较RAF1、MAP2K1等激酶靶点，PEBP1具有高分辨率晶体结构和小型保守结合口袋，利于精确表位建模，但治疗优先级应低于可直接胞外干预的膜受体靶点。",
+    "mechanism": "设计抗体结合PEBP1配体结合沟槽邻近环区，稳定其RAF1结合构象，增强PEBP1对RAF1的占位并抑制RAF1介导的MEK磷酸化。",
+    "selectedEpitope": "优先覆盖β折叠杯状核心顶部的配体结合沟槽及周边环区，避开高度埋藏疏水核心。",
+    "diseaseDirection": "肿瘤转移与MAPK通路调控",
+    "domain": "PEBP家族单结构域蛋白，呈β折叠杯状核心，含保守磷脂/小分子配体结合口袋。",
+    "evidence": "PEBP1结构与肿瘤MAPK调控证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB P30086功能注释",
+      "RCSB PDB 1BEH晶体结构记录",
+      "MAPK/ERK通路与RKIP肿瘤转移文献"
+    ],
+    "referenceEntries": "UniProt P30086；RCSB PDB 1BEH；Open Targets PEBP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "配体结合沟槽顶部环区及相邻β片层边缘",
+        "可稳定PEBP1功能构象并干预RAF1结合相关界面",
+        "优先"
+      ],
+      [
+        "Site B",
+        "蛋白外侧带电环区与溶剂暴露转角",
+        "利于获得高可及性结合体，适合作为检测或递送验证表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "杯状核心底部疏水面与保守埋藏残基邻域",
+        "可能影响折叠稳定性且成药抗体可及性较低",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PEBP1缺乏胞外结构域，完整抗体难以在未递送条件下触达胞内靶点；建议优先采用细胞内抗体片段、递送偶联或研究级结构探针策略。",
+    "structurePrepZh": "以1BEH高分辨率晶体结构为模板，分离A/B链单体，补充氢原子并检查配体结合沟槽环区构象，保留可溶性单体用于对接。",
+    "structureRef": "RCSB PDB 1BEH，X-ray diffraction，1.75 Å",
+    "antibodies": [
+      "抗RKIP研究级单克隆抗体",
+      "抗PEBP1研究级兔单克隆抗体"
+    ],
+    "interfaceFocus": "配体结合沟槽、RAF1相关结合环区",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "RAF1",
+        "rationale": "RAF1是PEBP1直接调控的MAPK级联激酶节点，PEBP1结合RAF1可限制RAF1对MEK的激活，适合作为同通路功能对照靶点。"
+      },
+      {
+        "target": "MAP2K1",
+        "rationale": "MAP2K1/MEK1位于RAF1下游，是PEBP1抑制RAF1信号后直接受影响的磷酸化底物节点，可用于评估通路阻断效应。"
+      },
+      {
+        "target": "EGFR",
+        "rationale": "EGFR可作为上游受体酪氨酸激酶驱动RAS–RAF–MEK–ERK信号，在肿瘤增殖通路中与PEBP1调控轴处于同一MAPK网络。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

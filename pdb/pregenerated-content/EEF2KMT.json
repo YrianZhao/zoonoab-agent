@@ -1,0 +1,65 @@
+{
+  "gene": "EEF2KMT",
+  "generatedAt": "2026-08-03T18:58:13.138Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "EEF2KMT为胞内SAM依赖性赖氨酸甲基转移酶，催化EEF2 Lys525甲基化，属于蛋白翻译延伸后修饰轴。其Open Targets关联主要集中于先天性糖基化异常及红细胞相关表型，但该靶点缺乏分泌或膜外结构域，天然抗体可及性明显受限。相较于同通路中具有胞外可及性的糖基化相关酶或转运受体，EEF2KMT更适合作为机制研究与细胞内递送抗体探索靶点，主靶点优先级应低于膜受体或分泌因子。",
+    "mechanism": "设计抗体需通过胞内递送后占据EEF2KMT催化裂隙，阻断SAM结合口袋与EEF2 Lys525底物肽定位界面的协同装配。",
+    "selectedEpitope": "优先覆盖7BS甲基转移酶结构域的SAM结合沟槽邻近底物肽入口界面。",
+    "diseaseDirection": "先天性糖基化异常与红细胞表型",
+    "domain": "EEF2KMT主要包含胞内7-β-strand甲基转移酶折叠域及底物识别环区。",
+    "evidence": "EEF2KMT翻译延伸因子甲基化结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q96G04功能与亚细胞定位注释",
+      "RCSB PDB 8FZB晶体结构条目",
+      "人类甲基转移酶与EEF2修饰文献"
+    ],
+    "referenceEntries": "UniProt Q96G04；RCSB PDB 8FZB；Open Targets EEF2KMT",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SAM结合沟槽及底物肽入口邻近界面",
+        "可直接干扰甲基供体定位与EEF2底物装配，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "7BS甲基转移酶核心域外侧保守环区",
+        "可能影响底物识别构象，适合构象稳定型Fab筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "晶体接触面及多聚链堆叠界面",
+        "可能反映晶体堆积而非生理作用界面，需结构比对验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "EEF2KMT为胞内酶，常规抗体难以到达作用位点；设计应限定为细胞内递送Fab/VHH或结构探针，并避免选择晶体堆积界面。",
+    "structurePrepZh": "以8FZB中A、B、C链进行同源链比对，保留高置信核心结构域，检查3.35 Å分辨率下侧链取向与配体口袋完整性。",
+    "structureRef": "RCSB PDB 8FZB，X射线晶体结构，3.35 Å",
+    "antibodies": [
+      "暂无获批抗EEF2KMT治疗性抗体",
+      "暂无临床阶段抗EEF2KMT同类抗体"
+    ],
+    "interfaceFocus": "SAM口袋、底物肽入口与催化环区",
+    "designMode": "胞内酶抑制型",
+    "candidates": [
+      {
+        "target": "EEF2",
+        "rationale": "EEF2是EEF2KMT的直接底物，Lys525甲基化发生于翻译延伸因子功能轴，可用于解析同一翻译延伸后修饰通路。"
+      },
+      {
+        "target": "EEF2K",
+        "rationale": "EEF2K通过磷酸化EEF2调控翻译延伸速率，与EEF2KMT共同汇聚于EEF2功能调控层面，具有明确通路相关性。"
+      },
+      {
+        "target": "ALG1",
+        "rationale": "ALG1与先天性糖基化异常存在直接遗传病因关联，覆盖EEF2KMT关联疾病谱中最突出的ALG1-CDG方向，具备更强疾病因果性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

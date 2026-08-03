@@ -1,0 +1,65 @@
+{
+  "gene": "FBXW11",
+  "generatedAt": "2026-08-03T12:30:16.887Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FBXW11编码β-TrCP2，是SCF E3泛素连接酶复合体的F-box底物识别亚基，参与β-catenin、IκBα及多种磷酸化底物的泛素化降解，与神经发育异常和综合征性智力障碍相关通路具有遗传学关联。该蛋白主要为胞内蛋白，天然抗原可及性不具备分泌蛋白或膜受体优势，因此抗体设计更适合作为细胞内递送、研究级功能阻断或结构验证场景。相较于同通路核心酶复合体成分，FBXW11的WD40底物结合面提供较清晰的结构界面，可用于开发干预底物招募的分子工具，但临床抗体优先级低于胞外可及靶点。",
+    "mechanism": "阻断FBXW11 WD40结构域识别磷酸化degron底物，削弱SCFβ-TrCP2复合体对β-catenin或IκBα等底物的招募与泛素化。",
+    "selectedEpitope": "优先覆盖WD40 β-propeller顶部底物结合沟槽及磷酸化degron接触面。",
+    "diseaseDirection": "神经发育异常与泛素化调控",
+    "domain": "含N端F-box结构域和C端WD40重复β-propeller底物识别结构域。",
+    "evidence": "FBXW11结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q9UKB1功能注释",
+      "RCSB PDB 6WNX晶体结构",
+      "SCFβ-TrCP底物识别与泛素化文献"
+    ],
+    "referenceEntries": "UniProt Q9UKB1；RCSB PDB 6WNX；Open Targets FBXW11",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "WD40 β-propeller顶部磷酸化degron结合沟槽",
+        "直接干预底物招募，最符合功能阻断设计目标",
+        "优先"
+      ],
+      [
+        "Site B",
+        "F-box邻近SKP1结合界面外缘",
+        "可能影响SCF复合体装配，需避免完全破坏广谱E3功能",
+        "备选"
+      ],
+      [
+        "Site C",
+        "WD40侧面保守结构支撑面",
+        "结构保守且功能选择性不足，存在交叉识别β-TrCP1风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FBXW11为胞内E3连接酶组分，常规抗体难以进入作用位点；WD40保守性较高，需评估与BTRC同源交叉反应并采用细胞内递送策略。",
+    "structurePrepZh": "以6WNX晶体结构为模板，保留WD40底物识别区域，校正缺失环区与磷酸化degron结合面质子化状态后进行界面建模。",
+    "structureRef": "RCSB PDB 6WNX，X-ray diffraction，2.5 Å",
+    "antibodies": [
+      "抗FBXW11研究级单克隆抗体",
+      "抗β-TrCP2验证抗体"
+    ],
+    "interfaceFocus": "WD40顶部degron识别沟槽",
+    "designMode": "胞内功能阻断",
+    "candidates": [
+      {
+        "target": "BTRC",
+        "rationale": "BTRC编码β-TrCP1，与FBXW11同属SCFβ-TrCP底物识别亚基，共同识别磷酸化degron并调控β-catenin和IκBα降解。"
+      },
+      {
+        "target": "SKP1",
+        "rationale": "SKP1连接F-box蛋白与CUL1，是SCF复合体装配的核心支架，处于FBXW11介导泛素化通路的同一分子复合体内。"
+      },
+      {
+        "target": "CUL1",
+        "rationale": "CUL1构成SCF E3连接酶骨架并支持RBX1介导的泛素转移，是FBXW11底物泛素化反应的必需通路组分。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "RIPK2",
+  "generatedAt": "2026-08-03T21:00:04.879Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RIPK2是NOD1/NOD2先天免疫通路的核心丝氨酸/苏氨酸激酶，介导细菌肽聚糖识别后的炎症小体旁路信号、NF-κB与MAPK激活，并与克罗恩病、麻风及神经炎症相关表型存在遗传和药理学证据关联。该蛋白主要定位于胞质，天然抗原可及性不具备分泌蛋白或膜受体优势，因此更适合定位为细胞内靶点验证、胞内抗体或递送型结合分子设计对象。相比下游TNF、IL1B等广谱炎症因子，RIPK2位于NOD2近端节点，可更选择性干预细菌模式识别驱动的炎症轴，具备通路特异性优先级。",
+    "mechanism": "设计结合RIPK2激酶结构域的抗体片段，阻断ATP结合口袋邻近构象稳定或干扰NOD2募集后RIPK2泛素化复合体形成，抑制TAK1-IKK轴激活。",
+    "selectedEpitope": "优先覆盖激酶结构域N-lobe与C-lobe之间的ATP结合裂隙外缘及αC螺旋构象调控区。",
+    "diseaseDirection": "NOD2相关炎症与克罗恩病",
+    "domain": "RIPK2含N端丝氨酸/苏氨酸激酶结构域、中间区及C端CARD结构域，CARD介导NOD1/2互作。",
+    "evidence": "RIPK2-NOD2炎症通路结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt O43353功能与结构域注释",
+      "RCSB PDB 5NG0晶体结构",
+      "NOD1/NOD2-RIPK2-NF-κB通路文献"
+    ],
+    "referenceEntries": "UniProt O43353；RCSB PDB 5NG0；Open Targets RIPK2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域ATP结合裂隙外缘与hinge邻近区域",
+        "可限制催化构象转换并支持功能阻断型胞内结合分子设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N-lobe αC螺旋及β3-αC调控界面",
+        "影响Lys-Glu盐桥与激酶活化构象稳定性，具备变构抑制潜力",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端CARD同型相互作用表面",
+        "可能阻断RIPK2与NOD1/NOD2 CARD-CARD募集，但需避免构象不确定性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RIPK2为胞质蛋白，常规循环抗体难以直接接触靶点；建议采用VHH、胞内抗体或递送偶联策略，并优先规避高度保守ATP口袋造成的激酶选择性风险。",
+    "structurePrepZh": "以5NG0的A、B链激酶结构域为模板，补全缺失侧链并校正质子化状态；CARD区域需结合AlphaFold或同源模型单独评估。",
+    "structureRef": "RCSB PDB 5NG0，RIPK2激酶结构域，2.0 Å X射线结构",
+    "antibodies": [
+      "无已批准RIPK2靶向抗体",
+      "研究级抗RIPK2抗体"
+    ],
+    "interfaceFocus": "ATP裂隙外缘、αC螺旋、CARD-CARD界面",
+    "designMode": "胞内VHH阻断设计",
+    "candidates": [
+      {
+        "target": "NOD2",
+        "rationale": "NOD2位于同一肽聚糖模式识别通路上游，通过CARD结构域募集RIPK2；其克罗恩病遗传关联强，适合开展受体近端调控策略。"
+      },
+      {
+        "target": "NOD1",
+        "rationale": "NOD1同样通过CARD-CARD相互作用激活RIPK2，参与细菌肽聚糖诱导的NF-κB与MAPK信号，可作为RIPK2通路并行节点。"
+      },
+      {
+        "target": "XIAP",
+        "rationale": "XIAP在NOD2-RIPK2通路中作为E3泛素连接酶促进RIPK2泛素化和下游TAK1/IKK复合体募集，具备通路内机制相关性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

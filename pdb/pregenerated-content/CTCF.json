@@ -1,0 +1,65 @@
+{
+  "gene": "CTCF",
+  "generatedAt": "2026-08-03T11:41:44.857Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CTCF 是染色质三维结构与绝缘子边界的核心 DNA 结合因子，其锌指结构域识别 CTCF motif 并与 cohesin 共同维持增强子-启动子隔离，功能缺失可导致神经发育障碍、智力障碍及肿瘤相关转录失衡。该蛋白主要定位于细胞核并结合染色质，缺乏天然胞外结构域或分泌形式，抗体药物可及性显著弱于膜受体和分泌因子。相较于同通路中可胞外干预的上游配体或受体，CTCF 更适合作为结构机制研究、细胞内递送抗体或降解型分子设计靶点，作为常规治疗性抗体主靶点优先级较低。",
+    "mechanism": "阻断 CTCF 锌指 3-7 与核心 DNA motif 的碱基特异性接触，干扰 CTCF 介导的染色质边界占位及 cohesin 环挤出停靠。",
+    "selectedEpitope": "优先评估锌指 3-7 的 DNA 主沟结合面，规避锌配位残基并保留构象稳定性。",
+    "diseaseDirection": "神经发育障碍与染色质结构异常",
+    "domain": "CTCF 含 N 端调控区、11 个 C2H2 锌指 DNA 结合结构域及 C 端调控区。",
+    "evidence": "CTCF 染色质绝缘子功能与疾病遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P49711 functional annotation",
+      "RCSB PDB 5KKQ crystal structure",
+      "ClinGen/OMIM CTCF-related neurodevelopmental disorder evidence"
+    ],
+    "referenceEntries": "UniProt P49711；RCSB PDB 5KKQ；Open Targets ENSG00000102974",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "锌指 3-7 DNA 主沟识别界面",
+        "直接覆盖核心 motif 识别残基，可验证阻断 CTCF-DNA 结合的机制效应",
+        "优先"
+      ],
+      [
+        "Site B",
+        "锌指 8-11 辅助 DNA 接触面",
+        "可能影响序列外侧接触与结合稳定性，适合作为变构或协同阻断位点",
+        "备选"
+      ],
+      [
+        "Site C",
+        "锌指 Cys2His2 锌配位核心附近",
+        "该区域对结构折叠必需，抗体结合可能导致非特异构象破坏与选择性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CTCF 为核内 DNA 结合蛋白，常规抗体难以到达作用位点；设计应限定于研究级、细胞内递送或降解平台，并避免锌配位核心。",
+    "structurePrepZh": "以 5KKQ 高分辨率晶体结构为模板，保留锌离子与 DNA 复合物信息，按链选择锌指-DNA 接触单元并校正缺失侧链。",
+    "structureRef": "RCSB PDB 5KKQ，X-ray diffraction，1.744 Å",
+    "antibodies": [
+      "研究级抗 CTCF ChIP 抗体",
+      "研究级抗 CTCF 免疫印迹抗体"
+    ],
+    "interfaceFocus": "锌指 3-7 与 DNA 主沟碱基接触界面",
+    "designMode": "细胞内递送抗体",
+    "candidates": [
+      {
+        "target": "RAD21",
+        "rationale": "RAD21 是 cohesin 复合体核心亚基，参与 CTCF 边界处的染色质环形成；其异常可造成转录调控失衡和发育表型。"
+      },
+      {
+        "target": "SMC3",
+        "rationale": "SMC3 与 SMC1A、RAD21 组成 cohesin 环结构，是 CTCF 介导染色质拓扑组织的同通路关键因子。"
+      },
+      {
+        "target": "NIPBL",
+        "rationale": "NIPBL 负责 cohesin 装载并影响 CTCF 边界处环挤出过程，在 cohesinopathy 与神经发育异常中具有明确遗传关联。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

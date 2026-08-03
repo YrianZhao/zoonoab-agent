@@ -1,0 +1,65 @@
+{
+  "gene": "RBL1",
+  "generatedAt": "2026-08-03T20:48:15.259Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RBL1/p107 是视网膜母细胞瘤蛋白家族转录共抑制因子，通过口袋结构域结合 E2F 转录因子并抑制细胞周期相关基因转录，疾病遗传关联主要集中于红细胞体积分布、平均红细胞血红蛋白量及网织红细胞体积等血液学表型，提示其参与造血细胞增殖与分化调控。该蛋白为核内转录调控因子，天然抗原可及性不具备分泌蛋白或膜受体优势，因此更适合作为细胞内功能阻断抗体、内体递送抗体或结构生物学验证抗体的设计对象。相较于同家族 RB1，RBL1 在特定造血表型遗传关联中具有独立信号，且 7SMD 提供了高分辨率实验结构基础，利于围绕 E2F 结合口袋开展精确表位设计。",
+    "mechanism": "设计抗体应靶向 RBL1 pocket domain 的 E2F 结合沟槽，阻断 RBL1 与 E2F 转录因子转录激活域的结合，解除其对细胞周期基因转录复合物的共抑制作用。",
+    "selectedEpitope": "优先覆盖 pocket A/B 亚结构域形成的 E2F 转录激活域结合界面，并避开深埋疏水核心。",
+    "diseaseDirection": "血液学表型与细胞周期调控",
+    "domain": "RBL1 含保守 pocket domain，由 A/B cyclin-like 折叠组成，介导 E2F 与病毒蛋白 LxCxE 基序结合。",
+    "evidence": "RBL1 造血表型遗传关联与口袋结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P28749 functional annotation",
+      "RCSB PDB 7SMD experimental structure",
+      "RB family E2F transcriptional repression literature"
+    ],
+    "referenceEntries": "UniProtKB: P28749; RCSB PDB: 7SMD; Ensembl: ENSG00000080839",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "pocket A/B 结构域交界的 E2F 转录激活域结合沟槽",
+        "直接干预 RBL1-E2F 相互作用，机制明确且结构可解释性强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "pocket B 亚结构域 LxCxE 结合裂隙邻近区域",
+        "可用于调节辅因子或病毒蛋白样基序结合，适合作为机制备选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "A/B pocket 远端保守折叠面与结构核心邻近区域",
+        "可能影响蛋白稳定性或家族保守功能，选择性与构象风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RBL1 为核内蛋白，抗体进入细胞核是主要递送风险；pocket 区域与 RB1、RBL2 保守性较高，应通过界面残基差异筛选提升选择性。",
+    "structurePrepZh": "以 7SMD 的 A、B 链为结构模板，保留完整 pocket domain 构象，补全缺失环区并标注 E2F/LxCxE 相关结合面后开展表位聚类。",
+    "structureRef": "RCSB PDB 7SMD, X-ray diffraction, 2.15 Å",
+    "antibodies": [
+      "RBL1/p107 clone SD9",
+      "RBL1/p107 clone DCS-120"
+    ],
+    "interfaceFocus": "pocket A/B 交界 E2F 结合沟槽",
+    "designMode": "细胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "RB1",
+        "rationale": "RB1 与 RBL1 同属 RB 家族，通过 pocket domain 结合 E2F 并抑制 G1/S 转录程序，是同一细胞周期转录控制轴的核心靶点。"
+      },
+      {
+        "target": "RBL2",
+        "rationale": "RBL2/p130 与 RBL1 共同参与 DREAM 复合物相关的 E2F 靶基因抑制，在造血细胞静息与分化调控中具有通路相关性。"
+      },
+      {
+        "target": "E2F4",
+        "rationale": "E2F4 是 RBL1/RBL2 复合物的重要转录因子组分，直接连接 RB 家族口袋蛋白与细胞周期基因转录抑制机制。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

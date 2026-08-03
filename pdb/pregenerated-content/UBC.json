@@ -1,0 +1,65 @@
+{
+  "gene": "UBC",
+  "generatedAt": "2026-08-03T17:37:47.308Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "UBC编码多聚泛素前体，成熟泛素通过E1-E2-E3级联共价连接底物蛋白，参与蛋白酶体降解、DNA损伤应答、NF-κB炎症信号及病原体复制相关宿主调控。成熟泛素为细胞内高度保守小蛋白，游离抗原并非典型胞外抗体靶点，抗原可及性主要局限于细胞损伤、外泌体、免疫复合物或工程化递送场景。相比单一E3连接酶，UBC处于泛素系统核心节点，疾病覆盖广但选择性窗口较窄，因此更适合作为机制验证或泛素链构象识别抗体设计靶点，而非优先常规治疗性膜外靶点。",
+    "mechanism": "设计抗体识别泛素Ile44疏水斑块或特定链型构象，阻断泛素与蛋白酶体受体、去泛素化酶或泛素结合结构域的结合。",
+    "selectedEpitope": "优先瞄准β1-β2环及Ile44疏水斑块邻近面，避开Gly76共价连接尾部。",
+    "diseaseDirection": "泛素-蛋白稳态与感染肿瘤方向",
+    "domain": "成熟泛素为76 aa β-grasp折叠，含β-sheet、α-helix、Ile44斑块及C端Gly-Gly尾。",
+    "evidence": "UBC泛素系统疾病关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与关联评分",
+      "UniProt P0CG48泛素C前体功能注释",
+      "RCSB PDB 1OGW高分辨率晶体结构",
+      "泛素-蛋白酶体系统与NF-κB/感染通路文献"
+    ],
+    "referenceEntries": "UniProt:P0CG48; RCSB PDB:1OGW; Open Targets:UBC",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Ile44疏水斑块及β3-β5邻近表面",
+        "可干预UBD、蛋白酶体受体及DUB对泛素的识别",
+        "优先"
+      ],
+      [
+        "Site B",
+        "β1-β2环与Leu8/Thr9邻近构象面",
+        "有利于获得构象选择性并减少对C端连接位点直接遮挡",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端Gly75-Gly76尾部及Lys48/Lys63邻近区域",
+        "可能干扰链延伸但易影响所有泛素化过程，系统毒性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "UBC为细胞内高度保守核心蛋白，广谱阻断可能扰乱蛋白稳态。建议采用链型或构象选择性设计，并限定于诊断、递送或机制研究场景。",
+    "structurePrepZh": "以1OGW链A成熟泛素为模板，保留β-grasp核心构象，校验Ile44斑块、Lys48、Lys63及C端尾部暴露状态后进行表位建模。",
+    "structureRef": "RCSB PDB 1OGW，1.32 Å X射线晶体结构",
+    "antibodies": [
+      "FK2",
+      "P4D1"
+    ],
+    "interfaceFocus": "Ile44疏水斑块与UBD/DUB识别界面",
+    "designMode": "构象选择性阻断",
+    "candidates": [
+      {
+        "target": "PSMD4",
+        "rationale": "PSMD4编码蛋白酶体19S调节颗粒泛素受体Rpn10/S5a，直接识别多聚泛素链并介导底物递送，位于UBC介导蛋白降解通路下游。"
+      },
+      {
+        "target": "NFKBIA",
+        "rationale": "NFKBIA编码IκBα，其磷酸化后经泛素化和蛋白酶体降解释放NF-κB，是感染和炎症通路中泛素依赖性信号转换节点。"
+      },
+      {
+        "target": "TNFAIP3",
+        "rationale": "TNFAIP3编码A20去泛素化与泛素编辑酶，可编辑K63/M1相关泛素链并限制NF-κB活化，与UBC相关炎症及感染反应处于同一泛素调控网络。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

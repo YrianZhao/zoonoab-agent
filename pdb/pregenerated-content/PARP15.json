@@ -1,0 +1,65 @@
+{
+  "gene": "PARP15",
+  "generatedAt": "2026-08-03T15:05:10.438Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PARP15为细胞内单ADP-核糖转移酶家族成员，含宏结构域与催化结构域，参与蛋白ADP-核糖化相关应激和抗病毒反应调控；Open Targets显示其与Epstein-Barr病毒感染和viral load存在遗传及组学关联。该蛋白并非分泌蛋白或经典膜受体，天然抗原可及性不利于常规胞外抗体，但其高分辨率催化结构可支持细胞内递送抗体片段或研究型抑制性结合体设计。相比缺乏结构模板的同通路因子，PARP15具备1.3 Å实验晶体结构和明确ADP-核糖转移酶口袋，可优先用于结构驱动的功能阻断验证。",
+    "mechanism": "通过结合PARP15催化结构域NAD+结合沟槽，阻断烟酰胺核糖供体定位及底物蛋白进入催化界面，抑制单ADP-核糖化反应。",
+    "selectedEpitope": "优先覆盖PARP催化结构域NAD+结合沟槽及邻近底物进入面，避免仅识别远端晶体接触面。",
+    "diseaseDirection": "EBV感染与抗病毒应答",
+    "domain": "PARP15含N端宏结构域样区域、WWE相关模块及C端PARP催化结构域，7OTF解析催化结构域。",
+    "evidence": "PARP15抗病毒关联与催化结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q460N3 functional annotation",
+      "RCSB PDB 7OTF X-ray structure",
+      "PARP family mono-ADP-ribosyltransferase literature"
+    ],
+    "referenceEntries": "UniProt Q460N3；RCSB PDB 7OTF；Open Targets PARP15",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PARP催化结构域NAD+结合沟槽",
+        "直接干预供体底物结合，具备最高功能阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域底物进入侧面及活性位点邻近环区",
+        "可通过空间位阻限制蛋白底物靠近催化中心",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离活性口袋的稳定外表面螺旋区域",
+        "适合作为结合验证表位，但功能抑制不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PARP15为胞内酶，常规全长抗体难以到达作用位点；设计应优先采用细胞内递送Fab/VHH或降解偶联策略，并评估PARP家族交叉反应。",
+    "structurePrepZh": "以7OTF高分辨率晶体结构为模板，保留催化结构域主链构象，校正缺失侧链、质子化状态及NAD+口袋关键残基取向。",
+    "structureRef": "RCSB PDB 7OTF，X-ray diffraction，1.3 Å",
+    "antibodies": [
+      "无获批PARP15靶向治疗性抗体",
+      "研究级抗PARP15检测抗体"
+    ],
+    "interfaceFocus": "NAD+结合沟槽与底物进入界面",
+    "designMode": "胞内阻断型片段",
+    "candidates": [
+      {
+        "target": "PARP14",
+        "rationale": "PARP14同属单ADP-核糖转移酶，参与STAT6相关免疫调控和抗病毒转录反应，可作为PARP15同家族通路比较靶点。"
+      },
+      {
+        "target": "PARP9",
+        "rationale": "PARP9与DTX3L形成复合体参与干扰素诱导的抗病毒应答，与病毒感染和先天免疫通路具有明确关联。"
+      },
+      {
+        "target": "DTX3L",
+        "rationale": "DTX3L为PARP9互作E3泛素连接酶样蛋白，连接ADP-核糖化相关调控与干扰素抗病毒效应，可用于同通路组合评估。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

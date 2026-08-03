@@ -1,0 +1,65 @@
+{
+  "gene": "NELFE",
+  "generatedAt": "2026-08-03T14:40:12.677Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NELFE是负性转录延伸因子复合体NELF的RNA结合亚基，参与暂停RNA polymerase II并影响HIV TAR RNA依赖的转录延伸过程。该蛋白主要位于细胞核内，缺乏分泌型或膜受体样胞外结构域，抗原可及性不符合常规治疗性抗体靶点特征。与CD4、CCR5、CXCR4等HIV入侵通路靶点相比，NELFE更适合作为胞内机制研究抗原或递送型抗体工程对象，优先级应低于具有天然胞外可及性的同通路靶点。",
+    "mechanism": "设计重点为阻断NELFE RRM结构域与RNA元件的结合，并干扰NELF复合体对暂停RNA polymerase II转录延伸复合物的稳定作用。",
+    "selectedEpitope": "优先覆盖NELFE RRM的β折叠RNA结合面及邻近带电沟槽，避免泛化选择无功能界面。",
+    "diseaseDirection": "HIV转录调控与病毒复制",
+    "domain": "NELFE含N端NELF复合体装配区、中央RNA recognition motif及C端富含精氨酸/酸性低复杂度区域。",
+    "evidence": "NELFE介导Pol II暂停与HIV转录延伸证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProtKB P18615功能与亚细胞定位注释",
+      "RCSB PDB 8JJ6实验晶体结构",
+      "HIV Tat/P-TEFb解除NELF介导转录暂停相关文献"
+    ],
+    "referenceEntries": "UniProtKB:P18615；RCSB PDB:8JJ6；HGNC:NELFE",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RRM β-sheet RNA结合面与RNP样芳香残基邻域",
+        "可直接削弱NELFE-RNA相互作用，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端NELF复合体装配界面邻近螺旋/环区",
+        "可能干扰NELF复合体稳定性，但需验证界面暴露状态",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端低复杂度富电荷区域",
+        "柔性高且结构解析不足，易产生非特异结合与构象不确定性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NELFE为核内蛋白，天然抗体难以进入作用位点；应标注为胞内靶点高递送风险，并优先采用细胞内抗体、递送载体或研究级阻断工具路线。",
+    "structurePrepZh": "以8JJ6晶体结构为模板，保留NELF复合体相关链用于界面判读；补建缺失柔性片段并评估RRM RNA结合面可及性与保守性。",
+    "structureRef": "RCSB PDB 8JJ6，X-ray diffraction，2.72 Å",
+    "antibodies": [
+      "研究级抗NELFE抗体",
+      "抗NELF-E免疫检测抗体"
+    ],
+    "interfaceFocus": "RRM β折叠RNA结合面及NELF装配界面",
+    "designMode": "胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "CDK9",
+        "rationale": "CDK9是P-TEFb催化亚基，Tat招募P-TEFb后磷酸化Pol II CTD并促进释放NELF介导的暂停，处于HIV转录延伸同一功能轴。"
+      },
+      {
+        "target": "CCNT1",
+        "rationale": "CCNT1为P-TEFb的Cyclin T1亚基，直接参与HIV Tat/TAR复合物形成并驱动病毒转录延伸，机制上与NELFE介导的暂停解除相连。"
+      },
+      {
+        "target": "SUPT5H",
+        "rationale": "SUPT5H编码DSIF亚基Spt5，与NELF共同维持启动子近端Pol II暂停，并在P-TEFb磷酸化后转为促进延伸的复合体成分。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

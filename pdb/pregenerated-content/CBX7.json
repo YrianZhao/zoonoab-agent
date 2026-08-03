@@ -1,0 +1,65 @@
+{
+  "gene": "CBX7",
+  "generatedAt": "2026-08-03T11:03:14.448Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CBX7是Polycomb repressive complex 1相关染色质阅读蛋白，通过chromodomain识别H3K27me3并参与造血与浆细胞肿瘤相关基因表达抑制，Open Targets关联集中于淋巴细胞计数、浆细胞骨髓瘤及血细胞数量性状。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌特征，作为常规细胞外阻断抗体靶点的抗原可及性有限，更适合细胞内递送型抗体片段或结构探针策略。相较同属PRC1通路的CBX2、CBX4等成员，CBX7具备高分辨率实验结构与明确H3K27me3结合口袋，可支持更精确的界面型分子设计，但优先级应定义为研究级功能调控靶点而非传统治疗性抗体优先靶点。",
+    "mechanism": "设计内源递送抗体片段结合CBX7 chromodomain芳香笼邻近界面，竞争性阻断其与H3K27me3组蛋白尾肽的识别，从而削弱PRC1在靶基因染色质上的募集。",
+    "selectedEpitope": "优先覆盖chromodomain芳香笼及H3K27me3肽结合沟槽边缘残基，避免非特异性结合保守疏水核心。",
+    "diseaseDirection": "血液肿瘤与造血数量性状",
+    "domain": "CBX7含N端chromodomain、AT-hook样DNA结合区及C端Pc-box，8SII解析chromodomain区域。",
+    "evidence": "CBX7-PRC1染色质识别与血液疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt O95931功能与定位注释",
+      "RCSB PDB 8SII实验晶体结构",
+      "PRC1介导H3K27me3识别与转录抑制文献"
+    ],
+    "referenceEntries": "UniProt O95931；RCSB PDB 8SII；Open Targets CBX7",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "chromodomain芳香笼与H3K27me3结合沟槽",
+        "直接干预甲基化组蛋白尾肽识别，机制最清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "chromodomain外侧带电环区",
+        "可形成别构干扰并降低对保守芳香笼的选择压力",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Pc-box相关PRC1装配区域",
+        "可能影响CBX7与RING1/RNF2复合体装配，但当前8SII不覆盖该区域",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CBX7为核内染色质蛋白，常规抗体难以到达作用位点；chromodomain在CBX家族中保守性较高，应通过CBX2/4/6/8交叉筛选控制选择性风险。",
+    "structurePrepZh": "以8SII高分辨率晶体结构为模板，保留抗原链A/B/F/G中完整chromodomain构象，去除结晶添加物并统一质子化状态后进行界面建模。",
+    "structureRef": "RCSB PDB 8SII，X-ray diffraction，1.37 Å",
+    "antibodies": [
+      "细胞内抗体片段intrabody",
+      "染色质阅读蛋白阻断型VHH"
+    ],
+    "interfaceFocus": "H3K27me3芳香笼及肽结合沟槽边缘",
+    "designMode": "细胞内表位阻断",
+    "candidates": [
+      {
+        "target": "EZH2",
+        "rationale": "EZH2为PRC2催化亚基，负责H3K27三甲基化沉积，位于CBX7识别轴上游，并与浆细胞骨髓瘤等血液肿瘤存在明确关联。"
+      },
+      {
+        "target": "RING1",
+        "rationale": "RING1是PRC1核心E3连接酶组分，与CBX蛋白共同参与H2AK119泛素化和染色质沉默，可作为同一Polycomb抑制通路的装配干预靶点。"
+      },
+      {
+        "target": "RNF2",
+        "rationale": "RNF2/RING1B与RING1构成PRC1催化核心，介导H2AK119ub1并维持转录抑制状态，适合作为CBX7相关PRC1功能轴的替代靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

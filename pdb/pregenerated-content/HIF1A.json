@@ -1,0 +1,65 @@
+{
+  "gene": "HIF1A",
+  "generatedAt": "2026-08-03T13:12:19.153Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HIF1A 是缺氧诱导转录因子 HIF-1 的氧敏感 α 亚基，在肿瘤缺氧微环境中与 ARNT 形成异源二聚体并驱动 VEGFA、SLC2A1、CA9 等基因表达，促进血管生成、糖酵解重编程和侵袭适应。该蛋白主要位于胞质和细胞核，缺乏天然胞外结构域，抗原可及性不适合常规体内阻断型抗体，更适合细胞内递送抗体、intrabody 或研究级构象识别抗体策略。相较 VEGFA、CA9 等下游胞外靶点，HIF1A 位于缺氧转录程序上游，具备通路枢纽优先级，但开发优先级受细胞内定位和转录因子界面成药性限制。",
+    "mechanism": "设计抗体识别 HIF1A PAS-B 构象面，阻断其与 ARNT PAS-B 的异源二聚化界面，从而抑制 HIF-1 复合体装配及缺氧反应元件转录激活。",
+    "selectedEpitope": "优先覆盖 PAS-B 结构域的 ARNT 结合界面，避开核心疏水折叠区并保留构象特异性。",
+    "diseaseDirection": "肿瘤缺氧适应与血管生成",
+    "domain": "HIF1A 含 bHLH DNA 结合区、PAS-A/PAS-B 二聚化结构域、ODDD 降解区及 C-TAD 转录激活区。",
+    "evidence": "HIF1A 缺氧转录枢纽与肿瘤适应证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q16665 functional annotation",
+      "RCSB PDB 4H6J experimental structure",
+      "HIF-1/ARNT hypoxia-response literature"
+    ],
+    "referenceEntries": "UniProt Q16665；RCSB PDB 4H6J；Open Targets HIF1A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PAS-B 与 ARNT PAS-B 接触面",
+        "直接干预 HIF1A-ARNT 二聚化，机制清晰且与 4H6J 构象信息相匹配",
+        "优先"
+      ],
+      [
+        "Site B",
+        "bHLH-PAS 邻近外露螺旋面",
+        "可能影响复合体装配或 DNA 结合构象，适合作为构象调节型备选表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ODDD/VHL 识别相关区域",
+        "该区域涉及羟化依赖性降解调控，线性无序成分较多且可能干扰生理稳态",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HIF1A 为细胞内转录因子，常规抗体组织可及性不足；建议限定为 intrabody、递送型抗体或体外机制验证，并严格评估 ARNT 交叉界面选择性。",
+    "structurePrepZh": "以 4H6J 高分辨率晶体结构为模板，保留抗原链 A/B 中 PAS-B 构象单元，补全缺失侧链并标注 ARNT 结合面用于表位约束。",
+    "structureRef": "RCSB PDB 4H6J，X-ray diffraction，1.52 Å",
+    "antibodies": [
+      "H1alpha67",
+      "EP1215Y"
+    ],
+    "interfaceFocus": "PAS-B 异源二聚化接触面",
+    "designMode": "细胞内阻断型",
+    "candidates": [
+      {
+        "target": "ARNT",
+        "rationale": "ARNT 是 HIF1A 必需二聚化伙伴，HIF1A-ARNT 复合体形成是缺氧反应元件结合和下游转录激活的核心步骤。"
+      },
+      {
+        "target": "VEGFA",
+        "rationale": "VEGFA 是 HIF-1 直接诱导的促血管生成效应因子，位于肿瘤缺氧血管生成通路下游，且为分泌蛋白，抗体可及性优于 HIF1A。"
+      },
+      {
+        "target": "CA9",
+        "rationale": "CA9 是 HIF-1 诱导的膜结合碳酸酐酶，参与肿瘤酸性微环境适应；其胞外催化结构域适合抗体识别与功能阻断。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

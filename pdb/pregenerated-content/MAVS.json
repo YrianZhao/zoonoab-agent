@@ -1,0 +1,65 @@
+{
+  "gene": "MAVS",
+  "generatedAt": "2026-08-03T14:05:53.721Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAVS是RIG-I样受体抗病毒先天免疫通路的线粒体外膜适配蛋白，接受RIG-I/DDX58或MDA5/IFIH1经CARD-CARD相互作用传递的病毒RNA识别信号，并招募TRAF3、TBK1和IKK复合体诱导I型干扰素与炎症因子表达。其疾病关联集中于SARS、COVID-19及广义病毒感染，并与异常先天免疫激活相关的神经退行性疾病具有遗传和功能证据。MAVS并非典型分泌抗原或细胞外膜受体，抗体可及性弱于病毒表面蛋白或细胞因子受体，因此更适合采用胞内递送抗体、intrabody或结构探针策略。相较下游TBK1、IRF3等广泛通路节点，MAVS位于RLR信号汇聚点，具备更明确的病毒RNA感知通路选择性，但开发优先级需受制于胞内靶向递送可行性。",
+    "mechanism": "阻断MAVS N端CARD与RIG-I或MDA5 CARD的同型相互作用，抑制MAVS聚合平台形成及TRAF3-TBK1轴募集。",
+    "selectedEpitope": "优先靶向N端CARD结构域的CARD-CARD结合面，覆盖3RC5中α螺旋束介导的RLR适配界面。",
+    "diseaseDirection": "病毒感染与先天免疫炎症",
+    "domain": "MAVS含N端CARD结构域、中部富脯氨酸/TRAF结合区及C端跨膜锚定区，3RC5解析CARD二聚相关结构。",
+    "evidence": "MAVS-RLR抗病毒信号结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q7Z434功能与结构域注释",
+      "RCSB PDB 3RC5晶体结构记录",
+      "RIG-I样受体先天免疫通路文献"
+    ],
+    "referenceEntries": "UniProt Q7Z434；RCSB PDB 3RC5；Open Targets MAVS",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端CARD的RIG-I/MDA5 CARD结合面",
+        "直接阻断病毒RNA感知信号向MAVS转接，机制最清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CARD结构域聚合相关α螺旋界面",
+        "干预MAVS寡聚化平台形成，降低下游TRAF3-TBK1募集",
+        "备选"
+      ],
+      [
+        "Site C",
+        "中部TRAF结合区邻近片段",
+        "可能影响TRAF3/TRAF6衔接，但区域柔性高且缺乏3RC5结构约束",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAVS主要定位于线粒体外膜胞质侧，常规抗体难以进入细胞；需优先评估胞内递送、VHH稳定性及对基础抗病毒免疫的抑制风险。",
+    "structurePrepZh": "以3RC5的A、B链CARD结构为模板，补全缺失侧链并校正质子化状态；中部无序区和C端跨膜区不纳入刚性表位建模。",
+    "structureRef": "RCSB PDB 3RC5，MAVS CARD晶体结构，1.6 Å",
+    "antibodies": [
+      "抗MAVS研究级单克隆抗体",
+      "抗MAVS多克隆/验证抗体"
+    ],
+    "interfaceFocus": "CARD-CARD结合面与聚合α螺旋界面",
+    "designMode": "胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "DDX58",
+        "rationale": "DDX58编码RIG-I，是识别短双链病毒RNA并通过CARD结构域激活MAVS的上游受体；干预其CARD-MAVS连接可调节同一抗病毒通路。"
+      },
+      {
+        "target": "IFIH1",
+        "rationale": "IFIH1编码MDA5，负责长双链RNA识别并通过CARD-CARD相互作用驱动MAVS信号；其遗传变异与病毒感染和干扰素异常激活相关。"
+      },
+      {
+        "target": "TBK1",
+        "rationale": "TBK1是MAVS下游募集的关键激酶，磷酸化IRF3以诱导I型干扰素表达；其位于同一RLR-MAVS抗病毒信号轴。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

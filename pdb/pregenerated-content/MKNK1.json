@@ -1,0 +1,65 @@
+{
+  "gene": "MKNK1",
+  "generatedAt": "2026-08-03T14:15:48.858Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MKNK1编码MAPK-interacting kinase 1，是ERK/p38 MAPK下游的胞内丝氨酸/苏氨酸激酶，可磷酸化EIF4E Ser209并影响炎症应激、髓系细胞反应及缺血相关转录后翻译调控。该蛋白缺乏天然胞外结构域或分泌形式，抗原可及性不适合常规细胞表面阻断抗体，更适合作为结构引导的胞内结合抗体或研究级抑制性抗体片段靶点。相较于上游MAPK节点，MKNK1位于翻译起始效应端，理论上可降低对广泛MAPK信号的全局抑制，优先级主要来自高分辨率激酶结构和明确EIF4E磷酸化读出。",
+    "mechanism": "设计胞内Fab/VHH结合MKNK1激酶结构域ATP口袋邻近区或活化环构象面，阻断MKNK1对EIF4E Ser209的底物磷酸化。",
+    "selectedEpitope": "优先覆盖激酶结构域N/C叶裂隙及活化环周边，避免完全模拟ATP竞争小分子结合模式。",
+    "diseaseDirection": "炎症血液表型与缺血应激",
+    "domain": "MKNK1含N端多碱性结合区、中央蛋白激酶结构域及C端MAPK docking区域。",
+    "evidence": "MKNK1-MAPK-EIF4E轴结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q9BUB5功能与结构域注释",
+      "RCSB PDB 2Y9Q晶体结构记录",
+      "MAPK-MNK-EIF4E翻译调控文献"
+    ],
+    "referenceEntries": "UniProt: Q9BUB5; RCSB PDB: 2Y9Q; Ensembl: ENSG00000079277",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域N/C叶裂隙与活化环邻近面",
+        "可稳定非催化构象并降低EIF4E磷酸化活性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端MAPK docking区域周边肽段构象面",
+        "可能干扰ERK/p38与MKNK1的招募和活化",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP结合铰链区深部口袋",
+        "高度保守且易产生激酶家族交叉反应，选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MKNK1为胞内激酶，常规治疗性抗体难以进入细胞；铰链区保守性高，应优先评估MKNK2及其他CMGC激酶交叉结合。",
+    "structurePrepZh": "以2Y9Q链A/B为模板，保留激酶结构域高置信坐标，检查配体、缺失环和晶体接触后构建表位可及性模型。",
+    "structureRef": "RCSB PDB 2Y9Q，human MKNK1 kinase domain，X-ray 1.55 Å",
+    "antibodies": [
+      "抗MKNK1研究用单克隆抗体",
+      "抗磷酸MKNK1 Thr197/202单克隆抗体"
+    ],
+    "interfaceFocus": "激酶N/C叶裂隙、活化环与MAPK docking面",
+    "designMode": "胞内抑制抗体片段",
+    "candidates": [
+      {
+        "target": "EIF4E",
+        "rationale": "EIF4E是MKNK1的直接底物，Ser209磷酸化连接MAPK应激信号与帽依赖性翻译调控。靶向EIF4E可在同一效应轴下游干预异常翻译输出。"
+      },
+      {
+        "target": "MAPK14",
+        "rationale": "MAPK14/p38α可磷酸化并激活MNK通路，参与炎症应激和缺血反应。其位于MKNK1上游，适合用于通路级替代或联合验证。"
+      },
+      {
+        "target": "MAPK1",
+        "rationale": "MAPK1/ERK2是MKNK1的重要上游激酶之一，可通过MAPK docking相互作用促进MKNK1活化。该节点适合评估ERK-MNK-EIF4E轴依赖性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

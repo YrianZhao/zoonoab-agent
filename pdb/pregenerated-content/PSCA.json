@@ -1,0 +1,65 @@
+{
+  "gene": "PSCA",
+  "generatedAt": "2026-08-03T15:38:19.496Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PSCA 为GPI锚定的细胞表面蛋白，在胃癌及前列腺癌等上皮肿瘤中常呈异常表达，并与肿瘤细胞黏附、侵袭及疾病进展相关。该靶点位于质膜外侧，成熟蛋白主要暴露为Ly6/uPAR样胞外结构域，具备良好的抗体可及性。相较胞内信号分子或低选择性分泌因子，PSCA具有肿瘤表面抗原属性和已解析NMR结构支持，适合作为细胞表面定向抗体设计优先靶点。",
+    "mechanism": "通过结合PSCA胞外Ly6/uPAR样结构域，阻断其介导的肿瘤细胞表面相互作用，并可增强ADCC或ADC递送。",
+    "selectedEpitope": "优先覆盖Ly6/uPAR样三指结构的远端环区及疏水暴露面，避开GPI锚定近膜端。",
+    "diseaseDirection": "胃癌与上皮肿瘤表面抗原",
+    "domain": "PSCA成熟区为GPI锚定胞外Ly6/uPAR样结构域，含保守二硫键稳定的三指样折叠。",
+    "evidence": "PSCA胃癌关联与结构抗原性证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与表达关联",
+      "UniProt O43653蛋白定位与结构域注释",
+      "RCSB PDB 9U9N溶液NMR结构记录",
+      "肿瘤组织表达与抗PSCA抗体研究文献"
+    ],
+    "referenceEntries": "UniProt O43653；RCSB PDB 9U9N；Open Targets PSCA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Ly6/uPAR样结构域远端β发夹与环区",
+        "远离膜锚定端，构象暴露度高，利于获得阻断型或效应功能型抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "三指样折叠侧向环面与二硫键支撑表面",
+        "可形成稳定构象表位，适合提高PSCA选择性并降低与同家族蛋白交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端GPI锚定近膜区域",
+        "空间位阻较高且糖脂锚定邻近膜面，抗体结合角度受限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PSCA属于Ly6/uPAR超家族，需重点评估与LY6D、LY6E等同源蛋白的环区相似性；近膜表位存在细胞膜空间位阻，宜优先设计远端构象表位。",
+    "structurePrepZh": "采用PDB 9U9N的PSCA抗原链A作为NMR构象集合，进行二硫键校验、GPI锚定端标注、代表构象筛选与表面暴露度计算。",
+    "structureRef": "RCSB PDB 9U9N，human PSCA solution NMR structure",
+    "antibodies": [
+      "AGS-1C4D4",
+      "J591-PSCA双特异性构建物"
+    ],
+    "interfaceFocus": "Ly6/uPAR样远端环区及非近膜侧向表面",
+    "designMode": "表面抗原阻断/效应增强",
+    "candidates": [
+      {
+        "target": "ERBB2",
+        "rationale": "ERBB2在胃癌中存在扩增和过表达亚群，驱动HER2受体二聚化与下游PI3K-AKT、MAPK信号，是同一胃癌治疗路径中的成熟膜受体靶点。"
+      },
+      {
+        "target": "CLDN18",
+        "rationale": "CLDN18.2为胃黏膜来源肿瘤中的细胞连接膜蛋白亚型，在胃癌表面抗原治疗中具有明确临床验证价值，可与PSCA形成表面抗原分层策略。"
+      },
+      {
+        "target": "FGFR2",
+        "rationale": "FGFR2扩增或融合可促进胃癌细胞增殖和存活，抗体可阻断FGF配体结合及受体二聚化，属于胃癌分子分型中的真实可及膜受体靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

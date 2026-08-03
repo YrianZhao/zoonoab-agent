@@ -1,0 +1,65 @@
+{
+  "gene": "FBL",
+  "generatedAt": "2026-08-03T12:28:39.363Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FBL 是核仁小核糖核蛋白复合体的核心 2'-O-甲基转移酶，参与 rRNA 加工与核糖体生物发生；其表达或功能异常与肿瘤细胞蛋白合成依赖、核仁应激及部分神经退行性疾病关联。该蛋白主要定位于核仁，缺乏天然胞外结构域或分泌形式，抗体可及性显著弱于膜受体或分泌因子，因此更适合作为细胞内靶点验证、递送型抗体或结构生物学抗体开发对象。相较于 MYC、POLR1A 等上游核仁应激相关靶点，FBL 具有明确的 SAM 依赖催化口袋和 GAR/RRM/甲基转移酶结构域分工，结构解析度高，便于进行构象选择性抗体与功能阻断表位设计。",
+    "mechanism": "阻断 FBL 甲基转移酶结构域与 SAM 及 rRNA 底物的协同结合，或干扰其与 NOP56/NOP58 组成 snoRNP 复合体的装配界面。",
+    "selectedEpitope": "优先覆盖 C 端甲基转移酶结构域的 SAM 邻近沟槽及 rRNA 底物结合面。",
+    "diseaseDirection": "核仁应激与肿瘤/神经退行性疾病",
+    "domain": "N 端 GAR 富含甘氨酸-精氨酸区，中部 RRM，C 端 SAM 依赖 2'-O-甲基转移酶结构域。",
+    "evidence": "FBL 核糖体生物发生与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P22087 functional annotation",
+      "RCSB PDB 7SE7 experimental structure",
+      "Reactome rRNA processing and ribosome biogenesis pathway"
+    ],
+    "referenceEntries": "UniProt P22087；RCSB PDB 7SE7；HGNC FBL",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C 端甲基转移酶结构域 SAM 邻近沟槽",
+        "可限制辅因子定位并影响催化构象形成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RRM 与催化结构域连接区域",
+        "可能干扰 RNA 底物识别与结构域协同定位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端 GAR 低复杂度富精氨酸区域",
+        "柔性高且翻译后修饰密集，表位稳定性与特异性需谨慎评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FBL 为核仁内蛋白，常规抗体体内可及性不足；设计宜定位于递送型抗体、胞内抗体或结构捕获工具，并规避高保守催化核心导致的交叉反应风险。",
+    "structurePrepZh": "以 7SE7 链 A 为模板，保留高分辨率催化结构域坐标，补全缺失柔性片段注释，检查 SAM/配体邻近残基与表面电荷分布。",
+    "structureRef": "RCSB PDB 7SE7，X-ray diffraction，1.75 Å",
+    "antibodies": [
+      "commercial anti-Fibrillarin antibody 72B9",
+      "commercial anti-Fibrillarin antibody EPR10823"
+    ],
+    "interfaceFocus": "SAM 口袋边缘与 RNA 底物结合沟槽",
+    "designMode": "胞内靶点功能阻断",
+    "candidates": [
+      {
+        "target": "NOP56",
+        "rationale": "NOP56 是 box C/D snoRNP 复合体组分，与 FBL 协同参与 rRNA 2'-O-甲基化；靶向其装配界面可从同一核糖体生物发生轴影响复合体功能。"
+      },
+      {
+        "target": "NOP58",
+        "rationale": "NOP58 与 FBL、NOP56 和 snoRNA 共同构成 C/D snoRNP 催化平台，处于相同 rRNA 加工通路；其复合体界面具有明确的功能关联。"
+      },
+      {
+        "target": "DKC1",
+        "rationale": "DKC1 属于核仁小核糖核蛋白相关 rRNA 修饰通路，参与 H/ACA snoRNP 介导的假尿苷化；可作为核糖体生物发生与核仁应激方向的互补候选靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

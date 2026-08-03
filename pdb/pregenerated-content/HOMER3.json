@@ -1,0 +1,65 @@
+{
+  "gene": "HOMER3",
+  "generatedAt": "2026-08-03T19:51:52.468Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HOMER3编码胞内支架蛋白，主要通过EVH1结构域识别富脯氨酸基序，组织代谢和神经钙信号相关蛋白复合体；Open Targets关联主要集中于体重、脂肪量和瘦体重等复杂性状，但目前缺乏明确的细胞外致病配体-受体轴。该蛋白不属于分泌蛋白或膜受体，天然抗原可及性显著弱于胞外受体靶点，因此常规体内阻断型抗体开发可行性受限。其优先价值主要来自高分辨率EVH1结构和可解析的肽结合沟槽，适合作为结构生物学验证、胞内抗体或递送型抗体片段设计靶点，而非优先级高于GLP1R、LEPR等代谢通路膜受体的常规抗体靶点。",
+    "mechanism": "设计抗体片段占据HOMER3 EVH1结构域的富脯氨酸肽结合沟槽，阻断其与GRM1、ITPR1等含PPXXF样基序蛋白的支架复合体形成。",
+    "selectedEpitope": "优先覆盖EVH1结构域富脯氨酸肽结合沟槽及邻近β折叠-环区界面。",
+    "diseaseDirection": "代谢表型与体组成关联",
+    "domain": "HOMER3含N端EVH1结构域和C端卷曲螺旋区，2P8V覆盖EVH1肽识别模块。",
+    "evidence": "HOMER3代谢性状关联与EVH1结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病-靶点关联",
+      "UniProt Q9NSC5蛋白功能注释",
+      "RCSB PDB 2P8V晶体结构",
+      "EVH1结构域-富脯氨酸基序相互作用文献"
+    ],
+    "referenceEntries": "UniProt Q9NSC5；RCSB PDB 2P8V；Open Targets HOMER3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "EVH1富脯氨酸肽结合沟槽",
+        "直接竞争HOMER3与PPXXF样基序配体结合，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "EVH1 β折叠边缘与可变环区",
+        "可通过构象限制削弱配体识别，同时保留结构可设计性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离肽结合面的EVH1背侧表面",
+        "阻断效应不确定，可能仅产生结合而非功能抑制",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HOMER3为胞内支架蛋白，常规抗体难以触达天然抗原；建议定位为胞内抗体、细胞递送Fab/VHH或机制探针，避免宣称直接体内阻断疗效。",
+    "structurePrepZh": "以2P8V A链EVH1结构为模板，补全缺失侧链并校验晶体接触；围绕肽结合沟槽定义抗原表面，保留关键芳香族和带电残基构象。",
+    "structureRef": "RCSB PDB 2P8V，X射线晶体结构，1.85 Å",
+    "antibodies": [
+      "无获批HOMER3治疗性抗体",
+      "抗HOMER3研究级检测抗体"
+    ],
+    "interfaceFocus": "EVH1富脯氨酸基序识别沟槽",
+    "designMode": "胞内阻断型片段",
+    "candidates": [
+      {
+        "target": "GRM1",
+        "rationale": "GRM1编码代谢型谷氨酸受体1，可通过C端富脯氨酸/支架结合区与HOMER蛋白复合，处于同一突触钙信号组织轴。其为膜受体，抗原可及性显著优于HOMER3。"
+      },
+      {
+        "target": "ITPR1",
+        "rationale": "ITPR1编码肌醇1,4,5-三磷酸受体1，是HOMER支架复合体连接的内质网钙释放通道，参与同一钙信号调控模块。其主要位于胞内膜系统，适合机制研究但常规抗体药物可及性有限。"
+      },
+      {
+        "target": "SHANK3",
+        "rationale": "SHANK3为突触后致密区支架蛋白，可与HOMER家族共同组织谷氨酸受体和钙信号复合体。其疾病证据较强，但同样属于胞内支架蛋白，更适合作为通路参照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

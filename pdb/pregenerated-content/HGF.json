@@ -1,0 +1,65 @@
+{
+  "gene": "HGF",
+  "generatedAt": "2026-08-03T19:46:35.481Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HGF 是 MET 受体酪氨酸激酶的分泌型配体，通过 NK1/NK2 区域介导 MET 结合与受体二聚化，在肿瘤侵袭、转移、组织修复异常及纤维化相关通路中具有明确驱动作用。该蛋白为可溶性细胞外生长因子，抗原无需跨膜构象重建，N 端 hairpin 与 kringle 结构域具有良好的抗体可及性。相较于直接靶向 MET，HGF 阻断策略可优先截断配体依赖性激活，并降低对 MET 基础受体功能的广泛干预风险。",
+    "mechanism": "抗体结合 HGF 的 N 端 hairpin-kringle 受体结合面，阻断 HGF 与 MET SEMA 域相互作用，从而抑制 MET 二聚化、自磷酸化及下游 PI3K-AKT、RAS-MAPK 信号。",
+    "selectedEpitope": "优先覆盖 N domain 与 kringle 1 构成的 MET 结合界面，兼顾 NK1 功能片段构象稳定区。",
+    "diseaseDirection": "HGF-MET 轴相关肿瘤与纤维化",
+    "domain": "HGF 含 N 端 hairpin 域、四个 kringle 域及丝氨酸蛋白酶样 C 端结构域，成熟形式为异源二链。",
+    "evidence": "HGF-MET 配体阻断抗体设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt P14210 功能与结构域注释",
+      "RCSB PDB 3HMS X 射线晶体结构",
+      "HGF-MET 轴肿瘤侵袭与转移文献证据"
+    ],
+    "referenceEntries": "UniProt:P14210；RCSB PDB:3HMS；HGNC:HGF",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N domain-kringle 1 的 MET 结合界面",
+        "直接阻断 HGF 与 MET 的高亲和力结合及受体激活",
+        "优先"
+      ],
+      [
+        "Site B",
+        "kringle 2-kringle 3 外露环区",
+        "可增强配体构象锁定并提供非竞争性中和设计空间",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端丝氨酸蛋白酶样结构域",
+        "可能影响低亲和力受体接触，但远离主要 NK1 结合核心",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "N domain 与 kringle 1 界面需避免破坏抗原整体折叠；C 端结构域糖基化与构象异质性可能影响结合一致性，宜优先采用构象表位筛选。",
+    "structurePrepZh": "以 3HMS 链 A 为模板进行缺失残基检查、二硫键与糖基化位点标注，并按成熟 HGF 结构域边界分区定义抗原表面。",
+    "structureRef": "RCSB PDB 3HMS，HGF/SF N-terminal and kringle domains",
+    "antibodies": [
+      "Rilotumumab",
+      "Ficlatuzumab"
+    ],
+    "interfaceFocus": "N domain-kringle 1 的 MET 受体结合面",
+    "designMode": "配体中和抗体设计",
+    "candidates": [
+      {
+        "target": "MET",
+        "rationale": "MET 是 HGF 的唯一经典受体，受 HGF 结合后发生二聚化和酪氨酸自磷酸化，是同一 HGF-MET 轴中最直接的受体端靶点。"
+      },
+      {
+        "target": "GAB1",
+        "rationale": "GAB1 是 MET 磷酸化后募集的关键衔接蛋白，连接 PI3K-AKT 与 MAPK 下游信号，可作为通路活性评估与组合干预节点。"
+      },
+      {
+        "target": "PLCG1",
+        "rationale": "PLCG1 可在 MET 激活后参与下游信号转导，与细胞迁移和侵袭表型相关，适合作为 HGF-MET 通路效应层候选节点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

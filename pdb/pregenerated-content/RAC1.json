@@ -1,0 +1,65 @@
+{
+  "gene": "RAC1",
+  "generatedAt": "2026-08-03T20:41:36.533Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RAC1 是 Rho 家族小 GTP 酶，参与 WAVE/ARP2/3 介导的肌动蛋白重塑、PAK 激酶激活及 MAPK/PI3K 相关迁移信号，在黑色素瘤侵袭和 RAC1 P29S 驱动性增殖中具有明确疾病关联。该蛋白主要为胞质及膜内侧定位的小 GTP 酶，缺乏稳定胞外结构域，抗原天然可及性弱，因此仅适合作为细胞内抗体、递送型抗体片段或研究级构象干预靶点。相较 BRAF、NRAS 等同通路胞内激酶或 GTP 酶，RAC1 的开关区直接耦联多类效应蛋白，结构分辨率高且构象口袋清晰，但抗体药物化优先级低于具有胞外可及性的免疫检查点或受体靶点。",
+    "mechanism": "以内源递送型 VHH 或胞内 Fab 结合 RAC1 Switch I/Switch II 区，阻断 RAC1-GTP 与 PAK1 CRIB 结构域及 WAVE 调控复合体相互作用，抑制迁移和侵袭信号。",
+    "selectedEpitope": "优先锁定 Switch I 与 Switch II 构象界面，覆盖效应蛋白结合面并避免核苷酸结合核心完全遮蔽。",
+    "diseaseDirection": "黑色素瘤与RAC1驱动迁移",
+    "domain": "RAC1 为 21 kDa Rho 小 GTP 酶，含 GTP/GDP 结合 P-loop、Switch I、Switch II 及 C端 CAAX 膜定位基序。",
+    "evidence": "RAC1结构与黑色素瘤通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform RAC1 disease associations",
+      "UniProt P63000 RAC1 functional annotation",
+      "RCSB PDB 1MH1 X-ray structure at 1.38 Å",
+      "COSMIC and melanoma genomics reports on RAC1 P29S"
+    ],
+    "referenceEntries": "UniProt:P63000; RCSB PDB:1MH1; Open Targets:RAC1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Switch I/Switch II 效应蛋白结合界面",
+        "可阻断 RAC1-GTP 与 PAK1、WAVE 复合体效应蛋白识别，机制直接",
+        "优先"
+      ],
+      [
+        "Site B",
+        "P-loop 邻近核苷酸结合沟槽外缘",
+        "可稳定特定 GDP/GTP 构象，但需避免与核苷酸结合位点产生非特异干扰",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端高变区及 CAAX 邻近膜定位区域",
+        "与膜定位相关但柔性高、结构解析不足且翻译后修饰影响显著",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RAC1 为胞内小 GTP 酶，常规抗体难以进入作用位点；RHOA、CDC42 等同源蛋白界面高度保守，需强化 Switch 区构象选择性与交叉反应筛查。",
+    "structurePrepZh": "以 1MH1 高分辨率晶体结构为模板，保留核苷酸及 Mg2+ 构象信息，补全缺失柔性环并标注 Switch I/II、P-loop 与 C端未解析区域。",
+    "structureRef": "RCSB PDB 1MH1, RAC1 X-ray diffraction 1.38 Å",
+    "antibodies": [
+      "Rac1-GTP conformation-specific antibody clone 26903",
+      "RAC1 monoclonal antibody clone 23A8"
+    ],
+    "interfaceFocus": "Switch I/II效应蛋白结合面",
+    "designMode": "胞内构象阻断",
+    "candidates": [
+      {
+        "target": "PAK1",
+        "rationale": "PAK1 是 RAC1-GTP 的经典下游效应激酶，CRIB 结构域直接识别活化 RAC1，在黑色素瘤细胞迁移、存活和侵袭信号中处于同一轴线。"
+      },
+      {
+        "target": "WASF2",
+        "rationale": "WASF2 编码 WAVE2，是 RAC1 介导 ARP2/3 依赖性肌动蛋白聚合的关键效应成分，可作为抑制细胞运动表型的同通路候选节点。"
+      },
+      {
+        "target": "ARPC2",
+        "rationale": "ARPC2 是 ARP2/3 复合体核心亚基，位于 RAC1-WAVE 下游并执行支链肌动蛋白成核过程，适合用于迁移通路药效联动评估。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

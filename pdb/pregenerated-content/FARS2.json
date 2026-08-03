@@ -1,0 +1,65 @@
+{
+  "gene": "FARS2",
+  "generatedAt": "2026-08-03T12:28:05.462Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FARS2编码线粒体苯丙氨酰-tRNA合成酶，负责将苯丙氨酸连接至线粒体tRNA^Phe，缺陷可导致线粒体翻译受损并引发氧化磷酸化复合体装配不足。该蛋白定位于线粒体基质，天然抗原可及性不具备分泌蛋白或膜受体优势，因此更适合用于机制验证、胞内递送抗体或结构探针开发。相较于下游呼吸链亚基，FARS2位于线粒体翻译病因链上游，遗传证据与结构解析度较高，优先级主要来自病因特异性和结构可设计性。",
+    "mechanism": "抗体设计以阻断FARS2催化核心与tRNA^Phe受体臂及苯丙氨酸/ATP结合口袋邻近界面的构象耦联为目标，用于抑制氨酰化反应或稳定致病构象。",
+    "selectedEpitope": "优先覆盖催化结构域中tRNA结合沟槽邻近区域，避开深埋ATP/氨基酸口袋以保留抗体结合可行性。",
+    "diseaseDirection": "线粒体翻译与氧化磷酸化缺陷",
+    "domain": "FARS2含N端线粒体靶向序列、催化核心结构域及C端tRNA识别相关结构域。",
+    "evidence": "FARS2线粒体翻译缺陷结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt O95363功能与亚细胞定位注释",
+      "RCSB PDB 5MGW晶体结构",
+      "OMIM线粒体病与FARS2变异记录"
+    ],
+    "referenceEntries": "UniProt O95363；RCSB PDB 5MGW；Open Targets FARS2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化核心外侧tRNA结合沟槽",
+        "可能干扰tRNA^Phe定位并兼具结构可及性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端tRNA识别结构域表面",
+        "适合设计构象选择性结合分子并降低催化口袋不可及风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP/苯丙氨酸结合口袋邻近凹槽",
+        "功能相关性强但口袋深埋，常规抗体进入受限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FARS2为线粒体基质可溶性酶，常规抗体难以进入细胞及线粒体；设计应定位为胞内递送、纳米抗体或结构生物学探针。",
+    "structurePrepZh": "以5MGW链A为模板，去除晶体溶剂并校验缺失残基、配体状态和质子化；围绕tRNA结合沟槽进行表面暴露性评估。",
+    "structureRef": "RCSB PDB 5MGW，X射线晶体结构，1.46 Å",
+    "antibodies": [
+      "无获批治疗性抗体",
+      "研究级抗FARS2抗体"
+    ],
+    "interfaceFocus": "tRNA^Phe结合沟槽与催化核心外缘",
+    "designMode": "胞内酶结构探针",
+    "candidates": [
+      {
+        "target": "MT-TF",
+        "rationale": "MT-TF编码线粒体tRNA^Phe，是FARS2直接氨酰化底物；其变异同样可破坏线粒体翻译并导致氧化磷酸化缺陷。"
+      },
+      {
+        "target": "TARS2",
+        "rationale": "TARS2为线粒体苏氨酰-tRNA合成酶，处于同一线粒体氨酰化与翻译通路；遗传缺陷与线粒体脑肌病和呼吸链功能障碍相关。"
+      },
+      {
+        "target": "EARS2",
+        "rationale": "EARS2参与线粒体谷氨酰-tRNA氨酰化，缺陷可导致线粒体翻译不足和氧化磷酸化异常，适合作为同通路比较靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

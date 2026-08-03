@@ -1,0 +1,65 @@
+{
+  "gene": "MPO",
+  "generatedAt": "2026-08-03T14:18:36.821Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MPO 是中性粒细胞和单核细胞髓系颗粒中的血红素过氧化物酶，释放后催化 H2O2 与氯离子生成 HOCl，驱动氧化杀伤、组织氧化损伤和髓系炎症放大。其成熟酶可存在于细胞外炎症微环境和中性粒细胞胞外网中，抗体可直接接近暴露的二聚体表面和催化入口区域。相较于更广泛的髓系标志物，MPO 位于氧化效应终端，结构解析精度高且疾病遗传与血液细胞性状关联集中，适合作为机制明确的抗体干预靶点。",
+    "mechanism": "抗体优先阻断 MPO 催化腔入口及邻近底物通道，限制 H2O2/卤离子进入血红素活性中心，从而降低 HOCl 生成与下游蛋白氯化损伤。",
+    "selectedEpitope": "优先选择重链催化结构域中血红素入口周围的底物通道环区，避开糖基化密集面。",
+    "diseaseDirection": "髓系炎症与氧化组织损伤",
+    "domain": "成熟 MPO 由轻链和重链组成，含血红素过氧化物酶催化域、钙结合位点及糖基化表面。",
+    "evidence": "MPO 氧化酶活性与髓系炎症证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P05164 functional annotation",
+      "RCSB PDB 5MFA crystallographic structure",
+      "Literature on MPO-derived HOCl in neutrophil inflammation"
+    ],
+    "referenceEntries": "UniProt P05164；RCSB PDB 5MFA；Open Targets MPO",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "重链血红素催化腔入口及卤离子底物通道邻近环区",
+        "可直接限制 H2O2/Cl- 接近活性中心，机制闭合度最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "MPO 同源二聚体界面周边非催化暴露面",
+        "可能影响二聚体稳定性或空间取向，适合构建非竞争性结合分子",
+        "备选"
+      ],
+      [
+        "Site C",
+        "糖基化位点邻近表面及轻链外露区域",
+        "糖链异质性和加工状态可能降低表位一致性，应降低优先级",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "催化入口附近需避免直接插入血红素袋导致构象选择性不足；糖基化邻近表位存在批次异质性，建议以多构象模型筛选可及性。",
+    "structurePrepZh": "以 5MFA 高分辨率晶体结构为模板，保留血红素、钙离子和关键糖基化信息，按成熟轻重链二聚体状态进行抗原建模。",
+    "structureRef": "RCSB PDB 5MFA，human MPO X-ray 1.2 Å",
+    "antibodies": [
+      "Anti-MPO antibody clone 2C7",
+      "Anti-MPO antibody clone 4A4"
+    ],
+    "interfaceFocus": "血红素入口、底物通道环区与二聚体外露界面",
+    "designMode": "活性阻断型抗体",
+    "candidates": [
+      {
+        "target": "ELANE",
+        "rationale": "ELANE 编码中性粒细胞弹性蛋白酶，参与脱颗粒、NET 形成和炎症组织蛋白水解损伤，与 MPO 同处中性粒细胞效应通路。"
+      },
+      {
+        "target": "PRTN3",
+        "rationale": "PRTN3 是中性粒细胞颗粒丝氨酸蛋白酶，可在 ANCA 相关血管炎及髓系炎症中与 MPO 相关的中性粒细胞激活过程并行出现。"
+      },
+      {
+        "target": "NCF1",
+        "rationale": "NCF1 为 NADPH oxidase 复合体组分，介导呼吸爆发产生 MPO 利用的 H2O2，位于 MPO 氧化反应的上游供底物环节。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

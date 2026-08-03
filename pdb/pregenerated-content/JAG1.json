@@ -1,0 +1,65 @@
+{
+  "gene": "JAG1",
+  "generatedAt": "2026-08-03T13:35:32.485Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "JAG1 是 Notch 通路的典型膜结合配体，通过其 DSL 区域及邻近 EGF-like repeats 与 NOTCH 受体胞外区结合，驱动受体构象改变和后续蛋白水解释放 NICD；其单基因变异与 Alagille 综合征、先天性心脏畸形及胆管发育异常具有明确因果关联。JAG1 为 I 型跨膜蛋白，N 端信号肽后形成大段胞外结构域，DSL 与 EGF-like repeats 暴露于细胞表面，具备抗体直接识别与界面阻断的可及性。相较于下游核内转录复合物或多效性 Notch 受体，JAG1 配体端干预可聚焦配体-受体接触界面，并保留对特定组织微环境中 JAG1 依赖性 Notch 激活的选择性设计空间。",
+    "mechanism": "抗体阻断 JAG1 DSL-EGF1-2 区域与 NOTCH1/NOTCH2 EGF repeats 的结合，抑制配体诱导的受体拉伸、S2/S3 裂解及 NICD 释放。",
+    "selectedEpitope": "优先覆盖 DSL 结构域及 EGF1 邻接受体结合面，避开高度钙结合 EGF 重复区的构象脆弱位点。",
+    "diseaseDirection": "Notch 发育信号相关疾病",
+    "domain": "JAG1 胞外区含 MNNL、DSL、多个 EGF-like repeats、富半胱氨酸区及跨膜段。",
+    "evidence": "JAG1-Notch 配体界面与遗传疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P78504 functional annotation",
+      "RCSB PDB 4XI7 experimental structure",
+      "Human Notch ligand-receptor structural literature"
+    ],
+    "referenceEntries": "UniProt P78504；RCSB PDB 4XI7；HGNC JAG1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DSL 结构域与 EGF1 交界的 NOTCH 受体结合界面",
+        "直接竞争 JAG1-NOTCH 接触，具备明确阻断机制",
+        "优先"
+      ],
+      [
+        "Site B",
+        "MNNL-DSL 相邻外露面",
+        "可稳定识别配体头部构象并辅助限制受体结合取向",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远端钙结合 EGF-like repeats",
+        "序列重复性和钙依赖构象增加交叉反应与构象敏感风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DSL-EGF 接口富含二硫键约束，设计需评估构象表位依赖性；应避免广泛覆盖保守 EGF 重复区，以降低与 DLL/JAG 家族成员交叉反应风险。",
+    "structurePrepZh": "以 4XI7 中 JAG1 抗原链 A、C 为模板，保留二硫键和钙离子相关几何约束，补全缺失侧链后进行界面残基标注与表面可及性计算。",
+    "structureRef": "RCSB PDB 4XI7，X-ray diffraction，2.051 Å",
+    "antibodies": [
+      "OMP-21M18",
+      "15D11"
+    ],
+    "interfaceFocus": "DSL-EGF1 的 NOTCH 受体接触面",
+    "designMode": "配体阻断型",
+    "candidates": [
+      {
+        "target": "NOTCH2",
+        "rationale": "NOTCH2 是 JAG1 介导发育信号的重要受体，NOTCH2 变异同样与 Alagille 综合征相关，可作为同一配体-受体轴的受体端干预靶点。"
+      },
+      {
+        "target": "NOTCH1",
+        "rationale": "NOTCH1 与 JAG1 形成经典配体-受体相互作用，并参与心血管发育及细胞命运决定，适合用于比较受体端阻断策略。"
+      },
+      {
+        "target": "DLL4",
+        "rationale": "DLL4 属于同一 Notch 配体网络，主要驱动血管内皮 Notch 激活，可作为评估 JAG1 选择性和通路内配体替代性的参照靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

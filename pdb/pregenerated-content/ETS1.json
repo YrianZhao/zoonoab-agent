@@ -1,0 +1,65 @@
+{
+  "gene": "ETS1",
+  "generatedAt": "2026-08-03T19:10:01.538Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ETS1 是核内转录因子，参与造血细胞分化、免疫细胞计数性状及代谢相关表型的转录调控，Open Targets 显示其与 platelet count、eosinophil count、monocyte count 及 2 型糖尿病存在遗传关联。该蛋白主要定位于细胞核，缺乏天然胞外结构域、分泌形式或膜受体特征，常规体内阻断型抗体的抗原可及性不足。相较可直接药物化的胞外受体或细胞因子，ETS1 更适合作为结构验证、细胞内递送抗体或研究级 intrabody 设计靶点，优先级应低于同通路中可及性更高的细胞表面分子。",
+    "mechanism": "设计目标为结合 ETS DNA-binding ETS domain，阻断其识别 GGAA/T 核心 DNA 基序并干扰 ETS1 与靶基因增强子复合物的形成。",
+    "selectedEpitope": "优先覆盖 ETS domain 第3螺旋 DNA 主沟识别面及相邻翼状环，竞争 DNA 结合界面。",
+    "diseaseDirection": "血液细胞性状与代谢遗传关联",
+    "domain": "ETS1 含 Pointed/SAM 结构域、转录调控区及 C 端 ETS DNA 结合结构域。",
+    "evidence": "ETS1遗传关联与ETS结构域阻断证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P14921 functional annotation",
+      "RCSB PDB 1GVJ X-ray structure",
+      "ETS transcription factor DNA-binding literature"
+    ],
+    "referenceEntries": "UniProt P14921；RCSB PDB 1GVJ；Open Targets ENSG00000134954",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ETS domain 第3螺旋及DNA主沟识别界面",
+        "直接竞争 ETS1 与 GGAA/T DNA 核心基序结合，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ETS domain 翼状环与DNA磷酸骨架邻近区域",
+        "可削弱DNA结合稳定性并保留结构域特异性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Pointed/SAM 蛋白互作结构域表面",
+        "可能影响转录调控复合物装配，但疾病相关阻断机制间接",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ETS1 为核内抗原，常规抗体难以到达作用位点；需采用细胞内递送、intrabody 或降解偶联策略，并避免交叉识别其他 ETS 家族保守 DNA 结合面。",
+    "structurePrepZh": "以 1GVJ 高分辨率晶体结构为模板，保留 ETS domain 构象，移除非目标链后标注 DNA 接触残基、保守位点和同源 ETS 家族差异残基。",
+    "structureRef": "RCSB PDB 1GVJ；ETS1 ETS domain X-ray diffraction 1.53 Å",
+    "antibodies": [
+      "研究用抗ETS1单克隆抗体",
+      "细胞内ETS1 intrabody候选形式"
+    ],
+    "interfaceFocus": "ETS domain第3螺旋-DNA主沟结合界面",
+    "designMode": "细胞内阻断型",
+    "candidates": [
+      {
+        "target": "SPI1",
+        "rationale": "SPI1/PU.1 同属 ETS 转录因子家族，调控髓系和单核细胞分化，与单核细胞计数及造血免疫表型处于相近转录调控网络。"
+      },
+      {
+        "target": "FLI1",
+        "rationale": "FLI1 为 ETS 家族转录因子，参与巨核细胞和血小板生成相关基因调控，与 platelet count 相关通路具有明确生物学联系。"
+      },
+      {
+        "target": "GATA1",
+        "rationale": "GATA1 与 ETS 因子在巨核细胞和红系分化程序中协同调控转录网络，是血小板生成和造血分化通路中的真实关键节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

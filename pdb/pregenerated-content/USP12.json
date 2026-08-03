@@ -1,0 +1,65 @@
+{
+  "gene": "USP12",
+  "generatedAt": "2026-08-03T17:44:11.290Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "USP12 为胞内去泛素化酶，参与泛素-蛋白酶体稳态，并与肾功能表型、血清肌酐和肾小球滤过率存在遗传关联信号。其催化结构域位于细胞内，天然抗原可及性不符合常规治疗性抗体的胞外结合要求，因此更适合作为结构抗原用于机制研究、细胞内递送抗体或降解平台探索。相较于膜受体或分泌因子，USP12 的抗体成药优先级较低；但其 PDB 5K1A 提供高分辨率实验结构，可支持针对催化沟槽和调控界面的精细化分子设计。",
+    "mechanism": "设计抗体片段结合 USP12 催化结构域邻近泛素结合沟槽，阻断底物泛素链进入 Cys48/His294/Asp310 催化三联体区域。",
+    "selectedEpitope": "优先覆盖催化结构域内泛素 C 端结合沟槽及 BL1/BL2 环邻近界面。",
+    "diseaseDirection": "肾功能与单核细胞表型关联",
+    "domain": "USP12 含 USP 型半胱氨酸蛋白酶催化结构域，形成典型 Palm、Thumb 与 Fingers 亚结构。",
+    "evidence": "USP12 去泛素化酶结构与肾功能遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt O75317 functional annotation",
+      "RCSB PDB 5K1A X-ray structure",
+      "Gene Ontology ubiquitin-specific protease activity"
+    ],
+    "referenceEntries": "UniProt O75317；RCSB PDB 5K1A；Open Targets USP12",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "USP 催化结构域泛素 C 端结合沟槽及 BL1/BL2 环",
+        "直接干扰底物泛素定位，具备明确酶学抑制价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Fingers 亚结构泛素远端结合表面",
+        "可削弱泛素识别并保留较高结构可及性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Cys48 催化半胱氨酸近端保守核心",
+        "区域高度保守且可能影响构象稳定性，选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "USP12 为胞内酶，常规抗体难以到达作用位点；需优先采用胞内抗体、递送偶联或体外机制验证，并严格评估与 USP 家族保守催化核心的交叉反应。",
+    "structurePrepZh": "以 5K1A 的 X 射线结构为模板，保留催化结构域完整链，校正缺失环区、质子化催化残基，并标注泛素结合沟槽用于对接。",
+    "structureRef": "RCSB PDB 5K1A，X-ray diffraction，2.3 Å",
+    "antibodies": [
+      "anti-USP12 research antibody",
+      "intracellular anti-DUB antibody fragment"
+    ],
+    "interfaceFocus": "泛素 C 端结合沟槽与 BL1/BL2 调控环",
+    "designMode": "胞内酶抑制型",
+    "candidates": [
+      {
+        "target": "USP46",
+        "rationale": "USP46 与 USP12 同属高度同源去泛素化酶，并共享 WDR48/UAF1 相关调控机制；可作为同通路选择性评估和旁系抑制风险参照。"
+      },
+      {
+        "target": "WDR48",
+        "rationale": "WDR48/UAF1 是 USP12 催化活性调节复合体组分，直接影响 USP12 去泛素化功能；靶向该调控轴可用于验证复合体依赖机制。"
+      },
+      {
+        "target": "WDR20",
+        "rationale": "WDR20 与 USP12 形成调控复合体并增强去泛素化酶活性；其界面可作为 USP12 通路中非催化位点干预候选。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

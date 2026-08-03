@@ -1,0 +1,65 @@
+{
+  "gene": "CYBC1",
+  "generatedAt": "2026-08-03T11:46:05.265Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CYBC1是NADPH氧化酶NOX2复合体装配所需的内质网伴侣蛋白，缺陷可导致gp91phox/CYBB与p22phox/CYBA成熟受阻，从而削弱吞噬细胞呼吸爆发并关联慢性肉芽肿病。该蛋白主要位于内质网膜，功能位点面向胞质或腔内装配界面，抗原可及性低于经典细胞表面受体，因此更适合作为机制验证型胞内抗原而非直接阻断型治疗抗体靶点。其优先级来自遗传病因链条明确、PDB 8KEI提供实验结构约束、且相较下游炎症因子更接近NOX2生物发生起点。",
+    "mechanism": "抗体设计以识别CYBC1参与NOX2生物发生的装配界面为核心，干预或标记CYBC1与CYBA/CYBB前体复合体的分子接触。",
+    "selectedEpitope": "优先覆盖CYBC1跨膜螺旋邻近的胞质侧装配沟槽，兼顾CYBA/CYBB伴侣结合界面。",
+    "diseaseDirection": "慢性肉芽肿病与NOX2缺陷",
+    "domain": "CYBC1为多跨膜内质网膜蛋白，含保守跨膜螺旋束及胞质侧短环区，参与NOX2复合体成熟。",
+    "evidence": "CYBC1-NOX2生物发生与慢性肉芽肿病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt Q9BQA9功能注释",
+      "RCSB PDB 8KEI冷冻电镜结构",
+      "慢性肉芽肿病遗传学与NOX2复合体文献"
+    ],
+    "referenceEntries": "UniProt Q9BQA9；RCSB PDB 8KEI；Open Targets CYBC1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "跨膜螺旋束胞质侧CYBA/CYBB装配邻近界面",
+        "最贴近NOX2生物发生关键接触面，适合构建机制阻断或构象识别抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "内质网腔侧短环与跨膜出口邻近区域",
+        "可能反映CYBC1成熟构象状态，可用于构象选择性结合与结构验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度疏水跨膜核心区域",
+        "疏水埋藏面可及性有限，抗体结合构象依赖强，需避免作为主导免疫表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CYBC1并非常规胞外抗原，活细胞表面可及性不足；建议采用纳米盘或去垢剂稳定构象，并将抗体定位为结构探针、递送型胞内抗体或机制研究工具。",
+    "structurePrepZh": "以PDB 8KEI冷冻电镜模型为模板，保留A-G链装配状态，补全缺失环区并在膜模拟环境中优化跨膜螺旋取向。",
+    "structureRef": "RCSB PDB 8KEI，human CYBC1 EM structure, 3.56 Å",
+    "antibodies": [
+      "暂无获批CYBC1靶向抗体",
+      "研究级anti-CYBC1多克隆抗体"
+    ],
+    "interfaceFocus": "CYBC1跨膜螺旋束与NOX2成熟装配界面",
+    "designMode": "结构引导型Fab/VHH",
+    "candidates": [
+      {
+        "target": "CYBB",
+        "rationale": "CYBB编码gp91phox，是NOX2催化亚基；其缺陷直接导致慢性肉芽肿病，且与CYBC1功能处于同一NOX2复合体生物发生轴。"
+      },
+      {
+        "target": "CYBA",
+        "rationale": "CYBA编码p22phox，与CYBB形成膜结合flavocytochrome b558；CYBC1缺陷影响该复合体成熟，因此CYBA是同通路内的关键装配靶点。"
+      },
+      {
+        "target": "NCF1",
+        "rationale": "NCF1编码p47phox，是NOX2活化所需胞质调节亚基；其遗传缺陷同样导致慢性肉芽肿病，适合作为NOX2功能通路候选靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

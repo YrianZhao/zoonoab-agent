@@ -1,0 +1,65 @@
+{
+  "gene": "TRIM56",
+  "generatedAt": "2026-08-03T17:29:10.890Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TRIM56为胞内TRIM家族E3泛素连接酶，参与先天免疫抗病毒反应并可促进STING相关信号复合体的泛素化调控；其Open Targets疾病关联以神经退行性疾病及血液表型为主，但关联分数中等且机制证据并非以可阻断胞外配体轴为核心。该蛋白缺乏天然分泌形式或跨膜胞外结构域，完整抗体在常规体液环境中的抗原可及性受限。相较STING、TBK1或IFNAR1等同通路节点，TRIM56更适合结构生物学与胞内递送抗体片段探索，作为传统治疗性抗体主靶点优先级偏低。",
+    "mechanism": "采用胞内递送Fab或VHH阻断TRIM56 RING介导的E2泛素结合，削弱其对STING信号复合体的泛素化增强作用。",
+    "selectedEpitope": "优先覆盖RING结构域E2结合面及邻近Zn2+配位框架外缘，避免直接破坏核心折叠。",
+    "diseaseDirection": "神经炎症与先天免疫调控",
+    "domain": "TRIM56含N端RING、B-box及coiled-coil区域；5JW7主要支持N端锌结合结构域建模。",
+    "evidence": "TRIM56结构与先天免疫疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9BRZ2功能与结构域注释",
+      "RCSB PDB 5JW7晶体结构记录",
+      "TRIM56调控STING介导抗病毒信号文献"
+    ],
+    "referenceEntries": "UniProt Q9BRZ2；RCSB PDB 5JW7；Open Targets TRIM56",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RING结构域E2结合界面",
+        "可直接干预E2酶招募与泛素转移起始过程",
+        "优先"
+      ],
+      [
+        "Site B",
+        "B-box锌结合结构域外露环区",
+        "可能影响TRIM构象装配并提供较高结构特异性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "coiled-coil介导寡聚化区域",
+        "可能干扰TRIM56自组装，但易受构象柔性影响",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TRIM56为胞内抗原，常规抗体暴露不足；RING锌配位核心保守性较高，需避开催化折叠核心并强化TRIM家族选择性评估。",
+    "structurePrepZh": "以5JW7链A/B为实验结构模板，补全缺失环区并保留Zn2+配位几何；对RING界面进行质子化、二聚状态与表面可及性校验。",
+    "structureRef": "RCSB PDB 5JW7，X-ray diffraction，2.849 Å",
+    "antibodies": [
+      "无获批TRIM56靶向抗体",
+      "研究级抗TRIM56检测抗体"
+    ],
+    "interfaceFocus": "RING-E2结合面与锌配位邻近外缘",
+    "designMode": "胞内VHH/Fab阻断",
+    "candidates": [
+      {
+        "target": "TMEM173",
+        "rationale": "TMEM173编码STING，是TRIM56参与调控的先天免疫信号核心接头蛋白；该节点位于cGAS-STING通路中心，疾病机制证据更直接。"
+      },
+      {
+        "target": "TBK1",
+        "rationale": "TBK1在STING下游磷酸化IRF3并驱动I型干扰素转录；其与神经炎症和干扰素异常激活具有明确通路联系。"
+      },
+      {
+        "target": "IRF3",
+        "rationale": "IRF3是STING-TBK1轴下游转录因子，介导IFNB1等抗病毒基因表达；可作为评估TRIM56功能阻断效应的同通路参照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

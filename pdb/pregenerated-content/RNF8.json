@@ -1,0 +1,65 @@
+{
+  "gene": "RNF8",
+  "generatedAt": "2026-08-03T21:04:00.158Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RNF8是DNA双链断裂应答中的E3泛素连接酶，通过FHA结构域识别ATM依赖性磷酸化的MDC1，并在损伤染色质上促进H1及H2A/H2AX相关K63泛素化，影响53BP1与BRCA1通路募集。其疾病关联主要集中于血细胞数量、血小板计数及神经退行性表型，符合DNA损伤修复异常对造血稳态和神经细胞存活的影响。RNF8为核内蛋白，天然抗原可及性不具备胞外或分泌蛋白优势，因此更适合细胞内抗体、研究级Fab/VHH或递送型抗体策略。相较MDC1、RNF168等大型支架或多结构域因子，RNF8的FHA磷肽识别模块已有高分辨率结构，界面定义清晰，便于开展机制性阻断设计。",
+    "mechanism": "阻断RNF8 FHA结构域与MDC1磷酸化TQXF基序的结合，抑制RNF8在DNA损伤位点募集及后续K63泛素链形成。",
+    "selectedEpitope": "优先覆盖FHA结构域磷苏氨酸结合沟槽及MDC1磷肽接触面，避免非特异性遮蔽RING催化端。",
+    "diseaseDirection": "DNA损伤应答与造血表型",
+    "domain": "RNF8含N端FHA磷肽识别结构域与C端RING型E3泛素连接酶结构域。",
+    "evidence": "RNF8介导DNA损伤泛素化证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt O76064功能与结构域注释",
+      "RCSB PDB 2PIE晶体结构",
+      "DNA damage response文献中的RNF8-MDC1机制研究"
+    ],
+    "referenceEntries": "UniProt O76064；RCSB PDB 2PIE；Open Targets RNF8",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "FHA结构域磷苏氨酸结合沟槽",
+        "直接阻断MDC1磷酸化基序识别，机制指向明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FHA结构域MDC1磷肽邻近外周接触面",
+        "可降低复合物稳定性并保留较高结构特异性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端RING结构域E2结合相关表面",
+        "可能影响E3催化，但结构与细胞内递送风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RNF8为核内蛋白，常规抗体难以达到天然作用位点；设计应限定为细胞内递送、intrabody或机制验证用途，并评估FHA家族交叉反应。",
+    "structurePrepZh": "以2PIE高分辨率晶体结构为FHA模板，保留链A/F中构象完整区域，补充缺失环区并标注磷肽结合残基用于界面建模。",
+    "structureRef": "RCSB PDB 2PIE，X-ray diffraction，1.35 Å",
+    "antibodies": [
+      "抗RNF8研究级单克隆抗体",
+      "抗RNF8多克隆抗体"
+    ],
+    "interfaceFocus": "FHA磷肽结合沟槽与MDC1接触面",
+    "designMode": "细胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "MDC1",
+        "rationale": "MDC1是γH2AX下游支架蛋白，其磷酸化TQXF基序负责招募RNF8；靶向该节点可直接干预RNF8定位。"
+      },
+      {
+        "target": "RNF168",
+        "rationale": "RNF168位于RNF8下游，扩增H2A/H2AX K13/K15泛素化信号并促进53BP1募集，是同一DNA损伤泛素化级联的关键因子。"
+      },
+      {
+        "target": "H2AX",
+        "rationale": "H2AX经ATM磷酸化形成γH2AX平台，驱动MDC1-RNF8轴装配；其修饰状态决定DNA损伤信号起始强度。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

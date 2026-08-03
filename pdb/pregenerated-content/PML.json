@@ -1,0 +1,65 @@
+{
+  "gene": "PML",
+  "generatedAt": "2026-08-03T15:23:58.207Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PML 是核内 PML nuclear body 的支架蛋白，参与 p53 乙酰化、DNA 损伤应答、细胞衰老及视黄酸相关转录调控，在甲状腺癌等肿瘤背景中与增殖抑制和基因组稳态相关。该蛋白主要定位于细胞核，缺乏经典胞外结构域或分泌形式，天然抗原可及性不适合作为常规细胞表面抗体靶点，较适合用于胞内抗体、递送型抗体片段或研究型结合分子设计。相较 EGFR、VEGFA 等可及性更高的肿瘤靶点，PML 的优先级主要来自明确的核小体支架机制、APL 中 PML-RARA 经典病理证据及高分辨率结构可用于界面约束设计，而非临床可药性优势。",
+    "mechanism": "设计结合 PML RBCC 区域的抗体片段，干预 PML 同源寡聚化及 PML nuclear body 装配界面，影响 p53、DAXX 等核内因子募集。",
+    "selectedEpitope": "优先锁定 6UYR 所示 RING/B-box 相关折叠表面及寡聚化接触面，避免锌配位核心残基。",
+    "diseaseDirection": "肿瘤抑制与核内应激通路",
+    "domain": "PML 含 RBCC/TRIM 模块，包括 RING、B-box1、B-box2 与 coiled-coil，并具有核定位及 SUMO 化位点。",
+    "evidence": "PML 核小体支架与肿瘤通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt P29590 功能与亚细胞定位注释",
+      "RCSB PDB 6UYR 高分辨率晶体结构",
+      "PML-RARA 急性早幼粒细胞白血病机制文献"
+    ],
+    "referenceEntries": "UniProt P29590；RCSB PDB 6UYR；Open Targets ENSG00000140464",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RBCC 结构域外露折叠面及链间接触区域",
+        "可用于干预 PML 多聚化与 nuclear body 支架装配",
+        "优先"
+      ],
+      [
+        "Site B",
+        "B-box/coiled-coil 邻近的非催化表面",
+        "可能影响蛋白-蛋白相互作用并保留结构稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "RING/B-box 锌配位核心及高度保守疏水内核",
+        "易造成非特异构象扰动或低选择性结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PML 为核内蛋白，常规抗体难以到达内源靶点；设计应采用胞内表达抗体、细胞穿透递送或体外机制验证，并规避锌指核心破坏性表位。",
+    "structurePrepZh": "以 6UYR 晶体结构链 A、B 为模板，保留锌离子及关键配位残基，补全缺失环区后进行寡聚界面与可及表面标注。",
+    "structureRef": "RCSB PDB 6UYR，X-ray diffraction，1.3 Å",
+    "antibodies": [
+      "anti-PML clone PG-M3",
+      "anti-PML clone 5E10"
+    ],
+    "interfaceFocus": "RBCC 寡聚化界面与锌指外露表面",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "TP53",
+        "rationale": "TP53 是 PML nuclear body 调控的核心肿瘤抑制因子，PML 可促进 p53 乙酰化与应激转录活性，属于同一 DNA 损伤应答和肿瘤抑制网络。"
+      },
+      {
+        "target": "DAXX",
+        "rationale": "DAXX 可定位于 PML nuclear body，并参与凋亡、染色质调控及应激反应，是 PML 支架复合体的重要互作节点。"
+      },
+      {
+        "target": "RARA",
+        "rationale": "RARA 与 PML 在 PML-RARA 融合蛋白中形成急性早幼粒细胞白血病关键病理轴，反映 PML 相关视黄酸分化通路的疾病关联。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "KMT5C",
+  "generatedAt": "2026-08-03T13:46:31.673Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KMT5C为细胞核内赖氨酸甲基转移酶，主要催化组蛋白H4K20二/三甲基化并参与染色质压缩、DNA损伤应答与细胞周期相关转录调控，其肿瘤关联更适合作为表观遗传机制研究靶点。该蛋白缺乏分泌形式、跨膜区或稳定胞外结构域，天然抗原可及性不支持常规细胞外中和抗体开发。相较EGFR、PD-L1等肿瘤通路膜受体靶点，KMT5C的抗体优先级较低；若开展抗体设计，应定位于结构生物学探针、细胞内递送抗体或降解耦联识别模块。",
+    "mechanism": "设计抗体应识别KMT5C SET催化结构域，遮蔽SAM结合沟槽或H4底物肽结合面，从而干扰H4K20甲基转移反应。",
+    "selectedEpitope": "优先覆盖SET结构域SAM结合口袋邻近环区与底物肽结合沟槽边缘，避免完全埋藏催化核心。",
+    "diseaseDirection": "肿瘤表观遗传调控方向",
+    "domain": "KMT5C含N端调控区与C端SET赖氨酸甲基转移酶结构域，3RQ4解析催化域晶体结构。",
+    "evidence": "KMT5C肿瘤表观遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt Q86Y97功能注释",
+      "RCSB PDB 3RQ4晶体结构",
+      "组蛋白H4K20甲基化与DNA损伤应答文献"
+    ],
+    "referenceEntries": "UniProt: Q86Y97；RCSB PDB: 3RQ4；Open Targets: KMT5C",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SET结构域SAM结合沟槽邻近可及环区",
+        "有望空间阻断甲基供体进入并形成构象选择性识别",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SET结构域H4底物肽结合面边缘",
+        "可干扰H4K20底物定位，适合功能性胞内抗体策略",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SET催化核心深部保守基序",
+        "区域保守且部分埋藏，易影响选择性并降低抗体可达性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为靶点核内定位、胞外不可及及SET结构域保守性较高。建议限定为胞内抗体、纳米抗体递送或结构探针，并强化KMT5A/KMT5B交叉反应评估。",
+    "structurePrepZh": "以3RQ4链A为结构模板，保留SET催化域主链，检查配体、缺失环和晶体接触界面；对SAM/底物结合沟槽进行表面可及性与保守性标注。",
+    "structureRef": "RCSB PDB 3RQ4，KMT5C SET结构域，X-ray 1.8 Å",
+    "antibodies": [
+      "抗KMT5C研究级抗体",
+      "抗H4K20me3表观遗传标志物抗体"
+    ],
+    "interfaceFocus": "SET域SAM口袋与H4K20底物肽结合沟槽",
+    "designMode": "胞内抗体/结构探针",
+    "candidates": [
+      {
+        "target": "KMT5A",
+        "rationale": "KMT5A催化H4K20单甲基化，是KMT5B/KMT5C介导二/三甲基化的上游酶，处于同一H4K20甲基化轴。其酶活与细胞周期和肿瘤增殖调控密切相关。"
+      },
+      {
+        "target": "KMT5B",
+        "rationale": "KMT5B与KMT5C同属SUV4-20家族，参与H4K20二/三甲基化并影响染色质状态和DNA损伤应答。作为同通路旁系酶，适合用于选择性与功能冗余比较。"
+      },
+      {
+        "target": "DNMT1",
+        "rationale": "DNMT1与H4K20甲基化共同维持异染色质和肿瘤相关表观遗传沉默状态。其在肿瘤表观遗传治疗中证据更成熟，可作为同一染色质调控疾病方向的对照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

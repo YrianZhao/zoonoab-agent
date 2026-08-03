@@ -1,0 +1,65 @@
+{
+  "gene": "TEX264",
+  "generatedAt": "2026-08-03T21:28:30.954Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TEX264是内质网自噬受体，主要通过胞质侧LIR基序与LC3/GABARAP家族相互作用并促进内质网片段进入自噬途径。现有Open Targets关联以网织红细胞数量、血压、甘油三酯及嗜酸性粒细胞计数等性状为主，提示其与细胞器稳态和造血、代谢表型存在遗传关联，但并非典型分泌因子或细胞表面受体。由于TEX264为跨膜内质网蛋白，抗原可及性显著低于胞外受体类靶点，因此更适合作为机制验证或细胞内递送抗体研究靶点；其优先级主要来自已有高分辨率结构和明确LC3/GABARAP结合机制，而非体液可及性优势。",
+    "mechanism": "通过结合TEX264胞质侧LIR相关界面，阻断其与LC3B、GABARAP等ATG8家族蛋白的相互作用，从而抑制TEX264介导的内质网自噬货物招募。",
+    "selectedEpitope": "优先覆盖胞质侧LIR基序及其邻近折叠界面，兼顾7VED结构中二聚相关接触面。",
+    "diseaseDirection": "细胞器稳态与造血代谢表型",
+    "domain": "TEX264含N端跨膜区、胞质侧LIR基序及C端内质网腔内结构域，7VED解析其折叠核心。",
+    "evidence": "TEX264结构与ER-phagy机制证据包",
+    "evidenceSources": [
+      "Open Targets Platform遗传关联数据",
+      "UniProt Q9Y6I9功能注释",
+      "RCSB PDB 7VED晶体结构",
+      "TEX264介导ER-phagy与ATG8结合研究文献"
+    ],
+    "referenceEntries": "UniProt Q9Y6I9；RCSB PDB 7VED；Open Targets TEX264",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "胞质侧LIR基序及LC3/GABARAP结合界面",
+        "可直接干预TEX264招募ATG8家族蛋白的核心分子事件",
+        "优先"
+      ],
+      [
+        "Site B",
+        "7VED结构中可解析折叠核心的二聚化相关接触面",
+        "可能影响受体构象稳定性或局部装配状态，适合功能调节型抗体筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端跨膜邻近短肽区域",
+        "结构暴露性和抗体可及性受膜环境限制，需结合膜蛋白重构体系验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TEX264主要定位于内质网膜，关键LIR界面位于胞质侧，常规抗体难以在完整细胞内到达；建议采用细胞内抗体、递送型VHH或机制研究体系。",
+    "structurePrepZh": "以PDB 7VED链A、B为模板进行缺失残基检查、寡聚状态评估和膜拓扑映射，并将LIR相关序列与结构可解析区域分别标注。",
+    "structureRef": "RCSB PDB 7VED，X-ray diffraction，2.02 Å",
+    "antibodies": [
+      "暂无TEX264获批治疗性抗体",
+      "抗TEX264研究级抗体"
+    ],
+    "interfaceFocus": "LIR-ATG8结合界面与二聚接触面",
+    "designMode": "细胞内功能阻断",
+    "candidates": [
+      {
+        "target": "MAP1LC3B",
+        "rationale": "MAP1LC3B是ATG8家族成员，可与TEX264的LIR基序结合并参与自噬膜货物招募，属于同一ER-phagy执行轴。"
+      },
+      {
+        "target": "GABARAP",
+        "rationale": "GABARAP与TEX264 LIR介导的受体-ATG8相互作用相关，是评估TEX264依赖性内质网自噬的重要同通路靶点。"
+      },
+      {
+        "target": "ATG7",
+        "rationale": "ATG7负责LC3/GABARAP脂质化级联反应，位于TEX264介导ER-phagy所需的核心自噬通路上游。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

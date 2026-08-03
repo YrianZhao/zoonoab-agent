@@ -1,0 +1,65 @@
+{
+  "gene": "GDF11",
+  "generatedAt": "2026-08-03T19:11:54.608Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GDF11 属于 TGF-β 超家族配体，在发育期通过激活 ACVR2A/ACVR2B 与 ALK4/ALK5 受体复合物调控 SMAD2/3 磷酸化，参与轴向骨骼分节、颅面形态发生及生长相关表型。成熟 GDF11 为分泌型二硫键连接二聚体，抗体可直接接触循环或局部组织间隙中的成熟配体，具有明确的抗原可及性。相较下游 SMAD 或广泛表达的受体靶点，GDF11 位于配体层级，阻断策略更易获得通路选择性，并可避免直接抑制多种 TGF-β 家族配体共用受体导致的广谱效应。",
+    "mechanism": "抗体结合成熟 GDF11 二聚体的受体结合面，阻断其与 ACVR2A/ACVR2B 及 ALK4/ALK5 形成信号复合物，从而降低 SMAD2/3 磷酸化输入。",
+    "selectedEpitope": "优先覆盖成熟生长因子结构域指尖区与手腕区受体结合界面，避开保守半胱氨酸结核心。",
+    "diseaseDirection": "发育畸形与生长调控方向",
+    "domain": "前体蛋白含信号肽、前肽区及 C 端成熟 TGF-β 样生长因子结构域，成熟体为二硫键二聚体。",
+    "evidence": "GDF11 发育形态发生与 SMAD2/3 通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt O95390 functional annotation",
+      "RCSB PDB 5E4G crystal structure",
+      "TGF-β superfamily receptor-SMAD literature"
+    ],
+    "referenceEntries": "UniProt O95390；RCSB PDB 5E4G；Open Targets GDF11",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "成熟 GDF11 指尖区 type II 受体结合面",
+        "可直接阻断 ACVR2A/ACVR2B 识别，具备明确中和逻辑",
+        "优先"
+      ],
+      [
+        "Site B",
+        "手腕区及 type I 受体装配邻近表面",
+        "可干扰 ALK4/ALK5 参与形成高亲和信号复合物",
+        "备选"
+      ],
+      [
+        "Site C",
+        "半胱氨酸结核心及二聚体内部界面",
+        "结构高度保守且可及性较低，存在交叉反应和构象扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GDF11 与 MSTN 成熟结构域同源性较高，需在互作界面外周筛选差异残基以控制交叉反应；避免靶向保守半胱氨酸结区域。",
+    "structurePrepZh": "以 PDB 5E4G 链 A 为成熟结构域模板，补全缺失侧链、校正二硫键与二聚体装配状态，并映射 ACVR2/ALK 结合相关表面。",
+    "structureRef": "PDB 5E4G，X-ray diffraction，1.5 Å",
+    "antibodies": [
+      "REGN2477",
+      "Bimagrumab"
+    ],
+    "interfaceFocus": "成熟二聚体指尖区与手腕区受体结合面",
+    "designMode": "配体中和抗体设计",
+    "candidates": [
+      {
+        "target": "ACVR2B",
+        "rationale": "ACVR2B 是 GDF11 高亲和 type II 受体，参与配体捕获并招募 type I 受体，阻断该节点可抑制 GDF11-SMAD2/3 输入。"
+      },
+      {
+        "target": "ACVR2A",
+        "rationale": "ACVR2A 同为 GDF11 可利用的 type II 受体，位于相同 TGF-β/activin 受体通路，适合作为受体侧阻断候选。"
+      },
+      {
+        "target": "ACVR1B",
+        "rationale": "ACVR1B 编码 ALK4，是 GDF11 受体复合物中的 type I 受体之一，负责向 SMAD2/3 传递激酶信号。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

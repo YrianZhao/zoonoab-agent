@@ -1,0 +1,65 @@
+{
+  "gene": "TNFRSF10A",
+  "generatedAt": "2026-08-03T17:21:38.001Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TNFRSF10A（DR4/TRAIL-R1）是TRAIL诱导外源性凋亡通路的死亡受体，配体结合后通过胞内death domain招募FADD并激活CASP8，进而触发肿瘤细胞凋亡。该靶点为I型跨膜受体，胞外富含半胱氨酸结构域可直接作为抗体识别抗原，膜外可及性明确。相较TNFRSF10C与TNFRSF10D等诱饵受体，TNFRSF10A具备功能性死亡结构域，更适合作为促凋亡抗体设计的优先靶点。",
+    "mechanism": "抗体结合TNFRSF10A胞外CRD2-CRD3配体结合面，模拟或增强TRAIL介导的受体聚集，促进FADD-CASP8死亡诱导信号复合体形成。",
+    "selectedEpitope": "优先选择CRD2-CRD3的TRAIL结合界面及受体聚集相关表位，避免跨膜近端柔性区。",
+    "diseaseDirection": "肿瘤外源性凋亡通路",
+    "domain": "胞外区含多个TNFR超家族半胱氨酸富集结构域，胞内含功能性death domain。",
+    "evidence": "TNFRSF10A结构与TRAIL凋亡通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt O00220功能与结构域注释",
+      "RCSB PDB 5CIR实验晶体结构",
+      "TRAIL-DR4/FADD-CASP8凋亡通路文献"
+    ],
+    "referenceEntries": "UniProt O00220；RCSB PDB 5CIR；HGNC:11904",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CRD2-CRD3 TRAIL结合界面",
+        "可直接影响配体识别并诱导受体聚集，适合促凋亡激动型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CRD1远端受体表面",
+        "有利于获得高可及性结合分子，可作为非竞争性聚集增强表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "膜近端CRD4/茎区",
+        "可能受构象柔性、糖基化及细胞膜空间限制影响，需控制亲和力与交联效应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TNFRSF10A激动型抗体可能依赖Fc介导交联，需评估正常组织表达相关毒性，并避免与诱饵受体交叉反应。",
+    "structurePrepZh": "以5CIR中A、B、D、E、F、G抗原链为模板，保留胞外CRD结构，补全缺失侧链并评估界面糖基化位点。",
+    "structureRef": "RCSB PDB 5CIR，X-ray diffraction，3.0 Å",
+    "antibodies": [
+      "Mapatumumab",
+      "Lexatumumab"
+    ],
+    "interfaceFocus": "CRD2-CRD3配体结合面与受体聚集界面",
+    "designMode": "激动型抗体设计",
+    "candidates": [
+      {
+        "target": "TNFSF10",
+        "rationale": "TNFSF10编码TRAIL，是TNFRSF10A的直接配体；调控TRAIL-死亡受体结合可重塑外源性凋亡输入。"
+      },
+      {
+        "target": "TNFRSF10B",
+        "rationale": "TNFRSF10B（DR5/TRAIL-R2）与TNFRSF10A同属TRAIL死亡受体，具备胞内death domain并可招募FADD-CASP8复合体。"
+      },
+      {
+        "target": "FADD",
+        "rationale": "FADD位于TNFRSF10A下游，是死亡受体death domain与CASP8激活之间的关键衔接蛋白，可作为通路功能验证候选节点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

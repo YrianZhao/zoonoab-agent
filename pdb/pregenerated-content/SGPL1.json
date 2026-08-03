@@ -1,0 +1,65 @@
+{
+  "gene": "SGPL1",
+  "generatedAt": "2026-08-03T16:29:31.000Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SGPL1编码鞘氨醇-1-磷酸裂解酶，是鞘脂代谢中不可逆降解S1P的关键酶，遗传缺陷与类固醇抵抗性肾病综合征、局灶节段性肾小球硬化及淋巴细胞减少相关。该蛋白主要定位于内质网膜，催化结构域面向胞质侧，天然抗体可及性弱于典型分泌因子或细胞外膜受体。其疾病遗传证据强、结构分辨率高，适合机制验证型胞内抗体或递送型抗体片段设计；相较上游SPHK1/2，SGPL1位于S1P不可逆清除节点，通路方向性更明确。",
+    "mechanism": "设计胞内递送抗体片段结合PLP依赖性催化口袋邻近界面，阻断S1P底物进入活性位点及与催化赖氨酸形成反应中间体。",
+    "selectedEpitope": "优先锁定PLP结合催化核心及底物通道入口周边构象表位。",
+    "diseaseDirection": "遗传性肾病与鞘脂代谢异常",
+    "domain": "N端跨膜锚定区连接胞质侧PLP依赖性裂解酶催化结构域，形成同源二聚体。",
+    "evidence": "SGPL1肾病遗传关联与S1P代谢结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt O95470功能与亚细胞定位注释",
+      "RCSB PDB 8AYF晶体结构",
+      "OMIM与ClinVar SGPL1缺陷相关变异记录"
+    ],
+    "referenceEntries": "UniProt O95470；RCSB PDB 8AYF；Open Targets SGPL1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PLP结合催化核心与底物通道入口",
+        "可直接干预S1P裂解反应并用于酶活抑制验证",
+        "优先"
+      ],
+      [
+        "Site B",
+        "同源二聚体界面邻近催化结构域",
+        "可能影响活性构象稳定性，适合构象锁定型设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端跨膜锚定区邻近柔性连接段",
+        "膜邻近区结构可及性和构象异质性较高，需谨慎评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SGPL1并非经典细胞外抗原，常规抗体难以直接结合内质网胞质侧催化域；建议采用胞内抗体、递送型Fab或VHH，并优先开展细胞内可达性验证。",
+    "structurePrepZh": "以8AYF双链晶体结构为模板，保留PLP辅因子与催化域二聚体构象，补全缺失环区并进行质子化、二硫键和膜近端边界标注。",
+    "structureRef": "RCSB PDB 8AYF，人SGPL1 X射线结构，1.84 Å",
+    "antibodies": [
+      "暂无获批SGPL1靶向治疗性抗体",
+      "研究级anti-SGPL1抗体"
+    ],
+    "interfaceFocus": "PLP催化口袋、底物通道入口与二聚体界面",
+    "designMode": "胞内递送抗体设计",
+    "candidates": [
+      {
+        "target": "SPHK1",
+        "rationale": "SPHK1催化鞘氨醇生成S1P，位于SGPL1上游并共同决定细胞内S1P稳态；其药理抑制可用于鞘脂通路方向性对照。"
+      },
+      {
+        "target": "SPHK2",
+        "rationale": "SPHK2同样生成S1P，并参与核内及细胞应激相关鞘脂信号；与SGPL1构成S1P合成-降解平衡轴。"
+      },
+      {
+        "target": "SGPP1",
+        "rationale": "SGPP1去磷酸化S1P生成鞘氨醇，是S1P清除支路的重要酶；可作为同一鞘脂代谢通路的替代调节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

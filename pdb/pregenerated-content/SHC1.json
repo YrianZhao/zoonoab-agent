@@ -1,0 +1,65 @@
+{
+  "gene": "SHC1",
+  "generatedAt": "2026-08-03T16:31:15.934Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SHC1 是细胞内接头蛋白，连接 EGFR、ERBB2、MET 等受体酪氨酸激酶与 GRB2-SOS1-RAS-MAPK 级联，在多种肿瘤增殖与存活信号中发挥关键适配作用。该蛋白主要定位于胞质侧，缺乏天然胞外结构域或分泌形式，抗原可及性不符合常规体内阻断抗体要求，仅适合作为结构研究、细胞内递送抗体或降解型分子设计的探索靶点。相比上游膜受体 EGFR、ERBB2 或 MET，SHC1 的通路汇聚性较强，但成药可及性显著受限，因此优先级低于可直接结合胞外结构域的同通路受体靶点。",
+    "mechanism": "设计目标为干扰 SHC1 PTB 结构域识别受体磷酸化 NPXpY 基序，或阻断其磷酸酪氨酸位点募集 GRB2 SH2 结构域，从而削弱 RAS-MAPK 信号传递。",
+    "selectedEpitope": "优先聚焦 PTB 结构域磷酸肽结合沟槽及其邻近 β5-α2 界面，避免核心疏水折叠区。",
+    "diseaseDirection": "RTK-RAS-MAPK 驱动肿瘤",
+    "domain": "SHC1 含 N 端 PTB 结构域、中央 CH1 酪氨酸磷酸化区及 C 端 SH2 结构域。",
+    "evidence": "SHC1 介导 RTK-RAS-MAPK 肿瘤信号证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt P29353 功能与结构域注释",
+      "RCSB PDB 4XWX 晶体结构记录",
+      "RTK-SHC1-GRB2/SOS1-RAS 通路文献"
+    ],
+    "referenceEntries": "UniProt:P29353；RCSB PDB:4XWX；Open Targets:SHC1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PTB 结构域磷酸化 NPXpY 肽结合沟槽",
+        "可直接干扰 SHC1 对活化 RTK 胞内尾部的识别",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SH2 结构域磷酸酪氨酸结合口袋邻近环区",
+        "可阻断 SHC1 与磷酸化信号蛋白的适配结合",
+        "备选"
+      ],
+      [
+        "Site C",
+        "CH1 区 Tyr239/Tyr240/Tyr317 邻域",
+        "涉及 GRB2 招募但柔性高且依赖磷酸化状态",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SHC1 为胞内接头蛋白，常规抗体难以到达作用位点。设计应标注细胞内递送、纳米抗体或降解耦联方案，并避免将其解释为标准胞外阻断抗体靶点。",
+    "structurePrepZh": "以 4XWX 晶体结构链 A 为模板，保留可解析结构域坐标，补充缺失柔性区注释，并按 PTB/SH2 功能界面分别建立表位可及性模型。",
+    "structureRef": "RCSB PDB 4XWX，X-ray，1.87 Å，human SHC1",
+    "antibodies": [
+      "anti-SHC1 research antibody",
+      "anti-phospho-SHC1 Tyr317 antibody"
+    ],
+    "interfaceFocus": "PTB-磷酸化 NPXpY 肽结合界面",
+    "designMode": "胞内抗体探索",
+    "candidates": [
+      {
+        "target": "EGFR",
+        "rationale": "EGFR 是 SHC1 上游受体酪氨酸激酶，可通过磷酸化胞内尾部招募 SHC1 并启动 GRB2-SOS1-RAS-MAPK 信号，且具有可直接抗体结合的胞外结构域。"
+      },
+      {
+        "target": "ERBB2",
+        "rationale": "ERBB2 与 SHC1 共同参与 ERBB 家族驱动的 MAPK 与 PI3K 信号放大，在肿瘤中具有明确遗传和药理学证据，并具备成熟抗体成药性。"
+      },
+      {
+        "target": "MET",
+        "rationale": "MET 激活后通过磷酸化对接位点募集 SHC1、GRB2 等适配蛋白，促进 RAS-MAPK 与侵袭相关信号，胞外 SEMA 区域适合阻断型抗体开发。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "BET1",
+  "generatedAt": "2026-08-03T10:48:47.332Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BET1为内质网至高尔基体顺行转运相关SNARE蛋白，参与COPII囊泡与顺式高尔基膜融合，异常囊泡运输可影响蛋白加工与神经肌肉细胞稳态。该蛋白为尾锚定膜蛋白，主要功能区位于胞质侧而非经典胞外抗原，抗体可及性明显受限。相较于同通路中具有胞外或腔内结构域的运输受体，BET1更适合作为机制研究或胞内递送抗体开发靶点，治疗性表面阻断优先级较低。",
+    "mechanism": "设计抗体以结合BET1 SNARE motif表面，干扰BET1与GOSR2、STX5、SEC22B形成ER-Golgi SNARE复合体，从而调节COPII囊泡膜融合效率。",
+    "selectedEpitope": "优先评估SNARE motif四螺旋束外露面，避开C端跨膜锚定区及高度保守疏水核心。",
+    "diseaseDirection": "神经退行性与先天性肌营养不良相关运输稳态",
+    "domain": "BET1含N端胞质区、中心SNARE motif及C端单次跨膜尾锚定区，缺乏典型胞外结构域。",
+    "evidence": "BET1介导ER-Golgi膜融合与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt O15155功能与亚细胞定位注释",
+      "RCSB PDB 3EGX实验晶体结构",
+      "SNARE介导ER-Golgi囊泡融合研究文献"
+    ],
+    "referenceEntries": "UniProt O15155；RCSB PDB 3EGX；Open Targets BET1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SNARE motif外露螺旋面",
+        "可直接影响BET1参与四螺旋SNARE复合体装配，具备明确机制读出",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端胞质调节区",
+        "可能调节复合体空间定位或伴侣蛋白结合，适合功能验证型抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端跨膜锚定邻近区",
+        "膜近端疏水性强且可及性低，构象依赖性与表达体系风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BET1缺乏胞外结构域，常规循环抗体难以接触天然靶点；应采用胞内抗体、递送型Fab/VHH或细胞内表达验证策略，并严格区分功能研究与治疗阻断场景。",
+    "structurePrepZh": "以3EGX晶体结构为模板解析SNARE复合体界面，补全缺失侧链并标注保守疏水层，跨膜尾锚定区需结合AlphaFold或膜环境模型单独评估。",
+    "structureRef": "RCSB PDB 3EGX，X-ray diffraction，3.3 Å",
+    "antibodies": [
+      "无获批BET1靶向抗体",
+      "商业研究级抗BET1抗体"
+    ],
+    "interfaceFocus": "BET1-GOSR2-STX5-SEC22B SNARE束界面",
+    "designMode": "胞内阻断型",
+    "candidates": [
+      {
+        "target": "STX5",
+        "rationale": "STX5为ER-Golgi运输中的目标膜t-SNARE，与BET1共同参与顺行囊泡融合；其复合体界面可作为同一膜融合节点的替代干预位点。"
+      },
+      {
+        "target": "GOSR2",
+        "rationale": "GOSR2是Golgi SNARE复合体成员，与BET1和STX5共同形成膜融合机器；遗传异常与神经系统表型相关，具有通路一致性。"
+      },
+      {
+        "target": "SEC22B",
+        "rationale": "SEC22B为ER来源囊泡v-SNARE，参与ER-Golgi双向运输并与BET1所在SNARE复合体配对；适合用于比较囊泡融合界面阻断策略。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

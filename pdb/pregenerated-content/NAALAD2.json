@@ -1,0 +1,65 @@
+{
+  "gene": "NAALAD2",
+  "generatedAt": "2026-08-03T14:33:02.155Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NAALAD2属于M28金属肽酶样谷氨酸羧肽酶家族，Open Targets关联主要集中于beta-citrylglutamate测量、皮肤色素表型、身高和嗜碱性粒细胞计数，提示其更适合作为代谢表型与遗传关联验证靶点，而非已有强机制闭环的炎症或肿瘤驱动靶点。该蛋白具有胞外催化结构域，结构抗原可及性优于胞内代谢酶，理论上支持抗体识别其外露构象表面。相比同家族FOLH1/NAALAD1，NAALAD2的疾病关联证据强度和药理学先例较弱，但PDB 3FED提供1.29 Å高分辨率实验结构，可优先用于构象表位设计与风险分层。",
+    "mechanism": "抗体设计以阻断NAALAD2胞外金属肽酶样催化沟槽周边底物进入为核心，限制N-乙酰化酸性二肽样底物与活性位点结合。",
+    "selectedEpitope": "优先覆盖M28肽酶催化结构域底物结合沟槽入口及二聚体邻近外露环区。",
+    "diseaseDirection": "代谢表型与皮肤表型关联",
+    "domain": "NAALAD2包含胞外M28谷氨酸羧肽酶样催化结构域，PDB 3FED解析A、B链构象。",
+    "evidence": "NAALAD2结构与遗传表型关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9Y3Q0功能与亚细胞定位注释",
+      "RCSB PDB 3FED高分辨率晶体结构",
+      "InterPro/Pfam M28金属肽酶结构域注释"
+    ],
+    "referenceEntries": "UniProt Q9Y3Q0；RCSB PDB 3FED；Open Targets NAALAD2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "M28催化结构域底物结合沟槽入口",
+        "可能直接限制酸性二肽样底物进入活性位点，具备功能阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "A/B链二聚体邻近外露环区",
+        "可干预局部构象稳定性并形成较大构象表位，适合Fab筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "金属配位活性中心深部区域",
+        "催化核心保守性较高且凹陷可及性受限，存在交叉反应与亲和力优化风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NAALAD2疾病机制证据以遗传和表型关联为主，功能因果性不足；设计应避开高度保守金属配位残基，优先选择NAALAD2特异外露环区以降低同源交叉反应。",
+    "structurePrepZh": "采用3FED的A、B链实验结构作为抗原模型，保留金属离子与关键糖基化/配体信息，补全缺失侧链后进行质子化、二聚体界面与表面可及性评估。",
+    "structureRef": "RCSB PDB 3FED，X-ray diffraction，1.29 Å",
+    "antibodies": [
+      "无获批NAALAD2特异性治疗抗体",
+      "J591"
+    ],
+    "interfaceFocus": "催化沟槽入口与二聚体外露环区",
+    "designMode": "结构引导阻断型",
+    "candidates": [
+      {
+        "target": "FOLH1",
+        "rationale": "FOLH1编码PSMA/NAALAD1，是同一M28谷氨酸羧肽酶家族成员，具有明确胞外催化结构域与成熟抗体先例，可作为同家族功能与成药性参照。"
+      },
+      {
+        "target": "GCPIII",
+        "rationale": "GCPIII与NAALAD2同属谷氨酸羧肽酶相关蛋白，结构域组织和催化沟槽特征相近，适合用于特异性筛选中的同源排除对照。"
+      },
+      {
+        "target": "FOLH1B",
+        "rationale": "FOLH1B为FOLH1相关同源基因，处于同一NAALADase/谷氨酸羧肽酶家族背景，可用于评估候选抗体对近缘胞外表位的交叉识别风险。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

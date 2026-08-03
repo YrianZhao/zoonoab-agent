@@ -1,0 +1,65 @@
+{
+  "gene": "NDUFS1",
+  "generatedAt": "2026-08-03T14:38:33.894Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NDUFS1是线粒体复合体I外周臂核心亚基，参与NADH电子输入并支撑FMN与铁硫簇电子传递，遗传缺陷可导致复合体I缺乏并影响神经退行性与代谢疾病相关线粒体功能。该蛋白定位于线粒体内膜基质侧外周臂，并非分泌蛋白或细胞表面受体，天然抗原可及性显著弱于经典膜外靶点。其优先级主要来自高置信疾病遗传关联、复合体I催化核心地位及高分辨率冷冻电镜结构可用性，相比装配辅助因子更适合作为结构机制研究和胞内递送抗体片段设计靶点。",
+    "mechanism": "设计分子应结合NDUFS1的51 kDa/NADH结合结构域，阻断NDUFS1与FMN、NDUFV1邻近界面形成的电子输入构象耦联。",
+    "selectedEpitope": "优先覆盖51 kDa NADH结合域近FMN通道与NDUFV1接触边界，评估构象依赖表位。",
+    "diseaseDirection": "线粒体复合体I缺乏与神经代谢疾病",
+    "domain": "NDUFS1为复合体I外周臂51 kDa亚基，含NADH/FMN邻近催化结构域及铁硫簇传递相关区域。",
+    "evidence": "NDUFS1复合体I遗传疾病与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P28331功能与亚细胞定位注释",
+      "RCSB PDB 9I4I冷冻电镜结构",
+      "OMIM/ClinVar复合体I缺乏变异证据"
+    ],
+    "referenceEntries": "UniProt:P28331; RCSB:PDB 9I4I; Gene:NDUFS1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "51 kDa NADH结合域近FMN电子输入口袋边缘",
+        "可直接干预NADH氧化与FMN电子受体邻近构象，机制验证价值高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "NDUFS1-NDUFV1外周臂亚基接触界面",
+        "可评估复合体I外周臂催化模块稳定性与构象耦联",
+        "备选"
+      ],
+      [
+        "Site C",
+        "铁硫簇通道邻近保守核心区域",
+        "高度保守且埋藏程度较高，存在交叉反应与复合体稳定性破坏风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NDUFS1位于线粒体基质侧，常规抗体难以到达天然靶点；建议限定为体外结构探针、胞内递送VHH或工程化线粒体递送格式，并避免强烈扰动保守铁硫簇核心。",
+    "structurePrepZh": "以PDB 9I4I冷冻电镜模型提取NDUFS1链并保留邻近NDUFV1、NDUFV2界面；补全缺失侧链、校验FMN/铁硫簇邻域并进行质子化状态优化。",
+    "structureRef": "Human respiratory complex I cryo-EM structure, PDB 9I4I, 2.63 Å",
+    "antibodies": [
+      "anti-NDUFS1 clone 2E9",
+      "anti-NDUFS1 clone EPR11570"
+    ],
+    "interfaceFocus": "NADH/FMN邻近口袋与NDUFV1接触界面",
+    "designMode": "胞内结构探针设计",
+    "candidates": [
+      {
+        "target": "NDUFV1",
+        "rationale": "NDUFV1与NDUFS1共同构成复合体I NADH脱氢酶外周臂催化模块，直接参与FMN结合及电子输入，是同一复合体I缺乏通路中的核心疾病基因。"
+      },
+      {
+        "target": "NDUFV2",
+        "rationale": "NDUFV2位于复合体I外周臂并参与N模块稳定，遗传缺陷同样关联线粒体复合体I缺乏，可作为NDUFS1邻近结构模块的替代靶点。"
+      },
+      {
+        "target": "NDUFS2",
+        "rationale": "NDUFS2是复合体I核心亚基，参与电子传递后续模块与醌还原耦联，属于同一氧化磷酸化复合体I疾病通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "AREG",
+  "generatedAt": "2026-08-03T10:32:14.365Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "AREG 是 EGFR 配体家族成员，可通过与 EGFR 胞外配体结合区结合并诱导受体二聚化，驱动 MAPK、PI3K-AKT 等增殖与存活信号，在多种上皮源性肿瘤及炎症相关组织重塑中具有明确通路位置。AREG 以前体膜结合形式表达并经 ADAM17 等剪切释放可溶性 EGF-like 结构域，抗原位点位于胞外或分泌态区域，具备抗体可及性。相比直接靶向 EGFR，配体中和策略有利于更选择性抑制 AREG 依赖性旁分泌/自分泌轴，降低对其他 EGFR 配体生理功能的广泛干预。",
+    "mechanism": "中和抗体结合 AREG 的 EGF-like 结构域，阻断其与 EGFR 胞外 L1/CR1 配体结合区域接触，从而抑制 EGFR 二聚化与下游磷酸化信号。",
+    "selectedEpitope": "优先覆盖 EGF-like 结构域中受体接触面，重点避开高柔性末端并保留二硫键稳定核心。",
+    "diseaseDirection": "EGFR配体驱动肿瘤通路",
+    "domain": "AREG 含 N 端前肽、EGF-like 胞外配体结构域、跨膜区及胞内短尾，可被剪切为可溶性配体。",
+    "evidence": "AREG-EGFR肿瘤配体轴抗体设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P15514 amphiregulin annotation",
+      "RCSB PDB 2RNL solution NMR structure",
+      "EGFR ligand family structural and signaling literature"
+    ],
+    "referenceEntries": "UniProt P15514；RCSB PDB 2RNL；Open Targets AREG",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "EGF-like结构域EGFR结合面",
+        "直接阻断AREG-EGFR配体受体相互作用，具备最高功能中和价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "EGF-like二硫键稳定核心邻近环区",
+        "可利用构象表位提高配体特异性，同时避免完全依赖线性末端序列",
+        "备选"
+      ],
+      [
+        "Site C",
+        "前体近膜区或剪切位点邻近区域",
+        "可能影响膜结合前体加工或局部呈递，但可溶性配体覆盖不足且构象异质性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "AREG 属 EGFR 配体家族，EGF-like 核心保守性较高，需评估与 EGF、TGFA、EREG 等配体的交叉反应；设计宜强化 AREG 特异环区识别。",
+    "structurePrepZh": "以 2RNL 的 NMR 构象集合为起点，筛选低能代表构象，保留关键二硫键约束，补充缺失柔性端区注释并映射 EGFR 结合面。",
+    "structureRef": "PDB 2RNL；human amphiregulin EGF-like domain NMR structure",
+    "antibodies": [
+      "AR37",
+      "PAR34"
+    ],
+    "interfaceFocus": "EGF-like结构域EGFR接触面与特异环区",
+    "designMode": "配体中和抗体设计",
+    "candidates": [
+      {
+        "target": "EGFR",
+        "rationale": "EGFR 是 AREG 的直接受体，介导配体诱导的受体二聚化、酪氨酸磷酸化及 MAPK/PI3K-AKT 信号，是同一通路的核心膜受体靶点。"
+      },
+      {
+        "target": "TGFA",
+        "rationale": "TGFA 同属 EGFR 配体家族，可在肿瘤微环境中驱动类似的 EGFR 自分泌或旁分泌信号，适合作为配体轴比较靶点。"
+      },
+      {
+        "target": "EREG",
+        "rationale": "EREG 是另一种 EGFR 配体，在多种上皮肿瘤中参与 EGFR 依赖性增殖信号，可用于评估 EGFR 配体冗余与联合阻断策略。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

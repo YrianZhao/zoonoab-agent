@@ -1,0 +1,65 @@
+{
+  "gene": "CDC14B",
+  "generatedAt": "2026-08-03T18:23:12.954Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CDC14B 是双特异性蛋白磷酸酶，参与细胞周期退出、DNA损伤应答和中心体复制控制，其与神经退行性疾病的遗传关联提示细胞周期异常重入与基因组稳态失衡可能参与病理过程。该蛋白主要定位于细胞核、核仁和中心体，不属于分泌蛋白或典型膜受体，天然抗原可及性弱于胞外靶点。相较于同通路中ATM、CHEK2等大型激酶，CDC14B具有已解析催化结构和明确活性口袋，适合作为胞内递送抗体片段或研究型构象阻断分子的优先验证对象。",
+    "mechanism": "通过抗体片段结合CDC14B催化结构域邻近底物结合沟槽，阻断磷酸化底物进入Cys-His-Asp催化中心，从而抑制其去磷酸化作用。",
+    "selectedEpitope": "优先靶向CDC14B磷酸酶催化结构域中活性口袋周缘与底物识别沟槽交界面。",
+    "diseaseDirection": "神经退行性疾病与DNA损伤应答",
+    "domain": "CDC14B含N端双特异性磷酸酶催化结构域，具保守HCX5R活性位点及底物结合沟槽。",
+    "evidence": "CDC14B结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt O60729功能与定位注释",
+      "RCSB PDB 1OHE晶体结构记录",
+      "文献报道的CDC14B细胞周期与DNA损伤应答研究"
+    ],
+    "referenceEntries": "UniProt: O60729；RCSB PDB: 1OHE；Open Targets: CDC14B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域活性口袋周缘与底物结合沟槽",
+        "可直接阻断底物进入催化中心，机制可验证性较高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域远端保守表面环区",
+        "可能影响底物定位或构象稳定性，适合变构抑制探索",
+        "备选"
+      ],
+      [
+        "Site C",
+        "HCX5R催化基序近邻高度保守核心区",
+        "与同源磷酸酶保守性较高，存在交叉反应和功能冗余风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CDC14B为胞内磷酸酶，常规抗体体内可及性不足；设计宜采用VHH、intrabody或递送体系，并强化同源CDC14A特异性筛选。",
+    "structurePrepZh": "以1OHE中A、B链为模板，保留催化结构域坐标，校正缺失环区与质子化状态，围绕活性口袋定义抗原表面网格。",
+    "structureRef": "RCSB PDB 1OHE，human CDC14B phosphatase domain，2.2 Å",
+    "antibodies": [
+      "研究级anti-CDC14B monoclonal antibody",
+      "研究级anti-CDC14B polyclonal antibody"
+    ],
+    "interfaceFocus": "底物结合沟槽与HCX5R活性位点周缘",
+    "designMode": "胞内VHH阻断",
+    "candidates": [
+      {
+        "target": "ATM",
+        "rationale": "ATM是DNA双链断裂应答的核心激酶，可通过CHEK2和细胞周期检查点网络影响细胞周期停滞，与CDC14B相关的基因组稳态通路相连。"
+      },
+      {
+        "target": "CHEK2",
+        "rationale": "CHEK2位于ATM下游，介导DNA损伤检查点和细胞周期调控，是CDC14B功能背景下评估损伤应答异常的重要同通路靶点。"
+      },
+      {
+        "target": "CDK1",
+        "rationale": "CDK1驱动G2/M转换，其磷酸化网络与CDC14B介导的去磷酸化过程共同决定有丝分裂退出和细胞周期重置。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

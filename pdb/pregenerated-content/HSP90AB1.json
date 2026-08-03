@@ -1,0 +1,65 @@
+{
+  "gene": "HSP90AB1",
+  "generatedAt": "2026-08-03T13:18:52.799Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HSP90AB1编码胞质型Hsp90β分子伴侣，参与多发性骨髓瘤和非小细胞肺癌中蛋白稳态维持，促进多种激酶、转录因子及抗凋亡客户蛋白的成熟与稳定。该蛋白主要定位于胞质，缺乏经典胞外结构域，抗原可及性弱于膜受体或分泌因子；抗体设计更适合采用细胞内递送、降解偶联或研究级构象识别策略。其结构解析度高且ATP结合N端结构域可建模性强，但相较CD38、BCMA等骨髓瘤表面靶点，治疗抗体优先级受限，应作为机制验证和细胞内抗体工程靶点优先推进。",
+    "mechanism": "抗体片段结合Hsp90β N端ATP结合口袋邻近构象表面，阻碍ATP驱动的N端闭合及CDC37辅助的客户激酶装载。",
+    "selectedEpitope": "优先锁定N端结构域ATP lid与邻近α螺旋构象界面，避免直接占据高度保守核苷酸深腔。",
+    "diseaseDirection": "血液肿瘤与肺癌蛋白稳态",
+    "domain": "Hsp90β包含N端ATPase结构域、中段客户蛋白结合区及C端二聚化MEEVD基序。",
+    "evidence": "HSP90AB1肿瘤蛋白稳态与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P08238功能与亚细胞定位注释",
+      "RCSB PDB 6N8Y晶体结构解析",
+      "Reactome蛋白折叠与HSP90伴侣通路"
+    ],
+    "referenceEntries": "UniProt P08238；RCSB PDB 6N8Y；Open Targets HSP90AB1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端ATP lid及邻近α螺旋构象面",
+        "可干预ATP依赖性闭合并保留抗体结合可及平面",
+        "优先"
+      ],
+      [
+        "Site B",
+        "中段客户蛋白结合区暴露环面",
+        "可能削弱客户蛋白装载，适合构象筛选验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端二聚化界面与MEEVD邻近区域",
+        "可能影响二聚体稳定性但同源保守性和共伴侣干扰风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HSP90AB1为胞内高丰度保守伴侣蛋白，常规抗体难以进入胞质且存在HSP90AA1交叉反应风险，需采用细胞内递送格式并强化亚型选择性筛选。",
+    "structurePrepZh": "以6N8Y链A为模板清理配体和晶体接触，补全缺失侧链，标注ATP结合口袋、ATP lid及保守残基后进行表面聚类。",
+    "structureRef": "RCSB PDB 6N8Y，X射线晶体结构，1.55 Å",
+    "antibodies": [
+      "内源性HSP90β检测抗体",
+      "anti-Hsp90β研究级单克隆抗体"
+    ],
+    "interfaceFocus": "N端ATP lid闭合面与CDC37客户装载邻近区",
+    "designMode": "胞内构象阻断",
+    "candidates": [
+      {
+        "target": "HSP90AA1",
+        "rationale": "HSP90AA1编码诱导型Hsp90α，与HSP90AB1共同维持肿瘤客户蛋白折叠，是同一HSP90分子伴侣通路中的核心旁系靶点。"
+      },
+      {
+        "target": "CDC37",
+        "rationale": "CDC37是HSP90激酶客户蛋白装载共伴侣，直接连接HSP90复合体与多种致癌激酶，阻断该轴可削弱肿瘤信号蛋白稳定性。"
+      },
+      {
+        "target": "AHSA1",
+        "rationale": "AHSA1作为HSP90 ATPase活化因子增强伴侣循环效率，在HSP90依赖性蛋白稳态网络中具有调节作用，适合与HSP90AB1机制联动评估。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

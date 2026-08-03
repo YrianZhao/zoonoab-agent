@@ -1,0 +1,65 @@
+{
+  "gene": "XPO1",
+  "generatedAt": "2026-08-03T17:55:01.683Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "XPO1是CRM1核输出受体，介导含亮氨酸富集型NES的蛋白和部分RNA复合物从细胞核输出，在多发性骨髓瘤、CLL和DLBCL中促进p53、FOXO、IκB等抑癌或转录调控因子胞质滞留。XPO1为胞内核质穿梭蛋白，天然抗原可及性弱于膜受体或分泌蛋白，因此更适合细胞内递送抗体片段或结构指导的小型结合模块开发。其疾病遗传与药理学证据强，且已有XPO1抑制剂临床验证，相比上游广泛增殖靶点具备更明确的核输出依赖性和可结构化干预界面。",
+    "mechanism": "阻断XPO1疏水NES结合沟槽与RanGTP依赖性货物复合物装配，抑制p53、FOXO及IκB等货物蛋白核输出。",
+    "selectedEpitope": "优先覆盖HEAT repeat 11-12形成的NES疏水沟槽及Cys528邻近货物结合界面。",
+    "diseaseDirection": "血液肿瘤核输出依赖通路",
+    "domain": "XPO1由多组HEAT repeats构成环形超螺旋，中心区域形成NES货物结合沟槽并结合RanGTP。",
+    "evidence": "XPO1核输出轴血液肿瘤证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt O14980功能与亚细胞定位注释",
+      "RCSB PDB 1W9C X射线晶体结构",
+      "XPO1抑制剂selinexor临床与药理研究"
+    ],
+    "referenceEntries": "UniProt O14980；RCSB PDB 1W9C；Open Targets XPO1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "HEAT repeat 11-12的NES疏水沟槽与Cys528邻近区域",
+        "直接竞争NES货物结合，机制与已验证XPO1药理抑制一致",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RanGTP结合相关的N端HEAT repeat内侧界面",
+        "干扰XPO1-RanGTP复合物稳定性，降低货物装载效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "外侧HEAT repeat凸面非货物结合区域",
+        "结构可识别性较好但功能阻断不确定，需避免仅产生非中和结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "XPO1为胞内靶点，常规抗体难以进入核质空间；建议采用细胞穿透递送、内体逃逸或VHH胞内表达策略，并严控全局核输出抑制毒性。",
+    "structurePrepZh": "以1W9C晶体结构为模板，补全缺失环区并保留HEAT repeat曲率；对NES沟槽、Cys528邻近残基及RanGTP界面进行质子化和构象采样。",
+    "structureRef": "RCSB PDB 1W9C，XPO1/CRM1 X-ray structure, 2.3 Å",
+    "antibodies": [
+      "抗XPO1研究用单克隆抗体",
+      "抗CRM1研究用单克隆抗体"
+    ],
+    "interfaceFocus": "NES疏水沟槽与RanGTP协同装配界面",
+    "designMode": "胞内阻断型VHH",
+    "candidates": [
+      {
+        "target": "RAN",
+        "rationale": "RAN以GTP结合形式促进XPO1货物复合物装配，是核输出循环的直接同通路因子；干预其与XPO1界面可降低核输出效率。"
+      },
+      {
+        "target": "TP53",
+        "rationale": "TP53是XPO1介导核输出的重要抑癌货物，在血液肿瘤中其核内保留与促凋亡转录程序恢复密切相关。"
+      },
+      {
+        "target": "NFKBIA",
+        "rationale": "NFKBIA编码IκBα，是XPO1输出货物并调控NF-κB活性的关键节点；限制其异常核输出可影响炎症和肿瘤存活信号。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

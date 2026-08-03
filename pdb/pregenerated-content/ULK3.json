@@ -1,0 +1,65 @@
+{
+  "gene": "ULK3",
+  "generatedAt": "2026-08-03T17:42:04.497Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ULK3 为胞内丝氨酸/苏氨酸蛋白激酶，参与 Hedgehog/GLI 转录调控，并在造血细胞计数、自身免疫及神经退行性表型中呈遗传关联信号。其主要催化结构域位于胞质侧，天然抗原可及性弱，常规全长阻断抗体不具备直接药理可及性优势；更适合作为细胞内结合抗体、降解偶联或研究级构象探针靶点。相比分泌型细胞因子或膜受体类靶点，ULK3 的优先级应建立在高分辨率激酶结构、可解析 ATP 口袋及 GLI 调控机制明确性之上，而非体内抗体暴露优势。",
+    "mechanism": "设计胞内抗体结合 ULK3 激酶 N-lobe/C-lobe 裂隙，空间阻断 ATP 与底物肽进入催化位点，抑制 ULK3 对 GLI 蛋白的磷酸化调控。",
+    "selectedEpitope": "优先覆盖激酶结构域 ATP 结合裂隙邻近的铰链区、αC-helix 与活化环构象界面。",
+    "diseaseDirection": "Hedgehog-GLI调控相关免疫与神经疾病",
+    "domain": "ULK3 含 N 端蛋白激酶结构域及 C 端调控区；4WZX 解析其激酶催化核心。",
+    "evidence": "ULK3结构与Hedgehog-GLI疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q6PHR2 functional annotation",
+      "RCSB PDB 4WZX X-ray structure",
+      "Hedgehog/GLI kinase regulation literature"
+    ],
+    "referenceEntries": "UniProt Q6PHR2；RCSB PDB 4WZX；Open Targets ULK3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域 ATP 结合裂隙、铰链区与αC-helix邻近面",
+        "可直接干预核苷酸结合与催化构象稳定，适合功能阻断型胞内抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "活化环及底物肽结合沟槽周边区域",
+        "有助于限制底物进入与活化环构象转换，可作为变构抑制表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化裂隙的保守激酶外表面",
+        "可能仅产生结合信号而缺乏明确功能阻断效应，需避免跨激酶家族交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ULK3 为胞内激酶，常规循环抗体难以到达作用位点；设计应限定为胞内抗体、递送型抗体或结构探针，并强化激酶家族选择性评估。",
+    "structurePrepZh": "以 4WZX 高分辨率晶体结构为模板，保留链 A/E 催化核心，校正缺失侧链、质子化状态及 ATP 口袋水网络后进行表位建模。",
+    "structureRef": "RCSB PDB 4WZX，X-ray diffraction，1.3859 Å",
+    "antibodies": [
+      "研究级抗ULK3抗体",
+      "胞内抗体工程化scFv/VHH候选"
+    ],
+    "interfaceFocus": "ATP裂隙、铰链区、αC-helix与活化环",
+    "designMode": "胞内功能阻断",
+    "candidates": [
+      {
+        "target": "SMO",
+        "rationale": "SMO 是 Hedgehog 通路核心膜受体，位于 ULK3 上游并可调控 GLI 转录输出；其七跨膜胞外环提供抗体或配体阻断策略的可及界面。"
+      },
+      {
+        "target": "PTCH1",
+        "rationale": "PTCH1 为 Hedgehog 配体受体并负向调控 SMO 活性，是同一 Hedgehog-GLI 轴的关键膜蛋白；其胞外结构域更符合抗体识别与配体竞争设计。"
+      },
+      {
+        "target": "GLI1",
+        "rationale": "GLI1 是 ULK3 调控轴下游转录效应因子，反映 Hedgehog 输出强度；虽为胞内核蛋白，但可作为机制验证与下游药效读出靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

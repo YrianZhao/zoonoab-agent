@@ -1,0 +1,65 @@
+{
+  "gene": "LCMT1",
+  "generatedAt": "2026-08-03T13:49:51.591Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "LCMT1催化PP2A催化亚基C端Leu309羧甲基化，影响PP2A全酶组装及tau、α-synuclein等神经退行性疾病相关底物去磷酸化。该蛋白主要为胞内甲基转移酶，天然抗原可及性弱，常规外源阻断抗体优先级低于膜受体或分泌蛋白。其优势在于PDB 3IEI提供1.9 Å实验结构，可支持胞内递送抗体、降解型抗体或研究级构象探针设计，相比PP2A复合体多个动态亚基具有更明确的催化口袋与底物识别界面。",
+    "mechanism": "设计抗体结合LCMT1的PP2A-C尾肽结合沟槽，阻断PP2A催化亚基C端Leu309进入SAM依赖甲基转移活性位点。",
+    "selectedEpitope": "优先覆盖LCMT1 Rossmann样SAM结合结构域邻近的PP2A-C尾肽识别沟槽。",
+    "diseaseDirection": "神经退行性疾病与PP2A调控",
+    "domain": "LCMT1为胞内SAM依赖羧基甲基转移酶，含Rossmann样甲基转移酶核心折叠及PP2A-C尾肽结合沟槽。",
+    "evidence": "LCMT1-PP2A甲基化轴神经退行性证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9UIC8功能注释",
+      "RCSB PDB 3IEI晶体结构",
+      "PP2A C端Leu309甲基化与tau磷酸化文献"
+    ],
+    "referenceEntries": "UniProt Q9UIC8；RCSB PDB 3IEI；Open Targets LCMT1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PP2A-C C端尾肽结合沟槽及催化口袋边缘",
+        "可直接竞争PP2A-C底物进入，机制清晰且结构约束充分",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Rossmann样SAM结合结构域外侧保守环区",
+        "可能诱导构象限制并间接削弱甲基转移活性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化沟槽的溶剂暴露螺旋面",
+        "主要适合作为构象检测探针，功能阻断概率较低",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "LCMT1为胞内酶，传统抗体难以到达作用位点；应优先采用胞内递送、细胞穿透格式或降解耦联策略，并避免强占据SAM保守口袋导致选择性不足。",
+    "structurePrepZh": "以3IEI高分辨率晶体结构为模板，保留催化核心构象，补建缺失侧链与环区，标注SAM口袋、PP2A-C尾肽沟槽及链间晶体接触。",
+    "structureRef": "RCSB PDB 3IEI，X-ray diffraction，1.9 Å",
+    "antibodies": [
+      "暂无临床验证LCMT1靶向抗体",
+      "研究级抗LCMT1检测抗体"
+    ],
+    "interfaceFocus": "PP2A-C尾肽沟槽与SAM邻近催化界面",
+    "designMode": "胞内酶构象阻断",
+    "candidates": [
+      {
+        "target": "PPP2CA",
+        "rationale": "PPP2CA编码PP2A催化亚基，是LCMT1直接甲基化底物；其C端Leu309甲基化状态影响PP2A全酶装配与神经退行性疾病相关去磷酸化功能。"
+      },
+      {
+        "target": "PPP2R2A",
+        "rationale": "PPP2R2A编码PP2A B55α调节亚基，依赖PP2A核心酶装配参与底物选择；该轴与tau磷酸化稳态具有明确关联。"
+      },
+      {
+        "target": "PME1",
+        "rationale": "PME1去甲基化PP2A催化亚基C端，与LCMT1构成PP2A甲基化-去甲基化循环，可作为同一PP2A调控通路的反向调节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

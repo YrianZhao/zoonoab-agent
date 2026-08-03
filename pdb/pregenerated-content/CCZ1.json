@@ -1,0 +1,65 @@
+{
+  "gene": "CCZ1",
+  "generatedAt": "2026-08-03T11:07:41.431Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CCZ1 是 Mon1-Ccz1 复合体的核心组分，作为 Rab7A 的鸟嘌呤核苷酸交换因子参与晚期内体至溶酶体成熟、LC3 相关吞噬及自噬货物降解，内溶酶体稳态异常与神经退行性疾病通路密切相关。该蛋白主要定位于胞质侧内体/溶酶体膜复合体，并非典型分泌蛋白或跨膜受体，天然抗原可及性低于胞外靶点，抗体设计更适合机制研究型胞内递送或结构探针场景。相较于下游 Rab7A 或广泛自噬核心因子，CCZ1 位于 Rab7A 激活节点，具有更明确的复合体界面干预价值，但治疗性体内阻断优先级需低于可直接胞外可及靶点。",
+    "mechanism": "通过结合 CCZ1 Longin/CZ 结构域界面，干扰 CCZ1 与 MON1A/MON1B 形成 Rab7A GEF 复合体，从而降低 Rab7A-GDP 向 Rab7A-GTP 转换效率。",
+    "selectedEpitope": "优先覆盖 CCZ1 与 MON1A/MON1B 接触的 Longin-CZ 复合界面，避免深埋疏水核心。",
+    "diseaseDirection": "神经退行性疾病与内溶酶体稳态",
+    "domain": "CCZ1 含 N 端 Longin-like 折叠及 C 端 CZ1/CZ2 样螺旋结构域，参与 Mon1-Ccz1 复合体装配。",
+    "evidence": "CCZ1-Rab7A 内溶酶体成熟证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt P86791 蛋白功能注释",
+      "RCSB PDB 9L0D 冷冻电镜结构",
+      "GO/Reactome 内体运输与 Rab7 激活通路注释"
+    ],
+    "referenceEntries": "UniProt P86791；RCSB PDB 9L0D；Open Targets CCZ1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Longin/CZ 结构域的 MON1 接触面",
+        "直接评估复合体装配阻断与 Rab7A GEF 活性抑制",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Rab7A 结合邻近螺旋束区域",
+        "可能影响 Rab7A 底物招募并产生功能性拮抗",
+        "备选"
+      ],
+      [
+        "Site C",
+        "保守折叠核心及多链装配埋藏面",
+        "构象依赖强且易影响蛋白稳定性，需限制为结构探针",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CCZ1 为胞内膜相关复合体蛋白，常规全长 IgG 难以进入细胞质侧作用位点；建议采用细胞递送 Fab/VHH、内源表达纳米抗体或体外机制验证策略。",
+    "structurePrepZh": "基于 PDB 9L0D 提取 A-D 链复合体，补全缺失环区并保留 MON1-CCZ1 接触界面，用于构象表位聚类与界面能评估。",
+    "structureRef": "RCSB PDB 9L0D，3.41 Å cryo-EM human complex",
+    "antibodies": [
+      "抗 CCZ1 研究级单克隆抗体",
+      "抗 Rab7A 通路研究级抗体"
+    ],
+    "interfaceFocus": "MON1-CCZ1 装配界面与 Rab7A 招募邻区",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "MON1A",
+        "rationale": "MON1A 与 CCZ1 共同构成 Rab7A GEF 复合体，是同一内体成熟节点的直接装配伙伴，适合用于复合体界面阻断策略比较。"
+      },
+      {
+        "target": "MON1B",
+        "rationale": "MON1B 可与 CCZ1 形成 Mon1-Ccz1 复合体并参与 Rab7A 激活，具有与 CCZ1 相同的晚期内体向溶酶体转化通路背景。"
+      },
+      {
+        "target": "RAB7A",
+        "rationale": "RAB7A 是 Mon1-Ccz1 复合体的直接小 GTP 酶底物，其活化状态决定晚期内体运输、自噬体成熟及溶酶体融合效率。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

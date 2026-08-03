@@ -1,0 +1,65 @@
+{
+  "gene": "GMPS",
+  "generatedAt": "2026-08-03T12:50:07.205Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GMPS催化XMP经ATP依赖性酰胺化生成GMP，是嘌呤从头合成与鸟嘌呤核苷酸稳态的末端限速节点，遗传和代谢组学证据将其与血液代谢物、黄苷测量以及自身免疫相关肾脏疾病表型相连。GMPS为胞质双功能酶，天然抗原可及性低，不具备膜受体或分泌蛋白优势，因此更适合用于机制研究、胞内递送抗体或结构化结合分子开发。相比上游PPAT、IMPDH1/2等同通路酶，GMPS直接决定XMP向GMP的转化，PDB 2VPI提供人源实验结构，可支持高精度界面约束设计，但作为常规治疗性抗体靶点优先级应低于可及性更高的细胞表面靶点。",
+    "mechanism": "设计分子阻断GMPS合成酶结构域的ATP/XMP结合沟槽或谷氨酰胺酰胺转移酶与合成酶结构域间氨通道耦联，从而抑制XMP转化为GMP。",
+    "selectedEpitope": "优先覆盖合成酶结构域ATP/XMP结合口袋邻近环区，并避开高度保守催化残基的深埋区域。",
+    "diseaseDirection": "嘌呤代谢与自身免疫肾病",
+    "domain": "GMPS含N端谷氨酰胺酰胺转移酶结构域、连接区及C端ATP焦磷酸酶型GMP合成酶结构域。",
+    "evidence": "GMPS嘌呤代谢结构与疾病遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB P49915功能与结构域注释",
+      "RCSB PDB 2VPI人源GMPS晶体结构",
+      "Reactome嘌呤核苷酸从头生物合成通路"
+    ],
+    "referenceEntries": "UniProt P49915；RCSB PDB 2VPI；Reactome purine biosynthesis",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端合成酶结构域ATP/XMP结合沟槽边缘环区",
+        "可直接干预底物定位与腺苷酸化中间体形成，结构可约束性较高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端谷氨酰胺酰胺转移酶结构域底物入口周围",
+        "可能限制谷氨酰胺结合或酰胺氮供给，适合别构抑制设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "二聚体界面及跨结构域连接区",
+        "可能影响构象耦联，但需避免破坏非特异性疏水核心导致选择性不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GMPS主要定位于胞质，常规抗体难以进入细胞；建议采用细胞内递送Fab/VHH、PROTAC偶联或仅作为结构生物学抑制分子先导验证。",
+    "structurePrepZh": "以2VPI链A/B为模板，补全缺失环区并校正质子化状态；保留催化口袋附近配体环境信息用于网格定义和界面约束。",
+    "structureRef": "Human GMPS crystal structure, PDB 2VPI, 2.4 Å X-ray",
+    "antibodies": [
+      "无已批准GMPS治疗性抗体",
+      "研究级抗GMPS单克隆抗体"
+    ],
+    "interfaceFocus": "ATP/XMP结合沟槽与酰胺转移耦联界面",
+    "designMode": "胞内酶抑制型",
+    "candidates": [
+      {
+        "target": "IMPDH1",
+        "rationale": "IMPDH1催化IMP氧化为XMP，是GMPS上游直接供给底物的嘌呤从头合成节点；其活性改变可影响GMP池和免疫细胞增殖。"
+      },
+      {
+        "target": "IMPDH2",
+        "rationale": "IMPDH2同样产生XMP并在增殖细胞和淋巴细胞中具有重要作用，已被霉酚酸类药物验证为免疫调节相关代谢靶点。"
+      },
+      {
+        "target": "PRPS1",
+        "rationale": "PRPS1生成磷酸核糖焦磷酸，位于嘌呤核苷酸从头合成入口位置；其通量变化可上游影响IMP、XMP及GMP合成。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

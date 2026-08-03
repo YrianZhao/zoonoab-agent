@@ -1,0 +1,65 @@
+{
+  "gene": "CPAP",
+  "generatedAt": "2026-08-03T11:36:07.875Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CPAP/CENPJ是中心粒生物发生与长度控制的核心支架蛋白，致病变异可扰乱中心体复制、纺锤体组织和神经祖细胞对称分裂，构成常染色体隐性原发性小头畸形和Seckel综合征的重要遗传机制。该蛋白主要定位于细胞内中心体，缺乏天然胞外结构域，因此抗体设计更适合作为结构生物学验证、胞内递送抗体或研究级干预工具。相较于CEP152等大型支架蛋白，CPAP具备明确的STIL、CEP152、微管蛋白结合界面及5EIB实验结构基础，适合优先开展界面阻断型分子设计。",
+    "mechanism": "设计抗体阻断CPAP与STIL或CEP152的结合界面，干扰PLK4依赖的前中心粒装配复合体形成，抑制异常中心粒延长与中心体复制失衡。",
+    "selectedEpitope": "优先覆盖5EIB所示CPAP结构域的螺旋束结合槽及STIL相互作用界面。",
+    "diseaseDirection": "原发性小头畸形与Seckel综合征",
+    "domain": "CPAP含微管蛋白结合区、PN2-3结构域、中心粒定位区及C端TCP结构域，参与中心粒装配。",
+    "evidence": "CPAP中心体装配与小头畸形证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9HC77功能与亚细胞定位注释",
+      "RCSB PDB 5EIB晶体结构记录",
+      "OMIM与ClinVar中CENPJ相关小头畸形变异"
+    ],
+    "referenceEntries": "UniProt Q9HC77；RCSB PDB 5EIB；Open Targets CENPJ",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "5EIB螺旋束结合槽及STIL接触面",
+        "直接阻断前中心粒装配复合体形成，机制清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CPAP C端TCP结构域邻近CEP152结合区域",
+        "干预中心体募集与支架复合体稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "微管蛋白结合相关PN2-3区域",
+        "可能影响中心粒微管延长，但需避免广泛细胞骨架毒性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CPAP为胞内中心体蛋白，常规治疗性抗体可及性不足；建议采用胞内抗体、递送偶联或体外结构验证模式，并严格评估有丝分裂毒性。",
+    "structurePrepZh": "以PDB 5EIB抗原链C、D、E、F为模板，去除晶体接触冗余链，保留界面残基并补全缺失侧链后进行表位建模。",
+    "structureRef": "RCSB PDB 5EIB，X-ray diffraction，2.1 Å",
+    "antibodies": [
+      "研究级抗CENPJ抗体",
+      "研究级抗CPAP抗体"
+    ],
+    "interfaceFocus": "STIL结合槽、CEP152募集界面与微管蛋白结合区",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "STIL",
+        "rationale": "STIL与CPAP协同参与PLK4驱动的前中心粒形成，干预STIL-CPAP轴可直接影响中心粒复制起始。"
+      },
+      {
+        "target": "CEP152",
+        "rationale": "CEP152负责招募PLK4并与CPAP相关复合体协同定位于母中心粒，是小头畸形相关中心体装配通路的上游支架靶点。"
+      },
+      {
+        "target": "PLK4",
+        "rationale": "PLK4是中心粒生物发生的主调控激酶，控制STIL磷酸化与前中心粒组装，适合作为同通路药理学参照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

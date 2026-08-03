@@ -1,0 +1,65 @@
+{
+  "gene": "KMT2D",
+  "generatedAt": "2026-08-03T13:46:36.103Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KMT2D是COMPASS样组蛋白H3K4单甲基化/二甲基化复合体的催化亚基，失活突变可削弱增强子H3K4me1沉积并扰乱发育转录程序，是Kabuki综合征1的核心致病基因，在弥漫大B细胞淋巴瘤中也常见功能缺失。该蛋白主要定位于细胞核，缺乏天然胞外结构域，因此不具备常规细胞表面抗体药物的抗原可及性；其设计价值更适合体外结构探针、细胞内递送抗体或降解平台适配。相比广泛表达的染色质共调节因子，KMT2D具有明确遗传因果性、可解析催化SET区域结构和高疾病关联得分，适合作为机制验证优先靶点。",
+    "mechanism": "设计抗体应阻断KMT2D SET结构域与组蛋白H3尾部及SAM供体结合构象的形成，抑制H3K4甲基转移反应。",
+    "selectedEpitope": "优先覆盖SET-I插入区邻近的底物肽结合沟槽，兼顾post-SET锌结合区构象稳定界面。",
+    "diseaseDirection": "Kabuki综合征与淋巴瘤表观遗传异常",
+    "domain": "KMT2D含多个PHD指、FYRN/FYRC区及C端SET甲基转移酶结构域，3UVK覆盖催化SET区域。",
+    "evidence": "KMT2D遗传致病性与SET结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt O14686功能与结构域注释",
+      "RCSB PDB 3UVK X射线晶体结构",
+      "ClinVar/OMIM Kabuki syndrome 1致病变异记录"
+    ],
+    "referenceEntries": "UniProt O14686；RCSB PDB 3UVK；Open Targets KMT2D",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SET-I插入区与H3底物肽结合沟槽",
+        "直接干预底物识别，适合构建催化抑制型胞内抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "post-SET锌结合区邻近催化口袋边缘",
+        "可稳定非活性构象并影响SAM依赖甲基转移几何排列",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SET结构域远端保守核心折叠面",
+        "保守性高且可能影响KMT2家族交叉结合，需控制选择性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "KMT2D为核内大型染色质酶，常规抗体难以进入作用位点；应优先定位为结构探针、胞内抗体或递送偶联分子，并严格评估KMT2A/C交叉反应。",
+    "structurePrepZh": "以3UVK晶体结构为模板，保留SET催化核心和关键金属配位残基，补全缺失侧链并标注H3肽、SAM类似物口袋及保守家族位点。",
+    "structureRef": "RCSB PDB 3UVK，KMT2D/MLL2 SET结构，1.4 Å X-ray",
+    "antibodies": [
+      "anti-KMT2D ChIP-grade monoclonal antibody",
+      "anti-MLL2/KMT2D diagnostic monoclonal antibody"
+    ],
+    "interfaceFocus": "SET-I底物沟槽与post-SET催化边界",
+    "designMode": "胞内结构阻断",
+    "candidates": [
+      {
+        "target": "KMT2C",
+        "rationale": "KMT2C与KMT2D同属COMPASS样H3K4甲基转移酶，在增强子H3K4me1调控和淋巴瘤表观遗传失衡中具有功能相关性。其同源SET结构域可作为选择性与代偿机制比较靶点。"
+      },
+      {
+        "target": "ASH2L",
+        "rationale": "ASH2L是KMT2复合体核心支架组分，可促进SET结构域催化活性并参与H3K4甲基化复合体装配。阻断KMT2D复合体界面可用于验证复合体依赖性机制。"
+      },
+      {
+        "target": "WDR5",
+        "rationale": "WDR5是KMT2/COMPASS复合体的保守适配蛋白，介导复合体稳定和组蛋白甲基化活性调节。其蛋白相互作用口袋已有药理学验证，适合作为同通路可及性更高的对照靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

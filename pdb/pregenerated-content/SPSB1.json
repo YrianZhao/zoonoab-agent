@@ -1,0 +1,65 @@
+{
+  "gene": "SPSB1",
+  "generatedAt": "2026-08-03T16:53:38.691Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SPSB1为含SPRY结构域与SOCS box的胞内E3泛素连接酶适配蛋白，可通过SPRY结构域识别底物并经SOCS box招募Elongin B/C-Cullin5复合体，参与靶蛋白泛素化降解；其遗传关联主要集中于嗜酸粒细胞计数、骨骼表型和神经退行性疾病等复杂性状。该蛋白并非分泌蛋白或膜受体，天然抗原可及性弱，完整IgG难以直接进入胞内，因此更适合作为结构引导的胞内VHH、intracellular antibody或降解阻断工具抗体靶点。相较于同家族SPSB2/3，SPSB1已有1.79 Å实验晶体结构支持SPRY结合沟槽建模，且Open Targets提示较广泛人类遗传关联，可作为机制验证优先级较高的研究型靶点。",
+    "mechanism": "通过抗体片段占据SPSB1 SPRY结构域底物结合沟槽，阻断底物肽与SPRY口袋结合，从而干扰SOCS box介导的Cullin5型E3复合体底物递送。",
+    "selectedEpitope": "优先覆盖SPRY结构域凹面底物肽结合沟槽，避开SOCS box-Elongin B/C装配界面。",
+    "diseaseDirection": "嗜酸粒细胞与复杂性状遗传关联",
+    "domain": "SPSB1含N端SPRY/B30.2底物识别结构域及C端SOCS box，后者连接Elongin B/C-Cullin5复合体。",
+    "evidence": "SPSB1结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联数据",
+      "UniProtKB Q96BD6蛋白功能与结构域注释",
+      "RCSB PDB 2JK9晶体结构记录",
+      "InterPro/Pfam SPRY与SOCS box结构域注释"
+    ],
+    "referenceEntries": "UniProt Q96BD6；RCSB PDB 2JK9；Open Targets ENSG00000171621",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SPRY/B30.2结构域凹面底物肽结合沟槽",
+        "直接竞争底物识别，最适合机制阻断型VHH设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SPRY结构域外围环区与β夹层边缘",
+        "可形成高特异性构象表位，并降低对核心折叠稳定性的干扰",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端SOCS box及潜在Elongin B/C结合面",
+        "可能影响E3复合体装配，但同源SOCS box保守性较高，选择性风险较大",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SPSB1为胞内蛋白，常规抗体药物可及性不足；建议定位为胞内VHH或研究工具抗体，并重点评估SPSB家族SPRY口袋交叉反应。",
+    "structurePrepZh": "以2JK9中A/B链为模板，保留SPRY核心折叠并检查晶体接触区域；补全缺失环区后进行质子化、侧链优化与同源家族表面保守性标注。",
+    "structureRef": "RCSB PDB 2JK9，X-ray diffraction，1.79 Å，人源SPSB1结构",
+    "antibodies": [
+      "暂无临床验证SPSB1抗体",
+      "研究级抗SPSB1抗体"
+    ],
+    "interfaceFocus": "SPRY底物结合沟槽及可变环边缘",
+    "designMode": "胞内VHH阻断设计",
+    "candidates": [
+      {
+        "target": "SPSB2",
+        "rationale": "SPSB2与SPSB1同属SPRY-SOCS box家族，利用SPRY结构域识别底物并通过SOCS box连接Cullin5型E3复合体，可作为同通路同源适配蛋白对照靶点。"
+      },
+      {
+        "target": "ELOB",
+        "rationale": "ELOB编码Elongin B，是SOCS box蛋白招募Cullin5 E3连接酶复合体的核心组分，位于SPSB1介导底物泛素化轴的下游装配节点。"
+      },
+      {
+        "target": "CUL5",
+        "rationale": "CUL5为SOCS box依赖型E3泛素连接酶复合体的支架蛋白，直接决定SPSB1底物识别后泛素化反应的执行效率。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

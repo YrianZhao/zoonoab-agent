@@ -1,0 +1,65 @@
+{
+  "gene": "ITK",
+  "generatedAt": "2026-08-03T13:34:27.561Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ITK 是T细胞受体信号通路中的胞质非受体酪氨酸激酶，参与PLCγ1磷酸化、钙通量和NFAT依赖性转录，遗传缺陷可导致EBV相关淋巴增殖综合征。该蛋白主要定位于胞内，不具备经典抗体药物可直接结合的胞外结构域，抗原可及性弱于膜受体或分泌因子。其优先级来自明确的T细胞通路遗传学证据和高分辨率结构支持，但相较CD3、CD28或细胞因子受体类靶点，更适合细胞内递送抗体片段或研究级构象稳定抗体设计。",
+    "mechanism": "设计抗体片段结合ITK SH2-激酶调控界面或激酶结构域近ATP结合裂隙，阻断活化构象形成并降低PLCγ1磷酸化。",
+    "selectedEpitope": "优先覆盖激酶结构域N-lobe/C-lobe铰链与αC螺旋邻近调控面，避开高度保守ATP深腔。",
+    "diseaseDirection": "T细胞免疫失衡与淋巴增殖",
+    "domain": "ITK含PH、Tec同源区、SH3、SH2及C端酪氨酸激酶结构域；4HCU解析激酶结构域。",
+    "evidence": "ITK-TCR信号与淋巴增殖证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q08881功能与结构域注释",
+      "RCSB PDB 4HCU晶体结构记录",
+      "TCR-PLCγ1-NFAT信号通路文献"
+    ],
+    "referenceEntries": "UniProt Q08881；RCSB PDB 4HCU；Open Targets ITK",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域αC螺旋及N-lobe调控面",
+        "有望干扰活化构象稳定并保留较好结构可塑性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SH2结构域磷酸酪氨酸结合沟槽周边",
+        "可阻断磷酸化衔接复合物装配，但需补充全长结构模型",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP结合裂隙深部铰链区",
+        "功能相关性强但与TEC家族激酶保守性高，选择性风险较大",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ITK为胞内激酶，常规IgG难以到达作用位点；应采用细胞内递送Fab/VHH或工程化穿膜策略，并重点评估BTK、TEC、RLK交叉反应。",
+    "structurePrepZh": "以4HCU链A为激酶结构域模板，补全缺失侧链、校正质子化状态，结合AlphaFold全长模型映射SH2-激酶调控面。",
+    "structureRef": "RCSB PDB 4HCU，1.43 Å X-ray human ITK kinase domain",
+    "antibodies": [
+      "研究级抗ITK单克隆抗体",
+      "细胞内VHH抗激酶构象抗体"
+    ],
+    "interfaceFocus": "αC螺旋、活化环与SH2-激酶调控面",
+    "designMode": "胞内Fab/VHH构象阻断",
+    "candidates": [
+      {
+        "target": "LCK",
+        "rationale": "LCK位于TCR信号最上游，磷酸化CD3 ITAM并启动ZAP70募集；与ITK处于同一T细胞受体活化轴。"
+      },
+      {
+        "target": "ZAP70",
+        "rationale": "ZAP70连接CD3 ITAM信号与LAT信号体形成，是ITK介导PLCγ1活化前的关键激酶节点。"
+      },
+      {
+        "target": "LAT",
+        "rationale": "LAT作为TCR信号支架蛋白招募SLP76、PLCγ1和ITK复合物，适合用于同通路抗原优先级比较。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

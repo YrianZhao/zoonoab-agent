@@ -1,0 +1,65 @@
+{
+  "gene": "PTK2",
+  "generatedAt": "2026-08-03T15:42:43.224Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PTK2编码FAK，是整合素、RTK与机械应力信号汇聚的胞质非受体酪氨酸激酶，通过Y397自磷酸化招募SRC并驱动黏附斑重塑、PI3K-AKT与MAPK信号，参与肿瘤侵袭、纤维化、心房重构及神经退行性疾病相关细胞应激。该蛋白主要位于胞质黏附斑，缺乏天然胞外结构域，抗原可及性不具备常规膜表面抗体优势，更适合采用细胞内递送抗体、intrabody或降解偶联抗体策略。相比同通路的上游整合素或RTK，PTK2处于多源黏附信号的节点位置，结构解析充分且激酶域口袋明确，优先级来自通路汇聚性与高分辨率结构可设计性，但成药形式需规避常规裸抗体可及性限制。",
+    "mechanism": "阻断FAK激酶域ATP结合裂隙或Y397-SH2招募轴，抑制SRC结合、FAK/SRC复合体形成及下游AKT-ERK促迁移信号。",
+    "selectedEpitope": "优先锁定激酶域N-lobe/C-lobe之间ATP结合裂隙及活化环邻近构象表位。",
+    "diseaseDirection": "黏附斑信号相关肿瘤与纤维化",
+    "domain": "PTK2含N端FERM结构域、中央酪氨酸激酶域和C端FAT黏附斑定位结构域。",
+    "evidence": "PTK2-FAK黏附斑激酶结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q05397蛋白功能与结构域注释",
+      "RCSB PDB 4I4E高分辨率晶体结构",
+      "FAK/SRC整合素黏附信号通路文献"
+    ],
+    "referenceEntries": "UniProt: Q05397; RCSB PDB: 4I4E; HGNC: PTK2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶域ATP结合裂隙与hinge邻近区域",
+        "可直接干预ATP占位与催化构象，适合构象锁定型胞内抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "激酶域活化环及αC螺旋调控界面",
+        "可稳定非活化构象并降低Y397-SRC轴下游信号输出",
+        "备选"
+      ],
+      [
+        "Site C",
+        "FERM F2 lobe与激酶域自抑制接触面",
+        "可能增强自抑制状态，但构象动态性高且结构匹配需谨慎验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PTK2为胞内激酶，常规IgG难以接触天然抗原；设计宜定位为intrabody、细胞穿透递送或降解平台，并严格评估PTK2B交叉反应。",
+    "structurePrepZh": "以PDB 4I4E链A为模板，保留激酶域主链与关键口袋残基，去除结晶配体和水分子后进行质子化、缺失侧链修复及构象聚类。",
+    "structureRef": "RCSB PDB 4I4E, human FAK kinase domain, 1.55 Å",
+    "antibodies": [
+      "抗FAK Y397磷酸化位点研究抗体",
+      "抗FAK总蛋白研究抗体"
+    ],
+    "interfaceFocus": "ATP裂隙、活化环、FERM-kinase自抑制界面",
+    "designMode": "胞内构象阻断",
+    "candidates": [
+      {
+        "target": "SRC",
+        "rationale": "SRC通过SH2结构域识别FAK Y397磷酸化位点并形成FAK/SRC信号复合体，是PTK2下游黏附斑促迁移信号的直接伙伴。"
+      },
+      {
+        "target": "PXN",
+        "rationale": "PXN编码paxillin，是FAK募集至黏附斑并组织整合素信号复合体的重要支架蛋白，与迁移和侵袭表型密切相关。"
+      },
+      {
+        "target": "ITGB1",
+        "rationale": "ITGB1介导细胞外基质结合并上游激活FAK自磷酸化，是整合素-FAK黏附信号轴中具备胞外可及性的替代抗体靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

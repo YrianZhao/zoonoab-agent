@@ -1,0 +1,65 @@
+{
+  "gene": "SEPHS1",
+  "generatedAt": "2026-08-03T16:25:43.747Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SEPHS1参与硒代磷酸生成，为硒代半胱氨酸生物合成及硒蛋白成熟提供前体，间接影响GPX、TXNRD等抗氧化硒蛋白轴，在神经退行性疾病相关氧化应激与蛋白稳态失衡中具有机制关联。该蛋白主要定位于胞质，并非经典分泌蛋白或膜受体，天然抗原可及性弱，抗体设计更适合作为细胞内递送型或结构验证型研究抗体。相较于下游单一硒蛋白，SEPHS1位于硒代磷酸供给节点，具备更上游的通路判读价值，但因细胞外暴露不足，药物化优先级低于可及性更好的表面靶点。",
+    "mechanism": "设计抗体拟结合SEPHS1 ATP/硒化物底物结合沟槽邻近构象表面，阻断ATP结合与磷酸转移构象重排，从而降低硒代磷酸生成效率。",
+    "selectedEpitope": "优先锁定P-loop/ATP结合沟槽外缘及二聚体邻近界面，避免深埋催化残基形成不可成药表位。",
+    "diseaseDirection": "神经退行性疾病与硒蛋白代谢",
+    "domain": "SEPHS1为硒代磷酸合成酶样催化结构，含ATP结合P-loop、底物结合沟槽及寡聚化界面。",
+    "evidence": "SEPHS1结构与硒蛋白代谢疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P49903蛋白功能注释",
+      "RCSB PDB 3FD5晶体结构",
+      "Reactome硒代氨基酸与硒蛋白生物合成通路"
+    ],
+    "referenceEntries": "UniProt:P49903；RCSB PDB:3FD5；Open Targets:SEPHS1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ATP结合P-loop外缘及催化沟槽入口",
+        "可干扰ATP定位与催化构象闭合，机制可验证性较高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "A/B链二聚体邻近界面暴露面",
+        "可能影响寡聚化稳定性及底物通道构象，适合构象锁定设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "保守催化核心深部口袋",
+        "序列保守且空间埋藏，抗体可及性与选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SEPHS1为胞质酶，常规抗体难以到达天然作用位点；需优先采用胞内递送、内体逃逸或研究级抗体策略，并评估硒蛋白全局抑制毒性。",
+    "structurePrepZh": "以3FD5的A、B链为抗原模型，补全缺失侧链与质子化状态，保留催化沟槽构象，剔除晶体接触伪界面后进行表面可及性评估。",
+    "structureRef": "RCSB PDB 3FD5，X射线晶体结构，1.9 Å",
+    "antibodies": [
+      "抗SEPHS1研究级单克隆抗体",
+      "抗SEPHS1多克隆验证抗体"
+    ],
+    "interfaceFocus": "P-loop外缘、ATP沟槽入口与A/B链邻近界面",
+    "designMode": "胞内酶构象阻断",
+    "candidates": [
+      {
+        "target": "SEPHS2",
+        "rationale": "SEPHS2催化硒代磷酸生成并直接支持硒代半胱氨酸合成，是同一硒蛋白生物合成通路中的核心同源酶，可用于比较SEPHS1功能冗余与选择性。"
+      },
+      {
+        "target": "SEPSECS",
+        "rationale": "SEPSECS催化O-phosphoseryl-tRNA[Sec]向selenocysteinyl-tRNA[Sec]转化，位于SEPHS供给硒代磷酸后的下游关键步骤。"
+      },
+      {
+        "target": "PSTK",
+        "rationale": "PSTK磷酸化Ser-tRNA[Sec]生成O-phosphoseryl-tRNA[Sec]，与SEPSECS和SEPHS轴共同构成硒代半胱氨酸装载通路。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

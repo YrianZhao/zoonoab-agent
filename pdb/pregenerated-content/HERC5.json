@@ -1,0 +1,65 @@
+{
+  "gene": "HERC5",
+  "generatedAt": "2026-08-03T19:45:14.371Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HERC5是干扰素诱导的胞内HECT型E3连接酶，主要催化ISG15向新生蛋白及特定病毒或宿主蛋白偶联，参与抗病毒固有免疫和炎症应答；Open Targets关联以淋巴细胞计数、2型糖尿病及肾脏炎症表型为主，提示其更适合作为免疫代谢与炎症通路研究靶点。该蛋白缺乏跨膜区和分泌信号，天然抗原可及性不具备常规治疗性抗体优势，但其结构域片段可用于细胞内机制抗体、结构探针或降解调控研究。相较于同通路中广泛表达且功能冗余较高的ISG15通路节点，HERC5具有较明确的E3催化定位和干扰素诱导特征，适合作为机制验证优先靶点而非直接胞外阻断靶点。",
+    "mechanism": "设计抗体结合HERC5的RLD/HECT调控界面，阻断其与ISG15装载级联及底物适配表面的接触，从而抑制HERC5介导的ISGylation反应。",
+    "selectedEpitope": "优先覆盖PDB 8Y4Z所示RLD结构域保守表面沟槽，避开高度柔性环区并评估与HECT邻近调控面的构象耦联。",
+    "diseaseDirection": "干扰素-ISG15炎症免疫方向",
+    "domain": "HERC5含N端RLD样结构域与C端HECT E3连接酶结构域，负责底物识别调控及催化转移。",
+    "evidence": "HERC5-ISG15轴与免疫炎症表型证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9UII4功能与结构域注释",
+      "RCSB PDB 8Y4Z溶液NMR结构",
+      "干扰素诱导ISGylation通路文献"
+    ],
+    "referenceEntries": "UniProt Q9UII4；RCSB PDB 8Y4Z；Open Targets HERC5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RLD结构域保守表面沟槽",
+        "可能干扰底物或调控因子结合，适合机制阻断型抗体筛选",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RLD-HECT邻近构象调控面",
+        "有助于稳定非催化构象并评估别构抑制潜力",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度柔性末端或无序环区",
+        "构象异质性较高，可能降低表位再现性与结构解释度",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HERC5为胞内E3连接酶，常规抗体难以直接进入细胞发挥治疗性阻断作用；建议定位为结构探针、细胞内抗体或递送型分子设计，并严格验证通路特异性。",
+    "structurePrepZh": "采用PDB 8Y4Z的NMR构象集合进行代表构象聚类，补充AlphaFold全长模型映射RLD与HECT边界，并标注无序区和保守表面残基。",
+    "structureRef": "RCSB PDB 8Y4Z，HERC5结构域溶液NMR结构",
+    "antibodies": [
+      "抗HERC5研究级单克隆抗体",
+      "抗HERC5多克隆验证抗体"
+    ],
+    "interfaceFocus": "RLD沟槽及HECT邻近调控界面",
+    "designMode": "胞内机制抗体",
+    "candidates": [
+      {
+        "target": "ISG15",
+        "rationale": "ISG15是HERC5催化转移的泛素样修饰分子，位于同一干扰素诱导ISGylation通路。靶向ISG15可直接评估游离ISG15与蛋白ISGylation对炎症表型的贡献。"
+      },
+      {
+        "target": "UBE1L",
+        "rationale": "UBE1L又称UBA7，是ISG15活化E1酶，负责启动ISG15级联反应。该节点位于HERC5上游，可作为抑制整体ISGylation通量的替代靶点。"
+      },
+      {
+        "target": "USP18",
+        "rationale": "USP18是主要去ISGylation酶并负向调节I型干扰素信号，与HERC5共同决定ISG15修饰稳态。该靶点适合用于比较增强或解除ISGylation对免疫炎症状态的影响。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

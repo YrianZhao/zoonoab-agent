@@ -1,0 +1,65 @@
+{
+  "gene": "ERCC5",
+  "generatedAt": "2026-08-03T12:21:32.408Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ERCC5/XPG 是核苷酸切除修复通路的结构特异性内切核酸酶，负责在损伤 DNA 3' 侧切割并与 TFIIH、ERCC1-XPF 协同完成双切口修复；其功能缺陷与着色性干皮病 G 组、XP-CS 复合征及 COFS 综合征具有明确遗传关联。该蛋白为核内 DNA 修复酶，并非天然胞外抗原，抗体可及性弱，适宜定位为胞内机制验证或递送型抗体研究靶点。相比通路中更大且复合体依赖性更强的 TFIIH 亚基，ERCC5 具备高分辨率实验结构与明确催化结构域，便于开展结构约束的抑制性分子设计，但作为常规治疗性抗体靶点优先级受限。",
+    "mechanism": "设计分子应阻断 ERCC5 催化核心对损伤 DNA 叉状底物的结合，干扰其与 NER 复合体协同定位并抑制 3' 切口形成。",
+    "selectedEpitope": "优先锁定 N 端/C 端核酸酶结构域形成的 DNA 结合沟槽及催化位点邻近环区。",
+    "diseaseDirection": "核苷酸切除修复缺陷疾病",
+    "domain": "ERCC5 含 XPG N 端与 I 区核酸酶结构域、间隔区及 C 端 PCNA/TFIIH 互作区域。",
+    "evidence": "ERCC5-NER 缺陷遗传病与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProtKB P28715 功能与结构域注释",
+      "RCSB PDB 6VBH X 射线晶体结构",
+      "NER 通路中 ERCC5/XPG 与 ERCC1-XPF 协同切割文献"
+    ],
+    "referenceEntries": "UniProtKB:P28715；RCSB PDB:6VBH；Open Targets:ERCC5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "XPG 核酸酶催化核心及 DNA 结合沟槽",
+        "可直接竞争叉状 DNA 底物并抑制 3' 内切反应",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C 端 PCNA/TFIIH 互作邻近区域",
+        "可能干扰 ERCC5 在损伤位点的复合体装配与定位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "柔性间隔区暴露片段",
+        "构象异质性高，表位稳定性与功能阻断相关性有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ERCC5 为核内酶，天然抗体难以进入作用位点；应标注细胞递送、核定位与 DNA 结合面交叉反应风险，优先用于机制研究。",
+    "structurePrepZh": "以 6VBH 链 A 为模板，补全缺失环区并保留催化核心构象；对 DNA 结合沟槽、酸性催化残基邻近面进行可及性评估。",
+    "structureRef": "RCSB PDB 6VBH，human XPG/ERCC5 结构，1.995 Å",
+    "antibodies": [
+      "Abcam anti-XPG antibody",
+      "Santa Cruz Biotechnology XPG/ERCC5 antibody"
+    ],
+    "interfaceFocus": "催化核心-DNA 叉状底物结合沟槽",
+    "designMode": "胞内阻断验证",
+    "candidates": [
+      {
+        "target": "ERCC1",
+        "rationale": "ERCC1 与 XPF 形成 5' 切口内切酶复合体，与 ERCC5 共同完成 NER 双切口切除；其遗传缺陷同样关联 XP 与发育综合征。"
+      },
+      {
+        "target": "ERCC4",
+        "rationale": "ERCC4/XPF 是 ERCC1-XPF 复合体的催化亚基，负责损伤 DNA 5' 侧切割，是 ERCC5 所在 NER 切割模块的同通路关键节点。"
+      },
+      {
+        "target": "XPC",
+        "rationale": "XPC-RAD23B 复合体负责全基因组 NER 的损伤识别，上游决定 ERCC5 招募效率；XPC 缺陷与着色性干皮病具有明确疾病关联。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

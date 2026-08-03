@@ -1,0 +1,65 @@
+{
+  "gene": "IRAK4",
+  "generatedAt": "2026-08-03T13:32:12.697Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IRAK4是IL-1R与TLR信号复合体中的近端丝氨酸/苏氨酸激酶，参与MyD88依赖性炎症信号启动；遗传缺陷导致IRAK4缺陷相关免疫缺陷，提示其在先天免疫通路中具有明确因果地位。IRAK4为胞内激酶，天然抗体可及性低，但其死亡结构域和激酶结构域具有清晰结构边界，适合用于结构指导的胞内递送抗体片段或研究级阻断分子设计。相较下游NF-κB通路组分，IRAK4位于MyD88-IRAK复合体近端，干预节点更集中，可同时影响IL-1R、IL-18R及多种TLR输入信号。",
+    "mechanism": "阻断IRAK4死亡结构域与MyD88信号复合体的装配，或干扰激酶结构域对IRAK1/IRAK2的募集与磷酸化，从而抑制MyD88依赖性NF-κB和MAPK激活。",
+    "selectedEpitope": "优先针对死亡结构域Myddosome装配界面，备选覆盖激酶结构域ATP结合裂隙外侧调控面。",
+    "diseaseDirection": "先天免疫缺陷与炎症性疾病",
+    "domain": "IRAK4含N端死亡结构域、连接区及C端丝氨酸/苏氨酸蛋白激酶结构域。",
+    "evidence": "IRAK4先天免疫通路遗传与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q9NWZ3功能与结构域注释",
+      "RCSB PDB 2NRU晶体结构记录",
+      "人类IRAK4缺陷免疫表型文献"
+    ],
+    "referenceEntries": "UniProt Q9NWZ3；RCSB PDB 2NRU；Open Targets IRAK4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端死亡结构域Myddosome装配界面",
+        "直接干扰MyD88-IRAK4近端信号复合体形成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "激酶结构域N叶与C叶间ATP结合裂隙邻近面",
+        "可影响IRAK1/IRAK2磷酸化构象，但需避免非选择性激酶交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "激酶结构域保守催化环及DFG邻近区域",
+        "序列保守性高，存在同源激酶识别与功能毒性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IRAK4为胞内靶点，常规IgG难以到达作用位点；应优先采用细胞内递送Fab/VHH或PROTAC样研究体系，并严格评估IRAK家族同源交叉结合。",
+    "structurePrepZh": "以2NRU晶体结构为模板，保留抗原链A-D中高完整度链，补建缺失环区，校正质子化状态，并按死亡结构域或激酶结构域分别建模。",
+    "structureRef": "RCSB PDB 2NRU，X-ray diffraction，2.0 Å",
+    "antibodies": [
+      "研究级anti-IRAK4 monoclonal antibody",
+      "研究级anti-IRAK4 VHH/nanobody"
+    ],
+    "interfaceFocus": "死亡结构域MyD88结合面与激酶调控裂隙",
+    "designMode": "胞内阻断型",
+    "candidates": [
+      {
+        "target": "MYD88",
+        "rationale": "MYD88是IL-1R/TLR通路中招募IRAK4的核心适配蛋白，阻断其死亡结构域相互作用可在IRAK4上游抑制Myddosome形成。"
+      },
+      {
+        "target": "IRAK1",
+        "rationale": "IRAK1是IRAK4下游直接磷酸化底物之一，参与TRAF6招募及NF-κB/MAPK信号传递，适合作为同一通路的替代干预节点。"
+      },
+      {
+        "target": "TLR4",
+        "rationale": "TLR4经TIR结构域招募TIRAP/MYD88并激活IRAK4依赖性炎症信号，膜表面可及性优于IRAK4，具备抗体阻断优势。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

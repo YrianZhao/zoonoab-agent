@@ -1,0 +1,65 @@
+{
+  "gene": "SRPRB",
+  "generatedAt": "2026-08-03T16:55:14.214Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SRPRB编码内质网膜上的SRP受体β亚基，参与信号肽依赖的新生肽链共翻译转运，是蛋白质稳态与神经退行性变相关内质网应激的重要节点。其膜定位使胞外/腔面可及表位具备抗体干预基础，而膜受体式构象转化亦优于多数胞内疾病相关蛋白。相较同通路中的SGTA、SRP54等胞质因子，SRPRB兼具疾病关联与抗原可及性，更适合作为主靶点推进抗体发现。",
+    "mechanism": "抗体优先阻断SRPRB与SRP复合体及SRX蛋白介导的受体装配，削弱信号肽递送至Sec61通道的转运起始。",
+    "selectedEpitope": "优先覆盖腔面暴露的N端外域及受体装配界面，避开跨膜螺旋。",
+    "diseaseDirection": "神经退行性病变",
+    "domain": "II型单跨膜蛋白；胞质N端短尾，胞外/腔面C端短区，跨膜区邻近受体装配界面。",
+    "evidence": "SRPRB结构与疾病关联证据包",
+    "evidenceSources": [
+      "UniProt: Q9Y5M8",
+      "RCSB PDB: 7NFX",
+      "Open Targets Platform",
+      "Gene Ontology / Reactome"
+    ],
+    "referenceEntries": "UniProt Q9Y5M8; RCSB PDB 7NFX; Homo sapiens SRPRB",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "腔面短外域及其邻近装配界面",
+        "可直接干预SRP受体复合体形成，保留构象特异性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "跨膜区外侧边界与邻近环区",
+        "有利于稳定膜近端构象并降低复合体招募效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "胞质短尾远离保守结合面",
+        "可作为非阻断性结合位点用于构象探针设计",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "靶点外露面积有限且跨膜蛋白构象依赖性强，需优先采用膜原位抗原与构象筛选。应避免覆盖跨膜螺旋核心，以降低表位失配与去污剂条件下构象偏移风险。",
+    "structurePrepZh": "建议基于7NFX进行膜环境重建与链注释校正，结合糖基化与膜平面约束完成表位暴露评估。用于建模时应保留寡聚/装配状态并比较开放与受体结合态构象。",
+    "structureRef": "RCSB 7NFX; electron microscopy structure of SRPRB",
+    "antibodies": [
+      "SRP受体相关构象抗体",
+      "膜蛋白胞外环识别抗体"
+    ],
+    "interfaceFocus": "SRP/SRX装配界面与腔面暴露环区",
+    "designMode": "构象阻断型",
+    "candidates": [
+      {
+        "target": "SRP54",
+        "rationale": "SRP54是信号肽识别颗粒的核心亚基，位于同一共翻译转运轴中，适合作为SRPRB上游候选验证节点。其与SRPRB形成受体招募耦联，干预价值明确。"
+      },
+      {
+        "target": "SRX",
+        "rationale": "SRX与SRPRB协同构成SRP受体复合体，是转运起始步骤的直接配对因子。针对SRX可与SRPRB形成互补验证，判断受体装配依赖性。"
+      },
+      {
+        "target": "SEC61A1",
+        "rationale": "SEC61A1是ER转位通道核心组成，与SRPRB处于同一蛋白质导入通路下游。其作为通道入口候选，可用于区分受体级干预与孔道级干预效应。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

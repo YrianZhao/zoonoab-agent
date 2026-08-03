@@ -1,0 +1,65 @@
+{
+  "gene": "CDKN1A",
+  "generatedAt": "2026-08-03T11:14:14.783Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CDKN1A编码p21，为p53应答下游的细胞周期抑制因子，通过结合CDK2/4-细胞周期蛋白复合物限制G1/S进程，并参与DNA损伤反应与肿瘤细胞增殖控制。该蛋白主要定位于细胞核和细胞质，缺乏胞外结构域或分泌特征，天然抗原可及性不支持常规治疗性抗体直接阻断。相较EGFR、ERBB2、PDCD1等膜受体靶点，CDKN1A更适合作为机制研究、胞内递送抗体或诊断型结合分子设计的低优先级靶点。",
+    "mechanism": "设计分子可结合p21 N端CIP/KIP结构域，干预其与CDK2-cyclin A复合物的接触界面，用于解析细胞周期抑制复合物装配。",
+    "selectedEpitope": "优先评估N端CIP/KIP区域的CDK2-cyclin结合界面，避开高度无序C端PCNA结合段。",
+    "diseaseDirection": "肿瘤细胞周期与DNA损伤应答",
+    "domain": "p21含N端CIP/KIP CDK-细胞周期蛋白结合区及C端PCNA结合基序，整体无稳定跨膜结构域。",
+    "evidence": "CDKN1A-p21细胞周期抑制与肿瘤关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P38936功能与亚细胞定位注释",
+      "RCSB PDB 5E0U晶体结构记录",
+      "p53-CDKN1A DNA损伤应答与CDK抑制文献"
+    ],
+    "referenceEntries": "UniProt:P38936；RCSB PDB:5E0U；Open Targets:CDKN1A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端CIP/KIP CDK2-cyclin A结合界面",
+        "可用于阻断或标记p21与CDK复合物的装配接触面",
+        "优先"
+      ],
+      [
+        "Site B",
+        "中段柔性连接区邻近保守带电片段",
+        "有利于获得构象报告型结合分子，但结构稳定性需验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端PCNA结合基序与核定位相关区域",
+        "可能影响DNA复制夹加载相关功能，且无序性和交叉反应风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CDKN1A为胞内无跨膜蛋白，体内抗体可及性不足；设计应限定为胞内递送、研究级Fab/VHH或诊断捕获用途，并避免将其定义为常规胞外治疗靶点。",
+    "structurePrepZh": "以PDB 5E0U实验结构为模板，保留抗原链A-F中解析质量较高链段，补充缺失柔性区注释并进行界面残基可及性评估。",
+    "structureRef": "RCSB PDB 5E0U，X-ray diffraction，1.93 Å",
+    "antibodies": [
+      "anti-p21 clone SX118",
+      "anti-p21 clone EA10"
+    ],
+    "interfaceFocus": "p21 N端CIP/KIP与CDK2-cyclin A接触面",
+    "designMode": "胞内靶点研究型设计",
+    "candidates": [
+      {
+        "target": "TP53",
+        "rationale": "TP53直接转录激活CDKN1A，是DNA损伤后p21介导细胞周期阻滞的上游核心节点；其状态决定p21通路的肿瘤抑制效应。"
+      },
+      {
+        "target": "CDK2",
+        "rationale": "CDK2为p21抑制的关键激酶靶点，与cyclin E/A复合物驱动G1/S和S期进程；其界面与CDKN1A功能读出直接相关。"
+      },
+      {
+        "target": "PCNA",
+        "rationale": "PCNA与p21 C端基序结合并连接DNA复制及修复过程，是CDKN1A参与复制叉调控和DNA损伤应答的重要同通路因子。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

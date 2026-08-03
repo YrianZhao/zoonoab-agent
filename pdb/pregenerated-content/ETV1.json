@@ -1,0 +1,65 @@
+{
+  "gene": "ETV1",
+  "generatedAt": "2026-08-03T12:23:40.946Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ETV1 属于 ETS 家族核内转录因子，其 DNA 结合结构域识别 GGAA/T 核心序列并参与造血细胞数量性状、发育调控及部分肿瘤转录程序。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌形式，作为常规体内抗体药物抗原的可及性明显受限。PDB 5ILS 提供高分辨率 ETS DNA 结合域结构，适合开展结构识别与细胞内递送型抗体片段研究，但优先级低于可直接暴露于细胞外的受体或配体靶点。",
+    "mechanism": "设计抗体片段结合 ETV1 ETS 结构域的 DNA 识别螺旋，阻断其与靶基因 GGAA/T 基序大沟的特异性接触。",
+    "selectedEpitope": "优先覆盖 ETS 结构域 H3 识别螺旋及相邻翼状环，限制 DNA 大沟结合。",
+    "diseaseDirection": "血液细胞数量性状与转录调控",
+    "domain": "ETV1 含 N 端转录调控区与 C 端 ETS DNA 结合域，5ILS 覆盖 ETS 结构域。",
+    "evidence": "ETV1 遗传关联与 ETS 结构域结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProtKB P50549 蛋白功能注释",
+      "RCSB PDB 5ILS X 射线晶体结构",
+      "ETS 家族转录因子 DNA 结合研究文献"
+    ],
+    "referenceEntries": "UniProt P50549；RCSB PDB 5ILS；Open Targets ETV1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ETS 结构域 H3 DNA 识别螺旋",
+        "直接干预 ETV1 与 GGAA/T 基序大沟接触，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ETS 结构域翼状环与磷酸骨架邻近面",
+        "可削弱 DNA 结合稳定性，并保留较高结构可解析性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ETS 结构域保守疏水核心外缘",
+        "可能影响折叠稳定性但家族保守性高，选择性风险较大",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ETV1 为核内转录因子，完整抗体难以进入细胞核；ETS 域在家族内高度保守，需强化 ETV1 相对 ETV4、ETV5 的选择性评估。",
+    "structurePrepZh": "以 5ILS 链 A 为结构模板，保留 ETS 域坐标，补全缺失侧链与质子化状态，并标注 DNA 接触残基用于表位约束。",
+    "structureRef": "RCSB PDB 5ILS，ETV1 ETS 结构域，1.399 Å X-ray",
+    "antibodies": [
+      "ETV1 intracellular Fab exploratory",
+      "ETV1 ETS-domain VHH exploratory"
+    ],
+    "interfaceFocus": "ETS H3 识别螺旋-DNA 大沟结合界面",
+    "designMode": "细胞内抗体片段",
+    "candidates": [
+      {
+        "target": "ETV4",
+        "rationale": "ETV4 与 ETV1 同属 PEA3 亚家族 ETS 转录因子，使用相近 DNA 识别基序并参与相似转录网络，可作为同通路选择性对照靶点。"
+      },
+      {
+        "target": "ETV5",
+        "rationale": "ETV5 与 ETV1、ETV4 构成 PEA3 亚家族，ETS 结构域高度同源，适合用于评估抗体片段对同源转录因子的交叉反应风险。"
+      },
+      {
+        "target": "ELK1",
+        "rationale": "ELK1 属 ETS 家族转录因子，参与 MAPK 响应性转录调控，与 ETV1 共享 ETS-DNA 识别框架，可作为相关 ETS 通路候选比较靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

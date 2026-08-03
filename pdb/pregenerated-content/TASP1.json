@@ -1,0 +1,65 @@
+{
+  "gene": "TASP1",
+  "generatedAt": "2026-08-03T17:08:26.165Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TASP1 编码的 taspase 1 是一种细胞内肽酶，参与 THAP1、MUC1、TFAP2A/TFAP2C 等底物的特异性切割，且其功能异常已被 Open Targets 与神经发育障碍及 Suleiman-El-Hattab syndrome 等表型关联。该蛋白虽非经典膜靶点，但具有明确的催化裂隙和底物识别界面，适合以构象阻断或活性位点占位策略开展抗体工程化设计。相较于同通路中下游表型读出靶点，TASP1 处于蛋白加工的上游节点，具有更强的机制优先级；但其抗原可及性主要依赖于结构研究与细胞内递送场景，因此更适合作为机制验证型主靶点。",
+    "mechanism": "抗体通过占据 taspase 1 催化裂隙并干扰底物肽段装配，阻断其对 THAP1、MUC1 等底物的特异性切割。",
+    "selectedEpitope": "优先覆盖催化核心裂隙与底物结合沟槽，避免仅接触远端柔性环区。",
+    "diseaseDirection": "神经发育障碍/遗传综合征",
+    "domain": "Taspase_N 相关催化核心及 C 端底物识别界面",
+    "evidence": "TASP1 结构-疾病-表位证据包",
+    "evidenceSources": [
+      "Open Targets Platform",
+      "UniProt: Q9H6P5",
+      "RCSB PDB: 2A8J",
+      "文献报道的 taspase 1 底物切割研究"
+    ],
+    "referenceEntries": "UniProt Q9H6P5；RCSB PDB 2A8J；Open Targets TASP1",
+    "epitopeRowsZh": [
+      [
+        "Catalytic cleft",
+        "催化裂隙与活性中心邻域",
+        "直接抑制蛋白水解活性，适合机制型阻断",
+        "优先"
+      ],
+      [
+        "Substrate-binding groove",
+        "底物结合沟槽",
+        "干扰底物肽段定位与切割前复合物形成",
+        "备选"
+      ],
+      [
+        "Peripheral loop region",
+        "远端柔性环区",
+        "可用于影响局部构象但对活性抑制不稳定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TASP1 为细胞内蛋白，天然抗体可及性受限，需优先考虑细胞内递送或胞内表达格式。催化区高度保守，需警惕与同源蛋白或邻近构象表位的交叉反应，并通过活性抑制实验验证特异性。",
+    "structurePrepZh": "基于 2A8J 去除结晶接触干扰并保留 A/B 链复合体，补全缺失侧链与质子化状态后进行口袋分析。建议在活性构象与底物模拟配体存在/缺失两种状态下比较表位暴露度。",
+    "structureRef": "RCSB PDB 2A8J；taspase 1 晶体结构研究",
+    "antibodies": [
+      "暂无公认临床抗体",
+      "暂无成熟同类中和抗体"
+    ],
+    "interfaceFocus": "催化裂隙、底物沟槽、二聚体界面邻域",
+    "designMode": "intracellular_blockade",
+    "candidates": [
+      {
+        "target": "TP53",
+        "rationale": "TASP1 通过切割参与 p53 通路相关底物的成熟化过程，TP53 是同一疾病网络中的关键效应节点。作为机制验证候选，可评估上游切割阻断对下游转录应答的影响。"
+      },
+      {
+        "target": "MUC1",
+        "rationale": "MUC1 是已知的 taspase 1 底物之一，属于同一蛋白加工通路的直接关联靶点。其切割状态变化可作为抗体抑制 TASP1 活性的功能读出。"
+      },
+      {
+        "target": "TFAP2A",
+        "rationale": "TFAP2A 也是 taspase 1 的底物，参与发育与神经发育相关转录调控。将其作为候选靶点有助于在同一通路中建立底物层面的验证体系。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

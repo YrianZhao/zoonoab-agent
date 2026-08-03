@@ -1,0 +1,65 @@
+{
+  "gene": "USP4",
+  "generatedAt": "2026-08-03T17:45:14.573Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "USP4 是胞内去泛素化酶，参与去除底物蛋白上的泛素链并影响蛋白稳定性，文献中与 TGF-β/SMAD、NF-κB 及 DNA 损伤应答等疾病相关通路存在机制关联。USP4 缺乏胞外结构域且并非分泌蛋白，天然抗体难以直接进入胞质环境，抗原可及性不具备经典膜受体靶点优势。其优先级应定位为结构生物学与细胞内抗体工具靶点；相比可成药性更高的同通路胞外受体，USP4 更适合用于机制验证、内体递送抗体或细胞内 VHH 设计。",
+    "mechanism": "设计抗体阻断 USP4 催化结构域与泛素底物链的结合，干扰 Cys311-His881-Asp899 催化三联体介导的去泛素化反应。",
+    "selectedEpitope": "优先覆盖催化结构域 ubiquitin 结合沟槽及 Cys box 邻近界面，避免仅选择远端非功能表面。",
+    "diseaseDirection": "TGF-β/NF-κB相关炎症与肿瘤机制",
+    "domain": "USP4 含 DUSP-Ubl 调控区与 C 端 USP 催化结构域，2Y6E 解析其催化核心构象。",
+    "evidence": "USP4结构与去泛素化通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt Q13107 功能与结构域注释",
+      "RCSB PDB 2Y6E X射线晶体结构",
+      "去泛素化酶与 TGF-β/NF-κB 通路文献"
+    ],
+    "referenceEntries": "UniProt: Q13107; RCSB PDB: 2Y6E; HGNC: USP4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "USP 催化结构域泛素结合沟槽及 Cys box 邻近区域",
+        "直接干扰底物泛素链定位与催化构象形成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域 fingers/palm 交界面",
+        "可能限制泛素远端结合并降低底物处理效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离活性位点的背面溶剂暴露螺旋区",
+        "结合可行但功能阻断效应不确定，适合作为结构探针",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "USP4 为胞内酶，常规抗体递送与靶点可及性为主要风险；应优先采用细胞内 VHH、递送偶联或体外机制验证策略。",
+    "structurePrepZh": "以 2Y6E 多链晶体结构为模板，筛选完整催化结构域链，补全缺失侧链并评估晶体接触对表位暴露的影响。",
+    "structureRef": "RCSB PDB 2Y6E, X-ray diffraction, 2.4 Å",
+    "antibodies": [
+      "anti-USP4研究级抗体",
+      "USP4 intracellular VHH候选格式"
+    ],
+    "interfaceFocus": "催化 Cys box 与泛素结合沟槽",
+    "designMode": "细胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "TGFBR1",
+        "rationale": "TGFBR1 是 TGF-β/SMAD 通路的核心受体激酶，与 USP4 调控的受体稳定性和信号输出处于同一机制轴；其膜受体属性提供更高抗体可及性。"
+      },
+      {
+        "target": "SMAD2",
+        "rationale": "SMAD2 是 TGFBR1 下游直接磷酸化底物，反映 USP4 相关 TGF-β 信号改变的核心转录传导节点，适合机制联动验证。"
+      },
+      {
+        "target": "NFKBIA",
+        "rationale": "NFKBIA 编码 IκBα，是 NF-κB 通路中受泛素化降解控制的关键抑制因子，可用于评估 USP4 相关去泛素化对炎症信号的影响。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

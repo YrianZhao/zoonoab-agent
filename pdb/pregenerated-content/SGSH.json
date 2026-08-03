@@ -1,0 +1,65 @@
+{
+  "gene": "SGSH",
+  "generatedAt": "2026-08-03T16:29:34.881Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SGSH 编码溶酶体 N-磺基葡萄糖胺磺酸水解酶，催化肝素硫酸降解中 N-硫酸基水解步骤；功能缺陷导致黏多糖贮积症 IIIA 型中肝素硫酸在神经系统和外周组织内累积。该蛋白为可溶性溶酶体酶，具备可工程化为外源酶递送或酶替代分子载荷的结构基础，但天然定位并非细胞表面抗原。相比同通路其他降解酶，SGSH 与 MPS IIIA 的因果关系最直接且 Open Targets 关联得分最高，适合作为疾病修饰型抗体融合酶或递送抗体设计的优先载荷靶点。",
+    "mechanism": "通过抗体融合或递送模块促进 SGSH 进入细胞并递送至溶酶体，在活性位点水解肝素硫酸非还原端 N-磺基葡萄糖胺的硫酸酯键。",
+    "selectedEpitope": "优先避开催化口袋，选择 TIM-barrel 外周稳定螺旋/环区作为融合或捕获界面。",
+    "diseaseDirection": "黏多糖贮积症IIIA型",
+    "domain": "SGSH 为溶酶体硫酸酯酶样水解酶，含核心 α/β 催化折叠及活性位点 FGly/Cys 修饰区域。",
+    "evidence": "SGSH-MPS IIIA 酶缺陷与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P51688 functional annotation",
+      "RCSB PDB 4MHX X-ray structure",
+      "OMIM / ClinVar SGSH pathogenic variant records"
+    ],
+    "referenceEntries": "UniProt P51688；RCSB PDB 4MHX；MONDO:0009655",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "TIM-barrel 外周非催化螺旋-环区",
+        "降低对底物结合与催化 FGly 区域的干扰，适合作为稳定结合或融合设计界面",
+        "优先"
+      ],
+      [
+        "Site B",
+        "远离活性沟槽的糖基化邻近表面",
+        "可用于调节血清稳定性与细胞摄取构型，但需评估糖链遮挡",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化口袋及 FGly/Cys 活性中心邻近区域",
+        "可能阻碍肝素硫酸底物进入并降低酶活，应避免作为阻断型表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SGSH 为胞内溶酶体酶，常规阻断型抗体难以直接作用于病理位点；设计应优先采用抗体-酶融合、受体介导转运或溶酶体递送构型，并保留酶活性界面。",
+    "structurePrepZh": "以 4MHX 的 2.0 Å 晶体结构为模板，保留成熟酶链并校验活性位点修饰、糖基化位点和多链晶体接触，去除非生理晶格界面后进行表面可及性分析。",
+    "structureRef": "RCSB PDB 4MHX，human SGSH X-ray structure，2.0 Å",
+    "antibodies": [
+      "valanafusp alfa",
+      "pabinafusp alfa"
+    ],
+    "interfaceFocus": "非催化外周表面与溶酶体递送融合位点",
+    "designMode": "抗体融合酶递送",
+    "candidates": [
+      {
+        "target": "NAGLU",
+        "rationale": "NAGLU 催化肝素硫酸降解中的 α-N-乙酰葡萄糖胺水解步骤，缺陷导致 MPS IIIB，与 SGSH 位于同一溶酶体肝素硫酸分解通路。"
+      },
+      {
+        "target": "HGSNAT",
+        "rationale": "HGSNAT 介导肝素硫酸降解中葡萄糖胺残基乙酰化步骤，缺陷导致 MPS IIIC，可作为同通路酶递送策略的比较靶点。"
+      },
+      {
+        "target": "GNS",
+        "rationale": "GNS 去除 N-乙酰葡萄糖胺-6-硫酸的硫酸基，缺陷导致 MPS IIID，属于肝素硫酸溶酶体降解级联中的真实相关酶。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

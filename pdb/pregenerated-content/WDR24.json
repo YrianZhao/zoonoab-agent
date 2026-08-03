@@ -1,0 +1,65 @@
+{
+  "gene": "WDR24",
+  "generatedAt": "2026-08-03T17:51:20.422Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "WDR24 是 GATOR2 复合体核心组分，参与氨基酸充足状态下抑制 GATOR1 并维持 Rag GTPase-mTORC1 激活，因而与神经退行性疾病中的蛋白稳态、溶酶体营养感知和细胞代谢应激机制相关。该蛋白主要定位于胞质并处于多蛋白复合体内部，缺乏分泌型或跨膜胞外结构域，抗原天然可及性不符合常规治疗性抗体靶点特征。相较于 SLC38A9、LAMTOR1 等位于溶酶体膜并具有可开发空间的同通路节点，WDR24 更适合作为结构生物学与细胞内递送抗体研究靶点，优先级应限定于机制验证而非经典外周阻断抗体开发。",
+    "mechanism": "设计抗体应靶向 WDR24 在 GATOR2 中参与 WDR59/MIOS 稳定装配或与 GATOR1 调控界面相关区域，干扰 GATOR2 对 DEPDC5-NPRL2-NPRL3 复合体的抑制作用，从而降低 RagA/B 介导的 mTORC1 溶酶体募集。",
+    "selectedEpitope": "优先聚焦 WDR24 WD-repeat β-propeller 外周环区及GATOR2装配界面，避免深埋复合体核心面。",
+    "diseaseDirection": "神经退行性疾病与mTORC1营养感知",
+    "domain": "WDR24 含多个 WD40 重复，形成β-propeller支架结构，是GATOR2复合体装配与信号转导支撑亚基。",
+    "evidence": "WDR24-GATOR2-mTORC1通路结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q96S15 functional annotation",
+      "RCSB PDB 9DX1 cryo-EM structure",
+      "GATOR2-mTORC1 amino-acid sensing literature"
+    ],
+    "referenceEntries": "UniProt: Q96S15; RCSB PDB: 9DX1; Complex: human GATOR2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "WD40 β-propeller外周暴露环区",
+        "构象稳定且较少破坏整体折叠，适合制备识别型Fab或胞内抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "WDR24-WDR59或MIOS邻近装配界面",
+        "可能干扰GATOR2复合体稳定性并影响GATOR1调控轴",
+        "备选"
+      ],
+      [
+        "Site C",
+        "GATOR2复合体深部核心接触面",
+        "埋藏度高且依赖复合体构象，存在低可及性与交叉装配风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "WDR24 为胞内复合体蛋白，常规抗体难以进入靶细胞并接触抗原；建议采用胞内表达Fab/VHH或递送平台，并以复合体保留构象进行筛选。",
+    "structurePrepZh": "以PDB 9DX1 cryo-EM模型提取WDR24链并保留邻近GATOR2亚基用于界面判读；需检查3.36 Å密度支持、缺失环区和WD40重复构象完整性。",
+    "structureRef": "RCSB PDB 9DX1, human GATOR2 complex, cryo-EM 3.36 Å",
+    "antibodies": [
+      "暂无获批抗WDR24治疗性抗体",
+      "暂无临床阶段抗WDR24同类抗体"
+    ],
+    "interfaceFocus": "WD40外周环区与GATOR2装配邻接面",
+    "designMode": "胞内抗体/结构验证",
+    "candidates": [
+      {
+        "target": "MIOS",
+        "rationale": "MIOS 是 GATOR2 复合体支架亚基，与WDR24处于同一氨基酸感知-mTORC1调控模块；靶向其复合体界面可用于解析GATOR2装配依赖性。"
+      },
+      {
+        "target": "WDR59",
+        "rationale": "WDR59 与WDR24同属GATOR2 WD-repeat相关组分，参与维持复合体结构与GATOR1抑制功能；适合作为同通路结构干预候选靶点。"
+      },
+      {
+        "target": "SLC38A9",
+        "rationale": "SLC38A9 是溶酶体膜精氨酸感知转运蛋白，位于Ragulator-Rag-mTORC1通路上游；其膜蛋白特征较WDR24更接近抗体可及性开发标准。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

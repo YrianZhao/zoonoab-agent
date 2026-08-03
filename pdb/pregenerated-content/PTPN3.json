@@ -1,0 +1,65 @@
+{
+  "gene": "PTPN3",
+  "generatedAt": "2026-08-03T15:43:50.365Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PTPN3为胞内非受体型蛋白酪氨酸磷酸酶，含FERM、PDZ及催化PTP结构域，主要通过去磷酸化底物蛋白调节细胞黏附、迁移及受体信号适配过程。Open Targets关联信号集中于肝肾功能及代谢表型，但其抗原本体缺乏天然胞外结构域，完整抗体直接结合活细胞表面靶点的可及性较弱。相较于EGFR、MET等同类受体通路可及靶点，PTPN3更适合作为胞内功能结构域验证或细胞内抗体格式探索靶点，主靶点优先级应以高分辨率结构可用性和催化口袋解析度为依据。",
+    "mechanism": "抗体片段拟结合PTP催化结构域近活性位点环区，空间阻断含磷酸酪氨酸底物进入HCX5R催化口袋，抑制PTPN3介导的底物去磷酸化。",
+    "selectedEpitope": "优先覆盖PTP结构域WPD loop与pTyr结合沟槽邻近界面，避免深埋催化半胱氨酸位点。",
+    "diseaseDirection": "肝肾代谢表型与受体信号调节",
+    "domain": "PTPN3包含N端FERM结构域、中央PDZ结构域及C端蛋白酪氨酸磷酸酶催化结构域。",
+    "evidence": "PTPN3结构与肝肾代谢关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P26045功能与结构域注释",
+      "RCSB PDB 4RI5晶体结构",
+      "Protein Tyrosine Phosphatase家族结构机制文献"
+    ],
+    "referenceEntries": "UniProt: P26045; RCSB PDB: 4RI5; Gene: PTPN3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PTP结构域WPD loop及pTyr结合沟槽边缘",
+        "可阻断底物进入催化口袋，具备明确功能抑制逻辑",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PTP结构域外周底物识别面",
+        "可能干扰底物定位并保留较高抗体结合可及性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "FERM或PDZ结构域蛋白互作界面",
+        "可能影响定位或支架互作，但需额外结构与底物复合物证据支持",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PTPN3为胞内酶，常规IgG难以到达天然靶点环境；建议采用细胞内递送Fab、VHH或纳米抗体表达体系，并避免靶向PTP家族高度保守催化核心以降低交叉反应。",
+    "structurePrepZh": "以4RI5高分辨率X射线结构为PTP结构域模板，保留链A/B用于构象比较，补全缺失侧链并标注WPD loop、P-loop及Q-loop。",
+    "structureRef": "RCSB PDB 4RI5, X-ray diffraction, 1.26 Å",
+    "antibodies": [
+      "PTPN3 research antibody clone OTI2A8",
+      "anti-PTPN3 polyclonal antibody"
+    ],
+    "interfaceFocus": "PTP催化沟槽、WPD loop与底物进入通道",
+    "designMode": "胞内VHH/Fab抑制",
+    "candidates": [
+      {
+        "target": "EGFR",
+        "rationale": "EGFR受体酪氨酸激酶信号产生磷酸化底物网络，PTPN3可参与相关磷酸化状态调节；其胞外配体结合域可及性高，抗体药物开发成熟。"
+      },
+      {
+        "target": "MET",
+        "rationale": "MET-HGF轴驱动细胞迁移、侵袭及肝脏再生相关信号，与PTPN3调节的黏附和迁移表型存在通路交叉；MET为膜受体，适合阻断HGF结合或受体二聚化。"
+      },
+      {
+        "target": "ERBB2",
+        "rationale": "ERBB2作为受体酪氨酸激酶网络核心成员，参与下游磷酸化信号放大；其胞外结构域具有明确抗体结合先例，可作为同一酪氨酸磷酸化调控轴中的可及替代靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

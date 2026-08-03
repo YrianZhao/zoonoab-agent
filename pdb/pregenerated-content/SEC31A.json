@@ -1,0 +1,65 @@
+{
+  "gene": "SEC31A",
+  "generatedAt": "2026-08-03T16:24:39.781Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SEC31A为COPII外被复合体外层组分，参与SEC13-SEC31笼架形成并驱动内质网至高尔基体的蛋白转运，分泌负荷升高的肿瘤细胞可依赖该通路维持受体与分泌因子输出。该蛋白主要定位于胞质侧ER出口位点，不具备经典胞外抗原可及性，因此更适合作为细胞内机制研究或递送型抗体片段探索靶点。相较一般囊泡转运因子，SEC31A具有明确SEC13结合结构、PDB实验结构和疾病遗传关联信号，优先级来自结构可建模性而非传统膜表位可及性。",
+    "mechanism": "设计抗体片段阻断SEC31A与SEC13在COPII外层笼架中的结合界面，干扰SEC13-SEC31复合物装配并削弱ER出口位点货物转运效率。",
+    "selectedEpitope": "优先覆盖SEC31A ACE1/β-propeller相关SEC13结合界面及3WXA复合物接触残基。",
+    "diseaseDirection": "肿瘤分泌转运与神经发育异常",
+    "domain": "SEC31A含N端WD40样β-propeller区域、中央ACE1外被结构域及C端富含调控序列区域。",
+    "evidence": "SEC31A-COPII外被结构与疾病遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt O94979蛋白功能注释",
+      "RCSB PDB 3WXA实验晶体结构",
+      "COPII外被装配与SEC13-SEC31结构文献"
+    ],
+    "referenceEntries": "UniProt O94979；RCSB PDB 3WXA；Open Targets SEC31A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SEC13-SEC31A复合物接触界面",
+        "直接阻断外层外被装配，机制验证价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ACE1外被结构域暴露螺旋面",
+        "可影响SEC31A构象稳定性和COPII笼架曲率调控",
+        "备选"
+      ],
+      [
+        "Site C",
+        "保守WD40样β-propeller核心面",
+        "保守性高且可能影响蛋白折叠，脱靶和功能毒性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SEC31A为胞内COPII组分，常规抗体难以到达靶点；建议限定为细胞内递送Fab/VHH或研究级阻断片段，并避开高度保守折叠核心。",
+    "structurePrepZh": "以3WXA晶体结构链A-D为模板，保留SEC13-SEC31A界面复合物，校正缺失环区并标注跨链接触残基用于表位聚类。",
+    "structureRef": "PDB 3WXA，2.36 Å X-ray SEC13-SEC31复合物结构",
+    "antibodies": [
+      "无获批SEC31A靶向抗体",
+      "研究级anti-SEC31A抗体"
+    ],
+    "interfaceFocus": "SEC13结合面与ACE1笼架装配界面",
+    "designMode": "胞内阻断片段设计",
+    "candidates": [
+      {
+        "target": "SEC13",
+        "rationale": "SEC13与SEC31A形成COPII外层外被核心复合物，直接处于同一ER至高尔基体转运装配步骤；靶向该界面可作为SEC31A机制阻断的互补策略。"
+      },
+      {
+        "target": "SEC23A",
+        "rationale": "SEC23A与SEC24构成COPII内层外被并参与Sar1 GTPase调控，位于SEC31A上游装配轴；干预该节点可影响COPII货物选择与囊泡出芽。"
+      },
+      {
+        "target": "SAR1A",
+        "rationale": "SAR1A为COPII囊泡形成起始GTPase，负责募集SEC23/SEC24并启动ER出口位点外被装配；其功能与SEC31A介导的外层笼架形成处于同一转运通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "FZD3",
+  "generatedAt": "2026-08-03T12:40:11.060Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FZD3是Wnt/Frizzled受体家族成员，可通过其胞外富半胱氨酸结构域识别Wnt配体并参与非经典Wnt/平面细胞极性相关信号，在神经发育、轴突导向及肿瘤侵袭表型中具有疾病相关性。该靶点为七跨膜受体，N端胞外CRD为抗体可及抗原区域，适合开展配体阻断或构象选择性抗体设计。相比胞内下游效应因子，FZD3具备细胞表面可及性和高分辨率结构基础，优先级高于难以直接抗体干预的DVL、RHOA等通路节点。",
+    "mechanism": "阻断FZD3胞外CRD与Wnt配体脂修饰结合界面及邻近疏水沟槽接触，抑制FZD3介导的非经典Wnt受体激活与下游PCP信号组装。",
+    "selectedEpitope": "优先覆盖N端CRD的Wnt结合疏水沟槽与保守半胱氨酸支撑环，避开糖基化和跨膜邻近柔性区。",
+    "diseaseDirection": "神经退行性疾病与结直肠癌",
+    "domain": "FZD3含N端胞外CRD、七跨膜螺旋束、胞内环及C端PDZ结合基序，CRD介导Wnt配体识别。",
+    "evidence": "FZD3-Wnt/PCP疾病关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q9NPG1功能与拓扑注释",
+      "RCSB PDB 8Q7O晶体结构",
+      "Wnt/Frizzled非经典信号通路文献"
+    ],
+    "referenceEntries": "UniProt: Q9NPG1; RCSB PDB: 8Q7O; Open Targets: FZD3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端CRD疏水沟槽与Wnt结合面",
+        "可直接竞争Wnt配体结合，适合功能阻断抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CRD外侧保守半胱氨酸支撑环",
+        "可稳定识别天然折叠CRD并诱导配体结合界面构象约束",
+        "备选"
+      ],
+      [
+        "Site C",
+        "CRD与跨膜区连接段邻近区域",
+        "柔性较高且可能受膜近端空间限制影响，需控制亲和力与交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FZD家族CRD保守性较高，需评估FZD1/2/4/5/7交叉结合风险；设计应聚焦FZD3特异环区并避开高度保守疏水核心。",
+    "structurePrepZh": "采用8Q7O高分辨率晶体结构提取FZD3胞外CRD，补全缺失侧链、校正二硫键与糖基化位点，并进行膜近端方向约束建模。",
+    "structureRef": "RCSB PDB 8Q7O, X-ray diffraction, 1.76 Å",
+    "antibodies": [
+      "OMP-18R5",
+      "Vantictumab"
+    ],
+    "interfaceFocus": "CRD疏水沟槽及Wnt脂化基团结合界面",
+    "designMode": "结构引导阻断设计",
+    "candidates": [
+      {
+        "target": "WNT5A",
+        "rationale": "WNT5A是非经典Wnt/PCP信号的重要配体，可与Frizzled受体协同驱动细胞迁移和侵袭表型，适合作为同通路上游配体干预靶点。"
+      },
+      {
+        "target": "ROR2",
+        "rationale": "ROR2可作为WNT5A相关非经典Wnt信号的共受体，参与PCP/JNK轴激活，在肿瘤侵袭和发育异常中具有明确通路关联。"
+      },
+      {
+        "target": "DVL2",
+        "rationale": "DVL2位于Frizzled受体下游，连接受体激活与PCP信号复合体形成；虽不适合作为常规抗体靶点，但可作为机制验证和组合通路评估节点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "OXCT1",
+  "generatedAt": "2026-08-03T15:00:44.952Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "OXCT1编码线粒体基质酶SCOT，催化琥珀酰-CoA与乙酰乙酸之间的CoA转移，是酮体利用通路中将乙酰乙酸转化为乙酰乙酰-CoA的关键步骤，其缺陷直接导致succinyl-CoA:3-ketoacid CoA transferase deficiency并引发酮体代谢失衡。该蛋白为线粒体内可溶性酶，并非天然胞外抗原，抗体进入活细胞和线粒体基质的可及性受限，因此更适合作为结构生物学验证、诊断捕获或递送型胞内抗体研究靶点。相较于酮体通路中广泛参与能量代谢的BDH1或ACAT1，OXCT1具有更直接的遗传病因关联和高置信Open Targets关联得分，优先级主要来自疾病特异性而非抗体药物可及性。",
+    "mechanism": "设计抗体可结合OXCT1 CoA结合沟槽或二聚体邻近界面，阻断琥珀酰-CoA/乙酰乙酸进入催化口袋，或稳定非活性构象用于功能抑制验证。",
+    "selectedEpitope": "优先评估N端与C端Rossmann样结构域之间的底物结合裂隙边缘及CoA通道入口表位。",
+    "diseaseDirection": "酮体利用缺陷与线粒体代谢病",
+    "domain": "OXCT1为线粒体基质同源二聚体酶，含N端与C端α/β结构域，中间裂隙形成CoA转移催化位点。",
+    "evidence": "OXCT1酮体利用缺陷结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P55809功能与亚细胞定位注释",
+      "RCSB PDB 3DLX X射线晶体结构",
+      "OMIM/ClinVar中SCOT缺陷相关遗传证据"
+    ],
+    "referenceEntries": "UniProt P55809；RCSB PDB 3DLX；Open Targets OXCT1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端/C端结构域间底物结合裂隙与CoA通道入口",
+        "最可能干预琥珀酰-CoA与乙酰乙酸进入催化中心，适合抑制型抗体或结构探针设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "二聚体界面邻近的外露螺旋-环区",
+        "可用于稳定特定四级结构或区分构象状态，但需避免破坏非特异性聚集界面",
+        "备选"
+      ],
+      [
+        "Site C",
+        "线粒体靶向肽切除后远离催化裂隙的保守表面",
+        "适合作为检测抗体表位，直接功能阻断价值有限且同源保守性需评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "OXCT1位于线粒体基质，常规抗体药物难以到达作用位点；设计宜定位为诊断、结构捕获或胞内递送验证，并严控ACAT家族相似表面交叉反应。",
+    "structurePrepZh": "以3DLX晶体结构A链或生物学二聚体为模板，补全缺失侧链并保留催化裂隙构象；去除结晶非功能组分后评估CoA通道可及性。",
+    "structureRef": "RCSB PDB 3DLX，human OXCT1，X-ray 2.2 Å",
+    "antibodies": [
+      "Anti-OXCT1 monoclonal antibody",
+      "Anti-SCOT monoclonal antibody"
+    ],
+    "interfaceFocus": "CoA结合裂隙入口与二聚体邻近表面",
+    "designMode": "胞内酶结构阻断",
+    "candidates": [
+      {
+        "target": "BDH1",
+        "rationale": "BDH1催化β-羟丁酸与乙酰乙酸互变，位于OXCT1上游的酮体利用与氧化还原平衡环节，可作为同一酮体代谢轴的功能参照靶点。"
+      },
+      {
+        "target": "ACAT1",
+        "rationale": "ACAT1将乙酰乙酰-CoA裂解为乙酰-CoA，位于OXCT1下游并与酮体进入三羧酸循环直接相连，适合用于通路级代谢验证。"
+      },
+      {
+        "target": "HMGCS2",
+        "rationale": "HMGCS2是肝脏线粒体酮体生成限速酶，与OXCT1共同决定酮体生成-利用稳态，可用于比较酮体合成端与利用端疾病机制。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

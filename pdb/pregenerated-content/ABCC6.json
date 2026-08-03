@@ -1,0 +1,65 @@
+{
+  "gene": "ABCC6",
+  "generatedAt": "2026-08-03T09:49:36.693Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ABCC6 是肝脏和肾脏等组织表达的多跨膜 ABC 转运蛋白，遗传性功能缺失与弹性假黄瘤及婴儿期泛发性动脉钙化相关，主要通过降低循环无机焦磷酸盐前体供应而削弱矿化抑制轴。其大部分抗原可及区域位于细胞外环，适合针对膜外构象表位开展抗体识别设计。相较于下游可溶性矿化调节因子，ABCC6 处于疾病因果链上游且 Open Targets 关联强度较高，具备更明确的遗传学优先级。",
+    "mechanism": "抗体设计宜聚焦稳定或校正 ABCC6 膜外构象，避免干扰 ATP 结合盒催化循环，并评估对细胞外核苷酸释放相关转运功能的影响。",
+    "selectedEpitope": "优先选择跨膜结构域外侧环 ECL4/ECL5 附近构象表位，避开胞质 NBD1/NBD2 ATPase 位点。",
+    "diseaseDirection": "异位矿化与弹性假黄瘤",
+    "domain": "ABCC6 含多个跨膜螺旋束及胞质 NBD1/NBD2，6BZS 解析核心转运构象。",
+    "evidence": "ABCC6 遗传性异位矿化证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt O95255 功能与变异注释",
+      "RCSB PDB 6BZS 晶体结构记录",
+      "OMIM 与 ClinVar 中 ABCC6 致病变异证据"
+    ],
+    "referenceEntries": "UniProt O95255；RCSB PDB 6BZS；Open Targets ABCC6",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "TMD2 外侧 ECL4/ECL5 构象区域",
+        "提高膜外可及性并保留胞质 ATPase 功能",
+        "优先"
+      ],
+      [
+        "Site B",
+        "TMD1 外侧短环及邻近跨膜螺旋入口",
+        "可用于构象识别或细胞表面结合验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "NBD1/NBD2 二聚化与 ATP 结合界面",
+        "该区域位于胞质侧且参与催化循环，抗体可及性低",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ABCC6 为多跨膜转运蛋白，外环较短且糖基化可能影响表位暴露；需以细胞表面结合和转运功能保持作为早期筛选约束。",
+    "structurePrepZh": "以 6BZS 链 A 为结构模板，补全缺失外环并嵌入脂质膜环境，保留跨膜螺旋取向后评估胞外表位可及性。",
+    "structureRef": "RCSB PDB 6BZS，ABCC6 X-ray 结构，2.30 Å",
+    "antibodies": [
+      "抗 ABCC6 单克隆抗体 M6II-7",
+      "抗 ABCC6 单克隆抗体 5H11"
+    ],
+    "interfaceFocus": "胞外环与跨膜螺旋外侧入口",
+    "designMode": "膜蛋白构象表位",
+    "candidates": [
+      {
+        "target": "ENPP1",
+        "rationale": "ENPP1 产生无机焦磷酸盐，是 ABCC6 相关矿化抑制轴的关键下游酶，遗传缺陷同样导致婴儿期泛发性动脉钙化。"
+      },
+      {
+        "target": "NT5E",
+        "rationale": "NT5E/CD73 参与细胞外核苷酸代谢并维持抗矿化环境，其缺陷与动脉及关节钙化表型相关。"
+      },
+      {
+        "target": "ALPL",
+        "rationale": "ALPL 组织非特异性碱性磷酸酶降解无机焦磷酸盐，是异位矿化通路中与 ABCC6-ENPP1 轴功能相拮抗的真实调控节点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

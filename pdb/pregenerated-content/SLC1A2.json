@@ -1,0 +1,65 @@
+{
+  "gene": "SLC1A2",
+  "generatedAt": "2026-08-03T16:36:11.136Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SLC1A2 编码的 EAAT2/GLT-1 是中枢神经系统主要谷氨酸转运体，参与清除突触间隙谷氨酸并限制兴奋性毒性，其功能失衡与癫痫性脑病、神经退行性病变及代谢相关表型均存在明确关联。该靶点为多跨膜膜转运蛋白，胞外环区具备抗体可及性，且现有冷冻电镜结构为抗原表位定位提供了直接依据。相较于同通路中的离子型谷氨酸受体，SLC1A2 更适合通过外周可及的胞外结构域实现转运抑制或构象稳定，兼具疾病相关性与结构可设计性。",
+    "mechanism": "抗体结合胞外环并稳定非转运构象，抑制谷氨酸/Na+ 耦联转运与底物易位。",
+    "selectedEpitope": "优先选择外侧环与发夹样环交界处，覆盖底物门控相关胞外界面。",
+    "diseaseDirection": "癫痫与神经退行性疾病",
+    "domain": "多跨膜转运核心及胞外环区；可及表位主要位于外侧 loop 结构",
+    "evidence": "SLC1A2 疾病关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform",
+      "UniProt P43004",
+      "RCSB PDB 9JVV",
+      "Human Protein Atlas"
+    ],
+    "referenceEntries": "UniProt: P43004; RCSB: 9JVV; Open Targets: SLC1A2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "外侧胞外环与门控接触面",
+        "优先用于阻断底物进入并锁定外向开放相关构象",
+        "优先"
+      ],
+      [
+        "Site B",
+        "发夹样环邻近胞外边缘",
+        "适合干预构象转换，但需评估对同源转运体选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "膜远端胞外连接区",
+        "抗体可及性较高，但对转运功能影响可能较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险在于 SLC1A2 与 SLC1A1/SLC1A3 的同源性导致交叉结合，且功能阻断可能影响谷氨酸稳态。建议优先利用 9JVV 中胞外可及环区做差异位点筛选，并结合同源蛋白负筛选。",
+    "structurePrepZh": "基于 9JVV 重建 SLC1A2 胞外区域模型，补全缺失环段并标注糖基化位点。随后进行同源家族比对，排除保守转运核心并保留特异胞外差异面。",
+    "structureRef": "PDB 9JVV；EAAT2/GLT-1 冷冻电镜结构研究",
+    "antibodies": [
+      "未知/无成熟临床抗体",
+      "研究性多克隆抗体"
+    ],
+    "interfaceFocus": "胞外环-底物门控界面",
+    "designMode": "结构导向阻断型",
+    "candidates": [
+      {
+        "target": "SLC1A1",
+        "rationale": "同属 SLC1 谷氨酸转运通路，且在神经元谷氨酸摄取中与 SLC1A2 形成功能互补。可作为负筛与通路对照靶点，用于评估交叉反应与机制特异性。"
+      },
+      {
+        "target": "SLC1A3",
+        "rationale": "为星形胶质细胞与神经组织中的另一主要高亲和力谷氨酸转运体，疾病通路与 SLC1A2 高度重叠。适合作为同通路同源靶点，检验表位选择是否避免家族交叉识别。"
+      },
+      {
+        "target": "GRIN2B",
+        "rationale": "谷氨酸稳态失衡下游的 NMDA 受体亚基，参与兴奋性毒性与癫痫相关病理。作为功能通路候选靶点，可用于比较上游转运体阻断与下游受体调节的疾病干预层级。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

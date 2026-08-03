@@ -1,0 +1,65 @@
+{
+  "gene": "TLR3",
+  "generatedAt": "2026-08-03T17:19:34.241Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TLR3识别病毒来源双链RNA并经TRIF适配蛋白诱导IRF3、NF-κB及I型干扰素反应，在疱疹病毒脑炎等抗病毒炎症通路中具有明确疾病关联。该受体为I型跨膜蛋白，配体结合位点位于内体腔侧富含亮氨酸重复序列胞外结构域，重组可溶性ECD适合抗体表位筛选。相较于下游IRF3、TBK1等胞内节点，TLR3具有更直接的配体识别界面和更高抗体可及性，优先级更适合阻断型抗体设计。",
+    "mechanism": "阻断TLR3富含亮氨酸重复序列ECD与双链RNA结合，抑制受体二聚化构象稳定及TRIF依赖性IRF3/NF-κB激活。",
+    "selectedEpitope": "优先覆盖LRR-NT至中央LRR凹面中dsRNA接触带，兼顾二聚化所需C端LRR界面。",
+    "diseaseDirection": "抗病毒炎症与自身免疫甲状腺炎",
+    "domain": "TLR3含N端LRRNT、23个LRR重复、LRRCT、单跨膜区及胞内TIR结构域。",
+    "evidence": "TLR3-双链RNA识别与疾病遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt O15455功能与结构域注释",
+      "RCSB PDB 1ZIW晶体结构记录",
+      "TLR3缺陷与单纯疱疹病毒脑炎遗传研究"
+    ],
+    "referenceEntries": "UniProt O15455；RCSB PDB 1ZIW；Open Targets TLR3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "LRR-NT至中央LRR内凹面dsRNA结合沟槽",
+        "直接竞争病毒dsRNA结合并削弱TLR3激活",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端LRR与LRRCT邻近的受体二聚化接触面",
+        "干扰配体诱导的TLR3二聚化构象稳定",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守LRR外凸面糖基化邻近区域",
+        "可能影响折叠或内体转运，需规避非特异构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TLR3位于内体腔侧，完整IgG进入内体效率有限；建议以阻断型Fab/VHH筛选结合胞外LRR可溶构建体，并评估pH依赖结合。",
+    "structurePrepZh": "以PDB 1ZIW解析的人TLR3 ECD晶体结构为模板，补全缺失环区，保留关键糖基化位点并在酸性pH条件下评估dsRNA结合界面。",
+    "structureRef": "Choe等解析人TLR3胞外结构，Science 2005；PDB 1ZIW",
+    "antibodies": [
+      "Anti-human TLR3 clone TLR3.7",
+      "Anti-human TLR3 clone 40C1285"
+    ],
+    "interfaceFocus": "LRR凹面dsRNA结合带与C端二聚化界面",
+    "designMode": "阻断型表位设计",
+    "candidates": [
+      {
+        "target": "TICAM1",
+        "rationale": "TICAM1编码TRIF，是TLR3胞内TIR结构域下游核心适配蛋白，介导TBK1-IRF3与NF-κB信号。其为同一抗病毒先天免疫通路节点，但胞内定位限制抗体直接干预。"
+      },
+      {
+        "target": "TBK1",
+        "rationale": "TBK1位于TLR3-TRIF通路下游，负责磷酸化IRF3并驱动I型干扰素转录。该节点疾病通路相关性强，但激酶为胞内靶点，通常更适合小分子而非抗体。"
+      },
+      {
+        "target": "IRF3",
+        "rationale": "IRF3是TLR3识别dsRNA后诱导IFNB1表达的关键转录因子，参与疱疹病毒感染相关抗病毒反应。其核内/胞内定位使抗体可及性低于TLR3 ECD。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "SETMAR",
+  "generatedAt": "2026-08-03T16:28:28.774Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SETMAR为核内SET结构域与mariner转座酶结构域融合蛋白，参与组蛋白H3K36甲基化、非同源末端连接及复制叉重启等DNA损伤应答过程。Open Targets关联以分子表型和遗传性神经系统表型为主，缺乏明确的胞外致病配体轴。该蛋白无分泌信号肽、跨膜区或胞外结构域，抗原可及性不支持常规治疗性抗体优先开发；相较EGFR、HER2、PD-L1等膜受体或分泌因子靶点，SETMAR更适合作为细胞内功能研究抗体或结构生物学试剂靶点。",
+    "mechanism": "抗体设计宜定位为胞内研究试剂，识别SET结构域构象表位或阻断SET结构域与组蛋白H3尾部底物结合，不宜设定为体内胞外阻断机制。",
+    "selectedEpitope": "优先选择3BO5覆盖的SET结构域底物结合沟槽邻近构象表位，避开高度保守SAM结合核心。",
+    "diseaseDirection": "DNA损伤应答与基因组稳定性研究",
+    "domain": "N端SET组蛋白甲基转移酶结构域，C端mariner转座酶样DNA结合/催化结构域。",
+    "evidence": "SETMAR结构与DNA损伤应答功能证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联统计",
+      "UniProt Q53H47功能与亚细胞定位注释",
+      "RCSB PDB 3BO5晶体结构记录",
+      "PubMed文献：SETMAR在NHEJ与复制叉重启中的功能研究"
+    ],
+    "referenceEntries": "UniProt Q53H47；RCSB PDB 3BO5；Open Targets SETMAR",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SET结构域底物结合沟槽外缘",
+        "有利于干预H3K36相关底物识别并保持构象特异性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SET结构域远离SAM口袋的暴露螺旋-环区",
+        "适合制备免疫检测抗体，降低对催化核心保守位点的依赖",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SAM/SAH结合口袋及保守催化核心",
+        "保守性高且小分子配体竞争风险较大，易影响交叉反应评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SETMAR为核内蛋白，治疗性抗体递送与抗原可及性风险高。建议限定为细胞内检测、免疫沉淀或结构功能阻断抗体，并严格评估SET结构域同源蛋白交叉反应。",
+    "structurePrepZh": "以3BO5链A为模板进行缺失残基、质子化状态与晶体接触检查；保留SET结构域构象，剔除非功能性晶体界面后开展表位可及性分析。",
+    "structureRef": "RCSB PDB 3BO5，X-ray，1.59 Å，human SETMAR SET domain",
+    "antibodies": [
+      "Anti-SETMAR polyclonal antibody",
+      "Anti-Metnase/SETMAR monoclonal antibody"
+    ],
+    "interfaceFocus": "SET结构域H3尾部底物结合沟槽",
+    "designMode": "胞内研究抗体",
+    "candidates": [
+      {
+        "target": "PRKDC",
+        "rationale": "PRKDC编码DNA-PKcs，是经典非同源末端连接的核心激酶，与SETMAR相关DNA双链断裂修复过程处于同一DNA损伤应答网络。"
+      },
+      {
+        "target": "XRCC5",
+        "rationale": "XRCC5编码Ku80，与Ku70共同识别DNA双链断裂末端并招募DNA-PKcs，是SETMAR相关NHEJ功能研究中的真实同通路节点。"
+      },
+      {
+        "target": "LIG4",
+        "rationale": "LIG4负责NHEJ末端连接反应，与SETMAR促进DNA修复和基因组稳定性的功能方向一致，可作为同通路功能对照靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

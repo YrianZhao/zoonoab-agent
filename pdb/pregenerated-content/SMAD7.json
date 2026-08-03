@@ -1,0 +1,65 @@
+{
+  "gene": "SMAD7",
+  "generatedAt": "2026-08-03T16:43:19.784Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SMAD7是TGF-β通路的细胞内抑制性SMAD，通过结合TGFBR1并促进SMURF介导的受体降解，限制SMAD2/3磷酸化，在结直肠癌、炎症和肾功能表型中具有明确遗传与通路关联。该蛋白不具备分泌形式、跨膜区或稳定胞外结构域，天然抗原可及性显著弱于TGF-β配体、TGFBR2或整合素等同通路胞外靶点。其优先级主要来自疾病遗传关联与结构可解析性，但作为常规治疗性抗体主靶点优先级低于同通路可及膜受体和分泌配体，更适合作为胞内递送抗体片段或机制验证靶点。",
+    "mechanism": "设计胞内抗体片段结合SMAD7 MH2结构域表面，干扰其与TGFBR1或SMURF2的复合物形成，从而解除对SMAD2/3磷酸化的抑制。",
+    "selectedEpitope": "优先覆盖MH2结构域中TGFBR1结合相关疏水表面，避开高度保守折叠核心。",
+    "diseaseDirection": "TGF-β/SMAD相关肿瘤与炎症",
+    "domain": "SMAD7含N端非保守区和C端MH2结构域；2DJY解析其MH2结构域构象。",
+    "evidence": "SMAD7疾病遗传关联与TGF-β通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt O15105功能注释",
+      "RCSB PDB 2DJY实验结构",
+      "TGF-β/SMAD通路文献与Reactome注释"
+    ],
+    "referenceEntries": "UniProt O15105；RCSB PDB 2DJY；Open Targets SMAD7",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "MH2结构域TGFBR1结合相关表面",
+        "可直接削弱SMAD7对受体激酶复合物的抑制作用",
+        "优先"
+      ],
+      [
+        "Site B",
+        "MH2结构域SMURF2相互作用邻近区域",
+        "可能阻断E3连接酶募集并调节受体降解轴",
+        "备选"
+      ],
+      [
+        "Site C",
+        "MH2结构域保守疏水折叠核心",
+        "易造成非特异性构象扰动并降低选择性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SMAD7为胞内蛋白，常规Fab难以到达作用位点；需优先考虑细胞内递送VHH、intrabody或核酸递送表达体系，并严格评估TGF-β双向肿瘤生物学风险。",
+    "structurePrepZh": "以2DJY的NMR模型集合为基础，保留代表性低能构象并进行MH2结构域质子化、缺失残基建模和界面柔性评估。",
+    "structureRef": "RCSB PDB 2DJY，human SMAD7 MH2 domain，solution NMR",
+    "antibodies": [
+      "无获批抗SMAD7治疗性抗体",
+      "研究级抗SMAD7抗体"
+    ],
+    "interfaceFocus": "MH2结构域TGFBR1/SMURF2结合表面",
+    "designMode": "胞内VHH设计",
+    "candidates": [
+      {
+        "target": "TGFB1",
+        "rationale": "TGFB1为TGF-β通路核心分泌配体，直接驱动TGFBR2/TGFBR1复合物激活，抗原可及性明显优于SMAD7。"
+      },
+      {
+        "target": "TGFBR2",
+        "rationale": "TGFBR2为细胞膜受体，负责配体结合并招募TGFBR1，胞外结构域适合阻断型抗体设计。"
+      },
+      {
+        "target": "TGFBR1",
+        "rationale": "TGFBR1是SMAD2/3磷酸化的直接受体激酶，与SMAD7处于同一负反馈调控轴，可作为通路抑制的替代节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

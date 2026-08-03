@@ -1,0 +1,65 @@
+{
+  "gene": "KHDRBS1",
+  "generatedAt": "2026-08-03T13:41:29.412Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KHDRBS1编码Sam68，为核内RNA结合与信号转导适配蛋白，参与选择性剪接、mRNA输出及DNA损伤应答，Open Targets提示其与卵巢早衰和白细胞/淋巴细胞数量性状存在遗传关联。该蛋白主要定位于细胞核，缺乏跨膜区和分泌信号肽，天然抗原可及性低，需以细胞内抗体、递送型Fab或研究级构象抗体为设计边界。相较可直接成药的膜受体或分泌因子，KHDRBS1优先级较低；其优势在于KH结构域已有高分辨率实验结构，可支持机制验证型抗体或胞内结合蛋白设计。",
+    "mechanism": "通过结合KH结构域RNA识别沟槽，竞争性阻断KHDRBS1与U/A富集RNA序列相互作用，从而干预其介导的选择性剪接复合物组装。",
+    "selectedEpitope": "优先覆盖KH结构域GXXG环及RNA结合沟槽邻近面，避免完全埋入β折叠核心。",
+    "diseaseDirection": "卵巢功能与血液细胞数量遗传关联",
+    "domain": "KHDRBS1含N端调控区、中央KH RNA结合结构域及C端富含脯氨酸/酪氨酸调控区。",
+    "evidence": "KHDRBS1遗传关联与KH结构域抗体设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联数据",
+      "UniProt Q07666蛋白功能与亚细胞定位注释",
+      "RCSB PDB 7Z8A X射线晶体结构",
+      "Reactome/GO RNA剪接与mRNA加工功能注释"
+    ],
+    "referenceEntries": "UniProt Q07666；RCSB PDB 7Z8A；Open Targets KHDRBS1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "KH结构域GXXG环与RNA结合沟槽边缘",
+        "可直接竞争RNA底物结合，机制验证价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "KH结构域外侧α螺旋-β折叠邻接面",
+        "保留构象特异性并降低对核心折叠稳定性的干扰",
+        "备选"
+      ],
+      [
+        "Site C",
+        "KH结构域疏水核心及晶体堆积界面",
+        "可能影响蛋白折叠或产生结构伪表位，需严格排除",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "KHDRBS1为胞内核蛋白，常规抗体难以进入病灶细胞并结合天然靶点；建议定位于研究级胞内抗体、递送型Fab或VHH，并优先验证RNA结合竞争效应。",
+    "structurePrepZh": "以PDB 7Z8A链A为模板，补全缺失侧链、校正质子化状态并标注晶体接触；表位筛选应聚焦KH结构域可溶单体构象。",
+    "structureRef": "RCSB PDB 7Z8A，KHDRBS1 KH结构域X射线结构，2.06 Å",
+    "antibodies": [
+      "anti-Sam68 clone 7-1",
+      "anti-Sam68 clone C-20"
+    ],
+    "interfaceFocus": "KH结构域RNA识别沟槽与GXXG环",
+    "designMode": "胞内阻断型",
+    "candidates": [
+      {
+        "target": "KHDRBS3",
+        "rationale": "KHDRBS3为Sam68家族RNA结合蛋白，参与相近的KH结构域介导RNA识别与选择性剪接过程，可作为同家族通路对照靶点。"
+      },
+      {
+        "target": "SRSF1",
+        "rationale": "SRSF1是核心剪接调控因子，与KHDRBS1共同影响外显子选择和mRNA加工，适合用于剪接通路机制比较。"
+      },
+      {
+        "target": "SF3B1",
+        "rationale": "SF3B1为剪接体U2 snRNP关键组分，处于前体mRNA剪接通路核心节点，可作为下游剪接复合物层面的候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

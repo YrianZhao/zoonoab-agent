@@ -1,0 +1,65 @@
+{
+  "gene": "PPP3CB",
+  "generatedAt": "2026-08-03T15:32:17.055Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PPP3CB编码钙调神经磷酸酶催化β亚基，是Ca2+/钙调蛋白依赖性磷酸酶复合体的催化核心，参与NFAT去磷酸化、突触可塑性及神经元钙稳态，Open Targets显示其与神经退行性疾病、阿尔茨海默病和帕金森病存在遗传与功能关联。该蛋白主要定位于胞质，缺乏跨膜区和天然胞外结构域，完整蛋白并非传统抗体可及抗原，因此更适合采用细胞内递送抗体片段或结构引导的研究型抑制分子设计。相较同通路中广泛表达且免疫抑制风险更高的上游钙信号节点，PPP3CB具有明确催化结构、可解析调控界面和同工酶选择性评估基础，适合作为机制验证优先靶点。",
+    "mechanism": "设计分子阻断PPP3CB催化结构域与PPP3R调节亚基或钙调蛋白激活构象耦联，降低NFAT底物去磷酸化效率。",
+    "selectedEpitope": "优先聚焦催化结构域邻近PPP3R结合沟槽与自抑制区接触界面，避免金属催化中心直接占位。",
+    "diseaseDirection": "神经退行性疾病钙信号轴",
+    "domain": "PPP3CB含N端丝/苏氨酸磷酸酶催化结构域、PPP3R结合区、钙调蛋白结合区及C端自抑制结构段。",
+    "evidence": "PPP3CB神经钙调神经磷酸酶证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P16298功能与亚细胞定位注释",
+      "RCSB PDB 4OR9晶体结构条目",
+      "NFAT去磷酸化与神经元钙信号文献"
+    ],
+    "referenceEntries": "UniProt P16298；RCSB PDB 4OR9；Open Targets PPP3CB",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域外侧PPP3R调节亚基结合沟槽",
+        "干预全酶装配与底物定位，保留同工酶选择性设计空间",
+        "优先"
+      ],
+      [
+        "Site B",
+        "钙调蛋白结合区及其诱导构象转换邻近表面",
+        "限制Ca2+/钙调蛋白介导的激活构象形成",
+        "备选"
+      ],
+      [
+        "Site C",
+        "双金属催化中心及保守磷酸酶活性口袋",
+        "高度保守且脱靶风险较高，易影响PPP家族磷酸酶选择性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PPP3CB为胞内酶，常规抗体体内可及性不足；催化口袋保守性高，应优先开发可胞内递送的Fab/VHH并规避金属活性中心。",
+    "structurePrepZh": "以4OR9链A、B解析结构为模板，补全缺失环区并标注金属离子、PPP3R接触面和自抑制段相对位置后进行表面聚类。",
+    "structureRef": "RCSB PDB 4OR9，X-ray diffraction，2.23 Å",
+    "antibodies": [
+      "anti-PPP3CB monoclonal antibody",
+      "anti-calcineurin B monoclonal antibody"
+    ],
+    "interfaceFocus": "PPP3CB-PPP3R结合沟槽与钙调蛋白激活界面",
+    "designMode": "胞内VHH/Fab阻断",
+    "candidates": [
+      {
+        "target": "PPP3R1",
+        "rationale": "PPP3R1是钙调神经磷酸酶B调节亚基，直接与PPP3CB形成Ca2+依赖性全酶复合体，适合用于验证复合体装配阻断策略。"
+      },
+      {
+        "target": "CALM1",
+        "rationale": "CALM1编码钙调蛋白，结合钙离子后激活PPP3CB并解除自抑制构象，是同一Ca2+/钙调神经磷酸酶信号轴的关键上游因子。"
+      },
+      {
+        "target": "NFATC2",
+        "rationale": "NFATC2是钙调神经磷酸酶去磷酸化底物之一，其核转位反映PPP3CB复合体活性，可作为下游通路干预候选节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

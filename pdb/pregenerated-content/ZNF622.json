@@ -1,0 +1,65 @@
+{
+  "gene": "ZNF622",
+  "generatedAt": "2026-08-03T18:02:35.751Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ZNF622为细胞内C2H2型锌指蛋白，已报道参与核糖体生物发生相关蛋白互作与细胞应激过程，但当前Open Targets疾病关联以血清蛋白水平性状和非特异性疾病表型为主，缺乏明确可干预的胞外疾病通路机制。该蛋白不属于分泌蛋白或跨膜受体，天然抗原可及性不支持常规治疗性抗体直接结合。其作为主靶点的优先级低于具有胞外结构域、配体-受体轴和明确疾病因果证据的同通路或同表型相关靶点，更适合作为结构生物学研究抗原或细胞内递送抗体探索对象。",
+    "mechanism": "设计目标限定为细胞内结合型抗体，阻断ZNF622锌指/蛋白互作表面与核糖体生物发生相关复合物成员的结合。",
+    "selectedEpitope": "优先覆盖C2H2锌指折叠外露螺旋与相邻碱性表面，避免锌配位核心残基。",
+    "diseaseDirection": "细胞内核糖体生物发生相关探索",
+    "domain": "ZNF622含锌指样核酸/蛋白结合区域，缺乏信号肽、跨膜段和胞外结构域。",
+    "evidence": "ZNF622结构与疾病关联可成药性证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q969S3蛋白注释",
+      "RCSB PDB 9GMO冷冻电镜结构",
+      "AlphaFold/结构域与亚细胞定位注释"
+    ],
+    "referenceEntries": "UniProt Q969S3；RCSB PDB 9GMO；Open Targets ZNF622",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "锌指折叠外露识别螺旋及邻近带电表面",
+        "可能干预核酸或蛋白互作界面，适合细胞内抗体格式验证",
+        "优先"
+      ],
+      [
+        "Site B",
+        "非保守环区与结构域边缘可及表面",
+        "降低锌指家族交叉反应风险，利于获得选择性结合分子",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Cys/His锌配位核心及疏水折叠内核",
+        "构象稳定性依赖强，抗体结合可能破坏抗原折叠并产生非特异效应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为靶点细胞内定位导致常规抗体不可及，且疾病证据偏表型关联。设计宜限定为研究级Fab/VHH或递送型细胞内抗体。",
+    "structurePrepZh": "以PDB 9GMO为模板提取ZNF622相关链段，补全缺失环区，保留锌离子配位几何并标注保守Cys/His残基。",
+    "structureRef": "RCSB PDB 9GMO；EM结构分辨率2.59 Å",
+    "antibodies": [
+      "无已获批ZNF622靶向抗体",
+      "无临床阶段ZNF622抗体"
+    ],
+    "interfaceFocus": "锌指外露螺旋-蛋白互作表面",
+    "designMode": "细胞内抗体探索",
+    "candidates": [
+      {
+        "target": "RPL5",
+        "rationale": "RPL5参与核糖体大亚基装配与核糖体应激轴，是ZNF622相关核糖体生物发生背景中的真实细胞内节点；但同样缺乏胞外可及性。"
+      },
+      {
+        "target": "RPL11",
+        "rationale": "RPL11介导核糖体应激与MDM2-TP53调控，是核糖体生物发生异常通路中的明确功能节点，适合机制性对照研究。"
+      },
+      {
+        "target": "MDM2",
+        "rationale": "MDM2位于核糖体应激下游并直接调控TP53稳定性，具有清晰的小分子和蛋白互作干预机制，可作为同轴通路优先替代靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

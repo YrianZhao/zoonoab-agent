@@ -1,0 +1,65 @@
+{
+  "gene": "NAIP",
+  "generatedAt": "2026-08-03T14:34:08.587Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NAIP为胞质NLR家族凋亡抑制蛋白，参与鞭毛蛋白或T3SS组分识别后NLRC4炎症小体装配，并影响CASP1介导的IL-1β/IL-18成熟与焦亡反应；其遗传区域亦与脊髓性肌萎缩症表型及血细胞计数量化性状存在关联。NAIP主要定位于胞质，缺乏天然胞外结构域，抗原可及性不适合作为常规体内阻断抗体靶点，但其BIR结构域具备高分辨率可溶结构，可支持体外结合剂、细胞内递送抗体或研究级构象探针设计。相比NLRC4、CASP1等下游效应分子，NAIP处于配体识别近端，理论上更适合解析炎症小体起始选择性，但治疗开发优先级受限于胞内可及性与物种特异性。",
+    "mechanism": "设计结合NAIP BIR结构域沟槽的细胞内抗体，干扰其与IAP结合蛋白或构象调节界面的相互作用，并作为炎症小体装配前状态探针。",
+    "selectedEpitope": "优先覆盖BIR结构域锌配位折叠邻近的IBM样肽结合沟槽，避开Zn2+核心配位残基。",
+    "diseaseDirection": "炎症小体相关免疫炎症与SMA遗传关联",
+    "domain": "NAIP含N端BIR重复、NBD/NACHT核苷酸结合区、HD1/WH/HD2及C端LRR结构域。",
+    "evidence": "NAIP炎症小体识别与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q13075功能与结构域注释",
+      "RCSB PDB 2VM5晶体结构记录",
+      "炎症小体NAIP-NLRC4装配机制文献"
+    ],
+    "referenceEntries": "UniProt Q13075；RCSB PDB 2VM5；Open Targets NAIP",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "BIR结构域IBM样肽结合沟槽",
+        "可用于阻断BIR介导的蛋白互作并形成构象选择性结合剂",
+        "优先"
+      ],
+      [
+        "Site B",
+        "BIR结构域α螺旋外侧非锌配位面",
+        "保留结构稳定性，适合获得不干扰折叠核心的检测型抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Zn2+配位Cys/His核心邻近区域",
+        "可能影响BIR折叠完整性并产生非特异构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NAIP为胞内蛋白，常规抗体体内可及性不足；BIR锌配位核心对折叠高度敏感，设计应优先采用构象保守外露沟槽并评估细胞递送策略。",
+    "structurePrepZh": "以2VM5链A作为BIR结构模板，补全侧链、保留Zn2+配位几何，去除非必要晶体水后进行表面电荷与沟槽可及性评估。",
+    "structureRef": "PDB 2VM5，human NAIP BIR domain，1.8 Å X-ray",
+    "antibodies": [
+      "NAIP研究级单克隆抗体",
+      "NAIP多克隆检测抗体"
+    ],
+    "interfaceFocus": "BIR沟槽、锌配位邻域及外侧α螺旋面",
+    "designMode": "胞内靶点探针型设计",
+    "candidates": [
+      {
+        "target": "NLRC4",
+        "rationale": "NLRC4是NAIP识别细菌配体后招募并寡聚化的炎症小体核心NLR，直接决定CASP1激活平台形成。"
+      },
+      {
+        "target": "CASP1",
+        "rationale": "CASP1位于NAIP-NLRC4炎症小体下游，负责切割pro-IL-1β、pro-IL-18及GSDMD，是焦亡与炎症因子成熟的关键效应酶。"
+      },
+      {
+        "target": "PYCARD",
+        "rationale": "PYCARD编码ASC接头蛋白，可连接炎症小体传感器与CASP1并促进斑点样复合体形成，适合作为同通路装配节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

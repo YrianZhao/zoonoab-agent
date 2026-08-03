@@ -1,0 +1,65 @@
+{
+  "gene": "PLPP1",
+  "generatedAt": "2026-08-03T15:22:54.973Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PLPP1水解细胞外溶血磷脂酸和磷脂酸，降低LPA受体介导的G12/13、Gq和Gi信号，可能影响骨重塑、成骨细胞分化及脂质相关体成分表型。该蛋白为多跨膜膜酶，催化位点朝向膜外侧，胞外环和近膜催化口袋具备抗体可及性。相较单一LPA受体，PLPP1位于配体清除层级，可同时影响多种LPA受体输入，因此在脂质磷酸酶轴中具有较高干预优先级。",
+    "mechanism": "设计阻断型抗体占据PLPP1胞外催化入口，抑制LPA或磷脂酸与保守催化残基周围口袋结合，从而改变LPA-LPAR轴信号输入。",
+    "selectedEpitope": "优先覆盖胞外催化口袋周缘与第三胞外环，避开跨膜螺旋疏水面。",
+    "diseaseDirection": "骨密度与脂质信号相关表型",
+    "domain": "PLPP1含六段跨膜螺旋，三段胞外环构成外侧催化入口，保守磷酸酶基序位于膜内近外侧区域。",
+    "evidence": "PLPP1-LPA轴骨代谢关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt O14494功能与拓扑注释",
+      "RCSB PDB 9L0U冷冻电镜结构",
+      "脂质磷酸酶与LPA受体信号文献"
+    ],
+    "referenceEntries": "UniProt: O14494; RCSB PDB: 9L0U; HGNC: PLPP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "胞外催化入口及ECL3邻近区域",
+        "直接干预LPA/PA进入催化口袋，机制关联最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ECL1-ECL2近膜外侧构象面",
+        "可通过空间位阻稳定非催化构象，适合构象选择性抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "跨膜螺旋外露疏水侧面",
+        "膜嵌入区域可及性低且易产生非特异疏水结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PLPP家族成员催化核心保守，需规避PLPP2/PLPP3交叉反应；优先选择PLPP1特异胞外环差异残基并验证膜环境结合。",
+    "structurePrepZh": "以9L0U冷冻电镜四聚体链A-D为模板，补全缺失胞外环侧链，保留膜法向约束并屏蔽跨膜疏水面进行抗原建模。",
+    "structureRef": "RCSB PDB 9L0U, cryo-EM human PLPP1, 2.28 Å",
+    "antibodies": [
+      "抗PLPP1研究级单克隆抗体",
+      "抗PLPP3功能阻断抗体"
+    ],
+    "interfaceFocus": "胞外催化入口、ECL3及近膜LPA进入通道",
+    "designMode": "膜酶构象阻断",
+    "candidates": [
+      {
+        "target": "LPAR1",
+        "rationale": "LPAR1是LPA主要受体之一，介导G12/13-Rho和Gi信号，参与骨细胞功能及骨重塑相关表型。其胞外配体入口可作为同轴验证或组合干预靶点。"
+      },
+      {
+        "target": "LPAR4",
+        "rationale": "LPAR4属于LPA受体家族，在骨形成和成骨细胞分化相关研究中具有明确通路关联。与PLPP1共同位于LPA稳态和受体响应轴。"
+      },
+      {
+        "target": "ENPP2",
+        "rationale": "ENPP2编码autotaxin，是LPA生成的关键分泌酶，催化溶血磷脂酰胆碱产生LPA。其与PLPP1分别控制LPA生成与降解，构成同一脂质介质通路的上下游节点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

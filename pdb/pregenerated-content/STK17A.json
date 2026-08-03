@@ -1,0 +1,65 @@
+{
+  "gene": "STK17A",
+  "generatedAt": "2026-08-03T16:59:32.862Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "STK17A与红细胞体积及网织红细胞体积等血液学性状存在稳定关联，提示其参与红系发育、细胞体积维持或应激存活相关过程。该蛋白为激酶型细胞内靶点，抗原可及性受限于细胞膜内侧与胞内定位，直接成药性低于分泌蛋白或膜受体。相较同类泛激酶靶点，STK17A具备较窄的组织与通路背景，且已存在2.4 Å实验结构，可为结构导向表位锁定与功能干预提供优先依据。",
+    "mechanism": "通过识别激酶结构域催化裂缝或调节环，稳定失活构象并阻断底物磷酸化。",
+    "selectedEpitope": "优先覆盖ATP结合口袋邻近P-loop与activation loop，兼顾构象锁定位点。",
+    "diseaseDirection": "血液学性状与红系通路",
+    "domain": "N端激酶结构域及C端调节区；A/B链可用于界面映射。",
+    "evidence": "STK17A结构与血液学关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform",
+      "UniProt Q9UEE5",
+      "RCSB PDB 7QUE",
+      "PubMed/相关红系表型研究"
+    ],
+    "referenceEntries": "UniProt: Q9UEE5; PDB: 7QUE; Homo sapiens STK17A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ATP结合口袋邻近P-loop",
+        "可直接干预催化活性并提升构象选择性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "activation loop起始段",
+        "有利于锁定失活构象并抑制底物进入",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端调节区与激酶核心接触面",
+        "适合做别构抑制，但构象异质性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "靶点为胞内激酶，常规抗体进入性受限，需优先评估胞内递送或细胞内抗体格式。激酶保守性较高，表位设计应避开高度同源的催化保守残基，以降低交叉反应。",
+    "structurePrepZh": "以7QUE为主模板完成链A/B重建、缺失环补模与配体/水分子清理，随后进行口袋暴露性与表位可达性评估。必要时联合AlphaFold结构比对校正柔性环构象。",
+    "structureRef": "RCSB PDB 7QUE, X-ray diffraction, 2.4 Å",
+    "antibodies": [
+      "STK17A同源激酶抑制性抗体框架",
+      "细胞内激酶构象偏向性抗体"
+    ],
+    "interfaceFocus": "激酶口袋、P-loop与activation loop",
+    "designMode": "结构导向抑制",
+    "candidates": [
+      {
+        "target": "STK17B",
+        "rationale": "与STK17A同属STK17家族，具有相近激酶核心与应激凋亡相关背景，适合作为同通路并行比较靶点。可用于评估家族选择性与交叉反应风险。"
+      },
+      {
+        "target": "BMP2K",
+        "rationale": "同为丝/苏氨酸激酶，参与红系成熟与网织红细胞相关过程，和STK17A在血液学表型层面具有可比性。适合用于血液学性状通路的候选并列验证。"
+      },
+      {
+        "target": "MAPK14",
+        "rationale": "该激酶在红系应激与细胞生存中具有明确作用，且与STK17A同属胞内激酶干预范畴。作为通路相关候选，可用于比较更高可及性的替代设计路径。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

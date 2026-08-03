@@ -1,0 +1,65 @@
+{
+  "gene": "PTP4A3",
+  "generatedAt": "2026-08-03T15:43:11.862Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PTP4A3为PRL家族胞内蛋白酪氨酸磷酸酶，参与细胞黏附、迁移及血管相关信号调节，遗传关联主要指向血小板计数、血细胞计数和收缩压等血液及心血管表型。该蛋白缺乏跨膜区和分泌信号肽，天然抗原可及性低于膜受体或分泌因子，常规外周阻断型抗体开发存在明确递送限制。相较GPCR、细胞因子受体或整合素等同表型相关靶点，PTP4A3的优先级更多来自结构明确性和疾病遗传关联，而非抗体药物可及性，因此更适合作为胞内递送抗体、细胞内抗体或机制验证型分子设计靶点。",
+    "mechanism": "通过结合PTP4A3催化裂隙及WPD样环邻近区域，阻断底物磷酸酪氨酸进入Cys104活性位点并限制催化构象转换。",
+    "selectedEpitope": "优先覆盖PTP催化结构域活性口袋周缘、P-loop/Cys104及WPD样环邻近界面。",
+    "diseaseDirection": "血液计数与心血管遗传表型",
+    "domain": "PTP4A3主要由单一PRL型蛋白酪氨酸磷酸酶催化结构域构成，C端含CAAX异戊二烯化基序。",
+    "evidence": "PTP4A3血液表型遗传关联与晶体结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联评分",
+      "UniProt O75365蛋白功能与结构域注释",
+      "RCSB PDB 5TSR晶体结构条目",
+      "PRL/PTP家族催化机制与细胞迁移文献"
+    ],
+    "referenceEntries": "UniProt O75365；RCSB PDB 5TSR；Open Targets PTP4A3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域P-loop/Cys104活性口袋周缘",
+        "直接限制磷酸底物进入催化中心，最符合功能阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "WPD样环及底物识别裂隙邻近表面",
+        "可干扰底物定位与催化构象转换，保留较高机制相关性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端CAAX基序邻近疏水膜定位区域",
+        "可能影响膜定位相关功能，但区域柔性和修饰依赖性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PTP4A3为胞内靶点，常规抗体难以到达天然作用位点；PRL家族同源性较高，需规避PTP4A1/PTP4A2交叉反应并评估胞内递送方案。",
+    "structurePrepZh": "以5TSR实验晶体结构为模板，保留催化结构域四聚体链信息，补全缺失侧链，校正质子化状态，并单独评估活性口袋可成药表面。",
+    "structureRef": "RCSB PDB 5TSR，X-ray diffraction，3.188 Å",
+    "antibodies": [
+      "PRL-3-zumab",
+      "PRL3-2"
+    ],
+    "interfaceFocus": "P-loop/Cys104活性位点与WPD样环邻近裂隙",
+    "designMode": "胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "PTP4A1",
+        "rationale": "PTP4A1同属PRL蛋白酪氨酸磷酸酶家族，参与细胞迁移和黏附相关磷酸化网络，可作为家族选择性与补偿机制评估靶点。"
+      },
+      {
+        "target": "PTP4A2",
+        "rationale": "PTP4A2与PTP4A3具有高度同源催化结构域，并参与相近PRL通路功能，适合作为交叉反应和功能冗余风险的候选比较靶点。"
+      },
+      {
+        "target": "CNNM3",
+        "rationale": "CNNM3为PRL磷酸酶结合蛋白，PTP4A3可通过与CNNM家族相互作用影响镁离子稳态及细胞行为，是同一PRL-CNNM功能轴中的相关靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

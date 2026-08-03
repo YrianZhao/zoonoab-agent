@@ -1,0 +1,65 @@
+{
+  "gene": "LDLR",
+  "generatedAt": "2026-08-03T13:50:56.546Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "LDLR 是肝细胞清除循环 LDL-C 的核心受体，其 LDLR–APOB 结合、内吞及酸性内体释放过程直接决定血浆胆固醇负荷，遗传功能缺失可导致家族性高胆固醇血症和冠状动脉疾病风险升高。该蛋白为 I 型跨膜受体，配体结合重复区、EGF 前体同源区和 β-propeller 均位于胞外侧，具备抗体可及性。相较于下游脂质代谢酶，LDLR 处于 LDL 清除通路入口，结构与遗传证据更直接，适合作为提高受体稳定性或阻断负调控轴的优先设计靶点。",
+    "mechanism": "抗体设计宜阻断 PCSK9 与 LDLR EGF-A 区域的结合，降低受体溶酶体降解并增强 LDLR 回收，从而提高 LDL-C 摄取。",
+    "selectedEpitope": "优先覆盖 EGF-A 结构域 PCSK9 结合界面，避开 LDL 结合重复区的 APOB/APOE 识别位点。",
+    "diseaseDirection": "高胆固醇血症与冠脉疾病",
+    "domain": "LDLR 含 N 端七个 LA 配体结合重复、EGF-A/B、YWTD β-propeller、EGF-C、O-糖基化区和跨膜区。",
+    "evidence": "LDLR遗传缺陷与LDL-C清除通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt P01130 功能与结构域注释",
+      "RCSB PDB 2FCW 高分辨率晶体结构",
+      "家族性高胆固醇血症人类遗传学研究"
+    ],
+    "referenceEntries": "UniProt:P01130；RCSB PDB:2FCW；Open Targets:LDLR",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "EGF-A 结构域 PCSK9 结合面",
+        "阻断 PCSK9 介导的受体降解，保留 LDLR 回收功能",
+        "优先"
+      ],
+      [
+        "Site B",
+        "EGF-B/YWTD β-propeller 邻近构象界面",
+        "可能稳定酸性内体释放构象，需评估对回收循环的影响",
+        "备选"
+      ],
+      [
+        "Site C",
+        "LA1-LA7 配体结合重复区",
+        "邻近 APOB/APOE 结合区域，存在抑制 LDL 摄取风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "应避免遮挡 LA 重复区钙依赖性配体结合面及 β-propeller 回收构象核心；优先筛选不降低 LDL 内吞的变构或阻断 PCSK9 表位。",
+    "structurePrepZh": "以 2FCW 抗原链 A/B 为模板，补全缺失侧链并保留钙离子约束；按胞外结构域划分 EGF-A 与 β-propeller 界面用于表位建模。",
+    "structureRef": "RCSB PDB 2FCW，LDLR胞外域1.26 Å晶体结构",
+    "antibodies": [
+      "Anti-LDLR clone C7",
+      "Anti-LDLR clone 15C8"
+    ],
+    "interfaceFocus": "EGF-A 与 PCSK9 D374/C端结构域接触界面",
+    "designMode": "阻断负调控界面",
+    "candidates": [
+      {
+        "target": "PCSK9",
+        "rationale": "PCSK9 直接结合 LDLR EGF-A 区域并促进受体溶酶体降解，是 LDLR 清除通路中已有临床验证的抗体靶点。"
+      },
+      {
+        "target": "APOB",
+        "rationale": "APOB100 是 LDL 颗粒与 LDLR 结合的主要配体，位于同一 LDL 摄取通路；其调控可直接影响循环 LDL-C 负荷。"
+      },
+      {
+        "target": "APOE",
+        "rationale": "APOE 介导富含胆固醇脂蛋白残粒与 LDLR 家族受体结合，参与胆固醇转运与动脉粥样硬化风险调控。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

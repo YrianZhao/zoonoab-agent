@@ -1,0 +1,65 @@
+{
+  "gene": "HDAC8",
+  "generatedAt": "2026-08-03T13:08:59.136Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HDAC8 是锌依赖性组蛋白去乙酰化酶，参与 cohesin 复合体亚基 SMC3 的去乙酰化，HDAC8 功能缺陷可导致 Cornelia de Lange syndrome 相关的染色质黏连调控异常。该蛋白主要定位于细胞核和胞质，缺乏天然胞外结构域，因此常规细胞外阻断型抗体可及性较弱，更适合采用细胞内递送抗体片段或结构引导的结合分子验证。相较于广谱 HDAC 家族成员，HDAC8 具有独立催化袋构象和明确的遗传疾病关联，选择优先级来自结构解析充分、疾病遗传证据强以及可区分家族同源酶的选择性设计窗口。",
+    "mechanism": "通过结合 HDAC8 催化沟槽邻近口袋，阻断底物乙酰赖氨酸进入锌离子活性中心，抑制 SMC3 去乙酰化反应。",
+    "selectedEpitope": "优先覆盖催化结构域 L1/L2 环与活性口袋入口，避开深部 Zn2+ 配位核心。",
+    "diseaseDirection": " cohesinopathy 与肿瘤表观遗传调控",
+    "domain": "HDAC8 为单结构域 Zn2+ 依赖性去乙酰化酶，含催化沟槽、底物入口环区和金属配位中心。",
+    "evidence": "HDAC8 疾病遗传与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q9BY41 功能与定位注释",
+      "RCSB PDB 3EW8 晶体结构",
+      "ClinVar/OMIM 中 HDAC8 相关综合征遗传证据"
+    ],
+    "referenceEntries": "UniProt Q9BY41；RCSB PDB 3EW8；Open Targets HDAC8",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化沟槽入口及 L1/L2 环区",
+        "可干扰乙酰赖氨酸底物进入并提供 HDAC8 选择性识别界面",
+        "优先"
+      ],
+      [
+        "Site B",
+        "表面可及的α螺旋外侧疏水斑块",
+        "适合构建构象锁定型结合界面，降低对金属中心的直接依赖",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Zn2+ 配位残基邻近深部催化核心",
+        "该区域高度保守且空间埋藏，易产生家族交叉反应与亲和成熟困难",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HDAC8 缺乏胞外暴露结构，常规抗体体内可及性受限；设计应定位为细胞内抗体片段、递送型 Fab/VHH 或结构验证工具分子。",
+    "structurePrepZh": "以 3EW8 A 链为模板，保留催化结构域主链与 Zn2+ 配位环境，去除非必要晶体配体并评估入口环区构象稳定性。",
+    "structureRef": "RCSB PDB 3EW8，human HDAC8，X-ray 1.8 Å",
+    "antibodies": [
+      "HDAC8 intracellular VHH-like binder",
+      "anti-HDAC8 research monoclonal antibody"
+    ],
+    "interfaceFocus": "催化沟槽入口、L1/L2 环及底物通道边缘",
+    "designMode": "细胞内结构阻断",
+    "candidates": [
+      {
+        "target": "SMC3",
+        "rationale": "SMC3 是 HDAC8 已知去乙酰化底物，参与 cohesin 环功能调控；其乙酰化状态与 Cornelia de Lange syndrome 相关黏连蛋白通路直接相连。"
+      },
+      {
+        "target": "NIPBL",
+        "rationale": "NIPBL 参与 cohesin 装载过程，是 Cornelia de Lange syndrome 的核心致病基因之一；与 HDAC8 位于同一 cohesin 功能轴。"
+      },
+      {
+        "target": "SMC1A",
+        "rationale": "SMC1A 是 cohesin 复合体结构亚基，突变可导致 cohesinopathy 表型；可作为 HDAC8-SMC3 轴相关疾病网络的候选节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

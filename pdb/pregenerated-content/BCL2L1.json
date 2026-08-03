@@ -1,0 +1,65 @@
+{
+  "gene": "BCL2L1",
+  "generatedAt": "2026-08-03T18:09:02.730Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BCL2L1编码Bcl-xL，是线粒体外膜抗凋亡蛋白，通过BH3结合沟槽 sequestration BIM、BID、BAD等促凋亡BH3-only蛋白并抑制BAX/BAK激活，在肿瘤细胞存活、骨髓纤维化相关巨核细胞异常及血小板寿命调控中具有明确机制关联。该蛋白主要定位于细胞内线粒体外膜，缺乏天然胞外结构域，抗体抗原可及性不如分泌因子或膜受体；因此更适合作为胞内递送抗体、intrabody或结构引导结合蛋白设计对象。相较BCL2和MCL1，BCL2L1的PDB结构与BH3沟槽复合物证据充分，且血小板毒性风险已被临床小分子研究充分揭示，优先级依据在于可用于高选择性界面识别和风险可控的机制验证设计。",
+    "mechanism": "结合Bcl-xL疏水BH3沟槽，竞争性阻断BIM/BAD等BH3螺旋肽段结合，解除对BAX/BAK介导线粒体外膜通透化的抑制。",
+    "selectedEpitope": "优先覆盖BH1-BH3形成的BH3结合沟槽，避开C端跨膜锚定区。",
+    "diseaseDirection": "肿瘤凋亡逃逸与骨髓纤维化",
+    "domain": "Bcl-2家族折叠核心含BH1、BH2、BH3、BH4结构域及C端跨膜区。",
+    "evidence": "BCL2L1凋亡调控与结构界面证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与关联评分",
+      "UniProt Q07817蛋白功能与亚细胞定位注释",
+      "RCSB PDB 1R2D晶体结构数据",
+      "Bcl-2家族BH3沟槽配体结合研究文献"
+    ],
+    "referenceEntries": "UniProt Q07817；RCSB PDB 1R2D；Open Targets BCL2L1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "BH1-BH3疏水沟槽及BH3肽结合界面",
+        "直接竞争促凋亡BH3-only蛋白结合，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "BH4相邻N端调控面",
+        "可能影响抗凋亡构象稳定性，适合作为变构结合策略",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端跨膜锚定邻近区域",
+        "膜邻近且结构柔性较高，完整抗体可及性与构象一致性受限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BCL2L1为胞内线粒体外膜蛋白，常规抗体难以到达作用位点；设计应限定为细胞内递送Fab/VHH或intrabody，并重点评估血小板凋亡相关毒性。",
+    "structurePrepZh": "以1R2D链A为模板，保留Bcl-xL核心折叠与BH3沟槽构象，移除非目标配体和晶体水，补全缺失侧链并标注C端膜锚定方向。",
+    "structureRef": "RCSB PDB 1R2D，X-ray diffraction，1.95 Å",
+    "antibodies": [
+      "胞内递送型抗BCL2L1 Fab",
+      "抗Bcl-xL intrabody/VHH原型"
+    ],
+    "interfaceFocus": "BH3结合沟槽疏水袋与α螺旋受体界面",
+    "designMode": "胞内递送抗体设计",
+    "candidates": [
+      {
+        "target": "BCL2",
+        "rationale": "BCL2同属抗凋亡Bcl-2家族，利用BH3沟槽结合BIM等促凋亡蛋白，是肿瘤凋亡逃逸通路中的真实并行靶点。"
+      },
+      {
+        "target": "MCL1",
+        "rationale": "MCL1通过结合BAK、BIM和NOXA调控线粒体凋亡阈值，常与BCL2L1形成耐药补偿轴。"
+      },
+      {
+        "target": "BAK1",
+        "rationale": "BAK1是线粒体外膜效应蛋白，其寡聚化受Bcl-xL抑制；解除BCL2L1-BAK1轴可促进线粒体外膜通透化。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

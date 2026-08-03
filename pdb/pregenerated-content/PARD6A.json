@@ -1,0 +1,65 @@
+{
+  "gene": "PARD6A",
+  "generatedAt": "2026-08-03T20:27:29.483Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PARD6A 是 Par polarity complex 的胞内支架蛋白，含 PB1 与半 CRIB-PDZ 模块，可结合 PARD3、PRKC iota/zeta 与 CDC42-GTP，参与上皮极性、紧密连接形成及胶质瘤细胞迁移相关过程。该蛋白主要定位于胞质和细胞连接复合体，缺乏分泌型或跨膜胞外结构域，完整 IgG 体内抗原可及性较差，较适合细胞内抗体或研究型结合蛋白策略。相较 EGFR、ITGAV 等胶质瘤通路膜靶点，PARD6A 的抗体药物优先级较低；其优势在于 1WMH 提供高分辨率 PDZ 结构，可用于解析极性复合体界面并开发机制探针。",
+    "mechanism": "设计结合 PARD6A PDZ 肽结合沟槽的胞内抗体，竞争性阻断其与极性复合体伴侣 C 端 PDZ 配体肽结合，并削弱 CDC42-PRKC-PARD6 复合体稳定性。",
+    "selectedEpitope": "优先覆盖 PDZ 结构域 αB/βB 肽结合沟槽及 GLGF 环附近界面。",
+    "diseaseDirection": "胶质瘤与细胞极性异常",
+    "domain": "PARD6A 含 N 端 PB1 结构域、半 CRIB 区段及 C 端 PDZ 结构域；1WMH 覆盖 PDZ 模块。",
+    "evidence": "PARD6A 极性复合体与胶质瘤关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传与文献关联",
+      "UniProt Q9NPB6 蛋白功能与亚细胞定位注释",
+      "RCSB PDB 1WMH 高分辨率 PDZ 结构",
+      "Reactome/KEGG 细胞极性与紧密连接通路注释"
+    ],
+    "referenceEntries": "UniProt Q9NPB6；RCSB PDB 1WMH；Open Targets PARD6A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PDZ αB/βB 肽结合沟槽与 GLGF 环",
+        "直接干预 PDZ 配体识别，机制可验证性较强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PDZ βC-αA 外侧疏水面",
+        "可能影响局部构象与伴侣蛋白装配，适合作为变构结合位点",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PB1-PRKC/PARD3 互作界面",
+        "生物学相关性高但 1WMH 未覆盖，需同源模型或复合物结构支持",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PARD6A 为胞内支架蛋白，常规抗体体内递送与抗原可及性受限；建议定位为 intrabody、VHH 或细胞递送型结合分子，并避免干扰广泛必需极性功能。",
+    "structurePrepZh": "以 1WMH 链 A/B 的 PDZ 结构为模板，去除非功能性晶体接触，补建缺失侧链并评估肽结合沟槽构象；PB1 界面需另行建模。",
+    "structureRef": "RCSB PDB 1WMH，X-ray diffraction，1.5 Å",
+    "antibodies": [
+      "anti-PARD6A research antibody",
+      "intracellular anti-PDZ domain antibody format"
+    ],
+    "interfaceFocus": "PDZ 肽结合沟槽与 GLGF 环",
+    "designMode": "胞内VHH/Fab探针",
+    "candidates": [
+      {
+        "target": "PARD3",
+        "rationale": "PARD3 是 Par polarity complex 的核心支架蛋白，与 PARD6A-PRKC 轴共同组织紧密连接和顶端-基底极性，处于同一细胞极性通路。"
+      },
+      {
+        "target": "PRKCI",
+        "rationale": "PRKCI 编码 atypical PKC iota，可与 PARD6A PB1 相关模块组装并调控极性复合体信号，在多种肿瘤包括胶质瘤样迁移表型中具有机制关联。"
+      },
+      {
+        "target": "CDC42",
+        "rationale": "CDC42-GTP 直接结合 PARD6A 的半 CRIB 区段，是激活 Par6-aPKC 极性复合体的重要上游小 GTPase。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

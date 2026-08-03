@@ -1,0 +1,65 @@
+{
+  "gene": "YTHDF2",
+  "generatedAt": "2026-08-03T17:56:07.759Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "YTHDF2是m6A修饰RNA的细胞质读取蛋白，通过YTH结构域识别N6-甲基腺苷并促进靶mRNA去腺苷化、降解，已与神经退行性疾病、造血细胞数量表型及代谢相关性状存在遗传和功能关联。该蛋白为胞内RNA结合因子，缺乏天然胞外结构域，抗原可及性不适合常规体内阻断型抗体，但其高分辨率YTH结构域可支持细胞内抗体、VHH或结构辅助结合分子设计。相较于同一m6A读取通路中结构信息较少或功能冗余更强的靶点，YTHDF2具有明确的RNA降解效应端角色和1.7 Å实验结构支撑，适合作为机制验证优先靶点。",
+    "mechanism": "设计结合YTH结构域m6A识别口袋的胞内抗体，阻断YTHDF2与m6A修饰RNA的芳香笼相互作用，从而抑制靶mRNA降解复合体募集。",
+    "selectedEpitope": "优先覆盖YTH结构域m6A结合口袋及邻近RNA结合沟槽，避免仅选择远端非功能表面。",
+    "diseaseDirection": "m6A RNA调控与神经退行性疾病",
+    "domain": "YTHDF2含N端低复杂度区和C端YTH结构域，后者负责m6A RNA识别。",
+    "evidence": "YTHDF2-m6A识别结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9Y5A9功能注释",
+      "RCSB PDB 7R5L实验晶体结构",
+      "m6A读取蛋白与RNA降解机制文献"
+    ],
+    "referenceEntries": "UniProt: Q9Y5A9; RCSB PDB: 7R5L; Open Targets: YTHDF2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "YTH结构域m6A芳香笼及RNA结合沟槽",
+        "直接阻断m6A碱基识别与RNA结合，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "YTH结构域RNA沟槽侧翼正电荷区域",
+        "干扰RNA骨架定位，可能降低底物结合亲和力",
+        "备选"
+      ],
+      [
+        "Site C",
+        "YTH结构域远离m6A口袋的溶剂暴露表面",
+        "结合可及但功能阻断不确定，需通过RNA结合实验验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "YTHDF2为胞内蛋白，常规抗体体内可及性不足；宜采用细胞内VHH、递送型Fab或体外机制探针，并严控与YTHDF1/YTHDF3交叉反应。",
+    "structurePrepZh": "以PDB 7R5L链A为模板，保留YTH结构域构象，校正缺失侧链与质子化状态，并围绕m6A结合口袋进行表面网格与界面能评估。",
+    "structureRef": "RCSB PDB 7R5L，X射线晶体结构，1.7 Å",
+    "antibodies": [
+      "无临床获批YTHDF2靶向抗体",
+      "研究级抗YTHDF2抗体"
+    ],
+    "interfaceFocus": "YTH结构域芳香笼与RNA结合沟槽",
+    "designMode": "胞内抗体设计",
+    "candidates": [
+      {
+        "target": "YTHDF1",
+        "rationale": "YTHDF1同属m6A读取蛋白，参与m6A修饰mRNA的翻译促进，与YTHDF2在m6A依赖转录后调控网络中具有功能互补性。"
+      },
+      {
+        "target": "YTHDF3",
+        "rationale": "YTHDF3可协同YTHDF1和YTHDF2调节m6A标记转录本的翻译与降解，是同一YTHDF读取蛋白轴的重要候选靶点。"
+      },
+      {
+        "target": "METTL3",
+        "rationale": "METTL3是m6A甲基转移酶复合体的催化核心，位于YTHDF2上游，决定YTHDF2可识别底物RNA的m6A标记形成。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

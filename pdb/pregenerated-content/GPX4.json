@@ -1,0 +1,65 @@
+{
+  "gene": "GPX4",
+  "generatedAt": "2026-08-03T12:55:39.929Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GPX4是谷胱甘肽过氧化物酶家族成员，催化还原磷脂氢过氧化物并抑制铁死亡相关脂质过氧化，对神经退行性损伤和Sedaghatian型脊柱干骺端发育不良相关病理具有机制关联。该蛋白主要为胞内/线粒体相关硒蛋白，天然抗原可及性弱，不具备膜受体或分泌蛋白优势，因此更适合用于细胞内靶点研究、递送型抗体片段或机制验证工具开发。优先级主要来自铁死亡核心执行节点地位和高分辨率实验结构支持；相较ACSL4、ALOX15等上游脂质代谢靶点，GPX4更接近脂质过氧化清除终末效应环节，但治疗性常规抗体开发优先级需下调。",
+    "mechanism": "抗体片段可识别GPX4催化域邻近构象表面，干扰GSH供体进入或稳定催化中心构象，从而影响磷脂氢过氧化物还原反应。",
+    "selectedEpitope": "优先评估硫氧还蛋白样折叠中靠近U46催化硒半胱氨酸的底物进入沟槽外缘表位。",
+    "diseaseDirection": "铁死亡与神经退行性疾病",
+    "domain": "GPX4为单结构域硒蛋白，呈谷胱甘肽过氧化物酶/硫氧还蛋白样折叠，含U46催化位点。",
+    "evidence": "GPX4铁死亡核心节点与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联评分",
+      "UniProt P36969功能与亚细胞定位注释",
+      "RCSB PDB 6HN3高分辨率晶体结构",
+      "铁死亡脂质过氧化清除机制文献"
+    ],
+    "referenceEntries": "UniProt:P36969；RCSB PDB:6HN3；Open Targets:GPX4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "U46催化位点邻近底物进入沟槽外缘",
+        "可用于构建干扰GSH/脂质过氧化物接近催化中心的功能性片段",
+        "优先"
+      ],
+      [
+        "Site B",
+        "α螺旋-β折叠交界的保守构象表面",
+        "适合作为高亲和结合表位并监测GPX4构象状态",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守催化核心及硒半胱氨酸直接邻域",
+        "可能影响蛋白折叠与同源酶交叉反应，需控制特异性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GPX4为胞内硒蛋白，常规抗体难以到达天然作用位点；催化核心保守性较高，需通过序列差异面筛选降低与GPX1/GPX2交叉反应。",
+    "structurePrepZh": "采用6HN3链A作为模板，保留催化中心邻近残基构象，补全缺失侧链并标注硒半胱氨酸，进行表面可及性与保守性联合评估。",
+    "structureRef": "RCSB PDB 6HN3，X-ray diffraction，1.01 Å",
+    "antibodies": [
+      "Anti-GPX4 clone EPNCIR144",
+      "Anti-GPX4 clone 6F10"
+    ],
+    "interfaceFocus": "催化硒半胱氨酸邻近底物沟槽",
+    "designMode": "胞内靶点片段设计",
+    "candidates": [
+      {
+        "target": "SLC7A11",
+        "rationale": "SLC7A11介导胱氨酸摄取并维持GSH合成，为GPX4提供还原等价物来源，处于同一铁死亡抗性通路且为膜转运蛋白，抗原可及性优于GPX4。"
+      },
+      {
+        "target": "ACSL4",
+        "rationale": "ACSL4促进多不饱和脂肪酸酰基化并增加可过氧化磷脂底物，是GPX4所拮抗脂质过氧化负荷的上游决定因素。"
+      },
+      {
+        "target": "TFRC",
+        "rationale": "TFRC介导转铁蛋白结合与铁摄取，增加游离铁池并推动Fenton反应相关脂质过氧化，是铁死亡通路中具有胞外结构域的可抗体化节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "DNM3",
+  "generatedAt": "2026-08-03T18:36:33.796Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DNM3编码dynamin 3，是大型GTP酶家族成员，参与膜重塑、囊泡剪切及血小板相关细胞结构过程；Open Targets关联主要集中于血小板体积、计数及血小板成分分布宽度，提示其与血小板生成或成熟表型存在遗传关联。DNM3为胞内膜相关GTP酶，缺乏天然胞外结构域，抗原可及性不具备常规治疗性抗体优势，更适合作为机制研究、细胞内递送抗体或结构生物学验证靶点。相较于GP1BA、ITGA2B等血小板表面受体，DNM3的直接抗体成药优先级较低，但其PDB 3L43提供高分辨率实验结构，可支持针对GTPase结构域的精细化结合分子设计。",
+    "mechanism": "设计抗体片段结合DNM3 GTPase结构域的核苷酸结合沟槽或自组装相关界面，阻断GTP结合、水解构象转换及dynamin寡聚化耦联。",
+    "selectedEpitope": "优先覆盖GTPase结构域P-loop、Switch I/II邻近构象面，避开高度保守催化残基核心。",
+    "diseaseDirection": "血小板数量与体积遗传表型",
+    "domain": "DNM3含N端GTPase结构域、中部柄区、PH结构域、GED区及富脯氨酸C端区。",
+    "evidence": "DNM3血小板表型遗传关联与GTPase结构证据",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9UQ16功能与结构域注释",
+      "RCSB PDB 3L43晶体结构记录",
+      "GWAS Catalog血小板性状遗传关联证据"
+    ],
+    "referenceEntries": "UniProt Q9UQ16；RCSB PDB 3L43；Ensembl ENSG00000197959",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "GTPase结构域P-loop与Switch I/II邻近构象面",
+        "可干预核苷酸结合和水解相关构象转换，适合功能阻断型片段设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "GTPase结构域外侧寡聚化接触面",
+        "可能削弱dynamin自组装与膜剪切耦联，适合构象稳定型设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守催化口袋深部残基区域",
+        "家族同源性高，易产生DNM1/DNM2交叉结合及功能广泛抑制风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DNM3为胞内蛋白，常规IgG难以到达作用位点；催化区保守性高，应优先采用细胞内递送片段并通过DNM1/DNM2交叉反应筛选控制选择性风险。",
+    "structurePrepZh": "以PDB 3L43抗原链A-D为模板，去除晶体缓冲分子，校验缺失环区与核苷酸结合位点构象，并保留生物组装界面用于表位评估。",
+    "structureRef": "RCSB PDB 3L43，human DNM3 GTPase结构，2.27 Å X射线晶体",
+    "antibodies": [
+      "抗DNM3研究级单克隆抗体",
+      "抗dynamin家族GTPase结构域抗体"
+    ],
+    "interfaceFocus": "GTPase核苷酸结合沟槽与寡聚化界面",
+    "designMode": "胞内靶点片段抗体",
+    "candidates": [
+      {
+        "target": "GP1BA",
+        "rationale": "GP1BA编码血小板GPIb-IX-V复合体的胞外受体亚基，直接参与血小板黏附并与血小板数量和体积表型相关；其膜外结构域具备明确抗体可及性。"
+      },
+      {
+        "target": "ITGA2B",
+        "rationale": "ITGA2B编码血小板整合素αIIb，与ITGB3形成纤维蛋白原受体复合体，是血小板聚集通路中的核心表面靶点，抗体阻断机制明确。"
+      },
+      {
+        "target": "ITGB3",
+        "rationale": "ITGB3与ITGA2B组成αIIbβ3整合素，介导纤维蛋白原结合和血小板聚集；胞外结构域和临床抗体经验使其具备较高设计可操作性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

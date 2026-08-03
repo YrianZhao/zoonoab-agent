@@ -1,0 +1,65 @@
+{
+  "gene": "ABCF1",
+  "generatedAt": "2026-08-03T09:51:16.504Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ABCF1为胞质型ATP结合盒F亚家族蛋白，缺乏跨膜区，主要参与翻译起始、核糖体相关过程及炎症应答调控；其肿瘤关联信号在膀胱癌、肝细胞癌和胶质母细胞瘤中较弱，尚不足以支持常规细胞外阻断抗体开发。该蛋白定位于胞内，抗原天然可及性显著低于膜受体、分泌因子或细胞外基质靶点，完整抗体难以在未工程化递送条件下接触功能界面。相较PD-L1、FGFR3、VEGFA等同肿瘤方向且具备细胞外可及性的靶点，ABCF1作为主抗体靶点优先级较低，更适合作为结构生物学或胞内递送型结合蛋白研究对象。",
+    "mechanism": "设计目标限定为胞内结合蛋白阻断ABCF1核苷酸结合域间ATP结合/水解构象循环，干扰其与翻译调控复合体的功能耦联。",
+    "selectedEpitope": "优先评估NBD1/NBD2 Walker A、Signature motif邻近的结构域间沟槽表位。",
+    "diseaseDirection": "肿瘤相关胞内翻译调控",
+    "domain": "ABCF1含两个胞质ATP结合结构域NBD1和NBD2，N端具调控区，无跨膜螺旋。",
+    "evidence": "ABCF1肿瘤关联与胞内可及性证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q8NE71亚细胞定位与结构域注释",
+      "RCSB PDB 5ZXD晶体结构记录",
+      "InterPro/Pfam ABC transporter NBD家族注释"
+    ],
+    "referenceEntries": "UniProt Q8NE71；RCSB PDB 5ZXD；Open Targets ABCF1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "NBD1-NBD2结构域间ATP结合沟槽",
+        "可阻断ATP依赖构象转换，最贴近ABCF1核心功能界面",
+        "优先"
+      ],
+      [
+        "Site B",
+        "NBD Signature motif邻近外露面",
+        "可能影响NBD二聚化与核苷酸水解耦联，适合小型胞内结合体筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端调控区或柔性连接区",
+        "结构柔性较高且功能界面不确定，构象表位稳定性需严格验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为胞内定位导致常规抗体不可及，且疾病关联分值较低；建议限定为VHH、intrabody或递送增强格式，并避免宣称细胞外阻断机制。",
+    "structurePrepZh": "以5ZXD链A/B为模板，保留NBD核心折叠并检查ATP结合位点、缺失残基和晶体接触；对柔性N端区域进行低置信度标注。",
+    "structureRef": "RCSB PDB 5ZXD，X-ray diffraction，2.288 Å",
+    "antibodies": [
+      "无获批ABCF1治疗性抗体",
+      "无明确临床阶段ABCF1单克隆抗体"
+    ],
+    "interfaceFocus": "NBD1/NBD2 ATP结合沟槽与Signature motif",
+    "designMode": "胞内VHH/intrabody",
+    "candidates": [
+      {
+        "target": "PDCD1",
+        "rationale": "PD-1为肿瘤免疫检查点通路中的细胞表面受体，抗原可及性和临床验证程度显著优于ABCF1，适合阻断PD-1与PD-L1/PD-L2结合。"
+      },
+      {
+        "target": "CD274",
+        "rationale": "PD-L1在多种肿瘤免疫逃逸中发挥核心作用，胞外IgV样结构域可直接作为抗体阻断表位，具备成熟药物开发先例。"
+      },
+      {
+        "target": "FGFR3",
+        "rationale": "FGFR3改变与膀胱癌分子分型和致癌信号相关，其胞外Ig样结构域允许设计抗体阻断FGF配体结合或受体二聚化。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

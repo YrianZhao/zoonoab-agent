@@ -1,0 +1,65 @@
+{
+  "gene": "GUCA2A",
+  "generatedAt": "2026-08-03T19:24:01.052Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GUCA2A编码肠道分泌肽guanylin，可结合肠上皮膜受体GUCY2C并激活cGMP生成，参与CFTR介导的氯离子与水分泌及肠黏膜稳态调控。该抗原为分泌型小肽，成熟肽含二硫键稳定的胞外可及构象，适合开展配体中和或配体捕获型抗体设计。相较于直接靶向跨膜受体GUCY2C，GUCA2A抗原尺寸小、结构定义明确且可围绕受体结合面进行精准表位约束，适合作为肠上皮cGMP轴的上游调控节点优先评估。",
+    "mechanism": "通过结合成熟guanylin的GUCY2C识别面，阻断GUCA2A与GUCY2C胞外配体结合结构域相互作用，降低受体鸟苷酸环化酶活化与细胞内cGMP生成。",
+    "selectedEpitope": "优先覆盖成熟guanylin二硫键约束核心环及GUCY2C受体识别面，避免仅识别柔性前肽片段。",
+    "diseaseDirection": "肠上皮cGMP信号与黏膜稳态",
+    "domain": "前体含信号肽和前肽区，C端成熟guanylin为15肽样分泌激素，含二硫键稳定环状构象。",
+    "evidence": "GUCA2A-GUCY2C-cGMP轴抗体设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与表型关联",
+      "UniProt Q02747蛋白注释与成熟肽信息",
+      "RCSB PDB 1GNA溶液NMR结构",
+      "肠上皮GUCY2C配体-受体信号文献"
+    ],
+    "referenceEntries": "UniProt Q02747；RCSB PDB 1GNA；Open Targets GUCA2A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "成熟guanylin二硫键约束核心环",
+        "富集受体识别构象，适合配体中和抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "成熟肽N端受体接触邻近面",
+        "可增强对游离配体的捕获并辅助阻断GUCY2C结合",
+        "备选"
+      ],
+      [
+        "Site C",
+        "前体前肽或信号肽相关区域",
+        "成熟分泌配体中不存在或可及性不足，功能阻断价值有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GUCA2A成熟肽体积小且二硫键构象依赖性强，线性肽免疫易产生非功能性抗体；建议采用构象约束肽或展示支架保留天然环结构。",
+    "structurePrepZh": "以1GNA溶液NMR模型集提取成熟guanylin构象，校验二硫键连接与低能代表构象，并映射GUCY2C识别相关残基用于表位聚类。",
+    "structureRef": "RCSB PDB 1GNA，human guanylin solution NMR structure",
+    "antibodies": [
+      "抗guanylin研究级中和抗体",
+      "抗GUCY2C配体轴功能阻断抗体"
+    ],
+    "interfaceFocus": "成熟guanylin核心环与GUCY2C配体结合面",
+    "designMode": "配体中和型设计",
+    "candidates": [
+      {
+        "target": "GUCY2C",
+        "rationale": "GUCY2C是GUCA2A的肠上皮膜受体，直接介导配体诱导的cGMP生成。靶向其胞外配体结合结构域可阻断guanylin/uroguanylin信号输入。"
+      },
+      {
+        "target": "GUCA2B",
+        "rationale": "GUCA2B编码uroguanylin，与GUCA2A同属GUCY2C内源性肽配体，参与肠道盐水分泌和cGMP稳态。其分泌型成熟肽同样具备配体捕获型抗体设计可行性。"
+      },
+      {
+        "target": "CFTR",
+        "rationale": "CFTR位于GUCY2C-cGMP-PKG信号下游，承担氯离子分泌效应功能。其通路位置适合用于药效标志物和机制验证，但膜蛋白抗体干预需谨慎评估构象与组织表达风险。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

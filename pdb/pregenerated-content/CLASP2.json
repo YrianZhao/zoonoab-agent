@@ -1,0 +1,65 @@
+{
+  "gene": "CLASP2",
+  "generatedAt": "2026-08-03T11:26:20.094Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CLASP2 是微管加端追踪蛋白，参与 EB1 依赖的微管 plus-end 捕获、轴突微管稳定与神经元极性维持，其遗传关联主要指向神经退行性疾病及生长体征相关表型。该蛋白为胞质微管骨架调控因子，缺乏天然胞外结构域、分泌形式或膜受体暴露面，因此作为常规体内阻断型抗体靶点的抗原可及性较弱，更适合细胞内递送抗体片段、研究级构象探针或外泌体/递送系统辅助设计。相比 MAPT 等高聚集风险神经退行靶点，CLASP2 的优势在于可直接聚焦微管加端调控复合体界面，便于解析 CLASP2-EB1 轴对神经元微管动力学的因果贡献，但转化优先级需低于具备胞外可及性的同通路受体或配体靶点。",
+    "mechanism": "设计抗体片段阻断 CLASP2 SxIP 基序区域与 MAPRE1/EB1 C 端疏水沟槽结合，削弱 CLASP2 向微管加端募集并改变轴突微管稳定性。",
+    "selectedEpitope": "优先覆盖 5NR4 中 CLASP2 SxIP 肽段结合界面及邻近 MAPRE1 C 端沟槽接触残基。",
+    "diseaseDirection": "神经退行性疾病与微管稳态",
+    "domain": "CLASP2 含 TOG 样微管结合结构域、丝氨酸/精氨酸富集区及 C 端 EB1 结合 SxIP 基序。",
+    "evidence": "CLASP2-EB1微管加端调控证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt O75122 蛋白功能与结构域注释",
+      "RCSB PDB 5NR4 晶体结构记录",
+      "MAPRE1/EB1 介导微管加端追踪文献"
+    ],
+    "referenceEntries": "UniProt O75122；RCSB PDB 5NR4；Open Targets CLASP2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CLASP2 SxIP 基序与 EB1 结合沟槽界面",
+        "直接干预 CLASP2 招募至微管加端的核心相互作用",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CLASP2 TOG 样微管结合结构域外露面",
+        "可用于调节微管晶格结合与构象识别，但需避免广泛骨架毒性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "低复杂度丝氨酸/精氨酸富集柔性区",
+        "结构异质性高且磷酸化状态复杂，抗体结合可重复性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CLASP2 为胞内蛋白，体内抗体可及性与递送效率是主要限制；应优先采用 VHH、intrabody 或靶向递送体系，并避免干扰广泛必需微管功能。",
+    "structurePrepZh": "以 5NR4 高分辨率晶体结构为模板，保留 CLASP2 肽段与 MAPRE1/EB1 复合界面，补全缺失侧链并标注柔性低复杂度区。",
+    "structureRef": "RCSB PDB 5NR4，X-ray diffraction，1.198 Å",
+    "antibodies": [
+      "抗 CLASP2 研究级单克隆抗体",
+      "抗 MAPRE1/EB1 研究级单克隆抗体"
+    ],
+    "interfaceFocus": "CLASP2 SxIP-EB1 C端结合沟槽",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "MAPRE1",
+        "rationale": "MAPRE1/EB1 是 CLASP2 招募至微管 plus-end 的直接结合伙伴，靶向其 C 端 EBH 结构域可系统评估 EB1 依赖的微管加端追踪机制。"
+      },
+      {
+        "target": "MAPT",
+        "rationale": "MAPT 编码 tau 蛋白，是神经退行性疾病中微管稳定与异常聚集的核心靶点，与 CLASP2 同属神经元微管稳态病理轴。"
+      },
+      {
+        "target": "CLASP1",
+        "rationale": "CLASP1 与 CLASP2 具有同源 TOG 样结构域和 EB1 依赖微管加端定位机制，可作为功能冗余与选择性设计的同通路比较靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

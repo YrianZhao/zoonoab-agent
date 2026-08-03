@@ -1,0 +1,65 @@
+{
+  "gene": "AHSA1",
+  "generatedAt": "2026-08-03T10:20:29.971Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "AHSA1编码Aha1，是HSP90分子伴侣循环的胞质共伴侣，可直接增强HSP90 ATPase活性并影响多种激酶、核受体及应激相关客户蛋白成熟；Open Targets信号主要集中于IGF-1测量值、白细胞数量和中性粒细胞计数等分子表型，提示其与蛋白稳态和造血/免疫细胞状态存在遗传关联。该蛋白并非经典膜受体或分泌抗原，天然胞外可及性不足，因此更适合定位于细胞内靶点验证、递送型抗体片段或研究级结构阻断工具。相较直接靶向HSP90，AHSA1具有调节共伴侣界面的选择性优势，可更精细地干预HSP90构象循环而降低广泛伴侣网络抑制风险。",
+    "mechanism": "阻断AHSA1与HSP90 N端/中段界面的结合，降低Aha1诱导的HSP90 ATP水解加速效应，削弱客户蛋白成熟效率。",
+    "selectedEpitope": "优先覆盖AHSA1 N端结构域中参与HSP90结合的保守凹面与邻近铰链界面。",
+    "diseaseDirection": "蛋白稳态与免疫血液表型",
+    "domain": "AHSA1含N端HSP90结合结构域、中央连接区及C端调节结构域，整体为胞质可溶性共伴侣蛋白。",
+    "evidence": "AHSA1-HSP90共伴侣轴结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt O95433 functional annotation",
+      "RCSB PDB 8Z3H X-ray structure",
+      "HSP90-Aha1 ATPase activation literature"
+    ],
+    "referenceEntries": "UniProt: O95433; RCSB PDB: 8Z3H; Gene: AHSA1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端HSP90结合凹面及保守疏水/带电斑块",
+        "可直接竞争AHSA1-HSP90接触并抑制ATPase激活",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端结构域与中央连接区邻近铰链表面",
+        "可能限制AHSA1构象适配并降低HSP90复合物稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端调节结构域远端暴露表面",
+        "结构可及但与HSP90激活界面距离较远，功能阻断不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "AHSA1为胞内可溶性蛋白，常规抗体体内可达性受限；应优先采用细胞内递送、VHH或Fab片段工具化验证，并避免破坏非目标蛋白稳态网络。",
+    "structurePrepZh": "以8Z3H链A为模板进行缺失残基检查、质子化和晶体接触排除；结合已报道HSP90-Aha1复合物界面映射候选表位。",
+    "structureRef": "RCSB PDB 8Z3H, X-ray diffraction, 1.5 Å",
+    "antibodies": [
+      "anti-AHSA1 antibody",
+      "anti-Aha1 antibody"
+    ],
+    "interfaceFocus": "AHSA1 N端HSP90结合凹面与铰链区",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "HSP90AA1",
+        "rationale": "HSP90AA1编码诱导型HSP90α，是AHSA1直接结合并被其增强ATPase活性的核心伴侣蛋白，位于同一蛋白稳态调控轴。"
+      },
+      {
+        "target": "HSP90AB1",
+        "rationale": "HSP90AB1编码组成型HSP90β，与AHSA1共同参与客户蛋白折叠和伴侣循环，可作为同通路替代或联合评估靶点。"
+      },
+      {
+        "target": "CDC37",
+        "rationale": "CDC37是HSP90激酶客户蛋白装载共伴侣，与HSP90-AHSA1调节的客户蛋白成熟过程处于同一分子伴侣通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

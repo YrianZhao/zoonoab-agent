@@ -1,0 +1,65 @@
+{
+  "gene": "LIF",
+  "generatedAt": "2026-08-03T13:53:13.225Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "LIF 是 IL-6 家族分泌型细胞因子，可通过 LIFR 与 gp130 形成受体复合物并激活 JAK-STAT3、MAPK 与 PI3K-AKT 轴，参与骨重塑、炎症纤维化及肿瘤微环境免疫抑制。其抗原为可溶性胞外蛋白，四螺旋束结构暴露度高，受体结合面具备直接抗体阻断可及性。相比下游 JAK/STAT 节点，LIF 具有配体级选择性，较少干扰多种细胞因子共享信号，适合作为高优先级阻断型抗体靶点。",
+    "mechanism": "抗体结合 LIF 四螺旋束受体结合面，阻断 LIF 与 LIFR 的初始识别及后续 gp130 复合体装配，从而抑制 STAT3 磷酸化。",
+    "selectedEpitope": "优先覆盖 LIF site III/LIFR 结合界面，兼顾 AB loop 与 D helix 邻近受体接触残基。",
+    "diseaseDirection": "骨代谢异常与炎症纤维化",
+    "domain": "LIF 为 IL-6 家族四α螺旋束细胞因子，含 A-D helices 及连接环区。",
+    "evidence": "LIF-LIFR-gp130 轴阻断抗体设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传与关联评分",
+      "UniProt P15018 蛋白功能与分泌定位注释",
+      "RCSB PDB 1PVH X 射线晶体结构",
+      "IL-6 family cytokine receptor complex 结构与功能文献"
+    ],
+    "referenceEntries": "UniProt:P15018；RCSB PDB:1PVH；HGNC:LIF",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "site III/LIFR 结合面，D helix 与 AB loop 邻近区域",
+        "直接阻断 LIF-LIFR 初始结合，机制清晰且功能抑制潜力高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "site II/gp130 招募相关表面，A helix 与 C helix 邻近面",
+        "干扰受体复合体装配，可作为非竞争或协同阻断策略",
+        "备选"
+      ],
+      [
+        "Site C",
+        "四螺旋束疏水核心邻近保守结构面",
+        "可能影响蛋白稳定性并增加交叉反应或构象依赖风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "LIF 与 IL-6 家族成员共享受体装配逻辑，表位需避开高度保守螺旋骨架，优先选择 LIFR 接触特异残基以降低家族交叉反应。",
+    "structurePrepZh": "以 1PVH 晶体结构为模板，保留抗原链 A-D 中完整 LIF 单体，补全缺失环区并进行质子化、侧链优化和受体结合面标注。",
+    "structureRef": "RCSB PDB 1PVH，human LIF X-ray，2.5 Å",
+    "antibodies": [
+      "MSC-1",
+      "AZD0171"
+    ],
+    "interfaceFocus": "LIFR 识别面与 gp130 招募邻近面",
+    "designMode": "配体阻断型抗体",
+    "candidates": [
+      {
+        "target": "LIFR",
+        "rationale": "LIFR 是 LIF 的特异性初始受体链，阻断其胞外 D2-D3 细胞因子结合模块可直接抑制 LIF 依赖性信号输入。"
+      },
+      {
+        "target": "IL6ST",
+        "rationale": "IL6ST 编码 gp130，是 LIF-LIFR 复合体的共受体链，靶向其细胞因子受体同源结构域可抑制复合体信号传递，但需关注多种 IL-6 家族通路共用风险。"
+      },
+      {
+        "target": "OSM",
+        "rationale": "OSM 同属 IL-6 家族并可通过 OSMR/gp130 或 LIFR/gp130 轴参与炎症和组织重塑，与 LIF 在纤维化及骨代谢相关通路中具有功能交叉。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

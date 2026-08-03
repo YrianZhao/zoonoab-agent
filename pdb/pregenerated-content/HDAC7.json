@@ -1,0 +1,65 @@
+{
+  "gene": "HDAC7",
+  "generatedAt": "2026-08-03T19:43:54.999Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HDAC7属于IIa类组蛋白去乙酰化酶，在肿瘤、骨髓瘤、肌营养不良及神经退行性疾病中通过去乙酰化组蛋白与转录因子底物影响MEF2依赖转录、细胞分化和存活程序。该蛋白主要定位于细胞核/胞质穿梭区室，缺乏经典胞外结构域或分泌特征，天然抗原可及性不支持常规细胞表面阻断抗体策略。其优先级更适合作为结构引导的胞内结合分子或降解型抗体片段研究对象；相比HDAC1/2等广谱核心去乙酰化酶，HDAC7在组织信号输入和MEF2调控中具有更明确的IIa类选择性窗口。",
+    "mechanism": "设计分子应占据HDAC7催化结构域锌离子邻近底物通道，阻断乙酰化赖氨酸底物进入并干扰HDAC7与共抑制复合体的催化构象稳定。",
+    "selectedEpitope": "优先瞄准C端HDAC催化结构域底物结合沟槽及锌配位口袋外缘，避开高度保守锌配位残基。",
+    "diseaseDirection": "肿瘤与转录表观遗传调控",
+    "domain": "HDAC7含N端调控区、MEF2结合相关区域、核输出调控位点及C端IIa类HDAC催化结构域。",
+    "evidence": "HDAC7疾病遗传关联与催化结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q8WUI4功能与亚细胞定位注释",
+      "RCSB PDB 3C10晶体结构记录",
+      "文献报道IIa类HDAC-MEF2转录抑制机制"
+    ],
+    "referenceEntries": "UniProt Q8WUI4；RCSB PDB 3C10；Open Targets HDAC7",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端催化结构域底物通道入口及锌口袋外缘",
+        "可直接限制乙酰化赖氨酸底物进入，适合构建功能阻断型胞内Fab/VHH",
+        "优先"
+      ],
+      [
+        "Site B",
+        "IIa类HDAC催化结构域表面环区与亚型差异位点",
+        "有利于提升HDAC7相对HDAC4/5/9的选择性，降低广谱HDAC抑制风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "锌配位核心及高度保守催化残基邻域",
+        "功能相关性强但同源保守度高，易产生亚型交叉结合与构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HDAC7为胞内核质穿梭酶，常规抗体难以到达作用位点；建议采用胞内VHH、细胞递送Fab或PROTAC/降解偶联策略，并系统评估HDAC4/5/9交叉反应。",
+    "structurePrepZh": "以PDB 3C10的2.0 Å X射线结构为模板，保留催化结构域构象，校验锌离子、关键水分子及缺失环区，并按链A/B/C进行同源界面对齐。",
+    "structureRef": "RCSB PDB 3C10，人源HDAC7催化结构域晶体结构",
+    "antibodies": [
+      "HDAC7研究级单克隆抗体",
+      "IIa类HDAC胞内VHH工程抗体"
+    ],
+    "interfaceFocus": "催化底物通道、锌口袋外缘与IIa亚型差异环区",
+    "designMode": "胞内功能阻断",
+    "candidates": [
+      {
+        "target": "MEF2C",
+        "rationale": "MEF2C是HDAC7介导转录抑制的重要转录因子伙伴，参与肌肉、神经和血液细胞分化程序；阻断HDAC7-MEF2轴可直接影响同一转录调控通路。"
+      },
+      {
+        "target": "HDAC4",
+        "rationale": "HDAC4同属IIa类HDAC并与MEF2转录因子形成抑制复合体，是评估HDAC7通路冗余性和亚型选择性的关键同通路靶点。"
+      },
+      {
+        "target": "NCOR1",
+        "rationale": "NCOR1为HDAC转录共抑制复合体核心组分，可募集HDAC活性并维持染色质抑制状态，适合作为HDAC7相关共抑制轴的候选干预节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

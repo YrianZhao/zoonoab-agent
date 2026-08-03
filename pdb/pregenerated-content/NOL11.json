@@ -1,0 +1,65 @@
+{
+  "gene": "NOL11",
+  "generatedAt": "2026-08-03T14:46:19.756Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NOL11是小亚基工艺体相关核仁蛋白，参与18S rRNA加工与核糖体小亚基生物发生，其遗传关联主要集中于血小板体积、端粒长度、维生素D水平和动脉僵硬等复杂性状，而非经典可药物化疾病驱动通路。该蛋白定位于核仁并主要参与胞内核糖核蛋白复合体装配，缺乏稳定胞外结构域、分泌形式或膜受体可及性，因此天然抗体成药可及性不足。相较于同通路中具有细胞表面暴露或分泌属性的炎症、造血或血管调控靶点，NOL11更适合作为遗传功能研究标志物，抗体设计优先级应低于可直接中和的胞外靶点。",
+    "mechanism": "不建议采用常规中和抗体机制；若用于研究级胞内抗体，应干扰NOL11与SSU processome内rRNA加工因子界面的装配。",
+    "selectedEpitope": "优先评估7MQA中NOL11暴露螺旋束与SSU processome邻近蛋白接触边缘，避开埋藏核酸结合界面。",
+    "diseaseDirection": "血小板与核糖体生物发生相关性状",
+    "domain": "NOL11为核仁SSU processome组分，缺乏跨膜区和胞外结构域，结构片段位于核内复合体环境。",
+    "evidence": "NOL11遗传关联与SSU工艺体结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform遗传关联数据",
+      "UniProt Q9H8H0蛋白定位与功能注释",
+      "RCSB PDB 7MQA冷冻电镜结构",
+      "Gene Ontology核糖体小亚基生物发生注释"
+    ],
+    "referenceEntries": "UniProt Q9H8H0；RCSB PDB 7MQA；Open Targets NOL11",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "7MQA中NOL11溶剂暴露螺旋束外侧面",
+        "适合研究级结合抗体识别，降低对核心装配界面的破坏",
+        "优先"
+      ],
+      [
+        "Site B",
+        "NOL11与SSU processome蛋白邻近接触边缘",
+        "可用于构建干扰复合体装配的胞内抗体假设",
+        "备选"
+      ],
+      [
+        "Site C",
+        "靠近pre-rRNA或深埋复合体核心区域",
+        "结构可及性低且易影响非特异核糖体加工过程",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为核仁胞内定位导致常规抗体不可及，且核糖体生物发生为基础生命过程；建议限定为研究级Fab/VHH或递送型胞内抗体评估。",
+    "structurePrepZh": "以7MQA冷冻电镜模型提取NOL11相关链段，校验局部分辨率、缺失残基与复合体接触面，并标注溶剂暴露表面。",
+    "structureRef": "RCSB PDB 7MQA，human SSU processome，EM 2.7 Å",
+    "antibodies": [
+      "无获批NOL11靶向治疗性抗体",
+      "商业化抗NOL11研究抗体"
+    ],
+    "interfaceFocus": "NOL11暴露螺旋束及SSU processome接触边缘",
+    "designMode": "胞内研究抗体",
+    "candidates": [
+      {
+        "target": "DCLRE1B",
+        "rationale": "DCLRE1B参与端粒复制和端粒长度维持，与NOL11共同出现在端粒长度相关遗传性状背景中。其机制更贴近端粒稳定性通路，但仍以胞内核蛋白为主。"
+      },
+      {
+        "target": "TERT",
+        "rationale": "TERT是端粒酶逆转录酶催化亚基，直接延长端粒重复序列，是端粒长度性状的核心驱动因子。其疾病机制明确，但常规胞外抗体可及性同样受限。"
+      },
+      {
+        "target": "TINF2",
+        "rationale": "TINF2是shelterin复合体组分，调控端粒保护和端粒酶可及性，与端粒区域长度性状处于同一生物学轴线。其适合作为端粒稳态机制研究候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

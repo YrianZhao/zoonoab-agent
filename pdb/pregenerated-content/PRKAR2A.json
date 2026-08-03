@@ -1,0 +1,65 @@
+{
+  "gene": "PRKAR2A",
+  "generatedAt": "2026-08-03T15:35:03.312Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PRKAR2A编码PKA II型调节亚基α，主要通过结合cAMP并释放催化亚基PRKACA/PRKACB，参与神经元可塑性、代谢稳态及炎症相关转录调控。该蛋白以胞内PKA全酶调节亚基形式定位，天然抗原可及性弱于膜受体或分泌因子，抗体设计更适合定位于结构机制验证、胞内递送或研究级阻断场景。其优先级低于同通路中具备细胞外可及性的上游GPCR或腺苷酸环化酶相关膜蛋白，但2IZX提供1.3 Å高分辨率结构，可支持精确的构象表位与cAMP结合口袋邻近界面设计。",
+    "mechanism": "通过结合PRKAR2A cAMP结合结构域邻近变构界面，限制cAMP诱导构象转换，从而抑制PRKACA从RIIα全酶复合体释放。",
+    "selectedEpitope": "优先覆盖CNB-B结构域cAMP结合口袋邻近的β-barrel变构环与C螺旋界面。",
+    "diseaseDirection": "神经退行性与代谢调控",
+    "domain": "含N端二聚化/AKAP结合区、抑制序列及串联CNB-A、CNB-B cAMP结合结构域。",
+    "evidence": "PRKAR2A-PKA信号与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB P13861功能与亚细胞定位注释",
+      "RCSB PDB 2IZX晶体结构记录",
+      "PKA调节亚基cAMP结合与催化亚基释放机制文献"
+    ],
+    "referenceEntries": "UniProt P13861；RCSB PDB 2IZX；Open Targets PRKAR2A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CNB-B cAMP结合口袋邻近β4-β5环与C螺旋界面",
+        "干预cAMP诱导的变构稳定化，适合构象锁定型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CNB-A与CNB-B结构域间连接界面",
+        "可能影响双cAMP结合结构域协同转换，适合作为别构调节表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端二聚化/AKAP结合区域",
+        "可能干扰AKAP锚定复合体，但2IZX结构覆盖不足且细胞内可及性受限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PRKAR2A为胞内调节蛋白，常规治疗性抗体难以进入作用位点；建议定位于胞内递送抗体、VHH融合递送或机制研究抗体，并避免直接占据高度保守cAMP口袋造成同源交叉反应。",
+    "structurePrepZh": "以2IZX高分辨率晶体结构为模板，保留抗原链A/B/C中完整CNB结构域，校正cAMP配体邻近残基、缺失环区与质子化状态后开展表位可及性评估。",
+    "structureRef": "RCSB PDB 2IZX，X-ray diffraction，1.3 Å",
+    "antibodies": [
+      "anti-PRKAR2A clone EP2645Y",
+      "anti-PRKAR2A clone 3D7"
+    ],
+    "interfaceFocus": "CNB-B变构环、C螺旋及cAMP结合口袋邻近界面",
+    "designMode": "胞内别构阻断",
+    "candidates": [
+      {
+        "target": "PRKACA",
+        "rationale": "PRKACA为PKA催化亚基，直接接受PRKAR2A释放调控并磷酸化CREB等底物，是同一cAMP-PKA通路的核心效应节点。"
+      },
+      {
+        "target": "CREB1",
+        "rationale": "CREB1是PKA下游经典转录因子，参与神经元存活、突触可塑性和代谢基因表达，可用于评估PRKAR2A调节后果。"
+      },
+      {
+        "target": "ADCY5",
+        "rationale": "ADCY5催化ATP生成cAMP，位于PRKAR2A上游并决定PKA全酶激活输入强度，与代谢和神经系统表型存在遗传关联。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

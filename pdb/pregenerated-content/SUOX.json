@@ -1,0 +1,65 @@
+{
+  "gene": "SUOX",
+  "generatedAt": "2026-08-03T17:02:53.423Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SUOX编码的sulfite oxidase是硫代谢终末氧化步骤的关键酶，功能缺陷可直接导致亚硫酸盐积累并引发isolated sulfite oxidase deficiency及相关脑病，疾病关联机制明确且具有直接致病性。该蛋白为分泌型线粒体周质酶，抗体在体内仅可有效覆盖成熟分泌/细胞外可及形式，因此抗原可及性优于多数胞内代谢酶。相比同通路候选靶点，SUOX处于硫酸化/亚硫酸盐解毒的末端瓶颈位点，具有更高的通路因果优先级。",
+    "mechanism": "抗体预计通过占据活性位点周边环区，阻断sulfite向Mo中心的底物进入并干扰电子转移。",
+    "selectedEpitope": "优先选择Mo结合域近活性口袋外缘及二级结构环面，避免直接破坏折叠核心。",
+    "diseaseDirection": "硫代谢缺陷/代谢性脑病",
+    "domain": "SUOX成熟蛋白的C端Mo-cofactor催化结构域及邻近表面环区",
+    "evidence": "SUOX疾病-结构整合证据包",
+    "evidenceSources": [
+      "UniProt:P51687",
+      "RCSB PDB:1MJ4",
+      "Open Targets Platform",
+      "OMIM/MonDO disease annotations"
+    ],
+    "referenceEntries": "UniProt P51687; PDB 1MJ4; human sulfite oxidase",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Mo-cofactor口袋外缘环区",
+        "可优先干扰底物进入与催化周转",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端催化域表面保守环面",
+        "适于形成高亲和但低构象破坏结合",
+        "备选"
+      ],
+      [
+        "Site C",
+        "二级结构核心邻近疏水面",
+        "存在折叠稳定性受损风险，不利于功能解析",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SUOX为分泌/腔内酶样蛋白，抗体需优先评估成熟构象暴露面。应避免覆盖Mo中心保守折叠核心，以降低非特异失稳与表达损失风险。",
+    "structurePrepZh": "建议以1MJ4高分辨率晶体结构为主模板，补齐缺失环区并按成熟蛋白状态建模。需标注信号肽与线粒体定位前体序列，确保仅保留可及外露表面。",
+    "structureRef": "PDB 1MJ4, X-ray 1.2 Å",
+    "antibodies": [
+      "SUOX相关中和性抗体报道有限",
+      "酶活性阻断型抗体作为概念参考"
+    ],
+    "interfaceFocus": "Mo活性口袋外缘与底物通道入口",
+    "designMode": "structure-guided",
+    "candidates": [
+      {
+        "target": "MOCS1",
+        "rationale": "MOCS1参与molybdenum cofactor生物合成，是SUOX功能维持的上游必需节点。其与SUOX同属硫氧化代谢轴，适合作为机制对照靶点。"
+      },
+      {
+        "target": "MOCS2",
+        "rationale": "MOCS2同属molybdenum cofactor通路，缺陷可导致SUOX失活表型。该靶点与主靶点处于真实同一路径，适于通路级联合验证。"
+      },
+      {
+        "target": "MOCS3",
+        "rationale": "MOCS3参与molybdenum cofactor前体修饰过程，决定后续SUOX装配能力。作为同疾病通路靶点，可用于验证硫代谢缺陷的上游约束环节。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

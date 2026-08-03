@@ -1,0 +1,65 @@
+{
+  "gene": "IRF3",
+  "generatedAt": "2026-08-03T19:58:24.760Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IRF3是胞内转录因子，位于cGAS-STING、RIG-I/MDA5-MAVS与TLR3-TRIF通路下游，磷酸化二聚化后诱导I型干扰素与ISG表达，参与疱疹性脑炎、SARS/COVID-19及神经炎症相关病理。其抗原可及性不具备常规胞外靶点优势，需采用细胞内递送抗体、intrabody或研究级阻断构型。相比上游PRR适配蛋白，IRF3处于多条抗病毒通路汇聚节点，结构域界面明确且晶体结构分辨率高，适合机制验证优先设计。",
+    "mechanism": "阻断IRF3磷酸化后C端自抑制区释放与二聚化界面装配，抑制IRF3二聚体进入细胞核并结合IFNB1增强子。",
+    "selectedEpitope": "优先靶向IRF3 C端IRF association domain的磷酸化依赖二聚化界面，规避DNA结合结构域。",
+    "diseaseDirection": "抗病毒免疫与炎症调控",
+    "domain": "IRF3含N端螺旋-转角-螺旋DNA结合结构域与C端IRF association domain及自抑制磷酸化尾部。",
+    "evidence": "IRF3抗病毒干扰素通路结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt Q14653功能注释",
+      "RCSB PDB 6SJA晶体结构",
+      "Reactome先天免疫干扰素通路"
+    ],
+    "referenceEntries": "UniProt: Q14653; RCSB PDB: 6SJA; Ensembl: ENSG00000126456",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端IRF association domain二聚化界面",
+        "直接干预活化IRF3二聚体形成，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "自抑制元件邻近磷酸化调控区",
+        "影响C端构象释放与转录激活复合体形成",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端DNA结合结构域识别面",
+        "可能阻断IFNB1增强子结合，但同源IRF交叉反应风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IRF3为胞内核质穿梭蛋白，常规治疗性抗体可及性不足；建议限定为intrabody、递送抗体或结构机制探针，并评估IRF家族同源性。",
+    "structurePrepZh": "以6SJA高分辨率晶体结构为模板，保留抗原链A/B/C用于界面比对，补建缺失柔性尾部并标注Ser/Thr磷酸化位点。",
+    "structureRef": "RCSB PDB 6SJA，X-ray diffraction，1.5 Å",
+    "antibodies": [
+      "anti-IRF3 clone SL-12.1",
+      "anti-phospho-IRF3 Ser396 clone 4D4G"
+    ],
+    "interfaceFocus": "IRF association domain二聚化面与磷酸化尾部",
+    "designMode": "胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "TBK1",
+        "rationale": "TBK1在cGAS-STING与RIG-I/MAVS通路中直接磷酸化IRF3，是抑制IRF3激活的上游激酶节点。"
+      },
+      {
+        "target": "TMEM173",
+        "rationale": "TMEM173编码STING，感知cGAS产生的cGAMP后募集TBK1并驱动IRF3磷酸化，适合干预DNA感知型干扰素通路。"
+      },
+      {
+        "target": "MAVS",
+        "rationale": "MAVS连接RIG-I/MDA5病毒RNA识别与TBK1-IRF3轴，是RNA病毒诱导I型干扰素反应的关键适配蛋白。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

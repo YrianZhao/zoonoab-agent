@@ -1,0 +1,65 @@
+{
+  "gene": "DUSP18",
+  "generatedAt": "2026-08-03T18:47:22.415Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DUSP18为胞内双特异性磷酸酶，主要通过催化位点去磷酸化磷酸丝氨酸/苏氨酸或磷酸酪氨酸底物，现有遗传关联主要集中于红细胞体积、血红蛋白浓度及红细胞计数等血液表型。该蛋白缺乏跨膜区和分泌信号肽，天然抗原可及性不利于常规细胞外阻断型抗体，仅适合重组蛋白结合、胞内抗体或降解偶联探索。相较EPOR、KIT或TFRC等造血膜受体，DUSP18的疾病得分较低且效应机制未形成清晰可药性链条，因此作为抗体主靶点优先级偏探索性。",
+    "mechanism": "设计抗体可结合DUSP18催化结构域邻近底物进入沟槽，空间阻断磷酸化底物与HCX5R催化环接触，从而抑制去磷酸化反应。",
+    "selectedEpitope": "优先覆盖PTP催化结构域的活性位点周边底物结合沟槽，避开完全埋藏的催化半胱氨酸。",
+    "diseaseDirection": "红细胞数量与血液学表型",
+    "domain": "DUSP18由单一DSP/PTP催化结构域构成，含保守HCX5R磷酸酶催化基序。",
+    "evidence": "DUSP18结构与血液表型遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform血液表型关联",
+      "UniProt Q8NEJ0蛋白功能注释",
+      "RCSB PDB 2ESB晶体结构",
+      "InterPro双特异性磷酸酶结构域注释"
+    ],
+    "referenceEntries": "UniProt: Q8NEJ0；RCSB PDB: 2ESB；Gene: DUSP18",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PTP催化结构域底物结合沟槽及HCX5R邻近环区",
+        "可直接干扰磷酸化底物进入催化中心，具备机制验证价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域外围可溶暴露α螺旋与环区",
+        "适合获得高亲和结合抗体，用于检测、结构稳定或胞内结合工具",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化半胱氨酸所在深部口袋",
+        "区域保守且部分埋藏，抗体可达性和亚型选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DUSP18为胞内可溶酶，常规治疗性抗体难以触达天然靶点；建议定位为结构生物学、胞内抗体或靶向降解先导验证。",
+    "structurePrepZh": "采用2ESB链A作为抗原模板，补全缺失侧链并校正质子化状态，重点标注催化环、底物沟槽和暴露环区。",
+    "structureRef": "RCSB PDB 2ESB，human DUSP18，X-ray 2.0 Å",
+    "antibodies": [
+      "无已批准DUSP18靶向抗体",
+      "商业研究级anti-DUSP18抗体"
+    ],
+    "interfaceFocus": "催化环邻近底物结合沟槽",
+    "designMode": "胞内靶点探索型",
+    "candidates": [
+      {
+        "target": "EPOR",
+        "rationale": "EPOR是红细胞生成通路的核心细胞表面受体，介导EPO诱导的JAK2激活，与红细胞数量和血红蛋白相关表型具有直接机制联系。其胞外配体结合域具备抗体可及性。"
+      },
+      {
+        "target": "JAK2",
+        "rationale": "JAK2位于EPOR下游，驱动STAT5磷酸化并促进红系祖细胞存活与分化；其变异与红细胞增多和骨髓增殖性疾病密切相关。作为胞内激酶，更适合小分子或胞内结合分子策略。"
+      },
+      {
+        "target": "TFRC",
+        "rationale": "TFRC介导转铁蛋白依赖性铁摄取，是红细胞血红蛋白合成所需铁代谢通路的关键膜受体。其胞外结构域暴露充分，抗体设计可及性优于DUSP18。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

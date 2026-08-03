@@ -1,0 +1,65 @@
+{
+  "gene": "NEDD8",
+  "generatedAt": "2026-08-03T14:39:40.169Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NEDD8是泛素样修饰系统的核心小蛋白，通过与cullin支架蛋白共价连接激活CRL类E3泛素连接酶，影响细胞周期、DNA损伤应答、蛋白稳态和肿瘤存活通路。其成熟蛋白主要位于胞内并以游离或共价缀合形式存在，抗原天然可及性弱于膜受体或分泌蛋白，需优先定位于外源递送、胞内抗体或机制研究型抗体场景。相较于单一CRL底物，NEDD8位于neddylation级联上游枢纽，通路覆盖面更广，但成药性优先级低于NAE1/UBA3等酶靶点的小分子抑制策略。",
+    "mechanism": "设计抗体阻断NEDD8疏水补丁与NAE1-UBA3、UBE2M或cullin受体界面的结合，抑制NEDD8装载与cullin neddylation。",
+    "selectedEpitope": "优先覆盖β1-β2环及Ile44疏水补丁邻近面，干预E1/E2识别界面。",
+    "diseaseDirection": "肿瘤与蛋白稳态异常疾病",
+    "domain": "NEDD8为约76 aa泛素样β-grasp折叠，含C端Gly-Gly修饰尾部。",
+    "evidence": "NEDD8通路结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q15843功能与定位注释",
+      "RCSB PDB 1NDD晶体结构",
+      "neddylation-CRL通路文献证据"
+    ],
+    "referenceEntries": "UniProt Q15843；RCSB PDB 1NDD；Open Targets NEDD8",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "β1-β2环与Ile44疏水补丁邻近面",
+        "干预E1/E2及受体识别，是功能阻断优先区域",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端Gly-Gly尾部及β5邻近区域",
+        "可能影响加工、活化和共价缀合，但需避免完全遮蔽构象不可及位点",
+        "备选"
+      ],
+      [
+        "Site C",
+        "保守β-grasp核心平坦面",
+        "与泛素及其他UBL高度相似，交叉反应风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NEDD8与泛素序列和折叠相似，需重点排除泛素、ISG15和SUMO交叉结合；胞内定位限制常规治疗抗体可及性。",
+    "structurePrepZh": "以1NDD高分辨率晶体结构为模板，保留成熟NEDD8单体构象，校验C端尾部、疏水补丁和晶体接触面后再定义可设计表位。",
+    "structureRef": "RCSB PDB 1NDD，X-ray diffraction，1.6 Å",
+    "antibodies": [
+      "Anti-NEDD8 antibody clone Y297",
+      "Anti-NEDD8 antibody clone 19E3"
+    ],
+    "interfaceFocus": "Ile44疏水补丁与C端Gly-Gly修饰尾部",
+    "designMode": "胞内功能阻断",
+    "candidates": [
+      {
+        "target": "NAE1",
+        "rationale": "NAE1与UBA3组成NEDD8激活酶E1，直接负责NEDD8腺苷化和硫酯化，是neddylation级联的上游酶学节点。"
+      },
+      {
+        "target": "UBA3",
+        "rationale": "UBA3为NEDD8 E1催化亚基，参与NEDD8活化并将其转移至E2酶，药理学抑制已验证可降低cullin neddylation。"
+      },
+      {
+        "target": "UBE2M",
+        "rationale": "UBE2M是NEDD8 E2结合酶，介导NEDD8向cullin底物转移，与NEDD8功能界面直接相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "PPIL3",
+  "generatedAt": "2026-08-03T15:30:38.121Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PPIL3为胞内肽基脯氨酰顺反异构酶样蛋白，主要定位于细胞内蛋白折叠与构象成熟过程；Open Targets显示其与甲状腺功能减退、登革热和桥本甲状腺炎存在统计关联，但缺乏明确的胞外疾病驱动机制。该蛋白不属于分泌蛋白或膜受体，天然抗原可及性较低，常规体内阻断型抗体难以直接结合内源靶标。其优先级低于TSHR、TPO、TG等同疾病方向中具有明确胞外或腔面抗原表位的甲状腺自身免疫靶点，更适合作为结构验证或细胞内递送抗体探索对象。",
+    "mechanism": "候选抗体需经细胞内递送后结合PPIL3催化型PPIase折叠核心邻近区域，空间阻断脯氨酸底物肽进入活性沟槽，从而抑制底物构象异构化。",
+    "selectedEpitope": "优先覆盖PPIase样结构域活性沟槽边缘及底物肽结合口袋相邻环区。",
+    "diseaseDirection": "甲状腺自身免疫与功能异常",
+    "domain": "PPIL3包含单一亲环素样PPIase折叠结构域，2OK3解析人源蛋白A链晶体结构。",
+    "evidence": "PPIL3疾病遗传关联与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q9H2H8蛋白功能与定位注释",
+      "RCSB PDB 2OK3晶体结构数据",
+      "AlphaFold/结构同源性辅助表面评估"
+    ],
+    "referenceEntries": "UniProt Q9H2H8；RCSB PDB 2OK3；Open Targets PPIL3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PPIase样结构域活性沟槽与底物结合口袋边缘",
+        "最可能直接干预脯氨酸底物肽进入与催化构象转换",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化核心外侧保守β折叠-环区过渡表面",
+        "可稳定结合折叠核心并形成构象锁定效应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离活性沟槽的晶体接触暴露面",
+        "可能仅提供结合信号，功能阻断价值有限且需排除晶体堆积伪表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PPIL3为胞内非分泌蛋白，体内抗体可及性不足是主要风险；建议限定为细胞内抗体、递送型VHH或机制研究工具分子。",
+    "structurePrepZh": "以2OK3 A链为模板，补全缺失侧链并校正质子化状态；标注晶体接触面、保守PPIase核心和潜在底物沟槽后再进行表位筛选。",
+    "structureRef": "RCSB PDB 2OK3，人源PPIL3 X射线晶体结构，2.0 Å",
+    "antibodies": [
+      "无已批准PPIL3靶向治疗性抗体",
+      "抗PPIL3研究级检测抗体"
+    ],
+    "interfaceFocus": "PPIase活性沟槽及邻近底物肽入口环区",
+    "designMode": "胞内递送型抗体设计",
+    "candidates": [
+      {
+        "target": "TSHR",
+        "rationale": "TSHR是甲状腺自身免疫和甲状腺功能异常中的核心膜受体靶点，胞外富亮氨酸重复结构域可被抗体直接识别。其疾病机制和抗原可及性均优于PPIL3。"
+      },
+      {
+        "target": "TPO",
+        "rationale": "TPO是桥本甲状腺炎和自身免疫性甲状腺疾病中的主要自身抗原，位于甲状腺滤泡细胞顶端膜相关区域。其抗体反应与疾病诊断和病理过程关联明确。"
+      },
+      {
+        "target": "TG",
+        "rationale": "TG是甲状腺滤泡腔内高丰度分泌糖蛋白，也是桥本甲状腺炎相关自身抗原。其分泌/腔面定位提供了较PPIL3更有利的抗原暴露条件。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

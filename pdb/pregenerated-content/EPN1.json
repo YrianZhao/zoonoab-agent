@@ -1,0 +1,65 @@
+{
+  "gene": "EPN1",
+  "generatedAt": "2026-08-03T12:20:23.299Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "EPN1 编码 epsin 1，是网格蛋白介导内吞中的适配蛋白，ENTH 结构域识别膜磷脂并参与受体货物内吞，Open Targets 显示其与神经退行性疾病存在遗传关联。Epsin 1 主要为胞质侧内吞蛋白，不具备经典分泌蛋白或细胞外受体抗原可及性，抗体成药性需限定于细胞内递送、研究级阻断或胞内抗体场景。相较同通路中膜受体或胞外配体，EPN1 的优先级优势在于 1KYD 提供高分辨率 ENTH 结构基础，可精确解析 PtdIns(4,5)P2 结合与膜插入界面，但整体治疗性抗体优先级低于可直接从胞外干预的内吞货物受体。",
+    "mechanism": "阻断 ENTH 结构域与 PtdIns(4,5)P2 头基结合及 N 端 α0 螺旋膜插入，从而抑制 epsin 1 启动膜弯曲和网格蛋白包被小窝装配。",
+    "selectedEpitope": "优先覆盖 ENTH 结构域 PtdIns(4,5)P2 结合口袋邻近 α0/α1 区域，避免全局折叠核心破坏。",
+    "diseaseDirection": "神经退行性疾病与内吞稳态",
+    "domain": "Epsin 1 含 N 端 ENTH 结构域，C 端含泛素相互作用基序、DPW/NPF 适配区及 clathrin/AP2 结合片段。",
+    "evidence": "EPN1-ENTH 结构与内吞通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9Y6I3 functional annotation",
+      "RCSB PDB 1KYD X-ray structure",
+      "Literature evidence on clathrin-mediated endocytosis"
+    ],
+    "referenceEntries": "UniProt Q9Y6I3；RCSB PDB 1KYD；Open Targets EPN1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ENTH 结构域 PtdIns(4,5)P2 结合口袋及 α0 螺旋邻域",
+        "直接干预膜磷脂识别与膜弯曲起始，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ENTH 结构域外露 α1-α3 螺旋束边缘",
+        "可提供构象锁定或空间阻挡，但对内吞抑制强度需验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ENTH 折叠核心疏水内腔与保守骨架区域",
+        "可能引起非特异性构象扰动并降低选择性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "EPN1 缺乏胞外暴露，常规抗体难以到达胞质靶点；设计宜限定为胞内抗体、递送型 Fab/VHH 或机制研究工具，并评估 EPN2 交叉反应。",
+    "structurePrepZh": "以 1KYD 的 ENTH 结构域为模板，保留链 A/P 中配体邻近坐标，补全缺失侧链、标准化质子化状态，并标注磷脂结合残基。",
+    "structureRef": "Ford et al., Nature 2002；PDB 1KYD, 2.0 Å",
+    "antibodies": [
+      "研究用 anti-epsin 1 antibody",
+      "研究用 anti-EPN1 monoclonal antibody"
+    ],
+    "interfaceFocus": "PtdIns(4,5)P2 结合口袋与 α0 膜插入界面",
+    "designMode": "胞内递送型阻断",
+    "candidates": [
+      {
+        "target": "CLTC",
+        "rationale": "CLTC 编码网格蛋白重链，是网格蛋白包被小窝结构装配的核心组分，与 EPN1 处于同一内吞执行模块。其功能位置更靠近囊泡骨架形成，但抗体可及性同样受胞内定位限制。"
+      },
+      {
+        "target": "AP2M1",
+        "rationale": "AP2M1 是 AP-2 适配复合体 μ2 亚基，负责货物基序识别并连接膜受体内吞与 clathrin 招募。其与 epsin 1 协同驱动网格蛋白介导内吞，可作为同通路机制对照靶点。"
+      },
+      {
+        "target": "DNM2",
+        "rationale": "DNM2 编码 dynamin 2，介导网格蛋白包被囊泡颈部 GTP 依赖性剪切。该靶点位于 EPN1 下游囊泡释放步骤，可用于区分膜弯曲起始与囊泡裂解环节。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

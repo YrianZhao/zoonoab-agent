@@ -1,0 +1,65 @@
+{
+  "gene": "BMI1",
+  "generatedAt": "2026-08-03T18:10:17.927Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BMI1是PRC1复合体核心组分，通过与RING1A/RING1B形成异源RING E3模块促进H2AK119单泛素化，维持干细胞样转录抑制状态，并与肿瘤发生、前列腺癌进展及神经退行性疾病相关表型存在遗传和功能关联。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌形式，因此常规体内阻断型抗体可及性不占优势，更适合用于细胞内递送抗体、intrabody或结构验证型结合分子开发。相较EZH2等已高度药物化的PcG靶点，BMI1-RING1B界面直接控制PRC1催化核心装配，具备更明确的蛋白互作干预价值，但应作为高风险探索优先级靶点处理。",
+    "mechanism": "设计结合BMI1 N端RING结构域的抗体片段，阻断BMI1与RING1B RING结构域异源二聚化，从而削弱PRC1介导的H2AK119ub1沉积。",
+    "selectedEpitope": "优先覆盖N端RING结构域中与RING1B接触的异源二聚化界面，避开锌配位核心残基。",
+    "diseaseDirection": "PRC1表观遗传调控与肿瘤/神经退行性疾病",
+    "domain": "BMI1含N端C3HC4型RING finger结构域、中央HTHTHTHT基序及C端PEST样区域。",
+    "evidence": "BMI1-PRC1互作与疾病遗传功能证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P35226功能与结构域注释",
+      "RCSB PDB 6WI7晶体结构记录",
+      "PRC1介导H2AK119ub1表观遗传调控文献"
+    ],
+    "referenceEntries": "UniProt P35226；RCSB PDB 6WI7；Open Targets BMI1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端RING结构域RING1B异源二聚化界面",
+        "直接干预PRC1催化核心装配，机制验证价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RING结构域远离锌配位簇的外侧螺旋/环区",
+        "保留结构稳定性并提供构象选择性结合位点",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Cys/His锌配位核心邻近区域",
+        "可能扰动RING折叠并引发表位构象不稳定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BMI1为核内非分泌蛋白，天然抗体可及性受限；设计应优先采用细胞内递送片段或intrabody，并避免破坏RING锌配位导致非特异变性。",
+    "structurePrepZh": "以6WI7抗原链A为模板，补齐缺失侧链并保留RING锌离子配位几何；界面分析需映射RING1B结合面和保守Cys/His残基。",
+    "structureRef": "RCSB PDB 6WI7，X-ray diffraction，1.702 Å",
+    "antibodies": [
+      "研究级抗BMI1单克隆抗体",
+      "研究级抗BMI1多克隆抗体"
+    ],
+    "interfaceFocus": "BMI1-RING1B RING-RING异源二聚化界面",
+    "designMode": "细胞内抗体片段",
+    "candidates": [
+      {
+        "target": "RING1B",
+        "rationale": "RING1B与BMI1共同形成PRC1 E3连接酶催化核心，直接负责H2AK119单泛素化，是同一PRC1通路内最邻近的互作靶点。"
+      },
+      {
+        "target": "RING1A",
+        "rationale": "RING1A可与BMI1形成替代性PRC1 RING模块，参与H2AK119ub1沉积，适合作为PRC1催化轴的并行候选靶点。"
+      },
+      {
+        "target": "CBX7",
+        "rationale": "CBX7为经典PRC1染色质识别组分，通过结合H3K27me3参与PRC1靶位点募集，与BMI1处于同一Polycomb转录抑制网络。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

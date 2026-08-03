@@ -1,0 +1,65 @@
+{
+  "gene": "NAV2",
+  "generatedAt": "2026-08-03T14:34:06.883Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NAV2 属于神经元导航蛋白家族，主要参与神经突起延伸、轴突导向及细胞骨架重塑，现有 Open Targets 关联以神经影像测量和代谢/行为表型为主，尚缺乏明确可干预的疾病受体通路证据。NAV2 为胞内大型支架样蛋白，核心功能区域位于细胞质内，缺少稳定胞外结构域或分泌型抗原特征，常规治疗性抗体难以直接结合天然构象。相较于同一神经发育和轴突导向网络中的膜受体或分泌配体，NAV2 的抗原可及性和阻断机制优先级较低，更适合作为机制研究或细胞内递送抗体开发对象。",
+    "mechanism": "设计重点为结合 NAV2 胞内结构域，干扰其与微管/肌动蛋白调控复合体的组装，从而影响神经突起延伸相关细胞骨架重排。",
+    "selectedEpitope": "优先评估 2YRN 所覆盖的溶液 NMR 结构域中暴露螺旋-环区，避开疏水核心和构象不稳定端区。",
+    "diseaseDirection": "神经发育与神经影像表型",
+    "domain": "NAV2 为胞内神经元导航蛋白，含 N 端钙调蛋白结合样区域、卷曲螺旋区及 C 端 AAA/ATPase 样结构域。",
+    "evidence": "NAV2 神经发育表型与结构可行性证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q8IVL1 functional annotation",
+      "RCSB PDB 2YRN solution NMR structure",
+      "Gene Ontology neuronal projection development annotations"
+    ],
+    "referenceEntries": "UniProt Q8IVL1；RCSB PDB 2YRN；Open Targets NAV2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "2YRN 结构域暴露螺旋-环连接面",
+        "具备较高溶剂可及性，适合构建胞内结合型抗体或结构探针",
+        "优先"
+      ],
+      [
+        "Site B",
+        "预测卷曲螺旋区外露侧面",
+        "可能影响蛋白复合体装配，但需验证片段边界与构象稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "AAA/ATPase 样保守催化核心邻近区域",
+        "保守性高且存在功能扰动风险，需避免非特异性干预同源结构域",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险来自靶点胞内定位、天然抗原不可及及疾病因果证据不足。建议限定为胞内抗体、递送抗体或研究级结合分子，并优先开展细胞定位验证。",
+    "structurePrepZh": "采用 2YRN 的 NMR 构象集合进行模型筛选，保留稳定二级结构核心，补充缺失环区并评估表面电荷、柔性和聚集倾向。",
+    "structureRef": "RCSB PDB 2YRN，human NAV2 fragment, solution NMR",
+    "antibodies": [
+      "无获批 NAV2 治疗性抗体",
+      "研究级抗 NAV2 多克隆抗体"
+    ],
+    "interfaceFocus": "2YRN 暴露螺旋-环面及卷曲螺旋装配界面",
+    "designMode": "胞内抗体探索",
+    "candidates": [
+      {
+        "target": "ROBO1",
+        "rationale": "ROBO1 是轴突导向通路中的跨膜受体，介导 SLIT 配体依赖性排斥信号，具有胞外 Ig/FNIII 结构域，抗体可及性优于 NAV2。"
+      },
+      {
+        "target": "SLIT2",
+        "rationale": "SLIT2 为分泌型轴突导向配体，可与 ROBO 受体结合调控神经突起迁移，其分泌蛋白属性适合中和抗体设计。"
+      },
+      {
+        "target": "SEMA3A",
+        "rationale": "SEMA3A 是分泌型 semaphorin 配体，经 neuropilin/plexin 受体复合体调控轴突导向和细胞骨架重塑，具备明确的胞外阻断位点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

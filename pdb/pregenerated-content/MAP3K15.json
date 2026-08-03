@@ -1,0 +1,65 @@
+{
+  "gene": "MAP3K15",
+  "generatedAt": "2026-08-03T20:06:54.034Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAP3K15为细胞内丝裂原活化蛋白激酶激酶激酶，遗传学关联主要集中于血糖、HbA1c与糖尿病相关性状，提示其可能参与代谢应激下的MAPK级联调控。该蛋白缺乏经典胞外结构域或分泌特征，天然抗体药物的抗原可及性受限，更适合作为细胞内靶点研究或递送型抗体格式探索。相比INSR、GLP1R等膜受体类代谢靶点，MAP3K15的优势在于遗传关联信号较集中且结构解析分辨率较高，但成药优先级应低于胞外可及靶点。",
+    "mechanism": "设计策略聚焦阻断MAP3K15激酶结构域ATP结合口袋及活化环构象转换，抑制其向下游MAP2K传递磷酸化信号。",
+    "selectedEpitope": "优先评估激酶结构域N叶ATP结合裂隙与活化环邻近构象表位。",
+    "diseaseDirection": "糖尿病与血糖代谢表型",
+    "domain": "MAP3K15含蛋白激酶催化结构域，6V0M覆盖其胞内激酶核心构象。",
+    "evidence": "MAP3K15糖代谢遗传关联与激酶结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q6ZN16蛋白功能注释",
+      "RCSB PDB 6V0M晶体结构",
+      "MAPK级联与糖代谢应激相关文献"
+    ],
+    "referenceEntries": "UniProt Q6ZN16；RCSB PDB 6V0M；Open Targets MAP3K15",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域ATP结合裂隙与铰链区邻近表面",
+        "可直接干预ATP结合与催化构象，功能阻断价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "活化环及C叶催化环周边构象表面",
+        "有望限制活化环重排并降低底物磷酸化效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化中心的N叶外侧暴露表面",
+        "结构可及但功能耦合不确定，需避免仅产生结合型抗体",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAP3K15为胞内激酶，常规IgG难以到达作用位点；应优先采用细胞内递送、intrabody或蛋白降解耦联策略，并严格验证通路特异性。",
+    "structurePrepZh": "以6V0M高分辨率晶体结构为模板，保留激酶核心链A/B/C用于构象比对，补建缺失侧链并评估ATP口袋与活化环柔性。",
+    "structureRef": "RCSB PDB 6V0M，X-ray diffraction，1.8 Å",
+    "antibodies": [
+      "暂无临床验证抗MAP3K15抗体",
+      "研究级抗MAP3K15抗体"
+    ],
+    "interfaceFocus": "ATP结合裂隙、铰链区与活化环界面",
+    "designMode": "胞内激酶阻断",
+    "candidates": [
+      {
+        "target": "MAP3K5",
+        "rationale": "MAP3K5同属MAP3K家族并介导应激激活的JNK/p38 MAPK级联，在代谢应激和胰岛β细胞损伤研究中具有明确通路关联。"
+      },
+      {
+        "target": "MAP2K4",
+        "rationale": "MAP2K4位于MAP3K下游，可将上游MAP3K信号传递至JNK通路，是评估MAP3K15相关应激MAPK轴的重要候选节点。"
+      },
+      {
+        "target": "MAPK8",
+        "rationale": "MAPK8编码JNK1，是MAPK级联的下游效应激酶，参与炎症与代谢应激反应，可作为同通路功能读出与替代干预靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

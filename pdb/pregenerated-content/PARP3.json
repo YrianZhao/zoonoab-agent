@@ -1,0 +1,65 @@
+{
+  "gene": "PARP3",
+  "generatedAt": "2026-08-03T15:05:05.788Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PARP3参与DNA单链与双链断裂应答，催化ADP-核糖基化并促进非同源末端连接相关修复，在卵巢癌等同源重组缺陷肿瘤中具有明确疾病通路关联。PARP3为细胞核内ADP-核糖转移酶，天然抗原可及性弱，不适合作为常规细胞表面阻断抗体靶点，更适宜发展细胞内递送抗体片段或结构辅助抑制分子设计。相较PARP1和PARP2，PARP3结构较小且催化域晶体结构清晰，可用于解析选择性结合界面并降低同家族交叉抑制风险。",
+    "mechanism": "通过结合PARP3催化ART结构域的NAD+结合沟槽，阻断烟酰胺核糖进入活性位点并抑制底物蛋白ADP-核糖基化。",
+    "selectedEpitope": "优先锁定ART催化域NAD+结合口袋周缘及HD基序邻近选择性沟槽。",
+    "diseaseDirection": "卵巢癌DNA损伤修复通路",
+    "domain": "PARP3含N端WGR结构域与C端ADP-核糖转移酶催化域，4GV2覆盖催化核心。",
+    "evidence": "PARP3卵巢癌DNA修复靶点证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q9Y6F1功能与结构域注释",
+      "RCSB PDB 4GV2晶体结构记录",
+      "DNA损伤修复与PARP家族文献证据"
+    ],
+    "referenceEntries": "UniProt Q9Y6F1；RCSB PDB 4GV2；Open Targets PARP3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ART催化域NAD+结合沟槽及HD基序邻近区域",
+        "直接干预催化辅因子结合，利于获得功能阻断型分子",
+        "优先"
+      ],
+      [
+        "Site B",
+        "WGR-催化域相对取向界面预测区域",
+        "可能影响DNA损伤位点识别后的构象耦联，需补充全长模型验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化域高度保守PARP家族核心折叠面",
+        "存在PARP1/PARP2交叉结合风险，选择性窗口较窄",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PARP3为核内酶，常规抗体难以进入作用区室；设计应采用细胞内递送Fab或VHH，并严格避开PARP1/PARP2保守催化核心。",
+    "structurePrepZh": "以4GV2链A为催化域模板，补齐缺失侧链、校正质子化状态，并围绕NAD+结合沟槽建立选择性界面网格。",
+    "structureRef": "RCSB PDB 4GV2，human PARP3 catalytic domain，1.8 Å",
+    "antibodies": [
+      "anti-PARP3 research antibody",
+      "intracellular anti-PARP VHH prototype"
+    ],
+    "interfaceFocus": "ART催化域NAD+口袋与HD基序周缘",
+    "designMode": "细胞内阻断型",
+    "candidates": [
+      {
+        "target": "PARP1",
+        "rationale": "PARP1是DNA损伤应答和PARP抑制剂治疗中的核心酶，在卵巢癌同源重组缺陷背景下具有强临床关联。其可作为同通路阳性参照与选择性排除靶点。"
+      },
+      {
+        "target": "PARP2",
+        "rationale": "PARP2与PARP1共同参与DNA单链断裂修复，并与PARP3共享催化家族特征。纳入比较有助于评估催化域交叉结合风险。"
+      },
+      {
+        "target": "BRCA1",
+        "rationale": "BRCA1位于同源重组修复通路核心，其缺陷与卵巢癌PARP依赖性和合成致死敏感性密切相关。可作为疾病分层与通路验证候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

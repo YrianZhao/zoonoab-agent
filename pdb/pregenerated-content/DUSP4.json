@@ -1,0 +1,65 @@
+{
+  "gene": "DUSP4",
+  "generatedAt": "2026-08-03T18:48:44.361Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DUSP4/MKP-2 是核定位双特异性磷酸酶，主要去磷酸化 MAPK1/ERK2、MAPK3/ERK1、MAPK8/JNK1 与 MAPK14/p38，因而影响神经退行性疾病和前列腺癌中应激、增殖及炎症相关 MAPK 信号。该蛋白为细胞内磷酸酶，缺乏天然胞外结构域，常规抗体抗原可及性受限，更适合作为结构抗原、细胞内递送抗体或研究级结合分子设计对象。相较膜受体类 MAPK 调控靶点，DUSP4 具有已解析催化结构与明确底物识别界面，优先级主要来自机制解析和选择性抑制工具开发价值，而非传统治疗性裸抗体成药性。",
+    "mechanism": "设计结合分子遮蔽 DUSP4 催化结构域的 MAPK docking groove 或 HCX5R 催化环，阻断其与磷酸化 ERK/JNK/p38 的底物结合及去磷酸化反应。",
+    "selectedEpitope": "优先选择催化结构域中 MAPK docking groove 邻近 α-helix/loop 界面，避开高度保守催化半胱氨酸核心。",
+    "diseaseDirection": "神经退行性疾病与前列腺癌 MAPK 轴",
+    "domain": "DUSP4 含 N 端 CH2 非催化调控区与 C 端双特异性磷酸酶催化结构域；3EZZ 覆盖催化结构域晶体结构。",
+    "evidence": "DUSP4-MAPK 底物识别与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB Q13115 functional annotation",
+      "RCSB PDB 3EZZ X-ray structure",
+      "MAPK phosphatase substrate specificity literature"
+    ],
+    "referenceEntries": "UniProt Q13115；RCSB PDB 3EZZ；Open Targets ENSG00000120875",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域 MAPK docking groove 邻近 α-helix/loop 区域",
+        "可直接削弱 DUSP4 与 ERK/JNK/p38 底物复合物形成，具备机制阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域远离活性半胱氨酸的外侧可及螺旋面",
+        "适合获得选择性结合分子，用于构象稳定、定位追踪或非竞争性调控",
+        "备选"
+      ],
+      [
+        "Site C",
+        "HCX5R 催化环及磷酸酪氨酸结合口袋核心",
+        "功能相关性强但序列保守、交叉反应和构象扰动风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DUSP4 为细胞内核蛋白，裸抗体难以接触天然抗原；催化口袋保守性较高，应优先采用结构差异化外周表位并评估 DUSP1/DUSP6 交叉结合。",
+    "structurePrepZh": "以 3EZZ 催化结构域为模板，保留晶体生物学相关单体，修复缺失侧链与环区，标注催化 Cys、MAPK docking groove 及溶剂可及残基。",
+    "structureRef": "RCSB PDB 3EZZ，human DUSP4 catalytic domain，X-ray 2.9 Å",
+    "antibodies": [
+      "研究级 anti-DUSP4 monoclonal antibody",
+      "研究级 anti-MKP-2 antibody"
+    ],
+    "interfaceFocus": "MAPK docking groove 与催化环外周选择性界面",
+    "designMode": "细胞内靶向抗体",
+    "candidates": [
+      {
+        "target": "MAPK1",
+        "rationale": "MAPK1/ERK2 是 DUSP4 去磷酸化底物之一，位于同一 MAPK 信号轴；其活化状态直接反映 DUSP4 介导的 ERK 通路调节。"
+      },
+      {
+        "target": "MAPK14",
+        "rationale": "MAPK14/p38 参与应激和神经炎症反应，并可被 DUSP4 去磷酸化；适合作为同通路功能读出和替代干预节点。"
+      },
+      {
+        "target": "MAPK8",
+        "rationale": "MAPK8/JNK1 属于 DUSP4 底物谱，与神经退行性疾病中的应激诱导凋亡信号相关；可用于评估 DUSP4-MAPK 轴的疾病相关性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

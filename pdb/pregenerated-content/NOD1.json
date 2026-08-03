@@ -1,0 +1,65 @@
+{
+  "gene": "NOD1",
+  "generatedAt": "2026-08-03T14:46:16.615Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NOD1是胞质模式识别受体，识别细菌肽聚糖iE-DAP后经RIPK2招募激活NF-κB与MAPK炎症通路，疾病证据更多指向炎症相关血液学表型及铁代谢指标关联。该蛋白主要定位于胞质，天然抗原可及性低，不具备分泌蛋白或细胞表面受体的抗体可及性优势，因此抗体成药性需依赖细胞内递送或研究级阻断体系。相较可直接靶向的TNF、IL1B或细胞表面TLR家族，NOD1优先级较低；但其NOD/NACHT结构域已有高分辨率实验结构，可支持机制验证型抗体或胞内抗体设计。",
+    "mechanism": "设计抗体阻断NOD1 NACHT结构域ATP结合构象转换或寡聚化界面，抑制RIPK2 CARD-CARD招募与下游NF-κB激活。",
+    "selectedEpitope": "优先覆盖NACHT核苷酸结合沟槽邻近寡聚化界面，避开高度保守ATP深袋核心残基。",
+    "diseaseDirection": "炎症免疫与血液表型关联",
+    "domain": "NOD1含N端CARD、中央NACHT/NOD结构域及C端LRR重复；2NZ7覆盖NACHT相关结构片段。",
+    "evidence": "NOD1-RIPK2炎症轴与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9Y239功能与结构域注释",
+      "RCSB PDB 2NZ7 X射线晶体结构",
+      "NOD1肽聚糖识别及RIPK2-NF-κB通路文献"
+    ],
+    "referenceEntries": "UniProt Q9Y239；RCSB PDB 2NZ7；Open Targets NOD1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "NACHT结构域核苷酸结合沟槽邻近构象开关区",
+        "干预ATP依赖构象转换并降低受体激活概率",
+        "优先"
+      ],
+      [
+        "Site B",
+        "NACHT结构域推定寡聚化界面外露片段",
+        "阻断NOD1寡聚化及RIPK2信号平台形成",
+        "备选"
+      ],
+      [
+        "Site C",
+        "CARD结构域RIPK2结合界面",
+        "可直接影响CARD-CARD互作，但需完整CARD结构与胞内递送验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NOD1为胞内蛋白，常规抗体难以到达作用位点；ATP结合区保守性较高，需避免广泛交叉反应并优先评估胞内递送策略。",
+    "structurePrepZh": "以2NZ7链A/B为模板进行缺失残基检查、质子化状态设定和界面暴露分析，并结合AlphaFold全长模型补足CARD与LRR区域。",
+    "structureRef": "RCSB PDB 2NZ7，X-ray diffraction，1.9 Å",
+    "antibodies": [
+      "研究级抗NOD1单克隆抗体",
+      "研究级抗NOD1多克隆抗体"
+    ],
+    "interfaceFocus": "NACHT构象开关区与寡聚化界面",
+    "designMode": "胞内阻断验证",
+    "candidates": [
+      {
+        "target": "RIPK2",
+        "rationale": "RIPK2是NOD1/NOD2下游核心激酶与CARD互作伴侣，直接连接受体激活和NF-κB/MAPK信号输出。其药理可干预性通常优于胞内受体本体。"
+      },
+      {
+        "target": "NOD2",
+        "rationale": "NOD2与NOD1同属胞质肽聚糖识别受体，并共享RIPK2介导的炎症信号轴。其在炎症性肠病等疾病中的遗传证据更强。"
+      },
+      {
+        "target": "TNF",
+        "rationale": "TNF是NOD1-RIPK2-NF-κB轴下游诱导的重要炎症效应因子，且为可分泌细胞因子，具备成熟的抗体可及性与临床验证基础。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

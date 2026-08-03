@@ -1,0 +1,65 @@
+{
+  "gene": "DCP2",
+  "generatedAt": "2026-08-03T11:50:29.992Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DCP2 是细胞质 mRNA 去帽酶复合体的催化核心，通过水解 5′ m7G 帽结构促进 5′-3′ mRNA 降解，并与神经退行性疾病中 RNA 稳态失衡和应激颗粒动力学异常相关。该蛋白主要为胞质内酶，天然抗原可及性低于膜受体或分泌蛋白，抗体策略更适合定位为结构生物学、细胞内递送或降解调控研究工具。相较于同通路支架蛋白，DCP2 具有明确 Nudix 催化中心和高分辨率实验结构，便于进行表位约束与功能阻断验证。",
+    "mechanism": "抗体结合 DCP2 Nudix 催化结构域邻近 RNA-cap 结合沟槽，空间阻断 m7GpppN 底物进入并干扰 DCP1A/EDC4 促进的去帽复合体构象激活。",
+    "selectedEpitope": "优先选择 Nudix 结构域 Box A/Box B 周边的帽底物结合沟槽及催化金属离子邻近界面。",
+    "diseaseDirection": "神经退行性疾病与RNA稳态",
+    "domain": "DCP2 含 N 端调控结构域与 C 端 Nudix 水解酶结构域，催化 mRNA 5′帽去除反应。",
+    "evidence": "DCP2去帽复合体与神经退行性疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q8IU60 功能与结构域注释",
+      "RCSB PDB 5QOQ 高分辨率晶体结构",
+      "mRNA decapping 与 RNA 稳态相关文献"
+    ],
+    "referenceEntries": "UniProt Q8IU60；RCSB PDB 5QOQ；Open Targets DCP2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Nudix 催化结构域帽底物结合沟槽",
+        "可直接阻断 m7G 帽结构进入催化中心，最适合功能抑制型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N 端调控结构域与 Nudix 结构域连接界面",
+        "可能影响 DCP2 构象激活及 DCP1A 介导的去帽复合体活化",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化沟槽的保守核心折叠表面",
+        "功能阻断概率较低且保守性较高，需避免影响非特异性蛋白稳定性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DCP2 为胞内酶，常规循环抗体难以接触天然靶点；需采用细胞内抗体、递送体系或体外机制验证，并规避高度保守 Nudix 核心导致的交叉反应。",
+    "structurePrepZh": "以 5QOQ 链 A 为模板，保留 Nudix 催化核心与关键金属配位残基，补全缺失环区后标注帽底物结合沟槽及 DCP1A 相关变构界面。",
+    "structureRef": "RCSB PDB 5QOQ，X-ray，1.49 Å，human DCP2",
+    "antibodies": [
+      "抗-DCP2研究用多克隆抗体",
+      "抗-DCP2研究用单克隆抗体"
+    ],
+    "interfaceFocus": "Nudix催化沟槽与N端调控-催化域界面",
+    "designMode": "胞内酶功能阻断",
+    "candidates": [
+      {
+        "target": "DCP1A",
+        "rationale": "DCP1A 是 mRNA 去帽复合体的激活因子，可促进 DCP2 构象激活；靶向其与 DCP2 的功能耦联界面可干预同一去帽通路。"
+      },
+      {
+        "target": "EDC4",
+        "rationale": "EDC4 作为去帽复合体支架蛋白组织 DCP1A-DCP2 复合体装配，在 P-body 与 mRNA 降解调控中处于上游组织节点。"
+      },
+      {
+        "target": "XRN1",
+        "rationale": "XRN1 负责去帽后 mRNA 的 5′-3′ 外切降解，与 DCP2 催化步骤连续连接，适合作为同一 mRNA 衰减轴的候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

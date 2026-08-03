@@ -1,0 +1,65 @@
+{
+  "gene": "GFUS",
+  "generatedAt": "2026-08-03T12:45:39.749Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GFUS编码GDP-L-fucose synthase，是GDP-岩藻糖从头合成通路的胞质酶，影响蛋白糖基化底物GDP-岩藻糖供给，并可间接改变红细胞相关糖蛋白的岩藻糖化状态。该蛋白为胞内可溶性酶，缺乏天然胞外结构域或膜受体可及性，常规体内阻断型抗体可及性较弱，更适合作为结构验证、细胞内递送抗体或降解偶联设计对象。其优先级低于FUT家族胞外糖链修饰终产物相关靶点，但4E5Y实验结构提供了明确的NADP结合区与催化口袋，可支持高分辨率表位与功能界面研究。",
+    "mechanism": "抗体设计宜聚焦阻断GFUS催化沟槽内NADP与GDP-4-keto-6-deoxy-D-mannose结合构象稳定，干扰还原-差向异构反应所需的辅因子定位。",
+    "selectedEpitope": "优先选择Rossmann样NADP结合结构域邻近催化沟槽入口，覆盖辅因子结合边缘而避免深埋活性位点。",
+    "diseaseDirection": "红细胞性状与糖基化代谢",
+    "domain": "GFUS为NADP依赖短链脱氢/还原酶样胞质酶，含Rossmann样辅因子结合域及底物结合催化沟槽。",
+    "evidence": "GFUS结构与GDP-岩藻糖合成通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt Q13630功能注释",
+      "RCSB PDB 4E5Y晶体结构",
+      "Reactome GDP-L-fucose biosynthesis pathway"
+    ],
+    "referenceEntries": "UniProt Q13630；RCSB PDB 4E5Y；HGNC GFUS/TSTA3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Rossmann样NADP结合域边缘及催化沟槽入口",
+        "可干扰辅因子定位并保留较高结构可识别性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "底物结合沟槽外侧可溶表面环区",
+        "有利于变构约束底物进入，降低直接竞争深埋口袋难度",
+        "备选"
+      ],
+      [
+        "Site C",
+        "四聚体晶体接触或分子内部保守疏水核心邻近区域",
+        "可能产生非功能性结合或影响可开发性，需以溶液寡聚状态验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GFUS为胞内胞质酶，天然抗体难以进入活细胞；需优先评估细胞内递送、纳米抗体格式或降解偶联策略，并避免仅获得非抑制性构象表位。",
+    "structurePrepZh": "以4E5Y抗原链A-D比对去冗余，保留NADP/底物邻近残基注释，补全缺失侧链并评估晶体接触对表位暴露的影响。",
+    "structureRef": "RCSB PDB 4E5Y，human GDP-L-fucose synthase，2.37 Å",
+    "antibodies": [
+      "暂无获批GFUS靶向抗体",
+      "暂无临床阶段GFUS同类抗体"
+    ],
+    "interfaceFocus": "NADP结合边缘与催化沟槽入口",
+    "designMode": "胞内酶抑制表位",
+    "candidates": [
+      {
+        "target": "GMDS",
+        "rationale": "GMDS催化GDP-D-mannose生成GDP-4-keto-6-deoxy-D-mannose，位于GFUS上游同一GDP-L-fucose从头合成通路，可共同影响岩藻糖化底物供给。"
+      },
+      {
+        "target": "FUK",
+        "rationale": "FUK参与游离L-fucose补救通路的磷酸化步骤，与GFUS通路共同维持GDP-L-fucose池，适合作为糖基化代谢补偿节点评估。"
+      },
+      {
+        "target": "FPGT",
+        "rationale": "FPGT催化L-fucose-1-phosphate生成GDP-L-fucose，是补救通路末端酶，与GFUS产生同一糖核苷酸产物并可能构成代谢冗余。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "ICOS",
+  "generatedAt": "2026-08-03T13:21:08.111Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ICOS 是活化 T 细胞表面的 CD28 家族共刺激受体，通过与 ICOSLG 结合促进 Tfh 分化、IL-21 产生、B 细胞生发中心反应及免疫球蛋白类别转换，其功能缺陷与普通变异型免疫缺陷和低免疫球蛋白表型直接相关。ICOS 为 I 型跨膜受体，关键配体结合位点位于胞外 IgV 样结构域，抗体具有良好的膜表面可及性。相较于广泛表达且免疫毒性风险较高的 CD28，ICOS 表达更偏向活化 T 细胞和 Tfh/Treg 亚群，具备更高的疾病通路特异性与药理选择窗口。",
+    "mechanism": "阻断 ICOS 胞外 IgV 样结构域与 ICOSLG 的正交结合界面，抑制 Tfh 细胞辅助 B 细胞产生 IL-21 和抗体反应。",
+    "selectedEpitope": "优先覆盖 IgV 样结构域中 ICOSLG 结合面及 CDR 样环区，避免跨膜近端非功能表面。",
+    "diseaseDirection": "CVID与Tfh-B细胞共刺激异常",
+    "domain": "ICOS 含 N 端胞外 IgV 样结构域、单跨膜区及短胞内尾部。",
+    "evidence": "ICOS-ICOSLG轴与体液免疫缺陷证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9Y6W8 functional annotation",
+      "RCSB PDB 7JOO experimental structure",
+      "Human ICOS deficiency and CVID clinical genetics literature"
+    ],
+    "referenceEntries": "UniProt Q9Y6W8；RCSB PDB 7JOO；Open Targets ICOS",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "IgV样结构域ICOSLG结合面及相邻FG/CC′样环",
+        "直接竞争配体结合，适合构建拮抗型抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "IgV样结构域外侧β折叠暴露面",
+        "利于获得高亲和结合，可用于非阻断或定位型抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "膜近端连接区及潜在糖基化邻近区域",
+        "构象柔性和空间遮挡可能降低表位稳定性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "需区分拮抗与潜在激动效应，避免抗体交联诱导异常共刺激；应评估活化T细胞、Tfh及Treg亚群中的功能偏倚。",
+    "structurePrepZh": "以 7JOO 中 ICOS 胞外域为模板，保留抗原链并校验糖基化、二硫键和缺失环区，进行质子化与界面残基标注。",
+    "structureRef": "RCSB PDB 7JOO，X-ray diffraction，2.4 Å",
+    "antibodies": [
+      "Feladilimab",
+      "Vopratelimab"
+    ],
+    "interfaceFocus": "ICOS IgV样结构域-ICOSLG结合界面",
+    "designMode": "配体阻断型Fab/VHH",
+    "candidates": [
+      {
+        "target": "ICOSLG",
+        "rationale": "ICOSLG 是 ICOS 的直接配体，位于同一 Tfh-B 细胞共刺激轴；靶向配体可从抗原呈递细胞侧阻断 ICOS 介导的辅助信号。"
+      },
+      {
+        "target": "CD28",
+        "rationale": "CD28 与 ICOS 同属 CD28 家族共刺激受体，参与 T 细胞活化和体液免疫启动；适合作为同类共刺激通路比较靶点。"
+      },
+      {
+        "target": "CD40LG",
+        "rationale": "CD40LG 是 Tfh 细胞帮助 B 细胞进行生发中心反应和免疫球蛋白类别转换的核心分子，与 ICOS-ICOSLG 轴共同维持体液免疫。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

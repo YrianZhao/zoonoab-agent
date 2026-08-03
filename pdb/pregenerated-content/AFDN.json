@@ -1,0 +1,65 @@
+{
+  "gene": "AFDN",
+  "generatedAt": "2026-08-03T10:11:44.495Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "AFDN编码黏附连接支架蛋白afadin，连接NECTIN与F-actin并协同钙黏蛋白复合体维持上皮连接完整性；在结直肠腺癌中，连接重塑可影响肿瘤细胞极性、屏障破坏和侵袭表型。该蛋白主要为胞内多结构域支架蛋白，天然抗原可及性弱，不具备典型分泌蛋白或膜受体的抗体药物可及性优势。其优先级低于同通路中具有胞外结构域的NECTIN或CDH家族靶点，更适合作为机制分层标志物或细胞内递送抗体探索靶点。",
+    "mechanism": "设计应聚焦阻断afadin PDZ结构域与NECTIN胞质尾端C末端PDZ结合基序的相互作用，削弱NECTIN-afadin-actin连接轴。",
+    "selectedEpitope": "优先选择PDZ结构域肽结合沟槽及αB/βB邻近界面，模拟NECTIN胞质尾端竞争性占位。",
+    "diseaseDirection": "结直肠腺癌黏附连接重塑",
+    "domain": "Afadin含RA结构域、FHA结构域、DIL区、PDZ结构域及F-actin结合区，7QCR对应结构化胞内片段。",
+    "evidence": "AFDN黏附连接轴与肿瘤侵袭证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P55196蛋白功能注释",
+      "RCSB PDB 7QCR晶体结构数据",
+      "黏附连接与NECTIN-afadin复合体文献"
+    ],
+    "referenceEntries": "UniProt P55196；RCSB PDB 7QCR；Open Targets AFDN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PDZ结构域配体结合沟槽",
+        "直接竞争NECTIN胞质尾端PDZ结合基序，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PDZ结构域αB螺旋外侧邻近面",
+        "可产生变构干扰并降低NECTIN-afadin复合体稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "RA结构域表面保守界面",
+        "可能影响小GTP酶相关构象调控，但疾病相关性和抗体可及性较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "AFDN为胞内支架蛋白，常规抗体难以进入细胞；需采用细胞内抗体、递送型VHH或降解耦联策略，并避免干扰广泛正常上皮连接功能。",
+    "structurePrepZh": "以7QCR晶体结构为模板，保留A-D链中分辨率较完整的PDZ相关构象，补全缺失侧链并评估肽结合沟槽保守性。",
+    "structureRef": "RCSB PDB 7QCR，X-ray diffraction 2.28 Å",
+    "antibodies": [
+      "无已批准AFDN靶向治疗性抗体",
+      "研究级anti-afadin抗体"
+    ],
+    "interfaceFocus": "PDZ沟槽与NECTIN C端肽结合界面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "NECTIN1",
+        "rationale": "NECTIN1为afadin上游黏附受体，其胞质尾端通过PDZ结合基序招募afadin，胞外Ig样结构域具备更高抗体可及性。"
+      },
+      {
+        "target": "NECTIN3",
+        "rationale": "NECTIN3参与NECTIN介导的细胞间黏附并连接afadin-actin轴，靶向其胞外结构域可在膜外层面调节同一连接通路。"
+      },
+      {
+        "target": "CDH1",
+        "rationale": "CDH1编码E-cadherin，是上皮黏附连接核心膜蛋白，与afadin相关连接网络共同维持上皮极性和肿瘤侵袭抑制状态。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "DDX19B",
+  "generatedAt": "2026-08-03T11:52:40.161Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DDX19B 是核质转运相关 DEAD-box RNA 解旋酶，主要参与 mRNA 输出复合体重塑与核孔相关 RNA 代谢，其 Open Targets 关联信号以分子性状和测量表型为主，尚缺乏明确的可药性疾病因果链。该蛋白为胞内可溶性酶，不具备天然胞外结构域、分泌蛋白或膜受体抗原可及性，常规外源抗体难以在完整细胞中结合内源靶点。相比 NXF1、NUP214 等同通路蛋白，DDX19B 具有高分辨率实验结构与 ATPase/RNA 结合口袋解析优势，但作为治疗性抗体主靶点的优先级低于胞外或细胞表面靶点，更适合细胞内递送抗体或研究级结合分子设计。",
+    "mechanism": "通过胞内递送抗体结合 DDX19B RecA-like 结构域界面，干扰其与 RNA、ATP 或核孔辅助因子相互作用，从而影响 mRNA 输出复合体重塑。",
+    "selectedEpitope": "优先避开高度保守 ATP 结合基序，选择 RecA1-RecA2 结构域间 RNA 结合沟槽邻近构象表位。",
+    "diseaseDirection": "核质转运与RNA代谢表型",
+    "domain": "DDX19B 含两个 RecA-like 解旋酶核心结构域，包含 Walker A/B、DEAD motif 与 RNA 结合沟槽。",
+    "evidence": "DDX19B结构与核质转运功能证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt Q9UMR2 蛋白功能注释",
+      "RCSB PDB 3FHT X射线晶体结构",
+      "核孔相关 mRNA 输出复合体文献"
+    ],
+    "referenceEntries": "UniProt Q9UMR2；RCSB PDB 3FHT；Open Targets DDX19B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RecA1-RecA2 结构域间 RNA 结合沟槽邻近表面",
+        "可能干扰 RNA 结合与构象闭合，适合功能阻断型胞内抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RecA2 外侧非催化暴露螺旋面",
+        "降低与 ATPase 保守核心的交叉反应风险，适合高特异性结合分子",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Walker A/B 与 DEAD motif 构成的 ATP 结合核心",
+        "保守性高且易影响同源 DEAD-box 蛋白选择性，需谨慎规避",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为胞内定位导致常规抗体不可及，且 DEAD-box 催化核心保守性高。建议采用胞内递送格式，并以非催化构象表位提高选择性。",
+    "structurePrepZh": "以 3FHT 实验晶体结构为模板，检查 A-D 链构象一致性，补全缺失环区并标注 ATP/RNA 结合相关保守基序。",
+    "structureRef": "RCSB PDB 3FHT，X-ray diffraction，2.2 Å",
+    "antibodies": [
+      "研究级抗-DDX19B抗体",
+      "研究级抗-DDX19A/DDX19B抗体"
+    ],
+    "interfaceFocus": "RecA1-RecA2沟槽与核孔因子结合邻近面",
+    "designMode": "胞内抗体设计",
+    "candidates": [
+      {
+        "target": "NXF1",
+        "rationale": "NXF1 是 mRNA 核输出受体，直接介导成熟 mRNP 通过核孔复合体输出，与 DDX19B 处于同一核质转运功能轴。"
+      },
+      {
+        "target": "NUP214",
+        "rationale": "NUP214 是胞质侧核孔蛋白，参与 mRNA 输出末端复合体重塑，并与 DDX19B 功能定位密切相关。"
+      },
+      {
+        "target": "GLE1",
+        "rationale": "GLE1 是 DDX19B/DDX19 解旋酶活性的核孔辅助因子，通过 IP6 依赖机制促进 mRNA 输出复合体解离。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

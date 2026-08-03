@@ -1,0 +1,65 @@
+{
+  "gene": "TIRAP",
+  "generatedAt": "2026-08-03T21:30:39.158Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TIRAP是TLR2/TLR4通路的胞质衔接蛋白，通过PIP2介导膜定位并招募MYD88，驱动NF-κB与MAPK炎症转录反应；其遗传关联更多集中于脂质测量表型，可能反映先天免疫炎症与脂质代谢交叉。该蛋白不具备胞外结构域或分泌特征，天然抗体可及性弱，抗体策略应限定于细胞内递送、研究级阻断或胞内抗体格式。相较TLR4、TLR2等膜受体靶点，TIRAP可直接干预MYD88依赖信号装配节点，但成药性优先级低于胞外受体型靶点。",
+    "mechanism": "通过胞内抗体结合TIR结构域BB-loop邻近界面，阻断TIRAP与MYD88 TIR结构域相互作用，并削弱TLR2/TLR4诱导的Myddosome装配。",
+    "selectedEpitope": "优先覆盖TIR结构域BB-loop及αC/αD邻近MYD88结合界面，避开折叠核心疏水区。",
+    "diseaseDirection": "先天免疫炎症与脂质表型",
+    "domain": "TIRAP含N端PIP2结合膜定位区及C端TIR结构域，3UB2解析其TIR结构域构象。",
+    "evidence": "TIRAP-MYD88依赖TLR炎症通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform遗传与疾病关联",
+      "UniProt P58753功能注释",
+      "RCSB PDB 3UB2晶体结构",
+      "TLR2/TLR4-MYD88信号通路文献"
+    ],
+    "referenceEntries": "UniProt P58753；RCSB PDB 3UB2；Open Targets TIRAP",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "TIR结构域BB-loop及αC邻近面",
+        "直接干预MYD88 TIR招募界面，适合阻断型胞内抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "TIR结构域DD-loop与αD/αE表面",
+        "可能影响TIR-TIR复合物稳定性，可作为变构干预备选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "TIR结构域折叠核心与保守疏水内核",
+        "保守性高且易破坏蛋白折叠，选择性与可开发性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TIRAP为胞内衔接蛋白，常规抗体难以进入作用位点；建议采用VHH、intrabody或递送偶联体系，并严格评估TLR通路广泛免疫抑制风险。",
+    "structurePrepZh": "以3UB2链A为模板，补全缺失侧链并校验TIR结构域二聚界面；结合MYD88 TIR同源复合物模型标注可及阻断面。",
+    "structureRef": "RCSB PDB 3UB2，2.4 Å X射线晶体结构",
+    "antibodies": [
+      "抗TIRAP研究用单克隆抗体",
+      "抗MAL/TIRAP研究用多克隆抗体"
+    ],
+    "interfaceFocus": "BB-loop介导的TIR-TIR衔接界面",
+    "designMode": "胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "TLR4",
+        "rationale": "TLR4位于TIRAP上游并通过TIRAP-MYD88轴触发NF-κB炎症反应；其胞外LRR结构域可及性显著优于TIRAP。"
+      },
+      {
+        "target": "TLR2",
+        "rationale": "TLR2同样依赖TIRAP促进MYD88招募，参与脂质相关配体和微生物脂蛋白感知；膜受体构型更适合阻断型抗体。"
+      },
+      {
+        "target": "MYD88",
+        "rationale": "MYD88是TIRAP下游核心TIR衔接蛋白，负责Myddosome形成与IRAK激活；可作为同一MYD88依赖通路的胞内干预节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

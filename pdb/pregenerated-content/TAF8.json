@@ -1,0 +1,65 @@
+{
+  "gene": "TAF8",
+  "generatedAt": "2026-08-03T17:07:19.360Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TAF8是TFIID复合体的核心组分，参与TBP相关转录起始装配，并与TAF6共同构成多亚基界面，因而可在转录起始层面直接影响神经发育相关基因表达。Open Targets显示其与神经发育障碍、HIV感染及血液学表型存在稳定关联，提示该蛋白处于疾病通路上游调控节点。TAF8为核内蛋白，抗体介入需以结构解析和复合体界面阻断为核心，较受体类靶点更适合采用结构指导的功能干预而非传统膜外表位策略。",
+    "mechanism": "阻断TAF8与TAF6及TFIID装配界面的结合，削弱TBP相关转录起始复合体形成。",
+    "selectedEpitope": "优先覆盖TAF8-TAF6装配界面及保守螺旋束接触面，避免破坏非目标折叠区。",
+    "diseaseDirection": "神经发育障碍/转录调控",
+    "domain": "TAF8保守中段结构域与TAF6结合界面，构成TFIID装配核心区域。",
+    "evidence": "TAF8结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform",
+      "UniProt Q7Z7C8",
+      "RCSB PDB 4WV6",
+      "ExPASy/InterPro"
+    ],
+    "referenceEntries": "UniProt: Q7Z7C8; PDB: 4WV6; Homo sapiens TAF8",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "TAF8-TAF6界面核心螺旋段",
+        "直接阻断复合体装配，功能抑制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "保守疏水接触面外缘",
+        "可降低界面亲和力并保留结构稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离界面的表面暴露环区",
+        "利于可及性评估但功能干预风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TAF8为核内蛋白，细胞可及性受限，抗体药效需依赖胞内递送或替代格式。界面设计应优先选择复合体接触残基，避免对TAFIID整体折叠造成非特异扰动。",
+    "structurePrepZh": "以4WV6为模板完成链A/B/C界面清理、缺失侧链补全与保守位点映射，并进行TAF8-TAF6接触面注释。",
+    "structureRef": "RCSB PDB 4WV6; X-ray diffraction, 1.75 A",
+    "antibodies": [
+      "无已知临床同类抗体",
+      "无已知结构导向同类抗体"
+    ],
+    "interfaceFocus": "TAF8-TAF6装配界面与保守疏水核心",
+    "designMode": "structure-guided blockade",
+    "candidates": [
+      {
+        "target": "TAF6",
+        "rationale": "TAF6与TAF8构成直接复合体界面，是同一TFIID装配通路中的真实伙伴靶点。围绕TAF6开展并行界面阻断有助于验证TAF8相关转录起始依赖性。"
+      },
+      {
+        "target": "TBP",
+        "rationale": "TBP是TFIID介导转录起始的核心结合对象，与TAF8所处复合体处于同一疾病相关通路。针对TBP可用于评估复合体装配受阻后的下游转录影响。"
+      },
+      {
+        "target": "TAF1",
+        "rationale": "TAF1是TFIID的支架性核心亚基，与TAF8共同参与转录起始复合体稳定化。其作为同通路候选靶点适合用于比较不同亚基干预对疾病表型的贡献。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

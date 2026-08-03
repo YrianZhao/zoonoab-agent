@@ -1,0 +1,65 @@
+{
+  "gene": "OSTF1",
+  "generatedAt": "2026-08-03T14:59:38.621Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "OSTF1是胞内衔接蛋白，含SH3结构域并参与破骨细胞形成与骨吸收相关调控，其疾病证据更偏向骨骼表型、视网膜疾病和蛋白水平性状的遗传关联，而非经典可阻断的细胞外配体-受体轴。该蛋白不具备分泌蛋白、跨膜受体或稳定胞外结构域特征，天然抗原可及性不利于常规治疗性抗体直接结合。相较RANKL、CSF1R或CTSK等同属破骨细胞/骨重塑通路且具有明确胞外或酶活可干预界面的靶点，OSTF1更适合作为机制研究或细胞内递送抗体探索靶点，主靶点优先级应谨慎评估。",
+    "mechanism": "设计目标为胞内抗体结合OSTF1 SH3结构域，阻断其与富含脯氨酸基序伙伴蛋白的相互作用，从而削弱破骨细胞骨吸收相关衔接复合体形成。",
+    "selectedEpitope": "优先覆盖SH3结构域RT-Src环及配体结合沟槽，竞争性阻断PxxP基序识别界面。",
+    "diseaseDirection": "骨重塑与破骨细胞相关疾病",
+    "domain": "OSTF1核心为SH3结构域，PDB 1ZLM解析人源蛋白链A高分辨率晶体结构。",
+    "evidence": "OSTF1骨重塑遗传关联与结构可设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q92882功能与定位注释",
+      "RCSB PDB 1ZLM晶体结构记录",
+      "破骨细胞分化与骨吸收通路文献"
+    ],
+    "referenceEntries": "UniProt Q92882；RCSB PDB 1ZLM；Open Targets OSTF1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SH3结构域RT-Src环邻近PxxP结合沟槽",
+        "直接干预OSTF1与富脯氨酸配体的识别界面，机制可解释性较强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SH3结构域远端β折叠外表面",
+        "可用于构象稳定或检测型抗体设计，但对功能阻断预期较弱",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SH3疏水核心及保守折叠支撑残基邻域",
+        "可能影响蛋白稳定性并增加非特异构象扰动风险，不宜作为首选阻断表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "OSTF1为胞内蛋白，常规Fab/VHH难以到达天然作用位点；建议限定为细胞内抗体、递送抗体或研究级阻断分子，并避免宣称胞外中和机制。",
+    "structurePrepZh": "以1ZLM链A为模板，保留SH3结构域完整β折叠与RT-Src环构象，补充质子化状态并标注PxxP配体结合沟槽用于对接约束。",
+    "structureRef": "RCSB PDB 1ZLM，X-ray diffraction，1.07 Å",
+    "antibodies": [
+      "暂无获批OSTF1治疗性抗体",
+      "暂无公开临床阶段OSTF1阻断抗体"
+    ],
+    "interfaceFocus": "SH3结构域PxxP配体结合沟槽",
+    "designMode": "胞内阻断抗体探索",
+    "candidates": [
+      {
+        "target": "TNFSF11",
+        "rationale": "TNFSF11编码RANKL，是破骨细胞分化的核心细胞外配体；阻断RANKL与TNFRSF11A/RANK结合具有明确骨吸收抑制机制。"
+      },
+      {
+        "target": "TNFRSF11A",
+        "rationale": "TNFRSF11A编码RANK，位于破骨细胞前体细胞表面；其胞外半胱氨酸富集结构域介导RANKL结合，具备抗体可及性。"
+      },
+      {
+        "target": "CSF1R",
+        "rationale": "CSF1R是巨噬细胞/破骨细胞谱系生存与分化的膜受体酪氨酸激酶；抗体可阻断CSF1或IL-34与其胞外结构域结合。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

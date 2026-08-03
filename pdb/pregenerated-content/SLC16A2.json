@@ -1,0 +1,65 @@
+{
+  "gene": "SLC16A2",
+  "generatedAt": "2026-08-03T21:10:35.175Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SLC16A2编码单羧酸转运蛋白8（MCT8），是甲状腺激素T3跨膜转运的关键载体，失功能突变导致神经元T3摄取不足并引发Allan-Herndon-Dudley综合征。该靶点为12次跨膜转运蛋白，胞外环区可作为抗体可及抗原面，但主要底物通道位于膜内螺旋束。相较下游甲状腺激素受体，SLC16A2处于激素进入神经细胞的近端限速节点，遗传证据和结构解析完整度支持较高优先级。",
+    "mechanism": "抗体设计应以调节SLC16A2构象为核心，稳定外向开放或非转运构象，影响T3在跨膜螺旋腔体中的结合与易位过程。",
+    "selectedEpitope": "优先覆盖胞外环ECL1/ECL4及邻近TM1、TM7入口边缘，避免直接深入膜内底物口袋。",
+    "diseaseDirection": "神经发育性甲状腺激素转运障碍",
+    "domain": "SLC16A2含12个跨膜螺旋，N端和C端位于胞内，胞外环连接转运核心螺旋束。",
+    "evidence": "SLC16A2-MCT8遗传病与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联证据",
+      "UniProt P36021功能与变异注释",
+      "RCSB PDB 9DWY冷冻电镜结构",
+      "OMIM Allan-Herndon-Dudley syndrome条目"
+    ],
+    "referenceEntries": "UniProt P36021；RCSB PDB 9DWY；HGNC SLC16A2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ECL1/ECL4与外向入口周缘",
+        "具备胞外可及性，可通过构象约束影响T3进入转运通道",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ECL2/ECL3相邻跨膜螺旋外侧面",
+        "可作为非竞争性构象调节表位，降低对底物口袋直接干扰",
+        "备选"
+      ],
+      [
+        "Site C",
+        "膜内T3结合腔及TM3/TM8深部界面",
+        "与底物识别相关但抗体可及性低，且易受膜环境限制",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SLC16A2为多跨膜转运体，胞外环较短且构象依赖性强；抗体设计宜采用膜蛋白稳定构象抗原，避免针对胞内端或脂质埋藏面。",
+    "structurePrepZh": "以PDB 9DWY抗原链A为模板，保留跨膜螺旋束与胞外环构象，补全缺失环区并在膜模拟环境中评估表位暴露。",
+    "structureRef": "RCSB PDB 9DWY，human MCT8 cryo-EM structure，2.9 Å",
+    "antibodies": [
+      "anti-MCT8/SLC16A2研究级抗体",
+      "构象选择性膜转运体抗体"
+    ],
+    "interfaceFocus": "胞外入口环区与TM1/TM7外侧构象界面",
+    "designMode": "膜转运体构象调节",
+    "candidates": [
+      {
+        "target": "DIO2",
+        "rationale": "DIO2将T4转化为活性T3，是脑内甲状腺激素可用性的重要调控节点，与MCT8介导的T3供给处于同一神经发育激素轴。"
+      },
+      {
+        "target": "THRA",
+        "rationale": "THRA编码甲状腺激素受体α，介导神经系统中T3依赖转录反应，是MCT8缺陷后下游信号不足的直接效应节点。"
+      },
+      {
+        "target": "THRB",
+        "rationale": "THRB编码甲状腺激素受体β，参与T3响应和垂体-甲状腺轴反馈调节，可作为同一甲状腺激素通路的下游候选靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

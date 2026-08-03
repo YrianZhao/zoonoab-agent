@@ -1,0 +1,65 @@
+{
+  "gene": "GSR",
+  "generatedAt": "2026-08-03T12:59:00.673Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GSR编码谷胱甘肽二硫化物还原酶，催化GSSG还原为GSH，维持NADPH依赖的细胞内氧化还原稳态，其缺陷可导致红细胞抗氧化能力下降并引发溶血性贫血。该蛋白主要定位于胞质和线粒体，不属于分泌蛋白或经典膜受体，天然抗原可及性弱，抗体设计更适合作为胞内递送或构象识别研究场景。相较于上游泛氧化应激标志物，GSR具有明确酶活中心、FAD/NADPH结合结构域和高分辨率实验结构，优先级主要来自机制可解释性与结构可设计性，但成药可及性低于膜受体类靶点。",
+    "mechanism": "抗体需通过胞内递送后结合GSR二聚体界面或FAD/NADPH邻近构象，阻碍GSSG进入催化通道或削弱同源二聚体稳定性，从而降低GSSG向GSH的还原通量。",
+    "selectedEpitope": "优先选择二聚体界面邻近的FAD结合结构域外露环区，避开高度保守催化残基并覆盖底物通道入口。",
+    "diseaseDirection": "氧化还原失衡相关贫血与肿瘤",
+    "domain": "GSR为FAD依赖性二聚体氧化还原酶，含FAD结合、NADPH结合、中央结构域及二聚化界面区域。",
+    "evidence": "GSR氧化还原稳态与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P00390功能与定位注释",
+      "RCSB PDB 3DJJ高分辨率晶体结构",
+      "人类谷胱甘肽代谢与红细胞抗氧化文献"
+    ],
+    "referenceEntries": "UniProt P00390；RCSB PDB 3DJJ；Open Targets GSR",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "FAD结合结构域邻近底物通道外露环区",
+        "可影响GSSG接近催化位点并保留较高结构解析度",
+        "优先"
+      ],
+      [
+        "Site B",
+        "同源二聚体界面周边可及表面",
+        "可能削弱功能性二聚体稳定性，适合构象阻断设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "NADPH结合口袋深部保守区域",
+        "与同源黄素还原酶保守性较高，存在交叉反应和酶族选择性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GSR为胞内酶，常规抗体难以到达作用位点；设计应结合胞内递送格式或研究型抑制抗体，并严格评估与同族氧化还原酶的交叉反应。",
+    "structurePrepZh": "以3DJJ链A为模板，补全缺失侧链和质子化状态，保留FAD辅因子用于界面判读，并标注NADPH/GSSG通道相关残基。",
+    "structureRef": "RCSB PDB 3DJJ，人源GSR 1.1 Å X射线晶体结构",
+    "antibodies": [
+      "研究级anti-GSR monoclonal antibody",
+      "研究级anti-glutathione reductase antibody"
+    ],
+    "interfaceFocus": "FAD邻近底物通道入口与二聚体界面",
+    "designMode": "胞内酶构象阻断",
+    "candidates": [
+      {
+        "target": "G6PD",
+        "rationale": "G6PD通过磷酸戊糖途径生成NADPH，为GSR催化GSSG还原提供还原力，处于同一红细胞抗氧化防御轴。其遗传缺陷同样与溶血性贫血和氧化应激敏感性相关。"
+      },
+      {
+        "target": "GPX1",
+        "rationale": "GPX1利用GSH还原过氧化氢和脂质过氧化物，产生GSSG并与GSR构成功能耦联的谷胱甘肽循环。该节点直接反映GSH消耗端的抗氧化负荷。"
+      },
+      {
+        "target": "GCLC",
+        "rationale": "GCLC催化谷胱甘肽生物合成限速步骤，决定细胞GSH储备容量，与GSR维持GSH/GSSG比例共同支撑氧化还原稳态。其通路位置适合用于联合评估谷胱甘肽代谢脆弱性。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "DCTN2",
+  "generatedAt": "2026-08-03T18:29:59.588Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DCTN2是dynactin复合体p50/dynamitin亚基，参与连接dynein马达与货物适配体，影响微管依赖性细胞内运输。现有Open Targets关联主要集中于红细胞分布宽度、血小板计数和体重等数量性状，关联强度较低且多为遗传统计信号，尚缺乏明确的细胞外疾病配体轴。DCTN2为胞内复合体蛋白，天然抗原可及性不适合常规细胞表面或分泌蛋白抗体阻断，但高分辨冷冻电镜复合体结构支持机制性胞内结合分子设计。相较同通路中可直接药物化的细胞外靶点，DCTN2优先级应定位为结构生物学验证和胞内抗体研究，而非优先临床抗体开发靶点。",
+    "mechanism": "以胞内抗体阻断DCTN2与DCTN1及Arp1微丝骨架的装配界面，削弱dynactin对dynein货物运输复合体的稳定化作用。",
+    "selectedEpitope": "优先覆盖DCTN2位于dynactin肩部的DCTN1/Arp1接触界面，避免泛表面结合。",
+    "diseaseDirection": "血液数量性状与细胞运输",
+    "domain": "DCTN2为dynactin p50亚基，含N端coiled-coil及结构化装配区，嵌入dynactin肩部模块。",
+    "evidence": "DCTN2-dynactin结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB Q13561功能与亚细胞定位注释",
+      "RCSB PDB 9B85冷冻电镜结构",
+      "Reactome dynein-dynactin介导的细胞内运输通路"
+    ],
+    "referenceEntries": "UniProt Q13561；RCSB PDB 9B85；Open Targets DCTN2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DCTN2肩部装配面邻近DCTN1/Arp1接触区域",
+        "可直接干预dynactin复合体稳定性，机制验证价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DCTN2暴露coiled-coil外侧螺旋面",
+        "利于形成构象选择性结合，可用于胞内定位或复合体捕获",
+        "备选"
+      ],
+      [
+        "Site C",
+        "深埋于dynactin核心的亚基间疏水界面",
+        "天然装配状态下可及性低，易产生构象依赖与表达折叠风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DCTN2缺乏胞外可及结构，常规IgG难以到达作用位点；建议限定为胞内Fab/VHH、结构探针或降解偶联策略验证。",
+    "structurePrepZh": "以PDB 9B85冷冻电镜模型为模板，保留DCTN2及相邻DCTN1、Arp1链，去除低置信柔性片段并评估界面暴露度。",
+    "structureRef": "RCSB PDB 9B85，human dynein-dynactin复合体冷冻电镜结构",
+    "antibodies": [
+      "暂无获批DCTN2靶向抗体",
+      "商业化抗DCTN2研究抗体"
+    ],
+    "interfaceFocus": "DCTN2-DCTN1/Arp1肩部装配界面",
+    "designMode": "胞内结构阻断",
+    "candidates": [
+      {
+        "target": "DCTN1",
+        "rationale": "DCTN1为dynactin最大亚基并参与dynein-dynactin-cargo适配体复合体形成，与DCTN2处于同一微管运输通路。其功能节点更接近货物适配体招募，机制解释性强。"
+      },
+      {
+        "target": "ACTR1A",
+        "rationale": "ACTR1A编码Arp1，是dynactin微丝样骨架核心组成部分，并与DCTN2所在肩部模块共同维持复合体装配。靶向该节点可评估dynactin核心稳定性对相关数量性状的影响。"
+      },
+      {
+        "target": "DYNC1H1",
+        "rationale": "DYNC1H1为胞质dynein重链，是dynactin协同驱动微管负端运输的马达核心。与DCTN2同属dynein-dynactin运输轴，疾病机制研究优先级高于外围装配亚基。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

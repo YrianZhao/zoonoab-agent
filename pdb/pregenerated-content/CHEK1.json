@@ -1,0 +1,65 @@
+{
+  "gene": "CHEK1",
+  "generatedAt": "2026-08-03T11:21:56.445Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CHEK1 是细胞周期 DNA 损伤应答中的丝氨酸/苏氨酸蛋白激酶，主要通过 ATR 介导的磷酸化激活后调控 CDC25A/CDC25C 降解或失活，从而维持 S 期和 G2/M 检查点。该蛋白为胞内激酶，天然抗原可及性不符合常规治疗性抗体优先靶点特征，但其高分辨率晶体结构有利于体外结合分子和细胞内抗体格式的结构设计。相较于上游 ATR 或多功能效应蛋白 CDC25，CHEK1 具有更集中的催化结构域和明确的 ATP 结合口袋，可作为 DNA 损伤应答轴中机制验证优先级较高的结构化靶点。",
+    "mechanism": "设计分子应阻断 CHEK1 催化裂隙内 ATP 结合及底物肽定位，抑制其对 CDC25A、CDC25C 和 CLSPN 相关位点的磷酸化传递。",
+    "selectedEpitope": "优先覆盖 N 端激酶结构域 ATP 结合裂隙及铰链区邻近表面，兼顾活化环构象限制。",
+    "diseaseDirection": "DNA损伤应答与细胞周期疾病",
+    "domain": "CHEK1 含 N 端蛋白激酶催化结构域及 C 端调控区，10HZ 覆盖催化核心。",
+    "evidence": "CHEK1 DNA损伤检查点结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB O14757 functional annotation",
+      "RCSB PDB 10HZ X-ray structure",
+      "DNA damage response and cell-cycle checkpoint literature"
+    ],
+    "referenceEntries": "UniProt O14757；RCSB PDB 10HZ；HGNC CHEK1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域 ATP 结合裂隙与铰链区",
+        "直接干预 ATP 配位和催化构象，机制可验证性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "活化环及底物结合沟槽邻近面",
+        "限制底物肽进入并稳定非活性构象，可形成别构抑制策略",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端调控区相邻外露片段",
+        "可能影响调控构象，但 10HZ 覆盖不足且胞内可及性受限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CHEK1 为胞内激酶，常规 IgG 难以进入靶细胞；宜定位为细胞内抗体、Fab/VHH 结构探针或递送偶联格式，并避免与保守激酶 ATP 口袋产生广泛交叉反应。",
+    "structurePrepZh": "以 10HZ A 链为模板，保留催化结构域坐标，清理结晶配体和水分子后补全缺失侧链，并对 ATP 口袋、铰链区和活化环进行界面网格定义。",
+    "structureRef": "RCSB PDB 10HZ，CHEK1 X-ray structure，1.666 Å",
+    "antibodies": [
+      "anti-CHEK1 clone 2G1D5",
+      "anti-phospho-CHEK1 Ser345 clone 133D3"
+    ],
+    "interfaceFocus": "ATP口袋、铰链区、活化环与底物沟槽",
+    "designMode": "胞内Fab/VHH结构抑制",
+    "candidates": [
+      {
+        "target": "ATR",
+        "rationale": "ATR 是复制压力和 DNA 损伤应答中 CHEK1 的上游激酶，直接磷酸化 CHEK1 Ser317/Ser345 以启动检查点信号。"
+      },
+      {
+        "target": "CLSPN",
+        "rationale": "CLSPN 作为适配蛋白促进 ATR 对 CHEK1 的有效磷酸化，是 ATR-CHEK1 检查点复合体形成的重要通路节点。"
+      },
+      {
+        "target": "CDC25A",
+        "rationale": "CDC25A 是 CHEK1 下游底物，CHEK1 磷酸化后促进其降解，从而抑制 CDK 活性并维持 S 期检查点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

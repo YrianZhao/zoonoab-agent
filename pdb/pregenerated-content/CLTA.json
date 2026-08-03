@@ -1,0 +1,65 @@
+{
+  "gene": "CLTA",
+  "generatedAt": "2026-08-03T11:28:33.556Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CLTA编码网格蛋白轻链A，是网格蛋白包被小泡组装与受体介导内吞的重要胞质支架组分，可影响流感病毒入胞所依赖的clathrin-mediated endocytosis。该蛋白主要位于胞质侧网格蛋白包被结构，并非分泌蛋白或细胞外膜受体，常规体内抗体可及性不足，因此更适合细胞内递送抗体片段或机制研究型结合分子。相比许多广泛必需的内吞核心因子，CLTA具有明确结构片段与可解析结合界面，可用于验证轻链调控clathrin重链装配的可干预性，但疾病关联得分中等，转化优先级应低于病毒表面蛋白或宿主细胞外受体靶点。",
+    "mechanism": "通过细胞内Fab或VHH结合CLTA轻链保守螺旋区，干扰其与clathrin重链近端腿部及包被格架的稳定相互作用，降低流感病毒受体介导内吞效率。",
+    "selectedEpitope": "优先覆盖CLTA中央α螺旋重复区的clathrin重链结合面，避免C端调控磷酸化附近非特异位点。",
+    "diseaseDirection": "流感病毒入胞与宿主内吞通路",
+    "domain": "CLTA含N端酸性调控区、中央α螺旋重复段及C端调控尾部，参与clathrin三iskelion装配调控。",
+    "evidence": "CLTA介导内吞与流感入胞证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联记录",
+      "UniProt P09496功能与亚细胞定位注释",
+      "RCSB PDB 6E5N溶液NMR结构条目",
+      "流感病毒clathrin-mediated endocytosis文献证据"
+    ],
+    "referenceEntries": "UniProt P09496；RCSB PDB 6E5N；Open Targets CLTA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "中央α螺旋重复区重链结合面",
+        "直接干预CLTA与clathrin重链装配界面，机制验证价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端酸性调控区邻近可及片段",
+        "可能影响轻链构象与包被调控，但柔性较高需构象筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端调控尾部及磷酸化邻近区域",
+        "易受翻译后修饰和构象异质性影响，存在脱靶解释风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CLTA为胞内支架蛋白，体内抗体暴露受限且内吞通路具有必需生理功能；建议采用细胞内VHH、可递送Fab或降解型研究分子，并设置细胞毒性窗口。",
+    "structurePrepZh": "以6E5N的A、B链NMR构象集建立抗原模型，保留代表性低能构象，补充缺失柔性区注释，并以螺旋束界面进行表位聚类。",
+    "structureRef": "RCSB PDB 6E5N，human CLTA solution NMR structure",
+    "antibodies": [
+      "CON.1 anti-clathrin light chain monoclonal antibody",
+      "X22 anti-clathrin heavy chain monoclonal antibody"
+    ],
+    "interfaceFocus": "CLTA中央螺旋与clathrin重链腿部结合界面",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "CLTC",
+        "rationale": "CLTC编码clathrin重链，是包被小泡格架的核心结构蛋白，直接参与流感病毒clathrin-mediated endocytosis。其干预位点更接近三iskelion装配核心，但细胞内可及性与必需性风险较高。"
+      },
+      {
+        "target": "AP2M1",
+        "rationale": "AP2M1为AP-2适配复合体μ2亚基，识别内吞货物信号并连接clathrin包被形成。阻断AP-2货物选择可影响病毒入胞早期步骤，属于同一宿主内吞通路。"
+      },
+      {
+        "target": "DNM2",
+        "rationale": "DNM2编码dynamin-2，介导clathrin包被小窝颈部GTP依赖性膜剪切。其作用位于病毒内吞小泡释放阶段，是流感病毒入胞通路中的真实宿主因子。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

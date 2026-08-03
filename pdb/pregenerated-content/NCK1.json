@@ -1,0 +1,65 @@
+{
+  "gene": "NCK1",
+  "generatedAt": "2026-08-03T14:35:15.822Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NCK1为胞内适配蛋白，含SH2与SH3模块，参与血小板GPVI/ITAM下游信号复合体装配，并通过连接磷酸化SLP-76、WASp及肌动蛋白调控因子影响血小板活化与形态重塑。Open Targets关联集中于血小板体积、计数及分布宽度，提示其在造血与血小板表型调控中具有遗传关联信号。该蛋白缺乏胞外结构域且非分泌蛋白，常规体内阻断抗体抗原可及性较差；相较GPVI、CLEC2等膜受体，NCK1更适合作为结构验证、胞内递送抗体或研究级抑制抗体靶点，临床抗体优先级应下调。",
+    "mechanism": "设计抗体阻断NCK1 SH2结构域识别磷酸化SLP-76等含pY基序蛋白，或干扰SH3结构域结合WASp/PAK1富脯氨酸序列，从而削弱血小板骨架重塑信号。",
+    "selectedEpitope": "优先覆盖SH2结构域磷酸肽结合沟槽及pY+3选择性口袋，避免仅选择非功能性背面表位。",
+    "diseaseDirection": "血小板表型与血栓炎症",
+    "domain": "N端三个SH3结构域串联，C端SH2结构域介导磷酸酪氨酸依赖性复合体装配。",
+    "evidence": "NCK1血小板表型遗传关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P16333功能与结构域注释",
+      "RCSB PDB 5QU8晶体结构记录",
+      "血小板GPVI-SLP76-NCK-WASp信号文献"
+    ],
+    "referenceEntries": "UniProt:P16333；RCSB PDB:5QU8；Open Targets:NCK1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SH2结构域磷酸酪氨酸结合沟槽与BG环邻近区域",
+        "直接竞争磷酸化SLP-76/LAT类配体结合，功能阻断价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "第一或第二SH3结构域RT-Src环与n-Src环形成的PxxP结合面",
+        "可干扰WASp、PAK1等富脯氨酸配体招募，适合机制验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SH3-SH3连接区或远离配体沟槽的外侧表面",
+        "可获得高亲和结合但功能抑制不确定，需避免作为单一主表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NCK1为胞内蛋白，体内抗体可及性与递送是主要风险；SH2/SH3家族保守性较高，应强化同源蛋白NCK2、GRB2交叉反应筛查。",
+    "structurePrepZh": "以5QU8高分辨率晶体结构为模板，补全缺失侧链、校正质子化状态，并围绕SH2磷酸肽口袋及SH3配体沟槽生成表面网格。",
+    "structureRef": "RCSB PDB 5QU8，X-ray diffraction，0.93 Å",
+    "antibodies": [
+      "抗NCK1研究级单克隆抗体",
+      "抗NCK1磷酸信号复合体检测抗体"
+    ],
+    "interfaceFocus": "SH2磷酸肽口袋与SH3富脯氨酸结合沟槽",
+    "designMode": "胞内递送阻断抗体",
+    "candidates": [
+      {
+        "target": "GP6",
+        "rationale": "GPVI为血小板胶原受体，位于细胞膜表面并通过FcRγ-ITAM启动SYK-SLP76信号，与NCK1处于同一血小板活化通路且抗体可及性显著更优。"
+      },
+      {
+        "target": "SYK",
+        "rationale": "SYK直接识别GPVI/FcRγ ITAM磷酸化位点并磷酸化下游适配蛋白，是NCK1上游信号复合体的核心激酶，适合小分子或胞内抑制策略比较。"
+      },
+      {
+        "target": "LAT",
+        "rationale": "LAT在血小板免疫受体信号中作为磷酸化支架募集SLP-76、PLCγ2及适配蛋白，处于NCK1相关信号装配网络内，可作为通路级候选靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

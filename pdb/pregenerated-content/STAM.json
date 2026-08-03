@@ -1,0 +1,65 @@
+{
+  "gene": "STAM",
+  "generatedAt": "2026-08-03T16:57:52.343Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "STAM 为胞质信号适配蛋白，参与多种受体内吞与泛素依赖性运输过程，在炎症与感染相关宿主反应中具有明确的通路位置，但其本身并非经典分泌或膜表面抗原，故更适合作为机制研究型主靶点而非常规治疗性抗体靶点。现有疾病关联以感染和血液学/代谢表型为主，提示其在免疫受体转运与细胞因子受体周转中具有可解释的病理相关性。相比 EGFR、FLT3 或 PDGFR 等同属内吞调控网络且更常见于膜外可及治疗靶点，STAM 的优势在于复合物结构已解析、功能界面明确，适于采用细胞内递送抗体或结构导向结合体开展精确干预。",
+    "mechanism": "结合 STAM 的 SH3/UBA 相关界面，干预其与泛素化货物及伴侣蛋白的相互作用，削弱受体内吞后分选与降解耦联。",
+    "selectedEpitope": "优先锁定 SH3 介导的蛋白互作面及邻近 UBA 表面，避免破坏折叠核心。",
+    "diseaseDirection": "感染与内吞转运",
+    "domain": "N 端介导互作区、中央连接区与 C 端 UBA 相关表面",
+    "evidence": "STAM 结构与疾病关联证据包",
+    "evidenceSources": [
+      "UniProt: Q92783",
+      "RCSB PDB: 3F1I",
+      "Open Targets Platform",
+      "InterPro / Pfam domain annotation"
+    ],
+    "referenceEntries": "UniProt Q92783; RCSB 3F1I; human STAM",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SH3 结合邻域",
+        "优先干预蛋白互作网络，利于功能阻断",
+        "优先"
+      ],
+      [
+        "Site B",
+        "UBA 近端表面",
+        "影响泛素识别与货物分选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "中央连接区边缘",
+        "保留结构完整性下实现弱干预",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "STAM 为胞质蛋白，常规裸抗体难以直接接触靶标；应优先考虑细胞内递送、VHH 或工程化 Fab 平台。表位需避开核心折叠区，以降低构象失稳与非特异聚集风险。",
+    "structurePrepZh": "以 3F1I 为核心模板完成缺失环区补模、链 H/S/C 界面清理与质子化校正，并结合多态构象评估互作面暴露度。",
+    "structureRef": "RCSB PDB 3F1I, 2.3 Å X-ray structure",
+    "antibodies": [
+      "未形成成熟临床抗体先例",
+      "研究级 STAM 结合试剂有限"
+    ],
+    "interfaceFocus": "SH3/UBA 相关蛋白互作界面",
+    "designMode": "结构导向",
+    "candidates": [
+      {
+        "target": "HGS",
+        "rationale": "HGS 与 STAM 共同构成 ESCRT-0 复合体，是同一内吞分选通路的真实伴侣靶点。并行干预可用于验证 STAM 介导的受体分选轴是否构成病理依赖点。"
+      },
+      {
+        "target": "ESCRT0",
+        "rationale": "ESCRT-0 功能模块与 STAM 在泛素化货物识别中直接耦联，虽非单一基因符号，但在通路层面可作为候选对照轴。用于比较 STAM 互作阻断对下游分选的影响。"
+      },
+      {
+        "target": "TSG101",
+        "rationale": "TSG101 属于 ESCRT 体系下游节点，与 STAM 共同参与内吞后膜蛋白命运决定。将其纳入同通路比较有助于区分起始识别与后续装配环节的贡献。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

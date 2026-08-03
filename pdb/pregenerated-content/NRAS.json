@@ -1,0 +1,65 @@
+{
+  "gene": "NRAS",
+  "generatedAt": "2026-08-03T14:50:47.052Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NRAS 是 RAS-MAPK 通路核心小 GTP 酶，致病突变通过稳定 GTP 结合态并增强 RAF-MEK-ERK 输出，参与 Noonan 综合征、先天性黑色素细胞痣和急性髓系白血病等疾病。该蛋白主要位于胞内质膜内侧，缺乏天然胞外结构域，作为常规细胞外抗体靶点的抗原可及性明显受限，但高分辨率结构有利于构建细胞内抗体或递送型结合分子。相比上游受体靶点，NRAS 位于多种致病输入的汇聚节点，突变依赖性和结构解析度构成优先研究依据；相比 KRAS，NRAS 在 Noonan 综合征及部分血液肿瘤中的疾病关联更为集中。",
+    "mechanism": "设计结合 Switch I/Switch II 区域的抗体片段，阻断 GTP-NRAS 与 RAF1 RBD 或 RALGDS 等效应蛋白的相互作用，抑制下游 MEK-ERK 信号输出。",
+    "selectedEpitope": "优先覆盖 Switch I 与 Switch II 邻近效应子结合面，避免遮蔽核苷酸结合核心。",
+    "diseaseDirection": "RAS-MAPK 通路相关肿瘤与发育综合征",
+    "domain": "NRAS 含 GTPase G 结构域、P-loop、Switch I、Switch II 及 C 端高变区膜定位序列。",
+    "evidence": "NRAS 致病突变与 RAS-MAPK 结构功能证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt P01111 蛋白功能与变异注释",
+      "RCSB PDB 7F68 高分辨率晶体结构",
+      "ClinVar/COSMIC 中 NRAS 致病突变记录"
+    ],
+    "referenceEntries": "UniProt:P01111；RCSB PDB:7F68；HGNC:7989",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Switch I/Switch II 效应子结合面",
+        "直接干预 RAF1 RBD、PIK3 等效应蛋白识别，最符合功能阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "P-loop 邻近核苷酸结合沟槽外缘",
+        "可稳定非活化构象或影响 GTP/GDP 状态识别，但需避免非特异性干扰核苷酸结合",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端高变区及膜锚定邻近区域",
+        "与膜定位相关但结构柔性高、异戊二烯化修饰依赖强，抗体成药性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NRAS 为胞内小 GTP 酶，常规抗体难以到达作用位点；设计应限定为细胞内抗体、递送型 Fab/VHH 或研究级阻断分子，并严格评估 KRAS/HRAS 交叉反应。",
+    "structurePrepZh": "以 7F68 链 A 为结构模板，保留 GTPase 结构域和关键突变位点注释，补全柔性环区并标注 Switch I、Switch II 与核苷酸结合位点。",
+    "structureRef": "RCSB PDB 7F68，X-ray diffraction，1.24 Å",
+    "antibodies": [
+      "iDab RAS intracellular domain antibody",
+      "RT11 pan-RAS intracellular antibody"
+    ],
+    "interfaceFocus": "Switch I/Switch II-RAF1 RBD 结合界面",
+    "designMode": "细胞内抗体阻断",
+    "candidates": [
+      {
+        "target": "RAF1",
+        "rationale": "RAF1 是活化 RAS 的直接效应蛋白，其 RBD 与 GTP-NRAS 结合后启动 MEK-ERK 磷酸化级联。阻断 RAF1 可在 NRAS 下游抑制同一致病通路输出。"
+      },
+      {
+        "target": "SOS1",
+        "rationale": "SOS1 是 RAS 鸟嘌呤核苷酸交换因子，促进 NRAS 从 GDP 态转换为 GTP 态。抑制 SOS1-NRAS 交换复合物可降低活化 NRAS 负荷。"
+      },
+      {
+        "target": "PTPN11",
+        "rationale": "PTPN11 编码 SHP2，是 RTK-RAS-MAPK 通路中促进 RAS 激活的重要上游节点，并与 Noonan 综合征具有明确遗传关联。该靶点可作为 NRAS 上游通路调控候选。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

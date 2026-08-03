@@ -1,0 +1,65 @@
+{
+  "gene": "RAD51",
+  "generatedAt": "2026-08-03T15:51:35.769Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RAD51 是同源重组修复的核心重组酶，介导 BRCA2 装载后的单链 DNA 结合、核蛋白丝形成及同源链侵入，Fanconi anemia 与乳腺癌等疾病关联明确。该蛋白主要定位于细胞核，缺乏天然胞外结构域，抗体药物的抗原可及性弱，适合作为细胞内机制研究、递送型抗体或降解偶联设计靶点。相较于 BRCA1/BRCA2 等大型支架蛋白，RAD51 具有更明确的 ATPase/核蛋白丝界面和高分辨率结构依据，因此在结构驱动表位设计中优先级较高。",
+    "mechanism": "阻断 RAD51 ATPase 核心域与单链 DNA 及相邻 RAD51 原聚体的装配界面，抑制核蛋白丝延伸和同源链交换反应。",
+    "selectedEpitope": "优先覆盖 Walker A/P-loop 邻近 ATP 结合沟槽及 L1/L2 DNA 结合环外露构象区。",
+    "diseaseDirection": "DNA修复缺陷与肿瘤易感",
+    "domain": "RAD51 含 N 端寡聚化区与 RecA-like ATPase 核心域，核心域承担 DNA 结合、ATP 水解及原聚体装配。",
+    "evidence": "RAD51同源重组修复结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q06609 功能与亚细胞定位注释",
+      "RCSB PDB 1N0W X射线晶体结构",
+      "同源重组修复与Fanconi anemia通路文献"
+    ],
+    "referenceEntries": "UniProt: Q06609; RCSB PDB: 1N0W; Open Targets: RAD51",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RecA-like ATPase 核心域 Walker A/P-loop 邻近沟槽",
+        "干预 ATP 结合构象稳定性并削弱核蛋白丝活化",
+        "优先"
+      ],
+      [
+        "Site B",
+        "L1/L2 DNA 结合环及相邻正电荷表面",
+        "阻断 ssDNA 结合与同源链交换所需的 DNA 定位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端寡聚化相关表面",
+        "可能影响 RAD51 原聚体排列，但构象可塑性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RAD51 为核内蛋白，常规抗体难以到达作用位点；应优先采用细胞内递送、内体逃逸或抗体片段融合策略，并避免破坏高度保守 ATPase 核心导致广泛毒性。",
+    "structurePrepZh": "以 PDB 1N0W 高分辨率晶体结构为模板，保留抗原链 A/B/C/L 中完整 RAD51 构象单元，补全缺失侧链并标注 ATPase、DNA 结合环与寡聚界面。",
+    "structureRef": "RCSB PDB 1N0W, X-ray diffraction, 1.7 Å",
+    "antibodies": [
+      "RAD51 clone 14B4",
+      "RAD51 clone 51RAD01"
+    ],
+    "interfaceFocus": "ATPase沟槽、L1/L2 DNA结合环、原聚体界面",
+    "designMode": "胞内递送型阻断",
+    "candidates": [
+      {
+        "target": "BRCA2",
+        "rationale": "BRCA2 通过 BRC repeats 直接结合并装载 RAD51 至单链 DNA，是同源重组修复中 RAD51 功能激活的上游核心因子。"
+      },
+      {
+        "target": "PALB2",
+        "rationale": "PALB2 连接 BRCA1 与 BRCA2，并促进 RAD51 在 DNA 损伤位点募集，处于同一乳腺癌易感和同源重组通路。"
+      },
+      {
+        "target": "FANCD2",
+        "rationale": "FANCD2 是 Fanconi anemia 通路关键效应蛋白，其单泛素化后协调链间交联修复并与 RAD51 依赖性同源重组衔接。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

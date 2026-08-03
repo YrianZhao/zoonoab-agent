@@ -1,0 +1,65 @@
+{
+  "gene": "SNN",
+  "generatedAt": "2026-08-03T16:46:30.885Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SNN 是细胞内膜相关蛋白，现有结构与功能证据主要指向其在脂质代谢相关表型中的参与，Open Targets 亦显示其与甘油三酯和 VLDL 粒径等脂蛋白性状存在稳定关联。其抗原可及性受限于胞内定位，天然不属于理想的常规表面抗原，因此作为抗体主靶点更适合围绕细胞穿透递送或细胞内结合策略展开。相较于同通路中更易暴露的脂蛋白受体或分泌因子，SNN 提供的是更直接的细胞内调控节点，适合用于机制拆解和高特异性干预设计。",
+    "mechanism": "通过识别 SNN 暴露的保守表位，干扰其与膜相关蛋白复合体或脂质环境的结合，阻断其在脂蛋白代谢中的功能参与。",
+    "selectedEpitope": "优先选择 NMR 结构中暴露且保守的表面螺旋/环区，避免膜锚定近端疏水界面。",
+    "diseaseDirection": "脂质代谢异常",
+    "domain": "SNN 为小型膜相关蛋白，结构上以单一可折叠核心和膜邻近界面为主，胞外可及性低。",
+    "evidence": "SNN 脂质代谢关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform",
+      "UniProt O75324",
+      "RCSB PDB 1ZZA",
+      "PubMed 结构与功能文献"
+    ],
+    "referenceEntries": "UniProt: O75324; PDB: 1ZZA; Open Targets: SNN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "NMR 结构中表面暴露的亲水螺旋区",
+        "利于获得高亲和力结合并降低膜插入干扰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "远离膜锚定端的柔性环区",
+        "便于提升可及性并保留构象识别空间",
+        "备选"
+      ],
+      [
+        "Site C",
+        "靠近疏水膜邻近界面区域",
+        "可能影响天然构象但非特异风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SNN 细胞内定位导致常规抗体可及性受限，且膜邻近疏水面易引发非特异结合。建议优先采用细胞内递送 Fab 或 VHH，并以构象稳定表位为主。",
+    "structurePrepZh": "建议以 1ZZA 为核心模板进行表位映射，结合溶液态构象筛选暴露残基，并剔除膜邻近疏水斑块与柔性末端干扰。",
+    "structureRef": "RCSB PDB 1ZZA, solution NMR structure",
+    "antibodies": [
+      "无成熟临床同类抗体",
+      "无已建立的 SNN 靶向抗体基准"
+    ],
+    "interfaceFocus": "表面螺旋与膜邻近环区",
+    "designMode": "intracellular",
+    "candidates": [
+      {
+        "target": "APOB",
+        "rationale": "APOB 直接决定 VLDL 组装与分泌，是与甘油三酯和 VLDL 粒径表型同通路的核心靶点。其分泌蛋白属性使抗体可及性显著优于 SNN，适合作为并行验证靶点。"
+      },
+      {
+        "target": "MTTP",
+        "rationale": "MTTP 介导富含甘油三酯脂蛋白装配，与 APOB 协同驱动 VLDL 生成，处于同一脂质运输通路。该靶点为内质网腔内酶样蛋白，具有明确的机制干预价值。"
+      },
+      {
+        "target": "LPL",
+        "rationale": "LPL 负责循环中甘油三酯水解，是脂蛋白代谢终末环节的关键限制步骤。其为分泌型酶，抗原暴露优于 SNN，且与 Open Targets 所示脂质性状高度同源。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "WWTR1",
+  "generatedAt": "2026-08-03T17:53:58.040Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "WWTR1/TAZ是Hippo通路下游转录共调节因子，去磷酸化后进入细胞核并与TEAD转录因子形成复合体，驱动CTGF、CYR61等增殖与基质重塑相关基因表达。该蛋白主要定位于胞质和细胞核，缺乏天然胞外结构域、分泌特征或膜受体拓扑，因此常规体内阻断型抗体的抗原可及性较弱。相较EGFR、VEGFA等可及性更高的同病理过程靶点，WWTR1更适合作为结构生物学验证、细胞内递送抗体或研究级结合分子开发对象，优先级应低于胞外可成药靶点。",
+    "mechanism": "设计分子应阻断WWTR1的TEAD结合基序与TEAD疏水沟槽相互作用，抑制WWTR1-TEAD转录复合体形成。",
+    "selectedEpitope": "优先覆盖N端TEAD结合基序及其在6RHC中形成的α螺旋界面，避免仅选择WW结构域远端表面。",
+    "diseaseDirection": "Hippo-YAP/TAZ相关肿瘤与纤维化",
+    "domain": "WWTR1含N端TEAD结合基序、WW结构域、14-3-3结合磷酸化区和C端转录激活区。",
+    "evidence": "WWTR1-TEAD转录复合体结构与通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9GZV5 functional annotation",
+      "RCSB PDB 6RHC X-ray structure",
+      "Hippo pathway and TEAD coactivator literature"
+    ],
+    "referenceEntries": "UniProt Q9GZV5；RCSB PDB 6RHC；Open Targets WWTR1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端TEAD结合基序/α螺旋界面",
+        "直接竞争TEAD结合，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "WW结构域PY基序识别沟槽",
+        "可干扰WWTR1与含PPxY蛋白互作",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端转录激活区低复杂度片段",
+        "构象柔性高且结构约束不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "WWTR1为胞内转录共调节因子，常规抗体难以进入作用区室；建议限定为细胞内递送格式、VHH融合系统或体外机制探针。",
+    "structurePrepZh": "以6RHC晶体结构提取WWTR1相关肽段与TEAD界面，补充AlphaFold模型评估WW结构域和柔性区，标注磷酸化位点。",
+    "structureRef": "RCSB PDB 6RHC，X-ray diffraction，1.2 Å",
+    "antibodies": [
+      "Anti-TAZ clone V386 immunoassay antibody",
+      "Anti-WWTR1/TAZ clone EPR19812 research antibody"
+    ],
+    "interfaceFocus": "WWTR1 N端TEAD结合螺旋-TEAD疏水沟槽",
+    "designMode": "胞内界面阻断型",
+    "candidates": [
+      {
+        "target": "YAP1",
+        "rationale": "YAP1与WWTR1同属Hippo通路下游TEAD共激活因子，具有相似的TEAD依赖性转录输出，可作为并行界面阻断靶点。"
+      },
+      {
+        "target": "TEAD1",
+        "rationale": "TEAD1是YAP/TAZ转录复合体的DNA结合核心组分，阻断其与WWTR1结合可直接抑制下游促增殖基因表达。"
+      },
+      {
+        "target": "LATS1",
+        "rationale": "LATS1为Hippo通路上游激酶，可磷酸化WWTR1并促进其胞质滞留和降解，是同一调控轴中的关键节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

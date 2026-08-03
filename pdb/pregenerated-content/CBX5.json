@@ -1,0 +1,65 @@
+{
+  "gene": "CBX5",
+  "generatedAt": "2026-08-03T11:03:13.759Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CBX5编码HP1α，是异染色质蛋白复合体核心成员，通过chromodomain识别H3K9me3并参与着丝粒异染色质、基因沉默与基因组稳定性维持；其开放靶点关联主要集中于血小板计数及多种表型性状，提示更多属于染色质调控与数量性状遗传关联，而非经典可成药胞外疾病轴。CBX5为核内非分泌蛋白，不具备天然胞外结构域或膜受体暴露面，完整IgG抗体难以在生理条件下接触抗原，抗原可及性显著弱于细胞表面受体或可溶性配体。相较于同通路中具有胞外可及性的靶点，CBX5仅适合作为细胞内抗体、递送型Fab/VHH或研究级构象探针开发，优先级应低于可直接阻断胞外配体-受体相互作用的靶点。",
+    "mechanism": "以细胞内递送VHH阻断CBX5 chromodomain与H3K9me3组蛋白尾部结合，削弱HP1α在异染色质位点的募集与稳定滞留。",
+    "selectedEpitope": "优先覆盖chromodomain芳香笼及H3K9me3肽结合沟槽，避免破坏非特异核蛋白表面。",
+    "diseaseDirection": "染色质调控与血液表型遗传关联",
+    "domain": "N端chromodomain负责H3K9me3识别，C端chromoshadow domain介导二聚化及PXVXL基序蛋白结合。",
+    "evidence": "CBX5异染色质识别与表型遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform遗传关联与表型评分",
+      "UniProt P45973功能与亚细胞定位注释",
+      "RCSB PDB 3FDT晶体结构记录",
+      "HP1α-H3K9me3异染色质识别相关结构与功能文献"
+    ],
+    "referenceEntries": "UniProt P45973；RCSB PDB 3FDT；Open Targets CBX5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "chromodomain H3K9me3结合沟槽及芳香笼邻域",
+        "直接竞争甲基化组蛋白尾部结合，具备明确功能阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "chromoshadow domain二聚化界面邻近区域",
+        "可能干扰HP1α二聚体稳定性及伴侣蛋白装配，需评估选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "带正电核酸结合表面及柔性连接区",
+        "可能产生广泛核内非特异相互作用，构象异质性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CBX5为核内抗原，常规抗体可及性不足；设计应限定为细胞内递送VHH或Fab片段，并严格评估HP1家族CBX1/CBX3交叉反应。",
+    "structurePrepZh": "以3FDT中A、T链解析结构为模板，补全缺失侧链，保留chromodomain核心折叠，按人源CBX5序列校验界面残基与质子化状态。",
+    "structureRef": "RCSB PDB 3FDT，X-ray diffraction，2.0 Å",
+    "antibodies": [
+      "研究级anti-HP1α抗体",
+      "研究级anti-CBX5抗体"
+    ],
+    "interfaceFocus": "chromodomain芳香笼与H3K9me3肽结合沟槽",
+    "designMode": "细胞内递送VHH",
+    "candidates": [
+      {
+        "target": "CBX1",
+        "rationale": "CBX1编码HP1β，同属HP1异染色质识别蛋白，参与H3K9me3依赖的染色质压缩与基因沉默，可作为家族选择性评估靶点。"
+      },
+      {
+        "target": "CBX3",
+        "rationale": "CBX3编码HP1γ，具有chromodomain介导的H3K9me3结合能力，并参与转录调控和RNA加工相关染色质过程，适合同通路比较设计。"
+      },
+      {
+        "target": "SUV39H1",
+        "rationale": "SUV39H1催化H3K9甲基化并生成HP1蛋白识别的H3K9me3标记，位于CBX5募集上游，是同一异染色质建立通路的真实节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

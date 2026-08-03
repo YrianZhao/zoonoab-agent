@@ -1,0 +1,65 @@
+{
+  "gene": "PNP",
+  "generatedAt": "2026-08-03T15:23:59.627Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PNP 是嘌呤补救代谢中的胞质三聚体酶，催化肌苷、鸟苷及脱氧鸟苷磷酸解；遗传性缺陷导致脱氧鸟苷及 dGTP 在淋巴细胞中积累，引发 T 细胞毒性并与联合免疫缺陷高度相关。该蛋白并非分泌蛋白或膜受体，天然胞外抗原可及性有限，因此抗体设计更适合定位于结构验证、细胞内递送或诊断捕获场景。相比下游泛化免疫表型分子，PNP 处于致病代谢节点本身，Open Targets 最高关联指向 PNP 缺陷，具有明确遗传因果性和结构可解释性优先级。",
+    "mechanism": "抗体结合 PNP 活性口袋入口或三聚体界面，阻断肌苷/鸟苷进入催化位点，或干扰亚基装配导致磷酸解活性下降。",
+    "selectedEpitope": "优先瞄准活性口袋入口邻近环区与三聚体亚基界面，兼顾底物通道阻断和构象稳定性识别。",
+    "diseaseDirection": "PNP缺陷相关联合免疫缺陷",
+    "domain": "PNP 为同源三聚体嘌呤核苷磷酸化酶，单体含α/β折叠催化核心及底物结合口袋。",
+    "evidence": "PNP遗传缺陷与嘌呤代谢免疫毒性证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt P00491 功能与疾病注释",
+      "RCSB PDB 1RSZ X射线晶体结构",
+      "OMIM/ClinVar PNP缺陷致病变异记录"
+    ],
+    "referenceEntries": "UniProt P00491；RCSB PDB 1RSZ；Open Targets PNP",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化口袋入口及底物通道邻近环区",
+        "可直接限制肌苷、鸟苷或脱氧鸟苷进入活性中心，适合功能阻断型抗体评估",
+        "优先"
+      ],
+      [
+        "Site B",
+        "三聚体亚基接触界面外缘",
+        "有潜力影响寡聚体稳定性或识别功能性三聚体构象，适合构象选择性设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离活性位点的溶剂暴露α/β核心表面",
+        "适合诊断捕获或结构标记，但对酶活抑制的机制关联较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PNP 为胞内代谢酶，常规体内抗体难以接触天然靶点；应优先限定为诊断、结构探针或递送型抗体，并避免非特异性干扰同源代谢酶。",
+    "structurePrepZh": "采用 1RSZ 的 A 链作为人源 PNP 单体模板，补全缺失侧链、保留三聚体生物装配参考，并标注底物口袋和亚基界面。",
+    "structureRef": "RCSB PDB 1RSZ，X-ray diffraction，2.2 Å",
+    "antibodies": [
+      "PNP-特异性免疫组化诊断抗体",
+      "PNP-特异性ELISA捕获抗体"
+    ],
+    "interfaceFocus": "活性口袋入口、底物结合环区与三聚体界面",
+    "designMode": "胞内酶结构阻断",
+    "candidates": [
+      {
+        "target": "ADA",
+        "rationale": "ADA 同属嘌呤代谢免疫缺陷通路，其缺陷导致腺苷和脱氧腺苷积累并引发严重联合免疫缺陷，可作为代谢免疫毒性轴的并行靶点。"
+      },
+      {
+        "target": "DCK",
+        "rationale": "DCK 催化脱氧核苷磷酸化，参与 dGTP 等脱氧核苷酸池形成；在 PNP 缺陷背景下与淋巴细胞核苷毒性机制具有代谢连接。"
+      },
+      {
+        "target": "NT5C2",
+        "rationale": "NT5C2 调节胞质嘌呤核苷酸去磷酸化和核苷酸池平衡，与 PNP 所在嘌呤补救代谢网络处于同一代谢稳态通路。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

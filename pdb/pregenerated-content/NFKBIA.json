@@ -1,0 +1,65 @@
+{
+  "gene": "NFKBIA",
+  "generatedAt": "2026-08-03T14:41:52.940Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NFKBIA编码IκBα，是经典NF-κB通路中结合RELA/NFKB1并限制其核转位的胞内抑制因子，其功能缺陷与外胚层发育不良伴免疫缺陷、银屑病和炎症性表型相关。该蛋白不具备分泌或膜受体特征，常规完整抗体难以直接接触胞内抗原，因此更适合作为胞内抗体、细胞递送抗体片段或机制验证型设计靶点。相较于上游受体或IKK复合体，NFKBIA位于NF-κB释放控制节点，结构域与降解磷酸化位点定义清晰，适合开展界面稳定化与降解阻断策略。",
+    "mechanism": "稳定IκBα与RELA/NFKB1复合体，或遮蔽Ser32/Ser36周边IKK识别区域，阻断磷酸化、泛素化降解及NF-κB核转位。",
+    "selectedEpitope": "优先靶向N端信号接收区Ser32/Ser36邻近面，备选ANK重复结构域的RELA结合界面。",
+    "diseaseDirection": "NF-κB炎症与免疫缺陷相关疾病",
+    "domain": "含N端调控区、六个ankyrin repeat结构域及C端PEST降解调控区。",
+    "evidence": "NFKBIA-NF-κB通路结构与疾病遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P25963功能与结构域注释",
+      "RCSB PDB 6Y1J高分辨率晶体结构",
+      "NF-κB/IκBα复合体与IκBα突变疾病文献"
+    ],
+    "referenceEntries": "UniProt:P25963；RCSB PDB:6Y1J；HGNC:NFKBIA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端Ser32/Ser36磷酸化调控区邻近表面",
+        "阻断IKK介导的降解启动事件，增强IκBα抑制状态稳定性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ANK repeat 3-5的RELA/NFKB1结合界面",
+        "调节IκBα-NF-κB复合体稳定性，适合构建界面稳定化抗体片段",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端PEST序列及酸性降解调控区",
+        "可能影响蛋白周转，但柔性高且结构异质性较强",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NFKBIA为胞内非分泌蛋白，常规抗体药物可及性不足；建议采用VHH、intrabody或递送型Fab，并避免破坏RELA结合所需核心界面。",
+    "structurePrepZh": "以6Y1J晶体结构为核心模板，保留抗原链A/P对应结构域，补建柔性N端与PEST区缺失片段，并标注Ser32/Ser36及ANK界面。",
+    "structureRef": "RCSB PDB 6Y1J，X-ray diffraction，1.127 Å",
+    "antibodies": [
+      "anti-IκBα clone L35A5",
+      "anti-IκBα clone E130"
+    ],
+    "interfaceFocus": "Ser32/Ser36调控面与ANK-RELA结合界面",
+    "designMode": "胞内稳定化抗体设计",
+    "candidates": [
+      {
+        "target": "RELA",
+        "rationale": "RELA是经典NF-κB异二聚体的转录激活亚基，与IκBα ankyrin repeat结构域直接结合，决定炎症基因转录输出。"
+      },
+      {
+        "target": "NFKB1",
+        "rationale": "NFKB1 p50与RELA形成经典NF-κB二聚体，并参与IκBα介导的胞质滞留，是同一抑制复合体内的核心节点。"
+      },
+      {
+        "target": "IKBKB",
+        "rationale": "IKBKB编码IKKβ，直接磷酸化IκBα Ser32/Ser36并触发泛素化降解，是上游促炎激活环节的可干预靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

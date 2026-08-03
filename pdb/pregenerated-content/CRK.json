@@ -1,0 +1,65 @@
+{
+  "gene": "CRK",
+  "generatedAt": "2026-08-03T11:38:25.703Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CRK 是胞内接头蛋白，含 SH2 与 SH3 结构域，连接磷酸化受体、CAS/BCAR1、ABL1 与 RAC1/DOCK180 轴，在细胞黏附、迁移和血小板信号中具有明确通路位置。Open Targets 显示其与血压表型、血小板计数及感染相关表型存在遗传关联，但该蛋白主要定位于胞质和细胞核，缺乏天然胞外抗原可及性。相较于同通路的膜受体或分泌配体，CRK 作为常规抗体药物主靶点优先级较低，更适合细胞内抗体、降解偶联或结构生物学验证场景。",
+    "mechanism": "以内源化抗体或胞内抗体阻断 CRK SH2 结构域结合磷酸化 pYxxP 基序，抑制其募集 BCAR1/CAS 并削弱 DOCK180-RAC1 迁移信号。",
+    "selectedEpitope": "优先覆盖 SH2 磷酸酪氨酸结合口袋及 βB-βC 环邻近界面，限制底物肽结合。",
+    "diseaseDirection": "血压调控与血小板信号",
+    "domain": "CRK 含 N 端 SH2、nSH3 与 C 端 cSH3 结构域，无跨膜段或分泌信号肽。",
+    "evidence": "CRK 结构域-磷酸化底物互作证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProtKB P46108 功能与结构域注释",
+      "RCSB PDB 5UL6 X-ray 晶体结构",
+      "Reactome/KEGG 黏附与RAC1信号通路注释"
+    ],
+    "referenceEntries": "UniProt P46108；RCSB PDB 5UL6；Ensembl ENSG00000167193",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SH2 结构域磷酸酪氨酸结合沟槽",
+        "直接竞争 pYxxP 底物肽并阻断 CRK 招募磷酸化支架蛋白",
+        "优先"
+      ],
+      [
+        "Site B",
+        "nSH3 结构域 PxxP 配体结合面",
+        "干预 DOCK180、SOS1 等富脯氨酸效应蛋白结合",
+        "备选"
+      ],
+      [
+        "Site C",
+        "cSH3 结构域疏水核心邻近区域",
+        "可能影响构象稳定性，但功能阻断窗口较窄且脱靶构象风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CRK 为胞内无酶接头蛋白，常规 IgG 难以触达天然靶标；宜限定为胞内递送、intrabody 或 PROTAC 适配研究，并严控 SH2/SH3 家族交叉反应。",
+    "structurePrepZh": "以 5UL6 高分辨率晶体结构为模板，保留链 A/M 的结构域构象，补全缺失侧链、校正质子化状态，并标注 SH2 与 SH3 配体结合沟槽。",
+    "structureRef": "RCSB PDB 5UL6，X-ray diffraction，1.45 Å",
+    "antibodies": [
+      "无已获批 CRK 靶向抗体",
+      "研究级 anti-CRK monoclonal antibody"
+    ],
+    "interfaceFocus": "SH2-pYxxP 口袋与 nSH3-PxxP 沟槽",
+    "designMode": "胞内抗体设计",
+    "candidates": [
+      {
+        "target": "ABL1",
+        "rationale": "ABL1 可磷酸化并调控 CRK/CRKL 相关接头信号，位于相同的酪氨酸激酶-黏附迁移通路；其激酶结构域和疾病证据更适合小分子或抗体偶联策略分层评估。"
+      },
+      {
+        "target": "BCAR1",
+        "rationale": "BCAR1/CAS 是 CRK SH2 结构域的重要磷酸化支架配体，介导黏附斑重塑与 RAC1 激活；靶向该轴可更直接干预 CRK 依赖性迁移信号。"
+      },
+      {
+        "target": "DOCK1",
+        "rationale": "DOCK1 与 CRK 通过 SH3-PxxP 互作促进 RAC1 鸟嘌呤核苷酸交换，是 CRK 下游细胞迁移模块的核心成员；适合作为同通路机制验证候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

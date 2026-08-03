@@ -1,0 +1,65 @@
+{
+  "gene": "TAC3",
+  "generatedAt": "2026-08-03T17:06:13.717Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TAC3 编码的 neurokinin B 为生殖轴调控中的关键神经肽，其异常可直接影响 GnRH 脉冲发生与青春期启动，且与低促性腺激素性性腺功能减退、Kallmann 综合征和延迟青春期具有明确遗传与表型关联。该靶点为分泌型前体加工产物，成熟肽位于胞外空间，抗原可及性优于多数胞内通路蛋白，适合以中和性抗体干预配体-受体结合。相较于 TACR3 等受体靶点，针对 TAC3 可在上游直接阻断 NKB-TACR3 轴，具备更高的通路特异性与配体层面选择性，适合作为同通路分子设计优先对象。",
+    "mechanism": "抗体结合 neurokinin B 成熟肽，阻断其与 TACR3 的配体-受体结合，降低 GnRH 脉冲驱动信号。",
+    "selectedEpitope": "优先覆盖成熟 NKB 的 TACR3 结合核心环区与保守芳香族残基邻域，避免前体信号肽与加工位点。",
+    "diseaseDirection": "生殖内分泌与发育",
+    "domain": "前体蛋白经加工释放的成熟 neurokinin B 肽段，胞外可及",
+    "evidence": "TAC3-TACR3 轴抗体设计证据包",
+    "evidenceSources": [
+      "UniProt: Q9UHF0",
+      "RCSB PDB: 8JBG",
+      "Open Targets Platform",
+      "GeneReviews / OMIM"
+    ],
+    "referenceEntries": "UniProt Q9UHF0；RCSB 8JBG；Open Targets TAC3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "成熟 NKB 肽的 TACR3 结合核心区",
+        "直接阻断配体识别，最适合中和型抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "成熟肽 C 端邻域",
+        "可干扰受体装配并降低结合亲和力",
+        "备选"
+      ],
+      [
+        "Site C",
+        "前体加工片段邻近区",
+        "对成熟肽暴露度依赖高，存在加工异质性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险在于 TAC3 为小分泌肽，线性表位短且易受构象与加工状态影响；优先采用高亲和力中和策略，并以成熟肽暴露区为核心设计。",
+    "structurePrepZh": "需以 8JBG 电镜结构为骨架，结合成熟肽序列与链 B/D/E/G/A/C 的配体接触界面重建可及表位，必要时补充肽态建模。",
+    "structureRef": "RCSB PDB 8JBG；2.8 Å 电镜结构",
+    "antibodies": [
+      "暂无成熟商业标准抗体可直接代表成熟 NKB 中和谱系",
+      "需参照 neuropeptide 中和抗体设计范式"
+    ],
+    "interfaceFocus": "成熟 NKB 与 TACR3 的受体接触界面",
+    "designMode": "中和优先",
+    "candidates": [
+      {
+        "target": "TACR3",
+        "rationale": "TACR3 是 TAC3 的直接受体靶点，位于同一生殖轴通路下游，适合用于验证阻断配体-受体轴的功能读出。其为膜受体，便于构建机制闭环。"
+      },
+      {
+        "target": "KISS1",
+        "rationale": "KISS1 位于 GnRH 调控上游，与 TAC3-TACR3 共同参与青春期启动与生殖轴脉冲调控。该靶点可用于同通路协同评估与适应症分层。"
+      },
+      {
+        "target": "KISS1R",
+        "rationale": "KISS1R 与 TACR3 均为调控 GnRH 神经元活动的关键 GPCR，二者共同构成低促性腺激素性性腺功能减退的重要病理网络。作为并行通路受体，适合进行交叉机制比较。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

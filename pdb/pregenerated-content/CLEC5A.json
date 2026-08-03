@@ -1,0 +1,65 @@
+{
+  "gene": "CLEC5A",
+  "generatedAt": "2026-08-03T11:27:29.270Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CLEC5A 是髓系细胞表达的 C 型凝集素样受体，可识别登革病毒颗粒并通过 DAP12/TYROBP 的 ITAM 信号放大 Syk 依赖性炎症级联，参与登革热相关细胞因子风暴与组织损伤。该靶点为 I 型膜受体，配体识别区位于胞外 C 型凝集素样结构域，抗体可直接接近并阻断病毒颗粒结合界面。相较下游 SYK 或细胞因子靶点，CLEC5A 位于病原识别近端，具有更强的通路起始阻断价值，并可减少广泛免疫抑制风险。",
+    "mechanism": "抗体结合 CLEC5A 胞外 C 型凝集素样结构域，阻断其与登革病毒颗粒的接触，从而抑制 CLEC5A-DAP12/TYROBP 介导的 Syk 磷酸化与炎症因子释放。",
+    "selectedEpitope": "优先覆盖 CTLD 远端配体结合面及相邻环区，避开膜近端低可及区域。",
+    "diseaseDirection": "登革病毒感染炎症干预",
+    "domain": "人 CLEC5A 含短胞质尾、跨膜区和胞外 C 型凝集素样结构域，依赖 DAP12 传导 ITAM 信号。",
+    "evidence": "CLEC5A-DAP12 轴与登革炎症证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q9NY25 蛋白功能注释",
+      "RCSB PDB 2YHF 晶体结构",
+      "Nature 2008 CLEC5A 介导登革病毒炎症研究"
+    ],
+    "referenceEntries": "UniProt Q9NY25；RCSB PDB 2YHF；Open Targets CLEC5A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CTLD 远端病毒接触面及暴露环区",
+        "直接遮挡登革病毒颗粒结合界面，具备功能阻断优先级",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CTLD 侧向带正电表面与邻近β折叠边缘",
+        "可能影响病毒颗粒多价接触，可作为非竞争或部分竞争表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "膜近端 CTLD 基部与连接区",
+        "空间可及性受细胞膜限制，且可能影响受体构象稳定性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CLEC5A 与其他髓系 C 型凝集素样受体存在结构相似性，应降低 CTLD 保守折叠核心交叉反应风险，优先选择暴露环与非保守表面残基。",
+    "structurePrepZh": "以 2YHF 的 1.9 Å X 射线结构为模板，保留代表性抗原链，补全缺失侧链并评估晶体接触对表位暴露性的影响。",
+    "structureRef": "RCSB PDB 2YHF，human CLEC5A CTLD，1.9 Å X-ray",
+    "antibodies": [
+      "MD3",
+      "DX1"
+    ],
+    "interfaceFocus": "CTLD 远端配体结合面与暴露环区",
+    "designMode": "阻断型抗体设计",
+    "candidates": [
+      {
+        "target": "TYROBP",
+        "rationale": "TYROBP/DAP12 是 CLEC5A 的信号适配蛋白，通过 ITAM 招募并激活 SYK，是 CLEC5A 触发炎症级联的近端节点。"
+      },
+      {
+        "target": "SYK",
+        "rationale": "SYK 位于 DAP12 下游，介导髓系受体信号的磷酸化放大，是 CLEC5A 诱导炎症细胞因子产生的关键激酶。"
+      },
+      {
+        "target": "FCER1G",
+        "rationale": "FCER1G 是多种髓系免疫受体共享的 ITAM 适配链，在 C 型凝集素受体相关炎症信号中具有通路互补价值。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

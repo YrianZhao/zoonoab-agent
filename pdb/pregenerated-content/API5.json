@@ -1,0 +1,65 @@
+{
+  "gene": "API5",
+  "generatedAt": "2026-08-03T10:30:01.249Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "API5 是主要定位于细胞核与胞质的抗凋亡蛋白，可通过与 E2F1 相关转录调控网络及 FGF2 依赖性存活轴相连，参与细胞应激后的凋亡阈值设定。现有 Open Targets 关联主要集中于眼部测量、白细胞中性粒细胞比例及神经认知量表等复杂性状，疾病因果强度有限。该蛋白缺乏经典信号肽、跨膜区或稳定胞外结构域，抗原可及性显著弱于膜受体或分泌因子，因此作为常规治疗性抗体主靶点优先级较低；更适合发展胞内递送抗体片段或研究级结构探针。",
+    "mechanism": "胞内抗体片段可靶向 API5 HEAT-repeat 凹槽，干扰其与核内转录调控复合物的结合并降低抗凋亡支撑作用。",
+    "selectedEpitope": "优先覆盖 3U0R 中 HEAT-repeat 螺旋束凹槽及保守疏水补丁，规避柔性末端。",
+    "diseaseDirection": "凋亡调控与复杂性状遗传关联",
+    "domain": "API5 以α螺旋 HEAT-repeat 样折叠为核心，缺乏跨膜段和胞外结构域。",
+    "evidence": "API5 结构可成药性与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9BZZ5 functional annotation",
+      "RCSB PDB 3U0R X-ray structure",
+      "Human Protein Atlas subcellular localization"
+    ],
+    "referenceEntries": "UniProt Q9BZZ5；RCSB PDB 3U0R；Open Targets API5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "HEAT-repeat 中央凹槽",
+        "可能阻断蛋白互作界面，适合胞内 Fab/VHH 结构探针设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "α螺旋束外侧保守疏水补丁",
+        "具备成簇构象表位特征，可用于稳定构象识别",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N/C 端柔性尾部区域",
+        "构象异质性较高且功能界面证据不足，需降低设计权重",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "API5 为胞内非分泌蛋白，常规 IgG 难以到达作用位点；建议采用胞内 VHH、递送型 Fab 或降解偶联策略，并验证细胞内可达性。",
+    "structurePrepZh": "以 3U0R 链 A 为模板，补全缺失残基并评估晶体接触；去除非功能性晶体界面后进行表面保守性与凹槽可结合性分析。",
+    "structureRef": "RCSB PDB 3U0R，X-ray diffraction，2.5 Å",
+    "antibodies": [
+      "无已批准 API5 靶向抗体",
+      "研究级抗 API5 抗体"
+    ],
+    "interfaceFocus": "HEAT-repeat 凹槽与α螺旋束疏水补丁",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "E2F1",
+        "rationale": "E2F1 是细胞周期与凋亡转录程序的核心因子，API5 抗凋亡作用与 E2F1 相关应激转录网络存在功能交叉。靶向该轴可用于解析增殖-凋亡平衡。"
+      },
+      {
+        "target": "FGF2",
+        "rationale": "FGF2 可激活细胞存活信号，并与 API5 相关抗凋亡表型处于相近的促存活通路背景。其为分泌性生长因子，抗体可及性优于 API5。"
+      },
+      {
+        "target": "FGFR1",
+        "rationale": "FGFR1 是 FGF2 的经典受体酪氨酸激酶，介导 MAPK 与 PI3K-AKT 存活信号。作为膜受体，其胞外 Ig-like 结构域适合阻断型抗体设计。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "IL22",
+  "generatedAt": "2026-08-03T13:26:37.360Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IL22 是 Th17/Th22 轴分泌型细胞因子，可通过 IL22RA1/IL10RB 受体复合物激活 JAK1/TYK2-STAT3 通路，促进角质形成细胞增殖、抗菌肽表达及屏障炎症放大，与特应性湿疹和湿疹样皮炎具有明确关联。其为可溶性胞外抗原，不受跨膜拓扑限制，抗体可直接覆盖受体结合界面。相较下游 JAK/STAT 分子，IL22 具备更高配体选择性和炎症通路上游拦截优势，可降低广泛免疫抑制风险。",
+    "mechanism": "中和抗体阻断 IL22 与 IL22RA1 的高亲和力结合，并抑制 IL10RB 招募，从而降低受体复合物介导的 STAT3 磷酸化。",
+    "selectedEpitope": "优先覆盖 IL22 四螺旋束中 A/B 与 C/D 螺旋邻近的 IL22RA1 结合面。",
+    "diseaseDirection": "特应性皮炎与上皮炎症",
+    "domain": "IL22 为 IL10 家族四α螺旋束细胞因子，含 A-D 螺旋及受体结合表面。",
+    "evidence": "IL22-IL22RA1 轴皮肤炎症证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q9GZX6 功能与定位注释",
+      "RCSB PDB 3DLQ 晶体结构",
+      "IL22/IL22RA1/IL10RB 受体复合物文献"
+    ],
+    "referenceEntries": "UniProt Q9GZX6；RCSB PDB 3DLQ；Open Targets IL22",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "IL22RA1 结合面，A/B 与 C/D 螺旋邻近区域",
+        "直接阻断高亲和力受体识别，具备中和优先级",
+        "优先"
+      ],
+      [
+        "Site B",
+        "IL10RB 招募相关的对侧受体接触面",
+        "可削弱受体复合物装配，适合作为协同中和表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "四螺旋束核心及保守疏水折叠区域",
+        "可能影响蛋白稳定性与交叉反应判读，需避免深度嵌入",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IL22 与 IL10 家族细胞因子存在折叠相似性，需避开高度保守螺旋核心；设计应聚焦 IL22RA1 特异接触残基以提高选择性。",
+    "structurePrepZh": "以 3DLQ 高分辨率晶体结构为模板，保留抗原链 I/R 中完整 IL22 构象，补全缺失侧链并标注受体结合界面。",
+    "structureRef": "RCSB PDB 3DLQ，X-ray diffraction，1.9 Å",
+    "antibodies": [
+      "Fezakinumab",
+      "ILV-094"
+    ],
+    "interfaceFocus": "IL22RA1 结合面与 IL10RB 招募面",
+    "designMode": "中和型界面阻断",
+    "candidates": [
+      {
+        "target": "IL22RA1",
+        "rationale": "IL22RA1 是 IL22 的高亲和力受体链，位于同一 IL22-STAT3 上皮炎症轴。阻断该受体可直接抑制 IL22 诱导的角质形成细胞信号。"
+      },
+      {
+        "target": "IL10RB",
+        "rationale": "IL10RB 是 IL22 受体复合物的共享辅助受体链，参与 IL22 信号转导。其通路位置适合评估受体复合物装配阻断策略，但需注意与其他 IL10 家族细胞因子的共享性。"
+      },
+      {
+        "target": "IL23A",
+        "rationale": "IL23 促进 Th17/Th22 相关细胞因子网络维持，并可上游增强 IL22 相关炎症反应。靶向 IL23A 可作为同一皮肤炎症通路的上游调控方案。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "CAMK1G",
+  "generatedAt": "2026-08-03T10:58:43.453Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CAMK1G为钙/钙调蛋白依赖性丝氨酸/苏氨酸蛋白激酶，主要通过胞内Ca2+-calmodulin结合解除自抑制并调节神经元兴奋性、突触相关磷酸化事件及代谢表型相关信号。Open Targets关联以神经退行性疾病、反应时测量、骨骼异常和体组成性状为主，提示其更适合作为胞内信号节点的机制研究靶点。该蛋白缺乏经典跨膜段和分泌型胞外结构域，完整抗体在天然细胞环境中的抗原可及性受限；但2JAM提供高分辨率激酶结构，适合开展胞内抗体、VHH或结构稳定化结合体设计。相较缺少实验结构的同通路激酶，CAMK1G的结构可解析性和钙/钙调蛋白调控界面明确，具有较高的结构驱动设计优先级。",
+    "mechanism": "设计结合体优先阻断CAMK1G催化裂隙附近ATP定位或稳定自抑制构象，从而抑制底物丝氨酸/苏氨酸位点磷酸转移。",
+    "selectedEpitope": "优先覆盖激酶结构域N叶αC螺旋与ATP结合裂隙边缘，兼顾活化环构象锁定。",
+    "diseaseDirection": "神经退行性与钙信号异常",
+    "domain": "CAMK1G含N端蛋白激酶催化结构域及C端调控区，自抑制/钙调蛋白结合序列位于催化域后方。",
+    "evidence": "CAMK1G结构与神经表型关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q96NX5功能与结构域注释",
+      "RCSB PDB 2JAM晶体结构记录",
+      "InterPro蛋白激酶结构域分类"
+    ],
+    "referenceEntries": "UniProt Q96NX5；RCSB PDB 2JAM；Open Targets CAMK1G",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域N叶αC螺旋-ATP裂隙邻近面",
+        "可干扰催化构象与ATP有效定位，适合功能阻断型结合体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "活化环及底物结合沟槽周边区域",
+        "可影响底物进入和磷酸转移几何构型，需保留激酶选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端自抑制/钙调蛋白调控段邻近界面",
+        "可能改变Ca2+-calmodulin激活过程，但柔性较高且结构覆盖有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CAMK1G为胞内激酶，常规循环抗体难以接触天然抗原；建议采用细胞内VHH、Fab片段结构探针或递送体系，并严格评估CAMK家族交叉反应。",
+    "structurePrepZh": "以2JAM的1.7 Å晶体结构为模板，保留催化域完整链，校正缺失侧链、质子化状态与ATP口袋构象，并比对CAMK1家族保守位点。",
+    "structureRef": "RCSB PDB 2JAM，human CAMK1G kinase domain，X-ray 1.7 Å",
+    "antibodies": [
+      "暂无获批CAMK1G治疗性抗体",
+      "抗CAMK1G研究级抗体"
+    ],
+    "interfaceFocus": "ATP裂隙、αC螺旋、活化环与自抑制段接口",
+    "designMode": "胞内VHH结构阻断",
+    "candidates": [
+      {
+        "target": "CALM1",
+        "rationale": "CALM1编码钙调蛋白，是CAMK1G激活所需的Ca2+感受器；干预Ca2+-calmodulin与CAMK调控段结合可从上游限制激酶激活。"
+      },
+      {
+        "target": "CAMK1",
+        "rationale": "CAMK1与CAMK1G同属Ca2+/calmodulin依赖性蛋白激酶I家族，共享钙调蛋白依赖的神经元信号调控机制，可作为同通路选择性比较靶点。"
+      },
+      {
+        "target": "CAMKK2",
+        "rationale": "CAMKK2为CaMKK-CaMKI轴的上游激酶，可磷酸化并激活CAMKI家族成员，适合用于评估钙依赖性激酶级联的替代干预层级。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

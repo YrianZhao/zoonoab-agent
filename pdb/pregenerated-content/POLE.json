@@ -1,0 +1,65 @@
+{
+  "gene": "POLE",
+  "generatedAt": "2026-08-03T15:25:07.931Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "POLE编码DNA聚合酶ε催化亚基，其核内聚合酶与3′-5′外切酶校对功能维持前导链复制保真度；外切酶结构域致病变异可造成超突变表型并驱动结直肠癌易感。该蛋白为核内复制复合体成分，缺乏天然胞外结构域或分泌特征，抗体抗原可及性明显弱于膜受体与分泌因子，需定位为结构验证、胞内递送或研究级抑制工具。相较PCNA、POLD1等同通路靶点，POLE具有更直接的癌症易感突变证据与高分辨率催化结构参考，但治疗性抗体优先级受细胞内定位限制。",
+    "mechanism": "抗体片段需进入细胞核后结合POLE外切酶-聚合酶结构域界面，阻断其与模板-引物DNA及复制复合体的稳定装配。",
+    "selectedEpitope": "优先选择外切酶结构域邻近DNA结合沟槽且远离催化金属位点的构象表位。",
+    "diseaseDirection": "DNA复制校对缺陷相关肿瘤",
+    "domain": "POLE含N端3′-5′外切酶结构域、聚合酶掌/指/拇指亚结构域及C端调控区。",
+    "evidence": "POLE复制校对缺陷与结直肠癌易感证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q07864功能与结构域注释",
+      "RCSB PDB 5VBN晶体结构",
+      "ClinVar与COSMIC肿瘤变异记录"
+    ],
+    "referenceEntries": "UniProt Q07864；RCSB PDB 5VBN；Open Targets POLE",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "外切酶结构域邻近DNA结合沟槽",
+        "可干扰校对相关DNA定位并避开深埋催化残基",
+        "优先"
+      ],
+      [
+        "Site B",
+        "聚合酶拇指亚结构域外侧螺旋束",
+        "可能影响模板-引物夹持与延伸复合体稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "聚合酶掌结构域催化核心附近",
+        "功能相关性强但保守性高且构象遮挡风险较大",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "POLE为核内酶，常规抗体难以到达作用位点；催化核心高度保守，需避免交叉影响POLD1等复制聚合酶并评估细胞递送策略。",
+    "structurePrepZh": "以5VBN中人源POLE催化片段为模板，保留A、B、E、F抗原链，补全缺失环区并标注DNA结合沟槽、外切酶活性位点和聚合酶亚结构域边界。",
+    "structureRef": "RCSB PDB 5VBN，X-ray，2.35 Å，人源POLE催化复合体",
+    "antibodies": [
+      "抗POLE研究级单克隆抗体",
+      "抗POLE免疫组化验证抗体"
+    ],
+    "interfaceFocus": "外切酶结构域-DNA结合沟槽及拇指夹持界面",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "POLD1",
+        "rationale": "POLD1编码DNA聚合酶δ催化亚基，参与滞后链复制与校对；其外切酶结构域变异同样与聚合酶校对相关肿瘤易感有关。"
+      },
+      {
+        "target": "PCNA",
+        "rationale": "PCNA作为复制滑动夹直接招募POLE和POLD复合体，调节复制聚合酶在DNA上的过程ivity，是同一DNA复制通路的关键支架靶点。"
+      },
+      {
+        "target": "RFC1",
+        "rationale": "RFC1为复制因子C复合体大亚基，负责将PCNA装载至引物-模板连接处，位于POLE依赖复制延伸的上游装配步骤。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

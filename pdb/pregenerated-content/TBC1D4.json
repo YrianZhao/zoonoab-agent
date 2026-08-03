@@ -1,0 +1,65 @@
+{
+  "gene": "TBC1D4",
+  "generatedAt": "2026-08-03T17:09:34.292Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TBC1D4 编码 AS160，是胰岛素刺激下 GLUT4 囊泡转位与葡萄糖摄取的关键 GAP 蛋白，疾病关联主要集中于红细胞体积、红细胞计数及血红蛋白相关表型，提示其位于代谢与血液学稳态交汇通路。该蛋白以胞内结构为主，缺乏典型胞外抗原可及性，因此更适合采用识别调控界面或构象暴露环区的胞内功能性抗体策略，而非受体外域阻断。相较于同通路中高度冗余的上游激酶节点，TBC1D4更接近囊泡转运执行层，具备对下游 GLUT4 动员的直接干预优势，适合作为机制验证型抗体设计主靶点。",
+    "mechanism": "结合 TBC1D4 的 Rab-GAP 功能界面，阻断其与 Rab 蛋白互作并削弱 GTP 水解促进活性，维持 GLUT4 囊泡转运相关的活化状态。",
+    "selectedEpitope": "优先选择 TBC 结构域近 Rab 结合口袋及 14-3-3 调控邻域的构象暴露表位。",
+    "diseaseDirection": "代谢性疾病/红细胞表型",
+    "domain": "N 端调控区与 C 端 TBC Rab-GAP 结构域相邻构象界面",
+    "evidence": "TBC1D4 结构与疾病证据包",
+    "evidenceSources": [
+      "UniProt: O60343",
+      "RCSB PDB: 7NIX",
+      "Open Targets Platform",
+      "Human Protein Atlas"
+    ],
+    "referenceEntries": "UniProt O60343; PDB 7NIX; Open Targets TBC1D4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "TBC 结构域 Rab 结合界面",
+        "直接干预 GAP 活性与底物识别，适合功能阻断",
+        "优先"
+      ],
+      [
+        "Site B",
+        "14-3-3 结合邻近调控区",
+        "影响磷酸化依赖构象切换，便于状态选择性识别",
+        "备选"
+      ],
+      [
+        "Site C",
+        "结构柔性环区与域间连接面",
+        "可提升构象专一性，但存在暴露不稳定与异质性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "该靶点为胞内蛋白，常规体内抗体可及性有限，需优先考虑胞内递送或结合稳定构象的片段抗体。界面区域存在磷酸化依赖构象变化，建议并行进行多状态结构分层与表位去卷积。",
+    "structurePrepZh": "基于 7NIX 对链 A/B 进行生物学组装体重建，补全缺失侧链与局部柔性环，按功能状态划分构象集合后再进行表位映射。",
+    "structureRef": "RCSB PDB 7NIX; X-ray 1.9 Å",
+    "antibodies": [
+      "AS160/TBC1D4 功能阻断型研究抗体",
+      "TBC 结构域识别性单域抗体"
+    ],
+    "interfaceFocus": "Rab 结合口袋与 14-3-3 邻近调控面",
+    "designMode": "功能阻断型",
+    "candidates": [
+      {
+        "target": "AKT2",
+        "rationale": "AKT2 位于胰岛素信号轴上游，可通过磷酸化调控 TBC1D4 活性，是同一 GLUT4 转运通路的真实候选节点。其激酶结构与底物识别机制明确，适合作为上游机制对照靶点。"
+      },
+      {
+        "target": "SLC2A4",
+        "rationale": "SLC2A4 编码 GLUT4，位于 TBC1D4 直接调控的囊泡转位终端环节，代表同一通路的下游执行靶点。与 TBC1D4 联合分析有助于区分转运调控与底物输出层面的抗体效应。"
+      },
+      {
+        "target": "RAB10",
+        "rationale": "RAB10 是 TBC1D4 相关的关键底物之一，参与 GLUT4 囊泡运输与膜融合过程。作为同通路真实互作对象，可用于验证抗体对 Rab-GAP 轴的选择性干预。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

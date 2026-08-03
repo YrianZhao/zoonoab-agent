@@ -1,0 +1,65 @@
+{
+  "gene": "TAF10",
+  "generatedAt": "2026-08-03T17:06:17.142Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TAF10作为TFIID与SAGA等转录复合体的共享组分，参与RNA聚合酶II转录起始装配，在HIV感染相关宿主转录重编程中具有明确疾病关联。其蛋白位于核内且缺乏胞外结构域，抗体直接可及性显著低于膜受体或分泌因子，因此更适合作为结构与功能验证靶点而非常规治疗性阻断靶点。相较同通路中的TNF、CCR5等膜表面高可及分子，TAF10在机制层面提供了对转录共激活复合体装配界面的独特切入点，可用于解析宿主依赖性转录程序。",
+    "mechanism": "通过干预TAF10与TFIID/SAGA复合体伴侣蛋白的装配界面，削弱RNA聚合酶II起始复合体形成。",
+    "selectedEpitope": "优先覆盖SMT3-like fold外露螺旋束及复合体接触面，避开核心折叠疏水核。",
+    "diseaseDirection": "HIV宿主转录调控",
+    "domain": "TAF10核心SMT3-like折叠与外露复合体结合表面",
+    "evidence": "TAF10结构-疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform",
+      "UniProt: Q12962",
+      "RCSB PDB: 2F69",
+      "PubMed结构与转录复合体文献"
+    ],
+    "referenceEntries": "UniProt Q12962; RCSB 2F69; Open Targets TAF10",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "2F69中A/B链外露螺旋与复合体接触区",
+        "优先封闭伴侣识别界面，利于功能阻断与构象解析",
+        "优先"
+      ],
+      [
+        "Site B",
+        "TAF10表面酸性环带邻近SMT3-like折叠边缘",
+        "可用于干扰蛋白-蛋白相互作用且较少扰动核心稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "埋藏型疏水核心邻近区域",
+        "虽保守但存在折叠破坏风险，不宜作为首轮表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TAF10为核内复合体蛋白，治疗性抗体递送与核定位均存在高风险；设计应优先面向结构探针、阻断性Fab或细胞内递送体系，并严格避免核心折叠位点。",
+    "structurePrepZh": "基于2F69进行A/B链界面清理、缺失残基补全与表面电荷映射，随后结合同源复合体信息标注可及表位。",
+    "structureRef": "PDB 2F69; TAF10结构文献",
+    "antibodies": [
+      "抗TAF10研究性单抗",
+      "TAF10结合Fab探针"
+    ],
+    "interfaceFocus": "A/B链复合体接触面与外露螺旋区",
+    "designMode": "structure-guided",
+    "candidates": [
+      {
+        "target": "TCEB1",
+        "rationale": "与TAF10同属转录起始/延伸相关核内复合体网络，可作为复合体依赖性验证候选。其蛋白具明确结构复合物背景，适合与TAF10联动分析界面功能。"
+      },
+      {
+        "target": "SP1",
+        "rationale": "SP1参与RNA聚合酶II转录调控，与TAF10相关的宿主转录程序在机制层面存在交叉。作为同一转录调控通路候选，可用于界定上游DNA结合因子与共激活因子之间的协同关系。"
+      },
+      {
+        "target": "TBP",
+        "rationale": "TAF10直接隶属TBP相关因子网络，TBP是最核心的同通路组分之一。将TBP纳入候选池有助于比较核心启动子识别与共激活复合体装配两个层面的干预价值。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

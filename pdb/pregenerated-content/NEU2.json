@@ -1,0 +1,65 @@
+{
+  "gene": "NEU2",
+  "generatedAt": "2026-08-03T20:18:30.732Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NEU2 为胞质型唾液酸酶，催化糖缀合物末端唾液酸残基水解，可影响神经节苷脂和糖蛋白糖基化状态；现有 Open Targets 关联主要集中于胆红素测量、血液代谢物水平及神经影像表型，疾病因果强度有限。该蛋白缺乏跨膜区和分泌信号肽，天然状态下抗原可及性不及细胞表面 NEU3 或溶酶体/分泌相关 NEU1。其优先级主要来自高分辨率实验结构 1SO7 对催化沟槽的精确定义，适合作为酶活阻断型抗体或胞内递送抗体的结构验证靶点，但开发优先级应低于具有表面可及性的同家族靶点。",
+    "mechanism": "抗体需遮挡 NEU2 催化沟槽，阻断底物唾液酸糖苷进入保守精氨酸三联体和酸碱催化残基邻近区域，从而抑制去唾液酸化反应。",
+    "selectedEpitope": "优先覆盖催化β-螺旋桨结构域的底物结合沟槽及精氨酸三联体邻近环区。",
+    "diseaseDirection": "代谢表型与糖脂去唾液酸化",
+    "domain": "NEU2 主要由六叶β-螺旋桨唾液酸酶催化结构域构成，含保守活性口袋。",
+    "evidence": "NEU2结构与唾液酸酶活性证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9Y3R4 functional annotation",
+      "RCSB PDB 1SO7 crystal structure",
+      "Human neuraminidase family biochemical literature"
+    ],
+    "referenceEntries": "UniProt Q9Y3R4；RCSB PDB 1SO7；Open Targets NEU2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化沟槽与精氨酸三联体邻近环区",
+        "直接限制唾液酸底物进入活性口袋，最符合酶活阻断设计目标",
+        "优先"
+      ],
+      [
+        "Site B",
+        "β-螺旋桨上表面底物入口周缘",
+        "可通过空间位阻降低大分子糖底物结合，同时保留较好的结构可塑性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化口袋的外周β片层表面",
+        "结合风险较低但功能阻断效应不确定，更多适合作为结合型对照表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NEU2 为胞质酶，常规抗体难以在天然细胞内到达靶点；应优先评估胞内递送、细胞穿透格式或体外酶活应用场景。",
+    "structurePrepZh": "以 1SO7 链 A 为抗原模板，保留催化口袋构象，检查晶体配体、缓冲分子及缺失环区后进行表面电荷与沟槽可及性标注。",
+    "structureRef": "RCSB PDB 1SO7，human NEU2 X-ray structure，1.49 Å",
+    "antibodies": [
+      "抗NEU1功能阻断抗体",
+      "抗NEU3研究级中和抗体"
+    ],
+    "interfaceFocus": "催化口袋入口、精氨酸三联体邻近环区",
+    "designMode": "酶活阻断型设计",
+    "candidates": [
+      {
+        "target": "NEU1",
+        "rationale": "NEU1 同属人唾液酸酶家族，参与糖蛋白去唾液酸化并与溶酶体保护蛋白复合体相关；其在免疫和代谢相关糖基化通路中具备更明确的病理连接。"
+      },
+      {
+        "target": "NEU3",
+        "rationale": "NEU3 为膜相关神经节苷脂唾液酸酶，直接作用于质膜糖脂底物；相较 NEU2 具有更高抗原可及性，适合常规抗体阻断策略。"
+      },
+      {
+        "target": "NEU4",
+        "rationale": "NEU4 属同一唾液酸酶通路，参与糖脂和糖蛋白去唾液酸化；可作为 NEU2 机制分层和家族选择性评估的候选靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

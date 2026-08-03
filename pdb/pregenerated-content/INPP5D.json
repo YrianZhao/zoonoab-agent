@@ -1,0 +1,65 @@
+{
+  "gene": "INPP5D",
+  "generatedAt": "2026-08-03T13:30:01.548Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "INPP5D编码SHIP1，是造血细胞中限制PI3K信号的5-磷酸酶，可将PI(3,4,5)P3水解为PI(3,4)P2并影响AKT、BTK及Fc受体相关免疫信号；其遗传关联覆盖嗜酸粒细胞计数、网织红细胞指标及自身免疫相关表型。该蛋白主要为胞内酶，缺乏天然胞外结构域，抗原可及性不利于常规细胞外阻断抗体，但可作为重组结构域结合抗体、细胞内递送抗体或研究级构象探针设计对象。相较同通路膜受体或分泌因子，INPP5D的优势在于酶活位点与SH2调控结构域具有明确结构基础，可实现机制型构象识别；但治疗性抗体优先级低于可直接外部可及的PI3K通路膜近端靶点。",
+    "mechanism": "抗体设计聚焦阻断SHIP1 SH2结构域与免疫受体ITIM/ITSM磷酸酪氨酸基序结合，或稳定5-磷酸酶催化结构域非活性构象以改变PIP3水解。",
+    "selectedEpitope": "优先选择SH2结构域磷酸肽结合沟槽邻近环区，避开深层催化口袋以获得构象选择性。",
+    "diseaseDirection": "免疫炎症与造血细胞PI3K信号",
+    "domain": "INPP5D含N端SH2结构域、中央5-磷酸酶催化结构域及C端富脯氨酸调控区。",
+    "evidence": "INPP5D-SHIP1免疫PI3K调控证据包",
+    "evidenceSources": [
+      "Open Targets Platform遗传关联与疾病表型数据",
+      "UniProt Q92835蛋白功能与结构域注释",
+      "RCSB PDB 5RW2 X射线晶体结构",
+      "PI3K-PIP3-AKT及Fc受体/ITIM免疫信号文献"
+    ],
+    "referenceEntries": "UniProt Q92835；RCSB PDB 5RW2；Open Targets INPP5D",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SH2结构域磷酸酪氨酸结合沟槽邻近BC/DE环",
+        "可干预SHIP1募集至ITIM/ITSM受体复合物，机制指向明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "5-磷酸酶结构域催化口袋周边可及螺旋-环面",
+        "可作为酶活构象探针或别构调节抗体设计区域",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端富脯氨酸低复杂度调控区",
+        "柔性高且结构解析不足，表位均一性与构象稳定性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "INPP5D为胞内蛋白，体内可及性是核心风险；建议定位为结构探针、细胞内递送抗体或工程化穿膜格式，并严格评估SHIP2同源交叉反应。",
+    "structurePrepZh": "以PDB 5RW2抗原链A为模板，保留高分辨率坐标，补全缺失侧链并校正质子化状态；对柔性环区进行构象采样后开展表位可及性评估。",
+    "structureRef": "RCSB PDB 5RW2，X-ray diffraction，1.22 Å",
+    "antibodies": [
+      "抗SHIP1研究级单克隆抗体",
+      "抗INPP5D免疫检测抗体"
+    ],
+    "interfaceFocus": "SH2磷酸肽结合沟槽与催化结构域别构面",
+    "designMode": "胞内靶点构象抗体",
+    "candidates": [
+      {
+        "target": "PIK3CD",
+        "rationale": "PIK3CD编码PI3Kδ催化亚基，直接生成PIP3并位于SHIP1上游；其在白细胞免疫活化和炎症表型中具有明确通路连接。"
+      },
+      {
+        "target": "PIK3CG",
+        "rationale": "PIK3CG编码PI3Kγ催化亚基，参与髓系细胞趋化和GPCR依赖性PIP3生成；与嗜酸粒细胞和炎症细胞迁移通路相关。"
+      },
+      {
+        "target": "PTEN",
+        "rationale": "PTEN同为PIP3去磷酸化负调控因子，可与SHIP1共同限制PI3K-AKT信号强度；适合作为同轴磷脂信号调控候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

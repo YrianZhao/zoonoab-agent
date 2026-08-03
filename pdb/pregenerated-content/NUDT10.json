@@ -1,0 +1,65 @@
+{
+  "gene": "NUDT10",
+  "generatedAt": "2026-08-03T14:54:05.511Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NUDT10为胞质型Nudix水解酶，主要参与核苷二磷酸糖等小分子底物水解，与肿瘤代谢重编程的关联证据较弱，Open Targets最高疾病关联得分仅0.0833。该蛋白缺乏跨膜区和分泌信号肽，天然抗原可及性明显低于细胞表面受体或分泌因子，不具备常规治疗性抗体直接结合优势。相较EGFR、ERBB2或VEGFA等胃癌和胰腺癌通路靶点，NUDT10的疾病因果性、外部可及性与临床可转化优先级均较低，更适合作为结构生物学或细胞内递送抗体探索靶点。",
+    "mechanism": "通过细胞内递送抗体占据NUDIX催化沟槽，干扰底物结合与Mg2+依赖水解构象形成，降低NUDT10酶活。",
+    "selectedEpitope": "优先避开高度保守NUDIX催化基序，选择催化沟槽邻近可变环区构建变构抑制表位。",
+    "diseaseDirection": "肿瘤代谢与消化系统肿瘤探索",
+    "domain": "NUDT10为单结构域Nudix水解酶，含保守NUDIX box催化基序及底物结合沟槽。",
+    "evidence": "NUDT10结构与肿瘤关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB Q8NFP7功能与亚细胞定位注释",
+      "RCSB PDB 3MCF晶体结构记录",
+      "Nudix hydrolase家族催化机制文献"
+    ],
+    "referenceEntries": "UniProt Q8NFP7；RCSB PDB 3MCF；Open Targets NUDT10",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化沟槽邻近可变环区",
+        "可在不直接模拟底物的情况下诱导变构抑制，降低催化构象稳定性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "NUDIX box外侧α螺旋-环连接面",
+        "靠近活性中心但避开高度保守酸性残基，利于提升选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "二聚体或晶体接触界面区域",
+        "可能影响构象装配，但需排除晶体堆积伪界面与家族交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NUDT10为胞内酶，常规抗体药物难以到达作用位点；NUDIX基序保守性高，需通过可变环和构象表位降低NUDT家族交叉反应。",
+    "structurePrepZh": "以3MCF的A、B链为模板，保留催化沟槽和金属结合相关残基，去除晶体添加物并评估链间界面是否为生理相关装配。",
+    "structureRef": "RCSB PDB 3MCF；X-ray diffraction 2.0 Å",
+    "antibodies": [
+      "无获批NUDT10靶向抗体",
+      "无公开临床阶段NUDT10抗体"
+    ],
+    "interfaceFocus": "NUDIX催化沟槽邻近可变环与外侧螺旋面",
+    "designMode": "胞内酶变构抑制",
+    "candidates": [
+      {
+        "target": "EGFR",
+        "rationale": "EGFR是胃癌和胰腺癌中具有明确膜受体可及性的生长因子受体，可通过阻断EGF/TGFA结合及受体二聚化抑制MAPK与PI3K通路。"
+      },
+      {
+        "target": "ERBB2",
+        "rationale": "ERBB2在胃癌分子分型和抗体治疗中具有明确证据，胞外结构域可被抗体识别并干扰HER2介导的受体二聚化。"
+      },
+      {
+        "target": "VEGFA",
+        "rationale": "VEGFA参与消化系统肿瘤血管生成，可通过阻断VEGFA与VEGFR1/VEGFR2结合抑制肿瘤血管新生。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "NF2",
+  "generatedAt": "2026-08-03T14:40:45.865Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NF2编码Merlin肿瘤抑制蛋白，其失活通过解除对YAP/TAZ核转位、CRL4-DCAF1核内泛素化轴及细胞接触抑制网络的限制，驱动NF2相关神经鞘瘤病、脑膜瘤和前庭神经鞘瘤发生。该蛋白为胞内膜骨架连接蛋白，缺乏天然胞外结构域，抗体可及性不适合常规膜外阻断策略，更适合细胞内递送抗体、VHH或研究级构象探针设计。相较于同通路下游转录效应因子，NF2位于疾病遗传因果上游，Open Targets关联强度高且有高分辨率实验结构支持，因此具备机制验证优先级。",
+    "mechanism": "通过构象选择性结合Merlin FERM-CTD自抑制界面，稳定闭合或活化状态，干预Merlin与LATS1/2、DCAF1及皮层肌动蛋白连接复合物的相互作用。",
+    "selectedEpitope": "优先选择FERM F2-F3叶与C端尾部接触界面，建立构象选择性VHH/Fab识别策略。",
+    "diseaseDirection": "NF2相关神经鞘瘤病与脑膜瘤",
+    "domain": "Merlin含N端FERM结构域、中央α螺旋区及C端尾部，7LWH解析FERM-尾部调控构象。",
+    "evidence": "NF2-Merlin肿瘤抑制轴结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P35240功能与结构域注释",
+      "RCSB PDB 7LWH晶体结构",
+      "NF2相关神经鞘瘤病与脑膜瘤文献证据"
+    ],
+    "referenceEntries": "UniProt:P35240；RCSB PDB:7LWH；Open Targets:NF2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "FERM F2-F3叶与C端尾部自抑制接触面",
+        "可区分Merlin调控构象并影响下游抑癌复合物装配",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FERM F1/F2表面靠近膜磷脂结合区域",
+        "有助于解析Merlin膜定位与皮层骨架连接状态",
+        "备选"
+      ],
+      [
+        "Site C",
+        "中央α螺旋与柔性连接区",
+        "构象异质性较高，可能降低结构引导设计确定性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NF2为胞内抑癌蛋白，常规治疗性抗体难以直接进入肿瘤细胞；应定位为细胞内VHH、递送型抗体或机制探针，并避免干扰保守FERM骨架导致非特异交叉反应。",
+    "structurePrepZh": "以7LWH链A/B为模板，保留FERM-尾部复合构象，校正缺失环区与质子化状态，标注自抑制界面及潜在磷酸化邻近区域。",
+    "structureRef": "RCSB PDB 7LWH，X-ray diffraction，1.606 Å",
+    "antibodies": [
+      "Cell Signaling Technology Merlin/NF2 antibody",
+      "Abcam anti-Merlin antibody"
+    ],
+    "interfaceFocus": "FERM F2-F3叶-C端尾部自抑制界面",
+    "designMode": "胞内构象抗体设计",
+    "candidates": [
+      {
+        "target": "LATS1",
+        "rationale": "LATS1为Hippo通路核心激酶，参与限制YAP/TAZ转录活性；NF2缺失背景下该轴的功能状态直接关联肿瘤抑制失衡。"
+      },
+      {
+        "target": "LATS2",
+        "rationale": "LATS2与LATS1共同介导YAP/TAZ磷酸化和胞质滞留，是NF2-Merlin上游调控失效后的关键下游节点。"
+      },
+      {
+        "target": "DCAF1",
+        "rationale": "DCAF1是CRL4-DCAF1核内E3泛素连接酶复合物底物受体，Merlin可结合并抑制其促增殖活性，构成NF2相关肿瘤的重要机制轴。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

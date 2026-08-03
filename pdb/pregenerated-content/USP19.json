@@ -1,0 +1,65 @@
+{
+  "gene": "USP19",
+  "generatedAt": "2026-08-03T17:44:12.654Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "USP19 是内质网相关去泛素化酶，可通过去除底物泛素链影响 ERAD、蛋白稳态应激与神经元蛋白质量控制，Open Targets 显示其与神经退行性疾病和癫痫性脑病存在遗传及疾病关联。该蛋白存在跨膜锚定异构体，催化 USP 结构域位于胞质侧，抗体直接进入胞内阻断存在递送限制。相较完全胞内 DUB，USP19 的膜锚定构型为细胞表面邻近递送或工程化胞内抗体提供一定可及性依据，但其优先级低于分泌型或大胞外域膜受体靶点，适宜作为机制验证型抗体设计靶点。",
+    "mechanism": "设计抗体结合 USP19 催化 USP 结构域，遮挡泛素 C 端进入活性沟槽，阻断 USP19 与多泛素化底物的去泛素化反应。",
+    "selectedEpitope": "优先覆盖 USP 催化结构域的泛素结合沟槽及 Cys/His/Asp 催化三联体邻近环区。",
+    "diseaseDirection": "神经退行性疾病与蛋白稳态异常",
+    "domain": "USP19 含 N 端调控区、中央 USP 催化结构域及 C 端跨膜锚定异构体相关区域。",
+    "evidence": "USP19 蛋白稳态与神经疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt O94966 功能与亚细胞定位注释",
+      "RCSB PDB 4X3G 晶体结构记录",
+      "去泛素化酶与 ERAD/蛋白稳态文献证据"
+    ],
+    "referenceEntries": "UniProt: O94966; RCSB PDB: 4X3G; Open Targets: USP19",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "USP 催化结构域泛素 C 端结合沟槽",
+        "直接竞争底物泛素链进入催化中心，具备明确功能阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域拇指-手掌亚域交界环区",
+        "可能影响底物定位与多泛素链识别，可用于别构抑制设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离活性中心的溶剂暴露外周表面",
+        "结合可行性较高但功能阻断不确定，需依赖活性实验筛选",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "USP19 主要功能结构域位于胞质侧，常规抗体药物可及性受限；建议采用细胞内递送抗体、VHH 或降解偶联策略，并严控 DUB 家族交叉反应。",
+    "structurePrepZh": "以 4X3G 抗原链 A-D 为模板，保留催化结构域完整构象，移除晶体缓冲分子并校正缺失侧链，标注活性沟槽与保守催化残基。",
+    "structureRef": "RCSB PDB 4X3G, X-ray diffraction, 2.34 Å",
+    "antibodies": [
+      "anti-USP19 research antibody",
+      "intracellular anti-DUB VHH format"
+    ],
+    "interfaceFocus": "USP 催化沟槽与泛素 C 端结合界面",
+    "designMode": "胞内功能阻断",
+    "candidates": [
+      {
+        "target": "VCP",
+        "rationale": "VCP/p97 是 ERAD 与蛋白质量控制核心 ATPase，与多泛素化底物提取及蛋白稳态应激密切相关，处于 USP19 相关 ERAD 通路同一功能轴。"
+      },
+      {
+        "target": "SYVN1",
+        "rationale": "SYVN1/HRD1 是 ERAD 关键 E3 泛素连接酶，负责内质网错误折叠蛋白泛素化，与 USP19 的去泛素化作用形成同一路径内的泛素链动态调节。"
+      },
+      {
+        "target": "DERL1",
+        "rationale": "DERL1 参与 ERAD 底物从内质网膜转运至胞质降解通路，是蛋白稳态异常和内质网应激网络中的真实通路节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

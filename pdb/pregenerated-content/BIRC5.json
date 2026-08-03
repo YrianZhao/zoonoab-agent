@@ -1,0 +1,65 @@
+{
+  "gene": "BIRC5",
+  "generatedAt": "2026-08-03T10:49:49.718Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BIRC5编码Survivin，是染色体乘客复合体成员，并通过抑制caspase依赖性细胞死亡与维持有丝分裂进程促进多种肿瘤细胞存活。其疾病关联集中于非小细胞肺癌、肝细胞癌和胶质母细胞瘤等增殖性疾病，但该蛋白主要定位于胞质、细胞核和有丝分裂装置，缺乏经典跨膜区或稳定胞外结构域，常规细胞表面抗体可及性受限。相较BCL2、XIAP等同类抗凋亡靶点，BIRC5在成人正常组织中表达较低且肿瘤选择性更突出，因此更适合作为胞内递送抗体片段、TCR样抗体或降解偶联策略的优先探索对象。",
+    "mechanism": "阻断Survivin BIR结构域与caspase-9及染色体乘客复合体相关界面的结合，削弱凋亡抑制和有丝分裂校正功能。",
+    "selectedEpitope": "优先瞄准BIR结构域保守沟槽及二聚化邻近界面，避开锌配位核心残基。",
+    "diseaseDirection": "肿瘤增殖与凋亡逃逸",
+    "domain": "Survivin含N端BIR结构域和C端α螺旋区，可形成二聚体并参与CPC定位。",
+    "evidence": "BIRC5肿瘤存活与有丝分裂证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt O15392功能注释",
+      "RCSB PDB 2QFA晶体结构",
+      "Reactome细胞周期与凋亡通路"
+    ],
+    "referenceEntries": "UniProt O15392；RCSB PDB 2QFA；HGNC BIRC5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "BIR结构域表面保守结合沟槽",
+        "可干扰Survivin与凋亡及CPC相关伴侣蛋白界面",
+        "优先"
+      ],
+      [
+        "Site B",
+        "BIR结构域二聚化邻近表面",
+        "有利于削弱二聚体稳定性并影响有丝分裂定位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "锌结合折叠核心周边残基",
+        "结构保守且突变容忍度低，抗体结合可能带来构象选择性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BIRC5缺乏天然胞外暴露区，传统抗体成药性风险较高；建议采用胞内递送Fab/VHH、TCR样抗体或ADC样递送系统评估。",
+    "structurePrepZh": "以2QFA高分辨率晶体结构为模板，保留BIR结构域二聚体装配，校正锌配位与缺失侧链后进行表面能量评估。",
+    "structureRef": "RCSB PDB 2QFA，X射线晶体结构，1.4 Å",
+    "antibodies": [
+      "Survivin-specific TCR-like antibody",
+      "Anti-survivin intracellular scFv"
+    ],
+    "interfaceFocus": "BIR结合沟槽与二聚化邻近界面",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "AURKB",
+        "rationale": "AURKB是染色体乘客复合体激酶核心，与BIRC5共同调控染色体分离和胞质分裂，适合作为同一有丝分裂通路的功能互补靶点。"
+      },
+      {
+        "target": "INCENP",
+        "rationale": "INCENP与Survivin、Borealin和AURKB组成CPC复合体，直接影响AURKB定位与激活，是干预CPC装配的真实通路节点。"
+      },
+      {
+        "target": "CDCA8",
+        "rationale": "CDCA8编码Borealin，是CPC结构组分之一，与BIRC5共同维持着丝粒定位和有丝分裂检查点功能。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

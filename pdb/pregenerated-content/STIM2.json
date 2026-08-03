@@ -1,0 +1,65 @@
+{
+  "gene": "STIM2",
+  "generatedAt": "2026-08-03T16:59:33.891Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "STIM2 参与内质网钙库耗竭后的 STIM-Orai 耦联与钙内流控制，在钙稳态失衡相关表型中具有直接通路地位，且其与血管张力、骨稳态及血液学/代谢表型的关联具有较高一致性。该蛋白含有位于胞质侧的可及调控区与跨膜前后的功能模块，作为膜蛋白传感器具备较好的抗原暴露条件，适合围绕可溶性结构域开展抗体识别。相较于 Orai 通道本体，STIM2 位于上游感受与招募环节，更适合作为通路调控入口以获得机制分辨率更高的阻断策略。",
+    "mechanism": "抗体结合 STIM2 的 EF-SAM 与 CC1/SOAR 相关界面，抑制内质网钙耗竭后 STIM2 寡聚化及其对 Orai1 的招募。",
+    "selectedEpitope": "优先覆盖 EF-SAM 与 CC1 连接面，避免仅识别非功能性表面区。",
+    "diseaseDirection": "钙稳态与血管重塑",
+    "domain": "N 端 ER 腔内 EF-hand/SAM 与胞质 CC1-CID 调控区",
+    "evidence": "STIM2 钙感受与通路证据包",
+    "evidenceSources": [
+      "UniProt Q9P246",
+      "RCSB PDB 2L5Y",
+      "Open Targets Platform",
+      "Human Protein Atlas"
+    ],
+    "referenceEntries": "UniProt Q9P246; RCSB PDB 2L5Y; STIM2 Homo sapiens",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "EF-hand/SAM 复合界面",
+        "干预钙库感受与构象转换，利于阻断激活起始步骤",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CC1-CID/SOAR 暴露面",
+        "削弱 STIM2 对 Orai1 的耦联招募，具备明确功能指向",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离功能核心的外周表面",
+        "有助于构建结合探针，但功能抑制价值有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "STIM 家族保守性较高，需规避对 STIM1 的交叉识别；同时应优先验证是否影响钙耗竭依赖的构象重排而非单纯表面结合。",
+    "structurePrepZh": "基于 2L5Y 进行链 A 清理与缺失区建模，并按 EF-SAM/CC1 功能模块拆分表位候选；结合膜侧拓扑校正暴露性。",
+    "structureRef": "Feske et al., STIM/Orai structure-function studies; RCSB 2L5Y",
+    "antibodies": [
+      "anti-STIM2 monoclonal antibody clone 1",
+      "anti-STIM2 polyclonal antibody"
+    ],
+    "interfaceFocus": "EF-SAM 与 CC1-CID 耦联界面",
+    "designMode": "结构引导抑制",
+    "candidates": [
+      {
+        "target": "ORAI1",
+        "rationale": "ORAI1 是 STIM2 下游直接效应通道，二者构成钙库操控的核心耦联轴。针对 ORAI1 可用于验证 STIM2 阻断后功能 readout 的通路闭环。"
+      },
+      {
+        "target": "STIM1",
+        "rationale": "STIM1 与 STIM2 同属 ER 钙感受器并共享 STIM-Orai 模块，适合作为同通路的家族对照与交叉选择性评估对象。"
+      },
+      {
+        "target": "ITPR1",
+        "rationale": "ITPR1 参与内质网钙释放并决定钙库耗竭程度，是 STIM2 激活上游的真实通路伙伴。其可用于界定抗体对钙耗竭阈值的影响。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

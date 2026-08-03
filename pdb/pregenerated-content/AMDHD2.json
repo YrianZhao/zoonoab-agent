@@ -1,0 +1,65 @@
+{
+  "gene": "AMDHD2",
+  "generatedAt": "2026-08-03T10:25:37.592Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "AMDHD2为胞内金属依赖性酰胺水解酶，参与N-乙酰葡糖胺代谢相关反应，其与神经退行性疾病、肾小球滤过率和血清γ-谷氨酰转移酶测量存在遗传关联，但当前疾病因果机制证据较弱。该蛋白不属于分泌蛋白或跨膜受体，天然抗原可及性不具备常规治疗性抗体优势，更适合作为胞内酶结构识别、检测或递送型抗体工程模型。相较同类代谢酶靶点，7NUU提供高分辨率人源实验结构，可支持活性口袋邻近表位的精细化设计，因此优先级主要来自结构可设计性而非成熟临床可成药性。",
+    "mechanism": "抗体片段可结合AMDHD2酰胺水解酶结构域活性口袋外缘，空间阻断底物进入金属配位催化中心并限制催化环构象变化。",
+    "selectedEpitope": "优先选择酰胺水解酶结构域金属催化口袋外缘及底物进入沟槽邻近环区。",
+    "diseaseDirection": "神经退行性与代谢表型关联",
+    "domain": "AMDHD2主要由金属依赖性amidohydrolase结构域构成，7NUU显示同源二聚体构象。",
+    "evidence": "AMDHD2结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9Y303蛋白功能注释",
+      "RCSB PDB 7NUU晶体结构",
+      "AlphaFold/结构域保守性注释"
+    ],
+    "referenceEntries": "UniProt Q9Y303；RCSB PDB 7NUU；Open Targets AMDHD2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "amidohydrolase结构域金属催化口袋外缘及底物进入沟槽",
+        "可直接干预底物进入和催化构象变化，适合功能阻断型片段筛选",
+        "优先"
+      ],
+      [
+        "Site B",
+        "二聚体界面邻近的保守α螺旋与环区",
+        "可能影响同源二聚体稳定性，但需验证二聚化对酶活的依赖性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离活性中心的溶剂暴露外周环区",
+        "适合检测抗体或结构捕获，功能调控价值有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "AMDHD2为胞内酶，常规全长抗体难以天然接触靶点；功能阻断设计应优先采用VHH、细胞内抗体或递送型格式，并避免干扰金属配位残基造成非特异结合。",
+    "structurePrepZh": "以7NUU A/B链为结构模板，保留金属配位与催化口袋信息，补全缺失侧链并评估二聚体界面、口袋水分子和晶体接触对表位判定的影响。",
+    "structureRef": "RCSB PDB 7NUU；X-ray diffraction 1.836 Å，人源AMDHD2",
+    "antibodies": [
+      "无已获批AMDHD2治疗性抗体",
+      "无公开临床阶段AMDHD2抗体"
+    ],
+    "interfaceFocus": "催化金属口袋外缘与底物进入沟槽",
+    "designMode": "胞内酶片段阻断",
+    "candidates": [
+      {
+        "target": "NAGK",
+        "rationale": "NAGK参与N-乙酰葡糖胺补救代谢，将N-乙酰葡糖胺磷酸化为GlcNAc-6-phosphate，与AMDHD2所处氨基糖代谢网络相邻。其代谢通量变化可作为同通路功能参照。"
+      },
+      {
+        "target": "GNPDA1",
+        "rationale": "GNPDA1催化葡糖胺-6-磷酸脱氨生成果糖-6-磷酸，位于己糖胺与糖酵解连接节点。与AMDHD2共同指向氨基糖代谢稳态。"
+      },
+      {
+        "target": "GFPT1",
+        "rationale": "GFPT1为己糖胺生物合成通路限速酶，催化果糖-6-磷酸向葡糖胺-6-磷酸转化。其通路位置上游且疾病遗传与代谢表型证据更充分，可作为优先级比较靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

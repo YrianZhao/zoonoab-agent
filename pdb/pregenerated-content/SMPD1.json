@@ -1,0 +1,65 @@
+{
+  "gene": "SMPD1",
+  "generatedAt": "2026-08-03T16:45:26.793Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SMPD1编码的酸性鞘磷脂酶位于溶酶体，催化鞘磷脂水解并直接参与神经鞘脂稳态，功能缺陷可导致Niemann-Pick病A/B型及酸性鞘磷脂酶缺乏症。其疾病关联集中且强度高，提示该蛋白处于鞘磷脂-神经酰胺轴的关键控制位点，适合作为机制研究与干预验证主靶点。相较于下游脂质代谢节点，SMPD1具备明确的疾病因果性和已知三维结构基础，且为分泌途径成熟后的溶酶体酶，抗体可通过细胞摄取与胞内递送策略实现靶向识别，优先级较高。",
+    "mechanism": "抗体通过结合SMPD1催化口袋邻近表位，阻断底物鞘磷脂进入活性中心并干扰His-Asp催化网络。",
+    "selectedEpitope": "优先选择靠近TIM桶催化裂缝与活性位点入口的构象表位，避免直接遮蔽金属/糖基化稳定区。",
+    "diseaseDirection": "溶酶体贮积病",
+    "domain": "N端分泌前肽与C端催化TIM桶样磷脂酶结构域",
+    "evidence": "SMPD1疾病结构与表位证据包",
+    "evidenceSources": [
+      "Open Targets Platform",
+      "UniProt: P17405",
+      "RCSB PDB: 5I81",
+      "OMIM Niemann-Pick disease"
+    ],
+    "referenceEntries": "UniProt P17405; RCSB 5I81; SMPD1 human lysosomal acid sphingomyelinase",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化裂缝入口与底物通道边缘",
+        "有利于阻断鞘磷脂进入活性中心并保持构象特异性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "TIM桶外侧稳定环区，邻近底物结合面",
+        "可增强亲和力并降低对催化残基直接扰动风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离活性中心的表面暴露区",
+        "利于结合但对功能抑制贡献有限，适合保守识别",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SMPD1为溶酶体可溶性酶，表位需规避高度保守催化残基与糖基化依赖稳定区，以降低非特异失活与构象塌陷风险。优先采用结构约束下的入口封闭策略，并结合pH依赖结合筛选以匹配溶酶体环境。",
+    "structurePrepZh": "基于5I81进行生物学组装体重建，保留A/B/C/D链四聚体界面与活性裂缝几何；补全缺失侧链并标注糖基化位点后开展表位分层。",
+    "structureRef": "RCSB PDB 5I81; X-ray diffraction, 2.25 A",
+    "antibodies": [
+      "无成熟临床同类抗体公开记录",
+      "研究级SMPD1结合抗体/识别试剂"
+    ],
+    "interfaceFocus": "催化裂缝入口、底物通道边缘、活性中心邻近环区",
+    "designMode": "structure-guided blocking",
+    "candidates": [
+      {
+        "target": "SGPL1",
+        "rationale": "Sphingosine-1-phosphate lyase位于同一鞘脂代谢轴，负责终末降解神经酰胺衍生信号分子，适合作为通路验证节点。与SMPD1互补定位于脂质稳态不同层级，可用于区分上游贮积与下游清除效应。"
+      },
+      {
+        "target": "ASAH1",
+        "rationale": "酸性神经酰胺酶同属溶酶体脂质水解网络，和SMPD1共同决定神经鞘脂周转。该靶点与Niemann-Pick及相关溶酶体贮积表型存在真实通路关联，适合作为并行病理比较靶点。"
+      },
+      {
+        "target": "GBA",
+        "rationale": "葡萄糖脑苷脂酶是经典溶酶体贮积病靶点，与SMPD1在溶酶体脂质分解层面高度相关。其疾病谱与脂质堆积表型具有可比性，便于构建同通路抗体设计与功能对照体系。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

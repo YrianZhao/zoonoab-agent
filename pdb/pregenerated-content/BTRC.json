@@ -1,0 +1,65 @@
+{
+  "gene": "BTRC",
+  "generatedAt": "2026-08-03T10:54:20.623Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BTRC编码SCFβ-TrCP E3泛素连接酶复合体的F-box底物识别亚基，参与IκBα、β-catenin及多种磷酸化底物的泛素化降解，因而与NF-κB、Wnt/β-catenin及病毒复制相关宿主通路存在疾病关联。该蛋白主要定位于胞质和细胞核，不具备天然胞外结构域或分泌蛋白特征，抗体抗原可及性低，常规体内阻断型抗体开发优先级受限。与可直接在细胞外阻断的TNF、IL6R或整合素类靶点相比，BTRC更适合作为结构生物学验证或细胞内抗体研究靶点，而非优先治疗性膜外抗体靶点。",
+    "mechanism": "设计重点为阻断β-TrCP WD40重复结构域识别含磷酸化DSGxxS基序底物，从而干预底物招募至SCF复合体并降低泛素转移效率。",
+    "selectedEpitope": "优先覆盖WD40 β-propeller顶面底物结合沟槽，避开F-box与SKP1结合界面。",
+    "diseaseDirection": "病毒感染与NF-κB/Wnt相关疾病",
+    "domain": "BTRC含N端D-domain、F-box结构域及C端WD40重复β-propeller底物识别结构域。",
+    "evidence": "BTRC结构域-底物识别与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与关联评分",
+      "UniProt Q9Y297蛋白功能与亚细胞定位注释",
+      "RCSB PDB 9T9W X射线晶体结构",
+      "SCFβ-TrCP底物磷酸化降解决定子相关文献"
+    ],
+    "referenceEntries": "UniProt Q9Y297；RCSB PDB 9T9W；HGNC BTRC",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "WD40 β-propeller顶面磷酸化底物结合沟槽",
+        "可直接竞争IκBα或β-catenin类DSGxxS磷酸降解决定子结合",
+        "优先"
+      ],
+      [
+        "Site B",
+        "WD40侧面保守环区及相邻β片层外缘",
+        "可形成变构干预并降低底物定位效率，结构可及性较好",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端F-box与SKP1复合体结合界面",
+        "可能破坏SCF复合体装配，但保守性高且细胞内可及性限制显著",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BTRC为胞内E3连接酶亚基，常规抗体难以到达作用位点；WD40保守面存在同源蛋白交叉反应风险，宜采用细胞内递送或intrabody策略并强化选择性筛选。",
+    "structurePrepZh": "以PDB 9T9W抗原链A、C为模板，补全缺失侧链与氢原子，保留WD40结构域构象，去除非功能性晶体接触后进行表位暴露度评估。",
+    "structureRef": "RCSB PDB 9T9W，X-ray diffraction，1.162 Å",
+    "antibodies": [
+      "抗BTRC研究级单克隆抗体",
+      "抗β-TrCP免疫检测抗体"
+    ],
+    "interfaceFocus": "WD40顶面磷酸化DSGxxS底物识别沟槽",
+    "designMode": "细胞内抗体设计",
+    "candidates": [
+      {
+        "target": "SKP1",
+        "rationale": "SKP1与BTRC的F-box结构域结合并桥接CUL1，是SCFβ-TrCP复合体装配的核心适配蛋白；干预该界面可影响BTRC介导的底物泛素化。"
+      },
+      {
+        "target": "CUL1",
+        "rationale": "CUL1构成SCF E3连接酶支架并连接SKP1-F-box底物识别模块与RBX1催化模块，处于同一泛素化通路的中心节点。"
+      },
+      {
+        "target": "NFKBIA",
+        "rationale": "NFKBIA编码IκBα，是β-TrCP识别并泛素化降解的经典磷酸化底物，其降解直接释放NF-κB转录活性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

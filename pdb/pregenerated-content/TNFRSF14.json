@@ -1,0 +1,65 @@
+{
+  "gene": "TNFRSF14",
+  "generatedAt": "2026-08-03T17:22:04.725Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TNFRSF14（HVEM）是TNF受体超家族成员，可与BTLA、CD160、LIGHT/TNFSF14及LTα相互作用，形成免疫抑制与共刺激并存的调控轴；其失活或表达异常与弥漫大B细胞淋巴瘤免疫微环境重塑相关。该靶点为I型跨膜受体，N端富含半胱氨酸胞外结构域直接暴露于细胞表面，具备抗体可及性优势。相较于下游转录因子或胞内适配蛋白，TNFRSF14可通过配体结合界面实现直接阻断或定向调节，结构与疾病证据支持较高优先级。",
+    "mechanism": "抗体结合HVEM胞外CRD1-CRD2区域，阻断BTLA或CD160与HVEM的抑制性结合界面，并调节LIGHT/TNFSF14介导的受体聚集信号。",
+    "selectedEpitope": "优先锁定CRD1及CRD2交界的BTLA/CD160结合面，兼顾避免完全遮蔽LIGHT结合位点。",
+    "diseaseDirection": "B细胞淋巴瘤免疫调节",
+    "domain": "TNFRSF14含信号肽、胞外CRD1-CRD4、单跨膜区及胞内尾部，抗体设计聚焦胞外CRD模块。",
+    "evidence": "TNFRSF14-HVEM免疫检查点结构与淋巴瘤证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q92956功能与结构域注释",
+      "RCSB PDB 5T2Q晶体结构",
+      "TNFRSF14在弥漫大B细胞淋巴瘤中的遗传失活研究"
+    ],
+    "referenceEntries": "UniProt Q92956；RCSB PDB 5T2Q；Open Targets TNFRSF14",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CRD1-CRD2配体结合界面",
+        "可阻断BTLA/CD160介导的HVEM抑制性免疫检查点结合",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CRD2-CRD3外侧暴露面",
+        "有利于获得非竞争性结合抗体并保留部分LIGHT信号调节空间",
+        "备选"
+      ],
+      [
+        "Site C",
+        "CRD3-CRD4近膜区域",
+        "可能影响受体构象或聚集，但空间遮挡与膜近端可及性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HVEM存在多配体共享与方向相反的免疫效应，表位设计需区分BTLA/CD160抑制轴与LIGHT共刺激轴，避免非选择性阻断导致功能解释困难。",
+    "structurePrepZh": "以5T2Q的A、B链胞外结构为模板，补全缺失侧链并核查二硫键网络；建模时保留CRD模块构象和糖基化邻近区域的空间排斥约束。",
+    "structureRef": "RCSB PDB 5T2Q，X-ray diffraction，1.9 Å",
+    "antibodies": [
+      "BHV-4157",
+      "TAB004"
+    ],
+    "interfaceFocus": "CRD1-CRD2的BTLA/CD160结合界面",
+    "designMode": "界面阻断型设计",
+    "candidates": [
+      {
+        "target": "BTLA",
+        "rationale": "BTLA是HVEM的抑制性配体，二者结合可限制T细胞受体信号；靶向BTLA可从配体侧干预同一免疫检查点轴。"
+      },
+      {
+        "target": "CD160",
+        "rationale": "CD160与HVEM相互作用参与T细胞和NK细胞功能调控，在肿瘤免疫微环境中属于HVEM相关抑制网络组成部分。"
+      },
+      {
+        "target": "TNFSF14",
+        "rationale": "TNFSF14（LIGHT）是HVEM的TNF家族配体，可诱导HVEM相关共刺激和炎症信号；其与HVEM构成同一配体-受体通路。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

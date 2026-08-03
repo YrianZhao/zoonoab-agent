@@ -1,0 +1,65 @@
+{
+  "gene": "HERC6",
+  "generatedAt": "2026-08-03T13:11:11.081Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HERC6 是干扰素诱导型 HECT 类 E3 泛素连接酶，主要参与细胞内 ISGylation/泛素化相关抗病毒固有免疫调控，其疾病关联集中于感染、肾炎及免疫相关性状。该蛋白定位于胞质，缺乏跨膜区和稳定胞外结构域，天然抗原可及性不利于常规阻断型抗体，仅适合作为细胞内结构域识别或研究型结合分子靶点。相较于 IFNAR1、IFNAR2、ISG15 等同通路可及靶点，HERC6 的临床抗体优先级较低，但其 HECT 催化域具备明确结构模板，可用于机制验证型 Fab/VHH 设计。",
+    "mechanism": "设计结合分子阻断 HECT 结构域 E2 结合面或催化半胱氨酸邻近界面，干扰 HERC6 与 UBE2L6 介导的 ISG15 转移复合物形成。",
+    "selectedEpitope": "优先覆盖 HECT N-lobe/C-lobe 交界及 E2 结合界面，避开高度埋藏的催化裂隙。",
+    "diseaseDirection": "干扰素抗病毒免疫与肾炎",
+    "domain": "HERC6 含 N 端 RCC1-like repeats 与 C 端 HECT E3 连接酶结构域，PDB 5W87 覆盖 HECT 区域。",
+    "evidence": "HERC6-ISGylation 固有免疫证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt Q8IVU3 蛋白功能注释",
+      "RCSB PDB 5W87 晶体结构记录",
+      "干扰素诱导 ISGylation 与抗病毒免疫文献"
+    ],
+    "referenceEntries": "UniProt Q8IVU3；RCSB PDB 5W87；Open Targets HERC6",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "HECT N-lobe 与 C-lobe 交界的 E2 结合面",
+        "可直接干扰 UBE2L6 装载和 ISG15 转移复合物形成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "HECT C-lobe 催化半胱氨酸邻近外露环区",
+        "可限制催化构象转换，但需避免完全依赖深部活性位点",
+        "备选"
+      ],
+      [
+        "Site C",
+        "RLD 重复结构域推定蛋白互作表面",
+        "结构覆盖与疾病机制连接较弱，表位可验证性不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HERC6 为胞内酶靶点，体内抗体可及性与功能阻断转化风险较高。建议限定为细胞内递送抗体、VHH 工具分子或结构机制验证设计。",
+    "structurePrepZh": "以 5W87 A/B 链 HECT 区域为模板，补全缺失侧链，标注催化半胱氨酸、E2 结合面及晶体接触界面后再开展对接。",
+    "structureRef": "RCSB PDB 5W87，X-ray diffraction，2.199 Å",
+    "antibodies": [
+      "无已批准 HERC6 靶向治疗抗体",
+      "研究级抗 HERC6 多克隆/单克隆抗体"
+    ],
+    "interfaceFocus": "HECT E2 结合面与催化 C-lobe 邻近环区",
+    "designMode": "胞内酶靶向验证",
+    "candidates": [
+      {
+        "target": "ISG15",
+        "rationale": "ISG15 是 HERC6 相关 ISGylation 通路的核心类泛素修饰蛋白，具有分泌型细胞因子样功能，抗原可及性优于胞内 HERC6。"
+      },
+      {
+        "target": "IFNAR1",
+        "rationale": "IFNAR1 是 I 型干扰素受体复合体组成部分，位于 HERC6 上游诱导通路，可通过阻断 IFN-I 受体信号调节 ISG 表达。"
+      },
+      {
+        "target": "IFNAR2",
+        "rationale": "IFNAR2 直接参与 I 型干扰素配体结合和 JAK-STAT 激活，是 HERC6 表达诱导轴中的膜受体靶点，具备更明确的抗体可及性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

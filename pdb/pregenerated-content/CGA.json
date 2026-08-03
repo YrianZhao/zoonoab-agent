@@ -1,0 +1,65 @@
+{
+  "gene": "CGA",
+  "generatedAt": "2026-08-03T11:20:14.560Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CGA编码糖蛋白激素共同α亚基，与TSHB、LHB、FSHB或CGB形成异二聚体，参与TSH、LH、FSH及hCG介导的内分泌轴调控；其疾病关联集中于TSH水平与甲状腺功能减退，符合下丘脑-垂体-甲状腺轴的病理背景。CGA为分泌型糖蛋白激素亚基，在循环和垂体分泌环境中具有良好抗原可及性，但单独α亚基并非经典受体激动单元。相较于TSHR或TSHB，CGA具有跨多种糖蛋白激素的共享结构优势，适合用于构建识别共同α亚基或特定异二聚体构象的研究型抗体，但需通过表位选择避免广泛内分泌交叉干扰。",
+    "mechanism": "抗体可结合CGA与TSHB异二聚体的α亚基外露表面或亚基界面邻近区，阻碍TSH与TSHR富亮氨酸重复胞外结构域结合。",
+    "selectedEpitope": "优先选择CGA cystine-knot折叠中远离TSHB核心装配面的外露环区，兼顾异二聚体构象特异性。",
+    "diseaseDirection": "甲状腺轴内分泌疾病",
+    "domain": "CGA为分泌型糖蛋白激素α亚基，含信号肽、半胱氨酸结稳定的cystine-knot核心及N糖基化位点。",
+    "evidence": "CGA-TSH轴疾病关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P01215蛋白注释",
+      "RCSB PDB 9YXD晶体结构",
+      "糖蛋白激素-受体复合物结构与内分泌文献"
+    ],
+    "referenceEntries": "UniProt:P01215；RCSB PDB:9YXD；Open Targets:CGA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CGA cystine-knot外露环区",
+        "保留抗原可及性并降低对亚基装配的构象依赖，适合生成稳定结合抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CGA-TSHB异二聚体界面邻近外露面",
+        "可增强对TSH构象的选择性，并可能干预TSH与TSHR结合前构象稳定",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N糖基化位点邻近表面",
+        "糖链异质性可能影响抗体结合一致性，需进行糖型与物种交叉反应评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CGA为TSH、LH、FSH和hCG共同α亚基，存在广泛内分泌交叉识别风险；建议优先筛选TSH异二聚体构象依赖表位并排除LH、FSH、hCG强结合克隆。",
+    "structurePrepZh": "以9YXD中CGA相关抗原链为模板，校验二硫键、N糖基化位点和异二聚体接触面；对缺失环区进行同源或AlphaFold辅助补全后用于表位暴露度评估。",
+    "structureRef": "RCSB PDB 9YXD，X-ray diffraction，2.29 Å",
+    "antibodies": [
+      "anti-hCG alpha subunit antibody",
+      "anti-TSH alpha subunit antibody"
+    ],
+    "interfaceFocus": "CGA外露环区及TSHB邻近异二聚体界面",
+    "designMode": "分泌蛋白阻断型",
+    "candidates": [
+      {
+        "target": "TSHB",
+        "rationale": "TSHB与CGA组成TSH异二聚体，是TSH-TSHR轴的特异性β亚基；靶向TSHB可提高对甲状腺轴的选择性并减少对LH、FSH和hCG的交叉影响。"
+      },
+      {
+        "target": "TSHR",
+        "rationale": "TSHR为TSH的膜受体，其胞外富亮氨酸重复结构域直接结合TSH并驱动甲状腺滤泡细胞信号；靶向受体端更适合设计阻断TSH结合或调节受体活化的抗体。"
+      },
+      {
+        "target": "TRH",
+        "rationale": "TRH位于下丘脑-垂体-甲状腺轴上游，可促进垂体TSH分泌；其与CGA相关疾病方向同属甲状腺激素调控通路，但小肽特性使抗体成药性需谨慎评估。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

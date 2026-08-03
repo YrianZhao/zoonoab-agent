@@ -1,0 +1,65 @@
+{
+  "gene": "DVL1",
+  "generatedAt": "2026-08-03T18:50:03.896Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DVL1 是 Wnt/PCP 与非经典 Wnt 信号转导的胞内支架蛋白，其功能异常可扰乱 ROR2/FZD 介导的骨骼形态发生程序，并与常染色体显性 Robinow 综合征高度相关。该蛋白主要定位于胞质，缺乏稳定暴露于细胞外空间的抗原结构域，因此常规全长阻断型抗体的体内可及性受限。相较 FZD、ROR2 等膜受体，DVL1 的疾病遗传证据更直接指向下游信号节点，但抗体设计优先级应限定于结构研究、胞内递送抗体或工程化 intrabody 场景。",
+    "mechanism": "通过胞内抗体结合 DVL1 DIX 结构域聚合界面，抑制 DVL1 同源聚合及其对 Axin/FZD 信号复合体的支架募集。",
+    "selectedEpitope": "优先锁定 DIX 结构域头尾聚合界面，避免干扰折叠核心疏水残基。",
+    "diseaseDirection": "Robinow综合征与Wnt/PCP发育异常",
+    "domain": "DVL1 含 N 端 DIX、中央 PDZ 与 C 端 DEP 结构域；6LCB 对应高分辨率 DIX 结构域。",
+    "evidence": "DVL1-Wnt/PCP发育通路结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB O14640 functional annotation",
+      "RCSB PDB 6LCB X-ray structure",
+      "OMIM/ClinVar Robinow syndrome variant evidence"
+    ],
+    "referenceEntries": "UniProt O14640；RCSB PDB 6LCB；Open Targets DVL1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DIX 结构域头尾聚合界面",
+        "直接干预 DVL1 聚合与信号平台形成，机制可验证性较高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DIX 结构域 Axin 相关结合面",
+        "可能削弱 Wnt 信号复合体装配，适合结构引导型 intrabody 设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "DIX 折叠核心邻近区域",
+        "存在诱导失折叠或非特异性构象扰动风险，应降低设计权重",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DVL1 为胞内蛋白，常规抗体难以到达作用位点；应采用胞内表达抗体、细胞穿透递送或仅作为结构机制验证工具。",
+    "structurePrepZh": "以 6LCB 链 A 为模板，保留 DIX 结构域高可信坐标，去除晶体缓冲分子并评估聚合界面晶体接触与生物界面差异。",
+    "structureRef": "RCSB PDB 6LCB，X-ray diffraction，1.4 Å",
+    "antibodies": [
+      "尚无获批 DVL1 靶向治疗性抗体",
+      "研究级 anti-DVL1 monoclonal antibody"
+    ],
+    "interfaceFocus": "DIX 头尾聚合面与 Axin 竞争结合面",
+    "designMode": "胞内抗体/intrabody",
+    "candidates": [
+      {
+        "target": "ROR2",
+        "rationale": "ROR2 是非经典 Wnt/PCP 通路膜受体，并为 Robinow 综合征经典致病基因；其胞外免疫球蛋白样、富半胱氨酸与 Kringle 结构域具备抗体可及性。"
+      },
+      {
+        "target": "WNT5A",
+        "rationale": "WNT5A 是 ROR2 介导非经典 Wnt 信号的重要配体，参与肢体与颅面发育；作为分泌型配体，具备中和抗体设计可行性。"
+      },
+      {
+        "target": "FZD2",
+        "rationale": "FZD2 参与 Wnt 配体识别及 DVL 招募，并与 Robinow 样骨骼发育异常相关；其胞外 CRD 可作为阻断配体结合的抗体表位。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

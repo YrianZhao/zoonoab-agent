@@ -1,0 +1,65 @@
+{
+  "gene": "PDPK1",
+  "generatedAt": "2026-08-03T20:30:07.321Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PDPK1是PI3K-PIP3-AKT轴的核心胞内丝氨酸/苏氨酸激酶，通过PH结构域识别膜PIP3并磷酸化AKT1 Thr308，参与肿瘤增殖、存活及治疗耐受。该蛋白主要定位于胞质和质膜内侧，缺乏天然胞外结构域，常规体内阻断抗体可及性较弱；其优势更适合结构引导的细胞内递送抗体、研究型Fab或降解偶联格式。相比直接靶向AKT或PI3K同工酶，PDPK1位于多条AGC激酶共同激活节点，可同时影响AKT、SGK和S6K支路，因此在PI3K通路依赖性肿瘤模型中具有较高机制优先级。",
+    "mechanism": "设计抗体阻断PDPK1 PH结构域与PIP3头基结合，抑制其膜募集及对AKT1 Thr308的近距离磷酸化激活。",
+    "selectedEpitope": "优先覆盖PH结构域磷酸肌醇结合口袋及β1-β2环，干扰PIP3识别界面。",
+    "diseaseDirection": "PI3K-AKT通路依赖性肿瘤",
+    "domain": "PDPK1含N端蛋白激酶结构域和C端PH结构域；1W1G解析人源PH结构域高分辨率构象。",
+    "evidence": "PDPK1-PI3K-AKT轴肿瘤机制证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt O15530功能与亚细胞定位注释",
+      "RCSB PDB 1W1G晶体结构记录",
+      "PI3K/PIP3依赖性AKT Thr308磷酸化文献"
+    ],
+    "referenceEntries": "UniProt: O15530；RCSB PDB: 1W1G；ChEMBL/Reactome: PDPK1通路条目",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PH结构域PIP3结合口袋及β1-β2环",
+        "直接阻断磷酸肌醇识别，限制PDPK1膜募集",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PH结构域β3-β4与邻近正电荷表面",
+        "可能扰动膜磷脂结合取向，适合作为构象调节表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PH结构域远端非配体结合面",
+        "结构可及但与PIP3相互作用相关性较弱，功能阻断不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PDPK1为胞内激酶，系统给药抗体难以进入胞质；需采用细胞内递送、胞内抗体表达或抗体降解偶联策略，并避免仅获得非功能性结合克隆。",
+    "structurePrepZh": "以1W1G链A为PH结构域模板，保留磷酸肌醇结合口袋几何信息，补充缺失氢原子并评估环区柔性后进行表位建模。",
+    "structureRef": "RCSB PDB 1W1G，人PDPK1 PH结构域X射线晶体结构，1.45 Å",
+    "antibodies": [
+      "研究级抗PDPK1单克隆抗体",
+      "研究级抗磷酸PDPK1 Ser241抗体"
+    ],
+    "interfaceFocus": "PH结构域PIP3头基结合口袋",
+    "designMode": "胞内靶点功能阻断",
+    "candidates": [
+      {
+        "target": "AKT1",
+        "rationale": "AKT1是PDPK1在PI3K通路中的直接底物，Thr308磷酸化依赖PDPK1介导的膜近邻作用；靶向AKT1可直接干预下游存活信号。"
+      },
+      {
+        "target": "PIK3CA",
+        "rationale": "PIK3CA编码PI3Kα催化亚基，产生PIP3并驱动PDPK1 PH结构域膜募集；其突变常见于乳腺癌、卵巢癌及多种实体瘤。"
+      },
+      {
+        "target": "PTEN",
+        "rationale": "PTEN去磷酸化PIP3并负向调节PDPK1-AKT轴；PTEN缺失导致PIP3积累和PDPK1依赖性AKT激活增强。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

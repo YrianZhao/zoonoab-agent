@@ -1,0 +1,65 @@
+{
+  "gene": "TRAF5",
+  "generatedAt": "2026-08-03T17:27:01.303Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TRAF5 是 TNF 受体超家族与非经典 NF-κB、MAPK 信号之间的胞内衔接蛋白，参与 CD40、LTβR、RANK 等受体复合物的下游信号转导，疾病关联主要体现为免疫炎症与血液表型的遗传和蛋白组学信号。该蛋白缺乏跨膜区和天然胞外结构域，抗原可及性不适合常规阻断型体内抗体，但其 TRAF-C 结构域具备明确受体肽段结合沟槽，可用于细胞内抗体、VHH 或研究级干预分子设计。相比上游 TNFRSF 受体，TRAF5 位于多条受体通路汇合节点，优先级价值在于解析并选择性干预受体-TRAF 复合物装配，而非单一配体阻断。",
+    "mechanism": "通过结合 TRAF-C 受体肽段识别沟槽，阻断 CD40、LTβR 或 RANK 胞内尾部 TRAF 结合基序与 TRAF5 的相互作用，削弱下游 NF-κB/MAPK 复合物装配。",
+    "selectedEpitope": "优先锁定 TRAF-C β-sandwich 表面的受体肽段结合沟槽及相邻三聚体边界。",
+    "diseaseDirection": "免疫炎症与TNFRSF信号",
+    "domain": "TRAF5 含 RING、锌指、coiled-coil TRAF-N 与 C 端 TRAF-C MATH 结构域。",
+    "evidence": "TRAF5-TNFRSF受体信号结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt O00463 functional annotation",
+      "RCSB PDB 7L3L X-ray structure",
+      "TNFRSF-TRAF adaptor signaling literature"
+    ],
+    "referenceEntries": "UniProt O00463；RCSB PDB 7L3L；Open Targets TRAF5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "TRAF-C MATH结构域受体肽段结合沟槽",
+        "直接竞争TNFRSF胞内尾部TRAF结合基序，机制最清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "TRAF-C三聚体外侧邻近受体结合面",
+        "可能产生空间位阻并稳定非结合构象，适合别构型设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "coiled-coil TRAF-N三聚化界面",
+        "干预三聚体装配风险较高，可能影响TRAF家族保守功能",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TRAF5 为胞内抗原，体内常规IgG可及性受限；TRAF-C与TRAF2/3/6存在结构相似性，需通过受体结合沟槽差异残基控制选择性。",
+    "structurePrepZh": "以7L3L抗原链A-D构建TRAF-C寡聚体模型，保留实验构象，检查链间界面、缺失残基和受体肽段结合沟槽电荷分布。",
+    "structureRef": "RCSB PDB 7L3L，X-ray diffraction，2.8 Å",
+    "antibodies": [
+      "细胞内抗TRAF5研究抗体",
+      "抗TRAF-C结构域研究抗体"
+    ],
+    "interfaceFocus": "TRAF-C受体肽段结合沟槽与三聚体边界",
+    "designMode": "胞内VHH干预",
+    "candidates": [
+      {
+        "target": "CD40",
+        "rationale": "CD40 胞内尾部可募集 TRAF5 并激活 NF-κB 与 MAPK 信号，是同一 TNFRSF-TRAF 轴中抗原可及性更优的膜受体靶点。"
+      },
+      {
+        "target": "LTBR",
+        "rationale": "LTβR 通过 TRAF2、TRAF3 和 TRAF5 组织非经典 NF-κB 信号，适合与 TRAF5 机制研究形成通路级验证。"
+      },
+      {
+        "target": "TNFRSF11A",
+        "rationale": "RANK 可通过 TRAF 家族衔接蛋白驱动 NF-κB/MAPK 及骨免疫相关信号，属于同一受体-TRAF 复合物通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "GAREM1",
+  "generatedAt": "2026-08-03T12:42:21.974Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GAREM1为GRB2相关的胞内衔接调节蛋白，参与EGFR-RAS-RAF-MEK-ERK轴中GRB2/SOS复合体相关MAPK1/ERK2信号放大，其疾病关联主要集中于身高、心率、PR间期、脂蛋白胆固醇及血浆蛋白水平等复杂性状。该蛋白缺乏跨膜区和分泌信号肽，抗原可及性不具备常规细胞表面抗体药物优势，更适合作为结构表征、细胞内递送抗体或蛋白互作阻断工具靶点。相比上游EGFR或GRB2等多效性节点，GAREM1处于MAPK支路的适配器调控层，具有解析通路特异调节机制的优先研究价值。",
+    "mechanism": "设计抗体以识别GAREM1胞内结构域表面，阻断其与GRB2-SH3/SH2衔接复合体的结合，从而削弱SOS募集及下游MAPK1/ERK2磷酸化传递。",
+    "selectedEpitope": "优先覆盖2DKZ所解析的NMR结构域中保守疏水沟槽及邻近带电界面，避开柔性末端。",
+    "diseaseDirection": "MAPK信号相关复杂性状",
+    "domain": "GAREM1为胞内GRB2相关调节蛋白，含富脯氨酸互作区及NMR解析片段结构域。",
+    "evidence": "GAREM1-MAPK适配器调控证据包",
+    "evidenceSources": [
+      "Open Targets Platform遗传关联数据",
+      "UniProt Q9H706功能与亚细胞定位注释",
+      "RCSB PDB 2DKZ溶液NMR结构记录",
+      "EGFR-GRB2-SOS-RAS-MAPK通路文献"
+    ],
+    "referenceEntries": "UniProt Q9H706；RCSB PDB 2DKZ；Open Targets GAREM1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "2DKZ结构域保守疏水沟槽及邻近正负电荷斑块",
+        "可能干扰蛋白互作界面，适合互作阻断型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "NMR结构域稳定二级结构外侧暴露面",
+        "构象稳定且利于获得结构选择性结合分子",
+        "备选"
+      ],
+      [
+        "Site C",
+        "富脯氨酸低复杂度片段及柔性末端区域",
+        "可能与GRB2-SH3识别相关，但构象异质性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GAREM1为胞内非分泌蛋白，常规抗体难以直接进入细胞；应采用细胞内递送、intrabody或降解偶联策略，并严格验证GRB2互作阻断特异性。",
+    "structurePrepZh": "以2DKZ链A为模板建立NMR构象集合，筛选低RMSD代表构象，补充缺失柔性区注释并进行表面电荷与疏水斑块评估。",
+    "structureRef": "RCSB PDB 2DKZ，Homo sapiens GAREM1片段，SOLUTION NMR",
+    "antibodies": [
+      "无获批GAREM1靶向抗体",
+      "研究级抗GAREM1多克隆抗体"
+    ],
+    "interfaceFocus": "GRB2结合相关富脯氨酸界面及2DKZ疏水沟槽",
+    "designMode": "胞内互作阻断",
+    "candidates": [
+      {
+        "target": "GRB2",
+        "rationale": "GRB2是EGFR至SOS/RAS/MAPK通路的核心衔接蛋白，直接连接受体酪氨酸磷酸化位点与SOS募集。其与GAREM1处于同一适配器调控网络。"
+      },
+      {
+        "target": "SOS1",
+        "rationale": "SOS1为RAS鸟嘌呤核苷酸交换因子，受GRB2募集后促进RAS-GTP形成，是GAREM1相关MAPK信号输出的下游关键节点。"
+      },
+      {
+        "target": "MAPK1",
+        "rationale": "MAPK1/ERK2是RAS-RAF-MEK级联的末端效应激酶，与GAREM1蛋白全名所指MAPK1亚型调控功能处于同一信号轴。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

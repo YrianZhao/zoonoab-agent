@@ -1,0 +1,65 @@
+{
+  "gene": "VPS36",
+  "generatedAt": "2026-08-03T17:49:40.475Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "VPS36是ESCRT-II复合体亚基，参与泛素化膜蛋白货物识别、内体多泡体形成及病毒出芽相关膜重塑过程，在神经退行性疾病蛋白稳态异常和病毒感染生命周期中具有通路关联。该蛋白主要定位于胞质侧内体膜复合体，缺乏稳定胞外结构域或分泌型抗原暴露，因此常规体内阻断抗体可及性受限，更适合细胞内递送抗体片段或机制研究抗体开发。相较ESCRT-III等瞬时聚合亚基，VPS36含GLUE结构域并直接识别PI3P、泛素及ESCRT-I相关界面，具备更清晰的结构定位和复合体装配干预价值。",
+    "mechanism": "通过抗体片段结合VPS36 GLUE结构域，阻断其与泛素化货物、PI3P膜脂或ESCRT-I/VPS28相关界面的协同结合，抑制ESCRT-II募集与内体货物分选。",
+    "selectedEpitope": "优先锁定GLUE结构域的泛素结合沟槽及PI3P邻近膜结合面，避免破坏折叠核心。",
+    "diseaseDirection": "神经退行性疾病与病毒感染",
+    "domain": "VPS36含N端GLUE结构域及C端ESCRT-II核心装配区，可介导膜脂、泛素货物与复合体亚基连接。",
+    "evidence": "VPS36-ESCRT-II膜分选结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q86VN1功能与定位注释",
+      "RCSB PDB 3CUQ晶体结构记录",
+      "ESCRT介导内体分选与病毒出芽文献"
+    ],
+    "referenceEntries": "UniProt: Q86VN1；RCSB PDB: 3CUQ；HGNC: VPS36",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "GLUE结构域泛素结合沟槽",
+        "可直接干预泛素化货物识别，适合功能阻断型抗体片段设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "GLUE结构域PI3P邻近膜结合面",
+        "可削弱内体膜募集并影响ESCRT-II定位，需保留整体折叠稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ESCRT-II核心亚基装配界面",
+        "可能影响VPS22/VPS25复合体稳定性，存在广泛细胞分选毒性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "VPS36为胞内ESCRT亚基，常规抗体组织可及性不足；设计宜采用VHH、intrabody或递送系统，并严格评估内体分选抑制导致的细胞毒性。",
+    "structurePrepZh": "以PDB 3CUQ多链晶体结构为模板，校正链A-D装配状态、缺失环区和质子化状态，结合UniProt边界标注GLUE结构域功能界面。",
+    "structureRef": "PDB 3CUQ，X-ray diffraction，2.61 Å，human VPS36相关结构",
+    "antibodies": [
+      "VPS36研究级多克隆抗体",
+      "VPS36研究级单克隆抗体"
+    ],
+    "interfaceFocus": "GLUE结构域泛素结合沟槽与PI3P膜结合面",
+    "designMode": "胞内VHH/intrabody",
+    "candidates": [
+      {
+        "target": "TSG101",
+        "rationale": "TSG101是ESCRT-I关键亚基，识别泛素化货物并与VPS28共同促进ESCRT-II招募，位于同一内体分选及病毒出芽通路上游。"
+      },
+      {
+        "target": "VPS28",
+        "rationale": "VPS28连接ESCRT-I与ESCRT-II复合体，其与VPS36相关界面参与复合体级联装配，适合作为阻断ESCRT传递的相邻节点。"
+      },
+      {
+        "target": "CHMP4B",
+        "rationale": "CHMP4B为ESCRT-III核心聚合亚基，执行膜颈收缩与切断步骤，处于VPS36介导货物分选后的同一膜重塑通路下游。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

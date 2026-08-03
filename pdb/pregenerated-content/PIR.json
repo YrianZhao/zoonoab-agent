@@ -1,0 +1,65 @@
+{
+  "gene": "PIR",
+  "generatedAt": "2026-08-03T15:18:25.802Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PIR编码pirin，为核内非血红素铁结合蛋白，参与NF-κB转录复合体调节并与炎症、缺氧应答及肿瘤相关转录状态相关。Open Targets显示其疾病关联以COVID-19、血管生成相关测量性状、血小板计数和结直肠癌为主，但关联强度整体偏低。该蛋白主要定位于细胞核/胞质，缺乏胞外结构域、分泌信号肽和膜受体特征，天然抗原可及性不利于常规阻断型抗体。相较于VEGFA、VEGFR2或IL6等同通路可及性靶点，PIR更适合作为结构抗原、细胞内递送抗体或研究级结合分子开发，治疗性主靶点优先级较低。",
+    "mechanism": "通过识别pirin杯状结构域邻近金属结合口袋的构象表面，干扰其与NF-κB p65/RelA相关转录复合体的结合界面，降低炎症转录协同作用。",
+    "selectedEpitope": "优先选择N端cupin结构域金属结合口袋外缘及邻近RelA相互作用表面，避免深埋催化样口袋。",
+    "diseaseDirection": "炎症转录调控与肿瘤微环境",
+    "domain": "Pirin由N端和C端双cupin样β桶结构域组成，含保守非血红素Fe结合位点。",
+    "evidence": "PIR结构、NF-κB协同调控与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt O00625蛋白定位与功能注释",
+      "RCSB PDB 6N0K晶体结构记录",
+      "NF-κB转录复合体相关文献证据"
+    ],
+    "referenceEntries": "UniProt: O00625; RCSB PDB: 6N0K; Gene: PIR",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端cupin结构域金属结合口袋外缘",
+        "可能影响pirin构象状态及转录复合体识别，适合高亲和结合分子设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端与C端cupin结构域交界面",
+        "具备较高构象特异性，可用于稳定特定构象或开发结构探针",
+        "备选"
+      ],
+      [
+        "Site C",
+        "金属配位残基深部口袋",
+        "区域较深且保守，抗体可及性有限，并可能导致非特异构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PIR为细胞内核/胞质蛋白，常规抗体难以到达天然作用位点；建议限定为细胞内递送抗体、intrabody或结构研究型Fab/VHH。",
+    "structurePrepZh": "以6N0K链A为模板，保留金属配位位点并检查氧化态相关构象；补全缺失侧链后进行表面电荷与可及性评估。",
+    "structureRef": "Human pirin crystal structure, PDB 6N0K, 1.46 Å",
+    "antibodies": [
+      "无已批准PIR治疗性抗体",
+      "研究级anti-pirin抗体"
+    ],
+    "interfaceFocus": "N端cupin金属口袋外缘与RelA相关界面",
+    "designMode": "细胞内抗体/结构探针",
+    "candidates": [
+      {
+        "target": "RELA",
+        "rationale": "RELA编码NF-κB p65，是PIR相关转录复合体的核心亚基；其活化直接驱动炎症和肿瘤相关基因表达。"
+      },
+      {
+        "target": "NFKB1",
+        "rationale": "NFKB1编码p105/p50，参与经典NF-κB二聚体形成；与PIR所影响的炎症转录网络处于同一通路层级。"
+      },
+      {
+        "target": "VEGFA",
+        "rationale": "VEGFA为NF-κB和缺氧相关转录程序下游血管生成因子，疾病数据中血管生成测量性状与PIR关联相呼应，且分泌蛋白可及性优于PIR。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

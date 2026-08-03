@@ -1,0 +1,65 @@
+{
+  "gene": "MYO10",
+  "generatedAt": "2026-08-03T14:30:49.936Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MYO10编码非常规肌球蛋白myosin X，参与肌动蛋白依赖的丝状伪足形成、整合素运输和细胞迁移，与肿瘤侵袭、上皮-间质转化及细胞黏附异常具有实验性关联。该蛋白主要定位于胞内肌动蛋白束和丝状伪足尖端，缺乏稳定胞外结构域，因此抗体作为常规细胞外阻断药物的抗原可及性有限，更适合作为结构生物学验证或胞内递送抗体片段研究靶点。相比ITGB1、MET等同通路膜受体，MYO10的直接药物抗体优先级较低；其优势在于PDB 5I0H提供高分辨率FERM结构，可支持机制性表位和构象探针设计。",
+    "mechanism": "设计抗体片段结合MYO10 FERM结构域的整合素β尾部识别沟槽，阻断MYO10与ITGB1胞质尾部相互作用，从而干预整合素向丝状伪足尖端的运输。",
+    "selectedEpitope": "优先覆盖FERM F3亚结构域PTB样整合素尾部结合沟槽，兼顾F2-F3界面构象稳定区。",
+    "diseaseDirection": "肿瘤侵袭与细胞迁移异常",
+    "domain": "MYO10含N端运动结构域、IQ基序、卷曲螺旋区、PH-MyTH4-FERM尾部结构域；5I0H解析FERM片段。",
+    "evidence": "MYO10-FERM介导整合素运输与侵袭证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9HD67功能与结构域注释",
+      "RCSB PDB 5I0H X射线晶体结构",
+      "MYO10调控丝状伪足和整合素定位的同行评议研究"
+    ],
+    "referenceEntries": "UniProt Q9HD67；RCSB PDB 5I0H；Open Targets MYO10",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "FERM F3亚结构域整合素β胞质尾部结合沟槽",
+        "可直接阻断MYO10识别ITGB1/ITGB3尾部基序，机制指向性最强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FERM F2-F3亚结构域交界面",
+        "可稳定或扰动尾部结构域构象，间接削弱货物结合能力",
+        "备选"
+      ],
+      [
+        "Site C",
+        "FERM外侧非保守表面环区",
+        "可用于结构探针或检测抗体，但功能阻断概率较低",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MYO10为胞内蛋白，常规全长抗体难以到达作用位点；应优先采用胞内递送Fab/VHH、细胞穿透融合或体外机制验证，避免宣称直接胞外中和。",
+    "structurePrepZh": "以5I0H链A/B为FERM结构模板，保留高置信度残基并评估晶体接触；补充缺失柔性环建模，映射整合素尾部结合位点与保守性。",
+    "structureRef": "RCSB PDB 5I0H，human MYO10 FERM domain，1.8 Å X-ray",
+    "antibodies": [
+      "抗MYO10研究级单克隆抗体",
+      "抗MYO10多克隆检测抗体"
+    ],
+    "interfaceFocus": "FERM F3整合素β尾部识别沟槽",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "ITGB1",
+        "rationale": "ITGB1是MYO10运输至丝状伪足尖端的重要货物，位于同一整合素黏附与迁移轴。其胞外结构域可及性显著优于MYO10，适合阻断配体结合或构象激活。"
+      },
+      {
+        "target": "ITGB3",
+        "rationale": "ITGB3胞质尾部可与MYO10 FERM介导的货物识别机制相关，参与细胞黏附、迁移和肿瘤侵袭。其膜受体属性使抗体阻断策略更具转化可行性。"
+      },
+      {
+        "target": "MET",
+        "rationale": "MET信号可促进细胞散射、侵袭和丝状伪足相关迁移表型，与MYO10相关的侵袭程序处于相邻功能通路。MET胞外Sema结构域已有成熟抗体设计先例，临床可开发性高。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

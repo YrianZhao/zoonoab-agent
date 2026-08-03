@@ -1,0 +1,65 @@
+{
+  "gene": "PACS1",
+  "generatedAt": "2026-08-03T15:01:51.107Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PACS1 是胞质定位的转运衔接蛋白，参与酸性簇货物蛋白在 TGN、内体及高尔基相关膜系统中的分选，致病变异与 Schuurs-Hoeijmakers syndrome 及神经发育障碍密切相关。其主要功能界面位于胞内 FBR 区域及货物结合模块，天然抗原可及性不符合常规体内阻断抗体靶点特征，需限定为研究型胞内结合抗体或结构探针设计。相较于同通路膜受体或分泌蛋白，PACS1 的疾病遗传证据更集中、结构片段可解析，但转化优先级低于具有胞外可及结构域的通路节点。",
+    "mechanism": "设计胞内结合抗体阻断 PACS1 FBR 区域与酸性簇货物蛋白或适配蛋白复合体的结合，干扰 TGN-内体分选过程。",
+    "selectedEpitope": "优先覆盖 9Z30 所示 PACS1 结构片段的保守结合沟槽及酸性簇货物识别邻近面。",
+    "diseaseDirection": "神经发育障碍与PACS1综合征",
+    "domain": "PACS1 含 N 端调控区、FBR 货物结合区及 C 端富含酸性/丝氨酸调控片段。",
+    "evidence": "PACS1遗传神经发育疾病与分选功能证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q6VY07 functional annotation",
+      "RCSB PDB 9Z30 solution NMR structure",
+      "OMIM/ClinVar PACS1 pathogenic variant records"
+    ],
+    "referenceEntries": "UniProt Q6VY07；RCSB PDB 9Z30；Open Targets PACS1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "FBR结构片段保守结合沟槽",
+        "直接竞争酸性簇货物识别，适合机制阻断型胞内抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FBR邻近调控表面",
+        "可能影响适配蛋白复合体装配，适合构象稳定或功能探针",
+        "备选"
+      ],
+      [
+        "Site C",
+        "柔性N/C端调控片段",
+        "构象异质性高且结构约束不足，需避免作为首选中和表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PACS1 为胞内蛋白，常规循环抗体难以进入细胞；建议采用 intrabody、VHH 或递送体系，并优先验证细胞内表达与分选功能读出。",
+    "structurePrepZh": "以 9Z30 NMR 构象集为模板，保留代表性低能构象，标注柔性环区与保守面，结合 AlphaFold 全长模型补充结构域边界。",
+    "structureRef": "RCSB PDB 9Z30，human PACS1 solution NMR structure",
+    "antibodies": [
+      "PACS1 research antibody",
+      "anti-PACS1 monoclonal antibody clone EPR12158"
+    ],
+    "interfaceFocus": "FBR货物结合沟槽与酸性簇识别界面",
+    "designMode": "胞内VHH/intrabody",
+    "candidates": [
+      {
+        "target": "AP1G1",
+        "rationale": "AP-1 复合体参与 TGN-内体货物分选，与 PACS1 介导的膜蛋白转运过程处于同一细胞内 trafficking 轴。其复合体界面可作为机制研究的替代节点。"
+      },
+      {
+        "target": "FURIN",
+        "rationale": "FURIN 是 PACS1 经典酸性簇货物蛋白之一，其胞质尾部酸性簇依赖 PACS 蛋白介导定位与回收，可用于验证 PACS1 货物识别机制。"
+      },
+      {
+        "target": "AP3B1",
+        "rationale": "AP-3 适配蛋白复合体与内体/溶酶体相关分选通路相关，和 PACS 介导的货物运输存在功能交汇，适合纳入同通路比较。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

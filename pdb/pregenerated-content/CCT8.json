@@ -1,0 +1,65 @@
+{
+  "gene": "CCT8",
+  "generatedAt": "2026-08-03T18:21:52.207Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CCT8是TRiC/CCT胞质伴侣蛋白复合体的θ亚基，参与肌动蛋白、微管蛋白及多种肿瘤相关蛋白的ATP依赖性折叠，在结直肠癌、肝细胞癌等增殖性疾病中与蛋白稳态压力和细胞骨架重塑相关。该蛋白主要定位于胞质，不具备分泌蛋白或膜受体的天然抗原可及性，常规体内阻断抗体成药性受限，更适合作为胞内靶向抗体或研究级构象探针开发对象。相较于广泛表达且功能冗余的单一伴侣蛋白，CCT8可借助7NVL高分辨率TRiC复合体结构解析亚基特异界面，因此优先价值主要体现在复合体构象调控与疾病机制验证。",
+    "mechanism": "设计抗体阻断CCT8赤道结构域ATP结合/水解构象传递，或干扰其与相邻CCT亚基界面装配，从而削弱TRiC介导的底物折叠周期。",
+    "selectedEpitope": "优先选择CCT8顶端结构域底物结合凹面及邻近中间结构域铰链，避免高度保守ATP口袋直接竞争。",
+    "diseaseDirection": "肿瘤蛋白稳态与细胞骨架重塑",
+    "domain": "CCT8包含赤道ATPase结构域、中间铰链结构域和顶端底物结合结构域，构成TRiC双环复合体亚基。",
+    "evidence": "CCT8-TRiC复合体结构与肿瘤关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P50990功能与亚细胞定位注释",
+      "RCSB PDB 7NVL冷冻电镜结构",
+      "TRiC/CCT介导肌动蛋白和微管蛋白折叠文献"
+    ],
+    "referenceEntries": "UniProt:P50990；RCSB PDB:7NVL；HGNC:CCT8",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "顶端结构域底物结合凹面及螺旋环区",
+        "可干扰CCT8对底物多肽的识别，具备亚基构象选择性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "中间结构域与顶端结构域铰链界面",
+        "可能锁定开放/闭合转换状态，适合构象调控型抗体设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "赤道ATPase结构域核苷酸结合邻近区域",
+        "功能相关性强但保守性高，易产生CCT亚基交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CCT8为胞质蛋白，体内抗体可及性和递送效率是主要风险；建议限定为细胞内抗体、Fab结构探针或外源递送验证体系，并严格评估CCT亚基交叉反应。",
+    "structurePrepZh": "以7NVL冷冻电镜模型提取CCT8对应链，保留TRiC相邻亚基界面用于可及性评估，补全缺失侧链并进行ATP结合区保守性标注。",
+    "structureRef": "RCSB PDB 7NVL，human TRiC/CCT complex，2.5 Å cryo-EM",
+    "antibodies": [
+      "anti-CCT8 monoclonal antibody clone OTI1C9",
+      "anti-CCT8 monoclonal antibody clone 1G2"
+    ],
+    "interfaceFocus": "顶端底物结合面与亚基装配铰链界面",
+    "designMode": "胞内构象阻断",
+    "candidates": [
+      {
+        "target": "CCT2",
+        "rationale": "CCT2是TRiC/CCT复合体核心亚基之一，参与细胞骨架蛋白折叠并在多种肿瘤蛋白稳态研究中被关注，可作为同复合体通路的替代干预节点。"
+      },
+      {
+        "target": "CCT3",
+        "rationale": "CCT3同属TRiC复合体亚基，与肿瘤细胞增殖、蛋白折叠负荷和细胞周期相关，适合用于评估TRiC亚基选择性阻断策略。"
+      },
+      {
+        "target": "TCP1",
+        "rationale": "TCP1编码CCT1亚基，是TRiC复合体装配与底物折叠循环的重要组成部分，可用于比较CCT8特异表位与保守装配界面的设计价值。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

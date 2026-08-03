@@ -1,0 +1,65 @@
+{
+  "gene": "YAP1",
+  "generatedAt": "2026-08-03T17:55:32.456Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "YAP1 是 Hippo 通路的核内转录共调节因子，去磷酸化后与 TEAD 转录因子形成复合物，驱动 CTGF、CYR61 等促增殖与发育相关基因表达；其遗传和通路异常与眼部发育缺陷、神经退行性疾病及多类肿瘤表型相关。该蛋白主要定位于胞质和细胞核，缺乏经典胞外结构域或分泌特征，抗原天然可及性不利于常规体内阻断型抗体，但纯化结构域可支持结构引导的细胞内抗体或研究级结合分子设计。相较同通路上游激酶，YAP1 位于转录输出汇聚节点，直接决定 TEAD 依赖转录程序，因此在机制验证与降活性分子设计中具有较高优先级。",
+    "mechanism": "设计分子应结合 YAP1 N 端 TEAD-binding region，阻断其与 TEAD1-4 表面沟槽形成复合物，从而抑制 TEAD 依赖靶基因转录。",
+    "selectedEpitope": "优先锁定 YAP1 TEAD-binding region 的 α1 螺旋与 Ω-loop 接触面，覆盖 TEAD 结合核心残基。",
+    "diseaseDirection": "Hippo-YAP发育异常与肿瘤转录轴",
+    "domain": "YAP1 含 N 端 TEAD 结合区、两个 WW 结构域、转录激活区及 PDZ-binding motif。",
+    "evidence": "YAP1-Hippo通路结构与疾病遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association evidence",
+      "UniProt P46937 functional annotation",
+      "RCSB PDB 6G6X X-ray structural record",
+      "Hippo-YAP/TEAD peer-reviewed pathway literature"
+    ],
+    "referenceEntries": "UniProt P46937；RCSB PDB 6G6X；Open Targets YAP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N 端 TEAD-binding region α1 螺旋/Ω-loop",
+        "直接阻断 YAP1-TEAD 复合物形成，机制清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "WW1/WW2 结构域肽结合沟槽",
+        "干预 PPxY 基序蛋白招募，适合通路机制研究",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端转录激活区与 PDZ-binding motif 周边",
+        "构象柔性高且结构解析不足，成药性与选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "YAP1 为细胞内转录共调节蛋白，常规抗体体内可及性不足；建议定位为细胞内抗体、VHH 或递送体系依赖设计，并严格评估与 TAZ 的同源性选择性。",
+    "structurePrepZh": "以 6G6X 晶体结构为模板校验链 A/P 界面，补充缺失柔性区建模，保留 TEAD 结合构象并去除非生理晶体接触后开展表位分析。",
+    "structureRef": "RCSB PDB 6G6X，X-ray diffraction，1.13 Å",
+    "antibodies": [
+      "YAP1 research monoclonal antibody clone 63.7",
+      "YAP1/TAZ research antibody clone D24E4"
+    ],
+    "interfaceFocus": "YAP1-TEAD 结合α螺旋与疏水沟槽界面",
+    "designMode": "细胞内阻断型",
+    "candidates": [
+      {
+        "target": "TEAD1",
+        "rationale": "TEAD1 是 YAP1 的直接 DNA 结合转录因子伙伴，阻断 YAP1-TEAD1 复合物可抑制 Hippo 通路下游转录输出。"
+      },
+      {
+        "target": "WWTR1",
+        "rationale": "WWTR1/TAZ 与 YAP1 同属 Hippo 通路转录共激活因子，具有相似 TEAD 依赖转录功能，是补偿性激活风险评估的关键并行靶点。"
+      },
+      {
+        "target": "LATS1",
+        "rationale": "LATS1 是 Hippo 通路核心激酶，可通过磷酸化 YAP1 促进其胞质滞留和降解，适合作为上游调控节点参照。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

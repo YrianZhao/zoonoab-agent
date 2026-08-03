@@ -1,0 +1,65 @@
+{
+  "gene": "TUBGCP2",
+  "generatedAt": "2026-08-03T17:34:30.764Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TUBGCP2为γ-微管蛋白环复合体的GCP2亚基，参与中心体微管成核，双等位基因变异可导致神经元迁移异常、小头畸形和皮层发育障碍。该蛋白主要定位于细胞内中心体/微管组织中心，不具备分泌蛋白或经典膜受体的天然胞外可及性，因此更适合作为细胞内递送抗体片段或机制验证靶点。相较TUBG1等核心γ-微管蛋白，TUBGCP2位于γ-TuRC支架界面，能够更直接评估GCP装配缺陷对微管成核的影响，疾病遗传证据优先级较高。",
+    "mechanism": "设计抗体片段结合TUBGCP2的GCP2-GCP3装配界面，阻断TUBGCP2与TUBGCP3及γ-微管蛋白复合体的稳定相互作用，抑制γ-TuRC介导的微管成核。",
+    "selectedEpitope": "优先覆盖GCP2保守GRIP1/GRIP2结构域间的γ-TuRC装配界面，避开高度保守折叠核心。",
+    "diseaseDirection": "神经发育异常与微管成核障碍",
+    "domain": "TUBGCP2含N端GCP样螺旋区及C端GRIP1/GRIP2相关结构域，参与γ-TuRC支架装配。",
+    "evidence": "TUBGCP2神经发育疾病与γ-TuRC装配证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9BSJ2蛋白功能注释",
+      "RCSB PDB 8RX1冷冻电镜结构",
+      "OMIM/ClinVar神经发育表型变异记录"
+    ],
+    "referenceEntries": "UniProt Q9BSJ2；RCSB PDB 8RX1；Open Targets TUBGCP2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "GRIP1/GRIP2邻近的GCP2-GCP3装配界面",
+        "直接干预γ-TuRC支架稳定性，适合机制阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "TUBGCP2外露螺旋束与相邻GCP亚基接触面",
+        "可用于调节复合体装配或构象稳定性，需结构比对确认暴露度",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端GRIP2折叠核心及γ-微管蛋白邻近保守区",
+        "可能影响蛋白折叠并产生非特异细胞毒性，需避免深度嵌入表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TUBGCP2为细胞内中心体蛋白，常规抗体难以天然进入靶细胞；设计应限定为胞内抗体、递送型VHH或结构生物学验证，并严格评估微管成核广泛抑制风险。",
+    "structurePrepZh": "以8RX1冷冻电镜模型为模板，保留TUBGCP2及相邻GCP亚基界面，补全缺失环区并标注低分辨率柔性片段后再进行表位筛选。",
+    "structureRef": "RCSB PDB 8RX1，人源γ-TuRC冷冻电镜结构，3.57 Å",
+    "antibodies": [
+      "抗TUBGCP2研究级抗体",
+      "抗γ-tubulin研究级抗体"
+    ],
+    "interfaceFocus": "GCP2-GCP3界面与GRIP结构域邻近接触区",
+    "designMode": "胞内递送抗体设计",
+    "candidates": [
+      {
+        "target": "TUBGCP3",
+        "rationale": "TUBGCP3与TUBGCP2共同构成γ-TuRC支架核心，直接参与γ-微管蛋白复合体装配；其干预可用于同一微管成核通路的界面验证。"
+      },
+      {
+        "target": "TUBG1",
+        "rationale": "TUBG1是γ-TuRC的催化性γ-微管蛋白核心，决定微管负端成核能力；神经发育异常中微管组织缺陷与该节点高度相关。"
+      },
+      {
+        "target": "TUBGCP4",
+        "rationale": "TUBGCP4为γ-TuRC支架扩展亚基，参与复合体环状结构稳定化；可作为TUBGCP2相关装配缺陷的同通路候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

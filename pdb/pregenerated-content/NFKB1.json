@@ -1,0 +1,65 @@
+{
+  "gene": "NFKB1",
+  "generatedAt": "2026-08-03T14:41:54.426Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NFKB1编码NF-κB p105/p50，参与B细胞成熟、免疫球蛋白类别转换和先天免疫炎症基因转录，单倍剂量不足与普通变异型免疫缺陷存在明确遗传关联。该蛋白为细胞核/胞质转录因子，天然抗原可及性低于膜受体或分泌蛋白，因此更适合作为机制研究、胞内递送抗体或降解型分子设计靶点。相比通路中广泛促炎且系统毒性风险较高的上游IKK复合体，NFKB1具有疾病遗传证据集中、结构域边界清晰和DNA结合界面可解析的优先级优势。",
+    "mechanism": "设计分子阻断p50 Rel homology domain与κB DNA元件结合，或干扰p50同源/异源二聚界面，从而降低NF-κB依赖性免疫炎症基因转录。",
+    "selectedEpitope": "优先覆盖Rel homology domain的DNA结合环与二聚化界面邻近区域。",
+    "diseaseDirection": "原发性免疫缺陷与NF-κB通路",
+    "domain": "N端Rel homology domain介导DNA结合、二聚化及IκB结合；C端p105含ankyrin repeats前体抑制区。",
+    "evidence": "NFKB1遗传缺陷与CVID通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P19838功能与结构域注释",
+      "RCSB PDB 8TQD晶体结构",
+      "OMIM与ClinVar免疫缺陷变异记录"
+    ],
+    "referenceEntries": "UniProt P19838；RCSB PDB 8TQD；Open Targets NFKB1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Rel homology domain DNA结合环及κB识别面",
+        "直接阻断p50与κB DNA元件结合，机制验证价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Rel homology domain二聚化界面",
+        "干扰p50同源二聚或与RELA形成异源二聚体，适合构象选择性设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "p105 ankyrin repeat抑制区邻近界面",
+        "可能影响前体加工或自抑制构象，但结构覆盖和细胞内可及性限制较大",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NFKB1为胞内核转录因子，常规抗体药物难以进入作用位点；设计宜采用胞内递送Fab/VHH、细胞穿透格式或作为结构生物学验证工具。",
+    "structurePrepZh": "以8TQD链A为模板，保留Rel homology domain有序区域，补全缺失侧链并标注DNA结合面、二聚界面和保守碱性残基簇。",
+    "structureRef": "RCSB PDB 8TQD，X-ray diffraction，2.02 Å",
+    "antibodies": [
+      "抗NFKB1 p50研究级抗体",
+      "抗NF-κB p105/p50研究级抗体"
+    ],
+    "interfaceFocus": "κB DNA结合沟槽与RHD二聚化界面",
+    "designMode": "胞内抗体/结构阻断",
+    "candidates": [
+      {
+        "target": "RELA",
+        "rationale": "RELA编码NF-κB p65，是p50最主要异源二聚伙伴；靶向其Rel homology domain可影响同一NF-κB转录复合体的DNA结合与转录激活。"
+      },
+      {
+        "target": "NFKBIA",
+        "rationale": "NFKBIA编码IκBα，直接结合并滞留NF-κB二聚体于胞质；其降解控制NFKB1/RELA进入细胞核，是同一路径的关键负调控节点。"
+      },
+      {
+        "target": "IKBKB",
+        "rationale": "IKBKB编码IKKβ，磷酸化IκBα并触发其泛素化降解；该节点位于NFKB1激活上游，具有明确的NF-κB通路因果关系。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

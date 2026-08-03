@@ -1,0 +1,65 @@
+{
+  "gene": "SDAD1",
+  "generatedAt": "2026-08-03T16:22:27.988Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SDAD1为核仁核糖体生物发生相关蛋白，参与60S前核糖体成熟复合体装配，其Open Targets关联主要来自测量性状和低强度遗传关联，尚缺乏可支持体液抗体阻断的明确疾病通路。该蛋白并非分泌蛋白或膜受体，主要定位于核仁/核内复合体，天然抗原可及性不适合常规治疗性抗体。与CXCL9、CXCL10或其受体CXCR3等同数据集中更具胞外可及性的免疫轴靶点相比，SDAD1作为抗体主靶点优先级较低，更适合作为结构生物学或细胞内递送抗体探索对象。",
+    "mechanism": "拟通过细胞内递送抗体干扰SDAD1与60S前核糖体成熟复合体中核糖体RNA/装配因子的接触，影响大亚基成熟过程。",
+    "selectedEpitope": "优先评估SDA1样保守结构域外露螺旋-环区，避开深埋RNA结合面和复合体核心界面。",
+    "diseaseDirection": "核糖体生物发生与免疫测量性状",
+    "domain": "SDAD1含SDA1样保守结构域，结构位于核糖体生物发生复合体环境中，缺乏跨膜段和胞外区。",
+    "evidence": "SDAD1结构与遗传关联可成药性证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9NVU7蛋白定位与功能注释",
+      "RCSB PDB 8FL3冷冻电镜结构",
+      "GO/Reactome核糖体生物发生功能注释"
+    ],
+    "referenceEntries": "UniProt Q9NVU7；RCSB PDB 8FL3；Open Targets SDAD1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SDA1样结构域外露螺旋-环区",
+        "相对可设计且较少直接破坏复合体整体折叠，可用于细胞内结合抗体筛选",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SDAD1与预60S核糖体复合体邻近界面",
+        "可能干扰复合体装配接触，但需验证是否产生特异功能效应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "预测RNA/核心装配因子接触面",
+        "功能相关性较强但保守性和空间拥挤度高，易影响选择性和亲和力优化",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为细胞内核仁定位导致常规抗体不可及，且疾病关联强度有限。设计宜限定为研究级Fab/VHH或递送型细胞内抗体，并优先验证靶点依赖性。",
+    "structurePrepZh": "以PDB 8FL3冷冻电镜模型提取SDAD1相关链后进行缺失残基、质子化和界面标注；需结合UniProt序列校准结构域边界。",
+    "structureRef": "RCSB PDB 8FL3，2.53 Å冷冻电镜人源复合体结构",
+    "antibodies": [
+      "暂无SDAD1获批治疗性抗体",
+      "暂无SDAD1临床阶段同类抗体"
+    ],
+    "interfaceFocus": "SDA1样结构域外露环区及预60S邻近接触面",
+    "designMode": "细胞内抗体探索",
+    "candidates": [
+      {
+        "target": "CXCL9",
+        "rationale": "CXCL9 measurement为关联性状之一，CXCL9为分泌型趋化因子，可通过抗体阻断其与CXCR3结合，抗原可及性显著优于SDAD1。"
+      },
+      {
+        "target": "CXCL10",
+        "rationale": "CXCL10 measurement同属CXCR3趋化因子轴，CXCL10为分泌蛋白，适合以中和抗体阻断CXCL10-CXCR3相互作用。"
+      },
+      {
+        "target": "CXCR3",
+        "rationale": "CXCR3是CXCL9、CXCL10和CXCL11的共同G蛋白偶联受体，位于细胞膜表面，可作为同一趋化因子通路的受体端抗体干预靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

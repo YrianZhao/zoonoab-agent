@@ -1,0 +1,65 @@
+{
+  "gene": "NUP88",
+  "generatedAt": "2026-08-03T14:56:20.759Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NUP88是核孔复合体胞质环组分，参与mRNA输出、核质转运及多种病毒核进出口过程，在HIV感染、流感及泛病毒感染关联数据中显示较高遗传和功能相关性。该蛋白主要定位于核膜核孔复合体的胞质侧，天然并非分泌蛋白或常规细胞表面受体，完整抗体在未透膜条件下抗原可及性受限。其优先级主要来自高分辨率实验结构、明确的NUP214复合体界面及病毒利用核孔转运的机制背景；相较缺乏结构模板的核孔组分，更适合开展结构生物学验证型细胞内抗体或递送型抗体片段设计。",
+    "mechanism": "设计抗体片段结合NUP88 β-propeller表面，阻断其与NUP214 N端片段的复合体装配界面，从而干预核孔胞质环稳定性及病毒核质转运依赖过程。",
+    "selectedEpitope": "优先覆盖NUP88 β-propeller与NUP214相邻接触面，保留核心折叠面，规避高度保守内部疏水区。",
+    "diseaseDirection": "病毒感染与核质转运相关疾病",
+    "domain": "NUP88含N端β-propeller样结构域及C端卷曲螺旋区域，PDB 7MNI覆盖其结构化复合体片段。",
+    "evidence": "NUP88核孔复合体与病毒感染关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q99567功能与亚细胞定位注释",
+      "RCSB PDB 7MNI实验晶体结构",
+      "核孔复合体NUP88-NUP214结构与核质转运文献"
+    ],
+    "referenceEntries": "UniProt: Q99567; RCSB PDB: 7MNI; Gene: NUP88",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "NUP88 β-propeller外侧与NUP214接触界面",
+        "直接干预NUP88-NUP214复合体装配，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "β-propeller顶部溶剂暴露环区",
+        "有利于获得构象特异性结合，可作为非阻断型验证表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "β-propeller核心折叠与链间晶体接触邻近区",
+        "可能影响结构稳定性或产生非生理构象依赖结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NUP88为胞内核孔蛋白，常规全长抗体难以进入细胞核膜环境；建议采用VHH、intrabody或递送体系，并以界面阻断和细胞毒性分离验证。",
+    "structurePrepZh": "以7MNI晶体结构为模板，保留NUP88抗原链A-D中质量最佳链，检查NUP214邻近界面、缺失环区、晶体接触和质子化状态后建模。",
+    "structureRef": "RCSB PDB 7MNI，2.0 Å X射线晶体结构",
+    "antibodies": [
+      "无已批准NUP88治疗性抗体",
+      "研究级抗NUP88单克隆抗体"
+    ],
+    "interfaceFocus": "NUP88 β-propeller–NUP214装配界面",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "NUP214",
+        "rationale": "NUP214与NUP88共同构成核孔胞质侧复合体，并参与mRNA输出和病毒相关核质转运过程，是同一核孔转运轴中的直接互作靶点。"
+      },
+      {
+        "target": "XPO1",
+        "rationale": "XPO1介导CRM1依赖性核输出，HIV Rev和多种病毒蛋白利用该通路完成核输出，具有明确的小分子和生物学验证基础。"
+      },
+      {
+        "target": "RAN",
+        "rationale": "RAN GTP酶驱动核转运受体的方向性运输，是NUP88相关核孔转运网络的核心调控节点，但需关注广泛必需功能带来的安全窗风险。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

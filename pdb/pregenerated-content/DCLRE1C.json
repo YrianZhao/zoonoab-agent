@@ -1,0 +1,65 @@
+{
+  "gene": "DCLRE1C",
+  "generatedAt": "2026-08-03T11:50:30.433Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DCLRE1C编码Artemis核酸酶，是非同源末端连接和V(D)J重组中打开RAG介导发夹编码端的关键因子，功能缺陷直接导致T-B+重症联合免疫缺陷和Omenn综合征。该蛋白主要定位于细胞核，抗原可及性不具备常规胞外抗体治疗优势，但可作为结构抗原用于机制阻断型细胞内抗体或研究级Fab/VHH设计。相较XRCC4、LIG4等同通路修复因子，DCLRE1C具有明确单基因疾病因果性、PDB高分辨率结构和催化界面可解析性，适合优先开展结构导向表位验证。",
+    "mechanism": "阻断Artemis催化核心与DNA-PKcs磷酸化激活后形成的DNA发夹末端加工界面，抑制编码端开环与NHEJ末端处理。",
+    "selectedEpitope": "优先锁定β-CASP核酸酶催化沟槽邻近DNA结合面，避开完全埋藏金属配位残基。",
+    "diseaseDirection": "原发性免疫缺陷与V(D)J重组障碍",
+    "domain": "DCLRE1C含N端metallo-β-lactamase结构域、β-CASP核酸酶结构域及C端调控区。",
+    "evidence": "DCLRE1C缺陷性SCID结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q96SD1功能与亚细胞定位注释",
+      "RCSB PDB 6TT5晶体结构记录",
+      "OMIM与ClinVar DCLRE1C致病变异证据"
+    ],
+    "referenceEntries": "UniProt Q96SD1；RCSB PDB 6TT5；Open Targets DCLRE1C",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "β-CASP结构域催化沟槽外缘及底物进入面",
+        "可干扰DNA发夹末端定位并保持结构可及性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "metallo-β-lactamase与β-CASP结构域交界面",
+        "可能影响催化核心构象耦联与核酸酶活性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "金属离子配位中心深部催化残基周边",
+        "功能相关性高但埋藏程度和交叉反应风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DCLRE1C为核内DNA修复酶，体内抗体递送和天然抗原可及性受限；设计宜定位为细胞内VHH、Fab结构探针或机制验证抗体。",
+    "structurePrepZh": "以6TT5链A为抗原模板，保留催化核心构象，检查金属离子、缺失环区和晶体接触，按单体状态进行表位可及性评估。",
+    "structureRef": "RCSB PDB 6TT5，X-ray，1.5 Å，人源Artemis催化核心",
+    "antibodies": [
+      "研究用anti-Artemis monoclonal antibody",
+      "研究用anti-DCLRE1C polyclonal antibody"
+    ],
+    "interfaceFocus": "β-CASP催化沟槽与DNA发夹末端结合面",
+    "designMode": "细胞内抗体/结构探针",
+    "candidates": [
+      {
+        "target": "RAG1",
+        "rationale": "RAG1与RAG2共同介导V(D)J重组的RSS识别和DNA切割，生成需要Artemis加工的发夹编码端，处于同一免疫受体重排通路上游。"
+      },
+      {
+        "target": "PRKDC",
+        "rationale": "PRKDC编码DNA-PKcs，可结合DNA双链断裂末端并磷酸化激活Artemis，是NHEJ末端加工复合体的核心调控因子。"
+      },
+      {
+        "target": "LIG4",
+        "rationale": "LIG4与XRCC4完成NHEJ末端连接，位于Artemis处理后的下游连接步骤，其缺陷同样关联SCID样免疫缺陷和DNA修复障碍。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "PTPN18",
+  "generatedAt": "2026-08-03T15:43:46.412Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PTPN18为胞内非受体型蛋白酪氨酸磷酸酶，主要通过催化结构域调节酪氨酸磷酸化状态，其Open Targets神经退行性疾病关联提示其可能参与神经炎症、突触应激或蛋白稳态相关网络。该蛋白缺乏胞外结构域、分泌信号肽和膜外受体构型，天然抗原可及性不利于常规循环抗体直接结合。相较TREM2、CD33、MS4A4A等同疾病方向的可及性膜受体，PTPN18更适合作为胞内机制研究或细胞内抗体设计靶点，主靶优先级应低于可外周给药拮抗的同通路表面靶点。",
+    "mechanism": "设计重点为结合PTPN18 PTP催化结构域邻近底物识别沟槽，空间遮挡含磷酸酪氨酸底物进入活性位点并干扰去磷酸化复合物形成。",
+    "selectedEpitope": "优先覆盖PTP结构域活性位点周缘的WPD环、pTyr识别口袋与Q-loop邻近界面。",
+    "diseaseDirection": "神经退行性疾病与神经炎症",
+    "domain": "PTPN18含N端调控区及C端PTP催化结构域；2OC3覆盖人源PTP催化结构域高分辨率晶体结构。",
+    "evidence": "PTPN18神经退行性疾病关联与PTP结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q99952 protein annotation",
+      "RCSB PDB 2OC3 X-ray structure",
+      "InterPro protein tyrosine phosphatase domain annotation"
+    ],
+    "referenceEntries": "UniProt Q99952；RCSB PDB 2OC3；Open Targets PTPN18",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PTP催化结构域WPD环与pTyr结合口袋周缘",
+        "可直接影响底物进入与催化环闭合，适合抑制型细胞内抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域背侧底物识别沟槽与周边可变环",
+        "可能调节底物选择性并降低对保守催化半胱氨酸的过度依赖",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守HCX5R催化基序中心",
+        "保守性高且可能引发家族交叉反应，需严格进行PTP家族选择性筛选",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险来自胞内定位导致常规抗体递送受限，以及PTP家族催化口袋高度保守。建议采用细胞内VHH或递送偶联策略，并设置PTPN1、PTPN6、PTPN11选择性反筛。",
+    "structurePrepZh": "以2OC3链A为模板，补全缺失侧链、校正质子化状态并保留催化口袋关键水网络；围绕WPD环与pTyr口袋建立抗原表面网格。",
+    "structureRef": "RCSB PDB 2OC3，人PTPN18 PTP结构域1.5 Å晶体结构",
+    "antibodies": [
+      "抗PTPN18研究级抗体",
+      "抗PTP结构域研究级抗体"
+    ],
+    "interfaceFocus": "WPD环、pTyr识别口袋、Q-loop及底物沟槽",
+    "designMode": "胞内VHH抑制设计",
+    "candidates": [
+      {
+        "target": "TREM2",
+        "rationale": "TREM2为小胶质细胞膜受体，参与神经退行性疾病中的脂质感知、吞噬与DAP12信号转导，抗原可及性显著优于胞内PTPN18。"
+      },
+      {
+        "target": "CD33",
+        "rationale": "CD33为髓系细胞表面Siglec受体，与阿尔茨海默病小胶质细胞免疫调控相关，抗体可通过阻断唾液酸配体结合影响抑制性信号。"
+      },
+      {
+        "target": "MS4A4A",
+        "rationale": "MS4A4A为膜蛋白并与阿尔茨海默病遗传风险及可溶性TREM2水平相关，适合作为同一小胶质细胞疾病网络中的可及性替代靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

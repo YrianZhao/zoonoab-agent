@@ -1,0 +1,65 @@
+{
+  "gene": "FRS2",
+  "generatedAt": "2026-08-03T12:38:00.146Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FRS2是FGFR信号轴的膜近端衔接蛋白，受FGF–FGFR激活后募集GRB2与PTPN11/SHP2，驱动RAS–MAPK与PI3K–AKT通路，在多种癌症及骨发育异常中具有明确疾病关联。该蛋白主要定位于胞质侧并依赖N端PTB结构域结合FGFR近膜区，天然抗原可及性弱于胞外受体或分泌配体，抗体开发需限定于细胞内递送、降解抗体或研究级构象探针策略。相较FGFR1/2/3等胞外受体靶点，FRS2可在受体下游整合多FGFR亚型信号，但成药优先级低于可直接外部阻断的FGF–FGFR界面靶点。",
+    "mechanism": "以FRS2 PTB结构域为核心，阻断其与FGFR近膜区磷酸化酪氨酸基序的结合，降低GRB2/SHP2复合体募集及下游ERK活化。",
+    "selectedEpitope": "优先覆盖PTB结构域磷酸肽结合沟槽及邻近FGFR接触面，避免泛PTB保守核心过度交叉反应。",
+    "diseaseDirection": "FGFR驱动肿瘤与骨发育疾病",
+    "domain": "FRS2含N端PTB结构域、C端多酪氨酸磷酸化尾区及膜定位相关区域。",
+    "evidence": "FRS2介导FGFR下游信号证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt功能与结构域注释",
+      "RCSB PDB 1XR0溶液NMR结构",
+      "FGFR–FRS2–MAPK通路文献"
+    ],
+    "referenceEntries": "UniProt Q8WU20；RCSB PDB 1XR0；Open Targets FRS2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PTB结构域磷酸化FGFR肽结合沟槽",
+        "直接干预FRS2与FGFR近膜区结合，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PTB结构域外侧FGFR接触邻面",
+        "可通过空间位阻削弱受体衔接，保留一定选择性窗口",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端多磷酸化酪氨酸尾区",
+        "区域柔性高且构象异质，适合作为磷酸化状态探针而非阻断表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FRS2为胞内衔接蛋白，常规抗体难以进入活细胞；PTB结构域保守性较高，应通过结构比对排除IRS、SHC等PTB蛋白交叉结合。",
+    "structurePrepZh": "以1XR0的FRS2 PTB结构域NMR构象簇建立代表模型，补充缺失氢原子并评估磷酸肽结合沟槽构象稳定性。",
+    "structureRef": "RCSB PDB 1XR0；FRS2 PTB结构域NMR结构",
+    "antibodies": [
+      "anti-FRS2研究抗体",
+      "anti-phospho-FRS2 Tyr436研究抗体"
+    ],
+    "interfaceFocus": "PTB沟槽与FGFR近膜磷酸酪氨酸结合面",
+    "designMode": "胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "FGFR1",
+        "rationale": "FGFR1位于FRS2上游，配体诱导受体激活后通过近膜区募集FRS2，胞外结构域更适合常规阻断抗体设计。"
+      },
+      {
+        "target": "FGFR2",
+        "rationale": "FGFR2与肿瘤及骨发育异常密切相关，阻断FGF与FGFR2胞外Ig样结构域结合可抑制FRS2依赖下游信号。"
+      },
+      {
+        "target": "PTPN11",
+        "rationale": "PTPN11/SHP2是FRS2磷酸化后募集的关键效应分子，连接FGFR衔接复合体与RAS–MAPK通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

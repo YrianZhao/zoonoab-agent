@@ -1,0 +1,65 @@
+{
+  "gene": "DCAF11",
+  "generatedAt": "2026-08-03T11:49:25.253Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DCAF11 是 CRL4-DDB1 E3 泛素连接酶复合物的底物受体，主要通过结合 DDB1 并招募特定底物参与蛋白泛素化降解，现有疾病关联以身高表型、骨肉瘤和泛癌信号为主，但遗传关联强度总体有限。该蛋白为细胞内 DDB1-CUL4 相关因子，不具备天然胞外结构域、分泌蛋白或膜受体抗原可及性，因此常规体内阻断型抗体开发优先级低于细胞表面受体或分泌因子。其优先级主要来自 9PTU 高分辨率复合物结构对 DDB1 结合界面的解析价值，适合作为结构生物学驱动的胞内结合抗体、降解复合物界面探针或细胞内递送抗体模型靶点，而非标准可成药膜外抗原。",
+    "mechanism": "设计抗体结合 DCAF11 的 DDB1 接触面，空间阻断 DCAF11 与 DDB1 BPA/BPC 结构域的装配，从而干预 CRL4DCAF11 复合物形成及底物泛素化招募。",
+    "selectedEpitope": "优先覆盖 DCAF11 WD40 β-螺旋桨上与 DDB1 接触的顶面环区和外缘叶片界面。",
+    "diseaseDirection": "泛癌与骨肉瘤相关泛素化轴",
+    "domain": "DCAF11 含 DDB1 结合相关区及 WD40 重复形成的β-螺旋桨底物识别结构域。",
+    "evidence": "DCAF11-CRL4 复合物结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q8TEB1 functional annotation",
+      "RCSB PDB 9PTU electron microscopy structure",
+      "CRL4-DDB1-DCAF substrate receptor literature"
+    ],
+    "referenceEntries": "UniProt Q8TEB1；RCSB PDB 9PTU；Open Targets DCAF11",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "WD40 β-螺旋桨顶面 DDB1 邻近环区",
+        "可直接阻断 DCAF11-DDB1 复合物装配，机制可解释性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "WD40 外缘叶片间沟槽与潜在底物结合面",
+        "适合筛选干扰底物招募的构象选择性抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离 DDB1 界面的保守结构核心区域",
+        "可能影响折叠稳定性但缺乏明确阻断机制，需避免非特异构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DCAF11 为胞内蛋白，常规抗体体内可及性不足；建议限定为胞内递送抗体、intrabody 或结构探针，并优先验证 DDB1 结合阻断活性。",
+    "structurePrepZh": "以 9PTU 抗原链 A、B、C 建模，保留 DCAF11-DDB1 接触构象，去除非目标链冗余后进行界面残基标注、糖基化缺失检查和环区柔性评估。",
+    "structureRef": "RCSB PDB 9PTU，2.38 Å cryo-EM human DCAF11 complex",
+    "antibodies": [
+      "暂无获批 DCAF11 靶向抗体",
+      "暂无临床 DCAF11 阻断抗体"
+    ],
+    "interfaceFocus": "DCAF11 WD40 顶面与 DDB1 结合界面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "DDB1",
+        "rationale": "DDB1 是 CUL4-DCAF 复合物的核心适配蛋白，直接与 DCAF11 结合并桥接 CUL4A/CUL4B；其界面抗体可用于解析 DCAF11 装配依赖性。"
+      },
+      {
+        "target": "CUL4A",
+        "rationale": "CUL4A 构成 CRL4 E3 泛素连接酶支架，与 DDB1-DCAF11 轴共同驱动底物泛素化；在肿瘤相关泛素化稳态研究中具有同通路价值。"
+      },
+      {
+        "target": "RBX1",
+        "rationale": "RBX1 是 CRL4 复合物 RING 组分，负责招募 E2 泛素结合酶并促进泛素转移；可作为 DCAF11 复合物下游催化端的机制参照靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

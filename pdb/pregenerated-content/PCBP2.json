@@ -1,0 +1,65 @@
+{
+  "gene": "PCBP2",
+  "generatedAt": "2026-08-03T15:06:14.816Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PCBP2 为胞内多聚胞嘧啶 RNA/DNA 结合蛋白，参与病毒 RNA 稳定性、翻译调控及先天免疫相关 RNA 代谢过程，在严重急性呼吸综合征与登革热等感染性疾病数据中呈现中等关联信号。该蛋白主要定位于细胞核与胞质，并非分泌蛋白或膜受体，天然抗原可及性不利于常规细胞外阻断抗体，因此更适合细胞内递送抗体片段或研究型功能干预。相比直接选择表面病毒受体或细胞因子靶点，PCBP2 的优先级依据在于其可连接病毒 RNA 生命周期与宿主 RNA 调控网络，但药物化抗体开发风险显著高于胞外靶点。",
+    "mechanism": "通过细胞内抗体片段遮蔽 PCBP2 KH 结构域的多聚 C RNA 结合沟槽，阻断其与病毒或宿主富 C RNA 元件的结合。",
+    "selectedEpitope": "优先聚焦 KH2/KH3 的 RNA 结合沟槽及可及环区，避免破坏 KH 折叠核心。",
+    "diseaseDirection": "病毒感染与神经炎症相关疾病",
+    "domain": "PCBP2 含三个 KH RNA 结合结构域，KH1、KH2、KH3 共同介导多聚 C 核酸识别。",
+    "evidence": "PCBP2 感染与RNA结合功能证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q15366 functional annotation",
+      "RCSB PDB 2P2R experimental structure",
+      "RNA-binding protein functional literature"
+    ],
+    "referenceEntries": "UniProt Q15366；RCSB PDB 2P2R；Open Targets PCBP2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "KH2/KH3 多聚 C RNA 结合沟槽邻近环区",
+        "可直接干预 PCBP2 与富 C RNA 元件结合，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "KH 结构域间连接区与外露带电表面",
+        "可能影响 RNA 结合构象或蛋白复合物装配，适合作为变构表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "KH 折叠核心β-α-α-β保守骨架",
+        "高度保守且参与结构稳定，结合可能诱导非特异失折叠风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PCBP2 为胞内 RNA 结合蛋白，常规抗体难以到达作用位点；KH 保守沟槽存在同源 RBP 交叉反应风险，宜采用高特异 VHH 或胞内 Fab 递送策略。",
+    "structurePrepZh": "以 PDB 2P2R 的 1.6 Å X 射线结构为模板，保留抗原链 A/B，补全缺失环区并标注 KH RNA 结合残基后开展表位建模。",
+    "structureRef": "RCSB PDB 2P2R，X-ray diffraction，1.6 Å",
+    "antibodies": [
+      "暂无获批 PCBP2 靶向治疗抗体",
+      "研究级 anti-PCBP2 antibody"
+    ],
+    "interfaceFocus": "KH 结构域核酸结合沟槽与外露环区",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "ACE2",
+        "rationale": "ACE2 是 SARS-CoV 与 SARS-CoV-2 刺突蛋白的细胞进入受体，处于严重急性呼吸综合征病毒入侵通路的上游膜受体节点，抗原可及性显著优于 PCBP2。"
+      },
+      {
+        "target": "TMPRSS2",
+        "rationale": "TMPRSS2 介导冠状病毒刺突蛋白 S2 位点蛋白水解活化，与 ACE2 共同驱动病毒进入宿主细胞，是同一入侵过程中的关键宿主因子。"
+      },
+      {
+        "target": "IFNAR1",
+        "rationale": "IFNAR1 是 I 型干扰素受体复合体组成部分，连接病毒 RNA 感知后的抗病毒细胞因子信号，可作为感染性炎症调节方向的真实通路靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

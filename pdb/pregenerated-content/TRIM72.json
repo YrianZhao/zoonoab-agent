@@ -1,0 +1,65 @@
+{
+  "gene": "TRIM72",
+  "generatedAt": "2026-08-03T17:30:18.484Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TRIM72（MG53）参与膜损伤修复反应，可与磷脂酰丝氨酸暴露膜面、caveolin-3及细胞骨架相关组分协同促进囊泡募集，疾病证据提示其与肌萎缩侧索硬化、肿瘤及结直肠癌存在弱至中等遗传或表达关联。该蛋白主要为胞质E3泛素连接酶样支架蛋白，并非典型分泌蛋白或跨膜受体，因此抗原可及性弱于细胞表面靶点，需限定于胞外释放、损伤微环境暴露或递送型抗体策略。相较于同通路的广泛结构膜蛋白，TRIM72具有明确的膜修复功能节点和高分辨率B-box结构参考，但因Open Targets最高关联得分较低，优先级应定位为机制验证型靶点而非一线治疗靶点。",
+    "mechanism": "抗体设计应优先阻断TRIM72 B-box介导的寡聚化或其与膜修复复合体组分的结合，从而抑制损伤膜面囊泡聚集与膜封闭过程。",
+    "selectedEpitope": "优先覆盖3KB5所示B-box结构域锌指稳定核心外侧的寡聚化相关界面，避免直接破坏金属配位残基。",
+    "diseaseDirection": "膜修复异常与神经肌肉疾病",
+    "domain": "TRIM72含N端RING、B-box、coiled-coil及C端SPRY结构域；3KB5解析B-box结构域。",
+    "evidence": "TRIM72膜修复功能与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q6ZMU5功能与结构域注释",
+      "RCSB PDB 3KB5晶体结构条目",
+      "膜损伤修复与MG53/TRIM72机制研究文献"
+    ],
+    "referenceEntries": "UniProt Q6ZMU5；RCSB PDB 3KB5；Open Targets TRIM72",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "B-box结构域外侧寡聚化界面",
+        "可干预TRIM72自组装及膜修复复合体形成，结构解析度高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "B-box锌指稳定核心邻近环区",
+        "具备构象特异性，可用于选择性识别但需避开Zn2+配位位点",
+        "备选"
+      ],
+      [
+        "Site C",
+        "RING或SPRY结构域预测暴露面",
+        "可能影响E3连接酶相关相互作用或膜结合调控，但缺乏本结构直接支持",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TRIM72缺乏稳定胞外拓扑，常规系统给药抗体难以接触胞质抗原；建议采用细胞内抗体、递送型Fab/VHH或损伤微环境释放蛋白捕获策略。",
+    "structurePrepZh": "以3KB5链A为B-box模板，保留Zn2+配位几何并校验晶体接触界面；补全缺失结构域时需使用AlphaFold模型分区评估。",
+    "structureRef": "PDB 3KB5，human TRIM72/MG53 B-box，1.5 Å X-ray",
+    "antibodies": [
+      "Anti-MG53 clone EPR22144",
+      "Anti-TRIM72 clone 525711"
+    ],
+    "interfaceFocus": "B-box寡聚化面及锌指邻近环区",
+    "designMode": "胞内/递送型抗体",
+    "candidates": [
+      {
+        "target": "DYSF",
+        "rationale": "DYSF编码dysferlin，是肌细胞膜损伤修复通路的核心膜相关蛋白，与TRIM72协同参与膜片段融合和损伤封闭。其膜修复表型与肌病机制具有直接相关性。"
+      },
+      {
+        "target": "CAV3",
+        "rationale": "CAV3为肌细胞小窝结构蛋白，可与TRIM72相关膜修复复合体发生功能耦联，影响损伤膜处囊泡定位与膜稳定性。其细胞膜定位提供优于TRIM72的抗原可及性。"
+      },
+      {
+        "target": "ANXA2",
+        "rationale": "ANXA2参与钙依赖性膜结合和膜修复过程，可在膜损伤后促进膜片段组织与修复复合体形成。该节点与TRIM72处于相同膜修复功能网络。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

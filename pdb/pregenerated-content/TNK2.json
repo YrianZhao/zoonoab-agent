@@ -1,0 +1,65 @@
+{
+  "gene": "TNK2",
+  "generatedAt": "2026-08-03T17:23:11.045Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TNK2/ACK1为胞内非受体酪氨酸激酶，参与EGFR、AXL及整合素相关信号的下游转导，并可通过AKT Tyr176、AR Tyr267等磷酸化事件促进肿瘤细胞存活与内分泌耐受。其结构主体位于胞质侧，天然抗原可及性不利于常规外源抗体结合，因此更适合定位为胞内抗体、VHH或递送型抗体工程验证靶点。相较EGFR、AXL等膜受体，TNK2处于多条受体信号汇聚节点，具备干预旁路激酶依赖性的优先级，但成药策略需重点解决胞内递送与选择性问题。",
+    "mechanism": "设计胞内结合分子占据TNK2激酶结构域ATP结合裂隙或调节C-lobe底物结合面，阻断TNK2对AKT Tyr176及AR Tyr267等底物磷酸化。",
+    "selectedEpitope": "优先聚焦4HZR解析的激酶结构域ATP口袋邻近铰链区与C-lobe底物识别面，避开高度保守催化核心。",
+    "diseaseDirection": "肿瘤激酶信号与肾功能性状",
+    "domain": "TNK2含SAM结构域、SH3结构域、酪氨酸激酶结构域、CRIB区及C端泛素结合区域。",
+    "evidence": "TNK2结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q07912功能与结构域注释",
+      "RCSB PDB 4HZR晶体结构记录",
+      "肿瘤中ACK1介导AKT与AR磷酸化研究"
+    ],
+    "referenceEntries": "UniProt Q07912；RCSB PDB 4HZR；Open Targets TNK2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域铰链区及ATP结合裂隙外缘",
+        "可竞争ATP结合并限制催化构象形成，适合高亲和胞内结合体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "激酶C-lobe底物结合沟槽邻近区域",
+        "可干扰AKT、AR等底物对接，具备底物选择性调控潜力",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N-lobe保守Gly-rich loop与催化Lys附近",
+        "序列保守性高，存在跨激酶家族交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TNK2为胞内激酶，常规抗体难以直接到达靶点；设计应采用VHH、intrabody或递送型格式，并强化激酶家族选择性筛选。",
+    "structurePrepZh": "以4HZR高分辨率晶体结构为模板，保留链A/B激酶结构域构象，校正ATP口袋质子化状态并标注保守催化残基。",
+    "structureRef": "RCSB PDB 4HZR，X-ray diffraction，1.31 Å",
+    "antibodies": [
+      "无获批TNK2靶向治疗性抗体",
+      "研究级抗ACK1/TNK2检测抗体"
+    ],
+    "interfaceFocus": "ATP口袋铰链区与C-lobe底物对接面",
+    "designMode": "胞内VHH设计",
+    "candidates": [
+      {
+        "target": "EGFR",
+        "rationale": "EGFR可在上游激活TNK2/ACK1相关信号，并驱动MAPK、PI3K-AKT及肿瘤增殖通路。其胞外结构域高度可及，已有成熟抗体设计先例。"
+      },
+      {
+        "target": "AXL",
+        "rationale": "AXL与TNK2同处受体酪氨酸激酶下游迁移、存活和耐药网络，GAS6-AXL轴可促进侵袭性表型。其胞外Ig样与FNIII样结构域适合阻断型抗体设计。"
+      },
+      {
+        "target": "AKT1",
+        "rationale": "AKT1是TNK2报道底物之一，TNK2介导AKT Tyr176磷酸化可增强AKT活性与细胞存活信号。该候选适合机制验证，但同样属于胞内靶点，抗体递送风险较高。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

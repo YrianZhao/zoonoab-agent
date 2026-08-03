@@ -1,0 +1,65 @@
+{
+  "gene": "BPI",
+  "generatedAt": "2026-08-03T10:51:31.615Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BPI 是中性粒细胞颗粒来源的可溶性抗菌蛋白，可通过 N 端结构域结合革兰阴性菌脂多糖的 lipid A 区域并促进细菌膜通透性改变，相关遗传与表型数据集中指向中性粒细胞、嗜碱粒细胞及先天免疫测量性状。其为分泌/颗粒释放型胞外可及抗原，晶体结构解析度高，适合围绕 LPS 结合沟槽进行抗体表位建模。相比细胞内炎症调控因子，BPI 具有明确的可接触蛋白表面、直接微生物配体结合机制及可结构化验证的抗体设计优先级。",
+    "mechanism": "通过抗体占据 BPI N 端 LPS 结合沟槽，阻断 BPI 与 lipid A/内毒素复合物接触，从而调节其抗菌及内毒素中和活性。",
+    "selectedEpitope": "优先覆盖 N 端 β-桶/疏水口袋邻近的 LPS 结合界面，避免完全遮蔽 C 端稳定区。",
+    "diseaseDirection": "先天免疫与中性粒细胞功能",
+    "domain": "BPI 含 N 端 LPS 结合抗菌结构域与 C 端 BPI/LBP/PLUNC 家族样结构域。",
+    "evidence": "BPI 先天免疫结构与表型遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联与免疫细胞性状数据",
+      "UniProtKB P17213 蛋白功能与亚细胞定位注释",
+      "RCSB PDB 1EWF 人源 BPI 晶体结构",
+      "BPI/LBP 家族脂多糖结合与内毒素中和文献"
+    ],
+    "referenceEntries": "UniProtKB: P17213；RCSB PDB: 1EWF；Open Targets: BPI",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N 端 LPS/lipid A 结合沟槽及疏水口袋边缘",
+        "可直接阻断 BPI 与脂多糖配体结合，机制验证路径明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N 端结构域远端带正电表面斑块",
+        "可能影响 BPI 与阴性菌外膜或内毒素聚集体的初始接触",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端 BPI/LBP 家族样结构域暴露表面",
+        "功能阻断相关性较弱，需避免仅产生非中和结合抗体",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "N 端疏水沟槽邻近区域可能存在构象敏感性与配体诱导重排风险，抗体设计应保留蛋白核心稳定界面并优先评估是否影响天然抗菌功能。",
+    "structurePrepZh": "以 1EWF 链 A 为抗原模板，补全缺失侧链并校正质子化状态；围绕 N 端 LPS 结合区生成可及表面与电荷分布，用于抗体对接约束。",
+    "structureRef": "RCSB PDB 1EWF；人源 BPI X-ray 结构，1.7 Å",
+    "antibodies": [
+      "Anti-BPI autoantibodies",
+      "Abcam ab95385"
+    ],
+    "interfaceFocus": "N 端 lipid A 结合沟槽与阳离子表面",
+    "designMode": "结构引导阻断",
+    "candidates": [
+      {
+        "target": "LBP",
+        "rationale": "LBP 与 BPI 同属 LPS 结合蛋白家族，参与内毒素向 CD14/TLR4 轴递呈；其可作为同一 LPS 识别通路中的配体转运调控靶点。"
+      },
+      {
+        "target": "CD14",
+        "rationale": "CD14 接收 LBP 递呈的 LPS 并促进 TLR4-MD2 复合物激活，抗体阻断可降低内毒素诱导的先天免疫放大。"
+      },
+      {
+        "target": "TLR4",
+        "rationale": "TLR4 是 LPS-CD14-MD2 轴的核心信号受体，介导 NF-κB 与 IRF3 炎症响应，是 BPI 相关内毒素免疫通路下游关键节点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

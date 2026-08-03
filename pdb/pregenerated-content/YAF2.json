@@ -1,0 +1,65 @@
+{
+  "gene": "YAF2",
+  "generatedAt": "2026-08-03T17:55:32.170Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "YAF2为YY1相关转录调控因子，可参与PcG相关转录抑制复合体的核内调控，其疾病关联主要来自表达或遗传关联信号，尚缺乏可直接连接至甲状腺功能异常或STAT5A血清水平改变的明确抗体可干预通路。该蛋白为核内非分泌蛋白，缺少天然胞外结构域、跨膜外环或可循环暴露抗原，因此常规治疗性抗体的抗原可及性显著受限。相较于TSHR、IL7R或JAK2等同类内分泌或STAT相关通路靶点，YAF2的优先级不宜作为细胞外阻断型抗体主靶点，更适合作为结构生物学或细胞内递送抗体片段探索对象。",
+    "mechanism": "以细胞内递送抗体片段阻断YAF2锌指样区域与YY1/PcG复合体组分的结合，干扰YY1依赖性染色质转录抑制装配。",
+    "selectedEpitope": "优先评估2D9G所示YAF2 C端锌指样折叠表面的YY1/PcG结合界面，避免破坏核心金属配位残基。",
+    "diseaseDirection": "甲状腺功能与STAT相关表型",
+    "domain": "YAF2为小型核内蛋白，含N端低复杂度区与C端锌指样结构域，2D9G覆盖结构化片段。",
+    "evidence": "YAF2疾病遗传关联与核内结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q8IY57功能与亚细胞定位注释",
+      "RCSB PDB 2D9G溶液NMR结构",
+      "PcG/YY1转录调控相关文献"
+    ],
+    "referenceEntries": "UniProt: Q8IY57；RCSB PDB: 2D9G；Open Targets: YAF2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端锌指样结构域暴露结合面",
+        "可能覆盖YY1/PcG复合体装配界面，适合细胞内VHH阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "锌指样结构域非配位外侧环区",
+        "可降低对折叠核心稳定性的扰动，适合作为亲和力成熟备选区域",
+        "备选"
+      ],
+      [
+        "Site C",
+        "金属配位核心及疏水内核邻近面",
+        "易引起结构失稳或非特异构象识别，不宜作为首选功能表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为靶点核内定位导致常规抗体不可及，且疾病因果证据偏弱。设计应限定为细胞内递送VHH或研究级Fab，并优先验证YY1/PcG结合阻断。",
+    "structurePrepZh": "采用2D9G的NMR构象集合进行代表模型筛选，补全缺失氢原子并检查锌配位几何；对柔性N端区域采用低置信度处理，不作为刚性表位核心。",
+    "structureRef": "RCSB PDB 2D9G；human YAF2 solution NMR structure",
+    "antibodies": [
+      "无已批准YAF2治疗性抗体",
+      "研究级抗YAF2抗体"
+    ],
+    "interfaceFocus": "C端锌指样结构域的YY1/PcG复合体接触面",
+    "designMode": "细胞内VHH探索",
+    "candidates": [
+      {
+        "target": "TSHR",
+        "rationale": "TSHR为甲状腺滤泡细胞膜受体，是甲状腺功能异常和自身免疫性甲状腺病的直接可及靶点，抗体可调节或阻断TSH-TSHR相互作用。"
+      },
+      {
+        "target": "JAK2",
+        "rationale": "JAK2位于多种细胞因子受体下游并直接磷酸化STAT5A，是STAT5A活化轴的核心激酶节点；但其为胞内酶，更适合小分子或细胞内抗体策略。"
+      },
+      {
+        "target": "IL7R",
+        "rationale": "IL7R为细胞膜受体，可通过JAK1/JAK3-STAT5信号促进STAT5磷酸化，胞外配体结合域具备抗体阻断可及性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

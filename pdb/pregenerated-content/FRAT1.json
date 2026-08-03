@@ -1,0 +1,65 @@
+{
+  "gene": "FRAT1",
+  "generatedAt": "2026-08-03T12:37:59.601Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FRAT1参与经典Wnt/β-catenin通路，通过结合GSK3并干扰Axin-GSK3复合体促进β-catenin稳定化，血细胞数量相关遗传关联提示其可能参与造血稳态调控。该蛋白主要定位于胞内，缺乏跨膜区和分泌型胞外结构域，抗原天然可及性不利于常规体内阻断抗体，但其GSK3结合片段具有明确晶体结构，可支持胞内抗体或研究级结合分子设计。相较于Wnt配体或FZD/LRP受体，FRAT1位于β-catenin破坏复合体近端，机制解析价值较高，但治疗优先级需低于胞外可及靶点。",
+    "mechanism": "设计结合FRAT1 C端GSK3结合区的抗体片段，阻断FRAT1与GSK3β相互作用，降低其对Axin-GSK3破坏复合体的拮抗作用。",
+    "selectedEpitope": "优先覆盖4AFJ中FRAT1与GSK3β结合肽段的核心疏水-酸性界面。",
+    "diseaseDirection": "Wnt通路与血细胞数量调控",
+    "domain": "FRAT1为胞内Wnt调节蛋白，C端含保守GSK3结合基序，4AFJ解析其结合GSK3β的复合物界面。",
+    "evidence": "FRAT1-Wnt-GSK3轴结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q92837功能与定位注释",
+      "RCSB PDB 4AFJ晶体结构",
+      "Wnt/β-catenin破坏复合体相关文献"
+    ],
+    "referenceEntries": "UniProt: Q92837；RCSB PDB: 4AFJ；HGNC: FRAT1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "FRAT1 C端GSK3结合核心肽段界面",
+        "直接竞争FRAT1-GSK3β相互作用，机制指向性最强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "结合肽段邻近的溶剂暴露侧链簇",
+        "有利于提高选择性并减少对GSK3催化口袋的非特异影响",
+        "备选"
+      ],
+      [
+        "Site C",
+        "FRAT1保守线性基序远端柔性区域",
+        "构象稳定性和功能阻断相关性不足，需结合功能筛选验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FRAT1为胞内抗原，常规IgG体内可及性受限；建议采用细胞内表达Fab、scFv或VHH，并严格评估FRAT2交叉反应与GSK3功能扰动。",
+    "structurePrepZh": "以4AFJ复合物结构为模板，保留FRAT1结合肽段与GSK3β界面，补全缺失侧链并进行质子化、界面能量最小化和同源性过滤。",
+    "structureRef": "RCSB PDB 4AFJ，X-ray diffraction，1.98 Å",
+    "antibodies": [
+      "暂无FRAT1获批治疗性抗体",
+      "暂无公开临床阶段FRAT1阻断抗体"
+    ],
+    "interfaceFocus": "FRAT1 C端肽段-GSK3β结合沟槽",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "CTNNB1",
+        "rationale": "CTNNB1编码β-catenin，是经典Wnt通路转录输出的核心效应因子；其稳定化状态直接反映FRAT1对GSK3破坏复合体的调节结果。"
+      },
+      {
+        "target": "GSK3B",
+        "rationale": "GSK3β是FRAT1的直接结合对象，并在Axin/APC复合体内磷酸化β-catenin；围绕该节点可解析FRAT1介导的破坏复合体抑制机制。"
+      },
+      {
+        "target": "AXIN1",
+        "rationale": "AXIN1是β-catenin破坏复合体支架蛋白，组织GSK3β与底物空间邻近；其功能状态与FRAT1竞争性干预机制处于同一Wnt调控轴。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

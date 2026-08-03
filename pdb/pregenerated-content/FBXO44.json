@@ -1,0 +1,65 @@
+{
+  "gene": "FBXO44",
+  "generatedAt": "2026-08-03T12:29:42.505Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FBXO44 是 SCF 型 E3 泛素连接酶复合体的底物识别亚基，通过 F-box 区域招募 SKP1 并参与蛋白质泛素化稳态调节；现有 Open Targets 关联主要集中于瘦体重、体成分和血浆蛋白丰度等表型，疾病机制证据强度有限。该蛋白主要定位于细胞内，缺乏跨膜区、分泌信号肽或稳定胞外结构域，抗原可及性不符合常规治疗性抗体的胞外结合优势。相较于同一泛素化轴中的膜受体或分泌因子，FBXO44 更适合作为结构生物学与细胞内降解机制研究靶点，而非优先开发阻断型抗体主靶点。",
+    "mechanism": "抗体设计应以研究型结合为主，识别 FBXO44 F-box/SKP1 结合界面，空间阻断 FBXO44 与 SKP1 装配，干扰 SCF 复合体形成。",
+    "selectedEpitope": "优先覆盖 F-box 结构域的 SKP1 结合螺旋界面，避开疏水核心和晶体接触面。",
+    "diseaseDirection": "体成分与蛋白稳态表型",
+    "domain": "FBXO44 含 N 端 F-box 结构域，介导与 SKP1 结合并连接 Cullin-RING E3 复合体。",
+    "evidence": "FBXO44 结构与泛素化复合体证据包",
+    "evidenceSources": [
+      "Open Targets Platform 表型遗传关联数据",
+      "UniProt Q9H4M3 蛋白功能与亚细胞定位注释",
+      "RCSB PDB 5B4N X 射线晶体结构",
+      "SCF E3 泛素连接酶复合体结构与功能文献"
+    ],
+    "referenceEntries": "UniProt Q9H4M3；RCSB PDB 5B4N；Open Targets FBXO44",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "F-box 结构域 SKP1 结合螺旋界面",
+        "可用于阻断 FBXO44-SKP1 复合体装配，机制指向明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "F-box 外侧溶剂暴露环区",
+        "适合作为结构探针表位，降低对折叠核心稳定性的干扰",
+        "备选"
+      ],
+      [
+        "Site C",
+        "二聚体或晶体堆积邻近界面",
+        "可能受晶体构象影响，需排除非生理性接触导致的假阳性结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FBXO44 为细胞内蛋白，治疗性抗体递送与抗原可及性风险较高；建议定位为细胞内机制验证抗体或结构探针，并以细胞通透性策略另行评估。",
+    "structurePrepZh": "以 PDB 5B4N 链 A/B 为模板，保留 F-box 折叠核心，检查缺失环、晶体接触和构象对称性后再定义可设计表面。",
+    "structureRef": "RCSB PDB 5B4N，X-ray diffraction，2.3 Å",
+    "antibodies": [
+      "无已获批同靶点治疗性抗体",
+      "无成熟临床同靶点阻断抗体"
+    ],
+    "interfaceFocus": "F-box 螺旋束与 SKP1 结合面",
+    "designMode": "研究型阻断抗体",
+    "candidates": [
+      {
+        "target": "SKP1",
+        "rationale": "SKP1 是 SCF 复合体中连接 F-box 蛋白与 CUL1 的核心适配蛋白，与 FBXO44 位于同一泛素化复合体装配轴。其结构界面明确，但同样属于细胞内靶点。"
+      },
+      {
+        "target": "CUL1",
+        "rationale": "CUL1 是 SCF E3 泛素连接酶的支架蛋白，负责连接 SKP1-F-box 底物识别模块与 RBX1 催化模块。其可用于同通路复合体装配机制研究。"
+      },
+      {
+        "target": "RBX1",
+        "rationale": "RBX1 是 Cullin-RING E3 连接酶的 RING 组分，负责招募 E2 泛素结合酶并驱动泛素转移。该靶点与 FBXO44 同属 SCF 泛素化通路下游催化模块。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

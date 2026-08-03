@@ -1,0 +1,65 @@
+{
+  "gene": "RAB11A",
+  "generatedAt": "2026-08-03T15:47:41.366Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RAB11A 是内体回收系统中的小 GTP 酶，调控转运囊泡、回收内体与效应蛋白的装配，影响神经元极性、突触受体回收及发育期膜蛋白运输，因而与智力障碍、发育迟缓和小头畸形等神经发育表型存在机制关联。该蛋白主要定位于胞内回收内体和膜转运囊泡，缺乏稳定胞外结构域，抗原可及性低于膜受体或分泌蛋白，常规治疗性阻断抗体开发存在显著递送限制。相较胞外神经发育受体类靶点，RAB11A 的优势在于结构分辨率高、GTP 酶开关区构象明确，适合作为机制研究型胞内抗体或递送型 VHH 的结构设计对象。",
+    "mechanism": "设计分子应结合 RAB11A Switch I/Switch II 与效应蛋白识别面，阻断其与 RAB11FIP 家族效应蛋白的结合，从而干预回收内体货物转运复合体形成。",
+    "selectedEpitope": "优先覆盖 GTP 酶结构域 Switch I、Switch II 及邻近效应蛋白结合界面，避开高度保守核苷酸结合核心。",
+    "diseaseDirection": "神经发育障碍与内体回收异常",
+    "domain": "RAB11A 含保守小 GTP 酶结构域，包含 P-loop、Switch I、Switch II、GTP/GDP 结合区及 C 端膜锚定相关区域。",
+    "evidence": "RAB11A 神经发育与内体回收证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传与表型关联",
+      "UniProt P62491 蛋白功能与亚细胞定位注释",
+      "RCSB PDB 1OIX 高分辨率晶体结构",
+      "Reactome 内体回收与 Rab GTPase 囊泡运输通路"
+    ],
+    "referenceEntries": "UniProt P62491；RCSB PDB 1OIX；Reactome Rab11 recycling pathway",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Switch I/Switch II 效应蛋白结合面",
+        "可直接干扰 RAB11A 与 RAB11FIP 效应蛋白装配，机制指向性最强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "P-loop 邻近但不侵入核苷酸结合口袋的外侧沟槽",
+        "可稳定特定构象并影响 GTP 依赖性效应蛋白识别，需控制交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端高变区及膜定位相关区域",
+        "可能影响膜邻近定位，但结构柔性高且在 1OIX 中解析有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RAB11A 为胞内小 GTP 酶，常规抗体难以到达作用位点；Switch 区与 RAB11B、RAB25 存在保守性，需通过差异残基筛选降低亚型交叉结合。",
+    "structurePrepZh": "采用 1OIX 的 A 链作为抗原模板，保留解析的 GTP 酶核心构象，检查配体、镁离子和 Switch 区缺失情况，并补建柔性环用于表位评估。",
+    "structureRef": "RCSB PDB 1OIX；X-ray diffraction，1.7 Å，human RAB11A",
+    "antibodies": [
+      "抗 RAB11A 研究用单克隆抗体",
+      "抗 Rab11 family 研究用抗体"
+    ],
+    "interfaceFocus": "Switch I/Switch II 与 RAB11FIP 结合界面",
+    "designMode": "胞内VHH机制阻断",
+    "candidates": [
+      {
+        "target": "RAB11B",
+        "rationale": "RAB11B 与 RAB11A 同属 Rab11 亚家族，参与回收内体向质膜的货物运输，可作为同一内体回收通路中的亚型对照与选择性评估靶点。"
+      },
+      {
+        "target": "RAB25",
+        "rationale": "RAB25 是 Rab11 亚家族成员，调控上皮细胞极性和回收转运，与 RAB11A 共享效应蛋白识别逻辑，适合用于亚家族交叉反应风险评估。"
+      },
+      {
+        "target": "RAB11FIP5",
+        "rationale": "RAB11FIP5 是 RAB11A 的效应蛋白，参与回收内体货物分选和转运复合体形成，是阻断 RAB11A 效应蛋白轴的同通路候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

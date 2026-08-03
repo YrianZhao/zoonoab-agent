@@ -1,0 +1,65 @@
+{
+  "gene": "CYP3A4",
+  "generatedAt": "2026-08-03T18:28:36.805Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CYP3A4 是肝脏和肠道内质网膜相关药物代谢酶，参与多种抗病毒药物、免疫调节药物和炎症相关小分子的氧化代谢，其疾病关联主要反映感染治疗中的药物暴露、药物相互作用和宿主代谢差异，而非典型致病受体轴。该蛋白催化结构域位于胞质侧并非分泌蛋白或细胞外受体，抗原可及性相较膜外靶点有限，更适合作为离体酶学调控或检测抗体开发靶点。优先级低于 CCR5、CXCR4 或 IL6R 等同感染免疫通路中具备胞外可及结构域和直接病理调控作用的靶点；若聚焦药物代谢伴随诊断，CYP3A4 仍具有结构解析充分和功能位点明确的设计价值。",
+    "mechanism": "抗体设计宜阻断底物进入 CYP3A4 血红素活性腔的 F-G 环与 B-C 环入口，降低底物与血红素铁邻近定位及氧化代谢效率。",
+    "selectedEpitope": "优先覆盖 F-F′/G′-G 螺旋及 B-C 环形成的底物入口通道，避免深埋血红素口袋。",
+    "diseaseDirection": "感染治疗药物代谢与伴随诊断",
+    "domain": "单跨膜锚定后的胞质型 P450 催化结构域，含血红素结合核心、I 螺旋、B-C 环和 F-G 入口区。",
+    "evidence": "CYP3A4感染治疗药物代谢结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProtKB P08684 功能与亚细胞定位注释",
+      "RCSB PDB 4D6Z X射线晶体结构",
+      "DrugBank 与 PharmGKB 药物代谢注释"
+    ],
+    "referenceEntries": "UniProt P08684；RCSB PDB 4D6Z；HGNC CYP3A4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "F-F′/G′-G螺旋与B-C环底物入口",
+        "可阻断底物进入血红素活性腔，具备功能抑制潜力",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端血红素结合核心外侧可及面",
+        "可用于构象识别和检测抗体，但直接抑制效应需验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端膜锚定邻近疏水区",
+        "膜结合和疏水性增加表达与抗体可及性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CYP3A4为内质网胞质侧酶，体内抗体可及性不足；建议定位为离体抑制、检测或降解平台适配，并严格评估CYP3A5交叉反应。",
+    "structurePrepZh": "以4D6Z链A为模板，保留血红素辅基并校正缺失侧链；表位建模聚焦入口环区柔性构象，去除非生理晶体接触。",
+    "structureRef": "RCSB PDB 4D6Z，1.93 Å X-ray CYP3A4结构",
+    "antibodies": [
+      "anti-CYP3A4 monoclonal antibody clone HL3",
+      "anti-CYP3A4 monoclonal antibody clone C2"
+    ],
+    "interfaceFocus": "底物入口通道与血红素活性腔外缘",
+    "designMode": "酶入口阻断抗体",
+    "candidates": [
+      {
+        "target": "CCR5",
+        "rationale": "CCR5 是 HIV 入侵 CD4 T 细胞所需共受体之一，胞外环和N端区域可被抗体直接阻断，疾病机制优先级高于代谢关联靶点。"
+      },
+      {
+        "target": "CXCR4",
+        "rationale": "CXCR4 作为部分 HIV 毒株进入宿主细胞的共受体，具备细胞外配体结合口袋和胞外环表位，可用于病毒入侵阻断策略。"
+      },
+      {
+        "target": "IL6R",
+        "rationale": "IL6R 参与慢性病毒感染和炎症反应中的 IL-6 信号放大，胞外细胞因子结合结构域明确，适合抗体阻断 IL-6/IL6R 相互作用。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

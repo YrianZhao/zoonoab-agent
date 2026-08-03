@@ -1,0 +1,65 @@
+{
+  "gene": "SULT1E1",
+  "generatedAt": "2026-08-03T17:02:58.879Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SULT1E1 是雌激素硫酸化失活的关键胞内代谢酶，可直接改变局部活性雌激素负荷，并与激素依赖性骨代谢及内分泌稳态异常相关。其蛋白主要定位于细胞内，但已具备高分辨率晶体结构支持，适合围绕催化口袋与底物结合位点开展结构导向设计；相较于广泛分布的上游激素受体类靶点，具有更明确的代谢限速属性和更强的通路节点特征。该靶点在骨密度、激素结合蛋白测定及炎症介质测定相关表型中均表现出可量化关联，适合作为同一疾病轴中优先级较高的调控靶标。",
+    "mechanism": "抗体通过占据催化口袋入口或底物结合通道，阻断雌激素与PAPS依赖性硫酸化反应，降低ES1介导的失活转化。",
+    "selectedEpitope": "优先覆盖催化口袋入口及底物结合通道边缘，避免直接遮挡保守辅因子结合核心。",
+    "diseaseDirection": "激素代谢与骨稳态",
+    "domain": "胞质硫转移酶核心折叠，含PAPS结合区与类固醇底物结合腔",
+    "evidence": "SULT1E1结构-疾病关联证据包",
+    "evidenceSources": [
+      "UniProt:P49888",
+      "RCSB PDB:1G3M",
+      "Open Targets Platform",
+      "Gene Ontology / Reactome"
+    ],
+    "referenceEntries": "UniProt P49888; RCSB 1G3M; human SULT1E1 curated entry",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化口袋入口环区",
+        "优先干预底物进入并维持构象可解释性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PAPS结合腔邻近表面",
+        "可削弱辅因子耦联效率但需避免强保守区",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远端表面外露环",
+        "适合作为非竞争性控制位点但抑制效力不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "该靶点为胞内酶，常规全长IgG直接进入细胞的可达性较弱，需优先考虑细胞内递送或替代性结合形式。催化核心保守性较高，设计中应规避对PAPS通用结合残基的过度占据，以降低同家族交叉反应风险。",
+    "structurePrepZh": "采用1.7 Å晶体结构对A/B链进行生物学组装重建，按酶二聚体界面与活性腔进行分区标注，并补全缺失侧链与氢键网络。",
+    "structureRef": "PDB 1G3M; human SULT1E1 crystal structure",
+    "antibodies": [
+      "无成熟临床同类抗体",
+      "无公认SULT1E1中和抗体"
+    ],
+    "interfaceFocus": "活性腔入口、PAPS邻近区、底物通道边缘",
+    "designMode": "structure-guided",
+    "candidates": [
+      {
+        "target": "ESR1",
+        "rationale": "雌激素受体1与SULT1E1同属雌激素信号轴，前者直接感知活性雌激素，后者决定其硫酸化失活水平。围绕该轴并行评估有助于区分配体供给端与受体响应端的贡献。"
+      },
+      {
+        "target": "ESR2",
+        "rationale": "雌激素受体2参与骨与代谢组织中的雌激素应答，和SULT1E1共同影响局部激素效应强度。将其纳入候选有助于覆盖骨稳态相关表型的下游读出。"
+      },
+      {
+        "target": "STS",
+        "rationale": "类固醇硫酸酯酶STS与SULT1E1在雌激素硫酸化/去硫酸化平衡中构成互补对向节点。针对二者并行建模可更完整刻画局部雌激素再活化通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

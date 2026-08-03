@@ -1,0 +1,65 @@
+{
+  "gene": "RPS25",
+  "generatedAt": "2026-08-03T16:12:40.564Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RPS25是40S小核糖体亚基蛋白，参与内部核糖体进入位点依赖性翻译，并与多种病毒RNA翻译过程相关，因而在流感、COVID-19及SARS等感染性疾病证据中出现关联。然而RPS25为胞内核糖体结构蛋白，缺乏分泌型或细胞表面胞外结构域，天然抗体可及性明显受限。相较于同一抗病毒翻译或宿主进入通路中的ACE2、TMPRSS2、IFNAR1等膜或胞外靶点，RPS25作为常规治疗性抗体主靶点优先级较低，更适合作为结构机制研究或胞内递送抗体探索对象。",
+    "mechanism": "设计抗体需依赖胞内递送，空间阻断RPS25与40S亚基rRNA邻近界面及IRES RNA相关装配接触，从而抑制RPS25依赖性病毒RNA翻译起始。",
+    "selectedEpitope": "优先考察40S暴露侧的RPS25外露螺旋-环区，避开深埋rRNA结合面。",
+    "diseaseDirection": "病毒感染宿主翻译调控",
+    "domain": "RPS25为小型40S核糖体蛋白，主要由外露α螺旋、连接环和核糖体结合界面组成。",
+    "evidence": "RPS25病毒IRES翻译与核糖体结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联证据",
+      "UniProtKB P62851功能与定位注释",
+      "RCSB PDB 5VYC人源核糖体结构",
+      "RPS25依赖性IRES翻译相关文献"
+    ],
+    "referenceEntries": "UniProt P62851；RCSB PDB 5VYC；Open Targets RPS25",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "40S表面外露螺旋-环区",
+        "可在不直接破坏核心核糖体装配的前提下干预RNA邻近接触",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RPS25与18S rRNA邻近边界",
+        "可能影响IRES RNA募集，但存在扰动基础翻译的风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "核糖体内部埋藏结合面",
+        "抗体空间可及性差，且易影响40S结构完整性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RPS25位于胞内核糖体复合物，常规抗体难以到达作用位点；设计应限定为胞内递送格式，并优先规避核心rRNA稳定界面。",
+    "structurePrepZh": "以5VYC中人源40S亚基链为模板提取RPS25局部构象，需处理6.0 Å低分辨率不确定性，并结合AlphaFold模型校正侧链。",
+    "structureRef": "RCSB PDB 5VYC，人源核糖体X射线结构，6.0 Å",
+    "antibodies": [
+      "暂无获批RPS25靶向治疗性抗体",
+      "抗RPS25研究级检测抗体"
+    ],
+    "interfaceFocus": "RPS25外露面与18S rRNA/IRES邻近区域",
+    "designMode": "胞内递送抗体探索",
+    "candidates": [
+      {
+        "target": "ACE2",
+        "rationale": "ACE2是SARS-CoV-2刺突蛋白受体，位于细胞表面且胞外肽酶结构域高度可及；阻断Spike RBD与ACE2结合具有明确抗病毒进入机制。"
+      },
+      {
+        "target": "TMPRSS2",
+        "rationale": "TMPRSS2参与冠状病毒Spike蛋白S2位点蛋白水解激活，与ACE2介导的病毒进入处于同一感染通路；其细胞表面蛋白酶结构为干预入口过程提供依据。"
+      },
+      {
+        "target": "IFNAR1",
+        "rationale": "IFNAR1介导I型干扰素抗病毒信号，与病毒感染宿主防御通路直接相关；胞外受体结构域可作为抗体调节干扰素应答的可及靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

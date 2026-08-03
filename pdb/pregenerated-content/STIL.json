@@ -1,0 +1,65 @@
+{
+  "gene": "STIL",
+  "generatedAt": "2026-08-03T16:59:40.132Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "STIL 是中心粒复制与有丝分裂纺锤体组织的细胞内支架蛋白，其 C-terminal STAN 结构域结合 SAS-6 并促进中心粒 cartwheel 装配，遗传缺陷与常染色体隐性原发性小头畸形密切相关。该靶点主要定位于中心粒周围基质，缺乏天然胞外结构域或分泌形式，抗原可及性不适合常规体内阻断抗体，但适用于细胞内递送抗体、研究级 Fab/VHH 或结构引导的蛋白互作抑制工具。相较 CEP152、PLK4 等上游调控因子，STIL-SAS-6 界面更直接对应 cartwheel 成核步骤，且 5LHW 提供高分辨率结构基础，优先级主要来自结构可设计性与疾病遗传证据的一致性。",
+    "mechanism": "通过识别 STIL STAN 结构域的 SAS-6 结合面，阻断 STIL 与 SAS-6 相互作用，抑制中心粒 cartwheel 装配与中心粒复制启动。",
+    "selectedEpitope": "优先覆盖 STAN 结构域内 SAS-6 结合沟槽及相邻保守螺旋面，避免仅选择远端非功能表面。",
+    "diseaseDirection": "原发性小头畸形与中心粒复制异常",
+    "domain": "STIL 含 N 端 coiled-coil 区、中央低复杂度区及 C 端 STAN 结构域；5LHW 对应 STAN 功能片段。",
+    "evidence": "STIL-SAS-6 中心粒装配结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt Q15468 蛋白功能注释",
+      "RCSB PDB 5LHW 晶体结构",
+      "中心粒复制与 STIL-SAS-6 互作文献"
+    ],
+    "referenceEntries": "UniProt Q15468；RCSB PDB 5LHW；Open Targets STIL",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "STAN 结构域 SAS-6 结合界面",
+        "直接干预 STIL-SAS-6 互作，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "STAN 结构域相邻保守螺旋与环区",
+        "可通过空间位阻削弱 SAS-6 招募，兼顾亲和力优化",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离 SAS-6 界面的暴露表面",
+        "功能阻断证据较弱，可能仅适合检测或定位抗体",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "STIL 为细胞内中心粒蛋白，常规抗体药物难以触达靶点；设计应定位为胞内递送、VHH 细胞内抗体或研究级功能阻断工具。",
+    "structurePrepZh": "以 5LHW 链 A 为核心模板，保留 STAN 结构域有序片段，检查晶体接触、缺失残基与 SAS-6 互作残基映射后再开展表位建模。",
+    "structureRef": "RCSB PDB 5LHW，X-ray diffraction，0.91 Å",
+    "antibodies": [
+      "研究级 anti-STIL antibody",
+      "研究级 anti-STIL/STAN antibody"
+    ],
+    "interfaceFocus": "STAN 结构域 SAS-6 结合沟槽",
+    "designMode": "胞内互作阻断",
+    "candidates": [
+      {
+        "target": "SASS6",
+        "rationale": "SASS6 编码 SAS-6，是中心粒 cartwheel 的核心装配蛋白，并与 STIL STAN 结构域直接结合；靶向该节点可在同一中心粒成核步骤中阻断结构装配。"
+      },
+      {
+        "target": "PLK4",
+        "rationale": "PLK4 是中心粒复制启动的关键激酶，负责调控 STIL 招募与磷酸化事件；其位于 STIL-SAS-6 轴上游，具有明确的中心体扩增与发育疾病关联。"
+      },
+      {
+        "target": "CEP152",
+        "rationale": "CEP152 参与 PLK4 向母中心粒的募集，并与原发性小头畸形相关；其属于 STIL 相关中心粒复制通路中的真实上游支架节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "JUN",
+  "generatedAt": "2026-08-03T13:36:38.099Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "JUN编码AP-1转录因子亚基，通常与FOS家族形成bZIP二聚体并结合TRE/CRE样DNA元件，参与应激反应、炎症、细胞增殖与凋亡程序，在肿瘤和神经退行性病变中具有明确通路关联。该蛋白主要定位于细胞核，缺乏胞外结构域、分泌形式或膜受体拓扑，常规体内阻断型抗体的抗原可及性不足。相较EGFR、TNF、IL6R等同疾病网络中的胞外可及靶点，JUN更适合作为结构生物学与细胞内递送抗体片段研究靶点，主靶点优先级应限定于intracellular antibody或机制验证场景。",
+    "mechanism": "设计抗体片段结合JUN bZIP区，阻断JUN-FOS亮氨酸拉链二聚化或干扰碱性区与AP-1 DNA元件接触，从而抑制AP-1依赖转录复合物形成。",
+    "selectedEpitope": "优先覆盖bZIP亮氨酸拉链二聚化界面，兼顾碱性DNA结合区外侧沟面。",
+    "diseaseDirection": "肿瘤与神经退行性疾病通路",
+    "domain": "JUN含N端转录激活区、调控磷酸化位点及C端bZIP碱性DNA结合-亮氨酸拉链结构域。",
+    "evidence": "JUN/AP-1疾病关联与bZIP结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P05412功能与亚细胞定位注释",
+      "RCSB PDB 6Y3V晶体结构记录",
+      "AP-1 JUN-FOS二聚体与DNA结合文献"
+    ],
+    "referenceEntries": "UniProt P05412；RCSB PDB 6Y3V；Open Targets JUN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端bZIP亮氨酸拉链二聚化界面",
+        "可直接削弱JUN与FOS/JUN家族伙伴形成AP-1二聚体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "bZIP碱性DNA结合区邻近DNA主沟接触面",
+        "可干扰TRE/CRE样DNA元件识别并降低转录复合物稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端转录激活区与磷酸化调控片段",
+        "区域柔性高且结构解析不足，适合作为功能探针而非首选阻断表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "JUN为核内转录因子，天然抗体难以进入细胞核；bZIP区与FOS家族同源性较高，需以特异性残基和递送策略降低交叉反应风险。",
+    "structurePrepZh": "以6Y3V晶体结构提取JUN相关链，保留bZIP二聚体与DNA界面信息，补充缺失柔性区注释并进行同源家族界面比对。",
+    "structureRef": "RCSB PDB 6Y3V，X-ray diffraction，1.499 Å",
+    "antibodies": [
+      "anti-c-Jun clone 60A8",
+      "anti-phospho-c-Jun Ser63 clone 54B3"
+    ],
+    "interfaceFocus": "bZIP亮氨酸拉链与DNA结合界面",
+    "designMode": "细胞内抗体片段",
+    "candidates": [
+      {
+        "target": "FOS",
+        "rationale": "FOS是AP-1复合物的经典JUN二聚化伙伴，阻断FOS-JUN相互作用可直接影响同一转录调控轴。"
+      },
+      {
+        "target": "MAPK8",
+        "rationale": "MAPK8/JNK1可磷酸化JUN并增强其转录活性，是应激诱导AP-1激活通路的上游真实节点。"
+      },
+      {
+        "target": "DUSP1",
+        "rationale": "DUSP1通过去磷酸化MAPK通路成员限制JNK/p38信号，参与JUN/AP-1活性负反馈调控。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "HIVEP1",
+  "generatedAt": "2026-08-03T13:13:23.286Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HIVEP1为核内C2H2锌指转录调控蛋白，可结合HIV-1增强子及NF-κB相关DNA元件，参与免疫细胞转录网络；现有关联主要集中于体重、体脂、淋巴细胞计数等复杂性状，缺乏明确的可药物化疾病通路因果证据。该蛋白定位于细胞核，缺少分泌形式或跨膜胞外结构域，完整蛋白不具备常规抗体药物的抗原可及性优势。与TNF、IL6R、LEPR等同类免疫代谢或炎症通路可及靶点相比，HIVEP1更适合作为核内机制研究或细胞内递送抗体探索靶点，主靶点优先级较低。",
+    "mechanism": "以胞内递送Fab/VHH阻断HIVEP1 C2H2锌指结构域与κB样DNA序列的结合，干预其转录复合物占位与下游免疫相关基因表达。",
+    "selectedEpitope": "优先评估3ZNF所示C2H2锌指DNA识别螺旋及相邻β折叠支架，避免破坏锌配位核心。",
+    "diseaseDirection": "免疫代谢性状与淋巴细胞表型",
+    "domain": "HIVEP1含多段C2H2型锌指DNA结合结构域，3ZNF覆盖单个锌指折叠片段。",
+    "evidence": "HIVEP1核内锌指转录调控证据包",
+    "evidenceSources": [
+      "Open Targets Platform遗传关联与性状证据",
+      "UniProt P15822蛋白定位与功能注释",
+      "RCSB PDB 3ZNF溶液NMR锌指结构",
+      "文献报道HIVEP家族结合κB样DNA元件"
+    ],
+    "referenceEntries": "UniProt P15822；RCSB PDB 3ZNF；Open Targets HIVEP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C2H2锌指DNA识别α螺旋外侧",
+        "可直接干扰碱基识别界面，适合功能阻断型胞内抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "锌指ββα折叠的非配位侧面",
+        "有利于构象锁定并降低锌配位扰动风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Cys/His锌配位残基邻近核心",
+        "可能造成结构塌陷和非特异性变性，不宜作为主表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险来自核内定位导致常规抗体不可及，且3ZNF仅覆盖局部锌指片段。建议限定为胞内递送VHH/Fab或研究级阻断工具。",
+    "structurePrepZh": "以3ZNF NMR模型集评估锌指构象一致性，保留Zn2+配位几何，标注DNA识别螺旋并剔除低置信柔性末端。",
+    "structureRef": "RCSB PDB 3ZNF，HIVEP1锌指结构，SOLUTION NMR",
+    "antibodies": [
+      "无已批准HIVEP1靶向治疗性抗体",
+      "研究级抗HIVEP1检测抗体"
+    ],
+    "interfaceFocus": "C2H2锌指DNA识别螺旋与κB样DNA结合面",
+    "designMode": "胞内阻断探索",
+    "candidates": [
+      {
+        "target": "RELA",
+        "rationale": "RELA为NF-κB核心转录因子亚基，与κB元件驱动的免疫转录网络直接相关；但同样主要为核内蛋白，抗体药物化需依赖胞内递送策略。"
+      },
+      {
+        "target": "NFKB1",
+        "rationale": "NFKB1编码p105/p50亚基，参与NF-κB DNA结合复合物形成，是HIVEP1相关κB元件调控背景中的真实通路节点。"
+      },
+      {
+        "target": "TNF",
+        "rationale": "TNF位于NF-κB炎症反馈网络上游和下游均有功能连接，且为分泌型细胞因子，抗原可及性与临床可验证性显著优于HIVEP1。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

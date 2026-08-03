@@ -1,0 +1,65 @@
+{
+  "gene": "LMO2",
+  "generatedAt": "2026-08-03T13:54:17.433Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "LMO2 是造血转录复合体核心支架蛋白，参与 TAL1、LDB1、GATA1 等因子组装并调控红系分化相关基因表达，遗传关联主要集中于红细胞体积、红细胞计数及血红蛋白相关表型。该蛋白定位于细胞核且缺乏天然胞外结构域或分泌形式，抗原可及性不符合常规体内抗体阻断靶点标准，更适合作为结构验证或细胞内递送抗体研究对象。相较 CD71、EPOR 等膜表面造血靶点，LMO2 的优势在于疾病遗传关联和转录复合体机制明确，但抗体成药优先级受细胞内定位显著限制。",
+    "mechanism": "通过细胞内抗体或递送型 Fab/VHH 结合 LMO2 LIM1-LIM2 支架面，干扰其与 LDB1-LID 及 TAL1/E2A 复合体的装配。",
+    "selectedEpitope": "优先覆盖 LIM1-LIM2 串联结构域中 LDB1-LID 结合沟槽及锌指周边非配位表面。",
+    "diseaseDirection": "造血分化与红细胞表型",
+    "domain": "LMO2 含两个串联 LIM 锌结合结构域，作为蛋白互作支架而非 DNA 直接结合因子。",
+    "evidence": "LMO2 造血转录复合体与红系表型证据包",
+    "evidenceSources": [
+      "Open Targets Platform 遗传关联与表型评分",
+      "UniProt P25791 蛋白功能与亚细胞定位注释",
+      "RCSB PDB 2XJY LMO2 复合体晶体结构",
+      "造血转录因子复合体 TAL1-LMO2-LDB1 文献"
+    ],
+    "referenceEntries": "UniProt P25791；RCSB PDB 2XJY；Open Targets LMO2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "LIM1-LIM2 间 LDB1-LID 结合界面",
+        "直接干扰 LMO2 与 LDB1 的支架装配，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "LIM2 外侧 TAL1/E2A 复合体邻近面",
+        "可能削弱多蛋白转录复合体稳定性，适合功能筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "锌配位 Cys/His 核心周边区域",
+        "结构保守且可能影响折叠稳定性，需避免破坏性非特异结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "LMO2 为核内蛋白，常规抗体难以到达作用位点；设计应定位于细胞内递送、intrabody 或研究级阻断，并规避锌指配位残基。",
+    "structurePrepZh": "以 2XJY 晶体结构链 A、B 为模板，保留 LIM 结构域构象，检查锌离子配位、缺失残基及复合体界面后进行表位建模。",
+    "structureRef": "RCSB PDB 2XJY，X-ray diffraction，2.4 Å",
+    "antibodies": [
+      "研究级 anti-LMO2 clone 1A9-1",
+      "研究级 anti-LMO2 clone SP51"
+    ],
+    "interfaceFocus": "LIM1-LIM2 与 LDB1-LID 结合沟槽",
+    "designMode": "细胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "LDB1",
+        "rationale": "LDB1 通过 LID 区域结合 LMO2，并参与 TAL1-LMO2-GATA1 造血增强子复合体形成，是同一转录调控轴的直接互作节点。"
+      },
+      {
+        "target": "TAL1",
+        "rationale": "TAL1 与 E 蛋白形成 bHLH 复合体并通过 LMO2-LDB1 支架参与红系和巨核系基因调控，疾病通路关联紧密。"
+      },
+      {
+        "target": "GATA1",
+        "rationale": "GATA1 是红系分化主调控因子，与 TAL1-LMO2-LDB1 复合体共同占据造血基因调控元件，适合作为同通路候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

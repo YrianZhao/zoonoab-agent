@@ -1,0 +1,65 @@
+{
+  "gene": "USP5",
+  "generatedAt": "2026-08-03T21:31:57.129Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "USP5 是胞质去泛素化酶，主要识别并水解未锚定多聚泛素链，维持游离泛素池与蛋白稳态；其异常活性与神经退行性疾病中的泛素-蛋白酶体应激、蛋白聚集清除障碍及肿瘤细胞生存相关。USP5 缺乏天然胞外结构域，完整蛋白不具备常规治疗性抗体的抗原可及性优势，更适合作为结构引导的胞内递送抗体、intrabody 或研究级抑制抗体靶点。相较于同为泛素系统成员的广谱 E3 或蛋白酶体亚基，USP5 具有明确的游离多聚泛素结合口袋和高分辨率晶体结构，便于开展界面阻断型分子设计，但体内可及性优先级需低于膜受体或分泌蛋白靶点。",
+    "mechanism": "阻断 USP5 ZnF-UBP 与近端泛素 C 端 Gly-Gly 以及催化结构域对多聚泛素链的协同识别，抑制未锚定泛素链水解。",
+    "selectedEpitope": "优先覆盖 ZnF-UBP 泛素 C 端结合沟槽及邻近 catalytic palm 区域，形成底物进入位阻。",
+    "diseaseDirection": "神经退行性疾病与肿瘤蛋白稳态",
+    "domain": "USP5 含 N 端 ZnF-UBP、USP 催化核心、两个 UBA 结构域及 C 端催化相关区。",
+    "evidence": "USP5 去泛素化酶结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt P45974 功能与结构域注释",
+      "RCSB PDB 7MS7 X 射线晶体结构",
+      "去泛素化酶与泛素-蛋白酶体系统文献证据"
+    ],
+    "referenceEntries": "UniProt P45974；RCSB PDB 7MS7；Open Targets USP5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ZnF-UBP 泛素 C 端 Gly-Gly 识别沟槽",
+        "直接干扰未锚定多聚泛素链近端泛素结合，机制清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "USP catalytic palm 与底物通道邻近界面",
+        "可通过空间位阻降低泛素链进入催化半胱氨酸区域",
+        "备选"
+      ],
+      [
+        "Site C",
+        "UBA 结构域泛素结合表面",
+        "可能影响远端泛素链定位，但存在冗余结合与构象适应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "USP5 为胞内酶，常规抗体难以到达作用位点；设计应优先限定为胞内递送、intrabody 或体外功能阻断用途，并避免覆盖高度保守催化裂隙造成选择性不足。",
+    "structurePrepZh": "以 7MS7 高分辨率晶体结构为模板，保留抗原链 A/B 中完整结构域，检查缺失环区、锌结合位点与泛素结合口袋后进行界面建模。",
+    "structureRef": "RCSB PDB 7MS7，X-ray diffraction，1.45 Å",
+    "antibodies": [
+      "研究级 anti-USP5 antibody",
+      "USP5 intrabody candidate"
+    ],
+    "interfaceFocus": "ZnF-UBP 沟槽与 catalytic palm 底物通道",
+    "designMode": "胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "PSMD14",
+        "rationale": "PSMD14 是 19S 蛋白酶体调节颗粒去泛素化酶，参与底物去泛素化与蛋白酶体降解，位于同一泛素-蛋白酶体蛋白稳态通路。"
+      },
+      {
+        "target": "UCHL1",
+        "rationale": "UCHL1 调节神经元泛素稳态并与神经退行性疾病相关，可作为 USP5 在神经蛋白稳态方向的同通路候选靶点。"
+      },
+      {
+        "target": "USP14",
+        "rationale": "USP14 与蛋白酶体可逆结合并编辑底物泛素链，和 USP5 同属去泛素化酶网络，适合用于蛋白稳态调控策略比较。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

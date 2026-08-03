@@ -1,0 +1,65 @@
+{
+  "gene": "PTH",
+  "generatedAt": "2026-08-03T15:42:44.833Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PTH 是钙磷稳态轴的核心分泌性激素，通过结合 PTH1R 调控肾小管钙重吸收、磷排泄及骨重塑，遗传缺陷与低钙血症和家族性孤立性甲状旁腺功能减退直接相关。其成熟肽为可溶性胞外抗原，循环暴露充分，抗体可在受体结合前实现配体中和。相较下游离子转运体或细胞内信号分子，PTH 位于通路上游且结构小、功能界面集中，更适合采用阻断型抗体建立高选择性干预。",
+    "mechanism": "抗体结合 PTH N 端受体激活区，阻断 PTH 与 PTH1R 胞外结构域及跨膜核心的协同识别，抑制 cAMP/PKA 介导的钙磷调控信号。",
+    "selectedEpitope": "优先覆盖成熟 PTH 1-34 肽段的 N 端螺旋受体结合面，兼顾 15-34 区域构象稳定残基。",
+    "diseaseDirection": "钙磷代谢与甲状旁腺轴疾病",
+    "domain": "PTH 前体含信号肽、前肽及 84 aa 成熟分泌激素；1-34 区域承担 PTH1R 结合与激活功能。",
+    "evidence": "PTH-PTH1R 钙磷稳态轴抗体设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt P01270 人源 PTH 功能注释",
+      "RCSB PDB 1ET1 高分辨率 X 射线结构",
+      "PTH1R 配体识别与 cAMP 信号文献"
+    ],
+    "referenceEntries": "UniProt:P01270；RCSB PDB:1ET1；Open Targets:PTH",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "成熟 PTH 1-14 N 端受体激活面",
+        "直接干扰 PTH1R 激活所需关键 N 端构象，适合中和型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PTH 15-34 受体识别螺旋延伸区",
+        "参与 PTH1R 胞外域结合并稳定配体取向，可增强阻断效应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PTH 35-84 C 端成熟肽区域",
+        "远离主要受体激活核心，可能产生结合但中和效率有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PTH 分子量小且线性表位比例高，需避免仅获得非中和结合抗体；建议采用构象约束肽或 PTH-PTH1R 复合物信息校正筛选。",
+    "structurePrepZh": "以 1ET1 高分辨率结构提取抗原链 A、B，保留成熟肽构象，去除结晶冗余链后进行 N 端功能面可及性评估。",
+    "structureRef": "RCSB PDB 1ET1，X-ray diffraction，0.9 Å",
+    "antibodies": [
+      "抗 PTH 中和抗体",
+      "抗 PTHrP 交叉通路抗体"
+    ],
+    "interfaceFocus": "PTH 1-34 与 PTH1R 胞外域/跨膜结合界面",
+    "designMode": "分泌配体中和",
+    "candidates": [
+      {
+        "target": "PTH1R",
+        "rationale": "PTH1R 是 PTH 的主要受体，介导骨和肾脏中的 cAMP/PKA 与 PLC 信号；靶向受体胞外域可直接阻断 PTH 结合。"
+      },
+      {
+        "target": "PTHLH",
+        "rationale": "PTHLH 编码 PTHrP，可通过同一 PTH1R 参与骨代谢和高钙血症相关通路；其配体-受体轴与 PTH 功能界面高度相关。"
+      },
+      {
+        "target": "CASR",
+        "rationale": "CASR 是甲状旁腺细胞感知细胞外钙浓度并调控 PTH 分泌的上游受体，适合作为钙稳态通路中的替代干预节点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

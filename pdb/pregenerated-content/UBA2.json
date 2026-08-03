@@ -1,0 +1,65 @@
+{
+  "gene": "UBA2",
+  "generatedAt": "2026-08-03T17:36:41.281Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "UBA2是SUMO E1活化酶催化亚基，与SAE1形成异源二聚体，负责SUMO1/2/3的腺苷化与硫酯转移，影响DNA损伤应答、转录调控及发育相关蛋白的SUMO化。Open Targets显示其与ACCES综合征、肢端发育异常及神经退行性疾病存在遗传关联，提示SUMO化稳态失衡具有疾病相关性。UBA2为胞内核质定位酶，天然抗原可及性弱于膜受体或分泌蛋白，因此更适合作为机制验证、胞内递送抗体或结构引导型抑制分子设计靶点。其优先级来自高分辨率实验结构、明确的SAE1-SUMO-UBA2催化轴以及相比下游多种E2/E3靶点更上游的通路控制能力。",
+    "mechanism": "阻断UBA2与SUMO C端Gly-Gly底物及ATP结合口袋周边构象耦联，或干扰UBA2-SAE1界面，抑制SUMO腺苷化和UBA2~SUMO硫酯中间体形成。",
+    "selectedEpitope": "优先覆盖UBA2腺苷化结构域中SUMO C端结合沟槽及SAE1邻近界面，避免深埋ATP口袋作为单一表位。",
+    "diseaseDirection": "SUMO化异常相关发育与神经疾病",
+    "domain": "UBA2含腺苷化结构域、催化半胱氨酸结构域及泛素样折叠结构域，并与SAE1构成SUMO E1复合体。",
+    "evidence": "UBA2-SUMO E1结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联数据",
+      "UniProt Q9UBT2功能与亚细胞定位注释",
+      "RCSB PDB 9QN5 X射线晶体结构",
+      "SUMO E1酶学与SUMO化通路文献"
+    ],
+    "referenceEntries": "UniProt Q9UBT2；RCSB PDB 9QN5；Open Targets UBA2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "腺苷化结构域SUMO C端结合沟槽邻近区域",
+        "可直接影响SUMO腺苷化底物定位与催化构象，具备机制阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "UBA2-SAE1异源二聚体界面外露片段",
+        "可削弱E1复合体稳定性并降低SUMO转移效率，适合界面型抗体设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化半胱氨酸结构域柔性环区",
+        "与硫酯转移相关但构象动态性较高，需控制交叉反应与构象依赖风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "UBA2为胞内酶靶点，常规抗体难以天然进入核质环境；设计宜聚焦胞内递送格式、片段抗体或结构验证试剂，并严控ATP结合保守位点交叉风险。",
+    "structurePrepZh": "以PDB 9QN5抗原链A-D为模板，保留UBA2-SAE1复合体构象，校验催化半胱氨酸、SUMO结合沟槽、晶体接触及缺失环区后进行表位映射。",
+    "structureRef": "RCSB PDB 9QN5，X-ray diffraction，1.97 Å",
+    "antibodies": [
+      "抗UBA2研究级单克隆抗体",
+      "抗SAE1/UBA2复合体研究级抗体"
+    ],
+    "interfaceFocus": "SUMO C端结合沟槽与UBA2-SAE1二聚体界面",
+    "designMode": "胞内酶界面阻断",
+    "candidates": [
+      {
+        "target": "SAE1",
+        "rationale": "SAE1与UBA2共同组成SUMO E1活化酶，参与SUMO腺苷化反应的底物识别与复合体稳定，是同一SUMO化起始步骤的直接通路靶点。"
+      },
+      {
+        "target": "UBE2I",
+        "rationale": "UBE2I编码SUMO E2结合酶UBC9，接收UBA2形成的SUMO硫酯并将SUMO转移到底物赖氨酸，是UBA2下游的核心SUMO化传递节点。"
+      },
+      {
+        "target": "SUMO1",
+        "rationale": "SUMO1为UBA2-SAE1活化的直接底物之一，其C端Gly-Gly基序进入E1催化通路，适合用于同一SUMO化轴的底物竞争与通路验证。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

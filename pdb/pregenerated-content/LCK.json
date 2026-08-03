@@ -1,0 +1,65 @@
+{
+  "gene": "LCK",
+  "generatedAt": "2026-08-03T13:49:50.954Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "LCK是T细胞受体近端Src家族酪氨酸激酶，负责磷酸化CD3ζ与ZAP70，驱动T细胞活化信号；其缺陷可导致严重联合免疫缺陷，异常活化亦与T-ALL等血液肿瘤相关。LCK为胞内膜近端激酶，天然抗原可及性低于经典膜受体，抗体设计更适合采用细胞内递送型Fab/VHH或降解导向构型。相比下游转录因子或广谱Src家族成员，LCK在TCR通路近端且淋巴细胞谱系特异性更强，具备更清晰的通路归因与选择性优化空间。",
+    "mechanism": "构建可结合LCK激酶结构域ATP结合裂隙或活化环邻近面的抗体片段，阻断底物定位与催化构象稳定，从而降低CD3ζ/ZAP70磷酸化。",
+    "selectedEpitope": "优先靶向激酶结构域N/C叶交界处ATP裂隙外缘与活化环邻近构象表位。",
+    "diseaseDirection": "T细胞免疫缺陷与T-ALL通路",
+    "domain": "LCK含N端膜锚定区、SH3、SH2、蛋白酪氨酸激酶结构域及C端调控酪氨酸位点。",
+    "evidence": "LCK-TCR近端激酶与血液肿瘤证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P06239功能与结构域注释",
+      "RCSB PDB 1LKK晶体结构",
+      "TCR-CD3-ZAP70信号通路文献"
+    ],
+    "referenceEntries": "UniProt P06239；RCSB PDB 1LKK；Open Targets LCK",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域N/C叶ATP结合裂隙外缘",
+        "可干扰ATP结合构象与催化核心装配，适合抑制型片段设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "活化环及底物结合沟邻近表面",
+        "可能阻断底物肽定位并影响Y394相关活化构象稳定",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SH2结构域磷酸酪氨酸结合口袋",
+        "可能影响C端pY505介导的自抑制调控，功能方向需严格验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "LCK为胞内激酶，常规外源抗体难以直接作用；需采用细胞穿透、胞内表达或降解耦联策略，并规避SRC/FYN同源激酶交叉反应。",
+    "structurePrepZh": "以1LKK高分辨率晶体结构提取激酶结构域，补全缺失侧链并保留关键构象水分子；对ATP裂隙、活化环和同源Src保守位点进行界面分层。",
+    "structureRef": "RCSB PDB 1LKK，X-ray diffraction，1.0 Å",
+    "antibodies": [
+      "Anti-LCK clone 3A5",
+      "Anti-LCK clone LCK-01"
+    ],
+    "interfaceFocus": "ATP裂隙外缘、活化环与底物结合沟",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "ZAP70",
+        "rationale": "ZAP70是LCK磷酸化CD3ζ后募集并激活的直接下游激酶，位于同一TCR近端信号轴。其遗传缺陷同样与T细胞免疫缺陷相关。"
+      },
+      {
+        "target": "CD3E",
+        "rationale": "CD3E是TCR-CD3复合体核心组分，参与ITAM信号复合体装配并位于LCK作用的上游受体模块。其胞外结构域可及性显著优于LCK。"
+      },
+      {
+        "target": "FYN",
+        "rationale": "FYN为Src家族激酶，与LCK共同参与TCR近端磷酸化事件和淋巴细胞活化调控。作为同通路旁系激酶，可用于选择性与补偿机制评估。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

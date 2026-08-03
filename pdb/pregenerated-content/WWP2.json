@@ -1,0 +1,65 @@
+{
+  "gene": "WWP2",
+  "generatedAt": "2026-08-03T17:53:59.369Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "WWP2 是胞内 HECT 型 E3 泛素连接酶，通过 WW 结构域识别含 PPxY 基序底物，并由 HECT 催化结构域介导泛素转移；其与 TGF-β/SMAD、PTEN/PI3K 及代谢表型相关调控存在遗传和功能证据关联。该蛋白并非分泌蛋白或膜受体，天然抗原可及性不利于常规体内阻断抗体，因此更适合作为胞内递送抗体片段或结构辅助型研究抗体设计对象。相较于上游广泛表达的 TGF-β 配体或受体，WWP2 的 WW-底物识别界面具有更明确的结构选择性，可优先用于机制验证和选择性抑制分子设计。",
+    "mechanism": "设计抗体片段占据 WWP2 WW 结构域的 PPxY 肽结合沟槽，阻断其与 SMAD、PTEN 等底物基序结合，从而降低底物泛素化依赖调控。",
+    "selectedEpitope": "优先锁定 WW 结构域 β 折叠表面的 PPxY 基序识别沟槽及邻近疏水口袋。",
+    "diseaseDirection": "TGF-β纤维化与代谢调控",
+    "domain": "WWP2 含 N 端 C2 结构域、多个 WW 底物识别结构域及 C 端 HECT 泛素转移催化结构域。",
+    "evidence": "WWP2结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt O00308 功能与结构域注释",
+      "RCSB PDB 9EQH X射线晶体结构",
+      "HECT E3连接酶与TGF-β/SMAD调控文献"
+    ],
+    "referenceEntries": "UniProt O00308；RCSB PDB 9EQH；Open Targets WWP2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "WW结构域PPxY肽结合沟槽",
+        "直接阻断底物识别，适合功能性抑制抗体片段设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "WW结构域邻近β折叠外侧面",
+        "可稳定特定构象并间接削弱底物肽结合",
+        "备选"
+      ],
+      [
+        "Site C",
+        "HECT结构域E2结合与催化裂隙附近",
+        "可能影响泛素转移，但保守性较高且交叉反应风险增加",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "WWP2 为胞内蛋白，常规抗体药物可及性不足；应采用VHH、intrabody或递送载体策略，并规避高度保守HECT催化位点以提高选择性。",
+    "structurePrepZh": "以PDB 9EQH链A为模板，补全缺失环区与侧链，校正质子化状态，并围绕WW结构域肽结合面建立表位网格。",
+    "structureRef": "RCSB PDB 9EQH，2.05 Å X-ray diffraction",
+    "antibodies": [
+      "抗WWP2研究抗体",
+      "抗HECT E3连接酶结构域抗体"
+    ],
+    "interfaceFocus": "WW结构域PPxY基序识别沟槽",
+    "designMode": "胞内VHH/intrabody",
+    "candidates": [
+      {
+        "target": "SMAD2",
+        "rationale": "SMAD2 是 TGF-β 受体激活后的核心转录效应因子，与 WWP2 介导的 SMAD 轴调控处于同一信号网络，可用于纤维化和发育表型方向的机制对照。"
+      },
+      {
+        "target": "SMAD3",
+        "rationale": "SMAD3 直接参与 TGF-β 诱导的纤维化基因转录，与WWP2底物识别和泛素化调控具有明确通路相关性。"
+      },
+      {
+        "target": "TGFBR1",
+        "rationale": "TGFBR1 是 TGF-β/SMAD 通路上游丝氨酸/苏氨酸激酶受体，决定SMAD2/3磷酸化输入强度，适合作为同通路上游干预参照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

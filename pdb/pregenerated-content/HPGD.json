@@ -1,0 +1,65 @@
+{
+  "gene": "HPGD",
+  "generatedAt": "2026-08-03T13:16:42.558Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HPGD编码15-羟基前列腺素脱氢酶，是前列腺素E2失活代谢的关键酶；功能缺失可导致PGE2持续升高，驱动杵状指、骨膜增生及肥厚性骨关节病相关表型。该蛋白主要为胞质可溶性短链脱氢酶，天然抗原可及性不具备膜受体或分泌蛋白优势，因此抗体策略更适合研究级胞内递送、降解偶联或构象探针，而非经典体液中和。相比PTGS2或PTGER受体，HPGD位于PGE2信号终止端，遗传因果证据更集中于原发性肥厚性骨关节病，适合作为机制验证优先靶点。",
+    "mechanism": "设计抗体识别HPGD催化沟槽邻近构象，阻断PGE2进入底物结合口袋或干扰NAD+辅因子稳定结合，从而改变PGE2氧化失活速率。",
+    "selectedEpitope": "优先覆盖SDR催化结构域中NAD+结合Rossmann折叠与底物结合沟槽邻近环区。",
+    "diseaseDirection": "PGE2代谢异常与骨关节病",
+    "domain": "HPGD为短链脱氢酶/还原酶家族成员，含N端Rossmann样NAD+结合区及C端底物识别区。",
+    "evidence": "HPGD-PGE2代谢轴结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt P15428功能注释",
+      "RCSB PDB 2GDZ晶体结构",
+      "OMIM与罕见骨关节病遗传证据"
+    ],
+    "referenceEntries": "UniProt P15428；RCSB PDB 2GDZ；HGNC:5154",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "NAD+结合Rossmann折叠邻近沟槽",
+        "可干扰辅因子定位并报告催化构象",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端底物结合口袋外缘环区",
+        "可阻断PGE2进入疏水底物通道",
+        "备选"
+      ],
+      [
+        "Site C",
+        "二聚体界面邻近保守SDR核心区",
+        "存在保守性与构象耦联风险，需避免广谱交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HPGD为胞内酶，体内中和抗体可及性受限；设计应标注胞内递送或研究探针场景，并避开高度保守SDR催化核心以降低交叉反应。",
+    "structurePrepZh": "以2GDZ链A为模板，保留辅因子和关键催化残基坐标用于口袋定位，补全缺失侧链后进行质子化与表面可及性评估。",
+    "structureRef": "RCSB PDB 2GDZ，X-ray，1.65 Å，人源HPGD结构",
+    "antibodies": [
+      "抗HPGD研究用单克隆抗体",
+      "抗15-PGDH免疫组化抗体"
+    ],
+    "interfaceFocus": "NAD+结合沟槽、PGE2底物入口及二聚体界面",
+    "designMode": "胞内酶构象抗体",
+    "candidates": [
+      {
+        "target": "SLCO2A1",
+        "rationale": "SLCO2A1编码前列腺素转运体，负责PGE2跨膜摄取；其缺陷同样导致原发性肥厚性骨关节病，与HPGD处于PGE2清除通路上游。"
+      },
+      {
+        "target": "PTGS2",
+        "rationale": "PTGS2催化炎症条件下前列腺素合成，是PGE2生成端关键酶；与HPGD共同决定局部PGE2稳态。"
+      },
+      {
+        "target": "PTGER4",
+        "rationale": "PTGER4为PGE2受体EP4，介导cAMP相关下游信号并参与骨重塑和炎症反应；适合作为PGE2效应端候选靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

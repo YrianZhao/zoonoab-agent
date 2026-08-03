@@ -1,0 +1,65 @@
+{
+  "gene": "KMO",
+  "generatedAt": "2026-08-03T13:46:31.487Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KMO位于犬尿氨酸代谢通路，催化L-kynurenine生成3-hydroxykynurenine，进而影响quinolinate与kynurenate平衡，相关代谢物测量性状在Open Targets中呈现一致遗传关联。KMO为线粒体外膜相关黄素单加氧酶，催化结构域主要面向胞质侧，抗原可及性弱于分泌蛋白或经典膜受体。相较IDO1、TDO2等上游酶，KMO更直接决定神经活性分支代谢流，适合作为机制验证靶点；但抗体药物化优先级需低于具有天然胞外结构域的同通路靶点。",
+    "mechanism": "抗体策略拟阻断KMO催化结构域对L-kynurenine与FAD依赖活性口袋的构象耦联，降低3-hydroxykynurenine生成。",
+    "selectedEpitope": "优先聚焦FAD结合Rossmann样结构域邻近的底物进入沟槽及催化口袋外缘构象表位。",
+    "diseaseDirection": "犬尿氨酸通路代谢调控",
+    "domain": "人KMO含N端线粒体定位区、FAD结合单加氧酶结构域及C端膜锚定相关区段。",
+    "evidence": "KMO犬尿氨酸代谢结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB O15229 functional annotation",
+      "RCSB PDB 5X68 X-ray structure",
+      "KEGG tryptophan metabolism pathway"
+    ],
+    "referenceEntries": "UniProt O15229；RCSB PDB 5X68；Reactome/KEGG tryptophan metabolism",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "FAD结合Rossmann样结构域与底物进入沟槽外缘",
+        "邻近催化构象转换区域，具备抑制底物定位的设计价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化口袋周边α螺旋-环区构象表面",
+        "可能干扰L-kynurenine进入活性中心，适合构象选择性抗体筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端膜锚定相关疏水区附近表面",
+        "膜近端可及性与构象稳定性不确定，存在非特异疏水结合风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "KMO并非分泌蛋白或典型胞外膜受体，抗体体内可达性构成主要风险；建议定位于体外机制验证、胞内递送或替代格式探索。",
+    "structurePrepZh": "以5X68双链晶体结构为模板，保留FAD及关键活性位点邻近残基，去除结晶添加物后评估A、B链界面一致性。",
+    "structureRef": "RCSB PDB 5X68，human KMO X-ray structure，2.1 Å",
+    "antibodies": [
+      "无已获批抗KMO治疗性抗体",
+      "研究级抗KMO检测抗体"
+    ],
+    "interfaceFocus": "FAD结合域、底物进入沟槽与催化口袋外缘",
+    "designMode": "胞内酶抑制抗体",
+    "candidates": [
+      {
+        "target": "IDO1",
+        "rationale": "IDO1催化色氨酸向N-formylkynurenine转化，是犬尿氨酸通路上游限速节点；其抑制可降低下游KMO底物供给。"
+      },
+      {
+        "target": "TDO2",
+        "rationale": "TDO2同样介导色氨酸进入犬尿氨酸通路，在肝脏及肿瘤代谢重编程中影响kynurenine生成。"
+      },
+      {
+        "target": "KYNU",
+        "rationale": "KYNU位于KMO下游，催化3-hydroxykynurenine裂解并推动quinolinate前体生成，适合联合评估神经毒性代谢分支。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

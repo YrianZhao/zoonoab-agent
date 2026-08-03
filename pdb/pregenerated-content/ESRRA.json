@@ -1,0 +1,65 @@
+{
+  "gene": "ESRRA",
+  "generatedAt": "2026-08-03T12:22:39.129Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ESRRA编码核受体ERRα，在乳腺癌等肿瘤中参与PGC-1α/β共激活的线粒体氧化磷酸化、脂质代谢与肿瘤细胞能量适应，Open Targets显示其与乳腺癌及腺样囊性癌存在遗传和表达层面关联。该蛋白主要定位于细胞核，天然抗原可及性不具备常规细胞表面抗体药物优势，适合作为结构引导的胞内靶点结合分子或研究级抗体开发对象。相较代谢通路中广泛表达且冗余较高的下游酶类，ESRRA位于转录调控枢纽，可同时影响多组代谢基因模块，因而在机制研究与靶点验证中的优先级较高。",
+    "mechanism": "设计结合ERRα配体结合结构域AF-2表面的抗体片段，阻断PGC-1α LXXLL基序与ERRα共激活因子沟槽的相互作用，抑制代谢基因转录激活。",
+    "selectedEpitope": "优先选择配体结合结构域Helix 12/AF-2共激活因子结合沟槽及邻近H3-H5界面。",
+    "diseaseDirection": "肿瘤代谢与乳腺癌方向",
+    "domain": "ERRα含N端DNA结合域、铰链区和C端配体结合域；3K6P覆盖配体结合域构象。",
+    "evidence": "ESRRA肿瘤代谢转录调控证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P11474功能与定位注释",
+      "RCSB PDB 3K6P晶体结构记录",
+      "文献报道ERRα-PGC-1共激活轴与乳腺癌代谢重编程"
+    ],
+    "referenceEntries": "UniProt:P11474；RCSB PDB:3K6P；Open Targets:ESRRA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "LBD Helix 12/AF-2共激活因子沟槽",
+        "直接干预PGC-1α/β LXXLL基序招募，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "LBD Helix 3-Helix 5疏水核心邻近面",
+        "可稳定非活化构象并间接削弱AF-2表面形成",
+        "备选"
+      ],
+      [
+        "Site C",
+        "DNA结合域锌指区域",
+        "可能影响ERE/ERRE样序列结合，但结构未由3K6P覆盖且核酸结合界面保守",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ESRRA为核内转录因子，常规全长IgG难以进入细胞；建议采用Fab/VHH用于结构验证、胞内表达或递送体系，并规避RXR/PPAR等核受体保守LBD表面交叉反应。",
+    "structurePrepZh": "以3K6P链A为模板准备ERRα LBD，去除结晶小分子和非关键水分子，保留AF-2区域构象并评估H12柔性及共激活因子沟槽可成药性。",
+    "structureRef": "RCSB PDB 3K6P，ERRα LBD X-ray结构，1.996 Å",
+    "antibodies": [
+      "ESRRA rabbit monoclonal antibody",
+      "ERRα mouse monoclonal antibody"
+    ],
+    "interfaceFocus": "AF-2 Helix 12与LXXLL共激活因子沟槽",
+    "designMode": "胞内靶点Fab/VHH",
+    "candidates": [
+      {
+        "target": "PPARGC1A",
+        "rationale": "PPARGC1A编码PGC-1α，是ERRα的核心共激活因子，通过LXXLL基序结合ERRα AF-2表面并驱动氧化磷酸化和线粒体生物发生基因表达。"
+      },
+      {
+        "target": "PPARGC1B",
+        "rationale": "PPARGC1B编码PGC-1β，与ERRα共同调控脂质氧化和线粒体代谢程序，在肿瘤代谢适应中与ESRRA处于同一转录共激活轴。"
+      },
+      {
+        "target": "ESRRB",
+        "rationale": "ESRRB为同源孤儿核受体，可识别相近的ERR反应元件并共享部分共激活因子网络，适合作为同通路选择性与补偿机制评估靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

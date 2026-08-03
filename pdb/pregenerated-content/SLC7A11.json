@@ -1,0 +1,65 @@
+{
+  "gene": "SLC7A11",
+  "generatedAt": "2026-08-03T16:41:05.749Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SLC7A11编码xCT，是System xc-交换体的轻链亚基，介导胞外胱氨酸摄取与胞内谷氨酸外排，从而维持谷胱甘肽合成并支持肿瘤细胞抗氧化稳态。其胞外可及膜转运蛋白特征使抗体可直接识别并干预转运过程，相比胞内抗氧化节点更具成药可及性。作为铁死亡与氧化还原脆弱性调控中的关键膜靶点，SLC7A11较同通路下游酶类更适合采用抗体进行表面阻断与功能抑制。",
+    "mechanism": "抗体结合SLC7A11胞外环，阻断其与SLC3A2形成有效转运复合体并抑制胱氨酸摄取。",
+    "selectedEpitope": "优先锁定第一个和第三个胞外环的复合体界面，避免跨膜螺旋核心。",
+    "diseaseDirection": "肿瘤铁死亡调控",
+    "domain": "12次跨膜转运蛋白；关键识别位点位于胞外环与复合体界面",
+    "evidence": "SLC7A11抗体设计证据包",
+    "evidenceSources": [
+      "UniProt: Q9UPY5",
+      "RCSB PDB: 7P9V",
+      "Open Targets Platform",
+      "Gene Ontology / Reactome"
+    ],
+    "referenceEntries": "UniProt Q9UPY5；RCSB 7P9V；Human membrane transporter entry",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "胞外环1与邻近界面",
+        "最接近SLC3A2装配入口，适合功能阻断",
+        "优先"
+      ],
+      [
+        "Site B",
+        "胞外环3外露片段",
+        "可削弱底物通道入口并降低转运效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "胞外环与糖基化邻域",
+        "存在构象与糖链遮挡，需谨慎评估可达性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险在于多跨膜蛋白胞外表位面积有限且构象依赖性强，糖基化亦可能遮蔽结合面。建议优先采用识别天然构象的Fab或VHH，并结合冷冻电镜模型进行界面约束设计。",
+    "structurePrepZh": "以7P9V为主模板重建完整胞外环与膜外取向，补全缺失残基并校正链间装配状态；必要时进行糖基化位点注释与构象采样。",
+    "structureRef": "7P9V冷冻电镜结构；SLC7A11结构生物学研究",
+    "antibodies": [
+      "SLC7A11功能阻断抗体类文献分子",
+      "System xc-相关抗体研究分子"
+    ],
+    "interfaceFocus": "胞外环1/3与SLC3A2装配界面",
+    "designMode": "结构驱动阻断设计",
+    "candidates": [
+      {
+        "target": "SLC3A2",
+        "rationale": "SLC3A2是System xc-的重链伴侣，与SLC7A11共同组装并稳定转运复合体。针对其胞外结构域的抗体可作为同通路配套靶点，用于验证复合体依赖性与表位选择性。"
+      },
+      {
+        "target": "GPX4",
+        "rationale": "GPX4位于SLC7A11下游，依赖胱氨酸-谷胱甘肽轴维持脂质过氧化清除。虽然其本身并非优选抗体靶点，但在铁死亡通路评估中可作为功能读出与协同通路参照。"
+      },
+      {
+        "target": "TFRC",
+        "rationale": "TFRC介导铁摄取并与铁死亡敏感性密切相关，常与SLC7A11共同决定氧化还原脆弱性。其膜外可及性良好，适合作为同疾病通路中的并行对照靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

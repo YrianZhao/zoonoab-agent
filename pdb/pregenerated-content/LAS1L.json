@@ -1,0 +1,65 @@
+{
+  "gene": "LAS1L",
+  "generatedAt": "2026-08-03T20:03:42.677Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "LAS1L 是核仁核糖体生物发生因子，参与 ITS2 加工并与 PELP1-TEX10-WDR18 复合体及核糖体前体装配相关；其致病变异与 Wilson-Turner 综合征等神经发育表型相关，疾病机制主要涉及核糖体生物发生障碍。该蛋白定位于核仁/核质，为细胞内非分泌蛋白，缺乏胞外结构域或膜受体抗原可及性，因此不具备常规治疗性抗体直接结合优势。相较 EGFR、ERBB2、TNF 等可及性明确的胞外靶点，LAS1L 更适合作为结构生物学与胞内递送抗体研究靶点，主靶点优先级应限定于机制验证与细胞内抗体设计场景。",
+    "mechanism": "以胞内递送抗体阻断 LAS1L HEPN 样核酸酶区域与核糖体前体 ITS2 底物及复合体伴侣的功能性接触，干预 pre-rRNA 加工。",
+    "selectedEpitope": "优先覆盖 HEPN 样结构域催化沟槽邻近面及复合体接触界面，避免仅选择非功能性外周环区。",
+    "diseaseDirection": "核糖体生物发生障碍相关神经发育疾病",
+    "domain": "LAS1L 含 N 端结构化区、HEPN 样核酸酶核心及 C 端低复杂度/调控区域，参与 ITS2 切割复合体装配。",
+    "evidence": "LAS1L 核糖体生物发生与遗传病证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9Y4W2 functional annotation",
+      "RCSB PDB 8FL3 cryo-EM structure",
+      "Human ribosome biogenesis complex literature"
+    ],
+    "referenceEntries": "UniProt: Q9Y4W2; RCSB PDB: 8FL3; Open Targets: LAS1L",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "HEPN 样核心催化沟槽邻近表面",
+        "最可能影响 ITS2 加工相关底物识别与核酸酶功能",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PELP1-TEX10-WDR18 复合体接触面邻近区域",
+        "可干预 LAS1L 在核糖体生物发生复合体中的装配稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端低复杂度调控区域",
+        "构象柔性高且结构解析不稳定，抗体结合功能效应不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "LAS1L 为胞内核仁蛋白，常规抗体难以到达作用位点；应优先采用胞内递送、intrabody 或 VHH 工程策略，并严格评估核糖体生物发生全局毒性。",
+    "structurePrepZh": "以 8FL3 cryo-EM 模型为基础校验 LAS1L 链注释、缺失片段与复合体界面；保留功能性邻近链用于界面映射并标注柔性低置信区域。",
+    "structureRef": "RCSB PDB 8FL3, cryo-EM structure, 2.53 Å",
+    "antibodies": [
+      "无已获批 LAS1L 靶向抗体",
+      "无公开临床阶段 LAS1L 同类抗体"
+    ],
+    "interfaceFocus": "HEPN 样催化沟槽及复合体装配界面",
+    "designMode": "胞内VHH/intrabody",
+    "candidates": [
+      {
+        "target": "WDR18",
+        "rationale": "WDR18 是 LAS1L 相关核糖体生物发生复合体成员，参与 pre-rRNA 加工复合体稳定化；其与 LAS1L 位于同一核仁加工模块。"
+      },
+      {
+        "target": "TEX10",
+        "rationale": "TEX10 与 LAS1L、WDR18、PELP1 共同参与核糖体生物发生复合体装配，可作为同通路复合体界面干预候选。"
+      },
+      {
+        "target": "PELP1",
+        "rationale": "PELP1 是 PELP1-TEX10-WDR18-LAS1L 轴中的支架样组分，连接核仁复合体装配与 pre-rRNA 加工过程。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

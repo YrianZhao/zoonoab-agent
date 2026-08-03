@@ -1,0 +1,65 @@
+{
+  "gene": "ZNF93",
+  "generatedAt": "2026-08-03T18:02:36.612Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ZNF93为KRAB-C2H2型锌指转录因子，主要定位于细胞核，其遗传关联信号集中于VLDL胆固醇、乳糜微粒、甘油三酯和总胆固醇等脂质性状，提示其可能通过转录调控网络影响脂蛋白代谢表型。该蛋白缺乏分泌形式和跨膜胞外结构域，天然抗原可及性显著低于膜受体或循环蛋白，因此不适合作为常规细胞表面阻断抗体主靶点。优先级应低于PCSK9、ANGPTL3、APOC3等同通路可及性更高且具备临床验证的脂质代谢靶点；若开展抗体工程，更适合作为结构识别试剂或胞内递送抗体研究模型。",
+    "mechanism": "设计抗体应识别ZNF93锌指DNA结合面，阻断C2H2锌指阵列与靶DNA大沟的碱基接触，用于干预其序列特异性转录调控复合体形成。",
+    "selectedEpitope": "优先覆盖C2H2锌指α螺旋DNA识别残基及相邻指间连接区。",
+    "diseaseDirection": "脂蛋白代谢与血脂性状",
+    "domain": "ZNF93含N端KRAB转录抑制结构域及多拷贝C端C2H2锌指DNA结合结构域。",
+    "evidence": "ZNF93脂质性状遗传关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform脂质性状关联数据",
+      "UniProt P35789蛋白结构域注释",
+      "RCSB PDB 7Z36实验晶体结构",
+      "KRAB-C2H2锌指转录因子DNA识别文献"
+    ],
+    "referenceEntries": "UniProt:P35789；RCSB PDB:7Z36；Open Targets:ZNF93",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C2H2锌指α螺旋DNA识别面",
+        "可直接干扰锌指与DNA大沟的序列特异性接触，机制定义最清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "相邻C2H2锌指间TGEKP类连接区",
+        "可限制锌指阵列构象排列，削弱多指协同DNA结合",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端KRAB转录抑制结构域",
+        "可能影响KAP1/TRIM28依赖抑制复合体募集，但胞内可及性与功能验证风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ZNF93为核内蛋白，常规Fab或VHH难以进入细胞核；锌指区域保守性较高，需规避与其他C2H2蛋白交叉反应，并优先用于细胞内递送或研究试剂场景。",
+    "structurePrepZh": "以PDB 7Z36抗原链A、B、C、D、S为模板，保留锌配位Cys/His与Zn2+几何约束，检查晶体接触并重建缺失侧链后进行表位建模。",
+    "structureRef": "RCSB PDB 7Z36，X-ray diffraction，2.8 Å",
+    "antibodies": [
+      "无已批准ZNF93治疗性抗体",
+      "抗ZNF93研究级多克隆抗体"
+    ],
+    "interfaceFocus": "C2H2锌指α螺旋-DNA大沟接触界面",
+    "designMode": "胞内阻断型抗体",
+    "candidates": [
+      {
+        "target": "PCSK9",
+        "rationale": "PCSK9通过结合LDLR EGF-A结构域促进LDLR溶酶体降解，直接升高LDL胆固醇；其为分泌蛋白，抗体可及性和临床验证程度显著优于ZNF93。"
+      },
+      {
+        "target": "ANGPTL3",
+        "rationale": "ANGPTL3为肝源性分泌蛋白，可抑制LPL和内皮脂肪酶活性，促进甘油三酯及富含甘油三酯脂蛋白升高，适合中和抗体设计。"
+      },
+      {
+        "target": "APOC3",
+        "rationale": "APOC3位于循环脂蛋白颗粒表面，可抑制LPL介导的甘油三酯水解并延缓残粒清除，与乳糜微粒和VLDL代谢表型高度相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

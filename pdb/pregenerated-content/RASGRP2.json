@@ -1,0 +1,65 @@
+{
+  "gene": "RASGRP2",
+  "generatedAt": "2026-08-03T20:46:37.653Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RASGRP2编码CalDAG-GEFI，是血小板和巨核细胞中Rap1活化的关键鸟嘌呤核苷酸交换因子，缺陷可导致整合素αIIbβ3活化不足和血小板聚集障碍。该蛋白主要为胞内信号蛋白，不具备常规抗体药物可直接结合的胞外结构域，因此更适合作为机制验证、细胞内递送抗体片段或降解型分子设计靶点。相较于下游整合素或ADP受体，RASGRP2位于Ca2+-DAG依赖的Rap1启动节点，可更直接刻画遗传性血小板出血表型的病因优先级。",
+    "mechanism": "设计以内源递送抗体片段结合RASGRP2催化核心，阻断CDC25结构域与Rap1-GDP的交换界面，抑制Rap1-GTP生成及αIIbβ3 inside-out活化。",
+    "selectedEpitope": "优先瞄准REM-CDC25催化单元中Rap1结合沟槽及交换催化界面。",
+    "diseaseDirection": "遗传性血小板功能障碍与出血",
+    "domain": "RASGRP2含REM、CDC25 GEF催化结构域、EF-hand钙结合区及C1二酰甘油结合结构域。",
+    "evidence": "RASGRP2-Rap1血小板聚集通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q7LDG7功能注释",
+      "RCSB PDB 6AXF晶体结构",
+      "ClinVar与OMIM血小板出血表型记录"
+    ],
+    "referenceEntries": "UniProt Q7LDG7；RCSB PDB 6AXF；Open Targets RASGRP2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CDC25结构域Rap1-GDP结合沟槽",
+        "直接干预鸟嘌呤核苷酸交换反应，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "REM-CDC25结构域间支撑界面",
+        "可能影响催化构象稳定性并降低Rap1活化效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "EF-hand与C1调控区邻近表面",
+        "可能改变Ca2+/DAG依赖定位调控，但表型解释复杂",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RASGRP2为胞内蛋白，常规全长抗体难以到达作用位点；设计需采用细胞内抗体、递送载体或可降解格式，并严控Rap1通路广泛抑制风险。",
+    "structurePrepZh": "以6AXF晶体结构为催化核心模板，检查3.1 Å分辨率下缺失环区、链间晶体接触和REM-CDC25界面构象，补全侧链后开展表位可及性评估。",
+    "structureRef": "RCSB PDB 6AXF，X-ray diffraction，3.1 Å",
+    "antibodies": [
+      "无已批准RASGRP2靶向抗体",
+      "研究级抗RASGRP2检测抗体"
+    ],
+    "interfaceFocus": "CDC25-Rap1交换界面与REM支撑面",
+    "designMode": "胞内Fab/VHH递送",
+    "candidates": [
+      {
+        "target": "RAP1B",
+        "rationale": "RAP1B是血小板中CalDAG-GEFI下游小GTP酶，直接驱动整合素αIIbβ3 inside-out活化，遗传缺陷同样关联血小板聚集异常。"
+      },
+      {
+        "target": "ITGA2B",
+        "rationale": "ITGA2B编码整合素αIIb，是Rap1信号最终激活的纤维蛋白原受体组成部分，Glanzmann血小板无力症通路相关性明确。"
+      },
+      {
+        "target": "ITGB3",
+        "rationale": "ITGB3编码整合素β3，与αIIb形成血小板αIIbβ3复合体，是血小板聚集和出血表型的直接效应节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

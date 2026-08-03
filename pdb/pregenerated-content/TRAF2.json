@@ -1,0 +1,65 @@
+{
+  "gene": "TRAF2",
+  "generatedAt": "2026-08-03T17:27:02.356Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TRAF2是TNFR1、TNFR2、CD40等受体复合物中的胞内衔接蛋白，参与cIAP1/2募集、K63泛素化、NF-κB与JNK信号传递，其遗传和血液细胞表型关联提示免疫炎症通路相关性。该蛋白主要定位于胞质侧，不具备天然胞外结构域或分泌蛋白特征，因此常规体内阻断型抗体抗原可及性不足，更适合结构验证、细胞内递送抗体或研究级结合分子开发。相较TNF或TNFR等膜外可及靶点，TRAF2的优先级优势在于结构域信息明确且位于受体近端信号汇聚节点，可用于解析TNFR超家族下游信号复合物装配机制。",
+    "mechanism": "设计结合TRAF-C受体肽结合沟槽的抗体片段，阻断TRAF2与TNFR2、CD40胞内尾部TRAF结合基序的相互作用。",
+    "selectedEpitope": "优先覆盖TRAF-C结构域受体肽结合沟槽及三聚体边缘界面。",
+    "diseaseDirection": "TNFR超家族免疫炎症信号",
+    "domain": "TRAF2含RING、锌指、卷曲螺旋TRAF-N及C端TRAF-C结构域；3KNV覆盖TRAF结构域区域。",
+    "evidence": "TRAF2-TNFR超家族信号结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q12933功能与结构域注释",
+      "RCSB PDB 3KNV晶体结构记录",
+      "TNFR/CD40-TRAF2信号复合物文献"
+    ],
+    "referenceEntries": "UniProt Q12933；RCSB PDB 3KNV；Open Targets TRAF2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "TRAF-C受体肽结合沟槽",
+        "直接竞争TNFR2、CD40等胞内尾部TRAF结合基序，机制清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "TRAF-C三聚体外侧可及面",
+        "可稳定识别构象表面并干扰复合物装配，适合Fab筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "TRAF-N卷曲螺旋三聚化界面",
+        "可能影响TRAF2寡聚化，但存在构象保守性与脱靶风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TRAF2为胞内蛋白，常规抗体药物难以到达作用位点；设计应限定为细胞内递送格式、intrabody或研究级阻断工具，并评估TRAF家族交叉反应。",
+    "structurePrepZh": "以3KNV链A为结构模板，保留TRAF结构域完整三维折叠，检查缺失环区、晶体接触面与受体肽结合沟槽电荷分布后进行表位建模。",
+    "structureRef": "RCSB PDB 3KNV；X-ray diffraction 1.9 Å",
+    "antibodies": [
+      "研究级抗TRAF2单克隆抗体",
+      "抗TRAF2 Western blot/免疫沉淀抗体"
+    ],
+    "interfaceFocus": "TRAF-C受体肽结合沟槽与三聚体边缘",
+    "designMode": "胞内靶点Fab/VHH设计",
+    "candidates": [
+      {
+        "target": "TNFRSF1A",
+        "rationale": "TNFR1在TNF诱导的复合物I中募集TRADD、RIPK1、TRAF2和cIAP1/2，是TRAF2上游的膜受体节点，具备胞外可及性。"
+      },
+      {
+        "target": "TNFRSF1B",
+        "rationale": "TNFR2胞内尾部可直接招募TRAF2-cIAP复合物并驱动NF-κB信号，其胞外受体结构更适合阻断型抗体开发。"
+      },
+      {
+        "target": "CD40",
+        "rationale": "CD40通过胞内TRAF结合基序招募TRAF2、TRAF3和TRAF6，参与B细胞和抗原呈递细胞活化，属于同一TNFR超家族-TRAF信号轴。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "IL15",
+  "generatedAt": "2026-08-03T13:25:33.400Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IL15 是γ链细胞因子家族成员，通过IL15RA呈递并激活IL2RB/IL2RG受体复合体，驱动NK细胞和记忆CD8 T细胞存活、增殖及JAK1/JAK3-STAT5信号，在自身免疫性甲状腺疾病和炎症性免疫失衡中具有明确通路关联。IL15为分泌型细胞因子，成熟蛋白可被IL15RA高亲和力捕获，抗体可直接作用于可溶性或细胞表面呈递的细胞因子-受体界面，抗原可及性优于胞内信号节点。相较下游JAK/STAT分子，IL15更适合作为配体端阻断靶点，可在保留其他细胞因子通路的同时选择性削弱IL15依赖性淋巴细胞活化。",
+    "mechanism": "阻断IL15与IL15RA sushi结构域或IL2RB/IL2RG受体复合体的结合，抑制IL15反式呈递及STAT5磷酸化。",
+    "selectedEpitope": "优先覆盖IL15四螺旋束中与IL15RA sushi结构域接触的螺旋A/螺旋D界面。",
+    "diseaseDirection": "自身免疫与炎症性免疫调控",
+    "domain": "IL15成熟区为短链四α螺旋束细胞因子，包含IL15RA、IL2RB和IL2RG受体结合面。",
+    "evidence": "IL15受体复合体结构与免疫疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P40933 functional annotation",
+      "RCSB PDB 2Z3Q X-ray structure",
+      "cytokine receptor signaling literature"
+    ],
+    "referenceEntries": "UniProt P40933；RCSB PDB 2Z3Q；Open Targets IL15",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "螺旋A/螺旋D与IL15RA sushi结构域接触面",
+        "直接干预高亲和力α受体捕获和反式呈递，阻断价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "IL15与IL2RB接触相关螺旋B/螺旋C邻近面",
+        "削弱信号受体募集，可作为功能阻断备选表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离受体结合面的四螺旋束外侧暴露面",
+        "结合可及但功能阻断不确定，需避免仅形成非中和抗体",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IL15与IL2共享IL2RB/IL2RG信号链，设计需避免交叉扰动IL2通路；优先筛选不识别IL2且能阻断IL15RA结合的克隆。",
+    "structurePrepZh": "以2Z3Q实验晶体结构为模板，保留IL15成熟链及受体接触界面，校正缺失侧链、质子化状态和链间接触后开展表位建模。",
+    "structureRef": "PDB 2Z3Q，human IL15 receptor complex，1.85 Å X-ray",
+    "antibodies": [
+      "AMG 714",
+      "HuMax-IL15"
+    ],
+    "interfaceFocus": "IL15RA sushi结构域结合面及β/γ受体募集面",
+    "designMode": "配体中和阻断",
+    "candidates": [
+      {
+        "target": "IL15RA",
+        "rationale": "IL15RA以sushi结构域高亲和力结合IL15并介导反式呈递，是IL15通路的近端受体节点。阻断IL15RA可抑制细胞表面呈递和下游淋巴细胞活化。"
+      },
+      {
+        "target": "IL2RB",
+        "rationale": "IL2RB参与IL15信号受体复合体形成并负责JAK1-STAT5通路启动。靶向该链可干预IL15依赖性NK细胞和记忆CD8 T细胞扩增。"
+      },
+      {
+        "target": "IL2RG",
+        "rationale": "IL2RG是IL15受体复合体的共同γ链，参与JAK3募集和信号传递。该节点具有通路相关性，但因多种γ链细胞因子共用而需谨慎评估选择性风险。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

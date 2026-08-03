@@ -1,0 +1,65 @@
+{
+  "gene": "SNX10",
+  "generatedAt": "2026-08-03T16:47:46.102Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SNX10 是含 PX 结构域的胞内膜运输适配蛋白，参与破骨细胞皱褶缘形成、囊泡转运及溶酶体酸化，功能缺失可导致常染色体隐性恶性骨硬化症。该蛋白主要定位于内体及细胞内膜系统，缺乏稳定胞外结构域，因此常规治疗性抗体可及性受限，但其结晶结构有利于机制表位与细胞内递送抗体片段的理性设计。相较于同通路中广泛表达的质子泵亚基，SNX10 更贴近破骨细胞囊泡定位节点，具有更明确的遗传因果证据和结构解析基础。",
+    "mechanism": "设计抗体片段阻断 SNX10 PX 结构域与磷脂酰肌醇磷酸化膜头基结合，干扰破骨细胞内体膜招募及皱褶缘囊泡运输。",
+    "selectedEpitope": "优先覆盖 PX 结构域磷脂结合口袋邻近 β1-β2 环及 α1-α2 表面沟槽。",
+    "diseaseDirection": "破骨细胞骨吸收障碍与骨硬化症",
+    "domain": "SNX10 主要由 N 端 PX 结构域构成，负责磷脂酰肌醇磷酸化膜识别及内体膜定位。",
+    "evidence": "SNX10 结构与恶性骨硬化症遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9Y5X0 functional annotation",
+      "RCSB PDB 6KOK X-ray structure",
+      "OMIM/Orphanet osteopetrosis genetics"
+    ],
+    "referenceEntries": "UniProt Q9Y5X0；RCSB PDB 6KOK；Orphanet 667",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PX 结构域磷脂结合口袋及 β1-β2 环",
+        "直接竞争膜磷脂头基结合，具备明确机制可解释性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PX 结构域 α1-α2 表面沟槽",
+        "可能影响膜面取向和内体定位，可作为变构阻断区域",
+        "备选"
+      ],
+      [
+        "Site C",
+        "晶体二聚体界面附近非保守表面",
+        "6KOK 含 A、B 链晶体接触，需区分生理界面与晶格堆积",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SNX10 为胞内蛋白，常规 IgG 难以进入靶细胞；宜采用细胞内递送 VHH、intrabody 或降解偶联策略，并避免干扰高保守 PX 骨架造成非特异结合。",
+    "structurePrepZh": "以 6KOK 的 A、B 链为模板，保留 PX 结构域核心构象，去除晶体水和非功能性接触，标注磷脂结合正电荷口袋用于表位建模。",
+    "structureRef": "RCSB PDB 6KOK，human SNX10 PX domain，2.0 Å",
+    "antibodies": [
+      "暂无获批抗 SNX10 治疗抗体",
+      "研究级抗 SNX10 抗体"
+    ],
+    "interfaceFocus": "PX 磷脂结合口袋与膜招募表面",
+    "designMode": "胞内VHH阻断",
+    "candidates": [
+      {
+        "target": "TCIRG1",
+        "rationale": "TCIRG1 编码破骨细胞 V-ATPase a3 亚基，是恶性骨硬化症的主要遗传靶点；其功能位于骨吸收腔酸化步骤，与 SNX10 介导的囊泡定位同属破骨细胞骨吸收通路。"
+      },
+      {
+        "target": "CLCN7",
+        "rationale": "CLCN7 编码溶酶体和皱褶缘氯离子转运蛋白，维持 V-ATPase 介导酸化所需电荷平衡；其缺陷同样导致骨硬化表型。"
+      },
+      {
+        "target": "OSTM1",
+        "rationale": "OSTM1 是 CLCN7 稳定性和溶酶体定位所需辅助亚基，与 CLCN7 共同维持破骨细胞酸化功能，可作为同一骨吸收轴的候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

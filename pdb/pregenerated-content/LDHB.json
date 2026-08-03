@@ -1,0 +1,65 @@
+{
+  "gene": "LDHB",
+  "generatedAt": "2026-08-03T13:50:58.314Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "LDHB编码乳酸脱氢酶H亚基，催化乳酸与丙酮酸之间的NAD+/NADH依赖性可逆转化；其遗传缺陷与糖原贮积病相关，代谢表型还涉及丙酮酸、HbA1c和2型糖尿病相关测量性状。该蛋白主要为胞质四聚体酶，并非经典分泌蛋白或膜受体，天然抗原可及性弱于胞外靶点，抗体设计更适合用于细胞内递送、诊断捕获或酶活调控研究。相比同代谢通路中广泛表达且功能冗余更高的上游糖酵解酶，LDHB具有高分辨率实验结构和明确辅因子/底物结合口袋，适合作为机制验证优先靶点。",
+    "mechanism": "抗体结合LDHB底物沟槽邻近环区或亚基界面，空间阻断乳酸/丙酮酸及NADH进入催化口袋，或干扰LDHB同源四聚体稳定性而降低酶活。",
+    "selectedEpitope": "优先覆盖Rossmann折叠NAD结合沟槽邻近的催化环与底物入口边缘。",
+    "diseaseDirection": "乳酸-丙酮酸代谢与糖代谢异常",
+    "domain": "LDHB为NAD依赖性乳酸脱氢酶，含N端Rossmann样辅因子结合域和C端催化/底物结合域，形成同源四聚体。",
+    "evidence": "LDHB代谢疾病关联与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProtKB P07195功能与亚细胞定位注释",
+      "RCSB PDB 7DBJ X射线晶体结构",
+      "OMIM/ClinVar乳酸脱氢酶H亚基缺陷相关遗传证据"
+    ],
+    "referenceEntries": "UniProt P07195；RCSB PDB 7DBJ；Open Targets LDHB",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "NAD结合Rossmann沟槽邻近催化环",
+        "可阻断辅因子进入并直接影响氧化还原催化循环",
+        "优先"
+      ],
+      [
+        "Site B",
+        "乳酸/丙酮酸底物入口及活动环边缘",
+        "有利于限制底物进入催化位点并形成酶活抑制表型",
+        "备选"
+      ],
+      [
+        "Site C",
+        "四聚体亚基接触界面",
+        "可能扰动寡聚体稳定性，但需避免高保守界面导致选择性不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "LDHB为胞内代谢酶，常规治疗性抗体组织可及性受限；设计宜定位于诊断捕获、细胞内递送抗体或研究级酶活调控，并评估LDHA交叉反应风险。",
+    "structurePrepZh": "采用PDB 7DBJ四聚体晶体结构，保留抗原链A-D用于界面分析；补全缺失侧链、校正质子化状态，并标注NAD/底物结合沟槽。",
+    "structureRef": "RCSB PDB 7DBJ，human LDHB X-ray structure，1.551 Å",
+    "antibodies": [
+      "anti-LDHB diagnostic antibody",
+      "anti-LDHB immunohistochemistry antibody"
+    ],
+    "interfaceFocus": "NAD结合沟槽、底物入口环、四聚体亚基界面",
+    "designMode": "胞内酶表位阻断",
+    "candidates": [
+      {
+        "target": "LDHA",
+        "rationale": "LDHA与LDHB共同构成乳酸脱氢酶同工酶体系，参与乳酸-丙酮酸可逆转化；其疾病关联集中于糖酵解重编程和代谢异常，可作为同通路选择性对照靶点。"
+      },
+      {
+        "target": "PDHA1",
+        "rationale": "PDHA1编码丙酮酸脱氢酶E1α亚基，连接丙酮酸代谢与三羧酸循环；其功能状态影响LDHB底物丙酮酸的代谢去向。"
+      },
+      {
+        "target": "PDK1",
+        "rationale": "PDK1通过磷酸化抑制丙酮酸脱氢酶复合体，促进丙酮酸向乳酸生成方向偏移；与LDH轴共同参与糖代谢重编程。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

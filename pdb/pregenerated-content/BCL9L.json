@@ -1,0 +1,65 @@
+{
+  "gene": "BCL9L",
+  "generatedAt": "2026-08-03T10:48:48.875Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BCL9L 是经典 Wnt/β-catenin 转录复合体的核内共调节因子，通过其 HD2 结构域结合 CTNNB1，并促进肠道肿瘤中 β-catenin/TCF 依赖性致癌转录。其疾病关联以结直肠腺癌和胃肠型腺癌为主，符合 APC/CTNNB1 驱动的 Wnt 通路异常背景。BCL9L 不具备分泌蛋白或膜受体特征，天然抗原可及性弱，因此更适合作为胞内递送抗体片段或结构引导的界面阻断模型靶点。相比直接靶向 CTNNB1 或 TCF 家族，BCL9L-CTNNB1 界面更聚焦于致癌转录增强模块，具有较高的通路选择性设计价值。",
+    "mechanism": "通过结合 BCL9L HD2 螺旋结合面，阻断其与 CTNNB1 Armadillo repeats 的相互作用，削弱 β-catenin/TCF 介导的致癌转录激活。",
+    "selectedEpitope": "优先覆盖 HD2 α螺旋中与 CTNNB1 Armadillo repeat 1-2 接触的疏水-带电界面。",
+    "diseaseDirection": "Wnt驱动消化道腺癌",
+    "domain": "BCL9L 为核内转录共调节蛋白，含 β-catenin 结合 HD2 区段及转录调控相关保守区域。",
+    "evidence": "BCL9L-Wnt/β-catenin肿瘤证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q86UU0 functional annotation",
+      "RCSB PDB 4UP0 X-ray structure",
+      "Wnt/β-catenin colorectal cancer literature"
+    ],
+    "referenceEntries": "UniProt Q86UU0；RCSB PDB 4UP0；Open Targets BCL9L",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "HD2 α螺旋的 CTNNB1 结合核心界面",
+        "直接阻断 BCL9L-β-catenin 复合体形成，机制最清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "HD2 邻近溶剂暴露侧链簇",
+        "可增强抗体片段结合稳定性并降低对核心残基突变的敏感性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离 CTNNB1 接触面的低保守柔性区域",
+        "结合可及但功能阻断证据弱，需避免仅产生非中和结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BCL9L 为核内蛋白，常规抗体细胞外可及性不足；应采用胞内递送 Fab/VHH、细胞穿透或降解偶联策略，并严格评估 BCL9 同源交叉反应。",
+    "structurePrepZh": "以 4UP0 高分辨率晶体结构为模板，保留 BCL9L HD2 与 CTNNB1 复合体界面，补全缺失侧链并进行质子化与界面能量最小化。",
+    "structureRef": "RCSB PDB 4UP0，X-ray diffraction，1.28 Å",
+    "antibodies": [
+      "无临床获批抗BCL9L抗体",
+      "无公开验证的BCL9L中和抗体"
+    ],
+    "interfaceFocus": "BCL9L HD2-CTNNB1 Armadillo界面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "CTNNB1",
+        "rationale": "CTNNB1 是经典 Wnt 通路核心转录效应因子，与 BCL9L、TCF/LEF 形成转录复合体；其 Armadillo repeats 为 BCL9L 结合界面的直接对应面。"
+      },
+      {
+        "target": "TCF7L2",
+        "rationale": "TCF7L2 是结直肠癌中 β-catenin 依赖性转录输出的关键 DNA 结合因子，与 BCL9L 处于同一核内致癌转录模块。"
+      },
+      {
+        "target": "APC",
+        "rationale": "APC 是 β-catenin 降解复合体的核心肿瘤抑制因子，其失活导致 CTNNB1 稳定化并增强 BCL9L 依赖性 Wnt 转录。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

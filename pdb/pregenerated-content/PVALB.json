@@ -1,0 +1,65 @@
+{
+  "gene": "PVALB",
+  "generatedAt": "2026-08-03T15:46:01.181Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PVALB编码parvalbumin，为胞质EF-hand钙结合蛋白，主要参与快速缓冲胞内Ca2+瞬变；现有Open Targets关联以血细胞计数和血清蛋白测量性状为主，缺乏明确致病配体-受体轴或可药物化炎症通路定位。该蛋白通常不具有分泌信号肽、跨膜区或稳定胞外结构域，天然抗原可及性不符合常规治疗性抗体阻断或耗竭设计优势。相较IL5、IL5RA或CCR3等嗜酸粒细胞通路靶点，PVALB的疾病因果性、细胞表面可及性和可转化干预窗口均较弱，因此更适合作为研究性抗原或生物标志物验证对象，而非优先治疗性抗体主靶点。",
+    "mechanism": "研究性抗体可识别PVALB EF-hand折叠表面并干扰Ca2+结合构象稳定性，但体内治疗作用受限于其胞质定位和缺乏胞外配体相互作用。",
+    "selectedEpitope": "优先选择EF-hand CD/EF螺旋-环-螺旋外露面，避开Ca2+配位残基以保持构象判读稳定性。",
+    "diseaseDirection": "血液细胞性状与生物标志物",
+    "domain": "PVALB由N端AB假EF-hand和两个Ca2+结合EF-hand结构域CD、EF组成，整体为小型酸性钙结合蛋白。",
+    "evidence": "PVALB结构可行性与疾病关联可药性评估",
+    "evidenceSources": [
+      "Open Targets Platform疾病-靶点关联评分",
+      "UniProtKB P20472蛋白定位与功能注释",
+      "RCSB PDB 9BB8实验晶体结构",
+      "EF-hand钙结合蛋白结构与功能文献"
+    ],
+    "referenceEntries": "UniProtKB:P20472；RCSB PDB:9BB8；Ensembl:ENSG00000100362",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CD/EF EF-hand外侧螺旋表面",
+        "结构保守且可形成构象特异性识别，用于研究性捕获抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端AB假EF-hand暴露面",
+        "可作为非钙结合调控区识别表位，降低对Ca2+占据状态依赖",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Ca2+结合环及酸性配位残基邻域",
+        "可能影响金属离子结合并产生构象异质性，需避免强干扰型表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为胞内定位导致体内抗体不可及，且疾病关联多为遗传或测量性状信号。建议限定为诊断、检测或机制研究抗体，不作为优先治疗阻断项目。",
+    "structurePrepZh": "以9BB8链A为模板，补全缺失侧链并保留Ca2+配位状态；进行质子化、晶体接触检查和表面可及性计算后再开展表位建模。",
+    "structureRef": "RCSB PDB 9BB8，人PVALB X射线晶体结构，2.722 Å",
+    "antibodies": [
+      "抗parvalbumin单克隆抗体PARV-19",
+      "抗parvalbumin单克隆抗体EPR13091"
+    ],
+    "interfaceFocus": "EF-hand螺旋外侧面与Ca2+结合环邻域",
+    "designMode": "研究性结合抗体",
+    "candidates": [
+      {
+        "target": "IL5",
+        "rationale": "IL5是嗜酸粒细胞分化、存活和募集的关键细胞因子，直接驱动与嗜酸粒细胞计数相关的炎症轴。其为分泌蛋白，抗体可直接中和IL5与IL5RA的结合。"
+      },
+      {
+        "target": "IL5RA",
+        "rationale": "IL5RA表达于嗜酸粒细胞和嗜碱粒细胞相关谱系，介导IL5依赖性JAK-STAT和PI3K信号。膜表面受体特征使其适合阻断型或去除型抗体设计。"
+      },
+      {
+        "target": "CCR3",
+        "rationale": "CCR3介导嗜酸粒细胞对CCL11、CCL24和CCL26等趋化因子的迁移反应，与嗜酸粒细胞炎症募集通路一致。其多跨膜受体胞外环和N端区域可作为抗体调控入口。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

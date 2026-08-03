@@ -1,0 +1,65 @@
+{
+  "gene": "ERCC4",
+  "generatedAt": "2026-08-03T12:21:33.366Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ERCC4/XPF 是核苷酸切除修复与 Fanconi anemia DNA 交联修复通路中的结构特异性核酸内切酶催化亚基，主要通过与 ERCC1 形成异二聚体切割受损 DNA 5′侧链而维持基因组稳定性，其遗传缺陷与着色性干皮病 F 型、Fanconi anemia Q 型及 XP-CS 复合征密切相关。该蛋白为核内 DNA 修复因子，并非天然胞外抗原，完整抗体的体内可及性受限；其可作为细胞内功能阻断抗体、结构探针或递送型抗体片段的分子设计对象。相较于上游损伤识别因子，ERCC4 具有明确催化中心、ERCC1 依赖性界面和疾病等位变异富集证据，适合以机制验证优先的抗体工程策略开展。",
+    "mechanism": "设计抗体阻断 ERCC4 与 ERCC1 的异二聚体稳定界面或遮蔽 XPF nuclease 活性沟槽，抑制受损 DNA 5′切口形成并削弱 NER/ICL 修复。",
+    "selectedEpitope": "优先瞄准 ERCC4 C 端 nuclease 域邻近 ERCC1 结合界面及活性沟槽外缘。",
+    "diseaseDirection": "DNA修复缺陷与基因组不稳定疾病",
+    "domain": "ERCC4 含 N 端 helicase-like 区、中央 nuclease 催化域及 C 端 HhH2 DNA/ERCC1 结合区。",
+    "evidence": "ERCC4/XPF DNA修复疾病机制证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt Q92889 功能与结构域注释",
+      "RCSB PDB 2A1J X射线晶体结构",
+      "NER与Fanconi anemia通路文献证据"
+    ],
+    "referenceEntries": "UniProt Q92889；RCSB PDB 2A1J；Open Targets ERCC4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端HhH2及ERCC1结合界面邻近区域",
+        "干扰ERCC4-ERCC1异二聚体稳定性，具备明确机制读出",
+        "优先"
+      ],
+      [
+        "Site B",
+        "nuclease催化域活性沟槽外缘",
+        "可能空间遮挡受损DNA底物进入，适合功能阻断筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端helicase-like结构域暴露环区",
+        "远离核心催化切割界面，功能阻断不确定性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ERCC4 为核内蛋白，常规胞外抗体难以到达作用位点；应优先采用细胞内表达抗体、VHH或递送型Fab，并避免直接破坏高度保守催化残基导致非特异构象失稳。",
+    "structurePrepZh": "以PDB 2A1J实验结构为模板，保留抗原链A、B并校验二聚体界面；补全缺失环区、质子化催化残基，标注DNA结合沟槽与ERCC1邻近面。",
+    "structureRef": "RCSB PDB 2A1J；2.7 Å X-ray ERCC4相关结构",
+    "antibodies": [
+      "抗XPF研究级单克隆抗体",
+      "抗ERCC4免疫检测抗体"
+    ],
+    "interfaceFocus": "ERCC1结合面与nuclease-DNA底物沟槽",
+    "designMode": "细胞内功能阻断",
+    "candidates": [
+      {
+        "target": "ERCC1",
+        "rationale": "ERCC1 是 ERCC4/XPF 的必需异二聚体伴侣，负责稳定复合体并参与损伤DNA定位；阻断 ERCC1-ERCC4 界面可直接抑制 NER 5′切口形成。"
+      },
+      {
+        "target": "XPA",
+        "rationale": "XPA 在核苷酸切除修复中组织损伤验证并招募 ERCC1-XPF 至切割位点；其与 ERCC1 等因子的相互作用位点是同通路功能干预节点。"
+      },
+      {
+        "target": "ERCC5",
+        "rationale": "ERCC5/XPG 负责 NER 中受损链 3′侧切口，与 ERCC1-XPF 的 5′切口形成互补；联合评估可覆盖双切口修复步骤。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

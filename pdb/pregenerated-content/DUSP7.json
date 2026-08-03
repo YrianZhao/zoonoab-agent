@@ -1,0 +1,65 @@
+{
+  "gene": "DUSP7",
+  "generatedAt": "2026-08-03T18:48:43.358Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DUSP7 属于胞内双特异性磷酸酶，主要通过去磷酸化 ERK1/2 等 MAPK 成员限制 MAPK 信号持续性，其遗传关联提示与中枢神经系统自身免疫及神经退行性疾病存在统计学联系。该蛋白缺乏跨膜区和分泌信号肽，天然抗原可及性不利于常规体内阻断抗体，因此更适合作为结构引导的胞内抗体或研究级结合分子靶点。相较于上游膜受体，DUSP7 的催化结构域已有高分辨率实验结构，可支持精确表位设计；但治疗优先级低于可外源抗体直接接触的 MAPK 通路膜近端靶点。",
+    "mechanism": "设计结合分子占据 DUSP7 催化结构域活性沟槽或 MAPK docking 邻近界面，阻碍其与磷酸化 ERK1/2 底物复合物形成，从而改变 ERK 去磷酸化效率。",
+    "selectedEpitope": "优先覆盖 C 端磷酸酶催化结构域的活性位点沟槽及 MAPK 底物进入边缘。",
+    "diseaseDirection": "中枢自身免疫与神经炎症",
+    "domain": "DUSP7 含 N 端 rhodanese-like 非催化结构域及 C 端 dual-specificity phosphatase 催化结构域。",
+    "evidence": "DUSP7-MAPK 轴结构与疾病遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联统计",
+      "UniProt Q16829 蛋白功能与结构域注释",
+      "RCSB PDB 4Y2E X 射线晶体结构",
+      "MAPK 磷酸酶家族底物识别研究文献"
+    ],
+    "referenceEntries": "UniProt Q16829；RCSB PDB 4Y2E；Open Targets DUSP7",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C 端 DUSP 催化结构域活性沟槽",
+        "直接干预磷酸化 MAPK 底物进入与催化构象稳定",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域近端 MAPK docking 邻近表面",
+        "阻断 DUSP7 与 ERK1/2 底物复合物形成，兼顾选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端 rhodanese-like 非催化结构域外露面",
+        "可能影响构象或蛋白互作，但与底物去磷酸化的直接因果性较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DUSP7 为胞内酶，常规抗体难以进入靶细胞；建议限定为胞内抗体、递送型 VHH 或体外机制探针，并避免破坏高度保守催化基序导致家族交叉反应。",
+    "structurePrepZh": "以 4Y2E 高分辨率晶体结构为模板，保留催化结构域构象，检查链 A-D 的晶体接触差异，补全缺失侧链并标注催化半胱氨酸邻域。",
+    "structureRef": "RCSB PDB 4Y2E，1.67 Å X-ray human DUSP7 structure",
+    "antibodies": [
+      "无获批 DUSP7 阻断抗体",
+      "研究级 anti-DUSP7 antibody"
+    ],
+    "interfaceFocus": "催化 Cys 环、底物结合沟槽与 MAPK docking 邻面",
+    "designMode": "胞内VHH/结构探针",
+    "candidates": [
+      {
+        "target": "MAPK1",
+        "rationale": "MAPK1 编码 ERK2，是 DUSP7 去磷酸化调控的核心 MAPK 底物之一；其在炎症和神经细胞应激信号中处于同一 ERK 通路轴。"
+      },
+      {
+        "target": "MAPK3",
+        "rationale": "MAPK3 编码 ERK1，与 ERK2 共同构成经典 ERK1/2 模块；靶向其上游或底物结合界面可作为 DUSP7 轴的功能对照策略。"
+      },
+      {
+        "target": "DUSP6",
+        "rationale": "DUSP6 是 ERK 偏向性 MAPK 磷酸酶，与 DUSP7 同属 MAPK 去磷酸化负反馈网络；其疾病通路位置有助于比较 DUSP7 靶向的选择性与补偿风险。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

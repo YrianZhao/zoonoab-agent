@@ -1,0 +1,65 @@
+{
+  "gene": "AXIN2",
+  "generatedAt": "2026-08-03T10:44:21.190Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "AXIN2 是 Wnt/β-catenin 破坏复合体的支架蛋白，促进 APC、GSK3β、CK1 与 β-catenin 的空间组装，其失功能突变可导致 β-catenin 稳定化并驱动结直肠肿瘤易感。AXIN2 为胞内蛋白，天然抗体可及性弱，不具备常规细胞外抗原优势，需限定于细胞内递送抗体、intrabody 或机制验证型结合分子设计。相较 WNT 配体或 FZD/LRP5/6 膜受体，AXIN2 更接近遗传易感与负反馈节点，但作为治疗性抗体主靶点优先级低于可及性更高的通路膜受体。",
+    "mechanism": "设计结合 AXIN2 DIX 聚合界面或 RGS/APC 结合区的细胞内抗体，干预 AXIN2 自聚集及 APC 复合物装配，从而影响 β-catenin 磷酸化降解复合体形成。",
+    "selectedEpitope": "优先评估 DIX 结构域聚合界面，备选 RGS 结构域 APC 结合面，避免破坏广泛无序调控区。",
+    "diseaseDirection": "Wnt驱动结直肠癌易感",
+    "domain": "AXIN2 含 RGS/APC 结合结构域、GSK3β/β-catenin 结合区及 C 端 DIX 聚合结构域。",
+    "evidence": "AXIN2-Wnt破坏复合体肿瘤遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt Q9Y2T1 功能与结构域注释",
+      "RCSB PDB 8HEO X射线晶体结构",
+      "结直肠癌与家族性腺瘤性息肉病遗传研究"
+    ],
+    "referenceEntries": "UniProt: Q9Y2T1；RCSB PDB: 8HEO；Open Targets: AXIN2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端 DIX 结构域聚合界面",
+        "可直接影响 AXIN2 自聚集与破坏复合体高阶装配，机制读出明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端 RGS 结构域 APC 结合面",
+        "可调节 APC 招募并改变 β-catenin 降解复合体形成，适合机制验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "中段 GSK3β/β-catenin 结合邻近区",
+        "区域柔性较高且多蛋白相互作用密集，存在非预期通路扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "AXIN2 缺乏胞外暴露，常规 Fab 或 VHH 难以到达靶点；建议作为细胞内抗体或递送型结合分子开展，并严格评估 Wnt 通路双向扰动。",
+    "structurePrepZh": "以 8HEO 中抗原链 A、B、G 为模板，保留解析良好的结构域坐标，补充缺失柔性片段注释并进行界面残基可及性评估。",
+    "structureRef": "RCSB PDB 8HEO；X-ray diffraction，2.53 Å",
+    "antibodies": [
+      "暂无获批AXIN2靶向抗体",
+      "暂无临床阶段AXIN2同类抗体"
+    ],
+    "interfaceFocus": "DIX聚合界面与RGS-APC结合面",
+    "designMode": "细胞内抗体设计",
+    "candidates": [
+      {
+        "target": "APC",
+        "rationale": "APC 与 AXIN2 同属 β-catenin 破坏复合体核心组分，遗传失活是结直肠癌 Wnt 通路异常激活的关键事件。"
+      },
+      {
+        "target": "CTNNB1",
+        "rationale": "CTNNB1 编码 β-catenin，是 AXIN2 复合体直接调控底物，其稳定化与核转录活性增强直接驱动 Wnt 靶基因表达。"
+      },
+      {
+        "target": "LRP6",
+        "rationale": "LRP6 是 Wnt 受体复合体共受体，磷酸化后招募 AXIN 蛋白并抑制破坏复合体功能，且膜表面可及性优于 AXIN2。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

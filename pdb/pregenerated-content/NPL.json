@@ -1,0 +1,65 @@
+{
+  "gene": "NPL",
+  "generatedAt": "2026-08-03T20:19:52.428Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NPL 编码胞质 N-acetylneuraminate pyruvate lyase，催化 N-acetylneuraminate 裂解为 N-acetyl-D-mannosamine 与丙酮酸，是唾液酸分解代谢通路的末端酶。Open Targets 关联主要集中于 N-acetylneuraminate 测量、血清代谢物水平及代谢物比值，提示其疾病证据更偏向代谢表型而非经典细胞表面致病通路。该蛋白缺乏分泌信号肽、跨膜区和稳定胞外结构域，抗原可及性显著弱于膜受体或分泌因子；因此作为常规治疗性抗体主靶点优先级较低，但可用于结构验证型胞内抗体、研究级阻断抗体或靶向递送平台探索。",
+    "mechanism": "抗体需进入胞质后结合 NPL 催化桶结构近活性位点区域，空间阻断底物 N-acetylneuraminate 与催化 Lys 残基介导的席夫碱中间体形成。",
+    "selectedEpitope": "优先选择 TIM-barrel 催化口袋外缘与底物进入通道相邻环区，避免直接依赖高度保守催化 Lys。",
+    "diseaseDirection": "唾液酸分解代谢与血清代谢表型",
+    "domain": "NPL 为醛缩酶样 TIM-barrel 胞质酶，PDB 6ARH 显示同源四聚体装配及活性位点口袋。",
+    "evidence": "NPL 唾液酸分解代谢结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9BXD5 functional annotation",
+      "RCSB PDB 6ARH X-ray structure",
+      "Reactome sialic acid metabolism pathway"
+    ],
+    "referenceEntries": "UniProt Q9BXD5；RCSB PDB 6ARH；Reactome 唾液酸代谢条目",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化口袋外缘及底物进入通道环区",
+        "可阻断 Neu5Ac 进入并影响催化中间体形成，兼顾结构可及性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "四聚体亚基界面邻近 TIM-barrel 外侧面",
+        "可能干扰活性构象或寡聚体稳定性，适合作为功能筛选备选位点",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守活性位点核心及催化 Lys 周边",
+        "功能相关性强但保守性高、口袋狭窄，存在交叉反应与亲和成熟受限风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NPL 为胞质代谢酶，天然抗体可及性不足；需采用胞内抗体、细胞递送或研究试剂定位，并优先避开保守催化核心以降低脱靶风险。",
+    "structurePrepZh": "以 1.6 Å X-ray 结构 6ARH 为模板，保留 A-D 链四聚体装配，补全缺失侧链并标注活性口袋、界面残基及溶剂暴露环区。",
+    "structureRef": "Human NPL X-ray crystal structure, RCSB PDB 6ARH, 1.6 Å",
+    "antibodies": [
+      "无已批准 NPL 靶向治疗性抗体",
+      "研究级抗 NPL 多克隆/单克隆抗体"
+    ],
+    "interfaceFocus": "催化口袋入口、TIM-barrel 环区与四聚体界面",
+    "designMode": "胞内酶阻断型",
+    "candidates": [
+      {
+        "target": "NANS",
+        "rationale": "NANS 催化 N-acetylneuraminate 合成，是唾液酸代谢通路上游关键酶；与 NPL 共同影响 Neu5Ac 稳态及相关代谢物水平。"
+      },
+      {
+        "target": "NANP",
+        "rationale": "NANP 负责 N-acetylneuraminate-9-phosphate 去磷酸化，位于唾液酸生物合成末端；其代谢节点与 NPL 介导的分解代谢形成通量平衡。"
+      },
+      {
+        "target": "GNE",
+        "rationale": "GNE 是 UDP-GlcNAc 2-epimerase/N-acetylmannosamine kinase 双功能酶，控制唾液酸生物合成限速步骤；遗传和代谢证据支持其作为同通路优先比较靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

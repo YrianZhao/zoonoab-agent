@@ -1,0 +1,65 @@
+{
+  "gene": "SSTR4",
+  "generatedAt": "2026-08-03T16:56:51.467Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SSTR4 属于抑制性 GPCR 家族，介导生长抑素与受体结合后抑制 cAMP 生成，并参与神经内分泌细胞增殖与激素分泌调控，因此与肢端肥大症及神经内分泌肿瘤相关通路具有直接关联。该靶点为多跨膜膜受体，胞外环与 N 端可提供抗体可及表位，适合开展阻断型或构象选择性抗体设计。相较同通路中的 SSTR2，SSTR4 的组织表达更具亚型选择性，且现有临床开发聚焦较少，因而在亚型分辨和机制验证层面具有更高优先级。",
+    "mechanism": "抗体优先阻断生长抑素与 SSTR4 的胞外结合位点，抑制受体构象激活及 G 蛋白偶联信号传递。",
+    "selectedEpitope": "优先覆盖 N 端胞外段与 ECL2/ECL3 交界，避免跨膜核心，仅保留配体结合界面。",
+    "diseaseDirection": "神经内分泌肿瘤/肢端肥大症",
+    "domain": "Class A GPCR；N 端胞外区、ECL1-3 与 7TM 跨膜螺旋核心。",
+    "evidence": "SSTR4 抗体设计证据包",
+    "evidenceSources": [
+      "UniProt: P31391",
+      "RCSB PDB: 7XMT",
+      "Open Targets Platform",
+      "GPCRdb: SSTR4"
+    ],
+    "referenceEntries": "UniProt P31391; PDB 7XMT; GPCRdb SSTR4; Open Targets OPP",
+    "epitopeRowsZh": [
+      [
+        "N 端胞外段",
+        "胞外起始区",
+        "适合识别受体亚型特异性表位并干预配体进入路径",
+        "优先"
+      ],
+      [
+        "ECL2",
+        "第二胞外环",
+        "更接近配体结合口袋，可直接削弱配体-受体识别",
+        "备选"
+      ],
+      [
+        "ECL3/邻近口袋边缘",
+        "第三胞外环邻域",
+        "可用于构象偏好性识别，但需规避保守 GPCR 表面",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险在于 GPCR 胞外环柔性较高且构象依赖明显，易造成表位异质性。建议优先采用稳定构象复合物与糖基化状态评估，并以配体竞争和受体激动/拮抗读出联合筛选。",
+    "structurePrepZh": "采用 7XMT 冷冻电镜结构进行胞外区精修，补全缺失环段并标注糖基化位点；必要时结合同源建模与构象聚类，优先保留活性态相关胞外构象。",
+    "structureRef": "RCSB PDB 7XMT；冷冻电镜 2.8 Å",
+    "antibodies": [
+      "SSTR2 抗体 ATG-002 类同靶点抗体",
+      "生长抑素受体亚型阻断性单抗"
+    ],
+    "interfaceFocus": "N 端-ECL2 配体识别界面",
+    "designMode": "阻断型亚型选择",
+    "candidates": [
+      {
+        "target": "SSTR2",
+        "rationale": "SSTR2 与 SSTR4 同属生长抑素受体轴，在神经内分泌肿瘤和肢端肥大症中均参与配体介导的抑制性信号，是最直接的同通路参照靶点。其临床与成像开发基础更充分，可用于比较亚型选择性与功能冗余。"
+      },
+      {
+        "target": "SSTR5",
+        "rationale": "SSTR5 同样参与生长抑素介导的激素分泌抑制，在肢端肥大症和部分神经内分泌肿瘤中具有明确疾病关联。与 SSTR4 并行比较有助于评估亚型覆盖范围及交叉反应风险。"
+      },
+      {
+        "target": "GHRHR",
+        "rationale": "GHRHR 处于肢端肥大症的上游促生长激素轴，与 SSTR4 共同构成激素分泌失衡相关通路。将其作为并行候选可用于区分抑制性受体阻断与促分泌轴拮抗的治疗策略边界。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

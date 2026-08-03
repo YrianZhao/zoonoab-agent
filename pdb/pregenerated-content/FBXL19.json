@@ -1,0 +1,65 @@
+{
+  "gene": "FBXL19",
+  "generatedAt": "2026-08-03T12:29:17.543Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FBXL19为SCF型E3泛素连接酶底物识别亚基，可能通过F-box依赖性复合物影响特定底物的泛素化降解；其Open Targets疾病关联以神经退行性疾病、发育异常和妊娠相关表型为主，但现有遗传关联强度中等且疾病机制尚未形成可直接阻断的配体-受体轴。该蛋白主要定位于细胞内，缺乏经典分泌信号肽、跨膜区或稳定胞外结构域，因此完整抗体的抗原可及性不具备常规膜表面靶点优势。相较TNFRSF、integrin或补体等同类可及靶点，FBXL19更适合作为结构生物学与细胞内降解通路研究靶点，抗体设计优先级应定位为工具抗体或细胞内递送抗体，而非直接治疗性阻断抗体。",
+    "mechanism": "抗体需识别FBXL19 LRR凹面或F-box邻近界面，干扰其与底物或SKP1-SCF复合物的结合，从而改变底物泛素化效率。",
+    "selectedEpitope": "优先选择LRR重复结构的底物结合凹面，备选F-box与SKP1结合邻近区域。",
+    "diseaseDirection": "神经退行性疾病与发育异常",
+    "domain": "FBXL19含N端F-box结构域及C端富亮氨酸重复区，适配SCF复合物装配与底物识别。",
+    "evidence": "FBXL19结构与泛素化通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q6PCT2蛋白注释",
+      "RCSB PDB 6ASB晶体结构",
+      "SCF E3泛素连接酶复合物文献证据"
+    ],
+    "referenceEntries": "UniProt Q6PCT2；RCSB PDB 6ASB；Open Targets FBXL19",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "LRR重复结构内侧凹面底物识别区",
+        "可能直接影响底物招募与泛素化选择性，适合作为功能干预表位",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端F-box与SKP1结合邻近界面",
+        "可评估对SCF复合物装配的干扰，但需避免广泛破坏E3复合物稳态",
+        "备选"
+      ],
+      [
+        "Site C",
+        "LRR外侧非保守凸面区域",
+        "结构可及性较好但功能关联不确定，适合作为检测或捕获抗体表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FBXL19为细胞内蛋白，常规抗体难以到达作用位点；功能阻断需结合细胞内递送、intrabody或降解通路验证，并严格评估SCF复合物广谱扰动风险。",
+    "structurePrepZh": "以PDB 6ASB为模板整理多链晶体装配，保留高置信LRR与F-box区域，去除晶体接触冗余链并标注可能底物结合凹面。",
+    "structureRef": "RCSB PDB 6ASB，X-ray diffraction，2.85 Å",
+    "antibodies": [
+      "抗FBXL19研究级单克隆抗体",
+      "抗FBXL19多克隆验证抗体"
+    ],
+    "interfaceFocus": "LRR底物结合凹面与F-box-SKP1邻近界面",
+    "designMode": "细胞内工具抗体",
+    "candidates": [
+      {
+        "target": "SKP1",
+        "rationale": "SKP1是SCF复合物核心衔接蛋白，直接结合F-box结构域并介导Cullin1复合物装配；其与FBXL19处于同一泛素化复合物轴。"
+      },
+      {
+        "target": "CUL1",
+        "rationale": "CUL1构成SCF E3泛素连接酶骨架，连接SKP1-F-box底物识别模块与RBX1催化模块；可用于评估同通路复合物稳定性。"
+      },
+      {
+        "target": "RBX1",
+        "rationale": "RBX1为SCF复合物RING组分，负责招募E2泛素结合酶并促进泛素转移；与FBXL19介导的底物降解属于同一E3连接酶机制。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

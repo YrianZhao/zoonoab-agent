@@ -1,0 +1,65 @@
+{
+  "gene": "MAPKAPK3",
+  "generatedAt": "2026-08-03T14:04:15.055Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAPKAPK3 是 p38 MAPK 通路下游丝氨酸/苏氨酸激酶，可被 MAPK14/MAPK11 磷酸化并参与应激反应、细胞因子表达及 mRNA 稳定性调控。其疾病关联以视网膜黄斑营养不良、肾功能表型及生长相关表型为主，提示该轴线可能参与组织应激和代谢稳态异常。MAPKAPK3 为胞内激酶，天然抗原可及性弱，不具备膜受体或分泌蛋白优势，因此作为常规治疗性阻断抗体靶点优先级低于同通路中的胞外炎症因子或受体。其优势主要在于 3FHR 高分辨率晶体结构明确，可用于研究型构象抗体、胞内递送抗体或蛋白互作探针设计。",
+    "mechanism": "设计抗体应优先阻断 MAPKAPK3 与上游 p38 MAPK 的 docking 相互作用，或稳定激酶非活化构象，降低下游 HSPB1 等底物磷酸化。",
+    "selectedEpitope": "优先覆盖 C 端 MAPK docking 区邻近沟槽及激酶 C-lobe 外露面，避免 ATP 结合裂隙。",
+    "diseaseDirection": "p38-MK3应激炎症与视网膜退行性疾病",
+    "domain": "MAPKAPK3 含典型蛋白激酶催化结构域，由 N-lobe、ATP 裂隙、活化环与 C-lobe 组成。",
+    "evidence": "MAPKAPK3-p38应激通路结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt reviewed entry Q16644",
+      "RCSB PDB 3FHR X-ray structure",
+      "Reactome p38 MAPK cascade annotations"
+    ],
+    "referenceEntries": "UniProt Q16644；RCSB PDB 3FHR；HGNC MAPKAPK3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C-lobe MAPK docking 区及其相邻外露沟槽",
+        "可干扰 p38 MAPK 对 MAPKAPK3 的招募与磷酸化，具备机制特异性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "活化环周边非催化外露面",
+        "可稳定非活化构象并影响底物进入，但需避免交叉干扰同源激酶",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N-lobe ATP 结合裂隙邻近区域",
+        "结构保守性高且与小分子结合口袋重叠，选择性与功能风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAPKAPK3 为胞内激酶，常规抗体进入细胞效率受限；催化结构域与 MAPKAPK2 高度相似，需通过 C-lobe docking 区差异残基提高选择性。",
+    "structurePrepZh": "以 3FHR 链 A 为结构模板，补全缺失环区并校正质子化状态；去除非关键晶体配体后保留激酶活化环构象用于表位评估。",
+    "structureRef": "RCSB PDB 3FHR，MAPKAPK3 X-ray structure，1.9 Å",
+    "antibodies": [
+      "研究级 anti-MAPKAPK3 monoclonal antibody",
+      "研究级 anti-MAPKAPK3 recombinant antibody"
+    ],
+    "interfaceFocus": "C-lobe MAPK docking 沟槽与活化环外缘",
+    "designMode": "胞内构象抗体",
+    "candidates": [
+      {
+        "target": "MAPK14",
+        "rationale": "MAPK14 编码 p38α，是 MAPKAPK3 的主要上游激酶之一，直接磷酸化并激活 MK2/MK3 轴；其在炎症和应激反应中的证据强于 MAPKAPK3。"
+      },
+      {
+        "target": "MAPKAPK2",
+        "rationale": "MAPKAPK2 与 MAPKAPK3 同属 p38 下游激酶，调控 HSPB1 磷酸化和炎症 mRNA 稳定性；其功能冗余性高，是同通路验证的重要候选。"
+      },
+      {
+        "target": "HSPB1",
+        "rationale": "HSPB1 是 MAPKAPK2/3 轴的经典下游底物，其磷酸化参与细胞骨架重塑和应激存活反应；可作为通路药效和疾病相关效应节点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

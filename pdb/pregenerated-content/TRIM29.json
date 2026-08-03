@@ -1,0 +1,65 @@
+{
+  "gene": "TRIM29",
+  "generatedAt": "2026-08-03T17:29:08.142Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TRIM29为胞内TRIM家族支架样蛋白，已报道参与DNA损伤应答、上皮肿瘤进展及先天免疫调控，但Open Targets最高关联集中于代谢测量性状与COVID-19，疾病因果强度有限。该蛋白缺乏跨膜区、分泌信号肽和稳定胞外结构域，常规抗体难以直接接近天然抗原。相较ACE2、TMPRSS2、IL6R等同通路可及靶点，TRIM29更适合作为细胞内机制研究或TCR样抗体探索靶点，作为治疗性抗体主靶点优先级偏低。",
+    "mechanism": "设计策略应定位于阻断TRIM29 B-box/coiled-coil相关蛋白互作界面，干预其对DNA损伤或先天免疫复合体的支架募集作用，而非依赖胞外受体阻断。",
+    "selectedEpitope": "优先评估2CSV所覆盖B-box样锌结合折叠的保守沟槽及相邻暴露环区。",
+    "diseaseDirection": "病毒感染与上皮肿瘤机制研究",
+    "domain": "TRIM29含N端B-box样结构域及中段coiled-coil区，缺乏典型RING结构和胞外结构域。",
+    "evidence": "TRIM29胞内结构域与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q14134蛋白注释",
+      "RCSB PDB 2CSV溶液NMR结构",
+      "TRIM29在DNA损伤应答与先天免疫调控中的文献证据"
+    ],
+    "referenceEntries": "UniProt: Q14134; RCSB PDB: 2CSV; Open Targets: TRIM29",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "B-box样锌结合折叠暴露沟槽",
+        "可能影响TRIM29与胞内适配蛋白的结合，适合机制阻断型分子设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "B-box结构域相邻柔性环区",
+        "构象可塑性较高，可用于提高结合选择性并避开金属配位核心",
+        "备选"
+      ],
+      [
+        "Site C",
+        "锌配位半胱氨酸/组氨酸核心附近",
+        "结构保守且扰动可能导致非特异性折叠破坏，成药风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TRIM29为胞内非分泌蛋白，抗体天然可及性不足；应优先采用细胞内递送、TCR样抗体或研究级Fab策略，并避免直接靶向锌配位核心。",
+    "structurePrepZh": "以2CSV NMR模型集评估构象一致性，保留锌结合几何约束，补充缺失无序区注释并进行表面暴露与保守性映射。",
+    "structureRef": "RCSB PDB 2CSV; human TRIM29 B-box-like domain NMR structure",
+    "antibodies": [
+      "暂无获批TRIM29治疗性抗体",
+      "研究级抗TRIM29检测抗体"
+    ],
+    "interfaceFocus": "B-box样结构域暴露沟槽与coiled-coil邻接面",
+    "designMode": "胞内表位探索",
+    "candidates": [
+      {
+        "target": "ACE2",
+        "rationale": "ACE2是SARS-CoV-2刺突蛋白入侵受体，位于细胞表面且抗原可及性高；在COVID-19相关通路中具备更明确的受体-配体阻断机制。"
+      },
+      {
+        "target": "TMPRSS2",
+        "rationale": "TMPRSS2介导病毒刺突蛋白S2位点蛋白水解活化，是冠状病毒入侵过程的关键宿主因子；其细胞表面蛋白酶结构域提供直接干预入口。"
+      },
+      {
+        "target": "IL6R",
+        "rationale": "IL6R参与COVID-19重症炎症反应中的IL-6经典信号轴，已有抗体药物验证其阻断IL-6/IL6R相互作用的临床可行性。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

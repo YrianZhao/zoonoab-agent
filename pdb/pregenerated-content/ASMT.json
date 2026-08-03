@@ -1,0 +1,65 @@
+{
+  "gene": "ASMT",
+  "generatedAt": "2026-08-03T10:38:48.847Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ASMT为细胞内甲基转移酶，催化N-乙酰血清素经S-腺苷甲硫氨酸供甲基生成褪黑素，关联昼夜节律与5-羟色胺-褪黑素代谢轴；其与抑郁障碍及肿瘤关联多为遗传或表达层面的弱证据。该蛋白缺乏分泌型或跨膜胞外结构域，天然抗原可及性不支持常规治疗性抗体直接阻断。相较同通路中膜受体MTNR1A、MTNR1B或可外周检测的代谢酶，ASMT作为抗体主靶点优先级较低，更适合诊断、构象捕获或细胞内递送抗体研究。",
+    "mechanism": "抗体设计宜定位于阻断ASMT与S-腺苷甲硫氨酸或N-乙酰血清素在催化口袋的结合，从而抑制N-乙酰血清素O-甲基化反应。",
+    "selectedEpitope": "优先覆盖SAM结合沟槽邻近催化口袋及底物进入通道，避免仅选择远端非功能表面。",
+    "diseaseDirection": "昼夜节律与神经精神疾病",
+    "domain": "ASMT为可溶性胞内O-甲基转移酶，含SAM依赖甲基转移酶核心折叠与底物结合口袋。",
+    "evidence": "ASMT褪黑素生物合成与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt蛋白功能与亚细胞定位注释",
+      "RCSB PDB 4A6D结构条目",
+      "AlphaFold预测结构模型"
+    ],
+    "referenceEntries": "UniProt I7HFW6；RCSB PDB 4A6D；Open Targets ASMT",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SAM结合沟槽与催化口袋边缘",
+        "可直接干预供甲基底物进入与催化构象稳定",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N-乙酰血清素底物进入通道",
+        "可通过空间位阻降低底物结合与O-甲基转移效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "甲基转移酶核心折叠远端表面",
+        "功能耦合不明确，可能仅适用于检测或结构捕获",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ASMT为胞内酶，常规抗体难以到达作用位点；需优先限定为诊断抗体、细胞内抗体或递送体系，并避免宣称直接体内阻断。",
+    "structurePrepZh": "采用4A6D与AlphaFold模型进行结构比对，保留单体A链，标注SAM/底物口袋同源位点并评估柔性环区置信度。",
+    "structureRef": "RCSB PDB 4A6D；AlphaFold human ASMT model",
+    "antibodies": [
+      "抗ASMT研究用单克隆抗体",
+      "抗ASMT多克隆检测抗体"
+    ],
+    "interfaceFocus": "SAM结合沟槽、底物进入通道与催化口袋",
+    "designMode": "胞内酶抑制型",
+    "candidates": [
+      {
+        "target": "AANAT",
+        "rationale": "AANAT催化5-羟色胺生成N-乙酰血清素，是ASMT上游限速步骤，处于同一褪黑素生物合成通路。其调控昼夜节律代谢通量的证据强于ASMT。"
+      },
+      {
+        "target": "MTNR1A",
+        "rationale": "MTNR1A为褪黑素受体，位于ASMT产物下游信号轴，具备膜受体特征但胞外表位较小。其疾病干预逻辑更接近配体-受体信号调节。"
+      },
+      {
+        "target": "MTNR1B",
+        "rationale": "MTNR1B同属褪黑素受体通路，参与褪黑素介导的昼夜节律和代谢信号。作为膜蛋白靶点，其抗原可及性优于胞内ASMT。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

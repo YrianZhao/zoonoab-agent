@@ -1,0 +1,65 @@
+{
+  "gene": "RHO",
+  "generatedAt": "2026-08-03T20:57:30.794Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RHO编码视紫红质，是视杆细胞外节盘膜中的光感受G蛋白偶联受体，致病变异可导致蛋白错误折叠、异常聚集或光转导失衡，并驱动常染色体显性或隐性视网膜色素变性等遗传性视网膜退行性病变。RHO为多跨膜膜蛋白，胞外N端、胞外环ECL1至ECL3及盘腔侧糖基化区域可作为抗体可及抗原面，但完整跨膜构象依赖膜环境。相较下游PDE6复合体或GNAT1等胞内光转导蛋白，RHO具有更明确的疾病遗传因果性、膜表面抗原可及性与高质量实验结构支撑，因此适合作为优先抗体设计靶点。",
+    "mechanism": "设计抗体优先稳定RHO胞外盘腔侧构象，阻断致病构象暴露导致的异常聚集或内质网质量控制逃逸，并避免干扰11-cis-retinal结合腔与转导蛋白结合面。",
+    "selectedEpitope": "优先选择N端糖基化邻近区与ECL2顶端构象表位，避开跨膜束内视黄醛结合腔。",
+    "diseaseDirection": "遗传性视网膜退行性疾病",
+    "domain": "RHO为A类GPCR，含七次跨膜螺旋、胞外N端、三段胞外环和胞内G蛋白偶联界面。",
+    "evidence": "RHO遗传性视网膜病变与结构抗原证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P08100功能与变异注释",
+      "RCSB PDB 5W0P实验晶体结构",
+      "ClinVar与OMIM视紫红质相关视网膜病变记录"
+    ],
+    "referenceEntries": "UniProt:P08100；RCSB PDB:5W0P；HGNC:RHO",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端盘腔侧糖基化邻近区",
+        "接近多种错误折叠相关突变影响区域，利于构象稳定型抗体筛选",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ECL2及TM4-TM5外侧顶端",
+        "ECL2参与维持GPCR外侧盖状构象，可用于识别天然折叠状态",
+        "备选"
+      ],
+      [
+        "Site C",
+        "胞内TM5-TM6连接及G蛋白结合面",
+        "可能影响转导蛋白结合与光转导激活，且抗体可及性较低",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RHO为膜内GPCR，纯化后构象易受去垢剂和脂质环境影响；应采用纳米盘或稳定脂质体系保留天然外侧表位，并规避视黄醛结合腔。",
+    "structurePrepZh": "以5W0P晶体结构为模板，保留七跨膜束核心与胞外环，补全柔性N端缺失残基并评估糖基化位点对表位暴露的影响。",
+    "structureRef": "RCSB PDB 5W0P，人源rhodopsin X射线结构，3.013 Å",
+    "antibodies": [
+      "Ret-P1",
+      "1D4"
+    ],
+    "interfaceFocus": "N端盘腔侧表面与ECL2外侧盖状界面",
+    "designMode": "构象稳定抗体设计",
+    "candidates": [
+      {
+        "target": "PDE6B",
+        "rationale": "PDE6B是杆细胞光转导级联中的cGMP磷酸二酯酶β亚基，致病变异同样导致视网膜色素变性；与RHO处于同一光转导通路，但主要为胞内酶靶点。"
+      },
+      {
+        "target": "GNAT1",
+        "rationale": "GNAT1编码转导蛋白α亚基，直接接受活化RHO的信号并调节PDE6活性；其遗传缺陷与先天性静止性夜盲等杆细胞功能障碍相关。"
+      },
+      {
+        "target": "SAG",
+        "rationale": "SAG编码arrestin-1，可结合磷酸化活化RHO并终止光转导信号；该节点与RHO失活和视杆细胞稳态密切相关。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

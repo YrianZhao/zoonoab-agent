@@ -1,0 +1,65 @@
+{
+  "gene": "CIRBP",
+  "generatedAt": "2026-08-03T11:25:17.419Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CIRBP为冷诱导RNA结合蛋白，主要定位于细胞核与胞质，通过RRM结构域结合RNA并参与应激条件下mRNA稳定性、翻译调控及炎症相关转录后调节；Open Targets关联主要集中于红细胞体积、血红蛋白含量及血液蛋白测量等表型，提示其与造血和应激适应相关。该蛋白并非常规跨膜或分泌抗原，天然抗原可及性弱，但在细胞损伤或应激性坏死背景下可作为损伤相关分子释放至胞外环境，因而更适合发展中和胞外eCIRBP的抗体策略。相比直接靶向下游多效性炎症因子，CIRBP处于应激释放与髓系炎症放大的上游节点，具有阻断DAMP驱动TLR4-MD2轴的优先级价值。",
+    "mechanism": "抗体阻断胞外CIRBP与TLR4-MD2复合体的结合，抑制MyD88依赖性NF-κB活化及炎症因子释放。",
+    "selectedEpitope": "优先靶向RRM结构域β折叠RNA结合面及RNP1/RNP2邻近暴露环，避免核心折叠破坏。",
+    "diseaseDirection": "应激炎症与血液表型关联",
+    "domain": "CIRBP含N端RNA recognition motif与C端富甘氨酸低复杂度区域；5TBX覆盖RRM结构域。",
+    "evidence": "CIRBP结构与胞外DAMP炎症证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与表型关联",
+      "UniProt Q14011蛋白定位与结构域注释",
+      "RCSB PDB 5TBX晶体结构记录",
+      "eCIRP/TLR4-MD2介导炎症反应文献"
+    ],
+    "referenceEntries": "UniProt Q14011；RCSB PDB 5TBX；Open Targets CIRBP",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RRM β-sheet RNA结合面RNP1/RNP2邻近区域",
+        "可能同时遮蔽RNA结合面并干扰胞外受体识别界面，适合作为中和表位",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RRM α螺旋外侧与β2-β3连接环",
+        "结构暴露度较高，利于获得构象依赖Fab结合，但功能阻断需实验验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端富甘氨酸低复杂度区域",
+        "柔性高且5TBX未充分解析，表位构象不确定，易产生低亲和或非中和结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CIRBP主要为胞内RNA结合蛋白，抗体仅适用于胞外释放型CIRBP场景；需规避强交叉反应RRM保守核心，并验证不诱导免疫复合物相关风险。",
+    "structurePrepZh": "以5TBX链A/B的RRM晶体结构为模板，去除非目标配体与晶体接触伪界面，补充缺失柔性片段并进行质子化与表面暴露评估。",
+    "structureRef": "RCSB PDB 5TBX，X-ray，1.767 Å，人CIRBP RRM结构",
+    "antibodies": [
+      "M3抗eCIRP单克隆抗体",
+      "C23衍生抗eCIRP中和抗体"
+    ],
+    "interfaceFocus": "RRM RNP1/RNP2邻近RNA结合面",
+    "designMode": "胞外DAMP中和",
+    "candidates": [
+      {
+        "target": "TLR4",
+        "rationale": "TLR4与MD2形成受体复合体，可识别胞外CIRBP并驱动MyD88-NF-κB炎症通路，是同一DAMP炎症轴的受体端靶点。"
+      },
+      {
+        "target": "LY96",
+        "rationale": "LY96编码MD2，是TLR4复合体识别配体的关键组分；阻断MD2可限制eCIRBP介导的TLR4激活。"
+      },
+      {
+        "target": "MYD88",
+        "rationale": "MYD88为TLR4下游接头蛋白，连接受体激活与NF-κB炎症转录程序；虽不适合作为常规抗体靶点，但属于同一路径关键节点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

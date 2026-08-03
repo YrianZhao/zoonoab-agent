@@ -1,0 +1,65 @@
+{
+  "gene": "ZFP36L2",
+  "generatedAt": "2026-08-03T17:59:21.234Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ZFP36L2是CCCH型锌指RNA结合蛋白，通过识别靶mRNA的AU-rich element并促进转录本去腺苷化与降解，参与造血细胞分化、红系成熟及血小板相关表型调控。该蛋白主要定位于细胞质与核内，缺乏跨膜区和分泌信号，天然抗原可及性不支持常规体内阻断型抗体开发，更适合结构验证、胞内递送抗体或研究级结合分子设计。相较于同通路中可分泌或膜表面造血因子受体，ZFP36L2的优势在于遗传关联覆盖血细胞计数表型且结构域解析清晰，但临床抗体优先级应低于具有胞外结构域的CSF3R、MPL等靶点。",
+    "mechanism": "设计结合CCCH锌指-RNA识别界面的抗体片段，阻断ZFP36L2与AU-rich element RNA的结合，从而干预靶mRNA募集去腺苷化复合物的过程。",
+    "selectedEpitope": "优先覆盖串联CCCH锌指的RNA结合沟槽及Zn2+配位邻近环区。",
+    "diseaseDirection": "造血细胞计数与红系表型",
+    "domain": "含N端调控区、串联CCCH型锌指RNA结合结构域及C端低复杂度调控区。",
+    "evidence": "ZFP36L2造血表型遗传关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P47974蛋白功能注释",
+      "RCSB PDB 1W0W晶体结构",
+      "PubMed造血干祖细胞与ARE-mRNA调控研究"
+    ],
+    "referenceEntries": "UniProt P47974；RCSB PDB 1W0W；Open Targets ZFP36L2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "串联CCCH锌指RNA结合沟槽",
+        "直接竞争ARE RNA结合，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "两枚锌指之间的连接环与邻近碱性面",
+        "可影响RNA定位与结合构象，具变构阻断潜力",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Zn2+配位核心附近保守残基簇",
+        "可能破坏结构稳定性但存在交叉反应和构象扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ZFP36L2为胞内RNA结合蛋白，体内抗体可及性不足；设计宜限定为胞内递送Fab/VHH或机制研究工具，并避免直接破坏锌指金属配位核心。",
+    "structurePrepZh": "以1W0W抗原链A/B/C为模板，保留锌离子与关键配位残基，检查晶体接触界面，补全缺失侧链后进行RNA结合面可及性评估。",
+    "structureRef": "Hudson等，ZFP36家族锌指-RNA复合物晶体结构，PDB 1W0W",
+    "antibodies": [
+      "无已获批同靶点治疗性抗体",
+      "研究级抗ZFP36L2抗体"
+    ],
+    "interfaceFocus": "CCCH锌指RNA识别沟槽与ARE接触面",
+    "designMode": "胞内靶点工具抗体",
+    "candidates": [
+      {
+        "target": "ZFP36L1",
+        "rationale": "ZFP36L1与ZFP36L2同属TIS11家族，均通过CCCH锌指识别ARE mRNA并参与造血细胞转录后调控，可作为同通路功能冗余与选择性评估靶点。"
+      },
+      {
+        "target": "ZFP36",
+        "rationale": "ZFP36同样介导ARE转录本降解，并与炎症及造血细胞因子mRNA稳定性调控相关，适合用于家族交叉反应风险与通路补偿分析。"
+      },
+      {
+        "target": "CNOT7",
+        "rationale": "CNOT7是CCR4-NOT去腺苷化复合物催化组分，位于ZFP36L2募集靶mRNA后下游执行环节，可用于验证ARE-mRNA降解轴的通路依赖性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

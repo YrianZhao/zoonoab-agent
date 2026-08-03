@@ -1,0 +1,65 @@
+{
+  "gene": "GPS1",
+  "generatedAt": "2026-08-03T12:55:37.730Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GPS1是COP9 signalosome（CSN）复合体亚基，参与去除cullin-RING泛素连接酶的NEDD8修饰，从而影响细胞周期、DNA损伤应答和蛋白稳态；其与乳腺癌等增殖性疾病的关联主要反映CSN-CRL轴对关键底物降解的调控。GPS1为细胞内复合体蛋白，缺乏天然胞外结构域或分泌形式，抗原可及性不支持常规治疗性抗体直接结合，但适合用于结构验证、细胞内递送抗体或研究型结合分子设计。相比单一CRL底物，GPS1处于CSN催化核心邻近位置，能够代表上游去NEDD8化调控节点，但其疾病遗传关联强度较低，优先级应定位为机制研究型靶点。",
+    "mechanism": "设计结合GPS1 PCI结构域及其CSN复合体装配界面的抗体片段，阻断GPS1与CSN亚基间稳定相互作用，干扰CSN介导的cullin去NEDD8化。",
+    "selectedEpitope": "优先覆盖GPS1 PCI结构域螺旋束中参与CSN装配的外露界面，避免深埋复合体核心区域。",
+    "diseaseDirection": "肿瘤蛋白稳态与骨密度相关性",
+    "domain": "GPS1主要含PCI结构域，作为COP9 signalosome支架样亚基参与多亚基复合体装配。",
+    "evidence": "GPS1-CSN复合体结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q13098 functional annotation",
+      "RCSB PDB 4D10 X-ray structure",
+      "COP9 signalosome cullin deneddylation literature"
+    ],
+    "referenceEntries": "UniProt Q13098；RCSB PDB 4D10；Open Targets GPS1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PCI结构域外露螺旋束装配界面",
+        "可能削弱GPS1在CSN复合体中的支架性相互作用，适合机制阻断型片段设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PCI结构域远端溶剂可及面",
+        "可获得高亲和结合分子并用于构象识别，但对CSN功能抑制可能较弱",
+        "备选"
+      ],
+      [
+        "Site C",
+        "复合体内部埋藏接触面",
+        "结构中可见但天然可及性差，易产生仅识别解离蛋白的非功能性结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GPS1为细胞内非分泌蛋白，常规抗体药物可及性风险高；建议限定为细胞内抗体、递送型Fab/VHH或结构探针方向，并验证复合体依赖性。",
+    "structurePrepZh": "PDB 4D10分辨率为3.8 Å且含多条CSN复合体链，应先确认GPS1对应链、补全缺失环区，并基于复合体接触面积筛选可及表位。",
+    "structureRef": "PDB 4D10：human COP9 signalosome X-ray structure",
+    "antibodies": [
+      "研究级anti-GPS1抗体",
+      "研究级anti-COPS5抗体"
+    ],
+    "interfaceFocus": "GPS1 PCI螺旋束与CSN装配接触面",
+    "designMode": "细胞内机制探针",
+    "candidates": [
+      {
+        "target": "COPS5",
+        "rationale": "COPS5/JAB1是CSN催化亚基，含JAMM金属蛋白酶结构域，直接介导cullin去NEDD8化；在CSN-CRL蛋白稳态轴中功能更接近酶活核心。"
+      },
+      {
+        "target": "COPS2",
+        "rationale": "COPS2为CSN PCI亚基，参与复合体支架装配并影响CRL去NEDD8化效率；与GPS1同属CSN复合体结构网络。"
+      },
+      {
+        "target": "CUL1",
+        "rationale": "CUL1是经典cullin-RING泛素连接酶骨架蛋白，其NEDD8化状态受CSN调控；可作为同一CSN-CRL通路的下游功能节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

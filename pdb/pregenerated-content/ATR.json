@@ -1,0 +1,65 @@
+{
+  "gene": "ATR",
+  "generatedAt": "2026-08-03T10:43:17.724Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ATR 是复制应激与 DNA 损伤检查点通路的核心 PIKK 家族激酶，通过 ATRIP 识别 RPA 包被的单链 DNA 并磷酸化 CHK1 等底物，维持复制叉稳定性与细胞周期阻滞；其胚系缺陷与 Seckel syndrome 及肿瘤易感综合征相关。该蛋白主要位于细胞核内，缺乏天然胞外结构域，作为常规治疗性抗体靶点的抗原可及性较低；可及性优势主要限于纯化复合物、细胞内递送抗体或研究型结合体设计。相较 ATM、DNA-PKcs 等同类 PIKK 靶点，ATR 在复制应激依赖肿瘤和 ATR-CHK1 轴中的通路特异性更强，且已有高分辨率冷冻电镜结构支持结构域级表位约束，因此适合作为机制研究型抗体设计优先靶点。",
+    "mechanism": "设计抗体阻断 ATR-ATRIP 复合物对 RPA-ssDNA 损伤平台的稳定装配，或遮蔽 ATR 激酶结构域底物进入界面，从而降低 CHK1 磷酸化。",
+    "selectedEpitope": "优先锁定 ATR HEAT repeat 与 ATRIP 接触邻近界面，备选 FAT-kinase 结构域外侧变构面。",
+    "diseaseDirection": "DNA损伤应答与复制应激肿瘤",
+    "domain": "ATR 含 N 端 HEAT repeats、FAT 结构域、PI3K-like 激酶结构域及 C 端 FATC 调控尾。",
+    "evidence": "ATR-CHK1复制应激检查点结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q13535 功能与结构域注释",
+      "RCSB PDB 23FC 冷冻电镜结构",
+      "DNA damage response 与 ATR-ATRIP-CHK1 文献证据"
+    ],
+    "referenceEntries": "UniProt: Q13535; RCSB PDB: 23FC; Open Targets: ATR",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端 HEAT repeats 近 ATRIP 结合界面",
+        "干预 ATRIP 介导的损伤位点募集与复合物稳定化",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FAT-kinase 结构域外侧变构调控面",
+        "限制激酶构象转换并降低 CHK1 底物磷酸化效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "激酶 ATP 结合裂隙邻近区域",
+        "功能抑制潜力高但保守性强，易产生交叉反应和构象遮挡风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ATR 为核内大型激酶，天然抗体可及性不足；应优先定位非 ATP 保守界面，并结合细胞内递送、Fab 片段或结构探针用途评估。",
+    "structurePrepZh": "以 PDB 23FC 冷冻电镜模型为模板，保留 ATR-ATRIP 相关链并补全缺失环区，按 HEAT、FAT、kinase、FATC 分区标注可及表面。",
+    "structureRef": "RCSB PDB 23FC, human ATR complex, EM 2.7 Å",
+    "antibodies": [
+      "ATR monoclonal antibody clone E1S3S",
+      "ATR phospho-Ser428 antibody"
+    ],
+    "interfaceFocus": "ATRIP结合面与FAT-kinase变构界面",
+    "designMode": "细胞内抗体/结构探针",
+    "candidates": [
+      {
+        "target": "ATRIP",
+        "rationale": "ATRIP 直接结合 ATR 并介导其向 RPA 包被 ssDNA 损伤平台募集，处于 ATR 检查点激活的上游装配步骤。靶向 ATRIP-ATR 或 ATRIP-RPA 相关界面可获得更明确的复合物干预机制。"
+      },
+      {
+        "target": "CHEK1",
+        "rationale": "CHEK1 是 ATR 激酶的关键下游效应分子，接受 ATR 磷酸化后执行 S/G2 检查点控制。其在复制应激依赖肿瘤中具有明确通路位置。"
+      },
+      {
+        "target": "RPA1",
+        "rationale": "RPA1 是 RPA 复合物的大亚基，参与包被复制应激产生的单链 DNA 并为 ATR-ATRIP 招募提供平台。该节点可用于评估 ATR 通路早期损伤识别过程。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

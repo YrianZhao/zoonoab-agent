@@ -1,0 +1,65 @@
+{
+  "gene": "RAB7A",
+  "generatedAt": "2026-08-03T15:50:28.945Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RAB7A 是晚期内体至溶酶体运输与自噬通量的核心小 GTP 酶，其致病突变与 Charcot-Marie-Tooth disease type 2B 的轴突退行性病变相关，并可影响神经元内吞货物清除。该蛋白主要定位于胞质侧内体膜，缺乏稳定胞外结构域，因此抗体作为常规细胞外阻断药物的抗原可及性较弱，更适合细胞内递送抗体片段或研究级构象探针。其优先级来自明确的人类遗传证据、高分辨率晶体结构和 GTP/GDP 构象可解析性，但相较受体型膜蛋白应列为机制验证优先、体内成药性谨慎的靶点。",
+    "mechanism": "设计抗体片段识别 RAB7A switch I/II 构象面，阻断其与 RILP 或 HOPS 复合体效应蛋白结合，从而干预晚期内体-溶酶体运输。",
+    "selectedEpitope": "优先覆盖 GTPase 结构域 switch I 与 switch II 邻近效应蛋白结合界面。",
+    "diseaseDirection": "CMT2B与神经退行性疾病",
+    "domain": "RAB7A 含 Ras 样小 GTPase 结构域，包含 P-loop、switch I、switch II 与 C 端膜锚定区。",
+    "evidence": "RAB7A遗传变异与内体溶酶体通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P51149 functional annotation",
+      "RCSB PDB 1T91 X-ray structure",
+      "OMIM and Orphanet CMT2B genetic evidence"
+    ],
+    "referenceEntries": "UniProt:P51149；RCSB PDB:1T91；Open Targets:RAB7A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "switch I/switch II 效应蛋白结合面",
+        "可直接干预 RILP、HOPS 等效应蛋白识别，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "P-loop 与核苷酸结合口袋邻近区域",
+        "有助于区分 GDP/GTP 构象，但需避免非特异性干扰保守核苷酸结合位点",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端高变区及膜锚定邻近区域",
+        "可能影响膜定位相关复合物装配，但结构柔性高且完整脂修饰状态难以重构",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RAB7A 为细胞内小 GTP 酶，常规抗体难以进入神经元胞质；设计应限定为细胞内递送 Fab/VHH、构象选择性探针或体外机制验证。",
+    "structurePrepZh": "以 1T91 晶体结构为模板，保留核苷酸结合状态，补全缺失柔性环并评估多链晶体接触对 switch 区构象的影响。",
+    "structureRef": "RCSB PDB 1T91，X-ray diffraction，1.9 Å，human RAB7A",
+    "antibodies": [
+      "anti-RAB7A clone EPR7589",
+      "anti-RAB7A clone D95F2"
+    ],
+    "interfaceFocus": "switch I/II 与 RILP-HOPS 效应蛋白识别界面",
+    "designMode": "细胞内构象阻断",
+    "candidates": [
+      {
+        "target": "RILP",
+        "rationale": "RILP 是 RAB7A-GTP 的经典效应蛋白，介导晚期内体与动力蛋白相关运输连接，处于同一内体-溶酶体轴突运输通路。"
+      },
+      {
+        "target": "VPS41",
+        "rationale": "VPS41 属于 HOPS 复合体组分，参与 RAB7A 依赖的晚期内体与溶酶体融合，可作为下游膜融合调控节点。"
+      },
+      {
+        "target": "VPS39",
+        "rationale": "VPS39 是 HOPS 复合体核心亚基之一，与 RAB7A 相关的内体成熟和溶酶体融合过程密切相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

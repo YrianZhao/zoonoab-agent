@@ -1,0 +1,65 @@
+{
+  "gene": "PTP4A1",
+  "generatedAt": "2026-08-03T15:43:10.622Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PTP4A1 属于 PRL 蛋白酪氨酸磷酸酶家族，可通过催化半胱氨酸依赖性去磷酸化过程影响细胞迁移、增殖与应激相关信号，遗传关联提示其与神经退行性疾病等多疾病表型存在中等强度关联。该蛋白主要为胞内、膜相关磷酸酶，缺乏典型胞外结构域，抗原可及性相较分泌因子或跨膜受体不足，因此更适合定位为结构验证型或胞内递送抗体设计对象。其优先级依据在于已有 1.9 Å 晶体结构支持活性位点与 PRL 家族保守界面解析，但作为常规体内中和抗体靶点的可开发性低于具有胞外配体结合域的同通路受体或细胞因子靶点。",
+    "mechanism": "通过抗体片段结合 PTP4A1 催化 P-loop 与 WPD样调控区域，阻断底物磷酸酪氨酸进入 Cys104 活性位点并限制催化构象转换。",
+    "selectedEpitope": "优先覆盖 PTP 催化结构域 P-loop 周边及活性口袋边缘，避免仅选择远端非功能表面。",
+    "diseaseDirection": "神经退行性疾病相关胞内磷酸酶",
+    "domain": "PTP4A1 为单结构域 PRL 型蛋白酪氨酸磷酸酶，含 HCX5R 催化基序与膜相关 C 端 CAAX 基序。",
+    "evidence": "PTP4A1 结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q93096 functional annotation",
+      "RCSB PDB 1RXD crystal structure",
+      "PRL phosphatase family biochemical literature"
+    ],
+    "referenceEntries": "UniProt Q93096；RCSB PDB 1RXD；Open Targets PTP4A1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化 P-loop 与 HCX5R 基序邻近口袋",
+        "直接干预底物进入与催化半胱氨酸反应，功能阻断价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "WPD样调控环及活性位点入口周边",
+        "可限制催化构象转换并提高构象选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离活性口袋的 PRL 核心折叠外表面",
+        "结构可及但功能耦合不确定，需避免获得非阻断性结合物",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PTP4A1 为胞内膜相关磷酸酶，常规抗体难以到达靶点；设计宜采用胞内递送 Fab、VHH 或细胞内抗体策略，并严格评估 PRL 家族交叉反应。",
+    "structurePrepZh": "以 1RXD 的 A、B、C 链比对评估晶体构象一致性，补全缺失侧链、定义活性位点质子化状态，并保留催化口袋水网络用于界面建模。",
+    "structureRef": "RCSB PDB 1RXD，human PTP4A1 X-ray structure, 1.9 Å",
+    "antibodies": [
+      "PTP4A1 research monoclonal antibody",
+      "PRL-1 intracellular antibody fragment"
+    ],
+    "interfaceFocus": "催化 Cys104 周边 P-loop 与活性口袋入口",
+    "designMode": "胞内阻断型片段抗体",
+    "candidates": [
+      {
+        "target": "PTP4A2",
+        "rationale": "PTP4A2 与 PTP4A1 同属 PRL 磷酸酶家族，具有相似的催化基序与膜相关调控特征，可作为同家族功能补偿与选择性评估靶点。"
+      },
+      {
+        "target": "PTP4A3",
+        "rationale": "PTP4A3 是 PRL 家族成员，参与细胞迁移与增殖相关磷酸化网络，适合作为 PTP4A1 抗体设计中的交叉反应和通路冗余比较对象。"
+      },
+      {
+        "target": "CNNM2",
+        "rationale": "CNNM2 可与 PRL 磷酸酶形成复合体并参与镁离子稳态调节，是 PTP4A1 所在 PRL-CNNM 功能轴中的真实相互作用靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

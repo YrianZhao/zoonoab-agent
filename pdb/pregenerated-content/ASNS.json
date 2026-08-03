@@ -1,0 +1,65 @@
+{
+  "gene": "ASNS",
+  "generatedAt": "2026-08-03T10:38:53.556Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ASNS催化天冬酰胺由天冬氨酸、谷氨酰胺和ATP合成，双等位基因功能缺失可导致ASNS缺乏相关先天性小头畸形、重度脑病和进行性脑萎缩。该蛋白为胞质代谢酶，缺乏天然胞外结构域或分泌特征，完整抗体直接结合活细胞靶点的可及性受限，更适合作为结构机制与细胞内递送抗体格式的探索对象。相较一般氨基酸代谢酶，ASNS具有人类高分辨率晶体结构、明确遗传疾病关联和双结构域催化机制，优先级主要来自机制解析价值而非传统膜表面抗体成药性。",
+    "mechanism": "通过结合谷氨酰胺酰胺转移酶结构域或合成酶结构域邻近通道，干扰谷氨酰胺水解产生的氨向天冬氨酸-AMP中间体转移。",
+    "selectedEpitope": "优先覆盖N端谷氨酰胺酰胺转移酶结构域催化沟槽及其通向C端合成酶结构域的氨通道入口。",
+    "diseaseDirection": "ASNS缺乏相关神经发育疾病",
+    "domain": "ASNS含N端谷氨酰胺酰胺转移酶结构域和C端ATP依赖性天冬酰胺合成酶结构域。",
+    "evidence": "ASNS遗传缺陷与结构酶学证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProtKB P08243功能与变异注释",
+      "RCSB PDB 6GQ3晶体结构记录",
+      "OMIM/Orphanet ASNS缺乏症临床遗传证据"
+    ],
+    "referenceEntries": "UniProt P08243；RCSB PDB 6GQ3；Open Targets ASNS",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端谷氨酰胺酰胺转移酶催化沟槽/氨通道入口",
+        "可阻断谷氨酰胺水解产物进入跨结构域通道，机制指向性最强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端合成酶结构域ATP-天冬氨酸结合口袋周缘",
+        "可影响天冬氨酸腺苷酸化步骤，但需避免完全依赖深埋小分子口袋",
+        "备选"
+      ],
+      [
+        "Site C",
+        "A/B链二聚体接触面邻近区域",
+        "可能改变构象稳定性，但二聚化功能贡献与细胞内可及性需进一步验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ASNS为胞质酶，常规抗体难以进入靶细胞；设计应优先采用胞内递送、细胞穿透或工程化VHH策略，并避免干扰非目标组织基础氨基酸代谢。",
+    "structurePrepZh": "以6GQ3的A、B链为结构模板，保留催化残基与配体邻近构象，校正缺失侧链、质子化状态和链间界面后进行表位可及性评估。",
+    "structureRef": "RCSB PDB 6GQ3，人ASNS X射线结构，1.85 Å",
+    "antibodies": [
+      "暂无获批ASNS靶向治疗性抗体",
+      "研究级抗ASNS检测抗体"
+    ],
+    "interfaceFocus": "N端催化沟槽至C端合成酶结构域氨通道",
+    "designMode": "胞内酶表位阻断",
+    "candidates": [
+      {
+        "target": "GLUL",
+        "rationale": "GLUL催化谷氨酸与氨生成谷氨酰胺，位于谷氨酰胺供给与氮代谢网络上游，可影响ASNS底物谷氨酰胺供应。"
+      },
+      {
+        "target": "GOT1",
+        "rationale": "GOT1参与草酰乙酸与谷氨酸转氨生成天冬氨酸，是ASNS合成天冬酰胺所需天冬氨酸来源的重要胞质通路节点。"
+      },
+      {
+        "target": "SLC1A5",
+        "rationale": "SLC1A5介导谷氨酰胺跨膜摄取，连接细胞外氨基酸供应与ASNS依赖的天冬酰胺合成需求，具有膜蛋白抗原可及性优势。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

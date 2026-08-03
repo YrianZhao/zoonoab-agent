@@ -1,0 +1,65 @@
+{
+  "gene": "ACAP2",
+  "generatedAt": "2026-08-03T10:01:00.873Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ACAP2 是胞内 ArfGAP 蛋白，含 PH、ArfGAP、ankyrin repeat 与 coiled-coil 区域，参与 ARF6 相关膜运输、内体回收与细胞骨架耦联过程，其遗传关联信号涉及神经退行性疾病及血细胞性状。该蛋白缺乏分泌型或膜外结构域，天然抗原可及性不适合常规体内阻断抗体，更适合作为结构生物学驱动的胞内结合分子或递送型抗体研究对象。相较同通路中 ARF6、PIP5K1A 等小型胞内效应因子，ACAP2 具备高分辨率实验结构与多结构域调控界面，便于开展构象选择性结合设计，但作为治疗性表面抗原优先级应低于可外向暴露的膜受体靶点。",
+    "mechanism": "设计结合 ACAP2 ankyrin repeat 调控面的胞内抗体片段，干预 ACAP2 与 ARF6 依赖性膜回收复合体的组装，从而改变 ARF6-GTP 水解调控效率。",
+    "selectedEpitope": "优先覆盖 ankyrin repeat 凹面与邻近调控环，避免直接靶向保守 ArfGAP 催化锌指核心。",
+    "diseaseDirection": "神经退行性疾病与血细胞性状",
+    "domain": "ACAP2 含 N 端 PH 结构域、中部 ArfGAP 催化域、ankyrin repeat 模块及 C 端 coiled-coil 区域。",
+    "evidence": "ACAP2 结构域与 ARF6 膜运输通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q15057 protein annotation",
+      "RCSB PDB 6IF3 X-ray structure",
+      "Reactome ARF6 trafficking pathway annotation"
+    ],
+    "referenceEntries": "UniProt Q15057；RCSB PDB 6IF3；Open Targets ACAP2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ankyrin repeat 凹面及相邻暴露环",
+        "可能调节蛋白复合体装配，结构可解析度高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PH 结构域磷脂结合邻近面",
+        "可影响膜定位相关构象，但需评估脂质依赖性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ArfGAP 催化锌指与保守活性中心",
+        "功能相关性强但保守性高，脱靶和构象扰动风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ACAP2 为胞内蛋白，常规抗体难以到达作用位点；建议限定为胞内抗体、递送型 Fab/VHH 或机制探针，并避开高度保守催化核心。",
+    "structurePrepZh": "以 6IF3 的 A、B 链为结构模板，保留高分辨率坐标，补建缺失环区并校验锌结合、PH 域取向及二聚界面接触。",
+    "structureRef": "RCSB PDB 6IF3，X-ray diffraction，1.5 Å",
+    "antibodies": [
+      "无获批 ACAP2 靶向抗体",
+      "研究级抗 ACAP2 抗体"
+    ],
+    "interfaceFocus": "ankyrin repeat 凹面与 PH-ArfGAP 调控界面",
+    "designMode": "胞内结合分子设计",
+    "candidates": [
+      {
+        "target": "ARF6",
+        "rationale": "ARF6 是 ACAP2 调控的核心小 GTP 酶，直接控制内吞回收、质膜动态与细胞迁移相关膜运输过程。"
+      },
+      {
+        "target": "PIP5K1A",
+        "rationale": "PIP5K1A 参与 ARF6 依赖的磷脂酰肌醇 4,5-二磷酸生成，与膜骨架重塑和内吞回收通路相连。"
+      },
+      {
+        "target": "CYTH2",
+        "rationale": "CYTH2 编码 ARF 鸟嘌呤核苷酸交换因子 ARNO，可促进 ARF6 活化，与 ACAP2 的 GAP 功能构成同一 GTPase 调控轴。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "MAT2B",
+  "generatedAt": "2026-08-03T20:08:13.188Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAT2B为甲硫氨酸腺苷转移酶II复合体的非催化调节亚基，通过结合MAT2A降低其对甲硫氨酸的Km并调节S-腺苷甲硫氨酸合成，影响一碳代谢、甲基供体稳态及表观遗传甲基化。该蛋白主要定位于胞质，不属于分泌蛋白或跨膜受体，天然抗原可及性弱，因此更适合细胞内递送抗体片段、降解偶联策略或作为机制研究抗原。相比典型细胞表面代谢转运体，MAT2B的优势在于已有高分辨率晶体结构与明确的MAT2A复合体调控界面，但作为常规治疗性抗体靶点优先级较低。",
+    "mechanism": "设计抗体片段阻断MAT2B与MAT2A调节界面的结合，削弱MAT2B对MAT2A催化动力学的变构调控，从而降低SAM合成通量。",
+    "selectedEpitope": "优先覆盖MAT2B Rossmann样结构域中参与MAT2A结合的外露螺旋-环区界面。",
+    "diseaseDirection": "一碳代谢与甲基化异常",
+    "domain": "MAT2B含N端无规区及Rossmann样NADP结合折叠核心，PDB 2YDY解析链A结构。",
+    "evidence": "MAT2B结构与一碳代谢调控证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9NZL9蛋白功能注释",
+      "RCSB PDB 2YDY晶体结构",
+      "MAT2A-MAT2B复合体酶动力学研究"
+    ],
+    "referenceEntries": "UniProt Q9NZL9；RCSB PDB 2YDY；Open Targets MAT2B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Rossmann样核心外露螺旋-环区MAT2A结合面",
+        "可直接干预MAT2A-MAT2B复合体形成，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "NADP结合折叠邻近的溶剂暴露沟槽",
+        "有助于稳定变构构象并影响调节亚基构象采样",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端低复杂度柔性区",
+        "构象异质性较高，结构约束弱，易产生低亲和或非特异结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAT2B为胞内蛋白，常规IgG难以触达天然靶点；设计应优先采用细胞内递送Fab/VHH或降解偶联格式，并避开高度保守辅因子结合核心以降低脱靶风险。",
+    "structurePrepZh": "以2YDY链A为结构模板，补全缺失柔性片段并标注溶剂可及面；结合MAT2A复合体模型映射调节界面后进行表位聚类。",
+    "structureRef": "Human MAT2B crystal structure, PDB 2YDY, 2.25 Å",
+    "antibodies": [
+      "暂无获批MAT2B治疗性抗体",
+      "研究级抗MAT2B抗体"
+    ],
+    "interfaceFocus": "MAT2A结合界面与Rossmann样核心外露沟槽",
+    "designMode": "胞内抗体片段",
+    "candidates": [
+      {
+        "target": "MAT2A",
+        "rationale": "MAT2A为甲硫氨酸腺苷转移酶II催化亚基，直接催化甲硫氨酸与ATP生成SAM，与MAT2B构成同一一碳代谢调控轴。"
+      },
+      {
+        "target": "AHCY",
+        "rationale": "AHCY催化S-腺苷同型半胱氨酸水解，位于SAM依赖甲基化循环下游，决定甲基化反应产物清除与同型半胱氨酸再循环。"
+      },
+      {
+        "target": "MTR",
+        "rationale": "MTR催化同型半胱氨酸再甲基化生成甲硫氨酸，为MAT2A/MAT2B介导的SAM合成提供上游底物来源。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

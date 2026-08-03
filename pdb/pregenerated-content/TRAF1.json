@@ -1,0 +1,65 @@
+{
+  "gene": "TRAF1",
+  "generatedAt": "2026-08-03T17:27:03.871Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TRAF1参与TNF受体超家族信号复合体组装，在TNFR2、CD40等受体下游调控TRAF2依赖的NF-κB、MAPK与细胞存活信号，遗传学证据支持其与类风湿关节炎等免疫炎症表型相关。TRAF1为胞内衔接蛋白，天然抗原可及性弱，不适合作为常规细胞表面阻断抗体靶点，但其TRAF-C结构域具备明确复合物界面，可用于机制研究型胞内递送抗体或结构引导结合分子设计。相较TNF、TNFRSF1B等可及性更高的同通路靶点，TRAF1的优先级主要来自疾病遗传关联与下游信号节点特异性，而非成药可及性优势。",
+    "mechanism": "通过结合TRAF1 TRAF-C三聚体界面，干扰TRAF1与TRAF2及TNF受体胞内尾部复合体装配，削弱受体近端NF-κB/MAPK信号放大。",
+    "selectedEpitope": "优先评估TRAF-C结构域三聚化沟槽及受体肽结合面，避开高度保守折叠核心。",
+    "diseaseDirection": "免疫炎症与类风湿关节炎",
+    "domain": "TRAF1含N端卷曲螺旋区与C端TRAF-C meprin/TRAF同源结构域，缺乏RING结构域。",
+    "evidence": "TRAF1免疫炎症遗传关联与结构界面证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB Q13077 functional annotation",
+      "RCSB PDB 3M0D X-ray structure",
+      "GWAS Catalog rheumatoid arthritis susceptibility loci"
+    ],
+    "referenceEntries": "UniProt Q13077；RCSB PDB 3M0D；Open Targets TRAF1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "TRAF-C受体肽结合沟槽",
+        "可直接竞争TNFR/CD40胞内尾部招募界面，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "TRAF-C三聚化外侧界面",
+        "可能削弱TRAF1复合体稳定性，适合构象选择性结合设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "TRAF-C保守β夹层折叠核心",
+        "易影响蛋白整体稳定性且同源TRAF交叉反应风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TRAF1定位于胞内，常规抗体难以到达作用位点；建议限定为细胞内抗体、递送抗体或结构探针设计，并严格评估TRAF2/3/5同源界面交叉结合。",
+    "structurePrepZh": "以PDB 3M0D多链TRAF-C装配体为模板，保留生物学三聚体，补全缺失侧链并检查链间界面、晶体接触与受体肽结合沟槽可用性。",
+    "structureRef": "RCSB PDB 3M0D，TRAF1 TRAF结构域X射线晶体结构",
+    "antibodies": [
+      "无已批准TRAF1治疗性抗体",
+      "研究级抗TRAF1检测抗体"
+    ],
+    "interfaceFocus": "TRAF-C三聚体沟槽与受体尾部结合面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "TNF",
+        "rationale": "TNF位于同一TNF/TNFR炎症轴上，抗体可直接中和TNF与TNFRSF1A/TNFRSF1B结合，临床验证度高且抗原可及性优于TRAF1。"
+      },
+      {
+        "target": "TNFRSF1B",
+        "rationale": "TNFR2通过胞内尾部招募TRAF1/TRAF2复合体并激活NF-κB信号，是TRAF1上游可及的膜受体节点，适合阻断或调节型抗体策略。"
+      },
+      {
+        "target": "CD40",
+        "rationale": "CD40在免疫细胞中通过TRAF家族衔接蛋白传递NF-κB与MAPK信号，与TRAF1相关炎症通路一致，且胞外受体结构适合抗体干预。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

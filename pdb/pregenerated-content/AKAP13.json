@@ -1,0 +1,65 @@
+{
+  "gene": "AKAP13",
+  "generatedAt": "2026-08-03T10:21:42.678Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "AKAP13 为胞内支架蛋白并兼具 RhoGEF 活性，可连接 PKA 锚定、RhoA 激活与心血管性状相关的血压调控表型；Open Targets 关联以身高、红细胞分布宽度和收缩压等遗传性状为主，提示其疾病相关性主要来自复杂性状遗传证据。该蛋白缺乏跨膜区和分泌特征，天然抗原可及性不符合常规治疗性抗体靶点标准，但其已解析结构片段可支持体外构象识别、机制探针或胞内递送抗体片段设计。相比同通路中可溶性或膜受体靶点，AKAP13 的优先级应定位为结构生物学与功能阻断验证靶点，而非首选系统给药抗体靶点。",
+    "mechanism": "设计抗体片段阻断 AKAP13 RhoGEF DH-PH 模块与 RhoA 的结合界面，抑制 GDP-GTP 交换并降低 RhoA 下游 ROCK 介导的收缩信号。",
+    "selectedEpitope": "优先覆盖 DH 结构域催化沟槽及其邻近 PH 结构域稳定界面，避免仅识别柔性低复杂度区。",
+    "diseaseDirection": "血压调控与血液细胞性状",
+    "domain": "AKAP13 含 PKA RII 结合区、RhoGEF DH-PH 模块及 C 端调控区域，6BCA 对应结构化功能片段。",
+    "evidence": "AKAP13 遗传关联与 RhoA 信号结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 遗传关联数据",
+      "UniProtKB Q12802 功能与结构域注释",
+      "RCSB PDB 6BCA X-ray 结构记录",
+      "文献报道 AKAP13/Lbc 介导 RhoA 激活与心血管信号"
+    ],
+    "referenceEntries": "UniProt Q12802；RCSB PDB 6BCA；Open Targets AKAP13",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DH 结构域 RhoA 结合催化界面",
+        "直接干预 RhoA 核苷酸交换反应，机制可验证性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DH-PH 结构域连接面与 PH 邻近稳定区域",
+        "可能削弱催化构象稳定性并提高构象选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化界面的暴露螺旋或柔性环区",
+        "结合可及但功能阻断不确定，需避免非中和型克隆占优",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "AKAP13 为胞内大型支架蛋白，常规抗体难以进入细胞；建议采用 Fab/VHH 体外阻断筛选、细胞内递送或 intrabody 模式，并设置 RhoGEF 活性读出。",
+    "structurePrepZh": "以 6BCA 实验结构为模板，保留抗原链 F、A、B、C 中结构完整片段，补全缺失侧链并标注 DH-PH 功能界面用于表位分区。",
+    "structureRef": "RCSB PDB 6BCA，X-ray diffraction，1.995 Å",
+    "antibodies": [
+      "无已批准 AKAP13 靶向治疗性抗体",
+      "研究级抗 AKAP13 检测抗体"
+    ],
+    "interfaceFocus": "DH-RhoA 催化结合面及 DH-PH 构象稳定界面",
+    "designMode": "胞内功能阻断",
+    "candidates": [
+      {
+        "target": "ARHGEF12",
+        "rationale": "ARHGEF12 同属 RhoA 激活相关 RhoGEF，可参与血管平滑肌收缩与血压调控遗传通路；其功能定位适合作为 AKAP13-RhoA 轴的平行机制参照。"
+      },
+      {
+        "target": "RHOA",
+        "rationale": "RHOA 是 AKAP13 RhoGEF 活性的直接小 GTP 酶底物，驱动 ROCK 下游肌动蛋白重塑和收缩信号；该节点可用于验证上游 AKAP13 阻断效应。"
+      },
+      {
+        "target": "ROCK2",
+        "rationale": "ROCK2 是 RhoA 下游关键效应激酶，与血管张力、心血管重构和血压相关表型密切相关；其通路位置适合作为下游药效标志靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

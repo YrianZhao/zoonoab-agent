@@ -1,0 +1,65 @@
+{
+  "gene": "METTL18",
+  "generatedAt": "2026-08-03T14:11:58.480Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "METTL18是胞内S-腺苷甲硫氨酸依赖性甲基转移酶，催化核糖体蛋白RPL3的His245位点N3甲基化，可能通过核糖体翻译稳态影响炎症应激表型。Open Targets显示其与脓毒症、中性粒细胞计数、乳酸测量和深静脉血栓等炎症-凝血相关表型存在遗传或组学关联。该蛋白不具备分泌蛋白或膜受体特征，天然抗原可及性低于胞外靶点，因此更适合作为细胞内机制验证或递送型抗体片段开发对象。相比同通路中广泛多效的细胞因子靶点，METTL18具有明确酶活口袋和RPL3底物识别界面，可用于高选择性结构导向干预。",
+    "mechanism": "设计抗体片段结合METTL18甲基转移酶结构域，遮挡SAM结合沟槽或RPL3 His245邻近底物识别面，抑制METTL18介导的RPL3组氨酸N3甲基化。",
+    "selectedEpitope": "优先覆盖Rossmann样SAM结合口袋周缘及RPL3底物进入沟槽，避免仅识别远端柔性环区。",
+    "diseaseDirection": "脓毒症炎症应激与凝血表型",
+    "domain": "METTL18主要由Class I SAM依赖甲基转移酶折叠构成，含SAM结合核心沟槽和底物识别表面。",
+    "evidence": "METTL18-RPL3甲基化与脓毒症表型证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt O95568功能注释",
+      "RCSB PDB 4RFQ晶体结构",
+      "人类核糖体蛋白RPL3组氨酸甲基化研究"
+    ],
+    "referenceEntries": "UniProt: O95568; RCSB PDB: 4RFQ; HGNC: METTL18",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SAM结合沟槽邻近保守催化核心",
+        "可直接干扰甲基供体结合并限制催化构象形成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RPL3底物识别面与入口沟槽",
+        "有望阻断RPL3 His245邻近肽段定位，提高功能阻断相关性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离活性中心的外周螺旋-环区",
+        "结构可及但功能阻断不确定，易产生非中和结合体",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "METTL18为胞内酶，常规抗体难以进入细胞；建议采用VHH、intrabody或递送偶联策略，并严格评估与其他SAM甲基转移酶的交叉反应。",
+    "structurePrepZh": "以4RFQ链A为模板，补全缺失侧链并校正质子化状态；围绕SAM结合位点和底物沟槽建立抗原表面网格，剔除晶体接触伪界面。",
+    "structureRef": "RCSB PDB 4RFQ, human METTL18 X-ray structure, 2.4 Å",
+    "antibodies": [
+      "无已获批METTL18靶向抗体",
+      "无临床阶段METTL18同类抗体"
+    ],
+    "interfaceFocus": "SAM结合沟槽与RPL3底物识别界面",
+    "designMode": "胞内酶阻断型",
+    "candidates": [
+      {
+        "target": "RPL3",
+        "rationale": "RPL3是METTL18的直接底物，其His245甲基化连接核糖体结构成熟与翻译稳态，可作为同一分子轴的功能验证靶点。"
+      },
+      {
+        "target": "METTL16",
+        "rationale": "METTL16同属SAM依赖RNA/蛋白相关甲基转移酶网络，参与细胞甲基供体稳态和应激转录调控，可用于评估甲基转移酶通路选择性。"
+      },
+      {
+        "target": "MAT2A",
+        "rationale": "MAT2A催化SAM合成，位于甲基供体代谢上游；在炎症应激和细胞代谢重编程中可影响多类甲基化反应的底物供给。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

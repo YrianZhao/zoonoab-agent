@@ -1,0 +1,65 @@
+{
+  "gene": "XIAP",
+  "generatedAt": "2026-08-03T17:55:02.852Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "XIAP是胞内IAP家族蛋白，通过BIR结构域直接结合并抑制caspase-3、caspase-7和caspase-9，同时其RING结构域参与泛素化调控细胞死亡与炎症反应，在X连锁淋巴增殖病和炎症性肠病中具有明确遗传与功能关联。该靶点并非经典可溶性或膜表面抗原，常规体内阻断抗体可及性受限，但其BIR结构域具有清晰晶体结构与可定义蛋白互作沟槽，适合用于细胞内抗体、递送型Fab或VHH的结构导向设计。相较TNF、IL1B等下游炎症因子，XIAP位于凋亡抑制、NOD2-RIPK2炎症轴与先天免疫稳态的上游交汇点，优先级来自遗传因果性和结构可设计性。",
+    "mechanism": "设计分子阻断XIAP BIR2/BIR3沟槽与caspase或SMAC样IBM基序的结合，解除对执行者及起始caspase的抑制并重塑异常炎症性细胞死亡。",
+    "selectedEpitope": "优先靶向BIR3结构域IBM结合沟槽及其α3周边口袋，竞争SMAC/caspase-9结合界面。",
+    "diseaseDirection": "原发免疫缺陷与炎症性肠病",
+    "domain": "XIAP含三个BIR结构域、UBA结构域和C端RING E3连接酶结构域，2POI覆盖BIR3配体结合核心。",
+    "evidence": "XIAP遗传缺陷与BIR界面功能证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P98170功能与结构域注释",
+      "RCSB PDB 2POI晶体结构记录",
+      "XIAP-SMAC/caspase相互作用文献"
+    ],
+    "referenceEntries": "UniProt P98170；RCSB PDB 2POI；Open Targets XIAP",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "BIR3 IBM结合沟槽",
+        "直接竞争SMAC与caspase-9 N端IBM样基序，结构边界清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "BIR2连接区邻近caspase-3/7结合界面",
+        "可解除对执行者caspase的抑制，但需兼顾柔性连接区构象",
+        "备选"
+      ],
+      [
+        "Site C",
+        "RING二聚化与E2结合邻近面",
+        "可能影响E3泛素连接酶活性，但抗体可及性和脱靶风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "XIAP为胞内蛋白，常规抗体体内可及性不足；设计宜采用细胞内VHH、递送型Fab或蛋白降解偶联策略，并避免破坏BIR核心折叠造成非特异聚集。",
+    "structurePrepZh": "以2POI抗原链A为模板，保留BIR3核心与配体结合沟槽，校正缺失侧链、质子化组氨酸并标注IBM肽结合残基用于对接约束。",
+    "structureRef": "RCSB PDB 2POI，XIAP BIR3晶体结构，1.8 Å",
+    "antibodies": [
+      "intracellular anti-XIAP scFv",
+      "XIAP-targeting VHH format"
+    ],
+    "interfaceFocus": "BIR3 IBM沟槽及caspase-9结合口袋",
+    "designMode": "胞内抗体设计",
+    "candidates": [
+      {
+        "target": "NOD2",
+        "rationale": "NOD2与XIAP共同参与细菌胞壁肽识别后的RIPK2泛素化与NF-κB激活通路，二者均与炎症性肠病易感性相关。"
+      },
+      {
+        "target": "RIPK2",
+        "rationale": "RIPK2是NOD2-XIAP炎症信号轴的核心激酶与泛素化底物，干预其激酶或蛋白互作界面可降低异常NF-κB和MAPK激活。"
+      },
+      {
+        "target": "CASP9",
+        "rationale": "CASP9是XIAP BIR3直接结合并抑制的起始caspase，位于线粒体凋亡通路中与XIAP功能拮抗的关键节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

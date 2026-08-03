@@ -1,0 +1,65 @@
+{
+  "gene": "AKTIP",
+  "generatedAt": "2026-08-03T10:22:44.663Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "AKTIP 为细胞内 AKT 相互作用蛋白，并参与端粒相关复合体与蛋白稳态过程，现有 Open Targets 关联主要来自性状和疾病统计关联，尚缺乏明确可抗体阻断的疾病驱动轴。该蛋白并非分泌蛋白、膜受体或经典胞外抗原，天然抗原可及性不支持常规治疗性抗体直接结合。相较于同通路中具有胞外配体或膜受体特征的靶点，AKTIP 作为主靶点优先级偏低，更适合作为细胞内机制研究或降解策略参考靶点。",
+    "mechanism": "常规抗体难以进入胞质阻断 AKTIP 与 AKT 或端粒相关因子的相互作用；可采用胞内抗体研究其对 AKT 复合体装配的影响。",
+    "selectedEpitope": "优先评估 8QAT 暴露螺旋束外侧非保守面，避免破坏复合体核心装配界面。",
+    "diseaseDirection": "AKT相关代谢与细胞稳态研究",
+    "domain": "AKTIP 含 N 端泛素样结构域及 C 端螺旋束区域，形成多亚基装配界面。",
+    "evidence": "AKTIP结构与AKT相互作用证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProtKB Q9H8T0 功能注释",
+      "RCSB PDB 8QAT 冷冻电镜结构",
+      "BioGRID/IntAct 蛋白互作记录"
+    ],
+    "referenceEntries": "UniProt Q9H8T0；RCSB PDB 8QAT；Open Targets AKTIP",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端螺旋束外侧暴露面",
+        "利于获得构象识别抗体并降低干扰核心折叠风险",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端泛素样结构域可及环区",
+        "可用于区分结构域构象状态并支持细胞内抗体工具开发",
+        "备选"
+      ],
+      [
+        "Site C",
+        "多聚体或复合体装配界面",
+        "可能影响 AKTIP 复合体稳定性但存在构象遮蔽与功能扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "AKTIP 为胞内蛋白，治疗性抗体递送和抗原可及性风险较高；建议定位为机制验证型胞内抗体或结构探针。",
+    "structurePrepZh": "以 8QAT 抗原链 A-D 建模，保留实验构象，进行缺失片段补全、质子化状态校正与多聚体界面标注。",
+    "structureRef": "RCSB PDB 8QAT，3.2 Å cryo-EM human AKTIP structure",
+    "antibodies": [
+      "无已批准AKTIP治疗性抗体",
+      "研究级抗AKTIP抗体"
+    ],
+    "interfaceFocus": "AKTIP螺旋束外侧与复合体装配邻近面",
+    "designMode": "胞内抗体工具设计",
+    "candidates": [
+      {
+        "target": "AKT1",
+        "rationale": "AKT1 是 PI3K-AKT 通路核心激酶，与代谢、细胞存活和生长信号直接相关；但其胞内定位同样限制常规抗体可及性。"
+      },
+      {
+        "target": "PIK3CA",
+        "rationale": "PIK3CA 编码 PI3K 催化亚基 p110α，位于 AKT 激活上游，是同一 PI3K-AKT 轴中的明确疾病驱动节点。"
+      },
+      {
+        "target": "IGF1R",
+        "rationale": "IGF1R 为跨膜受体酪氨酸激酶，可通过 IRS-PI3K 轴激活 AKT，具有胞外结构域并更适合抗体阻断配体结合或受体激活。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "CDC23",
+  "generatedAt": "2026-08-03T18:23:12.320Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CDC23为后期促进复合体/环体（APC/C）的四肽重复蛋白亚基，参与有丝分裂后期启动与细胞周期退出，其疾病关联主要来自体格、代谢与行为表型遗传关联，缺乏明确可药物化疾病驱动机制。CDC23定位于胞内APC/C支架复合体，不具备胞外结构域、分泌蛋白或膜受体抗原可及性，因此不适合作为常规治疗性抗体直接结合靶点。相较EGFR、PDCD1或TNF等胞外可及靶点，CDC23的抗体开发优先级较低，更适合用于结构生物学验证、细胞内递送抗体或研究级结合分子设计。",
+    "mechanism": "研究型抗体可结合CDC23 TPR超螺旋表面，干扰其与APC/C相邻亚基及共激活因子结合所需的支架构象稳定性。",
+    "selectedEpitope": "优先评估CDC23 TPR重复阵列的外凸螺旋面，避开深埋APC/C装配核心界面。",
+    "diseaseDirection": "细胞周期与遗传表型关联",
+    "domain": "CDC23主要由多段TPR重复构成，形成α螺旋超螺旋支架并参与APC/C装配。",
+    "evidence": "CDC23-APC/C结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9UJX2功能与定位注释",
+      "RCSB PDB 9GAW冷冻电镜结构",
+      "APC/C细胞周期调控文献"
+    ],
+    "referenceEntries": "UniProt Q9UJX2；RCSB PDB 9GAW；Open Targets CDC23",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "TPR重复阵列外凸α螺旋面",
+        "可形成构象型结合表位，适合研究型Fab识别",
+        "优先"
+      ],
+      [
+        "Site B",
+        "TPR沟槽邻近共激活因子相关表面",
+        "可能影响APC/C构象稳定，但需避免广泛复合体破坏",
+        "备选"
+      ],
+      [
+        "Site C",
+        "APC/C核心装配埋藏界面",
+        "抗原制备与抗体可及性差，存在构象依赖和非特异风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CDC23为胞内复合体亚基，治疗性抗体天然可及性不足；建议限定为体外结构探针、细胞内递送抗体或降解偶联研究。",
+    "structurePrepZh": "以9GAW冷冻电镜模型提取CDC23链段，补全缺失环区并保留TPR二级结构约束，按APC/C复合体邻近界面标注可及性。",
+    "structureRef": "RCSB PDB 9GAW，human APC/C cryo-EM structure",
+    "antibodies": [
+      "anti-CDC23 research antibody",
+      "anti-APC/C subunit antibody"
+    ],
+    "interfaceFocus": "TPR外凸螺旋面与APC/C邻近亚基界面",
+    "designMode": "胞内研究型抗体",
+    "candidates": [
+      {
+        "target": "ANAPC2",
+        "rationale": "ANAPC2为APC/C催化核心亚基，参与E2泛素结合与底物泛素化反应，处于同一细胞周期泛素化通路。其结构功能关系较CDC23更直接连接催化活性。"
+      },
+      {
+        "target": "CDC20",
+        "rationale": "CDC20是APC/C共激活因子，介导有丝分裂底物识别并促进后期启动。阻断CDC20与APC/C或底物相互作用具有更明确的细胞周期调控机制。"
+      },
+      {
+        "target": "CDH1",
+        "rationale": "CDH1是APC/C在有丝分裂退出和G1期的重要共激活因子，与CDC23同属APC/C调控轴。其底物识别功能为细胞周期维持提供可验证机制节点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

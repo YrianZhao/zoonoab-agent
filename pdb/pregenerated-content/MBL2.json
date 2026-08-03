@@ -1,0 +1,65 @@
+{
+  "gene": "MBL2",
+  "generatedAt": "2026-08-03T14:06:31.648Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MBL2编码甘露糖结合凝集素，是凝集素补体通路的可溶性模式识别分子，可识别病原体或凋亡细胞表面甘露糖、N-乙酰葡糖胺等糖基结构，并招募MASP1/MASP2启动C4与C2裂解。其疾病证据主要集中于血清MBL水平、骨密度相关表型及感染易感性，反映补体激活与先天免疫稳态的遗传调控关联。MBL2为分泌型寡聚蛋白，C端糖识别结构域在血浆环境中高度可及，适合抗体或片段抗体进行配体结合界面调控。相较下游补体成分，MBL2位于凝集素通路起始端，具备更明确的通路选择性，可避免直接广泛抑制经典途径和旁路途径。",
+    "mechanism": "阻断MBL2糖识别结构域与甘露糖/GlcNAc糖链结合，降低MASP2依赖性C4、C2裂解及C3转化酶形成。",
+    "selectedEpitope": "优先覆盖C端C-type lectin糖识别结构域的Ca2+依赖糖结合沟槽及邻近环区。",
+    "diseaseDirection": "凝集素补体通路与先天免疫",
+    "domain": "MBL2含N端半胱氨酸富集区、胶原样区、颈区及C端C-type lectin糖识别结构域。",
+    "evidence": "MBL2凝集素补体通路结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P11226蛋白功能注释",
+      "RCSB PDB 1HUP晶体结构",
+      "补体凝集素通路与MASP复合物文献"
+    ],
+    "referenceEntries": "UniProt:P11226；RCSB PDB:1HUP；HGNC:MBL2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C-type lectin糖识别结构域Ca2+依赖糖结合沟槽",
+        "直接阻断甘露糖/GlcNAc识别，具备最明确的功能抑制价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "糖识别结构域邻近环区与表面凸起",
+        "可通过空间位阻削弱多价糖链结合并保留较高结构可及性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "颈区三聚化界面附近区域",
+        "可能影响寡聚构象，但存在扰动天然装配及非特异聚集风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "糖结合沟槽含Ca2+配位残基，表位设计应避免完全依赖金属离子配位面；胶原样区重复序列免疫原性与交叉反应需谨慎评估。",
+    "structurePrepZh": "以1HUP链A为结构模板，补全缺失侧链并保留Ca2+及关键糖识别位点；按生理寡聚状态评估CRD可及性。",
+    "structureRef": "RCSB PDB 1HUP，X-ray diffraction，2.5 Å",
+    "antibodies": [
+      "3F8 anti-human MBL monoclonal antibody",
+      "HYB 131-01 anti-human MBL monoclonal antibody"
+    ],
+    "interfaceFocus": "CRD糖结合沟槽、Ca2+配位环与邻近环区",
+    "designMode": "阻断型抗体设计",
+    "candidates": [
+      {
+        "target": "MASP2",
+        "rationale": "MASP2是MBL复合物中执行C4和C2裂解的关键丝氨酸蛋白酶，处于同一凝集素补体通路。靶向MASP2可在MBL识别之后阻断效应级联。"
+      },
+      {
+        "target": "MASP1",
+        "rationale": "MASP1与MBL结合并参与MASP2活化及凝集素通路放大，属于MBL相关蛋白酶网络。抑制MASP1可削弱通路启动效率。"
+      },
+      {
+        "target": "FCN2",
+        "rationale": "FCN2为可溶性模式识别分子，可结合乙酰化糖结构并招募MASP复合物激活凝集素补体通路。其功能位置与MBL2平行，适合作为同通路候选靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "SMO",
+  "generatedAt": "2026-08-03T16:45:32.789Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SMO 是 Hedgehog 通路的七跨膜 Frizzled 类受体，PTCH1 抑制解除后 SMO 激活 GLI 转录程序，驱动基底细胞癌、髓母细胞瘤及部分白血病中的增殖与存活信号。该靶点具有胞外 N 端半胱氨酸富集结构域与胞外环，可作为膜受体抗原提供抗体可及位点。相较 GLI1/GLI2 等核内效应因子，SMO 位于细胞表面且处于通路枢纽位置，具备更明确的抗体干预优先级。",
+    "mechanism": "阻断 SMO 胞外 CRD 与甾醇类配体结合及受体激活构象转换，抑制下游 GLI1/GLI2 依赖性转录输出。",
+    "selectedEpitope": "优先覆盖 N 端 CRD 甾醇结合沟槽及 CRD-连接区构象界面。",
+    "diseaseDirection": "Hedgehog驱动肿瘤与发育异常",
+    "domain": "SMO 含胞外 CRD、七跨膜螺旋束及胞内 C 端尾部，4JKV 解析跨膜核心构象。",
+    "evidence": "SMO-Hedgehog通路肿瘤证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q99835 功能与结构域注释",
+      "RCSB PDB 4JKV X射线晶体结构",
+      "Hedgehog通路肿瘤遗传学与药理学文献"
+    ],
+    "referenceEntries": "UniProt Q99835；RCSB PDB 4JKV；Open Targets SMO",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端CRD甾醇结合沟槽",
+        "可限制内源性甾醇介导的SMO激活并提高功能阻断概率",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CRD与胞外连接区构象界面",
+        "有助于稳定非活化构象并干扰跨膜核心构象传递",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ECL2及跨膜近膜外侧区域",
+        "结构邻近小分子结合腔但膜遮蔽和构象异质性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SMO 为多跨膜受体，天然构象依赖膜环境；ECL表位短且糖基化邻近区域可能影响抗体进入，建议优先采用CRD构象抗原并保留膜近端验证。",
+    "structurePrepZh": "以4JKV跨膜核心作为构象参考，补充AlphaFold或同源模型中的N端CRD，校正二硫键、糖基化位点和膜取向后进行表位暴露评估。",
+    "structureRef": "Wang et al., Nature 2013；RCSB PDB 4JKV",
+    "antibodies": [
+      "5E1（抗SHH通路配体抗体）",
+      "Vismodegib（SMO同通路小分子参照）"
+    ],
+    "interfaceFocus": "CRD甾醇沟槽与CRD-7TM构象耦联界面",
+    "designMode": "膜受体阻断型",
+    "candidates": [
+      {
+        "target": "PTCH1",
+        "rationale": "PTCH1 是 Hedgehog 通路中 SMO 的上游抑制受体，失功能突变可解除对 SMO 的抑制并驱动基底细胞癌和发育综合征。其多跨膜胞外环可作为同通路膜受体干预节点。"
+      },
+      {
+        "target": "SHH",
+        "rationale": "SHH 是经典 Hedgehog 配体，可与 PTCH1 结合并触发 SMO 去抑制化。阻断 SHH-PTCH1 相互作用可在配体依赖性肿瘤或异常发育信号中降低通路输入。"
+      },
+      {
+        "target": "GLI1",
+        "rationale": "GLI1 是 SMO 下游转录输出的核心效应因子和通路活性标志物，适合作为同通路药效与患者分层候选靶点。因其为核内蛋白，抗体成药可及性低于 SMO。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

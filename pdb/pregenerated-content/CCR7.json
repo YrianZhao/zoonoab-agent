@@ -1,0 +1,65 @@
+{
+  "gene": "CCR7",
+  "generatedAt": "2026-08-03T11:07:39.645Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CCR7 是 CCL19/CCL21 介导淋巴细胞与树突状细胞归巢的关键 GPCR，驱动细胞进入淋巴结 T 细胞区并影响白细胞组成，因而与淋巴细胞计数及白细胞比例表型具有明确机制关联。该靶点为七跨膜受体，N 端胞外段与 ECL2/ECL3 参与趋化因子识别，抗原决定簇具备细胞表面可及性。相较下游迁移信号分子，CCR7 位于配体识别入口，可通过阻断配体结合直接干预迁移轴，并已有高分辨率实验结构支持界面化抗体设计。",
+    "mechanism": "阻断 CCR7 胞外 N 端/ECL2 与 CCL19 或 CCL21 的结合，抑制受体构象激活及后续 Gi 蛋白介导的趋化迁移。",
+    "selectedEpitope": "优先覆盖 N 端胞外肽段与 ECL2 形成的趋化因子结合入口，兼顾 ECL3 邻近构象约束位点。",
+    "diseaseDirection": "免疫细胞迁移与白细胞数量表型",
+    "domain": "A 链为人 CCR7 七跨膜 GPCR，含胞外 N 端、ECL1-ECL3、七个跨膜螺旋及胞内环。",
+    "evidence": "CCR7-CCL19/CCL21 迁移轴结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt P32248 功能与拓扑注释",
+      "RCSB PDB 6QZH X-ray 结构记录",
+      "趋化因子受体 CCR7 配体结合与细胞迁移文献"
+    ],
+    "referenceEntries": "UniProt P32248；RCSB PDB 6QZH；Open Targets CCR7",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N 端胞外段与 ECL2 围成的正构趋化因子结合入口",
+        "可直接阻断 CCL19/CCL21 识别并降低受体激活概率",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ECL2-ECL3 邻近的胞外 vestibule 外缘",
+        "可通过空间位阻限制趋化因子插入受体结合腔",
+        "备选"
+      ],
+      [
+        "Site C",
+        "跨膜螺旋外露顶端及 ECL1 周边区域",
+        "结构可及性较高但可能远离主要配体识别热点，需验证功能阻断效应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CCR7 胞外环较短且构象受膜环境影响显著，需避免依赖去污剂稳定构象形成的伪表位，并优先筛选可识别细胞表面天然受体的克隆。",
+    "structurePrepZh": "以 6QZH A 链为模板，保留七跨膜核心和胞外环构象，移除非抗原配体及结晶辅助组分，并按膜法向校正胞外朝向。",
+    "structureRef": "RCSB PDB 6QZH，CCR7 X-ray 结构，2.1 Å",
+    "antibodies": [
+      "Leronlimab",
+      "Mogamulizumab"
+    ],
+    "interfaceFocus": "N 端胞外段、ECL2 与趋化因子结合入口",
+    "designMode": "GPCR胞外阻断抗体",
+    "candidates": [
+      {
+        "target": "CCL19",
+        "rationale": "CCL19 是 CCR7 的天然配体之一，直接参与 CCR7 介导的淋巴细胞与树突状细胞趋化迁移。中和该配体可从配体侧抑制同一迁移轴。"
+      },
+      {
+        "target": "CCL21",
+        "rationale": "CCL21 与 CCR7 结合并驱动淋巴组织归巢，其固有碱性 C 端有助于组织基质定位。靶向 CCL21 可干预 CCR7 轴在淋巴器官微环境中的定位信号。"
+      },
+      {
+        "target": "CXCR4",
+        "rationale": "CXCR4 是白细胞迁移与组织归巢相关的趋化因子受体，与 CCR7 同属趋化因子受体介导的免疫细胞定位网络。其配体 CXCL12-CXCR4 轴可作为相关迁移通路的并行候选靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

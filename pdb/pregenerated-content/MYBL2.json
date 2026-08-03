@@ -1,0 +1,65 @@
+{
+  "gene": "MYBL2",
+  "generatedAt": "2026-08-03T14:29:41.416Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MYBL2编码B-Myb转录因子，作为DREAM/MMB细胞周期转录网络成员，参与S期进入、G2/M基因表达及造血祖细胞增殖程序。Open Targets关联主要集中于红细胞体积、网织红细胞体积和红细胞分布宽度等血液表型，符合其在增殖性造血细胞转录调控中的功能定位。该蛋白为核内转录因子，缺乏天然胞外结构域或分泌形式，常规抗体药物的抗原可及性较弱，因此更适合用于结构生物学验证、细胞内递送抗体或研究级结合分子设计。相较于同通路中高度广谱且必需性更强的核心CDK或E2F节点，MYBL2具有更明确的MuvB复合体依赖调控界面，可作为机制探针型靶点优先评估。",
+    "mechanism": "设计抗体结合MYBL2与MuvB复合体的互作界面，阻断MYBL2募集LIN9-LIN37-LIN52-RBBP4模块，从而抑制G2/M细胞周期基因转录激活。",
+    "selectedEpitope": "优先覆盖6C48中MYBL2转录激活区与MuvB结合片段的复合体界面，避开高度保守DNA结合R2R3区域。",
+    "diseaseDirection": "红细胞性状与细胞周期调控",
+    "domain": "MYBL2含N端R2R3 MYB样DNA结合结构域，中部转录调控区及C端负调控区。",
+    "evidence": "MYBL2-MuvB细胞周期转录调控证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProtKB P10244功能注释",
+      "RCSB PDB 6C48晶体结构",
+      "细胞周期DREAM/MMB复合体文献"
+    ],
+    "referenceEntries": "UniProt P10244；RCSB PDB 6C48；Open Targets MYBL2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "MYBL2-MuvB复合体结合界面片段",
+        "直接干预MYBL2募集MuvB并影响G2/M转录程序",
+        "优先"
+      ],
+      [
+        "Site B",
+        "中部转录调控区非DNA结合暴露面",
+        "有助于获得构象识别抗体并减少DNA结合域保守性风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端R2R3 MYB样DNA结合结构域",
+        "区域保守且核酸结合相关，易产生交叉反应或功能解释混杂",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MYBL2为核内蛋白，细胞外抗原可及性不足，需优先定位为研究级或胞内递送抗体；设计中应规避R2R3保守DNA结合面以降低交叉反应。",
+    "structurePrepZh": "以6C48晶体结构为模板，保留MYBL2与MuvB相关链的复合体构象，补全缺失环区并标注界面残基、保守性和晶体接触区域。",
+    "structureRef": "RCSB PDB 6C48，X-ray diffraction，2.32 Å",
+    "antibodies": [
+      "MYBL2研究级单克隆抗体",
+      "B-Myb ChIP验证抗体"
+    ],
+    "interfaceFocus": "MYBL2-MuvB复合体蛋白互作界面",
+    "designMode": "胞内机制阻断",
+    "candidates": [
+      {
+        "target": "LIN9",
+        "rationale": "LIN9是MuvB复合体核心组分，参与MYBL2依赖的G2/M基因启动子募集，可作为同一MMB转录轴的界面替代靶点。"
+      },
+      {
+        "target": "LIN52",
+        "rationale": "LIN52连接DREAM/MMB复合体状态转换，其磷酸化与细胞周期转录调控相关，适合用于解析MYBL2通路装配机制。"
+      },
+      {
+        "target": "FOXM1",
+        "rationale": "FOXM1与MYBL2共同促进晚期细胞周期基因表达，是G2/M转录程序中的真实下游协同转录因子。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

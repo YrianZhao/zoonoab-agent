@@ -1,0 +1,65 @@
+{
+  "gene": "KHDRBS3",
+  "generatedAt": "2026-08-03T13:41:34.459Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KHDRBS3 为胞内 RNA 结合蛋白，主要通过 KH 结构域参与选择性剪接、RNA 稳定性及信号相关转录后调控；现有 Open Targets 关联以骨密度、行为表型、血浆蛋白量及肾炎等遗传关联为主，疾病机制尚未形成可直接抗体阻断的经典胞外轴。该蛋白缺乏分泌型或跨膜胞外结构域，天然抗原可及性不支持常规治疗性抗体直接结合。相较 TNF、IL6R、RANKL 等同类炎症或骨代谢通路中可及靶点，KHDRBS3 更适合作为结构生物学验证、细胞内递送抗体或研究型 binder 设计对象，主靶点优先级应低于胞外可药靶点。",
+    "mechanism": "设计分子以内体逃逸或胞内递送形式结合 KHDRBS3 KH RNA 结合沟槽，阻断其与富含 U/A RNA 基序的结合并干扰剪接复合体装配。",
+    "selectedEpitope": "优先覆盖 5EL3 KH 结构域 β-sheet/α-helix 形成的 RNA 结合沟槽边缘，避免完全占据保守疏水核心。",
+    "diseaseDirection": "肾炎与骨代谢遗传关联探索",
+    "domain": "KHDRBS3 含 N 端 QUA1 样二聚化区、中央 KH RNA 结合结构域及富含酪氨酸/脯氨酸的调控区。",
+    "evidence": "KHDRBS3 结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB O75525 functional annotation",
+      "RCSB PDB 5EL3 X-ray structure",
+      "InterPro KH domain family annotation"
+    ],
+    "referenceEntries": "UniProt O75525；RCSB PDB 5EL3；Open Targets KHDRBS3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "KH 结构域 RNA 结合沟槽侧缘",
+        "可直接竞争 RNA 底物结合，适合机制型胞内 binder 设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "KH 结构域 α-螺旋外侧非保守面",
+        "降低与 KH 家族保守位点交叉反应，利于获得选择性结合",
+        "备选"
+      ],
+      [
+        "Site C",
+        "KH 结构域保守 GXXG 环及疏水核心邻近区",
+        "可能影响折叠稳定性并增加 KH 家族交叉识别风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为胞内定位导致常规抗体不可及，且 KH 结构域保守性较高。建议采用胞内递送抗体、intrabody 或研究型 Fab/VHH，并强化家族选择性筛选。",
+    "structurePrepZh": "以 5EL3 高分辨率晶体结构为模板，保留 KH 结构域完整折叠单元，去除晶体接触冗余链后评估 RNA 结合沟槽与非保守表面。",
+    "structureRef": "RCSB PDB 5EL3，X-ray diffraction，1.59 Å",
+    "antibodies": [
+      "无已获批 KHDRBS3 治疗性抗体",
+      "研究级抗 KHDRBS3 抗体"
+    ],
+    "interfaceFocus": "KH 结构域 RNA 结合沟槽及非保守外侧面",
+    "designMode": "胞内binder探索",
+    "candidates": [
+      {
+        "target": "TNFSF11",
+        "rationale": "TNFSF11/RANKL 是骨重塑通路中驱动破骨细胞分化的分泌型配体，抗体可直接阻断 RANKL 与 TNFRSF11A/RANK 结合。与 KHDRBS3 相比，其疾病机制和抗原可及性更适合骨密度相关抗体开发。"
+      },
+      {
+        "target": "TNFRSF11A",
+        "rationale": "TNFRSF11A/RANK 是 RANKL 介导破骨细胞生成的膜受体，胞外富含半胱氨酸结构域可作为抗体结合区域。该靶点位于骨代谢通路核心节点，具备明确受体-配体阻断机制。"
+      },
+      {
+        "target": "IL6R",
+        "rationale": "IL6R 参与炎症性肾损伤和骨吸收相关 IL-6 信号，抗体可阻断 IL6 与 IL6R 结合或抑制 IL6R-gp130 复合体形成。其胞外受体结构域可及性优于胞内 RNA 结合蛋白。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

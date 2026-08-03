@@ -1,0 +1,65 @@
+{
+  "gene": "MAP3K20",
+  "generatedAt": "2026-08-03T14:03:08.796Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAP3K20编码ZAK激酶，是核糖体毒性应激反应中的近端MAP3K，可在核糖体碰撞后磷酸化MKK3/6与MKK4/7并激活p38和JNK通路，参与肌病相关应激与炎症表型。该蛋白为胞内丝氨酸/苏氨酸激酶，天然抗原可及性不具备膜受体或分泌蛋白优势，因此常规细胞外阻断抗体优先级受限。相较于下游MAPK14或MAPK8，MAP3K20位于应激通路上游且结构化激酶域已有高分辨率实验结构，适合作为机制研究型胞内抗体或结构引导结合分子设计靶点。",
+    "mechanism": "通过结合MAP3K20激酶结构域ATP结合裂缝邻近区域，限制催化构象形成，降低其对MKK3/6与MKK4/7的磷酸转移效率。",
+    "selectedEpitope": "优先覆盖激酶N叶β折叠、铰链区与C叶αC-helix邻近的催化裂缝边缘。",
+    "diseaseDirection": "肌病与核糖体应激炎症通路",
+    "domain": "MAP3K20含N端丝氨酸/苏氨酸蛋白激酶结构域及C端调控区，5X5O覆盖催化结构域。",
+    "evidence": "MAP3K20-ZAK核糖体毒性应激证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9NYL2功能与结构域注释",
+      "RCSB PDB 5X5O晶体结构记录",
+      "文献报道ZAK介导p38/JNK核糖体毒性应激"
+    ],
+    "referenceEntries": "UniProt Q9NYL2；RCSB PDB 5X5O；Open Targets MAP3K20",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶铰链区与ATP结合裂缝边缘",
+        "可干预催化构象与底物磷酸转移，是结构引导抑制型结合的核心区域",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N叶β折叠至αC-helix调控界面",
+        "有望稳定非活化构象并削弱MKK结合后的活化效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C叶催化环与活化环邻近区域",
+        "功能相关但保守性较高，存在交叉识别其他MAP3K激酶的风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAP3K20为胞内激酶，常规治疗性抗体难以进入细胞；建议定位为胞内抗体、递送型VHH或结构验证工具，并严格评估激酶家族交叉反应。",
+    "structurePrepZh": "以5X5O链A为模板，补全缺失侧链并质子化ATP结合裂缝周边残基，保留激酶域构象用于表位可及性与保守性评估。",
+    "structureRef": "PDB 5X5O，X射线晶体结构，1.868 Å，Homo sapiens MAP3K20",
+    "antibodies": [
+      "抗ZAK研究级单克隆抗体",
+      "抗MAP3K20/ZAK多克隆抗体"
+    ],
+    "interfaceFocus": "ATP结合裂缝、铰链区与αC-helix调控界面",
+    "designMode": "胞内结构引导型",
+    "candidates": [
+      {
+        "target": "MAP2K3",
+        "rationale": "MAP2K3是MAP3K20下游MKK3/6-p38轴成员，接受上游MAP3K磷酸化并激活p38 MAPK，适合用于同通路药效级联验证。"
+      },
+      {
+        "target": "MAPK14",
+        "rationale": "MAPK14编码p38α，是核糖体毒性应激与炎症转录反应的核心效应激酶，可作为下游功能读出与替代干预节点。"
+      },
+      {
+        "target": "MAPK8",
+        "rationale": "MAPK8编码JNK1，处于MAP3K20-MKK4/7-JNK分支下游，参与应激诱导转录和细胞命运调控。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

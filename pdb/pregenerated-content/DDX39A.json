@@ -1,0 +1,65 @@
+{
+  "gene": "DDX39A",
+  "generatedAt": "2026-08-03T11:53:46.947Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DDX39A 是核质穿梭型 DEAD-box RNA 解旋酶，参与前体 mRNA 剪接后 mRNP 装配与 TREX 介导的 mRNA 输出，遗传关联主要集中于红细胞体积、网织红细胞计数及血红蛋白相关性状，提示其与造血细胞转录后 RNA 处理效率相关。该蛋白缺乏天然分泌形式或跨膜胞外结构域，抗原可及性不适合常规体内阻断型抗体，更适宜作为结构生物学和胞内结合分子设计对象。相较细胞表面造血调控因子，DDX39A 的疾病关联分数较低且机制外显可干预性有限，因此优先级应定位为探索性胞内调节靶点。",
+    "mechanism": "设计结合 DDX39A RecA-like 解旋酶核心的 Fab/VHH，阻断 RNA 结合沟槽或 ATPase 构象闭合所需界面，从而干扰 mRNP 装配相关解旋酶循环。",
+    "selectedEpitope": "优先覆盖 RecA1-RecA2 结构域间 RNA/ATP 诱导闭合界面及核苷酸结合沟槽邻近螺旋。",
+    "diseaseDirection": "红细胞性状与造血转录后调控",
+    "domain": "DDX39A 含两个 RecA-like DEAD-box 解旋酶结构域，形成 ATP/RNA 依赖性夹钳构象。",
+    "evidence": "DDX39A 造血性状遗传关联与结构可设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt O00148 functional annotation",
+      "RCSB PDB 8IJU X-ray structure",
+      "DEAD-box helicase and TREX/mRNA export literature"
+    ],
+    "referenceEntries": "UniProt O00148；RCSB PDB 8IJU；Open Targets DDX39A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RecA1-RecA2 结构域间闭合界面",
+        "可限制 ATP/RNA 诱导的解旋酶构象转换，具备机制阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "核苷酸结合 Walker A/B 基序邻近沟槽",
+        "有利于干扰 ATPase 循环，但需避免完全依赖保守催化残基",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离 RNA 结合沟槽的外周螺旋表面",
+        "结构可及但功能耦联较弱，可能仅产生结合而非抑制效应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DDX39A 为胞内核质蛋白，常规抗体体内可及性不足；DEAD-box 催化核心高度保守，需规避与 DDX39B 等同源蛋白的交叉反应。",
+    "structurePrepZh": "以 8IJU 链 A 为模板，补全缺失侧链并检查核苷酸、离子及晶体接触；表位筛选应区分功能界面与晶体堆积界面。",
+    "structureRef": "RCSB PDB 8IJU，X-ray diffraction，1.82 Å",
+    "antibodies": [
+      "无已批准 DDX39A 靶向治疗性抗体",
+      "DDX39A 研究级检测抗体"
+    ],
+    "interfaceFocus": "RecA1-RecA2 夹钳闭合界面与 RNA 结合沟槽",
+    "designMode": "胞内结合体探索",
+    "candidates": [
+      {
+        "target": "DDX39B",
+        "rationale": "DDX39B 与 DDX39A 同属 mRNA 输出相关 DEAD-box 解旋酶，参与 TREX 复合体依赖的 mRNP 装配与核输出，可作为同通路同源机制参照。"
+      },
+      {
+        "target": "ALYREF",
+        "rationale": "ALYREF 是 TREX 复合体 RNA 结合适配因子，连接剪接后 mRNA 与核输出受体，处于 DDX39A 介导 mRNP 成熟的同一通路。"
+      },
+      {
+        "target": "NXF1",
+        "rationale": "NXF1 是主要 mRNA 核输出受体，识别 TREX 装配后的 mRNP 并介导其通过核孔输出，是 DDX39A 下游功能轴的真实节点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

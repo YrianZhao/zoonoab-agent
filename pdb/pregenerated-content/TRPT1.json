@@ -1,0 +1,65 @@
+{
+  "gene": "TRPT1",
+  "generatedAt": "2026-08-03T17:31:22.990Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TRPT1编码tRNA 2'-磷酸转移酶，主要参与tRNA剪接后2'-磷酸去除与RNA修复代谢；现有Open Targets关联以血小板计数、双相障碍和心率等遗传性状为主，疾病机制支持度较低且缺乏明确致病受体轴。TRPT1为细胞内酶，不具备分泌蛋白、膜受体或稳定胞外结构域特征，天然抗原可及性不利于常规治疗性抗体结合。与GP1BA、ITGA2B、THPO/MPL等血小板生成或功能通路靶点相比，TRPT1缺少胞外可阻断界面和成熟药理验证，因此仅适合作为结构抗原或细胞内递送抗体探索的低优先级靶点。",
+    "mechanism": "通过抗体片段结合TRPT1催化沟槽周边，空间阻碍NAD依赖性转磷酸反应中ADP-核糖中间体形成及2'-磷酸RNA底物进入。",
+    "selectedEpitope": "优先评估PDB 7YW3中Rossmann样NAD结合核心与催化沟槽边缘环区的构象表位。",
+    "diseaseDirection": "血小板性状与RNA修复代谢",
+    "domain": "TRPT1为细胞质RNA修复酶，含Rossmann样NAD结合核心及催化沟槽结构。",
+    "evidence": "TRPT1结构与遗传性状关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q86TN4蛋白功能注释",
+      "RCSB PDB 7YW3晶体结构",
+      "RNA ligation and tRNA splicing pathway literature"
+    ],
+    "referenceEntries": "UniProt Q86TN4；RCSB PDB 7YW3；Open Targets TRPT1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "NAD结合Rossmann样核心邻近催化沟槽",
+        "可干扰NAD结合及ADP-核糖转移中间体形成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RNA底物进入沟槽周边带正电环区",
+        "可限制2'-磷酸RNA底物定位，适合功能阻断验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离活性中心的溶剂暴露螺旋表面",
+        "主要提供结合信号，对酶活阻断效应可能有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TRPT1定位于细胞内，常规IgG难以到达作用位点；应优先采用细胞内递送Fab/VHH或仅用于结构探针开发，并避免将其作为胞外阻断型抗体主靶点。",
+    "structurePrepZh": "以7YW3链A为模板，保留催化核心构象，去除非必要晶体接触分子，标注NAD结合沟槽、RNA底物通道及高保守催化残基邻域。",
+    "structureRef": "RCSB PDB 7YW3，X-ray diffraction，2.5 Å",
+    "antibodies": [
+      "无临床验证TRPT1靶向抗体",
+      "无获批TRPT1同类抗体"
+    ],
+    "interfaceFocus": "NAD结合核心与RNA底物催化沟槽",
+    "designMode": "细胞内酶探针型",
+    "candidates": [
+      {
+        "target": "THPO",
+        "rationale": "THPO是血小板生成的核心细胞因子，通过结合MPL促进巨核细胞增殖和成熟；其分泌蛋白属性使抗体中和或配体阻断具有明确可及性。"
+      },
+      {
+        "target": "MPL",
+        "rationale": "MPL为血小板生成素受体，直接介导JAK2-STAT信号并调控巨核细胞谱系扩增；胞外细胞因子结合域适合抗体阻断或构象调节。"
+      },
+      {
+        "target": "GP1BA",
+        "rationale": "GP1BA位于血小板表面GPIb-IX-V复合体中，介导与von Willebrand factor的黏附相互作用；其胞外富亮氨酸重复结构域具备清晰抗体可及界面。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

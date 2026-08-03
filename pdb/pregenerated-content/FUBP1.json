@@ -1,0 +1,65 @@
+{
+  "gene": "FUBP1",
+  "generatedAt": "2026-08-03T12:38:27.625Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FUBP1为核内单链DNA/RNA结合蛋白，可通过KH结构域识别FUSE等富含嘌呤序列并影响MYC等基因转录，与增殖和代谢相关表型存在遗传关联。该蛋白缺乏跨膜区和分泌信号，主要定位于细胞核及胞质核糖核蛋白复合物，天然抗原可及性不具备常规治疗性抗体优势。相较于膜受体或分泌型代谢调控靶点，FUBP1更适合作为结构生物学与胞内递送抗体研究靶点，优先级应低于可直接胞外阻断的同通路节点。",
+    "mechanism": "设计抗体需进入细胞后结合FUBP1 KH3-KH4核酸结合面，阻断其与FUSE单链DNA或靶RNA序列的结合，从而削弱FUBP1介导的转录调控复合物组装。",
+    "selectedEpitope": "优先覆盖4LIJ所示KH结构域核酸结合沟槽及GXXG环邻近界面。",
+    "diseaseDirection": "生长体征与体成分遗传关联",
+    "domain": "FUBP1含N端调控区、中央四个KH核酸结合结构域及C端转录调控区。",
+    "evidence": "FUBP1结构与体征遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联数据",
+      "UniProt Q96AE4蛋白功能与定位注释",
+      "RCSB PDB 4LIJ X射线晶体结构",
+      "PubMed中FUBP1-FUSE/MYC转录调控研究"
+    ],
+    "referenceEntries": "UniProt Q96AE4；RCSB PDB 4LIJ；Open Targets FUBP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "KH3-KH4核酸结合沟槽",
+        "可直接竞争FUSE单链DNA或RNA底物结合，机制验证清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "KH结构域间相对取向界面",
+        "可能干扰多KH协同识别核酸序列，提高构象阻断效应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "KH折叠核心疏水面",
+        "易影响整体折叠稳定性并产生非特异构象扰动，需谨慎评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FUBP1为胞内核酸结合蛋白，常规抗体难以到达作用位点；应优先采用胞内递送、细胞穿透或intrabody策略，并严格评估KH家族交叉反应。",
+    "structurePrepZh": "以4LIJ高分辨率晶体结构为模板，保留KH结构域坐标，补建缺失环区，映射核酸结合残基并去除非功能性晶体接触。",
+    "structureRef": "RCSB PDB 4LIJ，X-ray diffraction，1.8 Å",
+    "antibodies": [
+      "无已批准FUBP1治疗性抗体",
+      "研究级抗FUBP1单克隆抗体"
+    ],
+    "interfaceFocus": "KH3-KH4核酸结合沟槽与GXXG环",
+    "designMode": "胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "MYC",
+        "rationale": "MYC为FUBP1-FUSE转录调控轴的重要下游基因，参与细胞增殖、代谢和生长相关表型；其调控网络与FUBP1功能关联明确。"
+      },
+      {
+        "target": "FUBP3",
+        "rationale": "FUBP3同属FUBP核酸结合蛋白家族，含KH结构域并参与RNA/DNA结合调控，可作为同类核酸调控节点的比较靶点。"
+      },
+      {
+        "target": "TFIIH",
+        "rationale": "TFIIH复合物参与启动子开链与转录起始过程，是MYC启动子转录调控框架中的真实核心复合物节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

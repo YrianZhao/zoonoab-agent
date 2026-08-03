@@ -1,0 +1,65 @@
+{
+  "gene": "TNRC6C",
+  "generatedAt": "2026-08-03T17:23:46.421Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TNRC6C 是 miRNA 诱导沉默复合体的胞内支架蛋白，通过与 AGO 蛋白及 CCR4-NOT 去腺苷化复合体连接，参与靶 mRNA 翻译抑制和降解；其癌症关联更可能反映转录后调控网络异常，而非典型细胞表面致病轴。该蛋白主要定位于胞质 P-body 和沉默复合体，缺乏分泌信号肽、跨膜区及稳定胞外结构域，天然抗原可及性不支持常规治疗性抗体直接结合。相较 EGFR、PDCD1、CTLA4 等同属肿瘤相关且具胞外可及结构的靶点，TNRC6C 的抗体开发优先级较低，更适合作为结构生物学验证或胞内递送抗体格式探索对象。",
+    "mechanism": "设计目标限定为胞内递送抗体或结构探针，结合 TNRC6C AGO-hook/GW182 片段，干预其与 AGO 蛋白复合物的装配。",
+    "selectedEpitope": "优先围绕 2X04 中可解析 TNRC6C 片段的 AGO 结合相关短肽界面设计，避免无序低复杂度区。",
+    "diseaseDirection": "肿瘤转录后调控研究",
+    "domain": "TNRC6C 属 GW182/TNRC6 家族，含富含甘氨酸-色氨酸重复区、AGO 结合区及沉默效应相关区域。",
+    "evidence": "TNRC6C-miRISC 结构与肿瘤关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9HCJ0 protein annotation",
+      "RCSB PDB 2X04 X-ray structure",
+      "GW182/TNRC6-AGO interaction literature"
+    ],
+    "referenceEntries": "UniProt Q9HCJ0；RCSB PDB 2X04；Open Targets TNRC6C",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "2X04 可解析 AGO 结合相关短肽界面",
+        "可直接评估阻断 TNRC6C-AGO 装配的结构效应",
+        "优先"
+      ],
+      [
+        "Site B",
+        "富含 GW 重复的 AGO 结合邻近区",
+        "可能增强对 miRISC 支架构象的识别，但需验证构象稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "低复杂度无序连接区",
+        "免疫原性与构象异质性风险较高，表位定义困难",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TNRC6C 为胞内、低复杂度且部分无序蛋白，常规抗体难以到达作用位点；建议限定为 Fab/VHH 结构探针或胞内递送格式，并开展细胞内定位验证。",
+    "structurePrepZh": "以 2X04 晶体结构链 A-D 为模板，保留可解析肽段与结合界面，补充缺失残基注释，剔除晶体接触导致的非生理界面。",
+    "structureRef": "RCSB PDB 2X04，X-ray diffraction，1.49 Å",
+    "antibodies": [
+      "无获批 TNRC6C 靶向抗体",
+      "研究级抗 TNRC6C 抗体"
+    ],
+    "interfaceFocus": "TNRC6C AGO 结合短肽与 GW 重复邻近界面",
+    "designMode": "胞内结构探针",
+    "candidates": [
+      {
+        "target": "AGO2",
+        "rationale": "AGO2 是 miRISC 的核心催化与结合组分，直接识别 miRNA 并与 TNRC6/GW182 蛋白相互作用；其功能位点与 TNRC6C 处于同一转录后沉默通路。"
+      },
+      {
+        "target": "CNOT1",
+        "rationale": "CNOT1 是 CCR4-NOT 复合体支架蛋白，可被 TNRC6 家族募集至靶 mRNA，介导去腺苷化和转录后抑制。"
+      },
+      {
+        "target": "DCP1A",
+        "rationale": "DCP1A 参与 P-body 相关 mRNA 去帽过程，与 miRNA 介导的 mRNA 降解程序相衔接，属于同一转录后沉默网络。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

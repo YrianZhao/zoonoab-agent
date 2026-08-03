@@ -1,0 +1,65 @@
+{
+  "gene": "S1PR1",
+  "generatedAt": "2026-08-03T16:18:36.917Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "S1PR1介导淋巴细胞对S1P梯度的感知，驱动其从淋巴结外流并参与多发性硬化、炎症性肠病等免疫炎症通路。该靶点为细胞膜七跨膜GPCR，胞外N端及三条胞外环可作为抗体可及抗原面，适合构建构象表位阻断或受体内化诱导策略。相较下游趋化因子或广谱免疫抑制靶点，S1PR1直接控制淋巴细胞循环出口，已有小分子临床验证且疾病遗传与药理证据一致，优先级较高。",
+    "mechanism": "抗体结合S1PR1胞外环构象表位，阻断S1P进入正构配体口袋并干扰TM3/TM6激活重排，从而抑制Gαi介导的淋巴细胞外流信号。",
+    "selectedEpitope": "优先覆盖ECL2与TM4-TM5口袋入口，兼顾ECL1邻近构象锁定界面。",
+    "diseaseDirection": "自身免疫与淋巴细胞迁移调控",
+    "domain": "S1PR1为A类GPCR，含胞外N端、七跨膜螺旋、三条胞外环及胞内C端。",
+    "evidence": "S1PR1免疫迁移与多发性硬化证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P21453功能与亚细胞定位注释",
+      "RCSB PDB 3V2Y晶体结构记录",
+      "临床S1PR调节剂多发性硬化药理证据"
+    ],
+    "referenceEntries": "UniProt:P21453；RCSB PDB:3V2Y；Open Targets:S1PR1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ECL2及TM4-TM5口袋入口",
+        "直接限制S1P正构口袋进入并稳定非激活构象",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ECL1与N端近膜区",
+        "增强胞外构象识别并可能诱导受体内化",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ECL3邻近TM6外侧",
+        "接近激活相关TM6区域，但保守性和构象可塑性带来交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "S1PR1与S1PR3等同源GPCR在胞外环存在局部相似性，应避开高度保守口袋残基，优先利用ECL2差异位点提升亚型选择性。",
+    "structurePrepZh": "以3V2Y链A为模板，保留七跨膜束和胞外环构象，移除融合蛋白、结晶配体及非相关分子后进行膜环境取向与缺失环建模。",
+    "structureRef": "Hanson等解析人S1PR1拮抗剂复合物晶体结构，Science 2012",
+    "antibodies": [
+      "anti-S1PR1 clone 713412",
+      "anti-S1PR1 clone 218713"
+    ],
+    "interfaceFocus": "ECL2-正构口袋入口及TM3/TM6激活耦联区",
+    "designMode": "GPCR构象阻断",
+    "candidates": [
+      {
+        "target": "S1PR2",
+        "rationale": "S1PR2同属S1P受体轴，参与S1P介导的免疫细胞迁移和血管屏障调控，可作为同通路选择性比较靶点。"
+      },
+      {
+        "target": "S1PR3",
+        "rationale": "S1PR3与S1PR1共享S1P配体并在免疫和血管反应中具有功能交叉，适合作为脱靶风险与通路补偿评估对象。"
+      },
+      {
+        "target": "SPHK1",
+        "rationale": "SPHK1催化鞘氨醇生成S1P，是S1PR1配体供应的上游酶，影响S1P梯度形成及淋巴细胞外流驱动。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

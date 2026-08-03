@@ -1,0 +1,65 @@
+{
+  "gene": "WASF1",
+  "generatedAt": "2026-08-03T17:50:13.220Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "WASF1 是 WAVE 调控复合体核心效应蛋白，连接 Rac1 信号与 Arp2/3 介导的肌动蛋白成核，神经发育障碍相关变异可破坏树突棘、突触形成和神经元迁移。该蛋白主要定位于胞质侧复合体，天然抗原可及性不具备分泌蛋白或膜受体优势，因此更适合采用细胞内递送抗体片段、结构生物学验证或疾病变异功能阻断策略。相较于上游广泛表达的小 GTPase，WASF1 在神经发育表型中的遗传证据更集中，且 3P8C 提供 WAVE 复合体结构基础，可支持界面定向设计，但整体优先级低于可胞外成药的同通路受体靶点。",
+    "mechanism": "设计分子阻断 WASF1 VCA 区域与 ACTR2/ACTR3 复合体及肌动蛋白单体的装配，抑制异常 Arp2/3 依赖性肌动蛋白分支成核。",
+    "selectedEpitope": "优先围绕 WASF1 WH2-连接区-酸性 VCA 模块的 Arp2/3 结合界面进行构象表位设计。",
+    "diseaseDirection": "神经发育障碍与癫痫性脑病",
+    "domain": "WASF1 含 N 端 WAVE 同源区、中央脯氨酸富集区及 C 端 VCA 肌动蛋白调控模块。",
+    "evidence": "WASF1 神经发育障碍遗传与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q92558 蛋白功能注释",
+      "RCSB PDB 3P8C WAVE 调控复合体晶体结构",
+      "ClinVar/OMIM 神经发育相关变异记录"
+    ],
+    "referenceEntries": "UniProt Q92558；RCSB PDB 3P8C；Open Targets WASF1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C 端 VCA 模块的 WH2-酸性区 Arp2/3 接触面",
+        "可直接干预 Arp2/3 激活与肌动蛋白分支成核",
+        "优先"
+      ],
+      [
+        "Site B",
+        "WAVE 调控复合体内 WASF1 与 ABI/CYFIP/NCKAP1 稳定化界面",
+        "适于解析致病变异对复合体装配和构象抑制状态的影响",
+        "备选"
+      ],
+      [
+        "Site C",
+        "脯氨酸富集区及潜在 SH3 蛋白结合片段",
+        "区域柔性高且线性表位暴露不稳定，需以功能筛选限定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "WASF1 缺乏胞外暴露，常规抗体难以在活细胞内结合靶点；建议限定为细胞内抗体片段、递送载体或体外机制验证，并严格评估对生理肌动蛋白动态的干扰。",
+    "structurePrepZh": "以 3P8C 多链 WAVE 调控复合体为模板，保留 WASF1 相关链并校正缺失柔性区；对 VCA 末端可结合 AlphaFold 模型和变异位点映射补全。",
+    "structureRef": "Chen et al., WAVE regulatory complex crystal structure, PDB 3P8C",
+    "antibodies": [
+      "暂无获批 WASF1 靶向治疗性抗体",
+      "研究级 anti-WASF1/WAVE1 抗体"
+    ],
+    "interfaceFocus": "VCA-Arp2/3-肌动蛋白成核界面",
+    "designMode": "细胞内Fab/VHH机制验证",
+    "candidates": [
+      {
+        "target": "ACTR2",
+        "rationale": "ACTR2 是 Arp2/3 复合体核心亚基，直接参与 WASF1 VCA 诱导的肌动蛋白分支成核；神经元形态建成依赖该复合体活性。"
+      },
+      {
+        "target": "ACTR3",
+        "rationale": "ACTR3 与 ACTR2 共同形成 Arp2/3 成核核心，是 WASF1 下游效应复合体的关键结构单元；可作为同一肌动蛋白重塑轴的功能候选靶点。"
+      },
+      {
+        "target": "CYFIP1",
+        "rationale": "CYFIP1 是 WAVE 调控复合体组成部分，参与维持 WASF1 抑制构象并连接 Rac1 依赖激活；其拷贝数和功能异常与神经发育表型相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

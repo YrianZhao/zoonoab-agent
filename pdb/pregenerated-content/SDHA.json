@@ -1,0 +1,65 @@
+{
+  "gene": "SDHA",
+  "generatedAt": "2026-08-03T16:23:00.269Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SDHA 是线粒体复合体 II 的黄素蛋白催化亚基，负责琥珀酸氧化并将电子传递至铁硫亚基 SDHB，遗传缺陷可导致复合体 II 缺陷、嗜铬细胞瘤/副神经节瘤综合征及 SDH 缺陷型胃肠间质瘤。其抗原主要位于线粒体内膜基质侧的复合体装配结构中，并非天然胞外可及靶点，因此更适合作为机制研究、细胞内递送抗体或诊断捕获抗体设计对象。相较于 SDHC/SDHD 等膜锚定亚基，SDHA 具有明确的 FAD 结合催化结构域和高分辨率实验结构，可提供更稳定的构象表位与功能界面解析优先级。",
+    "mechanism": "抗体设计聚焦阻断 SDHA 催化结构域与 SDHB 铁硫电子传递界面，干扰琥珀酸氧化后电子向复合体 II 铁硫簇传递。",
+    "selectedEpitope": "优先选择 SDHA FAD 结合结构域邻近 SDHB 接触面的构象表位，避开深埋 FAD 催化口袋。",
+    "diseaseDirection": "线粒体复合体II缺陷与SDH缺陷肿瘤",
+    "domain": "SDHA 含 N 端 FAD 结合结构域、帽状结构域及 C 端螺旋结构域，参与琥珀酸氧化。",
+    "evidence": "SDHA复合体II结构与疾病遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt P31040 功能与亚细胞定位注释",
+      "RCSB PDB 8DYE 人源复合体II晶体结构",
+      "ClinVar/OMIM SDHA 相关线粒体病与肿瘤综合征记录"
+    ],
+    "referenceEntries": "UniProt P31040；RCSB PDB 8DYE；Open Targets SDHA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SDHA FAD 结合结构域外侧、邻近 SDHB 铁硫亚基接触界面",
+        "可直接影响催化后电子向 SDHB 的传递，具备功能阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SDHA 帽状结构域靠近琥珀酸结合通道的外露环区",
+        "可能改变底物通道构象，适合构建变构型结合抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SDHA-SDHB 复合体装配核心深埋界面及 FAD 邻近口袋",
+        "构象保守但空间可及性有限，易影响折叠稳定性与选择性判读",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SDHA 为线粒体基质侧蛋白，天然细胞外可及性不足；治疗性抗体需考虑细胞内递送策略，常规抗体更适用于诊断、构象捕获或机制验证。",
+    "structurePrepZh": "以 PDB 8DYE 的 A、B 链为抗原模型，保留 SDHA-SDHB 异二聚体界面，校验 FAD、铁硫簇及缺失侧链后进行表面可及性评估。",
+    "structureRef": "RCSB PDB 8DYE，X-ray diffraction，1.44 Å",
+    "antibodies": [
+      "抗SDHA克隆2E3GC12FB2AE2",
+      "抗SDHA克隆21A11AE7"
+    ],
+    "interfaceFocus": "SDHA催化结构域与SDHB铁硫亚基界面",
+    "designMode": "胞内靶点机制抗体",
+    "candidates": [
+      {
+        "target": "SDHB",
+        "rationale": "SDHB 是复合体 II 铁硫亚基，直接接收来自 SDHA 的电子并传递至泛醌通路；其缺陷同样与副神经节瘤、GIST 和复合体 II 缺陷相关。"
+      },
+      {
+        "target": "SDHC",
+        "rationale": "SDHC 是复合体 II 膜锚定亚基，参与泛醌结合与电子传递末端步骤；在 SDH 缺陷型肿瘤通路中具有明确遗传关联。"
+      },
+      {
+        "target": "SDHD",
+        "rationale": "SDHD 与 SDHC 共同形成膜锚定二聚体并参与泛醌还原，其胚系突变是副神经节瘤综合征的重要病因之一。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

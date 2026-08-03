@@ -1,0 +1,65 @@
+{
+  "gene": "ISG20",
+  "generatedAt": "2026-08-03T19:59:43.608Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ISG20为I型干扰素诱导的3′-5′外切核酸酶，参与抗病毒先天免疫与干扰素刺激基因网络，其遗传关联涉及神经退行性疾病和中枢神经系统自身免疫表型。该蛋白主要定位于细胞内核仁、核质和胞质，缺乏经典胞外结构域，因此抗体抗原可及性弱于膜受体或分泌因子。其优先级主要来自高分辨率实验结构和明确的干扰素通路归属；相较IFNAR1、IFNAR2、CXCL10等可及性更高的同通路靶点，ISG20更适合作为机制研究或细胞内递送抗体设计对象。",
+    "mechanism": "通过抗体片段结合ISG20 ExoIII催化沟槽周边，阻断单链RNA/DNA底物进入金属离子依赖性3′-5′外切核酸酶活性中心。",
+    "selectedEpitope": "优先覆盖ExoIII结构域催化沟槽入口及底物结合边缘，避免完全遮蔽金属配位核心残基。",
+    "diseaseDirection": "干扰素相关神经免疫疾病",
+    "domain": "ISG20含DEDD家族ExoIII外切核酸酶结构域，PDB 1WLJ解析单链A结构，分辨率1.9 Å。",
+    "evidence": "ISG20干扰素诱导核酸酶结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联数据",
+      "UniProt Q96AZ6蛋白功能与定位注释",
+      "RCSB PDB 1WLJ晶体结构记录",
+      "Interferon-stimulated gene antiviral nuclease literature"
+    ],
+    "referenceEntries": "UniProt: Q96AZ6; RCSB PDB: 1WLJ; Gene: ISG20",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ExoIII催化沟槽入口与核酸底物结合边缘",
+        "可直接限制RNA/DNA底物进入活性中心，机制验证价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ExoIII结构域外侧保守螺旋-环区",
+        "有利于获得构象识别抗体，可作为非竞争性结合与定位探针",
+        "备选"
+      ],
+      [
+        "Site C",
+        "DEDD金属配位催化核心邻近区域",
+        "可能产生强功能抑制，但保守性高且易影响折叠稳定性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ISG20为细胞内核酸酶，常规抗体难以到达天然作用位点；建议采用细胞内递送Fab/VHH或降解偶联策略，并严格评估与同源核酸酶的交叉反应。",
+    "structurePrepZh": "以1WLJ链A为模板，补全缺失侧链并保留催化金属相关几何约束；对催化沟槽、底物入口和高保守DEDD位点进行分区标注。",
+    "structureRef": "RCSB PDB 1WLJ, human ISG20, X-ray 1.9 Å",
+    "antibodies": [
+      "暂无获批ISG20靶向抗体",
+      "研究级抗ISG20抗体"
+    ],
+    "interfaceFocus": "ExoIII催化沟槽入口及核酸底物路径",
+    "designMode": "细胞内功能阻断",
+    "candidates": [
+      {
+        "target": "IFNAR1",
+        "rationale": "IFNAR1是I型干扰素受体复合物核心亚基，位于ISG20上游并决定JAK-STAT介导的ISG转录诱导。其胞外受体结构域可及性显著优于ISG20。"
+      },
+      {
+        "target": "IFNAR2",
+        "rationale": "IFNAR2直接参与IFN-α/β配体结合并与IFNAR1共同启动STAT1/STAT2信号，是调节ISG20表达的同通路膜受体靶点。"
+      },
+      {
+        "target": "STAT1",
+        "rationale": "STAT1是I型干扰素信号下游转录因子，与STAT2和IRF9形成ISGF3复合物驱动ISG20等干扰素刺激基因表达，适合作为同轴机制参照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "FOXO3",
+  "generatedAt": "2026-08-03T12:36:54.714Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FOXO3 是 PI3K-AKT 胰岛素/生长因子信号轴下游转录因子，AKT 介导的 FOXO3 磷酸化会促使其与 14-3-3 蛋白结合并滞留胞质，从而影响自噬、氧化应激应答、细胞凋亡和代谢稳态；这些过程与 Alzheimer disease、体成分、红细胞生成及肾小球滤过表型存在遗传和功能关联。FOXO3 主要定位于细胞核/胞质，缺乏天然胞外结构域或分泌暴露面，作为常规体内阻断型抗体抗原的可及性不具优势；其可开发性更适合细胞内递送抗体、intrabody 或结构生物学研究抗体。相较于同通路的 IGF1R、INSR、EGFR 等膜受体，FOXO3 的疾病遗传关联更直接反映转录调控节点，但抗体成药优先级低于具备胞外配体结合结构域的膜受体靶点。",
+    "mechanism": "设计抗体片段结合 FOXO3 forkhead DNA-binding domain 的翼状螺旋识别面，阻断其与靶基因 FOXO response element DNA 的特异性结合。",
+    "selectedEpitope": "优先覆盖 forkhead domain 的 H3 DNA 识别螺旋及相邻 wing loop，避免破坏整体折叠核心。",
+    "diseaseDirection": "神经退行性与代谢稳态相关疾病",
+    "domain": "FOXO3 含 N 端 AKT 磷酸化调控区、forkhead DNA-binding domain、核定位/输出调控区及 C 端转录激活区。",
+    "evidence": "FOXO3-PI3K-AKT转录调控证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt O43524 功能与结构域注释",
+      "RCSB PDB 9QNG X-ray 晶体结构",
+      "Reactome PI3K/AKT signaling in cancer 与 FOXO-mediated transcription"
+    ],
+    "referenceEntries": "UniProt O43524；RCSB PDB 9QNG；Open Targets FOXO3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "forkhead domain H3 DNA 识别螺旋及 wing loop 界面",
+        "可直接阻断 FOXO3 与 FOXO response element DNA 的碱基沟识别",
+        "优先"
+      ],
+      [
+        "Site B",
+        "forkhead domain 外侧 β-sheet/loop 暴露面",
+        "适合获得高亲和结构探针，干扰 DNA 结合风险较低",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端 AKT 磷酸化基序邻近无序区",
+        "可能影响 14-3-3 依赖性胞质滞留，但构象异质性高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FOXO3 为细胞内转录因子，天然抗原可及性不足；建议限定为细胞内递送抗体、VHH intrabody 或研究级阻断抗体，并评估 FOXO 家族交叉反应。",
+    "structurePrepZh": "以 9QNG 高分辨率晶体结构提取抗原链 A/B，保留 forkhead domain 坐标，补全缺失侧链并标注 DNA 结合面与保守残基。",
+    "structureRef": "RCSB PDB 9QNG，X-ray diffraction，1.35 Å",
+    "antibodies": [
+      "FOXO3A clone D19A7",
+      "FOXO3A clone 75D8"
+    ],
+    "interfaceFocus": "H3 识别螺旋、wing loop 与 DNA 大沟接触面",
+    "designMode": "细胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "AKT1",
+        "rationale": "AKT1 在 PI3K-AKT 通路中直接磷酸化 FOXO3，促进 FOXO3 与 14-3-3 结合并抑制其核内转录活性。该节点与代谢、存活和神经应激反应密切相关。"
+      },
+      {
+        "target": "IGF1R",
+        "rationale": "IGF1R 是胰岛素样生长因子信号的膜受体上游节点，可通过 PI3K-AKT 轴抑制 FOXO3 活性。其胞外配体结合结构域具备明确抗体可及性。"
+      },
+      {
+        "target": "YWHAZ",
+        "rationale": "YWHAZ 编码 14-3-3ζ，可结合磷酸化 FOXO3 并参与其胞质滞留，是 FOXO3 磷酸化后调控复合体的真实组成部分。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

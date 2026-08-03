@@ -1,0 +1,65 @@
+{
+  "gene": "ADCY5",
+  "generatedAt": "2026-08-03T10:17:51.069Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ADCY5 是纹状体富集的膜结合腺苷酸环化酶，催化 ATP 生成 cAMP，致病性变异可改变 cAMP/PKA/DARPP-32 轴并导致多动性运动障碍。该蛋白含多跨膜区及胞质 C1/C2 催化结构域，但主要功能界面位于胞内侧，抗原可及性低于典型胞外受体。相较同通路下游激酶或磷蛋白，ADCY5 更接近 cAMP 生成源头，具备机制优先级；抗体策略更适合采用胞内递送抗体或结构生物学验证工具定位变构界面。",
+    "mechanism": "阻断 ADCY5 胞质 C1a 与 C2a 催化界面组装，降低 ATP 向 cAMP 的转化并抑制下游 PKA 磷酸化信号。",
+    "selectedEpitope": "优先覆盖 C1a/C2a 催化二聚化界面及 forskolin/ATP 邻近变构沟槽。",
+    "diseaseDirection": "遗传性运动障碍与纹状体 cAMP 信号",
+    "domain": "十二跨膜腺苷酸环化酶，含胞质 C1a/C1b 与 C2a/C2b 催化结构域。",
+    "evidence": "ADCY5 运动障碍遗传学与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt O95622 功能与结构域注释",
+      "RCSB PDB 8SL3 冷冻电镜结构",
+      "OMIM/ClinVar ADCY5 相关运动障碍变异"
+    ],
+    "referenceEntries": "UniProt O95622；RCSB PDB 8SL3；Open Targets ADCY5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C1a-C2a 催化二聚化界面",
+        "直接干预活性构象形成，适合阻断型胞内抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C2a ATP/金属离子结合口袋邻近环区",
+        "可影响底物定位与催化效率，需规避高度保守残基",
+        "备选"
+      ],
+      [
+        "Site C",
+        "跨膜螺旋胞外短环区",
+        "抗原可及性相对较高但功能耦联证据弱，成药价值有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ADCY5 缺乏大胞外结构域，常规外源抗体难以接触功能界面；建议采用细胞内 Fab/VHH、递送载体或仅作为构象捕获试剂推进。",
+    "structurePrepZh": "8SL3 为 7.0 Å 冷冻电镜结构，应保留链 A/B/G 的跨膜-胞质装配关系，并结合 AlphaFold 或同源腺苷酸环化酶高分辨率模型精修催化界面。",
+    "structureRef": "RCSB PDB 8SL3，human ADCY5 cryo-EM structure",
+    "antibodies": [
+      "anti-ADCY5 research antibody",
+      "anti-adenylate cyclase V antibody"
+    ],
+    "interfaceFocus": "C1a-C2a 催化界面与核苷酸结合邻近沟槽",
+    "designMode": "胞内抗体/构象阻断",
+    "candidates": [
+      {
+        "target": "GNAS",
+        "rationale": "GNAS 编码 Gαs，可直接激活膜腺苷酸环化酶并增强 cAMP 生成，是 ADCY5 上游同一 cAMP 通路节点。"
+      },
+      {
+        "target": "PRKACA",
+        "rationale": "PRKACA 编码 PKA 催化亚基，介导 cAMP 升高后的关键磷酸化输出，适合用于下游药效读出与替代通路干预评估。"
+      },
+      {
+        "target": "PPP1R1B",
+        "rationale": "PPP1R1B 编码 DARPP-32，是纹状体 PKA 信号的核心整合因子，与运动控制和多巴胺-cAMP 轴密切相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

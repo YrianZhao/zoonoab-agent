@@ -1,0 +1,65 @@
+{
+  "gene": "CS",
+  "generatedAt": "2026-08-03T11:39:29.897Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CS编码线粒体柠檬酸合酶，催化草酰乙酸与乙酰辅酶A缩合生成柠檬酸，是三羧酸循环入口反应的核心代谢酶。其疾病关联主要反映线粒体能量代谢异常与神经退行性疾病、炎症性疾病表型的统计联系，但CS为线粒体基质可溶酶，并非经典细胞表面或分泌抗原。相较膜受体、细胞因子或补体等同类可及靶点，CS抗体成药优先级较低，更适合作为结构生物学验证或细胞内递送抗体设计模型。",
+    "mechanism": "抗体需结合CS活性位点邻近的草酰乙酸/乙酰辅酶A结合沟槽，空间阻断底物进入并抑制柠檬酸生成。",
+    "selectedEpitope": "优先评估大结构域与小结构域夹缝处的底物结合沟槽及构象闭合界面。",
+    "diseaseDirection": "线粒体代谢与神经退行性疾病",
+    "domain": "CS为线粒体基质同源二聚体酶，单体含小α螺旋结构域和大α螺旋催化结构域。",
+    "evidence": "CS线粒体代谢酶结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt O75390功能与亚细胞定位注释",
+      "RCSB PDB 8ZVV晶体结构记录",
+      "Gene Ontology三羧酸循环与柠檬酸合酶活性注释"
+    ],
+    "referenceEntries": "UniProt O75390；RCSB PDB 8ZVV；Open Targets CS",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "草酰乙酸/乙酰辅酶A结合沟槽",
+        "直接遮挡底物进入催化中心，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "小结构域-大结构域构象闭合界面",
+        "限制催化循环所需的结构域运动，可产生变构抑制",
+        "备选"
+      ],
+      [
+        "Site C",
+        "二聚体接触面外围α螺旋区域",
+        "可能影响二聚体稳定性，但需避免非特异疏水界面",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CS位于线粒体基质，天然抗原可及性不足；常规抗体难以进入细胞与线粒体，需采用胞内递送或纳米抗体工程并严控代谢毒性。",
+    "structurePrepZh": "以8ZVV高分辨率晶体结构为模板，保留生物学二聚体，校正线粒体成熟链编号，检查底物沟槽水分子与界面构象。",
+    "structureRef": "RCSB PDB 8ZVV；X-ray diffraction 1.59 Å",
+    "antibodies": [
+      "抗CS实验检测抗体克隆2H4",
+      "抗CS实验检测抗体克隆1D7"
+    ],
+    "interfaceFocus": "底物结合沟槽与结构域闭合铰链",
+    "designMode": "胞内酶抑制型",
+    "candidates": [
+      {
+        "target": "IDH3A",
+        "rationale": "IDH3A编码NAD依赖异柠檬酸脱氢酶α亚基，位于CS下游三羧酸循环步骤，直接连接柠檬酸代谢与线粒体NADH生成。"
+      },
+      {
+        "target": "ACO2",
+        "rationale": "ACO2编码线粒体乌头酸酶，催化柠檬酸与异柠檬酸之间的可逆异构化，是CS产物进入后续TCA代谢的相邻节点。"
+      },
+      {
+        "target": "OGDH",
+        "rationale": "OGDH编码α-酮戊二酸脱氢酶复合体E1组分，参与TCA循环限速氧化脱羧反应，并与神经能量代谢脆弱性相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

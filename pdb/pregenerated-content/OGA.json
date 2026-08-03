@@ -1,0 +1,65 @@
+{
+  "gene": "OGA",
+  "generatedAt": "2026-08-03T14:57:26.095Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "OGA由MGEA5编码，是细胞内O-GlcNAc循环的去糖基化酶，移除核质蛋白Ser/Thr位点的O-GlcNAc修饰；该轴与转录调控、代谢稳态、心房电生理及神经功能表型相关。该蛋白主要定位于胞质和细胞核，缺乏天然分泌或跨膜胞外结构域，因此常规体内抗体可及性不占优势，更适合作为结构生物学与细胞内递送抗体片段的研究靶点。相较于同通路的广泛糖基转移酶OGT，OGA具备已解析的人源催化结构和小分子抑制剂复合物证据，便于围绕催化沟槽建立高精度阻断型表位优先级。",
+    "mechanism": "以细胞内Fab或VHH占据OGA催化桶状结构的底物结合沟槽，阻断O-GlcNAc化肽段进入催化位点，从而抑制糖苷键水解。",
+    "selectedEpitope": "优先覆盖N端糖苷水解酶催化结构域的底物结合沟槽及催化酸碱残基邻近环区。",
+    "diseaseDirection": "O-GlcNAc稳态与心代谢神经表型",
+    "domain": "人OGA含N端GH84 O-GlcNAcase催化结构域、茎状区及C端假组蛋白乙酰转移酶样结构域。",
+    "evidence": "OGA结构与O-GlcNAc循环疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt O60502蛋白功能与定位注释",
+      "RCSB PDB 5UN8人源OGA晶体结构",
+      "PubMed O-GlcNAc循环与心代谢神经表型文献"
+    ],
+    "referenceEntries": "UniProt O60502；RCSB PDB 5UN8；Open Targets MGEA5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "GH84催化结构域底物结合沟槽",
+        "可直接竞争O-GlcNAc化底物进入催化中心，机制可验证性高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化沟槽周缘可变环与糖识别口袋外缘",
+        "有利于获得选择性阻断并降低对保守催化残基的构象扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端假HAT样结构域远端表面",
+        "可能影响蛋白互作或稳定性，但与水解反应的直接因果性较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "OGA为核质内酶，天然抗体体内暴露不足；设计应限定为细胞内递送Fab/VHH或研究级抑制分子，并避免泛化为常规膜外阻断抗体。",
+    "structurePrepZh": "以5UN8高分辨率晶体结构为模板，保留催化结构域多聚链用于界面一致性比对，清理结晶配体后重建缺失环区并标注底物沟槽。",
+    "structureRef": "RCSB PDB 5UN8，X-ray diffraction，2.13 Å，人OGA结构",
+    "antibodies": [
+      "无已批准抗OGA治疗性抗体",
+      "抗MGEA5/OGA研究用抗体"
+    ],
+    "interfaceFocus": "GH84催化沟槽、糖识别口袋及邻近环区",
+    "designMode": "细胞内阻断型片段",
+    "candidates": [
+      {
+        "target": "OGT",
+        "rationale": "OGT催化蛋白O-GlcNAc加成，与OGA共同维持O-GlcNAc循环；其改变可直接影响同一糖基化稳态轴。"
+      },
+      {
+        "target": "GFPT1",
+        "rationale": "GFPT1是己糖胺生物合成通路限速酶，决定UDP-GlcNAc供给水平，位于OGA底物修饰循环的上游代谢输入端。"
+      },
+      {
+        "target": "GFPT2",
+        "rationale": "GFPT2同属己糖胺通路关键酶，调节UDP-GlcNAc池并影响O-GlcNAc修饰负荷，可作为同通路代谢调控候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

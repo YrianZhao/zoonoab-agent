@@ -1,0 +1,65 @@
+{
+  "gene": "PARG",
+  "generatedAt": "2026-08-03T15:04:36.217Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PARG 是核内聚ADP-核糖链降解酶，通过水解PAR链调节PARP1介导的DNA损伤应答、复制压力恢复与细胞死亡阈值，在前列腺癌等肿瘤中与DNA修复依赖性具有机制关联。该蛋白主要定位于细胞核与胞质，缺乏稳定胞外结构域或分泌特征，作为常规治疗性抗体抗原的可及性不足，更适合作为结构引导的细胞内递送抗体或研究级结合分子靶点。相较PARP1等同通路靶点，PARG直接控制PAR链清除端，可在PARP抑制剂耐受或复制压力模型中提供互补干预节点，但抗体药物优先级受细胞内定位限制。",
+    "mechanism": "设计结合分子阻断PARG催化结构域与聚ADP-核糖链的识别及糖苷键水解，维持PAR链积累并扰乱DNA损伤后修复复位。",
+    "selectedEpitope": "优先覆盖催化大结构域内ADP-ribose结合沟槽邻近区域，避开深埋催化酸性残基以保留成药性界面。",
+    "diseaseDirection": "DNA损伤应答相关肿瘤",
+    "domain": "PARG含N端调控区、线粒体/核定位相关片段及C端宏结构域样催化核心，6OAL覆盖催化域。",
+    "evidence": "PARG-DNA损伤应答与前列腺癌关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q86W56功能与定位注释",
+      "RCSB PDB 6OAL高分辨率晶体结构",
+      "PARP/PARG介导PAR代谢与DNA修复文献"
+    ],
+    "referenceEntries": "UniProt Q86W56；RCSB PDB 6OAL；Open Targets PARG",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化域ADP-ribose结合沟槽外缘",
+        "可直接干扰PAR底物结合并具有明确结构读出",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化核心邻近可溶剂暴露螺旋-环区",
+        "适合构建非竞争性构象稳定或变构型结合分子",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化口袋深部保守残基周围",
+        "高度保守且空间狭窄，易产生交叉反应或亲和成熟受限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PARG为细胞内酶，常规抗体难以到达作用位点；设计应优先限定为细胞内递送Fab/VHH、降解偶联或机制研究探针，并严格评估PARP通路毒性。",
+    "structurePrepZh": "以6OAL链A为模板，保留催化域完整坐标，校正缺失侧链与质子化状态，移除非关键结晶配体后标注PAR结合沟槽。",
+    "structureRef": "RCSB PDB 6OAL，human PARG catalytic domain，1.6 Å",
+    "antibodies": [
+      "研究用anti-PARG抗体",
+      "细胞内递送型PARG结合Fab/VHH候选"
+    ],
+    "interfaceFocus": "PAR结合沟槽及催化域外缘变构环区",
+    "designMode": "细胞内酶靶向",
+    "candidates": [
+      {
+        "target": "PARP1",
+        "rationale": "PARP1催化PAR合成并位于同一DNA损伤应答通路，是PARG降解PAR链的功能上游节点。其临床药理学验证充分，可用于比较PAR合成端与降解端干预差异。"
+      },
+      {
+        "target": "PARP2",
+        "rationale": "PARP2参与DNA单链断裂修复中的PAR生成，与PARP1共同构成PARG底物来源。联合分析有助于识别PAR代谢依赖性肿瘤背景。"
+      },
+      {
+        "target": "XRCC1",
+        "rationale": "XRCC1是PAR依赖性单链断裂修复支架蛋白，可通过PAR链与修复复合体募集相连接。其作为同通路下游修复节点可用于评估PARG阻断后的修复缺陷。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

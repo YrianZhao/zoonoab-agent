@@ -1,0 +1,65 @@
+{
+  "gene": "NSUN5",
+  "generatedAt": "2026-08-03T14:51:51.218Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NSUN5为核仁定位的RNA胞嘧啶甲基转移酶，参与28S rRNA C3782位点的m5C修饰，与翻译保真度、核糖体功能及细胞应激适应相关，Open Targets显示其与神经退行性疾病存在遗传关联。该蛋白主要位于核仁/核内，缺乏天然胞外结构域、分泌形式或膜受体特征，常规体内阻断型抗体可及性明显受限。相较于同通路中具备胞外可及性的炎症或受体靶点，NSUN5更适合作为结构生物学、细胞内递送抗体或研究级结合分子设计对象，主靶点优先级应以机制验证价值而非治疗抗体可开发性为依据。",
+    "mechanism": "设计结合NSUN5甲基转移酶催化核心的抗体片段，干扰其RNA底物结合沟槽或SAM结合邻近构象，从而抑制28S rRNA C3782甲基化。",
+    "selectedEpitope": "优先覆盖Rossmann样甲基转移酶核心中RNA结合沟槽邻近环区，避开高度保守SAM口袋深部。",
+    "diseaseDirection": "神经退行性疾病与核糖体应激",
+    "domain": "NSUN5含NOP2/Sun家族RNA甲基转移酶催化结构域，包含保守半胱氨酸催化基序与SAM结合折叠。",
+    "evidence": "NSUN5结构与神经退行性疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q96P11功能与亚细胞定位注释",
+      "RCSB PDB 2B9E晶体结构",
+      "NOP2/Sun家族rRNA m5C甲基化文献"
+    ],
+    "referenceEntries": "UniProt Q96P11；RCSB PDB 2B9E；Open Targets NSUN5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RNA结合沟槽邻近可及环区",
+        "可直接削弱rRNA底物定位，适合功能阻断型片段设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SAM结合口袋外缘与催化核心边界",
+        "可诱导构象限制并影响甲基供体协同，但需避免完全依赖深口袋识别",
+        "备选"
+      ],
+      [
+        "Site C",
+        "NOP2/Sun保守催化半胱氨酸近端区域",
+        "功能相关性强但保守性高，存在家族交叉反应与结构扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NSUN5为细胞内核仁酶，天然抗体药物递送与靶点可及性风险较高；建议限定为细胞内抗体、Fab/VHH工具分子或递送平台验证。",
+    "structurePrepZh": "以PDB 2B9E链A为模板，补全缺失侧链并检查晶体接触界面；结合保守基序、SAM口袋及推定RNA结合面进行表位可及性标注。",
+    "structureRef": "RCSB PDB 2B9E，X-ray diffraction，1.65 Å",
+    "antibodies": [
+      "尚无获批NSUN5治疗性抗体",
+      "研究级抗NSUN5抗体"
+    ],
+    "interfaceFocus": "RNA结合沟槽、SAM口袋外缘及催化环区",
+    "designMode": "细胞内功能阻断",
+    "candidates": [
+      {
+        "target": "NSUN2",
+        "rationale": "NSUN2同属NOP2/Sun RNA甲基转移酶家族，介导tRNA及其他RNA的m5C修饰，并与神经发育和应激翻译调控相关，可作为RNA甲基化通路内对照靶点。"
+      },
+      {
+        "target": "NOP2",
+        "rationale": "NOP2为核仁RNA甲基转移酶家族成员，参与核糖体生物发生，与NSUN5共享核仁RNA修饰及核糖体功能维持背景。"
+      },
+      {
+        "target": "FBL",
+        "rationale": "FBL参与rRNA 2'-O-甲基化和核糖体成熟，位于同一核仁核糖体生物发生与翻译稳态轴，可用于比较不同rRNA修饰节点的疾病相关性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

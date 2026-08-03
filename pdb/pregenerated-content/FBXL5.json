@@ -1,0 +1,65 @@
+{
+  "gene": "FBXL5",
+  "generatedAt": "2026-08-03T12:29:12.493Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FBXL5 是细胞铁稳态通路中的氧感应 F-box 蛋白，可通过 SCF E3 泛素连接酶复合体识别并促使 IRP2 泛素化降解，从而影响铁代谢基因的翻译调控；其遗传关联覆盖神经退行性疾病及红细胞相关性状。该蛋白主要为胞内蛋白，天然抗原可及性不具备膜受体或分泌蛋白优势，因此更适合作为细胞内功能研究、递送型抗体片段或结构探针开发靶点。相较于下游铁转运或储存蛋白，FBXL5 位于 IRP2 稳定性控制节点，具备更强的通路上游干预价值，但抗体成药优先级低于胞外可及靶点。",
+    "mechanism": "设计抗体片段结合 FBXL5 LRR 底物识别面，阻断其与 IRP2 的结合，抑制 SCF-FBXL5 介导的 IRP2 泛素化降解。",
+    "selectedEpitope": "优先覆盖 LRR 弧形凹面底物识别界面，规避 F-box 与 SKP1 结合区域。",
+    "diseaseDirection": "铁稳态异常与神经退行性疾病",
+    "domain": "N 端含血红素依赖性铁氧感应区，中段 F-box 结合 SKP1，C 端 LRR 负责底物识别。",
+    "evidence": "FBXL5-IRP2 铁稳态轴结构与遗传证据",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt Q9UKA1 功能注释",
+      "RCSB PDB 3U9J 晶体结构",
+      "SCF-FBXL5 介导 IRP2 泛素化文献"
+    ],
+    "referenceEntries": "UniProt Q9UKA1；RCSB PDB 3U9J；Open Targets FBXL5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "LRR 弧形凹面底物识别区域",
+        "可直接干扰 FBXL5 对 IRP2 的招募，机制验证价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "F-box 邻近 SKP1 结合界面",
+        "可影响 SCF 复合体装配，但存在广泛 E3 适配器界面保守性风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端铁氧感应结构域附近区域",
+        "可能影响 FBXL5 稳定性调控，但结构动态性与细胞内可达性限制较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FBXL5 为胞内蛋白，常规抗体难以进入细胞；LRR 表面与蛋白相互作用界面可能较平坦，建议采用 VHH、细胞内抗体或递送偶联策略。",
+    "structurePrepZh": "以 3U9J 晶体结构链 A/B 为模板，保留 LRR 结构域构象，补全缺失环区并评估二聚界面与晶体接触对表位暴露的影响。",
+    "structureRef": "PDB 3U9J，X-ray diffraction，1.603 Å",
+    "antibodies": [
+      "暂无获批抗 FBXL5 治疗性抗体",
+      "研究级抗 FBXL5 单克隆抗体"
+    ],
+    "interfaceFocus": "LRR 凹面 IRP2 底物识别界面",
+    "designMode": "胞内阻断型片段",
+    "candidates": [
+      {
+        "target": "IREB2",
+        "rationale": "IREB2 编码 IRP2，是 FBXL5 直接识别并泛素化降解的底物，处于同一铁稳态调控轴。针对 IRP2 关键结合面可用于验证 FBXL5-IRP2 复合体干预机制。"
+      },
+      {
+        "target": "TFRC",
+        "rationale": "TFRC 是 IRP 调控网络中的铁摄取效应基因，其 mRNA 铁响应元件受 IRP2 结合调节。该靶点为膜蛋白，抗原可及性显著优于 FBXL5。"
+      },
+      {
+        "target": "FTH1",
+        "rationale": "FTH1 编码铁蛋白重链，是 IRP/IRE 系统调控的铁储存核心分子，与 FBXL5-IRP2 轴共同维持细胞铁稳态。其表达变化可作为通路药效读出。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "TYRO3",
+  "generatedAt": "2026-08-03T17:36:04.704Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TYRO3 属于 TAM 受体酪氨酸激酶家族，可通过 Gas6 或 Protein S 识别磷脂酰丝氨酸暴露细胞，促进吞噬清除、免疫抑制和细胞存活信号，在神经退行性改变、感染相关免疫调节及脂质稳态表型中具有通路关联。该靶点为单跨膜受体，N 端 Ig-like 与 fibronectin type III 胞外结构域可直接作为抗体可及抗原。相较于下游胞内激酶节点，TYRO3 胞外配体结合界面更适合以抗体实现选择性阻断，并可与 AXL、MERTK 形成机制分层的 TAM 通路设计优先级。",
+    "mechanism": "阻断 TYRO3 胞外 Ig-like 区域与 Gas6 或 Protein S Gla 结构域复合物的结合，抑制受体二聚化与胞内激酶自磷酸化。",
+    "selectedEpitope": "优先覆盖 Ig-like domain 1/2 的配体结合凹面及相邻二聚化相关边缘。",
+    "diseaseDirection": "TAM受体免疫调节与神经退行性疾病",
+    "domain": "TYRO3 胞外区含两个 Ig-like 结构域和两个 fibronectin type III 结构域，后接单跨膜段与胞内激酶区。",
+    "evidence": "TYRO3-TAM通路疾病关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt Q06418 蛋白结构域注释",
+      "RCSB PDB 1RHF X-ray 晶体结构",
+      "TAM receptor-Gas6/Protein S 免疫调节文献"
+    ],
+    "referenceEntries": "UniProt Q06418；RCSB PDB 1RHF；Open Targets TYRO3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Ig-like domain 1/2 配体结合界面",
+        "可直接干预 Gas6/Protein S 介导的受体激活",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Ig-like domain 2 外侧与 domain 1 连接区",
+        "有利于稳定阻断构象并降低与保守配体表面的竞争压力",
+        "备选"
+      ],
+      [
+        "Site C",
+        "fibronectin type III 近膜区",
+        "可能影响受体空间排布，但与配体结合阻断的直接性较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TAM 家族胞外 Ig-like 区存在同源性，需规避 AXL 与 MERTK 保守表面；建议以 TYRO3 特异环区和糖基化邻近可及性进行筛选。",
+    "structurePrepZh": "以 1RHF 抗原链 A、B 为胞外结构模板，补全缺失侧链、检查二硫键和糖基化位点，并保留 Ig-like 配体结合面用于对接。",
+    "structureRef": "RCSB PDB 1RHF；TYRO3 extracellular domain crystal structure",
+    "antibodies": [
+      "Anti-TYRO3 antibody",
+      "Anti-TAM receptor blocking antibody"
+    ],
+    "interfaceFocus": "Ig1-Ig2配体结合凹面与二聚化边缘",
+    "designMode": "阻断型Fab/VHH设计",
+    "candidates": [
+      {
+        "target": "AXL",
+        "rationale": "AXL 与 TYRO3 同属 TAM 受体家族，可结合 Gas6 并参与免疫抑制、吞噬清除和感染相关宿主反应，适合作为同通路对照靶点。"
+      },
+      {
+        "target": "MERTK",
+        "rationale": "MERTK 是 TAM 通路中介导凋亡细胞清除和免疫耐受的重要受体，与 TYRO3 共享 Gas6/Protein S 依赖性激活机制。"
+      },
+      {
+        "target": "GAS6",
+        "rationale": "GAS6 是 TYRO3、AXL、MERTK 的核心配体，其 Gla 结构域桥接磷脂酰丝氨酸并驱动 TAM 受体激活，可作为上游配体干预节点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

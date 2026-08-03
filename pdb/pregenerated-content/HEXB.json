@@ -1,0 +1,65 @@
+{
+  "gene": "HEXB",
+  "generatedAt": "2026-08-03T19:45:47.126Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HEXB编码β-己糖胺苷酶β亚基，是溶酶体Hex A与Hex B复合体的必需组成部分；其功能缺陷导致GM2神经节苷脂及相关糖脂降解受阻，是Sandhoff disease的核心致病节点。该蛋白为可分泌/可摄取的溶酶体糖蛋白，含可被细胞表面甘露糖-6-磷酸受体识别的糖基化修饰，具备胞外给药后溶酶体递送的抗原可及性基础。相较下游脂质底物或非蛋白调控因子，HEXB具有明确遗传因果性、实验晶体结构和可工程化蛋白界面，优先级更适合抗体介导的稳定化或递送设计。",
+    "mechanism": "抗体设计以结合HEXB可及构象表面为核心，稳定β亚基折叠并增强与甘露糖-6-磷酸受体介导的细胞摄取兼容性，避免遮挡催化口袋与亚基装配界面。",
+    "selectedEpitope": "优先选择TIM-barrel催化结构域外侧、远离活性位点酸性残基与β-亚基二聚界面的稳定表面。",
+    "diseaseDirection": "GM2神经节苷脂贮积症",
+    "domain": "HEXB成熟链包含N端β-sandwich样结构域与C端催化(β/α)8 TIM-barrel糖苷水解酶结构域。",
+    "evidence": "HEXB-Sandhoff病遗传因果与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProtKB P07686功能与变异注释",
+      "RCSB PDB 1NOW晶体结构",
+      "OMIM/ClinVar中HEXB致病变异记录"
+    ],
+    "referenceEntries": "UniProt P07686；RCSB PDB 1NOW；Open Targets HEXB",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化TIM-barrel外侧非保守环区",
+        "有利于获得不遮挡底物沟槽的稳定化结合模式",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端β-sandwich结构域可及表面",
+        "可用于构象识别与溶酶体酶递送型抗体设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "活性位点邻近酸性催化残基及底物结合沟槽",
+        "可能抑制GM2相关糖脂水解，应避免高亲和阻断",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "需规避催化沟槽、糖基化位点及亚基装配界面，优先筛选不降低Hex B酶活且不干扰M6P受体递送的结合克隆。",
+    "structurePrepZh": "以1NOW四链晶体结构为模板，保留成熟HEXB构象，补全缺失侧链并标注糖基化位点、催化残基和亚基界面后开展表位分层。",
+    "structureRef": "RCSB PDB 1NOW，human β-hexosaminidase B，2.2 Å",
+    "antibodies": [
+      "anti-HEXB monoclonal antibody",
+      "anti-hexosaminidase B antibody"
+    ],
+    "interfaceFocus": "催化沟槽外缘、β-亚基二聚界面、糖基化邻域",
+    "designMode": "酶稳定化递送",
+    "candidates": [
+      {
+        "target": "HEXA",
+        "rationale": "HEXA编码Hex A的α亚基，与HEXB共同参与GM2神经节苷脂降解；其缺陷导致Tay-Sachs disease，是同一溶酶体GM2降解轴的关键酶亚基。"
+      },
+      {
+        "target": "GM2A",
+        "rationale": "GM2A编码GM2 activator protein，负责将GM2神经节苷脂递呈给Hex A水解；其缺陷同样引发GM2 gangliosidosis。"
+      },
+      {
+        "target": "IGF2R",
+        "rationale": "IGF2R编码阳离子非依赖性甘露糖-6-磷酸受体，介导溶酶体酶摄取与转运；可作为HEXB酶替代或抗体递送策略中的同通路递送节点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

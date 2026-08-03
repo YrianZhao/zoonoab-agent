@@ -1,0 +1,65 @@
+{
+  "gene": "UBE2F",
+  "generatedAt": "2026-08-03T17:37:46.693Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "UBE2F 是 NEDD8 级联反应中的 E2 结合酶，主要与 RBX2/ROC2 配合催化 NEDD8 转移至 Cullin 蛋白，从而调节 CRL 泛素连接酶活性；其遗传关联信号涉及嗜酸性粒细胞计数、白细胞数量及神经退行性疾病相关表型。该蛋白为胞内酶，天然抗原可及性弱于膜受体或分泌蛋白，抗体设计更适合作为胞内递送、结构探针或降解平台结合模块。相较于 NEDD8 通路中广泛必需的 NAE1/UBA3，UBE2F 在 RBX2-CRL5 轴上具有较高通路选择性，适合作为机制解析与选择性干预的优先研究靶点。",
+    "mechanism": "抗体结合 UBE2F E2 catalytic core 的 RING 结合面，阻断 UBE2F 与 RBX2/ROC2 相互作用，降低 NEDD8 向 Cullin 底物的转移效率。",
+    "selectedEpitope": "优先覆盖 E2 catalytic core 中 RBX2 结合相关 α1-β1/β2 环及相邻 α2 区域。",
+    "diseaseDirection": "NEDD8-CRL轴相关免疫与神经表型",
+    "domain": "UBE2F 主要由保守 E2 catalytic core 构成，含催化半胱氨酸及 RING E3 结合界面。",
+    "evidence": "UBE2F-NEDD8级联结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProtKB Q969M7 蛋白功能注释",
+      "RCSB PDB 4GBA 晶体结构数据",
+      "NEDD8-CRL 泛素样修饰通路文献"
+    ],
+    "referenceEntries": "UniProt Q969M7；RCSB PDB 4GBA；Reactome NEDDylation",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "E2 catalytic core 的 RBX2/RING 结合界面",
+        "可直接干扰 UBE2F-RBX2 复合物形成，具备明确机制可验证性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化半胱氨酸周边的 NEDD8 装载沟槽",
+        "可能影响 E2~NEDD8 硫酯中间体形成或底物递交，需规避催化残基不可逆扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离 RING 界面的保守 E2 背侧表面",
+        "结构可及但功能耦合不确定，且保守性较高可能增加交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "UBE2F 为胞内酶，常规治疗性抗体难以直接到达作用位点；设计宜采用胞内递送、细胞内抗体或双功能降解模块，并严格评估 UBE2M 交叉识别。",
+    "structurePrepZh": "以 PDB 4GBA 的 A、B、F、G 链作为抗原模板，保留 E2 catalytic core，校正缺失侧链、质子化状态及晶体接触界面后进行表位建模。",
+    "structureRef": "RCSB PDB 4GBA，X-ray diffraction，2.4 Å",
+    "antibodies": [
+      "无已获批同靶点抗体",
+      "研究级 anti-UBE2F 抗体"
+    ],
+    "interfaceFocus": "RBX2/RING 结合面与催化半胱氨酸邻近沟槽",
+    "designMode": "胞内靶向Fab/VHH",
+    "candidates": [
+      {
+        "target": "RBX2",
+        "rationale": "RBX2 是 UBE2F 的主要 RING E3 伴侣，促进 CRL5 相关 Cullin neddylation；阻断 UBE2F-RBX2 轴可在同一 NEDD8-CRL 通路内产生相近功能效应。"
+      },
+      {
+        "target": "CUL5",
+        "rationale": "CUL5 是 UBE2F-RBX2 轴的重要 Cullin 底物，neddylation 后激活 CRL5 复合物；其位于同一底物执行层，适合作为通路下游候选靶点。"
+      },
+      {
+        "target": "NEDD8",
+        "rationale": "NEDD8 是 UBE2F 转移的泛素样修饰分子，直接参与 E1-E2-E3 级联反应；靶向其转移或结合界面可从同一修饰通路干预 CRL 活化。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

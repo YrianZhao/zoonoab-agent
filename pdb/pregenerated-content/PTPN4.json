@@ -1,0 +1,65 @@
+{
+  "gene": "PTPN4",
+  "generatedAt": "2026-08-03T15:43:47.035Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PTPN4 是胞内非受体型蛋白酪氨酸磷酸酶，含 FERM、PDZ 与催化 PTP 结构域，参与突触蛋白复合体、神经元存活及发育相关信号的去磷酸化调控，Open Targets 显示其与神经退行性疾病和神经发育异常存在遗传与功能关联。该蛋白缺乏天然胞外结构域，也非分泌蛋白，常规体内中和抗体的抗原可及性不足，因此更适合作为结构生物学驱动的胞内抗体、VHH 或递送型抗体片段设计对象。相较膜外受体类靶点，PTPN4 的优势在于 3NFK 提供高分辨率 PTP 催化域结构，可直接围绕底物结合沟槽、WPD loop 与 Q-loop 构建构象选择性结合分子，用于机制验证和细胞内功能干预。",
+    "mechanism": "通过胞内 VHH 或递送型 Fab 结合 PTP 催化域底物识别沟槽，阻断磷酸酪氨酸底物进入催化位点并限制 WPD loop 闭合，从而抑制去磷酸化反应。",
+    "selectedEpitope": "优先锁定 PTP 催化域活性沟槽邻近的 WPD loop、P-loop 与 Q-loop 复合界面。",
+    "diseaseDirection": "神经发育与神经退行性疾病",
+    "domain": "PTPN4 含 N 端 FERM 结构域、中部 PDZ 结构域及 C 端蛋白酪氨酸磷酸酶催化结构域。",
+    "evidence": "PTPN4 神经疾病关联与PTP结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association profile",
+      "UniProtKB P29074 functional annotation",
+      "RCSB PDB 3NFK X-ray structure record",
+      "Gene Ontology phosphoprotein phosphatase activity annotations"
+    ],
+    "referenceEntries": "UniProt P29074；RCSB PDB 3NFK；Open Targets PTPN4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PTP催化域P-loop/WPD loop邻近底物结合沟槽",
+        "可直接干预磷酸酪氨酸底物进入与催化构象闭合，机制指向性最强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PTP催化域外周α螺旋与Q-loop支撑界面",
+        "有利于形成构象稳定型抗体，间接降低催化水分子定位效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PDZ结构域肽结合沟槽",
+        "可能影响蛋白复合体定位，但3NFK未覆盖该区域，需补充结构模板验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PTPN4 为胞内酶，体内抗体递送与细胞质稳定性为主要风险；催化口袋与其他 PTP 家族成员保守，需强化旁侧非保守残基选择性。",
+    "structurePrepZh": "以3NFK高分辨率晶体结构提取PTP催化域，校正质子化状态、催化半胱氨酸氧化态与环区构象，并保留链间晶体接触用于排除伪界面。",
+    "structureRef": "RCSB PDB 3NFK，human PTPN4 catalytic domain，X-ray 1.43 Å",
+    "antibodies": [
+      "胞内VHH构象锁定抗体",
+      "细胞穿透型Fab抗体片段"
+    ],
+    "interfaceFocus": "PTP活性沟槽、WPD loop与P-loop邻接面",
+    "designMode": "胞内酶构象阻断",
+    "candidates": [
+      {
+        "target": "PTPN11",
+        "rationale": "PTPN11 编码 SHP2，同属蛋白酪氨酸磷酸酶网络并参与 RAS-MAPK 与神经发育相关信号调节，可作为 PTPN4 机制比较靶点。"
+      },
+      {
+        "target": "PTPN1",
+        "rationale": "PTPN1 编码 PTP1B，具有明确 PTP 催化域结构与底物识别机制，可用于评估活性沟槽抗体设计的家族选择性边界。"
+      },
+      {
+        "target": "DLG4",
+        "rationale": "DLG4 编码 PSD-95，是神经突触 PDZ 蛋白网络核心成员，与 PTPN4 的 PDZ 介导定位机制处于同一突触组织与神经发育功能背景。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

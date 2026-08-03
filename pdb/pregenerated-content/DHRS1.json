@@ -1,0 +1,65 @@
+{
+  "gene": "DHRS1",
+  "generatedAt": "2026-08-03T11:55:59.599Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DHRS1 属于短链脱氢酶/还原酶家族，现有 Open Targets 关联主要集中于脂蛋白和 HDL 胆固醇测量性状，并缺乏明确的胞外疾病驱动轴。该蛋白为细胞内可溶性氧化还原酶，天然状态下不具备膜外结构域或分泌蛋白暴露优势，常规治疗性抗体难以直接结合完整细胞中的抗原。相较于 LDLR、PCSK9、APOB 等同属脂质代谢通路且具有明确胞外可及性或循环暴露的靶点，DHRS1 作为抗体主靶点优先级较低，更适合用于结构参考、细胞内递送抗体或研究型结合分子设计。",
+    "mechanism": "设计分子可占据 DHRS1 SDR 催化口袋，干扰 NADP(H) 结合及底物进入，而非阻断细胞外受体配体相互作用。",
+    "selectedEpitope": "优先评估 Rossmann 折叠 NADP(H) 结合沟槽邻近环区，避开深埋催化残基。",
+    "diseaseDirection": "脂质代谢与神经表型探索",
+    "domain": "SDR 家族 Rossmann 样 NAD(P)(H) 结合结构域，含催化 Tyr-Lys-Ser 基序区域。",
+    "evidence": "DHRS1 结构与脂质性状遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProtKB Q96LJ7 蛋白功能注释",
+      "RCSB PDB 2QQ5 晶体结构记录",
+      "Human Protein Atlas 细胞定位与表达信息"
+    ],
+    "referenceEntries": "UniProt Q96LJ7；RCSB PDB 2QQ5；Open Targets DHRS1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Rossmann 样辅因子结合沟槽周缘环区",
+        "可用于构建抑制 NADP(H) 占位的胞内结合分子",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SDR 二聚体样装配界面暴露面",
+        "可评估是否影响蛋白构象稳定性或装配状态",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化 Tyr-Lys-Ser 基序深部口袋",
+        "功能相关但空间埋藏较深，抗体 CDR 进入受限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DHRS1 缺乏胞外可及性，常规 IgG 难以在活细胞内命中靶点；设计应限定为胞内递送、intrabody 或结构验证场景。",
+    "structurePrepZh": "采用 PDB 2QQ5 A 链作为实验结构模板，补全缺失侧链，校验辅因子结合位点、催化基序与晶体接触界面。",
+    "structureRef": "RCSB PDB 2QQ5，X-ray diffraction，1.8 Å",
+    "antibodies": [
+      "无已批准 DHRS1 靶向抗体",
+      "无临床阶段 DHRS1 同类抗体"
+    ],
+    "interfaceFocus": "NADP(H) 结合沟槽与催化环邻近区域",
+    "designMode": "胞内结合分子探索",
+    "candidates": [
+      {
+        "target": "PCSK9",
+        "rationale": "PCSK9 通过结合 LDLR 表皮生长因子样重复 A 结构域促进 LDLR 降解，直接影响 LDL 胆固醇稳态。其为分泌蛋白，循环抗原可及性显著优于 DHRS1。"
+      },
+      {
+        "target": "LDLR",
+        "rationale": "LDLR 介导 ApoB/E 载脂蛋白颗粒内吞，是血浆胆固醇清除通路核心受体。其胞外配体结合重复区具备抗体识别可及性。"
+      },
+      {
+        "target": "APOB",
+        "rationale": "APOB 是 LDL/VLDL 颗粒主要结构载脂蛋白，参与 LDLR 识别与脂蛋白循环。其位于循环脂蛋白颗粒表面，较适合抗体或结合蛋白干预策略。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

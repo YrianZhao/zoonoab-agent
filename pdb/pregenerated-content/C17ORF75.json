@@ -1,0 +1,65 @@
+{
+  "gene": "C17ORF75",
+  "generatedAt": "2026-08-03T10:54:20.323Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "C17ORF75/Q9HAS0对应CCDC47，主要为内质网膜相关蛋白，参与蛋白质转运、内质网稳态及蛋白质质量控制过程；现有Open Targets关联以神经退行性疾病和卵巢肿瘤为主，但疾病关联分值较低且多为遗传或组学相关证据。该蛋白并非经典分泌蛋白、细胞表面受体或胞外基质抗原，抗体在完整细胞条件下难以接触其主要功能结构域。相较于同一内质网蛋白稳态或应激通路中的细胞表面或分泌型靶点，C17ORF75作为治疗性抗体主靶点优先级较低，更适合作为结构生物学和胞内机制研究抗原。",
+    "mechanism": "可设计研究型抗体识别CCDC47内质网腔侧结构域，阻断其与内质网蛋白转运或质量控制复合体成分的结合，用于解析其复合物装配界面。",
+    "selectedEpitope": "优先覆盖预测内质网腔侧卷曲螺旋结构域的复合物暴露界面，避开跨膜锚定邻近疏水区。",
+    "diseaseDirection": "内质网稳态与神经退行性疾病",
+    "domain": "CCDC47含N端信号肽、单次跨膜区及以内质网腔侧卷曲螺旋为主的结构域。",
+    "evidence": "CCDC47结构与内质网稳态关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB Q9HAS0功能与亚细胞定位注释",
+      "RCSB PDB 24IP电子显微镜结构条目",
+      "Gene Ontology内质网膜与蛋白质定位注释"
+    ],
+    "referenceEntries": "UniProt Q9HAS0；RCSB PDB 24IP；Open Targets C17ORF75",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "内质网腔侧卷曲螺旋暴露面",
+        "有利于获得构象依赖抗体并干预复合物装配界面",
+        "优先"
+      ],
+      [
+        "Site B",
+        "腔侧近膜非疏水连接区",
+        "可作为结构稳定、空间可及的辅助结合表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "跨膜螺旋及膜近端疏水区",
+        "疏水性高且抗原制备难度较大，易产生非特异结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为靶点胞内/内质网定位导致体内抗原可及性不足；建议限定为研究抗体或细胞通透条件下验证，并优先评估膜拓扑。",
+    "structurePrepZh": "以PDB 24IP电子显微镜结构为模板，保留抗原链A-F并评估寡聚状态；补全缺失环区，去除非相关密度组分后进行表面可及性分析。",
+    "structureRef": "RCSB PDB 24IP，electron microscopy，3.07 Å",
+    "antibodies": [
+      "无获批治疗性同类抗体",
+      "商业化抗CCDC47研究抗体"
+    ],
+    "interfaceFocus": "腔侧卷曲螺旋复合物结合面",
+    "designMode": "研究型Fab/VHH发现",
+    "candidates": [
+      {
+        "target": "ATF6",
+        "rationale": "ATF6为内质网应激未折叠蛋白反应的跨膜感受器，与蛋白稳态失衡和神经退行性疾病机制相关；其腔侧结构域较C17ORF75更具明确应激感知功能。"
+      },
+      {
+        "target": "ERN1",
+        "rationale": "ERN1/IRE1α是内质网应激通路核心传感器，可通过寡聚化和RNase活性驱动XBP1剪接；其机制节点明确，适合作为同通路功能验证候选。"
+      },
+      {
+        "target": "HSPA5",
+        "rationale": "HSPA5/GRP78是内质网分子伴侣并调控UPR感受器活化，在肿瘤和神经退行性疾病中具有广泛证据；其应激诱导的细胞表面定位为抗体干预提供更高可及性。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

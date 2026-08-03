@@ -1,0 +1,65 @@
+{
+  "gene": "ALKAL1",
+  "generatedAt": "2026-08-03T10:24:26.600Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ALKAL1 是 ALK 与 LTK 受体酪氨酸激酶的分泌型配体，可通过配体结合促进受体二聚化与激酶结构域反式磷酸化，驱动 MAPK、PI3K-AKT 等下游增殖和存活信号。该蛋白为胞外可及的分泌蛋白，抗体可直接拦截其与 ALK/LTK 胞外区的结合界面。相较直接靶向 ALK 激酶结构域，配体阻断具有更高胞外干预可及性，并可用于解析配体依赖性 ALK/LTK 激活状态，因此具备抗体设计优先级。",
+    "mechanism": "阻断 ALKAL1 与 ALK 或 LTK 胞外配体结合区的相互作用，抑制受体二聚化诱导的酪氨酸激酶反式磷酸化。",
+    "selectedEpitope": "优先覆盖 ALKAL1 四螺旋束样核心中受体接触面及相邻环区，避免埋藏疏水核心。",
+    "diseaseDirection": "ALK/LTK 配体依赖性信号异常",
+    "domain": "ALKAL1 为小型分泌蛋白，含信号肽及成熟胞外配体核心结构，PDB 7NX0 解析多链晶体构象。",
+    "evidence": "ALKAL1-ALK/LTK 配体轴结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProtKB Q6UXT8 功能与序列注释",
+      "RCSB PDB 7NX0 晶体结构记录",
+      "ALK/LTK 配体识别与受体激活相关文献"
+    ],
+    "referenceEntries": "UniProt Q6UXT8；RCSB PDB 7NX0；Open Targets ALKAL1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "受体结合面邻近螺旋-环区",
+        "直接竞争 ALK/LTK 胞外区结合，最符合中和抗体设计目标",
+        "优先"
+      ],
+      [
+        "Site B",
+        "成熟配体核心外露螺旋侧面",
+        "可稳定识别分泌型抗原并限制构象适配，适合作为非完全竞争性阻断表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "晶体接触相关多链界面区域",
+        "可能受晶体堆积影响，需排除非生理性界面和埋藏残基",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ALKAL1 体积较小且含紧凑疏水核心，表位设计应避开结构稳定核心与晶体堆积面，优先验证溶液态受体竞争能力。",
+    "structurePrepZh": "以 7NX0 的实验晶体结构为模板，保留成熟配体链，去除晶体对称冗余链后进行缺失环检查、质子化和界面可及性评估。",
+    "structureRef": "RCSB PDB 7NX0，X-ray diffraction，1.95 Å",
+    "antibodies": [
+      "暂无获批 ALKAL1 靶向抗体",
+      "暂无临床阶段 ALKAL1 中和抗体"
+    ],
+    "interfaceFocus": "ALK/LTK 受体结合面与外露螺旋-环区",
+    "designMode": "配体中和阻断",
+    "candidates": [
+      {
+        "target": "ALK",
+        "rationale": "ALK 是 ALKAL1 的受体酪氨酸激酶，配体结合可促进其二聚化和激酶反式磷酸化，是同一配体-受体轴中的核心信号节点。"
+      },
+      {
+        "target": "LTK",
+        "rationale": "LTK 与 ALK 同属胰岛素受体超家族受体酪氨酸激酶，可被 ALKAL1 激活，适合作为同通路受体端候选靶点。"
+      },
+      {
+        "target": "ALKAL2",
+        "rationale": "ALKAL2 是 ALK/LTK 的另一分泌型配体，与 ALKAL1 共享受体激活轴，可作为配体层面的平行干预靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

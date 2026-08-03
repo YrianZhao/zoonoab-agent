@@ -1,0 +1,65 @@
+{
+  "gene": "DIS3L",
+  "generatedAt": "2026-08-03T11:57:39.249Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DIS3L是胞质3'-5'外切核糖核酸酶，参与异常RNA降解与mRNA稳态维持；现有疾病关联以测量性状和肿瘤遗传关联为主，尚缺乏明确可由抗体阻断的胞外致病轴。该蛋白为胞内RNA降解酶，不具备分泌蛋白、膜受体或稳定胞外结构域特征，常规治疗性抗体抗原可及性不足。相较EGFR、PDCD1、CTLA4等具备明确胞外配体界面和临床验证的同疾病肿瘤免疫靶点，DIS3L优先级偏低，更适合作为结构生物学或胞内递送抗体探索靶点。",
+    "mechanism": "胞内抗体需识别DIS3L催化核心邻近RNA结合沟槽，阻碍RNA底物进入RNB外切核酸酶活性位点，而非常规胞外配体阻断。",
+    "selectedEpitope": "优先评估RNB催化结构域RNA结合沟槽外缘，避开深埋金属离子催化中心。",
+    "diseaseDirection": "前列腺癌RNA稳态研究方向",
+    "domain": "DIS3L含PIN样N端结构域、CSD1/CSD2冷休克结构域、RNB外切核酸酶域及S1 RNA结合域。",
+    "evidence": "DIS3L结构与肿瘤遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q8TF46蛋白功能注释",
+      "RCSB PDB 9G8M冷冻电镜结构",
+      "RNA降解复合体与mRNA稳态文献"
+    ],
+    "referenceEntries": "UniProt Q8TF46；RCSB PDB 9G8M；Open Targets DIS3L",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RNB结构域RNA结合沟槽外缘",
+        "可干扰RNA底物定位，保留抗体结合可及表面",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CSD1/CSD2与S1结构域形成的RNA入口区域",
+        "可能影响底物招募与通道装载，适合构象选择性设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PIN样N端结构域表面",
+        "远离主要催化界面，功能阻断不确定性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DIS3L为胞内酶，常规IgG难以到达作用位点；建议限定为胞内递送Fab/VHH或研究级抑制抗体，并设置RNA酶活性功能验证。",
+    "structurePrepZh": "以9G8M冷冻电镜模型为基础，检查缺失环区、RNA结合沟槽与结构域边界；对低置信柔性片段进行构象采样后再开展表位建模。",
+    "structureRef": "RCSB PDB 9G8M，human DIS3L cryo-EM structure，3.3 Å",
+    "antibodies": [
+      "无获批DIS3L靶向治疗性抗体",
+      "研究级anti-DIS3L抗体"
+    ],
+    "interfaceFocus": "RNB-S1邻近RNA底物结合通道",
+    "designMode": "胞内递送VHH/Fab",
+    "candidates": [
+      {
+        "target": "EGFR",
+        "rationale": "EGFR在前列腺癌及多种上皮肿瘤中驱动受体酪氨酸激酶信号，具备胞外配体结合域和成熟抗体阻断模式，临床可开发性优于胞内DIS3L。"
+      },
+      {
+        "target": "PDCD1",
+        "rationale": "PD-1通过与PD-L1/PD-L2结合抑制T细胞效应功能，是肿瘤免疫逃逸通路中的可及膜受体靶点，适合免疫检查点抗体设计。"
+      },
+      {
+        "target": "CTLA4",
+        "rationale": "CTLA-4竞争性结合CD80/CD86并限制T细胞共刺激，在肿瘤免疫调控中具有明确作用机制和抗体药物验证基础。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

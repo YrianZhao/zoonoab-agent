@@ -1,0 +1,65 @@
+{
+  "gene": "UROS",
+  "generatedAt": "2026-08-03T17:43:39.021Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "UROS 是血红素生物合成通路中的胞质酶，催化羟甲基胆素环化生成 uroporphyrinogen III；其功能缺陷导致 I 型卟啉原非酶促形成并蓄积，是先天性红细胞生成性卟啉病的核心遗传机制。该蛋白并非分泌蛋白或膜受体，天然抗原可及性弱，抗体更适合用于胞内递送、酶构象稳定或诊断捕获场景。相较通路中上游广泛必需酶，UROS 与疾病因果关系更直接且结构解析充分，适合作为机制验证和精准分子设计优先靶点。",
+    "mechanism": "设计抗体识别 UROS 活性裂隙邻近构象表位，稳定 N/C 双结构域闭合态，减少底物羟甲基胆素错误环化并维持 uroporphyrinogen III 生成构象。",
+    "selectedEpitope": "优先覆盖 N 端与 C 端结构域之间的活性裂隙边缘及铰链界面，避免直接遮蔽催化腔深部。",
+    "diseaseDirection": "先天性红细胞生成性卟啉病",
+    "domain": "UROS 为单链胞质酶，含 N 端 α/β 结构域与 C 端 α/β 结构域，活性裂隙位于两结构域交界处。",
+    "evidence": "UROS-血红素生物合成缺陷证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt P10746 功能与变异注释",
+      "RCSB PDB 1JR2 晶体结构",
+      "OMIM/Orphanet 先天性红细胞生成性卟啉病记录"
+    ],
+    "referenceEntries": "UniProt P10746；RCSB PDB 1JR2；Orphanet 79277",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N/C 双结构域交界铰链与活性裂隙边缘",
+        "有利于稳定催化所需闭合构象并保留底物通道",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C 端结构域外侧保守性较低表面",
+        "适合建立高特异性结合而降低对催化口袋的干扰",
+        "备选"
+      ],
+      [
+        "Site C",
+        "活性裂隙深部底物结合腔",
+        "可能直接阻断羟甲基胆素结合并产生功能抑制风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "UROS 为胞质酶，常规抗体难以到达天然作用位点；设计应优先定位于构象稳定或检测用途，并评估是否干扰底物结合与催化周转。",
+    "structurePrepZh": "采用 1JR2 高分辨率晶体结构，保留抗原链 A/B 用于构象比对，去除结晶水和非功能性小分子后标注活性裂隙与结构域界面。",
+    "structureRef": "Human UROS crystal structure, PDB 1JR2, 1.84 Å",
+    "antibodies": [
+      "暂无获批 UROS 靶向治疗抗体",
+      "研究级抗 UROS 检测抗体"
+    ],
+    "interfaceFocus": "N/C 结构域铰链及活性裂隙边缘",
+    "designMode": "胞内酶构象稳定",
+    "candidates": [
+      {
+        "target": "HMBS",
+        "rationale": "HMBS 位于 UROS 上游，催化卟胆原聚合生成羟甲基胆素；其异常同属血红素生物合成障碍，可作为底物流入端对照靶点。"
+      },
+      {
+        "target": "UROD",
+        "rationale": "UROD 位于 UROS 下游，催化 uroporphyrinogen III 脱羧生成 coproporphyrinogen III；其缺陷与卟啉蓄积性疾病相关，适合用于同通路节点比较。"
+      },
+      {
+        "target": "FECH",
+        "rationale": "FECH 催化血红素合成末端铁插入反应，突变导致红细胞生成性原卟啉病；可用于评估血红素通路末端瓶颈与卟啉毒性关联。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

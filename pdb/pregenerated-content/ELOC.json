@@ -1,0 +1,65 @@
+{
+  "gene": "ELOC",
+  "generatedAt": "2026-08-03T12:16:32.950Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ELOC编码elongin C，是VHL-Elongin B/C-CUL2-RBX1 E3泛素连接酶复合体的核心适配因子，参与HIF-α羟基化依赖性降解，并可被HIV-1 Vif劫持以促成APOBEC3G泛素化降解。该蛋白主要位于胞内复合体界面，缺乏天然胞外结构域或分泌特征，抗原可及性不利于常规体内阻断抗体，但适合结构验证、细胞内抗体或研究级结合分子设计。相比HIF-α或APOBEC3G等下游底物，ELOC具有高分辨率复合物结构和明确病毒蛋白结合界面，可作为机制解析优先靶点；治疗性抗体优先级低于可及性更高的膜受体或分泌因子。",
+    "mechanism": "设计结合分子阻断ELOC与HIV-1 Vif的BC-box样界面接触，干扰Vif招募ELOB/ELOC-CUL5复合体介导APOBEC3G降解。",
+    "selectedEpitope": "优先覆盖ELOC α1/β1邻近的BC-box结合沟槽，避开深埋ELOB异二聚体核心界面。",
+    "diseaseDirection": "HIV感染与泛素化调控",
+    "domain": "ELOC为约112 aa的elongin C适配蛋白，含Skp1样折叠并形成ELOB/ELOC异二聚体结合平台。",
+    "evidence": "ELOC复合体结构与HIV Vif劫持证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q15369 functional annotation",
+      "RCSB PDB 4AJY experimental structure",
+      "HIV-1 Vif-CBFβ-ELOB/ELOC-CUL5机制文献"
+    ],
+    "referenceEntries": "UniProt Q15369；RCSB PDB 4AJY；Open Targets ELOC",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "α1/β1附近BC-box结合沟槽",
+        "直接干预Vif或VHL样BC-box蛋白招募，机制可验证性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ELOC外露环区与α2邻近表面",
+        "可形成辅助结合面，提高选择性并降低对ELOB核心稳定性的扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ELOB-ELOC异二聚体深埋界面",
+        "可能破坏基础转录延伸与E3复合体装配，脱靶功能风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ELOC为胞内适配蛋白，常规抗体体内可及性不足；设计宜限定为细胞内抗体、递送型格式或结构探针，并避免破坏ELOB结合核心。",
+    "structurePrepZh": "以4AJY高分辨率晶体结构为模板，保留ELOB/ELOC及病毒蛋白相关链用于界面定义，补全缺失侧链并评估晶体接触影响。",
+    "structureRef": "PDB 4AJY，X射线晶体结构，1.73 Å",
+    "antibodies": [
+      "研究级anti-ELOC monoclonal antibody",
+      "研究级anti-Elongin C antibody"
+    ],
+    "interfaceFocus": "BC-box结合沟槽与ELOB/ELOC适配面",
+    "designMode": "胞内阻断型",
+    "candidates": [
+      {
+        "target": "ELOB",
+        "rationale": "ELOB与ELOC形成稳定异二聚体，是Vif或VHL类底物受体招募Cullin复合体的共同适配组分，处于同一泛素连接酶装配轴。"
+      },
+      {
+        "target": "CBFB",
+        "rationale": "CBFB稳定HIV-1 Vif并促进其招募ELOB/ELOC-CUL5复合体，阻断该界面可抑制APOBEC3G降解通路。"
+      },
+      {
+        "target": "CUL5",
+        "rationale": "CUL5是Vif-ELOB/ELOC-CBFβ E3泛素连接酶复合体的支架蛋白，连接底物识别模块与RBX2介导的泛素转移机制。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

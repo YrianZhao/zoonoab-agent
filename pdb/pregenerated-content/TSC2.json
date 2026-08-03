@@ -1,0 +1,65 @@
+{
+  "gene": "TSC2",
+  "generatedAt": "2026-08-03T17:32:26.011Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TSC2编码tuberin，是TSC1-TSC2-TBC1D7复合体的核心GAP亚基，通过促进RHEB-GTP水解抑制mTORC1，失活突变可导致结节性硬化、淋巴管平滑肌瘤病和局灶性皮质发育不良相关mTORC1持续活化。该蛋白主要为胞内肿瘤抑制因子，天然抗原可及性弱，不适合作为常规细胞表面阻断抗体靶点；其结构更适合用于胞内递送抗体片段或构象稳定分子设计。优先级依据来自遗传因果证据和高疾病关联评分，相比下游mTORC1组分，TSC2更接近致病根因，但抗体成药性优先级低于同通路膜受体或分泌因子靶点。",
+    "mechanism": "稳定TSC2 GAP结构域与TSC1支架界面，增强TSC复合体对RHEB-GTP的水解促进作用，从而降低RHEB依赖性mTORC1激活。",
+    "selectedEpitope": "优先评估TSC2 C端GAP结构域中RHEB结合邻近面，避免遮挡催化arginine finger区域。",
+    "diseaseDirection": "TSC-mTORC1过度活化疾病",
+    "domain": "TSC2含N端TSC1结合区、中央调控区及C端RapGAP样GAP结构域。",
+    "evidence": "TSC2遗传失活与mTORC1病理激活证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P49815 functional annotation",
+      "RCSB PDB 9CE3 cryo-EM structure",
+      "ClinVar and OMIM TSC2 pathogenic variant records"
+    ],
+    "referenceEntries": "UniProt P49815；RCSB PDB 9CE3；Open Targets ENSG00000103197",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端GAP结构域RHEB结合邻近构象面",
+        "可用于构象稳定，增强TSC2-RHEB功能性复合体形成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端TSC1结合区外侧非核心接触面",
+        "有利于稳定TSC复合体装配，降低直接干扰GAP催化风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "GAP催化核心及RHEB直接接触界面",
+        "可能阻断RHEB识别或抑制GAP活性，需严格功能筛选",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TSC2为胞内蛋白，常规抗体难以到达作用位点；设计应采用胞内递送Fab/VHH或细胞内抗体策略，并优先验证是否保留GAP活性。",
+    "structurePrepZh": "以9CE3冷冻电镜结构为模板，保留TSC复合体相关链，补全低置信柔性环区并标注GAP催化位点与TSC1接触界面。",
+    "structureRef": "RCSB PDB 9CE3，human TSC complex cryo-EM structure",
+    "antibodies": [
+      "无已批准TSC2治疗性抗体",
+      "研究级anti-TSC2/tuberin抗体"
+    ],
+    "interfaceFocus": "TSC2 GAP-RHEB邻近面与TSC1结合界面",
+    "designMode": "胞内构象稳定",
+    "candidates": [
+      {
+        "target": "TSC1",
+        "rationale": "TSC1与TSC2形成稳定抑制复合体并保护TSC2免于降解，是同一TSC-mTORC1轴中的直接上游复合体亚基。调节TSC1-TSC2装配可影响RHEB-GTP水平。"
+      },
+      {
+        "target": "RHEB",
+        "rationale": "RHEB是TSC2 GAP活性的直接小GTP酶底物，RHEB-GTP直接激活mTORC1。阻断RHEB与mTOR的功能性相互作用可模拟TSC2抑制效应。"
+      },
+      {
+        "target": "MTOR",
+        "rationale": "MTOR是mTORC1催化核心，位于TSC2-RHEB轴下游并直接驱动蛋白合成和细胞生长信号。该节点具有明确药理学可验证性，但抗体可及性同样受胞内定位限制。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

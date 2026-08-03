@@ -1,0 +1,65 @@
+{
+  "gene": "PLA2G4D",
+  "generatedAt": "2026-08-03T15:20:04.517Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PLA2G4D为胞质型磷脂酶A2家族成员，可水解膜磷脂sn-2位脂肪酰链并释放花生四烯酸及溶血磷脂，参与类二十烷酸前体生成和脂质炎症介质网络。其Open Targets关联以眼部良性肿瘤及多项脂质、血管表型测量为主，提示疾病证据强度有限且更偏遗传或表型关联。该蛋白主要为胞内酶，天然抗原可及性弱于分泌型PLA2或膜受体，因此抗体设计优先级低于PLA2G2A等分泌型同通路靶点；现有2.2 Å晶体结构可支持体外机制抗体或细胞内抗体探索。",
+    "mechanism": "设计抗体结合PLA2G4D催化结构域近活性位点沟槽，空间阻断磷脂底物进入并干扰Ser-Asp催化二联体介导的sn-2酰基水解。",
+    "selectedEpitope": "优先覆盖cPLA2催化结构域的底物结合疏水沟槽及盖区构象界面。",
+    "diseaseDirection": "脂质炎症介质与眼部表型",
+    "domain": "PLA2G4D含C2样脂质结合区域及cPLA2α样催化结构域，5IZ5解析其催化域构象。",
+    "evidence": "PLA2G4D结构与脂质炎症通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q86XP0蛋白功能注释",
+      "RCSB PDB 5IZ5 X射线晶体结构",
+      "MEROPS/InterPro磷脂酶A2家族结构域注释"
+    ],
+    "referenceEntries": "UniProt Q86XP0；RCSB PDB 5IZ5；Open Targets PLA2G4D",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域底物结合疏水沟槽及盖区边缘",
+        "可直接阻断磷脂底物定位并抑制花生四烯酸释放",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C2样脂质结合区域的膜接触环",
+        "可削弱膜磷脂募集与酶-膜界面形成",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化核心保守折叠背面区域",
+        "远离底物入口，功能阻断概率较低且易产生非中和结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PLA2G4D为胞内酶，常规抗体难以进入细胞质；需优先定位体外抑制抗体、细胞内抗体或递送型格式，并评估cPLA2家族交叉反应。",
+    "structurePrepZh": "以5IZ5链A/B为模板，保留催化域坐标并检查缺失环区、配体和晶体接触；结合AlphaFold全长模型补足C2样区域用于表位可及性评估。",
+    "structureRef": "RCSB PDB 5IZ5，X-ray diffraction，2.2 Å",
+    "antibodies": [
+      "anti-PLA2G4D research antibody",
+      "anti-cPLA2 family inhibitory antibody"
+    ],
+    "interfaceFocus": "底物结合沟槽、盖区环与膜接触环",
+    "designMode": "胞内酶抑制型",
+    "candidates": [
+      {
+        "target": "PLA2G4A",
+        "rationale": "PLA2G4A是胞质型PLA2通路中释放花生四烯酸的核心酶，疾病和药理学证据强于PLA2G4D。其催化机制与脂质炎症介质生成直接相关。"
+      },
+      {
+        "target": "PLA2G2A",
+        "rationale": "PLA2G2A为分泌型磷脂酶A2，位于同一磷脂水解和炎症脂质介质通路。其胞外可及性显著优于胞内PLA2G4D，更适合常规抗体阻断。"
+      },
+      {
+        "target": "PTGS2",
+        "rationale": "PTGS2位于花生四烯酸下游前列腺素合成通路，连接PLA2释放底物与炎症效应产物。该节点具备明确疾病生物学和可药性背景。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

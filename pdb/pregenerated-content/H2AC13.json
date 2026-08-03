@@ -1,0 +1,65 @@
+{
+  "gene": "H2AC13",
+  "generatedAt": "2026-08-03T19:27:52.863Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "H2AC13编码复制依赖型组蛋白H2A，其与H2B、H3、H4共同形成核小体核心，参与病毒感染过程中宿主染色质可及性、干扰素刺激基因转录及病毒基因组相关染色质重塑。该蛋白主要位于细胞核内，作为抗体药物靶点缺乏天然胞外可及性，抗原可及性显著弱于膜受体或分泌蛋白，因此更适合作为胞内抗原识别、研究级抗体或递送型抗体工程的设计对象。相较于同通路中可分泌的细胞因子或细胞表面受体，H2AC13的优先级主要来自高分辨率核小体结构、保守组蛋白折叠域和明确的染色质界面，但转化开发优先级应低于IFNAR1、TLR3等可及性更高的抗病毒免疫靶点。",
+    "mechanism": "抗体设计宜定位于H2A-H2B二聚体或核小体酸性斑块区域，阻断组蛋白伴侣、病毒蛋白或染色质调控因子与核小体表面的结合。",
+    "selectedEpitope": "优先选择H2A histone-fold外露的酸性斑块及L1-L2环邻近界面。",
+    "diseaseDirection": "病毒感染与宿主染色质调控",
+    "domain": "H2AC13含组蛋白H2A保守histone-fold结构域，包含α1、α2、α3螺旋及L1/L2环。",
+    "evidence": "H2AC13核小体结构与感染相关证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P0C0S8蛋白功能注释",
+      "RCSB PDB 4QYL核小体晶体结构",
+      "Reactome染色质组织与核小体装配通路"
+    ],
+    "referenceEntries": "UniProt:P0C0S8；RCSB PDB:4QYL；Reactome:chromatin organization",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "H2A-H2B表面酸性斑块邻近α2/α3区域",
+        "可干预核小体结合蛋白与酸性斑块的识别，结构暴露度较高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "histone-fold L1-L2环外露面",
+        "有利于获得构象依赖性抗体，用于区分核小体状态或伴侣结合状态",
+        "备选"
+      ],
+      [
+        "Site C",
+        "H2A与H2B二聚体核心疏水界面",
+        "界面高度保守且埋藏，可能影响核小体稳定性并产生交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "H2AC13为高度保守核内组蛋白，胞外可及性低且同源组蛋白交叉反应风险高；建议采用构象表位筛选并限定研究或递送场景。",
+    "structurePrepZh": "以4QYL核小体晶体结构提取H2A链，保留H2B邻链用于界面判读，去除DNA后评估外露环区与酸性斑块可及性。",
+    "structureRef": "RCSB PDB 4QYL，X-ray diffraction，1.8 Å",
+    "antibodies": [
+      "Epr17455",
+      "D1H2"
+    ],
+    "interfaceFocus": "H2A-H2B二聚体外露酸性斑块",
+    "designMode": "胞内构象抗体设计",
+    "candidates": [
+      {
+        "target": "IFNAR1",
+        "rationale": "IFNAR1为I型干扰素受体亚基，直接介导抗病毒JAK-STAT信号，属于病毒感染免疫通路中细胞表面可及性更高的抗体靶点。"
+      },
+      {
+        "target": "TLR3",
+        "rationale": "TLR3识别病毒双链RNA并诱导TRIF依赖性干扰素反应，与病毒感染和先天免疫激活密切相关，胞外/内体腔结构域适合抗体结合。"
+      },
+      {
+        "target": "IFNAR2",
+        "rationale": "IFNAR2与IFNAR1共同形成I型干扰素受体复合物，决定IFN-α/β配体结合与信号传导，是同一抗病毒防御轴中的真实候选靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

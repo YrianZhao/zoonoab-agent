@@ -1,0 +1,65 @@
+{
+  "gene": "CCL27",
+  "generatedAt": "2026-08-03T11:05:25.717Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CCL27是皮肤相关趋化因子，可通过结合CCR10募集CCR10阳性T细胞并参与皮肤炎症、肠炎相关黏膜免疫及慢性炎症反应。该蛋白为分泌型小分子趋化因子，抗原位点位于胞外环境，具备良好的抗体可及性与配体中和可行性。相较于下游细胞内信号分子，CCL27处于配体-受体轴上游，阻断其与CCR10结合可更直接限制趋化细胞迁移，设计优先级高于非可及性或冗余更强的胞内节点。",
+    "mechanism": "中和抗体阻断CCL27与CCR10胞外结合位点相互作用，抑制CCR10阳性T细胞趋化、黏附后迁移及炎症组织浸润。",
+    "selectedEpitope": "优先覆盖N端受体激活区及N-loop/β1邻近CCR10识别面，避免破坏核心折叠。",
+    "diseaseDirection": "皮肤炎症与黏膜炎症免疫",
+    "domain": "CCL27为CC类趋化因子，含N端活化区、N-loop、三股β折叠和C端α螺旋。",
+    "evidence": "CCL27-CCR10趋化轴疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9Y4X3功能与分泌蛋白注释",
+      "RCSB PDB 2KUM溶液NMR结构",
+      "趋化因子CCR10介导T细胞迁移文献证据"
+    ],
+    "referenceEntries": "UniProt Q9Y4X3；RCSB PDB 2KUM；Open Targets CCL27",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端受体激活区与N-loop连接面",
+        "直接干预CCR10识别及受体激活，具备配体中和价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "β1-β2环及β折叠外露趋化因子识别面",
+        "可辅助遮蔽受体结合界面，利于提高阻断效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端α螺旋及核心疏水折叠邻近区域",
+        "可能影响蛋白稳定性或产生非阻断性结合，需结构验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CCL27分子量较小且趋化因子家族同源性较高，需规避CCL28等相似趋化因子交叉反应，并通过CCR10竞争实验确认阻断活性。",
+    "structurePrepZh": "以2KUM溶液NMR构象集为基础筛选代表构象，保留二硫键约束，标注N端、N-loop与β折叠外露面用于表位建模。",
+    "structureRef": "RCSB PDB 2KUM，human CCL27 solution NMR structure",
+    "antibodies": [
+      "Anti-CCL27 neutralizing antibody",
+      "Anti-CTACK monoclonal antibody"
+    ],
+    "interfaceFocus": "CCL27 N端-N-loop与CCR10识别界面",
+    "designMode": "配体中和型",
+    "candidates": [
+      {
+        "target": "CCR10",
+        "rationale": "CCR10是CCL27的主要受体，阻断CCR10胞外配体结合区可抑制CCL27驱动的T细胞趋化。该节点与CCL27处于同一趋化轴，适合作为受体侧干预靶点。"
+      },
+      {
+        "target": "CCL28",
+        "rationale": "CCL28同样可结合CCR10并参与黏膜免疫细胞募集，与CCL27共享受体通路。其作为配体侧候选靶点可用于评估CCR10轴的组织特异性与冗余补偿。"
+      },
+      {
+        "target": "CCR4",
+        "rationale": "CCR4参与皮肤归巢T细胞趋化，常与CCL27-CCR10轴共同塑造炎症组织T细胞浸润。该靶点适合作为同类趋化迁移通路中的并行干预候选。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

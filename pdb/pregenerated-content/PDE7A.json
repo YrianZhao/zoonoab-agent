@@ -1,0 +1,65 @@
+{
+  "gene": "PDE7A",
+  "generatedAt": "2026-08-03T20:30:06.072Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PDE7A 是胞内 cAMP 特异性磷酸二酯酶，主要通过水解 cAMP 影响 PKA/CREB、免疫细胞活化及血管炎症相关信号，其 Open Targets 关联集中于肾小球滤过、肌酐、冠状动脉疾病和卒中等心肾血管表型。该蛋白缺乏胞外结构域和分泌形式，天然抗原可及性不利于常规阻断型抗体，但高分辨率催化结构支持以胞内递送抗体片段或结构生物学结合工具开展设计。相较 PDE3A、PDE4D 等同类 cAMP PDE，PDE7A 的催化口袋结构解析清晰且亚型选择性位点明确，适合作为机制验证和选择性结合分子开发的优先模型靶点。",
+    "mechanism": "设计抗体片段结合 PDE7A 催化结构域金属配位口袋邻近的底物进入沟槽，空间阻断 cAMP 进入活性中心并限制水解构象形成。",
+    "selectedEpitope": "优先覆盖催化结构域 H-loop/M-loop 邻近底物进入沟槽，避开深部金属配位残基。",
+    "diseaseDirection": "心肾血管炎症与肾功能表型",
+    "domain": "PDE7A 含 N 端调控区与 C 端 PDEase 催化结构域，1ZKL 覆盖催化核心。",
+    "evidence": "PDE7A 心肾血管表型与催化结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q13946 蛋白功能与定位注释",
+      "RCSB PDB 1ZKL X 射线晶体结构",
+      "Phosphodiesterase family cAMP signaling literature"
+    ],
+    "referenceEntries": "UniProt Q13946；RCSB PDB 1ZKL；Open Targets PDE7A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域 H-loop/M-loop 形成的底物进入沟槽",
+        "可干扰 cAMP 进入活性中心，兼顾亚型选择性识别",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化核心外侧螺旋束与变构表面",
+        "利于获得非竞争性构象锁定分子，降低与保守金属口袋冲突",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Zn2+/Mg2+ 配位活性中心深部保守区域",
+        "保守性高且小分子样口袋狭窄，抗体可及性和选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PDE7A 为胞内酶，常规全长抗体难以到达作用位点；设计宜采用 VHH、intrabody 或递送型 Fab，并重点评估 PDE7B/PDE4 亚型交叉反应。",
+    "structurePrepZh": "以 1ZKL 链 A 为模板，保留催化结构域主链与关键金属配位环境，去除结晶小分子后标注 H-loop、M-loop 及底物进入沟槽。",
+    "structureRef": "RCSB PDB 1ZKL，human PDE7A catalytic domain，1.67 Å",
+    "antibodies": [
+      "anti-PDE7A research antibody",
+      "anti-PDE7A monoclonal antibody clone EPR14389"
+    ],
+    "interfaceFocus": "催化沟槽入口、H-loop/M-loop 变构边缘",
+    "designMode": "胞内酶靶向片段抗体",
+    "candidates": [
+      {
+        "target": "PDE7B",
+        "rationale": "PDE7B 与 PDE7A 同属 cAMP 特异性 PDE7 亚家族，参与免疫细胞和神经炎症相关 cAMP 降解，可作为同通路选择性比较靶点。"
+      },
+      {
+        "target": "PDE4D",
+        "rationale": "PDE4D 是 cAMP 水解通路中的关键磷酸二酯酶，并与卒中和血管反应性表型存在遗传及功能关联，适合评估 cAMP PDE 通路冗余性。"
+      },
+      {
+        "target": "PDE3A",
+        "rationale": "PDE3A 调控血管平滑肌和心肌细胞 cAMP/cGMP 水平，与冠状动脉及血压相关表型处于同一环核苷酸信号轴。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

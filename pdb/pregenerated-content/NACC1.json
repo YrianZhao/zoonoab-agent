@@ -1,0 +1,65 @@
+{
+  "gene": "NACC1",
+  "generatedAt": "2026-08-03T14:33:02.001Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NACC1 是核内 BTB/POZ 转录调控蛋白，致病性变异与伴癫痫、白内障、喂养困难和脑髓鞘发育迟缓的神经发育障碍相关，主要涉及 NACC1 二聚化依赖的转录复合体装配异常。其抗原可及性显著受限，因为 NACC1 缺乏分泌信号肽和跨膜胞外结构域，常规体内阻断型抗体不具备直接可及性。相较膜受体或分泌因子靶点，NACC1 更适合作为结构验证、细胞内递送抗体或研究级结合分子的优先靶点；其 PDB 3GA1 提供 BTB 结构域高分辨率二聚体界面，可支持机制明确的抗体设计。",
+    "mechanism": "设计结合分子阻断 NACC1 BTB/POZ 结构域同源二聚化界面，削弱其与转录共抑制复合体的装配，从而干预异常转录调控。",
+    "selectedEpitope": "优先锁定 BTB/POZ 结构域二聚化界面及相邻沟槽，避免仅选择柔性低复杂度区。",
+    "diseaseDirection": "神经发育障碍与癫痫",
+    "domain": "N 端 BTB/POZ 结构域介导同源二聚化，C 端含 BEN 结构域并参与染色质相关转录调控。",
+    "evidence": "NACC1 神经发育障碍结构机制证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt Q96RE7 蛋白功能与定位注释",
+      "RCSB PDB 3GA1 X 射线晶体结构",
+      "OMIM 与 ClinVar 致病变异记录"
+    ],
+    "referenceEntries": "UniProt Q96RE7；RCSB PDB 3GA1；Open Targets NACC1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "BTB/POZ 二聚化界面",
+        "直接干预 NACC1 同源二聚体形成，机制可验证性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "BTB/POZ 结构域外侧保守沟槽",
+        "可能影响共抑制因子或转录调控复合体装配，适合构象锁定设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端 BEN 结构域预测 DNA/染色质结合区域",
+        "功能相关但缺少 3GA1 覆盖结构，需依赖建模并控制交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NACC1 为核内蛋白，体内抗体可及性和递送为核心风险；建议限定为胞内抗体、纳米抗体递送或结构生物学验证场景。",
+    "structurePrepZh": "采用 3GA1 中 A、B 链 BTB/POZ 二聚体构建抗原模型，补全缺失侧链、校正质子化状态，并保留二聚界面构象。",
+    "structureRef": "PDB 3GA1，human NACC1 BTB domain，2.1 Å X-ray",
+    "antibodies": [
+      "研究级 anti-NACC1 monoclonal antibody",
+      "研究级 anti-NACC1 polyclonal antibody"
+    ],
+    "interfaceFocus": "BTB/POZ 同源二聚体接触面",
+    "designMode": "胞内阻断型",
+    "candidates": [
+      {
+        "target": "BTBD9",
+        "rationale": "BTBD9 同属 BTB 结构域蛋白家族，并与神经发育和神经系统表型遗传风险有关，可作为 BTB 二聚化调控策略的同通路比较靶点。"
+      },
+      {
+        "target": "KCTD7",
+        "rationale": "KCTD7 编码 BTB/POZ 相关 KCTD 家族蛋白，致病变异可导致进展性肌阵挛癫痫和神经发育异常，适合纳入癫痫神经发育疾病轴的结构对照。"
+      },
+      {
+        "target": "CUL3",
+        "rationale": "CUL3 是 BTB 结构域蛋白常见 Cullin 适配复合体核心组分，参与 BTB 蛋白介导的泛素连接酶装配，可作为 BTB 复合体装配网络的机制参照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

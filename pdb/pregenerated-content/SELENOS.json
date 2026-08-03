@@ -1,0 +1,65 @@
+{
+  "gene": "SELENOS",
+  "generatedAt": "2026-08-03T16:24:43.284Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SELENOS是内质网膜相关硒蛋白，参与ER-associated degradation中错误折叠蛋白外运，并通过与VCP/p97及Derlin复合体协同影响内质网应激和炎症反应。其疾病关联主要集中于免疫系统异常及血液蛋白量等表型，但Open Targets最高关联分值有限，提示更适合作为探索性免疫炎症与蛋白稳态靶点。SELENOS为多跨膜/膜锚定内质网蛋白，抗原天然可及性弱于分泌因子和质膜受体；相较同通路中SEL1L、SYVN1等核心ERAD因子，其优势在于已具有人源高分辨率结构片段，可支持结构约束的抗体片段设计。",
+    "mechanism": "优先设计阻断SELENOS胞质结构域与VCP/p97适配界面结合的抗体片段，削弱ERAD底物从内质网膜向胞质蛋白酶体通路的转运耦联。",
+    "selectedEpitope": "聚焦2Q2F解析的胞质可溶结构域中VCP结合相关暴露面，避开硒代半胱氨酸邻近保守核心。",
+    "diseaseDirection": "免疫炎症与内质网应激",
+    "domain": "SELENOS含N端内质网腔侧短段、跨膜锚定区及C端胞质结构域，C端含硒代半胱氨酸位点。",
+    "evidence": "SELENOS-ERAD与免疫炎症关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease associations",
+      "UniProt Q9BQE4 functional annotation",
+      "RCSB PDB 2Q2F crystallographic structure",
+      "ER-associated degradation and VCP/p97 literature"
+    ],
+    "referenceEntries": "UniProt Q9BQE4；RCSB PDB 2Q2F；Open Targets SELENOS",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "2Q2F胞质结构域VCP/p97相互作用相关暴露面",
+        "可直接干预ERAD外运耦联，结构可建模性较高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端胞质结构域非保守外侧螺旋/环区",
+        "利于获得选择性结合并降低对保守催化样区域的扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "硒代半胱氨酸及邻近高度保守核心区域",
+        "可能影响蛋白折叠稳定性并产生非特异功能扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SELENOS定位于内质网膜，常规胞外抗体难以接近胞质表位；宜限定为细胞内递送Fab/VHH或结构生物学验证用途，并优先评估特异性与细胞通透策略。",
+    "structurePrepZh": "以2Q2F链A为模板，补全缺失侧链并标注硒代半胱氨酸；结合AlphaFold全长模型定位跨膜区与胞质域边界，屏蔽晶体接触面。",
+    "structureRef": "RCSB PDB 2Q2F，X-ray diffraction，1.5 Å",
+    "antibodies": [
+      "无已批准SELENOS靶向治疗性抗体",
+      "研究级anti-SELENOS抗体"
+    ],
+    "interfaceFocus": "胞质域VCP/p97适配结合面",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "VCP",
+        "rationale": "VCP/p97是ERAD底物逆转运后的ATPase核心因子，与SELENOS参与同一蛋白质质量控制轴；其界面靶向可更直接影响底物抽提步骤。"
+      },
+      {
+        "target": "DERL1",
+        "rationale": "DERL1是内质网膜ERAD复合体组分，参与错误折叠蛋白跨膜转运；与SELENOS功能邻近，适合作为同通路替代膜蛋白靶点。"
+      },
+      {
+        "target": "SYVN1",
+        "rationale": "SYVN1/HRD1是ERAD通路中的E3泛素连接酶，负责底物泛素化并连接蛋白酶体降解；相较SELENOS具有更明确的酶促节点属性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

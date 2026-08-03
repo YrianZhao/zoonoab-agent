@@ -1,0 +1,65 @@
+{
+  "gene": "NEK2",
+  "generatedAt": "2026-08-03T14:39:42.246Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NEK2是中心体相关丝氨酸/苏氨酸激酶，主要通过磷酸化C-Nap1、Rootletin等中心体连接蛋白促进中心体分离，并与纤毛基底体稳态相关，遗传和功能证据支持其与视网膜变性表型存在关联。该蛋白为胞内激酶，天然抗原可及性低，不具备经典膜外抗体阻断优势；抗体设计更适合定位于细胞内递送抗体、研究级构象探针或降解偶联识别模块。相较许多仅具遗传相关性的纤毛病靶点，NEK2具有高分辨率实验结构和明确ATP结合口袋，可优先支持结构约束型结合分子设计，但治疗抗体开发优先级需低于可分泌或膜受体靶点。",
+    "mechanism": "设计结合NEK2激酶N端催化结构域的ATP结合裂隙或活化环构象，干扰ATP定位及底物进入，从而抑制C-Nap1、Rootletin等中心体连接底物磷酸化。",
+    "selectedEpitope": "优先覆盖激酶N/C叶交界ATP结合裂隙及活化环邻近面，避免完全依赖保守铰链区。",
+    "diseaseDirection": "视网膜变性与纤毛基底体稳态",
+    "domain": "NEK2含N端蛋白激酶催化结构域和C端调控/卷曲螺旋区域，2W5A解析催化域。",
+    "evidence": "NEK2结构、遗传关联与中心体通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P51955功能与结构域注释",
+      "RCSB PDB 2W5A晶体结构记录",
+      "中心体分离和纤毛基底体相关文献"
+    ],
+    "referenceEntries": "UniProt:P51955；RCSB PDB:2W5A；Open Targets:NEK2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ATP结合裂隙、铰链区外侧及活化环邻近催化面",
+        "可直接影响ATP定位和底物磷酸化构象，结构可解析度高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C叶底物结合沟及αC螺旋相邻表面",
+        "有望干扰底物进入并提高相对保守ATP口袋外的选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守铰链主链氢键区域",
+        "跨激酶同源性高，选择性风险和脱靶结合风险较大",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NEK2为胞内激酶，常规抗体难以到达天然靶点环境；设计需采用细胞内递送、内体逃逸或降解偶联策略，并严格评估激酶家族选择性。",
+    "structurePrepZh": "以2W5A链A为模板，保留催化域坐标，检查配体、缺失残基和晶体接触；补全侧链并标准化ATP口袋质子化状态后用于对接。",
+    "structureRef": "RCSB PDB 2W5A；人NEK2激酶结构，1.55 Å X射线晶体",
+    "antibodies": [
+      "无已获批NEK2治疗性抗体",
+      "研究级抗NEK2单克隆抗体"
+    ],
+    "interfaceFocus": "ATP裂隙、活化环与底物结合沟交界",
+    "designMode": "胞内抗体/结构探针",
+    "candidates": [
+      {
+        "target": "CEP250",
+        "rationale": "CEP250编码C-Nap1，是NEK2磷酸化的中心体连接底物，参与中心体黏连解除；其位于同一中心体分离与纤毛基底体稳态轴。"
+      },
+      {
+        "target": "CROCC",
+        "rationale": "CROCC编码Rootletin，是中心体连接结构的重要组成蛋白，也是NEK2调控的相关底物，适合作为同通路功能验证靶点。"
+      },
+      {
+        "target": "CNTRL",
+        "rationale": "CNTRL参与中心体成熟和纤毛相关结构组织，与NEK2介导的中心体周期控制处于相邻通路节点，可用于扩展视网膜纤毛病机制评估。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

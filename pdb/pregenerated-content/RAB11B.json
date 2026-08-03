@@ -1,0 +1,65 @@
+{
+  "gene": "RAB11B",
+  "generatedAt": "2026-08-03T15:47:38.697Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RAB11B为Rab小GTP酶家族成员，参与回收内体至质膜的囊泡运输，其功能缺陷与伴共济步态、语言缺失及皮质白质减少的神经发育障碍相关。该蛋白主要定位于胞内回收内体膜的胞质侧，缺乏经典胞外结构域，因此抗体抗原可及性弱于膜受体或分泌蛋白，宜定位为结构与机制验证靶点而非优先体内阻断靶点。相较于RAB11A等广泛同源成员，RAB11B具有人类遗传疾病关联和高分辨率结构支持，可用于开发区分性构象识别抗体或细胞内递送抗体工具。",
+    "mechanism": "通过识别RAB11B GTPase核心的Switch I/Switch II构象面，阻断其与Rab11-FIP效应蛋白及马达衔接复合物的结合，干预回收内体货物转运。",
+    "selectedEpitope": "优先覆盖GTPase结构域Switch I、Switch II及邻近核苷酸结合沟槽的构象表位。",
+    "diseaseDirection": "神经发育障碍与内体运输异常",
+    "domain": "RAB11B包含保守小GTPase核心结构域，含P-loop、Switch I、Switch II及C端膜锚定相关高变区。",
+    "evidence": "RAB11B遗传关联与回收内体结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联数据",
+      "UniProt Q15907功能与亚细胞定位注释",
+      "RCSB PDB 2F9L高分辨率晶体结构",
+      "Rab11-FIP效应蛋白复合物与回收内体运输文献"
+    ],
+    "referenceEntries": "UniProt Q15907；RCSB PDB 2F9L；Open Targets RAB11B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Switch I/Switch II效应蛋白结合面",
+        "可直接影响Rab11-FIP类效应蛋白识别，具有机制阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "P-loop及核苷酸结合沟槽邻近区域",
+        "可区分GDP/GTP相关构象，但需避免完全依赖核苷酸状态",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端高变区及膜锚定邻近片段",
+        "序列特异性较好但柔性高、结构解析不足，成药表位稳定性有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RAB11B为胞内小GTP酶，常规抗体体内可及性受限；应优先采用细胞内递送、intrabody或研究级构象抗体策略，并严格评估RAB11A交叉反应。",
+    "structurePrepZh": "以2F9L链A为模板，保留核苷酸结合状态信息，补全缺失柔性末端并标注Switch区构象；表位建模需加入RAB11A同源比对以控制特异性。",
+    "structureRef": "RCSB PDB 2F9L，X射线晶体结构，1.55 Å",
+    "antibodies": [
+      "anti-RAB11B clone EPR14766",
+      "anti-RAB11B polyclonal antibody"
+    ],
+    "interfaceFocus": "Switch I/Switch II效应蛋白结合界面",
+    "designMode": "胞内构象抗体设计",
+    "candidates": [
+      {
+        "target": "RAB11A",
+        "rationale": "RAB11A与RAB11B同属Rab11亚家族，参与回收内体货物转运及Rab11-FIP效应蛋白招募，可作为同通路同源参照靶点。"
+      },
+      {
+        "target": "RAB11FIP5",
+        "rationale": "RAB11FIP5为Rab11效应蛋白，连接RAB11阳性回收内体与膜运输过程，适合用于验证RAB11B效应蛋白结合轴。"
+      },
+      {
+        "target": "MYO5B",
+        "rationale": "MYO5B通过与Rab11相关运输复合物协同调控回收内体向质膜的定向运输，是同一囊泡转运通路中的关键执行因子。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

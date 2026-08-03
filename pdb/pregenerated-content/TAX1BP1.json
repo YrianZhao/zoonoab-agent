@@ -1,0 +1,65 @@
+{
+  "gene": "TAX1BP1",
+  "generatedAt": "2026-08-03T17:09:38.983Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TAX1BP1 是胞内选择性自噬受体和 NF-κB 负调控支架蛋白，可通过 A20/TNFAIP3 复合物限制 RIPK1、TRAF6 等泛素依赖性炎症信号。其与前列腺癌、卒中等疾病存在遗传与转录层面的关联，但该蛋白主要定位于胞质，不具备常规抗体药物可直接结合的胞外可及性。相较 TNF、IL1B 或 TNFRSF1A 等同通路胞外节点，TAX1BP1 更适合作为机制分层与胞内结合工具抗体靶点，而非系统给药阻断型抗体的一线优先靶点。",
+    "mechanism": "设计胞内结合抗体阻断 TAX1BP1 SKICH 结构域与泛素化货物或调控复合物的装配，解析其对 A20 介导 NF-κB 终止信号的影响。",
+    "selectedEpitope": "优先覆盖 N 端 SKICH 结构域保守凹槽及蛋白互作界面，避免完全遮蔽折叠核心。",
+    "diseaseDirection": "炎症-NF-κB与肿瘤易感",
+    "domain": "TAX1BP1 含 N 端 SKICH 结构域、中心卷曲螺旋区及 C 端 C2H2/C2HC 锌指样泛素结合区。",
+    "evidence": "TAX1BP1结构与炎症信号调控证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt Q86VP1 蛋白功能注释",
+      "RCSB PDB 5YT6 X射线晶体结构",
+      "NF-κB/A20-TAX1BP1通路文献"
+    ],
+    "referenceEntries": "UniProt Q86VP1；RCSB PDB 5YT6；Open Targets TAX1BP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SKICH结构域保守凹槽与互作表面",
+        "有利于干预TAX1BP1介导的复合物装配并保留结构判读性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SKICH结构域外周带电螺旋面",
+        "可获得高特异性结合，适合作为构象识别或成像工具表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "中心卷曲螺旋寡聚化区域",
+        "可能影响天然二聚化与自噬受体聚集，需控制功能扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TAX1BP1 为胞内蛋白，常规抗体体内可及性受限；设计应定位于细胞内抗体、Fab/VHH工具分子或递送型策略，并验证对NF-κB终止信号的非预期增强风险。",
+    "structurePrepZh": "以5YT6高分辨率晶体结构为SKICH结构域模板，进行链选择、缺失残基检查、晶体接触排除及保守表面映射后开展表位建模。",
+    "structureRef": "RCSB PDB 5YT6，X-ray diffraction，1.501 Å",
+    "antibodies": [
+      "TAX1BP1研究级单克隆抗体",
+      "TAX1BP1免疫检测用多克隆抗体"
+    ],
+    "interfaceFocus": "SKICH互作凹槽与卷曲螺旋邻近界面",
+    "designMode": "胞内工具抗体设计",
+    "candidates": [
+      {
+        "target": "TNFAIP3",
+        "rationale": "TNFAIP3/A20 与 TAX1BP1 共同构成 NF-κB 负反馈调控模块，通过去泛素化或编辑泛素链限制 TNF 诱导炎症信号。"
+      },
+      {
+        "target": "RIPK1",
+        "rationale": "RIPK1 是 TNFR1 复合物中泛素化依赖性信号节点，其泛素链状态受 A20-TAX1BP1 轴调节，并连接炎症、凋亡与坏死性凋亡。"
+      },
+      {
+        "target": "TRAF6",
+        "rationale": "TRAF6 是 IL-1R/TLR 通路中的E3泛素连接酶，可驱动NF-κB激活；TAX1BP1-A20复合物参与限制其泛素依赖信号输出。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

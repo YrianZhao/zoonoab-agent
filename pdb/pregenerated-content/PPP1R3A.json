@@ -1,0 +1,65 @@
+{
+  "gene": "PPP1R3A",
+  "generatedAt": "2026-08-03T15:31:42.425Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PPP1R3A编码肌糖原靶向亚基GM，将蛋白磷酸酶1催化亚基定位至糖原颗粒并调节糖原合酶与糖原磷酸化酶的去磷酸化状态，遗传证据与2型糖尿病、体重指数和肾小球滤过相关性一致。该蛋白主要为胞内糖原结合调节蛋白，天然抗原可及性低于膜受体或分泌蛋白，因此更适合作为机制验证或胞内递送抗体设计对象。其优先级来自明确的人源结构条目和代谢遗传关联，但相较INSR、SLC2A4等可及性更高的代谢靶点，成药抗体开发优先级应审慎定位。",
+    "mechanism": "设计抗体阻断PPP1R3A糖原结合CBM21结构域与糖原多糖表面的结合，干预PP1复合体在糖原颗粒上的定位。",
+    "selectedEpitope": "优先覆盖CBM21糖原结合沟槽周边保守芳香族残基簇，避免PP1结合RVxF样基序区域。",
+    "diseaseDirection": "糖代谢异常与2型糖尿病",
+    "domain": "PPP1R3A含N端PP1结合基序、糖原结合CBM21结构域及调控磷酸化区域。",
+    "evidence": "PPP1R3A糖原代谢遗传与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q16821功能与结构域注释",
+      "RCSB PDB 5ZQV X射线晶体结构",
+      "人类糖原代谢与PP1调控文献"
+    ],
+    "referenceEntries": "UniProt Q16821；RCSB PDB 5ZQV；Open Targets PPP1R3A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CBM21糖原结合沟槽及芳香族残基簇",
+        "直接竞争糖原结合，验证糖原颗粒定位依赖性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CBM21外侧稳定螺旋-环区",
+        "利于获得构象特异性结合并降低糖原模拟交叉风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端PP1结合RVxF样基序邻近区",
+        "可能干扰PPP1CA招募，但构象柔性与细胞内可及性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PPP1R3A为胞内调节蛋白，常规抗体难以到达作用位点；应优先采用细胞内递送、内体逃逸或VHH融合策略，并评估CBM21家族交叉反应。",
+    "structurePrepZh": "以5ZQV多链晶体结构提取CBM21构象，校正缺失环区与质子化状态，保留糖原结合沟槽几何特征用于表位建模。",
+    "structureRef": "RCSB PDB 5ZQV，X-ray diffraction，2.95 Å",
+    "antibodies": [
+      "暂无获批PPP1R3A靶向抗体",
+      "暂无临床阶段PPP1R3A靶向抗体"
+    ],
+    "interfaceFocus": "CBM21糖原结合沟槽与PP1招募邻近界面",
+    "designMode": "胞内VHH功能阻断",
+    "candidates": [
+      {
+        "target": "PPP1CA",
+        "rationale": "PPP1CA为PP1催化亚基，与PPP1R3A形成糖原定位磷酸酶复合体，直接决定糖原合酶和糖原磷酸化酶的去磷酸化输出。"
+      },
+      {
+        "target": "GYS1",
+        "rationale": "GYS1编码肌糖原合酶，是PPP1R3A-PP1复合体调控的关键底物，位于同一糖原合成通路下游。"
+      },
+      {
+        "target": "PYGM",
+        "rationale": "PYGM编码肌糖原磷酸化酶，其磷酸化状态受PP1相关复合体影响，是糖原分解臂的重要同通路节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

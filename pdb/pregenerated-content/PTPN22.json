@@ -1,0 +1,65 @@
+{
+  "gene": "PTPN22",
+  "generatedAt": "2026-08-03T15:43:48.507Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PTPN22编码胞内非受体型酪氨酸磷酸酶LYP，通过去磷酸化LCK、FYN、ZAP70等近端TCR信号分子限制T细胞活化，其R620W风险变体与类风湿关节炎、系统性红斑狼疮和1型糖尿病存在稳定遗传关联。该蛋白缺乏胞外结构域，不具备常规细胞表面抗体阻断的抗原可及性优势，作为抗体靶点更适合采用胞内递送抗体片段或结构生物学验证工具策略。相较于下游广谱炎症因子，PTPN22位于自身免疫易感的近端淋巴细胞受体阈值调控节点，遗传因果证据更强，但开发优先级受限于胞内定位与药物递送可行性。",
+    "mechanism": "设计胞内抗体片段占据PTPN22催化结构域活性沟槽或C端P1基序邻近界面，干预其对LCK、FYN、ZAP70磷酸酪氨酸底物及CSK结合轴的作用。",
+    "selectedEpitope": "优先聚焦N端PTP催化结构域WPD环、Q环及磷酸酪氨酸结合口袋周边构象表位。",
+    "diseaseDirection": "自身免疫性疾病与TCR阈值调控",
+    "domain": "PTPN22含N端经典PTP催化结构域及C端富脯氨酸P1-P4基序，P1介导CSK SH3结合。",
+    "evidence": "PTPN22自身免疫遗传关联与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB Q9Y2R2 functional annotation",
+      "RCSB PDB 9YG0 X-ray structure",
+      "GWAS Catalog autoimmune disease associations"
+    ],
+    "referenceEntries": "UniProt Q9Y2R2；RCSB PDB 9YG0；Open Targets PTPN22",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PTP催化结构域WPD环与磷酸酪氨酸结合口袋边缘",
+        "可直接影响底物进入与催化闭合构象，适合功能阻断型胞内抗体片段设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域外周α螺旋与底物识别沟槽邻近表面",
+        "有利于提高选择性并降低完全占据催化半胱氨酸区域带来的交叉反应风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端富脯氨酸P1基序及CSK SH3结合相关区域",
+        "可干预PTPN22-CSK复合物形成，但该区段柔性较高且9YG0结构覆盖可能有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PTPN22为胞内酶，常规IgG难以到达作用位点；催化口袋与PTP家族保守性较高，需通过外周构象表位和细胞内递送格式控制选择性。",
+    "structurePrepZh": "以9YG0高分辨率X射线结构为模板，保留抗原链A-D用于构象一致性评估，补建缺失柔性环并标注催化Cys与WPD环状态。",
+    "structureRef": "RCSB PDB 9YG0，X-ray diffraction，1.76 Å",
+    "antibodies": [
+      "胞内抗体片段intrabody",
+      "细胞穿透型VHH候选格式"
+    ],
+    "interfaceFocus": "PTP活性沟槽、WPD环、P1-CSK结合轴",
+    "designMode": "胞内表位阻断",
+    "candidates": [
+      {
+        "target": "CSK",
+        "rationale": "CSK与PTPN22通过SH3结构域和PTPN22 P1富脯氨酸基序形成复合物，共同调节LCK抑制性磷酸化，是同一TCR阈值控制轴的真实节点。"
+      },
+      {
+        "target": "LCK",
+        "rationale": "LCK是TCR近端信号的Src家族激酶底物，PTPN22可调节其活化相关磷酸化状态，直接影响T细胞受体信号强度。"
+      },
+      {
+        "target": "ZAP70",
+        "rationale": "ZAP70位于TCR-CD3复合物下游，是PTPN22报道底物之一，其磷酸化水平决定T细胞活化与自身免疫反应阈值。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "PTGR1",
+  "generatedAt": "2026-08-03T15:42:43.080Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PTGR1 为细胞质 NADP(H) 依赖性前列腺素还原酶，催化 15-氧代前列腺素及白三烯 B4 相关脂质介质还原，参与炎症脂质介质失活与单核细胞相关表型调节。该蛋白并非分泌蛋白或膜受体，天然抗原可及性弱，抗体策略更适合定位于细胞内递送、检测或构象稳定化应用，而非经典体内阻断抗体。相较 PTGS2、PTGES、HPGD 等通路节点，PTGR1 具备高分辨率实验结构支持和明确辅因子/底物结合口袋，适合开展结构引导的结合抗体设计，但治疗优先级需低于胞外可及靶点。",
+    "mechanism": "设计抗体结合 PTGR1 Rossmann 折叠邻近底物通道，空间阻断 15-氧代前列腺素与 NADPH 依赖催化位点的正确装配。",
+    "selectedEpitope": "优先覆盖NADPH结合Rossmann结构域边缘与底物进入通道相邻环区，避免完全埋入口袋。",
+    "diseaseDirection": "炎症脂质介质代谢与单核细胞表型",
+    "domain": "PTGR1 含N端Rossmann样NADP(H)结合区及C端催化结构域，形成可容纳脂质底物的疏水通道。",
+    "evidence": "PTGR1炎症脂质代谢结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与血清蛋白关联",
+      "UniProt Q14914功能与亚细胞定位注释",
+      "RCSB PDB 9D6Z高分辨率晶体结构",
+      "脂质介质代谢与前列腺素还原酶文献证据"
+    ],
+    "referenceEntries": "UniProt: Q14914；RCSB PDB: 9D6Z；Open Targets: PTGR1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Rossmann样NADP(H)结合区外缘与底物通道入口邻近环",
+        "可干扰辅因子依赖催化构象，同时保留抗体可结合表面",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端催化结构域疏水底物通道周边螺旋面",
+        "有利于阻断15-氧代前列腺素进入催化腔",
+        "备选"
+      ],
+      [
+        "Site C",
+        "二聚体晶体接触或深埋辅因子口袋区域",
+        "可能受构象埋藏、辅因子竞争及非天然界面影响",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PTGR1主要定位于细胞质，缺乏天然胞外暴露界面，常规体内抗体难以直接触达；设计应标注为细胞内递送、检测或结构探针方向。",
+    "structurePrepZh": "以9D6Z链A/B为模板，保留生物学相关构象并检查NADP(H)或配体占位；去除晶体添加物后评估通道入口可及性。",
+    "structureRef": "RCSB PDB 9D6Z，X-ray diffraction，1.75 Å",
+    "antibodies": [
+      "抗PTGR1研究级单克隆抗体",
+      "抗PTGR1免疫检测抗体"
+    ],
+    "interfaceFocus": "NADP(H)结合外缘与脂质底物通道入口",
+    "designMode": "结构引导型胞内抗体",
+    "candidates": [
+      {
+        "target": "HPGD",
+        "rationale": "HPGD编码15-羟基前列腺素脱氢酶，位于前列腺素失活通路上游，将前列腺素氧化为15-酮代谢物，与PTGR1底物生成直接相关。"
+      },
+      {
+        "target": "PTGS2",
+        "rationale": "PTGS2编码COX-2，是炎症条件下前列腺素合成的关键酶，其产物流量决定下游PTGR1可处理脂质介质负荷。"
+      },
+      {
+        "target": "PTGES",
+        "rationale": "PTGES参与PGE2合成，与PTGS2共同驱动炎症性前列腺素轴；调节该节点可影响进入HPGD/PTGR1失活支路的前列腺素水平。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "SORD",
+  "generatedAt": "2026-08-03T16:49:47.629Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SORD 参与山梨醇-果糖代谢平衡，其功能异常与遗传性远端运动神经病和 Charcot-Marie-Tooth 病相关，提示该靶点处于神经轴突能量代谢失衡的关键环节。该蛋白具有明确的酶学结构基础，且给定晶体结构分辨率达到 1.9 Å，适合开展高分辨率表位与构象界面解析。相较于同一疾病通路中的下游表型标志物，SORD 直接位于代谢致病节点，具备更高的机制优先级与抗体干预解释度；但其为胞内可溶性酶，抗原可及性劣于膜受体，故更适合作为结构机制研究与胞内递送型抗体/纳米抗体设计对象。",
+    "mechanism": "结合SORD活性口袋与底物结合区，阻断山梨醇向果糖的催化转化并稳定失活构象，抑制致病代谢通量。",
+    "selectedEpitope": "优先覆盖NAD(H)结合区邻近活性裂隙及底物入口环，避免远端表面位点。",
+    "diseaseDirection": "遗传性周围神经病",
+    "domain": "典型短链脱氢酶/还原酶催化核心，含NAD(H)结合折叠与底物结合裂隙。",
+    "evidence": "SORD结构与神经病关联证据包",
+    "evidenceSources": [
+      "UniProt: Q00796",
+      "RCSB PDB: 1PL8",
+      "Open Targets Platform",
+      "OMIM / MONDO / EFO annotations"
+    ],
+    "referenceEntries": "UniProt Q00796; PDB 1PL8; AlphaFold/结构数据库交叉参考",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "NAD(H)结合口袋邻近区",
+        "适合稳定失活构象并干预催化循环",
+        "优先"
+      ],
+      [
+        "Site B",
+        "底物通道入口环",
+        "可阻断山梨醇进入活性中心",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离活性中心的二级表面",
+        "对酶活抑制贡献有限，构象风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SORD为胞内酶，常规外周给药抗体可及性受限，需优先考虑纳米抗体、细胞穿透递送或替代性表位工程。活性位点高度保守，需通过构象特异性与物种差异位点降低脱靶抑制风险。",
+    "structurePrepZh": "以1PL8为主模板完成缺失侧链修补、质子化状态校正与辅因子/底物占位复核，并依据生物学组装体校正四链界面。",
+    "structureRef": "X-ray结构1PL8，1.9 Å分辨率",
+    "antibodies": [
+      "无成熟临床同类抗体",
+      "无已知SORD特异性治疗抗体"
+    ],
+    "interfaceFocus": "NAD(H)口袋与底物入口裂隙",
+    "designMode": "结构机制导向",
+    "candidates": [
+      {
+        "target": "AKR1B1",
+        "rationale": "AKR1B1与SORD共同处于多元醇代谢轴，分别催化葡萄糖醛酸/山梨醇相关还原步骤，可作为同通路竞争节点评估。其抑制有助于界定上游多元醇积累对神经病表型的贡献。"
+      },
+      {
+        "target": "ALDOB",
+        "rationale": "ALDOB位于果糖代谢分支下游，与SORD共同决定果糖生成后的碳流分配，适于构建代谢补偿与旁路分析。虽然不直接催化山梨醇氧化，但可作为同一碳代谢疾病轴的功能参照靶点。"
+      },
+      {
+        "target": "AR",
+        "rationale": "AR/AKR1B1与SORD同属多元醇通路关键酶，常被并行评估以解释山梨醇积累及神经毒性机制。其作为候选比较靶点有助于区分单纯底物堆积与下游氧化压力的致病贡献。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

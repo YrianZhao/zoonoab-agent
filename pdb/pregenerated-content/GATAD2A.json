@@ -1,0 +1,65 @@
+{
+  "gene": "GATAD2A",
+  "generatedAt": "2026-08-03T12:43:27.741Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GATAD2A 是 NuRD 染色质重塑与组蛋白去乙酰化复合体的核心支架亚基，可通过其 GATA zinc finger 结构域募集 MBD2/MBD3 并参与甲基化 DNA 相关转录抑制，神经退行性疾病关联主要指向表观遗传调控失衡与神经炎症转录程序异常。该蛋白定位于细胞核，缺乏分泌型或膜受体样胞外结构域，因此完整蛋白作为体内阻断型抗体抗原的可及性不具优势，更适合用于细胞内递送抗体、研究级结合分子或降解偶联策略。相较于 NuRD 通路中 CHD4、HDAC1 等多结构域酶性亚基，GATAD2A 的结构域片段已有 NMR 结构支持，且位于复合体装配界面，适合作为界面干预型分子设计的优先建模对象。",
+    "mechanism": "抗体结合 GATAD2A 的 GATA zinc finger/MBD 结合界面，阻断其与 MBD2 或 MBD3 的复合体装配，从而削弱 NuRD 介导的甲基化 DNA 相关转录抑制。",
+    "selectedEpitope": "优先覆盖 2L2L 所示 GATA zinc finger 折叠表面中参与 MBD2/MBD3 结合的锌指邻近界面。",
+    "diseaseDirection": "神经退行性疾病表观遗传调控",
+    "domain": "GATAD2A 含 N 端保守结构区、GATA zinc finger domain 及 NuRD 复合体装配相关区域。",
+    "evidence": "GATAD2A-NuRD 表观遗传调控证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt Q86YP4 蛋白功能注释",
+      "RCSB PDB 2L2L 溶液 NMR 结构",
+      "NuRD 复合体与 MBD2/MBD3 相互作用文献"
+    ],
+    "referenceEntries": "UniProt: Q86YP4; RCSB PDB: 2L2L; Open Targets: GATAD2A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "GATA zinc finger 的 MBD2/MBD3 结合邻近界面",
+        "直接干预 NuRD 复合体装配，机制可验证性较高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "锌指折叠外侧保守螺旋/环区",
+        "有利于获得构象识别抗体，可作为变构干预位点",
+        "备选"
+      ],
+      [
+        "Site C",
+        "锌离子配位核心附近残基",
+        "可能影响结构稳定性但存在构象破坏与交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GATAD2A 为核内蛋白，天然抗原可及性较低；需优先采用细胞内递送、intrabody 或降解偶联设计，并避免直接破坏锌指配位核心导致非特异构象塌陷。",
+    "structurePrepZh": "以 PDB 2L2L 的溶液 NMR 构象集为模板，筛选代表性低能构象，保留锌离子配位几何并映射 MBD2/MBD3 结合相关保守残基。",
+    "structureRef": "RCSB PDB 2L2L, solution NMR structure of GATAD2A zinc finger region",
+    "antibodies": [
+      "研究级 anti-GATAD2A antibody",
+      "研究级 anti-p66α/GATAD2A antibody"
+    ],
+    "interfaceFocus": "GATA zinc finger 与 MBD2/MBD3 装配界面",
+    "designMode": "细胞内界面阻断",
+    "candidates": [
+      {
+        "target": "MBD2",
+        "rationale": "MBD2 识别甲基化 CpG DNA 并招募 NuRD 复合体，直接位于 GATAD2A 介导的转录抑制轴上。靶向其与 GATAD2A 的结合界面可验证同一复合体装配机制。"
+      },
+      {
+        "target": "MBD3",
+        "rationale": "MBD3 是 NuRD 复合体核心甲基-CpG 结合蛋白同源亚基，与 GATAD2A/p66α 形成稳定装配关系。其结构定位适合用于比较 NuRD 依赖转录调控干预策略。"
+      },
+      {
+        "target": "CHD4",
+        "rationale": "CHD4 是 NuRD 复合体的 ATP 依赖染色质重塑酶亚基，执行核小体重塑功能。作为同一通路下游效应亚基，可用于评估装配阻断与酶功能抑制的差异。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "H6PD",
+  "generatedAt": "2026-08-03T19:38:42.137Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "H6PD位于内质网腔内，催化葡萄糖-6-磷酸生成6-磷酸葡萄糖酸内酯并产生NADPH，为HSD11B1将可的松还原为皮质醇提供还原当量；其功能缺陷可导致可的松还原酶缺乏相关高雄激素血症。该蛋白虽非经典细胞表面抗原，但其催化结构域位于内质网腔侧，重组可溶性抗原适用于机制性抗体筛选与结构表位验证。相较于直接靶向广泛表达的糖皮质激素受体轴，H6PD处于HSD11B1局部皮质醇再生的上游供能节点，具有更明确的代谢耦联优先级。",
+    "mechanism": "抗体通过结合H6PD的Rossmann样NADP结合沟槽或底物入口，阻断NADP与葡萄糖-6-磷酸的协同定位，降低HSD11B1还原反应所需NADPH供给。",
+    "selectedEpitope": "优先覆盖N端Rossmann样NADP结合结构域邻近底物入口的构象表位，避免深埋催化残基。",
+    "diseaseDirection": "可的松还原酶缺乏与类固醇代谢异常",
+    "domain": "H6PD为内质网腔内酶，含N端葡萄糖-6-磷酸脱氢酶催化区及C端6-磷酸葡萄糖酸内酯酶样结构域。",
+    "evidence": "H6PD-HSD11B1局部皮质醇再生证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联数据",
+      "UniProt O95479功能与亚细胞定位注释",
+      "RCSB PDB 8EM2冷冻电镜结构",
+      "OMIM/Orphanet可的松还原酶缺乏症记录"
+    ],
+    "referenceEntries": "UniProt O95479；RCSB PDB 8EM2；Open Targets H6PD",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Rossmann样NADP结合沟槽邻近区域",
+        "可直接干扰辅因子结合与NADPH生成，机制可验证性高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "葡萄糖-6-磷酸底物入口周边构象面",
+        "可能阻断底物进入催化中心，适合非竞争或别构抑制设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端6-磷酸葡萄糖酸内酯酶样结构域外侧面",
+        "与主脱氢反应距离较远，功能抑制效应需依赖别构证据",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "H6PD为内质网腔内酶，体内抗体递送与细胞进入存在显著可及性限制；建议定位于重组蛋白机制抗体、细胞内递送格式或研究级抑制抗体开发。",
+    "structurePrepZh": "以8EM2链A/B为模板进行构象检查，保留NADP/底物邻近口袋信息，补全低置信环区并标注糖基化及跨膜信号肽处理边界。",
+    "structureRef": "RCSB PDB 8EM2，human H6PD冷冻电镜结构，3.02 Å",
+    "antibodies": [
+      "H6PD research antibody HPA005565",
+      "H6PD research antibody ab170895"
+    ],
+    "interfaceFocus": "NADP结合沟槽与G6P底物入口界面",
+    "designMode": "酶活阻断型",
+    "candidates": [
+      {
+        "target": "HSD11B1",
+        "rationale": "HSD11B1利用H6PD生成的NADPH将可的松还原为皮质醇，是可的松还原酶缺乏通路中的直接功能伙伴。靶向其腔内催化结构域可直接改变局部糖皮质激素再生。"
+      },
+      {
+        "target": "POR",
+        "rationale": "POR参与类固醇生成相关细胞色素P450酶的电子传递，缺陷可导致类固醇生成异常和高雄激素表型。其与H6PD相关疾病方向同属甾体代谢失衡网络。"
+      },
+      {
+        "target": "CYP21A2",
+        "rationale": "CYP21A2编码21-羟化酶，是肾上腺类固醇合成通路关键酶，缺陷可引起先天性肾上腺增生和雄激素过量。可作为同一内分泌疾病轴的比较靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

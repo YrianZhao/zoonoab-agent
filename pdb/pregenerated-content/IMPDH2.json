@@ -1,0 +1,65 @@
+{
+  "gene": "IMPDH2",
+  "generatedAt": "2026-08-03T13:28:55.421Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IMPDH2催化IMP氧化为XMP，是鸟嘌呤核苷酸从头合成的限速酶，增殖性白血病细胞及活化淋巴细胞依赖该通路维持GTP供给。该蛋白为胞质四聚体酶，缺乏胞外结构域或分泌暴露，抗体可及性弱，适合作为细胞内递送抗体或降解型分子设计的研究靶点。相较于上游PRPS1或下游GMPS，IMPDH2具有已验证小分子抑制剂药理学与高分辨率复合物结构，机制锚点更明确，但常规外源性治疗抗体优先级低于膜受体或细胞因子靶点。",
+    "mechanism": "阻断IMPDH2催化口袋中IMP、NAD+与CBS调节区构象耦联，抑制IMP向XMP转化，降低细胞内GTP合成。",
+    "selectedEpitope": "优先选择催化结构域IMP/NAD+结合沟槽邻近的构象表位，避免完全埋藏活性位点。",
+    "diseaseDirection": "血液肿瘤与免疫炎症",
+    "domain": "IMPDH2含N端CBS调节结构域与C端TIM桶样催化结构域，功能单元为同源四聚体。",
+    "evidence": "IMPDH2鸟嘌呤合成与免疫增殖证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与药理关联",
+      "UniProt P12268功能与亚细胞定位注释",
+      "RCSB PDB 6I0M实验晶体结构",
+      "ChEMBL/DrugBank IMPDH抑制剂药理记录"
+    ],
+    "referenceEntries": "UniProt P12268；RCSB PDB 6I0M；Open Targets IMPDH2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域IMP/NAD+结合沟槽边缘",
+        "直接干预底物进入与辅因子定位，适合胞内阻断型抗体片段",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CBS调节结构域与催化核心连接界面",
+        "可能扰乱腺嘌呤核苷酸感应及构象耦联，具变构抑制价值",
+        "备选"
+      ],
+      [
+        "Site C",
+        "四聚体亚基间接触面",
+        "可影响寡聚化稳定性，但界面保守且部分埋藏，成药风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IMPDH2为胞质酶，天然抗体难以到达靶点；表位应避开高度保守代谢酶核心以降低同工酶IMPDH1交叉反应，并优先采用胞内递送验证。",
+    "structurePrepZh": "以6I0M链A/B构建同源四聚体模型，保留配体邻近残基用于口袋定义，补全缺失环区并评估CBS结构域相对构象。",
+    "structureRef": "RCSB PDB 6I0M，X-ray diffraction，2.567 Å",
+    "antibodies": [
+      "无临床批准IMPDH2治疗性抗体",
+      "研究级抗IMPDH2单克隆抗体"
+    ],
+    "interfaceFocus": "IMP/NAD+沟槽、CBS-催化域连接区",
+    "designMode": "胞内抗体片段",
+    "candidates": [
+      {
+        "target": "IMPDH1",
+        "rationale": "IMPDH1与IMPDH2催化同一IMP至XMP反应，可作为同通路同工酶选择性评估对象。其组织表达差异有助于界定IMPDH2选择性窗口。"
+      },
+      {
+        "target": "GMPS",
+        "rationale": "GMPS位于IMPDH下游，催化XMP转化为GMP，直接承接鸟嘌呤核苷酸从头合成通路。联合分析可判断GMP合成轴的代谢脆弱性。"
+      },
+      {
+        "target": "PRPS1",
+        "rationale": "PRPS1提供PRPP并驱动嘌呤从头合成早期步骤，与IMPDH2共同支持增殖细胞核苷酸供给。其通路位置适合用于上游代谢瓶颈对照。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

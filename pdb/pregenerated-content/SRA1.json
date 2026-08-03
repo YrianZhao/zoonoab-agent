@@ -1,0 +1,65 @@
+{
+  "gene": "SRA1",
+  "generatedAt": "2026-08-03T16:54:06.632Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SRA1 编码的 steroid receptor RNA activator 1 为细胞内核受体共调控相关蛋白，参与类固醇受体转录复合体组装，并与多种激素依赖性病理表型相关，Open Targets 显示其关联覆盖 755 个疾病/表型条目，提示其具有广泛的疾病网络位置。该蛋白不具备典型胞外可及性，受限于核内定位，作为抗体主靶点的抗原可及性显著低于膜受体或分泌蛋白，因此更适合在细胞内递送或胞内结合型分子设计框架下评估。相较于同通路中更可药靶的 ESR1、PGR 与 AR，SRA1 的优势在于其处于共调控层级，可直接影响核受体转录复合体稳定性与选择性输出，适合作为机制验证型优先靶点。",
+    "mechanism": "通过结合 SRA1 RNA/蛋白功能界面，干扰其与类固醇受体复合体的组装，削弱共激活转录输出。",
+    "selectedEpitope": "优先覆盖 RNA 结合与蛋白互作重叠界面，避开高度无序尾区。",
+    "diseaseDirection": "类固醇受体转录共调控",
+    "domain": "以 RNA 结合核心及其蛋白互作界面为主，N 端无序区需谨慎处理。",
+    "evidence": "SRA1 结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform",
+      "UniProt Q9HD15",
+      "RCSB PDB 4NBO",
+      "PubMed 结构与功能研究"
+    ],
+    "referenceEntries": "UniProt: Q9HD15; RCSB PDB: 4NBO; Homo sapiens SRA1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RNA 结合核心附近保守表面",
+        "有利于阻断 SRA1 介导的核受体共调控复合体装配",
+        "优先"
+      ],
+      [
+        "Site B",
+        "蛋白互作界面外侧浅槽",
+        "适合获得具选择性的结合，保留结构稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端无序富集区",
+        "可及性有限且构象异质性较高，适合作为探索性位点",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "靶点位于细胞内且含无序区，常规治疗性抗体可及性不足；应优先考虑胞内递送、VHH 或工程化 Fab，并控制对 RNA 结合核心的构象依赖风险。",
+    "structurePrepZh": "结构建模应以 4NBO 为核心模板，补充缺失环区并按链 A/B 复合体评估界面暴露度，必要时结合 AlphaFold 置信区间校正无序段。",
+    "structureRef": "RCSB PDB 4NBO; X-ray diffraction 2.807 Å",
+    "antibodies": [
+      "无成熟临床同类抗体公开记录",
+      "缺乏针对 SRA1 的标准化抗体先例"
+    ],
+    "interfaceFocus": "RNA 结合核心与复合体装配界面",
+    "designMode": "胞内结合型",
+    "candidates": [
+      {
+        "target": "ESR1",
+        "rationale": "ESR1 与 SRA1 同属类固醇受体转录调控通路，且为激素依赖性疾病中最成熟的抗体/靶向开发对象之一，可作为功能对照与通路锚点。"
+      },
+      {
+        "target": "PGR",
+        "rationale": "PGR 参与相同类固醇受体轴的转录输出，适合用于评估 SRA1 干预对孕激素相关转录程序的影响。"
+      },
+      {
+        "target": "AR",
+        "rationale": "AR 是同一核受体家族中的关键疾病靶点，与 SRA1 的共调控关系可用于验证其对雄激素信号复合体的影响范围。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

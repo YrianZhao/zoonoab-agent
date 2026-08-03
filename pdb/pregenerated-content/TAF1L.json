@@ -1,0 +1,65 @@
+{
+  "gene": "TAF1L",
+  "generatedAt": "2026-08-03T17:06:42.534Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TAF1L编码TAFII250相关家族成员，属于转录起始复合体组成成分，疾病关联主要集中于肿瘤与感染相关表型，提示其参与异常转录程序维持。该蛋白为核内因子，抗体直接可及性受限，因而更适合作为机制验证或递送场景中的靶点，而非典型表面阻断靶点。相较同类转录辅因子，TAF1L具有人类特异性较高、结构信息可用且与多疾病表型具交叉关联的优势，适合作为优先探索对象。",
+    "mechanism": "抗体可针对其功能性结构界面，抑制TAF1L与TBP/伴侣复合体的装配，削弱启动子识别与转录起始复合物稳定化。",
+    "selectedEpitope": "优先覆盖TBP相互作用界面及保守卷曲螺旋邻域，避免远端低保守表面。",
+    "diseaseDirection": "肿瘤与感染相关转录调控",
+    "domain": "核内TAF家族保守结构区，含TBP结合相关界面与螺旋富集区。",
+    "evidence": "TAF1L结构-疾病关联证据包",
+    "evidenceSources": [
+      "UniProt: Q8IZX4",
+      "RCSB PDB: 3HMH",
+      "Open Targets Platform",
+      "NCBI Gene: TAF1L"
+    ],
+    "referenceEntries": "UniProt Q8IZX4；PDB 3HMH；Open Targets TAF1L",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "TBP结合界面邻域",
+        "优先阻断复合体装配与启动子占位",
+        "优先"
+      ],
+      [
+        "Site B",
+        "保守螺旋富集表面",
+        "适合识别构象依赖性表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "低保守远端环区",
+        "特异性可能较高但功能耦联弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "核内定位决定其抗体可及性较低，常规外周阻断策略可行性有限。建议优先采用胞内递送、结构依赖性Fab筛选或VHH工程化方案，并重点评估与同源TAF家族的交叉反应。",
+    "structurePrepZh": "以3HMH为主模板完成链A重编号、缺失残基补齐与界面注释，结合AlphaFold辅助校正可塑性环区。需保留TBP相关接触面与高分辨率侧链构象。",
+    "structureRef": "PDB 3HMH，X射线晶体结构，2.05 Å",
+    "antibodies": [
+      "anti-TAF1家族研究性抗体",
+      "anti-TBP复合体界面抗体"
+    ],
+    "interfaceFocus": "TBP结合面与螺旋界面",
+    "designMode": "structure-guided",
+    "candidates": [
+      {
+        "target": "TBP",
+        "rationale": "TBP与TAF1L处于同一转录起始复合体轴线，直接决定启动子识别与复合体装配。作为主界面配对因子，适合作为机制验证和交叉阻断参照。"
+      },
+      {
+        "target": "TAF1",
+        "rationale": "TAF1与TAF1L属于同源家族成员，均参与TFIID相关转录调控。其结构与功能相近，适合用于同通路家族比较与特异性评估。"
+      },
+      {
+        "target": "GTF2B",
+        "rationale": "GTF2B与TBP协同参与RNA聚合酶II前起始复合体形成。该靶点可作为同一转录起始通路中的功能对照，用于评估TAF1L抑制后的复合体依赖性。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

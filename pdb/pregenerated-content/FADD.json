@@ -1,0 +1,65 @@
+{
+  "gene": "FADD",
+  "generatedAt": "2026-08-03T12:26:21.988Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FADD是Fas、TNFR1及TRAIL受体死亡受体通路的核心接头蛋白，通过死亡结构域结合受体并通过DED募集CASP8，驱动外源性凋亡与炎症性细胞死亡。FADD相关免疫缺陷具有明确遗传关联，提示其在淋巴细胞稳态、感染应答和免疫调控中具有疾病机制地位。但FADD为胞质适配蛋白，缺乏天然胞外结构域或分泌形式，抗原可及性显著弱于膜受体型靶点；其优先级主要来自结构明确、疾病遗传证据集中以及可作为胞内研究抗体或递送型抗体开发对象，相比同通路受体靶点更适合机制验证而非常规阻断抗体治疗。",
+    "mechanism": "抗体设计以阻断FADD死亡结构域与FAS或TNFR1复合体中死亡结构域的同型相互作用，或遮蔽DED介导的CASP8募集界面为目标。",
+    "selectedEpitope": "优先定位死亡结构域六螺旋束的DD-DD结合面，备选覆盖N端DED的CASP8 DED接触面。",
+    "diseaseDirection": "免疫缺陷与死亡受体凋亡通路",
+    "domain": "FADD含N端death effector domain和C端death domain，分别介导CASP8募集及死亡受体复合体装配。",
+    "evidence": "FADD遗传免疫缺陷与死亡受体复合体证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt Q13158功能与结构域注释",
+      "RCSB PDB 6ACI晶体结构",
+      "死亡受体DISC与CASP8募集文献"
+    ],
+    "referenceEntries": "UniProt Q13158；RCSB PDB 6ACI；Open Targets FADD",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端death domain的受体DD结合面",
+        "可干预FADD与FAS/TNFR1死亡结构域复合体装配，机制指向性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端DED的CASP8 DED接触界面",
+        "可抑制DISC中CASP8近距离募集与后续活化，适合功能阻断验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "DD与DED之间的连接区及非保守表面",
+        "可能影响构象或稳定性，但功能界面证据较弱且表位保守性不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FADD为胞内蛋白，常规抗体难以直接进入细胞；需采用胞内递送、细胞穿透抗体或研究级构象抗体策略，并避免破坏整体折叠导致非特异效应。",
+    "structurePrepZh": "以6ACI晶体结构为核心模板，校验链A、H构象一致性，补全缺失环区并标注DED、DD边界及已知蛋白互作残基。",
+    "structureRef": "RCSB PDB 6ACI，X-ray diffraction，1.87 Å",
+    "antibodies": [
+      "抗FADD克隆1F7",
+      "抗FADD克隆A66-2"
+    ],
+    "interfaceFocus": "DD-DD同型结合面与DED-CASP8募集界面",
+    "designMode": "胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "FAS",
+        "rationale": "FAS为经典死亡受体，配体结合后通过胞内死亡结构域募集FADD形成DISC；其胞外结构域可及性优于FADD，适合常规拮抗或激动抗体设计。"
+      },
+      {
+        "target": "CASP8",
+        "rationale": "CASP8是FADD DED募集后的近端效应半胱天冬酶，直接介导外源性凋亡启动；靶向其与FADD的DED-DED装配可用于通路阻断研究。"
+      },
+      {
+        "target": "TNFRSF10B",
+        "rationale": "TNFRSF10B编码TRAIL-R2/DR5，可通过死亡结构域募集FADD并激活CASP8；其膜受体胞外区适合开发调节死亡受体信号的抗体。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

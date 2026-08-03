@@ -1,0 +1,65 @@
+{
+  "gene": "ARHGAP25",
+  "generatedAt": "2026-08-03T10:33:54.649Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ARHGAP25 是造血细胞富集的 Rho GTPase activating protein，主要通过促进 RAC1、CDC42 等小 GTPase 的 GTP 水解影响吞噬细胞黏附、迁移和氧化爆发，与单核细胞计数、白细胞分类比例及血小板相关表型存在遗传关联。该蛋白为胞内调控因子，缺乏天然胞外结构域，抗原可及性不符合经典细胞表面阻断抗体开发条件，更适合作为机制研究抗体或胞内递送格式的探索对象。相较 CXCR2、ITGAM、CSF1R 等同属髓系细胞迁移与分化轴且具备膜外可及结构域的靶点，ARHGAP25 的治疗性抗体优先级较低，但其 RhoGAP 结构域具备明确结构模板，适合开展构象识别与功能验证型抗体设计。",
+    "mechanism": "抗体设计可聚焦阻断 ARHGAP25 RhoGAP 结构域与 RAC1-GTP 或 CDC42-GTP 的结合界面，干扰催化精氨酸指向小 GTPase 活性位点的构象配准。",
+    "selectedEpitope": "优先选择 RhoGAP 结构域中接近 catalytic arginine finger 的 GTPase 结合沟槽及 α-螺旋束界面。",
+    "diseaseDirection": "髓系免疫细胞数量与迁移表型",
+    "domain": "ARHGAP25 含 N 端 PH 结构域样区域、中央 RhoGAP 催化结构域及 C 端调控区；1V89 覆盖 RhoGAP 结构域。",
+    "evidence": "ARHGAP25 髓系细胞表型与 RhoGAP 结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 遗传关联与表型评分",
+      "UniProt P42331 蛋白功能与结构域注释",
+      "RCSB PDB 1V89 溶液 NMR 结构条目",
+      "文献报道的 ARHGAP25 对 RAC1/CDC42 活性的负调控证据"
+    ],
+    "referenceEntries": "UniProt P42331；RCSB PDB 1V89；Open Targets ARHGAP25",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RhoGAP 结构域 GTPase 结合沟槽及 catalytic arginine 邻近螺旋",
+        "最可能直接阻断 RAC1/CDC42 结合并干扰 GAP 催化构象",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RhoGAP 螺旋束外侧稳定构象表面",
+        "适合获得构象特异性结合抗体，用于结构捕获与活性状态区分",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PH 样膜结合区域或 C 端调控区预测片段",
+        "可能影响膜定位或调控复合物装配，但结构覆盖不足且可及性不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ARHGAP25 为胞内蛋白，常规治疗性抗体难以到达作用位点；应优先定位为研究级、诊断级或胞内递送抗体，并避免将其等同于可直接成药的膜表面靶点。",
+    "structurePrepZh": "以 1V89 的 NMR 构象集为起点，筛选代表性低能构象，补充缺失侧链与氢原子，并映射保守 RhoGAP 催化残基和 RAC1/CDC42 对接界面。",
+    "structureRef": "RCSB PDB 1V89，human ARHGAP25 RhoGAP domain NMR structure",
+    "antibodies": [
+      "ARHGAP25 research antibody clone EPR15139",
+      "ARHGAP25 polyclonal antibody HPA044569"
+    ],
+    "interfaceFocus": "RhoGAP catalytic arginine 与 RAC1/CDC42 接触面",
+    "designMode": "胞内靶点验证型",
+    "candidates": [
+      {
+        "target": "RAC1",
+        "rationale": "RAC1 是 ARHGAP25 的关键小 GTPase 底物，参与髓系细胞黏附、迁移和 NADPH oxidase 相关氧化爆发。其与 ARHGAP25 位于同一 Rho GTPase 调控轴。"
+      },
+      {
+        "target": "CDC42",
+        "rationale": "CDC42 可作为 RhoGAP 类蛋白调控的小 GTPase，参与白细胞极性建立和趋化迁移。围绕 CDC42-ARHGAP25 轴可评估细胞骨架重塑相关表型。"
+      },
+      {
+        "target": "CSF1R",
+        "rationale": "CSF1R 是单核/巨噬细胞分化与存活的膜受体靶点，与单核细胞数量表型高度相关，且胞外配体结合域具备更优抗体可及性。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

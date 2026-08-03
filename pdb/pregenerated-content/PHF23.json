@@ -1,0 +1,65 @@
+{
+  "gene": "PHF23",
+  "generatedAt": "2026-08-03T15:15:08.778Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PHF23 是含 PHD finger 的核内染色质识别蛋白，可通过识别组蛋白 H3 赖氨酸甲基化状态参与转录调控；现有遗传关联主要集中于淋巴细胞计数、中性粒细胞比例等血液细胞性状，提示其与造血免疫细胞分化或稳态相关。该蛋白定位于细胞核，缺乏胞外结构域、分泌信号肽或膜受体拓扑结构，天然抗原可及性不支持常规体内阻断型抗体开发，仅适合作为结构生物学或胞内递送抗体探索对象。相较于同类造血免疫调控靶点中的细胞因子受体或表面分化抗原，PHF23 的疾病关联得分较低且药物可及性不足，因此优先级应低于具有胞外可及结构域的通路节点。",
+    "mechanism": "设计目标为阻断 PHF23 PHD finger 与甲基化组蛋白 H3 尾部肽段的结合，削弱其染色质定位与下游转录复合物招募。",
+    "selectedEpitope": "优先覆盖 PHD finger 组蛋白 H3 N 端肽结合沟槽及相邻锌指稳定环。",
+    "diseaseDirection": "血液细胞性状与免疫稳态",
+    "domain": "PHF23 含 C 端 Cys4-His-Cys3 型 PHD finger，负责识别组蛋白 H3 尾部修饰。",
+    "evidence": "PHF23 造血免疫性状与PHD结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 血液细胞性状遗传关联",
+      "UniProt Q9BUL5 蛋白功能与亚细胞定位注释",
+      "RCSB PDB 6WXK X射线晶体结构",
+      "PHD finger 组蛋白H3修饰识别文献"
+    ],
+    "referenceEntries": "UniProt Q9BUL5；RCSB PDB 6WXK；Open Targets PHF23",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PHD finger 组蛋白H3尾部结合沟槽",
+        "直接干预甲基化H3肽段识别，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PHD finger 锌配位核心邻近外露环区",
+        "可影响结构稳定性与肽段结合构象，适合别构型设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "非PHD区域预测低复杂度表面",
+        "结构证据不足且功能界面不明确，易产生低特异性结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PHF23 为核内蛋白，体内抗体可及性与递送为主要风险；应限定为胞内抗体、PROTAC衔接或体外功能阻断验证方向。",
+    "structurePrepZh": "以 PDB 6WXK 的 PHD finger 结构为模板，保留锌离子配位几何，补全缺失侧链并检查组蛋白肽结合沟槽构象。",
+    "structureRef": "RCSB PDB 6WXK，PHF23 PHD finger X-ray 2.9 Å",
+    "antibodies": [
+      "无已获批同靶点治疗性抗体",
+      "研究级抗PHF23抗体"
+    ],
+    "interfaceFocus": "PHD finger-H3尾肽结合沟槽",
+    "designMode": "胞内阻断探索",
+    "candidates": [
+      {
+        "target": "KMT2A",
+        "rationale": "KMT2A 参与造血细胞中 H3K4 甲基化建立，与 PHD finger 识别的染色质标记处于同一表观遗传调控轴；其异常与白血病发生和血细胞分化失衡密切相关。"
+      },
+      {
+        "target": "MEN1",
+        "rationale": "MEN1 编码 menin，是 KMT2A/MLL 复合体关键支架蛋白，调控 HOX 等造血转录程序；该节点已有明确的小分子药物学验证，通路优先级高于 PHF23。"
+      },
+      {
+        "target": "ASH2L",
+        "rationale": "ASH2L 是 SET1/MLL H3K4 甲基转移酶复合体核心组分，影响造血细胞转录激活标记的维持；与 PHF23 所识别的 H3K4 甲基化染色质状态具有直接通路关联。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

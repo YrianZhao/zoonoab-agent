@@ -1,0 +1,65 @@
+{
+  "gene": "RBL2",
+  "generatedAt": "2026-08-03T20:48:17.449Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RBL2编码p130，是RB家族转录共抑制因子，通过结合E2F-DP转录因子并招募DREAM复合体抑制细胞周期基因表达，其人类遗传关联主要集中于神经发育综合征和生长表型。该蛋白定位于细胞核，缺乏分泌型或膜外结构域，天然抗原可及性不符合常规体内抗体阻断要求，仅适合作为细胞内递送抗体或结构生物学验证模型。相较CDK4/6、Cyclin D和细胞表面生长因子受体等同轴靶点，RBL2的疾病遗传证据较明确但可成药可及性较低，因此抗体设计优先级应定位为机制研究级而非标准治疗性抗体主靶点。",
+    "mechanism": "设计分子应干扰RBL2 pocket结构域与E2F转录因子反式激活区或LxCxE样结合肽的相互作用，解除对E2F靶基因启动子的共抑制。",
+    "selectedEpitope": "优先覆盖pocket A/B盒形成的E2F结合沟槽及5C1D界面残基，避免非特异识别低复杂度区。",
+    "diseaseDirection": "神经发育与细胞周期调控",
+    "domain": "RBL2含N端调控区、保守pocket A/B结构域、C端区；5C1D解析其pocket核心复合物界面。",
+    "evidence": "RBL2遗传关联与pocket结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q08999功能与定位注释",
+      "RCSB PDB 5C1D晶体结构",
+      "RB/E2F-DREAM细胞周期转录调控文献"
+    ],
+    "referenceEntries": "UniProt Q08999；RCSB PDB 5C1D；Open Targets RBL2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "pocket A/B盒E2F结合沟槽",
+        "直接干扰RBL2-E2F转录抑制复合物形成，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "LxCxE结合裂隙邻近表面",
+        "可评估对病毒或细胞蛋白LxCxE基序结合的阻断能力",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端柔性调控区邻近片段",
+        "构象异质性高且结构覆盖有限，易产生低亲和或非功能性结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RBL2为核内蛋白，体内抗体递送和抗原可及性构成主要风险；建议采用细胞内抗体、纳米抗体递送或体外机制验证路线。",
+    "structurePrepZh": "以5C1D链A/C为结构模板，保留pocket核心折叠，校验缺失环区、晶体接触和配体肽界面后再进行表位建模。",
+    "structureRef": "RCSB PDB 5C1D，X射线晶体结构，2.05 Å",
+    "antibodies": [
+      "anti-RBL2 clone SD9",
+      "anti-p130/RBL2 clone D9T7T"
+    ],
+    "interfaceFocus": "pocket A/B盒E2F结合沟槽",
+    "designMode": "细胞内阻断型",
+    "candidates": [
+      {
+        "target": "RB1",
+        "rationale": "RB1与RBL2同属RB pocket蛋白家族，直接结合E2F并抑制G1/S细胞周期转录程序，是同一RB-E2F轴的核心节点。"
+      },
+      {
+        "target": "E2F4",
+        "rationale": "E2F4是RBL2-p130-DREAM复合体中关键转录因子组分，参与静息期细胞周期基因抑制，适合作为复合体界面验证靶点。"
+      },
+      {
+        "target": "TFDP1",
+        "rationale": "TFDP1与E2F形成异二聚体并共同识别E2F靶基因启动子，其与RBL2调控轴相连，可用于评估E2F-DP转录复合体阻断策略。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

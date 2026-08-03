@@ -1,0 +1,65 @@
+{
+  "gene": "NHERF2",
+  "generatedAt": "2026-08-03T14:42:23.731Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NHERF2 为含双 PDZ 结构域的胞内支架蛋白，可组织 CFTR、SLC9A3/NHE3、PTEN 等蛋白复合体，并影响上皮离子转运、血压相关钠吸收及细胞极性信号。其抗原位点主要位于胞质侧 PDZ 结构域，并非天然胞外抗体可及靶点，需限定为细胞内递送抗体、intrabody 或结构生物学验证场景。相比同通路转运体，NHERF2 位于多蛋白复合体装配节点，具备调节多个效应蛋白互作的优先研究价值，但成药抗体开发优先级低于胞外膜受体或分泌蛋白。",
+    "mechanism": "设计抗体阻断 NHERF2 PDZ2 结构域与靶蛋白 C 端 PDZ 结合基序的相互作用，干扰 NHE3/CFTR 相关复合体装配。",
+    "selectedEpitope": "优先覆盖 PDZ2 肽结合沟槽的 αB/βB 区域及 GLGF 环邻近界面。",
+    "diseaseDirection": "血压调控与上皮离子转运",
+    "domain": "NHERF2 含 N 端 PDZ1、中央 PDZ2 及 C 端 ERM 结合区，4P0C 对应 PDZ 结构域。",
+    "evidence": "NHERF2-PDZ 互作与血压性状证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q15599 功能与结构域注释",
+      "RCSB PDB 4P0C 晶体结构记录",
+      "PDZ 支架蛋白调控 NHE3/CFTR 文献证据"
+    ],
+    "referenceEntries": "UniProt Q15599；RCSB PDB 4P0C；Open Targets ENSG00000147481",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PDZ2 肽结合沟槽 GLGF 环及 αB/βB 夹持界面",
+        "直接竞争靶蛋白 C 端 PDZ 基序结合，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PDZ2 外侧 βC-αA 邻近表面",
+        "可形成变构阻断，降低与天然配体的竞争压力",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PDZ1 保守肽结合槽",
+        "可能影响多种 PDZ 互作，选择性与功能解释风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NHERF2 为胞内支架蛋白，常规抗体难以到达天然作用位点。建议采用细胞内抗体、递送型 Fab/VHH 或仅用于结构验证，并强化 PDZ1/PDZ2 选择性筛选。",
+    "structurePrepZh": "以 4P0C A 链为模板，补全缺失侧链并保留 PDZ2 结合沟槽构象；去除结晶添加物后进行质子化、能量最小化与界面网格定义。",
+    "structureRef": "RCSB PDB 4P0C，X-ray diffraction，1.339 Å",
+    "antibodies": [
+      "暂无获批抗 NHERF2 治疗性抗体",
+      "研究级抗 NHERF2 单克隆抗体"
+    ],
+    "interfaceFocus": "PDZ2 GLGF 环与 αB/βB 肽结合沟槽",
+    "designMode": "细胞内阻断型",
+    "candidates": [
+      {
+        "target": "SLC9A3",
+        "rationale": "SLC9A3/NHE3 是肾小管与肠上皮钠吸收效应转运体，受 NHERF 支架蛋白调控，与血压和钠稳态通路直接相关。"
+      },
+      {
+        "target": "CFTR",
+        "rationale": "CFTR 可通过 C 端 PDZ 基序与 NHERF 蛋白复合体结合，参与上皮氯离子转运及离子稳态网络。"
+      },
+      {
+        "target": "EZR",
+        "rationale": "EZR 通过 ERM 相关连接将 NHERF 复合体锚定至皮质肌动蛋白，是上皮膜转运复合体空间组织的重要节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

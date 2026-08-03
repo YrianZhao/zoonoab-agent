@@ -1,0 +1,65 @@
+{
+  "gene": "UBE2T",
+  "generatedAt": "2026-08-03T17:38:55.036Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "UBE2T是Fanconi贫血DNA链间交联修复通路的E2泛素结合酶，负责与FANCL协同催化FANCD2/FANCI单泛素化，驱动核内修复复合体装配。其疾病关联以Fanconi贫血最强，并延伸至骨髓增生异常综合征和急性髓系白血病等造血系统疾病。该蛋白为细胞内酶，天然抗原可及性弱于膜受体或分泌蛋白，但高分辨率结构支持以重组蛋白开展胞内靶点结合抗体、抑制型片段或研究级抗体设计。相较FANCD2/FANCI等大分子底物，UBE2T体积小、催化界面清晰、结构可解析度高，利于获得机制明确的界面阻断分子。",
+    "mechanism": "设计抗体片段结合UBE2T催化沟槽及FANCL接触面，阻断UBE2T与FANCL RING结构域协同，并抑制泛素转移至FANCD2/FANCI赖氨酸位点。",
+    "selectedEpitope": "优先覆盖UBE2T UBC核心结构域中催化Cys86邻近沟槽及FANCL结合界面。",
+    "diseaseDirection": "Fanconi贫血与髓系肿瘤DNA修复轴",
+    "domain": "UBE2T主要由保守UBC催化结构域构成，含E2酶活性Cys86及RING E3结合表面。",
+    "evidence": "UBE2T-Fanconi贫血通路结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9NPD8功能与变异注释",
+      "RCSB PDB 8JUC晶体结构记录",
+      "Fanconi anemia DNA interstrand crosslink repair pathway文献"
+    ],
+    "referenceEntries": "UniProt Q9NPD8；RCSB PDB 8JUC；Open Targets UBE2T",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "UBC结构域Cys86周边催化沟槽",
+        "直接干预泛素硫酯转移与底物赖氨酸接近",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FANCL RING结合表面邻近α螺旋与环区",
+        "阻断E2-E3复合体形成，降低FANCD2/FANCI单泛素化",
+        "备选"
+      ],
+      [
+        "Site C",
+        "UBC结构域保守疏水核心外侧面",
+        "可能获得高亲和结合但功能阻断不确定，需避免交叉识别其他E2酶",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "UBE2T为胞内酶，常规治疗性抗体递送受限；E2家族UBC折叠高度保守，应避开泛E2保守表面并强化FANCL/催化沟槽特异性验证。",
+    "structurePrepZh": "以8JUC链A为抗原模板，保留UBC结构域完整构象，检查Cys86邻近电子密度、晶体接触面和缺失环区后进行表面可及性标注。",
+    "structureRef": "RCSB PDB 8JUC，X-ray diffraction，1.54 Å",
+    "antibodies": [
+      "研究级anti-UBE2T monoclonal antibody",
+      "研究级anti-FANCD2 ubiquitination pathway antibody"
+    ],
+    "interfaceFocus": "Cys86催化沟槽与FANCL RING结合面",
+    "designMode": "胞内酶界面阻断",
+    "candidates": [
+      {
+        "target": "FANCL",
+        "rationale": "FANCL是Fanconi贫血核心复合体中的RING型E3连接酶，直接与UBE2T配对并催化FANCD2/FANCI单泛素化。其E3-E2界面是同一通路内的上游机制节点。"
+      },
+      {
+        "target": "FANCD2",
+        "rationale": "FANCD2是UBE2T-FANCL轴的关键单泛素化底物，单泛素化后参与DNA损伤位点修复复合体装配。其修饰状态与Fanconi贫血通路功能直接相关。"
+      },
+      {
+        "target": "FANCI",
+        "rationale": "FANCI与FANCD2形成ID2复合体并接受UBE2T-FANCL介导的单泛素化，是链间交联修复激活的核心底物。该靶点可用于同通路底物层面的抗体识别与机制监测。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

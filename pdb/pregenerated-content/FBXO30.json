@@ -1,0 +1,65 @@
+{
+  "gene": "FBXO30",
+  "generatedAt": "2026-08-03T12:29:10.404Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FBXO30为SCF型E3泛素连接酶复合体的F-box适配蛋白，主要通过F-box结构域招募SKP1并参与底物泛素化，现有疾病关联以血小板体积、体成分和淋巴细胞计数等数量性状为主，尚缺乏明确的可阻断致病配体-受体轴。该蛋白为细胞内蛋白，不具备胞外结构域、分泌蛋白或膜受体抗原可及性优势，常规体内抗体难以直接结合天然构象靶点。相较于同通路中具有明确酶活性或复合体界面的CUL1、SKP1等节点，FBXO30的疾病遗传关联分数较低且功能底物谱有限，因此仅适合作为结构机制研究或胞内递送抗体探索的低优先级靶点。",
+    "mechanism": "设计重点为阻断FBXO30 F-box结构域与SKP1的结合界面，抑制SCF复合体装配并降低其底物泛素化能力。",
+    "selectedEpitope": "优先覆盖F-box螺旋束中SKP1结合面，避免仅选择远离复合体界面的柔性环区。",
+    "diseaseDirection": "血液数量性状与体成分遗传关联",
+    "domain": "FBXO30含N端F-box结构域，可介导与SKP1结合；其余区域缺乏完整实验结构覆盖。",
+    "evidence": "FBXO30结构域与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q8TB52蛋白功能注释",
+      "RCSB PDB 2YRE溶液NMR结构",
+      "SCF E3泛素连接酶复合体文献"
+    ],
+    "referenceEntries": "UniProt Q8TB52；RCSB PDB 2YRE；Open Targets FBXO30",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "F-box螺旋束SKP1结合界面",
+        "直接干预SCF复合体装配，机制最清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "F-box结构域相邻稳定螺旋表面",
+        "可提高结合构象稳定性并辅助界面遮挡",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离F-box核心的柔性末端或低保守环区",
+        "可能产生结合但难以形成明确功能阻断",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为靶点胞内定位导致抗体可及性不足，且疾病关联多为遗传数量性状。建议限定为胞内递送Fab/VHH或机制验证模型。",
+    "structurePrepZh": "以PDB 2YRE的A链NMR构象集为基础，筛选代表性低能构象，补充缺失残基注释并标定F-box界面残基。",
+    "structureRef": "RCSB PDB 2YRE；人FBXO30 F-box结构NMR研究",
+    "antibodies": [
+      "暂无获批抗FBXO30治疗性抗体",
+      "暂无公开临床阶段抗FBXO30抗体"
+    ],
+    "interfaceFocus": "F-box螺旋束与SKP1结合面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "SKP1",
+        "rationale": "SKP1是SCF复合体核心适配蛋白，直接结合F-box蛋白并连接CUL1支架；其界面可用于验证FBXO30复合体装配依赖性。"
+      },
+      {
+        "target": "CUL1",
+        "rationale": "CUL1为SCF E3泛素连接酶支架蛋白，组织SKP1-F-box模块与RBX1催化模块；干预该节点可影响同一泛素化通路输出。"
+      },
+      {
+        "target": "RBX1",
+        "rationale": "RBX1招募E2泛素结合酶并驱动SCF复合体泛素转移反应，是FBXO30相关SCF复合体下游催化模块的真实组成部分。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

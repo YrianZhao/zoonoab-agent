@@ -1,0 +1,65 @@
+{
+  "gene": "PRLHR",
+  "generatedAt": "2026-08-03T15:36:08.375Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PRLHR为G蛋白偶联受体，可被prolactin-releasing peptide激活并通过Gq/11介导PLCβ、IP3/Ca2+信号，参与能量摄入、脂肪量和神经内分泌调控，Open Targets关联以体脂百分比和HbA1c相关表型为主。该靶点为多跨膜膜受体，胞外N端及三条胞外环可直接作为抗体识别界面，抗原可及性优于胞内信号蛋白。相较下游G蛋白或PLC节点，PRLHR位于配体进入通路上游，具备更明确的配体阻断和受体构象调制设计优先级。",
+    "mechanism": "抗体结合PRLHR胞外前庭或ECL2，空间阻断PrRP与受体正构口袋入口接触，抑制受体活化及Gq/11介导的PLCβ-IP3-Ca2+信号。",
+    "selectedEpitope": "优先覆盖ECL2及TM3-TM5胞外前庭，兼顾N端近膜区以限制PrRP进入正构结合腔。",
+    "diseaseDirection": "代谢表型与神经内分泌调控",
+    "domain": "A类GPCR七跨膜螺旋核心，含胞外N端、ECL1-ECL3及胞内G蛋白偶联界面。",
+    "evidence": "PRLHR代谢表型关联与GPCR结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P49683功能与拓扑注释",
+      "RCSB PDB 9V0X冷冻电镜结构",
+      "GPCRdb受体家族与结构域注释"
+    ],
+    "referenceEntries": "UniProt P49683；RCSB PDB 9V0X；Open Targets PRLHR",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ECL2与TM3-TM5胞外前庭",
+        "邻近肽类配体进入路径，适合构建正构阻断型抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "胞外N端近膜区与ECL1邻接面",
+        "可增强受体亚型选择性并辅助限制配体靠近口袋",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ECL3及TM6-TM7胞外端",
+        "可能影响活化构象但柔性较高，需避免跨GPCR保守表面",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PRLHR胞外环较短且构象依赖性强，抗体需规避跨GPCR保守跨膜边缘；建议优先筛选识别天然膜环境构象的克隆。",
+    "structurePrepZh": "以9V0X实验冷冻电镜结构为模板，保留受体链A/B/E/G/L/R之一进行同源链比对，补全缺失胞外环并标注糖基化位点。",
+    "structureRef": "RCSB PDB 9V0X，2.66 Å cryo-EM PRLHR复合物结构",
+    "antibodies": [
+      "无PRLHR获批治疗性抗体",
+      "抗GPCR构象选择性Fab/VHH同类策略"
+    ],
+    "interfaceFocus": "ECL2-胞外前庭-正构配体入口",
+    "designMode": "GPCR构象阻断",
+    "candidates": [
+      {
+        "target": "PRLH",
+        "rationale": "PRLH编码prolactin-releasing peptide，为PRLHR的内源性肽配体；中和配体可在同一轴线上阻断受体激活。"
+      },
+      {
+        "target": "GNAQ",
+        "rationale": "GNAQ编码Gqα亚基，是PRLHR激活后连接PLCβ通路的近端信号节点；其疾病通路位置适合机制验证但抗体可及性较低。"
+      },
+      {
+        "target": "PLCB1",
+        "rationale": "PLCB1为Gq信号下游效应酶，催化PIP2生成IP3和DAG并驱动Ca2+信号；可作为PRLHR通路药效读出和替代节点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

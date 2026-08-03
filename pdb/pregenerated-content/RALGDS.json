@@ -1,0 +1,65 @@
+{
+  "gene": "RALGDS",
+  "generatedAt": "2026-08-03T20:43:24.414Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RALGDS 是细胞内 Ras/Ral 小 GTP 酶轴的鸟嘌呤核苷酸交换因子，参与 Ras-GTP 依赖的 RalA/RalB 激活，并可能影响血小板生成、细胞骨架重塑和囊泡运输相关表型。Open Targets 关联信号以血小板计数、血小板体积和血小板压积等数量性状为主，提示其疾病相关性更接近血液细胞生物学和遗传调控层面。该蛋白缺乏分泌型或跨膜胞外结构域，抗原天然可及性不支持常规体内阻断型抗体开发，优先级低于同通路中具有细胞表面可及性的受体或配体靶点。其优势在于已有高分辨率 Ras 结合结构可支持机制界面解析，更适合作为胞内机制验证、结构表位探针或递送型抗体片段研究对象。",
+    "mechanism": "设计分子应靶向 RALGDS Ras-association 结构域，阻断 Ras-GTP 与 RALGDS 的效应子界面结合，从而降低 RalA/RalB 的 GTP 装载。",
+    "selectedEpitope": "优先覆盖 Ras-association 结构域的 Ras-GTP 结合面，聚焦 switch I/II 接触邻近凹面。",
+    "diseaseDirection": "血小板数量性状与Ras/Ral轴",
+    "domain": "RALGDS 含 N 端调控区、Ras-association 结构域及 C 端 RalGEF 催化模块；3KH0解析RA结构域复合界面。",
+    "evidence": "RALGDS-Ras/Ral轴结构与血小板遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联与遗传证据",
+      "UniProt Q12967 蛋白功能与结构域注释",
+      "RCSB PDB 3KH0 X-ray 2.1 Å 结构记录",
+      "Ras-RalGEF 小GTP酶信号通路文献"
+    ],
+    "referenceEntries": "UniProt: Q12967; RCSB PDB: 3KH0; Gene: RALGDS",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RA结构域Ras-GTP效应子结合界面",
+        "直接干预 Ras-GTP 招募 RALGDS 的关键相互作用，机制可解释性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RA结构域外侧稳定性表面",
+        "可作为构象识别或结构探针表位，避免完全依赖竞争性阻断",
+        "备选"
+      ],
+      [
+        "Site C",
+        "RalGEF催化模块邻近区",
+        "理论上可影响 RalA/RalB 交换活性，但当前3KH0不覆盖该区域，结构不确定性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RALGDS 为胞内蛋白，缺乏天然胞外抗原可及性，常规抗体体内成药风险较高。建议限定为细胞内递送抗体片段、结构探针或机制验证分子，并严格评估Ras效应子选择性。",
+    "structurePrepZh": "以3KH0中RALGDS RA结构域链为模板，保留与Ras复合物界面坐标，校正缺失侧链和质子化状态，按Ras接触残基定义竞争性表位网格。",
+    "structureRef": "RCSB PDB 3KH0, X-ray diffraction, 2.1 Å",
+    "antibodies": [
+      "暂无获批RALGDS靶向抗体",
+      "暂无临床阶段RALGDS靶向抗体"
+    ],
+    "interfaceFocus": "RA结构域与Ras-GTP效应子结合界面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "KRAS",
+        "rationale": "KRAS-GTP 位于 RALGDS 上游，可通过效应子结合面招募 RALGDS 并驱动 Ral 小GTP酶轴。其结构与疾病证据更充分，但抗体设计同样受胞内可及性限制。"
+      },
+      {
+        "target": "RALA",
+        "rationale": "RALA 是 RALGDS 催化激活的直接下游小GTP酶，参与囊泡运输、细胞骨架和血小板相关细胞过程。靶向其活化构象可用于验证 RALGDS-Ral 通路输出。"
+      },
+      {
+        "target": "RALB",
+        "rationale": "RALB 与 RALA 同属 Ral GTPase 分支，是 RalGEF 输出端的重要效应分子。其与 RALGDS 处于同一 Ras/Ral 信号轴，可作为并行机制靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

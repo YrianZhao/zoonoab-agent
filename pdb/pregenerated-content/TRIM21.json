@@ -1,0 +1,65 @@
+{
+  "gene": "TRIM21",
+  "generatedAt": "2026-08-03T17:29:14.626Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TRIM21是细胞内Fc受体和E3泛素连接酶，在抗体依赖性胞内中和中识别进入胞质的IgG Fc，并经PRY/SPRY结构域结合Fc后促进底物泛素化及蛋白酶体降解；其自身抗原属性与系统性硬化症及干燥综合征等自身免疫疾病存在明确关联。TRIM21主要定位于胞质，缺乏分泌型或跨膜胞外结构域，天然抗原可及性显著弱于膜受体或分泌因子，因此更适合作为胞内机制研究、诊断捕获或工程化胞内抗体策略靶点。相较于同通路中干扰素受体或核酸感知受体，TRIM21具备高分辨率PRY/SPRY-Fc结合结构信息和清晰抗体结合界面，结构驱动表位设计优先级较高，但治疗性体内阻断需重点解决递送可及性。",
+    "mechanism": "抗体设计聚焦阻断TRIM21 PRY/SPRY结构域与IgG Fc CH2-CH3交界区相互作用，抑制Fc依赖性胞内识别及后续泛素化降解。",
+    "selectedEpitope": "优先覆盖PRY/SPRY结构域Fc结合凹槽及其邻近环区，避免RING催化域非特异干预。",
+    "diseaseDirection": "自身免疫与干扰素相关炎症",
+    "domain": "TRIM21含N端RING、B-box、卷曲螺旋区及C端PRY/SPRY Fc结合结构域。",
+    "evidence": "TRIM21结构与自身免疫关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与表型关联",
+      "UniProt P19474功能与亚细胞定位注释",
+      "RCSB PDB 3ZOQ/2IWG等PRY/SPRY结构资料",
+      "抗Ro52/TRIM21自身抗体与系统性硬化症文献"
+    ],
+    "referenceEntries": "UniProt:P19474；HGNC:11312；Ensembl:ENSG00000132109",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端PRY/SPRY结构域Fc结合凹槽",
+        "直接竞争IgG Fc结合，机制明确且结构分辨率高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PRY/SPRY可变环与β夹层外缘",
+        "可调节Fc结合构象并提供较好抗体成药表面",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端RING-B-box催化模块邻近区域",
+        "可能影响E3活性但胞内可及性低且功能风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TRIM21为胞内蛋白，常规抗体难以到达天然作用位点；设计宜限定为诊断、结构探针或胞内抗体递送，并规避广泛抑制E3连接酶功能。",
+    "structurePrepZh": "采用实验晶体结构链A作为PRY/SPRY建模模板，补全缺失侧链、校正质子化状态，并以Fc结合界面残基定义约束网格。",
+    "structureRef": "RCSB PDB:3ZOQ，X-ray，human TRIM21 PRY/SPRY-Fc complex",
+    "antibodies": [
+      "anti-Ro52/TRIM21 diagnostic autoantibodies",
+      "TRIM21-targeting research monoclonal antibodies"
+    ],
+    "interfaceFocus": "PRY/SPRY-Fc CH2-CH3交界结合面",
+    "designMode": "胞内阻断/诊断捕获",
+    "candidates": [
+      {
+        "target": "FCGR1A",
+        "rationale": "FCGR1A编码高亲和力Fcγ受体CD64，参与IgG免疫复合物识别和髓系细胞活化，与TRIM21同属Fc依赖性抗体效应轴。其胞外Ig样结构域可及性优于TRIM21。"
+      },
+      {
+        "target": "IFIH1",
+        "rationale": "IFIH1是MDA5核酸感知受体，驱动I型干扰素产生并与系统性自身免疫炎症通路相关。其可作为TRIM21相关干扰素炎症轴的上游候选调节点。"
+      },
+      {
+        "target": "IFNAR1",
+        "rationale": "IFNAR1为I型干扰素受体亚基，介导IFN-α/β诱导的JAK-STAT信号，是自身免疫干扰素特征的可成药膜受体节点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

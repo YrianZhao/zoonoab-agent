@@ -1,0 +1,65 @@
+{
+  "gene": "GFM1",
+  "generatedAt": "2026-08-03T12:45:03.130Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GFM1编码线粒体翻译延伸因子EF-G1mt，介导线粒体核糖体转位步骤，致病变异可削弱氧化磷酸化复合体亚基合成并导致联合氧化磷酸化缺陷及肝脑病。该蛋白定位于线粒体基质，并非分泌蛋白或细胞膜受体，抗原天然可及性低，抗体设计更适用于离体结构验证、细胞内递送或研究级功能阻断场景。相比下游OXPHOS结构亚基，GFM1位于线粒体翻译过程的上游限速节点，遗传疾病证据集中且结构复合物分辨率较高，具备机制解析优先级。",
+    "mechanism": "设计抗体阻断GFM1与线粒体核糖体A/P位点邻近区域及mt-tRNA转位复合界面的结合，干预GTP依赖构象切换与转位步骤。",
+    "selectedEpitope": "优先靶向GTPase G结构域与Domain II邻近的核糖体接触面，避开高度保守核苷酸结合核心。",
+    "diseaseDirection": "线粒体翻译缺陷与联合氧化磷酸化缺陷",
+    "domain": "GFM1含N端GTPase G结构域、Domain II、Domain III及C端Domain IV/V样延伸因子结构模块。",
+    "evidence": "GFM1线粒体翻译与OXPHOS缺陷证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q96RP9功能与定位注释",
+      "RCSB PDB 6VMI冷冻电镜结构",
+      "OMIM/MONDO线粒体翻译缺陷疾病条目"
+    ],
+    "referenceEntries": "UniProt Q96RP9；RCSB PDB 6VMI；Open Targets GFM1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "G结构域-Domain II邻近核糖体接触面",
+        "可干预GFM1装载及GTP依赖转位构象循环，具备功能阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Domain IV/V样远端延伸臂区域",
+        "可能影响mitoribosome上tRNA/mRNA通道邻近定位，适合构象选择性抗体设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "GTP结合P-loop及开关区核心",
+        "高度保守且与细胞内核苷酸结合功能耦合，交叉反应与构象扰动风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GFM1为线粒体基质蛋白，体内抗体递送和抗原暴露受限；应优先用于结构探针、细胞内递送格式或外源体系功能验证。",
+    "structurePrepZh": "以6VMI冷冻电镜模型提取GFM1链并保留邻近线粒体核糖体界面，补全缺失环区后评估GTPase核心与接触面的柔性。",
+    "structureRef": "RCSB PDB 6VMI，human mitoribosome translocation complex",
+    "antibodies": [
+      "研究级anti-GFM1 antibody",
+      "研究级anti-EFG1 mitochondrial antibody"
+    ],
+    "interfaceFocus": "GFM1-mitoribosome接触面与GTPase开关区",
+    "designMode": "细胞内靶点结构阻断",
+    "candidates": [
+      {
+        "target": "TUFM",
+        "rationale": "TUFM编码线粒体翻译延伸因子EF-Tu，负责将氨酰化mt-tRNA递送至线粒体核糖体A位点，与GFM1同属线粒体翻译延伸通路。"
+      },
+      {
+        "target": "TSFM",
+        "rationale": "TSFM编码线粒体EF-Ts，促进TUFM的GDP-GTP交换，缺陷同样导致线粒体翻译障碍和氧化磷酸化缺陷。"
+      },
+      {
+        "target": "GFM2",
+        "rationale": "GFM2编码线粒体核糖体回收因子EF-G2mt，参与翻译终止后核糖体回收，与GFM1共享mitoribosome相关GTPase功能框架。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

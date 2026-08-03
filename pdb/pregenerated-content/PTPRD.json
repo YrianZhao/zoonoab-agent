@@ -1,0 +1,65 @@
+{
+  "gene": "PTPRD",
+  "generatedAt": "2026-08-03T15:44:17.102Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PTPRD 为受体型蛋白酪氨酸磷酸酶，参与神经突触黏附、轴突导向及酪氨酸磷酸化稳态调控，其遗传关联覆盖神经退行性疾病、失眠及血压相关表型。该蛋白具有胞外免疫球蛋白样结构域与纤连蛋白III型结构域，作为膜受体靶点具备抗体可及性。相较胞内磷酸酶或广泛表达的下游信号分子，PTPRD 胞外结构可直接支持阻断型或配体界面调节型抗体设计，且高分辨率实验结构提高了表位建模优先级。",
+    "mechanism": "抗体拟结合 PTPRD 胞外 Ig 样结构域，阻断其与突触黏附配体 SLITRK3 的跨突触相互作用，并调节 PTPRD 介导的神经连接稳定性。",
+    "selectedEpitope": "优先覆盖 PDB 2YD6 所示 N 端 Ig 样结构域配体结合面，避开核心折叠保守区。",
+    "diseaseDirection": "神经系统疾病与血压表型",
+    "domain": "PTPRD 含胞外 Ig 样结构域、FNIII 重复区、跨膜区及双胞内 PTP 催化结构域。",
+    "evidence": "PTPRD 神经黏附与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P23468 functional annotation",
+      "RCSB PDB 2YD6 X-ray structure",
+      "Published PTPRD-SLITRK synaptic adhesion studies"
+    ],
+    "referenceEntries": "UniProt P23468；RCSB PDB 2YD6；Open Targets PTPRD",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端 Ig 样结构域潜在 SLITRK 结合面",
+        "有利于阻断跨突触黏附复合物形成，适合作为功能性中和表位",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Ig 样结构域远端暴露环区",
+        "可提高抗原特异性并降低对折叠核心稳定性的干扰",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Ig 样结构域 β 夹心核心邻近区域",
+        "保守骨架区域可能影响结构稳定性，需避免诱导非特异构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PTPRD 属多结构域神经黏附受体，需评估同源 PTPRS、PTPRF 交叉反应；表位应避开高度保守 Ig 折叠核心并聚焦配体界面差异位点。",
+    "structurePrepZh": "采用 PDB 2YD6 链 A 作为 Ig 样结构域模板，补全缺失侧链、校正质子化状态，并结合 AlphaFold 全长模型定位胞外结构域排列。",
+    "structureRef": "RCSB PDB 2YD6，X-ray diffraction，1.35 Å",
+    "antibodies": [
+      "抗-PTPRD 研究级单克隆抗体",
+      "抗-PTPRD 胞外结构域抗体"
+    ],
+    "interfaceFocus": "Ig 样结构域 SLITRK 配体结合界面",
+    "designMode": "胞外界面阻断",
+    "candidates": [
+      {
+        "target": "SLITRK3",
+        "rationale": "SLITRK3 是 PTPRD 已报道的突触后黏附配体，位于同一跨突触黏附轴；靶向其胞外 LRR 结构域可作为配体侧阻断策略。"
+      },
+      {
+        "target": "PTPRS",
+        "rationale": "PTPRS 与 PTPRD 同属 LAR-RPTP 家族，参与神经轴突导向和突触组织过程；其胞外 Ig/FNIII 区域支持类似界面型抗体设计。"
+      },
+      {
+        "target": "PTPRF",
+        "rationale": "PTPRF 为同一家族受体型磷酸酶，参与细胞黏附和神经发育相关信号；可用于评估家族选择性及替代性胞外受体靶向方案。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

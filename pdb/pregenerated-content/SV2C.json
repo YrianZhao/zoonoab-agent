@@ -1,0 +1,65 @@
+{
+  "gene": "SV2C",
+  "generatedAt": "2026-08-03T17:04:00.871Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SV2C 参与突触囊泡膜蛋白网络，并且在肉毒毒素受体轴中具有明确疾病关联，适合作为神经毒素阻断型抗体设计的主靶点。其为多跨膜囊泡膜蛋白，胞外腔侧环区在分泌途径中可及，较细胞内靶点更适于抗体结合与功能阻断。相较于同家族 SV2A/SV2B，SV2C 的组织分布更偏限于特定神经元亚群，降低广泛抑制突触囊泡功能的风险，因而具备较高的优先级。",
+    "mechanism": "抗体通过占据SV2C腔侧胞外环区，阻断肉毒毒素与SV2C的受体结合，并抑制毒素内吞进入神经末梢。",
+    "selectedEpitope": "优先选择腔侧胞外环及其邻近糖基化暴露界面，避开跨膜螺旋。",
+    "diseaseDirection": "肉毒中毒神经保护",
+    "domain": "多跨膜囊泡膜蛋白，重点关注腔侧胞外环与膜近端外露区。",
+    "evidence": "SV2C毒素受体与结构证据包",
+    "evidenceSources": [
+      "UniProt Q496J9",
+      "RCSB PDB 5JLV",
+      "Open Targets Platform",
+      "PubMed 肉毒毒素-SV2家族受体研究"
+    ],
+    "referenceEntries": "UniProt: Q496J9; PDB: 5JLV; Open Targets: SV2C",
+    "epitopeRowsZh": [
+      [
+        "腔侧环区1",
+        "第2-3跨膜区之间的胞外腔侧环",
+        "直接干扰毒素识别界面，适合中和型抗体",
+        "优先"
+      ],
+      [
+        "腔侧环区2",
+        "第4-5跨膜区之间的胞外腔侧环",
+        "可覆盖辅助结合面并提高亲和力",
+        "备选"
+      ],
+      [
+        "近膜外露区",
+        "膜近端腔侧短环",
+        "空间受限且构象敏感，需谨慎验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险来自多跨膜蛋白构象依赖性与腔侧表位暴露不稳定；设计上宜优先采用能识别天然构象的抗体格式，并结合膜模拟体系验证。",
+    "structurePrepZh": "建议以5JLV为模板完成链别映射与膜定向标注，补全缺失环区并筛除跨膜段后进行表位可及性评估。",
+    "structureRef": "RCSB PDB: 5JLV, X-ray, 2.0 Å",
+    "antibodies": [
+      "肉毒毒素SV2识别抗体",
+      "SV2家族中和抗体"
+    ],
+    "interfaceFocus": "腔侧环与毒素结合接触面",
+    "designMode": "构象阻断型",
+    "candidates": [
+      {
+        "target": "SV2A",
+        "rationale": "与SV2C同属SV2家族，均参与肉毒毒素受体轴，适合作为同通路并行验证靶点。SV2A在神经系统中表达更广，可用于评估家族保守表位的适用性。"
+      },
+      {
+        "target": "SV2B",
+        "rationale": "SV2B同样是肉毒毒素受体相关蛋白，和SV2C共享结构框架与受体功能背景。纳入该靶点有助于识别家族保守但区分度可控的中和表位。"
+      },
+      {
+        "target": "STX1A",
+        "rationale": "STX1A 属于突触囊泡融合通路核心成分，与SV2C处于同一突触释放疾病网络，可作为功能通路对照靶点。其更适合用于评估对神经递质释放轴的间接干预边界。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

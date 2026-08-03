@@ -1,0 +1,65 @@
+{
+  "gene": "DCAF8",
+  "generatedAt": "2026-08-03T11:50:29.246Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DCAF8 是 CUL4-DDB1 E3 泛素连接酶复合体的底物受体样适配因子，疾病关联集中于神经退行性疾病、巨轴索神经病变及溶酶体相关表型，提示其可能参与蛋白稳态与神经元细胞内降解网络失衡。该蛋白主要定位于细胞内，并非典型分泌蛋白或膜受体，抗原天然可及性低；因此更适合作为细胞内靶点机制研究、递送型抗体片段或结构引导结合剂开发对象。相较泛泛选择 CUL4-DDB1 核心骨架蛋白，DCAF8 作为底物识别臂具备更高通路选择性，可降低对全局 CRL4 活性的非特异干预风险。",
+    "mechanism": "设计结合 DCAF8 WD40 β-propeller 表面的抗体片段，阻断其与 DDB1 适配界面或潜在底物结合面的接触，从而干预 CRL4-DCAF8 介导的底物招募。",
+    "selectedEpitope": "优先聚焦 WD40 β-propeller 外侧底物识别沟槽及 DDB1 接触邻近环区，规避保守折叠核心。",
+    "diseaseDirection": "神经退行性与蛋白稳态疾病",
+    "domain": "DCAF8 含 WD40 repeat 形成的 β-propeller 结构域，参与蛋白复合体装配与底物识别。",
+    "evidence": "DCAF8-CRL4蛋白稳态轴结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q5TAQ9 functional annotation",
+      "RCSB PDB 3I8E X-ray structure",
+      "Cullin-RING ligase and DDB1-DCAF literature"
+    ],
+    "referenceEntries": "UniProt: Q5TAQ9；RCSB PDB: 3I8E；Open Targets: DCAF8",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "WD40 β-propeller 顶面底物结合候选沟槽",
+        "可能直接竞争底物招募，具备最高机制可解释性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DDB1 接触邻近的 propeller 侧面环区",
+        "可干预 CRL4-DCAF8 复合体装配或构象稳定",
+        "备选"
+      ],
+      [
+        "Site C",
+        "WD40 repeat 保守 β-sheet 折叠核心",
+        "结构保守且埋藏程度较高，易产生折叠稳定性与交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DCAF8 为细胞内蛋白，常规抗体难以到达作用位点；应优先采用细胞内递送、intrabody 或 VHH 方案，并严格评估 WD40 家族交叉反应。",
+    "structurePrepZh": "以 PDB 3I8E 抗原链 A-D 建模，检查 3.4 Å 分辨率下缺失环区、晶体接触和链间装配状态，补全侧链后进行表面可及性评估。",
+    "structureRef": "RCSB PDB 3I8E；X-ray diffraction, 3.4 Å",
+    "antibodies": [
+      "无获批 DCAF8 靶向治疗性抗体",
+      "研究级 anti-DCAF8 antibody"
+    ],
+    "interfaceFocus": "WD40 顶面沟槽与 DDB1 邻近装配界面",
+    "designMode": "细胞内VHH/结构阻断",
+    "candidates": [
+      {
+        "target": "DDB1",
+        "rationale": "DDB1 是 CUL4-DCAF 复合体的核心适配蛋白，直接连接 CUL4 骨架与 DCAF 底物受体；靶向其 DCAF 结合区域可调节同一 CRL4 装配轴。"
+      },
+      {
+        "target": "CUL4A",
+        "rationale": "CUL4A 构成 CRL4 E3 泛素连接酶骨架并参与底物泛素化反应，其异常活性与蛋白稳态和神经系统相关病理具有通路关联。"
+      },
+      {
+        "target": "RBX1",
+        "rationale": "RBX1 是 CRL4 复合体的 RING-box 催化组分，负责招募 E2 泛素结合酶；其位置处于 DCAF8 底物识别后续的同一泛素转移通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

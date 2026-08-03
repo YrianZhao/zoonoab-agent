@@ -1,0 +1,65 @@
+{
+  "gene": "TAF12",
+  "generatedAt": "2026-08-03T17:06:45.601Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TAF12 是转录起始复合体 TFIID 和 SAGA 的核心亚基，直接参与 TBP 依赖的启动子识别与 Pol II 起始复合体装配，其功能异常可影响多类疾病相关转录程序。该蛋白主要定位于细胞核且缺乏胞外可及结构域，不符合常规治疗性抗体直接阻断的抗原可及性，但其在 HIV 感染相关宿主转录调控中具有明确疾病关联。相较于同通路中的其他转录辅因子，TAF12 的结构信息更完整，且可作为机制验证型靶点用于核内蛋白干预或递送型抗体平台的设计优先级评估。",
+    "mechanism": "通过结合 TAF12 与 TAF4/TAF6 形成界面，干扰 TFIID/SAGA 复合体装配及 TBP 依赖的启动子结合。",
+    "selectedEpitope": "优先覆盖 TAF12 与 TAF4/TAF6 接触面及共折叠螺旋界面。",
+    "diseaseDirection": "HIV宿主转录调控",
+    "domain": "核内转录辅因子结构域；以 HFD/HF2 介导的蛋白互作界面为主。",
+    "evidence": "TAF12 结构与疾病关联证据包",
+    "evidenceSources": [
+      "UniProt: Q16514",
+      "RCSB PDB: 1H3O",
+      "Open Targets Platform",
+      "NCBI Gene: TAF12"
+    ],
+    "referenceEntries": "UniProt Q16514；PDB 1H3O；Open Targets TAF12",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "TAF12-TAF4/TAF6 互作界面核心螺旋束",
+        "优先阻断复合体装配，利于机制验证",
+        "优先"
+      ],
+      [
+        "Site B",
+        "与 TBP 相关的复合体暴露面",
+        "适合评估对启动子识别的间接抑制",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离复合体核心的表面回转区",
+        "可作为低扰动对照表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "该靶点位于细胞核内，天然抗原可及性低，常规抗体难以直接作用；需优先考虑递送策略或以结构探针方式验证界面。应避免选择不稳定柔性区，以降低构象漂移带来的结合失败风险。",
+    "structurePrepZh": "基于 1H3O 进行链 A-D 的界面重建与缺失残基补模，保留二级结构约束并评估溶液态构象一致性。",
+    "structureRef": "PDB 1H3O；X-ray 2.3 Å；TAF12 复合体结构",
+    "antibodies": [
+      "无公认临床同类抗体",
+      "无直接已上市同类抗体"
+    ],
+    "interfaceFocus": "TAF12-TAF4/TAF6 复合体装配界面",
+    "designMode": "界面阻断型",
+    "candidates": [
+      {
+        "target": "TAF4",
+        "rationale": "TAF4 与 TAF12 构成 TFIID/SAGA 中的稳定互作轴，是同一转录装配通路中的真实候选靶点。针对该界面可与 TAF12 形成互补干预，用于验证复合体依赖性。"
+      },
+      {
+        "target": "TBP",
+        "rationale": "TBP 位于启动子识别核心，直接参与 TFIID 介导的转录起始，与 TAF12 同属同一疾病相关转录通路。干预 TBP 结合面可评估对启动子装配的上游抑制效应。"
+      },
+      {
+        "target": "TAF6",
+        "rationale": "TAF6 是 TFIID/SAGA 的另一核心亚基，与 TAF12 共享复合体装配网络，适合作为同通路候选靶点。其界面阻断可用于比较不同亚基干预对宿主转录程序的影响。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

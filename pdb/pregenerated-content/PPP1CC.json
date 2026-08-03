@@ -1,0 +1,65 @@
+{
+  "gene": "PPP1CC",
+  "generatedAt": "2026-08-03T15:30:38.173Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PPP1CC编码蛋白磷酸酶1催化亚基γ，参与去磷酸化多种细胞周期、肌动蛋白调控及RAS/MAPK相关效应蛋白，Open Targets显示其与Noonan综合征等RASopathy表型存在遗传关联。该蛋白为胞内丝氨酸/苏氨酸磷酸酶，缺乏天然胞外结构域，抗原可及性不适合常规细胞表面阻断抗体，更适宜作为结构指导的胞内结合体或研究级Fab/VHH设计对象。相较于上游膜受体或激酶，PPP1CC具有高分辨率晶体结构和保守催化沟槽，可用于精确界面建模，但治疗优先级低于PTPN11、SOS1、RAF1等RAS/MAPK通路可药性更明确靶点。",
+    "mechanism": "设计结合体占据PPP1CC催化金属中心邻近底物结合沟槽，阻断含RVxF或磷酸丝/苏氨酸底物与催化口袋的有效定位。",
+    "selectedEpitope": "优先靶向催化结构域β12-β13及金属中心周缘底物沟槽，避开高度保守金属配位残基。",
+    "diseaseDirection": "RASopathy与肿瘤信号通路研究",
+    "domain": "PPP1CC为PPM/PPP家族催化亚基，主要由单一丝/苏氨酸磷酸酶催化结构域构成。",
+    "evidence": "PPP1CC结构与RASopathy遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt reviewed entry P36873",
+      "RCSB PDB 5INB晶体结构",
+      "Reactome/KEGG RAS-MAPK通路注释"
+    ],
+    "referenceEntries": "UniProt P36873；RCSB PDB 5INB；Open Targets PPP1CC",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域底物结合沟槽及β12-β13周缘",
+        "可干预底物进入与磷酸化位点定位，适合功能阻断型结合体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RVxF调节蛋白结合沟槽邻近疏水区",
+        "可能影响PPP1CC与调节亚基或定位因子结合，利于选择性调控复合体形成",
+        "备选"
+      ],
+      [
+        "Site C",
+        "金属离子配位催化核心近端",
+        "功能影响强但与PPP1同工酶高度保守，存在选择性与活性完全抑制风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PPP1CC为胞内高度保守催化酶，常规抗体递送与同工酶选择性风险较高；设计应强调胞内VHH、Fab片段结构验证及同源蛋白交叉反应筛查。",
+    "structurePrepZh": "以5INB高分辨率晶体结构为模板，保留催化域主链与关键金属配位环境，去除非必要晶体接触并评估A、B链构象一致性。",
+    "structureRef": "RCSB PDB 5INB，X-ray diffraction，1.3 Å",
+    "antibodies": [
+      "研究用抗PPP1CC抗体",
+      "研究用抗PP1 catalytic subunit抗体"
+    ],
+    "interfaceFocus": "底物沟槽、RVxF结合区与催化核心周缘",
+    "designMode": "胞内结合体设计",
+    "candidates": [
+      {
+        "target": "PTPN11",
+        "rationale": "PTPN11编码SHP2，是Noonan综合征和RAS/MAPK通路异常激活的核心上游磷酸酶，疾病因果证据强于PPP1CC。其胞内定位同样提示更适合小分子或胞内结合体策略。"
+      },
+      {
+        "target": "SOS1",
+        "rationale": "SOS1作为RAS鸟嘌呤核苷酸交换因子，直接促进RAS-GDP向RAS-GTP转换，是Noonan综合征相关通路中的真实致病节点。阻断SOS1-RAS相互作用可降低下游MAPK信号输出。"
+      },
+      {
+        "target": "RAF1",
+        "rationale": "RAF1位于RAS下游并直接激活MEK1/2，是RASopathy和多种肿瘤MAPK信号异常中的关键激酶。其通路位置更接近可测量的ERK磷酸化效应终点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

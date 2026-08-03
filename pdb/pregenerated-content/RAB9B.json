@@ -1,0 +1,65 @@
+{
+  "gene": "RAB9B",
+  "generatedAt": "2026-08-03T15:50:29.437Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RAB9B为胞内小GTP酶，主要参与晚期内体至反式高尔基网络的膜运输，其肿瘤关联证据较弱，Open Targets最高得分仅见于胃癌且幅度较低。该蛋白缺乏胞外结构域、分泌形式或膜外可及抗原面，完整抗体难以在天然细胞环境中直接结合靶点。相较于EGFR、ERBB2、CLDN18.2等胃癌相关膜表面靶点，RAB9B的抗原可及性和疾病因果优先级均不足，因此仅适合作为结构研究或胞内递送抗体的低优先级探索靶点。",
+    "mechanism": "设计目标限定为胞内递送抗体结合RAB9B Switch I/II及核苷酸结合沟槽，干扰其与效应蛋白或调控因子的GTP依赖性结合。",
+    "selectedEpitope": "优先评估GTPase结构域Switch I/Switch II邻近界面，避开高度保守P-loop核心位点。",
+    "diseaseDirection": "胃癌相关胞内膜运输探索",
+    "domain": "RAB9B主要由保守Rab GTPase结构域构成，含P-loop、Switch I、Switch II和C端异戊二烯化基序。",
+    "evidence": "RAB9B结构与低强度肿瘤关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q9NP90蛋白功能注释",
+      "RCSB PDB 2OCB晶体结构",
+      "Rab小GTP酶内体-高尔基运输文献"
+    ],
+    "referenceEntries": "UniProt Q9NP90；RCSB PDB 2OCB；Open Targets RAB9B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Switch I/Switch II邻近效应蛋白结合面",
+        "可能干扰GTP依赖性效应蛋白识别，具备机制验证价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Rab GTPase结构域外周α螺旋与可变表面",
+        "有利于提高RAB9B选择性并降低跨Rab家族交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "P-loop核苷酸结合核心区域",
+        "高度保守且邻近GDP/GTP结合位点，选择性和构象风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RAB9B为胞内蛋白，常规抗体药物难以到达靶点；Rab家族保守性较高，应优先采用选择性外周表位并配置胞内递送验证。",
+    "structurePrepZh": "以2OCB链A为结构模板，校核核苷酸结合状态、缺失环区和Switch区构象，进行Rab家族同源表面对齐与保守性过滤。",
+    "structureRef": "RCSB PDB 2OCB，X-ray diffraction，2.2 Å",
+    "antibodies": [
+      "无获批RAB9B治疗性抗体",
+      "研究级抗RAB9B抗体"
+    ],
+    "interfaceFocus": "Switch I/II效应蛋白结合界面",
+    "designMode": "胞内递送抗体探索",
+    "candidates": [
+      {
+        "target": "EGFR",
+        "rationale": "EGFR为胃癌中可成药的膜受体酪氨酸激酶，抗体可阻断配体结合与受体二聚化，抗原可及性显著优于RAB9B。"
+      },
+      {
+        "target": "ERBB2",
+        "rationale": "ERBB2在部分胃癌中扩增或过表达，位于同一ERBB受体信号网络，胞外结构域明确且已有抗体药物验证。"
+      },
+      {
+        "target": "CLDN18",
+        "rationale": "CLDN18.2在胃上皮来源肿瘤中具有膜表面暴露特征，可通过抗体识别胞外环区，适合胃癌抗体设计优先评估。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

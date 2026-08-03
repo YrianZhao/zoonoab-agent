@@ -1,0 +1,65 @@
+{
+  "gene": "MAP3K5",
+  "generatedAt": "2026-08-03T14:03:12.499Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAP3K5编码ASK1，是应激激活MAPK级联的上游丝氨酸/苏氨酸激酶，氧化应激或炎症刺激下通过MKK4/MKK7与MKK3/MKK6驱动JNK、p38信号，参与细胞凋亡、炎症因子产生及免疫细胞数量性状调控。该蛋白主要定位于胞质，缺乏稳定胞外结构域或分泌形式，天然抗原可及性不适合常规细胞表面阻断抗体。相较TNFRSF、IL受体等同类炎症通路膜靶点，MAP3K5更适合作为细胞内结构生物学与小分子/胞内抗体研究参照，抗体设计优先级应低于具备胞外可及性的上游受体靶点。",
+    "mechanism": "设计目标限定为胞内结合体：占据ASK1激酶结构域ATP结合裂缝或活化环邻近区域，阻断ATP结合及底物MKK4/MKK7磷酸化。",
+    "selectedEpitope": "优先评估激酶结构域N叶ATP口袋边缘与C螺旋邻近界面，规避高度保守催化核心。",
+    "diseaseDirection": "炎症应激与免疫细胞数量性状",
+    "domain": "MAP3K5含N端调控区、卷曲螺旋调控片段、丝氨酸/苏氨酸激酶结构域及C端调控区。",
+    "evidence": "MAP3K5-ASK1应激MAPK通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q99683功能与亚细胞定位注释",
+      "RCSB PDB 6E2N晶体结构记录",
+      "Reactome MAPK family signaling cascades"
+    ],
+    "referenceEntries": "UniProt Q99683；RCSB PDB 6E2N；HGNC:6857",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域ATP结合裂缝外缘及铰链区邻近表面",
+        "可直接干预ATP占位与催化构象，适合胞内结合体或结构探针设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "激酶结构域活化环与底物结合沟槽邻近区域",
+        "有机会降低MKK4/MKK7底物磷酸化效率，需保持MAP3K家族选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端或C端调控区与寡聚化相关界面",
+        "可能影响ASK1激活复合物形成，但柔性较高且结构覆盖不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAP3K5为胞内激酶，常规IgG难以到达天然作用位点；催化口袋保守性高，需通过家族激酶面板排除TAK1、MEKK及RAF相关交叉反应。",
+    "structurePrepZh": "以6E2N链A、B为模板检查缺失环区、配体状态和晶体接触，补全活化环缺口后进行质子化、能量最小化及表面可及性评估。",
+    "structureRef": "RCSB PDB 6E2N；ASK1 kinase domain X-ray structure, 2.098 Å",
+    "antibodies": [
+      "无已批准抗MAP3K5治疗性抗体",
+      "抗ASK1研究级检测抗体"
+    ],
+    "interfaceFocus": "ATP铰链区、C螺旋、活化环与底物沟槽",
+    "designMode": "胞内结合体探索",
+    "candidates": [
+      {
+        "target": "MAP2K4",
+        "rationale": "MAP2K4是ASK1下游MKK，接受MAP3K5磷酸化后激活JNK通路；与应激诱导凋亡和炎症反应处于同一MAPK级联。"
+      },
+      {
+        "target": "MAP2K7",
+        "rationale": "MAP2K7为JNK通路关键MKK，可被ASK1轴激活并促进JNK磷酸化；适合作为ASK1-JNK分支的下游验证靶点。"
+      },
+      {
+        "target": "MAPK14",
+        "rationale": "MAPK14编码p38α，是ASK1-MKK3/6分支的效应激酶，参与炎症因子表达与免疫细胞应激反应。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

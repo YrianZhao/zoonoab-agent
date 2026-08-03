@@ -1,0 +1,65 @@
+{
+  "gene": "ITPR2",
+  "generatedAt": "2026-08-03T13:35:32.420Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ITPR2编码内质网膜上的IP3受体2型钙释放通道，介导IP3结合后Ca2+从内质网腔释放至胞质，并参与汗腺分泌、上皮分泌反应及代谢相关钙信号调控。该蛋白为多跨膜四聚体通道，主要可及抗原区域位于胞质侧大N端配体结合与调控结构域，而非传统胞外抗体靶点，因此更适合胞内递送抗体片段或结构生物学验证用途。相较ITPR1和ITPR3，ITPR2在汗腺功能缺陷相关遗传证据中具有更直接疾病关联，且9YKK提供人源高分辨率冷冻电镜构象基础，可优先支持构象选择性抑制剂或胞内抗体设计。",
+    "mechanism": "设计分子可结合N端IP3结合核心或相邻耦联结构域，阻断IP3诱导的构象传递至跨膜孔区，从而抑制ITPR2介导的内质网Ca2+释放。",
+    "selectedEpitope": "优先选择N端IP3结合核心与suppressor domain邻近的构象耦联界面。",
+    "diseaseDirection": "汗腺分泌障碍与钙信号疾病",
+    "domain": "ITPR2含N端suppressor domain、IP3结合核心、大型胞质调控区及C端六跨膜孔区。",
+    "evidence": "ITPR2钙释放通道结构与汗腺疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q14571功能与结构域注释",
+      "RCSB PDB 9YKK冷冻电镜结构",
+      "OMIM/ClinVar汗腺分泌异常相关变异证据"
+    ],
+    "referenceEntries": "UniProt Q14571；RCSB PDB 9YKK；Open Targets ITPR2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端suppressor domain与IP3结合核心界面",
+        "干预配体结合后构象耦联，适合构象锁定型抑制设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "胞质调控区邻近四聚体装配界面",
+        "可能影响亚基协同开门，适合筛选变构抑制表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端跨膜孔区胞质入口附近",
+        "接近离子通道门控核心，但膜环境依赖高且抗体可及性受限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ITPR2缺乏胞外大结构域，常规系统给药抗体难以到达胞质表位；设计应限定为细胞内抗体、递送型VHH或体外构象稳定工具分子。",
+    "structurePrepZh": "以9YKK四聚体冷冻电镜模型为模板，保留A-D链装配关系，校验IP3结合核心、胞质调控区及跨膜孔区的缺失残基与膜取向。",
+    "structureRef": "RCSB PDB 9YKK，human ITPR2 cryo-EM structure",
+    "antibodies": [
+      "commercial anti-ITPR2 antibody",
+      "commercial anti-IP3 receptor type 2 antibody"
+    ],
+    "interfaceFocus": "N端配体结合核心至孔区门控耦联界面",
+    "designMode": "胞内VHH变构抑制",
+    "candidates": [
+      {
+        "target": "ITPR1",
+        "rationale": "ITPR1同属IP3受体家族，介导IP3依赖性内质网Ca2+释放，可作为同通路钙释放通道选择性对照靶点。"
+      },
+      {
+        "target": "ITPR3",
+        "rationale": "ITPR3与ITPR2共同形成IP3受体介导的胞内钙释放网络，在上皮分泌和腺体Ca2+信号中具有功能重叠。"
+      },
+      {
+        "target": "PLCB4",
+        "rationale": "PLCB4催化PIP2生成IP3，位于ITPR2上游，可通过改变IP3产生量影响ITPR2通道激活。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "DOK1",
+  "generatedAt": "2026-08-03T18:38:38.539Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DOK1是胞内适配蛋白，主要通过PTB与PH结构域介导受体酪氨酸激酶、RAS-MAPK及PI3K相关信号复合体的负向调控，在肿瘤和结直肠癌关联中具有一定遗传与表达证据。该蛋白缺乏跨膜区和分泌信号肽，抗原可及性不符合常规体内阻断型抗体要求，需定位为胞内抗体或结构生物学验证靶点。相较EGFR、MET等同通路膜受体，DOK1抗体开发优先级较低，但其PTB结构域高分辨率结构有利于机制性表位设计与胞内结合体筛选。",
+    "mechanism": "设计胞内结合体占据DOK1 PTB结构域磷酸肽结合沟槽，干扰其与磷酸化受体尾部或下游信号复合物的对接。",
+    "selectedEpitope": "优先覆盖PTB结构域磷酸酪氨酸结合口袋及β5-α2沟槽边缘。",
+    "diseaseDirection": "肿瘤RTK-RAS信号调控",
+    "domain": "DOK1含N端PH结构域、中央PTB结构域及C端多酪氨酸磷酸化信号区。",
+    "evidence": "DOK1肿瘤相关适配蛋白证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt Q99704功能注释",
+      "RCSB PDB 2V76晶体结构",
+      "PubMed DOK1肿瘤抑制与RTK信号研究"
+    ],
+    "referenceEntries": "UniProt Q99704；RCSB PDB 2V76；Open Targets DOK1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PTB结构域磷酸酪氨酸结合沟槽",
+        "可直接影响DOK1识别磷酸化受体尾部肽段，机制解释性较强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PTB结构域β折叠侧面与α螺旋邻近界面",
+        "有利于获得构象选择性结合体并稳定结构域特定状态",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PH结构域膜磷脂结合相关区域",
+        "可能影响膜定位，但缺少2V76直接结构覆盖，需额外结构建模验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DOK1为胞内非分泌蛋白，常规抗体体内可及性风险高；建议采用intrabody、VHH胞内表达或PROTAC衔接验证模式。",
+    "structurePrepZh": "以2V76高分辨率晶体结构为PTB结构域模板，保留抗原链构象一致区域，补全缺失环区并评估磷酸肽口袋可塑性。",
+    "structureRef": "RCSB PDB 2V76，X-ray diffraction，1.6 Å",
+    "antibodies": [
+      "DOK1研究级多克隆抗体",
+      "DOK1研究级单克隆抗体"
+    ],
+    "interfaceFocus": "PTB磷酸肽结合沟槽及邻近带电残基",
+    "designMode": "胞内结合体设计",
+    "candidates": [
+      {
+        "target": "EGFR",
+        "rationale": "EGFR位于DOK1参与调控的受体酪氨酸激酶-RAS/MAPK通路上游，具有胞外配体结合结构域和成熟抗体阻断机制。"
+      },
+      {
+        "target": "MET",
+        "rationale": "MET为RTK信号网络中的膜受体，DOK家族适配蛋白可参与其下游信号复合体调控；其胞外Sema结构域适合抗体拮抗。"
+      },
+      {
+        "target": "GRB2",
+        "rationale": "GRB2与RTK-RAS信号转导复合物组装密切相关，是DOK1负向调控网络中的关键适配节点，但同样属于胞内靶点，抗体可及性需谨慎评估。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

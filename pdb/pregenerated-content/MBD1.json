@@ -1,0 +1,65 @@
+{
+  "gene": "MBD1",
+  "generatedAt": "2026-08-03T14:06:30.850Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MBD1为核内甲基化CpG结合蛋白，主要通过MBD结构域识别甲基化DNA并招募转录抑制复合体参与表观遗传沉默；现有Open Targets关联主要集中于身高与脂质/甾体代谢性状，关联分值较低且多为遗传性状信号。该蛋白缺乏胞外结构域、分泌形式或膜受体拓扑，完整蛋白在活细胞表面不可及，不具备常规治疗性抗体直接结合优势。相较于同通路中具有可药性酶活口袋或细胞表面可及性的靶点，MBD1更适合作为结构生物学与细胞内表观遗传调控研究靶点，抗体优先级应限定于胞内递送、检测或机制验证场景。",
+    "mechanism": "抗体需经胞内递送后结合MBD1甲基化CpG结合结构域，空间阻断其与甲基化DNA大沟/小沟边缘的识别界面，削弱MBD1介导的染色质抑制复合体定位。",
+    "selectedEpitope": "优先靶向MBD结构域DNA结合面邻近环区，避开高度保守折叠核心以降低交叉反应风险。",
+    "diseaseDirection": "表观遗传调控与代谢性状",
+    "domain": "MBD1含N端甲基-CpG结合结构域及C端转录抑制相关区，可识别甲基化CpG DNA。",
+    "evidence": "MBD1甲基化DNA识别与遗传性状关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform遗传关联与性状评分",
+      "UniProt Q9UIS9功能注释",
+      "RCSB PDB 5W9Q晶体结构记录",
+      "文献报道的MBD家族甲基化CpG识别机制"
+    ],
+    "referenceEntries": "UniProt Q9UIS9；RCSB PDB 5W9Q；Open Targets MBD1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "MBD结构域甲基化DNA结合面邻近环区",
+        "可直接干扰甲基化CpG识别，适合机制阻断型胞内抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "MBD结构域外侧溶剂暴露α螺旋面",
+        "有利于获得构象选择性结合体，可用于结构稳定与检测",
+        "备选"
+      ],
+      [
+        "Site C",
+        "MBD折叠核心及高度保守碱性残基区域",
+        "可能影响蛋白整体稳定性并增加MBD家族交叉识别风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MBD1为核内蛋白，常规抗体难以到达作用位点；设计应限定胞内递送或科研检测，并重点评估MBD2、MECP2等家族成员交叉反应。",
+    "structurePrepZh": "以5W9Q实验晶体结构为模板，保留MBD结构域构象，检查多链晶体接触，去除非生物学界面后标注DNA结合相关残基。",
+    "structureRef": "RCSB PDB 5W9Q，X-ray diffraction，1.8 Å",
+    "antibodies": [
+      "commercial anti-MBD1 clone EPR4239",
+      "commercial anti-MBD1 clone 15C8"
+    ],
+    "interfaceFocus": "MBD结构域甲基化CpG DNA识别界面",
+    "designMode": "胞内阻断/检测抗体",
+    "candidates": [
+      {
+        "target": "MBD2",
+        "rationale": "MBD2同属甲基化CpG结合蛋白通路，可识别甲基化DNA并参与NuRD相关转录抑制复合体定位，适合作为同通路对照靶点。"
+      },
+      {
+        "target": "MECP2",
+        "rationale": "MECP2通过MBD结构域结合甲基化DNA并调控染色质转录状态，与MBD1共享甲基化CpG读取机制，具有明确神经发育疾病关联。"
+      },
+      {
+        "target": "DNMT1",
+        "rationale": "DNMT1维持CpG甲基化图谱，为MBD1识别底物提供上游表观遗传标记，属于同一DNA甲基化调控轴的关键酶。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

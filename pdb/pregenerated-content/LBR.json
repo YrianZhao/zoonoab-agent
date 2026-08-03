@@ -1,0 +1,65 @@
+{
+  "gene": "LBR",
+  "generatedAt": "2026-08-03T13:49:50.596Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "LBR位于内核膜并连接核纤层与染色质，其N端核质结构域结合lamin B与异染色质蛋白，C端固醇还原酶样跨膜区参与胆固醇生物合成相关过程；遗传缺陷与Greenberg dysplasia、Pelger-Huet anomaly及骨骼发育异常存在明确关联。该蛋白主要暴露于核质侧而非细胞外空间，天然抗原可及性不利于常规体内抗体阻断，但适合细胞内递送抗体、intrabody或结构探针设计。相较于通路中多种胞质代谢酶，LBR同时承载核膜锚定与甾醇代谢双重节点价值，可优先用于机制验证型抗体工具开发。",
+    "mechanism": "设计抗体阻断LBR N端RS区与lamin B/异染色质结合因子的相互作用，削弱核周异染色质锚定并解析核膜-染色质耦联机制。",
+    "selectedEpitope": "优先覆盖PDB 2DIG对应的LBR N端核质结构域折叠面，避开跨膜固醇还原酶区。",
+    "diseaseDirection": "核膜病与骨骼发育异常",
+    "domain": "N端核质结构域含lamin B结合区与RS重复区，C端含多跨膜甾醇还原酶样结构域。",
+    "evidence": "LBR核膜锚定与骨骼发育疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q14739功能与结构域注释",
+      "RCSB PDB 2DIG溶液NMR结构",
+      "OMIM与ClinVar相关变异记录"
+    ],
+    "referenceEntries": "UniProt Q14739；RCSB PDB 2DIG；Open Targets LBR",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端核质结构域lamin B结合相关折叠面",
+        "可直接干预LBR-核纤层相互作用，适合机制阻断型intrabody设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端RS重复区邻近带正电染色质结合界面",
+        "有助于解析异染色质锚定，但需控制序列低复杂度导致的交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端多跨膜甾醇还原酶样区胞质侧环",
+        "结构可及性与构象稳定性受膜环境限制，抗体开发风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "LBR为内核膜蛋白，缺乏胞外暴露结构域，常规治疗性抗体难以到达靶位点；建议定位为细胞内抗体、递送抗体或结构验证工具。",
+    "structurePrepZh": "以2DIG的N端核质结构域NMR构象簇为模板，筛选代表性低能构象，补充无序RS区注释并排除跨膜段建模干扰。",
+    "structureRef": "RCSB PDB 2DIG，human LBR N-terminal domain，solution NMR",
+    "antibodies": [
+      "Anti-LBR clone EPR8985",
+      "Anti-LBR clone 5H11"
+    ],
+    "interfaceFocus": "N端核质结构域-lamin B结合界面",
+    "designMode": "细胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "LMNB1",
+        "rationale": "LMNB1编码lamin B1，是LBR在内核膜锚定核纤层网络中的直接相互作用对象，适合并行评估核膜结构稳定性机制。"
+      },
+      {
+        "target": "DHCR7",
+        "rationale": "DHCR7参与胆固醇生物合成末端还原步骤，与LBR固醇还原酶样功能同属甾醇代谢疾病轴，可用于区分核膜锚定与甾醇代谢贡献。"
+      },
+      {
+        "target": "TM7SF2",
+        "rationale": "TM7SF2为C14-甾醇还原酶，与LBR在甾醇还原酶相关代谢环节存在功能关联，可作为同通路膜酶比较靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

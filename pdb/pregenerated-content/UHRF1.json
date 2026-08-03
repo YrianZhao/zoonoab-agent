@@ -1,0 +1,65 @@
+{
+  "gene": "UHRF1",
+  "generatedAt": "2026-08-03T17:42:01.159Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "UHRF1是核内表观遗传维持因子，通过SRA结构域识别半甲基化CpG并招募DNMT1，维持DNA甲基化图谱，在多种肿瘤中与异常甲基化、细胞周期推进和预后不良相关。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌形式，完整抗体直接结合天然抗原的可及性较弱。其优先级低于EGFR、PD-L1等膜表面肿瘤靶点，但PDB 3ASL提供高分辨率SRA结构域信息，适合作为细胞内递送抗体、intrabody或结构引导型功能阻断分子的研究靶点。",
+    "mechanism": "阻断UHRF1 SRA结构域与半甲基化CpG DNA的碱基翻转识别界面，削弱DNMT1定位和维持性DNA甲基化。",
+    "selectedEpitope": "优先覆盖SRA结构域DNA结合沟槽及碱基翻转口袋邻近环区。",
+    "diseaseDirection": "肿瘤表观遗传调控",
+    "domain": "UHRF1含UBL、TTD、PHD、SRA及RING结构域；3ASL解析SRA结构域。",
+    "evidence": "UHRF1表观遗传维持与肿瘤关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q96T88功能注释",
+      "RCSB PDB 3ASL晶体结构",
+      "肿瘤DNA甲基化与UHRF1-DNMT1轴文献"
+    ],
+    "referenceEntries": "UniProt Q96T88；RCSB PDB 3ASL；Open Targets UHRF1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SRA结构域半甲基化DNA结合沟槽",
+        "直接干预UHRF1识别半甲基化CpG的核心功能界面",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SRA结构域碱基翻转口袋邻近环区",
+        "可影响5-甲基胞嘧啶翻转识别与DNA稳定结合",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SRA结构域远端保守折叠表面",
+        "功能阻断不确定且可能仅产生结合型探针价值",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "UHRF1为核内蛋白，常规抗体药物抗原可及性不足；设计应限定为细胞内递送抗体、intrabody或研究级功能阻断分子，并评估DNA结合位点保守性。",
+    "structurePrepZh": "以3ASL链A/B的SRA结构域为模板，去除非目标晶体接触，保留DNA识别沟槽构象，完成质子化、缺失侧链修复与界面残基标注。",
+    "structureRef": "RCSB PDB 3ASL，X-ray 1.41 Å，人源UHRF1 SRA结构域",
+    "antibodies": [
+      "抗UHRF1研究级单克隆抗体",
+      "抗UHRF1 ChIP验证抗体"
+    ],
+    "interfaceFocus": "SRA-DNA结合沟槽与碱基翻转口袋",
+    "designMode": "细胞内阻断型",
+    "candidates": [
+      {
+        "target": "DNMT1",
+        "rationale": "DNMT1与UHRF1共同构成维持性DNA甲基化轴，负责复制后半甲基化DNA的甲基化恢复，是同一表观遗传通路的核心酶。"
+      },
+      {
+        "target": "PCNA",
+        "rationale": "PCNA在复制叉处组织DNA复制相关复合物，并参与DNMT1和UHRF1相关的复制耦联甲基化维持过程。"
+      },
+      {
+        "target": "USP7",
+        "rationale": "USP7可调节UHRF1稳定性并影响UHRF1-DNMT1轴的表观遗传维持功能，属于同一蛋白稳态与DNA甲基化调控网络。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

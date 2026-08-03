@@ -1,0 +1,65 @@
+{
+  "gene": "GFRAL",
+  "generatedAt": "2026-08-03T12:45:39.225Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GFRAL 是后区与孤束核区域限制表达的 GDF15 受体成分，介导 GDF15 诱导的食欲抑制、体重下降及应激性代谢反应，与体重指数和体组成表型具有明确遗传关联。其为细胞膜 GPI 锚定受体样蛋白，配体结合结构位于胞外富含半胱氨酸结构域，抗原可及性优于胞内代谢调控因子。相较广泛表达的下游 RET 或非特异性炎症因子，GFRAL 具有组织分布受限和通路入口位点清晰的优先级优势。",
+    "mechanism": "抗体阻断 GDF15 与 GFRAL 胞外受体结构域的结合，抑制 GFRAL-RET 复合体形成及后续 RET 磷酸化信号。",
+    "selectedEpitope": "优先覆盖 GFRAL D2-D3 配体结合沟槽及 GDF15 接触面，避免干扰保守折叠核心。",
+    "diseaseDirection": "体重调控与代谢应激",
+    "domain": "GFRAL 胞外区含三段 GDNF 受体α样半胱氨酸富集结构域，C端经GPI锚定于膜表面。",
+    "evidence": "GFRAL-GDF15-RET 轴代谢表型证据包",
+    "evidenceSources": [
+      "Open Targets Platform 遗传关联与表型评分",
+      "UniProt Q6UXV0 蛋白功能与亚细胞定位注释",
+      "RCSB PDB 9HYT 人源 GFRAL 实验结构",
+      "GDF15-GFRAL-RET 受体复合体功能研究文献"
+    ],
+    "referenceEntries": "UniProt Q6UXV0；RCSB PDB 9HYT；Open Targets GFRAL",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "D2-D3 配体结合沟槽及 GDF15 接触界面",
+        "直接阻断 GDF15 结合并抑制 GFRAL-RET 信号装配",
+        "优先"
+      ],
+      [
+        "Site B",
+        "D3 外侧暴露环与邻近受体装配面",
+        "可能削弱受体复合体稳定性，适合构建非竞争性阻断抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "D1 半胱氨酸富集结构域保守折叠面",
+        "结构保守且功能贡献不确定，存在折叠依赖表位风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GFRAL 胞外区二硫键密集，需规避半胱氨酸核心和潜在糖基化遮挡位点；优先筛选构象依赖但不破坏整体折叠的阻断表位。",
+    "structurePrepZh": "以 9HYT 的 1.9 Å X 射线结构为模板，保留抗原链 A-F 中完整胞外结构域，补全缺失侧链并标注二硫键、糖基化和配体接触残基。",
+    "structureRef": "RCSB PDB 9HYT，human GFRAL，X-ray 1.9 Å",
+    "antibodies": [
+      "3P10",
+      "11H6"
+    ],
+    "interfaceFocus": "GDF15 结合沟槽与 RET 共受体装配邻域",
+    "designMode": "阻断型抗体设计",
+    "candidates": [
+      {
+        "target": "GDF15",
+        "rationale": "GDF15 是 GFRAL 的直接配体，处于同一食欲抑制和体重下降通路上；中和 GDF15 可从配体端阻断受体激活。"
+      },
+      {
+        "target": "RET",
+        "rationale": "RET 是 GFRAL 依赖性信号转导的共受体，GDF15-GFRAL 结合后通过 RET 磷酸化驱动下游反应；其适合作为通路下游装配节点候选靶点。"
+      },
+      {
+        "target": "GFRA1",
+        "rationale": "GFRA1 与 GFRAL 同属 GDNF 受体α家族并通过 RET 形成受体复合体；可作为 RET 依赖受体装配机制的同通路参照靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

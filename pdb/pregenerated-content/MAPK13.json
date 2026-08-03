@@ -1,0 +1,65 @@
+{
+  "gene": "MAPK13",
+  "generatedAt": "2026-08-03T14:04:18.103Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAPK13编码p38δ MAP kinase，参与应激、炎症因子和分化信号下游的Thr-Gly-Tyr磷酸化级联，并可影响转录因子及细胞骨架相关底物的磷酸化状态；遗传关联数据提示其与红细胞体积、红细胞计数和体型相关性状存在中等强度关联。该蛋白为细胞内丝氨酸/苏氨酸激酶，天然抗原可及性弱，不具备胞外结构域、分泌蛋白或膜受体特征，因此更适合作为细胞内结合抗体、结构探针或靶向降解分子识别模块开发。相较MAPK14等研究更充分且系统性炎症风险更高的p38家族成员，MAPK13具有亚型选择性研究价值，但治疗性外源抗体优先级受限，应定位为结构引导的细胞内抗体设计靶点。",
+    "mechanism": "设计结合ATP结合裂缝或活化环邻近构象表位的细胞内抗体，空间阻断ATP/底物进入催化口袋并限制Thr180/Tyr182活化环构象转换。",
+    "selectedEpitope": "优先覆盖N端叶β折叠-铰链区与活化环邻近催化裂缝，兼顾MAPK13亚型特异残基。",
+    "diseaseDirection": "应激MAPK通路与血液性状",
+    "domain": "典型蛋白激酶结构域，含N端β折叠叶、αC螺旋、铰链区、催化环和TGY活化环。",
+    "evidence": "MAPK13结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt O15264 functional annotation",
+      "RCSB PDB 8X23 X-ray structure",
+      "p38 MAPK family kinase pathway literature"
+    ],
+    "referenceEntries": "UniProt O15264；RCSB PDB 8X23；HGNC:6875",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "铰链区-ATP结合裂缝边缘及N端叶邻近表面",
+        "可干扰ATP定位并提供亚型选择性设计窗口",
+        "优先"
+      ],
+      [
+        "Site B",
+        "TGY活化环及催化环周边构象表面",
+        "可限制活化环重排并影响底物结合构象",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端叶保守底物结合沟槽远端表面",
+        "家族保守性较高，交叉结合MAPK11/12/14风险增加",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAPK13为细胞内激酶，常规抗体难以到达天然靶点；p38家族催化域高度保守，应强化MAPK11/12/14交叉反应筛选并限定细胞内递送场景。",
+    "structurePrepZh": "以8X23链A为结构模板，保留激酶结构域主链构象，校验ATP口袋、铰链区、活化环缺失残基和晶体接触界面后再定义表位。",
+    "structureRef": "RCSB PDB 8X23，X-ray diffraction，1.5 Å",
+    "antibodies": [
+      "anti-p38 delta antibody",
+      "anti-MAPK13 antibody"
+    ],
+    "interfaceFocus": "ATP口袋铰链区与TGY活化环邻近界面",
+    "designMode": "细胞内抗体/VHH结构阻断",
+    "candidates": [
+      {
+        "target": "MAPK14",
+        "rationale": "MAPK14编码p38α，是同一p38 MAPK应激通路中研究最充分的核心激酶，可作为MAPK13选择性和通路功能对照。"
+      },
+      {
+        "target": "MAPK12",
+        "rationale": "MAPK12编码p38γ，与MAPK13同属p38 MAPK亚家族并共享上游MKK3/MKK6激活机制，适合用于亚型交叉反应评估。"
+      },
+      {
+        "target": "MAPK11",
+        "rationale": "MAPK11编码p38β，参与相同应激激酶级联，催化域相似性高，可纳入选择性筛选与风险分层。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

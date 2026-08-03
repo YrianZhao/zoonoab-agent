@@ -1,0 +1,65 @@
+{
+  "gene": "CAMK1",
+  "generatedAt": "2026-08-03T10:58:46.324Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CAMK1 是钙/钙调蛋白依赖性丝氨酸/苏氨酸激酶，位于 Ca2+/calmodulin 触发的神经元活性、突触可塑性与转录调控轴下游，Open Targets 对神经退行性疾病存在较高但非强因果关联。该蛋白主要为胞质激酶，缺乏天然胞外结构域或分泌特征，常规体内阻断型抗体的抗原可及性不足，更适合作为细胞内抗体、降解偶联或结构生物学验证对象。相比同通路中 CAMK2、CALM 或 CREB 轴节点，CAMK1 的优势在于具有高分辨率人源激酶结构和明确调控片段边界，但其抗体成药优先级应低于膜受体或分泌型神经炎症靶点。",
+    "mechanism": "设计细胞内结合抗体阻断 CAMK1 激酶结构域与调控/钙调蛋白激活构象耦联，限制底物肽进入 ATP 邻近催化沟槽。",
+    "selectedEpitope": "优先覆盖激酶 N-lobe/C-lobe 催化裂隙邻近及 activation loop 调控界面，避免仅识别柔性尾段。",
+    "diseaseDirection": "神经退行性疾病与钙信号异常",
+    "domain": "CAMK1 含 N 端蛋白激酶结构域、activation segment 及 C 端自抑制/钙调蛋白结合调控区。",
+    "evidence": "CAMK1 钙信号激酶结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q14012 functional annotation",
+      "RCSB PDB 4FG8 experimental structure",
+      "Reactome calcium/calmodulin-dependent kinase signaling"
+    ],
+    "referenceEntries": "UniProt Q14012；RCSB PDB 4FG8；Open Targets CAMK1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "activation loop 与 C-lobe 底物结合沟槽邻近区域",
+        "有利于干扰底物定位和激活构象稳定，适合功能阻断型胞内抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N-lobe β-sheet/αC-helix 周边调控界面",
+        "可影响 ATP 位点邻近构象耦联，但需避免与保守激酶折叠产生广谱交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端自抑制与钙调蛋白结合调控片段",
+        "具有调控意义但柔性较高，结构解析覆盖有限，表位构象稳定性需审慎验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CAMK1 为胞内激酶，常规抗体组织可及性受限；激酶核心保守性高，需通过序列差异位点约束特异性并优先采用胞内递送或 VHH 格式。",
+    "structurePrepZh": "以 PDB 4FG8 的 A/B 链为模板，保留解析可靠的激酶结构域，补全缺失侧链并标注 ATP 结合沟槽、activation loop 与调控片段边界。",
+    "structureRef": "RCSB PDB 4FG8，X-ray diffraction，2.2 Å",
+    "antibodies": [
+      "抗 CAMK1 研究级单克隆抗体",
+      "抗 CAMK1 多克隆验证抗体"
+    ],
+    "interfaceFocus": "activation loop、αC-helix 与底物结合沟槽",
+    "designMode": "胞内功能阻断",
+    "candidates": [
+      {
+        "target": "CALM1",
+        "rationale": "CALM1 编码钙调蛋白，是 Ca2+ 依赖性激活 CAMK1 的直接上游结合因子；干预其与 CaM 激酶调控区相互作用可影响同一钙信号轴。"
+      },
+      {
+        "target": "CAMKK2",
+        "rationale": "CAMKK2 可磷酸化并激活 CaMKI 家族成员，是 CAMK1 上游激酶节点；其在神经元钙信号与代谢应答中具有通路连续性。"
+      },
+      {
+        "target": "CREB1",
+        "rationale": "CREB1 是 Ca2+/calmodulin 依赖性激酶级联下游转录效应因子，参与神经元存活、可塑性和应激转录程序。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "PACSIN1",
+  "generatedAt": "2026-08-03T15:02:21.876Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PACSIN1为神经元富集的F-BAR/SH3适配蛋白，参与突触囊泡内吞、膜曲率塑形及dynamin介导的膜切割过程；现有疾病关联主要来自体脂、血脂、嗜酸粒细胞计数及体格性状等遗传关联信号，尚缺乏明确可药理阻断的单一疾病驱动机制。该蛋白主要定位于胞质侧膜骨架与内吞复合体，并非分泌蛋白或典型跨膜受体，抗原天然可及性低于细胞表面受体。作为抗体设计靶点的优先级低于同通路中具有胞外结构域或分泌配体特征的靶点，更适合结构生物学验证或细胞内递送抗体探索。",
+    "mechanism": "候选抗体拟阻断PACSIN1 SH3结构域与dynamin富脯氨酸区的结合，干扰突触囊泡内吞复合体装配。",
+    "selectedEpitope": "优先评估SH3结构域RT-loop与n-Src loop围成的PxxP配体结合沟槽。",
+    "diseaseDirection": "神经内吞与代谢性状遗传关联",
+    "domain": "PACSIN1含N端F-BAR膜结合二聚化结构域、中段可变区及C端SH3蛋白互作结构域。",
+    "evidence": "PACSIN1结构与内吞复合体互作证据包",
+    "evidenceSources": [
+      "Open Targets Platform遗传关联数据",
+      "UniProt Q9BY11功能与定位注释",
+      "RCSB PDB 3HAH晶体结构记录",
+      "文献报道PACSIN/syndapin与dynamin介导内吞互作"
+    ],
+    "referenceEntries": "UniProt Q9BY11；RCSB PDB 3HAH；Open Targets PACSIN1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SH3结构域RT-loop/n-Src loop配体结合沟槽",
+        "直接覆盖PxxP配体结合面，可阻断dynamin等内吞蛋白招募",
+        "优先"
+      ],
+      [
+        "Site B",
+        "F-BAR结构域膜结合凹面邻近带正电区域",
+        "可能干扰膜曲率识别与管状膜稳定，但需避免非特异膜结合效应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "F-BAR二聚体核心疏水界面",
+        "界面埋藏度高且保守性较强，抗体可及性与选择性存在较高风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PACSIN1主要为胞内蛋白，常规抗体难以到达天然作用位点；设计应优先限定为细胞内递送Fab/VHH或结构验证试剂，并严格评估PACSIN2/3交叉反应。",
+    "structurePrepZh": "以PDB 3HAH链A/B为模板，补全缺失环区并保留二聚体状态；对SH3配体沟槽与F-BAR膜结合面分别进行可及性和保守性标注。",
+    "structureRef": "RCSB PDB 3HAH，X-ray diffraction，2.77 Å",
+    "antibodies": [
+      "商业抗PACSIN1多克隆抗体",
+      "商业抗syndapin I单克隆抗体"
+    ],
+    "interfaceFocus": "SH3-PxxP配体沟槽与F-BAR膜结合面",
+    "designMode": "胞内互作阻断",
+    "candidates": [
+      {
+        "target": "DNM1",
+        "rationale": "DNM1编码神经元dynamin，直接参与网格蛋白介导内吞的膜切割，并通过富脯氨酸区与PACSIN1 SH3结构域结合。其位于同一突触囊泡回收通路。"
+      },
+      {
+        "target": "CLTC",
+        "rationale": "CLTC编码网格蛋白重链，是包被小窝形成与受体介导内吞的核心结构组分。其功能与PACSIN1参与的膜弯曲和内吞复合体装配相衔接。"
+      },
+      {
+        "target": "AMPH",
+        "rationale": "AMPH编码amphiphysin，含BAR与SH3结构域，参与dynamin招募和突触囊泡内吞。其与PACSIN1处于相同的BAR-SH3内吞调控网络。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

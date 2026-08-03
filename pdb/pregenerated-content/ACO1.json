@@ -1,0 +1,65 @@
+{
+  "gene": "ACO1",
+  "generatedAt": "2026-08-03T10:17:18.872Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ACO1编码胞质顺乌头酸酶/铁调节蛋白1，在铁硫簇充足时催化柠檬酸-异柠檬酸互变，在缺铁时结合铁代谢mRNA的IRE元件，调节TFRC、FTH1、FTL与SLC40A1等转录本翻译或稳定性，因而与红细胞计数、血红蛋白和红细胞压积性状存在机制关联。ACO1为胞质蛋白，缺乏天然胞外结构域或分泌特征，常规体内阻断型抗体可及性较低，更适合采用细胞内递送抗体片段或研究级构象探针策略。相较完全胞外铁调素-铁转运蛋白轴靶点，ACO1的优先级主要来自其位于铁感知与mRNA后转录调控的上游节点，可直接解析细胞铁稳态对红系表型的贡献。",
+    "mechanism": "设计抗体片段结合ACO1的IRE结合沟槽或4Fe-4S簇邻近构象界面，阻断ACO1与铁响应元件RNA的特异性结合。",
+    "selectedEpitope": "优先定位于domain 4邻近活性裂隙的IRE结合相关构象面，避开高度保守催化残基。",
+    "diseaseDirection": "红细胞性状与铁稳态调控",
+    "domain": "ACO1由四个结构域构成，前三个结构域形成催化核心，domain 4参与裂隙闭合与RNA结合构象转换。",
+    "evidence": "ACO1铁稳态调控与红系表型证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P21399功能与亚细胞定位注释",
+      "RCSB PDB 2B3Y人ACO1晶体结构",
+      "铁响应元件-铁调节蛋白调控文献"
+    ],
+    "referenceEntries": "UniProt P21399；RCSB PDB 2B3Y；Open Targets ACO1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "domain 4与催化裂隙边缘的IRE结合相关表面",
+        "有望干预ACO1-IRE RNA结合并保留构象选择性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "domain 1-3围绕4Fe-4S簇的活性口袋外缘",
+        "可作为酶构象状态识别表位，但需避免直接破坏折叠核心",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守催化残基与铁硫簇配位邻近区域",
+        "交叉反应和功能性毒性风险较高，不宜作为首选免疫焦点",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ACO1为胞质蛋白，体内抗体可及性和递送效率是主要风险；设计应优先采用VHH或胞内抗体格式，并进行IRP2交叉反应排查。",
+    "structurePrepZh": "以2B3Y高分辨率晶体结构为模板，分别评估A、B链构象一致性，补全缺失侧链并标注铁硫簇、催化裂隙与RNA结合相关表面。",
+    "structureRef": "PDB 2B3Y，人胞质顺乌头酸酶1晶体结构，1.85 Å",
+    "antibodies": [
+      "研究级anti-ACO1抗体",
+      "研究级anti-IRP1抗体"
+    ],
+    "interfaceFocus": "domain 4-活性裂隙IRE识别界面",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "TFRC",
+        "rationale": "TFRC转录本含IRE并受IRP1/IRP2调控，是细胞摄铁与红系铁供应的直接执行节点，且为细胞表面受体，抗体可及性优于ACO1。"
+      },
+      {
+        "target": "SLC40A1",
+        "rationale": "SLC40A1编码铁转运蛋白ferroportin，处于系统性铁输出与红系可用铁供应通路中，并与铁调素HAMP存在明确配体-转运体调控关系。"
+      },
+      {
+        "target": "HAMP",
+        "rationale": "HAMP编码铁调素，是铁稳态轴中调控SLC40A1内吞降解的分泌肽激素，与红细胞生成相关铁限制状态具有直接机制联系。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

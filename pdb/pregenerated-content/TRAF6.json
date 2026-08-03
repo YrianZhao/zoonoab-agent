@@ -1,0 +1,65 @@
+{
+  "gene": "TRAF6",
+  "generatedAt": "2026-08-03T17:27:03.038Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TRAF6 是 IL-1R/TLR、CD40、RANK 与部分 TNFR 超家族信号中的关键 E3 泛素连接酶支架，介导 K63 连接多泛素化并募集 TAK1-TAB 与 IKK 复合体，驱动 NF-κB、MAPK 与炎症因子表达。其疾病关联覆盖炎症、免疫发育异常、肾功能相关表型及感染相关炎症反应。TRAF6 为胞内接头蛋白，抗原可及性低于分泌因子或膜受体，因此更适合作为细胞内递送抗体片段或研究级阻断分子靶点。相较下游 NF-κB 组件，TRAF6 的 TRAF-C 受体肽结合沟槽具备较明确结构界面，可在多条上游炎症通路交汇点实现选择性干预。",
+    "mechanism": "阻断 TRAF6 TRAF-C 结构域与 RANK、CD40 或 IL-1R/TLR 通路衔接蛋白中的 TRAF6 结合基序相互作用，抑制受体近端复合体装配及后续 K63 泛素信号扩增。",
+    "selectedEpitope": "优先覆盖 TRAF-C 三聚体外侧受体肽结合沟槽，避开三聚化核心界面。",
+    "diseaseDirection": "炎症免疫与骨代谢信号异常",
+    "domain": "TRAF6 含 N 端 RING、锌指区、卷曲螺旋 TRAF-N 与 C 端 TRAF-C 受体结合结构域。",
+    "evidence": "TRAF6 受体近端炎症信号结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q9Y4K3 功能与结构域注释",
+      "RCSB PDB 1LB6 晶体结构条目",
+      "TRAF6-RANK/CD40/IL-1R-TLR 信号通路文献"
+    ],
+    "referenceEntries": "UniProt: Q9Y4K3；RCSB PDB: 1LB6；Reactome TRAF6-mediated NF-κB activation",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "TRAF-C 受体肽结合沟槽",
+        "直接竞争 RANK、CD40 及衔接蛋白 TRAF6 结合基序，机制清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "TRAF-C 外侧非核心保守面",
+        "可实现变构干预并降低破坏三聚体稳定性的风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "TRAF-C 三聚体核心界面",
+        "可能影响蛋白折叠与寡聚稳定性，选择压力与脱靶风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TRAF6 为胞内蛋白，常规全长抗体难以进入作用位点；建议采用细胞内递送 Fab/VHH、PROTAC 适配研究体系或外源表达模型验证，并重点评估 TRAF2/3/5 交叉识别。",
+    "structurePrepZh": "以 1LB6 的 A、B 链为实验结构基础，补全缺失残基与质子化状态，保留 TRAF-C 二聚/三聚相关界面信息，并映射受体肽结合沟槽保守残基。",
+    "structureRef": "Ye H. et al., TRAF6 TRAF domain crystal structure, PDB 1LB6",
+    "antibodies": [
+      "研究级 anti-TRAF6 monoclonal antibody",
+      "研究级 anti-TRAF6 rabbit monoclonal antibody"
+    ],
+    "interfaceFocus": "TRAF-C 受体肽结合沟槽及邻近保守环区",
+    "designMode": "胞内阻断抗体片段",
+    "candidates": [
+      {
+        "target": "MYD88",
+        "rationale": "MYD88 是 IL-1R/TLR 通路中连接受体 TIR 结构域与 IRAK 激酶复合体的核心衔接蛋白，位于 TRAF6 上游并驱动同一 NF-κB 炎症轴。"
+      },
+      {
+        "target": "IRAK4",
+        "rationale": "IRAK4 负责 MYD88 依赖性受体复合体中的激酶激活，促进 IRAK1/2 与 TRAF6 信号传递，是同一炎症通路中更具酶活可干预性的节点。"
+      },
+      {
+        "target": "TNFSF11",
+        "rationale": "TNFSF11 编码 RANKL，通过 TNFRSF11A-RANK 招募 TRAF6 触发 NF-κB 与 MAPK 信号，适用于骨代谢和炎症性骨破坏方向的胞外抗体设计。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

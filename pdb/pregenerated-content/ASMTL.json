@@ -1,0 +1,65 @@
+{
+  "gene": "ASMTL",
+  "generatedAt": "2026-08-03T10:38:53.386Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ASMTL为胞内乙酰血清素O-甲基转移酶样蛋白，Open Targets肿瘤关联得分较低，主要提示肝细胞癌、胃癌和结直肠癌中的遗传或表达相关性，而非已确证的细胞表面驱动通路。其已解析结构覆盖催化样结构域，有利于小分子或机制研究，但缺乏分泌蛋白或膜受体所需的天然抗原可及性。相比EGFR、MET、VEGFA等同属消化系统肿瘤相关通路的可及靶点，ASMTL不具备抗体药物优先级优势，宜作为结构生物学参考靶点而非优先抗体主靶点。",
+    "mechanism": "抗体难以进入胞质阻断ASMTL催化样口袋与甲基供体/底物结合；若采用细胞内递送策略，可设计干扰SAM结合沟槽的构象稳定抗体片段。",
+    "selectedEpitope": "围绕2P5X催化样结构域的SAM结合沟槽外缘与α/β核心邻近环区设计构象表位，避免深埋口袋。",
+    "diseaseDirection": "消化系统肿瘤探索方向",
+    "domain": "ASMTL含N端MAF样区和C端ASMT样甲基转移酶催化结构域，2P5X覆盖催化样二聚体结构。",
+    "evidence": "ASMTL结构与肿瘤遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB O95671功能与亚细胞定位注释",
+      "RCSB PDB 2P5X晶体结构记录",
+      "AlphaFold/PDBe结构域与界面注释"
+    ],
+    "referenceEntries": "UniProt O95671；RCSB PDB 2P5X；Open Targets ASMTL",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端ASMT样催化结构域SAM结合沟槽外缘",
+        "可用于构象锁定或胞内抗体片段验证底物结合干扰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "2P5X A/B链二聚体界面邻近α螺旋与环区",
+        "可评估二聚体稳定性依赖的酶样构象调节",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端MAF样结构域预测表面区域",
+        "结构覆盖不足且疾病机制证据有限，需先补充可及性和功能验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为胞内定位导致常规抗体不可及，且肿瘤关联分数较低、缺乏明确致病配体轴；建议限定为胞内抗体、降解递送或结构验证用途。",
+    "structurePrepZh": "以2P5X A、B链为模板，保留二聚体装配并校验缺失环区、辅因子结合沟槽和晶体接触，必要时结合AlphaFold补全N端区域。",
+    "structureRef": "RCSB PDB 2P5X，X-ray diffraction，2.0 Å",
+    "antibodies": [
+      "无已批准ASMTL靶向抗体",
+      "无临床阶段ASMTL同类抗体"
+    ],
+    "interfaceFocus": "SAM结合沟槽外缘及A/B链二聚体界面",
+    "designMode": "胞内抗体片段探索",
+    "candidates": [
+      {
+        "target": "EGFR",
+        "rationale": "EGFR为胃癌、结直肠癌和肝细胞癌中具有明确受体酪氨酸激酶机制的膜受体，可通过抗体阻断配体结合或受体二聚化。其抗原可及性和临床可验证性显著高于ASMTL。"
+      },
+      {
+        "target": "MET",
+        "rationale": "MET介导HGF驱动的侵袭、生长和存活信号，在肝细胞癌和胃癌中具有明确通路证据。膜外Sema结构域可作为抗体阻断HGF-MET相互作用的优先表位。"
+      },
+      {
+        "target": "VEGFA",
+        "rationale": "VEGFA参与肝细胞癌和胃肠道肿瘤血管生成，是分泌型抗原且可被抗体直接中和。其阻断VEGFR1/VEGFR2结合的机制明确，抗体开发可及性优于胞内ASMTL。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

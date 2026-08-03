@@ -1,0 +1,65 @@
+{
+  "gene": "CYBA",
+  "generatedAt": "2026-08-03T11:46:03.722Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CYBA编码p22phox，是吞噬细胞NADPH氧化酶NOX2复合体的膜亚基，稳定CYBB/gp91phox并参与电子传递；其功能缺陷可导致活性氧生成不足，是慢性肉芽肿病的重要分子基础。该蛋白为多跨膜膜蛋白，胞外环区可作为抗体可及抗原面，但主要功能界面位于膜内及胞质侧，天然可及性低于分泌型靶点。相较上游炎症因子或广泛表达氧化还原酶，CYBA更贴近NOX2复合体装配节点，适合用于结构验证、构象识别或诊断型抗体开发，治疗性阻断需谨慎评估。",
+    "mechanism": "抗体优先识别p22phox胞外环构象，用于标记或稳定CYBA-CYBB膜复合体；避免直接干扰胞质侧p47phox结合位点以降低NOX2功能抑制风险。",
+    "selectedEpitope": "优先选择跨膜螺旋之间的胞外环及CYBB邻近外侧界面，避开胞质C端PRR区。",
+    "diseaseDirection": "慢性肉芽肿病与NOX2复合体缺陷",
+    "domain": "p22phox含多段跨膜螺旋、短胞外环及胞质C端富脯氨酸区，参与NOX2复合体装配。",
+    "evidence": "CYBA-NOX2复合体结构与慢性肉芽肿病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P13498功能与变异注释",
+      "RCSB PDB 7YXW实验结构",
+      "NOX2 NADPH氧化酶复合体文献证据"
+    ],
+    "referenceEntries": "UniProt P13498；RCSB PDB 7YXW；Open Targets CYBA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "胞外环ECL1/ECL2及相邻跨膜螺旋外侧面",
+        "抗原可及性相对较高，适合构象识别与细胞表面检测",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CYBA-CYBB膜内邻近界面外侧边缘",
+        "可识别NOX2复合体装配构象，适合复合体选择性抗体筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "胞质C端富脯氨酸区及p47phox结合相关区域",
+        "可能影响NCF1/p47phox募集并抑制氧化酶活化，功能风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CYBA胞外暴露区域短且构象依赖性强，膜蛋白制备与筛选需保留脂质环境；避免靶向胞质PRR区导致NOX2活性受抑。",
+    "structurePrepZh": "以PDB 7YXW抗原链A、D为模板，保留CYBA-CYBB复合体和关键脂质/血红素环境，补全柔性环区并评估膜取向。",
+    "structureRef": "RCSB PDB 7YXW，X-ray diffraction，2.5 Å",
+    "antibodies": [
+      "clone 44.1 anti-p22phox",
+      "clone NS2 anti-p22phox"
+    ],
+    "interfaceFocus": "胞外环与CYBB邻近膜外侧构象界面",
+    "designMode": "膜蛋白构象抗体设计",
+    "candidates": [
+      {
+        "target": "CYBB",
+        "rationale": "CYBB编码gp91phox，是NOX2复合体催化亚基，与CYBA形成膜内异二聚体；其缺陷同样导致慢性肉芽肿病。"
+      },
+      {
+        "target": "NCF1",
+        "rationale": "NCF1编码p47phox，激活后通过SH3结构域识别CYBA胞质C端富脯氨酸区，驱动NOX2复合体装配。"
+      },
+      {
+        "target": "NCF2",
+        "rationale": "NCF2编码p67phox，是NOX2活化所需胞质调节亚基，与NCF1和RAC共同促进CYBB催化活性。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

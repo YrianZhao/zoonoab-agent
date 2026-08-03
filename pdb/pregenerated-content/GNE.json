@@ -1,0 +1,65 @@
+{
+  "gene": "GNE",
+  "generatedAt": "2026-08-03T12:51:14.489Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GNE编码UDP-GlcNAc 2-差向异构酶/N-乙酰甘露糖胺激酶，是唾液酸从头合成通路的限速双功能酶，致病变异可降低UDP-GlcNAc向ManNAc及ManNAc-6P的转化，导致GNE肌病、Nonaka远端肌病与唾液酸尿等疾病表型。该蛋白主要定位于胞质，不具备天然胞外结构域或分泌抗原特征，因此传统外源性阻断抗体的抗原可及性受限，更适合用于细胞内递送抗体片段、构象稳定工具抗体或突变蛋白检测抗体开发。相较于下游CMAS、NANS等通路酶，GNE位于通路入口并兼具反馈调控节点属性，疾病遗传证据强、结构分辨率高，适合作为机制验证和构象选择性分子设计的优先靶点。",
+    "mechanism": "设计抗体片段识别GNE激酶结构域构象表位，稳定ATP/ManNAc结合沟槽邻近构象，或区分致病突变引起的局部折叠异常与酶活降低状态。",
+    "selectedEpitope": "优先锁定N-乙酰甘露糖胺激酶结构域ATP结合裂隙外缘及底物结合沟槽邻近构象表位。",
+    "diseaseDirection": "遗传性肌病与唾液酸代谢异常",
+    "domain": "GNE含N端UDP-GlcNAc 2-差向异构酶结构域与C端ManNAc激酶结构域，2YHW解析激酶域晶体结构。",
+    "evidence": "GNE唾液酸合成通路与遗传肌病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9Y223功能与变异注释",
+      "RCSB PDB 2YHW晶体结构数据",
+      "OMIM与Orphanet GNE肌病临床遗传记录"
+    ],
+    "referenceEntries": "UniProt Q9Y223；RCSB PDB 2YHW；Open Targets ENSG00000159921",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ManNAc激酶结构域ATP结合裂隙外缘",
+        "可用于构象稳定与酶活状态识别，避开深埋催化残基以降低功能性干扰不确定性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ManNAc底物结合沟槽邻近可及环区",
+        "有利于区分底物结合相关构象变化，并支持致病突变构象效应研究",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化核心深部核苷酸结合位点",
+        "可能直接干扰ATP结合且空间可及性有限，易产生非特异构象约束",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GNE为胞内代谢酶，体内抗体药物可及性不足；建议限定为胞内递送抗体片段、诊断抗体或结构生物学工具抗体，并避免强行外推为常规膜靶向阻断抗体。",
+    "structurePrepZh": "以2YHW链A为模板准备ManNAc激酶结构域，补全缺失侧链并校验ATP/底物结合沟槽、晶体接触界面与致病突变邻近区域。",
+    "structureRef": "RCSB PDB 2YHW，human GNE kinase domain，1.64 Å X-ray",
+    "antibodies": [
+      "GNE研究级多克隆抗体",
+      "GNE研究级单克隆抗体"
+    ],
+    "interfaceFocus": "ATP结合裂隙外缘与ManNAc结合沟槽邻近环区",
+    "designMode": "胞内工具抗体设计",
+    "candidates": [
+      {
+        "target": "NANS",
+        "rationale": "NANS催化ManNAc-6P生成Neu5Ac-9P，位于GNE下游同一唾液酸从头合成通路，可作为通路通量改变的功能验证靶点。"
+      },
+      {
+        "target": "NANP",
+        "rationale": "NANP将Neu5Ac-9P去磷酸化生成Neu5Ac，与NANS共同决定游离唾液酸供应，适合评估下游补偿节点。"
+      },
+      {
+        "target": "CMAS",
+        "rationale": "CMAS将Neu5Ac活化为CMP-Neu5Ac，是糖缀合物唾液酸化前的关键核苷酸糖生成酶，可用于连接GNE缺陷与细胞表面唾液酸化表型。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

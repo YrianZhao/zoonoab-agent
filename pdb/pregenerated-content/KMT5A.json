@@ -1,0 +1,65 @@
+{
+  "gene": "KMT5A",
+  "generatedAt": "2026-08-03T13:46:34.548Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KMT5A编码SETD8/PR-Set7，是催化组蛋白H4K20单甲基化的核内赖氨酸甲基转移酶，参与细胞周期复制许可、染色质压缩与DNA损伤应答。Open Targets关联主要集中于淋巴细胞、血小板和中性粒细胞计数等血液表型，符合H4K20me1轴对造血细胞增殖与分化稳态的调控特征。该蛋白缺乏天然胞外结构域或分泌形式，抗原可及性不适合常规体内阻断抗体，但可作为结构验证、胞内递送抗体或研究级构象识别抗体靶点。相较于广泛组蛋白修饰酶，KMT5A具有单一H4K20me1催化特异性和高分辨率SET结构域晶体结构，便于开展精确界面设计。",
+    "mechanism": "设计抗体识别SET催化结构域，空间遮挡组蛋白H4 N端尾部K20底物肽与SAM结合邻近沟槽的装配，抑制H4K20单甲基化反应。",
+    "selectedEpitope": "优先覆盖SET结构域底物结合沟槽及pre-SET/SET连接界面，避开深埋SAM口袋核心残基。",
+    "diseaseDirection": "血液细胞计数与染色质调控",
+    "domain": "KMT5A含N端调控区、PCNA结合PIP-box及C端SET赖氨酸甲基转移酶催化结构域。",
+    "evidence": "KMT5A-H4K20me1血液表型关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病-靶点关联",
+      "UniProtKB Q9NQR1功能与结构域注释",
+      "RCSB PDB 3F9X晶体结构",
+      "文献报道SETD8介导H4K20me1与细胞周期调控"
+    ],
+    "referenceEntries": "UniProt Q9NQR1；RCSB PDB 3F9X；HGNC KMT5A/SETD8",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SET结构域底物肽结合沟槽外缘",
+        "可直接干扰H4尾部K20定位，具备明确功能阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "pre-SET与SET核心连接面",
+        "可能稳定非活性构象并削弱催化裂隙成形",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SAM结合口袋深部周边",
+        "高度保守且部分埋藏，易产生选择性与可及性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "KMT5A为核内酶，常规IgG体内可及性不足；应限定为胞内递送、细胞穿透格式或体外机制探针，并重点评估SET家族交叉反应。",
+    "structurePrepZh": "以3F9X高分辨率晶体结构提取KMT5A催化结构域，校正链间晶体接触、补全缺失侧链，并保留SAM/底物沟槽相邻残基用于界面定义。",
+    "structureRef": "RCSB PDB 3F9X，X-ray diffraction，1.25 Å",
+    "antibodies": [
+      "研究用抗SETD8抗体",
+      "研究用抗H4K20me1抗体"
+    ],
+    "interfaceFocus": "SET催化裂隙与H4K20底物肽定位面",
+    "designMode": "胞内酶构象阻断",
+    "candidates": [
+      {
+        "target": "H4C1",
+        "rationale": "组蛋白H4是KMT5A催化H4K20单甲基化的直接底物，处于同一染色质修饰轴。识别H4K20me1或邻近尾部构象可用于通路状态监测。"
+      },
+      {
+        "target": "PCNA",
+        "rationale": "KMT5A通过PIP-box与PCNA相互作用并耦联DNA复制期染色质修饰，PCNA可作为同一复制许可与细胞周期通路的候选节点。"
+      },
+      {
+        "target": "L3MBTL1",
+        "rationale": "L3MBTL1可读取H4K20me1/2相关甲基化标记并参与染色质压缩，位于KMT5A下游表观遗传效应通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

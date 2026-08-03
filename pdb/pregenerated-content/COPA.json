@@ -1,0 +1,65 @@
+{
+  "gene": "COPA",
+  "generatedAt": "2026-08-03T11:34:01.164Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "COPA编码COPI外被复合体α亚基，参与内质网至高尔基体逆向运输；致病变异可导致COPA综合征，诱发内质网应激、STING异常激活及I型干扰素相关自身炎症，符合间质性肺病-关节炎方向。该蛋白主要定位于胞质侧外被复合体而非细胞表面，抗原可及性弱于分泌因子或膜受体，常规体内阻断抗体适配性受限。其优先级来自遗传因果性和高分辨率结构支持，较下游炎症因子更贴近病因层级，但更适合作为结构识别或细胞内递送抗体探索靶点。",
+    "mechanism": "设计分子应识别COPA N端β-propeller货物结合面，干预COPI对KKXX/KXKXX回收信号的识别，降低错误折叠蛋白运输障碍相关应激放大。",
+    "selectedEpitope": "优先覆盖N端β-propeller近WD40叶片的货物信号结合沟槽，避开COPI装配核心界面。",
+    "diseaseDirection": "自身炎症性间质性肺病",
+    "domain": "COPA含N端WD40样β-propeller、solenoid/α螺旋区及C端外被蛋白α亚基保守结构域。",
+    "evidence": "COPA综合征遗传病因与COPI结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProtKB P53621功能与亚细胞定位注释",
+      "RCSB PDB 6PBG X射线晶体结构",
+      "COPA综合征与STING-I型干扰素通路文献"
+    ],
+    "referenceEntries": "UniProt P53621；RCSB PDB 6PBG；MONDO_0014629",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端β-propeller货物信号结合沟槽",
+        "直接关联COPI回收信号识别，具备机制验证价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "WD40叶片外侧可及环区",
+        "利于获得构象选择性结合体，可用于结构探针开发",
+        "备选"
+      ],
+      [
+        "Site C",
+        "COPI复合体装配接触面邻近区域",
+        "可能影响外被复合体完整性并带来广泛细胞运输毒性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "COPA为胞内外被复合体亚基，常规抗体难以到达作用位点；需采用细胞内抗体、递送偶联或结构探针模式，并严控COPI基础运输抑制风险。",
+    "structurePrepZh": "以6PBG链A为模板，保留高分辨率坐标，校验β-propeller环区缺失残基、晶体接触与表面电荷，分离非生理接触后开展表位建模。",
+    "structureRef": "RCSB PDB 6PBG，X-ray diffraction，1.72 Å",
+    "antibodies": [
+      "无已获批COPA靶向抗体",
+      "研究级抗COPA检测抗体"
+    ],
+    "interfaceFocus": "β-propeller货物信号结合沟槽",
+    "designMode": "胞内抗体/结构探针",
+    "candidates": [
+      {
+        "target": "TMEM173",
+        "rationale": "TMEM173编码STING，是COPA缺陷后异常激活的核心先天免疫信号节点；其抑制可直接降低TBK1-IRF3轴和I型干扰素输出。"
+      },
+      {
+        "target": "TBK1",
+        "rationale": "TBK1位于STING下游并磷酸化IRF3，连接COPA相关内质网应激与干扰素转录反应；适合作为同通路下游干预参照。"
+      },
+      {
+        "target": "IFNAR1",
+        "rationale": "IFNAR1介导I型干扰素受体信号转导，位于COPA综合征炎症放大的可及性膜受体层级；相比胞内COPA更适合常规阻断抗体开发。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

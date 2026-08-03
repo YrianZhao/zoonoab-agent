@@ -1,0 +1,65 @@
+{
+  "gene": "GBP1",
+  "generatedAt": "2026-08-03T12:43:30.152Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GBP1是干扰素诱导的大型GTP酶，参与细胞自主免疫、炎性小体激活及胞内病原体限制，在细菌感染和流感相关炎症表型中具有明确疾病关联。GBP1主要为胞质蛋白，缺乏经典胞外结构域或分泌特征，因此抗体抗原可及性弱于膜受体或分泌因子，适合定位于结构验证、胞内递送抗体或诊断捕获场景。其Open Targets关联覆盖感染、白细胞数量和神经退行性炎症表型，且具备1.7 Å实验晶体结构，较同通路中结构信息不足的干扰素诱导效应蛋白更利于高精度表位建模。",
+    "mechanism": "抗体设计宜阻断GBP1 GTPase结构域内核苷酸结合沟槽及开关区构象转换，干预GTP依赖性二聚化和膜靶向相关寡聚化过程。",
+    "selectedEpitope": "优先选择LG结构域GTP结合口袋邻近的Switch I/Switch II构象界面，兼顾二聚化相关暴露面。",
+    "diseaseDirection": "感染炎症与干扰素应答",
+    "domain": "GBP1含N端大型GTPase结构域及C端螺旋区，C末端CaaX基序介导异戊二烯化膜定位。",
+    "evidence": "GBP1感染免疫关联与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与表达关联",
+      "UniProt P32455功能与亚细胞定位注释",
+      "RCSB PDB 1F5N晶体结构记录",
+      "干扰素诱导GBP家族病原体限制文献"
+    ],
+    "referenceEntries": "UniProt P32455；RCSB PDB 1F5N；Open Targets GBP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "LG结构域Switch I/Switch II与GTP结合沟槽邻近面",
+        "可干预核苷酸依赖构象转换和GTPase活性耦联",
+        "优先"
+      ],
+      [
+        "Site B",
+        "LG结构域二聚化相关表面与α螺旋连接区",
+        "可影响GTP依赖性二聚化及后续寡聚化装配",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端螺旋区及CaaX基序邻近区域",
+        "可能影响膜定位，但结构柔性和翻译后修饰依赖性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GBP1为胞内抗原，常规系统给药抗体难以直接接触天然靶点；建议采用胞内递送、细胞裂解诊断捕获或结构探针策略，并避免选择高度保守核苷酸口袋导致交叉反应。",
+    "structurePrepZh": "以1F5N链A为模板，补全缺失侧链并校验GTPase结构域构象；需单独建模C端螺旋区与CaaX修饰相关构象，不宜将晶体截短结构等同全长状态。",
+    "structureRef": "Prakash等解析人GBP1大型GTPase结构，PDB 1F5N，1.7 Å",
+    "antibodies": [
+      "抗GBP1克隆1B1",
+      "抗GBP1克隆4D10"
+    ],
+    "interfaceFocus": "GTP结合沟槽、Switch区与二聚化界面",
+    "designMode": "胞内靶点结构探针",
+    "candidates": [
+      {
+        "target": "IFNG",
+        "rationale": "IFNG是诱导GBP1表达的上游核心细胞因子，驱动JAK-STAT1依赖的抗病原体转录程序，具备分泌蛋白可及性优势。"
+      },
+      {
+        "target": "IFNGR1",
+        "rationale": "IFNGR1介导IFNG信号输入并激活STAT1通路，与GBP1同属干扰素抗感染应答轴；其胞外受体结构适合阻断型抗体设计。"
+      },
+      {
+        "target": "STAT1",
+        "rationale": "STAT1是IFNG/IFN受体下游转录因子，直接促进GBP1等干扰素刺激基因表达；但其胞内定位使抗体成药可及性较受限。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

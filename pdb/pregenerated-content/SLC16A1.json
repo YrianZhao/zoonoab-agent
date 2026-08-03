@@ -1,0 +1,65 @@
+{
+  "gene": "SLC16A1",
+  "generatedAt": "2026-08-03T16:35:38.494Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SLC16A1/MCT1介导乳酸、丙酮酸和酮体等单羧酸跨膜转运，遗传缺陷可导致乳酸转运障碍性代谢性肌病、酮症酸中毒及运动诱发性高胰岛素血症。该靶点为12次跨膜转运蛋白，胞外环可在细胞表面直接暴露，具备膜受体样抗原可及性。相较于下游代谢酶或胞内调控因子，SLC16A1位于单羧酸通量入口，且具有人源冷冻电镜结构支持，优先级更适合开展结构约束型抗体设计。",
+    "mechanism": "抗体结合SLC16A1胞外环及转运腔入口，空间阻断乳酸/丙酮酸进入转运通道，并干扰MCT1构象转换所需的胞外门控运动。",
+    "selectedEpitope": "优先覆盖TM1-TM2与TM7-TM8胞外环邻近的外侧转运腔入口，避免深埋跨膜核心。",
+    "diseaseDirection": "单羧酸转运缺陷与代谢疾病",
+    "domain": "SLC16A1含12个跨膜螺旋，N端与C端位于胞内，胞外环围绕外侧底物进入口。",
+    "evidence": "SLC16A1结构与代谢病遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联证据",
+      "UniProt P53985功能与变异注释",
+      "RCSB PDB 7CKO冷冻电镜结构",
+      "OMIM与ClinVar单羧酸转运缺陷记录"
+    ],
+    "referenceEntries": "UniProt P53985；RCSB PDB 7CKO；Open Targets SLC16A1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "TM1-TM2/TM7-TM8胞外环邻近外侧转运腔入口",
+        "可直接限制乳酸、丙酮酸及酮体进入MCT1转运通路",
+        "优先"
+      ],
+      [
+        "Site B",
+        "TM5-TM6与TM11-TM12胞外侧构象耦联区域",
+        "可能稳定非转运构象并降低载体交替开放效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "跨膜螺旋束深部底物结合腔周缘",
+        "功能相关性高但抗体可及性低，需避免依赖膜内表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SLC16A1为多跨膜转运体，胞外环较短且构象依赖性强；设计应采用膜环境结构约束，优先筛选识别天然细胞表面构象的抗体。",
+    "structurePrepZh": "以7CKO抗原链A/B为模板，保留跨膜螺旋相对构象，补全缺失胞外环并在脂质膜取向下评估表位暴露度。",
+    "structureRef": "RCSB PDB 7CKO，human MCT1 cryo-EM structure",
+    "antibodies": [
+      "MEM-78",
+      "H-1"
+    ],
+    "interfaceFocus": "胞外门控环与外侧底物进入口",
+    "designMode": "膜转运体阻断型",
+    "candidates": [
+      {
+        "target": "CD147",
+        "rationale": "CD147/BSG是MCT1膜定位与稳定表达所需伴侣蛋白，干预该复合体可影响SLC16A1介导的单羧酸转运。"
+      },
+      {
+        "target": "SLC16A3",
+        "rationale": "SLC16A3/MCT4同属乳酸转运通路，主要参与高糖酵解细胞乳酸外排，可作为MCT1轴的并行代谢转运靶点。"
+      },
+      {
+        "target": "SLC16A7",
+        "rationale": "SLC16A7/MCT2为高亲和力单羧酸转运体，参与乳酸和丙酮酸跨膜转运，适合用于同通路转运补偿风险评估。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

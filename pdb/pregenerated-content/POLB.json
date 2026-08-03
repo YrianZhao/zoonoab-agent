@@ -1,0 +1,65 @@
+{
+  "gene": "POLB",
+  "generatedAt": "2026-08-03T20:36:16.520Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "POLB编码DNA聚合酶β，是碱基切除修复通路中填补单核苷酸缺口并清除5'-dRP中间体的核心酶，BER失衡可促进氧化DNA损伤累积并与神经退行性病变中的基因组维护缺陷相关。该蛋白主要定位于细胞核，缺乏经典胞外结构域或分泌特征，天然抗原可及性不支持常规细胞外阻断型抗体开发，更适合作为结构生物学验证或胞内递送抗体研究对象。相较OGG1、APE1、XRCC1等同通路节点，POLB兼具裂解酶与聚合酶催化功能，PDB 1TV9提供高分辨率人源复合物结构，因此在机制表位解析和催化界面干预优先级上具有优势。",
+    "mechanism": "抗体片段拟结合POLB 8-kDa dRP lyase结构域与DNA缺口底物邻近界面，阻断5'-dRP中间体定位及后续聚合酶结构域对单核苷酸缺口的延伸反应。",
+    "selectedEpitope": "优先锁定8-kDa dRP lyase结构域的DNA结合沟槽及N端催化Lys72邻近界面。",
+    "diseaseDirection": "神经退行性疾病与DNA修复缺陷",
+    "domain": "POLB含N端8-kDa dRP lyase结构域及C端31-kDa聚合酶结构域，后者由拇指、手掌和手指亚结构域组成。",
+    "evidence": "POLB碱基切除修复结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProtKB P06746功能与定位注释",
+      "RCSB PDB 1TV9人源POLB-DNA复合物结构",
+      "Reactome Base Excision Repair通路注释"
+    ],
+    "referenceEntries": "UniProt P06746；RCSB PDB 1TV9；Reactome BER；Open Targets POLB",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端8-kDa dRP lyase结构域DNA结合沟槽及Lys72邻近区域",
+        "直接干预5'-dRP中间体识别与裂解步骤，机制指向明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "31-kDa聚合酶结构域手掌亚结构域催化金属离子与引物末端邻近面",
+        "可影响核苷酸插入与缺口填补，但需避免广泛催化折叠扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "手指亚结构域与进入核苷酸结合区域",
+        "可能改变构象闭合过程，但与小分子底物位点重叠导致选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "POLB为核内酶，常规抗体难以到达天然作用位点；设计应限定为胞内递送Fab/VHH或研究级抑制片段，并规避高度保守催化残基引发的交叉反应。",
+    "structurePrepZh": "以1TV9实验结构为模板，保留POLB链与DNA/金属离子空间关系，补全缺失侧链并标注dRP lyase、聚合酶催化与DNA接触界面。",
+    "structureRef": "RCSB PDB 1TV9，2.0 Å X-ray human DNA polymerase beta complex",
+    "antibodies": [
+      "anti-POLB monoclonal antibody clone 18S",
+      "anti-DNA polymerase beta antibody clone 61"
+    ],
+    "interfaceFocus": "Lys72邻近dRP lyase-DNA沟槽与聚合酶手掌催化面",
+    "designMode": "胞内酶界面阻断",
+    "candidates": [
+      {
+        "target": "OGG1",
+        "rationale": "OGG1在碱基切除修复上游识别并切除8-oxoG氧化碱基，与POLB共同参与氧化DNA损伤修复轴；其疾病关联同样集中于氧化应激与神经退行性损伤。"
+      },
+      {
+        "target": "APEX1",
+        "rationale": "APEX1切割AP位点形成POLB可处理的单核苷酸缺口，是BER通路中POLB上游的关键核酸内切酶；靶向该节点可评估缺口生成与填补步骤的差异化干预价值。"
+      },
+      {
+        "target": "XRCC1",
+        "rationale": "XRCC1作为BER支架蛋白招募POLB、LIG3和PNKP等修复因子，控制单链断裂修复复合体装配；其与POLB功能耦联明确，适合作为同通路替代靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

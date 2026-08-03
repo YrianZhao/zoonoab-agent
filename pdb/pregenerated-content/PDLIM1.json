@@ -1,0 +1,65 @@
+{
+  "gene": "PDLIM1",
+  "generatedAt": "2026-08-03T15:10:38.391Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PDLIM1参与肌动蛋白细胞骨架组织，并通过PDZ结构域结合α-actinin等Z盘/应力纤维相关蛋白，影响巨核细胞成熟、血小板生成及白细胞形态相关表型。该蛋白主要为胞内支架蛋白，天然状态下缺乏经典膜外结构域，抗原可及性不符合常规外源性抗体阻断策略，更适合作为机制研究或细胞内递送抗体设计对象。相较于MPL、THPO或ITGA2B等血小板生成轴中具备明确胞外可及性的靶点，PDLIM1优先级较低，但其高分辨率PDZ结构可支持精确的结构域界面设计。",
+    "mechanism": "以内递送抗体或胞内抗体阻断PDLIM1 PDZ沟槽与α-actinin C端PDZ结合基序的相互作用，干预肌动蛋白应力纤维锚定。",
+    "selectedEpitope": "优先覆盖PDZ结构域βB-αB配体结合沟槽及GLGF样环邻近区域。",
+    "diseaseDirection": "血小板与白细胞数量性状",
+    "domain": "PDLIM1含N端PDZ结构域与C端LIM锌指结构域，2PKT解析PDZ结构域。",
+    "evidence": "PDLIM1血液细胞性状与PDZ结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt O00151蛋白功能注释",
+      "RCSB PDB 2PKT晶体结构记录",
+      "文献报道PDLIM1-α-actinin细胞骨架相互作用"
+    ],
+    "referenceEntries": "UniProt: O00151; RCSB PDB: 2PKT; Open Targets: PDLIM1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PDZ结构域βB-αB配体结合沟槽",
+        "直接阻断α-actinin等C端PDZ配体结合，机制可解释性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PDZ结构域GLGF样环及羧酸盐结合口袋邻近面",
+        "干扰配体C端羧基锚定，可作为竞争性结合备选界面",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PDZ结构域疏水核心背面非配体结合面",
+        "可能影响结构稳定性而非特异性界面阻断，功能选择性较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PDLIM1为胞内支架蛋白，常规抗体难以到达作用位点；需采用细胞内抗体、递送载体或研究级Fab/VHH，并避免破坏PDZ整体折叠。",
+    "structurePrepZh": "以2PKT链A为模板，补全缺失侧链并保留PDZ配体结合沟槽构象；需单独建模C端LIM结构域或限定设计于PDZ域。",
+    "structureRef": "RCSB PDB 2PKT, X-ray diffraction, 1.5 Å",
+    "antibodies": [
+      "无已批准PDLIM1治疗性抗体",
+      "研究级抗PDLIM1单克隆抗体"
+    ],
+    "interfaceFocus": "PDZ配体结合沟槽与GLGF样环",
+    "designMode": "胞内抗体界面阻断",
+    "candidates": [
+      {
+        "target": "MPL",
+        "rationale": "MPL为血小板生成素受体，是巨核细胞成熟与血小板生成通路的核心膜受体，胞外结构域具备直接抗体可及性。"
+      },
+      {
+        "target": "THPO",
+        "rationale": "THPO编码血小板生成素，直接激活MPL-JAK2-STAT信号轴；作为分泌性配体，适合中和抗体阻断配体-受体结合。"
+      },
+      {
+        "target": "ITGA2B",
+        "rationale": "ITGA2B与ITGB3形成血小板αIIbβ3整合素，参与血小板功能及数量相关表型；其胞外头部结构域可作为抗体识别界面。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

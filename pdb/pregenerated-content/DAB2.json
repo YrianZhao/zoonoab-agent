@@ -1,0 +1,65 @@
+{
+  "gene": "DAB2",
+  "generatedAt": "2026-08-03T18:29:08.225Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DAB2 是胞内适配蛋白，参与网格蛋白介导内吞、整合素转运及 TGF-β/BMP 相关信号复合体调节，其遗传关联主要集中于肾小球滤过率、骨密度和生长相关数量性状。该蛋白缺乏跨膜区和分泌特征，天然抗原可及性弱，不具备常规体内阻断抗体的理想胞外暴露条件。与同通路中具有胞外结构域的受体或配体相比，DAB2 更适合作为结构生物学验证、细胞内递送抗体或研究型结合分子靶点，临床转化优先级低于可直接暴露的 TGFBR2、BMPR1A 或整合素受体。",
+    "mechanism": "设计分子以内吞相关 PTB 结构域为核心，阻断 DAB2 与含 NPXY 基序受体胞质尾部及磷脂酰肌醇膜头基的结合。",
+    "selectedEpitope": "优先覆盖 PTB 结构域 NPXY 结合沟槽及邻近磷脂结合面，评估对受体尾肽识别的干预能力。",
+    "diseaseDirection": "肾功能与骨代谢数量性状",
+    "domain": "DAB2 含 N 端 PTB 结构域、中央低复杂度区及 C 端网格蛋白/AP-2 结合基序。",
+    "evidence": "DAB2 内吞适配功能与数量性状遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P98082 functional annotation",
+      "RCSB PDB 6O5O experimental structure",
+      "PubMed studies on DAB2-mediated endocytosis and TGF-β signaling"
+    ],
+    "referenceEntries": "UniProt P98082；RCSB PDB 6O5O；Ensembl ENSG00000153071",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PTB 结构域 NPXY 肽结合沟槽",
+        "直接干预 DAB2 对受体胞质尾部的识别，机制可验证性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PTB 结构域磷脂酰肌醇结合面",
+        "可能削弱膜定位和内吞复合体装配，适合细胞内递送格式评估",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端网格蛋白/AP-2 结合基序附近无序区",
+        "构象柔性高且结构解析覆盖不足，表位稳定性与成药性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DAB2 为胞内蛋白，常规抗体难以到达作用位点；建议限定为研究抗体、细胞内递送抗体或 intrabody/VHH 场景，并验证细胞摄取与定位。",
+    "structurePrepZh": "以 6O5O 晶体结构链 A-D 为模板，保留 PTB 折叠核心，补全缺失侧链并移除晶体接触伪界面后进行表面口袋评估。",
+    "structureRef": "RCSB PDB 6O5O，X-ray diffraction，1.75 Å",
+    "antibodies": [
+      "anti-DAB2 clone p96",
+      "anti-DAB2 clone 52/Dab2"
+    ],
+    "interfaceFocus": "PTB-NPXY 肽结合沟槽与膜脂结合面",
+    "designMode": "胞内靶点研究型设计",
+    "candidates": [
+      {
+        "target": "TGFBR2",
+        "rationale": "TGFBR2 是 TGF-β 信号的细胞表面受体，DAB2 可参与该受体复合体内吞与信号调节；其胞外配体结合区更适合阻断型抗体设计。"
+      },
+      {
+        "target": "BMPR1A",
+        "rationale": "BMPR1A 属于 BMP/TGF-β 受体轴，与骨量和发育性状具有明确通路关联；膜受体胞外结构域提供更高抗原可及性。"
+      },
+      {
+        "target": "ITGB1",
+        "rationale": "DAB2 参与整合素 β1 内吞和转运调控，ITGB1 作为细胞表面黏附受体处于同一内吞-黏附通路，具备直接抗体结合可及性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "ARHGEF25",
+  "generatedAt": "2026-08-03T10:34:27.597Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ARHGEF25编码Rho鸟嘌呤核苷酸交换因子，主要通过催化Rho家族小GTP酶GDP-GTP交换影响细胞骨架、血管平滑肌收缩和白细胞黏附迁移，其遗传关联集中于收缩压、舒张压及白细胞数量表型。该蛋白为胞内信号调节因子，天然抗原可及性弱，不具备典型分泌蛋白或膜受体的抗体可及性优势，因此更适合作为结构机制研究或细胞内递送抗体探索对象。相较于同通路中的GPCR、细胞黏附分子或细胞因子受体，ARHGEF25的疾病关联强度中等且结构域信息可用于界面级设计，但成药优先级低于胞外可及靶点。",
+    "mechanism": "抗体需经胞内递送后结合ARHGEF25的Dbl同源GEF催化界面，阻断其与RhoA或相关Rho GTPase的接触，从而抑制GDP释放和GTP装载。",
+    "selectedEpitope": "优先覆盖DH结构域Rho GTPase结合沟槽及α螺旋催化界面，避免仅针对远端低保守环区。",
+    "diseaseDirection": "血压调控与白细胞数量表型",
+    "domain": "ARHGEF25含Dbl同源GEF催化结构域及相邻PH样调控区域，PDB 2RGN提供GEF核心结构参考。",
+    "evidence": "ARHGEF25血压与白细胞性状结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform遗传关联与表型评分",
+      "UniProt Q86VW2蛋白功能与结构域注释",
+      "RCSB PDB 2RGN X射线晶体结构",
+      "Rho GTPase-GEF信号轴相关文献"
+    ],
+    "referenceEntries": "UniProt Q86VW2；RCSB PDB 2RGN；Open Targets ARHGEF25",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DH结构域Rho GTPase结合沟槽",
+        "直接干预ARHGEF25与Rho家族GTP酶的催化性结合，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DH-PH相邻调控界面",
+        "可能影响GEF结构取向及膜相关调控，适合构象锁定型抗体设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远端非催化表面环区",
+        "抗原性可能较好但与GEF催化机制耦合不足，需避免低功能阻断价值",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ARHGEF25为胞内蛋白，常规抗体难以到达作用位点；应优先采用细胞内递送、胞内抗体或降解偶联策略，并评估Rho GEF家族选择性。",
+    "structurePrepZh": "以2RGN六条抗原链为模板进行链选择、缺失区标注和同源界面对齐；3.5 Å分辨率限制侧链精度，需结合AlphaFold模型修补柔性区。",
+    "structureRef": "RCSB PDB 2RGN，X-ray diffraction，3.5 Å",
+    "antibodies": [
+      "暂无获批ARHGEF25靶向抗体",
+      "暂无临床阶段ARHGEF25同类抗体"
+    ],
+    "interfaceFocus": "DH结构域Rho GTPase结合沟槽",
+    "designMode": "胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "RHOA",
+        "rationale": "RHOA是Rho GEF催化轴的核心下游小GTP酶，参与血管平滑肌收缩、细胞骨架张力及白细胞迁移调控。"
+      },
+      {
+        "target": "ROCK1",
+        "rationale": "ROCK1位于RHOA下游，介导肌球蛋白轻链磷酸化和血管收缩反应，是血压调控通路中的关键效应激酶。"
+      },
+      {
+        "target": "ROCK2",
+        "rationale": "ROCK2与RHOA信号共同调节血管张力和炎症细胞行为，其通路位置与ARHGEF25介导的小GTP酶激活相衔接。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

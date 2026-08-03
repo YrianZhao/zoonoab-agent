@@ -1,0 +1,65 @@
+{
+  "gene": "RASSF1",
+  "generatedAt": "2026-08-03T15:54:56.311Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RASSF1是Hippo/MST-LATS肿瘤抑制轴与RAS效应网络中的支架蛋白，可通过RA结构域和SARAH结构域参与MST1/2复合体稳定及凋亡信号调节，其启动子甲基化和表达缺失与多种肿瘤相关。该蛋白主要定位于胞内微管和细胞质信号复合体，缺乏分泌型或跨膜胞外结构域，天然抗原可及性明显弱于膜受体和分泌因子。相较EGFR、PD-L1等胞外肿瘤靶点，RASSF1更适合作为结构生物学验证、胞内递送抗体或研究型结合分子靶点，开发优先级应低于具备直接体内可及性的同通路膜外靶点。",
+    "mechanism": "设计结合RASSF1 SARAH结构域的抗体片段，阻断其与MST1/2 SARAH结构域异源二聚化界面，从而干预Hippo凋亡复合体装配。",
+    "selectedEpitope": "优先覆盖SARAH结构域α螺旋二聚化界面，评估与MST1/2结合残基的空间重叠。",
+    "diseaseDirection": "Hippo通路相关肿瘤抑制研究",
+    "domain": "RASSF1含C1/DAG结合样区域、RA结构域及C端SARAH蛋白互作结构域。",
+    "evidence": "RASSF1-Hippo轴结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9NS23功能与亚细胞定位注释",
+      "RCSB PDB 2KZU溶液NMR结构",
+      "文献报道RASSF1A启动子甲基化与肿瘤抑制功能"
+    ],
+    "referenceEntries": "UniProt: Q9NS23；RCSB PDB: 2KZU；HGNC: RASSF1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SARAH结构域α螺旋二聚化界面",
+        "可直接竞争MST1/2 SARAH互作，机制验证价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RA结构域RAS结合沟槽邻近面",
+        "可评估对RAS效应蛋白识别网络的构象干预作用",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C1/DAG结合样区域疏水面",
+        "结构柔性和非特异疏水结合风险较高，需严格筛选",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RASSF1为胞内非分泌蛋白，体内抗体可及性不足；建议限定为Fab/VHH胞内递送、细胞内抗体或机制研究场景，并避免选择高度疏水界面。",
+    "structurePrepZh": "以2KZU的NMR模型集为基础进行构象聚类，保留代表性低能构象，补充缺失环区并标注SARAH二聚化残基用于表位约束。",
+    "structureRef": "RCSB PDB 2KZU，RASSF1结构域溶液NMR结构",
+    "antibodies": [
+      "抗RASSF1研究用单克隆抗体",
+      "抗RASSF1A研究用多克隆抗体"
+    ],
+    "interfaceFocus": "SARAH-MST1/2异源二聚化界面",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "STK4",
+        "rationale": "STK4/MST1是Hippo激酶核心组分，通过SARAH结构域与RASSF1形成复合体，直接处于同一凋亡与生长抑制通路。"
+      },
+      {
+        "target": "STK3",
+        "rationale": "STK3/MST2与RASSF1存在结构域介导的互作关系，是RASSF1调控Hippo信号输出的重要同通路激酶。"
+      },
+      {
+        "target": "SAV1",
+        "rationale": "SAV1通过SARAH结构域参与MST1/2复合体稳定，与RASSF1共享Hippo核心蛋白互作网络，适合作为机制对照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

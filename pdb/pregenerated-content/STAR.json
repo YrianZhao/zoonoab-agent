@@ -1,0 +1,65 @@
+{
+  "gene": "STAR",
+  "generatedAt": "2026-08-03T16:58:36.577Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "STAR是线粒体胆固醇转运与甾体生成启动环节的核心蛋白，致病性缺陷可导致胆固醇不能有效进入线粒体内膜侧CYP11A1反应区，从而引发先天性脂质性肾上腺增生。该蛋白含可解析的START样脂质结合结构域，但主要定位于线粒体相关区室，并非经典分泌蛋白或细胞表面受体，天然抗原可及性弱于膜受体靶点。其优先级来自明确的单基因疾病因果性、PDB实验结构可用性及胆固醇结合腔可结构化建模，相比上游调控因子更适合开展机制验证型结合分子设计。",
+    "mechanism": "设计分子可结合STAR START结构域胆固醇结合腔入口或移动环区，阻断胆固醇与STAR疏水口袋装载及线粒体膜转运耦联。",
+    "selectedEpitope": "优先覆盖START结构域胆固醇结合腔入口及C端α螺旋门控区域。",
+    "diseaseDirection": "先天性肾上腺甾体生成缺陷",
+    "domain": "STAR含N端线粒体靶向序列及C端START样脂质结合结构域，形成疏水胆固醇结合口袋。",
+    "evidence": "STAR结构与先天性脂质性肾上腺增生证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P49675功能与变异注释",
+      "RCSB PDB 6T5H晶体结构",
+      "OMIM先天性脂质性肾上腺增生条目"
+    ],
+    "referenceEntries": "UniProt P49675；RCSB PDB 6T5H；Open Targets STAR",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "START结构域胆固醇结合腔入口与C端α螺旋门控面",
+        "直接影响胆固醇装载与释放构象，适合机制阻断型设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "START结构域β折叠外侧可及面",
+        "保留结构稳定性并提供结合表面积，适合构象识别型结合分子",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端线粒体靶向序列及柔性连接区",
+        "结构无序且加工状态复杂，表位一致性与可及性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "STAR为线粒体相关胞内蛋白，常规抗体难以进入作用区室；设计应定位为结构探针或胞内递送格式，并避免破坏全局折叠导致非特异失活。",
+    "structurePrepZh": "以6T5H链A/B为模板，保留START结构域核心，校验缺失环、质子化状态及疏水腔体构象，去除非生理晶体接触后进行表位聚类。",
+    "structureRef": "RCSB PDB 6T5H，X-ray diffraction，2.04 Å",
+    "antibodies": [
+      "抗STAR研究级多克隆抗体",
+      "抗STAR研究级单克隆抗体"
+    ],
+    "interfaceFocus": "胆固醇结合腔入口、C端α螺旋门控面",
+    "designMode": "胞内结构探针型",
+    "candidates": [
+      {
+        "target": "CYP11A1",
+        "rationale": "CYP11A1在线粒体内膜催化胆固醇侧链裂解生成孕烯醇酮，是STAR转运胆固醇后的直接甾体生成酶节点。"
+      },
+      {
+        "target": "TSPO",
+        "rationale": "TSPO位于线粒体外膜并参与胆固醇转运复合体相关过程，与STAR处于甾体生成胆固醇递送网络。"
+      },
+      {
+        "target": "POR",
+        "rationale": "POR为多种微粒体甾体生成酶提供电子传递支持，属于甾体生物合成通路中的关键辅助因子。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "SLC36A1",
+  "generatedAt": "2026-08-03T16:38:57.015Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SLC36A1为质子耦联小分子转运体，参与溶酶体及内体相关氨基酸转运，并与神经退行性变及血液学表型存在稳定关联，提示其在代谢稳态失衡中的疾病相关性。该蛋白具有膜蛋白抗原可及性，且已获得实验结构支持，适合开展胞外构象依赖型抗体设计。相较同通路内更难成药的细胞内代谢节点，SLC36A1兼具膜表位暴露和功能阻断可行性，优先级较高。",
+    "mechanism": "抗体结合SLC36A1胞外环，阻断底物进入通道及其构象转换，抑制质子耦联氨基酸转运。",
+    "selectedEpitope": "优先靶向跨膜螺旋间胞外环及通道入口附近构象敏感表位，避免保守转运核心。",
+    "diseaseDirection": "神经退行性疾病相关转运调控",
+    "domain": "预测为12跨膜转运体，重点关注胞外环及外向开放构象入口区",
+    "evidence": "SLC36A1结构与疾病关联证据包",
+    "evidenceSources": [
+      "UniProt Q7Z2H8",
+      "RCSB PDB 9V3V",
+      "Open Targets Platform",
+      "AlphaFold/膜蛋白结构注释数据库"
+    ],
+    "referenceEntries": "UniProt: Q7Z2H8; PDB: 9V3V; Homo sapiens SLC36A1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "胞外环1-2邻近通道入口",
+        "兼顾表位暴露与功能阻断，适合先导抗体筛选",
+        "优先"
+      ],
+      [
+        "Site B",
+        "胞外环7-8构象敏感区",
+        "可能干扰外向开放转换，利于获得机制型抑制抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守跨膜核心近邻表位",
+        "存在影响折叠与非特异膜效应风险，不宜优先推进",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险在于跨膜转运体胞外环面积有限且构象依赖强，抗体亲和力与功能抑制常受限。应优先采用构象分群筛选，并结合膜蛋白稳态化构建减少误识别。",
+    "structurePrepZh": "建议基于9V3V进行膜平面定向与胞外侧暴露重建，补全缺失环区并保留外向开放相关构象。表位映射前应进行糖基化位点与柔性环段注释。",
+    "structureRef": "RCSB PDB 9V3V; cryo-EM membrane transporter structure",
+    "antibodies": [
+      "SLC家族转运体阻断性单抗原型",
+      "膜蛋白胞外环构象抗体原型"
+    ],
+    "interfaceFocus": "胞外环与底物入口界面",
+    "designMode": "结构导向阻断",
+    "candidates": [
+      {
+        "target": "SLC38A2",
+        "rationale": "同属氨基酸转运相关通路，参与谷氨酰胺摄取与代谢重编程，在神经与肿瘤代谢背景中具有明确功能联系。其膜蛋白属性使其适合作为并行功能验证靶点。"
+      },
+      {
+        "target": "SLC7A5",
+        "rationale": "LAT1介导大中性氨基酸转运，与mTOR营养感知和神经代谢稳态密切相关。作为同类膜转运节点，可用于评估SLC36A1相关氨基酸转运轴的通路依赖性。"
+      },
+      {
+        "target": "MTOR",
+        "rationale": "mTOR位于氨基酸感知下游，是SLC36A1相关营养输入对细胞生长与神经稳态影响的关键整合节点。该靶点适合作为通路级功能读出而非直接替代靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

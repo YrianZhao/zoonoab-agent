@@ -1,0 +1,65 @@
+{
+  "gene": "CYP2R1",
+  "generatedAt": "2026-08-03T18:28:36.205Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CYP2R1是肝脏25-羟化维生素D生成通路的关键酶，催化维生素D3转化为25-羟基维生素D3，其功能缺陷可导致低钙性维生素D依赖性佝偻病、维生素D缺乏及相关钙磷代谢异常。该蛋白为内质网膜相关细胞色素P450酶，主要催化结构域位于胞质侧，作为抗体药物靶点的体内可及性弱于分泌因子或细胞表面受体，但重组酶结构适合体外构象识别抗体和功能阻断工具抗体开发。相较于CYP27A1、CYP27B1等同通路酶，CYP2R1位于维生素D活化上游限速节点，且遗传证据与25-羟基维生素D水平关联更直接，因此更适合作为机制验证型抗体设计优先靶点。",
+    "mechanism": "设计抗体结合CYP2R1底物进入通道或血红素邻近催化腔外缘，阻断维生素D3进入活性位点并降低25-羟化反应效率。",
+    "selectedEpitope": "优先选择血红素结合核心附近的底物识别区SRS1/SRS4及F-G环入口界面。",
+    "diseaseDirection": "维生素D代谢缺陷与钙磷稳态异常",
+    "domain": "CYP2R1含N端膜锚定区和胞质侧P450催化结构域，核心保守血红素结合Cys位点形成氧化反应中心。",
+    "evidence": "CYP2R1维生素D25-羟化与佝偻病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q6VVX0功能与亚细胞定位注释",
+      "RCSB PDB 3CZH晶体结构数据",
+      "人类CYP2R1遗传变异与25-羟基维生素D水平研究"
+    ],
+    "referenceEntries": "UniProt Q6VVX0；RCSB PDB 3CZH；Open Targets CYP2R1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SRS1/SRS4与F-G环构成的底物入口通道",
+        "直接干预维生素D3进入催化腔，适合功能阻断抗体筛选",
+        "优先"
+      ],
+      [
+        "Site B",
+        "血红素结合核心外侧的构象稳定表面",
+        "可获得构象选择性结合，用于酶构象锁定与结构探针开发",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端膜锚定邻近区域",
+        "天然构象依赖膜环境且可及性有限，重组抗原设计需谨慎",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CYP2R1为胞内膜相关酶，体内抗体可及性不足；建议定位为体外功能阻断、结构探针或细胞内递送抗体方向，避免直接按常规膜外靶点开发。",
+    "structurePrepZh": "以3CZH晶体结构链A为主模板，保留血红素辅基并检查底物通道构象；去除冗余链后进行质子化、缺失侧链修复和表面暴露性评估。",
+    "structureRef": "Strushkevich et al., CYP2R1晶体结构，PDB 3CZH，2.3 Å",
+    "antibodies": [
+      "商业研究级anti-CYP2R1多克隆抗体",
+      "商业研究级anti-CYP2R1单克隆抗体"
+    ],
+    "interfaceFocus": "底物入口通道、SRS环区与血红素邻近催化腔外缘",
+    "designMode": "酶功能阻断型",
+    "candidates": [
+      {
+        "target": "CYP27B1",
+        "rationale": "CYP27B1催化25-羟基维生素D转化为活性1,25-二羟基维生素D，位于同一维生素D活化通路下游，适合与CYP2R1联合解析活化轴调控。"
+      },
+      {
+        "target": "VDR",
+        "rationale": "VDR是1,25-二羟基维生素D的核受体，介导钙磷吸收和骨代谢相关转录响应，是同一通路的效应端节点。"
+      },
+      {
+        "target": "CYP24A1",
+        "rationale": "CYP24A1负责25-羟基维生素D和1,25-二羟基维生素D的分解代谢，可作为维生素D稳态负向调节节点进行对照设计。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

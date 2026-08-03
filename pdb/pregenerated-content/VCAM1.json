@@ -1,0 +1,65 @@
+{
+  "gene": "VCAM1",
+  "generatedAt": "2026-08-03T17:47:31.520Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "VCAM1 是炎症激活内皮细胞上的关键黏附分子，通过与白细胞整合素 α4β1/VLA-4 结合，介导淋巴细胞和单核细胞黏附、滚动后稳定停留及跨内皮迁移，符合血细胞组成异常、慢性炎症和神经炎症疾病中的通路关联。VCAM1 为 I 型跨膜糖蛋白，主要功能区位于胞外免疫球蛋白样结构域，抗原可及性优于胞内信号蛋白，适合抗体阻断设计。相较 ICAM1 等广泛白细胞黏附分子，VCAM1 的 α4 整合素轴在炎症组织归巢中更具选择性，并已有临床整合素阻断证据支持该轴的可药性，因此优先级较高。",
+    "mechanism": "阻断 VCAM1 胞外 Ig-like domain 1 与整合素 α4β1 的结合界面，抑制白细胞在活化内皮上的稳定黏附和跨内皮迁移。",
+    "selectedEpitope": "优先覆盖 N 端 Ig-like domain 1 的整合素结合面，兼顾 domain 1/2 邻近构象支撑区。",
+    "diseaseDirection": "炎症黏附与神经炎症疾病",
+    "domain": "VCAM1 含多个胞外 C2 型 Ig-like 结构域、单跨膜区和短胞质尾，1VCA 覆盖 N 端 D1-D2 片段。",
+    "evidence": "VCAM1-整合素黏附轴抗体设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt P19320 蛋白功能与结构域注释",
+      "RCSB PDB 1VCA X 射线晶体结构",
+      "文献报道 VCAM1 与 α4β1/VLA-4 介导白细胞黏附"
+    ],
+    "referenceEntries": "UniProt P19320；RCSB PDB 1VCA；Open Targets VCAM1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N 端 Ig-like domain 1 整合素 α4β1 结合面",
+        "直接阻断 VCAM1-VLA-4 相互作用，具备明确功能抑制价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Ig-like domain 1/2 交界及 D2 支撑表面",
+        "可稳定干扰配体结合构象，并提高 Fab 结合面积与亲和力",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远端 Ig-like 重复结构域外露面",
+        "抗原可及但与核心整合素结合位点距离较远，功能阻断不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "D1 结合面邻近功能热点，需避免仅识别非阻断性侧面表位；同时评估与 ICAM 家族 Ig 样折叠的交叉反应风险。",
+    "structurePrepZh": "以 1VCA 的 A/B 链 D1-D2 晶体结构为模板，补全缺失侧链、校正糖基化邻近位点，并保留功能界面构象用于表位建模。",
+    "structureRef": "Jones et al., VCAM-1 N-terminal domains, PDB 1VCA",
+    "antibodies": [
+      "Natalizumab",
+      "Vedolizumab"
+    ],
+    "interfaceFocus": "D1 前端整合素 α4β1 结合界面",
+    "designMode": "阻断型Fab/VHH设计",
+    "candidates": [
+      {
+        "target": "ITGA4",
+        "rationale": "ITGA4 编码 α4 整合素亚基，是 VCAM1 的直接受体组成部分；阻断 α4β1 可抑制同一白细胞黏附和组织归巢轴。"
+      },
+      {
+        "target": "ITGB1",
+        "rationale": "ITGB1 与 ITGA4 形成 α4β1/VLA-4 复合体，参与 VCAM1 依赖的白细胞内皮黏附；其界面调节可影响同一迁移通路。"
+      },
+      {
+        "target": "ICAM1",
+        "rationale": "ICAM1 是炎症内皮上的平行黏附分子，通过 LFA-1/Mac-1 促进白细胞黏附和跨内皮迁移，可作为同类炎症黏附通路候选靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

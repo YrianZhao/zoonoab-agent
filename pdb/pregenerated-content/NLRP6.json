@@ -1,0 +1,65 @@
+{
+  "gene": "NLRP6",
+  "generatedAt": "2026-08-03T14:44:03.730Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NLRP6 是胞内先天免疫受体，参与炎症小体装配并促进 CASP1 介导的 IL1B、IL18 成熟，疾病关联集中于肝纤维化、代谢表型及血液学指标。该靶点缺乏天然胞外结构域，完整抗体难以直接进入胞质，抗原可及性低于膜受体或分泌因子。其优先级主要来自已解析 PYD 结构与炎症小体通路可解释性，但作为抗体主靶点应优先定位为胞内结合体、递送抗体或机制研究抗体，而非常规阻断型治疗抗体。",
+    "mechanism": "设计结合 NLRP6 PYD 聚合界面的胞内抗体，阻断 NLRP6-PYD 与 ASC/PYCARD-PYD 的同型相互作用，抑制 ASC 斑点形成及 CASP1 激活。",
+    "selectedEpitope": "优先靶向 PYD 螺旋束介导的 PYD-PYD 聚合界面，覆盖 ASC 招募相关电荷互补表面。",
+    "diseaseDirection": "炎症小体相关肝纤维化与代谢炎症",
+    "domain": "NLRP6 含 N 端 PYD、中心 NACHT ATPase 结构域及 C 端 LRR；6NDJ 对应人源 PYD 晶体结构。",
+    "evidence": "NLRP6 炎症小体结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传与表型关联",
+      "UniProtKB P59044 蛋白功能与结构域注释",
+      "RCSB PDB 6NDJ 人源 NLRP6 PYD 晶体结构",
+      "炎症小体通路中 NLRP6-ASC-CASP1 功能研究文献"
+    ],
+    "referenceEntries": "UniProt P59044；RCSB PDB 6NDJ；Open Targets NLRP6",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PYD 螺旋束聚合界面",
+        "直接干预 NLRP6 与 ASC/PYCARD 的 PYD-PYD 装配，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PYD 外侧带电表面",
+        "可调节 PYD 超分子聚集并降低 ASC 斑点形成效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PYD 保守疏水核心邻近区域",
+        "可能影响折叠稳定性而非特异性界面阻断，存在构象扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NLRP6 为胞内抗原，常规抗体成药可及性受限；应采用胞内表达抗体、细胞穿透递送或降解偶联策略，并严控 PYD 家族交叉反应。",
+    "structurePrepZh": "以 6NDJ 链 A/B 的 PYD 晶体结构为模板，去除晶体接触干扰分子，保留界面残基构象并评估同型 PYD 聚合表面。",
+    "structureRef": "RCSB PDB 6NDJ，X-ray diffraction，2.27 Å",
+    "antibodies": [
+      "抗 NLRP6 研究级单克隆抗体",
+      "PYD 结构域特异性胞内抗体候选"
+    ],
+    "interfaceFocus": "NLRP6-PYD 与 ASC/PYCARD-PYD 结合界面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "PYCARD",
+        "rationale": "PYCARD/ASC 是 NLRP6 炎症小体的适配蛋白，其 PYD 接收 NLRP6 信号并通过 CARD 招募 CASP1，处于同一装配轴核心位置。"
+      },
+      {
+        "target": "CASP1",
+        "rationale": "CASP1 是 NLRP6-ASC 炎症小体下游效应蛋白，介导 IL1B 和 IL18 前体剪切成熟，可作为抑制炎症输出的通路候选靶点。"
+      },
+      {
+        "target": "IL18",
+        "rationale": "IL18 是 CASP1 激活后的成熟炎症因子之一，位于 NLRP6 炎症小体效应端，分泌蛋白属性使其更适合常规中和抗体设计。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

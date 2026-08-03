@@ -1,0 +1,65 @@
+{
+  "gene": "ERBIN",
+  "generatedAt": "2026-08-03T12:21:24.881Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ERBIN为胞内支架蛋白，含亮氨酸重复区与C端PDZ结构域，可通过PDZ结构域结合ERBB2/HER2 C端尾部并影响HER2受体定位、稳定性及下游信号组织。其主要结构域位于胞质侧，天然抗原可及性不具备膜外靶点优势，因此更适合作为机制研究、胞内递送抗体或降解平台靶点。相较ERBB2、EGFR等同通路膜受体，ERBIN抗体药物化优先级较低；但PDB 2H3L提供高分辨率PDZ结构，可支持界面级分子设计与机制验证。",
+    "mechanism": "设计分子应阻断ERBIN PDZ结构域与ERBB2/HER2 C端尾肽的结合，从而干扰HER2复合物的胞内定位与信号支架组装。",
+    "selectedEpitope": "优先覆盖PDZ结构域肽结合沟槽及αB/βB界面，模拟HER2 C端尾肽竞争位点。",
+    "diseaseDirection": "HER2相关肿瘤信号研究",
+    "domain": "ERBIN含N端亮氨酸重复区、多个中间支架区及C端PDZ结构域；2H3L解析PDZ结构域。",
+    "evidence": "ERBIN-HER2支架互作与肿瘤关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q96RT1功能与结构域注释",
+      "RCSB PDB 2H3L晶体结构记录",
+      "文献报道的ERBIN PDZ-HER2 C端互作证据"
+    ],
+    "referenceEntries": "UniProt: Q96RT1；RCSB PDB: 2H3L；Open Targets: ERBIN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PDZ肽结合沟槽与αB/βB界面",
+        "直接竞争HER2 C端PDZ结合基序，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PDZ结构域βB-βC环邻近区域",
+        "可通过空间位阻影响配体肽进入结合槽",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PDZ结构域远端保守折叠核心",
+        "可能影响结构稳定性但特异性与功能阻断风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ERBIN为胞内蛋白，常规抗体难以到达作用位点；应限定为胞内抗体、递送抗体或PROTAC/降解偶联研究，并避免破坏PDZ整体折叠。",
+    "structurePrepZh": "以2H3L链A/B为模板进行PDZ结构域质控，补充氢原子、检查晶体接触与配体缺失，并映射HER2 C端肽结合沟槽。",
+    "structureRef": "RCSB PDB 2H3L，ERBIN PDZ结构域，X-ray 1.0 Å",
+    "antibodies": [
+      "无已获批ERBIN治疗性抗体",
+      "研究级anti-ERBIN抗体"
+    ],
+    "interfaceFocus": "PDZ沟槽内HER2 C端尾肽结合位点",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "ERBB2",
+        "rationale": "ERBB2/HER2是ERBIN PDZ结构域的直接互作受体，也是HER2阳性肿瘤中的核心膜受体靶点，抗原可及性与临床可转化性显著更高。"
+      },
+      {
+        "target": "EGFR",
+        "rationale": "EGFR与ERBB2同属ERBB受体酪氨酸激酶网络，可通过异源二聚体共同驱动MAPK与PI3K-AKT信号，具备成熟的抗体阻断先例。"
+      },
+      {
+        "target": "ERBB3",
+        "rationale": "ERBB3常与ERBB2形成高效信号复合物并激活PI3K-AKT轴，在HER2相关肿瘤耐药与旁路激活中具有明确通路关联。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

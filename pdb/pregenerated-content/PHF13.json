@@ -1,0 +1,65 @@
+{
+  "gene": "PHF13",
+  "generatedAt": "2026-08-03T15:15:05.450Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PHF13是一种核内PHD finger染色质读取蛋白，可识别组蛋白H3赖氨酸4甲基化标记并参与转录调控；其遗传学关联主要集中于神经退行性疾病及代谢表型，但尚缺乏明确的胞外配体-受体疾病轴。该蛋白定位于细胞核，天然抗原可及性不符合常规治疗性抗体的胞外结合要求，抗体设计更适合作为结构验证、胞内递送或研究级阻断工具。相较于同通路中具有胞外结构域的受体靶点，PHF13优先级受限，但其高分辨率PHD finger结构为解析组蛋白识别界面和构建功能干预分子提供了明确基础。",
+    "mechanism": "设计分子应阻断PHF13 PHD finger与H3K4me3组蛋白尾部的结合，干扰其甲基化组蛋白读取功能及下游染色质转录调控。",
+    "selectedEpitope": "优先覆盖PHD finger芳香笼及H3K4me3结合沟槽周边残基，避免破坏锌配位核心。",
+    "diseaseDirection": "神经退行性疾病与代谢表型",
+    "domain": "PHF13含C端PHD finger锌结合结构域，可介导甲基化组蛋白H3尾部识别。",
+    "evidence": "PHF13染色质读取与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q86YI8功能与亚细胞定位注释",
+      "RCSB PDB 3O7A高分辨率晶体结构",
+      "组蛋白H3K4甲基化-PHD finger识别文献"
+    ],
+    "referenceEntries": "UniProt Q86YI8；RCSB PDB 3O7A；Open Targets PHF13",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PHD finger组蛋白H3K4me3结合沟槽",
+        "直接竞争甲基化组蛋白尾部结合，最契合功能阻断策略",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PHD finger表面相邻非锌配位环区",
+        "可形成变构干预并降低锌指折叠破坏风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Cys/His锌配位核心周边",
+        "可能引起结构塌陷和非特异性构象扰动，需限制作为主要表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PHF13为核内蛋白，常规抗体难以到达作用位点；PHD锌指核心保守且依赖金属配位，应优先设计结合沟槽边缘而非破坏折叠核心。",
+    "structurePrepZh": "以3O7A链A/B为模板进行PHD finger结构比对，保留锌离子与配位残基，补全缺失侧链并标注H3K4me3结合沟槽。",
+    "structureRef": "RCSB PDB 3O7A，X-ray diffraction，1.67 Å",
+    "antibodies": [
+      "研究级anti-PHF13抗体",
+      "细胞内递送型抗PHF13结合分子"
+    ],
+    "interfaceFocus": "PHD finger芳香笼与H3K4me3结合沟槽",
+    "designMode": "胞内表位阻断",
+    "candidates": [
+      {
+        "target": "PHF8",
+        "rationale": "PHF8含PHD finger并读取H3K4me3，同时通过JmjC结构域参与组蛋白去甲基化，属于染色质表观遗传调控网络中的真实相关靶点。"
+      },
+      {
+        "target": "KDM5A",
+        "rationale": "KDM5A去甲基化H3K4me3/2，直接调节PHF13所识别的组蛋白甲基化标记水平，处于同一H3K4甲基化稳态通路。"
+      },
+      {
+        "target": "WDR5",
+        "rationale": "WDR5是MLL/SET1 H3K4甲基转移酶复合体核心组分，可促进H3K4甲基化建立，与PHF13介导的甲基化标记读取构成同一染色质调控轴。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

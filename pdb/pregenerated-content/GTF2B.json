@@ -1,0 +1,65 @@
+{
+  "gene": "GTF2B",
+  "generatedAt": "2026-08-03T19:21:21.792Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GTF2B 是 RNA polymerase II 起始复合体的核心通用转录因子，通过结合 TBP-DNA 复合体并招募 POLR2A，参与 HIV LTR 启动子转录起始与病毒基因表达。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌特征，常规体内抗体可及性受限，更适合体外结构探针、细胞内抗体或递送型抗体格式评估。相比同通路中广泛必需且结构更庞杂的 RNA polymerase II 亚基，GTF2B 具有清晰的 TBP/DNA/POLR2A 接触界面和高分辨率实验复合物结构，可作为机制验证型优先靶点，但不宜作为常规膜外阻断抗体首选。",
+    "mechanism": "抗体结合 GTF2B C 端重复结构域或 N 端 B-reader 区域，阻断其稳定 TBP-DNA 复合体及定位 RNA polymerase II 起始位点。",
+    "selectedEpitope": "优先覆盖 C 端 cyclin-like repeat 与 TBP-DNA 接触面，避免深度 DNA 结合沟槽。",
+    "diseaseDirection": "HIV 转录起始与宿主通用转录调控",
+    "domain": "含 N 端 zinc ribbon/B-reader 区域及 C 端双 cyclin-like repeat 核心结构域。",
+    "evidence": "GTF2B-RNA polymerase II 起始复合体结构与 HIV 关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q00403 功能与亚细胞定位注释",
+      "RCSB PDB 1C9B X 射线晶体结构",
+      "RNA polymerase II pre-initiation complex 文献证据"
+    ],
+    "referenceEntries": "UniProt Q00403；RCSB PDB 1C9B；Open Targets GTF2B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C 端 cyclin-like repeat 的 TBP-DNA 复合体邻近界面",
+        "可干预 GTF2B 对启动子复合体的稳定作用，机制可解释性较强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N 端 B-reader/B-linker 与 Pol II 活性中心邻近区域",
+        "可能影响起始位点选择及 Pol II 定位，但构象依赖性较高",
+        "备选"
+      ],
+      [
+        "Site C",
+        "zinc ribbon 与 TFIIF/Pol II 接触相关区域",
+        "涉及通用转录装配，广谱转录毒性与细胞内可及性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GTF2B 为核内必需转录因子，体内抗体进入细胞核效率低，且阻断界面可能导致广泛转录抑制；建议限定为细胞内抗体、结构探针或递送体系研究。",
+    "structurePrepZh": "以 1C9B 实验结构为模板，保留 TBP-DNA-GTF2B 复合体参照关系，补全缺失环区并标注 DNA/TBP 接触残基后进行表位可及性评估。",
+    "structureRef": "RCSB PDB 1C9B，X-ray diffraction，2.65 Å",
+    "antibodies": [
+      "anti-GTF2B clone IIB-8",
+      "anti-GTF2B polyclonal antibody"
+    ],
+    "interfaceFocus": "TBP-DNA 邻近面与 B-reader 起始定位界面",
+    "designMode": "细胞内阻断型",
+    "candidates": [
+      {
+        "target": "TBP",
+        "rationale": "TBP 与 TATA box DNA 结合并招募 GTF2B，是 Pol II 启动子预起始复合体的上游核心节点。干预 TBP-GTF2B 接触可直接影响转录起始复合体装配。"
+      },
+      {
+        "target": "POLR2A",
+        "rationale": "POLR2A 是 RNA polymerase II 最大亚基，接受 GTF2B 介导的起始位点定位并执行 mRNA 合成。其与 GTF2B B-reader 区域的空间邻近关系支持同通路机制研究。"
+      },
+      {
+        "target": "GTF2F1",
+        "rationale": "GTF2F1 编码 TFIIF 大亚基，参与 Pol II 招募及预起始复合体稳定。其功能与 GTF2B 协同，均位于 RNA polymerase II 转录起始通路。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

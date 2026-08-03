@@ -1,0 +1,65 @@
+{
+  "gene": "MAP2K6",
+  "generatedAt": "2026-08-03T14:02:04.870Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAP2K6 是 p38 MAPK 级联中的双特异性激酶，接受 MAP3K 信号后磷酸化 MAPK14/MAPK11 等 p38 激酶，参与神经炎症、细胞应激与退行性神经病变相关转录反应。该蛋白主要定位于胞质，缺乏天然胞外结构域或分泌特征，抗体作为直接阻断剂的抗原可及性弱于膜受体或可溶性细胞因子。其优先级主要来自高分辨率激酶结构与通路节点明确性，但相较上游炎症细胞因子或膜受体，需优先考虑细胞内递送抗体、VHH 或研究级构象探针策略。",
+    "mechanism": "通过结合 MAP2K6 激酶结构域的 ATP 结合裂隙或活化环邻近面，阻碍 ATP 装载及 MAPK14 底物定位，从而抑制 Thr-Gly-Tyr 基序磷酸化。",
+    "selectedEpitope": "优先锁定激酶 N/C 叶之间 ATP 口袋外缘及活化环邻近构象表位。",
+    "diseaseDirection": "神经退行性疾病与应激炎症通路",
+    "domain": "MAP2K6 含 N 端调控区与 Ser/Thr-Tyr 双特异性蛋白激酶催化结构域。",
+    "evidence": "MAP2K6-p38 应激激酶轴结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt P52564 功能与亚细胞定位注释",
+      "RCSB PDB 2Y8O 晶体结构记录",
+      "Reactome MAPK family signaling cascades"
+    ],
+    "referenceEntries": "UniProt P52564；RCSB PDB 2Y8O；Ensembl ENSG00000108984",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ATP 结合裂隙外缘与铰链区邻近表面",
+        "可干扰核苷酸进入并稳定非活性构象，适合构象选择型抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "活化环及 Ser207/Thr211 磷酸化位点邻近区域",
+        "可阻断上游 MAP3K 磷酸化或限制活化环重排",
+        "备选"
+      ],
+      [
+        "Site C",
+        "MAPK14 底物识别相关 C 叶表面",
+        "可能影响底物对接，但需避免与保守激酶表面产生交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAP2K6 为胞内激酶，常规抗体难以到达天然作用位点；激酶催化核心高度保守，应强化 MAP2K6 特异性环区和构象依赖筛选。",
+    "structurePrepZh": "以 2Y8O 的 A/B 链激酶结构域为模板，补全缺失环区并保留活化环构象注释，去除结晶配体后评估 ATP 口袋可及面。",
+    "structureRef": "RCSB PDB 2Y8O，X-ray diffraction，1.95 Å",
+    "antibodies": [
+      "无已批准 MAP2K6 靶向治疗抗体",
+      "研究级抗-MAP2K6 单克隆抗体"
+    ],
+    "interfaceFocus": "ATP 裂隙、活化环与 MAPK14 底物对接面",
+    "designMode": "胞内构象阻断",
+    "candidates": [
+      {
+        "target": "MAPK14",
+        "rationale": "MAPK14 编码 p38α，是 MAP2K6 的直接下游底物，介导炎症因子产生、应激转录反应与神经炎症放大。其疾病证据和药理学验证程度高于 MAP2K6。"
+      },
+      {
+        "target": "MAP3K5",
+        "rationale": "MAP3K5/ASK1 位于 MAP2K6 上游，可在氧化应激与炎症刺激下激活 MKK3/6-p38 轴。阻断该节点可同时降低下游 p38 通路输入。"
+      },
+      {
+        "target": "TAB1",
+        "rationale": "TAB1 参与 TAK1 复合体装配并连接炎症刺激至 MAPK 级联，处于 MAP2K6 相关应激通路上游。其蛋白互作界面适合用于通路调控型候选靶点评估。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

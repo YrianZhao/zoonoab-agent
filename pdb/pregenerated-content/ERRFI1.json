@@ -1,0 +1,65 @@
+{
+  "gene": "ERRFI1",
+  "generatedAt": "2026-08-03T12:22:35.546Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ERRFI1/MIG6 是 EGFR/ERBB 受体酪氨酸激酶通路的胞内负反馈抑制因子，可通过其 EGFR-binding region 抑制 EGFR 激酶二聚化与催化活化，因而与生长、骨颌发育及体组成相关表型具有通路层面的可解释性。该蛋白并非分泌蛋白或膜外受体，天然抗原可及性弱，抗体药物化优先级低于 EGFR、ERBB2 等胞外结构域可及靶点。其优势在于 4ZJV 提供了 ERRFI1 片段与 EGFR 激酶域复合物结构，可支持机制验证抗体或胞内递送抗体的结构约束设计。",
+    "mechanism": "抗体设计以阻断 ERRFI1 segment 1/2 与 EGFR 激酶 C-lobe 及不对称二聚化相关界面的结合为目标，解除其对 EGFR 催化活化的抑制。",
+    "selectedEpitope": "优先覆盖 ERRFI1 EGFR-binding region 中 segment 1/2 的 EGFR 激酶结合面。",
+    "diseaseDirection": "EGFR/ERBB 生长发育相关表型",
+    "domain": "ERRFI1 含 CRIB-like 区域、14-3-3 结合位点及 C 端 EGFR-binding region。",
+    "evidence": "ERRFI1-EGFR 负反馈抑制结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联",
+      "UniProt Q9UJM3 功能注释",
+      "RCSB PDB 4ZJV 晶体结构",
+      "EGFR/ERBB 受体酪氨酸激酶通路文献"
+    ],
+    "referenceEntries": "UniProt Q9UJM3；RCSB PDB 4ZJV；Open Targets ERRFI1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C 端 EGFR-binding region 的 segment 1/2 结合面",
+        "直接干预 ERRFI1 与 EGFR 激酶域结合，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "14-3-3 结合位点邻近调控区域",
+        "可能影响 ERRFI1 稳定性或定位调控，但与 EGFR 抑制界面间接相关",
+        "备选"
+      ],
+      [
+        "Site C",
+        "CRIB-like 区域及无序 N 端片段",
+        "构象柔性高且与 EGFR 直接抑制界面关联较弱，成药解释需谨慎",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ERRFI1 为胞内蛋白，常规抗体难以进入胞质；建议定位为机制探针、细胞内抗体或递送平台项目，并避免选择高度无序片段作为主表位。",
+    "structurePrepZh": "以 4ZJV 中 ERRFI1 与 EGFR 激酶域复合物为模板，保留抗原链 A-D 的界面片段，补全缺失残基并标注晶体接触与真实结合界面。",
+    "structureRef": "RCSB PDB 4ZJV，2.7 Å X-ray ERRFI1-EGFR complex",
+    "antibodies": [
+      "抗-EGFR cetuximab",
+      "抗-ERBB2 trastuzumab"
+    ],
+    "interfaceFocus": "ERRFI1 segment 1/2-EGFR 激酶 C-lobe 界面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "EGFR",
+        "rationale": "EGFR 是 ERRFI1 直接抑制的 ERBB 受体酪氨酸激酶，具有胞外配体结合结构域和成熟抗体成药先例，抗原可及性明显优于 ERRFI1。"
+      },
+      {
+        "target": "ERBB2",
+        "rationale": "ERBB2 属同一 ERBB 受体网络，可通过异源二聚化增强 EGFR/ERBB 信号，胞外结构域清晰且抗体干预路径成熟。"
+      },
+      {
+        "target": "ERBB3",
+        "rationale": "ERBB3 参与 ERBB 异源二聚体信号复合体形成，其胞外配体结合区可被抗体阻断，适合作为同通路替代或联合靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

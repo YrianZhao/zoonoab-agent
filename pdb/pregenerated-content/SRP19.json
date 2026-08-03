@@ -1,0 +1,65 @@
+{
+  "gene": "SRP19",
+  "generatedAt": "2026-08-03T16:55:15.153Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SRP19参与信号识别颗粒装配并维持SRP复合体对新生多肽的共翻译识别，疾病关联主要集中于骨髓造血异常及相关发育表型，提示其在细胞蛋白分选稳态中的关键作用。该蛋白具备明确的结构解析基础，且可通过已知晶体结构直接界定抗原构象与潜在表位，提高抗体设计的可操作性与可验证性。相较于同通路中多为核糖核蛋白复合体伴随因子的间接靶点，SRP19兼具机制明确性与结构可及性，适合作为主靶点进入表位驱动的抗体工程流程。",
+    "mechanism": "抗体可结合SRP19表面保守界面，干预其与SRP RNA及SRP54相关装配接触，削弱SRP复合体稳定形成。",
+    "selectedEpitope": "优先选择RNA结合面邻近的暴露α螺旋与β折叠界面，避开核心折叠疏水核。",
+    "diseaseDirection": "骨髓造血异常/发育障碍",
+    "domain": "SRP19为小型RNA结合蛋白，主要由保守的α/β折叠核心构成，外露界面参与SRP RNA装配。",
+    "evidence": "SRP19结构-疾病关联与表位设计证据包",
+    "evidenceSources": [
+      "UniProt: P09132",
+      "RCSB PDB: 1JID",
+      "Open Targets Platform",
+      "AlphaFold/结构域注释数据库"
+    ],
+    "referenceEntries": "UniProt P09132；PDB 1JID；Homo sapiens SRP19",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RNA结合面邻近暴露螺旋/环区",
+        "优先干预SRP RNA装配接触，机制最直接",
+        "优先"
+      ],
+      [
+        "Site B",
+        "与SRP54协同界面外缘",
+        "可削弱复合体稳定性但需避免完全遮蔽核心折叠",
+        "备选"
+      ],
+      [
+        "Site C",
+        "蛋白核心疏水折叠邻近区",
+        "结构风险较高，易影响蛋白折叠稳定性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险在于靶标体积小、保守面集中，抗体易干扰整体折叠而非选择性阻断界面。设计上宜优先采用构象敏感结合位点，并结合竞争结合与复合体装配实验验证特异性。",
+    "structurePrepZh": "建议以1.8Å晶体结构为主模板完成链A/B界面映射，补充缺失侧链与溶剂化，按RNA结合界面标注可及残基。",
+    "structureRef": "RCSB 1JID；X-ray diffraction, 1.8 Å",
+    "antibodies": [
+      "无明确临床同类阻断抗体公开报道",
+      "无成熟SRP19中和抗体基准"
+    ],
+    "interfaceFocus": "RNA结合界面及SRP装配接触缘",
+    "designMode": "structure-guided",
+    "candidates": [
+      {
+        "target": "SRP54",
+        "rationale": "SRP19与SRP54共同参与SRP复合体组装，干预其协同界面可用于验证装配阻断机制。该靶点与SRP19处于同一信号识别颗粒通路。"
+      },
+      {
+        "target": "SRP72",
+        "rationale": "SRP72属于SRP蛋白亚基网络，参与SRP功能成熟与复合体稳定。作为同通路伴随靶点，可辅助评估复合体层面的功能冗余。"
+      },
+      {
+        "target": "7SL",
+        "rationale": "7SL RNA是SRP19直接结合的关键组分，适合作为核酸-蛋白装配轴的机制对照靶点。其与SRP19构成同一通路中的真实相互作用对象。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

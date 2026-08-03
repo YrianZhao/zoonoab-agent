@@ -1,0 +1,65 @@
+{
+  "gene": "MYC",
+  "generatedAt": "2026-08-03T14:29:43.124Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MYC 是核内 bHLH-LZ 转录因子，在 Burkitt 淋巴瘤中常因 IGH-MYC 易位导致持续高表达，并通过与 MAX 异源二聚后结合 E-box DNA 驱动细胞周期、代谢与核糖体生物合成基因转录。该靶点缺乏天然胞外结构域，常规体内抗体可及性弱，因此更适合以胞内递送抗体、intrabody 或降解偶联格式进行学术验证。相较于广谱靶向下游增殖节点，直接干预 MYC-MAX-DNA 复合体可作用于致癌转录枢纽，但开发优先级需低于具有胞外可及性的 CD19、CD20 等淋巴瘤膜靶点。",
+    "mechanism": "通过结合 MYC bHLH-LZ 区域，阻断 MYC 与 MAX 异源二聚及其对 E-box DNA 的装配，从而抑制 MYC 依赖转录程序。",
+    "selectedEpitope": "优先覆盖 bHLH-LZ 的 MAX 结合螺旋与亮氨酸拉链二聚化界面。",
+    "diseaseDirection": "MYC驱动淋巴瘤与实体瘤",
+    "domain": "MYC 含 N 端转录激活区、MYC box I-IV，以及 C 端 bHLH-LZ DNA 结合与二聚化结构域。",
+    "evidence": "MYC-MAX转录复合体与肿瘤依赖性证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt P01106 功能与结构域注释",
+      "RCSB PDB 6G6K X射线晶体结构",
+      "COSMIC 与 TCGA 中 MYC 扩增及易位证据"
+    ],
+    "referenceEntries": "UniProt:P01106；RCSB PDB:6G6K；Ensembl:ENSG00000136997",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端 bHLH-LZ 的 MAX 接触螺旋与拉链二聚化界面",
+        "直接阻断 MYC-MAX 异源二聚形成，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "bHLH 区域邻近 E-box DNA 结合碱性螺旋",
+        "干扰 MYC-MAX-DNA 三元复合体装配，适合作为功能性备选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端转录激活区及 MYC box I/II 周边低复杂度区域",
+        "可能影响辅因子招募，但柔性高且结构表位稳定性不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MYC 为核内转录因子且无胞外抗原暴露，常规抗体成药性受限；设计宜采用细胞内递送、intrabody 或降解导向策略，并避免影响 MAX 同源功能界面。",
+    "structurePrepZh": "以 6G6K 高分辨率晶体结构提取 MYC bHLH-LZ 片段，保留 MYC-MAX 接触构象，补全缺失柔性区并评估二聚化界面可成药凹面。",
+    "structureRef": "RCSB PDB 6G6K，X-ray diffraction，1.35 Å",
+    "antibodies": [
+      "Y69",
+      "9E10"
+    ],
+    "interfaceFocus": "MYC-MAX异源二聚界面与E-box DNA邻近面",
+    "designMode": "胞内阻断型抗体",
+    "candidates": [
+      {
+        "target": "MAX",
+        "rationale": "MAX 是 MYC 形成 DNA 结合异源二聚体的必需伙伴，阻断 MAX-MYC 复合体可直接削弱 E-box 依赖转录激活。"
+      },
+      {
+        "target": "MIZ1",
+        "rationale": "MIZ1 可与 MYC 共同调控细胞周期抑制基因转录抑制程序，属于 MYC 介导增殖失衡通路中的关键转录调控节点。"
+      },
+      {
+        "target": "BRD4",
+        "rationale": "BRD4 维持超级增强子驱动的 MYC 转录表达，在 MYC 依赖肿瘤中是上游表观遗传调控节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

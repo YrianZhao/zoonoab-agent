@@ -1,0 +1,65 @@
+{
+  "gene": "SIGLEC10",
+  "generatedAt": "2026-08-03T16:32:21.202Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SIGLEC10 是髓系细胞表面抑制性唾液酸结合受体，可通过胞内 ITIM/ITIM-like 基序募集 SHP-1/2，削弱 Fc 受体、TLR 及炎症相关活化信号，在感染炎症、肿瘤免疫抑制和嗜酸粒细胞相关表型中具有通路关联。其配体识别位点位于胞外 V-set Ig 样结构域，膜受体构型使抗体可直接接近并干预糖基化配体结合。相较仅调控下游磷酸酶或广泛炎症因子的靶点，SIGLEC10 位于免疫抑制受体入口层级，具备更明确的配体阻断和受体聚簇调控设计优先级。",
+    "mechanism": "阻断 SIGLEC10 V-set 结构域与含 α2,6/α2,3 唾液酸糖链及 CD24 等糖蛋白配体的结合，降低 ITIM 介导的 SHP-1/2 招募。",
+    "selectedEpitope": "优先覆盖 N 端 V-set Ig 样结构域唾液酸结合口袋及邻近 CC′/FG 环区。",
+    "diseaseDirection": "感染炎症与肿瘤免疫调节",
+    "domain": "胞外区含 N 端 V-set Ig 样凝集素结构域及多个 C2-set Ig 样结构域，胞内含抑制性酪氨酸基序。",
+    "evidence": "SIGLEC10 免疫抑制受体结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q96LC7 functional annotation",
+      "RCSB PDB 9O6O experimental structure",
+      "SIGLEC10-CD24 innate immune checkpoint literature"
+    ],
+    "referenceEntries": "UniProt Q96LC7；RCSB PDB 9O6O；Open Targets SIGLEC10",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "V-set Ig 样结构域唾液酸识别口袋及保守精氨酸邻域",
+        "直接竞争唾液酸化配体结合，适合构建功能阻断型抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "V-set 结构域 CC′/FG 环形成的配体进入边缘",
+        "可通过空间位阻限制 CD24 或糖链配体靠近，兼顾特异性与可及性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远端 C2-set Ig 样结构域外侧面",
+        "可能影响受体构象或聚簇，但与配体竞争关系较弱，需功能筛选确认",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "唾液酸结合口袋在 Siglec 家族中存在保守性，需避开共享核心残基的非特异交叉反应；建议以 V-set 外周差异环区提高 SIGLEC10 选择性。",
+    "structurePrepZh": "以 PDB 9O6O 的 X 射线结构为模板，保留胞外抗原链 A-E 中分辨率稳定区域，补全缺失环并标注糖链结合残基用于表位建模。",
+    "structureRef": "RCSB PDB 9O6O，X-ray diffraction，2.7 Å",
+    "antibodies": [
+      "Anti-SIGLEC10 clone 5G6",
+      "Anti-SIGLEC10 clone 3D6"
+    ],
+    "interfaceFocus": "V-set 唾液酸结合口袋与CD24糖链配体界面",
+    "designMode": "配体阻断型抗体设计",
+    "candidates": [
+      {
+        "target": "CD24",
+        "rationale": "CD24 是 SIGLEC10 识别的唾液酸化糖蛋白配体，参与先天免疫检查点抑制轴；靶向配体端可阻断同一 CD24-SIGLEC10 通路。"
+      },
+      {
+        "target": "PTPN6",
+        "rationale": "PTPN6 编码 SHP-1，是 SIGLEC10 胞内 ITIM 信号的重要下游磷酸酶；其反映该抑制轴的信号输出层级。"
+      },
+      {
+        "target": "PTPN11",
+        "rationale": "PTPN11 编码 SHP-2，可被抑制性免疫受体磷酸化基序募集并参与负向调控信号复合体；适合作为同轴下游机制候选。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

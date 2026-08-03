@@ -1,0 +1,65 @@
+{
+  "gene": "DUSP11",
+  "generatedAt": "2026-08-03T18:47:26.375Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DUSP11 是细胞内双特异性磷酸酶，可水解 RNA 5′ 三磷酸及二磷酸末端，并参与小 RNA 稳态与先天免疫 RNA 识别阈值调节。该蛋白缺乏跨膜区和分泌信号肽，天然抗原可及性不支持常规治疗性抗体阻断，较适合作为细胞内机制研究、诊断捕获或递送型抗体工程靶点。与表面受体或分泌因子相比，DUSP11 的优先级主要来自高分辨率晶体结构、明确催化口袋及 Open Targets 多疾病遗传关联信号，而临床转化优先级应低于可直接胞外成药的同通路靶点。",
+    "mechanism": "抗体设计以结合 DUSP11 催化沟槽邻近区域为核心，空间遮挡 RNA 5′ 三磷酸底物进入 Cys-His-Asp 催化中心并限制磷酸酯水解构象。",
+    "selectedEpitope": "优先覆盖 DSPc 催化结构域的底物结合沟槽及 PTP signature loop 周边非保守表面。",
+    "diseaseDirection": "RNA代谢与先天免疫相关疾病",
+    "domain": "DUSP11 主要由单一 VH1-like 双特异性磷酸酶催化结构域构成，含保守 HCX5R 催化基序。",
+    "evidence": "DUSP11结构与RNA磷酸酶功能证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt O75319 功能与亚细胞定位注释",
+      "RCSB PDB 4NYH X射线晶体结构",
+      "文献报道的DUSP11 RNA 5′端磷酸水解研究"
+    ],
+    "referenceEntries": "UniProt O75319；RCSB PDB 4NYH；HGNC DUSP11",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DSPc催化沟槽与HCX5R邻近环区",
+        "可直接干预RNA 5′磷酸底物进入催化中心，机制可验证性较强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域背侧保守性较低的暴露螺旋面",
+        "适合构建高特异性检测抗体，降低与其他DUSP家族交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "晶体堆积界面及柔性环邻近区域",
+        "可能受构象异质性和晶格接触影响，需避免仅识别非生理构象",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DUSP11 为胞内酶，常规抗体体内可及性不足；设计宜定位于研究级、诊断级或递送型格式，并通过DUSP家族交叉反应筛选控制特异性风险。",
+    "structurePrepZh": "以4NYH高分辨率结构链A为主要模板，比较B、C链构象一致性，移除结晶添加物后标注催化半胱氨酸与底物沟槽。",
+    "structureRef": "RCSB PDB 4NYH，X-ray diffraction，1.2 Å",
+    "antibodies": [
+      "商业抗DUSP11多克隆抗体",
+      "商业抗DUSP11单克隆抗体"
+    ],
+    "interfaceFocus": "HCX5R催化环与RNA 5′磷酸结合沟槽",
+    "designMode": "胞内酶表位阻断",
+    "candidates": [
+      {
+        "target": "DDX58",
+        "rationale": "DDX58/RIG-I 识别5′三磷酸RNA并启动MAVS依赖的I型干扰素通路，与DUSP11调节RNA端基免疫原性处于同一RNA感知轴。其CARD结构域及RNA结合调控具有明确疾病免疫学关联。"
+      },
+      {
+        "target": "IFIH1",
+        "rationale": "IFIH1/MDA5 是胞质双链RNA模式识别受体，参与抗病毒先天免疫与自身免疫易感通路。与DUSP11共同影响内源或外源RNA被免疫系统识别的阈值。"
+      },
+      {
+        "target": "MAVS",
+        "rationale": "MAVS 是RIG-I样受体下游线粒体接头蛋白，整合RNA识别信号并激活IRF3和NF-κB。作为同一先天免疫通路节点，可用于机制对照和下游功能验证。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

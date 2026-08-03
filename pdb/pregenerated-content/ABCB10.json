@@ -1,0 +1,65 @@
+{
+  "gene": "ABCB10",
+  "generatedAt": "2026-08-03T09:49:34.447Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ABCB10为线粒体内膜ATP结合盒转运蛋白，参与血红素生物合成、线粒体氧化还原稳态及红细胞生成过程；其遗传关联信号集中于2型糖尿病、HbA1c和红细胞血红蛋白相关表型，提示其可能通过线粒体代谢与血液糖化指标影响疾病表型。该蛋白主要定位于线粒体内膜，功能结构域面向膜内及基质侧，天然抗原可及性弱于典型细胞表面受体或分泌蛋白，抗体策略更适合机制研究、胞内递送或结构探针开发。相较于GLUT、胰岛素受体等经典代谢靶点，ABCB10在红系-线粒体代谢交叉节点具有差异化优先级，但治疗性抗体开发优先级需低于胞外可及靶点。",
+    "mechanism": "抗体结合ABCB10跨膜区近胞质入口或核苷酸结合结构域界面，阻断ATP结合/水解耦联的构象转换及底物转运循环。",
+    "selectedEpitope": "优先锁定跨膜结构域胞质侧入口与NBD接触界面，干预转运构象闭合。",
+    "diseaseDirection": "糖尿病与红细胞代谢表型",
+    "domain": "ABCB10含线粒体靶向序列、跨膜转运结构域及胞质侧ABC ATP结合结构域。",
+    "evidence": "ABCB10糖代谢与红系线粒体证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9NRK6功能与定位注释",
+      "RCSB PDB 4AYT晶体结构记录",
+      "文献报道ABCB10参与血红素合成与线粒体稳态"
+    ],
+    "referenceEntries": "UniProt Q9NRK6；RCSB PDB 4AYT；Open Targets ABCB10",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "跨膜结构域胞质侧入口与NBD邻近界面",
+        "可阻断ATP驱动构象转换，适合作为功能阻断表位",
+        "优先"
+      ],
+      [
+        "Site B",
+        "核苷酸结合结构域Walker A/Signature motif邻近表面",
+        "可作为ATPase构象探针，但需避免直接干扰保守ATP结合位点导致选择性不足",
+        "备选"
+      ],
+      [
+        "Site C",
+        "跨膜螺旋埋藏区及膜内疏水面",
+        "抗体可及性低且依赖去垢剂构象，开发风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ABCB10为线粒体内膜蛋白，体内抗体可达性与递送是核心风险；宜优先采用胞内递送、纳米抗体或结构探针定位策略，并控制NBD保守位点交叉反应。",
+    "structurePrepZh": "以PDB 4AYT链A为模板，补全缺失环区并保留跨膜区取向；结合AlphaFold模型校验NBD和跨膜入口构象，去除结晶非生理接触。",
+    "structureRef": "RCSB PDB 4AYT，2.85 Å X-ray结构",
+    "antibodies": [
+      "无获批ABCB10治疗性抗体",
+      "研究级抗ABCB10抗体"
+    ],
+    "interfaceFocus": "跨膜入口-NBD耦联界面",
+    "designMode": "胞内靶点探针型",
+    "candidates": [
+      {
+        "target": "SLC2A2",
+        "rationale": "SLC2A2编码GLUT2，参与胰岛β细胞和肝脏葡萄糖感知，与2型糖尿病及血糖测量表型处于同一糖代谢疾病网络。其多跨膜结构可作为代谢通路膜蛋白候选，但胞外环表位需严格评估。"
+      },
+      {
+        "target": "INSR",
+        "rationale": "INSR为胰岛素受体，直接介导胰岛素结合后的受体自磷酸化和下游PI3K-AKT代谢信号，是糖尿病通路中的核心胞外可及膜受体。其胞外α亚基为抗体调节提供明确结构基础。"
+      },
+      {
+        "target": "TFRC",
+        "rationale": "TFRC介导铁转运并支持红系血红素合成，与ABCB10相关的红细胞血红蛋白表型存在功能交汇。其细胞表面受体属性使抗原可及性显著优于线粒体内膜蛋白。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

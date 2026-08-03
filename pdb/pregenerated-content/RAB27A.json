@@ -1,0 +1,65 @@
+{
+  "gene": "RAB27A",
+  "generatedAt": "2026-08-03T15:49:23.662Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RAB27A 是黑素体转运与细胞毒颗粒外排通路中的小 GTP 酶，致病变异可破坏与 MLPH、SYTL1/2 或 UNC13D 等效应蛋白的耦联，导致 Griscelli 综合征 2 型相关免疫失衡。该蛋白为胞内膜相关 GTPase，天然抗原可及性弱，不适合作为常规细胞表面阻断抗体靶点。其优先级主要来自明确的人类遗传学因果证据和高分辨率结构支持，较同通路下游效应因子更适合用于胞内递送抗体、结构探针或机制验证型分子设计。",
+    "mechanism": "设计分子应结合 RAB27A Switch I/II 与效应蛋白识别面，阻断 GTP 结合态 RAB27A 与 MLPH 或 SYTL1/2 的相互作用。",
+    "selectedEpitope": "优先覆盖 GTPase 核心的 Switch I/II 效应蛋白结合界面，避开核苷酸结合口袋核心催化残基。",
+    "diseaseDirection": "Griscelli 综合征与免疫颗粒外排缺陷",
+    "domain": "RAB27A 含保守小 GTPase 结构域，包括 P-loop、Switch I、Switch II 与 C 端膜锚定区。",
+    "evidence": "RAB27A 遗传病因与效应蛋白界面结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt P51159 功能与变异注释",
+      "RCSB PDB 8P3I X 射线晶体结构",
+      "OMIM/Orphanet Griscelli syndrome type 2 遗传证据"
+    ],
+    "referenceEntries": "UniProt P51159；RCSB PDB 8P3I；Open Targets RAB27A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Switch I/Switch II 效应蛋白结合面",
+        "可干预 RAB27A 与 MLPH、SYTL1/2 等效应蛋白识别，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "GTPase 核心远离核苷酸口袋的 α3/β5 邻近区域",
+        "有利于构建构象识别抗体或稳定特定核苷酸状态，降低直接催化干扰",
+        "备选"
+      ],
+      [
+        "Site C",
+        "P-loop 与核苷酸结合口袋周边",
+        "可能影响 GDP/GTP 结合与水解，存在非特异性扰动小 GTPase 保守功能的风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RAB27A 为胞内膜相关蛋白，常规抗体难以进入靶细胞；需采用胞内抗体、递送型 Fab/VHH 或结构探针策略，并严格评估 RAB 家族交叉反应。",
+    "structurePrepZh": "以 8P3I 的 A、B 链为模板，保留 GTPase 核心构象，补充缺失柔性片段并标注核苷酸、Switch I/II 与效应蛋白界面。",
+    "structureRef": "RCSB PDB 8P3I，X-ray diffraction，2.0 Å",
+    "antibodies": [
+      "抗 RAB27A 研究级单克隆抗体",
+      "抗 RAB27A 研究级多克隆抗体"
+    ],
+    "interfaceFocus": "Switch I/II 效应蛋白识别界面",
+    "designMode": "胞内抗体/结构探针",
+    "candidates": [
+      {
+        "target": "MLPH",
+        "rationale": "MLPH 是 RAB27A-MYO5A 黑素体转运复合体的关键连接蛋白，同属 Griscelli 相关黑素体定位通路。其与 RAB27A 结合界面可作为验证黑素体运输缺陷机制的候选靶点。"
+      },
+      {
+        "target": "MYO5A",
+        "rationale": "MYO5A 与 RAB27A-MLPH 复合体共同介导黑素体沿肌动蛋白运输，遗传缺陷与 Griscelli 综合征相关。该靶点适合用于同一细胞器运输轴的功能比较。"
+      },
+      {
+        "target": "UNC13D",
+        "rationale": "UNC13D 参与细胞毒颗粒释放，位于 RAB27A 相关免疫颗粒外排通路下游。其致病变异与免疫失衡和噬血细胞性淋巴组织细胞增多症相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

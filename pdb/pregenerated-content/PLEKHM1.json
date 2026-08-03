@@ -1,0 +1,65 @@
+{
+  "gene": "PLEKHM1",
+  "generatedAt": "2026-08-03T20:35:26.115Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PLEKHM1参与破骨细胞溶酶体相关囊泡运输和骨吸收褶皱缘形成，功能缺失与常染色体显性及隐性骨硬化症相关。该蛋白主要为胞内适配蛋白，并非典型膜受体或分泌抗原，抗原可及性弱于胞外配体类靶点，抗体策略更适合用于细胞内递送、结构探针或外泌体相关暴露场景。相较TCIRG1、CLCN7等跨膜离子转运靶点，PLEKHM1具有清晰遗传疾病关联和RUN结构域实验结构，可优先支持机制验证型抗体设计，但治疗性阻断优先级需谨慎评估。",
+    "mechanism": "抗体结合PLEKHM1 RUN结构域表面，干扰其与Rab7阳性晚期内体/溶酶体运输复合体的空间装配，从而影响破骨细胞囊泡定位与骨吸收功能。",
+    "selectedEpitope": "优先选择5DPS解析的RUN结构域保守外露螺旋-环区，避开疏水核心与晶体接触界面。",
+    "diseaseDirection": "骨硬化症与破骨细胞功能障碍",
+    "domain": "PLEKHM1含N端RUN结构域、中央PH样区域及C端适配蛋白相互作用区，5DPS覆盖RUN结构域。",
+    "evidence": "PLEKHM1骨硬化症遗传与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q9Y4G2功能与变异注释",
+      "RCSB PDB 5DPS X射线晶体结构",
+      "OMIM与ClinVar骨硬化症相关变异记录"
+    ],
+    "referenceEntries": "UniProt Q9Y4G2；RCSB PDB 5DPS；Open Targets PLEKHM1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RUN结构域外露α螺旋-环连接面",
+        "可作为构象识别表位，适合获得结构域特异性结合分子",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RUN结构域Rab相关适配蛋白结合邻近面",
+        "可能干扰晚期内体运输复合体装配，需结合突变与竞争实验验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "RUN结构域晶体接触或疏水核心邻近区域",
+        "构象稳定性和天然可及性不确定，易产生结构依赖性假阳性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PLEKHM1为胞内蛋白，常规抗体难以直接进入破骨细胞胞质；建议采用Fab/VHH内递送体系，并以细胞渗透、靶点占有和功能救援实验确认有效性。",
+    "structurePrepZh": "以5DPS的A、B、C链比对评估RUN结构域构象一致性，去除晶体水和非生物学接触后进行表面可及性与保守性标注。",
+    "structureRef": "RCSB PDB 5DPS，X-ray diffraction，2.0 Å",
+    "antibodies": [
+      "无已获批PLEKHM1治疗性抗体",
+      "研究级抗PLEKHM1抗体"
+    ],
+    "interfaceFocus": "RUN结构域外露螺旋面及Rab7运输复合体邻近界面",
+    "designMode": "胞内靶点探针型",
+    "candidates": [
+      {
+        "target": "TCIRG1",
+        "rationale": "TCIRG1编码破骨细胞V-ATPase a3亚基，参与骨吸收腔酸化，遗传缺陷可导致常染色体隐性骨硬化症。作为多跨膜蛋白，其胞外环可探索抗体识别但结构与可及性挑战较高。"
+      },
+      {
+        "target": "CLCN7",
+        "rationale": "CLCN7编码溶酶体/破骨细胞氯离子-质子交换蛋白，维持骨吸收相关酸化电荷平衡，突变与显性及隐性骨硬化症相关。其跨膜结构提供疾病通路相关性，但抗体阻断表位需限定于胞外环。"
+      },
+      {
+        "target": "OSTM1",
+        "rationale": "OSTM1与CLCN7形成复合体并稳定其溶酶体定位，缺陷可导致严重骨硬化症。该靶点处于同一破骨细胞溶酶体功能轴，可作为复合体稳定性与转运机制的候选干预节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

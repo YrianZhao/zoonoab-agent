@@ -1,0 +1,65 @@
+{
+  "gene": "SYNE3",
+  "generatedAt": "2026-08-03T21:24:14.629Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SYNE3编码核膜外侧相关的KASH结构域蛋白nesprin-3，参与LINC复合体介导的细胞骨架-核连接；遗传学关联提示其与房颤、PR间期及青光眼等表型相关，但现有证据主要支持结构力学与核定位调控关联，而非经典可分泌炎症通路。该蛋白主体位于胞质侧并锚定外核膜，抗原天然可及性显著低于细胞表面受体或分泌蛋白，抗体药物化开发需限定于细胞内递送、研究级阻断或结构探针场景。相较于同通路的SUN1、SUN2等内核膜组分，SYNE3的KASH肽段-伙伴蛋白界面具备高分辨率结构参考，适合开展机制验证型抗体或胞内结合模块设计，但整体转化优先级应低于外膜可及靶点。",
+    "mechanism": "设计抗体阻断SYNE3 KASH结构域与SUN1/SUN2腔内SUN结构域形成的LINC复合体连接，削弱细胞骨架力向核膜的传递。",
+    "selectedEpitope": "优先覆盖SYNE3 C端KASH肽段与SUN结构域结合沟槽接触残基，避免跨膜锚定区。",
+    "diseaseDirection": "心律失常与核膜力学疾病",
+    "domain": "SYNE3含N端spectrin repeat区域、ABD结合区及C端跨膜-KASH核膜定位结构域。",
+    "evidence": "SYNE3-LINC复合体结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q6ZMZ3功能与亚细胞定位注释",
+      "RCSB PDB 6WME晶体结构记录",
+      "LINC复合体SUN-KASH相互作用文献"
+    ],
+    "referenceEntries": "UniProt Q6ZMZ3；RCSB PDB 6WME；Open Targets SYNE3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端KASH肽段SUN结合界面",
+        "直接干预SYNE3-SUN1/SUN2复合体装配，机制可验证性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "spectrin repeat外露螺旋束区域",
+        "可用于识别构象状态或构建细胞内结合探针",
+        "备选"
+      ],
+      [
+        "Site C",
+        "跨膜邻近低复杂度连接区",
+        "柔性高且膜环境依赖强，易产生构象异质性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SYNE3并非细胞表面抗原，常规抗体难以进入细胞并到达外核膜；建议优先定位为胞内Fab/VHH、递送偶联或结构功能验证工具。",
+    "structurePrepZh": "以PDB 6WME高分辨率晶体结构为模板，保留抗原链A/B界面构象，补全缺失侧链并标注KASH-SUN接触残基。",
+    "structureRef": "RCSB PDB 6WME，X-ray diffraction，1.53 Å",
+    "antibodies": [
+      "抗SYNE3研究级多克隆抗体",
+      "抗nesprin-3商业研究抗体"
+    ],
+    "interfaceFocus": "KASH肽段与SUN三聚体结合沟槽",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "SUN1",
+        "rationale": "SUN1是内核膜SUN结构域蛋白，可与KASH结构域形成LINC复合体核心连接；其与SYNE3处于同一核膜力学传导轴。"
+      },
+      {
+        "target": "SUN2",
+        "rationale": "SUN2同样介导KASH蛋白锚定并参与细胞骨架-核连接，适合作为验证SYNE3依赖性界面的平行靶点。"
+      },
+      {
+        "target": "PLEC",
+        "rationale": "PLEC编码plectin，可连接中间丝系统并与nesprin-3相关结构轴协同维持核周细胞骨架组织。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

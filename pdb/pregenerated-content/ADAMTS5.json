@@ -1,0 +1,65 @@
+{
+  "gene": "ADAMTS5",
+  "generatedAt": "2026-08-03T10:04:56.117Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ADAMTS5是软骨基质降解通路中的核心聚集蛋白聚糖酶，切割aggrecan导致软骨蛋白聚糖流失，并与骨关节炎和骨骼系统表型具有明确机制关联。该靶点为分泌型胞外金属蛋白酶，催化结构域及辅助外部结构域均具备抗体可及性，适合以中和抗体阻断底物识别或催化活性。相比ADAMTS4等同类aggrecanase，ADAMTS5在小鼠遗传学和人类软骨病理研究中表现出更强的疾病驱动证据，因此具备较高优先级。",
+    "mechanism": "通过抗体结合ADAMTS5催化域邻近底物结合沟槽或disintegrin样结构域，阻断ADAMTS5识别并切割aggrecan核心蛋白的Glu373-Ala374位点。",
+    "selectedEpitope": "优先覆盖催化结构域底物结合沟槽外缘及非锌结合表面，避免直接破坏金属配位核心。",
+    "diseaseDirection": "骨关节炎与软骨基质降解",
+    "domain": "ADAMTS5含信号肽、前肽、金属蛋白酶催化域、disintegrin样域、TSR1、富半胱氨酸及间隔区。",
+    "evidence": "ADAMTS5软骨基质降解抗体设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与表型关联",
+      "UniProt Q9UNA0蛋白结构域注释",
+      "RCSB PDB 3B8Z X射线晶体结构",
+      "骨关节炎软骨aggrecanase机制研究文献"
+    ],
+    "referenceEntries": "UniProt Q9UNA0；RCSB PDB 3B8Z；Open Targets ADAMTS5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域底物结合沟槽外缘",
+        "可阻断aggrecan进入催化裂隙并保留抗体选择性设计空间",
+        "优先"
+      ],
+      [
+        "Site B",
+        "disintegrin样结构域与催化域相邻界面",
+        "可能干扰底物定位和酶-基质复合物形成，适合作为非活性位点中和策略",
+        "备选"
+      ],
+      [
+        "Site C",
+        "锌结合催化中心附近HEXXH基序区域",
+        "虽接近催化核心但保守性高，存在交叉反应和构象扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "催化核心附近保守金属蛋白酶基序可能带来ADAMTS家族交叉反应风险，设计应偏向底物结合外缘和辅助结构域特异性环区。",
+    "structurePrepZh": "以3B8Z高分辨率晶体结构为催化域模板，保留二硫键与金属配位信息，补全缺失外部结构域时需采用AlphaFold模型分区评估。",
+    "structureRef": "RCSB PDB 3B8Z，human ADAMTS5 catalytic domain，1.4 Å",
+    "antibodies": [
+      "GSK2394002",
+      "CRB0017"
+    ],
+    "interfaceFocus": "aggrecan底物结合沟槽与催化域外缘环区",
+    "designMode": "胞外酶中和抗体",
+    "candidates": [
+      {
+        "target": "ACAN",
+        "rationale": "ACAN编码aggrecan，是ADAMTS5在软骨基质中的关键底物；其Neoepitope裂解产物可作为同一软骨降解轴的药效和疾病进展标志。"
+      },
+      {
+        "target": "ADAMTS4",
+        "rationale": "ADAMTS4同属aggrecanase，可切割aggrecan并参与软骨基质降解；与ADAMTS5并列评估有助于区分主导酶活来源和补偿性通路风险。"
+      },
+      {
+        "target": "TIMP3",
+        "rationale": "TIMP3是ADAMTS5和相关金属蛋白酶的内源性抑制因子，位于同一细胞外基质蛋白水解调控网络；其功能状态影响aggrecanase活性阈值。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

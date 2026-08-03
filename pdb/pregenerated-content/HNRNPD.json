@@ -1,0 +1,65 @@
+{
+  "gene": "HNRNPD",
+  "generatedAt": "2026-08-03T13:15:38.688Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HNRNPD（AUF1）为RNA结合蛋白，参与含AU-rich element转录本的稳定性调控，并可影响炎症因子、细胞周期及应激反应相关mRNA周转；其与登革热等病毒感染表型存在遗传与表达层面的疾病关联。该蛋白主要定位于细胞核与胞质核糖核蛋白复合体，缺乏典型分泌或跨膜胞外结构域，抗原可及性不利于常规体内阻断型抗体。相较于细胞表面病毒进入因子或分泌性炎症介质，HNRNPD更适合作为结构验证、细胞内递送抗体或研究级结合分子靶点，临床优先级应低于可直接胞外拦截的同通路靶点。",
+    "mechanism": "设计抗体结合HNRNPD RRM结构域RNA识别面，竞争性阻断其与AU-rich RNA序列的结合，从而干预目标mRNA稳定性调控。",
+    "selectedEpitope": "优先覆盖RRM1/RRM2的β折叠RNA结合面及RNP1/RNP2芳香残基邻近区域。",
+    "diseaseDirection": "病毒感染与炎症转录后调控",
+    "domain": "HNRNPD含两个RNA recognition motif（RRM）及富甘氨酸C端区，5IM0解析其RNA结合核心片段。",
+    "evidence": "HNRNPD结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q14103功能与定位注释",
+      "RCSB PDB 5IM0晶体结构记录",
+      "RNA结合蛋白AUF1调控AU-rich mRNA文献"
+    ],
+    "referenceEntries": "UniProt Q14103；RCSB PDB 5IM0；Open Targets HNRNPD",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RRM β-sheet RNA结合面/RNP1-RNP2区域",
+        "可直接竞争AU-rich RNA结合，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RRM1-RRM2相对取向界面邻近表面",
+        "可能改变双RRM协同识别RNA的构象排列",
+        "备选"
+      ],
+      [
+        "Site C",
+        "富甘氨酸C端低复杂度区域",
+        "柔性高且结构异质性强，成药性与特异性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HNRNPD为胞内RNA结合蛋白，常规抗体难以到达作用位点；RRM保守性较高，需规避与HNRNP家族成员交叉反应，并优先考虑细胞内递送或研究级格式。",
+    "structurePrepZh": "以5IM0链A/B为模板，保留RRM核心并校正缺失侧链；结合UniProt同工型边界标注RNP1/RNP2基序，去除晶体接触导致的非生理界面干扰。",
+    "structureRef": "RCSB PDB 5IM0，X-ray diffraction，1.7 Å",
+    "antibodies": [
+      "抗AUF1/HNRNPD研究用单克隆抗体",
+      "抗HNRNPD兔单克隆抗体"
+    ],
+    "interfaceFocus": "RRM β-sheet RNA识别面与RNP基序",
+    "designMode": "胞内结合抗体设计",
+    "candidates": [
+      {
+        "target": "DDX58",
+        "rationale": "DDX58编码RIG-I，是登革病毒RNA识别与I型干扰素诱导通路的核心胞质受体，疾病通路相关性明确。"
+      },
+      {
+        "target": "IFIH1",
+        "rationale": "IFIH1编码MDA5，参与病毒双链RNA感知并驱动抗病毒干扰素反应，可作为同一病毒RNA识别网络中的候选调节点。"
+      },
+      {
+        "target": "MAVS",
+        "rationale": "MAVS位于RIG-I/MDA5下游线粒体抗病毒信号平台，整合病毒RNA识别信号并激活IRF3与NF-κB通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

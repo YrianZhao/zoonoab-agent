@@ -1,0 +1,65 @@
+{
+  "gene": "GAST",
+  "generatedAt": "2026-08-03T12:43:26.026Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GAST编码胃泌素前体，其成熟酰胺化肽通过CCKBR激活胃壁细胞相关酸分泌轴，并促进胃黏膜上皮增殖，与十二指肠溃疡、消化性溃疡及胃癌风险存在明确通路关联。胃泌素为分泌型肽类激素，成熟活性片段位于细胞外液和循环中，抗体可直接接触配体并阻断其受体结合。相较于直接靶向CCKBR等七跨膜受体，配体中和策略规避膜蛋白构象复杂性，并可选择性覆盖酰胺化G17/G34活性肽，具备较高抗原可及性与工程开发优先级。",
+    "mechanism": "中和酰胺化胃泌素C端活性肽，阻断其与CCKBR正构配体结合位点相互作用，抑制胃酸分泌和胃黏膜增殖信号。",
+    "selectedEpitope": "优先覆盖成熟胃泌素C端Trp-Met-Asp-Phe-NH2受体识别四肽及邻近硫酸化位点区域。",
+    "diseaseDirection": "消化性溃疡与胃癌通路",
+    "domain": "GAST为前胃泌素前体，经加工产生G17/G34等酰胺化分泌肽，活性核心位于保守C端五肽。",
+    "evidence": "GAST-CCKBR胃酸分泌与胃黏膜增殖证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P01350功能与加工注释",
+      "RCSB PDB 5WRJ晶体结构条目",
+      "胃泌素-CCKBR药理学与胃酸分泌文献"
+    ],
+    "referenceEntries": "UniProt:P01350; RCSB PDB:5WRJ; ChEMBL:GAST/CCKBR",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "成熟胃泌素C端Trp-Met-Asp-Phe-NH2活性核心",
+        "直接竞争CCKBR识别，最有利于配体中和",
+        "优先"
+      ],
+      [
+        "Site B",
+        "G17/G34共有序列中C端上游延伸肽段",
+        "增强亲和力并保持对成熟活性胃泌素的选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "前体肽非成熟加工区或低保守柔性片段",
+        "可能不覆盖循环活性肽，功能阻断价值有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "C端五肽与CCK高度同源，需规避对胆囊收缩素的交叉反应；应利用G17/G34上游差异残基提升GAST选择性。",
+    "structurePrepZh": "以5WRJ中胃泌素相关肽链为模板，保留酰胺化C端构象并补充缺失氢原子，按G17/G34成熟肽映射可及表位。",
+    "structureRef": "RCSB PDB 5WRJ，X-ray diffraction，2.31 Å",
+    "antibodies": [
+      "G17DT诱导抗胃泌素抗体",
+      "polyclonal anti-gastrin neutralizing antibody"
+    ],
+    "interfaceFocus": "GAST C端酰胺化四肽-CCKBR识别界面",
+    "designMode": "分泌配体中和",
+    "candidates": [
+      {
+        "target": "CCKBR",
+        "rationale": "CCKBR为胃泌素的主要功能受体，介导胃酸分泌和胃黏膜增殖信号；受体拮抗可与GAST中和形成同一轴线的替代干预策略。"
+      },
+      {
+        "target": "CCK",
+        "rationale": "CCK与胃泌素共享C端酰胺化识别基序并可作用于CCK受体系统；作为同源配体，其交叉反应风险和选择性边界需在设计中同步评估。"
+      },
+      {
+        "target": "HDC",
+        "rationale": "HDC催化组氨酸生成组胺，是胃泌素刺激肠嗜铬样细胞后驱动胃酸分泌的关键下游节点；该靶点可用于胃酸分泌通路的机制分层。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

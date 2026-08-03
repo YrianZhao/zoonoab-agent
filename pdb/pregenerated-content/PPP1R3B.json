@@ -1,0 +1,65 @@
+{
+  "gene": "PPP1R3B",
+  "generatedAt": "2026-08-03T15:31:43.332Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PPP1R3B编码糖原靶向型蛋白磷酸酶1调节亚基，在肝脏糖原代谢中将PP1催化亚基募集至糖原颗粒，并影响糖原合成酶与糖原磷酸化酶的去磷酸化状态。Open Targets关联主要集中于网织红细胞、血小板体积、C反应蛋白测量等数量性状，提示其遗传信号更偏代谢-炎症表型而非经典可阻断受体轴。该蛋白为胞内糖原结合支架蛋白，抗原天然可及性弱于分泌因子或膜受体，因此作为常规治疗性抗体靶点优先级低于同通路中的胞外炎症介质；其设计价值更适合结构表征、细胞内抗体或降解偶联探索。",
+    "mechanism": "设计分子宜阻断PPP1R3B糖原结合区与糖原颗粒的结合，或干扰其RVxF样基序募集PPP1CA，从而改变PP1定位依赖的糖原代谢复合体组装。",
+    "selectedEpitope": "优先聚焦CBM21样糖原结合结构域的糖链结合沟槽邻近面，备选覆盖PP1结合短线性基序邻域。",
+    "diseaseDirection": "代谢炎症与血液数量性状",
+    "domain": "PPP1R3B含N端PP1结合调节区及C端CBM21样糖原结合结构域，整体为胞内糖原颗粒定位支架。",
+    "evidence": "PPP1R3B糖原代谢遗传关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q86XI6功能与定位注释",
+      "RCSB PDB 5ZT0晶体结构记录",
+      "GWAS Catalog血液与炎症数量性状关联"
+    ],
+    "referenceEntries": "UniProt Q86XI6；RCSB PDB 5ZT0；Open Targets PPP1R3B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CBM21样糖原结合沟槽及邻近保守芳香族残基面",
+        "可直接干扰糖原颗粒定位，机制与结构域功能高度一致",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端PP1结合RVxF样短线性基序邻域",
+        "有望阻断PPP1R3B与PPP1CA催化亚基募集，但线性区柔性较高",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离糖原结合沟槽的CBM21外侧晶体接触面",
+        "可能影响构象稳定性但功能阻断证据不足，需避免仅识别晶体堆积界面",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PPP1R3B为胞内蛋白，常规IgG难以到达作用位点；5ZT0分辨率约3.32 Å且存在多链晶体堆积，应重点排除非生理界面并采用细胞内递送或替代靶向策略。",
+    "structurePrepZh": "以5ZT0抗原链为模板，去除晶体水与非功能性接触链，保留CBM21样结构域核心，补建缺失柔性环并标注糖原结合保守残基。",
+    "structureRef": "RCSB PDB 5ZT0，X-ray diffraction，3.32 Å",
+    "antibodies": [
+      "无获批PPP1R3B治疗性抗体",
+      "研究级抗PPP1R3B抗体"
+    ],
+    "interfaceFocus": "糖原结合沟槽与PP1募集基序邻域",
+    "designMode": "胞内抗体探索",
+    "candidates": [
+      {
+        "target": "PPP1CA",
+        "rationale": "PPP1CA为PP1催化亚基，直接参与PPP1R3B募集后的糖原代谢底物去磷酸化；但其广泛参与多种细胞过程，选择性风险较高。"
+      },
+      {
+        "target": "GYS2",
+        "rationale": "GYS2是肝糖原合成酶，是PP1-PPP1R3B复合体调控的关键代谢效应分子；其遗传与肝糖原稳态和血糖调节相关。"
+      },
+      {
+        "target": "PYGL",
+        "rationale": "PYGL编码肝糖原磷酸化酶，与GYS2共同构成糖原合成与分解平衡轴；该节点可用于评估PPP1R3B通路扰动对糖原动员的影响。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

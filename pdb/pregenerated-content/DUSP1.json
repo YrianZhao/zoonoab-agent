@@ -1,0 +1,65 @@
+{
+  "gene": "DUSP1",
+  "generatedAt": "2026-08-03T18:46:02.114Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DUSP1编码核内/胞质双特异性磷酸酶MKP-1，主要去磷酸化MAPK14/p38、MAPK8/JNK和MAPK1/3 ERK，参与应激、炎症和神经退行性疾病相关的MAPK信号终止。该蛋白缺乏跨膜段与分泌信号，天然抗原可及性不利于常规细胞外阻断抗体，更适合结构生物学验证、细胞内递送抗体或降解偶联策略。相比MAPK通路中广泛表达且催化功能冗余较高的上游激酶，DUSP1位于MAPK负反馈节点，P28562与6D66提供明确催化结构依据，但作为治疗性抗体主靶点优先级应低于细胞表面受体型MAPK调控靶点。",
+    "mechanism": "抗体设计聚焦遮蔽DUSP1催化裂隙，干扰磷酸化MAPK与HCX5R催化环及底物结合沟槽接触，从而影响p38/JNK/ERK去磷酸化。",
+    "selectedEpitope": "优先选择DSP催化结构域内底物结合沟槽邻近表位，覆盖催化Cys258周边但避免直接依赖高保守活性中心。",
+    "diseaseDirection": "MAPK应激与神经退行性疾病",
+    "domain": "DUSP1含N端MAPK结合调控区与C端双特异性磷酸酶DSP催化结构域，6D66覆盖催化核心。",
+    "evidence": "DUSP1-MAPK负反馈与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P28562功能与亚细胞定位注释",
+      "RCSB PDB 6D66晶体结构",
+      "MAPK磷酸酶MKP-1底物去磷酸化研究文献"
+    ],
+    "referenceEntries": "UniProt P28562；RCSB PDB 6D66；Open Targets DUSP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DSP催化结构域底物结合沟槽与活性环邻近区域",
+        "可直接干扰磷酸化MAPK底物进入催化裂隙，机制可解释性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端MAPK结合调控区对应的激酶 docking 相关区域",
+        "理论上可阻断DUSP1与p38/JNK/ERK的非催化结合，但6D66结构覆盖有限",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高保守HCX5R催化基序及深部磷酸酯结合口袋",
+        "可能产生家族交叉反应并影响选择性，构象可及性与成药窗口需谨慎评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DUSP1为细胞内酶，常规抗体难以到达天然作用位点；催化口袋保守性较高，需通过外周沟槽表位提升DUSP家族选择性。",
+    "structurePrepZh": "以6D66 A、B链为模板，保留DSP催化核心，校验晶体接触与缺失环区；补建柔性环后标注催化Cys258及底物沟槽。",
+    "structureRef": "RCSB PDB 6D66，X-ray diffraction，2.226 Å",
+    "antibodies": [
+      "无已批准DUSP1治疗性抗体",
+      "研究级抗DUSP1/MKP-1抗体"
+    ],
+    "interfaceFocus": "DSP催化裂隙、底物结合沟槽与MAPK docking邻近面",
+    "designMode": "细胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "MAPK14",
+        "rationale": "MAPK14/p38α是DUSP1的重要去磷酸化底物，位于炎症应激与神经退行性疾病相关MAPK通路核心，结构和药理学证据充分。"
+      },
+      {
+        "target": "MAPK8",
+        "rationale": "MAPK8/JNK1参与细胞应激、凋亡和神经元损伤信号，DUSP1可通过去磷酸化JNK限制其活性，适合作为同通路功能参照靶点。"
+      },
+      {
+        "target": "MAPK1",
+        "rationale": "MAPK1/ERK2是DUSP1可调控的ERK通路底物之一，与增殖和细胞应答通路相关，可用于评估DUSP1轴的通路选择性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

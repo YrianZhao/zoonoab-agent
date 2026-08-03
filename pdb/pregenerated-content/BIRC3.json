@@ -1,0 +1,65 @@
+{
+  "gene": "BIRC3",
+  "generatedAt": "2026-08-03T10:49:56.093Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BIRC3编码cIAP2，是TNF受体、B细胞受体及先天免疫信号中连接TRAF复合物、RIPK1泛素化和非经典NF-κB调控的重要E3泛素连接酶，异常激活或基因重排与慢性淋巴细胞白血病、套细胞淋巴瘤及炎症性肠病相关。该蛋白主要为胞内信号适配与泛素化因子，天然抗原可及性弱，抗体策略更适合作为结构验证型胞内结合抗体、递送型抗体片段或蛋白降解平台的识别模块。相较于TNF通路中多种膜受体，BIRC3位于细胞死亡、NF-κB和炎症存活信号的汇合节点，具有较高通路整合优先级，但成药形式需严格限定于胞内递送或研究级设计场景。",
+    "mechanism": "以抗体片段结合BIR结构域沟槽，竞争性阻断BIRC3与含IAP-binding motif蛋白或TRAF相关复合物的结合，从而削弱cIAP2介导的存活信号支撑。",
+    "selectedEpitope": "优先覆盖BIR3结构域IBM结合沟槽及邻近锌指稳定环，避免破坏整体折叠核心。",
+    "diseaseDirection": "B细胞恶性肿瘤与炎症免疫",
+    "domain": "BIRC3含三个N端BIR结构域、UBA结构域、CARD结构域及C端RING型E3泛素连接酶结构域。",
+    "evidence": "BIRC3-cIAP2结构与NF-κB疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与关联评分",
+      "UniProt Q13489功能与结构域注释",
+      "RCSB PDB 2UVL晶体结构数据",
+      "NF-κB及TNFR信号通路文献证据"
+    ],
+    "referenceEntries": "UniProt Q13489；RCSB PDB 2UVL；Open Targets BIRC3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "BIR3结构域IBM结合沟槽及邻近α螺旋边缘",
+        "可直接干预SMAC样基序识别与蛋白复合物装配，机制定义清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "BIR2-BIR3相邻外露环区及带电表面",
+        "有利于获得构象选择性结合物，可用于稳定特定构象或结构探针设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "锌配位核心附近保守Cys/His支撑区域",
+        "该区域对BIR折叠稳定性关键，强结合可能导致非特异构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BIRC3为胞内蛋白，常规全长抗体难以接触天然抗原；设计应采用Fab/VHH胞内递送、细胞穿透或降解偶联策略，并避免靶向锌配位折叠核心。",
+    "structurePrepZh": "以2UVL抗原链A、B为模板，保留BIR结构域锌离子及关键配位残基，补全缺失侧链并评估晶体接触对表位暴露的影响。",
+    "structureRef": "RCSB PDB 2UVL，X-ray diffraction，1.91 Å",
+    "antibodies": [
+      "anti-cIAP2 monoclonal antibody clone E40",
+      "anti-cIAP2 monoclonal antibody clone 1E1-1-10"
+    ],
+    "interfaceFocus": "BIR结构域IBM沟槽与TRAF复合物相关表面",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "BIRC2",
+        "rationale": "BIRC2编码cIAP1，与BIRC3共同参与TNFR复合物中RIPK1泛素化和NF-κB存活信号维持，是同一IAP调控轴的高度相关靶点。"
+      },
+      {
+        "target": "TNFRSF1A",
+        "rationale": "TNFRSF1A介导TNF诱导的复合物I装配，并招募TRADD、TRAF2及cIAP1/2，是BIRC3上游信号输入节点。"
+      },
+      {
+        "target": "TRAF2",
+        "rationale": "TRAF2作为TNFR信号适配蛋白促进cIAP1/2募集并调控RIPK1泛素化，处于BIRC3相关NF-κB和细胞死亡通路核心复合物内。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

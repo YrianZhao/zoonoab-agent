@@ -1,0 +1,65 @@
+{
+  "gene": "FANCL",
+  "generatedAt": "2026-08-03T12:28:04.268Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FANCL是Fanconi贫血DNA交联修复通路的核心E3泛素连接酶，负责促进FANCD2与FANCI单泛素化，缺陷可导致DNA损伤修复失败、骨髓衰竭及髓系恶性转化风险升高。该蛋白主要位于细胞核内，缺乏天然胞外结构域或分泌特征，抗原可及性不适合常规体内阻断型抗体，但可支持结构生物学驱动的细胞内抗体片段或研究级结合分子设计。相较FA通路中大型多亚基支架蛋白，FANCL具有明确催化RING结构域与可解析复合物结构，适合作为机制验证和界面阻断优先模型。",
+    "mechanism": "设计结合分子阻断FANCL RING结构域与UBE2T E2酶的接触界面，从而抑制FANCD2-FANCI复合物的单泛素化反应。",
+    "selectedEpitope": "优先覆盖FANCL RING结构域的UBE2T结合界面，避开锌配位核心残基以降低构象破坏风险。",
+    "diseaseDirection": "Fanconi贫血与髓系恶性疾病",
+    "domain": "FANCL含N端ELF结构域、DRWD结构域及C端RING型E3连接酶结构域。",
+    "evidence": "FANCL-FA通路DNA交联修复证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q9NW38功能与亚细胞定位注释",
+      "RCSB PDB 3ZQS实验晶体结构",
+      "Fanconi anemia核心复合物与FANCD2/FANCI单泛素化文献"
+    ],
+    "referenceEntries": "UniProt Q9NW38；RCSB PDB 3ZQS；Open Targets FANCL",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端RING结构域UBE2T结合面",
+        "直接干预E2-E3复合物形成，机制验证价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DRWD结构域暴露环区",
+        "可能影响底物或核心复合物装配，适合作为调节型表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "RING结构域锌配位核心附近",
+        "易引发非特异构象扰动并影响蛋白折叠稳定性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FANCL为细胞内核蛋白，常规抗体体内可及性不足；设计宜定位为Fab/VHH结构探针、胞内抗体或递送体系依赖型分子，避免声称直接胞外阻断。",
+    "structurePrepZh": "以3ZQS晶体结构链A/B为模板，补全缺失环区并核查锌离子配位、RING构象及晶体接触界面，保留生物学相关二聚或复合物状态。",
+    "structureRef": "RCSB PDB 3ZQS，X-ray diffraction，2.0 Å",
+    "antibodies": [
+      "暂无获批FANCL靶向抗体",
+      "暂无临床阶段FANCL靶向抗体"
+    ],
+    "interfaceFocus": "RING-UBE2T结合界面与DRWD暴露环区",
+    "designMode": "胞内结构探针",
+    "candidates": [
+      {
+        "target": "FANCD2",
+        "rationale": "FANCD2是FA通路的关键单泛素化底物，其修饰状态直接反映FANCL-UBE2T轴活性，适合作为同通路功能读出与干预候选。"
+      },
+      {
+        "target": "FANCI",
+        "rationale": "FANCI与FANCD2形成ID复合物并共同参与DNA交联损伤识别，位于FANCL介导单泛素化事件的直接下游。"
+      },
+      {
+        "target": "UBE2T",
+        "rationale": "UBE2T是FANCL配对E2泛素结合酶，二者共同催化FANCD2/FANCI单泛素化，是同一分子反应界面的直接候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

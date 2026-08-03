@@ -1,0 +1,65 @@
+{
+  "gene": "CSTF1",
+  "generatedAt": "2026-08-03T11:41:39.001Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CSTF1为mRNA 3'端加工复合体CstF的50 kDa亚基，主要通过与CSTF2、CSTF3及CPSF复合体协同促进pre-mRNA切割与多聚腺苷酸化；其疾病关联多指向神经退行性疾病及血液表型，但相关机制更偏向细胞内RNA加工稳态。CSTF1定位于细胞核内，不具备胞外结构域、分泌蛋白或膜受体特征，天然抗原可及性不适合常规治疗性抗体。相较TNF、IL6R、TREM2等同类疾病通路中具有胞外可及性的靶点，CSTF1仅适合作为结构生物学或细胞内递送抗体研究靶点，主靶点优先级较低。",
+    "mechanism": "设计抗体应阻断CSTF1铰链/肽结合沟槽与CSTF2尾部肽段的结合，从而干扰CstF复合体装配和pre-mRNA 3'端加工。",
+    "selectedEpitope": "优先覆盖CSTF1 Hinge结构域中CSTF2肽结合沟槽及邻近保守疏水口袋。",
+    "diseaseDirection": "RNA加工相关神经退行性疾病",
+    "domain": "CSTF1含N端二聚化区、中央Hinge结构域及C端富脯氨酸区域；PDB 32PV主要解析Hinge肽结合结构。",
+    "evidence": "CSTF1结构与RNA 3'端加工疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q05048 functional annotation",
+      "RCSB PDB 32PV X-ray structure",
+      "RNA 3' end cleavage and polyadenylation literature"
+    ],
+    "referenceEntries": "UniProt: Q05048; RCSB PDB: 32PV; Open Targets: CSTF1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Hinge结构域CSTF2肽结合沟槽",
+        "直接阻断CSTF1-CSTF2装配界面，机制最清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Hinge结构域邻近疏水口袋与α螺旋边缘",
+        "可通过构象限制削弱CSTF2尾部肽段识别",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离肽结合沟槽的保守结构核心",
+        "可能影响折叠稳定性但缺乏选择性阻断窗口",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CSTF1为核内蛋白，常规抗体难以进入作用位点；建议限定为细胞内抗体、递送型VHH或机制验证工具，并避免靶向高度保守折叠核心。",
+    "structurePrepZh": "以1.56 Å X射线结构32PV为模板，保留CSTF1 Hinge链与CSTF2结合肽段，补全缺失侧链、校正质子化状态并标注肽结合沟槽。",
+    "structureRef": "RCSB PDB 32PV, X-ray diffraction, 1.56 Å",
+    "antibodies": [
+      "无已批准CSTF1治疗性抗体",
+      "研究级抗CSTF1抗体"
+    ],
+    "interfaceFocus": "CSTF1 Hinge-CSTF2尾部肽结合界面",
+    "designMode": "细胞内阻断型",
+    "candidates": [
+      {
+        "target": "CSTF2",
+        "rationale": "CSTF2为CstF复合体RNA结合亚基，直接识别GU/U富集下游序列；与CSTF1处于同一pre-mRNA 3'端加工通路。"
+      },
+      {
+        "target": "CSTF3",
+        "rationale": "CSTF3参与CstF复合体装配并连接切割多聚腺苷酸化机器；其功能扰动可影响同一mRNA 3'端形成过程。"
+      },
+      {
+        "target": "CPSF6",
+        "rationale": "CPSF6属于CPSF复合体相关因子，参与pre-mRNA切割位点选择；与CSTF复合体共同调控3'端加工稳态。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

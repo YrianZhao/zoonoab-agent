@@ -1,0 +1,65 @@
+{
+  "gene": "UBE2C",
+  "generatedAt": "2026-08-03T17:37:47.370Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "UBE2C是APC/C复合体相关的E2泛素结合酶，在有丝分裂退出过程中催化Cyclin B1、Securin等底物的泛素链延伸，异常高表达可促进染色体不稳定性并与肝细胞癌、非小细胞肺癌等增殖性肿瘤相关。该蛋白主要定位于细胞质和细胞核，缺乏跨膜区和分泌信号，天然抗原可及性不符合常规治疗性抗体靶点特征，更适合细胞内机制验证或递送型抗体格式。相较于上游周期蛋白或泛E3组分，UBE2C具有明确催化半胱氨酸和APC/C结合界面，可提供更聚焦的结构干预位点，但治疗优先级低于胞外膜受体类肿瘤靶点。",
+    "mechanism": "通过结合UBE2C催化核心邻近界面，阻断其与APC/C共激活复合体及泛素装载中间体的功能耦联，降低Cyclin B1和Securin的K11连接泛素化。",
+    "selectedEpitope": "优先覆盖UBC结构域α1/β1邻近APC/C结合面，避开Cys114催化位点直接遮蔽。",
+    "diseaseDirection": "细胞周期驱动型实体瘤",
+    "domain": "UBE2C含单一UBC催化结构域，包含活性Cys114及E3结合相关α螺旋表面。",
+    "evidence": "UBE2C细胞周期泛素化与肿瘤关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt O00762功能与亚细胞定位注释",
+      "RCSB PDB 4YII晶体结构记录",
+      "APC/C-UBE2C介导K11泛素链延伸文献"
+    ],
+    "referenceEntries": "UniProt O00762；RCSB PDB 4YII；Open Targets UBE2C",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "UBC结构域α1/β1外侧E3结合面",
+        "干预UBE2C与APC/C功能耦联，保留构象判读价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "活性Cys114周边催化沟槽",
+        "可抑制泛素硫酯转移，但易影响保守E2酶家族选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "UBC结构域保守β折叠核心背面",
+        "结构稳定但功能阻断证据弱，交叉反应风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "UBE2C为胞内非分泌酶，常规抗体难以到达作用位点；设计宜限定为细胞内递送抗体、intrabody或机制研究探针，并强化E2家族选择性筛选。",
+    "structurePrepZh": "以4YII高分辨率晶体结构为模板，保留抗原链U/A中完整UBC结构域，校验Cys114、E3结合表面及晶体接触区后进行表位暴露度评估。",
+    "structureRef": "RCSB PDB 4YII，X-ray diffraction，1.804 Å",
+    "antibodies": [
+      "抗UBE2C研究级单克隆抗体",
+      "抗UBE2C免疫组化诊断抗体"
+    ],
+    "interfaceFocus": "UBC催化域E3结合面与Cys114邻近沟槽",
+    "designMode": "胞内靶点验证型",
+    "candidates": [
+      {
+        "target": "ANAPC10",
+        "rationale": "ANAPC10是APC/C底物识别相关亚基，参与有丝分裂底物降解，与UBE2C处于同一APC/C泛素化轴。其结构化复合体界面可用于评估阻断APC/C底物处理的替代策略。"
+      },
+      {
+        "target": "CDC20",
+        "rationale": "CDC20是APC/C在有丝分裂期的共激活因子，促进Cyclin B1和Securin识别降解。干预CDC20-APC/C或CDC20-底物相互作用可在同一通路上抑制异常细胞周期推进。"
+      },
+      {
+        "target": "CCNB1",
+        "rationale": "CCNB1编码Cyclin B1，是APC/C-UBE2C轴关键降解底物，其持续稳定化与有丝分裂退出障碍直接相关。作为通路读出和干预节点，可辅助验证UBE2C阻断效应。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

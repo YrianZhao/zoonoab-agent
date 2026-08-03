@@ -1,0 +1,65 @@
+{
+  "gene": "MAPK6",
+  "generatedAt": "2026-08-03T20:07:44.582Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAPK6（ERK3）为非典型丝裂原活化蛋白激酶，参与细胞迁移、代谢表型和炎症相关转录网络，Open Targets 数据显示其与体脂、体重、C 反应蛋白测量及神经退行性疾病存在遗传和功能关联。该蛋白主要为胞内丝氨酸/苏氨酸激酶，抗原可及性不具备膜受体或分泌蛋白优势，因此更适合作为胞内靶向递送抗体片段或结构辅助型结合分子设计对象。相较经典 ERK1/2，MAPK6 具有非典型 C 端延伸区和特异性调控伙伴，使其在选择性识别与通路解耦方面具有优先研究价值。",
+    "mechanism": "设计结合 MAPK6 激酶结构域的抗体片段，阻断其与 MAPKAPK5 的 docking 结合及后续磷酸化事件，从而削弱 ERK3-MK5 轴介导的迁移和炎症相关信号输出。",
+    "selectedEpitope": "优先锁定激酶结构域 C-lobe docking groove 及 MAPKAPK5 结合邻近界面，规避高度保守 ATP 口袋。",
+    "diseaseDirection": "代谢炎症与神经退行性疾病",
+    "domain": "MAPK6 含 N 端丝氨酸/苏氨酸蛋白激酶结构域及非典型长 C 端调控区。",
+    "evidence": "MAPK6-ERK3-MK5轴结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q16659 functional annotation",
+      "RCSB PDB 7AQB X-ray structure",
+      "Published ERK3-MAPKAPK5 signaling literature"
+    ],
+    "referenceEntries": "UniProt: Q16659; RCSB PDB: 7AQB; Gene: MAPK6",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域 C-lobe docking groove / MAPKAPK5 结合邻近面",
+        "可干预 ERK3-MK5 复合物形成并提高机制特异性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N-lobe αC-helix 周边变构面",
+        "可能稳定非活化构象并间接影响底物磷酸化",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP 结合裂隙及催化 Lys-Glu 邻近区",
+        "高度保守，易产生 MAPK 家族交叉反应和功能毒性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAPK6 为胞内激酶，常规抗体难以直接到达靶点；设计应采用细胞内递送片段或 PROBODY/纳米抗体策略，并严格评估 MAPK 家族交叉反应。",
+    "structurePrepZh": "以 7AQB 的 A、B 链激酶结构域为模板，补全缺失环区，保留催化区构象信息，去除晶体接触干扰后进行界面可及性分析。",
+    "structureRef": "RCSB PDB 7AQB, human MAPK6 kinase domain, 2.25 Å",
+    "antibodies": [
+      "研究级 anti-ERK3/MAPK6 monoclonal antibody",
+      "研究级 phospho-ERK3 Ser189 antibody"
+    ],
+    "interfaceFocus": "C-lobe docking groove 与 MK5 结合邻近界面",
+    "designMode": "胞内靶向抗体片段设计",
+    "candidates": [
+      {
+        "target": "MAPKAPK5",
+        "rationale": "MAPKAPK5（MK5）是 MAPK6 的关键下游结合与磷酸化底物，直接构成 ERK3-MK5 信号轴。靶向该节点可从效应端抑制迁移和炎症相关输出。"
+      },
+      {
+        "target": "MAPK7",
+        "rationale": "MAPK7（ERK5）同属 MAPK 通路并参与代谢、炎症和神经系统应激相关信号。其激酶结构域与转录调控功能为同通路替代干预节点。"
+      },
+      {
+        "target": "MAPK1",
+        "rationale": "MAPK1（ERK2）为经典 MAPK/ERK 级联核心激酶，参与炎症标志物、细胞增殖和神经应激反应。与 MAPK6 比较可用于区分非典型与经典 ERK 轴贡献。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "PLK1",
+  "generatedAt": "2026-08-03T15:21:45.762Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PLK1为丝氨酸/苏氨酸蛋白激酶，参与有丝分裂进入、中心体成熟、纺锤体组装及胞质分裂，其异常活化与细胞周期失控和肿瘤增殖具有明确机制关联。该蛋白主要定位于细胞内，天然抗原可及性弱，不具备常规胞外抗体阻断优势，因此更适合作为结构引导的细胞内抗体、递送型抗体片段或降解偶联策略探索对象。相较CDK1、AURKA等同类有丝分裂激酶，PLK1具有N端催化结构域与C端polo-box结构域的双重功能界面，且肿瘤依赖性和遗传必需性证据较强，优先级来自其更清晰的磷酸肽识别与底物募集节点。",
+    "mechanism": "阻断PLK1 polo-box结构域与Ser-pSer/pThr-Pro底物磷酸肽的结合，或干扰激酶结构域ATP结合口袋邻近构象，抑制底物募集和有丝分裂磷酸化级联。",
+    "selectedEpitope": "优先锁定polo-box结构域PB1/PB2磷酸肽结合沟槽及二聚界面邻近环区。",
+    "diseaseDirection": "肿瘤细胞周期与有丝分裂依赖",
+    "domain": "PLK1含N端蛋白激酶催化结构域、连接区及C端双polo-box底物识别结构域。",
+    "evidence": "PLK1细胞周期依赖性与结构可干预证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P53350功能与亚细胞定位注释",
+      "RCSB PDB 3FVH晶体结构解析",
+      "DepMap/CRISPR肿瘤细胞必需性数据"
+    ],
+    "referenceEntries": "UniProt P53350；RCSB PDB 3FVH；ChEMBL PLK1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端polo-box结构域磷酸肽结合沟槽",
+        "直接竞争底物停靠肽段，阻断PLK1定位与底物募集",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PB1/PB2结构域间界面及邻近柔性环",
+        "稳定非活性识别构象，降低磷酸化底物亲和力",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端激酶结构域ATP结合裂隙周边",
+        "可能影响催化构象，但同源激酶保守性高且胞内递送要求严格",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PLK1缺乏胞外结构域，常规全长抗体难以接触天然靶点；设计应采用细胞内抗体片段、递送载体或靶向降解构型，并严格评估与PLK2/PLK3同源界面交叉反应。",
+    "structurePrepZh": "以3FVH高分辨率晶体结构为模板，保留抗原链A/B可解析区域，补建缺失环区并进行质子化、侧链优化和polo-box沟槽网格定义。",
+    "structureRef": "RCSB PDB 3FVH，X-ray diffraction，1.58 Å",
+    "antibodies": [
+      "anti-PLK1 phospho-T210 antibody",
+      "anti-PLK1 monoclonal antibody clone 35-206"
+    ],
+    "interfaceFocus": "polo-box磷酸肽结合沟槽与PB1/PB2界面",
+    "designMode": "细胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "CDK1",
+        "rationale": "CDK1与Cyclin B共同驱动G2/M转换，并与PLK1在有丝分裂进入和纺锤体检查点中协同作用，是同一细胞周期依赖轴上的核心激酶。"
+      },
+      {
+        "target": "AURKA",
+        "rationale": "AURKA参与中心体成熟和纺锤体形成，并可促进PLK1有丝分裂功能激活，适合作为PLK1相关有丝分裂通路的并行节点。"
+      },
+      {
+        "target": "BUB1B",
+        "rationale": "BUB1B编码BUBR1，是纺锤体组装检查点关键组分，与PLK1共同维持染色体分离精度和有丝分裂检查点信号。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

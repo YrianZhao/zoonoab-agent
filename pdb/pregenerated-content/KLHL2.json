@@ -1,0 +1,65 @@
+{
+  "gene": "KLHL2",
+  "generatedAt": "2026-08-03T13:44:49.741Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KLHL2为BTB-Kelch家族E3泛素连接酶底物适配蛋白，主要通过Kelch β-propeller识别底物并经CUL3-RBX1复合体促进泛素化，现有疾病关联信号较分散且最高Open Targets得分有限，提示其更适合作为机制探索靶点而非已验证治疗靶点。该蛋白以胞内定位为主，缺乏天然分泌形式或稳定跨膜胞外结构域，抗原可及性不符合常规体内阻断型抗体优势，但重组结构域可支持体外结合分子、细胞内抗体或降解调控工具设计。相较同通路中CUL3、RBX1等核心泛素化节点，KLHL2具备底物识别特异性和高分辨率Kelch结构基础，优先级主要来自结构可设计性而非临床疾病证据强度。",
+    "mechanism": "设计结合Kelch β-propeller底物识别面的抗体片段，阻断KLHL2与底物肽段的接触，干预其招募至CUL3-RBX1泛素化复合体后的底物泛素化过程。",
+    "selectedEpitope": "优先覆盖Kelch β-propeller顶部底物结合沟槽，避开保守疏水核心与晶体堆积界面。",
+    "diseaseDirection": "泛素-蛋白酶体调控相关疾病探索",
+    "domain": "KLHL2含N端BTB/POZ、BACK区及C端Kelch重复β-propeller底物识别结构域。",
+    "evidence": "KLHL2结构域与CUL3-E3适配机制证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt O95198功能与结构域注释",
+      "RCSB PDB 4CHB高分辨率晶体结构",
+      "BTB-Kelch/CUL3 E3泛素连接酶文献"
+    ],
+    "referenceEntries": "UniProt: O95198; RCSB PDB: 4CHB; Open Targets: KLHL2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Kelch β-propeller顶部底物结合沟槽",
+        "可直接竞争底物肽段识别，适合功能阻断型片段设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "相邻Kelch叶片外侧环区",
+        "可提供较高表面可及性并形成变构干预窗口",
+        "备选"
+      ],
+      [
+        "Site C",
+        "β-propeller底部保守结构核心",
+        "可能影响折叠稳定性且选择性不足，需避免非特异构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "KLHL2为胞内蛋白，常规全长IgG体内可及性受限；宜优先采用Fab/VHH用于结构探针、细胞内表达抗体或靶向降解机制验证。",
+    "structurePrepZh": "以4CHB抗原链A-D比对评估晶体接触，保留Kelch结构域完整β-propeller，去除非生物学对称界面后进行表面电荷与口袋分析。",
+    "structureRef": "RCSB PDB 4CHB，X-ray diffraction，1.56 Å",
+    "antibodies": [
+      "暂无KLHL2临床验证抗体",
+      "BTB-Kelch结构域研究用抗体"
+    ],
+    "interfaceFocus": "Kelch顶部底物识别沟槽及外侧环区",
+    "designMode": "胞内靶点片段抗体",
+    "candidates": [
+      {
+        "target": "CUL3",
+        "rationale": "CUL3是BTB-Kelch适配蛋白复合体的核心支架，直接结合KLHL2的BTB结构域并连接RBX1介导泛素转移，属于同一CUL3-RING E3通路关键节点。"
+      },
+      {
+        "target": "RBX1",
+        "rationale": "RBX1与CUL3形成催化核心并招募E2泛素结合酶，决定底物泛素链转移效率，是KLHL2介导泛素化过程的同通路效应组分。"
+      },
+      {
+        "target": "NEDD8",
+        "rationale": "NEDD8修饰CUL3后促进CRL复合体活化，调节KLHL2-CUL3-RBX1泛素连接酶活性，适合作为同一泛素化调控轴的候选干预节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

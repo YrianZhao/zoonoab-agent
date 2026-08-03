@@ -1,0 +1,65 @@
+{
+  "gene": "CXCL2",
+  "generatedAt": "2026-08-03T11:44:58.287Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CXCL2是ELR+ CXC趋化因子，主要通过结合CXCR2并部分作用于CXCR1，驱动中性粒细胞趋化、脱颗粒和炎症部位募集；Open Targets关联以中性粒细胞计数和白细胞数量表型为主，符合其髓系炎症轴功能。该靶点为分泌型小分子趋化因子，成熟蛋白位于胞外空间，抗体可直接接触受体结合面并中和配体活性。相较CXCR2等七跨膜受体，CXCL2结构紧凑、晶体复合物分辨率高，利于界面解析和中和表位工程化，因此具备较高设计优先级。",
+    "mechanism": "抗体结合CXCL2的CXCR2识别面，阻断其N-loop、β3区及C端α螺旋与CXCR2胞外N端/受体口袋的相互作用，抑制中性粒细胞趋化。",
+    "selectedEpitope": "优先覆盖CXCL2 N-loop至β3片层受体结合面，兼顾ELR基序邻近区域以获得中和活性。",
+    "diseaseDirection": "中性粒细胞炎症与白细胞表型",
+    "domain": "CXCL2为分泌型ELR+ CXC趋化因子，含N端ELR基序、N-loop、三股β片层和C端α螺旋。",
+    "evidence": "CXCL2-CXCR2中性粒细胞趋化轴证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P19875功能与序列注释",
+      "RCSB PDB 5OB5晶体结构记录",
+      "趋化因子CXCL2/CXCR2炎症募集文献"
+    ],
+    "referenceEntries": "UniProt:P19875；RCSB PDB:5OB5；Gene:CXCL2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N-loop/β3片层受体结合面",
+        "直接遮蔽CXCR2识别界面，最适合中和型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端ELR基序邻近区域",
+        "可干扰CXCR2激活所需的趋化因子N端定位，但需避免过度依赖柔性末端",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端α螺旋远端表面",
+        "结构稳定且可及性较好，但与主要受体激活界面距离较远，中和效力不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CXCL1、CXCL3和CXCL8与CXCL2共享ELR+ CXC趋化因子特征，需评估交叉反应；建议围绕CXCL2特异性残基构建表位并保留受体阻断活性。",
+    "structurePrepZh": "以5OB5高分辨率晶体结构为模板，保留抗原链A并解析H/L链接触残基；补全柔性N端构象集合后进行表位可及性和界面能评估。",
+    "structureRef": "RCSB PDB 5OB5，X-ray diffraction，1.65 Å",
+    "antibodies": [
+      "anti-CXCL2 neutralizing antibody clone 40605",
+      "anti-CXCL2 neutralizing antibody clone 20326"
+    ],
+    "interfaceFocus": "N-loop、ELR邻近区与β3片层受体结合面",
+    "designMode": "分泌因子中和",
+    "candidates": [
+      {
+        "target": "CXCR2",
+        "rationale": "CXCR2是CXCL2介导中性粒细胞趋化的主要受体，阻断配体-受体轴可直接抑制髓系炎症募集。其膜受体属性增加结构设计难度，但通路定位明确。"
+      },
+      {
+        "target": "CXCL1",
+        "rationale": "CXCL1同属ELR+ CXC趋化因子并与CXCR2结合，在中性粒细胞募集通路中与CXCL2具有功能冗余。联合评估有助于控制配体补偿风险。"
+      },
+      {
+        "target": "CXCL8",
+        "rationale": "CXCL8通过CXCR1/CXCR2强效驱动中性粒细胞趋化和活化，是同一趋化因子-受体炎症轴中的关键配体。其临床炎症证据较强，可作为并行靶点比较。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

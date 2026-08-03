@@ -1,0 +1,65 @@
+{
+  "gene": "EGLN1",
+  "generatedAt": "2026-08-03T19:00:31.635Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "EGLN1编码PHD2，是细胞氧感知通路中催化HIF-α脯氨酰羟化的关键2-氧戊二酸依赖性双加氧酶，失活或低活性可稳定HIF-2α并驱动EPO上调，形成家族性红细胞增多症及血红蛋白、血细胞比容表型关联。该蛋白主要为胞内酶，天然抗体可及性弱，适合作为结构引导的功能抗体或细胞内递送抗体研究靶点。相较EGLN2、EGLN3，EGLN1在成人氧稳态与红系表型中的遗传证据更集中，Open Targets关联强度支持其作为该通路优先机制节点。",
+    "mechanism": "抗体设计以阻断EGLN1催化结构域识别HIF-α LXXLAP脯氨酰羟化基序为核心，抑制底物进入Fe(II)/2-氧戊二酸活性口袋并降低HIF-α羟化效率。",
+    "selectedEpitope": "优先覆盖催化结构域β2β3环及底物结合沟槽邻近界面，避开深埋Fe(II)配位残基。",
+    "diseaseDirection": "缺氧感知与红细胞增多症",
+    "domain": "EGLN1含N端调控区及C端PHD催化结构域，后者为Fe(II)/2-氧戊二酸依赖性双加氧酶折叠。",
+    "evidence": "EGLN1氧感知-红系表型结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9GZT9功能注释",
+      "RCSB PDB 4BQY晶体结构",
+      "HIF-PHD-VHL氧依赖降解通路文献"
+    ],
+    "referenceEntries": "UniProt Q9GZT9；RCSB PDB 4BQY；Open Targets EGLN1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PHD催化结构域底物结合沟槽外缘及β2β3环",
+        "可直接干扰HIF-α羟化基序装载，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "2-氧戊二酸结合口袋入口周边可及环区",
+        "可产生别构或入口遮挡效应，同时降低金属中心直接扰动风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Fe(II)配位核心及深埋催化残基邻近区域",
+        "结构保守且口袋狭窄，抗体结合可及性低并可能引入非特异金属配位风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "EGLN1为胞内酶，常规循环抗体难以接近天然抗原；设计需采用细胞内递送、intrabody或体外机制验证路线，并严控EGLN2/EGLN3交叉反应。",
+    "structurePrepZh": "以4BQY链A为模板，保留催化结构域构象与关键辅因子邻近坐标，补全缺失侧链并标注底物沟槽、金属配位位点和可及环区。",
+    "structureRef": "RCSB PDB 4BQY，X-ray diffraction，1.53 Å",
+    "antibodies": [
+      "抗PHD2研究级单克隆抗体",
+      "抗EGLN1/PHD2胞内检测抗体"
+    ],
+    "interfaceFocus": "HIF-α LXXLAP底物沟槽入口",
+    "designMode": "胞内功能阻断",
+    "candidates": [
+      {
+        "target": "EPAS1",
+        "rationale": "EPAS1编码HIF-2α，是EGLN1羟化后经VHL识别降解的关键底物；其稳定化直接驱动EPO表达和红细胞增多表型。"
+      },
+      {
+        "target": "VHL",
+        "rationale": "VHL识别羟化HIF-α并组装E3泛素连接酶复合物，位于EGLN1下游的氧依赖降解步骤；遗传异常同样可导致HIF通路持续激活。"
+      },
+      {
+        "target": "EPO",
+        "rationale": "EPO是HIF-2α转录激活的红系效应因子，直接促进红细胞生成；在红细胞增多症与贫血表型中具有明确通路连接。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

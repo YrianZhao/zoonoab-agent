@@ -1,0 +1,65 @@
+{
+  "gene": "FOXM1",
+  "generatedAt": "2026-08-03T12:36:53.274Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FOXM1 是细胞周期与有丝分裂转录程序的核心转录因子，可促进 CCNB1、PLK1、AURKB、CDC25B 等基因表达，在多种肿瘤中驱动增殖、染色体分离与治疗耐受。其抗原可及性存在显著限制，天然 FOXM1 主要定位于细胞核，缺乏胞外结构域或分泌特征，因此更适合作为细胞内抗原识别、降解偶联或研究型抗体开发对象。相比单一细胞周期效应激酶，FOXM1 位于增殖转录网络上游，疾病关联广泛且结构域信息明确，但治疗性抗体优先级需低于可胞外阻断的膜受体靶点。",
+    "mechanism": "设计抗体识别 FOXM1 forkhead DNA 结合结构域，阻断其与靶基因启动子 forkhead motif DNA 的结合，抑制增殖相关转录程序。",
+    "selectedEpitope": "优先覆盖 forkhead DNA 结合结构域翼状螺旋与识别螺旋邻近 DNA 接触面。",
+    "diseaseDirection": "肿瘤细胞周期转录调控",
+    "domain": "FOXM1 含 N 端抑制区、forkhead DNA 结合结构域及 C 端转录激活区。",
+    "evidence": "FOXM1 肿瘤增殖转录轴结构与疾病证据",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q08050 functional annotation",
+      "RCSB PDB 3G73 X-ray structure",
+      "Cancer cell-cycle transcription literature"
+    ],
+    "referenceEntries": "UniProt Q08050；RCSB PDB 3G73；Open Targets FOXM1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "forkhead DNA 结合结构域识别螺旋及相邻翼区",
+        "直接干预 FOXM1 与 forkhead motif DNA 的序列特异性结合",
+        "优先"
+      ],
+      [
+        "Site B",
+        "forkhead 结构域外侧保守 β 折叠与环区",
+        "可获得构象稳定结合并用于胞内成像或降解偶联设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端转录激活区低复杂度片段",
+        "结构柔性高且缺乏 3G73 明确构象约束，功能阻断可预测性较低",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FOXM1 为核内转录因子，常规抗体难以到达天然作用位点；需优先采用胞内递送、intrabody、PROTAB 或研究诊断场景，并规避高保守 forkhead 家族交叉反应。",
+    "structurePrepZh": "以 PDB 3G73 的 FOXM1 forkhead 结构域链 A-D 为模板，保留稳定二级结构，校验缺失环区、DNA 接触残基与同源 forkhead 蛋白保守性。",
+    "structureRef": "RCSB PDB 3G73，X-ray diffraction，2.21 Å",
+    "antibodies": [
+      "FOXM1 clone K-19",
+      "FOXM1 clone D12D5"
+    ],
+    "interfaceFocus": "forkhead 识别螺旋-DNA major groove 接触面",
+    "designMode": "胞内抗原阻断",
+    "candidates": [
+      {
+        "target": "PLK1",
+        "rationale": "PLK1 是 FOXM1 转录网络中的关键有丝分裂激酶，并可促进 FOXM1 活性形成正反馈，适合用于同一增殖通路的联合验证。"
+      },
+      {
+        "target": "AURKB",
+        "rationale": "AURKB 参与染色体乘客复合体和有丝分裂校正过程，属于 FOXM1 上调的细胞周期效应节点，可反映 FOXM1 驱动的分裂表型。"
+      },
+      {
+        "target": "CCNB1",
+        "rationale": "CCNB1 是 FOXM1 调控的 G2/M 转换核心周期蛋白，与 CDK1 共同驱动有丝分裂进入，适合作为同通路候选靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

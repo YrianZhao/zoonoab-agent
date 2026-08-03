@@ -1,0 +1,65 @@
+{
+  "gene": "GET4",
+  "generatedAt": "2026-08-03T12:45:03.852Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GET4 是 TRC40/GET 尾锚定膜蛋白靶向通路的胞质因子，与 BAG6、UBL4A、GET3/TRC40 协同参与尾锚定蛋白向内质网膜的递送，通路失衡可影响膜蛋白稳态并与神经退行性疾病中的蛋白质稳态压力相关。该蛋白主要为胞质可溶性支架蛋白，缺乏天然胞外暴露，因此作为体内阻断性抗体靶点的抗原可及性较弱，更适合结构生物学验证、胞内抗体或体外功能干预设计。相较于同通路中具有ATP酶活性和底物结合口袋的 GET3/ASNA1，GET4 的优先级主要来自高分辨率实验结构与复合物界面可解析性，但成药可及性优先级低于可分泌或膜表面靶点。",
+    "mechanism": "设计抗体结合 GET4 α螺旋支架上的 GET3/ASNA1 结合界面，阻断 GET4-UBL4A 复合物向 GET3 递交尾锚定底物复合物。",
+    "selectedEpitope": "优先覆盖 GET4 α螺旋束中 GET3 接触面及相邻疏水沟槽，避免核心折叠区全包埋表位。",
+    "diseaseDirection": "神经退行性疾病蛋白稳态方向",
+    "domain": "GET4 为胞质α螺旋富集支架蛋白，含保守 GET4 样结构域并与 UBL4A 形成复合物界面。",
+    "evidence": "GET4-TRC40尾锚定蛋白递送通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q7L5D6 功能注释",
+      "RCSB PDB 6AU8 X-ray 结构",
+      "TRC40/GET 尾锚定蛋白靶向通路文献"
+    ],
+    "referenceEntries": "UniProt Q7L5D6；RCSB PDB 6AU8；Open Targets GET4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "GET4 α螺旋束 GET3/ASNA1 结合界面",
+        "可直接干预尾锚定底物向 GET3 的装载步骤",
+        "优先"
+      ],
+      [
+        "Site B",
+        "GET4-UBL4A 复合物相邻外露螺旋面",
+        "可扰动前装载复合物稳定性并保留较好结构可及性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "GET4 保守疏水核心与螺旋束内部区域",
+        "可能影响整体折叠但表位可及性低且脱靶构象风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GET4 缺乏胞外结构域，常规治疗性抗体难以在完整细胞内接触靶点；建议定位为胞内抗体、结构探针或体外功能阻断模型。",
+    "structurePrepZh": "以 6AU8 的 A、C 链为抗原模板，保留复合物界面构象，补全缺失侧链并检查晶体接触对表位暴露的影响。",
+    "structureRef": "RCSB PDB 6AU8，X-ray diffraction，1.8 Å",
+    "antibodies": [
+      "无获批 GET4 靶向抗体",
+      "研究级 anti-GET4 抗体"
+    ],
+    "interfaceFocus": "GET4-GET3 接触面与 UBL4A 邻近支架界面",
+    "designMode": "胞内抗体/结构探针",
+    "candidates": [
+      {
+        "target": "ASNA1",
+        "rationale": "ASNA1/GET3 是 TRC40 通路核心ATP酶，直接结合尾锚定蛋白疏水跨膜段并介导向内质网受体递送。其底物结合沟槽与ATP依赖构象转换提供明确功能干预位点。"
+      },
+      {
+        "target": "UBL4A",
+        "rationale": "UBL4A 与 GET4 形成预靶向复合物，参与 BAG6 复合体向 GET3 转交尾锚定底物。干预该界面可影响底物装载效率。"
+      },
+      {
+        "target": "BAG6",
+        "rationale": "BAG6 是前靶向复合物核心组分，识别并维持新生尾锚定蛋白的可溶状态，同时连接质量控制与降解分流。该节点更接近蛋白稳态压力机制。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

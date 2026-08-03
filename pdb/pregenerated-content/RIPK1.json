@@ -1,0 +1,65 @@
+{
+  "gene": "RIPK1",
+  "generatedAt": "2026-08-03T21:00:06.197Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RIPK1是TNFR1复合体、TLR信号与细胞死亡检查点中的丝氨酸/苏氨酸激酶，参与NF-κB炎症转录、凋亡及RIPK3依赖性坏死性凋亡，遗传变异可导致发热淋巴结肿大型自身炎症和免疫缺陷表型。该蛋白主要定位于胞质信号复合体，并非典型胞外抗原，常规阻断型抗体可及性受限，但可作为胞内递送抗体、细胞穿透VHH或结构引导抑制片段的研究靶点。相较下游炎症因子，RIPK1位于死亡受体信号分叉点，具有同时影响炎症放大与细胞死亡执行的优先级优势，但抗体成药性需以递送策略为前提。",
+    "mechanism": "通过结合RIPK1激酶结构域ATP结合沟槽邻近区域或活化环，抑制RIPK1自磷酸化及与RIPK3形成necrosome的激酶依赖性信号传递。",
+    "selectedEpitope": "优先覆盖N端激酶结构域N-lobe/C-lobe裂隙及活化环邻近构象表位，避免遮蔽泛素化调控位点。",
+    "diseaseDirection": "自身炎症与坏死性凋亡疾病",
+    "domain": "RIPK1含N端激酶结构域、中间RHIM基序及C端death domain，5ZMZ覆盖激酶结构域。",
+    "evidence": "RIPK1炎症性细胞死亡结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q13546功能与结构域注释",
+      "RCSB PDB 5ZMZ晶体结构记录",
+      "人类遗传学RIPK1缺陷与自身炎症文献"
+    ],
+    "referenceEntries": "UniProt: Q13546；RCSB PDB: 5ZMZ；Open Targets: RIPK1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域ATP结合裂隙与hinge邻近表面",
+        "可直接干预催化构象与小分子抑制剂结合热点，适合结构引导亲和成熟",
+        "优先"
+      ],
+      [
+        "Site B",
+        "激酶结构域活化环及C-lobe外侧构象面",
+        "可限制活化环重排并降低RIPK1自磷酸化效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "中间区RHIM介导的RIPK3相互作用区域",
+        "理论上可阻断RIPK1-RIPK3 necrosome组装，但5ZMZ未覆盖且结构不确定性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RIPK1为胞内蛋白，抗体天然可及性不足；应采用细胞穿透VHH、递送载体或仅作为结构约束结合分子开发，避免依赖常规胞外阻断假设。",
+    "structurePrepZh": "以5ZMZ链A为模板，保留激酶结构域高分辨率坐标，去除结晶配体与非关键水分子，补全缺失侧链并标注ATP口袋、hinge和活化环。",
+    "structureRef": "RCSB PDB 5ZMZ，human RIPK1 kinase domain，1.4 Å X-ray",
+    "antibodies": [
+      "抗RIPK1研究用单克隆抗体",
+      "抗磷酸化RIPK1 Ser166单克隆抗体"
+    ],
+    "interfaceFocus": "ATP结合裂隙、hinge区、活化环及RIPK3耦联面",
+    "designMode": "胞内递送VHH设计",
+    "candidates": [
+      {
+        "target": "RIPK3",
+        "rationale": "RIPK3与RIPK1通过RHIM介导necrosome形成，并磷酸化MLKL驱动坏死性凋亡，是同一细胞死亡通路中的直接下游节点。"
+      },
+      {
+        "target": "MLKL",
+        "rationale": "MLKL是RIPK3磷酸化后的执行分子，寡聚化并破坏质膜完整性，适用于评估坏死性凋亡终末执行环节。"
+      },
+      {
+        "target": "TNFRSF1A",
+        "rationale": "TNFR1招募TRADD、RIPK1、TRAF2和cIAP形成受体近端复合体I，是RIPK1炎症与死亡信号的上游入口。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "RBM41",
+  "generatedAt": "2026-08-03T15:55:59.885Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RBM41为含RNA recognition motif的细胞内RNA结合蛋白，目前Open Targets疾病关联得分较低，主要信号来自胰腺炎、骨关节炎及肾功能相关表型，尚不足以支持明确的致病通路定位。其抗原可及性不具备分泌蛋白、膜受体或稳定胞外结构域特征，常规治疗性抗体难以在活细胞内直接结合该靶点。相较于同类炎症或组织重塑通路中的TNF、IL6、IL1B等胞外可及靶点，RBM41作为抗体主靶点优先级较低，更适合作为机制研究或细胞内结合工具抗体开发对象。",
+    "mechanism": "工具抗体可识别RBM41 RRM结构域的RNA结合面，干扰其与靶RNA序列的结合，用于解析RNA加工相关复合物功能。",
+    "selectedEpitope": "优先覆盖RRM β折叠RNA结合面邻近RNP1/RNP2基序，避免完全依赖柔性末端。",
+    "diseaseDirection": "炎症性胰腺炎与骨关节炎机制研究",
+    "domain": "RBM41含典型RNA recognition motif，PDB 2CPX解析其RRM折叠核心，缺乏胞外结构域。",
+    "evidence": "RBM41疾病遗传关联与RRM结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q96IZ5 functional annotation",
+      "RCSB PDB 2CPX solution NMR structure",
+      "InterPro RNA recognition motif domain annotation"
+    ],
+    "referenceEntries": "UniProt Q96IZ5；RCSB PDB 2CPX；Open Targets RBM41",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RRM β-sheet RNA结合面及RNP1/RNP2邻近区域",
+        "最可能影响RNA识别界面，适合功能阻断型工具抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RRM α螺旋外侧非RNA结合面",
+        "构象稳定且暴露度较高，适合检测型或免疫沉淀抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端或C端预测柔性区",
+        "结构约束不足且构象异质性较高，功能阻断可预测性有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RBM41为胞内RNA结合蛋白，治疗性抗体递送与靶点可及性风险较高；建议限定为细胞内工具抗体、纳米抗体或降解平台适配验证。",
+    "structurePrepZh": "以2CPX链A的NMR构象集合为基础，保留RRM核心低RMSD构象，评估RNA结合面保守残基与柔性环区暴露度。",
+    "structureRef": "RCSB PDB 2CPX，human RBM41 RRM solution NMR",
+    "antibodies": [
+      "抗RBM41研究级多克隆抗体",
+      "抗RBM41研究级单克隆抗体"
+    ],
+    "interfaceFocus": "RRM β-sheet RNA结合面与RNP基序邻近环区",
+    "designMode": "胞内工具抗体设计",
+    "candidates": [
+      {
+        "target": "TNF",
+        "rationale": "TNF为胰腺炎和骨关节炎炎症放大环路中的关键胞外细胞因子，抗体可直接中和TNF与TNFRSF1A/TNFRSF1B的相互作用。"
+      },
+      {
+        "target": "IL6",
+        "rationale": "IL6参与急慢性炎症、软骨分解及系统性急性期反应，分泌型细胞因子具有明确抗原可及性，可通过阻断IL6-IL6R复合体形成实现干预。"
+      },
+      {
+        "target": "IL1B",
+        "rationale": "IL1B驱动炎症小体相关炎症及关节软骨基质降解，成熟分泌型IL1B可由中和抗体阻断其与IL1R1结合。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

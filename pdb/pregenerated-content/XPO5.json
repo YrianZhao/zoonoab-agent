@@ -1,0 +1,65 @@
+{
+  "gene": "XPO5",
+  "generatedAt": "2026-08-03T17:55:00.831Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "XPO5 是 RanGTP 依赖性核输出受体，负责 pre-miRNA 与部分结构化 RNA 从细胞核转运至胞质，影响 Dicer 加工及神经元中 miRNA 稳态；miRNA 生物发生失衡与神经退行性疾病中的蛋白稳态、突触功能和炎症反应相关。该蛋白主要定位于核质与胞质，缺乏细胞外结构域或分泌形式，天然抗体可及性弱，需限定为胞内递送抗体、降解型结合体或结构研究型试剂。相较 DROSHA、DGCR8、DICER1 等多酶复合体核心因子，XPO5 具有明确的 cargo 结合沟槽和 RanGTP 调控界面，结构化表位可解释性较强，但成药优先级低于膜受体或分泌型神经炎症靶点。",
+    "mechanism": "结合 XPO5 HEAT-repeat cargo 沟槽，阻断 pre-miRNA 双链茎区与 XPO5 的装载，并干扰 RanGTP 稳定核输出复合体形成。",
+    "selectedEpitope": "优先覆盖 HEAT-repeat 内侧 RNA 结合沟槽及 RanGTP 依赖构象锁定界面。",
+    "diseaseDirection": "神经退行性疾病与miRNA生物发生",
+    "domain": "XPO5 由连续 HEAT repeats 构成弓形 karyopherin β 样核输出受体，形成 RNA 结合内腔。",
+    "evidence": "XPO5-miRNA核输出与神经退行性疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9HAV4 functional annotation",
+      "RCSB PDB 3A6P crystallographic structure",
+      "miRNA biogenesis and neurodegeneration literature"
+    ],
+    "referenceEntries": "UniProt: Q9HAV4; RCSB PDB: 3A6P; Open Targets: XPO5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "HEAT-repeat 内侧 pre-miRNA 结合沟槽",
+        "直接阻断 RNA cargo 装载，机制最清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RanGTP 结合相关外侧构象界面",
+        "削弱 RanGTP 对输出复合体的稳定作用",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远端 HEAT-repeat 外表面非 cargo 区域",
+        "可能仅提供结合信号，功能阻断不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "XPO5 为胞内核质穿梭蛋白，常规抗体难以到达作用位点；应采用胞内递送、intrabody 或 PROTAC/降解偶联验证，并避免破坏广泛 miRNA 稳态导致系统毒性。",
+    "structurePrepZh": "以 3A6P 晶体结构为模板，保留 XPO5 主链 HEAT-repeat 构象，检查 RNA/Ran 相关链与缺失环区，补全质子化状态后进行界面网格定义。",
+    "structureRef": "RCSB PDB 3A6P, X-ray diffraction, 2.92 Å",
+    "antibodies": [
+      "anti-XPO5 research antibody",
+      "anti-Exportin-5 monoclonal antibody"
+    ],
+    "interfaceFocus": "pre-miRNA 结合沟槽与 RanGTP 稳定界面",
+    "designMode": "胞内阻断型抗体",
+    "candidates": [
+      {
+        "target": "DICER1",
+        "rationale": "DICER1 位于 XPO5 下游，负责胞质 pre-miRNA 切割成熟，是 miRNA 生物发生通路中与神经退行性病理相关的核心酶。"
+      },
+      {
+        "target": "DROSHA",
+        "rationale": "DROSHA 在细胞核内切割 pri-miRNA 生成 pre-miRNA，位于 XPO5 介导核输出之前，适合作为同一 miRNA 加工轴的上游候选靶点。"
+      },
+      {
+        "target": "DGCR8",
+        "rationale": "DGCR8 与 DROSHA 组成 Microprocessor 复合体并识别 pri-miRNA 结构，是核内 miRNA 初加工阶段的真实通路节点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

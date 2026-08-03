@@ -1,0 +1,65 @@
+{
+  "gene": "TMEM120A",
+  "generatedAt": "2026-08-03T17:20:33.270Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TMEM120A 是内质网及核膜相关多跨膜蛋白，现有遗传关联主要指向嗜酸粒细胞、白细胞、中性粒细胞计数及血小板体积等血液性状，提示其可能参与造血细胞数量稳态或免疫细胞表型调节。该蛋白包含可解析的跨膜核心结构，但多数结构域面向膜内或胞内环境，天然抗原可及性弱于典型胞外受体。相较 IL5RA、CSF3R 等已验证胞外免疫受体，TMEM120A 的疾病关联强度较低且功能机制尚未充分确证，因此更适合作为探索性结构抗原与靶点验证对象，而非优先治疗性阻断靶点。",
+    "mechanism": "抗体设计宜聚焦于可暴露环区的构象识别，用于稳定或检测 TMEM120A 构象；不宜假定可直接阻断已知配体-受体相互作用。",
+    "selectedEpitope": "优先评估7N7P跨膜核心外侧可及环区，避开脂质嵌入面与二聚体装配界面。",
+    "diseaseDirection": "血液细胞计数与免疫表型",
+    "domain": "TMEM120A 为多跨膜蛋白，7N7P解析同源二聚体样跨膜核心，含膜内螺旋束及短环区。",
+    "evidence": "TMEM120A血液性状遗传关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt Q9BXJ8蛋白注释",
+      "RCSB PDB 7N7P冷冻电镜结构",
+      "GWAS Catalog血液细胞性状关联"
+    ],
+    "referenceEntries": "UniProt Q9BXJ8；RCSB PDB 7N7P；Open Targets TMEM120A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "跨膜核心外侧短环区",
+        "保留构象依赖识别潜力，适合验证抗原可及性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "二聚体外周膜近端暴露面",
+        "可用于筛选构象稳定抗体，但需排除膜脂遮挡",
+        "备选"
+      ],
+      [
+        "Site C",
+        "跨膜螺旋脂质接触面",
+        "高度疏水且膜嵌入，抗体结合可及性与成药性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TMEM120A 缺乏明确胞外配体和治疗性阻断机制，且膜嵌入区域占比高；设计应以构象抗原验证、细胞定位确认和可及性筛选为先。",
+    "structurePrepZh": "采用7N7P链A/B构建二聚体模型，补全缺失环区并保留膜法向信息；对脂质接触面、糖基化可能位点及低置信环区进行分层标注。",
+    "structureRef": "RCSB PDB 7N7P，human TMEM120A cryo-EM structure",
+    "antibodies": [
+      "无已获批同靶点治疗性抗体",
+      "研究级抗TMEM120A抗体"
+    ],
+    "interfaceFocus": "外侧环区与二聚体外周可及界面",
+    "designMode": "探索性构象抗体",
+    "candidates": [
+      {
+        "target": "IL5RA",
+        "rationale": "IL5RA 是嗜酸粒细胞分化、存活与募集通路中的胞外受体，直接介导 IL-5 信号，且已有抗体药物验证其疾病相关性。"
+      },
+      {
+        "target": "IL5",
+        "rationale": "IL5 是驱动嗜酸粒细胞扩增和活化的关键分泌型细胞因子，与嗜酸粒细胞计数表型处于同一免疫血液通路。"
+      },
+      {
+        "target": "CSF3R",
+        "rationale": "CSF3R 介导 G-CSF 对中性粒细胞生成和释放的调控，与中性粒细胞计数关联明确，胞外结构域适合抗体阻断设计。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

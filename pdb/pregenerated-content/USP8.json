@@ -1,0 +1,65 @@
+{
+  "gene": "USP8",
+  "generatedAt": "2026-08-03T17:45:16.247Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "USP8是胞内去泛素化酶，体细胞突变可增强EGFR去泛素化与回收，维持EGFR-ACTH轴活性并驱动库欣病相关ACTH过量。其抗原可及性不具备传统治疗性抗体优势，但重组催化结构域可用于结构抗体、细胞内抗体或降解引导分子设计。相比EGFR等膜受体，USP8位于致病上游调控节点，具备突变机制明确和酶口袋可结构化验证的优先级。",
+    "mechanism": "设计抗体片段结合USP8催化结构域近端，阻断泛素C端尾部进入Cys786-His1067-Asp1084催化沟槽，抑制EGFR去泛素化与受体回收。",
+    "selectedEpitope": "优先覆盖USP8催化USP结构域的泛素结合沟槽及Cys786邻近环区。",
+    "diseaseDirection": "库欣病与EGFR去泛素化轴",
+    "domain": "USP8含RHOD样区、14-3-3结合调控区及C端USP催化结构域。",
+    "evidence": "USP8突变-去泛素化-库欣病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P40818功能与结构域注释",
+      "RCSB PDB 6F09晶体结构",
+      "库欣病垂体ACTH腺瘤USP8突变文献"
+    ],
+    "referenceEntries": "UniProt:P40818；RCSB PDB:6F09；HGNC:12631",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "USP催化结构域泛素C端结合沟槽",
+        "直接干扰底物泛素进入催化中心，机制最清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Cys786催化半胱氨酸邻近可变环区",
+        "可通过空间遮挡降低去泛素化反应效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "14-3-3结合基序邻近调控区",
+        "涉及突变调控但构象依赖强，抗体可及性与稳定性需验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "USP8为胞内酶，常规全长IgG难以进入作用位点；宜采用Fab/VHH结构探针、细胞内抗体或递送偶联策略，并避免干扰USP家族保守催化核心导致选择性不足。",
+    "structurePrepZh": "以6F09高分辨率晶体结构为模板，保留USP催化结构域链并校正缺失侧链、质子化状态及催化三联体构象，构建泛素底物叠合界面用于表位筛选。",
+    "structureRef": "RCSB PDB 6F09，USP8催化结构域X射线结构",
+    "antibodies": [
+      "研究级anti-USP8 monoclonal antibody",
+      "研究级anti-USP8 rabbit monoclonal antibody"
+    ],
+    "interfaceFocus": "USP催化沟槽与泛素C端尾部结合界面",
+    "designMode": "胞内结构抗体",
+    "candidates": [
+      {
+        "target": "EGFR",
+        "rationale": "EGFR是USP8去泛素化与内体回收的关键底物，持续EGFR信号与ACTH分泌异常存在机制关联。其胞外结构域抗体可及性显著优于USP8。"
+      },
+      {
+        "target": "UBC",
+        "rationale": "UBC编码多聚泛素前体，参与EGFR泛素化标记与内吞后溶酶体分选。该节点可作为USP8底物修饰状态评估的通路参照。"
+      },
+      {
+        "target": "YWHAZ",
+        "rationale": "YWHAZ编码14-3-3ζ，可识别USP8磷酸化调控基序并限制USP8活性；库欣病相关USP8突变常破坏14-3-3结合。该靶点有助于解析USP8异常激活的同轴调控机制。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

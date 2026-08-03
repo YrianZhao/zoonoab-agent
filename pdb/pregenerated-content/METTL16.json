@@ -1,0 +1,65 @@
+{
+  "gene": "METTL16",
+  "generatedAt": "2026-08-03T14:11:57.071Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "METTL16 是核内 RNA N6-腺苷甲基转移酶，参与 MAT2A pre-mRNA 发夹结构识别、U6 snRNA 甲基化及细胞 SAM 稳态调节，其遗传关联在神经退行性疾病中呈现一定信号。该蛋白主要定位于细胞核，不具备分泌蛋白或膜受体的天然抗原可及性，常规体内中和抗体开发可及性受限。其优先级主要来自高分辨率实验结构与明确 RNA 结合界面，适合作为结构生物学验证、细胞内递送抗体或研究级结合分子设计靶点；相较缺乏结构模板的 RNA 修饰酶，METTL16 的表位定义更清晰。",
+    "mechanism": "设计结合 METTL16 甲基转移酶结构域的抗体片段，空间遮挡 RNA 识别沟槽，阻断 MAT2A 发夹 RNA 或 U6 snRNA 与催化核心结合。",
+    "selectedEpitope": "优先覆盖 Rossmann-like 甲基转移酶结构域内 RNA 结合沟槽及保守催化口袋邻近环区。",
+    "diseaseDirection": "神经退行性疾病与RNA修饰调控",
+    "domain": "METTL16 含 N 端 METTL 甲基转移酶结构域及 C 端 vertebrate conserved region，6DU4 覆盖催化核心。",
+    "evidence": "METTL16结构与神经疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q86W50 functional annotation",
+      "RCSB PDB 6DU4 X-ray structure",
+      "RNA m6A methyltransferase pathway literature"
+    ],
+    "referenceEntries": "UniProt Q86W50；RCSB PDB 6DU4；Open Targets METTL16",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "甲基转移酶结构域 RNA 结合沟槽",
+        "可直接干预 MAT2A 发夹 RNA 与 U6 snRNA 识别",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SAM/SAH 结合口袋邻近保守环区",
+        "可影响甲基供体定位，但需避免仅产生弱变构效应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化核心的暴露外表面",
+        "结合可行性较高但功能阻断相关性较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "METTL16 为核内酶，天然抗体药物可及性不足；建议限定为细胞内递送抗体、Fab/VHH 结构探针或机制验证分子，并优先验证细胞通透策略。",
+    "structurePrepZh": "以 6DU4 的 A、B 链高分辨率晶体结构为模板，去除非目标配体与晶体接触干扰，保留催化核心及 RNA 结合沟槽用于表位建模。",
+    "structureRef": "RCSB PDB 6DU4，X-ray diffraction，1.7 Å",
+    "antibodies": [
+      "无已获批抗 METTL16 治疗性抗体",
+      "研究级抗 METTL16 抗体"
+    ],
+    "interfaceFocus": "RNA 结合沟槽与催化口袋邻近环区",
+    "designMode": "细胞内靶向Fab/VHH",
+    "candidates": [
+      {
+        "target": "METTL3",
+        "rationale": "METTL3 是 m6A writer 复合体催化亚基，参与神经系统 RNA 甲基化稳态，与 METTL16 同属 RNA m6A 修饰网络。"
+      },
+      {
+        "target": "METTL14",
+        "rationale": "METTL14 作为 METTL3 复合体 RNA 结合与支架组分，影响 m6A 位点选择，可作为同一 RNA 修饰通路的互补靶点。"
+      },
+      {
+        "target": "WTAP",
+        "rationale": "WTAP 参与 m6A writer 复合体核内定位与底物选择，连接 RNA 甲基化调控与神经疾病相关转录后稳态。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

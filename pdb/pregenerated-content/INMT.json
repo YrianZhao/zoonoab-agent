@@ -1,0 +1,65 @@
+{
+  "gene": "INMT",
+  "generatedAt": "2026-08-03T13:29:25.974Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "INMT为胞质可溶性S-腺苷甲硫氨酸依赖性甲基转移酶，催化吲哚乙胺类底物N-甲基化，现有Open Targets关联主要来自血小板计数及循环蛋白测量性状，疾病通路指向性弱。该蛋白缺乏跨膜区、分泌信号肽和稳定胞外结构域，天然抗原可及性不符合常规治疗性抗体优先靶点特征。相较于同属血小板生成、血小板活化或血栓炎症通路中的MPL、THPO、ITGA2B等胞外可及靶点，INMT更适合作为结构生物学与细胞内酶功能研究对象，抗体药物开发优先级较低。",
+    "mechanism": "抗体策略仅适用于细胞内递送或研究级阻断，设计目标为遮蔽SAM结合口袋邻近环区，干扰INMT与S-腺苷甲硫氨酸及吲哚乙胺底物的结合。",
+    "selectedEpitope": "优先评估SAM结合槽周围α/β甲基转移酶核心折叠口袋边缘表位。",
+    "diseaseDirection": "血小板性状与代谢酶关联",
+    "domain": "INMT为可溶性甲基转移酶结构，含Rossmann样SAM结合核心及底物结合口袋。",
+    "evidence": "INMT结构与遗传性状关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB O95050蛋白功能注释",
+      "RCSB PDB 2A14晶体结构",
+      "人源甲基转移酶SAM依赖催化机制文献"
+    ],
+    "referenceEntries": "UniProt O95050；RCSB PDB 2A14；Open Targets INMT",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SAM结合槽邻近环区与α/β核心口袋边缘",
+        "可能直接影响辅因子定位和催化构象，适合机制验证",
+        "优先"
+      ],
+      [
+        "Site B",
+        "底物进入通道周围疏水口袋外缘",
+        "可用于干扰吲哚乙胺类底物进入，但需避免完全埋藏区域",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化口袋的外表面螺旋区域",
+        "结合可行性较高但功能阻断价值有限，主要适合检测抗体",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为INMT胞内定位导致体内抗体可及性不足；建议限定为研究级抗体、胞内抗体或递送型抗体片段开发。",
+    "structurePrepZh": "采用PDB 2A14 A链作为结构模板，保留SAM口袋几何信息，补全缺失侧链并评估口袋周围柔性环可及性。",
+    "structureRef": "RCSB PDB 2A14，1.7 Å X射线人源INMT结构",
+    "antibodies": [
+      "研究级anti-INMT monoclonal antibody",
+      "研究级anti-INMT polyclonal antibody"
+    ],
+    "interfaceFocus": "SAM结合槽与底物进入通道边缘",
+    "designMode": "胞内酶阻断验证",
+    "candidates": [
+      {
+        "target": "MPL",
+        "rationale": "MPL为血小板生成素受体，直接介导THPO驱动的巨核细胞成熟和血小板生成，具备胞外受体结构域，抗体可及性显著优于INMT。"
+      },
+      {
+        "target": "THPO",
+        "rationale": "THPO是血小板生成通路核心分泌配体，与MPL结合调控巨核细胞谱系扩增，适合通过中和抗体阻断配体-受体相互作用。"
+      },
+      {
+        "target": "ITGA2B",
+        "rationale": "ITGA2B与ITGB3形成血小板αIIbβ3整合素，参与纤维蛋白原结合和血小板聚集，胞外配体结合界面具备明确抗体干预价值。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

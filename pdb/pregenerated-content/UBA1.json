@@ -1,0 +1,65 @@
+{
+  "gene": "UBA1",
+  "generatedAt": "2026-08-03T17:36:43.112Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "UBA1 是泛素化级联的起始 E1 酶，负责腺苷酸化泛素并将其转移至催化半胱氨酸，VEXAS 综合征中 UBA1 体细胞突变可改变造血细胞蛋白稳态并驱动炎症表型。该蛋白主要为胞内酶，并非典型抗体可及的膜受体或分泌抗原，抗原可及性弱于细胞表面免疫靶点。其优先级主要来自明确遗传因果性、丰富结构信息和疾病关联强度，但相较 TNF、IL6R 等胞外炎症通路靶点，更适合作为结构机制研究或胞内递送抗体设计对象。",
+    "mechanism": "设计分子应阻断 UBA1 腺苷酸化结构域对泛素 C 端 Gly76 与 ATP 的装配，或干扰泛素向催化半胱氨酸硫酯中间体的转移。",
+    "selectedEpitope": "优先聚焦腺苷酸化结构域的 ATP-泛素结合沟槽邻近面，避开高度保守催化半胱氨酸核心。",
+    "diseaseDirection": "VEXAS与泛素化蛋白稳态疾病",
+    "domain": "UBA1 含腺苷酸化结构域、催化半胱氨酸半结构域、泛素折叠结构域及 C 端 E2 结合区。",
+    "evidence": "UBA1遗传炎症与泛素活化结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt P22314 功能与结构域注释",
+      "RCSB PDB 4P22 晶体结构数据",
+      "VEXAS 综合征 UBA1 体细胞突变研究文献"
+    ],
+    "referenceEntries": "UniProt P22314；RCSB PDB 4P22；Open Targets UBA1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "腺苷酸化结构域 ATP-泛素结合沟槽外缘",
+        "可直接干扰泛素腺苷酸化底物装配，机制指向明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C 端泛素折叠结构域与 E2 结合区邻近界面",
+        "可能阻断 UBA1 与 UBE2 家族酶的泛素转移耦联",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化半胱氨酸半结构域核心区域",
+        "高度保守且构象依赖性强，存在交叉反应和功能完全抑制风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "UBA1 为胞内必需酶，常规抗体难以到达作用位点，且全局抑制可能造成广泛蛋白稳态毒性；宜采用胞内递送或降解偶联策略并控制抑制强度。",
+    "structurePrepZh": "以 4P22 双链晶体结构为模板，保留催化结构域与配体邻近残基，校正缺失环区、质子化状态及链间界面后开展表位建模。",
+    "structureRef": "RCSB PDB 4P22，human UBA1 X-ray 2.75 Å",
+    "antibodies": [
+      "无获批抗 UBA1 治疗性抗体",
+      "研究级 anti-UBA1 monoclonal antibody"
+    ],
+    "interfaceFocus": "ATP-泛素结合沟槽与 E2 招募界面",
+    "designMode": "胞内酶阻断型",
+    "candidates": [
+      {
+        "target": "UBB",
+        "rationale": "UBB 编码泛素前体，位于 UBA1 启动的泛素化级联上游底物来源位置；其表达和可用性直接影响蛋白稳态负荷。"
+      },
+      {
+        "target": "UBE2L3",
+        "rationale": "UBE2L3 是 UBA1 下游 E2 泛素结合酶，参与免疫相关泛素转移反应；调节该节点可影响炎症信号相关蛋白泛素化。"
+      },
+      {
+        "target": "PSMB8",
+        "rationale": "PSMB8 是免疫蛋白酶体核心亚基，与泛素-蛋白酶体降解通路共同维持蛋白稳态；炎症性蛋白稳态疾病中具有通路相关性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

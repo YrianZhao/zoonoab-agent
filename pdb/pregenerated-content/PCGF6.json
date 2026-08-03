@@ -1,0 +1,65 @@
+{
+  "gene": "PCGF6",
+  "generatedAt": "2026-08-03T15:07:24.481Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PCGF6 是非典型 PRC1.6 复合体的 RING finger 组分，参与转录抑制与染色质状态维持，其遗传关联信号涉及神经退行性疾病及血液学表型。该蛋白主要定位于细胞核，并非分泌蛋白或膜受体，天然抗原可及性不具备常规治疗性抗体优势，更适合用于细胞内抗体、结构探针或递送型抗体格式。相较于同通路中结构域较大且复合体装配更复杂的 MGA、MAX 或 L3MBTL2，PCGF6 的 RING finger 结构域已具实验结构，可作为 PRC1.6 装配界面解析与功能阻断验证的优先模型靶点。",
+    "mechanism": "设计抗体结合 PCGF6 RING finger 的 RING1B/PRC1.6装配界面，阻断其与 RING1A/B 或复合体适配组分的相互作用，削弱H2AK119ub相关转录抑制。",
+    "selectedEpitope": "优先覆盖 RING finger α螺旋与锌配位环邻近的复合体装配面，避开核心Cys/His锌配位残基。",
+    "diseaseDirection": "神经退行性疾病与血液表型",
+    "domain": "PCGF6 含N端 RING finger 锌指结构域，参与PRC1.6复合体装配；其余区域富含低复杂度序列。",
+    "evidence": "PCGF6-PRC1.6染色质抑制轴证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联数据",
+      "UniProt Q9BYE7 蛋白定位与结构域注释",
+      "RCSB PDB 2DJB 溶液NMR结构",
+      "PRC1.6复合体与H2AK119ub相关文献"
+    ],
+    "referenceEntries": "UniProt Q9BYE7；RCSB PDB 2DJB；Open Targets PCGF6",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RING finger外侧α螺旋及邻近环区装配面",
+        "可干预PCGF6与PRC1.6/RING1组分结合，兼顾结构可塑性与功能相关性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RING finger远端非锌配位暴露面",
+        "适合获得构象识别抗体，用于细胞内成像、免疫沉淀或结构稳定化",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Cys/His锌配位核心及疏水折叠内核",
+        "直接靶向可能破坏整体折叠并降低抗原稳定性，需避免作为主设计面",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PCGF6为核内蛋白，常规抗体难以直接到达靶点；建议采用细胞内抗体、VHH递送或降解偶联策略，并避免破坏锌指整体折叠。",
+    "structurePrepZh": "以PDB 2DJB的NMR构象集为模板，保留锌离子配位几何，进行构象聚类后选择代表模型用于表位暴露与对接评估。",
+    "structureRef": "RCSB PDB 2DJB；human PCGF6 RING finger NMR structure",
+    "antibodies": [
+      "抗PCGF6研究级单克隆抗体",
+      "抗BMI1/PCGF4通路研究级抗体"
+    ],
+    "interfaceFocus": "RING finger复合体装配面与锌指邻近环区",
+    "designMode": "胞内抗体/VHH探针",
+    "candidates": [
+      {
+        "target": "RING1B",
+        "rationale": "RING1B是PRC1核心E3连接酶组分，与PCGF家族蛋白形成催化复合体并介导H2AK119单泛素化，是同一染色质抑制轴的直接功能节点。"
+      },
+      {
+        "target": "MAX",
+        "rationale": "MAX与MGA共同参与PRC1.6靶基因识别，连接序列特异性DNA结合与PCGF6相关转录抑制复合体募集。"
+      },
+      {
+        "target": "MGA",
+        "rationale": "MGA是PRC1.6复合体的DNA结合和转录调控组分，可将PCGF6相关复合体定位至E-box相关基因调控区域。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

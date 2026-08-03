@@ -1,0 +1,65 @@
+{
+  "gene": "MAP2K4",
+  "generatedAt": "2026-08-03T14:02:03.293Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAP2K4是JNK与p38 MAPK级联中的双特异性MAPK激酶，可磷酸化JNK1/2/3与p38亚族并参与应激、炎症和肿瘤相关转录程序。其疾病关联覆盖神经退行性疾病、乳腺腺癌和胰腺腺癌，提示MAPK应激轴具有明确病理相关性。然而MAP2K4为胞内丝氨酸/苏氨酸-酪氨酸激酶，缺乏天然胞外抗原可及性，常规循环抗体成药性受限。相较同通路的膜近端或分泌型调节因子，MAP2K4更适合作为结构机制参照或细胞内递送抗体设计对象，主靶点优先级应低于可及性更佳的上游受体型靶点。",
+    "mechanism": "采用细胞内抗体或递送型Fab阻断MAP2K4激酶结构域ATP结合位点邻近构象，干扰其对JNK和p38激活环Thr/Tyr位点的磷酸转移。",
+    "selectedEpitope": "优先覆盖激酶结构域N叶ATP结合裂隙与C螺旋邻近面，避免完全依赖保守铰链区。",
+    "diseaseDirection": "MAPK应激轴相关肿瘤与神经退行性疾病",
+    "domain": "MAP2K4含N端调控区和C端蛋白激酶结构域，3ALN解析催化结构域构象。",
+    "evidence": "MAP2K4疾病遗传关联与激酶结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P45985功能与结构域注释",
+      "RCSB PDB 3ALN X射线晶体结构",
+      "Reactome MAPK family signaling cascades"
+    ],
+    "referenceEntries": "UniProt P45985；RCSB PDB 3ALN；Open Targets MAP2K4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域N叶ATP结合裂隙外缘及C螺旋邻近表面",
+        "可影响催化构象与底物磷酸转移，适合功能阻断型细胞内抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "激酶结构域C叶底物结合沟槽及活化环周边",
+        "可能干扰JNK或p38底物定位，但需控制与保守激酶表面的交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守铰链区和ATP口袋核心残基区域",
+        "同源激酶保守性高，存在广谱MAP2K交叉结合和选择性不足风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAP2K4定位于胞内，常规抗体难以到达作用位点；ATP口袋保守性较高，需以变构邻近表位和同源MAP2K选择性筛选降低脱靶风险。",
+    "structurePrepZh": "以3ALN链A/B/C为模板比对催化结构域，补全缺失环区并标注ATP结合裂隙、C螺旋、活化环及底物结合面。",
+    "structureRef": "RCSB PDB 3ALN，MAP2K4激酶结构域X射线结构，2.3 Å",
+    "antibodies": [
+      "无获批MAP2K4治疗性抗体",
+      "研究级抗MAP2K4检测抗体"
+    ],
+    "interfaceFocus": "ATP结合裂隙外缘、C螺旋与活化环邻近面",
+    "designMode": "细胞内递送抗体",
+    "candidates": [
+      {
+        "target": "MAPK8",
+        "rationale": "MAPK8编码JNK1，是MAP2K4直接磷酸化底物之一，位于同一应激MAPK级联下游。其抑制可更直接影响AP-1相关转录输出。"
+      },
+      {
+        "target": "MAPK14",
+        "rationale": "MAPK14编码p38α，可由MAP2K4参与激活并介导炎症因子和应激反应表达。该节点具有更充分的小分子药理学与疾病机制证据。"
+      },
+      {
+        "target": "MAP3K5",
+        "rationale": "MAP3K5编码ASK1，是氧化应激诱导JNK/p38通路的上游MAP3K，可通过磷酸化MKK4/MKK7/MKK3/MKK6放大应激信号。其通路位置适合用于上游级联干预比较。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

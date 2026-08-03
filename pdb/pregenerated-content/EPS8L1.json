@@ -1,0 +1,65 @@
+{
+  "gene": "EPS8L1",
+  "generatedAt": "2026-08-03T12:20:23.683Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "EPS8L1为EPS8家族信号适配蛋白，参与肌动蛋白细胞骨架重塑及Rac相关调控，Open Targets显示其与神经退行性疾病和中枢神经系统自身免疫表型存在遗传或组学关联。该蛋白主要定位于胞内，缺乏典型跨膜段或分泌信号，因此天然抗体可及性弱，需优先采用胞内递送抗体片段或研究级结合试剂策略。相较于上游广泛表达的RAC1、ABI1等节点，EPS8L1具有家族成员特异结构域和较聚焦的适配蛋白界面，适合作为机制验证优先靶点。",
+    "mechanism": "设计结合EPS8L1 SH3结构域的抗体片段，阻断其与富脯氨酸结合伙伴的识别界面，干预EPS8L1介导的肌动蛋白重塑复合物装配。",
+    "selectedEpitope": "优先靶向2K2M所覆盖SH3结构域的RT-Src环及n-Src环邻近配体沟槽。",
+    "diseaseDirection": "神经炎症与神经退行性疾病",
+    "domain": "EPS8L1含N端PTB样区域、中部SH3结构域及C端效应区；2K2M对应SH3折叠。",
+    "evidence": "EPS8L1神经疾病关联与SH3界面证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProtKB Q8TE68蛋白注释",
+      "RCSB PDB 2K2M溶液NMR结构",
+      "EPS8家族肌动蛋白细胞骨架调控文献"
+    ],
+    "referenceEntries": "UniProt Q8TE68；RCSB PDB 2K2M；Open Targets EPS8L1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SH3结构域RT-Src环/n-Src环配体沟槽",
+        "直接覆盖典型PxxP配体识别面，利于阻断适配蛋白复合物装配",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SH3结构域远端β折叠外侧面",
+        "可形成高亲和构象识别抗体，用于检测或变构干预",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SH3结构域疏水核心邻近残基",
+        "可能影响折叠稳定性且可及性有限，需避免诱导非特异构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "EPS8L1为胞内适配蛋白，常规全长IgG难以到达作用位点；建议采用细胞内VHH、递送型Fab或先建立结构生物学验证体系。",
+    "structurePrepZh": "以2K2M NMR构象集为起点，评估SH3环区柔性并选取代表构象；补充缺失片段建模后限制对接于配体沟槽。",
+    "structureRef": "RCSB PDB 2K2M，human EPS8L1 SH3 domain，solution NMR",
+    "antibodies": [
+      "研究级抗EPS8L1抗体",
+      "抗EPS8家族SH3结构域研究抗体"
+    ],
+    "interfaceFocus": "SH3配体沟槽及RT-Src/n-Src环界面",
+    "designMode": "胞内VHH/Fab界面阻断",
+    "candidates": [
+      {
+        "target": "EPS8",
+        "rationale": "EPS8为同一家族细胞骨架调控适配蛋白，参与Rac依赖的肌动蛋白重排和受体信号复合物组装，可作为同通路阳性对照靶点。"
+      },
+      {
+        "target": "SOS1",
+        "rationale": "SOS1与EPS8相关复合物共同连接受体信号至Ras/Rac小GTP酶调控，适合用于解析上游交换因子依赖性。"
+      },
+      {
+        "target": "RAC1",
+        "rationale": "RAC1是肌动蛋白重塑和神经炎症细胞迁移中的核心小GTP酶，位于EPS8/EPS8L1适配复合物下游。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

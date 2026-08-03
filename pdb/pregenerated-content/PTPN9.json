@@ -1,0 +1,65 @@
+{
+  "gene": "PTPN9",
+  "generatedAt": "2026-08-03T15:43:47.712Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PTPN9为胞内非受体型蛋白酪氨酸磷酸酶，主要通过去磷酸化底物蛋白调节细胞内信号转导，现有疾病关联以体征、神经退行性疾病及代谢相关表型为主，但缺乏明确的细胞外致病配体轴。该蛋白无跨膜区或分泌信号肽，抗原天然可及性显著弱于膜受体和分泌因子，常规体内阻断型抗体开发可行性有限。相较于EGFR、INSR或PTK2等同属酪氨酸磷酸化网络且具有更明确疾病机制或药物可及性的靶点，PTPN9更适合作为结构生物学与胞内递送抗体探索靶点，优先级应谨慎定位。",
+    "mechanism": "采用胞内递送抗体或intrabody结合PTPN9催化结构域，遮挡底物进入催化裂隙，抑制磷酸酪氨酸底物与PTP活性位点的结合。",
+    "selectedEpitope": "优先聚焦PTP催化结构域的pTyr结合口袋邻近环区，避开高度保守HCX5R催化基序核心。",
+    "diseaseDirection": "神经退行性与生长代谢表型",
+    "domain": "PTPN9包含N端SEC14样脂质结合结构域及C端蛋白酪氨酸磷酸酶催化结构域。",
+    "evidence": "PTPN9结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB P43378功能与结构域注释",
+      "RCSB PDB 4GE6晶体结构记录",
+      "Phosphatase substrate recognition and PTP catalytic mechanism literature"
+    ],
+    "referenceEntries": "UniProtKB: P43378; RCSB PDB: 4GE6; HGNC: PTPN9",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PTP催化结构域pTyr结合口袋周边可及环区",
+        "可直接限制底物磷酸酪氨酸进入活性裂隙，具备功能阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域外侧底物识别沟槽",
+        "可能影响底物选择性而降低对保守催化核心的交叉反应风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "HCX5R催化基序及WPD环核心区域",
+        "序列与构象保守性高，存在同源PTP交叉结合和活性中心构象干扰风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PTPN9为胞内酶，常规抗体难以到达作用位点；PTP催化核心高度保守，应通过外侧底物识别界面提高选择性，并结合胞内递送策略评估成药性。",
+    "structurePrepZh": "以4GE6高分辨率晶体结构为模板，保留抗原链A/B用于构象比对，补全缺失侧链并标注催化口袋、WPD环及底物识别沟槽。",
+    "structureRef": "RCSB PDB 4GE6, human PTPN9 crystal structure, 1.4 Å",
+    "antibodies": [
+      "PTPN9 research-grade monoclonal antibody",
+      "anti-PTPN9 intracellular validation antibody"
+    ],
+    "interfaceFocus": "PTP活性裂隙与底物识别环区",
+    "designMode": "胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "PTK2",
+        "rationale": "PTK2编码FAK，位于酪氨酸磷酸化黏附信号网络中，与细胞迁移、生长和存活通路密切相关，疾病机制和可药性证据更充分。"
+      },
+      {
+        "target": "EGFR",
+        "rationale": "EGFR是受体酪氨酸激酶，可通过胞外配体结合和受体二聚化驱动下游磷酸化级联，具备明确胞外抗体阻断界面。"
+      },
+      {
+        "target": "INSR",
+        "rationale": "INSR参与生长、体重及代谢表型相关的酪氨酸磷酸化信号轴，胞外α亚基提供可及抗原区域，适合抗体调节策略。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

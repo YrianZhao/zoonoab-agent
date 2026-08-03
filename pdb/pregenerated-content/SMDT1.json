@@ -1,0 +1,65 @@
+{
+  "gene": "SMDT1",
+  "generatedAt": "2026-08-03T16:44:22.125Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SMDT1 为线粒体内膜单跨膜蛋白，其致病关联主要集中于线粒体复合体 I 缺陷与相关线粒体疾病，提示其在呼吸链装配或稳定性维持中具有关键作用。该蛋白定位于膜系统并具备胞外不可及限制下的膜暴露界面，可通过抗体在合适构象下识别其外露环段或复合体相关界面，具备明确的抗原可及性优势。相较于直接靶向复合体 I 核心亚基，SMDT1 更适合作为膜伴侣/装配相关节点进行选择，兼具疾病通路相关性与结构表位可设计性。",
+    "mechanism": "通过识别 SMDT1 细胞外侧可及环段，阻断其与线粒体内膜复合体装配伙伴的接触界面，干预复合体 I 稳定与装配过程。",
+    "selectedEpitope": "优先选择跨膜螺旋外侧邻近的腔面环区及装配界面残基，避开膜嵌入核心。",
+    "diseaseDirection": "线粒体复合体I缺陷",
+    "domain": "单跨膜螺旋及其腔面可及环区，C 端富天冬氨酸尾部",
+    "evidence": "SMDT1-线粒体疾病结构证据包",
+    "evidenceSources": [
+      "UniProt: Q9H4I9",
+      "RCSB PDB: 13IO",
+      "Open Targets Platform",
+      "Human Protein Atlas"
+    ],
+    "referenceEntries": "UniProt Q9H4I9; PDB 13IO; Homo sapiens SMDT1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "跨膜螺旋外侧邻近腔面环区",
+        "可提高构象依赖识别并降低膜嵌入区不可及风险",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C 端富天冬氨酸尾部外露段",
+        "适于增强亲和力，但需评估构象柔性导致的异质性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "跨膜螺旋核心邻域",
+        "可能干扰膜插入与天然折叠，脱靶构象风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险在于线粒体内膜定位导致抗体进入性受限，且高分辨率结构多为复合体状态。设计上宜优先聚焦腔面外露环段，并以构象稳定态为模板筛选。",
+    "structurePrepZh": "建议以 2.98 Å 冷冻电镜复合体结构为主模板，分离 SMDT1 外露环与膜邻接残基，补全柔性尾区并标注糖基化或低置信区域。",
+    "structureRef": "RCSB PDB 13IO 冷冻电镜结构",
+    "antibodies": [
+      "无已确证特异性治疗性抗体",
+      "无已确证同靶点结构抗体"
+    ],
+    "interfaceFocus": "腔面外露环与装配接触面",
+    "designMode": "构象表位设计",
+    "candidates": [
+      {
+        "target": "NDUFAF1",
+        "rationale": "NDUFAF1 参与复合体 I 装配，是与 SMDT1 同属线粒体复合体 I 缺陷通路的真实相关靶点，可用于并行验证装配轴干预效应。"
+      },
+      {
+        "target": "NDUFS1",
+        "rationale": "NDUFS1 为复合体 I 核心亚基，代表下游功能读出靶点，适合与 SMDT1 一并评估复合体 I 稳定性改变。"
+      },
+      {
+        "target": "MT-ND1",
+        "rationale": "MT-ND1 属于复合体 I 线粒体编码核心组分，可作为同通路对照靶点，用于界定装配干预与核心催化受损的差异。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

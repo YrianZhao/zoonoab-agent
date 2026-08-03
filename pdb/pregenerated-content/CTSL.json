@@ -1,0 +1,65 @@
+{
+  "gene": "CTSL",
+  "generatedAt": "2026-08-03T11:43:57.973Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CTSL 编码溶酶体半胱氨酸蛋白酶 cathepsin L，参与内体/溶酶体蛋白水解，并可在 SARS-CoV-2 等病毒入侵中切割刺突蛋白以促进膜融合。该靶点存在可分泌或细胞外释放形式，成熟酶表面沟槽与活性位点周边区域具有抗体可及性。相较 TMPRSS2 等膜蛋白蛋白酶，CTSL 具备高分辨率实验结构与明确酶活口袋，利于开展结构约束的阻断型抗体设计。",
+    "mechanism": "通过抗体占据 CTSL 成熟酶底物结合裂隙，限制 SARS-CoV-2 spike S2′相关蛋白水解及病理性细胞外基质/蛋白底物切割。",
+    "selectedEpitope": "优先覆盖成熟 cathepsin L papain-like 催化结构域的底物结合沟槽与 occluding-loop 邻近面。",
+    "diseaseDirection": "病毒入侵与神经退行性疾病",
+    "domain": "CTSL 为 papain 家族半胱氨酸蛋白酶，成熟链含 L、R 两叶结构及 Cys-His-Asn 催化三联体。",
+    "evidence": "CTSL 疾病遗传关联与结构可成药性证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProtKB P07711 蛋白功能与定位注释",
+      "RCSB PDB 2XU3 高分辨率晶体结构",
+      "SARS-CoV/SARS-CoV-2 入侵中 cathepsin L 依赖性蛋白水解研究"
+    ],
+    "referenceEntries": "UniProtKB:P07711；RCSB PDB:2XU3；MEROPS:C01.032",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "成熟酶底物结合沟槽 S1/S2 口袋周边",
+        "直接阻断底物进入并抑制 spike 与蛋白底物切割",
+        "优先"
+      ],
+      [
+        "Site B",
+        "occluding-loop 邻近外露表面",
+        "通过空间位阻改变底物沟槽可及性，兼顾选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化 Cys-His-Asn 核心邻近保守面",
+        "抑制潜力高但跨 cathepsin 家族交叉反应风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "活性沟槽保守性可能导致 CTSB、CTSK 等同源蛋白交叉结合；设计应避开催化残基核心，强化 CTSL 特异性外周环区识别。",
+    "structurePrepZh": "采用 2XU3 链 A 成熟酶结构，保留催化结构域主链与关键侧链构象，去除晶体小分子及非必要水分子后进行质子化与表面电荷评估。",
+    "structureRef": "RCSB PDB 2XU3，human cathepsin L，0.9 Å X-ray",
+    "antibodies": [
+      "抗-CTSL 中和抗体（研究级）",
+      "抗-cathepsin L 阻断抗体（研究级）"
+    ],
+    "interfaceFocus": "S1/S2 底物沟槽、occluding-loop 与外周特异性环区",
+    "designMode": "酶活阻断型抗体",
+    "candidates": [
+      {
+        "target": "TMPRSS2",
+        "rationale": "TMPRSS2 可在细胞表面切割冠状病毒 spike 蛋白并促进膜融合，与 CTSL 同属病毒入侵蛋白酶轴。其膜定位使其适合阻断细胞表面 spike priming。"
+      },
+      {
+        "target": "ACE2",
+        "rationale": "ACE2 是 SARS-CoV-2 spike 的宿主受体，介导病毒附着并触发后续蛋白酶依赖性入侵步骤。阻断 RBD-ACE2 相互作用可与 CTSL 抑制形成互补。"
+      },
+      {
+        "target": "CTSB",
+        "rationale": "CTSB 是内体/溶酶体半胱氨酸蛋白酶，可与 CTSL 在某些病毒入侵和抗原加工过程中呈功能冗余。其作为候选靶点有助于评估内体蛋白水解通路的替代抑制策略。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

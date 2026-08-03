@@ -1,0 +1,65 @@
+{
+  "gene": "PTEN",
+  "generatedAt": "2026-08-03T15:41:38.367Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PTEN是PI3K-AKT通路的核心脂质磷酸酶，通过去磷酸化PIP3限制AKT募集与激活，其胚系或体细胞失活与Cowden综合征、PTEN错构瘤肿瘤综合征、巨脑-自闭症综合征及胶质瘤易感性密切相关。PTEN为胞内肿瘤抑制蛋白，不具备常规膜外抗原可及性，抗体设计更适用于胞内递送、降解偶联或研究级构象识别场景。相较PIK3CA、AKT1等通路激酶，PTEN的遗传因果证据更直接，且P60484与高分辨率结构8X3S支持对磷酸酶-C2结构单元进行精确界面设计。",
+    "mechanism": "构象选择性抗体结合PTEN磷酸酶结构域与C2结构域邻近界面，稳定开放活性构象，促进PIP3底物头基进入催化口袋并限制失活构象采样。",
+    "selectedEpitope": "优先锁定磷酸酶结构域WPD环邻近面与C2结构域膜结合界面的非催化外侧复合表位。",
+    "diseaseDirection": "PTEN缺失相关肿瘤与错构瘤综合征",
+    "domain": "PTEN含N端PIP2结合基序、磷酸酶结构域、C2膜结合结构域及C端调控尾区。",
+    "evidence": "PTEN-PI3K-AKT轴遗传因果与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联证据",
+      "UniProt P60484功能与结构域注释",
+      "RCSB PDB 8X3S高分辨率晶体结构",
+      "ClinVar与COSMIC中PTEN致病变异记录"
+    ],
+    "referenceEntries": "UniProt:P60484；RCSB PDB:8X3S；HGNC:9588",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "磷酸酶结构域WPD环邻近外侧与C2结构域接触面",
+        "有利于稳定催化可及构象并避免直接遮挡活性半胱氨酸",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C2结构域膜结合环CBR3/CBR1外侧区域",
+        "可调节膜定位构象，适合构建构象识别型抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "磷酸酶催化口袋及HCXXGXXR基序周边",
+        "可能直接干扰PIP3去磷酸化，需避免抑制肿瘤抑制功能",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PTEN为胞内蛋白，常规治疗性抗体暴露不足；设计应避开催化半胱氨酸与PIP3结合核心，优先采用胞内递送或研究型Fab/VHH格式。",
+    "structurePrepZh": "以8X3S的A、B链为模板，保留磷酸酶-C2核心结构，检查缺失C端尾区、晶体接触面与突变位点后进行质子化和界面可及性评估。",
+    "structureRef": "RCSB PDB 8X3S，X-ray diffraction，1.87 Å",
+    "antibodies": [
+      "Anti-PTEN clone 6H2.1",
+      "Anti-PTEN clone D4.3"
+    ],
+    "interfaceFocus": "磷酸酶-C2结构域邻近界面与膜结合环",
+    "designMode": "胞内构象稳定型",
+    "candidates": [
+      {
+        "target": "PIK3CA",
+        "rationale": "PIK3CA编码PI3K p110α催化亚基，产生PIP3并处于PTEN直接拮抗的同一PI3K-AKT通路。其致癌激活突变与PTEN失活在多种肿瘤中形成通路层面的功能互补。"
+      },
+      {
+        "target": "AKT1",
+        "rationale": "AKT1通过PH结构域结合PIP3并被PDK1与MTORC2磷酸化激活，是PTEN缺失后信号放大的关键下游效应分子。"
+      },
+      {
+        "target": "MTOR",
+        "rationale": "MTOR作为AKT下游生长与代谢调控枢纽，在PTEN缺失背景下常呈持续活化状态，是同一疾病通路中的可干预节点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

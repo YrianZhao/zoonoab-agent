@@ -1,0 +1,65 @@
+{
+  "gene": "ARFGEF2",
+  "generatedAt": "2026-08-03T10:33:24.090Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ARFGEF2编码BIG2，是高尔基体相关ARF鸟嘌呤核苷酸交换因子，参与ARF1/ARF3由GDP向GTP状态转换并维持囊泡出芽与神经祖细胞迁移相关膜运输；双等位基因功能缺失与脑室周围结节性异位和结节性神经元异位具有明确遗传关联。该蛋白主要定位于胞质面高尔基体和内膜系统，缺乏稳定胞外结构域，作为常规治疗性抗体靶点的抗原可及性较弱，但可用于细胞内抗体、递送型Fab或结构验证抗体开发。相较泛化神经发育候选基因，ARFGEF2具有更直接的ARF交换酶活性节点和可解析Sec7催化结构域，因而在机制研究型抗体设计中优先级较高。",
+    "mechanism": "以抗体片段结合Sec7催化域ARF结合沟槽，阻断ARF1-GDP与BIG2 Sec7结构域接触，抑制GDP释放与ARF活化。",
+    "selectedEpitope": "优先锁定Sec7结构域内ARF-GDP结合沟槽及催化谷氨酸邻近界面。",
+    "diseaseDirection": "神经发育异常与神经元异位",
+    "domain": "PDB 3L8N覆盖BIG2 Sec7催化结构域，承担ARF小GTP酶核苷酸交换功能。",
+    "evidence": "ARFGEF2-BIG2神经迁移与ARF交换证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9Y6D5功能与亚细胞定位注释",
+      "RCSB PDB 3L8N晶体结构记录",
+      "OMIM/ClinVar ARFGEF2相关神经发育变异资料"
+    ],
+    "referenceEntries": "UniProt Q9Y6D5；RCSB PDB 3L8N；Open Targets ARFGEF2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Sec7催化域ARF结合沟槽与催化谷氨酸邻近区域",
+        "直接干预ARF1-GDP结合和核苷酸交换反应，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Sec7结构域远端保守螺旋束外侧面",
+        "可作为构象锁定或结构捕获表位，降低对催化核心的过强扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "晶体结构中柔性环区和非保守暴露残基",
+        "可能获得结合信号但功能阻断相关性较弱，需严格验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ARFGEF2为胞内高尔基体相关蛋白，常规抗体难以接触天然抗原；宜采用胞内表达型scFv/Fab、递送系统或研究级构象抗体策略。",
+    "structurePrepZh": "以3L8N链A为模板，补全缺失侧链并检查Sec7催化谷氨酸、ARF结合沟槽及晶体接触面，避免将晶体堆积界面误判为功能表位。",
+    "structureRef": "RCSB PDB 3L8N，X-ray，2.86 Å，human BIG2 Sec7 domain",
+    "antibodies": [
+      "抗ARFGEF2研究用多克隆抗体",
+      "抗BIG2研究用单克隆抗体"
+    ],
+    "interfaceFocus": "Sec7催化谷氨酸邻近ARF-GDP结合沟槽",
+    "designMode": "胞内功能阻断抗体",
+    "candidates": [
+      {
+        "target": "ARFGEF1",
+        "rationale": "ARFGEF1编码BIG1，与BIG2同属高尔基体ARF鸟嘌呤核苷酸交换因子，参与ARF1介导的膜运输过程。其结构域同源性高，可作为同通路功能冗余与选择性评估靶点。"
+      },
+      {
+        "target": "ARF1",
+        "rationale": "ARF1是BIG2 Sec7结构域的直接小GTP酶底物，ARF1-GDP与GEF界面的形成是核苷酸交换反应的核心步骤。针对ARF1状态或界面可用于解析下游膜运输缺陷。"
+      },
+      {
+        "target": "GGA1",
+        "rationale": "GGA1为ARF-GTP依赖性高尔基体衔接蛋白，参与包被囊泡货物分选，与ARFGEF2-ARF活化轴处于同一膜运输通路。其可作为下游效应节点用于通路验证。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

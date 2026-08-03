@@ -1,0 +1,65 @@
+{
+  "gene": "DEPDC1",
+  "generatedAt": "2026-08-03T11:54:56.456Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DEPDC1主要为细胞内蛋白，参与细胞周期相关转录调控，并可通过与ZBTB16、E2F通路组分及GABP相关复合物相互作用影响增殖程序；其疾病关联更多反映血细胞数量性状与肿瘤增殖表型，而非经典可中和的细胞外疾病轴。该蛋白缺乏分泌信号肽、跨膜区和稳定胞外结构域，抗原可及性不具备常规治疗性抗体优势，仅适合胞内递送抗体、研究级结合分子或T细胞受体样策略的前期验证。相比CDK、E2F或免疫细胞表面受体等同类增殖/血液性状相关靶点，DEPDC1的优先级较低；其主要价值在于结构域明确、肿瘤相关表达背景较集中，可作为胞内蛋白互作阻断模型靶点。",
+    "mechanism": "设计分子应阻断DEPDC1 DEP结构域介导的蛋白互作界面，干扰其与转录调控复合物的装配，从而削弱E2F相关增殖基因程序。",
+    "selectedEpitope": "优先覆盖PDB 2YSR所示DEP结构域疏水沟槽与带电表面斑块，避免仅选择柔性末端片段。",
+    "diseaseDirection": "血细胞数量性状与肿瘤增殖",
+    "domain": "DEPDC1含N端DEP结构域及C端低复杂度/卷曲螺旋样区域，2YSR解析其DEP结构域溶液构象。",
+    "evidence": "DEPDC1疾病关联与胞内互作结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB Q5TB30功能与亚细胞定位注释",
+      "RCSB PDB 2YSR溶液NMR结构",
+      "肿瘤细胞周期与DEPDC1功能研究文献"
+    ],
+    "referenceEntries": "UniProt Q5TB30；RCSB PDB 2YSR；Open Targets DEPDC1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DEP结构域保守疏水沟槽及邻近带电斑块",
+        "可能参与蛋白互作识别，适合互作阻断型胞内抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DEP结构域外侧稳定α螺旋表面",
+        "构象稳定、可用于获得高亲和结合分子，但功能阻断概率需验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端低复杂度或预测无序片段",
+        "抗原性可能较高但构象异质性强，易产生非功能性结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为靶点位于胞内，常规抗体难以到达作用位点；建议限定为胞内抗体、递送抗体片段或诊断/研究用途，并进行互作阻断验证。",
+    "structurePrepZh": "以2YSR的DEP结构域NMR模型簇为模板，进行构象聚类、氢键网络检查与表面保守性映射，剔除高柔性末端后开展表位建模。",
+    "structureRef": "RCSB PDB 2YSR，human DEPDC1 DEP domain，solution NMR",
+    "antibodies": [
+      "研究级抗DEPDC1多克隆抗体",
+      "研究级抗DEPDC1单克隆抗体"
+    ],
+    "interfaceFocus": "DEP结构域疏水沟槽与带电互作斑块",
+    "designMode": "胞内互作阻断",
+    "candidates": [
+      {
+        "target": "E2F1",
+        "rationale": "E2F1是细胞周期G1/S转录程序的核心转录因子，与DEPDC1相关增殖表型处于同一细胞周期调控轴；但其同样为核内蛋白，抗体可及性受限。"
+      },
+      {
+        "target": "CDK2",
+        "rationale": "CDK2通过磷酸化RB1解除E2F转录抑制，是DEPDC1相关增殖程序上游关键节点；小分子开发基础强，抗体形式更适合作为研究或降解递送模块。"
+      },
+      {
+        "target": "RB1",
+        "rationale": "RB1直接约束E2F依赖性转录，与DEPDC1所关联的细胞周期表达网络处于同一通路；其肿瘤抑制属性明确，但不适合作为常规阻断型抗体靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "TRIM25",
+  "generatedAt": "2026-08-03T17:29:11.941Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TRIM25 是细胞内 RING 型 E3 泛素连接酶，参与 RIG-I 介导的抗病毒先天免疫轴，可促进 RIG-I 2CARD 区域 K63 型泛素化并增强下游 MAVS、TBK1 与 IRF3 激活。其疾病关联集中于登革热、COVID-19 与 SARS 等病毒感染表型，提示其在宿主抗病毒应答中具有通路相关性。由于 TRIM25 主要定位于胞质且缺乏胞外结构域或分泌形式，完整蛋白作为常规治疗性抗体靶点的抗原可及性较低，但其高分辨率结构适合用于机制性抗体、细胞内递送抗体或研究级结合分子设计。相较于同通路下游激酶类靶点，TRIM25 更接近病毒 RNA 识别放大步骤，可用于解析或干预 RIG-I 泛素化节点，优先级主要来自结构可解析性与病毒感染遗传关联，而非天然细胞表面可及性。",
+    "mechanism": "设计结合 TRIM25 PRY-SPRY 结构域的抗体片段，阻断其与 RIG-I 2CARD 区域的结合，从而降低 RIG-I K63 型泛素化及 MAVS 依赖性抗病毒信号放大。",
+    "selectedEpitope": "优先覆盖 PRY-SPRY 结构域 RIG-I 2CARD 识别沟槽及相邻可变环区。",
+    "diseaseDirection": "病毒感染与先天免疫调控",
+    "domain": "TRIM25 含 RING、B-box、卷曲螺旋及 C 端 PRY-SPRY 底物识别结构域。",
+    "evidence": "TRIM25-RIG-I 抗病毒泛素化证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传与文献关联",
+      "UniProtKB Q14258 功能注释",
+      "RCSB PDB 9I0T 晶体结构记录",
+      "抗病毒先天免疫与 RIG-I 泛素化文献"
+    ],
+    "referenceEntries": "UniProt Q14258；RCSB PDB 9I0T；Open Targets TRIM25",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PRY-SPRY 底物识别沟槽及 RIG-I 2CARD 接触面",
+        "可直接竞争 TRIM25-RIG-I 结合并干预 K63 型泛素化放大",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PRY-SPRY 外侧可变环与邻近 β-夹层边缘",
+        "可产生高特异性构象结合，适合变构削弱底物招募",
+        "备选"
+      ],
+      [
+        "Site C",
+        "RING 二聚化及 E2 结合邻近界面",
+        "可能影响 E3 催化活性，但同源 RING 蛋白交叉反应与功能扰动风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TRIM25 为胞内蛋白，常规抗体难以到达作用位点；RING 与 B-box 区域同源性较高，应优先选择 PRY-SPRY 非保守界面并评估细胞内递送策略。",
+    "structurePrepZh": "以 9I0T A 链为结构模板，补全缺失侧链、校正质子化状态并保留 PRY-SPRY 构象环；对潜在糖基化不作胞外抗原假设。",
+    "structureRef": "RCSB PDB 9I0T，X-ray diffraction，1.8 Å",
+    "antibodies": [
+      "抗 TRIM25 研究级单克隆抗体",
+      "抗 TRIM25 兔单克隆抗体"
+    ],
+    "interfaceFocus": "PRY-SPRY 与 RIG-I 2CARD 识别界面",
+    "designMode": "胞内靶点片段抗体",
+    "candidates": [
+      {
+        "target": "DDX58",
+        "rationale": "DDX58 编码 RIG-I，是 TRIM25 介导 K63 型泛素化的直接底物，位于同一病毒 RNA 识别与 MAVS 激活通路。"
+      },
+      {
+        "target": "MAVS",
+        "rationale": "MAVS 接收活化 RIG-I 信号并驱动 TBK1/IRF3 轴，是 TRIM25-RIG-I 抗病毒通路的关键接头蛋白。"
+      },
+      {
+        "target": "TBK1",
+        "rationale": "TBK1 位于 MAVS 下游，负责磷酸化 IRF3 并诱导 I 型干扰素转录，可作为同一先天免疫通路的下游干预节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

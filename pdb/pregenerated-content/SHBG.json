@@ -1,0 +1,65 @@
+{
+  "gene": "SHBG",
+  "generatedAt": "2026-08-03T16:31:13.311Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SHBG是肝源性分泌糖蛋白，直接结合睾酮、二氢睾酮和雌二醇，决定循环游离性激素比例，并与骨密度、体脂分布及性激素测量表型存在遗传关联。该靶点以可溶性同源二聚体形式存在，N端层粘连蛋白G样结构域暴露于血浆环境，抗原可及性优于胞内类固醇代谢酶。相较AR、ESR1等核受体，SHBG更适合采用抗体选择性调节配体结合或血清半衰期，并可利用1D2S高分辨率结构开展界面约束设计。",
+    "mechanism": "抗体结合SHBG N端LG结构域的类固醇结合沟槽或邻近环区，阻断睾酮/雌二醇进入疏水口袋并改变游离激素平衡。",
+    "selectedEpitope": "优先锁定N端LG结构域类固醇结合口袋边缘及二聚体近端环区，避免完全覆盖保守糖基化位点。",
+    "diseaseDirection": "性激素稳态与骨代谢相关疾病",
+    "domain": "SHBG含信号肽、两个层粘连蛋白G样结构域，N端LG结构域介导类固醇结合并参与二聚体构象稳定。",
+    "evidence": "SHBG性激素结合与代谢表型证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P04278功能与结构域注释",
+      "RCSB PDB 1D2S晶体结构记录",
+      "人群GWAS性激素水平与骨密度表型研究"
+    ],
+    "referenceEntries": "UniProt P04278；RCSB PDB 1D2S；Open Targets SHBG",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端LG结构域类固醇结合沟槽边缘",
+        "可直接干预睾酮和雌二醇占位，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端LG结构域二聚体近端外露环区",
+        "可能影响二聚体构象与配体口袋可塑性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端LG样结构域保守表面",
+        "远离主要类固醇结合位点，功能阻断不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "类固醇结合沟槽较浅且疏水，抗体需避免低亲和非特异疏水贴附；应保留分泌蛋白稳定性并评估对总激素检测读数的干扰。",
+    "structurePrepZh": "以1D2S抗原链A为模板，补全缺失侧链与糖基化注释，保留配体结合沟槽构象并生成二聚体相关界面模型用于表位筛选。",
+    "structureRef": "Human SHBG N-terminal domain crystal structure, PDB 1D2S",
+    "antibodies": [
+      "anti-SHBG diagnostic monoclonal antibody",
+      "anti-SHBG immunoassay capture antibody"
+    ],
+    "interfaceFocus": "类固醇结合沟槽与N端LG二聚体邻近环区",
+    "designMode": "可溶性抗原阻断",
+    "candidates": [
+      {
+        "target": "HSD17B3",
+        "rationale": "HSD17B3催化雄烯二酮向睾酮转化，位于雄激素生物合成轴上，与SHBG共同影响循环睾酮可用性。"
+      },
+      {
+        "target": "CYP19A1",
+        "rationale": "CYP19A1编码芳香化酶，介导雄激素向雌激素转化，是雌二醇水平和骨代谢相关内分泌通路的关键酶。"
+      },
+      {
+        "target": "AR",
+        "rationale": "AR是睾酮和二氢睾酮的核受体效应端，处于SHBG调节游离雄激素后的下游响应节点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

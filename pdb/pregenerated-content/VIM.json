@@ -1,0 +1,65 @@
+{
+  "gene": "VIM",
+  "generatedAt": "2026-08-03T17:48:39.195Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "VIM编码中间丝蛋白vimentin，参与晶状体上皮细胞形态维持、上皮-间质状态转换及细胞骨架应激反应，VIM变异与早发性非综合征性白内障存在遗传学关联。vimentin主要为胞内细胞骨架蛋白，抗原天然可及性弱，但在炎症、细胞损伤及凋亡过程中可出现细胞表面暴露或释放，适合作为病理状态依赖性抗原进行限定性设计。相较于广泛表达的肌动蛋白或微管蛋白，VIM在间质化细胞与损伤相关组织中具有更明确的病理富集特征，但作为抗体主靶点的优先级应低于经典分泌因子或膜受体。",
+    "mechanism": "抗体策略以识别病理暴露vimentin为核心，阻断表面vimentin与外源病原体或损伤相关配体的结合，并促进异常暴露细胞的免疫清除。",
+    "selectedEpitope": "优先避开1B卷曲螺旋核心装配界面，选择病理暴露的N端head区或尾部非螺旋区线性表位。",
+    "diseaseDirection": "白内障与炎症损伤相关细胞骨架异常",
+    "domain": "vimentin含N端head区、中央α螺旋rod区及C端tail区；1GK7覆盖rod 1B卷曲螺旋片段。",
+    "evidence": "VIM疾病遗传关联与细胞骨架病理暴露证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProtKB P08670功能与亚细胞定位注释",
+      "RCSB PDB 1GK7晶体结构记录",
+      "人类白内障相关VIM突变与细胞骨架文献"
+    ],
+    "referenceEntries": "UniProt P08670；RCSB PDB 1GK7；Open Targets VIM",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端head区病理暴露线性片段",
+        "保留对异常表面暴露vimentin的识别潜力，减少对rod核心装配的直接干扰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端tail区非螺旋柔性区域",
+        "具备较高构象可塑性，适合筛选病理释放或胞外片段识别抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "rod 1B卷曲螺旋二聚化界面",
+        "1GK7结构分辨率高，但该界面参与中间丝装配，存在广泛细胞骨架功能干扰风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "VIM为广泛表达胞内骨架蛋白，常规抗体难以接触天然抗原。设计应限定识别损伤或表面暴露构象，并避免强烈干扰中间丝装配核心界面。",
+    "structurePrepZh": "以1GK7链A作为rod 1B片段结构参考，补充AlphaFold全长模型定位head与tail区，去除晶体缓冲小分子并标注卷曲螺旋界面。",
+    "structureRef": "PDB 1GK7，human vimentin rod 1B fragment，1.4 Å",
+    "antibodies": [
+      "V9 anti-vimentin antibody",
+      "SP20 anti-vimentin antibody"
+    ],
+    "interfaceFocus": "rod 1B卷曲螺旋装配面与N端暴露片段",
+    "designMode": "病理暴露抗原识别",
+    "candidates": [
+      {
+        "target": "CRYAA",
+        "rationale": "CRYAA是晶状体蛋白稳态与早发性白内障通路中的核心分子，突变可导致蛋白聚集和晶状体混浊。其疾病方向与VIM相关白内障表型处于同一组织病理背景。"
+      },
+      {
+        "target": "CRYAB",
+        "rationale": "CRYAB编码小热休克蛋白αB-crystallin，可与中间丝网络及细胞应激反应交叉，参与晶状体透明性维持。该靶点与VIM共同指向蛋白稳态和细胞骨架应激轴。"
+      },
+      {
+        "target": "BFSP2",
+        "rationale": "BFSP2编码晶状体特异性中间丝蛋白，先天性和发育性白内障中具有明确遗传关联。其组织特异性高于VIM，可作为同类中间丝病理机制的优先替代靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

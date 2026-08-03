@@ -1,0 +1,65 @@
+{
+  "gene": "DLST",
+  "generatedAt": "2026-08-03T18:34:41.735Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DLST是α-酮戊二酸脱氢酶复合体E2核心亚基，参与线粒体TCA循环中琥珀酰辅酶A生成；其功能异常可影响α-酮戊二酸/琥珀酸代谢平衡，与副神经节瘤、嗜铬细胞瘤相关的代谢重编程和假性缺氧表型具有通路关联。该蛋白主要定位于线粒体基质，并非天然分泌蛋白或细胞膜受体，完整抗原在体内可及性弱，抗体策略更适合外源结构探针、细胞内递送或离体诊断场景。相比膜不可及性相近的代谢酶，DLST具有高分辨率人源复合体结构和明确的E2寡聚化核心界面，可为构象选择性抗体设计提供较高优先级依据。",
+    "mechanism": "设计抗体结合DLST E2催化核心或寡聚化界面，空间阻断E1递送的琥珀酰基脂酰臂进入活性通道，削弱α-酮戊二酸脱氢酶复合体通量。",
+    "selectedEpitope": "优先选择E2催化核心三聚体外露环及亚基界面邻近区域，避开线粒体导入肽和高度保守辅因子结合位点。",
+    "diseaseDirection": "副神经节瘤与线粒体代谢异常",
+    "domain": "DLST含N端线粒体靶向区、脂酰结构域、E1/E3结合区及C端E2酰基转移酶催化核心。",
+    "evidence": "DLST代谢酶结构与副神经节瘤关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P36957功能与定位注释",
+      "RCSB PDB 6H05冷冻电镜结构",
+      "α-酮戊二酸脱氢酶复合体代谢通路文献"
+    ],
+    "referenceEntries": "UniProt:P36957；RCSB PDB:6H05；Reactome TCA cycle",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端E2催化核心三聚体外露环与亚基界面",
+        "可产生构象选择性结合并干扰复合体核心装配或底物通道接近",
+        "优先"
+      ],
+      [
+        "Site B",
+        "E1/E3结合区邻近的柔性连接区域",
+        "可能阻断DLST与OGDH/DLD的复合体组装，但结构解析度和构象异质性需验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "脂酰结构域赖氨酸辅基邻近区域",
+        "理论上影响琥珀酰基转移循环，但高度动态且易受翻译后修饰状态影响",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DLST为线粒体基质蛋白，体内抗体可及性显著受限；设计应定位为结构探针、细胞内递送抗体或诊断抗体，并评估与DLAT等E2酶同源表面交叉反应。",
+    "structurePrepZh": "以6H05链A为模板，补全缺失柔性片段并保留催化核心寡聚状态；对线粒体导入肽、低置信度连接肽和动态脂酰臂区域进行分层建模。",
+    "structureRef": "RCSB PDB 6H05，human DLST cryo-EM structure, 2.9 Å",
+    "antibodies": [
+      "commercial anti-DLST antibody",
+      "commercial anti-OGDH complex E2 antibody"
+    ],
+    "interfaceFocus": "E2核心三聚体外露环与E1/E3结合邻近界面",
+    "designMode": "胞内代谢酶探针型",
+    "candidates": [
+      {
+        "target": "OGDH",
+        "rationale": "OGDH为α-酮戊二酸脱氢酶复合体E1亚基，负责α-酮戊二酸脱羧并将酰基中间体递送至DLST，是同一代谢通路中更直接的催化入口节点。"
+      },
+      {
+        "target": "DLD",
+        "rationale": "DLD为该复合体E3二氢硫辛酰胺脱氢酶亚基，负责再氧化DLST脂酰臂并维持NADH生成，适合作为复合体通量调控的同通路候选靶点。"
+      },
+      {
+        "target": "SDHB",
+        "rationale": "SDHB位于TCA循环和线粒体复合体II，遗传缺陷与副神经节瘤/嗜铬细胞瘤密切相关，可通过琥珀酸积累驱动假性缺氧信号。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

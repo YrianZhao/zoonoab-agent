@@ -1,0 +1,65 @@
+{
+  "gene": "CBL",
+  "generatedAt": "2026-08-03T18:15:46.422Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CBL编码E3泛素连接酶，是RTK-RAS-MAPK通路的负调控节点，通过泛素化活化的受体酪氨酸激酶限制RAS信号持续性；其胚系或体细胞突变与CBL相关疾病、JMML及Noonan样RASopathy密切相关。CBL为胞内适配/E3酶蛋白，天然抗原可及性显著低于膜受体或分泌蛋白，因此更适合采用胞内递送抗体片段或研究级构象抗体策略。相较上游RTK，CBL位于多种受体信号汇聚点，疾病遗传证据集中且PDB 3BUX提供高分辨率结构基础，但成药优先级受胞内定位限制，应作为机制验证型抗体设计靶点。",
+    "mechanism": "稳定CBL TKB-RING相对构象，干预pTyr底物识别与E2泛素结合耦联，调节RTK泛素化降解及RAS-MAPK信号终止。",
+    "selectedEpitope": "优先覆盖TKB结构域pTyr底物结合沟槽邻近界面，兼顾linker helix-RING构象耦联区。",
+    "diseaseDirection": "RASopathy与JMML机制验证",
+    "domain": "CBL含N端TKB结构域、linker helix、RING finger E3催化结构域及C端富脯氨酸区。",
+    "evidence": "CBL-RASopathy/JMML结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P22681功能与结构域注释",
+      "RCSB PDB 3BUX晶体结构记录",
+      "ClinVar/OMIM中CBL相关疾病变异证据"
+    ],
+    "referenceEntries": "UniProt P22681；RCSB PDB 3BUX；HGNC:1541",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "TKB结构域pTyr底物结合沟槽及4H束-钙结合EF hand邻近面",
+        "直接影响CBL对磷酸化RTK底物的识别，适合构建功能阻断型胞内抗体片段",
+        "优先"
+      ],
+      [
+        "Site B",
+        "linker helix与RING finger之间的构象耦联界面",
+        "该区域参与E3活化构象转换，可用于稳定或干预E2招募前的调控状态",
+        "备选"
+      ],
+      [
+        "Site C",
+        "RING finger锌配位核心及E2结合面",
+        "具催化关键性但锌指结构保守且界面紧凑，存在交叉反应和构象扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CBL为胞内蛋白，常规抗体难以到达作用位点；RING锌指区保守性高，应优先采用胞内Fab/VHH并规避锌配位核心。",
+    "structurePrepZh": "以3BUX高分辨率晶体结构为模板，保留TKB-linker-RING核心链，校验锌离子、磷酸化肽或配体状态并补全缺失环区。",
+    "structureRef": "RCSB PDB 3BUX，X-ray diffraction，1.35 Å",
+    "antibodies": [
+      "暂无获批抗CBL治疗性抗体",
+      "研究级抗CBL单克隆抗体"
+    ],
+    "interfaceFocus": "TKB pTyr结合沟槽与linker-RING耦联面",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "PTPN11",
+        "rationale": "PTPN11编码SHP2，是RTK-RAS-MAPK通路中促进RAS激活的关键磷酸酶，突变与Noonan综合征和JMML高度相关。其与CBL同属RASopathy/JMML核心遗传通路。"
+      },
+      {
+        "target": "KRAS",
+        "rationale": "KRAS是RAS-MAPK级联的中心小GTP酶，活化突变可驱动JMML及RASopathy样表型。CBL功能缺陷导致上游RTK信号持续，可与KRAS异常共同增强MAPK输出。"
+      },
+      {
+        "target": "NF1",
+        "rationale": "NF1编码RAS-GAP神经纤维蛋白，负责促进RAS-GTP水解并抑制MAPK信号。NF1失活与CBL异常均解除RAS通路负调控，疾病谱包括JMML和RASopathy相关表型。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

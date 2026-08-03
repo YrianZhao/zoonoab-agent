@@ -1,0 +1,65 @@
+{
+  "gene": "XAB2",
+  "generatedAt": "2026-08-03T17:54:00.454Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "XAB2 为核内 pre-mRNA 剪接、转录偶联核苷酸切除修复及 DNA 损伤应答相关蛋白，可通过与 XPA、ERCC1-XPF 及剪接因子复合体协同影响基因组稳定性，疾病证据主要集中于感染、肿瘤及神经病理性疼痛等关联信号。该蛋白定位以核内复合体为主，缺乏典型分泌信号肽、跨膜区或稳定胞外结构域，抗原天然可及性不适合作为常规体内阻断型抗体靶点。相较于 EGFR、VEGFA、PDCD1 等具有明确胞外抗体药物可及性的同类疾病靶点，XAB2 的优先级更适合限定于结构生物学验证、细胞内抗体或研究级结合分子开发。",
+    "mechanism": "设计分子应结合 XAB2 TPR 重复形成的蛋白互作沟槽，干扰其与 XPA 或剪接修复复合体组分的装配界面。",
+    "selectedEpitope": "优先锁定 TPR repeat 超螺旋凹槽及 XPA/修复因子结合界面，避免核心折叠疏水面。",
+    "diseaseDirection": "DNA修复缺陷与肿瘤关联方向",
+    "domain": "XAB2 主要由多段 TPR repeats 构成，形成延展性α螺旋超螺旋蛋白互作支架。",
+    "evidence": "XAB2结构与DNA修复疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9HCS7 functional annotation",
+      "RCSB PDB 8C6J electron microscopy structure",
+      "Literature on XAB2-XPA transcription-coupled repair complex"
+    ],
+    "referenceEntries": "UniProt Q9HCS7；RCSB PDB 8C6J；Open Targets XAB2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "TPR超螺旋凹槽的蛋白互作面",
+        "可能阻断XAB2与XPA及修复复合体组分装配，具备机制验证价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "TPR重复外侧溶剂暴露α螺旋束",
+        "适合获得高亲和结合分子，用于结构定位或细胞内抗体工具开发",
+        "备选"
+      ],
+      [
+        "Site C",
+        "TPR核心折叠内侧保守疏水面",
+        "可能影响整体折叠稳定性且表位可塑性较低，需避免非特异构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "XAB2为核内非分泌蛋白，常规抗体难以到达天然作用位点；建议限定为Fab结构探针、细胞内抗体或递送型格式，并优先验证细胞内结合与功能扰动。",
+    "structurePrepZh": "采用PDB 8C6J的2.8 Å电镜模型，保留XAB2 TPR结构域坐标，补全缺失侧链并评估柔性环区，去除非目标复合体链后进行表面可及性分析。",
+    "structureRef": "RCSB PDB 8C6J，electron microscopy，2.8 Å",
+    "antibodies": [
+      "无获批抗XAB2治疗性抗体",
+      "研究级抗XAB2抗体"
+    ],
+    "interfaceFocus": "TPR凹槽介导的XPA/修复因子结合界面",
+    "designMode": "细胞内结合分子设计",
+    "candidates": [
+      {
+        "target": "XPA",
+        "rationale": "XPA是核苷酸切除修复中的DNA损伤识别与支架蛋白，直接与XAB2相关修复复合体功能相连，适合进行同通路机制对照。"
+      },
+      {
+        "target": "ERCC1",
+        "rationale": "ERCC1与XPF形成核酸内切酶复合体，参与NER损伤切除步骤，与XAB2介导的修复装配处于同一DNA修复通路。"
+      },
+      {
+        "target": "ERCC4",
+        "rationale": "ERCC4编码XPF内切酶催化亚基，和ERCC1共同执行损伤链切割，可作为XAB2相关NER功能轴的替代干预节点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

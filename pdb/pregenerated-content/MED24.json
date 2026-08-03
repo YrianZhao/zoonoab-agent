@@ -1,0 +1,65 @@
+{
+  "gene": "MED24",
+  "generatedAt": "2026-08-03T14:10:52.916Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MED24 是 Mediator 转录共激活复合体的胞内组分，参与核受体及多种转录因子向 RNA polymerase II 的信号传递，其遗传关联主要集中于中性粒细胞数量、白细胞数量及生长表型，但目前疾病证据以遗传统计关联为主，直接致病机制尚未形成可干预轴线。该蛋白定位于细胞核内 Mediator 复合体，不具备分泌蛋白、膜受体或稳定胞外结构域特征，天然抗原可及性不支持常规治疗性抗体结合。与同一造血细胞数量性状通路中的 CSF3R、CXCR2、IL6R 等细胞表面或可溶性靶点相比，MED24 的抗体药物优先级较低，更适合作为机制研究或细胞内递送抗体探索对象。",
+    "mechanism": "设计目标限定为细胞内递送抗体，阻断 MED24 在 Mediator tail 模块中与 MED23/MED16 邻近界面的装配接触，干扰转录因子信号向 RNA polymerase II 预起始复合体传递。",
+    "selectedEpitope": "优先评估 7EMF 中 MED24 暴露螺旋束邻近 MED23/MED16 接触面，避开深埋复合体核心界面。",
+    "diseaseDirection": "造血细胞数量性状与转录调控",
+    "domain": "MED24 为 Mediator tail 模块胞内亚基，主要由多螺旋折叠构成，参与复合体装配而非胞外配体识别。",
+    "evidence": "MED24 遗传关联与 Mediator 结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProtKB O75448 蛋白定位与功能注释",
+      "RCSB PDB 7EMF 人源 Mediator 复合体冷冻电镜结构",
+      "EMDB/RCSB 电子显微镜密度与复合体装配注释"
+    ],
+    "referenceEntries": "UniProt O75448；RCSB PDB 7EMF；Open Targets MED24",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "MED24 暴露螺旋束与 MED23/MED16 邻近接触边缘",
+        "可用于验证 MED24 在 tail 模块装配中的可阻断界面",
+        "优先"
+      ],
+      [
+        "Site B",
+        "MED24 外侧可及螺旋环区",
+        "适合构建结构识别抗体或细胞内结合探针，降低复合体破坏风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "MED24 深埋于 Mediator 复合体核心的装配界面",
+        "可能影响复合体整体稳定性且构象可及性不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MED24 为核内胞质不可及抗原，常规抗体难以到达作用部位；设计应限定为胞内抗体、递送抗体或研究级结构探针，并避免误判为标准胞外治疗靶点。",
+    "structurePrepZh": "以 7EMF 冷冻电镜模型为基础提取 MED24 邻近链环境，补全缺失侧链并按局部分辨率筛选外露螺旋区，保留 MED23/MED16 接触关系用于界面评估。",
+    "structureRef": "RCSB PDB 7EMF，人源 Mediator 复合体冷冻电镜结构，3.5 Å",
+    "antibodies": [
+      "无获批 MED24 靶向抗体",
+      "无临床阶段 MED24 治疗性抗体"
+    ],
+    "interfaceFocus": "MED24-MED23/MED16 tail 模块装配界面",
+    "designMode": "胞内递送抗体探索",
+    "candidates": [
+      {
+        "target": "CSF3R",
+        "rationale": "CSF3R 是粒细胞集落刺激因子受体，直接调控中性粒细胞增殖、分化与动员，且为细胞表面受体，抗体可及性明显优于 MED24。"
+      },
+      {
+        "target": "CXCR2",
+        "rationale": "CXCR2 介导 CXCL1/CXCL8 等趋化因子驱动的中性粒细胞募集，与白细胞数量和炎症性粒细胞反应处于同一生物学方向。"
+      },
+      {
+        "target": "IL6R",
+        "rationale": "IL6R 通过 IL6-JAK-STAT3 轴影响炎症性造血和髓系细胞反应，存在可溶性及膜结合形式，具备成熟抗体干预先例。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

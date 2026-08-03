@@ -1,0 +1,65 @@
+{
+  "gene": "KAT2B",
+  "generatedAt": "2026-08-03T13:36:40.197Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KAT2B编码PCAF，是核内赖氨酸乙酰转移酶，通过乙酰化组蛋白H3及转录因子p53、MYC、NF-κB亚基等调控肿瘤和神经退行性疾病相关转录程序。该蛋白缺乏天然胞外结构域或分泌形式，完整抗体对胞内核靶点的直接可及性有限，因此更适合作为胞内递送抗体片段或结构引导型抑制结合体设计对象。相较广泛表达且同源性较高的KAT2A，KAT2B具备高分辨率实验结构与明确乙酰辅酶A结合沟槽，可支持更精确的界面设计与选择性评估。",
+    "mechanism": "设计结合KAT2B HAT催化结构域的抗体片段，遮挡乙酰辅酶A结合沟槽及赖氨酸底物进入通道，阻断乙酰基向组蛋白或转录因子底物转移。",
+    "selectedEpitope": "优先靶向HAT结构域乙酰辅酶A结合沟槽邻近底物通道，兼顾催化核心可及环区。",
+    "diseaseDirection": "肿瘤表观遗传调控与神经退行性疾病",
+    "domain": "KAT2B含N端调控区、HAT催化结构域及C端溴结构域；5FE6覆盖HAT催化核心。",
+    "evidence": "KAT2B表观遗传调控与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与功能关联",
+      "UniProt Q92831蛋白功能与结构域注释",
+      "RCSB PDB 5FE6高分辨率晶体结构",
+      "文献报道PCAF乙酰化p53、组蛋白H3及转录因子底物"
+    ],
+    "referenceEntries": "UniProt Q92831；RCSB PDB 5FE6；Open Targets KAT2B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "HAT结构域乙酰辅酶A结合沟槽及底物通道边缘",
+        "可直接干预辅因子结合与赖氨酸底物定位，机制最清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "HAT催化核心外侧保守折叠邻近可及环区",
+        "有利于构建变构型阻断分子并降低完全竞争结合难度",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端溴结构域乙酰赖氨酸识别口袋",
+        "可能影响染色质乙酰化标记读取，但5FE6未覆盖该结构域",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "KAT2B为核内胞质/核蛋白，常规抗体难以到达作用位点；建议采用细胞内递送Fab、VHH或抗体模拟片段，并严格评估与KAT2A的交叉反应。",
+    "structurePrepZh": "以5FE6晶体结构链A/B为模板，去除晶体缓冲组分，保留关键辅因子邻近残基信息，补建缺失侧链并进行质子化与同源性界面比对。",
+    "structureRef": "RCSB PDB 5FE6，KAT2B/PCAF HAT结构域，1.77 Å X射线结构",
+    "antibodies": [
+      "anti-PCAF monoclonal antibody",
+      "anti-KAT2B recombinant antibody"
+    ],
+    "interfaceFocus": "HAT催化沟槽、乙酰辅酶A位点与底物通道",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "KAT2A",
+        "rationale": "KAT2A/GCN5与KAT2B同属GNAT乙酰转移酶家族，参与组蛋白乙酰化和肿瘤转录调控。其同源催化结构域可作为选择性与交叉反应评估的关键参照。"
+      },
+      {
+        "target": "EP300",
+        "rationale": "EP300是p53、MYC和NF-κB相关转录程序中的主要乙酰转移酶共激活因子，与KAT2B在肿瘤表观遗传调控中功能交叉。其胞内酶结构域可用于同通路组合干预比较。"
+      },
+      {
+        "target": "CREBBP",
+        "rationale": "CREBBP与EP300同为转录共激活乙酰转移酶，调控组蛋白及转录因子乙酰化，在癌症和神经系统疾病通路中与KAT2B存在功能关联。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

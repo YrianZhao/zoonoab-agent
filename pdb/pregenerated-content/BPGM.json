@@ -1,0 +1,65 @@
+{
+  "gene": "BPGM",
+  "generatedAt": "2026-08-03T10:51:00.857Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BPGM 是红细胞特异性糖酵解支路酶，催化 1,3-二磷酸甘油酸生成 2,3-二磷酸甘油酸，并通过调节血红蛋白氧亲和力参与组织供氧稳态；其缺陷与二磷酸甘油酸变位酶缺乏性溶血性贫血及继发性红细胞增多相关。该蛋白主要定位于红细胞胞质，缺乏跨膜区和分泌信号，抗原天然可及性弱，不具备常规体内阻断型抗体靶点优势。相较于膜受体或分泌因子，BPGM 更适合作为结构抗原、诊断捕获或细胞内递送抗体模型靶点，优先级应低于同通路中可直接干预红细胞生成或氧感应的胞外靶点。",
+    "mechanism": "抗体设计以结合 BPGM 二聚体催化沟槽邻近区域为主，空间遮挡 2,3-二磷酸甘油酸底物进入磷酸组氨酸催化中心，抑制 mutase/phosphatase 构象循环。",
+    "selectedEpitope": "优先覆盖α/β核心结构域催化口袋入口及二聚体界面邻近环区，避免完全埋藏的活性位点残基。",
+    "diseaseDirection": "红细胞代谢与氧输送异常",
+    "domain": "BPGM 为二磷酸甘油酸变位酶家族胞质酶，含保守α/β磷酸转移核心和二聚体装配界面。",
+    "evidence": "BPGM红细胞2,3-BPG代谢结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P07738 functional annotation",
+      "RCSB PDB 7THI X-ray structure",
+      "Human erythrocyte glycolysis and oxygen-affinity literature"
+    ],
+    "referenceEntries": "UniProt P07738；RCSB PDB 7THI；Open Targets BPGM",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化口袋入口及邻近柔性环区",
+        "可干扰底物进入并保留抗体可接近性，适合作为功能阻断表位",
+        "优先"
+      ],
+      [
+        "Site B",
+        "同源二聚体界面外缘",
+        "可能影响二聚体稳定性或构象耦联，适合作为变构型结合位点",
+        "备选"
+      ],
+      [
+        "Site C",
+        "深部磷酸组氨酸活性中心",
+        "催化残基高度保守且口袋狭窄，抗体进入受限并存在交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BPGM 为胞质红细胞酶，体内抗体可及性与药效转化风险较高；设计宜定位于体外诊断、细胞内递送或结构验证场景。",
+    "structurePrepZh": "采用 7THI 的 A、B 链二聚体作为抗原模型，保留生物学装配体，校验活性口袋、界面残基与晶体接触后再进行表位暴露评估。",
+    "structureRef": "RCSB PDB 7THI，X-ray diffraction，1.33 Å",
+    "antibodies": [
+      "anti-BPGM diagnostic antibody",
+      "anti-BPGM research-use monoclonal antibody"
+    ],
+    "interfaceFocus": "催化口袋入口与二聚体界面外缘",
+    "designMode": "结构导向Fab/VHH",
+    "candidates": [
+      {
+        "target": "HBB",
+        "rationale": "HBB 编码血红蛋白β链，是 2,3-BPG 调节氧亲和力的直接结合对象；其变构状态与红细胞供氧表型直接相关。"
+      },
+      {
+        "target": "PKLR",
+        "rationale": "PKLR 编码红细胞丙酮酸激酶，位于红细胞糖酵解能量代谢通路中；其功能缺陷可导致慢性溶血性贫血。"
+      },
+      {
+        "target": "GPI",
+        "rationale": "GPI 编码葡萄糖-6-磷酸异构酶，参与红细胞糖酵解上游代谢；遗传缺陷可造成非球形红细胞溶血性贫血。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

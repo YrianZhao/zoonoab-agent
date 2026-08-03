@@ -1,0 +1,65 @@
+{
+  "gene": "PTPRR",
+  "generatedAt": "2026-08-03T15:44:54.389Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PTPRR编码受体型蛋白酪氨酸磷酸酶，主要通过去磷酸化ERK1/2、p38 MAPK与JNK等MAPK成员限制激酶级联强度，其遗传关联更偏向脂蛋白、肝酶比值及平滑肌增殖相关性状。该蛋白存在短胞外区、单跨膜区和胞内PTP催化结构域，完整膜型抗原具备细胞表面可及性，但2A8B仅覆盖胞内磷酸酶结构域，抗体功能设计需优先采用胞外结合或递送型策略。相较典型分泌因子或生长因子受体，PTPRR疾病证据强度中等且多为数量性状关联；其优先级在于可直接定位MAPK负反馈节点，并可作为MAPK异常活化疾病模型中的机制验证靶点。",
+    "mechanism": "抗体结合PTPRR胞外近膜区以调节受体聚集状态，间接影响胞内PTP结构域对ERK1/2磷酸化TEY基序的去磷酸化效率。",
+    "selectedEpitope": "优先选择胞外近膜短结构域与跨膜邻接区，避开胞内PTP催化口袋。",
+    "diseaseDirection": "MAPK相关增殖与脂质性状",
+    "domain": "PTPRR含短胞外段、单跨膜螺旋及胞内蛋白酪氨酸磷酸酶催化结构域。",
+    "evidence": "PTPRR-MAPK负反馈与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q15256功能与结构域注释",
+      "RCSB PDB 2A8B晶体结构记录",
+      "MAPK去磷酸化功能文献证据"
+    ],
+    "referenceEntries": "UniProt Q15256；RCSB PDB 2A8B；Open Targets PTPRR",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "胞外近膜短结构域",
+        "保留膜表面可及性并可能影响受体构象耦联",
+        "优先"
+      ],
+      [
+        "Site B",
+        "跨膜邻接胞外边界",
+        "适合构建受体构象锁定型抗体但需验证可及性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "胞内PTP催化结构域WPD环及底物结合沟",
+        "与2A8B结构匹配但常规抗体难以进入胞内",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "2A8B为胞内催化结构域，不能直接代表天然细胞表面表位；胞外段较短可能限制亲和力成熟空间，宜并行评估细胞结合与受体聚集效应。",
+    "structurePrepZh": "以2A8B链A解析PTP催化域构象，补充UniProt拓扑注释建立全长膜蛋白模型，并对胞外近膜段进行柔性建模与糖基化检查。",
+    "structureRef": "RCSB PDB 2A8B，X-ray diffraction，2.3 Å",
+    "antibodies": [
+      "PTPRR研究级单克隆抗体",
+      "PTPRR胞外区结合抗体"
+    ],
+    "interfaceFocus": "胞外近膜段、受体聚集界面与PTP底物沟",
+    "designMode": "膜受体构象调节",
+    "candidates": [
+      {
+        "target": "MAPK1",
+        "rationale": "MAPK1编码ERK2，是PTPRR直接去磷酸化底物之一，位于同一MAPK级联终端节点。其磷酸化状态可作为PTPRR功能调节的关键药效读数。"
+      },
+      {
+        "target": "MAPK3",
+        "rationale": "MAPK3编码ERK1，与ERK2共同构成PTPRR介导负反馈的核心底物群。该靶点适合用于验证PTPRR抗体对ERK信号输出的影响。"
+      },
+      {
+        "target": "MAPK14",
+        "rationale": "MAPK14编码p38α MAPK，已报道可受PTPRR相关磷酸酶调控。其处于应激与炎症MAPK支路，可作为同通路备选机制靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

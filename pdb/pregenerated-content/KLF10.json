@@ -1,0 +1,65 @@
+{
+  "gene": "KLF10",
+  "generatedAt": "2026-08-03T13:44:18.103Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KLF10 为TGF-β诱导型锌指转录因子，可通过结合GC-rich/CACCC启动子元件调节细胞周期、炎症和代谢相关基因表达，Open Targets 显示其与肝酶、炎症标志物及神经退行性表型存在遗传关联。该蛋白主要定位于细胞核，缺乏胞外结构域、分泌形式或膜受体特征，天然抗原可及性不利于常规体内阻断抗体。相比TGFBR1、TGFB1等同通路胞外靶点，KLF10更适合作为结构验证或细胞内递送抗体研究靶点，主靶点优先级应低于可直接药物化的膜受体/配体。",
+    "mechanism": "设计分子应识别KLF10 C端C2H2锌指DNA结合域，阻断其与GC-rich/CACCC DNA元件的碱基沟识别接触，从而干预KLF10介导的转录调控。",
+    "selectedEpitope": "优先评估C端三联C2H2锌指中DNA识别α螺旋外侧及指间连接区表位。",
+    "diseaseDirection": "TGF-β相关炎症与代谢表型",
+    "domain": "KLF10含N端转录调控区与C端三联C2H2锌指DNA结合域，2EPA覆盖锌指结构片段。",
+    "evidence": "KLF10结构域与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q13118 functional annotation",
+      "RCSB PDB 2EPA solution NMR structure",
+      "Gene Ontology DNA-binding transcription factor evidence"
+    ],
+    "referenceEntries": "UniProt Q13118；RCSB PDB 2EPA；HGNC:11810",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端C2H2锌指DNA识别α螺旋与指间连接区",
+        "可直接干预KLF10与CACCC/GC-rich DNA元件结合，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "锌指结构域非DNA接触侧保守折叠表面",
+        "有利于获得构象识别分子并用于结构验证，但功能阻断需实验证实",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端低复杂度转录调控区域",
+        "可能涉及共调节因子结合，但结构无序性高且2EPA未覆盖",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "KLF10为核内转录因子，常规抗体难以进入细胞核；锌指区域保守性高，需规避KLF家族交叉反应并采用细胞内递送或intrabody策略。",
+    "structurePrepZh": "以2EPA的NMR构象集为模板，保留锌配位Cys/His残基与锌离子约束，进行构象聚类后选择代表模型用于表位建模。",
+    "structureRef": "RCSB PDB 2EPA；KLF10 zinc finger solution NMR structure",
+    "antibodies": [
+      "无获批抗KLF10治疗性抗体",
+      "研究级抗KLF10抗体"
+    ],
+    "interfaceFocus": "C2H2锌指DNA主沟识别面",
+    "designMode": "细胞内阻断型",
+    "candidates": [
+      {
+        "target": "TGFB1",
+        "rationale": "TGFB1位于KLF10上游，可诱导KLF10转录表达；作为分泌型配体，其抗原可及性和抗体阻断可行性显著优于核内KLF10。"
+      },
+      {
+        "target": "TGFBR1",
+        "rationale": "TGFBR1介导TGF-β受体复合体下游SMAD信号并驱动KLF10表达，膜受体胞外区可作为抗体结合入口。"
+      },
+      {
+        "target": "SMAD3",
+        "rationale": "SMAD3为TGF-β通路核心转录效应因子，可参与KLF10诱导型转录网络；但其细胞内定位同样限制常规抗体药物化。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

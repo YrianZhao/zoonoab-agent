@@ -1,0 +1,65 @@
+{
+  "gene": "UBAP1",
+  "generatedAt": "2026-08-03T17:37:12.792Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "UBAP1 是 ESCRT-I 复合体相关蛋白，参与泛素化膜货物识别与内体分选；其截短或功能缺失与常染色体显性痉挛性截瘫80型及遗传性痉挛性截瘫相关，提示内体-溶酶体运输障碍可影响长轴突神经元稳态。UBAP1 主要为胞质侧复合体组分，天然抗原可及性弱于膜受体或分泌蛋白，需采用细胞内递送抗体片段或机制验证型结合分子策略。相比广泛必需的核心 ESCRT 因子，UBAP1 的疾病遗传证据更集中于神经轴突退行性表型，且 4AE4 提供高分辨率结构基础，适合作为结构驱动的选择性干预与伴随诊断靶点。",
+    "mechanism": "设计抗体片段结合 UBAP1 UMA/UBAP1-MVB12 结构单元，干预其与 ESCRT-I 伙伴蛋白及泛素化货物识别界面的组装或稳定性。",
+    "selectedEpitope": "优先覆盖 4AE4 中 UBAP1-MVB12 复合体的保守疏水装配界面及相邻泛素相关识别面。",
+    "diseaseDirection": "遗传性痉挛性截瘫与神经退行性病变",
+    "domain": "UBAP1 含 N 端 UEV 样泛素识别区域及 C 端 ESCRT-I 相关装配区域，4AE4 解析其复合体片段。",
+    "evidence": "UBAP1-ESCRT-I 内体分选与痉挛性截瘫证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProtKB Q9NZ09 功能与结构注释",
+      "RCSB PDB 4AE4 X射线晶体结构",
+      "OMIM/ClinVar UBAP1 相关痉挛性截瘫变异记录"
+    ],
+    "referenceEntries": "UniProt Q9NZ09；RCSB PDB 4AE4；Open Targets UBAP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "UBAP1-MVB12 复合体疏水装配界面",
+        "可直接影响 ESCRT-I 亚复合体稳定性与内体货物分选功能",
+        "优先"
+      ],
+      [
+        "Site B",
+        "UEV 样泛素识别区域邻近暴露面",
+        "有利于评估泛素化货物结合对疾病相关内体运输的贡献",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守核心折叠与链间晶体接触区域",
+        "可能引起非特异构象扰动或交叉干扰核心 ESCRT 功能",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "UBAP1 为胞内蛋白，常规抗体药物递送受限；设计应优先采用 VHH、细胞穿透融合或研究级 intrabody，并避免破坏广泛必需的 ESCRT 核心界面。",
+    "structurePrepZh": "以 4AE4 的 A、B 链为结构模板，补全缺失残基并标注链间装配界面；去除晶体缓冲组分后进行质子化、界面保守性与可及性评估。",
+    "structureRef": "RCSB PDB 4AE4，1.65 Å X-ray ESCRT-I 相关复合体结构",
+    "antibodies": [
+      "研究级抗 UBAP1 单克隆抗体",
+      "研究级抗 STAMBP/ESCRT 通路抗体"
+    ],
+    "interfaceFocus": "UBAP1-MVB12 装配界面与 UEV 样泛素识别面",
+    "designMode": "胞内VHH/intrabody",
+    "candidates": [
+      {
+        "target": "TSG101",
+        "rationale": "TSG101 是 ESCRT-I 核心组分，UEV 结构域识别泛素化货物并参与 HIV Gag p6 PTAP 基序招募，处于 UBAP1 相关内体分选与病毒出芽通路同一功能轴。"
+      },
+      {
+        "target": "VPS28",
+        "rationale": "VPS28 与 TSG101、VPS37 共同构成 ESCRT-I 核心复合体，并连接下游 ESCRT-II 组装，适合作为验证 UBAP1 复合体功能扰动的同通路候选靶点。"
+      },
+      {
+        "target": "VPS37A",
+        "rationale": "VPS37A 属 ESCRT-I VPS37 家族成员，参与内体货物分选和复合体结构稳定，可用于比较 UBAP1 特异性分支与核心 ESCRT-I 机制差异。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "G6PD",
+  "generatedAt": "2026-08-03T12:40:09.604Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "G6PD 是磷酸戊糖途径限速酶，催化葡萄糖-6-磷酸生成 6-磷酸葡萄糖酸内酯并还原 NADP+，维持红细胞 NADPH 与谷胱甘肽抗氧化能力；遗传性活性降低可导致氧化应激诱发非球形细胞性溶血性贫血。该蛋白主要为胞质可溶性酶，缺乏天然胞外结构域或膜受体可及性，抗体药物直接作用于体内靶点的可及性受限，更适合作为结构生物学、诊断捕获或胞内递送抗体设计模型。相比同通路代谢酶，G6PD 具有明确的人类遗传病因证据、高分辨率晶体结构和可解析的底物/NADP+结合界面，因此在机制验证与特异性结合试剂开发中优先级较高。",
+    "mechanism": "抗体结合 G6PD 的结构 NADP+结合区或二聚体界面，可阻断 NADP+稳定结合或干扰活性二聚体装配，从而抑制葡萄糖-6-磷酸脱氢反应。",
+    "selectedEpitope": "优先覆盖结构 NADP+结合域邻近二聚化界面，避开高度保守催化裂缝以降低交叉反应风险。",
+    "diseaseDirection": "G6PD缺乏相关溶血性贫血",
+    "domain": "人 G6PD 含 N 端 Rossmann 样 NADP+结合域、中央 β+α 催化域及 C 端结构 NADP+稳定化区域。",
+    "evidence": "G6PD缺乏溶血性贫血结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProtKB P11413 功能与变异注释",
+      "RCSB PDB 6JYU 高分辨率晶体结构",
+      "OMIM 与 ClinVar G6PD 缺乏变异记录"
+    ],
+    "referenceEntries": "UniProt P11413；RCSB PDB 6JYU；Open Targets G6PD",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "结构 NADP+结合区邻近 C 端稳定化表面",
+        "可干扰酶稳定构象并形成机制型抑制表位",
+        "优先"
+      ],
+      [
+        "Site B",
+        "二聚体界面外缘的构象表面",
+        "适合设计阻断亚基装配或稳定异常构象的抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "葡萄糖-6-磷酸与催化 NADP+结合裂缝",
+        "催化位点高度保守且凹陷，抗体可及性与选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "G6PD 为胞质酶，体内抗体可及性不足；应优先定位于体外诊断、结构探针或递送抗体场景，并评估与同源脱氢酶的交叉结合。",
+    "structurePrepZh": "以 6JYU 链 A 为抗原模板，补全缺失侧链、校正 NADP+与底物类似物邻域质子化状态，并保留二聚体相关界面用于表位评估。",
+    "structureRef": "Human G6PD crystal structure, RCSB PDB 6JYU, 1.89 Å",
+    "antibodies": [
+      "Anti-G6PD diagnostic monoclonal antibody",
+      "Anti-G6PD research monoclonal antibody"
+    ],
+    "interfaceFocus": "结构NADP+结合区与二聚体界面外缘",
+    "designMode": "胞内酶结构探针",
+    "candidates": [
+      {
+        "target": "PGD",
+        "rationale": "PGD 编码 6-磷酸葡萄糖酸脱氢酶，是磷酸戊糖途径氧化支路下游 NADPH 生成酶；其功能与红细胞抗氧化还原稳态直接相关。"
+      },
+      {
+        "target": "GSR",
+        "rationale": "GSR 编码谷胱甘肽还原酶，利用 NADPH 将氧化型谷胱甘肽还原为 GSH；该环节连接 G6PD 活性与红细胞抗氧化防御。"
+      },
+      {
+        "target": "HMOX1",
+        "rationale": "HMOX1 参与血红素降解和氧化应激反应，在溶血和红细胞氧化损伤相关病理中具有通路关联价值。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

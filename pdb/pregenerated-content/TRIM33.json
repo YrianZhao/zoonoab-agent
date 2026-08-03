@@ -1,0 +1,65 @@
+{
+  "gene": "TRIM33",
+  "generatedAt": "2026-08-03T17:29:14.214Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TRIM33为核内转录共调节因子及E3泛素连接酶，参与TGF-β/BMP依赖的SMAD复合物调控，并与造血分化、炎症细胞计数及神经退行性疾病遗传关联相关。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌形式，抗原可及性明显弱于膜受体或分泌因子，因此更适合作为细胞内抗体、降解型抗体或研究级结合分子靶点。其优先级来自高质量实验结构覆盖PHD-bromodomain模块，可直接围绕乙酰化组蛋白识别界面开展结构约束设计；但相较TGFBR2、TGFB1等可及性更高的同通路靶点，转化优先级应定位为机制验证与细胞内调控。",
+    "mechanism": "设计分子阻断TRIM33 bromodomain与乙酰化组蛋白H3尾部结合，并干扰PHD-bromodomain模块介导的染色质募集。",
+    "selectedEpitope": "优先覆盖PHD-bromodomain连接面及bromodomain乙酰赖氨酸结合口袋周缘。",
+    "diseaseDirection": "TGF-β相关造血与神经退行性疾病",
+    "domain": "TRIM33含RING、B-box、coiled-coil及C端PHD-bromodomain染色质识别模块。",
+    "evidence": "TRIM33结构与TGF-β/SMAD调控证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9UPN9功能与结构域注释",
+      "RCSB PDB 7ZDD实验晶体结构",
+      "TGF-β/SMAD转录调控与造血分化文献"
+    ],
+    "referenceEntries": "UniProt Q9UPN9；RCSB PDB 7ZDD；Open Targets TRIM33",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "bromodomain乙酰赖氨酸结合口袋周缘",
+        "可直接阻断乙酰化组蛋白H3识别，机制可验证性高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PHD-bromodomain结构域连接界面",
+        "可能影响串联模块构象耦联及染色质结合稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PHD finger锌配位核心邻近区域",
+        "结构保守且锌配位敏感，结合可能引发非特异构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TRIM33为核内蛋白，常规治疗抗体难以到达靶点；PHD锌指区域保守性高，应避免破坏锌配位并优先采用细胞内递送格式。",
+    "structurePrepZh": "以7ZDD中A、D链为抗原模板，保留PHD-bromodomain核心构象，校验锌离子、配体及晶体接触后进行界面建模。",
+    "structureRef": "RCSB PDB 7ZDD，X-ray diffraction，1.625 Å",
+    "antibodies": [
+      "TRIM33研究级单克隆抗体",
+      "anti-TRIM33/TIF1γ免疫检测抗体"
+    ],
+    "interfaceFocus": "bromodomain乙酰赖氨酸口袋与PHD-BRD连接面",
+    "designMode": "细胞内结构阻断",
+    "candidates": [
+      {
+        "target": "SMAD2",
+        "rationale": "SMAD2为TGF-β受体磷酸化后的核心转录效应因子，与TRIM33参与同一TGF-β转录调控轴。其核内复合物状态可作为通路功能读出。"
+      },
+      {
+        "target": "SMAD3",
+        "rationale": "SMAD3与SMAD2共同介导TGF-β依赖基因表达，并与造血和炎症表型密切相关。针对其蛋白互作界面的工具分子可辅助解析TRIM33相关机制。"
+      },
+      {
+        "target": "TGFBR2",
+        "rationale": "TGFBR2位于同一TGF-β通路上游，负责配体结合后招募并激活TGFBR1。其细胞表面受体属性使抗体可及性优于TRIM33。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "ALKBH2",
+  "generatedAt": "2026-08-03T18:05:49.339Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ALKBH2 是Fe(II)/α-酮戊二酸依赖性DNA修复双加氧酶，主要去除1-甲基腺嘌呤和3-甲基胞嘧啶等烷基化损伤，其疾病关联更多指向基因组稳定性、造血表型及免疫相关遗传信号。该蛋白定位于细胞核，缺乏天然胞外结构域、分泌特征或膜受体拓扑，因此作为常规体内阻断型抗体靶点的抗原可及性较弱，更适合结构生物学抗体、细胞内递送抗体或研究级结合分子开发。相较同通路中膜可及性更高的免疫受体类靶点，ALKBH2的优先级依据在于PDB 3S57提供1.6 Å实验结构，可支持高精度构象表位设计与DNA/辅因子结合界面解析。",
+    "mechanism": "抗体结合催化核心邻近区域，阻碍ALKBH2对烷基化DNA碱基翻转进入活性位点，并干扰Fe(II)/α-酮戊二酸依赖的氧化去甲基化构象装配。",
+    "selectedEpitope": "优先覆盖N端核酸识别沟槽与β-夹层外缘，避开深埋Fe(II)/α-KG催化残基。",
+    "diseaseDirection": "DNA损伤修复与免疫遗传表型",
+    "domain": "ALKBH2含AlkB样双加氧酶催化核心，具β-夹层折叠、Fe(II)/α-KG结合位点及DNA底物结合沟槽。",
+    "evidence": "ALKBH2结构与DNA烷基化修复证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q6NS38功能注释",
+      "RCSB PDB 3S57晶体结构",
+      "AlkB同源DNA去甲基化酶文献"
+    ],
+    "referenceEntries": "UniProt: Q6NS38；RCSB PDB: 3S57；Open Targets: ALKBH2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DNA底物结合沟槽及碱基翻转邻近环区",
+        "可直接干扰烷基化碱基进入催化口袋，适合功能阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "AlkB样催化核心外侧β-夹层暴露面",
+        "构象稳定且远离金属深位点，适合获得结构识别型结合分子",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Fe(II)/α-酮戊二酸结合口袋周边",
+        "邻近保守催化残基，可能影响选择性并存在交叉识别ALKBH家族风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ALKBH2为核内酶，天然抗体可及性不足；催化口袋高度保守，需通过外侧沟槽复合表位提高ALKBH2/ALKBH3选择性。",
+    "structurePrepZh": "以3S57的A、B、C链为模板，保留高分辨率催化核心构象，补全缺失侧链并标注金属、α-KG及DNA结合相关残基。",
+    "structureRef": "RCSB PDB 3S57，X-ray diffraction，1.6 Å",
+    "antibodies": [
+      "研究级anti-ALKBH2 monoclonal antibody",
+      "研究级anti-ALKBH2 recombinant antibody"
+    ],
+    "interfaceFocus": "DNA结合沟槽、碱基翻转环区与催化核心外侧面",
+    "designMode": "胞内酶结构抗体",
+    "candidates": [
+      {
+        "target": "ALKBH3",
+        "rationale": "ALKBH3同属AlkB样Fe(II)/α-酮戊二酸依赖去烷基化酶，参与DNA/RNA烷基化损伤修复；与ALKBH2具有相近底物化学机制，可作为选择性评估与同通路备选靶点。"
+      },
+      {
+        "target": "AICDA",
+        "rationale": "AICDA介导免疫球蛋白基因胞嘧啶脱氨，是高IgM综合征5型的核心致病基因；其产生的DNA损伤依赖碱基切除和错配修复处理，与ALKBH2相关基因组维护过程处于同一免疫基因损伤应答背景。"
+      },
+      {
+        "target": "UNG",
+        "rationale": "UNG切除AICDA诱导的尿嘧啶并驱动抗体类别转换重组，其缺陷导致高IgM综合征5型；该靶点与DNA损伤加工及免疫球蛋白重排通路直接相关。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

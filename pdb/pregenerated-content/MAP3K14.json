@@ -1,0 +1,65 @@
+{
+  "gene": "MAP3K14",
+  "generatedAt": "2026-08-03T14:03:10.562Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAP3K14编码NIK，是非经典NF-κB通路的核心丝氨酸/苏氨酸激酶，通过磷酸化IKKα驱动NFKB2 p100加工为p52，维持B细胞成熟、淋巴器官发育及免疫稳态；遗传缺陷与免疫缺陷112和NIK deficiency具有直接机制关联。该蛋白主要定位于胞内激酶网络，并非典型可及的膜受体或分泌抗原，因此抗体开发需优先采用细胞内递送抗体、VHH或研究级构象抗体策略。相较于通路上游TNFRSF受体家族，MAP3K14位于多个受体输入的汇聚节点，适合用于机制验证和选择性阻断非经典NF-κB轴，但成药可及性优先级低于胞外受体靶点。",
+    "mechanism": "构象抗体拟结合NIK激酶结构域ATP结合裂隙邻近区域或IKKα底物识别面，阻断NIK介导的CHUK磷酸化并抑制NFKB2 p100向p52加工。",
+    "selectedEpitope": "优先锁定激酶结构域N-lobe/C-lobe夹缝及活化环邻近构象表位，避开高度保守ATP腺嘌呤口袋核心。",
+    "diseaseDirection": "原发性免疫缺陷与非经典NF-κB异常",
+    "domain": "NIK含N端调控区及C端丝氨酸/苏氨酸蛋白激酶结构域，6Z1T覆盖激酶催化核心二聚体构象。",
+    "evidence": "MAP3K14-NIK非经典NF-κB通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q99558功能与亚细胞定位注释",
+      "RCSB PDB 6Z1T晶体结构条目",
+      "NF-κB-inducing kinase遗传缺陷与免疫表型文献"
+    ],
+    "referenceEntries": "UniProt Q99558；RCSB PDB 6Z1T；Open Targets MAP3K14",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域N-lobe/C-lobe夹缝与活化环邻近面",
+        "可稳定非活性构象并干扰CHUK底物磷酸化",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C-lobe底物结合沟槽及αF/αG螺旋周边",
+        "有望阻断IKKα识别而降低ATP口袋保守性风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP结合裂隙深部铰链区",
+        "保守性高且易与多种激酶交叉反应，仅适合作为结构参照",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAP3K14为胞内激酶，常规抗体难以到达天然作用位点；设计应采用细胞内递送VHH或体外机制抗体，并严格评估激酶组交叉反应。",
+    "structurePrepZh": "以6Z1T的A、B链激酶结构域为模板，补全缺失环区，统一质子化状态，保留关键二级结构并分析活化环及底物结合沟槽可成药表面。",
+    "structureRef": "RCSB PDB 6Z1T，X-ray diffraction，2.31 Å",
+    "antibodies": [
+      "anti-NIK research antibody",
+      "intracellular anti-kinase VHH format"
+    ],
+    "interfaceFocus": "N-lobe/C-lobe夹缝、活化环、IKKα底物识别面",
+    "designMode": "胞内构象阻断",
+    "candidates": [
+      {
+        "target": "NFKB2",
+        "rationale": "NFKB2是NIK下游直接功能读出，p100加工为p52是非经典NF-κB通路激活的关键步骤，适合用于通路效应层验证。"
+      },
+      {
+        "target": "CHUK",
+        "rationale": "CHUK编码IKKα，是NIK直接磷酸化底物并介导NFKB2加工；靶向该节点可验证NIK-IKKα轴的疾病相关性。"
+      },
+      {
+        "target": "TNFRSF13B",
+        "rationale": "TNFRSF13B编码TACI，属于可触发B细胞NF-κB信号的TNF受体超家族成员，具备胞外受体可及性并与免疫缺陷表型相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

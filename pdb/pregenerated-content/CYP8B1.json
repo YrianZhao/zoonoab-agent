@@ -1,0 +1,65 @@
+{
+  "gene": "CYP8B1",
+  "generatedAt": "2026-08-03T11:48:17.061Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CYP8B1是肝细胞内质网定位的胆固醇12α-羟化酶，决定胆汁酸合成中胆酸与鹅去氧胆酸比例，并影响FXR介导的胆汁酸稳态及胆汁淤积相关肝损伤。其催化结构域虽具有明确晶体结构和可解析底物结合腔，但蛋白主体为内质网膜锚定酶，天然抗原可及性显著弱于胞外受体或分泌蛋白。相较ASBT、FGF19、FGFR4等同轴线可及靶点，CYP8B1更适合作为机制验证或细胞内递送抗体工程靶点，抗体成药优先级需审慎评估。",
+    "mechanism": "通过抗体片段占据CYP8B1底物进入通道及血红素邻近催化腔，阻断胆固醇中间体与P450活性中心结合，降低12α-羟化反应效率。",
+    "selectedEpitope": "优先评估7LYX中底物通道入口及血红素远端腔周围环区，避开N端内质网膜锚定段。",
+    "diseaseDirection": "胆汁酸代谢与肝内胆汁淤积",
+    "domain": "CYP8B1含N端内质网膜锚定区、P450催化结构域、血红素结合保守基序及底物结合腔。",
+    "evidence": "CYP8B1胆汁酸合成轴结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9UNU6功能与亚细胞定位注释",
+      "RCSB PDB 7LYX晶体结构记录",
+      "胆汁酸合成与FXR-FGF19反馈通路文献"
+    ],
+    "referenceEntries": "UniProt Q9UNU6；RCSB PDB 7LYX；Open Targets CYP8B1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "底物进入通道入口及F/G环邻近区域",
+        "可阻断胆固醇中间体进入催化腔，具备直接酶抑制设计价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "血红素远端催化腔周围可及环区",
+        "可能干扰底物定位与氧化反应构象，但需控制对血红素核心的非特异影响",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端内质网膜锚定及疏水跨膜邻近区",
+        "天然构象和可及性受膜环境限制，抗体结合验证风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CYP8B1为胞内内质网膜相关P450酶，常规抗体难以进入细胞并接触催化域；建议限定为Fab/VHH胞内递送、intrabody或结构抑制验证场景。",
+    "structurePrepZh": "以7LYX链A为模板，保留血红素辅因子并校验缺失环区；建立膜近端方向约束，重点标注底物通道入口与催化腔残基。",
+    "structureRef": "RCSB PDB 7LYX，X-ray diffraction，2.6 Å，human CYP8B1",
+    "antibodies": [
+      "无已获批CYP8B1治疗性抗体",
+      "无公开临床阶段CYP8B1抗体"
+    ],
+    "interfaceFocus": "底物通道入口、F/G环、血红素远端催化腔",
+    "designMode": "胞内酶抑制型",
+    "candidates": [
+      {
+        "target": "SLC10A2",
+        "rationale": "ASBT介导肠道胆汁酸重吸收，处于胆汁酸稳态同一轴线；其多跨膜转运蛋白具有腔面可及区域，药理干预可降低肝肠循环胆汁酸负荷。"
+      },
+      {
+        "target": "FGFR4",
+        "rationale": "FGFR4接收肠源性FGF19信号并抑制肝脏CYP7A1介导的胆汁酸合成；胞外免疫球蛋白样结构域具备抗体阻断FGF19-FGFR4结合的可行性。"
+      },
+      {
+        "target": "NR1H4",
+        "rationale": "FXR是胆汁酸感应核受体，调控FGF19、SHP及胆汁酸合成反馈网络；与CYP8B1同属胆汁酸稳态通路，但因核内定位更适合作为小分子或核受体调节方向。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

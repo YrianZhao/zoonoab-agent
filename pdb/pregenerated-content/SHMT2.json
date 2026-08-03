@@ -1,0 +1,65 @@
+{
+  "gene": "SHMT2",
+  "generatedAt": "2026-08-03T16:31:49.434Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SHMT2是线粒体丝氨酸羟甲基转移酶，催化丝氨酸与四氢叶酸生成甘氨酸和5,10-亚甲基四氢叶酸，支撑线粒体一碳代谢、胸苷酸合成和甲基供体稳态；双等位基因功能缺陷与神经发育异常、心肌病、小头畸形和脑发育异常相关。该蛋白主要定位于线粒体基质，缺乏经典胞外结构域或分泌特征，抗原可及性显著弱于膜受体和分泌因子，因而更适合作为结构生物学验证抗原而非直接治疗性阻断靶点。相较MTHFD2、MTHFD1L等同通路酶，SHMT2具有高分辨率人源四聚体结构和明确PLP依赖活性位点，可优先用于构象识别抗体、细胞内递送抗体或诊断试剂开发。",
+    "mechanism": "抗体设计以结合SHMT2二聚体界面或PLP邻近活性口袋外缘为目标，空间阻碍丝氨酸/四氢叶酸底物进入并干扰催化构象稳定。",
+    "selectedEpitope": "优先覆盖PLP结合位点邻近的催化裂隙外缘及二聚体界面，避免深埋辅因子口袋。",
+    "diseaseDirection": "线粒体一碳代谢相关神经发育疾病",
+    "domain": "SHMT2含线粒体靶向序列、PLP依赖性氨基转移酶折叠核心，并以同源二聚体组装为功能单元。",
+    "evidence": "SHMT2线粒体一碳代谢与神经发育证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P34897功能与亚细胞定位注释",
+      "RCSB PDB 8AQL高分辨率晶体结构",
+      "OMIM/ClinVar遗传变异与表型记录"
+    ],
+    "referenceEntries": "UniProt P34897；RCSB PDB 8AQL；Open Targets SHMT2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PLP结合赖氨酸邻近催化裂隙外缘",
+        "可阻碍丝氨酸与四氢叶酸进入活性中心，适合功能抑制型构象抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "二聚体装配界面可及环区",
+        "有机会削弱功能二聚体稳定性，并提高对活性构象的选择性识别",
+        "备选"
+      ],
+      [
+        "Site C",
+        "四聚体接触面及保守核心折叠区",
+        "区域保守且部分埋藏，可能影响折叠识别并增加交叉反应或低可及性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SHMT2为线粒体基质酶，天然抗体难以进入作用位点；治疗性设计需配置细胞内递送策略，体外诊断或构象探针方向风险较低。",
+    "structurePrepZh": "采用8AQL晶体结构解析A-D链四聚体，保留PLP辅因子和关键界面水分子，补全缺失侧链后进行质子化与界面可及性评估。",
+    "structureRef": "RCSB PDB 8AQL，human SHMT2 X-ray structure, 1.23 Å",
+    "antibodies": [
+      "commercial anti-SHMT2 monoclonal antibody",
+      "SHMT2 immunohistochemistry validation antibody"
+    ],
+    "interfaceFocus": "PLP邻近催化裂隙与二聚体界面",
+    "designMode": "细胞内酶构象抗体",
+    "candidates": [
+      {
+        "target": "MTHFD2",
+        "rationale": "MTHFD2催化线粒体一碳代谢中5,10-亚甲基四氢叶酸氧化步骤，与SHMT2处于连续代谢通路。其在增殖细胞和肿瘤代谢中具有较高研究优先级。"
+      },
+      {
+        "target": "MTHFD1L",
+        "rationale": "MTHFD1L参与线粒体甲酸生成并连接线粒体与胞质一碳单位输出，功能上位于SHMT2下游。该节点可用于评估一碳通量补偿和遗传代谢表型。"
+      },
+      {
+        "target": "SLC25A32",
+        "rationale": "SLC25A32为线粒体叶酸转运相关蛋白，影响一碳代谢底物进入线粒体。其与SHMT2功能耦合，适合作为通路可用性和线粒体叶酸稳态候选靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

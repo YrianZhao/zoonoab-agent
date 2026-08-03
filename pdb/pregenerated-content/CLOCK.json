@@ -1,0 +1,65 @@
+{
+  "gene": "CLOCK",
+  "generatedAt": "2026-08-03T11:28:30.990Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CLOCK是昼夜节律核心转录因子，与BMAL1形成异源二聚体后结合E-box元件，驱动PER、CRY等节律基因表达，节律失衡与神经退行性疾病、代谢表型及生长相关性状存在遗传关联。然而CLOCK主要定位于细胞核，缺乏天然胞外结构域或分泌形式，抗原可及性不符合常规体内抗体阻断靶点特征。相较膜受体或分泌因子，CLOCK更适合作为结构抗原开展胞内递送抗体、intrabody或降解偶联分子研究，优先级应低于可直接药物化的同通路胞外调节靶点。",
+    "mechanism": "设计抗体结合CLOCK bHLH-PAS结构域，空间阻断其与ARNTL/BMAL1的异源二聚化界面或DNA识别复合体装配。",
+    "selectedEpitope": "优先靶向PAS-B邻近BMAL1接触面，兼顾bHLH-DNA结合构象调控位点。",
+    "diseaseDirection": "昼夜节律异常与神经退行性疾病",
+    "domain": "CLOCK含N端bHLH DNA结合区、PAS-A/PAS-B二聚化结构域及C端转录激活区。",
+    "evidence": "CLOCK-BMAL1昼夜节律转录复合体证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt O15516功能与结构域注释",
+      "RCSB PDB 6QPJ晶体结构条目",
+      "昼夜节律转录反馈环路文献"
+    ],
+    "referenceEntries": "UniProt O15516；RCSB PDB 6QPJ；Open Targets CLOCK",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PAS-B二聚化界面邻近区",
+        "可阻断CLOCK与BMAL1稳定装配，具有明确结构机制",
+        "优先"
+      ],
+      [
+        "Site B",
+        "bHLH DNA结合区侧翼表面",
+        "可能干扰E-box DNA识别复合体形成，但需控制核酸交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PAS-A保守疏水核心周边",
+        "结构保守且构象耦联复杂，存在影响选择性与折叠稳定性的风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CLOCK为核内转录因子，体内抗体可及性与递送效率是主要风险；建议限定为胞内抗体、细胞穿透格式或体外机制验证。",
+    "structurePrepZh": "以6QPJ链A为抗原模板，保留bHLH-PAS核心结构，去除非目标配体与晶体接触伪界面，映射BMAL1接触残基。",
+    "structureRef": "RCSB PDB 6QPJ，X-ray diffraction，2.315 Å",
+    "antibodies": [
+      "抗CLOCK研究用单克隆抗体",
+      "抗CLOCK ChIP级抗体"
+    ],
+    "interfaceFocus": "CLOCK PAS-B与BMAL1二聚化接触面",
+    "designMode": "胞内阻断型抗体设计",
+    "candidates": [
+      {
+        "target": "ARNTL",
+        "rationale": "ARNTL/BMAL1是CLOCK的直接异源二聚化伙伴，共同形成E-box转录激活复合体；靶向该节点可在同一昼夜节律核心环路中调节复合体形成。"
+      },
+      {
+        "target": "PER2",
+        "rationale": "PER2是CLOCK-ARNTL驱动表达的负反馈核心组分，并通过CRY复合体抑制CLOCK-ARNTL转录活性；其与神经和代谢节律表型密切相关。"
+      },
+      {
+        "target": "CRY1",
+        "rationale": "CRY1参与PER/CRY抑制复合体形成，直接负向调控CLOCK-ARNTL介导的E-box转录；作为同通路反馈节点具有明确机制关联。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

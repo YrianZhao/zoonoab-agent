@@ -1,0 +1,65 @@
+{
+  "gene": "NCBP1",
+  "generatedAt": "2026-08-03T14:35:15.455Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NCBP1编码核帽结合复合体的大亚基CBP80，与NCBP2/CBP20共同识别m7G加帽RNA并参与前体mRNA剪接、核输出、无义介导降解及病毒RNA加工。Open Targets显示其与HIV感染、神经退行性疾病及代谢表型存在遗传或功能关联，提示RNA帽依赖转录后调控轴具有疾病相关性。该蛋白主要定位于细胞核，缺乏分泌或跨膜胞外结构域，抗原可及性不具备常规治疗性抗体优势，因此更适合作为胞内研究抗体、递送型抗体片段或结构功能探针靶点。相比同通路中更小且直接结合帽结构的NCBP2，NCBP1具有更大的蛋白-蛋白相互作用平台，可优先用于干预帽结合复合体装配界面。",
+    "mechanism": "抗体片段结合NCBP1的CBP20接触面，阻断NCBP1与NCBP2形成稳定帽结合复合体，从而削弱m7G加帽RNA识别与后续RNA加工复合物募集。",
+    "selectedEpitope": "优先覆盖1H6K中NCBP1与NCBP2接触的MIF4G样螺旋重复界面，避开高度保守疏水核心。",
+    "diseaseDirection": "HIV感染与RNA加工通路",
+    "domain": "NCBP1为CBP80大亚基，含N端结构域、MIF4G样HEAT/螺旋重复核心及C端辅助区域。",
+    "evidence": "NCBP1帽结合复合体结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q09161功能与亚细胞定位注释",
+      "RCSB PDB 1H6K晶体结构记录",
+      "帽结合复合体介导RNA加工与病毒RNA代谢文献"
+    ],
+    "referenceEntries": "UniProt Q09161；RCSB PDB 1H6K；Open Targets NCBP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "NCBP1 MIF4G样螺旋重复区的NCBP2结合界面",
+        "直接干预CBP80-CBP20复合体装配，机制可验证性较高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "1H6K中靠近帽RNA结合沟槽的复合体邻近表面",
+        "可能产生变构效应并影响m7G帽RNA稳定识别",
+        "备选"
+      ],
+      [
+        "Site C",
+        "NCBP1保守螺旋重复核心和埋藏疏水面",
+        "结构稳定性依赖区域，易引发非特异构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NCBP1为核内蛋白，常规抗体难以到达作用位点；治疗开发需考虑胞内递送或细胞穿透格式，研究用途抗体应优先验证复合体阻断而非单纯结合。",
+    "structurePrepZh": "以1H6K为模板保留NCBP1-NCBP2复合体坐标，补全缺失环区并质子化界面残基，按链注释区分真实互作界面与晶体接触。",
+    "structureRef": "Mazza et al., human nuclear cap-binding complex structure, PDB 1H6K",
+    "antibodies": [
+      "anti-CBP80研究抗体",
+      "anti-NCBP1 monoclonal antibody"
+    ],
+    "interfaceFocus": "NCBP1-NCBP2装配界面与帽RNA邻近沟槽",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "NCBP2",
+        "rationale": "NCBP2为帽结合复合体小亚基，直接结合m7G帽结构；与NCBP1处于同一RNA帽识别通路，适合作为互补阻断靶点。"
+      },
+      {
+        "target": "RAN",
+        "rationale": "RAN参与核质转运过程，NCBP复合体介导的加帽RNA核输出依赖核转运网络；其通路位置适合评估RNA输出轴干预。"
+      },
+      {
+        "target": "XPO1",
+        "rationale": "XPO1介导多类RNA和核蛋白输出，并与病毒RNA核输出过程相关；可作为HIV感染相关核输出通路中的同向候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

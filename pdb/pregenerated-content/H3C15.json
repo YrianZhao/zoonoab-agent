@@ -1,0 +1,65 @@
+{
+  "gene": "H3C15",
+  "generatedAt": "2026-08-03T19:34:32.205Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "H3C15编码复制依赖性组蛋白H3.2，主要作为核小体核心组分参与染色质包装与转录调控；其疾病关联多见于感染、肿瘤及黑色素瘤背景，但关联更接近细胞状态或表观遗传伴随信号，而非经典细胞外致病配体。该蛋白为核内组蛋白，不具备稳定胞外结构域、分泌蛋白属性或膜受体构型，完整抗原在活细胞表面的可及性显著受限。相较PDCD1、CD274或病毒包膜蛋白等同疾病方向可及靶点，H3C15作为抗体主靶点优先级较低；若进入设计，应限定于细胞外核小体、NETs或组织损伤相关游离染色质场景。",
+    "mechanism": "抗体可识别游离核小体中H3.2表面表位，阻断核小体或组蛋白尾部与TLR2、TLR4等先天免疫受体的促炎相互作用。",
+    "selectedEpitope": "优先规避核小体DNA结合面，选择H3 α1-α2折叠外露面或N端尾部可及片段。",
+    "diseaseDirection": "感染炎症与肿瘤表观遗传",
+    "domain": "H3C15含N端可修饰尾部与组蛋白折叠域，由α1、L1、α2、L2、α3构成核小体核心。",
+    "evidence": "H3C15疾病关联与核小体结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB Q71DI3 functional annotation",
+      "RCSB PDB 2X4W X-ray structure",
+      "Nucleosome and extracellular histone inflammation literature"
+    ],
+    "referenceEntries": "UniProt Q71DI3；RCSB PDB 2X4W；Open Targets H3C15",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "H3组蛋白折叠域α1-α2外露面",
+        "在核小体表面具有一定可及性，可用于识别游离核小体构象",
+        "优先"
+      ],
+      [
+        "Site B",
+        "H3 N端尾部K4-K27附近可修饰区",
+        "可区分修饰状态并覆盖炎症相关游离组蛋白片段",
+        "备选"
+      ],
+      [
+        "Site C",
+        "α3及DNA接触邻近区域",
+        "靠近DNA包裹界面，易受核小体构象遮挡并增加交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "H3C15为高度保守核内蛋白，细胞表面可及性不足且存在广泛组蛋白同源交叉反应风险；设计应聚焦游离核小体或特定修饰表位。",
+    "structurePrepZh": "以2X4W实验晶体结构为模板，保留H3链A、B并校验核小体装配状态；补全尾部缺失区时需标注低置信度柔性片段。",
+    "structureRef": "RCSB PDB 2X4W，X-ray diffraction，1.5 Å",
+    "antibodies": [
+      "anti-Histone H3 antibody",
+      "anti-H3K27me3 antibody"
+    ],
+    "interfaceFocus": "H3 α1-α2外露面与N端尾部修饰区",
+    "designMode": "低可及性核抗原模式",
+    "candidates": [
+      {
+        "target": "TLR4",
+        "rationale": "TLR4可感知细胞外组蛋白及损伤相关分子并驱动炎症反应，抗体阻断具有更明确的膜受体可及性。"
+      },
+      {
+        "target": "TLR2",
+        "rationale": "TLR2参与组蛋白或核小体相关先天免疫激活，与感染炎症方向一致，胞外LRR结构域适合抗体干预。"
+      },
+      {
+        "target": "CD274",
+        "rationale": "CD274在肿瘤及感染相关免疫抑制通路中发挥核心配体作用，膜表面表达和临床抗体可验证性优于核内组蛋白。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

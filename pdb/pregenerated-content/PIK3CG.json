@@ -1,0 +1,65 @@
+{
+  "gene": "PIK3CG",
+  "generatedAt": "2026-08-03T15:17:23.015Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PIK3CG编码PI3Kγ催化亚基p110γ，在白细胞GPCR信号中将PI(4,5)P2磷酸化为PIP3，驱动AKT、BTK及细胞迁移相关通路；其异常活化与CLL、滤泡性淋巴瘤及免疫失衡相关。该蛋白为胞内脂质激酶，天然抗体抗原可及性弱，适合作为结构引导的胞内抗体、VHH或递送型抗体片段设计对象。相较泛PI3K靶点，PIK3CG在造血与髓系免疫细胞中富集，具有更明确的免疫肿瘤通路选择性和同工酶选择性设计价值。",
+    "mechanism": "阻断p110γ催化口袋对ATP及PI(4,5)P2底物的结合，或干扰Ras结合域介导的Ras-GTP激活，从而降低PIP3生成与AKT磷酸化。",
+    "selectedEpitope": "优先覆盖激酶结构域ATP结合裂隙邻近构象表面，兼顾Ras结合域界面以获得变构抑制。",
+    "diseaseDirection": "B细胞淋巴瘤与免疫炎症",
+    "domain": "p110γ含Ras结合域、C2结构域、螺旋结构域及C端脂质激酶结构域。",
+    "evidence": "PIK3CG免疫肿瘤通路结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt P48736功能注释",
+      "RCSB PDB 1E8Y晶体结构",
+      "PI3Kγ白细胞GPCR-PIP3通路文献"
+    ],
+    "referenceEntries": "UniProt:P48736；RCSB PDB:1E8Y；Open Targets:PIK3CG",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域ATP结合裂隙周边",
+        "直接限制ATP进入并降低催化活性，适合高亲和阻断型片段设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Ras结合域与Ras-GTP接触界面",
+        "干扰Ras依赖性p110γ激活，具备变构调节和同工酶选择性潜力",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C2结构域膜结合相关表面",
+        "可能影响膜募集，但表位与细胞内膜环境相关性较高，需谨慎评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PIK3CG为胞内酶，常规全长抗体难以到达作用位点；设计应优先采用VHH、细胞内抗体或靶向递送格式，并规避与PIK3CA/PIK3CB保守催化核心高度同源区域。",
+    "structurePrepZh": "以1E8Y链A为模板，补全缺失环区并保留催化结构域构象；对ATP结合口袋、Ras结合域及C2膜结合面进行同工酶保守性和可成药表面分析。",
+    "structureRef": "Walker EH et al., Mol Cell, PI3Kγ crystal structure, PDB 1E8Y",
+    "antibodies": [
+      "研究级抗PIK3CG抗体",
+      "研究级抗p110γ抗体"
+    ],
+    "interfaceFocus": "ATP结合裂隙与Ras-GTP激活界面",
+    "designMode": "胞内VHH变构抑制",
+    "candidates": [
+      {
+        "target": "PIK3CD",
+        "rationale": "PIK3CD编码p110δ，与PIK3CG共同参与白细胞PI3K-PIP3-AKT信号，在CLL和B细胞淋巴瘤中具有明确疾病相关性。其免疫细胞选择性高，是同通路内可比较的B细胞恶性肿瘤靶点。"
+      },
+      {
+        "target": "BTK",
+        "rationale": "BTK位于PI3K生成PIP3后的BCR信号轴下游，PH结构域依赖PIP3膜募集并驱动B细胞存活信号。其在CLL和滤泡性淋巴瘤治疗通路中具有成熟机制依据。"
+      },
+      {
+        "target": "AKT1",
+        "rationale": "AKT1是PIP3依赖募集和激活的核心效应激酶，承接PI3Kγ/δ信号并调控细胞存活与代谢。作为同一PI3K-PIP3通路下游节点，可用于机制联动和组合策略评估。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

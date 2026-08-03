@@ -1,0 +1,65 @@
+{
+  "gene": "SQOR",
+  "generatedAt": "2026-08-03T16:54:13.810Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SQOR是线粒体内膜黄素依赖性硫化物醌氧化还原酶，催化H2S向泛醌电子传递并形成蛋白过硫化中间体，SQOR缺陷可导致硫化物氧化受阻、线粒体呼吸链压力增加并与Leigh综合征样线粒体病相关。该蛋白定位于线粒体内膜基质侧，天然抗原可及性低于分泌蛋白或细胞表面受体，因此更适合定位为机制研究、酶活阻断或细胞内递送抗体设计靶点。相比ETHE1、TST等下游硫代谢酶，SQOR处于线粒体硫化物解毒通路入口并直接连接泛醌池，结构解析度较高且具备明确FAD/底物结合界面，具有较高结构驱动设计优先级。",
+    "mechanism": "抗体结合SQOR催化腔邻近区域，阻断硫化物进入FAD-半胱氨酸氧化中心及泛醌结合槽，从而抑制H2S向泛醌的电子转移。",
+    "selectedEpitope": "优先覆盖FAD结合Rossmann样结构域与膜近端泛醌结合沟槽交界，避开深埋辅因子核心。",
+    "diseaseDirection": "线粒体硫化物氧化障碍",
+    "domain": "SQOR含线粒体靶向序列、FAD结合氧化还原酶核心、催化半胱氨酸环及膜结合螺旋区。",
+    "evidence": "SQOR线粒体硫化物氧化与遗传缺陷证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9Y6N5功能与亚细胞定位注释",
+      "RCSB PDB 6OIB晶体结构数据",
+      "OMIM及MONDO线粒体硫化物氧化缺陷注释"
+    ],
+    "referenceEntries": "UniProt Q9Y6N5；RCSB PDB 6OIB；MONDO_0030982",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "FAD结合结构域外缘与催化半胱氨酸环邻近表面",
+        "可干扰硫化物氧化中间体形成并保持结构可建模性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "膜近端泛醌结合沟槽入口及疏水螺旋外侧",
+        "可阻断泛醌进入电子受体位点，适合构建酶活抑制型抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "二聚体界面附近保守氧化还原酶核心表面",
+        "可能影响构象稳定性但存在保守性高和脱靶风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SQOR为线粒体内膜蛋白，胞外抗体难以天然到达靶点；设计需联合细胞内递送策略，并避免直接占据FAD深埋位点造成非特异构象扰动。",
+    "structurePrepZh": "采用6OIB中A、B链构建同源二聚体模型，保留FAD及关键催化半胱氨酸邻域，补全柔性环区后进行膜近端取向标注。",
+    "structureRef": "RCSB PDB 6OIB，X-ray diffraction，2.03 Å",
+    "antibodies": [
+      "尚无获批SQOR靶向抗体",
+      "SQOR研究级多克隆抗体"
+    ],
+    "interfaceFocus": "FAD外缘、催化半胱氨酸环、泛醌入口沟槽",
+    "designMode": "细胞内酶活阻断",
+    "candidates": [
+      {
+        "target": "ETHE1",
+        "rationale": "ETHE1编码线粒体硫双加氧酶，位于SQOR下游，负责将谷胱甘肽过硫化物氧化为亚硫酸盐；其缺陷同样导致硫化物代谢障碍。"
+      },
+      {
+        "target": "TST",
+        "rationale": "TST编码线粒体硫转移酶，参与硫代硫酸盐与硫氰酸盐代谢，是硫化物解毒网络中的真实功能节点。"
+      },
+      {
+        "target": "SUOX",
+        "rationale": "SUOX编码亚硫酸盐氧化酶，位于硫氧化通路下游，将亚硫酸盐氧化为硫酸盐，适合作为通路级比较靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

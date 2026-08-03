@@ -1,0 +1,65 @@
+{
+  "gene": "ELK4",
+  "generatedAt": "2026-08-03T12:15:59.879Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ELK4 属于 ETS 家族核内转录因子，可作为 MAPK-ERK 通路下游效应子，经磷酸化后与血清反应因子 SRF 共同占据 SRE 元件并调控即刻早期基因表达，在前列腺腺癌、肝胆系统癌及神经退行性疾病相关转录网络中具有遗传和表达关联。然而 ELK4 主要定位于细胞核，缺乏稳定胞外结构域、分泌形式或膜受体暴露界面，天然抗原可及性不支持常规体内阻断型抗体。相较 ERK、MEK 或上游受体等可药靶点，ELK4 更适合作为结构生物学和细胞内递送抗体研究靶点，优先级应低于具有胞外可及性的同通路靶点。",
+    "mechanism": "设计抗体需阻断 ELK4 ETS DNA 结合域与靶 DNA 主沟的特异识别，或干扰其与 SRF 在 SRE 复合体中的协同装配。",
+    "selectedEpitope": "优先关注 ETS DNA 结合域 H3 识别螺旋及翼状环邻近 DNA 接触面。",
+    "diseaseDirection": "MAPK-ERK相关肿瘤转录调控",
+    "domain": "ELK4 含N端 ETS DNA结合域、中部B-box/SRF相互作用区及C端转录激活区。",
+    "evidence": "ELK4-MAPK下游转录调控证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P28324 functional annotation",
+      "RCSB PDB 1BC8 X-ray structure",
+      "ETS family ternary complex factor literature"
+    ],
+    "referenceEntries": "UniProt P28324；RCSB PDB 1BC8；Open Targets ENSG00000158711",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ETS结构域H3识别螺旋-DNA主沟接触面",
+        "直接阻断ELK4对SRE/ETS基序的序列识别",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ETS结构域翼状环与磷酸骨架邻近区域",
+        "削弱DNA结合稳定性并保留构象选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "B-box/SRF相互作用区预测界面",
+        "理论上可干扰ELK4-SRF协同复合体，但1BC8未覆盖该区域",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ELK4为核内转录因子，常规抗体难以进入细胞核；设计应限定为细胞内抗体、递送型VHH或机制验证工具，并避免宣称胞外阻断疗效。",
+    "structurePrepZh": "以1BC8中ETS结构域实验结构为模板，保留DNA结合构象信息，补全缺失侧链并分离链A/B/C同源构象用于表位一致性评估。",
+    "structureRef": "RCSB PDB 1BC8，X-ray diffraction，1.93 Å",
+    "antibodies": [
+      "无已获批ELK4靶向治疗抗体",
+      "无公开临床阶段ELK4阻断抗体"
+    ],
+    "interfaceFocus": "ETS H3识别螺旋与DNA主沟界面",
+    "designMode": "细胞内VHH探索",
+    "candidates": [
+      {
+        "target": "MAPK1",
+        "rationale": "MAPK1/ERK2 是ELK4上游直接激酶之一，可磷酸化三元复合因子并驱动MAPK依赖性转录反应。"
+      },
+      {
+        "target": "MAPK3",
+        "rationale": "MAPK3/ERK1 与MAPK1共同构成经典ERK输出模块，参与ELK家族转录因子激活及肿瘤增殖信号传递。"
+      },
+      {
+        "target": "SRF",
+        "rationale": "SRF 与ELK4在血清反应元件形成协同转录复合体，是同一即刻早期基因调控轴中的核心DNA结合因子。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

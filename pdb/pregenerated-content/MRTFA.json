@@ -1,0 +1,65 @@
+{
+  "gene": "MRTFA",
+  "generatedAt": "2026-08-03T14:24:11.324Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MRTFA为核内转录共激活因子，在RhoA-actin动态调控下进入细胞核并与SRF结合，驱动细胞骨架、迁移和部分上皮-间质转化相关基因表达，其疾病关联主要指向乳腺癌表型、血小板性状及免疫缺陷相关遗传证据。该蛋白不具备分泌蛋白、膜受体或稳定胞外结构域特征，天然抗原可及性不符合常规体内抗体阻断药物要求。相较TGFB1、ITGB1、CXCL12等同通路胞外或膜表面节点，MRTFA更适合作为机制验证、细胞内递送抗体或结构生物学工具靶点，药物优先级应低于可直接接触的上游配体和受体。",
+    "mechanism": "通过细胞内递送型Fab或VHH结合MRTFA RPEL基序，竞争性阻断G-actin与MRTFA的结合调控界面，干扰MRTFA核质转位及其后续SRF依赖转录输出。",
+    "selectedEpitope": "优先瞄准2KVU所示RPEL肽段的G-actin结合螺旋界面，避免选择无序低复杂度转录激活区。",
+    "diseaseDirection": "肿瘤侵袭与细胞骨架转录调控",
+    "domain": "MRTFA含N端RPEL actin结合基序、碱性区、Q-rich区、SAP结构域及C端转录激活区。",
+    "evidence": "MRTFA-SRF-actin轴疾病关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q969V6蛋白功能与结构域注释",
+      "RCSB PDB 2KVU溶液NMR结构记录",
+      "SRF/MRTF-actin转录调控文献证据"
+    ],
+    "referenceEntries": "UniProt Q969V6；RCSB PDB 2KVU；Open Targets MRTFA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端RPEL基序G-actin结合螺旋界面",
+        "可直接干预MRTFA-actin调控开关，适合机制型胞内抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SRF协同转录调控相关碱性区邻近表面",
+        "可能削弱MRTFA与SRF转录复合体功能，但需补充结构约束",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端低复杂度转录激活区",
+        "柔性高且结构不确定，表位稳定性和选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MRTFA为核内蛋白，缺乏胞外可及性，常规抗体体内阻断不可行；设计应限定为胞内递送、细胞模型验证或研究级结构探针。",
+    "structurePrepZh": "以2KVU NMR构象集提取RPEL-actin相关肽段，进行构象聚类、柔性区截短和表面保守性评估后再开展表位建模。",
+    "structureRef": "RCSB PDB 2KVU，MRTFA RPEL相关溶液NMR结构",
+    "antibodies": [
+      "抗MRTFA研究级抗体",
+      "抗MKL1/MRTFA免疫检测抗体"
+    ],
+    "interfaceFocus": "RPEL基序与G-actin结合调控界面",
+    "designMode": "胞内抗体工具设计",
+    "candidates": [
+      {
+        "target": "SRF",
+        "rationale": "SRF是MRTFA直接协同的转录因子，位于同一MRTF-SRF转录轴下游，可用于验证MRTFA依赖基因表达程序。"
+      },
+      {
+        "target": "ACTB",
+        "rationale": "β-actin以G-actin形式结合MRTFA RPEL基序并调控其核质定位，是MRTFA激活状态的直接上游调节节点。"
+      },
+      {
+        "target": "RHOA",
+        "rationale": "RHOA通过调控actin聚合降低游离G-actin水平，促进MRTFA核转位，属于同一Rho-actin-MRTFA-SRF通路的上游信号节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

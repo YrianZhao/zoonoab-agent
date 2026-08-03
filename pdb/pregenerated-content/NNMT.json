@@ -1,0 +1,65 @@
+{
+  "gene": "NNMT",
+  "generatedAt": "2026-08-03T14:45:11.040Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NNMT催化烟酰胺甲基化生成1-甲基烟酰胺并消耗SAM，可改变NAD代谢、一碳代谢与甲基供体稳态，在神经退行性疾病和卵巢肿瘤代谢重编程中具有明确关联。该蛋白为胞质可溶性甲基转移酶，天然抗原可及性弱，不适合常规细胞外阻断型抗体；抗体设计更适合采用胞内递送抗体、降解偶联或研究级构象探针策略。相较膜受体类代谢调控靶点，NNMT具备高分辨率实验结构和清晰底物口袋，可优先支持结构约束型结合分子设计，但转化优先级需低于胞外可及靶点。",
+    "mechanism": "设计抗体片段占据SAM结合沟槽与烟酰胺底物口袋邻近界面，阻断甲基供体SAM与NNMT催化核心的配位，从而抑制1-甲基烟酰胺生成。",
+    "selectedEpitope": "优先靶向Rossmann-like甲基转移酶折叠中SAM结合沟槽边缘及底物入口环区。",
+    "diseaseDirection": "神经退行性疾病与肿瘤代谢",
+    "domain": "NNMT为胞质I类SAM依赖甲基转移酶，含Rossmann-like α/β催化核心与底物结合口袋。",
+    "evidence": "NNMT代谢重编程与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P40261功能与亚细胞定位注释",
+      "RCSB PDB 7EGU晶体结构数据",
+      "NNMT与NAD/SAM代谢相关文献"
+    ],
+    "referenceEntries": "UniProt P40261；RCSB PDB 7EGU；Open Targets NNMT",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SAM结合沟槽边缘与催化核心入口",
+        "可直接干扰甲基供体SAM定位，机制可验证性较高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "烟酰胺底物入口环区及邻近疏水口袋",
+        "有助于阻断底物进入并形成变构抑制构象",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离活性位点的二聚体晶体接触面",
+        "功能相关性不确定，可能仅反映晶体堆积界面",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NNMT缺乏胞外暴露，常规IgG难以到达胞质靶点；建议限定为胞内抗体、细胞穿透递送或结构探针方向，并优先验证细胞内结合与酶活抑制。",
+    "structurePrepZh": "以7EGU的A链或B链单体为模板，保留催化核心构象，去除晶体水和非必要配体后标注SAM/底物口袋及可成药沟槽。",
+    "structureRef": "RCSB PDB 7EGU，X射线晶体结构，1.9 Å",
+    "antibodies": [
+      "无获批抗NNMT治疗性抗体",
+      "研究级抗NNMT检测抗体"
+    ],
+    "interfaceFocus": "SAM沟槽、烟酰胺入口环与催化核心",
+    "designMode": "胞内抗体片段",
+    "candidates": [
+      {
+        "target": "NAMPT",
+        "rationale": "NAMPT是NAD补救合成限速酶，与NNMT共同影响烟酰胺消耗和NAD稳态；其在肿瘤代谢与炎症环境中具有明确通路关联。"
+      },
+      {
+        "target": "NMRK1",
+        "rationale": "NMRK1参与烟酰胺核苷向NMN的磷酸化，位于NAD补救代谢网络内；可作为评估NNMT相关NAD代谢补偿的候选节点。"
+      },
+      {
+        "target": "MAT2A",
+        "rationale": "MAT2A催化SAM生成，与NNMT消耗SAM的甲基供体通路直接相连；在肿瘤甲基代谢依赖性中具备协同评估价值。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "RBM23",
+  "generatedAt": "2026-08-03T20:49:03.028Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RBM23为核内RNA结合蛋白，含RNA recognition motif并参与前体mRNA加工相关过程；现有Open Targets关联主要来自性状或遗传统计信号，缺乏明确可阻断的胞外疾病通路机制。该蛋白不属于分泌蛋白或膜受体，天然抗原可及性较低，常规治疗性抗体难以在细胞外环境接触其功能界面。相较PSA、KLK2等前列腺相关分泌型或细胞表面可及靶点，RBM23优先级较低，更适合作为结构生物学或细胞内递送抗体研究对象。",
+    "mechanism": "设计目标限定为细胞内递送抗体，结合RBM23 RRM的β片层RNA结合面，阻断其与单链RNA基序的接触。",
+    "selectedEpitope": "优先覆盖RRM β1-α1-β2与β3-α2环构成的RNA结合沟槽。",
+    "diseaseDirection": "遗传性状与前列腺标志物关联",
+    "domain": "RBM23主要结构信息对应RNA recognition motif，2CQ4为人源RRM结构域NMR模型。",
+    "evidence": "RBM23结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform target-disease association",
+      "UniProt Q86U06 functional annotation",
+      "RCSB PDB 2CQ4 solution NMR structure",
+      "InterPro/Pfam RNA recognition motif annotation"
+    ],
+    "referenceEntries": "UniProt Q86U06；RCSB PDB 2CQ4；Ensembl ENSG00000100461",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RRM β片层RNA结合面",
+        "直接干预RNA识别界面，机制解释性最强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "β2-β3环及邻近芳香残基区域",
+        "可能影响RNA碱基堆叠与结合构象",
+        "备选"
+      ],
+      [
+        "Site C",
+        "RRM背侧α螺旋面",
+        "远离主要RNA结合面，功能阻断不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RBM23为核内蛋白，常规抗体存在细胞膜与核定位屏障；建议仅用于细胞内递送格式验证，并优先评估RRM同源蛋白交叉反应。",
+    "structurePrepZh": "采用2CQ4 NMR构象集合进行结构准备，保留RRM核心折叠，比较多模型柔性环区并标注RNA结合面保守残基。",
+    "structureRef": "RCSB PDB 2CQ4，人RBM23 RRM溶液NMR结构",
+    "antibodies": [
+      "无已获批RBM23治疗性抗体",
+      "研究级抗RBM23抗体"
+    ],
+    "interfaceFocus": "RRM β片层RNA结合沟槽与柔性环区",
+    "designMode": "细胞内递送阻断",
+    "candidates": [
+      {
+        "target": "KLK3",
+        "rationale": "KLK3编码前列腺特异性抗原PSA，为分泌型丝氨酸蛋白酶，直接对应前列腺特异性抗原水平性状，抗原可及性显著优于核内RBM23。"
+      },
+      {
+        "target": "KLK2",
+        "rationale": "KLK2为前列腺表达的分泌型激肽释放酶，与KLK3同处前列腺分泌蛋白网络，并具有更明确的体液可检测性与抗体结合可及性。"
+      },
+      {
+        "target": "AR",
+        "rationale": "AR驱动前列腺上皮分化及前列腺相关基因表达，包括KLK3转录调控；虽为核受体且抗体可及性受限，但疾病通路机制明确。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

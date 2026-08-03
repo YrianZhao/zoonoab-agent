@@ -1,0 +1,65 @@
+{
+  "gene": "FCHO1",
+  "generatedAt": "2026-08-03T12:30:20.131Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FCHO1编码网格蛋白介导内吞早期成核适配蛋白，双等位基因功能缺陷可导致联合免疫缺陷，机制涉及T细胞受体再循环、免疫突触形成及淋巴细胞活化受损。该蛋白主要位于细胞质侧内吞起始位点，并非经典胞外抗原，抗体可及性弱于膜受体或分泌因子，因此更适合作为胞内机制验证或递送型抗体工程模型。其优先级来自明确的人类遗传学疾病证据和高分辨率结构基础，但在治疗性阻断抗体开发中低于CD3、CD28或IL7R等胞外免疫调节靶点。",
+    "mechanism": "设计抗体片段结合FCHO1的F-BAR二聚体界面，阻断其膜曲率感知及EFC/F-BAR介导的内吞成核复合物装配。",
+    "selectedEpitope": "优先覆盖F-BAR结构域凹面二聚化与膜结合界面，避免仅靶向非功能性外侧螺旋表面。",
+    "diseaseDirection": "原发性免疫缺陷与中性粒细胞减少",
+    "domain": "N端F-BAR/EFC膜弯曲结构域，中部AP2相互作用区，C端mu-homology domain识别内吞货物。",
+    "evidence": "FCHO1遗传缺陷与内吞成核结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt O14526功能与结构域注释",
+      "RCSB PDB 7OHI晶体结构",
+      "人类FCHO1缺陷免疫表型文献"
+    ],
+    "referenceEntries": "UniProt O14526；RCSB PDB 7OHI；MONDO_0030898",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "F-BAR二聚体凹面膜结合界面",
+        "干预膜曲率感知与内吞起始成核，功能相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "F-BAR二聚体侧向螺旋束交界",
+        "可能影响二聚体稳定性及EFC构象，但需控制构象依赖性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离膜结合面的暴露螺旋表面",
+        "抗体结合可行性较高，但功能阻断价值有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FCHO1为胞内适配蛋白，常规抗体难以进入细胞质；建议限定为胞内抗体、纳米抗体递送或结构功能研究，不宜直接按经典胞外治疗抗体推进。",
+    "structurePrepZh": "以7OHI中A、B链F-BAR二聚体为模板，保留生物学二聚体装配，检查晶体接触、缺失环区及带电膜结合面后进行表位映射。",
+    "structureRef": "RCSB PDB 7OHI，人源FCHO1 F-BAR结构，1.41 Å",
+    "antibodies": [
+      "无已获批同靶点治疗性抗体",
+      "研究级抗FCHO1抗体"
+    ],
+    "interfaceFocus": "F-BAR凹面膜结合面与二聚体界面",
+    "designMode": "胞内抗体/VHH验证",
+    "candidates": [
+      {
+        "target": "AP2M1",
+        "rationale": "AP2M1是AP-2复合体μ2亚基，参与网格蛋白介导内吞货物识别，与FCHO1所在内吞起始通路直接相关。其功能缺陷可影响受体内吞与免疫细胞信号调控。"
+      },
+      {
+        "target": "CLTC",
+        "rationale": "CLTC编码网格蛋白重链，是FCHO1成核内吞小窝后续包被装配的核心结构成分。靶向该节点可作为同一内吞通路的下游结构参照。"
+      },
+      {
+        "target": "DNM2",
+        "rationale": "DNM2介导网格蛋白包被小窝颈部剪切，是FCHO1启动内吞后囊泡释放阶段的关键GTP酶。该靶点与免疫受体内吞和细胞迁移过程具有通路连续性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

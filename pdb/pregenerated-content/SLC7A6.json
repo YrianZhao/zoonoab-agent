@@ -1,0 +1,65 @@
+{
+  "gene": "SLC7A6",
+  "generatedAt": "2026-08-03T16:41:12.850Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SLC7A6编码y+L氨基酸转运系统轻链，在4F2hc/SLC3A2伴侣蛋白辅助下介导阳离子氨基酸与中性氨基酸跨膜交换，可能影响骨骼发育、肾功能相关代谢表型及脂质测量性状。该靶点为多跨膜细胞表面转运蛋白，抗原可及性主要集中于胞外环区及转运器外向构象暴露面。与广泛胞内代谢酶类靶点相比，SLC7A6具备膜表面可成药性和实验性冷冻电镜结构支持，但疾病关联得分中等，宜作为机制验证优先级而非高确定性临床靶点。",
+    "mechanism": "抗体拟结合SLC7A6胞外门控环区或与SLC3A2邻近界面，限制外向开放构象转换，从而降低精氨酸、赖氨酸与中性氨基酸交换转运。",
+    "selectedEpitope": "优先选择外向构象中TM1/TM6邻近胞外门控环及底物通道入口周缘表位。",
+    "diseaseDirection": "骨骼发育与氨基酸转运代谢表型",
+    "domain": "SLC7A6为12次跨膜L型氨基酸转运蛋白轻链，含胞外环、跨膜底物通道及胞内N/C端。",
+    "evidence": "SLC7A6结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联数据",
+      "UniProtKB Q92536功能与拓扑注释",
+      "RCSB PDB 9LDR冷冻电镜结构",
+      "HGNC与GTEx组织表达参考"
+    ],
+    "referenceEntries": "UniProt Q92536；RCSB PDB 9LDR；HGNC SLC7A6",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "TM1/TM6胞外门控环与底物入口周缘",
+        "可直接干预外向开放构象及底物进入，适合功能阻断抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "靠近SLC3A2伴侣蛋白的胞外邻近界面",
+        "可能影响异源二聚体稳定性或构象耦联，但需避免交叉干扰4F2hc广泛功能",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守跨膜螺旋外露边缘",
+        "同源SLC7家族保守性较高，存在选择性不足和膜环境遮挡风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SLC7家族跨膜区保守性较高，需以胞外可及环区和非保守残基为核心筛选，并评估对SLC7A7、SLC7A5等同源转运体的交叉反应。",
+    "structurePrepZh": "以9LDR冷冻电镜模型为基础，保留抗原链A、B并校正膜法向；补全低置信胞外环区，结合AlphaFold拓扑约束评估外向构象表位可及性。",
+    "structureRef": "RCSB PDB 9LDR；EM 3.58 Å human SLC7A6 complex",
+    "antibodies": [
+      "无获批SLC7A6靶向抗体",
+      "研究级anti-SLC7A6抗体"
+    ],
+    "interfaceFocus": "外向底物入口与胞外门控环界面",
+    "designMode": "膜转运体阻断",
+    "candidates": [
+      {
+        "target": "SLC3A2",
+        "rationale": "SLC3A2编码4F2hc重链，是SLC7A6等轻链转运体的伴侣蛋白，参与异源二聚体膜定位和转运复合体稳定。其胞外结构域可及性较高，但广泛配对多种SLC7轻链，选择性风险较大。"
+      },
+      {
+        "target": "SLC7A7",
+        "rationale": "SLC7A7同属y+L氨基酸转运系统，与SLC3A2形成复合物并参与阳离子氨基酸转运；其遗传缺陷与赖氨酸尿蛋白不耐受及代谢异常相关。可作为同通路疾病机制对照靶点。"
+      },
+      {
+        "target": "SLC7A5",
+        "rationale": "SLC7A5与SLC3A2组成LAT1转运复合体，介导大型中性氨基酸摄取并影响mTORC1营养感应。其结构与药理学研究更充分，可作为SLC7家族抗体可及性和选择性评估参照。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

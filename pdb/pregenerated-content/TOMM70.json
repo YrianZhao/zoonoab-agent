@@ -1,0 +1,65 @@
+{
+  "gene": "TOMM70",
+  "generatedAt": "2026-08-03T17:24:47.429Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TOMM70是线粒体外膜导入受体，参与识别HSP70/HSP90伴侣递送的前体蛋白，并与SARS-CoV-2 Orf9b介导的线粒体抗病毒信号抑制相关。其疾病关联集中于SARS和COVID-19，提示病毒蛋白干扰TOMM70-MAVS轴可削弱I型干扰素应答。该靶点为外线粒体膜胞质侧暴露蛋白，TPR受体结构域具有较高抗原可及性；相较于线粒体内膜转位组分，TOMM70更适合抗体识别胞质暴露界面并用于机制阻断研究。",
+    "mechanism": "阻断SARS-CoV-2 Orf9b与TOMM70胞质侧TPR结构域的结合，减弱病毒对TOMM70相关MAVS抗病毒信号复合体的抑制。",
+    "selectedEpitope": "优先覆盖TPR clamp区域及Orf9b结合邻近沟槽，避开N端跨膜锚定段。",
+    "diseaseDirection": "冠状病毒感染与抗病毒免疫",
+    "domain": "N端线粒体外膜跨膜锚定区，胞质侧含多重TPR重复形成伴侣蛋白结合沟槽。",
+    "evidence": "TOMM70-Orf9b互作与COVID-19关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt O94826功能与亚细胞定位注释",
+      "RCSB PDB 9PKQ晶体结构记录",
+      "SARS-CoV-2 Orf9b抑制TOMM70-MAVS抗病毒信号研究"
+    ],
+    "referenceEntries": "UniProt O94826；RCSB PDB 9PKQ；Open Targets TOMM70",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "胞质侧TPR clamp伴侣结合沟槽",
+        "可干预Orf9b或伴侣蛋白占位相关界面，结构暴露充分",
+        "优先"
+      ],
+      [
+        "Site B",
+        "TPR重复外侧螺旋束表面",
+        "适合获得高亲和结合抗体并降低对核心折叠稳定性的扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端跨膜锚定区邻近膜面区域",
+        "膜邻近空间受限且可能影响线粒体定位，需控制表位深度",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TOMM70位于线粒体外膜而非细胞表面，常规全抗体难以进入完整细胞胞质；宜采用细胞内递送抗体、VHH或机制验证体系，并避免广泛阻断必需蛋白导入功能。",
+    "structurePrepZh": "采用9PKQ中A、B链作为抗原构象模板，保留TPR重复区完整螺旋束，去除晶体接触干扰分子并校验Orf9b邻近结合面。",
+    "structureRef": "RCSB PDB 9PKQ，X-ray diffraction，2.0 Å",
+    "antibodies": [
+      "抗TOMM70研究级单克隆抗体",
+      "抗TOMM70多克隆抗体"
+    ],
+    "interfaceFocus": "TPR clamp沟槽与Orf9b邻近结合面",
+    "designMode": "胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "MAVS",
+        "rationale": "MAVS位于线粒体外膜并整合RIG-I样受体信号，是TOMM70相关抗病毒通路中诱导I型干扰素的关键接头蛋白。"
+      },
+      {
+        "target": "DDX58",
+        "rationale": "DDX58编码RIG-I，识别病毒RNA后通过CARD结构域激活MAVS，处于TOMM70-MAVS抗病毒应答的上游。"
+      },
+      {
+        "target": "IFIH1",
+        "rationale": "IFIH1编码MDA5，参与冠状病毒RNA感知并经MAVS放大干扰素信号，与COVID-19抗病毒免疫通路一致。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "DHODH",
+  "generatedAt": "2026-08-03T18:32:42.071Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DHODH催化线粒体内膜嘧啶从头合成中二氢乳清酸向乳清酸的氧化，并将电子传递至泛醌；其抑制可限制活化淋巴细胞增殖，已在类风湿关节炎、多发性硬化和银屑病关节炎中形成明确药理学关联。该蛋白为线粒体内膜内侧相关酶，主要催化口袋并非细胞外暴露，抗体直接药物化可及性弱于分泌因子或膜外受体。相较同通路上游代谢酶，DHODH具有高分辨率配体结合结构和已验证小分子药物机制，适合作为结构参照与胞内递送抗体片段研究靶点，但常规体内抗体优先级低于细胞表面免疫靶点。",
+    "mechanism": "抗体片段需进入线粒体相关胞内空间，阻断二氢乳清酸进入FMN催化位点或干扰泛醌结合沟槽，抑制电子转移与乳清酸生成。",
+    "selectedEpitope": "优先考察N端膜结合螺旋邻近的泛醌结合沟槽及FMN口袋边缘构象表位。",
+    "diseaseDirection": "自身免疫与嘧啶代谢异常",
+    "domain": "DHODH含N端线粒体膜结合区、α/β桶状催化核心、FMN辅因子位点及泛醌结合沟槽。",
+    "evidence": "DHODH免疫炎症与嘧啶合成证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q02127 functional annotation",
+      "RCSB PDB 1D3G X-ray structure",
+      "Approved DHODH inhibitor pharmacology"
+    ],
+    "referenceEntries": "UniProt Q02127；RCSB PDB 1D3G；ChEMBL DHODH",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端膜结合螺旋与泛醌结合沟槽入口",
+        "可能干扰泛醌定位及电子受体通道，具结构机制可解释性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FMN辅因子结合口袋外缘催化环区",
+        "可限制二氢乳清酸进入或稳定非活性构象",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化核心远端保守α/β桶表面",
+        "远离底物与泛醌界面，功能阻断概率较低且保守性带来选择性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DHODH为胞内线粒体内膜相关酶，常规抗体难以到达作用位点；建议限定为胞内抗体、递送型Fab/VHH或结构验证工具抗体方向。",
+    "structurePrepZh": "以1D3G链A为模板，保留FMN及已解析配体环境用于口袋定义，补全缺失侧链并标注N端膜结合区取向。",
+    "structureRef": "Liu et al., human DHODH crystal structure, PDB 1D3G",
+    "antibodies": [
+      "无已批准抗DHODH治疗性抗体",
+      "抗DHODH研究级检测抗体"
+    ],
+    "interfaceFocus": "泛醌结合沟槽入口与FMN催化位点外缘",
+    "designMode": "胞内递送型片段",
+    "candidates": [
+      {
+        "target": "CAD",
+        "rationale": "CAD催化嘧啶从头合成早期步骤，与DHODH同属核苷酸合成轴；其活性影响增殖细胞对嘧啶供给的依赖。"
+      },
+      {
+        "target": "UMPS",
+        "rationale": "UMPS位于DHODH下游，将乳清酸转化为UMP，是同一嘧啶从头合成通路的关键酶；可作为代谢通量验证靶点。"
+      },
+      {
+        "target": "TYMS",
+        "rationale": "TYMS参与dTMP合成，与嘧啶核苷酸供给和淋巴细胞增殖需求相衔接；适合用于同通路增殖抑制机制比较。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

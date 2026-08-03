@@ -1,0 +1,65 @@
+{
+  "gene": "CBR4",
+  "generatedAt": "2026-08-03T11:02:06.974Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CBR4为内质网相关的单跨膜羰基还原酶，催化NADPH依赖性羰基底物还原，现有遗传关联主要指向心室容积、血压等心血管表型，但其在明确致病通路中的因果作用强度有限。该蛋白催化结构域位于胞质侧，缺乏典型分泌蛋白或大尺度胞外受体结构域，抗原可及性显著弱于膜外受体类靶点。相较ADRB1、AGTR1、NPPA等心血管通路中可及性和药理学证据更强的靶点，CBR4作为抗体主靶点优先级偏低，更适宜作为机制探索或细胞内结合分子研究对象。",
+    "mechanism": "设计重点为结合CBR4短链脱氢酶/还原酶折叠，干扰NADPH结合沟槽与羰基底物进入通道的空间耦合，从而抑制其还原酶活性。",
+    "selectedEpitope": "优先评估Rossmann样NADPH结合沟槽邻近环区及底物结合口袋边缘构象表位。",
+    "diseaseDirection": "心血管表型与血压遗传关联",
+    "domain": "N端预测跨膜锚定区连接胞质侧短链脱氢酶/还原酶催化结构域。",
+    "evidence": "CBR4心血管表型遗传关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q8N4T8功能与亚细胞定位注释",
+      "RCSB PDB 4CQM晶体结构记录",
+      "AlphaFold DB人源CBR4结构模型注释"
+    ],
+    "referenceEntries": "UniProt Q8N4T8；RCSB PDB 4CQM；Open Targets CBR4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Rossmann样NADPH结合沟槽邻近环区",
+        "可直接影响辅因子结合与催化构象稳定性，适合功能阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "羰基底物结合口袋入口及α螺旋边缘",
+        "可能限制底物进入并降低酶促转换效率，需避免完全埋藏残基",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端跨膜锚定区近膜短肽区域",
+        "空间可及性和结构解析度有限，且不一定影响催化中心功能",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CBR4主要催化域位于胞内，传统抗体难以进入细胞质发挥阻断作用；建议限定为细胞内抗体、递送型VHH或体外功能验证设计。",
+    "structurePrepZh": "以4CQM实验结构为核心模板，保留催化结构域单体，校验NADPH结合沟槽、缺失环区和寡聚堆晶界面，去除非生理晶体接触链。",
+    "structureRef": "RCSB PDB 4CQM，人源CBR4 X射线晶体结构，2.339 Å",
+    "antibodies": [
+      "无临床获批CBR4靶向抗体",
+      "无公开验证CBR4功能阻断抗体"
+    ],
+    "interfaceFocus": "NADPH结合沟槽与底物入口环区",
+    "designMode": "胞内酶抑制型",
+    "candidates": [
+      {
+        "target": "ADRB1",
+        "rationale": "ADRB1为心肌β1肾上腺素能受体，直接调节心率、收缩力和血压相关表型；其多跨膜受体构象具有明确心血管药理学证据。"
+      },
+      {
+        "target": "AGTR1",
+        "rationale": "AGTR1介导血管紧张素II诱导的血管收缩、醛固酮分泌和血压升高，是高血压通路中因果性更强的膜受体靶点。"
+      },
+      {
+        "target": "NPPA",
+        "rationale": "NPPA编码心房利钠肽前体，参与利钠、血管舒张和心室容量负荷调节，与心室容积及血压表型具有同方向心血管生理关联。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

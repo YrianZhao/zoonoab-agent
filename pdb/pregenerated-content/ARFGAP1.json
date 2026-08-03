@@ -1,0 +1,65 @@
+{
+  "gene": "ARFGAP1",
+  "generatedAt": "2026-08-03T10:33:20.519Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ARFGAP1 是胞质侧 ARF GTPase activating protein，参与 Golgi 与 COPI 囊泡运输中 ARF1-GTP 的水解调控；现有关联主要来自性状与蛋白测量类数据，缺乏明确致病通路驱动证据。该蛋白不属于分泌蛋白或典型膜受体，催化 ARFGAP 结构域位于胞内，天然抗体可及性较弱。相较于同一囊泡运输轴中的外露受体或分泌因子，ARFGAP1 作为常规中和抗体主靶点优先级较低，更适合细胞内递送抗体片段或机制研究型结合体设计。",
+    "mechanism": "设计结合体占据 ARFGAP1 ARFGAP 催化结构域的 ARF1-GTP 接触面，干扰其促进 ARF1 GTP 水解的蛋白-蛋白相互作用。",
+    "selectedEpitope": "优先评估 ARFGAP 催化域中 ARF1 接触沟槽及锌指邻近界面，避免深埋催化核心。",
+    "diseaseDirection": "胞内囊泡运输与性状关联",
+    "domain": "N 端 ARFGAP 催化结构域含锌指样 Cys 基序，C 端富含非结构化调控区。",
+    "evidence": "ARFGAP1 结构与囊泡运输证据包",
+    "evidenceSources": [
+      "Open Targets Platform 遗传与性状关联记录",
+      "UniProt ARFGAP1 功能与亚细胞定位注释",
+      "RCSB PDB 3DWD X-ray 晶体结构",
+      "ARF1/COPI 囊泡运输与 ARFGAP 催化机制文献"
+    ],
+    "referenceEntries": "UniProt Q8N6T3；RCSB PDB 3DWD；HGNC ARFGAP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ARFGAP 催化域 ARF1-GTP 接触沟槽",
+        "直接干预 ARF1 结合与 GTP 水解促进作用",
+        "优先"
+      ],
+      [
+        "Site B",
+        "锌指样 Cys 基序邻近结构面",
+        "可稳定识别催化域构象并间接影响底物定位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端非结构化调控区",
+        "柔性高且结构解析不足，构象表位稳定性有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ARFGAP1 为胞内蛋白，常规抗体难以到达作用位点；宜采用细胞内递送 Fab/VHH、降解偶联或研究级阻断设计，并严格评估 ARF 家族交叉反应。",
+    "structurePrepZh": "以 3DWD 中 A/B 链 ARFGAP 催化域为模板，补全缺失侧链、保留锌配位几何，剔除晶体接触伪界面后进行表面可及性与保守性分析。",
+    "structureRef": "RCSB PDB 3DWD，X-ray diffraction，2.4 Å",
+    "antibodies": [
+      "无获批同靶点治疗性抗体",
+      "ARFGAP1 研究级检测抗体"
+    ],
+    "interfaceFocus": "ARFGAP 催化域与 ARF1-GTP 底物结合面",
+    "designMode": "胞内阻断型",
+    "candidates": [
+      {
+        "target": "ARF1",
+        "rationale": "ARF1 是 ARFGAP1 的直接小 GTPase 底物，驱动 COPI 包被募集与 Golgi 囊泡出芽；其 GDP/GTP 循环与 ARFGAP1 催化功能处于同一运输轴。"
+      },
+      {
+        "target": "COPB1",
+        "rationale": "COPB1 编码 COPI coatomer β 亚基，参与 ARF1-GTP 依赖的 coatomer 装配；可作为 ARFGAP1 调控囊泡运输输出端的通路候选靶点。"
+      },
+      {
+        "target": "GBF1",
+        "rationale": "GBF1 是 Golgi 区域 ARF GTPase 的鸟嘌呤核苷酸交换因子，促进 ARF1 活化；与 ARFGAP1 分别调控同一 ARF1 GTPase 循环的激活和失活环节。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

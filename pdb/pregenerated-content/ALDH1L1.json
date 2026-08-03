@@ -1,0 +1,65 @@
+{
+  "gene": "ALDH1L1",
+  "generatedAt": "2026-08-03T10:23:22.529Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ALDH1L1为胞质型10-formyltetrahydrofolate dehydrogenase，参与叶酸介导的一碳代谢，将10-formyl-THF氧化为THF与CO2，因而与甘氨酸、肌酐及肾小球滤过率等代谢表型存在遗传关联。该蛋白缺乏跨膜区和分泌信号肽，天然抗原可及性不支持体内阻断型抗体药物开发，但可作为细胞裂解物、组织切片或液体活检中的检测型抗原。相较于同通路中线粒体或高度保守酶类，ALDH1L1具有人源星形胶质细胞富集表达和高分辨率实验结构支持，更适合作为诊断抗体与结构表位验证靶点。",
+    "mechanism": "抗体设计以识别ALDH1L1催化结构域构象表位为主，避免覆盖NADP结合沟槽，优先用于捕获或定位蛋白而非抑制10-formyl-THF氧化反应。",
+    "selectedEpitope": "优先选择2BW0覆盖的C端醛脱氢酶样催化结构域外侧α螺旋-环区，避开NADP/底物结合裂隙。",
+    "diseaseDirection": "一碳代谢与肾功能相关表型",
+    "domain": "ALDH1L1含N端甲酰转移酶样结构域、中间连接区及C端醛脱氢酶样催化结构域。",
+    "evidence": "ALDH1L1一碳代谢结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病-性状关联",
+      "UniProtKB O75891功能与亚细胞定位注释",
+      "RCSB PDB 2BW0 X射线晶体结构",
+      "Reactome叶酸介导一碳代谢通路注释"
+    ],
+    "referenceEntries": "UniProt O75891；RCSB PDB 2BW0；Open Targets ALDH1L1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端醛脱氢酶样结构域外侧α螺旋-环区",
+        "构象稳定且远离辅因子沟槽，适合捕获型抗体开发",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域二聚体外缘非保守表面",
+        "可提高ALDH1L1相对ALDH家族成员的选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "NADP结合沟槽及催化半胱氨酸邻近区域",
+        "可能干扰酶活并增加保守位点交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ALDH家族催化核心保守性较高，需规避NADP结合沟槽和催化残基邻近表面，并通过ALDH1L2、ALDH2交叉反应筛查确认特异性。",
+    "structurePrepZh": "以2BW0链A为结构模板，补全缺失侧链、校正质子化状态并移除晶体添加物；按C端催化结构域表面暴露度与保守性联合筛选表位。",
+    "structureRef": "RCSB PDB 2BW0，1.7 Å X-ray human ALDH1L1 domain",
+    "antibodies": [
+      "anti-ALDH1L1 clone N103/39",
+      "anti-ALDH1L1 clone EPR19771"
+    ],
+    "interfaceFocus": "催化结构域外侧非保守构象表面",
+    "designMode": "诊断捕获型抗体",
+    "candidates": [
+      {
+        "target": "MTHFD1",
+        "rationale": "MTHFD1是胞质一碳代谢核心酶，催化10-formyl-THF、5,10-methenyl-THF与5,10-methylene-THF之间转换，与ALDH1L1共享叶酸代谢底物池。"
+      },
+      {
+        "target": "SHMT1",
+        "rationale": "SHMT1催化丝氨酸与THF生成甘氨酸和5,10-methylene-THF，直接连接甘氨酸测量表型与胞质一碳单位供给。"
+      },
+      {
+        "target": "MTHFR",
+        "rationale": "MTHFR将5,10-methylene-THF还原为5-methyl-THF，是叶酸循环分流和甲基供体生成的关键节点，适合作为同通路比较靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

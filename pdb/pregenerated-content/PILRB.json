@@ -1,0 +1,65 @@
+{
+  "gene": "PILRB",
+  "generatedAt": "2026-08-03T15:18:28.389Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PILRB编码成对免疫球蛋白样受体β，是髓系细胞表面的活化型免疫受体，可通过跨膜区带正电残基与DAP12/TYROBP偶联，诱导SYK依赖的免疫细胞活化。Open Targets关联信号集中于单核细胞计数、痴呆及心率等免疫炎症相关表型，提示其在髓系炎症调节和神经免疫轴中具有研究价值。PILRB为I型膜蛋白，N端Ig样胞外结构域可直接作为抗体结合抗原，抗原可及性优于胞内信号分子。相较下游SYK等激酶，PILRB具有细胞类型限制性和受体近端干预优势，适合开展阻断型或受体聚集调控型抗体设计。",
+    "mechanism": "抗体结合PILRB胞外Ig样结构域，阻断配体或糖基化配体样表面分子结合，并抑制PILRB-DAP12复合物诱导的SYK磷酸化活化。",
+    "selectedEpitope": "优先覆盖PILRB Ig样V-set结构域远端配体结合面，避开膜近端糖基化与铰链柔性区域。",
+    "diseaseDirection": "髓系炎症与神经免疫相关疾病",
+    "domain": "PILRB含N端信号肽、单个胞外Ig样V-set结构域、跨膜区及短胞内尾部。",
+    "evidence": "PILRB髓系免疫受体结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9UKJ0功能与拓扑注释",
+      "RCSB PDB 4NFD晶体结构数据",
+      "免疫受体DAP12-TYROBP/SYK信号文献"
+    ],
+    "referenceEntries": "UniProt: Q9UKJ0; RCSB PDB: 4NFD; Open Targets: PILRB",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Ig样V-set结构域远端β折叠配体结合面",
+        "有利于阻断胞外配体识别并降低受体活化",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Ig样结构域侧向环区及β链边缘",
+        "可用于构建非竞争性结合或受体构象调节抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "膜近端区域及潜在糖基化邻近表面",
+        "可能受糖链遮挡和构象柔性影响，需降低开发优先级",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PILRA与PILRB胞外Ig样结构域同源性较高，需在表位筛选中强化PILRB特异残基约束，避免交叉结合导致抑制型受体PILRA被同时调控。",
+    "structurePrepZh": "采用4NFD抗原链A作为模板，补全缺失侧链并评估糖基化位点；保留Ig样结构域核心β折叠，去除晶体接触伪界面后开展表位建模。",
+    "structureRef": "RCSB PDB 4NFD，X射线晶体结构，1.708 Å",
+    "antibodies": [
+      "抗PILRB研究级单克隆抗体",
+      "抗PILRA/PILRB家族研究级抗体"
+    ],
+    "interfaceFocus": "Ig样V-set远端环区与配体结合面",
+    "designMode": "阻断型受体抗体",
+    "candidates": [
+      {
+        "target": "TYROBP",
+        "rationale": "TYROBP/DAP12是PILRB跨膜偶联的ITAM适配蛋白，位于同一受体近端活化通路；但其主要为膜内/胞内信号组件，抗体可及性低于PILRB。"
+      },
+      {
+        "target": "SYK",
+        "rationale": "SYK接受DAP12 ITAM磷酸化信号并驱动髓系细胞活化，是PILRB下游关键激酶；其药理可成药性明确，但不适合作为常规胞外抗体靶点。"
+      },
+      {
+        "target": "PILRA",
+        "rationale": "PILRA为同一家族抑制型受体，含胞内ITIM并可与PILRB共享部分配体识别特征；作为对照或组合研究靶点可解析活化/抑制受体平衡。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

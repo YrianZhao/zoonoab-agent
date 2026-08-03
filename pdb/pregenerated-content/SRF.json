@@ -1,0 +1,65 @@
+{
+  "gene": "SRF",
+  "generatedAt": "2026-08-03T16:55:14.421Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SRF是MADS-box转录因子，直接结合CArG box并与共因子共同驱动即早反应、肌肉分化及细胞骨架相关基因表达，且在肿瘤进展与神经退行性病变相关转录失衡中具有明确参与。其作为细胞内核蛋白不具备传统胞外可及性，因而更适合采用递送型抗体、胞内抗体或伴随细胞穿膜策略进行功能阻断。相较同通路中更上游且广泛分布的MAPK或Rho轴靶点，SRF可更直接收敛到转录终端效应层，具备疾病分型特异性与机制可解释性优势。",
+    "mechanism": "结合SRF的MADS-box DNA结合/二聚化界面，阻断其与CArG box及共因子复合体装配，抑制下游病理转录程序。",
+    "selectedEpitope": "优先覆盖MADS-box的DNA结合面与二聚化接触区，避免仅干扰非保守尾部。",
+    "diseaseDirection": "神经退行与肿瘤转录调控",
+    "domain": "N端MADS-box DNA结合与二聚化核心，C端转录激活区",
+    "evidence": "SRF疾病关联与结构设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform",
+      "UniProt:P11831",
+      "RCSB PDB:1HBX",
+      "文献报道的SRF-CArG box复合物结构"
+    ],
+    "referenceEntries": "UniProt P11831; PDB 1HBX; SRF human nuclear transcription factor",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "MADS-box DNA结合界面",
+        "直接削弱CArG box识别，最符合转录阻断逻辑",
+        "优先"
+      ],
+      [
+        "Site B",
+        "MADS-box二聚化接触面",
+        "干预SRF同源二聚体稳定性，可能降低复合体装配",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端激活区近端表位",
+        "可影响共调节因子募集，但结构异质性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "靶点位于细胞核内，常规全长抗体难以触达；应优先评估细胞内递送、VHH或胞内表达格式。3.15 Å分辨率对侧链定位有限，需结合同源结构与保守位点映射优化表位。",
+    "structurePrepZh": "以1HBX为骨架进行链归并与缺失环修补，统一A/B链为功能二聚体参考，并映射保守DNA接触残基。",
+    "structureRef": "RCSB PDB 1HBX, X-ray diffraction 3.15 Å",
+    "antibodies": [
+      "无公开成熟SRF治疗性抗体",
+      "无公开成熟SRF中和抗体"
+    ],
+    "interfaceFocus": "MADS-box与CArG box接触面",
+    "designMode": "intracellular-blocking",
+    "candidates": [
+      {
+        "target": "MYC",
+        "rationale": "MYC是SRF相关肿瘤转录网络中的重要下游效应基因，适合作为同通路验证靶点。其与SRF驱动的增殖程序在多种肿瘤背景中具有共现性。"
+      },
+      {
+        "target": "RHOA",
+        "rationale": "RHOA位于肌动蛋白动力学与SRF依赖转录轴的上游，可用于验证细胞骨架-SRF通路的病理闭环。该轴在肿瘤迁移与侵袭中具有明确关联。"
+      },
+      {
+        "target": "MKL1",
+        "rationale": "MKL1/MRTF-A是SRF的经典共激活因子，与SRF共同驱动CArG依赖转录。作为同通路真实靶点，其适于构建联合阻断或通路分层设计。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

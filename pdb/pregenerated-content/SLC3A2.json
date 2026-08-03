@@ -1,0 +1,65 @@
+{
+  "gene": "SLC3A2",
+  "generatedAt": "2026-08-03T16:38:58.297Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SLC3A2/cd98hc参与LAT1、LAT2等异二聚氨基酸转运体复合物的膜定位与底物转运，且在肿瘤代谢重编程、神经退行性改变及感觉神经损伤相关通路中具有明确疾病关联。其为膜糖蛋白，胞外大结构域暴露于细胞外环境，具备优良抗原可及性，适合开展抗体介导的配体阻断与复合物装配干预。相较于直接靶向多亚基转运复合物中的催化亚基，SLC3A2更适合作为枢纽支架位点进行选择性干预，并可同时覆盖肿瘤与神经系统疾病的共同转运依赖。",
+    "mechanism": "抗体结合SLC3A2胞外结构域，阻断其与LAT1/SLC7A5等轻链的正确装配，并抑制大中性氨基酸跨膜转运。",
+    "selectedEpitope": "优先选择胞外大结构域中轻链装配界面及糖基化邻近表位，避免跨膜区与二硫键核心。",
+    "diseaseDirection": "肿瘤代谢与神经疾病",
+    "domain": "胞外大结构域为主，邻近异二聚体装配界面，避开跨膜螺旋区",
+    "evidence": "SLC3A2抗体设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform",
+      "UniProt P08195",
+      "RCSB PDB 6S8V",
+      "PubMed结构与功能文献"
+    ],
+    "referenceEntries": "UniProt:P08195; RCSB PDB:6S8V; SLC3A2/CD98hc",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "胞外大结构域的LAT1/SLC7A5装配界面",
+        "优先阻断异二聚体形成，直接抑制底物转运",
+        "优先"
+      ],
+      [
+        "Site B",
+        "糖基化富集的外露环区",
+        "提高表位可及性与抗体亲和优化空间",
+        "备选"
+      ],
+      [
+        "Site C",
+        "靠近二硫键核心的保守表面",
+        "结构稳定但可能影响折叠，开发风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "高保守胞外折叠域可能带来同家族交叉反应风险，且广泛表达提示组织毒性需重点评估。表位应优先避开二硫键核心与高保守骨架面，采用装配界面定点阻断策略。",
+    "structurePrepZh": "以6S8V为骨架进行胞外域重建，补全缺失侧链与糖基化邻域，并按生理二聚装配状态评估可及表面。",
+    "structureRef": "RCSB 6S8V, X-ray 1.8 A",
+    "antibodies": [
+      "anti-CD98hc monoclonal antibody",
+      "IGN523"
+    ],
+    "interfaceFocus": "LAT1轻链装配界面与外露环区",
+    "designMode": "structure-guided",
+    "candidates": [
+      {
+        "target": "SLC7A5",
+        "rationale": "SLC7A5与SLC3A2形成LAT1复合物，是大中性氨基酸摄取的核心轻链，属于同一代谢通路中的直接伴随靶点。针对其可与SLC3A2形成联合阻断策略，用于验证转运依赖性。"
+      },
+      {
+        "target": "SLC7A8",
+        "rationale": "SLC7A8与SLC3A2共同构成LAT2复合物，参与中性氨基酸跨膜转运，且与组织特异性代谢稳态相关。其作为同通路候选有助于区分广谱与组织选择性抑制效应。"
+      },
+      {
+        "target": "SLC7A11",
+        "rationale": "SLC7A11与SLC3A2形成xCT复合物，参与胱氨酸摄取和谷胱甘肽合成，和肿瘤氧化还原稳态密切相关。作为同疾病通路候选，可用于评估SLC3A2干预对抗氧化防御轴的覆盖范围。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "HSD11B1",
+  "generatedAt": "2026-08-03T13:17:50.888Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HSD11B1催化可的松还原为活性皮质醇，是组织内糖皮质激素再生通路的关键酶，遗传缺陷可导致可的松还原酶缺乏相关高雄激素血症。该蛋白为内质网腔侧取向的膜相关短链脱氢酶，还原酶催化结构域在腔内具有一定抗原可及性，但体内完整抗体进入内质网受限。相较NR3C1等核内受体，HSD11B1具有高分辨率实验结构和明确NADPH/底物结合口袋，更适合作为机制验证与胞内递送抗体设计优先模型。",
+    "mechanism": "阻断HSD11B1催化口袋对NADPH与可的松的协同结合，抑制可的松向皮质醇还原，降低局部糖皮质激素再生。",
+    "selectedEpitope": "优先覆盖Rossmann折叠NADPH结合沟槽与底物入口环区，避免完全依赖疏水膜锚定段。",
+    "diseaseDirection": "糖皮质激素代谢与高雄激素血症",
+    "domain": "N端短跨膜锚定区连接腔侧短链脱氢酶/还原酶催化结构域，含NADPH结合Rossmann折叠。",
+    "evidence": "HSD11B1结构与糖皮质激素再生证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P28845功能与亚细胞定位注释",
+      "RCSB PDB 1XU9晶体结构",
+      "人类可的松还原酶缺乏与HSD11B1/H6PD通路文献"
+    ],
+    "referenceEntries": "UniProt P28845；RCSB PDB 1XU9；Open Targets HSD11B1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "NADPH结合Rossmann折叠沟槽及邻近催化口袋边缘",
+        "可直接干扰辅因子定位并限制还原反应构象装配",
+        "优先"
+      ],
+      [
+        "Site B",
+        "底物入口环区与疏水底物结合腔外缘",
+        "有利于阻断可的松进入催化中心并保留酶选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端膜近端锚定连接区",
+        "可能影响定位或构象稳定，但疏水性与膜遮蔽增加开发风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HSD11B1主要位于内质网腔侧，常规体内抗体暴露不足；宜定位为胞内递送Fab/VHH或细胞模型验证，避免选择高度疏水膜锚定表位。",
+    "structurePrepZh": "以1XU9高分辨率晶体结构为模板，保留催化结构域四聚体界面信息，标注NADPH/底物口袋并补全缺失柔性环用于表位筛选。",
+    "structureRef": "RCSB PDB 1XU9，X-ray diffraction，1.55 Å",
+    "antibodies": [
+      "无已获批HSD11B1治疗性抗体",
+      "抗HSD11B1研究级单克隆抗体"
+    ],
+    "interfaceFocus": "NADPH结合沟槽、催化口袋、底物入口环",
+    "designMode": "胞内酶抑制型",
+    "candidates": [
+      {
+        "target": "H6PD",
+        "rationale": "H6PD在内质网腔内生成NADPH，为HSD11B1还原可的松提供辅因子；其缺陷同样参与可的松还原酶缺乏表型。"
+      },
+      {
+        "target": "NR3C1",
+        "rationale": "NR3C1编码糖皮质激素受体，是HSD11B1生成皮质醇后的直接核内效应受体，可反映下游糖皮质激素转录反应强度。"
+      },
+      {
+        "target": "HSD11B2",
+        "rationale": "HSD11B2催化皮质醇氧化为可的松，与HSD11B1共同维持组织糖皮质激素活化与失活平衡，适合作为通路对照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

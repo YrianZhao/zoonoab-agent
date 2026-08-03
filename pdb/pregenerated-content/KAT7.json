@@ -1,0 +1,65 @@
+{
+  "gene": "KAT7",
+  "generatedAt": "2026-08-03T13:37:10.433Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KAT7为MYST家族赖氨酸乙酰转移酶，参与HBO1复合体介导的组蛋白H4乙酰化，并影响复制起始、染色质开放与细胞衰老相关转录程序；遗传学数据提示其与神经退行性疾病及红细胞表型存在关联。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌特征，抗原可及性不利于常规体内阻断抗体。相较膜受体或分泌因子靶点，KAT7更适合作为结构生物学与细胞内抗体工具靶点，优先级应限定于机制验证、降解偶联或胞内递送抗体设计场景。",
+    "mechanism": "设计分子应阻断KAT7 MYST催化结构域与乙酰辅酶A及组蛋白H4尾部底物的配位，抑制H4K5/K8/K12乙酰化反应。",
+    "selectedEpitope": "优先聚焦MYST催化结构域乙酰辅酶A结合沟槽邻近底物肽通道，避免破坏整体折叠核心。",
+    "diseaseDirection": "神经退行性疾病与造血表型",
+    "domain": "KAT7含N端染色质相关区与C端MYST乙酰转移酶催化结构域，7D0P覆盖催化核心。",
+    "evidence": "KAT7染色质乙酰化与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt O95251功能与亚细胞定位注释",
+      "RCSB PDB 7D0P X射线晶体结构",
+      "MYST/HBO1复合体组蛋白H4乙酰化研究文献"
+    ],
+    "referenceEntries": "UniProt: O95251；RCSB PDB: 7D0P；HGNC: KAT7",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "MYST催化结构域乙酰辅酶A结合沟槽及底物肽入口",
+        "可直接干预辅因子装载与H4尾部底物定位，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "MYST结构域外侧底物识别面及HBO1复合体装配邻近界面",
+        "可能削弱复合体内底物呈递或染色质底物结合，适合功能筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化核心疏水折叠内部或高度保守锌指样区域邻近面",
+        "易造成非特异性构象破坏并影响MYST家族选择性，需要谨慎评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "KAT7为核内酶，常规抗体难以触达天然靶点；MYST家族催化区保守性较高，需以家族成员交叉反应、细胞内递送效率和构象稳定性作为主要风险控制点。",
+    "structurePrepZh": "以7D0P链A/B为结构模板，保留催化结构域关键辅因子结合口袋，补全缺失侧链并标注保守残基、晶体接触面及潜在非生理界面。",
+    "structureRef": "RCSB PDB 7D0P，human KAT7 catalytic domain，1.8 Å X-ray",
+    "antibodies": [
+      "无获批KAT7治疗性抗体",
+      "抗KAT7研究级单克隆抗体"
+    ],
+    "interfaceFocus": "乙酰辅酶A沟槽与H4尾部底物通道",
+    "designMode": "胞内功能阻断抗体",
+    "candidates": [
+      {
+        "target": "BRPF3",
+        "rationale": "BRPF3为HBO1/KAT7乙酰转移酶复合体支架亚基，参与招募MYST酶并影响组蛋白H3/H4乙酰化底物选择，可作为同一染色质乙酰化轴的调控靶点。"
+      },
+      {
+        "target": "JADE1",
+        "rationale": "JADE1参与KAT7-HBO1复合体组装并促进组蛋白H4乙酰化，与DNA复制许可和染色质调控过程相关，适合作为复合体界面干预候选。"
+      },
+      {
+        "target": "ING4",
+        "rationale": "ING4通过识别H3K4me3并与HBO1复合体协同定位于染色质，连接表观遗传标记读取与KAT7介导的乙酰化输出。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

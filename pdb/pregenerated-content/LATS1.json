@@ -1,0 +1,65 @@
+{
+  "gene": "LATS1",
+  "generatedAt": "2026-08-03T13:49:51.943Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "LATS1 是 Hippo 通路核心丝氨酸/苏氨酸激酶，通过磷酸化 YAP1/TAZ 抑制其核转位与 TEAD 依赖转录，功能缺失可促进鳞癌、基底细胞癌及肝胆肿瘤相关增殖程序。LATS1 主要为胞内激酶，天然抗原可及性不利于常规细胞外阻断抗体，因此更适合作为结构引导的胞内结合抗体、Fab 工具抗体或递送型抗体片段设计对象。相比上游 MST1/2 或膜相关 NF2，LATS1 直接控制 YAP/TAZ 磷酸化输出，PDB 7LWH 提供高分辨率激酶结构，利于开展构象稳定与界面解析型抗体工程。",
+    "mechanism": "设计结合 LATS1 激酶结构域的构象选择性抗体片段，稳定活化环或调控螺旋构象，增强或解析其对 YAP1/TAZ 磷酸化底物界面的作用。",
+    "selectedEpitope": "优先覆盖激酶结构域 C-lobe 底物识别沟槽及活化环邻近界面，避开 ATP 结合裂隙核心保守位点。",
+    "diseaseDirection": "Hippo-YAP/TAZ肿瘤通路",
+    "domain": "LATS1 含 N 端调控区、PPxY 模体及 C 端 AGC 家族激酶结构域，7LWH 覆盖激酶核心。",
+    "evidence": "LATS1-Hippo通路肿瘤关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt O95835 functional annotation",
+      "RCSB PDB 7LWH X-ray structure",
+      "Hippo pathway YAP/TAZ phosphorylation literature"
+    ],
+    "referenceEntries": "UniProt O95835；RCSB PDB 7LWH；Open Targets LATS1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶 C-lobe 底物结合沟槽与活化环邻近面",
+        "有利于影响 YAP1/TAZ 底物识别并获得功能性构象探针",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N-lobe αC 螺旋及调控疏水脊周边",
+        "可选择性稳定激酶活性相关构象，适合构象锁定型片段筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP 结合裂隙铰链区",
+        "高度保守且易与小分子结合位点重叠，选择性和功能解释风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "LATS1 缺乏胞外结构域，常规治疗性阻断抗体可及性不足；建议定位为胞内递送片段、研究级Fab或构象选择性VHH，并严格评估与LATS2交叉反应。",
+    "structurePrepZh": "以 7LWH 的 A、B 链为模板，保留激酶结构域完整二级结构，补建缺失环区并标注活化环、αC 螺旋、铰链区和底物识别面。",
+    "structureRef": "RCSB PDB 7LWH，X-ray diffraction，1.606 Å",
+    "antibodies": [
+      "anti-LATS1 clone C66B5",
+      "anti-LATS1 phospho-Thr1079 antibody"
+    ],
+    "interfaceFocus": "激酶C-lobe底物沟槽与活化环界面",
+    "designMode": "胞内构象抗体设计",
+    "candidates": [
+      {
+        "target": "YAP1",
+        "rationale": "YAP1 是 LATS1 直接磷酸化底物，去磷酸化后进入细胞核并与 TEAD 转录因子驱动增殖和抗凋亡基因表达。"
+      },
+      {
+        "target": "WWTR1",
+        "rationale": "WWTR1/TAZ 与 YAP1 同属 Hippo 通路转录共激活因子，是 LATS1 抑制性磷酸化调控的关键下游节点。"
+      },
+      {
+        "target": "TEAD1",
+        "rationale": "TEAD1 与核内 YAP/TAZ 形成转录复合物，介导 Hippo 通路失活后的促肿瘤转录输出，适合作为同通路功能节点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

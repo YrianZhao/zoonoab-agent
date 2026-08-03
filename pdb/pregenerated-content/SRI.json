@@ -1,0 +1,65 @@
+{
+  "gene": "SRI",
+  "generatedAt": "2026-08-03T16:55:21.640Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SRI编码sorcin，为含EF-hand的胞质钙结合蛋白，参与钙稳态、内质网应激适应及多药耐药表型，肝细胞癌和胰腺肿瘤中其表达异常与肿瘤细胞存活及药物外排相关。该蛋白主要定位于胞质、内质网和线粒体相关区域，缺乏经典胞外结构域，抗体抗原可及性弱于膜受体或分泌蛋白，因此更适合以细胞内递送抗体片段或研究级结合分子开展设计。相较于同通路中ABCB1、BCL2等间接效应靶点，SRI位于钙依赖应激适应与耐药调控交汇处，具备解析肿瘤耐药机制的优先研究价值，但治疗性常规抗体优先级应审慎评估。",
+    "mechanism": "设计抗体片段结合SRI Ca2+结合EF-hand构象面，阻断其与钙依赖互作蛋白及膜转运调控复合物的结合，削弱肿瘤细胞应激耐受与耐药表型。",
+    "selectedEpitope": "优先覆盖C端EF-hand结构域Ca2+结合环及相邻疏水互作面，避免仅选择柔性N端区域。",
+    "diseaseDirection": "肿瘤耐药与钙稳态异常",
+    "domain": "SRI含N端柔性结构段和C端penta-EF-hand钙结合结构域，可形成二聚体构象。",
+    "evidence": "SRI肿瘤耐药与钙结合结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProtKB P30626功能与定位注释",
+      "RCSB PDB 4USL晶体结构记录",
+      "肿瘤多药耐药与sorcin表达研究文献"
+    ],
+    "referenceEntries": "UniProtKB:P30626；RCSB PDB:4USL；Open Targets:SRI",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端penta-EF-hand Ca2+结合环与邻近疏水面",
+        "可干预钙依赖构象转换及蛋白互作界面",
+        "优先"
+      ],
+      [
+        "Site B",
+        "二聚体界面附近EF-hand螺旋束",
+        "可能影响SRI寡聚状态和构象稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端柔性结构段",
+        "结构可塑性高且抗原构象一致性不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SRI为胞内蛋白，常规抗体难以接触天然抗原；建议采用VHH、胞内抗体或递送系统，并重点验证细胞内结合、选择性和功能阻断。",
+    "structurePrepZh": "以4USL的A、D链为结构模板，保留Ca2+配位信息，检查二聚体界面、缺失残基与晶体接触后再进行表位建模。",
+    "structureRef": "RCSB PDB 4USL，human sorcin X-ray structure, 1.65 Å",
+    "antibodies": [
+      "anti-Sorcin research antibody",
+      "anti-SRI monoclonal antibody"
+    ],
+    "interfaceFocus": "EF-hand Ca2+结合环与二聚体螺旋界面",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "ABCB1",
+        "rationale": "ABCB1介导P-glycoprotein药物外排，是肿瘤多药耐药表型的核心效应分子，与SRI相关耐药网络处于同一功能轴。其多跨膜胞外环可作为抗体识别区域，但结构复杂性较高。"
+      },
+      {
+        "target": "ATP2A2",
+        "rationale": "ATP2A2编码SERCA2，维持内质网钙储存并参与钙稳态调节，与SRI的钙结合和应激适应功能相关。靶向该轴可用于解析肿瘤细胞钙稳态依赖性。"
+      },
+      {
+        "target": "BCL2",
+        "rationale": "BCL2调控线粒体凋亡阈值，处于钙应激、药物压力和肿瘤细胞存活通路的下游节点。其与SRI相关耐药表型具有功能关联，但常规抗体同样受胞内定位限制。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "SENP5",
+  "generatedAt": "2026-08-03T16:25:45.295Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SENP5是SUMO特异性半胱氨酸蛋白酶，主要催化SUMO2/3修饰底物的去SUMO化，参与线粒体动力学、核仁功能与有丝分裂进程。Open Targets显示其与血小板指标、神经退行性疾病及脂质表型存在遗传或组学关联，但当前疾病关联强度中等，适合作为机制探索型靶点。该蛋白主要定位于细胞内核仁和线粒体相关区室，缺乏天然胞外结构域或分泌暴露特征，抗原可及性弱于膜受体或分泌因子；其优先级主要来自高分辨率催化结构可用性与SUMO蛋白酶家族中较明确的底物识别口袋，而非经典体内阻断抗体适配性。",
+    "mechanism": "抗体拟结合SENP5催化结构域的SUMO2/3结合沟槽，阻断SUMO链C端进入Cys-His-Asp催化三联体邻近裂隙，从而抑制去SUMO化反应。",
+    "selectedEpitope": "优先覆盖催化结构域中SUMO2/3 C端尾部结合沟槽及催化半胱氨酸邻近环区。",
+    "diseaseDirection": "神经退行性与血小板表型机制探索",
+    "domain": "SENP5含N端调控区与C端SENP催化结构域，后者形成SUMO底物识别沟槽及催化三联体。",
+    "evidence": "SENP5结构与去SUMO化机制证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q96HI0蛋白定位与功能注释",
+      "RCSB PDB 9GNX晶体结构条目",
+      "SUMO特异性蛋白酶家族催化机制文献"
+    ],
+    "referenceEntries": "UniProt Q96HI0；RCSB PDB 9GNX；Open Targets SENP5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端SENP催化结构域SUMO2/3尾部结合沟槽",
+        "直接干预底物C端进入催化裂隙，具备明确酶抑制逻辑",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化半胱氨酸邻近底物定位环区",
+        "可通过空间位阻限制SUMO底物取向，适合构建非竞争性抑制表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化裂隙的结构稳定性表面",
+        "可能仅影响蛋白构象稳定性，功能阻断确定性较低",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SENP5为胞内酶，常规抗体难以到达天然作用区室；宜定位为结构生物学验证、细胞内递送抗体或降解偶联策略，避免直接外周阻断疗效外推。",
+    "structurePrepZh": "以9GNX中A、B链为抗原模板，保留催化结构域坐标，校验活性位点残基、缺失环区与晶体接触界面后再进行表位暴露评估。",
+    "structureRef": "RCSB PDB 9GNX，X-ray diffraction，1.9 Å",
+    "antibodies": [
+      "暂无获批SENP5靶向抗体",
+      "研究级抗SENP5抗体"
+    ],
+    "interfaceFocus": "SUMO2/3尾部结合沟槽与催化裂隙",
+    "designMode": "胞内酶抑制抗体",
+    "candidates": [
+      {
+        "target": "SUMO2",
+        "rationale": "SUMO2是SENP5偏好的去SUMO化底物修饰蛋白之一，处于同一SUMO2/3动态修饰通路；靶向其暴露表面可用于解析SENP5依赖的底物识别轴。"
+      },
+      {
+        "target": "SUMO3",
+        "rationale": "SUMO3与SUMO2共同构成多聚SUMO链信号，SENP5可处理SUMO2/3修饰底物；作为同通路节点，适合用于比较SUMO链依赖效应。"
+      },
+      {
+        "target": "RANBP2",
+        "rationale": "RANBP2是SUMO E3连接酶并促进蛋白SUMO化，与SENP5介导的去SUMO化共同维持SUMO修饰稳态；其通路位置有助于评估SUMO循环的上游调控。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "STEAP2",
+  "generatedAt": "2026-08-03T16:58:58.278Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "STEAP2 为细胞膜金属还原酶，定位于膜表面，具备直接可及的抗原特征，适于抗体介导的结合与阻断。Open Targets 显示其与多项代谢及血压表型相关，提示其可能参与铁稳态、氧化还原与细胞增殖相关疾病过程。相较于同通路中更广泛表达的金属转运或还原相关分子，STEAP2 具有膜蛋白定位明确、结构可解析且便于表位限定的优势，适合作为优先设计靶点。",
+    "mechanism": "通过结合胞外可及环区，阻断底物进入与还原酶活性中心耦联，抑制跨膜金属还原过程。",
+    "selectedEpitope": "优先选择胞外环与膜外口袋交界区，避开保守催化核心并覆盖底物入口。",
+    "diseaseDirection": "代谢与血压相关疾病",
+    "domain": "六跨膜金属还原酶膜外环及胞外连接区",
+    "evidence": "STEAP2 结构-疾病关联与表位设计证据包",
+    "evidenceSources": [
+      "UniProt Q8NFT2",
+      "RCSB PDB 9PGW",
+      "Open Targets Platform",
+      "InterPro/结构域注释数据库"
+    ],
+    "referenceEntries": "UniProt: Q8NFT2; RCSB PDB: 9PGW; STEAP2 human",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "胞外环1-2交界区",
+        "利于获得高可及性结合并干扰底物入口路径",
+        "优先"
+      ],
+      [
+        "Site B",
+        "远离催化中心的膜外表面片段",
+        "适合维持特异性并降低对同源家族的交叉识别",
+        "备选"
+      ],
+      [
+        "Site C",
+        "靠近保守还原核心的浅表区域",
+        "可能影响酶活但存在家族保守性与脱靶风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险在于STEAP家族保守性导致的交叉反应，应优先利用STEAP2特异环区并结合结构排除保守催化面。避免覆盖过近于电子传递核心的区域，以降低功能不可预测性。",
+    "structurePrepZh": "基于1.46 Å晶体结构进行链A清理、糖基化与缺失残基检查，并标注膜外暴露面。建议结合同源比对确认STEAP2特异表面残基后再开展表位聚类。",
+    "structureRef": "RCSB PDB 9PGW; X-ray 1.46 Å",
+    "antibodies": [
+      "anti-STEAP2 抗体文献克隆",
+      "STEAP家族交叉反应性抗体"
+    ],
+    "interfaceFocus": "胞外环与膜外入口界面",
+    "designMode": "structure-guided",
+    "candidates": [
+      {
+        "target": "STEAP1",
+        "rationale": "STEAP1 与 STEAP2 同属 STEAP 家族并参与相近的跨膜金属还原相关过程，可作为同通路参考靶点。其与 STEAP2 的比较有助于界定家族保守界面与特异表位。"
+      },
+      {
+        "target": "STEAP3",
+        "rationale": "STEAP3 亦为金属还原酶家族成员，关联铁代谢与细胞氧化还原稳态。与 STEAP2 并列分析可用于筛选保守催化位点与可分辨的胞外表位。"
+      },
+      {
+        "target": "TFRC",
+        "rationale": "TFRC 与铁摄取和细胞铁稳态直接相关，构成与 STEAP2 同一铁代谢通路中的上游输入节点。联合评估有助于判断抗体干预对铁稳态网络的影响边界。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

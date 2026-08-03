@@ -1,0 +1,65 @@
+{
+  "gene": "FEN1",
+  "generatedAt": "2026-08-03T12:31:27.665Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FEN1参与冈崎片段成熟、长片段碱基切除修复和复制叉稳定性维持，其核酸内切酶活性异常可影响基因组稳定性，并与神经退行性疾病中的DNA损伤累积机制相关。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌特征，因此作为常规体内阻断型抗体靶点的抗原可及性有限，更适合发展细胞内递送抗体、抗体片段工具分子或结构辅助抑制剂筛选。相较于同通路中PCNA、LIG1等多功能平台蛋白，FEN1具有明确的核酸底物结合沟槽和催化金属离子位点，结构解析充分，利于开展机制导向的表位设计与功能干预验证。",
+    "mechanism": "设计抗体片段结合FEN1 helical arch与H2TH核酸结合区域，阻断5′ flap DNA进入催化沟槽并干扰FEN1-PCNA复合体形成。",
+    "selectedEpitope": "优先覆盖helical arch门控区与H2TH双螺旋-双转角DNA结合界面。",
+    "diseaseDirection": "DNA修复缺陷相关神经退行性疾病",
+    "domain": "FEN1含N端核酸酶核心、helical arch门控区、H2TH DNA结合区及C端PCNA结合基序。",
+    "evidence": "FEN1结构与DNA修复疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P39748 functional annotation",
+      "RCSB PDB 1U7B crystal structure",
+      "DNA replication and base excision repair literature"
+    ],
+    "referenceEntries": "UniProt P39748；RCSB PDB 1U7B；Open Targets FEN1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "helical arch与H2TH DNA结合沟槽邻近界面",
+        "可直接限制flap DNA定位与底物进入，最符合功能阻断策略",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端PCNA结合基序邻近表面",
+        "可削弱FEN1与PCNA装载平台相互作用，影响复制相关切割效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化金属离子口袋周边酸性残基区域",
+        "功能相关性强但高度保守且凹陷，抗体结合构象与选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FEN1为核内酶，常规抗体难以到达作用位点；应优先采用VHH、intrabody或递送型Fab，并避免靶向高度保守催化酸性中心导致交叉反应。",
+    "structurePrepZh": "以1U7B高分辨率晶体结构为模板，保留A/B链构象差异，补全缺失柔性环与C端基序，并标注DNA结合沟槽、催化残基及PCNA结合位点。",
+    "structureRef": "RCSB PDB 1U7B，human FEN1 X-ray structure, 1.88 Å",
+    "antibodies": [
+      "anti-FEN1 diagnostic antibody clone 4E7",
+      "anti-FEN1 monoclonal antibody clone 1C12"
+    ],
+    "interfaceFocus": "helical arch-H2TH flap DNA结合界面",
+    "designMode": "细胞内抗体片段阻断",
+    "candidates": [
+      {
+        "target": "PCNA",
+        "rationale": "PCNA作为复制滑动夹招募FEN1并增强其冈崎片段加工效率，位于同一DNA复制与修复通路。靶向FEN1-PCNA界面可作为互补干预方向。"
+      },
+      {
+        "target": "LIG1",
+        "rationale": "LIG1在FEN1切除flap后完成DNA切口连接，是冈崎片段成熟的下游酶。其功能状态与FEN1介导的复制后加工直接耦联。"
+      },
+      {
+        "target": "APEX1",
+        "rationale": "APEX1在碱基切除修复中产生可由FEN1参与处理的修复中间体，二者共同维持氧化DNA损伤修复。该靶点适合用于DNA修复通路联合评估。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

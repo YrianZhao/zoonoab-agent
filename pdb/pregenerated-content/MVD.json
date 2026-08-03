@@ -1,0 +1,65 @@
+{
+  "gene": "MVD",
+  "generatedAt": "2026-08-03T14:28:33.169Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MVD编码甲羟戊酸二磷酸脱羧酶，催化5-二磷酸甲羟戊酸生成异戊烯焦磷酸，是甲羟戊酸-胆固醇及异戊二烯合成通路的胞质限速相关酶，功能缺陷与播散性浅表性光化性汗孔角化症及多类型汗孔角化症相关。该蛋白主要定位于胞质，缺乏天然胞外结构域或分泌特征，抗体可及性不具备经典膜受体优势，需优先考虑胞内递送、细胞裂解标志物检测或研究型阻断场景。相较同通路HMGCR等高度系统性代谢靶点，MVD在汗孔角化症遗传证据中更贴近病因节点，但作为治疗性抗体靶点优先级受抗原可及性限制。",
+    "mechanism": "抗体设计宜阻断MVD活性位点周围ATP/5-二磷酸甲羟戊酸结合构象，干扰磷酸化脱羧反应所需底物定位。",
+    "selectedEpitope": "优先覆盖GHMP激酶样折叠中ATP结合沟槽及底物入口邻近环区，避免仅选择远端非功能表面。",
+    "diseaseDirection": "汗孔角化症与甲羟戊酸通路",
+    "domain": "MVD为胞质GHMP激酶超家族酶，含ATP结合P-loop样区域、底物结合口袋及二聚体界面。",
+    "evidence": "MVD遗传关联与酶结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB P53602功能与定位注释",
+      "RCSB PDB 3D4J晶体结构记录",
+      "汗孔角化症甲羟戊酸通路遗传研究"
+    ],
+    "referenceEntries": "UniProt P53602；RCSB PDB 3D4J；Open Targets MVD",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ATP结合沟槽与底物入口环区",
+        "直接干扰催化构象和底物定位，功能阻断价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "同源二聚体界面邻近区域",
+        "可能影响酶构象稳定性，适合作为变构抑制备选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离活性位点的溶剂暴露表面",
+        "结合可行性较高但功能效应不确定，需酶活验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MVD为胞质代谢酶，天然抗体可及性不足；治疗性开发需配置胞内递送或降解平台，常规中和抗体更适合体外机制研究。",
+    "structurePrepZh": "以3D4J双链晶体结构为模板，保留A/B链构象用于二聚体界面评估，补全缺失侧链并标注ATP和底物口袋残基。",
+    "structureRef": "RCSB PDB 3D4J，X-ray diffraction，2.4 Å",
+    "antibodies": [
+      "anti-MVD research antibody",
+      "anti-diphosphomevalonate decarboxylase antibody"
+    ],
+    "interfaceFocus": "ATP结合沟槽、底物入口环区及二聚体界面",
+    "designMode": "胞内酶阻断型",
+    "candidates": [
+      {
+        "target": "MVK",
+        "rationale": "MVK位于同一甲羟戊酸通路上游，催化甲羟戊酸磷酸化；其遗传缺陷同样可扰动异戊二烯前体供给并与角化异常相关。"
+      },
+      {
+        "target": "PMVK",
+        "rationale": "PMVK催化甲羟戊酸-5-磷酸生成5-二磷酸甲羟戊酸，是MVD直接上游节点，适合用于通路级功能补偿与联合验证。"
+      },
+      {
+        "target": "FDPS",
+        "rationale": "FDPS位于异戊二烯合成下游，整合IPP和DMAPP生成法呢基焦磷酸，可作为甲羟戊酸通路输出端的药效参照靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

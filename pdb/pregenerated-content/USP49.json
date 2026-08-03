@@ -1,0 +1,65 @@
+{
+  "gene": "USP49",
+  "generatedAt": "2026-08-03T21:31:29.368Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "USP49 为胞内去泛素化酶，主要通过识别泛素化底物并水解异肽键调节蛋白稳定性与RNA剪接相关过程，现有 Open Targets 关联主要集中于红细胞指数、体格性状与瘦体重等遗传性状，尚缺乏明确的抗体可成药疾病通路证据。其催化结构域位于细胞内，不具备分泌蛋白、膜受体或胞外结构域所形成的抗原可及性优势，因此不适合作为常规阻断型治疗抗体主靶点。相较于同类红细胞生成相关通路中的膜受体或分泌配体，USP49 的优先级较低，更适合用于结构生物学、细胞内递送抗体或降解调控研究场景。",
+    "mechanism": "以胞内抗体或递送型结合分子占据 USP49 催化半胱氨酸邻近的泛素结合沟槽，干扰其与泛素化底物的酶-底物复合物形成。",
+    "selectedEpitope": "优先评估 USP 催化结构域中泛素 C 端尾部结合沟槽及催化 Cys-His-Asp 三联体邻近界面。",
+    "diseaseDirection": "红细胞性状与造血调控",
+    "domain": "USP49 含 USP 型去泛素化酶催化结构域，PDB 9YC2 覆盖高分辨率胞内催化核心。",
+    "evidence": "USP49结构与遗传性状关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 遗传关联数据",
+      "UniProt Q70CQ1 蛋白功能注释",
+      "RCSB PDB 9YC2 X射线晶体结构",
+      "去泛素化酶USP家族催化机制文献"
+    ],
+    "referenceEntries": "UniProt Q70CQ1；RCSB PDB 9YC2；Open Targets USP49",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "USP催化核心的泛素C端尾部结合沟槽",
+        "可直接干扰泛素化底物进入催化位点，适合功能阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化三联体邻近的底物定位环区",
+        "可能改变底物构象定位并降低去泛素化效率，需避免完全依赖活性位点小口袋",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化沟槽的结构稳定表面",
+        "结合可行性较高但功能阻断相关性弱，主要适合作为结构捕获或检测表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "USP49 为胞内酶，常规抗体难以进入作用空间；设计应标注递送依赖性，并优先避免与USP家族保守催化核心产生广泛交叉反应。",
+    "structurePrepZh": "以9YC2链A为抗原模板，保留催化结构域完整构象，检查晶体接触、缺失环区与催化残基质子化状态后进行表面可及性评估。",
+    "structureRef": "RCSB PDB 9YC2，1.4 Å X-ray，human USP49 chain A",
+    "antibodies": [
+      "无已获批USP49治疗性抗体",
+      "研究级抗USP49抗体"
+    ],
+    "interfaceFocus": "泛素尾部结合沟槽与底物定位环区",
+    "designMode": "胞内阻断/研究抗体",
+    "candidates": [
+      {
+        "target": "EPOR",
+        "rationale": "EPOR 是红细胞生成素受体，位于红系祖细胞细胞膜，直接介导EPO依赖的JAK2-STAT5红细胞生成信号，抗原可及性显著优于胞内USP49。"
+      },
+      {
+        "target": "EPO",
+        "rationale": "EPO 为分泌型造血因子，通过结合EPOR驱动红细胞生成，与红细胞计数和血红蛋白相关表型处于同一造血调控轴。"
+      },
+      {
+        "target": "JAK2",
+        "rationale": "JAK2 是EPOR下游关键酪氨酸激酶，参与STAT5磷酸化与红系分化信号放大；虽为胞内靶点，但疾病通路证据强于USP49。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

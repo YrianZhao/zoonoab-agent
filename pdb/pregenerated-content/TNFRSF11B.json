@@ -1,0 +1,65 @@
+{
+  "gene": "TNFRSF11B",
+  "generatedAt": "2026-08-03T17:22:05.915Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TNFRSF11B编码骨保护素OPG，是RANKL-RANK破骨细胞分化轴的可溶性诱饵受体，TNFRSF11B功能缺失可导致青少年Paget病及高骨转换表型。该蛋白为分泌型糖蛋白，N端富含半胱氨酸结构域直接暴露于细胞外环境，抗原可及性优于跨膜受体胞内调控节点。相较RANK等膜受体，TNFRSF11B具有明确的配体结合结构和骨密度遗传疾病证据，适合围绕RANKL结合界面开展功能增强或稳定化抗体设计。",
+    "mechanism": "通过结合OPG的N端CRD配体结合区，稳定OPG-RANKL复合物或增强OPG对RANKL的遮蔽，从而阻断RANKL与RANK相互作用。",
+    "selectedEpitope": "优先聚焦CRD2-CRD3邻近RANKL接触面边缘，避免完全遮挡核心配体结合残基。",
+    "diseaseDirection": "骨重塑异常与Paget病方向",
+    "domain": "OPG含4个N端TNFR样富半胱氨酸结构域，后接死亡结构域同源区、肝素结合区和二聚化相关C端。",
+    "evidence": "TNFRSF11B-OPG骨重塑通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与表型关联",
+      "UniProt O00300蛋白功能与结构域注释",
+      "RCSB PDB 3URF实验解析复合物结构",
+      "RANKL-RANK-OPG破骨细胞分化通路文献"
+    ],
+    "referenceEntries": "UniProt O00300；RCSB PDB 3URF；Open Targets TNFRSF11B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CRD2-CRD3配体结合界面边缘",
+        "可增强OPG对RANKL的稳定结合并保留关键接触几何",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CRD1外侧溶剂暴露面",
+        "适合构建非竞争性稳定化抗体，降低干扰RANKL结合风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "CRD3核心RANKL接触残基区",
+        "可能直接阻断OPG-RANKL结合，需限定为机制验证或抑制型设计",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CRD核心界面存在配体竞争风险，设计应优先选择界面边缘或别构稳定表位，并评估对OPG-RANKL亲和力的影响。",
+    "structurePrepZh": "以3URF中OPG与RANKL复合物为模板，保留抗原链A/Z相关界面，补全缺失侧链并标注糖基化与二硫键约束。",
+    "structureRef": "RCSB PDB 3URF，X-ray diffraction，2.701 Å",
+    "antibodies": [
+      "Denosumab",
+      "Burosumab"
+    ],
+    "interfaceFocus": "OPG CRD2-CRD3与RANKL三聚体接触面",
+    "designMode": "配体遮蔽增强型",
+    "candidates": [
+      {
+        "target": "TNFSF11",
+        "rationale": "TNFSF11编码RANKL，是OPG直接结合并中和的配体，驱动RANK依赖性破骨细胞分化。抗RANKL策略已有明确骨吸收抑制机制。"
+      },
+      {
+        "target": "TNFRSF11A",
+        "rationale": "TNFRSF11A编码RANK，是RANKL在破骨细胞前体上的受体，介导NF-κB和NFATc1相关分化信号。阻断RANKL-RANK结合可直接抑制破骨细胞生成。"
+      },
+      {
+        "target": "TRAF6",
+        "rationale": "TRAF6是RANK胞内信号复合物的关键适配蛋白，连接RANK激活与NF-κB、MAPK及NFATc1通路。其位于同一骨重塑轴下游，但抗体可及性低于胞外靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

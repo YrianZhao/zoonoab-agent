@@ -1,0 +1,65 @@
+{
+  "gene": "SNRPA",
+  "generatedAt": "2026-08-03T16:46:30.653Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SNRPA 是 U1 snRNP 核心组分，参与前体 mRNA 剪接体装配与 U1 snRNA 5' 剪接位点识别，其异常暴露可与系统性自身免疫反应及神经退行性疾病相关过程相联系。该蛋白存在明确的实验结构基础，且已获得高分辨率晶体学信息，有利于解析 RNA 结合界面与蛋白互作界面。相较于缺乏稳定胞外可及性的核内靶点，SNRPA 的直接抗体开发优先级主要体现在其疾病相关性较强、结构信息完整，但抗原可及性与成药路径较受限，适合作为机制验证型而非经典膜表面阻断型靶点。",
+    "mechanism": "抗体结合 SNRPA 的 RRM 介导 RNA 结合面，干扰其与 U1 snRNA 及剪接体组分的相互作用。",
+    "selectedEpitope": "优先锁定 RRM 的 RNA 识别表面与保守芳香残基邻域，避免核心折叠区。",
+    "diseaseDirection": "自身免疫与神经退行性疾病",
+    "domain": "N 端 RNA recognition motif, 约8-90 aa；C 端为低复杂度富精氨酸/甘氨酸区",
+    "evidence": "SNRPA 结构与疾病关联证据包",
+    "evidenceSources": [
+      "UniProt: P09012",
+      "RCSB PDB: 1NU4",
+      "Open Targets Platform",
+      "Human Protein Atlas"
+    ],
+    "referenceEntries": "UniProt P09012；RCSB 1NU4；Open Targets SNRPA；HPA SNRPA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RRM β-sheet RNA 结合面",
+        "直接干扰 U1 snRNA 识别，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RRM 两侧环区",
+        "降低 RNA 结合亲和力，兼顾表位暴露",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端低复杂度区",
+        "可能影响蛋白装配，但特异性与稳定性较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "核内靶点导致体内可达性受限，且 RRM 区高度保守，存在同源蛋白交叉反应风险。设计上应优先选择结构暴露且序列差异较高的环区，并通过表位映射规避折叠核心。",
+    "structurePrepZh": "建议以 1NU4 为模板完成链 A/B 对齐、缺失残基补建与表面电荷标注，并结合 RRM 叠合分析筛选抗体可接近面。",
+    "structureRef": "PDB 1NU4, X-ray diffraction, 1.8 A",
+    "antibodies": [
+      "anti-Sm/RNP 自身抗体",
+      "抗 U1-70K 相关自身抗体"
+    ],
+    "interfaceFocus": "RRM RNA 结合面与环区界面",
+    "designMode": "structure-guided",
+    "candidates": [
+      {
+        "target": "SNRPD1",
+        "rationale": "SNRPD1 与 SNRPA 同属 U1 snRNP/Sm 核糖核蛋白复合体，处于相同剪接体装配通路。其作为复合体候选靶点可用于验证对 snRNP 组装干预的通路一致性。"
+      },
+      {
+        "target": "SNRPB",
+        "rationale": "SNRPB 是 Sm 核心环成员，参与 snRNP 装配与剪接体稳定化，和 SNRPA 共享同一核内 RNA 加工疾病通路。该靶点适合作为复合体层面的并行验证对象。"
+      },
+      {
+        "target": "U1-70K",
+        "rationale": "U1-70K 与 SNRPA 在 U1 snRNP 中协同识别 5' 剪接位点，是剪接体早期识别模块的关键组成。将其作为候选靶点可覆盖同一分子通路中的另一关键接触节点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

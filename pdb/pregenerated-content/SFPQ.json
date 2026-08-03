@@ -1,0 +1,65 @@
+{
+  "gene": "SFPQ",
+  "generatedAt": "2026-08-03T16:29:00.062Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SFPQ为核内RNA/DNA结合蛋白，参与剪接、转录调控、DNA损伤应答及paraspeckle相关核内复合体组装，在肿瘤转录重编程与感染应答中具有疾病关联信号。其主要定位于细胞核，缺乏天然胞外结构域或分泌暴露形式，常规全长抗体的抗原可及性弱于膜受体或分泌因子。相较于PDCD1、EGFR、VEGFA等同疾病领域的可及性靶点，SFPQ更适合作为机制研究、胞内递送抗体或结构探针的低优先级探索靶点。",
+    "mechanism": "设计抗体需以胞内递送为前提，阻断SFPQ与NONO/PSPC1经DBHS二聚化界面形成核内复合体，并干扰其RRM介导的RNA结合。",
+    "selectedEpitope": "优先评估DBHS二聚化界面邻近RRM2-螺旋束区域，兼顾NONO结合阻断与构象特异识别。",
+    "diseaseDirection": "肿瘤转录调控与感染应答",
+    "domain": "SFPQ含N端低复杂度区、双RRM结构域、NOPS区及C端卷曲螺旋样DBHS二聚化模块。",
+    "evidence": "SFPQ结构与肿瘤转录调控证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P23246功能与亚细胞定位注释",
+      "RCSB PDB 7LRU晶体结构记录",
+      "DBHS家族paraspeckle复合体结构研究"
+    ],
+    "referenceEntries": "UniProt P23246；RCSB PDB 7LRU；Open Targets SFPQ",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DBHS二聚化界面邻近RRM2/NOPS区",
+        "可干扰SFPQ与NONO/PSPC1复合体装配，机制相关性较强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RRM1-RRM2外侧RNA结合沟槽",
+        "有望影响RNA识别，但需避免广泛交叉阻断RRM家族保守表面",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端低复杂度富脯氨酸/谷氨酰胺区域",
+        "柔性高且结构解析不足，构象表位稳定性和成药性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "核心风险为胞内核定位导致抗体可及性不足，且RRM保守面存在交叉反应风险；建议采用胞内递送格式并优先筛选构象依赖表位。",
+    "structurePrepZh": "以7LRU抗原链B为结构模板，补全缺失柔性片段，保留RRM/NOPS/DBHS核心构象，并评估二聚体界面可阻断性。",
+    "structureRef": "RCSB PDB 7LRU，X射线晶体结构，1.6 Å",
+    "antibodies": [
+      "商业研究级anti-SFPQ抗体",
+      "商业研究级anti-PSF/SFPQ抗体"
+    ],
+    "interfaceFocus": "RRM2-NOPS-DBHS二聚化界面",
+    "designMode": "胞内递送阻断",
+    "candidates": [
+      {
+        "target": "NONO",
+        "rationale": "NONO与SFPQ同属DBHS蛋白并形成异二聚体，是paraspeckle及RNA加工复合体的直接结构伙伴。靶向NONO可从同一核内RNA调控轴干预复合体稳定性。"
+      },
+      {
+        "target": "PSPC1",
+        "rationale": "PSPC1与SFPQ/NONO共同参与paraspeckle相关核内核糖核蛋白复合体组装，在肿瘤转录调控和细胞迁移表型中具有机制关联。"
+      },
+      {
+        "target": "NEAT1",
+        "rationale": "NEAT1长链非编码RNA作为paraspeckle骨架募集SFPQ、NONO和PSPC1，是同一核内复合体通路的核心支架分子。其不适宜常规抗体靶向，但可作为联合机制验证靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

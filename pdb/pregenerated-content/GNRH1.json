@@ -1,0 +1,65 @@
+{
+  "gene": "GNRH1",
+  "generatedAt": "2026-08-03T12:52:19.800Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GNRH1编码下丘脑促性腺激素释放激素，是下丘脑-垂体-性腺轴的上游分泌肽，通过结合GNRHR驱动垂体促性腺激素释放，遗传或分泌缺陷与低促性腺激素性性腺功能减退直接相关。其成熟肽为胞外可及的分泌性十肽，天然位于受体配体界面，适合以抗体或片段抗体进行配体捕获。相较下游LH/FSH亚基，GNRH1处于通路起始节点，干预可更早阻断垂体GNRHR激活，在子宫内膜异位症等激素依赖性疾病方向具备优先级。",
+    "mechanism": "抗体结合GNRH1成熟十肽受体识别面，阻断其与垂体GNRHR跨膜受体胞外口袋的配体结合，从而降低LH与FSH释放。",
+    "selectedEpitope": "优先覆盖pGlu1-His2-Trp3-Ser4及Gly6-Leu7-Arg8受体接触面，保留C端酰胺构象识别。",
+    "diseaseDirection": "HPG轴与激素依赖性疾病",
+    "domain": "GNRH1前体含信号肽、成熟GnRH十肽及GAP相关肽段；功能抗原为分泌性成熟十肽。",
+    "evidence": "GNRH1-GNRHR轴疾病遗传与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB P01148功能与加工注释",
+      "RCSB PDB 4D5M高分辨率晶体结构",
+      "OMIM与ClinGen低促性腺激素性性腺功能减退证据"
+    ],
+    "referenceEntries": "UniProt P01148；RCSB PDB 4D5M；HGNC:4419；Open Targets ENSG00000147437",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "成熟GnRH N端pGlu1-His2-Trp3-Ser4",
+        "富集受体识别关键残基，适合构建中和型配体捕获抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "成熟GnRH中段Tyr5-Gly6-Leu7-Arg8",
+        "参与GNRHR结合与构象稳定，可作为扩展结合面提高亲和力",
+        "备选"
+      ],
+      [
+        "Site C",
+        "成熟GnRH C端Pro9-Gly10-NH2",
+        "C端酰胺对活性重要但序列短小，单独成表位易产生构象与特异性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "成熟肽仅10个氨基酸，表位面积有限，需避免仅依赖线性短片段导致亲和力不足；建议采用肽-载体复合物与构象约束肽共同筛选。",
+    "structurePrepZh": "以4D5M高分辨率晶体结构提取抗原链A-D，校验焦谷氨酸化与C端酰胺化状态，并生成多构象肽抗原用于对接。",
+    "structureRef": "RCSB PDB 4D5M，X-ray diffraction，0.85 Å，人源GnRH相关晶体结构",
+    "antibodies": [
+      "anti-GnRH monoclonal antibody",
+      "GnRH vaccine-induced neutralizing antibody"
+    ],
+    "interfaceFocus": "GnRH成熟肽与GNRHR胞外配体结合口袋界面",
+    "designMode": "分泌肽中和",
+    "candidates": [
+      {
+        "target": "GNRHR",
+        "rationale": "GNRHR是GNRH1的垂体受体，直接介导LH与FSH释放；抗体若能识别胞外环或受体口袋邻近区域，可阻断配体激活。"
+      },
+      {
+        "target": "LHB",
+        "rationale": "LHB为GnRH刺激后释放的下游促性腺激素亚基，参与LH介导的性腺类固醇生成；适合作为HPG轴下游效应节点。"
+      },
+      {
+        "target": "FSHB",
+        "rationale": "FSHB是GnRH-GNRHR轴调控的FSH特异亚基，控制卵泡发育与性腺功能；在生殖内分泌疾病中具有通路一致性。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

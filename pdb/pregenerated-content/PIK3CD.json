@@ -1,0 +1,65 @@
+{
+  "gene": "PIK3CD",
+  "generatedAt": "2026-08-03T15:17:23.397Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PIK3CD编码PI3Kδ催化亚基p110δ，是B细胞受体、T细胞受体及细胞因子受体下游PI3K-AKT-mTOR轴的核心催化节点，获得性功能增强突变可导致activated PI3K-delta syndrome并驱动淋巴细胞异常存活。该蛋白为胞内脂质激酶，天然抗体可及性低，但其调节界面、催化口袋周边构象及与PIK3R1/p85α的复合体结构可用于细胞内递送抗体或研究级构象阻断分子设计。相比AKT、MTOR等下游广泛节点，PIK3CD在白细胞中表达更偏倚，疾病遗传证据更直接，作为免疫缺陷与B细胞恶性疾病通路干预靶点具有较高优先级。",
+    "mechanism": "设计分子阻断p110δ与PIK3R1调控亚基稳定界面或限制激酶结构域ATP结合构象，从而降低PIP2向PIP3转化并抑制AKT募集。",
+    "selectedEpitope": "优先锁定helical domain与kinase domain邻近的p85α调控接触面，兼顾ATP口袋外侧构象环。",
+    "diseaseDirection": "PI3Kδ免疫失衡与B细胞肿瘤",
+    "domain": "p110δ含ABD、Ras-binding、C2、helical及C端kinase结构域，6PYR覆盖催化核心构象。",
+    "evidence": "PIK3CD遗传免疫病与PI3Kδ通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt O00329功能与结构域注释",
+      "RCSB PDB 6PYR晶体结构记录",
+      "ClinVar与OMIM中PIK3CD相关免疫缺陷证据"
+    ],
+    "referenceEntries": "UniProt O00329；RCSB PDB 6PYR；Open Targets PIK3CD",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "helical-kinase domain调控界面及p85α接触邻域",
+        "有利于干扰调控亚基介导的活化构象稳定，机制相关性强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "kinase domain ATP结合裂隙外侧构象环",
+        "可通过别构占位限制催化闭合构象，避免直接竞争ATP高保守核心",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Ras-binding domain与C2 domain相邻表面",
+        "可能影响膜定位或Ras协同调节，但同源保守性与功能冗余风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PIK3CD为胞内酶，常规治疗性抗体难以直接进入细胞；设计宜定位于递送型Fab/VHH、PRObody样研究工具或细胞内抗体平台，并严格评估PIK3CA/B/G交叉反应。",
+    "structurePrepZh": "以6PYR晶体结构为模板，保留A、B链复合体界面信息，补全缺失环区并去除非关键小分子后进行质子化、能量最小化及同源亚型比对。",
+    "structureRef": "RCSB PDB 6PYR，PI3Kδ复合体X射线结构，2.21 Å",
+    "antibodies": [
+      "无已获批PIK3CD直接抗体",
+      "研究级抗p110δ抗体"
+    ],
+    "interfaceFocus": "p85α调控界面与kinase domain外侧别构沟槽",
+    "designMode": "胞内靶点构象阻断",
+    "candidates": [
+      {
+        "target": "PIK3R1",
+        "rationale": "PIK3R1编码p85α调控亚基，直接结合p110δ并控制PI3K复合体稳定性与抑制状态，是APDS相关PI3Kδ通路的近端调节节点。"
+      },
+      {
+        "target": "AKT1",
+        "rationale": "AKT1位于PIP3下游，通过PH结构域募集至质膜并介导细胞存活信号，可作为PI3Kδ过度活化后的关键效应节点。"
+      },
+      {
+        "target": "MTOR",
+        "rationale": "MTOR整合AKT下游生长与代谢信号，在PI3Kδ驱动的淋巴细胞增殖和免疫异常中承担终末效应调控作用。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

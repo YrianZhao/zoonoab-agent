@@ -1,0 +1,65 @@
+{
+  "gene": "CDK6",
+  "generatedAt": "2026-08-03T18:24:35.847Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CDK6是细胞周期G1期推进的核心丝氨酸/苏氨酸激酶，通过与D型细胞周期蛋白结合并磷酸化RB1，释放E2F转录程序，促进乳腺癌和小细胞肺癌等肿瘤增殖。该蛋白主要定位于胞质和细胞核，缺乏天然胞外结构域，抗体作为常规细胞外阻断药物的抗原可及性不足，但可用于胞内递送型抗体、研究级构象探针或降解偶联设计。相较于CDK4，CDK6在部分血液肿瘤和上皮肿瘤中兼具细胞周期依赖功能及转录调控特征，且已有高分辨率激酶结构支持精确界面设计，因此在机制验证型抗体工程中具有优先开发价值。",
+    "mechanism": "阻断CDK6 ATP结合裂隙或Cyclin D结合界面，抑制CDK6对RB1的Ser807/811等位点磷酸化，维持RB1对E2F转录因子的抑制。",
+    "selectedEpitope": "优先聚焦N端小叶PSTAIRE样αC螺旋与Cyclin D结合邻近界面，兼顾ATP口袋外缘构象锁定。",
+    "diseaseDirection": "乳腺癌与小细胞肺癌细胞周期通路",
+    "domain": "CDK6包含典型蛋白激酶结构域，由N端β折叠小叶、αC螺旋、铰链区、催化环和C端α螺旋小叶组成。",
+    "evidence": "CDK6细胞周期致癌驱动与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与药理关联",
+      "UniProt Q00534蛋白功能与亚细胞定位注释",
+      "RCSB PDB 1BLX X射线晶体结构",
+      "Reactome Cell Cycle G1/S transition通路注释"
+    ],
+    "referenceEntries": "UniProt Q00534；RCSB PDB 1BLX；Open Targets ENSG00000105810",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "αC螺旋及Cyclin D结合邻近面",
+        "干扰CDK6-Cyclin D复合体装配并锁定非活化构象",
+        "优先"
+      ],
+      [
+        "Site B",
+        "铰链区与ATP结合裂隙外缘",
+        "作为变构阻断位点限制ATP定位和催化构象转换",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化环HRD基序与活化环邻域",
+        "区域高度保守，易产生CDK家族交叉反应，需严格选择性评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CDK6为胞内激酶，常规抗体难以直接到达作用位点；设计宜限定为细胞内递送、抗体片段探针或降解偶联策略，并加强CDK4交叉反应筛选。",
+    "structurePrepZh": "以1BLX高分辨率晶体结构为模板，补全缺失侧链与质子化状态，保留ATP口袋和αC螺旋构象信息，并对链A/B进行同源界面对齐评估。",
+    "structureRef": "RCSB PDB 1BLX，human CDK6 crystal structure，1.9 Å",
+    "antibodies": [
+      "ab124821",
+      "DCS83"
+    ],
+    "interfaceFocus": "αC螺旋-Cyclin D结合面与ATP裂隙外缘",
+    "designMode": "胞内靶向抗体片段",
+    "candidates": [
+      {
+        "target": "CDK4",
+        "rationale": "CDK4与CDK6共同结合D型细胞周期蛋白并磷酸化RB1，是G1/S转换通路中的并行核心激酶；适合作为选择性与交叉反应评估靶点。"
+      },
+      {
+        "target": "CCND1",
+        "rationale": "CCND1编码Cyclin D1，直接激活CDK4/6复合体并在乳腺癌中常见扩增；阻断其与CDK6装配可抑制RB1磷酸化轴。"
+      },
+      {
+        "target": "RB1",
+        "rationale": "RB1是CDK4/6-Cyclin D复合体的关键底物，其磷酸化状态决定E2F释放和S期基因表达；可作为通路药效与抗原设计参照节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

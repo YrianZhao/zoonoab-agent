@@ -1,0 +1,65 @@
+{
+  "gene": "TSTD1",
+  "generatedAt": "2026-08-03T17:33:28.679Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TSTD1为胞质硫转移酶样蛋白，参与硫代硫酸盐与谷胱甘肽相关硫代谢反应，Open Targets显示其与神经退行性疾病及血清硫代硫酸:谷胱甘肽硫转移酶水平存在遗传或组学关联。该蛋白并非经典膜受体或分泌抗原，天然抗原可及性弱，因此更适合用于细胞内递送抗体、胞内抗体或结构生物学验证型结合分子设计。其1.043 Å高分辨率实验结构优于多数同类代谢酶靶点，可支持活性口袋邻近表位的精确避让或构象锁定设计，但转化优先级应低于具有胞外可及性的疾病通路靶点。",
+    "mechanism": "设计结合TSTD1催化半胱氨酸位点邻近沟槽的抗体片段，阻断硫代硫酸盐/谷胱甘肽底物进入并稳定非催化构象。",
+    "selectedEpitope": "优先覆盖rhodanese-like硫转移酶结构域的催化Cys邻近底物沟槽外缘，避免完全埋入活性口袋。",
+    "diseaseDirection": "神经退行性疾病相关硫代谢",
+    "domain": "TSTD1主要由单一rhodanese-like硫转移酶折叠构成，含保守催化半胱氨酸活性环。",
+    "evidence": "TSTD1硫代谢与神经退行性关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt Q8NFU3功能注释",
+      "RCSB PDB 6BEV晶体结构",
+      "人类硫代硫酸盐-谷胱甘肽硫转移酶相关文献"
+    ],
+    "referenceEntries": "UniProt Q8NFU3；RCSB PDB 6BEV；Open Targets TSTD1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "rhodanese-like结构域催化Cys邻近底物沟槽外缘",
+        "可干预底物进入并利用高分辨率结构进行精细化设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "活性环相邻α/β折叠表面",
+        "有助于稳定非催化构象，降低直接竞争小分子底物的不确定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "链A/B晶体接触或低暴露疏水斑块区域",
+        "可能反映晶体堆积而非生理界面，成药性与可及性不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TSTD1为胞内酶，常规治疗性抗体难以到达靶点；建议限定为胞内抗体、递送抗体片段或机制验证工具，并严格排除晶体接触表位。",
+    "structurePrepZh": "采用6BEV高分辨率X射线结构，分别评估A、B链一致性，补全氢原子、质子化催化Cys并标注底物沟槽与晶体接触面。",
+    "structureRef": "RCSB PDB 6BEV，1.043 Å X-ray TSTD1结构",
+    "antibodies": [
+      "无临床阶段TSTD1抗体",
+      "无已批准TSTD1抗体"
+    ],
+    "interfaceFocus": "催化Cys活性环与底物沟槽外缘",
+    "designMode": "胞内酶构象阻断",
+    "candidates": [
+      {
+        "target": "MPST",
+        "rationale": "MPST为3-巯基丙酮酸硫转移酶，参与半胱氨酸分解、硫烷硫与硫化氢代谢，与TSTD1同属硫转移酶相关硫代谢网络。其在氧化还原稳态和神经系统代谢应激中具有更充分的功能研究基础。"
+      },
+      {
+        "target": "TST",
+        "rationale": "TST编码rhodanese硫转移酶，催化硫代硫酸盐相关硫转移反应，是TSTD1功能注释中最接近的同通路参照靶点。其线粒体硫代谢和氰化物解毒功能可作为TSTD1机制验证的比较轴。"
+      },
+      {
+        "target": "GSS",
+        "rationale": "GSS参与谷胱甘肽生物合成，位于TSTD1相关硫代硫酸盐-谷胱甘肽代谢背景中。该靶点可用于评估谷胱甘肽供给对硫转移反应和氧化还原稳态的通路依赖性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

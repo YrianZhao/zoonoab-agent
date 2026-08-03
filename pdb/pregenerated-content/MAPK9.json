@@ -1,0 +1,65 @@
+{
+  "gene": "MAPK9",
+  "generatedAt": "2026-08-03T14:04:16.950Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAPK9编码JNK2，属于应激激活型丝裂原活化蛋白激酶，在炎症因子、DNA损伤和致癌应激后通过磷酸化JUN、ATF2等转录因子参与肿瘤细胞增殖、凋亡逃逸和应激适应。该蛋白为胞内丝氨酸/苏氨酸激酶，天然抗原可及性低于膜受体或分泌蛋白，但晶体结构解析度高，可支持胞内递送抗体、降解抗体或研究级构象抗体设计。相较MAPK8和MAPK10，MAPK9在多癌种关联数据中具有较高疾病覆盖度，并具备明确ATP结合裂隙与底物对接沟槽，优先用于机制型阻断分子设计。",
+    "mechanism": "通过抗体片段占据MAPK9的D-recruitment site或ATP结合裂隙邻近构象面，阻断JNK2与JUN、ATF2等底物的对接及后续磷酸化。",
+    "selectedEpitope": "优先靶向N端激酶叶与C端激酶叶之间的底物对接沟槽及D-recruitment site边缘。",
+    "diseaseDirection": "肿瘤应激MAPK/JNK通路",
+    "domain": "MAPK9含典型蛋白激酶结构域，具N端β折叠叶、C端α螺旋叶、ATP结合裂隙和活化环TPY基序。",
+    "evidence": "MAPK9-JNK2肿瘤应激通路结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P45984功能与结构域注释",
+      "RCSB PDB 7N8T晶体结构记录",
+      "Reactome MAPK/JNK信号通路注释"
+    ],
+    "referenceEntries": "UniProt:P45984；RCSB PDB:7N8T；HGNC:MAPK9",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "D-recruitment site及底物对接沟槽",
+        "直接干扰JUN/ATF2等底物 docking，机制选择性较高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ATP结合裂隙外缘与铰链区邻近表面",
+        "稳定非活性构象并降低催化口袋可用性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "活化环TPY基序周边",
+        "可能影响磷酸化状态识别，但构象动态和交叉反应风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAPK家族激酶结构保守，ATP口袋相关表位易与MAPK8/MAPK10交叉反应；宜优先筛选JNK2特异性底物对接面并验证胞内递送效率。",
+    "structurePrepZh": "以7N8T链A为模板，保留激酶核心构象，检查配体、磷酸化状态和缺失环区；对活化环与对接沟槽进行局部柔性建模。",
+    "structureRef": "RCSB PDB 7N8T，X-ray diffraction，1.69 Å",
+    "antibodies": [
+      "anti-JNK2 research antibody",
+      "anti-phospho-SAPK/JNK Thr183/Tyr185 antibody"
+    ],
+    "interfaceFocus": "底物D-motif对接沟槽与活化环邻域",
+    "designMode": "胞内构象阻断",
+    "candidates": [
+      {
+        "target": "MAPK8",
+        "rationale": "MAPK8编码JNK1，与MAPK9同属JNK应激激酶分支，参与JUN磷酸化和肿瘤应激反应。可作为同通路选择性与补偿机制评估靶点。"
+      },
+      {
+        "target": "MAPK10",
+        "rationale": "MAPK10编码JNK3，保留JNK底物识别与TPY活化机制。其组织分布不同，有助于评估JNK亚型交叉反应与安全性边界。"
+      },
+      {
+        "target": "JUN",
+        "rationale": "JUN是JNK2的经典磷酸化底物和AP-1转录复合体核心成员，直接承接受MAPK9调控的应激转录输出。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

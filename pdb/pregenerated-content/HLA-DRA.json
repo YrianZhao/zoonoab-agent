@@ -1,0 +1,65 @@
+{
+  "gene": "HLA-DRA",
+  "generatedAt": "2026-08-03T19:49:13.294Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HLA-DRA编码HLA-DR α链，与HLA-DR β链形成MHC II异二聚体，参与抗原肽呈递并驱动CD4+ T细胞受体识别，在自身免疫性皮肤炎症、感染性炎症和B细胞淋巴瘤微环境中具有明确免疫调节意义。该蛋白为I型膜蛋白，抗原结合平台位于细胞外α1/α2结构域，具备良好的抗体可及性。相较于细胞内免疫调控分子，HLA-DRA具有可解析的胞外复合物结构和疾病组织表达可检测性，适合作为免疫呈递轴的抗体设计入口。",
+    "mechanism": "抗体结合HLA-DR α1结构域近肽结合槽区域，空间阻断HLA-DR-肽复合物与TCR/CD4的稳定识别，降低抗原特异性CD4+ T细胞活化。",
+    "selectedEpitope": "优先选择α1结构域肽结合槽外侧α螺旋与TCR接触边界，避免直接覆盖保守β2微结构样稳定界面。",
+    "diseaseDirection": "MHC II抗原呈递相关免疫炎症",
+    "domain": "HLA-DRA含信号肽、胞外α1肽结合结构域、α2免疫球蛋白样结构域、跨膜区及短胞质尾。",
+    "evidence": "HLA-DR抗原呈递轴结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与表达关联",
+      "UniProt P01903蛋白结构域与亚细胞定位注释",
+      "RCSB PDB 1FV1晶体结构解析数据",
+      "MHC II-TCR/CD4相互作用结构与免疫学文献"
+    ],
+    "referenceEntries": "UniProt:P01903；RCSB PDB:1FV1；HGNC:HLA-DRA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "α1结构域肽结合槽外侧α螺旋/TCR接触边界",
+        "可干预HLA-DR-肽复合物与TCR识别，兼顾抗原可及性与功能阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "α2免疫球蛋白样结构域侧面暴露环区",
+        "适合构建非竞争性结合抗体，用于细胞表面HLA-DR标记或递送策略",
+        "备选"
+      ],
+      [
+        "Site C",
+        "α链与β链异二聚体装配界面邻近区域",
+        "可能影响MHC II复合物稳定性，但保守性高且存在广泛免疫功能干扰风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HLA-DR为核心抗原呈递分子，广泛阻断可能导致免疫抑制及抗感染风险；设计应限制于疾病相关构象或组织表达场景，并避免破坏α/β链基础装配。",
+    "structurePrepZh": "以1FV1的1.9 Å X射线结构为模板，保留HLA-DR α/β异二聚体及结合肽，校正糖基化与缺失侧链后进行表面可及性和TCR接触面标注。",
+    "structureRef": "RCSB PDB 1FV1，人HLA-DR复合物X射线结构，1.9 Å",
+    "antibodies": [
+      "L243",
+      "TAL.1B5"
+    ],
+    "interfaceFocus": "α1肽结合槽外侧α螺旋与TCR接触边界",
+    "designMode": "阻断型Fab/VHH设计",
+    "candidates": [
+      {
+        "target": "HLA-DRB1",
+        "rationale": "HLA-DRB1编码HLA-DR β链，直接与HLA-DRA形成抗原呈递异二聚体；其β1结构域参与肽结合槽形成，是同一MHC II呈递轴中的高相关靶点。"
+      },
+      {
+        "target": "CD4",
+        "rationale": "CD4作为辅助受体结合MHC II β2结构域并稳定TCR-MHC II相互作用；靶向CD4可在同一CD4+ T细胞活化通路中降低抗原呈递信号放大。"
+      },
+      {
+        "target": "CIITA",
+        "rationale": "CIITA是MHC II基因转录的主调控因子，控制HLA-DRA、HLA-DRB及相关抗原呈递分子表达；其通路地位支持作为同一抗原呈递轴的机制参照靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

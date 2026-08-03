@@ -1,0 +1,65 @@
+{
+  "gene": "RFC1",
+  "generatedAt": "2026-08-03T15:59:21.937Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RFC1 是复制因子 C 复合体的大亚基，负责在 DNA 引物-模板连接处结合 PCNA 并驱动夹钳装载，维持复制与错配修复相关基因组稳定性。RFC1 内含子 AAGGG 重复扩增与 CANVAS 明确相关，但 RFC1 为核内 DNA 复制装载因子，缺乏胞外结构域或分泌形式，抗体抗原可及性显著受限。相较于常规膜受体或分泌型疾病靶点，RFC1 不具备体内阻断型抗体开发优先级，更适合作为结构生物学验证、细胞内递送抗体或研究级结合分子靶点。",
+    "mechanism": "设计分子应阻断 RFC1 AAA+ 模块与 PCNA 滑动夹钳及引物-模板 DNA 的协同接触，干扰 RFC 复合体介导的 PCNA 装载。",
+    "selectedEpitope": "优先聚焦 RFC1 AAA+ ATPase 近 PCNA 结合界面，避开高度保守 Walker A/P-loop 催化核心。",
+    "diseaseDirection": "CANVAS与DNA复制修复异常",
+    "domain": "RFC1 含 N 端 BRCT 区、AAA+ ATPase 核心与 C 端 collar/寡聚化结构域。",
+    "evidence": "RFC1-CANVAS遗传关联与RFC-PCNA结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P35251 functional annotation",
+      "RCSB PDB 6VVO electron microscopy structure",
+      "Literature on RFC1 repeat expansion in CANVAS"
+    ],
+    "referenceEntries": "UniProtKB P35251；RCSB PDB 6VVO；Open Targets RFC1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "AAA+ ATPase 邻近 PCNA 结合面",
+        "可直接干扰 RFC1-PCNA 夹钳装载界面，机制可验证性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RFC1 C 端 collar/寡聚化接触区",
+        "可能影响 RFC 五聚体构象稳定与夹钳装载构象转换",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Walker A/P-loop ATP 结合核心",
+        "高度保守且构象依赖强，脱靶与功能广泛抑制风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RFC1 为核内蛋白，常规抗体体内可及性不足；催化核心保守性高，宜采用构象表位筛选并限定为细胞内递送或研究用途。",
+    "structurePrepZh": "以 6VVO 冷冻电镜复合体为模板，保留 RFC1 所在链及 PCNA/DNA 邻近界面，补全缺失环区并标注 ATPase 保守基序。",
+    "structureRef": "RCSB PDB 6VVO，human RFC-PCNA-DNA cryo-EM structure",
+    "antibodies": [
+      "无已获批RFC1靶向治疗抗体",
+      "研究级anti-RFC1 antibody"
+    ],
+    "interfaceFocus": "RFC1 AAA+模块-PCNA-DNA夹钳装载界面",
+    "designMode": "细胞内结合分子",
+    "candidates": [
+      {
+        "target": "RFC2",
+        "rationale": "RFC2 是 RFC 夹钳装载复合体小亚基，参与 PCNA 装载与复制叉稳定，处于同一 DNA 复制和修复通路。"
+      },
+      {
+        "target": "PCNA",
+        "rationale": "PCNA 是 RFC 直接装载的滑动夹钳，连接 DNA 聚合酶、错配修复与复制应激响应，是同一功能轴的核心节点。"
+      },
+      {
+        "target": "LIG1",
+        "rationale": "LIG1 与 PCNA 依赖的冈崎片段成熟和长片段碱基切除修复相关，功能上位于 RFC-PCNA 介导的 DNA 合成后处理通路。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

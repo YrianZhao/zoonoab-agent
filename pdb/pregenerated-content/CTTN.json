@@ -1,0 +1,65 @@
+{
+  "gene": "CTTN",
+  "generatedAt": "2026-08-03T11:43:54.064Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CTTN编码的cortactin为胞质侧肌动蛋白调控支架蛋白，参与Arp2/3介导的分支肌动蛋白成核、细胞迁移、血小板形态调节及炎症细胞黏附反应。现有Open Targets关联以药物过敏、血小板计数、肺功能与药物反应表型为主，关联强度偏探索性而非成熟治疗靶点。由于cortactin主要定位于胞内皮质肌动蛋白网络，缺乏稳定胞外结构域或分泌型抗原可及性，其作为常规抗体主靶点的优先级低于同通路中具有胞外配体或膜受体特征的靶点。",
+    "mechanism": "设计重点可限定为胞内递送抗体片段阻断CTTN SH3结构域与N-WASP脯氨酸富集区结合，从而削弱Arp2/3依赖的分支肌动蛋白装配。",
+    "selectedEpitope": "优先覆盖SH3结构域RT-Src环与n-Src环形成的PxxP配体结合沟槽。",
+    "diseaseDirection": "炎症反应与血小板表型",
+    "domain": "CTTN含N端酸性区、六个半cortactin repeat、脯氨酸富集区及C端SH3结构域。",
+    "evidence": "CTTN肌动蛋白重塑与炎症表型证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q14247 functional annotation",
+      "RCSB PDB 2D1X experimental structure",
+      "Reactome actin nucleation and branching pathway"
+    ],
+    "referenceEntries": "UniProt Q14247；RCSB PDB 2D1X；HGNC CTTN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端SH3结构域PxxP配体结合沟槽",
+        "可直接干预CTTN与N-WASP、WIP等脯氨酸富集配体相互作用",
+        "优先"
+      ],
+      [
+        "Site B",
+        "cortactin repeat肌动蛋白结合面",
+        "可能影响F-actin结合与皮质肌动蛋白网络稳定性，但结构暴露依赖构象状态",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端酸性区Arp2/3结合区域",
+        "与Arp2/3激活相关但区域柔性较高，表位成药性和选择性需严格验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CTTN为胞内非分泌蛋白，常规Fab或VHH难以到达天然作用位点；需采用细胞内递送、内体逃逸或intrabody策略，并严控肌动蛋白通路广泛抑制风险。",
+    "structurePrepZh": "以2D1X中CTTN SH3结构域为核心模板，保留高分辨率链构象，校正缺失氢原子与质子化状态，并围绕PxxP结合沟槽构建对接网格。",
+    "structureRef": "RCSB PDB 2D1X，X-ray，1.9 Å，human CTTN SH3 domain",
+    "antibodies": [
+      "无获批抗CTTN治疗性抗体",
+      "研究级抗cortactin单克隆抗体4F11"
+    ],
+    "interfaceFocus": "SH3结构域PxxP配体结合沟槽",
+    "designMode": "胞内阻断型",
+    "candidates": [
+      {
+        "target": "WASL",
+        "rationale": "WASL编码N-WASP，是CTTN SH3结构域的重要结合伙伴，并通过激活Arp2/3复合体促进分支肌动蛋白形成。该节点更接近成核激活步骤，适合机制验证。"
+      },
+      {
+        "target": "ACTR2",
+        "rationale": "ACTR2为Arp2/3复合体核心亚基，位于CTTN-N-WASP下游的肌动蛋白分支成核机器中。靶向该节点可评估通路依赖性与细胞骨架毒性窗口。"
+      },
+      {
+        "target": "ITGB3",
+        "rationale": "ITGB3参与血小板黏附、铺展及肌动蛋白重塑，并与血小板计数和血栓炎症表型处于相关功能轴。其膜受体属性提供优于CTTN的抗体可及性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

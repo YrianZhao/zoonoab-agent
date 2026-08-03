@@ -1,0 +1,65 @@
+{
+  "gene": "SPDYA",
+  "generatedAt": "2026-08-03T21:17:42.682Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SPDYA 是细胞周期调控因子，主要通过结合并激活 CDK2 促进 G1/S 转换，部分肿瘤中与增殖优势及基因组复制压力相关。该蛋白为细胞内非分泌蛋白，缺乏天然胞外结构域，抗原可及性不利于常规细胞表面抗体阻断，更适合作为结构生物学和胞内递送抗体片段研究对象。与 EGFR、TROP2 等膜受体肿瘤靶点相比，SPDYA 的临床可成药性和疾病遗传关联强度较弱，优先级应定位为机制探索型靶点而非优先开发型外周抗体靶点。",
+    "mechanism": "设计分子应阻断 SPDYA speedy/RINGO 结构域与 CDK2 的结合界面，抑制 CDK2 非经典激活并削弱 Cyclin E/A-CDK2 相关细胞周期推进。",
+    "selectedEpitope": "优先覆盖 speedy/RINGO 结构域中 CDK2 接触面及邻近保守疏水沟槽，避免仅选择远端溶剂暴露环区。",
+    "diseaseDirection": "肿瘤细胞周期与增殖调控",
+    "domain": "SPDYA 含保守 speedy/RINGO box，为 CDK2 结合与激活核心区域；无跨膜段和分泌信号肽。",
+    "evidence": "SPDYA-CDK2 结构与肿瘤增殖关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProtKB Q5MJ70 蛋白注释",
+      "RCSB PDB 5UQ2 晶体结构",
+      "细胞周期 CDK2 调控相关文献"
+    ],
+    "referenceEntries": "UniProt Q5MJ70；RCSB PDB 5UQ2；Open Targets SPDYA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "speedy/RINGO 结构域 CDK2 结合界面",
+        "直接干预 SPDYA 介导的 CDK2 非经典激活，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RINGO box 邻近保守疏水沟槽",
+        "可能影响 CDK2 结合构象稳定性，适合作为变构干预区域",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离 CDK2 界面的表面环区",
+        "抗原暴露性较好但功能阻断价值有限，需依赖细胞内递送验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SPDYA 为胞内蛋白，常规抗体难以到达作用位点；应优先采用胞内递送 Fab/VHH 或降解偶联策略，并验证 CDK2 选择性干预。",
+    "structurePrepZh": "以 5UQ2 晶体结构链 A、B 为模板，保留 speedy/RINGO 核心折叠，检查缺失环区、晶体接触和界面残基质子化状态。",
+    "structureRef": "RCSB PDB 5UQ2，X-ray diffraction，2.7 Å",
+    "antibodies": [
+      "暂无获批 SPDYA 靶向抗体",
+      "暂无临床阶段 SPDYA 同类抗体"
+    ],
+    "interfaceFocus": "SPDYA-CDK2 结合面与RINGO box疏水核心",
+    "designMode": "胞内阻断型VHH/Fab",
+    "candidates": [
+      {
+        "target": "CDK2",
+        "rationale": "CDK2 是 SPDYA 的直接结合与激活对象，位于同一 G1/S 细胞周期推进轴；抑制 CDK2 可更直接削弱复制启动和肿瘤细胞增殖。"
+      },
+      {
+        "target": "CCNE1",
+        "rationale": "CCNE1 编码 Cyclin E1，与 CDK2 形成经典 G1/S 激酶复合物；其扩增和过表达在多种肿瘤中与细胞周期依赖性增殖相关。"
+      },
+      {
+        "target": "E2F1",
+        "rationale": "E2F1 是 CDK2-RB 轴下游转录因子，驱动 DNA 复制基因表达；可作为同一细胞周期通路的下游功能读出和候选干预节点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

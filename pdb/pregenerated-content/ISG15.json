@@ -1,0 +1,65 @@
+{
+  "gene": "ISG15",
+  "generatedAt": "2026-08-03T13:33:20.485Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ISG15是I型干扰素诱导的泛素样修饰蛋白，可通过ISGylation改变宿主与病毒蛋白稳定性，并以分泌型细胞因子样分子增强NK细胞IFN-γ产生，关联COVID-19与流感等抗病毒免疫表型。该蛋白存在可溶性胞外/血清形态，抗体可直接识别循环ISG15，抗原可及性优于胞内E3连接酶或去ISGylation酶。相较IFIT、MX等主要胞内效应分子，ISG15兼具分泌型可中和性与遗传免疫缺陷证据，适合作为抗体药物或检测抗体的优先靶点。",
+    "mechanism": "中和分泌型ISG15与LFA-1整合素复合体的结合，抑制ISG15诱导的NK细胞和T细胞IFN-γ释放。",
+    "selectedEpitope": "优先覆盖C端泛素样结构域β-grasp暴露面及LRLRGG邻近界面，规避双结构域铰链柔性区。",
+    "diseaseDirection": "病毒感染与干扰素炎症免疫",
+    "domain": "ISG15含N端与C端两个串联泛素样β-grasp结构域，C端具有LRLRGG修饰基序。",
+    "evidence": "ISG15抗病毒免疫与结构可成药性证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P05161功能与亚细胞定位注释",
+      "RCSB PDB 6FFA晶体结构",
+      "人类ISG15缺陷与分泌型ISG15免疫功能研究"
+    ],
+    "referenceEntries": "UniProt P05161；RCSB PDB 6FFA；Open Targets ISG15",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端泛素样结构域β-grasp暴露面与LRLRGG邻近区域",
+        "有望阻断分泌型ISG15受体结合并保持构象特异性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端泛素样结构域外侧β折叠与环区",
+        "可获得高可及性结合表位，适合检测或非阻断抗体设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端与C端结构域连接铰链及保守疏水核心邻近面",
+        "柔性与同源泛素样蛋白交叉反应风险较高，需严格筛选",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ISG15与泛素样蛋白存在折叠同源性，需排除UBL交叉反应；C端LRLRGG区域邻近ISGylation功能位点，阻断型设计需评估对胞内ISGylation生物学解释的影响。",
+    "structurePrepZh": "以6FFA的A、B链作为实验晶体模板，去除非抗原配体与结晶水后进行质子化、缺失侧链修复和双结构域构象一致性检查。",
+    "structureRef": "RCSB PDB 6FFA，human ISG15，X-ray 1.5 Å",
+    "antibodies": [
+      "Anti-ISG15 antibody clone F-9",
+      "Anti-ISG15 antibody clone ab14374"
+    ],
+    "interfaceFocus": "C端UBL β-grasp外表面及LRLRGG邻近受体结合面",
+    "designMode": "分泌型因子中和",
+    "candidates": [
+      {
+        "target": "IFNAR1",
+        "rationale": "IFNAR1是I型干扰素受体复合体核心亚基，位于ISG15上游诱导通路，可通过阻断IFN-α/β信号降低ISG表达谱激活。"
+      },
+      {
+        "target": "IFNAR2",
+        "rationale": "IFNAR2负责高亲和力结合I型干扰素并与IFNAR1形成信号复合体，是调节JAK1-TYK2-STAT1/STAT2轴的可及性膜受体靶点。"
+      },
+      {
+        "target": "ITGAL",
+        "rationale": "ITGAL编码LFA-1的CD11a亚基，参与分泌型ISG15结合及免疫细胞IFN-γ诱导反应，属于同一ISG15细胞因子样作用通路。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

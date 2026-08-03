@@ -1,0 +1,65 @@
+{
+  "gene": "ECI1",
+  "generatedAt": "2026-08-03T18:54:03.353Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ECI1为线粒体基质过氧化物酶体相关脂肪酸β-氧化辅助酶，催化不饱和脂酰-CoA双键异构化，与十二碳二烯酸等脂质代谢表型存在遗传关联。该蛋白主要定位于线粒体基质和过氧化物酶体，缺乏天然胞外结构域或分泌形式，抗原可及性不符合常规体内阻断抗体要求，更适合作为胞内代谢酶研究抗体或诊断检测试剂。相较CPT1A、ACOX1等位于脂肪酸氧化入口或过氧化物酶体限速节点的靶点，ECI1疾病关联强度较低且可药性受限，因此主靶点优先级应审慎评估。",
+    "mechanism": "抗体设计宜聚焦识别ECI1构象表位，用于捕获或检测酶蛋白；不宜设定阻断细胞外配体-受体相互作用机制。",
+    "selectedEpitope": "优先选择crotonase-fold三聚体外露螺旋-环区，避开CoA底物结合沟槽和催化酸碱残基邻域。",
+    "diseaseDirection": "脂肪酸β-氧化与代谢表型",
+    "domain": "ECI1为crotonase超家族酶，含N端螺旋域与C端β-螺旋核心，形成同源三聚体。",
+    "evidence": "ECI1脂肪酸氧化结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform genetic association",
+      "UniProtKB P42126 functional annotation",
+      "RCSB PDB 1SG4 X-ray structure",
+      "Gene Ontology fatty acid beta-oxidation annotation"
+    ],
+    "referenceEntries": "UniProt P42126；RCSB PDB 1SG4；HGNC:2703",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "三聚体外侧N端螺旋-环暴露面",
+        "构象稳定且远离底物沟槽，适合检测型Fab/VHH识别",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端crotonase核心外露β-螺旋转角区",
+        "保守折叠支撑稳定表位，可用于免疫捕获和组织检测",
+        "备选"
+      ],
+      [
+        "Site C",
+        "CoA结合沟槽及催化残基周边",
+        "可能影响酶活并与高保守代谢酶家族交叉反应，需严格特异性筛选",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ECI1为胞内代谢酶，体内抗体可及性不足；同源crotonase家族保守性较高，应避开催化沟槽并进行ECHS1、HADHA等交叉反应评估。",
+    "structurePrepZh": "采用1SG4高分辨率晶体结构，保留同源三聚体生物装配，校验链A/B/C界面并去除非关键结晶水后进行表面可及性分析。",
+    "structureRef": "PDB 1SG4，人源ECI1晶体结构，1.3 Å X-ray",
+    "antibodies": [
+      "commercial anti-ECI1 antibody",
+      "commercial anti-enoyl-CoA delta isomerase 1 antibody"
+    ],
+    "interfaceFocus": "三聚体外侧暴露面与CoA结合沟槽边界",
+    "designMode": "胞内酶检测抗体",
+    "candidates": [
+      {
+        "target": "ACOX1",
+        "rationale": "ACOX1催化过氧化物酶体极长链脂肪酸β-氧化第一步，与不饱和脂酰-CoA代谢表型处于同一脂质氧化网络，疾病机制优先级高于ECI1。"
+      },
+      {
+        "target": "ECHS1",
+        "rationale": "ECHS1为线粒体短链烯酰-CoA水合酶，位于β-氧化水合步骤，与ECI1共享烯酰-CoA中间体代谢背景，可作为同通路功能参照靶点。"
+      },
+      {
+        "target": "HADHA",
+        "rationale": "HADHA编码线粒体三功能蛋白α亚基，参与长链脂肪酸β-氧化下游反应，其遗传缺陷与脂肪酸氧化障碍具有明确关联。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

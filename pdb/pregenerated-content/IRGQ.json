@@ -1,0 +1,65 @@
+{
+  "gene": "IRGQ",
+  "generatedAt": "2026-08-03T13:32:41.862Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IRGQ为胞内免疫相关GTPase家族成员，现有Open Targets关联主要集中于转氨酶水平、前列腺癌及心律失常表型，尚缺乏明确的胞外疾病驱动机制。其蛋白定位与结构特征不具备常规抗体药物所需的胞外结构域、分泌蛋白或膜受体可及性，完整IgG/Fab难以在生理条件下接触天然抗原。相较于PSMA、AR或KLK3等前列腺癌通路中具有临床验证度或分泌/膜定位优势的靶点，IRGQ不宜作为优先抗体干预靶点，更适合作为结构生物学或胞内结合分子探索对象。",
+    "mechanism": "可行机制限定于胞内结合分子阻断IRGQ GTPase结构域的核苷酸结合或构象转换，干扰其与潜在效应蛋白的结合。",
+    "selectedEpitope": "优先评估GTPase核心结构域P-loop、Switch I/II邻近构象界面，避免直接覆盖高度保守核苷酸口袋。",
+    "diseaseDirection": "前列腺癌及肝酶表型探索",
+    "domain": "IRGQ含免疫相关GTPase样核心折叠，8Q7K解析多链晶体结构，缺乏跨膜区和胞外结构域。",
+    "evidence": "IRGQ结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q8WZA9蛋白功能与定位注释",
+      "RCSB PDB 8Q7K晶体结构记录",
+      "Human Protein Atlas组织与亚细胞定位信息"
+    ],
+    "referenceEntries": "UniProt Q8WZA9；RCSB PDB 8Q7K；Open Targets IRGQ",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "GTPase核心Switch I/II邻近构象面",
+        "可能影响核苷酸依赖构象转换，适合胞内VHH或合成结合蛋白设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "P-loop周边非保守暴露边缘",
+        "可提高结合选择性并降低与其他GTPase交叉反应风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "晶体多聚体接触界面",
+        "可能为晶体堆积或非生理界面，需经溶液状态验证后采用",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为胞内不可及性、疾病因果证据较弱及GTPase保守折叠导致的选择性不足；建议限定为胞内VHH验证并优先开展靶点成药性复核。",
+    "structurePrepZh": "以8Q7K高分辨率晶体结构为模板，比较A-D链构象一致性，去除晶体接触假阳性界面并标注GTPase保守基序。",
+    "structureRef": "RCSB PDB 8Q7K，X-ray diffraction，1.6 Å",
+    "antibodies": [
+      "暂无临床验证IRGQ抗体",
+      "暂无同靶点获批抗体"
+    ],
+    "interfaceFocus": "Switch I/II构象面与P-loop邻近非保守表面",
+    "designMode": "胞内VHH探索",
+    "candidates": [
+      {
+        "target": "FOLH1",
+        "rationale": "FOLH1编码PSMA，为前列腺癌中高度验证的膜蛋白靶点，胞外结构域可被抗体和抗体偶联药物直接识别。其临床转化证据显著强于IRGQ。"
+      },
+      {
+        "target": "KLK3",
+        "rationale": "KLK3编码前列腺特异抗原PSA，是前列腺癌诊断与疾病监测核心分泌蛋白，具备体液可及性和明确组织关联。"
+      },
+      {
+        "target": "AR",
+        "rationale": "AR为前列腺癌雄激素依赖通路核心驱动因子，虽为胞内核受体且不适合常规抗体治疗，但在同一疾病方向中具有更明确的机制因果性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

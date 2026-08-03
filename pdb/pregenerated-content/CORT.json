@@ -1,0 +1,65 @@
+{
+  "gene": "CORT",
+  "generatedAt": "2026-08-03T11:35:05.453Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CORT编码的cortistatin为生长抑素样神经肽，可与SSTR家族GPCR结合并影响神经内分泌、心率调节、炎症细胞活化及中枢神经系统相关表型。其成熟肽为分泌型胞外配体，抗体可直接识别循环或局部微环境中的可及抗原，避免跨膜受体构象异质性带来的表位限制。相较直接靶向多个SSTR受体，CORT作为上游配体具有同步调节受体轴的潜力，但Open Targets遗传关联强度中等，宜定位为机制验证优先的探索性抗体靶点。",
+    "mechanism": "中和抗体结合CORT成熟环状肽，阻断其与SSTR2/SSTR5等受体胞外结合口袋的相互作用，降低受体Gi偶联信号输入。",
+    "selectedEpitope": "优先覆盖成熟肽二硫键稳定环及受体接触面，避开N端高度柔性延伸段。",
+    "diseaseDirection": "神经内分泌与炎症调节",
+    "domain": "前体蛋白经加工产生分泌型成熟cortistatin肽，含保守二硫键环状核心，与生长抑素结构相近。",
+    "evidence": "CORT-SSTR轴结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB O00230 curated protein annotation",
+      "RCSB PDB 7S8L electron microscopy structure",
+      "GPCR ligand-receptor pharmacology literature"
+    ],
+    "referenceEntries": "UniProt O00230；RCSB PDB 7S8L；Open Targets CORT",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "成熟肽二硫键环核心与SSTR接触面",
+        "直接遮蔽受体识别面，最适合中和型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "成熟肽N端受体辅助接触区",
+        "可增强阻断效应并改善配体选择性，但构象柔性较高",
+        "备选"
+      ],
+      [
+        "Site C",
+        "前体肽加工区或非成熟片段",
+        "可能不代表分泌活性配体，疾病机制相关性较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CORT与SST成熟肽具有序列和构象相似性，需控制交叉反应；建议以SST、SSTR结合肽面板进行早期选择性筛查。",
+    "structurePrepZh": "以7S8L中CORT相关抗原链提取成熟肽构象，补全缺失侧链并保留二硫键约束，生成受体结合面暴露模型。",
+    "structureRef": "RCSB PDB 7S8L，2.45 Å冷冻电镜结构",
+    "antibodies": [
+      "anti-cortistatin neutralizing antibody",
+      "anti-somatostatin antibody"
+    ],
+    "interfaceFocus": "成熟肽环状核心-SSTR胞外结合口袋界面",
+    "designMode": "分泌肽中和",
+    "candidates": [
+      {
+        "target": "SSTR2",
+        "rationale": "SSTR2是CORT和SST的重要受体，介导Gi偶联抑制腺苷酸环化酶及神经内分泌信号。靶向该受体可作为配体中和策略的受体端验证参照。"
+      },
+      {
+        "target": "SSTR5",
+        "rationale": "SSTR5参与CORT/SST轴的内分泌调节，并与多种神经内分泌表型相关。其胞外配体结合口袋适合评估受体选择性阻断方案。"
+      },
+      {
+        "target": "SST",
+        "rationale": "SST与CORT共享SSTR受体轴且成熟肽结构相近，是同通路中关键内源性配体。纳入SST有助于区分CORT特异中和与广谱生长抑素样通路调节。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

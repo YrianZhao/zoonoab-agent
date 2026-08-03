@@ -1,0 +1,65 @@
+{
+  "gene": "MRM3",
+  "generatedAt": "2026-08-03T14:19:42.958Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MRM3为线粒体大亚基rRNA甲基转移酶，催化线粒体16S rRNA特定位点甲基化并影响线粒体核糖体装配与氧化磷酸化蛋白翻译，疾病关联主要来自遗传性状与心血管代谢表型，因果证据强度有限。该蛋白定位于线粒体基质，缺乏天然胞外结构域、分泌形式或细胞膜受体特征，常规完整抗体难以在活细胞内直接接近抗原。相较PCSK9、ANGPTL3等同属脂质代谢表型关联且具备分泌/胞外可及性的靶点，MRM3作为治疗性抗体主靶点优先级较低，更适合作为结构生物学或细胞内递送抗体片段探索对象。",
+    "mechanism": "以内化递送抗体片段遮挡MRM3的SAM结合沟槽或rRNA底物识别面，干扰MRM3与线粒体16S rRNA及甲基供体SAM的结合。",
+    "selectedEpitope": "优先评估Rossmann样甲基转移酶催化核心邻近SAM结合沟槽与rRNA接触面。",
+    "diseaseDirection": "线粒体翻译与心血管代谢性状",
+    "domain": "MRM3含N端线粒体靶向区及C端Class I SAM依赖性rRNA甲基转移酶催化结构域。",
+    "evidence": "MRM3线粒体核糖体甲基化结构与遗传关联证据",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9HC36蛋白定位与功能注释",
+      "RCSB PDB 7OI6人线粒体核糖体冷冻电镜结构",
+      "线粒体核糖体16S rRNA修饰与翻译装配文献"
+    ],
+    "referenceEntries": "UniProt: Q9HC36; RCSB PDB: 7OI6; Open Targets: MRM3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SAM结合沟槽邻近催化核心",
+        "可直接影响甲基供体结合与催化构象，机制可检验性较高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "16S rRNA底物识别面",
+        "可能阻断MRM3与线粒体rRNA接触，但需保留结构模型可信度评估",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端线粒体靶向肽区域",
+        "成熟蛋白加工后可缺失且结构柔性较高，作为功能阻断表位风险较大",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MRM3为线粒体基质蛋白，天然抗原可及性不足；7OI6分辨率为5.7 Å，侧链定位有限，表位设计需结合AlphaFold模型、保守性与突变验证。",
+    "structurePrepZh": "以7OI6中MRM3相关密度和UniProt序列映射建立成熟蛋白模型，补全低置信环区并重点校验SAM沟槽与rRNA邻近界面。",
+    "structureRef": "RCSB PDB 7OI6，human mitochondrial ribosome EM structure",
+    "antibodies": [
+      "暂无获批或临床阶段抗MRM3治疗性抗体",
+      "可参考细胞内递送VHH或intrabody工程抗体平台"
+    ],
+    "interfaceFocus": "SAM结合沟槽与16S rRNA接触界面",
+    "designMode": "细胞内VHH探索",
+    "candidates": [
+      {
+        "target": "PCSK9",
+        "rationale": "PCSK9参与LDLR降解并直接调控血浆LDL胆固醇水平，属于脂质代谢疾病通路中抗原可及性更优的分泌蛋白靶点。"
+      },
+      {
+        "target": "ANGPTL3",
+        "rationale": "ANGPTL3为肝源性分泌蛋白，可抑制LPL和内皮脂肪酶，影响甘油三酯、LDL-C与HDL-C代谢，已有抗体药物验证。"
+      },
+      {
+        "target": "APOC3",
+        "rationale": "APOC3调节富含甘油三酯脂蛋白清除并与血脂异常和心血管风险相关，循环蛋白特征使其较MRM3更适合抗体或抗体样分子干预。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

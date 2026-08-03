@@ -1,0 +1,65 @@
+{
+  "gene": "WNK1",
+  "generatedAt": "2026-08-03T17:52:57.834Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "WNK1 是假性低醛固酮血症2型相关 WNK-SPAK/OSR1-NCC 通路的核心丝氨酸/苏氨酸激酶，调控肾远曲小管 NCC 磷酸化并影响钠氯重吸收与血压稳态。其主要催化区和调控区位于胞内，天然抗体可及性弱，因此更适合作为细胞内递送抗体、Fab/VHH 结构探针或降解偶联设计的分子靶点。相较下游 SLC12A3，WNK1 位于通路上游并整合 KLHL3-CUL3 介导的蛋白稳态调控，具有更高的机制分层价值，但成药形式需优先解决胞内递送限制。",
+    "mechanism": "阻断 WNK1 激酶结构域与 SPAK/OSR1 激活环磷酸化轴的构象耦联，抑制其对下游激酶的激活传递。",
+    "selectedEpitope": "优先锁定激酶 N-lobe/C-lobe 间 ATP 结合裂隙邻近变构面，避免直接覆盖保守 ATP 位点。",
+    "diseaseDirection": "盐敏感性高血压与PHAII",
+    "domain": "WNK1 含 N端激酶结构域、调控片段及自抑制/蛋白互作区域，6FBK覆盖催化核心构象。",
+    "evidence": "WNK1-PHAII通路与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt Q9H4A3 功能与变异注释",
+      "RCSB PDB 6FBK X射线晶体结构",
+      "WNK-SPAK/OSR1-NCC 肾小管盐转运文献"
+    ],
+    "referenceEntries": "UniProt Q9H4A3；RCSB PDB 6FBK；Open Targets WNK1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域 N-lobe/C-lobe 变构沟槽",
+        "可稳定非活化构象并降低对 SPAK/OSR1 的磷酸化传递",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域底物识别邻近外表面",
+        "有利于干扰底物定位，同时减少 ATP 位点保守性带来的选择性风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP 结合裂隙及铰链区",
+        "功能阻断潜力高但与激酶家族保守位点重叠，交叉反应风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "WNK1 为胞内激酶，常规抗体难以到达作用位点；应采用细胞穿透递送、内体逃逸或VHH胞内表达策略，并严格评估激酶家族选择性。",
+    "structurePrepZh": "以6FBK链A/P为结构模板，保留催化核心与关键配体环境，补全缺失环区并进行质子化、界面水分子筛选和同源激酶比对。",
+    "structureRef": "RCSB PDB 6FBK，1.743 Å X-ray human WNK1 kinase domain",
+    "antibodies": [
+      "抗WNK1研究级单克隆抗体",
+      "抗磷酸化WNK1研究级抗体"
+    ],
+    "interfaceFocus": "激酶变构沟槽与底物识别外表面",
+    "designMode": "胞内VHH/Fab变构阻断",
+    "candidates": [
+      {
+        "target": "WNK4",
+        "rationale": "WNK4 与 WNK1 同属 WNK-SPAK/OSR1-NCC 调控轴，PHAII 相关突变可增强 NCC 活性并导致盐潴留。其通路位置接近，适合作为选择性与补偿机制比较靶点。"
+      },
+      {
+        "target": "STK39",
+        "rationale": "STK39 编码 SPAK，是 WNK1 下游直接磷酸化并激活的关键激酶，进一步促进 SLC12A3/NCC 磷酸化。阻断该节点可验证 WNK1 信号输出依赖性。"
+      },
+      {
+        "target": "SLC12A3",
+        "rationale": "SLC12A3 编码 NCC，是 WNK-SPAK/OSR1 通路的终末盐转运效应蛋白，与远曲小管钠氯重吸收和血压表型直接相关。其多跨膜结构提供胞外环表位可能性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

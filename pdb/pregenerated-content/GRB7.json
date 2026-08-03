@@ -1,0 +1,65 @@
+{
+  "gene": "GRB7",
+  "generatedAt": "2026-08-03T12:56:47.229Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GRB7为细胞内衔接蛋白，含SH2结构域并结合ERBB2、EGFR、FAK等磷酸化酪氨酸位点，参与受体酪氨酸激酶驱动的迁移、侵袭与肿瘤进展。其主要定位于胞质侧，缺乏天然胞外结构域或分泌形式，抗原可及性不适合常规体内阻断抗体，需限定为细胞内递送抗体或结构域结合型研究工具。相较ERBB2、EGFR等膜受体，GRB7的优势在于可直接干预下游衔接界面，但临床成药优先级低于胞外可及靶点。",
+    "mechanism": "设计抗体结合GRB7 SH2磷酸肽结合沟槽，阻断其识别ERBB2 Tyr1139或FAK磷酸酪氨酸基序，削弱RTK-FAK衔接复合物形成。",
+    "selectedEpitope": "优先覆盖SH2结构域磷酸酪氨酸结合口袋及BG环邻近沟槽，避免核心折叠疏水面。",
+    "diseaseDirection": "RTK驱动肿瘤侵袭与转移",
+    "domain": "GRB7含N端RA样区域、PH结构域、BPS区与C端SH2结构域；5EEQ解析SH2相关结构。",
+    "evidence": "GRB7-RTK衔接界面与肿瘤迁移证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与关联证据",
+      "UniProt Q14451功能与结构域注释",
+      "RCSB PDB 5EEQ X射线晶体结构",
+      "HER2/EGFR-FAK迁移信号相关文献"
+    ],
+    "referenceEntries": "UniProt: Q14451；RCSB PDB: 5EEQ；Open Targets: GRB7",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SH2磷酸酪氨酸结合口袋与BG环",
+        "直接竞争ERBB2/FAK磷酸肽结合，机制可验证性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SH2 EF环与磷酸肽+3位残基识别区",
+        "调节配体选择性并降低完全占据口袋导致的折叠风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SH2结构域核心β折叠背面",
+        "远离配体界面，功能阻断效应不确定且可能影响蛋白稳定性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GRB7为胞内蛋白，常规IgG体内可及性不足；建议采用细胞内抗体、递送型Fab/VHH或体外机制验证，并严格评估SH2家族交叉反应。",
+    "structurePrepZh": "以5EEQ高分辨率晶体结构为模板，保留SH2结构域主体，校正缺失侧链与质子化状态，并叠合磷酸肽结合构象用于界面定义。",
+    "structureRef": "RCSB PDB 5EEQ，X-ray diffraction，1.6 Å",
+    "antibodies": [
+      "GRB7研究级单克隆抗体",
+      "GRB7 SH2结构域结合型研究抗体"
+    ],
+    "interfaceFocus": "SH2磷酸肽结合沟槽及BG/EF环",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "ERBB2",
+        "rationale": "ERBB2与GRB7位于同一17q12扩增单元并通过磷酸化尾部招募GRB7；其胞外结构域高度可及，是同通路中更成熟的抗体优先靶点。"
+      },
+      {
+        "target": "EGFR",
+        "rationale": "EGFR活化后可通过磷酸酪氨酸位点募集含SH2衔接蛋白并驱动MAPK/PI3K与迁移信号；胞外配体结合区适合阻断型抗体设计。"
+      },
+      {
+        "target": "PTK2",
+        "rationale": "PTK2/FAK参与GRB7相关黏附与迁移复合物形成，是RTK-黏附信号轴的关键节点；虽为胞内激酶，更适合作为机制对照或小分子联合靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "DGKZ",
+  "generatedAt": "2026-08-03T11:56:01.308Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DGKZ编码二酰甘油激酶ζ，催化二酰甘油磷酸化生成磷脂酸，参与DAG/PKC信号强度与脂质第二信使平衡，其遗传关联涉及神经退行性疾病、血脂表型、血栓及代谢血压相关表型。该蛋白主要为胞质/核内酶，缺乏典型胞外结构域或分泌特征，完整蛋白作为常规阻断型抗体靶点的抗原可及性较弱，但可用于细胞内递送抗体、结构生物学验证或研究级结合分子设计。相比同通路多种广泛表达的PKC亚型，DGKZ具有明确的DAG消耗节点和可解析催化结构，优先级主要来自机制特异性与高分辨率结构支持，而非天然细胞表面可及性。",
+    "mechanism": "通过结合DGKZ催化结构域邻近ATP/二酰甘油结合沟槽，阻碍ATP定位或底物进入，从而降低DAG向磷脂酸的磷酸转移反应。",
+    "selectedEpitope": "优先选择5ELQ解析的催化结构域ATP结合裂隙周缘及保守催化环邻近表面，避免深埋活性位点。",
+    "diseaseDirection": "神经退行性与脂质信号代谢",
+    "domain": "DGKZ含C1结构域、MARCKS样碱性区、催化结构域及C端PDZ结合基序；5ELQ覆盖催化核心区域。",
+    "evidence": "DGKZ脂质激酶结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联数据",
+      "UniProt Q13574功能与结构域注释",
+      "RCSB PDB 5ELQ高分辨率晶体结构",
+      "DGK家族DAG/磷脂酸信号通路文献"
+    ],
+    "referenceEntries": "UniProt Q13574；RCSB PDB 5ELQ；Open Targets DGKZ",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域ATP结合裂隙外缘与催化环邻近表面",
+        "可干扰ATP定位并保留抗体结合可及表面，适合抑制型分子设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域底物进入沟槽周边疏水表面",
+        "可能阻碍二酰甘油底物进入，但需控制疏水界面导致的非特异结合",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C1结构域或MARCKS样碱性区附近区域",
+        "可能影响膜定位与DAG识别，但5ELQ未完整解析，结构不确定性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DGKZ为细胞内脂质激酶，常规抗体难以到达天然作用位点；建议定位为递送型抗体、intrabody或结构验证工具，并严格评估DGK家族交叉反应。",
+    "structurePrepZh": "以5ELQ晶体结构为模板，保留催化核心链，校验配体、金属离子与缺失环；对未解析C1和调控区采用AlphaFold模型辅助但不作为主界面依据。",
+    "structureRef": "RCSB PDB 5ELQ，X射线晶体结构，1.1 Å分辨率",
+    "antibodies": [
+      "研究级抗DGKZ抗体",
+      "抗DGKζ免疫检测抗体"
+    ],
+    "interfaceFocus": "催化核心ATP结合裂隙外缘与底物入口",
+    "designMode": "细胞内抑制型",
+    "candidates": [
+      {
+        "target": "DGKA",
+        "rationale": "DGKA同属DAG激酶通路，调节DAG消耗和磷脂酸生成，在免疫细胞TCR信号负调控中具有明确功能，可作为同类脂质信号节点比较靶点。"
+      },
+      {
+        "target": "PRKCA",
+        "rationale": "PRKCA为DAG直接激活的经典PKC亚型，位于DGKZ上游底物信号的效应端，可用于评估DAG保留对PKC通路输出的影响。"
+      },
+      {
+        "target": "PLCG1",
+        "rationale": "PLCG1催化PIP2生成DAG和IP3，是DAG/PKC信号产生的上游酶，与DGKZ共同决定DAG信号幅度和持续时间。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "RAN",
+  "generatedAt": "2026-08-03T20:44:11.683Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RAN 是小型 GTP 酶，参与核质运输、纺锤体组装及病毒核输入过程，在 HIV 感染和流感病毒复制相关宿主通路中具有疾病关联信号。该蛋白主要定位于细胞核、胞质和核孔复合体功能轴，并非典型胞外抗原或分泌蛋白，天然抗体可及性明显受限。其优先级更多适用于结构机制研究、细胞内递送抗体或降解型分子设计；相较 CD4、CXCR4、CCR5 等膜表面病毒进入靶点，常规治疗性抗体开发优先级较低。",
+    "mechanism": "设计重点为阻断 RAN-GTP 与核转运受体 importin β 或 exportin CRM1 的结合界面，从而干扰病毒蛋白核输入及核输出依赖过程。",
+    "selectedEpitope": "优先评估 Switch I/Switch II 与 effector-binding 区域，覆盖 GTP 依赖构象识别界面。",
+    "diseaseDirection": "病毒感染宿主因子与核质运输",
+    "domain": "RAN 为 Ras 样小 GTP 酶，含 P-loop NTP 结合区、Switch I、Switch II 及 C 端酸性尾区。",
+    "evidence": "RAN 核质运输宿主因子与感染关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProtKB P62826 功能与定位注释",
+      "RCSB PDB 3GJ0 X-ray 晶体结构",
+      "核转运受体-RanGTP 复合物结构与病毒复制文献"
+    ],
+    "referenceEntries": "UniProtKB:P62826；RCSB PDB:3GJ0；Open Targets:RAN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Switch I/Switch II effector-binding 面",
+        "直接覆盖 importin β、CRM1 等效应蛋白识别界面，机制阻断价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "P-loop 与核苷酸结合口袋邻近构象区",
+        "可稳定 GDP/GTP 状态相关构象，但需避免非特异性干扰保守 GTPase 核心",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端酸性尾及柔性区域",
+        "抗原性可能较高但构象异质性大，且对核心效应蛋白界面阻断有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RAN 为高度保守胞内蛋白，常规抗体难以到达作用位点，并存在广泛核质运输毒性风险；建议限定于细胞内抗体、递送平台或机制验证场景。",
+    "structurePrepZh": "以 3GJ0 高分辨率晶体结构为模板，保留 GTPase 核心构象，校验核苷酸状态、Mg2+ 配位及 Switch 区缺失或晶体接触影响。",
+    "structureRef": "RCSB PDB 3GJ0；1.48 Å X-ray human RAN structure",
+    "antibodies": [
+      "抗-RAN研究级单克隆抗体",
+      "抗-RAN研究级多克隆抗体"
+    ],
+    "interfaceFocus": "Switch I/II 与核转运受体结合界面",
+    "designMode": "胞内抗体/机制阻断",
+    "candidates": [
+      {
+        "target": "XPO1",
+        "rationale": "XPO1/CRM1 是 RanGTP 依赖性核输出受体，参与病毒核输出及宿主核质运输过程，具有明确的 Ran 通路耦联关系。"
+      },
+      {
+        "target": "KPNB1",
+        "rationale": "KPNB1 编码 importin β1，可与 RanGTP 调控核输入复合物解离，是病毒蛋白核输入和宿主运输通路中的关键节点。"
+      },
+      {
+        "target": "RCC1",
+        "rationale": "RCC1 是染色质结合的 Ran 鸟嘌呤核苷酸交换因子，维持核内 RanGTP 梯度，位于同一核质运输调控轴上。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

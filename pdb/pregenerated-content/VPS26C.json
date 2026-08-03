@@ -1,0 +1,65 @@
+{
+  "gene": "VPS26C",
+  "generatedAt": "2026-08-03T17:48:38.925Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "VPS26C属于内体蛋白分选与货物回收复合体相关因子，参与跨膜货物从内体向高尔基体或质膜回收的识别过程；现有遗传关联信号主要指向神经发育、行为表型及血清蛋白稳态相关性，但疾病因果强度有限。该蛋白为胞质侧外周复合体成分，并非分泌蛋白或膜受体，天然抗原可及性不支持体内阻断型抗体直接作用。其优先级低于胞外受体或可溶性配体类靶点，更适合作为结构生物学验证、细胞内递送抗体或研究级结合分子设计对象。",
+    "mechanism": "设计结合VPS26C货物识别凹槽或复合体装配界面的胞内抗体，阻断其与VPS35L、VPS29或货物尾部基序的相互作用。",
+    "selectedEpitope": "优先瞄准VPS26样β-三明治结构的货物结合凹槽及VPS35L接触面。",
+    "diseaseDirection": "神经发育与内体分选异常",
+    "domain": "VPS26C含VPS26样N端与C端β-三明治折叠，形成货物识别与retromer样复合体装配界面。",
+    "evidence": "VPS26C内体分选结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB O14972功能与亚细胞定位注释",
+      "RCSB PDB 8SYN冷冻电镜结构",
+      "CORVET/retromer样内体货物回收复合体研究文献"
+    ],
+    "referenceEntries": "UniProtKB: O14972; RCSB PDB: 8SYN; Gene: VPS26C",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "VPS26样β-三明治货物结合凹槽",
+        "可直接干预货物尾部基序识别，适合机制阻断型胞内抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "VPS35L接触相关复合体装配界面",
+        "有望削弱VPS26C参与的内体回收复合体稳定性，需控制复合体选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守β折叠核心邻近区域",
+        "可能影响整体折叠稳定性并增加交叉结合VPS26A/VPS26B风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "VPS26C为胞内外周蛋白，常规抗体难以到达作用位点；需优先采用胞内表达或递送格式，并严格评估与VPS26A、VPS26B同源界面的交叉反应。",
+    "structurePrepZh": "以8SYN中A、B、C链复合体为模板，保留VPS26C与相邻装配界面，补全缺失环区并标注保守货物结合沟槽用于表位分层。",
+    "structureRef": "RCSB PDB 8SYN; EM 2.94 Å human VPS26C complex",
+    "antibodies": [
+      "研究级anti-VPS26C抗体",
+      "研究级anti-retromer component antibody"
+    ],
+    "interfaceFocus": "货物结合凹槽与VPS35L装配界面",
+    "designMode": "胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "VPS35L",
+        "rationale": "VPS35L为VPS26C相关内体回收复合体的支架成分，直接参与VPS26C装配与货物分选。其界面干预可用于验证同一内体回收轴的功能依赖性。"
+      },
+      {
+        "target": "VPS29",
+        "rationale": "VPS29是retromer样货物回收复合体的核心装配因子，与VPS35家族支架共同维持复合体构象。靶向该节点可比较复合体稳定性阻断与VPS26C货物识别阻断的差异。"
+      },
+      {
+        "target": "COMMD1",
+        "rationale": "COMMD1属于CCC复合体成分，参与内体货物回收并与retromer相关分选网络功能相连。其作为候选靶点有助于覆盖同一内体分选通路中的上游适配调控层。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

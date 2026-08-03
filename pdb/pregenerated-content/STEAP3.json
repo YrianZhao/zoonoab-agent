@@ -1,0 +1,65 @@
+{
+  "gene": "STEAP3",
+  "generatedAt": "2026-08-03T16:59:34.120Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "STEAP3 直接参与铁代谢稳态，其金属还原酶活性可促进内体/胞外铁向可利用二价铁转换，和缺铁性红细胞生成及环形铁粒幼细胞性贫血的病理过程高度相关。该蛋白为膜相关氧化还原酶，抗原位点主要位于胞外可及区域，适合以阻断底物接近或电子传递界面为设计方向。相较于更广泛表达的铁稳态靶点，STEAP3 在红系铁摄取环节更具通路特异性与疾病指向性，适合作为精确干预靶点。",
+    "mechanism": "阻断 STEAP3 胞外环与底物/辅助电子受体接近，削弱 Fe3+ 还原为 Fe2+ 的局部反应。",
+    "selectedEpitope": "优先覆盖胞外可及环区与近金属还原核心的邻接界面，避免跨膜区。",
+    "diseaseDirection": "铁代谢/贫血",
+    "domain": "N 端胞质尾、6 次跨膜区及胞外环；表位优先胞外环。",
+    "evidence": "STEAP3 铁还原酶抗体设计证据包",
+    "evidenceSources": [
+      "UniProt: Q658P3",
+      "RCSB PDB: 2VNS",
+      "Open Targets Platform",
+      "Gene Ontology / literature annotations"
+    ],
+    "referenceEntries": "UniProt Q658P3; RCSB 2VNS; Open Targets STEAP3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "胞外环 I/II 邻近金属还原口袋入口",
+        "有利于阻断底物接近并保持膜锚定稳定性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "胞外环与跨膜螺旋交界区",
+        "可干预构象传递并降低还原效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离活性位点的外露环面",
+        "适合提升结合，但功能抑制不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "跨膜蛋白表位受糖基化、膜环境与构象异质性影响较大，需优先选择胞外短环并结合膜近端构象验证。避免将亲和力优化与功能抑制混为一体，应以底物通道遮挡与电子传递受阻为判据。",
+    "structurePrepZh": "建议基于 2VNS 提取胞外结构片段并补全缺失环区，结合膜定位注释进行去膜环境重建。需在同源模型与实验结构间比对环区柔性并评估表位暴露度。",
+    "structureRef": "RCSB PDB 2VNS; membrane oxidoreductase structural studies",
+    "antibodies": [
+      "暂无稳定公认治疗性抗体条目",
+      "同类膜铁还原酶抗体研究有限"
+    ],
+    "interfaceFocus": "胞外环-底物入口-近膜界面",
+    "designMode": "阻断型优先",
+    "candidates": [
+      {
+        "target": "SLC11A2",
+        "rationale": "与 STEAP3 同处红系铁摄取与内体铁释放通路，二者在铁离子进入胞质前后形成连续功能轴。SLC11A2 为膜转运蛋白，适合并行评估通路抑制与补偿风险。"
+      },
+      {
+        "target": "TFRC",
+        "rationale": "TFRC 介导转铁蛋白依赖性铁内吞，是 STEAP3 上游关键环节。与 STEAP3 联合考虑可区分铁摄取端与还原端的药理贡献。"
+      },
+      {
+        "target": "SLC40A1",
+        "rationale": "SLC40A1 负责铁外排，虽作用方向相反，但与 STEAP3 同属铁稳态网络并决定细胞铁负荷。将其纳入候选可用于评估铁代谢系统性干预边界。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

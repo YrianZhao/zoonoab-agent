@@ -1,0 +1,65 @@
+{
+  "gene": "IL2",
+  "generatedAt": "2026-08-03T13:26:38.722Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IL2 是T细胞活化后分泌的四螺旋束细胞因子，通过结合IL2RA、IL2RB与IL2RG组装高亲和力受体复合体，驱动JAK1/JAK3-STAT5信号并影响效应T细胞与调节性T细胞扩增，在哮喘、过敏性疾病和特应性炎症中具有免疫放大作用。IL2为可溶性分泌蛋白，受体结合面完全位于胞外可及区域，适合抗体直接遮蔽配体-受体界面。相较下游JAK/STAT节点，IL2具备配体层级干预的特异性优势，可在不广泛抑制多种细胞因子信号的前提下限定IL2轴活性。",
+    "mechanism": "阻断IL2与IL2RA及IL2RB接触界面，抑制IL2-IL2RA-IL2RB-IL2RG复合体装配，从而降低JAK1/JAK3介导的STAT5磷酸化。",
+    "selectedEpitope": "优先覆盖IL2四螺旋束中A/C螺旋邻近的IL2RA结合面，并延伸至A/B螺旋间IL2RB接触区。",
+    "diseaseDirection": "过敏炎症与肿瘤免疫调节",
+    "domain": "成熟IL2为短链I型四螺旋束细胞因子，核心由A、B、C、D四条α螺旋构成。",
+    "evidence": "IL2受体轴结构与免疫炎症关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P60568功能与序列注释",
+      "RCSB PDB 4NEJ晶体结构记录",
+      "IL2-IL2R复合体结构与STAT5信号文献"
+    ],
+    "referenceEntries": "UniProt:P60568；RCSB PDB:4NEJ；Open Targets:IL2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "A/C螺旋邻近的IL2RA结合面",
+        "直接阻断高亲和力受体复合体初始捕获，适合中和型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "A/B螺旋间及B螺旋邻近IL2RB接触区",
+        "干扰IL2RB募集并削弱JAK1/JAK3-STAT5信号装配",
+        "备选"
+      ],
+      [
+        "Site C",
+        "D螺旋及疏水核心邻近区域",
+        "可能影响细胞因子折叠稳定性或产生非特异构象扰动，需谨慎评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IL2与IL2RA、IL2RB界面面积较小且构象紧凑，需避免仅识别非功能性外围表面；设计中应评估对Treg维持与效应T细胞抑制的免疫平衡风险。",
+    "structurePrepZh": "以4NEJ抗原链A为结构模板，保留成熟IL2四螺旋束主体，去除非抗原组分与晶体水，补全缺失侧链并进行受体结合面标注。",
+    "structureRef": "RCSB PDB 4NEJ，X-ray diffraction，1.919 Å",
+    "antibodies": [
+      "Daclizumab",
+      "Basiliximab"
+    ],
+    "interfaceFocus": "IL2RA捕获面与IL2RB募集界面",
+    "designMode": "配体中和设计",
+    "candidates": [
+      {
+        "target": "IL2RA",
+        "rationale": "IL2RA为高亲和力IL2受体α链，负责增强IL2捕获并促进IL2RB/IL2RG复合体装配；靶向该受体亚基已有临床抗体先例。"
+      },
+      {
+        "target": "IL2RB",
+        "rationale": "IL2RB是IL2信号转导受体亚基，与IL2和IL2RG形成信号复合体并关联JAK1活化；阻断其配体界面可直接抑制STAT5通路。"
+      },
+      {
+        "target": "IL2RG",
+        "rationale": "IL2RG为共同γ链，参与IL2、IL4、IL7、IL9、IL15和IL21等细胞因子受体复合体；在IL2通路中负责信号复合体稳定与JAK3募集。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

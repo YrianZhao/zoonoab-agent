@@ -1,0 +1,65 @@
+{
+  "gene": "MLEC",
+  "generatedAt": "2026-08-03T14:16:26.727Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MLEC编码内质网膜蛋白malectin，参与新生糖蛋白质量控制并识别葡萄糖化N-糖链，其遗传关联主要集中于C反应蛋白水平及血细胞相关定量性状，提示其可能通过蛋白折叠稳态影响炎症蛋白分泌与造血细胞表型。该蛋白具有位于内质网腔侧的糖结合malectin结构域，结构上具备可解析的抗原表面，但其天然定位并非细胞外膜表面。相较CRP、IL6R等直接炎症通路靶点，MLEC的疾病关联分数较低且抗体可及性受内质网定位限制，因此更适合作为机制验证型细胞内/腔内抗体工程靶点，而非优先系统给药抗体靶点。",
+    "mechanism": "设计抗体结合MLEC腔侧malectin糖结合结构域，阻断其与葡萄糖化N-糖链底物的识别界面，干预新生糖蛋白滞留与质量控制过程。",
+    "selectedEpitope": "优先覆盖malectin结构域糖结合沟槽邻近环区，避开高度保守折叠核心并评估糖链竞争效应。",
+    "diseaseDirection": "炎症蛋白分泌与血液性状",
+    "domain": "单跨膜内质网蛋白，N端胞质短区、跨膜螺旋及C端腔侧malectin糖结合结构域。",
+    "evidence": "MLEC结构与炎症血液性状遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q14165蛋白功能与拓扑注释",
+      "RCSB PDB 9IL3 X射线晶体结构",
+      "糖蛋白质量控制与malectin结构域文献"
+    ],
+    "referenceEntries": "UniProt Q14165；RCSB PDB 9IL3；Open Targets MLEC",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "malectin结构域糖结合沟槽及邻近可变环",
+        "直接干预葡萄糖化N-糖链识别，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "malectin结构域外侧β折叠边缘表面",
+        "可获得稳定结合并降低糖链竞争风险，适合作为结构探针",
+        "备选"
+      ],
+      [
+        "Site C",
+        "跨膜近端腔侧连接区",
+        "可能影响构象取向，但柔性较高且结构解析支持有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险来自MLEC内质网定位导致常规抗体体内可及性不足；建议采用细胞内抗体、内质网定向VHH或机制验证Fab，并避免破坏结构核心造成非特异折叠效应。",
+    "structurePrepZh": "以PDB 9IL3的A、B链为抗原模板，保留malectin结构域晶体构象，检查糖结合沟槽、晶体接触面与缺失残基，进行质子化和表面可及性评估。",
+    "structureRef": "RCSB PDB 9IL3，X-ray diffraction，1.45 Å",
+    "antibodies": [
+      "暂无获批MLEC靶向抗体",
+      "暂无临床阶段MLEC同类抗体"
+    ],
+    "interfaceFocus": "malectin糖结合沟槽与腔侧可变环界面",
+    "designMode": "机制验证型VHH/Fab",
+    "candidates": [
+      {
+        "target": "CRP",
+        "rationale": "CRP是急性期炎症反应的核心分泌蛋白，并与MLEC遗传关联中最高分疾病表型C反应蛋白水平直接对应。其分泌蛋白属性使抗体可及性显著优于内质网定位靶点。"
+      },
+      {
+        "target": "IL6R",
+        "rationale": "IL6R介导IL-6诱导的肝细胞急性期反应并驱动CRP表达，是C反应蛋白升高通路中的成熟可药靶点。其胞外受体结构域适合阻断IL-6/IL6R/gp130信号复合物形成。"
+      },
+      {
+        "target": "IL6",
+        "rationale": "IL6是诱导肝脏CRP转录和系统性炎症反应的关键细胞因子，与CRP定量性状处于同一炎症调控轴。作为可溶性配体，其抗体中和策略具有明确分子机制。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

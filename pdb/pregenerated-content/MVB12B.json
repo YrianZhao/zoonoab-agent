@@ -1,0 +1,65 @@
+{
+  "gene": "MVB12B",
+  "generatedAt": "2026-08-03T14:28:36.705Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MVB12B 是 ESCRT-I 复合体相关亚基，参与泛素化膜蛋白货物识别及多泡体形成，HIV 可利用 ESCRT 轴完成病毒出芽，因此其疾病关联主要指向病毒释放机制。该蛋白属于胞内复合体组分，天然抗原可及性弱于膜受体或分泌蛋白，抗体策略更适合结构生物学验证、胞内递送抗体或研究型阻断设计。相较于 TSG101、VPS28 等核心 ESCRT-I 靶点，MVB12B 的结构片段分辨率高且亚基界面更具选择性，可降低对广泛 ESCRT 基础功能的非特异干扰风险。",
+    "mechanism": "设计抗体阻断 MVB12B 与 ESCRT-I 伙伴亚基的结合界面，干扰病毒 Gag 招募 ESCRT 复合体后续装配，从而抑制 HIV 颗粒膜出芽与释放。",
+    "selectedEpitope": "优先覆盖 3TOW 中 MVB12B N 端结构域的 ESCRT-I 亚基接触面，避开疏水核心。",
+    "diseaseDirection": "HIV及病毒感染出芽通路",
+    "domain": "MVB12B 含 ESCRT-I 结合相关 N 端 MVB12 结构域及低复杂度区域，3TOW 覆盖高分辨率结构片段。",
+    "evidence": "MVB12B-ESCRT-I 与 HIV 出芽结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q9H7P6 蛋白功能注释",
+      "RCSB PDB 3TOW X 射线晶体结构",
+      "HIV Gag p6-TSG101/ESCRT 招募机制文献"
+    ],
+    "referenceEntries": "UniProt Q9H7P6；RCSB PDB 3TOW；Open Targets MVB12B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "MVB12B N端ESCRT-I亚基结合界面",
+        "可直接干扰复合体装配，适合功能阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "外露螺旋-环区邻近界面边缘",
+        "兼顾抗原可及性与构象特异性，适合亲和成熟",
+        "备选"
+      ],
+      [
+        "Site C",
+        "保守疏水核心及折叠稳定区",
+        "可能诱导非特异构象扰动并影响可开发性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MVB12B 为胞内 ESCRT-I 组分，常规体内抗体难以直接结合天然靶点；建议定位于胞内抗体、递送平台或机制验证场景，并严控 ESCRT 广谱功能抑制风险。",
+    "structurePrepZh": "以 3TOW A 链为模板，补全缺失侧链并保留实验构象；对界面残基、溶剂暴露度和保守性进行联合标注后再进入表位筛选。",
+    "structureRef": "RCSB PDB 3TOW，1.34 Å X-ray human MVB12B fragment",
+    "antibodies": [
+      "抗TSG101研究型抗体",
+      "抗CHMP4B研究型抗体"
+    ],
+    "interfaceFocus": "MVB12B-ESCRT-I亚基装配界面",
+    "designMode": "胞内阻断型抗体",
+    "candidates": [
+      {
+        "target": "TSG101",
+        "rationale": "TSG101 通过 UEV 结构域识别 HIV-1 Gag p6 PTAP 基序，是 ESCRT 介导病毒出芽的核心宿主因子。其机制证据强，但广泛细胞功能依赖性较高。"
+      },
+      {
+        "target": "VPS28",
+        "rationale": "VPS28 是 ESCRT-I 复合体结构亚基，连接上游货物识别与下游 ESCRT 装配。靶向其复合体界面可评估病毒出芽依赖的 ESCRT-I 稳定性。"
+      },
+      {
+        "target": "CHMP4B",
+        "rationale": "CHMP4B 属于 ESCRT-III 核心聚合组分，参与膜颈收缩和裂解，是 HIV 颗粒释放的下游执行因子。其适合作为验证 ESCRT 出芽轴的替代节点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

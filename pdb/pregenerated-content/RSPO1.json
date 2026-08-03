@@ -1,0 +1,65 @@
+{
+  "gene": "RSPO1",
+  "generatedAt": "2026-08-03T16:15:56.779Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RSPO1 是分泌型 Wnt 通路增强因子，其缺失或功能受损可削弱 LGR4/5/6 介导的 Wnt/β-catenin 信号增强，并与掌跖角化、XX 性反转及鳞状细胞癌易感综合征具有明确遗传关联。该蛋白位于胞外环境，含可直接识别受体与 E3 泛素连接酶的富含半胱氨酸 furin-like 结构域，抗原可及性优于胞内 Wnt 通路节点。相较于直接靶向 WNT 配体或 Frizzled 受体，RSPO1 的通路作用更集中于 LGR-RNF43/ZNRF3 调控轴，适合开展配体-受体界面阻断或功能增强型抗体设计。",
+    "mechanism": "通过结合 RSPO1 furin-like 结构域，阻断其与 LGR4/5/6 及 RNF43/ZNRF3 的复合体形成，抑制 Frizzled 受体稳定化与 Wnt/β-catenin 信号放大。",
+    "selectedEpitope": "优先覆盖 FU1/FU2 交界及 LGR 结合面，兼顾 RNF43/ZNRF3 接触残基外缘。",
+    "diseaseDirection": "Wnt通路相关皮肤角化与癌易感",
+    "domain": "RSPO1 含信号肽、两个 furin-like 富半胱氨酸结构域、TSP1 结构域及碱性C端区。",
+    "evidence": "RSPO1-Wnt增强轴疾病遗传与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q2MKA7 蛋白功能与结构域注释",
+      "RCSB PDB 4BSP X射线晶体结构",
+      "人类遗传学RSPO1缺失综合征文献"
+    ],
+    "referenceEntries": "UniProt Q2MKA7；RCSB PDB 4BSP；Open Targets RSPO1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "FU1/FU2 交界的LGR结合界面",
+        "直接干预RSPO1-LGR4/5/6结合并影响Wnt信号增强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FU1结构域的RNF43/ZNRF3接触面外缘",
+        "限制E3连接酶复合体招募，适合界面阻断型设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "TSP1结构域及碱性C端邻近区域",
+        "可能影响基质或糖胺聚糖结合，但与核心受体界面相关性较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FU结构域富含二硫键，构象表位依赖性强；设计应保留天然折叠与糖基化背景，避免覆盖高度保守半胱氨酸核心导致非特异构象选择。",
+    "structurePrepZh": "以PDB 4BSP抗原链A为模板，补全缺失侧链并校验二硫键；结合UniProt边界标注FU1/FU2区域，建立受体界面约束模型。",
+    "structureRef": "RCSB PDB 4BSP，X-ray diffraction，2.0 Å",
+    "antibodies": [
+      "OMP-131R10",
+      "rosmantuzumab"
+    ],
+    "interfaceFocus": "FU1/FU2受体结合面与E3连接酶界面",
+    "designMode": "界面阻断型抗体",
+    "candidates": [
+      {
+        "target": "LGR5",
+        "rationale": "LGR5 是 RSPO1 的高亲和力受体之一，参与RSPO介导的Wnt/β-catenin信号增强；其胞外LRR结构域可作为同轴通路抗体干预节点。"
+      },
+      {
+        "target": "RNF43",
+        "rationale": "RNF43 是负向调控Frizzled受体丰度的跨膜E3泛素连接酶，RSPO1通过复合体形成抑制其功能；靶向该节点可解析RSPO1依赖的受体稳定化机制。"
+      },
+      {
+        "target": "ZNRF3",
+        "rationale": "ZNRF3 与RNF43功能相近，介导Frizzled降解并受RSPO-LGR轴抑制；其胞外PA结构域参与RSPO复合体识别，具备同通路抗体设计价值。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

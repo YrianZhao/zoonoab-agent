@@ -1,0 +1,65 @@
+{
+  "gene": "CAMK4",
+  "generatedAt": "2026-08-03T10:58:48.696Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CAMK4是钙/钙调蛋白依赖性丝氨酸/苏氨酸激酶，参与神经元活动依赖性CREB磷酸化、突触可塑性及T细胞转录程序，遗传证据提示其与智力障碍、自闭症谱系表型及淋巴细胞计数相关。该蛋白主要定位于胞质和细胞核，缺乏天然胞外结构域，因此常规治疗性抗体的抗原可及性受限，更适合作为细胞内靶点机制研究、降解偶联或递送型抗体平台的探索对象。相较于同通路上广泛表达且功能冗余更高的上游钙调蛋白或钙调神经磷酸酶，CAMK4具有明确催化结构域与可解析小分子结合口袋，可作为通路节点验证的较高优先级靶点，但抗体成药优先级需低于可直接接触的膜受体或分泌因子。",
+    "mechanism": "设计抗体需阻断CAMK4催化结构域ATP结合裂隙或钙调蛋白结合相关构象转换，抑制其对CREB Ser133等底物位点的磷酸化。",
+    "selectedEpitope": "优先围绕激酶N叶/C叶之间ATP结合裂隙及活化环邻近表面设计构象表位。",
+    "diseaseDirection": "神经发育与免疫调控疾病",
+    "domain": "CAMK4含N端蛋白激酶催化结构域、活化环及C端自抑制/钙调蛋白结合调控区。",
+    "evidence": "CAMK4神经发育与免疫通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q16566功能与亚细胞定位注释",
+      "RCSB PDB 2W4O晶体结构记录",
+      "CREB磷酸化及钙/钙调蛋白依赖性激酶通路文献"
+    ],
+    "referenceEntries": "UniProt Q16566；RCSB PDB 2W4O；Open Targets CAMK4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶催化结构域N叶/C叶ATP结合裂隙周边",
+        "可直接干扰ATP定位与催化构象稳定，最适合功能阻断型设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "活化环及底物结合沟槽邻近表面",
+        "有望限制底物进入并影响活化环构象，但需避免非特异性识别保守激酶面",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端自抑制/钙调蛋白结合调控区预测区域",
+        "可能调节钙调蛋白诱导激活，但2W4O结构覆盖有限且构象柔性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CAMK4为胞内激酶，天然抗体难以直接进入胞质或细胞核；激酶催化面高度保守，需通过结构比对排除CAMK1、CAMK2及CAMKKB交叉反应。",
+    "structurePrepZh": "以2W4O链A为模板保留催化结构域坐标，补全缺失环区并标注ATP结合裂隙、活化环和保守激酶基序后进行表位可及性评估。",
+    "structureRef": "RCSB PDB 2W4O，人源CAMK4 X射线结构，2.17 Å",
+    "antibodies": [
+      "抗CAMK4研究级单克隆抗体",
+      "抗磷酸化CAMK4 Thr196研究级抗体"
+    ],
+    "interfaceFocus": "ATP结合裂隙、活化环与底物结合沟槽",
+    "designMode": "胞内酶阻断探索",
+    "candidates": [
+      {
+        "target": "CALM1",
+        "rationale": "CALM1编码钙调蛋白，是CAMK4激活所需的钙结合调节因子；阻断钙/钙调蛋白与CAMK4调控区结合可上游抑制该轴。"
+      },
+      {
+        "target": "CAMKK2",
+        "rationale": "CAMKK2可磷酸化并激活CAMK4，处于同一Ca2+/calmodulin-CAMKK-CAMK4-CREB信号轴；靶向该节点可降低CAMK4活化输入。"
+      },
+      {
+        "target": "CREB1",
+        "rationale": "CREB1是CAMK4下游转录因子，Ser133磷酸化介导神经元可塑性与免疫细胞转录反应；其功能状态可作为通路抑制的关键读出。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "SMG6",
+  "generatedAt": "2026-08-03T16:44:27.178Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SMG6 是 nonsense-mediated mRNA decay 轴的关键核酸酶因子，参与异常终止密码子识别后的转录本清除，并可通过影响多类疾病相关转录本稳态而进入复杂疾病网络。其蛋白含有可解析的结构域组织且具备胞内可结构化抗原表面，适合以结构导向方式定义功能干预位点。相较于直接靶向 mRNA 代谢上游核心因子，SMG6 具有更明确的结构功能分区和更适合表位精细分层的界面特征，因此在同类 NMD 调控因子中具备更高的设计优先级。",
+    "mechanism": "通过占据 SMG6 关键识别界面，干扰其与 UPF1 相关复合体或底物转录本的结合，从而削弱异常转录本切割。",
+    "selectedEpitope": "优先覆盖 PIN 核酸酶域邻近功能面及其复合体结合界面，避免催化核心保守位点。",
+    "diseaseDirection": "RNA监控与神经退行性疾病",
+    "domain": "N端 PIN 核酸酶域及 C端 CSM/RTRF 相关复合体作用区域",
+    "evidence": "SMG6 结构与疾病关联证据包",
+    "evidenceSources": [
+      "UniProt: Q86US8",
+      "RCSB PDB: 2HWW",
+      "Open Targets Platform",
+      "SMG6 相关文献与蛋白结构数据库"
+    ],
+    "referenceEntries": "UniProt Q86US8; PDB 2HWW; Homo sapiens SMG6",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PIN 域靠近活性沟槽的侧向界面",
+        "可阻断底物 RNA 装载与切割前定位",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PIN 域与辅助接触面交界区",
+        "适合抑制复合体稳定化而保留结构识别",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端复合体互作区的远端表面",
+        "降低对催化核心直接扰动，便于选择性优化",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SMG6 为胞内蛋白，抗体需依赖胞内递送或替代性细胞内结合格式。催化核心高度保守，优先选择邻近但非绝对保守的复合体界面以降低脱靶酶学风险。",
+    "structurePrepZh": "以 2HWW 为主模板完成链 A/B/C 映射与功能面注释，补全缺失侧链并对 PIN 域表面电荷进行局部优化，必要时结合 AlphaFold2 全长模型校正非晶区连接段。",
+    "structureRef": "RCSB 2HWW; SMG6 PIN 域晶体结构研究",
+    "antibodies": [
+      "未见成熟临床级同类抗体",
+      "缺乏 SMG6 公开高频药物抗体先例"
+    ],
+    "interfaceFocus": "PIN 域功能沟槽与 UPF1 相关接触面",
+    "designMode": "结构导向抑制型",
+    "candidates": [
+      {
+        "target": "UPF1",
+        "rationale": "UPF1 是 NMD 轴核心 ATPase/解旋酶，与 SMG6 协同完成异常转录本识别后处理。与 SMG6 同属同一疾病通路，适合作为平行验证靶点。"
+      },
+      {
+        "target": "SMG5",
+        "rationale": "SMG5 与 SMG6 在 NMD 复合体中形成功能互补，参与异常 mRNA 清除的后续步骤。其与 SMG6 同处同一通路，适合用于机制分流比较。"
+      },
+      {
+        "target": "SMG7",
+        "rationale": "SMG7 参与 NMD 末端复合体组装并影响底物降解效率。作为与 SMG6 同通路的真实协同因子，可用于比较复合体层面的干预窗口。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

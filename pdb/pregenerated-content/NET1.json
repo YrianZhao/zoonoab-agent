@@ -1,0 +1,65 @@
+{
+  "gene": "NET1",
+  "generatedAt": "2026-08-03T14:40:47.774Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NET1编码RhoA特异性鸟嘌呤核苷酸交换因子，主要通过Dbl同源GEF结构域促进RhoA由GDP结合态转化为GTP结合态，参与细胞骨架重塑、黏附迁移和增殖相关过程。现有Open Targets关联以身高、血液学指标和行为表型为主，疾病因果强度有限，且NET1为胞内核质分布蛋白，天然抗原可及性不具备分泌蛋白或膜受体优势。相较EGFR、VEGFA、TNF等可直接在胞外阻断配体-受体界面的成熟抗体靶点，NET1更适合作为结构生物学与细胞内递送抗体研究靶点，优先级应低于可及性更高且临床验证更充分的同通路上游节点。",
+    "mechanism": "设计抗体需在细胞内结合NET1 DH结构域的RhoA识别界面，阻断NET1催化RhoA GDP释放并抑制RhoA-GTP生成。",
+    "selectedEpitope": "优先覆盖DH结构域α螺旋束中的RhoA结合沟槽及相邻PH结构域调控界面。",
+    "diseaseDirection": "RhoA细胞骨架与迁移相关疾病",
+    "domain": "NET1含N端调控区、Dbl同源DH催化结构域及PH结构域，4XH9覆盖催化核心构象。",
+    "evidence": "NET1-RhoA轴结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q7Z628功能与亚细胞定位注释",
+      "RCSB PDB 4XH9晶体结构记录",
+      "Rho GTPase信号与GEF催化机制文献"
+    ],
+    "referenceEntries": "UniProt Q7Z628；RCSB PDB 4XH9；Open Targets NET1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DH结构域RhoA结合与核苷酸交换界面",
+        "可直接干预NET1催化RhoA GDP释放，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DH-PH结构域连接区及PH邻近调控面",
+        "可能稳定非活化构象并削弱底物装配",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离RhoA结合面的PH外侧暴露区域",
+        "结合可及但功能阻断证据较弱，需功能筛选验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NET1为胞内蛋白，常规抗体难以到达作用位点；设计应标注递送依赖性，并优先评估细胞内Fab、VHH或抗体片段表达策略。",
+    "structurePrepZh": "以4XH9实验晶体结构为模板，保留抗原链A/B/D/E中构象完整链，补建缺失侧链并评估DH-PH界面与晶体接触影响。",
+    "structureRef": "RCSB PDB 4XH9，X-ray diffraction，2.0 Å",
+    "antibodies": [
+      "暂无获批NET1靶向抗体",
+      "暂无临床阶段NET1阻断抗体"
+    ],
+    "interfaceFocus": "DH结构域RhoA结合沟槽与DH-PH连接界面",
+    "designMode": "细胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "RHOA",
+        "rationale": "RHOA是NET1直接催化激活的下游小GTP酶，处于同一RhoA细胞骨架与迁移通路核心位置。靶向其效应器结合构象可更直接评估通路抑制效应。"
+      },
+      {
+        "target": "ARHGEF12",
+        "rationale": "ARHGEF12同属RhoA鸟嘌呤核苷酸交换因子，参与RhoA介导的细胞收缩和迁移调控。其与NET1共享下游RhoA通路，可作为同机制GEF节点比较靶点。"
+      },
+      {
+        "target": "ROCK1",
+        "rationale": "ROCK1是RhoA-GTP经典下游效应激酶，介导肌动蛋白应力纤维形成和细胞张力变化。该节点较NET1更接近功能输出端，适合用于通路药效参照。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

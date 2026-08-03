@@ -1,0 +1,65 @@
+{
+  "gene": "HSF1",
+  "generatedAt": "2026-08-03T13:17:51.811Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HSF1是热休克反应的核心转录因子，通过三聚化、结合heat shock element并诱导HSPA1A、HSP90AA1等分子伴侣表达，参与肿瘤蛋白稳态适应、应激耐受和部分炎症相关表型。该蛋白主要定位于胞质与细胞核，缺乏天然胞外结构域或分泌暴露形式，抗原可及性显著弱于膜受体和分泌因子，因此更适合细胞内递送抗体片段或研究级结合分子开发。相较HSP90、HSP70等同通路分子伴侣，HSF1位于热休克转录程序上游，具备同时压低多种应激伴侣基因表达的机制优先级，但作为常规治疗性抗体靶点的成药性风险较高。",
+    "mechanism": "设计抗体片段结合HSF1 DNA结合结构域或三聚化相关界面，阻断HSF1与heat shock element DNA结合或抑制活化三聚体稳定化。",
+    "selectedEpitope": "优先锁定N端winged helix-turn-helix DNA结合结构域的HSE识别面，避开高度保守折叠核心。",
+    "diseaseDirection": "肿瘤蛋白稳态应激与热休克反应",
+    "domain": "HSF1含N端DNA结合结构域、疏水七肽重复三聚化区HR-A/B、调控区及C端HR-C抑制区。",
+    "evidence": "HSF1热休克转录调控与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q00613功能与结构域注释",
+      "RCSB PDB 5HDN晶体结构记录",
+      "Reactome Cellular response to heat stress通路"
+    ],
+    "referenceEntries": "UniProt: Q00613; RCSB PDB: 5HDN; Gene: HSF1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DNA结合结构域HSE接触面",
+        "可直接干扰HSF1识别热休克元件，机制闭环清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "winged helix外侧可及环区",
+        "有利于获得构象识别结合体，保留较好结构可塑性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "DBD保守疏水核心邻近区域",
+        "可能影响全局折叠并提高交叉反应或非特异风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HSF1为细胞内核转录因子，常规抗体难以到达作用位点；建议采用VHH、intrabody或递送偶联策略，并严格评估HSF家族交叉反应。",
+    "structurePrepZh": "以5HDN高分辨率晶体结构为模板，保留HSF1 DNA结合结构域链，去除晶体接触冗余链后进行质子化、缺失残基检查与界面暴露评估。",
+    "structureRef": "RCSB PDB 5HDN, X-ray diffraction, 1.68 Å",
+    "antibodies": [
+      "anti-HSF1 monoclonal antibody D3L8I",
+      "anti-HSF1 monoclonal antibody 10H8"
+    ],
+    "interfaceFocus": "DBD-HSE DNA识别面与wing区",
+    "designMode": "细胞内抗体片段",
+    "candidates": [
+      {
+        "target": "HSP90AA1",
+        "rationale": "HSP90AA1是HSF1诱导的热休克分子伴侣核心成员，维持多种致癌客户蛋白稳定性，位于同一蛋白稳态应激网络。"
+      },
+      {
+        "target": "HSPA1A",
+        "rationale": "HSPA1A编码诱导型HSP70，是HSF1转录输出的主要效应分子，可作为热休克反应下游功能节点。"
+      },
+      {
+        "target": "HSF2",
+        "rationale": "HSF2与HSF1同属heat shock factor家族，可参与应激转录复合体调控，适合作为同通路选择性与补偿机制评估靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

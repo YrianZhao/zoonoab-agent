@@ -1,0 +1,65 @@
+{
+  "gene": "DGCR8",
+  "generatedAt": "2026-08-03T11:56:00.264Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DGCR8 是 Microprocessor 复合体核心亚基，与 DROSHA 共同识别 pri-miRNA 并启动 miRNA 成熟，miRNA 生物发生异常可影响神经发育、肿瘤抑制网络与肾母细胞瘤相关转录后调控。DGCR8 主要定位于细胞核，缺乏分泌型或膜外结构域，天然抗体抗原可及性不足，更适合作为细胞内机制验证或递送型抗体格式探索靶点。相较于 AGO 或 DICER 等下游因子，DGCR8 位于 pri-miRNA 加工起始步骤，结构复合物信息清晰，但因细胞内定位，其开发优先级低于可直接胞外阻断的同通路靶点。",
+    "mechanism": "阻断 DGCR8 双链 RNA 结合结构域与 pri-miRNA 茎环区域的结合，或干扰 DGCR8 与 DROSHA 的 Microprocessor 装配，从而抑制 pri-miRNA 初始切割。",
+    "selectedEpitope": "优先评估 dsRBD1-dsRBD2 与 pri-miRNA 结合面邻近构象表位，兼顾 C 端二聚化界面。",
+    "diseaseDirection": "miRNA生物发生异常相关神经退行与肿瘤",
+    "domain": "DGCR8 含 N 端 WW 区域、中央血红素结合/二聚化区及 C 端双 dsRNA 结合结构域。",
+    "evidence": "DGCR8-Microprocessor结构与疾病遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q8WYQ5 蛋白功能与亚细胞定位注释",
+      "RCSB PDB 7CNC X-ray 晶体结构",
+      "miRNA Microprocessor 复合体机制研究文献"
+    ],
+    "referenceEntries": "UniProt Q8WYQ5；RCSB PDB 7CNC；Open Targets DGCR8",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C 端 dsRBD1-dsRBD2 RNA 结合沟槽邻近区域",
+        "可直接干扰 pri-miRNA 茎环识别，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "中央血红素结合与二聚化相关结构域界面",
+        "可能影响 DGCR8 构象稳定性及 Microprocessor 活性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端 WW 结构域及柔性连接区",
+        "结构暴露度可能较高，但与 pri-miRNA 切割核心反应距离较远",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DGCR8 为核内蛋白，常规抗体难以到达作用位点；建议限定为机制探针、胞内抗体或递送偶联格式，并优先验证细胞内暴露效率。",
+    "structurePrepZh": "以 PDB 7CNC 的 A、B 链为结构基础，保留高分辨率核心构象，补建缺失柔性片段并标注 RNA 结合面、二聚化界面与潜在糖基化缺失风险。",
+    "structureRef": "RCSB PDB 7CNC，X-ray diffraction，1.6 Å",
+    "antibodies": [
+      "anti-DGCR8 antibody EPR18757",
+      "anti-DGCR8 antibody 6F3"
+    ],
+    "interfaceFocus": "dsRBD-RNA结合面与DGCR8二聚化界面",
+    "designMode": "细胞内阻断型",
+    "candidates": [
+      {
+        "target": "DROSHA",
+        "rationale": "DROSHA 与 DGCR8 共同构成 Microprocessor 复合体，直接催化 pri-miRNA 切割，是同一 miRNA 生物发生起始步骤中的核心酶促靶点。"
+      },
+      {
+        "target": "DICER1",
+        "rationale": "DICER1 负责 pre-miRNA 向成熟 miRNA 双链的后续加工，与 DGCR8 同属 miRNA 成熟通路，疾病遗传证据在肿瘤和神经系统异常中较明确。"
+      },
+      {
+        "target": "AGO2",
+        "rationale": "AGO2 是 RISC 复合体的催化核心，承接 DGCR8/DROSHA 加工后的成熟 miRNA 并介导靶 mRNA 沉默，可作为同通路下游功能节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

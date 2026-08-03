@@ -1,0 +1,65 @@
+{
+  "gene": "MX1",
+  "generatedAt": "2026-08-03T14:28:36.219Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MX1 是 I 型和 III 型干扰素诱导的胞内动力蛋白样 GTPase，参与抗病毒先天免疫效应并可作为干扰素通路活化的疾病相关标志物。该蛋白主要定位于胞质和细胞内膜相关区室，天然抗原可及性弱于分泌因子或膜受体，因此更适合建立血清/组织检测型抗体或细胞内靶标研究抗体。相较 IFNAR1、JAK1、STAT1 等上游通路节点，MX1 更接近干扰素效应输出端，具有较高通路特异性和生物标志物优先级，但不宜作为常规细胞外阻断型治疗抗体首选。",
+    "mechanism": "抗体设计以识别 MX1 GTPase 结构域构象表位为主，用于捕获干扰素诱导的 MX1 蛋白并区分其与相关 dynamin 样 GTPase 的结构差异。",
+    "selectedEpitope": "优先选择 4P4U 可解析的 GTPase 结构域 Switch I/II 邻近非催化外露面，避开核苷酸结合核心。",
+    "diseaseDirection": "干扰素通路活化与抗病毒免疫标志物",
+    "domain": "MX1 含 N 端 GTPase 结构域、中部 bundle signaling element 与 C 端 stalk 介导寡聚化区域。",
+    "evidence": "MX1 干扰素诱导表达与结构抗原性证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt P20591 功能与亚细胞定位注释",
+      "RCSB PDB 4P4U X 射线晶体结构",
+      "干扰素刺激基因与抗病毒先天免疫文献"
+    ],
+    "referenceEntries": "UniProt P20591；RCSB PDB 4P4U；Open Targets MX1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "GTPase 结构域 Switch I/II 邻近外露螺旋与环区",
+        "保留构象特异性并利于区分活化相关构象状态",
+        "优先"
+      ],
+      [
+        "Site B",
+        "GTPase 结构域远离 P-loop 的非催化外露面",
+        "降低对 GTP/GDP 结合位点的干扰，适合检测型抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "P-loop 与核苷酸结合口袋周边",
+        "可能影响 GTP 结合或水解并存在保守性导致交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MX1 为胞内抗原，治疗性阻断可及性受限。设计应强调检测、伴随诊断或研究用途，并通过 MX2 与 DNM 家族同源性筛除交叉表位。",
+    "structurePrepZh": "以 4P4U 链 A 为模板进行缺失环建模、质子化与表面暴露分析；保留 GTPase 核心构象，标注核苷酸结合区作为避让区域。",
+    "structureRef": "RCSB PDB 4P4U，MX1 GTPase 结构域，1.9 Å X-ray",
+    "antibodies": [
+      "Anti-MxA clone M143",
+      "Anti-MxA clone CL143"
+    ],
+    "interfaceFocus": "GTPase 结构域外露构象面与 Switch 环邻近区域",
+    "designMode": "检测型构象抗体",
+    "candidates": [
+      {
+        "target": "IFNAR1",
+        "rationale": "IFNAR1 是 I 型干扰素受体复合体组成部分，位于 MX1 上游并介导 IFN-α/β 诱导的 JAK-STAT 信号输入。其胞外受体结构域具备优于 MX1 的抗体可及性。"
+      },
+      {
+        "target": "STAT1",
+        "rationale": "STAT1 是干扰素受体下游关键转录因子，驱动 MX1 等干扰素刺激基因表达。其通路关联强，但以胞内核转位蛋白为主，更适合作为机制研究或检测靶点。"
+      },
+      {
+        "target": "IFIT1",
+        "rationale": "IFIT1 与 MX1 同属典型干扰素刺激基因，参与抗病毒效应并反映干扰素通路激活状态。作为胞内效应蛋白，其抗体开发价值主要集中于表达检测和疾病分型。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

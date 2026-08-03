@@ -1,0 +1,65 @@
+{
+  "gene": "ETFA",
+  "generatedAt": "2026-08-03T12:23:43.514Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ETFA编码线粒体电子转移黄素蛋白α亚基，与ETFB形成可溶性异二聚体，将多种酰基-CoA脱氢酶产生的电子传递至ETFDH；功能缺陷可导致多种酰基-CoA脱氢酶缺乏、戊二酸尿症相关代谢表型及酰基肉碱异常。该蛋白定位于线粒体基质，非膜受体且缺乏天然胞外暴露，因此更适合作为结构验证、细胞内递送抗体或诊断捕获抗体靶点，而非经典体内阻断型抗体靶点。相较单一底物特异性酰基-CoA脱氢酶，ETFA处于脂肪酸、支链氨基酸及胆碱代谢电子转移汇聚节点，遗传证据强且PDB 1EFV提供高分辨率异二聚体结构，适合优先开展机制型表位设计。",
+    "mechanism": "设计抗体优先用于识别ETFA黄素蛋白异二聚体构象，阻断或标记ETFA-ETFB界面附近构象改变对电子转移复合体稳定性的影响。",
+    "selectedEpitope": "优先选择ETFA与ETFB相邻的FAD结合域外侧构象表面，避开FAD口袋核心残基。",
+    "diseaseDirection": "线粒体脂肪酸氧化遗传代谢病",
+    "domain": "ETFA含N端α亚基结构域及C端FAD结合相关结构域，与ETFB组成电子转移黄素蛋白异二聚体。",
+    "evidence": "ETFA遗传代谢病关联与1EFV结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P13804功能与亚细胞定位注释",
+      "RCSB PDB 1EFV晶体结构",
+      "OMIM多种酰基-CoA脱氢酶缺乏症条目"
+    ],
+    "referenceEntries": "UniProt P13804；RCSB PDB 1EFV；Open Targets ETFA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ETFA-ETFB异二聚体界面邻近构象表面",
+        "可区分天然复合体构象并评估界面稳定性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ETFA FAD结合域外侧非催化暴露环区",
+        "保留黄素结合口袋完整性，适合亲和捕获",
+        "备选"
+      ],
+      [
+        "Site C",
+        "FAD结合口袋及电子转移路径核心区域",
+        "可能干扰辅因子结合与生理电子转移，需严格验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ETFA为线粒体基质蛋白，体内抗体可及性受限；设计应定位于诊断检测、结构探针或递送型细胞内抗体，并避免破坏FAD结合核心。",
+    "structurePrepZh": "以1EFV中A、B链异二聚体为模板，保留FAD辅因子用于界面判读，补全缺失侧链并标注ETFA-ETFB接触面及溶剂可及环区。",
+    "structureRef": "Roberts等解析的人源ETF晶体结构，PDB 1EFV，2.1 Å",
+    "antibodies": [
+      "抗ETFA检测抗体",
+      "抗电子转移黄素蛋白复合体研究抗体"
+    ],
+    "interfaceFocus": "ETFA-ETFB界面与FAD结合域外侧环区",
+    "designMode": "结构引导型诊断抗体",
+    "candidates": [
+      {
+        "target": "ETFB",
+        "rationale": "ETFB与ETFA形成同一电子转移黄素蛋白异二聚体，是多种酰基-CoA脱氢酶缺乏相关电子传递缺陷的直接复合体伙伴。"
+      },
+      {
+        "target": "ETFDH",
+        "rationale": "ETFDH接受ETFA-ETFB复合体传递的电子并将其输入泛醌池，ETFDH缺陷同样可导致多种酰基-CoA脱氢酶缺乏表型。"
+      },
+      {
+        "target": "GCDH",
+        "rationale": "GCDH为戊二酰-CoA脱氢酶，位于赖氨酸、羟赖氨酸和色氨酸分解通路，其电子依赖ETF系统转移，与戊二酸尿症表型直接相关。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

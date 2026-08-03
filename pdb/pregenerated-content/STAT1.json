@@ -1,0 +1,65 @@
+{
+  "gene": "STAT1",
+  "generatedAt": "2026-08-03T16:58:28.743Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "STAT1 是 I 型和 II 型干扰素信号的核心转录因子，在抗病毒、抗分枝杆菌及黏膜抗真菌免疫中居于枢纽位置，其功能失衡可直接对应慢性感染易感及免疫缺陷表型。该蛋白为胞质内信号蛋白，缺乏胞外可及性，抗体设计更适合以构象选择性和细胞内递送为前提，优先聚焦于抑制二聚化、DNA 结合或核转位的功能界面。相较于上游受体靶点，STAT1 具有更明确的通路收敛性和更强的疾病表型指向，适合作为同一干扰素-抗感染通路中的高优先级机制靶点。",
+    "mechanism": "阻断 STAT1 SH2 介导的磷酸化二聚化，并限制其进入核内后与 GAS 元件的结合。",
+    "selectedEpitope": "优先覆盖 SH2 域及 pTyr 结合口袋邻近面，兼顾 DNA 结合域边界构象。",
+    "diseaseDirection": "免疫缺陷与感染易感",
+    "domain": "N 端寡聚调控区、coiled-coil 域、DNA 结合域、SH2 域及 C 端转录激活尾部",
+    "evidence": "STAT1 疾病-结构-抗体设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform",
+      "UniProt: P42224",
+      "RCSB PDB: 3WWT",
+      "文献: STAT1 SH2-DNA 结合相关结构与功能研究"
+    ],
+    "referenceEntries": "UniProt P42224；RCSB 3WWT；Open Targets STAT1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SH2 域 pTyr 结合口袋邻域",
+        "抑制 Tyr701 依赖二聚化与核转位",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DNA 结合域正电表面边缘",
+        "干预 GAS 元件识别",
+        "备选"
+      ],
+      [
+        "Site C",
+        "coiled-coil 域构象接口",
+        "影响上游装配但特异性较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "靶点位于细胞内，常规全长抗体难以直接接触；需优先评估胞内递送、细胞穿透片段或 VHH 工程化方案。SH2 域周边保守性较高，需通过构象限定与功能筛选降低对 STAT 家族交叉抑制风险。",
+    "structurePrepZh": "以 3WWT 为核心模板，重建缺失环区并统一链 A/B 的二聚体构象；对 SH2 域、电荷分布及暴露残基进行溶剂可及性映射。",
+    "structureRef": "RCSB PDB 3WWT；STAT1 结构与二聚化研究文献",
+    "antibodies": [
+      "anti-STAT1 pY701 研究抗体",
+      "STAT1 中和/阻断型研究抗体"
+    ],
+    "interfaceFocus": "SH2-pTyr 二聚化界面与 DNA 结合面",
+    "designMode": "intracellular-blocking",
+    "candidates": [
+      {
+        "target": "STAT2",
+        "rationale": "STAT2 与 STAT1 共同参与 I 型干扰素信号转导，并形成 ISGF3 复合体，适合作为同通路功能参照靶点。其与 STAT1 的并行关系有助于判定抑制谱与通路选择性。"
+      },
+      {
+        "target": "IRF9",
+        "rationale": "IRF9 是 ISGF3 的组成部分，位于 STAT1 下游转录复合体层面，适合用于评估核内转录装配阻断策略。其生物学位置与 STAT1 机制互补，属于同一疾病通路的真实节点。"
+      },
+      {
+        "target": "IFNAR1",
+        "rationale": "IFNAR1 位于 STAT1 上游的 I 型干扰素受体复合体中，直接决定 STAT1 磷酸化激活强度。作为通路上游候选靶点，可用于比较受体阻断与转录因子阻断在感染易感相关疾病中的优先级差异。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

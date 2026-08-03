@@ -1,0 +1,65 @@
+{
+  "gene": "USP18",
+  "generatedAt": "2026-08-03T17:44:12.960Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "USP18 是 I 型干扰素负反馈轴的关键因子，既通过 ISG15 去缀合酶活性调节 ISGylation，又可结合 IFNAR2 抑制 JAK1  recruitment，从而限制 IFNAR1/IFNAR2 介导的 JAK-STAT 信号。USP18 缺陷与 congenital intrauterine infection-like syndrome 及 pseudo-TORCH syndrome 相关，机制上表现为持续性干扰素信号和神经炎症表型。USP18 为胞内蛋白，抗原可及性弱于分泌因子或膜受体，因此抗体设计优先适用于结构验证、细胞内递送或工程化 intrabody 场景。相较 IFNAR1/IFNAR2 等广谱受体靶点，USP18 更贴近疾病遗传因果节点，可用于精确解析失衡的干扰素负反馈机制。",
+    "mechanism": "设计抗体阻断 USP18 与 IFNAR2 胞内段的结合界面，削弱其对 JAK1 结合的竞争性抑制，或稳定催化结构域以调节 ISG15 去缀合活性。",
+    "selectedEpitope": "优先覆盖 USP 结构域中靠近 IFNAR2 结合面的外露螺旋-环区，避开催化 Cys-His-Asp 三联体核心。",
+    "diseaseDirection": "I型干扰素病与先天免疫失衡",
+    "domain": "USP18 含 N 端调节区及 C 端 ubiquitin-specific protease 催化结构域，具有 ISG15 识别沟槽。",
+    "evidence": "USP18-IFNAR2负反馈与干扰素病证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9UMW8 functional annotation",
+      "RCSB PDB 9QY8 experimental structure",
+      "OMIM and interferonopathy genetics literature"
+    ],
+    "referenceEntries": "UniProt: Q9UMW8; RCSB PDB: 9QY8; HGNC: USP18",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "USP 催化结构域外露 IFNAR2 结合邻近面",
+        "可用于阻断 USP18-IFNAR2 相互作用并解析受体负反馈功能",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ISG15 结合沟槽边缘的可及环区",
+        "可影响底物识别而降低直接干扰催化三联体的构象风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化 Cys-His-Asp 三联体周围保守核心",
+        "保守性高且可能造成非选择性构象扰动，需避免强占位设计",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "USP18 缺乏天然胞外暴露，常规抗体难以直接进入细胞；建议采用 Fab/VHH 结构探针、细胞内递送或 intrabody 平台，并严格评估与其他 USP 家族成员的交叉反应。",
+    "structurePrepZh": "以 PDB 9QY8 的 A、B 链为实验结构模板，补全缺失侧链并保留催化结构域构象；对二聚体或晶体接触界面进行生物学相关性筛选。",
+    "structureRef": "RCSB PDB 9QY8, X-ray diffraction, 1.919 Å",
+    "antibodies": [
+      "commercial anti-USP18 monoclonal antibody",
+      "commercial anti-UBP43/USP18 polyclonal antibody"
+    ],
+    "interfaceFocus": "IFNAR2结合邻近面与ISG15识别沟槽",
+    "designMode": "胞内靶点结构抗体",
+    "candidates": [
+      {
+        "target": "IFNAR2",
+        "rationale": "IFNAR2 是 USP18 介导干扰素负反馈的直接结合受体亚基，其胞内段与 JAK1 recruitment 共同决定 I 型干扰素信号强度。"
+      },
+      {
+        "target": "IFNAR1",
+        "rationale": "IFNAR1 与 IFNAR2 共同构成 I 型干扰素受体复合物，是 JAK-STAT 激活和受体内吞调控的核心节点。"
+      },
+      {
+        "target": "ISG15",
+        "rationale": "ISG15 是 USP18 的主要去缀合底物，并与先天免疫抗病毒反应和干扰素病表型密切相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

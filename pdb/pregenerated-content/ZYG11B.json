@@ -1,0 +1,65 @@
+{
+  "gene": "ZYG11B",
+  "generatedAt": "2026-08-03T18:03:41.198Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ZYG11B 是 CRL2-ZYG11B E3 泛素连接酶复合体的底物受体，通过识别 N 端甘氨酸降解子并介导靶蛋白泛素化，参与蛋白稳态与细胞周期相关调控，其遗传关联主要集中于中性粒细胞、白细胞、淋巴细胞和单核细胞数量性状。该蛋白定位于胞内 Cullin-RING 连接酶复合体，并非分泌蛋白或经典膜受体，天然抗原可及性弱，因此更适合采用结构生物学驱动的胞内递送抗体片段或研究级结合分子策略。相较缺乏高分辨率结构的同类血细胞数量遗传关联靶点，ZYG11B 具备 7EP1 晶体结构与明确底物识别槽，可优先用于机制验证型抗体设计。",
+    "mechanism": "设计结合分子占据 ZYG11B 底物识别槽，阻断 N 端甘氨酸降解子与 ZYG11B 的相互作用，从而干预 CRL2-ZYG11B 介导的底物泛素化。",
+    "selectedEpitope": "优先选择 ZYG11B β-propeller 底物识别口袋及邻近底物夹持环作为阻断型表位。",
+    "diseaseDirection": "血细胞数量性状与神经退行性疾病关联",
+    "domain": "ZYG11B 含 N 端 ZYG11 相关区域、中央 Armadillo/TPR 样重复与 C 端底物识别 β-propeller 结构域。",
+    "evidence": "ZYG11B 血细胞数量性状遗传关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q9C0D3 蛋白功能注释",
+      "RCSB PDB 7EP1 X 射线晶体结构",
+      "CRL2-ZYG11B N-degron 底物识别研究文献"
+    ],
+    "referenceEntries": "UniProt Q9C0D3；RCSB PDB 7EP1；Open Targets ZYG11B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "β-propeller 底物识别口袋与 N 端甘氨酸结合槽",
+        "可直接竞争 N-degron 底物结合，机制阻断价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "底物识别口袋邻近环区与 Armadillo/TPR 样重复连接界面",
+        "可能通过构象限制削弱底物装载，适合作为变构型表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "CUL2 复合体装配相关外侧结构面",
+        "可能影响 CRL2 复合体稳定性但系统性泛素化风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ZYG11B 为胞内蛋白，常规抗体难以到达作用位点；应标注递送依赖性，并避免广泛破坏 CUL2 复合体装配导致非特异蛋白稳态扰动。",
+    "structurePrepZh": "以 7EP1 抗原链 A/B 为结构模板，保留底物识别口袋关键侧链，校正缺失环区、质子化状态与晶体接触后开展表位建模。",
+    "structureRef": "RCSB PDB 7EP1，1.852 Å X-ray ZYG11B 结构",
+    "antibodies": [
+      "无临床批准 ZYG11B 靶向抗体",
+      "无公开验证的阻断型 ZYG11B 抗体"
+    ],
+    "interfaceFocus": "N-degron 甘氨酸结合槽及底物夹持环",
+    "designMode": "胞内阻断型VHH设计",
+    "candidates": [
+      {
+        "target": "VHL",
+        "rationale": "VHL 是 CRL2 复合体的经典底物受体，介导羟化 HIF1A 识别与泛素化降解，与 ZYG11B 同属 CUL2-RBX1 E3 连接酶框架。其结构与功能证据充分，可作为 CRL2 轴机制对照靶点。"
+      },
+      {
+        "target": "CUL2",
+        "rationale": "CUL2 是 CRL2-ZYG11B 复合体的支架蛋白，连接底物受体模块与 RBX1 催化模块。针对该节点可评估复合体装配和泛素转移效率对相关表型的影响。"
+      },
+      {
+        "target": "RBX1",
+        "rationale": "RBX1 是 Cullin-RING E3 连接酶的 RING 催化组分，负责招募 E2-泛素并促进泛素转移。其与 CUL2 共同构成 ZYG11B 依赖性底物泛素化的核心催化界面。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

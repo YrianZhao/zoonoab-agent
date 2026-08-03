@@ -1,0 +1,65 @@
+{
+  "gene": "POLR2H",
+  "generatedAt": "2026-08-03T15:26:43.383Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "POLR2H是RNA聚合酶I、II、III共享的核心亚基，参与病毒感染中宿主转录复合体维持与RNA Pol II依赖转录过程，Open Targets提示其与HIV感染等疾病存在遗传与功能关联。该蛋白主要定位于细胞核转录机器内部，缺乏天然胞外结构域或分泌暴露特征，作为体内阻断型抗体靶点的抗原可及性不足。其优先级低于HIV通路中可直接暴露于病毒包膜或宿主细胞膜表面的Env、CCR5、CD4等靶点，更适合作为结构生物学验证或胞内递送抗体片段探索对象。",
+    "mechanism": "设计方向应聚焦胞内递送抗体片段阻断POLR2H与RNA聚合酶核心亚基界面装配，干扰宿主转录复合体稳定性，而非传统胞外中和机制。",
+    "selectedEpitope": "优先评估POLR2H在7AE1复合物中的亚基装配界面螺旋束与邻近核心亚基接触面。",
+    "diseaseDirection": "病毒感染宿主转录依赖方向",
+    "domain": "POLR2H为小型RNA聚合酶共享核心亚基，含保守α螺旋结构并嵌入多亚基聚合酶复合体。",
+    "evidence": "POLR2H宿主转录复合体与病毒感染关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P52434功能与亚细胞定位注释",
+      "RCSB PDB 7AE1冷冻电镜结构",
+      "RNA聚合酶II宿主转录复合体文献"
+    ],
+    "referenceEntries": "UniProt P52434；RCSB PDB 7AE1；Open Targets POLR2H",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "POLR2H与聚合酶核心亚基的保守装配界面",
+        "可用于设计阻断复合体装配的胞内抗体片段",
+        "优先"
+      ],
+      [
+        "Site B",
+        "POLR2H外露短螺旋及邻近环区",
+        "结构可及性相对较高，适合亲和成熟与结构探针开发",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守且埋藏的亚基内部疏水核心",
+        "易影响折叠稳定性且难以由抗体直接识别",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "POLR2H为核内保守必需转录亚基，存在抗原不可及、广泛转录毒性及选择性窗口不足风险；建议限定为胞内递送VHH或研究级结构探针。",
+    "structurePrepZh": "以7AE1冷冻电镜模型提取POLR2H对应链，保留邻近接触亚基用于界面判定，补全缺失侧链并评估复合物中真实暴露面积。",
+    "structureRef": "RCSB PDB 7AE1，human RNA polymerase complex，EM 2.8 Å",
+    "antibodies": [
+      "无已批准POLR2H治疗性抗体",
+      "抗POLR2H研究级抗体"
+    ],
+    "interfaceFocus": "POLR2H亚基装配界面与外露螺旋环区",
+    "designMode": "胞内VHH探索",
+    "candidates": [
+      {
+        "target": "CCR5",
+        "rationale": "CCR5是HIV进入宿主细胞的关键共受体，位于细胞膜表面，抗体可直接阻断gp120与CCR5介导的入侵步骤。其抗原可及性与疾病机制直接性均优于核内POLR2H。"
+      },
+      {
+        "target": "CD4",
+        "rationale": "CD4是HIV Env gp120的主要宿主受体，胞外免疫球蛋白样结构域可被抗体识别。阻断gp120-CD4结合可直接抑制病毒吸附与进入。"
+      },
+      {
+        "target": "CXCR4",
+        "rationale": "CXCR4是部分HIV毒株使用的趋化因子共受体，七跨膜受体的胞外环和N端区域参与病毒进入。其与CCR5同属HIV进入通路中的可及膜受体靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

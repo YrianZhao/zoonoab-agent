@@ -1,0 +1,65 @@
+{
+  "gene": "VAPA",
+  "generatedAt": "2026-08-03T17:46:24.775Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "VAPA为内质网膜锚定蛋白，通过MSP结构域识别FFAT基序蛋白，组织ER-质膜及ER-内体接触位点，并参与脂质转运、膜运输与病毒复制复合体形成。乙型肝炎病毒感染相关证据提示其膜接触位点功能可能影响病毒生命周期及宿主细胞膜重塑过程。该靶点主要为尾锚定ER膜蛋白，MSP结构域面向胞质而非细胞外，抗原天然可及性弱于分泌因子或细胞表面受体；因此更适合细胞内递送抗体片段或结构机制验证。相比广泛表达的下游脂质代谢因子，VAPA处于FFAT依赖接触位点装配的上游支架位置，具备较明确的蛋白互作界面与高分辨率结构依据。",
+    "mechanism": "设计结合VAPA MSP结构域FFAT基序结合沟槽的抗体片段，阻断OSBP、CERT等FFAT蛋白与VAPA相互作用，干预ER接触位点脂质转运与病毒复制膜结构维持。",
+    "selectedEpitope": "优先覆盖MSP结构域FFAT基序结合沟槽及邻近电荷识别面，避免跨膜尾锚定区。",
+    "diseaseDirection": "病毒感染与膜接触位点生物学",
+    "domain": "N端MSP结构域介导FFAT基序识别，中部卷曲螺旋区参与构象组织，C端跨膜区锚定内质网膜。",
+    "evidence": "VAPA-FFAT膜接触位点与病毒复制证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9P0L0功能与结构域注释",
+      "RCSB PDB 6TQR晶体结构记录",
+      "VAPA/OSBP/FFAT介导ER接触位点文献"
+    ],
+    "referenceEntries": "UniProt Q9P0L0；RCSB PDB 6TQR；Open Targets VAPA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "MSP结构域FFAT基序结合沟槽",
+        "直接竞争OSBP、CERT等FFAT蛋白结合，机制可验证性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "MSP结构域邻近带正电识别面",
+        "可通过空间位阻削弱FFAT肽段停靠并保留结构稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端跨膜锚定区及膜近端片段",
+        "天然埋入或贴近ER膜，抗体可及性与构象均一性较差",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "VAPA并非细胞表面抗原，常规外源抗体难以进入胞质结合MSP结构域；建议采用胞内表达Fab/VHH、递送型抗体片段或作为机制验证靶点推进。",
+    "structurePrepZh": "以6TQR抗原链A-F解析MSP结构域同源界面，去除非目标晶体接触与溶剂分子，保留FFAT结合沟槽关键残基用于表位建模。",
+    "structureRef": "RCSB PDB 6TQR，X-ray diffraction，1.85 Å",
+    "antibodies": [
+      "无已获批靶向VAPA治疗性抗体",
+      "研究级anti-VAPA单克隆抗体"
+    ],
+    "interfaceFocus": "MSP结构域FFAT结合沟槽与电荷识别面",
+    "designMode": "胞内VHH/Fab阻断",
+    "candidates": [
+      {
+        "target": "VAPB",
+        "rationale": "VAPB为VAPA同源ER膜接触位点支架蛋白，同样通过MSP结构域识别FFAT基序，可作为同一FFAT依赖脂质转运轴的替代或联合评估靶点。"
+      },
+      {
+        "target": "OSBP",
+        "rationale": "OSBP通过FFAT基序结合VAPA/VAPB并在ER-Golgi接触位点介导胆固醇与PI4P交换，是VAPA下游互作网络中的关键脂质转运因子。"
+      },
+      {
+        "target": "CERT1",
+        "rationale": "CERT1含FFAT基序并依赖VAPA/VAPB定位至ER-Golgi接触位点，负责神经酰胺转运，适合用于同一膜接触位点脂质转运通路比较。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

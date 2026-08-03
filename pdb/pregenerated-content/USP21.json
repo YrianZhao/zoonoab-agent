@@ -1,0 +1,65 @@
+{
+  "gene": "USP21",
+  "generatedAt": "2026-08-03T17:44:13.836Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "USP21 是细胞内去泛素化酶，参与泛素-蛋白酶体、自噬-溶酶体稳态及炎症转录调控，其异常活性与神经退行性疾病、溶酶体贮积病及肿瘤相关蛋白稳态失衡有关。该靶点主要定位于胞质和细胞核，缺乏天然胞外结构域，常规循环抗体抗原可及性较弱，因此更适合作为胞内递送抗体、intrabody 或结构引导型抑制性抗体片段设计对象。相较于上游泛素化酶或泛素受体，USP21 具备明确催化半胱氨酸蛋白酶结构域和底物结合沟槽，PDB 3I3T 提供实验结构基础，优先级来自可解析的催化界面与去泛素化节点特异性。",
+    "mechanism": "通过抗体片段占据 USP21 催化结构域的泛素 C 端结合沟槽，阻断泛素 Gly76 尾部进入催化 Cys-His-Asp 三联体邻近区域，从而抑制底物去泛素化。",
+    "selectedEpitope": "优先靶向 USP21 催化 DUSP/USP 样结构域中泛素远端结合面与催化沟槽边缘环区。",
+    "diseaseDirection": "蛋白稳态失衡相关神经退行与肿瘤",
+    "domain": "USP21 含 N 端调控区及 C 端 USP 催化结构域，3I3T 覆盖其去泛素化酶核心折叠。",
+    "evidence": "USP21 去泛素化结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt Q9UK80 蛋白功能注释",
+      "RCSB PDB 3I3T X 射线晶体结构",
+      "去泛素化酶与蛋白稳态疾病通路文献"
+    ],
+    "referenceEntries": "UniProt: Q9UK80; RCSB PDB: 3I3T; Open Targets: USP21",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "USP 催化结构域泛素 C 端结合沟槽及邻近活性位点环",
+        "可直接阻断泛素尾部定位与催化三联体底物进入，具备机制明确的抑制价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化核心外侧的泛素远端接触面与底物识别边缘",
+        "可能干扰泛素结合取向并提高对 USP21 构象表面的选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "保守 USP 催化折叠内部核心及多链晶体接触区域",
+        "保守性高且存在交叉反应与构象遮蔽风险，应避免作为主导表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "USP21 为胞内酶靶点，完整 IgG 难以直接到达作用位点；设计宜采用可递送 Fab、VHH 或 intrabody，并避开高度保守 USP 催化核心以降低同源 DUB 交叉反应。",
+    "structurePrepZh": "以 3I3T 实验晶体结构为模板，保留催化结构域代表链，校正缺失环区、质子化催化残基并标注晶体接触界面后开展表位建模。",
+    "structureRef": "RCSB PDB 3I3T, human USP21 catalytic domain, 2.59 Å",
+    "antibodies": [
+      "胞内递送型抗-USP21 Fab 概念抗体",
+      "抗-USP21 催化结构域 VHH/intrabody 概念抗体"
+    ],
+    "interfaceFocus": "泛素 C 端结合沟槽与催化三联体邻近环区",
+    "designMode": "胞内抑制型片段抗体",
+    "candidates": [
+      {
+        "target": "UBB",
+        "rationale": "UBB 编码多聚泛素前体，是 USP21 去泛素化反应的直接底物来源之一；其异常处理与蛋白稳态和神经退行性病理过程密切相关。"
+      },
+      {
+        "target": "SQSTM1",
+        "rationale": "SQSTM1/p62 连接泛素化货物与自噬-溶酶体降解通路，处于 USP21 相关蛋白稳态网络的同一降解轴线，可作为自噬通量调控方向的候选节点。"
+      },
+      {
+        "target": "VCP",
+        "rationale": "VCP/p97 参与泛素化蛋白抽提、蛋白质质量控制和自噬-溶酶体相关降解，与 DUB 介导的泛素链编辑共同影响错误折叠蛋白清除。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "SLC2A1",
+  "generatedAt": "2026-08-03T16:37:53.492Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SLC2A1编码GLUT1，是血脑屏障内皮细胞和红细胞葡萄糖摄取的核心转运蛋白，功能缺陷可直接导致脑葡萄糖供应不足并引发GLUT1缺乏性脑病、运动诱发性运动障碍和癫痫表型。该蛋白为12次跨膜膜转运体，胞外环区可作为抗体可及抗原表面，但主要底物结合腔位于跨膜区内。相比下游神经兴奋性靶点，SLC2A1处于能量底物输入通路上游，疾病遗传证据强，但抗体策略需优先限定为构象识别、递送或功能调节验证，而非简单阻断。",
+    "mechanism": "优先设计识别GLUT1胞外环构象的抗体，干预外向开放构象稳定性或作为脑内皮GLUT1结合递送模块，避免直接阻断D-葡萄糖跨膜转运通道。",
+    "selectedEpitope": "推荐聚焦胞外环ECL1与ECL4邻近的外向开放口袋边缘，避开中央底物转运腔。",
+    "diseaseDirection": "GLUT1缺乏相关神经代谢病",
+    "domain": "GLUT1含12个跨膜螺旋，N端与C端胞内定位，胞外可及区域主要由ECL1、ECL3、ECL4和ECL5构成。",
+    "evidence": "SLC2A1遗传缺陷与GLUT1脑病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P11166功能与拓扑注释",
+      "RCSB PDB 6THA人源GLUT1晶体结构",
+      "OMIM与ClinVar中SLC2A1致病变异记录"
+    ],
+    "referenceEntries": "UniProt P11166；RCSB PDB 6THA；Open Targets SLC2A1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ECL1-ECL4外向开放口袋边缘",
+        "兼具膜外可及性与构象报告价值，适合筛选非阻断型结合抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ECL5及邻近TM11-TM12外侧入口",
+        "可用于获得构象选择性抗体，但需评估对转运循环的影响",
+        "备选"
+      ],
+      [
+        "Site C",
+        "中央葡萄糖转运腔及TM7/TM10底物通道",
+        "可能干扰D-葡萄糖跨膜转运，存在加重能量供应不足风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SLC2A1为必需葡萄糖转运体，功能阻断存在中枢和红细胞代谢风险；应优先筛选不抑制2-脱氧葡萄糖摄取的构象结合抗体。",
+    "structurePrepZh": "以6THA链A为模板补全缺失环区，保留跨膜螺旋构象并按膜法向重建脂质环境，标注胞外环和底物腔边界。",
+    "structureRef": "Deng等解析的人源GLUT1高分辨率晶体结构，PDB 6THA",
+    "antibodies": [
+      "Anti-GLUT1 clone SPM498",
+      "Anti-GLUT1 clone EPR3915"
+    ],
+    "interfaceFocus": "胞外环外向口袋与底物腔入口边界",
+    "designMode": "非阻断构象抗体",
+    "candidates": [
+      {
+        "target": "SLC2A3",
+        "rationale": "SLC2A3编码GLUT3，是神经元高亲和力葡萄糖转运蛋白，与GLUT1共同维持脑葡萄糖摄取和利用，适合作为同一神经能量代谢轴的比较靶点。"
+      },
+      {
+        "target": "SLC2A4",
+        "rationale": "SLC2A4编码GLUT4，参与胰岛素调控的葡萄糖摄取，可用于评估葡萄糖转运体家族表位保守性与选择性风险。"
+      },
+      {
+        "target": "STOM",
+        "rationale": "STOM编码stomatin，其异常与红细胞膜阳离子通透性及GLUT1相关红细胞表型存在遗传关联，适合作为红细胞膜转运复合环境中的风险参照靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

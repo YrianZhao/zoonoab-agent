@@ -1,0 +1,65 @@
+{
+  "gene": "SYNCRIP",
+  "generatedAt": "2026-08-03T17:04:30.326Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SYNCRIP 编码的 hnRNP-Q 参与 RNA 剪接、转运与转录后调控，且人类遗传学已将其异常与神经发育障碍、整体发育迟缓及自闭症谱系表型直接关联，提示其处于疾病相关转录后网络的上游节点。该蛋白为胞内 RNA 结合因子，不具备经典抗体可及的胞外表位，因此更适合作为机制研究与细胞内递送型抗体/结合分子设计对象，而非常规膜抗原阻断靶点。相较同通路中多为下游表型读出基因的候选，SYNCRIP 具有更明确的致病因果线索与已解析结构基础，优先级更高。",
+    "mechanism": "结合其低复杂度 RNA 结合区并干扰RRM介导的靶RNA识别，削弱SYNCRIP对转录后剪接与稳定性的调控。",
+    "selectedEpitope": "优先锁定RRM1-RRM2表面保守沟槽及相邻环区，避开低复杂度尾部。",
+    "diseaseDirection": "神经发育障碍",
+    "domain": "N端含RRM1-RRM2 RNA结合域，C端为低复杂度/内在无序区。",
+    "evidence": "SYNCRIP神经发育表位与结构证据包",
+    "evidenceSources": [
+      "UniProt: O60506",
+      "RCSB PDB: 6KOR",
+      "Open Targets Platform",
+      "OMIM / MONDO disease annotations"
+    ],
+    "referenceEntries": "UniProt O60506; PDB 6KOR; Homo sapiens SYNCRIP",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RRM1-RRM2 RNA结合沟槽",
+        "优先干预RNA识别界面，便于获得功能性抑制",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RRM域间连接面",
+        "可降低构象稳定性并影响核糖核蛋白组装",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端低复杂度区",
+        "可影响相分离相关相互作用，但特异性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险来自胞内定位导致常规抗体难以直接可及，且低复杂度区存在构象异质性。建议优先采用细胞内递送或VHH/Fab工程化格式，并以RRM表面保守残基为核心。",
+    "structurePrepZh": "基于6KOR进行缺失环区补建与构象整理，保留RRM核心折叠并评估RNA结合面暴露度。必要时分离RRM片段与低复杂度区以降低建模噪声。",
+    "structureRef": "PDB 6KOR, X-ray diffraction, 2.602 A",
+    "antibodies": [
+      "anti-HNRNPQ研究性结合分子",
+      "抗RRM家族蛋白交叉识别抗体"
+    ],
+    "interfaceFocus": "RRM1-RRM2 RNA结合面与域间接触区",
+    "designMode": "结构导向胞内靶向设计",
+    "candidates": [
+      {
+        "target": "HNRNPA1",
+        "rationale": "同属核内RNA结合蛋白并参与剪接与RNA代谢，适合作为SYNCRIP通路中的平行对照靶点。其疾病相关性与神经发育表型研究基础较充分，便于比较功能抑制效应。"
+      },
+      {
+        "target": "HNRNPU",
+        "rationale": "HNRNPU与SYNCRIP共同处于转录后加工与神经发育调控网络中，且均为可结构化的RNA结合蛋白。作为同通路节点，可用于评估对核内RNP组装的干预一致性。"
+      },
+      {
+        "target": "RBFOX1",
+        "rationale": "RBFOX1是神经发育相关剪接调控核心因子，与SYNCRIP在神经元RNA加工通路中具有真实功能交集。该靶点可用于构建同一疾病通路内的机制对照与组合验证。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "USP15",
+  "generatedAt": "2026-08-03T17:44:10.158Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "USP15为胞内去泛素化酶，参与泛素-蛋白酶体系统、TGF-β/SMAD信号稳态、线粒体质量控制及神经退行性疾病相关蛋白稳态调节。Open Targets显示其与神经退行性疾病及血小板相关表型存在遗传和功能关联，提示其在蛋白稳态失衡疾病中具有机制相关性。其抗体药物可及性弱于膜受体或分泌蛋白，需优先定位于胞内递送抗体、VHH或研究级功能阻断抗体场景。相比泛泛靶向蛋白降解系统组分，USP15具有明确催化结构域和高分辨率晶体结构，利于开展结构约束的抑制型结合分子设计。",
+    "mechanism": "通过结合USP15催化结构域邻近泛素结合沟槽，阻断泛素C端尾部进入Cys269-His862-Asp879催化三联体，抑制底物去泛素化反应。",
+    "selectedEpitope": "优先选择催化结构域中泛素结合沟槽及活性位点邻近外露环区，避免直接覆盖高度保守催化半胱氨酸。",
+    "diseaseDirection": "神经退行性疾病蛋白稳态异常",
+    "domain": "USP15含DUSP样结构域、UBL结构域及C端USP催化结构域；4A3P覆盖催化核心区域。",
+    "evidence": "USP15蛋白稳态与去泛素化机制证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9Y4E8功能与结构域注释",
+      "RCSB PDB 4A3P高分辨率晶体结构",
+      "去泛素化酶与神经退行性蛋白稳态文献"
+    ],
+    "referenceEntries": "UniProt Q9Y4E8；RCSB PDB 4A3P；Open Targets USP15",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "USP催化结构域泛素结合沟槽邻近外露环区",
+        "可阻断泛素C端尾部定位并干预底物去泛素化，具备机制明确的抑制价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化核心外侧底物识别相关表面",
+        "可能干扰底物蛋白进入催化面，同时降低直接靶向保守催化残基的选择性风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "DUSP/UBL调控结构域推定表面",
+        "可能影响构象调控或蛋白互作，但4A3P未完整覆盖该区域，结构证据不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "USP15为胞内酶，常规抗体难以进入细胞；设计应限定为胞内递送、VHH或工具抗体，并评估与USP4、USP11等同源DUB的交叉反应。",
+    "structurePrepZh": "以4A3P链A为模板，保留催化结构域高置信主链，补全缺失侧链并校正质子化状态；活性位点周边水分子需分层评估。",
+    "structureRef": "RCSB PDB 4A3P，X-ray diffraction，1.4 Å",
+    "antibodies": [
+      "anti-USP15研究级单克隆抗体",
+      "anti-USP15研究级多克隆抗体"
+    ],
+    "interfaceFocus": "USP催化结构域泛素结合沟槽与活性位点邻近环区",
+    "designMode": "胞内酶抑制型",
+    "candidates": [
+      {
+        "target": "USP4",
+        "rationale": "USP4与USP15同属DUSP-UBL家族去泛素化酶，并参与TGF-β/SMAD通路组分稳定性调控，可作为同通路蛋白稳态干预候选靶点。"
+      },
+      {
+        "target": "USP11",
+        "rationale": "USP11与USP15具有同源催化架构，并参与DNA损伤应答和TGF-β相关信号蛋白去泛素化调节，适合用于选择性与通路补偿风险比较。"
+      },
+      {
+        "target": "SMAD7",
+        "rationale": "SMAD7是TGF-β通路的抑制性SMAD，并可通过与E3连接酶复合体调控受体降解；USP15相关去泛素化调控与该负反馈轴存在机制联系。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

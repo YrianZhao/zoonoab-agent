@@ -1,0 +1,65 @@
+{
+  "gene": "ASPA",
+  "generatedAt": "2026-08-03T10:38:52.675Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ASPA 编码天冬氨酰酶，水解 N-乙酰天冬氨酸生成天冬氨酸与乙酸；其功能缺失导致 NAA 在中枢神经系统蓄积，是 Canavan disease 的核心致病机制。ASPA 为主要定位于细胞质的金属依赖性酶，并非分泌蛋白或经典膜受体，天然抗原可及性低于胞外靶点，因此更适合用于机制验证、细胞递送抗体或酶构象稳定策略。相较下游非特异性神经退行性标志物，ASPA 位于疾病因果链上游，遗传证据强、结构信息明确，具备优先建模价值。",
+    "mechanism": "抗体结合 ASPA 催化核心邻近区域，稳定金属结合口袋与底物结合沟槽构象，降低突变型酶错误折叠或失活对 NAA 水解的影响。",
+    "selectedEpitope": "优先选择二聚体外侧、避开 Zn2+ 催化中心的 α/β 水解酶结构域可及环区。",
+    "diseaseDirection": "Canavan disease 遗传代谢病",
+    "domain": "ASPA 为金属依赖性脱乙酰酶样 α/β 水解酶，含底物结合沟槽、催化 Zn2+ 位点及二聚体界面。",
+    "evidence": "ASPA-Canavan disease 遗传酶学证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P45381 functional annotation",
+      "RCSB PDB 4MXU crystal structure",
+      "OMIM Canavan disease and ASPA records"
+    ],
+    "referenceEntries": "UniProt P45381；RCSB PDB 4MXU；Open Targets ASPA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域外侧可及环区，远离 Zn2+ 与底物结合残基",
+        "降低阻断内源酶活风险，适合构象稳定型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "二聚体界面邻近但不直接覆盖核心接触面的 α/β 折叠边缘",
+        "可调节亚基装配稳定性，适用于突变型蛋白稳定化评估",
+        "备选"
+      ],
+      [
+        "Site C",
+        "底物结合沟槽及金属配位口袋周边区域",
+        "可能直接干扰 NAA 水解，需用于抑制型工具抗体而非治疗性恢复策略",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ASPA 缺乏天然胞外暴露，常规循环抗体难以到达胞内酶靶点；设计应明确递送体系，并避免覆盖 Zn2+ 配位与底物水解关键残基。",
+    "structurePrepZh": "以 4MXU 双链晶体结构为模板，保留生物学二聚体与金属离子信息，补全缺失侧链后进行质子化、界面能量最小化和可及表位筛选。",
+    "structureRef": "Human aspartoacylase crystal structure, PDB 4MXU, 2.6 Å",
+    "antibodies": [
+      "anti-ASPA research antibody",
+      "ASPA intracellular antibody fragment"
+    ],
+    "interfaceFocus": "二聚体外侧环区与催化沟槽边缘",
+    "designMode": "胞内酶构象稳定",
+    "candidates": [
+      {
+        "target": "NAT8L",
+        "rationale": "NAT8L 催化 N-乙酰天冬氨酸合成，与 ASPA 共同决定 NAA 稳态；抑制 NAA 生成可从上游降低 Canavan disease 中的底物蓄积压力。"
+      },
+      {
+        "target": "SLC25A12",
+        "rationale": "SLC25A12 编码线粒体天冬氨酸-谷氨酸载体 AGC1，参与神经元天冬氨酸供给及 NAA 生物合成相关代谢通量。"
+      },
+      {
+        "target": "SLC13A3",
+        "rationale": "SLC13A3 编码 NaDC3 二羧酸转运体，可转运 N-乙酰天冬氨酸并影响其跨细胞分布，是 NAA 清除与稳态调节相关靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

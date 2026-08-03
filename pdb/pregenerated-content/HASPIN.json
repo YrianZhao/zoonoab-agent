@@ -1,0 +1,65 @@
+{
+  "gene": "HASPIN",
+  "generatedAt": "2026-08-03T19:39:58.485Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HASPIN为有丝分裂丝氨酸/苏氨酸蛋白激酶，催化组蛋白H3 Thr3磷酸化并促进CPC复合体经Survivin识别定位至着丝粒，参与染色体双向附着与纺锤体检查点维持。其在乳腺癌、卵巢癌等增殖性肿瘤中具有疾病关联，但蛋白主要定位于细胞核和染色质，抗原天然可及性显著弱于膜受体或分泌蛋白。相较PLK1、AURKB等同类有丝分裂激酶，HASPIN结构域较集中且PDB 4QTC提供高分辨率激酶结构，适合开展胞内抗体片段或靶向降解构件的结构引导设计，但常规循环抗体优先级较低。",
+    "mechanism": "设计分子应阻断HASPIN激酶结构域与组蛋白H3 N端底物肽的结合，降低H3T3磷酸化并削弱Survivin-CPC在着丝粒的募集。",
+    "selectedEpitope": "优先覆盖激酶结构域底物结合沟槽及活化环邻近区域，避免仅靶向保守ATP口袋。",
+    "diseaseDirection": "乳腺癌与卵巢癌有丝分裂依赖",
+    "domain": "HASPIN含N端调控区与C端非典型丝氨酸/苏氨酸激酶结构域，4QTC覆盖催化核心。",
+    "evidence": "HASPIN-H3T3ph-CPC轴肿瘤增殖证据包",
+    "evidenceSources": [
+      "Open Targets Platform肿瘤遗传与表达关联",
+      "UniProt Q8TF76功能与亚细胞定位注释",
+      "RCSB PDB 4QTC晶体结构记录",
+      "PubMed有丝分裂H3T3磷酸化与CPC定位研究"
+    ],
+    "referenceEntries": "UniProt Q8TF76；RCSB PDB 4QTC；Open Targets HASPIN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域底物肽结合沟槽与催化裂隙边缘",
+        "直接干预组蛋白H3 Thr3底物识别，功能阻断相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "活化环及C端催化叶片外侧构象调节面",
+        "可能稳定非活性构象并降低底物周转，兼具变构设计价值",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP结合口袋周围保守铰链区",
+        "跨激酶保守性高，选择性与脱靶风险较大",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HASPIN为胞内核蛋白，常规抗体递送与天然抗原暴露受限；建议定位于胞内Fab/VHH、细胞穿透递送或降解偶联策略，并强化激酶家族选择性评估。",
+    "structurePrepZh": "以4QTC链A为模板，保留催化核心坐标，校验ATP口袋、活化环与底物沟槽构象，补建缺失柔性片段并进行质子化与能量最小化。",
+    "structureRef": "RCSB PDB 4QTC，HASPIN kinase domain，1.4 Å X-ray",
+    "antibodies": [
+      "anti-HASPIN research antibody",
+      "anti-phospho-Histone H3 Thr3 antibody"
+    ],
+    "interfaceFocus": "H3 N端底物沟槽与活化环邻近界面",
+    "designMode": "胞内结构引导阻断",
+    "candidates": [
+      {
+        "target": "AURKB",
+        "rationale": "AURKB为CPC核心激酶，依赖H3T3ph介导的着丝粒定位参与染色体校正与有丝分裂检查点，是同一H3T3ph-CPC轴的下游效应节点。"
+      },
+      {
+        "target": "BIRC5",
+        "rationale": "BIRC5编码Survivin，其BIR结构域识别H3T3ph并募集CPC至着丝粒，直接连接HASPIN底物磷酸化事件与CPC空间定位。"
+      },
+      {
+        "target": "CDCA8",
+        "rationale": "CDCA8编码Borealin，是CPC结构组分之一，与Survivin和INCENP协同维持有丝分裂染色体乘客复合体功能。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "GABARAPL1",
+  "generatedAt": "2026-08-03T12:40:10.993Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GABARAPL1属于ATG8/GABARAP家族，参与自噬体膜延伸、货物受体招募及自噬-溶酶体通量调控，其异常表达与神经退行性疾病、肿瘤细胞应激适应和肝细胞癌进展相关。该蛋白主要为胞质自噬效应蛋白，并非典型分泌蛋白或膜受体，天然抗原可及性弱于胞外靶点，因此抗体策略更适合定位为细胞内递送抗体、结构探针或降解调控工具。相较ULK1、BECN1等上游自噬节点，GABARAPL1具有高分辨率实验结构和明确LIR结合沟槽，便于开展结构约束的界面阻断设计。",
+    "mechanism": "阻断GABARAPL1疏水口袋与LIR基序蛋白的结合，干预自噬货物受体和调控因子向ATG8家族膜锚定复合体募集。",
+    "selectedEpitope": "优先覆盖N端臂邻近LIR docking site及HP1/HP2疏水口袋，避免遮蔽C端Gly脂质化位点。",
+    "diseaseDirection": "自噬相关神经退行性疾病与肿瘤",
+    "domain": "ATG8样泛素折叠核心，含N端α螺旋臂、中央β折叠及LIR结合疏水口袋。",
+    "evidence": "GABARAPL1自噬通路结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt Q9H0R8功能注释",
+      "RCSB PDB 6YOO晶体结构",
+      "Reactome自噬与选择性自噬通路"
+    ],
+    "referenceEntries": "UniProt Q9H0R8；RCSB PDB 6YOO；Reactome Autophagy",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "LIR docking site邻近HP1/HP2疏水口袋",
+        "直接竞争SQSTM1、NBR1等LIR基序蛋白结合，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端α螺旋臂与泛素样核心交界面",
+        "可能改变LIR沟槽构象并提高结合选择性，适合构象锁定设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端Gly脂质化邻近区域",
+        "靠近ATG4加工与PE偶联位点，功能敏感但易影响广泛ATG8家族过程",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GABARAPL1为胞内蛋白，常规IgG难以到达作用位点；需采用细胞内递送、纳米抗体或研究级Fab策略，并评估ATG8家族交叉反应。",
+    "structurePrepZh": "以6YOO高分辨率晶体结构为模板，保留抗原链A/B并校验构象一致性；补全侧链质子化状态，标注LIR结合沟槽和C端加工区域。",
+    "structureRef": "RCSB PDB 6YOO，X-ray diffraction，1.06 Å",
+    "antibodies": [
+      "EPR15551",
+      "OTI3E1"
+    ],
+    "interfaceFocus": "LIR结合沟槽、HP1/HP2口袋及N端臂",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "MAP1LC3B",
+        "rationale": "MAP1LC3B同属ATG8家族并参与自噬体膜标记和LIR依赖货物受体结合，是神经退行性疾病和肿瘤自噬通路中的核心可替代节点。"
+      },
+      {
+        "target": "SQSTM1",
+        "rationale": "SQSTM1/p62通过LIR基序结合LC3/GABARAP家族并递送泛素化货物，其聚集和清除异常与神经退行性病变及肿瘤应激适应直接相关。"
+      },
+      {
+        "target": "ATG4B",
+        "rationale": "ATG4B负责ATG8家族前体剪切和去脂质化，位于GABARAPL1成熟及循环利用的同一自噬执行通路中，具备明确酶学调控价值。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

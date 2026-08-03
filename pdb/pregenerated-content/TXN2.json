@@ -1,0 +1,65 @@
+{
+  "gene": "TXN2",
+  "generatedAt": "2026-08-03T17:35:40.609Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TXN2 是线粒体基质硫氧还蛋白系统核心氧化还原酶，参与清除过氧化物并维持 PRDX3、PRDX5 等蛋白的还原状态，其功能异常与线粒体氧化磷酸化缺陷和氧化应激相关表型存在遗传与功能关联。该蛋白主要定位于线粒体基质，成熟蛋白缺乏天然胞外结构域或分泌特征，抗体抗原可及性显著弱于膜受体或分泌因子，因此更适合作为机制研究、胞内递送抗体或诊断捕获抗体开发对象。相较 ETC 复合体结构亚基，TXN2 具有明确可溶性折叠、1.8 Å 实验结构和保守 Cys-Gly-Pro-Cys 活性中心，便于进行高分辨率表位规避与构象识别设计，但治疗性优先级需低于可直接胞外阻断的同通路靶点。",
+    "mechanism": "抗体设计应避免封闭 Cys90/Cys93 活性中心，可通过识别远端构象表面稳定 TXN2 折叠，或在研究型阻断模式中干扰 TXN2 与 PRDX3/PRDX5 的氧化还原复合物接触。",
+    "selectedEpitope": "优先选择 β-sheet 外侧与 α3/α4 螺旋形成的远端构象表位，避开 Cys-Gly-Pro-Cys 催化沟槽。",
+    "diseaseDirection": "线粒体氧化磷酸化缺陷与氧化应激",
+    "domain": "TXN2 成熟体为线粒体硫氧还蛋白折叠，含中央 β-sheet、周围 α-helix 及保守 Cys90-Cys93 活性基序。",
+    "evidence": "TXN2 线粒体氧化还原与 OXPHOS 缺陷证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q99757 functional annotation",
+      "RCSB PDB 1W4V X-ray crystal structure",
+      "Reactome mitochondrial redox homeostasis pathway"
+    ],
+    "referenceEntries": "UniProt Q99757；RCSB PDB 1W4V；Open Targets TXN2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "α3/α4 螺旋外侧构象面",
+        "远离催化二硫醇中心，适合获得结构稳定型结合抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "β-sheet 边缘与相邻 loop 区",
+        "可用于区分 TXN2 构象状态并降低活性中心干扰",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Cys90-Gly91-Pro92-Cys93 活性沟槽",
+        "可能直接影响硫氧还蛋白还原反应并引入功能性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TXN2 为线粒体基质胞内蛋白，常规抗体难以到达天然作用位点。设计宜定位为研究试剂、诊断捕获或递送型胞内抗体，并规避活性半胱氨酸氧化敏感区。",
+    "structurePrepZh": "以 1W4V 高分辨率晶体结构为模板，选取成熟 TXN2 单体进行建模，校验 Cys90/Cys93 氧化状态、晶体接触界面和多链构象一致性。",
+    "structureRef": "RCSB PDB 1W4V，human thioredoxin 2，1.8 Å X-ray",
+    "antibodies": [
+      "commercial anti-TXN2 monoclonal antibody",
+      "commercial anti-thioredoxin 2 polyclonal antibody"
+    ],
+    "interfaceFocus": "PRDX3/PRDX5 接触面与催化沟槽周边",
+    "designMode": "胞内靶点研究型设计",
+    "candidates": [
+      {
+        "target": "TXNRD2",
+        "rationale": "TXNRD2 是线粒体硫氧还蛋白还原酶，利用 NADPH 将氧化型 TXN2 还原，位于同一线粒体硫氧还蛋白循环上游。其通路位置直接决定 TXN2 还原能力。"
+      },
+      {
+        "target": "PRDX3",
+        "rationale": "PRDX3 是线粒体过氧化物还原酶，依赖 TXN2/TXNRD2 系统再生还原态，直接参与 H2O2 清除和氧化应激控制。"
+      },
+      {
+        "target": "PRDX5",
+        "rationale": "PRDX5 位于线粒体抗氧化网络中，可通过硫氧还蛋白系统维持过氧化物还原循环，与 TXN2 同属线粒体氧化还原稳态通路。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "HLA-DOB",
+  "generatedAt": "2026-08-03T19:49:16.521Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HLA-DOB编码HLA-DOβ链，与HLA-DOα链形成非经典MHC II异二聚体，在B细胞、胸腺上皮细胞和部分抗原呈递细胞内调节HLA-DM介导的CLIP释放与肽交换，从而影响MHC II肽库组成及CD4 T细胞识别。其疾病关联主要指向肿瘤免疫、类风湿关节炎和牙周炎等抗原呈递异常相关状态，但Open Targets最高得分较低，应定位为免疫呈递调控探索靶点。HLA-DO为膜相关MHC II样复合体，抗原结合平台和Ig样结构域在内腔/胞外侧具备抗体识别可及性。相较于广泛表达的经典HLA-DR/DQ/DP，HLA-DOB具有更受限的细胞谱系分布和更明确的HLA-DM调控节点，优先级体现在可解析特定抗原呈递调控而非全局阻断MHC II功能。",
+    "mechanism": "抗体设计以阻断HLA-DOαβ复合体与HLA-DM接触面为核心，削弱HLA-DO对HLA-DM催化CLIP释放和肽交换的抑制作用，重塑MHC II抗原肽装载过程。",
+    "selectedEpitope": "优先覆盖DOβ α1/β1抗原结合平台外侧及HLA-DM接触相关界面，避开高度保守MHC II折叠核心。",
+    "diseaseDirection": "抗原呈递异常相关肿瘤与自身免疫",
+    "domain": "HLA-DOβ包含N端胞外β1结构域、β2 Ig样结构域、跨膜螺旋及短胞质尾，需与DOα异二聚化。",
+    "evidence": "HLA-DOB抗原呈递调控与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P13765功能与结构域注释",
+      "RCSB PDB 4I0P晶体结构",
+      "MHC II抗原加工与HLA-DM/HLA-DO机制文献"
+    ],
+    "referenceEntries": "UniProt P13765；RCSB PDB 4I0P；HGNC HLA-DOB",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DOβ β1结构域靠近肽结合沟外侧及DM接触面",
+        "有望干预HLA-DO对HLA-DM肽交换活性的调节，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DOβ β2 Ig样结构域暴露环区",
+        "利于获得稳定结合抗体，可作为定位或构象锁定表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "DOα/DOβ异二聚体界面邻近保守折叠核心",
+        "可能影响复合体装配但存在构象破坏和交叉识别经典MHC II风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HLA-DOB与MHC II家族存在结构同源性，需严格排除对HLA-DR、HLA-DQ和HLA-DP的交叉结合；优先筛选构象特异、DM界面邻近但不破坏整体折叠的抗体。",
+    "structurePrepZh": "以4I0P晶体结构为模板，保留HLA-DOαβ异二聚体生物学装配，补全缺失环区并评估糖基化位点、跨膜截短边界和晶体接触对表位暴露的影响。",
+    "structureRef": "RCSB PDB 4I0P，X-ray diffraction，3.2 Å",
+    "antibodies": [
+      "Mags.DO5",
+      "HKC5"
+    ],
+    "interfaceFocus": "DOβ β1平台与HLA-DM接触邻近面",
+    "designMode": "界面阻断型设计",
+    "candidates": [
+      {
+        "target": "HLA-DOA",
+        "rationale": "HLA-DOA编码HLA-DOα链，与HLA-DOB共同形成调节HLA-DM活性的非经典MHC II复合体，是同一抗原肽装载调控节点的直接配对靶点。"
+      },
+      {
+        "target": "HLA-DMA",
+        "rationale": "HLA-DMA编码HLA-DMα链，参与催化MHC II分子CLIP释放和抗原肽交换；其与HLA-DO复合体的相互作用决定肽库编辑强度。"
+      },
+      {
+        "target": "HLA-DMB",
+        "rationale": "HLA-DMB编码HLA-DMβ链，与HLA-DMA形成HLA-DM异二聚体，是HLA-DO调控的直接效应复合体组成部分，适合作为同通路比较靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

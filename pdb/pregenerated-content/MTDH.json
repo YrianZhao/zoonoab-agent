@@ -1,0 +1,65 @@
+{
+  "gene": "MTDH",
+  "generatedAt": "2026-08-03T14:26:21.587Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MTDH/metadherin 与肿瘤侵袭、转移和治疗耐受相关，其胞内LYRIC结构域可与SND1相互作用，促进RNA诱导沉默复合体相关转录后调控及NF-κB相关促存活程序。该蛋白包含N端跨膜区并可在肿瘤细胞表面检测到胞外N端片段，具备膜相关抗原的可及性基础。相比完全胞内转录调控因子，MTDH同时具有疾病遗传学、肿瘤表达和结构解析证据，适合作为探索性膜近端抗体设计靶点。",
+    "mechanism": "抗体优先阻断细胞表面MTDH胞外N端可及表位，抑制MTDH介导的肿瘤细胞黏附与侵袭表型；胞内LYRIC-SND1界面仅作为机制验证参照。",
+    "selectedEpitope": "优先选择N端跨膜区外侧短胞外段邻近构象表位，避开4QMG胞内LYRIC核心保守折叠面。",
+    "diseaseDirection": "肿瘤转移与治疗耐受方向",
+    "domain": "MTDH含N端单跨膜区、膜外短N端片段及胞内LYRIC/AEG-1结构域，4QMG覆盖胞内保守结构域。",
+    "evidence": "MTDH肿瘤转移与LYRIC结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q86UE4功能与拓扑注释",
+      "RCSB PDB 4QMG X射线晶体结构",
+      "MTDH-SND1相互作用与肿瘤转移文献"
+    ],
+    "referenceEntries": "UniProt Q86UE4；RCSB PDB 4QMG；Open Targets MTDH",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端跨膜区外侧胞外短肽及膜近端可及面",
+        "最符合抗体可及性，可用于细胞表面结合与内吞筛选",
+        "优先"
+      ],
+      [
+        "Site B",
+        "4QMG解析的LYRIC结构域非SND1结合侧溶剂暴露面",
+        "适合制备结构验证抗体或胞内机制研究工具",
+        "备选"
+      ],
+      [
+        "Site C",
+        "LYRIC结构域保守疏水核心及预测SND1相互作用界面",
+        "胞内不可及且功能界面保守，作为治疗性抗体表位风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MTDH主要功能结构域位于胞内，常规抗体难以直接阻断LYRIC-SND1作用；应以细胞表面N端可及性、肿瘤选择性表达和内吞能力作为关键筛选门槛。",
+    "structurePrepZh": "以4QMG多链晶体结构评估LYRIC结构域保守折叠与寡聚接触，补充AlphaFold全长模型标注跨膜区和N端胞外可及片段。",
+    "structureRef": "RCSB PDB 4QMG，MTDH/LYRIC结构域X射线结构，2.701 Å",
+    "antibodies": [
+      "MTDH-ADC研究型抗体",
+      "anti-AEG-1/MTDH表面结合研究抗体"
+    ],
+    "interfaceFocus": "N端胞外膜近端表位与LYRIC-SND1参照界面",
+    "designMode": "膜近端阻断型",
+    "candidates": [
+      {
+        "target": "SND1",
+        "rationale": "SND1是MTDH胞内LYRIC结构域的直接结合伙伴，参与RNA沉默复合体相关转录后调控；适合作为同一MTDH-SND1轴的机制对照靶点。"
+      },
+      {
+        "target": "RELA",
+        "rationale": "RELA/p65是NF-κB转录复合体核心亚基，与MTDH相关促存活和炎症样转录程序处于同一肿瘤耐受通路背景。"
+      },
+      {
+        "target": "NFKB1",
+        "rationale": "NFKB1编码NF-κB p105/p50，是MTDH相关NF-κB活化网络的重要节点，可用于评估下游通路抑制一致性。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

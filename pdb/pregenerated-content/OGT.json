@@ -1,0 +1,65 @@
+{
+  "gene": "OGT",
+  "generatedAt": "2026-08-03T14:57:24.711Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "OGT催化核质蛋白O-GlcNAc修饰，参与转录调控、染色质状态、蛋白稳态与神经发育过程；OGT缺陷与X连锁智力障碍及神经退行性表型存在明确遗传关联。该蛋白主要定位于胞质、细胞核和线粒体，不具备天然胞外结构域或分泌特征，因此抗体抗原可及性弱于膜受体和分泌蛋白，需优先考虑细胞内递送型抗体片段或结构探针用途。相较同通路中广泛作用的代谢酶，OGT具有明确催化口袋、TPR底物适配界面和高分辨率晶体结构支撑，适合作为机制验证与构象选择性分子设计靶点。",
+    "mechanism": "设计抗体片段结合OGT TPR底物结合沟槽或催化结构域邻近界面，阻断底物肽段与UDP-GlcNAc依赖催化中心的有效定位。",
+    "selectedEpitope": "优先锁定N端TPR重复结构形成的底物识别沟槽，兼顾TPR-催化结构域连接界面。",
+    "diseaseDirection": "神经发育障碍与神经退行性疾病",
+    "domain": "OGT含N端TPR重复底物适配区、过渡连接区及C端糖基转移酶催化结构域。",
+    "evidence": "OGT神经发育疾病遗传关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt O15294功能与定位注释",
+      "RCSB PDB 4GYW晶体结构",
+      "OMIM/ClinVar中OGT相关X连锁智力障碍变异记录"
+    ],
+    "referenceEntries": "UniProt O15294；RCSB PDB 4GYW；Open Targets OGT",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端TPR重复内侧底物结合沟槽",
+        "可直接干预底物蛋白肽段招募并影响O-GlcNAc转移效率",
+        "优先"
+      ],
+      [
+        "Site B",
+        "TPR区与催化结构域连接界面",
+        "有望稳定非生产性构象并削弱底物向催化中心递送",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端糖基转移酶UDP-GlcNAc邻近催化口袋",
+        "功能相关性强，但口袋保守且小分子竞争风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "OGT为细胞内酶，常规抗体难以到达天然作用位点；设计应采用VHH、细胞穿透偶联或胞内表达格式，并规避催化核心保守残基导致的选择性风险。",
+    "structurePrepZh": "以4GYW高分辨率晶体结构为模板，保留抗原链A-D中完整TPR-催化域构象，补全缺失环区并校验UDP-GlcNAc邻近残基质子化状态。",
+    "structureRef": "RCSB PDB 4GYW，X-ray diffraction，1.7 Å",
+    "antibodies": [
+      "RL2",
+      "CTD110.6"
+    ],
+    "interfaceFocus": "TPR底物沟槽与催化域入口连接界面",
+    "designMode": "胞内VHH/Fab结构阻断",
+    "candidates": [
+      {
+        "target": "OGA",
+        "rationale": "OGA负责去除蛋白O-GlcNAc修饰，与OGT共同维持O-GlcNAc循环稳态；其异常可影响神经元蛋白稳态和神经退行性过程。"
+      },
+      {
+        "target": "GFPT1",
+        "rationale": "GFPT1是己糖胺生物合成途径限速酶，决定UDP-GlcNAc供给水平，从上游调节OGT底物糖基供体可用性。"
+      },
+      {
+        "target": "GFPT2",
+        "rationale": "GFPT2同属己糖胺生物合成通路关键酶，在神经和代谢应激背景下影响UDP-GlcNAc池并间接调节O-GlcNAc化强度。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "IL19",
+  "generatedAt": "2026-08-03T13:26:40.201Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IL19 是 IL-10 细胞因子家族成员，可通过 IL20RA/IL20RB 受体复合体激活 JAK-STAT 轴并促进上皮与髓系炎症反应，在炎症性肠病、白塞病和口腔黏膜炎症表型中具有疾病关联。IL19 为分泌型四螺旋束细胞因子，抗原整体位于胞外液相环境，受体结合面具有较高抗体可及性。相较下游 JAK/STAT 节点，IL19 阻断更具配体选择性；相较同家族 IL20、IL24，IL19 具备高分辨率实验结构支持，适合开展结构约束的抗体表位设计。",
+    "mechanism": "抗体通过遮蔽 IL19 与 IL20RA/IL20RB 受体复合体的结合界面，阻断受体异源复合体装配及后续 STAT3 磷酸化信号。",
+    "selectedEpitope": "优先锁定四螺旋束中参与 IL20RA/IL20RB 识别的 AB 环、helix A 与 helix D 邻近受体结合面。",
+    "diseaseDirection": "黏膜炎症与自身炎症疾病",
+    "domain": "IL19 为分泌型 IL-10 家族细胞因子，核心由 α 螺旋束及连接环区构成。",
+    "evidence": "IL19 炎症疾病关联与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传与临床关联",
+      "UniProt Q9UHD0 蛋白功能与分泌定位注释",
+      "RCSB PDB 1N1F 人 IL19 晶体结构",
+      "IL-20 受体复合体介导的 JAK-STAT 信号文献"
+    ],
+    "referenceEntries": "UniProt Q9UHD0；RCSB PDB 1N1F；Open Targets IL19",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "helix A/AB 环邻接受体结合面",
+        "可直接干预 IL20RA/IL20RB 复合体募集，适合中和型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "helix D 末端及相邻螺旋束侧面",
+        "可能覆盖第二受体链识别区域，可用于扩展阻断界面",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离受体结合面的螺旋束背侧",
+        "结构暴露但中和概率较低，需避免仅产生结合型非阻断抗体",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IL19 与 IL20、IL24 共享 IL20RA/IL20RB 受体系统，需控制家族同源交叉反应；表位应避开高度保守疏水核心并验证中和活性。",
+    "structurePrepZh": "采用 PDB 1N1F 链 A 作为抗原模板，补全缺失侧链、校正质子化状态并标注螺旋束环区后开展表位聚类。",
+    "structureRef": "PDB 1N1F，human IL-19 X-ray structure，1.95 Å",
+    "antibodies": [
+      "MEDI2338",
+      "NNC0109-0012"
+    ],
+    "interfaceFocus": "IL19 与 IL20RA/IL20RB 受体结合界面",
+    "designMode": "结构引导中和设计",
+    "candidates": [
+      {
+        "target": "IL20RA",
+        "rationale": "IL20RA 是 IL19 受体复合体的关键受体链，阻断该亚基可同时抑制 IL19 驱动的黏膜炎症信号。其胞外细胞因子受体结构域具备抗体可及性。"
+      },
+      {
+        "target": "IL20RB",
+        "rationale": "IL20RB 与 IL20RA 共同形成 IL19 功能性受体复合体，干预该链可阻断配体诱导的受体装配与 JAK-STAT 激活。"
+      },
+      {
+        "target": "IL20",
+        "rationale": "IL20 与 IL19 同属 IL-10 家族并共享 IL20RA/IL20RB 受体系统，在上皮炎症和屏障组织炎症中具有相邻通路作用。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

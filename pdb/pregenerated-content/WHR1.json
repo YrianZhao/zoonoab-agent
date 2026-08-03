@@ -1,0 +1,65 @@
+{
+  "gene": "WHR1",
+  "generatedAt": "2026-08-03T17:52:57.595Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "WHR1/PARP1 是DNA单链断裂修复与PAR合成反应的关键核内酶，参与肿瘤细胞复制压力和同源重组缺陷背景下的DNA损伤应答。该蛋白主要定位于细胞核，不具备胞外结构域、分泌蛋白或膜受体特征，天然抗原可及性不支持常规体内治疗性抗体设计。相比EGFR、PDCD1或VEGFA等肿瘤相关胞外靶点，WHR1/PARP1更适合作为结构生物学参考、细胞内递送抗体或酶活界面研究靶点，抗体开发优先级应低于可直接接触的膜外或分泌靶点。",
+    "mechanism": "通过胞内递送抗体阻断PARP1催化结构域与NAD+结合，抑制ADP-核糖基转移反应及DNA损伤位点PAR链生成。",
+    "selectedEpitope": "优先评估催化ART结构域NAD+结合口袋邻近可成抗体结合面，避免仅覆盖非功能性外周表面。",
+    "diseaseDirection": "DNA损伤修复相关肿瘤",
+    "domain": "PARP1含N端锌指DNA结合域、BRCT样自修饰域、WGR域及C端催化ART结构域。",
+    "evidence": "PARP1结构与DNA损伤修复肿瘤证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProtKB P09874/PARP1功能注释",
+      "RCSB PDB 8YCM晶体结构",
+      "PARP抑制剂肿瘤合成致死研究"
+    ],
+    "referenceEntries": "UniProt P09874; RCSB PDB 8YCM; Open Targets PARP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端ART催化结构域NAD+结合沟槽邻近面",
+        "可直接干预PARP1催化反应与PAR链生成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "WGR结构域与DNA损伤识别相关界面",
+        "可能削弱PARP1在DNA断裂位点的构象激活",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端锌指DNA结合域表面",
+        "功能相关但富含核酸结合正电荷斑块，存在多反应性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PARP1为核内蛋白，体内抗体可及性是核心风险；需采用胞内递送、内体逃逸或研究级intrabody策略，并严控核酸结合界面多反应性。",
+    "structurePrepZh": "以8YCM实验晶体结构为模板，保留抗原链A/B用于界面比对，补全缺失环区，校正质子化状态并标注NAD+口袋邻近残基。",
+    "structureRef": "RCSB PDB 8YCM, X-ray diffraction, 1.32 Å",
+    "antibodies": [
+      "anti-PARP1 clone F-2",
+      "anti-PARP1 clone 10H"
+    ],
+    "interfaceFocus": "ART结构域NAD+口袋与WGR-DNA激活界面",
+    "designMode": "胞内抗体探索",
+    "candidates": [
+      {
+        "target": "BRCA1",
+        "rationale": "BRCA1参与同源重组修复，缺陷状态与PARP1抑制形成经典合成致死关系，可作为DNA损伤修复通路分层标志。"
+      },
+      {
+        "target": "BRCA2",
+        "rationale": "BRCA2介导RAD51装载及同源重组修复，其功能缺失提高肿瘤对PARP轴干预的依赖性。"
+      },
+      {
+        "target": "XRCC1",
+        "rationale": "XRCC1是单链断裂修复支架蛋白，与PARP1依赖的碱基切除修复过程相连，可用于评估同一修复网络的替代干预节点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

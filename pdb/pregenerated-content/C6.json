@@ -1,0 +1,65 @@
+{
+  "gene": "C6",
+  "generatedAt": "2026-08-03T18:11:34.745Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "C6是补体终末通路的核心组分，与C5b结合后依次招募C7、C8和C9，驱动膜攻击复合物形成；其缺陷与晚期补体成分缺乏相关免疫缺陷及反复奈瑟菌感染存在明确机制关联。C6为血浆可溶性分泌蛋白，抗原整体处于循环系统可及环境，适合采用阻断型抗体干预C5b6形成或后续C7装配界面。相较C8、C9等下游组分，C6处于MAC装配早期节点，阻断后可在不直接影响C3裂解和调理吞噬的条件下降低终末补体介导的膜损伤，具备较高设计优先级。",
+    "mechanism": "抗体阻断C6与C5b的结合界面，抑制C5b6复合物形成，并阻止C7募集，从而限制膜攻击复合物装配。",
+    "selectedEpitope": "优先覆盖C6 MACPF核心域与邻近TSP1/LDLRA模块构成的C5b结合界面。",
+    "diseaseDirection": "终末补体通路相关免疫缺陷与补体介导损伤",
+    "domain": "C6含TSP1、LDLRA、MACPF、EGF样、CCP及FIMAC结构域，参与C5b6-C7装配。",
+    "evidence": "C6终末补体装配结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与表型关联",
+      "UniProt P13671功能与结构域注释",
+      "RCSB PDB 7Q6C实验晶体结构",
+      "补体终末通路MAC装配机制文献"
+    ],
+    "referenceEntries": "UniProt:P13671；RCSB PDB:7Q6C；Open Targets:C6",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "MACPF核心域邻近C5b接触面",
+        "直接阻断C6装入C5b并抑制C5b6形成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FIMAC与CCP模块外露面",
+        "干扰C7结合前的构象稳定与终末复合物延伸",
+        "备选"
+      ],
+      [
+        "Site C",
+        "TSP1/LDLRA串联模块远端区域",
+        "结构可及但可能偏离功能界面，需验证阻断效力",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "C6为循环高丰度补体蛋白，需控制抗体亲和力与剂量窗口，避免过度抑制终末补体造成感染易感性增加。",
+    "structurePrepZh": "以7Q6C晶体结构为模板，保留C6抗原链并校正缺失环区、糖基化位点和二硫键，定义MACPF及邻近模块界面网格。",
+    "structureRef": "RCSB PDB 7Q6C，X射线晶体结构，2.29 Å",
+    "antibodies": [
+      "Crovalimab",
+      "Eculizumab"
+    ],
+    "interfaceFocus": "C5b-C6结合界面及C7募集前构象区域",
+    "designMode": "阻断型Fab/VHH设计",
+    "candidates": [
+      {
+        "target": "C5",
+        "rationale": "C5裂解生成C5b是C6装配的上游必要步骤，抑制C5可同时阻断C5a释放和MAC形成。该靶点已有临床验证，适合作为终末补体通路参照靶点。"
+      },
+      {
+        "target": "C7",
+        "rationale": "C7与C5b6结合后启动复合物向膜表面的插入过程，是C6下游直接装配伙伴。阻断C7可选择性限制MAC延伸。"
+      },
+      {
+        "target": "C9",
+        "rationale": "C9聚合形成MAC孔道的主体结构，是终末膜裂解效应的最终执行组分。针对C9可在更下游阶段抑制孔道形成。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

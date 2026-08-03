@@ -1,0 +1,65 @@
+{
+  "gene": "RPS14",
+  "generatedAt": "2026-08-03T16:12:42.700Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RPS14为40S核糖体小亚基核心蛋白，参与18S rRNA成熟与翻译起始复合体装配，疾病关联主要反映病毒感染、肌病或囊性纤维化背景下宿主翻译与核糖体稳态改变。该蛋白定位于胞内核糖体颗粒，缺乏分泌形式和稳定胞外结构域，天然抗原可及性不符合常规治疗性抗体主靶点要求。相较ACE2、TMPRSS2或病毒表面糖蛋白等同通路可及靶点，RPS14的优先级较低，更适合作为机制研究或细胞内递送抗体探索对象。",
+    "mechanism": "设计策略限于细胞内递送抗体或研究级Fab，阻断RPS14与18S rRNA及邻近40S蛋白界面的结合，以干扰小亚基装配或病毒依赖性宿主翻译过程。",
+    "selectedEpitope": "优先评估RPS14暴露的rRNA结合邻近碱性螺旋面，避开深埋于40S核心的保守装配界面。",
+    "diseaseDirection": "病毒感染与核糖体稳态异常",
+    "domain": "RPS14为小型40S核糖体蛋白，含保守核糖体蛋白S14结构域，富含与18S rRNA结合的碱性表面。",
+    "evidence": "RPS14核糖体装配与感染相关证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P62263功能与亚细胞定位注释",
+      "RCSB PDB 5VYC人源核糖体结构",
+      "Reactome真核翻译与核糖体装配通路"
+    ],
+    "referenceEntries": "UniProt:P62263；RCSB PDB:5VYC；HGNC:RPS14",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RPS14外露碱性螺旋及18S rRNA邻近面",
+        "可用于研究级阻断rRNA结合与40S装配界面",
+        "优先"
+      ],
+      [
+        "Site B",
+        "40S小亚基表面暴露环区",
+        "空间可及性相对较高，适合结构探针型Fab筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "深埋于核糖体核心的保守疏水界面",
+        "可及性差且易干扰基础翻译，治疗窗口风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RPS14为必需胞内核糖体蛋白，抗体可及性、细胞递送和基础翻译毒性均为主要风险；建议限定为机制验证或递送平台适配项目。",
+    "structurePrepZh": "以5VYC中RPS14抗原链为模板，剔除低置信远端核糖体组分，保留邻近18S rRNA用于界面判定，并结合AlphaFold模型补充分辨率限制。",
+    "structureRef": "PDB 5VYC，X-ray diffraction，human 80S ribosome，6.0 Å",
+    "antibodies": [
+      "暂无获批RPS14治疗性抗体",
+      "研究级anti-RPS14抗体"
+    ],
+    "interfaceFocus": "RPS14-18S rRNA结合面与40S外露环区",
+    "designMode": "细胞内递送探索",
+    "candidates": [
+      {
+        "target": "EIF4E",
+        "rationale": "EIF4E介导mRNA 5′帽结构识别，是宿主翻译起始和多种病毒mRNA翻译依赖的关键节点；相较RPS14更接近可调控的翻译起始层级。"
+      },
+      {
+        "target": "EIF4A1",
+        "rationale": "EIF4A1为eIF4F复合体RNA解旋酶，参与病毒RNA翻译所需的5′UTR解旋过程；其功能位点明确，适合作为同一宿主翻译依赖通路候选。"
+      },
+      {
+        "target": "RPS6",
+        "rationale": "RPS6为40S小亚基蛋白并受mTOR-S6K轴调控，连接核糖体功能与细胞生长信号；可作为核糖体活性和翻译通路研究的替代靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

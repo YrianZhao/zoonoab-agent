@@ -1,0 +1,65 @@
+{
+  "gene": "MELTF",
+  "generatedAt": "2026-08-03T14:11:24.397Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MELTF编码GPI锚定型黑色素转铁蛋白，位于细胞外膜面，参与铁结合、细胞迁移及组织重塑相关过程，Open Targets显示其与体成分、甲状旁腺疾病和甲状旁腺功能亢进存在遗传与疾病关联信号。MELTF具有完整胞外转铁蛋白样双叶结构，抗原决定簇可直接暴露于细胞表面，较胞内铁代谢蛋白更适合抗体识别。相较TFRC等广泛必需性铁摄取受体，MELTF组织分布和GPI锚定特征更利于获得差异化靶向窗口，优先适合作为细胞表面抗原验证靶点。",
+    "mechanism": "抗体结合MELTF N叶或C叶铁结合裂隙邻近区域，阻断其与铁离子配位相关构象稳定及潜在细胞表面伴侣相互作用，从而干预MELTF介导的铁稳态与迁移表型。",
+    "selectedEpitope": "优先选择N叶转铁蛋白样结构域铁结合裂隙外缘及两亚结构域铰链邻近表位，避免深部金属配位残基。",
+    "diseaseDirection": "体成分与甲状旁腺相关疾病",
+    "domain": "MELTF为GPI锚定胞外糖蛋白，含N叶与C叶两个转铁蛋白样结构域，C端连接GPI锚定信号。",
+    "evidence": "MELTF疾病关联与胞外结构抗体设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P08582蛋白功能与结构域注释",
+      "RCSB PDB 6XR0实验晶体结构",
+      "GTEx与Human Protein Atlas组织表达资料"
+    ],
+    "referenceEntries": "UniProt P08582；RCSB PDB 6XR0；Open Targets MELTF",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N叶转铁蛋白样结构域铁结合裂隙外缘及铰链区",
+        "兼具可及性与功能干预潜力，可影响铁结合相关构象变化",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C叶转铁蛋白样结构域远离GPI锚定位点的凸面环区",
+        "适合建立细胞表面结合型抗体，降低膜近端空间位阻",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N叶与C叶界面及高度保守转铁蛋白折叠核心",
+        "可能影响整体折叠稳定性并增加与TF、LTF同源区域交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MELTF与转铁蛋白家族存在结构同源性，需规避保守铁配位核心并评估TF、LTF、TFRC相关非特异结合；优先筛选MELTF特异外露环表位。",
+    "structurePrepZh": "以6XR0晶体结构为模板，保留成熟胞外结构域，校验糖基化位点、二硫键和金属结合残基；对缺失环区进行同源补模并标注低置信区域。",
+    "structureRef": "RCSB PDB 6XR0，MELTF X射线晶体结构，3.064 Å",
+    "antibodies": [
+      "L235",
+      "MEM-75"
+    ],
+    "interfaceFocus": "N叶铁结合裂隙外缘与两亚结构域铰链面",
+    "designMode": "胞外膜抗原阻断",
+    "candidates": [
+      {
+        "target": "TFRC",
+        "rationale": "TFRC是经典转铁蛋白摄取受体，直接介导TF结合与铁内吞，在铁稳态和增殖相关通路中与MELTF处于同一铁代谢网络。其细胞表面受体属性使其适合作为对照或组合验证靶点。"
+      },
+      {
+        "target": "TF",
+        "rationale": "TF为循环转铁蛋白，负责Fe3+运输并与TFRC形成摄取轴，是MELTF相关转铁蛋白样功能网络中的核心配体。其可用于比较MELTF抗体是否影响保守铁结合结构。"
+      },
+      {
+        "target": "SLC40A1",
+        "rationale": "SLC40A1编码ferroportin，是细胞铁外排的关键膜转运蛋白，与TFRC介导的铁摄取共同维持系统性铁稳态。该靶点可作为铁代谢疾病方向中的通路级候选。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

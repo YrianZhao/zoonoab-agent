@@ -1,0 +1,65 @@
+{
+  "gene": "EZR",
+  "generatedAt": "2026-08-03T12:24:50.383Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "EZR编码ezrin，是ERM家族膜-皮质肌动蛋白连接蛋白，参与Rho GTPase依赖的细胞骨架重塑、细胞黏附、迁移和上皮极性维持，肿瘤侵袭转移及肝胆损伤相关表型中常见表达或定位异常。EZR本身主要定位于胞质侧膜下皮质区，并非经典胞外抗体靶点，因此更适合作为细胞内构象识别、研究级抗体或递送型抗体设计对象。其优先级来自高分辨率实验结构、明确的FERM结构域界面和广泛疾病关联，但相较CD44、MET等同通路膜受体，治疗性外部阻断可及性较弱，应以机制验证和伴随诊断场景优先。",
+    "mechanism": "设计抗体识别ezrin FERM结构域，干预其与膜蛋白胞质尾部及PIP2邻近结合界面的构象稳定，削弱膜-肌动蛋白连接。",
+    "selectedEpitope": "优先覆盖FERM F3亚结构域的膜蛋白尾部结合沟槽，避开高度保守折叠核心。",
+    "diseaseDirection": "肿瘤侵袭转移与肝胆损伤表型",
+    "domain": "N端FERM结构域由F1、F2、F3三叶组成；C端含α螺旋区及F-actin结合尾段。",
+    "evidence": "EZR结构域、细胞迁移与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P15311功能与结构域注释",
+      "RCSB PDB 7T1K晶体结构记录",
+      "ERM蛋白膜-皮质肌动蛋白连接研究文献"
+    ],
+    "referenceEntries": "UniProt:P15311；RCSB PDB:7T1K；HGNC:EZR",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "FERM F3亚结构域膜蛋白胞质尾部结合沟槽",
+        "可直接干预ezrin与CD44、ICAM等尾部结合界面，机制解释度高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FERM F1-F2叶片间外露构象表面",
+        "有利于构象特异性识别开放态或闭合态ezrin，适合研究级抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "FERM结构域疏水折叠核心及高度保守β片层",
+        "可能影响蛋白整体稳定性并带来ERM家族交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "EZR缺乏胞外结构域，常规治疗抗体难以到达胞质靶点；需优先限定为胞内抗体、递送抗体或诊断抗体，并严格评估MSN、RDX交叉反应。",
+    "structurePrepZh": "以7T1K链A/B为FERM结构模板，保留高分辨率坐标，补全缺失侧链，标注F1-F3亚结构域及膜蛋白尾部结合沟槽用于表位建模。",
+    "structureRef": "RCSB PDB 7T1K，X-ray，1.25 Å，human ezrin FERM",
+    "antibodies": [
+      "Anti-Ezrin clone 3C12",
+      "Anti-Ezrin clone 4A5"
+    ],
+    "interfaceFocus": "FERM F3膜蛋白尾部结合沟槽",
+    "designMode": "胞内构象抗体设计",
+    "candidates": [
+      {
+        "target": "CD44",
+        "rationale": "CD44胞质尾部可与ezrin FERM结构域结合，连接透明质酸受体信号与皮质肌动蛋白重塑；其胞外结构域可及性优于EZR。"
+      },
+      {
+        "target": "ICAM1",
+        "rationale": "ICAM1胞质区可招募ezrin参与细胞黏附和白细胞跨内皮迁移，处于同一膜-细胞骨架连接轴；其免疫球蛋白样胞外结构域适合抗体阻断。"
+      },
+      {
+        "target": "MSN",
+        "rationale": "MSN与EZR同属ERM家族，参与相似的膜-肌动蛋白连接和细胞迁移过程；可作为家族选择性与功能补偿风险评估靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

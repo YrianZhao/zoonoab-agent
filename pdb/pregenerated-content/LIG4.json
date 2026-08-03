@@ -1,0 +1,65 @@
+{
+  "gene": "LIG4",
+  "generatedAt": "2026-08-03T13:53:10.092Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "LIG4编码DNA ligase IV，是非同源末端连接通路的核心连接酶，负责在XRCC4、XLF/NHEJ1和DNA-PK复合体协同下完成DNA双链断裂末端封合；其双等位基因缺陷可导致LIG4综合征、DNA ligase IV deficiency及T-B+重症联合免疫缺陷。该蛋白定位于细胞核，不具备胞外结构域或分泌特征，天然抗原可及性不适合常规体内阻断型抗体。优先级主要来自明确的人类遗传因果证据、晶体结构可用性及NHEJ通路中心性，但相较膜受体或分泌因子，更适合体外结构探针、胞内递送抗体或研究级结合分子设计。",
+    "mechanism": "设计分子可结合LIG4 BRCT2-XRCC4相互作用界面，干扰DNA ligase IV与XRCC4复合体装配，从而降低NHEJ末端连接效率。",
+    "selectedEpitope": "优先覆盖C端BRCT2结构域中与XRCC4卷曲螺旋结合的界面残基。",
+    "diseaseDirection": "NHEJ缺陷相关免疫缺陷",
+    "domain": "LIG4含N端DNA连接酶催化核心及C端串联BRCT结构域，BRCT2介导XRCC4结合。",
+    "evidence": "LIG4-NHEJ免疫缺陷结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P49917功能与亚细胞定位注释",
+      "RCSB PDB 4HTP晶体结构记录",
+      "OMIM/Orphanet LIG4综合征遗传证据"
+    ],
+    "referenceEntries": "UniProt P49917；RCSB PDB 4HTP；Open Targets LIG4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "BRCT2-XRCC4结合界面",
+        "可直接干扰LIG4-XRCC4复合体形成，机制最清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "BRCT1-BRCT2连接区邻近界面",
+        "可能影响C端BRCT构象与XRCC4结合几何，适合作为变构表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化腺苷酸化结构域表面",
+        "邻近催化功能区但胞内可及性低，需避免非特异性核蛋白交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "LIG4为核内酶，常规抗体难以在活细胞内到达靶点；建议限定为体外功能阻断、结构验证或胞内递送格式，并规避保守BRCT表面导致的交叉结合。",
+    "structurePrepZh": "以PDB 4HTP为模板保留LIG4与XRCC4复合体界面，补全缺失侧链与氢原子，按生理pH优化质子化状态并标注晶体接触区域。",
+    "structureRef": "RCSB PDB 4HTP，X-ray，2.25 Å，LIG4-XRCC4复合体",
+    "antibodies": [
+      "无获批LIG4靶向治疗抗体",
+      "研究级anti-DNA ligase IV抗体"
+    ],
+    "interfaceFocus": "BRCT2与XRCC4卷曲螺旋结合面",
+    "designMode": "胞内结构阻断",
+    "candidates": [
+      {
+        "target": "XRCC4",
+        "rationale": "XRCC4是DNA ligase IV的直接结合伴侣，稳定LIG4并促进NHEJ末端连接复合体组装；其结构界面与LIG4缺陷相关免疫表型处于同一通路。"
+      },
+      {
+        "target": "NHEJ1",
+        "rationale": "NHEJ1编码XLF/Cernunnos，可与XRCC4协同桥接DNA断端并促进LIG4介导的末端连接；其缺陷同样导致NHEJ相关免疫缺陷。"
+      },
+      {
+        "target": "PRKDC",
+        "rationale": "PRKDC编码DNA-PKcs，参与DNA双链断裂末端识别与NHEJ复合体激活；其功能异常可影响与LIG4下游连接步骤相衔接的DNA修复过程。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "EIF1AX",
+  "generatedAt": "2026-08-03T19:02:43.324Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "EIF1AX编码翻译起始因子eIF1A，参与43S预起始复合体形成、起始密码子选择及扫描过程；其突变在葡萄膜黑色素瘤、甲状腺癌和子宫内膜癌中具有遗传关联，但主要体现为细胞内翻译起始调控异常。该蛋白为胞质/核内可溶性翻译因子，缺乏分泌信号肽、跨膜区和稳定胞外结构域，天然抗原可及性不支持常规治疗性抗体直接结合。相较于EGFR、PDGFRA或MET等同属肿瘤增殖与生存网络且具胞外配体结合域的膜受体，EIF1AX更适合作为机制研究或胞内递送抗体探索靶点，治疗性抗体开发优先级较低。",
+    "mechanism": "设计目标为干扰EIF1AX与40S核糖体小亚基及eIF5B相关界面的结合，削弱43S预起始复合体稳定性和AUG识别效率。",
+    "selectedEpitope": "优先覆盖eIF1A OB-fold核糖体结合面，避开柔性N/C端尾部非特异区域。",
+    "diseaseDirection": "肿瘤翻译起始异常",
+    "domain": "EIF1AX为小型eIF1A家族蛋白，核心为OB-fold样β桶结构，含柔性N端和C端尾部。",
+    "evidence": "EIF1AX肿瘤遗传关联与翻译起始结构证据",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联数据",
+      "UniProt P47813功能与亚细胞定位注释",
+      "RCSB PDB 3ZJY X射线晶体结构",
+      "肿瘤基因组测序研究中的EIF1AX突变报道"
+    ],
+    "referenceEntries": "UniProt P47813；RCSB PDB 3ZJY；Open Targets EIF1AX",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "OB-fold核糖体结合面",
+        "可直接影响40S小亚基结合与扫描复合体稳定性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端尾部邻近起始密码子识别调节区",
+        "可能扰动AUG选择，但柔性较高且构象依赖性强",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端柔性尾部区域",
+        "序列可及但结构无序，易产生低亲和或非功能性结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "EIF1AX为胞内翻译因子，常规抗体难以到达作用位点；建议仅用于细胞内递送抗体、intrabody或机制验证场景，并设置细胞穿透与翻译毒性评估。",
+    "structurePrepZh": "以3ZJY实验结构提取EIF1AX链，校正3.6 Å分辨率下缺失侧链与柔性尾部，结合同源模型补全并标注核糖体结合界面。",
+    "structureRef": "RCSB PDB 3ZJY，X-ray diffraction，3.6 Å",
+    "antibodies": [
+      "无获批抗EIF1AX治疗性抗体",
+      "研究级抗EIF1AX检测抗体"
+    ],
+    "interfaceFocus": "OB-fold与40S核糖体接触界面",
+    "designMode": "胞内抗体探索",
+    "candidates": [
+      {
+        "target": "EIF1",
+        "rationale": "EIF1与EIF1AX共同参与43S预起始复合体扫描和起始密码子选择，处于同一翻译起始调控模块。其功能界面可作为翻译起始机制干预的并行验证靶点。"
+      },
+      {
+        "target": "EIF2S1",
+        "rationale": "EIF2S1为eIF2复合体α亚基，负责起始tRNA递送相关调控，并与EIF1AX所在的翻译起始通路功能耦联。该靶点可用于评估上游起始复合体装配依赖性。"
+      },
+      {
+        "target": "EIF5B",
+        "rationale": "EIF5B促进核糖体大、小亚基结合并与eIF1A存在功能性协同，是翻译起始后期装配步骤的真实通路节点。其界面干预可补充EIF1AX机制验证。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

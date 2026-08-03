@@ -1,0 +1,65 @@
+{
+  "gene": "TRDMT1",
+  "generatedAt": "2026-08-03T17:27:36.110Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TRDMT1为胞内RNA胞嘧啶甲基转移酶，主要催化tRNA Asp等RNA底物的C38位5-甲基胞嘧啶修饰，并参与造血相关细胞表型的表观转录后调控。Open Targets关联以血小板计数、红细胞体积、血小板分布宽度及代谢测量性状为主，提示其更适合作为机制研究或细胞内递送抗体策略靶点，而非经典可溶性抗体阻断靶点。该蛋白缺乏胞外结构域和分泌特征，抗原可及性明显弱于膜受体或分泌因子；其优先级依据主要来自高分辨率晶体结构和RNA甲基转移酶活性口袋可解析性，相比同通路RNA修饰酶更适合开展结构约束型胞内结合分子设计。",
+    "mechanism": "设计结合分子占据TRDMT1催化裂隙，干扰SAM辅因子与RNA底物在保守甲基转移酶核心域内的协同定位，从而抑制C5胞嘧啶甲基转移反应。",
+    "selectedEpitope": "优先覆盖SAM结合口袋邻近的催化裂隙及RNA底物结合沟槽边缘，避免仅选择远端非功能表面。",
+    "diseaseDirection": "造血性状与RNA甲基化调控",
+    "domain": "TRDMT1含胞内DNA/RNA甲基转移酶样核心域，形成SAM依赖性催化口袋和RNA底物结合沟槽。",
+    "evidence": "TRDMT1结构与造血性状遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB O14717功能注释",
+      "RCSB PDB 1G55晶体结构",
+      "人类RNA 5-甲基胞嘧啶转移酶研究文献"
+    ],
+    "referenceEntries": "UniProt O14717；RCSB PDB 1G55；Open Targets TRDMT1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SAM结合口袋与催化裂隙周缘",
+        "直接干扰甲基供体定位及催化残基构象，最具功能阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RNA底物结合沟槽外缘",
+        "可削弱tRNA底物装载并保留较高结构可塑性，适合亲和力成熟",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离活性中心的核心域背面",
+        "功能关联不明确，可能仅产生结合信号而缺乏抑制效应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TRDMT1为胞内酶，常规抗体难以到达作用位点；建议限定为胞内抗体、VHH递送或结构探针方向，并优先验证细胞内递送效率与RNA甲基化读出。",
+    "structurePrepZh": "以PDB 1G55链A为模板，保留甲基转移酶核心折叠，检查缺失环区、晶体接触和口袋水分子，围绕SAM/RNA结合区域建立设计网格。",
+    "structureRef": "RCSB PDB 1G55，X-ray diffraction，1.8 Å",
+    "antibodies": [
+      "无已批准TRDMT1治疗性抗体",
+      "研究级抗TRDMT1检测抗体"
+    ],
+    "interfaceFocus": "催化裂隙、SAM口袋及RNA结合沟槽",
+    "designMode": "胞内VHH/结构探针",
+    "candidates": [
+      {
+        "target": "NSUN2",
+        "rationale": "NSUN2为RNA胞嘧啶5-甲基转移酶，参与tRNA等RNA甲基化调控，并与血液细胞发育及代谢性状研究存在通路相关性。其可作为RNA m5C修饰轴内的功能对照靶点。"
+      },
+      {
+        "target": "METTL1",
+        "rationale": "METTL1催化tRNA N7-甲基鸟苷修饰，影响tRNA稳定性和翻译调控，与细胞增殖及造血相关表型具有机制交叉。其适合用于比较不同tRNA修饰酶对血液性状的贡献。"
+      },
+      {
+        "target": "WDR4",
+        "rationale": "WDR4是METTL1复合物辅因子，参与tRNA m7G修饰复合体组装和底物识别。其位于同一tRNA修饰与翻译调控网络，可作为复合体界面干预候选。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

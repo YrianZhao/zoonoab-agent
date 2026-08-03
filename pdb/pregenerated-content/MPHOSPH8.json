@@ -1,0 +1,65 @@
+{
+  "gene": "MPHOSPH8",
+  "generatedAt": "2026-08-03T14:18:39.148Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MPHOSPH8 为人源 MPP8，主要通过 chromodomain 识别 H3K9me3 并参与 HUSH 复合体介导的异染色质沉默，疾病关联以遗传性代谢、免疫炎症及表型测量信号为主，但 Open Targets 证据强度有限。该蛋白定位于细胞核且缺乏跨膜区或分泌信号，抗原天然可及性不具备胞外靶点优势，更适合体外结构抗体、细胞内抗体或研究级结合分子设计。相较膜受体或分泌因子，MPHOSPH8 的优先级依据在于 6V2S 提供 1.6 Å 实验结构，可对 chromodomain 甲基赖氨酸识别沟槽进行高精度表位约束设计。",
+    "mechanism": "抗体结合 MPP8 chromodomain 芳香笼邻近界面，阻断其与 H3K9me3 肽段的甲基赖氨酸识别及异染色质定位。",
+    "selectedEpitope": "优先覆盖 chromodomain 芳香笼与 H3K9me3 肽结合沟槽边缘，避开核心折叠疏水面。",
+    "diseaseDirection": "表观遗传调控与免疫炎症关联",
+    "domain": "MPP8 含 N 端 chromodomain，可识别组蛋白 H3K9me3；其余区域参与核内复合体装配。",
+    "evidence": "MPHOSPH8 结构与表观遗传功能证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt Q99549 蛋白功能与定位注释",
+      "RCSB PDB 6V2S X 射线晶体结构",
+      "HUSH 复合体与 H3K9me3 识别文献"
+    ],
+    "referenceEntries": "UniProt Q99549；RCSB PDB 6V2S；Open Targets MPHOSPH8",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "chromodomain 芳香笼及 H3K9me3 肽结合沟槽",
+        "直接干预甲基化组蛋白读取功能，机制验证价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "chromodomain 外侧保守 β 折叠-α 螺旋邻接面",
+        "可稳定识别折叠结构并减少与配体位点的竞争性构象扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "晶体对称相关链 A-D 的接触界面",
+        "可能反映晶体堆积而非生理界面，需以溶液构象复核",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MPHOSPH8 为核内蛋白，常规抗体难以在完整细胞内接触抗原；设计宜定位为结构探针、内抗体或递送型分子，并规避高度保守 chromodomain 家族交叉反应。",
+    "structurePrepZh": "以 6V2S 高分辨率晶体结构为模板，保留完整 chromodomain 链，检查晶体接触、缺失残基与质子化状态后进行表面聚类和肽结合沟槽标注。",
+    "structureRef": "RCSB PDB 6V2S，MPP8 chromodomain，1.6 Å X-ray",
+    "antibodies": [
+      "研究级 anti-MPHOSPH8/MPP8 monoclonal antibody",
+      "研究级 anti-MPHOSPH8/MPP8 polyclonal antibody"
+    ],
+    "interfaceFocus": "chromodomain 芳香笼-H3K9me3 识别沟槽",
+    "designMode": "胞内结构阻断",
+    "candidates": [
+      {
+        "target": "TASOR",
+        "rationale": "TASOR 为 HUSH 复合体核心组分，与 MPP8 协同介导 H3K9me3 相关转录沉默；其功能位点可作为同一异染色质沉默轴的替代干预节点。"
+      },
+      {
+        "target": "PPHLN1",
+        "rationale": "PPHLN1 是 HUSH 复合体成员，与 MPHOSPH8/TASOR 共同维持重复序列和转基因沉默；靶向该节点可影响同一核内表观遗传抑制通路。"
+      },
+      {
+        "target": "SETDB1",
+        "rationale": "SETDB1 负责催化 H3K9 甲基化并为 MPP8 chromodomain 提供 H3K9me3 读取标记；其位于同一 H3K9me3-异染色质沉默通路上游。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "CDK1",
+  "generatedAt": "2026-08-03T11:13:13.843Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CDK1是细胞周期G2/M转换的核心丝氨酸/苏氨酸激酶，通过与Cyclin B结合并磷酸化有丝分裂底物驱动细胞分裂；其异常活性与神经退行性疾病中的细胞周期再进入、Tau磷酸化和神经元应激相关。CDK1为胞内激酶，天然抗原可及性不具备传统细胞表面抗体优势，抗体设计更适合采用细胞内递送抗体、降解型抗体或结构生物学验证工具抗体策略。相较于上游泛化应激靶点，CDK1具备高分辨率复合物结构、明确ATP结合口袋和Cyclin结合构象依据，优先级主要来自结构可设计性与疾病机制交汇度，而非经典膜抗原成药性。",
+    "mechanism": "设计抗体阻断CDK1 N端与Cyclin B1形成活性复合物，或稳定失活构象，抑制底物磷酸化及异常细胞周期再进入。",
+    "selectedEpitope": "优先覆盖PSTAIRE helix及Cyclin结合界面，避免完全聚焦ATP口袋深部保守区。",
+    "diseaseDirection": "神经退行性疾病与细胞周期异常",
+    "domain": "CDK1含典型蛋白激酶N叶、C叶、ATP结合裂隙、活化环及PSTAIRE Cyclin结合螺旋。",
+    "evidence": "CDK1细胞周期与神经退行性关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P06493 functional annotation",
+      "RCSB PDB 6GU2 experimental structure",
+      "Reactome cell cycle G2/M transition pathway"
+    ],
+    "referenceEntries": "UniProt P06493；RCSB PDB 6GU2；Reactome CDK1 pathway",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PSTAIRE helix与Cyclin B结合界面",
+        "可直接干预CDK1-Cyclin复合物装配，机制清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "活化环T-loop及底物识别邻近区域",
+        "有助于稳定低活性构象并影响底物磷酸化",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP结合裂隙周边保守N叶口袋",
+        "保守性高且易产生CDK家族交叉结合风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CDK1为胞内保守激酶，常规抗体难以到达作用位点，并存在CDK2等同源激酶交叉反应风险；应强化细胞内递送与选择性筛选。",
+    "structurePrepZh": "以6GU2晶体结构为模板，保留CDK1链并校正缺失环区、质子化状态和配体邻近残基，重点标注Cyclin结合界面。",
+    "structureRef": "RCSB PDB 6GU2，X-ray diffraction，2.0 Å",
+    "antibodies": [
+      "抗CDK1研究级单克隆抗体",
+      "抗磷酸化CDK1 Tyr15抗体"
+    ],
+    "interfaceFocus": "PSTAIRE helix-Cyclin B1接触面",
+    "designMode": "胞内功能阻断",
+    "candidates": [
+      {
+        "target": "CCNB1",
+        "rationale": "CCNB1编码Cyclin B1，是CDK1形成有丝分裂活性复合物的直接结合伙伴；阻断CDK1-CCNB1轴可干预G2/M转换异常。"
+      },
+      {
+        "target": "WEE1",
+        "rationale": "WEE1通过磷酸化CDK1 Tyr15抑制其激酶活性，是同一G2/M检查点通路中的关键负调控因子。"
+      },
+      {
+        "target": "CDC25C",
+        "rationale": "CDC25C去磷酸化并激活CDK1，是促进CDK1-Cyclin B复合物进入有丝分裂活化状态的上游调控节点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

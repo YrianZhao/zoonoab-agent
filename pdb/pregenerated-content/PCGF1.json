@@ -1,0 +1,65 @@
+{
+  "gene": "PCGF1",
+  "generatedAt": "2026-08-03T15:07:23.699Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PCGF1是PRC1.1复合体的核心RING指蛋白，通过与RING1A/RING1B形成E3连接酶模块，参与H2AK119单泛素化和Polycomb依赖性转录抑制，肿瘤与胶质瘤中的关联主要反映表观遗传失衡。该蛋白以核内多蛋白复合体形式发挥功能，缺乏稳定胞外结构域或分泌暴露特征，抗原可及性不适合常规治疗性抗体直接阻断。相较EGFR、VEGFA、PDCD1等同肿瘤通路可及靶点，PCGF1优先级较低，更适合作为结构生物学与细胞内递送抗体片段研究靶点。",
+    "mechanism": "设计目标为结合PCGF1 RING指结构域邻近RING1B接触面，干扰PCGF1-RING1B异源二聚与PRC1.1 E3连接酶组装，从而降低H2AK119ub1沉积。",
+    "selectedEpitope": "优先评估RING指结构域中RING1B结合界面邻近螺旋与锌指支架外露面。",
+    "diseaseDirection": "肿瘤表观遗传调控",
+    "domain": "PCGF1含N端C3HC4型RING finger结构域，介导RING1A/B结合及PRC1.1复合体装配。",
+    "evidence": "PCGF1-PRC1.1肿瘤表观遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt Q9BSM1功能注释",
+      "RCSB PDB 4HPM晶体结构",
+      "Polycomb PRC1.1复合体文献"
+    ],
+    "referenceEntries": "UniProt Q9BSM1；RCSB PDB 4HPM；Open Targets PCGF1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RING finger中RING1B异源二聚接触面邻近外露区域",
+        "最可能影响PCGF1-RING1B装配与E3模块形成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RING结构域非锌配位外侧螺旋/环区",
+        "可作为不破坏锌指折叠的构象识别表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Cys/His锌配位核心及疏水折叠核心",
+        "易造成非特异构象扰动，且抗体可及性有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PCGF1为核内蛋白，常规IgG难以进入细胞核；RING锌指核心保守性较高，应避免锌配位残基并优先采用细胞内递送片段策略。",
+    "structurePrepZh": "以4HPM高分辨率晶体结构为模板，保留PCGF1 RING结构域与锌离子配位信息，补全缺失侧链并标注RING1B界面残基。",
+    "structureRef": "RCSB PDB 4HPM，X-ray diffraction，1.85 Å",
+    "antibodies": [
+      "PCGF1研究级单克隆抗体",
+      "抗RING结构域研究级抗体"
+    ],
+    "interfaceFocus": "PCGF1 RING-RING1B二聚化界面",
+    "designMode": "细胞内抗体片段",
+    "candidates": [
+      {
+        "target": "RING1B",
+        "rationale": "RING1B与PCGF1共同构成PRC1.1 E3连接酶催化模块，直接控制H2AK119单泛素化，是同一Polycomb通路中的核心功能节点。"
+      },
+      {
+        "target": "BCOR",
+        "rationale": "BCOR是非典型PRC1.1复合体组分，参与PCGF1复合体定位与转录抑制，在肿瘤表观遗传异常中具有通路相关性。"
+      },
+      {
+        "target": "KDM2B",
+        "rationale": "KDM2B通过CxxC结构域识别未甲基化CpG岛并招募PCGF1-PRC1.1复合体，属于PCGF1上游定位轴的真实同通路靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

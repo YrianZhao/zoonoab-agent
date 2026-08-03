@@ -1,0 +1,65 @@
+{
+  "gene": "CDK2",
+  "generatedAt": "2026-08-03T18:24:36.795Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CDK2为细胞周期调控丝氨酸/苏氨酸激酶，主要通过与CCNE1/CCNA2形成复合物磷酸化RB1等底物，驱动G1/S转换及DNA复制程序，其异常活化与慢性淋巴细胞白血病及神经退行性疾病中的细胞周期再进入有关。该蛋白为胞内激酶，天然抗原可及性显著弱于膜受体或分泌蛋白，因此仅适合细胞内递送抗体、降解偶联或研究型结合分子策略。相较CDK1等必需性更高的同族激酶，CDK2在特定肿瘤依赖与复制应激背景中具有较明确的治疗窗口，但作为常规体外抗体靶点优先级受可及性限制。",
+    "mechanism": "设计结合分子占据CDK2 ATP结合裂隙或Cyclin A/E结合调控界面，阻断CDK2-CCNA2/CCNE1复合物介导的RB1磷酸化。",
+    "selectedEpitope": "优先针对N端激酶小叶ATP裂隙邻近PSTAIRE αC螺旋与活化环构象耦联区域。",
+    "diseaseDirection": "细胞周期异常与神经退行性疾病",
+    "domain": "CDK2由典型蛋白激酶结构域构成，含N端β折叠小叶、C端α螺旋小叶、ATP结合裂隙、PSTAIRE αC螺旋及T160活化环。",
+    "evidence": "CDK2细胞周期复合物与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB P24941功能与亚细胞定位注释",
+      "RCSB PDB 1E1X晶体结构记录",
+      "Reactome Cell Cycle and G1/S Transition通路注释"
+    ],
+    "referenceEntries": "UniProt P24941；RCSB PDB 1E1X；Open Targets ENSG00000123374",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ATP结合裂隙及PSTAIRE αC螺旋邻近面",
+        "可直接影响ATP定位与催化构象，适合高亲和胞内抑制型抗体片段设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Cyclin结合相关N端小叶外侧调控面",
+        "可干扰CDK2与CCNA2/CCNE1的复合物稳定性，具备复合物选择性潜力",
+        "备选"
+      ],
+      [
+        "Site C",
+        "T160活化环及底物进入沟槽附近区域",
+        "构象依赖性强且易受磷酸化状态影响，需控制激活态与非激活态结构差异",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CDK2为胞内高度保守激酶，常规抗体难以到达作用位点，且ATP裂隙与CDK1/CDK3相似度高；建议采用胞内Fab/VHH、构象选择性筛选及交叉反应排查。",
+    "structurePrepZh": "以1E1X链A为模板，保留激酶核心结构并核查ATP裂隙配体、T160活化环构象和缺失残基；建模时补全氢原子并统一磷酸化状态。",
+    "structureRef": "RCSB PDB 1E1X，human CDK2 X-ray structure，1.85 Å",
+    "antibodies": [
+      "无获批抗CDK2治疗性抗体",
+      "研究级抗CDK2单克隆抗体"
+    ],
+    "interfaceFocus": "ATP裂隙、PSTAIRE αC螺旋、Cyclin结合面",
+    "designMode": "胞内构象阻断",
+    "candidates": [
+      {
+        "target": "CCNE1",
+        "rationale": "CCNE1与CDK2形成G1/S转换核心复合物，扩增或过表达可增强CDK2依赖性复制启动，属于同一细胞周期轴的上游激活因子。"
+      },
+      {
+        "target": "CCNA2",
+        "rationale": "CCNA2在S期与CDK2结合维持DNA复制及复制叉进程，靶向该复合物轴可补充CDK2催化位点抑制策略。"
+      },
+      {
+        "target": "RB1",
+        "rationale": "RB1是CDK2-Cyclin复合物关键磷酸化底物，其磷酸化解除E2F转录抑制，是G1/S细胞周期通路的核心下游节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "DR1",
+  "generatedAt": "2026-08-03T12:03:49.374Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DR1与神经退行性疾病及多项代谢表型存在遗传关联，其编码蛋白与DRAP1形成NC2复合体，结合TBP-DNA预起始复合物并抑制RNA polymerase II转录起始。该蛋白为核内转录调控因子，缺乏胞外结构域或分泌暴露，常规抗体药物抗原可及性较弱。相较于膜受体或分泌因子靶点，DR1更适合作为机制研究或胞内递送抗体设计对象，优先级依据主要来自结构可解析性及转录起始界面明确性，而非临床抗体可成药性优势。",
+    "mechanism": "设计分子阻断DR1组蛋白折叠结构域与DRAP1形成NC2异二聚体，或干扰NC2与TBP-DNA复合物结合，从而解除对Pol II转录起始的抑制。",
+    "selectedEpitope": "优先覆盖DR1组蛋白折叠结构域α螺旋异二聚体界面，兼顾NC2接触TBP-DNA复合物的暴露面。",
+    "diseaseDirection": "神经退行性疾病与转录调控",
+    "domain": "DR1含N端调控区及C端组蛋白折叠结构域，后者介导DRAP1结合并形成NC2核心。",
+    "evidence": "DR1-NC2转录起始抑制结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q01658功能与结构域注释",
+      "RCSB PDB 1JFI晶体结构记录",
+      "RNA polymerase II转录起始复合物研究文献"
+    ],
+    "referenceEntries": "UniProt Q01658；RCSB PDB 1JFI；Open Targets DR1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DR1组蛋白折叠结构域DRAP1异二聚体界面",
+        "直接削弱NC2复合体装配，机制可验证性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "NC2复合体面向TBP-DNA预起始复合物的结合表面",
+        "阻断NC2与TBP-DNA相互作用，保留复合体装配分析窗口",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端低复杂度调控区域",
+        "构象柔性高且结构约束不足，表位稳定性与特异性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DR1为核内蛋白，天然抗体难以到达作用位点；应标注为胞内递送或研究级抗体策略，并避免干扰广泛基础转录导致非特异毒性。",
+    "structurePrepZh": "以1JFI解析的DR1-DRAP1结构为模板，保留异二聚体界面链，补全缺失柔性片段并评估DNA/TBP接触面的可及构象。",
+    "structureRef": "RCSB PDB 1JFI，X-ray diffraction，2.62 Å",
+    "antibodies": [
+      "无临床获批DR1靶向抗体",
+      "研究级抗DR1/NC2β抗体"
+    ],
+    "interfaceFocus": "DR1-DRAP1异二聚体及NC2-TBP-DNA接触面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "DRAP1",
+        "rationale": "DRAP1与DR1共同构成NC2复合体，是同一Pol II转录起始抑制模块的直接互作组分，可作为替代界面靶点。"
+      },
+      {
+        "target": "TBP",
+        "rationale": "TBP是TFIID核心DNA结合因子，并与NC2发生直接功能性相互作用；调节其与NC2或启动子DNA的结合可影响同一转录起始节点。"
+      },
+      {
+        "target": "GTF2A1",
+        "rationale": "GTF2A1编码TFIIA大亚基，TFIIA与NC2在TBP-DNA复合物上具有功能拮抗关系，属于同一RNA polymerase II预起始复合体调控轴。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

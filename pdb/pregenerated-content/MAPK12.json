@@ -1,0 +1,65 @@
+{
+  "gene": "MAPK12",
+  "generatedAt": "2026-08-03T14:04:16.403Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAPK12编码p38γ丝裂原活化蛋白激酶，参与应激激酶级联中对ATF2、MAPKAPK5等底物的磷酸化调控，其遗传与多组学证据提示其与神经退行性疾病、代谢表型及血小板相关性状存在关联。MAPK12为胞内丝氨酸/苏氨酸激酶，抗原天然可及性不具备膜受体或分泌蛋白优势，因此更适合作为机制验证、胞内递送抗体或构象选择性结合分子设计对象。相较上游MAP2K3/MAP2K6或广谱p38家族成员，MAPK12具有更明确的亚型选择性设计价值，可降低对MAPK14介导炎症稳态功能的非特异干预风险。",
+    "mechanism": "设计构象选择性抗体阻断MAPK12活化环Thr183/Tyr185磷酸化构象形成，或遮蔽ATP结合裂隙邻近界面以抑制底物与激酶结构域结合。",
+    "selectedEpitope": "优先覆盖N叶αC螺旋、铰链区与活化环邻近的构象表位，兼顾MAPK12亚型差异位点。",
+    "diseaseDirection": "神经退行性疾病与应激激酶通路",
+    "domain": "MAPK12主要由典型蛋白激酶结构域构成，含N端β折叠叶、αC螺旋、铰链区、C端α螺旋叶及TGY活化环。",
+    "evidence": "MAPK12疾病遗传关联与p38γ结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P53778功能与结构域注释",
+      "RCSB PDB 1CM8晶体结构数据",
+      "Reactome MAPK级联与p38通路注释"
+    ],
+    "referenceEntries": "UniProt:P53778；RCSB PDB:1CM8；HGNC:6874",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "αC螺旋-铰链区-ATP结合裂隙边缘",
+        "有利于构象锁定并干扰ATP/底物定位，具备功能阻断潜力",
+        "优先"
+      ],
+      [
+        "Site B",
+        "TGY活化环及底物结合沟邻近区域",
+        "可影响Thr183/Tyr185活化构象及底物招募，但需避免磷酸化状态依赖偏差",
+        "备选"
+      ],
+      [
+        "Site C",
+        "保守催化环与DFG基序周边",
+        "家族保守性高，可能产生MAPK14、MAPK11或MAPK13交叉结合风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAPK12为胞内激酶，常规抗体难以进入细胞；设计应定位为胞内递送抗体、VHH或研究级构象探针，并重点控制p38家族交叉反应。",
+    "structurePrepZh": "以1CM8的A、B链为结构模板，去除晶体非目标小分子与冗余链后补全缺失侧链，标注ATP裂隙、TGY活化环和家族差异残基。",
+    "structureRef": "PDB 1CM8，human p38γ/MAPK12 X-ray structure, 2.4 Å",
+    "antibodies": [
+      "anti-MAPK12 monoclonal antibody",
+      "anti-p38γ antibody"
+    ],
+    "interfaceFocus": "αC螺旋-铰链区-活化环构象界面",
+    "designMode": "胞内构象阻断",
+    "candidates": [
+      {
+        "target": "MAP2K6",
+        "rationale": "MAP2K6是p38家族上游双特异性激酶，可磷酸化MAPK12的TGY活化环；靶向该节点可在同一应激MAPK级联中降低MAPK12活化输入。"
+      },
+      {
+        "target": "MAP2K3",
+        "rationale": "MAP2K3同属p38 MAPK上游激酶，参与炎症和细胞应激信号向p38亚族传递；其调控位置适合用于比较上游阻断与MAPK12亚型选择性阻断的差异。"
+      },
+      {
+        "target": "MAPKAPK5",
+        "rationale": "MAPKAPK5为p38通路下游激酶底物，可与p38家族成员形成功能连接；靶向该节点有助于评估MAPK12下游效应转导的可干预性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

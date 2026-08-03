@@ -1,0 +1,65 @@
+{
+  "gene": "IRS2",
+  "generatedAt": "2026-08-03T13:33:18.919Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IRS2 是胰岛素与 IGF-1 受体下游衔接蛋白，受体磷酸化后招募 PI3K、GRB2 等效应分子，参与代谢稳态、神经元存活及造血相关信号调节。该蛋白主要定位于胞质侧，不具备稳定胞外结构域或分泌型抗原特征，天然抗体可及性明显弱于膜受体或可溶性配体。与 INSR、IGF1R、INS 等同通路靶点相比，IRS2 更适合作为胞内机制研究或工程化细胞内抗体探索靶点，作为常规治疗性抗体主靶点优先级较低。",
+    "mechanism": "以胞内抗体阻断 IRS2 PTB 结构域与 INSR/IGF1R 磷酸化 NPXY 基序结合，削弱后续 PI3K p85 招募与 AKT 激活。",
+    "selectedEpitope": "优先覆盖 PTB 结构域磷酸酪氨酸肽结合沟槽，干预受体 NPXY 基序识别。",
+    "diseaseDirection": "胰岛素-IGF信号相关神经代谢疾病",
+    "domain": "IRS2 含 PH 结构域、PTB 结构域及富含酪氨酸磷酸化位点的 C 端调控区。",
+    "evidence": "IRS2 胰岛素-IGF受体下游信号证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q9Y4H2 蛋白功能与亚细胞定位注释",
+      "RCSB PDB 3FQX X射线晶体结构",
+      "胰岛素/IGF-1受体-IRS-PI3K-AKT通路文献"
+    ],
+    "referenceEntries": "UniProt Q9Y4H2；RCSB PDB 3FQX；Open Targets IRS2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PTB结构域磷酸NPXY肽结合沟槽",
+        "直接阻断 INSR/IGF1R 与 IRS2 的受体-底物识别",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PH结构域膜磷脂结合面",
+        "可能影响 IRS2 向质膜近端信号复合体募集",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端多磷酸化调控区片段",
+        "构象柔性高且缺乏稳定结构模板，表位一致性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IRS2 为胞内衔接蛋白，常规抗体难以进入细胞；设计应限定为细胞内抗体、递送型抗体片段或机制验证工具，并避免干扰 IRS1 同源结构域导致交叉反应。",
+    "structurePrepZh": "以 3FQX 高分辨率晶体结构提取 IRS2 结构域坐标，补全缺失环区并保留关键磷酸肽结合残基用于界面建模。",
+    "structureRef": "RCSB PDB 3FQX，X-ray diffraction，1.7 Å",
+    "antibodies": [
+      "anti-IRS2 research antibody",
+      "anti-phospho-IRS2 research antibody"
+    ],
+    "interfaceFocus": "PTB沟槽与受体磷酸NPXY基序结合界面",
+    "designMode": "胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "INSR",
+        "rationale": "INSR 位于细胞膜并通过胞内尾部磷酸化 NPXY 基序招募 IRS2，是同一胰岛素信号轴的上游驱动节点；其胞外受体结构域具备更高抗体可及性。"
+      },
+      {
+        "target": "IGF1R",
+        "rationale": "IGF1R 与 IRS2 介导 IGF-1 依赖性 PI3K-AKT 信号，在神经元存活和代谢相关通路中具有明确上游作用；膜受体胞外域适合阻断型抗体开发。"
+      },
+      {
+        "target": "INS",
+        "rationale": "INS 是 INSR-IRS2 通路的天然配体，调节受体激活与下游 IRS2 磷酸化；作为可溶性配体具备抗原可及性，但需谨慎评估全身代谢干预风险。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

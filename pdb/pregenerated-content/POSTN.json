@@ -1,0 +1,65 @@
+{
+  "gene": "POSTN",
+  "generatedAt": "2026-08-03T15:28:22.028Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "POSTN 编码分泌型细胞外基质蛋白 periostin，可与整合素 αvβ3、αvβ5 等受体相互作用，促进成纤维细胞活化、胶原沉积、上皮-间质转化及组织重塑，在哮喘、纤维化疾病和肿瘤间质反应中具有明确通路相关性。periostin 为分泌蛋白并定位于细胞外基质，FAS1 重复结构域暴露于胞外环境，具备抗体结合和阻断配体-受体界面的可及性优势。相较于广泛表达且功能冗余较强的下游整合素或 TGF-β 轴核心因子，POSTN 更偏向病理性基质重塑微环境，适合作为抗基质活化和抗纤维化抗体设计的优先靶点。",
+    "mechanism": "阻断 periostin FAS1 结构域与整合素 αvβ3/αvβ5 的结合，抑制 FAK-AKT 依赖的成纤维细胞迁移、存活和基质沉积。",
+    "selectedEpitope": "优先覆盖 FAS1 重复结构域中整合素结合相关暴露面，避免干扰保守折叠核心。",
+    "diseaseDirection": "纤维化与肿瘤基质重塑",
+    "domain": "N 端 EMI 结构域后接四个 FAS1 重复结构域，C 端为可变剪接富集区。",
+    "evidence": "POSTN 细胞外基质重塑抗体设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q15063 periostin annotation",
+      "RCSB PDB 5YJG experimental structure",
+      "Literature evidence for periostin-integrin signaling"
+    ],
+    "referenceEntries": "UniProt Q15063；RCSB PDB 5YJG；Open Targets POSTN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "FAS1 重复结构域暴露整合素结合面",
+        "直接阻断 periostin-整合素相互作用，利于功能中和",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FAS1 结构域间连接区及邻近凸面",
+        "可能影响构象排列和多价基质结合，适合作为备选阻断表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "EMI 结构域或高度保守折叠核心区域",
+        "可能涉及基质装配或结构稳定性，需控制交叉反应和构象风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "periostin 存在剪接异构体和基质结合背景，表位应优先选择多异构体共享且病理组织暴露的 FAS1 区域，并评估与其他 FAS1 蛋白的同源性交叉风险。",
+    "structurePrepZh": "以 5YJG 抗原链 A 为结构模板，补全缺失环区并标注糖基化、二硫键及溶剂可及面；结合 AlphaFold 全长模型评估未解析区域。",
+    "structureRef": "RCSB PDB 5YJG，X-ray diffraction，2.399 Å",
+    "antibodies": [
+      "OC-20",
+      "MZ-1"
+    ],
+    "interfaceFocus": "FAS1-整合素结合界面及邻近暴露环区",
+    "designMode": "分泌基质蛋白中和",
+    "candidates": [
+      {
+        "target": "ITGAV",
+        "rationale": "ITGAV 与 β3、β5 等亚基形成 αv 整合素受体，介导 periostin 诱导的细胞黏附、迁移和 FAK-AKT 信号，是同一基质重塑通路的受体侧节点。"
+      },
+      {
+        "target": "ITGB3",
+        "rationale": "ITGB3 与 ITGAV 形成 αvβ3，参与 periostin 依赖的成纤维细胞和肿瘤细胞迁移，适合作为阻断受体复合体功能的候选靶点。"
+      },
+      {
+        "target": "TGFB1",
+        "rationale": "TGFB1 可诱导 POSTN 表达并驱动成纤维细胞活化和细胞外基质沉积，与 POSTN 共同构成纤维化和肿瘤间质重塑轴。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

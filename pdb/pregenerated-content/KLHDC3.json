@@ -1,0 +1,65 @@
+{
+  "gene": "KLHDC3",
+  "generatedAt": "2026-08-03T13:44:19.312Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KLHDC3为胞内kelch结构域蛋白，Open Targets关联主要集中于红细胞体积、平均红细胞血红蛋白量和网织红细胞体积等血液学数量性状，但现有证据更支持遗传关联而非已验证的疾病驱动通路。该蛋白缺乏跨膜区、分泌信号肽和稳定胞外结构域，常规完整抗体难以在生理状态下接触其天然抗原。相较于TFRC、KIT或EPOR等造血相关膜受体，KLHDC3的抗原可及性和可药性优先级较低，更适合作为结构生物学或胞内结合体探索靶点。",
+    "mechanism": "以胞内结合体阻断KLHDC3 kelch β-propeller凹面与潜在肽段底物的结合，干预其支架样蛋白相互作用。",
+    "selectedEpitope": "优先覆盖kelch β-propeller中央凹面及相邻blade间环区，避免仅靶向晶体接触面。",
+    "diseaseDirection": "血液学数量性状与红细胞表型",
+    "domain": "KLHDC3主要由kelch重复构成β-propeller折叠，缺乏胞外结构域和跨膜区。",
+    "evidence": "KLHDC3结构与血液学性状遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform遗传关联与疾病评分",
+      "UniProtKB Q9BQ90蛋白定位与结构域注释",
+      "RCSB PDB 9D1Z X射线晶体结构",
+      "GWAS Catalog血液学数量性状关联记录"
+    ],
+    "referenceEntries": "UniProtKB Q9BQ90；RCSB PDB 9D1Z；Open Targets KLHDC3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "kelch β-propeller中央凹面及底物样肽结合槽",
+        "最可能影响kelch结构域介导的蛋白或肽段识别，适合功能阻断型胞内结合体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "相邻kelch blade间环区与边缘沟槽",
+        "具备较高构象差异和抗体识别潜力，可用于构象选择性结合体筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "晶体四聚体界面附近暴露面",
+        "可能反映晶体堆积而非生理相互作用界面，需以溶液状态验证排除假阳性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "KLHDC3为胞内非分泌蛋白，传统Fab或IgG难以达到天然靶点位置；建议采用VHH胞内抗体、细胞递送或降解偶联策略，并优先验证细胞内结合与功能读出。",
+    "structurePrepZh": "以PDB 9D1Z的1.88 Å晶体结构为模板，分离A-D链后评估生物学装配体，去除晶体接触伪界面并保留kelch凹面构象用于表位建模。",
+    "structureRef": "RCSB PDB 9D1Z，human KLHDC3 X-ray structure，1.88 Å",
+    "antibodies": [
+      "尚无获批KLHDC3靶向抗体",
+      "尚无临床阶段KLHDC3阻断抗体"
+    ],
+    "interfaceFocus": "kelch凹面底物识别槽与blade间环区",
+    "designMode": "胞内VHH阻断设计",
+    "candidates": [
+      {
+        "target": "TFRC",
+        "rationale": "TFRC为细胞表面转铁蛋白受体，直接参与铁摄取和红系造血，对红细胞指数相关表型具有更明确的通路机制与抗原可及性。"
+      },
+      {
+        "target": "KIT",
+        "rationale": "KIT是造血祖细胞表面受体酪氨酸激酶，参与干细胞因子介导的造血细胞增殖与分化，适合作为造血表型相关膜受体候选靶点。"
+      },
+      {
+        "target": "EPOR",
+        "rationale": "EPOR介导促红细胞生成素依赖的红系祖细胞存活和分化，位于红细胞生成核心通路，具备明确配体-受体作用界面。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "TNFRSF12A",
+  "generatedAt": "2026-08-03T17:22:04.673Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TNFRSF12A编码Fn14，是TWEAK/TNFSF12通路的细胞表面受体，在胶质母细胞瘤、乳腺癌及多类实体瘤中可促进NF-κB、MAPK与PI3K-AKT相关的侵袭、存活和炎症性微环境重塑。该靶点为I型跨膜受体，胞外半胱氨酸富集结构域直接暴露于肿瘤细胞表面，具备抗体阻断或受体聚集调控的可及性优势。相较于下游信号节点，Fn14具有配体结合界面明确、肿瘤组织诱导表达更突出的优先级，适合开展以TWEAK-Fn14轴为核心的抗体设计。",
+    "mechanism": "阻断TNFSF12/TWEAK三聚体与TNFRSF12A/Fn14胞外CRD的结合，抑制TRAF募集及下游NF-κB、MAPK促侵袭信号。",
+    "selectedEpitope": "优先覆盖Fn14胞外CRD的TWEAK结合面及β发夹邻近环区，避免遮蔽膜近端非功能表面。",
+    "diseaseDirection": "胶质母细胞瘤与实体瘤侵袭",
+    "domain": "单跨膜TNF受体家族成员，胞外区含一个半胱氨酸富集结构域，胞内尾部可募集TRAF接头蛋白。",
+    "evidence": "TNFRSF12A-Fn14肿瘤侵袭通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt Q9NP84功能注释",
+      "RCSB PDB 2EQP实验结构",
+      "TWEAK-Fn14肿瘤生物学文献"
+    ],
+    "referenceEntries": "UniProt Q9NP84；RCSB PDB 2EQP；Open Targets TNFRSF12A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "胞外CRD配体结合面",
+        "直接阻断TWEAK与Fn14结合，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CRD β发夹及相邻环区",
+        "可干扰受体构象稳定与配体识别，利于差异化表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "膜近端胞外连接区",
+        "可能影响空间取向但功能阻断证据较弱，需避免低效结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "Fn14胞外结构域较小，功能表位与结构稳定区域可能重叠；设计需控制CDR占位，优先筛选高亲和且不诱导异常受体聚集的阻断型分子。",
+    "structurePrepZh": "以2EQP的Fn14胞外CRD NMR构象集为模板，保留二硫键约束，进行构象聚类、环区柔性评估与TWEAK结合面映射。",
+    "structureRef": "RCSB PDB 2EQP，human Fn14 extracellular domain，solution NMR",
+    "antibodies": [
+      "Enavatuzumab",
+      "BIIB036"
+    ],
+    "interfaceFocus": "Fn14 CRD的TWEAK结合面与β发夹环区",
+    "designMode": "阻断型抗体设计",
+    "candidates": [
+      {
+        "target": "TNFSF12",
+        "rationale": "TNFSF12编码TWEAK，是Fn14的同源配体；中和TWEAK可从配体端阻断TWEAK-Fn14轴并降低受体激活。"
+      },
+      {
+        "target": "TRAF2",
+        "rationale": "TRAF2参与Fn14胞内尾部信号复合物形成，是TWEAK-Fn14下游NF-κB与MAPK激活的重要接头节点。"
+      },
+      {
+        "target": "RELA",
+        "rationale": "RELA为经典NF-κB转录复合物核心亚基，承接Fn14信号并驱动炎症、存活和侵袭相关基因表达。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "USP9X",
+  "generatedAt": "2026-08-03T17:45:17.025Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "USP9X 是X连锁智力障碍相关去泛素化酶，致病变异可扰乱神经发育过程中蛋白稳态、突触形成及细胞迁移相关底物的泛素化周转。该蛋白主要定位于胞质及细胞内膜相关区室，并非分泌蛋白或经典跨膜受体，完整分子抗原在体内可及性有限，因此更适合作为结构生物学驱动的细胞内抗体片段或研究级阻断工具靶点。相比许多仅具遗传关联的神经发育靶点，USP9X 具备高分辨率实验结构和明确催化半胱氨酸蛋白酶结构域，可支持以催化沟槽和泛素结合界面为核心的优先设计。",
+    "mechanism": "通过抗体片段占据USP9X催化结构域的泛素C端结合沟槽，阻断底物泛素链进入催化半胱氨酸邻近区域，从而抑制去泛素化反应。",
+    "selectedEpitope": "优先锁定5VBD所示USP催化结构域中泛素C端尾部结合沟槽及催化Cys-His-Asp邻近环区。",
+    "diseaseDirection": "X连锁智力障碍与神经发育疾病",
+    "domain": "USP9X含N端调控区及C端泛素特异性蛋白酶催化结构域；5VBD覆盖人源催化核心高分辨率构象。",
+    "evidence": "USP9X神经发育遗传关联与催化结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病-靶点关联",
+      "UniProt Q93008功能与亚细胞定位注释",
+      "RCSB PDB 5VBD晶体结构记录",
+      "ClinVar及OMIM神经发育变异证据"
+    ],
+    "referenceEntries": "UniProt Q93008；RCSB PDB 5VBD；Open Targets USP9X",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "USP催化结构域泛素C端结合沟槽",
+        "直接阻断泛素化底物进入催化中心，机制清晰且结构可建模",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化Cys-His-Asp三联体邻近可及环区",
+        "可诱导局部构象限制并降低去泛素化反应效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化核心远端保守折叠表面",
+        "可能影响蛋白稳定性但功能阻断不确定，且保守性带来选择性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "USP9X为细胞内酶，常规全长抗体难以到达作用位点；设计宜采用细胞内VHH或递送型Fab，并严格评估USP家族交叉反应。",
+    "structurePrepZh": "以5VBD链A为结构模板，保留催化核心坐标，补全缺失侧链并进行质子化状态校正，围绕泛素结合沟槽生成表位网格。",
+    "structureRef": "RCSB PDB 5VBD，X射线晶体结构，1.5 Å",
+    "antibodies": [
+      "Abcam anti-USP9X antibody",
+      "Cell Signaling Technology USP9X antibody"
+    ],
+    "interfaceFocus": "泛素C端尾部结合沟槽与催化三联体邻近环区",
+    "designMode": "细胞内酶阻断设计",
+    "candidates": [
+      {
+        "target": "UBE3A",
+        "rationale": "UBE3A为泛素连接酶，突触蛋白泛素化稳态与神经发育疾病密切相关，可作为同一泛素-蛋白稳态轴的候选靶点。"
+      },
+      {
+        "target": "HUWE1",
+        "rationale": "HUWE1编码X连锁E3泛素连接酶，其变异与智力障碍相关，并参与神经发育蛋白降解调控。"
+      },
+      {
+        "target": "CUL4B",
+        "rationale": "CUL4B为Cullin-RING E3连接酶复合体核心成分，X连锁智力障碍中具有明确遗传证据，与泛素依赖性蛋白稳态通路相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

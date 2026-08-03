@@ -1,0 +1,65 @@
+{
+  "gene": "IST1",
+  "generatedAt": "2026-08-03T13:33:20.336Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IST1 是 ESCRT-III 相关蛋白，参与内体分选、多泡体形成、胞质分裂后期膜切割及自噬相关膜重塑；这些过程与神经退行性疾病中的蛋白稳态、内溶酶体运输和膜损伤修复异常相关。IST1 主要定位于胞质侧 ESCRT 复合体，缺乏经典分泌蛋白或稳定胞外结构域特征，抗体抗原可及性弱于膜受体和分泌因子，因此更适合作为胞内机制研究或递送型抗体设计对象。其优势在于 7S7J 提供高分辨率实验结构，可精确解析 IST1 与 CHMP1B 相关装配界面；但相较 TREM2、SORT1 等神经退行性疾病相关可及靶点，IST1 的治疗性抗体开发优先级应谨慎定位。",
+    "mechanism": "设计抗体阻断 IST1 MIT 结合相关界面与 ESCRT-III 亚基 CHMP1B 的装配相互作用，从而干预 IST1 介导的膜颈切割和内体膜重塑过程。",
+    "selectedEpitope": "优先覆盖 IST1 ESCRT-III 核心螺旋束中 CHMP1B 接触面，避开高度保守疏水核心。",
+    "diseaseDirection": "神经退行性疾病与内溶酶体稳态",
+    "domain": "IST1 含 ESCRT-III 样 α 螺旋核心结构域，并通过 C 端 MIT-interacting motif 参与 ESCRT 复合体装配。",
+    "evidence": "IST1-ESCRT-III膜重塑与神经退行性疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt reviewed entry P53990",
+      "RCSB PDB 7S7J X-ray structure",
+      "ESCRT-III membrane remodeling literature"
+    ],
+    "referenceEntries": "UniProt P53990；RCSB PDB 7S7J；Open Targets IST1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ESCRT-III 核心螺旋束 CHMP1B 接触界面",
+        "可直接干预 IST1-CHMP1B 装配，机制可解释性较强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C 端 MIT-interacting motif 邻近区域",
+        "可能影响 VPS4/SPASTIN 等 MIT 结构域蛋白募集，适合机制验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "保守 α 螺旋束疏水核心及聚合界面",
+        "可能破坏蛋白折叠或产生非特异构象效应，应降低设计权重",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IST1 为胞内 ESCRT 组分，常规抗体难以到达作用位点；建议采用细胞内抗体、递送型 Fab/VHH 或作为结构机制探针推进。",
+    "structurePrepZh": "以 7S7J 的 A、B 链为模板建立抗原构象集合，保留高分辨率侧链取向，标注 CHMP1B 接触面、保守疏水核心和柔性 C 端区域。",
+    "structureRef": "PDB 7S7J，X-ray diffraction，1.15 Å",
+    "antibodies": [
+      "无获批 IST1 靶向抗体",
+      "研究级抗 IST1 抗体"
+    ],
+    "interfaceFocus": "IST1-CHMP1B 装配界面与 C 端 MIM 区域",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "CHMP1B",
+        "rationale": "CHMP1B 与 IST1 共同参与 ESCRT-III 聚合和膜切割，是同一膜重塑模块中的直接功能伙伴。靶向其与 IST1 的结合界面可用于验证 ESCRT-III 装配依赖机制。"
+      },
+      {
+        "target": "VPS4A",
+        "rationale": "VPS4A 通过 ATPase 活性驱动 ESCRT-III 复合体解聚和循环利用，处于 IST1 介导膜重塑通路的下游执行环节。其功能改变可影响内体分选和膜修复稳态。"
+      },
+      {
+        "target": "SPAST",
+        "rationale": "SPASTIN 可通过 MIT 结构域与 ESCRT-III 相关组分连接，并参与内体膜切割及微管相关膜动力学过程。该靶点与 IST1 处于相邻的膜重塑功能网络。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

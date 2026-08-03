@@ -1,0 +1,65 @@
+{
+  "gene": "BUB1B",
+  "generatedAt": "2026-08-03T10:54:20.044Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BUB1B编码BubR1，是纺锤体组装检查点核心激酶样蛋白，参与MAD2-CDC20-APC/C轴抑制，缺陷可导致染色体错误分离并驱动嵌合性非整倍体综合征及肿瘤染色体不稳定。该蛋白主要定位于动粒和细胞内检查点复合物，并非经典膜受体或分泌抗原，因此完整抗体的天然抗原可及性受限，更适合作为细胞内功能阻断或递送型抗体设计靶点。相比更广泛必需的有丝分裂激酶，BUB1B具有明确的人类遗传病因证据和高分辨率结构片段，可优先支持结构约束的表位设计与机制验证。",
+    "mechanism": "设计分子拟阻断BubR1与CDC20或BUB3依赖的检查点复合物装配，削弱APC/C-CDC20抑制界面并干预染色体分离检查点输出。",
+    "selectedEpitope": "优先瞄准2WVI所覆盖N端TPR结构域沟槽及其蛋白结合面，规避保守疏水核心。",
+    "diseaseDirection": "染色体不稳定与非整倍体疾病",
+    "domain": "BubR1含N端TPR结构域、KARD/动粒调控区及C端假激酶结构域，2WVI覆盖N端TPR片段。",
+    "evidence": "BUB1B纺锤体检查点与非整倍体证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt O60566功能与亚细胞定位注释",
+      "RCSB PDB 2WVI晶体结构记录",
+      "人类MVA综合征BUB1B致病变异文献"
+    ],
+    "referenceEntries": "UniProt O60566；RCSB PDB 2WVI；Open Targets BUB1B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端TPR结构域凹面蛋白结合沟槽",
+        "可能干预BubR1检查点复合物装配，结构分辨率支持精细建模",
+        "优先"
+      ],
+      [
+        "Site B",
+        "TPR外侧带电螺旋表面",
+        "可用于提高结合选择性并降低对保守折叠核心的扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "TPR螺旋束疏水核心邻近区域",
+        "可能影响整体折叠稳定性，需避免诱导非特异构象破坏",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BUB1B为细胞内动粒蛋白，常规抗体体内可及性有限；建议采用细胞内抗体、递送偶联或片段化格式，并严格评估有丝分裂毒性。",
+    "structurePrepZh": "以2WVI链A为模板，补全缺失侧链、校正质子化状态并保留TPR螺旋束构象，优先标注暴露沟槽与保守残基。",
+    "structureRef": "RCSB PDB 2WVI，X-ray diffraction，1.8 Å，chain A",
+    "antibodies": [
+      "anti-BubR1 clone 8G1",
+      "anti-BubR1 clone 9/BUBR1"
+    ],
+    "interfaceFocus": "N端TPR沟槽与检查点蛋白结合界面",
+    "designMode": "细胞内功能阻断",
+    "candidates": [
+      {
+        "target": "BUB1",
+        "rationale": "BUB1与BUB1B同属纺锤体组装检查点动粒模块，参与MAD1-MAD2募集和染色体分离监控；其异常同样关联染色体不稳定表型。"
+      },
+      {
+        "target": "MAD2L1",
+        "rationale": "MAD2L1与CDC20形成有丝分裂检查点复合物，直接参与APC/C-CDC20抑制，是BUB1B下游检查点输出的关键节点。"
+      },
+      {
+        "target": "CDC20",
+        "rationale": "CDC20是APC/C激活因子，并被BubR1、MAD2等检查点蛋白结合抑制；阻断其复合物界面可直接影响有丝分裂退出控制。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

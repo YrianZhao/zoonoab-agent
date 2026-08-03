@@ -1,0 +1,65 @@
+{
+  "gene": "HDAC3",
+  "generatedAt": "2026-08-03T19:43:55.325Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HDAC3 是核内锌依赖性组蛋白去乙酰化酶，通过与 NCOR1/NCOR2 去乙酰化酶激活结构域形成复合物，维持染色质低乙酰化状态并参与肿瘤细胞转录抑制程序。该蛋白缺乏经典胞外结构域或分泌形式，完整蛋白抗体的细胞外可及性不足，更适合作为细胞内功能干预或降解平台的结构参照。相较 HDAC1/HDAC2，HDAC3 具有明确的 NCOR/SMRT 依赖性激活界面和已解析人源复合物结构，可为选择性分子设计提供较高结构优先级。",
+    "mechanism": "阻断 HDAC3 催化口袋及其与 NCOR1/NCOR2 去乙酰化酶激活结构域的结合，削弱锌依赖性赖氨酸去乙酰化活性。",
+    "selectedEpitope": "优先围绕催化核心邻近 NCOR/SMRT 激活结构域结合沟槽设计胞内结合表位。",
+    "diseaseDirection": "血液肿瘤与表观遗传调控",
+    "domain": "HDAC3 主要由单一 HDAC 催化结构域构成，含锌配位活性中心及 NCOR/SMRT 激活界面。",
+    "evidence": "HDAC3 表观遗传肿瘤关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt O15379 functional annotation",
+      "RCSB PDB 4A69 X-ray structure",
+      "NCBI Gene and Reactome chromatin regulation records"
+    ],
+    "referenceEntries": "UniProt O15379；RCSB PDB 4A69；Reactome HDAC complex",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化口袋周缘与锌配位活性中心邻近环区",
+        "可干扰底物赖氨酸进入去乙酰化通道，适合功能阻断型胞内抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "NCOR1/NCOR2 去乙酰化酶激活结构域结合沟槽",
+        "可削弱 HDAC3 复合物激活与稳定性，提升相对 HDAC1/2 的选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "保守 HDAC 折叠核心远端表面",
+        "结构稳定但亚型保守性较高，存在交叉识别 HDAC 家族成员风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HDAC3 为细胞内核蛋白，常规抗体难以直接触达天然抗原；宜限定为胞内抗体、递送型抗体片段或结构引导的小型结合蛋白设计，并严格评估 HDAC 家族交叉反应。",
+    "structurePrepZh": "采用 4A69 人源 HDAC3 复合物晶体结构，保留催化 Zn2+ 与关键界面残基，补全缺失侧链并分离链 A-D 后进行界面可及性分析。",
+    "structureRef": "Watson et al., Nature 2012；PDB 4A69 HDAC3-NCOR2 complex",
+    "antibodies": [
+      "HDAC3 ChIP-grade monoclonal antibody",
+      "HDAC3 rabbit monoclonal antibody"
+    ],
+    "interfaceFocus": "催化通道入口与 NCOR/SMRT 激活沟槽",
+    "designMode": "胞内阻断型设计",
+    "candidates": [
+      {
+        "target": "NCOR1",
+        "rationale": "NCOR1 与 HDAC3 形成转录共抑制复合物，其去乙酰化酶激活结构域直接促进 HDAC3 催化活性。干预该界面可影响同一表观遗传抑制通路。"
+      },
+      {
+        "target": "NCOR2",
+        "rationale": "NCOR2/SMRT 是 HDAC3 激活复合物的核心支架，4A69 结构即体现其与 HDAC3 的直接结合。该靶点适合用于界面阻断策略的同通路候选。"
+      },
+      {
+        "target": "TBL1XR1",
+        "rationale": "TBL1XR1 是 NCOR/SMRT-HDAC3 共抑制复合物相关组分，参与转录共抑制复合物装配与转换。其疾病相关性与 HDAC3 所在染色质调控轴一致。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

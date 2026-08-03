@@ -1,0 +1,65 @@
+{
+  "gene": "PROS1",
+  "generatedAt": "2026-08-03T15:36:37.671Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PROS1编码的protein S是维生素K依赖性抗凝辅因子，促进活化蛋白C对因子Va和因子VIIIa的蛋白水解失活，缺陷可导致遗传性血栓形成倾向和静脉血栓栓塞。protein S为血浆分泌蛋白，含可抗体识别的EGF样结构域与SHBG样区域，抗原可及性优于胞内凝血调控因子。相较下游凝血酶或FXa，PROS1位于天然抗凝轴上游，适合开发功能增强、构象稳定或阻断抑制性结合的抗体策略。",
+    "mechanism": "通过结合protein S的SHBG样区域或APC协同界面，稳定游离protein S构象，增强其辅助APC失活FVa/FVIIIa的抗凝活性。",
+    "selectedEpitope": "优先定位SHBG样Laminin G结构域外露面，避开Gla膜结合区并保留APC协同界面。",
+    "diseaseDirection": "遗传性血栓形成倾向与静脉血栓栓塞",
+    "domain": "protein S含N端Gla结构域、凝血酶敏感区、四个EGF样结构域及C端SHBG样Laminin G结构域。",
+    "evidence": "PROS1抗凝轴与血栓形成证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P07225功能与结构域注释",
+      "RCSB PDB 9L20冷冻电镜结构",
+      "OMIM与ClinVar蛋白S缺乏症变异证据"
+    ],
+    "referenceEntries": "UniProt P07225；RCSB PDB 9L20；Open Targets PROS1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端SHBG样Laminin G结构域外露面",
+        "有利于构象稳定并降低对Gla膜结合功能的干扰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "EGF样结构域2-4连续外露区域",
+        "可能调节APC辅因子构象传递，适合筛选功能增强抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端Gla结构域磷脂膜结合面",
+        "可能阻断膜定位并削弱抗凝功能，需避免高亲和覆盖",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "Gla结构域和APC协同界面存在功能敏感性，阻断性抗体可能产生促凝风险；设计宜偏向SHBG样区域构象稳定表位并进行APC辅因子活性验证。",
+    "structurePrepZh": "以PDB 9L20抗原链A-D为结构模板，保留钙离子相关构象信息，补全柔性环区并标注Gla、EGF样与SHBG样结构域边界。",
+    "structureRef": "RCSB PDB 9L20，human protein S冷冻电镜结构，2.82 Å",
+    "antibodies": [
+      "MK-21",
+      "S4"
+    ],
+    "interfaceFocus": "SHBG样Laminin G外露面与EGF样连接区",
+    "designMode": "功能增强型抗体设计",
+    "candidates": [
+      {
+        "target": "PROC",
+        "rationale": "PROC编码protein C，是PROS1在天然抗凝通路中的直接酶原伙伴；活化后的APC在protein S辅助下裂解FVa和FVIIIa。"
+      },
+      {
+        "target": "F5",
+        "rationale": "F5编码凝血因子V，其活化形式FVa是APC-protein S复合体的关键底物；异常抗APC裂解可增强静脉血栓风险。"
+      },
+      {
+        "target": "F8",
+        "rationale": "F8编码凝血因子VIII，FVIIIa受APC与protein S协同失活；该节点与凝血放大环路及血栓形成风险直接相关。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

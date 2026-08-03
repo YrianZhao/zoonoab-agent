@@ -1,0 +1,65 @@
+{
+  "gene": "DFFB",
+  "generatedAt": "2026-08-03T11:55:59.802Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DFFB编码凋亡相关CAD核酸内切酶，通常与抑制性伴侣DFFA形成复合物，半胱天冬酶切割DFFA后释放DFFB并介导染色质DNA片段化。现有Open Targets关联主要集中于测量性状和妊娠相关表型，疾病因果证据较弱，且DFFB为细胞内核定位酶，不具备膜受体或分泌蛋白的天然抗原可及性优势。相较于同一凋亡执行通路中具有细胞外配体或膜受体特征的FAS、TNFRSF10B等靶点，DFFB作为常规治疗性抗体靶点优先级较低，更适合结构机制验证或胞内递送型抗体片段探索。",
+    "mechanism": "抗体片段需进入细胞核后结合DFFB CIDE结构域，干扰DFFB与DFFA的异二聚抑制界面或阻碍CAD活化构象形成。",
+    "selectedEpitope": "优先评估N端CIDE结构域中DFFA/DFFB相互作用界面，避免催化核心保守酸性残基区域。",
+    "diseaseDirection": "凋亡DNA片段化与细胞死亡表型",
+    "domain": "DFFB含N端CIDE结构域和C端核酸内切酶催化区，具核定位特征。",
+    "evidence": "DFFB凋亡核酸内切酶结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB O76075功能与亚细胞定位注释",
+      "RCSB PDB 1IBX溶液NMR结构条目",
+      "DFF40/DFF45介导凋亡DNA片段化文献"
+    ],
+    "referenceEntries": "UniProt O76075；RCSB PDB 1IBX；Open Targets DFFB",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端CIDE结构域DFFA结合界面",
+        "可直接干扰DFFA-DFFB复合物稳定性，适合机制型胞内抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CIDE结构域外露螺旋束侧面",
+        "结构保守度较低，可提高选择性并降低对催化口袋的非特异干扰",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端核酸内切酶催化区邻近DNA结合面",
+        "可能影响底物结合但保守性高，存在交叉反应和功能毒性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DFFB为胞内核酸内切酶，常规抗体难以到达作用位点；应优先采用细胞内递送Fab/VHH，并严格评估正常细胞凋亡干预风险。",
+    "structurePrepZh": "以1IBX的溶液NMR模型集合评估CIDE结构域构象稳定性，补充AlphaFold全长模型定位C端催化区与柔性连接段。",
+    "structureRef": "RCSB PDB 1IBX，human DFFB CIDE domain NMR structure",
+    "antibodies": [
+      "无获批DFFB治疗性抗体",
+      "抗DFFB研究级检测抗体"
+    ],
+    "interfaceFocus": "DFFB CIDE结构域与DFFA抑制界面",
+    "designMode": "胞内抗体片段探索",
+    "candidates": [
+      {
+        "target": "DFFA",
+        "rationale": "DFFA是DFFB的直接抑制性伴侣，半胱天冬酶切割DFFA释放DFFB并启动凋亡DNA片段化，处于同一执行通路核心节点。"
+      },
+      {
+        "target": "CASP3",
+        "rationale": "CASP3切割DFFA并解除对DFFB的抑制，是DFFB活化的上游直接酶促事件，具有明确的凋亡执行通路关系。"
+      },
+      {
+        "target": "CASP7",
+        "rationale": "CASP7同属执行型半胱天冬酶，可参与DFFA切割和DFFB释放过程，是同一凋亡DNA片段化轴的真实候选节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

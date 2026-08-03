@@ -1,0 +1,65 @@
+{
+  "gene": "BCL2L10",
+  "generatedAt": "2026-08-03T10:47:39.479Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BCL2L10属于BCL-2家族凋亡调控蛋白，主要通过BH结构域介导与促凋亡BCL-2家族成员的相互作用，从而影响线粒体外膜通透化和细胞死亡阈值；其与小细胞肺癌、黑色素瘤及骨髓增生异常综合征存在遗传或表达层面的疾病关联。该蛋白为细胞内线粒体相关抗凋亡因子，不具备天然胞外结构域或分泌抗原可及性，因此不适合作为常规治疗性抗体的优先靶点，更适合作为细胞内结合体、递送型抗体片段或机制研究抗体对象。相较于同通路中具有更充分药理验证的BCL2、BCL2L1和MCL1，BCL2L10的疾病关联得分较低、临床转化证据较弱，优先级应定位为探索性抗体设计靶点。",
+    "mechanism": "设计抗体片段结合BCL2L10疏水BH3结合沟槽，竞争性阻断其与促凋亡BH3-only蛋白或BAX/BAK相关片段的结合，降低抗凋亡保护作用。",
+    "selectedEpitope": "优先覆盖BH1-BH3形成的疏水结合沟槽及α2-α5螺旋界面，避免仅选择非功能性远端表面。",
+    "diseaseDirection": "肿瘤凋亡逃逸与血液肿瘤",
+    "domain": "BCL2L10含BCL-2家族BH1、BH2、BH3及BH4样区域，形成典型α螺旋束折叠。",
+    "evidence": "BCL2L10凋亡调控与肿瘤关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9HD36功能注释",
+      "RCSB PDB 4B4S晶体结构",
+      "BCL-2家族凋亡通路文献"
+    ],
+    "referenceEntries": "UniProt: Q9HD36; RCSB PDB: 4B4S; HGNC: BCL2L10",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "BH1-BH3疏水结合沟槽",
+        "直接干预BH3配体结合，是功能阻断型设计的首选区域",
+        "优先"
+      ],
+      [
+        "Site B",
+        "α2-α5螺旋束外侧邻近界面",
+        "可稳定识别构象并间接影响促凋亡因子结合口袋",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离BH沟槽的溶剂暴露螺旋表面",
+        "功能相关性较弱，适合检测抗体而非阻断型抗体",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BCL2L10为细胞内抗原，常规抗体难以到达线粒体相关作用位点；建议采用VHH、胞内抗体或递送偶联策略，并重点评估BCL-2家族交叉反应性。",
+    "structurePrepZh": "以PDB 4B4S的A、B链为结构模板，保留高分辨率α螺旋束构象，去除结晶冗余链后进行BH沟槽可及性、保守性和构象稳定性评估。",
+    "structureRef": "RCSB PDB 4B4S, X-ray diffraction, 1.9 Å",
+    "antibodies": [
+      "BCL2L10研究用单克隆抗体",
+      "BCL-2家族BH沟槽识别抗体片段"
+    ],
+    "interfaceFocus": "BH3结合沟槽与α2-α5螺旋界面",
+    "designMode": "细胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "BCL2",
+        "rationale": "BCL2是经典抗凋亡BCL-2家族成员，直接抑制BAX/BAK介导的线粒体外膜通透化，在血液肿瘤中具有明确药理验证基础。"
+      },
+      {
+        "target": "BCL2L1",
+        "rationale": "BCL2L1编码BCL-XL，参与肿瘤细胞凋亡逃逸并通过BH3结合沟槽 sequestration 促凋亡蛋白，是同一路径中结构和功能证据更充分的候选靶点。"
+      },
+      {
+        "target": "MCL1",
+        "rationale": "MCL1为关键抗凋亡因子，可结合并中和BIM、BAK等促凋亡蛋白，在多种实体瘤和血液肿瘤中与治疗耐受相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

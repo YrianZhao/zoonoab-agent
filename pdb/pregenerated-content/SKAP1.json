@@ -1,0 +1,65 @@
+{
+  "gene": "SKAP1",
+  "generatedAt": "2026-08-03T21:10:39.728Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SKAP1 是 T 细胞受体信号复合体中的胞内衔接蛋白，通过与 ADAP/FYB1、RapL/RASSF5 和 LFA-1 激活轴连接，参与整合素介导的免疫细胞黏附与迁移。其 Open Targets 关联主要集中于体成分、基础代谢率和体重表型，提示遗传层面可能反映免疫代谢或淋巴细胞信号对能量稳态的间接影响。SKAP1 不具备分泌蛋白或膜外结构域特征，天然抗原可及性弱，因此更适合作为胞内研究抗体或细胞内递送抗体设计对象。相较于 CD3E、ITGAL 等膜近端可药靶点，SKAP1 的优先级主要来自高分辨率结构与明确 SH3 结构域相互作用界面，而非传统体内阻断型抗体开发优势。",
+    "mechanism": "设计抗体结合 SKAP1 SH3 结构域，阻断其与富脯氨酸配体及 ADAP/FYB1 复合体相关界面的结合，从而干预 TCR 下游 LFA-1 活化耦联。",
+    "selectedEpitope": "优先覆盖 SH3 结构域 RT-loop、n-Src loop 与配体结合沟槽周边界面。",
+    "diseaseDirection": "免疫代谢与体成分相关表型",
+    "domain": "SKAP1 含 N 端二聚化/DM 区、PH 区及 C 端 SH3 结构域，1U5D 对应 SH3 折叠。",
+    "evidence": "SKAP1结构与T细胞黏附信号证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q86WV1 functional annotation",
+      "RCSB PDB 1U5D X-ray structure",
+      "TCR-ADAP-SKAP1-LFA-1 signaling literature"
+    ],
+    "referenceEntries": "UniProt Q86WV1；RCSB PDB 1U5D；Open Targets SKAP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SH3结构域RT-loop/n-Src loop及配体结合沟槽",
+        "可直接竞争富脯氨酸配体结合并扰动衔接复合体装配",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SH3结构域远端β折叠外露面",
+        "有利于获得构象识别抗体，可用于检测或构象稳定",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SH3保守疏水核心邻近区域",
+        "可能影响结构稳定性且跨SH3家族同源性较高，需规避交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SKAP1 为胞内蛋白，常规抗体体内可及性不足；SH3结构域保守性较高，应通过FYB1、SKAP2等同源界面交叉筛选降低非特异结合。",
+    "structurePrepZh": "以1U5D高分辨率X射线结构为模板，保留SH3结构域单体构象，校正缺失侧链、质子化状态及晶体接触后进行表位暴露度分析。",
+    "structureRef": "RCSB PDB 1U5D；human SKAP1 SH3 domain crystal structure",
+    "antibodies": [
+      "anti-SKAP1 research antibody",
+      "anti-SKAP55/SKAP1 monoclonal antibody"
+    ],
+    "interfaceFocus": "SH3配体结合沟槽与RT-loop区域",
+    "designMode": "胞内研究抗体设计",
+    "candidates": [
+      {
+        "target": "FYB1",
+        "rationale": "FYB1/ADAP 是 TCR 下游衔接平台核心成员，与 SKAP1 共同连接 LAT-SLP76 信号复合体和 LFA-1 活化。其作为同一黏附信号轴靶点可用于比较复合体层级干预效果。"
+      },
+      {
+        "target": "RASSF5",
+        "rationale": "RASSF5/RapL 与 SKAP1 参与 Rap1 依赖的 LFA-1 活化和T细胞黏附调控。该靶点位于同一整合素活化通路，可作为界面阻断策略的候选节点。"
+      },
+      {
+        "target": "ITGAL",
+        "rationale": "ITGAL 编码 LFA-1 的 CD11a 亚基，是 SKAP1 下游黏附执行模块的膜表面成分。其胞外结构域具备更高抗体可及性，适合作为同通路可药性更强的对照靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "SRC",
+  "generatedAt": "2026-08-03T16:54:05.358Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SRC为非受体型酪氨酸激酶，在多种肿瘤中参与整合素、受体酪氨酸激酶及黏附斑信号放大，促进增殖、迁移与侵袭。其激酶结构域位于胞内，虽不具备典型膜外抗原可及性，但可利用1FMK所示高分辨率结构定义保守ATP结合口袋与活化构象界面，适合开展功能阻断型抗体或胞内递送型分子设计。相较EGFR、PDGFR等上游膜受体，SRC处于多条致癌信号汇聚节点，具有更强的通路收敛性与联合抑制价值。",
+    "mechanism": "结合SRC激酶结构域，阻断ATP结合及活化环构象重排，削弱其对底物蛋白的磷酸化。",
+    "selectedEpitope": "优先覆盖ATP结合裂隙邻近的P-loop与活化环界面，避免仅依赖高度保守催化核心。",
+    "diseaseDirection": "肿瘤信号抑制",
+    "domain": "SH3-SH2调控区及C端激酶结构域；1FMK对应激酶催化核心",
+    "evidence": "SRC肿瘤通路与结构阻断证据包",
+    "evidenceSources": [
+      "Open Targets Platform",
+      "UniProt:P12931",
+      "RCSB PDB:1FMK",
+      "PubMed/SRC kinase inhibitor literature"
+    ],
+    "referenceEntries": "UniProt P12931；RCSB PDB 1FMK；Open Targets SRC",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域ATP结合裂隙邻近区",
+        "直接干预催化活性，适合功能阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "P-loop与活化环交界面",
+        "有利于锁定失活构象并降低底物磷酸化",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SH2-激酶连接调控面",
+        "可影响自抑制构象稳定性，但位点保守性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SRC为胞内靶点，常规抗体难以直接接触；优先考虑细胞内递送、纳米抗体或替代性结合体。催化核心保守性高，需结合构象选择性与同源激酶交叉反应筛查。",
+    "structurePrepZh": "基于1FMK提取激酶结构域，补全缺失环区并标定ATP口袋、活化环与自抑制界面。建议进行同源激酶比对与构象聚类，以限定特异性表位。",
+    "structureRef": "RCSB PDB 1FMK；SRC kinase crystal structure",
+    "antibodies": [
+      "anti-SRC functional inhibitory antibodies",
+      "anti-phospho-SRC pathway antibodies"
+    ],
+    "interfaceFocus": "ATP口袋、P-loop、活化环",
+    "designMode": "结构阻断型",
+    "candidates": [
+      {
+        "target": "EGFR",
+        "rationale": "EGFR与SRC在肿瘤中存在上游-下游及旁路激活耦联，联合靶向可抑制受体驱动与SRC介导的迁移侵袭。EGFR为膜受体，抗原可及性优于SRC，适合作为通路同轴候选靶点。"
+      },
+      {
+        "target": "MET",
+        "rationale": "MET可通过整合素和生长因子信号激活SRC家族成员，促进肿瘤细胞运动与转移。其胞外结构域明确，适合与SRC构成同通路的联合设计框架。"
+      },
+      {
+        "target": "PTK2",
+        "rationale": "PTK2与SRC在黏附斑复合体中协同放大迁移信号，是SRC依赖性侵袭表型的重要并行节点。两者同属黏附斑通路，便于建立联合抑制策略。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

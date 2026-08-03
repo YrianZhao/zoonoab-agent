@@ -1,0 +1,65 @@
+{
+  "gene": "MEFV",
+  "generatedAt": "2026-08-03T14:10:52.838Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MEFV编码胞质先天免疫传感蛋白pyrin，其突变与家族性地中海热及多种自身炎症综合征密切相关，核心机制涉及RhoA失活后pyrin炎症小体装配、ASC募集和caspase-1介导的IL-1β成熟。pyrin主要为胞内蛋白，天然抗体可及性低，但PDB 9R6Y提供高分辨率结构基础，可支持细胞内递送抗体片段或研究级构象调节分子设计。相较下游IL-1β或IL-1R阻断，MEFV更贴近遗传致病节点，适用于等位基因功能解析和炎症小体装配界面干预的优先探索。",
+    "mechanism": "设计细胞内抗体片段阻断pyrin PYD与ASC PYD同型聚合界面，抑制ASC speck形成及caspase-1依赖性IL-1β成熟。",
+    "selectedEpitope": "优先锁定PYD六螺旋束的ASC结合聚合界面，避开高度埋藏疏水核心。",
+    "diseaseDirection": "家族性地中海热与自身炎症",
+    "domain": "pyrin含N端PYD、B-box、coiled-coil及C端B30.2/SPRY结构域。",
+    "evidence": "MEFV-pyrin炎症小体结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt O15553功能与结构域注释",
+      "RCSB PDB 9R6Y高分辨率晶体结构",
+      "ClinVar及OMIM家族性地中海热变异证据"
+    ],
+    "referenceEntries": "UniProt O15553；RCSB PDB 9R6Y；OMIM 608107",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PYD同型聚合/ASC结合表面",
+        "直接干预炎症小体成核与ASC募集，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "B30.2/SPRY突变富集外露环区",
+        "适合构象稳定或等位基因功能研究，但需完整结构支持",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PYD疏水核心与螺旋束内部",
+        "结构稳定性关键但抗体结合可及性差，易导致非特异构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MEFV为胞内靶点，常规外源抗体难以进入作用位点；建议采用VHH、intrabody或递送偶联格式，并严格评估炎症小体基础活性抑制风险。",
+    "structurePrepZh": "以9R6Y抗原链A为模板进行缺失残基、质子化状态和晶体接触评估，保留PYD表面电荷分布用于界面抗体建模。",
+    "structureRef": "RCSB PDB 9R6Y，X射线晶体结构，1.26 Å",
+    "antibodies": [
+      "canakinumab",
+      "gevokizumab"
+    ],
+    "interfaceFocus": "PYD-ASC PYD聚合界面与电荷互补面",
+    "designMode": "胞内VHH/intrabody",
+    "candidates": [
+      {
+        "target": "PYCARD",
+        "rationale": "PYCARD编码ASC，是pyrin炎症小体装配的核心接头蛋白；阻断ASC PYD或CARD聚合可直接降低caspase-1活化。"
+      },
+      {
+        "target": "CASP1",
+        "rationale": "CASP1位于pyrin-ASC复合体下游，负责切割pro-IL-1β和gasdermin D；其抑制可覆盖多种炎症小体驱动的自身炎症表型。"
+      },
+      {
+        "target": "IL1B",
+        "rationale": "IL1B是pyrin炎症小体激活后的关键效应细胞因子；中和成熟IL-1β已在FMF相关炎症控制中具有明确通路依据。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

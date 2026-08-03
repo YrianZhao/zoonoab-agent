@@ -1,0 +1,65 @@
+{
+  "gene": "STK40",
+  "generatedAt": "2026-08-03T21:20:49.897Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "STK40 为胞内丝氨酸/苏氨酸激酶样蛋白，报道与NF-κB相关炎症转录、胚胎干细胞分化及免疫细胞表型遗传关联有关，Open Targets 显示其与神经退行性疾病和中枢神经系统自身免疫疾病存在中等强度关联。该蛋白缺乏经典分泌信号肽和跨膜区，天然抗原可及性不符合常规阻断型抗体开发要求，更适合作为结构抗原用于细胞内递送抗体或研究级结合分子设计。相较TNF、IL6R、TNFRSF1A等同炎症轴可及靶点，STK40的优先级主要来自遗传关联和已解析晶体结构，而非药物化抗体可及性，因此需列为机制验证优先、治疗抗体开发谨慎的靶点。",
+    "mechanism": "设计结合分子优先阻断STK40激酶样结构域表面与NF-κB通路调控复合体蛋白的潜在结合界面，干预炎症转录放大而非竞争ATP位点。",
+    "selectedEpitope": "优先选择5L2Q解析的激酶样结构域非ATP口袋外侧保守表面，避开核苷酸结合裂隙。",
+    "diseaseDirection": "神经炎症与中枢自身免疫",
+    "domain": "STK40包含N端低复杂度区和C端丝氨酸/苏氨酸激酶样结构域，5L2Q覆盖其催化样核心折叠。",
+    "evidence": "STK40神经炎症遗传关联与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q8N2I9蛋白功能与亚细胞定位注释",
+      "RCSB PDB 5L2Q晶体结构记录",
+      "GWAS Catalog免疫细胞计数与炎症表型关联"
+    ],
+    "referenceEntries": "UniProt: Q8N2I9; RCSB PDB: 5L2Q; Ensembl: ENSG00000196182",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶样结构域外侧α螺旋-环区表面",
+        "可用于构建非催化口袋结合分子，降低ATP竞争导致的选择性风险",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N叶与C叶之间的构象调节边缘",
+        "可能影响结构域相对运动和蛋白复合体装配，需结合突变验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP结合裂隙及保守催化样残基邻近区域",
+        "保守性较高且小分子口袋深，抗体可达性和同源选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "STK40为胞内蛋白，常规抗体难以在活体内接触天然抗原；建议限定为细胞内递送、纳米抗体工程或机制研究，并以细胞通透性和靶点占有率作为关键风险项。",
+    "structurePrepZh": "采用5L2Q的A-D链进行同源链比对与缺失残基建模，去除晶体接触冗余后评估保守表面、电荷分布和潜在构象柔性。",
+    "structureRef": "RCSB PDB 5L2Q, X-ray diffraction, 2.53 Å",
+    "antibodies": [
+      "暂无获批STK40治疗性抗体",
+      "研究级anti-STK40抗体"
+    ],
+    "interfaceFocus": "激酶样结构域非ATP结合外侧蛋白互作面",
+    "designMode": "胞内靶向探索",
+    "candidates": [
+      {
+        "target": "NFKB1",
+        "rationale": "NFKB1是经典NF-κB炎症转录通路核心转录因子，与神经炎症和自身免疫反应密切相关；其机制位置可用于评估STK40相关炎症表型的下游读出。"
+      },
+      {
+        "target": "RELA",
+        "rationale": "RELA编码NF-κB p65亚基，参与TNF和IL-1诱导的促炎基因转录；与STK40所涉及的NF-κB调控轴处于同一炎症信号网络。"
+      },
+      {
+        "target": "TNF",
+        "rationale": "TNF是激活经典NF-κB通路的上游炎症因子，具有明确胞外可及性和成熟抗体药物先例；可作为同通路中更高可开发性的对照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

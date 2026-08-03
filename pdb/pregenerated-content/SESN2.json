@@ -1,0 +1,65 @@
+{
+  "gene": "SESN2",
+  "generatedAt": "2026-08-03T16:27:57.238Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SESN2 是氧化应激与营养应激诱导蛋白，可通过 GATOR2 结合抑制 mTORC1，并参与 AMPK 相关代谢稳态调节，其遗传关联主要指向尿酸、谷氨酰胺、胆固醇及神经退行性疾病相关表型。该蛋白为胞内可溶性应激传感器，不具备天然胞外结构域或膜受体抗原可及性，因此常规体内阻断型抗体可及性受限，更适合结构机制研究、胞内递送抗体或靶向降解模块设计。相较 mTOR、AMPK 等核心酶类节点，SESN2 位于应激输入与 GATOR2-mTORC1 调控交汇处，具有更高通路选择性，但主靶点优先级应低于可直接胞外干预的同通路受体或分泌因子。",
+    "mechanism": "设计分子应阻断 SESN2 与 GATOR2 复合体中 WDR24/WDR59 相关界面的结合，从而削弱 SESN2 介导的 mTORC1 抑制信号。",
+    "selectedEpitope": "优先覆盖 5DJ4 可解析 SESN2 C 端结构域中参与 GATOR2 识别的沟槽及邻近 α 螺旋界面。",
+    "diseaseDirection": "代谢稳态与神经退行性疾病",
+    "domain": "SESN2 为胞内可溶性蛋白，含 N 端氧化还原样结构域和 C 端 GATOR2 结合相关结构域。",
+    "evidence": "SESN2-mTORC1 代谢应激调控证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt P58004 功能注释",
+      "RCSB PDB 5DJ4 晶体结构",
+      "mTORC1-GATOR2-SESN2 通路文献"
+    ],
+    "referenceEntries": "UniProt P58004；RCSB PDB 5DJ4；Open Targets SESN2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C 端 GATOR2 结合沟槽及邻近 α 螺旋面",
+        "直接干预 SESN2-GATOR2 相互作用，机制验证价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N 端氧化还原样结构域暴露环区",
+        "可用于构象锁定或功能探针设计，但与 mTORC1 界面关系间接",
+        "备选"
+      ],
+      [
+        "Site C",
+        "多聚体晶体接触面及保守疏水核心邻近区域",
+        "可能影响折叠稳定性或产生非特异构象效应，需避免深度嵌入",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SESN2 缺乏胞外可及性，传统治疗抗体难以到达胞内靶点；设计应限定为胞内递送、intrabody 或机制探针，并避开保守折叠核心。",
+    "structurePrepZh": "以 5DJ4 多链晶体结构为模板，保留解析完整链进行同源链比对，去除晶体接触伪界面并标注 GATOR2 结合相关表面。",
+    "structureRef": "RCSB PDB 5DJ4，human SESN2 X-ray structure，2.697 Å",
+    "antibodies": [
+      "commercial anti-SESN2 antibody",
+      "research anti-sestrin 2 antibody"
+    ],
+    "interfaceFocus": "SESN2 C 端 GATOR2 识别沟槽",
+    "designMode": "胞内机制抗体设计",
+    "candidates": [
+      {
+        "target": "RRAGA",
+        "rationale": "RRAGA 编码 RagA GTPase，是氨基酸感知通路中连接 Ragulator 与 mTORC1 溶酶体定位的核心节点，与 SESN2-GATOR2 调控处于同一 mTORC1 营养应激轴。"
+      },
+      {
+        "target": "WDR24",
+        "rationale": "WDR24 是 GATOR2 复合体组成成分，参与 SESN2 介导的 GATOR2 抑制过程，适合作为解析 SESN2-mTORC1 轴的界面候选靶点。"
+      },
+      {
+        "target": "MTOR",
+        "rationale": "MTOR 是 mTORC1 复合体催化核心，位于 SESN2-GATOR2-Rag GTPase 信号下游，可作为代谢与神经退行性疾病相关通路的直接功能读出靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "GLDC",
+  "generatedAt": "2026-08-03T12:47:50.718Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GLDC编码线粒体甘氨酸裂解系统P蛋白，催化甘氨酸脱羧并将氨甲基转移至H蛋白GCSH；双等位基因功能缺陷可导致非酮性高甘氨酸血症，形成明确的先天代谢病因果关联。该蛋白为线粒体基质内可溶性酶，天然抗原可及性不适合体内阻断抗体，但适合体外诊断、酶学构象捕获与细胞内递送格式研究。相较仅反映下游代谢物变化的标志物，GLDC位于甘氨酸裂解反应起始限速步骤，结构证据充分且疾病遗传证据更直接，因此具备优先建模价值。",
+    "mechanism": "抗体设计以识别PLP依赖催化结构域或GCSH结合界面为核心，用于捕获GLDC构象并阻断GLDC与脂酰化GCSH的氨甲基转移复合体形成。",
+    "selectedEpitope": "优先选择PLP依赖催化桶邻近的GCSH进入沟槽，避开高度保守活性赖氨酸深位点。",
+    "diseaseDirection": "非酮性高甘氨酸血症与甘氨酸代谢病",
+    "domain": "GLDC为线粒体基质PLP依赖P蛋白，含N端线粒体靶向序列与大型催化核心结构域。",
+    "evidence": "GLDC结构遗传证据与甘氨酸裂解系统证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProtKB P23378功能与亚细胞定位注释",
+      "RCSB PDB 6I35人GLDC晶体结构",
+      "OMIM非酮性高甘氨酸血症相关条目"
+    ],
+    "referenceEntries": "UniProt P23378；RCSB PDB 6I35；Open Targets GLDC",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "GCSH结合沟槽邻近催化核心外缘",
+        "可干预GLDC-GCSH复合体装配并保留抗体可达性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PLP依赖催化结构域外侧构象环区",
+        "适合构象特异性识别与突变体分型检测",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PLP活性中心及保守赖氨酸深部口袋",
+        "保守性高且空间埋藏，易影响非特异酶族交叉识别",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GLDC为线粒体基质酶，常规抗体体内可及性受限；设计应定位于诊断捕获、递送抗体或体外功能阻断，并严格评估PLP酶家族交叉反应。",
+    "structurePrepZh": "以6I35四条抗原链为模板，保留PLP相关催化构象，补全缺失环区并标注疾病突变位点、GCSH邻近沟槽与链间接触面。",
+    "structureRef": "RCSB PDB 6I35，人源GLDC X射线结构，2.0 Å",
+    "antibodies": [
+      "anti-GLDC diagnostic antibody",
+      "anti-GLDC immunohistochemistry antibody"
+    ],
+    "interfaceFocus": "GCSH结合沟槽与PLP催化核心外缘",
+    "designMode": "胞内酶构象捕获",
+    "candidates": [
+      {
+        "target": "GCSH",
+        "rationale": "GCSH为甘氨酸裂解系统H蛋白，接受GLDC转移的氨甲基中间体；其缺陷同样可导致甘氨酸脑病。"
+      },
+      {
+        "target": "AMT",
+        "rationale": "AMT编码甘氨酸裂解系统T蛋白，负责将GCSH携带的一碳单位转移至四氢叶酸，是同一代谢复合体的下游酶。"
+      },
+      {
+        "target": "DLD",
+        "rationale": "DLD作为甘氨酸裂解系统L蛋白再氧化二氢硫辛酰GCSH，维持复合体循环；其功能异常影响同一线粒体一碳代谢通路。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

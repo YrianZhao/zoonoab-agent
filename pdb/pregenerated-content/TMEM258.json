@@ -1,0 +1,65 @@
+{
+  "gene": "TMEM258",
+  "generatedAt": "2026-08-03T17:20:34.319Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TMEM258为多跨膜内质网膜蛋白，遗传学研究显示其缺失可导致STING蛋白失稳并削弱cGAS–STING介导的I型干扰素应答，因此与登革热等病毒感染免疫反应具有机制相关性。该蛋白并非典型胞外分泌抗原，外露环区较短，抗体可及性低于细胞表面受体或可溶性细胞因子。相较于直接靶向IFNAR或炎症细胞因子，TMEM258更接近STING稳态调控层，但作为抗体药物主靶点优先级较低，更适合结构验证、细胞内递送抗体或研究型结合分子设计。",
+    "mechanism": "设计分子应识别TMEM258内质网腔侧环或重构状态表面，干预其与STING稳定复合物形成，从而影响STING蛋白稳态及下游TBK1–IRF3激活。",
+    "selectedEpitope": "优先评估跨膜螺旋间腔侧短环及STING邻近界面，避免选择埋藏于脂质双层的跨膜螺旋核心。",
+    "diseaseDirection": "病毒感染与先天免疫调控",
+    "domain": "TMEM258为小型多跨膜内质网膜蛋白，主要由疏水跨膜螺旋及短腔侧/胞质侧环区组成。",
+    "evidence": "TMEM258–STING先天免疫结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P61165 functional annotation",
+      "RCSB PDB 9N9J electron microscopy structure",
+      "cGAS–STING pathway literature evidence"
+    ],
+    "referenceEntries": "UniProt P61165；RCSB PDB 9N9J；Open Targets TMEM258",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "内质网腔侧短环及邻近跨膜螺旋入口",
+        "最可能提供抗体可及构象并靠近功能复合物界面",
+        "优先"
+      ],
+      [
+        "Site B",
+        "胞质侧短环与STING邻近膜面区域",
+        "可用于细胞内抗体或递送型结合分子验证STING稳态调控",
+        "备选"
+      ],
+      [
+        "Site C",
+        "脂质双层内跨膜螺旋疏水核心",
+        "结构保守且不可及性高，易产生非特异疏水结合风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TMEM258缺乏大段胞外结构域，常规循环抗体难以接近内质网膜表位；建议限定为研究型Fab/VHH、细胞内递送格式或膜蛋白复合物稳定构象筛选。",
+    "structurePrepZh": "基于9N9J电镜模型保留TMEM258跨膜区及邻近STING复合物环境，补建短环缺失残基并嵌入ER样脂质膜进行构象评估。",
+    "structureRef": "RCSB PDB 9N9J，3.2 Å cryo-EM膜蛋白复合物结构",
+    "antibodies": [
+      "无已获批TMEM258治疗性抗体",
+      "无公开临床阶段TMEM258抗体"
+    ],
+    "interfaceFocus": "TMEM258腔侧环与STING邻近膜面",
+    "designMode": "膜蛋白复合物表位设计",
+    "candidates": [
+      {
+        "target": "TMEM173",
+        "rationale": "TMEM173编码STING，是cGAS–STING通路核心接头蛋白，直接介导TBK1和IRF3激活；其疾病机制与TMEM258介导的STING稳态调控处于同一路径。"
+      },
+      {
+        "target": "CGAS",
+        "rationale": "CGAS识别胞质DNA并合成cGAMP以激活STING，是病毒感染和自身炎症中该通路的上游感应器，具备明确的通路因果位置。"
+      },
+      {
+        "target": "TBK1",
+        "rationale": "TBK1位于STING下游，负责磷酸化IRF3并驱动I型干扰素转录，是TMEM258–STING功能改变后直接影响的信号节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

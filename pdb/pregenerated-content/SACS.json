@@ -1,0 +1,65 @@
+{
+  "gene": "SACS",
+  "generatedAt": "2026-08-03T16:19:17.254Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SACS 编码超大型胞质分子伴侣 sacsin，致病性双等位基因变异导致 Charlevoix-Saguenay 型常染色体隐性痉挛性共济失调，核心机制涉及神经元蛋白稳态、线粒体动力学与中间丝网络维持失衡。该蛋白主要定位于胞质并缺乏天然胞外结构域，抗原可及性不符合常规体内阻断型抗体药物要求，但其结构化片段可作为研究级结合抗体、细胞内抗体或递送型抗体工程的抗原。相较于下游非特异性神经退行性标志物，SACS 位于 ARSACS 的遗传病因层级，疾病特异性与遗传证据优先级更高。",
+    "mechanism": "设计结合 sacsin 结构化 SIRPT/HEPN样片段的抗体，空间遮蔽其蛋白互作界面，用于干预或解析伴侣复合体装配与底物识别过程。",
+    "selectedEpitope": "优先选择 5V44 结构中暴露的 HEPN样二聚体沟槽及相邻螺旋-环区界面。",
+    "diseaseDirection": "ARSACS痉挛性共济失调",
+    "domain": "sacsin 含 N端泛素样结构域、Hsp90样 SIRPT 重复、J结构域与C端HEPN样二聚化区域。",
+    "evidence": "SACS遗传病因与结构抗原可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt Q9NZJ4 蛋白功能与结构域注释",
+      "RCSB PDB 5V44 X射线晶体结构",
+      "OMIM/Orphanet ARSACS 临床遗传证据"
+    ],
+    "referenceEntries": "UniProt Q9NZJ4；RCSB PDB 5V44；Open Targets SACS",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "5V44 HEPN样结构域二聚体沟槽及暴露螺旋面",
+        "可覆盖潜在蛋白互作界面，适合构建功能阻断型研究抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "HEPN样结构域外侧保守螺旋束表面",
+        "构象稳定、晶体分辨率高，适合筛选构象识别型结合分子",
+        "备选"
+      ],
+      [
+        "Site C",
+        "二聚体核心埋藏界面邻近区域",
+        "可能影响折叠或产生非特异构象扰动，需避免强疏水核心识别",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SACS 为胞内巨型伴侣蛋白，常规 IgG 难以达到胞质靶点；应优先定位为工具抗体、intrabody 或递送工程抗体，并严格评估同源HEPN样结构交叉反应。",
+    "structurePrepZh": "以 PDB 5V44 的 A、B、C 链为模板，保留实验构象并检查二聚体界面、缺失残基与晶体接触，去除非生物学接触后进行表面可及性计算。",
+    "structureRef": "PDB 5V44，1.56 Å X-ray sacsin HEPN样结构域",
+    "antibodies": [
+      "商业抗SACS多克隆抗体",
+      "商业抗sacsin单克隆研究抗体"
+    ],
+    "interfaceFocus": "HEPN样二聚体沟槽与外侧螺旋束表面",
+    "designMode": "胞内靶点工具抗体",
+    "candidates": [
+      {
+        "target": "HSPA8",
+        "rationale": "HSPA8 编码 Hsc70，是蛋白稳态与伴侣网络核心节点；SACS 含 J结构域并与 Hsp70 伴侣系统功能相关，可作为同一蛋白质质量控制轴的候选靶点。"
+      },
+      {
+        "target": "DNAJC5",
+        "rationale": "DNAJC5 属于 Hsp40/DnaJ 伴侣家族，参与神经元蛋白稳态与突触蛋白处理；其功能方向与 SACS 相关的伴侣失衡和神经退行性表型相交。"
+      },
+      {
+        "target": "VCP",
+        "rationale": "VCP/p97 参与泛素依赖性蛋白质质量控制和错误折叠蛋白清除；该节点与 SACS 相关蛋白稳态障碍处于同一细胞应激与蛋白清除通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

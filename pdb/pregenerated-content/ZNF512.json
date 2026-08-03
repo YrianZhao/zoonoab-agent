@@ -1,0 +1,65 @@
+{
+  "gene": "ZNF512",
+  "generatedAt": "2026-08-03T18:01:58.191Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ZNF512为核内锌指转录调控相关蛋白，Open Targets关联主要来自血脂、肝功能酶及血清白蛋白等测量性状，提示其可能参与代谢表型的遗传调控而非已验证的细胞外致病配体轴。该蛋白缺乏分泌信号肽、跨膜区和胞外结构域，天然抗原可及性不支持常规体内阻断型抗体开发。相较APOB、ANGPTL3、PCSK9等同属脂质代谢表型通路且具备血浆或膜外可及性的靶点，ZNF512作为抗体主靶点优先级较低，更适合结构验证、胞内递送抗体或研究级结合分子设计。",
+    "mechanism": "设计重点限定于胞内递送抗体结合C2H2样锌指折叠，干扰其与DNA沟槽或转录复合体邻近界面的结合。",
+    "selectedEpitope": "优先覆盖2CTD所示锌指α螺旋DNA识别面及相邻β折叠支撑区，避免破坏锌配位核心。",
+    "diseaseDirection": "脂质代谢与肝功能表型",
+    "domain": "2CTD为ZNF512局部锌指结构域NMR模型，包含ββα折叠和锌离子配位残基。",
+    "evidence": "ZNF512代谢性状遗传关联与结构可设计性证据",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q96ME7蛋白功能与定位注释",
+      "RCSB PDB 2CTD溶液NMR结构",
+      "人类锌指蛋白DNA识别结构域文献"
+    ],
+    "referenceEntries": "UniProt Q96ME7；RCSB PDB 2CTD；Open Targets ZNF512",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "锌指α螺旋DNA识别面",
+        "可直接干扰碱基识别与DNA大沟结合，具备机制验证价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "β折叠-α螺旋邻接支撑面",
+        "有助于稳定结合构象并降低对锌配位中心的直接扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Cys/His锌配位核心周边",
+        "可能影响折叠完整性并产生非特异构象扰动，需严格规避",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ZNF512为核内蛋白，常规抗体难以到达天然作用位点；设计应定位为胞内递送或研究级结合分子，并规避锌配位残基导致的构象失稳。",
+    "structurePrepZh": "以2CTD NMR ensemble评估构象一致性，补全氢原子与锌配位几何，标注DNA识别螺旋、β折叠支撑面及高保守配位位点。",
+    "structureRef": "RCSB PDB 2CTD，human ZNF512 zinc finger，solution NMR",
+    "antibodies": [
+      "无已获批ZNF512靶向抗体",
+      "无公开临床阶段ZNF512阻断抗体"
+    ],
+    "interfaceFocus": "α螺旋DNA识别面与ββα折叠边界",
+    "designMode": "胞内结合验证",
+    "candidates": [
+      {
+        "target": "PCSK9",
+        "rationale": "PCSK9通过结合LDLR表皮生长因子样A结构域促进受体降解，直接调控血浆LDL胆固醇水平，且为分泌蛋白，抗体可及性显著优于ZNF512。"
+      },
+      {
+        "target": "ANGPTL3",
+        "rationale": "ANGPTL3在脂质代谢通路中抑制LPL和内皮脂肪酶活性，影响甘油三酯及脂蛋白代谢；其循环分泌蛋白属性适合中和抗体设计。"
+      },
+      {
+        "target": "APOB",
+        "rationale": "APOB是VLDL、IDL和LDL颗粒的核心结构蛋白，直接关联甘油三酯和胆固醇运输表型；血浆脂蛋白颗粒暴露表位具备抗体识别可及性。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

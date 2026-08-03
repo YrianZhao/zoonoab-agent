@@ -1,0 +1,65 @@
+{
+  "gene": "PHF12",
+  "generatedAt": "2026-08-03T15:15:07.549Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PHF12 是 BHC/REST 共抑制复合体相关的染色质调控蛋白，可通过与组蛋白去乙酰化和去甲基化模块协同影响神经发育相关基因转录。其疾病关联主要集中于神经发育障碍、神经退行性疾病和自闭症谱系障碍，符合转录抑制失衡导致神经元分化和突触基因表达异常的机制背景。PHF12 为核内非分泌蛋白，天然抗原可及性不适合常规治疗性抗体，但其已解析复合体结构可支持细胞内抗体、纳米抗体或结构探针设计。相较仅有遗传关联而缺乏结构基础的同类染色质因子，PHF12 的实验结构提供了明确界面约束，适合作为机制验证型优先靶点。",
+    "mechanism": "设计分子应阻断 PHF12 通过 PHD finger/相邻支架区与 BHC 复合体组分的装配界面，干预 LSD1-HDAC 相关转录抑制复合体在神经基因位点的稳定募集。",
+    "selectedEpitope": "优先覆盖 PHD finger 及其邻近复合体装配界面，避免单独选择高度保守锌配位核心。",
+    "diseaseDirection": "神经发育障碍与神经退行性疾病",
+    "domain": "PHF12 含 N 端 PHD finger 锌结合结构域，并具有参与 BHC/REST 复合体装配的非催化支架区域。",
+    "evidence": "PHF12 神经发育疾病关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联数据",
+      "UniProtKB Q96QT6 蛋白功能与结构域注释",
+      "RCSB PDB 8BPB 冷冻电镜复合体结构",
+      "REST/BHC 染色质共抑制复合体文献证据"
+    ],
+    "referenceEntries": "UniProt Q96QT6；RCSB PDB 8BPB；Open Targets PHF12",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PHD finger 邻近的复合体装配界面",
+        "可干预 PHF12 与 BHC 复合体组分的稳定结合，适合作为功能阻断表位",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PHD finger 外侧非锌配位表面",
+        "可形成构象识别表位并降低对保守 Cys/His 锌配位核心的扰动风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守锌结合核心与埋藏疏水面",
+        "可能影响结构折叠稳定性且跨 PHD 蛋白家族选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PHF12 为核内蛋白，体内抗体递送与细胞内可及性为主要限制。设计应规避 PHD finger 保守锌配位位点，优先选择复合体特异性暴露界面以提升选择性。",
+    "structurePrepZh": "以 PDB 8BPB 的 A、B、C 链为结构模板，保留实验构象中的界面残基，检查缺失环区、锌配位几何和复合体接触面后再进行表位建模。",
+    "structureRef": "RCSB PDB 8BPB；2.8 Å cryo-EM human PHF12 complex",
+    "antibodies": [
+      "抗 PHF12 研究级单克隆抗体",
+      "抗 BHC/REST 复合体组分研究级抗体"
+    ],
+    "interfaceFocus": "PHD finger 外侧与 BHC 复合体装配界面",
+    "designMode": "细胞内抗体/VHH探针",
+    "candidates": [
+      {
+        "target": "RCOR1",
+        "rationale": "RCOR1 是 REST/BHC 共抑制复合体核心支架组分，连接 LSD1/KDM1A 与 HDAC 模块，直接影响神经基因转录抑制复合体稳定性。"
+      },
+      {
+        "target": "KDM1A",
+        "rationale": "KDM1A/LSD1 作为 BHC 复合体的组蛋白 H3K4 去甲基化酶，可调节神经发育相关转录程序，是与 PHF12 同复合体内的功能性酶靶点。"
+      },
+      {
+        "target": "REST",
+        "rationale": "REST 通过结合 RE1/NRSE DNA 元件募集 BHC 共抑制复合体并抑制神经元基因表达，是 PHF12 所在通路的上游 DNA 结合转录抑制因子。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

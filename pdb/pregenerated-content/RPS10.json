@@ -1,0 +1,65 @@
+{
+  "gene": "RPS10",
+  "generatedAt": "2026-08-03T16:12:05.416Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RPS10 是 40S 小核糖体亚基组成蛋白，致病变异可造成核糖体生物发生障碍、核糖体应激及 p53 依赖性红系祖细胞耗竭，是 Diamond-Blackfan anemia 的明确遗传病因之一。该蛋白主要定位于细胞内核糖体复合物，缺乏典型分泌或跨膜胞外结构域，因此常规体内阻断型抗体的抗原可及性受限。其优先级主要来自疾病遗传证据强、结构复合物信息可用于研究型结合分子设计；相较细胞因子或膜受体类靶点，RPS10 更适合用于胞内递送抗体、结构探针或诊断检测场景。",
+    "mechanism": "设计分子可结合 RPS10 暴露环区或 rRNA 接触邻近面，干预其与 18S rRNA 及 40S 装配因子结合，用于解析小亚基装配缺陷。",
+    "selectedEpitope": "优先选择 40S 表面暴露的 N 端延伸及邻近 α 螺旋-环区，避开深埋 rRNA 核心接触面。",
+    "diseaseDirection": "Diamond-Blackfan贫血与核糖体病",
+    "domain": "RPS10 为小型碱性核糖体蛋白，含 N 端延伸、中央 α/β 折叠核心及 rRNA 结合表面。",
+    "evidence": "RPS10核糖体病遗传与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProtKB P46783 蛋白功能注释",
+      "RCSB PDB 5VYC 人源核糖体结构",
+      "OMIM 与 Diamond-Blackfan anemia 致病基因记录"
+    ],
+    "referenceEntries": "UniProt P46783；RCSB PDB 5VYC；HGNC RPS10",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "40S 表面暴露 N 端延伸与邻近螺旋区",
+        "可及性相对较高，适合构建结构探针或胞内结合分子",
+        "优先"
+      ],
+      [
+        "Site B",
+        "中央 α/β 核心外侧非 rRNA 深埋表面",
+        "兼顾构象稳定性与特异识别，但需避免影响保守核糖体装配界面",
+        "备选"
+      ],
+      [
+        "Site C",
+        "18S rRNA 结合沟槽及核糖体核心埋藏面",
+        "功能相关性强但天然可及性低，存在交叉影响核糖体基本功能风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RPS10 为胞内核糖体蛋白，体内抗体递送与抗原可及性是主要限制；应优先定位研究、诊断或胞内递送平台，并规避高度保守 rRNA 结合核心。",
+    "structurePrepZh": "以 5VYC 中人源 40S 亚基链为模板，分离 RPS10 链并保留邻近 18S rRNA 用于界面判定；6.0 Å 分辨率需结合 AlphaFold 模型校正局部环区。",
+    "structureRef": "PDB 5VYC，人源核糖体 X-ray 结构，6.0 Å",
+    "antibodies": [
+      "anti-RPS10 clone 2D12",
+      "anti-RPS10 polyclonal antibody"
+    ],
+    "interfaceFocus": "N端表面延伸区与18S rRNA邻近界面",
+    "designMode": "胞内探针型抗体设计",
+    "candidates": [
+      {
+        "target": "RPS19",
+        "rationale": "RPS19 是 Diamond-Blackfan anemia 最常见致病核糖体蛋白之一，参与 40S 小亚基成熟，与 RPS10 同属核糖体生物发生缺陷通路。"
+      },
+      {
+        "target": "RPL5",
+        "rationale": "RPL5 变异可导致 Diamond-Blackfan anemia，并通过 5S RNP-MDM2-p53 轴增强核糖体应激信号，适合作为同通路对照靶点。"
+      },
+      {
+        "target": "RPL11",
+        "rationale": "RPL11 参与 5S RNP 介导的 MDM2 抑制与 p53 稳定化，是核糖体应激反应中与骨髓衰竭相关的真实节点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "STAP2",
+  "generatedAt": "2026-08-03T16:58:37.036Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "STAP2为细胞内衔接蛋白，含PH结构域、SH2样区域及富脯氨酸序列，可连接JAK-STAT、NF-κB及整合素相关信号，在银屑病等炎症性皮肤病中可能参与细胞因子驱动的免疫细胞活化。其主要定位于胞质和信号复合物内部，缺乏分泌形式或跨膜胞外结构域，抗体抗原可及性不具备常规治疗性抗体优势。相较IL23A、IL17A、IL17RA、TNF等同通路胞外或分泌靶点，STAP2更适合作为机制研究或细胞内递送抗体探索靶点，主靶点优先级应审慎设定。",
+    "mechanism": "设计以内吞或胞内递送抗体阻断STAP2 SH2样区域与磷酸化JAK2/STAT3复合物结合，削弱IL-23/IL-6诱导的STAT3磷酸化信号。",
+    "selectedEpitope": "优先覆盖2EL8所示PH结构域磷脂结合面邻近环区，避免破坏整体折叠并评估胞内递送可行性。",
+    "diseaseDirection": "银屑病及炎症性皮肤病",
+    "domain": "STAP2含N端PH结构域、中央SH2样结构域、C端富脯氨酸区及STAT3结合相关序列。",
+    "evidence": "STAP2炎症信号与银屑病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q9UGK3功能与亚细胞定位注释",
+      "RCSB PDB 2EL8溶液NMR结构",
+      "文献报道STAP2参与JAK-STAT及NF-κB信号复合物"
+    ],
+    "referenceEntries": "UniProt Q9UGK3；RCSB PDB 2EL8；Open Targets STAP2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PH结构域磷脂结合面邻近β链-环区",
+        "可能干预膜邻近信号复合物定位，结构信息可直接支持建模",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SH2样结构域预测磷酸酪氨酸结合沟槽",
+        "理论上可阻断与JAK2、STAT3等磷酸化信号蛋白的复合物形成",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端富脯氨酸低复杂度区域",
+        "构象柔性高且结构模板不足，免疫原设计和结合构象不确定性较大",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "STAP2缺乏天然胞外暴露面，常规抗体难以到达胞内靶点；建议限定为胞内抗体、递送抗体或研究级阻断分子设计。",
+    "structurePrepZh": "以2EL8的NMR构象集合为PH结构域模板，筛选代表构象，补建缺失侧链并单独标注低置信柔性环区。",
+    "structureRef": "RCSB PDB 2EL8，human STAP2 PH domain，solution NMR",
+    "antibodies": [
+      "无已获批STAP2治疗性抗体",
+      "无公开临床阶段STAP2抗体"
+    ],
+    "interfaceFocus": "PH结构域磷脂结合面与SH2样磷酸肽沟槽",
+    "designMode": "胞内递送抗体探索",
+    "candidates": [
+      {
+        "target": "IL23A",
+        "rationale": "IL-23是银屑病Th17轴的上游分泌细胞因子，直接驱动STAT3依赖性IL17A产生，抗原可及性和临床可验证性显著优于STAP2。"
+      },
+      {
+        "target": "IL17A",
+        "rationale": "IL-17A是银屑病角质形成细胞炎症放大的核心效应细胞因子，可由中和抗体直接阻断其与IL17RA/IL17RC受体复合物结合。"
+      },
+      {
+        "target": "IL17RA",
+        "rationale": "IL17RA为细胞表面受体亚基，介导IL-17A和IL-17F信号输入，胞外结构域适合抗体阻断并处于STAP2相关炎症网络下游。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "STK3",
+  "generatedAt": "2026-08-03T16:59:36.685Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "STK3/MST2 是 Hippo 信号轴的核心丝氨酸/苏氨酸激酶，负责与 STK4 及 SAV1、MOB1 形成上游激酶复合体并磷酸化 LATS1/2，从而限制 YAP/TAZ 核转位，在细胞增殖、器官大小与代谢稳态中处于枢纽位置。其疾病关联覆盖广泛，且与身高、HbA1c 和脂质表型等定量性状的关联提示其在生长与代谢通路中的基础性贡献，适合作为机制导向的抗体设计锚点。尽管 STK3 为胞内激酶，抗原可及性可通过稳定构象复合体的结构表位建模与递送型抗体策略提升；相较 STK4，STK3 具有更清晰的结构注释与高分辨率晶体模板，便于优先定义激酶调控界面与激活环构象。",
+    "mechanism": "优先干预 STK3 激酶结构域与调控界面，阻断其与 MOB1/SAV1 相关构象激活及对 LATS1/2 的磷酸化传递。",
+    "selectedEpitope": "激酶结构域 N-lobe 与 activation loop 近端，优先覆盖调控口袋与二级界面。",
+    "diseaseDirection": "Hippo-代谢与生长调控",
+    "domain": "N 端蛋白激酶结构域及 C 端调控尾部，重点为激酶核心折叠。",
+    "evidence": "STK3/Hippo轴结构与疾病证据包",
+    "evidenceSources": [
+      "UniProt: Q13188",
+      "RCSB PDB: 4L0N",
+      "Open Targets Platform",
+      "PubMed/Hippo pathway literature"
+    ],
+    "referenceEntries": "UniProt Q13188; RCSB 4L0N; human STK3/MST2 kinase",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域 ATP 结合邻域",
+        "适合构建功能阻断型抗体，干预底物磷酸化传递",
+        "优先"
+      ],
+      [
+        "Site B",
+        "activation loop 与其邻近调控面",
+        "有利于锁定非活化构象并削弱激酶激活",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端尾部与复合体接触区域",
+        "可用于干预复合体装配，但构象异质性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "STK3 为胞内靶点，常规裸抗体可及性受限，需优先考虑细胞内递送、intrabody 或结合构象稳定的结构表位。高保守激酶折叠带来同源选择性风险，设计应侧重非保守界面与复合体特异构象。",
+    "structurePrepZh": "以 4L0N 为核心模板完成链重建、缺失环段补模与构象比较，并结合激活态/非激活态模型筛选可分辨表位。需评估晶体对称聚集界面对真实生物学界面的干扰。",
+    "structureRef": "RCSB 4L0N, 1.4 Å X-ray structure of human STK3",
+    "antibodies": [
+      "anti-MST2/STK3 research antibodies",
+      "anti-Hippo pathway kinase antibodies"
+    ],
+    "interfaceFocus": "激酶活性位点周缘与 activation loop 界面",
+    "designMode": "structure-guided",
+    "candidates": [
+      {
+        "target": "STK4",
+        "rationale": "与 STK3 同属 Hippo 上游核心激酶，介导 LATS1/2 激活并共享疾病通路背景。作为同通路平行靶点，适合用于选择性与冗余性评估。"
+      },
+      {
+        "target": "LATS1",
+        "rationale": "LATS1 为 STK3 下游直接底物，决定 YAP/TAZ 磷酸化状态与核外滞留。将其纳入同通路候选，可用于验证上游阻断对效应层的传递效率。"
+      },
+      {
+        "target": "YAP1",
+        "rationale": "YAP1 是 Hippo 通路关键效应分子，反映 STK3 介导抑制轴的终末输出。与上游激酶配对可建立机制闭环与药效读出体系。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

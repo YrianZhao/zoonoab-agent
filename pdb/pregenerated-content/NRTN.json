@@ -1,0 +1,65 @@
+{
+  "gene": "NRTN",
+  "generatedAt": "2026-08-03T14:50:46.909Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NRTN编码neurturin，属于GDNF配体家族，可通过GFRα2招募RET并诱导RET二聚化与酪氨酸激酶磷酸化，参与神经元存活、轴突生长及肠神经系统维持等通路。NRTN为分泌型二硫键稳定同源二聚体，成熟配体完全位于胞外环境，抗原可及性优于胞内激酶或转录因子。相较RET等广泛表达且承担多配体输入的受体节点，NRTN抗体更适合在配体层面实现通路选择性拦截，并降低对GDNF、ARTN、PSPN信号的非特异性影响。",
+    "mechanism": "抗体阻断NRTN同源二聚体与GFRα2胞外结构域结合，抑制GFRα2介导的RET募集、二聚化及下游磷酸化信号。",
+    "selectedEpitope": "优先覆盖NRTN成熟GF样结构域中GFRα2结合面及二聚体外缘热点残基。",
+    "diseaseDirection": "RET-GFRα2神经营养信号相关疾病",
+    "domain": "成熟NRTN为TGF-β样半胱氨酸结GF样结构域，形成二硫键稳定同源二聚体。",
+    "evidence": "NRTN-GFRα2-RET轴结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association profile",
+      "UniProt Q99748 neurturin functional annotation",
+      "RCSB PDB 5NMZ X-ray crystal structure",
+      "GDNF family ligand-GFRα-RET signaling literature"
+    ],
+    "referenceEntries": "UniProt Q99748；RCSB PDB 5NMZ；Open Targets NRTN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "GF样结构域GFRα2结合面",
+        "直接阻断NRTN-GFRα2复合物形成，最符合中和型抗体设计目标",
+        "优先"
+      ],
+      [
+        "Site B",
+        "NRTN二聚体外缘受体接触邻近面",
+        "可通过空间位阻削弱GFRα2装配，并保留较高抗原可及性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "二聚体核心及保守半胱氨酸结区域",
+        "可能影响折叠稳定性并增加跨GDNF家族交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NRTN与GDNF家族成员存在保守半胱氨酸结结构，需避开高度保守核心面，优先筛选GFRα2选择性阻断且不识别GDNF、ARTN、PSPN的克隆。",
+    "structurePrepZh": "以5NMZ高分辨率X射线结构为模板，提取成熟NRTN二聚体链，校正二硫键、缺失侧链与晶体接触后标注GFRα2结合相关表面。",
+    "structureRef": "RCSB PDB 5NMZ；human neurturin crystal structure, 1.6 Å",
+    "antibodies": [
+      "anti-NRTN neutralizing antibody",
+      "anti-GDNF family ligand antibody"
+    ],
+    "interfaceFocus": "NRTN二聚体GFRα2结合面与外缘位阻区",
+    "designMode": "配体中和型设计",
+    "candidates": [
+      {
+        "target": "GFRA2",
+        "rationale": "GFRα2是NRTN的主要GPI锚定共受体，直接介导NRTN结合并将RET募集至信号复合物。靶向GFRA2可在受体端阻断同一NRTN-GFRα2-RET轴。"
+      },
+      {
+        "target": "RET",
+        "rationale": "RET是GDNF家族配体-GFRα复合物的跨膜酪氨酸激酶信号受体，负责下游MAPK、PI3K-AKT和PLCγ信号输出。靶向RET可实现同一通路的受体激酶层级抑制。"
+      },
+      {
+        "target": "GDNF",
+        "rationale": "GDNF同属GDNF配体家族，可通过GFRα1招募RET并激活相近的神经营养信号模块。其作为同通路配体节点可用于比较RET轴配体选择性干预策略。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

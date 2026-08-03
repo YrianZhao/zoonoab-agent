@@ -1,0 +1,65 @@
+{
+  "gene": "H4C4",
+  "generatedAt": "2026-08-03T19:36:43.090Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "H4C4编码复制依赖型组蛋白H4，主要作为核小体核心组分参与染色质装配、DNA可及性与表观遗传调控，其疾病关联更多反映感染、肿瘤和发育异常中的染色质状态改变。该蛋白位于细胞核内并与DNA及H2A-H2B、H3-H4组装成核小体，天然抗原可及性显著低于膜受体或分泌蛋白，常规治疗性抗体难以直接结合胞内核小体靶位。相较于PD-L1、HER2或EGFR等胞外可及靶点，H4C4不宜作为阻断型抗体主靶点，优先级应限定于研究级抗体、染色质检测或病理伴随诊断场景。",
+    "mechanism": "抗体设计以识别核小体中H4暴露表面或游离H4 N端尾部为目标，用于捕获H4修饰状态或核小体颗粒，而非阻断胞外受体配体相互作用。",
+    "selectedEpitope": "优先选择H4 N端尾部1-20位可修饰区，避开组蛋白折叠域与H3-H4四聚体核心界面。",
+    "diseaseDirection": "感染与肿瘤表观遗传研究",
+    "domain": "H4含N端可修饰尾部与C端histone-fold结构域，后者介导H3-H4二聚体和核小体核心装配。",
+    "evidence": "H4C4染色质装配与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProtKB P62805功能与定位注释",
+      "RCSB PDB 1ZKK核小体晶体结构",
+      "Reactome染色质组织与核小体装配通路"
+    ],
+    "referenceEntries": "UniProt P62805；RCSB PDB 1ZKK；HGNC H4C4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "H4 N端尾部1-20位乙酰化/甲基化富集区",
+        "适合构建修饰特异性或总H4检测抗体，抗原肽暴露度较高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "histone-fold α1-α2外露螺旋邻近区域",
+        "可用于识别核小体构象表面，但需评估与H3结合及DNA邻近效应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "H3-H4四聚体界面及DNA接触邻近区域",
+        "可能干扰核小体稳定性且空间遮挡明显，抗体可及性和特异性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "H4高度保守且胞内核定位显著限制治疗性抗体可及性；应采用线性肽和核小体双抗原筛选，并严格区分H4家族同源蛋白交叉反应。",
+    "structurePrepZh": "以1ZKK核小体结构提取H4链并保留DNA邻近关系，补全N端尾部柔性构象，标注赖氨酸修饰位点后进行表位可及性评估。",
+    "structureRef": "RCSB PDB 1ZKK，1.45 Å核小体X射线结构",
+    "antibodies": [
+      "anti-Histone H4 antibody",
+      "anti-Histone H4 acetyl-K16 antibody"
+    ],
+    "interfaceFocus": "H4 N端尾部与核小体外表面暴露区",
+    "designMode": "研究诊断抗体",
+    "candidates": [
+      {
+        "target": "H3C1",
+        "rationale": "H3与H4共同形成H3-H4二聚体并参与核小体核心装配，适合作为同一染色质组织通路中的伴随检测靶点。"
+      },
+      {
+        "target": "H2AC1",
+        "rationale": "H2A与H2B构成核小体另一核心二聚体，能够补充评估核小体组成和染色质状态改变。"
+      },
+      {
+        "target": "H2BC1",
+        "rationale": "H2B参与H2A-H2B二聚体形成并影响核小体稳定性，是染色质装配与表观遗传检测中的真实同通路靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

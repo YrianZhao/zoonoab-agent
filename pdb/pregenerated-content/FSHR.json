@@ -1,0 +1,65 @@
+{
+  "gene": "FSHR",
+  "generatedAt": "2026-08-03T12:37:58.364Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FSHR 是卵泡刺激素信号轴的核心 GPCR，FSH 结合其胞外富含亮氨酸重复序列结构域后诱导受体构象转换并激活 Gs-cAMP/PKA 通路，直接参与卵泡发育、颗粒细胞类固醇生成及生殖内分泌稳态。FSHR 具有较大的胞外配体结合域，抗体可在细胞外侧直接阻断 FSH-FSHR 识别或稳定特定受体构象，抗原可及性优于多数胞内生殖调控因子。相较下游酶类或转录调控因子，FSHR 位于通路入口且疾病遗传关联明确，在卵巢过度刺激综合征、不孕及性腺发育异常方向具备更高干预优先级。",
+    "mechanism": "阻断 FSH β链与 FSHR 胞外 LRR 配体结合面相互作用，抑制受体跨膜区构象激活及下游 Gs-cAMP 信号输出。",
+    "selectedEpitope": "优先覆盖 FSHR 胞外 LRR 凹面配体结合界面，避开铰链区高柔性糖基化位点。",
+    "diseaseDirection": "生殖内分泌与卵巢功能异常",
+    "domain": "FSHR 含N端胞外LRR配体结合域、铰链区、七跨膜GPCR核心及胞内尾部。",
+    "evidence": "FSHR-FSH结构与生殖疾病遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P23945 functional annotation",
+      "RCSB PDB 4AY9 X-ray structure",
+      "ClinVar/OMIM FSHR variant-disease records"
+    ],
+    "referenceEntries": "UniProt P23945；RCSB PDB 4AY9；HGNC:3969",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "胞外LRR凹面FSH结合界面",
+        "直接竞争FSH结合，适合拮抗型Fab设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "LRR C端与铰链区邻近界面",
+        "可能限制配体诱导的受体激活构象转换",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端帽区及糖基化邻近表面",
+        "可及性受糖链和构象异质性影响，需谨慎评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FSHR 与 LHCGR、TSHR 同属糖蛋白激素受体家族，LRR骨架保守性较高；设计应优先利用FSHR特异环区与FSH接触残基降低交叉反应风险。",
+    "structurePrepZh": "以4AY9中FSH-FSHR胞外复合物为模板，保留受体LRR域与配体接触链，校正缺失侧链、二硫键和糖基化位点后进行界面建模。",
+    "structureRef": "Jiang et al., Nature 2012；PDB 4AY9, 2.5 Å",
+    "antibodies": [
+      "FSHR323",
+      "FSHR25"
+    ],
+    "interfaceFocus": "FSH β链接触的FSHR LRR凹面",
+    "designMode": "配体阻断型抗体",
+    "candidates": [
+      {
+        "target": "FSHB",
+        "rationale": "FSHB 编码 FSH β亚基，是 FSHR 激活所需的配体特异性亚基；中和 FSH 可从配体侧抑制同一 FSH-FSHR 生殖内分泌轴。"
+      },
+      {
+        "target": "CGA",
+        "rationale": "CGA 编码糖蛋白激素共同α亚基，参与FSH、LH、TSH等异源二聚体激素形成；作为候选需重点控制广泛内分泌交叉抑制风险。"
+      },
+      {
+        "target": "LHCGR",
+        "rationale": "LHCGR 与 FSHR 同属糖蛋白激素受体家族，并在卵巢类固醇生成和排卵调控中与FSHR轴功能耦联；可作为同一生殖内分泌通路的比较靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

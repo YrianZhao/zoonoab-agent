@@ -1,0 +1,65 @@
+{
+  "gene": "STRIT1",
+  "generatedAt": "2026-08-03T21:21:41.071Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "STRIT1 为小型跨膜离子转运调节蛋白，Open Targets 关联以体格、生长相关性状及病毒性呼吸道疾病为主，但现有证据多为遗传关联，尚缺乏明确受体-配体轴或可验证致病通路。其跨膜蛋白属性提示部分胞外环可能具备抗原可及性，但可及表位面积有限，且7MPA为固态NMR跨膜结构，主要支持膜内构象评估。相较细胞因子受体、病毒进入因子或免疫检查点等同疾病方向靶点，STRIT1的机制可成药性与抗体阻断窗口较弱，适合作为探索性低优先级靶点。",
+    "mechanism": "候选抗体以结合STRIT1胞外短环为核心，限制其跨膜螺旋构象变化及与离子转运复合体的近膜相互作用。",
+    "selectedEpitope": "优先评估跨膜螺旋外侧连接短环及膜近端暴露残基，避免选择脂质埋藏面。",
+    "diseaseDirection": "生长代谢性状与病毒性肺炎探索",
+    "domain": "STRIT1为小型多跨膜蛋白，结构以疏水跨膜螺旋为主，胞外环较短。",
+    "evidence": "STRIT1遗传关联与跨膜结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P0DN84蛋白功能与定位注释",
+      "RCSB PDB 7MPA固态NMR结构条目",
+      "GWAS Catalog体格与代谢性状遗传关联"
+    ],
+    "referenceEntries": "UniProt:P0DN84；RCSB PDB:7MPA；Open Targets:STRIT1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "胞外短环及膜近端亲水暴露残基",
+        "最可能形成抗体可及表位，可用于验证细胞表面结合",
+        "优先"
+      ],
+      [
+        "Site B",
+        "跨膜螺旋端部的极性残基簇",
+        "可能影响螺旋装配或局部构象稳定性，适合构象锁定策略",
+        "备选"
+      ],
+      [
+        "Site C",
+        "脂质双层埋藏的疏水跨膜面",
+        "天然细胞环境中抗体难以接近，免疫原设计风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为胞外表位短小、结构分辨率有限且疾病机制缺乏直接功能证据；建议先进行细胞表面结合和功能扰动验证。",
+    "structurePrepZh": "以7MPA抗原链A为模板，标注跨膜区与膜法向，保留胞外环构象并排除脂质埋藏残基作为核心表位。",
+    "structureRef": "RCSB PDB 7MPA，human STRIT1 solid-state NMR structure",
+    "antibodies": [
+      "尚无获批STRIT1靶向抗体",
+      "尚无公开临床STRIT1靶向抗体"
+    ],
+    "interfaceFocus": "胞外短环、膜近端极性残基与跨膜螺旋端部",
+    "designMode": "探索性膜蛋白抗体设计",
+    "candidates": [
+      {
+        "target": "ACE2",
+        "rationale": "ACE2是病毒性肺炎相关冠状病毒进入通路中的细胞表面受体，胞外肽酶结构域可被抗体直接识别并阻断病毒刺突蛋白结合。"
+      },
+      {
+        "target": "TMPRSS2",
+        "rationale": "TMPRSS2参与呼吸道病毒刺突蛋白蛋白水解激活，与病毒进入过程同属宿主进入通路；其细胞表面丝氨酸蛋白酶结构域具有明确功能节点价值。"
+      },
+      {
+        "target": "IFNAR1",
+        "rationale": "IFNAR1是I型干扰素抗病毒应答通路的受体亚基，与病毒性肺炎炎症反应强度相关，胞外细胞因子结合结构域适合抗体调节。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "GRAP2",
+  "generatedAt": "2026-08-03T19:15:27.105Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GRAP2为T细胞受体近端信号适配蛋白，SH2结构域结合磷酸化SLP-76/LCP2或LAT复合体，SH3结构域招募SOS1、CBL等效应分子，参与淋巴细胞活化及血液细胞性状调控。该蛋白为胞质适配蛋白，缺乏天然胞外结构域，抗体抗原可及性显著弱于膜受体或分泌因子，需定位于细胞内递送抗体、研究级Fab/VHH或肽-MHC相关策略。相比CD3、LAT、LCP2等同轴靶点，GRAP2结构域边界清晰且5GJH提供高分辨率实验结构，但作为常规治疗性抗体靶点优先级较低，更适合作为机制验证与胞内结合体设计对象。",
+    "mechanism": "以内源性结合体阻断GRAP2 SH2结构域与磷酸化LCP2/LAT基序结合，并干扰SH3介导的SOS1或CBL招募。",
+    "selectedEpitope": "优先覆盖SH2结构域磷酸酪氨酸结合沟槽及邻近BG/EF环界面。",
+    "diseaseDirection": "免疫细胞活化与血液性状",
+    "domain": "GRAP2含N端SH3、中央SH2及C端SH3结构域，5GJH覆盖高分辨率结构域片段。",
+    "evidence": "GRAP2免疫适配蛋白结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt O75791蛋白功能注释",
+      "RCSB PDB 5GJH晶体结构",
+      "TCR-LAT-SLP76信号复合体文献"
+    ],
+    "referenceEntries": "UniProt O75791；RCSB PDB 5GJH；Open Targets GRAP2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SH2结构域磷酸酪氨酸结合沟槽",
+        "直接阻断GRAP2识别LCP2/LAT磷酸化基序，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SH2结构域BG环与EF环邻近面",
+        "可变构影响底物肽定位，并降低对保守核心口袋的亲和选择压力",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SH3结构域多脯氨酸配体结合面",
+        "可能干扰SOS1/CBL招募，但SH3家族保守性较高，交叉反应风险需控制",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GRAP2为胞质蛋白，常规抗体难以到达抗原位点；SH2/SH3家族保守口袋存在选择性风险，宜采用结构约束筛选并验证细胞内递送可行性。",
+    "structurePrepZh": "以5GJH实验晶体结构为模板，保留抗原链A-D中解析完整片段，补充缺失侧链、质子化磷酸肽结合位点并评估晶体接触界面。",
+    "structureRef": "RCSB PDB 5GJH，X-ray diffraction，1.2 Å",
+    "antibodies": [
+      "研究级anti-GRAP2抗体",
+      "细胞内VHH/intrabody候选格式"
+    ],
+    "interfaceFocus": "SH2磷酸肽结合沟槽与SH3配体面",
+    "designMode": "胞内结合体设计",
+    "candidates": [
+      {
+        "target": "LCP2",
+        "rationale": "LCP2/SLP-76是TCR近端信号支架蛋白，含磷酸化基序并与GRAP2 SH2结构域形成信号复合体，是同一LAT信号轴中的直接功能伙伴。"
+      },
+      {
+        "target": "LAT",
+        "rationale": "LAT为TCR激活后被ZAP70磷酸化的膜近端适配蛋白，负责组织GRB2/GRAP2相关信号复合体，抗原可及性优于胞质适配蛋白但需考虑膜内侧定位。"
+      },
+      {
+        "target": "ZAP70",
+        "rationale": "ZAP70位于TCR信号上游，磷酸化LAT和SLP-76以启动GRAP2参与的复合体装配，适合作为同通路机制参照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

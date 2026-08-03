@@ -1,0 +1,65 @@
+{
+  "gene": "CREB1",
+  "generatedAt": "2026-08-03T11:38:26.177Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CREB1是cAMP/PKA、CaMK和MAPK-RSK通路下游的核内转录因子，通过磷酸化Ser133后招募CBP/EP300，驱动含CRE序列基因的转录，在神经可塑性、应激反应、炎症感染应答及血压相关内分泌调控中具有明确机制关联。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌特征，作为常规抗体药物靶点的抗原可及性显著受限。相较于同通路的膜受体、分泌因子或细胞外配体，CREB1更适合作为结构生物学验证和细胞内递送抗体片段研究对象，优先级应低于可直接外源抗体结合的ADRB2、GPCR或细胞因子轴靶点。",
+    "mechanism": "设计抗体片段阻断CREB1 bZIP结构域二聚化或CRE DNA结合界面，抑制CREB1与CRE元件形成转录复合物。",
+    "selectedEpitope": "优先聚焦bZIP碱性区-DNA接触面及亮氨酸拉链二聚化界面。",
+    "diseaseDirection": "神经退行性与感染炎症转录调控",
+    "domain": "CREB1含KID激酶诱导结构域和C端bZIP DNA结合/二聚化结构域。",
+    "evidence": "CREB1通路遗传关联与bZIP结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P16220功能与结构域注释",
+      "RCSB PDB 5ZK1晶体结构",
+      "Reactome cAMP/PKA-CREB转录调控通路"
+    ],
+    "referenceEntries": "UniProt P16220；RCSB PDB 5ZK1；Ensembl ENSG00000118260",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端bZIP碱性区与CRE DNA主沟接触面",
+        "直接干预CREB1识别CRE序列，机制清晰但需细胞内递送",
+        "优先"
+      ],
+      [
+        "Site B",
+        "亮氨酸拉链二聚化界面",
+        "阻断CREB1同源或异源二聚体形成，降低DNA结合复合物稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "KID结构域Ser133邻近CBP KIX结合区域",
+        "可影响磷酸化CREB1招募CBP/EP300，但构象柔性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CREB1为核内转录因子，外源抗体难以到达天然作用位点；建议限定为细胞内抗体、递送型VHH或结构探针开发。",
+    "structurePrepZh": "以PDB 5ZK1解析bZIP复合体界面，保留抗原链A/B/C中完整bZIP片段，校正缺失侧链并评估DNA接触残基。",
+    "structureRef": "RCSB PDB 5ZK1，X-ray diffraction，3.05 Å",
+    "antibodies": [
+      "CREB phospho-Ser133 monoclonal antibody",
+      "CREB-1 monoclonal antibody clone 48H2"
+    ],
+    "interfaceFocus": "bZIP-DNA主沟接触面与亮氨酸拉链界面",
+    "designMode": "细胞内VHH设计",
+    "candidates": [
+      {
+        "target": "CREBBP",
+        "rationale": "CREBBP编码CBP共激活因子，其KIX结构域直接结合磷酸化CREB1 KID区，是CREB依赖转录激活的核心复合体成员。"
+      },
+      {
+        "target": "EP300",
+        "rationale": "EP300与CREBBP功能相近，可被磷酸化CREB1招募并通过组蛋白乙酰转移酶活性促进CRE靶基因转录。"
+      },
+      {
+        "target": "PRKACA",
+        "rationale": "PRKACA编码PKA催化亚基，可在cAMP信号后磷酸化CREB1 Ser133，是CREB1转录激活的上游关键激酶。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

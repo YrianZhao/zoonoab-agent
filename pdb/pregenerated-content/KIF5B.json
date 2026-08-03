@@ -1,0 +1,65 @@
+{
+  "gene": "KIF5B",
+  "generatedAt": "2026-08-03T13:43:16.659Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KIF5B 是胞内微管马达蛋白，其与 NSCLC 的主要关联来自 KIF5B-RET 融合，融合后由 KIF5B 卷曲螺旋介导 RET 激酶构成性二聚化并激活 MAPK、PI3K-AKT 与 JAK-STAT 信号。该蛋白本体缺乏天然胞外结构域或分泌形式，完整抗体对胞内 KIF5B 的抗原可及性受限，仅适合作为融合断点、肿瘤抗原呈递肽或细胞内结合模块的研究靶点。相较 RET、EGFR、MET 等同通路膜受体靶点，KIF5B 的抗体成药优先级较低；其优先价值在于作为 KIF5B-RET 融合分型与机制阻断设计的结构参照。",
+    "mechanism": "设计重点为识别 KIF5B-RET 融合相关 KIF5B 片段，干扰 KIF5B 卷曲螺旋介导的 RET 二聚化近邻效应，从而降低 RET 激酶自磷酸化。",
+    "selectedEpitope": "优先评估 KIF5B N 端马达结构域与颈部连接区外露面；融合阻断更应聚焦卷曲螺旋二聚化界面。",
+    "diseaseDirection": "RET融合阳性非小细胞肺癌",
+    "domain": "KIF5B 含 N 端 kinesin 马达结构域、颈部接头、长卷曲螺旋杆部及 C 端货物结合尾部。",
+    "evidence": "KIF5B-RET融合驱动肺癌证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProtKB P33176 蛋白功能与结构域注释",
+      "RCSB PDB 1BG2 晶体结构记录",
+      "NSCLC中KIF5B-RET融合临床与功能研究文献"
+    ],
+    "referenceEntries": "UniProtKB:P33176；RCSB PDB:1BG2；Open Targets:KIF5B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "KIF5B马达结构域ATP结合口袋邻近外露环区",
+        "结构分辨率高，适合建立结合基准与构象选择模型",
+        "优先"
+      ],
+      [
+        "Site B",
+        "颈部接头至卷曲螺旋起始区",
+        "贴近马达-二聚化功能耦联区域，可评估融合构象干预",
+        "备选"
+      ],
+      [
+        "Site C",
+        "卷曲螺旋杆部疏水二聚化界面",
+        "与RET融合致癌机制相关，但天然界面埋藏且抗体可及性低",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "KIF5B为胞内蛋白，常规抗体难以接触天然抗原；应避免将其作为经典胞外阻断靶点，优先采用融合特异诊断抗体、TCR样抗体或细胞内递送格式。",
+    "structurePrepZh": "以PDB 1BG2链A为马达结构域模板，补全缺失环区并校验核苷酸结合状态；卷曲螺旋与融合断点需采用AlphaFold或同源建模补充。",
+    "structureRef": "RCSB PDB 1BG2，human kinesin motor domain，1.8 Å",
+    "antibodies": [
+      "KIF5B-RET融合检测用抗KIF5B研究抗体",
+      "抗RET临床同类抗体研究分子"
+    ],
+    "interfaceFocus": "KIF5B卷曲螺旋二聚化界面与RET近膜激酶邻近区",
+    "designMode": "融合抗原约束设计",
+    "candidates": [
+      {
+        "target": "RET",
+        "rationale": "RET 是 KIF5B-RET 融合中的受体酪氨酸激酶效应端，构成性二聚化后直接驱动 MAPK 与 PI3K-AKT 信号，且其胞外结构域具备更明确的抗体可及性。"
+      },
+      {
+        "target": "EGFR",
+        "rationale": "EGFR 是 NSCLC 中同属受体酪氨酸激酶致癌网络的核心膜受体，可通过配体结合与受体二聚化激活 MAPK/PI3K 通路，具备成熟胞外阻断表位。"
+      },
+      {
+        "target": "MET",
+        "rationale": "MET 是 NSCLC 中与旁路耐药和RTK信号重编程相关的膜受体，HGF-MET 相互作用可激活与 RET 融合重叠的下游生存通路，适合作为同通路组合设计候选。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "MARCKS",
+  "generatedAt": "2026-08-03T14:04:17.097Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MARCKS 是PKC底物及肌动蛋白调控蛋白，其磷酸化与钙调蛋白结合状态影响PIP2可用性、肌动蛋白重塑和髓系细胞迁移，并与神经退行性疾病及单核细胞相关表型存在遗传关联。该蛋白主要为胞内、膜内侧结合蛋白，缺乏典型胞外结构域，因此常规循环抗体的抗原可及性不足，需限定于细胞内递送、研究级阻断抗体或胞内抗体策略。相较分泌因子或跨膜受体靶点，MARCKS的治疗抗体优先级受限；但其效应结构域具有明确的钙调蛋白、肌动蛋白和酸性磷脂结合功能，适合作为机制验证型抗体设计对象。",
+    "mechanism": "抗体结合MARCKS效应结构域，阻断其与钙调蛋白及PIP2富集膜面的结合，干预PKC磷酸化依赖的肌动蛋白重排过程。",
+    "selectedEpitope": "优先覆盖效应结构域PSD内钙调蛋白/PIP2结合碱性片段，避开肉豆蔻酰化N端柔性区。",
+    "diseaseDirection": "神经退行性疾病与髓系细胞表型",
+    "domain": "MARCKS含N端肉豆蔻酰化位点、MH2区域及富赖氨酸效应结构域PSD，整体高度无序。",
+    "evidence": "MARCKS神经炎症与单核细胞迁移证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P29966功能注释",
+      "RCSB PDB 1IWQ实验结构记录",
+      "PKC-MARCKS-PIP2/钙调蛋白相互作用文献"
+    ],
+    "referenceEntries": "UniProt P29966；RCSB PDB 1IWQ；Open Targets MARCKS",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PSD富碱性效应结构域及钙调蛋白结合片段",
+        "直接竞争钙调蛋白和酸性磷脂结合，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "MH2保守区域邻近构象片段",
+        "可用于识别MARCKS特异性线性/局部构象表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端肉豆蔻酰化膜锚定邻近区域",
+        "柔性高且翻译后修饰依赖，构象稳定性和可及性受限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MARCKS缺乏胞外暴露结构，常规治疗抗体难以接触内源性靶点；建议定位于胞内抗体、递送型Fab/VHH或机制验证试剂开发。",
+    "structurePrepZh": "以1IWQ实验结构作为局部模板，补充AlphaFold无序区置信度评估；对PSD肽段进行构象集合建模并标注磷酸化位点。",
+    "structureRef": "RCSB PDB 1IWQ，X-ray diffraction，2.0 Å",
+    "antibodies": [
+      "抗MARCKS研究抗体",
+      "抗磷酸化MARCKS研究抗体"
+    ],
+    "interfaceFocus": "PSD-钙调蛋白/PIP2结合界面",
+    "designMode": "胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "PRKCA",
+        "rationale": "PRKCA编码PKCα，可直接磷酸化MARCKS效应结构域并促使其从膜面释放，是同一PKC-MARCKS轴的上游酶节点。"
+      },
+      {
+        "target": "CALM1",
+        "rationale": "CALM1编码钙调蛋白，可与MARCKS效应结构域结合并参与调节其膜结合和肌动蛋白调控功能。"
+      },
+      {
+        "target": "PLCG1",
+        "rationale": "PLCG1水解PIP2生成IP3和DAG，DAG可激活PKC并影响MARCKS磷酸化背景，属于同一PIP2-PKC-MARCKS信号网络。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

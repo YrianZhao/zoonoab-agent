@@ -1,0 +1,65 @@
+{
+  "gene": "MCTS1",
+  "generatedAt": "2026-08-03T14:08:38.499Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MCTS1参与DENR-MCTS1依赖的翻译再起始与核糖体释放过程，可影响应激和肿瘤相关mRNA的翻译效率；其在乳腺癌等肿瘤关联数据中具有可检索证据，但疾病关联强度中等。该蛋白主要为胞内翻译调控因子，缺乏天然分泌或膜外结构域，抗原可及性不利于常规体内抗体阻断。相较EGFR、ERBB2等细胞表面肿瘤靶点，MCTS1更适合作为结构生物学和胞内抗体研究靶点，优先级应限定于细胞内递送或研究级干预场景。",
+    "mechanism": "通过结合MCTS1 PUA样结构域，干扰其与DENR及40S核糖体再起始复合物的装配，降低DENR-MCTS1介导的翻译再起始效率。",
+    "selectedEpitope": "优先覆盖PUA样结构域中DENR/核糖体结合邻近面，避开高度保守疏水核心。",
+    "diseaseDirection": "肿瘤翻译调控与乳腺癌",
+    "domain": "MCTS1为小型胞内蛋白，含PUA样RNA/核糖体相关折叠结构域。",
+    "evidence": "MCTS1翻译再起始与肿瘤关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9ULC4功能注释",
+      "RCSB PDB 3R90晶体结构",
+      "DENR-MCTS1翻译再起始研究文献"
+    ],
+    "referenceEntries": "UniProt Q9ULC4；RCSB PDB 3R90；Open Targets MCTS1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PUA样结构域DENR/40S核糖体装配邻近面",
+        "可能阻断DENR-MCTS1再起始复合物形成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PUA样结构域外周带正电表面",
+        "可用于干扰RNA或核糖体邻近接触并提高结合特异性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PUA样结构域疏水核心及晶体接触面",
+        "易影响蛋白折叠稳定性且不一定对应功能界面",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MCTS1为胞内非分泌蛋白，常规抗体体内可及性不足；建议限定为intrabody、细胞递送抗体或结构验证用途，并进行细胞摄取与脱靶评估。",
+    "structurePrepZh": "以3R90高分辨率晶体结构为模板，筛选单体功能构象，去除晶体堆积冗余链，补全缺失侧链并标注保守界面残基。",
+    "structureRef": "RCSB PDB 3R90，X射线晶体结构，1.7 Å",
+    "antibodies": [
+      "MCTS1研究级多克隆抗体",
+      "MCTS1研究级单克隆抗体"
+    ],
+    "interfaceFocus": "DENR结合邻近面与40S核糖体装配表面",
+    "designMode": "胞内抗体干预",
+    "candidates": [
+      {
+        "target": "DENR",
+        "rationale": "DENR与MCTS1形成翻译再起始因子复合物，直接参与再起始复合物装配；靶向DENR可从同一分子轴抑制MCTS1依赖功能。"
+      },
+      {
+        "target": "EIF2D",
+        "rationale": "EIF2D属于相关的翻译起始/再起始与核糖体回收调控因子，功能上与DENR-MCTS1轴存在通路邻近性，可作为翻译再起始调控候选靶点。"
+      },
+      {
+        "target": "EIF3D",
+        "rationale": "EIF3D参与eIF3复合体介导的翻译起始调控，在肿瘤翻译程序中具有通路相关性；与MCTS1同属蛋白翻译调控网络。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "PSEN1",
+  "generatedAt": "2026-08-03T15:38:18.763Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PSEN1 是γ-分泌酶复合体的催化核心亚基，APP 经β分泌酶切割后由该复合体进一步产生Aβ肽，家族性早发阿尔茨海默病突变可改变Aβ42/Aβ40比例并促进淀粉样沉积。PSEN1 为多跨膜蛋白，抗原可及性主要受限于胞外环和复合体外露面，但8KCS冷冻电镜结构支持对膜外环构象进行精确界面评估。相较于完全胞内酶或广谱分泌酶调控因子，PSEN1具有明确遗传因果证据和高疾病关联评分，适合作为结构约束型抗体探索靶点，但需优先降低对Notch底物加工的非选择性干扰。",
+    "mechanism": "抗体拟结合PSEN1胞外环或近膜外露界面，变构限制γ-分泌酶对APP C99底物的定位或切割构象，从而降低致病性Aβ42生成倾向。",
+    "selectedEpitope": "优先聚焦TM6-TM7间大型胞外环及邻近复合体外露面，避开催化天冬氨酸所在跨膜核心。",
+    "diseaseDirection": "阿尔茨海默病与早发性痴呆",
+    "domain": "PSEN1含九个跨膜螺旋、胞内大环、N端片段与C端片段，催化残基位于TM6和TM7。",
+    "evidence": "PSEN1-γ分泌酶结构与阿尔茨海默病遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P49768 presenilin-1 annotation",
+      "RCSB PDB 8KCS cryo-EM structure",
+      "OMIM familial Alzheimer disease PSEN1 evidence"
+    ],
+    "referenceEntries": "UniProt P49768；RCSB PDB 8KCS；Open Targets PSEN1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "TM6-TM7间胞外环及近膜外露构象",
+        "可能变构影响APP C99进入催化腔并保留催化核心完整性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端外露片段与TM1邻近表面",
+        "可作为构象稳定或复合体装配状态识别表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "TM6/TM7催化天冬氨酸邻近跨膜核心",
+        "直接干预催化中心风险高且抗体可及性有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PSEN1多数功能界面位于膜内或复合体内部，常规IgG可及性受限。设计宜采用构象选择型Fab或VHH，并系统评估Notch切割抑制风险。",
+    "structurePrepZh": "以8KCS冷冻电镜模型为模板，保留γ-分泌酶复合体环境、膜平面注释和糖脂邻近约束，对胞外环缺失或低置信片段进行同源补全与构象筛选。",
+    "structureRef": "RCSB PDB 8KCS，human γ-secretase cryo-EM，2.4 Å",
+    "antibodies": [
+      "Aducanumab",
+      "Lecanemab"
+    ],
+    "interfaceFocus": "TM6-TM7胞外环与APP C99进入口邻近面",
+    "designMode": "膜蛋白构象抗体设计",
+    "candidates": [
+      {
+        "target": "APP",
+        "rationale": "APP是Aβ生成通路的直接底物，其C99片段由γ-分泌酶切割产生Aβ。靶向APP或Aβ相关表位可直接减少淀粉样级联负荷。"
+      },
+      {
+        "target": "BACE1",
+        "rationale": "BACE1介导APP β位点初始切割并生成C99底物，是Aβ生成上游限速环节。抑制BACE1可降低后续PSEN1/γ-分泌酶底物供给。"
+      },
+      {
+        "target": "NCSTN",
+        "rationale": "NCSTN是γ-分泌酶复合体底物识别亚基，其胞外结构域参与底物N端识别。相较PSEN1跨膜核心，NCSTN胞外域更适合抗体可及性设计。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

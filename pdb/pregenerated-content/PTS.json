@@ -1,0 +1,65 @@
+{
+  "gene": "PTS",
+  "generatedAt": "2026-08-03T15:45:26.534Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PTS编码6-pyruvoyltetrahydropterin synthase，是四氢生物蝶呤合成通路的胞质酶，催化H2NTP生成6-pyruvoyltetrahydropterin，功能缺陷导致BH4不足并继发苯丙氨酸羟化障碍及单胺神经递质合成受损。该蛋白并非经典分泌蛋白或膜受体，天然抗原可及性低，因此更适合作为细胞内酶机制研究、诊断性结合分子或递送型抗体片段设计对象。相较PAH等下游代谢酶，PTS位于BH4从头合成的核心限速节点，且Open Targets中BH4缺乏性高苯丙氨酸血症关联强度最高，具备明确遗传病因优先级。",
+    "mechanism": "设计结合分子优先识别PTS六聚体活性口袋邻近界面，阻断H2NTP底物进入或干扰三聚体-三聚体装配，从而抑制6-pyruvoyltetrahydropterin生成。",
+    "selectedEpitope": "优先选择3I2B六聚体中活性口袋周缘及三聚体界面外露环区，避开高度保守金属/底物结合残基。",
+    "diseaseDirection": "BH4缺乏性高苯丙氨酸血症",
+    "domain": "PTS为约145 aa胞质酶，采用PTPS催化折叠并形成同源六聚体，活性位点位于亚基界面。",
+    "evidence": "PTS-BH4合成缺陷遗传病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q03393功能与亚细胞定位注释",
+      "RCSB PDB 3I2B晶体结构记录",
+      "OMIM/Orphanet中PTPS缺乏症临床遗传证据"
+    ],
+    "referenceEntries": "UniProt Q03393；RCSB PDB 3I2B；Orphanet:13；MONDO:0009863",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "六聚体活性口袋周缘外露环区",
+        "可用于构建抑制底物通道或稳定构象的功能性结合分子",
+        "优先"
+      ],
+      [
+        "Site B",
+        "三聚体-三聚体装配界面邻近区域",
+        "有望影响PTS寡聚体稳定性并改变催化装配状态",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守催化核心及金属结合邻近残基",
+        "易产生交叉反应或破坏构象判读，需限制为结构探针用途",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PTS为胞质小型同源六聚体，常规抗体难以到达天然抗原位置；设计应优先采用细胞内递送、VHH或诊断捕获策略，并控制对保守催化核心的非特异结合。",
+    "structurePrepZh": "以3I2B晶体结构为模板，保留生物学六聚体装配，校验A-F等链间界面一致性，补全缺失侧链并标注底物口袋与催化残基邻域。",
+    "structureRef": "RCSB PDB 3I2B，human PTPS X-ray structure，2.3 Å",
+    "antibodies": [
+      "无获批治疗性抗PTS抗体",
+      "研究级抗PTS多克隆/单克隆抗体"
+    ],
+    "interfaceFocus": "活性口袋入口与三聚体装配界面",
+    "designMode": "胞内酶表位探针",
+    "candidates": [
+      {
+        "target": "GCH1",
+        "rationale": "GCH1编码GTP cyclohydrolase I，是BH4从头合成第一步酶，功能缺陷可导致BH4不足及多巴胺相关运动障碍。其位于PTS上游，适合作为同通路遗传病分层参照靶点。"
+      },
+      {
+        "target": "QDPR",
+        "rationale": "QDPR编码二氢蝶啶还原酶，负责BH4再生循环，缺陷同样导致高苯丙氨酸血症和神经递质合成异常。该靶点与PTS共同决定BH4稳态。"
+      },
+      {
+        "target": "PAH",
+        "rationale": "PAH编码苯丙氨酸羟化酶，BH4是其必需辅因子，PTS缺陷引起的BH4不足会降低PAH催化苯丙氨酸代谢能力。该靶点代表同一代谢轴的下游效应节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "DDX41",
+  "generatedAt": "2026-08-03T11:53:49.084Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DDX41 是胞内 DEAD-box RNA 解旋酶和 DNA/RNA 先天免疫感知因子，胚系或体细胞变异与髓系肿瘤易感、急性髓系白血病和骨髓增生异常综合征密切相关。其致病机制主要涉及 ATP 依赖性核酸结合、剪接调控及 cGAS-STING 相关免疫信号异常。DDX41 缺乏常规胞外结构域，完整蛋白作为体内抗体药物靶点的抗原可及性较弱，但其高分辨率结构适合开展细胞内功能阻断型 Fab/VHH 研究工具设计。相比泛髓系增殖标志物，DDX41 具有遗传易感证据和明确结构域信息，优先级更适合机制验证与精准分层研究。",
+    "mechanism": "设计抗体阻断 DDX41 DEAD-box 核心结构域对 ATP 与核酸底物的协同结合，干扰 DDX41 介导的核酸感知和剪接相关复合体装配。",
+    "selectedEpitope": "优先覆盖 RecA-like helicase core 的 ATP/核酸结合沟槽邻近面，避免完全占据保守 P-loop 催化残基。",
+    "diseaseDirection": "髓系肿瘤易感与AML/MDS",
+    "domain": "DDX41 含 N 端低复杂度区、DEAD-box helicase ATPase 核心及 C 端 helicase C 结构域。",
+    "evidence": "DDX41 髓系肿瘤遗传易感与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q9UJV9 功能与结构域注释",
+      "RCSB PDB 5GVR X-ray 晶体结构",
+      "ClinVar/OMIM DDX41 相关髓系肿瘤易感记录"
+    ],
+    "referenceEntries": "UniProt Q9UJV9；RCSB PDB 5GVR；MONDO_0014809",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RecA-like helicase core 的 ATP/核酸结合沟槽外缘",
+        "可干扰底物装配并保留结构稳定性，适合功能阻断筛选",
+        "优先"
+      ],
+      [
+        "Site B",
+        "helicase C 结构域与核心结构域相邻界面",
+        "可能影响构象闭合与解旋酶循环，适合变构型抗体设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守 Walker A/P-loop 催化位点周边",
+        "序列保守性高且可能产生交叉反应，应降低直接覆盖比例",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DDX41 为胞内蛋白，常规治疗性抗体递送与抗原可及性受限；建议定位为结构生物学探针、胞内抗体或递送增强型 VHH 设计。",
+    "structurePrepZh": "以 5GVR 链 A 为结构模板，补全缺失环区并校验 ATPase 核心构象；表位建模需标注保守催化基序与核酸结合面。",
+    "structureRef": "RCSB PDB 5GVR，X-ray diffraction，1.5 Å",
+    "antibodies": [
+      "暂无获批 DDX41 靶向抗体",
+      "研究级 anti-DDX41 monoclonal antibody"
+    ],
+    "interfaceFocus": "ATP/核酸结合沟槽与helicase核心界面",
+    "designMode": "胞内功能阻断",
+    "candidates": [
+      {
+        "target": "STING1",
+        "rationale": "STING1 位于 DDX41 介导的胞质 DNA 感知下游，参与 TBK1-IRF3 轴激活；其膜定位与小分子/抗体调节策略更成熟。"
+      },
+      {
+        "target": "TBK1",
+        "rationale": "TBK1 是 STING 通路下游关键激酶，连接 DNA 感知与 IRF3 磷酸化；在 DDX41 相关先天免疫异常研究中具有机制互补价值。"
+      },
+      {
+        "target": "IRF3",
+        "rationale": "IRF3 是 cGAS-STING/DDX41 核酸感知通路的转录因子效应节点，可反映 I 型干扰素输出并用于通路活性分层。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "SMAP2",
+  "generatedAt": "2026-08-03T16:43:25.299Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SMAP2编码small ArfGAP2，主要作为ARF小GTP酶的GTP酶激活蛋白参与囊泡出芽、膜运输与血小板颗粒相关细胞内转运过程，其遗传关联信号集中于血小板体积、血小板计数和血小板成分分布宽度等血液学表型。该蛋白为胞质侧调控因子，缺乏天然分泌形式或稳定胞外结构域，因此抗原可及性不具备常规体内阻断抗体优势，更适合作为结构生物学、细胞内递送抗体或研究级结合分子设计对象。相较于直接靶向血小板表面受体，SMAP2的优先级依据在于其具备1.9 Å实验结构和明确ArfGAP催化结构域，可支持高分辨率界面设计，但转化开发优先级应低于可胞外阻断的GP1BA、ITGA2B或GP6等同通路靶点。",
+    "mechanism": "设计结合分子占据SMAP2 ArfGAP结构域的ARF小GTP酶结合面，阻断其促进ARF-GTP水解的催化复合物形成。",
+    "selectedEpitope": "优先覆盖ArfGAP结构域中锌指催化核心邻近的ARF结合沟槽，避免破坏整体折叠锌配位位点。",
+    "diseaseDirection": "血小板数量与体积相关表型",
+    "domain": "SMAP2含N端ArfGAP锌指催化结构域，负责识别ARF-GTP并促进GTP水解。",
+    "evidence": "SMAP2血小板表型遗传关联与ArfGAP结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform遗传关联数据",
+      "UniProt Q8WU79功能注释",
+      "RCSB PDB 2IQJ晶体结构",
+      "Gene Ontology囊泡介导运输与ArfGAP注释"
+    ],
+    "referenceEntries": "UniProt Q8WU79；RCSB PDB 2IQJ；Open Targets SMAP2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ArfGAP催化核心邻近ARF结合沟槽",
+        "可直接干预SMAP2与ARF-GTP催化复合物形成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ArfGAP结构域非催化外侧螺旋-环区",
+        "利于获得构象识别抗体并降低锌指催化核心扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "锌指催化残基及金属配位邻域",
+        "可能影响蛋白稳定性并产生非特异性金属依赖界面",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SMAP2为胞内蛋白，常规抗体体内可及性不足；设计应定位于体外机制研究、细胞内递送格式或结构探针，并严格评估ARFGAP家族同源交叉反应。",
+    "structurePrepZh": "以PDB 2IQJ的A、B链为结构模板，保留ArfGAP结构域主链构象，校验锌配位几何、缺失环区和晶体接触界面后开展表位建模。",
+    "structureRef": "RCSB PDB 2IQJ，human SMAP2 ArfGAP domain，1.9 Å",
+    "antibodies": [
+      "暂无已批准SMAP2治疗性抗体",
+      "研究级抗SMAP2抗体"
+    ],
+    "interfaceFocus": "ARF结合沟槽与锌指催化核心邻域",
+    "designMode": "胞内靶点结构探针",
+    "candidates": [
+      {
+        "target": "GP1BA",
+        "rationale": "GP1BA编码血小板糖蛋白Ibα，是GPIb-IX-V复合体的胞外配体结合亚基，直接参与血小板黏附并与血小板计数和体积表型相关。其膜外结构域较SMAP2更适合阻断型抗体设计。"
+      },
+      {
+        "target": "ITGA2B",
+        "rationale": "ITGA2B编码血小板整合素αIIb，与ITGB3形成αIIbβ3复合体介导纤维蛋白原结合和血小板聚集。该受体位于细胞表面，具备明确抗体可及性和血小板功能调控依据。"
+      },
+      {
+        "target": "GP6",
+        "rationale": "GP6编码血小板胶原受体GPVI，位于血小板表面并启动胶原依赖性活化信号。其胞外免疫球蛋白样结构域提供清晰抗体表位，适合作为血小板疾病方向的优先替代靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

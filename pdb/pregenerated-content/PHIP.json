@@ -1,0 +1,65 @@
+{
+  "gene": "PHIP",
+  "generatedAt": "2026-08-03T15:15:37.851Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PHIP 编码 CUL4-RING E3 泛素连接酶复合体相关亚基，其功能缺陷与发育迟缓、智力障碍、肥胖及面容异常综合征存在明确遗传关联，疾病机制主要涉及染色质相关调控和蛋白稳态异常。该蛋白主要定位于细胞核和胞内复合体环境，缺乏天然胞外结构域，抗原可及性不适合常规体内阻断型抗体，但可作为胞内研究抗体、递送型抗体片段或结构域识别工具的设计对象。相较于泛泛选择下游表型关联分子，PHIP 具有较高 Open Targets 遗传证据权重及高分辨率实验结构支撑，适合优先开展结构域特异性结合分子设计。",
+    "mechanism": "设计分子应识别 PHIP C 端溴结构域乙酰赖氨酸结合口袋邻近界面，竞争性阻断其与乙酰化组蛋白尾部的结合。",
+    "selectedEpitope": "优先覆盖第二溴结构域 ZA/BC 环及乙酰赖氨酸口袋边缘，避免深入口袋造成非特异疏水结合。",
+    "diseaseDirection": "神经发育障碍与遗传性肥胖",
+    "domain": "PHIP 含胞内核蛋白功能区，5RJJ 对应 C 端溴结构域，具有保守乙酰赖氨酸识别口袋。",
+    "evidence": "PHIP 遗传关联与溴结构域结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform PHIP-disease associations",
+      "UniProt Q8WWQ0 PHIP functional annotation",
+      "RCSB PDB 5RJJ X-ray bromodomain structure",
+      "OMIM/ClinGen PHIP-related neurodevelopmental syndrome records"
+    ],
+    "referenceEntries": "UniProt Q8WWQ0；RCSB PDB 5RJJ；Open Targets PHIP",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "溴结构域 ZA/BC 环与乙酰赖氨酸口袋边缘",
+        "可干预乙酰化组蛋白尾部识别并保留结构选择性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "溴结构域外侧 α 螺旋暴露面",
+        "适合构建结构域特异性检测抗体，功能阻断预期较弱",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守疏水口袋深部",
+        "与其他人源溴结构域同源性较高，存在交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PHIP 为胞内核蛋白，常规抗体药物可及性受限；功能阻断设计需关注溴结构域家族保守口袋导致的交叉识别风险。",
+    "structurePrepZh": "采用 5RJJ A 链作为抗原模板，补全缺失侧链并保留溴结构域口袋构象，去除结晶缓冲分子后评估 ZA/BC 环柔性。",
+    "structureRef": "RCSB PDB 5RJJ，PHIP 溴结构域晶体结构，1.151 Å",
+    "antibodies": [
+      "commercial anti-PHIP antibody",
+      "commercial anti-DCAF14/PHIP antibody"
+    ],
+    "interfaceFocus": "ZA/BC 环及乙酰赖氨酸识别口袋边缘",
+    "designMode": "胞内结构域识别",
+    "candidates": [
+      {
+        "target": "DDB1",
+        "rationale": "DDB1 是 CUL4-RING E3 泛素连接酶复合体核心衔接蛋白，与底物受体模块共同决定复合体装配，适合作为同一蛋白稳态通路的参照靶点。"
+      },
+      {
+        "target": "CUL4A",
+        "rationale": "CUL4A 构成 CUL4-RING E3 连接酶催化骨架，与 DDB1 及底物受体形成泛素化复合体，可用于评估 PHIP 相关复合体功能轴。"
+      },
+      {
+        "target": "RBX1",
+        "rationale": "RBX1 是 CUL4-RING 连接酶的 RING 组分，负责招募 E2 泛素结合酶，位于同一泛素转移机制的近端催化节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

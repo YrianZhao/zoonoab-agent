@@ -1,0 +1,65 @@
+{
+  "gene": "DERL1",
+  "generatedAt": "2026-08-03T11:55:25.482Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DERL1 是内质网相关降解通路的多跨膜组分，参与识别并转运错误折叠蛋白至胞质侧降解，在囊性纤维化中与 CFTR 折叠质量控制和降解负荷相关。该蛋白定位于内质网膜，主体为多跨膜螺旋束，常规细胞外抗原可及性低，抗体设计更适合采用透膜递送、细胞内抗体或结构机制验证场景。相较于泛 ERAD 因子，DERL1 具有已解析人源结构和明确膜内通道样界面，可优先用于机制型抗体片段设计，但成药可及性风险高于分泌蛋白或质膜受体。",
+    "mechanism": "抗体片段拟阻断 DERL1 跨膜螺旋束与 ERAD 底物转运复合体的装配界面，干预错误折叠 CFTR 从内质网膜向胞质侧逆向转运。",
+    "selectedEpitope": "优先锁定跨膜螺旋束腔面及保守侧向开口界面，避免完全埋入脂质双层的疏水面。",
+    "diseaseDirection": "囊性纤维化与ERAD质量控制",
+    "domain": "DERL1 为内质网多跨膜 derlin 结构域蛋白，含六个主要跨膜螺旋及腔面/胞质侧短环。",
+    "evidence": "DERL1结构与ERAD-CFTR疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q9BUN8 蛋白定位与功能注释",
+      "RCSB PDB 5GLF 人源 DERL1 晶体结构",
+      "ERAD 通路中 CFTR 折叠质量控制研究文献"
+    ],
+    "referenceEntries": "UniProt Q9BUN8；RCSB PDB 5GLF；Open Targets DERL1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "跨膜螺旋束腔面/侧向开口界面",
+        "可能影响底物进入或转运通道构象，适合机制阻断型片段设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "胞质侧短环及复合体装配邻近面",
+        "可能干预与 ERAD 伴侣或泛素化转运复合体的空间耦联",
+        "备选"
+      ],
+      [
+        "Site C",
+        "脂质双层内疏水跨膜外表面",
+        "抗原制备和抗体结合可及性受限，存在非特异膜相互作用风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DERL1 位于内质网膜且缺乏稳定胞外结构域，传统循环抗体难以到达靶点；建议定位为细胞内抗体、递送型 Fab/VHH 或体外结构机制验证。",
+    "structurePrepZh": "以 PDB 5GLF 为模板，保留跨膜螺旋束构象并补全缺失环区；在膜模拟环境中评估腔面、胞质侧环区和脂质暴露面的可及性。",
+    "structureRef": "RCSB PDB 5GLF，2.25 Å X-ray DERL1结构",
+    "antibodies": [
+      "无已批准 DERL1 靶向治疗性抗体",
+      "研究级 anti-DERL1 抗体"
+    ],
+    "interfaceFocus": "跨膜腔面侧向开口与胞质侧装配界面",
+    "designMode": "细胞内抗体片段",
+    "candidates": [
+      {
+        "target": "CFTR",
+        "rationale": "CFTR 是囊性纤维化核心致病基因，其错误折叠变体接受内质网质量控制并可被 ERAD 清除，与 DERL1 所在通路直接相关。"
+      },
+      {
+        "target": "SYVN1",
+        "rationale": "SYVN1/HRD1 是 ERAD E3 泛素连接酶，参与错误折叠内质网蛋白的泛素化处理，与 DERL1 介导的逆向转运功能耦联。"
+      },
+      {
+        "target": "VCP",
+        "rationale": "VCP/p97 提供 ERAD 底物从内质网膜抽提至胞质侧的 ATP 依赖动力，是 DERL1 相关降解流程下游关键节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

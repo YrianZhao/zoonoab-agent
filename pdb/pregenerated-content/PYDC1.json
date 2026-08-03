@@ -1,0 +1,65 @@
+{
+  "gene": "PYDC1",
+  "generatedAt": "2026-08-03T15:47:04.279Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PYDC1为胞内pyrin结构域蛋白，参与PYD-PYD相互作用网络并可影响ASC依赖性炎症小体组装，疾病证据主要指向IgA肾小球肾炎等炎症相关表型，但Open Targets关联强度较低。该蛋白缺乏跨膜区和分泌信号肽，天然抗原可及性不利于常规体内中和抗体，仅适合细胞内递送抗体、研究级结合剂或诊断捕获试剂开发。相较IL1B、NLRP3或PYCARD等同通路可及靶点，PYDC1优先级较低，但其已解析PYD结构可支持结构约束型表位设计。",
+    "mechanism": "设计结合PYDC1 pyrin结构域螺旋界面的抗体片段，阻断其与PYCARD ASC的PYD-PYD同型相互作用，限制ASC聚集平台形成。",
+    "selectedEpitope": "优先覆盖PYD结构域α2-α3及邻近酸碱性界面，干预PYD-PYD装配接触面。",
+    "diseaseDirection": "炎症小体相关肾脏炎症",
+    "domain": "PYDC1主要由N端pyrin domain构成，属于death-fold超家族六螺旋束结构。",
+    "evidence": "PYDC1-PYD结构与炎症小体通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q8WXC3蛋白功能与亚细胞定位注释",
+      "RCSB PDB 4QOB晶体结构条目",
+      "炎症小体PYD-PYD相互作用文献证据"
+    ],
+    "referenceEntries": "UniProt Q8WXC3；RCSB PDB 4QOB；Open Targets PYDC1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PYD α2-α3带电相互作用面",
+        "可能覆盖ASC PYD同型装配关键界面，适合阻断型Fab/VHH筛选",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PYD α1与α4邻近侧面",
+        "可提供构象稳定结合位点，用于区分PYDC1与同源PYD蛋白",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PYD疏水核心邻近区域",
+        "结构保守且部分埋藏，易产生低特异性或构象扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PYDC1为胞内非分泌蛋白，体内抗体可及性是主要风险；建议限定为细胞内抗体、递送型VHH或体外诊断结合剂。",
+    "structurePrepZh": "以4QOB链A/B为模板，保留PYD折叠单元，校验晶体接触界面并补全缺失侧链后进行表面电荷与保守性分析。",
+    "structureRef": "RCSB PDB 4QOB，PYDC1 PYD晶体结构，2.7 Å",
+    "antibodies": [
+      "无获批PYDC1靶向抗体",
+      "研究级抗PYDC1抗体"
+    ],
+    "interfaceFocus": "PYD α2-α3电荷界面与ASC结合面",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "PYCARD",
+        "rationale": "PYCARD编码ASC衔接蛋白，是NLRP3等炎症小体中PYD-PYD聚合和caspase-1募集的核心节点，通路位置较PYDC1更直接。"
+      },
+      {
+        "target": "NLRP3",
+        "rationale": "NLRP3为经典炎症小体感受器，介导ASC聚集、CASP1活化及IL1B/IL18成熟，与肾脏炎症和IgA肾病病理机制存在更强关联。"
+      },
+      {
+        "target": "IL1B",
+        "rationale": "IL1B是炎症小体下游可分泌效应细胞因子，具备优越的胞外抗原可及性和明确中和抗体开发逻辑。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

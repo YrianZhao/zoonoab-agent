@@ -1,0 +1,65 @@
+{
+  "gene": "OSM",
+  "generatedAt": "2026-08-03T14:59:35.375Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "OSM 是 IL-6 细胞因子家族成员，可通过 OSMR/gp130 或 LIFR/gp130 受体复合物激活 JAK-STAT、MAPK 与 PI3K 轴，参与炎症放大、造血调节、组织重塑及中枢神经炎症相关表型。OSM 为分泌型四螺旋束细胞因子，抗原整体位于胞外环境，具备良好的抗体可及性和配体中和可操作性。相较直接靶向共享受体 gp130，OSM 配体阻断更有利于降低对 IL-6 家族其他细胞因子信号的广泛干扰，因此在通路选择性与安全窗口方面具有优先级优势。",
+    "mechanism": "中和抗体阻断 OSM 与 OSMR/gp130 或 LIFR/gp130 受体复合物的结合，抑制受体异源二聚化及下游 STAT3 磷酸化。",
+    "selectedEpitope": "优先覆盖四螺旋束细胞因子的受体结合 Site II/Site III 界面，干扰 gp130 与 OSMR/LIFR 招募。",
+    "diseaseDirection": "炎症、造血调节与神经炎症相关疾病",
+    "domain": "成熟 OSM 为分泌型四α螺旋束细胞因子，含 A-D 螺旋及连接环区，形成受体结合界面。",
+    "evidence": "OSM-受体轴结构与疾病遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt reviewed entry P13725",
+      "RCSB PDB 1EVS X-ray structure",
+      "IL-6 family cytokine receptor signaling literature"
+    ],
+    "referenceEntries": "UniProt:P13725; RCSB PDB:1EVS; OSM_HUMAN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "D螺旋及邻近AB/CD环构成的Site III样受体结合面",
+        "有望阻断OSMR或LIFR招募并抑制功能性受体复合物形成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "A/C螺旋外侧形成的Site II样gp130结合界面",
+        "可直接削弱gp130参与异源二聚化的能力，适合中和型抗体设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离受体结合面的柔性连接环与非核心暴露表面",
+        "免疫原性可行但功能阻断概率较低，需避免仅获得结合型非中和抗体",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "OSM 与LIF等IL-6家族成员存在四螺旋束拓扑相似性，设计需避开高度保守疏水核心，聚焦OSM特异性受体接触残基以降低交叉反应风险。",
+    "structurePrepZh": "以PDB 1EVS链A为实验结构模板，补全缺失侧链与氢原子，标注成熟蛋白边界、二硫键及受体结合面后开展表位聚类。",
+    "structureRef": "PDB 1EVS, human oncostatin M, X-ray 2.2 Å",
+    "antibodies": [
+      "GSK2330811",
+      "Anti-OSM neutralizing monoclonal antibody"
+    ],
+    "interfaceFocus": "OSM四螺旋束Site II/Site III受体结合界面",
+    "designMode": "配体中和型抗体设计",
+    "candidates": [
+      {
+        "target": "OSMR",
+        "rationale": "OSMR 是OSM特异性受体链，与gp130共同形成I型OSM受体复合物；靶向其胞外细胞因子结合模块可阻断OSM驱动信号。"
+      },
+      {
+        "target": "IL6ST",
+        "rationale": "IL6ST编码gp130，是OSM及多种IL-6家族细胞因子的共享信号受体链；其通路中心性强，但选择性与安全性风险高于OSM配体中和。"
+      },
+      {
+        "target": "LIFR",
+        "rationale": "LIFR 可与gp130形成II型OSM受体复合物并介导OSM/LIF相关信号；适合作为同通路受体层面的替代调控靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

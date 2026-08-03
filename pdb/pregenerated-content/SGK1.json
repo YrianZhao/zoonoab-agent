@@ -1,0 +1,65 @@
+{
+  "gene": "SGK1",
+  "generatedAt": "2026-08-03T16:29:35.301Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SGK1为胞内丝氨酸/苏氨酸蛋白激酶，参与PI3K信号下游的离子转运、细胞存活与NF-κB相关转录调控，在弥漫大B细胞淋巴瘤等疾病中可支持肿瘤细胞抗凋亡状态。其抗原主体为胞内激酶结构域，天然抗体可及性弱，不适合作为常规膜外阻断抗体靶点；结构解析度高，适于开发细胞内递送抗体片段或研究级构象选择性结合分子。相较于同通路中具有临床可及胞外结构的受体靶点，SGK1优先级主要来自明确酶活口袋、PDB结构可用性与下游节点特异性，但成药形式需限定为intracellular antibody或降解偶联策略。",
+    "mechanism": "设计结合SGK1激酶结构域ATP结合裂隙或活化环邻近界面的抗体片段，限制底物进入并干扰Ser422磷酸化后构象稳定。",
+    "selectedEpitope": "优先覆盖激酶N叶β折叠-铰链区及ATP结合裂隙边缘，避开高度保守催化赖氨酸核心。",
+    "diseaseDirection": "DLBCL相关PI3K-SGK1存活轴",
+    "domain": "SGK1含N端调控区、中央丝氨酸/苏氨酸激酶催化结构域及C端疏水基序Ser422。",
+    "evidence": "SGK1结构与DLBCL通路关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt O00141功能注释",
+      "RCSB PDB 2R5T晶体结构",
+      "PI3K-AKT-SGK激酶通路文献"
+    ],
+    "referenceEntries": "UniProt O00141；RCSB PDB 2R5T；Open Targets SGK1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域N叶-铰链区及ATP口袋边缘",
+        "可直接影响核苷酸结合构象，适合构建功能阻断型胞内抗体片段",
+        "优先"
+      ],
+      [
+        "Site B",
+        "活化环及C叶底物结合沟槽邻近区域",
+        "有利于干扰底物肽定位与活化态构象维持",
+        "备选"
+      ],
+      [
+        "Site C",
+        "保守催化环HRD/DFG基序周边",
+        "跨AGC激酶家族保守性高，选择性与脱靶风险需严格评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SGK1为胞内激酶，常规抗体难以到达作用位点；建议采用VHH、intrabody或递送系统，并对AKT、S6K、PKC等AGC激酶进行选择性筛查。",
+    "structurePrepZh": "以2R5T链A为模板，补全缺失侧链并统一质子化状态；保留激酶结构域构象信息，去除非必要晶体添加物后进行口袋与表面可及性评估。",
+    "structureRef": "RCSB PDB 2R5T，SGK1 kinase domain，1.9 Å X-ray",
+    "antibodies": [
+      "研究级anti-SGK1抗体",
+      "研究级anti-phospho-SGK1 Ser422抗体"
+    ],
+    "interfaceFocus": "ATP结合裂隙、铰链区、活化环邻近底物沟槽",
+    "designMode": "胞内VHH阻断设计",
+    "candidates": [
+      {
+        "target": "PIK3CD",
+        "rationale": "PIK3CD编码PI3Kδ催化亚基，是B细胞受体信号上游关键节点；在DLBCL和其他B细胞恶性肿瘤中具有明确通路关联。"
+      },
+      {
+        "target": "AKT1",
+        "rationale": "AKT1与SGK1同属PI3K下游AGC激酶网络，共同调节细胞存活与代谢反应；可作为通路冗余和补偿机制评估靶点。"
+      },
+      {
+        "target": "FOXO3",
+        "rationale": "FOXO3为SGK1可磷酸化的转录因子底物，磷酸化后发生核外转位并削弱促凋亡转录程序；适合用于下游药效读出与通路验证。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

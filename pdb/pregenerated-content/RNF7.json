@@ -1,0 +1,65 @@
+{
+  "gene": "RNF7",
+  "generatedAt": "2026-08-03T16:07:09.358Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RNF7/ROC2 是 Cullin-RING E3 泛素连接酶的 RING 组分，参与 RBX1 类似的 E2 泛素结合酶募集与底物泛素化，在蛋白稳态、细胞周期与病毒相关宿主蛋白降解轴中具有通路关联。该蛋白为胞内核质蛋白，天然抗原可及性不具备常规膜受体或分泌蛋白优势，因此更适合定位为胞内递送抗体、intrabody 或结构生物学验证抗体靶点。相较下游多底物蛋白，RNF7位于CRL催化核心，机制节点更集中；但其可及性弱于膜表面靶点，优先级应建立在明确递送体系与功能阻断读出之上。",
+    "mechanism": "抗体结合RNF7 RING结构域的E2结合面，阻断CDC34/UBE2R1等E2酶与CRL催化核心对接，降低Cullin依赖底物泛素转移。",
+    "selectedEpitope": "优先覆盖C3HC4 RING结构域E2结合界面，避开锌配位核心残基以降低构象破坏风险。",
+    "diseaseDirection": "蛋白稳态失衡与病毒感染相关疾病",
+    "domain": "RNF7含N端Cullin结合区及C端C3HC4型RING finger结构域，依赖锌配位维持E3催化构象。",
+    "evidence": "RNF7-CRL泛素化轴结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q9UBF6功能与亚细胞定位注释",
+      "RCSB PDB 9T7V电子显微结构",
+      "Cullin-RING E3泛素连接酶机制文献"
+    ],
+    "referenceEntries": "UniProt: Q9UBF6; RCSB PDB: 9T7V; HGNC: RNF7",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端RING结构域E2结合面",
+        "直接干预E2募集与泛素转移，机制读出明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端Cullin对接邻近界面",
+        "可扰动RNF7装配入Cullin-RING复合物",
+        "备选"
+      ],
+      [
+        "Site C",
+        "RING锌配位核心周边",
+        "可能改变整体折叠并产生非特异失活，应避免作为首选",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RNF7为胞内蛋白，常规治疗性抗体难以到达作用位点；RING结构域高度保守，需评估RBX1交叉反应并采用胞内递送或intrabody验证策略。",
+    "structurePrepZh": "以PDB 9T7V中RNF7相关链为模板，补全缺失环区与锌配位参数，保留Cullin/E2邻近构象用于界面遮挡分析。",
+    "structureRef": "RCSB PDB 9T7V，2.95 Å电子显微CRL相关复合物结构",
+    "antibodies": [
+      "RNF7研究级单克隆抗体",
+      "ROC2/RNF7免疫检测抗体"
+    ],
+    "interfaceFocus": "RING结构域E2结合面与Cullin装配邻近界面",
+    "designMode": "胞内阻断型抗体",
+    "candidates": [
+      {
+        "target": "CUL5",
+        "rationale": "CUL5是RNF7参与的Cullin-RING E3复合物骨架蛋白，与病毒宿主因子降解及SOCS-box复合物功能相关，可作为同一CRL泛素化轴的结构装配节点。"
+      },
+      {
+        "target": "UBE2R1",
+        "rationale": "UBE2R1/CDC34是CRL体系常用E2泛素结合酶，与RING催化核心协同完成泛素转移，适合用于E2-RING界面阻断机制比较。"
+      },
+      {
+        "target": "NEDD8",
+        "rationale": "NEDD8修饰Cullin并增强CRL构象活化，是RNF7所在泛素化通路的上游激活因子，可作为CRL活化状态调控的同通路候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

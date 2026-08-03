@@ -1,0 +1,65 @@
+{
+  "gene": "KDM1A",
+  "generatedAt": "2026-08-03T13:41:02.233Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KDM1A编码LSD1，是FAD依赖性组蛋白H3K4me1/2与H3K9me1/2去甲基化酶，通过CoREST/HDAC转录抑制复合体调控神经发育、细胞分化和内分泌组织增殖相关基因表达。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌特征，因此常规抗体抗原可及性低，需优先采用胞内递送抗体、降解抗体或研究级构象识别策略。相较同通路HDAC1、RCOR1等支架或酶组分，KDM1A具有明确催化口袋、SWIRM-amine oxidase结构框架及较丰富遗传疾病关联，适合作为表观遗传调控轴的高优先级机制验证靶点。",
+    "mechanism": "设计抗体识别KDM1A SWIRM/AOD构象界面，阻断其与RCOR1-SANT2结合或干扰FAD依赖催化通道，从而削弱CoREST复合体介导的组蛋白去甲基化。",
+    "selectedEpitope": "优先覆盖AOD塔状结构域与CoREST结合沟槽邻近界面，兼顾SWIRM-AOD连接区构象表位。",
+    "diseaseDirection": "神经发育异常与表观遗传疾病",
+    "domain": "KDM1A含N端SWIRM结构域、中央Tower插入区及C端FAD依赖胺氧化酶催化结构域。",
+    "evidence": "KDM1A表观遗传调控与疾病遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联证据",
+      "UniProt O60341功能与亚细胞定位注释",
+      "RCSB PDB 2Z3Y晶体结构数据",
+      "OMIM与ClinVar发育综合征遗传变异记录"
+    ],
+    "referenceEntries": "UniProt O60341；RCSB PDB 2Z3Y；Open Targets KDM1A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "AOD Tower结构域CoREST结合沟槽",
+        "可阻断KDM1A与RCOR1复合体装配，机制指向性最强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SWIRM-AOD连接区构象表面",
+        "有利于锁定催化结构域相对构象并影响底物通道开放",
+        "备选"
+      ],
+      [
+        "Site C",
+        "FAD邻近催化腔外缘",
+        "可能影响底物进入，但需避免深口袋不可及和保守位点交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "KDM1A为核内酶，天然抗体难以进入作用区；需标注胞内递送、内体逃逸和核定位风险，并规避AOD保守催化核心导致的脱靶结合。",
+    "structurePrepZh": "以2Z3Y链A为模板，保留FAD及关键催化残基空间约束，补建缺失环区后评估Tower沟槽、SWIRM-AOD界面与表面电荷斑块。",
+    "structureRef": "RCSB PDB 2Z3Y，X-ray diffraction，2.25 Å",
+    "antibodies": [
+      "研究级anti-LSD1抗体",
+      "细胞内抗体工程化intrabody候选"
+    ],
+    "interfaceFocus": "AOD Tower-CoREST结合沟槽与SWIRM-AOD界面",
+    "designMode": "胞内构象阻断",
+    "candidates": [
+      {
+        "target": "RCOR1",
+        "rationale": "RCOR1是CoREST复合体核心支架，直接通过SANT结构域招募KDM1A，影响同一转录抑制与神经发育调控轴。"
+      },
+      {
+        "target": "HDAC1",
+        "rationale": "HDAC1与KDM1A/RCOR1共同构成组蛋白去乙酰化-去甲基化抑制复合体，参与相同染色质沉默过程。"
+      },
+      {
+        "target": "HDAC2",
+        "rationale": "HDAC2可替代或协同HDAC1进入CoREST复合体，在神经细胞基因表达抑制和发育通路中与KDM1A功能耦联。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

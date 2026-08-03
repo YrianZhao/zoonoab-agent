@@ -1,0 +1,65 @@
+{
+  "gene": "ATE1",
+  "generatedAt": "2026-08-03T10:39:21.506Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ATE1编码胞质精氨酰转移酶，催化Arg-tRNA将精氨酸转移至蛋白N端或酸性侧链，参与Arg/N-degron介导的蛋白稳态、细胞迁移与应激反应。Open Targets关联主要集中于骨密度、身高、Dupuytren挛缩及心率等复杂性状，但其疾病证据多为遗传关联，尚缺乏明确的胞外病理驱动轴。ATE1为胞内可溶性酶，天然抗原可及性不支持常规阻断型抗体药物；相较膜受体或分泌因子，其更适合作为结构生物学参照或细胞内递送抗体探索靶点，整体优先级低于同通路中具胞外可及性的调控因子。",
+    "mechanism": "采用细胞内递送抗体或胞内抗体构型，干预ATE1对Arg-tRNA及蛋白底物N端受体位点的识别，从而抑制精氨酰化反应。",
+    "selectedEpitope": "优先瞄准催化核心邻近的Arg-tRNA/底物结合沟槽，避免仅选择远端非功能性表面。",
+    "diseaseDirection": "骨密度与结缔组织性状",
+    "domain": "ATE1为胞质精氨酰转移酶，含催化核心折叠及tRNA/蛋白底物识别界面。",
+    "evidence": "ATE1遗传关联与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProtKB O95260功能注释",
+      "RCSB PDB 8TZV冷冻电镜结构",
+      "N-degron pathway蛋白精氨酰化文献"
+    ],
+    "referenceEntries": "UniProt O95260；RCSB PDB 8TZV；Open Targets ATE1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化核心邻近的Arg-tRNA与受体底物结合沟槽",
+        "可直接干扰精氨酸转移反应的底物装配，功能阻断价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域外侧的构象稳定界面",
+        "可能影响活性构象维持，适合作为变构抑制型表位探索",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化沟槽的暴露亲水表面",
+        "结合可及但功能相关性不确定，易产生非阻断性结合体",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ATE1为胞内酶，常规抗体难以到达作用位点；需采用胞内抗体、递送载体或降解偶联策略，并优先验证细胞内暴露与功能抑制。",
+    "structurePrepZh": "以PDB 8TZV链A/B为结构模板，保留催化核心构象，补全缺失环区并标注潜在tRNA及底物结合沟槽用于表位筛选。",
+    "structureRef": "RCSB PDB 8TZV，human ATE1 cryo-EM structure, 2.8 Å",
+    "antibodies": [
+      "无临床阶段ATE1抗体",
+      "无获批同类ATE1抗体"
+    ],
+    "interfaceFocus": "Arg-tRNA结合沟槽与蛋白底物受体位点",
+    "designMode": "胞内抗体探索",
+    "candidates": [
+      {
+        "target": "UBR1",
+        "rationale": "UBR1是Arg/N-degron通路的N-recognin E3连接酶，识别N端精氨酰化底物并介导泛素化降解；与ATE1处于同一蛋白稳态轴。"
+      },
+      {
+        "target": "UBR2",
+        "rationale": "UBR2同样识别N-degron底物并参与泛素-蛋白酶体降解，可作为ATE1下游底物清除环节的替代调控节点。"
+      },
+      {
+        "target": "CNOT4",
+        "rationale": "CNOT4可作为Arg/N-degron相关E3连接酶参与N端降解决定子的泛素化过程，适合用于比较同通路蛋白稳态调控策略。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

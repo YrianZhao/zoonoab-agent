@@ -1,0 +1,65 @@
+{
+  "gene": "CCNT2",
+  "generatedAt": "2026-08-03T11:06:32.401Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CCNT2为P-TEFb复合体的细胞核内调控亚基，与CDK9形成转录延伸激酶复合体，参与HIV Tat介导的病毒转录延伸过程。该蛋白缺乏胞外结构域、分泌形式或膜受体拓扑，天然抗原可及性不适合作为常规治疗性抗体靶点，但可用于结构生物学、细胞内递送抗体或研究型结合分子设计。相较于同通路中可直接阻断Tat-宿主转录轴的病毒Tat或宿主CDK9，CCNT2的疾病关联强度有限且胞内定位限制显著，因此优先级应定位为机制验证型靶点而非经典抗体药物靶点。",
+    "mechanism": "设计分子可阻断CCNT2 cyclin box与CDK9的装配界面，或干扰HIV Tat对P-TEFb复合体的募集，从而削弱病毒转录延伸。",
+    "selectedEpitope": "优先评估cyclin box fold中CDK9结合沟槽及Tat/P-TEFb邻近界面残基。",
+    "diseaseDirection": "HIV转录延伸与宿主P-TEFb轴",
+    "domain": "CCNT2含N端cyclin box重复结构，介导CDK9结合并形成P-TEFb转录延伸复合体。",
+    "evidence": "CCNT2-P-TEFb介导HIV转录延伸证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt O60583功能与亚细胞定位注释",
+      "RCSB PDB 2IVX晶体结构记录",
+      "HIV Tat-P-TEFb转录延伸研究文献"
+    ],
+    "referenceEntries": "UniProt O60583；RCSB PDB 2IVX；Open Targets CCNT2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "cyclin box内CDK9结合沟槽",
+        "可直接削弱CCNT2-CDK9复合体装配，机制清晰但需胞内递送",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Tat/P-TEFb募集邻近表面",
+        "有助于干扰病毒Tat对宿主转录延伸复合体的劫持",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离复合体界面的溶剂暴露螺旋面",
+        "结合可行性较高但功能阻断价值不足，宜作为阴性或结构对照",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CCNT2为核内蛋白，常规抗体难以到达作用位点；其P-TEFb功能涉及宿主基因转录，需避免广泛抑制CDK9依赖转录造成细胞毒性。",
+    "structurePrepZh": "采用2IVX中A、B链解析的cyclin box结构，补全缺失侧链并校正质子化状态，保留复合体界面用于表位可及性与保守性评估。",
+    "structureRef": "RCSB PDB 2IVX，X-ray diffraction，1.8 Å",
+    "antibodies": [
+      "无获批抗CCNT2治疗性抗体",
+      "研究级抗CCNT2单克隆抗体"
+    ],
+    "interfaceFocus": "CCNT2 cyclin box-CDK9装配界面",
+    "designMode": "胞内抗体/研究型Fab",
+    "candidates": [
+      {
+        "target": "CDK9",
+        "rationale": "CDK9是P-TEFb的催化亚基，直接磷酸化RNA polymerase II CTD并驱动HIV转录延伸，机制位置更接近酶活输出端。"
+      },
+      {
+        "target": "CCNT1",
+        "rationale": "CCNT1为经典HIV Tat招募的P-TEFb cyclin亚基，与Tat-TAR介导的病毒转录延伸关系更充分，通路证据强于CCNT2。"
+      },
+      {
+        "target": "TAR RNA-binding Tat cofactor pathway: HEXIM1",
+        "rationale": "HEXIM1参与7SK snRNP对P-TEFb的抑制性 sequestration，可调节CDK9-cyclin T复合体可用性，是同一转录延伸调控轴中的真实宿主因子。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

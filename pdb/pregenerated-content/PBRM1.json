@@ -1,0 +1,65 @@
+{
+  "gene": "PBRM1",
+  "generatedAt": "2026-08-03T15:06:17.218Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PBRM1编码SWI/SNF PBAF染色质重塑复合体亚基，常在透明细胞肾细胞癌中发生失活突变，影响HIF靶基因、细胞周期与肿瘤免疫相关转录程序。该蛋白为核内染色质结合因子，缺乏胞外结构域或分泌特征，常规完整抗体难以直接结合天然细胞内抗原，抗原可及性不具备膜受体类靶点优势。其优先级主要来自ccRCC遗传证据强度与结构域解析度，而非抗体成药可及性；相比VEGFA、PDCD1、PDCD1LG1等同疾病通路可及靶点，更适合作为机制分层或细胞内递送抗体探索靶点。",
+    "mechanism": "设计目标聚焦阻断PBRM1溴结构域乙酰化赖氨酸识别槽与乙酰化组蛋白尾部的结合，干预PBAF复合体在染色质上的定位。",
+    "selectedEpitope": "优先覆盖5FH7所示溴结构域ZA/BC环围成的乙酰赖氨酸结合口袋边缘。",
+    "diseaseDirection": "透明细胞肾细胞癌染色质重塑",
+    "domain": "PBRM1含6个bromodomain、2个BAH结构域和HMG结构域，5FH7解析其溴结构域折叠。",
+    "evidence": "PBRM1-PBAF失活与肾癌遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q86U86 functional annotation",
+      "RCSB PDB 5FH7 X-ray structure",
+      "TCGA clear cell renal carcinoma genomic studies"
+    ],
+    "referenceEntries": "UniProt Q86U86；RCSB PDB 5FH7；Open Targets PBRM1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "溴结构域ZA/BC环乙酰赖氨酸结合槽",
+        "直接干预组蛋白乙酰化标记识别，机制指向明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "溴结构域αZ-αA外侧保守疏水面",
+        "可作为构象稳定或变构阻断表位，避免完全占据深口袋",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离配体口袋的晶体接触面",
+        "可能主要反映晶格堆积，可转化性与功能阻断价值较低",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PBRM1为核内抗原，天然抗体可及性不足；设计应限定为细胞内递送Fab/VHH或研究级阻断分子，并评估溴结构域家族交叉反应。",
+    "structurePrepZh": "以5FH7高分辨率晶体结构为模板，保留抗原链A/B并校正缺失侧链、质子化状态和晶体接触界面后进行表位建模。",
+    "structureRef": "RCSB PDB 5FH7，X-ray diffraction，1.47 Å",
+    "antibodies": [
+      "无临床验证PBRM1靶向抗体",
+      "研究级anti-PBRM1抗体"
+    ],
+    "interfaceFocus": "ZA/BC环乙酰赖氨酸识别槽",
+    "designMode": "细胞内抗原探索",
+    "candidates": [
+      {
+        "target": "ARID1A",
+        "rationale": "ARID1A为SWI/SNF BAF复合体核心肿瘤抑制亚基，在多癌种中失活并影响染色质可及性与转录调控。其与PBRM1同属SWI/SNF染色质重塑通路，适合进行合成致死与分层机制比较。"
+      },
+      {
+        "target": "SMARCA4",
+        "rationale": "SMARCA4编码BRG1 ATPase，是SWI/SNF复合体催化亚基，直接驱动核小体重塑。其功能状态决定PBAF/BAF复合体染色质重塑能力，是PBRM1相关通路中的关键酶学节点。"
+      },
+      {
+        "target": "SMARCB1",
+        "rationale": "SMARCB1是SWI/SNF复合体核心亚基，缺失可导致染色质调控失衡和肿瘤发生。其与PBRM1共同参与BAF/PBAF复合体结构与肿瘤抑制网络，具备同通路候选价值。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

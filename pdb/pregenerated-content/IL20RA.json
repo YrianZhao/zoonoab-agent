@@ -1,0 +1,65 @@
+{
+  "gene": "IL20RA",
+  "generatedAt": "2026-08-03T13:26:38.727Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IL20RA是IL-20细胞因子受体复合体的α亚基，参与IL-19、IL-20和IL-24驱动的上皮炎症、角质形成细胞活化及组织重塑反应，在多种炎症表型中具有通路关联。该蛋白为I型跨膜受体，胞外段包含可被抗体直接识别的细胞因子受体同源结构域，抗原可及性明确。相较于广泛免疫抑制靶点，IL20RA位于IL-20家族配体识别节点，可同时影响IL20RA/IL20RB与IL22RA1/IL20RB相关信号轴，具备较高通路拦截优先级。",
+    "mechanism": "抗体阻断IL-20家族细胞因子与IL20RA胞外D1-D2受体结构域结合，抑制IL20RA参与受体复合体装配并降低下游JAK-STAT3信号激活。",
+    "selectedEpitope": "优先覆盖胞外D1-D2细胞因子结合界面，聚焦4DOH中IL20RA与IL-20接触区域。",
+    "diseaseDirection": "炎症与上皮免疫疾病",
+    "domain": "N端信号肽后为胞外细胞因子受体同源区，含D1-D2纤连样结构域，后接跨膜段与胞内尾部。",
+    "evidence": "IL20RA炎症通路与结构抗原性证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9UHF4功能与拓扑注释",
+      "RCSB PDB 4DOH晶体结构",
+      "IL-20家族受体复合体JAK-STAT文献"
+    ],
+    "referenceEntries": "UniProt: Q9UHF4；RCSB PDB: 4DOH；Open Targets: IL20RA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "D1-D2细胞因子结合界面",
+        "直接阻断IL-20家族配体结合与受体复合体装配，机制清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "D2近膜侧复合体稳定界面",
+        "可能干扰IL20RB协同装配，适合作为非竞争性阻断方案",
+        "备选"
+      ],
+      [
+        "Site C",
+        "D1远端非配体接触面",
+        "抗原可及性较好但功能阻断不确定，需避免仅产生结合型抗体",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IL20RA与IL20RB、IL22RA1存在同家族结构相似性，需规避保守折叠核心并优先选择配体接触残基周边的差异化表面。",
+    "structurePrepZh": "以4DOH中IL20RA胞外链为模板，保留D1-D2结构域与配体接触面，去除非目标链后评估糖基化位点、缺失环区和晶体接触干扰。",
+    "structureRef": "PDB 4DOH，IL-20受体复合体X射线晶体结构，2.8 Å",
+    "antibodies": [
+      "Fezakinumab",
+      "NNC0109-0012"
+    ],
+    "interfaceFocus": "IL20RA D1-D2配体结合沟槽",
+    "designMode": "阻断型抗体设计",
+    "candidates": [
+      {
+        "target": "IL20RB",
+        "rationale": "IL20RB是IL-20家族受体复合体的共享β亚基，参与IL-19、IL-20和IL-24诱导的JAK-STAT信号。靶向该亚基可从复合体共受体层面阻断同一炎症通路。"
+      },
+      {
+        "target": "IL22RA1",
+        "rationale": "IL22RA1可与IL20RB组成IL-20受体II型复合体，并介导IL-20与IL-24相关上皮反应。其表达偏向屏障组织，适合作为同通路组织炎症节点。"
+      },
+      {
+        "target": "IL20",
+        "rationale": "IL20是IL20RA相关受体复合体的核心配体之一，可驱动角质形成细胞和上皮细胞STAT3活化。中和IL20可在配体层面降低IL20RA通路输入。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "CSK",
+  "generatedAt": "2026-08-03T11:40:39.096Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CSK是胞质非受体酪氨酸激酶，通过磷酸化SRC家族激酶C端抑制性酪氨酸位点限制SRC、YES1和FYN活性，因而与RAS/MAPK异常、肿瘤侵袭及心肌肥厚相关信号网络存在机制联系。该蛋白定位于胞内且缺乏天然胞外结构域，常规抗体可及性弱，不具备膜受体或分泌蛋白的天然抗原暴露优势。相较EGFR、ERBB2等可直接胞外阻断的同通路靶点，CSK更适合作为细胞内功能抗体、递送型Fab/VHH或结构验证模型靶点，优先级应基于激酶结构分辨率高和SRC负调控节点特异性，而非传统裸抗体成药性。",
+    "mechanism": "通过胞内递送型抗体结合CSK激酶结构域，干预ATP结合口袋邻近构象或阻断其对SRC家族C端酪氨酸底物的识别。",
+    "selectedEpitope": "优先聚焦激酶结构域N-lobe/C-lobe裂隙外缘及activation segment邻近可结合面。",
+    "diseaseDirection": "肿瘤与RAS/MAPK相关疾病",
+    "domain": "CSK含SH3结构域、SH2结构域及C端蛋白酪氨酸激酶结构域，3EAZ覆盖催化结构域。",
+    "evidence": "CSK-SRC负调控轴结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P41240功能与亚细胞定位注释",
+      "RCSB PDB 3EAZ晶体结构记录",
+      "文献报道的CSK磷酸化SRC家族C端抑制位点机制"
+    ],
+    "referenceEntries": "UniProt P41240；RCSB PDB 3EAZ；Open Targets CSK",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域N-lobe/C-lobe催化裂隙外缘",
+        "可能影响ATP口袋邻近构象与底物进入路径，适合功能阻断筛选",
+        "优先"
+      ],
+      [
+        "Site B",
+        "activation segment及C-lobe底物结合邻近面",
+        "可干预SRC家族C端酪氨酸底物识别，机制解释性较强",
+        "备选"
+      ],
+      [
+        "Site C",
+        "保守ATP结合位点深部与催化残基周边",
+        "高度保守且与小分子结合区重叠，易产生选择性与构象风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CSK为胞质激酶，常规抗体难以到达作用位点；设计需采用细胞内递送或intrabody策略，并重点规避保守ATP口袋导致的家族交叉反应。",
+    "structurePrepZh": "以3EAZ链A为模板，保留激酶结构域主链与关键催化区构象，检查缺失环区、晶体配体及质子化状态后进行表面聚类分析。",
+    "structureRef": "RCSB PDB 3EAZ，X-ray 1.31 Å，人源CSK结构",
+    "antibodies": [
+      "抗CSK研究级单克隆抗体",
+      "抗CSK磷酸化/总蛋白检测抗体"
+    ],
+    "interfaceFocus": "激酶裂隙外缘与SRC底物识别面",
+    "designMode": "胞内递送型抗体",
+    "candidates": [
+      {
+        "target": "SRC",
+        "rationale": "SRC是CSK直接负调控的SRC家族激酶成员，C端抑制性酪氨酸磷酸化状态决定其构象关闭与致癌信号输出。其在肿瘤迁移、侵袭和增殖通路中处于CSK下游核心节点。"
+      },
+      {
+        "target": "FYN",
+        "rationale": "FYN同属SRC家族激酶，可被CSK介导的C端酪氨酸磷酸化抑制，并参与神经退行性疾病和RAS/MAPK相关信号异常。与CSK共享SRC家族调控轴。"
+      },
+      {
+        "target": "PTPN11",
+        "rationale": "PTPN11编码SHP2，是Noonan综合征和RAS/MAPK通路异常中的关键上游磷酸酶，并可促进RTK-RAS信号传递。其疾病谱与CSK关联的RAS/MAPK相关表型存在通路交集。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

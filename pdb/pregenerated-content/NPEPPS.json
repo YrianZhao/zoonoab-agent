@@ -1,0 +1,65 @@
+{
+  "gene": "NPEPPS",
+  "generatedAt": "2026-08-03T14:48:32.479Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NPEPPS编码嘌呤霉素敏感氨肽酶，属于胞质锌依赖性M1氨肽酶，参与多肽降解和蛋白稳态维持；其与神经退行性疾病的遗传及功能关联提示异常肽清除可能影响蛋白毒性应激。该蛋白主要定位于胞质，天然抗原可及性弱于分泌蛋白或膜受体，抗体设计更适合采用细胞内递送抗体、研究级阻断抗体或结构探针策略。相比APP、MAPT等下游聚集蛋白，NPEPPS位于肽段加工与蛋白稳态节点，可用于解析蛋白降解轴的上游调控，因此作为机制验证靶点具有优先价值。",
+    "mechanism": "抗体结合M1氨肽酶催化裂隙邻近区域，空间阻断底物多肽进入锌结合活性中心，抑制NPEPPS介导的N端氨基酸水解。",
+    "selectedEpitope": "优先覆盖HEXXH锌结合催化基序邻近的底物进入沟槽，避免直接依赖金属配位残基。",
+    "diseaseDirection": "神经退行性疾病蛋白稳态",
+    "domain": "M1家族锌金属氨肽酶核心，含HEXXH催化基序、GAMEN底物识别基序及C端调节区域。",
+    "evidence": "NPEPPS蛋白稳态与神经退行性关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt功能与亚细胞定位注释",
+      "RCSB PDB 8SW0晶体结构",
+      "M1氨肽酶家族催化机制文献"
+    ],
+    "referenceEntries": "UniProt P55786；RCSB PDB 8SW0；Open Targets NPEPPS",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化裂隙入口及GAMEN底物识别环邻近面",
+        "可阻断底物肽进入并保持较高机制可解释性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "HEXXH锌结合基序外侧螺旋-环界面",
+        "有望变构影响催化构象，降低直接金属位点干扰风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端非催化调节表面",
+        "可作为结构探针，但对酶活阻断效应不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NPEPPS为胞质酶，常规抗体难以进入细胞，需优先评估递送体系或细胞内抗体格式；催化口袋保守性较高，应通过选择性筛选规避与ERAP1、ERAP2等M1氨肽酶交叉反应。",
+    "structurePrepZh": "采用8SW0链A作为抗原模板，保留催化结构域与锌离子坐标，补全缺失侧链并标注GAMEN、HEXXH及底物沟槽区域用于表位分层。",
+    "structureRef": "RCSB PDB 8SW0，X-ray diffraction，2.301 Å",
+    "antibodies": [
+      "抗NPEPPS研究级单克隆抗体",
+      "抗puromycin-sensitive aminopeptidase多克隆抗体"
+    ],
+    "interfaceFocus": "GAMEN识别环、HEXXH外侧及底物入口沟槽",
+    "designMode": "胞内酶阻断设计",
+    "candidates": [
+      {
+        "target": "ERAP1",
+        "rationale": "ERAP1同属M1锌氨肽酶，参与抗原肽修剪和肽段稳态；其结构域保守性可作为选择性与交叉反应风险评估参照。"
+      },
+      {
+        "target": "ERAP2",
+        "rationale": "ERAP2与ERAP1共同调节肽段加工过程，并与免疫相关蛋白稳态轴相连；可用于比较M1氨肽酶家族内表位可区分性。"
+      },
+      {
+        "target": "IDE",
+        "rationale": "IDE参与细胞内淀粉样β及胰岛素等肽类底物降解，与神经退行性疾病中的肽清除机制相关；适合作为蛋白稳态降解通路候选靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

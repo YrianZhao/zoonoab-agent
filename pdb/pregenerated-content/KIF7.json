@@ -1,0 +1,65 @@
+{
+  "gene": "KIF7",
+  "generatedAt": "2026-08-03T13:43:17.439Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KIF7 是 Hedgehog 通路纤毛调控轴中的关键运动蛋白，参与 GLI 转录因子在初级纤毛尖端的定位与加工，致病变异与 Joubert syndrome、acrocallosal syndrome 及 hydrolethalus 相关发育异常具有明确遗传关联。该蛋白主要为胞内微管相关驱动蛋白，天然抗原可及性不及膜受体或分泌因子，因此更适合作为结构机制研究、胞内递送抗体或研究级结合分子设计靶点。相较 PTCH1、SMO 等膜端通路节点，KIF7 的疾病遗传特异性更强，且 4A14 提供高分辨率运动结构域基础，可支持精确界面建模与功能阻断验证。",
+    "mechanism": "设计结合分子阻断 KIF7 运动结构域与微管及 ATP 依赖构象转换的耦联，从而干扰其介导的 GLI 在初级纤毛尖端定位与加工。",
+    "selectedEpitope": "优先覆盖 kinesin motor domain 的微管结合面及 switch II 邻近构象区，避免直接占据高度保守 ATP 口袋。",
+    "diseaseDirection": "Hedgehog 纤毛发育病",
+    "domain": "KIF7 含 N 端 kinesin motor domain、卷曲螺旋区及 C 端调控区；4A14 覆盖人源 N 端运动结构域。",
+    "evidence": "KIF7-Hedgehog纤毛病结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt Q2M1P5 蛋白功能注释",
+      "RCSB PDB 4A14 X-ray 结构记录",
+      "OMIM/ClinVar KIF7 相关纤毛病变异证据"
+    ],
+    "referenceEntries": "UniProt Q2M1P5；RCSB PDB 4A14；Open Targets KIF7",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "motor domain 微管结合界面与 L11/L12 邻近区",
+        "可直接干扰 KIF7 与微管轨道结合，具备明确功能阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "switch II helix 及核苷酸依赖构象传递区域外缘",
+        "可影响 ATP 水解后构象耦联，适合构象锁定型抗体筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP 结合口袋 P-loop 与 switch I 高保守区域",
+        "功能相关性强但跨 kinesin 家族保守性高，脱靶与选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "KIF7 为胞内微管相关蛋白，常规治疗性抗体难以到达靶点；设计宜定位于研究级 Fab/VHH、细胞内递送格式或结构探针，并强化 kinesin 家族选择性筛查。",
+    "structurePrepZh": "以 4A14 链 A 为模板保留 motor domain 主体，检查核苷酸、镁离子及缺失环区；对微管结合环进行同源补全与构象采样后再开展表位建模。",
+    "structureRef": "RCSB PDB 4A14，1.6 Å X-ray human KIF7 motor domain",
+    "antibodies": [
+      "研究用抗KIF7多克隆抗体",
+      "研究用抗KIF7单克隆抗体"
+    ],
+    "interfaceFocus": "motor domain 微管结合面与 switch II 构象耦联区",
+    "designMode": "胞内结构阻断",
+    "candidates": [
+      {
+        "target": "GLI2",
+        "rationale": "GLI2 是 Hedgehog 通路主要转录激活因子，KIF7 调控其纤毛定位与加工；靶向 GLI2 可作为同一发育异常通路的下游功能验证节点。"
+      },
+      {
+        "target": "SMO",
+        "rationale": "SMO 是 Hedgehog 信号从 PTCH1 抑制状态释放后的核心膜受体样转导因子，抗原可及性优于 KIF7，并与纤毛内信号传递直接相关。"
+      },
+      {
+        "target": "PTCH1",
+        "rationale": "PTCH1 是 Hedgehog 配体受体及 SMO 抑制因子，位于同一通路上游；其多跨膜胞外环和配体调控机制为抗体干预提供替代入口。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

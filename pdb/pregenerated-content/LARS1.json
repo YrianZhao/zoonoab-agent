@@ -1,0 +1,65 @@
+{
+  "gene": "LARS1",
+  "generatedAt": "2026-08-03T13:49:50.509Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "LARS1编码胞质亮氨酰-tRNA合成酶，催化亮氨酸与tRNA Leu氨酰化，并作为亮氨酸感知因子促进RagD GTPase构象转换和mTORC1溶酶体激活；其遗传缺陷与婴儿肝衰竭综合征及线粒体编码蛋白合成缺陷相关。该蛋白主要定位于胞质，并非分泌蛋白或跨膜受体，天然抗原可及性不具备细胞外药物靶点优势，抗体设计更适合用于结构生物学、细胞内递送或诊断捕获体系。相较于同通路上游氨基酸转运体，LARS1具有明确酶学活性位点、tRNA结合界面和6LPF高分辨率实验结构，可优先支持机制验证型抗体设计。",
+    "mechanism": "设计抗体阻断LARS1 CP1编辑结构域与RagD的亮氨酸依赖相互作用，抑制Rag GTPase介导的mTORC1溶酶体募集。",
+    "selectedEpitope": "优先覆盖CP1编辑结构域RagD结合面，避开Rossmann催化核心的ATP/tRNA结合沟槽。",
+    "diseaseDirection": "婴儿肝衰竭与氨基酸感知通路",
+    "domain": "LARS1含Rossmann催化核心、CP1编辑结构域、tRNA结合结构域及C端UNE-L结构域。",
+    "evidence": "LARS1结构-遗传疾病-mTORC1证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9P2J5功能与亚细胞定位注释",
+      "RCSB PDB 6LPF晶体结构记录",
+      "文献报道LARS1作为亮氨酸感受器调控RagD-mTORC1"
+    ],
+    "referenceEntries": "UniProt Q9P2J5；RCSB PDB 6LPF；Open Targets LARS1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CP1编辑结构域RagD结合界面",
+        "可直接干预亮氨酸感知与mTORC1募集，机制指向明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "tRNA Leu结合臂邻近沟槽",
+        "可用于抑制氨酰化复合物装配，但需避免广泛扰动核心折叠",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Rossmann催化核心ATP结合口袋周边",
+        "功能相关性高但保守性强，存在交叉反应和酶活完全阻断风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "LARS1为胞内必需酶，常规抗体难以进入胞质且全局抑制可能产生蛋白翻译毒性；建议限定为细胞内递送抗体、结构探针或诊断抗体。",
+    "structurePrepZh": "以6LPF A、B链为抗原模板，保留生物学二聚体构象，补全缺失环区并评估CP1结构域柔性后进行表位暴露性计算。",
+    "structureRef": "RCSB PDB 6LPF，X射线晶体结构，2.49 Å",
+    "antibodies": [
+      "无已批准LARS1治疗性抗体",
+      "商业化抗LARS1研究抗体"
+    ],
+    "interfaceFocus": "CP1编辑结构域-RagD相互作用面",
+    "designMode": "胞内机制抗体",
+    "candidates": [
+      {
+        "target": "RRAGD",
+        "rationale": "RRAGD编码RagD GTPase，是LARS1亮氨酸感知信号向mTORC1传递的直接互作节点，适合作为同一氨基酸感知通路候选靶点。"
+      },
+      {
+        "target": "MTOR",
+        "rationale": "MTOR编码mTOR激酶，是Rag GTPase募集后被激活的核心效应分子，与蛋白合成、细胞生长和代谢应答直接相关。"
+      },
+      {
+        "target": "LAMTOR1",
+        "rationale": "LAMTOR1为Ragulator复合体溶酶体锚定组分，参与Rag GTPase定位和mTORC1氨基酸依赖激活，处于LARS1-RagD下游同一路径。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

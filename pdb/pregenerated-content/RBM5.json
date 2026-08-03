@@ -1,0 +1,65 @@
+{
+  "gene": "RBM5",
+  "generatedAt": "2026-08-03T15:57:07.459Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RBM5为核内RNA结合剪接调控因子，在非小细胞肺癌中与FAS、CASP2、BCL2L1等凋亡相关转录本的可变剪接调控相关，影响细胞凋亡阈值与肿瘤抑制网络。该蛋白缺乏分泌形式或跨膜胞外结构域，抗体抗原可及性显著受限，常规体内阻断型抗体成药性不占优。其优先级低于EGFR、MET、PDCD1LG2等同病种膜受体或免疫检查点靶点，更适合作为机制研究或细胞内递送抗体片段探索对象。",
+    "mechanism": "采用细胞内递送型抗体片段结合RBM5 RRM2结构域，干扰其识别富G/U RNA基序及剪接复合体装配，从而改变凋亡相关前体mRNA剪接。",
+    "selectedEpitope": "优先覆盖RRM2 β折叠RNA结合面及RNP1/RNP2邻近沟槽，避免破坏整体折叠核心。",
+    "diseaseDirection": "非小细胞肺癌剪接调控",
+    "domain": "RBM5含双RRM、锌指、G-patch及核定位相关低复杂度区，7PCV解析其RRM2结构域。",
+    "evidence": "RBM5剪接调控与肺癌抑癌机制证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P52756功能与结构域注释",
+      "RCSB PDB 7PCV晶体结构记录",
+      "肺癌中RBM5可变剪接与凋亡调控研究文献"
+    ],
+    "referenceEntries": "UniProt: P52756; RCSB PDB: 7PCV; Open Targets: RBM5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RRM2 β-sheet RNA结合面及RNP1/RNP2基序邻近区域",
+        "直接竞争RNA底物结合，最有利于验证剪接调控机制",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RRM2 α-螺旋外侧与环区暴露面",
+        "可获得较高结构可及性，适合构建非竞争性构象探针",
+        "备选"
+      ],
+      [
+        "Site C",
+        "RRM2疏水折叠核心及链间晶体接触面",
+        "可能导致非特异性构象扰动或识别晶体堆积伪界面",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RBM5为核内蛋白，天然抗体难以进入作用位点；设计应限定为VHH、intrabody或递送偶联形式，并严格排除晶体接触伪表位。",
+    "structurePrepZh": "以7PCV链A/B为模板进行RRM2构象比对，移除非生物学晶体接触与溶剂分子，保留RNA结合面残基用于表位分层。",
+    "structureRef": "RCSB PDB 7PCV，X-ray diffraction，2.42 Å",
+    "antibodies": [
+      "无获批RBM5靶向抗体",
+      "研究级抗RBM5抗体"
+    ],
+    "interfaceFocus": "RRM2 RNP1/RNP2 RNA识别沟槽",
+    "designMode": "细胞内VHH探索",
+    "candidates": [
+      {
+        "target": "FAS",
+        "rationale": "FAS为RBM5影响的凋亡通路下游关键受体，细胞外死亡结构域配体结合界面具备常规抗体可及性。"
+      },
+      {
+        "target": "EGFR",
+        "rationale": "EGFR是非小细胞肺癌核心膜受体驱动靶点，胞外Domain I/III配体结合区和Domain II二聚化臂适合阻断型抗体设计。"
+      },
+      {
+        "target": "MET",
+        "rationale": "MET介导HGF驱动的肺癌增殖、侵袭与旁路耐药，胞外SEMA结构域可作为抗体阻断HGF-MET相互作用的优先界面。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

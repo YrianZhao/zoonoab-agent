@@ -1,0 +1,65 @@
+{
+  "gene": "NCAPH2",
+  "generatedAt": "2026-08-03T14:35:14.643Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NCAPH2 是凝缩素II复合体的非SMC kleisin亚基，参与SMC2/SMC4介导的染色体环挤出、染色体凝缩与有丝分裂染色体分离；其遗传关联主要集中于发育异常、眼部表型和血细胞性状，提示染色体结构维护缺陷可影响增殖组织发育。该蛋白为核内染色体结构复合体成分，缺乏天然胞外结构域或分泌暴露，因此作为常规治疗性抗体抗原的可及性较低，仅适合体外检测、胞内递送抗体或研究型结合分子开发。相较SMC2、SMC4等高度保守ATPase核心亚基，NCAPH2具有凝缩素II特异性接口，利于区分凝缩素I/II复合体并降低对共同SMC核心功能的非选择性干扰。",
+    "mechanism": "结合NCAPH2与SMC2/SMC4邻近的kleisin接口，阻断凝缩素II闭环装配及染色体轴向定位，从而削弱染色体凝缩复合体稳定性。",
+    "selectedEpitope": "优先覆盖NCAPH2 kleisin中段与HEAT亚基接触面，避开低分辨率EM模型中不确定柔性环区。",
+    "diseaseDirection": "染色体结构维护相关发育疾病",
+    "domain": "NCAPH2为凝缩素II kleisin亚基，含N端SMC2结合区、中段HEAT亚基接口及C端SMC4结合区。",
+    "evidence": "NCAPH2凝缩素II结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q6IBW4蛋白功能注释",
+      "RCSB PDB 9F5W冷冻电镜结构",
+      "凝缩素II染色体凝缩与环挤出研究文献"
+    ],
+    "referenceEntries": "UniProt Q6IBW4；RCSB PDB 9F5W；Open Targets NCAPH2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "kleisin中段HEAT亚基接触界面",
+        "有助于干扰NCAPH2介导的凝缩素II支架装配并提高复合体特异性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端SMC4结合邻近区域",
+        "可用于阻断kleisin闭环稳定化，但需评估与SMC核心保守界面的交叉风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端SMC2结合邻近区域",
+        "可能影响复合体闭合，但该区域构象依赖性强且低分辨率模型定位不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NCAPH2为核内蛋白，抗体体内可及性不足；9F5W分辨率为7.5 Å，侧链级表位需结合AlphaFold、交联质谱或突变扫描校正。",
+    "structurePrepZh": "以9F5W多链冷冻电镜模型提取NCAPH2相关链段，补全缺失区并进行复合体界面标注，保留SMC2/SMC4和HEAT亚基邻近链用于遮挡分析。",
+    "structureRef": "RCSB PDB 9F5W，人源凝缩素II复合体冷冻电镜结构",
+    "antibodies": [
+      "研究级抗NCAPH2单克隆抗体",
+      "研究级抗hCAP-H2多克隆抗体"
+    ],
+    "interfaceFocus": "NCAPH2-SMC2/SMC4闭环接口及HEAT亚基结合面",
+    "designMode": "胞内靶点研究型结合分子",
+    "candidates": [
+      {
+        "target": "SMC2",
+        "rationale": "SMC2是凝缩素I/II共享核心ATPase亚基，直接参与染色体环挤出和凝缩复合体闭合，可作为同一染色体结构维护通路的核心对照靶点。"
+      },
+      {
+        "target": "SMC4",
+        "rationale": "SMC4与SMC2形成凝缩素核心异二聚体，并通过kleisin亚基完成闭环装配，适合评估NCAPH2相关复合体稳定性机制。"
+      },
+      {
+        "target": "NCAPD3",
+        "rationale": "NCAPD3为凝缩素II特异性HEAT重复亚基，与NCAPH2共同构成凝缩素II调控模块，疾病通路层面更接近NCAPH2特异功能。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

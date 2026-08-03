@@ -1,0 +1,65 @@
+{
+  "gene": "DDC",
+  "generatedAt": "2026-08-03T18:31:21.193Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DDC编码芳香族L-氨基酸脱羧酶，催化L-DOPA生成多巴胺及5-羟色氨酸生成5-羟色胺，其功能缺陷直接导致AADC缺乏症，并影响帕金森病相关多巴胺补充通路。该蛋白为胞质PLP依赖性同源二聚酶，缺乏天然胞外结构域或分泌暴露，因此抗体介入更适合作为细胞内靶向研究工具或递送型抗体设计。相较TH、SLC6A3等同通路靶点，DDC位于多巴胺合成末端限速后步骤，疾病遗传证据强且高分辨率结构可支持精确界面设计，但药物可及性优先级低于膜受体和转运体靶点。",
+    "mechanism": "设计抗体阻断DDC同源二聚体界面或遮蔽PLP依赖性催化口袋入口，干扰L-DOPA与PLP-Schiff碱催化复合物形成。",
+    "selectedEpitope": "优先靶向PLP结合催化核心邻近的底物入口环区，备选覆盖二聚体界面α螺旋束。",
+    "diseaseDirection": "AADC缺乏症与帕金森多巴胺通路",
+    "domain": "PLP依赖性芳香族L-氨基酸脱羧酶折叠，含N端臂、催化核心及C端结构域。",
+    "evidence": "DDC多巴胺合成通路结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P20711功能与亚细胞定位注释",
+      "RCSB PDB 9HRH高分辨率晶体结构",
+      "OMIM与ClinVar AADC缺乏症变异证据"
+    ],
+    "referenceEntries": "UniProt P20711；RCSB PDB 9HRH；Open Targets DDC",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PLP结合催化核心邻近底物入口环区",
+        "可直接影响L-DOPA进入与催化复合物形成，机制验证价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "同源二聚体界面α螺旋束与邻近片层接触面",
+        "干扰二聚体稳定性，适合构建构象依赖性抑制抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化口袋的C端外露结构域表面",
+        "可用于结合型检测抗体，但功能阻断相关性较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DDC为胞质酶，天然抗体难以到达作用位点；功能性抗体应结合细胞内递送、intrabody或降解平台，并避免干扰PLP结合导致非特异构象破坏。",
+    "structurePrepZh": "以9HRH链A为模板，补全缺失侧链并保留PLP相关催化构象；需评估生物学二聚体装配、底物入口通道及晶体接触伪界面。",
+    "structureRef": "Human DDC crystal structure, PDB 9HRH, 1.7 Å",
+    "antibodies": [
+      "Anti-DDC antibody EPR14881",
+      "Anti-DDC antibody ab3905"
+    ],
+    "interfaceFocus": "PLP催化口袋入口与同源二聚体界面",
+    "designMode": "细胞内酶阻断型",
+    "candidates": [
+      {
+        "target": "TH",
+        "rationale": "TH催化酪氨酸向L-DOPA转化，是儿茶酚胺合成上游限速酶，与DDC共同决定多巴胺生成通量。"
+      },
+      {
+        "target": "SLC6A3",
+        "rationale": "SLC6A3编码多巴胺转运体，调控突触间隙多巴胺再摄取，是帕金森和多巴胺能通路中可及性更高的膜蛋白靶点。"
+      },
+      {
+        "target": "DRD2",
+        "rationale": "DRD2为多巴胺D2受体，位于DDC下游信号响应环节，可反映多巴胺合成异常对受体介导神经调节的影响。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

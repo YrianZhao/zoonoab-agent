@@ -1,0 +1,65 @@
+{
+  "gene": "C11ORF98",
+  "generatedAt": "2026-08-03T10:54:20.679Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "C11ORF98目前缺乏明确的分泌蛋白、膜受体或胞外结构域注释，其Open Targets关联以骨骼系统异常、血液蛋白含量及中性粒细胞比例等表型为主，关联得分较低且未形成可验证的致病信号轴。该蛋白未被确认为细胞表面抗原，抗体药物难以在生理状态下有效接近天然构象表位。相较于同类免疫或骨代谢通路中具有明确胞外配体-受体界面的靶点，C11ORF98作为主抗体靶点的优先级较低，应定位为结构研究或探索性抗原而非优先成药靶点。",
+    "mechanism": "不建议设定阻断性治疗机制；可采用构象识别抗体检测C11ORF98复合物暴露表面，验证其是否参与可抗体干预的蛋白互作界面。",
+    "selectedEpitope": "优先选择8INF结构中溶剂暴露且远离亚基装配核心的外周螺旋-环区作为探索性表位。",
+    "diseaseDirection": "探索性骨骼与血液表型关联",
+    "domain": "C11ORF98缺乏经典Ig样、TNF样或受体胞外域注释；8INF提供低分辨率复合物构象参考。",
+    "evidence": "C11ORF98结构与疾病关联审慎证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB条目E9PRG8蛋白功能注释",
+      "RCSB PDB结构条目8INF电子显微镜数据",
+      "AlphaFold/结构域注释与亚细胞定位交叉评估"
+    ],
+    "referenceEntries": "UniProtKB E9PRG8；RCSB PDB 8INF；Open Targets C11ORF98",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "8INF模型外周溶剂暴露螺旋-环区",
+        "适合构象抗体筛选，用于检测天然复合物可及表面",
+        "优先"
+      ],
+      [
+        "Site B",
+        "预测柔性环区及非保守表面片段",
+        "有利于获得特异性结合克隆，但需验证天然构象保留",
+        "备选"
+      ],
+      [
+        "Site C",
+        "亚基接触面或复合物装配核心区域",
+        "可能影响结构稳定性且天然可及性不足，阻断机制证据薄弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为亚细胞定位和胞外可及性证据不足，疾病关联强度较低。设计应先进行定位、表达谱与天然复合物结合验证。",
+    "structurePrepZh": "以8INF电子显微镜模型为模板，补全缺失片段并标注低置信柔性区；去除非目标链后评估表面暴露度与装配界面。",
+    "structureRef": "RCSB PDB 8INF，electron microscopy，3.0 Å",
+    "antibodies": [
+      "无已批准同靶点治疗性抗体",
+      "无公开验证的C11ORF98阻断抗体"
+    ],
+    "interfaceFocus": "外周暴露表面与复合物亚基接触边界",
+    "designMode": "探索性结合抗体",
+    "candidates": [
+      {
+        "target": "TNFSF11",
+        "rationale": "RANKL是骨重塑通路中的可溶性/膜结合配体，直接结合TNFRSF11A促进破骨细胞分化；其胞外配体界面已被抗体药物验证。"
+      },
+      {
+        "target": "TNFRSF11A",
+        "rationale": "RANK为破骨细胞谱系细胞表面受体，胞外半胱氨酸富集结构域介导RANKL结合，适合构建阻断配体-受体相互作用的抗体策略。"
+      },
+      {
+        "target": "CSF1R",
+        "rationale": "CSF1R是单核-巨噬细胞及破骨细胞前体生存分化通路的细胞表面受体，胞外Ig样结构域与CSF1或IL34结合，可作为骨与髓系表型相关的可及靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

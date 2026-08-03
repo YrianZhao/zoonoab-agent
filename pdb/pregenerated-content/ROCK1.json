@@ -1,0 +1,65 @@
+{
+  "gene": "ROCK1",
+  "generatedAt": "2026-08-03T16:07:42.220Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ROCK1 是 RhoA 下游丝氨酸/苏氨酸激酶，促进肌球蛋白轻链磷酸化、肌动蛋白收缩和小梁网细胞张力升高，因而与开角型青光眼及眼压升高具有明确通路关联。该蛋白主要定位于胞质，缺乏稳定胞外结构域，抗体直接阻断需采用细胞内递送或抗体片段工程策略，抗原可及性低于典型膜受体。相比上游 RHOA 或多效性肌球蛋白调节因子，ROCK1 具有可解析激酶结构和疾病遗传/药理证据支持，适合作为机制验证型抗体设计靶点，但优先级应低于胞外可及靶点。",
+    "mechanism": "设计抗体片段结合 ROCK1 激酶结构域 ATP 结合裂隙邻近区域，空间阻断底物进入并削弱 ROCK1 对 MYL9/MLC2 的磷酸化。",
+    "selectedEpitope": "优先覆盖激酶结构域 N-lobe/C-lobe 之间的 ATP 结合沟及活化环邻近表面。",
+    "diseaseDirection": "青光眼与眼压升高通路",
+    "domain": "ROCK1 含 N 端激酶结构域、中央 coiled-coil/Rho-binding region 和 C 端 PH-C1 调控区。",
+    "evidence": "ROCK1-RhoA-肌球蛋白收缩轴证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q13464 功能与结构域注释",
+      "RCSB PDB 3V8S 晶体结构",
+      "RhoA/ROCK 通路眼压调控药理学研究"
+    ],
+    "referenceEntries": "UniProt Q13464；RCSB PDB 3V8S；Open Targets ROCK1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域 ATP 结合裂隙与 hinge 区邻近表面",
+        "可直接干预催化构象与底物进入路径，机制可验证性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N-lobe αC helix 与活化环周边调控界面",
+        "有望稳定非活化构象并降低底物磷酸化效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "中央 coiled-coil/Rho-binding region 预测暴露面",
+        "可尝试干扰 RhoA-GTP 介导的 ROCK1 激活，但 3V8S 不覆盖该区域",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ROCK1 为胞内激酶，常规抗体难以天然进入靶细胞；需采用胞内抗体、VHH 递送或偶联递送体系，并严格评估 ROCK2 交叉反应。",
+    "structurePrepZh": "以 3V8S 激酶结构域为模板，保留链 A-D 中分辨率最佳构象，去除结晶配体与水分子后进行缺失环建模和质子化处理。",
+    "structureRef": "RCSB PDB 3V8S；X-ray diffraction，2.286 Å",
+    "antibodies": [
+      "抗 ROCK1 研究级单克隆抗体",
+      "抗 ROCK1 intracellular VHH 候选形式"
+    ],
+    "interfaceFocus": "ATP 结合沟、hinge 区、活化环周边",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "ROCK2",
+        "rationale": "ROCK2 与 ROCK1 同属 RhoA-ROCK 收缩轴，参与小梁网细胞张力和房水外流阻力调控；与 ROCK1 并行评估有助于区分同工酶选择性。"
+      },
+      {
+        "target": "RHOA",
+        "rationale": "RHOA-GTP 通过结合 ROCK 蛋白 Rho-binding region 解除自抑制并激活下游收缩信号，是 ROCK1 上游直接调控节点。"
+      },
+      {
+        "target": "MYL9",
+        "rationale": "MYL9 编码平滑肌/非肌肉肌球蛋白调节轻链，是 ROCK1 介导收缩效应的重要底物，可作为下游药效与通路验证靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "MUSK",
+  "generatedAt": "2026-08-03T14:28:34.568Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MUSK是神经肌肉接头形成与维持的核心受体酪氨酸激酶，LRP4-agrin复合物激活MUSK后驱动DOK7依赖性磷酸化和乙酰胆碱受体聚簇；其功能缺陷与先天性肌无力综合征、胎动减少畸形序列等疾病直接相关。MUSK为单跨膜受体，胞外Ig样结构域和富含半胱氨酸Frizzled样结构域暴露于突触间隙，具备抗体识别与功能调节的可及性。相较于下游胞内衔接蛋白，MUSK提供更直接的膜外干预界面，并可通过构象稳定或配体界面调节实现通路特异性设计，优先级较高。",
+    "mechanism": "设计抗体稳定MUSK胞外区活化构象，增强LRP4-agrin诱导的MUSK聚集与DOK7介导的受体磷酸化，促进乙酰胆碱受体簇形成。",
+    "selectedEpitope": "优先锁定Ig1结构域与富含半胱氨酸Frizzled样结构域邻近界面，避免遮挡LRP4关键结合面。",
+    "diseaseDirection": "神经肌肉接头疾病",
+    "domain": "MUSK胞外区含Ig-like 1-3结构域、富含半胱氨酸Frizzled样结构域，随后连接跨膜段与胞内激酶结构域。",
+    "evidence": "MUSK神经肌肉接头遗传与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt O15146功能与结构域注释",
+      "RCSB PDB 9NWG晶体结构",
+      "ClinVar与OMIM先天性肌无力综合征记录"
+    ],
+    "referenceEntries": "UniProt O15146；RCSB PDB 9NWG；Open Targets MUSK",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Ig1-CRD邻近构象稳定界面",
+        "利于稳定胞外区活化取向并保留LRP4-agrin输入",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Ig2/Ig3外侧非配体竞争面",
+        "可提供高可及性结合位点，适合构建非阻断型Fab",
+        "备选"
+      ],
+      [
+        "Site C",
+        "LRP4结合相关Ig1表面",
+        "可能抑制agrin-LRP4-MUSK信号输入，需按拮抗风险严格筛选",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "需避免直接竞争LRP4或破坏MUSK二聚化相关构象；优先筛选不抑制MUSK磷酸化且可增强AChR聚簇的结合克隆。",
+    "structurePrepZh": "以9NWG高分辨率晶体结构为模板，保留胞外结构域二硫键与糖基化位点注释，按多链装配评估可及界面与晶体接触干扰。",
+    "structureRef": "RCSB PDB 9NWG，X-ray diffraction，1.7 Å",
+    "antibodies": [
+      "MuSK agonist antibody 13B5",
+      "MuSK autoantibodies from myasthenia gravis"
+    ],
+    "interfaceFocus": "Ig1-CRD构象稳定面与LRP4邻近非竞争区",
+    "designMode": "激动型构象稳定",
+    "candidates": [
+      {
+        "target": "LRP4",
+        "rationale": "LRP4作为agrin受体并直接参与MUSK激活复合物形成，是同一神经肌肉接头信号轴中的上游膜受体。其胞外LDL受体样结构域提供抗体调节agrin-LRP4-MUSK装配的可及界面。"
+      },
+      {
+        "target": "AGRN",
+        "rationale": "AGRN编码神经源性agrin，是触发LRP4-MUSK信号的分泌型配体。抗体可用于稳定或模拟关键配体构象，但需避免降低其与LRP4结合。"
+      },
+      {
+        "target": "DOK7",
+        "rationale": "DOK7是MUSK胞内激酶激活所需衔接蛋白，遗传缺陷同样导致先天性肌无力综合征。该靶点处于同一通路下游，但胞内定位限制常规抗体可及性，适合作为机制参照候选。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

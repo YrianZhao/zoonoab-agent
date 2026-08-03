@@ -1,0 +1,65 @@
+{
+  "gene": "CD226",
+  "generatedAt": "2026-08-03T11:08:42.107Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CD226 是免疫球蛋白超家族黏附受体，参与 NK 细胞与 T 细胞识别靶细胞，并通过结合 CD155/PVR 与 CD112/NECTIN2 促进细胞毒效应和共刺激信号。其胞外区由两个 Ig-like 结构域组成，位于细胞表面，配体结合界面具有良好的抗体可及性。相较于下游胞内信号分子，CD226 更适合通过抗体直接调控受体-配体相互作用；相较 TIGIT、CD96 等同轴受体，CD226 代表激活性分支，适合用于精细化重塑 DNAM-1/TIGIT/CD96 免疫检查点轴。",
+    "mechanism": "抗体阻断 CD226 胞外 IgV 样结构域与 CD155/PVR 或 CD112/NECTIN2 的结合，抑制 DNAM-1 介导的免疫细胞黏附与共刺激。",
+    "selectedEpitope": "优先覆盖 N 端 IgV 样结构域的配体结合面，避开铰链区柔性糖基化位点。",
+    "diseaseDirection": "免疫检查点与血液免疫表型",
+    "domain": "I 型跨膜糖蛋白，胞外区含 N 端 IgV 样结构域和膜近端 IgC2 样结构域。",
+    "evidence": "CD226 免疫受体轴结构与疾病遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt Q15762 蛋白功能与结构域注释",
+      "RCSB PDB 6ISB X 射线晶体结构",
+      "免疫检查点 DNAM-1/TIGIT/CD96 轴文献证据"
+    ],
+    "referenceEntries": "UniProt: Q15762; RCSB PDB: 6ISB; HGNC: CD226",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N 端 IgV 样结构域配体结合面",
+        "直接干预 CD155/CD112 识别界面，机制明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "IgV-IgC2 结构域间邻近面",
+        "可产生空间位阻并影响受体构象排列",
+        "备选"
+      ],
+      [
+        "Site C",
+        "膜近端 IgC2 样结构域外侧面",
+        "远离主要配体结合位点，功能阻断不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "需区分阻断型与非阻断型表位，避免完全削弱抗肿瘤免疫激活。糖基化和结构域间柔性区域应降低设计权重。",
+    "structurePrepZh": "以 6ISB 的 CD226 胞外区晶体结构为模板，保留抗原链 A/B/C 中分辨率完整链，补建缺失环区并标注潜在 N-糖基化位点。",
+    "structureRef": "RCSB PDB 6ISB, X-ray diffraction, 2.5 Å",
+    "antibodies": [
+      "DX11",
+      "LeoA1"
+    ],
+    "interfaceFocus": "IgV 样结构域的 CD155/CD112 结合面",
+    "designMode": "阻断型界面抗体",
+    "candidates": [
+      {
+        "target": "PVR",
+        "rationale": "PVR/CD155 是 CD226、TIGIT 与 CD96 共享配体，位于同一免疫黏附检查点轴。靶向 PVR 可直接调节配体端竞争性受体结合。"
+      },
+      {
+        "target": "NECTIN2",
+        "rationale": "NECTIN2/CD112 是 CD226 的主要结合配体之一，并参与 TIGIT/CD112R 相关免疫调节网络。其胞外黏附结构域适合配体端抗体干预。"
+      },
+      {
+        "target": "TIGIT",
+        "rationale": "TIGIT 与 CD226 竞争结合 PVR，并通过抑制性信号限制 T 细胞和 NK 细胞功能。其与 CD226 属于同一 PVR 免疫检查点通路。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

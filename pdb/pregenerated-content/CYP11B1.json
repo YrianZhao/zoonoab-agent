@@ -1,0 +1,65 @@
+{
+  "gene": "CYP11B1",
+  "generatedAt": "2026-08-03T11:47:09.706Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CYP11B1催化肾上腺皮质线粒体内11-脱氧皮质醇向皮质醇、11-脱氧皮质酮向皮质酮的11β-羟化反应，遗传缺陷导致11β-羟化酶缺乏型先天性肾上腺增生，功能亢进背景可参与皮质醇过量相关库欣综合征。该蛋白为线粒体内膜侧细胞色素P450酶，抗原天然可及性低，不具备典型膜外结构域优势，较适合作为细胞内酶学机制研究或递送型抗体片段验证。相较MC2R等细胞表面调控靶点，CYP11B1具有高分辨率实验结构和明确底物结合腔，适合开展结构约束的变构抑制设计，但治疗性常规抗体优先级低于胞外受体靶点。",
+    "mechanism": "抗体片段需进入线粒体相关胞内空间后，遮挡CYP11B1血红素邻近底物通道，干扰11-脱氧皮质醇与催化腔定位并抑制11β-羟化反应。",
+    "selectedEpitope": "优先锁定F-G环与底物进入通道外缘，避免直接覆盖血红素铁配位核心。",
+    "diseaseDirection": "肾上腺类固醇生成异常",
+    "domain": "线粒体P450催化结构域，含血红素结合核心、I-helix、F-G环和底物进入通道。",
+    "evidence": "CYP11B1肾上腺皮质类固醇生成证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P15538功能与定位注释",
+      "RCSB PDB 7E7F高分辨率晶体结构",
+      "OMIM先天性肾上腺增生11β-羟化酶缺乏记录"
+    ],
+    "referenceEntries": "UniProt P15538；RCSB PDB 7E7F；Open Targets CYP11B1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "F-G环及底物通道入口外缘",
+        "可限制底物进入并保留结构选择性，适合变构型片段设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "I-helix邻近催化腔外侧面",
+        "可能影响氧活化构象耦联，需避免破坏P450保守折叠",
+        "备选"
+      ],
+      [
+        "Site C",
+        "血红素结合Cys配位基序周边",
+        "催化核心高度保守且埋藏较深，易产生交叉反应与成药性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CYP11B1为线粒体内膜侧胞内酶，常规抗体难以到达作用位点；需采用细胞穿透或胞内递送格式，并严格评估CYP11B2交叉反应。",
+    "structurePrepZh": "以7E7F链A为模板，保留血红素辅基与关键催化残基，补全柔性环区后标注底物通道和CYP11B2同源差异位点。",
+    "structureRef": "RCSB PDB 7E7F，X-ray diffraction，1.4 Å",
+    "antibodies": [
+      "CYP11B1研究级单克隆抗体",
+      "CYP11B1免疫组化验证抗体"
+    ],
+    "interfaceFocus": "F-G环、I-helix外侧与底物通道入口",
+    "designMode": "胞内酶变构抑制",
+    "candidates": [
+      {
+        "target": "CYP11B2",
+        "rationale": "CYP11B2催化醛固酮合成末端反应，与CYP11B1同属肾上腺线粒体P450通路；在原发性醛固酮增多症和糖皮质激素可治性醛固酮增多症中具有直接机制关联。"
+      },
+      {
+        "target": "CYP21A2",
+        "rationale": "CYP21A2介导孕酮和17α-羟孕酮的21-羟化反应，位于皮质醇和醛固酮合成上游；其缺陷是先天性肾上腺增生最常见分子病因。"
+      },
+      {
+        "target": "MC2R",
+        "rationale": "MC2R为ACTH受体，驱动肾上腺皮质类固醇生成并上调CYP11B1相关合成轴；作为细胞表面GPCR，其抗原可及性优于线粒体P450酶。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

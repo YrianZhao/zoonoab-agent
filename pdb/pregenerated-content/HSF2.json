@@ -1,0 +1,65 @@
+{
+  "gene": "HSF2",
+  "generatedAt": "2026-08-03T19:53:59.332Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HSF2为热休克转录因子家族成员，主要通过DNA结合与三聚化调控热休克蛋白及发育相关基因转录；现有遗传关联主要集中于淋巴细胞、中性粒细胞、白细胞数量及血小板相关性状，而非经典可中和的细胞外疾病轴。该蛋白定位于细胞核，缺乏分泌区段或膜外结构域，天然抗原可及性显著弱于细胞因子、受体酪氨酸激酶或免疫检查点分子。相较同通路中细胞外应激配体或膜受体，HSF2更适合作为结构生物学和细胞内干预研究靶点，抗体药物开发优先级偏低，但可用于细胞内递送抗体或研究级阻断工具设计。",
+    "mechanism": "设计抗体应定位于HSF2 DNA结合域，阻断其识别热休克元件DNA大沟并干扰转录复合体装配。",
+    "selectedEpitope": "优先覆盖winged helix-turn-helix DNA结合域的识别螺旋与DNA接触面。",
+    "diseaseDirection": "血液细胞数量遗传关联",
+    "domain": "HSF2含N端winged helix DNA结合域、疏水七肽重复三聚化区及C端转录调控区。",
+    "evidence": "HSF2结构与血液性状遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease associations",
+      "UniProt Q03933 functional annotation",
+      "RCSB PDB 5HDK X-ray structure",
+      "Gene Ontology nuclear transcription factor annotation"
+    ],
+    "referenceEntries": "UniProt Q03933；RCSB PDB 5HDK；Open Targets HSF2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DNA结合域识别螺旋及相邻翼区",
+        "直接阻断HSF2与热休克元件DNA结合，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DNA结合域外侧保守结构面",
+        "可稳定结合折叠核心并作为结构探针，功能阻断效力需验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "三聚化相关疏水重复区域",
+        "可能影响HSF2寡聚化，但结构暴露性和构象依赖性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HSF2为核内转录因子，常规抗体难以到达作用位点；需采用细胞内递送、intrabody或降解偶联策略，并避免干扰HSF1同源DNA结合面导致选择性不足。",
+    "structurePrepZh": "以5HDK高分辨率晶体结构作为DNA结合域模板，保留抗原链A-D用于同源界面比对，补建缺失侧链并评估保守DNA接触残基。",
+    "structureRef": "RCSB PDB 5HDK，X-ray diffraction，1.32 Å",
+    "antibodies": [
+      "研究级anti-HSF2抗体",
+      "细胞内intrabody候选格式"
+    ],
+    "interfaceFocus": "winged helix DNA识别螺旋与翼区界面",
+    "designMode": "细胞内阻断型",
+    "candidates": [
+      {
+        "target": "HSF1",
+        "rationale": "HSF1与HSF2同属热休克转录因子通路，直接结合热休克元件并驱动HSP基因转录，是应激转录轴中功能更强的核心调控因子。"
+      },
+      {
+        "target": "HSPA1A",
+        "rationale": "HSPA1A为HSF调控的主要热休克蛋白效应分子，参与蛋白稳态和细胞应激反应，可作为下游功能读出及干预节点。"
+      },
+      {
+        "target": "HSP90AA1",
+        "rationale": "HSP90AA1处于热休克蛋白网络核心，维持多类客户蛋白稳定性，并与HSF介导的应激适应形成反馈关联。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

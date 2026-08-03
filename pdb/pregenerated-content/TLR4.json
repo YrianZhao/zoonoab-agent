@@ -1,0 +1,65 @@
+{
+  "gene": "TLR4",
+  "generatedAt": "2026-08-03T17:19:32.088Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TLR4是先天免疫LPS识别轴的核心膜受体，与MD-2形成复合物后识别细菌脂多糖并诱导MyD88与TRIF依赖性炎症信号，参与脓毒症、慢性炎症及多种免疫相关疾病过程。其富含亮氨酸重复序列的胞外结构域直接暴露于细胞外，并在2Z62中具有高分辨率复合物结构，适合开展阻断型抗体设计。相较于下游IRAK、TRAF6或转录因子靶点，TLR4位于配体识别起点，可在信号放大前抑制MD-2/LPS介导的受体二聚化，干预层级更靠前且表位结构依据更明确。",
+    "mechanism": "抗体阻断TLR4胞外LRR结构域与MD-2/LPS复合物形成的二聚化界面，抑制TIR结构域聚集并降低MyD88/TRIF依赖性NF-κB与IRF3激活。",
+    "selectedEpitope": "优先覆盖TLR4胞外LRR C端与MD-2接触邻近的二聚化界面，避免干扰广泛糖基化区域。",
+    "diseaseDirection": "TLR4介导的炎症与先天免疫疾病",
+    "domain": "I型跨膜受体，胞外区由LRRNT、多个LRR及LRRCT组成，胞内含TIR信号结构域。",
+    "evidence": "TLR4-MD-2-LPS结构与炎症遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt O00206功能与结构域注释",
+      "RCSB PDB 2Z62晶体结构",
+      "TLR4-MD-2-LPS复合物结构与先天免疫文献"
+    ],
+    "referenceEntries": "UniProt: O00206; RCSB PDB: 2Z62; Open Targets: TLR4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "LRR C端靠近MD-2/LPS诱导二聚化界面",
+        "直接阻断受体二聚化与下游TIR聚集，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "LRR中段外凸面非糖基化可及区域",
+        "可形成高亲和力结合并产生空间位阻，适合作为非竞争性抑制表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "LRR N端远离MD-2结合核心区域",
+        "结构可及但对配体识别与二聚化影响不确定，需功能筛选验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TLR4胞外区存在多处N-糖基化与弯月形LRR曲面，表位应避开糖链遮挡和高度保守结构支撑位点，优先评估交叉反应与激动风险。",
+    "structurePrepZh": "以2Z62晶体结构为模板，保留TLR4-MD-2-LPS复合物界面信息，补全缺失侧链并标注糖基化位点、二聚体接触面和抗体可及表面。",
+    "structureRef": "Park et al., Nature 2009; RCSB PDB 2Z62",
+    "antibodies": [
+      "NI-0101",
+      "HTA125"
+    ],
+    "interfaceFocus": "TLR4 LRR C端-MD-2/LPS二聚化界面",
+    "designMode": "阻断型Fab/VHH设计",
+    "candidates": [
+      {
+        "target": "LY96",
+        "rationale": "LY96编码MD-2，是TLR4识别LPS所必需的共受体，直接形成疏水口袋结合LPS并驱动TLR4二聚化。靶向MD-2可在同一受体复合物层面抑制TLR4激活。"
+      },
+      {
+        "target": "CD14",
+        "rationale": "CD14负责将LPS递送至TLR4-MD-2复合物，是LPS感知通路上游的关键辅助受体。阻断CD14可减少TLR4配体装载并降低炎症级联启动。"
+      },
+      {
+        "target": "LBP",
+        "rationale": "LBP在血浆中结合LPS并促进其转移至CD14，是TLR4通路配体递送的早期环节。靶向LBP适合用于限制循环LPS向TLR4复合物传递。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

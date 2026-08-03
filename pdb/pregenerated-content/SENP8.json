@@ -1,0 +1,65 @@
+{
+  "gene": "SENP8",
+  "generatedAt": "2026-08-03T16:25:45.233Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SENP8是NEDD8特异性半胱氨酸蛋白酶，催化去除Cullin等底物上的NEDD8修饰，直接影响CRL泛素连接酶活性、蛋白降解稳态及细胞周期相关过程。Open Targets关联主要集中于肾小球滤过率、胱抑素C、尿酸和白细胞数量等量化性状，提示其疾病遗传证据仍偏弱且多为系统性表型关联。该蛋白主要定位于胞内/核内催化环境，缺乏天然胞外结构域或分泌抗原可及性，作为常规体内阻断抗体靶点优先级低于膜受体或分泌型炎症因子；其优势在于2BKR提供高分辨率催化结构，可用于机制性研究抗体或胞内递送抗体的结构设计。",
+    "mechanism": "设计抗体优先阻断SENP8催化半胱氨酸邻近的NEDD8 C端结合沟槽，抑制NEDD8-Gly-Gly尾部进入活性位点并削弱去NEDD8化反应。",
+    "selectedEpitope": "优先覆盖UCH样催化结构域的NEDD8 C端结合沟槽及活性位点邻近环区。",
+    "diseaseDirection": "肾功能与蛋白稳态相关性状",
+    "domain": "SENP8为NEDD8特异性半胱氨酸蛋白酶，核心为UCH样催化结构域，含Cys-His-Asp催化三联体。",
+    "evidence": "SENP8-NEDD8去修饰轴结构与遗传关联证据",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联与遗传证据",
+      "UniProt Q96LD8蛋白功能与亚细胞定位注释",
+      "RCSB PDB 2BKR晶体结构与活性位点信息",
+      "MEROPS/Reactome NEDD8去修饰与Cullin neddylation通路注释"
+    ],
+    "referenceEntries": "UniProt Q96LD8；RCSB PDB 2BKR；Reactome NEDD8 conjugation",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "NEDD8 C端结合沟槽与催化Cys邻近环区",
+        "可直接阻断底物尾部进入活性位点，机制清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "UCH样催化结构域外侧底物识别面",
+        "可能干扰NEDD8或neddylated底物定位，保留构象选择空间",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离活性位点的保守结构核心表面",
+        "易产生结合但功能阻断价值有限，并存在交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SENP8为胞内酶，常规抗体体内可及性受限；设计宜定位为结构探针、胞内抗体或递送型格式，并严格评估与SENP家族蛋白交叉反应。",
+    "structurePrepZh": "采用2BKR的A/B链建立催化结构域模型，补全缺失侧链并标注催化三联体、NEDD8尾部结合沟槽及保守表面残基。",
+    "structureRef": "RCSB PDB 2BKR，X-ray diffraction，1.9 Å",
+    "antibodies": [
+      "无获批抗SENP8治疗性抗体",
+      "研究级抗SENP8单克隆抗体"
+    ],
+    "interfaceFocus": "催化Cys周边与NEDD8 C端结合沟槽",
+    "designMode": "胞内酶阻断型",
+    "candidates": [
+      {
+        "target": "NAE1",
+        "rationale": "NAE1为NEDD8活化酶E1复合体调节亚基，位于neddylation通路上游；相比SENP8，药理抑制证据更充分，但抗体可及性同样受胞内定位限制。"
+      },
+      {
+        "target": "UBA3",
+        "rationale": "UBA3为NEDD8活化酶催化亚基，负责NEDD8腺苷化和转硫酯反应；其抑制可降低Cullin neddylation并影响CRL底物降解。"
+      },
+      {
+        "target": "DCUN1D1",
+        "rationale": "DCUN1D1促进Cullin与RBX1复合体的NEDD8转移反应，在neddylation增强型肿瘤背景中具有通路相关性，可作为同轴机制候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

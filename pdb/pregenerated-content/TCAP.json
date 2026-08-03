@@ -1,0 +1,65 @@
+{
+  "gene": "TCAP",
+  "generatedAt": "2026-08-03T17:10:39.489Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TCAP编码titin-cap，为Z盘定位蛋白，参与肌节机械稳定与titin末端装配；其异常与肥厚型心肌病及肢带型肌营养不良2G型等肌病表型具有明确关联。该蛋白在肌细胞内虽非经典分泌因子，但具有稳定可解析的三维结构，适合用于结构导向表位设计与功能干预验证。相较于TTN等超大蛋白，TCAP尺度更小、结构定义更集中，且与肌节- Z盘病理轴的耦合更直接，优先级更适合作为机制清晰的抗体设计主靶点。",
+    "mechanism": "通过干扰TCAP与titin C端及Z盘相关结合界面，削弱肌节末端装配与机械信号传递。",
+    "selectedEpitope": "优先锁定TCAP的折叠核心外露面及titin结合界面邻近残基，避免破坏全局折叠。",
+    "diseaseDirection": "心肌病与肌营养不良",
+    "domain": "TCAP为小型肌节蛋白，结构以单一折叠核心为主，界面残基集中。",
+    "evidence": "TCAP结构-疾病-表位整合证据包",
+    "evidenceSources": [
+      "UniProt O15273",
+      "RCSB PDB 1YA5",
+      "Open Targets Platform",
+      "Published TCAP-Z-disc structural studies"
+    ],
+    "referenceEntries": "UniProt: O15273; PDB: 1YA5; TCAP/Human",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "靠近titin结合界面的外露残基簇",
+        "优先用于阻断蛋白互作并保持结构可解释性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "折叠核心侧向可及面",
+        "适合获得构象选择性结合但干预强度较温和",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守疏水核心附近",
+        "存在折叠扰动与非特异性失活风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险在于TCAP为细胞内Z盘蛋白，抗体进入性有限且功能读出依赖细胞内递送体系；同时需避免靶向核心疏水区导致构象破坏。建议优先采用表位映射结合突变验证，并以互作阻断而非广泛失活为设计终点。",
+    "structurePrepZh": "以1YA5为结构模板进行链A/B/T重建与缺失侧链补全，统一编号后映射titin结合面和暴露环区；必要时进行轻度能量最小化以保留原始折叠。",
+    "structureRef": "RCSB PDB 1YA5; X-ray 2.445 A",
+    "antibodies": [
+      "TCAP相关研究抗体",
+      "Z-disc肌节蛋白检测抗体"
+    ],
+    "interfaceFocus": "titin末端结合面与Z盘外露环区",
+    "designMode": "structure-guided",
+    "candidates": [
+      {
+        "target": "TTN",
+        "rationale": "TTN与TCAP在Z盘/titin末端装配轴上直接相连，是同一疾病通路中最关键的上游互作对象。靶向TTN- TCAP界面有助于评估互作阻断对肌节稳定性的影响。"
+      },
+      {
+        "target": "MYBPC3",
+        "rationale": "MYBPC3是肥厚型心肌病核心致病基因之一，参与肌节厚丝调控，与Z盘机械稳态共同构成心肌病病理网络。其可作为同通路对照靶点，验证TCAP干预在肌节层面的特异效应。"
+      },
+      {
+        "target": "ACTN2",
+        "rationale": "ACTN2位于Z盘并与多种肌节蛋白形成交联网络，在心肌病和骨骼肌病理中具有明确作用。与TCAP同属Z盘轴心组件，适合用于互作网络层面的并行验证。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

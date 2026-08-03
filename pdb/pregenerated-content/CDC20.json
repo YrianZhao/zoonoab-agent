@@ -1,0 +1,65 @@
+{
+  "gene": "CDC20",
+  "generatedAt": "2026-08-03T18:23:11.470Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CDC20是APC/C有丝分裂检查点通路的底物识别辅因子，结合MAD2、BUBR1和BUB3形成MCC以抑制APC/C活性，异常功能可扰乱后期启动和卵母细胞减数分裂成熟。CDC20为胞内WD40重复蛋白，并非分泌蛋白或膜受体，天然抗体抗原可及性不足，需定位为细胞内递送型抗体或结构引导的功能阻断分子。相较APC/C核心亚基，CDC20具有更明确的底物与检查点蛋白结合界面，4GGC高分辨率结构支持界面级表位设计，因此在机制验证型抗体工程中优先级较高。",
+    "mechanism": "阻断CDC20 WD40 β-propeller与APC/C degron底物或MCC组分的结合，抑制APC/C-CDC20介导的securin和cyclin B泛素化。",
+    "selectedEpitope": "优先靶向WD40 β-propeller顶部的C-box/KEN-box底物识别沟槽及邻近环区。",
+    "diseaseDirection": "减数分裂异常与细胞周期疾病",
+    "domain": "CDC20含N端调控区、C-box、KILR基序和C端WD40 β-propeller底物识别结构域。",
+    "evidence": "CDC20-APC/C检查点轴结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q12834功能与结构域注释",
+      "RCSB PDB 4GGC晶体结构记录",
+      "APC/C-CDC20与MCC复合物机制文献"
+    ],
+    "referenceEntries": "UniProt Q12834；RCSB PDB 4GGC；Open Targets CDC20",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "WD40 β-propeller顶部底物degron识别沟槽",
+        "可直接干预KEN-box/D-box底物招募，机制最清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "WD40侧面与MCC组分接触相关环区",
+        "有望改变MAD2-BUBR1-BUB3检查点复合体稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端C-box与APC/C结合相关区域",
+        "可能影响APC/C装配，但结构柔性较高且构象依赖强",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CDC20为胞内靶点，常规抗体难以进入细胞；设计应优先采用细胞内递送、intrabody或降解偶联策略，并避免干扰高度保守WD40折叠核心导致非特异结合。",
+    "structurePrepZh": "以4GGC链A为模板，保留WD40结构域主链与关键环区，检查缺失N端调控片段；进行质子化、侧链翻转、晶体接触排除和界面残基标注。",
+    "structureRef": "RCSB PDB 4GGC，X-ray，1.35 Å，human CDC20",
+    "antibodies": [
+      "抗CDC20研究级单克隆抗体",
+      "抗CDC20免疫组化诊断抗体"
+    ],
+    "interfaceFocus": "WD40顶部degron沟槽与MCC接触环区",
+    "designMode": "胞内功能阻断",
+    "candidates": [
+      {
+        "target": "BUB1B",
+        "rationale": "BUBR1由BUB1B编码，是MCC核心组分，可通过CDC20结合抑制APC/C活性；其失衡同样影响纺锤体检查点和染色体分离。"
+      },
+      {
+        "target": "MAD2L1",
+        "rationale": "MAD2L1编码MAD2，直接结合CDC20并促成MCC形成，是纺锤体组装检查点中与CDC20同轴的关键抑制因子。"
+      },
+      {
+        "target": "BUB3",
+        "rationale": "BUB3参与BUBR1-BUB3-CDC20复合物稳定化，调节APC/C-CDC20被检查点抑制的效率，属于同一有丝分裂检查点通路。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

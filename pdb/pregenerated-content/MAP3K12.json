@@ -1,0 +1,65 @@
+{
+  "gene": "MAP3K12",
+  "generatedAt": "2026-08-03T14:03:09.928Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAP3K12编码DLK，是神经元轴突损伤后JNK应激级联的近端MAP3K，可磷酸化MKK4/MKK7并驱动JUN依赖性退行性转录程序，与神经退行性疾病遗传和功能证据相符。该蛋白主要为胞内丝氨酸/苏氨酸激酶，抗原可及性弱于膜受体或分泌蛋白，抗体设计需定位为结构生物学验证、细胞内递送抗体或降解偶联策略。其优先级来自DLK在损伤应答中的上游枢纽位置，相比下游JNK或JUN，靶向MAP3K12更有机会截断多支应激输出并提高通路选择性。",
+    "mechanism": "通过结合MAP3K12激酶结构域ATP结合裂隙或激活环邻近构象，阻断ATP/Mg2+结合及MKK4、MKK7底物磷酸化。",
+    "selectedEpitope": "优先锁定激酶结构域N叶αC-helix、铰链区与激活环构成的变构/催化界面。",
+    "diseaseDirection": "神经退行性疾病与轴突损伤应激",
+    "domain": "MAP3K12含N端丝氨酸/苏氨酸蛋白激酶结构域及C端调控区，9CDY覆盖高分辨率催化核心。",
+    "evidence": "MAP3K12-DLK神经元JNK应激轴证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联证据",
+      "UniProt Q12852功能与结构域注释",
+      "RCSB PDB 9CDY晶体结构记录",
+      "DLK-MKK4/MKK7-JNK轴突退行文献证据"
+    ],
+    "referenceEntries": "UniProt Q12852；RCSB PDB 9CDY；Open Targets MAP3K12",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域铰链区、ATP结合裂隙与DFG邻近口袋",
+        "直接干预ATP定位并稳定失活构象，适合功能阻断型抗体片段筛选",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N叶αC-helix与C叶激活环之间的变构界面",
+        "可限制激活环构象转换，降低MKK4/MKK7底物磷酸化效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "保守催化赖氨酸、HRD/DFG基序周边高度保守面",
+        "同源激酶交叉反应风险较高，需严格开展MAP3K与MAP2K选择性评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAP3K12为胞内激酶，常规抗体难以到达天然抗原；催化核心保守性高，应优先采用细胞内递送Fab/VHH并进行激酶组交叉反应筛查。",
+    "structurePrepZh": "以9CDY链A为模板，保留催化核心与关键配体环境，补全缺失侧链，校正质子化状态，并标注ATP口袋、αC-helix和激活环。",
+    "structureRef": "RCSB PDB 9CDY，X-ray diffraction，1.5 Å",
+    "antibodies": [
+      "抗DLK研究级抗体",
+      "抗MAP3K12研究级抗体"
+    ],
+    "interfaceFocus": "ATP铰链区、αC-helix、DFG/激活环界面",
+    "designMode": "胞内激酶阻断",
+    "candidates": [
+      {
+        "target": "MAP2K4",
+        "rationale": "MAP2K4是DLK下游直接底物之一，可被MAP3K12磷酸化并进一步激活JNK应激通路，适合作为同轴通路验证靶点。"
+      },
+      {
+        "target": "MAP2K7",
+        "rationale": "MAP2K7与MAP2K4共同介导JNK激活，在神经元损伤应答中连接DLK与MAPK8/9/10输出，具有明确通路邻近性。"
+      },
+      {
+        "target": "MAPK8",
+        "rationale": "MAPK8编码JNK1，是MKK4/MKK7下游效应激酶，参与JUN磷酸化和神经元应激转录反应，可作为下游干预候选。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

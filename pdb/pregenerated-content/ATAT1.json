@@ -1,0 +1,65 @@
+{
+  "gene": "ATAT1",
+  "generatedAt": "2026-08-03T10:39:20.854Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ATAT1是α-微管蛋白K40乙酰转移酶，主要催化微管腔面α-tubulin Lys40乙酰化，影响微管稳定性、纤毛功能与细胞迁移；现有关联信号主要集中于血细胞数量性状和近视表型，疾病因果证据强度有限。该蛋白为胞内酶，缺乏天然胞外结构域或分泌形式，抗原可及性显著弱于膜受体或可溶性细胞因子。相较于同轴微管/纤毛通路中可通过细胞表面或分泌机制干预的靶点，ATAT1更适合作为结构生物学验证或胞内递送抗体研究靶点，常规治疗性抗体优先级偏低。",
+    "mechanism": "通过胞内递送抗体结合ATAT1乙酰辅酶A结合沟槽邻近界面，阻断其与α-tubulin K40所在微管腔面底物区域的催化复合物形成。",
+    "selectedEpitope": "优先瞄准GNAT乙酰转移酶结构域的Ac-CoA结合沟槽及α-tubulin底物进入界面。",
+    "diseaseDirection": "微管乙酰化与纤毛相关表型",
+    "domain": "ATAT1含N端低复杂度区与C端GNAT样乙酰转移酶催化结构域，PDB 4B5O覆盖催化核心。",
+    "evidence": "ATAT1微管乙酰化结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q5SQI0功能与定位注释",
+      "RCSB PDB 4B5O晶体结构记录",
+      "ATAT1/α-tubulin K40乙酰化机制文献"
+    ],
+    "referenceEntries": "UniProt Q5SQI0；RCSB PDB 4B5O；Open Targets ATAT1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "GNAT催化结构域Ac-CoA结合沟槽与底物入口边缘",
+        "可直接干预乙酰基转移反应与底物定位，机制验证价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化核心外侧α-tubulin识别相关带电表面",
+        "有望削弱ATAT1与微管腔面底物区域结合，保留变构抑制空间",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离活性位点的稳定折叠表面",
+        "易获得结合分子但功能阻断不确定，需以酶活实验筛除非功能性结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ATAT1为胞内微管相关酶，常规抗体难以到达作用位点；设计应采用胞内抗体、递送偶联或细胞内表达格式，并严格评估对微管稳态的广泛影响。",
+    "structurePrepZh": "以4B5O链A为催化核心模板，补全缺失环区并保留Ac-CoA结合位点构象；对低复杂度区域不作刚性表位建模。",
+    "structureRef": "RCSB PDB 4B5O，human ATAT1 X-ray structure，1.05 Å",
+    "antibodies": [
+      "暂无获批ATAT1治疗性抗体",
+      "研究级抗ATAT1检测抗体"
+    ],
+    "interfaceFocus": "Ac-CoA沟槽、催化中心与α-tubulin底物入口",
+    "designMode": "胞内抗体阻断",
+    "candidates": [
+      {
+        "target": "TUBA1A",
+        "rationale": "TUBA1A编码α-微管蛋白，是ATAT1催化K40乙酰化的直接底物之一；其遗传变异与神经发育及细胞骨架疾病相关，适合作为同一微管乙酰化轴参照靶点。"
+      },
+      {
+        "target": "HDAC6",
+        "rationale": "HDAC6去乙酰化α-tubulin K40，与ATAT1共同决定微管乙酰化稳态；该酶在细胞迁移、免疫细胞功能和纤毛相关过程中的作用与ATAT1形成可验证的功能对照。"
+      },
+      {
+        "target": "SIRT2",
+        "rationale": "SIRT2同样可去乙酰化α-tubulin并参与微管动态调节；在同一微管乙酰化通路中可用于比较NAD依赖性去乙酰化与ATAT1介导乙酰化的干预窗口。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

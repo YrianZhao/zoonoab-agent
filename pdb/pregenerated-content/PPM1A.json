@@ -1,0 +1,65 @@
+{
+  "gene": "PPM1A",
+  "generatedAt": "2026-08-03T15:30:36.865Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PPM1A为胞质Mg2+/Mn2+依赖性丝氨酸/苏氨酸蛋白磷酸酶，参与TGF-β/SMAD、MAPK与应激相关磷酸化网络，并与神经退行性表型、肾功能指标及血压相关性状存在遗传关联。该蛋白缺乏跨膜区与分泌信号肽，天然抗原可及性较低，适合作为细胞内靶点的结构生物学抗体、胞内抗体或递送型抗体片段设计对象。其1.85 Å晶体结构可解析催化金属中心及底物沟槽，相比缺乏高分辨率结构的同通路磷酸酶更利于精确表位定位与功能阻断设计。",
+    "mechanism": "设计抗体片段结合PPM1A催化结构域底物沟槽，空间阻断磷酸化SMAD2/3或应激激酶底物进入金属依赖性活性中心。",
+    "selectedEpitope": "优先覆盖催化结构域金属结合口袋邻近的底物识别沟槽，避开Mg2+/Mn2+配位残基核心。",
+    "diseaseDirection": "神经退行性与肾代谢性状",
+    "domain": "PP2C型磷酸酶催化结构域，含保守金属配位中心、β夹层骨架及底物结合沟槽。",
+    "evidence": "PPM1A疾病遗传关联与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB P35813功能与亚细胞定位注释",
+      "RCSB PDB 4RAG晶体结构记录",
+      "PPM1A调控TGF-β/SMAD去磷酸化文献"
+    ],
+    "referenceEntries": "UniProt P35813；RCSB PDB 4RAG；Open Targets PPM1A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域底物识别沟槽及活性口袋边缘",
+        "可阻断磷酸化SMAD底物进入PP2C催化中心，具备功能抑制价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域外侧β夹层暴露环区",
+        "利于获得高亲和结构探针，但直接酶活抑制效应需实验验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Mg2+/Mn2+配位残基聚集的金属中心核心",
+        "可能干扰折叠稳定性或金属结合状态，需避免过度占据保守催化核心",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PPM1A为胞内酶，常规体液抗体难以直接触达；建议采用VHH、胞内抗体或递送偶联策略，并评估PPM家族催化结构域交叉反应。",
+    "structurePrepZh": "以4RAG链A为模板，保留催化结构域构象与金属配位几何，补全缺失侧链并标注保守PP2C活性位点用于表位排除。",
+    "structureRef": "RCSB PDB 4RAG，X射线晶体结构，1.85 Å",
+    "antibodies": [
+      "抗PPM1A研究级单克隆抗体",
+      "抗PPM1A研究级多克隆抗体"
+    ],
+    "interfaceFocus": "底物识别沟槽、活性口袋边缘与暴露环区",
+    "designMode": "胞内酶结构阻断",
+    "candidates": [
+      {
+        "target": "SMAD2",
+        "rationale": "SMAD2为TGF-β受体通路的核心转录调节因子，PPM1A可去磷酸化其C端Ser465/467位点并促进信号终止。"
+      },
+      {
+        "target": "SMAD3",
+        "rationale": "SMAD3与SMAD2共同介导TGF-β下游转录程序，PPM1A去磷酸化SMAD3 C端Ser423/425并调节通路持续时间。"
+      },
+      {
+        "target": "TGFBR1",
+        "rationale": "TGFBR1是TGF-β通路中直接磷酸化SMAD2/3的I型受体激酶，与PPM1A介导的SMAD去磷酸化共同决定信号强度。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

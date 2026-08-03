@@ -1,0 +1,65 @@
+{
+  "gene": "KAT2A",
+  "generatedAt": "2026-08-03T13:36:41.093Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KAT2A/GCN5 是 SAGA 与 ATAC 组蛋白乙酰转移酶复合体的催化亚基，通过乙酰化组蛋白 H3K9/H3K14 及部分转录因子调控 MYC、E2F 与白血病相关转录程序，在癌症和急性髓系白血病中具有明确表观遗传依赖性。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌特征，抗体抗原可及性弱，常规治疗性阻断抗体优先级低，但可作为结构引导的细胞内递送抗体、intrabody 或降解偶联识别模块研究对象。相比同通路中多亚基支架蛋白，KAT2A 具有高分辨率催化结构、明确乙酰辅酶 A 结合口袋和可药性界面，因此在机制验证与表观遗传靶向设计中优先级较高。",
+    "mechanism": "设计分子需遮蔽 KAT2A HAT 催化核心的乙酰辅酶 A/赖氨酸底物通道，阻断其向组蛋白 H3 尾部赖氨酸转移乙酰基。",
+    "selectedEpitope": "优先锁定 HAT domain 中 CoA 结合沟槽邻近的底物进入口与催化环区域。",
+    "diseaseDirection": "肿瘤表观遗传与急性髓系白血病",
+    "domain": "KAT2A 含 N 端 PCAF_N 相关区、溴结构域及 C 端 GNAT/HAT 催化结构域。",
+    "evidence": "KAT2A 表观遗传致癌依赖性结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProtKB Q92830 功能与亚细胞定位注释",
+      "RCSB PDB 6J3P X-ray 结构记录",
+      "SAGA/ATAC 复合体与 AML 表观遗传依赖性研究"
+    ],
+    "referenceEntries": "UniProt Q92830；RCSB PDB 6J3P；HGNC KAT2A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "HAT 催化结构域 CoA 结合沟槽与底物通道边缘",
+        "可直接干预乙酰基转移反应，机制可验证性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "HAT domain 外侧催化环及组蛋白 H3 尾部识别邻面",
+        "有望阻断底物肽定位，同时降低与辅因子结合口袋竞争",
+        "备选"
+      ],
+      [
+        "Site C",
+        "溴结构域乙酰赖氨酸识别口袋周边",
+        "可能影响乙酰化染色质读取，但非 6J3P 主要解析界面，结构外推风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "KAT2A 为核内酶，天然抗体难以进入细胞核，需采用细胞内表达、递送载体或降解偶联策略；催化口袋保守性较高，应规避 KAT2B 交叉结合。",
+    "structurePrepZh": "以 6J3P 的 A/B 链 HAT 催化结构域为模板，保留催化沟槽与配体邻近残基，补全缺失环区后进行质子化、界面聚类和同源蛋白保守性过滤。",
+    "structureRef": "RCSB PDB 6J3P，KAT2A HAT domain，1.598 Å X-ray",
+    "antibodies": [
+      "抗 KAT2A 研究级单克隆抗体",
+      "抗 GCN5/KAT2A ChIP 级抗体"
+    ],
+    "interfaceFocus": "HAT 催化沟槽、CoA 位点与 H3 底物通道",
+    "designMode": "细胞内抗体/结构阻断",
+    "candidates": [
+      {
+        "target": "KAT2B",
+        "rationale": "KAT2B/PCAF 与 KAT2A 同属 GNAT 乙酰转移酶家族，参与转录因子和组蛋白乙酰化调控，可作为同源选择性评估与表观遗传通路备选靶点。"
+      },
+      {
+        "target": "TRRAP",
+        "rationale": "TRRAP 是 SAGA/ATAC 相关乙酰转移酶复合体的支架亚基，连接 MYC 等转录因子与染色质修饰机器，在肿瘤转录依赖性中处于同一功能轴。"
+      },
+      {
+        "target": "SUPT3H",
+        "rationale": "SUPT3H 是 SAGA 复合体成分，参与 TBP 相关转录起始调控，与 KAT2A 共同维持癌细胞异常转录程序。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

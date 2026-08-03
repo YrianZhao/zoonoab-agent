@@ -1,0 +1,65 @@
+{
+  "gene": "DUSP3",
+  "generatedAt": "2026-08-03T18:48:46.170Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DUSP3编码VHR双特异性磷酸酶，可去磷酸化ERK、JNK等MAPK底物，并参与血小板GPVI/ITAM信号中Syk、PLCγ2等磷酸化事件的负向调节，因而与血细胞数量、红细胞体积及脂质相关性状存在遗传关联。该蛋白为细胞内可溶性磷酸酶，缺乏天然胞外结构域，常规阻断型抗体的抗原可及性弱，抗体设计更适合作为结构验证、细胞内递送或降解偶联研究。相较于同通路上多跨膜或分泌型靶点，DUSP3具备高分辨率晶体结构与明确催化口袋，适合作为机制型胞内抗体设计的优先结构模型，但成药递送风险需前置评估。",
+    "mechanism": "设计抗体结合DUSP3催化沟槽周边，遮挡Cys124-His123-Asp92催化网络与磷酸化MAPK底物的进入界面，从而抑制底物去磷酸化。",
+    "selectedEpitope": "优先锚定PTP催化结构域的WPD环与P-loop邻近沟槽，覆盖底物磷酸酪氨酸进入路径。",
+    "diseaseDirection": "血液性状与脂质代谢关联",
+    "domain": "DUSP3为单结构域VHR样双特异性磷酸酶，含PTP催化核心、WPD环和HCX5R保守P-loop。",
+    "evidence": "DUSP3结构与血液脂质性状证据包",
+    "evidenceSources": [
+      "Open Targets Platform遗传关联数据",
+      "UniProtKB P51452功能注释",
+      "RCSB PDB 8TK6晶体结构",
+      "血小板GPVI/ITAM与MAPK去磷酸化文献"
+    ],
+    "referenceEntries": "UniProt P51452；RCSB PDB 8TK6；Open Targets DUSP3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "WPD环-催化P-loop邻近沟槽",
+        "直接遮挡底物磷酸基进入路径并干扰催化构象闭合",
+        "优先"
+      ],
+      [
+        "Site B",
+        "MAPK底物识别面及α螺旋外侧浅沟",
+        "可能降低ERK/JNK底物招募而不完全占据催化中心",
+        "备选"
+      ],
+      [
+        "Site C",
+        "二聚体晶体接触面远端暴露区域",
+        "结构可及但与催化功能耦合较弱，需避免仅获得非功能性结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DUSP3为胞内酶，天然抗体难以到达靶点；建议限定为胞内抗体、递送抗体片段或降解偶联模式，并设置细胞进入与脱靶磷酸酶选择性评估。",
+    "structurePrepZh": "以8TK6的A、B链为模板，保留催化核心构象，校验Cys124邻近残基质子化状态，移除晶体缓冲组分后进行界面网格定义。",
+    "structureRef": "RCSB PDB 8TK6，X-ray，1.65 Å，人DUSP3结构",
+    "antibodies": [
+      "抗DUSP3研究级单克隆抗体",
+      "抗VHR/DUSP3研究级抗体"
+    ],
+    "interfaceFocus": "Cys124催化P-loop、WPD环与底物进入沟槽",
+    "designMode": "胞内抑制型抗体",
+    "candidates": [
+      {
+        "target": "SYK",
+        "rationale": "SYK位于血小板GPVI/ITAM信号近端，调控PLCγ2活化与下游MAPK磷酸化，是DUSP3相关血小板功能通路中的关键激酶节点。"
+      },
+      {
+        "target": "PLCG2",
+        "rationale": "PLCG2是GPVI-SYK轴下游效应酶，其磷酸化驱动钙信号与血小板活化，适合作为同一血液性状通路的机制参照靶点。"
+      },
+      {
+        "target": "MAPK1",
+        "rationale": "MAPK1/ERK2是DUSP3已报道去磷酸化底物之一，连接DUSP3磷酸酶活性与MAPK信号输出，可用于底物层面的功能验证。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

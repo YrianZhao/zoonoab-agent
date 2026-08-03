@@ -1,0 +1,65 @@
+{
+  "gene": "PARD3",
+  "generatedAt": "2026-08-03T15:04:03.084Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PARD3 是 PAR 极性复合体的核心支架蛋白，参与紧密连接形成、上皮顶端-基底侧极性建立及神经管闭合过程，遗传关联数据提示其与脊柱裂及肾小球滤过相关表型存在疾病联系。该蛋白主要定位于胞质侧细胞连接区，缺乏经典分泌型或跨膜胞外结构域，抗原可及性弱于膜受体和分泌因子，更适合作为细胞内机制验证或递送型抗体设计对象。相较同通路中 PRKCI、PARD6A 等催化或小型适配蛋白，PARD3 具有多 PDZ 支架结构和复合体装配节点属性，可同时影响 JAM-A、PARD6-aPKC 与细胞连接极性网络，因此在机制解析优先级上具有整合性优势。",
+    "mechanism": "设计抗体阻断 PARD3 PDZ 结构域介导的配体结合界面，干预其与细胞连接蛋白或 PAR 复合体组分的装配，从而削弱极性复合体在紧密连接处的定位。",
+    "selectedEpitope": "优先聚焦 2KOM 所示 PDZ 结构域肽结合沟槽及αB/βB邻近环区，避免核心折叠疏水面。",
+    "diseaseDirection": "神经管闭合与上皮极性疾病",
+    "domain": "PARD3 含 N 端寡聚化区、三个 PDZ 结构域及 C 端调控区；2KOM 覆盖单一 PDZ 模块。",
+    "evidence": "PARD3 极性复合体与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q8TEW0 蛋白定位与结构域注释",
+      "RCSB PDB 2KOM 溶液 NMR 结构",
+      "PAR3-PAR6-aPKC 细胞极性复合体文献"
+    ],
+    "referenceEntries": "UniProt Q8TEW0；RCSB PDB 2KOM；Open Targets PARD3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PDZ 结构域肽结合沟槽",
+        "可直接竞争 C 端 PDZ 结合基序配体并干预复合体装配",
+        "优先"
+      ],
+      [
+        "Site B",
+        "αB 螺旋与 βB 链邻近环区",
+        "邻近配体识别位点，可通过空间位阻降低结合亲和力",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PDZ 核心β折叠疏水面",
+        "可能影响结构稳定性且易产生非特异构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PARD3 为细胞内支架蛋白，常规抗体难以直接进入胞质；建议采用细胞穿透、胞内抗体或体外机制验证模式，并严格评估 PDZ 家族交叉反应。",
+    "structurePrepZh": "以 2KOM NMR 构象簇为模板，保留代表性低能构象，补充氢原子并标注 PDZ 肽结合沟槽；缺失长无序区不纳入表位核心建模。",
+    "structureRef": "RCSB PDB 2KOM，human PARD3 PDZ domain NMR structure",
+    "antibodies": [
+      "anti-PARD3 research antibody",
+      "anti-Par3 polarity complex antibody"
+    ],
+    "interfaceFocus": "PDZ 配体结合沟槽与αB/βB环区",
+    "designMode": "胞内抗体设计",
+    "candidates": [
+      {
+        "target": "PARD6A",
+        "rationale": "PARD6A 是 PAR 极性复合体适配蛋白，连接 CDC42 活化状态与 aPKC 复合体定位，处于同一细胞极性和紧密连接装配通路。"
+      },
+      {
+        "target": "PRKCI",
+        "rationale": "PRKCI 编码非典型蛋白激酶 Cι，是 PAR3-PAR6-aPKC 轴的催化组分，可通过磷酸化事件调控上皮极性建立。"
+      },
+      {
+        "target": "F11R",
+        "rationale": "F11R/JAM-A 为紧密连接膜蛋白，可通过 PDZ 结合基序与 PARD3 相关支架网络耦联，抗原可及性优于胞内 PARD3。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

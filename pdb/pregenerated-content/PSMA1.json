@@ -1,0 +1,65 @@
+{
+  "gene": "PSMA1",
+  "generatedAt": "2026-08-03T15:38:18.229Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PSMA1编码20S蛋白酶体α1亚基，参与26S蛋白酶体核心颗粒的α环装配与底物进入门控，浆细胞骨髓瘤和套细胞淋巴瘤对蛋白稳态压力高度依赖，蛋白酶体功能抑制可诱导未折叠蛋白反应与凋亡。该蛋白主要定位于胞质和细胞核内20S核心颗粒，缺乏天然胞外结构域，因此常规外源性抗体的抗原可及性明显受限，更适合作为结构引导的胞内递送抗体、intrabody或研究级结合分子靶点。相较PSMB5等催化β亚基，PSMA1的α环门控界面可用于非催化位点调控设计，具备解析度较高的人源20S结构支持，但转化优先级低于可直接胞外结合的膜受体或分泌蛋白靶点。",
+    "mechanism": "设计结合PSMA1所在α环N端门控与α1-α2邻近界面的抗体片段，限制20S核心颗粒底物入口开放并干扰调节颗粒对接。",
+    "selectedEpitope": "优先锁定PSMA1 N端门控肽段及α1-α2环间界面，避免α环内部保守装配核心。",
+    "diseaseDirection": "血液肿瘤蛋白稳态脆弱性",
+    "domain": "PSMA1为20S核心颗粒α型亚基，含N端门控区和蛋白酶体α亚基保守折叠域。",
+    "evidence": "PSMA1蛋白酶体结构与血液肿瘤关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB P25786功能与定位注释",
+      "RCSB PDB 5LE5人源20S蛋白酶体晶体结构",
+      "蛋白酶体抑制剂在浆细胞骨髓瘤中的临床机制文献"
+    ],
+    "referenceEntries": "UniProt P25786；RCSB PDB 5LE5；Open Targets PSMA1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端门控肽段与α环入口周缘",
+        "可锁定底物进入通道开放状态，适合功能阻断型片段设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "α1-α2亚基相邻界面外露沟槽",
+        "可影响α环局部构象与调节颗粒对接几何，具备别构调控潜力",
+        "备选"
+      ],
+      [
+        "Site C",
+        "α亚基保守β折叠装配核心",
+        "高度保守且埋藏度较高，易干扰核心颗粒装配并带来选择性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PSMA1为胞内蛋白酶体亚基，天然抗体可及性不足；设计应限定为胞内递送片段或intrabody，并评估泛蛋白酶体毒性。",
+    "structurePrepZh": "以5LE5人源20S核心颗粒为模板，保留PSMA1邻近α亚基与入口门控区，补全柔性N端并标注装配界面。",
+    "structureRef": "RCSB PDB 5LE5，1.8 Å X射线人20S蛋白酶体结构",
+    "antibodies": [
+      "无已批准PSMA1治疗性抗体",
+      "研究级抗PSMA1检测抗体"
+    ],
+    "interfaceFocus": "α环入口门控区与α1-α2邻接界面",
+    "designMode": "胞内片段阻断",
+    "candidates": [
+      {
+        "target": "PSMB5",
+        "rationale": "PSMB5编码20S蛋白酶体β5催化亚基，是硼替佐米、卡非佐米等药物作用的胰凝乳样活性核心，与骨髓瘤蛋白稳态依赖直接相关。"
+      },
+      {
+        "target": "PSMA3",
+        "rationale": "PSMA3为20S蛋白酶体α环组成亚基，参与核心颗粒入口与调节颗粒对接，可作为同一蛋白酶体门控轴的结构邻近靶点。"
+      },
+      {
+        "target": "PSMC5",
+        "rationale": "PSMC5属于19S调节颗粒AAA+ ATPase亚基，参与泛素化底物展开和转运进入20S核心颗粒，与PSMA1所在入口门控功能耦联。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

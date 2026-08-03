@@ -1,0 +1,65 @@
+{
+  "gene": "SETD2",
+  "generatedAt": "2026-08-03T16:27:56.236Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SETD2是组蛋白H3K36三甲基转移酶，参与转录延伸耦联的染色质标记、错配修复、同源重组和RNA剪接调控；其失活突变与透明细胞肾癌、胸膜间皮瘤及神经发育障碍存在明确遗传关联。该蛋白主要定位于细胞核，缺乏天然胞外结构域，因此作为常规细胞表面抗体靶点的抗原可及性较弱，但可围绕纯化催化结构域建立体外结合抗体、构象探针或细胞内递送抗体策略。相比同通路中多种非酶性染色质因子，SETD2具有明确SET催化口袋、已解析高分辨率结构和疾病相关失活位点聚集特征，适合优先开展机制型结构抗体设计。",
+    "mechanism": "设计抗体阻断SET结构域与H3K36底物肽或SAM结合相关构象界面，抑制H3K36me3生成并解析SETD2缺失相关DNA修复缺陷机制。",
+    "selectedEpitope": "优先锁定SET结构域底物肽结合沟槽邻近的AWS-SET-postSET构象界面。",
+    "diseaseDirection": "染色质调控与肾癌遗传易感",
+    "domain": "SETD2含N端转录调控区、AWS-SET-postSET甲基转移酶核心及SRI结构域。",
+    "evidence": "SETD2结构域、肿瘤失活突变与H3K36me3证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9BYW2功能与结构域注释",
+      "RCSB PDB 5JLB晶体结构记录",
+      "COSMIC/TCGA透明细胞肾癌SETD2突变数据"
+    ],
+    "referenceEntries": "UniProt Q9BYW2；RCSB PDB 5JLB；Open Targets SETD2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "AWS-SET-postSET催化核心与H3K36底物沟槽边缘",
+        "可干预底物定位并稳定失活构象，适合机制阻断抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SET结构域SAM结合口袋外侧构象环区",
+        "可作为变构表位影响甲基供体结合，需避免直接模拟小分子口袋",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SRI结构域与RNA聚合酶II磷酸化CTD结合界面",
+        "可能阻断转录延伸耦联招募，但需额外结构模板支持",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SETD2为核内大型酶，天然抗原可及性不适合常规治疗性抗体；建议定位为结构探针、胞内抗体或递送型抗体，并严格评估旁系SET结构域交叉反应。",
+    "structurePrepZh": "以5JLB高分辨率晶体结构提取抗原链A、B，保留催化核心构象，校验缺失环、配体和晶体接触后进行表位暴露度与保守性分析。",
+    "structureRef": "RCSB PDB 5JLB，X-ray diffraction，1.5 Å",
+    "antibodies": [
+      "抗SETD2研究级单克隆抗体",
+      "抗H3K36me3表观遗传标记抗体"
+    ],
+    "interfaceFocus": "H3K36底物沟槽与AWS-SET-postSET构象界面",
+    "designMode": "胞内结构探针抗体",
+    "candidates": [
+      {
+        "target": "H3-3A",
+        "rationale": "H3-3A编码组蛋白H3.3，K36位点是SETD2介导三甲基化的直接底物，可用于同一H3K36me3染色质通路的底物端验证。"
+      },
+      {
+        "target": "MSH6",
+        "rationale": "MSH6参与DNA错配修复，H3K36me3可促进MutSα复合体在染色质上的功能耦联，适合作为SETD2缺失相关修复缺陷通路候选靶点。"
+      },
+      {
+        "target": "POLR2A",
+        "rationale": "POLR2A编码RNA聚合酶II最大亚基，其磷酸化CTD通过SETD2 SRI结构域招募SETD2至转录延伸区域，属于同一转录耦联H3K36me3轴。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

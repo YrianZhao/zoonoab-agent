@@ -1,0 +1,65 @@
+{
+  "gene": "EML4",
+  "generatedAt": "2026-08-03T12:18:10.042Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "EML4在非小细胞肺癌中的核心疾病关联主要来自EML4-ALK融合，EML4卷曲螺旋三聚化结构驱动ALK激酶结构域配对与持续性自磷酸化，从而激活RAS-MAPK、PI3K-AKT及JAK-STAT信号。EML4本体为胞质微管相关蛋白，缺乏天然胞外结构域或分泌特征，常规细胞表面抗体可及性不占优势。其优先级依据在于融合阳性肿瘤具有明确分子分型和强驱动依赖性，但更适合作为胞内融合界面研究、降解抗体或递送型抗体设计对象，而非经典裸抗阻断靶点。",
+    "mechanism": "设计分子应干预EML4卷曲螺旋介导的寡聚化，削弱EML4-ALK融合蛋白诱导的ALK激酶结构域近邻化与自磷酸化。",
+    "selectedEpitope": "优先聚焦4CGC所示EML4三聚化卷曲螺旋界面，覆盖疏水核心及相邻带电稳定残基。",
+    "diseaseDirection": "ALK融合阳性非小细胞肺癌",
+    "domain": "EML4含N端三聚化卷曲螺旋区、HELP区及C端WD40样TAPE结构域，4CGC解析其三聚化区域。",
+    "evidence": "EML4-ALK融合驱动肺癌证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q9HC35蛋白功能与结构域注释",
+      "RCSB PDB 4CGC晶体结构记录",
+      "EML4-ALK融合非小细胞肺癌临床与机制研究"
+    ],
+    "referenceEntries": "UniProt Q9HC35；RCSB PDB 4CGC；Open Targets EML4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端三聚化卷曲螺旋界面",
+        "直接针对EML4-ALK融合蛋白寡聚化驱动位点，具备机制优先级",
+        "优先"
+      ],
+      [
+        "Site B",
+        "卷曲螺旋外侧带电螺旋面",
+        "可用于提高结合选择性并减少对疏水核心完全遮蔽的构象风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "TAPE/WD40样微管结合相关区域",
+        "可能影响EML4正常微管定位功能，且与ALK融合激活界面关联较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "EML4为胞内蛋白，裸抗体难以到达靶点；需采用胞内抗体、TCR样递送、ADC递送或降解偶联策略，并评估对野生型EML4微管功能的影响。",
+    "structurePrepZh": "以4CGC三聚化晶体结构为模板，保留A、B、C链寡聚状态，补建缺失侧链并进行质子化、界面能量最小化和同源融合构象映射。",
+    "structureRef": "RCSB PDB 4CGC，X-ray diffraction，2.901 Å",
+    "antibodies": [
+      "无已获批EML4靶向抗体",
+      "研究级抗EML4检测抗体"
+    ],
+    "interfaceFocus": "EML4卷曲螺旋三聚化界面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "ALK",
+        "rationale": "ALK是EML4-ALK融合中的激酶驱动组分，抑制其激酶结构域活化是融合阳性非小细胞肺癌的直接治疗策略。"
+      },
+      {
+        "target": "GRB2",
+        "rationale": "GRB2连接活化ALK与SOS1-RAS通路，阻断其SH2结构域识别磷酸化受体位点可削弱MAPK级联输出。"
+      },
+      {
+        "target": "PIK3CA",
+        "rationale": "PIK3CA参与ALK融合下游PI3K-AKT存活信号，是EML4-ALK驱动肿瘤中可并行评估的下游通路节点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

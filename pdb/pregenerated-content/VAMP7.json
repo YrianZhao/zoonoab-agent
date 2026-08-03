@@ -1,0 +1,65 @@
+{
+  "gene": "VAMP7",
+  "generatedAt": "2026-08-03T17:46:22.004Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "VAMP7是R-SNARE家族成员，参与晚期内体、溶酶体及分泌囊泡与靶膜的融合过程，可影响肿瘤细胞分泌、侵袭相关囊泡运输及膜蛋白周转。其疾病关联以肿瘤方向为主，但Open Targets最高关联得分较低，提示更适合作为探索性或通路机制验证靶点。VAMP7主要定位于胞内囊泡膜，SNARE结构域面向胞质，天然抗体可及性弱于典型细胞表面受体或分泌因子，因此优先级低于EGFR、ERBB2、PDGFRB等可直接接触抗体的膜受体靶点。",
+    "mechanism": "阻断VAMP7 SNARE基序与STX7、STX8及VTI1B形成四螺旋SNARE复合体，从而抑制晚期内体/溶酶体膜融合。",
+    "selectedEpitope": "优先评估longin结构域暴露面及SNARE基序N端调控界面，避免跨膜近端疏水片段。",
+    "diseaseDirection": "肿瘤囊泡运输与侵袭",
+    "domain": "VAMP7含N端longin结构域、中央SNARE基序及C端单跨膜锚定区。",
+    "evidence": "VAMP7肿瘤相关囊泡融合证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P51809功能与亚细胞定位注释",
+      "RCSB PDB 2DMW溶液NMR结构",
+      "SNARE复合体介导膜融合文献证据"
+    ],
+    "referenceEntries": "UniProt:P51809；RCSB PDB:2DMW；HGNC:VAMP7",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "longin结构域远离疏水核心的可溶暴露面",
+        "利于获得稳定结合抗体并干预结构域介导的自抑制/蛋白互作",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SNARE基序N端与复合体装配相关界面",
+        "可直接削弱与STX7-STX8-VTI1B复合体的拉链化装配",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端跨膜区邻近及疏水锚定片段",
+        "膜嵌入且抗原制备困难，抗体可及性和构象稳定性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "VAMP7胞质侧定位导致常规抗体难以进入作用空间，需采用细胞内递送抗体、工程化intrabody或体外机制验证策略。",
+    "structurePrepZh": "以2DMW的NMR构象簇为基础筛选代表模型，补充缺失柔性区注释，并分离longin结构域用于可溶抗原设计。",
+    "structureRef": "RCSB PDB 2DMW；人VAMP7 longin结构域NMR模型",
+    "antibodies": [
+      "商业化抗VAMP7研究抗体",
+      "抗SNARE家族结构域研究抗体"
+    ],
+    "interfaceFocus": "longin结构域暴露面与SNARE装配起始界面",
+    "designMode": "胞内靶点探索设计",
+    "candidates": [
+      {
+        "target": "STX7",
+        "rationale": "STX7是晚期内体SNARE复合体的Qa-SNARE组分，与VAMP7共同驱动内体/溶酶体膜融合，适合作为同一囊泡融合通路的互作节点。"
+      },
+      {
+        "target": "STX8",
+        "rationale": "STX8作为Qc-SNARE参与STX7-VTI1B-VAMP7复合体形成，干预该节点可影响晚期内体运输和溶酶体融合过程。"
+      },
+      {
+        "target": "VTI1B",
+        "rationale": "VTI1B是该复合体的Qb-SNARE组分，与VAMP7协同完成SNARE束装配，是同一膜融合机制中的真实候选靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "MARK1",
+  "generatedAt": "2026-08-03T20:07:47.616Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MARK1为胞内丝氨酸/苏氨酸激酶，主要通过磷酸化MAPT/Tau及微管相关蛋白降低其微管结合能力，参与神经元极性、微管稳定性和细胞骨架重塑；其Open Targets关联以行为表型、体格性状和炎症相关表型为主，但最大遗传关联强度有限。该蛋白缺乏胞外结构域、分泌形式或膜受体外露区，天然全长蛋白并不具备常规治疗性抗体的抗原可及性优势，3OSE仅覆盖胞内催化激酶结构域。相较于同通路中可通过细胞外配体或受体直接干预的靶点，MARK1更适合作为结构引导的胞内结合体、研究型Fab/VHH或降解偶联识别模块，主靶点优先级需低于具备细胞表面可及性的通路节点。",
+    "mechanism": "设计以内源性结合体占据MARK1激酶ATP结合裂隙邻近构象面或底物识别沟，干扰MARK1对MAPT/Tau及MAP类底物的磷酸化复合物形成。",
+    "selectedEpitope": "优先覆盖激酶结构域N/C叶夹缝周缘及αC-helix调控面，避开高度保守ATP铰链核心。",
+    "diseaseDirection": "神经细胞骨架与Tau磷酸化相关方向",
+    "domain": "3OSE解析MARK1催化激酶结构域，含N叶β折叠、αC-helix、铰链区、活化环及C叶底物结合区域。",
+    "evidence": "MARK1结构与微管相关蛋白磷酸化证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9P0L2功能与结构域注释",
+      "RCSB PDB 3OSE X射线晶体结构",
+      "文献报道MARK/PAR-1家族磷酸化Tau KXGS基序"
+    ],
+    "referenceEntries": "UniProt Q9P0L2；RCSB PDB 3OSE；Open Targets MARK1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域αC-helix与N叶调控面",
+        "可能稳定非活化构象并降低底物磷酸化效率，且较ATP口袋更利于选择性设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C叶底物结合沟及活化环外侧",
+        "可干扰MAPT/Tau底物定位，但需避免影响多种AGC/CAMK样激酶保守表面",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP铰链区及催化裂隙深部",
+        "结构明确但序列保守性高，抗体可达性与家族选择性风险较大",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MARK1为胞内激酶，常规抗体难以到达天然作用位点；设计应限定为细胞内递送、VHH胞内抗体或研究型结合体，并严格评估MARK2/3/4交叉反应。",
+    "structurePrepZh": "以3OSE链A为模板，补全缺失环区并校验活化环构象；去除结晶缓冲成分，保留关键二级结构用于表位可及性和同源保守性分析。",
+    "structureRef": "RCSB PDB 3OSE，human MARK1 kinase domain，1.7 Å X-ray",
+    "antibodies": [
+      "Anti-MARK1 research antibody",
+      "Anti-Tau phospho-KXGS antibody"
+    ],
+    "interfaceFocus": "αC-helix调控面、活化环外侧与底物识别沟",
+    "designMode": "胞内结合体设计",
+    "candidates": [
+      {
+        "target": "MAPT",
+        "rationale": "MAPT/Tau是MARK家族磷酸化底物，KXGS基序磷酸化会降低Tau与微管结合并促进神经元微管失稳。该节点与MARK1处于同一Tau-微管调控轴。"
+      },
+      {
+        "target": "MARK2",
+        "rationale": "MARK2与MARK1同属PAR-1/MARK激酶家族，可磷酸化Tau及微管相关蛋白并调控细胞极性。其与MARK1存在功能冗余，适合作为选择性与补偿机制评估靶点。"
+      },
+      {
+        "target": "MARK4",
+        "rationale": "MARK4参与Tau磷酸化、微管动态和神经退行性病理相关过程，与MARK1共享底物类别和激酶结构框架。其可用于同通路家族交叉反应和疾病相关性比较。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

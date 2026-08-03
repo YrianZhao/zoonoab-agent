@@ -1,0 +1,65 @@
+{
+  "gene": "BPTF",
+  "generatedAt": "2026-08-03T10:52:06.940Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BPTF 是 NURF 染色质重塑复合体的核心亚基，通过 PHD finger 识别 H3K4me3 并由溴结构域结合乙酰化组蛋白，参与神经发育相关转录程序调控。Open Targets 显示其与发育迟缓、智力障碍及神经发育异常具有较高遗传关联。该蛋白主要定位于细胞核，天然抗原可及性不利于常规细胞外阻断抗体，因此更适合开发细胞内递送抗体片段或结构域结合型研究抗体。相较同通路中广泛必需的 ATPase 亚基，BPTF 的 reader 结构域具备高分辨率结构与明确配体口袋，利于获得机制清晰的选择性分子工具。",
+    "mechanism": "抗体片段结合 BPTF 溴结构域乙酰赖氨酸识别沟槽或 PHD-H3K4me3 接触面，阻断其与修饰组蛋白尾部的相互作用，削弱 NURF 复合体在靶基因启动子处的募集。",
+    "selectedEpitope": "优先覆盖溴结构域 ZA/BC 环围成的乙酰赖氨酸结合口袋，兼顾 PHD finger 的 H3K4me3 识别面。",
+    "diseaseDirection": "神经发育障碍与智力障碍",
+    "domain": "BPTF C 端含串联 PHD finger 与 bromodomain，分别识别 H3K4me3 与乙酰化组蛋白尾部。",
+    "evidence": "BPTF 神经发育遗传关联与结构域证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联评分",
+      "UniProt Q12830 蛋白功能与结构域注释",
+      "RCSB PDB 5R4O 高分辨率晶体结构",
+      "文献报道的 NURF 复合体染色质重塑机制"
+    ],
+    "referenceEntries": "UniProt Q12830；RCSB PDB 5R4O；Open Targets BPTF",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "bromodomain ZA/BC 环乙酰赖氨酸结合沟槽",
+        "直接阻断乙酰化组蛋白识别，机制可验证性高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PHD finger H3K4me3 结合芳香笼邻近表面",
+        "干预甲基化组蛋白尾部锚定，可与溴结构域策略互补",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PHD-bromodomain 间连接区非保守外露面",
+        "可能影响结构域相对取向，但功能阻断证据较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BPTF 为核内染色质因子，常规抗体难以进入作用位点；设计应采用 VHH、intrabody 或递送融合格式，并严格评估 BRD 家族交叉反应。",
+    "structurePrepZh": "以 5R4O 链 A 为模板，保留溴结构域关键口袋残基，补充缺失侧链与氢原子，去除非机制相关晶体配体后进行表面电荷分析。",
+    "structureRef": "RCSB PDB 5R4O，X-ray diffraction，1.05 Å",
+    "antibodies": [
+      "抗-BPTF 研究级单克隆抗体",
+      "抗-BPTF ChIP 验证抗体"
+    ],
+    "interfaceFocus": "溴结构域 ZA/BC 环与乙酰赖氨酸口袋",
+    "designMode": "细胞内结构域阻断",
+    "candidates": [
+      {
+        "target": "SMARCA1",
+        "rationale": "SMARCA1 是 NURF 复合体 ATPase 亚基，与 BPTF 协同参与核小体滑移和神经发育转录调控，适合作为同复合体功能验证靶点。"
+      },
+      {
+        "target": "RBBP4",
+        "rationale": "RBBP4 是 NURF 及相关染色质复合体组分，参与组蛋白结合与复合体装配，可用于比较 BPTF 依赖性染色质调控效应。"
+      },
+      {
+        "target": "SMARCA5",
+        "rationale": "SMARCA5 属 ISWI 家族染色质重塑 ATPase，与 BPTF 所在通路在核小体定位和发育基因表达控制中具有功能交集。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "HNRNPF",
+  "generatedAt": "2026-08-03T13:15:38.490Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HNRNPF为核内RNA结合蛋白，参与前体mRNA剪接、poly(G)序列识别及转录后RNA加工，Open Targets提示其与神经退行性疾病存在关联，但该关联更适合机制研究而非经典胞外阻断抗体开发。该蛋白主要定位于细胞核和核质RNA颗粒，缺乏跨膜区、分泌信号肽及稳定胞外结构域，完整抗体在天然病灶中难以直接接触抗原。相较于TNF、IL6R或TREM2等同类疾病方向中具备胞外可及性的靶点，HNRNPF作为抗体主靶点优先级较低，更适合作为细胞内靶向抗体片段、诊断试剂或递送型分子设计对象。",
+    "mechanism": "通过胞内递送抗体片段结合HNRNPF的qRRM RNA识别界面，竞争性干扰其与富G RNA序列的结合，影响特定转录本剪接调控。",
+    "selectedEpitope": "优先选择qRRM1-qRRM2中RNA结合β折叠面及RNP基序邻近沟槽，避免完全遮蔽折叠核心。",
+    "diseaseDirection": "神经退行性疾病RNA加工异常",
+    "domain": "HNRNPF含三个准RNA识别基序qRRM，3TFY覆盖成对qRRM结构并显示RNA结合相关表面。",
+    "evidence": "HNRNPF结构与神经退行性疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与关联评分",
+      "UniProt P52597蛋白定位与功能注释",
+      "RCSB PDB 3TFY晶体结构数据",
+      "RNA结合蛋白剪接调控与神经退行性疾病文献"
+    ],
+    "referenceEntries": "UniProt:P52597；RCSB PDB:3TFY；Open Targets:HNRNPF",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "qRRM RNA结合β折叠面及RNP样基序邻近区域",
+        "可直接干扰HNRNPF识别富G RNA序列，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "qRRM1-qRRM2相对取向界面外缘",
+        "可能影响双结构域协同结合RNA而降低对折叠核心扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "qRRM疏水核心或高度保守折叠内部残基",
+        "易造成非特异性失稳，且不利于获得选择性结合构象表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HNRNPF为核内抗原，天然抗体可及性不足，存在递送效率和胞内稳定性风险；设计应优先采用胞内表达或递送型VHH，并开展RNA结合竞争验证。",
+    "structurePrepZh": "以3TFY晶体结构为模板，保留qRRM结构域链，移除结晶冗余链与非功能性溶剂，补全缺失侧链并标注RNA结合保守残基。",
+    "structureRef": "RCSB PDB 3TFY，HNRNPF qRRM晶体结构，2.75 Å",
+    "antibodies": [
+      "抗HNRNPF研究级单克隆抗体",
+      "抗hnRNP F多克隆抗体"
+    ],
+    "interfaceFocus": "qRRM β折叠RNA结合面与RNP基序沟槽",
+    "designMode": "胞内VHH干扰",
+    "candidates": [
+      {
+        "target": "TARDBP",
+        "rationale": "TDP-43为RNA结合蛋白，参与RNA剪接、转运及稳定性调控，其异常聚集和功能缺失与ALS及额颞叶变性密切相关。"
+      },
+      {
+        "target": "FUS",
+        "rationale": "FUS参与转录、RNA剪接和DNA损伤应答，其液液相分离异常及核质转运障碍是神经退行性疾病RNA代谢失衡的重要机制。"
+      },
+      {
+        "target": "HNRNPA1",
+        "rationale": "HNRNPA1同属hnRNP家族并调控可变剪接和RNA运输，致病突变可引发蛋白聚集并与神经肌肉退行性疾病相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

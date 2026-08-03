@@ -1,0 +1,65 @@
+{
+  "gene": "SERPINB9",
+  "generatedAt": "2026-08-03T16:27:59.088Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SERPINB9编码胞内丝氨酸蛋白酶抑制因子PI-9，可抑制颗粒酶B并保护细胞免受细胞毒性淋巴细胞诱导的凋亡，在免疫细胞稳态、炎症损伤耐受及肿瘤免疫逃逸中具有明确机制关联。该蛋白缺乏经典分泌信号肽，主要定位于胞质和细胞核，天然抗原可及性弱于膜受体或分泌蛋白，抗体策略更适合细胞内递送、抗原检测或工程化胞内抗体场景。相较于同通路的颗粒酶和穿孔素效应分子，SERPINB9具备高分辨率实验结构支持和明确的反应中心环机制位点，适合作为机制验证型抗体设计优先靶点。",
+    "mechanism": "设计抗体阻断SERPINB9反应中心环与GZMB活性位点形成抑制性复合物，恢复颗粒酶B介导的半胱天冬酶激活和靶细胞凋亡。",
+    "selectedEpitope": "优先覆盖反应中心环P4-P4′邻域及β-sheet A插入入口，干预GZMB捕获构象转换。",
+    "diseaseDirection": "免疫细胞稳态与肿瘤免疫逃逸",
+    "domain": "SERPINB9为ovalbumin型胞内serpin，包含保守serpin折叠、β-sheet A、铰链区和C端反应中心环。",
+    "evidence": "SERPINB9-GZMB轴结构与免疫表型证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联与遗传表型评分",
+      "UniProt P50453蛋白定位、功能与注释",
+      "RCSB PDB 8ZCR晶体结构与链级结构信息",
+      "文献报道的SERPINB9抑制颗粒酶B及免疫逃逸机制"
+    ],
+    "referenceEntries": "UniProt:P50453；RCSB PDB:8ZCR；HGNC:8955",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "反应中心环P4-P4′及邻近铰链区",
+        "直接干扰SERPINB9与GZMB底物样识别及共价抑制复合物形成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "β-sheet A中央裂隙与RCL插入入口",
+        "限制RCL插入所需构象重排，降低serpin自杀底物型抑制效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "分子背侧保守β折叠核心表面",
+        "结构稳定但功能界面相关性较低，存在获得非中和结合体风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SERPINB9为胞内抗原，常规全长抗体难以在活细胞内到达靶点；设计宜采用VHH、胞内抗体或递送偶联策略，并避免破坏serpin核心折叠导致非特异聚集。",
+    "structurePrepZh": "以8ZCR中A、B链为抗原模板，保留高置信度RCL与β-sheet A区域，检查晶体接触、缺失残基和构象异质性后进行表位可及性评估。",
+    "structureRef": "RCSB PDB 8ZCR，X-ray diffraction，1.93 Å",
+    "antibodies": [
+      "anti-SERPINB9 clone PI9-17",
+      "anti-SERPINB9 clone EPR20176"
+    ],
+    "interfaceFocus": "RCL-GZMB识别面与β-sheet A插入入口",
+    "designMode": "胞内功能阻断",
+    "candidates": [
+      {
+        "target": "GZMB",
+        "rationale": "GZMB是SERPINB9直接抑制的颗粒酶B效应蛋白，位于细胞毒性淋巴细胞诱导凋亡通路核心节点。其活性位点与SERPINB9反应中心环相互作用决定靶细胞死亡输出。"
+      },
+      {
+        "target": "PRF1",
+        "rationale": "PRF1编码穿孔素，负责在靶细胞膜形成孔道并促进颗粒酶B进入胞质，是SERPINB9-GZMB轴上游递送环节的真实通路节点。"
+      },
+      {
+        "target": "CASP3",
+        "rationale": "CASP3是颗粒酶B下游凋亡执行半胱天冬酶，反映GZMB活性释放后的细胞死亡终端输出，适合作为同一细胞毒性凋亡通路候选节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

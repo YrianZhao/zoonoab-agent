@@ -1,0 +1,65 @@
+{
+  "gene": "SKP1",
+  "generatedAt": "2026-08-03T16:33:57.905Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SKP1是SCF型E3泛素连接酶复合体的核心适配蛋白，通过连接CUL1-RBX1催化核心与F-box底物识别蛋白参与细胞周期、蛋白稳态及病毒复制相关底物降解。其疾病关联覆盖癌症、HIV感染及神经退行性疾病，但SKP1主要为胞内蛋白，天然抗原可及性弱，不具备典型膜受体或分泌蛋白的直接抗体可及性优势。相较于同通路中具有胞外结构域的受体型靶点，SKP1更适合作为结构验证、细胞内递送抗体或降解调控研究靶点，优先级应低于可直接成药化的细胞表面抗原。",
+    "mechanism": "通过结合SKP1的F-box蛋白结合界面，阻断SKP1与FBXW7或SKP2的装配，干扰SCF复合体对特定底物的泛素化募集。",
+    "selectedEpitope": "优先覆盖SKP1 C端α螺旋束的F-box结合沟槽，避开CUL1邻近装配面。",
+    "diseaseDirection": "泛素-蛋白酶体通路相关癌症",
+    "domain": "SKP1为胞内适配蛋白，含BTB/POZ样核心折叠及C端F-box蛋白结合α螺旋束。",
+    "evidence": "SKP1-SCF复合体结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P63208功能注释",
+      "RCSB PDB 1FS1晶体结构",
+      "SCF E3泛素连接酶复合体文献"
+    ],
+    "referenceEntries": "UniProt:P63208；RCSB PDB:1FS1；Open Targets:SKP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端α螺旋束F-box蛋白结合沟槽",
+        "可直接阻断SKP1与F-box底物识别亚基装配",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端BTB/POZ样核心折叠外侧保守面",
+        "利于获得高亲和结构探针，但功能阻断效应需验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "CUL1邻近复合体装配界面",
+        "可能广泛破坏SCF复合体并引发泛素化网络非选择性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SKP1为高度保守胞内蛋白，常规抗体难以进入细胞；功能界面保守且复合体依赖性强，宜采用细胞内抗体、递送系统或结构探针定位策略。",
+    "structurePrepZh": "以1FS1高分辨率晶体结构提取SKP1链，校正缺失侧链与质子化状态，并保留F-box结合界面用于表位可及性评估。",
+    "structureRef": "PDB 1FS1，X-ray diffraction，1.8 Å",
+    "antibodies": [
+      "抗SKP1研究级单克隆抗体",
+      "抗SKP1免疫印迹用单克隆抗体"
+    ],
+    "interfaceFocus": "SKP1-F-box蛋白结合沟槽",
+    "designMode": "胞内阻断型抗体设计",
+    "candidates": [
+      {
+        "target": "SKP2",
+        "rationale": "SKP2是SCF复合体F-box底物识别亚基，参与p27等细胞周期抑制因子的泛素化降解，与肿瘤增殖通路直接相关。"
+      },
+      {
+        "target": "FBXW7",
+        "rationale": "FBXW7作为F-box肿瘤抑制相关底物识别蛋白，调控MYC、NOTCH1及Cyclin E等底物降解，是SCF通路中疾病机制明确的节点。"
+      },
+      {
+        "target": "CUL1",
+        "rationale": "CUL1构成SCF E3连接酶支架，连接SKP1与RBX1催化模块，直接决定SCF复合体装配与泛素转移效率。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "H3C8",
+  "generatedAt": "2026-08-03T19:35:24.830Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "H3C8编码组蛋白H3.1核心蛋白，参与核小体组装、染色质压缩及表观遗传调控，肿瘤中H3修饰异常可影响转录程序、DNA损伤应答和细胞周期控制。该蛋白主要定位于细胞核并包埋于核小体核心，天然状态下缺乏稳定胞外结构域，抗原可及性明显弱于膜受体或分泌蛋白。其优先级更适合作为细胞内表观遗传抗原、坏死肿瘤释放抗原或抗组蛋白自身免疫研究靶点，而非传统治疗性阻断抗体的一线靶点；相较EGFR、PDGFRA等胶质瘤通路膜靶点，可开发性较低。",
+    "mechanism": "抗体设计宜聚焦识别核小体中H3.1暴露的N端尾部或DNA邻近界面，阻断H3尾部与读者蛋白结合或用于捕获异常释放的核小体复合物。",
+    "selectedEpitope": "优先选择H3 N端尾部K4-K27修饰富集区，避开与DNA和H4形成稳定核心折叠的组蛋白折叠域。",
+    "diseaseDirection": "肿瘤表观遗传与感染相关染色质应答",
+    "domain": "H3含可修饰N端尾部及组蛋白折叠域，由α1-L1-α2-L2-α3介导核小体八聚体装配。",
+    "evidence": "H3C8染色质调控与肿瘤关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProtKB P68431组蛋白H3.1功能注释",
+      "RCSB PDB 1Q3L核小体晶体结构",
+      "ENCODE/ChIP-seq组蛋白修饰与染色质证据"
+    ],
+    "referenceEntries": "UniProt P68431；RCSB PDB 1Q3L；HGNC H3C8",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "H3 N端尾部K4-K27修饰区",
+        "暴露度较高且承载甲基化、乙酰化等疾病相关表观遗传信号，适合修饰特异性抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "L1-α2邻近核小体外侧表面",
+        "在核小体颗粒表面具有一定可及性，可用于核小体复合物识别型抗体开发",
+        "备选"
+      ],
+      [
+        "Site C",
+        "α2-α3组蛋白折叠核心及DNA接触面",
+        "高度保守且与DNA、H4界面紧密耦合，阻断可能影响广泛染色质结构并带来特异性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "H3.1高度保守且主要位于细胞核，胞外可及性不足；建议限定于诊断、核小体捕获或修饰特异性抗体场景，并避免非修饰核心区交叉反应。",
+    "structurePrepZh": "以1Q3L核小体结构提取H3链A/P，保留DNA和H4邻近链用于界面判读，补建柔性N端尾部缺失残基并标注PTM位点。",
+    "structureRef": "Luger等核小体核心颗粒高分辨率晶体结构；PDB 1Q3L",
+    "antibodies": [
+      "anti-Histone H3 antibody",
+      "anti-H3K27me3 antibody"
+    ],
+    "interfaceFocus": "H3 N端尾部PTM区与核小体外侧DNA邻近面",
+    "designMode": "修饰特异性识别",
+    "candidates": [
+      {
+        "target": "EZH2",
+        "rationale": "EZH2是PRC2复合物催化亚基，直接介导H3K27三甲基化；其异常活性与胶质瘤和多类肿瘤表观遗传沉默相关。"
+      },
+      {
+        "target": "KMT2A",
+        "rationale": "KMT2A参与H3K4甲基化并调控转录激活状态，与H3尾部修饰读写通路处于同一染色质调控轴。"
+      },
+      {
+        "target": "HDAC1",
+        "rationale": "HDAC1去除H3/H4赖氨酸乙酰化并促进染色质压缩，在肿瘤转录抑制和细胞周期调控中具有明确机制关联。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "RABEP1",
+  "generatedAt": "2026-08-03T15:50:30.829Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RABEP1 是 Rab5 效应蛋白，参与早期内体膜融合与受体内吞后分选，遗传关联主要集中于白细胞数量、中性粒细胞计数和血小板体积等血液细胞表型。该蛋白主要定位于胞质侧内体复合体，并非分泌蛋白或跨膜受体，天然抗原可及性弱，常规体内阻断抗体开发优先级受限。相较具有胞外结构域的炎症或造血调节靶点，RABEP1 更适合作为细胞内机制验证或递送型抗体片段靶点；其优势在于已有高分辨率 Rab5 结合复合物结构，可支持界面定向设计。",
+    "mechanism": "通过结合 RABEP1 Rab5 结合螺旋束界面，阻断其与活化 Rab5-GTP 的相互作用，干预早期内体招募与膜融合复合体装配。",
+    "selectedEpitope": "优先锁定 1P4U 中 Rab5 结合 coiled-coil 螺旋界面及保守疏水沟槽。",
+    "diseaseDirection": "血液细胞数量与内吞分选",
+    "domain": "RABEP1 含 N 端 Rab4/Rab5 相关结合区及 C 端 coiled-coil Rab5 结合结构域。",
+    "evidence": "RABEP1-Rab5 内体效应复合物结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 遗传关联数据",
+      "UniProt Q15276 蛋白功能注释",
+      "RCSB PDB 1P4U 晶体结构",
+      "Rab5 早期内体效应蛋白复合物研究文献"
+    ],
+    "referenceEntries": "UniProt Q15276；RCSB PDB 1P4U；Open Targets RABEP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Rab5 结合 coiled-coil 螺旋界面",
+        "直接覆盖 Rab5-GTP 效应蛋白识别面，可测试内体招募阻断效应",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Rabaptin 结构域外露螺旋束侧面",
+        "保留较好结构可及性，适合开发构象识别型 Fab 或 VHH",
+        "备选"
+      ],
+      [
+        "Site C",
+        "二聚化或长 coiled-coil 核心区域",
+        "可能影响蛋白稳定性且胞内可及性有限，需避免非特异聚集风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RABEP1 为胞内内体效应蛋白，常规抗体难以到达作用位点；建议采用胞内抗体、VHH 或递送系统，并重点评估 Rab 家族界面交叉反应。",
+    "structurePrepZh": "以 1P4U 抗原链 A、B 为结构模板，保留 Rab5 结合螺旋束构象，补建缺失柔性片段并标注 coiled-coil 界面残基。",
+    "structureRef": "RCSB PDB 1P4U，X-ray diffraction，2.2 Å",
+    "antibodies": [
+      "无已批准 RABEP1 靶向治疗性抗体",
+      "研究级抗 RABEP1 多克隆抗体"
+    ],
+    "interfaceFocus": "Rab5-GTP 结合螺旋束与疏水界面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "RAB5A",
+        "rationale": "RAB5A 是早期内体成熟和膜融合的核心小 GTP 酶，与 RABEP1 形成直接效应复合物，处于同一内吞分选通路。"
+      },
+      {
+        "target": "EEA1",
+        "rationale": "EEA1 是 Rab5 阳性早期内体 tethering 因子，参与 PI3P 依赖的内体融合，与 RABEP1-Rab5 功能模块协同。"
+      },
+      {
+        "target": "RABGEF1",
+        "rationale": "RABGEF1 编码 Rabex-5，是 Rab5 鸟嘌呤核苷酸交换因子，并与 Rabaptin-5 复合调控 Rab5 活化。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

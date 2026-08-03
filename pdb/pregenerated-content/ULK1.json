@@ -1,0 +1,65 @@
+{
+  "gene": "ULK1",
+  "generatedAt": "2026-08-03T17:42:01.302Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ULK1是自噬起始复合体的丝氨酸/苏氨酸激酶，参与ATG13、FIP200/RB1CC1与ATG101介导的吞噬泡形成，在神经退行性疾病和溶酶体贮积病中与蛋白聚集体及受损细胞器清除不足相关。ULK1为胞内激酶，天然抗体可及性弱，适合作为细胞内递送抗体、intrabody或降解诱导抗体工程的研究型靶点。相比下游ATG蛋白，ULK1位于自噬起始节点并受AMPK-mTOR轴直接调控，具有更高的通路控制优先级。",
+    "mechanism": "设计抗体片段结合ULK1激酶N叶ATP结合沟或C叶底物结合面，阻断ATP定位或ATG13磷酸化复合物装配，从而抑制自噬起始信号。",
+    "selectedEpitope": "优先覆盖激酶结构域N叶β折叠与铰链区邻近ATP结合沟，兼顾活性位点外缘选择性。",
+    "diseaseDirection": "神经退行性疾病与自噬障碍",
+    "domain": "ULK1含N端蛋白激酶结构域、中央富丝氨酸区及C端EAT结构域，6HYO解析激酶结构域。",
+    "evidence": "ULK1自噬起始与神经退行性疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt O75385功能与结构域注释",
+      "RCSB PDB 6HYO晶体结构记录",
+      "Reactome自噬起始与AMPK-mTOR调控通路"
+    ],
+    "referenceEntries": "UniProt O75385；RCSB PDB 6HYO；Open Targets ULK1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域N叶ATP结合沟及铰链区",
+        "可直接干扰ATP配位并利用高分辨率结构开展选择性界面设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "激酶结构域C叶底物结合面邻近活化环",
+        "可能阻断ATG13等底物进入催化位点，适合构建变构抑制型片段",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端EAT结构域ATG13/FIP200复合物相关界面",
+        "具有复合物装配调控价值，但6HYO未覆盖该区域，需补充结构模型验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ULK1为胞内激酶，常规抗体难以天然进入细胞；设计应采用VHH、细胞内表达或递送系统，并避免ATP口袋保守残基导致ULK2交叉反应。",
+    "structurePrepZh": "以6HYO链A激酶结构域为模板，去除结晶添加物并保留关键催化残基、ATP沟构象及缺失环区标注，必要时补建活化环。",
+    "structureRef": "RCSB PDB 6HYO，ULK1激酶结构域X射线结构，1.07 Å",
+    "antibodies": [
+      "无临床批准ULK1抗体",
+      "研究级抗ULK1单克隆抗体"
+    ],
+    "interfaceFocus": "ATP结合沟、铰链区与C叶底物进入面",
+    "designMode": "胞内VHH/片段抗体",
+    "candidates": [
+      {
+        "target": "ATG13",
+        "rationale": "ATG13是ULK1复合体核心底物与支架蛋白，直接连接ULK1活化与自噬起始复合物装配。"
+      },
+      {
+        "target": "RB1CC1",
+        "rationale": "RB1CC1/FIP200参与ULK1-ATG13-ATG101复合体形成，是吞噬泡成核前平台的关键组成。"
+      },
+      {
+        "target": "MTOR",
+        "rationale": "mTORC1通过磷酸化ULK1抑制自噬起始，与营养感应及神经退行性疾病相关自噬失衡处于同一调控轴。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "MSI2",
+  "generatedAt": "2026-08-03T14:25:16.560Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MSI2 是胞内 RNA 结合蛋白，主要通过 RRM1/RRM2 识别靶 mRNA 序列并影响翻译、mRNA 稳定性及造血细胞命运，其遗传关联集中于嗜酸粒细胞、单核细胞和血小板相关数量性状，提示其与造血调控网络相关。该蛋白缺乏分泌信号肽、跨膜区和稳定胞外结构域，天然抗原可及性不适合作为常规细胞外阻断抗体靶点。相较于同通路中细胞表面受体或分泌因子，MSI2 的优先级主要来自明确的高分辨率 RRM 结构与核酸结合界面可解析性，更适合胞内递送抗体片段或研究级功能阻断设计。",
+    "mechanism": "设计分子应占据 MSI2 RRM1/RRM2 的 RNA 识别沟槽，阻断其与靶 mRNA UAG/富 U 序列结合，从而干预 MSI2 介导的转录后调控。",
+    "selectedEpitope": "优先覆盖 RRM1 β-sheet RNA 结合面及保守 RNP1/RNP2 芳香残基邻域。",
+    "diseaseDirection": "造血细胞数量性状与髓系调控",
+    "domain": "MSI2 含两个串联 RNA recognition motif，6DBP 解析其 RRM 区域二级结构与核酸结合面。",
+    "evidence": "MSI2 造血数量性状与RRM结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 遗传关联与表型关联记录",
+      "UniProt Q96DH6 蛋白功能与结构域注释",
+      "RCSB PDB 6DBP X-ray 结构条目",
+      "RNA recognition motif 介导 Musashi 蛋白结合靶 mRNA 的文献证据"
+    ],
+    "referenceEntries": "UniProt Q96DH6；RCSB PDB 6DBP；Open Targets MSI2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RRM1 β-sheet RNA 结合沟槽与 RNP1/RNP2 基序",
+        "直接竞争靶 mRNA 结合，最符合功能阻断逻辑",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RRM2 RNA 结合面及 RRM1-RRM2 相对取向界面",
+        "可能削弱双 RRM 协同识别 RNA 的构象稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离 RNA 结合面的溶剂暴露环区",
+        "可用于结合检测或结构探针，但功能阻断不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MSI2 为胞内 RNA 结合蛋白，常规 IgG 难以到达作用位点；建议限定为细胞内递送 Fab/VHH、intrabody 或体外机制验证设计，并评估 RRM 保守性导致的选择性风险。",
+    "structurePrepZh": "以 6DBP 抗原链 A/B 为模板，保留 RRM 主体构象，移除晶体接触伪界面，校验缺失环区、质子化状态及 RNA 结合面残基暴露性。",
+    "structureRef": "RCSB PDB 6DBP；1.603 Å X-ray MSI2 RRM结构",
+    "antibodies": [
+      "研究级 anti-MSI2 antibody",
+      "细胞内递送型 anti-RRM VHH 原型"
+    ],
+    "interfaceFocus": "RRM1/RRM2 的 RNA 识别β片层沟槽",
+    "designMode": "胞内阻断型片段设计",
+    "candidates": [
+      {
+        "target": "MSI1",
+        "rationale": "MSI1 与 MSI2 同属 Musashi RNA 结合蛋白家族，具有相似 RRM 架构和靶 mRNA 识别机制，可作为同源转录后调控轴的比较靶点。"
+      },
+      {
+        "target": "NUMB",
+        "rationale": "NUMB 是 Musashi 蛋白经典转录后调控相关因子，参与 Notch 信号负调控和细胞命运决定，适合用于验证 MSI2-RNA 调控网络的下游功能影响。"
+      },
+      {
+        "target": "NOTCH1",
+        "rationale": "NOTCH1 位于 Musashi-NUMB 相关细胞命运调控通路下游，且为细胞表面受体，抗原可及性显著优于 MSI2。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

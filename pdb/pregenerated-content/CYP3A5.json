@@ -1,0 +1,65 @@
+{
+  "gene": "CYP3A5",
+  "generatedAt": "2026-08-03T11:47:42.586Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CYP3A5为内质网膜结合型血红素单加氧酶，参与HIV蛋白酶抑制剂、HCV直接抗病毒药物及多类抗感染药物的氧化代谢，疾病关联主要反映感染治疗中的药物暴露差异与药物相互作用风险。该蛋白催化结构域位于胞质侧并非典型胞外抗原，完整细胞表面可及性较低，抗体设计更适合作为机制研究或胞内递送抗体场景。相比CYP3A4，CYP3A5具有明确的遗传多态性与肾脏、肝脏表达差异，可用于解析个体化抗病毒药物代谢贡献，因此优先级应定位为药物代谢调控研究靶点而非常规治疗性阻断靶点。",
+    "mechanism": "通过抗体结合CYP3A5血红素邻近底物进入通道或F-G环区域，阻碍抗病毒药物进入催化腔并干扰NADPH-P450还原酶电子传递复合物形成。",
+    "selectedEpitope": "优先选择F-G环与底物进入通道周边表位，避免直接覆盖血红素轴向配位核心。",
+    "diseaseDirection": "病毒感染药物代谢与药物相互作用",
+    "domain": "CYP3A5为单跨膜锚定的微粒体P450，主体为胞质侧血红素结合催化结构域。",
+    "evidence": "CYP3A5感染治疗药物代谢证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P20815 functional annotation",
+      "RCSB PDB 6MJM crystallographic structure",
+      "PharmGKB CYP3A5 pharmacogenomic annotation"
+    ],
+    "referenceEntries": "UniProt P20815；RCSB PDB 6MJM；HGNC CYP3A5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "F-G环及底物进入通道入口",
+        "可能限制利托那韦、洛匹那韦等CYP3A底物进入催化腔，适合功能阻断筛选。",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端血红素结合催化腔外缘",
+        "可影响底物定位与催化构象，但需避免破坏高度保守P450折叠核心。",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端膜锚定邻近疏水区",
+        "结构柔性与膜依赖性较高，重组抗原呈递及抗体可及性均存在不确定性。",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CYP3A5缺乏胞外结构域，常规体内抗体难以接近内质网胞质侧催化域；建议限定于纯化蛋白、细胞裂解体系或胞内抗体递送验证。",
+    "structurePrepZh": "以6MJM链A为模板，保留血红素辅基并检查配体、缺失环区与膜近端截短；表位建模应标注催化腔、F-G环和还原酶结合面。",
+    "structureRef": "RCSB PDB 6MJM，X-ray diffraction，2.2 Å",
+    "antibodies": [
+      "anti-CYP3A5 clone EPR4393",
+      "anti-CYP3A5 clone F18 P6 H2"
+    ],
+    "interfaceFocus": "F-G环、底物通道入口、还原酶结合面",
+    "designMode": "胞内酶功能阻断",
+    "candidates": [
+      {
+        "target": "CYP3A4",
+        "rationale": "CYP3A4与CYP3A5共同承担多种HIV和HCV治疗药物的氧化代谢，是同一CYP3A药物代谢轴中的主要肝脏酶。其表达丰度高，适合作为药物相互作用风险的并行比较靶点。"
+      },
+      {
+        "target": "POR",
+        "rationale": "POR为微粒体CYP酶提供NADPH来源电子，直接支持CYP3A5催化循环。靶向POR-CYP相互作用可从电子传递层面评估CYP3A介导药物代谢调控。"
+      },
+      {
+        "target": "NR1I2",
+        "rationale": "NR1I2编码PXR，诱导CYP3A4和CYP3A5转录并参与利福平等药物引发的CYP3A表达上调。该靶点位于感染治疗药物相互作用通路的上游调控层。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

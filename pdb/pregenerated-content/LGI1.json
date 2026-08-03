@@ -1,0 +1,65 @@
+{
+  "gene": "LGI1",
+  "generatedAt": "2026-08-03T13:52:05.628Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "LGI1 是神经元分泌型突触蛋白，连接突触前 ADAM23 与突触后 ADAM22，并稳定 AMPA 受体相关兴奋性突触复合体；遗传变异或自身抗体干扰该轴可导致癫痫、听觉特征性癫痫及边缘叶脑炎相关发作。其抗原位于胞外分泌蛋白表面，LRR 与 EPTP 结构域均具备抗体可及性。相较离子通道孔区靶点，LGI1 具有明确的结构复合体界面和疾病因果证据，适合开展阻断型、表位分辨型抗体设计。",
+    "mechanism": "抗体结合 LGI1 的 ADAM22/ADAM23 识别界面，阻断 LGI1 桥接突触前后膜受体，从而削弱异常抗体或突变介导的兴奋性突触失衡。",
+    "selectedEpitope": "优先覆盖 EPTP β-螺旋域中 ADAM22/ADAM23 结合面，避开核心疏水折叠区。",
+    "diseaseDirection": "遗传性癫痫与自身免疫性发作",
+    "domain": "N 端富亮氨酸重复序列 LRR 域连接 C 端 EPTP 七叶 β-螺旋结构域，整体为分泌型糖蛋白。",
+    "evidence": "LGI1-ADAM22/23 突触复合体结构与癫痫遗传证据",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt O95970 functional annotation",
+      "RCSB PDB 5Y30 X-ray structure",
+      "ClinVar and OMIM epilepsy variant records"
+    ],
+    "referenceEntries": "UniProt O95970；RCSB PDB 5Y30；Open Targets LGI1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "EPTP 域 ADAM22/ADAM23 受体结合界面",
+        "直接干预 LGI1 受体桥接，机制可验证性高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "LRR 域外凸弧面与 EPTP 相邻区域",
+        "可用于构建非竞争性结合抗体并辅助表位分层",
+        "备选"
+      ],
+      [
+        "Site C",
+        "LRR-EPTP 连接区及潜在糖基化邻近表面",
+        "可能影响构象稳定性或糖链遮挡，需结构筛选",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "LGI1 为神经突触分泌蛋白，过度阻断 ADAM22/23 轴可能扰动正常兴奋性传递；应优先设计低至中等阻断强度并评估神经元功能安全窗。",
+    "structurePrepZh": "以 PDB 5Y30 链 A 为抗原模板，补全缺失侧链与糖基化注释，保留二硫键约束，并对 EPTP 受体结合面进行表面电荷与可及性评估。",
+    "structureRef": "Yamagata et al., LGI1-ADAM22 complex structure, PDB 5Y30",
+    "antibodies": [
+      "患者来源抗-LGI1自身抗体",
+      "研究级抗-LGI1单克隆抗体"
+    ],
+    "interfaceFocus": "EPTP 域 ADAM22/ADAM23 结合面",
+    "designMode": "阻断型界面抗体",
+    "candidates": [
+      {
+        "target": "ADAM22",
+        "rationale": "ADAM22 是 LGI1 的突触后受体并连接 PSD-95/AMPA 受体复合体；靶向其 LGI1 结合外域可解析同一突触黏附通路。"
+      },
+      {
+        "target": "ADAM23",
+        "rationale": "ADAM23 与 LGI1 形成突触前复合体，参与神经元兴奋性调控；其胞外金属蛋白酶样结构域提供抗体可及界面。"
+      },
+      {
+        "target": "GRIA1",
+        "rationale": "GRIA1 编码 AMPA 受体 GluA1 亚基，是 LGI1-ADAM22 轴下游兴奋性突触功能的关键效应分子；适合作为通路功能读出相关候选靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

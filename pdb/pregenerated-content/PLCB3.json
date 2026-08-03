@@ -1,0 +1,65 @@
+{
+  "gene": "PLCB3",
+  "generatedAt": "2026-08-03T20:34:58.155Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PLCB3编码胞内磷脂酶Cβ3，在Gαq/11偶联受体信号中水解PIP2生成IP3与DAG，连接钙释放、PKC活化及细胞应激反应，Open Targets提示其与神经退行性疾病及脂质表型存在遗传关联。然而PLCB3为胞质侧效应酶，缺乏天然胞外结构域或分泌形式，完整IgG直接结合体内抗原的可及性受限。其优先级主要来自高分辨率人源结构和通路节点价值；相较上游多受体GPCR，PLCB3构象信息更完整，但作为抗体药物靶点优先级低于具有胞外可及性的同通路受体或配体。",
+    "mechanism": "采用细胞内递送型Fab或VHH阻断Gαq/11与PLCB3近端C端/催化核心调控界面的结合，降低PIP2水解及IP3-DAG生成。",
+    "selectedEpitope": "优先锁定7SQ2中催化核心邻近的Gαq结合调控界面，避开高度保守X/Y催化残基。",
+    "diseaseDirection": "Gαq-PLCβ信号与神经退行及脂质表型",
+    "domain": "PLCB3含PH结构域、EF-hand、X/Y催化TIM桶、C2结构域及C端延伸调控区。",
+    "evidence": "PLCB3结构与Gαq-PLCβ通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q01970功能与结构域注释",
+      "RCSB PDB 7SQ2人源PLCB3晶体结构",
+      "Reactome GPCR下游PLCβ信号通路"
+    ],
+    "referenceEntries": "UniProt Q01970；RCSB PDB 7SQ2；Open Targets PLCB3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端延伸与催化核心邻近的Gαq/11调控结合面",
+        "可阻断上游G蛋白对PLCB3的激活，机制最直接",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PH-EF手样结构域外侧非催化表面",
+        "有利于构象锁定并减少对催化保守位点的直接干扰",
+        "备选"
+      ],
+      [
+        "Site C",
+        "X/Y催化TIM桶PIP2结合沟槽附近",
+        "可能抑制底物进入，但保守性高且脱靶风险较大",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PLCB3为胞内酶，常规抗体体内可及性不足；设计宜限定为递送型Fab/VHH、细胞内抗体或结构生物学工具，并进行PLCβ同源选择性评估。",
+    "structurePrepZh": "以7SQ2链A/B为模板，校正缺失环区、质子化催化核心，保留结构水与金属离子信息，标注Gαq调控界面及保守催化残基。",
+    "structureRef": "RCSB PDB 7SQ2，X-ray，2.6 Å，人PLCB3结构",
+    "antibodies": [
+      "PLCB3 intracellular nanobody prototype",
+      "anti-PLCB3 research antibody"
+    ],
+    "interfaceFocus": "Gαq/11结合面与C端调控区",
+    "designMode": "胞内递送型阻断",
+    "candidates": [
+      {
+        "target": "GNAQ",
+        "rationale": "GNAQ编码Gαq，是PLCB3上游直接激活因子；阻断Gαq与PLCβ效应器界面可降低同一IP3-DAG信号轴输出。"
+      },
+      {
+        "target": "GNA11",
+        "rationale": "GNA11编码Gα11，与Gαq功能高度相近并同样激活PLCβ家族；其通路位置与PLCB3直接相连，适合作为并行调控节点。"
+      },
+      {
+        "target": "PLCB1",
+        "rationale": "PLCB1属于同一PLCβ效应酶家族，参与Gαq/11介导的PIP2水解；在神经系统PLCβ信号中具有明确生物学相关性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

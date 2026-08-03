@@ -1,0 +1,65 @@
+{
+  "gene": "XRCC4",
+  "generatedAt": "2026-08-03T17:55:01.566Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "XRCC4是非同源末端连接修复通路的核心支架蛋白，通过与LIG4形成复合体并招募XLF/NHEJ1稳定DNA双链断裂末端连接，其功能缺陷与小头畸形、原发性侏儒症及内分泌异常等发育疾病相关。该蛋白主要定位于细胞核，不属于分泌蛋白或膜受体，天然抗原可及性弱；抗体设计更适合作为结构生物学、细胞内递送或研究级功能阻断工具。相比DNA-PKcs等大型激酶，XRCC4二聚体头部结构清晰、复合物界面明确，适合作为NHEJ装配节点的优先验证靶点。",
+    "mechanism": "阻断XRCC4头部二聚体与LIG4 BRCT连接区及XLF相互作用，削弱NHEJ末端桥接和DNA连接酶IV稳定化。",
+    "selectedEpitope": "优先覆盖XRCC4 N端球状头部二聚体界面及LIG4结合邻近沟槽。",
+    "diseaseDirection": "DNA修复缺陷相关发育异常",
+    "domain": "XRCC4含N端球状头部结构域、长α螺旋卷曲螺旋二聚化区及柔性C端调控区。",
+    "evidence": "XRCC4-NHEJ复合物结构与遗传疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q13426功能与定位注释",
+      "RCSB PDB 5E50晶体结构记录",
+      "NHEJ通路XRCC4-LIG4-XLF复合物研究文献"
+    ],
+    "referenceEntries": "UniProt Q13426；RCSB PDB 5E50；Open Targets XRCC4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端球状头部二聚体外侧及LIG4结合邻近界面",
+        "可干预XRCC4-LIG4复合物稳定化并保留结构可解析性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "卷曲螺旋二聚化区中段暴露螺旋面",
+        "可影响XRCC4二聚体构象与NHEJ支架装配",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端柔性磷酸化调控区",
+        "构象异质性高且结构缺失风险较大，适合作为低优先级探索位点",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "XRCC4为核内DNA修复蛋白，常规抗体难以进入活细胞核；功能阻断需考虑胞内递送、纳米抗体或降解型策略，并避免干扰非特异DNA损伤反应读数。",
+    "structurePrepZh": "以PDB 5E50高分辨率晶体结构为模板，保留A-D链二聚体/四聚体装配信息，补全缺失柔性环并标注LIG4与XLF结合相关界面。",
+    "structureRef": "RCSB PDB 5E50，XRCC4晶体结构，1.376 Å",
+    "antibodies": [
+      "anti-XRCC4 clone 4G12",
+      "anti-XRCC4 clone EPR22607-50"
+    ],
+    "interfaceFocus": "XRCC4头部二聚体、LIG4结合沟槽与卷曲螺旋界面",
+    "designMode": "胞内功能阻断",
+    "candidates": [
+      {
+        "target": "LIG4",
+        "rationale": "LIG4与XRCC4形成稳定复合体并催化DNA双链断裂末端连接，是经典NHEJ通路中与XRCC4直接耦合的核心酶。"
+      },
+      {
+        "target": "NHEJ1",
+        "rationale": "NHEJ1/XLF与XRCC4共同形成桥接结构，促进DNA末端对接和连接复合物稳定，遗传缺陷同样导致DNA修复障碍。"
+      },
+      {
+        "target": "PRKDC",
+        "rationale": "PRKDC编码DNA-PKcs，负责识别Ku结合的DNA断裂末端并调控NHEJ复合物装配，位于XRCC4-LIG4连接步骤上游。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

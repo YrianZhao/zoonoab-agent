@@ -1,0 +1,65 @@
+{
+  "gene": "BCL2L2",
+  "generatedAt": "2026-08-03T10:47:38.990Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BCL2L2编码抗凋亡蛋白BCL-w，通过BH3结合沟槽捕获BAX、BAK或BH3-only蛋白，抑制线粒体外膜通透化并影响肿瘤细胞存活与神经退行性病变中的细胞死亡阈值。该蛋白主要定位于线粒体外膜胞质侧，并非典型胞外抗原，抗体可及性不具备膜外靶点优势，需优先限定为细胞内递送抗体、intrabody或结构验证型分子设计。相较BCL2和BCL2L1，BCL2L2临床抗体可开发性较低，但4CIM提供高分辨率BH3沟槽结构，适合作为BCL-2家族凋亡通路中选择性结合界面研究靶点。",
+    "mechanism": "设计分子阻断BCL-w疏水BH3结合沟槽与BAX/BAK或BIM等BH3螺旋结合，解除其对线粒体凋亡启动因子的抑制。",
+    "selectedEpitope": "优先覆盖BH1-BH3形成的疏水BH3结合沟槽，避开C端膜锚定区。",
+    "diseaseDirection": "肿瘤与神经退行性凋亡通路",
+    "domain": "BCL-2家族折叠含BH1、BH2、BH3、BH4结构域，C端具跨膜锚定区。",
+    "evidence": "BCL-w凋亡调控与结构可设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt Q92843功能与定位注释",
+      "RCSB PDB 4CIM晶体结构",
+      "BCL-2家族线粒体凋亡文献"
+    ],
+    "referenceEntries": "UniProt Q92843；RCSB PDB 4CIM；Open Targets BCL2L2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "BH1-BH3疏水结合沟槽",
+        "直接竞争BH3-only蛋白及BAX/BAK BH3螺旋结合，机制最清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "BH4邻近调节面",
+        "可能影响BCL-w构象稳定性与伴侣蛋白识别，适合变构型设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端跨膜锚定邻近区",
+        "与线粒体膜定位相关但结构柔性高且抗体可及性受限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BCL2L2为胞内线粒体外膜相关蛋白，常规抗体难以到达作用位点；建议采用细胞内递送、intrabody或以Fab/VHH作为结构探针。",
+    "structurePrepZh": "以4CIM高分辨率晶体结构为模板，保留BCL-w核心折叠与结合肽界面，补建缺失柔性区并单独评估C端膜锚定段。",
+    "structureRef": "RCSB PDB 4CIM，X-ray diffraction，1.5 Å",
+    "antibodies": [
+      "抗BCL-w研究级单克隆抗体",
+      "抗BCL2L2免疫检测抗体"
+    ],
+    "interfaceFocus": "BH3螺旋结合沟槽与疏水口袋",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "BCL2",
+        "rationale": "BCL2同属抗凋亡BCL-2家族，通过BH3沟槽抑制BAX/BAK介导的线粒体凋亡，在血液肿瘤中具有明确通路证据。"
+      },
+      {
+        "target": "BCL2L1",
+        "rationale": "BCL2L1编码BCL-xL，直接结合多种BH3-only蛋白并抑制BAK/BAX活化，是同一线粒体凋亡轴的重要抗凋亡节点。"
+      },
+      {
+        "target": "MCL1",
+        "rationale": "MCL1通过BH3结合沟槽维持肿瘤细胞存活，并与BCL2、BCL2L1存在功能冗余，适合作为同通路优先候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

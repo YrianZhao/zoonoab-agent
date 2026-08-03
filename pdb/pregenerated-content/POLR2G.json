@@ -1,0 +1,65 @@
+{
+  "gene": "POLR2G",
+  "generatedAt": "2026-08-03T15:26:12.523Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "POLR2G是RNA polymerase II十二亚基复合体的Rpb7同源亚基，参与Pol II转录起始、延伸稳定性及病毒依赖的宿主转录过程，Open Targets提示其与HIV感染及流感等病毒性疾病存在遗传或功能关联。该蛋白主要定位于细胞核并嵌入多亚基转录机器，缺乏分泌型或跨膜胞外结构域，天然抗体可及性显著弱于膜受体或分泌因子。优先级应定位为结构机制验证或胞内递送抗体研究靶点；相较CCR5、CXCR4、CD4等HIV通路膜蛋白，POLR2G的成药可及性与阻断窗口较低，但其复合体结构信息完整，适合用于界面约束型分子设计评估。",
+    "mechanism": "设计策略聚焦阻断POLR2G与POLR2C/RPB3及POLR2D/RPB4邻近界面接触，削弱Rpb4/7模块在Pol II转录复合体中的稳定装配。",
+    "selectedEpitope": "优先覆盖Rpb7 N端RNP样结构域与Rpb4模块接触面，避开深埋核心装配界面。",
+    "diseaseDirection": "病毒感染宿主转录依赖方向",
+    "domain": "POLR2G含N端RNP样结构域及C端OB-fold样结构域，构成Pol II Rpb4/7亚复合体组成单元。",
+    "evidence": "POLR2G-Pol II复合体结构与病毒感染关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P62487功能与定位注释",
+      "RCSB PDB 2C35晶体结构",
+      "RNA polymerase II复合体结构生物学文献"
+    ],
+    "referenceEntries": "UniProt:P62487；RCSB PDB:2C35；Open Targets:POLR2G",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Rpb7 N端RNP样结构域的Rpb4接触边缘",
+        "可用于干预Rpb4/7模块稳定性，结构可解释性较强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端OB-fold样结构域外露环区",
+        "具备一定表面可及性，可作为胞内抗体或片段结合位点",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Pol II核心深埋装配界面",
+        "可能影响复合体普遍转录功能，选择性与安全窗口较窄",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "POLR2G为核内Pol II核心相关亚基，经典抗体难以进入细胞核；界面高度保守且涉及基础转录，需采用胞内递送、降解偶联或研究级阻断设计并严格评估细胞毒性。",
+    "structurePrepZh": "以PDB 2C35为模板提取POLR2G所在链及邻近Rpb4/Pol II核心亚基，补全缺失侧链、校正质子化状态，并保留复合体界面用于表位可及性分析。",
+    "structureRef": "RCSB PDB 2C35，human RNA polymerase II，2.7 Å X-ray",
+    "antibodies": [
+      "抗POLR2G研究级抗体",
+      "抗RNA polymerase II复合体研究级抗体"
+    ],
+    "interfaceFocus": "Rpb7-Rpb4接触面及外露OB-fold环区",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "CCR5",
+        "rationale": "CCR5是HIV进入宿主细胞的关键趋化因子受体，与病毒包膜蛋白gp120介导的入侵步骤直接相关；其多跨膜胞外环可被抗体或小分子阻断。"
+      },
+      {
+        "target": "CXCR4",
+        "rationale": "CXCR4是HIV X4嗜性毒株使用的共受体，参与gp120-CD4结合后的膜融合过程；其胞外N端与胞外环为可及抗原区域。"
+      },
+      {
+        "target": "CD4",
+        "rationale": "CD4是HIV gp120的主要宿主受体，位于病毒入侵通路上游；D1结构域与gp120结合界面具有明确结构基础和抗体阻断可行性。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

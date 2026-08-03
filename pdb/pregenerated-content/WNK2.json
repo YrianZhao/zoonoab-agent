@@ -1,0 +1,65 @@
+{
+  "gene": "WNK2",
+  "generatedAt": "2026-08-03T17:52:57.068Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "WNK2为胞内丝氨酸/苏氨酸蛋白激酶，主要通过WNK-SPAK/OSR1轴调控SLC12A家族离子共转运体的磷酸化，与神经系统兴奋性、细胞容量稳态及部分神经退行性表型存在遗传关联。该蛋白缺乏分泌型或跨膜胞外结构域，完整蛋白并不具备常规治疗性抗体的天然抗原可及性；PDB 6ELM对应高分辨率激酶结构域，可用于胞内结合体、研究级Fab或VHH的结构引导设计。相较同通路中位于膜表面的SLC12A转运体，WNK2的优势在于催化口袋和调控界面结构清晰、可直接解析上游激酶节点的构象控制，但作为体内抗体药物靶点优先级低于胞外可及靶点。",
+    "mechanism": "设计结合体占据WNK2激酶结构域ATP结合裂隙或邻近活化环构象界面，阻断WNK2对SPAK/STK39和OSR1/OXSR1的磷酸化激活。",
+    "selectedEpitope": "优先靶向6ELM激酶结构域N叶ATP结合裂隙周缘及活化环邻近构象界面。",
+    "diseaseDirection": "神经退行性与离子稳态表型",
+    "domain": "WNK2含N端蛋白激酶结构域及长C端调控区，6ELM覆盖催化激酶核心结构。",
+    "evidence": "WNK2结构与WNK-SPAK/OSR1通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9Y3S1功能与结构域注释",
+      "RCSB PDB 6ELM高分辨率晶体结构",
+      "WNK-SPAK/OSR1-SLC12A离子转运调控文献"
+    ],
+    "referenceEntries": "UniProt Q9Y3S1；RCSB PDB 6ELM；Open Targets WNK2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域ATP结合裂隙周缘",
+        "可直接限制ATP进入并稳定非活性构象，适合构建功能阻断型胞内结合体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "活化环及催化环邻近表面",
+        "可能干扰底物肽段定位及SPAK/OSR1磷酸化所需构象转换",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化中心的保守激酶核心表面",
+        "特异性窗口较窄，易与其他WNK家族激酶产生交叉结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "WNK2为胞内激酶，常规抗体体内可及性受限；设计应定位为结构生物学、靶点验证或胞内递送结合体，并严格评估WNK1/3/4交叉反应。",
+    "structurePrepZh": "以6ELM链A为模板，保留激酶结构域主链与关键催化残基，补全缺失侧链，去除晶体缓冲小分子后进行质子化与界面网格定义。",
+    "structureRef": "RCSB PDB 6ELM，human WNK2 kinase domain，1.14 Å X-ray",
+    "antibodies": [
+      "研究级anti-WNK2 antibody",
+      "研究级anti-phospho-WNK substrate motif antibody"
+    ],
+    "interfaceFocus": "ATP结合裂隙、活化环、SPAK/OSR1底物识别面",
+    "designMode": "胞内结构阻断",
+    "candidates": [
+      {
+        "target": "STK39",
+        "rationale": "STK39编码SPAK，是WNK2下游直接磷酸化激酶，连接WNK信号与SLC12A转运体调控。该节点适合用于验证WNK2通路输出。"
+      },
+      {
+        "target": "OXSR1",
+        "rationale": "OXSR1编码OSR1，与SPAK同属WNK下游效应激酶，参与离子共转运体磷酸化与细胞容量调节。其通路位置与WNK2功能耦合紧密。"
+      },
+      {
+        "target": "SLC12A2",
+        "rationale": "SLC12A2编码NKCC1，是WNK-SPAK/OSR1轴调控的离子共转运体之一，并与神经元氯离子稳态相关。作为多跨膜转运体，其胞外环可及性仍需结构评估。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "ITPKA",
+  "generatedAt": "2026-08-03T13:34:28.150Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ITPKA催化Ins(1,4,5)P3磷酸化生成Ins(1,3,4,5)P4，参与钙信号终止与肌动蛋白相关细胞迁移过程，其遗传关联主要集中于嗜酸粒细胞、嗜中性粒细胞计数及湿疹样皮炎等免疫炎症表型。该蛋白为胞内可溶性激酶，缺乏天然胞外结构域，常规治疗性抗体抗原可及性不足，但高分辨率晶体结构有利于建立结构抗原、胞内递送抗体片段或机制研究型结合分子。相较多数同类胞内磷酸代谢酶，ITPKA具有明确ATP/肌醇磷酸底物结合裂隙与1.59 Å实验结构支撑，优先级主要体现在结构可设计性而非传统体液可及性。",
+    "mechanism": "设计分子应遮挡催化结构域ATP结合口袋或Ins(1,4,5)P3底物进入通道，阻断磷酸转移所需底物-ATP近邻配位。",
+    "selectedEpitope": "优先覆盖激酶催化核心的ATP结合裂隙邻近环区及肌醇磷酸底物结合沟槽入口。",
+    "diseaseDirection": "免疫细胞计数与炎症皮肤病",
+    "domain": "ITPKA含N端调控区与C端Ins(1,4,5)P3 3-kinase催化结构域，PDB 8PP8覆盖催化核心。",
+    "evidence": "ITPKA免疫炎症遗传关联与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P23677蛋白功能注释",
+      "RCSB PDB 8PP8晶体结构",
+      "Reactome/KEGG肌醇磷酸代谢通路注释"
+    ],
+    "referenceEntries": "UniProt:P23677；RCSB PDB:8PP8；Open Targets:ITPKA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端催化结构域ATP结合裂隙邻近环区",
+        "可直接干扰ATP定位与磷酸转移构象，是机制阻断的主要设计区域",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Ins(1,4,5)P3底物结合沟槽入口及正电荷表面",
+        "有望限制肌醇磷酸底物进入并降低催化循环效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化裂隙的溶剂暴露催化域外表面",
+        "结合可行性较高但功能阻断不确定，需避免仅获得非抑制性结合体",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ITPKA为胞内酶，常规IgG难以到达作用位点；建议将其定位为结构验证、胞内递送Fab/VHH或PROTAC招募模块的设计对象，并严格评估ITPKB/ITPKC交叉反应。",
+    "structurePrepZh": "以8PP8的A、B链为模板，保留催化域主链与关键侧链构象，补全缺失环区，检查晶体接触对表位暴露性的影响，并标注ATP/底物结合口袋。",
+    "structureRef": "RCSB PDB 8PP8，X-ray diffraction，1.59 Å，人源ITPKA",
+    "antibodies": [
+      "无获批抗ITPKA治疗性抗体",
+      "研究级抗ITPKA抗体"
+    ],
+    "interfaceFocus": "ATP结合裂隙与肌醇磷酸底物沟槽入口",
+    "designMode": "胞内酶抑制型",
+    "candidates": [
+      {
+        "target": "ITPKB",
+        "rationale": "ITPKB同属Ins(1,4,5)P3 3-kinase家族，在免疫细胞钙信号与淋巴细胞功能调控中具有更明确的功能证据，可作为同一肌醇磷酸代谢轴的优先比较靶点。"
+      },
+      {
+        "target": "ITPKC",
+        "rationale": "ITPKC催化同一Ins(1,4,5)P3向Ins(1,3,4,5)P4转化反应，并与免疫炎症遗传易感性有关，适合用于家族选择性与通路冗余性评估。"
+      },
+      {
+        "target": "PLCG2",
+        "rationale": "PLCG2位于上游磷脂酰肌醇信号通路，生成Ins(1,4,5)P3并驱动免疫细胞钙释放，可作为同一钙-肌醇磷酸信号轴中的替代干预节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

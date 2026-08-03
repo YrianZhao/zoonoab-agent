@@ -1,0 +1,65 @@
+{
+  "gene": "DROSHA",
+  "generatedAt": "2026-08-03T18:44:44.235Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DROSHA 是核内 Microprocessor 复合体的 RNase III 催化核心，与 DGCR8 协同切割 pri-miRNA，影响神经发育、突触功能及多种发育异常相关基因网络。该靶点主要定位于细胞核，缺乏胞外结构域、分泌形式或膜受体可及性，常规体内抗体药物可及性明显受限。其优先级低于 AGO2、DICER1 等同通路可干预节点，更适合作为结构生物学、细胞内递送抗体或研究级功能阻断模型靶点。",
+    "mechanism": "设计抗体阻断 DROSHA 与 DGCR8 及 pri-miRNA 发夹底部/茎区的复合识别，限制 RNase IIIa/IIIb 催化中心对 pri-miRNA 的初始切割。",
+    "selectedEpitope": "优先评估 Platform-PAZ 连接区及 RNase IIIa/IIIb 邻近 pri-miRNA 结合沟槽表位。",
+    "diseaseDirection": "神经发育与miRNA加工异常",
+    "domain": "DROSHA 含 N 端富脯氨酸区、中央平台/PAZ样结构域、双 RNase III 催化结构域及 C 端 dsRBD。",
+    "evidence": "DROSHA-miRNA加工与神经发育证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9NRR4 functional annotation",
+      "RCSB PDB 5B16 experimental structure",
+      "Microprocessor complex structural and biochemical literature"
+    ],
+    "referenceEntries": "UniProt Q9NRR4；RCSB PDB 5B16；Open Targets DROSHA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Platform-PAZ 与 pri-miRNA 茎部定位界面",
+        "干扰底部-茎区空间测距并削弱底物装载",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RNase IIIa/RNase IIIb 催化沟槽邻近区域",
+        "阻碍双金属催化中心附近底物进入与切割定位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端 dsRBD 双链 RNA 结合面",
+        "可能影响辅助 RNA 结合，但结构柔性及非特异核酸竞争风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DROSHA 为核内酶，体内抗体进入细胞核效率低；催化沟槽带正电并结合核酸，需规避强非特异 RNA/DNA 结合。",
+    "structurePrepZh": "以 5B16 链 A/B/C 解析 Microprocessor 构象，补全缺失环区并保留催化 Mg2+邻近残基用于界面约束建模。",
+    "structureRef": "Kwon et al., human Microprocessor structure, PDB 5B16",
+    "antibodies": [
+      "研究级抗-DROSHA抗体",
+      "研究级抗-DGCR8抗体"
+    ],
+    "interfaceFocus": "DGCR8结合面与pri-miRNA定位沟槽",
+    "designMode": "细胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "DGCR8",
+        "rationale": "DGCR8 是 Microprocessor 复合体的双链 RNA 结合伴侣，直接识别 pri-miRNA 并定位 DROSHA 切割位点。阻断 DROSHA-DGCR8 复合体形成可在同一初级 miRNA 加工步骤发挥作用。"
+      },
+      {
+        "target": "DICER1",
+        "rationale": "DICER1 位于 miRNA 生物发生下游，负责 pre-miRNA 至成熟 miRNA 双链的胞质加工。其遗传异常同样与神经发育和多系统发育表型相关。"
+      },
+      {
+        "target": "AGO2",
+        "rationale": "AGO2 是 RISC 复合体核心效应蛋白，结合成熟 miRNA 并介导靶 mRNA 沉默。其功能改变可连接 miRNA 加工缺陷与转录后调控异常。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

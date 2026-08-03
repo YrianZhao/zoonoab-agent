@@ -1,0 +1,65 @@
+{
+  "gene": "BCL6",
+  "generatedAt": "2026-08-03T10:47:43.371Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BCL6是生发中心B细胞发育的核心转录抑制因子，在弥漫大B细胞淋巴瘤中通过BTB结构域招募SMRT、NCoR和BCOR等共抑制复合物，抑制DNA损伤反应、浆细胞分化及细胞周期检查点基因。该蛋白主要定位于细胞核，天然抗原可及性不及膜受体或分泌蛋白，因此更适合发展细胞内递送抗体片段或蛋白互作阻断型研究抗体。相比BCL2等下游存活因子，BCL6位于生发中心转录程序上游，并具有明确的BTB沟槽小分子和肽段结合结构证据，优先级来自其驱动节点属性与可结构化干预界面。",
+    "mechanism": "阻断BCL6 BTB二聚体侧沟与SMRT、NCoR或BCOR的BBD肽段结合，削弱共抑制复合物招募并解除靶基因转录抑制。",
+    "selectedEpitope": "优先覆盖BTB结构域二聚体侧沟及SMRT-BBD结合界面，避免干扰非特异核蛋白表面。",
+    "diseaseDirection": "生发中心B细胞淋巴瘤",
+    "domain": "N端BTB/POZ二聚化与共抑制因子结合结构域，C端含C2H2锌指DNA结合区。",
+    "evidence": "BCL6-BTB共抑制复合物结构与DLBCL证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P41182功能与结构域注释",
+      "RCSB PDB 1R29 X射线晶体结构",
+      "DLBCL中BCL6重排、突变与依赖性研究"
+    ],
+    "referenceEntries": "UniProt:P41182；RCSB PDB:1R29；HGNC:BCL6",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "BTB二聚体侧沟SMRT/NCoR/BCOR-BBD结合界面",
+        "直接阻断共抑制因子招募，机制与疾病依赖性最一致",
+        "优先"
+      ],
+      [
+        "Site B",
+        "BTB结构域二聚化界面邻近区域",
+        "可能影响BCL6同源二聚化与复合物稳定性，需控制构象选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端C2H2锌指DNA结合区",
+        "理论上可干扰DNA结合，但核内递送与脱靶DNA结合蛋白风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BCL6为核内转录因子，常规全长IgG难以进入细胞核；建议采用VHH、Fab片段或递送偶联策略，并优先验证BTB沟槽结合的功能阻断效应。",
+    "structurePrepZh": "以1R29高分辨率BTB结构域为模板，保留二聚体构象并标注共抑制肽结合沟槽；补充AlphaFold模型映射锌指区作风险参考。",
+    "structureRef": "Ahmad et al., Mol Cell, BCL6 BTB corepressor complex structure",
+    "antibodies": [
+      "BCL6 clone GI191E/A8",
+      "BCL6 clone LN22"
+    ],
+    "interfaceFocus": "BTB二聚体侧沟共抑制因子结合界面",
+    "designMode": "胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "NCOR1",
+        "rationale": "NCOR1编码N-CoR共抑制因子，其BCL6-binding domain可与BCL6 BTB侧沟结合，是同一转录抑制复合物的直接功能组分。"
+      },
+      {
+        "target": "NCOR2",
+        "rationale": "NCOR2编码SMRT，是BCL6招募的关键共抑制因子；干预BCL6-SMRT相互作用可解除BCL6依赖性转录沉默。"
+      },
+      {
+        "target": "BCOR",
+        "rationale": "BCOR通过BBD样序列结合BCL6 BTB结构域并参与生发中心B细胞转录抑制网络，是BCL6复合物通路中的真实伴侣靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

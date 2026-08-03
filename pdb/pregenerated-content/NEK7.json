@@ -1,0 +1,65 @@
+{
+  "gene": "NEK7",
+  "generatedAt": "2026-08-03T14:39:41.342Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NEK7 是胞内丝氨酸/苏氨酸激酶，参与 NLRP3 炎症小体装配并促进 CASP1 激活、IL1B 与 IL18 成熟释放，其遗传关联主要指向中性粒细胞计数、C 反应蛋白及单核细胞计数等炎症表型。该蛋白不具备分泌蛋白或膜受体的天然胞外可及性，常规外源性抗体难以直接结合完整细胞内抗原，因此更适合细胞内递送抗体、intrabody 或结构引导的结合蛋白研究。相较 IL1B、IL1R1 等胞外炎症靶点，NEK7 的优先级优势在于位于 NLRP3 激活上游装配节点，可更接近炎症小体形成环节，但成药性与递送门槛高于胞外同类靶点。",
+    "mechanism": "设计分子应阻断 NEK7 激酶结构域 C 叶与 NLRP3 NACHT/LRR 区域的结合，从而抑制 NLRP3 寡聚化、ASC 聚集及 CASP1 介导的 IL1B 成熟。",
+    "selectedEpitope": "优先覆盖 NEK7 激酶结构域 C 叶外露面及 αF-αG 邻近界面，规避 ATP 结合裂隙。",
+    "diseaseDirection": "炎症小体相关免疫炎症",
+    "domain": "NEK7 主要由 N 端激酶小叶、铰链区和 C 端激酶大叶组成，2WQM 覆盖催化结构域。",
+    "evidence": "NEK7-NLRP3 炎症小体结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform 炎症表型遗传关联",
+      "UniProt Q8TDX7 蛋白功能注释",
+      "RCSB PDB 2WQM 晶体结构数据",
+      "NLRP3 炎症小体装配机制文献"
+    ],
+    "referenceEntries": "UniProt Q8TDX7；RCSB PDB 2WQM；Open Targets NEK7",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶 C 叶 αF-αG 邻近外露面",
+        "可能干扰 NEK7 与 NLRP3 装配界面，适合功能阻断型 intrabody 设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N 叶 β 折叠与 αC 螺旋周边区域",
+        "结构稳定且可形成构象识别，但需避免影响保守激酶折叠核心",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP 结合裂隙与铰链区",
+        "保守性高且易产生激酶家族交叉反应，抗体可及性与选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NEK7 为胞内激酶，常规抗体组织可及性不足；设计应采用细胞内递送或 intrabody 格式，并严格评估 NEK6 等激酶同源交叉反应。",
+    "structurePrepZh": "以 2WQM 链 A 为模板，补全缺失侧链并校正质子化状态；结合 AlphaFold 或同源模型评估柔性环区与潜在 NLRP3 接触面。",
+    "structureRef": "RCSB PDB 2WQM，human NEK7 kinase domain，2.1 Å",
+    "antibodies": [
+      "抗 NEK7 研究用单克隆抗体",
+      "抗 NEK7 多克隆检测抗体"
+    ],
+    "interfaceFocus": "C 叶外露面与 NLRP3 装配相关界面",
+    "designMode": "胞内阻断型",
+    "candidates": [
+      {
+        "target": "NLRP3",
+        "rationale": "NLRP3 是炎症小体传感器，直接招募 NEK7 并驱动 ASC 斑点形成；其 NACHT 寡聚化界面是同通路中更直接的阻断节点。"
+      },
+      {
+        "target": "PYCARD",
+        "rationale": "PYCARD 编码 ASC，是 NLRP3 与 CASP1 之间的接头蛋白；抑制 PYD-CARD 介导的聚集可降低下游 caspase-1 激活。"
+      },
+      {
+        "target": "CASP1",
+        "rationale": "CASP1 位于 NLRP3 炎症小体下游，负责切割 pro-IL1B、pro-IL18 和 GSDMD；其抑制可直接限制炎症因子成熟与焦亡执行。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

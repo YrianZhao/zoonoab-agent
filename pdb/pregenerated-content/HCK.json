@@ -1,0 +1,65 @@
+{
+  "gene": "HCK",
+  "generatedAt": "2026-08-03T19:42:34.726Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HCK 是髓系细胞高表达的 Src 家族非受体酪氨酸激酶，可在 BCR-ABL1 阳性白血病中参与下游磷酸化网络并促进 STAT5、PI3K-AKT 和 RAS-MAPK 相关存活信号。HCK 位于胞质侧，缺乏天然胞外结构域，完整蛋白抗体的细胞表面可及性较弱，因此更适合开发胞内递送抗体、降解偶联抗体或构象稳定型研究抗体。相较广谱 Src 家族成员，HCK 的髓系谱系富集和白血病遗传依赖证据使其在 CML/ALL 相关通路中具有更明确的优先级。",
+    "mechanism": "抗体策略宜稳定 HCK SH3-SH2-激酶结构域的自抑制构象，阻断 SH3 结合脯氨酸富集配体及 ATP 口袋邻近激活环重排。",
+    "selectedEpitope": "优先靶向 SH3-连接区与 SH2-激酶 N 叶交界面，锁定非活化构象并降低 Src 家族交叉反应。",
+    "diseaseDirection": "BCR-ABL1阳性白血病",
+    "domain": "HCK 含 N 端脂酰化区、SH3、SH2、蛋白酪氨酸激酶结构域及 C 端调控酪氨酸。",
+    "evidence": "HCK白血病信号与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProtKB P08631 功能与结构域注释",
+      "RCSB PDB 1QCF X射线晶体结构",
+      "BCR-ABL1白血病Src家族激酶依赖性研究"
+    ],
+    "referenceEntries": "UniProt P08631；RCSB PDB 1QCF；Open Targets HCK",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SH3结构域RT-loop与n-Src loop邻近配体结合沟",
+        "可阻断脯氨酸富集蛋白结合并干预白血病支架复合物形成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SH2结构域磷酸酪氨酸结合口袋及EF/BG环",
+        "可干预磷酸化接头蛋白招募，但需控制与其他Src家族SH2同源性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "激酶结构域ATP结合裂隙与激活环邻近区域",
+        "功能相关性强但高度保守，抗体进入性与选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HCK 为胞内激酶，常规治疗性抗体难以直接进入胞质；设计应限定为胞内递送、研究级构象抗体或降解平台，并进行 Src 家族交叉反应筛选。",
+    "structurePrepZh": "以 1QCF 链 A 为模板，补全缺失环区并保留 SH3-SH2-激酶相对取向；去除非必要晶体配体后进行质子化、能量优化和同源家族表面比对。",
+    "structureRef": "RCSB PDB 1QCF，HCK晶体结构，2.0 Å X射线衍射",
+    "antibodies": [
+      "抗HCK研究级单克隆抗体",
+      "抗磷酸HCK Tyr411构象/修饰特异性抗体"
+    ],
+    "interfaceFocus": "SH3配体沟与SH2-激酶N叶构象耦联界面",
+    "designMode": "胞内构象锁定",
+    "candidates": [
+      {
+        "target": "ABL1",
+        "rationale": "ABL1/BCR-ABL1 是 CML 和部分 ALL 的核心驱动激酶，位于 HCK 相关白血病磷酸化网络上游，具有明确疾病因果性。"
+      },
+      {
+        "target": "STAT5A",
+        "rationale": "STAT5A 是 BCR-ABL1 与 Src 家族激酶共同增强的促存活转录效应因子，可作为下游通路活性和联合阻断方向。"
+      },
+      {
+        "target": "LYN",
+        "rationale": "LYN 同属 Src 家族并参与 BCR-ABL1 阳性白血病细胞存活及耐药相关信号，适合作为同通路选择性对照靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "PIK3R2",
+  "generatedAt": "2026-08-03T15:17:50.164Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PIK3R2编码PI3K调节亚基p85β，参与PIK3CA催化亚基稳定与PI3K-AKT-MTOR信号调控，其功能异常与巨脑畸形、过度生长综合征及肿瘤相关。该蛋白主要为胞内适配与调节蛋白，缺乏天然胞外结构域，抗体可及性弱于膜受体或分泌因子，因此更适合结构生物学验证、胞内递送抗体或降解耦联策略。相较PIK3CA、AKT1或MTOR等核心酶靶点，PIK3R2具备调节亚基特异性和疾病突变富集优势，但作为常规体内阻断抗体靶点优先级较低。",
+    "mechanism": "设计抗体应阻断p85β iSH2结构域与PIK3CA p110α的调节界面，削弱催化亚基稳定和异常PI3K脂质激酶活化。",
+    "selectedEpitope": "优先覆盖iSH2共iled-coil与p110α接触面，兼顾nSH2-iSH2连接区构象表位。",
+    "diseaseDirection": "PI3K-AKT-MTOR相关过度生长与肿瘤",
+    "domain": "p85β含SH3、BH、nSH2、iSH2和cSH2结构域，7RNU覆盖与PI3K复合体相关结构区域。",
+    "evidence": "PIK3R2-PI3K-AKT-MTOR疾病机制证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt O00459功能与结构域注释",
+      "RCSB PDB 7RNU晶体结构记录",
+      "PI3K-AKT-MTOR通路遗传过度生长综合征文献"
+    ],
+    "referenceEntries": "UniProt: O00459; RCSB PDB: 7RNU; Gene: PIK3R2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "iSH2结构域与PIK3CA p110α调节接触界面",
+        "直接干预p85β-p110α复合体稳定性，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "nSH2-iSH2连接区邻近构象表面",
+        "可能影响SH2介导的抑制构象与催化亚基装配",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SH3/BH远端结构域暴露面",
+        "远离核心催化调节界面，功能阻断不确定性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PIK3R2为胞内蛋白，常规抗体体内可及性不足；需优先评估胞内递送、细胞穿透或PROTAC/降解抗体平台适配性。",
+    "structurePrepZh": "以7RNU晶体结构为模板，保留p85β与PIK3CA相互作用链，补全缺失环区并标注疾病突变位点后进行界面建模。",
+    "structureRef": "RCSB PDB 7RNU, X-ray diffraction, 1.45 Å",
+    "antibodies": [
+      "研究级anti-PIK3R2抗体",
+      "研究级anti-p85β抗体"
+    ],
+    "interfaceFocus": "p85β iSH2-p110α调节界面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "PIK3CA",
+        "rationale": "PIK3CA编码p110α催化亚基，与PIK3R2形成PI3K复合体，是PI3K-AKT-MTOR通路中过度生长和肿瘤关联最直接的效应节点。"
+      },
+      {
+        "target": "AKT1",
+        "rationale": "AKT1位于PI3K下游，介导PIP3依赖的生长和存活信号，遗传激活与Proteus综合征及肿瘤信号增强相关。"
+      },
+      {
+        "target": "MTOR",
+        "rationale": "MTOR是PI3K-AKT轴下游核心激酶，驱动细胞生长、蛋白合成和脑过度生长相关病理表型。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

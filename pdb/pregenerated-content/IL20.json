@@ -1,0 +1,65 @@
+{
+  "gene": "IL20",
+  "generatedAt": "2026-08-03T13:26:41.226Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IL20 是 IL-10 细胞因子家族成员，可通过 IL20RA/IL20RB 或 IL22RA1/IL20RB 受体复合体激活 JAK-STAT 轴，促进角质形成细胞、滑膜成纤维样细胞及炎症组织中的 STAT3 依赖性炎症反应。其为分泌型细胞因子，抗原整体位于胞外环境，具备良好的抗体可及性和配体中和可行性。相较受体亚基阻断，直接靶向 IL20 可降低对 IL-19、IL-24 等同受体细胞因子的广泛干预，适合作为炎症性关节病和组织重塑相关病理的优先配体靶点。",
+    "mechanism": "中和抗体阻断 IL20 与 IL20RA/IL20RB 或 IL22RA1/IL20RB 受体复合体结合，抑制受体近端 JAK1/TYK2 激活及下游 STAT3 磷酸化。",
+    "selectedEpitope": "优先覆盖 IL20 四螺旋束中受体结合面，聚焦 A/C 螺旋及 AB 环参与的 IL20RA 识别界面。",
+    "diseaseDirection": "炎症性关节病与组织重塑",
+    "domain": "IL20 为分泌型四α螺旋束细胞因子，含 IL-10 家族特征性受体结合表面。",
+    "evidence": "IL20-受体复合体结构与炎症遗传药理证据",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9NYY1 curated protein annotation",
+      "RCSB PDB 4DOH X-ray receptor complex structure",
+      "IL-10 family cytokine receptor signaling literature"
+    ],
+    "referenceEntries": "UniProt: Q9NYY1; RCSB PDB: 4DOH; OTP: IL20",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "A/C 螺旋与 AB 环形成的 IL20RA 结合面",
+        "直接竞争第一受体识别，利于实现配体中和",
+        "优先"
+      ],
+      [
+        "Site B",
+        "D/F 螺旋邻近 IL20RB 招募界面",
+        "干扰共受体装配，可增强受体复合体阻断效应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "四螺旋束核心保守疏水面邻近区域",
+        "可能影响蛋白稳定性或交叉识别同源细胞因子，需控制选择性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IL20 与 IL19、IL24 共享 IL20RB 相关受体系统，受体结合面存在家族相似性；设计需避开高度保守核心残基，并以同源细胞因子交叉结合筛选控制选择性风险。",
+    "structurePrepZh": "以 4DOH 实验晶体结构为模板，保留 IL20 与受体接触链用于界面映射，补全缺失侧链、校正二硫键与质子化状态，并分离配体表面用于表位建模。",
+    "structureRef": "PDB 4DOH, X-ray diffraction, 2.8 Å, human IL20 receptor complex",
+    "antibodies": [
+      "Fletikumab",
+      "NNC0109-0012"
+    ],
+    "interfaceFocus": "IL20RA 初始识别面与 IL20RB 招募面",
+    "designMode": "配体中和抗体设计",
+    "candidates": [
+      {
+        "target": "IL20RA",
+        "rationale": "IL20RA 是 IL20 受体复合体的特异性识别亚基之一，直接参与 IL20 及相关 IL-10 家族细胞因子介导的 STAT3 信号启动。靶向该受体可阻断配体结合，但需评估对 IL19、IL24 通路的共同影响。"
+      },
+      {
+        "target": "IL20RB",
+        "rationale": "IL20RB 是 IL20 受体复合体的共享共受体亚基，参与受体二聚化和下游 JAK-STAT 信号传递。其阻断策略可能具有更强通路覆盖度，但选择性窗口较配体靶向更窄。"
+      },
+      {
+        "target": "IL22RA1",
+        "rationale": "IL22RA1 可与 IL20RB 组成 IL20 的替代受体复合体，并参与上皮和炎症组织中的 STAT3 相关应答。作为同一受体系统靶点，可用于比较配体中和与受体阻断的药理差异。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

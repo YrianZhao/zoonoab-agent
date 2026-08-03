@@ -1,0 +1,65 @@
+{
+  "gene": "RHOT2",
+  "generatedAt": "2026-08-03T20:57:55.788Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RHOT2编码线粒体外膜GTP酶Miro2，参与线粒体轴突运输、钙依赖性运动调控及PINK1/Parkin介导的线粒体质量控制，其遗传关联主要指向阿尔茨海默病、帕金森病及肌量相关表型。该蛋白为胞内线粒体外膜蛋白，缺乏天然胞外抗原可及性，常规体内阻断型抗体开发可行性受限，但其N端GTPase结构域具有明确实验结构，适合用于机制研究型胞内抗体或工程化递送抗体设计。相较于PINK1、PRKN等上游质量控制因子，RHOT2位于线粒体运输执行节点，可直接连接运动接头复合体与线粒体动力学表型，因而在神经退行性疾病机制验证中具有优先建模价值。",
+    "mechanism": "设计抗体优先阻断RHOT2 N端GTPase结构域与GTP/GDP结合或其与运动接头复合体的构象耦联，从而干预线粒体运输调控。",
+    "selectedEpitope": "优先选择N端GTPase结构域P-loop、Switch I/II邻近构象界面，避免完全覆盖保守核苷酸结合核心。",
+    "diseaseDirection": "神经退行性疾病与线粒体运输障碍",
+    "domain": "RHOT2含N端GTPase结构域、EF-hand钙结合区、C端GTPase结构域及跨膜锚定区。",
+    "evidence": "RHOT2线粒体运输与神经退行性疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q8IXI1功能与亚细胞定位注释",
+      "RCSB PDB 5KUT晶体结构数据",
+      "PINK1/Parkin-Miro线粒体质量控制文献"
+    ],
+    "referenceEntries": "UniProt: Q8IXI1；RCSB PDB: 5KUT；Ensembl: ENSG00000140905",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端GTPase结构域Switch I/II邻近表面",
+        "可干预核苷酸依赖构象转换及效应蛋白耦联",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端GTPase结构域远离P-loop的非保守外侧螺旋面",
+        "有利于获得RHOT2选择性结合并降低RHOT1交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "P-loop核苷酸结合保守核心区域",
+        "可能产生高机制效应，但保守性高且存在构象与脱靶风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RHOT2为胞内线粒体外膜蛋白，抗体需采用胞内抗体、递送抗体或研究级构象探针策略；需重点评估RHOT1同源性、GTPase保守位点交叉反应及线粒体毒性。",
+    "structurePrepZh": "以PDB 5KUT抗原链A/B/C为模板，保留N端GTPase折叠，校正缺失环区、质子化状态与核苷酸结合位点邻域构象后开展表位建模。",
+    "structureRef": "PDB 5KUT，RHOT2 N端GTPase结构，X-ray 1.693 Å",
+    "antibodies": [
+      "无已批准RHOT2治疗性抗体",
+      "研究级抗RHOT2/Miro2抗体"
+    ],
+    "interfaceFocus": "N端GTPase Switch I/II与P-loop邻近界面",
+    "designMode": "胞内构象阻断",
+    "candidates": [
+      {
+        "target": "RHOT1",
+        "rationale": "RHOT1/Miro1与RHOT2同属线粒体外膜Miro GTPase，参与线粒体运输及PINK1/Parkin依赖性降解，是同一线粒体运动调控通路中的直接平行靶点。"
+      },
+      {
+        "target": "PINK1",
+        "rationale": "PINK1在线粒体损伤后积累于外膜并启动Parkin募集，可促进Miro蛋白降解与线粒体运输停滞，位于RHOT2相关质量控制通路上游。"
+      },
+      {
+        "target": "PRKN",
+        "rationale": "PRKN编码Parkin E3泛素连接酶，可介导Miro相关外膜底物泛素化并驱动受损线粒体清除，与帕金森病遗传机制高度相关。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

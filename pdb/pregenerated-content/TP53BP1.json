@@ -1,0 +1,65 @@
+{
+  "gene": "TP53BP1",
+  "generatedAt": "2026-08-03T17:25:17.564Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TP53BP1是DNA双链断裂损伤应答中的核内支架蛋白，通过Tudor结构域识别H4K20me2并与RNF168依赖性H2AK15ub协同定位，促进非同源末端连接修复。其疾病关联主要反映DNA修复缺陷、神经发育异常及肿瘤基因组不稳定性，但该蛋白位于细胞核内，缺乏天然胞外结构域或分泌形式，常规体内阻断抗体的抗原可及性不足。相较EGFR、PDCD1等膜受体靶点，TP53BP1更适合作为结构生物学与细胞内递送抗体研究靶点，优先级应定位于机制验证、胞内抗体或PROTAC适配抗体片段开发。",
+    "mechanism": "设计抗体片段结合TP53BP1 tandem Tudor甲基赖氨酸识别沟槽，阻断其与H4K20me2核小体表位结合，削弱DNA损伤灶募集。",
+    "selectedEpitope": "优先覆盖tandem Tudor结构域H4K20me2结合芳香笼及邻近酸性界面。",
+    "diseaseDirection": "DNA损伤应答与基因组不稳定疾病",
+    "domain": "2G3R覆盖TP53BP1 tandem Tudor结构域，包含甲基化组蛋白H4K20me2识别口袋。",
+    "evidence": "TP53BP1 DNA损伤应答结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q12888功能注释",
+      "RCSB PDB 2G3R晶体结构",
+      "DNA双链断裂修复与53BP1通路文献"
+    ],
+    "referenceEntries": "UniProt Q12888；RCSB PDB 2G3R；Open Targets TP53BP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "tandem Tudor芳香笼及H4K20me2结合沟槽",
+        "直接竞争甲基化组蛋白识别，机制明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Tudor结构域外侧带电环区",
+        "可影响核小体接近角度并提高片段选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Tudor核心疏水折叠面",
+        "可能干扰结构稳定性且跨蛋白保守性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TP53BP1为核内蛋白，常规抗体难以到达作用位点；建议采用胞内表达intrabody、细胞穿透递送或降解型抗体片段策略，并严格评估Tudor家族交叉反应。",
+    "structurePrepZh": "以2G3R晶体结构为模板，保留tandem Tudor核心坐标，补全缺失侧链并校正质子化状态；围绕H4K20me2识别口袋定义对接网格。",
+    "structureRef": "Botuyan et al., Cell, 2006；PDB 2G3R 1.25 Å",
+    "antibodies": [
+      "无获批同类治疗性抗体",
+      "研究级anti-53BP1抗体"
+    ],
+    "interfaceFocus": "Tudor芳香笼、H4K20me2结合沟槽",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "RNF168",
+        "rationale": "RNF168在DNA损伤位点催化H2AK13/15泛素化，是TP53BP1募集至断裂位点的上游关键因子，处于同一双链断裂应答通路。"
+      },
+      {
+        "target": "H2AFX",
+        "rationale": "H2AFX经ATM磷酸化形成γH2AX，构建DNA损伤信号平台并促进MDC1、RNF8/RNF168及TP53BP1级联募集。"
+      },
+      {
+        "target": "MDC1",
+        "rationale": "MDC1识别γH2AX并作为支架招募RNF8，连接早期DNA损伤标记与TP53BP1依赖修复因子装配。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

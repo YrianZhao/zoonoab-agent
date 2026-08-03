@@ -1,0 +1,65 @@
+{
+  "gene": "CDC7",
+  "generatedAt": "2026-08-03T11:12:07.374Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CDC7 是核内丝氨酸/苏氨酸激酶，与调控 DNA 复制起始的 DBF4 形成 DDK 复合物，通过磷酸化 MCM2-7 解旋酶促进复制叉启动；该轴在增殖性肿瘤和复制压力相关病理中具有明确机制基础。CDC7 缺乏分泌区段或天然胞外结构域，完整蛋白并非传统可及性良好的抗体靶点，因此更适合细胞内递送抗体片段或结构引导的工具抗体策略。相较于广泛作用的 CDK 类靶点，CDC7-DBF4-MCM 轴更贴近复制许可到复制起始的专属步骤，通路定位更集中，适合作为机制验证和选择性抑制设计的优先节点。",
+    "mechanism": "以内递送 Fab/VHH 阻断 CDC7 激酶 N/C 叶间 ATP 结合沟槽或 CDC7-DBF4 稳定界面，降低 MCM2 Ser40/Ser53 等位点磷酸化，抑制复制起始。",
+    "selectedEpitope": "优先锁定激酶结构域 ATP 结合裂隙邻近的活化环与αC-helix调控面。",
+    "diseaseDirection": "复制压力相关肿瘤与增殖疾病",
+    "domain": "CDC7 主要由蛋白激酶结构域构成，含 N-lobe、C-lobe、ATP 结合口袋、活化环及 DBF4 调控结合面。",
+    "evidence": "CDC7-DDK 复制起始轴结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt reviewed entry O00311",
+      "RCSB PDB 6YA6 X-ray structure",
+      "DDK-mediated MCM2-7 phosphorylation literature"
+    ],
+    "referenceEntries": "UniProt O00311；RCSB PDB 6YA6；Open Targets CDC7",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ATP 结合沟槽周缘与活化环邻近面",
+        "可直接干扰催化构象与底物磷酸转移，适合抑制型片段设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CDC7 激酶 N-lobe αC-helix 与 DBF4 稳定界面",
+        "有望削弱 DDK 复合物构象稳定性并降低 MCM 磷酸化效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C-lobe 保守底物结合沟及 MCM 接触邻近区",
+        "可能影响底物识别，但保守性高且存在交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CDC7 为胞内核蛋白，常规系统给药抗体难以接触抗原；建议限定为细胞内递送 Fab/VHH、PRObody 工具抗体或 ex vivo 机制验证，并严格评估激酶保守口袋交叉反应。",
+    "structurePrepZh": "以 6YA6 高分辨率晶体结构为模板，保留链 A/B 的 DDK 构象信息，补全缺失环区并标注 ATP 口袋、活化环和 DBF4 接触面后进行表位聚类。",
+    "structureRef": "RCSB PDB 6YA6，X-ray diffraction，1.44 Å",
+    "antibodies": [
+      "无已批准 CDC7 治疗性抗体",
+      "抗 CDC7 研究级单克隆抗体"
+    ],
+    "interfaceFocus": "ATP 结合裂隙、活化环、DBF4 调控界面",
+    "designMode": "胞内递送片段抗体",
+    "candidates": [
+      {
+        "target": "DBF4",
+        "rationale": "DBF4 是 CDC7 的调节亚基，形成 DDK 复合物并激活 CDC7 对 MCM 复合体的磷酸化；靶向其 CDC7 结合界面可从复合物装配层面抑制复制起始。"
+      },
+      {
+        "target": "MCM2",
+        "rationale": "MCM2 是 DDK 的关键底物，Ser40/Ser53 等位点磷酸化促进 CMG 解旋酶激活；其位于 CDC7 下游，适合用于通路药效和表位机制联动评估。"
+      },
+      {
+        "target": "MCM4",
+        "rationale": "MCM4 属于 MCM2-7 解旋酶复合体成员，受 DDK 磷酸化调控并参与复制起始控制；与 CDC7 处于同一复制许可-起始通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

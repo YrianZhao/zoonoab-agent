@@ -1,0 +1,65 @@
+{
+  "gene": "CARHSP1",
+  "generatedAt": "2026-08-03T11:01:01.126Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CARHSP1为胞内RNA结合磷蛋白，参与AU-rich元件mRNA稳定性调控，并可影响TNF等炎症因子转录后表达；Open Targets关联以白细胞数量、卵巢功能异常和卵巢肿瘤为主，但关联强度较低。该蛋白缺乏跨膜区和分泌信号肽，天然抗原可及性不符合常规治疗性抗体靶点标准，仅适合作为细胞内机制研究、诊断捕获或递送型抗体格式探索。相较TNF、IL6R、CSF3R等同炎症造血通路中可及性更高且临床可验证靶点，CARHSP1优先级偏低；若保留设计，应以结构可解析的RNA结合核心区域作为验证性抗原。",
+    "mechanism": "阻断CARHSP1冷休克结构域与AU-rich RNA序列结合，削弱其对TNF等炎症相关mRNA稳定性复合物的参与。",
+    "selectedEpitope": "优先覆盖冷休克结构域β桶RNA结合面，避开高度保守RNP样芳香残基核心。",
+    "diseaseDirection": "炎症造血与卵巢肿瘤关联",
+    "domain": "CARHSP1含N端冷休克样RNA结合结构域及可磷酸化调控区，整体为胞内可溶蛋白。",
+    "evidence": "CARHSP1炎症mRNA稳定性与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt Q9Y2V2蛋白功能注释",
+      "RCSB PDB 3AQQ晶体结构",
+      "文献报道的AU-rich mRNA结合与TNF表达调控"
+    ],
+    "referenceEntries": "UniProt Q9Y2V2；RCSB PDB 3AQQ；Open Targets CARHSP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "冷休克结构域β桶RNA结合面",
+        "直接干预AU-rich RNA识别，适合机制阻断型Fab验证",
+        "优先"
+      ],
+      [
+        "Site B",
+        "冷休克结构域外周带正电沟槽",
+        "可能削弱RNA亲和力且保留折叠稳定性，适合作为备选表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守芳香堆叠核心及结构疏水内核邻近区",
+        "易影响蛋白折叠并产生同源冷休克蛋白交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CARHSP1为胞内蛋白，治疗抗体可及性不足；需优先限定诊断、细胞内递送或研究级阻断场景，并评估冷休克结构域交叉反应。",
+    "structurePrepZh": "以PDB 3AQQ四条抗原链进行同源链比对，保留冷休克结构域完整构象，补建缺失环区并标注RNA结合保守残基。",
+    "structureRef": "RCSB PDB 3AQQ，X-ray diffraction，2.798 Å",
+    "antibodies": [
+      "暂无获批CARHSP1治疗性抗体",
+      "研究级anti-CARHSP1抗体"
+    ],
+    "interfaceFocus": "冷休克结构域RNA结合β面与正电沟槽",
+    "designMode": "胞内抗原验证型",
+    "candidates": [
+      {
+        "target": "TNF",
+        "rationale": "TNF是CARHSP1相关AU-rich mRNA稳定性调控的关键炎症效应因子，位于同一炎症细胞因子表达轴，且为分泌蛋白，抗体可及性和临床验证强。"
+      },
+      {
+        "target": "IL6R",
+        "rationale": "IL6R参与白细胞数量和炎症反应调控，与TNF炎症网络共同驱动免疫细胞活化；其膜受体和可溶受体形式均适合抗体阻断。"
+      },
+      {
+        "target": "CSF3R",
+        "rationale": "CSF3R直接调控粒细胞生成和白细胞数量表型，与Open Targets白细胞数量关联方向一致；其胞外细胞因子受体结构域具备明确抗体设计入口。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

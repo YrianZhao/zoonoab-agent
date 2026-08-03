@@ -1,0 +1,65 @@
+{
+  "gene": "GATA3",
+  "generatedAt": "2026-08-03T12:43:30.104Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GATA3是锌指转录因子，驱动Th2细胞分化并促进IL4、IL5、IL13等2型炎症因子表达，在哮喘和嗜酸粒细胞增多相关通路中具有明确疾病关联。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌形式，完整蛋白并非传统抗体直接阻断的高可及性抗原；因此抗体策略更适合作为胞内递送抗体、研究级干预或TCR样识别平台的结构验证方向。相较IL4R、TSLP等胞外靶点，GATA3位于通路上游转录控制节点，优先级优势在于可同时影响多个Th2效应因子，但成药性风险显著高于膜受体和分泌因子靶点。",
+    "mechanism": "通过识别GATA3 C端锌指与DNA主沟结合界面，阻断其结合GATA基序并削弱IL4、IL5、IL13增强子转录激活。",
+    "selectedEpitope": "优先覆盖C端锌指ZF2的DNA识别螺旋及邻近碱性环区，模拟4HC9中核酸结合界面。",
+    "diseaseDirection": "2型炎症与哮喘转录调控",
+    "domain": "GATA3含两个C4型锌指结构域，N端ZF1参与稳定结合，C端ZF2负责GATA DNA基序识别。",
+    "evidence": "GATA3结构与2型炎症疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P23771 functional annotation",
+      "RCSB PDB 4HC9 X-ray structure",
+      "Th2 differentiation and cytokine transcription literature"
+    ],
+    "referenceEntries": "UniProt:P23771；RCSB PDB:4HC9；Ensembl:ENSG00000107485",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端ZF2 DNA识别螺旋与GATA基序接触面",
+        "直接干预GATA3-DNA结合，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ZF1-ZF2连接区及N端锌指稳定界面",
+        "可能削弱双锌指协同定位和DNA复合物稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离DNA接触面的锌配位核心周边",
+        "结构保守且锌指折叠敏感，易产生非特异构象风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GATA3为核内转录因子，天然抗原可及性不足；应优先评估细胞递送、TCR样抗体或降解耦联策略，并避免破坏锌配位核心导致非特异结合。",
+    "structurePrepZh": "以4HC9高分辨率晶体结构为模板，保留锌离子和DNA复合物坐标，标注ZF2-DNA接触残基并去除非目标链后进行界面建模。",
+    "structureRef": "PDB 4HC9；human GATA3 zinc finger-DNA complex, 1.6 Å",
+    "antibodies": [
+      "Research anti-GATA3 clone L50-823",
+      "Research anti-GATA3 clone HG3-31"
+    ],
+    "interfaceFocus": "ZF2识别螺旋-DNA主沟接触界面",
+    "designMode": "胞内抗体/界面阻断",
+    "candidates": [
+      {
+        "target": "IL4R",
+        "rationale": "IL4Rα介导IL-4和IL-13受体复合物信号，是GATA3驱动Th2效应通路下游的胞外膜受体，抗体可及性和临床可验证性更高。"
+      },
+      {
+        "target": "TSLP",
+        "rationale": "TSLP由上皮细胞释放并诱导树突细胞和Th2炎症反应，位于2型炎症启动环节，与GATA3相关哮喘通路高度相连。"
+      },
+      {
+        "target": "IL5",
+        "rationale": "IL5是GATA3调控的Th2效应细胞因子，直接促进嗜酸粒细胞分化和存活，适合作为嗜酸性哮喘抗体干预靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

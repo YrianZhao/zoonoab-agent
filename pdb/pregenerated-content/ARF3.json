@@ -1,0 +1,65 @@
+{
+  "gene": "ARF3",
+  "generatedAt": "2026-08-03T10:33:23.455Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ARF3编码小型ADP-ribosylation factor GTP酶，参与COPI被膜募集、囊泡形成及高尔基体膜运输，其失衡可影响神经元极性、突触蛋白转运和脑发育相关细胞过程，与小头畸形、发育迟缓和癫痫等神经发育表型存在遗传关联。该蛋白主要为胞质侧膜结合GTP酶，缺乏稳定胞外结构域，常规治疗性抗体可及性弱，因而更适合作为细胞内机制验证或递送型抗体片段设计对象。相比分泌型或跨膜神经发育靶点，ARF3的优先级优势在于PDB 6II6提供高分辨率实验结构，可直接围绕switch区和核苷酸结合界面开展构象选择性分子设计，但体内抗体成药性优先级需低于胞外可及靶点。",
+    "mechanism": "构象选择性抗体片段拟结合ARF3 switch I/II邻近界面，干扰GTP态ARF3与COPI被膜及高尔基体效应蛋白的结合，从而抑制异常囊泡运输信号输出。",
+    "selectedEpitope": "优先锁定GTPase结构域switch I、switch II及邻近α3螺旋形成的效应蛋白识别面。",
+    "diseaseDirection": "神经发育障碍与脑发育异常",
+    "domain": "ARF3为约20 kDa小型GTPase，含P-loop NTP水解核心、switch I/II区和N端两亲性膜锚定螺旋。",
+    "evidence": "ARF3神经发育关联与GTPase结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProtKB P61204功能与亚细胞定位注释",
+      "RCSB PDB 6II6 X射线晶体结构",
+      "Gene Ontology囊泡介导运输与高尔基体定位注释"
+    ],
+    "referenceEntries": "UniProt P61204；RCSB PDB 6II6；Open Targets ARF3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "switch I/II效应蛋白结合面",
+        "可阻断GTP态ARF3与COPI及高尔基体效应蛋白相互作用",
+        "优先"
+      ],
+      [
+        "Site B",
+        "P-loop核苷酸结合沟槽邻近区域",
+        "可用于构象锁定，但需避免直接模拟核苷酸结合造成非特异性选择压力",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端两亲性膜锚定螺旋",
+        "与膜结合和脂修饰相关，结构柔性及膜环境依赖性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ARF3为胞内小GTP酶，常规抗体难以到达胞质作用位点；ARF家族同源性高，CDR设计需强化switch区构象选择性并规避ARF1/ARF4交叉反应。",
+    "structurePrepZh": "以PDB 6II6抗原链A-D为模板，保留GTPase核心与核苷酸相关构象信息，补全缺失侧链、校正质子化状态，并分离家族保守面与ARF3特异残基。",
+    "structureRef": "RCSB PDB 6II6，X-ray diffraction，2.1 Å",
+    "antibodies": [
+      "ARF3 intracellular research antibody clones",
+      "pan-ARF family research antibodies"
+    ],
+    "interfaceFocus": "switch I/II效应蛋白识别面与α3邻近沟槽",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "ARF1",
+        "rationale": "ARF1与ARF3同属class I ARF小GTP酶，参与COPI被膜募集和高尔基体-内质网逆向运输，可作为同一囊泡运输通路的功能参照靶点。"
+      },
+      {
+        "target": "COPB1",
+        "rationale": "COPB1编码COPI被膜复合体β亚基，是ARF-GTP募集COPI后执行囊泡形成的核心下游组分，与神经元蛋白转运缺陷具有机制连续性。"
+      },
+      {
+        "target": "GBF1",
+        "rationale": "GBF1为高尔基体定位ARF鸟嘌呤核苷酸交换因子，催化ARF1/ARF3由GDP态转为GTP态，是调控ARF介导膜运输的上游节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

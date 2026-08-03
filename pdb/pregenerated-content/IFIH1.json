@@ -1,0 +1,65 @@
+{
+  "gene": "IFIH1",
+  "generatedAt": "2026-08-03T19:54:59.907Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IFIH1编码MDA5，是胞质双链RNA识别受体，获得功能突变可增强自身RNA或病毒样RNA识别，驱动MAVS-TBK1-IRF3轴和I型干扰素持续产生，参与Aicardi-Goutières综合征及Singleton-Merten综合征的发病。该蛋白并非分泌蛋白或膜受体，天然抗原可及性低；抗体策略更适用于细胞内递送抗体片段、研究级构象锁定或体外阻断验证。相较于下游IFNAR1/JAK1等广泛免疫节点，IFIH1位于异常核酸感知上游，具备病因层级优先性，但成药性风险高于胞外受体靶点。",
+    "mechanism": "通过抗体片段结合MDA5解旋酶核心的RNA结合沟槽或CARD相邻构象界面，阻断dsRNA诱导的寡聚化及MAVS招募。",
+    "selectedEpitope": "优先瞄准Helicase 1/Helicase 2i之间的dsRNA结合沟槽边缘，避免ATP酶保守核心深部位点。",
+    "diseaseDirection": "I型干扰素病与自身炎症",
+    "domain": "MDA5含N端双CARD、DExD/H解旋酶核心、Helicase C结构域及C端调控结构域。",
+    "evidence": "IFIH1-MDA5干扰素病结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9BYX4功能与结构域注释",
+      "RCSB PDB 3GA3晶体结构",
+      "ClinVar/OMIM IFIH1相关干扰素病变异"
+    ],
+    "referenceEntries": "UniProt Q9BYX4；RCSB PDB 3GA3；HGNC:18873",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Helicase 1与Helicase 2i形成的RNA结合沟槽外缘",
+        "可直接干扰dsRNA结合与构象闭合，适合作为功能阻断主表位",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端CARD-CARD寡聚化相关外露界面",
+        "有望阻断MAVS CARD募集，但需依赖可用构象模型补足",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Walker A/B附近ATP结合与水解核心",
+        "区域高度保守且深埋，可能影响RIG-I样受体家族选择性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IFIH1为胞质蛋白，常规抗体难以进入作用位点；建议采用VHH、细胞穿透递送或体外机制验证，并严格评估MDA5/RIG-I选择性。",
+    "structurePrepZh": "以3GA3高分辨率晶体结构为核心模板，补全缺失环区与结构域边界注释，结合MDA5-dsRNA复合物模型映射功能界面。",
+    "structureRef": "RCSB PDB 3GA3，X-ray diffraction，1.45 Å",
+    "antibodies": [
+      "anti-MDA5 clone D74E4",
+      "anti-MDA5 clone 9A12"
+    ],
+    "interfaceFocus": "dsRNA结合沟槽与CARD介导MAVS招募界面",
+    "designMode": "胞内阻断型VHH",
+    "candidates": [
+      {
+        "target": "MAVS",
+        "rationale": "MAVS是MDA5下游线粒体接头蛋白，CARD-CARD相互作用将核酸识别信号传递至TBK1和IRF3，属于同一I型干扰素诱导通路。"
+      },
+      {
+        "target": "TBK1",
+        "rationale": "TBK1位于MAVS下游，直接磷酸化IRF3并促进IFNB1转录，是IFIH1获得功能突变后炎症信号放大的关键激酶节点。"
+      },
+      {
+        "target": "IFNAR1",
+        "rationale": "IFNAR1介导I型干扰素受体复合物信号输入JAK-STAT通路，可在下游阻断IFIH1异常激活造成的干扰素反应。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "YWHAB",
+  "generatedAt": "2026-08-03T17:56:38.056Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "YWHAB编码14-3-3β，主要通过结合磷酸化Ser/Thr基序调节RAF-MEK-ERK、PI3K-AKT及细胞周期相关蛋白，在RASopathy、肿瘤和心肌肥厚相关信号中具有通路调制作用。该蛋白为胞质二聚体适配蛋白，缺乏经典胞外结构域或分泌特征，常规抗体体内阻断可及性低，较适合作为胞内递送抗体或结构生物学工具靶点。相较RTK或分泌因子类靶点，其临床可及性优先级较低；但PDB 8EQ8具1.5 Å实验结构，可为磷酸肽结合槽定向设计提供高分辨率依据。",
+    "mechanism": "设计抗体片段占据14-3-3β两亲性磷酸肽结合槽，阻断其与pSer/pThr基序底物的结合，从而干预RAF、BAD或CDC25等客户蛋白复合物稳定化。",
+    "selectedEpitope": "优先靶向αC-αI螺旋围成的磷酸肽结合沟槽及二聚体相关构象边缘。",
+    "diseaseDirection": "RAS-MAPK相关肿瘤与RASopathy",
+    "domain": "14-3-3β由九条反平行α螺旋组成，形成杯状二聚体和保守磷酸肽结合沟槽。",
+    "evidence": "YWHAB结构与RAS-MAPK通路关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P31946功能与亚细胞定位注释",
+      "RCSB PDB 8EQ8高分辨率晶体结构",
+      "14-3-3蛋白磷酸化底物结合文献"
+    ],
+    "referenceEntries": "UniProt:P31946；RCSB PDB:8EQ8；Open Targets:YWHAB",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "αC、αE、αG、αI螺旋构成的两亲性磷酸肽结合沟槽",
+        "直接竞争pSer/pThr客户蛋白结合，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端αA/αB螺旋参与的二聚体界面邻近区域",
+        "可能改变二聚体稳定性和底物结合构象，需验证选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离结合槽的外侧α螺旋表面",
+        "可作为结构捕获表位，但功能阻断相关性较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "YWHAB为胞内蛋白，常规抗体药物抗原可及性不足；建议限定为细胞内递送Fab/VHH、降解偶联工具或体外机制探针，并严格评估14-3-3家族交叉反应。",
+    "structurePrepZh": "采用PDB 8EQ8链A/B二聚体作为建模模板，补全缺失侧链并保留磷酸肽结合槽构象；需进行同源家族表面保守性比对以排除泛14-3-3结合。",
+    "structureRef": "RCSB PDB 8EQ8，X-ray diffraction，1.5 Å",
+    "antibodies": [
+      "anti-14-3-3 beta antibody clone EPR6380",
+      "anti-YWHAB antibody clone 4E2"
+    ],
+    "interfaceFocus": "磷酸肽结合槽与αA/αB二聚体界面",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "RAF1",
+        "rationale": "RAF1为RAS-MAPK通路核心激酶，并可与14-3-3蛋白结合形成调控复合物；其异常激活与RASopathy和多种肿瘤相关。"
+      },
+      {
+        "target": "BRAF",
+        "rationale": "BRAF位于同一RAS-RAF-MEK-ERK级联上游节点，突变驱动黑色素瘤等肿瘤；相较YWHAB具有更明确的致癌驱动证据。"
+      },
+      {
+        "target": "MAP2K1",
+        "rationale": "MAP2K1编码MEK1，是RAF下游直接效应激酶，在Noonan综合征相关RAS-MAPK异常和肿瘤增殖信号中具有关键作用。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

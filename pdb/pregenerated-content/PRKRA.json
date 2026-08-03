@@ -1,0 +1,65 @@
+{
+  "gene": "PRKRA",
+  "generatedAt": "2026-08-03T15:36:06.737Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PRKRA编码PACT蛋白，作为EIF2AK2/PKR的双链RNA结合激活因子，可促进PKR激活并影响eIF2α磷酸化，PRKRA致病变异与DYT16肌张力障碍相关。该蛋白主要为胞内RNA结合蛋白，天然抗原可及性不符合常规体内阻断型抗体靶点特征，需定位为胞内递送抗体或结构生物学工具抗体方向。相较PKR通路中广泛表达且多功能的EIF2AK2，PRKRA在DYT16遗传证据中更直接，适合优先用于机制验证与突变构象识别抗体设计。",
+    "mechanism": "通过结合PRKRA第三结构域，阻断PACT与EIF2AK2/PKR激酶激活界面的相互作用，降低PKR介导的EIF2S1 Ser51磷酸化。",
+    "selectedEpitope": "优先覆盖PACT C端Domain 3的PKR激活界面，避免遮蔽N端dsRNA结合沟槽。",
+    "diseaseDirection": "DYT16肌张力障碍与PKR应激通路",
+    "domain": "PRKRA含三个dsRNA结合样结构域，前两个介导RNA结合，C端第三结构域参与PKR激活。",
+    "evidence": "PRKRA-PACT与DYT16/PKR激活证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt O75569功能与结构域注释",
+      "RCSB PDB 2DIX溶液NMR结构",
+      "OMIM与ClinVar中DYT16相关变异记录"
+    ],
+    "referenceEntries": "UniProt O75569；RCSB PDB 2DIX；Open Targets PRKRA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端Domain 3的PKR激活相关表面",
+        "可直接干预PACT对EIF2AK2/PKR的激活作用，适合功能阻断型设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端dsRBD1/dsRBD2外侧非RNA结合面",
+        "可获得构象识别抗体并减少对RNA结合槽的非特异干扰",
+        "备选"
+      ],
+      [
+        "Site C",
+        "dsRBD保守RNA结合沟槽",
+        "保守正电界面可能引发核酸竞争和交叉反应，需严格亲和力与特异性评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PRKRA为胞内蛋白，常规抗体体内可及性较低；建议采用细胞内递送Fab/VHH或工具抗体定位，并规避保守dsRBD核酸结合面。",
+    "structurePrepZh": "以2DIX链A为结构模板，保留NMR构象簇代表模型，补充缺失柔性片段注释，并结合AlphaFold全长模型定位C端Domain 3。",
+    "structureRef": "RCSB PDB 2DIX，human PACT dsRNA-binding domain NMR structure",
+    "antibodies": [
+      "PRKRA/PACT研究级单克隆抗体",
+      "EIF2AK2/PKR通路研究级抗体"
+    ],
+    "interfaceFocus": "PACT Domain 3-PKR激活接触面",
+    "designMode": "胞内阻断/工具抗体",
+    "candidates": [
+      {
+        "target": "EIF2AK2",
+        "rationale": "EIF2AK2/PKR是PACT直接激活的激酶，介导EIF2S1磷酸化和整合应激反应，属于同一PRKRA-PKR疾病机制轴。"
+      },
+      {
+        "target": "EIF2S1",
+        "rationale": "EIF2S1是PKR的关键底物，其Ser51磷酸化改变蛋白翻译起始，是PRKRA-PKR通路下游功能读出节点。"
+      },
+      {
+        "target": "DDX58",
+        "rationale": "DDX58/RIG-I与PACT存在抗病毒应答中的功能性相互作用，参与I型干扰素诱导通路，可作为PRKRA相关先天免疫应激轴的备选节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

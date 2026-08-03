@@ -1,0 +1,65 @@
+{
+  "gene": "CBLC",
+  "generatedAt": "2026-08-03T11:02:06.459Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CBLC 是 CBL 家族 E3 泛素连接酶成员，主要通过 TKB 结构域识别受磷酸化酪氨酸底物并经 RING 结构域招募 E2 酶，参与受体酪氨酸激酶内吞降解与神经元信号稳态。Open Targets 显示其与神经退行性疾病及脂质表型存在遗传关联，但 CBLC 为胞内适配-泛素化蛋白，天然抗原可及性低，不具备膜受体或分泌蛋白的常规抗体成药优势。其优先级主要来自高分辨率实验结构与明确的磷酸肽识别界面，相比同通路上游受体更适合作为机制验证、细胞内递送抗体或结构生物学先导设计靶点。",
+    "mechanism": "设计分子阻断 CBLC TKB 结构域与受磷酸化酪氨酸底物肽结合，削弱底物募集并影响后续 E2 介导的泛素转移复合体装配。",
+    "selectedEpitope": "优先覆盖 TKB 结构域磷酸酪氨酸结合沟槽及其邻近 SH2-like 界面。",
+    "diseaseDirection": "神经退行性疾病与脂质代谢表型",
+    "domain": "CBLC 含 N 端 TKB 结构域、连接螺旋区、RING finger E3 连接酶结构域及 C 端调控区。",
+    "evidence": "CBLC 结构与神经退行性遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt Q9ULV8 蛋白功能注释",
+      "RCSB PDB 3VRP X 射线晶体结构",
+      "CBL 家族 E3 泛素连接酶机制文献"
+    ],
+    "referenceEntries": "UniProt Q9ULV8；RCSB PDB 3VRP；Open Targets CBLC",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "TKB 结构域磷酸酪氨酸结合沟槽",
+        "直接干预底物磷酸肽识别，机制验证价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "TKB 与连接螺旋相邻表面",
+        "可能影响底物结合构象及 RING 结构域空间耦联",
+        "备选"
+      ],
+      [
+        "Site C",
+        "RING finger E2 酶结合界面",
+        "可干预泛素转移复合体，但锌指保守性高且脱靶风险较大",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CBLC 为胞内蛋白，常规抗体难以到达作用位点；RING 界面保守性较高，应优先采用 TKB 特异表位并评估 CBL/CBLB 交叉反应。",
+    "structurePrepZh": "以 3VRP 的 A、B 链为实验结构模板，保留 TKB 核心折叠，检查配体、晶体接触与缺失环区后进行界面暴露性分析。",
+    "structureRef": "RCSB PDB 3VRP，1.52 Å X-ray human CBLC structure",
+    "antibodies": [
+      "anti-CBLC research antibody",
+      "intracellular anti-CBL-family binder"
+    ],
+    "interfaceFocus": "TKB 磷酸肽结合沟槽与 RING-E2 结合面",
+    "designMode": "胞内靶向验证",
+    "candidates": [
+      {
+        "target": "CBL",
+        "rationale": "CBL 与 CBLC 同属 CBL 家族 E3 泛素连接酶，参与受体酪氨酸激酶泛素化、内吞和降解，是同一 RTK 负调控轴中的核心成员。"
+      },
+      {
+        "target": "CBLB",
+        "rationale": "CBLB 具有同源 TKB-RING 架构并调控多种受体信号衰减，可作为 CBL 家族功能冗余与选择性设计的关键比较靶点。"
+      },
+      {
+        "target": "EGFR",
+        "rationale": "EGFR 是 CBL 家族介导泛素化和内吞降解的经典受体底物，位于同一受体酪氨酸激酶稳态调控通路上，且具备成熟胞外抗体可及性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "ALDOC",
+  "generatedAt": "2026-08-03T10:23:57.250Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ALDOC是糖酵解通路中催化果糖-1,6-二磷酸裂解为甘油醛-3-磷酸与二羟丙酮磷酸的胞质酶，在胶质母细胞瘤、肺癌、胃癌和乳腺癌等高糖酵解表型肿瘤中与代谢重编程相关。该蛋白缺乏经典分泌信号肽、跨膜区和稳定胞外结构域，抗原可及性明显弱于膜受体或分泌因子，抗体设计更适合定位于细胞内递送、研究级阻断或伴随诊断场景。其优先级依据主要来自明确晶体结构、保守催化界面和肿瘤代谢关联，但作为治疗性抗体主靶点的可开发性低于EGFR、MET等同癌种可及膜靶点。",
+    "mechanism": "通过抗体片段结合ALDOC催化桶状结构的活性位点邻近环区，空间阻断底物果糖-1,6-二磷酸进入并干扰四聚体界面稳定性。",
+    "selectedEpitope": "优先选择TIM barrel催化口袋周缘及C端活性环邻近表面，避免完全埋藏的底物结合残基。",
+    "diseaseDirection": "肿瘤糖酵解代谢重编程",
+    "domain": "ALDOC为胞质果糖二磷酸醛缩酶，核心为α/β TIM barrel催化结构域，并以同源四聚体形式发挥酶活。",
+    "evidence": "ALDOC肿瘤糖酵解关联与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P09972蛋白功能与亚细胞定位注释",
+      "RCSB PDB 1XFB晶体结构条目",
+      "KEGG/Reactome糖酵解通路注释"
+    ],
+    "referenceEntries": "UniProt:P09972；RCSB PDB:1XFB；Reactome glycolysis",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "TIM barrel催化口袋周缘与C端活性环",
+        "可直接限制底物进入并影响催化构象，适合功能阻断型片段设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "同源四聚体亚基接触界面邻近表面",
+        "可能削弱寡聚体稳定性并间接降低酶活，需评估界面暴露度",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守底物结合核心残基深部区域",
+        "结构埋藏且与ALDOA/ALDOB同源性高，交叉反应与成药性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ALDOC为胞内代谢酶，天然抗体可及性不足；设计应限定为胞内递送抗体片段或诊断抗体，并重点排查ALDOA、ALDOB交叉反应。",
+    "structurePrepZh": "以1XFB多链晶体结构为模板，保留生物学四聚体，清理晶体接触链与非必要小分子，补全缺失环区后进行表面可及性评估。",
+    "structureRef": "RCSB PDB 1XFB，X-ray diffraction，3.0 Å",
+    "antibodies": [
+      "commercial anti-ALDOC antibody",
+      "diagnostic anti-fructose-bisphosphate aldolase C antibody"
+    ],
+    "interfaceFocus": "催化口袋周缘、C端活性环、四聚体接触面",
+    "designMode": "胞内酶抑制型片段设计",
+    "candidates": [
+      {
+        "target": "ALDOA",
+        "rationale": "ALDOA同属糖酵解醛缩酶家族，在多种肿瘤中支持Warburg代谢通量；与ALDOC共享底物转化步骤，可作为同通路代谢节点对照。"
+      },
+      {
+        "target": "HK2",
+        "rationale": "HK2催化葡萄糖磷酸化并驱动肿瘤糖酵解入口通量，在胶质母细胞瘤和肺癌代谢重编程中具有明确功能关联。"
+      },
+      {
+        "target": "PKM",
+        "rationale": "PKM编码丙酮酸激酶M型亚型，PKM2参与肿瘤糖酵解末端通量与代谢适应，可与ALDOC形成同一路径功能验证组合。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

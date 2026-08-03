@@ -1,0 +1,65 @@
+{
+  "gene": "GRB10",
+  "generatedAt": "2026-08-03T12:55:38.661Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GRB10 是胰岛素受体和 IGF1 受体信号的细胞内适配蛋白，可通过 SH2 结构域结合受体激酶区并抑制代谢与生长相关信号，因而与血糖、体成分和身高表型具有遗传学关联。该蛋白主要位于胞质侧，不具备经典胞外抗原可及性，常规体内阻断抗体成药性明显受限。相较 INSR、IGF1R 等膜受体，GRB10 更适合作为机制验证或细胞内抗体设计靶点，但作为传统治疗性抗体主靶点优先级较低。",
+    "mechanism": "以胞内抗体或工程化递送形式阻断 GRB10 SH2 结构域与 INSR/IGF1R 磷酸化酪氨酸位点结合，解除其对受体信号的抑制作用。",
+    "selectedEpitope": "优先锁定 SH2 结构域磷酸酪氨酸结合沟槽及 BG/EF 环邻近界面。",
+    "diseaseDirection": "代谢生长表型与神经退行性关联",
+    "domain": "GRB10 含 RA-like 区、PH 结构域、BPS 区及 C 端 SH2 结构域，1NRV 对应 SH2 结构域。",
+    "evidence": "GRB10-胰岛素/IGF 受体轴证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt Q13322 功能与定位注释",
+      "RCSB PDB 1NRV X-ray SH2 结构",
+      "胰岛素受体与 IGF1R 信号文献证据"
+    ],
+    "referenceEntries": "UniProt Q13322；RCSB PDB 1NRV；Open Targets GRB10",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SH2 磷酸酪氨酸结合沟槽",
+        "直接竞争 INSR/IGF1R 磷酸化位点结合，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SH2 BG/EF 环及邻近疏水口袋",
+        "可变构削弱底物肽识别，降低正交磷肽结合风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SH2 核心折叠保守 β-sheet 面",
+        "结构保守且可能影响 SH2 家族选择性，交叉反应风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GRB10 为胞内蛋白，常规抗体难以触达天然靶点；应限定为胞内抗体、递送抗体或研究级阻断分子，并严格评估 SH2 家族交叉反应。",
+    "structurePrepZh": "以 1NRV 双链 SH2 晶体结构为模板，去除晶体接触冗余后保留功能沟槽，补充缺失侧链并进行磷肽结合位点网格化。",
+    "structureRef": "RCSB PDB 1NRV；GRB10 SH2 domain X-ray 1.65 Å",
+    "antibodies": [
+      "GRB10 research antibody",
+      "anti-GRB10 intracellular validation antibody"
+    ],
+    "interfaceFocus": "SH2 磷酸酪氨酸沟槽与受体磷肽结合界面",
+    "designMode": "胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "INSR",
+        "rationale": "INSR 是 GRB10 结合并负向调控的核心受体激酶，直接位于胰岛素信号通路上游。其胞外结构域可及性优于 GRB10，更适合传统抗体工程。"
+      },
+      {
+        "target": "IGF1R",
+        "rationale": "IGF1R 与 GRB10 通过受体磷酸化位点和 SH2/BPS 相关界面发生功能联系，参与生长和体组成调控。该膜受体已有抗体开发经验和明确胞外配体结合结构域。"
+      },
+      {
+        "target": "IGF1",
+        "rationale": "IGF1 是 IGF1R 通路的分泌型配体，与生长和代谢表型直接相关。其分泌蛋白属性提供较高抗原可及性，可用于配体中和策略。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

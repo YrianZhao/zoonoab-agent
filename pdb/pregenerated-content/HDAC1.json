@@ -1,0 +1,65 @@
+{
+  "gene": "HDAC1",
+  "generatedAt": "2026-08-03T19:42:35.708Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HDAC1 是核内 I 类组蛋白去乙酰化酶，参与 NuRD、Sin3、CoREST 等转录抑制复合体，通过去乙酰化组蛋白尾部及部分非组蛋白底物维持肿瘤细胞异常表观遗传沉默，与 T 细胞淋巴瘤、多发性骨髓瘤及泛癌表型存在明确关联。该靶点缺乏天然胞外结构域或分泌形式，完整抗体难以直接接触细胞内抗原，抗原可及性显著弱于膜受体或分泌因子。其优先级主要来自疾病遗传与药理学证据、7SME 实验结构可用性及催化口袋可解析性；相较同通路 HDAC2/HDAC3，HDAC1 在淋巴系统肿瘤转录抑制复合体中具有较高机制可解释性，但更适合作为细胞内结合体或降解偶联设计靶点。",
+    "mechanism": "设计细胞内抗体片段结合 HDAC1 催化结构域入口及复合体结合面，阻碍底物赖氨酸乙酰化肽进入 Zn2+ 催化口袋，并干扰其在转录抑制复合体中的装配。",
+    "selectedEpitope": "优先选择催化结构域外缘的底物通道入口与 rim 区域，避免直接依赖深部 Zn2+ 配位位点。",
+    "diseaseDirection": "表观遗传驱动血液肿瘤",
+    "domain": "HDAC1 主要由单一 HDAC 催化结构域构成，含 Zn2+ 依赖性去乙酰化活性中心及底物结合通道。",
+    "evidence": "HDAC1 表观遗传肿瘤依赖性证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q13547 功能与亚细胞定位注释",
+      "RCSB PDB 7SME X 射线晶体结构",
+      "HDAC 抑制剂在 T 细胞淋巴瘤和骨髓瘤中的药理学证据"
+    ],
+    "referenceEntries": "UniProt Q13547；RCSB PDB 7SME；Open Targets HDAC1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域底物通道入口及 rim loop",
+        "可阻碍乙酰化赖氨酸底物进入活性中心，兼顾构象可及性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "NuRD/Sin3/CoREST 复合体相关外表面",
+        "可削弱 HDAC1 在转录抑制复合体中的定位与装配",
+        "备选"
+      ],
+      [
+        "Site C",
+        "深部 Zn2+ 配位催化口袋",
+        "高度保守且空间狭窄，易产生 HDAC 同源酶交叉反应并不利于抗体结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HDAC1 为核内酶，常规体外抗体缺乏细胞与核内可及性；建议定位为细胞内 VHH、intrabody 或降解偶联模块，并严格评估 HDAC2 交叉反应。",
+    "structurePrepZh": "以 7SME A/B 链为结构模板，保留催化结构域主链与 Zn2+ 邻域注释，去除结晶小分子后评估二聚界面、口袋入口和同源保守性。",
+    "structureRef": "RCSB PDB 7SME，HDAC1 X-ray structure，2.64 Å",
+    "antibodies": [
+      "HDAC1 ChIP-grade research antibody",
+      "HDAC1 intracellular validation antibody"
+    ],
+    "interfaceFocus": "底物通道入口、rim loop 与复合体结合外表面",
+    "designMode": "细胞内阻断型",
+    "candidates": [
+      {
+        "target": "HDAC2",
+        "rationale": "HDAC2 与 HDAC1 同属 I 类 HDAC，并共同参与 NuRD、Sin3 和 CoREST 转录抑制复合体；其与 HDAC1 功能冗余性高，适合并行评估选择性与补偿机制。"
+      },
+      {
+        "target": "RBBP4",
+        "rationale": "RBBP4 是 NuRD 及 Sin3 相关复合体组分，参与组蛋白尾部识别和转录抑制复合体稳定；阻断其复合体装配可从同一路径削弱异常表观遗传沉默。"
+      },
+      {
+        "target": "CHD4",
+        "rationale": "CHD4 是 NuRD 复合体 ATP 依赖性染色质重塑核心亚基，与 HDAC1 协同介导染色质压缩和基因抑制；其在淋巴系统肿瘤表观遗传调控中具有通路一致性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

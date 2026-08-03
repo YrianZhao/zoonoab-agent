@@ -1,0 +1,65 @@
+{
+  "gene": "PNMT",
+  "generatedAt": "2026-08-03T15:23:56.890Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PNMT催化去甲肾上腺素N-甲基化生成肾上腺素，处于儿茶酚胺生物合成末端，可能通过交感-肾上腺髓质轴影响脂质代谢表型与心代谢风险指标。该蛋白主要为胞质可溶性酶，缺乏跨膜胞外结构域，常规体内阻断型抗体的抗原可及性弱于分泌蛋白或膜受体。其优先级主要来自高分辨率人源晶体结构与明确催化口袋，而非细胞表面可及性；相较ADRB受体等同通路膜靶点，更适合作为结构机制研究或细胞内递送抗体设计对象。",
+    "mechanism": "抗体需经细胞内递送后结合PNMT催化裂隙，遮挡去甲肾上腺素底物位点或S-腺苷甲硫氨酸结合位点，抑制甲基转移反应。",
+    "selectedEpitope": "优先覆盖SAM结合Rossmann样核心邻近的底物进入裂隙，避免仅识别远端非催化表面。",
+    "diseaseDirection": "儿茶酚胺相关心代谢表型",
+    "domain": "PNMT为可溶性甲基转移酶，含SAM依赖甲基转移酶α/β核心与底物结合裂隙。",
+    "evidence": "PNMT结构与儿茶酚胺代谢证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProtKB P11086功能注释",
+      "RCSB PDB 2G72人源PNMT晶体结构",
+      "儿茶酚胺生物合成与脂质代谢遗传关联文献"
+    ],
+    "referenceEntries": "UniProt P11086；RCSB PDB 2G72；Open Targets PNMT",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SAM结合Rossmann样核心与底物裂隙边缘",
+        "可直接干扰甲基供体定位及去甲肾上腺素进入催化位点",
+        "优先"
+      ],
+      [
+        "Site B",
+        "底物结合口袋外侧可及环区",
+        "有利于形成变构遮挡并保留较好抗体接触面积",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化裂隙的稳定α螺旋表面",
+        "结合风险较低但功能阻断效应可能有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PNMT为胞内可溶性酶，常规抗体难以到达作用位点；设计应标注细胞内递送需求，并优先验证催化口袋占位与酶活抑制。",
+    "structurePrepZh": "以2G72链A/B为模板，保留催化核心构象，检查配体、结晶水与缺失残基，统一质子化状态后进行表位可及性评估。",
+    "structureRef": "Human PNMT X-ray structure, PDB 2G72, 2.0 Å",
+    "antibodies": [
+      "无已批准PNMT靶向治疗性抗体",
+      "研究级anti-PNMT抗体"
+    ],
+    "interfaceFocus": "SAM口袋、底物裂隙及邻近环区",
+    "designMode": "胞内酶抑制型",
+    "candidates": [
+      {
+        "target": "TH",
+        "rationale": "TH催化酪氨酸羟化生成L-DOPA，是儿茶酚胺生物合成限速步骤，与PNMT同属儿茶酚胺代谢轴。其调控可更上游影响多巴胺、去甲肾上腺素及肾上腺素生成。"
+      },
+      {
+        "target": "DBH",
+        "rationale": "DBH催化多巴胺转化为去甲肾上腺素，直接提供PNMT底物来源。该靶点位于同一生物合成通路，适合用于比较上游底物供给阻断策略。"
+      },
+      {
+        "target": "ADRB2",
+        "rationale": "ADRB2介导肾上腺素和去甲肾上腺素的β肾上腺素能受体信号，是PNMT产物作用的下游膜受体。其胞外配体结合区可及性优于PNMT，适合作为同轴通路的膜靶点替代方案。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

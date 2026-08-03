@@ -1,0 +1,65 @@
+{
+  "gene": "SSBP4",
+  "generatedAt": "2026-08-03T16:56:16.728Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SSBP4 与单核细胞计数、嗜碱性粒细胞计数及单核细胞比例等免疫表型显著相关，提示其可能参与造血细胞分化或外周免疫细胞稳态相关网络。该蛋白为单链DNA结合蛋白家族成员，但当前已知定位并非典型胞外分泌或跨膜抗原，抗体设计的可及性主要依赖于已有实验结构所揭示的可结合构象与潜在复合物暴露面。相较于高度冗余且细胞内定位更为复杂的核酸结合因子，SSBP4 在结构层面具备可解析的双链相关结合界面与较明确的保守结构骨架，适合作为机制验证与结构引导设计的优先靶点。",
+    "mechanism": "抗体通过占据 SSBP4 的单链DNA结合界面，阻断其与核酸底物及相关复合体的接触。",
+    "selectedEpitope": "优先覆盖OB-fold/寡聚界面近旁的DNA结合凹面，避免远端保守核心。",
+    "diseaseDirection": "血液免疫表型调控",
+    "domain": "SSB family 核心OB-fold样结合域，含单链DNA结合界面",
+    "evidence": "SSBP4 结构-表型关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform",
+      "UniProt Q9BWG4",
+      "RCSB PDB 7OBX",
+      "Human Protein Atlas"
+    ],
+    "referenceEntries": "UniProt: Q9BWG4; PDB: 7OBX; Open Targets: SSBP4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "OB-fold表面DNA结合沟槽",
+        "直接干预核酸结合，具备明确机制读出",
+        "优先"
+      ],
+      [
+        "Site B",
+        "A/B链界面邻近的构象暴露环",
+        "可能影响寡聚稳定性与底物装载",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离结合核心的保守折叠外侧",
+        "特异性有限且易影响整体折叠",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "该靶点为细胞内核酸结合蛋白，抗体可达性与细胞内递送是主要风险；优先采用结构依赖表位映射与功能阻断筛选，并控制对保守OB-fold核心的交叉反应。",
+    "structurePrepZh": "建议以7OBX为主模板完成链A/B界面重建、缺失侧链补全与表面电荷标注，并结合保守位点比对筛除高同源核酸结合蛋白交叉表位。",
+    "structureRef": "PDB 7OBX, 1.8 A X-ray structure",
+    "antibodies": [
+      "未见公认广泛应用的SSBP4特异性治疗抗体",
+      "SSBP家族相关研究抗体"
+    ],
+    "interfaceFocus": "单链DNA结合凹面与A/B链邻接区",
+    "designMode": "structure-guided",
+    "candidates": [
+      {
+        "target": "RPA1",
+        "rationale": "RPA1 与 SSBP4 同属单链DNA结合网络，均参与复制压力与DNA代谢调控。其结构与功能可作为同一路径中的参照靶点，用于比较核酸结合界面的阻断可行性。"
+      },
+      {
+        "target": "RPA2",
+        "rationale": "RPA2 是RPA复合体的组成部分，和SSBP4共享单链DNA处理这一核心通路。围绕RPA复合体的抗体设计可用于验证SSBP4相关界面干预对DNA稳态的影响。"
+      },
+      {
+        "target": "RPA3",
+        "rationale": "RPA3 参与RPA三聚体的稳定与单链DNA装载过程，属于同一复制与修复通路。将其作为候选靶点有助于构建SSBP4功能阻断的同通路对照体系。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

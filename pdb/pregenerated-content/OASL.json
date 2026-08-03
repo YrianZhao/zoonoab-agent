@@ -1,0 +1,65 @@
+{
+  "gene": "OASL",
+  "generatedAt": "2026-08-03T14:56:16.988Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "OASL为干扰素诱导的胞内抗病毒效应蛋白，可通过其C端泛素样结构域增强RIG-I介导的MAVS信号，促进I型干扰素相关炎症转录程序，其遗传关联主要集中于血小板计数、CRP测量和代谢炎症表型。该蛋白缺乏跨膜区和分泌信号肽，天然抗原可及性不适合常规细胞外阻断抗体，仅适合胞内递送抗体、研究级结合抗体或降解递送构型。相较OAS1、OAS2、OAS3等同家族酶活型靶点，OASL的双泛素样结构域提供更明确的RIG-I调节界面，适合作为机制验证优先靶点。",
+    "mechanism": "设计抗体结合OASL C端泛素样结构域，阻断其与RIG-I CARD区域的功能性协同，从而降低MAVS下游IRF3/IFNB1轴放大。",
+    "selectedEpitope": "优先锁定C端串联泛素样结构域的RIG-I协同界面，避开N端OAS样核心保守折叠。",
+    "diseaseDirection": "干扰素炎症与血液表型",
+    "domain": "OASL含N端OAS样核苷酸转移酶折叠和C端两个泛素样结构域，缺乏典型2-5A合成酶活性。",
+    "evidence": "OASL干扰素抗病毒通路与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q15646功能与结构域注释",
+      "RCSB PDB 4XQ7晶体结构记录",
+      "干扰素诱导RIG-I/MAVS信号文献"
+    ],
+    "referenceEntries": "UniProt: Q15646; RCSB PDB: 4XQ7; HGNC: OASL",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端泛素样结构域外露面",
+        "直接干预OASL对RIG-I/MAVS轴的协同增强作用",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端OAS样结构域非催化外周面",
+        "用于构建高亲和力检测抗体和构象稳定试剂",
+        "备选"
+      ],
+      [
+        "Site C",
+        "OAS样核心保守折叠内部邻近核苷酸结合沟槽",
+        "家族保守性较高，存在交叉反应和构象扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "OASL为胞内蛋白，常规治疗性抗体难以到达作用位点；设计宜采用胞内抗体、递送型Fab/VHH或研究试剂模式，并重点控制OAS家族交叉反应。",
+    "structurePrepZh": "以4XQ7链A为结构模板，保留解析良好的OAS样核心区域，补全缺失环区并结合AlphaFold模型评估C端泛素样结构域可用表面。",
+    "structureRef": "RCSB PDB 4XQ7，X-ray diffraction，1.6 Å，human OASL",
+    "antibodies": [
+      "研究级抗OASL单克隆抗体",
+      "研究级抗OASL多克隆抗体"
+    ],
+    "interfaceFocus": "C端泛素样结构域与RIG-I协同界面",
+    "designMode": "胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "DDX58",
+        "rationale": "DDX58编码RIG-I，是OASL增强抗病毒信号的直接功能节点；靶向其CARD或RNA结合调控界面可验证同一MAVS通路。"
+      },
+      {
+        "target": "MAVS",
+        "rationale": "MAVS位于RIG-I下游并驱动IRF3/NF-κB激活，是OASL相关干扰素放大的核心接头蛋白。"
+      },
+      {
+        "target": "IFIT1",
+        "rationale": "IFIT1为I型干扰素刺激基因，与OASL处于同一抗病毒转录程序，可作为通路响应和效应端候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

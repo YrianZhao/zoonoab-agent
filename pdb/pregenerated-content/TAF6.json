@@ -1,0 +1,65 @@
+{
+  "gene": "TAF6",
+  "generatedAt": "2026-08-03T17:07:18.292Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TAF6是TFIID与相关转录复合体中的核心支架组分，参与RNA聚合酶II依赖性起始复合体装配，并与TAF9、TBP及多种转录调控因子形成稳定互作，其功能异常可解释多种发育与神经表型。该蛋白为核内转录复合物成分，缺乏胞外结构域与膜暴露界面，天然抗原可及性弱，故更适合作为结构驱动的机制性设计对象而非经典表面抗原。相比同通路中的TBP、TAF1等更大、构象更复杂且多结构域的组件，TAF6在转录起始支架中的界面角色更集中，适于通过限定互作界面实现功能干预。",
+    "mechanism": "通过占据TAF6与TAF9/TBP相关装配界面，阻断TFIID稳定组装及启动子起始复合物形成。",
+    "selectedEpitope": "优先覆盖C端HEAT样互作面及TAF9结合界面，避免核心折叠区。",
+    "diseaseDirection": "转录起始缺陷相关神经发育疾病",
+    "domain": "N端富酸性区与C端α螺旋重复/互作支架区构成主要功能域。",
+    "evidence": "TAF6结构与疾病关联证据包",
+    "evidenceSources": [
+      "UniProt: P49848",
+      "RCSB PDB: 6F3T",
+      "Open Targets Platform",
+      "OMIM/疾病注释数据库"
+    ],
+    "referenceEntries": "UniProt P49848; RCSB 6F3T; Homo sapiens TAF6",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端TAF9/支架互作界面",
+        "最可能直接削弱TFIID装配稳定性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端低复杂度调控区邻近表面",
+        "可影响调控因子招募但特异性较低",
+        "备选"
+      ],
+      [
+        "Site C",
+        "结构核心保守螺旋束内部",
+        "可能损伤折叠并引入非特异失活",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TAF6为核内支架蛋白，表位可及性受复合体遮蔽影响显著；应优先选择暴露互作面并结合构象锁定策略，避免命中保守折叠核心。",
+    "structurePrepZh": "建议以6F3T为模板完成链A-L的复合体整合、缺失环补建与界面残基暴露度分析，并保留生理相关寡聚状态。",
+    "structureRef": "RCSB 6F3T X-ray structure, 2.5 Å",
+    "antibodies": [
+      "anti-TAF6多克隆抗体",
+      "TAF6单克隆结合分子"
+    ],
+    "interfaceFocus": "TAF9结合面与C端支架互作区",
+    "designMode": "结构界面阻断型",
+    "candidates": [
+      {
+        "target": "TAF9",
+        "rationale": "TAF9与TAF6共同参与TFIID及相关复合体装配，二者互作界面是TAF6功能干预的直接参照靶点。该配对可用于定义同一转录起始通路中的竞争性表位边界。"
+      },
+      {
+        "target": "TBP",
+        "rationale": "TBP是TAF6所在起始复合体的核心配体，TAF6通过支架作用促进其装配。TBP可作为同通路功能验证靶点，用于判定表位阻断是否影响起始复合体形成。"
+      },
+      {
+        "target": "TAF1",
+        "rationale": "TAF1与TAF6同属TFIID相关复合体关键组分，均参与启动子识别后的装配稳定化。将其纳入候选集合有助于比较不同支架节点在同一转录通路中的可干预性。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "ATP5F1B",
+  "generatedAt": "2026-08-03T10:41:03.821Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ATP5F1B编码线粒体ATP合酶F1催化头部β亚基，参与氧化磷酸化中ADP与无机磷酸生成ATP的催化循环；其遗传或功能异常可导致线粒体能量代谢失衡，并与解偶联性高代谢、甲状腺功能异常及肥厚型心肌病等表型相关。该蛋白主要定位于线粒体内膜基质侧F1复合体，天然状态并非经典细胞外抗体靶点，抗原可及性显著受限，需以细胞内递送抗体片段或结构生物学工具抗体为主要定位。相较同一氧化磷酸化通路中的膜内嵌入c环或质子通道亚基，ATP5F1B具有高分辨率复合体结构、明确核苷酸结合构象与催化界面，因此更适合开展构象选择性结合分子设计。",
+    "mechanism": "设计抗体片段结合β亚基核苷酸结合沟槽邻近的α/β催化界面，稳定非催化构象并阻断ADP/Pi结合、构象闭合或与相邻α亚基的协同旋转耦联。",
+    "selectedEpitope": "优先选择F1 β亚基C端催化结构域与相邻α亚基交界处，避开深埋ATP/ADP口袋。",
+    "diseaseDirection": "线粒体氧化磷酸化异常",
+    "domain": "ATP5F1B含N端β-barrel区、中央核苷酸结合α/β结构域及C端α螺旋束催化耦联区。",
+    "evidence": "ATP5F1B氧化磷酸化结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProtKB P06576功能与定位注释",
+      "RCSB PDB 8H9E冷冻电镜结构",
+      "MitoCarta与线粒体氧化磷酸化复合体注释"
+    ],
+    "referenceEntries": "UniProt P06576；RCSB PDB 8H9E；Open Targets ATP5F1B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "β亚基C端结构域邻近α/β催化交界面",
+        "可影响催化构象闭合与F1旋转耦联，具备构象调控价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端β-barrel外露冠状区域",
+        "远离核苷酸深口袋，适合作为构象识别或复合体捕获表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "中央核苷酸结合Walker A/P-loop邻近区域",
+        "功能关键但高度保守且口袋深埋，存在交叉反应与催化毒性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ATP5F1B为线粒体基质侧蛋白，体内抗原可及性与递送效率为核心风险；设计宜采用胞内递送Fab/VHH，并避免完全封闭保守ATP结合口袋。",
+    "structurePrepZh": "以8H9E冷冻电镜复合体提取β亚基及相邻α亚基界面，保留核苷酸、Mg2+及关键侧链构象，用于表位可及性与构象状态评估。",
+    "structureRef": "RCSB PDB 8H9E，人源线粒体ATP合酶冷冻电镜结构",
+    "antibodies": [
+      "Anti-ATP5F1B clone 3D5",
+      "Anti-ATP synthase beta antibody ab14730"
+    ],
+    "interfaceFocus": "β亚基C端催化界面与α/β邻接沟槽",
+    "designMode": "胞内构象调控",
+    "candidates": [
+      {
+        "target": "ATP5F1A",
+        "rationale": "ATP5F1A为F1催化头部α亚基，与ATP5F1B共同形成α3β3催化环，直接参与核苷酸结合与催化构象耦联。其邻接界面可作为同一复合体内的协同调控靶点。"
+      },
+      {
+        "target": "ATP5F1C",
+        "rationale": "ATP5F1C编码F1 γ亚基，是中央旋转轴核心组成部分，连接质子驱动旋转与β亚基催化构象变化。靶向其与α3β3环的接触区可影响能量转换耦联。"
+      },
+      {
+        "target": "ATP5PB",
+        "rationale": "ATP5PB编码外周柄b亚基，负责稳定F1头部与膜内Fo部分的机械连接。其处于同一ATP合酶复合体通路，可作为调节复合体装配与构象稳定性的候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

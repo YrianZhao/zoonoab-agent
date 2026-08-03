@@ -1,0 +1,65 @@
+{
+  "gene": "RBP5",
+  "generatedAt": "2026-08-03T15:57:10.775Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RBP5属于细胞内脂质结合蛋白家族，主要参与视黄醇及相关疏水配体的胞内转运与代谢分配；现有Open Targets关联以血小板计数、platelet crit及神经退行性疾病等表型为主，提示其可能处于视黄醇稳态与造血/神经代谢表型的交叉节点。该蛋白并非经典分泌因子或跨膜受体，抗原天然可及性弱于膜受体类靶点，但重组可溶蛋白结构明确，适合体外结合型抗体或细胞内递送抗体片段研究。相较于ALDH1A、RARA等通路核心酶或核受体，RBP5具有高分辨率实验结构和较小β桶配体腔，利于开展构象选择性表位设计，但疾病因果证据强度应作为优先级限制因素。",
+    "mechanism": "通过抗体结合RBP5β桶开口区，阻碍视黄醇进入疏水配体腔，并干扰其与细胞内脂质转运伴侣的接触。",
+    "selectedEpitope": "优先覆盖lipocalin样β桶开口及α螺旋帽邻近环区，避免仅选择保守β片层核心。",
+    "diseaseDirection": "视黄醇代谢相关血液与神经表型",
+    "domain": "RBP5为可溶性细胞内脂质结合蛋白，含lipocalin样β桶配体结合腔及C端α螺旋帽结构。",
+    "evidence": "RBP5结构与视黄醇代谢表型证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与表型关联",
+      "UniProt P82980蛋白功能与注释",
+      "RCSB PDB 9BCB高分辨率晶体结构",
+      "人类视黄醇/视黄酸代谢通路文献"
+    ],
+    "referenceEntries": "UniProt P82980；RCSB PDB 9BCB；Open Targets RBP5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "β桶开口与α螺旋帽邻近环区",
+        "可直接限制视黄醇进入配体腔，兼具构象选择性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "配体腔外缘非保守环段",
+        "有利于获得家族成员选择性并减少交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "保守β片层外表面",
+        "结构稳定但功能阻断价值有限，且存在家族同源交叉风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RBP5为胞内可溶蛋白，常规IgG难以到达天然作用位点；建议定位为体外功能阻断、递送型抗体片段或细胞内抗体研究，并严格评估RBP家族交叉反应。",
+    "structurePrepZh": "以PDB 9BCB链A/B为模板，保留高置信主链与配体腔口环区，检查晶体接触界面、缺失残基及同源蛋白保守面后再进行表位建模。",
+    "structureRef": "RCSB PDB 9BCB，X-ray diffraction，1.45 Å",
+    "antibodies": [
+      "抗RBP4中和抗体",
+      "抗CRABP2研究级抗体"
+    ],
+    "interfaceFocus": "β桶配体腔入口、α螺旋帽与邻近环区",
+    "designMode": "胞内靶点结合阻断",
+    "candidates": [
+      {
+        "target": "RBP4",
+        "rationale": "RBP4是循环视黄醇转运核心蛋白，与视黄醇稳态及代谢表型具有更明确的分泌蛋白可及性，适合作为同通路可成药性对照靶点。"
+      },
+      {
+        "target": "STRA6",
+        "rationale": "STRA6为RBP4-视黄醇摄取受体，直接介导视黄醇跨膜进入细胞；其胞外结构域提供比RBP5更优的抗体可及性。"
+      },
+      {
+        "target": "ALDH1A1",
+        "rationale": "ALDH1A1催化视黄醛氧化生成视黄酸，是视黄酸生物合成通路关键酶，可作为同代谢轴下游功能验证靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "MAP1LC3C",
+  "generatedAt": "2026-08-03T14:02:03.802Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAP1LC3C属于ATG8/LC3家族，参与自噬体膜延伸、选择性自噬受体招募及细胞内货物清除，其异常可影响炎症、感染应答和肠道微生态相关表型。该蛋白主要为胞质侧泛素样折叠蛋白，并非典型胞外抗原或分泌蛋白，常规体内阻断抗体可及性有限，更适合用于细胞内递送抗体、结构探针或检测型抗体设计。相较于LC3A/LC3B，MAP1LC3C在部分选择性自噬识别中具有差异化LIR结合偏好，可提供更高同源家族区分度，但作为治疗性抗体主靶点优先级低于细胞表面免疫或炎症受体。",
+    "mechanism": "设计抗体结合MAP1LC3C的LIR停靠面，阻断自噬受体LIR基序与LC3C疏水口袋相互作用，从而干预选择性自噬复合物装配。",
+    "selectedEpitope": "优先覆盖N端α螺旋与β2周边LIR结合疏水口袋，避开Gly120脂化位点。",
+    "diseaseDirection": "自噬调控与肠道微生态相关表型",
+    "domain": "单一ATG8样泛素折叠结构域，含N端双α螺旋帽和C端β-grasp核心。",
+    "evidence": "MAP1LC3C自噬受体识别与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9BXW4功能与亚细胞定位注释",
+      "RCSB PDB 3WAM晶体结构",
+      "LC3/ATG8家族LIR结合与选择性自噬文献"
+    ],
+    "referenceEntries": "UniProt: Q9BXW4; RCSB PDB: 3WAM; Gene: MAP1LC3C",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "LIR停靠面疏水口袋及N端α2邻近区域",
+        "直接干预自噬受体LIR基序结合，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "β-grasp核心外侧保守β片层边缘",
+        "利于获得构象识别抗体并区分折叠状态",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端Gly120脂化加工邻近区域",
+        "可能影响ATG4剪切或PE偶联，但存在构象与膜环境依赖",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAP1LC3C为胞内蛋白，体内抗体可及性是主要限制；设计宜定位为胞内递送抗体、纳米抗体或检测抗体，并严格评估LC3A/LC3B交叉反应。",
+    "structurePrepZh": "以3WAM链A为模板，补全缺失侧链并质子化；保留ATG8样核心构象，标注LIR结合口袋、C端加工位点及同源LC3保守残基。",
+    "structureRef": "RCSB PDB 3WAM, X-ray structure of human MAP1LC3C",
+    "antibodies": [
+      "anti-LC3C clone D3O2Q",
+      "anti-LC3C polyclonal antibody"
+    ],
+    "interfaceFocus": "LIR结合疏水口袋与N端α螺旋帽",
+    "designMode": "胞内靶向探针型",
+    "candidates": [
+      {
+        "target": "SQSTM1",
+        "rationale": "SQSTM1/p62通过LIR基序结合LC3家族并桥接泛素化货物，是选择性自噬货物识别轴的核心受体。"
+      },
+      {
+        "target": "ATG4B",
+        "rationale": "ATG4B负责LC3前体C端加工及去脂化循环，位于MAP1LC3C脂化成熟的同一自噬通路节点。"
+      },
+      {
+        "target": "ATG7",
+        "rationale": "ATG7作为E1样酶驱动LC3与磷脂酰乙醇胺偶联，是LC3C参与自噬体膜装配的上游必需因子。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

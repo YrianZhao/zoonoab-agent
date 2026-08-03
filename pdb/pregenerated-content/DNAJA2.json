@@ -1,0 +1,65 @@
+{
+  "gene": "DNAJA2",
+  "generatedAt": "2026-08-03T18:34:39.548Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DNAJA2 为胞质型 Hsp40 分子伴侣，J 结构域通过刺激 HSPA 家族 ATPase 活性参与蛋白折叠稳态、应激蛋白质量控制及病毒感染相关宿主应激反应。该蛋白缺乏跨膜区和分泌信号肽，天然抗原可及性不适合作为常规细胞外阻断抗体靶点，更适合用于细胞内抗体、递送型抗体片段或机制验证型结合分子设计。相较于同通路中更具临床抗体可及性的细胞表面或分泌因子，DNAJA2 的疾病遗传关联分值中等且结构分辨率较低，因此优先级应定位为探索性分子伴侣调控靶点而非一线治疗性抗体靶点。",
+    "mechanism": "设计结合 J 结构域 HPD 基序邻近界面的抗体片段，干扰 DNAJA2 与 HSPA8/HSPA1A 的瞬时结合及 ATPase 激活。",
+    "selectedEpitope": "优先覆盖 J 结构域 helix II-III 间 HPD 基序邻近 Hsp70 结合面。",
+    "diseaseDirection": "病毒感染与蛋白稳态应激",
+    "domain": "DNAJA2 含 N 端 J 结构域、G/F 富集区及 C 端二聚化/底物结合区域。",
+    "evidence": "DNAJA2-Hsp70 分子伴侣轴结构与疾病证据",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联",
+      "UniProtKB O60884 功能注释",
+      "RCSB PDB 7ZHS 冷冻电镜结构",
+      "Hsp40-Hsp70 分子伴侣互作研究文献"
+    ],
+    "referenceEntries": "UniProt O60884；RCSB PDB 7ZHS；Open Targets DNAJA2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "J 结构域 HPD 基序邻近 helix II-III 界面",
+        "可直接影响 Hsp70 ATPase 激活与伴侣复合体形成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C 端二聚化/底物结合结构域外露面",
+        "可能干扰底物蛋白装载或 DNAJA2 自身二聚化状态",
+        "备选"
+      ],
+      [
+        "Site C",
+        "G/F 富集柔性连接区",
+        "构象异质性高且结构约束不足，表位稳定性较低",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DNAJA2 为细胞内伴侣蛋白，常规 IgG 细胞外阻断可及性不足；建议采用 VHH、intrabody 或递送耦联策略，并避免完全遮蔽保守 HPD 核心导致广泛 Hsp40 交叉反应。",
+    "structurePrepZh": "7ZHS 分辨率为 6.9 Å，应进行链注释、结构域映射和缺失区建模；表位筛选需结合 AlphaFold 模型与保守性分析交叉校验。",
+    "structureRef": "RCSB PDB 7ZHS，冷冻电镜人源 DNAJA2 相关结构",
+    "antibodies": [
+      "抗 DNAJA2 研究级单克隆抗体",
+      "抗 Hsp40/DNAJ 家族研究级抗体"
+    ],
+    "interfaceFocus": "J 结构域 HPD 基序邻近 Hsp70 接触面",
+    "designMode": "细胞内阻断型",
+    "candidates": [
+      {
+        "target": "HSPA8",
+        "rationale": "HSPA8 是 DNAJA2 主要协同的 Hsp70 伴侣成员，参与蛋白折叠、伴侣介导自噬及应激蛋白稳态。阻断 DNAJA2-HSPA8 轴可作为同一分子伴侣通路的互补设计方向。"
+      },
+      {
+        "target": "HSPA1A",
+        "rationale": "HSPA1A 为诱导型 Hsp70，应激和感染条件下表达上调，并接受 Hsp40 共伴侣刺激 ATPase 活性。其与 DNAJA2 处于同一蛋白质量控制模块。"
+      },
+      {
+        "target": "DNAJB1",
+        "rationale": "DNAJB1 同属 Hsp40/DNAJ 共伴侣家族，可通过 J 结构域调节 Hsp70 ATPase 周期。其在热休克应答和蛋白稳态网络中与 DNAJA2 功能相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

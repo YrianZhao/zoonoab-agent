@@ -1,0 +1,65 @@
+{
+  "gene": "DNAJC24",
+  "generatedAt": "2026-08-03T12:01:35.598Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DNAJC24为Hsp40/DnaJ家族成员，Open Targets显示其与神经退行性疾病存在中等强度遗传与疾病关联，但目前缺乏明确的胞外配体-受体轴或可药性阻断通路证据。该蛋白主要定位于胞内，已解析结构2L6L为溶液NMR获得的短结构域片段，抗原天然可及性弱于分泌蛋白或膜受体胞外结构域。相较HSPA1A、HSP90AA1等热休克网络核心节点，DNAJC24作为抗体主靶点优先级偏低，更适合作为胞内互作机制研究或细胞内递送抗体探索对象。",
+    "mechanism": "通过胞内递送抗体结合DNAJC24 J样结构域表面，干预其与Hsp70伴侣蛋白复合物的接触，从而影响底物折叠辅助过程。",
+    "selectedEpitope": "优先评估2L6L所覆盖J样结构域暴露螺旋面，避开高度保守HPD邻近功能位点以降低广谱伴侣蛋白干扰。",
+    "diseaseDirection": "神经退行性疾病伴侣蛋白网络",
+    "domain": "DNAJC24含DnaJ/Hsp40相关结构特征，2L6L覆盖胞内结构域片段，天然不具备胞外抗原展示优势。",
+    "evidence": "DNAJC24疾病关联与结构可及性证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q6P3W2蛋白注释",
+      "RCSB PDB 2L6L溶液NMR结构",
+      "Hsp40-Hsp70伴侣蛋白互作机制文献"
+    ],
+    "referenceEntries": "UniProt Q6P3W2；RCSB PDB 2L6L；Open Targets DNAJC24",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "2L6L J样结构域暴露螺旋面",
+        "可用于构建构象识别抗体并评估胞内结合稳定性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "J样结构域非保守表面环区",
+        "有助于提高DNAJC24选择性并降低DnaJ家族交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "HPD基序及其邻近Hsp70接触面",
+        "可能直接影响Hsp70互作，但存在功能保守性与脱靶风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DNAJC24为胞内蛋白，常规抗体难以到达天然作用位点；需采用细胞内递送、intrabody或降解偶联策略，并系统评估DnaJ家族交叉反应。",
+    "structurePrepZh": "以2L6L NMR构象集合为模板，保留代表性低能构象并进行环区柔性评估；缺失区域需结合AlphaFold模型限定可信结构域边界。",
+    "structureRef": "RCSB PDB 2L6L，human DNAJC24 solution NMR structure",
+    "antibodies": [
+      "无已批准DNAJC24治疗性抗体",
+      "研究级抗DNAJC24抗体"
+    ],
+    "interfaceFocus": "J样结构域暴露螺旋面与HPD邻近区域",
+    "designMode": "胞内抗体探索",
+    "candidates": [
+      {
+        "target": "HSPA1A",
+        "rationale": "HSPA1A编码诱导型Hsp70，是Hsp40共伴侣调控底物折叠与应激蛋白稳态的核心执行节点，在神经退行性蛋白质稳态失衡中具有更直接的机制位置。"
+      },
+      {
+        "target": "HSP90AA1",
+        "rationale": "HSP90AA1参与错误折叠蛋白处理、客户蛋白稳定化与应激反应调控，与Hsp70/Hsp40网络共同维持蛋白质稳态，疾病通路证据和药理学可验证性更充分。"
+      },
+      {
+        "target": "DNAJB1",
+        "rationale": "DNAJB1为经典Hsp40共伴侣，可通过J结构域调节Hsp70 ATPase活性，与DNAJC24处于同一伴侣蛋白功能网络，适合作为机制对照和替代靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

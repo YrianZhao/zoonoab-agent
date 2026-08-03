@@ -1,0 +1,65 @@
+{
+  "gene": "EPHA8",
+  "generatedAt": "2026-08-03T12:19:48.685Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "EPHA8属于EphA受体酪氨酸激酶家族，可与GPI锚定型ephrin-A配体结合并触发接触依赖性受体聚集、胞内激酶活化及细胞迁移相关信号，在肿瘤侵袭、神经发育样程序和肿瘤微环境重塑中具有可解释的疾病关联。该靶点为I型跨膜受体，N端配体结合结构域暴露于细胞外，适合抗体识别并干预配体诱导的受体聚集。相较下游激酶节点，EPHA8胞外结构域允许以抗体实现配体阻断或受体构象调控，且3KUL实验结构支持结构导向表位设计，因此具备较高优先级。",
+    "mechanism": "阻断EPHA8胞外配体结合结构域与ephrin-A配体的结合，抑制配体诱导的受体聚集、自磷酸化及下游细胞迁移信号。",
+    "selectedEpitope": "优先覆盖N端ephrin结合沟槽及邻近D-E环，干预配体嵌入与受体聚集起始。",
+    "diseaseDirection": "肿瘤侵袭与Eph/ephrin轴",
+    "domain": "胞外区含N端配体结合结构域、富半胱氨酸区及两个纤连蛋白III样结构域。",
+    "evidence": "EPHA8结构与肿瘤相关EphA轴证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P29322功能与结构域注释",
+      "RCSB PDB 3KUL晶体结构记录",
+      "Eph/ephrin受体酪氨酸激酶家族文献"
+    ],
+    "referenceEntries": "UniProt:P29322；RCSB PDB:3KUL；Open Targets:EPHA8",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端配体结合结构域ephrin结合沟槽",
+        "直接阻断EPHA8与ephrin-A配体结合，功能干预明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "配体结合结构域外侧D-E/G-H环邻近区域",
+        "可通过空间位阻削弱配体嵌入并保留较高抗体可及性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "富半胱氨酸区与FNIII样结构域近膜区域",
+        "可能影响受体构象或聚集，但功能耦合与脱靶风险需验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "EphA家族配体结合结构域同源性较高，需避开保守核心折叠面并强化EPHA8特异环区识别；应评估与EPHA2、EPHA3、EPHA4的交叉反应。",
+    "structurePrepZh": "以3KUL中A、B链配体结合结构域为模板，补全缺失侧链、校正糖基化邻近构象，并对二聚界面及配体结合沟槽进行可及性评估。",
+    "structureRef": "RCSB PDB 3KUL，X射线晶体结构，2.15 Å",
+    "antibodies": [
+      "farletuzumab",
+      "ifabotuzumab"
+    ],
+    "interfaceFocus": "ephrin结合沟槽与配体诱导聚集界面",
+    "designMode": "阻断型结构导向",
+    "candidates": [
+      {
+        "target": "EFNA1",
+        "rationale": "EFNA1为EphA受体经典GPI锚定配体，可驱动EphA受体聚集与双向信号，在肿瘤细胞黏附和迁移轴中与EPHA8处于同一通路。"
+      },
+      {
+        "target": "EPHA2",
+        "rationale": "EPHA2是肿瘤中研究最充分的EphA家族受体之一，与ephrin-A配体介导的细胞接触信号和侵袭表型密切相关，可作为同通路优先对照靶点。"
+      },
+      {
+        "target": "EFNA5",
+        "rationale": "EFNA5为EPHA8已知结合配体之一，参与EphA/ephrin-A接触依赖性信号，可用于配体阻断策略与受体选择性设计的机制验证。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

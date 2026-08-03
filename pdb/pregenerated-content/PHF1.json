@@ -1,0 +1,65 @@
+{
+  "gene": "PHF1",
+  "generatedAt": "2026-08-03T20:32:16.810Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PHF1 是 Polycomb repressive complex 2 相关阅读器蛋白，PHD 指结构域可识别组蛋白 H3 修饰并参与 H3K27me3 依赖的染色质沉默，异常表观遗传调控与乳腺癌、肿瘤及神经炎症疾病存在关联。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌特征，完整蛋白并非经典可及性抗体靶点；抗体策略更适合定位为细胞内结构域识别、检测或递送型分子设计。相比 PRC2 催化亚基，PHF1 的 PHD finger 结构域具备高分辨率实验结构和明确肽结合界面，可用于结构约束的表位设计，但治疗性优先级应低于胞外膜受体或分泌因子靶点。",
+    "mechanism": "抗体识别 PHF1 PHD finger 组蛋白肽结合沟槽，阻断其与 H3K36me3/H3K27me3 相关组蛋白尾部相互作用，削弱 PRC2 相关染色质定位。",
+    "selectedEpitope": "优先覆盖 PHD finger 芳香笼及邻近酸性沟槽，避免破坏锌指核心折叠残基。",
+    "diseaseDirection": "表观遗传调控相关肿瘤与神经炎症",
+    "domain": "PHF1 含 Tudor、PHD1、PHD2 及 C 端 PRC2 结合相关区域；6WAV 解析 PHD finger 结构域。",
+    "evidence": "PHF1-PRC2 表观遗传调控与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt O43189 蛋白功能与定位注释",
+      "RCSB PDB 6WAV X 射线晶体结构",
+      "PRC2-PHF1 组蛋白修饰识别文献"
+    ],
+    "referenceEntries": "UniProt O43189；RCSB PDB 6WAV；Open Targets PHF1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PHD finger 组蛋白尾部结合沟槽与芳香笼边缘",
+        "直接干预 PHF1 对甲基化组蛋白肽的识别，机制指向性最强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PHD finger 外侧带电环区及可溶暴露面",
+        "利于获得高亲和识别分子，可作为检测型抗体表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Cys4-His-Cys3 锌配位核心邻近区域",
+        "可能影响结构完整性并引入交叉识别风险，需限制 CDR 深度嵌入",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PHF1 为核内蛋白，体内抗体可及性受限；设计应优先用于细胞内递送、PROTAC 适配或诊断检测，并评估 PHD 家族交叉反应。",
+    "structurePrepZh": "以 6WAV 高分辨率晶体结构提取 PHD finger 单体，补全缺失侧链、校验锌配位几何，并保留关键肽结合沟槽用于对接。",
+    "structureRef": "RCSB PDB 6WAV，X-ray diffraction，1.7 Å",
+    "antibodies": [
+      "commercial anti-PHF1 antibody",
+      "commercial anti-PHF1/PCL1 antibody"
+    ],
+    "interfaceFocus": "PHD finger 芳香笼与组蛋白尾部结合沟槽",
+    "designMode": "细胞内结构域阻断",
+    "candidates": [
+      {
+        "target": "EZH2",
+        "rationale": "EZH2 是 PRC2 催化亚基，负责 H3K27 甲基化沉积，与肿瘤表观遗传沉默通路直接相关。其功能位置较 PHF1 更接近酶促核心。"
+      },
+      {
+        "target": "SUZ12",
+        "rationale": "SUZ12 是 PRC2 复合体必需支架亚基，维持 EZH2 催化活性及复合体稳定性。干预该节点可影响 H3K27me3 介导的基因沉默。"
+      },
+      {
+        "target": "EED",
+        "rationale": "EED 识别 H3K27me3 并 allosterically 激活 PRC2，形成表观遗传沉默传播环路。其配体识别口袋与 PHF1 同属 Polycomb 相关染色质读取网络。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

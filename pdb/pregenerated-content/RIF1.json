@@ -1,0 +1,65 @@
+{
+  "gene": "RIF1",
+  "generatedAt": "2026-08-03T16:02:43.257Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RIF1 是复制时序调控与DNA损伤应答相关的核内支架蛋白，参与53BP1-RIF1轴介导的DNA双链断裂修复途径选择，并与复制叉稳定和基因组完整性维持相关。其主要定位于细胞核和染色质，缺乏分泌型或稳定胞外结构域，抗原可及性不符合常规体内阻断型抗体药物靶点特征，更适合作为细胞内机制研究或递送型抗体片段探索对象。相比ATM、TP53BP1、BRCA1等同通路可药靶点，RIF1的疾病关联得分中等且以复杂性状和神经退行性疾病信号为主，优先级应低于具备明确胞外可及性或成熟药理验证的靶点。",
+    "mechanism": "设计抗体片段拟结合RIF1 N端HEAT-repeat支架表面，干扰其在53BP1依赖DNA损伤位点的蛋白复合体装配，并影响PP1相关复制时序调控界面。",
+    "selectedEpitope": "优先评估8RS8所解析N端HEAT-repeat连续螺旋束外侧沟槽，避开高度保守疏水核心。",
+    "diseaseDirection": "DNA损伤应答与神经退行性疾病",
+    "domain": "RIF1含N端HEAT-repeat结构域、中央低复杂度区及C端PP1结合相关基序，整体为核内支架蛋白。",
+    "evidence": "RIF1复制时序与DNA损伤应答证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProtKB Q5UIP0 蛋白功能注释",
+      "RCSB PDB 8RS8 X射线晶体结构",
+      "DNA损伤应答与53BP1-RIF1通路文献"
+    ],
+    "referenceEntries": "UniProt Q5UIP0；RCSB PDB 8RS8；Open Targets RIF1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端HEAT-repeat螺旋束外侧沟槽",
+        "可能影响RIF1支架构象与蛋白复合体装配，结构解析度高，适合Fab/VHH建模",
+        "优先"
+      ],
+      [
+        "Site B",
+        "HEAT-repeat相邻螺旋间凸面区域",
+        "可作为构象识别表位，降低对保守核心结构扰动的风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "潜在PP1结合相关线性基序邻近区",
+        "功能相关性较强，但柔性和结构缺失风险较高，需结合全长模型验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RIF1为核内非分泌蛋白，常规抗体体内可及性不足；设计应限定为细胞内递送、研究级阻断或结构探针，并避免破坏HEAT核心稳定性。",
+    "structurePrepZh": "以8RS8高分辨率晶体结构为模板，保留A-H链装配信息，补全缺失侧链并进行质子化、界面溶剂检查与多链构象筛选。",
+    "structureRef": "RCSB PDB 8RS8，X-ray diffraction，1.31 Å",
+    "antibodies": [
+      "研究级抗RIF1单克隆抗体",
+      "研究级抗RIF1多克隆抗体"
+    ],
+    "interfaceFocus": "N端HEAT-repeat外侧沟槽与复合体装配面",
+    "designMode": "细胞内抗体片段",
+    "candidates": [
+      {
+        "target": "TP53BP1",
+        "rationale": "TP53BP1位于DNA双链断裂应答上游，可募集RIF1并促进非同源末端连接修复途径选择，是同一53BP1-RIF1轴的核心节点。"
+      },
+      {
+        "target": "ATM",
+        "rationale": "ATM是DNA双链断裂感应激酶，磷酸化多种损伤应答底物并促进53BP1相关修复复合体形成，与RIF1功能处于同一DDR通路。"
+      },
+      {
+        "target": "BRCA1",
+        "rationale": "BRCA1与53BP1-RIF1轴在同源重组与非同源末端连接选择中存在功能拮抗关系，是DNA修复途径决策的关键同通路靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

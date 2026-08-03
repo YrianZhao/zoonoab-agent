@@ -1,0 +1,65 @@
+{
+  "gene": "DUSP8",
+  "generatedAt": "2026-08-03T18:48:44.938Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DUSP8编码胞内双特异性磷酸酶，主要通过去磷酸化MAPK14/p38与JNK通路组分影响应激反应、神经炎症和细胞死亡信号，在神经退行性疾病遗传关联中具有一定优先级信号。其抗原本体位于胞质，缺乏天然胞外结构域或分泌形式，常规完整抗体对活细胞靶点可及性受限，更适合采用胞内抗体、递送型VHH或研究级结合蛋白策略。相较上游MAPK激酶或广泛表达MAPK本体，DUSP8提供磷酸酶选择性识别窗口，但因Open Targets最高关联得分中等且抗原可及性弱，优先级应定位为机制验证型而非直接外周阻断型靶点。",
+    "mechanism": "设计胞内VHH或递送型Fab结合DUSP8催化结构域近Cys246活性位点沟槽，空间阻断其与磷酸化MAPK14/JNK底物的对接与去磷酸化反应。",
+    "selectedEpitope": "优先覆盖DSP催化结构域活性位点邻近底物结合沟槽，避开高度保守HCX5R催化核心残基。",
+    "diseaseDirection": "神经退行性疾病-MAPK应激通路",
+    "domain": "DUSP8含N端调控区及C端双特异性磷酸酶催化结构域，4JMK解析其催化域二聚体构象。",
+    "evidence": "DUSP8-MAPK去磷酸化与神经退行关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q13202功能与亚细胞定位注释",
+      "RCSB PDB 4JMK晶体结构记录",
+      "Reactome MAPK信号转导与双特异性磷酸酶通路"
+    ],
+    "referenceEntries": "UniProt Q13202；RCSB PDB 4JMK；Open Targets ENSG00000184545",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域底物结合沟槽及活性位点邻近环区",
+        "可直接干预DUSP8与磷酸化MAPK底物的结合取向",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化域远离HCX5R基序的可及螺旋-环连接面",
+        "有利于获得高特异性结合子并降低催化核心交叉反应风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "HCX5R催化基序及磷酸酶高度保守口袋",
+        "功能相关性强但同源DUSP交叉反应与酶活非特异干扰风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DUSP8为胞内酶，常规抗体难以到达天然作用位点；催化口袋在DUSP家族中保守，需通过外周环区组合表位提升选择性。",
+    "structurePrepZh": "采用4JMK的A/B链催化域结构，补全缺失侧链并进行质子化状态校正，保留催化口袋邻近水分子用于界面评估。",
+    "structureRef": "RCSB PDB 4JMK，human DUSP8 catalytic domain，1.9 Å X-ray",
+    "antibodies": [
+      "无已获批DUSP8靶向治疗抗体",
+      "研究级anti-DUSP8抗体"
+    ],
+    "interfaceFocus": "催化域底物沟槽与非保守外周环区",
+    "designMode": "胞内抗体/VHH验证",
+    "candidates": [
+      {
+        "target": "MAPK14",
+        "rationale": "MAPK14/p38α是DUSP8去磷酸化底物之一，处于应激炎症与神经退行相关MAPK通路核心节点，可作为功能读出和替代干预靶点。"
+      },
+      {
+        "target": "MAPK8",
+        "rationale": "MAPK8/JNK1参与神经元应激、凋亡和炎症转录反应，与DUSP8调控轴存在底物层级联系，适合用于同通路比较设计。"
+      },
+      {
+        "target": "MAP2K6",
+        "rationale": "MAP2K6为p38 MAPK上游激酶，介导应激信号向MAPK14传递，可与DUSP8构成磷酸化-去磷酸化平衡节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

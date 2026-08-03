@@ -1,0 +1,65 @@
+{
+  "gene": "PRMT9",
+  "generatedAt": "2026-08-03T15:36:09.081Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PRMT9是AdoMet依赖性蛋白精氨酸甲基转移酶，主要催化SF3B2等剪接体蛋白的精氨酸甲基化，影响前体mRNA剪接质量控制；遗传证据将其与神经发育异常、复杂神经发育障碍及Meckel综合征9型相关联。该蛋白为胞内酶，天然抗体可及性弱，因此更适合作为细胞内结合体、递送型Fab或VHH研究靶点，而非经典胞外阻断抗体。其优先级依据在于7RBQ提供2.2 Å实验晶体结构，可直接解析SAM结合口袋与底物肽识别沟槽，相比缺乏高分辨率结构的剪接调控靶点更利于结构约束设计。",
+    "mechanism": "设计结合体占据PRMT9催化核心的AdoMet结合口袋或SF3B2底物肽识别沟槽，阻断甲基供体与底物精氨酸同时定位。",
+    "selectedEpitope": "优先锁定Rossmann样SAM结合折叠邻近的底物识别沟槽及双β桶催化界面。",
+    "diseaseDirection": "神经发育障碍与剪接异常",
+    "domain": "PRMT9含N端调控区及C端PRMT催化核心，形成AdoMet结合位点和底物精氨酸识别沟槽。",
+    "evidence": "PRMT9神经发育与剪接调控结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q6P2P2功能与结构域注释",
+      "RCSB PDB 7RBQ晶体结构记录",
+      "PRMT9介导SF3B2精氨酸甲基化文献"
+    ],
+    "referenceEntries": "UniProt: Q6P2P2; RCSB PDB: 7RBQ; Open Targets: PRMT9",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SAM结合口袋边缘与催化环",
+        "可竞争甲基供体定位并限制催化构象闭合",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SF3B2底物肽识别沟槽",
+        "可阻断底物精氨酸进入活性位点，机制特异性较强",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离活性中心的N端调控表面",
+        "可能影响蛋白复合体装配，但疾病机制与可药性证据较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PRMT9为胞内酶，常规抗体难以到达靶点；设计应采用VHH、胞内抗体或递送型Fab，并避免干扰保守SAM口袋导致PRMT家族交叉反应。",
+    "structurePrepZh": "以7RBQ链A为模板，补全缺失环区并保留SAM口袋几何约束；对催化核心、底物沟槽和保守PRMT基序进行同源性比对标注。",
+    "structureRef": "RCSB PDB 7RBQ, human PRMT9 X-ray structure, 2.2 Å",
+    "antibodies": [
+      "PRMT9 intracellular VHH concept binder",
+      "PRMT9 catalytic-domain Fab research binder"
+    ],
+    "interfaceFocus": "SAM口袋、催化环与SF3B2底物沟槽",
+    "designMode": "胞内酶结合体设计",
+    "candidates": [
+      {
+        "target": "SF3B2",
+        "rationale": "SF3B2是PRMT9已报道的剪接体底物，PRMT9介导其精氨酸甲基化并影响剪接复合体功能，适合作为同一剪接异常轴的机制候选。"
+      },
+      {
+        "target": "SF3B1",
+        "rationale": "SF3B1与SF3B2共同构成U2 snRNP SF3b复合体核心，参与分支点识别和前体mRNA剪接，是剪接失衡相关疾病通路中的真实节点。"
+      },
+      {
+        "target": "PRMT5",
+        "rationale": "PRMT5同属精氨酸甲基转移酶家族，调控Sm蛋白及剪接相关因子的对称二甲基化，与PRMT9共同连接精氨酸甲基化和RNA剪接稳态。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

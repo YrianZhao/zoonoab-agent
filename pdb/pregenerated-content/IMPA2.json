@@ -1,0 +1,65 @@
+{
+  "gene": "IMPA2",
+  "generatedAt": "2026-08-03T13:28:54.115Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IMPA2编码肌醇单磷酸酶2，催化肌醇单磷酸水解为游离肌醇，是磷脂酰肌醇循环再合成PIP2的胞质限速节点，与神经递质受体依赖的肌醇磷酸代谢和神经退行性疾病遗传关联相关。该蛋白为可溶性胞质金属酶，缺乏天然胞外结构域或分泌暴露，因此常规体内阻断型抗体可及性不足，更适合作为结构验证、细胞内抗体或递送型抗体设计模型。相较膜受体或分泌因子，IMPA2具备高分辨率实验结构和明确催化口袋，但因抗原可及性弱，优先级应低于同通路中可细胞表面干预的受体靶点。",
+    "mechanism": "设计抗体应结合IMPA2催化口袋邻近环区，空间阻断肌醇单磷酸与Mg2+依赖活性中心的配位进入，从而降低肌醇再生通量。",
+    "selectedEpitope": "优先覆盖金属结合催化核心周边loop与底物入口沟槽，避免完全埋藏的二价金属配位残基。",
+    "diseaseDirection": "神经退行性疾病与肌醇磷酸代谢",
+    "domain": "IMPA2为单结构域金属依赖性肌醇单磷酸酶，含保守催化核心、底物结合沟槽及二聚体界面。",
+    "evidence": "IMPA2结构与肌醇磷酸代谢证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt O14732功能注释",
+      "RCSB PDB 2FVZ晶体结构",
+      "Reactome磷脂酰肌醇循环通路"
+    ],
+    "referenceEntries": "UniProt O14732；RCSB PDB 2FVZ；Open Targets IMPA2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化核心入口沟槽及邻近可及loop",
+        "可直接限制肌醇单磷酸进入Mg2+依赖活性中心，机制清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "同源二聚体界面外缘",
+        "可能干扰稳定构象或亚基装配，但需验证二聚状态依赖性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "金属配位残基深部口袋",
+        "功能相关性强但埋藏程度高，抗体可达性与成药构象风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IMPA2为胞质酶，体内抗体暴露受限；建议定位于细胞内抗体、递送偶联抗体或结构阻断验证，并严格评估IMPA1交叉反应。",
+    "structurePrepZh": "采用2FVZ四条抗原链进行同源链比对，保留催化金属位点注释，去除晶体接触伪界面后标定可及loop与二聚体界面。",
+    "structureRef": "RCSB PDB 2FVZ，X射线晶体结构，2.4 Å",
+    "antibodies": [
+      "无已获批IMPA2靶向抗体",
+      "研究级抗IMPA2抗体"
+    ],
+    "interfaceFocus": "底物入口沟槽、Mg2+邻近催化loop、二聚体界面",
+    "designMode": "胞内酶阻断设计",
+    "candidates": [
+      {
+        "target": "IMPA1",
+        "rationale": "IMPA1与IMPA2同属肌醇单磷酸酶家族，催化肌醇单磷酸水解并参与磷脂酰肌醇循环。其同源性要求在IMPA2抗体设计中进行选择性排除。"
+      },
+      {
+        "target": "INPP1",
+        "rationale": "INPP1催化肌醇多磷酸去磷酸化，是肌醇磷酸代谢网络中的上游水解节点。联合评估可区分IMPA2特异性阻断与广泛肌醇磷酸通量改变。"
+      },
+      {
+        "target": "PLCB1",
+        "rationale": "PLCB1水解PIP2生成IP3和DAG，位于肌醇循环上游并与神经信号转导密切相关。其通路位置可作为IMPA2功能干预的上游参照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

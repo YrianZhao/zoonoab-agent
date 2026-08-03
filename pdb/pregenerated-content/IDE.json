@@ -1,0 +1,65 @@
+{
+  "gene": "IDE",
+  "generatedAt": "2026-08-03T13:21:11.271Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IDE 为锌依赖性胞质金属内肽酶，参与胰岛素、胰高血糖素、淀粉样β肽等底物降解，其遗传证据与甘油三酯及脂蛋白脂质组成表型相关，提示其位于胰岛素代谢与脂质稳态交叉节点。IDE 主要定位于胞质、过氧化物酶体及分泌相关区室，并非典型跨膜或稳定分泌抗原，抗体可及性弱于膜受体和分泌因子。优先级依据主要来自高分辨率人源结构、明确催化腔构象及代谢表型遗传关联；相较 LPL、APOA5 等经典血脂靶点，其抗体成药可及性与体内作用模式风险更高，适合作为机制验证型而非首选外周阻断靶点。",
+    "mechanism": "抗体设计可定位于 IDE N/C 端结构域夹合界面，限制开放-闭合构象转换，从而影响底物进入催化腔及 Zn2+金属蛋白酶位点介导的肽键水解。",
+    "selectedEpitope": "优先评估 N 端催化半域与 C 端调节半域之间的外露夹合界面，避开深埋活性位点。",
+    "diseaseDirection": "代谢性脂质表型与胰岛素稳态",
+    "domain": "IDE 含四个同源结构域，N 端半部承载 HxxEH 锌结合催化基序，C 端半部参与闭合笼状构象形成。",
+    "evidence": "IDE 结构与脂质代谢遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P14735 functional annotation",
+      "RCSB PDB 3CWW experimental structure",
+      "GWAS Catalog lipid trait association evidence"
+    ],
+    "referenceEntries": "UniProt P14735；RCSB PDB 3CWW；Open Targets ENSG00000119912",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N/C 端半域夹合界面外露脊区",
+        "可能限制 IDE 开放-闭合构象转换并影响底物进入",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C 端调节半域外侧螺旋束",
+        "可用于构象选择性结合，降低直接活性位点干扰",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端催化腔近 HxxEH 锌结合基序区域",
+        "催化位点保守且深埋，存在交叉反应与活性毒性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IDE 为胞内金属蛋白酶，常规抗体难以进入主要作用区室；设计宜限定为细胞外释放形式检测、递送抗体或体外机制验证，并避免直接遮蔽 Zn2+催化核心。",
+    "structurePrepZh": "以 3CWW 人源 X 射线结构为模板，保留抗原链 A、B、D、E 中构象完整单体，校正金属离子、缺失环区与多聚装配后进行表面可及性评估。",
+    "structureRef": "RCSB PDB 3CWW，human IDE X-ray structure，1.96 Å",
+    "antibodies": [
+      "anti-IDE clone 9B12",
+      "anti-IDE clone 1C1"
+    ],
+    "interfaceFocus": "N/C 半域夹合口及底物进入通道边缘",
+    "designMode": "构象调节型抗体",
+    "candidates": [
+      {
+        "target": "INSR",
+        "rationale": "INSR 是胰岛素信号通路核心膜受体，直接调控 AKT 介导的葡萄糖摄取与脂质合成，抗原可及性显著优于 IDE。"
+      },
+      {
+        "target": "IGF1R",
+        "rationale": "IGF1R 与胰岛素受体通路共享 IRS-PI3K-AKT 轴，在代谢与生长信号交叉调控中具有明确膜受体结构基础。"
+      },
+      {
+        "target": "LPL",
+        "rationale": "LPL 直接水解富含甘油三酯脂蛋白，是血浆甘油三酯代谢通路的关键胞外酶，适合抗体调节脂蛋白处理过程。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

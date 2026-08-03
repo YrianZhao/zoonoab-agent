@@ -1,0 +1,65 @@
+{
+  "gene": "HJURP",
+  "generatedAt": "2026-08-03T19:47:51.037Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HJURP是CENP-A特异性组装伴侣，参与着丝粒核小体装载与染色体分离稳定性，肿瘤中高表达与增殖、染色体不稳定和预后不良相关。该蛋白主要定位于细胞核和着丝粒，缺乏天然胞外结构域或分泌特征，抗体药物可及性弱于膜受体类靶点。其优先级主要来自明确的CENP-A结合结构基础和细胞周期依赖性功能，但相比HER2、EGFR等同类肿瘤抗体靶点，体内成药性更适合研究级胞内抗体或递送型抗体策略。",
+    "mechanism": "设计抗体阻断HJURP N端Scm3结构域与CENP-A/H4四聚体界面的结合，干扰CENP-A向着丝粒核小体装载。",
+    "selectedEpitope": "优先覆盖HJURP N端Scm3样CENP-A/H4结合螺旋界面，避免仅选择非功能性溶剂暴露环区。",
+    "diseaseDirection": "染色体不稳定相关肿瘤",
+    "domain": "HJURP含N端Scm3样CENP-A/H4结合区，C端含着丝粒定位相关低复杂度片段。",
+    "evidence": "HJURP-CENP-A装载轴结构与肿瘤证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q8NCD3 functional annotation",
+      "RCSB PDB 3R45 X-ray structure",
+      "Cancer transcriptomic and survival association studies"
+    ],
+    "referenceEntries": "UniProt Q8NCD3；RCSB PDB 3R45；HGNC HJURP",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端Scm3样结构域CENP-A/H4结合螺旋面",
+        "直接阻断HJURP介导的CENP-A装载，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CENP-A/H4复合物邻近的HJURP外露侧面",
+        "可通过空间位阻削弱伴侣复合物稳定性，适合亲和力优化",
+        "备选"
+      ],
+      [
+        "Site C",
+        "低复杂度或柔性C端着丝粒定位相关片段",
+        "构象异质性较高，可能影响结构建模与可重复结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HJURP为核内蛋白，常规全长抗体难以到达作用位点；建议限定为胞内抗体、递送型Fab/VHH或机制验证用途，并严格评估细胞周期毒性。",
+    "structurePrepZh": "以PDB 3R45抗原链A、B、C为结构模板，保留HJURP-CENP-A/H4界面，补全缺失侧链并标注柔性低置信区。",
+    "structureRef": "Hu等解析HJURP Scm3域结合CENP-A/H4复合物结构",
+    "antibodies": [
+      "研究级anti-HJURP antibody",
+      "研究级anti-CENP-A antibody"
+    ],
+    "interfaceFocus": "HJURP Scm3域与CENP-A/H4接触面",
+    "designMode": "胞内阻断型",
+    "candidates": [
+      {
+        "target": "CENPA",
+        "rationale": "CENP-A是HJURP直接装载底物，同属着丝粒核小体组装轴；干预其与HJURP结合可直接影响着丝粒表观遗传维持。"
+      },
+      {
+        "target": "MIS18A",
+        "rationale": "MIS18复合体参与CENP-A装载前的着丝粒许可过程，与HJURP招募处于同一功能通路，适合作为上游候选靶点。"
+      },
+      {
+        "target": "KNL1",
+        "rationale": "KNL1为着丝粒-动粒检查点平台成分，与CENP-A依赖的动粒组装和染色体分离稳定性相关，可作为同一染色体分离通路候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

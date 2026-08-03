@@ -1,0 +1,65 @@
+{
+  "gene": "PYGL",
+  "generatedAt": "2026-08-03T15:47:07.108Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PYGL编码肝型糖原磷酸化酶，催化糖原非还原端与无机磷酸反应生成葡萄糖-1-磷酸，是肝糖原分解通路的限速酶之一；其功能缺陷可导致糖原贮积病VI型及相关糖原代谢障碍。该蛋白主要为胞质可溶性代谢酶，缺乏天然胞外结构域或膜受体可及性，因此不具备常规体内阻断型抗体药物的抗原可及性优势。其优先级更适合结构生物学、酶构象捕获或细胞内递送抗体研究；相较G6PC、SLC37A4等同通路膜相关靶点，PYGL作为治疗性抗体主靶点优先级较低，但高分辨率晶体结构支持机制验证型抗体设计。",
+    "mechanism": "设计抗体结合催化沟槽或AMP变构位点邻近界面，空间阻碍糖原寡糖底物、无机磷酸或变构调节因子进入PYGL活性构象。",
+    "selectedEpitope": "优先评估N端调控区与催化核心裂隙周边，避免完全埋藏的PLP催化中心。",
+    "diseaseDirection": "肝糖原代谢障碍与GSD VI",
+    "domain": "PYGL为同源二聚体胞质酶，含N端调控区、AMP变构结合区、糖原结合区及PLP依赖催化核心。",
+    "evidence": "PYGL糖原分解功能与GSD VI结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P06737功能与亚细胞定位注释",
+      "RCSB PDB 3DDS晶体结构记录",
+      "OMIM/Orphanet糖原贮积病VI型遗传证据"
+    ],
+    "referenceEntries": "UniProtKB P06737；RCSB PDB 3DDS；MONDO:0009294",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端调控区-催化核心入口邻近表面",
+        "可能稳定非活化构象并限制底物进入催化裂隙",
+        "优先"
+      ],
+      [
+        "Site B",
+        "AMP变构结合区周边外露环区",
+        "可干预变构激活相关构象转换，适合构象选择抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "二聚体界面与PLP催化核心邻近区域",
+        "功能相关但保守性和埋藏度较高，存在交叉反应与亲和力开发风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PYGL为胞质代谢酶，常规抗体难以到达作用位点；催化核心高度保守且部分埋藏，宜采用构象捕获、细胞内递送或研究级抗体策略。",
+    "structurePrepZh": "以3DDS的A、B链二聚体为建模基础，保留PLP及关键配体信息，补全缺失环区并评估二聚体界面、催化裂隙和变构位点可及性。",
+    "structureRef": "RCSB PDB 3DDS，X-ray，1.8 Å，人源PYGL结构",
+    "antibodies": [
+      "无已批准PYGL治疗性抗体",
+      "研究级抗PYGL检测抗体"
+    ],
+    "interfaceFocus": "催化裂隙入口、AMP变构区、二聚体界面",
+    "designMode": "胞内酶构象捕获",
+    "candidates": [
+      {
+        "target": "G6PC1",
+        "rationale": "G6PC1参与肝糖原分解和糖异生末端葡萄糖生成步骤，遗传缺陷导致GSD Ia。其位于内质网膜，较PYGL更接近膜相关代谢节点。"
+      },
+      {
+        "target": "SLC37A4",
+        "rationale": "SLC37A4编码葡萄糖-6-磷酸转运蛋白，与G6PC1共同维持内质网腔内葡萄糖-6-磷酸代谢，缺陷导致GSD Ib。"
+      },
+      {
+        "target": "PHKA2",
+        "rationale": "PHKA2编码磷酸化酶激酶α亚基，位于糖原磷酸化酶激活级联上游，突变可导致肝型糖原贮积病IXa。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

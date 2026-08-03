@@ -1,0 +1,65 @@
+{
+  "gene": "ATG4B",
+  "generatedAt": "2026-08-03T10:39:55.701Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ATG4B是LC3/GABARAP加工与去脂化反应的半胱氨酸蛋白酶，直接决定自噬体膜上ATG8家族蛋白的成熟、循环利用及自噬通量，在神经退行性疾病等蛋白稳态失衡场景中具有明确通路相关性。该蛋白主要定位于胞质，并非分泌蛋白或膜受体，天然抗原可及性弱于典型胞外靶点，因此更适合采用细胞内递送抗体片段、VHH或结构引导的抑制性结合分子策略。相较上游营养感知激酶或泛自噬调节因子，ATG4B具有清晰催化口袋、已解析高分辨率结构及可直接干预的LC3底物结合界面，便于建立结构驱动的优先级设计。",
+    "mechanism": "阻断ATG4B催化半胱氨酸Cys74邻近底物沟槽与LC3/GABARAP C端尾部的结合，抑制ATG8前体加工及PE去脂化循环。",
+    "selectedEpitope": "优先覆盖Cys74催化位点周边底物结合沟槽及regulatory loop，限制LC3 C端进入活性中心。",
+    "diseaseDirection": "神经退行性疾病与自噬通路",
+    "domain": "ATG4B为木瓜蛋白酶样半胱氨酸蛋白酶折叠，含Cys74-His280-Asp278催化三联体及LC3结合沟槽。",
+    "evidence": "ATG4B自噬加工结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9Y4P1功能与定位注释",
+      "RCSB PDB 5LXI高分辨率晶体结构",
+      "LC3/GABARAP-ATG4B自噬加工文献证据"
+    ],
+    "referenceEntries": "UniProt Q9Y4P1；RCSB PDB 5LXI；Open Targets ATG4B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Cys74催化半胱氨酸邻近底物进入沟槽",
+        "直接阻断LC3/GABARAP C端尾部定位与切割，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端调控环与活性中心遮盖区",
+        "稳定非活化构象，降低底物进入和催化周转",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远端溶剂暴露非催化表面",
+        "结合可行但对ATG8加工抑制效应不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ATG4B为胞内酶，常规IgG难以到达作用位点；设计需优先评估细胞内递送、VHH稳定性及与ATG4A/C/D同源催化域的交叉反应风险。",
+    "structurePrepZh": "以5LXI晶体结构为模板，保留抗原链B、C、D、E中完整催化域，校验Cys74-His280-Asp278构象并补全缺失侧链后进行表位建模。",
+    "structureRef": "RCSB PDB 5LXI，ATG4B X-ray结构，1.44 Å",
+    "antibodies": [
+      "无获批ATG4B治疗性抗体",
+      "研究级抗ATG4B单克隆抗体"
+    ],
+    "interfaceFocus": "Cys74活性中心与LC3 C端底物沟槽",
+    "designMode": "胞内抑制型VHH",
+    "candidates": [
+      {
+        "target": "MAP1LC3B",
+        "rationale": "MAP1LC3B是ATG4B直接加工的ATG8家族底物，参与LC3-I生成、LC3-II脂化及自噬体膜动态，是同一自噬通路中的核心节点。"
+      },
+      {
+        "target": "GABARAPL2",
+        "rationale": "GABARAPL2同属ATG8家族，可被ATG4B切割和去脂化，适合作为评估ATG4B底物选择性与自噬通量调控的关联靶点。"
+      },
+      {
+        "target": "ATG7",
+        "rationale": "ATG7是LC3/GABARAP脂化级联中的E1样酶，位于ATG4B底物加工之后的同一自噬共轭通路，可作为通路层面候选干预节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

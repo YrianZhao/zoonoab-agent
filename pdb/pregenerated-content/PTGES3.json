@@ -1,0 +1,65 @@
+{
+  "gene": "PTGES3",
+  "generatedAt": "2026-08-03T15:42:39.379Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PTGES3编码p23共伴侣蛋白，参与HSP90分子伴侣复合体稳定、糖皮质激素受体成熟及端粒酶复合体装配，其遗传关联集中于神经退行性疾病、血小板表型和端粒长度等方向。该蛋白主要定位于细胞质和细胞核，缺乏分泌型或跨膜胞外结构域，抗原可及性显著弱于膜受体或分泌因子，因此更适合作为胞内机制研究或递送型抗体工程靶点。相较PTGES1等膜相关前列腺素E合成酶，PTGES3的疾病优先级来自HSP90-端粒酶伴侣轴的多表型遗传证据和已有晶体结构支持，但常规治疗性抗体开发优先级偏低。",
+    "mechanism": "通过胞内递送抗体阻断PTGES3与HSP90 ATPase结构域复合体结合，削弱HSP90客户蛋白成熟及端粒酶复合体稳定性。",
+    "selectedEpitope": "优先覆盖p23核心β夹层外露面及HSP90结合相关环区，避免仅靶向柔性C端尾部。",
+    "diseaseDirection": "神经退行性疾病与端粒稳态",
+    "domain": "PTGES3含p23样核心结构域及酸性无序C端尾部，无跨膜区和经典胞外结构域。",
+    "evidence": "PTGES3-HSP90伴侣轴与多表型遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProtKB Q15185功能与亚细胞定位注释",
+      "RCSB PDB 1EJF晶体结构记录",
+      "HSP90-p23伴侣复合体与端粒酶装配文献"
+    ],
+    "referenceEntries": "UniProt Q15185；RCSB PDB 1EJF；Open Targets PTGES3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "p23核心结构域HSP90结合相关外露环区",
+        "可直接干扰PTGES3-HSP90复合体稳定，机制指向性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "核心β夹层侧向保守表面",
+        "利于获得构象依赖结合并评估伴侣复合体构象影响",
+        "备选"
+      ],
+      [
+        "Site C",
+        "酸性无序C端尾部",
+        "柔性高且结构分辨不足，可能产生非阻断性结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PTGES3为胞内蛋白，常规IgG难以进入细胞；设计应限定为胞内递送Fab/VHH或研究级阻断抗体，并严格评估HSP90网络广泛干扰风险。",
+    "structurePrepZh": "以1EJF链A/B为模板，校正二聚体装配状态、补全缺失柔性片段标注，保留核心结构域用于表位聚类和可及性评估。",
+    "structureRef": "RCSB PDB 1EJF，human p23 X-ray structure，2.49 Å",
+    "antibodies": [
+      "PTGES3/p23研究用单克隆抗体",
+      "PTGES3/p23研究用多克隆抗体"
+    ],
+    "interfaceFocus": "HSP90结合面与核心β夹层外露环区",
+    "designMode": "胞内递送阻断",
+    "candidates": [
+      {
+        "target": "HSP90AA1",
+        "rationale": "HSP90AA1是PTGES3结合的主要HSP90伴侣亚型，直接参与客户蛋白成熟和应激相关蛋白稳态，位于同一伴侣复合体通路。"
+      },
+      {
+        "target": "TERT",
+        "rationale": "TERT依赖HSP90-PTGES3伴侣轴维持端粒酶复合体成熟，与端粒长度遗传表型处于同一功能路径。"
+      },
+      {
+        "target": "NR3C1",
+        "rationale": "NR3C1糖皮质激素受体是HSP90-p23复合体经典客户蛋白，其受体成熟过程可反映PTGES3伴侣功能影响。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

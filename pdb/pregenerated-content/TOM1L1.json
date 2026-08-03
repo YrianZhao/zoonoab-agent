@@ -1,0 +1,65 @@
+{
+  "gene": "TOM1L1",
+  "generatedAt": "2026-08-03T17:24:49.840Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TOM1L1参与内体分选与受体膜交通过程，其GAT结构域可结合泛素化货物并影响EGFR等受体的内吞后分选，因而可能改变生长因子受体信号持续时间。现有Open Targets关联以复杂表型和线粒体复合体IV缺陷相关条目为主，但其疾病因果证据强度有限。TOM1L1为胞内膜交通适配蛋白，缺乏经典胞外结构域，完整蛋白不具备常规治疗性抗体抗原可及性；其优先级低于同通路中位于细胞表面的EGFR、ERBB2或MET等受体，但可作为结构机制验证型胞内抗体或研究级结合分子靶点。",
+    "mechanism": "设计胞内Fab/VHH阻断TOM1L1 GAT结构域与泛素化受体货物或ESCRT相关分选因子的结合，干预EGFR内吞后分选与信号衰减过程。",
+    "selectedEpitope": "优先覆盖GAT结构域的泛素结合疏水面及螺旋束货物识别界面，避免核心折叠区。",
+    "diseaseDirection": "受体膜交通与生长因子信号",
+    "domain": "TOM1L1含N端VHS结构域、中央GAT结构域及C端富脯氨酸区，3RRU对应GAT结构域二聚体/螺旋束构象。",
+    "evidence": "TOM1L1膜交通结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt O75674功能与结构域注释",
+      "RCSB PDB 3RRU晶体结构记录",
+      "ESCRT依赖性内体分选与受体降解文献"
+    ],
+    "referenceEntries": "UniProt O75674；RCSB PDB 3RRU；Open Targets TOM1L1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "GAT结构域泛素结合疏水面",
+        "可直接干扰泛素化货物识别，最适合机制型阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "GAT螺旋束外侧受体/分选因子接触面",
+        "可能影响内体分选复合物装配，同时保留折叠稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "GAT核心螺旋束埋藏界面",
+        "易造成非特异性构象扰动，且可及性与选择性较低",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TOM1L1为胞内蛋白，体内抗体递送与靶点可及性为主要限制；建议定位为胞内VHH、细胞递送抗体或结构功能验证分子。",
+    "structurePrepZh": "以3RRU链A/B为模板，保留GAT结构域螺旋束，检查晶体接触与缺失残基，按人源序列O75674校准编号并标注泛素结合面。",
+    "structureRef": "RCSB PDB 3RRU，X射线晶体结构，3.0 Å",
+    "antibodies": [
+      "无已获批TOM1L1靶向治疗性抗体",
+      "研究级抗TOM1L1检测抗体"
+    ],
+    "interfaceFocus": "GAT泛素结合面与分选因子接触界面",
+    "designMode": "胞内阻断型设计",
+    "candidates": [
+      {
+        "target": "EGFR",
+        "rationale": "EGFR是TOM1L1相关内吞后分选过程的重要受体货物，位于细胞表面且已有明确肿瘤通路证据，抗体可直接阻断配体结合或受体二聚化。"
+      },
+      {
+        "target": "ERBB2",
+        "rationale": "ERBB2与EGFR同属ERBB受体网络，受膜交通和降解过程调控；其胞外结构域可及性高，适合常规治疗性抗体开发。"
+      },
+      {
+        "target": "MET",
+        "rationale": "MET为受体酪氨酸激酶，激活后依赖内吞与溶酶体分选调节信号持续性；其胞外Sema域提供可成药抗体表位。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

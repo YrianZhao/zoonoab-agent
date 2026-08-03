@@ -1,0 +1,65 @@
+{
+  "gene": "CYP2D6",
+  "generatedAt": "2026-08-03T11:47:10.378Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CYP2D6 是肝脏内质网膜锚定的细胞色素 P450 单加氧酶，主要参与曲马多、去甲替林、右美沙芬及去布瑞喹等药物的氧化代谢，其遗传多态性直接决定药物暴露、疗效不足或毒性风险。该靶点的催化结构域位于胞质侧且依赖内质网膜环境，并非典型可溶性分泌蛋白或细胞外膜受体，因此整抗体在体内直接结合天然抗原的可及性受限。相较 CYP2C19、CYP2C9 等同类药物代谢酶，CYP2D6 与曲马多反应及去布瑞喹弱代谢表型的证据强度更高，适合作为结构验证、免疫检测或细胞内递送型抗体工程的优先模型靶点。",
+    "mechanism": "抗体设计以结合 CYP2D6 催化结构域近血红素口袋入口为核心，阻断底物进入通道或干扰与 CYPOR 的电子转移界面。",
+    "selectedEpitope": "优先选择 F-G 环及 B-C 环围成的底物进入通道外缘，避开血红素深部保守催化核心。",
+    "diseaseDirection": "药物代谢表型与药物反应",
+    "domain": "CYP2D6 含 N 端内质网膜锚定螺旋、胞质型 P450 催化结构域及保守血红素结合 Cys442 区域。",
+    "evidence": "CYP2D6 药物代谢表型与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 药物反应与代谢表型关联",
+      "UniProt P10635 功能与亚细胞定位注释",
+      "RCSB PDB 3TBG X 射线晶体结构",
+      "PharmGKB CYP2D6 药物基因组学注释"
+    ],
+    "referenceEntries": "UniProt P10635；RCSB PDB 3TBG；PharmGKB CYP2D6",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "B-C 环与 F-G 环邻近的底物进入通道外缘",
+        "可阻断曲马多等底物进入催化腔，且结构暴露度相对较高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CYPOR 电子转移相关的 proximal 面邻近区域",
+        "可能干扰 CYP2D6 与 NADPH-cytochrome P450 reductase 的电子传递复合物形成",
+        "备选"
+      ],
+      [
+        "Site C",
+        "血红素结合基序及 I 螺旋催化核心周边",
+        "区域高度保守且构象受辅基约束，易产生交叉反应或影响折叠稳定性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CYP2D6 为胞内内质网膜相关酶，常规抗体体内可及性不足；建议定位于诊断、结构探针或细胞内递送抗体，并严格评估 CYP 家族交叉反应。",
+    "structurePrepZh": "以 3TBG 的 2.1 Å X 射线结构为模板，保留血红素辅基用于口袋定位，补全柔性环区并评估多链晶体接触对表位暴露的影响。",
+    "structureRef": "RCSB PDB 3TBG，人源 CYP2D6 晶体结构，2.1 Å",
+    "antibodies": [
+      "anti-CYP2D6 clone 2F9",
+      "anti-CYP2D6 clone 3E4"
+    ],
+    "interfaceFocus": "底物进入通道外缘与 CYPOR 接触面",
+    "designMode": "胞内酶结构探针",
+    "candidates": [
+      {
+        "target": "POR",
+        "rationale": "POR 编码 NADPH-cytochrome P450 reductase，是 CYP2D6 催化循环所需电子供体；干扰 POR-CYP 复合物可影响多种 P450 介导的药物氧化反应。"
+      },
+      {
+        "target": "CYP2C19",
+        "rationale": "CYP2C19 同属肝脏 P450 药物代谢通路，参与多种精神神经及心血管药物代谢；其遗传变异同样影响药物反应表型。"
+      },
+      {
+        "target": "CYP2C9",
+        "rationale": "CYP2C9 是临床药物代谢和药物基因组学中的核心 P450 酶，与抗凝药及非甾体抗炎药暴露差异密切相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

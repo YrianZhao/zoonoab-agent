@@ -1,0 +1,65 @@
+{
+  "gene": "NCF4",
+  "generatedAt": "2026-08-03T14:35:13.423Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NCF4编码p40phox，是NOX2 NADPH氧化酶复合体的胞质调节亚基，PX结构域结合PI(3)P并参与吞噬体氧化爆发定位，遗传缺陷可导致慢性肉芽肿病并影响炎症性肠病易感性。该蛋白主要位于胞质，常规完整抗体抗原可及性弱，但PX结构域具备高分辨率实验结构，可用于细胞内递送抗体片段或研究型阻断分子设计。相较于CYBB、NCF1等核心氧化酶组分，NCF4更偏向调节复合体定位与活化阈值，适合作为机制解析和选择性调节优先靶点。",
+    "mechanism": "阻断NCF4 PX结构域与PI(3)P头基结合，削弱p40phox在吞噬体膜的募集，从而降低NOX2复合体定位依赖性活化。",
+    "selectedEpitope": "优先覆盖PX结构域PI(3)P结合口袋及邻近膜结合环区，避免破坏整体折叠核心。",
+    "diseaseDirection": "慢性肉芽肿病与肠道炎症",
+    "domain": "NCF4含N端PX结构域、PB1结构域及C端SH3结构域，1W70解析PX结构域。",
+    "evidence": "NCF4-NOX2氧化爆发疾病机制证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q15080功能与结构域注释",
+      "RCSB PDB 1W70晶体结构记录",
+      "NOX2 NADPH氧化酶复合体文献证据"
+    ],
+    "referenceEntries": "UniProt Q15080；RCSB PDB 1W70；Open Targets NCF4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PX结构域PI(3)P结合口袋与碱性残基簇",
+        "直接竞争磷脂头基结合，验证p40phox吞噬体定位机制",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PX结构域膜结合环及邻近疏水边缘",
+        "干扰膜表面停留与取向，可形成非完全竞争型调节",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PX结构域折叠核心远端保守β片层区域",
+        "可能影响稳定性但缺乏明确功能界面，应避免高亲和强结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NCF4为胞内胞质蛋白，常规抗体难以在活细胞内接触靶点；设计宜限定为VHH、细胞内抗体或递送体系，并优先验证对NOX2功能的选择性影响。",
+    "structurePrepZh": "采用1W70的PX结构域晶体结构，补全缺失侧链并校正质子化状态；围绕磷脂结合口袋定义网格，保留关键水分子用于界面评估。",
+    "structureRef": "PDB 1W70，human p40phox PX domain，1.46 Å X-ray",
+    "antibodies": [
+      "抗NCF4研究用单克隆抗体",
+      "抗p40phox研究用多克隆抗体"
+    ],
+    "interfaceFocus": "PX结构域PI(3)P结合口袋与膜结合环",
+    "designMode": "胞内VHH阻断设计",
+    "candidates": [
+      {
+        "target": "CYBB",
+        "rationale": "CYBB编码NOX2催化亚基gp91phox，是吞噬细胞NADPH氧化酶电子传递核心，遗传缺陷与慢性肉芽肿病直接相关。"
+      },
+      {
+        "target": "NCF1",
+        "rationale": "NCF1编码p47phox，负责氧化酶复合体装配中的组织化支架功能，是NOX2活化通路中的关键胞质调节因子。"
+      },
+      {
+        "target": "NCF2",
+        "rationale": "NCF2编码p67phox，可与RAC2协同促进NOX2催化活性，其缺陷同样造成氧化爆发不足和慢性肉芽肿病表型。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

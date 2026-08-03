@@ -1,0 +1,65 @@
+{
+  "gene": "MAP3K7",
+  "generatedAt": "2026-08-03T14:03:10.814Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAP3K7/TAK1是TGF-β、IL-1、TNF和RANKL通路下游的胞内丝氨酸/苏氨酸激酶，参与NF-κB、JNK和p38 MAPK级联；其功能异常与骨发育不良、炎症和神经退行性表型存在遗传及通路关联。该蛋白缺乏天然胞外结构域，常规全长抗体抗原可及性受限，更适合以胞内递送抗体片段、研究级抑制性抗体或降解偶联策略评估。相较于上游多配体细胞因子节点，MAP3K7处于信号汇聚位点，通路解释力较强，但转化优先级需低于可直接成药的膜受体或分泌因子。",
+    "mechanism": "设计抗体片段占据MAP3K7激酶N-lobe/C-lobe ATP结合裂隙或阻断TAB1/TAB2介导的激活复合物形成，从而抑制TAK1磷酸化激活及下游IKK、MKK3/6、MKK4/7信号传递。",
+    "selectedEpitope": "优先覆盖激酶结构域ATP结合口袋邻近的铰链区与αC-helix调控界面，兼顾活化环构象限制。",
+    "diseaseDirection": "骨发育异常与炎症信号疾病",
+    "domain": "MAP3K7含N端蛋白激酶结构域及C端调控区，PDB 2EVA覆盖催化结构域。",
+    "evidence": "MAP3K7疾病遗传关联与TAK1通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt O43318功能与结构域注释",
+      "RCSB PDB 2EVA晶体结构记录",
+      "KEGG/Reactome TGF-β、TNF、IL-1与MAPK/NF-κB通路注释"
+    ],
+    "referenceEntries": "UniProt O43318；RCSB PDB 2EVA；HGNC MAP3K7",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域铰链区与ATP结合裂隙边缘",
+        "有利于直接干预催化构象和底物磷酸转移能力",
+        "优先"
+      ],
+      [
+        "Site B",
+        "αC-helix及N-lobe调控表面",
+        "可稳定非活性构象并削弱激酶活化转换",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端调控区/TAB蛋白结合相关区域",
+        "可能干扰激活复合物装配，但结构覆盖与构象异质性需验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAP3K7为胞内激酶，传统抗体难以直接接触天然抗原；应优先采用VHH、细胞内抗体或递送体系，并评估ATP口袋保守性导致的选择性风险。",
+    "structurePrepZh": "以2EVA链A作为催化结构域模板，补全缺失侧链、校正质子化状态，保留铰链区、αC-helix和活化环构象用于表位建模。",
+    "structureRef": "RCSB PDB 2EVA，X-ray diffraction，2.0 Å",
+    "antibodies": [
+      "TAK1 D94D7兔单克隆抗体",
+      "Phospho-TAK1 Thr184/187兔单克隆抗体"
+    ],
+    "interfaceFocus": "ATP结合裂隙、铰链区、αC-helix与活化环",
+    "designMode": "胞内抑制片段设计",
+    "candidates": [
+      {
+        "target": "TAB1",
+        "rationale": "TAB1与MAP3K7形成激活复合物并促进TAK1自磷酸化，是同一TAK1信号轴中可用于阻断复合物装配的关键调控因子。"
+      },
+      {
+        "target": "TAB2",
+        "rationale": "TAB2通过泛素链识别将MAP3K7连接至IL-1、TNF和TLR信号复合物，干预该节点可削弱TAK1依赖性NF-κB与MAPK激活。"
+      },
+      {
+        "target": "IKBKB",
+        "rationale": "IKBKB位于MAP3K7下游，是TAK1介导NF-κB通路激活的核心激酶节点，适合作为同通路功能验证与替代干预靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

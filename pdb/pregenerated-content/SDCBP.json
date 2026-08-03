@@ -1,0 +1,65 @@
+{
+  "gene": "SDCBP",
+  "generatedAt": "2026-08-03T21:08:28.799Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SDCBP/syntenin-1含双PDZ支架结构域，参与syndecan胞质尾部、ALIX及多种膜受体货物的内体分选与外泌体装载，在头颈鳞癌中可促进受体再循环、侵袭表型和细胞外囊泡介导的肿瘤微环境通讯。该蛋白主要为胞内支架蛋白，天然抗原可及性弱于分泌因子或膜受体，但其PDZ1-PDZ2结构域具备明确肽结合沟槽，适合用于胞内递送抗体片段或研究级阻断分子设计。相较于广泛代谢或血细胞计数关联靶点，SDCBP在syndecan-ALIX外泌体生物发生轴中具有更集中的机制位置，可作为肿瘤外泌体与侵袭转移方向的优先探索靶点。",
+    "mechanism": "阻断SDCBP PDZ2与syndecan胞质尾部EFYA基序结合，并削弱其与ALIX介导的外泌体货物分选复合体形成。",
+    "selectedEpitope": "优先覆盖PDZ2羧基端肽结合沟槽及αB/βB界面，兼顾PDZ1-PDZ2串联构象稳定性。",
+    "diseaseDirection": "头颈鳞癌外泌体与侵袭转移",
+    "domain": "SDCBP含N端低复杂度区及串联PDZ1、PDZ2结构域；1R6J解析其高分辨率PDZ结构单元。",
+    "evidence": "SDCBP-syndecan-ALIX外泌体通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与肿瘤关联数据",
+      "UniProt O00560蛋白功能与结构域注释",
+      "RCSB PDB 1R6J X射线晶体结构",
+      "syntenin-ALIX-syndecan外泌体生物发生文献"
+    ],
+    "referenceEntries": "UniProt O00560；RCSB PDB 1R6J；Open Targets SDCBP",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PDZ2羧基端肽结合沟槽与αB/βB界面",
+        "直接竞争syndecan EFYA基序结合，机制可验证性较强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PDZ1-PDZ2结构域间邻近面",
+        "可能限制串联PDZ构象耦联并影响多价货物装配",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PDZ结构核心β折叠保守面",
+        "保守性高且可能影响整体折叠，存在非特异功能扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SDCBP为胞内支架蛋白，常规抗体难以进入胞质；应采用VHH、细胞穿透递送或胞内表达格式，并避免破坏PDZ核心折叠。",
+    "structurePrepZh": "以1R6J链A为模板，补全缺失侧链并质子化PDZ肽结合沟槽；需结合SDCBP全长模型评估PDZ1-PDZ2相对取向。",
+    "structureRef": "RCSB PDB 1R6J，0.73 Å X-ray，human SDCBP PDZ domain",
+    "antibodies": [
+      "anti-SDCBP research antibody",
+      "anti-syntenin-1 research antibody"
+    ],
+    "interfaceFocus": "PDZ2羧基端肽结合沟槽与ALIX相关装配面",
+    "designMode": "胞内阻断型VHH",
+    "candidates": [
+      {
+        "target": "SDC1",
+        "rationale": "SDC1胞质尾部通过EFYA样PDZ结合基序招募SDCBP，是syndecan-syntenin外泌体装载轴的上游膜蛋白节点。其胞外结构域可及性优于SDCBP。"
+      },
+      {
+        "target": "PDCD6IP",
+        "rationale": "PDCD6IP/ALIX与SDCBP协同参与内体膜出芽和外泌体生物发生，是同一货物分选复合体的核心组分。阻断该节点可影响SDCBP依赖性外泌体释放。"
+      },
+      {
+        "target": "SDC4",
+        "rationale": "SDC4同属syndecan家族，胞质尾部可与SDCBP PDZ结构域结合，并参与细胞黏附、迁移及外泌体货物分选。其膜蛋白属性提供更高抗原可及性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

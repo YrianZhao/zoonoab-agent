@@ -1,0 +1,65 @@
+{
+  "gene": "SUPT4H1",
+  "generatedAt": "2026-08-03T17:03:35.219Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SUPT4H1编码DSIF复合体的SPT4亚基，与SUPT5H共同参与RNA polymerase II转录延伸暂停与释放过程，在HIV前病毒转录中可影响病毒长末端重复序列驱动的延伸效率。该蛋白为核内转录延伸因子，缺乏天然分泌或细胞表面胞外结构域，抗原可及性不符合常规治疗性抗体靶点特征，更适合作为结构生物学或胞内递送抗体研究对象。相较CCR5、CXCR4、CD4等HIV进入通路膜受体，SUPT4H1的可成药性与体内抗体暴露优势较弱，但其宿主依赖性转录节点具有病毒复制调控的机制价值。",
+    "mechanism": "设计抗体需阻断SUPT4H1与SUPT5H形成DSIF异二聚体，削弱其对RNA polymerase II延伸复合体的稳定结合，从而干预HIV前病毒转录延伸。",
+    "selectedEpitope": "优先覆盖SPT4锌指样核心与SUPT5H NGN结构域接触面，定位DSIF异二聚化界面。",
+    "diseaseDirection": "HIV转录延伸宿主因子方向",
+    "domain": "SUPT4H1为小型核蛋白，含保守SPT4/DSIF锌指样结构域，与SUPT5H形成转录延伸复合体。",
+    "evidence": "SUPT4H1-DSIF介导HIV转录延伸证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P63272功能注释",
+      "RCSB PDB 3H7H晶体结构",
+      "RNA polymerase II转录延伸与HIV前病毒转录文献"
+    ],
+    "referenceEntries": "UniProt:P63272；RCSB PDB:3H7H；Open Targets:SUPT4H1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SPT4锌指样核心与SUPT5H NGN结构域结合界面",
+        "直接干预DSIF异二聚体装配，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SPT4保守表面邻近RNA polymerase II延伸复合体朝向区域",
+        "可能削弱DSIF对转录延伸复合体的稳定定位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "锌配位残基周边紧密折叠核心",
+        "易影响整体折叠并产生非特异构象风险，不宜作为首选",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SUPT4H1为核内蛋白，常规抗体难以到达作用位点；锌指核心保守且结构紧凑，应避免破坏折叠稳定性，优先采用胞内递送Fab或VHH验证。",
+    "structurePrepZh": "以PDB 3H7H的A、B链为模板，保留SUPT4H1-SUPT5H界面构象，检查锌配位几何、缺失残基与晶体接触后进行表位暴露评估。",
+    "structureRef": "RCSB PDB 3H7H，X-ray结构，1.55 Å分辨率",
+    "antibodies": [
+      "无获批SUPT4H1治疗性抗体",
+      "无公开临床阶段SUPT4H1抗体"
+    ],
+    "interfaceFocus": "SUPT4H1-SUPT5H异二聚化接触面",
+    "designMode": "胞内阻断型抗体",
+    "candidates": [
+      {
+        "target": "SUPT5H",
+        "rationale": "SUPT5H为DSIF复合体另一核心亚基，直接结合SUPT4H1并参与RNA polymerase II暂停与延伸调控，是同一转录延伸节点的近端靶点。"
+      },
+      {
+        "target": "CDK9",
+        "rationale": "CDK9作为P-TEFb催化亚基磷酸化RNA polymerase II CTD和DSIF相关组分，促进HIV前病毒转录延伸释放，处于同一HIV转录延伸通路。"
+      },
+      {
+        "target": "CCNT1",
+        "rationale": "CCNT1为P-TEFb调节亚基，可与HIV Tat协同招募CDK9至TAR RNA，驱动病毒转录延伸，具备明确的HIV转录机制关联。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

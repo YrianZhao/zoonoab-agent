@@ -1,0 +1,65 @@
+{
+  "gene": "PRKDC",
+  "generatedAt": "2026-08-03T15:35:33.518Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PRKDC 编码 DNA-PKcs，是非同源末端连接修复与 V(D)J 重组中的核心丝氨酸/苏氨酸激酶，缺陷可导致 DNA 双链断裂修复失败并引发 DNA-PKcs 缺陷型重症联合免疫缺陷。该蛋白主要定位于细胞核并与 Ku70/Ku80-DNA 末端复合物结合，缺乏天然胞外结构域，抗体药物抗原可及性显著弱于膜受体或分泌蛋白。其优先级主要体现为疾病遗传因果性和结构机制清晰度，而非传统可成药性；相较 XRCC5、XRCC6 等同通路组分，PRKDC 位于催化执行节点，更适合作为机制验证型胞内抗体或递送抗体设计对象。",
+    "mechanism": "设计抗体片段结合 DNA-PKcs FAT/kinase 区域，空间阻断 Ku70/Ku80-DNA 末端复合物诱导的激酶构象激活，抑制 Artemis 等底物磷酸化。",
+    "selectedEpitope": "优先锁定 FAT-kinase 连接区及激酶 C-lobe 邻近构象调控界面，避免广泛遮挡保守 ATP 结合裂隙。",
+    "diseaseDirection": "DNA修复缺陷相关免疫缺陷",
+    "domain": "DNA-PKcs 含 HEAT repeat N端臂、FAT结构域、PIKK激酶结构域、PRD区及FATC尾部。",
+    "evidence": "PRKDC-DNA-PKcs免疫缺陷与NHEJ机制证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P78527 functional annotation",
+      "RCSB PDB 5LUQ experimental structure",
+      "OMIM and ClinVar PRKDC deficiency records"
+    ],
+    "referenceEntries": "UniProt P78527；RCSB PDB 5LUQ；Open Targets PRKDC",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "FAT-kinase连接区构象调控界面",
+        "可干预DNA-PKcs激酶激活构象，适合功能阻断型胞内抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PRD区及FATC尾部邻近表面",
+        "可能影响自磷酸化相关构象转换，利于构象锁定策略",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PIKK激酶ATP结合裂隙周边",
+        "区域保守性高且易产生广谱PIKK交叉结合风险，应限制作为主表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PRKDC 为核内大分子激酶，常规抗体难以到达抗原；建议限定为胞内抗体、递送抗体或研究级构象探针，并严格评估PIKK家族交叉反应。",
+    "structurePrepZh": "5LUQ 为4.3 Å X射线结构，需补全缺失环区、校正低分辨率侧链构象，并结合AlphaFold或cryo-EM模型评估表位稳健性。",
+    "structureRef": "RCSB PDB 5LUQ；human DNA-PKcs X-ray structure",
+    "antibodies": [
+      "anti-DNA-PKcs monoclonal antibody 18-2",
+      "anti-DNA-PKcs monoclonal antibody Y393"
+    ],
+    "interfaceFocus": "FAT-kinase连接区与FATC构象调控界面",
+    "designMode": "胞内构象阻断",
+    "candidates": [
+      {
+        "target": "XRCC6",
+        "rationale": "XRCC6 编码 Ku70，是 NHEJ 通路中识别 DNA 双链断裂末端并招募 DNA-PKcs 的核心亚基，适合阻断 DNA 末端装配过程。"
+      },
+      {
+        "target": "XRCC5",
+        "rationale": "XRCC5 编码 Ku80，与 Ku70 形成异二聚体并直接参与 DNA-PKcs 招募，位于 PRKDC 上游的同一 DNA-PK 复合物通路。"
+      },
+      {
+        "target": "DCLRE1C",
+        "rationale": "DCLRE1C 编码 Artemis，是 DNA-PKcs 磷酸化调控的 V(D)J 重组核酸酶，缺陷同样导致重症联合免疫缺陷表型。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

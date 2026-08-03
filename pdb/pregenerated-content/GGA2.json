@@ -1,0 +1,65 @@
+{
+  "gene": "GGA2",
+  "generatedAt": "2026-08-03T12:45:40.583Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GGA2为ARF依赖的反式高尔基网络衔接蛋白，参与网格蛋白包被囊泡形成及溶酶体相关受体分选，其遗传关联信号主要集中于高密度脂蛋白胆固醇测量性状，提示其可能通过膜蛋白与脂质转运受体分选影响脂质稳态。该蛋白为胞质侧Golgi相关适配因子，并非分泌蛋白或跨膜受体，天然抗原可及性弱，抗体策略更适合定位于胞内研究试剂或递送型抗体格式。相较于AP复合体等广泛必需衔接因子，GGA2具有VHS-GAT-hinge-GAE模块化结构和ARF结合界面解析结构，可为结构限定的功能阻断设计提供更明确优先级。",
+    "mechanism": "阻断GGA2 GAT结构域与ARF-GTP的结合，削弱GGA2向TGN膜募集及后续网格蛋白包被货物分选。",
+    "selectedEpitope": "优先覆盖GAT结构域ARF-GTP结合螺旋界面，避免仅识别柔性hinge区。",
+    "diseaseDirection": "脂质稳态与肿瘤分选通路",
+    "domain": "GGA2含N端VHS结构域、GAT结构域、柔性hinge区及C端GAE耳结构域。",
+    "evidence": "GGA2结构域与脂质性状关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform遗传疾病关联",
+      "UniProt Q9UJY4功能与结构域注释",
+      "RCSB PDB 1MHQ晶体结构记录",
+      "ARF依赖TGN网格蛋白适配分选文献"
+    ],
+    "referenceEntries": "UniProt Q9UJY4；RCSB PDB 1MHQ；Open Targets GGA2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "GAT结构域ARF-GTP结合螺旋界面",
+        "可直接干预膜募集步骤，机制可验证性较高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "VHS结构域货物酸性簇识别沟槽",
+        "可能影响MPR等货物受体分选，适合作为功能备选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "hinge区网格蛋白结合基序邻近区域",
+        "柔性高且结构解析不足，构象表位稳定性风险较大",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GGA2主要位于胞质侧，常规体内抗体难以接触天然抗原；建议限定为胞内抗体、递送抗体或机制研究抗体，并优先验证细胞内可达性。",
+    "structurePrepZh": "以PDB 1MHQ链A/B为GAT结构域模板，去除晶体接触冗余链后评估ARF结合面保守性，并补充AlphaFold全长模型定位VHS与GAE相对区域。",
+    "structureRef": "PDB 1MHQ；GGA GAT结构域X射线晶体结构，2.2 Å",
+    "antibodies": [
+      "anti-GGA2 polyclonal antibody",
+      "anti-GGA2 monoclonal antibody"
+    ],
+    "interfaceFocus": "GAT结构域ARF-GTP结合沟槽",
+    "designMode": "胞内阻断型抗体",
+    "candidates": [
+      {
+        "target": "GGA1",
+        "rationale": "GGA1与GGA2同属TGN ARF依赖衔接蛋白，具有VHS-GAT-GAE模块并参与相似的MPR货物分选，可作为通路内并行靶点。"
+      },
+      {
+        "target": "GGA3",
+        "rationale": "GGA3在TGN网格蛋白包被囊泡形成中与GGA2功能相近，并同样通过GAT结构域响应ARF-GTP，适合用于冗余性与选择性评估。"
+      },
+      {
+        "target": "ARF1",
+        "rationale": "ARF1是GGA蛋白膜募集的上游小GTP酶，ARF1-GTP与GGA GAT结构域结合构成该分选轴的核心分子事件。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

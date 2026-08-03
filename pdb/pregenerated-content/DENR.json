@@ -1,0 +1,65 @@
+{
+  "gene": "DENR",
+  "generatedAt": "2026-08-03T11:54:55.234Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DENR与MCTS1共同参与真核翻译再起始及核糖体释放过程，影响上游开放阅读框依赖转录本的蛋白合成，Open Targets显示其与神经退行性疾病存在遗传与组学关联。该蛋白主要定位于胞质翻译复合体，并非分泌蛋白或膜受体，天然抗原可及性弱于细胞外靶点，抗体设计更适合作为细胞内机制验证或胞内抗体研究。相较常规胞外疾病靶点，DENR的优先级优势在于已有1.74 Å实验结构支持DENR-MCTS1界面解析，可用于高精度结构表位设计，但成药转化优先级需低于可直接暴露的膜受体或分泌因子。",
+    "mechanism": "通过抗体结合DENR的SUI1样结构域或DENR-MCTS1接触面，阻断DENR与MCTS1形成翻译再起始复合体，从而干预40S核糖体再循环相关相互作用。",
+    "selectedEpitope": "优先选择SUI1样结构域中参与MCTS1复合体稳定的暴露界面，避免深埋疏水核心位点。",
+    "diseaseDirection": "神经退行性疾病相关翻译调控",
+    "domain": "DENR含N端PUA样结构域与C端SUI1样结构域，参与翻译再起始因子复合体装配。",
+    "evidence": "DENR翻译再起始结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt O43583蛋白功能注释",
+      "RCSB PDB 6VPQ实验晶体结构",
+      "DENR-MCTS1介导翻译再起始相关文献"
+    ],
+    "referenceEntries": "UniProt: O43583；RCSB PDB: 6VPQ；Ensembl: ENSG00000139726",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端SUI1样结构域的MCTS1邻近复合体界面",
+        "可直接干预DENR-MCTS1装配及翻译再起始功能",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端PUA样结构域外露带电环区",
+        "表面可及性较好，适合构建结合型验证抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "结构域间疏水核心与晶体接触区域",
+        "可能影响折叠稳定性且易产生构象依赖假阳性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DENR为胞内翻译因子，常规抗体难以到达天然作用位点；设计应定位于重组蛋白、生物物理阻断或胞内抗体场景，并验证对MCTS1结合的特异影响。",
+    "structurePrepZh": "以6VPQ高分辨率晶体结构为模板，保留DENR-MCTS1复合体界面链信息，去除晶体缓冲小分子并评估多链装配中的真实生物界面。",
+    "structureRef": "RCSB PDB 6VPQ，X-ray diffraction，1.74 Å",
+    "antibodies": [
+      "anti-DENR研究级抗体",
+      "anti-DENR recombinant antibody"
+    ],
+    "interfaceFocus": "DENR SUI1样结构域与MCTS1接触界面",
+    "designMode": "胞内靶点结构阻断",
+    "candidates": [
+      {
+        "target": "MCTS1",
+        "rationale": "MCTS1是DENR的直接复合体伴侣，共同介导翻译再起始及核糖体释放，靶向其界面可作为同一机制轴的替代干预策略。"
+      },
+      {
+        "target": "EIF2D",
+        "rationale": "EIF2D与DENR-MCTS1功能相关，参与非经典翻译起始、再起始及核糖体回收过程，适合同步评估翻译再循环通路依赖性。"
+      },
+      {
+        "target": "EIF3H",
+        "rationale": "EIF3H属于eIF3翻译起始复合体组分，与上游开放阅读框依赖翻译调控相关，可作为同一蛋白质合成调控网络中的候选比较靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

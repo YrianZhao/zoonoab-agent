@@ -1,0 +1,65 @@
+{
+  "gene": "PTPN23",
+  "generatedAt": "2026-08-03T15:43:47.451Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PTPN23 是 ESCRT 相关胞内磷酸酶样蛋白，参与内体货物分选、多囊泡体形成及受体降解过程，其双等位基因变异与神经发育异常、脑结构异常、癫痫和痉挛表型相关。该蛋白主要定位于胞质和内体膜相关复合物，不具备天然胞外结构域或分泌蛋白特征，因此作为常规体内阻断型抗体靶点的抗原可及性显著受限。与可直接暴露于细胞外空间的受体或分泌因子相比，PTPN23 的优先级应定位于结构生物学验证、胞内抗体或递送型结合分子开发，而非传统裸抗体治疗靶点。",
+    "mechanism": "设计分子可结合 PTPN23 Bro1 结构域，干扰其与 ESCRT 相关蛋白 CHMP4B 的募集界面，从而影响内体膜出芽和货物分选过程。",
+    "selectedEpitope": "优先聚焦 5MK2 所解析 Bro1 结构域的 CHMP4 结合沟槽及相邻保守螺旋面。",
+    "diseaseDirection": "神经发育异常与脑结构异常",
+    "domain": "PTPN23 含 N 端 Bro1 结构域、中央 His/Pro-rich 区域及 C 端失活型蛋白酪氨酸磷酸酶结构域。",
+    "evidence": "PTPN23 神经发育病变与 ESCRT 功能证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9H3S7 functional annotation",
+      "RCSB PDB 5MK2 experimental structure",
+      "OMIM and ClinVar PTPN23 variant records"
+    ],
+    "referenceEntries": "UniProt Q9H3S7；RCSB PDB 5MK2；Open Targets PTPN23",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Bro1 结构域 CHMP4 结合沟槽",
+        "可用于阻断 ESCRT-III 相关蛋白募集，机制指向性最强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Bro1 结构域保守螺旋束外侧面",
+        "有利于稳定识别折叠核心并形成高亲和结合分子",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Bro1 结构域晶体接触界面",
+        "可能受晶体堆积影响，需排除非生理性表面",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PTPN23 为胞内蛋白，常规抗体难以在生理状态下接触靶点；建议采用胞内抗体、VHH 递送或细胞穿透偶联策略，并严格评估 ESCRT 广泛抑制风险。",
+    "structurePrepZh": "以 5MK2 的 A、B、C 链 Bro1 结构域为模板，保留高分辨率主构象，去除晶体水和非功能接触后进行界面映射与保守性分析。",
+    "structureRef": "RCSB PDB 5MK2，X-ray diffraction，1.7 Å",
+    "antibodies": [
+      "暂无获批抗 PTPN23 治疗性抗体",
+      "暂无临床阶段抗 PTPN23 阻断抗体"
+    ],
+    "interfaceFocus": "Bro1-CHMP4 结合沟槽与保守螺旋面",
+    "designMode": "胞内结合分子设计",
+    "candidates": [
+      {
+        "target": "CHMP4B",
+        "rationale": "CHMP4B 是 ESCRT-III 复合物核心组分，可与 Bro1 结构域蛋白协同参与内体膜重塑。其功能扰动与神经系统发育和膜运输异常具有同一细胞通路关联。"
+      },
+      {
+        "target": "PDCD6IP",
+        "rationale": "PDCD6IP/ALIX 含 Bro1 结构域并募集 CHMP4 蛋白，位于 ESCRT 依赖性货物分选和膜出芽通路中。该靶点可作为比较 PTPN23-Bro1 界面药理可干预性的同通路参照。"
+      },
+      {
+        "target": "TSG101",
+        "rationale": "TSG101 是 ESCRT-I 复合物组分，参与泛素化膜蛋白的内体分选并与下游 ESCRT 组件衔接。其位于 PTPN23 相关内体货物运输轴的上游节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

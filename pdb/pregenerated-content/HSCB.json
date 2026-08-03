@@ -1,0 +1,65 @@
+{
+  "gene": "HSCB",
+  "generatedAt": "2026-08-03T19:53:07.235Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HSCB 是线粒体铁硫簇装配系统的 J 型共伴侣，协助 HSPA9 将 ISCU 支架上的铁硫簇转移至受体蛋白，因而与铁粒幼细胞贫血、红细胞指数异常及神经退行性表型相关。该蛋白定位于线粒体基质，并非分泌蛋白或细胞表面膜受体，天然抗原可及性显著弱于胞外靶点，抗体策略更适合结构验证、胞内递送或研究级功能阻断。相比 TFRC、ERFE 等外周铁稳态靶点，HSCB 更贴近线粒体铁硫簇生物发生的病因节点，但成药优先级受限于胞内定位与递送门槛。",
+    "mechanism": "设计抗体阻断 HSCB C 端结构域与 ISCU LPPVK 基序结合，削弱 HSCB-HSPA9 协同促进的铁硫簇转移循环。",
+    "selectedEpitope": "优先覆盖 C 端三螺旋束的 ISCU 结合沟槽及邻近疏水界面。",
+    "diseaseDirection": "线粒体铁硫簇缺陷相关贫血",
+    "domain": "含 N 端 J 结构域、柔性连接区与 C 端三螺旋束底物识别结构域。",
+    "evidence": "HSCB 线粒体铁硫簇装配疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q8IWL3 functional annotation",
+      "RCSB PDB 3BVO X-ray structure",
+      "iron-sulfur cluster biogenesis literature"
+    ],
+    "referenceEntries": "UniProt Q8IWL3；RCSB PDB 3BVO；Open Targets HSCB",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C 端结构域 ISCU LPPVK 结合沟槽",
+        "可直接干预 HSCB-ISCU 底物识别界面，机制清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N 端 J 结构域 HPD 基序邻近面",
+        "可能影响 HSPA9 ATPase 激活，但需避免破坏非特异折叠稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "二聚体晶体接触面与低保守外露环",
+        "晶体堆积贡献不确定，功能相关性需实验确认",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HSCB 为线粒体基质蛋白，常规抗体难以到达作用位点；应优先采用胞内递送验证或工程化胞内抗体，并严控线粒体蛋白稳态毒性。",
+    "structurePrepZh": "以 3BVO 链 A/B 为模板，去除晶体水与非功能性接触，补全缺失环区后评估 C 端 ISCU 结合沟槽的保守性与可成药性。",
+    "structureRef": "RCSB PDB 3BVO，X-ray diffraction，3.0 Å",
+    "antibodies": [
+      "无获批同类抗体",
+      "研究级抗 HSCB 抗体"
+    ],
+    "interfaceFocus": "HSCB-ISCU 结合沟槽与 J 结构域 HPD 面",
+    "designMode": "胞内阻断型",
+    "candidates": [
+      {
+        "target": "ISCU",
+        "rationale": "ISCU 是线粒体铁硫簇装配支架蛋白，直接与 HSCB 形成功能复合物；其异常与铁硫簇缺陷及线粒体肌病相关。"
+      },
+      {
+        "target": "HSPA9",
+        "rationale": "HSPA9 是 HSCB 招募并激活的线粒体 Hsp70 伴侣，驱动 ISCU 上铁硫簇转移过程；干预该节点可验证伴侣循环依赖性。"
+      },
+      {
+        "target": "GLRX5",
+        "rationale": "GLRX5 参与铁硫簇转移与红系血红素合成耦联，突变可导致铁粒幼细胞贫血；与 HSCB 位于同一线粒体铁硫簇生物发生通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

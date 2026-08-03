@@ -1,0 +1,65 @@
+{
+  "gene": "SRR",
+  "generatedAt": "2026-08-03T21:18:14.347Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SRR编码丝氨酸消旋酶，催化L-丝氨酸生成D-丝氨酸，后者作为NMDA受体甘氨酸位点共激动剂参与谷氨酸能神经传递，D-丝氨酸失衡与神经退行性疾病中的兴奋性毒性和突触功能异常相关。SRR为胞质可溶性PLP依赖酶，缺乏天然胞外结构域或分泌特征，抗体可及性弱，常规外源性抗体阻断并非优选模式。相比NMDAR胞外亚基或D-丝氨酸转运/降解环节，SRR的结构解析度高且活性口袋明确，但作为抗体主靶点优先级低于可直接胞外拮抗的受体靶点。",
+    "mechanism": "抗体设计宜采用胞内递送或降解偶联模式，干预SRR二聚体界面或PLP结合邻域，降低L-丝氨酸向D-丝氨酸转化并间接削弱NMDAR共激动。",
+    "selectedEpitope": "优先评估3L6B中二聚体界面邻近的可成簇暴露螺旋/环区，避免直接遮蔽PLP口袋深部残基。",
+    "diseaseDirection": "神经退行性疾病与谷氨酸能异常",
+    "domain": "SRR为PLP依赖折叠酶，含N端小结构域、C端催化核心及同源二聚体界面。",
+    "evidence": "SRR-D-丝氨酸-NMDAR轴结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q9GZT4功能与亚细胞定位注释",
+      "RCSB PDB 3L6B高分辨率晶体结构",
+      "D-丝氨酸/NMDA受体神经退行性疾病文献"
+    ],
+    "referenceEntries": "UniProt Q9GZT4；RCSB PDB 3L6B；Open Targets SRR",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "二聚体界面邻近暴露螺旋与环区",
+        "可能干扰SRR同源二聚体稳定性并影响催化构象",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PLP结合口袋入口周边可及环区",
+        "可变构影响底物进入或辅因子邻域构象",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化口袋深部保守残基邻域",
+        "高度保守且空间埋藏，抗体可及性与选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SRR为胞内酶，常规抗体难以到达作用位点；建议限定为细胞内抗体、递送抗体片段或靶向降解概念，并严格评估PLP酶家族交叉反应。",
+    "structurePrepZh": "以3L6B链A为模板，保留PLP及关键催化邻域用于口袋标注，补全缺失侧链、质子化活性位点并分析二聚体装配界面。",
+    "structureRef": "RCSB PDB 3L6B，human serine racemase，1.5 Å X-ray",
+    "antibodies": [
+      "无获批SRR靶向治疗性抗体",
+      "研究级anti-SRR检测抗体"
+    ],
+    "interfaceFocus": "二聚体界面与PLP口袋入口邻域",
+    "designMode": "胞内抗体/降解偶联",
+    "candidates": [
+      {
+        "target": "GRIN1",
+        "rationale": "GRIN1编码NMDA受体必需GluN1亚基，含胞外配体结合结构域，可直接调控D-丝氨酸/甘氨酸共激动依赖的受体活化。其抗原可及性显著优于胞内SRR。"
+      },
+      {
+        "target": "GRIN2B",
+        "rationale": "GRIN2B编码GluN2B亚基，参与神经退行性疾病和兴奋性毒性相关NMDAR信号。胞外N端结构域和配体结合域为抗体变构调节提供可及表位。"
+      },
+      {
+        "target": "DAO",
+        "rationale": "DAO编码D-氨基酸氧化酶，参与D-丝氨酸降解并与SRR共同决定NMDAR共激动剂水平。该靶点位于同一D-丝氨酸稳态通路，可作为代谢调控替代节点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

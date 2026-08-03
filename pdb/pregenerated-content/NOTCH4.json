@@ -1,0 +1,65 @@
+{
+  "gene": "NOTCH4",
+  "generatedAt": "2026-08-03T14:47:25.008Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NOTCH4 是血管内皮和神经嵴相关发育中的 Notch 受体，配体结合后经 ADAM 蛋白酶和 γ-分泌酶切割释放 NICD，参与脑血管畸形、Hirschsprung 病及神经退行性病变相关的细胞命运调控。其功能性抗原位点位于细胞外 EGF 重复序列和负调控区，属于膜受体外露结构，具备抗体直接阻断配体结合或受体构象激活的可及性。相较于下游转录复合物靶点，NOTCH4 提供更高的受体选择性和细胞表面干预窗口，优先级适合围绕配体依赖性激活界面开展设计。",
+    "mechanism": "阻断 NOTCH4 细胞外 EGF 重复序列与 DLL4/JAG1 配体 DSL 结构域结合，抑制受体牵拉诱导的 S2/S3 裂解和 NICD 释放。",
+    "selectedEpitope": "优先覆盖 EGF11-12 配体结合界面，兼顾 Ca2+ 结合环区以提高构象锁定能力。",
+    "diseaseDirection": "血管发育异常与神经嵴疾病",
+    "domain": "NOTCH4 为单跨膜受体，胞外区含多段 EGF-like repeats、LNR 模块及异二聚化区。",
+    "evidence": "NOTCH4 结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q99466 functional annotation",
+      "RCSB PDB 7OR3 experimental structure",
+      "Notch receptor-ligand structural biology literature"
+    ],
+    "referenceEntries": "UniProt Q99466；RCSB PDB 7OR3；Open Targets NOTCH4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "EGF11-12 配体结合面",
+        "直接阻断 DLL/JAG 配体 DSL 结构域识别，最符合中和型抗体设计目标",
+        "优先"
+      ],
+      [
+        "Site B",
+        "LNR-HD 负调控区邻近界面",
+        "稳定受体自抑制构象，降低配体牵拉后蛋白酶裂解概率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远端 EGF 重复序列非核心外露面",
+        "可形成结合抗体但功能阻断效应不确定，需避免非特异性跨 Notch 交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NOTCH 家族 EGF 重复序列保守性较高，应在 EGF11-12 差异残基和糖基化邻近区域筛选特异表位，避免干扰 NOTCH1/2/3。",
+    "structurePrepZh": "以 PDB 7OR3 抗原链 A、B 为模板，保留解析 Ca2+ 与二硫键约束，补全缺失侧链并标注糖基化位点用于表位可及性评估。",
+    "structureRef": "PDB 7OR3，X-ray diffraction，1.8 Å，人源 NOTCH4 片段结构",
+    "antibodies": [
+      "OMP-59R5",
+      "Demcizumab"
+    ],
+    "interfaceFocus": "EGF11-12 与 DSL 配体结合界面",
+    "designMode": "受体阻断型抗体",
+    "candidates": [
+      {
+        "target": "DLL4",
+        "rationale": "DLL4 是血管内皮 Notch 信号的关键配体，可与 NOTCH4 胞外 EGF 重复序列结合并驱动受体激活，适合作为同轴通路的配体端阻断靶点。"
+      },
+      {
+        "target": "JAG1",
+        "rationale": "JAG1 可作为 NOTCH4 的配体参与血管与神经嵴发育相关 Notch 信号，阻断 JAG1-Notch 互作可补充受体端抑制策略。"
+      },
+      {
+        "target": "ADAM10",
+        "rationale": "ADAM10 介导配体诱导后 Notch 受体 S2 位点裂解，是 NOTCH4 激活级联中的真实蛋白酶节点，但其广泛底物谱提示安全窗需谨慎评估。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

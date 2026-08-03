@@ -1,0 +1,65 @@
+{
+  "gene": "USP2",
+  "generatedAt": "2026-08-03T17:44:12.237Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "USP2 为细胞内去泛素化酶，主要通过水解底物赖氨酸连接的泛素链影响蛋白稳定性、蛋白降解和应激相关信号。Open Targets 关联以尿酸测量、屈光相关表型和神经退行性疾病为主，但这些关联尚不足以确立可由胞外抗体直接阻断的受体-配体轴。该蛋白缺乏分泌信号肽、跨膜区和稳定胞外结构域，抗原可及性显著弱于膜受体或分泌因子，因此常规治疗性抗体优先级较低；若作为学术抗体靶点，更适合定位为细胞内酶构象识别或检测型抗体设计对象。",
+    "mechanism": "抗体策略以识别 USP2 催化结构域构象为主，阻碍泛素 C 端尾部进入 Cys276-His557-Asp575 催化裂隙及底物泛素链结合。",
+    "selectedEpitope": "优先覆盖催化结构域泛素结合沟槽邻近环区，避开高度保守催化三联体核心。",
+    "diseaseDirection": "代谢性状与神经退行性疾病研究",
+    "domain": "USP2 含 N 端低复杂度调控区和 C 端 USP 催化结构域，5XVE 覆盖催化域高分辨率构象。",
+    "evidence": "USP2 遗传关联与去泛素化酶结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt reviewed entry O75604",
+      "RCSB PDB 5XVE X-ray structure",
+      "MEROPS peptidase family C19 annotation"
+    ],
+    "referenceEntries": "UniProt O75604；RCSB PDB 5XVE；MEROPS C19.003",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "USP 催化域泛素 C 端结合沟槽外缘环区",
+        "有望干扰泛素尾部定位并保留较好的亚型选择性设计空间",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化域远端可溶性暴露螺旋-环面",
+        "适合获得构象识别抗体，用于检测或结构稳定化",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Cys-His-Asp 催化三联体邻近保守核心",
+        "保守性高且可能产生广谱 DUB 交叉反应，需降低直接覆盖比例",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "USP2 为胞内酶，常规全长抗体难以到达作用位点；建议限定为研究级、递送型或胞内抗体场景，并重点评估 DUB 家族交叉反应。",
+    "structurePrepZh": "以 5XVE A/B 链催化域为模板，补全缺失侧链、校正质子化状态，保留催化裂隙与泛素结合沟槽用于表位评估。",
+    "structureRef": "RCSB PDB 5XVE，1.24 Å X-ray USP2 催化域结构",
+    "antibodies": [
+      "anti-USP2 clone EPR1128",
+      "anti-USP2 clone 3D9"
+    ],
+    "interfaceFocus": "泛素 C 端尾部结合沟槽及邻近可变环",
+    "designMode": "胞内酶构象抗体",
+    "candidates": [
+      {
+        "target": "SLC2A9",
+        "rationale": "SLC2A9 是尿酸转运与血尿酸水平遗传关联最强的膜转运蛋白之一，与尿酸测量表型处于同一代谢性状方向；其膜蛋白属性较 USP2 更符合抗体可及性评估。"
+      },
+      {
+        "target": "ABCG2",
+        "rationale": "ABCG2 介导尿酸外排并与高尿酸血症和痛风风险相关，属于尿酸稳态通路的真实疾病靶点；胞外环区域可作为抗体识别与功能调控候选界面。"
+      },
+      {
+        "target": "SLC22A12",
+        "rationale": "SLC22A12 编码 URAT1，负责肾近端小管尿酸重吸收，是尿酸稳态和高尿酸血症治疗通路中的关键靶点；其疾病机制较 USP2 更直接。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "ZNF473",
+  "generatedAt": "2026-08-03T18:01:31.097Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ZNF473为核内C2H2型锌指转录相关蛋白，现有疾病关联以胎盘滞留及若干肿瘤/血液蛋白表型为主，但关联分值较低且缺乏明确可药理阻断的胞外病理轴。该蛋白不属于分泌蛋白或膜受体，天然抗原可及性显著弱于胞外配体、受体或细胞表面分化抗原。相较同疾病方向中可直接被抗体结合的NECTIN2、ERBB2或PDCD1LG2等靶点，ZNF473更适合作为机制研究或细胞内结合分子探索，抗体药物主靶点优先级较低。",
+    "mechanism": "可探索抗体片段识别ZNF473锌指DNA结合面的可及构象，阻断C2H2锌指与靶DNA碱基沟的接触；常规胞外抗体难以作用于核内ZNF473。",
+    "selectedEpitope": "优先评估C2H2锌指α螺旋DNA识别面及Zn2+配位邻近环区，避免破坏核心折叠。",
+    "diseaseDirection": "胎盘相关异常与肿瘤探索",
+    "domain": "ZNF473含多段C2H2型锌指结构域，PDB 2EMB覆盖锌指折叠片段。",
+    "evidence": "ZNF473疾病关联与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q8WTR7蛋白功能与定位注释",
+      "RCSB PDB 2EMB溶液NMR结构",
+      "Human Protein Atlas组织与亚细胞定位信息"
+    ],
+    "referenceEntries": "UniProt Q8WTR7；RCSB PDB 2EMB；Open Targets ZNF473",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C2H2锌指α螺旋DNA识别面",
+        "直接覆盖碱基沟接触残基，适合阻断DNA结合",
+        "优先"
+      ],
+      [
+        "Site B",
+        "锌指β发夹与α螺旋连接环",
+        "构象暴露度较高，可用于筛选构象选择性结合分子",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Cys2-His2锌离子配位核心",
+        "对结构稳定性高度敏感，结合可能诱导非特异变性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ZNF473为核内蛋白，常规抗体难以到达作用位点；疾病遗传与功能证据较弱。建议限定为胞内抗体、递送型Fab/VHH或研究级工具抗体设计。",
+    "structurePrepZh": "采用PDB 2EMB的NMR模型集合评估构象一致性，保留Zn2+配位几何，标注Cys/His配位残基并剔除低置信柔性端区。",
+    "structureRef": "RCSB PDB 2EMB，human ZNF473 zinc finger，solution NMR",
+    "antibodies": [
+      "无获批同靶点抗体",
+      "无临床阶段同靶点抗体"
+    ],
+    "interfaceFocus": "锌指α螺旋DNA识别面与配位邻近环区",
+    "designMode": "胞内抗体探索",
+    "candidates": [
+      {
+        "target": "NECTIN2",
+        "rationale": "NECTIN2与血清nectin-2水平表型直接相关，编码细胞表面免疫球蛋白样黏附分子，抗原可及性明显优于核内ZNF473。"
+      },
+      {
+        "target": "ERBB2",
+        "rationale": "ERBB2是乳腺导管腺癌中明确可抗体干预的受体酪氨酸激酶，可通过阻断受体二聚化或介导ADCC实现治疗作用。"
+      },
+      {
+        "target": "PDCD1LG2",
+        "rationale": "PDCD1LG2参与肿瘤免疫逃逸中的PD-1检查点轴，作为细胞表面配体具有明确的抗体阻断可行性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

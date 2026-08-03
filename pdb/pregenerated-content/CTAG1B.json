@@ -1,0 +1,65 @@
+{
+  "gene": "CTAG1B",
+  "generatedAt": "2026-08-03T11:41:41.340Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CTAG1B/NY-ESO-1 是癌睾抗原，常在黑色素瘤、非小细胞肺癌、肉瘤及多种实体瘤中异常表达，并通过肿瘤限制性抗原呈递驱动细胞毒性T细胞识别。该蛋白主要为胞内抗原，天然全长蛋白并非经典抗体可及靶点，但其肽段可由 HLA-I 分子呈递于肿瘤细胞表面，形成可被TCR样抗体识别的抗原复合物。相较广泛表达的肿瘤相关抗原，CTAG1B 具有较强癌睾限制性和明确免疫原性，优先适用于HLA限制性TCR-mimic抗体设计。",
+    "mechanism": "设计TCR样抗体特异识别HLA-A*02:01呈递的NY-ESO-1 157-165肽，阻断或模拟TCR对肽-HLA复合物的识别并介导肿瘤细胞选择性杀伤。",
+    "selectedEpitope": "优先聚焦6AT5中NY-ESO-1 157-165肽暴露侧链与HLA-A*02:01肽结合槽上缘形成的复合表位。",
+    "diseaseDirection": "癌睾抗原阳性实体瘤免疫治疗",
+    "domain": "CTAG1B为短胞内癌睾抗原，抗体设计依赖其HLA-I呈递肽段而非可溶性胞外结构域。",
+    "evidence": "CTAG1B肿瘤抗原呈递与TCR样抗体证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt P78358功能与组织表达注释",
+      "RCSB PDB 6AT5晶体结构",
+      "肿瘤抗原NY-ESO-1免疫治疗文献"
+    ],
+    "referenceEntries": "UniProt P78358；RCSB PDB 6AT5；Open Targets CTAG1B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "NY-ESO-1 157-165肽中央暴露残基与HLA-A*02:01α1/α2螺旋邻接界面",
+        "决定TCR样抗体特异性，可区分同源肽-HLA复合物",
+        "优先"
+      ],
+      [
+        "Site B",
+        "肽N端锚定残基邻近的HLA-A*02:01结合槽口袋区域",
+        "有助于稳定结合构象，但需避免产生HLA框架泛反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "HLA-A*02:01保守α螺旋外侧表面",
+        "结构可及但抗原特异性弱，存在交叉识别正常HLA复合物风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CTAG1B缺乏胞外结构域，常规抗体难以直接结合天然蛋白；设计应限定为肽-HLA复合物，并系统评估HLA等位型与自体肽交叉反应。",
+    "structurePrepZh": "以6AT5高分辨率晶体结构为模板，保留HLA-A*02:01、β2微球蛋白及NY-ESO-1肽，补全缺失侧链并校验肽槽氢键网络。",
+    "structureRef": "RCSB PDB 6AT5，X-ray diffraction，1.5 Å",
+    "antibodies": [
+      "E978 TCR-mimic antibody",
+      "3M4E5 TCR-mimic antibody"
+    ],
+    "interfaceFocus": "NY-ESO-1肽中央暴露侧链-HLA-A*02:01槽缘界面",
+    "designMode": "TCR样Fab设计",
+    "candidates": [
+      {
+        "target": "MAGEA3",
+        "rationale": "MAGEA3同属癌睾抗原，在黑色素瘤和肺癌中呈肿瘤限制性表达，可经HLA分子呈递形成T细胞识别表位。其临床免疫治疗经验可作为CTAG1B抗原呈递策略的参照。"
+      },
+      {
+        "target": "PRAME",
+        "rationale": "PRAME是多种实体瘤和血液肿瘤中的免疫原性癌睾/肿瘤抗原，可通过HLA-I呈递被T细胞识别。其表达谱和抗原呈递特征适合与CTAG1B并列评估。"
+      },
+      {
+        "target": "MAGEA4",
+        "rationale": "MAGEA4在肉瘤、黑色素瘤和肺癌中具有明确癌睾抗原属性，并已有TCR导向治疗开发基础。该靶点适合用于同类肽-HLA复合物抗体设计比较。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "RBM10",
+  "generatedAt": "2026-08-03T20:48:15.834Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RBM10 是核内 RNA 结合剪接调控蛋白，在 TARP 综合征中以功能缺失突变导致发育异常，并在肺腺癌、胰腺腺癌及非小细胞肺癌中通过异常可变剪接影响 NUMB、FAS、BCL-X 等转录本加工。该蛋白缺乏分泌形式和胞外结构域，天然抗原可及性不适合作为细胞表面治疗性抗体靶点，更适合用于细胞内蛋白检测或研究级结合分子开发。相较同通路中可药性较高的膜受体或分泌因子，RBM10 的优先级主要来自明确遗传学关联和肿瘤剪接依赖性，而非抗体递送可及性。",
+    "mechanism": "设计结合分子应阻断 RBM10 RRM2 对富含 U/G RNA 片段的识别，干扰其募集剪接体组分并改变靶前体 mRNA 的外显子选择。",
+    "selectedEpitope": "优先覆盖 RRM2 β折叠 RNA 结合面及邻近环区，避免锌指样折叠核心埋藏残基。",
+    "diseaseDirection": "剪接异常相关肿瘤与TARP综合征",
+    "domain": "RBM10 含 RRM1、锌指样结构域、OCRE 区域、RRM2 及富甘氨酸低复杂度区。",
+    "evidence": "RBM10遗传变异与肿瘤剪接功能证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P98175 functional annotation",
+      "RCSB PDB 2LXI solution NMR structure",
+      "TCGA and cancer genomics studies of RBM10 mutations"
+    ],
+    "referenceEntries": "UniProt P98175；RCSB PDB 2LXI；Open Targets ENSG00000182872",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RRM2 β-sheet RNA结合面",
+        "直接竞争单链RNA结合，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RRM2 β1-α1与β2-β3环区",
+        "可影响RNA定位与局部构象，保留较好可及性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "锌指样结构域折叠核心",
+        "结构保守且可能影响全局稳定性，特异性与成药风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RBM10 为核内蛋白，常规抗体难以进入细胞核并接触天然抗原；设计应定位为体外功能阻断、诊断检测或细胞内递送体系验证。",
+    "structurePrepZh": "以 PDB 2LXI 的 NMR 构象簇为起点，筛选代表性低能构象，补全缺失氢原子并标注 RRM2 RNA结合面用于表位建模。",
+    "structureRef": "RCSB PDB 2LXI：human RBM10 domain solution NMR structure",
+    "antibodies": [
+      "研究级抗RBM10单克隆抗体",
+      "研究级抗RBM10多克隆抗体"
+    ],
+    "interfaceFocus": "RRM2 β折叠RNA识别面与邻近环区",
+    "designMode": "细胞内抗原研究型",
+    "candidates": [
+      {
+        "target": "SRSF1",
+        "rationale": "SRSF1 是剪接因子网络中的关键调控蛋白，在肿瘤可变剪接和外显子选择中与 RBM10 相关功能轴交叉。其异常表达与肺癌等实体瘤进展相关。"
+      },
+      {
+        "target": "SF3B1",
+        "rationale": "SF3B1 是 U2 snRNP 复合体核心组分，直接参与分支点识别和剪接体装配。其突变驱动异常剪接，是肿瘤剪接通路中具有明确药理学验证的节点。"
+      },
+      {
+        "target": "U2AF2",
+        "rationale": "U2AF2 识别前体 mRNA 3' 剪接位点多聚嘧啶区，并参与早期剪接体组装。该节点与 RBM10 调控的外显子选择过程处于同一 RNA 剪接通路。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

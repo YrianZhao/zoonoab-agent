@@ -1,0 +1,65 @@
+{
+  "gene": "AUP1",
+  "generatedAt": "2026-08-03T18:07:38.042Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "AUP1参与内质网相关降解、脂滴稳态及VLDL装配过程，其在登革病毒感染中可能通过脂滴动员和宿主脂质代谢重塑影响病毒复制微环境。该蛋白主要定位于内质网膜和脂滴表面，缺乏经典可分泌胞外结构域，天然抗原可及性低于膜外受体或分泌因子。相较于直接靶向病毒包膜蛋白，AUP1作为宿主脂质代谢节点具备抗逃逸潜力，但因胞内定位，抗体设计优先级应限定于细胞内递送抗体、工程化纳米抗体或机制验证工具抗体场景。",
+    "mechanism": "设计抗体可阻断AUP1 G2BR结构域与E2泛素结合酶UBE2G2的结合，干预ERAD相关泛素转移复合物组装及脂滴蛋白降解调控。",
+    "selectedEpitope": "优先覆盖AUP1 C端G2BR与UBE2G2结合螺旋界面，避免跨膜疏水段作为免疫主表位。",
+    "diseaseDirection": "登革病毒感染与脂质代谢重塑",
+    "domain": "AUP1含N端膜锚定/疏水区、脂滴定位区、CUE样泛素结合结构域及C端G2BR样E2结合区。",
+    "evidence": "AUP1脂滴-ERAD轴与登革感染关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9Y679功能与亚细胞定位注释",
+      "RCSB PDB 7LEW晶体结构条目",
+      "登革病毒宿主脂滴与脂质代谢依赖性研究文献"
+    ],
+    "referenceEntries": "UniProt Q9Y679；RCSB PDB 7LEW；Open Targets AUP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端G2BR样UBE2G2结合螺旋界面",
+        "可直接干预AUP1-E2酶复合物形成，适合机制型阻断抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CUE样泛素结合结构域外露沟槽",
+        "可能影响泛素化底物识别与ERAD耦联，可作为功能调节备选表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端疏水膜锚定及脂滴插入区域",
+        "疏水性强且构象依赖膜环境，免疫原性与可开发性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "AUP1为胞内ER/脂滴相关蛋白，常规抗体难以到达天然作用位点；应采用VHH、胞内抗体或递送系统，并严格评估脂质代谢毒性。",
+    "structurePrepZh": "以7LEW晶体结构为核心模板，保留抗原链A/B中解析良好的可溶结构域，补全缺失环区并剔除非生理晶体接触后进行表面电荷评估。",
+    "structureRef": "RCSB PDB 7LEW，X-ray diffraction，1.736 Å",
+    "antibodies": [
+      "抗AUP1研究级单克隆抗体",
+      "抗AUP1多克隆验证抗体"
+    ],
+    "interfaceFocus": "G2BR-UBE2G2结合面及CUE泛素结合沟槽",
+    "designMode": "胞内阻断型VHH",
+    "candidates": [
+      {
+        "target": "DGAT1",
+        "rationale": "DGAT1催化甘油二酯生成三酰甘油并驱动脂滴形成，登革病毒复制依赖宿主脂滴与脂质合成环境；其药理可及性高于AUP1。"
+      },
+      {
+        "target": "PLIN2",
+        "rationale": "PLIN2是脂滴包被蛋白，参与脂滴稳定和病毒感染相关脂质重塑；与AUP1同处脂滴稳态调控轴。"
+      },
+      {
+        "target": "UBE2G2",
+        "rationale": "UBE2G2是AUP1 G2BR结合的E2泛素结合酶，参与ERAD泛素转移复合物形成；靶向该节点可验证AUP1相关ERAD机制。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

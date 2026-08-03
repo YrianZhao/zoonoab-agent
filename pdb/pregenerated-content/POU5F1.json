@@ -1,0 +1,65 @@
+{
+  "gene": "POU5F1",
+  "generatedAt": "2026-08-03T15:28:23.742Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "POU5F1/OCT4 是维持胚胎干性与肿瘤干细胞状态的核内转录因子，可通过结合 OCT-SOX 复合 DNA 元件并协同 SOX2 调控 NANOG、LIN28A 等多能性网络，在胃癌、肺癌等肿瘤去分化和治疗耐受中具有机制关联。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌特征，常规完整抗体的抗原可及性明显受限，更适合以细胞内递送抗体片段或 TCR-mimic 策略评估。相比同通路 SOX2、NANOG 等节点，POU5F1 位于核心多能性转录复合体枢纽且已有高分辨率复合物结构，利于界面级表位设计，但抗体成药优先级需低于膜表面肿瘤抗原。",
+    "mechanism": "以抗体片段阻断 POU5F1 POU-specific/POU-homeodomain 与 OCT-DNA 元件及 SOX2 的协同结合，削弱多能性转录增强子装配。",
+    "selectedEpitope": "优先瞄准 POU-specific 与 POU-homeodomain 夹持 DNA 的复合界面及 SOX2 邻接面。",
+    "diseaseDirection": "肿瘤干性与去分化癌种",
+    "domain": "POU5F1 含 N 端转录激活区、POU-specific domain、柔性连接区与 POU-homeodomain DNA 结合域。",
+    "evidence": "POU5F1 多能性转录复合体结构与肿瘤关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传与文献关联",
+      "UniProt Q01860 蛋白功能与定位注释",
+      "RCSB PDB 8G88 电子显微镜复合物结构",
+      "癌症干细胞与 OCT4-SOX2-NANOG 网络研究文献"
+    ],
+    "referenceEntries": "UniProt Q01860；RCSB PDB 8G88；Open Targets POU5F1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "POU-specific/POU-homeodomain DNA 夹持界面",
+        "直接干扰 OCT 元件识别与转录复合体装配，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "POU-specific domain 与 SOX2 协同结合邻接面",
+        "可能削弱 OCT4-SOX2 复合增强子占位，适合细胞内抗体片段",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端转录激活区柔性片段",
+        "构象异质性高且结构约束不足，表位稳定性和功能阻断风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "POU5F1 为核内转录因子，常规抗体难以到达作用位点；建议采用细胞内递送 Fab/VHH、intrabody 或 pMHC/TCR-mimic 路线，并严格评估干细胞毒性。",
+    "structurePrepZh": "以 8G88 复合物为模板保留 POU5F1、SOX2 与 DNA 接触构象，补全缺失柔性区并标注核酸界面，避免将 DNA 结合残基误判为游离表面。",
+    "structureRef": "RCSB PDB 8G88，2.3 Å cryo-EM OCT4 复合物结构",
+    "antibodies": [
+      "OCT4A monoclonal antibody C30A3",
+      "OCT3/4 monoclonal antibody sc-5279"
+    ],
+    "interfaceFocus": "POU 结构域-DNA 接触沟槽及 SOX2 邻接界面",
+    "designMode": "细胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "SOX2",
+        "rationale": "SOX2 与 POU5F1 共同结合复合 DNA 元件并驱动多能性转录程序，是同一 OCT4-SOX2-NANOG 网络中的核心协同因子。"
+      },
+      {
+        "target": "NANOG",
+        "rationale": "NANOG 位于 POU5F1/SOX2 下游并参与维持肿瘤干细胞自我更新，适合作为多能性网络抑制的并行转录因子靶点。"
+      },
+      {
+        "target": "LIN28A",
+        "rationale": "LIN28A 受多能性网络调控并通过 let-7 轴促进去分化和增殖表型，可作为 OCT4 相关肿瘤干性通路的候选节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

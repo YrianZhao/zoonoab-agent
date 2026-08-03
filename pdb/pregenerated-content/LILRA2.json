@@ -1,0 +1,65 @@
+{
+  "gene": "LILRA2",
+  "generatedAt": "2026-08-03T13:53:11.138Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "LILRA2 是髓系细胞表达的激活型免疫球蛋白样受体，可通过带正电荷跨膜区与 FcRγ 适配蛋白偶联，诱导单核细胞和中性粒细胞炎症活化，其遗传和血清蛋白水平信号与血管硬化及脂质表型存在关联。该靶点具有两个胞外 Ig-like C2 型结构域，位于白细胞表面，抗体可直接识别 D1-D2 外部结构并调节配体结合或受体聚集。相较胞内炎症信号分子，LILRA2 具备更明确的抗原可及性；相较广泛表达的 Fc 受体，LILRA2 在髓系免疫调节轴中更适合作为选择性干预节点。",
+    "mechanism": "阻断 LILRA2 胞外 D1-D2 区域介导的配体识别或受体簇集，降低其与 FcRγ 偶联后的 ITAM 依赖性髓系细胞活化。",
+    "selectedEpitope": "优先覆盖 D1 远端 β 折叠面及 D1-D2 连接界面，避免跨膜近端非功能性表位。",
+    "diseaseDirection": "血管炎症与代谢免疫表型",
+    "domain": "胞外区含两个 Ig-like C2 型结构域，随后为跨膜区和短胞质尾部。",
+    "evidence": "LILRA2 结构、表达与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease associations",
+      "UniProt Q8N149 curated receptor annotation",
+      "RCSB PDB 2OTP X-ray extracellular domain structure",
+      "Human Protein Atlas immune cell expression data"
+    ],
+    "referenceEntries": "UniProt: Q8N149; RCSB PDB: 2OTP; Open Targets: LILRA2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "D1 结构域远端 β 折叠面",
+        "可能直接影响外源或内源配体识别，适合阻断型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "D1-D2 结构域夹角与连接区",
+        "可限制受体构象稳定性及膜外区空间取向，适合变构抑制设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "D2 近膜侧保守 Ig-like 面",
+        "可能与同源 LILR 家族存在交叉反应风险，需强化选择性筛选",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "LILR 家族胞外 Ig-like 结构域同源性较高，D2 区域交叉识别风险较大；设计应强化 LILRA2 特异环区与带电残基组合筛选。",
+    "structurePrepZh": "以 2OTP 的 A、B 链胞外结构为模板，保留 D1-D2 架构并检查糖基化位点、缺失环区和晶体接触界面后进行表位建模。",
+    "structureRef": "RCSB PDB 2OTP, X-ray diffraction, 2.6 Å",
+    "antibodies": [
+      "MAB1057",
+      "HP-F1"
+    ],
+    "interfaceFocus": "D1 远端识别面与 D1-D2 夹角界面",
+    "designMode": "阻断/变构双模式",
+    "candidates": [
+      {
+        "target": "LILRB2",
+        "rationale": "LILRB2 是同一 LILR 免疫受体家族的抑制型髓系受体，可调节单核-巨噬细胞炎症状态，并与血管炎症微环境相关。其胞外 Ig-like 结构域适合抗体介导的配体阻断或功能重塑。"
+      },
+      {
+        "target": "FCER1G",
+        "rationale": "FCER1G 编码 FcRγ 适配链，是 LILRA2 激活信号向 ITAM-SYK 轴传递的核心组分。尽管其为细胞内/跨膜适配蛋白、不适合作为常规抗体主靶点，但可作为通路药效和机制验证节点。"
+      },
+      {
+        "target": "SYK",
+        "rationale": "SYK 位于 FcRγ ITAM 下游，介导髓系细胞激活、细胞因子释放和炎症放大。其与 LILRA2 激活通路具有明确上下游关系，可用于联合药理验证和疾病通路分层。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

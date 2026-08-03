@@ -1,0 +1,65 @@
+{
+  "gene": "SULT1B1",
+  "generatedAt": "2026-08-03T17:02:53.633Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SULT1B1与子宫平滑肌瘤相关表型存在明确疾病关联，提示其在类固醇硫酸化与局部激素稳态中具有可分析的病理指向。该蛋白为胞内硫酸转移酶，虽抗原可及性低于膜受体，但其晶体结构已解析，且酶活性依赖保守催化口袋与供体结合位点，具备通过抗体干预蛋白构象或复合体装配的结构基础。相较于同通路中更多高度冗余的SULT同工酶，SULT1B1的组织表达与底物谱更具分层特征，适合作为优先设计对象；同时应将其定位为高风险胞内靶点，仅在递送或细胞内抗体策略下推进。",
+    "mechanism": "通过占据PAPS结合口袋邻近表面，干扰底物进入与催化构象重排，从而降低芳香族底物硫酸化活性。",
+    "selectedEpitope": "优先锁定催化口袋边缘与PAPS结合环邻近表位，避开高度保守核心残基。",
+    "diseaseDirection": "子宫平滑肌瘤/激素代谢",
+    "domain": "典型肝素结合样硫酸转移酶折叠，含PAPS结合区与底物识别沟槽。",
+    "evidence": "SULT1B1抗体设计与疾病关联证据包",
+    "evidenceSources": [
+      "UniProt: O43704",
+      "RCSB PDB: 3CKL",
+      "Open Targets Platform",
+      "Gene Ontology / Reactome相关注释"
+    ],
+    "referenceEntries": "UniProt O43704；PDB 3CKL；Open Targets SULT1B1条目",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PAPS结合口袋边缘",
+        "可干扰辅因子定位并削弱催化周转",
+        "优先"
+      ],
+      [
+        "Site B",
+        "底物识别沟槽外侧环区",
+        "有利于影响底物装载而降低活性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "二聚体界面邻近区",
+        "可能改变构象稳定性但特异性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "该靶点为胞内酶，抗体天然可及性不足，且SULT家族催化核心保守性高，存在交叉反应与选择性受限风险。设计上宜优先采用结构约束型表位，并结合细胞内递送或VHH框架降低界面暴露要求。",
+    "structurePrepZh": "基于2.0 Å晶体结构进行单体与生物学二聚体双层检查，补全缺失侧链并标注PAPS与底物通道残基后开展表位映射。",
+    "structureRef": "PDB 3CKL，X-ray 2.0 Å，SULT1B1晶体结构",
+    "antibodies": [
+      "SULT家族研究性阻断抗体",
+      "SULT1A1交叉反应性抑制抗体"
+    ],
+    "interfaceFocus": "PAPS口袋周边与底物沟槽入口",
+    "designMode": "structure-guided",
+    "candidates": [
+      {
+        "target": "ESR1",
+        "rationale": "雌激素信号是子宫平滑肌瘤的重要驱动轴，ESR1位于同一疾病通路上且为成熟胞外不可及的核受体通路靶点，可作为机制对照。与SULT1B1联合分析有助于区分激素生成与受体转录响应两个层级。"
+      },
+      {
+        "target": "CYP19A1",
+        "rationale": "CYP19A1负责雌激素生物合成上游步骤，与SULT1B1共同影响局部类固醇稳态，符合同病程通路的真实关联。其抑制策略与硫酸化调控可形成互补的激素代谢轴比较。"
+      },
+      {
+        "target": "UGT1A1",
+        "rationale": "UGT1A1参与甾体与胆红素等底物的葡萄糖醛酸化，与SULT1B1同属相位II代谢网络，可用于评估代谢旁路补偿。该靶点与SULT1B1在底物清除层面存在真实通路重叠。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

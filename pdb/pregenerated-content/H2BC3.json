@@ -1,0 +1,65 @@
+{
+  "gene": "H2BC3",
+  "generatedAt": "2026-08-03T19:31:58.385Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "H2BC3编码复制依赖性组蛋白H2B，主要作为核小体核心组分与H2A、H3、H4共同组织染色质，其疾病关联多反映肿瘤增殖、病毒感染相关染色质重塑或细胞死亡后核小体释放。该蛋白为核内结构蛋白，天然状态缺乏稳定胞外结构域或膜受体特征，抗原可及性显著弱于分泌因子和细胞表面受体。作为抗体主靶点的优先级低于PDCD1、PDCD1LG1、ERBB2等同疾病方向中具有明确胞外可及性和临床抗体验证的靶点；若开展设计，应限定于胞外核小体或NETs相关病理环境中的H2B暴露构象。",
+    "mechanism": "抗体可结合胞外核小体中H2B组蛋白折叠域，遮蔽H2B-DNA酸性磷酸骨架接触面或H2A-H2B二聚体暴露界面，促进免疫复合物清除。",
+    "selectedEpitope": "优先选择H2B组蛋白折叠域α1-α2间外露面，避开保守H2A-H2B二聚化核心界面。",
+    "diseaseDirection": "感染与肿瘤相关染色质抗原",
+    "domain": "H2BC3含N端尾部及典型histone-fold结构域，参与H2A-H2B二聚体和核小体装配。",
+    "evidence": "H2BC3染色质定位与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P33778蛋白功能注释",
+      "RCSB PDB 3X1S核小体晶体结构",
+      "Reactome染色质组织与核小体装配通路"
+    ],
+    "referenceEntries": "UniProt P33778；RCSB PDB 3X1S；Open Targets H2BC3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "histone-fold α1-α2外露表面",
+        "在胞外核小体中具备相对可及性，可用于识别病理释放的H2B抗原",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端碱性尾部区域",
+        "可及性高但序列保守且翻译后修饰异质性强，适合作为备选识别位点",
+        "备选"
+      ],
+      [
+        "Site C",
+        "H2A-H2B二聚化疏水核心",
+        "结构保守且埋藏程度高，抗体进入风险大并可能影响广泛核小体结构",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "H2BC3为核内高度保守组蛋白，胞外暴露依赖细胞死亡、NETs或核小体释放；需控制交叉反应、自身抗原风险和正常染色质干扰。",
+    "structurePrepZh": "以PDB 3X1S中H2B相关链为模板，保留核小体构象参照，补全柔性N端尾部并标注DNA接触面、H2A界面和溶剂暴露残基。",
+    "structureRef": "RCSB PDB 3X1S，X-ray diffraction，2.805 Å",
+    "antibodies": [
+      "anti-Histone H2B antibody",
+      "anti-nucleosome antibody"
+    ],
+    "interfaceFocus": "H2B-DNA接触面及H2A-H2B外露界面",
+    "designMode": "胞外核小体结合",
+    "candidates": [
+      {
+        "target": "PDCD1",
+        "rationale": "PDCD1参与肿瘤和慢性感染中的T细胞耗竭通路，胞外IgV结构域可被抗体直接阻断以解除PD-L1/PD-L2介导的抑制信号。"
+      },
+      {
+        "target": "CD274",
+        "rationale": "CD274编码PD-L1，是肿瘤免疫逃逸和病毒感染免疫抑制中的关键配体；其胞外Ig样结构域具备成熟抗体成药性。"
+      },
+      {
+        "target": "ERBB2",
+        "rationale": "ERBB2在乳腺癌通路中具有明确驱动作用，胞外结构域可用于阻断受体二聚化或介导抗体依赖性细胞毒作用。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

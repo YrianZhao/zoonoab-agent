@@ -1,0 +1,65 @@
+{
+  "gene": "STAT2",
+  "generatedAt": "2026-08-03T16:58:26.317Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "STAT2是I型和III型干扰素信号转导的核心转录因子，参与ISGF3复合体形成并驱动抗病毒与免疫稳态相关基因表达，因而与原发性免疫缺陷、病毒易感及COVID-19等疾病通路具有直接关联。其蛋白为胞内因子，缺乏典型抗体可及性，因此作为抗体靶点更适合采用细胞内递送或胞内结合策略以干预STAT1-STAT2异源二聚体及IRF9装配。相较于上游IFNAR1/IFNAR2，直接针对STAT2有望在保持通路特异性的同时避开受体广泛配体网络带来的冗余激活，更适合精确解析干扰素轴异常放大或缺失的病理机制。",
+    "mechanism": "阻断STAT2与STAT1及IRF9的装配，抑制ISGF3核转位和ISRE结合，降低干扰素诱导基因转录。",
+    "selectedEpitope": "优先覆盖coiled-coil与SH2邻近界面，干扰STAT1/IRF9复合体组装。",
+    "diseaseDirection": "干扰素信号与免疫缺陷",
+    "domain": "STAT2含N端寡聚化区、coiled-coil、DNA结合区、SH2样区及C端转录激活尾部。",
+    "evidence": "STAT2干扰素轴抗体设计证据包",
+    "evidenceSources": [
+      "UniProt: P52630",
+      "RCSB PDB: 6UX2",
+      "Open Targets Platform",
+      "NCBI Gene: STAT2"
+    ],
+    "referenceEntries": "UniProt P52630; RCSB 6UX2; Open Targets STAT2条目",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "coiled-coil/STAT1接触面",
+        "优先干预ISGF3组装，利于阻断复合体形成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SH2样结构域邻近表面",
+        "可削弱磷酸化依赖的二聚化与招募",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端转录激活区",
+        "可降低转录输出，但构象柔性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "STAT2为胞内蛋白且3.01 Å结构分辨率限制侧链精确定位，表位设计应优先依托界面保守残基并结合构象筛选。需警惕与STAT1/STAT3同源区交叉识别，建议以复合体状态下的差异暴露面为主。",
+    "structurePrepZh": "以6UX2为骨架完成链A/B界面整理，补全缺失侧链与环区，进行STAT1/IRF9界面映射和保守性比对后再进入表位约束设计。",
+    "structureRef": "6UX2晶体结构及STAT家族结构研究文献",
+    "antibodies": [
+      "STAT1阻断性抗体",
+      "STAT3 SH2界面抗体"
+    ],
+    "interfaceFocus": "STAT1结合面、IRF9招募面与SH2邻域",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "IFNAR1",
+        "rationale": "与STAT2同属I型干扰素通路上游组件，适合作为通路校准与联动阻断参照。其为膜受体，抗体可及性显著高于STAT2。"
+      },
+      {
+        "target": "IFNAR2",
+        "rationale": "IFNAR2介导配体受体复合体装配并驱动STAT1/STAT2磷酸化，是STAT2上游关键节点。作为膜受体，具备明确胞外表位。"
+      },
+      {
+        "target": "IRF9",
+        "rationale": "IRF9与STAT1-STAT2共同构成ISGF3，直接影响ISRE结合与转录激活。其处于同一效应复合体层级，适合作为机制对照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

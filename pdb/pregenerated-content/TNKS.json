@@ -1,0 +1,65 @@
+{
+  "gene": "TNKS",
+  "generatedAt": "2026-08-03T17:23:46.979Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TNKS编码胞内PARP家族ADP-核糖基转移酶，参与AXIN聚ADP-核糖基化与降解，从而增强β-catenin依赖性Wnt转录输出；其遗传关联更多集中于脂质比例、血压与甘油三酯等复杂性状，提示代谢和血管表型相关性。TNKS主要定位于胞质、端粒相关复合体和膜近端囊泡结构，缺乏稳定胞外结构域，因此常规完整抗体抗原可及性不足。相较Wnt通路中可直接阻断的分泌配体或膜受体，TNKS作为主靶点更适合细胞内抗体、VHH或降解耦联设计，优先级依据在于其催化结构域高分辨率结构清晰且小分子机制验证充分。",
+    "mechanism": "以胞内VHH阻断TNKS催化PARP结构域与NAD+底物结合或限制其与AXIN依赖性底物复合体装配，降低AXIN PARylation与后续RNF146介导降解。",
+    "selectedEpitope": "优先瞄准PARP催化结构域烟酰胺亚口袋邻近的NAD+结合沟槽，避开高度保守核心残基以降低交叉反应。",
+    "diseaseDirection": "Wnt-β-catenin与代谢血管表型",
+    "domain": "TNKS含N端HPS区、ANK重复簇、SAM聚合结构域及C端PARP催化结构域；4TOR覆盖催化结构域。",
+    "evidence": "TNKS催化结构域与Wnt代谢遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform遗传关联与性状汇总",
+      "UniProt O95271功能与结构域注释",
+      "RCSB PDB 4TOR晶体结构记录",
+      "Wnt/AXIN/RNF146轴中tankyrase功能研究"
+    ],
+    "referenceEntries": "UniProt O95271；RCSB PDB 4TOR；Open Targets TNKS",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PARP催化结构域NAD+结合沟槽与烟酰胺亚口袋边缘",
+        "可直接干预催化底物识别，适合胞内VHH抑制构型",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PARP结构域外侧可溶性环区，邻近调节性螺旋表面",
+        "有利于获得构象选择性结合并降低催化核心保守性风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ANK重复簇底物识别区域",
+        "理论上可干扰AXIN招募，但4TOR未覆盖该区域且构象不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TNKS为胞内酶，传统分泌型抗体难以进入作用部位；PARP催化核心与TNKS2及其他PARP成员存在保守性，需进行同源选择性筛选。",
+    "structurePrepZh": "以4TOR高分辨率X射线结构作为PARP结构域模板，补全缺失侧链、定义NAD+口袋网格，并与TNKS2/PARP同源结构进行保守性比对。",
+    "structureRef": "RCSB PDB 4TOR，X-ray diffraction，1.501 Å",
+    "antibodies": [
+      "细胞内抗TNKS VHH候选",
+      "抗TNKS研究级单克隆抗体"
+    ],
+    "interfaceFocus": "PARP催化口袋、NAD+沟槽及底物邻近面",
+    "designMode": "胞内VHH抑制",
+    "candidates": [
+      {
+        "target": "TNKS2",
+        "rationale": "TNKS2与TNKS共享AXIN PARylation和Wnt/β-catenin调控功能，是同一tankyrase依赖轴中的并行酶靶点。联合选择性评估可区分双重抑制与TNKS特异性效应。"
+      },
+      {
+        "target": "AXIN1",
+        "rationale": "AXIN1是β-catenin降解复合体支架蛋白，也是TNKS介导PARylation后被RNF146识别降解的关键底物。稳定AXIN1可抑制β-catenin转录输出。"
+      },
+      {
+        "target": "RNF146",
+        "rationale": "RNF146识别PARylated AXIN并驱动泛素化降解，位于TNKS下游同一Wnt调控通路。干预其WWE结构域与PAR链结合可阻断AXIN降解。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

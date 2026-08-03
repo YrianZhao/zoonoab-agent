@@ -1,0 +1,65 @@
+{
+  "gene": "EIF3H",
+  "generatedAt": "2026-08-03T19:04:35.418Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "EIF3H 是 eIF3 复合体的 PCI/MPN 模块组分，参与40S核糖体招募、mRNA选择及翻译起始复合体装配，在结直肠癌等增殖性疾病中可通过增强致癌转录本翻译与细胞周期蛋白表达促进肿瘤生长。该蛋白主要定位于胞质翻译起始复合体，并非分泌蛋白或膜受体，天然抗原可及性明显弱于EGFR、VEGFA等胞外靶点，因此抗体策略更适合作为结构生物学验证、胞内递送抗体或降解耦联设计。其优先级来自高分辨率人源eIF3复合体结构可支撑界面级设计，且相较泛翻译因子具有可定位的eIF3核心装配界面，但成药性优先级应低于具备胞外可及性的同通路肿瘤靶点。",
+    "mechanism": "设计抗体结合EIF3H PCI/MPN界面，阻断其与EIF3A、EIF3C等eIF3核心亚基的装配接触，削弱40S预起始复合体稳定性及特定致癌mRNA的翻译起始。",
+    "selectedEpitope": "优先覆盖EIF3H MPN样结构域与eIF3 PCI核心邻接界面，避开高度保守折叠核心。",
+    "diseaseDirection": "结直肠癌与翻译起始异常",
+    "domain": "EIF3H含N端MPN样结构域及C端延伸区，嵌入eIF3 PCI/MPN核心模块。",
+    "evidence": "EIF3H翻译起始复合体与肿瘤关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt O15372功能与亚细胞定位注释",
+      "RCSB PDB 8PPL冷冻电镜结构",
+      "eIF3复合体翻译起始与肿瘤生物学文献"
+    ],
+    "referenceEntries": "UniProt O15372；RCSB PDB 8PPL；Open Targets EIF3H",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "MPN样结构域外露环与eIF3核心邻接面",
+        "可干预EIF3H在eIF3复合体中的装配定位",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端延伸区近邻PCI/MPN模块接触区域",
+        "可能影响eIF3核心构象稳定性，适合构象选择性结合",
+        "备选"
+      ],
+      [
+        "Site C",
+        "MPN样结构域保守折叠核心",
+        "保守性高且可能导致非选择性翻译抑制，安全窗较窄",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "EIF3H为胞内非分泌蛋白，常规抗体体内可及性不足；设计应限定为胞内递送、细胞穿透抗体或研究级阻断工具，并严控全局翻译抑制风险。",
+    "structurePrepZh": "基于8PPL冷冻电镜模型提取EIF3H链并保留相邻eIF3亚基界面，补全缺失侧链、校验低置信柔性环，进行人源序列编号映射。",
+    "structureRef": "RCSB PDB 8PPL，human eIF3 complex cryo-EM structure",
+    "antibodies": [
+      "抗EIF3H研究级单克隆抗体",
+      "抗EIF3H研究级多克隆抗体"
+    ],
+    "interfaceFocus": "EIF3H MPN样结构域与eIF3核心亚基接触面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "EIF3A",
+        "rationale": "EIF3A是eIF3复合体支架亚基，参与40S核糖体结合和翻译起始复合体装配；在肿瘤翻译重编程中与EIF3H处于同一eIF3通路。"
+      },
+      {
+        "target": "EIF3C",
+        "rationale": "EIF3C位于eIF3核心模块并参与亚基桥接，对预起始复合体稳定性具有结构贡献；其与EIF3H同属翻译起始复合体装配轴。"
+      },
+      {
+        "target": "EIF3E",
+        "rationale": "EIF3E是eIF3 PCI模块组分，可影响eIF3复合体结构完整性及选择性mRNA翻译；适合作为同通路翻译起始调控候选靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

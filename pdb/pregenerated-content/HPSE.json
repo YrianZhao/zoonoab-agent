@@ -1,0 +1,65 @@
+{
+  "gene": "HPSE",
+  "generatedAt": "2026-08-03T13:16:43.367Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HPSE编码heparanase，是降解细胞外基质和基底膜硫酸乙酰肝素的内切β-D-葡萄糖醛酸酶，在肝细胞癌等肿瘤中促进基质重塑、血管生成因子释放、侵袭和转移。该蛋白经前体加工形成8 kDa与50 kDa亚基的分泌/胞外活性酶，催化裂隙可被抗体在胞外环境中直接接近。相较单纯细胞内信号靶点，HPSE具有明确酶促底物界面、肿瘤微环境可及性和结构解析精度优势，适合作为阻断型抗体优先靶点。",
+    "mechanism": "通过抗体占据HPSE催化裂隙及肝素/硫酸乙酰肝素结合沟槽，阻断其与HS糖链底物结合并抑制β-D-葡萄糖醛酸苷键切割。",
+    "selectedEpitope": "优先覆盖50 kDa亚基TIM-barrel催化域内肝素结合沟槽，避开深埋催化酸碱残基。",
+    "diseaseDirection": "肝细胞癌侵袭转移与肿瘤微环境",
+    "domain": "成熟HPSE由8 kDa亚基与50 kDa催化亚基组成，50 kDa链含TIM-barrel糖苷水解酶结构域。",
+    "evidence": "HPSE肿瘤基质降解与结构阻断证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9Y251功能与加工注释",
+      "RCSB PDB 7RG8晶体结构记录",
+      "肿瘤heparanase介导基质重塑文献"
+    ],
+    "referenceEntries": "UniProt Q9Y251；RCSB PDB 7RG8；Open Targets HPSE",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "50 kDa催化亚基肝素/HS结合沟槽外缘",
+        "可直接阻断底物糖链进入并保留抗体空间可及性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "8 kDa与50 kDa亚基邻近的成熟酶表面界面",
+        "可能影响成熟酶构象稳定性并降低酶促效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化裂隙深部酸性残基邻近区域",
+        "空间狭窄且易受糖基化或构象限制影响，需控制亲和力与交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "催化沟槽带正电并结合多硫酸化糖链，抗体CDR需避免非特异性肝素样多阴离子吸附；优先筛选不依赖糖胺聚糖桥联的阻断构型。",
+    "structurePrepZh": "以7RG8高分辨率晶体结构为模板，保留A、B链成熟酶构象，校验糖基化位点、质子化状态与催化裂隙水分子后进行表位建模。",
+    "structureRef": "RCSB PDB 7RG8，human heparanase，X-ray 1.3 Å",
+    "antibodies": [
+      "9E8",
+      "H1023"
+    ],
+    "interfaceFocus": "50 kDa催化域HS结合沟槽与裂隙入口",
+    "designMode": "酶活阻断型抗体",
+    "candidates": [
+      {
+        "target": "VEGFA",
+        "rationale": "HPSE降解硫酸乙酰肝素可释放基质结合VEGFA并增强肿瘤血管生成，VEGFA属于同一肿瘤微环境促血管生成轴的下游效应靶点。"
+      },
+      {
+        "target": "FGF2",
+        "rationale": "FGF2与硫酸乙酰肝素结合并依赖基质储存与释放调控，HPSE活性可促进FGF2可用性及肿瘤细胞增殖和血管生成。"
+      },
+      {
+        "target": "SDC1",
+        "rationale": "SDC1携带硫酸乙酰肝素链并作为HPSE相关基质重塑和生长因子呈递的重要细胞表面蛋白，适合作为同通路候选靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

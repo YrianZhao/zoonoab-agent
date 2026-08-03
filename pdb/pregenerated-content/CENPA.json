@@ -1,0 +1,65 @@
+{
+  "gene": "CENPA",
+  "generatedAt": "2026-08-03T11:15:57.880Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CENPA 是组蛋白 H3 变体，定位于着丝粒核小体并通过 CATD 区域与 HJURP 介导的装载过程维持着丝粒身份，异常表达可破坏染色体分离并与多种肿瘤增殖表型相关。该蛋白主要位于细胞核内染色质复合物中，不具备分泌蛋白、膜受体或稳定胞外结构域特征，天然抗原可及性显著弱于细胞表面靶点。相较 EGFR、ERBB2、PDCD1 等同类可成药抗体靶点，CENPA 更适合作为细胞内功能研究或降解策略靶点，作为常规治疗性抗体主靶点优先级较低。",
+    "mechanism": "设计目标应聚焦阻断 CENPA CATD 与 HJURP CENPA-binding domain 的识别，干扰 CENPA 装载至着丝粒核小体并削弱着丝粒染色质维持。",
+    "selectedEpitope": "优先覆盖 CENPA CATD 的 L1-loop 与 α2-helix 识别面，避开核小体 DNA 结合沟槽。",
+    "diseaseDirection": "染色体不稳定相关肿瘤",
+    "domain": "CENPA 含 N 端尾部及组蛋白折叠域；CATD 位于 L1-loop 与 α2-helix 区域，决定着丝粒特异装载。",
+    "evidence": "CENPA 着丝粒核小体结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P49450 functional annotation",
+      "RCSB PDB 5CVD X-ray structure",
+      "Literature evidence on CENPA-HJURP centromere assembly"
+    ],
+    "referenceEntries": "UniProt P49450；RCSB PDB 5CVD；Open Targets CENPA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CATD L1-loop/α2-helix 外露识别面",
+        "可阻断 HJURP 对 CENPA 的特异识别并影响着丝粒装载",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CENPA-CENPA 核小体二聚化邻近界面",
+        "可用于稳定识别着丝粒核小体构象，但需评估组蛋白交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "DNA 结合沟槽及组蛋白折叠核心",
+        "功能重要但高度保守且空间受 DNA 遮蔽，抗体可及性与选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CENPA 为核内染色质蛋白，细胞外暴露不足；治疗性抗体需依赖胞内递送或研究级应用，并重点排查 H3 家族交叉反应。",
+    "structurePrepZh": "以 5CVD 的 CENPA 核小体复合物为模板，保留 CENPA 链与邻近组蛋白界面，标注 DNA 遮蔽面并分离 CATD 可识别区域。",
+    "structureRef": "RCSB PDB 5CVD，1.3 Å X-ray CENPA nucleosome structure",
+    "antibodies": [
+      "Anti-CENPA monoclonal antibody clone 3-19",
+      "Anti-CENPA monoclonal antibody clone 8B8"
+    ],
+    "interfaceFocus": "CATD-HJURP 识别面与核小体外露侧面",
+    "designMode": "胞内抗原研究型",
+    "candidates": [
+      {
+        "target": "HJURP",
+        "rationale": "HJURP 是 CENPA 特异性装载伴侣，直接识别 CENPA CATD 并介导其沉积至着丝粒，是同一着丝粒组装通路中的核心节点。"
+      },
+      {
+        "target": "CENPC",
+        "rationale": "CENPC 识别 CENPA 核小体并连接内着丝粒与动粒复合物，阻断该轴线可影响动粒装配与染色体分离。"
+      },
+      {
+        "target": "MIS18BP1",
+        "rationale": "MIS18BP1 参与 CENPA 装载前复合体的招募与许可，与 HJURP-CENPA 沉积过程处于同一着丝粒维持通路。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

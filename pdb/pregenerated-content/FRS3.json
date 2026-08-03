@@ -1,0 +1,65 @@
+{
+  "gene": "FRS3",
+  "generatedAt": "2026-08-03T12:37:58.060Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FRS3为成纤维细胞生长因子受体底物家族成员，主要作为胞内衔接蛋白参与FGFR下游信号复合物组装，其疾病关联集中于肿瘤、神经退行性表型和骨骼异常等FGF/FGFR轴相关生物过程。该蛋白不属于分泌蛋白或跨膜受体，天然抗原可及性弱，常规细胞外阻断型抗体开发可行性低。相较FGFR1-4、FGF配体或KLB等胞外可及靶点，FRS3更适合作为机制验证或细胞内递送抗体研究靶点，优先级应低于同通路膜受体节点。",
+    "mechanism": "设计分子以内递送抗体形式识别FRS3 PTB结构域，干扰其与FGFR近膜区磷酸化基序的对接，从而削弱下游GRB2/SOS1-RAS-MAPK复合物形成。",
+    "selectedEpitope": "优先覆盖PTB结构域磷酸酪氨酸肽结合沟槽及FGFR近膜肽对接面。",
+    "diseaseDirection": "FGF-FGFR相关肿瘤与发育异常",
+    "domain": "FRS3含N端膜定位相关区域及PTB结构域，PDB 2YS5对应人源FRS3 PTB结构域NMR构象集合。",
+    "evidence": "FRS3-FGFR信号衔接与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联记录",
+      "UniProt O43559功能与结构域注释",
+      "RCSB PDB 2YS5实验NMR结构",
+      "FGFR-RAS-MAPK通路文献与Reactome注释"
+    ],
+    "referenceEntries": "UniProt O43559；RCSB PDB 2YS5；Open Targets FRS3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PTB结构域磷酸肽结合沟槽",
+        "直接竞争FGFR近膜区磷酸化基序结合，机制指向性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PTB结构域邻近FGFR肽对接外缘",
+        "可通过空间位阻降低复合物稳定性，并保留较好构象选择空间",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PTB结构域保守折叠核心疏水面",
+        "可能影响整体折叠稳定性且选择性风险较高，不宜作为首选阻断表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FRS3为胞内衔接蛋白，抗体天然递送与靶向暴露风险显著；需采用内递送平台或细胞内抗体格式，并重点评估FRS家族PTB结构域交叉反应。",
+    "structurePrepZh": "以2YS5 NMR模型集合筛选代表构象，补全缺失侧链并统一质子化状态；结合PTB-磷酸肽结合位点注释进行表面电荷与保守性分析。",
+    "structureRef": "RCSB PDB 2YS5：human FRS3 PTB domain NMR structure",
+    "antibodies": [
+      "无已获批FRS3靶向治疗性抗体",
+      "无公认临床阶段FRS3阻断抗体"
+    ],
+    "interfaceFocus": "PTB沟槽与FGFR近膜磷酸肽结合界面",
+    "designMode": "细胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "FGFR1",
+        "rationale": "FGFR1为FGF/FGFR通路上游膜受体，胞外免疫球蛋白样结构域可及性高，且可通过阻断FGF配体结合或受体二聚化抑制RAS-MAPK与PI3K-AKT信号。"
+      },
+      {
+        "target": "FGFR2",
+        "rationale": "FGFR2在肿瘤与骨骼发育异常中具有明确遗传和功能证据，胞外D2-D3配体结合区适合抗体介导的配体竞争或构象阻断。"
+      },
+      {
+        "target": "FGF19",
+        "rationale": "FGF19是FGFR4/KLB轴的分泌型配体，抗体可直接中和其与FGFR4-β-Klotho复合物的结合，抗原可及性优于胞内衔接蛋白。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

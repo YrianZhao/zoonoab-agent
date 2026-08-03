@@ -1,0 +1,65 @@
+{
+  "gene": "ARHGEF26",
+  "generatedAt": "2026-08-03T18:07:07.461Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ARHGEF26编码SGEF，是Rho家族小GTP酶的鸟嘌呤核苷酸交换因子，可促进RhoG等小GTP酶由GDP结合态转为GTP结合态，影响细胞骨架重塑、内皮屏障与肾小球滤过相关表型。该蛋白主要为胞内信号调节因子，缺乏典型胞外结构域或分泌特征，天然抗体抗原可及性不占优势，更适合细胞内递送抗体片段或结构探针策略。其优先级来自高分辨率实验结构与肾功能性状遗传关联信号，但相较膜受体或分泌配体，成药性应列为条件性优先。",
+    "mechanism": "以内源化抗体片段阻断DH结构域与RhoG Switch I/II区域结合，抑制GDP释放和GTP装载。",
+    "selectedEpitope": "优先靶向DH结构域RhoG结合沟槽及催化螺旋邻近界面。",
+    "diseaseDirection": "肾小球滤过与肾功能表型",
+    "domain": "ARHGEF26含N端调节区、DH催化结构域及PH结构域，6MYE覆盖结构化催化片段。",
+    "evidence": "ARHGEF26肾功能性状与RhoG交换活性证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q96DR7功能与结构域注释",
+      "RCSB PDB 6MYE高分辨率晶体结构",
+      "RhoGEF-DH结构域小GTP酶交换机制文献"
+    ],
+    "referenceEntries": "UniProt Q96DR7；RCSB PDB 6MYE；Open Targets ARHGEF26",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DH结构域RhoG结合沟槽与催化螺旋界面",
+        "直接干预RhoG核苷酸交换反应，机制可验证性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DH-PH相邻区域的构象耦联表面",
+        "可能影响催化结构域定位与构象稳定性，适合变构抑制探索",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离GTP酶结合面的晶体暴露环区",
+        "结合风险较低但功能阻断不确定，需依赖活性筛选确认",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ARHGEF26为胞内蛋白，常规抗体难以到达作用位点；设计应采用VHH、intrabody或递送系统，并严格评估RhoGEF家族交叉反应。",
+    "structurePrepZh": "以6MYE链A/B为结构模板，保留高置信主链与催化界面残基，补全缺失侧链后进行质子化、界面网格与RhoG对接参考建模。",
+    "structureRef": "RCSB PDB 6MYE，X-ray diffraction，1.1 Å",
+    "antibodies": [
+      "胞内抗体片段intrabody原型",
+      "细胞穿透型VHH工程格式"
+    ],
+    "interfaceFocus": "DH结构域RhoG结合沟槽与催化螺旋",
+    "designMode": "胞内VHH阻断",
+    "candidates": [
+      {
+        "target": "RHOG",
+        "rationale": "RhoG是ARHGEF26已报道的下游小GTP酶底物，处于同一RhoGEF-RhoG细胞骨架与内皮功能轴；直接靶向其活化界面可验证通路依赖性。"
+      },
+      {
+        "target": "ELMO1",
+        "rationale": "ELMO1参与RhoG介导的DOCK/Rac信号复合体，与细胞迁移和细胞骨架重塑相关；可作为ARHGEF26下游效应通路的候选节点。"
+      },
+      {
+        "target": "DOCK1",
+        "rationale": "DOCK1与ELMO复合体连接RhoG信号至Rac1活化，属于同一小GTP酶交换与细胞骨架调控网络；适合用于通路层面的替代干预比较。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

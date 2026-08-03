@@ -1,0 +1,65 @@
+{
+  "gene": "PTGER1",
+  "generatedAt": "2026-08-03T15:41:34.435Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PTGER1编码PGE2受体EP1，属于七跨膜GPCR，参与PGE2介导的Gq/PLCβ/Ca2+信号，影响血管平滑肌张力、肾小管功能及炎症相关组织反应。该靶点的N端、三条胞外环及配体结合口袋入口位于细胞外侧，具备膜受体抗原可及性，适合开展构象选择性抗体设计。相较同时表达广泛且功能多向的EP2、EP4，EP1更偏向钙信号与收缩反应轴，结构数据9M1H可为胞外口袋邻近表位设计提供优先级依据。",
+    "mechanism": "通过结合PTGER1胞外环与PGE2结合口袋入口，阻断PGE2进入跨膜配体腔并抑制EP1介导的Gq偶联Ca2+信号。",
+    "selectedEpitope": "优先锁定ECL2及TM2/TM7口袋入口构象表位，兼顾N端胞外段稳定接触。",
+    "diseaseDirection": "PGE2-EP1炎症与血管肾脏通路",
+    "domain": "PTGER1为A类GPCR，含胞外N端、7个跨膜螺旋、3个胞外环及胞内C端。",
+    "evidence": "PTGER1结构与PGE2-EP1疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "RCSB PDB 9M1H冷冻电镜结构",
+      "UniProt P34995功能与拓扑注释",
+      "PGE2-EP受体药理学与GPCR信号文献"
+    ],
+    "referenceEntries": "UniProt:P34995; RCSB PDB:9M1H; Gene:PTGER1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ECL2与TM2/TM7配体口袋入口",
+        "可直接限制PGE2进入正构结合腔，具备阻断型抗体设计价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端胞外段与ECL1邻近区域",
+        "有助于提高受体亚型选择性，并可作为构象稳定辅助表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ECL3及TM6/TM7外侧界面",
+        "可能影响受体激活构象，但与膜近端区域相邻，空间可及性需验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PTGER1为多跨膜GPCR，胞外环较短且构象依赖性强；设计需规避膜嵌入面和保守跨膜核心，优先采用构象稳定抗原。",
+    "structurePrepZh": "以9M1H冷冻电镜结构为模板，保留抗原链A/B/C/G中分辨率较完整构象，补全胞外环缺失残基并去除非目标复合物组分。",
+    "structureRef": "RCSB PDB 9M1H, cryo-EM human PTGER1 complex",
+    "antibodies": [
+      "anti-PTGER1 monoclonal antibody",
+      "anti-EP1 receptor antibody"
+    ],
+    "interfaceFocus": "ECL2-正构配体口袋入口界面",
+    "designMode": "GPCR构象阻断",
+    "candidates": [
+      {
+        "target": "PTGES",
+        "rationale": "PTGES催化生成PGE2，位于PTGER1上游，可降低EP受体轴的配体供给。其在炎症和肾脏相关前列腺素通路中具有明确连接。"
+      },
+      {
+        "target": "PTGER2",
+        "rationale": "PTGER2编码PGE2受体EP2，与PTGER1同属PGE2受体通路，但主要偶联Gs/cAMP信号。作为平行受体节点，可用于区分PGE2不同效应分支。"
+      },
+      {
+        "target": "PTGER4",
+        "rationale": "PTGER4编码PGE2受体EP4，参与PGE2介导的免疫炎症和血管反应。其与EP1共享PGE2配体来源，适合作为同通路比较靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

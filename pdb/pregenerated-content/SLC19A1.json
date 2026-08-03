@@ -1,0 +1,65 @@
+{
+  "gene": "SLC19A1",
+  "generatedAt": "2026-08-03T16:36:35.842Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SLC19A1编码还原型叶酸载体RFC1，是叶酸及甲氨蝶呤等叶酸类似物跨膜转运的关键入口，直接参与叶酸稳态失衡、叶酸反应性巨幼细胞性贫血及免疫缺陷相关病理。该蛋白属于质膜转运体，胞外环与跨膜口袋具备可及性，但其构象转换驱动底物通量，使其较分泌因子更适合以构象选择性抗体实现功能阻断。相较同通路叶酸受体FOLR1/2，SLC19A1更直接决定细胞对循环还原型叶酸和药物类叶酸的摄取，因此在叶酸转运轴中具有更高的功能优先级。",
+    "mechanism": "抗体结合胞外环并稳定外向构象，阻断叶酸与转运口袋装载，抑制RFC1介导的还原型叶酸摄取。",
+    "selectedEpitope": "优先覆盖第1、4、6外向环及入口门控界面，避免深埋跨膜核心。",
+    "diseaseDirection": "叶酸转运缺陷",
+    "domain": "11跨膜螺旋转运核心，外向环与底物入口位于胞外侧。",
+    "evidence": "SLC19A1叶酸转运抗体设计证据包",
+    "evidenceSources": [
+      "UniProt:P41440",
+      "RCSB PDB:7XTK",
+      "Open Targets Platform",
+      "文献：SLC19A1/RFC1结构与叶酸转运研究"
+    ],
+    "referenceEntries": "UniProt P41440；RCSB 7XTK；Open Targets SLC19A1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "胞外入口环与门控表面",
+        "可阻断叶酸装载并具备较高可及性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "外向构象下的底物通道侧缘",
+        "有望稳定非转运状态，适合构象锁定",
+        "备选"
+      ],
+      [
+        "Site C",
+        "跨膜螺旋深部口袋邻近区",
+        "可能影响折叠与膜插入，非首选",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险在于跨膜蛋白构象异质性较高且胞外暴露面有限，需优先采用构象分群与膜环境保真模型。应避开保守跨膜核心，以降低对家族相关转运体的非特异干扰。",
+    "structurePrepZh": "建议基于7XTK进行膜定向重建与胞外环精修，补全缺失柔性环段并按外向构象做糖基化与膜环境约束。",
+    "structureRef": "RCSB PDB 7XTK；SLC19A1冷冻电镜结构研究",
+    "antibodies": [
+      "anti-FOLR1 monoclonal antibody",
+      "抗叶酸转运轴阻断型单抗"
+    ],
+    "interfaceFocus": "胞外入口环、外向门控界面、底物通道上缘",
+    "designMode": "构象阻断型",
+    "candidates": [
+      {
+        "target": "FOLR1",
+        "rationale": "与SLC19A1同属叶酸摄取通路，但通过叶酸受体介导内吞实现补充性转运。其作为替代摄取轴可用于评估叶酸通路阻断的通路冗余与疾病相关性。"
+      },
+      {
+        "target": "FOLR2",
+        "rationale": "FOLR2参与叶酸结合和细胞摄取，在免疫细胞与髓系相关背景中具有通路关联。与SLC19A1共同构成叶酸稳态网络，适合作为同通路比较靶点。"
+      },
+      {
+        "target": "SLC46A1",
+        "rationale": "SLC46A1是质子偶联叶酸转运体，与SLC19A1共同决定细胞叶酸获取。作为另一条叶酸跨膜进入路径，可用于验证对叶酸缺乏表型的通路层级影响。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

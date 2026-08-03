@@ -1,0 +1,65 @@
+{
+  "gene": "RPS8",
+  "generatedAt": "2026-08-03T16:13:44.973Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RPS8为40S小核糖体亚基组成蛋白，参与mRNA解码平台装配与翻译起始复合体稳定，疾病关联多反映肌营养不良、病毒感染或囊性纤维化中的转录翻译应激，而非经典可阻断的细胞外致病轴。该蛋白定位于胞内核糖体复合体，缺乏分泌形式、跨膜区或稳定胞外结构域，常规抗体难以在完整细胞环境中实现抗原可及性。相较于病毒进入受体、细胞因子或膜受体类靶点，RPS8作为治疗性抗体主靶点优先级较低；其更适合作为结构识别、细胞内递送抗体或研究级结合分子设计对象。",
+    "mechanism": "通过胞内递送型抗体结合RPS8在40S亚基中的暴露螺旋面，干扰其与18S rRNA及邻近核糖体蛋白的稳定接触。",
+    "selectedEpitope": "优先评估RPS8表面暴露α螺旋与18S rRNA邻近但不深埋的核糖体外侧界面。",
+    "diseaseDirection": "翻译应激与病毒感染相关疾病",
+    "domain": "RPS8为小核糖体亚基S8结构域蛋白，含多段α螺旋和β折叠，嵌入40S核糖体。",
+    "evidence": "RPS8疾病关联与40S核糖体结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P62241蛋白定位与功能注释",
+      "RCSB PDB 5VYC人源核糖体结构",
+      "Reactome翻译起始与核糖体装配通路"
+    ],
+    "referenceEntries": "UniProt:P62241；RCSB PDB:5VYC；Reactome:R-HSA-72766",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "40S外侧暴露α螺旋表面",
+        "相对可及，适合胞内Fab/VHH结合验证",
+        "优先"
+      ],
+      [
+        "Site B",
+        "18S rRNA邻近带正电残基簇",
+        "可能影响RPS8-rRNA稳定接触，但需规避核酸非特异结合",
+        "备选"
+      ],
+      [
+        "Site C",
+        "核糖体核心深埋界面",
+        "天然复合体中可及性低，易破坏全局翻译并产生毒性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RPS8为必需胞内核糖体蛋白，常规抗体不可及且功能阻断可能导致广泛翻译抑制。设计宜限定为胞内递送、研究工具或条件性结合格式。",
+    "structurePrepZh": "以5VYC中RPS8抗原链为模板，分离目标链并保留邻近18S rRNA和核糖体蛋白用于界面判读；6.0 Å分辨率需结合AlphaFold模型校正侧链。",
+    "structureRef": "PDB 5VYC，人源80S核糖体X射线结构，6.0 Å",
+    "antibodies": [
+      "anti-RPS8研究级抗体",
+      "细胞内递送型anti-ribosomal protein工具抗体"
+    ],
+    "interfaceFocus": "RPS8-18S rRNA接触面及40S外侧暴露螺旋",
+    "designMode": "胞内递送抗体设计",
+    "candidates": [
+      {
+        "target": "RPS6",
+        "rationale": "RPS6同属40S核糖体亚基并参与翻译调控，位于mTORC1-S6K信号输出节点，较RPS8具有更明确的疾病通路调控证据。"
+      },
+      {
+        "target": "EIF4E",
+        "rationale": "EIF4E介导mRNA 5′ cap识别并驱动翻译起始，在病毒感染和肿瘤相关翻译重编程中具有明确功能定位。"
+      },
+      {
+        "target": "EIF2S1",
+        "rationale": "EIF2S1是整合应激反应中eIF2α磷酸化调控核心，连接感染、蛋白稳态应激和翻译抑制通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "ABI1",
+  "generatedAt": "2026-08-03T09:49:40.044Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ABI1是WAVE调节复合体核心支架蛋白，参与RAC1依赖的肌动蛋白聚合、细胞迁移与神经突触结构维持，Open Targets显示其与神经退行性疾病及多种肿瘤存在遗传和表达层面的关联。ABI1主要为胞内蛋白，天然抗原可及性弱，不具备常规膜外或分泌抗体靶点优势，因此更适合胞内递送抗体、VHH或研究级构象探针策略。相较于上游RAC1等多效性GTP酶，ABI1位于WAVE复合体装配界面，结构域边界明确，可为通路选择性干预提供更高分辨率的设计入口。",
+    "mechanism": "通过结合ABI1 SH3结构域或WAVE复合体装配界面，阻断ABI1与含脯氨酸配体及复合体伙伴的相互作用，削弱RAC1-WAVE-ARP2/3轴介导的肌动蛋白成核。",
+    "selectedEpitope": "优先覆盖ABI1 C端SH3结构域的肽结合沟槽及RT-Src环邻近界面。",
+    "diseaseDirection": "神经退行性疾病与肿瘤迁移",
+    "domain": "ABI1含N端WAVE复合体装配区、富脯氨酸区和C端SH3结构域；7LXE解析SH3结构域。",
+    "evidence": "ABI1-WAVE复合体与肌动蛋白重塑证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q8IZP0功能与结构域注释",
+      "RCSB PDB 7LXE晶体结构记录",
+      "WAVE regulatory complex与RAC1-ARP2/3通路文献"
+    ],
+    "referenceEntries": "UniProt: Q8IZP0；RCSB PDB: 7LXE；Ensembl: ENSG00000136754",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端SH3结构域肽结合沟槽",
+        "可直接干预ABI1识别富脯氨酸配体，结构清晰且适合构象锁定",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SH3结构域RT环与Src环外侧面",
+        "有利于获得别构型抗体片段，降低完全遮蔽保守沟槽带来的交叉反应风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端WAVE复合体装配区预测界面",
+        "可能影响CYFIP/NCKAP/WAVE复合体稳定性，但缺乏7LXE实验坐标支持",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ABI1为胞内抗原，常规全长IgG难以到达作用位点；SH3沟槽保守性较高，应通过环区差异位点提高选择性，并优先采用胞内递送VHH验证。",
+    "structurePrepZh": "以7LXE链A为模板，保留SH3结构域坐标并检查晶体接触；补建缺失侧链、质子化组氨酸，标注肽结合沟槽与环区柔性残基。",
+    "structureRef": "RCSB PDB 7LXE，human ABI1 SH3 domain，X-ray 1.88 Å",
+    "antibodies": [
+      "抗ABI1研究级单克隆抗体",
+      "抗ABI1多克隆抗体"
+    ],
+    "interfaceFocus": "SH3肽结合沟槽与RT-Src环界面",
+    "designMode": "胞内VHH构象探针",
+    "candidates": [
+      {
+        "target": "WASF1",
+        "rationale": "WASF1编码WAVE1，是ABI1所在WAVE调节复合体的效应亚基，直接连接复合体激活与ARP2/3介导的肌动蛋白成核。"
+      },
+      {
+        "target": "CYFIP1",
+        "rationale": "CYFIP1是WAVE调节复合体核心组分，可与RAC1信号输入及复合体自抑制状态相关，处于同一肌动蛋白重塑通路。"
+      },
+      {
+        "target": "NCKAP1",
+        "rationale": "NCKAP1/NAP1参与WAVE复合体稳定装配，与ABI1共同维持RAC1-WAVE-ARP2/3轴的空间组织和迁移表型。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

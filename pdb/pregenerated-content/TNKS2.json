@@ -1,0 +1,65 @@
+{
+  "gene": "TNKS2",
+  "generatedAt": "2026-08-03T17:23:46.573Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TNKS2编码tankyrase 2，是聚ADP核糖聚合酶家族成员，可通过PARsylation调控AXIN降解并增强Wnt/β-catenin信号，亦参与端粒相关蛋白和代谢性状相关调控。该蛋白主要定位于胞内并具有催化结构域，天然抗原可及性不及膜受体或分泌蛋白，抗体策略更适合结构验证、胞内递送抗体或研究级抑制工具。相较于Wnt通路上游分泌因子，TNKS2处于AXIN稳定性控制节点，具备较明确的催化口袋和结构解析基础，但临床抗体成药优先级低于胞外可及靶点。",
+    "mechanism": "通过结合TNKS2 PARP催化结构域的NAD+结合沟槽邻近区域，阻断底物进入及ADP-核糖转移反应，降低AXIN PARsylation与后续RNF146依赖性降解。",
+    "selectedEpitope": "优先覆盖PARP结构域NAD+结合口袋外缘与供体环，避免完全依赖深部小分子口袋。",
+    "diseaseDirection": "Wnt信号与代谢性状关联",
+    "domain": "TNKS2含N端ANK重复区、SAM寡聚化结构域及C端PARP催化结构域；3TWR对应催化区晶体结构。",
+    "evidence": "TNKS2结构与Wnt-AXIN调控证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联数据",
+      "UniProt Q9H2K2功能与结构域注释",
+      "RCSB PDB 3TWR晶体结构记录",
+      "文献报道tankyrase介导AXIN PARsylation与β-catenin信号增强"
+    ],
+    "referenceEntries": "UniProt: Q9H2K2；RCSB PDB: 3TWR；Open Targets: TNKS2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PARP催化结构域NAD+结合沟槽外缘及供体环",
+        "可干扰NAD+与蛋白底物的构象进入，机制最直接",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PARP结构域底物结合面邻近α螺旋与表面环区",
+        "有利于阻断AXIN等底物接近催化中心，保留抗体可结合性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SAM结构域寡聚化界面预测区域",
+        "可能影响tankyrase自聚集，但3TWR未覆盖该结构域且需额外结构验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TNKS2为胞内酶，常规抗体难以触达天然靶点；设计应标注胞内递送、研究级Fab/VHH或降解偶联策略，并评估TNKS1交叉反应。",
+    "structurePrepZh": "以3TWR高分辨率催化结构域为模板，保留抗原链代表构象，清理晶体配体与水分子后标注NAD+口袋、催化残基和TNKS1同源保守面。",
+    "structureRef": "RCSB PDB 3TWR，X-ray diffraction，1.55 Å，human TNKS2 PARP domain",
+    "antibodies": [
+      "TNKS2研究级抗体",
+      "anti-tankyrase 1/2交叉反应抗体"
+    ],
+    "interfaceFocus": "PARP催化沟槽外缘与底物进入界面",
+    "designMode": "胞内靶点Fab/VHH",
+    "candidates": [
+      {
+        "target": "TNKS",
+        "rationale": "TNKS与TNKS2同属tankyrase家族，均可PARsylate AXIN并促进RNF146介导的AXIN降解，是Wnt/β-catenin通路中功能冗余的核心节点。"
+      },
+      {
+        "target": "AXIN1",
+        "rationale": "AXIN1是β-catenin降解复合体支架蛋白，受tankyrase介导PARsylation调节；稳定AXIN1可抑制Wnt信号输出。"
+      },
+      {
+        "target": "RNF146",
+        "rationale": "RNF146识别PARsylated AXIN并介导其泛素化降解，位于TNKS2下游，是连接PARsylation与蛋白酶体降解的同一路径靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

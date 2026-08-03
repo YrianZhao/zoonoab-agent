@@ -1,0 +1,65 @@
+{
+  "gene": "INSR",
+  "generatedAt": "2026-08-03T13:30:00.076Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "INSR 是胰岛素信号轴的核心受体酪氨酸激酶，胰岛素结合后诱导受体构象重排与β链激酶区自磷酸化，进而募集 IRS1/IRS2 并驱动 PI3K-AKT 代谢通路，其功能缺陷直接关联 A 型胰岛素抵抗、Donohue 综合征及 2 型糖尿病。该靶点为细胞表面二硫键连接的α2β2跨膜受体，α链及β链胞外段具备明确抗体可及性。相较下游胞内信号蛋白，INSR 可通过胞外配体结合界面或构象调节位点实现直接抗体干预，因此具备较高抗体设计优先级。",
+    "mechanism": "通过结合 INSR 胞外 L1-CR-αCT 胰岛素结合位点，阻断胰岛素与受体 Site 1 相互作用，或稳定非活化构象以抑制受体自磷酸化。",
+    "selectedEpitope": "优先聚焦 L1 结构域与αCT 螺旋共同形成的胰岛素 Site 1 结合界面。",
+    "diseaseDirection": "胰岛素抵抗与糖尿病代谢疾病",
+    "domain": "INSR 胞外段包含 L1、富半胱氨酸 CR、L2、FnIII-1/2/3 结构域及αCT 片段。",
+    "evidence": "INSR 胞外配体识别与胰岛素抵抗证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联评分",
+      "UniProt P06213 功能与结构域注释",
+      "RCSB PDB 3BU3 X 射线晶体结构",
+      "人类胰岛素受体配体结合与结构生物学文献"
+    ],
+    "referenceEntries": "UniProt P06213；RCSB PDB 3BU3；Open Targets INSR",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "L1 结构域中央β折叠面与αCT 螺旋邻近界面",
+        "直接覆盖胰岛素 Site 1 识别区域，适合构建竞争性阻断抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CR 结构域邻近 L1-L2 连接区的构象支撑表面",
+        "可调节αCT定位与配体结合构象，适合非竞争性变构抗体筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "FnIII-2/FnIII-3 近膜二聚体重排区域",
+        "可能影响受体激活构象传递，但需规避胰岛素样激动效应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "INSR 与 IGF1R 胞外结构同源性较高，L1-CR 与 FnIII 区域需进行交叉反应性评估；避免选择可能诱导受体聚集和激动的二价构型表位。",
+    "structurePrepZh": "以 PDB 3BU3 的 A、B 链为实验结构模板，保留胞外结构域主链，补全缺失环区并校正二硫键、糖基化邻近位点与质子化状态。",
+    "structureRef": "PDB 3BU3，human insulin receptor ectodomain，1.65 Å X-ray",
+    "antibodies": [
+      "83-7",
+      "MA-20"
+    ],
+    "interfaceFocus": "L1-αCT 胰岛素 Site 1 结合界面",
+    "designMode": "阻断型/变构型",
+    "candidates": [
+      {
+        "target": "INS",
+        "rationale": "INS 编码胰岛素，是 INSR 的直接配体；调节 INS-INSR 相互作用可直接影响胰岛素信号输入。"
+      },
+      {
+        "target": "IGF1R",
+        "rationale": "IGF1R 与 INSR 同属受体酪氨酸激酶家族，可形成杂合受体并共享部分下游 PI3K-AKT 与 MAPK 信号。"
+      },
+      {
+        "target": "IRS1",
+        "rationale": "IRS1 是 INSR 激活后的主要胞内衔接蛋白，介导 PI3K 招募并连接胰岛素受体与代谢信号输出。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

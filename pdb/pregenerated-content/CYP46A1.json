@@ -1,0 +1,65 @@
+{
+  "gene": "CYP46A1",
+  "generatedAt": "2026-08-03T11:47:42.541Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CYP46A1 是脑内胆固醇 24-羟化酶，催化胆固醇生成 24S-羟基胆固醇，参与神经元胆固醇周转及氧固醇介导的兴奋性调节，其遗传与药理学证据主要指向癫痫性脑病和认知相关表型。该蛋白为内质网膜锚定的微粒体 P450 酶，催化结构域位于胞质侧而非经典胞外抗原，抗体可及性弱于分泌因子或细胞表面受体。相较 SCN1A、GABRA1 等通路靶点，CYP46A1 具备高分辨率实验结构和明确小分子别构调节先例，更适合作为结构生物学验证或胞内抗体片段设计靶点，但不宜优先开发常规外源治疗性抗体。",
+    "mechanism": "设计胞内抗体片段结合 CYP46A1 底物进入通道或血红素邻近构象区，阻断胆固醇进入催化腔并降低 24S-羟基胆固醇生成。",
+    "selectedEpitope": "优先瞄准 F/G 螺旋与底物进入通道边缘，避开血红素铁配位核心以降低非特异酶失活风险。",
+    "diseaseDirection": "癫痫性脑病与认知功能障碍",
+    "domain": "N 端内质网膜锚定区连接胞质型 P450 催化结构域，含血红素结合保守半胱氨酸基序。",
+    "evidence": "CYP46A1 神经胆固醇代谢与癫痫表型证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9Y6A2 functional annotation",
+      "RCSB PDB 7N6F X-ray structure",
+      "Human Protein Atlas brain-enriched expression evidence"
+    ],
+    "referenceEntries": "UniProt Q9Y6A2；RCSB PDB 7N6F；Open Targets ENSG00000036530",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "F/G 螺旋及底物进入通道口",
+        "限制胆固醇进入催化腔，具备构象调节价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "B-C loop 与活性腔入口邻近区域",
+        "可能影响底物定位并保留血红素核心完整性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "血红素结合环及 Cys 配位邻近面",
+        "直接干扰 P450 核心催化构象，存在广谱交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CYP46A1 缺乏胞外结构域，常规抗体体内可及性不足；设计宜限定为胞内 Fab/VHH、递送验证或结构探针，并严格评估 P450 家族交叉反应。",
+    "structurePrepZh": "以 7N6F A 链为模板，保留血红素辅基并校正氧化态，补全柔性环区缺失残基，去除晶体小分子后进行膜近端取向标注。",
+    "structureRef": "PDB 7N6F，human CYP46A1 X-ray structure，1.4 Å",
+    "antibodies": [
+      "无已批准抗 CYP46A1 治疗性抗体",
+      "抗 CYP46A1 研究级检测抗体"
+    ],
+    "interfaceFocus": "F/G 螺旋、B-C loop 与底物通道入口",
+    "designMode": "胞内结构阻断",
+    "candidates": [
+      {
+        "target": "SCN1A",
+        "rationale": "SCN1A 是 Dravet syndrome 的核心致病基因，编码 Nav1.1 钠通道并直接影响抑制性中间神经元兴奋性。其与 CYP46A1 共同指向癫痫性脑病表型，但抗体可及性同样受离子通道膜拓扑限制。"
+      },
+      {
+        "target": "GABRA1",
+        "rationale": "GABRA1 编码 GABA-A 受体 α1 亚基，参与抑制性突触传递，与癫痫发作阈值和认知功能密切相关。其胞外配体结合域较 CYP46A1 更适合抗体识别，但需避免干扰生理性 GABA 传递。"
+      },
+      {
+        "target": "GRIN2A",
+        "rationale": "GRIN2A 编码 NMDA 受体 GluN2A 亚基，参与谷氨酸兴奋性传递及癫痫-认知障碍通路。其胞外氨基端结构域和配体结合域提供可及表位，可作为同一神经兴奋性网络中的候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

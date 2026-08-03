@@ -1,0 +1,65 @@
+{
+  "gene": "SIAH1",
+  "generatedAt": "2026-08-03T16:32:18.658Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SIAH1编码胞内RING型E3泛素连接酶，参与底物识别、泛素转移及蛋白稳态调控，其遗传变异与Buratti-Harel综合征和神经发育异常存在明确关联。该蛋白主要定位于胞质和细胞核，缺乏分泌形式或跨膜胞外结构域，常规治疗性抗体的抗原可及性显著受限。相较于胞外受体或分泌因子靶点，SIAH1更适合作为结构生物学与细胞内功能验证靶点，抗体设计优先级应限定于细胞内抗体、研究级Fab或递送型VHH场景。",
+    "mechanism": "通过识别SIAH1底物结合结构域，阻断其与PxAxVxP类 degron 底物肽相互作用，干预底物招募和后续泛素化。",
+    "selectedEpitope": "优先覆盖SBD二聚体底物肽结合沟槽及PxAxVxP识别位点边缘。",
+    "diseaseDirection": "神经发育障碍与蛋白稳态异常",
+    "domain": "SIAH1含N端RING结构域、锌指区及C端底物结合结构域，4CA1覆盖SBD二聚体。",
+    "evidence": "SIAH1神经发育疾病遗传关联与SBD结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病-靶点关联",
+      "UniProt Q8IUQ4功能与亚细胞定位注释",
+      "RCSB PDB 4CA1 X射线晶体结构",
+      "OMIM与ClinVar相关神经发育表型记录"
+    ],
+    "referenceEntries": "UniProt Q8IUQ4；RCSB PDB 4CA1；Open Targets SIAH1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端SBD底物肽结合沟槽",
+        "直接竞争PxAxVxP degron底物结合，机制指向性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SBD二聚化界面邻近表面",
+        "可能影响底物结合结构稳定性及二聚体构象",
+        "备选"
+      ],
+      [
+        "Site C",
+        "保守疏水核心与锌结合邻近区域",
+        "易干扰折叠稳定性并增加非特异构象风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SIAH1为胞内蛋白，常规抗体难以进入作用位点；设计应采用intrbody、细胞递送VHH或研究级Fab，并避免锌结合核心表位。",
+    "structurePrepZh": "以4CA1链A/B构建SBD二聚体模型，保留底物结合沟槽构象，补全缺失侧链并评估晶体接触对表位暴露的影响。",
+    "structureRef": "RCSB PDB 4CA1，human SIAH1 SBD，1.58 Å X-ray",
+    "antibodies": [
+      "研究级抗SIAH1单克隆抗体",
+      "研究级抗SIAH1多克隆抗体"
+    ],
+    "interfaceFocus": "SBD底物结合沟槽与二聚化界面",
+    "designMode": "胞内递送型抗体设计",
+    "candidates": [
+      {
+        "target": "SIAH2",
+        "rationale": "SIAH2为SIAH1旁系同源E3泛素连接酶，具有相近的RING-SBD结构组织和底物degron识别模式，可作为同一蛋白稳态调控轴的比较靶点。"
+      },
+      {
+        "target": "UBE2D1",
+        "rationale": "UBE2D1属于SIAH类RING E3常用E2泛素结合酶家族成员，参与泛素从E2向底物转移的上游酶促步骤，适合用于泛素化级联机制对照。"
+      },
+      {
+        "target": "UBE2D3",
+        "rationale": "UBE2D3与多种RING型E3连接酶协同驱动底物泛素化，在SIAH依赖蛋白降解通路中可作为E2端调控候选节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

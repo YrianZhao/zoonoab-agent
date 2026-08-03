@@ -1,0 +1,65 @@
+{
+  "gene": "SOS1",
+  "generatedAt": "2026-08-03T21:16:26.519Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SOS1 是 RAS/MAPK 通路中的鸟嘌呤核苷酸交换因子，通过促进 RAS-GDP 向 RAS-GTP 转换驱动 ERK 信号，在 Noonan 综合征、RASopathy 及肿瘤相关 MAPK 过度激活中具有明确遗传学关联。SOS1 为胞内多结构域酶样支架蛋白，天然抗体可及性不具备膜外抗原优势，因此更适合作为细胞内递送抗体、intrabody 或结构引导的变构抑制分子验证靶点。相较于下游 RAF/MEK/ERK，SOS1 位于 RAS 激活上游，可直接削弱多种 RAS 亚型装载 GTP 的共同入口，优先级依据主要来自高疾病关联得分、明确致病突变机制及已有高分辨率复合物结构支持。",
+    "mechanism": "设计分子应阻断 SOS1 REM-CDC25 催化区与 RAS switch I/II 区域的结合，抑制 RAS 核苷酸交换并降低 RAS-GTP 形成。",
+    "selectedEpitope": "优先覆盖 CDC25 结构域的 RAS 结合槽及螺旋发夹界面，兼顾 REM-CDC25 变构耦联区。",
+    "diseaseDirection": "RASopathy 与 RAS/MAPK 驱动肿瘤",
+    "domain": "SOS1 含 DH、PH、REM 与 CDC25 RasGEF 结构域；2II0 覆盖催化核心与 RAS 复合界面。",
+    "evidence": "SOS1-RAS/MAPK 疾病遗传与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q07889 functional annotation",
+      "RCSB PDB 2II0 X-ray structure",
+      "ClinVar/OMIM RASopathy variant evidence"
+    ],
+    "referenceEntries": "UniProt Q07889；RCSB PDB 2II0；Open Targets SOS1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CDC25 RasGEF 结构域的 RAS switch I/II 结合槽",
+        "直接干预 SOS1-RAS 复合物形成并抑制核苷酸交换",
+        "优先"
+      ],
+      [
+        "Site B",
+        "REM-CDC25 交界处的变构耦联表面",
+        "可能削弱催化构象稳定性，适合变构型结合体设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "DH-PH 自抑制调控区邻近表面",
+        "与膜定位和自抑制解除相关，但 2II0 覆盖有限且构象依赖较强",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SOS1 为胞内蛋白，常规抗体缺乏天然可及性；设计应标注递送依赖风险，并优先验证对 SOS2 及其他 RasGEF 的选择性。",
+    "structurePrepZh": "以 2II0 链 A 为 SOS1 催化核心模板，保留与 RAS 接触界面坐标，补全缺失侧链并评估突变热点与界面保守性。",
+    "structureRef": "RCSB PDB 2II0，X-ray diffraction，2.02 Å",
+    "antibodies": [
+      "无临床获批 SOS1 抗体",
+      "细胞内抗体/intrabody 探索型结合体"
+    ],
+    "interfaceFocus": "CDC25-RAS switch I/II 接触面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "PTPN11",
+        "rationale": "PTPN11 编码 SHP2，是 RTK-RAS/MAPK 通路上游适配与信号放大节点，Noonan 综合征中存在明确致病突变。抑制 SHP2 可降低 SOS1 介导的 RAS 激活输入。"
+      },
+      {
+        "target": "KRAS",
+        "rationale": "KRAS 是 SOS1 催化核苷酸交换的直接底物之一，GTP 装载后驱动 RAF-MEK-ERK 级联。其在 RASopathy 相关信号异常及多种肿瘤中处于核心效应节点。"
+      },
+      {
+        "target": "RAF1",
+        "rationale": "RAF1 是 RAS-GTP 下游效应激酶，也是 Noonan 综合征相关基因。靶向 RAF1 可在 SOS1-RAS 激活之后截断 MAPK 级联输出。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

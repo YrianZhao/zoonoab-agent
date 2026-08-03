@@ -1,0 +1,65 @@
+{
+  "gene": "PRKCG",
+  "generatedAt": "2026-08-03T15:35:07.469Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PRKCG编码经典型蛋白激酶Cγ，主要为胞内丝氨酸/苏氨酸激酶，SCA14多由PRKCG错义变异导致激酶调控失衡、蛋白聚集及小脑浦肯野细胞功能障碍。其C1结构域可结合二酰甘油和佛波酯，C2结构域参与Ca2+依赖性膜定位，催化域介导底物磷酸化，疾病机制具有明确遗传因果性。PRKCG缺乏胞外结构域或分泌暴露面，常规抗体抗原可及性明显弱于膜受体或分泌因子，因此更适合作为细胞内结合抗体、递送型抗体或结构生物学验证靶点；其优先级主要来自SCA14遗传证据强度，而非抗体成药可及性。",
+    "mechanism": "设计细胞内结合抗体阻断PRKCG C1B结构域与二酰甘油样疏水配体结合，并限制C1介导的膜募集，从而降低异常PKCγ激活与下游底物磷酸化。",
+    "selectedEpitope": "优先聚焦2UZP所示C1B结构域疏水配体结合沟槽及锌指邻近构象稳定界面。",
+    "diseaseDirection": "SCA14遗传性小脑共济失调",
+    "domain": "PRKCG含C1A/C1B双锌指调控域、C2膜定位域、铰链区及C端丝氨酸/苏氨酸激酶催化域。",
+    "evidence": "PRKCG-SCA14遗传变异与C1结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P05129功能与结构域注释",
+      "RCSB PDB 2UZP X射线晶体结构",
+      "ClinVar与OMIM中SCA14相关PRKCG变异记录"
+    ],
+    "referenceEntries": "UniProtKB P05129；RCSB PDB 2UZP；Open Targets PRKCG",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C1B结构域DAG/佛波酯结合沟槽",
+        "直接干预膜募集所需脂质配体识别，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C1B锌指邻近保守环区",
+        "稳定非活化构象并降低疏水沟槽暴露，可作为变构抑制位点",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化结构域ATP结合裂隙",
+        "可抑制激酶活性但与PKC家族保守性高，选择性风险较大",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PRKCG为胞内激酶，常规抗体难以到达天然作用位点；C1结构域含锌指与疏水沟槽，需避免破坏性去折叠表位，并强化PRKCA/PRKCB选择性评估。",
+    "structurePrepZh": "以2UZP抗原链A、B、C中C1B结构域为模板，保留锌离子配位几何与关键疏水口袋，清理晶体配体和非生物学接触后进行构象聚类。",
+    "structureRef": "RCSB PDB 2UZP，human PKCγ C1B domain，2.0 Å X-ray",
+    "antibodies": [
+      "抗PKCγ研究级单克隆抗体",
+      "抗PRKCG兔单克隆抗体"
+    ],
+    "interfaceFocus": "C1B脂质配体沟槽与锌指稳定环",
+    "designMode": "细胞内抗体/结构阻断",
+    "candidates": [
+      {
+        "target": "PRKCA",
+        "rationale": "PRKCA同属经典型PKC，依赖Ca2+、二酰甘油和磷脂介导膜募集，可作为PKC信号通路选择性与补偿机制评估靶点。"
+      },
+      {
+        "target": "PRKCB",
+        "rationale": "PRKCB与PRKCG共享C1/C2调控架构和激酶催化机制，在经典PKC通路中具有高度同源性，适合用于交叉反应风险和同源靶点优先级比较。"
+      },
+      {
+        "target": "ITPR1",
+        "rationale": "ITPR1参与浦肯野细胞Ca2+信号稳态，并与遗传性小脑共济失调相关，可作为SCA相关钙信号异常通路中的并行候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "NLRX1",
+  "generatedAt": "2026-08-03T14:44:07.224Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NLRX1 是线粒体定位的 NOD-like receptor 家族成员，可通过线粒体外膜相关信号复合体影响 MAVS 介导的抗病毒先天免疫、NF-κB 炎症转录以及线粒体 ROS 相关应激反应，因而与肿瘤、创伤炎症和代谢表型存在机制关联。该蛋白并非分泌蛋白或经典细胞表面受体，完整抗体的天然抗原可及性受限，设计价值主要集中于细胞内递送抗体片段或结构生物学验证探针。相较其他 NLR 家族胞内靶点，NLRX1 具有已解析人源 LRR 结构和明确线粒体免疫调控节点，适合作为机制研究优先靶点，但不宜按常规膜外阻断抗体项目直接推进。",
+    "mechanism": "以内化递送型抗体片段结合 NLRX1 LRR 凹面，干预其与线粒体抗病毒信号复合体相关蛋白的接触，从而改变 MAVS 依赖信号输出。",
+    "selectedEpitope": "优先覆盖 LRR 弧形内侧保守凹面及相邻重复单元界面，避免线粒体定位序列区域。",
+    "diseaseDirection": "先天免疫炎症与肿瘤代谢应激",
+    "domain": "NLRX1 含 N 端线粒体定位区、中央 NACHT 样核苷酸结合区及 C 端 LRR 重复结构域。",
+    "evidence": "NLRX1 线粒体免疫调控与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q86UT6 functional annotation",
+      "RCSB PDB 3UN9 experimental structure",
+      "Innate immunity literature on NLRX1-MAVS signaling"
+    ],
+    "referenceEntries": "UniProt Q86UT6；RCSB PDB 3UN9；Open Targets NLRX1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C 端 LRR 弧形内侧凹面",
+        "可能覆盖蛋白互作识别面，适合构建功能干预型胞内抗体片段",
+        "优先"
+      ],
+      [
+        "Site B",
+        "LRR 外侧凸面非保守暴露环",
+        "有利于获得高特异性结合探针，功能阻断预期较弱",
+        "备选"
+      ],
+      [
+        "Site C",
+        "LRR 重复单元核心疏水骨架附近",
+        "可能影响折叠稳定性并产生构象依赖风险，需降低亲和力成熟压力",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NLRX1 为胞内线粒体相关蛋白，常规抗体难以到达天然靶点环境；应采用 VHH、intrabody 或递送偶联策略，并以细胞内定位验证为前置门槛。",
+    "structurePrepZh": "以 PDB 3UN9 的 A、B、C 链评估 LRR 构象一致性，去除结晶接触伪界面，补充缺失环区建模后开展表面保守性与可成药性分析。",
+    "structureRef": "PDB 3UN9，human NLRX1 LRR，X-ray 2.65 Å",
+    "antibodies": [
+      "无获批 NLRX1 靶向治疗性抗体",
+      "研究级抗 NLRX1 单克隆抗体"
+    ],
+    "interfaceFocus": "LRR 凹面蛋白互作界面与重复单元环区",
+    "designMode": "胞内VHH探针设计",
+    "candidates": [
+      {
+        "target": "MAVS",
+        "rationale": "MAVS 是线粒体外膜抗病毒信号枢纽，与 NLRX1 调控的先天免疫通路处于同一功能轴；其聚合与下游 TBK1/IRF3 激活直接决定干扰素输出。"
+      },
+      {
+        "target": "DDX58",
+        "rationale": "DDX58/RIG-I 识别病毒 RNA 并通过 CARD 结构域向 MAVS 传递信号，是 NLRX1 影响抗病毒通路上游输入强度的真实相关节点。"
+      },
+      {
+        "target": "IFIH1",
+        "rationale": "IFIH1/MDA5 与 MAVS 构成 RNA 病毒感知通路，参与 I 型干扰素和炎症因子诱导，可作为同一先天免疫通路中的替代调控靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

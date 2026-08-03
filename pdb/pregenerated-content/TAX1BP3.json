@@ -1,0 +1,65 @@
+{
+  "gene": "TAX1BP3",
+  "generatedAt": "2026-08-03T17:09:41.105Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TAX1BP3（TIP-1）为含单一PDZ结构域的胞内支架蛋白，可结合β-catenin、FAS及多种C端PDZ结合基序蛋白，参与Wnt/β-catenin转录输出、凋亡调控及肿瘤细胞迁移相关过程。该蛋白缺乏跨膜区和分泌信号肽，常规全长抗体难以直接作用于天然胞内抗原，抗原可及性主要依赖细胞通透递送、胞内抗体或研究级结构探针策略。相较于上游Wnt配体或受体，TAX1BP3的PDZ配体结合沟槽具有高分辨率结构基础，可支持精确界面封闭设计，但因疾病遗传关联强度较低，应定位为机制验证优先而非传统体内阻断抗体优先靶点。",
+    "mechanism": "设计分子应占据TAX1BP3 PDZ结构域的C端肽结合沟槽，阻断β-catenin或FAS等含PDZ结合基序蛋白与TIP-1的复合物形成。",
+    "selectedEpitope": "优先覆盖PDZ结构域βB-βC环与αB螺旋围成的C端配体结合沟槽。",
+    "diseaseDirection": "Wnt相关肿瘤与细胞黏附异常",
+    "domain": "TAX1BP3为约124 aa胞内蛋白，核心为单一PDZ结构域，形成典型β夹层与α螺旋配体结合沟槽。",
+    "evidence": "TAX1BP3结构界面与肿瘤通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt O14907蛋白功能与亚细胞定位注释",
+      "RCSB PDB 3SFJ高分辨率晶体结构",
+      "文献报道的TIP-1/β-catenin及TIP-1/FAS相互作用"
+    ],
+    "referenceEntries": "UniProt: O14907；RCSB PDB: 3SFJ；HGNC: TAX1BP3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PDZ βB-βC环/αB螺旋配体结合沟槽",
+        "直接封闭C端PDZ结合基序识别位点，最契合功能阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PDZ αB螺旋外侧与β夹层侧面",
+        "可通过构象约束削弱配体沟槽适配性，适合作为变构型候选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PDZ结构域保守疏水核心邻近表面",
+        "存在结构稳定性与同源PDZ交叉反应风险，不宜作为首选阻断表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TAX1BP3为胞内PDZ蛋白，体内抗体可及性不足是核心风险；设计宜限定为胞内递送抗体、intrabody或结构探针，并加强PDZ家族选择性筛选。",
+    "structurePrepZh": "以3SFJ实验晶体结构为模板，保留完整PDZ折叠单元，检查链A-D晶体接触差异，补全缺失侧链并定义配体沟槽网格。",
+    "structureRef": "RCSB PDB 3SFJ，X-ray diffraction，1.24 Å",
+    "antibodies": [
+      "无获批TAX1BP3靶向抗体",
+      "研究级抗TAX1BP3多克隆/单克隆抗体"
+    ],
+    "interfaceFocus": "PDZ C端肽识别沟槽与αB螺旋边界",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "CTNNB1",
+        "rationale": "CTNNB1编码β-catenin，是经典Wnt通路转录输出的核心效应蛋白，并与TIP-1存在报道相互作用。其异常稳定化与胶质母细胞瘤及多种肿瘤进展相关。"
+      },
+      {
+        "target": "FAS",
+        "rationale": "FAS含C端PDZ结合基序并可与TIP-1相互作用，涉及死亡受体介导的凋亡调控。靶向该轴可用于评估TIP-1对肿瘤细胞凋亡逃逸的贡献。"
+      },
+      {
+        "target": "LRP6",
+        "rationale": "LRP6是经典Wnt/β-catenin通路的细胞表面共受体，抗原可及性优于胞内TAX1BP3。其位于上游受体层级，适合作为同通路抗体阻断候选。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

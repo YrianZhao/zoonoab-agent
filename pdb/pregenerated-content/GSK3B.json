@@ -1,0 +1,65 @@
+{
+  "gene": "GSK3B",
+  "generatedAt": "2026-08-03T19:19:13.309Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GSK3B 是丝氨酸/苏氨酸蛋白激酶，在 WNT/β-catenin、胰岛素/AKT、tau 磷酸化及神经炎症相关通路中承担关键磷酸转移节点，Open Targets 显示其与双相障碍、重性抑郁、阿尔茨海默病及肿瘤存在广泛遗传与药理学关联。该蛋白主要定位于胞质和细胞核，缺乏天然胞外结构域，常规体内阻断型抗体的抗原可及性不具优势，但可作为细胞内靶点研究抗体、结构稳定抗体或递送型抗体工程对象。相较上游多受体节点，GSK3B 具有高分辨率激酶结构、明确 ATP 结合口袋和底物结合沟槽，可用于机制解析型抗体片段与构象选择性分子设计，优先级更适合研究级和递送型抗体设计而非传统裸抗治疗。",
+    "mechanism": "设计抗体片段结合 GSK3B 激酶 N/C 叶间 ATP 口袋邻近构象表面，限制活化环与底物结合沟槽排布，从而抑制底物磷酸化事件。",
+    "selectedEpitope": "优先选择激酶结构域 N 叶 β 折叠与 C 叶 αC-helix 周边的 ATP 口袋外缘构象表位。",
+    "diseaseDirection": "神经精神疾病与神经退行性疾病",
+    "domain": "GSK3B 含 N 端调控区、蛋白激酶催化结构域及 C 端尾部，1O6L 覆盖高分辨率激酶核心。",
+    "evidence": "GSK3B 疾病遗传关联与激酶结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt P49841 蛋白功能与定位注释",
+      "RCSB PDB 1O6L X-ray 晶体结构",
+      "Reactome WNT/AKT/tau 磷酸化通路注释"
+    ],
+    "referenceEntries": "UniProt P49841；RCSB PDB 1O6L；Open Targets GSK3B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域 ATP 结合口袋外缘与铰链区邻近表面",
+        "可干预核苷酸结合构象并利于构象选择性片段筛选",
+        "优先"
+      ],
+      [
+        "Site B",
+        "底物结合沟槽及活化环邻近 C 叶表面",
+        "可限制底物进入与磷酸转移构象形成，适合功能阻断验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端 Ser9 调控位点邻近柔性区域",
+        "与抑制性磷酸化调控相关，但柔性高且结构可解析性较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GSK3B 为细胞内激酶，裸抗体难以天然进入胞质；设计宜限定为胞内抗体、递送型 Fab/VHH 或结构研究抗体，并避免跨反应 GSK3A 保守激酶核心。",
+    "structurePrepZh": "以 1O6L 链 A/C 为结构模板，保留激酶核心坐标，校验 ATP 口袋、铰链区和活化环构象，补建缺失柔性片段并进行质子化状态优化。",
+    "structureRef": "RCSB PDB 1O6L，human GSK3B X-ray structure，1.6 Å",
+    "antibodies": [
+      "抗 GSK3β phospho-Ser9 抗体",
+      "抗 GSK3β total protein 抗体"
+    ],
+    "interfaceFocus": "ATP 口袋外缘、铰链区与底物沟槽",
+    "designMode": "胞内递送型抗体设计",
+    "candidates": [
+      {
+        "target": "CTNNB1",
+        "rationale": "CTNNB1 编码 β-catenin，是 WNT/GSK3B 破坏复合体的直接功能输出节点。靶向其蛋白相互作用界面可用于评估 GSK3B 介导的 β-catenin 稳定性调控。"
+      },
+      {
+        "target": "AXIN1",
+        "rationale": "AXIN1 是 β-catenin 破坏复合体支架蛋白，负责组织 GSK3B、APC 与 CTNNB1 的近邻复合。其结构化相互作用界面适合用于同通路复合体调控策略比较。"
+      },
+      {
+        "target": "MAPT",
+        "rationale": "MAPT 编码 tau 蛋白，是 GSK3B 相关神经退行性疾病研究中的重要磷酸化底物。靶向 tau 特定磷酸化构象可与 GSK3B 上游激酶干预形成机制互补。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

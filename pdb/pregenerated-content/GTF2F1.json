@@ -1,0 +1,65 @@
+{
+  "gene": "GTF2F1",
+  "generatedAt": "2026-08-03T19:21:19.838Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GTF2F1编码TFIIF大亚基RAP74，参与RNA polymerase II预起始复合体形成、启动子逃逸及转录延伸调控，HIV等病毒可依赖宿主Pol II转录机器完成前病毒基因表达。该蛋白主要定位于细胞核，不具备分泌蛋白或膜受体特征，天然抗原可及性显著弱于胞外靶点，抗体策略更适合体外结构探针或胞内递送形式。相较CD4、CCR5等同属HIV复制通路且具胞外可及性的靶点，GTF2F1优先级偏低；其优势在于高分辨率结构明确，可支持机制性表位验证与转录复合体干预研究。",
+    "mechanism": "阻断GTF2F1 RAP74 winged-helix结构域与RNA polymerase II转录复合体相关表面的结合，干扰TFIIF稳定PIC及促进启动子逃逸的功能。",
+    "selectedEpitope": "优先覆盖RAP74 C端winged-helix结构域的Pol II/核酸复合体接触面，避开疏水核心。",
+    "diseaseDirection": "HIV宿主转录依赖机制",
+    "domain": "GTF2F1含N端二聚化相关区域、带电中央区及C端RAP74 winged-helix结构域。",
+    "evidence": "GTF2F1-Pol II转录复合体与病毒转录依赖证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P35269功能与定位注释",
+      "RCSB PDB 1I27晶体结构记录",
+      "RNA polymerase II通用转录因子复合体文献"
+    ],
+    "referenceEntries": "UniProt P35269；RCSB PDB 1I27；Open Targets GTF2F1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RAP74 C端winged-helix外露螺旋-环区",
+        "可能干预TFIIF与Pol II转录复合体界面，结构分辨率支持精细设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "winged-helix DNA邻近正电荷表面",
+        "可作为阻断核酸邻近定位或复合体稳定的备选表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "结构域疏水核心及保守折叠支撑面",
+        "易造成非特异构象扰动且抗体可及性不足，需避免作为主表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GTF2F1为核内转录因子，常规抗体难以到达作用位点；建议限定为Fab/VHH结构探针、胞内抗体或递送系统验证，并严格评估广泛转录毒性。",
+    "structurePrepZh": "以PDB 1I27链A为结构模板，保留C端结构域坐标，校验缺失残基、质子化状态及晶体接触，标注外露正电荷界面。",
+    "structureRef": "RCSB PDB 1I27，human RAP74 C-terminal domain，1.02 Å",
+    "antibodies": [
+      "anti-GTF2F1 research antibody",
+      "anti-RAP74 monoclonal antibody"
+    ],
+    "interfaceFocus": "RAP74 winged-helix与Pol II/PIC邻近结合面",
+    "designMode": "胞内结构阻断",
+    "candidates": [
+      {
+        "target": "POLR2A",
+        "rationale": "POLR2A为RNA polymerase II最大亚基，是HIV前病毒转录的核心宿主酶组分；其与通用转录因子及病毒Tat/P-TEFb轴共同决定转录输出。"
+      },
+      {
+        "target": "CDK9",
+        "rationale": "CDK9是P-TEFb催化亚基，可磷酸化Pol II CTD并促进HIV转录延伸；与GTF2F1同属宿主Pol II转录依赖网络。"
+      },
+      {
+        "target": "CCNT1",
+        "rationale": "CCNT1为Cyclin T1，是P-TEFb中介导HIV Tat结合和TAR RNA依赖转录激活的关键宿主因子。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

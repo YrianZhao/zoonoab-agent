@@ -1,0 +1,65 @@
+{
+  "gene": "DGKD",
+  "generatedAt": "2026-08-03T11:56:01.601Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DGKD编码二酰甘油激酶δ，可将二酰甘油磷酸化为磷脂酸，从而影响DAG依赖性PKC信号、磷脂酸效应蛋白及血小板、肾小球滤过相关细胞功能表型。Open Targets关联主要集中于钙测量、胆红素测量、血小板计数和肾小球滤过率等数量性状，提示其遗传证据更偏向代谢与细胞信号调控标志物，而非已验证的胞外致病配体轴。DGKD为胞内多结构域脂质激酶，天然抗原可及性不具备分泌蛋白或膜受体优势，因此更适合研究型胞内结合抗体、结构探针或递送型抗体格式。相较于同通路中可直接靶向的膜受体或分泌因子，DGKD优先级主要来自明确酶学节点和实验结构可用性，但成药性优先级低于胞外可及靶点。",
+    "mechanism": "设计抗体结合DGKD催化结构域或C1结构域界面，阻断DAG底物定位、ATP依赖性磷酸转移或调节域构象耦联，从而降低DAG向磷脂酸转化。",
+    "selectedEpitope": "优先覆盖3BQ7所示催化激酶结构域近ATP/脂质底物进入沟槽，避开高度保守核心折叠。",
+    "diseaseDirection": "脂质信号与血小板/肾功能数量性状",
+    "domain": "DGKD含N端PH结构域、EF-hand样区域、双C1结构域及C端二酰甘油激酶催化结构域。",
+    "evidence": "DGKD脂质激酶结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q16760功能与结构域注释",
+      "RCSB PDB 3BQ7晶体结构记录",
+      "Reactome/KEGG磷脂酰肌醇与DAG信号通路注释"
+    ],
+    "referenceEntries": "UniProt Q16760；RCSB PDB 3BQ7；Open Targets DGKD",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域ATP结合裂隙邻近环区",
+        "可干预磷酸转移构象与底物进入，适合作功能阻断抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C1结构域DAG识别面及其相邻调节界面",
+        "可影响DAG膜定位与催化域募集，适合作构象调节抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PH结构域磷脂结合面",
+        "可能改变膜定位，但同源结构域保守性较高，需控制交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DGKD为胞内酶，常规抗体难以接触天然靶点；催化口袋保守性较高，应优先选择亚型特异环区并评估DGK家族交叉结合。",
+    "structurePrepZh": "以3BQ7晶体结构为模板，补全缺失环区并校正寡聚状态；结合AlphaFold全长模型映射PH、C1与催化域相对位置。",
+    "structureRef": "RCSB PDB 3BQ7，X-ray diffraction，2.9 Å",
+    "antibodies": [
+      "研究级抗DGKD多克隆抗体",
+      "研究级抗DGKD单克隆抗体"
+    ],
+    "interfaceFocus": "ATP结合裂隙、DAG进入沟槽与C1调节界面",
+    "designMode": "胞内酶构象阻断",
+    "candidates": [
+      {
+        "target": "DGKA",
+        "rationale": "DGKA同属二酰甘油激酶家族，催化DAG向磷脂酸转化并参与T细胞与血小板DAG-PKC信号调控，可作为同一脂质信号通路参照靶点。"
+      },
+      {
+        "target": "DGKZ",
+        "rationale": "DGKZ调节DAG/磷脂酸平衡并影响PKC与RasGRP相关信号输出，适合用于比较不同DGK亚型在数量性状中的功能贡献。"
+      },
+      {
+        "target": "PRKCA",
+        "rationale": "PRKCA为DAG依赖性蛋白激酶C亚型，位于DGKD调控的DAG信号下游，与钙信号、血小板活化及细胞分泌反应密切相关。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

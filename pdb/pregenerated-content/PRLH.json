@@ -1,0 +1,65 @@
+{
+  "gene": "PRLH",
+  "generatedAt": "2026-08-03T15:36:09.418Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PRLH编码前体经加工生成PrRP肽，可激活GPR10/PRLHR并影响下丘脑摄食、能量稳态及神经内分泌调节，遗传与表型关联指向身高、生长和肥胖相关表型。其功能性配体为分泌性短肽，抗原位于细胞外体液环境，理论上具有良好的抗体可及性。相较于直接靶向中枢GPCR，PRLH配体阻断可在配体-受体结合层面实现更明确的中和设计，但需重点评估短肽表位面积不足与生理冗余风险。",
+    "mechanism": "中和抗体结合成熟PrRP肽C端酰胺化受体识别面，阻断PRLH与PRLHR/GPR10正构结合口袋接触，从而抑制配体诱导的受体激活。",
+    "selectedEpitope": "优先覆盖成熟PrRP肽C端RF-NH2样受体识别核心及邻近疏水残基，形成构象约束型结合表位。",
+    "diseaseDirection": "神经内分泌代谢与生长表型",
+    "domain": "PRLH为分泌肽前体，含信号肽和成熟PrRP-31/PrRP-20活性肽段，C端酰胺化决定受体识别。",
+    "evidence": "PRLH-PRLHR轴结构与代谢遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P81277 functional annotation",
+      "RCSB PDB 9K27 electron microscopy structure",
+      "GPCR ligand recognition literature for PrRP-PRLHR axis"
+    ],
+    "referenceEntries": "UniProt:P81277; RCSB PDB:9K27; Open Targets:PRLH",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "成熟PrRP C端酰胺化受体识别核心",
+        "直接阻断PRLHR/GPR10正构结合，机制最清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PrRP中段邻接受体接触残基簇",
+        "增强结合面积并提高短肽抗原的亲和力成熟空间",
+        "备选"
+      ],
+      [
+        "Site C",
+        "前体非成熟肽段或加工酶切邻域",
+        "可能不代表循环活性配体，存在功能相关性不足风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PRLH成熟肽较短，线性表位易产生低亲和力或非中和结合；建议采用构象固定肽、C端酰胺化保真抗原并排除非成熟前体偏好克隆。",
+    "structurePrepZh": "以9K27实验结构提取PRLH相关肽段及受体接触构象，补全缺失氢原子、确认C端酰胺化状态，并保留关键水合与受体口袋约束信息。",
+    "structureRef": "RCSB PDB 9K27, cryo-EM structure at 2.68 Å",
+    "antibodies": [
+      "无已批准PRLH中和抗体",
+      "研究级抗PRLH/PrRP抗体"
+    ],
+    "interfaceFocus": "PrRP C端酰胺基与PRLHR正构结合口袋",
+    "designMode": "短肽中和抗体设计",
+    "candidates": [
+      {
+        "target": "PRLHR",
+        "rationale": "PRLHR/GPR10为PRLH的同通路受体，直接决定PrRP信号输入；靶向胞外正构口袋可阻断配体诱导的受体激活。"
+      },
+      {
+        "target": "MC4R",
+        "rationale": "MC4R处于下丘脑摄食与能量稳态通路核心，PRLH相关表型与MC4R缺陷性肥胖存在遗传疾病交叉；受体为膜蛋白但抗体可及性需依赖胞外环构象。"
+      },
+      {
+        "target": "POMC",
+        "rationale": "POMC神经元是黑皮质素能量稳态通路上游关键节点，与MC4R轴共同调控摄食和体重；其肽类加工产物相关机制可作为同方向通路参照靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

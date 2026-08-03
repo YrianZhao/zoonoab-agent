@@ -1,0 +1,65 @@
+{
+  "gene": "MAOA",
+  "generatedAt": "2026-08-03T14:02:04.928Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAOA 是线粒体外膜黄素酶，催化 5-羟色胺、去甲肾上腺素和多巴胺的氧化脱胺，遗传缺陷与 Brunner 综合征及单胺代谢异常密切相关。其催化结构域主要位于胞质侧并以 C 端跨膜螺旋锚定线粒体外膜，天然完整抗体在活细胞内对该抗原可及性受限，因此更适合作为胞内递送抗体片段或结构机制验证靶点。相比 SLC6A4、ADRA2A 等膜受体或转运体，MAOA 具备高分辨率人源晶体结构和明确 FAD/底物腔构象，可优先支持变构阻断与构象稳定型分子设计。",
+    "mechanism": "抗体片段结合 MAOA 催化腔入口或底物通道环区，阻断单胺底物进入 FAD 邻近反应位点，从而抑制氧化脱胺反应。",
+    "selectedEpitope": "优先覆盖底物入口腔与 FAD 邻近疏水通道外缘，避免直接嵌入深层辅因子结合位点。",
+    "diseaseDirection": "单胺代谢异常与神经精神疾病",
+    "domain": "人 MAOA 含 FAD 结合催化结构域、底物结合腔及 C 端线粒体外膜锚定螺旋。",
+    "evidence": "MAOA 单胺氧化代谢与遗传缺陷证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt reviewed entry P21397",
+      "RCSB PDB 2Z5Y X-ray structure",
+      "OMIM and Orphanet MAOA deficiency annotations"
+    ],
+    "referenceEntries": "UniProtKB P21397；RCSB PDB 2Z5Y；Open Targets MAOA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "底物入口通道及腔口环区",
+        "可空间阻断 5-羟色胺等单胺底物进入 FAD 反应位点，具备机制明确性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FAD 结合结构域外侧构象支撑面",
+        "可诱导或稳定非催化构象，但需避免干扰保守辅因子结合核心",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端线粒体外膜锚定螺旋邻近区",
+        "膜邻近空间受限且线粒体定位降低抗体可及性，完整抗体开发风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAOA 为线粒体外膜胞质侧酶，常规细胞外抗体难以到达靶点；设计宜限定为胞内递送 Fab/VHH 或体外结构功能验证。",
+    "structurePrepZh": "以 2Z5Y 链 A 为模板，保留 FAD 辅因子用于界面判读，修复缺失侧链并标注底物腔、膜锚定端与晶体接触区。",
+    "structureRef": "Human MAOA crystal structure, PDB 2Z5Y, 2.17 Å",
+    "antibodies": [
+      "MAOA EPR7101",
+      "MAOA 5H4"
+    ],
+    "interfaceFocus": "底物入口腔、FAD 邻近通道环区",
+    "designMode": "胞内酶变构阻断",
+    "candidates": [
+      {
+        "target": "MAOB",
+        "rationale": "MAOB 与 MAOA 同属线粒体外膜单胺氧化酶，参与多巴胺和苯乙胺氧化脱胺，可作为单胺代谢通路中的同源功能靶点。"
+      },
+      {
+        "target": "SLC6A4",
+        "rationale": "SLC6A4 负责突触间隙 5-羟色胺再摄取，与 MAOA 共同决定 5-羟色胺可用性，是抑郁障碍相关单胺通路中的关键膜转运体。"
+      },
+      {
+        "target": "SLC6A3",
+        "rationale": "SLC6A3 介导多巴胺再摄取，与 MAOA/MAOB 介导的多巴胺降解共同调控多巴胺能神经递质稳态。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

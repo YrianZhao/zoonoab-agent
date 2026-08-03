@@ -1,0 +1,65 @@
+{
+  "gene": "PPIF",
+  "generatedAt": "2026-08-03T15:29:30.146Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PPIF编码线粒体基质蛋白Cyclophilin D，是线粒体通透性转换孔调控因子，参与钙超载和氧化应激诱导的细胞坏死，在神经退行性损伤通路中具有机制关联。该蛋白主要定位于线粒体基质而非胞外抗原，天然抗体可及性较弱，因此更适合细胞内递送抗体片段或机制验证型分子设计。相较于ANT、VDAC等多亚型膜孔相关靶点，PPIF具有明确的小型PPIase结构域和高分辨率晶体结构，便于界面约束与构象选择性设计。",
+    "mechanism": "通过结合PPIF的PPIase活性沟槽及相邻CSA结合区域，抑制其与线粒体通透性转换孔调控复合体的功能耦联，降低钙诱导孔开放。",
+    "selectedEpitope": "优先覆盖PPIaseβ桶活性沟槽与Arg55、Phe60、His126周边CSA结合口袋。",
+    "diseaseDirection": "神经退行性线粒体损伤",
+    "domain": "PPIF为单结构域线粒体亲环蛋白，含PPIase β桶折叠及环孢素A结合活性沟槽。",
+    "evidence": "PPIF介导线粒体通透性转换证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P30405蛋白定位与功能注释",
+      "RCSB PDB 2Z6W高分辨率晶体结构",
+      "Cyclophilin D调控mPTP文献证据"
+    ],
+    "referenceEntries": "UniProt:P30405；RCSB PDB:2Z6W；Open Targets:PPIF",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PPIase活性沟槽及CSA结合口袋",
+        "直接干预PPIF异构酶活性与mPTP功能耦联",
+        "优先"
+      ],
+      [
+        "Site B",
+        "β桶外侧保守环区",
+        "可用于构象锁定并避免完全占据催化口袋",
+        "备选"
+      ],
+      [
+        "Site C",
+        "线粒体靶向序列切除后的N端邻近区域",
+        "结构柔性较高且功能界面证据有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PPIF为线粒体基质蛋白，常规抗体难以到达天然作用位点；设计应优先采用细胞内递送Fab/VHH，并避免干扰广泛保守亲环蛋白核心造成选择性不足。",
+    "structurePrepZh": "以2Z6W实验晶体结构为模板，保留成熟PPIF链，去除结晶冗余链与非功能性溶剂，校验活性沟槽侧链取向并进行质子化状态优化。",
+    "structureRef": "RCSB PDB 2Z6W，X-ray diffraction，0.96 Å",
+    "antibodies": [
+      "无已上市PPIF靶向抗体",
+      "研究级anti-Cyclophilin D抗体"
+    ],
+    "interfaceFocus": "PPIase活性沟槽与CSA结合口袋",
+    "designMode": "胞内递送VHH/Fab",
+    "candidates": [
+      {
+        "target": "SLC25A4",
+        "rationale": "SLC25A4编码ANT1，位于线粒体内膜并参与mPTP相关孔开放调控；与PPIF处于同一线粒体通透性转换损伤轴。"
+      },
+      {
+        "target": "VDAC1",
+        "rationale": "VDAC1为外线粒体膜通道蛋白，参与线粒体代谢通量、凋亡及mPTP相关复合体功能调节，可作为同通路膜界面候选靶点。"
+      },
+      {
+        "target": "CypD",
+        "rationale": "PPIF蛋白产物即Cyclophilin D；同一节点的替代命名不宜作为独立靶点，但可用于抗原检索与文献证据整合。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

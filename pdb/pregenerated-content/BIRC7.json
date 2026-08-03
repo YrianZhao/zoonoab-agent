@@ -1,0 +1,65 @@
+{
+  "gene": "BIRC7",
+  "generatedAt": "2026-08-03T10:49:53.896Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BIRC7/Livin 是 IAP 家族抗凋亡蛋白，可通过 BIR 结构域结合并抑制活化型 caspase-3、caspase-7 与 caspase-9，并经 RING 结构域介导泛素化过程，促进肿瘤细胞凋亡逃逸。其与黑色素瘤、结直肠癌、肝细胞癌及神经内分泌肿瘤存在疾病关联，但该蛋白主要定位于胞内，天然抗原可及性弱于膜受体或分泌蛋白。相较 XIAP、BIRC2 与 BIRC3 等同类 IAP 靶点，BIRC7 在若干肿瘤中呈更偏肿瘤限制性表达，适合作为胞内递送抗体、细胞内抗体或靶向降解设计的优先探索对象。",
+    "mechanism": "抗体片段进入胞内后占据 BIR 结构域 IBM 肽结合沟槽，阻断 BIRC7 与活化 caspase-3/7/9 的 N 端 IAP-binding motif 相互作用，解除凋亡抑制。",
+    "selectedEpitope": "优先锁定 BIR 结构域 IBM 结合沟槽及其邻近 Zn2+ 配位折叠外缘，形成竞争性阻断表位。",
+    "diseaseDirection": "肿瘤凋亡逃逸与IAP通路",
+    "domain": "BIRC7 含 N 端 BIR 锌指样结构域与 C 端 RING E3 泛素连接酶结构域。",
+    "evidence": "BIRC7肿瘤凋亡抑制与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB Q96CA5 functional annotation",
+      "RCSB PDB 2I3H X-ray structure",
+      "IAP family apoptosis and caspase inhibition literature"
+    ],
+    "referenceEntries": "UniProt Q96CA5；RCSB PDB 2I3H；Open Targets BIRC7",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "BIR结构域IBM肽结合沟槽",
+        "直接竞争caspase IAP-binding motif，机制明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "BIR结构域Zn2+配位核心邻近外缘",
+        "可稳定关键折叠并产生变构阻断效应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端RING结构域二聚化/泛素化相关界面",
+        "可能影响E3活性，但结构可及性与选择性需验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BIRC7为胞内抗原，常规全长抗体难以到达作用位点；宜采用细胞穿透VHH、胞内表达intrabody或抗体降解偶联策略，并严格评估IAP家族交叉反应。",
+    "structurePrepZh": "以2I3H晶体结构为模板，保留BIR结构域与Zn2+配位构象，补全缺失侧链并标注IBM结合沟槽，去除非功能性晶体接触后开展表位建模。",
+    "structureRef": "RCSB PDB 2I3H，X-ray diffraction，1.62 Å",
+    "antibodies": [
+      "anti-Livin monoclonal antibody clone 88C570",
+      "anti-Livin monoclonal antibody clone 7H2"
+    ],
+    "interfaceFocus": "BIR沟槽与caspase IBM肽结合界面",
+    "designMode": "胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "XIAP",
+        "rationale": "XIAP 是IAP家族中直接抑制caspase-3、caspase-7和caspase-9的核心因子，与BIRC7处于同一凋亡抑制轴，可作为机制对照与联合干预靶点。"
+      },
+      {
+        "target": "BIRC2",
+        "rationale": "BIRC2/cIAP1参与TNF受体复合体中的泛素化调控，并通过NF-κB与细胞死亡通路影响肿瘤细胞存活，适合同通路比较设计。"
+      },
+      {
+        "target": "BIRC3",
+        "rationale": "BIRC3/cIAP2与BIRC2功能相近，调控TNF信号、NF-κB活化及凋亡阈值，在肿瘤细胞死亡抵抗中具有相关机制价值。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "USP38",
+  "generatedAt": "2026-08-03T21:31:12.528Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "USP38 为细胞内去泛素化酶，Open Targets 遗传学关联集中于血压、尿酸、肾小球滤过率和血清肌酐等肾心血管表型，提示其可能通过蛋白泛素化稳态影响肾脏与血管相关调控网络。该蛋白缺乏跨膜段和分泌信号肽，天然抗原可及性不符合常规胞外中和抗体开发要求，更适合用于结构表征、细胞内递送抗体或研究级结合分子设计。相比直接靶向细胞内酶活口袋的小分子策略，抗体片段可提供对USP结构域外表面或调控界面的高选择性识别，但作为治疗性主靶点的优先级低于SLC22A12、UMOD等膜蛋白或分泌蛋白肾脏表型靶点。",
+    "mechanism": "设计以内源USP38蛋白结合为目标，优先阻断USP催化结构域周边底物泛素链结合面与泛素化底物的接触，而非依赖胞外受体配体阻断。",
+    "selectedEpitope": "优先选择USP催化结构域中靠近泛素结合沟槽的外露环区，避开催化Cys-His-Asp核心残基。",
+    "diseaseDirection": "肾功能与血压遗传表型",
+    "domain": "USP38含泛素特异性蛋白酶催化结构域，4RXX解析链A为人源蛋白结构片段。",
+    "evidence": "USP38肾心血管表型遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q8NB14蛋白功能与定位注释",
+      "RCSB PDB 4RXX晶体结构记录",
+      "GWAS Catalog血压、尿酸及肾功能相关位点证据"
+    ],
+    "referenceEntries": "UniProt Q8NB14；RCSB PDB 4RXX；Open Targets USP38",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "USP催化结构域泛素结合沟槽邻近外露环",
+        "有利于干扰泛素链或底物进入并保留酶亚型选择性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域远端保守性较低的溶剂暴露螺旋-环区",
+        "适合构建高亲和结合探针并降低催化中心直接扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化Cys-His-Asp三联体邻近深部口袋",
+        "保守性与功能约束较强，抗体进入受限且脱靶风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "USP38为细胞内酶，常规抗体难以到达作用位点；应优先采用Fab/VHH结构探针、细胞内递送格式或降解偶联策略，并严格评估USP家族交叉反应。",
+    "structurePrepZh": "以4RXX链A为模板，补全缺失环区并校验催化残基、晶体接触和表面电荷；表位筛选需排除埋藏面与高保守USP核心位点。",
+    "structureRef": "RCSB PDB 4RXX，人源USP38晶体结构，2.06 Å",
+    "antibodies": [
+      "研究级anti-USP38 monoclonal antibody",
+      "研究级anti-USP38 polyclonal antibody"
+    ],
+    "interfaceFocus": "泛素结合沟槽及底物进入外露环区",
+    "designMode": "细胞内靶点结构探针",
+    "candidates": [
+      {
+        "target": "SLC22A12",
+        "rationale": "SLC22A12编码肾近端小管尿酸转运体URAT1，与尿酸测量表型直接相关。其多跨膜外向构象提供可及的胞外环抗原区域，作为抗体或结合分子靶点的转化可行性高于细胞内USP38。"
+      },
+      {
+        "target": "UMOD",
+        "rationale": "UMOD编码尿调蛋白，是肾小管分泌蛋白并与肾小球滤过率、血清肌酐和慢性肾病风险存在稳健遗传关联。分泌型糖蛋白特征使其具备优于细胞内酶的抗原可及性。"
+      },
+      {
+        "target": "AGT",
+        "rationale": "AGT编码血管紧张素原，位于肾素-血管紧张素系统上游并直接参与收缩压和舒张压调控。循环分泌蛋白属性使其适合抗体阻断血管紧张素生成轴相关分子相互作用。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

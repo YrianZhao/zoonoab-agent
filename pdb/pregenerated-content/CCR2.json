@@ -1,0 +1,65 @@
+{
+  "gene": "CCR2",
+  "generatedAt": "2026-08-03T18:20:59.392Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CCR2是单核细胞募集轴中的关键趋化因子受体，主要响应CCL2/MCP-1并驱动CCR2阳性炎症性单核细胞从骨髓外周动员及向受损组织浸润。Open Targets显示其与单核细胞计数、白细胞单核细胞比例及肺部囊性疾病等表型具有较高遗传和疾病关联。CCR2为七跨膜GPCR，N端和胞外环可被抗体识别，具备膜受体型抗原可及性。相较下游炎症因子，靶向CCR2可在细胞迁移入口层面阻断多配体趋化输入，优先级高于单一趋化因子中和策略。",
+    "mechanism": "阻断CCR2胞外结合口袋与CCL2等CC趋化因子的相互作用，抑制受体激活、Gi蛋白耦联及CCR2阳性单核细胞趋化迁移。",
+    "selectedEpitope": "优先覆盖N端酸性区与ECL2构成的趋化因子识别界面，兼顾正构口袋入口构象约束。",
+    "diseaseDirection": "炎症性单核细胞募集相关疾病",
+    "domain": "CCR2为A类七跨膜GPCR，含胞外N端、三段胞外环、七个跨膜螺旋及胞内G蛋白耦联界面。",
+    "evidence": "CCR2-CCL2单核细胞趋化轴结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P41597功能与拓扑注释",
+      "RCSB PDB 7P8X实验晶体结构",
+      "趋化因子受体CCR2-CCL2轴炎症迁移文献"
+    ],
+    "referenceEntries": "UniProt P41597；RCSB PDB 7P8X；HGNC:1603；ChEMBL CCR2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端酸性区/ECL2趋化因子识别界面",
+        "直接干预CCL2结合与受体启动，适合作为功能阻断主表位",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ECL1-ECL2及TM2/TM3口袋入口周缘",
+        "可限制配体进入正构结合腔并稳定非活化构象",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ECL3及TM6/TM7胞外端区域",
+        "邻近构象转换区域但物种保守性和构象柔性需重点评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CCR2与CCR5等CC趋化因子受体存在胞外环同源性，需规避跨反应表位；GPCR胞外环柔性较高，建议采用构象锁定抗原和细胞结合双重筛选。",
+    "structurePrepZh": "以7P8X高分辨率结构为模板，保留抗原链A和M的受体构象信息，补建缺失胞外环并在膜模拟环境中评估N端/ECL2可及性。",
+    "structureRef": "RCSB PDB 7P8X，CCR2实验X射线晶体结构，1.4 Å",
+    "antibodies": [
+      "MLN1202",
+      "Plozalizumab"
+    ],
+    "interfaceFocus": "N端酸性区、ECL2及正构口袋入口",
+    "designMode": "GPCR构象阻断抗体",
+    "candidates": [
+      {
+        "target": "CCL2",
+        "rationale": "CCL2是CCR2最典型配体，直接驱动CCR2介导的单核细胞趋化；中和CCL2可在同一趋化轴上游降低受体激活输入。"
+      },
+      {
+        "target": "CCL7",
+        "rationale": "CCL7可作为CCR2配体参与炎症性单核细胞募集；与CCR2共同位于CC趋化因子迁移通路，适合作为配体端替代干预靶点。"
+      },
+      {
+        "target": "CCR5",
+        "rationale": "CCR5同属CC趋化因子受体并参与白细胞炎症迁移；在部分炎症组织浸润场景中与CCR2轴存在功能并行性，可作为趋化受体通路候选靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

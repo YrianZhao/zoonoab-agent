@@ -1,0 +1,65 @@
+{
+  "gene": "LMOD1",
+  "generatedAt": "2026-08-03T13:54:45.494Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "LMOD1编码平滑肌相关肌动蛋白成核因子，参与薄丝装配与收缩装置稳定，其遗传缺陷与巨膀胱-小结肠-肠蠕动低下综合征3型相关，机制核心为内脏平滑肌收缩功能受损。LMOD1主要为胞内肌动蛋白结合蛋白，缺乏天然胞外结构域或分泌形式，抗原可及性相较膜受体靶点明显受限。其优先级低于同通路中可及性更高的膜或分泌调控节点，但PDB 4Z79提供高分辨率结构片段，可用于机制验证型抗体或细胞内递送抗体设计。",
+    "mechanism": "设计抗体阻断LMOD1肌动蛋白结合片段与F-actin/肌动蛋白单体界面的相互作用，干预薄丝成核与平滑肌收缩结构装配。",
+    "selectedEpitope": "优先覆盖PDB 4Z79解析的肌动蛋白结合螺旋束暴露面，避开高度疏水核心。",
+    "diseaseDirection": "内脏平滑肌收缩障碍",
+    "domain": "LMOD1含N端肌动蛋白结合区、富亮氨酸样区域及C端WH2肌动蛋白结合基序。",
+    "evidence": "LMOD1平滑肌薄丝装配与MMIHS3证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P29536蛋白功能注释",
+      "RCSB PDB 4Z79晶体结构",
+      "OMIM与ClinVar遗传变异记录"
+    ],
+    "referenceEntries": "UniProt P29536；RCSB 4Z79；Open Targets LMOD1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "4Z79解析片段的肌动蛋白结合暴露螺旋面",
+        "可直接干预LMOD1与肌动蛋白界面，适合机制阻断验证",
+        "优先"
+      ],
+      [
+        "Site B",
+        "富亮氨酸样重复外侧溶剂暴露面",
+        "可能影响蛋白构象稳定和薄丝装配复合物形成",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端WH2基序附近肌动蛋白单体结合区",
+        "功能相关性高但线性短基序保守性与脱靶风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "LMOD1为胞内蛋白，常规治疗性抗体难以到达作用位点；建议限定为研究级Fab/VHH、细胞内递送格式或结构机制验证。",
+    "structurePrepZh": "采用RCSB 4Z79抗原链A作为模板，补全缺失侧链，标注溶剂暴露残基，并剔除晶体接触造成的假阳性界面。",
+    "structureRef": "PDB 4Z79，X-ray diffraction，1.54 Å",
+    "antibodies": [
+      "无已获批抗LMOD1治疗性抗体",
+      "研究级抗LMOD1多克隆抗体"
+    ],
+    "interfaceFocus": "肌动蛋白结合螺旋面与WH2邻近界面",
+    "designMode": "胞内靶点机制抗体",
+    "candidates": [
+      {
+        "target": "ACTA2",
+        "rationale": "ACTA2编码平滑肌α-肌动蛋白，是LMOD1介导薄丝成核与收缩装置形成的直接结构底物，位于同一平滑肌收缩通路。"
+      },
+      {
+        "target": "MYH11",
+        "rationale": "MYH11编码平滑肌肌球蛋白重链，与ACTA2薄丝共同驱动内脏平滑肌收缩，遗传异常同样可导致MMIHS相关表型。"
+      },
+      {
+        "target": "MYLK",
+        "rationale": "MYLK通过磷酸化肌球蛋白轻链启动平滑肌收缩，与LMOD1相关薄丝结构模块共同决定收缩效能。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

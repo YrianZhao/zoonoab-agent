@@ -1,0 +1,65 @@
+{
+  "gene": "VPS4A",
+  "generatedAt": "2026-08-03T17:49:44.465Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "VPS4A 是胞质 AAA+ ATPase，参与 ESCRT-III 解聚、内体膜出芽及 HIV-1 病毒颗粒释放，疾病关联主要来自病毒感染与发育异常相关证据。该蛋白不具备分泌蛋白或细胞外结构域特征，天然抗原可及性不适合常规外源性抗体阻断，抗体设计应限定为细胞内递送抗体或研究级构象探针。相较可直接成药的膜受体或分泌因子，VPS4A 的优先级较低；其价值在于解析 ESCRT 依赖病毒出芽机制及筛选干预 ESCRT-VPS4 轴的分子工具。",
+    "mechanism": "通过细胞内抗体结合 VPS4A MIT 结构域，阻断其与 ESCRT-III CHMP 蛋白 MIM 基序相互作用，干扰 ESCRT-III 解聚及 HIV-1 出芽。",
+    "selectedEpitope": "优先覆盖 MIT 结构域三螺旋束的 CHMP-MIM 结合沟槽，避免直接遮蔽 ATPase 核心保守催化位点。",
+    "diseaseDirection": "病毒感染与ESCRT相关疾病",
+    "domain": "N端 MIT 结构域介导 CHMP 蛋白识别，C端 AAA+ ATPase 区域负责ATP水解与六聚体装配。",
+    "evidence": "VPS4A-ESCRT轴与病毒出芽证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt Q9UN37 蛋白功能注释",
+      "RCSB PDB 1YXR 结构条目",
+      "ESCRT-III/VPS4 介导 HIV-1 出芽文献"
+    ],
+    "referenceEntries": "UniProt Q9UN37；RCSB PDB 1YXR；Open Targets VPS4A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "MIT结构域CHMP-MIM结合沟槽",
+        "可直接阻断VPS4A募集至ESCRT-III复合物，适合作为机制性抑制表位",
+        "优先"
+      ],
+      [
+        "Site B",
+        "MIT三螺旋束外侧构象表面",
+        "可用于构象识别与VPS4A定位研究，对功能阻断强度可能较弱",
+        "备选"
+      ],
+      [
+        "Site C",
+        "AAA+ ATPase核苷酸结合与寡聚化界面",
+        "区域高度保守且与VPS4B同源性高，交叉反应和细胞毒性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "VPS4A 为胞内靶点，常规抗体难以进入作用部位；建议采用胞内抗体、VHH递送或细胞模型验证，并严格评估VPS4B交叉识别。",
+    "structurePrepZh": "以PDB 1YXR的NMR构象集合为MIT结构域模板，保留代表性低能构象并标注CHMP-MIM结合面用于表位建模。",
+    "structureRef": "PDB 1YXR：human VPS4A MIT domain，solution NMR",
+    "antibodies": [
+      "研究级抗VPS4A抗体",
+      "研究级抗VPS4A/VPS4B抗体"
+    ],
+    "interfaceFocus": "MIT结构域与CHMP-MIM基序结合界面",
+    "designMode": "胞内VHH构象阻断",
+    "candidates": [
+      {
+        "target": "CHMP4B",
+        "rationale": "CHMP4B 是 ESCRT-III 核心亚基，参与 HIV-1 Gag 招募的膜颈切割过程；其与 VPS4A 处于同一 ESCRT 依赖病毒出芽通路。"
+      },
+      {
+        "target": "TSG101",
+        "rationale": "TSG101 作为 ESCRT-I 组分识别 HIV-1 Gag p6 PTAP 基序，位于 VPS4A 上游并驱动病毒出芽复合物装配。"
+      },
+      {
+        "target": "PDCD6IP",
+        "rationale": "PDCD6IP/ALIX 可连接 HIV-1 Gag 与 ESCRT-III 组分，在病毒颗粒释放中与 CHMP 蛋白和 VPS4A 功能耦联。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

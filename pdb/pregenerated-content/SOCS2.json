@@ -1,0 +1,65 @@
+{
+  "gene": "SOCS2",
+  "generatedAt": "2026-08-03T16:48:44.186Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SOCS2参与细胞因子与生长激素/IGF轴的负反馈调节，其结合JAK及受体尾部后可限制下游STAT信号强度，并与体重、身高和瘦体重等表型显著相关，提示其在生长与代谢稳态中具有明确疾病关联。该蛋白以内源性胞内SOCS box蛋白为主，抗体设计不具备典型胞外抗原可及性，因此更适合采用结构引导的功能阻断思路而非常规膜蛋白靶向。相较于直接针对上游激素受体，SOCS2在同一通路中更靠近负反馈节点，理论上可同时放大GH/IGF相关输出并保留对配体层面更高的通路特异性。",
+    "mechanism": "阻断SOCS2 SH2结构域与磷酸化JAK2/GHR尾部的结合，削弱其招募CRL5复合体介导的负反馈抑制。",
+    "selectedEpitope": "优先覆盖SH2磷酸肽结合槽及周边EF/BC环，避免破坏整体折叠但阻断底物识别。",
+    "diseaseDirection": "生长代谢调控",
+    "domain": "N端SH2结构域与C端SOCS box组成，核心抗体表位以SH2配体结合面为主。",
+    "evidence": "SOCS2结构与疾病关联证据包",
+    "evidenceSources": [
+      "UniProt: O14508",
+      "RCSB PDB: 7ZLM",
+      "Open Targets Platform",
+      "PubMed/结构文献"
+    ],
+    "referenceEntries": "UniProt O14508; PDB 7ZLM; Open Targets SOCS2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SH2磷酸肽结合槽",
+        "直接阻断受体/JAK磷酸化位点识别，最符合功能抑制逻辑",
+        "优先"
+      ],
+      [
+        "Site B",
+        "EF环与BC环邻接面",
+        "可干扰结合口袋构象并降低底物亲和力，兼顾保守性与特异性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SOCS box近端表面",
+        "可能影响E3复合体装配，但功能读出间接且构象风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SOCS2为胞内蛋白，常规全长抗体难以进入作用位点；应优先考虑胞内递送或VHH/Fab工程化构型。SH2口袋保守性较高，需通过结构比较排除对其他SOCS家族的交叉识别。",
+    "structurePrepZh": "以7ZLM为模板清理晶体接触与水分子，保留SH2口袋配体复合态并按链A-F/G-L分组比对界面。优先做口袋电荷与保守位点映射，再开展表位掩蔽分析。",
+    "structureRef": "PDB 7ZLM; SOCS2 SH2 domain structural studies",
+    "antibodies": [
+      "未见成熟临床同类抗体",
+      "未见公认SOCS2阻断抗体"
+    ],
+    "interfaceFocus": "SH2磷酸肽识别槽及周边环区",
+    "designMode": "结构阻断型",
+    "candidates": [
+      {
+        "target": "JAK2",
+        "rationale": "SOCS2主要通过识别JAK2磷酸化位点参与负反馈抑制，JAK2与SOCS2处于同一信号轴。作为候选靶点可用于并行验证SOCS2阻断对JAK-STAT输出的功能影响。"
+      },
+      {
+        "target": "GHR",
+        "rationale": "生长激素受体是SOCS2负反馈的重要底物之一，直接影响IGF-1与生长表型。与SOCS2同属GH/IGF通路，适合作为机制联动候选靶点。"
+      },
+      {
+        "target": "STAT5B",
+        "rationale": "STAT5B位于GH/GHR下游转录输出层，是该通路功能读出的核心节点。与SOCS2同处生长代谢调控轴，可作为下游效应验证靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

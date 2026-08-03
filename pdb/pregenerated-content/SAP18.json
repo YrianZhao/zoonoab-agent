@@ -1,0 +1,65 @@
+{
+  "gene": "SAP18",
+  "generatedAt": "2026-08-03T16:19:43.148Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SAP18 是 Sin3A/HDAC 转录共抑制复合体相关蛋白，参与染色质去乙酰化、mRNA 剪接相关复合体装配及神经系统基因表达稳态，其遗传与组学证据提示与神经退行性疾病存在中等强度关联。该蛋白主要定位于细胞核，不具备分泌蛋白或膜受体样胞外结构域，因此完整抗体直接结合天然抗原的可及性受限，更适合结构生物学验证、胞内递送抗体片段或研究级结合分子开发。相较于 SIN3A、HDAC1 等大型多结构域复合体成员，SAP18 分子量较小且已有 NMR 结构，可作为解析 Sin3A/HDAC 复合体局部装配界面的优先结构模型靶点，但治疗性抗体优先级需低于可胞外干预靶点。",
+    "mechanism": "设计分子应阻断 SAP18 与 Sin3A/HDAC 共抑制复合体适配界面的结合，削弱局部染色质去乙酰化复合体募集。",
+    "selectedEpitope": "优先覆盖 SAP18 NMR 结构中 α 螺旋束外露面及推定复合体结合沟槽，避免全局疏水核心。",
+    "diseaseDirection": "神经退行性疾病表观遗传调控",
+    "domain": "SAP18 为约18 kDa核内酸性蛋白，PDB 2HDE解析其紧凑α螺旋折叠核心。",
+    "evidence": "SAP18神经退行性疾病与Sin3A/HDAC复合体证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB O00422 functional annotation",
+      "RCSB PDB 2HDE solution NMR structure",
+      "Sin3A/HDAC transcriptional corepressor complex literature"
+    ],
+    "referenceEntries": "UniProt O00422；RCSB PDB 2HDE；Open Targets SAP18",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "α螺旋束外露酸性/极性面",
+        "利于获得可溶性结合分子并规避疏水核心失折叠风险",
+        "优先"
+      ],
+      [
+        "Site B",
+        "推定Sin3A/HDAC复合体适配结合沟槽",
+        "可用于干预SAP18参与共抑制复合体装配的蛋白互作",
+        "备选"
+      ],
+      [
+        "Site C",
+        "螺旋束疏水核心邻近区域",
+        "可能影响抗原构象稳定性并诱导非天然表位识别",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SAP18为核内蛋白，天然抗原可及性差；建议限定为胞内抗体片段、递送型VHH或机制研究工具，避免直接定位为常规体液治疗抗体。",
+    "structurePrepZh": "采用PDB 2HDE的NMR构象集合，筛选代表性低能构象，补全缺失氢原子并进行溶液态构象聚类后再定义表位。",
+    "structureRef": "RCSB PDB 2HDE；human SAP18 solution NMR structure",
+    "antibodies": [
+      "研究级anti-SAP18 monoclonal antibody",
+      "研究级anti-SAP18 polyclonal antibody"
+    ],
+    "interfaceFocus": "α螺旋束外露面与Sin3A复合体适配界面",
+    "designMode": "胞内VHH/研究型Fab",
+    "candidates": [
+      {
+        "target": "SIN3A",
+        "rationale": "SIN3A 是SAP18所在转录共抑制复合体的核心支架蛋白，直接组织HDAC和适配蛋白募集，位于同一表观遗传调控轴。"
+      },
+      {
+        "target": "HDAC1",
+        "rationale": "HDAC1 是Sin3A共抑制复合体的催化组分，介导组蛋白去乙酰化并影响神经元基因表达稳态。"
+      },
+      {
+        "target": "SAP30",
+        "rationale": "SAP30 与SAP18同属Sin3A相关复合体成员，参与共抑制复合体定位与转录抑制复合物稳定化。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

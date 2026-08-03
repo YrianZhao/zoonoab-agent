@@ -1,0 +1,65 @@
+{
+  "gene": "SLC29A1",
+  "generatedAt": "2026-08-03T16:37:54.889Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SLC29A1编码ENT1，是腺苷摄取的主要平衡型核苷转运体，可降低细胞外腺苷水平并影响A2A/A2B受体介导的血管舒张、抗血小板和抗炎信号，因而与冠状动脉疾病、卒中和高血压等心血管表型具有机制关联。该蛋白为12次跨膜膜受体样转运体，多个胞外环可作为抗体可及抗原面，且6OB7提供人源ENT1的高分辨率结构约束。相较于下游腺苷受体，ENT1位于腺苷稳态上游，具有同时调节局部腺苷可用性的优先级优势，但需规避广泛组织表达带来的系统性核苷转运风险。",
+    "mechanism": "抗体结合ENT1胞外门控区，限制腺苷进入转运通道，从而提高局部胞外腺苷并增强ADORA2A/ADORA2B信号。",
+    "selectedEpitope": "优先锁定跨膜束外侧的胞外环1/环5及外侧门控入口邻近区域。",
+    "diseaseDirection": "心脑血管腺苷稳态调节",
+    "domain": "ENT1含12个跨膜螺旋，N端与C端胞内，胞外环构成外侧入口与抗体可及表面。",
+    "evidence": "SLC29A1-腺苷转运与心血管疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q99808功能与拓扑注释",
+      "RCSB PDB 6OB7人源ENT1晶体结构",
+      "ChEMBL/文献中的ENT1抑制剂与腺苷转运研究"
+    ],
+    "referenceEntries": "UniProt Q99808；RCSB PDB 6OB7；Open Targets SLC29A1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "胞外环1/外侧入口邻近面",
+        "接近底物进入路径，可通过位阻限制腺苷进入转运腔",
+        "优先"
+      ],
+      [
+        "Site B",
+        "胞外环5及跨膜螺旋9-10外侧连接区",
+        "有利于稳定外向构象并干预外侧门控开闭",
+        "备选"
+      ],
+      [
+        "Site C",
+        "跨膜束疏水核心与底物结合腔周边",
+        "结构功能关键但抗体可及性低，易影响广谱核苷转运",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ENT1广泛表达于红细胞、内皮和多种组织，系统性阻断可能改变核苷摄取和腺苷稳态；设计应优先采用局部暴露表位、低内化风险和可调亲和力策略。",
+    "structurePrepZh": "以6OB7链A为模板，补全缺失胞外环并保留跨膜取向；在膜模拟环境中评估胞外环柔性、糖基化邻近位点和抗体接近角。",
+    "structureRef": "RCSB PDB 6OB7，2.3 Å X射线人ENT1结构",
+    "antibodies": [
+      "MEM-78",
+      "HIRO-294"
+    ],
+    "interfaceFocus": "胞外门控入口与EL1/EL5连接界面",
+    "designMode": "膜转运体阻断",
+    "candidates": [
+      {
+        "target": "ADORA2A",
+        "rationale": "ADORA2A是胞外腺苷的主要心血管效应受体之一，介导血管舒张和抗血小板信号，与ENT1调控的腺苷可用性处于同一轴线。"
+      },
+      {
+        "target": "ADORA2B",
+        "rationale": "ADORA2B在血管内皮和平滑肌中响应较高浓度腺苷，参与缺血、炎症和血管张力调节，可作为ENT1上游调控的下游受体靶点。"
+      },
+      {
+        "target": "ADA",
+        "rationale": "ADA催化腺苷脱氨降解，与ENT1共同决定胞外腺苷稳态；其调节可影响同一腺苷信号通路的强度与持续时间。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "NFE2L2",
+  "generatedAt": "2026-08-03T14:40:48.489Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NFE2L2编码NRF2转录因子，是KEAP1-CUL3泛素化轴的核心底物，异常稳定化可驱动抗氧化、解毒代谢与肿瘤细胞生存程序，在肝细胞癌、肺鳞癌及头颈鳞癌中具有明确通路关联。该蛋白主要定位于细胞质和细胞核，缺乏天然胞外结构域或分泌特征，常规体内抗体药物可及性受限，更适合作为细胞内抗体、研究级Fab/VHH或降解递送体系的设计对象。相较通路内KEAP1或CUL3等调控因子，NFE2L2处于转录输出端并直接整合ARE依赖基因表达，适合用于解析致癌性NRF2激活构象与DNA结合界面的选择性干预。",
+    "mechanism": "通过结合Neh1 bZIP区，阻断NRF2与小Maf蛋白形成异源二聚体及其对ARE序列的DNA结合。",
+    "selectedEpitope": "优先选择Neh1 bZIP碱性区与亮氨酸拉链二聚化界面，覆盖DNA识别与MafG结合邻近面。",
+    "diseaseDirection": "NRF2-KEAP1轴相关肿瘤",
+    "domain": "NFE2L2含Neh2、Neh4/5、Neh7、Neh6与Neh1 bZIP结构域，2FLU对应Neh1-MafG-DNA复合物区域。",
+    "evidence": "NFE2L2肿瘤通路与结构表位证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProtKB Q16236功能与结构域注释",
+      "RCSB PDB 2FLU晶体结构数据",
+      "KEAP1-NRF2-ARE通路肿瘤生物学文献"
+    ],
+    "referenceEntries": "UniProt Q16236；RCSB PDB 2FLU；Open Targets NFE2L2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Neh1 bZIP碱性DNA结合面及ARE接触残基邻域",
+        "可直接削弱NRF2-MafG复合物对ARE序列的识别",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Neh1亮氨酸拉链异源二聚化界面",
+        "可干扰NRF2与MafG/MafK形成转录活性复合物",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Neh2 ETGE/DLG样KEAP1结合基序",
+        "理论上影响KEAP1依赖泛素化，但可能稳定NRF2并产生促癌风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NFE2L2为细胞内转录因子，常规抗体难以进入胞质或细胞核；避免阻断KEAP1降解位点导致NRF2异常稳定，宜采用胞内递送或降解耦联策略。",
+    "structurePrepZh": "以2FLU中NRF2-MafG-DNA复合物为模板，保留抗原链X/P与DNA接触构象，补全缺失侧链并评估bZIP二聚界面可成药表面。",
+    "structureRef": "RCSB PDB 2FLU，1.5 Å X射线晶体结构",
+    "antibodies": [
+      "scFv G8-NRF2 intracellular antibody",
+      "anti-NRF2 clone EP1808Y"
+    ],
+    "interfaceFocus": "Neh1 bZIP-DNA结合面与MafG二聚界面",
+    "designMode": "细胞内抗体设计",
+    "candidates": [
+      {
+        "target": "KEAP1",
+        "rationale": "KEAP1是NRF2的底物适配蛋白，通过结合Neh2 ETGE/DLG基序介导CUL3依赖泛素化；其突变或失活与NRF2持续激活型肿瘤同属KEAP1-NRF2通路。"
+      },
+      {
+        "target": "MAFG",
+        "rationale": "MAFG与NRF2形成小Maf-bZIP异源二聚体并共同结合ARE元件，是NRF2转录输出的直接结构伙伴。"
+      },
+      {
+        "target": "CUL3",
+        "rationale": "CUL3构成KEAP1-CUL3-RBX1 E3泛素连接酶复合体核心支架，调控NRF2蛋白降解并影响氧化应激与肿瘤适应性通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

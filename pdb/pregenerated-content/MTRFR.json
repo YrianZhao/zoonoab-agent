@@ -1,0 +1,65 @@
+{
+  "gene": "MTRFR",
+  "generatedAt": "2026-08-03T20:13:57.030Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MTRFR参与线粒体核糖体停滞后的翻译终止救援，与线粒体编码氧化磷酸化复合体亚基的生成相关，其遗传异常可导致联合氧化磷酸化缺陷及痉挛性截瘫表型。该蛋白定位于线粒体基质并结合线粒体核糖体，缺乏胞外结构域、分泌特征或细胞表面受体可及性，作为传统抗体药物靶点存在显著递送限制。相较于同通路中可直接影响呼吸链装配或线粒体翻译起始的节点，MTRFR更适合作为机制验证和细胞内递送抗体工程的探索靶点，优先级应低于具备更明确可成药界面的膜相关或酶学节点。",
+    "mechanism": "设计抗体需干预MTRFR与停滞线粒体核糖体A位点附近rRNA及肽基转移酶中心的结合，阻断其释放因子样结构域介导的翻译救援复合体形成。",
+    "selectedEpitope": "优先评估释放因子样GGQ邻近结构域与线粒体核糖体A位点接触界面，避免选择埋藏核心折叠面。",
+    "diseaseDirection": "线粒体翻译与氧化磷酸化缺陷",
+    "domain": "MTRFR为线粒体基质蛋白，含释放因子样结构域，参与停滞线粒体核糖体上的翻译救援。",
+    "evidence": "MTRFR线粒体翻译救援与OXPHOS缺陷证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9H3J6功能与亚细胞定位注释",
+      "RCSB PDB 7A5H冷冻电镜结构",
+      "人类线粒体核糖体翻译救援相关文献"
+    ],
+    "referenceEntries": "UniProt Q9H3J6；RCSB PDB 7A5H；Open Targets MTRFR",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "释放因子样结构域A位点接触面",
+        "直接影响MTRFR与停滞线粒体核糖体结合，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "GGQ基序邻近可及环区",
+        "可能干扰肽基-tRNA水解相关构象，但需规避催化核心不可及残基",
+        "备选"
+      ],
+      [
+        "Site C",
+        "线粒体靶向序列或折叠核心区域",
+        "成熟蛋白加工后可能缺失或结构埋藏，抗体结合与功能阻断不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MTRFR为线粒体基质内靶点，常规Fab或VHH难以进入线粒体；需采用细胞内抗体、递送肽或线粒体靶向递送体系，并优先验证结合是否影响线粒体翻译救援。",
+    "structurePrepZh": "以PDB 7A5H冷冻电镜模型为结构基础，分离MTRFR相关链并保留核糖体接触界面，补全缺失环区后进行质子化、界面溶剂可及性与构象稳定性评估。",
+    "structureRef": "RCSB PDB 7A5H，3.3 Å cryo-EM human mitochondrial ribosome complex",
+    "antibodies": [
+      "暂无获批MTRFR靶向抗体",
+      "暂无临床阶段MTRFR同类抗体"
+    ],
+    "interfaceFocus": "MTRFR-线粒体核糖体A位点接触界面",
+    "designMode": "细胞内递送阻断",
+    "candidates": [
+      {
+        "target": "TSFM",
+        "rationale": "TSFM编码线粒体翻译延伸因子Ts，与线粒体蛋白合成及联合氧化磷酸化缺陷相关，可作为同一线粒体翻译通路的上游延伸阶段候选节点。"
+      },
+      {
+        "target": "GFM1",
+        "rationale": "GFM1编码线粒体翻译延伸因子G1，突变可导致线粒体翻译障碍和OXPHOS缺陷，适合用于比较延伸阻断与救援阻断的疾病机制差异。"
+      },
+      {
+        "target": "MRPS16",
+        "rationale": "MRPS16为线粒体小核糖体亚基蛋白，参与线粒体核糖体功能和氧化磷酸化蛋白合成，可作为核糖体结构层面的同通路候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

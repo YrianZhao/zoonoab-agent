@@ -1,0 +1,65 @@
+{
+  "gene": "GMIP",
+  "generatedAt": "2026-08-03T12:50:04.047Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GMIP编码GEM interacting protein，主要作为Rho GTPase activating protein参与RhoA、Rac1与Cdc42相关小GTP酶循环调控，其遗传关联信号集中于白细胞分类比例、单核细胞计数及脂质测量性状，提示其更适合作为免疫细胞与代谢表型研究靶点。该蛋白为胞内蛋白，缺乏分泌型抗原或膜外结构域，天然抗体药物可及性不足。相较CD45、CXCR2等细胞表面同通路靶点，GMIP不具备直接体内阻断优势，优先级应定位为结构验证、细胞内递送抗体或研究级结合分子开发。",
+    "mechanism": "设计结合RhoGAP催化结构域的抗体片段，遮挡Rho家族GTP酶结合沟槽，干预GMIP促进GTP水解的蛋白-蛋白相互作用。",
+    "selectedEpitope": "优先覆盖RhoGAP结构域α螺旋束中GTPase结合界面，避免仅选择远离催化arginine finger的外周表面。",
+    "diseaseDirection": "白细胞组成与免疫代谢性状",
+    "domain": "GMIP含N端Gem相互作用区、中央coiled-coil区域及C端RhoGAP催化结构域。",
+    "evidence": "GMIP免疫细胞性状遗传关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform遗传关联与性状汇总",
+      "UniProt Q9P107功能注释与结构域信息",
+      "RCSB PDB 3QWE X射线晶体结构",
+      "Gene Ontology Rho GTPase activator activity注释"
+    ],
+    "referenceEntries": "UniProt Q9P107；RCSB PDB 3QWE；Open Targets GMIP",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RhoGAP结构域GTPase结合沟槽及催化arginine finger邻近区域",
+        "可直接干预GMIP与Rho家族GTP酶复合体形成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RhoGAP结构域α螺旋束外侧保守性较低表面",
+        "有利于获得特异性结合分子并用于细胞内定位研究",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离GTPase结合面的晶体接触或柔性环区",
+        "功能阻断价值有限，且构象稳定性与可重复性需验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GMIP为胞内RhoGAP蛋白，常规IgG难以触达天然抗原；应优先采用细胞内递送Fab/VHH、蛋白降解或研究级探针策略，并验证同源RhoGAP交叉反应。",
+    "structurePrepZh": "以PDB 3QWE链A为模板，补全缺失侧链与氢原子，标注RhoGAP保守催化残基、晶体接触面及柔性环区后进行表位可及性评估。",
+    "structureRef": "RCSB PDB 3QWE，X-ray diffraction，2.4 Å",
+    "antibodies": [
+      "研究级anti-GMIP polyclonal antibody",
+      "研究级anti-GMIP monoclonal antibody"
+    ],
+    "interfaceFocus": "RhoGAP催化结构域GTPase结合沟槽",
+    "designMode": "胞内靶点Fab/VHH",
+    "candidates": [
+      {
+        "target": "ARHGAP1",
+        "rationale": "ARHGAP1同属Rho GTPase activating protein家族，调控RhoA相关细胞骨架与白细胞迁移过程，可作为同一小GTP酶调控轴的可比靶点。"
+      },
+      {
+        "target": "RAC1",
+        "rationale": "RAC1是Rho家族小GTP酶核心成员，直接参与中性粒细胞趋化、吞噬与氧化爆发，其活性循环可受RhoGAP蛋白调节。"
+      },
+      {
+        "target": "RHOA",
+        "rationale": "RHOA介导肌动蛋白收缩、细胞黏附及免疫细胞迁移，位于GMIP相关RhoGAP调控网络的下游功能节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

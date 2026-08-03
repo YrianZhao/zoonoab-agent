@@ -1,0 +1,65 @@
+{
+  "gene": "MAPK3",
+  "generatedAt": "2026-08-03T14:04:18.355Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAPK3编码ERK1，是RAS-RAF-MEK-ERK级联中的胞内丝氨酸/苏氨酸激酶，参与促有丝分裂信号向核内转录程序的传递，并与多种肿瘤及RASopathy疾病存在遗传和通路层面的关联。该蛋白缺乏天然胞外结构域，抗原可及性不适合传统体内阻断型抗体，但其折叠稳定、结构分辨率高，适合体外机制研究、细胞内递送抗体或降解偶联抗体的分子识别设计。相比上游多个冗余受体，MAPK3位于共同下游效应节点，可更直接覆盖多种RTK/RAS驱动背景，但需将优先级限定于胞内抗体工程或研究级设计场景。",
+    "mechanism": "设计分子可结合MAPK3激酶结构域的D-recruitment site或ATP邻近构象面，阻断其与MEK1/2、RSK或核内底物的停靠相互作用。",
+    "selectedEpitope": "优先覆盖激酶结构域C-lobe的D-recruitment site及αG-αH邻近底物停靠界面。",
+    "diseaseDirection": "RAS-RAF-MEK-ERK通路肿瘤与RASopathy",
+    "domain": "MAPK3为胞内蛋白激酶，含N-lobe、铰链区、活化环TEY基序及C-lobe底物停靠面。",
+    "evidence": "MAPK3结构与RAS-MAPK疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P27361 MAPK3功能注释",
+      "RCSB PDB 4QTB X射线晶体结构",
+      "KEGG/Reactome MAPK signaling pathway注释"
+    ],
+    "referenceEntries": "UniProt P27361；RCSB PDB 4QTB；HGNC MAPK3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C-lobe D-recruitment site与αG-αH邻近沟槽",
+        "干预MAPK3与D-motif底物或调控蛋白的停靠识别，利于功能阻断型设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N-lobe ATP结合裂隙周边与铰链区外缘",
+        "可识别激酶活性构象并影响ATP邻近构象稳定性，但需避免与同源激酶交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "活化环TEY磷酸化位点邻近区域",
+        "与激活状态相关，但构象柔性及磷酸化依赖性较高，抗体可重复性风险较大",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAPK3为胞内激酶，传统抗体体内可及性不足；建议限定为胞内抗体、递送型抗体或体外工具抗体，并强化MAPK1交叉反应筛选。",
+    "structurePrepZh": "以4QTB链A/B为模板，保留激酶核心构象，检查缺失环区、配体和晶体接触；对D-recruitment site、铰链区及活化环进行可及性标注。",
+    "structureRef": "RCSB PDB 4QTB，human MAPK3 X-ray结构，1.4 Å",
+    "antibodies": [
+      "anti-ERK1 antibody",
+      "anti-phospho-p44/42 MAPK antibody"
+    ],
+    "interfaceFocus": "D-recruitment site、活化环TEY与铰链区外缘",
+    "designMode": "胞内抗体/工具抗体",
+    "candidates": [
+      {
+        "target": "MAPK1",
+        "rationale": "MAPK1编码ERK2，与MAPK3共同构成ERK1/2效应节点，参与相同RAS-RAF-MEK-ERK级联。联合评估有助于区分同源选择性与通路冗余补偿。"
+      },
+      {
+        "target": "MAP2K1",
+        "rationale": "MAP2K1编码MEK1，是MAPK3上游直接激酶，可磷酸化ERK1活化环TEY基序。其处于MAPK3直接调控上游，适合作为同通路干预参照。"
+      },
+      {
+        "target": "BRAF",
+        "rationale": "BRAF位于RAS与MEK之间，是多种肿瘤中驱动MEK-ERK持续激活的关键激酶。与MAPK3共同评估可覆盖上游驱动与下游效应两个层级。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

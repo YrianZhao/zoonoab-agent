@@ -1,0 +1,65 @@
+{
+  "gene": "ARHGEF4",
+  "generatedAt": "2026-08-03T10:34:58.506Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ARHGEF4编码Rho鸟嘌呤核苷酸交换因子，主要在细胞内促进Rho家族小GTP酶由GDP结合态转换为GTP结合态，参与细胞骨架重塑、黏附迁移及免疫细胞数量相关表型。该蛋白缺乏经典分泌信号肽、跨膜区或稳定胞外结构域，抗原可及性显著弱于膜受体或分泌因子，因此不适合作为常规体内阻断型抗体主靶点。其优先级主要来自已有DH-PH结构解析和血液/白细胞表型遗传关联，可用于细胞内递送抗体、intrabody或结构验证型结合分子设计，但相较细胞表面免疫调节靶点转化风险更高。",
+    "mechanism": "设计结合DH结构域Rho GTPase接触面，空间阻断ARHGEF4催化Rho家族GTP酶释放GDP并装载GTP。",
+    "selectedEpitope": "优先覆盖DH结构域α螺旋束中Rho GTPase结合沟槽，避开PH结构域保守磷脂结合面。",
+    "diseaseDirection": "血液免疫细胞数量表型",
+    "domain": "ARHGEF4含N端SH3、DH催化结构域及PH结构域；2PZ1覆盖DH-PH核心片段。",
+    "evidence": "ARHGEF4免疫血液表型与DH-PH结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9NR80蛋白结构域注释",
+      "RCSB PDB 2PZ1晶体结构",
+      "Gene Ontology小GTP酶交换活性注释"
+    ],
+    "referenceEntries": "UniProt Q9NR80；RCSB PDB 2PZ1；Open Targets ARHGEF4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DH结构域Rho GTPase结合沟槽",
+        "直接干预GEF催化界面，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DH-PH结构域连接区",
+        "可能限制催化核心构象耦联，适合构象锁定设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PH结构域磷脂结合相关表面",
+        "存在同源PH结构域交叉反应和细胞膜定位干扰风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ARHGEF4为胞内蛋白，常规IgG难以到达作用位点；应优先采用细胞内递送、intrabody或研究级Fab/VHH，并严格评估DH同源家族交叉反应。",
+    "structurePrepZh": "以2PZ1链A为模板，补全缺失侧链并保留DH-PH相对取向；对DH催化沟槽、连接区柔性片段及PH保守碱性面分别标注。",
+    "structureRef": "RCSB PDB 2PZ1，X-ray diffraction，2.25 Å",
+    "antibodies": [
+      "无获批ARHGEF4靶向抗体",
+      "ARHGEF4研究级多克隆抗体"
+    ],
+    "interfaceFocus": "DH结构域Rho GTPase催化结合界面",
+    "designMode": "胞内阻断型",
+    "candidates": [
+      {
+        "target": "RAC1",
+        "rationale": "RAC1为Rho家族小GTP酶，位于ARHGEF4下游，可直接驱动肌动蛋白重排和白细胞迁移相关表型。"
+      },
+      {
+        "target": "CDC42",
+        "rationale": "CDC42同属Rho家族GTP酶，参与免疫细胞极性、迁移和细胞骨架调控，与GEF介导的核苷酸交换过程处于同一功能轴。"
+      },
+      {
+        "target": "RHOA",
+        "rationale": "RHOA是Rho GTPase网络核心效应节点，调控应力纤维形成、黏附收缩及免疫细胞形态变化，可作为同通路替代干预靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

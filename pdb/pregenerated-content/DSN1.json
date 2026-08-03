@@ -1,0 +1,65 @@
+{
+  "gene": "DSN1",
+  "generatedAt": "2026-08-03T18:44:43.332Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DSN1 是 MIS12 动粒复合体亚基，参与连接着丝粒 CCAN 与外层 KMN 网络，并通过 NDC80 复合体介导染色体-微管附着；该轴异常可造成染色体不稳定，与肿瘤增殖表型相关。DSN1 为核内动粒结构蛋白，缺乏天然胞外结构域、分泌特征或膜受体可及性，常规体内治疗性抗体可及性显著受限。其优先级低于 EGFR、VEGFA、PDCD1 等可及性更强且临床验证充分的肿瘤靶点，但适合用于结构生物学、细胞内递送抗体或研究级功能阻断设计。",
+    "mechanism": "设计抗体阻断 DSN1 与 NSL1/MIS12 复合体界面或干扰其磷酸化调控构象，从而削弱 KMN 网络装配与 NDC80 依赖的微管附着。",
+    "selectedEpitope": "优先覆盖 5LSI 中 DSN1 C 端卷曲螺旋与 NSL1/MIS12 接触界面，避开高度保守核心折叠区。",
+    "diseaseDirection": "染色体不稳定相关肿瘤",
+    "domain": "DSN1 属 MIS12 复合体亚基，含 N 端调控区及 C 端卷曲螺旋装配界面。",
+    "evidence": "DSN1-MIS12动粒复合体肿瘤关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q9H410 蛋白功能注释",
+      "RCSB PDB 5LSI 晶体结构",
+      "MIS12/KMN 动粒复合体结构与功能文献"
+    ],
+    "referenceEntries": "UniProt Q9H410；RCSB PDB 5LSI；Open Targets DSN1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DSN1 C端卷曲螺旋-NSL1/MIS12界面",
+        "直接干扰 MIS12 复合体装配，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DSN1 N端Aurora B调控相关区域",
+        "可能影响磷酸化依赖的动粒装配构象，但结构覆盖有限",
+        "备选"
+      ],
+      [
+        "Site C",
+        "MIS12复合体内部保守螺旋束核心",
+        "可产生高亲和结合，但易造成非选择性结构扰动与低可开发性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DSN1 为细胞内核蛋白，体内抗体递送和抗原可及性风险高；建议限定为胞内抗体、降解偶联或机制验证用途，并严格评估有丝分裂毒性。",
+    "structurePrepZh": "以 5LSI 晶体结构链 D、E 为模板，补全缺失环区，校验寡聚界面、质子化状态与磷酸化相关位点后进行表位建模。",
+    "structureRef": "Petrovic et al., MIS12 complex crystal structure, PDB 5LSI",
+    "antibodies": [
+      "研究级抗DSN1抗体",
+      "研究级抗MIS12复合体抗体"
+    ],
+    "interfaceFocus": "DSN1-NSL1/MIS12卷曲螺旋装配界面",
+    "designMode": "胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "MIS12",
+        "rationale": "MIS12 与 DSN1 同属 MIS12 动粒复合体，参与 KMN 网络核心装配；靶向其复合体界面可影响 NDC80 依赖微管附着。"
+      },
+      {
+        "target": "NSL1",
+        "rationale": "NSL1 是 MIS12 复合体关键支架亚基，连接 DSN1 与外层动粒组分；其界面阻断可用于同一染色体分离通路验证。"
+      },
+      {
+        "target": "NDC80",
+        "rationale": "NDC80 复合体位于 DSN1-MIS12 下游，直接介导动粒微管结合；在染色体不稳定肿瘤通路中具备更直接的功能读出。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "IL1RL1",
+  "generatedAt": "2026-08-03T13:26:40.780Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IL1RL1编码ST2，是IL-33受体复合体的配体结合亚基，参与IL-33驱动的Th2炎症、ILC2活化、嗜酸粒细胞募集及过敏性气道炎症。该靶点具有胞外免疫球蛋白样结构域并以膜受体形式暴露于细胞表面，同时存在可溶性ST2同工型，具备良好的抗体可及性。相较于下游IL-5或IL-13轴，阻断IL1RL1可在IL-33信号进入受体复合体前干预上游报警素通路，优先级适合哮喘和过敏性疾病抗体设计。",
+    "mechanism": "抗体阻断IL-33与IL1RL1胞外Ig样结构域结合，抑制IL1RL1与IL1RAP组装受体复合体，从而降低MyD88依赖性NF-κB与MAPK信号激活。",
+    "selectedEpitope": "优先覆盖ST2胞外D1-D2配体结合界面，避免干扰非阻断性远端糖基化暴露区。",
+    "diseaseDirection": "哮喘与过敏性Th2炎症",
+    "domain": "IL1RL1胞外区含三个Ig样结构域，跨膜段及胞内TIR结构域介导IL-1受体家族信号转导。",
+    "evidence": "IL1RL1-ST2过敏性气道炎症证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与药理关联",
+      "UniProt Q01638功能与结构域注释",
+      "RCSB PDB 4KC3晶体结构记录",
+      "IL-33/ST2/IL1RAP信号通路文献"
+    ],
+    "referenceEntries": "UniProt Q01638；RCSB PDB 4KC3；Open Targets IL1RL1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "D1-D2配体结合沟槽及IL-33接触面",
+        "直接阻断IL-33结合并抑制受体复合体形成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "D3近膜Ig样结构域与复合体装配邻近面",
+        "可能影响IL1RAP协同组装并增强功能阻断",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离配体界面的高度糖基化或柔性环区",
+        "结合可及但功能阻断不确定，需避免仅产生非中和结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "需区分膜型ST2与可溶性ST2结合效应，避免抗体被高水平sST2消耗；表位应优先验证IL-33竞争阻断能力及IL1RAP复合体抑制。",
+    "structurePrepZh": "以4KC3抗原链A、B为模板整理胞外Ig样结构域，补全缺失环区并标注N-糖基化位点；对D1-D2界面进行配体遮挡与可及性评估。",
+    "structureRef": "RCSB PDB 4KC3，X-ray diffraction，3.2702 Å",
+    "antibodies": [
+      "Astegolimab",
+      "Itepekimab"
+    ],
+    "interfaceFocus": "IL-33结合面与IL1RAP复合体装配邻近区",
+    "designMode": "配体阻断型",
+    "candidates": [
+      {
+        "target": "IL33",
+        "rationale": "IL33是IL1RL1的上游配体，作为上皮损伤报警素直接驱动ST2阳性ILC2和Th2细胞炎症反应，适合进行配体中和策略。"
+      },
+      {
+        "target": "IL1RAP",
+        "rationale": "IL1RAP是IL-33/ST2信号复合体的共受体，参与受体装配后MyD88依赖性信号转导，阻断该节点可抑制同一IL-1受体家族炎症通路。"
+      },
+      {
+        "target": "TSLP",
+        "rationale": "TSLP同属上皮来源2型炎症启动因子，与IL-33共同促进树突状细胞、ILC2和Th2反应，在哮喘及过敏性疾病中具有明确通路交叉。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

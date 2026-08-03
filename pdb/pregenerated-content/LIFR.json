@@ -1,0 +1,65 @@
+{
+  "gene": "LIFR",
+  "generatedAt": "2026-08-03T13:53:13.602Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "LIFR 是 IL-6 细胞因子受体家族成员，与 CNTF、LIF、OSM、CT1 或 CLCF1 等配体结合后招募 gp130，驱动 JAK/STAT3、MAPK 与 PI3K 信号；其功能缺失可导致 Stüve-Wiedemann 综合征，提示该轴对骨骼、神经和肾发育具有关键作用。LIFR 为单跨膜受体，胞外区包含免疫球蛋白样结构域、细胞因子结合模块和纤连蛋白 III 型结构域，抗体可直接接近配体结合与受体复合物装配界面。相较下游 JAK/STAT 节点，LIFR 具备更高通路入口特异性，可在受体层面区分 LIFR 依赖性细胞因子信号，优先级高于广泛表达的共享共受体 IL6ST。",
+    "mechanism": "抗体阻断 LIFR 胞外细胞因子结合模块与 LIF/CLCF1 等配体结合，或抑制 LIFR-配体复合物招募 IL6ST/gp130，从而降低 STAT3 磷酸化。",
+    "selectedEpitope": "优先覆盖 D2-D3 细胞因子结合模块的配体接触面，并避开柔性糖基化富集环区。",
+    "diseaseDirection": "LIFR-IL6ST 发育与炎症信号轴",
+    "domain": "胞外区含 Ig-like D1、D2-D3 细胞因子结合模块及多个 FNIII 样结构域，后接单跨膜区。",
+    "evidence": "LIFR 结构、遗传病与配体复合物证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt P42702 蛋白功能与结构域注释",
+      "RCSB PDB 3E0G X 射线晶体结构",
+      "OMIM 与 ClinVar LIFR 致病变异记录"
+    ],
+    "referenceEntries": "UniProt:P42702；RCSB PDB:3E0G；Open Targets:LIFR",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "D2-D3 细胞因子结合模块配体接触面",
+        "直接阻断 LIFR 与 LIF/CLCF1 等细胞因子结合，具备明确功能拮抗价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "D4-D5 近膜侧 FNIII 样结构域间装配界面",
+        "可能影响受体构象延伸及 IL6ST/gp130 复合物稳定性，适合作为非竞争性调节表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "D1 Ig-like 远端结构域暴露面",
+        "结构可及性较好，但与核心配体结合界面距离较远，功能阻断不确定性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "LIFR 胞外区糖基化和结构域柔性可能影响表位成药性；应优先筛选保守、低糖基化且不跨越高柔性连接区的构象表位。",
+    "structurePrepZh": "以 3E0G 实验结构为模板，保留抗原链 A-E 的可信结构域，补全缺失环区并进行糖基化位点标注后开展界面建模。",
+    "structureRef": "PDB 3E0G；human LIFR extracellular domain crystal structure",
+    "antibodies": [
+      "anti-LIFR clone 1C7",
+      "anti-LIFR clone 12D3"
+    ],
+    "interfaceFocus": "D2-D3 配体结合沟槽与 IL6ST 招募邻近面",
+    "designMode": "受体拮抗抗体设计",
+    "candidates": [
+      {
+        "target": "IL6ST",
+        "rationale": "IL6ST/gp130 是 LIFR 细胞因子复合物的共享信号转导亚基，参与同一 JAK/STAT3 通路。靶向该节点可广泛抑制 LIFR 相关受体复合物信号，但通路选择性较低。"
+      },
+      {
+        "target": "LIF",
+        "rationale": "LIF 是 LIFR 的经典配体，通过 LIFR-IL6ST 复合物诱导 STAT3 活化。中和 LIF 可在配体层面阻断该轴，适用于 LIF 驱动的局部病理信号场景。"
+      },
+      {
+        "target": "CLCF1",
+        "rationale": "CLCF1 可与 CRLF1 形成复合物并通过 CNTFR/LIFR/IL6ST 受体系统传递信号，与发育异常和神经肌肉表型相关。其配体层面干预可作为 LIFR 轴的替代策略。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

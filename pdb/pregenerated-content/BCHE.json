@@ -1,0 +1,65 @@
+{
+  "gene": "BCHE",
+  "generatedAt": "2026-08-03T10:47:03.975Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BCHE编码血浆丁酰胆碱酯酶，可水解乙酰胆碱、丁酰胆碱及多种酯类底物；其遗传缺陷直接导致丁酰胆碱酯酶缺乏，并与阿尔茨海默病、帕金森病和痴呆中的胆碱能功能改变相关。BCHE为可溶性分泌型糖蛋白，成熟蛋白位于胞外体液环境，抗体可及性优于胞内酶类靶点。相较ACHE等高度突触定位且生理必需性更强的同类胆碱酯酶，BCHE在血浆和胶质相关胆碱代谢中具有更适合外周结合、分层检测和功能调节的开发优先级。",
+    "mechanism": "抗体优先阻断BCHE外周阴离子位点与胆碱酯底物进入催化峡谷的相互作用，降低底物递送至Ser198-His438-Glu325催化三联体的效率。",
+    "selectedEpitope": "优先覆盖催化峡谷入口的外周阴离子位点及酰基结合口袋边缘，避免直接压迫催化三联体。",
+    "diseaseDirection": "胆碱能代谢与神经退行性疾病",
+    "domain": "BCHE为α/β水解酶折叠的分泌型胆碱酯酶，含深催化峡谷、外周阴离子位点、酰基口袋和C端寡聚化区。",
+    "evidence": "BCHE结构、遗传缺陷与神经退行性关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P06276 functional annotation",
+      "RCSB PDB 1P0I X-ray structure",
+      "ClinVar/OMIM butyrylcholinesterase deficiency records"
+    ],
+    "referenceEntries": "UniProt P06276；RCSB PDB 1P0I；MONDO_0015270",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化峡谷入口外周阴离子位点",
+        "可阻断胆碱酯底物进入通道，形成变构或底物竞争型调节",
+        "优先"
+      ],
+      [
+        "Site B",
+        "酰基结合口袋邻近环区",
+        "有利于改变底物定位与酯键水解几何构象，保留选择性优化空间",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端四聚化相关区域",
+        "可能影响寡聚状态和血浆稳定性，但存在干扰天然复合体装配风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BCHE催化峡谷较深，抗体难以直接进入活性中心；设计应聚焦入口环区和外周阴离子位点，并评估与ACHE的交叉反应性。",
+    "structurePrepZh": "以1P0I三条抗原链为模板，补全缺失侧链与糖基化邻域标注，保留催化三联体、外周阴离子位点和峡谷入口残基用于界面约束。",
+    "structureRef": "Human butyrylcholinesterase X-ray structure, PDB 1P0I, 2.0 Å",
+    "antibodies": [
+      "B2 18-5",
+      "mAb 2H1"
+    ],
+    "interfaceFocus": "催化峡谷入口、外周阴离子位点与酰基口袋边缘",
+    "designMode": "功能阻断型Fab设计",
+    "candidates": [
+      {
+        "target": "ACHE",
+        "rationale": "ACHE与BCHE共同参与胆碱酯水解和胆碱能信号终止，是阿尔茨海默病胆碱能治疗轴中的核心酶类靶点。其突触定位和外周位点可作为同通路选择性比较对象。"
+      },
+      {
+        "target": "CHAT",
+        "rationale": "CHAT催化乙酰胆碱合成，位于胆碱能神经元功能轴上游；其表达和活性变化可反映神经退行性疾病中的胆碱能神经元损伤。"
+      },
+      {
+        "target": "SLC5A7",
+        "rationale": "SLC5A7编码高亲和力胆碱转运体，负责胆碱再摄取并限制乙酰胆碱合成底物供应。该靶点与BCHE同属胆碱能代谢和神经传递调控通路。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

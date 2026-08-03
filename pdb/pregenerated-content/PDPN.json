@@ -1,0 +1,65 @@
+{
+  "gene": "PDPN",
+  "generatedAt": "2026-08-03T15:10:41.179Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PDPN 是黏蛋白样 I 型跨膜糖蛋白，在淋巴管内皮、肿瘤相关成纤维细胞及多种鳞癌中上调，可通过与血小板 CLEC1B 结合诱导血小板活化，促进肿瘤细胞聚集、血行转移和免疫保护。其主要抗体可及区位于胞外 N 端黏蛋白样结构域，且功能性 PLAG 基序暴露于细胞外空间，适合开展阻断型抗体设计。相较于下游血小板活化分子，PDPN 具备病灶细胞表面富集和配体结合位点明确的优势，可优先用于肿瘤转移相关抗体干预。",
+    "mechanism": "阻断 PDPN 胞外 PLAG 基序与血小板 CLEC1B 的结合，抑制 CLEC1B 介导的 SYK 依赖性血小板活化与肿瘤细胞聚集。",
+    "selectedEpitope": "优先覆盖 N 端 PLAG1-3 黏蛋白样基序及其邻近糖基化边界，干预 CLEC1B 识别界面。",
+    "diseaseDirection": "肿瘤转移与血小板介导进展",
+    "domain": "PDPN 含 N 端胞外黏蛋白样结构域、单跨膜螺旋和短胞质尾部，功能性 PLAG 基序位于胞外段。",
+    "evidence": "PDPN-CLEC1B 轴与肿瘤转移阻断证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q86YL7 functional annotation",
+      "RCSB PDB 4YO0 experimental structure",
+      "PDPN-CLEC1B platelet activation literature"
+    ],
+    "referenceEntries": "UniProt Q86YL7；RCSB PDB 4YO0；Open Targets PDPN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N 端 PLAG1-3 基序与 CLEC1B 结合核心",
+        "直接阻断血小板 CLEC1B 识别，具备明确功能拮抗价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PLAG 基序邻近 O-糖基化黏蛋白样区",
+        "可增强界面遮蔽并调节糖链依赖性结合构象",
+        "备选"
+      ],
+      [
+        "Site C",
+        "靠近跨膜端的远端胞外黏蛋白样区域",
+        "空间可及但与 CLEC1B 结合核心距离较远，功能阻断不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PDPN 胞外段高度糖基化且构象柔性较强，表位设计应避开非特异性糖链依赖结合，并验证对淋巴管内皮生理表达的安全窗口。",
+    "structurePrepZh": "以 4YO0 高分辨率晶体结构为抗体模板参考，保留抗原链 A-F 的可解析片段，补充缺失胞外柔性区并标注 O-糖基化位点。",
+    "structureRef": "RCSB PDB 4YO0，X-ray diffraction，1.56 Å",
+    "antibodies": [
+      "NZ-1",
+      "LpMab-2"
+    ],
+    "interfaceFocus": "PLAG 基序-CLEC1B 配体识别界面",
+    "designMode": "阻断型表位聚焦",
+    "candidates": [
+      {
+        "target": "CLEC1B",
+        "rationale": "CLEC1B 是 PDPN 的血小板受体，直接介导 PDPN 诱导的血小板活化。靶向该受体可从配体受体轴另一端阻断肿瘤细胞-血小板相互作用。"
+      },
+      {
+        "target": "SYK",
+        "rationale": "SYK 是 CLEC1B 免疫受体样信号复合物下游关键激酶，参与血小板活化信号传导。其处于同一 PDPN-CLEC1B 通路下游，但更适合小分子或细胞内干预策略。"
+      },
+      {
+        "target": "FCER1G",
+        "rationale": "FCER1G 编码 FcRγ 链，是 CLEC1B 信号复合物中含 ITAM 的适配蛋白。其与 CLEC1B 共同传递 PDPN 诱导的血小板活化信号，可作为通路机制验证靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

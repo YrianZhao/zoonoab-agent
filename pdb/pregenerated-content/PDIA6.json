@@ -1,0 +1,65 @@
+{
+  "gene": "PDIA6",
+  "generatedAt": "2026-08-03T15:10:41.443Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PDIA6是内质网蛋白二硫键异构酶家族成员，参与错误折叠蛋白氧化折叠、ER应激与未折叠蛋白反应，神经退行性疾病中蛋白稳态失衡使该轴具有病理相关性。该蛋白主要定位于内质网腔，含KDEL样保留信号，天然抗原可及性弱于典型膜受体或分泌因子，需优先采用细胞内递送、组织损伤释放抗原或研究级结合抗体策略。相较PERK、IRE1等跨膜UPR传感器，PDIA6具备高分辨率实验结构与明确催化结构域，可支持精细表位建模；但作为治疗性表面抗体靶点优先级低于胞外可及靶点。",
+    "mechanism": "抗体设计宜阻断PDIA6催化硫氧还蛋白样结构域与错误折叠底物半胱氨酸基序的接触，干扰二硫键交换与ER蛋白折叠质量控制。",
+    "selectedEpitope": "优先覆盖a型硫氧还蛋白样结构域CGHC催化位点邻近底物结合沟槽，避免完全埋入活性中心。",
+    "diseaseDirection": "神经退行性疾病与ER应激",
+    "domain": "PDIA6含两个催化性硫氧还蛋白样a/a′结构域及非催化b/b′结构域，C端含ER保留信号。",
+    "evidence": "PDIA6蛋白稳态与神经退行性疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与关联评分",
+      "UniProt Q15084功能与亚细胞定位注释",
+      "RCSB PDB 4EF0晶体结构数据",
+      "PDIA6在ER应激和UPR调控中的文献证据"
+    ],
+    "referenceEntries": "UniProt Q15084；RCSB PDB 4EF0；Open Targets PDIA6",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "a型硫氧还蛋白样结构域CGHC邻近底物结合沟槽",
+        "可直接影响二硫键交换底物进入与催化构象稳定性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "a′型硫氧还蛋白样结构域催化半胱氨酸周边外露环区",
+        "有利于获得功能阻断但降低对保守核心折叠的扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "b/b′非催化结构域外露面",
+        "可能调节底物招募，但功能阻断确定性低且需构象验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PDIA6为内质网腔内蛋白，常规抗体难以进入活细胞ER腔；应标注可及性风险，优先用于研究抗体、递送抗体或病理释放抗原场景。",
+    "structurePrepZh": "以4EF0高分辨率晶体结构为模板，保留A、B链构象差异，补全缺失环区并评估CGHC邻近表面电荷与保守性。",
+    "structureRef": "RCSB PDB 4EF0，X射线晶体结构，1.5 Å",
+    "antibodies": [
+      "抗PDIA6研究级单克隆抗体",
+      "抗PDI家族功能阻断抗体 RL90"
+    ],
+    "interfaceFocus": "CGHC催化位点邻近底物结合沟槽",
+    "designMode": "胞内抗原阻断",
+    "candidates": [
+      {
+        "target": "ERN1",
+        "rationale": "ERN1编码IRE1α，是UPR中感知内质网错误折叠蛋白负荷的跨膜激酶/核酸内切酶，与PDIA6同属ER应激蛋白稳态网络。"
+      },
+      {
+        "target": "EIF2AK3",
+        "rationale": "EIF2AK3编码PERK，通过磷酸化EIF2A降低新生蛋白翻译负荷，是神经退行性疾病ER应激轴中的核心传感器。"
+      },
+      {
+        "target": "HSPA5",
+        "rationale": "HSPA5编码BiP/GRP78，直接结合未折叠蛋白并调控IRE1、PERK和ATF6活化状态，与PDIA6共同维持ER蛋白折叠质量控制。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

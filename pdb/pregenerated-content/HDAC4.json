@@ -1,0 +1,65 @@
+{
+  "gene": "HDAC4",
+  "generatedAt": "2026-08-03T19:43:56.779Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HDAC4 是 IIa 类组蛋白去乙酰化酶，参与 MEF2 转录复合体抑制、染色质乙酰化状态维持及肌肉和神经发育相关基因表达调控。其疾病关联集中于 2q37 微缺失综合征、神经发育异常、Duchenne 肌营养不良及浆细胞骨髓瘤等方向，提示 HDAC4 剂量或功能异常可影响发育转录程序与病理性肌肉重塑。HDAC4 主要为核质穿梭型胞内酶，天然抗体可及性弱，因此更适合作为结构引导的胞内递送抗体片段或研究型抑制分子设计靶点。相较广谱 HDAC1/2/3，HDAC4 的 IIa 类调控域、MEF2 结合功能及疾病遗传证据提供了更明确的亚型选择性设计优先级。",
+    "mechanism": "设计分子应阻断 HDAC4 N 端调控区与 MEF2 转录因子的结合，或干扰 C 端 HDAC 样催化结构域与 NCoR/SMRT-HDAC3 共抑制复合体的装配。",
+    "selectedEpitope": "优先围绕 3V31 所示 C 端 HDAC 样催化结构域外露沟槽及锌结合口袋邻近环区设计亚型选择性表位。",
+    "diseaseDirection": "神经发育异常与肌营养不良",
+    "domain": "HDAC4 含 N 端 MEF2 结合和 14-3-3 结合调控区，C 端为 IIa 类 HDAC 样催化结构域。",
+    "evidence": "HDAC4 疾病遗传关联与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联证据",
+      "UniProtKB P56524 功能与亚细胞定位注释",
+      "RCSB PDB 3V31 X 射线晶体结构",
+      "文献报道的 MEF2-HDAC4 与 NCoR/SMRT 共抑制机制"
+    ],
+    "referenceEntries": "UniProtKB: P56524；RCSB PDB: 3V31；HGNC: HDAC4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C 端 HDAC 样催化结构域外露活性沟槽邻近环区",
+        "有利于获得亚型选择性并干扰底物或抑制剂结合构象",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N 端 MEF2 相互作用区域及邻近调控片段",
+        "可直接阻断 MEF2-HDAC4 转录抑制复合体形成，但需依赖补充结构模型",
+        "备选"
+      ],
+      [
+        "Site C",
+        "14-3-3 结合磷酸化基序邻近区域",
+        "可能影响核质穿梭调控，但磷酸化状态依赖性强且构象异质性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HDAC4 为胞内核质穿梭蛋白，常规抗体难以到达作用位点；应优先采用胞内递送 Fab/VHH、细胞穿透偶联或降解型格式，并严格评估 HDAC 亚型交叉反应。",
+    "structurePrepZh": "以 3V31 的 A/B 链催化结构域为模板，保留锌结合构象与关键环区，补齐缺失侧链并评估二聚界面、晶体接触及可成药表面暴露性。",
+    "structureRef": "RCSB PDB 3V31，human HDAC4 catalytic domain，1.57 Å",
+    "antibodies": [
+      "HDAC4-neutralizing intracellular antibody format not clinically established",
+      "anti-HDAC4 research antibody"
+    ],
+    "interfaceFocus": "催化沟槽邻近环区与 MEF2/NCoR-SMRT 复合体界面",
+    "designMode": "胞内表位阻断",
+    "candidates": [
+      {
+        "target": "MEF2C",
+        "rationale": "MEF2C 是 HDAC4 介导转录抑制的直接转录因子伙伴，参与神经发育和肌肉分化基因表达程序。干预 MEF2C-HDAC4 轴可用于解析同一发育转录通路。"
+      },
+      {
+        "target": "NCOR1",
+        "rationale": "NCOR1 是 HDAC4 相关共抑制复合体的核心支架蛋白，可连接 HDAC4 与染色质转录抑制机制。其定位于同一核内转录共抑制通路。"
+      },
+      {
+        "target": "HDAC3",
+        "rationale": "HDAC3 是 NCoR/SMRT 复合体中的主要催化去乙酰化酶，HDAC4 可通过共抑制复合体间接影响其功能。该靶点适合作为 HDAC4 通路内催化节点对照。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

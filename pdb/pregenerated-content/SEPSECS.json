@@ -1,0 +1,65 @@
+{
+  "gene": "SEPSECS",
+  "generatedAt": "2026-08-03T16:25:44.461Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SEPSECS参与硒代半胱氨酸tRNA成熟，将Sep-tRNA[Sec]转化为Sec-tRNA[Sec]，其双等位基因功能缺陷可导致桥小脑发育不全2D型及进展性小脑-大脑萎缩。该蛋白为细胞内PLP依赖性酶，并非分泌蛋白或膜受体，天然抗原可及性弱，因此更适合作为机制研究、细胞内递送抗体或结构辅助探针靶点。相较下游单个硒蛋白，SEPSECS位于硒代蛋白翻译供给的核心节点，遗传证据集中且PDB 8G9Z提供高分辨率寡聚体结构，具备较高结构设计优先级。",
+    "mechanism": "设计抗体阻断SEPSECS与Sep-tRNA[Sec]或PLP邻近催化沟槽的构象配合，抑制Sec-tRNA[Sec]生成并用于验证硒蛋白生物合成缺陷机制。",
+    "selectedEpitope": "优先覆盖PLP依赖催化核心邻近的tRNA结合沟槽，兼顾四聚体界面外露螺旋以稳定构象识别。",
+    "diseaseDirection": "神经发育退行性疾病",
+    "domain": "SEPSECS为PLP依赖性Class V转氨酶样折叠，形成同源四聚体并结合Sep-tRNA[Sec]底物。",
+    "evidence": "SEPSECS神经发育疾病遗传与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q9HD40功能与变异注释",
+      "RCSB PDB 8G9Z晶体结构",
+      "OMIM桥小脑发育不全2D型遗传证据"
+    ],
+    "referenceEntries": "UniProt Q9HD40；RCSB PDB 8G9Z；Open Targets SEPSECS",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PLP催化核心邻近tRNA结合沟槽",
+        "可干预Sep-tRNA[Sec]定位与催化构象耦合",
+        "优先"
+      ],
+      [
+        "Site B",
+        "同源四聚体亚基界面外露螺旋束",
+        "可用于稳定特定寡聚体构象并评估功能依赖性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守PLP结合内腔深部残基区",
+        "催化保守性强且空间埋藏，抗体可及性与选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SEPSECS为胞内酶，常规体内中和抗体难以到达靶点；宜采用细胞内递送、intrabody或结构探针策略，并规避PLP内腔埋藏表位。",
+    "structurePrepZh": "以PDB 8G9Z为模板保留生物学四聚体，检查A-E链装配、PLP辅因子与缺失环区，进行质子化、界面暴露度和保守性标注。",
+    "structureRef": "RCSB PDB 8G9Z，X-ray diffraction，2.07 Å",
+    "antibodies": [
+      "无临床获批SEPSECS抗体",
+      "抗SEPSECS研究级多克隆抗体"
+    ],
+    "interfaceFocus": "tRNA结合沟槽与四聚体亚基界面",
+    "designMode": "胞内结构探针",
+    "candidates": [
+      {
+        "target": "TRU-TCA1-1",
+        "rationale": "该基因编码tRNA[Sec]，是SEPSECS催化生成Sec-tRNA[Sec]的直接底物载体，与桥小脑发育不全相关硒代蛋白生物合成缺陷处于同一通路。"
+      },
+      {
+        "target": "PSTK",
+        "rationale": "PSTK催化Ser-tRNA[Sec]磷酸化生成Sep-tRNA[Sec]，位于SEPSECS上游，功能缺陷同样会影响硒代半胱氨酸并入。"
+      },
+      {
+        "target": "EEFSEC",
+        "rationale": "EEFSEC介导Sec-tRNA[Sec]向核糖体递送，是硒蛋白翻译延伸步骤的关键因子，可作为同一硒蛋白生物合成轴的候选节点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

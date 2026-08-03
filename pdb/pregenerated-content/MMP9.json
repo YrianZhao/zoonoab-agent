@@ -1,0 +1,65 @@
+{
+  "gene": "MMP9",
+  "generatedAt": "2026-08-03T14:17:32.329Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MMP9 是分泌型锌依赖性基质金属蛋白酶，可裂解 IV 型胶原、明胶及多种基质蛋白，参与炎症组织重塑、白细胞迁移和肠黏膜屏障破坏，在克罗恩病等炎症性疾病中具有明确通路关联。其成熟酶、前酶及血浆相关复合物均位于胞外空间，催化结构域与血红素结合蛋白样结构域具备抗体可及性。相较于广谱 MMP 抑制策略，MMP9 具有可利用的非催化外位点和已验证抗体先例，更适合通过选择性抗体降低脱靶毒性。",
+    "mechanism": "抗体阻断 MMP9 催化域外位点或血红素结合蛋白样结构域介导的底物结合，降低其对明胶和 IV 型胶原的裂解。",
+    "selectedEpitope": "优先选择催化域远离 Zn2+ 活性中心的底物外位点，兼顾 fibronectin-like 插入区边缘。",
+    "diseaseDirection": "炎症性肠病与组织重塑",
+    "domain": "MMP9 含前肽、锌依赖催化域、三段 fibronectin type II 插入区及 C 端血红素结合蛋白样结构域。",
+    "evidence": "MMP9 炎症组织重塑抗体设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt P14780 蛋白功能与结构域注释",
+      "RCSB PDB 4XCT X 射线晶体结构",
+      "抗 MMP9 抗体 andecaliximab 临床研究文献"
+    ],
+    "referenceEntries": "UniProt P14780；RCSB PDB 4XCT；Open Targets MMP9",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化域非锌结合底物外位点及 fibronectin-like 插入区邻近面",
+        "可干预明胶/胶原底物定位，同时降低金属蛋白酶家族保守活性中心交叉风险",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C 端血红素结合蛋白样结构域外侧叶片界面",
+        "可能影响底物识别及与 TIMP 相关复合物构象，适合开发变构抑制抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化 Zn2+ 结合裂隙及 HEXGHXXGXXH 保守基序邻近区域",
+        "抑制效力潜力高，但与 MMP2 等同源蛋白保守性较强，选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MMP 家族催化中心高度保守，需避开 Zn2+ 配位核心并强化 MMP9 特异外位点识别；应评估与 MMP2、MMP8 的交叉结合。",
+    "structurePrepZh": "以 4XCT 抗原链 A 为结构模板，保留催化域构象与金属离子环境，补充缺失柔性环并标注糖基化及前肽切割位点。",
+    "structureRef": "RCSB PDB 4XCT，human MMP9 catalytic domain，1.3 Å",
+    "antibodies": [
+      "Andecaliximab",
+      "GS-5745"
+    ],
+    "interfaceFocus": "催化域底物外位点与 fibronectin-like 插入区",
+    "designMode": "选择性变构抑制",
+    "candidates": [
+      {
+        "target": "MMP2",
+        "rationale": "MMP2 与 MMP9 同属明胶酶，均裂解 IV 型胶原并参与基底膜重塑；作为候选靶点可用于通路冗余与交叉选择性评估。"
+      },
+      {
+        "target": "TIMP1",
+        "rationale": "TIMP1 是 MMP9 的内源性抑制因子，可形成 MMP9-TIMP1 调控轴；靶向该轴有助于解析蛋白酶活性失衡对炎症组织损伤的贡献。"
+      },
+      {
+        "target": "IL1B",
+        "rationale": "IL1B 可诱导炎症细胞和基质细胞上调 MMP9 表达，位于炎症放大与基质降解通路上游；适合作为同病理轴的替代免疫调节靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "CSNK2A2",
+  "generatedAt": "2026-08-03T11:40:39.134Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CSNK2A2编码CK2α′催化亚基，参与CK2全酶介导的底物磷酸化，在神经退行性疾病、阿尔茨海默病和帕金森病相关的蛋白稳态、突触功能及神经炎症网络中具有遗传和功能关联。该蛋白为细胞内丝氨酸/苏氨酸激酶，天然抗原可及性弱，不具备膜受体或分泌蛋白优势，因此更适合采用胞内递送抗体片段或结构引导的抑制性结合分子验证。相比CK2β等调节亚基，CSNK2A2提供明确ATP结合口袋和底物识别沟槽，且6TGU高分辨率结构支持精确表位建模，优先级主要来自结构可设计性而非传统抗体可及性。",
+    "mechanism": "设计结合ATP结合裂隙或底物识别沟槽的胞内抗体片段，阻断ATP与CK2α′催化口袋结合或干扰底物肽进入催化沟槽，从而降低CK2α′依赖性磷酸化。",
+    "selectedEpitope": "优先覆盖N端β片层-铰链区与催化裂隙邻近界面，兼顾ATP腺嘌呤结合位点外缘和底物进入沟槽。",
+    "diseaseDirection": "神经退行性疾病与中枢免疫炎症",
+    "domain": "CSNK2A2为CK2α′蛋白激酶结构域，含N端β片层、铰链区、αC螺旋、活化环及C端催化叶。",
+    "evidence": "CSNK2A2神经退行性疾病结构设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与功能关联",
+      "UniProt P19784蛋白功能与亚细胞定位注释",
+      "RCSB PDB 6TGU高分辨率X射线晶体结构",
+      "CK2激酶复合体底物磷酸化与神经病理文献"
+    ],
+    "referenceEntries": "UniProt P19784；RCSB PDB 6TGU；Open Targets CSNK2A2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ATP结合裂隙外缘及铰链区",
+        "可直接遮挡腺嘌呤结合位点并限制催化构象稳定化",
+        "优先"
+      ],
+      [
+        "Site B",
+        "底物肽进入沟槽与活化环邻近面",
+        "可干扰底物定位并降低磷酸转移效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "αC螺旋与保守催化核心周边",
+        "该区域保守性高，需规避CSNK2A1交叉反应与构象扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CSNK2A2为胞内激酶，常规抗体难以到达作用位点；催化核心与CSNK2A1高度同源，需通过α′特异残基和胞内递送格式控制选择性。",
+    "structurePrepZh": "以6TGU链A为模板，保留激酶结构域完整构象，校正缺失侧链、质子化状态和配体邻近残基，并标注ATP口袋、铰链区及底物沟槽。",
+    "structureRef": "RCSB PDB 6TGU，0.833 Å X-ray human CK2α′结构",
+    "antibodies": [
+      "胞内单域抗体格式VHH参考",
+      "细胞穿透抗体片段参考"
+    ],
+    "interfaceFocus": "ATP铰链区、底物沟槽与α′特异外露残基",
+    "designMode": "胞内抑制型片段设计",
+    "candidates": [
+      {
+        "target": "CSNK2A1",
+        "rationale": "CSNK2A1编码CK2α催化亚基，与CSNK2A2共同构成CK2催化网络，参与同类底物磷酸化和神经病理相关细胞过程。其结构与药理学资料丰富，可作为选择性与补偿机制评估靶点。"
+      },
+      {
+        "target": "CSNK2B",
+        "rationale": "CSNK2B编码CK2β调节亚基，调控CK2全酶装配、底物选择和催化稳定性。针对该节点可评估阻断CK2复合体功能而非单一催化口袋的策略。"
+      },
+      {
+        "target": "GSK3B",
+        "rationale": "GSK3B是阿尔茨海默病和神经退行性疾病中与tau磷酸化密切相关的丝氨酸/苏氨酸激酶，与CK2共同处于神经蛋白磷酸化失衡网络。其可作为同一病理磷酸化通路中的替代或联合评估靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

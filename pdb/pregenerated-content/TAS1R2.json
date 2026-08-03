@@ -1,0 +1,65 @@
+{
+  "gene": "TAS1R2",
+  "generatedAt": "2026-08-03T17:08:34.271Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TAS1R2与TAS1R3形成甜味受体异源二聚体，主要介导膳食糖类和非营养性甜味剂识别，并通过G蛋白偶联受体信号影响肠促胰岛素释放、能量摄入和代谢表型。该靶点为C类GPCR，具有大型胞外Venus flytrap结构域和半胱氨酸富集区，抗原表面可及性优于多跨膜核心区。相较于下游G蛋白或胞内代谢节点，TAS1R2提供更直接的配体识别入口，并具备实验冷冻电镜结构支持，适合进行构象选择性抗体设计。",
+    "mechanism": "通过抗体结合TAS1R2胞外Venus flytrap结构域，阻断甜味配体诱导的TAS1R2-TAS1R3闭合构象与异源二聚体激活传递。",
+    "selectedEpitope": "优先覆盖TAS1R2 VFT配体结合裂隙周缘及TAS1R2-TAS1R3胞外二聚化界面。",
+    "diseaseDirection": "糖感知与代谢表型调控",
+    "domain": "TAS1R2包含N端Venus flytrap胞外结构域、半胱氨酸富集区和七跨膜GPCR核心。",
+    "evidence": "TAS1R2甜味受体结构与代谢关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与表型关联",
+      "UniProt Q8TE23蛋白功能与结构域注释",
+      "RCSB PDB 9NOU冷冻电镜结构记录",
+      "GPCRdb与文献中C类GPCR构象激活机制"
+    ],
+    "referenceEntries": "UniProt Q8TE23；RCSB PDB 9NOU；Open Targets TAS1R2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "VFT配体结合裂隙周缘",
+        "可干预甜味配体诱导的闭合构象，具备功能阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "TAS1R2-TAS1R3 VFT二聚化界面",
+        "可限制异源二聚体胞外域重排，适合构象锁定策略",
+        "备选"
+      ],
+      [
+        "Site C",
+        "半胱氨酸富集区近七跨膜连接段",
+        "可能影响信号传递但邻近柔性连接区，需控制构象依赖风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TAS1R2胞外域存在配体诱导构象变化，界面表位需避免完全破坏TAS1R2-TAS1R3基础装配；宜采用交叉构象筛选确认功能阻断而非非特异失活。",
+    "structurePrepZh": "以9NOU冷冻电镜模型提取TAS1R2链A/B对应胞外域，补全缺失侧链并保留糖基化邻近区域标注，分离VFT裂隙与二聚化界面用于表位聚类。",
+    "structureRef": "RCSB PDB 9NOU，human TAS1R2/TAS1R3 sweet receptor cryo-EM",
+    "antibodies": [
+      "无已获批TAS1R2靶向抗体",
+      "研究级抗TAS1R2胞外域抗体"
+    ],
+    "interfaceFocus": "VFT配体裂隙与TAS1R2-TAS1R3胞外二聚界面",
+    "designMode": "构象阻断型",
+    "candidates": [
+      {
+        "target": "TAS1R3",
+        "rationale": "TAS1R3是TAS1R2甜味受体异源二聚体的必需伴侣，参与胞外配体识别后的构象传递。靶向TAS1R3可作为同一甜味感知通路的互补阻断策略。"
+      },
+      {
+        "target": "GNAT3",
+        "rationale": "GNAT3编码味觉G蛋白α亚基gustducin，是TAS1R2/TAS1R3激活后的下游信号节点。其疾病与代谢表型关联可用于通路验证，但胞内定位限制抗体药物可及性。"
+      },
+      {
+        "target": "TRPM5",
+        "rationale": "TRPM5位于味觉GPCR下游，介导PLCβ2通路产生的去极化信号，是甜味、苦味和鲜味感知共同效应通道。其膜蛋白属性具备抗体识别可能，但通路选择性低于TAS1R2。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "SGK3",
+  "generatedAt": "2026-08-03T16:29:34.137Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SGK3 为胞内丝氨酸/苏氨酸激酶，含 PX 结构域并在内体磷脂酰肌醇 3-磷酸定位后接受 PDK1 与 mTORC2 激活，参与 PI3K 轴下游存活、离子转运及自噬相关调控，在神经退行性疾病和 Alzheimer disease 遗传关联中具有一定信号。该蛋白缺乏胞外结构域或分泌型抗原特征，完整 IgG 难以直接接触天然抗原，因此更适合采用细胞内递送抗体片段或研究级构象阻断分子。相较 PI3K-AKT 轴中广泛表达且系统毒性更高的上游节点，SGK3 的 PX 介导内体定位和激酶结构域界面提供了更明确的亚细胞选择性设计入口，但作为治疗性常规抗体靶点优先级应低于膜受体或分泌配体。",
+    "mechanism": "以胞内抗体片段阻断 SGK3 PX 结构域与 PI3P 膜脂结合，或干扰激酶结构域激活环与底物结合，从而削弱内体定位依赖性 SGK3 磷酸化输出。",
+    "selectedEpitope": "优先聚焦 PX 结构域 PI3P 结合口袋邻近构象表面，备选激酶结构域 N/C lobe 底物沟槽。",
+    "diseaseDirection": "神经退行性疾病与PI3K-SGK轴",
+    "domain": "SGK3 含 N 端 PX 膜定位结构域、连接区及 C 端 AGC 激酶催化结构域。",
+    "evidence": "SGK3 神经退行性疾病关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB Q96BR1 functional annotation",
+      "RCSB PDB 6EDX X-ray structure",
+      "Reactome PI3K/PDK1/SGK signaling pathway"
+    ],
+    "referenceEntries": "UniProt Q96BR1；RCSB PDB 6EDX；Open Targets SGK3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PX 结构域 PI3P 结合口袋及邻近膜接触面",
+        "阻断 SGK3 内体膜募集，降低定位依赖性激活",
+        "优先"
+      ],
+      [
+        "Site B",
+        "激酶结构域 N lobe/C lobe 底物结合沟槽",
+        "限制底物进入与催化构象稳定，适合胞内片段验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "激酶结构域 ATP 结合裂隙周边",
+        "保守性高且与多种 AGC 激酶相似，选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SGK3 为胞内激酶，常规抗体抗原可及性不足；激酶 ATP 区域保守性高，需优先避开保守催化残基并评估 SGK1、SGK2 交叉反应。",
+    "structurePrepZh": "采用 6EDX A 链作为实验结构模板，补全缺失环区与质子化状态，分离配体和晶体接触后标注 PX 结构域及激酶催化区界面。",
+    "structureRef": "RCSB PDB 6EDX；X-ray diffraction 2.009 Å",
+    "antibodies": [
+      "research anti-SGK3 antibody",
+      "anti-SGK3 phospho-specific antibody"
+    ],
+    "interfaceFocus": "PX-PI3P 膜结合面与激酶底物沟槽",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "PIK3CA",
+        "rationale": "PIK3CA 编码 PI3K p110α 催化亚基，位于 SGK3 上游并生成 PI3P/PI3K 轴相关磷脂信号，是同一 PI3K 依赖性存活通路的核心节点。"
+      },
+      {
+        "target": "PDPK1",
+        "rationale": "PDPK1 直接磷酸化 SGK3 激酶结构域激活环 Thr320，是 SGK3 催化活化的关键上游激酶。"
+      },
+      {
+        "target": "MTOR",
+        "rationale": "mTORC2 可促进 SGK 家族疏水基序磷酸化并增强激酶活性，与 PDK1 共同构成 SGK3 激活通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "PTPRJ",
+  "generatedAt": "2026-08-03T15:44:52.408Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PTPRJ编码受体型蛋白酪氨酸磷酸酶DEP-1/CD148，在血小板与造血细胞中通过去磷酸化Src家族激酶调节GPVI、CLEC2和整合素信号，Open Targets显示其与血小板体积及免疫细胞计数存在较高遗传关联。该蛋白为单跨膜受体，胞外区含多个可溶剂暴露的纤连蛋白III样结构域，抗体可直接结合细胞表面抗原。相较胞内激酶或支架蛋白，PTPRJ具备更明确的抗原可及性和结构解析基础，适合开展构象选择性调节抗体设计。",
+    "mechanism": "抗体结合PTPRJ胞外纤连蛋白III样结构域界面，干预受体聚集构象并改变胞内PTP结构域对Src家族激酶底物的去磷酸化效率。",
+    "selectedEpitope": "优先覆盖胞外近膜FNIII结构域间界面，兼顾7U01多链晶体中稳定暴露的二聚化接触面。",
+    "diseaseDirection": "血小板功能与免疫血液表型",
+    "domain": "I型跨膜受体；胞外区由多枚FNIII样结构域组成，胞内含单一PTP催化结构域。",
+    "evidence": "PTPRJ血小板与免疫表型抗体设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q12913蛋白结构域注释",
+      "RCSB PDB 7U01晶体结构记录",
+      "血小板GPVI/CLEC2-Src/Syk信号文献"
+    ],
+    "referenceEntries": "UniProt Q12913；RCSB PDB 7U01；Open Targets PTPRJ",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "胞外近膜FNIII结构域间界面",
+        "可能影响PTPRJ空间聚集与胞内磷酸酶活性耦联，适合作为功能调节表位",
+        "优先"
+      ],
+      [
+        "Site B",
+        "远端FNIII样结构域暴露环区",
+        "抗原可及性较好，可用于高亲和结合或细胞表面检测型抗体设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "FNIII核心β夹层保守面",
+        "保守结构面突变耐受性低，存在交叉反应或影响折叠稳定性的设计风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PTPRJ胞外FNIII重复区可能存在糖基化与构象柔性，需避开N-糖基化位点及晶体接触伪界面，优先验证细胞表面结合。",
+    "structurePrepZh": "以7U01抗原链A-D为模板，保留实验解析胞外片段，补充缺失侧链并标注糖基化位点，按生理二聚或单体状态分别建模。",
+    "structureRef": "RCSB PDB 7U01，X-ray diffraction，2.30 Å",
+    "antibodies": [
+      "Ab1",
+      "A3"
+    ],
+    "interfaceFocus": "FNIII结构域间接触面与近膜构象调节区",
+    "designMode": "构象调节型抗体",
+    "candidates": [
+      {
+        "target": "GP6",
+        "rationale": "GPVI是血小板胶原受体，依赖FcRγ-ITAM介导Src/Syk信号；PTPRJ可调节该通路中Src家族激酶磷酸化状态。"
+      },
+      {
+        "target": "CLEC1B",
+        "rationale": "CLEC2在血小板中通过hemITAM触发Syk信号，属于PTPRJ参与调控的血小板活化网络，适合作为同通路候选抗原。"
+      },
+      {
+        "target": "SYK",
+        "rationale": "SYK位于GPVI和CLEC2下游，是血小板ITAM/hemITAM信号转导核心激酶，与PTPRJ调节的Src激酶轴功能相连。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

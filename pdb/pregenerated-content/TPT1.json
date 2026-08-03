@@ -1,0 +1,65 @@
+{
+  "gene": "TPT1",
+  "generatedAt": "2026-08-03T17:27:01.575Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TPT1编码TCTP，主要为胞质蛋白，参与细胞应激、凋亡阈值、Ca2+稳态及蛋白翻译相关过程，并在肿瘤细胞存活和神经退行性应激反应中具有文献支持的关联。该蛋白缺乏经典跨膜段和稳定胞外结构域，抗原可及性不及分泌因子或膜受体，作为常规阻断型抗体靶点存在天然限制。其优先级主要来自高分辨率实验结构、明确的蛋白互作界面和疾病关联广度，适合开展机制验证型胞内抗体或递送型抗体片段设计；相较同通路泛凋亡因子，TPT1结构可解析性更强但成药性风险更高。",
+    "mechanism": "设计抗体片段结合TPT1疏水核心邻近表面，干扰其与MCL1等抗凋亡蛋白的相互作用，从而削弱TPT1介导的细胞存活支持。",
+    "selectedEpitope": "优先覆盖TPT1核心折叠中β片层外露面及邻近α螺旋沟槽，避开高度柔性N端区域。",
+    "diseaseDirection": "肿瘤存活与神经退行性应激",
+    "domain": "TPT1为小型酸性胞质蛋白，含TCTP核心折叠、N端柔性区及C端α螺旋结构元件。",
+    "evidence": "TPT1疾病关联与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB P13693功能与亚细胞定位注释",
+      "RCSB PDB 5O9M高分辨率晶体结构",
+      "TCTP与MCL1相互作用及抗凋亡功能文献"
+    ],
+    "referenceEntries": "UniProtKB:P13693；RCSB PDB:5O9M；Open Targets:TPT1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "核心β片层外露面及邻近α螺旋沟槽",
+        "可能覆盖蛋白互作热区，适合阻断TPT1与抗凋亡因子结合",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端α螺旋束表面",
+        "结构稳定且可形成构象表位，适合作为高亲和力结合位点",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端柔性肽段区域",
+        "构象异质性较高，可能降低抗体识别稳定性和结构建模可靠性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TPT1以胞质定位为主，常规抗体难以到达作用位点；建议采用细胞内抗体、VHH或递送偶联策略，并严格评估非特异性胞内蛋白结合风险。",
+    "structurePrepZh": "采用5O9M中A、B链进行同源状态比对，保留高置信核心折叠，去除晶体接触伪界面并标注柔性N端和潜在互作表面。",
+    "structureRef": "RCSB PDB 5O9M，X-ray diffraction，1.4 Å",
+    "antibodies": [
+      "暂无获批TPT1靶向治疗性抗体",
+      "研究级抗TCTP检测抗体"
+    ],
+    "interfaceFocus": "MCL1结合相关核心表面与C端螺旋沟槽",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "MCL1",
+        "rationale": "MCL1是BCL2家族抗凋亡蛋白，与肿瘤细胞存活和治疗耐受密切相关，并与TPT1抗凋亡功能存在机制交叉。其线粒体外膜相关功能位点明确，适合作为同一细胞存活通路中的替代干预节点。"
+      },
+      {
+        "target": "BCL2",
+        "rationale": "BCL2通过抑制线粒体途径凋亡维持细胞存活，与TPT1相关抗凋亡网络处于同一疾病生物学方向。该靶点临床验证程度高，可作为通路基准靶点。"
+      },
+      {
+        "target": "BAX",
+        "rationale": "BAX是线粒体外膜通透化的促凋亡执行因子，与MCL1和BCL2形成互作平衡。围绕BAX活化界面开展设计可用于验证TPT1相关存活轴的功能依赖性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

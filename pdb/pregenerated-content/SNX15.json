@@ -1,0 +1,65 @@
+{
+  "gene": "SNX15",
+  "generatedAt": "2026-08-03T16:48:42.036Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SNX15 属于 sorting nexin 家族，参与内体膜运输与受体分选，并与神经退行性疾病相关表型及脂质稳态性状存在遗传关联，提示其处于相关疾病网络的上游调控层。其抗原来源于胞内结构蛋白而非典型胞外抗原，整体可及性低于膜受体或分泌蛋白，因此更适合采用细胞内递送或胞内结合形式的抗体工程策略。相较于同通路中部分冗余 SNX 成员，SNX15 具有明确结构解析基础且与内体分选节点直接相关，便于围绕功能表面开展优先级更高的机制性阻断设计。",
+    "mechanism": "结合 SNX15 的 PX/相关功能界面，干扰其与磷脂酰肌醇结合及膜募集过程，进而抑制内体膜分选复合体装配。",
+    "selectedEpitope": "优先覆盖 PX 结构域的磷脂结合沟槽及邻近蛋白相互作用面，避免保守折叠核心。",
+    "diseaseDirection": "神经退行性疾病",
+    "domain": "以 PX 结构域为主，含膜结合表面与邻近相互作用界面。",
+    "evidence": "SNX15 结构-疾病关联与表位设计包",
+    "evidenceSources": [
+      "Open Targets Platform",
+      "UniProt Q9NRS6",
+      "RCSB PDB 6ECM",
+      "Protein Data Bank"
+    ],
+    "referenceEntries": "UniProt: Q9NRS6; PDB: 6ECM; Homo sapiens SNX15",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PX 结构域的磷脂结合口袋",
+        "可直接削弱膜募集与定位",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PX 结构域侧壁蛋白相互作用面",
+        "有利于阻断伴侣蛋白装配",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离核心折叠的表面环区",
+        "特异性较高但功能外推较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "该靶点为胞内蛋白，常规抗体进入性受限，需优先评估 VHH、胞内表达或递送体系；同时应避开 PX 折叠保守核心，以降低对家族成员的交叉风险。",
+    "structurePrepZh": "以 6ECM 为模板进行结构清理、缺失残基补建与界面暴露度评估，并映射保守位点后再开展表位分层设计。",
+    "structureRef": "RCSB PDB 6ECM, X-ray diffraction, 2.353 A",
+    "antibodies": [
+      "无公认临床同类抗体",
+      "无已确立结构功能抗体"
+    ],
+    "interfaceFocus": "PX 结构域膜结合面与伴随蛋白界面",
+    "designMode": "structure-guided",
+    "candidates": [
+      {
+        "target": "SNX27",
+        "rationale": "SNX27 与内体回收通路密切相关，和 SNX15 同属膜运输网络，可作为同疾病通路的比较节点。其结构与配体识别机制明确，适合用于通路层面的联合验证。"
+      },
+      {
+        "target": "VPS35",
+        "rationale": "VPS35 是 retromer 复合体核心组分，决定内体货物回收路径，与 SNX 蛋白功能在同一分选轴上耦联。作为下游装配节点，可用于验证 SNX15 干预后的网络效应。"
+      },
+      {
+        "target": "SORL1",
+        "rationale": "SORL1 参与神经退行性疾病相关的内体转运与受体回收，和 SNX15 所在膜运输网络存在功能交汇。其疾病关联较强，适合作为同通路比较靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

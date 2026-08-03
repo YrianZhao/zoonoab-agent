@@ -1,0 +1,65 @@
+{
+  "gene": "PSMD3",
+  "generatedAt": "2026-08-03T15:40:29.416Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PSMD3编码26S蛋白酶体19S调节颗粒lid亚基Rpn3，参与泛素化底物去泛素化前的识别、转运与进入20S核心颗粒，浆细胞骨髓瘤和套细胞淋巴瘤对蛋白稳态压力高度依赖。该蛋白位于胞内26S蛋白酶体复合体，不具备天然胞外抗原可及性，常规抗体直接阻断策略存在递送限制。其优先级主要来自血液肿瘤蛋白酶体依赖性和高质量冷冻电镜结构基础；相较胞外靶点，PSMD3更适合作为机制验证或细胞内抗体工程靶点，而非首选治疗性表面抗原。",
+    "mechanism": "设计分子应干扰PSMD3/Rpn3与lid亚基PSMD6/Rpn7、PSMD11/Rpn6的装配界面，削弱19S调节颗粒稳定性并抑制泛素化底物向20S核心转运。",
+    "selectedEpitope": "优先覆盖Rpn3 PCI结构域与Rpn7/Rpn6接触面，避免仅靶向埋藏核心疏水区。",
+    "diseaseDirection": "血液肿瘤蛋白稳态依赖",
+    "domain": "PSMD3为19S lid非ATPase亚基，含PCI结构域并通过C端翼状螺旋参与lid支架装配。",
+    "evidence": "PSMD3蛋白酶体依赖性血液肿瘤证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt O43242功能与亚细胞定位注释",
+      "RCSB PDB 22MM冷冻电镜结构",
+      "蛋白酶体抑制剂在浆细胞骨髓瘤中的临床机制证据"
+    ],
+    "referenceEntries": "UniProt O43242；RCSB PDB 22MM；Open Targets PSMD3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PCI结构域Rpn7/Rpn6装配界面",
+        "直接干扰19S lid支架稳定性，具备明确复合体装配机制价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Rpn3外露螺旋束与溶剂可及侧面",
+        "适合细胞内抗体结合验证，可降低对整体折叠核心的扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PCI核心埋藏疏水面",
+        "可能影响蛋白折叠并导致非特异性聚集，成药表位风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PSMD3为胞内蛋白酶体亚基，缺乏膜外暴露区域；抗体需采用细胞内抗体、递送载体或降解耦联策略，并重点评估正常细胞蛋白稳态毒性。",
+    "structurePrepZh": "以PDB 22MM冷冻电镜模型提取PSMD3及邻近lid亚基，补全缺失侧链、标注PCI结构域界面，并保留复合体接触环境用于表位可及性评估。",
+    "structureRef": "RCSB PDB 22MM，human 26S proteasome EM structure",
+    "antibodies": [
+      "无已批准PSMD3靶向治疗性抗体",
+      "抗PSMD3研究级检测抗体"
+    ],
+    "interfaceFocus": "Rpn3 PCI结构域与Rpn7/Rpn6装配界面",
+    "designMode": "细胞内抗体设计",
+    "candidates": [
+      {
+        "target": "PSMB5",
+        "rationale": "PSMB5编码20S核心颗粒β5催化亚基，是硼替佐米和卡非佐米抑制的关键蛋白酶体位点，与浆细胞骨髓瘤蛋白稳态脆弱性直接相关。"
+      },
+      {
+        "target": "PSMD14",
+        "rationale": "PSMD14/Rpn11是19S调节颗粒金属去泛素化酶，负责在底物进入核心颗粒前移除泛素链，处于PSMD3所在26S蛋白酶体通路同一功能模块。"
+      },
+      {
+        "target": "PSMC5",
+        "rationale": "PSMC5属于19S AAA+ ATPase环，驱动底物展开和转运进入20S核心颗粒；其功能与PSMD3介导的lid装配共同维持蛋白酶体降解通量。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "PTCD3",
+  "generatedAt": "2026-08-03T15:41:34.196Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PTCD3 是线粒体小亚基核糖体相关的 pentatricopeptide repeat 蛋白，参与线粒体 mRNA 结合与翻译起始，其功能缺陷可导致氧化磷酸化复合体蛋白合成不足，并与 combined oxidative phosphorylation deficiency 51 存在明确遗传关联。该蛋白定位于线粒体基质并非胞外抗原，天然抗体可及性不足，因此更适合作为细胞内功能验证、递送型抗体片段或结构机制研究靶点。相较于通路中高度多亚基化且膜埋藏的呼吸链复合体组分，PTCD3 具有已解析冷冻电镜结构和可定义的 PPR-RNA 结合界面，适合优先开展结构约束型分子设计。",
+    "mechanism": "设计分子可阻断 PTCD3 的 PPR 螺旋面与线粒体 mRNA 的结合，干扰其在小核糖体亚基上的 mRNA 定位与翻译起始复合体装配。",
+    "selectedEpitope": "优先覆盖 PPR 重复结构的凹面 RNA 结合沟槽及其邻近小亚基接触界面。",
+    "diseaseDirection": "线粒体氧化磷酸化缺陷",
+    "domain": "PTCD3 含线粒体靶向序列与多段 PPR 螺旋重复结构，形成RNA结合支架。",
+    "evidence": "PTCD3线粒体翻译与OXPHOS缺陷证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt Q96EY7 蛋白功能与定位注释",
+      "RCSB PDB 6ZM6 冷冻电镜结构",
+      "人线粒体核糖体翻译起始复合体结构研究"
+    ],
+    "referenceEntries": "UniProt: Q96EY7; RCSB PDB: 6ZM6; Open Targets: PTCD3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PPR重复凹面RNA结合沟槽",
+        "直接竞争线粒体mRNA结合，机制指向性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PTCD3与线粒体小核糖体接触面",
+        "可干扰翻译起始复合体定位，适合结构验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PPR外侧保守螺旋束",
+        "可能影响折叠稳定性但功能选择性较低",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PTCD3 为线粒体基质蛋白，常规抗体难以进入细胞与线粒体；建议采用VHH、胞内表达或递送体系，并避免破坏全局折叠造成非特异毒性。",
+    "structurePrepZh": "以6ZM6冷冻电镜模型提取PTCD3链段，补全缺失环区并保留与mRNA及小亚基邻近接触关系，用于界面约束建模。",
+    "structureRef": "RCSB PDB 6ZM6, cryo-EM 2.59 Å human mitoribosome complex",
+    "antibodies": [
+      "暂无临床开发抗PTCD3抗体",
+      "研究级抗PTCD3多克隆抗体"
+    ],
+    "interfaceFocus": "PPR凹面RNA结合沟槽与小亚基接触界面",
+    "designMode": "胞内VHH结构阻断",
+    "candidates": [
+      {
+        "target": "LRPPRC",
+        "rationale": "LRPPRC 参与线粒体mRNA稳定性与翻译调控，缺陷可导致氧化磷酸化复合体表达异常，属于同一线粒体基因表达通路。"
+      },
+      {
+        "target": "TACO1",
+        "rationale": "TACO1 是线粒体翻译激活因子，尤其影响 MT-CO1 翻译，与细胞色素c氧化酶缺陷和OXPHOS障碍相关。"
+      },
+      {
+        "target": "GFM1",
+        "rationale": "GFM1 编码线粒体翻译延伸因子 EF-G1，突变可造成线粒体蛋白合成障碍和联合氧化磷酸化缺陷。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

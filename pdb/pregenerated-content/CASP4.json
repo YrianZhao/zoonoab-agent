@@ -1,0 +1,65 @@
+{
+  "gene": "CASP4",
+  "generatedAt": "2026-08-03T18:13:46.533Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CASP4 是人源非经典炎症小体通路的关键胞质半胱天冬酶，可直接识别胞质革兰阴性菌脂多糖并促进 GSDMD 裂解、焦亡及 IL-1β/IL-18 释放，因而与细菌感染性疾病存在明确机制关联。该靶点并非分泌蛋白或跨膜受体，天然抗原可及性低，抗体设计更适合定位于细胞内递送、结构验证或胞内抗体研究场景。相较下游炎症因子，CASP4 位于 LPS 感知与焦亡执行之间的上游节点，具有区分非经典炎症小体轴的机制优先级，但成药可及性风险高于胞外靶点。",
+    "mechanism": "结合 CASP4 催化结构域邻近底物结合沟槽，阻碍 GSDMD N 端连接区进入活性位点，抑制 GSDMD 裂解与焦亡执行。",
+    "selectedEpitope": "优先覆盖 p20/p10 催化结构域界面及底物结合沟槽外缘，避开完全埋藏催化半胱氨酸。",
+    "diseaseDirection": "细菌感染与非经典炎症小体",
+    "domain": "CASP4 含 N 端 CARD 结构域及 C 端 caspase 催化大/小亚基，成熟后形成 p20-p10 异二聚催化单元。",
+    "evidence": "CASP4-LPS-GSDMD 非经典炎症小体证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt P49662 功能注释",
+      "RCSB PDB 7WR6 晶体结构",
+      "非经典炎症小体与焦亡机制文献"
+    ],
+    "referenceEntries": "UniProt P49662；RCSB PDB 7WR6；Open Targets CASP4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "p20/p10 催化结构域底物结合沟槽外缘",
+        "可干扰 GSDMD 底物进入并保留一定抗体结合可及性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域二聚化与亚基装配邻近界面",
+        "可能削弱成熟 CASP4 催化构象稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端 CARD-CARD 相互作用界面",
+        "理论上可影响炎症小体复合物装配，但 7WR6 未覆盖该区域",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CASP4 为胞内蛋白，常规抗体难以进入胞质；催化沟槽局部保守性高，需降低与 CASP1、CASP5 的交叉反应风险。",
+    "structurePrepZh": "以 7WR6 的 A、B 链为抗原模板，补全缺失侧链、校正质子化状态，并按成熟催化二聚体构象定义表位网格。",
+    "structureRef": "RCSB PDB 7WR6，X-ray diffraction，1.96 Å",
+    "antibodies": [
+      "anti-CASP4 clone 4B9",
+      "anti-CASP4 clone 2A12"
+    ],
+    "interfaceFocus": "GSDMD 底物沟槽与 p20/p10 装配界面",
+    "designMode": "胞内阻断型抗体",
+    "candidates": [
+      {
+        "target": "GSDMD",
+        "rationale": "GSDMD 是 CASP4 直接裂解底物，其 N 端片段形成膜孔并执行焦亡，是同一非经典炎症小体通路的核心效应节点。"
+      },
+      {
+        "target": "CASP5",
+        "rationale": "CASP5 与 CASP4 同属人源炎症性 caspase，可参与胞质 LPS 识别和 GSDMD 裂解，适合作为通路内并行靶点。"
+      },
+      {
+        "target": "IL1B",
+        "rationale": "IL1B 是焦亡和炎症小体激活后释放的重要促炎细胞因子，可反映 CASP4-GSDMD 轴下游炎症放大效应。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

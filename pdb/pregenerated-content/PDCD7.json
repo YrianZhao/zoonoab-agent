@@ -1,0 +1,65 @@
+{
+  "gene": "PDCD7",
+  "generatedAt": "2026-08-03T15:08:28.176Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PDCD7为细胞内蛋白，参与RNA加工相关核糖核蛋白复合体环境，其Open Targets关联以神经退行性疾病和肾功能表型为主，但尚缺乏可直接定义的胞外致病配体-受体轴。该蛋白不具备分泌蛋白、膜受体或胞外结构域特征，完整抗体药物的抗原可及性明显受限。相较于同疾病方向中具有胞外可及结构的TREM2、APP或C5，PDCD7更适合作为机制研究或胞内递送抗体探索靶点，主靶点优先级应低于可药性更明确的膜蛋白或分泌蛋白。",
+    "mechanism": "设计重点为胞内递送抗体或降解型构建体，干预PDCD7与其所在核糖核蛋白复合体表面相互作用界面，而非传统胞外阻断机制。",
+    "selectedEpitope": "优先评估9GCM中暴露的螺旋束外侧界面，避开多链装配核心与RNA邻近结合面。",
+    "diseaseDirection": "神经退行性疾病与肾功能表型",
+    "domain": "PDCD7为小型核内/胞内蛋白，含保守螺旋束样折叠，不含跨膜区、信号肽或胞外结构域。",
+    "evidence": "PDCD7疾病关联与胞内结构可药性证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联数据",
+      "UniProt Q8N8D1蛋白定位与序列注释",
+      "RCSB PDB 9GCM冷冻电镜结构记录",
+      "Human Protein Atlas亚细胞定位与组织表达资料"
+    ],
+    "referenceEntries": "UniProt: Q8N8D1; RCSB PDB: 9GCM; Open Targets: PDCD7",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "9GCM中溶剂暴露螺旋束外侧面",
+        "有利于获得构象识别分子，可用于胞内结合或结构探针设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "多链装配边缘的非保守环区",
+        "可提高选择性，但需验证是否影响复合体稳定性与可成药构象",
+        "备选"
+      ],
+      [
+        "Site C",
+        "链间装配核心及潜在核酸邻近界面",
+        "可能干扰基础RNA加工复合体功能，存在广泛细胞毒性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险来自胞内定位导致常规抗体不可及，以及PDCD7可能参与基础RNA加工复合体功能。建议限定为胞内递送、降解偶联或研究级抗体策略，并优先开展细胞定位验证。",
+    "structurePrepZh": "以9GCM冷冻电镜模型为结构模板，拆分A-D链并评估同源装配界面；补全缺失侧链、校正质子化状态后进行溶剂暴露度与保守性分析。",
+    "structureRef": "RCSB PDB 9GCM, EM structure at 3.1 Å",
+    "antibodies": [
+      "无已批准PDCD7靶向抗体",
+      "无临床阶段PDCD7靶向抗体"
+    ],
+    "interfaceFocus": "暴露螺旋束外侧与链间装配边缘",
+    "designMode": "胞内抗体探索",
+    "candidates": [
+      {
+        "target": "TREM2",
+        "rationale": "TREM2为小胶质细胞膜受体，参与神经退行性疾病中的髓系细胞脂质感知与吞噬反应调节。其胞外免疫球蛋白样结构域具备明确抗体可及性。"
+      },
+      {
+        "target": "APP",
+        "rationale": "APP经β/γ分泌酶加工生成Aβ肽，是阿尔茨海默病淀粉样级联中的核心底物。其胞外区和可溶性Aβ物种均可被抗体识别。"
+      },
+      {
+        "target": "C5",
+        "rationale": "C5位于补体级联末端，裂解生成C5a并驱动炎症趋化，同时参与膜攻击复合体形成。作为血浆分泌蛋白，其抗原暴露充分且已有抗体药物验证。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "CRACR2A",
+  "generatedAt": "2026-08-03T11:37:18.628Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CRACR2A参与T细胞受体触发后的钙释放激活钙通道调控，通过与STIM1和ORAI1复合体协同维持CRAC通道开放，影响NFAT依赖的免疫细胞活化。该蛋白主要定位于胞内信号复合体，缺乏典型胞外结构域，抗原可及性相较膜受体或分泌因子受限，因此更适合用于结构机制研究、胞内递送抗体或研究型结合分子设计。其优先级依据在于PDB 6PSD提供人源CRACR2A EF-hand样钙结合结构的实验解析基础，可支持高分辨率界面建模；但作为常规治疗性外源抗体靶点的优先级低于ORAI1、STIM1等同通路可干预节点。",
+    "mechanism": "设计分子应阻断CRACR2A EF-hand样区域的钙依赖构象稳定或其与STIM1-ORAI1通道复合体的支架相互作用，从而削弱CRAC通道持续开放。",
+    "selectedEpitope": "优先聚焦PDB 6PSD所示EF-hand样钙结合结构域的螺旋-环-螺旋构象面及潜在二聚化接触面。",
+    "diseaseDirection": "钙信号与免疫细胞活化",
+    "domain": "CRACR2A含N端EF-hand样钙结合模块及卷曲螺旋区域，参与CRAC通道调控复合体装配。",
+    "evidence": "CRACR2A钙信号调控结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联与遗传证据",
+      "UniProt Q9BSW2蛋白功能与定位注释",
+      "RCSB PDB 6PSD实验晶体结构",
+      "CRAC通道STIM1-ORAI1免疫钙信号研究文献"
+    ],
+    "referenceEntries": "UniProt: Q9BSW2；RCSB PDB: 6PSD；Open Targets: CRACR2A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "EF-hand样钙结合环邻近螺旋面",
+        "可干预钙依赖构象稳定，适合解析功能性结合效应",
+        "优先"
+      ],
+      [
+        "Site B",
+        "EF-hand样结构域潜在二聚化或晶体接触界面",
+        "可评估对CRACR2A寡聚状态及复合体装配的影响",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离钙结合环的保守疏水核心邻近区域",
+        "可能影响折叠稳定性而非特异性功能界面，需避免非选择性构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CRACR2A为胞内调控蛋白，常规抗体难以直接进入作用部位；设计需优先限定为胞内递送格式、研究型Fab/VHH或结构探针，并控制EF-hand保守位点交叉反应风险。",
+    "structurePrepZh": "以PDB 6PSD为模板保留人源CRACR2A抗原链，校验钙结合环、缺失残基和晶体接触界面，去除非相关对称链后进行表面可及性与界面能评估。",
+    "structureRef": "RCSB PDB 6PSD，X-ray diffraction，2.66 Å，人源CRACR2A结构",
+    "antibodies": [
+      "尚无获批CRACR2A治疗性抗体",
+      "研究级抗CRACR2A抗体"
+    ],
+    "interfaceFocus": "EF-hand钙结合环及邻近螺旋接触面",
+    "designMode": "胞内靶点结构探针",
+    "candidates": [
+      {
+        "target": "ORAI1",
+        "rationale": "ORAI1构成CRAC通道孔道，是STIM1激活后钙内流的直接执行节点。其多跨膜结构含胞外环，可及性优于CRACR2A。"
+      },
+      {
+        "target": "STIM1",
+        "rationale": "STIM1感知内质网钙耗竭并通过SOAR/CAD区域激活ORAI1，是CRAC通路的核心上游调控因子。干预STIM1-ORAI1偶联可直接削弱钙内流。"
+      },
+      {
+        "target": "ORAI2",
+        "rationale": "ORAI2为ORAI家族钙通道成员，参与免疫细胞CRAC电流调节，与ORAI1处于同一钙内流通路。其膜蛋白属性提供较CRACR2A更明确的外源抗体可及性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "KPNA1",
+  "generatedAt": "2026-08-03T13:46:30.877Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KPNA1 是经典核输入通路的适配蛋白，可识别含经典核定位信号的宿主或病毒蛋白，并与 KPNB1 形成核输入复合体，参与流感、登革热及 HIV 等感染过程中的病毒蛋白核转运。该蛋白主要定位于胞质和细胞核，缺乏天然胞外结构域，抗原可及性不具备常规膜表面抗体优势，更适合细胞内递送抗体或结构生物学验证体系。其优先级来自 2.2 Å 实验结构、NLS 结合沟槽明确及跨病原体核输入依赖性，相比单一病毒蛋白靶点更具宿主通路干预价值。",
+    "mechanism": "阻断 KPNA1 ARM repeat 凹槽与经典 NLS 肽段结合，抑制 KPNA1-KPNB1 介导的核孔复合体转运复合物形成。",
+    "selectedEpitope": "优先覆盖 ARM repeats 2-4 的 major NLS 结合沟槽，兼顾 repeats 7-8 的 minor NLS 位点。",
+    "diseaseDirection": "病毒感染核输入通路",
+    "domain": "KPNA1 含 N 端 IBB 结构域及连续 ARM repeats，形成 NLS 肽结合凹槽。",
+    "evidence": "KPNA1 结构与感染疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P52294 functional annotation",
+      "RCSB PDB 2JDQ X-ray structure",
+      "核输入通路与病毒蛋白转运文献"
+    ],
+    "referenceEntries": "UniProt P52294；RCSB PDB 2JDQ；Open Targets KPNA1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ARM repeats 2-4 major NLS 结合沟槽",
+        "直接竞争经典 NLS 识别界面，最符合阻断型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ARM repeats 7-8 minor NLS 结合位点",
+        "可削弱双位点 NLS 配体稳定结合，适合联合界面覆盖",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端 IBB 结构域邻近区域",
+        "可能影响 KPNA1 自抑制与 KPNB1 装配，但构象动态性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "KPNA1 为胞内核转运蛋白，常规抗体难以到达作用位点；设计需采用细胞内递送、intrady 或体外机制验证，并避免破坏广泛宿主核输入导致毒性。",
+    "structurePrepZh": "以 2JDQ A、B、D、E 链比对构建 KPNA1 ARM repeat 构象集合，保留 NLS 结合沟槽关键残基，去除非界面晶体接触后进行表面可及性评估。",
+    "structureRef": "RCSB PDB 2JDQ，X-ray diffraction，2.2 Å",
+    "antibodies": [
+      "抗 KPNA1 研究级单克隆抗体",
+      "抗 importin alpha 家族研究级抗体"
+    ],
+    "interfaceFocus": "ARM repeat NLS 结合沟槽与 IBB 邻近界面",
+    "designMode": "胞内阻断型抗体",
+    "candidates": [
+      {
+        "target": "KPNB1",
+        "rationale": "KPNB1 与 KPNA1 形成经典核输入受体复合体，并负责与核孔复合体及 RanGTP 循环耦联，是同一核输入通路的下游核心节点。"
+      },
+      {
+        "target": "KPNA2",
+        "rationale": "KPNA2 属于 importin alpha 家族，可识别经典 NLS 货物并参与多种病毒蛋白核转运，适合作为 KPNA1 平行补偿通路靶点。"
+      },
+      {
+        "target": "RAN",
+        "rationale": "RAN GTPase 通过 RanGTP/RanGDP 梯度驱动核输入复合体解离和转运循环，是 KPNA1-KPNB1 通路不可或缺的调控节点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

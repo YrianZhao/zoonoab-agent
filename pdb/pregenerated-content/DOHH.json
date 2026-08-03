@@ -1,0 +1,65 @@
+{
+  "gene": "DOHH",
+  "generatedAt": "2026-08-03T18:38:42.120Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DOHH催化deoxyhypusine残基羟基化，是EIF5A成熟及翻译延伸功能形成的必需酶；DOHH功能缺陷与小头畸形、脑萎缩和视觉损害相关神经发育综合征存在遗传学关联。该蛋白主要为胞质金属酶，缺乏分泌型或跨膜胞外结构域，天然抗体可及性低，适合作为细胞内递送抗体或结构引导抑制型结合分子开发对象。相比下游广泛翻译因子，DOHH位于hypusination末端羟基化步骤，结构口袋明确且PDB 4D4Z分辨率较高，具有更清晰的界面建模优先级。",
+    "mechanism": "设计结合DOHH活性沟槽的抗体片段，阻断deoxyhypusine-EIF5A底物肽进入金属催化中心，干扰羟基化反应形成成熟hypusine。",
+    "selectedEpitope": "优先锁定HEAT-repeat螺旋束形成的底物结合沟槽及金属中心邻近入口。",
+    "diseaseDirection": "神经发育障碍与EIF5A hypusination轴",
+    "domain": "DOHH由串联HEAT-repeat样α螺旋构成，二聚体形成含二铁中心的催化沟槽。",
+    "evidence": "DOHH结构与神经发育遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9BU89功能与亚细胞定位注释",
+      "RCSB PDB 4D4Z人源DOHH晶体结构",
+      "OMIM/ClinVar神经发育综合征遗传证据"
+    ],
+    "referenceEntries": "UniProt Q9BU89；RCSB PDB 4D4Z；Open Targets DOHH",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "底物结合沟槽入口与二铁催化中心邻近螺旋面",
+        "可直接阻断EIF5A-deoxyhypusine底物肽进入催化位点",
+        "优先"
+      ],
+      [
+        "Site B",
+        "HEAT-repeat螺旋束外侧保守凹面",
+        "有利于构建构象锁定型结合分子并降低金属中心直接扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "DOHH二聚体界面附近螺旋接触区",
+        "可能影响二聚体稳定性，但界面保守且胞内蛋白相互作用风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DOHH为胞内酶，常规全长IgG难以到达靶点；设计应采用胞内递送Fab/VHH或细胞穿透格式，并避免非特异性螯合二铁中心造成广泛金属酶脱靶。",
+    "structurePrepZh": "以4D4Z的A、B链二聚体为模板，保留催化金属离子与关键水分子，补全缺失侧链后进行质子化、二聚体界面校验和底物沟槽网格定义。",
+    "structureRef": "PDB 4D4Z，human DOHH，X-ray，1.7 Å",
+    "antibodies": [
+      "暂无获批DOHH靶向抗体",
+      "研究级anti-DOHH抗体"
+    ],
+    "interfaceFocus": "底物沟槽入口、二铁中心邻近螺旋面",
+    "designMode": "胞内抑制型VHH/Fab",
+    "candidates": [
+      {
+        "target": "DHPS",
+        "rationale": "DHPS催化EIF5A赖氨酸残基的deoxyhypusine形成，位于DOHH上游同一hypusination通路；其抑制可阻断DOHH底物生成。"
+      },
+      {
+        "target": "EIF5A",
+        "rationale": "EIF5A是hypusination修饰的直接底物和功能输出节点，成熟hypusine-EIF5A参与特定多脯氨酸序列翻译延伸。"
+      },
+      {
+        "target": "ODC1",
+        "rationale": "ODC1控制腐胺与亚精胺生物合成，亚精胺为DHPS反应提供氨丁基供体，连接多胺代谢与EIF5A hypusination。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

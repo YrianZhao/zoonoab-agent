@@ -1,0 +1,65 @@
+{
+  "gene": "OXSR1",
+  "generatedAt": "2026-08-03T20:24:20.282Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "OXSR1编码胞质丝氨酸/苏氨酸激酶OSR1，受WNK激酶磷酸化后调控SLC12A2、SLC12A5等阳离子-氯离子协同转运体，影响红细胞体积、离子稳态及血红蛋白浓度相关表型。该蛋白并非分泌蛋白或膜受体，天然抗原可及性弱，抗体策略更适合定位为细胞内递送型研究抗体或结构引导的功能阻断工具。相较于下游多跨膜转运体，OXSR1具有高分辨率实验晶体结构和明确激酶调控节点，可在WNK-SPAK/OSR1轴中提供更清晰的构象与界面设计依据。",
+    "mechanism": "阻断OSR1催化结构域ATP结合沟槽或WNK磷酸化依赖构象界面，抑制其对SLC12转运体N端调控基序的磷酸化。",
+    "selectedEpitope": "优先靶向激酶结构域N/C叶之间ATP结合裂隙邻近构象表面，兼顾活化环周边界面。",
+    "diseaseDirection": "红细胞离子稳态与血液表型",
+    "domain": "OSR1含N端丝氨酸/苏氨酸激酶结构域及C端PF2结构域，PF2介导RFxV/I底物基序识别。",
+    "evidence": "OXSR1-WNK-SLC12轴血液表型证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt O95747功能与结构域注释",
+      "RCSB PDB 7OKW晶体结构记录",
+      "WNK-SPAK/OSR1调控SLC12转运体文献"
+    ],
+    "referenceEntries": "UniProt O95747；RCSB PDB 7OKW；Open Targets OXSR1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域ATP结合裂隙邻近N/C叶界面",
+        "可直接干预催化构象与底物磷酸化活性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "活化环及WNK磷酸化位点周边构象面",
+        "有望限制OSR1活化态形成，但需避免非特异性构象识别",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端PF2结构域RFxV/I基序结合沟槽",
+        "可阻断SLC12底物招募，需依赖完整PF2结构模板验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "OXSR1为胞内激酶，常规抗体难以在活细胞内到达靶点；建议采用细胞内递送Fab/VHH或降解偶联策略，并严格评估与STK39的交叉反应。",
+    "structurePrepZh": "以7OKW链A/B为实验结构模板，保留激酶结构域主链与关键磷酸化相关区域，补全缺失环区并评估ATP沟槽可成药表面。",
+    "structureRef": "RCSB PDB 7OKW，X-ray diffraction，1.62 Å",
+    "antibodies": [
+      "无临床获批OXSR1抗体",
+      "研究级anti-OXSR1抗体"
+    ],
+    "interfaceFocus": "ATP结合裂隙、活化环与PF2底物识别沟槽",
+    "designMode": "胞内靶向Fab/VHH",
+    "candidates": [
+      {
+        "target": "WNK1",
+        "rationale": "WNK1位于OXSR1上游，可通过磷酸化激活OSR1/SPAK并驱动SLC12转运体调控，是同一离子稳态通路的核心激酶节点。"
+      },
+      {
+        "target": "STK39",
+        "rationale": "STK39编码SPAK，与OXSR1同属WNK下游激酶，均调控SLC12家族转运体并与细胞体积和离子平衡相关。"
+      },
+      {
+        "target": "SLC12A2",
+        "rationale": "SLC12A2编码NKCC1，是OSR1/SPAK磷酸化调控的下游阳离子-氯离子协同转运体，直接连接离子通量与细胞体积表型。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

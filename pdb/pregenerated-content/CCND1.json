@@ -1,0 +1,65 @@
+{
+  "gene": "CCND1",
+  "generatedAt": "2026-08-03T11:05:56.492Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CCND1编码的cyclin D1是细胞周期G1期进程的核心调控因子，通过结合并激活CDK4/6促进RB1磷酸化，释放E2F依赖性转录程序，在乳腺癌、多发性骨髓瘤等肿瘤中常见扩增或过表达。该蛋白为细胞内核质蛋白，不具备经典胞外结构域或分泌暴露特征，作为常规抗体药物抗原的可及性存在显著限制。其优先价值主要体现在结构明确、致癌驱动证据强且位于CDK4/6-RB1轴上游；相较RB1等下游抑癌因子，CCND1更适合用于机制研究型胞内抗体、递送型抗体片段或降解偶联策略探索。",
+    "mechanism": "设计应聚焦阻断cyclin D1与CDK4/6的结合界面，抑制CDK4/6介导的RB1磷酸化并限制E2F转录释放。",
+    "selectedEpitope": "优先覆盖cyclin box fold内CDK结合沟槽及α螺旋界面，避免非功能性柔性尾区。",
+    "diseaseDirection": "乳腺癌细胞周期驱动轴",
+    "domain": "cyclin D1含N端cyclin box结构域、CDK结合界面及C端PEST降解调控区。",
+    "evidence": "CCND1-CDK4/6-RB1轴肿瘤驱动证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P24385功能与亚细胞定位注释",
+      "RCSB PDB 9CSK实验晶体结构",
+      "乳腺癌CCND1扩增与CDK4/6抑制剂临床证据"
+    ],
+    "referenceEntries": "UniProt:P24385；RCSB PDB:9CSK；HGNC:CCND1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "cyclin box内CDK4/6结合沟槽",
+        "直接干预cyclin D1-CDK4/6复合物形成，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端cyclin box外侧α螺旋面",
+        "可稳定识别折叠核心并产生构象干扰，适合作为备选抑制表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端PEST降解调控区及柔性尾段",
+        "序列柔性高且结构暴露不稳定，易获得结合但功能阻断价值有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CCND1为胞内核质蛋白，常规抗体难以直接到达靶点；设计宜限定为胞内递送Fab/VHH、intrabody或降解平台，并严格评估与其他cyclin家族的交叉反应。",
+    "structurePrepZh": "以9CSK晶体结构解析cyclin box折叠核心，补全缺失柔性片段时应与AlphaFold模型分区处理，并保留CDK结合面用于表位遮挡分析。",
+    "structureRef": "RCSB PDB 9CSK，X-ray diffraction，2.253 Å",
+    "antibodies": [
+      "SP4",
+      "EPR2241"
+    ],
+    "interfaceFocus": "cyclin box-CDK4/6结合沟槽",
+    "designMode": "胞内阻断型抗体",
+    "candidates": [
+      {
+        "target": "CDK4",
+        "rationale": "CDK4是cyclin D1的直接催化伴侣，二者形成复合物后磷酸化RB1；其胞内激酶活性已被CDK4/6抑制剂验证为乳腺癌治疗节点。"
+      },
+      {
+        "target": "CDK6",
+        "rationale": "CDK6与cyclin D1共同驱动G1/S转换，并在乳腺癌及血液肿瘤中参与RB1通路失控；与CCND1处于同一细胞周期驱动模块。"
+      },
+      {
+        "target": "RB1",
+        "rationale": "RB1是cyclin D1-CDK4/6复合物的关键底物，其磷酸化状态决定E2F转录因子释放；适合作为通路药效与机制验证节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

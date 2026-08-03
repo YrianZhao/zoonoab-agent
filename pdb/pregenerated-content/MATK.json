@@ -1,0 +1,65 @@
+{
+  "gene": "MATK",
+  "generatedAt": "2026-08-03T14:05:19.573Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MATK为胞内非受体酪氨酸激酶，主要通过SH3、SH2与激酶结构域参与Src家族激酶负向调控，并可影响细胞黏附、增殖及神经退行性疾病相关细胞应激网络。其疾病关联得分在神经退行性疾病方向最高，同时在骨肉瘤与结直肠肿瘤中存在遗传和表达层面关联。MATK缺乏天然胞外结构域，抗原可及性不适合常规细胞表面阻断抗体，但高分辨率晶体结构支持胞内抗体、VHH或递送型抗体片段的构象选择性设计。相较多数仅有低置信模型的胞内激酶靶点，3US4提供1.5 Å实验结构，适合优先开展结构引导型抑制性抗体片段设计。",
+    "mechanism": "设计胞内抗体片段结合MATK激酶结构域催化裂隙邻近构象表面，限制ATP结合口袋与活化环重排，从而削弱其对Src家族调控底物的磷酸化耦联。",
+    "selectedEpitope": "优先靶向激酶结构域N叶αC螺旋与活化环邻近构象界面，避免完全覆盖保守ATP口袋。",
+    "diseaseDirection": "神经退行性疾病与肿瘤信号调控",
+    "domain": "MATK含N端SH3结构域、SH2结构域及C端蛋白酪氨酸激酶结构域，3US4覆盖激酶核心构象。",
+    "evidence": "MATK结构可解析性与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P42679功能与结构域注释",
+      "RCSB PDB 3US4晶体结构记录",
+      "蛋白酪氨酸激酶与Src家族调控文献"
+    ],
+    "referenceEntries": "UniProt:P42679；RCSB PDB:3US4；Open Targets:MATK",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域N叶αC螺旋-活化环邻近构象面",
+        "可通过构象锁定干预催化活化，兼顾选择性与功能阻断",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SH2-激酶结构域相对取向界面",
+        "可能影响底物招募或自抑制构象耦联，适合作为变构调节表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP结合裂隙高度保守区域",
+        "功能相关性强但与多种酪氨酸激酶同源性高，交叉反应风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MATK为胞内激酶，常规抗体难以进入细胞；设计应采用VHH、胞内抗体或递送型格式，并重点评估与CSK及Src家族激酶结构保守面的交叉结合。",
+    "structurePrepZh": "以3US4链A为模板，保留激酶结构域主链与关键催化残基，补全缺失侧链，去除结晶添加物后进行质子化、能量最小化与表面保守性标注。",
+    "structureRef": "RCSB PDB 3US4，X-ray diffraction，1.5 Å",
+    "antibodies": [
+      "无获批MATK靶向治疗抗体",
+      "MATK研究级单克隆抗体"
+    ],
+    "interfaceFocus": "αC螺旋、活化环与催化裂隙邻近变构面",
+    "designMode": "胞内VHH构象锁定",
+    "candidates": [
+      {
+        "target": "CSK",
+        "rationale": "CSK与MATK同属Src家族负调控轴，可通过磷酸化Src C端抑制位点抑制Src活性，是同一酪氨酸激酶调控网络中的关键参照靶点。"
+      },
+      {
+        "target": "SRC",
+        "rationale": "SRC是MATK/CSK调控轴的核心效应激酶，参与肿瘤细胞增殖、迁移及神经细胞应激相关信号，适合作为通路下游候选靶点。"
+      },
+      {
+        "target": "PTK2",
+        "rationale": "PTK2/FAK与Src形成黏附斑信号复合体，连接整合素黏附、细胞迁移和肿瘤侵袭过程，属于MATK相关Src调控通路的功能邻近靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

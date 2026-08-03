@@ -1,0 +1,65 @@
+{
+  "gene": "VTN",
+  "generatedAt": "2026-08-03T17:49:43.922Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "VTN编码的vitronectin为血浆与细胞外基质糖蛋白，可通过其RGD基序结合整合素αvβ3/αvβ5，并经C端肝素结合区参与PAI-1稳定、纤溶抑制与基质重塑，关联血脂、血浆蛋白量及血栓炎症相关表型。该抗原为分泌型且可沉积于细胞外基质，N端SMB结构域、中央连接区与C端肝素结合区均具有抗体可及性。相较细胞内脂质调控因子，VTN更适合抗体介导的配体界面阻断，并可直接干预基质黏附与纤溶调节节点，优先级高于不可及或酶活性非抗体友好的同通路靶点。",
+    "mechanism": "阻断vitronectin RGD基序与整合素αvβ3/αvβ5结合，并削弱SMB结构域对PAI-1的稳定作用，从而降低细胞黏附、基质沉积与PAI-1介导的纤溶抑制。",
+    "selectedEpitope": "优先覆盖N端SMB结构域PAI-1结合面及邻近RGD连接区，避免直接遮蔽广泛血浆蛋白非特异吸附面。",
+    "diseaseDirection": "血脂代谢与血栓炎症",
+    "domain": "vitronectin含N端somatomedin B结构域、RGD整合素结合基序、中央血红素结合区及C端肝素结合区。",
+    "evidence": "VTN血浆基质黏附与纤溶调控证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P04004功能与结构域注释",
+      "RCSB PDB 7RJ9实验晶体结构",
+      "整合素-PAI-1-vitronectin纤溶调控文献"
+    ],
+    "referenceEntries": "UniProt:P04004；RCSB PDB:7RJ9；Open Targets:VTN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端SMB结构域PAI-1结合界面",
+        "可破坏PAI-1稳定化并影响纤溶抑制轴，结构界面明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RGD基序邻近整合素识别环",
+        "可抑制αvβ3/αvβ5介导的细胞黏附，但需控制对正常基质黏附的影响",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端肝素结合区",
+        "可影响基质与糖胺聚糖结合，存在血浆蛋白交叉吸附和凝血相关风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "VTN为高丰度血浆蛋白，广泛参与黏附、补体与凝血相关过程；应优先设计界面选择性抗体，并评估血小板黏附、纤溶及非特异基质沉积风险。",
+    "structurePrepZh": "以7RJ9高分辨率晶体结构为模板，保留抗原链A、B并校正二硫键、糖基化邻近残基与柔性RGD区；缺失片段可结合AlphaFold模型补全后用于表位暴露分析。",
+    "structureRef": "RCSB PDB 7RJ9，X-ray diffraction，1.7 Å",
+    "antibodies": [
+      "8E6 anti-vitronectin",
+      "VIT-2 anti-vitronectin"
+    ],
+    "interfaceFocus": "SMB-PAI-1界面与RGD-αv整合素识别区",
+    "designMode": "界面阻断型抗体",
+    "candidates": [
+      {
+        "target": "SERPINE1",
+        "rationale": "SERPINE1编码PAI-1，是vitronectin SMB结构域的直接结合伙伴，并通过抑制tPA/uPA调控纤溶。该节点与血栓形成、纤维化及代谢炎症通路高度相关。"
+      },
+      {
+        "target": "ITGAV",
+        "rationale": "ITGAV与β3或β5形成αv整合素受体，直接识别vitronectin RGD基序并介导细胞黏附、迁移与基质重塑。其位于VTN黏附信号的受体端，适合作为同通路候选靶点。"
+      },
+      {
+        "target": "ITGB3",
+        "rationale": "ITGB3与ITGAV组成αvβ3，是vitronectin的重要受体之一，并参与血小板功能、血管细胞黏附和血栓炎症反应。该靶点与VTN-RGD识别轴具有明确分子连接。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

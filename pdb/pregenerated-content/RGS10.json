@@ -1,0 +1,65 @@
+{
+  "gene": "RGS10",
+  "generatedAt": "2026-08-03T20:54:52.801Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RGS10 是 GTPase-activating protein，可通过 RGS 结构域加速 Gαi/Gαq 等异源三聚体 G 蛋白α亚基的 GTP 水解，从而终止 GPCR 下游信号。Open Targets 关联主要集中于白细胞亚群比例和血细胞计数等免疫表型，但现有遗传关联强度有限且多为性状层面。RGS10 为胞内可溶性调节蛋白，天然抗原可及性低于分泌因子或膜受体，因此更适合作为机制研究抗体或细胞内递送抗体探索靶点；相较上游 GPCR 或趋化因子受体，其优势在于可直接解析 Gα 关停节点的结构界面。",
+    "mechanism": "抗体阻断 RGS10 RGS 结构域与 Gα-GTP 过渡态界面的结合，抑制其促进 GTP 水解的 GAP 活性。",
+    "selectedEpitope": "优先覆盖 RGS box 中 Gα 接触的 α螺旋束凹面，避免完全遮蔽结构核心。",
+    "diseaseDirection": "免疫细胞组成与GPCR信号表型",
+    "domain": "RGS10 主要由约120 aa RGS box 组成，形成九螺旋束并介导 Gα 亚基结合。",
+    "evidence": "RGS10结构与免疫表型遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB O43665 functional annotation",
+      "RCSB PDB 2IHB X-ray structure",
+      "Gene Ontology GTPase activator activity annotation"
+    ],
+    "referenceEntries": "UniProt O43665；RCSB PDB 2IHB；Open Targets RGS10",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RGS结构域Gα结合凹面及α螺旋束界面",
+        "直接干预 RGS10-Gα 结合与 GAP 活性，机制验证价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RGS box 外侧暴露螺旋表面",
+        "利于获得高亲和结合抗体，可用于检测或构象稳定",
+        "备选"
+      ],
+      [
+        "Site C",
+        "RGS结构域疏水核心邻近区域",
+        "可能影响蛋白折叠稳定性并产生非特异构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RGS10 为胞内蛋白，常规抗体难以到达作用位点；应优先定位为结构探针、细胞内递送抗体或降解平台结合模块。",
+    "structurePrepZh": "以 PDB 2IHB 链 A/B 为模板，去除晶体冗余链并评估二聚接触是否为晶体堆积，补全缺失侧链后标注 Gα 结合保守面。",
+    "structureRef": "RCSB PDB 2IHB，human RGS10 X-ray 2.71 Å",
+    "antibodies": [
+      "commercial anti-RGS10 clone EPR17975",
+      "commercial anti-RGS10 polyclonal antibody"
+    ],
+    "interfaceFocus": "RGS box 与 Gα switch 区结合凹面",
+    "designMode": "胞内机制抗体设计",
+    "candidates": [
+      {
+        "target": "GNAI1",
+        "rationale": "GNAI1 编码 Gαi1，是 RGS 蛋白催化 GTP 水解的直接底物之一；与 RGS10 同属 GPCR-G 蛋白信号关停轴。"
+      },
+      {
+        "target": "GNAI2",
+        "rationale": "GNAI2 参与白细胞趋化 GPCR 信号转导，并与 RGS 家族调控的 Gαi 通路相关；可作为同一免疫细胞迁移通路的候选节点。"
+      },
+      {
+        "target": "CXCR4",
+        "rationale": "CXCR4 是免疫细胞迁移相关 GPCR，通过 Gαi 介导趋化信号；其膜受体属性提供较 RGS10 更高的抗体可及性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

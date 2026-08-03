@@ -1,0 +1,65 @@
+{
+  "gene": "CASR",
+  "generatedAt": "2026-08-03T18:15:43.630Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CASR 是甲状旁腺主细胞与肾小管钙稳态感知的核心 GPCR，失活突变导致家族性低尿钙性高钙血症和新生儿重度原发性甲旁亢，激活突变导致常染色体显性低钙血症。该受体具有大型胞外 Venus flytrap 结构域，可直接作为抗体结合抗原并影响钙离子诱导的构象转换。相较下游 PTH 或离子转运靶点，CASR 位于疾病因果通路上游，遗传证据强且结构分辨率高，适合作为优先抗体设计靶点。",
+    "mechanism": "抗体设计聚焦阻断或稳定 CASR 胞外 VFT 结构域二聚体界面，改变 Ca2+ 与 L-氨基酸诱导的闭合构象及后续 7TM 信号传递。",
+    "selectedEpitope": "优先选择 VFT 域 lobe 1/lobe 2 闭合转换邻近的二聚化界面表位。",
+    "diseaseDirection": "钙磷代谢与甲状旁腺疾病",
+    "domain": "CASR 由胞外 Venus flytrap 域、富半胱氨酸域和七跨膜 GPCR 域组成。",
+    "evidence": "CASR 钙稳态遗传病与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProtKB P41180 功能与结构域注释",
+      "RCSB PDB 5FBK X-ray 胞外域结构",
+      "ClinVar/OMIM CASR 变异与钙稳态表型"
+    ],
+    "referenceEntries": "UniProt P41180；RCSB PDB 5FBK；OMIM 601199",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "VFT 域二聚化界面及 lobe 闭合邻近区域",
+        "可直接影响 Ca2+ 诱导的受体激活构象，具备功能性阻断或调节价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "VFT 域正构配体结合口袋周边非保守环区",
+        "可调节胞外配体协同感知，同时降低完全占据金属结合位点的风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "富半胱氨酸域与 7TM 连接近膜区域",
+        "可能影响胞外域至跨膜域的构象传递，但构象柔性和空间遮挡风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CASR 为二聚体 GPCR，表位需避免破坏广泛保守的钙结合核心导致非特异性强激动或强抑制；建议区分正向调节、负向调节与中性结合抗体。",
+    "structurePrepZh": "以 5FBK 的 A、B 链胞外域二聚体为模板，补全缺失环区并保留二硫键、糖基化位点与关键 Ca2+ 结合残基用于界面评估。",
+    "structureRef": "Geng et al., Nature 2016；PDB 5FBK, 2.1 Å",
+    "antibodies": [
+      "CAL",
+      "ADD"
+    ],
+    "interfaceFocus": "VFT 二聚体界面与 lobe 闭合转换区",
+    "designMode": "构象调节型抗体",
+    "candidates": [
+      {
+        "target": "PTH",
+        "rationale": "PTH 位于 CASR 调控的甲状旁腺激素分泌轴下游，直接介导骨肾钙磷代谢效应，可作为同一钙稳态通路的效应端靶点。"
+      },
+      {
+        "target": "PTH1R",
+        "rationale": "PTH1R 是 PTH/PTHrP 的主要受体，承担肾小管钙重吸收和骨重塑信号输出，适合与 CASR 形成上下游通路对照。"
+      },
+      {
+        "target": "GNA11",
+        "rationale": "GNA11 编码 Gα11，是 CASR 主要 Gq/11 信号转导组分，其遗传变异同样关联低钙或高钙血症表型。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "RAD9A",
+  "generatedAt": "2026-08-03T15:51:37.591Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RAD9A是9-1-1 DNA损伤检查点夹具的核心亚基，与RAD1和HUS1形成异源三聚体，参与ATR介导的复制压力和DNA损伤应答；其疾病关联更接近基因组稳定性、发育表型及神经退行性表型，而非典型胞外配体通路。该蛋白主要定位于细胞核，缺乏分泌信号肽、跨膜区和天然胞外结构域，抗原可及性不支持常规体内阻断型抗体开发，但适合细胞内抗体、结构探针或递送型结合分子设计。相比ATR、CHEK1等激酶类节点，RAD9A具有明确夹具界面结构和高分辨率PDB模板，可用于解析9-1-1复合体装配依赖性，因此作为结构机制研究靶点优先级较高。",
+    "mechanism": "设计分子应阻断RAD9A与HUS1/RAD1夹具界面的装配，削弱9-1-1复合体在损伤DNA处招募TOPBP1并促进ATR检查点活化的能力。",
+    "selectedEpitope": "优先覆盖RAD9A夹具样结构域中与HUS1/RAD1相邻的亚基接触面，避免选择埋藏β折叠核心。",
+    "diseaseDirection": "DNA损伤应答与基因组稳定性",
+    "domain": "RAD9A为PCNA样检查点夹具亚基，含N端与C端夹具折叠域，并参与9-1-1环状复合体形成。",
+    "evidence": "RAD9A结构与DNA损伤检查点证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q99638功能与定位注释",
+      "RCSB PDB 8JZY高分辨率晶体结构",
+      "DNA损伤应答与ATR检查点文献"
+    ],
+    "referenceEntries": "UniProt Q99638；RCSB PDB 8JZY；Open Targets RAD9A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RAD9A-HUS1/RAD1亚基接触界面",
+        "直接干预9-1-1夹具装配，机制指向性最强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RAD9A外露环区及夹具外表面",
+        "适合构建构象识别探针，保留较好抗体可及性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PCNA样夹具折叠核心与埋藏β片层",
+        "结构保守且可及性低，易产生非功能性结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RAD9A为核内非分泌蛋白，常规抗体难以到达作用位点；设计应定位为胞内抗体、递送型Fab/VHH或结构验证探针，并严格评估细胞递送效率。",
+    "structurePrepZh": "以8JZY链A、B为模板进行缺失残基、质子化状态和界面水分子审查，保留夹具界面构象用于表位可及性评估。",
+    "structureRef": "RCSB PDB 8JZY，X-ray diffraction，1.5 Å",
+    "antibodies": [
+      "无临床批准RAD9A靶向抗体",
+      "研究级抗RAD9A检测抗体"
+    ],
+    "interfaceFocus": "RAD9A与HUS1/RAD1夹具装配界面",
+    "designMode": "胞内结构阻断",
+    "candidates": [
+      {
+        "target": "HUS1",
+        "rationale": "HUS1是9-1-1检查点夹具的必需亚基，与RAD9A和RAD1共同形成DNA损伤应答复合体；其界面干预可同样影响ATR检查点激活。"
+      },
+      {
+        "target": "RAD1",
+        "rationale": "RAD1参与RAD9A-HUS1-RAD1环状夹具形成，并维持损伤DNA处的检查点平台稳定性；与RAD9A处于同一9-1-1复合体通路。"
+      },
+      {
+        "target": "TOPBP1",
+        "rationale": "TOPBP1通过与9-1-1复合体相关结构招募并激活ATR，是RAD9A下游检查点传导中的关键连接因子。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

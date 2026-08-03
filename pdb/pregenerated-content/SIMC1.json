@@ -1,0 +1,65 @@
+{
+  "gene": "SIMC1",
+  "generatedAt": "2026-08-03T16:32:53.971Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SIMC1为核内SUMO相互作用基序蛋白，主要参与SUMO化蛋白识别与染色质相关蛋白稳态调控，目前Open Targets关联以身高、红细胞分布宽度、血清核蛋白水平及男性生殖系统肿瘤等遗传性状为主，缺乏明确可药物化疾病通路定位。该蛋白并非分泌蛋白或膜受体，天然抗原可及性不具备胞外抗体结合优势，常规治疗性抗体难以进入核内作用位点。相较EGFR、PDGFRA、AR等同疾病方向中具备胞外结构域或成熟药物学证据的靶点，SIMC1作为主靶点优先级较低，更适合作为机制研究或胞内递送抗体探索对象。",
+    "mechanism": "设计目标为阻断SIMC1中SUMO-interacting motif与SUMO化底物的非共价结合，干预其对核内SUMO化蛋白复合体的招募。",
+    "selectedEpitope": "优先评估SIM区域邻近的SUMO结合沟槽及其周边螺旋/无序连接区界面。",
+    "diseaseDirection": "核内蛋白稳态与肿瘤遗传性状",
+    "domain": "SIMC1含多个SUMO-interacting motifs及低复杂度区，缺乏经典胞外结构域。",
+    "evidence": "SIMC1遗传关联与SUMO互作结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform遗传关联数据",
+      "UniProt Q8NDZ2蛋白功能注释",
+      "RCSB PDB 7T5P冷冻电镜结构",
+      "SUMO-SIM非共价互作结构生物学文献"
+    ],
+    "referenceEntries": "UniProt Q8NDZ2；RCSB PDB 7T5P；Open Targets SIMC1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SIM邻近SUMO结合界面",
+        "可直接竞争SUMO化底物识别，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SIM周边结构化螺旋/连接区",
+        "可通过空间位阻削弱SUMO-SIM复合体装配",
+        "备选"
+      ],
+      [
+        "Site C",
+        "低复杂度无序区远端表面",
+        "构象异质性高且功能界面不确定，成药解释力有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SIMC1为核内胞内蛋白，常规IgG难以到达作用位点；建议限定为细胞内抗体、递送型Fab/VHH或机制验证工具抗体。",
+    "structurePrepZh": "以7T5P抗原链A、B为模板，保留可解析SIM相关区域，补全缺失环区并评估低复杂度片段构象不确定性。",
+    "structureRef": "RCSB PDB 7T5P，electron microscopy，3.4 Å",
+    "antibodies": [
+      "暂无SIMC1获批治疗性抗体",
+      "暂无SIMC1临床阶段同类抗体"
+    ],
+    "interfaceFocus": "SIM-SUMO结合沟槽及邻近连接区",
+    "designMode": "胞内递送抗体探索",
+    "candidates": [
+      {
+        "target": "SUMO1",
+        "rationale": "SUMO1是SIM结构域识别的核心小泛素样修饰蛋白，处于SIMC1相关SUMO化蛋白互作网络的直接分子层级。"
+      },
+      {
+        "target": "SUMO2",
+        "rationale": "SUMO2参与应激诱导SUMO链形成，并可与含SIM蛋白发生非共价结合，适合作为同一SUMO互作轴的替代研究靶点。"
+      },
+      {
+        "target": "UBE2I",
+        "rationale": "UBE2I编码SUMO E2连接酶UBC9，负责SUMO向底物转移，是SUMO化通路中较SIMC1更上游且机制明确的节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

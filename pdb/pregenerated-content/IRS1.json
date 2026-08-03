@@ -1,0 +1,65 @@
+{
+  "gene": "IRS1",
+  "generatedAt": "2026-08-03T19:58:52.611Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IRS1是胰岛素受体和IGF1受体下游的细胞内衔接蛋白，经酪氨酸磷酸化后招募PI3K p85、GRB2等效应分子，参与AKT与MAPK信号，对体成分、代谢率和生长相关表型具有遗传学关联。该蛋白不具备分泌型或跨膜胞外结构域，抗原可及性弱于膜受体和循环配体，常规外周抗体难以直接结合天然细胞内靶点。其优先级主要来自高质量结构片段和明确通路节点价值；相较INSR、IGF1R等胞外受体，IRS1更适合作为机制验证或细胞内递送抗体格式的探索靶点，而非优先开发的传统治疗性抗体靶点。",
+    "mechanism": "设计阻断IRS1 PTB结构域与活化INSR/IGF1R近膜区含NPXY磷酸基序的结合，削弱IRS1磷酸化及PI3K p85招募。",
+    "selectedEpitope": "优先覆盖PTB结构域磷酸酪氨酸结合口袋及NPXY肽结合沟槽边缘。",
+    "diseaseDirection": "胰岛素/IGF代谢生长通路",
+    "domain": "IRS1含N端PH结构域、PTB结构域及富含酪氨酸/丝氨酸磷酸化位点的无序C端。",
+    "evidence": "IRS1胰岛素受体底物通路结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P35568功能与结构域注释",
+      "RCSB PDB 7PPM实验晶体结构",
+      "Reactome胰岛素受体信号通路注释"
+    ],
+    "referenceEntries": "UniProt:P35568；RCSB PDB:7PPM；Reactome:IRS1 signaling",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PTB结构域NPXY肽结合沟槽",
+        "直接干预IRS1与INSR/IGF1R受体尾部的对接",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PH结构域磷脂结合表面",
+        "可能影响IRS1膜定位并降低受体近端磷酸化效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端无序磷酸化富集区",
+        "构象异质性高且表位稳定性不足，适合肽抗原验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IRS1为细胞内非分泌蛋白，传统IgG体内可及性不足；宜采用细胞内递送、intrabody或降解偶联策略，并避免干扰广泛基础代谢信号导致系统毒性。",
+    "structurePrepZh": "以7PPM高分辨率晶体结构为PTB结构域模板，补全缺失环区，保留关键磷酸肽结合残基，分离抗原链A/B后进行界面网格定义。",
+    "structureRef": "RCSB PDB 7PPM，X-ray diffraction，1.48 Å",
+    "antibodies": [
+      "抗IRS1研究级单克隆抗体",
+      "抗磷酸IRS1位点特异性抗体"
+    ],
+    "interfaceFocus": "PTB结构域NPXY结合沟槽与PH膜定位面",
+    "designMode": "细胞内抗体探索",
+    "candidates": [
+      {
+        "target": "INSR",
+        "rationale": "INSR位于IRS1上游并通过近膜区NPXY基序招募IRS1，是同一胰岛素信号轴的可及性更高膜受体靶点。其胞外结构域适合传统抗体设计。"
+      },
+      {
+        "target": "IGF1R",
+        "rationale": "IGF1R同样通过IRS1连接PI3K-AKT和RAS-MAPK通路，参与生长和体成分表型。其细胞外配体结合域具备成熟抗体干预可行性。"
+      },
+      {
+        "target": "PIK3R1",
+        "rationale": "PIK3R1编码PI3K p85调节亚基，可通过SH2结构域结合磷酸化IRS1，是IRS1下游关键效应节点。该靶点适合机制对照和通路分层评估。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "PARP11",
+  "generatedAt": "2026-08-03T15:05:09.662Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PARP11为细胞内单ADP-核糖基转移酶，参与蛋白ADP-核糖基化、应激反应及免疫相关信号调控；现有关联数据主要指向神经影像、血液学和钙测量表型，尚不足以支持明确疾病驱动通路。该蛋白不具备分泌蛋白或膜受体特征，抗原天然可及性弱，常规治疗性抗体难以直接结合胞内催化结构域。相较TNF、IL6R、EGFR等胞外或膜定位同类可药靶点，PARP11更适合作为机制研究或胞内递送抗体探索靶点，优先级应低于具有明确外部可及表位的疾病靶点。",
+    "mechanism": "设计目标为结合PARP11催化PARP结构域，阻断NAD+结合口袋及受体蛋白ADP-核糖基化底物进入，从而抑制单ADP-核糖转移反应。",
+    "selectedEpitope": "优先覆盖ART催化结构域的NAD+结合沟槽及邻近底物进入面，避免仅选择远端柔性环区。",
+    "diseaseDirection": "神经影像表型与ADP核糖基化研究",
+    "domain": "PARP11含N端WWE结构域及C端ART/PARP催化结构域，2DK6对应结构域片段需按链A核验。",
+    "evidence": "PARP11结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB Q9NR21功能与结构域注释",
+      "RCSB PDB 2DK6溶液NMR结构记录",
+      "PARP家族ADP-核糖基化机制研究文献"
+    ],
+    "referenceEntries": "UniProt Q9NR21；RCSB PDB 2DK6；Open Targets PARP11",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ART/PARP催化结构域NAD+结合沟槽",
+        "直接干预辅因子结合与催化构象，机制可解释性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域底物蛋白进入面及保守环区",
+        "可阻断底物靠近ADP-核糖转移中心，适合功能抑制型设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端WWE结构域潜在ADP-核糖识别面",
+        "可能影响聚ADP-核糖相关识别，但与2DK6片段匹配需严格核验",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PARP11为胞内蛋白，抗体进入细胞效率与构象保持为主要风险；建议限定为胞内抗体、递送抗体或研究级结合分子设计。",
+    "structurePrepZh": "以2DK6链A为模板进行NMR构象簇筛选，补充UniProt结构域边界、缺失环建模及催化口袋保守残基标注。",
+    "structureRef": "RCSB PDB 2DK6；human PARP11 solution NMR structure",
+    "antibodies": [
+      "暂无获批PARP11治疗性抗体",
+      "研究级anti-PARP11抗体"
+    ],
+    "interfaceFocus": "NAD+结合沟槽与底物进入界面",
+    "designMode": "胞内抗体探索",
+    "candidates": [
+      {
+        "target": "PARP9",
+        "rationale": "PARP9同属PARP家族，参与ADP-核糖基化相关免疫与干扰素信号调控，可作为同一酶家族机制比较靶点。"
+      },
+      {
+        "target": "PARP14",
+        "rationale": "PARP14为单ADP-核糖基转移酶，参与STAT6相关转录调控和免疫炎症通路，具备与PARP11相近的催化机制背景。"
+      },
+      {
+        "target": "PARP10",
+        "rationale": "PARP10具有单ADP-核糖转移活性，并参与细胞应激与信号蛋白修饰，可用于评估PARP家族选择性设计窗口。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "PTPN1",
+  "generatedAt": "2026-08-03T15:43:47.587Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PTPN1编码PTP1B，是内质网胞质侧非受体型酪氨酸磷酸酶，可去磷酸化胰岛素受体、JAK2及多种受体酪氨酸激酶底物，并与代谢炎症和神经退行性疾病相关信号失衡有关。该蛋白主要为胞内酶，天然抗原可及性弱，常规循环抗体难以直接结合活细胞内靶点，因此更适合作为细胞内递送抗体、intrabody或降解型抗体工程验证对象。相比广泛表达的上游细胞因子受体，PTPN1具有高分辨率催化结构、明确活性位点和疾病遗传关联，适合作为机制精确但递送风险较高的优先级靶点。",
+    "mechanism": "构建胞内抗体阻断PTP1B催化口袋与磷酸酪氨酸底物结合，限制其对JAK2、胰岛素受体及RTK底物的去磷酸化。",
+    "selectedEpitope": "优先锁定催化结构域P-loop、WPD loop与Q-loop围成的底物结合沟槽。",
+    "diseaseDirection": "神经退行性与代谢炎症",
+    "domain": "PTP1B含N端蛋白酪氨酸磷酸酶催化结构域，C端具内质网定位疏水尾段。",
+    "evidence": "PTPN1疾病遗传关联与催化结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P18031功能与亚细胞定位注释",
+      "RCSB PDB 1C83晶体结构记录",
+      "PTP1B底物去磷酸化与JAK/胰岛素信号文献"
+    ],
+    "referenceEntries": "UniProt:P18031；RCSB PDB:1C83；Open Targets:PTPN1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "P-loop/WPD loop催化沟槽",
+        "直接干预磷酸酪氨酸底物结合与催化循环",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域外围底物识别面",
+        "可能影响底物定位并提升选择性窗口",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端内质网定位尾段邻近区域",
+        "可用于定位研究，但结构柔性与可及性不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PTPN1为胞内内质网相关酶，常规抗体药物存在膜通透性限制；建议采用intrabody、细胞穿透递送或降解偶联策略，并严控PTPN2交叉反应。",
+    "structurePrepZh": "以1C83的A链催化结构域为模板，补全缺失侧链与质子化状态，保留活性位点水网络并标注P-loop、WPD loop和Q-loop。",
+    "structureRef": "Barford等PTP1B催化结构；RCSB PDB 1C83，1.8 Å",
+    "antibodies": [
+      "PTP1B intracellular antibody fragment",
+      "anti-PTP1B research monoclonal antibody"
+    ],
+    "interfaceFocus": "P-loop、WPD loop、Q-loop底物结合沟槽",
+    "designMode": "胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "JAK2",
+        "rationale": "JAK2是PTP1B可去磷酸化调节的细胞因子信号激酶，参与炎症和造血相关表型通路。其异常磷酸化状态与免疫炎症及血液学疾病机制密切相关。"
+      },
+      {
+        "target": "INSR",
+        "rationale": "胰岛素受体是PTP1B经典底物之一，PTP1B通过去磷酸化INSR降低胰岛素信号强度。该轴与代谢炎症和神经代谢功能异常具有明确机制联系。"
+      },
+      {
+        "target": "LEPR",
+        "rationale": "PTP1B可负向调节瘦素受体-JAK2信号轴，影响能量稳态及炎症相关神经内分泌通路。LEPR作为膜受体具备更直接的抗体可及性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "MMADHC",
+  "generatedAt": "2026-08-03T14:16:25.374Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MMADHC 是细胞内钴胺素代谢分流因子，缺陷可导致 cblD 型甲基丙二酸尿症合并同型半胱氨酸尿症，其机制涉及腺苷钴胺素与甲基钴胺素生成不足，继而影响 MUT 与 MTR 依赖反应。该蛋白主要定位于胞质/线粒体相关钴胺素处理过程，缺乏跨膜胞外结构域或分泌特征，常规治疗性抗体抗原可及性不具优势。相较 MMACHC、MTR、MUT 等同通路节点，MMADHC 具有明确遗传因果性与高分辨率晶体结构支持，但更适合作为结构生物学验证或细胞内递送抗体探索靶点，而非优先常规胞外抗体靶点。",
+    "mechanism": "设计重点为结合 MMADHC 钴胺素代谢分流结构表面，阻断其与上游 MMACHC 或下游 AdoCbl/MeCbl 生物合成复合过程的功能性接触。",
+    "selectedEpitope": "优先评估 5CV0 二聚体界面邻近的保守沟槽与底物通道边缘，避免扰动核心折叠疏水区。",
+    "diseaseDirection": "遗传性钴胺素代谢障碍",
+    "domain": "MMADHC 为可溶性细胞内钴胺素代谢相关蛋白，5CV0 覆盖其结构化核心区域并呈同源二聚体晶体构象。",
+    "evidence": "MMADHC-cblD 钴胺素代谢遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform 遗传关联与疾病评分",
+      "UniProt Q9H3L0 蛋白功能与定位注释",
+      "RCSB PDB 5CV0 X 射线晶体结构",
+      "OMIM/Orphanet cblD 型甲基丙二酸尿症与同型半胱氨酸尿症条目"
+    ],
+    "referenceEntries": "UniProt Q9H3L0；RCSB PDB 5CV0；MONDO_0010185；Orphanet_79283",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "5CV0 结构化核心表面保守沟槽",
+        "可能邻近钴胺素代谢分流功能界面，适合阻断型胞内抗体探索",
+        "优先"
+      ],
+      [
+        "Site B",
+        "A/B 链二聚体接触界面外缘",
+        "可用于评估构象稳定与复合体形成依赖性，但需区分晶体堆积效应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "疏水核心及高度保守折叠支架",
+        "易造成非特异构象破坏或蛋白不稳定，不宜作为常规结合表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MMADHC 缺乏胞外可及性，常规抗体难以触达细胞内靶点；建议限定为胞内抗体、递送抗体或结构验证场景，并进行细胞定位与功能救援验证。",
+    "structurePrepZh": "以 5CV0 A/B 链为模板，去除晶体水和非功能性接触，校正质子化状态，比较单体与二聚体界面以排除晶体堆积表位。",
+    "structureRef": "RCSB PDB 5CV0，X-ray diffraction，1.9 Å，人源 MMADHC",
+    "antibodies": [
+      "无已获批 MMADHC 靶向抗体",
+      "无临床阶段 MMADHC 阻断抗体"
+    ],
+    "interfaceFocus": "保守沟槽、二聚体外缘及潜在 MMACHC 接触面",
+    "designMode": "胞内抗体探索",
+    "candidates": [
+      {
+        "target": "MMACHC",
+        "rationale": "MMACHC 位于同一钴胺素代谢通路上游，负责钴胺素去烷基化/还原处理，其缺陷导致 cblC 型甲基丙二酸尿症合并同型半胱氨酸尿症。与 MMADHC 的功能衔接明确，适合作为通路机制对照靶点。"
+      },
+      {
+        "target": "MUT",
+        "rationale": "MUT 是腺苷钴胺素依赖的甲基丙二酰辅酶 A 变位酶，下游功能受 AdoCbl 供应影响。该节点直接关联甲基丙二酸累积表型，可用于评估 AdoCbl 分支功能后果。"
+      },
+      {
+        "target": "MTR",
+        "rationale": "MTR 是甲基钴胺素依赖的甲硫氨酸合成酶，负责同型半胱氨酸向甲硫氨酸转化。其功能不足与同型半胱氨酸升高一致，代表 MeCbl 分支的关键疾病通路节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "HADH",
+  "generatedAt": "2026-08-03T19:38:41.777Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HADH编码线粒体短链3-羟酰-CoA脱氢酶，参与脂肪酸β氧化并通过代谢耦联影响胰岛β细胞胰岛素分泌，失功能变异可导致先天性高胰岛素性低血糖。该蛋白定位于线粒体基质，天然抗原可及性低，不具备经典胞外结构域或分泌抗原优势，因此更适合作为机制研究、细胞内递送抗体或诊断型结合分子靶点。其优先级主要来自人源高分辨率晶体结构、明确遗传病因和较高疾病关联得分；相较通路内多种代谢酶，HADH与高胰岛素性低血糖的因果证据更直接。",
+    "mechanism": "设计结合HADH NAD结合沟槽或底物3-羟酰-CoA结合口袋的抗体片段，以阻断辅因子/酰基-CoA底物定位并改变酶催化复合物形成。",
+    "selectedEpitope": "优先聚焦Rossmann样NAD结合结构域与C端二聚化界面邻近的底物入口沟槽。",
+    "diseaseDirection": "先天性高胰岛素性低血糖",
+    "domain": "HADH为线粒体基质SDR家族脱氢酶，含N端Rossmann样NAD结合域、催化核心及二聚化界面。",
+    "evidence": "HADH遗传性高胰岛素低血糖结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q16836功能与亚细胞定位注释",
+      "RCSB PDB 1F0Y人源HADH晶体结构",
+      "OMIM/Orphanet先天性高胰岛素性低血糖遗传证据"
+    ],
+    "referenceEntries": "UniProt Q16836；RCSB PDB 1F0Y；Open Targets HADH",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Rossmann样NAD结合沟槽及TGxxxGxG保守基序邻近区域",
+        "可直接干预NAD辅因子装配，适合功能阻断型片段设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化核心与3-羟酰-CoA底物入口通道周边环区",
+        "可能影响底物进入和反应中间体定位，具备酶活调节价值",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端二聚化界面外缘",
+        "可能扰动同源二聚体稳定性，但界面保守且构象依赖性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HADH为线粒体基质酶，体内抗体可达性与递送效率构成主要风险；设计宜采用细胞内递送片段或体外诊断结合分子，并避免广泛交叉识别SDR家族保守基序。",
+    "structurePrepZh": "以1F0Y双链晶体结构为模板，保留生物学二聚体并校验NAD/底物口袋构象；补全缺失侧链、优化质子化状态后进行界面分区。",
+    "structureRef": "Barycki et al., human SCHAD crystal structure, PDB 1F0Y",
+    "antibodies": [
+      "无已批准HADH治疗性抗体",
+      "商业化抗HADH研究抗体"
+    ],
+    "interfaceFocus": "NAD结合沟槽、底物入口通道与二聚化外缘",
+    "designMode": "胞内酶靶向片段",
+    "candidates": [
+      {
+        "target": "ABCC8",
+        "rationale": "ABCC8编码KATP通道SUR1亚基，是高胰岛素性低血糖核心通路靶点；其膜蛋白胞外环和药理调控位点较HADH更具抗体及药物可及性。"
+      },
+      {
+        "target": "KCNJ11",
+        "rationale": "KCNJ11编码KATP通道Kir6.2亚基，直接控制β细胞膜去极化和胰岛素释放；与ABCC8共同构成同一胰岛素分泌电生理轴。"
+      },
+      {
+        "target": "GLUD1",
+        "rationale": "GLUD1介导谷氨酸脱氢酶反应并影响β细胞代谢信号，激活性变异可导致高胰岛素-高氨血症综合征；与HADH同属代谢耦联胰岛素分泌异常通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

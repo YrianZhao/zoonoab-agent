@@ -1,0 +1,65 @@
+{
+  "gene": "FBXO11",
+  "generatedAt": "2026-08-03T12:29:10.809Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FBXO11 是 SCF 型 E3 泛素连接酶复合体的底物识别亚基，参与 BCL6、CDT2 等蛋白的泛素化降解，并与神经发育异常及多种肿瘤遗传证据相关。该蛋白主要定位于细胞核和胞质，缺乏跨膜区和分泌信号肽，天然抗原可及性不具备常规治疗性抗体优势，更适合作为结构生物学与细胞内靶向抗体研究对象。相较于同一泛素化通路中核心骨架蛋白 CUL1、SKP1 和 RBX1，FBXO11 的底物结合结构域提供更高选择性，因而在机制验证型抗体设计中优先级较高。",
+    "mechanism": "设计抗体阻断 FBXO11 底物结合结构域与 BCL6 或 CDT2 的识别界面，抑制 SCF-FBXO11 介导的底物泛素化招募。",
+    "selectedEpitope": "优先覆盖 FBXO11 CASH 结构域底物识别沟槽及邻近环区，避免 F-box 与 SKP1 结合界面。",
+    "diseaseDirection": "神经发育异常与肿瘤泛素化调控",
+    "domain": "FBXO11 含 N 端 F-box 结构域及 C 端 CASH 结构域；5VMD 解析其 CASH 结构域构象。",
+    "evidence": "FBXO11 疾病遗传关联与 SCF 泛素化机制证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q86XK2 蛋白功能注释",
+      "RCSB PDB 5VMD 晶体结构记录",
+      "文献报道的 SCF-FBXO11 底物泛素化研究"
+    ],
+    "referenceEntries": "UniProt: Q86XK2；RCSB PDB: 5VMD；Open Targets: FBXO11",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CASH 结构域底物识别沟槽",
+        "可直接干预 BCL6/CDT2 等底物招募，机制解释性强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CASH 结构域外侧可及环区",
+        "利于获得构象选择性结合分子，适合作为别构阻断位点",
+        "备选"
+      ],
+      [
+        "Site C",
+        "F-box 介导的 SKP1 结合界面",
+        "可能广泛影响 SCF 复合体装配，选择性与细胞功能风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FBXO11 为细胞内蛋白，常规抗体递送与抗原可及性受限；建议限定为胞内抗体、Fab 结构探针或递送偶联格式，并规避 SCF 核心装配界面。",
+    "structurePrepZh": "以 5VMD X 射线结构为模板，保留抗原链 A-D 中高质量 CASH 结构域，补全缺失侧链，去除晶体缓冲分子后进行界面可及性评估。",
+    "structureRef": "RCSB PDB 5VMD，FBXO11 CASH domain，2.202 Å X-ray",
+    "antibodies": [
+      "无已批准 FBXO11 靶向抗体",
+      "研究级抗 FBXO11 抗体"
+    ],
+    "interfaceFocus": "CASH 底物识别沟槽与邻近构象环",
+    "designMode": "胞内机制阻断",
+    "candidates": [
+      {
+        "target": "SKP1",
+        "rationale": "SKP1 是 SCF 复合体连接 F-box 蛋白与 CUL1 的核心适配蛋白，与 FBXO11 处于同一泛素连接酶装配通路。其界面阻断可用于验证 FBXO11 依赖性复合体形成。"
+      },
+      {
+        "target": "CUL1",
+        "rationale": "CUL1 是 SCF E3 泛素连接酶骨架蛋白，负责组织 SKP1-F-box 与 RBX1 模块。其通路位置可支持泛素化轴的上游装配干预研究。"
+      },
+      {
+        "target": "RBX1",
+        "rationale": "RBX1 结合 CUL1 并招募 E2 泛素结合酶，是 SCF 复合体催化泛素转移的关键亚基。与 FBXO11 共同构成底物识别至泛素转移的同一分子通路。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

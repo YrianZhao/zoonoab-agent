@@ -1,0 +1,65 @@
+{
+  "gene": "UPF3B",
+  "generatedAt": "2026-08-03T17:43:07.057Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "UPF3B是外显子连接复合体依赖性无义介导mRNA降解通路的核心适配蛋白，通过与UPF2相互作用促进含提前终止密码子的转录本清除，其功能缺陷与X连锁智力障碍和复杂神经发育异常具有明确遗传关联。该蛋白主要定位于细胞核与胞质mRNP复合物，缺乏天然胞外结构域或分泌暴露特征，因此常规体内阻断型抗体的抗原可及性受限，更适合作为细胞内研究抗体或递送型结合分子开发对象。相较NMD通路中具有广泛基础必需性的UPF1，UPF3B具有更明确的神经发育疾病遗传指向性和已解析UPF2结合结构域，适合优先开展机制验证型抗体设计。",
+    "mechanism": "设计结合UPF3B RRM样结构域的抗体，阻断UPF3B与UPF2 MIF4G样结构域结合，干预EJC依赖性NMD复合物装配。",
+    "selectedEpitope": "优先覆盖UPF3B RRM样结构域的UPF2结合沟槽及邻近β片层-α螺旋界面。",
+    "diseaseDirection": "X连锁神经发育障碍",
+    "domain": "UPF3B含N端RRM样结构域，可结合UPF2；C端区域参与EJC相关mRNP定位与NMD调控。",
+    "evidence": "UPF3B-NMD神经发育疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9BZI7功能与亚细胞定位注释",
+      "RCSB PDB 1UW4晶体结构数据",
+      "ClinVar与OMIM中UPF3B相关X连锁智力障碍变异记录"
+    ],
+    "referenceEntries": "UniProt Q9BZI7；RCSB PDB 1UW4；OMIM 300676",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RRM样结构域UPF2结合沟槽",
+        "直接竞争UPF2结合，适合机制阻断验证",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RRM样结构域外侧β片层表面",
+        "保留折叠稳定性并提供构象识别窗口",
+        "备选"
+      ],
+      [
+        "Site C",
+        "靠近保守疏水核心的结构域内界面",
+        "可能影响蛋白折叠或产生非特异构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "UPF3B为细胞内核质穿梭蛋白，常规抗体难以在活细胞内到达靶点；建议限定为体外结构探针、细胞内递送抗体或VHH融合递送体系。",
+    "structurePrepZh": "以1UW4中UPF3B结构链为模板，保留RRM样结构域构象，校验晶体接触与缺失环区后再进行表位暴露性分析。",
+    "structureRef": "Kadlec et al., UPF2-UPF3b complex structure, Nat Struct Mol Biol",
+    "antibodies": [
+      "commercial anti-UPF3B monoclonal antibody",
+      "commercial anti-UPF3B polyclonal antibody"
+    ],
+    "interfaceFocus": "UPF3B RRM样结构域-UPF2结合界面",
+    "designMode": "细胞内机制探针",
+    "candidates": [
+      {
+        "target": "UPF2",
+        "rationale": "UPF2是UPF3B的直接结合伙伴，连接EJC相关UPF3B与UPF1激活步骤；靶向UPF2可验证同一NMD复合物装配节点。"
+      },
+      {
+        "target": "UPF1",
+        "rationale": "UPF1是NMD通路核心RNA解旋酶和磷酸化效应蛋白，负责识别异常翻译终止并驱动底物mRNA降解。"
+      },
+      {
+        "target": "RBM8A",
+        "rationale": "RBM8A编码EJC核心组分Y14，位于UPF3B招募至剪接后mRNP的上游环节，适合用于EJC依赖性NMD通路对照设计。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

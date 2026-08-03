@@ -1,0 +1,65 @@
+{
+  "gene": "CIP2A",
+  "generatedAt": "2026-08-03T11:25:14.361Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CIP2A通过抑制PP2A-B56相关去磷酸化复合体，稳定MYC、AKT等磷酸化促增殖信号，在多种肿瘤及代谢相关表型中具有机制关联。该蛋白主要为胞内支架样 oncoprotein，缺乏经典分泌信号肽、跨膜区和稳定胞外结构域，抗原可及性明显弱于膜受体或分泌因子。其优先级应定位为机制验证或胞内递送抗体研究靶点，而非常规外周给药抗体优先靶点；相较PDCD1、CTLA4、EGFR等可及靶点，成药界面风险更高。",
+    "mechanism": "通过结合CIP2A结构化二聚界面，阻断其支架化装配并削弱对PP2A介导底物去磷酸化的抑制作用。",
+    "selectedEpitope": "优先聚焦5UFL中CIP2A N端ARM/HEAT样重复结构的二聚化界面。",
+    "diseaseDirection": "肿瘤增殖与PP2A失活通路",
+    "domain": "CIP2A含N端ARM/HEAT样重复结构域，5UFL解析其二聚化结构核心。",
+    "evidence": "CIP2A-PP2A肿瘤信号轴证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联记录",
+      "UniProt Q8TCG1蛋白功能注释",
+      "RCSB PDB 5UFL晶体结构条目",
+      "PubMed CIP2A-PP2A-MYC机制研究"
+    ],
+    "referenceEntries": "UniProt: Q8TCG1；RCSB PDB: 5UFL；Open Targets: CIP2A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端ARM/HEAT样重复二聚化界面",
+        "干预CIP2A自组装并影响支架功能，机制指向明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ARM/HEAT重复外侧凹槽面",
+        "可能影响蛋白互作配体结合，适合构建功能筛选表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "链A/链B晶体接触远端暴露面",
+        "结构可及但功能相关性不确定，需避免仅筛选结合型抗体",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CIP2A为胞内蛋白，常规抗体组织可及性不足；设计应标注胞内递送、降解偶联或研究级阻断模式，并以功能读出验证。",
+    "structurePrepZh": "以5UFL链A/B为模板，补全缺失残基并评估晶体二聚界面；保留二聚体用于界面表位建模。",
+    "structureRef": "RCSB PDB 5UFL，X-ray diffraction，3.0 Å",
+    "antibodies": [
+      "研究级抗CIP2A单克隆抗体",
+      "研究级抗CIP2A多克隆抗体"
+    ],
+    "interfaceFocus": "N端ARM/HEAT重复二聚化与蛋白互作界面",
+    "designMode": "胞内靶点验证型",
+    "candidates": [
+      {
+        "target": "PPP2CA",
+        "rationale": "PPP2CA编码PP2A催化亚基，是CIP2A抑制轴的核心磷酸酶组分；恢复其底物去磷酸化功能可直接对抗CIP2A相关促增殖信号。"
+      },
+      {
+        "target": "PPP2R5A",
+        "rationale": "PPP2R5A编码PP2A-B56调节亚基，参与底物选择并与CIP2A相关PP2A抑制机制处于同一信号模块。"
+      },
+      {
+        "target": "MYC",
+        "rationale": "MYC是CIP2A-PP2A轴的重要下游底物，CIP2A可通过限制PP2A介导的去磷酸化促进MYC稳定化。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

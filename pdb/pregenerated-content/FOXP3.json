@@ -1,0 +1,65 @@
+{
+  "gene": "FOXP3",
+  "generatedAt": "2026-08-03T12:36:50.436Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FOXP3是调节性T细胞谱系决定转录因子，突变可导致IPEX综合征，并通过破坏IL2RA、CTLA4、IKZF2等免疫耐受基因转录程序引发自身免疫。该蛋白主要定位于细胞核，不具备天然胞外结构域或分泌形式，完整抗体体内直接结合可及性受限，仅适合细胞内递送抗体、工程化intrabody或研究级结构探针策略。相较CTLA4、IL2RA等膜表面免疫耐受靶点，FOXP3在疾病因果性与Treg主控地位上优先级较高，但药物抗体开发优先级应因抗原可及性风险而下调。",
+    "mechanism": "设计分子应结合FOXP3叉头DNA结合结构域，阻断其与含FKH识别序列DNA的结合，或干扰FOXP3二聚化界面以削弱转录复合物装配。",
+    "selectedEpitope": "优先评估forkhead结构域翼区与DNA识别螺旋邻近表面，兼顾二聚化相关界面。",
+    "diseaseDirection": "Treg免疫耐受与自身免疫",
+    "domain": "FOXP3含N端富脯氨酸区、锌指、亮氨酸拉链二聚化区及C端forkhead DNA结合域。",
+    "evidence": "FOXP3-Treg免疫耐受结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9BZS1功能与结构域注释",
+      "RCSB PDB 3QRF晶体结构",
+      "IPEX综合征FOXP3致病变异文献"
+    ],
+    "referenceEntries": "UniProt Q9BZS1；RCSB PDB 3QRF；Open Targets FOXP3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "forkhead结构域DNA识别螺旋与翼区邻近表面",
+        "可直接影响FOXP3与靶DNA序列结合，机制明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "forkhead结构域二聚化相关界面",
+        "可能削弱FOXP3同源二聚或复合体稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端富脯氨酸区及低复杂度区域",
+        "结构柔性高且实验结构覆盖不足，成药性与构象稳定性较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FOXP3为核内转录因子，常规抗体细胞外给药不可及；建议限定为intrabody、细胞穿透递送或结构验证工具，并避免声称常规阻断抗体可直接体内作用。",
+    "structurePrepZh": "以3QRF中forkhead结构域链为模板，保留生物学相关二聚体构象，补全缺失侧链并评估DNA结合面、晶体接触面及突变热点。",
+    "structureRef": "RCSB PDB 3QRF，FOXP3 forkhead结构域晶体结构，2.8 Å",
+    "antibodies": [
+      "236A/E7",
+      "PCH101"
+    ],
+    "interfaceFocus": "forkhead-DNA结合面与二聚化界面",
+    "designMode": "细胞内抗体设计",
+    "candidates": [
+      {
+        "target": "IL2RA",
+        "rationale": "IL2RA编码CD25，是Treg高表达的IL-2受体α链，参与IL-2依赖的Treg维持；其胞外受体结构更适合常规抗体干预。"
+      },
+      {
+        "target": "CTLA4",
+        "rationale": "CTLA4是FOXP3调控的免疫检查点分子，通过结合CD80/CD86限制共刺激信号，是Treg介导外周耐受的重要效应节点。"
+      },
+      {
+        "target": "IL2",
+        "rationale": "IL2为Treg存活和功能维持的核心细胞因子，与IL2RA/IL2RB/IL2RG受体复合物同属免疫耐受轴，可通过配体工程或抗体复合物调节Treg通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "SNRK",
+  "generatedAt": "2026-08-03T16:46:30.029Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SNRK 为丝氨酸/苏氨酸激酶，参与细胞能量感知与应激稳态调控，其异常变化与神经退行性疾病、溶酶体贮积病及阿尔茨海默病等疾病网络存在交叉关联。该蛋白存在明确的实验结构信息，可用于识别激酶结构域内的保守与可分化表位，适合开展构象依赖型抗体设计。相较于同类胞内激酶，SNRK兼具疾病关联覆盖面与结构可解析性，但抗原可及性受限，优先采用入胞递送或功能片段策略以提升开发可行性。",
+    "mechanism": "抗体预期结合激酶结构域外露环区，稳定非活性构象并干扰ATP结合口袋邻近的构象重排，从而抑制底物磷酸化。",
+    "selectedEpitope": "优先靶向N-lobe与hinge邻近环区及activation loop外露面，避免ATP口袋高度保守核心位点。",
+    "diseaseDirection": "神经退行与溶酶体稳态",
+    "domain": "N端激酶结构域及其activation loop邻域，属胞内催化核心区。",
+    "evidence": "SNRK疾病关联与结构设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform",
+      "UniProt: Q9NRH2",
+      "RCSB PDB: 5YKS",
+      "Protein Data Bank / Experimental structure"
+    ],
+    "referenceEntries": "UniProt Q9NRH2；RCSB PDB 5YKS；Open Targets SNRK",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N-lobe/hinge邻近表位",
+        "利于锁定激酶构象并影响ATP相关构象切换",
+        "优先"
+      ],
+      [
+        "Site B",
+        "activation loop外露表位",
+        "可削弱底物进入与催化活化",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C-lobe保守折叠核心附近",
+        "存在家族保守性高与交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SNRK为胞内激酶，天然膜表位缺失，直接抗体可及性较低；建议采用胞内递送体系或以结构片段为免疫原。ATP口袋保守性高，应避免针对催化核心极度保守残基。",
+    "structurePrepZh": "基于5YKS对A/B链进行结构清理、缺失环补模与构象聚类，优先保留激酶结构域完整配体环境并评估表位暴露度。",
+    "structureRef": "RCSB PDB 5YKS；2.9 Å X-ray结构",
+    "antibodies": [
+      "无成熟临床同类抗体",
+      "激酶结构域构象抗体研究范式"
+    ],
+    "interfaceFocus": "hinge邻近环区与activation loop外缘",
+    "designMode": "intracellular",
+    "candidates": [
+      {
+        "target": "PRKAA1",
+        "rationale": "AMPK通路核心激酶，与SNRK同属能量感知网络，在神经退行与代谢应激中具有并行疾病相关性。可作为同通路比较靶点评估表位保守性与功能替代关系。"
+      },
+      {
+        "target": "PRKAA2",
+        "rationale": "AMPK复合体催化亚基之一，与SNRK共享能量稳态相关疾病场景，且同样属于胞内激酶类靶点。适合作为同病理轴的并列候选，用于验证抗体干预策略的通路一致性。"
+      },
+      {
+        "target": "MTOR",
+        "rationale": "mTOR信号与自噬、溶酶体功能及神经退行性病变紧密相关，和SNRK处于相邻代谢调控网络。作为同疾病通路候选，可用于比较上游能量感知与下游营养感应节点的设计优先级。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

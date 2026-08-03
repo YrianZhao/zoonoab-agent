@@ -1,0 +1,65 @@
+{
+  "gene": "GAB2",
+  "generatedAt": "2026-08-03T12:40:08.529Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GAB2是GRB2/SHP2/PI3K信号复合体中的胞内支架蛋白，可放大受体酪氨酸激酶下游RAS-MAPK与PI3K-AKT通路，在多种肿瘤的增殖、存活和迁移中具有机制关联。该蛋白主要定位于胞质侧，缺乏天然胞外结构域或分泌形式，完整抗体直接结合活细胞抗原的可及性弱于膜受体靶点。其优先级来自结构信息清晰、SH3结合基序可解析及通路节点汇聚性，适合作为细胞内抗体、降解型抗体片段或研究级阻断分子设计对象，而非传统胞外中和抗体首选靶点。",
+    "mechanism": "阻断GAB2脯氨酸富集基序与GRB2 SH3结构域结合，削弱GAB2募集SHP2和PI3K调控亚基后对RAS-MAPK及PI3K-AKT信号的放大。",
+    "selectedEpitope": "优先覆盖GAB2 C端PxxP基序与GRB2 SH3结构域结合界面，兼顾相邻柔性连接区构象稳定。",
+    "diseaseDirection": "肿瘤RTK下游信号放大",
+    "domain": "GAB2含N端PH结构域、中央磷酸化酪氨酸位点及C端脯氨酸富集SH3结合区。",
+    "evidence": "GAB2肿瘤信号支架与结构界面证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9UQC2 functional annotation",
+      "RCSB PDB 6Y3R X-ray structure",
+      "RTK-GRB2-GAB2-SHP2/PI3K pathway literature"
+    ],
+    "referenceEntries": "UniProt Q9UQC2；RCSB PDB 6Y3R；Open Targets GAB2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端PxxP基序-GRB2 SH3结合界面",
+        "直接干预GAB2与GRB2装配，削弱RTK下游支架复合体形成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PH结构域膜磷脂结合面邻近区域",
+        "可能影响GAB2膜定位，但需避免破坏广泛PH结构域保守界面",
+        "备选"
+      ],
+      [
+        "Site C",
+        "中央多酪氨酸磷酸化片段",
+        "涉及SHP2与PI3K招募但柔性高、磷酸化依赖强，构象表位稳定性有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GAB2为胞内非分泌蛋白，常规抗体药物抗原可及性不足；宜采用细胞内Fab/VHH、递送系统或降解平台，并严格评估GRB2家族界面选择性。",
+    "structurePrepZh": "以6Y3R高分辨率晶体结构为界面模板，保留GAB2肽段与GRB2 SH3复合构象，补建缺失柔性区并标注PxxP核心残基。",
+    "structureRef": "RCSB PDB 6Y3R，X-ray diffraction，1.5 Å",
+    "antibodies": [
+      "暂无已批准GAB2靶向抗体",
+      "研究级抗GAB2检测抗体"
+    ],
+    "interfaceFocus": "GAB2 PxxP基序与GRB2 SH3疏水沟槽",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "GRB2",
+        "rationale": "GRB2通过SH2结构域连接活化RTK并以SH3结构域募集GAB2和SOS1，是同一RTK-RAS通路中的上游适配蛋白；阻断其GAB2结合可削弱支架复合体形成。"
+      },
+      {
+        "target": "PTPN11",
+        "rationale": "PTPN11编码SHP2，可被GAB2磷酸化位点招募并促进RAS-MAPK信号传递，是GAB2依赖性肿瘤信号输出的关键效应节点。"
+      },
+      {
+        "target": "PIK3R1",
+        "rationale": "PIK3R1编码PI3K p85调控亚基，可结合GAB2磷酸化酪氨酸基序并驱动PI3K-AKT通路活化，适合作为同通路替代干预节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

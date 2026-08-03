@@ -1,0 +1,65 @@
+{
+  "gene": "VPS4B",
+  "generatedAt": "2026-08-03T17:49:41.896Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "VPS4B 是 ESCRT-III 解聚与膜颈切割后的 ATPase 重塑因子，HIV-1 出芽依赖 ESCRT 复合体完成病毒颗粒释放，因此其功能扰动与 HIV infectious disease 存在明确通路关联。该蛋白主要定位于胞质并瞬时募集至内体膜和病毒出芽位点，缺乏稳定胞外结构域，抗体可及性弱于膜受体或分泌抗原。其优先级主要来自病毒出芽通路的宿主因子枢纽地位和可解析 AAA+ 结构基础，但作为常规体内中和抗体靶点的优先级低于 CD4、CCR5 等可及性更高的细胞表面靶点。",
+    "mechanism": "阻断 VPS4B AAA+ ATPase 寡聚化界面或 MIT 结构域与 ESCRT-III 蛋白 CHMP 亚基的相互作用，抑制 ESCRT-III 解聚循环并降低 HIV-1 出芽释放效率。",
+    "selectedEpitope": "优先聚焦 AAA+ ATPase NBD-邻近亚基界面，备选 MIT 结构域 ESCRT-III 结合沟槽。",
+    "diseaseDirection": "HIV 出芽与宿主 ESCRT 通路",
+    "domain": "VPS4B 含 N 端 MIT 结构域、linker 区、AAA+ ATPase NBD 与 C 端 α-helical 小结构域。",
+    "evidence": "VPS4B-ESCRT 介导 HIV 出芽证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt O75351 功能与定位注释",
+      "RCSB PDB 4U7Y X 射线晶体结构",
+      "ESCRT-III/VPS4 介导 HIV-1 budding 文献"
+    ],
+    "referenceEntries": "UniProt O75351；RCSB PDB 4U7Y；Open Targets VPS4B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "AAA+ ATPase NBD 寡聚化与核苷酸邻近界面",
+        "干预 VPS4B 六聚体装配和 ATPase 驱动的 ESCRT-III 重塑，机制效应直接",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N 端 MIT 结构域的 CHMP/ESCRT-III 结合沟槽",
+        "可阻断 VPS4B 招募至 ESCRT-III 聚合物，适合机制验证型抗体设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端小 α-helical 结构域外露面",
+        "可能影响构象稳定性但功能界面依赖性较弱，需避免非特异构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "VPS4B 为胞内宿主 ATPase，常规抗体难以进入细胞质，体内可及性和递送风险较高；宜采用胞内抗体、纳米抗体或递送偶联策略进行验证。",
+    "structurePrepZh": "以 4U7Y 链 A、B 为结构模板，补全缺失环区并保留 ATPase 核心构象；需评估寡聚化相关界面、核苷酸邻近位点及 MIT 缺失情况。",
+    "structureRef": "RCSB PDB 4U7Y；VPS4B AAA ATPase 晶体结构",
+    "antibodies": [
+      "抗 VPS4B 研究级单克隆抗体",
+      "抗 VPS4A/VPS4B 功能检测抗体"
+    ],
+    "interfaceFocus": "AAA+ 亚基界面与 MIT-CHMP 结合沟槽",
+    "designMode": "胞内阻断型抗体设计",
+    "candidates": [
+      {
+        "target": "TSG101",
+        "rationale": "TSG101 是 ESCRT-I 组分，HIV-1 Gag p6 PTAP 基序通过结合 TSG101 招募 ESCRT 机器，是病毒出芽通路的上游宿主因子。其与病毒蛋白相互作用界面具有明确机制基础。"
+      },
+      {
+        "target": "ALIX",
+        "rationale": "ALIX 由 PDCD6IP 编码，可结合 HIV-1 Gag p6 的 YPXnL 基序并连接 ESCRT-III 组装，与 VPS4B 共同参与病毒膜颈切割后的释放过程。"
+      },
+      {
+        "target": "CHMP4B",
+        "rationale": "CHMP4B 是 ESCRT-III 核心聚合亚基，形成膜重塑丝状结构并作为 VPS4 ATPase 解聚底物，位于同一 HIV-1 出芽执行模块。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

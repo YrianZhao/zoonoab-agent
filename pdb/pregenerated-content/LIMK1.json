@@ -1,0 +1,65 @@
+{
+  "gene": "LIMK1",
+  "generatedAt": "2026-08-03T13:53:08.303Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "LIMK1 是调控肌动蛋白细胞骨架重塑的胞内丝氨酸/苏氨酸激酶，主要通过磷酸化 CFL1 抑制 cofilin 介导的 F-actin 解聚，参与神经突起形态、突触结构和细胞迁移过程。Open Targets 关联信号以神经退行性疾病及血液数量性状为主，但其抗原位点位于胞内 LIM/PDZ/激酶结构域，天然抗体可及性显著受限。相较具有胞外结构域的膜受体或分泌因子，LIMK1 更适合作为细胞内功能验证或递送型抗体研究靶点，主靶点优先级应基于高分辨率结构可设计性而非常规体液抗体可及性。",
+    "mechanism": "递送型抗体可结合 LIMK1 激酶结构域 ATP 结合裂隙或底物结合沟，阻断 LIMK1 对 CFL1 Ser3 的磷酸化。",
+    "selectedEpitope": "优先覆盖激酶结构域 N-lobe/C-lobe 之间 ATP 结合裂隙及底物进入沟。",
+    "diseaseDirection": "神经退行性疾病与细胞骨架重塑",
+    "domain": "LIMK1 含双 LIM 结构域、PDZ 结构域及 C 端蛋白激酶催化结构域。",
+    "evidence": "LIMK1-CFL1 轴结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P53667 functional annotation",
+      "RCSB PDB 3S95 X-ray structure",
+      "Reactome RHO GTPase actin cytoskeleton pathway"
+    ],
+    "referenceEntries": "UniProt P53667；RCSB PDB 3S95；Reactome RHO GTPase signaling",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域 ATP 结合裂隙与铰链区邻近表面",
+        "直接干预催化构象和 ATP 定位，机制明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "激酶结构域底物结合沟及活化环周边",
+        "阻断 CFL1 进入催化位点，适合功能抑制抗体设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端 LIM1-LIM2 蛋白互作模块表面",
+        "可能影响支架蛋白结合，但结构可及性和机制外推需验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "LIMK1 为胞内激酶，常规抗体难以到达作用位点；需采用细胞穿透、纳米抗体递送或胞内表达格式，并严格评估 LIMK2 交叉反应。",
+    "structurePrepZh": "以 3S95 高分辨率晶体结构为模板，补全缺失侧链，校正质子化状态，保留 ATP 口袋和活化环构象用于表位建模。",
+    "structureRef": "RCSB PDB 3S95，X-ray diffraction，1.65 Å",
+    "antibodies": [
+      "暂无获批 LIMK1 治疗性抗体",
+      "研究级 anti-LIMK1 抗体"
+    ],
+    "interfaceFocus": "ATP 铰链区、底物沟与活化环周边界面",
+    "designMode": "胞内递送型抗体",
+    "candidates": [
+      {
+        "target": "CFL1",
+        "rationale": "CFL1 是 LIMK1 的直接底物，其 Ser3 磷酸化状态决定 actin filament 解聚活性，是 LIMK1-CFL1 轴中最直接的功能读出节点。"
+      },
+      {
+        "target": "ROCK1",
+        "rationale": "ROCK1 位于 RHOA 下游并可激活 LIMK1，参与肌动蛋白应力纤维形成和细胞收缩，是同一细胞骨架调控通路的上游激酶节点。"
+      },
+      {
+        "target": "PAK1",
+        "rationale": "PAK1 可在 RAC1/CDC42 信号下磷酸化并激活 LIMK1，连接小 GTPase 信号与 cofilin 介导的 actin 动态调节。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

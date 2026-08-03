@@ -1,0 +1,65 @@
+{
+  "gene": "PLEC",
+  "generatedAt": "2026-08-03T20:34:59.222Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PLEC 编码 plectin，是连接角蛋白中间丝、肌膜相关复合体与半桥粒结构的细胞骨架交联蛋白；其致病变异可破坏表皮基底细胞和骨骼肌纤维的机械稳定性，驱动伴肌营养不良的大疱性表皮松解症及 LGMD2Q。PLEC 主要定位于胞内细胞骨架与细胞连接复合体，抗原天然可及性弱，不具备典型膜外结构域优势，因此更适合用于机制研究、突变蛋白识别或递送型抗体格式。相较 ITGA6、ITGB4、COL17A1 等同通路膜/基底膜靶点，PLEC 的遗传因果证据更直接指向肌皮复合表型，但治疗性阻断抗体优先级低于可外部接触的膜受体靶点。",
+    "mechanism": "设计抗体识别 plectin ABD 的 CH1-CH2 构象表面，用于区分突变或构象异常蛋白；不宜采用阻断型策略干扰 plectin 与肌动蛋白或中间丝结合。",
+    "selectedEpitope": "优先选择 N 端 actin-binding domain 中 CH1-CH2 外露环区，避开肌动蛋白结合核心界面。",
+    "diseaseDirection": "遗传性大疱性表皮松解症与肌营养不良",
+    "domain": "Plectin 含 N 端 actin-binding domain、中央 coiled-coil rod 与 C 端 plakin repeat domains。",
+    "evidence": "PLEC 相关肌皮脆性疾病遗传与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q15149 plectin 功能与结构域注释",
+      "RCSB PDB 4GDO X-ray 晶体结构",
+      "OMIM 与 Orphanet 遗传性大疱性表皮松解症记录"
+    ],
+    "referenceEntries": "UniProt Q15149；RCSB PDB 4GDO；Open Targets PLEC",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ABD CH1-CH2 外露环与非保守表面",
+        "利于构象识别并降低对肌动蛋白结合核心的功能干扰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ABD 远离 CH1/CH2 沟槽的溶剂暴露螺旋面",
+        "适合作为检测型或细胞内递送抗体结合表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "CH 结构域肌动蛋白结合沟槽邻近区域",
+        "可能影响 plectin-肌动蛋白相互作用并增加细胞骨架毒性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PLEC 为大型胞内支架蛋白，常规抗体难以进入天然细胞内环境；应避免阻断肌动蛋白、中间丝或半桥粒连接界面，优先定位诊断或递送格式。",
+    "structurePrepZh": "以 4GDO 高分辨率 ABD 晶体结构为模板，保留 CH1-CH2 单体构象，检查多链晶体接触并剔除非生理界面后进行表面可及性评估。",
+    "structureRef": "RCSB PDB 4GDO；plectin ABD X-ray structure 1.7 Å",
+    "antibodies": [
+      "10F6 anti-plectin monoclonal antibody",
+      "E398P anti-plectin monoclonal antibody"
+    ],
+    "interfaceFocus": "ABD CH1-CH2 外露环区与肌动蛋白结合沟槽边界",
+    "designMode": "胞内抗原识别",
+    "candidates": [
+      {
+        "target": "ITGB4",
+        "rationale": "ITGB4 与 PLEC 在半桥粒中形成连接复合体，负责将角蛋白中间丝锚定至基底膜。其大型胞外结构域具有更高抗体可及性，是同一皮肤脆性疾病轴中的优先膜靶点。"
+      },
+      {
+        "target": "ITGA6",
+        "rationale": "ITGA6 与 ITGB4 组成 α6β4 integrin，介导基底角质形成细胞与 laminin-332 的黏附。其胞外配体结合域可支持阻断型或稳定型抗体设计。"
+      },
+      {
+        "target": "COL17A1",
+        "rationale": "COL17A1 编码 BP180，是半桥粒跨膜胶原，与 PLEC-整合素轴共同维持表皮-基底膜连接。其胞外 NC16A 与胶原样区段适合抗体表位开发。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

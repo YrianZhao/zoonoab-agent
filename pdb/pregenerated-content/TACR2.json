@@ -1,0 +1,65 @@
+{
+  "gene": "TACR2",
+  "generatedAt": "2026-08-03T17:06:11.693Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TACR2 编码神经激肽受体2，为典型七次跨膜 GPCR，参与 substance P 介导的神经炎症与痛觉调控，并与抑郁、焦虑及肠易激综合征等表型具有一致的疾病关联。该靶点为膜受体，胞外 N 端及细胞外环可直接暴露于抗体可及空间，适合以构象选择性抗体抑制配体识别。相较同通路中的 TACR1，TACR2 在内脏痛与胃肠功能失衡相关疾病中的关联更集中，且 7XWO 的实验结构为表位分区提供了可靠依据。",
+    "mechanism": "抗体通过占据 N 端及第二/第三细胞外环，阻断 substance P 与受体结合并抑制受体激活。",
+    "selectedEpitope": "优先锁定 ECL2 与 N 端构成的配体入口，必要时覆盖 ECL3 辅助界面。",
+    "diseaseDirection": "神经精神与内脏痛",
+    "domain": "Class A GPCR 七跨膜核心，胞外 N 端、ECL1/2/3 暴露",
+    "evidence": "TACR2 疾病关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform",
+      "UniProt P21452",
+      "RCSB PDB 7XWO",
+      "EMDB/实验冷冻电镜结构注释"
+    ],
+    "referenceEntries": "UniProt: P21452; RCSB PDB: 7XWO; TACR2 human receptor record",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ECL2-顶部口袋与N端交界",
+        "直接遮挡 substance P 进入通道，利于拮抗构象稳定",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ECL3 外侧边缘与ECL2 辅助界面",
+        "可增强对活化态转变的限制并提高构象选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端远端柔性区",
+        "可用于降低配体初始捕获，但构象约束较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险在于 GPCR 胞外环柔性较高且构象依赖明显，抗体易受活化态异质性影响。建议以冷冻电镜构象为骨架，结合分子动力学筛选稳定暴露表位。",
+    "structurePrepZh": "以 7XWO 为主模板修复缺失侧链并保留膜邻近取向，优先标注 ECL2 构象与糖基化位点。必要时构建 inactive/active 双态对照以评估表位稳健性。",
+    "structureRef": "RCSB PDB 7XWO; cryo-EM structure of human TACR2",
+    "antibodies": [
+      "SR140333",
+      "GR159897"
+    ],
+    "interfaceFocus": "N端-ECL2 配体入口与活化门控界面",
+    "designMode": "构象拮抗",
+    "candidates": [
+      {
+        "target": "TACR1",
+        "rationale": "与 TACR2 同属 tachykinin 受体通路，介导 substance P 相关疼痛与神经炎症。可作为同轴比较靶点，用于判定 NK1/NK2 受体在疾病分层中的相对贡献。"
+      },
+      {
+        "target": "TACR3",
+        "rationale": "同为 tachykinin receptor 家族成员，参与 neurokinin B 相关神经内分泌调控。可用于评估 tachykinin 通路中不同受体亚型的选择性干预窗口。"
+      },
+      {
+        "target": "TAC1",
+        "rationale": "TAC1 编码 substance P 与 neurokinin A 的前体，是 TACR2 上游配体来源。作为配体轴候选靶点，可与受体阻断策略形成同通路验证体系。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

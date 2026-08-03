@@ -1,0 +1,65 @@
+{
+  "gene": "HGS",
+  "generatedAt": "2026-08-03T13:11:12.870Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HGS是ESCRT-0复合物关键亚基，通过VHS与UIM结构域识别泛素化膜蛋白并促进内体分选，影响神经退行性疾病中受体降解、自噬-溶酶体稳态及蛋白质清除过程。该蛋白主要定位于胞质侧早期内体，天然抗原可及性弱于分泌蛋白或跨膜受体，抗体策略更适合聚焦可递送胞内抗体、研究级Fab或结构稳定化工具抗体。相比下游ESCRT-III组分，HGS位于泛素化货物识别起始步骤，具有更高通路干预优先级和机制解析价值。",
+    "mechanism": "以胞内抗体阻断HGS UIM结构域与单泛素化货物的结合，或干扰HGS-STAM复合物装配，从而改变早期内体货物分选。",
+    "selectedEpitope": "优先覆盖VHS结构域邻近UIM的泛素识别面，兼顾不破坏整体折叠的构象表位。",
+    "diseaseDirection": "神经退行性疾病与内体分选异常",
+    "domain": "HGS含N端VHS结构域、FYVE锌指、双侧UIM、卷曲螺旋区及C端富脯氨酸区。",
+    "evidence": "HGS-ESCRT-0内体分选与神经疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与关联评分",
+      "UniProt O14964功能与亚细胞定位注释",
+      "RCSB PDB 3OBQ晶体结构解析",
+      "ESCRT-0介导泛素化受体内体分选文献"
+    ],
+    "referenceEntries": "UniProt O14964；RCSB PDB 3OBQ；Open Targets HGS",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "VHS结构域与UIM邻近泛素识别表面",
+        "可直接削弱泛素化货物招募，机制读出清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "HGS-STAM相互作用相关卷曲螺旋界面",
+        "可用于干扰ESCRT-0复合物装配与稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "FYVE结构域磷脂酰肌醇3-磷酸结合口袋",
+        "可能影响内体膜定位，但锌指保守性高且构象敏感",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HGS为胞内内体相关蛋白，常规外源抗体难以直接结合天然靶点；宜采用细胞内递送Fab/VHH或工具抗体，并避开高度保守锌指核心。",
+    "structurePrepZh": "以3OBQ高分辨率晶体结构为模板，检查A、B链生物学装配、缺失环区和晶体接触，补建柔性片段后进行表面电荷与保守性标注。",
+    "structureRef": "RCSB PDB 3OBQ，X-ray diffraction，1.4 Å",
+    "antibodies": [
+      "研究级抗HGS/HRS单克隆抗体",
+      "抗HGS免疫荧光与免疫印迹抗体"
+    ],
+    "interfaceFocus": "UIM-泛素结合面与HGS-STAM装配界面",
+    "designMode": "胞内工具抗体设计",
+    "candidates": [
+      {
+        "target": "STAM",
+        "rationale": "STAM与HGS共同构成ESCRT-0复合物，参与泛素化膜蛋白识别及早期内体分选，是同一货物分选节点的直接协同靶点。"
+      },
+      {
+        "target": "TSG101",
+        "rationale": "TSG101是ESCRT-I核心亚基，位于HGS介导货物识别之后，负责将泛素化货物传递至后续多囊泡体形成步骤。"
+      },
+      {
+        "target": "VPS4A",
+        "rationale": "VPS4A驱动ESCRT复合物解聚和循环利用，影响内体分选通路末端重塑，可作为HGS下游功能验证靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

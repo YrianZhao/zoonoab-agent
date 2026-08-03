@@ -1,0 +1,65 @@
+{
+  "gene": "CSTF2",
+  "generatedAt": "2026-08-03T11:41:42.616Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CSTF2是mRNA 3端切割与多聚腺苷酸化复合体核心亚基，主要通过RNA识别基序结合前体mRNA下游GU/U-rich元件并参与CPSF-CSTF介导的转录后加工；其疾病关联包含肝细胞癌及神经发育表型，但现有遗传关联强度中等。该蛋白定位于细胞核内剪切加工复合体，不具备分泌蛋白、膜受体或稳定胞外结构域特征，天然抗原可及性不利于常规治疗性抗体。优先级低于EGFR、PDCD1、VEGFA等细胞表面或分泌型同疾病靶点，更适合作为机制研究抗体或胞内递送抗体片段开发对象。",
+    "mechanism": "设计抗体片段阻断CSTF2 RRM结构域与pre-mRNA GU/U-rich下游序列的结合，干扰CSTF复合体对切割位点的募集与3端加工。",
+    "selectedEpitope": "优先覆盖RRM β-sheet RNA结合面及RNP1/RNP2保守基序邻近沟槽，避免仅选择远端螺旋外侧表位。",
+    "diseaseDirection": "转录后RNA加工与肿瘤生物学",
+    "domain": "CSTF2含N端RNA recognition motif，后接铰链区与C端脯氨酸/甘氨酸富集区，1P1T覆盖RRM结构域。",
+    "evidence": "CSTF2 RNA结合结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB P33240功能与亚细胞定位注释",
+      "RCSB PDB 1P1T溶液NMR结构记录",
+      "mRNA 3端切割与多聚腺苷酸化复合体研究文献"
+    ],
+    "referenceEntries": "UniProt P33240；RCSB PDB 1P1T；Open Targets CSTF2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RRM β-sheet RNA结合面与RNP1/RNP2基序",
+        "直接竞争pre-mRNA GU/U-rich元件结合，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RRM α螺旋外侧及相邻环区",
+        "可获得结构稳定表位，用于检测或构象锁定型抗体设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "推定铰链区与低复杂度C端区域",
+        "柔性高且结构信息不足，亲和筛选易产生非特异结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CSTF2为核内RNA结合蛋白，常规抗体难以进入作用部位；RRM保守性较高，需规避与其他RBP交叉反应并验证RNA竞争能力。",
+    "structurePrepZh": "以1P1T NMR ensemble提取RRM代表构象，统一链A编号，标注RNP1/RNP2残基、RNA结合面电荷分布与柔性环区。",
+    "structureRef": "PDB 1P1T；human CSTF2 RRM solution NMR structure",
+    "antibodies": [
+      "commercial anti-CSTF2 clone 3A7",
+      "commercial anti-CSTF2 polyclonal antibody"
+    ],
+    "interfaceFocus": "RRM β-sheet中央RNA结合沟槽",
+    "designMode": "胞内Fab/VHH机制探针",
+    "candidates": [
+      {
+        "target": "CPSF1",
+        "rationale": "CPSF1是mRNA 3端切割与多聚腺苷酸化复合体核心支架亚基，与CSTF复合体协同识别poly(A)信号并组织切割反应。"
+      },
+      {
+        "target": "CPSF3",
+        "rationale": "CPSF3承担前体mRNA切割内切核酸酶活性，位于同一3端加工通路的催化节点，机制验证价值明确。"
+      },
+      {
+        "target": "CSTF3",
+        "rationale": "CSTF3是CSTF复合体亚基，可与CSTF2共同参与下游序列识别复合体装配，适合作为同复合体候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

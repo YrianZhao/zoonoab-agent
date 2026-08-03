@@ -1,0 +1,65 @@
+{
+  "gene": "TOP1",
+  "generatedAt": "2026-08-03T17:24:54.420Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TOP1通过切割并重新连接DNA单链缓解复制与转录相关超螺旋压力，肿瘤细胞对其催化活性高度依赖，拓扑替康与伊立替康类药物已验证TOP1-DNA切割复合物稳定化的抗肿瘤机制。该蛋白主要定位于细胞核，缺乏胞外结构域或分泌特征，天然抗原可及性不利于常规完整抗体介入，更适合细胞内递送抗体片段或抗体偶联递送策略。相较于广泛抑制复制应激通路的上游靶点，TOP1具有明确的催化口袋、DNA结合沟槽和已解析复合物结构，机制验证与结构设计优先级较高。",
+    "mechanism": "通过胞内递送抗体片段占据TOP1核心结构域的DNA结合沟槽，阻断TOP1与断裂DNA中间体的稳定结合并干扰Tyr723介导的转酯反应循环。",
+    "selectedEpitope": "优先覆盖核心结构域DNA结合唇区及C端催化区邻近界面，避开高度柔性的N端区域。",
+    "diseaseDirection": "肺癌与结直肠癌复制应激通路",
+    "domain": "TOP1含N端结构域、保守核心结构域、连接臂结构域和C端催化结构域，Tyr723为催化残基。",
+    "evidence": "TOP1肿瘤依赖性与DNA切割复合物结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform肿瘤遗传与药理关联数据",
+      "UniProt P11387功能与亚细胞定位注释",
+      "RCSB PDB 1A31人TOP1-DNA复合物晶体结构",
+      "已上市TOP1抑制剂拓扑替康和伊立替康药理证据"
+    ],
+    "referenceEntries": "UniProt P11387；RCSB PDB 1A31；Open Targets TOP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "核心结构域DNA结合沟槽与唇区界面",
+        "直接干扰TOP1夹持DNA底物及形成切割复合物，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端催化结构域Tyr723邻近表面",
+        "可限制催化残基进入有效转酯反应构象，适合构象阻断设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端非保守柔性区域",
+        "结构缺失与构象异质性较高，且与催化机制关联较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TOP1为核内酶且无天然胞外抗原暴露，常规IgG难以到达作用位点；建议采用VHH、intrabody或抗体偶联核内递送系统，并严格评估正常增殖组织毒性。",
+    "structurePrepZh": "以PDB 1A31为模板保留TOP1-DNA复合物关键界面，校正缺失柔性环和质子化状态，围绕DNA结合沟槽进行可及性与保守性映射。",
+    "structureRef": "Stewart等解析的人TOP1-DNA共价复合物，PDB 1A31，2.1 Å",
+    "antibodies": [
+      "抗TOP1诊断抗体克隆1D6",
+      "抗TOP1研究用单克隆抗体C21"
+    ],
+    "interfaceFocus": "核心结构域DNA结合沟槽及Tyr723催化邻近面",
+    "designMode": "胞内抗体片段阻断",
+    "candidates": [
+      {
+        "target": "TOP2A",
+        "rationale": "TOP2A参与DNA双链拓扑调控，在高增殖肿瘤中与复制压力和细胞周期进程密切相关，可作为同类DNA拓扑异构酶通路的替代靶点。"
+      },
+      {
+        "target": "TDP1",
+        "rationale": "TDP1修复TOP1-DNA共价复合物残留的3'-磷酸酪氨酰DNA损伤，抑制该节点可增强TOP1毒性损伤积累。"
+      },
+      {
+        "target": "PARP1",
+        "rationale": "PARP1参与TOP1抑制后产生的单链断裂修复与复制叉保护，在TOP1诱导DNA损伤背景下具有明确联合干预逻辑。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

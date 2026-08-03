@@ -1,0 +1,65 @@
+{
+  "gene": "PIK3AP1",
+  "generatedAt": "2026-08-03T15:17:19.943Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PIK3AP1编码BCAP，是B细胞、髓系细胞和NK细胞中连接BCR/TLR信号与PI3K活化的胞内衔接蛋白，其YxxM磷酸化基序可招募PIK3R1/PIK3R2并促进PI3K-AKT轴激活，与单核细胞数量和白细胞组成性状存在遗传关联。该蛋白不具备分泌蛋白或膜受体的天然胞外可及性，完整抗体难以在未透化细胞中直接结合，因此更适合作为胞内阻断型Fab/VHH或细胞内抗体设计模型。相较于PI3K催化亚基，PIK3AP1位于免疫受体近端衔接层，理论上可提高细胞谱系和受体情境选择性，但成药优先级受限于胞内递送可行性。",
+    "mechanism": "阻断PIK3AP1磷酸化YxxM基序与PIK3R1/PIK3R2 SH2结构域结合，削弱BCR或TLR诱导的PI3K募集与AKT磷酸化。",
+    "selectedEpitope": "优先靶向5FOR所示BCAP胞质核心结构域中邻近磷酸酪氨酸衔接基序的可及沟槽，避开深埋折叠核心。",
+    "diseaseDirection": "免疫细胞组成与PI3K信号",
+    "domain": "PIK3AP1为胞内衔接蛋白，含多处酪氨酸磷酸化位点和PI3K调节亚基结合的YxxM样基序。",
+    "evidence": "PIK3AP1-BCAP免疫细胞PI3K衔接证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q6ZUJ8功能与亚细胞定位注释",
+      "RCSB PDB 5FOR晶体结构",
+      "BCAP介导BCR/TLR-PI3K信号文献"
+    ],
+    "referenceEntries": "UniProt Q6ZUJ8；RCSB PDB 5FOR；Open Targets PIK3AP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "YxxM磷酸化基序邻近衔接界面",
+        "可竞争PI3K调节亚基SH2结构域结合，机制指向明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "5FOR胞质核心结构域外露螺旋-环区",
+        "利于获得构象稳定结合物，可用于别构限制衔接构象",
+        "备选"
+      ],
+      [
+        "Site C",
+        "疏水折叠核心与晶体接触区域",
+        "可能影响蛋白整体稳定性且表位天然可及性较低",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为靶点胞内定位导致常规抗体不可及，且磷酸化依赖界面可能构象异质。建议采用VHH或细胞内Fab格式，并进行磷酸化状态分层验证。",
+    "structurePrepZh": "以5FOR链A为结构模板，补全缺失环区并标注磷酸化酪氨酸及YxxM基序；去除晶体水和非功能性接触后评估表面可及性。",
+    "structureRef": "RCSB PDB 5FOR，X-ray diffraction，2.5 Å",
+    "antibodies": [
+      "抗BCAP研究级抗体",
+      "抗磷酸BCAP研究级抗体"
+    ],
+    "interfaceFocus": "BCAP YxxM基序-PI3K调节亚基SH2结合界面",
+    "designMode": "胞内VHH/Fab阻断",
+    "candidates": [
+      {
+        "target": "PIK3R1",
+        "rationale": "PIK3R1编码p85α调节亚基，其SH2结构域直接识别BCAP磷酸化YxxM基序，是同一PI3K募集轴上的直接相互作用节点。"
+      },
+      {
+        "target": "PIK3CD",
+        "rationale": "PIK3CD编码p110δ催化亚基，主要参与白细胞PI3K信号并处于BCAP下游，具有明确的免疫细胞功能关联。"
+      },
+      {
+        "target": "BTK",
+        "rationale": "BTK位于BCR信号近端并与PI3K脂质产物PIP3介导的膜募集过程耦联，是B细胞受体-PI3K通路中的真实可干预节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

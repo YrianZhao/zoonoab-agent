@@ -1,0 +1,65 @@
+{
+  "gene": "COX5A",
+  "generatedAt": "2026-08-03T11:35:06.660Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "COX5A是线粒体呼吸链复合体IV的核编码亚基，参与细胞色素c氧化酶电子传递与氧还原过程，功能异常与线粒体复合体IV缺陷及神经退行性疾病中的能量代谢障碍相关。该蛋白定位于线粒体内膜复合体，天然状态下缺乏细胞外暴露，作为常规体内阻断抗体靶点的抗原可及性不足，更适合结构验证、细胞内递送抗体或诊断结合试剂开发。相较COX4I1、COX6B1等同复合体亚基，COX5A在9I6F实验结构中具有明确复合体内构象参照，可优先用于复合体IV构象识别型抗体设计，但治疗优先级需低于可及性更佳的分泌或膜表面靶点。",
+    "mechanism": "设计抗体以识别COX5A在复合体IV中的暴露螺旋面，稳定或检测其与MT-CO1、COX4I1邻近界面相关构象，而非直接阻断细胞外配体-受体相互作用。",
+    "selectedEpitope": "优先选择COX5A可溶性基质侧α螺旋束外露面，避开跨膜螺旋及复合体IV核心装配界面。",
+    "diseaseDirection": "线粒体复合体IV缺陷与神经退行性疾病",
+    "domain": "COX5A包含N端线粒体靶向肽、成熟蛋白α螺旋束及C端跨膜锚定区，嵌入复合体IV外周。",
+    "evidence": "COX5A复合体IV结构与线粒体疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P20674功能与亚细胞定位注释",
+      "RCSB PDB 9I6F冷冻电镜结构",
+      "OMIM与Orphanet线粒体复合体IV缺陷条目"
+    ],
+    "referenceEntries": "UniProt P20674；RCSB PDB 9I6F；Open Targets COX5A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "成熟COX5A基质侧α螺旋束外露面",
+        "利于获得构象识别抗体，减少对跨膜疏水区依赖",
+        "优先"
+      ],
+      [
+        "Site B",
+        "COX5A与COX4I1邻近外周界面边缘",
+        "可用于复合体IV装配状态识别，但需避免强干扰核心稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端跨膜锚定螺旋及脂质接触面",
+        "疏水性高且天然膜嵌入，抗原制备和抗体可及性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "COX5A为线粒体内膜蛋白，体内抗体难以到达天然抗原；设计宜定位于诊断、结构捕获或细胞内递送场景，并避免破坏复合体IV核心装配。",
+    "structurePrepZh": "以9I6F冷冻电镜模型提取COX5A成熟链，保留邻近COX4I1、MT-CO1和脂质环境用于界面判读，去除低置信柔性末端后进行表面可及性评估。",
+    "structureRef": "RCSB PDB 9I6F，人源复合体IV冷冻电镜结构，2.95 Å",
+    "antibodies": [
+      "Anti-COX5A clone EPR11211",
+      "Anti-COX5A clone 16H12"
+    ],
+    "interfaceFocus": "基质侧螺旋外露面与COX4I1邻近边缘",
+    "designMode": "构象识别型抗体设计",
+    "candidates": [
+      {
+        "target": "COX4I1",
+        "rationale": "COX4I1是复合体IV核编码调节亚基，与COX5A共同参与细胞色素c氧化酶装配和功能维持，适合作为同一复合体内的构象参照靶点。"
+      },
+      {
+        "target": "COX6B1",
+        "rationale": "COX6B1位于复合体IV外周并参与细胞色素c结合区域稳定，其缺陷与线粒体复合体IV功能障碍相关，可用于比较外周亚基抗原可及性。"
+      },
+      {
+        "target": "MT-CO1",
+        "rationale": "MT-CO1是复合体IV催化核心亚基，直接参与电子传递和氧还原反应，是COX5A相关复合体结构功能分析的核心通路靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

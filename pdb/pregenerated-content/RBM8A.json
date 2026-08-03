@@ -1,0 +1,65 @@
+{
+  "gene": "RBM8A",
+  "generatedAt": "2026-08-03T15:57:08.889Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RBM8A编码外显子连接复合体核心蛋白Y14，参与NMD、mRNA剪接后定位与翻译监控；其单倍剂量不足与TAR综合征的血小板减少和骨骼发育异常相关。该蛋白主要定位于细胞核及mRNP复合物，缺乏天然胞外结构域或分泌特征，抗原可及性不符合常规体内抗体阻断靶点属性。相较于同通路可药性更高的膜受体或分泌因子，RBM8A优先级应限定于结构验证、细胞内递送抗体或研究级结合分子设计场景。",
+    "mechanism": "设计重点为结合RBM8A的RRM表面，干扰其与MAGOH形成Y14-MAGOH异二聚体及EJC核心装配。",
+    "selectedEpitope": "优先覆盖RRM结构域中MAGOH结合界面邻近螺旋与β折叠外露面。",
+    "diseaseDirection": "TAR综合征与mRNA监控异常",
+    "domain": "RBM8A含N端低复杂度区和C端RNA recognition motif样折叠，Y14核心结构与MAGOH紧密结合。",
+    "evidence": "RBM8A-EJC结构与TAR遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB Q9Y5S9 functional annotation",
+      "RCSB PDB 1P27 X-ray structure",
+      "ClinGen/OMIM TAR syndrome genetic evidence"
+    ],
+    "referenceEntries": "UniProt Q9Y5S9；RCSB PDB 1P27；Open Targets RBM8A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RRM中MAGOH结合界面邻近α螺旋与β片层边缘",
+        "可直接评估对Y14-MAGOH复合物装配的阻断能力",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RRM外侧RNA结合沟槽及保守RNP样表面",
+        "可能影响EJC相关mRNP结合，但需避免广泛核酸结合非特异性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端低复杂度柔性区域",
+        "结构稳定性与构象定义不足，作为高亲和力构象表位风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RBM8A为细胞内核蛋白，体内抗体可及性受限；建议采用Fab/VHH结构探针、胞内递送或降解耦联策略，并规避保守RNA结合面导致的交叉反应。",
+    "structurePrepZh": "以1P27晶体结构为模板，保留RBM8A-MAGOH复合物界面，补建缺失柔性片段并标注RRM保守残基后进行表位聚类。",
+    "structureRef": "PDB 1P27，Y14-MAGOH复合物X射线结构，2.0 Å",
+    "antibodies": [
+      "研究级抗RBM8A/Y14抗体",
+      "研究级抗EJC核心蛋白抗体"
+    ],
+    "interfaceFocus": "RBM8A RRM-MAGOH异二聚体界面",
+    "designMode": "细胞内结构探针",
+    "candidates": [
+      {
+        "target": "MAGOH",
+        "rationale": "MAGOH与RBM8A形成稳定Y14-MAGOH异二聚体，是EJC核心装配的直接互作伙伴；扰动该界面可用于验证RBM8A剂量不足相关mRNA监控缺陷。"
+      },
+      {
+        "target": "EIF4A3",
+        "rationale": "EIF4A3是EJC核心RNA解旋酶组分，与RBM8A-MAGOH共同稳定沉积于外显子连接位点；其结构域具备明确复合物界面，适合机制性表位设计。"
+      },
+      {
+        "target": "CASC3",
+        "rationale": "CASC3/MLN51为EJC核心外周组分，参与成熟mRNP复合物稳定与NMD相关功能；可作为同一EJC通路的功能验证候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "SMAP1",
+  "generatedAt": "2026-08-03T16:43:24.126Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SMAP1编码小型ArfGAP1，主要作为ADP-核糖基化因子GTP酶活化蛋白参与ARF依赖的囊泡运输、膜蛋白内吞与胞内分选过程，其遗传关联信号集中于血小板体积、血小板成分分布宽度及神经发育性癫痫表型，提示其在细胞内膜交通与血小板生成/功能调控中具有疾病相关性。该蛋白为胞质侧ArfGAP蛋白，缺乏稳定胞外结构域或分泌形式，天然抗原可及性不符合常规治疗性抗体靶点标准。相较于同通路中位于细胞表面或分泌环境的受体/配体，SMAP1更适合作为机制研究、结构探针或细胞内递送抗体片段的探索靶点，优先级应低于具有直接胞外可及性的血小板膜受体。",
+    "mechanism": "候选抗体片段拟阻断SMAP1 ArfGAP结构域与ARF-GTP的结合界面，干扰催化arginine finger促进ARF-GTP水解的过程。",
+    "selectedEpitope": "优先聚焦ArfGAP锌指催化核心邻近的ARF结合沟槽，避免直接破坏锌配位残基。",
+    "diseaseDirection": "血小板性状与膜交通相关疾病",
+    "domain": "SMAP1含N端ArfGAP锌指结构域及C端辅助区域，2CRR覆盖人源ArfGAP相关结构片段。",
+    "evidence": "SMAP1遗传关联与ArfGAP结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform遗传关联数据",
+      "UniProt Q8IYB5功能与结构域注释",
+      "RCSB PDB 2CRR溶液NMR结构",
+      "Gene Ontology ARF GTPase activator activity注释"
+    ],
+    "referenceEntries": "UniProt Q8IYB5；RCSB PDB 2CRR；Open Targets SMAP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ArfGAP结构域ARF结合沟槽邻近区域",
+        "可直接干预SMAP1与ARF-GTP复合体形成，机制指向明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ArfGAP锌指催化核心外侧保守螺旋面",
+        "可能影响底物定位并保留结构稳定性，适合功能调节型片段筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "锌配位Cys/His残基聚集区",
+        "易导致结构塌陷或非特异性金属配位干扰，需避免作为主表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SMAP1为胞内蛋白，常规全长抗体难以到达作用位点；建议限定为细胞内抗体、VHH递送或结构探针开发，并严格评估ARFGAP家族交叉反应。",
+    "structurePrepZh": "以2CRR的NMR模型集评估构象一致性，保留锌配位几何并标注保守催化残基，结合AlphaFold全长模型补充未解析区域。",
+    "structureRef": "RCSB PDB 2CRR：人源SMAP1片段溶液NMR结构",
+    "antibodies": [
+      "无已批准SMAP1治疗性抗体",
+      "无临床阶段SMAP1同类抗体"
+    ],
+    "interfaceFocus": "ArfGAP锌指外侧ARF-GTP结合界面",
+    "designMode": "胞内VHH探针设计",
+    "candidates": [
+      {
+        "target": "ARF1",
+        "rationale": "ARF1是SMAP1调控的核心小GTP酶之一，处于ARF依赖囊泡运输与膜蛋白分选通路中；其GTP/GDP循环直接决定膜交通输出。"
+      },
+      {
+        "target": "ARF6",
+        "rationale": "ARF6参与质膜内吞、肌动蛋白重塑及血小板膜动态调控，与SMAP1介导的ARF-GTP水解功能处于同一膜交通轴。"
+      },
+      {
+        "target": "AP2M1",
+        "rationale": "AP2M1为网格蛋白介导内吞适配复合体AP-2亚基，与ARF调控的受体内吞和膜货物分选过程功能相连。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

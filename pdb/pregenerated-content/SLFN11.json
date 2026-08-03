@@ -1,0 +1,65 @@
+{
+  "gene": "SLFN11",
+  "generatedAt": "2026-08-03T16:42:16.288Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SLFN11是核内DNA/RNA结合蛋白，主要介导复制压力条件下的不可逆复制阻滞，并影响肿瘤细胞对铂类、拓扑异构酶抑制剂和PARP抑制剂的敏感性。该蛋白缺乏经典胞外结构域、分泌信号肽或膜受体拓扑，天然抗体可及性显著受限，因此更适合作为细胞内靶向抗体片段或机制研究工具，而非常规体内阻断抗体。相比同属DNA损伤反应通路中更广泛必需的ATR、CHEK1等靶点，SLFN11具有更强的药物反应预测价值和肿瘤选择性分层意义，但成药优先级需受限于细胞内递送可行性。",
+    "mechanism": "设计抗体片段结合SLFN11 ATPase/核酸结合相关界面，干扰其与复制叉相关核酸底物及染色质复合物的结合，从而调节复制压力诱导的复制阻滞。",
+    "selectedEpitope": "优先锁定N端AAA-like ATPase结构域邻近核酸结合沟槽，避开高度保守核苷酸结合核心。",
+    "diseaseDirection": "肿瘤DNA损伤应答与复制压力",
+    "domain": "SLFN11含N端AAA-like ATPase区域、中央核酸结合结构域及C端Schlafen特征结构，整体为胞内核蛋白。",
+    "evidence": "SLFN11复制压力应答与药物敏感性证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与表达关联",
+      "UniProt Q7Z7L1蛋白功能与亚细胞定位注释",
+      "RCSB PDB 9ERF冷冻电镜结构数据",
+      "肿瘤药物敏感性与DNA损伤应答文献"
+    ],
+    "referenceEntries": "UniProt Q7Z7L1；RCSB PDB 9ERF；Open Targets SLFN11",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "AAA-like ATPase结构域外侧核酸结合沟槽",
+        "可能影响复制压力下核酸底物结合，兼具功能干预价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "中央Schlafen样核酸结合结构域表面环区",
+        "有利于获得构象识别抗体片段，并用于定位或功能探针",
+        "备选"
+      ],
+      [
+        "Site C",
+        "保守ATP/核苷酸结合核心及寡聚化界面",
+        "保守性高且可能影响蛋白折叠稳定性，需避免非特异性扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SLFN11为细胞内核蛋白，常规抗体体内可及性不足。建议限定为细胞内抗体、递送型VHH或结构功能验证试剂，并评估核定位与表达背景依赖性。",
+    "structurePrepZh": "以PDB 9ERF冷冻电镜模型为模板，保留抗原链A、B、T、U，检查缺失环区、核酸或辅因子占位，并进行界面暴露度与保守性标注。",
+    "structureRef": "RCSB PDB 9ERF，human SLFN11 cryo-EM structure，2.64 Å",
+    "antibodies": [
+      "商业抗SLFN11研究抗体EPR18545",
+      "商业抗SLFN11研究抗体D8C2M"
+    ],
+    "interfaceFocus": "ATPase外侧沟槽与核酸结合表面",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "PARP1",
+        "rationale": "PARP1参与DNA单链断裂修复并与PARP抑制剂敏感性直接相关，SLFN11阳性肿瘤常显示对PARP抑制剂更高敏感性。"
+      },
+      {
+        "target": "ATR",
+        "rationale": "ATR是复制压力应答核心激酶，感知复制叉停滞并激活下游检查点，与SLFN11介导的复制压力结局处于同一功能网络。"
+      },
+      {
+        "target": "CHEK1",
+        "rationale": "CHEK1是ATR下游检查点激酶，调控S/G2期复制压力耐受；其抑制与SLFN11状态共同影响DNA损伤药物反应。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "NCOR2",
+  "generatedAt": "2026-08-03T20:17:14.862Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NCOR2为核受体共抑制因子，参与甲状腺激素受体、视黄酸受体及PPAR/LXR等核受体复合物的转录抑制，因而可影响脂质代谢基因表达并与胆固醇、胆固醇酯及ApoA1相关表型存在遗传关联。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌形式，抗体抗原可及性不适合作为常规体内阻断靶点，更适合结构表征、细胞内递送抗体或研究级结合工具开发。相较于同通路中的LXR、PPAR或RXR配体结合域，NCOR2共抑制肽段与核受体沟槽的复合物结构分辨率较高，可为界面型抗体或VHH设计提供明确构象模板，但转化优先级低于可药性更成熟的核受体本体。",
+    "mechanism": "设计抗体结合NCOR2核受体相互作用基序，竞争性阻断其CoRNR box与核受体配体结合域共抑制因子沟槽的结合。",
+    "selectedEpitope": "优先覆盖NCOR2 CoRNR box α螺旋与核受体LBD沟槽接触面，保留疏水核心识别特征。",
+    "diseaseDirection": "脂质代谢与胆固醇表型",
+    "domain": "NCOR2含多个转录调控区及C端核受体相互作用结构域，5ZOO解析其共抑制肽段复合物。",
+    "evidence": "NCOR2脂质表型遗传关联与核受体共抑制结构证据",
+    "evidenceSources": [
+      "Open Targets Platform遗传关联与表型汇总",
+      "UniProt Q9Y618蛋白功能与结构域注释",
+      "RCSB PDB 5ZOO X射线晶体结构",
+      "核受体共抑制因子CoRNR box结构与功能文献"
+    ],
+    "referenceEntries": "UniProt Q9Y618；RCSB PDB 5ZOO；Open Targets NCOR2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CoRNR box α螺旋核受体结合界面",
+        "直接干预NCOR2与核受体LBD共抑制沟槽相互作用，机制判读清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "共抑制肽段两端溶剂暴露侧链区域",
+        "可增强结合选择性并降低对疏水核心构象的破坏",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守疏水Leu/Ile核心面",
+        "可能产生强竞争效应，但易交叉识别NCOR1相似CoRNR基序",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NCOR2为细胞内核蛋白，常规抗体体内可及性不足；设计需控制与NCOR1共抑制基序交叉反应，并优先用于细胞内递送或机制研究场景。",
+    "structurePrepZh": "以5ZOO中抗原链G、A为模板，保留共抑制肽段构象并补全缺失侧链；界面水分子和晶体接触需单独评估后再用于对接。",
+    "structureRef": "RCSB PDB 5ZOO，X-ray diffraction，1.85 Å",
+    "antibodies": [
+      "抗NCOR2研究级单克隆抗体",
+      "抗SMRT/NCOR2免疫检测抗体"
+    ],
+    "interfaceFocus": "CoRNR box α螺旋-核受体LBD沟槽",
+    "designMode": "细胞内界面阻断",
+    "candidates": [
+      {
+        "target": "NCOR1",
+        "rationale": "NCOR1与NCOR2同属核受体共抑制因子，使用CoRNR box介导与核受体LBD结合，可作为同一转录抑制轴中的功能参照靶点。"
+      },
+      {
+        "target": "NR1H3",
+        "rationale": "NR1H3编码LXRα，调控胆固醇外排与脂质代谢基因表达，并可与NCOR2共抑制复合物发生配体依赖性解离。"
+      },
+      {
+        "target": "PPARG",
+        "rationale": "PPARG为脂代谢核受体，未激活状态可招募NCOR2相关共抑制复合物，其通路与脂质表型和代谢性疾病密切相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

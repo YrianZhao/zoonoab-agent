@@ -1,0 +1,65 @@
+{
+  "gene": "HLA-DOA",
+  "generatedAt": "2026-08-03T19:49:11.985Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HLA-DOA编码HLA-DOα链，与HLA-DOB组成非经典MHC II分子HLA-DO，在内体/溶酶体抗原加工区室中结合并调节HLA-DM，从而影响HLA-DR肽交换与CD4 T细胞抗原呈递。其疾病关联集中于免疫介导性疾病、肿瘤免疫与神经退行性疾病相关炎症轴，提示抗原呈递稳态改变可能参与病理免疫激活。HLA-DO为膜结合MHC II样异二聚体，α1/α2胞外结构域具备抗体可及性，但生理定位以内体为主，表面可及性需按细胞类型验证。相较泛化阻断HLA-DR或HLA-DM，HLA-DOA具有更偏向B细胞/抗原呈递细胞调节节点的优先级优势，可降低广泛抑制MHC II呈递的风险。",
+    "mechanism": "抗体优先阻断HLA-DOαβ异二聚体与HLA-DM的结合界面，解除或重塑HLA-DO对HLA-DM介导HLA-DR肽交换的调节作用。",
+    "selectedEpitope": "优先锁定HLA-DOα1结构域靠近HLA-DM接触面的α螺旋与β片层边缘界面。",
+    "diseaseDirection": "抗原呈递与免疫炎症疾病",
+    "domain": "HLA-DOα包含信号肽、α1/α2胞外MHC II样结构域、跨膜区和短胞质尾。",
+    "evidence": "HLA-DOA抗原呈递调控与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P06340蛋白功能与结构域注释",
+      "RCSB PDB 4I0P晶体结构记录",
+      "MHC II抗原加工与HLA-DM/HLA-DO机制文献"
+    ],
+    "referenceEntries": "UniProt:P06340；RCSB PDB:4I0P；HGNC:HLA-DOA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "α1结构域HLA-DM接触邻近面",
+        "可直接干预HLA-DO/HLA-DM复合体形成，机制指向性最强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "α1-α2结构域外侧稳定构象面",
+        "适合构象锁定或检测型抗体设计，降低直接扰动MHC样折叠风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "α2近膜端及跨膜邻近区域",
+        "可能受膜距离、糖基化与复合体装配影响，开发可及性不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HLA-DO主要定位于内体抗原加工区室，细胞表面暴露水平可能有限；需优先验证B细胞、树突细胞及病灶APC上的可及性，并避免交叉结合经典HLA-II分子。",
+    "structurePrepZh": "以4I0P晶体结构为模板，保留HLA-DOαβ与HLA-DM复合体界面信息，补建缺失环区并评估糖基化位点和异二聚体装配稳定性。",
+    "structureRef": "RCSB PDB 4I0P，HLA-DM与HLA-DO复合体晶体结构",
+    "antibodies": [
+      "Mags.DO5",
+      "DOB.L1"
+    ],
+    "interfaceFocus": "HLA-DOα1/β1与HLA-DM接触界面",
+    "designMode": "界面阻断型抗体设计",
+    "candidates": [
+      {
+        "target": "HLA-DOB",
+        "rationale": "HLA-DOB编码HLA-DOβ链，是HLA-DO异二聚体的必需组成部分；靶向该链可同样影响HLA-DO对HLA-DM的调节功能。"
+      },
+      {
+        "target": "HLA-DMA",
+        "rationale": "HLA-DMA编码HLA-DMα链，HLA-DM直接催化MHC II分子肽交换；其与HLA-DO处于同一内体抗原装载调控轴。"
+      },
+      {
+        "target": "HLA-DMB",
+        "rationale": "HLA-DMB编码HLA-DMβ链，是HLA-DM功能性异二聚体的重要组成部分；调节该节点可改变HLA-DR肽编辑效率。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

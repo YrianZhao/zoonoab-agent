@@ -1,0 +1,65 @@
+{
+  "gene": "RPS16",
+  "generatedAt": "2026-08-03T21:06:42.182Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RPS16 是40S核糖体小亚基组成蛋白，参与mRNA解码平台稳定与翻译起始复合体装配，其疾病关联主要反映肌营养不良、囊性纤维化及病毒感染中的宿主翻译依赖性，而非经典胞外受体驱动机制。该蛋白定位于细胞质和核糖体颗粒内部，缺乏分泌信号肽、跨膜区和天然胞外结构域，完整抗体对天然抗原的可及性明显受限。相较于病毒表面蛋白、细胞因子或膜受体类靶点，RPS16作为治疗性抗体主靶点优先级较低，更适合作为细胞内翻译复合体结构研究或递送型胞内结合分子探索对象。",
+    "mechanism": "以胞内递送型结合分子阻断RPS16与18S rRNA及相邻40S蛋白界面的稳定接触，干扰40S小亚基装配和翻译起始复合体形成。",
+    "selectedEpitope": "优先评估暴露于40S小亚基表面的RPS16 C端α螺旋及邻近rRNA接触界面，避免深埋核糖体核心区域。",
+    "diseaseDirection": "宿主翻译依赖性病毒感染与肌病",
+    "domain": "RPS16为小型碱性核糖体蛋白，含保守RPS16折叠，主要通过α螺旋和碱性环区结合18S rRNA。",
+    "evidence": "RPS16核糖体结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P62249蛋白定位与功能注释",
+      "RCSB PDB 5VYC人源核糖体结构",
+      "Reactome真核翻译与核糖体装配通路"
+    ],
+    "referenceEntries": "UniProt:P62249; RCSB PDB:5VYC; Reactome translation",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端α螺旋外露面及相邻碱性环区",
+        "可能影响RPS16在40S表面的rRNA稳定接触，结构可达性相对较高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "18S rRNA结合沟槽边缘残基簇",
+        "可用于验证核糖体装配干预，但需控制与核酸广泛非特异结合风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "埋藏于40S核心的保守疏水面",
+        "结构保守且天然复合体内可及性低，易产生无效结合或装配依赖偏差",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RPS16为胞内核糖体蛋白，常规抗体难以进入细胞并接触天然复合体；建议限定为胞内递送、intrabody或结构探针设计，并进行细胞毒性评估。",
+    "structurePrepZh": "5VYC分辨率为6.0 Å，应采用核糖体复合体坐标进行链归属校验，结合AlphaFold模型与同源高分辨率核糖体结构优化局部表位。",
+    "structureRef": "PDB 5VYC human ribosome X-ray structure, 6.0 Å",
+    "antibodies": [
+      "Anti-RPS16 research antibody",
+      "Anti-ribosomal protein S16 antibody"
+    ],
+    "interfaceFocus": "RPS16-18S rRNA接触面与40S表面外露螺旋",
+    "designMode": "胞内递送型结合分子",
+    "candidates": [
+      {
+        "target": "RPS6",
+        "rationale": "RPS6同属40S小亚基蛋白，并处于mTOR调控的翻译输出节点；其磷酸化状态与生长信号和应激翻译调控密切相关。"
+      },
+      {
+        "target": "EIF4E",
+        "rationale": "EIF4E介导mRNA 5' cap识别，是翻译起始复合体形成的关键限制因子；在病毒感染和异常蛋白合成依赖疾病中具有明确通路相关性。"
+      },
+      {
+        "target": "EIF2S1",
+        "rationale": "EIF2S1是eIF2复合体α亚基，参与起始tRNA递送和整合应激反应；其磷酸化调控宿主翻译抑制及病毒复制环境。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

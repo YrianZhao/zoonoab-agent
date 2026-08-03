@@ -1,0 +1,65 @@
+{
+  "gene": "MAP4K4",
+  "generatedAt": "2026-08-03T14:03:11.767Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAP4K4是STE20家族丝氨酸/苏氨酸激酶，可通过HPK/GCK样MAP4K模块连接炎症应激、JNK/p38 MAPK与细胞迁移程序，在神经退行性疾病及白细胞数量表型中具有遗传与功能关联。该蛋白主要为胞内激酶，抗原天然可及性弱，因此抗体设计应限定于结构验证、细胞内递送抗体或研究级功能阻断场景。相较JNK、p38等下游广泛节点，MAP4K4位于上游支路，具有更高通路选择性，但因缺乏胞外结构域，临床常规抗体优先级低于膜受体或分泌因子靶点。",
+    "mechanism": "设计抗体阻断MAP4K4激酶N叶与C叶之间ATP结合裂隙，干扰ATP及底物肽进入催化位点，从而抑制下游JNK/p38 MAPK磷酸化输出。",
+    "selectedEpitope": "优先锁定激酶结构域铰链区与ATP口袋边缘构象表位，避免仅覆盖高保守催化残基。",
+    "diseaseDirection": "神经退行性与炎症免疫通路",
+    "domain": "MAP4K4含N端蛋白激酶结构域及C端CNH调控结构域，4U3Y解析其催化激酶域。",
+    "evidence": "MAP4K4疾病遗传关联与激酶结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB O95819功能与结构域注释",
+      "RCSB PDB 4U3Y晶体结构记录",
+      "Reactome/KEGG MAPK与炎症应激通路注释"
+    ],
+    "referenceEntries": "UniProt O95819；RCSB PDB 4U3Y；Open Targets MAP4K4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶域铰链区及ATP结合裂隙边缘",
+        "可直接限制ATP定位并稳定非活化构象",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N叶αC螺旋与活化环邻近界面",
+        "有望干扰催化构象转换及底物进入",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C叶保守催化环与DFG基序周边",
+        "保守性高，易产生MAP4K家族交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAP4K4缺乏胞外可及抗原表面，常规治疗抗体成药性受限；应优先用于结构探针、胞内递送抗体或外源化表位验证，并严格评估MAP4K家族选择性。",
+    "structurePrepZh": "以4U3Y的A、B链激酶域为模板，去除结晶配体与非关键水分子，补全缺失侧链，保留ATP口袋、铰链区及活化环构象用于表位建模。",
+    "structureRef": "RCSB PDB 4U3Y，X射线晶体结构，1.45 Å",
+    "antibodies": [
+      "研究级anti-MAP4K4 monoclonal antibody",
+      "研究级anti-HG Kinase/MAP4K4 antibody"
+    ],
+    "interfaceFocus": "ATP口袋铰链区、αC螺旋、活化环入口",
+    "designMode": "胞内激酶构象阻断",
+    "candidates": [
+      {
+        "target": "MAPK8",
+        "rationale": "MAPK8编码JNK1，是MAP4K4上游应激信号可汇入的下游MAPK节点，与神经炎症和细胞死亡程序相关。其作为通路读出节点适合用于药效验证。"
+      },
+      {
+        "target": "MAP2K4",
+        "rationale": "MAP2K4位于JNK/p38级联中游，可接受上游MAP4K及MAP3K信号并磷酸化JNK或p38通路成员。该靶点有助于解析MAP4K4抑制后的级联传递效应。"
+      },
+      {
+        "target": "MAPK14",
+        "rationale": "MAPK14编码p38α，是炎症应激与细胞因子反应的重要MAPK终端激酶。其与白细胞及炎症表型关联明确，可作为同通路替代干预节点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "DOCK9",
+  "generatedAt": "2026-08-03T18:38:46.104Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DOCK9 是胞内 Rho GTPase 鸟嘌呤核苷酸交换因子，主要通过 DHR2 催化结构域激活 CDC42，影响细胞骨架重塑、细胞迁移及发育相关形态建成。Open Targets 关联信号集中于身高、骨量超声、足跟骨密度及体成分等数量性状，提示其更接近骨骼生长和体型调控遗传网络，而非经典抗体可直接阻断的细胞外疾病轴。DOCK9 缺乏分泌型或跨膜胞外结构域，抗原天然可及性显著弱于受体、配体或分泌因子；因此其作为抗体主靶点的优先级低于同通路中具备胞外可及性的上游受体或配体，适宜定位为机制研究型胞内抗原或递送型抗体开发对象。",
+    "mechanism": "设计目标为干预 DOCK9 DHR2 催化面与 CDC42 的结合，阻断 CDC42 GDP-GTP 交换复合物形成，从而降低 CDC42 依赖的肌动蛋白重排信号。",
+    "selectedEpitope": "优先覆盖 DHR2 结构域 CDC42 结合沟槽及催化界面周边螺旋，避免仅选择远端非功能表面。",
+    "diseaseDirection": "骨骼发育与体成分遗传性状",
+    "domain": "DOCK9 含 DHR1 膜脂结合区与 DHR2 GEF 催化区，2WM9 对应催化相关结构片段。",
+    "evidence": "DOCK9-CDC42 轴与骨量体型性状证据包",
+    "evidenceSources": [
+      "Open Targets Platform 遗传关联数据",
+      "UniProt Q9BZ29 蛋白功能注释",
+      "RCSB PDB 2WM9 X射线晶体结构",
+      "Rho GTPase/DOCK 家族 GEF 机制文献"
+    ],
+    "referenceEntries": "UniProt Q9BZ29；RCSB PDB 2WM9；Open Targets DOCK9",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DHR2 催化结构域 CDC42 结合沟槽",
+        "直接干预 DOCK9-CDC42 复合物形成，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DHR2 催化核心邻近调节螺旋面",
+        "可能通过构象限制削弱 GEF 催化效率，适合作为别构表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离 GTPase 结合面的暴露环区",
+        "免疫原性可能较高但功能阻断价值有限，需避免非机制性结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DOCK9 为胞内蛋白，常规抗体难以接触天然抗原；应标注细胞递送、内抗体或降解抗体策略风险，并优先验证 CDC42 结合界面依赖性。",
+    "structurePrepZh": "以 2WM9 晶体结构为模板，保留抗原链 A/B 的催化片段，补全缺失环区并评估二聚体晶体接触对表位暴露的影响。",
+    "structureRef": "RCSB PDB 2WM9，X-ray diffraction，2.2 Å",
+    "antibodies": [
+      "暂无获批 DOCK9 靶向治疗性抗体",
+      "暂无临床阶段 DOCK9 功能阻断抗体"
+    ],
+    "interfaceFocus": "DHR2-CDC42 结合沟槽与催化交换界面",
+    "designMode": "胞内界面阻断型",
+    "candidates": [
+      {
+        "target": "CDC42",
+        "rationale": "CDC42 是 DOCK9 的直接 Rho GTPase 底物，位于同一细胞骨架调控轴；抑制其效应器结合可更直接干预下游肌动蛋白重排。"
+      },
+      {
+        "target": "FGFR3",
+        "rationale": "FGFR3 是骨骼生长板软骨细胞增殖与分化的关键膜受体，具备胞外免疫球蛋白样结构域；与身高和骨发育表型的疾病方向高度一致，抗体可及性优于 DOCK9。"
+      },
+      {
+        "target": "LRP5",
+        "rationale": "LRP5 是 Wnt/β-catenin 骨量调控通路的细胞表面共受体，与骨密度表型具有明确遗传和功能关联；其胞外 β-propeller/EGF 重复结构域适合抗体表位设计。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

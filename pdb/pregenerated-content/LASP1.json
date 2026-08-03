@@ -1,0 +1,65 @@
+{
+  "gene": "LASP1",
+  "generatedAt": "2026-08-03T13:49:51.769Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "LASP1 是细胞内肌动蛋白结合支架蛋白，参与黏附斑、伪足形成及白血病细胞迁移相关过程，在急性髓系白血病等血液系统表型中具有一定遗传与表达关联。该蛋白不具备分泌蛋白、膜受体或稳定胞外结构域特征，天然抗原可及性不利于常规阻断型抗体开发。相较于 CD33、FLT3、KIT 等同属 AML 相关通路且具备细胞表面可及性的靶点，LASP1 更适合作为胞内功能验证或细胞内递送抗体研究对象，主靶点优先级需谨慎评估。",
+    "mechanism": "通过结合 LASP1 C 端 SH3 结构域的多脯氨酸配体结合沟槽，干扰其与 zyxin、VASP 等黏附斑蛋白的相互作用，削弱肌动蛋白重塑与白血病细胞迁移能力。",
+    "selectedEpitope": "优先覆盖 SH3 结构域 RT-loop、n-Src loop 与疏水配体沟槽，模拟阻断 PxxP 配体结合界面。",
+    "diseaseDirection": "急性髓系白血病与血细胞表型",
+    "domain": "LASP1 含 N 端 LIM 结构域、两段 nebulin-like actin-binding repeats 及 C 端 SH3 结构域。",
+    "evidence": "LASP1-AML迁移轴与SH3界面结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q14847 蛋白功能与结构域注释",
+      "RCSB PDB 3I35 X-ray SH3结构",
+      "AML细胞迁移与黏附斑重塑相关文献"
+    ],
+    "referenceEntries": "UniProt Q14847；RCSB PDB 3I35；Open Targets LASP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端SH3结构域PxxP配体结合沟槽",
+        "直接阻断LASP1与zyxin/VASP等多脯氨酸配体结合",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SH3结构域RT-loop与n-Src loop外侧",
+        "影响配体识别几何构象并保留抗体结合可塑性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端LIM结构域锌指界面",
+        "可能影响蛋白互作但结构可及性与构象依赖性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "LASP1 为胞内蛋白，常规抗体难以到达天然作用位点；建议限定为胞内递送抗体、intrabody 或降解偶联策略，并避免宣称胞外阻断活性。",
+    "structurePrepZh": "以PDB 3I35链A为SH3结构模板，补全缺失侧链、校正质子化状态，围绕配体结合沟槽定义可设计界面并排除晶体接触区域。",
+    "structureRef": "RCSB PDB 3I35，human LASP1 SH3 domain，1.4 Å X-ray",
+    "antibodies": [
+      "无已获批LASP1治疗性抗体",
+      "研究级抗LASP1单克隆抗体"
+    ],
+    "interfaceFocus": "SH3多脯氨酸配体结合沟槽",
+    "designMode": "胞内阻断型抗体",
+    "candidates": [
+      {
+        "target": "FLT3",
+        "rationale": "FLT3 是 AML 中经典细胞表面受体酪氨酸激酶，突变或过度活化驱动增殖与存活信号，抗原可及性显著优于胞内 LASP1。"
+      },
+      {
+        "target": "KIT",
+        "rationale": "KIT 参与造血祖细胞增殖和 AML 亚型中的异常酪氨酸激酶信号，胞外免疫球蛋白样结构域适合抗体识别与配体阻断。"
+      },
+      {
+        "target": "CD33",
+        "rationale": "CD33 是髓系白血病细胞表面分化抗原，已被抗体偶联药物验证为 AML 可成药靶点，适合与LASP1相关髓系疾病方向共同评估。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

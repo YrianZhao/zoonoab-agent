@@ -1,0 +1,65 @@
+{
+  "gene": "PSMD7",
+  "generatedAt": "2026-08-03T15:40:33.198Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PSMD7是26S蛋白酶体19S调节颗粒lid亚复合体组分，参与泛素化底物识别后去泛素化与底物转运过程；浆细胞骨髓瘤和套细胞淋巴瘤对蛋白稳态压力高度敏感，蛋白酶体功能受抑可诱导未折叠蛋白应激和凋亡。该蛋白主要定位于细胞质和细胞核内，缺乏胞外结构域或分泌特征，常规完整抗体的天然抗原可及性较弱，更适合作为细胞内递送抗体片段或研究型结合分子靶点。相较PSMB5等催化β亚基，PSMD7位于19S lid结构界面，具有调节性而非催化位点干预价值，可用于探索非催化蛋白酶体抑制策略，但开发优先级低于可药性已验证的催化亚基。",
+    "mechanism": "设计分子应阻断PSMD7与PSMD14/RPN11及相邻lid亚基的装配界面，干扰19S lid稳定性，削弱泛素化底物去泛素化和进入20S核心颗粒的效率。",
+    "selectedEpitope": "优先覆盖PCI结构域α螺旋束中与PSMD14邻近的lid装配界面，避免选择高度埋藏核心。",
+    "diseaseDirection": "血液肿瘤蛋白酶体依赖",
+    "domain": "PSMD7含N端螺旋区及C端PCI结构域，作为19S lid支架亚基参与多亚基复合体组装。",
+    "evidence": "PSMD7蛋白酶体结构与血液肿瘤关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P51665功能与亚细胞定位注释",
+      "RCSB PDB 2O95晶体结构记录",
+      "26S蛋白酶体lid亚复合体结构与功能研究"
+    ],
+    "referenceEntries": "UniProt:P51665；RCSB PDB:2O95；Open Targets:PSMD7",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PCI结构域外露α螺旋束及PSMD14邻近装配面",
+        "干扰19S lid亚复合体稳定性并影响去泛素化耦联",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端外露螺旋区与相邻lid亚基接触边缘",
+        "提供亚基选择性结合窗口，适合构建构象识别片段",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PCI结构域疏水核心和复合体埋藏界面",
+        "结构保守且可及性差，易影响折叠判读而非有效阻断",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PSMD7为细胞内蛋白酶体亚基，常规抗体难以进入作用位点；建议采用细胞内递送Fab、VHH或降解耦联验证，并严格评估全局蛋白酶体毒性。",
+    "structurePrepZh": "以2O95链A、B为实验结构模板，补全缺失侧链并保留生物学装配关系；表位筛选需映射19S lid同源复合体界面以排除晶体接触伪影。",
+    "structureRef": "RCSB PDB 2O95，X-ray diffraction，1.95 Å",
+    "antibodies": [
+      "抗PSMD7研究用单克隆抗体",
+      "抗26S蛋白酶体亚基研究抗体"
+    ],
+    "interfaceFocus": "PCI螺旋束与PSMD14邻近装配界面",
+    "designMode": "细胞内抗体片段",
+    "candidates": [
+      {
+        "target": "PSMB5",
+        "rationale": "PSMB5编码20S核心颗粒β5催化亚基，是硼替佐米、卡非佐米等药物验证的蛋白酶体抑制节点；在浆细胞骨髓瘤中具有更直接的致死性蛋白稳态压力关联。"
+      },
+      {
+        "target": "PSMD14",
+        "rationale": "PSMD14/RPN11是19S调节颗粒金属蛋白酶去泛素化亚基，直接切除底物泛素链；其功能与PSMD7所在lid装配及底物转运步骤相邻。"
+      },
+      {
+        "target": "PSMC5",
+        "rationale": "PSMC5属于19S base AAA ATPase环，驱动底物展开并转运进入20S核心颗粒；阻断该节点可与lid亚基干预共同影响蛋白酶体依赖性肿瘤细胞存活。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

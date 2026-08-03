@@ -1,0 +1,65 @@
+{
+  "gene": "HMBOX1",
+  "generatedAt": "2026-08-03T13:14:27.899Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HMBOX1为核内同源盒转录因子，PDB 4J19对应其HNF1_N样二聚化结构域，主要参与转录调控而非经典分泌或膜受体信号。Open Targets显示其与血脂表型和皮肤相关表型存在遗传关联，但目前缺乏明确可由抗体直接阻断的胞外疾病通路机制。该蛋白定位以核内为主，抗原可及性弱于PCSK9、ANGPTL3等分泌型血脂靶点，因此作为常规治疗性抗体主靶点优先级较低，更适合结构生物学验证或细胞内递送抗体探索。",
+    "mechanism": "设计目标为干扰HMBOX1二聚化结构域介导的同源或异源复合体装配，降低其对DNA结合调控模块的构象稳定化作用。",
+    "selectedEpitope": "优先覆盖4J19 HNF1_N样二聚化界面的疏水核心与相邻α螺旋接触面。",
+    "diseaseDirection": "血脂代谢遗传关联探索",
+    "domain": "HMBOX1含N端HNF1_N样二聚化区、homeobox DNA结合域及C端转录调控相关区域。",
+    "evidence": "HMBOX1结构域与血脂表型关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform遗传关联与表型关联数据",
+      "UniProt Q6NT76蛋白定位与结构域注释",
+      "RCSB PDB 4J19 X射线晶体结构",
+      "InterPro/Pfam同源盒与HNF1_N样结构域注释"
+    ],
+    "referenceEntries": "UniProt Q6NT76；RCSB PDB 4J19；Open Targets HMBOX1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "HNF1_N样二聚化结构域中央α螺旋界面",
+        "可直接干扰二聚体装配并影响转录复合体稳定性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "二聚化结构域外侧暴露螺旋与环区",
+        "利于获得结合抗体并作为结构探针验证构象状态",
+        "备选"
+      ],
+      [
+        "Site C",
+        "homeobox DNA结合域预测DNA接触面",
+        "可能影响DNA识别，但缺少4J19实验证据且存在核内递送限制",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HMBOX1为核内转录因子，常规IgG难以进入细胞核；应优先定位为细胞内抗体、递送型VHH或研究级结构探针，并避免宣称胞外阻断机制。",
+    "structurePrepZh": "以4J19链A-D构建二聚化单元，补全缺失侧链并评估晶体接触；表位筛选需区分生物学二聚界面与晶体堆积界面。",
+    "structureRef": "RCSB PDB 4J19；2.9 Å X-ray HMBOX1结构",
+    "antibodies": [
+      "暂无获批HMBOX1治疗性抗体",
+      "暂无临床阶段HMBOX1阻断抗体"
+    ],
+    "interfaceFocus": "HNF1_N样二聚化螺旋束界面",
+    "designMode": "细胞内VHH探索",
+    "candidates": [
+      {
+        "target": "PCSK9",
+        "rationale": "PCSK9为分泌蛋白，直接结合LDLR并促进其溶酶体降解，是高胆固醇血症通路中抗体可及性和临床验证度更高的靶点。"
+      },
+      {
+        "target": "ANGPTL3",
+        "rationale": "ANGPTL3为肝源性分泌因子，可抑制LPL和内皮脂肪酶，阻断该通路可降低甘油三酯及LDL-C，适合抗体中和策略。"
+      },
+      {
+        "target": "APOC3",
+        "rationale": "APOC3参与抑制脂蛋白脂肪酶并延缓富甘油三酯脂蛋白清除，与血脂异常通路一致，且循环可及性优于核内HMBOX1。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

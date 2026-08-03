@@ -1,0 +1,65 @@
+{
+  "gene": "STAT6",
+  "generatedAt": "2026-08-03T16:58:28.155Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "STAT6 是 IL-4/IL-13 介导的 Th2 炎症与 IgE 类转换的关键转录因子，其异常激活与高 IgE 综合征、哮喘及过敏性疾病的病理基础高度一致。该蛋白属于细胞内核转录因子，不具备胞外可及性，因此不适合作为传统中和型膜抗体靶点，但其 SH2 结构域与磷酸化 Y641 位点构成了明确的药理干预接口，适合发展胞内递送抗体或胞内结合片段。相较同通路中的 IL4RA、IL13RA1/IL13RA2 等上游受体，STAT6 更直接位于信号转录终端，具有阻断终末效应、覆盖多配体输入的优先级优势。",
+    "mechanism": "结合 STAT6 SH2 结构域，阻断其对 pY641 的识别及二聚化，抑制核转位后对靶基因启动子的转录激活。",
+    "selectedEpitope": "优先覆盖 SH2 口袋及 pY641 邻近二聚化界面，避免 DNA 结合区以降低非特异转录干扰。",
+    "diseaseDirection": "Th2炎症/哮喘/高IgE",
+    "domain": "含 N 端 DNA 结合区、coiled-coil、SH2 与 C 端转录激活区；干预重点为 SH2-pY641 模块。",
+    "evidence": "STAT6疾病关联与结构干预证据包",
+    "evidenceSources": [
+      "Open Targets Platform",
+      "UniProt P42226",
+      "RCSB PDB 1OJ5",
+      "文献：STAT6信号与Th2炎症/IgE类转换研究"
+    ],
+    "referenceEntries": "UniProt: P42226; PDB: 1OJ5; Open Targets: STAT6",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SH2结构域 pY641 识别口袋",
+        "直接阻断磷酸化依赖二聚化，最具机制确定性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SH2-螺旋连接区与二聚化边界",
+        "降低构象重排与配对装配效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "DNA结合区表面",
+        "可能削弱核内结合，但选择性与可开发性较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "STAT6 为胞内蛋白，常规全长抗体难以获得有效胞内暴露；需优先考虑细胞穿透递送、VHH 或抗体片段工程。DNA 结合区保守性较高，易带来转录因子家族交叉反应，应避免以其作为首选表位。",
+    "structurePrepZh": "建议以 1OJ5 为核心模板，补全缺失环区并保留 SH2 核心构象；结合磷酸化态建模评估 pY641 识别面。若用于抗体设计，应进一步建立表位可达性与胞内稳定性模型。",
+    "structureRef": "RCSB PDB 1OJ5；STAT6 SH2 结构研究文献",
+    "antibodies": [
+      "anti-STAT6 research antibodies",
+      "phospho-STAT6 (Y641) antibodies"
+    ],
+    "interfaceFocus": "SH2口袋、pY641邻域与二聚化接触面",
+    "designMode": "胞内阻断型",
+    "candidates": [
+      {
+        "target": "IL4RA",
+        "rationale": "IL-4 受体链位于 STAT6 上游，是驱动 STAT6 磷酸化的关键入口，且为胞外膜蛋白，抗体可及性显著优于 STAT6。"
+      },
+      {
+        "target": "IL13RA1",
+        "rationale": "IL-13 信号可通过该受体激活 STAT6，阻断其配体结合可降低 STAT6 依赖性 Th2 转录程序。"
+      },
+      {
+        "target": "JAK1",
+        "rationale": "JAK1 负责 IL-4/IL-13 受体复合体下游 STAT6 的酪氨酸磷酸化，位于同一路径上游且具明确酶学可药性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

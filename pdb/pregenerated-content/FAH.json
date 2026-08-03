@@ -1,0 +1,65 @@
+{
+  "gene": "FAH",
+  "generatedAt": "2026-08-03T12:26:27.994Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FAH 是酪氨酸分解代谢末端酶，催化 fumarylacetoacetate 水解为 fumarate 与 acetoacetate；其缺陷导致 fumarylacetoacetate 与 succinylacetone 蓄积，是 I 型酪氨酸血症的核心致病环节。该蛋白主要定位于胞质并以可溶性酶形式存在，缺乏天然胞外结构域，因此抗体可及性低于膜受体或分泌因子，更适合作为胞内酶学干预或结构生物学验证靶点。相较上游酶 TAT、HPD、HGD，FAH 位于毒性代谢物清除终端，疾病遗传因果性最直接，Open Targets 关联强度支持其作为通路优先验证节点。",
+    "mechanism": "抗体设计以阻断 FAH 催化口袋周边构象稳定界面为核心，干扰 fumarylacetoacetate 在金属依赖性活性中心的定位与水解反应。",
+    "selectedEpitope": "优先覆盖 FAH α/β 水解酶催化核心中活性中心入口及金属结合邻近环区。",
+    "diseaseDirection": "I型酪氨酸血症代谢通路",
+    "domain": "FAH 为胞质同源二聚体酶，含 α/β 水解酶折叠催化核心及金属依赖性活性中心。",
+    "evidence": "FAH遗传缺陷与酪氨酸分解代谢证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProtKB P16930 功能与定位注释",
+      "RCSB PDB 9SX4 X射线晶体结构",
+      "OMIM与Orphanet I型酪氨酸血症遗传证据"
+    ],
+    "referenceEntries": "UniProtKB: P16930; RCSB PDB: 9SX4; Open Targets: FAH",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化核心活性中心入口与金属结合邻近环区",
+        "可能直接干扰底物进入及催化构象稳定，最适合功能阻断验证",
+        "优先"
+      ],
+      [
+        "Site B",
+        "二聚体界面附近保守α螺旋与β折叠接触面",
+        "可用于评估二聚体稳定性对酶活的影响，但需避免非特异聚集",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离活性中心的外周溶剂暴露环区",
+        "适合结构捕获或检测抗体开发，功能调节价值有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FAH 为胞内可溶酶，常规抗体体内可及性受限；设计宜聚焦体外酶学抑制、细胞内递送格式或结构稳定化用途。",
+    "structurePrepZh": "采用 9SX4 A/B 链构建同源二聚体模型，保留金属离子与活性中心构象，去除结晶水后进行界面可及性评估。",
+    "structureRef": "Human FAH crystal structure, RCSB PDB 9SX4, 1.42 Å",
+    "antibodies": [
+      "暂无已批准FAH靶向治疗性抗体",
+      "研究级抗FAH检测抗体"
+    ],
+    "interfaceFocus": "活性中心入口、金属结合邻近环区及二聚体界面",
+    "designMode": "胞内酶阻断验证",
+    "candidates": [
+      {
+        "target": "HPD",
+        "rationale": "HPD 位于酪氨酸分解代谢上游，催化 4-hydroxyphenylpyruvate 向 homogentisate 转化；其药理抑制可减少下游毒性代谢物流入。"
+      },
+      {
+        "target": "TAT",
+        "rationale": "TAT 催化酪氨酸转氨生成 4-hydroxyphenylpyruvate，是该分解通路入口步骤；调节该节点可降低通路底物负荷。"
+      },
+      {
+        "target": "GSTZ1",
+        "rationale": "GSTZ1/MAAI 参与 maleylacetoacetate 向 fumarylacetoacetate 的异构化，紧邻 FAH 上游；其功能状态直接影响 FAH 底物生成。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

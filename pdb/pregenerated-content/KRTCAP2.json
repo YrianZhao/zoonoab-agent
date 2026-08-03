@@ -1,0 +1,65 @@
+{
+  "gene": "KRTCAP2",
+  "generatedAt": "2026-08-03T13:47:37.452Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KRTCAP2为膜相关角质形成细胞相关蛋白，当前疾病关联主要来自遗传与表型关联，涉及代谢综合征、肿瘤及血液学性状，但尚缺乏明确的配体-受体轴或可验证的致病通路定位。该蛋白预测含跨膜区，抗原可及性可能受胞外环长度和膜拓扑限制，较分泌因子或经典膜受体的抗体可开发性弱。其Open Targets最高关联得分较低，且相较INSR、ADIPOQ、LEP等代谢通路靶点缺少机制性干预证据，因此仅适合作为探索性低优先级靶点。",
+    "mechanism": "优先验证抗体是否结合KRTCAP2胞外可及环区并改变其膜复合物相互作用；在缺乏已知配体的条件下，不宜预设阻断性药效机制。",
+    "selectedEpitope": "围绕预测胞外环与跨膜区外侧边界设计表位，避开膜埋藏螺旋核心。",
+    "diseaseDirection": "代谢综合征探索方向",
+    "domain": "小型膜相关蛋白，含预测跨膜螺旋及短胞外/胞质环区，功能结构域注释有限。",
+    "evidence": "KRTCAP2疾病遗传关联与膜结构可及性证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q8N6L1蛋白拓扑与功能注释",
+      "RCSB PDB 9N9J电子显微镜结构记录",
+      "AlphaFold/结构模型辅助膜拓扑评估"
+    ],
+    "referenceEntries": "UniProt: Q8N6L1; RCSB PDB: 9N9J; Open Targets: KRTCAP2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "预测胞外环区",
+        "保留膜外可及性，适合筛选结合型抗体并建立靶点占位检测",
+        "优先"
+      ],
+      [
+        "Site B",
+        "跨膜螺旋胞外边界",
+        "可能影响局部膜蛋白复合物构象，但需验证真实膜拓扑",
+        "备选"
+      ],
+      [
+        "Site C",
+        "跨膜螺旋疏水核心",
+        "膜埋藏区域抗体难以接近，易产生非生理性构象表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为疾病关联分数低、机制链条不清及胞外表位有限。建议先完成膜拓扑、细胞表面表达和抗体结合可及性验证，再进入功能筛选。",
+    "structurePrepZh": "以PDB 9N9J电子显微镜结构为参考，结合UniProt拓扑注释校正膜平面，去除低置信柔性片段并标注潜在胞外暴露残基。",
+    "structureRef": "RCSB PDB 9N9J, EM structure, 3.2 Å; UniProt Q8N6L1",
+    "antibodies": [
+      "暂无KRTCAP2获批或临床阶段抗体",
+      "暂无公开验证的KRTCAP2阻断型抗体"
+    ],
+    "interfaceFocus": "预测胞外环及跨膜外侧边界",
+    "designMode": "探索性结合抗体设计",
+    "candidates": [
+      {
+        "target": "INSR",
+        "rationale": "INSR是胰岛素信号通路核心受体，直接介导胰岛素结合后的受体自磷酸化，与代谢综合征和MODY相关表型存在明确机制联系。"
+      },
+      {
+        "target": "ADIPOQ",
+        "rationale": "ADIPOQ编码脂联素，参与AMPK与PPARα相关代谢调节，其循环分泌蛋白属性提供较高抗原可及性，适合作为代谢综合征通路候选靶点。"
+      },
+      {
+        "target": "LEP",
+        "rationale": "LEP编码瘦素，作用于LEPR调控能量摄入、脂肪量和胰岛素敏感性，与肥胖及代谢综合征病理轴高度相关。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

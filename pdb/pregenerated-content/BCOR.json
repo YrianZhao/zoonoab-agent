@@ -1,0 +1,65 @@
+{
+  "gene": "BCOR",
+  "generatedAt": "2026-08-03T10:48:47.895Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BCOR 是核内 BCL6 共抑制复合体组分，通过与 BCL6、PCGF1/PRC1.1 及表观遗传调控因子协同抑制靶基因转录，BCOR 失活或重排与急性髓系白血病、子宫内膜癌及眼发育综合征相关。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌特征，抗体抗原可及性不适合常规体内阻断型抗体，更适合结构验证、细胞内递送抗体或降解偶联研究。相较于 BCL6、CD33 等可及性更高的同通路靶点，BCOR 的优先级主要来自明确遗传驱动证据和 4HPL 结构支持，但开发优先级应低于膜表面或分泌型靶点。",
+    "mechanism": "设计抗体应阻断 BCOR BCL6-binding domain 与 BCL6 BTB 结构域侧沟结合，干扰 BCL6 招募 BCOR 共抑制复合体并解除靶基因转录抑制。",
+    "selectedEpitope": "优先覆盖 4HPL 中 BCOR BBD α螺旋与 BCL6 BTB 侧沟接触界面。",
+    "diseaseDirection": "血液肿瘤与发育遗传病",
+    "domain": "BCOR 含 N 端 BCL6-binding domain、ANK 重复区及 C 端 PUFD 结构域。",
+    "evidence": "BCOR-BCL6共抑制复合体结构与疾病遗传证据",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt Q6W2J9 蛋白功能注释",
+      "RCSB PDB 4HPL X射线复合物结构",
+      "COSMIC/ClinVar 肿瘤与胚系变异记录"
+    ],
+    "referenceEntries": "UniProt Q6W2J9；RCSB PDB 4HPL；Open Targets BCOR",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "BCOR BBD α螺旋的 BCL6 BTB 侧沟结合面",
+        "直接竞争 BCOR-BCL6 复合体形成，机制最清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "BCOR BBD 螺旋外侧溶剂暴露面",
+        "适合获得结构识别抗体并辅助复合体构象解析",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ANK/PUFD 相关复合体装配界面",
+        "可能影响 PRC1.1 组装但结构异质性和功能风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BCOR 为核内蛋白，体内抗体可及性和细胞递送是主要限制；建议定位为研究级、细胞内抗体或递送平台验证靶点。",
+    "structurePrepZh": "以 4HPL 复合物链 A、B 建模，保留 BCL6 BTB-BCOR BBD 接触残基，去除结晶缓冲组分并评估界面保守性。",
+    "structureRef": "PDB 4HPL，BCOR肽段结合BCL6 BTB结构，2.0 Å",
+    "antibodies": [
+      "anti-BCOR clone C-10",
+      "anti-BCOR clone E6"
+    ],
+    "interfaceFocus": "BCOR BBD-BCL6 BTB 侧沟界面",
+    "designMode": "细胞内界面阻断",
+    "candidates": [
+      {
+        "target": "BCL6",
+        "rationale": "BCL6 是 BCOR 直接结合的转录抑制因子，BTB 侧沟招募 BCOR/NCOR/SMRT 共抑制因子，是淋巴瘤和白血病表观转录抑制轴的核心节点。"
+      },
+      {
+        "target": "PCGF1",
+        "rationale": "PCGF1 是 BCOR-PRC1.1 复合体关键组分，参与 H2AK119ub 介导的 Polycomb 转录沉默，与 BCOR 处于同一表观遗传抑制通路。"
+      },
+      {
+        "target": "KDM2B",
+        "rationale": "KDM2B 招募 BCOR-PRC1.1 至 CpG 岛并参与染色质调控，适合作为 BCOR 相关 Polycomb 复合体功能验证的同通路候选靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

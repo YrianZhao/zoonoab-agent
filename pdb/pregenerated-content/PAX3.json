@@ -1,0 +1,65 @@
+{
+  "gene": "PAX3",
+  "generatedAt": "2026-08-03T15:06:16.373Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PAX3是成对盒转录因子，参与神经嵴发育、黑素细胞谱系维持及肌源性分化；其胚系突变与Waardenburg综合征相关，PAX3-FOXO1融合则驱动肺泡型横纹肌肉瘤转录程序。该蛋白主要定位于细胞核，缺乏胞外结构域或分泌形式，天然抗原可及性不符合常规细胞外抗体药物设计。相较于膜受体或分泌配体，PAX3更适合作为结构生物学与胞内递送抗体片段研究靶点，优先级应低于同通路中可及性更高的FGFR4、IGF1R等肿瘤膜靶点。",
+    "mechanism": "设计目标为阻断PAX3配对结构域与靶DNA大沟/小沟接触，干扰PAX3或PAX3-FOXO1对肌源性增强子序列的结合。",
+    "selectedEpitope": "优先覆盖paired domain N端亚结构域的DNA识别螺旋及其邻近碱性界面。",
+    "diseaseDirection": "肺泡型横纹肌肉瘤与神经嵴发育病",
+    "domain": "PAX3含N端paired DNA结合域、octapeptide区、paired-type homeodomain及C端转录调控区。",
+    "evidence": "PAX3结构域-DNA结合与融合肿瘤证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt P23760功能与结构域注释",
+      "RCSB PDB 3CMY晶体结构",
+      "PAX3-FOXO1肺泡型横纹肌肉瘤文献证据"
+    ],
+    "referenceEntries": "UniProt:P23760；RCSB PDB:3CMY；Open Targets:PAX3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "paired domain N端DNA识别螺旋与碱性DNA接触面",
+        "直接竞争PAX3与靶DNA结合，最贴近转录阻断机制",
+        "优先"
+      ],
+      [
+        "Site B",
+        "paired domain C端亚结构域与DNA辅助识别界面",
+        "可削弱双亚结构域协同识别，提高功能抑制覆盖度",
+        "备选"
+      ],
+      [
+        "Site C",
+        "homeodomain DNA结合面",
+        "可能影响PAX3全长DNA结合，但3CMY未覆盖该结构域，模型不确定性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PAX3为核内转录因子，常规IgG难以到达作用位点；应优先评估细胞内递送、intrabody或降解偶联策略，并避免将其作为胞外阻断抗体靶点推进。",
+    "structurePrepZh": "以3CMY中paired domain-DNA复合物为核心模板，保留DNA接触构象，检查链A/B/C一致性、缺失残基、晶体接触及带电界面质子化状态。",
+    "structureRef": "RCSB PDB 3CMY，PAX3 paired domain-DNA晶体结构，1.95 Å",
+    "antibodies": [
+      "PAX3诊断抗体克隆1H9",
+      "PAX3诊断抗体克隆EP386"
+    ],
+    "interfaceFocus": "paired domain-DNA大沟识别面",
+    "designMode": "胞内阻断片段",
+    "candidates": [
+      {
+        "target": "FOXO1",
+        "rationale": "FOXO1是PAX3-FOXO1融合蛋白的转录激活结构域来源，直接参与肺泡型横纹肌肉瘤核心致癌转录复合体。"
+      },
+      {
+        "target": "MYOD1",
+        "rationale": "MYOD1与PAX3-FOXO1共同作用于肌源性增强子网络，是横纹肌肉瘤分化阻滞和肌源性转录程序的重要节点。"
+      },
+      {
+        "target": "FGFR4",
+        "rationale": "FGFR4是PAX3-FOXO1阳性横纹肌肉瘤中常见上调的受体酪氨酸激酶，具有胞外结构域，抗体可及性优于核内PAX3。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

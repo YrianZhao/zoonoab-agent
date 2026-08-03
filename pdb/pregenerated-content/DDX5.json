@@ -1,0 +1,65 @@
+{
+  "gene": "DDX5",
+  "generatedAt": "2026-08-03T11:53:46.662Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DDX5 是核内 RNA 解旋酶和转录共调控因子，参与 Wnt/β-catenin、p53 及 RNA 剪接网络，在结直肠腺癌中可促进 CTNNB1 依赖性转录与肿瘤细胞增殖。该蛋白主要定位于细胞核并缺乏稳定胞外结构域，抗原天然可及性不适合作为常规体内阻断型抗体靶点，更适合细胞内递送抗体片段或研究级构象探针。相较 EGFR、VEGFA 等胞外同通路干预靶点，DDX5 的优势在于直接覆盖转录/RNA 加工层级的肿瘤依赖性节点，但开发优先级应低于膜受体和分泌因子类靶点。",
+    "mechanism": "设计分子应阻断 DDX5 ATPase 解旋核心与 RNA 底物或转录复合体组分的结合，削弱其对 CTNNB1 依赖性转录和异常剪接事件的促进作用。",
+    "selectedEpitope": "优先覆盖 RecA-like 1/2 结构域之间的核苷酸结合裂隙及 RNA 结合沟邻近构象面。",
+    "diseaseDirection": "结直肠腺癌与转录调控异常",
+    "domain": "DDX5 含 DEAD-box 解旋酶 RecA-like N 端与 C 端核心结构域，并具有 ATP/RNA 结合基序。",
+    "evidence": "DDX5 肿瘤转录调控与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt P17844 功能与定位注释",
+      "RCSB PDB 3FE2 晶体结构记录",
+      "结直肠癌 Wnt/β-catenin 转录调控文献"
+    ],
+    "referenceEntries": "UniProt: P17844; RCSB PDB: 3FE2; Open Targets: DDX5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RecA-like 双结构域间 ATP/RNA 结合裂隙",
+        "可干扰核苷酸结合、RNA 装载及解旋构象循环，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C 端 RecA-like 结构域外侧 RNA 结合沟邻近面",
+        "可能削弱 RNA 底物识别并保留较高构象选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "DEAD-box 保守 ATPase 基序周边深部口袋",
+        "保守性高且空间可及性受限，易产生同源解旋酶交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DDX5 为细胞内核蛋白，常规抗体体内可及性不足；设计应限定为内抗体、递送型 VHH 或结构探针，并严格评估 DDX17 等同源解旋酶交叉结合。",
+    "structurePrepZh": "以 3FE2 的 A/B 链为结构模板，补全缺失环区并校正质子化状态；保留 ATP/RNA 结合基序构象用于界面网格与保守性分析。",
+    "structureRef": "RCSB PDB 3FE2, human DDX5 X-ray structure, 2.6 Å",
+    "antibodies": [
+      "研究级 anti-DDX5 antibody",
+      "研究级 anti-p68/DDX5 antibody"
+    ],
+    "interfaceFocus": "ATP/RNA 结合裂隙与 RecA-like 域间运动界面",
+    "designMode": "细胞内抗体片段",
+    "candidates": [
+      {
+        "target": "CTNNB1",
+        "rationale": "CTNNB1 是 Wnt 通路核心转录效应因子，DDX5 可作为其转录共调控网络成员促进结直肠癌相关基因表达。"
+      },
+      {
+        "target": "TCF7L2",
+        "rationale": "TCF7L2 与 β-catenin 形成转录复合体，位于 DDX5 相关 Wnt/β-catenin 转录输出的同一疾病通路中。"
+      },
+      {
+        "target": "APC",
+        "rationale": "APC 是 β-catenin 降解复合体关键肿瘤抑制因子，其失活驱动结直肠癌 Wnt 通路异常激活。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

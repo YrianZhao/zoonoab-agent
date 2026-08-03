@@ -1,0 +1,65 @@
+{
+  "gene": "RELN",
+  "generatedAt": "2026-08-03T15:59:20.424Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RELN 编码分泌型细胞外基质糖蛋白 reelin，是神经元迁移、皮层层化与突触可塑性通路的关键配体；其功能缺陷与 Norman-Roberts 综合征、无脑回样皮层发育异常及颞叶癫痫谱系具有明确遗传关联。reelin 作为分泌蛋白，成熟抗原位于细胞外空间，可直接暴露于抗体结合界面，具备优于胞内信号蛋白的抗原可及性。相较 DAB1 等胞内适配蛋白，RELN 位于通路上游并控制 ApoER2/VLDLR 受体结合与聚集，更适合作为配体中和、构象稳定或受体结合调节型抗体设计入口。",
+    "mechanism": "通过结合 reelin 重复结构域中的受体识别界面，调节 RELN 与 ApoER2/VLDLR 的相互作用，影响 DAB1 磷酸化依赖的神经元迁移与突触信号。",
+    "selectedEpitope": "优先覆盖 reelin repeat 5-6 区域的受体结合沟槽及相邻 EGF-like 插入模块，避免破坏广泛糖基化核心。",
+    "diseaseDirection": "神经发育异常与癫痫",
+    "domain": "reelin 含 N 端 F-spondin-like 区、8 个 reelin repeats、EGF-like 插入序列及 C 端碱性区。",
+    "evidence": "RELN 神经迁移与癫痫遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt P78509 功能与结构域注释",
+      "RCSB PDB 8G21 溶液 NMR 结构",
+      "人类遗传学与神经发育疾病文献"
+    ],
+    "referenceEntries": "UniProt P78509；RCSB PDB 8G21；Open Targets RELN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "reelin repeat 5-6 受体结合界面",
+        "直接影响 ApoER2/VLDLR 识别，适合功能阻断或精细调节设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N 端 F-spondin-like 区与邻近寡聚化相关表面",
+        "可能影响 reelin 多聚化与基质定位，适合构象稳定型抗体探索",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度糖基化 repeat 外侧柔性环区",
+        "暴露性可能较高但构象异质性与糖链遮挡风险较大",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RELN 为大型糖基化分泌蛋白，重复结构域柔性和加工片段化可能影响表位稳定性；设计宜优先选择受体结合相关保守折叠面，并进行糖基化遮挡评估。",
+    "structurePrepZh": "以 PDB 8G21 的 NMR 构象集合为局部结构参考，结合 UniProt 结构域边界、糖基化位点与 AlphaFold 模型补全全长空间可及性。",
+    "structureRef": "RCSB PDB 8G21；RELN repeat 结构域 NMR 结构",
+    "antibodies": [
+      "CR-50",
+      "G10"
+    ],
+    "interfaceFocus": "reelin repeat 5-6 与 ApoER2/VLDLR 结合沟槽",
+    "designMode": "分泌配体界面调节",
+    "candidates": [
+      {
+        "target": "VLDLR",
+        "rationale": "VLDLR 是 reelin 的经典细胞表面受体之一，介导配体结合后 DAB1 磷酸化，在神经元迁移通路中与 RELN 处于同一轴线。"
+      },
+      {
+        "target": "LRP8",
+        "rationale": "LRP8 编码 ApoER2，是 reelin 信号的主要受体，参与皮层发育和突触可塑性，适合作为受体侧抗体策略候选。"
+      },
+      {
+        "target": "DAB1",
+        "rationale": "DAB1 是 RELN-VLDLR/LRP8 下游胞内适配蛋白，其遗传缺陷可导致神经迁移异常；因胞内定位不利于常规抗体药物，但可作为通路验证参照靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

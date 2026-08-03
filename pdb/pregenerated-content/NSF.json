@@ -1,0 +1,65 @@
+{
+  "gene": "NSF",
+  "generatedAt": "2026-08-03T14:51:51.014Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NSF 是 AAA+ ATPase，参与 ATP 依赖性 SNARE 复合物解离，维持突触囊泡循环与神经递质释放；NSF 功能异常与发育性癫痫性脑病及神经退行性表型存在机制关联。该蛋白主要位于胞质侧并作用于膜融合机器，天然抗原可及性不及分泌蛋白或典型膜受体，因此更适合作为机制验证或胞内递送抗体设计对象。相较于下游单一 SNARE 成员，NSF 位于 SNAP-SNARE 解离步骤的枢纽位置，疾病通路解释力较强，但抗体成药优先级需受限于胞内可达性风险。",
+    "mechanism": "通过结合 NSF N 端底物结合结构域或 D1 ATPase 构象界面，干预 NSF 与 SNAP-SNARE 复合物装配及 ATP 水解驱动的解离过程。",
+    "selectedEpitope": "优先评估 N 端结构域与 α-SNAP/SNARE 复合物接触面邻近表位，避免深埋 ATP 结合口袋。",
+    "diseaseDirection": "神经发育癫痫与神经退行性疾病",
+    "domain": "NSF 含 N 端底物结合结构域、D1 催化 AAA+ ATPase 域和 D2 六聚体稳定 AAA+ 域。",
+    "evidence": "NSF-SNARE 解离轴与神经疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt reviewed human NSF entry",
+      "RCSB PDB 6KZQ experimental structure",
+      "SNARE disassembly and synaptic vesicle recycling literature"
+    ],
+    "referenceEntries": "UniProt P46459；RCSB PDB 6KZQ；Open Targets NSF",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N 端底物结合结构域 SNAP/SNARE 接触邻近面",
+        "可直接影响 NSF 对 SNAP-SNARE 复合物的识别，机制解释最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "D1 AAA+ ATPase 域 Walker A/B 邻近构象面",
+        "可能干预 ATP 水解耦联构象转换，但需避免非选择性核苷酸口袋竞争",
+        "备选"
+      ],
+      [
+        "Site C",
+        "D2 AAA+ 六聚体界面",
+        "该区域参与六聚体稳定，阻断风险较高且可能造成广泛细胞毒性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NSF 为胞内必需 ATPase，常规抗体难以到达作用位点；设计宜采用胞内递送 Fab/VHH，并限制对 D2 六聚体核心界面的强阻断。",
+    "structurePrepZh": "以 6KZQ 高分辨率晶体结构为模板，保留抗原链 A、F，校验 ATPase 域构象、缺失环区及寡聚状态后进行表位暴露度分析。",
+    "structureRef": "RCSB PDB 6KZQ，X-ray diffraction，1.7 Å",
+    "antibodies": [
+      "暂无获批 NSF 靶向治疗性抗体",
+      "研究级 anti-NSF monoclonal antibody"
+    ],
+    "interfaceFocus": "N 域 SNAP/SNARE 识别面与 D1 构象耦联区",
+    "designMode": "胞内递送抗体设计",
+    "candidates": [
+      {
+        "target": "STXBP1",
+        "rationale": "STXBP1 调控突触囊泡融合前 SNARE 复合物装配，其致病变异与发育性癫痫性脑病高度相关，可作为同一突触释放通路的优先候选。"
+      },
+      {
+        "target": "SNAP25",
+        "rationale": "SNAP25 是神经元 SNARE 复合物核心组分，直接参与突触囊泡与质膜融合，位于 NSF 解离循环的底物网络内。"
+      },
+      {
+        "target": "STX1B",
+        "rationale": "STX1B 编码突触前膜 syntaxin-1B，与 SNAP25 和 VAMP2 形成 SNARE 复合物，遗传证据支持其与癫痫易感性及突触传递异常相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

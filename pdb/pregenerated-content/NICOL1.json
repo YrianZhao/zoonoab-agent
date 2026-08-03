@@ -1,0 +1,65 @@
+{
+  "gene": "NICOL1",
+  "generatedAt": "2026-08-03T20:18:32.839Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NICOL1（C4orf48）目前缺乏经充分验证的疾病通路机制，Open Targets 关联主要来自眼睑闭合异常、动脉僵硬、BMI、淋巴细胞计数和精子运动障碍等表型遗传信号，提示其可能参与细胞发育或组织稳态相关网络。该蛋白具有可解析的多聚体实验结构，若其可溶性或胞外可及构象在相关组织中成立，可为抗体结合提供结构基础。相较已具成熟药物学验证的炎症或生殖通路靶点，NICOL1的疾病因果性与胞外可及性证据较弱，因此更适合作为探索性结构生物学靶点而非高优先级治疗性抗体靶点。",
+    "mechanism": "设计目标为结合NICOL1多聚体外露界面，阻断NICOL1与NELL2或同源分子表面之间的潜在接触，但该相互作用的疾病驱动性仍需实验证实。",
+    "selectedEpitope": "优先覆盖9OZC中NICOL1寡聚体外露的亚基间界面邻近环区，避开低分辨率柔性末端。",
+    "diseaseDirection": "探索性发育与生殖表型方向",
+    "domain": "NICOL1为小型未充分注释蛋白，9OZC显示多链寡聚体装配，缺乏经典受体样结构域定义。",
+    "evidence": "NICOL1结构与遗传关联探索证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProtKB Q5BLP8蛋白注释",
+      "RCSB PDB 9OZC冷冻电镜结构",
+      "AlphaFold/结构域注释辅助评估"
+    ],
+    "referenceEntries": "UniProtKB: Q5BLP8; RCSB PDB: 9OZC; Open Targets: C4orf48",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "9OZC寡聚体外露亚基间界面邻近环区",
+        "可能干扰NICOL1装配或蛋白接触，适合功能阻断型抗体筛选",
+        "优先"
+      ],
+      [
+        "Site B",
+        "稳定二级结构束外侧保守表面",
+        "构象稳定性较高，适合获得结构识别型结合抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端或C端低置信度柔性区域",
+        "可能产生线性表位抗体，但构象相关功能阻断价值不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NICOL1胞外定位、NELL2相互作用方向及疾病因果性证据不足；应先验证细胞表面或分泌可及性，并以结合不干扰必需细胞稳态为设计约束。",
+    "structurePrepZh": "以9OZC冷冻电镜多链模型为模板，保留A-H链寡聚体构象，进行缺失残基标注、界面可及性计算和4.0 Å分辨率下的侧链重建审慎校正。",
+    "structureRef": "RCSB PDB 9OZC, electron microscopy, 4.0 Å",
+    "antibodies": [
+      "无公开临床同类抗体",
+      "无已批准NICOL1靶向抗体"
+    ],
+    "interfaceFocus": "寡聚体外露亚基界面与稳定环区",
+    "designMode": "探索性结构阻断",
+    "candidates": [
+      {
+        "target": "NELL2",
+        "rationale": "NELL2为NICOL1命名来源中的相互作用相关蛋白，并与神经发育及男性生殖功能有关，可作为同一NELL2相关生物学轴的优先验证靶点。"
+      },
+      {
+        "target": "ROS1",
+        "rationale": "NELL2通过NELL2-ROS1轴参与附睾上皮分化和精子成熟过程，ROS1是该生殖功能通路中具有明确受体酪氨酸激酶属性的真实靶点。"
+      },
+      {
+        "target": "ADGRG2",
+        "rationale": "ADGRG2与男性不育及附睾液体重吸收障碍密切相关，虽非NICOL1直接互作蛋白，但位于同类男性生殖功能障碍疾病方向中，适合作为通路邻近候选靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "CTDP1",
+  "generatedAt": "2026-08-03T11:41:41.914Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CTDP1编码RNA polymerase II CTD磷酸酶FCP1，其失功能突变可导致先天性白内障-面容异常-神经病综合征，机制涉及RNAPII CTD Ser2/Ser5去磷酸化异常及转录延伸/终止失衡。该蛋白主要定位于细胞核并非分泌蛋白或膜受体，天然抗体可及性明显弱于胞外受体类靶点，因而更适合作为机制研究或胞内递送抗体设计对象。相比POLR2A等核心转录机器靶点，CTDP1具有疾病遗传证据明确、催化结构域可解析、功能节点较聚焦的优先级优势。",
+    "mechanism": "设计胞内抗体阻断CTDP1 FCPH催化结构域与RNAPII CTD磷酸肽底物结合，干预CTD去磷酸化循环。",
+    "selectedEpitope": "优先覆盖FCPH结构域催化沟槽邻近的DXDXT金属结合基序与CTD底物结合面。",
+    "diseaseDirection": "遗传性神经病与转录调控异常",
+    "domain": "CTDP1含N端FCPH磷酸酶催化结构域，C端富含BRCT结合相关调控区域。",
+    "evidence": "CTDP1遗传综合征与RNAPII CTD去磷酸化证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt Q9Y5B0功能注释",
+      "RCSB PDB 1J2X晶体结构",
+      "OMIM与Orphanet遗传病记录"
+    ],
+    "referenceEntries": "UniProt Q9Y5B0；RCSB PDB 1J2X；Orphanet 48431",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "FCPH催化沟槽及DXDXT基序邻近底物结合面",
+        "直接影响RNAPII CTD磷酸肽识别与去磷酸化，机制验证价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FCPH结构域外侧保守螺旋-环区",
+        "可形成别构型抑制表位，降低与催化金属中心直接竞争的设计风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "CTDP1亚基接触或晶体二聚界面附近区域",
+        "可能干扰蛋白构象稳定性，但需排除晶体堆积与非生理界面影响",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CTDP1为核内酶，常规抗体难以到达作用位点；催化中心高度极性且含金属配位残基，需采用胞内递送、VHH或内体逃逸策略并评估转录毒性。",
+    "structurePrepZh": "以1J2X链A/B为模板，补全缺失侧链与氢原子，校正金属配位和质子化状态，剔除非生理晶体接触后定义FCPH催化沟槽网格。",
+    "structureRef": "RCSB PDB 1J2X，human FCP1/CTDP1 FCPH结构，2.0 Å X-ray",
+    "antibodies": [
+      "抗CTDP1研究级抗体",
+      "抗POLR2A CTD磷酸化特异性抗体"
+    ],
+    "interfaceFocus": "FCPH催化沟槽与RNAPII CTD磷酸肽结合面",
+    "designMode": "胞内功能阻断",
+    "candidates": [
+      {
+        "target": "POLR2A",
+        "rationale": "POLR2A编码RNAPII最大亚基，其CTD重复序列是CTDP1去磷酸化底物；CTD磷酸化状态直接连接转录延伸、RNA加工与终止异常。"
+      },
+      {
+        "target": "GTF2F1",
+        "rationale": "GTF2F1为TFIIF大亚基，参与RNAPII转录延伸复合体并与FCP1功能耦联；该节点可用于解析CTDP1依赖性转录调控网络。"
+      },
+      {
+        "target": "CDK9",
+        "rationale": "CDK9作为P-TEFb催化亚基磷酸化RNAPII CTD Ser2，与CTDP1介导的去磷酸化构成可逆调控轴，适合作为同一CTD磷酸化通路候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

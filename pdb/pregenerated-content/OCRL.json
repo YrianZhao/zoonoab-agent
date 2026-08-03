@@ -1,0 +1,65 @@
+{
+  "gene": "OCRL",
+  "generatedAt": "2026-08-03T14:57:27.075Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "OCRL编码肌醇多磷酸5-磷酸酶，突变导致PI(4,5)P2与PI(3,4,5)P3去磷酸化异常，扰乱内吞体、初级纤毛与近端肾小管膜转运过程，是Lowe综合征和Dent病2型的核心致病基因。该蛋白主要定位于胞质侧Golgi、内体和膜交通复合物，并非典型胞外抗原，抗体可及性低于分泌蛋白或膜受体。其优先级来自强遗传因果性和高分辨率结构支持，但相较CLCN5等膜蛋白靶点，更适合作为机制研究或胞内递送抗体设计对象。",
+    "mechanism": "设计抗体阻断OCRL ASH-RhoGAP样结构域与Rab GTP酶结合界面，干扰OCRL向内体膜募集并解析膜交通缺陷。",
+    "selectedEpitope": "优先覆盖ASH结构域Rab结合沟槽，避开5-磷酸酶催化口袋以降低非特异构象干扰。",
+    "diseaseDirection": "Lowe综合征与Dent病2型",
+    "domain": "OCRL含N端PH样区、中央5-磷酸酶催化结构域、C端ASH与非催化RhoGAP样结构域。",
+    "evidence": "OCRL遗传致病与结构界面证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q01968功能与亚细胞定位注释",
+      "RCSB PDB 3QBT晶体结构记录",
+      "OMIM Lowe syndrome与Dent disease type 2条目"
+    ],
+    "referenceEntries": "UniProt Q01968；RCSB PDB 3QBT；Open Targets OCRL",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ASH结构域Rab结合界面",
+        "可用于阻断OCRL与Rab蛋白介导的内体定位相互作用",
+        "优先"
+      ],
+      [
+        "Site B",
+        "5-磷酸酶结构域邻近膜底物结合区",
+        "可评估对PI(4,5)P2底物识别的变构影响",
+        "备选"
+      ],
+      [
+        "Site C",
+        "RhoGAP样结构域保守折叠核心",
+        "结构保守且可能影响蛋白稳定性，需避免广泛构象破坏",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "OCRL为胞内酶，常规抗体体内可及性不足；设计应标注胞内递送需求，并避免直接封闭高度保守催化残基。",
+    "structurePrepZh": "以3QBT的2.0 Å X射线结构为模板，保留完整结构域界面链，补全缺失环区并统一质子化、磷酸化状态。",
+    "structureRef": "RCSB PDB 3QBT，OCRL C端结构域晶体结构",
+    "antibodies": [
+      "研究级抗OCRL单克隆抗体",
+      "研究级抗OCRL多克隆抗体"
+    ],
+    "interfaceFocus": "ASH-Rab结合沟槽与邻近RhoGAP样界面",
+    "designMode": "胞内递送抗体",
+    "candidates": [
+      {
+        "target": "CLCN5",
+        "rationale": "CLCN5是Dent病1型致病基因，参与近端肾小管内吞体氯离子/质子交换，与OCRL相关疾病共享肾小管重吸收障碍通路。其多跨膜结构提供更明确的胞外环抗原设计入口。"
+      },
+      {
+        "target": "INPP5B",
+        "rationale": "INPP5B与OCRL同属肌醇5-磷酸酶家族，具有重叠的磷脂底物调控功能，可作为OCRL通路补偿与选择性评估靶点。"
+      },
+      {
+        "target": "RAB5A",
+        "rationale": "RAB5A调控早期内体膜身份与货物分选，OCRL可通过Rab相关界面募集至内体；该节点有助于解析OCRL缺陷导致的内吞转运异常。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

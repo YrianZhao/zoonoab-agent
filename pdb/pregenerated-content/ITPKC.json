@@ -1,0 +1,65 @@
+{
+  "gene": "ITPKC",
+  "generatedAt": "2026-08-03T13:34:25.608Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ITPKC参与肌醇1,4,5-三磷酸磷酸化，降低IP3介导的内质网钙释放，从而影响钙依赖性NFAT活化；其遗传变异与川崎病易感性及炎症细胞活化增强相关。该蛋白为胞内可溶性激酶，缺乏天然胞外结构域，因此常规治疗性抗体抗原可及性不足，需优先定位于结构生物学、胞内递送抗体或研究级抑制性抗体场景。相较于NFAT通路下游转录因子，ITPKC具有明确酶活口袋和已解析晶体结构，便于表位-功能耦合设计，但作为主靶点的药物可开发性优先级低于细胞表面免疫受体。",
+    "mechanism": "抗体需通过胞内递送结合ITPKC催化结构域，空间阻断IP3底物进入ATP依赖性磷酸转移活性中心，维持IP3-Ca2+-NFAT信号输出。",
+    "selectedEpitope": "优先覆盖2A98催化结构域中ATP/IP3结合沟槽邻近环区，避免仅选择远端非功能表面。",
+    "diseaseDirection": "川崎病与钙-NFAT炎症轴",
+    "domain": "ITPKC为胞内可溶性inositol-trisphosphate 3-kinase，2A98覆盖C端催化激酶核心结构域。",
+    "evidence": "ITPKC-川崎病遗传关联与催化结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q96DU7蛋白功能注释",
+      "RCSB PDB 2A98晶体结构记录",
+      "川崎病ITPKC多态性与NFAT通路文献"
+    ],
+    "referenceEntries": "UniProt Q96DU7；RCSB PDB 2A98；Open Targets ITPKC",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域ATP/IP3结合沟槽邻近环区",
+        "最可能干扰底物定位与磷酸转移，具备功能阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化核心外侧保守螺旋-环连接面",
+        "可用于构象锁定或酶活变构调节，需验证与活性耦合",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离活性中心的溶剂暴露外表面",
+        "结合可及但功能阻断不确定，易形成仅结合型抗体",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ITPKC为胞内抗原，系统给药抗体难以天然接近靶点；设计应限定为胞内抗体、递送偶联或结构探针，并重点评估同源激酶交叉反应。",
+    "structurePrepZh": "以2A98链A为模板，补全缺失侧链并校正质子化状态；围绕催化沟槽定义网格，保留关键金属/配体相关构象信息用于表位评估。",
+    "structureRef": "RCSB PDB 2A98，X-ray diffraction，2.6 Å",
+    "antibodies": [
+      "研究级抗ITPKC多克隆抗体",
+      "研究级抗ITPKC单克隆抗体"
+    ],
+    "interfaceFocus": "催化沟槽、底物入口环区与ATP结合邻域",
+    "designMode": "胞内抗体/结构探针",
+    "candidates": [
+      {
+        "target": "NFATC1",
+        "rationale": "NFATC1是Ca2+-钙调神经磷酸酶通路下游转录因子，参与T细胞炎症基因表达；与ITPKC处于同一IP3-Ca2+-NFAT轴。"
+      },
+      {
+        "target": "PPP3CA",
+        "rationale": "PPP3CA编码钙调神经磷酸酶催化亚基，直接去磷酸化NFAT并促进其入核，是ITPKC调控钙信号后的关键效应节点。"
+      },
+      {
+        "target": "ITPR1",
+        "rationale": "ITPR1为IP3受体钙通道，介导IP3诱导的内质网Ca2+释放；其功能位于ITPKC消耗IP3的上游同一信号模块。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "SMYD3",
+  "generatedAt": "2026-08-03T21:15:08.270Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SMYD3 是核内赖氨酸甲基转移酶，主要通过 SET 结构域介导组蛋白及非组蛋白底物甲基化，参与转录调控、细胞增殖和肿瘤相关表型。该蛋白缺乏胞外结构域、分泌信号肽或膜受体拓扑，天然抗原可及性不适合常规体内阻断型抗体。相比可在细胞外直接递送抗体的膜受体或分泌因子，SMYD3 更适合作为结构生物学驱动的胞内结合分子、Fab/VHH 工具抗体或降解偶联识别模块开发，优先级应低于同通路中具备胞外可及性的靶点。",
+    "mechanism": "设计分子应结合 SMYD3 SET-I/SET 后叶催化沟槽，阻断 SAM 辅因子与赖氨酸底物肽的协同定位，从而抑制甲基转移反应。",
+    "selectedEpitope": "优先覆盖 SET-I 与 SET 后叶形成的底物结合沟槽，避开高度保守 SAM 深袋作为唯一表位。",
+    "diseaseDirection": "肿瘤表观遗传调控方向",
+    "domain": "SMYD3 含 N 端 MYND 锌指、核心 SET 甲基转移酶结构域、post-SET 区域及 C 端结构域。",
+    "evidence": "SMYD3 结构与表观遗传功能证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt Q9H7B4 蛋白注释",
+      "RCSB PDB 5V37 晶体结构",
+      "文献报道的 SMYD3 肿瘤转录调控研究"
+    ],
+    "referenceEntries": "UniProt: Q9H7B4；RCSB PDB: 5V37；Open Targets: SMYD3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SET-I/SET 后叶底物肽结合沟槽",
+        "可直接干扰赖氨酸底物进入催化位点，具备机制阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "MYND 锌指邻近的蛋白互作表面",
+        "可能影响转录复合物或底物招募，但需验证互作界面暴露状态",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SAM 结合深袋周边保守催化区域",
+        "与 SET 家族保守性较高，存在选择性不足和交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SMYD3 为胞内核蛋白，常规抗体难以进入细胞核；设计应限定为胞内递送、intrabody、VHH 或结构工具抗体，并严格评估 SET 家族交叉结合。",
+    "structurePrepZh": "以 5V37 的 A 链高分辨率晶体结构为模板，补全缺失环区，保留催化沟槽构象，去除非必要晶体添加物并标注 SAM/底物口袋。",
+    "structureRef": "RCSB PDB 5V37；人源 SMYD3 X 射线晶体结构，1.42 Å",
+    "antibodies": [
+      "研究级抗 SMYD3 单克隆抗体",
+      "研究级抗 SMYD3 多克隆抗体"
+    ],
+    "interfaceFocus": "SET-I/SET 后叶底物沟槽与 MYND 邻近互作面",
+    "designMode": "胞内酶表位阻断",
+    "candidates": [
+      {
+        "target": "EZH2",
+        "rationale": "EZH2 同属肿瘤表观遗传甲基转移酶轴，催化 H3K27 甲基化并驱动转录抑制程序；其疾病证据和药理学验证程度高于 SMYD3。"
+      },
+      {
+        "target": "KMT2A",
+        "rationale": "KMT2A 参与 H3K4 甲基化和白血病相关转录复合物形成，与 SMYD3 同处染色质甲基化调控网络；适合用于表观遗传依赖性肿瘤的比较靶点评估。"
+      },
+      {
+        "target": "DOT1L",
+        "rationale": "DOT1L 催化 H3K79 甲基化，在 MLL 重排白血病转录维持中具有明确机制关联；可作为同类胞内酶靶点的结构抑制设计参照。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "CELF3",
+  "generatedAt": "2026-08-03T11:15:25.248Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CELF3属于CUGBP/ELAV样RNA结合蛋白家族，主要参与神经系统中前体mRNA可变剪接、mRNA稳定性与翻译调控，其遗传关联信号集中于神经退行性疾病，但现有证据更多支持其作为神经RNA代谢网络节点而非经典可药性受体。该蛋白为胞内RNA结合蛋白，缺乏分泌型或跨膜胞外结构域，天然抗原可及性不利于常规循环抗体结合。相较于TREM2、APP或GRN等同属神经退行性疾病通路且具备胞外可及性的靶点，CELF3作为主靶点的抗体优先级较低，更适合细胞内递送抗体片段或研究型结合分子开发。",
+    "mechanism": "设计分子应结合CELF3 RRM结构域的β折叠RNA识别面，竞争性阻断其与富含UG序列RNA元件的相互作用，从而改变靶转录本剪接或稳定性。",
+    "selectedEpitope": "优先覆盖RRM结构域β1-α1-β2及RNP样RNA结合沟槽，避免仅选择远离RNA结合面的柔性环区。",
+    "diseaseDirection": "神经退行性疾病RNA代谢调控",
+    "domain": "CELF3含多个RNA recognition motif结构域；PDB 2DNO为人源CELF3片段的溶液NMR结构。",
+    "evidence": "CELF3神经RNA结合蛋白靶点证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q5SZQ8蛋白功能注释",
+      "RCSB PDB 2DNO溶液NMR结构",
+      "RNA结合蛋白与神经退行性疾病文献证据"
+    ],
+    "referenceEntries": "UniProt Q5SZQ8；RCSB PDB 2DNO；Open Targets CELF3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RRM β折叠RNA识别面及RNP样基序邻近沟槽",
+        "可直接干预CELF3与RNA顺式元件结合，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RRM α螺旋外侧及相邻稳定二级结构表面",
+        "有利于获得结构稳定结合分子，可作为构象锁定策略",
+        "备选"
+      ],
+      [
+        "Site C",
+        "NMR模型中柔性末端或长环区",
+        "构象异质性较高，可能产生低亲和力或批次不稳定结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CELF3为胞内RNA结合蛋白，常规抗体难以进入细胞并接触靶点；建议采用VHH、细胞穿透递送或降解偶联策略，并验证RNA结合竞争效应。",
+    "structurePrepZh": "以PDB 2DNO NMR模型集为基础，选择代表性低能构象并保留RRM核心；对柔性末端进行截短评估，标注RNA结合面用于表位约束。",
+    "structureRef": "RCSB PDB 2DNO；人源CELF3 RRM溶液NMR结构",
+    "antibodies": [
+      "暂无已批准CELF3治疗性抗体",
+      "研究级抗CELF3检测抗体"
+    ],
+    "interfaceFocus": "RRM β-sheet RNA结合沟槽与RNP样基序",
+    "designMode": "胞内VHH干预",
+    "candidates": [
+      {
+        "target": "APP",
+        "rationale": "APP加工及Aβ生成是阿尔茨海默病等神经退行性病变的核心病理轴，且APP及其裂解产物具有胞外可及表位，抗体开发可行性高于CELF3。"
+      },
+      {
+        "target": "TREM2",
+        "rationale": "TREM2调控小胶质细胞脂质感知、吞噬与炎症反应，是神经退行性疾病免疫通路中的膜受体靶点，胞外Ig样结构域适合抗体调节。"
+      },
+      {
+        "target": "GRN",
+        "rationale": "GRN编码分泌蛋白progranulin，其单倍剂量不足与额颞叶变性相关；提升或稳定progranulin信号具有明确的神经退行性疾病干预逻辑。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

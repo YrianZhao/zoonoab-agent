@@ -1,0 +1,65 @@
+{
+  "gene": "TENT5C",
+  "generatedAt": "2026-08-03T17:12:52.943Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TENT5C为内质网定位的非经典poly(A)聚合酶，主要促进免疫球蛋白重链与分泌蛋白mRNA的胞质尾延长和翻译效率，在浆细胞抗体分泌及红系相关数量性状中具有遗传关联。该蛋白不具备经典胞外结构域或分泌型抗原特征，完整分子作为常规阻断性抗体靶点的可及性不足，需优先考虑细胞内递送抗体或结构辅助的功能探针策略。相较于泛化的红细胞生成调节因子，TENT5C具有明确催化结构和PDB实验结构支持，适合开展高精度表位映射与构象稳定型结合分子设计，但转化优先级低于可直接中和的膜受体或分泌因子。",
+    "mechanism": "设计结合催化核心邻近RNA结合沟槽的胞内抗体，空间阻断TENT5C与目标mRNA 3′端及ATP底物的协同定位，从而降低poly(A)延长活性。",
+    "selectedEpitope": "优先覆盖NTP转移酶催化结构域中邻近活性位点的RNA结合沟槽，避免深埋催化残基。",
+    "diseaseDirection": "红系数量性状与浆细胞分泌功能",
+    "domain": "TENT5C含保守NTP转移酶催化核心及PAP相关结构域，PDB 6W36解析其胞内酶学构象。",
+    "evidence": "TENT5C结构与红系遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB Q5VWP2 functional annotation",
+      "RCSB PDB 6W36 X-ray structure",
+      "Literature on TENT5C/FAM46C poly(A) polymerase activity"
+    ],
+    "referenceEntries": "UniProt Q5VWP2；RCSB PDB 6W36；Open Targets TENT5C",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "NTP转移酶催化核心邻近RNA结合沟槽",
+        "可干预mRNA 3′端定位并影响poly(A)延长活性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PAP相关结构域外侧构象稳定表面",
+        "适合获得构象选择性结合分子并用于功能解析",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP结合口袋深部及保守金属离子配位区",
+        "保守性高且可能导致选择性不足，应避免直接靶向",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TENT5C为胞内酶，常规抗体难以到达内质网/胞质侧功能位点；建议采用VHH胞内表达、递送载体或仅作为结构探针开发。",
+    "structurePrepZh": "以6W36链A为模板，补全缺失环区并校验催化残基、配体邻近口袋和表面电荷，保留实验构象用于表位聚类。",
+    "structureRef": "RCSB PDB 6W36，X-ray diffraction，2.854 Å",
+    "antibodies": [
+      "暂无获批TENT5C靶向抗体",
+      "暂无临床阶段TENT5C同类抗体"
+    ],
+    "interfaceFocus": "RNA结合沟槽与NTP结合位点邻近界面",
+    "designMode": "胞内酶功能阻断",
+    "candidates": [
+      {
+        "target": "TENT5A",
+        "rationale": "TENT5A同属TENT5/FAM46非经典poly(A)聚合酶家族，参与分泌型蛋白mRNA poly(A)尾调控，可作为同一RNA 3′端加工轴的比较靶点。"
+      },
+      {
+        "target": "PAPOLA",
+        "rationale": "PAPOLA为经典核内poly(A)聚合酶，催化mRNA 3′端腺苷酸添加，是polyadenylation通路中功能明确的核心酶。"
+      },
+      {
+        "target": "CPSF4",
+        "rationale": "CPSF4为切割与polyadenylation特异性因子复合体成员，参与pre-mRNA 3′端加工并与poly(A)添加过程功能耦联。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

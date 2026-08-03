@@ -1,0 +1,65 @@
+{
+  "gene": "SAE1",
+  "generatedAt": "2026-08-03T16:19:13.239Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SAE1是SUMO E1活化酶异二聚体的AOS1亚基，与UBA2共同催化SUMO腺苷化和硫酯转移，影响DNA损伤应答、蛋白稳态及免疫细胞增殖相关的SUMO化网络。该蛋白主要定位于胞质和细胞核，缺乏经典胞外结构域或分泌特征，天然抗原可及性不支持常规细胞表面阻断抗体。其优先级来自高分辨率实验结构和明确酶复合体界面，但相较膜受体或分泌因子，更适合作为结构生物学验证、胞内递送抗体或降解型分子设计的探索靶点。",
+    "mechanism": "结合SAE1-UBA2复合体中SAE1的UBA2接触面或SUMO结合沟槽，阻断SUMO1向E1酶复合体装载及后续转硫酯反应。",
+    "selectedEpitope": "优先覆盖SAE1腺苷化结构域中UBA2邻近界面及SUMO1结合沟槽边缘，避免ATP核心口袋深埋区。",
+    "diseaseDirection": "SUMO化异常相关免疫与神经退行性疾病",
+    "domain": "SAE1含AOS1样腺苷化结构域，与UBA2组成SUMO E1活化酶并形成SUMO识别界面。",
+    "evidence": "SAE1-SUMO E1复合体结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q9UBE0功能与亚细胞定位注释",
+      "RCSB PDB 9QN5实验晶体结构",
+      "SUMO E1活化酶生化与结构研究文献"
+    ],
+    "referenceEntries": "UniProt Q9UBE0；RCSB PDB 9QN5；Open Targets SAE1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SAE1-UBA2异二聚体接触界面邻近腺苷化结构域",
+        "可干扰E1复合体构象稳定及SUMO活化循环",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SUMO1结合沟槽外缘及可溶剂暴露环区",
+        "可降低SUMO底物进入与定位效率，适合构象选择性结合",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP/腺苷化催化核心深部保守区域",
+        "保守性高且空间可及性受限，易产生交叉反应或低亲和进入障碍",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SAE1为胞内酶亚基，常规抗体难以到达天然作用位点；设计应优先评估胞内递送、intrabody或PROTAC衔接策略，并规避高度保守催化核心。",
+    "structurePrepZh": "以PDB 9QN5为模板保留SAE1相关抗原链，校正缺失环区、质子化状态和晶体接触，映射UBA2及SUMO1邻近界面后进行表位暴露度评估。",
+    "structureRef": "RCSB PDB 9QN5，X-ray diffraction，1.97 Å",
+    "antibodies": [
+      "抗SAE1研究级单克隆抗体",
+      "抗SUMO E1复合体研究级抗体"
+    ],
+    "interfaceFocus": "SAE1-UBA2界面与SUMO1结合沟槽",
+    "designMode": "胞内靶向探索",
+    "candidates": [
+      {
+        "target": "UBA2",
+        "rationale": "UBA2是SUMO E1活化酶催化亚基，与SAE1共同完成SUMO腺苷化和硫酯中间体形成，处于同一SUMO化起始步骤。"
+      },
+      {
+        "target": "SUMO1",
+        "rationale": "SUMO1是SAE1-UBA2复合体直接装载的修饰蛋白，其进入E1结合沟槽是SUMO化级联反应的必要分子事件。"
+      },
+      {
+        "target": "UBE2I",
+        "rationale": "UBE2I编码UBC9，是SUMO E2连接酶，接受来自SAE1-UBA2复合体的SUMO并介导底物转移，属于同一SUMO化通路核心节点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

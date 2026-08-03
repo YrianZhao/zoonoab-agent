@@ -1,0 +1,65 @@
+{
+  "gene": "MAT2A",
+  "generatedAt": "2026-08-03T14:05:21.890Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAT2A编码胞质型S-腺苷甲硫氨酸合成酶催化亚基，催化甲硫氨酸与ATP生成SAM，影响DNA/组蛋白甲基化、转硫途径及一碳代谢，在神经退行性和心血管异常相关代谢稳态中具有机制关联。该蛋白为胞内代谢酶，天然抗原可及性弱于膜受体或分泌蛋白，抗体设计需定位于结构研究、胞内递送或降解耦联场景。其优先级主要来自高分辨率实验结构、明确催化口袋和MAT2B调节轴，相比泛化甲基转移酶靶点更利于开展结构约束型分子识别设计。",
+    "mechanism": "设计抗体阻断MAT2A二聚体活性构象或干扰MAT2A与MAT2B调节亚基结合，从而降低甲硫氨酸和ATP向SAM的催化转化。",
+    "selectedEpitope": "优先覆盖催化核心邻近的二聚体界面螺旋与底物进入沟槽，避免直接依赖深埋ATP结合位点。",
+    "diseaseDirection": "一碳代谢与神经心血管疾病",
+    "domain": "MAT2A为胞质催化酶，含Rossmann样催化核心、ATP/甲硫氨酸结合口袋及二聚体装配界面。",
+    "evidence": "MAT2A结构与一碳代谢疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt reviewed entry P31153",
+      "RCSB PDB 5A1I X-ray structure",
+      "Reactome methionine and SAM biosynthesis pathway"
+    ],
+    "referenceEntries": "UniProt P31153；RCSB PDB 5A1I；Reactome SAM biosynthesis",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "二聚体界面邻近催化核心外露螺旋",
+        "可限制活性寡聚构象并保留较好结构可及性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "甲硫氨酸/ATP底物进入沟槽边缘环区",
+        "有望通过空间阻挡降低底物进入而不完全依赖深袋结合",
+        "备选"
+      ],
+      [
+        "Site C",
+        "深部ATP结合口袋及高度保守催化残基周边",
+        "位点保守且可及性有限，存在交叉反应与亲和力优化风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAT2A为胞内酶，常规外源抗体难以直接到达靶点；建议采用结构验证抗体、胞内抗体、递送载体或降解耦联策略，并严格评估MAT1A交叉反应。",
+    "structurePrepZh": "以5A1I链A为模板，补全缺失侧链与质子化状态，保留催化口袋金属/配体信息用于界面判读，并生成二聚体生物装配体。",
+    "structureRef": "RCSB PDB 5A1I，human MAT2A X-ray，1.09 Å",
+    "antibodies": [
+      "暂无获批MAT2A治疗性抗体",
+      "研究级抗MAT2A单克隆抗体"
+    ],
+    "interfaceFocus": "二聚体装配面与底物进入沟槽边缘",
+    "designMode": "胞内酶结构阻断",
+    "candidates": [
+      {
+        "target": "MAT2B",
+        "rationale": "MAT2B为MAT2A调节亚基，可改变SAM合成酶复合体动力学与代谢反馈特征，属于同一甲硫氨酸/SAM合成轴。"
+      },
+      {
+        "target": "MAT1A",
+        "rationale": "MAT1A催化同一SAM生成反应并与MAT2A存在同工酶关系，可作为组织特异性一碳代谢通路中的对照或替代靶点。"
+      },
+      {
+        "target": "GNMT",
+        "rationale": "GNMT消耗SAM并生成S-腺苷同型半胱氨酸，直接参与SAM稳态调节，适合作为同一甲基供体代谢通路候选节点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

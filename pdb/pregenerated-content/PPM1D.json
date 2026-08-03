@@ -1,0 +1,65 @@
+{
+  "gene": "PPM1D",
+  "generatedAt": "2026-08-03T15:30:37.852Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PPM1D编码WIP1丝氨酸/苏氨酸磷酸酶，在DNA损伤应答中去磷酸化TP53、ATM、CHEK2及H2AX，削弱细胞周期检查点和凋亡信号；其扩增或功能增强与乳腺癌等肿瘤易感及进展相关。该蛋白主要定位于细胞核和胞质，缺乏胞外结构域、分泌特征或膜受体可及性，因此作为体内常规抗体靶点的抗原可及性不具优势。相较于同通路中可由细胞外配体或膜受体调控的靶点，PPM1D更适合作为结构指导的胞内抑制抗体、intrabody或研究级结合分子开发对象，优先级应低于可外源抗体直接接近的通路节点。",
+    "mechanism": "以抗体片段占据PPM1D催化口袋邻近沟槽，阻断其与磷酸化TP53、ATM或CHEK2底物肽结合，限制Mg2+/Mn2+依赖性去磷酸化反应。",
+    "selectedEpitope": "优先锁定PP2C催化结构域中靠近金属离子结合中心的底物识别沟槽。",
+    "diseaseDirection": "DNA损伤应答与遗传性乳腺癌",
+    "domain": "PPM1D含N端PP2C型Mg2+/Mn2+依赖磷酸酶催化结构域，C端为调控区。",
+    "evidence": "PPM1D-DNA损伤应答结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt O15297功能与亚细胞定位注释",
+      "RCSB PDB 8T2J晶体结构",
+      "肿瘤基因组中PPM1D扩增与截短突变研究"
+    ],
+    "referenceEntries": "UniProt O15297；RCSB PDB 8T2J；Open Targets PPM1D",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PP2C催化结构域底物识别沟槽及金属中心邻近区域",
+        "可直接干扰磷酸底物进入催化位点，具有最高功能阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域外侧保守环区与底物肽停靠面",
+        "有机会通过空间位阻削弱TP53、ATM、CHEK2磷酸肽结合",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化中心的C端调控区可及片段",
+        "功能阻断不确定且结构解析覆盖有限，需避免仅获得非抑制性结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PPM1D为胞内磷酸酶，常规抗体难以到达天然作用位点；设计应限定为intrabody、细胞递送抗体片段或体外结构药理工具。",
+    "structurePrepZh": "以8T2J链A为模板，保留PP2C催化域构象并核查金属离子、催化残基和晶体接触，补建缺失柔性环后进行表面聚类。",
+    "structureRef": "RCSB PDB 8T2J，X-ray，1.8 Å，人源PPM1D结构",
+    "antibodies": [
+      "无获批抗PPM1D治疗性抗体",
+      "研究级抗WIP1/PPM1D抗体"
+    ],
+    "interfaceFocus": "催化金属中心邻近底物肽结合沟槽",
+    "designMode": "胞内抑制片段",
+    "candidates": [
+      {
+        "target": "TP53",
+        "rationale": "TP53是PPM1D负反馈调控的核心底物，DNA损伤后其磷酸化状态决定细胞周期停滞和凋亡。该节点与遗传性乳腺癌和基因组不稳定密切相关。"
+      },
+      {
+        "target": "ATM",
+        "rationale": "ATM位于DNA双链断裂应答上游，可被PPM1D去磷酸化而降低检查点信号强度。其遗传缺陷与癌症易感和神经系统表型相关。"
+      },
+      {
+        "target": "CHEK2",
+        "rationale": "CHEK2连接ATM信号与TP53轴，PPM1D可降低其磷酸化活化状态。CHEK2同属乳腺癌易感和DNA损伤检查点通路关键节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

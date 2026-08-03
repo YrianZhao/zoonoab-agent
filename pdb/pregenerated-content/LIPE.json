@@ -1,0 +1,65 @@
+{
+  "gene": "LIPE",
+  "generatedAt": "2026-08-03T13:54:16.014Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "LIPE编码激素敏感性脂肪酶，是脂滴中三酰甘油、二酰甘油、胆固醇酯和视黄酯水解的关键酶，遗传缺陷与家族性部分脂肪营养不良、脂代谢异常及胰岛素抵抗相关。该蛋白主要定位于胞质脂滴表面，并非典型分泌蛋白或跨膜受体，天然抗原可及性弱于胞外靶点，抗体策略更适合用于细胞内递送、构象捕获或研究型功能阻断。其优先级来自明确的人类遗传证据和已解析的人源结构；相较一般脂肪酶家族成员，LIPE在脂肪组织脂解调控和脂肪营养不良表型中的因果关联更直接。",
+    "mechanism": "设计抗体结合LIPE催化结构域入口或调控盖区，阻碍脂滴脂质底物进入Ser-Asp-His催化三联体，从而抑制中性脂质水解。",
+    "selectedEpitope": "优先靶向α/β水解酶催化结构域的底物入口盖区及邻近疏水通道，避开高度保守催化残基。",
+    "diseaseDirection": "脂肪营养不良与代谢异常",
+    "domain": "LIPE含N端调控区和C端α/β水解酶催化结构域，催化核心包含脂肪酶保守Ser-Asp-His三联体。",
+    "evidence": "LIPE遗传脂肪营养不良与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt Q05469功能与定位注释",
+      "RCSB PDB 8ZVQ人源LIPE冷冻电镜结构",
+      "OMIM与ClinVar家族性部分脂肪营养不良变异记录"
+    ],
+    "referenceEntries": "UniProt Q05469；RCSB PDB 8ZVQ；Open Targets LIPE",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域底物入口盖区及疏水通道边缘",
+        "可直接限制脂质底物进入催化口袋，具备功能阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端调控区与催化结构域相邻构象界面",
+        "可稳定非活化构象并干扰脂滴结合相关构象转换",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化三联体周围高度保守核心区域",
+        "虽接近活性中心，但保守性高且存在交叉反应与构象扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "LIPE为胞内脂滴相关酶，常规循环抗体难以直接触达靶点；设计应优先采用细胞内递送格式或研究型Fab/VHH，并严格评估脂肪酶家族交叉反应。",
+    "structurePrepZh": "以8ZVQ抗原链A、B为模板进行构象质控，补全缺失柔性环区，保留催化核心与底物入口构象，并标注磷酸化调控区域。",
+    "structureRef": "RCSB PDB 8ZVQ；human LIPE cryo-EM structure, 3.4 Å",
+    "antibodies": [
+      "anti-HSL commercial monoclonal antibody",
+      "anti-phospho-HSL monoclonal antibody"
+    ],
+    "interfaceFocus": "底物入口盖区、疏水通道与调控-催化结构域界面",
+    "designMode": "胞内酶功能阻断",
+    "candidates": [
+      {
+        "target": "PNPLA2",
+        "rationale": "PNPLA2编码脂肪甘油三酯脂肪酶，位于脂滴脂解级联上游，负责三酰甘油初始水解；与LIPE共同决定脂肪动员通量。"
+      },
+      {
+        "target": "PLIN1",
+        "rationale": "PLIN1是脂滴包被蛋白，可通过调控CGI-58释放和脂肪酶进入脂滴表面影响PNPLA2与LIPE介导的脂解过程。"
+      },
+      {
+        "target": "ABHD5",
+        "rationale": "ABHD5又称CGI-58，是PNPLA2脂肪酶活性的关键共激活因子，处于脂滴脂解调控通路核心节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

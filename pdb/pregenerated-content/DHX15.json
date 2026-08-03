@@ -1,0 +1,65 @@
+{
+  "gene": "DHX15",
+  "generatedAt": "2026-08-03T11:57:10.302Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DHX15 是核内 DEAH-box RNA 解旋酶，参与剪接体重塑、内含子套索释放及 RNA 代谢稳态，遗传关联提示其与帕金森病、阿尔茨海默病及多发性硬化等神经免疫疾病存在统计学相关性。该蛋白主要定位于细胞核/核质，缺乏天然胞外结构域或分泌形式，抗原可及性显著弱于膜受体和分泌因子，因此更适合作为细胞内机制研究或递送型抗体片段设计对象。相较于 TLR、细胞因子受体等同类可药靶点，DHX15 的优势在于高分辨率结构可支撑 ATPase/RNA 结合界面解析，但作为常规治疗性抗体主靶点优先级较低。",
+    "mechanism": "设计以内源递送抗体片段阻断 DHX15 RecA-like 结构域与 ATP/RNA 底物耦合界面，抑制其 ATP 水解驱动的 RNA 解旋和剪接体重塑功能。",
+    "selectedEpitope": "优先覆盖 RecA1-RecA2 ATPase 裂隙邻近 RNA 结合沟槽，避免仅选择远端 HEAT-like 辅助表面。",
+    "diseaseDirection": "神经退行性与神经免疫疾病",
+    "domain": "DHX15 含 N 端延伸区、两个 RecA-like 解旋酶核心结构域及 C 端 winged-helix、ratchet、OB-fold 辅助结构域。",
+    "evidence": "DHX15 神经疾病遗传关联与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt reviewed entry O43143",
+      "RCSB PDB 8EJM X-ray structure",
+      "剪接体与 DEAH-box helicase 功能文献"
+    ],
+    "referenceEntries": "UniProt O43143；RCSB PDB 8EJM；Open Targets DHX15",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RecA1-RecA2 ATPase 裂隙及保守 Walker A/B 邻近构象面",
+        "可直接干预 ATP 水解与 RNA 解旋耦合，是功能阻断型设计核心区域",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C 端 ratchet/OB-fold 与 RNA 结合沟槽相邻区域",
+        "可能削弱 RNA 底物定位并影响剪接体重塑，适合作为变构抑制表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端延伸区或远离催化裂隙的溶剂暴露环区",
+        "结构可及但功能关联不确定，存在获得结合而缺乏抑制效应的风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DHX15 为细胞内核蛋白，常规抗体难以进入作用位点；应优先采用细胞内递送 Fab/VHH，并避开高度保守 ATPase 基序以降低广谱解旋酶交叉反应。",
+    "structurePrepZh": "以 PDB 8EJM 链 A/B 为模板，保留高置信解旋酶核心与辅助结构域，校验 ATP/RNA 结合相关残基构象并补建缺失柔性环区。",
+    "structureRef": "RCSB PDB 8EJM，X-ray diffraction，1.8 Å",
+    "antibodies": [
+      "无已获批 DHX15 靶向治疗性抗体",
+      "研究级抗 DHX15 单克隆抗体"
+    ],
+    "interfaceFocus": "RecA ATPase 裂隙与 RNA 结合沟槽",
+    "designMode": "细胞内阻断型",
+    "candidates": [
+      {
+        "target": "DDX58",
+        "rationale": "DDX58/RIG-I 是细胞质 RNA 识别受体，与 DHX15 同属 RNA 解旋酶相关先天免疫 RNA sensing 网络；其构象激活和下游 MAVS 信号在神经炎症中具有更明确的通路可解释性。"
+      },
+      {
+        "target": "IFIH1",
+        "rationale": "IFIH1/MDA5 识别长双链 RNA 并激活 MAVS-TBK1-IRF3 轴，遗传变异与自身免疫及神经炎症相关；相较 DHX15，其疾病免疫机制更直接。"
+      },
+      {
+        "target": "MAVS",
+        "rationale": "MAVS 是 RIG-I/MDA5 RNA sensing 通路的线粒体接头蛋白，整合上游 RNA 解旋酶信号并驱动 I 型干扰素反应；适合作为同一神经免疫炎症轴的下游候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

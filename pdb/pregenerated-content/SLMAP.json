@@ -1,0 +1,65 @@
+{
+  "gene": "SLMAP",
+  "generatedAt": "2026-08-03T16:42:19.708Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SLMAP为尾锚定膜相关蛋白，定位于肌膜、肌质网和线粒体相关膜区，并参与心肌兴奋传导、钙稳态及膜区室组织；其遗传证据与Brugada综合征、血压表型及神经退行性疾病存在关联。该蛋白主要结构域位于胞质侧，缺乏明确可药物抗体直接结合的胞外结构域，因此抗原可及性低于典型跨膜受体或分泌蛋白。相较SCN5A、CACNA1C等同通路离子通道靶点，SLMAP具有高分辨率结构片段可用于结构免疫原设计，但作为治疗性阻断抗体主靶点的优先级应限定于细胞内递送抗体、研究级Fab或结构稳定化工具抗体场景。",
+    "mechanism": "设计抗体以结合SLMAP胞质侧FHA样结构域，阻断其与磷酸化蛋白复合物的识别界面，从而干预膜区室支架装配相关相互作用。",
+    "selectedEpitope": "优先靶向6AR0解析的FHA样结构域磷酸肽识别沟槽邻近环区，避开高度保守折叠核心。",
+    "diseaseDirection": "心脏传导异常与血压表型",
+    "domain": "SLMAP含N端胞质结构区、卷曲螺旋区及C端尾锚定跨膜段；6AR0对应胞质FHA样结构域片段。",
+    "evidence": "SLMAP疾病遗传关联与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt Q14BN4功能与亚细胞定位注释",
+      "RCSB PDB 6AR0 X射线晶体结构",
+      "ClinVar与GWAS Catalog心脏传导及血压表型证据"
+    ],
+    "referenceEntries": "UniProt Q14BN4；RCSB PDB 6AR0；Open Targets SLMAP",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "FHA样结构域磷酸肽识别沟槽邻近环区",
+        "有利于阻断磷酸化配体识别并保持结构特异性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FHA样结构域β折叠外侧非保守表面",
+        "适合获得构象选择性Fab并降低对折叠核心的扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端尾锚定跨膜段近膜区域",
+        "膜环境依赖性强且天然可及性有限，需谨慎评估免疫原构象",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SLMAP缺乏明确胞外抗原暴露面，常规系统给药抗体难以到达主要胞质表位；建议定位为胞内递送抗体、Fab结构探针或外源表达体系验证工具。",
+    "structurePrepZh": "采用6AR0链A作为FHA样结构域模板，补全缺失侧链并保留晶体构象；跨膜尾锚定区不应由该结构外推建模为抗体表位。",
+    "structureRef": "RCSB PDB 6AR0，X-ray diffraction，1.08 Å",
+    "antibodies": [
+      "无获批SLMAP治疗性抗体",
+      "研究级抗SLMAP抗体"
+    ],
+    "interfaceFocus": "FHA样结构域磷酸配体识别沟槽",
+    "designMode": "胞内工具抗体设计",
+    "candidates": [
+      {
+        "target": "SCN5A",
+        "rationale": "SCN5A编码心脏Nav1.5钠通道，是Brugada综合征核心遗传靶点，与SLMAP共同关联心肌兴奋传导异常。其胞外环可作为抗体或配体工程可及区域。"
+      },
+      {
+        "target": "CACNA1C",
+        "rationale": "CACNA1C编码L型钙通道α1C亚基，参与心肌动作电位平台期及钙内流调控，并与Brugada样综合征和血压表型相关。其多跨膜胞外环提供潜在抗体识别位点。"
+      },
+      {
+        "target": "KCND3",
+        "rationale": "KCND3编码Ito钾通道Kv4.3，参与心肌复极过程，遗传变异可导致Brugada综合征相关电生理异常。该靶点与SLMAP处于心脏传导和膜电位稳态疾病网络中。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

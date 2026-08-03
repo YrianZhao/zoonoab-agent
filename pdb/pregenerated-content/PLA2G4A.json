@@ -1,0 +1,65 @@
+{
+  "gene": "PLA2G4A",
+  "generatedAt": "2026-08-03T15:20:06.983Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PLA2G4A编码胞质型磷脂酶A2α，催化膜磷脂sn-2位花生四烯酸释放，是前列腺素、血栓烷和白三烯生成的上游限速节点，与血小板功能异常、胃肠溃疡及出血表型存在明确遗传和功能关联。该蛋白主要为胞内酶，天然抗原可及性低，适合作为结构抗原用于抑制性抗体片段、胞内递送抗体或研究型结合分子设计，而非常规细胞表面抗体靶点。相较下游PTGS或ALOX酶，PLA2G4A位于花生四烯酸动员起点，具有更强的通路控制优先级，但需将可递送性与细胞内暴露风险作为核心开发约束。",
+    "mechanism": "设计结合催化结构域Ca2+依赖膜结合面或活性位点邻近区，阻断PLA2G4A与含花生四烯酸磷脂膜界面的结合及底物进入催化槽。",
+    "selectedEpitope": "优先覆盖催化结构域膜结合C2样界面及活性位点入口周边，避免完全遮蔽保守催化核心。",
+    "diseaseDirection": "血小板功能障碍与花生四烯酸代谢",
+    "domain": "N端C2结构域介导Ca2+依赖膜定位，C端α/β水解酶催化结构域释放花生四烯酸。",
+    "evidence": "PLA2G4A结构与花生四烯酸代谢证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt P47712功能注释",
+      "RCSB PDB 1RLW晶体结构",
+      "OMIM与血小板功能缺陷遗传证据"
+    ],
+    "referenceEntries": "UniProt P47712；RCSB PDB 1RLW；Open Targets PLA2G4A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C2结构域Ca2+结合环与膜插入界面",
+        "可抑制PLA2G4A膜募集并降低底物接触概率",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域活性位点入口及疏水底物通道边缘",
+        "限制含花生四烯酸磷脂进入催化槽，具备直接功能阻断价值",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化核心保守Ser-Asp催化网络邻近区域",
+        "可能获得强抑制效应，但同源酶交叉反应与构象扰动风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PLA2G4A为胞内酶，常规抗体难以接触天然靶点；设计应优先用于胞内递送、细胞穿透格式或机制验证，并严格评估与其他PLA2家族成员交叉反应。",
+    "structurePrepZh": "以1RLW链A为结构模板，补全缺失柔性环区，保留Ca2+结合位点构象信息，标注催化残基、膜结合环与底物通道后进行表位分层。",
+    "structureRef": "RCSB PDB 1RLW，X-ray diffraction，2.4 Å",
+    "antibodies": [
+      "研究用anti-cPLA2α抗体",
+      "研究用anti-PLA2G4A单克隆抗体"
+    ],
+    "interfaceFocus": "C2 Ca2+结合环与催化槽入口",
+    "designMode": "胞内抑制型抗体片段",
+    "candidates": [
+      {
+        "target": "PTGS1",
+        "rationale": "PTGS1利用PLA2G4A释放的花生四烯酸生成前列腺素H2，是血小板血栓烷A2合成的关键下游酶。其通路位置适合与PLA2G4A抑制策略进行功能对照。"
+      },
+      {
+        "target": "TBXAS1",
+        "rationale": "TBXAS1将前列腺素H2转化为血栓烷A2，直接影响血小板聚集与血管收缩。该节点与PLA2G4A共同位于血小板花生四烯酸-血栓烷轴。"
+      },
+      {
+        "target": "ALOX5",
+        "rationale": "ALOX5利用PLA2G4A释放的花生四烯酸合成白三烯前体，代表同一脂质介质通路的炎症分支。其可作为炎症型疾病方向的并行候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

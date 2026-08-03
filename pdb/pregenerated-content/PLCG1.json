@@ -1,0 +1,65 @@
+{
+  "gene": "PLCG1",
+  "generatedAt": "2026-08-03T20:34:57.514Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PLCG1编码胞内酶PLCγ1，在受体酪氨酸激酶信号后被SH2结构域招募并磷酸化，催化PIP2生成IP3与DAG，参与Ca2+释放、PKC激活及肿瘤增殖迁移过程。该蛋白主要定位于胞质，缺乏天然胞外结构域或分泌特征，抗原可及性不适合常规细胞表面阻断抗体，需限定为胞内递送抗体或结构生物学工具抗体策略。相较EGFR、ERBB2等膜受体靶点，PLCG1更接近RTK下游效应节点，可用于解析多受体汇聚通路，但治疗性抗体优先级低于可直接接触的膜受体靶点。",
+    "mechanism": "通过胞内递送抗体阻断PLCγ1 nSH2/cSH2与磷酸化RTK或衔接蛋白的结合，降低PLCγ1膜募集与Y783磷酸化依赖性活化。",
+    "selectedEpitope": "优先覆盖nSH2-cSH2磷酸酪氨酸结合沟槽及其邻近连接区，干扰pY肽识别。",
+    "diseaseDirection": "RTK-PLCγ1肿瘤信号轴",
+    "domain": "PLCγ1含PH、EF-hand、催化X/Y、分裂PH、nSH2、cSH2、SH3及C2结构域。",
+    "evidence": "PLCG1结构与RTK下游肿瘤信号证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P19174功能与结构域注释",
+      "RCSB PDB 7NXE晶体结构",
+      "文献报道的PLCγ1 Y783磷酸化与RTK信号研究"
+    ],
+    "referenceEntries": "UniProt:P19174；RCSB PDB:7NXE；Open Targets:PLCG1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "nSH2/cSH2磷酸酪氨酸结合沟槽",
+        "直接削弱pY受体尾部或衔接蛋白肽段结合，限制膜募集",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SH3结构域多脯氨酸配体结合面",
+        "可调节PLCγ1与支架蛋白复合体装配，适合机制探针设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化X/Y结构域活性中心邻域",
+        "可能影响PIP2水解但保守性高，存在选择性与构象扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PLCG1为胞内非分泌蛋白，常规抗体难以到达作用位点；建议采用细胞内递送、intrabody或Fab结构探针，并评估与PLCG2同源结构域交叉反应。",
+    "structurePrepZh": "以7NXE实验晶体结构为模板，保留抗原链A、C、D中完整可解析结构域，补充缺失环区建模，校验SH2沟槽、磷酸化位点邻域与晶体接触面。",
+    "structureRef": "RCSB PDB 7NXE，X-ray diffraction，2.1 Å",
+    "antibodies": [
+      "anti-PLCγ1 clone D9H10",
+      "anti-phospho-PLCγ1 Tyr783 clone D6M9S"
+    ],
+    "interfaceFocus": "SH2磷酸酪氨酸结合沟槽与RTK尾部pY位点",
+    "designMode": "胞内功能阻断",
+    "candidates": [
+      {
+        "target": "EGFR",
+        "rationale": "EGFR经磷酸化胞内尾部招募并激活PLCγ1，是RTK-PLCγ1肿瘤通路上游的可及性膜受体靶点。其胞外结构域已被临床抗体验证，成药性优于胞内PLCG1。"
+      },
+      {
+        "target": "ERBB2",
+        "rationale": "ERBB2通过ERBB家族异源二聚增强下游PLCγ1、PI3K和MAPK信号，驱动多类肿瘤增殖。胞外二聚化与膜近端区域可由抗体直接干预。"
+      },
+      {
+        "target": "PDGFRB",
+        "rationale": "PDGFRB磷酸化后可招募PLCγ1并触发IP3/DAG信号，参与肿瘤间质、血管周细胞和纤维化相关通路。其胞外免疫球蛋白样结构域提供可及抗原界面。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

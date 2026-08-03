@@ -1,0 +1,65 @@
+{
+  "gene": "BCAR3",
+  "generatedAt": "2026-08-03T10:46:35.376Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BCAR3是NSP家族适配蛋白，主要通过其C端SH2结构域识别磷酸化受体或衔接蛋白，并经N端CDC25同源区与BCAR1-CAS复合体耦联，影响整合素相关黏附、细胞迁移和SRC家族信号。Open Targets关联以单核细胞计数、神经退行性疾病及肾功能表型为主，提示其更适合定位于细胞迁移、免疫细胞稳态和肾小球损伤相关机制研究。该蛋白为胞内适配蛋白，天然抗原可及性弱于分泌因子或膜受体；因此抗体策略应优先用于结构域功能阻断、细胞内递送抗体或研究级Fab/VHH工具。相较于上游多效性受体，BCAR3位于BCAR1-CRK-SRC轴的衔接节点，具有解析特定蛋白互作界面的设计价值。",
+    "mechanism": "阻断BCAR3 SH2结构域与磷酸化BCAR1/CAS相关基序的结合，削弱BCAR3介导的CAS-CRK-SRC黏附信号复合体装配。",
+    "selectedEpitope": "优先覆盖C端SH2结构域磷酸肽结合沟槽及邻近pTyr识别环，避免N端CDC25同源区广泛保守界面。",
+    "diseaseDirection": "免疫细胞迁移与肾功能表型",
+    "domain": "BCAR3含N端CDC25同源鸟嘌呤核苷酸交换样结构域、中央富脯氨酸区及C端SH2结构域。",
+    "evidence": "BCAR3-CAS黏附信号与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联与遗传证据",
+      "UniProt O75815功能与结构域注释",
+      "RCSB PDB 3T6A X射线晶体结构",
+      "NSP/BCAR3与BCAR1-CAS细胞迁移文献"
+    ],
+    "referenceEntries": "UniProt: O75815; RCSB PDB: 3T6A; Gene: BCAR3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端SH2结构域磷酸酪氨酸结合口袋与EF/BG环",
+        "直接干预磷酸化CAS相关配体识别，机制可验证性较高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SH2结构域外侧β片层-α螺旋支撑面",
+        "可产生变构抑制并降低与磷酸肽复合物稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端CDC25同源结构域催化样沟槽",
+        "结构保守性较高且可能影响非目标GEF样界面，选择性风险较大",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BCAR3为胞内适配蛋白，常规体内抗体难以直接结合天然靶点；宜限定为细胞内递送VHH、Fab片段或机制研究工具，并重点评估SH2家族交叉反应。",
+    "structurePrepZh": "以3T6A晶体结构为模板，保留抗原链A-D中解析度完整的SH2结构域，补全缺失侧链并进行质子化、环区检查和同源SH2结构比对。",
+    "structureRef": "RCSB PDB 3T6A, X-ray diffraction, 2.4 Å",
+    "antibodies": [
+      "anti-BCAR3 research antibody",
+      "anti-BCAR3/NSP2 monoclonal antibody"
+    ],
+    "interfaceFocus": "SH2磷酸肽结合沟槽与CAS衔接界面",
+    "designMode": "胞内互作阻断",
+    "candidates": [
+      {
+        "target": "BCAR1",
+        "rationale": "BCAR1/CAS是BCAR3相互作用轴中的核心支架蛋白，其磷酸化位点招募CRK等适配蛋白并驱动整合素依赖性迁移信号。"
+      },
+      {
+        "target": "CRK",
+        "rationale": "CRK通过SH2/SH3结构域连接磷酸化CAS与下游鸟嘌呤核苷酸交换因子，是CAS-BCAR3相关迁移复合体的重要效应节点。"
+      },
+      {
+        "target": "SRC",
+        "rationale": "SRC家族激酶促进CAS磷酸化并放大黏附斑信号，位于BCAR3-CAS复合体上游的真实同通路调控节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

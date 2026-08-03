@@ -1,0 +1,65 @@
+{
+  "gene": "DAXX",
+  "generatedAt": "2026-08-03T11:49:22.863Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DAXX 是核内染色质调控蛋白，与 ATRX 共同参与 H3.3 组蛋白变体沉积、端粒染色质维持及 ALT 相关肿瘤生物学，在胰腺神经内分泌肿瘤和黑色素瘤中具有明确遗传与通路关联。该蛋白主要定位于细胞核及 PML nuclear bodies，缺乏天然胞外结构域或分泌特征，抗原可及性不符合常规体内阻断型抗体开发要求，更适合细胞内递送抗体片段或结构生物学验证工具。相较于 ATRX、H3F3A 等同轴通路靶点，DAXX 具备高分辨率实验结构与明确蛋白互作界面，可优先用于机制探针型抗体设计，但治疗性抗体优先级需下调。",
+    "mechanism": "设计抗体片段占据 DAXX 的组蛋白 H3.3 结合沟槽，阻断 DAXX 与 H3.3-H4 二聚体相互作用，干扰 ATRX-DAXX 介导的 H3.3 沉积。",
+    "selectedEpitope": "优先覆盖 DAXX 组蛋白结合结构域中接触 H3.3 α2-α3 区域的凹槽界面。",
+    "diseaseDirection": "ALT相关肿瘤与病毒感染",
+    "domain": "DAXX 含 N 端螺旋束、组蛋白结合结构域及 C 端 SUMO 相互作用基序，5GRQ 覆盖其 H3.3-H4 结合区域。",
+    "evidence": "DAXX-ATRX-H3.3轴结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9UER7 functional annotation",
+      "RCSB PDB 5GRQ experimental structure",
+      "COSMIC/TCGA neuroendocrine tumor and melanoma genomics"
+    ],
+    "referenceEntries": "UniProt Q9UER7；RCSB PDB 5GRQ；Open Targets DAXX",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "H3.3-H4 结合沟槽及邻近螺旋束界面",
+        "直接阻断 DAXX 对 H3.3-H4 的伴侣结合，机制清晰且结构可解析",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ATRX 相关结合表面邻近区域",
+        "可能削弱 ATRX-DAXX 复合体装配，但需避免影响整体折叠稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SUMO 相互作用基序及 PML nuclear body 招募相关区域",
+        "区域柔性较高且胞内定位依赖复杂，抗体可及性和功能读出不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DAXX 为核内蛋白，常规全长抗体难以到达作用位点；建议采用 VHH、intrabody 或递送型 Fab，并以细胞内表达和染色质沉积读出验证。",
+    "structurePrepZh": "以 5GRQ 高分辨率晶体结构为模板，保留 DAXX 与 H3.3-H4 接触链，补建缺失柔性环区并标注晶体接触面与生物学界面。",
+    "structureRef": "RCSB PDB 5GRQ，X-ray diffraction，1.584 Å",
+    "antibodies": [
+      "抗DAXX研究级单克隆抗体",
+      "抗DAXX免疫组化诊断抗体"
+    ],
+    "interfaceFocus": "DAXX-H3.3-H4 结合沟槽界面",
+    "designMode": "胞内功能阻断",
+    "candidates": [
+      {
+        "target": "ATRX",
+        "rationale": "ATRX 与 DAXX 形成染色质重塑复合体并共同介导端粒及异染色质区域 H3.3 沉积，是 ALT 相关肿瘤中的同轴核心靶点。"
+      },
+      {
+        "target": "H3F3A",
+        "rationale": "H3F3A 编码组蛋白变体 H3.3，是 DAXX 直接结合并递送的底物，突变或沉积异常与肿瘤染色质状态改变相关。"
+      },
+      {
+        "target": "PML",
+        "rationale": "PML nuclear bodies 是 DAXX 招募和病毒抗性反应的重要核内平台，与 DAXX 介导的染色质调控及抗病毒通路处于同一功能网络。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

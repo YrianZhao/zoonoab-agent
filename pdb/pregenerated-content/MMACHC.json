@@ -1,0 +1,65 @@
+{
+  "gene": "MMACHC",
+  "generatedAt": "2026-08-03T14:16:24.466Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MMACHC是胞质钴胺素伴侣蛋白，负责结合氰钴胺、羟钴胺等形式并催化去烷基化或去氰基化，生成可进入甲硫氨酸合成酶与甲基丙二酰辅酶A变位酶辅因子通路的钴胺素中间体。其功能缺陷直接导致cblC型甲基丙二酸血症合并同型半胱氨酸尿，是Open Targets中关联强度最高的疾病轴。需注意MMACHC为胞内可溶蛋白，天然抗原可及性低于膜受体或分泌蛋白，抗体策略更适合结构验证、细胞内递送抗体或诊断捕获应用。相较于下游酶MTR与MUT，MMACHC位于共同上游分流节点，可同时影响甲基钴胺素与腺苷钴胺素生成，具备更高的通路解释优先级。",
+    "mechanism": "抗体设计以阻断MMACHC钴胺素结合腔及其与MMADHC转运伴侣的功能耦联为目标，干预钴胺素脱氰基化后向下游辅因子合成分支的递送。",
+    "selectedEpitope": "优先覆盖Rossmann-like α/β核心中的钴胺素结合口袋入口及C端沟槽邻近界面。",
+    "diseaseDirection": "cblC型钴胺素代谢障碍",
+    "domain": "MMACHC为胞质可溶性钴胺素结合蛋白，含Rossmann-like α/β折叠核心与配体结合腔。",
+    "evidence": "MMACHC-cblC钴胺素代谢结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9Y4U1功能与变异注释",
+      "RCSB PDB 7WUZ晶体结构",
+      "OMIM与Orphanet cblC疾病条目"
+    ],
+    "referenceEntries": "UniProt Q9Y4U1；RCSB PDB 7WUZ；Orphanet 79282",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "钴胺素结合腔入口及邻近疏水沟槽",
+        "直接影响底物进入与配体定位，适合功能阻断型抗体评估",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端沟槽与推定MMADHC功能耦联表面",
+        "可能干预处理后钴胺素向下游伴侣递送，适合作为别构或界面阻断位点",
+        "备选"
+      ],
+      [
+        "Site C",
+        "α/β核心保守折叠内部邻近区域",
+        "结构保守且部分埋藏，抗体可及性与构象耐受性有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MMACHC为胞内抗原，常规治疗性抗体难以到达作用位点；设计应优先用于体外功能验证、诊断捕获或细胞内递送格式，并避免深埋保守核心表位。",
+    "structurePrepZh": "以7WUZ链A为模板，保留实验构象并评估缺失环区、晶体接触与配体口袋状态；抗原表面应按胞质pH环境完成质子化与能量优化。",
+    "structureRef": "RCSB PDB 7WUZ，X-ray diffraction，1.93 Å",
+    "antibodies": [
+      "commercial anti-MMACHC monoclonal antibody",
+      "commercial anti-MMACHC polyclonal antibody"
+    ],
+    "interfaceFocus": "钴胺素结合腔入口与C端功能沟槽",
+    "designMode": "胞内抗原阻断设计",
+    "candidates": [
+      {
+        "target": "MMADHC",
+        "rationale": "MMADHC位于同一胞内钴胺素加工通路，负责将MMACHC处理后的钴胺素导向甲基钴胺素或腺苷钴胺素分支。其界面阻断可用于解析cblD相关分流缺陷。"
+      },
+      {
+        "target": "MTR",
+        "rationale": "MTR依赖甲基钴胺素催化同型半胱氨酸再甲基化为甲硫氨酸，是cblC缺陷导致高同型半胱氨酸血症的直接下游节点。"
+      },
+      {
+        "target": "MUT",
+        "rationale": "MUT依赖腺苷钴胺素催化甲基丙二酰辅酶A向琥珀酰辅酶A转化，是cblC缺陷产生甲基丙二酸升高的关键下游酶。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "PPM1B",
+  "generatedAt": "2026-08-03T15:30:36.430Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PPM1B编码PP2C家族Mg2+/Mn2+依赖性丝氨酸/苏氨酸磷酸酶，参与TAK1-MAP3K7、IKK复合体及AMPK等磷酸化节点去磷酸化，与肿瘤炎症信号、细胞应激和代谢表型存在遗传关联。该蛋白主要定位于胞质，不具备分泌蛋白、膜受体或稳定胞外结构域特征，完整抗体直接结合天然靶点的抗原可及性受限。相较TNF、IL6R或EGFR等同类疾病通路中胞外可及靶点，PPM1B更适合作为细胞内机制验证或递送型抗体片段探索靶点，优先级应低于可直接药物化的胞外节点。",
+    "mechanism": "设计目标为阻断PPM1B催化沟槽对磷酸化MAP3K7/TAK1或IKKβ底物片段的结合，并干扰金属离子依赖的去磷酸化反应。",
+    "selectedEpitope": "优先瞄准PP2C催化结构域金属结合沟槽邻近的底物进入面，避免完全覆盖保守金属配位残基。",
+    "diseaseDirection": "肿瘤炎症与应激信号通路",
+    "domain": "PPM1B为单一PP2C型金属依赖磷酸酶催化结构域，含保守酸性金属配位中心及底物结合沟槽。",
+    "evidence": "PPM1B肿瘤关联与PP2C催化结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProtKB O75688功能与亚细胞定位注释",
+      "RCSB PDB 2P8E晶体结构条目",
+      "PP2C家族对TAK1/IKK/AMPK磷酸化节点调控文献"
+    ],
+    "referenceEntries": "UniProtKB: O75688；RCSB PDB: 2P8E；Open Targets: PPM1B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PP2C催化沟槽底物进入面",
+        "可干扰磷酸化底物肽段定位，保留结构选择性优化空间",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域外侧非保守螺旋-环区",
+        "有利于获得PPM1B选择性结合分子，适合构象锁定设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "金属离子配位酸性核心",
+        "区域高度保守且承担催化必需功能，存在家族交叉反应与结构扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PPM1B为胞内酶，常规抗体难以接触天然抗原；PP2C催化核心保守性高，应优先采用胞内递送型Fab/VHH并通过家族选择性筛选控制交叉反应。",
+    "structurePrepZh": "以2P8E高分辨率X射线结构为模板，保留催化结构域链A或链B单体，校验金属配位位点、缺失环区和晶体接触界面后进行表面聚类。",
+    "structureRef": "RCSB PDB 2P8E，X-ray diffraction，1.816 Å",
+    "antibodies": [
+      "无已批准PPM1B靶向治疗性抗体",
+      "研究级抗PPM1B检测抗体"
+    ],
+    "interfaceFocus": "催化沟槽底物进入面及非保守外侧环区",
+    "designMode": "胞内酶抑制型",
+    "candidates": [
+      {
+        "target": "MAP3K7",
+        "rationale": "MAP3K7/TAK1是PPM1B相关炎症与应激通路中的关键上游激酶节点，连接TNF、IL1和TGFβ刺激至NF-κB与MAPK信号。"
+      },
+      {
+        "target": "CHUK",
+        "rationale": "CHUK编码IKKα，是IKK复合体组成部分，处于PPM1B影响的NF-κB磷酸化网络内，具有明确肿瘤炎症通路相关性。"
+      },
+      {
+        "target": "IKBKB",
+        "rationale": "IKBKB编码IKKβ，负责磷酸化IκB并驱动NF-κB释放，属于PPM1B去磷酸化调控所关联的同一炎症信号轴。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "MAST2",
+  "generatedAt": "2026-08-03T14:05:23.586Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAST2 为胞内微管相关丝氨酸/苏氨酸激酶，2KQF 对应其 PDZ 结构域，而非分泌蛋白或经典膜受体。现有 Open Targets 关联主要来自血细胞计数和血液学数量性状，缺乏可直接支持体内抗体阻断的胞外疾病通路机制。由于抗原天然可及性不足，相比 MPL、THPO、CSF3R 等造血调控轴膜受体或配体，MAST2 不宜作为常规治疗性抗体优先主靶点，更适合作为细胞内机制研究或递送型抗体探索对象。",
+    "mechanism": "设计目标应限定为细胞内递送后结合 MAST2 PDZ 结构域肽结合沟槽，干扰其与含 C 端 PDZ 结合基序蛋白的相互作用。",
+    "selectedEpitope": "优先覆盖 PDZ 结构域 αB/βB 肽结合沟槽及 GLGF 环邻近区域。",
+    "diseaseDirection": "血液细胞数量性状研究",
+    "domain": "MAST2 含 N 端激酶区、PDZ 结构域及 C 端调控区；2KQF 为 PDZ 结构域 NMR 结构。",
+    "evidence": "MAST2 血液数量性状与PDZ结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProtKB Q6P0Q8 蛋白结构域注释",
+      "RCSB PDB 2KQF 溶液 NMR 结构",
+      "GWAS Catalog 血液学性状遗传关联"
+    ],
+    "referenceEntries": "UniProt Q6P0Q8；RCSB PDB 2KQF；Open Targets MAST2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PDZ αB/βB 肽结合沟槽与 GLGF 环邻近面",
+        "最有可能直接阻断 PDZ 介导的短肽配体结合",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PDZ βA-βB 环及相邻 β 折叠外侧面",
+        "可形成构象稳定结合并间接影响配体沟槽几何",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离肽结合沟槽的 PDZ 背面疏水核心邻近区域",
+        "功能阻断相关性较弱，且可能仅产生非中和结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为 MAST2 缺乏胞外可及性，常规抗体难以在完整细胞内接触靶点；需采用细胞穿透、递送载体或仅用于研究级胞内干预。",
+    "structurePrepZh": "以 2KQF NMR 构象簇评估 PDZ 沟槽柔性，保留代表性低能构象，标注 GLGF 环、αB 螺旋和 βB 链用于表位建模。",
+    "structureRef": "RCSB PDB 2KQF；MAST2 PDZ domain solution NMR structure",
+    "antibodies": [
+      "暂无临床验证的抗 MAST2 治疗性抗体",
+      "研究级抗 MAST2 抗体"
+    ],
+    "interfaceFocus": "PDZ 肽结合沟槽与 GLGF 环",
+    "designMode": "胞内递送型Fab/VHH",
+    "candidates": [
+      {
+        "target": "MPL",
+        "rationale": "MPL 为血小板生成素受体，直接调控巨核细胞分化和血小板生成，且为细胞表面受体，抗体可及性优于 MAST2。"
+      },
+      {
+        "target": "THPO",
+        "rationale": "THPO 是 MPL 的分泌型配体，位于血小板生成核心轴上，适合通过中和或配体模拟策略调节造血输出。"
+      },
+      {
+        "target": "CSF3R",
+        "rationale": "CSF3R 是粒细胞集落刺激因子受体，参与中性粒细胞生成和外周计数调控，膜受体属性支持抗体药物设计。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

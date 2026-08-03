@@ -1,0 +1,65 @@
+{
+  "gene": "UBA7",
+  "generatedAt": "2026-08-03T17:37:10.374Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "UBA7为Ⅰ型干扰素诱导的E1样激活酶，催化ISG15腺苷化并将其转移至UBE2L6，驱动蛋白ISGylation；该轴参与抗病毒先天免疫，Open Targets中与登革热疾病存在最高关联信号。UBA7为细胞内酶，天然抗原可及性不及膜受体或分泌蛋白，需采用细胞内递送抗体片段、降解偶联或研究级结合抗体策略。其优先级来自ISG15通路上游限速位置，相比单一ISGylated底物更能影响整条ISGylation级联，但成药性风险高于IFNAR1、IFNAR2等细胞表面靶点。",
+    "mechanism": "设计结合UBA7腺苷化/催化半胱氨酸邻近界面的抗体片段，阻断ISG15装载及向UBE2L6的硫酯转移。",
+    "selectedEpitope": "优先覆盖腺苷化结构域与催化半胱氨酸半结构域形成的ISG15装载沟槽。",
+    "diseaseDirection": "抗病毒先天免疫与登革热",
+    "domain": "UBA7含腺苷化结构域、催化半胱氨酸半结构域、SCCH/FCCH样区域及C端泛素折叠结构域。",
+    "evidence": "UBA7-ISG15抗病毒通路结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P41226功能与结构域注释",
+      "RCSB PDB 8SE9电子显微镜结构",
+      "干扰素诱导ISGylation通路文献"
+    ],
+    "referenceEntries": "UniProtKB P41226；RCSB PDB 8SE9；Open Targets UBA7",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "腺苷化结构域/催化半胱氨酸半结构域的ISG15装载沟槽",
+        "直接干预ISG15腺苷化与硫酯中间体形成，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端泛素折叠结构域与UBE2L6招募界面",
+        "可阻断E1-E2转硫酯复合物形成，具备级联抑制价值",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化中心的外周螺旋束或链间接触面",
+        "可能提供高亲和结合但功能阻断不确定，需功能筛选验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "UBA7定位于胞质和细胞核，常规外源抗体难以到达功能位点；设计宜采用VHH、intrabody或递送平台，并避免广泛抑制保护性抗病毒ISGylation。",
+    "structurePrepZh": "以PDB 8SE9抗原链A-D建立同源状态模型，补全低置信柔性环，保留ATP/ISG15相关口袋几何并评估链间装配界面。",
+    "structureRef": "RCSB PDB 8SE9，human UBA7电子显微镜结构，3.2 Å",
+    "antibodies": [
+      "研究级anti-UBA7抗体",
+      "研究级anti-ISG15抗体"
+    ],
+    "interfaceFocus": "ISG15装载沟槽与UBE2L6招募界面",
+    "designMode": "细胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "ISG15",
+        "rationale": "ISG15是UBA7直接激活的泛素样修饰物，也是干扰素诱导抗病毒效应的核心底物；靶向其疏水补丁或E1结合面可干预ISGylation级联。"
+      },
+      {
+        "target": "UBE2L6",
+        "rationale": "UBE2L6为UBA7下游E2结合酶，接受ISG15硫酯转移并参与底物ISGylation；阻断UBA7-UBE2L6界面可获得更下游的通路选择性。"
+      },
+      {
+        "target": "IFNAR1",
+        "rationale": "IFNAR1为Ⅰ型干扰素受体亚基，位于UBA7诱导表达的上游JAK-STAT通路；其胞外结构域可及性优于UBA7，适合作为同一抗病毒干扰素轴的膜受体候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

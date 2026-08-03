@@ -1,0 +1,65 @@
+{
+  "gene": "BID",
+  "generatedAt": "2026-08-03T10:49:52.758Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BID 是 BCL-2 家族 BH3-only 蛋白，在死亡受体通路与线粒体凋亡通路之间传递 caspase-8 依赖性信号；截短型 tBID 可结合 BAX/BAK 并促进线粒体外膜通透化，参与神经退行性损伤中的细胞死亡过程。BID 为胞内可溶性凋亡调节蛋白，天然抗原可及性显著弱于膜受体或分泌蛋白，需优先考虑细胞内递送抗体片段或机制验证型结合分子。相较下游 BAX/BAK，BID 位于外源性凋亡向线粒体放大的连接节点，干预其 BH3 介导相互作用具有较高通路选择性。",
+    "mechanism": "结合 BID 的 BH3 α螺旋及其邻近疏水面，阻断 tBID 与 BAX/BAK 激活界面的相互作用，抑制线粒体外膜通透化放大。",
+    "selectedEpitope": "优先覆盖 BH3 α螺旋核心及 tBID 暴露疏水面，避免干扰非切割构象的全局折叠稳定性。",
+    "diseaseDirection": "神经退行性疾病凋亡调控",
+    "domain": "BID 含 BCL-2 家族 BH3 motif，caspase-8 切割后形成 N 端片段与促凋亡 tBID。",
+    "evidence": "BID 介导外源性-线粒体凋亡连接证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt P55957 功能与序列注释",
+      "RCSB PDB 7QTW X 射线晶体结构",
+      "BCL-2 家族 BH3-only 蛋白凋亡机制文献"
+    ],
+    "referenceEntries": "UniProt P55957；RCSB PDB 7QTW；Open Targets BID",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "BH3 α螺旋核心疏水残基面",
+        "直接阻断 tBID 与 BAX/BAK 激活界面结合，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "caspase-8 切割后 tBID 暴露的邻近疏水表面",
+        "增强对促凋亡活化构象的选择性，适合构象依赖型分子设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离 BH3 motif 的可溶性表面环区",
+        "结合风险较低但功能阻断概率有限，主要用于检测或结构稳定化",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BID 为胞内蛋白，常规抗体难以到达作用位点；应优先采用 VHH、细胞穿透融合或胞内表达格式，并严格评估对生理性凋亡稳态的影响。",
+    "structurePrepZh": "以 7QTW 高分辨率晶体结构为模板，保留抗原链 A/B，校正质子化状态与缺失侧链，并标注 BH3 motif 与切割相关区域。",
+    "structureRef": "RCSB PDB 7QTW，X-ray diffraction，1.41 Å",
+    "antibodies": [
+      "抗 BID 克隆 2D1",
+      "抗 BID 克隆 FL-195"
+    ],
+    "interfaceFocus": "BH3 螺旋-BAX/BAK 激活界面",
+    "designMode": "胞内阻断型",
+    "candidates": [
+      {
+        "target": "BAX",
+        "rationale": "BAX 是 tBID 下游直接效应蛋白，寡聚化后驱动线粒体外膜通透化；靶向其激活或二聚化界面可在同一凋亡放大通路中实现下游阻断。"
+      },
+      {
+        "target": "BAK1",
+        "rationale": "BAK1 与 BAX 功能部分冗余并位于线粒体外膜，接受 tBID 促活化信号；其构象激活界面是同通路候选干预节点。"
+      },
+      {
+        "target": "CASP8",
+        "rationale": "CASP8 在死亡受体通路中切割 BID 生成 tBID，是 BID 激活的上游酶；抑制 CASP8-BID 切割事件可减少线粒体凋亡放大。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

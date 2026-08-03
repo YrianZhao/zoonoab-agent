@@ -1,0 +1,65 @@
+{
+  "gene": "WIZ",
+  "generatedAt": "2026-08-03T17:52:56.974Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "WIZ为含多锌指的核内转录调控蛋白，可与G9a/EHMT2及GLP/EHMT1复合体结合，参与H3K9甲基化依赖的基因沉默，与神经发育及神经退行性疾病相关遗传信号存在关联。该蛋白主要定位于细胞核，缺乏分泌形式、跨膜区或稳定胞外结构域，抗体作为常规细胞外药物的抗原可及性明显受限。相较于同通路中具有酶活性口袋且已有小分子药理学基础的EHMT1/EHMT2，WIZ更适合作为机制研究、细胞内递送抗体或结构阻断探针的优先探索靶点，而非传统治疗性抗体首选靶点。",
+    "mechanism": "设计抗体阻断WIZ锌指/连接区与EHMT1-EHMT2复合体的结合界面，干扰WIZ介导的G9a/GLP染色质定位与H3K9甲基化沉默复合体装配。",
+    "selectedEpitope": "优先锁定9DJT中可解析锌指簇的EHMT1/EHMT2结合相关外露界面，避开保守锌配位核心。",
+    "diseaseDirection": "神经退行性疾病与表观遗传调控",
+    "domain": "WIZ含多个C2H2型锌指结构域及低复杂度连接区，整体为核内染色质相关支架蛋白。",
+    "evidence": "WIZ-EHMT1/EHMT2表观遗传复合体证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt O95785蛋白定位与结构域注释",
+      "RCSB PDB 9DJT实验晶体结构",
+      "PubMed关于WIZ-G9a/GLP复合体与H3K9甲基化研究"
+    ],
+    "referenceEntries": "UniProt: O95785; RCSB PDB: 9DJT; Open Targets: WIZ",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "9DJT可解析锌指簇外侧蛋白互作界面",
+        "有望阻断WIZ与EHMT1/EHMT2复合体装配，机制最直接",
+        "优先"
+      ],
+      [
+        "Site B",
+        "锌指间连接区与相邻非配位表面",
+        "可通过构象限制削弱复合体稳定性，适合亲和力成熟",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C2H2锌指保守Cys/His配位核心附近",
+        "保守性高且可能破坏结构折叠，存在非特异构象风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "WIZ为核内蛋白，常规抗体难以到达作用位点；设计应限定为细胞内递送抗体、intrabody或研究级阻断抗体，并严格评估锌指保守表面交叉反应。",
+    "structurePrepZh": "以PDB 9DJT抗原链A-F为模板，补全缺失侧链与氢原子，保留锌离子配位几何，按链间接触面定义可成药表位区域。",
+    "structureRef": "RCSB PDB 9DJT, X-ray diffraction, 2.95 Å",
+    "antibodies": [
+      "WIZ研究级多克隆抗体",
+      "抗C2H2锌指结构域研究抗体"
+    ],
+    "interfaceFocus": "锌指簇外露面与EHMT1/EHMT2复合体接触界面",
+    "designMode": "细胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "EHMT2",
+        "rationale": "EHMT2编码G9a，是WIZ复合体中的H3K9甲基转移酶核心组分，直接催化H3K9me1/2并介导转录沉默。其酶活性和复合体界面均可作为同通路干预节点。"
+      },
+      {
+        "target": "EHMT1",
+        "rationale": "EHMT1编码GLP，与EHMT2形成异源复合体并参与WIZ依赖的染色质定位。该靶点与神经发育异常和表观遗传失衡具有明确关联。"
+      },
+      {
+        "target": "ZNF644",
+        "rationale": "ZNF644为G9a/GLP相关锌指蛋白，可参与H3K9甲基化转录抑制复合体功能。其与WIZ处于相近的核内表观遗传调控网络。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

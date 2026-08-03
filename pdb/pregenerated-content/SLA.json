@@ -1,0 +1,65 @@
+{
+  "gene": "SLA",
+  "generatedAt": "2026-08-03T16:34:01.420Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SLA编码Src-like adaptor，为胞内衔接蛋白，参与免疫受体与酪氨酸激酶信号复合物的负向调节，并与血小板计数等血液表型存在遗传关联。该蛋白主要定位于胞质，缺乏胞外结构域、分泌形式或膜受体外露区，因此天然抗原可及性不支持常规治疗性抗体开发。相较于同通路中具有胞外可及位点的免疫受体或造血调控分子，SLA更适合作为机制研究或细胞内递送抗体格式的探索靶点，优先级应低于可直接外源阻断的表面靶点。",
+    "mechanism": "设计以内吞递送或胞内抗体形式阻断SLA SH3结构域与富脯氨酸配体结合，并干扰其SH2结构域识别磷酸酪氨酸信号复合物。",
+    "selectedEpitope": "优先覆盖SH3结构域RT-Src环及配体结合沟槽，备选评估SH2磷酸肽结合口袋邻近区域。",
+    "diseaseDirection": "血小板与造血免疫调控",
+    "domain": "SLA含N端SH3结构域、中央SH2结构域及C端含酪氨酸基序调控区，PDB 2CUD对应SH3结构域。",
+    "evidence": "SLA造血表型关联与SH3结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q13239蛋白功能与定位注释",
+      "RCSB PDB 2CUD溶液NMR结构",
+      "SH3/SH2衔接蛋白免疫受体信号文献"
+    ],
+    "referenceEntries": "UniProt Q13239；RCSB PDB 2CUD；Open Targets SLA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SH3结构域RT-Src环与富脯氨酸配体结合沟槽",
+        "直接干预SH3介导的蛋白复合物装配，最符合2CUD结构解析范围",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SH3结构域远端β折叠外露面",
+        "可用于提高结合稳定性并降低对核心折叠的扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SH2结构域磷酸酪氨酸结合口袋邻近区",
+        "机制相关但2CUD未覆盖，需另行建模与验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SLA为胞内蛋白，常规抗体难以到达作用位点；建议限定为细胞内抗体、递送型Fab/VHH或研究级阻断工具，并避免宣称外源抗体可直接中和。",
+    "structurePrepZh": "以2CUD NMR构象簇评估SH3沟槽保守性，统一链A编号，去除低置信柔性尾段后进行表面电荷与配体沟槽映射。",
+    "structureRef": "RCSB PDB 2CUD，human SLA SH3 domain，solution NMR",
+    "antibodies": [
+      "暂无获批抗SLA治疗性抗体",
+      "暂无临床阶段抗SLA同类抗体"
+    ],
+    "interfaceFocus": "SH3富脯氨酸配体结合沟槽",
+    "designMode": "胞内递送阻断",
+    "candidates": [
+      {
+        "target": "LAT",
+        "rationale": "LAT为免疫受体近端信号支架蛋白，参与TCR相关酪氨酸磷酸化复合物组装，与SLA同属免疫受体衔接信号网络。其膜定位使机制研究与邻近复合物分析具有较高相关性。"
+      },
+      {
+        "target": "SYK",
+        "rationale": "SYK介导免疫受体ITAM磷酸化下游信号，并参与血小板和造血细胞功能调控。其与SLA调节的酪氨酸激酶信号轴存在通路交汇。"
+      },
+      {
+        "target": "LCP2",
+        "rationale": "LCP2/SLP-76是TCR与Fc受体信号中的关键衔接蛋白，连接磷酸化受体复合物与下游效应分子。该靶点可作为SLA相关免疫衔接蛋白网络的候选比较对象。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

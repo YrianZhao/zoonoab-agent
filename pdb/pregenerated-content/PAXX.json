@@ -1,0 +1,65 @@
+{
+  "gene": "PAXX",
+  "generatedAt": "2026-08-03T15:06:16.132Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PAXX为非同源末端连接修复因子，参与Ku70/Ku80识别DNA双链断裂后的NHEJ装配，并通过与Ku复合体协同稳定末端连接过程，疾病关联主要指向肿瘤基因组稳定性与DNA损伤应答。该蛋白为细胞核内DNA修复因子，缺乏天然胞外结构域或分泌形式，常规细胞外抗体药物可及性不足，更适合用于胞内递送抗体片段、研究级阻断抗体或靶向降解系统的识别模块。相较于DNA-PKcs或LIG4等大型核心酶，PAXX结构更小且存在明确Ku结合相关头部结构域，便于解析界面并开展机制性表位设计，但作为治疗性膜外抗体靶点优先级较低。",
+    "mechanism": "设计抗体片段识别PAXX头部结构域的Ku结合相关表面，阻断PAXX与Ku70/Ku80-DNA末端复合体协同装配，从而削弱NHEJ末端连接稳定性。",
+    "selectedEpitope": "优先覆盖PAXX N端XRCC4样头部结构域的Ku相互作用表面，避开C端柔性低复杂度尾区。",
+    "diseaseDirection": "肿瘤DNA损伤应答与NHEJ修复",
+    "domain": "PAXX含N端XRCC4样球状头部结构域及C端柔性区，功能界面集中于NHEJ复合体装配表面。",
+    "evidence": "PAXX-NHEJ结构与肿瘤关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9BUH6功能注释",
+      "RCSB PDB 3WTD晶体结构",
+      "NHEJ DNA双链断裂修复文献"
+    ],
+    "referenceEntries": "UniProt Q9BUH6；RCSB PDB 3WTD；Open Targets PAXX",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端XRCC4样头部结构域Ku结合相关凸面",
+        "有望直接阻断PAXX与Ku70/Ku80-DNA末端复合体协同装配",
+        "优先"
+      ],
+      [
+        "Site B",
+        "头部结构域二聚体邻近界面",
+        "可干扰PAXX构象稳定或复合体空间定位，适合作为构象调节表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端柔性低复杂度尾区",
+        "结构解析度与构象稳定性不足，表位均一性和功能阻断确定性较低",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PAXX为核内蛋白，常规抗体难以到达作用位点；需采用胞内递送Fab/VHH或降解偶联策略，并验证对XRCC4、XLF等同源折叠蛋白的选择性。",
+    "structurePrepZh": "以3WTD链A、B为模板进行生物组装评估，补全缺失柔性片段并标注XRCC4样头部结构域、二聚界面及潜在Ku结合表面。",
+    "structureRef": "RCSB PDB 3WTD，X-ray diffraction，2.35 Å",
+    "antibodies": [
+      "无已批准PAXX治疗性抗体",
+      "研究级抗PAXX抗体"
+    ],
+    "interfaceFocus": "XRCC4样头部结构域Ku结合面与二聚邻近界面",
+    "designMode": "胞内抗体片段阻断",
+    "candidates": [
+      {
+        "target": "XRCC6",
+        "rationale": "XRCC6编码Ku70，是NHEJ中识别DNA双链断裂末端的核心组分，与XRCC5形成Ku异二聚体并为PAXX募集提供平台。"
+      },
+      {
+        "target": "XRCC5",
+        "rationale": "XRCC5编码Ku80，与Ku70共同形成DNA末端结合复合体，位于PAXX功能通路上游，适合作为同一NHEJ装配轴的替代干预节点。"
+      },
+      {
+        "target": "XRCC4",
+        "rationale": "XRCC4与LIG4形成连接复合体并执行NHEJ末端连接阶段，和PAXX同属NHEJ结构支架网络，可用于比较末端连接复合体阻断策略。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

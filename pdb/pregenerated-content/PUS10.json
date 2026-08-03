@@ -1,0 +1,65 @@
+{
+  "gene": "PUS10",
+  "generatedAt": "2026-08-03T15:45:59.788Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PUS10为细胞内假尿苷合成酶，参与tRNA及部分非编码RNA的假尿苷化修饰，其遗传关联可见于过氧化物酶体生物发生障碍、血细胞计数性状及Crohn病等表型，但目前缺乏明确的胞外致病配体轴。该蛋白主要定位于胞质/细胞核，抗原天然可及性不具备分泌蛋白或膜受体优势，因此更适合细胞内结合工具抗体、结构探针或降解偶联策略，而非常规中和抗体。优先级上，PUS10的2.0 Å实验晶体结构提供了明确的结构设计基础，但相较PEX1、PEX6等同病种通路核心致病蛋白，其抗体成药优先级受胞内可及性限制，应归为探索性结构靶点。",
+    "mechanism": "设计抗体片段结合PUS10催化结构域邻近RNA结合沟槽，阻断底物RNA与催化核心的空间配准，从而抑制假尿苷化反应。",
+    "selectedEpitope": "优先覆盖PUS10催化结构域的RNA结合沟槽边缘及保守催化核心邻近环区。",
+    "diseaseDirection": "过氧化物酶体生物发生障碍与炎症性肠病探索",
+    "domain": "PUS10含假尿苷合成酶催化核心及RNA底物结合相关结构面，2V9K解析其人源晶体结构。",
+    "evidence": "PUS10遗传关联与晶体结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q3MIT2蛋白功能与定位注释",
+      "RCSB PDB 2V9K X射线晶体结构",
+      "AlphaFold/结构域保守性与RNA结合面注释"
+    ],
+    "referenceEntries": "UniProt Q3MIT2；RCSB PDB 2V9K；Open Targets PUS10",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域RNA结合沟槽边缘",
+        "可直接干扰底物RNA定位并评估酶活抑制",
+        "优先"
+      ],
+      [
+        "Site B",
+        "保守催化核心邻近环区",
+        "有利于变构限制催化构象但需避免完全遮蔽结构折叠核心",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远端溶剂暴露非保守表面",
+        "适合作为检测或结构捕获表位，功能阻断价值有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PUS10为胞内酶，常规抗体难以到达天然作用位点；设计应聚焦细胞内递送、intrabody或PROTAC/降解偶联验证，并避免将其定位为经典细胞表面中和靶点。",
+    "structurePrepZh": "以2V9K链A为模板，补全缺失侧链与氢原子，校验催化残基、RNA结合沟槽及晶体接触界面，去除非生理晶体堆积干扰后进行表位建模。",
+    "structureRef": "RCSB PDB 2V9K，人源PUS10 2.0 Å X射线结构",
+    "antibodies": [
+      "尚无获批PUS10靶向治疗性抗体",
+      "可参考细胞内酶靶向intrabody工程抗体"
+    ],
+    "interfaceFocus": "RNA结合沟槽与催化核心邻近环区",
+    "designMode": "胞内Fab/VHH探索",
+    "candidates": [
+      {
+        "target": "PEX1",
+        "rationale": "PEX1是过氧化物酶体生物发生障碍的核心致病基因之一，参与PEX5受体回收相关AAA ATPase复合体功能，与Zellweger谱系疾病具有直接机制关联。"
+      },
+      {
+        "target": "PEX6",
+        "rationale": "PEX6与PEX1形成ATPase复合体，驱动过氧化物酶体基质蛋白导入循环中的受体再利用，是同一疾病通路中机制更明确的候选靶点。"
+      },
+      {
+        "target": "PEX26",
+        "rationale": "PEX26将PEX1-PEX6复合体锚定于过氧化物酶体膜，突变可导致Zellweger谱系疾病，适合作为过氧化物酶体生物发生轴的替代研究靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

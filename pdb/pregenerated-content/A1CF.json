@@ -1,0 +1,65 @@
+{
+  "gene": "A1CF",
+  "generatedAt": "2026-08-03T09:49:37.638Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "A1CF是APOBEC1介导APOB mRNA C-to-U编辑复合体的RNA结合辅因子，影响APOB48/APOB100比例，并与甘油三酯、APOB、LDL-C及总胆固醇等脂质表型存在遗传关联。其主要定位于细胞核和胞质，缺乏经典分泌段或跨膜胞外结构域，抗体作为常规细胞外阻断剂的抗原可及性较低。相较APOB、PCSK9、ANGPTL3等脂质通路分泌或循环靶点，A1CF更适合作为机制验证或胞内递送抗体研究靶点，优先级应低于可直接接触循环抗原的同通路靶点。",
+    "mechanism": "通过胞内递送抗体阻断A1CF RRM结构域与APOB mRNA mooring序列结合，干扰APOBEC1编辑复合体装配及APOB mRNA编辑。",
+    "selectedEpitope": "优先覆盖RRM1/RRM2的β-sheet RNA结合面及RNP1/RNP2基序邻近界面。",
+    "diseaseDirection": "脂质代谢与动脉粥样硬化风险",
+    "domain": "A1CF含三个RNA recognition motif，N端RRM负责RNA识别，C端区域参与核质定位与复合体调控。",
+    "evidence": "A1CF脂质表型遗传关联与APOB编辑证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9NQ94 functional annotation",
+      "RCSB PDB 2CPD solution NMR structure",
+      "APOBEC1-APOB mRNA editing literature"
+    ],
+    "referenceEntries": "UniProt Q9NQ94；RCSB PDB 2CPD；Open Targets A1CF",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RRM β-sheet RNA结合面与RNP1/RNP2基序",
+        "直接竞争APOB mRNA结合，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "相邻RRM结构域间连接区及复合体装配邻面",
+        "可能影响RNA结合构象和APOBEC1复合体稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端低复杂度及核质定位相关区域",
+        "结构柔性较高且PDB 2CPD覆盖有限，成药解释风险较大",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "A1CF为胞内RNA结合蛋白，常规Fab或VHH难以接触天然抗原；应优先采用胞内递送、intrabody或降解耦联策略，并严格验证RNA结合特异性。",
+    "structurePrepZh": "以PDB 2CPD的NMR构象集合为模板，保留代表性低能构象，标注RRM保守RNP基序，并补充AlphaFold模型覆盖未解析区域。",
+    "structureRef": "RCSB PDB 2CPD，human A1CF RRM solution NMR",
+    "antibodies": [
+      "无获批抗A1CF治疗性抗体",
+      "研究级抗A1CF抗体"
+    ],
+    "interfaceFocus": "RRM β-sheet RNA结合面及RNP基序",
+    "designMode": "胞内阻断型",
+    "candidates": [
+      {
+        "target": "APOBEC1",
+        "rationale": "APOBEC1是APOB mRNA C-to-U编辑的催化脱氨酶，与A1CF共同形成编辑复合体，直接决定APOB48生成。"
+      },
+      {
+        "target": "APOB",
+        "rationale": "APOB是APOBEC1-A1CF编辑轴的底物及脂蛋白核心结构蛋白，与APOB、LDL-C和甘油三酯表型直接相关。"
+      },
+      {
+        "target": "PCSK9",
+        "rationale": "PCSK9调控LDLR降解并影响血浆LDL-C水平，是脂质代谢疾病通路中抗体干预可及性更高的分泌靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

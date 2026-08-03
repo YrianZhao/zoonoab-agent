@@ -1,0 +1,65 @@
+{
+  "gene": "RARA",
+  "generatedAt": "2026-08-03T20:45:29.351Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RARA 是核内视黄酸受体，急性早幼粒细胞白血病中 PML::RARA 融合蛋白通过异常招募共抑制复合体阻断髓系分化。该靶点不具备天然胞外结构域或分泌形式，抗原可及性不符合常规治疗性抗体的细胞外阻断范式，更适合体外结构识别、降解递送或细胞内抗体研究。相比同通路 RXRA、NCOR1 等节点，RARA 具有明确驱动融合事件和高分辨率配体结合域结构，机制优先级较高但成药形式需审慎限定。",
+    "mechanism": "设计分子应识别 RARA 配体结合域构象，阻断 RARA 与 RXR 异源二聚界面或干扰 PML::RARA 对 NCOR/SMRT 共抑制复合体的异常招募。",
+    "selectedEpitope": "优先评估配体结合域 helix 10/11 邻近 RXR 二聚化界面，避开高度保守核受体 DNA 结合域。",
+    "diseaseDirection": "急性早幼粒细胞白血病与视黄酸通路",
+    "domain": "RARA 含 N 端 AF-1 区、C4 型锌指 DNA 结合域、铰链区及 C 端配体结合/AF-2 结构域。",
+    "evidence": "RARA 结构与 APL 分化阻滞证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProtKB P10276 功能与结构域注释",
+      "RCSB PDB 9GFE X 射线晶体结构",
+      "APL 中 PML::RARA 融合蛋白机制研究"
+    ],
+    "referenceEntries": "UniProt P10276；RCSB PDB 9GFE；Open Targets RARA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "配体结合域 helix 10/11 与 RXR 二聚化邻近面",
+        "可评估阻断 RARA-RXR 异源二聚及融合蛋白复合体装配",
+        "优先"
+      ],
+      [
+        "Site B",
+        "配体结合域 AF-2 helix 12 共调节因子结合沟槽",
+        "可能干扰 NCOA 共激活因子或 NCOR/SMRT 复合体结合",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C4 锌指 DNA 结合域 major groove 接触面",
+        "序列和结构保守性高，存在广泛核受体交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RARA 为核内受体，缺乏细胞外抗原可及性，常规抗体体内阻断可行性低；建议限定为 Fab 结构探针、细胞内抗体或递送偶联策略。",
+    "structurePrepZh": "以 PDB 9GFE 的 A、B 链为模板，保留配体结合域主构象，补全缺失侧链并评估晶体接触对二聚界面的影响。",
+    "structureRef": "RCSB PDB 9GFE，X-ray diffraction，1.583 Å",
+    "antibodies": [
+      "抗 RARA 研究级单克隆抗体",
+      "抗 PML::RARA 融合蛋白研究级抗体"
+    ],
+    "interfaceFocus": "LBD 二聚化面与 AF-2 共调节因子沟槽",
+    "designMode": "细胞内靶向评估",
+    "candidates": [
+      {
+        "target": "RXRA",
+        "rationale": "RXRA 是 RARA 的异源二聚化伙伴，参与视黄酸响应元件识别与转录调控，适合作为同一核受体通路的界面参照靶点。"
+      },
+      {
+        "target": "PML",
+        "rationale": "PML 与 RARA 形成 APL 驱动性 PML::RARA 融合蛋白，直接关联早幼粒细胞分化阻滞和治疗响应机制。"
+      },
+      {
+        "target": "NCOR1",
+        "rationale": "NCOR1 是 PML::RARA 异常招募的共抑制复合体核心组分，参与维持靶基因转录沉默状态。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

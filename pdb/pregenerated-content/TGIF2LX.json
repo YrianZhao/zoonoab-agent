@@ -1,0 +1,65 @@
+{
+  "gene": "TGIF2LX",
+  "generatedAt": "2026-08-03T21:30:39.228Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TGIF2LX 为X连锁同源盒转录因子，现有疾病关联主要集中于前列腺癌和结直肠腺癌，但 Open Targets 关联分值较低，提示其更适合作为肿瘤生物学研究靶点而非成熟抗体药物主靶点。该蛋白定位于细胞核，含DNA结合同源盒结构域，不具备分泌蛋白、膜受体或稳定胞外结构域特征，抗原可及性不支持常规体内抗体阻断策略。相较于TGF-β通路中具有胞外配体或膜受体属性的TGFB1、TGFBR2和ACVRL1，TGIF2LX的抗体设计优先级较低；若用于抗体开发，应限定于胞内抗原检测、结构验证或研究级结合分子。",
+    "mechanism": "研究级抗体可识别TGIF2LX同源盒结构域表面，干扰其与DNA大沟结合界面或用于捕获核内TGIF2LX复合物。",
+    "selectedEpitope": "优先避开同源盒DNA识别螺旋保守核心，选择N端非DNA接触表面作为特异性表位。",
+    "diseaseDirection": "前列腺癌与结直肠腺癌研究",
+    "domain": "TGIF2LX主要包含保守homeobox DNA结合结构域，2DMN覆盖其溶液NMR结构片段。",
+    "evidence": "TGIF2LX肿瘤关联与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q8IUE1 functional annotation",
+      "RCSB PDB 2DMN solution NMR structure",
+      "Gene Ontology nuclear DNA-binding annotation"
+    ],
+    "referenceEntries": "UniProt Q8IUE1；RCSB PDB 2DMN；Ensembl TGIF2LX",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "同源盒结构域N端外露非DNA接触面",
+        "有利于提高TGIF2LX相对同源转录因子的识别特异性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "同源盒第三螺旋邻近DNA大沟识别界面",
+        "可用于机制研究性阻断DNA结合，但同源盒保守性较高",
+        "备选"
+      ],
+      [
+        "Site C",
+        "同源盒折叠核心与疏水稳定界面",
+        "可能影响构象稳定且可及性有限，构象依赖风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为核内定位导致体内抗体不可及，同源盒高度保守导致交叉反应。建议定位于体外诊断、免疫检测或胞内递送研究场景。",
+    "structurePrepZh": "以2DMN NMR构象簇为模板，筛选代表性低能构象，补全缺失氢原子并标注DNA结合残基与保守位点后进行表位评估。",
+    "structureRef": "RCSB PDB 2DMN，human TGIF2LX homeobox NMR structure",
+    "antibodies": [
+      "无已获批TGIF2LX治疗性抗体",
+      "研究级anti-TGIF2LX抗体"
+    ],
+    "interfaceFocus": "homeobox DNA识别螺旋及相邻外露环区",
+    "designMode": "胞内研究抗体设计",
+    "candidates": [
+      {
+        "target": "TGFB1",
+        "rationale": "TGFB1为TGF-β通路核心分泌配体，直接驱动TGFBR1/TGFBR2受体复合物激活，抗原可及性和疾病机制证据均优于TGIF2LX。"
+      },
+      {
+        "target": "TGFBR2",
+        "rationale": "TGFBR2为细胞膜受体，胞外结构域可被抗体识别并阻断TGFB1、TGFB2或TGFB3配体结合，适合抑制TGF-β依赖性肿瘤信号。"
+      },
+      {
+        "target": "TGFBR1",
+        "rationale": "TGFBR1参与受体复合物下游SMAD2/3磷酸化，是TGF-β信号轴关键节点；虽主要抑制策略为小分子，仍属于同通路候选靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

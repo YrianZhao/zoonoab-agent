@@ -1,0 +1,65 @@
+{
+  "gene": "ARF6",
+  "generatedAt": "2026-08-03T10:33:23.045Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ARF6 是小 GTP 酶家族成员，参与内吞回收、膜脂重塑、细胞迁移与受体转运，在肿瘤侵袭和神经退行性病变相关的膜运输异常中具有机制关联。该蛋白主要定位于胞质侧和质膜内侧，缺乏经典胞外结构域，因此抗体直接结合完整细胞表面抗原的可及性受限，更适合采用细胞内递送抗体、胞内抗体或结构引导的功能阻断片段策略。其优先级依据在于 PDB 2A5D 提供 1.8 Å 高分辨率实验结构，可精确解析 Switch I/Switch II 与核苷酸结合口袋，相比缺乏结构模板的同通路小 GTP 酶更适合进行界面级抗体设计。",
+    "mechanism": "设计抗体片段结合 ARF6 的 Switch I/Switch II 构象界面，阻断其与 GEF、GAP 或效应蛋白的 GTP 依赖性相互作用，从而抑制 ARF6 介导的膜转运与迁移信号。",
+    "selectedEpitope": "优先覆盖 Switch I、Switch II 及邻近核苷酸结合沟槽，选择 GTP 态特异构象表位。",
+    "diseaseDirection": "肿瘤侵袭与神经退行性疾病",
+    "domain": "ARF6 为约 20 kDa 小 GTP 酶，含 P-loop NTPase 核心、Switch I、Switch II 与 N 端两亲性螺旋。",
+    "evidence": "ARF6 膜运输与疾病关联结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传与表型关联",
+      "UniProt P62330 功能与亚细胞定位注释",
+      "RCSB PDB 2A5D 高分辨率晶体结构",
+      "ARF6 介导内吞回收和肿瘤细胞迁移文献"
+    ],
+    "referenceEntries": "UniProt: P62330；RCSB PDB: 2A5D；HGNC: ARF6",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Switch I/Switch II 构象界面",
+        "直接干预 GTP 依赖性效应蛋白与调节因子识别，具备最高功能阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "P-loop 与核苷酸结合沟槽邻近区域",
+        "可稳定特定核苷酸状态并影响 GDP/GTP 周期，但需避免非特异扰动同源 GTP 酶",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端两亲性螺旋及膜结合面",
+        "与膜锚定和定位相关，但疏水性较高且细胞内膜邻近可及性有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ARF6 为胞内小 GTP 酶，常规全长抗体难以进入胞质；建议采用 VHH、胞内抗体或递送平台，并严格评估与 ARF1/ARF3 等同源蛋白的交叉反应。",
+    "structurePrepZh": "以 PDB 2A5D 链 A/B 为模板，补全缺失侧链并保留核苷酸相关构象信息，分别建立 GDP/GTP 态参考模型用于构象选择性表位评估。",
+    "structureRef": "RCSB PDB 2A5D，X-ray diffraction，1.8 Å",
+    "antibodies": [
+      "ARF6-specific intracellular antibody fragment",
+      "ARF6 conformation-selective nanobody"
+    ],
+    "interfaceFocus": "Switch I/Switch II 与 GEF-GAP-效应蛋白识别面",
+    "designMode": "胞内构象阻断",
+    "candidates": [
+      {
+        "target": "CYTH2",
+        "rationale": "CYTH2/ARNO 是 ARF 家族鸟嘌呤核苷酸交换因子，可促进 ARF6 由 GDP 态转为 GTP 态，位于同一膜转运和迁移调控轴。"
+      },
+      {
+        "target": "PLD2",
+        "rationale": "PLD2 可作为 ARF6 下游效应相关分子参与磷脂酸生成、膜重塑和细胞迁移，与 ARF6 驱动的肿瘤侵袭过程处于同一功能通路。"
+      },
+      {
+        "target": "RAC1",
+        "rationale": "RAC1 是 ARF6 相关细胞骨架重排和迁移信号的重要下游节点，参与肿瘤细胞运动性与膜动态调控。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

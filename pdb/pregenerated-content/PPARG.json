@@ -1,0 +1,65 @@
+{
+  "gene": "PPARG",
+  "generatedAt": "2026-08-03T15:29:33.887Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PPARG是脂肪生成、胰岛素敏感性与脂质储存的核受体转录因子，配体结合后与RXR异二聚并结合PPRE调控ADIPOQ、FABP4等代谢基因，遗传变异可导致家族性部分脂肪营养不良并增加2型糖尿病风险。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌形式，常规体内阻断抗体的抗原可及性不具优势，更适合作为结构引导的胞内结合分子或研究级抗体开发对象。相较GLP1R、INSR等膜受体代谢靶点，PPARG具备更强的人类遗传学与临床药理学验证基础，但抗体成药优先级应低于胞外可及靶点。",
+    "mechanism": "设计分子应结合PPARG配体结合域或AF-2共激活因子沟槽，阻断PPARG与LXXLL共激活肽或RXR依赖转录复合体的稳定装配。",
+    "selectedEpitope": "优先覆盖LBD的helix 12/AF-2沟槽及邻近配体诱导构象面，评估对共激活因子招募的影响。",
+    "diseaseDirection": "2型糖尿病与脂肪营养不良",
+    "domain": "含N端AF-1区、锌指DNA结合域、铰链区及C端配体结合域；1ZGY解析LBD二聚相关构象。",
+    "evidence": "PPARG代谢疾病遗传与结构药理证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联证据",
+      "UniProt P37231功能与亚细胞定位注释",
+      "RCSB PDB 1ZGY晶体结构记录",
+      "GWAS与单基因脂肪营养不良文献证据"
+    ],
+    "referenceEntries": "UniProt:P37231；RCSB PDB:1ZGY；Open Targets:PPARG",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "LBD helix 12/AF-2共激活因子结合沟槽",
+        "可直接干预LXXLL共激活肽招募，适合构象选择性抑制设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "LBD配体结合口袋周缘与helix 3/5/11界面",
+        "可稳定非激动构象或改变配体诱导的AF-2排列",
+        "备选"
+      ],
+      [
+        "Site C",
+        "DNA结合域锌指与PPRE识别表面",
+        "可能影响DNA结合但结构域保守且核内可及性受限，脱靶风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PPARG为核内受体，体内抗体递送与抗原可及性为主要限制；应优先采用细胞内Fab/VHH、核定位递送或体外机制验证，并严格评估RXR与同源核受体交叉反应。",
+    "structurePrepZh": "以1ZGY的A、B链LBD晶体结构为模板，保留关键配体和共调节肽信息用于界面判读，补建缺失环区并评估二聚界面与AF-2构象状态。",
+    "structureRef": "RCSB PDB 1ZGY；PPARG LBD X-ray结构，1.8 Å",
+    "antibodies": [
+      "PPARG monoclonal antibody E8",
+      "PPARG monoclonal antibody 81B8"
+    ],
+    "interfaceFocus": "LBD AF-2沟槽、helix 12与RXR相关二聚界面",
+    "designMode": "胞内结构抗体",
+    "candidates": [
+      {
+        "target": "RXRA",
+        "rationale": "RXRA与PPARG形成异二聚体并共同识别PPRE，是PPARG转录复合体的直接结构伙伴；干预该节点可影响脂质与胰岛素敏感性相关基因表达。"
+      },
+      {
+        "target": "FABP4",
+        "rationale": "FABP4是PPARG调控的脂肪细胞脂质结合蛋白，与胰岛素抵抗、脂肪细胞炎症和2型糖尿病风险相关；其分泌型循环形式具有较PPARG更好的抗体可及性。"
+      },
+      {
+        "target": "ADIPOQ",
+        "rationale": "ADIPOQ为PPARG驱动脂肪细胞分化后上调的脂肪因子，参与AMPK与胰岛素敏感性调节；其分泌蛋白属性适合抗体或结合蛋白工程评估。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

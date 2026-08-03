@@ -1,0 +1,65 @@
+{
+  "gene": "PTMA",
+  "generatedAt": "2026-08-03T15:42:41.468Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PTMA编码prothymosin alpha，为高度酸性、主要定位于细胞核的非经典分泌/损伤释放蛋白，参与染色质重塑、细胞增殖及免疫细胞活化相关过程。其Open Targets关联主要集中于淋巴细胞、白细胞和单核细胞数量表型，提示与免疫细胞稳态及炎症应答存在遗传和功能关联。抗体可及性方面，PTMA缺乏跨膜结构域，常规胞外抗体仅适用于释放型或外源性PTMA，不适合作为经典膜受体优先靶点。相较CD47、CD40等免疫通路膜靶点，PTMA的结构无序性和胞内主定位降低成药优先级，但其释放型免疫调节活性可作为探索性中和抗体方向。",
+    "mechanism": "中和释放型PTMA与TLR4-MD2受体复合体的结合，降低髓系细胞NF-κB依赖性炎症因子诱导。",
+    "selectedEpitope": "优先覆盖C端酸性无序区及末端富天冬/谷氨酸片段，评估其对TLR4-MD2结合的阻断能力。",
+    "diseaseDirection": "免疫细胞数量与炎症调节",
+    "domain": "PTMA为约111 aa酸性无序蛋白，含N端胸腺素样区域、中央酸性重复区及C端核定位相关片段。",
+    "evidence": "PTMA免疫细胞表型与释放型炎症信号证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProtKB P06454功能与定位注释",
+      "RCSB PDB 2L9I溶液NMR结构记录",
+      "文献报道PTMA释放后经TLR4-MD2诱导炎症信号"
+    ],
+    "referenceEntries": "UniProtKB:P06454; RCSB PDB:2L9I; Open Targets:PTMA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端酸性无序区及核定位邻近片段",
+        "可能参与释放型PTMA与TLR4-MD2识别，适合中和型抗体筛选",
+        "优先"
+      ],
+      [
+        "Site B",
+        "中央富谷氨酸/天冬氨酸重复区",
+        "酸性表面连续性强，可提高结合覆盖度，但需评估特异性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端胸腺素样保守区",
+        "保守性较高且结构柔性强，存在交叉反应和功能不确定性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PTMA以胞内和无序构象为主，天然抗原暴露受细胞损伤或分泌状态限制。建议采用释放型蛋白中和验证，并排除与其他酸性无序蛋白的非特异结合。",
+    "structurePrepZh": "以2L9I溶液NMR构象集为参考，保留多构象模型评估柔性表位；结合AlphaFold无序预测与肽段抗原设计进行构象覆盖。",
+    "structureRef": "RCSB PDB 2L9I, solution NMR human PTMA",
+    "antibodies": [
+      "抗PTMA研究用单克隆抗体",
+      "抗prothymosin alpha多克隆抗体"
+    ],
+    "interfaceFocus": "C端酸性片段与TLR4-MD2识别界面",
+    "designMode": "探索性中和抗体",
+    "candidates": [
+      {
+        "target": "TLR4",
+        "rationale": "TLR4为释放型PTMA报道的受体通路核心膜受体，抗体阻断TLR4配体结合可直接抑制髓系炎症信号。"
+      },
+      {
+        "target": "LY96",
+        "rationale": "LY96编码MD-2，是TLR4配体识别复合体的关键组成部分，适合作为阻断PTMA-TLR4-MD2轴的替代界面靶点。"
+      },
+      {
+        "target": "MYD88",
+        "rationale": "MYD88为TLR4下游适配蛋白，连接受体激活与NF-κB炎症转录程序；虽不适合常规胞外抗体，但属于同一信号轴的机制参照靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

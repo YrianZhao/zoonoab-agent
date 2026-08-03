@@ -1,0 +1,65 @@
+{
+  "gene": "CCNE1",
+  "generatedAt": "2026-08-03T11:06:31.771Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CCNE1编码cyclin E1，是细胞周期G1/S转换中CDK2激活的调节亚基，可通过cyclin E1-CDK2复合物促进RB1磷酸化并释放E2F转录程序，其扩增或过表达与多种肿瘤的复制压力、基因组不稳定性和治疗耐受相关。该蛋白主要定位于细胞核和胞质，缺乏分泌信号肽、跨膜区及稳定胞外结构域，因此抗原可及性不符合常规细胞外抗体药物开发标准。相较于EGFR、ERBB2、PDCD1等胞外或膜受体靶点，CCNE1作为抗体主靶点的优先级较低，更适合用于结构生物学验证、细胞内递送抗体或TCR样分子设计探索。",
+    "mechanism": "设计目标为干扰cyclin E1与CDK2及底物识别界面的装配，降低RB1磷酸化和E2F依赖转录推进。",
+    "selectedEpitope": "优先评估cyclin box fold中CDK2结合面及MRAIL样底物招募沟槽邻近区域。",
+    "diseaseDirection": "CCNE1扩增相关肿瘤细胞周期异常",
+    "domain": "cyclin E1含N端低复杂度调控区、核心cyclin box fold和C端降解调控区。",
+    "evidence": "CCNE1-CDK2细胞周期轴结构与肿瘤证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProtKB P24864功能与定位注释",
+      "RCSB PDB 8VQ3晶体结构",
+      "COSMIC与TCGA中CCNE1扩增肿瘤基因组证据"
+    ],
+    "referenceEntries": "UniProt P24864；RCSB PDB 8VQ3；HGNC:1589",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "cyclin box fold的CDK2结合界面",
+        "直接阻断cyclin E1-CDK2复合物形成，机制清晰但需细胞内递送",
+        "优先"
+      ],
+      [
+        "Site B",
+        "MRAIL样底物识别沟槽邻近螺旋区",
+        "可能干扰底物招募与RB1磷酸化级联，适合结构引导筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端低复杂度与磷酸化调控区",
+        "构象柔性高且结构解析不稳定，表位均一性与成药性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CCNE1为胞内非分泌蛋白，常规Fab或VHH难以到达天然抗原；设计应限定为细胞内抗体、递送载体或研究级阻断分子。",
+    "structurePrepZh": "以8VQ3高分辨率晶体结构为模板，保留抗原链A、B并评估配体、缺失片段和晶体接触对CDK2界面构象的影响。",
+    "structureRef": "RCSB PDB 8VQ3，X-ray，1.84 Å，人源cyclin E1结构",
+    "antibodies": [
+      "研究用抗cyclin E1抗体HE12",
+      "研究用抗cyclin E1抗体13A3"
+    ],
+    "interfaceFocus": "CDK2结合面与底物招募沟槽",
+    "designMode": "胞内阻断探索",
+    "candidates": [
+      {
+        "target": "CDK2",
+        "rationale": "CDK2是cyclin E1的直接催化伴侣，形成cyclin E1-CDK2复合物后驱动G1/S转换；其酶活性口袋已有明确药物学验证。"
+      },
+      {
+        "target": "RB1",
+        "rationale": "RB1是cyclin E1-CDK2轴的关键下游底物，磷酸化后释放E2F转录因子并促进S期基因表达。"
+      },
+      {
+        "target": "E2F1",
+        "rationale": "E2F1位于RB1释放后的转录执行层，调控DNA复制和细胞周期基因表达，可作为同一G1/S通路的功能读出靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "FKBP8",
+  "generatedAt": "2026-08-03T12:34:45.563Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FKBP8为线粒体外膜锚定的免疫亲和素样蛋白，参与BCL2/BCL-XL结合、mTOR相关信号调节及发育过程中的细胞存活控制，其遗传关联信号涉及神经管闭合和椎体分节异常。该蛋白主要定位于胞质侧线粒体外膜，缺乏天然胞外结构域，抗体抗原可及性弱，适合作为细胞内机制研究或递送型抗体设计对象。相较经典胞外发育通路靶点，FKBP8的抗体成药优先级较低，但3EY6提供高分辨率FKBP结构域信息，可支持精细化结构表位验证。",
+    "mechanism": "设计分子可阻断FKBP8 FKBP样结构域与BCL2/BCL-XL的结合界面，削弱其对线粒体凋亡调控因子的伴侣样稳定作用。",
+    "selectedEpitope": "优先评估FKBP样结构域肽基脯氨酰异构酶折叠表面的BCL2结合邻近沟槽。",
+    "diseaseDirection": "神经发育异常与线粒体凋亡调控",
+    "domain": "FKBP8含N端FKBP样PPIase结构域、TPR重复区、钙调蛋白结合区及C端跨膜锚定区。",
+    "evidence": "FKBP8结构域与发育异常关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q14318功能与亚细胞定位注释",
+      "RCSB PDB 3EY6高分辨率晶体结构",
+      "文献报道FKBP8与BCL2/BCL-XL及mTOR信号关联"
+    ],
+    "referenceEntries": "UniProt Q14318；RCSB PDB 3EY6；Open Targets FKBP8",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "FKBP样结构域BCL2结合邻近沟槽",
+        "可直接评估阻断抗凋亡BCL2家族蛋白结合的设计价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FKBP样结构域催化口袋周缘环区",
+        "适合构建构象选择性结合分子并降低深口袋小分子竞争依赖",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端跨膜锚定区邻近胞质侧片段",
+        "膜近端柔性和结构缺失风险较高，需避免作为主要构象表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FKBP8为胞内线粒体外膜蛋白，常规抗体难以到达天然作用位点；宜采用细胞内抗体、递送型Fab/VHH或仅用于机制探针开发。",
+    "structurePrepZh": "以3EY6链A为FKBP样结构域模板，补充缺失的TPR与C端区域注释，去除晶体溶剂并保留关键环区构象用于表位聚类。",
+    "structureRef": "RCSB PDB 3EY6，FKBP8结构域X射线晶体结构，1.05 Å",
+    "antibodies": [
+      "无临床验证抗FKBP8治疗性抗体",
+      "研究级抗FKBP8抗体"
+    ],
+    "interfaceFocus": "FKBP样结构域BCL2结合沟槽与催化口袋周缘",
+    "designMode": "胞内递送型抗体",
+    "candidates": [
+      {
+        "target": "BCL2",
+        "rationale": "BCL2与FKBP8处于线粒体凋亡调控网络，直接抑制线粒体外膜通透化并影响细胞存活。其作用界面明确，但胞内定位同样限制常规抗体可及性。"
+      },
+      {
+        "target": "BCL2L1",
+        "rationale": "BCL2L1编码BCL-XL，是FKBP8报道结合的抗凋亡BCL2家族成员，参与线粒体凋亡阈值设定。该靶点可用于同一细胞存活通路的界面阻断策略比较。"
+      },
+      {
+        "target": "MTOR",
+        "rationale": "MTOR与FKBP8存在功能关联，参与营养感应、生长控制和发育相关信号网络。其通路证据强，但蛋白主要位于胞内复合体，抗体设计更适合机制研究场景。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

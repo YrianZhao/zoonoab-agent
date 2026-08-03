@@ -1,0 +1,65 @@
+{
+  "gene": "TNFRSF1B",
+  "generatedAt": "2026-08-03T17:22:43.559Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TNFRSF1B编码TNFR2，是TNF-α信号轴中的诱导型膜受体，主要在调节性T细胞、内皮细胞和部分髓系细胞中介导NF-κB、MAPK及存活信号，参与炎症、自身免疫和免疫稳态失衡。其配体结合区位于胞外半胱氨酸富集结构域，抗体可直接接近并调控TNF-α结合或受体聚簇。相较TNFRSF1A，TNFRSF1B缺乏死亡结构域且细胞分布更偏免疫调节细胞，具有更适合选择性免疫调节抗体设计的优先级。",
+    "mechanism": "通过阻断或重塑TNF-α与TNFR2胞外CRD2-CRD3配体结合界面的相互作用，抑制受体三聚化及下游TRAF2依赖性NF-κB存活信号。",
+    "selectedEpitope": "优先覆盖CRD2-CRD3的TNF-α接触面及受体聚簇界面，避免完全依赖柔性N端CRD1。",
+    "diseaseDirection": "炎症免疫与自身免疫调节",
+    "domain": "I型跨膜受体，胞外区含4个半胱氨酸富集结构域，胞内区招募TRAF2相关信号复合物。",
+    "evidence": "TNFR2炎症免疫信号与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P20333功能与结构域注释",
+      "RCSB PDB 9CU8晶体结构记录",
+      "TNF-TNFR超家族配体受体结构与免疫学文献"
+    ],
+    "referenceEntries": "UniProt:P20333；RCSB PDB:9CU8；HGNC:11917",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CRD2-CRD3配体结合界面",
+        "直接干预TNF-α结合及受体三聚化，具备明确功能阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CRD1-CRD2相邻外侧面",
+        "可影响受体构象排列并保留部分配体界面选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "CRD4近膜区域",
+        "可能影响膜近端受体聚簇，但空间可及性和功能方向需验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TNFR2存在激动与拮抗双向药理风险，抗体价态和Fc介导交联可能改变功能输出；建议并行评估Fab阻断活性与全长IgG聚簇效应。",
+    "structurePrepZh": "以9CU8中抗原链A、B为模板，保留二硫键和糖基化位点注释，优先建模胞外CRD2-CRD3界面并检查缺失环区构象。",
+    "structureRef": "RCSB PDB 9CU8，X-ray diffraction，1.96 Å",
+    "antibodies": [
+      "Atrosab",
+      "Tregalizumab"
+    ],
+    "interfaceFocus": "TNF-α接触面、CRD2-CRD3夹角及受体聚簇面",
+    "designMode": "结构引导阻断型",
+    "candidates": [
+      {
+        "target": "TNF",
+        "rationale": "TNF是TNFRSF1B的直接配体，处于同一TNF信号轴上；中和TNF可同时减少TNFR1和TNFR2介导的炎症信号输入。"
+      },
+      {
+        "target": "TNFRSF1A",
+        "rationale": "TNFRSF1A编码TNFR1，与TNFR2共享TNF配体并介导炎症和细胞死亡相关信号；适合作为同通路受体选择性比较靶点。"
+      },
+      {
+        "target": "LTA",
+        "rationale": "Lymphotoxin-α可与TNF受体家族成员发生配体层面关联，并参与TNF超家族炎症网络；适合用于评估TNF样配体轴的替代调控策略。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

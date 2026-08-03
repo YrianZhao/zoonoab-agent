@@ -1,0 +1,65 @@
+{
+  "gene": "UCHL3",
+  "generatedAt": "2026-08-03T17:40:59.251Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "UCHL3 是胞质型去泛素化酶，催化泛素或 NEDD8 前体 C 端水解并参与蛋白稳态调控；现有关联主要集中于骨骼系统异常、肝脏疾病及体成分表型，但 Open Targets 最高得分有限，提示疾病因果证据仍属中等偏探索性。该蛋白缺乏跨膜区和分泌信号肽，天然抗原可及性不具备膜受体或分泌蛋白优势，常规体内阻断型抗体开发存在递送限制。其优先级依据主要来自高分辨率实验结构、明确催化口袋和泛素结合界面，相比泛素系统中结构信息不足的酶更适合用于细胞内抗体、VHH 或研究级功能阻断分子设计。",
+    "mechanism": "抗体结合 UCHL3 催化裂隙邻近的泛素 C 端结合沟槽，空间阻断泛素 Gly76 尾部进入 Cys95-His169-Asp184 催化三联体，从而抑制去泛素化反应。",
+    "selectedEpitope": "优先覆盖 Cys95 周边催化裂隙与泛素 C 端结合沟槽，避开高度保守核心折叠区。",
+    "diseaseDirection": "泛素-蛋白稳态相关骨骼与肝脏表型",
+    "domain": "UCH 家族催化结构域，含 Cys95-His169-Asp184 催化三联体及泛素 C 端底物结合沟槽。",
+    "evidence": "UCHL3 去泛素化酶结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P15374 functional annotation",
+      "RCSB PDB 1XD3 X-ray structure",
+      "MEROPS/InterPro UCH family domain annotation"
+    ],
+    "referenceEntries": "UniProt P15374；RCSB PDB 1XD3；InterPro IPR001578",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Cys95 催化裂隙与泛素 C 端结合沟槽",
+        "直接阻断底物尾部进入催化三联体，具备最高功能抑制价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "His169-Asp184 邻近的活性位点支撑环区",
+        "可通过构象约束削弱催化三联体配位，但需避免过度依赖柔性环",
+        "备选"
+      ],
+      [
+        "Site C",
+        "UCH 核心β折叠外侧保守表面",
+        "可获得高亲和结合但功能阻断相关性较弱，且存在家族交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "UCHL3 为胞内酶，治疗性抗体递送与靶点可及性风险较高；设计宜定位为细胞内 VHH、递送偶联抗体片段或机制验证工具，并强化 UCHL1/UCHL5 选择性筛查。",
+    "structurePrepZh": "以 1XD3 高分辨率晶体结构为模板，保留抗原单体构象，校正催化 Cys95 质子化状态，标注底物沟槽、柔性环和晶体接触界面后开展表位建模。",
+    "structureRef": "RCSB PDB 1XD3，human UCHL3 X-ray structure，1.45 Å",
+    "antibodies": [
+      "anti-UCHL3 clone EPR4118",
+      "anti-UCHL3 clone OTI3B10"
+    ],
+    "interfaceFocus": "Cys95 催化裂隙及泛素 C 端结合沟槽",
+    "designMode": "胞内酶抑制型",
+    "candidates": [
+      {
+        "target": "UCHL1",
+        "rationale": "UCHL1 属同一 UCH 去泛素化酶家族，参与神经与蛋白稳态相关疾病表型；可作为选择性与家族交叉反应评估的关键对照靶点。"
+      },
+      {
+        "target": "UCHL5",
+        "rationale": "UCHL5 是蛋白酶体相关去泛素化酶，参与泛素化底物加工与蛋白稳态维持；与 UCHL3 共享 UCH 催化机制但细胞复合体环境不同。"
+      },
+      {
+        "target": "BAP1",
+        "rationale": "BAP1 为 UCH 家族去泛素化酶，参与染色质相关去泛素化和细胞命运调控；可用于同通路内泛素水解酶靶点优先级比较。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

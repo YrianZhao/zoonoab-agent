@@ -1,0 +1,65 @@
+{
+  "gene": "MERTK",
+  "generatedAt": "2026-08-03T14:11:24.705Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MERTK属于TAM受体酪氨酸激酶家族，在视网膜色素上皮细胞中介导光感受器外节吞噬清除，功能缺陷可导致常染色体隐性视网膜色素变性。该靶点为单跨膜受体，胞外Ig样结构域与纤连蛋白III样结构域可作为抗体结合区域，抗原可及性优于胞内激酶靶点。相较AXL和TYRO3，MERTK与遗传性视网膜退行性病变的因果证据更直接，适合作为该疾病轴的优先抗体设计靶点。",
+    "mechanism": "阻断GAS6或PROS1桥接磷脂酰丝氨酸与MERTK胞外区的配体依赖性结合，从而抑制MERTK二聚化和激酶自磷酸化。",
+    "selectedEpitope": "优先覆盖Ig-like domain 1/2配体识别界面，避开FNIII膜近端柔性区。",
+    "diseaseDirection": "遗传性视网膜退行性疾病",
+    "domain": "MERTK胞外区含两个Ig-like结构域和两个fibronectin type III结构域，后接跨膜区与胞内酪氨酸激酶域。",
+    "evidence": "MERTK视网膜吞噬通路抗体设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q12866功能与结构域注释",
+      "RCSB PDB 7AB0晶体结构记录",
+      "人类MERTK相关视网膜色素变性遗传学研究"
+    ],
+    "referenceEntries": "UniProt: Q12866; RCSB PDB: 7AB0; HGNC: MERTK",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Ig-like domain 1/2配体结合面",
+        "可直接干预GAS6/PROS1介导的受体激活",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FNIII domain 1远端可及表面",
+        "有利于稳定结合并降低对Ig样核心折叠的扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "FNIII domain 2膜近端区域",
+        "邻近膜面且构象可变，可能影响成药性与空间可及性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TAM家族Ig样区存在一定同源性，应重点评估AXL与TYRO3交叉反应；膜近端FNIII区域柔性较高，建议优先选择配体界面外露刚性片段。",
+    "structurePrepZh": "以7AB0链A为抗原模板，保留胞外结构域坐标，补全缺失侧链并检查糖基化位点；对配体结合面进行可及性与保守性联合标注。",
+    "structureRef": "RCSB PDB 7AB0, X-ray diffraction, 1.74 Å",
+    "antibodies": [
+      "MRX-2843",
+      "Merestinib"
+    ],
+    "interfaceFocus": "Ig-like domain 1/2配体识别界面",
+    "designMode": "阻断型Fab设计",
+    "candidates": [
+      {
+        "target": "GAS6",
+        "rationale": "GAS6是MERTK的维生素K依赖性配体，可桥接磷脂酰丝氨酸并诱导TAM受体激活。靶向GAS6可在配体层面抑制MERTK通路输入。"
+      },
+      {
+        "target": "PROS1",
+        "rationale": "PROS1同样可作为TAM受体配体参与凋亡细胞和光感受器外节清除。其阻断策略适用于解析MERTK配体冗余驱动的信号贡献。"
+      },
+      {
+        "target": "AXL",
+        "rationale": "AXL与MERTK同属TAM受体家族并共享GAS6配体，在吞噬清除和免疫抑制信号中具有通路交叉。作为候选靶点可用于比较TAM轴选择性干预窗口。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

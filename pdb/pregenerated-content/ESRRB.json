@@ -1,0 +1,65 @@
+{
+  "gene": "ESRRB",
+  "generatedAt": "2026-08-03T12:22:39.840Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ESRRB 编码核受体 estrogen-related receptor beta，是内耳发育和毛细胞功能相关转录调控网络的重要因子，遗传变异与常染色体隐性听力损失和罕见遗传性耳聋存在明确关联。该蛋白为细胞核内孤儿核受体，主要抗原区域位于DNA结合域和配体结合域，天然状态下不具备细胞表面抗原可及性，因此更适合作为结构生物学验证、细胞内递送抗体或研究级结合分子设计靶点。相较于同通路中更广泛表达的转录因子，ESRRB在遗传性耳聋证据中的疾病关联得分较高，且6LIT提供高分辨率实验结构，可优先支持结构约束型抗体片段设计。",
+    "mechanism": "设计结合ESRRB配体结合域的抗体片段，阻断其二聚化界面或共调节因子结合沟槽，从而干预ESRRB介导的转录复合物装配。",
+    "selectedEpitope": "优先靶向配体结合域AF-2附近共调节因子结合沟槽，兼顾二聚化界面可阻断表位。",
+    "diseaseDirection": "遗传性听力损失与耳聋",
+    "domain": "ESRRB含N端DNA结合域、铰链区及C端核受体配体结合域，6LIT覆盖配体结合域构象。",
+    "evidence": "ESRRB遗传性耳聋结构设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联证据",
+      "UniProt O95718功能与结构域注释",
+      "RCSB PDB 6LIT X射线晶体结构",
+      "人类遗传性耳聋ESRRB变异研究文献"
+    ],
+    "referenceEntries": "UniProt O95718；RCSB PDB 6LIT；Open Targets ESRRB",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "配体结合域AF-2螺旋及共调节因子结合沟槽",
+        "可干预ESRRB与LXXLL样共调节因子基序结合，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "配体结合域二聚化界面邻近螺旋束",
+        "可影响核受体二聚体装配，适合构建阻断型Fab或VHH",
+        "备选"
+      ],
+      [
+        "Site C",
+        "DNA结合域锌指区域",
+        "理论上可影响ESRRB与靶基因ERE样序列结合，但结构可及性和保守性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ESRRB为核内蛋白，常规治疗性抗体难以到达胞内靶点；DNA结合域高度保守，需避免交叉识别ESRRA、ESRRG等同源核受体。",
+    "structurePrepZh": "以6LIT实验晶体结构为模板，保留ESRRB配体结合域链A、B、D、E，补全缺失侧链并评估晶体接触对二聚化界面的影响。",
+    "structureRef": "RCSB PDB 6LIT，2.0 Å X-ray ESRRB LBD结构",
+    "antibodies": [
+      "ESRRB研究级单克隆抗体",
+      "ESRRB ChIP级单克隆抗体"
+    ],
+    "interfaceFocus": "AF-2共调节因子沟槽与LBD二聚化界面",
+    "designMode": "胞内靶点研究型",
+    "candidates": [
+      {
+        "target": "SOX10",
+        "rationale": "SOX10参与内耳发育和神经嵴相关转录调控，致病变异与综合征性及非综合征性听力损失相关，可作为同一遗传性耳聋调控网络候选靶点。"
+      },
+      {
+        "target": "POU4F3",
+        "rationale": "POU4F3是毛细胞分化和维持所需转录因子，突变可导致常染色体显性非综合征性耳聋，疾病方向与ESRRB高度一致。"
+      },
+      {
+        "target": "GATA3",
+        "rationale": "GATA3调控内耳发育并与HDR综合征及感音神经性听力损失相关，适合纳入耳发育转录网络的比较靶点集合。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "MSH6",
+  "generatedAt": "2026-08-03T14:25:17.282Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MSH6是MutSα复合物的错配识别亚基，与MSH2共同识别碱基错配和小型插入缺失环，胚系失活可导致Lynch综合征并增加子宫内膜癌和结直肠癌风险。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌特征，因此并非传统可及性良好的体内抗体靶点，更适合细胞内结构验证、诊断抗体或递送型抗体平台。相比MLH1、PMS2等下游修复因子，MSH6位于错配识别起始环节且结构信息明确，可优先用于解析MutSα识别界面的构象依赖表位。",
+    "mechanism": "抗体结合MSH6错配识别夹持区，阻断MSH6-MSH2复合物对错配DNA的稳定夹持与ATP驱动构象转换。",
+    "selectedEpitope": "优先覆盖MSH6错配结合/夹持结构域邻近DNA接触面，避开高度保守ATPase催化核心。",
+    "diseaseDirection": "错配修复缺陷相关肿瘤",
+    "domain": "MSH6含N端错配结合区、连接/夹持结构域及C端MutS ATPase结构域。",
+    "evidence": "MSH6错配修复缺陷与肿瘤易感证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P52701 functional annotation",
+      "RCSB PDB 6OQM experimental structure",
+      "ClinVar/OMIM Lynch syndrome variant evidence"
+    ],
+    "referenceEntries": "UniProt P52701；RCSB PDB 6OQM；GeneCards MSH6",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "错配DNA识别夹持区及邻近外露环",
+        "可直接干预MutSα对错配DNA的结合稳定性，适合功能阻断与构象探针设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "MSH2-MSH6异源二聚体界面边缘",
+        "可用于识别复合物装配状态并评估异源二聚体依赖构象",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端ATPase Walker A/B邻近区域",
+        "催化核心保守性高且可能影响ATP结合，交叉反应与功能扰动风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MSH6为核内蛋白，体内抗体可及性受限；设计宜定位于诊断、细胞内递送或研究级阻断抗体，并严格评估MSH2依赖构象。",
+    "structurePrepZh": "以6OQM链A为抗原模板，补全缺失环区并保留与MSH2或DNA相关的界面注释，用于表位暴露度和保守性分析。",
+    "structureRef": "RCSB PDB 6OQM，X-ray diffraction，2.2 Å",
+    "antibodies": [
+      "Clone EP49",
+      "Clone SP93"
+    ],
+    "interfaceFocus": "MSH6错配DNA夹持面与MSH2界面边缘",
+    "designMode": "胞内抗原阻断",
+    "candidates": [
+      {
+        "target": "MSH2",
+        "rationale": "MSH2与MSH6形成MutSα复合物，是错配DNA识别的必需伙伴；其缺陷同样驱动Lynch综合征和错配修复缺陷肿瘤。"
+      },
+      {
+        "target": "MLH1",
+        "rationale": "MLH1与PMS2形成MutLα复合物，位于MSH6-MSH2识别后的下游修复执行环节；临床上与微卫星不稳定和Lynch综合征高度相关。"
+      },
+      {
+        "target": "PMS2",
+        "rationale": "PMS2作为MutLα内切核酸酶亚基参与错配切除启动，其胚系变异可导致Lynch综合征和宪法性错配修复缺陷综合征。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

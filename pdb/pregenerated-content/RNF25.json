@@ -1,0 +1,65 @@
+{
+  "gene": "RNF25",
+  "generatedAt": "2026-08-03T16:07:08.685Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RNF25为RING型E3泛素连接酶，参与泛素转移复合物装配，并与脂质性状及肝细胞癌存在遗传关联信号；但现有疾病关联强度偏低，主要来自测量性状而非明确药理验证通路。RNF25主要为胞内蛋白，RING结构域不具备天然胞外抗原可及性，因此不适合作为常规治疗性抗体的细胞表面阻断靶点。其优先级仅适用于结构生物学、胞内递送抗体或研究级结合分子开发；相较PCSK9、ANGPTL3等分泌型脂代谢靶点，成药性与抗体可及性明显较弱。",
+    "mechanism": "设计分子可结合RNF25 RING结构域锌指核心邻近E2结合面，干扰RNF25与泛素偶联酶E2的复合物形成，从而降低底物泛素化效率。",
+    "selectedEpitope": "优先评估RING结构域E2结合面邻近α螺旋与锌配位环外侧，避开Cys/His锌配位核心。",
+    "diseaseDirection": "脂质代谢性状与肝癌研究",
+    "domain": "RNF25含N端非结构区及C端C3HC4型RING锌指结构域，PDB 5D1M覆盖RING核心。",
+    "evidence": "RNF25结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q96BH1功能与结构域注释",
+      "RCSB PDB 5D1M晶体结构记录",
+      "E3泛素连接酶RING-E2相互作用机制文献"
+    ],
+    "referenceEntries": "UniProt Q96BH1；RCSB PDB 5D1M；Open Targets RNF25",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RING结构域E2结合面邻近螺旋与环区",
+        "可直接干扰E2募集，机制与RING型E3催化装配相符",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RING结构域非配位外侧暴露面",
+        "适合获得结构稳定结合分子，用于研究级识别或递送格式验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Cys/His锌配位核心及疏水折叠内核",
+        "可能破坏结构稳定性并产生非特异变性结合，应避免作为主表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RNF25缺乏胞外暴露区域，常规抗体难以在活细胞内接触靶点；建议限定为胞内抗体、递送抗体或结构探针，并优先验证细胞内递送效率。",
+    "structurePrepZh": "以5D1M链A/B为RING结构域模板，保留锌离子与配位残基约束，补全缺失侧链并标注E2结合面可及残基。",
+    "structureRef": "RCSB PDB 5D1M，X-ray，1.581 Å，人RNF25 RING结构域",
+    "antibodies": [
+      "无已批准RNF25治疗性抗体",
+      "研究级抗RNF25抗体"
+    ],
+    "interfaceFocus": "RING结构域E2结合面与锌指外侧环区",
+    "designMode": "胞内靶点研究型设计",
+    "candidates": [
+      {
+        "target": "PCSK9",
+        "rationale": "PCSK9为分泌型脂代谢调控蛋白，通过结合LDLR并促进其溶酶体降解升高LDL胆固醇，抗体可直接阻断PCSK9-LDLR相互作用。其遗传与临床药理证据显著强于RNF25。"
+      },
+      {
+        "target": "ANGPTL3",
+        "rationale": "ANGPTL3为肝源性分泌蛋白，可抑制脂蛋白脂肪酶和内皮脂肪酶，调控甘油三酯和脂蛋白代谢。其胞外可及性和脂质性状关联使其更适合抗体中和策略。"
+      },
+      {
+        "target": "APOC3",
+        "rationale": "APOC3为血浆载脂蛋白，可抑制富含甘油三酯脂蛋白清除并与高甘油三酯血症相关。作为循环分泌蛋白，其抗原可及性优于胞内RNF25。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

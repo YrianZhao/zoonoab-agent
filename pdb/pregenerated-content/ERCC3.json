@@ -1,0 +1,65 @@
+{
+  "gene": "ERCC3",
+  "generatedAt": "2026-08-03T19:09:14.546Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ERCC3编码TFIIH核心复合体XPB解旋酶，参与核苷酸切除修复中的DNA损伤识别后开链，并支持RNA polymerase II转录起始；其致病变异与着色性干皮病B型、光敏性毛发硫营养不良和XP-Cockayne综合征密切相关。ERCC3主要定位于细胞核，不具备天然胞外结构域或分泌特征，完整抗体在体内抗原可及性受限，更适合作为细胞内机制验证或递送型抗体工程靶点。相较XPA、ERCC2等同通路因子，ERCC3兼具TFIIH装配界面、ATPase解旋酶活性位点和高分辨率结构依据，可优先用于结构约束型抑制抗体片段设计。",
+    "mechanism": "以细胞内递送抗体阻断XPB解旋酶结构域与p52/GTF2H4稳定界面或限制ATPase构象转换，抑制TFIIH介导的DNA开链。",
+    "selectedEpitope": "优先锁定XPB RecA-like ATPase结构域间构象转换界面，避开深埋ATP结合口袋。",
+    "diseaseDirection": "核苷酸切除修复缺陷疾病",
+    "domain": "ERCC3含N端调控区、两个RecA-like解旋酶ATPase结构域及C端TFIIH互作区域。",
+    "evidence": "ERCC3/XPB核苷酸切除修复结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P19447功能与亚细胞定位注释",
+      "RCSB PDB 4ERN X射线晶体结构",
+      "TFIIH核苷酸切除修复与转录起始文献"
+    ],
+    "referenceEntries": "UniProt P19447；RCSB PDB 4ERN；Open Targets ERCC3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RecA-like ATPase双结构域夹角邻近区域",
+        "有利于锁定XPB构象并干预DNA开链相关ATPase循环",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端TFIIH核心复合体互作表面",
+        "可削弱XPB与TFIIH核心亚基稳定装配，适合片段抗体筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP结合Walker A/Walker B邻近沟槽",
+        "功能相关性强但口袋深埋且保守性高，存在选择性与成药性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ERCC3为核内蛋白，常规抗体难以到达抗原；建议采用细胞内Fab/VHH、蛋白递送或mRNA表达策略，并严格评估TFIIH广泛转录抑制毒性。",
+    "structurePrepZh": "以4ERN链A为模板，补全缺失环区并保留ATPase核心构象；对暴露表面、保守催化基序和TFIIH互作面进行分层标注。",
+    "structureRef": "RCSB PDB 4ERN，XPB相关X射线晶体结构，1.8 Å",
+    "antibodies": [
+      "无获批ERCC3靶向治疗性抗体",
+      "抗XPB/ERCC3研究级单克隆抗体"
+    ],
+    "interfaceFocus": "XPB ATPase构象界面与TFIIH装配表面",
+    "designMode": "细胞内抗体片段",
+    "candidates": [
+      {
+        "target": "ERCC2",
+        "rationale": "ERCC2编码TFIIH的XPD解旋酶，与ERCC3共同参与核苷酸切除修复损伤位点开链；其遗传缺陷同样关联着色性干皮病和毛发硫营养不良。"
+      },
+      {
+        "target": "XPA",
+        "rationale": "XPA在核苷酸切除修复中稳定损伤识别复合体并协调RPA、ERCC1-XPF等因子，是ERCC3下游修复装配过程的关键节点。"
+      },
+      {
+        "target": "GTF2H4",
+        "rationale": "GTF2H4编码TFIIH p52亚基，可直接促进XPB ATPase活性并稳定TFIIH核心复合体，是ERCC3功能调控的同通路靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

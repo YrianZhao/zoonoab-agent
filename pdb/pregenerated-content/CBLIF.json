@@ -1,0 +1,65 @@
+{
+  "gene": "CBLIF",
+  "generatedAt": "2026-08-03T11:02:04.426Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CBLIF编码胃壁细胞分泌的内因子，负责在回肠吸收通路中结合钴胺素并介导其经CUBAM受体复合物摄取，遗传性缺陷可导致维生素B12吸收障碍和巨幼细胞性贫血。该蛋白为可溶性分泌糖蛋白，抗原整体位于腔面环境，具备优于胞内代谢酶的抗体可及性。相较于TCN2等下游转运因子，CBLIF处于膳食钴胺素吸收的入口环节，且疾病遗传证据集中于内因子缺乏，适合作为机制验证型抗体设计主靶点。",
+    "mechanism": "构建阻断型抗体，干预CBLIF与钴胺素结合或CBLIF-钴胺素复合物与CUBAM受体中CUBN的识别界面。",
+    "selectedEpitope": "优先覆盖CBLIF钴胺素结合口袋邻近的α/β结构域界面，兼顾CUBN识别面空间阻断。",
+    "diseaseDirection": "维生素B12吸收障碍",
+    "domain": "CBLIF由N端α结构域与C端β结构域构成，二者共同形成钴胺素结合腔并参与受体识别。",
+    "evidence": "CBLIF内因子缺乏与钴胺素吸收证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProtKB P27352功能与分泌蛋白注释",
+      "RCSB PDB 2PMV晶体结构",
+      "OMIM/Orphanet遗传性内因子缺乏记录"
+    ],
+    "referenceEntries": "UniProt P27352；RCSB PDB 2PMV；Open Targets CBLIF",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "钴胺素结合腔周缘α/β结构域界面",
+        "可直接削弱CBLIF对维生素B12的结合并建立功能阻断读出",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端β结构域外露受体识别面",
+        "适合阻断CBLIF-钴胺素复合物与CUBN的结合",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端α结构域保守折叠核心附近",
+        "可能影响蛋白稳定性且保守性较高，需规避构象破坏型表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CBLIF为生理必需吸收因子，完全阻断可能诱发B12缺乏表型；设计应区分机制研究抗体与治疗用途，并优先评估配体依赖构象风险。",
+    "structurePrepZh": "以2PMV实验结构为模板，保留成熟分泌蛋白构象，解析多链晶体接触，标注钴胺素结合腔、糖基化位点及可溶表面暴露度。",
+    "structureRef": "Human intrinsic factor-cobalamin complex, PDB 2PMV",
+    "antibodies": [
+      "抗内因子阻断抗体",
+      "抗内因子结合抗体"
+    ],
+    "interfaceFocus": "钴胺素结合口袋与CUBN识别面",
+    "designMode": "可溶抗原阻断",
+    "candidates": [
+      {
+        "target": "CUBN",
+        "rationale": "CUBN是CUBAM复合物的配体识别亚基，直接结合CBLIF-钴胺素复合物，属于同一回肠维生素B12吸收通路。"
+      },
+      {
+        "target": "AMN",
+        "rationale": "AMN与CUBN形成CUBAM受体并支持其膜定位和内吞功能，遗传缺陷可导致Gräsbeck-Imerslund综合征。"
+      },
+      {
+        "target": "TCN2",
+        "rationale": "TCN2介导吸收后钴胺素在血液中的转运，位于CBLIF-CUBAM摄取后的同一维生素B12稳态轴。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

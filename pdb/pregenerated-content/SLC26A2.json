@@ -1,0 +1,65 @@
+{
+  "gene": "SLC26A2",
+  "generatedAt": "2026-08-03T16:37:53.954Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SLC26A2编码DTDST硫酸盐转运体，维持软骨细胞内硫酸盐摄取及蛋白聚糖硫酸化，功能缺陷可导致软骨基质硫酸化不足并驱动多发性骨骺发育不良、成骨不全样软骨发育障碍和灾难性侏儒症等疾病。该蛋白为多跨膜膜转运体，胞外环区可作为抗体可及抗原面，但主要转运核心位于膜内，需避免干扰必需生理转运。相较于下游基质蛋白靶点，SLC26A2位于硫酸盐供给的上游限速环节，遗传证据集中且Open Targets关联强度较高，适合作为机制验证型抗体设计靶点。",
+    "mechanism": "设计抗体优先结合胞外环，稳定SLC26A2外向构象或阻断异常构象转换，调节硫酸盐进入软骨细胞的转运效率。",
+    "selectedEpitope": "优先选择跨膜转运核心外侧的胞外环ECL2/ECL4邻近区域，规避保守离子结合腔。",
+    "diseaseDirection": "遗传性软骨发育不良",
+    "domain": "SLC26A2含跨膜转运核心及胞质STAS结构域，PDB 8TNX解析其同源二聚体膜蛋白构象。",
+    "evidence": "SLC26A2软骨硫酸盐转运遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt P50443功能与变异注释",
+      "RCSB PDB 8TNX冷冻电镜结构",
+      "OMIM/ClinVar软骨发育不良致病变异"
+    ],
+    "referenceEntries": "UniProt P50443；RCSB PDB 8TNX；Open Targets ENSG00000155850",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ECL2/ECL4胞外环邻近膜外面",
+        "具备抗体可及性，可用于构象稳定或转运调节设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "二聚体胞外入口周边非保守暴露区",
+        "可能影响外向开放状态，适合筛选非竞争性调节抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "跨膜核心保守离子结合腔邻近区域",
+        "可能直接破坏硫酸盐转运并产生软骨稳态风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SLC26A2为必需硫酸盐转运体，完全阻断可能加重蛋白聚糖低硫酸化表型；建议采用构象偏置或部分调节策略，并评估软骨细胞硫酸盐摄取。",
+    "structurePrepZh": "以8TNX抗原链A、B构建二聚体模型，保留跨膜区相对取向，补全胞外环缺失残基并在膜环境中进行表面可及性评估。",
+    "structureRef": "RCSB PDB 8TNX，human SLC26A2冷冻电镜结构，3.03 Å",
+    "antibodies": [
+      "无已获批SLC26A2靶向抗体",
+      "研究级抗SLC26A2抗体"
+    ],
+    "interfaceFocus": "ECL2/ECL4外侧入口与二聚体外周界面",
+    "designMode": "构象调节型抗体",
+    "candidates": [
+      {
+        "target": "PAPSS2",
+        "rationale": "PAPSS2生成PAPS供体，参与软骨蛋白聚糖硫酸化，与SLC26A2同处硫酸化代谢轴；其遗传缺陷可导致骨骼发育异常。"
+      },
+      {
+        "target": "CHST3",
+        "rationale": "CHST3催化软骨素6-O-硫酸化，是SLC26A2供给硫酸盐后的下游基质修饰酶；变异与脊椎骨骺发育不良相关。"
+      },
+      {
+        "target": "ACAN",
+        "rationale": "ACAN为软骨基质主要蛋白聚糖，硫酸化糖胺聚糖链依赖充足硫酸盐供给；其缺陷与多种骨骺和生长板疾病相关。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

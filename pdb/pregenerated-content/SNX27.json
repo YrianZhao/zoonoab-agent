@@ -1,0 +1,65 @@
+{
+  "gene": "SNX27",
+  "generatedAt": "2026-08-03T16:48:43.744Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SNX27 与神经发育异常及癫痫表型高度相关，Open Targets 中其疾病关联集中于 Dravet syndrome、global developmental delay、intellectual disability 与 seizure，提示其在突触受体回收和神经元膜蛋白稳态中具有关键作用。该蛋白为胞内 sorting nexin，具备可解析的结构界面但缺乏天然胞外暴露位点，因而更适合作为机制研究型抗体靶点，用于干预其与 cargo 识别复合体或伴侣蛋白的结合。相较于同通路中部分更上游且广泛表达的调控因子，SNX27 的 PDZ 介导货物识别特异性更强，且与神经发育疾病表型的关联更直接，适合优先用于功能阻断型抗体设计。",
+    "mechanism": "阻断 SNX27 PDZ 结构域与 cargo C 端基序及 VPS26 介导复合体装配，削弱受体回收。",
+    "selectedEpitope": "优先覆盖 PDZ 配体结合槽及 β2-β3、α2 邻近界面，避免深埋保守骨架区。",
+    "diseaseDirection": "神经发育/癫痫",
+    "domain": "PX 结构域与 C 端 PDZ 结构域；抗体优先针对 PDZ 配体结合口袋",
+    "evidence": "SNX27 神经发育疾病结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform",
+      "UniProt Q96L92",
+      "RCSB PDB 7E0B",
+      "Human Protein Atlas"
+    ],
+    "referenceEntries": "UniProt: Q96L92; PDB: 7E0B; Open Targets: SNX27 human target entry",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PDZ 配体结合槽及 carboxylate-binding 环",
+        "直接干预 cargo C 端基序识别",
+        "优先"
+      ],
+      [
+        "Site B",
+        "β2-β3 与 α2 形成的侧壁界面",
+        "提高对复合体组装的构象干预能力",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PX 结构域远离膜结合面的表面",
+        "适合非竞争性结合与构象标记",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SNX27 为胞内蛋白，常规全长抗体可及性受限；优先采用细胞内递送或胞内可达格式，并避免覆盖高度保守的 PDZ 核心残基，以降低交叉反应风险。",
+    "structurePrepZh": "基于 7E0B 进行链 A/B 重建与界面清理，保留 PDZ 配体结合口袋及局部侧链构象；补全缺失残基后开展表位可及性与保守性映射。",
+    "structureRef": "RCSB PDB 7E0B; X-ray diffraction, 1.29 A",
+    "antibodies": [
+      "无成熟临床同类抗体",
+      "无已确证阻断 SNX27-PDZ 结合的代表性抗体"
+    ],
+    "interfaceFocus": "PDZ 口袋与 cargo 识别界面",
+    "designMode": "structure-guided",
+    "candidates": [
+      {
+        "target": "VPS26A",
+        "rationale": "SNX27 与 retromer 复合体协同介导膜蛋白回收，VPS26A 是同一回收通路中的核心组分。其可作为复合体层面的对照或联合干预候选靶点。"
+      },
+      {
+        "target": "VPS35",
+        "rationale": "VPS35 参与 retromer 核心骨架形成，并与 SNX27 协同决定 cargo 选择性回收。该靶点与 SNX27 位于同一膜运输疾病通路，适合作为机制验证候选。"
+      },
+      {
+        "target": "DLG4",
+        "rationale": "SNX27 介导多种突触膜蛋白回收，DLG4 所代表的突触后致密区稳态与神经发育表型密切相关。其可用于下游突触功能读出和病理通路联动分析。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

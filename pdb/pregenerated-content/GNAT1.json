@@ -1,0 +1,65 @@
+{
+  "gene": "GNAT1",
+  "generatedAt": "2026-08-03T12:51:14.300Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GNAT1编码视杆细胞转导蛋白α亚基，是视紫红质激活后将光信号传递至PDE6复合体的核心GTP酶，遗传变异可导致常染色体显性先天性静止性夜盲及视网膜变性表型。该蛋白为细胞内外周膜相关G蛋白α亚基，并非天然胞外抗原，抗体可及性弱于膜受体或分泌蛋白，因此更适合作为结构机制研究、胞内递送抗体或诊断捕获抗体方向。相较下游PDE6亚基或上游RHO，GNAT1直接连接RHO与PDE6的核苷酸依赖构象转换节点，PDB结构可支持对效应器界面和开关区的精确表位设计，具备机制解析优先级。",
+    "mechanism": "抗体设计以稳定GNAT1开关区构象为核心，阻断GTP结合型GNAT1与PDE6γ抑制亚基的效应器界面结合，限制光转导级联放大。",
+    "selectedEpitope": "优先覆盖Ras-like GTPase结构域Switch II与α3螺旋邻近的PDE6γ结合界面。",
+    "diseaseDirection": "遗传性视网膜光转导障碍",
+    "domain": "GNAT1含N端α螺旋结构域与C端Ras-like GTPase结构域，Switch I/II介导核苷酸依赖效应器结合。",
+    "evidence": "GNAT1视杆细胞光转导与夜盲遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P11488功能与变异注释",
+      "RCSB PDB 3RBQ晶体结构",
+      "OMIM先天性静止性夜盲与GNAT1条目"
+    ],
+    "referenceEntries": "UniProt P11488；RCSB PDB 3RBQ；Open Targets GNAT1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Switch II-α3效应器结合面",
+        "可干预GNAT1与PDE6γ相互作用并锁定活化构象",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端α螺旋结构域与Ras-like结构域交界",
+        "有助于稳定结构域相对取向并区分构象状态",
+        "备选"
+      ],
+      [
+        "Site C",
+        "鸟嘌呤核苷酸结合口袋周边",
+        "靠近保守GTPase核心，存在交叉反应和功能过度扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GNAT1为胞内外周膜蛋白，体内治疗性抗体递送可及性受限；设计宜用于胞内抗体、结构稳定抗体或体外诊断捕获，并避免识别高度保守GTPase核心。",
+    "structurePrepZh": "以3RBQ实验晶体结构为模板，保留GNAT1完整结构域装配，检查核苷酸、镁离子及链间晶体接触，优先采用单体生理构象进行界面建模。",
+    "structureRef": "RCSB PDB 3RBQ，X-ray diffraction，2.0 Å",
+    "antibodies": [
+      "抗GNAT1研究级单克隆抗体",
+      "抗transducin alpha研究级抗体"
+    ],
+    "interfaceFocus": "Switch II、α3螺旋与PDE6γ效应器界面",
+    "designMode": "胞内/诊断抗体设计",
+    "candidates": [
+      {
+        "target": "RHO",
+        "rationale": "RHO是视杆细胞光转导级联的上游GPCR，光激活视紫红质直接促进GNAT1 GDP-GTP交换；其遗传变异与视网膜色素变性和先天性夜盲密切相关。"
+      },
+      {
+        "target": "PDE6B",
+        "rationale": "PDE6B编码视杆细胞cGMP磷酸二酯酶β亚基，是GNAT1下游效应器复合体的催化组分；异常会破坏cGMP水解并导致遗传性视网膜退行性疾病。"
+      },
+      {
+        "target": "PDE6G",
+        "rationale": "PDE6G编码PDE6γ抑制亚基，直接与活化GNAT1结合并解除对PDE6催化亚基的抑制；该节点与GNAT1处于同一光转导分子通路。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

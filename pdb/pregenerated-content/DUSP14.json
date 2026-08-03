@@ -1,0 +1,65 @@
+{
+  "gene": "DUSP14",
+  "generatedAt": "2026-08-03T18:47:20.560Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DUSP14为胞内双特异性磷酸酶，可去磷酸化MAPK家族成员并参与TCR信号负调控，其遗传关联主要集中于单核细胞、白细胞、血小板和红细胞计数等血液细胞性状。该蛋白不具备分泌型或膜受体特征，天然抗原可及性不利于常规循环抗体直接结合。相比细胞表面免疫受体靶点，DUSP14的优先级应定位于胞内抗体、递送型抗体片段或研究型功能阻断工具，而非标准治疗性外周抗体主靶点。",
+    "mechanism": "设计以内化或胞内递送抗体片段阻断DUSP14催化口袋对磷酸化ERK/JNK/p38及TCR信号组分的去磷酸化作用。",
+    "selectedEpitope": "优先覆盖DSP催化结构域PTP活性位点周缘及底物进入沟槽，避免仅识别远端非功能表面。",
+    "diseaseDirection": "血液细胞计数与免疫信号调控",
+    "domain": "DUSP14主要由双特异性蛋白磷酸酶催化结构域构成，含保守HCX5R活性位点。",
+    "evidence": "DUSP14结构与血液细胞性状遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt O95147功能与结构域注释",
+      "RCSB PDB 2WGP晶体结构记录",
+      "MAPK与TCR信号去磷酸化文献证据"
+    ],
+    "referenceEntries": "UniProt O95147；RCSB PDB 2WGP；Open Targets DUSP14",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PTP催化口袋及HCX5R活性位点邻近环区",
+        "可直接限制底物磷酸酪氨酸/磷酸苏氨酸进入并抑制催化",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DSP结构域底物结合沟槽外侧保守表面",
+        "有望干扰DUSP14与MAPK底物形成稳定酶-底物复合物",
+        "备选"
+      ],
+      [
+        "Site C",
+        "晶体结构中非催化远端暴露面",
+        "结合可及性较好但功能阻断相关性较弱，需依赖细胞功能筛选确认",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DUSP14为胞内酶，常规IgG难以到达作用位点；需采用细胞穿透、递送载体或胞内表达格式，并严格评估DUSP家族交叉反应。",
+    "structurePrepZh": "以2WGP A/B链为模板，去除结晶溶剂和非功能配体，校验催化半胱氨酸构象、质子化状态及链间晶体接触。",
+    "structureRef": "RCSB PDB 2WGP；人DUSP14催化结构域X射线结构，1.88 Å",
+    "antibodies": [
+      "研究级抗DUSP14多克隆抗体",
+      "研究级抗DUSP14单克隆抗体"
+    ],
+    "interfaceFocus": "PTP活性位点、底物进入沟槽与MAPK接触面",
+    "designMode": "胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "MAPK1",
+        "rationale": "MAPK1/ERK2为DUSP14去磷酸化底物之一，处于MAPK级联信号核心节点；其磷酸化状态直接影响免疫细胞活化与增殖输出。"
+      },
+      {
+        "target": "MAPK3",
+        "rationale": "MAPK3/ERK1与MAPK1共同构成ERK通路效应模块，可作为DUSP14相关MAPK调控轴的同通路候选靶点。"
+      },
+      {
+        "target": "FYN",
+        "rationale": "FYN为TCR近端Src家族激酶，参与T细胞受体信号起始；DUSP14对TCR信号的负调控背景使其成为同一免疫信号通路内的相关候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

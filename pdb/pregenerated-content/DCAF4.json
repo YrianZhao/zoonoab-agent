@@ -1,0 +1,65 @@
+{
+  "gene": "DCAF4",
+  "generatedAt": "2026-08-03T11:50:28.018Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DCAF4 是 DDB1-CUL4 E3 泛素连接酶复合体的底物识别适配因子，现有遗传关联主要集中于血压、肾小球滤过率及血液学定量性状，提示其可能通过蛋白稳态网络影响心肾代谢表型。该蛋白为细胞内 WD40 重复支架蛋白，缺乏胞外结构域或分泌暴露特征，常规体内阻断型抗体的抗原可及性不足。相较于可直接中和的膜受体或循环配体，DCAF4 更适合作为结构验证与细胞内递送抗体研究靶点，优先级应低于同通路中具备可及性的上游或表型效应靶点。",
+    "mechanism": "设计抗体以识别 DCAF4 WD40 β-propeller 表面，阻断其与 DDB1-CUL4 复合体或底物蛋白的结合界面，从而干预 CRL4DCAF4 介导的底物泛素化。",
+    "selectedEpitope": "优先覆盖 WD40 β-propeller 顶面潜在底物结合凹槽，避开高度保守结构核心。",
+    "diseaseDirection": "心肾代谢定量性状",
+    "domain": "DCAF4 含多段 WD40 重复，形成 β-propeller 支架结构，参与 DDB1-CUL4 复合体底物识别。",
+    "evidence": "DCAF4 遗传关联与 CRL4 结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 遗传关联数据",
+      "UniProt Q8WV16 蛋白功能注释",
+      "RCSB PDB 3I8C X 射线晶体结构",
+      "CUL4-DDB1-DCAF 泛素连接酶复合体文献"
+    ],
+    "referenceEntries": "UniProt Q8WV16；RCSB PDB 3I8C；Open Targets DCAF4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "WD40 β-propeller 顶面底物识别凹槽",
+        "可能直接干扰底物招募，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DDB1 结合侧面的外露环区",
+        "可评估对 DCAF4-DDB1 复合体装配的阻断潜力",
+        "备选"
+      ],
+      [
+        "Site C",
+        "WD40 重复保守 β 片层核心",
+        "结构保守且可及性有限，易影响折叠稳定性而非特异识别",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DCAF4 为细胞内蛋白，体内抗体递送与靶点占有风险较高；建议限定为胞内抗体、纳米抗体递送或降解偶联策略，并以细胞模型验证复合体阻断。",
+    "structurePrepZh": "以 PDB 3I8C 链 A、B 为模板，清理晶体接触、补全缺失环区并标注 WD40 重复边界；结合 AlphaFold 模型评估柔性表面环。",
+    "structureRef": "PDB 3I8C，X-ray diffraction，2.8 Å，human DCAF4",
+    "antibodies": [
+      "无获批 DCAF4 靶向抗体",
+      "研究级抗 DCAF4 抗体"
+    ],
+    "interfaceFocus": "WD40 顶面凹槽与 DDB1 结合侧面",
+    "designMode": "胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "DDB1",
+        "rationale": "DDB1 是 CUL4-DCAF 复合体核心连接蛋白，直接介导 DCAF 适配因子装配；其结构证据充分，但作为细胞内支架蛋白同样存在抗体可及性限制。"
+      },
+      {
+        "target": "CUL4A",
+        "rationale": "CUL4A 构成 CRL4 E3 泛素连接酶催化支架，与 DDB1-DCAF 轴处于同一泛素化通路；调控该节点可影响复合体整体活性。"
+      },
+      {
+        "target": "RBX1",
+        "rationale": "RBX1 是 CRL4 复合体 RING 亚基，负责招募 E2 泛素结合酶并促进泛素转移；其位于同一 E3 泛素连接酶反应模块。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

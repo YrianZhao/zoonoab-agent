@@ -1,0 +1,65 @@
+{
+  "gene": "HIF1AN",
+  "generatedAt": "2026-08-03T19:47:52.328Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HIF1AN编码FIH-1，是Fe(II)/2-氧戊二酸依赖性天冬酰胺羟化酶，可羟化HIF-1α C-TAD的Asn803并抑制其与CBP/p300结合，从而限制低氧应答转录。该蛋白主要为胞质可溶性酶，天然抗原可及性弱于膜受体或分泌蛋白，因此更适合作为结构生物学驱动的细胞内靶点验证或递送型抗体片段设计对象。相较于上游氧感知PHD酶，HIF1AN直接控制HIF转录辅激活子招募节点，表位设计可围绕催化口袋和HIF-1α底物结合沟槽形成明确阻断机制。",
+    "mechanism": "抗体片段占据FIH-1催化口袋邻近的HIF-1α C-TAD结合沟槽，阻断Asn803进入Fe(II)/2-氧戊二酸反应中心，解除对CBP/p300招募的抑制。",
+    "selectedEpitope": "优先靶向Jumonji C羟化酶结构域的底物结合沟槽与催化金属中心邻近界面。",
+    "diseaseDirection": "低氧应答与线粒体功能障碍",
+    "domain": "FIH-1含N端二聚化相关区域及C端Jumonji C型Fe(II)/2-氧戊二酸依赖羟化酶结构域。",
+    "evidence": "HIF1AN低氧转录抑制与线粒体疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与关联评分",
+      "UniProt Q9NWT6蛋白功能与亚细胞定位注释",
+      "RCSB PDB 3D8C晶体结构解析",
+      "HIF-1α C-TAD羟化及CBP/p300互作文献"
+    ],
+    "referenceEntries": "UniProt Q9NWT6；RCSB PDB 3D8C；Open Targets HIF1AN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Jumonji C结构域HIF-1α底物结合沟槽",
+        "直接阻断C-TAD Asn803羟化，机制明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Fe(II)/2-氧戊二酸催化口袋外缘",
+        "干扰底物定位并保留抗体可结合空间",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端二聚化相关界面",
+        "可能影响FIH-1构象稳定性，但功能阻断可预测性较低",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HIF1AN为胞内可溶性酶，常规抗体药物递送受限；设计宜采用细胞内表达抗体、递送型VHH或结构验证Fab，并避免深催化口袋导致亲和力不足。",
+    "structurePrepZh": "以3D8C的A、B链构建同源二聚体模型，补全缺失侧链与质子化状态，保留催化金属和2-氧戊二酸相关配位信息用于界面评估。",
+    "structureRef": "RCSB PDB 3D8C，X-ray diffraction，2.1 Å",
+    "antibodies": [
+      "抗FIH-1研究级单克隆抗体",
+      "抗HIF1AN免疫检测抗体"
+    ],
+    "interfaceFocus": "HIF-1α C-TAD结合沟槽及催化金属邻近区",
+    "designMode": "胞内酶阻断型",
+    "candidates": [
+      {
+        "target": "HIF1A",
+        "rationale": "HIF1A是FIH-1直接羟化底物，其C-TAD与CBP/p300结合决定低氧转录输出，是同一低氧应答轴的核心效应因子。"
+      },
+      {
+        "target": "EGLN1",
+        "rationale": "EGLN1/PHD2在氧依赖条件下羟化HIF-α氧依赖降解结构域，促进VHL识别与降解，属于同一氧感知通路的上游调控节点。"
+      },
+      {
+        "target": "VHL",
+        "rationale": "VHL识别羟化HIF-α并介导泛素化降解，与EGLN1和HIF1AN共同构成HIF通路的氧依赖负调控网络。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

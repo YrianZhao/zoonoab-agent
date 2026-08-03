@@ -1,0 +1,65 @@
+{
+  "gene": "NFS1",
+  "generatedAt": "2026-08-03T20:18:32.903Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NFS1 是线粒体半胱氨酸脱硫酶复合体的催化核心，通过与 ISD11、ACP 及铁硫簇装配因子相互作用，为线粒体呼吸链复合体和多种含铁硫蛋白提供硫源；其功能缺陷可导致氧化磷酸化障碍、乳酸酸中毒及神经退行性表型。该蛋白主要定位于线粒体基质，并非天然胞外抗原，抗体可及性弱于膜受体或分泌蛋白，因此更适合作为机制研究、胞内递送抗体或结构验证靶点。相较于下游多个呼吸链复合体亚基，NFS1 位于铁硫簇生物合成上游限速步骤，能够整合多复合体缺陷表型，具备较高的疾病机制优先级，但成药形式需优先评估胞内递送可行性。",
+    "mechanism": "设计抗体阻断 NFS1 与 ISD11-LYR motif 或 FXN 结合界面，干扰 PLP 依赖的半胱氨酸脱硫反应及硫转移复合体装配。",
+    "selectedEpitope": "优先覆盖 NFS1 二聚体邻近的 ISD11/FXN 结合沟槽，避开 PLP 催化赖氨酸核心。",
+    "diseaseDirection": "线粒体铁硫簇缺陷与氧化磷酸化疾病",
+    "domain": "NFS1 含 PLP 依赖性 aminotransferase class V 折叠、催化 Lys 位点及二聚化界面。",
+    "evidence": "NFS1-ISD11-ACP 复合体结构与线粒体病证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt Q9Y697 蛋白功能注释",
+      "RCSB PDB 6UXE 晶体结构",
+      "OMIM/ClinVar NFS1 相关线粒体病变异"
+    ],
+    "referenceEntries": "UniProt Q9Y697；RCSB PDB 6UXE；Open Targets NFS1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ISD11/FXN 邻近结合沟槽",
+        "可直接干预复合体装配及硫转移调控界面",
+        "优先"
+      ],
+      [
+        "Site B",
+        "NFS1 二聚化界面外缘",
+        "有助于稳定构象识别并影响催化二聚体构型",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PLP 催化口袋及保守 Lys 区域",
+        "高度保守且深埋，存在交叉反应与催化核心扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NFS1 为线粒体基质蛋白，常规抗体难以到达胞内靶点；设计应聚焦胞内递送格式、构象选择性验证及避免广泛抑制基础代谢。",
+    "structurePrepZh": "以 6UXE 高分辨率晶体结构为模板，保留 NFS1 复合体界面链，校正 PLP 辅因子、金属/辅因子状态及缺失环区后进行表位建模。",
+    "structureRef": "PDB 6UXE，X-ray diffraction，1.57 Å，人源 NFS1 复合体",
+    "antibodies": [
+      "NFS1 research antibody clone 3E9",
+      "NFS1 polyclonal antibody"
+    ],
+    "interfaceFocus": "NFS1-ISD11-LYR motif 与 FXN 调控结合界面",
+    "designMode": "胞内递送构象抗体",
+    "candidates": [
+      {
+        "target": "ISCU",
+        "rationale": "ISCU 是线粒体铁硫簇装配支架蛋白，直接接收 NFS1 复合体提供的硫并参与 [2Fe-2S] 簇形成；其缺陷同样导致线粒体肌病和氧化磷酸化受损。"
+      },
+      {
+        "target": "FXN",
+        "rationale": "FXN 调节 NFS1-ISD11-ACP-ISCU 复合体的半胱氨酸脱硫活性，是铁硫簇生物合成的关键调控因子；FXN 缺陷与 Friedreich 共济失调及线粒体铁代谢异常密切相关。"
+      },
+      {
+        "target": "LYRM4",
+        "rationale": "LYRM4 编码 ISD11，是 NFS1 稳定性和催化复合体形成所必需的结合伴侣；其缺陷可破坏 NFS1 功能并引发严重线粒体呼吸链疾病。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

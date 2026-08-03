@@ -1,0 +1,65 @@
+{
+  "gene": "DEPTOR",
+  "generatedAt": "2026-08-03T11:54:52.223Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DEPTOR 是 mTORC1 与 mTORC2 的内源性结合抑制蛋白，通过其 C 端 PDZ 结构域与 MTOR FAT 区域结合，影响肾小球滤过、肌酐及胱抑素 C 等肾功能相关表型。该蛋白主要定位于胞质，并非分泌蛋白或膜受体，天然抗体可及性弱，因此更适合作为细胞内递送抗体、intrabody 或结构生物学验证靶点。相比上游生长因子受体或 mTOR 复合体核心激酶，DEPTOR 具有明确的 mTOR 复合体负调控界面和高分辨率 PDZ 结构，可作为解析 mTOR 依赖性肾脏代谢表型的优先研究节点。",
+    "mechanism": "设计分子应结合 DEPTOR PDZ 沟槽或相邻 MTOR 识别面，阻断 DEPTOR 与 MTOR FAT 区域相互作用，从而解除其对 mTORC1/2 活性的抑制。",
+    "selectedEpitope": "优先覆盖 C 端 PDZ 结构域配体结合沟槽及 MTOR 结合相关疏水口袋。",
+    "diseaseDirection": "肾功能表型与 mTOR 信号",
+    "domain": "DEPTOR 含两个 N 端 DEP 结构域和一个 C 端 PDZ 结构域，7DKL 对应人源 PDZ 结构域晶体结构。",
+    "evidence": "DEPTOR-mTOR 轴与肾功能表型证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q8TB45 functional annotation",
+      "RCSB PDB 7DKL experimental structure",
+      "mTORC1/mTORC2-DEPTOR interaction literature"
+    ],
+    "referenceEntries": "UniProt Q8TB45；RCSB PDB 7DKL；Open Targets DEPTOR",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C 端 PDZ 配体结合沟槽",
+        "可直接干预 DEPTOR 对 MTOR 结合界面的识别，结构分辨率支持精细化设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PDZ βB-βC 环与 αB 螺旋邻近面",
+        "可形成变构性遮挡，降低对保守核心沟槽的完全依赖",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端 DEP 结构域外露面",
+        "可能影响蛋白复合体定位或构象，但 7DKL 未覆盖该区域，结构证据不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DEPTOR 为胞内蛋白，常规抗体难以到达靶点；设计应限定为细胞内抗体、递送型 Fab/VHH 或机制验证工具，并避免破坏 PDZ 折叠核心。",
+    "structurePrepZh": "以 7DKL A 链为 PDZ 模板，补全缺失侧链、校正质子化状态，保留沟槽关键疏水残基并进行局部能量最小化。",
+    "structureRef": "RCSB PDB 7DKL，X-ray diffraction，1.5 Å",
+    "antibodies": [
+      "细胞内抗 DEPTOR VHH 工具抗体",
+      "抗 DEPTOR 研究级多克隆抗体"
+    ],
+    "interfaceFocus": "PDZ 沟槽与 MTOR FAT 结合相关界面",
+    "designMode": "胞内阻断型",
+    "candidates": [
+      {
+        "target": "MTOR",
+        "rationale": "MTOR 是 mTORC1 与 mTORC2 的催化核心，直接参与 DEPTOR 结合界面及肾功能相关代谢信号调控。"
+      },
+      {
+        "target": "RPTOR",
+        "rationale": "RPTOR 是 mTORC1 特异性支架亚基，控制底物招募并参与营养感知通路，适合与 DEPTOR 负调控轴联合评估。"
+      },
+      {
+        "target": "RICTOR",
+        "rationale": "RICTOR 是 mTORC2 关键结构亚基，参与 AKT Ser473 磷酸化及细胞代谢稳态，可作为 DEPTOR-mTORC2 分支的候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

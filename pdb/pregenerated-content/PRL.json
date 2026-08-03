@@ -1,0 +1,65 @@
+{
+  "gene": "PRL",
+  "generatedAt": "2026-08-03T15:36:08.996Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PRL 编码垂体来源的分泌性激素 prolactin，可通过 prolactin receptor 诱导受体二聚化并激活 JAK2-STAT5 轴，参与乳腺上皮增殖、免疫细胞分化及造血相关表型。PRL 为可溶性分泌蛋白，循环抗原可及性高，抗体可直接覆盖受体结合面。相较于下游 JAK2 或 STAT5 靶点，PRL 阻断具有配体层级选择性，可降低广泛细胞因子信号抑制风险。",
+    "mechanism": "阻断 PRL 与 PRLR 胞外 D1/D2 细胞因子受体同源结构域结合，抑制 PRLR 构象配对及 JAK2-STAT5 磷酸化传递。",
+    "selectedEpitope": "优先覆盖 PRL 四螺旋束中 site 1 受体结合面，兼顾 helix 1、helix 4 与连接环区。",
+    "diseaseDirection": "PRL-PRLR 内分泌与造血免疫相关疾病",
+    "domain": "PRL 为四螺旋束细胞因子样分泌蛋白，含 helix 1-4 及受体结合 site 1/site 2 界面。",
+    "evidence": "PRL-PRLR 轴结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProtKB P01236 功能与序列注释",
+      "RCSB PDB 3N06 X 射线晶体结构",
+      "PRL-PRLR-JAK2-STAT5 经典信号文献"
+    ],
+    "referenceEntries": "UniProt P01236；RCSB PDB 3N06；Open Targets PRL",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "四螺旋束 site 1 受体结合面，涉及 helix 1/helix 4",
+        "直接阻断 PRLR 高亲和力结合，机制清晰且可功能筛选",
+        "优先"
+      ],
+      [
+        "Site B",
+        "site 2 低亲和力受体招募界面及相邻环区",
+        "干预 PRLR 二聚化装配，可作为非竞争型阻断策略",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离受体结合面的保守螺旋核心外侧",
+        "可能影响有限或引入构象稳定性风险，需避免纯结合无功能表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PRL 与生长激素家族存在四螺旋束相似性，需规避与 GH1、CSH1 交叉反应；优先验证 PRLR 竞争阻断与内分泌安全窗口。",
+    "structurePrepZh": "以 3N06 的 PRL 链 A/B 为实验结构模板，补全缺失侧链并保留二硫键约束，映射 PRLR 结合位点后进行表面聚类。",
+    "structureRef": "RCSB PDB 3N06，human prolactin X-ray 2.0 Å",
+    "antibodies": [
+      "LFA102",
+      "005-C04"
+    ],
+    "interfaceFocus": "PRL site 1/site 2 与 PRLR 胞外域结合界面",
+    "designMode": "分泌配体中和",
+    "candidates": [
+      {
+        "target": "PRLR",
+        "rationale": "PRLR 是 PRL 的同源受体，胞外 D1/D2 结构域直接介导配体结合与受体二聚化。靶向 PRLR 可从受体端阻断同一 PRL-PRLR-JAK2-STAT5 轴。"
+      },
+      {
+        "target": "JAK2",
+        "rationale": "JAK2 与 PRLR 胞内段偶联，是 PRL 诱导 STAT5 磷酸化的近端激酶节点。其通路相关性明确，但作为胞内靶点不适合常规抗体直接阻断。"
+      },
+      {
+        "target": "STAT5B",
+        "rationale": "STAT5B 是 PRL-PRLR-JAK2 轴下游关键转录因子，参与乳腺和免疫细胞转录响应。其作为候选通路标志物价值高，但抗体成药可及性低于 PRL/PRLR。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

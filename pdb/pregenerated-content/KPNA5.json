@@ -1,0 +1,65 @@
+{
+  "gene": "KPNA5",
+  "generatedAt": "2026-08-03T13:47:01.987Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KPNA5属于核转运蛋白α家族，负责识别含经典核定位序列的货物蛋白，并通过KPNB1介导入核转运；在流感和登革病毒感染中，多种病毒或宿主调控因子的核转位与复制、抗病毒应答重塑相关。该蛋白主要为胞质/核内可溶蛋白，天然抗原可及性低于膜受体或分泌蛋白，因此更适合作为细胞内递送抗体、intrabody或结构机制验证靶点。相较广谱抑制KPNB1，KPNA5具有货物选择性更强的α-importin臂重复结构，可降低对全局核转运的非特异干预风险，优先用于解析病毒感染相关核输入节点。",
+    "mechanism": "抗体结合KPNA5 ARM重复区的NLS结合沟槽，阻断经典NLS货物与KPNA5相互作用，从而限制KPNA5-KPNB1复合物介导的核输入。",
+    "selectedEpitope": "优先覆盖ARM repeat形成的major NLS结合沟槽，兼顾minor site邻近残基以增强竞争性阻断。",
+    "diseaseDirection": "病毒感染核转运调控",
+    "domain": "KPNA5含N端IBB结构域及串联ARM重复区，ARM超螺旋内侧形成经典NLS结合槽。",
+    "evidence": "KPNA5核输入结构与病毒感染遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt O15131功能与亚细胞定位注释",
+      "RCSB PDB 4U2X实验结构记录",
+      "经典importin-α/β核输入机制文献"
+    ],
+    "referenceEntries": "UniProt O15131；RCSB PDB 4U2X；Open Targets KPNA5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ARM repeats内侧major NLS结合沟槽",
+        "直接竞争经典NLS货物结合，最适合功能阻断型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ARM repeats邻近minor NLS结合位点",
+        "可增强对双分型NLS货物的干预，并提高构象选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端IBB结构域结合界面",
+        "可能影响KPNA5自抑制与KPNB1装配，但存在广泛核转运扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "KPNA5为胞内核转运蛋白，常规体液抗体难以触达；设计应限定于intrabody、细胞递送Fab/VHH或机制研究，并规避完全阻断基础核输入。",
+    "structurePrepZh": "以PDB 4U2X为模板保留KPNA5 ARM核心链，修复缺失侧链并标注NLS结合沟槽；多链晶体装配需去除非目标对称链后评估界面。",
+    "structureRef": "RCSB PDB 4U2X，X-ray diffraction，3.153 Å",
+    "antibodies": [
+      "抗KPNA5研究级多克隆抗体",
+      "抗KPNA5研究级单克隆抗体"
+    ],
+    "interfaceFocus": "ARM内侧NLS结合沟槽与IBB调控界面",
+    "designMode": "胞内阻断抗体设计",
+    "candidates": [
+      {
+        "target": "KPNB1",
+        "rationale": "KPNB1与importin-α货物复合物结合并介导核孔转运，是经典核输入通路的核心β亚基；其干预可更广泛抑制病毒相关核转位事件。"
+      },
+      {
+        "target": "KPNA2",
+        "rationale": "KPNA2同属importin-α家族并识别经典NLS货物，在多种病毒蛋白核输入和感染相关宿主应答中具有明确研究基础。"
+      },
+      {
+        "target": "RAN",
+        "rationale": "RAN-GTP/RAN-GDP循环驱动核输入复合物解离与方向性运输，是KPNA5-KPNB1核转运轴的必需调控节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "POLG",
+  "generatedAt": "2026-08-03T15:25:08.481Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "POLG 是线粒体 DNA 复制与修复的核心催化亚基，致病变异可导致 mtDNA 缺失或耗竭，并驱动进行性外眼肌麻痹、SANDO 与线粒体 DNA 耗竭综合征等遗传性线粒体病。该蛋白定位于线粒体基质，缺乏天然胞外结构域或分泌暴露特征，作为常规细胞外抗体药物靶点的抗原可及性不足。其优先级主要来自明确的人类遗传因果证据、可解析的聚合酶复合体结构和高疾病关联分值；相较下游代谢表型靶点，POLG 更适合作为结构机制研究、胞内递送抗体片段或诊断性结合分子开发对象。",
+    "mechanism": "设计分子可结合 POLG 聚合酶结构域的 DNA/引物模板结合沟槽或外切酶-聚合酶转换界面，干预 POLG 与 mtDNA 底物及辅助亚基 POLG2 的功能协同。",
+    "selectedEpitope": "优先评估聚合酶掌心-手指亚域邻近 DNA 结合沟槽的构象表位，避免直接覆盖催化金属离子核心。",
+    "diseaseDirection": "遗传性线粒体DNA维持障碍",
+    "domain": "POLG 含 N 端外切酶结构域、连接区及 C 端聚合酶结构域，并与 POLG2 形成线粒体复制复合体。",
+    "evidence": "POLG相关线粒体DNA耗竭与缺失证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt P54098 功能与结构域注释",
+      "RCSB PDB 3IKM X射线复合体结构",
+      "OMIM/ClinVar POLG致病变异记录"
+    ],
+    "referenceEntries": "UniProt:P54098；RCSB PDB:3IKM；Gene:POLG",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端聚合酶结构域掌心-手指亚域DNA结合沟槽边缘",
+        "可解析底物识别与延伸构象，适合构建功能阻断型结合分子",
+        "优先"
+      ],
+      [
+        "Site B",
+        "外切酶结构域与连接区相邻的构象转换界面",
+        "可用于干预校对与聚合酶活性切换，适合机制探针设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "POLG-POLG2辅助亚基接触面邻近区域",
+        "可能影响全酶稳定性，但界面保守且复合体依赖性强",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "POLG 为线粒体基质内蛋白，常规抗体难以到达内源性抗原；需优先采用胞内递送Fab/VHH、细胞渗透标签或体外结构探针策略，并规避催化核心强保守位点。",
+    "structurePrepZh": "以 PDB 3IKM 为结构模板，保留 POLG 与 POLG2 复合体装配信息，补全缺失环区、校正质子化状态，并单独标注DNA结合沟槽、外切酶域和亚基界面。",
+    "structureRef": "Lee et al., human mitochondrial DNA polymerase γ holoenzyme, PDB 3IKM",
+    "antibodies": [
+      "抗POLG研究级单克隆抗体",
+      "抗POLG免疫检测抗体"
+    ],
+    "interfaceFocus": "DNA结合沟槽、外切酶-聚合酶转换界面、POLG2接触面",
+    "designMode": "胞内结构探针设计",
+    "candidates": [
+      {
+        "target": "POLG2",
+        "rationale": "POLG2 是线粒体 DNA 聚合酶γ的辅助亚基，增强 POLG 对 DNA 的结合和过程ivity；其与 POLG 处于同一 mtDNA 复制维持通路。"
+      },
+      {
+        "target": "TWNK",
+        "rationale": "TWNK 编码线粒体 DNA 解旋酶，负责复制叉处双链 mtDNA 解旋；其致病变异同样导致 mtDNA 缺失或耗竭相关线粒体病。"
+      },
+      {
+        "target": "TFAM",
+        "rationale": "TFAM 参与 mtDNA 包装、转录启动和拷贝数维持，与 POLG 共同维持线粒体基因组稳定性；其剂量变化会影响 mtDNA 复制稳态。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

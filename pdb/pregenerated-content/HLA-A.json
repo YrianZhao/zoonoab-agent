@@ -1,0 +1,65 @@
+{
+  "gene": "HLA-A",
+  "generatedAt": "2026-08-03T13:13:21.501Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HLA-A编码经典MHC I重链，参与内源性肽递呈并与CD8共受体及TCR复合体共同决定细胞毒性T细胞识别，在病毒感染、肿瘤免疫逃逸和淋巴瘤抗原呈递异常中具有明确疾病关联。其α1/α2肽结合平台和α3结构域位于细胞表面，并与β2微球蛋白形成稳定复合体，具备抗体接近性优势。相较于下游TCR克隆型或细胞内抗原加工组分，HLA-A具有可结构化解析、可直接靶向pHLA复合物界面及疾病证据覆盖广的优先级。",
+    "mechanism": "抗体可识别HLA-A肽结合沟α1/α2平台或特定pHLA构象，阻断TCR与HLA-A-肽复合体的接触界面。",
+    "selectedEpitope": "优先选择α1/α2肽结合平台外缘及TCR接触脊，避免深度干扰β2M稳定界面。",
+    "diseaseDirection": "肿瘤免疫与病毒感染",
+    "domain": "HLA-A重链含α1、α2肽结合结构域，α3免疫球蛋白样结构域及跨膜区。",
+    "evidence": "HLA-A抗原递呈与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P04439功能与结构域注释",
+      "RCSB PDB 1I4F晶体结构记录",
+      "MHC I抗原递呈与T细胞识别文献"
+    ],
+    "referenceEntries": "UniProt P04439；RCSB PDB 1I4F；Open Targets HLA-A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "α1/α2肽结合平台TCR接触脊",
+        "可直接影响TCR-pHLA识别，适合构象选择性抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "α3结构域CD8结合邻近区域",
+        "可调节CD8辅助结合，但需控制广泛免疫抑制风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "β2微球蛋白结合界面",
+        "可能破坏MHC I复合体稳定性并引发非选择性抗原递呈缺陷",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HLA-A高度多态且广泛表达，表位需区分等位基因与特定pHLA构象；避免β2M界面和保守MHC I核心区造成泛反应性。",
+    "structurePrepZh": "以1I4F高分辨率晶体结构为模板，保留HLA-A重链、β2M及肽配体，校正缺失侧链并标注TCR接触面。",
+    "structureRef": "RCSB PDB 1I4F，X射线晶体结构，1.4 Å",
+    "antibodies": [
+      "W6/32",
+      "TCR-like anti-HLA-A2/peptide antibodies"
+    ],
+    "interfaceFocus": "α1/α2平台与肽配体上方TCR接触界面",
+    "designMode": "pHLA构象阻断",
+    "candidates": [
+      {
+        "target": "B2M",
+        "rationale": "β2微球蛋白是MHC I复合体稳定装配的必需组分，直接影响HLA-A细胞表面表达和抗原递呈效率。"
+      },
+      {
+        "target": "TAP1",
+        "rationale": "TAP1参与内源性抗原肽转运至内质网，是HLA-A装载抗原肽前的关键抗原加工节点。"
+      },
+      {
+        "target": "CD8A",
+        "rationale": "CD8A编码CD8共受体α链，可与MHC I α3结构域结合并增强TCR识别pHLA后的信号启动。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

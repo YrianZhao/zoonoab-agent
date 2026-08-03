@@ -1,0 +1,65 @@
+{
+  "gene": "IRAK2",
+  "generatedAt": "2026-08-03T13:32:12.506Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IRAK2 是 IL-1R/TLR-MyD88 信号轴中的胞内接头激酶样蛋白，参与 MyD88-IRAK4 复合体装配、TRAF6 招募及下游 NF-κB/MAPK 炎症转录激活，与嗜酸性粒细胞相关表型、中枢神经系统自身免疫和病毒感染炎症反应存在遗传关联。该蛋白主要定位于胞质侧信号复合体，并非天然分泌蛋白或细胞表面膜受体，常规外源性抗体抗原可及性受限，需优先采用细胞内递送抗体、intrabody 或结构验证型研究抗体策略。相较 TLR 或 IL1R 等上游受体，IRAK2 位于多受体汇聚节点，可覆盖 IL-1、IL-18 及多种 TLR 输入信号，但因胞内可及性限制，其开发优先级更适合机制验证和靶向递送平台，而非传统裸抗体治疗。",
+    "mechanism": "设计抗体阻断 IRAK2 death domain 与 MyD88/IRAK4 信号复合体的装配界面，降低 IRAK2 介导的 TRAF6 招募和 NF-κB/MAPK 炎症信号放大。",
+    "selectedEpitope": "优先靶向 N 端 death domain 的 Myddosome 装配界面，避开保守激酶样结构域 ATP 结合沟槽。",
+    "diseaseDirection": "IL-1R/TLR炎症与自身免疫",
+    "domain": "IRAK2 含 N 端 death domain、中央连接区及 C 端激酶样结构域，C 端缺乏典型催化活性特征。",
+    "evidence": "IRAK2炎症信号与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt O43187 functional annotation",
+      "RCSB PDB 3MOP X-ray structure",
+      "MyD88-IRAK family myddosome signaling literature"
+    ],
+    "referenceEntries": "UniProt O43187；RCSB PDB 3MOP；Open Targets IRAK2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端death domain同型相互作用界面",
+        "直接干预MyD88-IRAK4-IRAK2复合体装配，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "death domain外侧非核心保守斑块",
+        "可用于构象识别或复合体状态选择，降低完全阻断风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端激酶样结构域保守折叠面",
+        "可能影响蛋白支架功能，但与IRAK家族保守性较高，交叉反应风险增加",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IRAK2 为胞内蛋白，传统抗体难以到达天然作用位点；death domain 与IRAK家族同源性较高，应进行IRAK1、IRAK3、IRAK4交叉反应筛查。",
+    "structurePrepZh": "以3MOP实验结构提取IRAK2相关链，校验低分辨率区域、寡聚接触和缺失片段；对death domain界面进行质子化、能量最小化及同源家族比对。",
+    "structureRef": "RCSB PDB 3MOP，X-ray diffraction，3.4 Å",
+    "antibodies": [
+      "anti-IRAK2 research antibody",
+      "cell-penetrating intrabody format"
+    ],
+    "interfaceFocus": "death domain介导的Myddosome装配界面",
+    "designMode": "胞内递送抗体",
+    "candidates": [
+      {
+        "target": "IRAK4",
+        "rationale": "IRAK4 是 MyD88 复合体中的上游激酶，直接磷酸化并激活IRAK家族成员，已有小分子和抗炎开发证据支持其通路优先级。"
+      },
+      {
+        "target": "MYD88",
+        "rationale": "MYD88 是 IL-1R/TLR 信号的核心接头蛋白，death domain 负责招募 IRAK4 和 IRAK2，是同一Myddosome装配轴的关键节点。"
+      },
+      {
+        "target": "TRAF6",
+        "rationale": "TRAF6 位于 IRAK2 下游，介导泛素化信号复合体形成并驱动 NF-κB/MAPK 激活，适合作为下游炎症放大节点候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "DMTF1",
+  "generatedAt": "2026-08-03T11:59:21.839Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DMTF1为核内转录因子，参与ARF–MDM2–TP53肿瘤抑制轴及细胞周期应答，但Open Targets所示神经退行性疾病关联以遗传统计信号为主，缺乏可直接抗体阻断的胞外疾病驱动机制。该蛋白定位于细胞核，已知PDB 2LLK对应NMR解析的DNA结合相关片段，不具备分泌蛋白、膜受体或稳定胞外结构域的抗原可及性优势。相较于同通路中具备胞外配体或受体特征的靶点，DMTF1作为常规抗体药物主靶点优先级较低，更适合作为机制研究或细胞内递送抗体探索对象。",
+    "mechanism": "设计重点为结合DMTF1 Myb样DNA结合结构域，竞争性干扰其与ARF启动子Ets/Sp1邻近调控序列的结合，从而影响CDKN2A-ARF转录调控。",
+    "selectedEpitope": "优先评估Myb样DNA结合结构域的螺旋-转角-螺旋DNA识别面，避开高度保守疏水核心。",
+    "diseaseDirection": "细胞周期与神经退行性疾病关联",
+    "domain": "DMTF1含N端转录调控区、多重复Myb样DNA结合结构域及C端酸性转录激活区。",
+    "evidence": "DMTF1结构可及性与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联与遗传证据",
+      "UniProt Q9Y222蛋白功能与亚细胞定位注释",
+      "RCSB PDB 2LLK溶液NMR结构记录",
+      "文献报道DMTF1调控ARF-MDM2-TP53轴"
+    ],
+    "referenceEntries": "UniProt Q9Y222；RCSB PDB 2LLK；Open Targets DMTF1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Myb样DNA结合结构域识别螺旋外露面",
+        "可用于阻断DMTF1与靶基因启动子DNA的序列特异性接触",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DNA结合结构域相邻碱性表面",
+        "可能削弱DNA磷酸骨架结合并增强功能阻断效应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Myb重复结构域疏水核心及保守折叠面",
+        "易影响整体折叠稳定性且跨Myb蛋白保守性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DMTF1为核内转录因子，常规抗体难以到达作用位点；建议将该方案限定为细胞内递送抗体、intrabody或研究级阻断工具，并严格评估Myb家族交叉反应。",
+    "structurePrepZh": "以PDB 2LLK的A链NMR模型集为模板，进行构象聚类、缺失区标注和DNA结合面电荷分析，保留代表性低能构象用于表位筛选。",
+    "structureRef": "RCSB PDB 2LLK；DMTF1 Myb样结构域溶液NMR结构",
+    "antibodies": [
+      "无获批DMTF1治疗性抗体",
+      "研究级抗DMTF1检测抗体"
+    ],
+    "interfaceFocus": "Myb样识别螺旋与DNA主沟接触面",
+    "designMode": "细胞内递送抗体探索",
+    "candidates": [
+      {
+        "target": "TP53",
+        "rationale": "TP53位于DMTF1-ARF-MDM2轴下游，是细胞周期停滞、DNA损伤应答和神经退行性应激反应的重要节点。其核内定位同样限制常规抗体可及性。"
+      },
+      {
+        "target": "MDM2",
+        "rationale": "MDM2与TP53直接结合并促进TP53泛素化降解，是DMTF1通过ARF间接调控的核心负调节因子。该靶点具有明确的小分子可干预界面，但不具备典型胞外抗体靶点属性。"
+      },
+      {
+        "target": "CDKN2A",
+        "rationale": "CDKN2A编码ARF和p16INK4a，其中ARF介导MDM2抑制并连接DMTF1转录活性与TP53稳定化。该节点可作为同一肿瘤抑制与细胞周期通路的机制参照靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

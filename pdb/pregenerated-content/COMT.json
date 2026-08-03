@@ -1,0 +1,65 @@
+{
+  "gene": "COMT",
+  "generatedAt": "2026-08-03T11:34:02.949Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "COMT参与儿茶酚胺类递质的O-甲基化代谢，影响多巴胺、去甲肾上腺素及儿茶酚雌激素清除，与帕金森病中多巴胺稳态和左旋多巴代谢反应存在遗传及药理学关联。该蛋白主要为胞质可溶型及膜结合型胞内酶，缺乏典型胞外结构域，天然抗体抗原可及性弱，作为治疗性阻断抗体靶点存在显著可及性限制。其优先级主要来自高分辨率实验结构、明确SAM/儿茶酚底物口袋及成熟小分子药理验证；相较膜受体或分泌因子，同通路靶点更适合抗体药物开发，COMT更适合作为结构驱动的胞内结合体或研究级抗体靶标。",
+    "mechanism": "设计结合体遮蔽COMT催化口袋，干扰SAM甲基供体与儿茶酚底物在Mg2+配位中心附近的共定位，从而降低O-甲基转移反应效率。",
+    "selectedEpitope": "优先覆盖SAM结合沟槽邻近的α5-α6环区与底物入口边缘，避免完全依赖深埋催化残基。",
+    "diseaseDirection": "帕金森病多巴胺代谢调控",
+    "domain": "COMT为SAM依赖性甲基转移酶折叠，含Rossmann样α/β核心、SAM结合位点及Mg2+依赖底物结合口袋。",
+    "evidence": "COMT结构药理与帕金森病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P21964功能与亚细胞定位注释",
+      "RCSB PDB 3BWY高分辨率晶体结构",
+      "帕金森病左旋多巴代谢及COMT抑制剂临床药理文献"
+    ],
+    "referenceEntries": "UniProt:P21964；RCSB PDB:3BWY；Open Targets:COMT",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SAM结合沟槽邻近α5-α6环与底物入口",
+        "可直接影响甲基供体与儿茶酚底物的几何配位，具备功能阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Mg2+配位中心外侧可及边缘及相邻β片层表面",
+        "可能改变底物进入路径，但需避免金属配位位点不可逆扰动导致非特异效应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离活性口袋的Rossmann样核心外表面",
+        "结构稳定但功能抑制相关性较弱，更适合检测型或捕获型抗体",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "COMT为胞内酶且缺乏胞外抗原暴露，常规抗体体内可达性不足；设计应定位为胞内递送结合体、降解适配器或体外研究抗体。",
+    "structurePrepZh": "以3BWY链A为模板，保留SAM/抑制剂及Mg2+邻域用于口袋定义，补全缺失侧链并评估晶体接触对表位可及性的影响。",
+    "structureRef": "RCSB PDB 3BWY，X-ray diffraction，1.3 Å",
+    "antibodies": [
+      "Anti-COMT clone EPR1916Y",
+      "Anti-COMT clone OTI2A8"
+    ],
+    "interfaceFocus": "SAM结合沟槽、底物入口与Mg2+邻近界面",
+    "designMode": "胞内酶表位阻断",
+    "candidates": [
+      {
+        "target": "DDC",
+        "rationale": "DDC催化左旋多巴脱羧生成多巴胺，处于帕金森病多巴胺补充治疗核心代谢通路；其与COMT共同决定外周及中枢多巴胺前体利用效率。"
+      },
+      {
+        "target": "MAOB",
+        "rationale": "MAOB负责多巴胺氧化脱氨降解，是帕金森病中已验证的多巴胺代谢调控节点；与COMT同属多巴胺清除与药物反应相关通路。"
+      },
+      {
+        "target": "SLC6A3",
+        "rationale": "SLC6A3编码多巴胺转运体DAT，调控突触间隙多巴胺再摄取，并与帕金森病多巴胺能神经功能评估密切相关；其膜蛋白特征较COMT更具抗体可及性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

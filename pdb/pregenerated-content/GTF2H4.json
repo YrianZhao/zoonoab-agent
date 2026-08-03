@@ -1,0 +1,65 @@
+{
+  "gene": "GTF2H4",
+  "generatedAt": "2026-08-03T19:22:44.300Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GTF2H4编码TFIIH复合体的p52亚基，参与RNA polymerase II启动子开放并稳定XPB/ERCC3解旋酶活性，同时在核苷酸切除修复中支持损伤识别后的DNA解旋步骤。该蛋白主要定位于细胞核，缺乏胞外结构域或分泌特征，常规治疗性抗体难以直接进入其天然作用位点，因此抗原可及性明显弱于膜受体或分泌因子。其疾病关联以HIV感染和DNA修复缺陷相关疾病为主，但相比ERCC2、ERCC3等具有更直接酶活性和遗传证据的TFIIH亚基，GTF2H4更适合作为机制验证或胞内递送抗体设计的低优先级靶点。",
+    "mechanism": "胞内抗体需阻断GTF2H4/p52与ERCC3/XPB调控界面的结合，削弱TFIIH依赖的启动子开放和NER损伤位点解旋。",
+    "selectedEpitope": "优先锁定p52中与XPB接触的C端调控界面，避免泛化覆盖TFIIH核心装配面。",
+    "diseaseDirection": "HIV感染与核苷酸切除修复缺陷",
+    "domain": "GTF2H4/p52为TFIIH核心亚基，含N端结构化折叠区及C端XPB调控结合区域。",
+    "evidence": "GTF2H4-TFIIH转录与NER机制证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q92759功能注释",
+      "RCSB PDB 28JM冷冻电镜结构",
+      "TFIIH转录起始与核苷酸切除修复文献"
+    ],
+    "referenceEntries": "UniProt Q92759；RCSB PDB 28JM；Open Targets GTF2H4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "p52 C端XPB/ERCC3调控接触界面",
+        "可直接干预XPB解旋酶募集或构象激活，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "p52暴露的N端结构化折叠外侧面",
+        "可用于结构示踪或复合体结合检测，对TFIIH功能扰动相对温和",
+        "备选"
+      ],
+      [
+        "Site C",
+        "p52与TFIIH核心多亚基装配邻近区域",
+        "可能破坏全复合体稳定性并引发广泛转录毒性，需严格限制",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GTF2H4为核内必需转录/修复因子，抗体天然可及性低且系统性抑制风险高；设计宜限定为胞内递送、降解或研究级阻断场景。",
+    "structurePrepZh": "基于PDB 28JM提取TFIIH复合体中GTF2H4链段，保留XPB邻近亚基用于界面判定，并清理核酸、低置信末端及EM缺失区。",
+    "structureRef": "RCSB PDB 28JM，human TFIIH复合体冷冻电镜结构",
+    "antibodies": [
+      "无获批治疗性同类抗体",
+      "研究级anti-GTF2H4/p52抗体"
+    ],
+    "interfaceFocus": "p52-XPB调控接触面与TFIIH装配邻域",
+    "designMode": "胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "ERCC3",
+        "rationale": "ERCC3/XPB是TFIIH内ATP依赖DNA解旋酶，直接执行启动子开放和NER损伤位点解旋，机制因果性强于支架亚基。"
+      },
+      {
+        "target": "ERCC2",
+        "rationale": "ERCC2/XPD参与TFIIH介导的核苷酸切除修复并具有明确DNA修复缺陷疾病关联，可作为同通路DNA修复干预靶点。"
+      },
+      {
+        "target": "GTF2H1",
+        "rationale": "GTF2H1/p62为TFIIH核心结构亚基，参与维持复合体组装和转录起始平台稳定性，适合与GTF2H4进行界面优先级比较。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

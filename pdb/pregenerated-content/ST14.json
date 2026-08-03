@@ -1,0 +1,65 @@
+{
+  "gene": "ST14",
+  "generatedAt": "2026-08-03T16:56:47.897Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ST14 编码的 matriptase 是典型跨膜丝氨酸蛋白酶，位于上皮屏障相关蛋白水解级联的上游，可通过切割激活 downstream protease 和底物而影响角化与屏障稳态，和遗传性鱼鳞病及毛发异常表型具有直接通路关联。其膜锚定特征与胞外催化区使抗体能够直接接触抗原，且有利于通过阻断底物进入活性中心实现功能抑制。相较于同通路内其他分泌型蛋白酶，ST14 兼具明确的疾病遗传学证据、较高的细胞表面可及性及适合结构引导设计的实验解析结构，因此优先级较高。",
+    "mechanism": "阻断 matriptase 催化域与底物肽段结合，并抑制其蛋白水解活化下游 EGFR 配体相关级联。",
+    "selectedEpitope": "优先覆盖催化裂隙与 activation loop 邻近表位，兼顾 3NCL 所示表面外露环区。",
+    "diseaseDirection": "上皮屏障与角化异常",
+    "domain": "胞外 SEA 区、CUB 与 LDLRA 模块及 C 端丝氨酸蛋白酶催化域",
+    "evidence": "ST14 结构-疾病-表位设计证据包",
+    "evidenceSources": [
+      "UniProt: ST14/Q9Y5Y6",
+      "RCSB PDB: 3NCL",
+      "Open Targets Platform",
+      "OMIM/Orphanet 疾病注释"
+    ],
+    "referenceEntries": "UniProt Q9Y5Y6；RCSB 3NCL；Open Targets ST14",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化域活性裂隙周缘，靠近 His-Asp-Ser 催化三联体",
+        "直接干预底物装载与切割，抑制酶活最具确定性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化域 activation loop 与底物结合沟相邻环区",
+        "可阻断构象成熟与底物进入，利于选择性抑制",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SEA/CUB 连接区外露环面",
+        "适合提升结合可及性，但对酶活抑制效率可能较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "风险主要来自丝氨酸蛋白酶家族保守性与潜在交叉反应。设计上应优先锁定 3NCL 中非保守外露环和活性裂隙边缘残基，以降低对相关膜型蛋白酶的脱靶抑制。",
+    "structurePrepZh": "以 3NCL 为主模板进行结构清理，保留催化域与链 A 的关键配位信息，补全缺失侧链并按生理 pH 设定质子化状态。必要时对 activation loop 与邻近糖基化位点做柔性建模。",
+    "structureRef": "RCSB PDB 3NCL；ST14 蛋白实验晶体结构",
+    "antibodies": [
+      "anti-Matriptase monoclonal antibody M69",
+      "anti-Matriptase antibody 21-9"
+    ],
+    "interfaceFocus": "催化裂隙、S1 口袋周缘与 activation loop 外侧",
+    "designMode": "structure-guided inhibitory",
+    "candidates": [
+      {
+        "target": "PRSS8",
+        "rationale": "PRSS8 编码 prostasin，与 ST14 同属上皮丝氨酸蛋白酶调控轴，二者在角化与屏障稳态中存在顺序性蛋白水解关系。其作为同通路候选靶点适于并行比较通路干预效应。"
+      },
+      {
+        "target": "SPINT1",
+        "rationale": "SPINT1 编码 HAI-1，是 matriptase 的生理抑制因子，直接决定 ST14 的激活水平与细胞表面蛋白水解活性。围绕该轴建立候选可用于验证抑制网络的上游制衡关系。"
+      },
+      {
+        "target": "EGFR",
+        "rationale": "ST14 可通过蛋白水解促进 EGFR 配体活化并驱动下游表型，EGFR 因而构成同一疾病通路中的功能性下游节点。将其纳入候选集合有助于区分酶级联阻断与受体端抑制的差异。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "CDC16",
+  "generatedAt": "2026-08-03T18:23:14.677Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CDC16 是后期促进复合体/细胞周期体（APC/C）的四十四肽重复支架亚基，参与 CDC20 或 CDH1 共激活子依赖的底物识别与泛素化复合体装配，其疾病关联主要来自血压、身高和体成分等复杂性状遗传证据。该蛋白为细胞内核质蛋白，并非分泌蛋白或细胞表面受体，天然抗原可及性不支持常规体内阻断型抗体开发；其可作为结构生物学展示或细胞内递送抗体片段研究对象。相较于同通路中具有直接酶活性或调节节点的 CDC20、FZR1 和 ANAPC11，CDC16 的药理优先级较低，但其高分辨率 APC/C 结构覆盖度有利于界面级表位建模。",
+    "mechanism": "设计抗体片段结合 CDC16 TPR 超螺旋支架界面，干扰其与 APC/C 相邻亚基及共激活子结合平台的空间装配。",
+    "selectedEpitope": "优先聚焦 CDC16 TPR 螺旋重复形成的凸面支架界面，避开深埋复合体核心接触面。",
+    "diseaseDirection": "复杂性状遗传关联与细胞周期调控",
+    "domain": "CDC16 含多段 TPR 螺旋重复，构成 APC/C 外层支架并参与多亚基复合体装配。",
+    "evidence": "CDC16-APC/C结构与复杂性状遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q13042 蛋白功能注释",
+      "RCSB PDB 3HYM X射线晶体结构",
+      "APC/C 复合体结构与细胞周期文献"
+    ],
+    "referenceEntries": "UniProt Q13042；RCSB PDB 3HYM；Open Targets CDC16",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "TPR重复外侧凸面螺旋束",
+        "较适合抗体片段结合，可用于稳定构象或阻断支架装配邻近界面",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CDC16与APC/C相邻TPR亚基接触边缘",
+        "可能影响复合体组装，但需避免破坏性过强导致非特异细胞毒性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "复合体内部深埋TPR核心界面",
+        "结构可及性差，体内抗体进入受限且易产生折叠稳定性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CDC16 为细胞内 APC/C 核心亚基，缺乏天然胞外可及性；建议限定为细胞内递送 Fab/VHH 或结构探针设计，并严格评估细胞周期毒性。",
+    "structurePrepZh": "以 3HYM 中 CDC16 所在链为模板，补全缺失环区，保留TPR螺旋构象并标注多亚基接触面后进行表位筛选。",
+    "structureRef": "Chang et al., APC/C core complex structure, PDB 3HYM",
+    "antibodies": [
+      "无已批准CDC16靶向抗体",
+      "无临床阶段CDC16抗体"
+    ],
+    "interfaceFocus": "TPR螺旋重复凸面及APC/C装配边缘",
+    "designMode": "细胞内抗体片段",
+    "candidates": [
+      {
+        "target": "CDC20",
+        "rationale": "CDC20 是 APC/C 的有丝分裂期共激活子，直接介导 securin 与 cyclin B 等底物识别；相较 CDC16，其调控节点更接近底物招募界面。"
+      },
+      {
+        "target": "FZR1",
+        "rationale": "FZR1/CDH1 是 APC/C 在有丝分裂退出和G1期的共激活子，参与底物选择与复合体时序调控，属于同一 APC/C 泛素化通路。"
+      },
+      {
+        "target": "ANAPC11",
+        "rationale": "ANAPC11 是 APC/C 的 RING 指结构亚基，与 E2 泛素结合酶协同促进泛素转移，提供比支架亚基更直接的催化界面干预点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

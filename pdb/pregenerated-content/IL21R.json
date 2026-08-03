@@ -1,0 +1,65 @@
+{
+  "gene": "IL21R",
+  "generatedAt": "2026-08-03T13:26:39.554Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IL21R 是 IL-21 信号轴的受体亚基，与共用 γ 链 IL2RG 形成受体复合物后激活 JAK1/JAK3-STAT3 通路，参与 B 细胞分化、Tfh 细胞功能、Th17 反应及嗜酸性炎症。其疾病关联覆盖免疫缺陷相关隐孢子虫慢性胆管炎、哮喘及嗜酸性粒细胞表型，提示该轴在黏膜免疫与过敏炎症中具有明确病理相关性。IL21R 为 I 型跨膜细胞因子受体，胞外 D1/D2 细胞因子受体同源区直接暴露于细胞表面，适合抗体识别与配体阻断。相较于下游 JAK/STAT 节点，靶向 IL21R 可更选择性限制 IL-21 依赖信号，降低广谱激酶抑制带来的通路交叉风险。",
+    "mechanism": "阻断 IL-21 与 IL21R 胞外 D1/D2 细胞因子受体同源区结合，抑制 IL21R-IL2RG 复合物装配及 JAK1/JAK3-STAT3 磷酸化信号传递。",
+    "selectedEpitope": "优先覆盖 D2 结构域与 IL-21 受体结合界面，兼顾 D1-D2 铰链邻域以增强配体竞争性阻断。",
+    "diseaseDirection": "免疫炎症与黏膜免疫缺陷",
+    "domain": "IL21R 含胞外 D1/D2 细胞因子受体同源区、单跨膜螺旋及胞内信号尾部。",
+    "evidence": "IL21R-IL21 免疫炎症信号证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传与表型关联",
+      "UniProt Q9HBE5 蛋白功能与结构域注释",
+      "RCSB PDB 6PLH 晶体结构数据",
+      "IL-21/IL21R-JAK/STAT 细胞因子信号文献"
+    ],
+    "referenceEntries": "UniProt Q9HBE5；RCSB PDB 6PLH；Open Targets IL21R",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "D2 结构域 IL-21 接触界面",
+        "直接竞争配体结合，最大化阻断 IL21R 复合物装配",
+        "优先"
+      ],
+      [
+        "Site B",
+        "D1-D2 铰链与相邻受体表面",
+        "限制受体构象适配并辅助降低 IL-21 结合亲和力",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离配体界面的 D1 外侧面",
+        "可形成高亲和结合但功能阻断不确定，需功能筛选验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "D1/D2 界面邻近细胞因子受体保守结构，需规避与 IL2R、IL4R、IL7R 等同源受体的交叉反应；建议以配体竞争、受体选择性和 STAT3 抑制作为联合筛选指标。",
+    "structurePrepZh": "以 6PLH 高分辨率晶体结构为模板，保留 IL21R 胞外抗原链 A/B/C 中完整 D1/D2 区域，校正缺失侧链、糖基化位点与晶体接触后进行表位暴露度评估。",
+    "structureRef": "RCSB PDB 6PLH，X-ray diffraction，1.6 Å",
+    "antibodies": [
+      "ATR-107",
+      "BOS161721"
+    ],
+    "interfaceFocus": "IL-21 接触面、D2 FG 环及 D1-D2 铰链",
+    "designMode": "配体阻断型抗体设计",
+    "candidates": [
+      {
+        "target": "IL21",
+        "rationale": "IL21 是 IL21R 的直接配体，处于同一细胞因子信号轴。中和 IL-21 可从源头阻断 IL21R-IL2RG 复合物形成。"
+      },
+      {
+        "target": "IL2RG",
+        "rationale": "IL2RG 是 IL21R 信号复合物的共受体亚基，参与 JAK3 招募与下游 STAT 激活。其干预可影响 IL-21 依赖信号，但需关注多种 γ 链细胞因子通路共享风险。"
+      },
+      {
+        "target": "JAK3",
+        "rationale": "JAK3 位于 IL21R-IL2RG 复合物下游，是 γ 链细胞因子信号的关键激酶节点。该靶点适合作为同通路药理参照，但抗体可及性不适用于胞内激酶。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

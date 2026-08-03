@@ -1,0 +1,65 @@
+{
+  "gene": "CAMK1D",
+  "generatedAt": "2026-08-03T18:12:29.321Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CAMK1D 属于钙/钙调蛋白依赖性丝氨酸/苏氨酸蛋白激酶，遗传学研究显示其与2型糖尿病、血糖测量值和HbA1c等代谢表型相关，可能通过影响钙依赖性激酶信号参与胰岛β细胞功能或代谢调控。该蛋白主要为胞内激酶，天然抗原可及性不具备膜受体或分泌蛋白优势，因此更适合用于细胞内靶点结合分子、构象探针或递送型抗体片段设计。其优先级依据在于已具备高分辨率人源实验晶体结构6T29，可直接支持ATP结合沟槽及调控界面的结构约束建模，但作为常规体内阻断型抗体靶点优先级低于GLP1R、INSR等细胞表面代谢通路靶点。",
+    "mechanism": "设计结合CAMK1D激酶结构域ATP结合裂隙或活化环邻近界面的抗体片段，空间阻断ATP进入催化口袋或限制活化环构象转换，从而抑制底物磷酸化。",
+    "selectedEpitope": "优先围绕激酶结构域N叶β片层、铰链区与活化环邻近外露面设计构象依赖表位。",
+    "diseaseDirection": "2型糖尿病与血糖调控",
+    "domain": "CAMK1D含N端蛋白激酶催化结构域及C端调控区域，催化域包含ATP结合口袋、铰链区和活化环。",
+    "evidence": "CAMK1D糖代谢遗传关联与激酶结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q8IU85蛋白功能注释",
+      "RCSB PDB 6T29高分辨率晶体结构",
+      "GWAS Catalog糖尿病与血糖性状关联研究"
+    ],
+    "referenceEntries": "UniProt: Q8IU85; RCSB PDB: 6T29; HGNC: CAMK1D",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域铰链区及ATP结合裂隙边缘",
+        "可通过位阻限制ATP定位与催化构象形成，适合抑制型片段设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N叶αC螺旋与活化环邻近外露界面",
+        "可稳定非活化构象并干扰底物识别相关构象转换",
+        "备选"
+      ],
+      [
+        "Site C",
+        "保守催化环及深部ATP口袋核心",
+        "序列保守性高且口袋埋藏较深，存在选择性和可及性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CAMK1D为胞内激酶，常规抗体难以在细胞外环境直接接触靶点；建议采用VHH、细胞内抗体或递送偶联策略，并严格评估CAMK家族交叉反应。",
+    "structurePrepZh": "以6T29链A为模板，保留激酶催化域主链构象，补全缺失侧链并校验ATP口袋、铰链区和活化环局部构象后进行表位网格定义。",
+    "structureRef": "RCSB PDB 6T29, human CAMK1D kinase domain, X-ray 1.484 Å",
+    "antibodies": [
+      "无临床获批CAMK1D抗体",
+      "研究级anti-CAMK1D抗体"
+    ],
+    "interfaceFocus": "ATP结合裂隙、铰链区、αC螺旋与活化环界面",
+    "designMode": "胞内激酶VHH设计",
+    "candidates": [
+      {
+        "target": "GLP1R",
+        "rationale": "GLP1R是胰岛β细胞表面的G蛋白偶联受体，直接参与葡萄糖依赖性胰岛素分泌调控；其胞外结构域具备良好的抗体可及性和药物开发可行性。"
+      },
+      {
+        "target": "INSR",
+        "rationale": "INSR是胰岛素信号通路核心受体酪氨酸激酶，调控PI3K-AKT介导的葡萄糖摄取和代谢稳态；细胞外配体结合区适合抗体调节设计。"
+      },
+      {
+        "target": "SLC2A4",
+        "rationale": "SLC2A4编码GLUT4，是胰岛素响应性葡萄糖转运的关键效应分子，与2型糖尿病外周胰岛素抵抗密切相关；但其多跨膜构象使抗体表位设计需聚焦胞外环区。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

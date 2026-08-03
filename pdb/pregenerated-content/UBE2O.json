@@ -1,0 +1,65 @@
+{
+  "gene": "UBE2O",
+  "generatedAt": "2026-08-03T17:38:48.264Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "UBE2O 是细胞质定位的 E2/E3 杂合泛素连接酶，参与核糖体蛋白、造血相关转录调控因子及蛋白稳态网络的泛素化，Open Targets 显示其与神经退行性疾病及血细胞性状存在遗传关联。该蛋白缺乏分泌区段、跨膜区段或天然胞外结构域，完整 IgG 在体内难以直接接近细胞内抗原，因此常规治疗性抗体成药可及性较弱。与膜受体或分泌型蛋白相比，UBE2O 更适合作为结构生物学、细胞内抗体片段或降解调节工具的研究靶点，优先级应低于同通路中具有胞外可及性的免疫或炎症受体。",
+    "mechanism": "设计目标为阻断 UBE2O 催化半胱氨酸邻近的 E2 活性界面与泛素负载构象耦联，干扰其向底物赖氨酸转移泛素的反应过程。",
+    "selectedEpitope": "优先覆盖 UBC 催化核心中活性半胱氨酸周边沟槽及底物结合邻近面。",
+    "diseaseDirection": "蛋白稳态与神经退行性疾病",
+    "domain": "UBE2O 含大型 N 端底物识别区域及 C 端 UBC 催化结构域，9QUG 解析其催化核心构象。",
+    "evidence": "UBE2O 蛋白稳态与血液性状遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt Q9C0C9 蛋白功能与定位注释",
+      "RCSB PDB 9QUG X-ray 结构记录",
+      "泛素化蛋白稳态与神经退行性疾病文献"
+    ],
+    "referenceEntries": "UniProt Q9C0C9；RCSB PDB 9QUG；Open Targets UBE2O",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "UBC 催化结构域活性半胱氨酸周边沟槽",
+        "有望直接干扰泛素硫酯转移与催化构象稳定",
+        "优先"
+      ],
+      [
+        "Site B",
+        "UBC 核心背侧底物结合邻近面",
+        "可通过空间位阻削弱底物招募而避免完全覆盖催化残基",
+        "备选"
+      ],
+      [
+        "Site C",
+        "非催化表面保守疏水斑块",
+        "可能影响折叠稳定性但缺乏明确功能界面指向",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "UBE2O 为细胞内酶，体内抗体递送和抗原可及性为主要风险；设计建议限定于 intrabody、VHH 或细胞渗透格式验证。",
+    "structurePrepZh": "以 9QUG 的 A、C 链为结构模板，保留催化核心，检查缺失环区、晶体接触及活性半胱氨酸邻近构象后再进行表位建模。",
+    "structureRef": "RCSB PDB 9QUG，X-ray diffraction，1.8 Å",
+    "antibodies": [
+      "暂无获批 UBE2O 靶向抗体",
+      "研究级 anti-UBE2O 抗体"
+    ],
+    "interfaceFocus": "UBC 活性位点沟槽与底物接触邻近面",
+    "designMode": "细胞内VHH设计",
+    "candidates": [
+      {
+        "target": "UBB",
+        "rationale": "UBB 编码泛素前体，直接参与 UBE2O 介导的泛素转移反应，是同一泛素-蛋白稳态通路的核心组分。"
+      },
+      {
+        "target": "VCP",
+        "rationale": "VCP 参与泛素化底物提取与蛋白质质量控制，并与神经退行性疾病机制密切相关，可作为蛋白稳态通路的替代干预节点。"
+      },
+      {
+        "target": "PSMD2",
+        "rationale": "PSMD2 属于 26S 蛋白酶体调节颗粒，负责泛素化底物降解流程的下游识别与处理，适合作为同通路功能验证靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

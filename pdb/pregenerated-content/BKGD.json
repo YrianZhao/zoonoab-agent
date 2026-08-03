@@ -1,0 +1,65 @@
+{
+  "gene": "BKGD",
+  "generatedAt": "2026-08-03T18:09:49.537Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BKGD/Q9H0W9 对应的人源注释与 beta-keto-L-gulonate decarboxylase 命名存在明显证据不一致，Open Targets 关联分值较低且疾病谱分散，未形成可解释的致病通路轴。该蛋白并非经典分泌蛋白、膜受体或具有稳定胞外结构域的抗体可及抗原，抗体在完整组织环境中难以直接接触其功能界面。相较于具有明确胞外配体-受体相互作用的疾病靶点，BKGD 缺乏可阻断的病理性细胞外互作与临床转化抗体先例，因此不宜作为优先抗体设计主靶点。",
+    "mechanism": "不建议设定阻断性抗体机制；若用于研究级结合试剂，仅可识别重组蛋白表面构象表位，不应宣称阻断疾病相关配体-受体互作。",
+    "selectedEpitope": "优先避开假定活性口袋，选择1XCR二聚体外侧α/β折叠暴露环区作为研究级结合表位。",
+    "diseaseDirection": "证据不足的探索性标志物",
+    "domain": "1XCR显示同源二聚体酶样α/β折叠核心，缺乏跨膜段、信号肽及胞外受体结构域。",
+    "evidence": "BKGD抗体成药性与疾病证据审查",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分与证据类型",
+      "UniProt Q9H0W9蛋白功能与亚细胞定位注释",
+      "RCSB PDB 1XCR晶体结构与二聚体界面信息",
+      "Human Protein Atlas组织表达与定位证据"
+    ],
+    "referenceEntries": "UniProt Q9H0W9；RCSB PDB 1XCR；Open Targets ENSG关联",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "二聚体外侧α/β折叠暴露环区",
+        "适合获得构象识别型研究抗体，降低干扰酶核心折叠风险",
+        "优先"
+      ],
+      [
+        "Site B",
+        "A/B链二聚化界面邻近区域",
+        "可能影响寡聚状态，但需验证界面在溶液中的稳定性与功能相关性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "预测催化口袋及保守极性残基周边",
+        "保守性较高且可能引发交叉反应，亦缺乏细胞外药理可及性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为靶点身份、疾病因果性和抗原可及性不足。设计应限定为体外研究抗体，并通过定位、敲除对照和重组蛋白特异性验证。",
+    "structurePrepZh": "采用1XCR A、B链构建二聚体抗原模型，保留晶体支持的折叠核心，移除结晶添加物并评估暴露环区柔性与同源蛋白保守性。",
+    "structureRef": "RCSB PDB 1XCR，X-ray diffraction，1.7 Å",
+    "antibodies": [
+      "无已获批同靶点治疗性抗体",
+      "无明确临床阶段同靶点抗体"
+    ],
+    "interfaceFocus": "二聚体外侧暴露环与A/B链界面邻域",
+    "designMode": "研究级结合抗体",
+    "candidates": [
+      {
+        "target": "ITGA2B",
+        "rationale": "Open Targets关联项包含platelet count，ITGA2B编码血小板整合素αIIb，为血小板聚集和止血通路中的细胞表面受体，抗体可及性与机制可验证性显著优于BKGD。"
+      },
+      {
+        "target": "ITGB3",
+        "rationale": "ITGB3与ITGA2B形成αIIbβ3复合体，介导纤维蛋白原结合和血小板聚集，是血小板数量及功能相关通路中的真实膜受体靶点。"
+      },
+      {
+        "target": "GP1BA",
+        "rationale": "GP1BA编码血小板糖蛋白Ibα，参与vWF介导的血小板黏附，与血小板表型和出血性疾病机制相关，具备明确胞外结构域表位设计空间。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

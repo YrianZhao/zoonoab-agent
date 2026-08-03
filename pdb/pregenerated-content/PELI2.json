@@ -1,0 +1,65 @@
+{
+  "gene": "PELI2",
+  "generatedAt": "2026-08-03T15:11:48.623Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PELI2为胞内Pellino家族E3泛素连接酶，参与Toll样受体和IL-1受体下游IRAK复合物相关泛素化调控，并影响先天免疫信号强度。该蛋白缺乏胞外结构域或分泌形式，天然抗原可及性不适合作为常规体内阻断抗体靶点，更适合结构生物学验证、细胞内抗体或降解递送研究。相较TNF、IL1R1、TLR4等同通路可及靶点，PELI2的临床抗体优先级较低，但其1.8 Å晶体结构为机制表位和胞内结合分子设计提供了明确结构基础。",
+    "mechanism": "设计分子应结合PELI2 FHA样结构域表面，干扰其识别磷酸化IRAK1/IRAK4相关基序，从而削弱IRAK复合物依赖的泛素化装配。",
+    "selectedEpitope": "优先覆盖3EGA所示FHA样结构域磷酸肽识别沟槽及邻近碱性残基簇。",
+    "diseaseDirection": "先天免疫与炎症信号调控",
+    "domain": "PELI2含N端FHA样磷酸蛋白结合结构域及C端RING样E3泛素连接酶区域。",
+    "evidence": "PELI2结构与先天免疫泛素化证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB Q9HAT8功能注释",
+      "RCSB PDB 3EGA晶体结构记录",
+      "TLR/IL-1R-IRAK-Pellino泛素化通路文献"
+    ],
+    "referenceEntries": "UniProt Q9HAT8；RCSB PDB 3EGA；Open Targets PELI2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "FHA样结构域磷酸肽识别沟槽",
+        "可直接竞争IRAK磷酸化片段结合，机制可解释性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FHA样结构域外侧保守碱性表面",
+        "可能变构影响底物定位，适合作为亲和力成熟备选界面",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端RING样E3催化区域预测界面",
+        "可能影响E2酶协同，但3EGA未覆盖完整区域，结构不确定性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PELI2为胞内蛋白，常规IgG难以到达作用位点；应限定为胞内抗体、纳米抗体递送或PROTAC样验证场景，并避免宣称体内直接阻断优势。",
+    "structurePrepZh": "以3EGA链A为模板，保留FHA样结构域核心折叠，补全缺失侧链并评估晶体接触面，磷酸肽结合沟槽应作为对接约束区域。",
+    "structureRef": "RCSB PDB 3EGA，X-ray diffraction，1.8 Å",
+    "antibodies": [
+      "无已获批PELI2靶向治疗性抗体",
+      "研究级抗PELI2检测抗体"
+    ],
+    "interfaceFocus": "FHA样结构域磷酸IRAK识别沟槽",
+    "designMode": "胞内表位阻断",
+    "candidates": [
+      {
+        "target": "IRAK4",
+        "rationale": "IRAK4位于TLR和IL-1R受体复合物下游并磷酸化IRAK家族成员，是PELI2相关底物识别与信号放大的上游核心激酶。其激酶活性和蛋白复合物装配均具有明确炎症疾病关联。"
+      },
+      {
+        "target": "IL1R1",
+        "rationale": "IL1R1是IL-1信号的细胞表面受体，激活MyD88-IRAK-TRAF6轴并与Pellino介导的泛素化调控处于同一炎症通路。相较PELI2，IL1R1胞外结构域更适合阻断型抗体开发。"
+      },
+      {
+        "target": "TLR4",
+        "rationale": "TLR4通过MyD88依赖分支募集IRAK复合物，并可诱导下游NF-κB和炎症因子表达，是PELI2参与调节的先天免疫通路上游膜受体。其胞外LRR结构域提供明确抗体可及界面。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

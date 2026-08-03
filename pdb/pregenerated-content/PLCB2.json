@@ -1,0 +1,65 @@
+{
+  "gene": "PLCB2",
+  "generatedAt": "2026-08-03T15:20:39.966Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PLCB2是造血细胞中富集表达的磷脂酶Cβ亚型，参与GPCR与Gβγ介导的PIP2水解，产生IP3和DAG并驱动钙动员、PKC活化及中性粒细胞趋化反应。其疾病关联主要集中于中性粒细胞计数、白细胞数量和髓系细胞表型，提示该节点与先天免疫细胞稳态存在遗传学联系。PLCB2为胞内酶，常规完整抗体抗原可及性受限，但其高分辨率结构适合开展细胞内Fab/VHH抑制构型研究。相较上游趋化因子受体，PLCB2处于多条GPCR信号的汇聚节点，具备解析髓系细胞钙信号放大的优先级价值。",
+    "mechanism": "稳定结合PLCB2催化核心邻近的X/Y-linker与TIM-barrel界面，阻断PIP2进入催化沟槽并削弱Gβγ诱导的PLCβ2活化构象。",
+    "selectedEpitope": "优先锚定X结构域、Y结构域形成的催化沟槽边缘及邻近X/Y-linker调控区。",
+    "diseaseDirection": "髓系免疫细胞钙信号与白细胞数量异常",
+    "domain": "PLCB2含PH结构域、EF-hand、X/Y催化核心、C2结构域及C端调控区。",
+    "evidence": "PLCB2髓系细胞GPCR-PLC钙信号证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q00722功能与结构域注释",
+      "RCSB PDB 2ZKM晶体结构记录",
+      "Reactome GPCR下游PLCβ信号通路注释"
+    ],
+    "referenceEntries": "UniProt Q00722；RCSB PDB 2ZKM；Reactome PLCβ signaling",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "X/Y催化核心沟槽边缘与X/Y-linker邻近区",
+        "有望直接限制PIP2底物进入并稳定低活性构象",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PH-EF-hand与催化核心相邻调控面",
+        "可干预膜定位或变构耦联，但需避免影响非特异性折叠稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C2结构域潜在膜结合面",
+        "可能影响膜相互作用，存在跨PLC家族保守性和功能冗余风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PLCB2为胞内酶，常规分泌型抗体难以触达天然抗原；宜采用细胞内VHH或递送型Fab策略，并严格评估PLCβ同源亚型交叉反应。",
+    "structurePrepZh": "以2ZKM链X为模板，补全缺失柔性片段并保留催化核心构象；去除结晶非生物学接触后进行质子化、环区优化和界面可及性评估。",
+    "structureRef": "RCSB PDB 2ZKM，X-ray diffraction，1.62 Å",
+    "antibodies": [
+      "细胞内抗PLCB2 VHH候选",
+      "催化核心阻断型抗PLCB2 Fab候选"
+    ],
+    "interfaceFocus": "X/Y催化沟槽、X/Y-linker及膜近端调控面",
+    "designMode": "胞内构象抑制",
+    "candidates": [
+      {
+        "target": "CXCR2",
+        "rationale": "CXCR2介导中性粒细胞对CXCL1、CXCL2和CXCL8等趋化因子的应答，并通过Gβγ-PLCβ轴诱导钙动员；其膜受体属性提供更高抗体可及性。"
+      },
+      {
+        "target": "CXCR1",
+        "rationale": "CXCR1是IL-8/CXCL8反应性GPCR，参与中性粒细胞趋化和脱颗粒，并与PLCβ2下游钙信号处于同一功能通路。"
+      },
+      {
+        "target": "PIK3CG",
+        "rationale": "PIK3CG编码PI3Kγ催化亚基，受GPCR Gβγ激活并协同PLCβ2调控髓系细胞迁移和炎症反应，可作为同一趋化信号网络的替代节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

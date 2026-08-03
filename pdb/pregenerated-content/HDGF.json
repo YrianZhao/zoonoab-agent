@@ -1,0 +1,65 @@
+{
+  "gene": "HDGF",
+  "generatedAt": "2026-08-03T13:10:05.134Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HDGF为肝素结合生长因子，含N端HATH结构域并可与细胞表面硫酸乙酰肝素糖胺聚糖结合，参与肿瘤细胞增殖、迁移和血管生成相关表型。其可被分泌或定位于细胞外基质相关环境，肝素结合界面为抗体接近和阻断提供可行抗原可及性。相较仅具胞内转录调控作用的核蛋白，HDGF的可靶向优势集中在胞外肝素结合功能轴，但Open Targets主要关联为测量性状，疾病优先级应低于已具明确受体轴和临床抗体验证的VEGFA或FGF2。",
+    "mechanism": "阻断HDGF N端HATH结构域与硫酸乙酰肝素链结合，削弱其在细胞表面和基质中的富集及促迁移、促血管生成信号支持。",
+    "selectedEpitope": "优先覆盖HATH结构域肝素结合碱性表面，避开高度柔性C端低复杂度区。",
+    "diseaseDirection": "肿瘤增殖与血管生成相关方向",
+    "domain": "HDGF含N端HATH/PWWP样结构域，C端为富含碱性残基的柔性低复杂度区域。",
+    "evidence": "HDGF肝素结合与肿瘤血管生成证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联与性状关联",
+      "UniProt P51858功能与亚细胞定位注释",
+      "RCSB PDB 1RI0溶液NMR结构记录",
+      "文献报道HDGF促进肿瘤增殖、迁移及血管生成表型"
+    ],
+    "referenceEntries": "UniProt: P51858；RCSB PDB: 1RI0；HGNC: HDGF",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "HATH结构域肝素结合碱性表面",
+        "直接干预HDGF与硫酸乙酰肝素糖胺聚糖相互作用",
+        "优先"
+      ],
+      [
+        "Site B",
+        "HATH结构域外周保守沟槽",
+        "可能影响配体定位并保留较好结构稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端富碱性柔性低复杂度区",
+        "可增强表面结合但构象异质性高、特异性风险较大",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HDGF并非经典跨膜受体，胞外分泌比例和肿瘤微环境可及性需实验确认；应优先筛选阻断肝素结合且不识别非特异核酸结合表面的抗体。",
+    "structurePrepZh": "以1RI0溶液NMR模型集提取HATH结构域代表构象，评估碱性斑块、构象一致性与暴露残基，柔性C端不作为核心建模约束。",
+    "structureRef": "RCSB PDB 1RI0，human HDGF HATH结构域NMR结构",
+    "antibodies": [
+      "HDGF中和抗体",
+      "抗HDGF研究级单克隆抗体"
+    ],
+    "interfaceFocus": "HATH结构域硫酸乙酰肝素结合碱性斑块",
+    "designMode": "配体阻断型抗体设计",
+    "candidates": [
+      {
+        "target": "VEGFA",
+        "rationale": "VEGFA是肿瘤血管生成通路的核心分泌因子，通过VEGFR1/VEGFR2驱动内皮细胞增殖和通透性，抗体药物验证充分。"
+      },
+      {
+        "target": "FGF2",
+        "rationale": "FGF2同为肝素结合生长因子，依赖硫酸乙酰肝素促进FGFR二聚化和激活，与HDGF共享基质富集和促血管生成生物学场景。"
+      },
+      {
+        "target": "KDR",
+        "rationale": "KDR编码VEGFR2，是VEGFA介导血管生成信号的主要受体酪氨酸激酶，适合作为同一血管生成疾病轴中的受体端干预靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

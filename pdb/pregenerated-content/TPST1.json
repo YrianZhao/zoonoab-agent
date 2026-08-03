@@ -1,0 +1,65 @@
+{
+  "gene": "TPST1",
+  "generatedAt": "2026-08-03T17:27:01.193Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TPST1催化分泌蛋白和膜蛋白胞外酪氨酸残基硫酸化，影响趋化因子受体配体识别、白细胞迁移及血液蛋白稳态，相关遗传证据集中于中性粒细胞和髓系白细胞计数等血液表型。TPST1为高尔基体腔内II型膜蛋白，催化结构域位于腔面而非细胞外暴露，天然抗体可及性低于典型膜受体或分泌因子。相较TPST2，TPST1在Open Targets血液蛋白量与髓系细胞表型中具有可量化关联，并具备1.6 Å实验晶体结构，适合作为机制验证和构象选择性结合体开发的优先研究靶点。",
+    "mechanism": "设计结合TPST1腔面催化结构域的抗体，阻断PAPS供体结合口袋与受体蛋白酪氨酸底物沟槽的协同定位，从而抑制底物酪氨酸硫酸化反应。",
+    "selectedEpitope": "优先覆盖催化结构域中PAPS结合位点邻近底物肽沟槽，避免仅靶向非功能性外周环区。",
+    "diseaseDirection": "血液蛋白稳态与髓系细胞计数",
+    "domain": "II型膜蛋白，短胞质尾、跨膜段及高尔基体腔内催化硫转移酶结构域。",
+    "evidence": "TPST1结构与血液表型关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt O60507功能与亚细胞定位注释",
+      "RCSB PDB 5WRI晶体结构记录",
+      "人蛋白酪氨酸硫酸化与白细胞趋化文献"
+    ],
+    "referenceEntries": "UniProt: O60507; RCSB PDB: 5WRI; HGNC: TPST1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PAPS结合口袋邻近底物肽沟槽",
+        "直接干扰硫酸基转移所需供体-受体定位，功能阻断价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域可溶核心外侧稳定螺旋面",
+        "利于获得高亲和构象识别抗体，可用于结构探针或细胞内递送验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端跨膜近端与柔性连接区",
+        "结构分辨不足且与天然抗体可及性不匹配，功能阻断不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TPST1定位于高尔基体腔面，常规细胞外抗体难以到达靶点；宜定位为胞内递送抗体、结构探针或体外功能抑制剂开发，并严控与TPST2的交叉反应。",
+    "structurePrepZh": "采用5WRI高分辨率晶体结构，保留催化结构域与配体邻近残基，补全缺失环区并评估寡聚界面、糖基化位点和TPST2同源保守面。",
+    "structureRef": "RCSB PDB 5WRI, X-ray diffraction, 1.6 Å",
+    "antibodies": [
+      "暂无临床批准TPST1靶向抗体",
+      "暂无公开同靶点治疗性抗体"
+    ],
+    "interfaceFocus": "PAPS供体口袋与底物酪氨酸肽沟槽",
+    "designMode": "胞内酶阻断型",
+    "candidates": [
+      {
+        "target": "TPST2",
+        "rationale": "TPST2与TPST1共同催化蛋白酪氨酸硫酸化，参与趋化因子受体和分泌蛋白成熟；可作为同通路冗余性和选择性评估靶点。"
+      },
+      {
+        "target": "CCR5",
+        "rationale": "CCR5 N端酪氨酸硫酸化促进其与CCL3、CCL4和CCL5等趋化因子结合，是TPST介导白细胞趋化轴的下游功能节点。"
+      },
+      {
+        "target": "CXCR4",
+        "rationale": "CXCR4 N端硫酸化增强其与CXCL12相互作用，连接TPST酶活与白细胞迁移及造血细胞定位相关过程。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

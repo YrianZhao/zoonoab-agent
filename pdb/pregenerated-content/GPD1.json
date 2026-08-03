@@ -1,0 +1,65 @@
+{
+  "gene": "GPD1",
+  "generatedAt": "2026-08-03T19:14:07.431Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GPD1为胞质型NAD依赖性甘油-3-磷酸脱氢酶，催化二羟丙酮磷酸与甘油-3-磷酸互变，参与肝脏甘油脂合成与NADH/NAD+氧化还原平衡；双等位基因缺陷可导致婴儿一过性高甘油三酯血症和肝脂肪变。该蛋白主要定位于胞质，缺乏跨膜区、分泌信号肽和天然胞外结构域，完整蛋白作为体内阻断型抗体靶点的抗原可及性不足。其结构解析度高且酶活口袋明确，作为机制研究或细胞内递送抗体设计可建立清晰界面；但相较于膜受体或分泌型脂质代谢因子，成药优先级应降低，并需优先采用功能验证驱动的胞内抗体策略。",
+    "mechanism": "通过胞内抗体或递送型Fab遮挡GPD1的NADH结合沟槽及DHAP底物入口，抑制GPD1二聚体催化循环中氢负离子转移。",
+    "selectedEpitope": "优先覆盖Rossmann样NAD结合结构域的辅因子结合沟槽，并延伸至DHAP底物入口邻近环区。",
+    "diseaseDirection": "遗传性高甘油三酯血症与肝脂肪变",
+    "domain": "GPD1含N端NAD结合Rossmann样结构域和C端催化结构域，功能状态为同源二聚体胞质酶。",
+    "evidence": "GPD1脂质代谢遗传病与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P21695 functional annotation",
+      "RCSB PDB 6E8Y X-ray structure",
+      "OMIM transient infantile hypertriglyceridemia and hepatosteatosis"
+    ],
+    "referenceEntries": "UniProtKB:P21695；RCSB PDB:6E8Y；HGNC:GPD1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "NAD结合Rossmann样结构域沟槽",
+        "直接干预辅因子结合与催化还原反应，功能抑制判读清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端催化结构域DHAP底物入口环区",
+        "可阻断底物进入并影响活性位点构象，适合与酶学验证耦合",
+        "备选"
+      ],
+      [
+        "Site C",
+        "同源二聚体界面非催化侧面",
+        "可能影响二聚体稳定性，但界面保守性与胞内可及性需严格评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GPD1为胞内代谢酶，常规循环抗体难以接触天然抗原；设计应限定为胞内抗体、递送型抗体或研究试剂，并避开高度保守NAD结合基序以降低交叉反应风险。",
+    "structurePrepZh": "以6E8Y的A、B链二聚体为结构模板，保留催化相关辅因子/配体位点注释，补全缺失侧链并评估NAD结合沟槽、底物入口与二聚体界面可成药性。",
+    "structureRef": "RCSB PDB 6E8Y，human GPD1，X-ray 1.85 Å",
+    "antibodies": [
+      "无获批GPD1治疗性抗体",
+      "研究级抗GPD1抗体"
+    ],
+    "interfaceFocus": "NADH结合沟槽、DHAP入口及二聚体界面",
+    "designMode": "胞内酶抑制型抗体",
+    "candidates": [
+      {
+        "target": "GPD2",
+        "rationale": "GPD2为线粒体甘油-3-磷酸脱氢酶，与GPD1共同构成甘油磷酸穿梭并连接胞质还原当量与线粒体氧化代谢。其疾病通路关联与甘油脂代谢、能量代谢异常具有机制连续性。"
+      },
+      {
+        "target": "DGAT1",
+        "rationale": "DGAT1催化甘油二酯与脂酰CoA生成甘油三酯，位于GPD1生成甘油-3-磷酸后的甘油脂合成下游。其抑制可直接降低甘油三酯合成负荷。"
+      },
+      {
+        "target": "GK",
+        "rationale": "GK催化甘油生成甘油-3-磷酸，是肝脏甘油进入甘油脂合成通路的关键入口酶。与GPD1共同决定甘油-3-磷酸供给并影响高甘油三酯血症表型。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

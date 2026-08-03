@@ -1,0 +1,65 @@
+{
+  "gene": "RNMT",
+  "generatedAt": "2026-08-03T21:04:00.765Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RNMT催化新生mRNA 5′帽结构GpppN的N7甲基化，维持mRNA稳定性、核输出与翻译起始；其异常活性可影响神经退行性疾病和病毒感染相关转录后调控网络。该蛋白主要定位于细胞核，为胞内酶类抗原，天然抗体可及性弱，因此更适合作为结构生物学驱动的胞内递送抗体、intrabody或研究级功能阻断抗体靶点。相较于广泛转录因子，RNMT具有明确SAM依赖甲基转移酶催化口袋及RAM辅因子结合界面，结构可解析性和机制验证优先级较高。",
+    "mechanism": "阻断RNMT甲基转移酶结构域与SAM供体及GpppN帽底物的结合，或干扰RNMT-RAM复合体形成，从而降低mRNA帽N7甲基化效率。",
+    "selectedEpitope": "优先覆盖SAM结合裂隙邻近的帽底物入口及RAM结合界面，避免仅选择远端非功能环区。",
+    "diseaseDirection": "神经退行性疾病与病毒感染转录后调控",
+    "domain": "RNMT含N端调控区与C端SAM依赖性mRNA帽鸟嘌呤N7甲基转移酶结构域。",
+    "evidence": "RNMT帽甲基化结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB O43148功能与亚细胞定位注释",
+      "RCSB PDB 8Q69晶体结构数据",
+      "mRNA cap N7 methyltransferase功能研究文献"
+    ],
+    "referenceEntries": "UniProt: O43148; RCSB PDB: 8Q69; HGNC: RNMT",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端甲基转移酶结构域SAM结合裂隙与帽底物入口",
+        "直接干预甲基供体和mRNA帽底物装配，机制验证价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RNMT-RAM辅因子结合界面邻近区域",
+        "可削弱RAM对RNMT催化活性的增强作用，适合变构阻断设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端低复杂度调控区或远离催化口袋的暴露环",
+        "功能阻断不确定且构象柔性较高，易产生非中和结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RNMT为核内胞内酶，常规治疗性抗体难以到达作用位点；建议定位于intrabody、递送型抗体片段或体外机制探针，并避开高度保守SAM口袋导致的交叉反应风险。",
+    "structurePrepZh": "以PDB 8Q69链A、B为结构模板，保留催化结构域构象，校验SAM/底物类似物邻近残基、缺失环区和晶体接触界面后开展表位建模。",
+    "structureRef": "RCSB PDB 8Q69; X-ray diffraction, 1.96 Å",
+    "antibodies": [
+      "Anti-RNMT monoclonal antibody clone A-10",
+      "Anti-RNMT monoclonal antibody clone EPR15443"
+    ],
+    "interfaceFocus": "SAM结合裂隙、GpppN帽入口与RAM结合面",
+    "designMode": "胞内功能阻断",
+    "candidates": [
+      {
+        "target": "RAMAC",
+        "rationale": "RAMAC编码RNMT激活小蛋白RAM，是RNMT复合体的直接辅因子；阻断RNMT-RAM轴可影响同一mRNA帽N7甲基化步骤。"
+      },
+      {
+        "target": "CMTR1",
+        "rationale": "CMTR1催化mRNA帽邻近第一个核苷2′-O甲基化，位于RNMT完成N7甲基化后的帽修饰通路下游；其活性影响先天免疫识别和病毒RNA区分。"
+      },
+      {
+        "target": "DCP2",
+        "rationale": "DCP2负责mRNA去帽反应，与RNMT介导的帽成熟共同决定mRNA帽状态和稳定性；在转录后稳态调控中具有互补干预价值。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "ACD",
+  "generatedAt": "2026-08-03T10:01:00.854Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ACD/TPP1 是 shelterin 复合体核心亚基，通过其 OB-fold 结构域与端粒酶 TERT–TERC 复合体相互作用，促进端粒酶募集至端粒末端，因而与先天性角化不良和 Hoyeraal-Hreidarsson 综合征等端粒维持缺陷疾病具有明确机制关联。该蛋白主要定位于细胞核端粒染色质，不具备经典胞外结构域或分泌蛋白特征，抗原可及性相较膜受体靶点受限，更适合作为细胞内递送抗体或研究级结合分子设计对象。相比同通路中结构无序比例较高的部分端粒蛋白，ACD 具有高分辨率 OB-fold 复合物结构和清晰的端粒酶招募界面，具备较高的结构导向设计优先级。",
+    "mechanism": "设计分子阻断 ACD TEL-patch 区域与端粒酶 TERT TEN 结构域的结合，抑制端粒酶向端粒末端募集。",
+    "selectedEpitope": "优先覆盖 ACD OB-fold 的 TEL-patch 酸性表面及其邻近 TERT 结合界面。",
+    "diseaseDirection": "端粒生物学缺陷与骨髓衰竭",
+    "domain": "ACD 含 N 端 OB-fold 端粒酶招募结构域及 C 端 POT1 结合区域。",
+    "evidence": "ACD 端粒酶募集与端粒病结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q96AP0 功能与亚细胞定位注释",
+      "RCSB PDB 5UN7 晶体结构解析",
+      "shelterin-端粒酶募集机制文献"
+    ],
+    "referenceEntries": "UniProt Q96AP0；RCSB PDB 5UN7；Open Targets ACD",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "OB-fold TEL-patch 酸性表面",
+        "直接干预 TERT TEN 结构域识别与端粒酶募集",
+        "优先"
+      ],
+      [
+        "Site B",
+        "OB-fold POT1/端粒 DNA 邻近稳定界面",
+        "可能扰动 shelterin 局部构象与端粒末端装配",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端 POT1 结合相关区域",
+        "功能相关但结构柔性较高，存在复合体广泛扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ACD 为核内非分泌蛋白，常规抗体难以到达作用位点；应优先采用胞内递送、intrabody 或结构验证型 Fab/VHH，并避免破坏全局 shelterin 稳定性。",
+    "structurePrepZh": "以 5UN7 中 ACD 相关链为模板，保留 OB-fold 界面残基，补全缺失环区并评估晶体接触对 TEL-patch 暴露度的影响。",
+    "structureRef": "PDB 5UN7，2.1 Å X-ray shelterin TPP1 结构",
+    "antibodies": [
+      "暂无获批 ACD 靶向抗体",
+      "研究级抗 ACD/TPP1 抗体"
+    ],
+    "interfaceFocus": "OB-fold TEL-patch 与 TERT TEN 结合面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "TERT",
+        "rationale": "TERT 是端粒酶催化亚基，TEN 结构域直接识别 ACD/TPP1 TEL-patch，处于同一端粒酶募集与端粒延长轴。"
+      },
+      {
+        "target": "TERC",
+        "rationale": "TERC 是端粒酶 RNA 组分，与 TERT 共同构成端粒酶核心复合体，其遗传缺陷同样导致先天性角化不良相关端粒病。"
+      },
+      {
+        "target": "POT1",
+        "rationale": "POT1 与 ACD/TPP1 形成端粒单链 DNA 结合模块，调节端粒末端保护及端粒酶可及性，属于同一 shelterin 功能通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

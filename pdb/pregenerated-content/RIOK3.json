@@ -1,0 +1,65 @@
+{
+  "gene": "RIOK3",
+  "generatedAt": "2026-08-03T21:00:04.751Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RIOK3 为胞内非典型丝氨酸/苏氨酸激酶，参与先天免疫中 IRF3 轴及核糖体生物发生相关过程，其 Open Targets 关联主要集中于网织红细胞数量、血小板计数和代谢测量等数量性状，当前证据更偏向遗传关联而非明确可阻断的胞外疾病驱动轴。该蛋白不具备分泌型抗原或膜受体胞外结构域，天然抗原可及性不支持常规治疗性抗体在体内直接结合。相较 TNF、IL6R、IFNAR1 等同类免疫通路胞外靶点，RIOK3 的优先级更适合结构生物学、细胞内递送抗体或研究级结合分子开发，而非首选系统给药抗体靶点。",
+    "mechanism": "设计分子以内源化递送或胞内抗体形式结合 RIOK3 激酶结构域，干扰 ATP/底物结合沟槽及其与先天免疫信号复合体组分的功能性装配。",
+    "selectedEpitope": "优先评估激酶结构域 ATP 结合裂隙邻近的 N-lobe/C-lobe 界面，避免完全遮蔽保守催化残基。",
+    "diseaseDirection": "血液数量性状与先天免疫调控",
+    "domain": "RIOK3 含 RIO 型非典型蛋白激酶结构域，具有 ATP 结合口袋、催化环及底物识别相关表面。",
+    "evidence": "RIOK3 结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt O14730 functional annotation",
+      "RCSB PDB 8ZDB electron microscopy structure",
+      "Human Protein Atlas subcellular localization"
+    ],
+    "referenceEntries": "UniProt: O14730; RCSB PDB: 8ZDB; Ensembl: ENSG00000101782",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域 N-lobe/C-lobe 交界及 ATP 结合沟槽边缘",
+        "可影响核苷酸结合构象与底物定位，适合胞内功能阻断分子设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C-lobe 底物识别表面及催化环邻近区域",
+        "可能干扰底物蛋白接触，但需规避高度保守催化核心以降低交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化口袋的外周溶剂暴露表面",
+        "更适合结构探针或检测抗体，功能阻断价值有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RIOK3 为胞内蛋白，常规抗体缺乏天然到达性；激酶核心保守性较高，需通过同源激酶比对排除 ATP 口袋保守表位。",
+    "structurePrepZh": "以 8ZDB 冷冻电镜模型为模板，补全缺失侧链与柔性环区，进行质子化、能量最小化及 ATP 结合口袋构象校验。",
+    "structureRef": "RCSB PDB 8ZDB, cryo-EM structure of human RIOK3",
+    "antibodies": [
+      "research anti-RIOK3 monoclonal antibody",
+      "research anti-RIOK3 recombinant antibody"
+    ],
+    "interfaceFocus": "ATP 结合沟槽与催化环邻近底物界面",
+    "designMode": "胞内抗体探索",
+    "candidates": [
+      {
+        "target": "MAVS",
+        "rationale": "MAVS 位于 RIG-I样受体抗病毒通路下游，可组织 TBK1-IRF3 激活复合体；其功能节点与 RIOK3 相关先天免疫调控方向一致。"
+      },
+      {
+        "target": "TBK1",
+        "rationale": "TBK1 直接磷酸化 IRF3 并驱动 I 型干扰素转录反应，是 RIOK3 相关先天免疫轴中的核心激酶节点。"
+      },
+      {
+        "target": "IRF3",
+        "rationale": "IRF3 是 RIG-I/MAVS/TBK1 通路的关键转录因子，其二聚化和核转位决定抗病毒基因表达输出。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

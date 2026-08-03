@@ -1,0 +1,65 @@
+{
+  "gene": "PTPN12",
+  "generatedAt": "2026-08-03T15:43:48.544Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PTPN12 为胞质型非受体蛋白酪氨酸磷酸酶，参与整合素、SRC/FAK 及受体酪氨酸激酶相关磷酸化网络，并与神经炎症、突触稳态和髓鞘损伤相关疾病存在遗传与转录层面的关联。该蛋白不含跨膜区或分泌信号肽，天然抗原可及性不利于常规体内阻断抗体，但其催化结构域具备高分辨率晶体结构，可支持细胞内递送抗体、VHH 或研究级构象探针设计。相较同家族胞质磷酸酶，PTPN12 的 PTP 催化域结构解析度较高且疾病关联谱覆盖神经退行性疾病和免疫介导脱髓鞘病变，适合作为机制验证优先靶点。",
+    "mechanism": "设计分子应结合 PTP 催化结构域周边沟槽，阻断底物磷酸酪氨酸肽段进入 P-loop 与 WPD-loop 构成的活性位点，从而改变 FAK/SRC 相关底物去磷酸化。",
+    "selectedEpitope": "优先覆盖 PTP 催化域 P-loop、WPD-loop 邻近底物结合沟槽，避免仅针对远端非功能表面。",
+    "diseaseDirection": "神经退行性与神经炎症疾病",
+    "domain": "PTPN12 含 N 端 PTP 催化结构域及 C 端富含脯氨酸调控区，5HDE 覆盖催化结构域。",
+    "evidence": "PTPN12 神经疾病关联与PTP结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q05209 蛋白功能与亚细胞定位注释",
+      "RCSB PDB 5HDE 晶体结构记录",
+      "PhosphoSitePlus/PTP底物磷酸化网络资料"
+    ],
+    "referenceEntries": "UniProt Q05209；RCSB PDB 5HDE；Open Targets PTPN12",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PTP催化域P-loop与底物结合沟槽邻近区域",
+        "直接影响磷酸酪氨酸底物进入活性位点，机制可解释性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "WPD-loop及其周边构象转换界面",
+        "可能稳定非活化构象并降低催化循环效率，适合构象选择设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化域远端非保守表面斑块",
+        "有利于获得特异性结合分子，但功能阻断效应需严格验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PTPN12 为胞内酶，常规抗体体内可及性不足；建议采用VHH、细胞穿透递送或胞内表达格式，并重点规避PTP家族保守催化核心交叉反应。",
+    "structurePrepZh": "以5HDE链A为结构模板，保留催化域主链与活性位点关键残基，补全缺失侧链、校正质子化状态，并标注P-loop、WPD-loop及底物沟槽。",
+    "structureRef": "RCSB PDB 5HDE，X-ray diffraction，1.62 Å",
+    "antibodies": [
+      "抗PTPN12研究级单克隆抗体",
+      "抗PTPN12研究级多克隆抗体"
+    ],
+    "interfaceFocus": "P-loop、WPD-loop与磷酸酪氨酸底物沟槽",
+    "designMode": "胞内VHH构象阻断",
+    "candidates": [
+      {
+        "target": "PTK2",
+        "rationale": "PTK2/FAK 是 PTPN12 相关黏附斑磷酸化网络中的关键激酶，调控整合素介导的细胞迁移和神经炎症相关细胞反应。其激酶活性与磷酸化状态可作为PTPN12功能轴的互补干预节点。"
+      },
+      {
+        "target": "SRC",
+        "rationale": "SRC 是 PTPN12 调控网络中的经典酪氨酸激酶节点，参与FAK/SRC复合体信号和免疫细胞活化。干预SRC相关磷酸化界面可用于解析PTPN12底物网络的疾病贡献。"
+      },
+      {
+        "target": "BCAR1",
+        "rationale": "BCAR1/p130Cas 是黏附斑信号支架蛋白，并为PTPN12相关去磷酸化网络的重要底物之一。其酪氨酸磷酸化状态连接整合素信号、细胞迁移和炎症细胞反应。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "GATA1",
+  "generatedAt": "2026-08-03T12:43:30.066Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GATA1 是红系与巨核细胞谱系决定性转录因子，致病变异可破坏其与 DNA 及共因子 FOG1/ZFPM1 的互作，导致血小板减少、红系发育异常和 Diamond-Blackfan 样贫血表型。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌形式，抗体药物的常规细胞外阻断可及性较弱，更适合作为结构抗体、胞内递送抗体或研究级结合分子开发对象。其优先级依据在于人类遗传证据强、晶体结构分辨率高且锌指-DNA界面明确，但相较可分泌造血因子或膜受体，治疗性抗体转化优先级需下调。",
+    "mechanism": "设计分子可结合 GATA1 C端锌指-DNA 识别界面，阻断其与 WGATAR 基序 DNA 的接触，或干扰 N端锌指与 FOG1/ZFPM1 的复合体形成。",
+    "selectedEpitope": "优先评估 C端锌指 α螺旋与 DNA 大沟接触面，兼顾 N端锌指 FOG1 结合界面。",
+    "diseaseDirection": "遗传性红系与巨核细胞发育障碍",
+    "domain": "含两个 C4 型锌指结构域：N端锌指介导 FOG1 互作，C端锌指负责 DNA 结合与核定位。",
+    "evidence": "GATA1 造血转录调控与遗传贫血证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P15976 functional annotation",
+      "RCSB PDB 6G0Q structural record",
+      "OMIM and ClinVar GATA1 variant evidence"
+    ],
+    "referenceEntries": "UniProt P15976；RCSB PDB 6G0Q；Open Targets ENSG00000102145",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端锌指 α螺旋-DNA 大沟识别界面",
+        "直接影响 WGATAR 基序结合，适合机制验证型阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端锌指 FOG1/ZFPM1 互作表面",
+        "可干扰红系与巨核细胞转录复合体装配，适合功能调节设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "锌配位核心与保守 Cys 残基邻近区",
+        "高度保守且结构稳定性敏感，结合可能造成非特异构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GATA1 为核内转录因子，常规抗体难以到达作用位点；锌指核心保守性高，应避免破坏锌配位结构，优先采用胞内递送或研究级 Fab/VHH 方案。",
+    "structurePrepZh": "以 6G0Q 高分辨率晶体结构为模板，保留锌离子与 DNA 复合构象，校正链 A/B 装配状态并标注 DNA 接触残基。",
+    "structureRef": "RCSB PDB 6G0Q，X-ray diffraction，1.4 Å",
+    "antibodies": [
+      "anti-GATA1 clone D52H6",
+      "anti-GATA1 clone EPR17359"
+    ],
+    "interfaceFocus": "C端锌指-DNA 大沟界面与 N端锌指-FOG1 表面",
+    "designMode": "胞内靶点结构抗体",
+    "candidates": [
+      {
+        "target": "ZFPM1",
+        "rationale": "ZFPM1/FOG1 是 GATA1 的关键转录共因子，直接参与红系和巨核细胞分化复合体形成；其与 GATA1 锌指互作界面可作为同通路调节节点。"
+      },
+      {
+        "target": "KLF1",
+        "rationale": "KLF1 与 GATA1 协同控制红系基因表达，包括珠蛋白与红细胞成熟程序；其遗传异常同样关联先天性贫血表型。"
+      },
+      {
+        "target": "TAL1",
+        "rationale": "TAL1 与 GATA1、LMO2、LDB1 组成造血增强子复合体，调控红系和巨核细胞谱系基因网络；适合作为同一转录调控模块的候选靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

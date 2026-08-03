@@ -1,0 +1,65 @@
+{
+  "gene": "SAR1A",
+  "generatedAt": "2026-08-03T16:20:18.076Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SAR1A 是 COPII 囊泡出芽起始 GTPase，调控内质网至高尔基体转运并影响载脂蛋白、脂质转运蛋白及分泌蛋白的细胞外输出，遗传关联主要指向 HDL 胆固醇、胆固醇酯及血清分泌蛋白水平表型。该蛋白为胞质侧小 GTPase，并非天然胞外抗原，抗体可及性弱于分泌蛋白或膜受体，需优先采用细胞内递送抗体、结构探针或体外功能阻断模式。相较于 SEC23/SEC24 等大型 COPII 组分，SAR1A 体积小、GTP/GDP 构象明确且已有高分辨率结构，适合作为机制验证型优先靶点，但治疗性常规抗体开发优先级较低。",
+    "mechanism": "通过结合 SAR1A switch I/II 与效应因子结合面，阻断其 GTP 依赖性招募 SEC23/SEC24 复合体并抑制 COPII 包被装配。",
+    "selectedEpitope": "优先锁定 GTPase 结构域 switch I/II 邻近的 SEC23 结合界面，避免直接覆盖核苷酸结合口袋。",
+    "diseaseDirection": "脂质代谢与分泌转运表型",
+    "domain": "SAR1A 主要由小 GTPase 核心结构域构成，含 P-loop、switch I、switch II 及效应因子结合面。",
+    "evidence": "SAR1A-COPII转运与血脂表型证据包",
+    "evidenceSources": [
+      "Open Targets Platform 遗传关联与表型评分",
+      "UniProt Q9NR31 蛋白功能注释",
+      "RCSB PDB 8DZM 晶体结构数据",
+      "COPII 囊泡出芽与脂蛋白分泌研究文献"
+    ],
+    "referenceEntries": "UniProt Q9NR31；RCSB PDB 8DZM；Open Targets SAR1A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "switch I/II 邻近 SEC23 结合面",
+        "可直接干预 GTP 型 SAR1A 对 SEC23/SEC24 的招募，机制清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "α螺旋与β折叠形成的效应因子外侧沟槽",
+        "有利于构象选择性结合并降低核苷酸口袋干扰",
+        "备选"
+      ],
+      [
+        "Site C",
+        "P-loop 与核苷酸结合邻域",
+        "可能影响 GTP/GDP 结合但保守性高，存在选择性与功能毒性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SAR1A 为胞内膜相关小 GTPase，常规抗体难以进入作用位点；P-loop 保守性高，需规避交叉识别 SAR1B 及其他 Ras 超家族成员。",
+    "structurePrepZh": "以 8DZM 的 A、B 链为结构模板，保留核苷酸相关构象信息，补全缺失侧链并标注 switch I/II、P-loop 与 SEC23 互作面。",
+    "structureRef": "RCSB PDB 8DZM，X-ray，1.648 Å，人源 SAR1A",
+    "antibodies": [
+      "暂无获批 SAR1A 靶向抗体",
+      "研究级抗 SAR1A 抗体"
+    ],
+    "interfaceFocus": "switch I/II-SEC23效应因子结合面",
+    "designMode": "胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "SAR1B",
+        "rationale": "SAR1B 与 SAR1A 同属 COPII 出芽起始 GTPase，参与内质网出口与脂蛋白分泌；其与乳糜微粒潴留病及脂质吸收异常关系更明确。"
+      },
+      {
+        "target": "SEC23A",
+        "rationale": "SEC23A 是 SAR1-GTP 的直接效应因子和 GTPase activating protein，构成 COPII 内层包被；阻断 SAR1-SEC23A 界面可验证同一 ER-to-Golgi 转运轴。"
+      },
+      {
+        "target": "SEC24A",
+        "rationale": "SEC24A 与 SEC23 形成货物选择复合体，参与 COPII 货物捕获并影响分泌蛋白输出；其处于 SAR1A 下游同一包被装配通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

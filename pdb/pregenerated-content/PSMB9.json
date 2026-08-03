@@ -1,0 +1,65 @@
+{
+  "gene": "PSMB9",
+  "generatedAt": "2026-08-03T15:39:22.006Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PSMB9编码免疫蛋白酶体β1i催化亚基，参与MHC-I抗原肽加工，并与浆细胞骨髓瘤、套细胞淋巴瘤及蛋白酶体相关自身炎症综合征存在遗传或表达关联。该蛋白位于20S蛋白酶体核心颗粒内腔，成熟催化位点并非细胞表面可及抗原，常规外源性抗体难以直接结合胞内复合体。相较于CD38、SLAMF7等浆细胞表面靶点，PSMB9更适合作为胞内机制研究或递送型抗体片段探索靶点，抗体药物优先级应低于可及性更高的膜受体靶点。",
+    "mechanism": "设计目标限定为胞内递送或内源表达抗体片段，阻断PSMB9 β1i催化Thr1邻近底物结合沟槽与抗原肽前体接触，降低免疫蛋白酶体切割活性。",
+    "selectedEpitope": "优先覆盖β1i成熟N端Thr1催化位点邻近S1底物口袋及β环结构，但需规避装配界面。",
+    "diseaseDirection": "血液肿瘤与免疫蛋白酶体炎症",
+    "domain": "PSMB9为20S蛋白酶体β型Ntn水解酶亚基，含β夹心核心、N端催化Thr1及内腔底物结合沟槽。",
+    "evidence": "PSMB9免疫蛋白酶体疾病关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与药物靶点关联",
+      "UniProt P28065蛋白功能与亚细胞定位注释",
+      "RCSB PDB 7AWE人源20S免疫蛋白酶体晶体结构",
+      "Proteasome immunoproteasome antigen processing literature"
+    ],
+    "referenceEntries": "UniProt:P28065；RCSB PDB:7AWE；Open Targets:PSMB9",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "β1i N端Thr1催化位点邻近S1底物结合沟槽",
+        "可直接干预底物肽进入与Ntn水解反应，机制指向性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "β1i内腔暴露环区及邻近底物通道边缘",
+        "有利于构建非竞争性空间阻断，减少对核心折叠稳定性的破坏",
+        "备选"
+      ],
+      [
+        "Site C",
+        "β1i与相邻α/β亚基装配接触界面",
+        "可能影响20S核心颗粒装配，但存在复合体稳定性与非选择性毒性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PSMB9为胞内蛋白酶体亚基，天然抗体可及性不足；设计应限定为胞内抗体、递送型Fab/VHH或机制验证工具，并评估对组成型蛋白酶体的选择性。",
+    "structurePrepZh": "以7AWE人源免疫蛋白酶体结构提取PSMB9链，补全成熟N端状态、移除非目标配体与晶体水，并保留相邻亚基用于界面约束评估。",
+    "structureRef": "RCSB PDB 7AWE，X-ray diffraction，2.288 Å",
+    "antibodies": [
+      "抗PSMB9研究级单克隆抗体",
+      "抗LMP2/PSMB9免疫检测抗体"
+    ],
+    "interfaceFocus": "Thr1催化中心、S1底物口袋与内腔通道边缘",
+    "designMode": "胞内递送型VHH/Fab",
+    "candidates": [
+      {
+        "target": "PSMB8",
+        "rationale": "PSMB8编码免疫蛋白酶体β5i催化亚基，与PSMB9共同参与炎症诱导型蛋白酶体切割谱形成，并与蛋白酶体相关自身炎症综合征密切相关。"
+      },
+      {
+        "target": "PSMB10",
+        "rationale": "PSMB10编码β2i催化亚基，是免疫蛋白酶体催化核心的组成部分，可与PSMB8、PSMB9共同改变MHC-I抗原肽生成。"
+      },
+      {
+        "target": "TAP1",
+        "rationale": "TAP1负责将蛋白酶体生成的抗原肽转运入内质网，与PSMB9同处MHC-I抗原加工与呈递通路，疾病关联覆盖免疫缺陷方向。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

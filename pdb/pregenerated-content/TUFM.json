@@ -1,0 +1,65 @@
+{
+  "gene": "TUFM",
+  "generatedAt": "2026-08-03T17:34:34.804Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TUFM 是线粒体翻译延伸因子，负责将氨酰-tRNA递送至线粒体核糖体A位点，功能缺陷可降低氧化磷酸化复合体亚基合成并导致联合氧化磷酸化缺陷。该蛋白主要定位于线粒体基质，天然抗原可及性弱于经典膜受体或分泌蛋白，因此更适合作为胞内递送抗体、细胞穿透型抗体或结构生物学验证抗体的设计对象。相较于下游单一呼吸链复合体亚基，TUFM位于线粒体蛋白合成上游核心节点，遗传疾病关联分值较高，具有机制优先级。",
+    "mechanism": "抗体阻断TUFM GTP酶结构域与线粒体氨酰-tRNA及核糖体A位点邻近界面的结合，抑制翻译延伸复合物形成。",
+    "selectedEpitope": "优先覆盖GTP酶Domain I与Domain II连接区及tRNA结合沟槽边缘，干扰延伸复合体装配。",
+    "diseaseDirection": "线粒体翻译与氧化磷酸化缺陷",
+    "domain": "TUFM含N端GTP酶Domain I、β-barrel Domain II及C端Domain III，协同结合GTP和氨酰-tRNA。",
+    "evidence": "TUFM线粒体翻译与氧化磷酸化缺陷证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P49411功能与亚细胞定位注释",
+      "RCSB PDB 9PRA冷冻电镜结构",
+      "OMIM/ClinVar线粒体翻译缺陷相关变异记录"
+    ],
+    "referenceEntries": "UniProt:P49411；RCSB PDB:9PRA；Open Targets:TUFM",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Domain I-Domain II连接区及tRNA结合沟槽边缘",
+        "邻近GTP依赖构象转换与底物递送界面，适于功能阻断型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Domain III外侧tRNA接触面",
+        "可削弱氨酰-tRNA稳定结合，保留较高结构可塑性用于亲和力优化",
+        "备选"
+      ],
+      [
+        "Site C",
+        "GTP结合P-loop/NKXD基序邻近区域",
+        "催化核心保守性高且小分子核苷酸占位密集，抗体进入与选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TUFM为线粒体基质蛋白，常规抗体难以天然进入作用位点；应优先采用细胞穿透、线粒体递送或体外结构阻断验证策略，并规避高度保守GTP结合核心。",
+    "structurePrepZh": "以9PRA冷冻电镜模型为模板，保留TUFM完整三结构域构象，检查核苷酸、tRNA或核糖体接触邻域，补全缺失环区后进行表面可及性与保守性标注。",
+    "structureRef": "RCSB PDB 9PRA，human mitochondrial translation complex，EM 2.83 Å",
+    "antibodies": [
+      "TUFM研究级单克隆抗体",
+      "抗线粒体翻译因子结构验证抗体"
+    ],
+    "interfaceFocus": "Domain I-II连接区、tRNA结合沟槽、GTP依赖构象界面",
+    "designMode": "胞内递送阻断",
+    "candidates": [
+      {
+        "target": "TSFM",
+        "rationale": "TSFM编码线粒体EF-Ts，负责促进TUFM GDP/GTP交换，位于同一线粒体翻译延伸循环。阻断TSFM-TUFM相互作用可间接降低氨酰-tRNA递送效率。"
+      },
+      {
+        "target": "GFM1",
+        "rationale": "GFM1编码线粒体EF-G1，介导肽酰-tRNA与mRNA在延伸后的易位步骤，与TUFM共同维持线粒体翻译延伸。其遗传缺陷同样关联联合氧化磷酸化缺陷。"
+      },
+      {
+        "target": "MRPS22",
+        "rationale": "MRPS22为线粒体小核糖体亚基蛋白，参与线粒体核糖体装配及翻译起始平台形成。其功能异常可影响线粒体编码呼吸链亚基合成，属于同一氧化磷酸化缺陷通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

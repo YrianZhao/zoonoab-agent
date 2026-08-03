@@ -1,0 +1,65 @@
+{
+  "gene": "CHGA",
+  "generatedAt": "2026-08-03T11:21:57.662Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CHGA编码嗜铬粒蛋白A，是神经内分泌分泌颗粒的酸性可溶蛋白，参与儿茶酚胺储存释放，并可裂解生成vasostatin、catestatin和pancreastatin等调节肽，影响交感-肾上腺轴、血管张力及代谢炎症状态。Open Targets关联信号主要集中于肌酐、肾小球滤过率、胱抑素C及钙测量表型，提示其在肾功能和系统性内分泌稳态相关疾病表型中具有可追踪的生物标志物价值。CHGA为分泌蛋白，抗原可及性优于胞内颗粒酶或转录调控因子，适合采用中和型或捕获型抗体策略。相较下游短肽片段，靶向前体蛋白保留多片段检测与功能干预窗口，优先级更适合抗体工作流验证。",
+    "mechanism": "抗体可结合CHGA N端vasostatin区域或catestatin前体片段，阻断CHGA片段与细胞膜及自主神经调节相关受体/离子通道界面的接触，并用于捕获循环CHGA以降低活性片段可用性。",
+    "selectedEpitope": "优先覆盖N端vasostatin-1结构区的暴露螺旋与酸性表面，避开高度可切割连接肽。",
+    "diseaseDirection": "肾功能表型与神经内分泌稳态",
+    "domain": "CHGA含N端信号肽、vasostatin区、多段酸性低复杂度区域及catestatin、pancreastatin等裂解肽前体片段。",
+    "evidence": "CHGA分泌颗粒蛋白与肾功能表型证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P10645 functional annotation",
+      "RCSB PDB 1LV4 solution NMR structure",
+      "neuroendocrine granule and chromogranin literature"
+    ],
+    "referenceEntries": "UniProt P10645；RCSB PDB 1LV4；Open Targets CHGA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端vasostatin-1暴露螺旋/酸性表面",
+        "结构信息支持度较高，可兼顾捕获CHGA与干预N端调节片段",
+        "优先"
+      ],
+      [
+        "Site B",
+        "catestatin前体区域邻近裂解片段",
+        "可影响与胆碱能调节相关界面的可用性，适合功能阻断探索",
+        "备选"
+      ],
+      [
+        "Site C",
+        "pancreastatin前体及低复杂度酸性区",
+        "蛋白酶切割与构象柔性较高，抗体表位稳定性和物种交叉需审慎评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CHGA存在多位点蛋白水解和片段化分泌，线性表位可能被裂解破坏；宜优先选择N端结构化片段并建立完整蛋白与片段交叉反应矩阵。",
+    "structurePrepZh": "以1LV4的NMR构象集合评估vasostatin区域暴露面，保留代表性构象簇，补充AlphaFold全长模型用于柔性区定位和可切割位点标注。",
+    "structureRef": "RCSB PDB 1LV4；human chromogranin A N-terminal NMR",
+    "antibodies": [
+      "CgA-RIA/ELISA诊断抗体",
+      "anti-CHGA monoclonal antibody LK2H10"
+    ],
+    "interfaceFocus": "vasostatin N端螺旋面与裂解片段边界",
+    "designMode": "分泌蛋白捕获/片段阻断",
+    "candidates": [
+      {
+        "target": "CHGB",
+        "rationale": "CHGB同属嗜铬粒蛋白家族，参与神经内分泌分泌颗粒形成和肽激素储存释放，可作为同一分泌颗粒轴的并行标志物与抗体开发备选。"
+      },
+      {
+        "target": "SCG2",
+        "rationale": "SCG2编码secretogranin II，可裂解生成secretoneurin并参与神经内分泌分泌通路，适合用于评估分泌颗粒蛋白网络中的疾病相关信号。"
+      },
+      {
+        "target": "SST",
+        "rationale": "SST为神经内分泌抑制性肽激素，处于CHGA相关分泌颗粒和内分泌调控通路中，可作为神经内分泌活性调节方向的功能候选靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

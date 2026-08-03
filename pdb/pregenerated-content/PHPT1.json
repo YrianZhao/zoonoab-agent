@@ -1,0 +1,65 @@
+{
+  "gene": "PHPT1",
+  "generatedAt": "2026-08-03T15:16:14.157Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PHPT1为胞质可溶性磷酸组氨酸磷酸酶，参与蛋白组氨酸磷酸化周转，并与胰岛素受体相关代谢表型及肿瘤关联数据存在弱关联。其PDB 2HW4提供高分辨率酶核心结构，但蛋白缺乏跨膜区、分泌信号肽和稳定胞外结构域，完整抗体在天然状态下抗原可及性有限。相较INSR、IGF1R等同通路膜受体，PHPT1更适合作为胞内机制研究或细胞内递送抗体探索靶点，临床阻断型抗体优先级较低。",
+    "mechanism": "设计分子应结合PHPT1催化口袋邻近区域，空间遮挡磷酸组氨酸底物进入并限制催化残基构象重排。",
+    "selectedEpitope": "优先锁定酶核心催化沟槽外缘及底物进入通道，避免完全依赖保守活性位点残基。",
+    "diseaseDirection": "代谢异常与肿瘤机制研究",
+    "domain": "PHPT1为约125 aa胞质酶，采用小型α/β磷酸酶折叠并形成保守催化口袋。",
+    "evidence": "PHPT1结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与关联评分",
+      "UniProt Q9NRX4蛋白定位与功能注释",
+      "RCSB PDB 2HW4晶体结构记录",
+      "文献报道的PHPT1磷酸组氨酸磷酸酶活性"
+    ],
+    "referenceEntries": "UniProt Q9NRX4；RCSB PDB 2HW4；Open Targets PHPT1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化沟槽外缘与底物进入通道",
+        "可阻断磷酸组氨酸底物结合并保留较高结构特异性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "α/β酶核心非催化暴露面",
+        "适合生成构象识别抗体或检测型抗体，功能抑制强度可能有限",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守催化残基邻近深口袋",
+        "存在跨磷酸酶样蛋白交叉反应与亲和成熟难度风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PHPT1为胞内可溶蛋白，常规抗体难以接触天然靶点；建议限定为细胞内递送、VHH/intrabody或研究级抑制工具，并严格评估同源交叉反应。",
+    "structurePrepZh": "采用2HW4链A作为结构模板，补全缺失侧链并质子化催化区域；保留催化口袋水网络用于界面能量评估。",
+    "structureRef": "RCSB PDB 2HW4，human PHPT1 X-ray 1.9 Å",
+    "antibodies": [
+      "无已批准PHPT1治疗性抗体",
+      "研究级anti-PHPT1抗体"
+    ],
+    "interfaceFocus": "催化沟槽外缘与底物进入通道",
+    "designMode": "胞内靶向VHH探索",
+    "candidates": [
+      {
+        "target": "INSR",
+        "rationale": "INSR是胰岛素信号通路核心膜受体，其功能缺陷直接关联高胰岛素血症和代谢综合征表型，胞外α亚基具有明确抗体可及性。"
+      },
+      {
+        "target": "IGF1R",
+        "rationale": "IGF1R与INSR共享PI3K-AKT和RAS-MAPK下游信号，并在肺癌等肿瘤增殖与存活通路中具有更成熟的抗体干预基础。"
+      },
+      {
+        "target": "SLC2A4",
+        "rationale": "SLC2A4编码GLUT4，是胰岛素刺激葡萄糖摄取的关键效应分子，与代谢综合征通路相关；但其多跨膜结构使功能性抗体设计需谨慎选择胞外环。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

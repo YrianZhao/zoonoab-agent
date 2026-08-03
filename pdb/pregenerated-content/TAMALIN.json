@@ -1,0 +1,65 @@
+{
+  "gene": "TAMALIN",
+  "generatedAt": "2026-08-03T17:07:18.211Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TAMALIN（GRASP）为胞内支架蛋白，主要参与受体运输与膜受体复合体装配，并通过其 PDZ 结构域结合 GPCR 末端基序，影响受体定位与信号持续时间。Open Targets 中其关联信号集中于肾小球滤过率和血清肌酐等肾功能表型，提示其与肾脏转运稳态及疾病表型相关，但疾病机制多依赖胞内蛋白互作网络而非经典膜外靶点。相较于同通路中的 RXFP1、S1PR1 或 ADGRG1 等膜受体，TAMALIN 本身缺乏稳定胞外抗原暴露，作为抗体主靶点的优先级较低，更适合作为通路背景靶点而非直接阻断对象。",
+    "mechanism": "通过结合 TAMALIN 的 PDZ 识别面，干扰其与 GPCR 胞质尾部基序及相关运输复合体的装配。",
+    "selectedEpitope": "优先选择 PDZ 口袋及邻近 β2-α2 环区，以阻断配体识别与支架组装。",
+    "diseaseDirection": "肾功能/转运稳态",
+    "domain": "N 端 PDZ 结构域及邻近连接区，属胞内蛋白互作界面。",
+    "evidence": "TAMALIN 结构与肾功能关联证据包",
+    "evidenceSources": [
+      "UniProt: Q7Z6J2",
+      "RCSB PDB: 2PNT",
+      "Open Targets Platform",
+      "Human Protein Atlas"
+    ],
+    "referenceEntries": "UniProt Q7Z6J2; PDB 2PNT; GRASP/TAMALIN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PDZ 配体结合槽",
+        "直接竞争 GPCR 胞质尾部结合，最具机制可解释性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "β2-α2 环与邻近表面",
+        "可降低识别亲和力并减少构象稳定化",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端连接区外侧表面",
+        "可能影响支架协同装配，但特异性较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "靶点位于胞内，常规抗体难以天然进入细胞，递送与可及性风险高；应优先评估胞内递送型抗体、纳米抗体或胞内抗体格式。",
+    "structurePrepZh": "建议以 2PNT 为核心，补充 PDZ 口袋周边残基注释并检查链 A/B 的生物学组装状态；对缺失环区进行同源建模后再做表位筛选。",
+    "structureRef": "Qin et al., PDZ domain structure of TAMALIN/GRASP, 2PNT",
+    "antibodies": [
+      "暂无成熟临床同类抗体",
+      "暂无明确已上市同类抗体"
+    ],
+    "interfaceFocus": "PDZ 配体结合槽与 β2-α2 环",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "RXFP1",
+        "rationale": "与肾脏及转运稳态相关的膜受体靶点，具有明确胞外可及性，适合作为同通路上更可成药的对照靶点。其配体-受体界面适合阻断型抗体设计。"
+      },
+      {
+        "target": "S1PR1",
+        "rationale": "参与血管与肾脏屏障稳态的 GPCR 靶点，和 TAMALIN 所影响的受体运输网络存在功能关联。该靶点为经典膜受体，抗原可及性明显优于 TAMALIN。"
+      },
+      {
+        "target": "ADGRG1",
+        "rationale": "属于黏附型 GPCR，受体外部结构域暴露充分，适合抗体介导的功能阻断。其与细胞黏附/转运相关的疾病背景可作为同通路优先比较对象。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

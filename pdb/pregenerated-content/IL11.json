@@ -1,0 +1,65 @@
+{
+  "gene": "IL11",
+  "generatedAt": "2026-08-03T13:25:31.356Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IL11 是 IL6 家族细胞因子，可通过 IL11RA 与 gp130 形成受体复合物并激活 JAK/STAT3、ERK 和 PI3K 信号，在骨关节炎滑膜炎症、软骨细胞表型改变与基质降解过程中具有明确疾病关联。IL11 为分泌型胞外配体，抗原整体可及性高，适合以中和抗体阻断其受体结合界面。相较于直接靶向共享受体 gp130，IL11 配体选择性更高，预期可降低对 IL6、LIF、OSM 等同家族细胞因子信号的广泛干扰，因此具备较优先的抗体设计价值。",
+    "mechanism": "中和抗体阻断 IL11 与 IL11RA α受体结合，并抑制后续 gp130 招募，从而降低 IL11 依赖性 STAT3 与 ERK 通路激活。",
+    "selectedEpitope": "优先覆盖四螺旋束细胞因子核心中 Site I 的 IL11RA 结合界面。",
+    "diseaseDirection": "骨关节炎与组织纤维化炎症",
+    "domain": "成熟 IL11 为分泌型四α螺旋束细胞因子，受体结合位点分布于螺旋A、C、D及连接环区。",
+    "evidence": "IL11-IL11RA-gp130轴结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt P20809 蛋白功能注释",
+      "RCSB PDB 8DPV 晶体结构",
+      "IL11/IL11RA/gp130 细胞因子受体复合物文献"
+    ],
+    "referenceEntries": "UniProt:P20809；RCSB PDB:8DPV；Open Targets:IL11",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Site I：IL11RA 结合面，涉及四螺旋束外侧残基簇",
+        "直接阻断配体-α受体识别，具备中和抗体优先设计价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Site II：潜在 gp130 招募相关表面，邻近螺旋A/C界面",
+        "可削弱受体复合物装配，适合作为补充中和策略",
+        "备选"
+      ],
+      [
+        "Site C",
+        "螺旋束疏水核心与构象维持区域",
+        "可能影响抗原折叠稳定性，需避免诱导非特异构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IL11 与 IL6 家族细胞因子共享四螺旋束拓扑，需避免选择保守骨架表面；设计应聚焦 IL11RA 特异性接触残基以提高选择性。",
+    "structurePrepZh": "以 8DPV 的 A 链作为抗原模板，保留成熟 IL11 可溶结构，补全缺失侧链并进行质子化、界面残基标注与受体结合面映射。",
+    "structureRef": "RCSB PDB 8DPV，X-ray diffraction，1.48 Å",
+    "antibodies": [
+      "X203",
+      "Enx203"
+    ],
+    "interfaceFocus": "IL11 Site I α受体结合界面",
+    "designMode": "配体中和抗体设计",
+    "candidates": [
+      {
+        "target": "IL11RA",
+        "rationale": "IL11RA 是 IL11 的特异性α受体，介导配体初始识别并促进 gp130 复合物形成；靶向该受体可直接抑制 IL11 轴。"
+      },
+      {
+        "target": "IL6ST",
+        "rationale": "IL6ST 编码 gp130，是 IL11 信号复合物的共享信号转导受体；其参与下游 JAK/STAT3 激活，但选择性风险高于 IL11 或 IL11RA。"
+      },
+      {
+        "target": "STAT3",
+        "rationale": "STAT3 是 IL11-IL11RA-gp130 轴的重要下游转录因子，参与炎症和组织重塑相关基因表达；其定位于胞内，更适合作为通路参考靶点而非常规抗体主靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

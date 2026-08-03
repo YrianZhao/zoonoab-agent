@@ -1,0 +1,65 @@
+{
+  "gene": "TRIM5",
+  "generatedAt": "2026-08-03T17:29:14.544Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TRIM5 是胞内限制因子，主要通过 PRYSPRY/B30.2 结构域识别逆转录病毒衣壳并促进病毒核心过早解聚，属于先天抗病毒通路中的效应蛋白。该蛋白缺乏天然胞外结构域或分泌形式，抗原可及性不支持常规体内阻断型抗体开发，更适合用于细胞内抗体、结构探针或递送型抗体策略。相比 IFITM、APOBEC3G 等同类限制因子，TRIM5 的衣壳识别界面已有结构片段支持，便于围绕 PRYSPRY 变异环建立表位和功能验证方案，但整体优先级受胞内定位限制。",
+    "mechanism": "设计抗体结合 TRIM5 PRYSPRY 衣壳识别面，阻断其与逆转录病毒 capsid 晶格的接触，用于解析限制因子-衣壳相互作用。",
+    "selectedEpitope": "优先覆盖 PRYSPRY/B30.2 结构域可变环 v1/v2 区域的衣壳识别界面。",
+    "diseaseDirection": "逆转录病毒感染与先天免疫",
+    "domain": "TRIM5 含 RING、B-box 2、coiled-coil 及 C端 PRYSPRY/B30.2 结构域。",
+    "evidence": "TRIM5抗病毒限制因子结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform 遗传关联与性状关联数据",
+      "UniProt Q9C035 蛋白结构域与亚细胞定位注释",
+      "RCSB PDB 2YRG 溶液NMR结构记录",
+      "逆转录病毒衣壳识别与TRIM5限制机制文献"
+    ],
+    "referenceEntries": "UniProt Q9C035；RCSB PDB 2YRG；Open Targets TRIM5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PRYSPRY/B30.2 v1/v2 可变环衣壳结合面",
+        "直接干预 TRIM5 与病毒 capsid 晶格识别，功能判读明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PRYSPRY β夹心外侧非保守表面",
+        "可作为结构探针表位，降低对核心折叠稳定性的干扰",
+        "备选"
+      ],
+      [
+        "Site C",
+        "RING-B-box 与 coiled-coil 自组装相关区域",
+        "可能影响泛素化和高阶组装，存在广泛功能扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TRIM5 为胞内蛋白，常规抗体难以到达天然作用位点；设计宜限定为细胞内抗体、Fab结构探针或递送型格式，并避免破坏PRYSPRY整体折叠。",
+    "structurePrepZh": "以PDB 2YRG的NMR构象集合为模板，保留PRYSPRY结构域代表构象，补充缺失环区建模并标注可变环柔性。",
+    "structureRef": "RCSB PDB 2YRG；TRIM5α PRYSPRY结构研究",
+    "antibodies": [
+      "抗TRIM5单克隆抗体8E7",
+      "抗TRIM5α单克隆抗体3F8"
+    ],
+    "interfaceFocus": "PRYSPRY可变环与逆转录病毒capsid接触面",
+    "designMode": "胞内结构探针型",
+    "candidates": [
+      {
+        "target": "APOBEC3G",
+        "rationale": "APOBEC3G 是 HIV-1 先天限制因子，通过胞苷脱氨酶活性抑制病毒复制，并受 Vif 介导降解调控。与 TRIM5 同属细胞内抗病毒限制网络。"
+      },
+      {
+        "target": "IFITM3",
+        "rationale": "IFITM3 通过改变内体膜环境限制病毒进入和膜融合，是广谱抗病毒先天免疫效应蛋白。其膜相关拓扑为抗体递送或细胞内结合策略提供互补模型。"
+      },
+      {
+        "target": "BST2",
+        "rationale": "BST2/tetherin 限制包膜病毒从细胞表面释放，属于干扰素诱导的抗病毒效应通路。其胞外结构域可及性优于 TRIM5，适合作为同通路可成药性对照靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

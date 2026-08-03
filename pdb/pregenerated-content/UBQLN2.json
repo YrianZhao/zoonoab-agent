@@ -1,0 +1,65 @@
+{
+  "gene": "UBQLN2",
+  "generatedAt": "2026-08-03T17:39:20.626Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "UBQLN2 是泛素-蛋白酶体与自噬-溶酶体蛋白质质量控制网络中的适配蛋白，其 ALS 相关突变可削弱泛素化底物递送并促进 TDP-43、FUS 等病理蛋白稳态失衡。UBQLN2 为胞内蛋白，常规体内抗体可及性受限，但其 UBL 与 UBA 结构域具有明确相互作用界面，适合用于细胞内抗体、VHH 或研究级功能阻断分子设计。相比更广泛表达且多功能的蛋白酶体核心亚基，UBQLN2 具有较强遗传疾病关联和 ALS 亚型特异性，优先级主要来自遗传证据与结构域可干预性。",
+    "mechanism": "阻断 UBQLN2 UBA 结构域与多泛素链结合，或干预 UBL 结构域与蛋白酶体受体亚基相互作用，以改变错误折叠蛋白递送过程。",
+    "selectedEpitope": "优先覆盖 C 端 UBA 结构域泛素结合疏水面，评估对 K48/K63 多泛素链识别的阻断效应。",
+    "diseaseDirection": "ALS蛋白质稳态障碍",
+    "domain": "UBQLN2 含 N 端 ubiquitin-like UBL 结构域、中央 STI1-like 重复区及 C 端 ubiquitin-associated UBA 结构域。",
+    "evidence": "UBQLN2-ALS蛋白稳态证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt Q9UHD9 功能与结构域注释",
+      "RCSB PDB 1J8C 溶液 NMR 结构",
+      "ALS 中 UBQLN2 突变与蛋白聚集文献"
+    ],
+    "referenceEntries": "UniProt Q9UHD9；RCSB PDB 1J8C；Open Targets UBQLN2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端 UBA 结构域泛素结合面",
+        "直接干预多泛素链识别，适合功能阻断型 VHH 或胞内 Fab 设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端 UBL 结构域蛋白酶体受体结合界面",
+        "可评估对蛋白酶体递送步骤的影响，需避免完全抑制基础蛋白降解",
+        "备选"
+      ],
+      [
+        "Site C",
+        "中央 STI1-like 重复与富脯氨酸低复杂度区域",
+        "ALS 突变热点附近可能影响聚集行为，但构象异质性高、表位稳定性不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "UBQLN2 为胞内靶点，常规治疗性抗体递送与抗原可及性风险较高；建议限定为细胞内抗体、VHH 或机制研究工具，并进行蛋白稳态毒性评估。",
+    "structurePrepZh": "以 PDB 1J8C 的 NMR 构象 ensemble 为起点，筛选代表性低能模型，补充 UniProt 结构域边界并独立建模缺失无序区。",
+    "structureRef": "RCSB PDB 1J8C；human ubiquilin UBA domain NMR structure",
+    "antibodies": [
+      "抗-UBQLN2单克隆抗体克隆5F5",
+      "抗-UBQLN2单克隆抗体克隆6H9"
+    ],
+    "interfaceFocus": "UBA泛素结合面与UBL蛋白酶体受体界面",
+    "designMode": "胞内阻断型设计",
+    "candidates": [
+      {
+        "target": "TARDBP",
+        "rationale": "TDP-43 是 ALS 关键病理蛋白，UBQLN2 功能异常可促进其蛋白稳态失衡与胞质聚集。该靶点适合与 UBQLN2 共同构建蛋白质质量控制通路证据链。"
+      },
+      {
+        "target": "FUS",
+        "rationale": "FUS 与家族性 ALS 密切相关，并参与 RNA 结合蛋白聚集病理。UBQLN2 介导的降解与聚集控制异常可与 FUS 病理形成同一蛋白稳态疾病轴。"
+      },
+      {
+        "target": "SQSTM1",
+        "rationale": "SQSTM1/p62 是选择性自噬受体，连接泛素化货物与自噬降解系统。其与 UBQLN2 同属泛素依赖性蛋白质清除网络，并与 ALS/FTD 谱系疾病相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

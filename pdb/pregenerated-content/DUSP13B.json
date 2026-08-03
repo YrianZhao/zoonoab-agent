@@ -1,0 +1,65 @@
+{
+  "gene": "DUSP13B",
+  "generatedAt": "2026-08-03T18:47:24.129Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DUSP13B属于双特异性磷酸酶家族，可去磷酸化丝氨酸/苏氨酸和酪氨酸残基，潜在影响MAPK相关磷酸化网络；现有Open Targets肿瘤关联信号较弱，主要集中于肺腺癌、肺癌和非小细胞肺癌。该蛋白缺乏经典信号肽、跨膜区和稳定胞外结构域，抗原可及性不具备常规治疗性抗体优势，更适合细胞内抗体、递送型抗体片段或研究级结合分子策略。相较EGFR、MET、ERBB2等肺癌膜受体靶点，DUSP13B优先级较低，但可作为磷酸酶依赖性信号重塑研究靶点纳入探索性设计。",
+    "mechanism": "设计抗体片段结合DUSP13B催化结构域邻近底物识别沟槽，空间阻断其与磷酸化MAPK通路底物的接触并限制催化半胱氨酸介导的去磷酸化反应。",
+    "selectedEpitope": "优先覆盖DSP催化结构域中PTP签名基序邻近底物结合沟槽，避开深埋催化半胱氨酸核心。",
+    "diseaseDirection": "肺癌磷酸化信号调控",
+    "domain": "DUSP13B主要由双特异性磷酸酶催化结构域构成，含保守HCX5R样PTP催化基序。",
+    "evidence": "DUSP13B肺癌关联与磷酸酶结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt U3KQB7蛋白功能与序列注释",
+      "RCSB PDB 2PQ5结构条目",
+      "AlphaFold人源DUSP13B预测结构模型"
+    ],
+    "referenceEntries": "UniProt: U3KQB7；RCSB PDB: 2PQ5；AlphaFold预测模型",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DSP催化结构域底物识别沟槽及PTP环邻近表面",
+        "可直接干扰磷酸化底物进入催化中心，功能阻断价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域外侧α螺旋-环区构象表面",
+        "有利于获得高亲和结合分子，可用于构象稳定或检测应用",
+        "备选"
+      ],
+      [
+        "Site C",
+        "深埋HCX5R催化基序核心区域",
+        "保守性高且可及性有限，易影响选择性并降低可成药性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DUSP13B为胞内磷酸酶且疾病遗传关联分值较低，治疗性抗体递送和靶点优先级存在明显风险；建议定位为胞内抗体或机制探针设计。",
+    "structurePrepZh": "以2PQ5和AlphaFold模型交叉校验催化结构域折叠，去除低置信末端区，标注PTP环、底物沟槽及多聚链界面后开展表位建模。",
+    "structureRef": "RCSB PDB 2PQ5；AlphaFold DB人源DUSP13B预测结构",
+    "antibodies": [
+      "暂无获批DUSP13B治疗性抗体",
+      "暂无临床阶段DUSP13B同类抗体"
+    ],
+    "interfaceFocus": "PTP催化环邻近底物识别沟槽",
+    "designMode": "胞内Fab/VHH探索",
+    "candidates": [
+      {
+        "target": "EGFR",
+        "rationale": "EGFR是肺腺癌和非小细胞肺癌中明确驱动受体，激活RAS-RAF-MEK-ERK与PI3K-AKT通路；其胞外结构域可及性高，具备成熟抗体阻断基础。"
+      },
+      {
+        "target": "MET",
+        "rationale": "MET通过HGF结合诱导受体二聚化和酪氨酸激酶激活，参与肺癌增殖、侵袭和耐药；胞外Sema结构域适合抗体阻断配体结合或受体活化。"
+      },
+      {
+        "target": "ERBB2",
+        "rationale": "ERBB2参与ERBB受体网络异源二聚化并放大MAPK和PI3K信号，在部分肺癌中存在突变或扩增；胞外结构域具有成熟的抗体表位设计依据。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

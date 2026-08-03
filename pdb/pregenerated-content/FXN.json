@@ -1,0 +1,65 @@
+{
+  "gene": "FXN",
+  "generatedAt": "2026-08-03T12:39:03.946Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FXN 编码线粒体基质蛋白 frataxin，其缺失或功能降低导致铁-硫簇生物合成受损、线粒体铁稳态异常和氧化应激增强，是 Friedreich 共济失调的核心致病轴。该蛋白为可溶性线粒体基质蛋白，天然抗原可及性不及膜受体或分泌蛋白，因此更适合研究级胞内递送抗体、构象探针或蛋白稳定化设计。相较于同通路中多组分装配酶，FXN 具有单基因强遗传因果性、高疾病关联得分和高分辨率实验结构，优先级主要来自致病确定性与结构可设计性。",
+    "mechanism": "抗体设计以稳定成熟 frataxin 构象为目标，干预或增强 FXN 与 NFS1-ISCU 铁-硫簇装配复合体的接触界面，从而影响硫转移与簇装配效率。",
+    "selectedEpitope": "优先覆盖成熟 FXN α1-β1-β2 邻近酸性脊及 NFS1/ISCU 结合相关表面。",
+    "diseaseDirection": "Friedreich 共济失调与线粒体铁硫簇缺陷",
+    "domain": "人 frataxin 成熟体由 N 端酸性区域、β折叠片层和两条α螺旋组成，定位于线粒体基质。",
+    "evidence": "FXN-Friedreich 共济失调遗传与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProtKB Q16595 蛋白功能注释",
+      "RCSB PDB 3T3L 高分辨率晶体结构",
+      "OMIM 与 ClinVar 中 FXN 致病变异记录"
+    ],
+    "referenceEntries": "UniProt Q16595；RCSB PDB 3T3L；Open Targets FXN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "α1-β1-β2 邻近酸性表面",
+        "接近铁硫簇装配复合体结合界面，适合构象稳定或界面调节设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C 端 α2 螺旋外侧暴露面",
+        "结构稳定且表面可成药性较好，可作为构象识别与检测抗体位点",
+        "备选"
+      ],
+      [
+        "Site C",
+        "β片层疏水核心邻近区域",
+        "可能影响整体折叠稳定性，需避免诱导去稳定化或遮蔽关键装配表面",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FXN 为线粒体基质内可溶蛋白，常规抗体细胞内可达性有限；应优先采用胞内递送、工程化 VHH 或研究探针定位，并避免阻断必需装配界面。",
+    "structurePrepZh": "以 PDB 3T3L 链 A 为模板，保留成熟 frataxin 结构域，补全缺失侧链并评估酸性表面质子化状态，随后进行表面可及性与界面残基标注。",
+    "structureRef": "RCSB PDB 3T3L，X-ray diffraction，1.15 Å",
+    "antibodies": [
+      "抗-frataxin 单克隆抗体 1G2",
+      "抗-frataxin 单克隆抗体 18A5DB1"
+    ],
+    "interfaceFocus": "FXN 与 NFS1-ISCU 装配复合体接触表面",
+    "designMode": "胞内构象调节",
+    "candidates": [
+      {
+        "target": "NFS1",
+        "rationale": "NFS1 是线粒体半胱氨酸脱硫酶，直接为铁-硫簇生物合成提供硫源，与 FXN 同属核心装配复合体。其活性状态决定硫转移效率。"
+      },
+      {
+        "target": "ISCU",
+        "rationale": "ISCU 是铁-硫簇支架蛋白，接受来自 NFS1 体系的硫并承载簇装配过程。FXN 功能缺陷可降低该复合体装配效率。"
+      },
+      {
+        "target": "ISD11",
+        "rationale": "ISD11 是 NFS1 复合体稳定因子，与 NFS1、ISCU 和 FXN 共同参与线粒体铁-硫簇生物合成。调节该节点可用于同通路机制研究。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

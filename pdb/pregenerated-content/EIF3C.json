@@ -1,0 +1,65 @@
+{
+  "gene": "EIF3C",
+  "generatedAt": "2026-08-03T19:04:03.584Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "EIF3C 是 eIF3 复合体核心支架亚基，参与 43S 预起始复合体装配及 mRNA 5′端扫描，肿瘤中其表达升高可增强蛋白翻译起始并支持细胞增殖。该蛋白主要定位于胞质核糖体起始复合体，缺乏天然胞外结构域或分泌形式，因此常规抗体药物的抗原可及性显著受限。相较 EGFR、VEGFA 等同类肿瘤通路可及靶点，EIF3C 更适合作为细胞内机制研究、递送型抗体片段或降解平台靶点，临床抗体优先级较低但结构解析基础较充分。",
+    "mechanism": "设计分子应干扰 EIF3C 与 eIF3 复合体相邻亚基及 40S 核糖体界面的装配，削弱 43S 预起始复合体稳定性并降低肿瘤细胞翻译起始效率。",
+    "selectedEpitope": "优先关注 PCI/MPN 样支架区域中暴露于 eIF3 复合体外侧且邻近亚基接触面的构象表位。",
+    "diseaseDirection": "肿瘤翻译起始依赖性方向",
+    "domain": "EIF3C 为 eIF3 核心支架蛋白，含 PCI 结构域样折叠及延伸螺旋束，参与多亚基复合体装配。",
+    "evidence": "EIF3C 肿瘤翻译起始结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q99613 蛋白功能注释",
+      "RCSB PDB 8PPL 冷冻电镜结构",
+      "eIF3 复合体翻译起始机制文献"
+    ],
+    "referenceEntries": "UniProt Q99613；RCSB PDB 8PPL；Open Targets EIF3C",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PCI 样结构域外侧螺旋束与亚基装配邻近面",
+        "可能干扰 eIF3 核心复合体稳定性，适合递送型 Fab/VHH 设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "40S 核糖体邻近的 EIF3C 暴露环区",
+        "可探索阻断起始复合体定位，但需避免与核糖体高度保守界面交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "深埋于 eIF3 多亚基核心的疏水装配界面",
+        "抗体可及性差，构象依赖强，分离抗原状态可能导致表位失真",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "EIF3C 为胞内蛋白，常规全长抗体难以进入作用位点；应优先采用细胞内递送、VHH、PROTAC/降解偶联或研究级阻断策略，并评估正常增殖组织毒性。",
+    "structurePrepZh": "以 8PPL 冷冻电镜模型为起点，保留 EIF3C 与相邻 eIF3 亚基及 40S 接触环境，补全缺失环区并标注复合体埋藏界面与外露表面。",
+    "structureRef": "RCSB PDB 8PPL，human eIF3 translation initiation complex EM structure",
+    "antibodies": [
+      "研究级 anti-EIF3C monoclonal antibody",
+      "研究级 anti-EIF3C recombinant antibody"
+    ],
+    "interfaceFocus": "EIF3C-相邻 eIF3 亚基及 40S 邻近装配界面",
+    "designMode": "胞内递送阻断型",
+    "candidates": [
+      {
+        "target": "EIF3A",
+        "rationale": "EIF3A 是 eIF3 复合体核心支架亚基，与 EIF3C 同属翻译起始复合体装配轴，肿瘤细胞对其翻译起始功能存在依赖。"
+      },
+      {
+        "target": "EIF3B",
+        "rationale": "EIF3B 参与 eIF3 复合体与 40S 核糖体及起始因子网络的组织化，干预其装配可影响 43S 预起始复合体形成。"
+      },
+      {
+        "target": "EIF4E",
+        "rationale": "EIF4E 介导 mRNA 5′帽结构识别，是翻译起始上游限速节点，与 EIF3 介导的 43S 招募处于同一蛋白翻译起始通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

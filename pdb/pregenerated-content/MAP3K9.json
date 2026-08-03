@@ -1,0 +1,65 @@
+{
+  "gene": "MAP3K9",
+  "generatedAt": "2026-08-03T14:03:11.712Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAP3K9编码MLK1，为丝氨酸/苏氨酸MAP3K，参与JNK和p38 MAPK级联，在神经应激、轴突损伤和炎症诱导的神经元凋亡通路中可上游磷酸化MAP2K4/MAP2K7。该蛋白主要为胞内激酶，天然抗原可及性不具备分泌蛋白或膜受体优势，常规治疗性抗体进入活细胞的可行性受限，更适合作为结构验证、细胞内抗体或递送型抗体工程对象。其优先级低于TNF、IL6R等同属神经炎症相关且胞外可及的靶点，但PDB 3DTC提供人源激酶结构基础，可支持机制性表位与构象选择研究。",
+    "mechanism": "设计分子应结合MAP3K9激酶结构域近ATP结合裂隙或激活环邻域，空间阻断ATP/Mg2+定位及底物MAP2K4、MAP2K7进入催化沟槽。",
+    "selectedEpitope": "优先覆盖激酶N叶ATP口袋边缘与C叶底物结合沟槽交界，兼顾激活环构象锁定。",
+    "diseaseDirection": "神经退行性疾病与情绪障碍",
+    "domain": "MAP3K9含N端SH3结构域、丝氨酸/苏氨酸激酶结构域、亮氨酸拉链和Cdc42/Rac相互作用区。",
+    "evidence": "MAP3K9-JNK应激轴神经疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P80192功能与结构域注释",
+      "RCSB PDB 3DTC晶体结构条目",
+      "Reactome MAPK家族级联通路注释"
+    ],
+    "referenceEntries": "UniProt P80192；RCSB PDB 3DTC；Ensembl ENSG00000006432",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域ATP结合裂隙及铰链区邻近表面",
+        "可直接干扰ATP定位并限制催化构象形成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C叶底物识别沟槽与激活环邻域",
+        "有利于阻断MAP2K4/MAP2K7底物进入与磷酸转移",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SH3结构域或C端调控区预测暴露片段",
+        "结构覆盖有限且功能阻断不确定，需构象与细胞内验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAP3K9为胞内激酶，常规抗体难以到达作用位点；需采用细胞内抗体、递送载体或降解偶联策略，并严控MAP3K家族交叉反应。",
+    "structurePrepZh": "以3DTC链A为模板，补全缺失环区并校正质子化状态；保留激酶结构域构象，围绕ATP口袋、铰链区和激活环建立表位网格。",
+    "structureRef": "RCSB PDB 3DTC，人MAP3K9激酶结构域X射线结构，2.6 Å",
+    "antibodies": [
+      "MAP3K9研究级单克隆抗体",
+      "MAP3K9研究级多克隆抗体"
+    ],
+    "interfaceFocus": "ATP口袋、铰链区、激活环与底物沟槽",
+    "designMode": "胞内抗体/递送型阻断",
+    "candidates": [
+      {
+        "target": "MAP2K4",
+        "rationale": "MAP2K4是MAP3K9下游JNK和p38通路MAP2K，可接受上游MAP3K磷酸化并参与神经应激信号传递。其作为通路节点可用于验证MAP3K9阻断后的级联抑制效应。"
+      },
+      {
+        "target": "MAP2K7",
+        "rationale": "MAP2K7是JNK通路的直接MAP2K，介导应激诱导的JNK活化。与MAP3K9处于同一MAPK级联，可作为替代或联合干预节点。"
+      },
+      {
+        "target": "MAPK8",
+        "rationale": "MAPK8编码JNK1，是MAP3K9-MAP2K4/7轴下游效应激酶，参与神经元应激反应和凋亡相关转录调控。该靶点可作为疾病通路读出与候选干预对象。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

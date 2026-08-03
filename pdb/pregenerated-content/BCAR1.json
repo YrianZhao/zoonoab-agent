@@ -1,0 +1,65 @@
+{
+  "gene": "BCAR1",
+  "generatedAt": "2026-08-03T10:46:35.071Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BCAR1属于Cas家族支架蛋白，参与整合素黏附复合体、FAK/SRC信号轴及细胞迁移相关通路，在胰腺癌等实体瘤侵袭和转移表型中具有明确机制关联。该蛋白主要定位于胞质黏着斑复合体，缺乏经典胞外结构域或分泌特征，抗原可及性不利于常规细胞外阻断抗体，更适合作为胞内结合模块或研究型抗体靶点。相较于同通路中PTK2、SRC等激酶靶点，BCAR1作为多蛋白装配节点可直接干预SH3介导的黏附信号组装，但成药优先级受限于胞内定位，应定位为机制验证优先而非传统治疗抗体优先。",
+    "mechanism": "结合BCAR1 N端SH3结构域，阻断其与PTK2/FAK富脯氨酸基序的相互作用，削弱黏着斑复合体装配及下游迁移信号。",
+    "selectedEpitope": "优先覆盖SH3结构域RT-Src环邻近配体结合沟槽，干预PxxP基序识别界面。",
+    "diseaseDirection": "胰腺癌侵袭转移与黏附信号",
+    "domain": "BCAR1含N端SH3结构域、中央底物结构域及C端Cas家族同源区。",
+    "evidence": "BCAR1黏着斑信号与肿瘤侵袭证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P56945功能与亚细胞定位注释",
+      "RCSB PDB 1WYX晶体结构记录",
+      "FAK/SRC-Cas黏着斑信号通路文献"
+    ],
+    "referenceEntries": "UniProt:P56945; RCSB PDB:1WYX; HGNC:971",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端SH3结构域配体结合沟槽及RT-Src环",
+        "直接竞争FAK富脯氨酸基序，机制最清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SH3结构域远端β折叠外表面",
+        "可获得高亲和结合，用于构象锁定或检测",
+        "备选"
+      ],
+      [
+        "Site C",
+        "晶体接触面或非保守柔性边缘",
+        "可能影响折叠稳定性且功能阻断不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BCAR1为胞内支架蛋白，常规IgG难以进入胞质；建议采用胞内抗体、VHH或递送体系，并避免选择高度保守SH3疏水核心表位。",
+    "structurePrepZh": "以1WYX的A、B链SH3结构域为模板，去除晶体缓冲组分，检查二聚晶体接触，保留配体结合沟槽构象用于表位建模。",
+    "structureRef": "RCSB PDB 1WYX，BCAR1 SH3结构域，1.14 Å X射线结构",
+    "antibodies": [
+      "BCAR1/p130Cas研究级单克隆抗体",
+      "phospho-BCAR1 Tyr410研究级抗体"
+    ],
+    "interfaceFocus": "SH3-PxxP配体结合沟槽与RT环",
+    "designMode": "胞内阻断型VHH",
+    "candidates": [
+      {
+        "target": "PTK2",
+        "rationale": "PTK2/FAK位于整合素黏着斑信号上游，可通过富脯氨酸区与BCAR1 SH3结构域形成复合体，是同一迁移侵袭通路的核心激酶节点。"
+      },
+      {
+        "target": "SRC",
+        "rationale": "SRC磷酸化BCAR1底物区酪氨酸位点，促进CRK等适配蛋白招募并放大迁移信号，适合作为BCAR1轴的并行干预靶点。"
+      },
+      {
+        "target": "CRK",
+        "rationale": "CRK通过SH2结构域识别磷酸化BCAR1，连接下游RAC1调控模块，在细胞迁移和肿瘤侵袭中与BCAR1处于同一信号复合体。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

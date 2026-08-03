@@ -1,0 +1,65 @@
+{
+  "gene": "RBMS2",
+  "generatedAt": "2026-08-03T15:57:07.967Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RBMS2为胞内RNA结合蛋白，主要通过RNA识别基序结合单链RNA并参与转录后调控，其Open Targets关联以体成分、红细胞计数和血细胞比容等数量性状为主，尚缺乏可直接对应的抗体阻断型疾病通路。该蛋白不具备分泌蛋白、膜受体或稳定胞外结构域特征，常规治疗性抗体难以在生理状态下接近其功能界面。相比同类可及性更高的细胞表面或分泌型造血调控因子，RBMS2不宜作为优先抗体药物靶点，更适合作为胞内功能研究或核酸结合调控机制验证对象。",
+    "mechanism": "概念性抗体需进入细胞后占据RBMS2 RRM的β折叠RNA结合面，干扰其与单链RNA的序列非特异性结合。",
+    "selectedEpitope": "优先限定于RRM结构域β1-α1-β2与RNP样RNA结合面，避免非功能性末端区。",
+    "diseaseDirection": "血液数量性状与体成分遗传关联",
+    "domain": "RBMS2含多个RNA recognition motif样结构域；1X4E解析其N端RRM折叠，呈β-sheet/α-helix RNA结合构型。",
+    "evidence": "RBMS2遗传关联与RRM结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q15434 protein annotation",
+      "RCSB PDB 1X4E solution NMR structure",
+      "GWAS Catalog quantitative trait associations"
+    ],
+    "referenceEntries": "UniProt Q15434；RCSB PDB 1X4E；Open Targets RBMS2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端RRM β-sheet RNA结合面",
+        "直接覆盖潜在单链RNA结合界面，最接近功能阻断设计逻辑",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RRM外侧α螺旋支撑面",
+        "可能通过构象稳定性影响RNA结合，但阻断效应需结构验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "柔性N/C端或低复杂度连接区",
+        "结构稳定性和功能相关性不足，易产生非阻断性结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RBMS2为胞内RNA结合蛋白，缺乏天然抗体可及性；常规Fab或VHH难以到达胞内RRM界面，需限定为细胞内递送、intrabody或研究级阻断体系。",
+    "structurePrepZh": "以1X4E NMR构象集合评估RRM核心保守折叠，筛选代表构象并保留β-sheet RNA结合面；需补充全长AlphaFold模型定位其他RRM与柔性区。",
+    "structureRef": "RCSB PDB 1X4E，human RBMS2 RRM solution NMR",
+    "antibodies": [
+      "暂无获批RBMS2靶向抗体",
+      "研究级抗RBMS2检测抗体"
+    ],
+    "interfaceFocus": "RRM β-sheet与RNP样RNA接触沟槽",
+    "designMode": "胞内intrabody探索",
+    "candidates": [
+      {
+        "target": "EPO",
+        "rationale": "EPO为分泌型红细胞生成调控因子，直接驱动EPOR介导的红系祖细胞存活与分化，抗原可及性显著优于RBMS2。"
+      },
+      {
+        "target": "EPOR",
+        "rationale": "EPOR为细胞表面受体，处于红细胞生成通路核心节点；抗体可通过阻断EPO-EPOR结合或调节受体激活实现明确机制设计。"
+      },
+      {
+        "target": "TMPRSS6",
+        "rationale": "TMPRSS6为肝细胞膜相关丝氨酸蛋白酶，调控hepcidin-铁稳态轴并影响红细胞生成相关表型，具备更清晰的胞外酶结构域可及性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

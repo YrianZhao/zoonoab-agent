@@ -1,0 +1,65 @@
+{
+  "gene": "WAS",
+  "generatedAt": "2026-08-03T17:50:49.610Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "WAS编码的WASP是造血细胞特异性肌动蛋白成核促进因子，突变可破坏CDC42依赖的构象激活及Arp2/3介导的肌动蛋白聚合，导致Wiskott-Aldrich综合征、血小板减少和中性粒细胞异常。该蛋白主要位于胞质侧，不具备经典分泌蛋白或膜受体的胞外可及性，抗体设计更适合采用细胞内递送、结构探针或研究级功能抗体策略。相较于下游ACTR2/ACTR3等广泛表达肌动蛋白核心组分，WAS具有造血谱系特异性和更直接的遗传因果证据，因此在WAS相关免疫缺陷机制解析中优先级更高。",
+    "mechanism": "稳定或阻断WASP GBD区域与CDC42-GTP的结合界面，影响VCA区解除自抑制并调控其招募Arp2/3复合体的能力。",
+    "selectedEpitope": "优先覆盖GBD/CRIB结构域的CDC42结合面，避免直接靶向高度保守VCA酸性尾部。",
+    "diseaseDirection": "先天免疫缺陷与血小板减少",
+    "domain": "WASP含EVH1、basic、GBD/CRIB、proline-rich及C端VCA结构域，PDB 2OT0覆盖CDC42相关结合构象。",
+    "evidence": "WAS遗传免疫缺陷与CDC42-WASP-Arp2/3轴证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P42768功能与结构域注释",
+      "RCSB PDB 2OT0晶体结构记录",
+      "OMIM与ClinVar中WAS致病变异证据"
+    ],
+    "referenceEntries": "UniProt P42768；RCSB PDB 2OT0；Open Targets ENSG00000015285",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "GBD/CRIB结构域CDC42-GTP结合界面",
+        "可直接评估WASP构象激活与上游GTPase耦联",
+        "优先"
+      ],
+      [
+        "Site B",
+        "EVH1结构域WIP结合沟槽附近",
+        "可探测WASP稳定性及WIP复合物形成，适合机制验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端VCA区Arp2/3与G-actin结合片段",
+        "序列保守且功能必需，阻断风险较高，需控制交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "WAS为胞内蛋白，常规治疗性抗体抗原可及性受限；建议定位为胞内递送抗体、VHH结构探针或机制研究抗体，并严格评估WAVE/N-WASP同源区交叉反应。",
+    "structurePrepZh": "以2OT0晶体结构为模板清理非目标链和晶体接触，补充缺失柔性环区，标注CDC42结合残基及保守疏水核心后进行表位暴露度评估。",
+    "structureRef": "RCSB PDB 2OT0，X-ray diffraction，2.05 Å",
+    "antibodies": [
+      "抗WASP克隆B-9",
+      "抗WASP克隆D-1"
+    ],
+    "interfaceFocus": "GBD/CRIB-CDC42-GTP结合界面",
+    "designMode": "胞内功能抗体设计",
+    "candidates": [
+      {
+        "target": "WIPF1",
+        "rationale": "WIPF1编码WIP，可与WASP EVH1结构域结合并稳定WASP蛋白；该轴受损会影响造血细胞肌动蛋白重塑。"
+      },
+      {
+        "target": "CDC42",
+        "rationale": "CDC42-GTP是WASP上游直接激活因子，通过结合GBD/CRIB结构域解除WASP自抑制构象，属于同一肌动蛋白调控通路核心节点。"
+      },
+      {
+        "target": "ARPC1B",
+        "rationale": "ARPC1B为造血细胞中Arp2/3复合体关键亚基，其缺陷可导致免疫缺陷和血小板异常，与WASP下游肌动蛋白成核功能直接相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

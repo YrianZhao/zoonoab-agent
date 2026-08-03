@@ -1,0 +1,65 @@
+{
+  "gene": "QDPR",
+  "generatedAt": "2026-08-03T15:47:11.049Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "QDPR编码醌式二氢蝶啶还原酶，负责将qBH2再生为四氢生物蝶呤BH4，维持苯丙氨酸羟化酶及单胺合成相关羟化酶活性；其缺陷可导致高苯丙氨酸血症、神经递质不足和二氢蝶啶还原酶缺乏症。该蛋白主要为胞质可溶性酶，并非经典胞外抗原，抗体可及性弱于分泌因子或膜受体，因而更适合体外检测、酶构象捕获或细胞内递送抗体策略。相较PAH、PTS等同通路靶点，QDPR具有高分辨率人源晶体结构和明确NADH/qBH2催化界面，适合开展结构约束型抗体或VHH分子设计，但治疗性阻断优先级需低于可直接补充或替代的代谢节点。",
+    "mechanism": "通过结合NADH结合沟槽邻近构象表面或二聚体界面，稳定QDPR特定酶构象，干预qBH2向BH4再生相关的辅酶结合与电子转移过程。",
+    "selectedEpitope": "优先评估Rossmann样NADH结合域外缘及底物入口邻近环区，避免完全覆盖保守催化残基。",
+    "diseaseDirection": "BH4代谢缺陷与高苯丙氨酸血症",
+    "domain": "QDPR为短链脱氢酶/还原酶样同源二聚体，含N端NADH结合Rossmann折叠和C端底物识别区域。",
+    "evidence": "QDPR-BH4再生轴结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P09417功能与变异注释",
+      "RCSB PDB 9DTW人源QDPR晶体结构",
+      "OMIM/Orphanet二氢蝶啶还原酶缺乏症记录"
+    ],
+    "referenceEntries": "UniProt P09417；RCSB PDB 9DTW；MONDO:0009862",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "NADH结合Rossmann折叠外缘与底物入口邻近环区",
+        "可用于构象选择性结合并影响辅酶进入，结构定义清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "同源二聚体A/B链界面周边非催化表面",
+        "可探索二聚体稳定或构象锁定抗体，适合机制工具分子",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守催化口袋深部及NADH腺嘌呤结合沟槽",
+        "可能获得强功能干预，但交叉反应和酶活完全抑制风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "QDPR为胞内可溶性代谢酶，常规抗体难以在体内直接接触抗原；设计宜定位于诊断、结构探针或递送型VHH，避免非选择性抑制BH4再生。",
+    "structurePrepZh": "采用PDB 9DTW的A、B链构建人源二聚体模型，保留高分辨率主链信息，标注NADH/底物结合沟槽并评估界面柔性环区。",
+    "structureRef": "RCSB PDB 9DTW，X-ray diffraction，1.39 Å",
+    "antibodies": [
+      "抗QDPR研究级单克隆抗体",
+      "抗QDPR免疫组化/Western blot抗体"
+    ],
+    "interfaceFocus": "NADH结合沟槽外缘与A/B二聚体界面",
+    "designMode": "胞内酶构象抗体",
+    "candidates": [
+      {
+        "target": "PAH",
+        "rationale": "PAH是BH4依赖性苯丙氨酸羟化酶，位于高苯丙氨酸血症核心代谢节点；其功能受BH4供给状态直接影响。"
+      },
+      {
+        "target": "PTS",
+        "rationale": "PTS参与BH4从头合成通路，缺陷可导致BH4不足及高苯丙氨酸血症；与QDPR同属蝶呤代谢疾病轴。"
+      },
+      {
+        "target": "PCBD1",
+        "rationale": "PCBD1编码蝶呤-4α-甲醇胺脱水酶，参与BH4再循环并影响PAH反应后中间体处理，是QDPR相邻再生通路靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "GRB2",
+  "generatedAt": "2026-08-03T19:15:28.027Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GRB2是RTK/RAS-MAPK与BCR-ABL1白血病信号中的胞内衔接蛋白，通过SH2结构域结合磷酸化受体或融合激酶底物，并以SH3结构域募集SOS1等效应分子。其疾病关联覆盖癌症和BCR-ABL1阳性慢性粒细胞白血病，提示其处于生长因子依赖性增殖通路的关键节点。然而GRB2主要定位于胞质侧，缺乏天然胞外结构域或分泌形式，抗原可及性弱于EGFR、ERBB2等膜受体，因此更适合作为胞内干预抗体、细胞内抗体或递送型抗体设计对象。相较单一上游受体，GRB2整合多类RTK与ABL相关输入，具有通路汇聚节点优势，但成药优先级需受限于细胞内递送可行性。",
+    "mechanism": "阻断GRB2 SH2结构域与磷酸酪氨酸基序结合，或干扰N/C端SH3结构域与SOS1富脯氨酸区相互作用，从而削弱RAS-GTP装载。",
+    "selectedEpitope": "优先覆盖SH2结构域pTyr结合沟槽及EF/ BG环邻近界面，避免仅选择非功能性外表面。",
+    "diseaseDirection": "肿瘤RTK-RAS与BCR-ABL信号",
+    "domain": "GRB2由N端SH3、中央SH2和C端SH3结构域组成，介导pTyr识别及富脯氨酸配体募集。",
+    "evidence": "GRB2介导RTK-RAS与BCR-ABL信号证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与药理关联",
+      "UniProt P62993蛋白功能与结构域注释",
+      "RCSB PDB 1JYR X射线晶体结构",
+      "Reactome RTK-RAS-MAPK与BCR-ABL信号通路注释"
+    ],
+    "referenceEntries": "UniProt:P62993；RCSB PDB:1JYR；Reactome GRB2通路",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SH2结构域磷酸酪氨酸结合沟槽及FLVRES基序邻域",
+        "直接阻断GRB2与活化RTK或BCR-ABL相关pTyr底物结合",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端SH3结构域RT loop、n-Src loop与富脯氨酸配体结合面",
+        "抑制SOS1募集并降低RAS激活效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端SH3结构域保守疏水沟槽",
+        "可能干扰GAB1、SOS1等配体结合，但同源SH3交叉反应风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GRB2为胞内蛋白，常规抗体难以进入胞质；SH2/SH3界面高度保守，需进行人源SH2/SH3蛋白组交叉反应筛查，并优先采用细胞内递送或intrabody策略。",
+    "structurePrepZh": "以1JYR实验结构为模板，校正链A与链L构象注释，补全缺失侧链并保留功能沟槽水分子；对SH2与SH3界面分别建立抗原构象集合。",
+    "structureRef": "RCSB PDB 1JYR，1.55 Å X-ray人源GRB2结构",
+    "antibodies": [
+      "抗GRB2研究级单克隆抗体",
+      "GRB2 SH2结构域细胞内抗体候选"
+    ],
+    "interfaceFocus": "SH2 pTyr沟槽与SH3富脯氨酸结合面",
+    "designMode": "胞内抗体设计",
+    "candidates": [
+      {
+        "target": "EGFR",
+        "rationale": "EGFR是RTK-RAS-MAPK通路上游膜受体，可通过磷酸化尾部招募GRB2-SOS复合物；其胞外结构域可及性显著优于GRB2。"
+      },
+      {
+        "target": "ERBB2",
+        "rationale": "ERBB2通过受体二聚化增强MAPK和PI3K信号，并可经适配蛋白网络连接GRB2；其成熟抗体药物经验支持较高转化优先级。"
+      },
+      {
+        "target": "SOS1",
+        "rationale": "SOS1是GRB2 SH3结构域募集的RAS鸟嘌呤核苷酸交换因子，位于同一RAS激活轴；阻断GRB2-SOS1复合物可直接降低RAS-GTP生成。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "ICAM5",
+  "generatedAt": "2026-08-03T13:21:06.981Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ICAM5为神经元特异性免疫球蛋白超家族黏附分子，参与T细胞、微胶质细胞与神经元突起之间的黏附调节，其剪切型可影响免疫细胞黏附与炎症相关细胞数量表型。其N端Ig样胞外结构域暴露于细胞表面，抗体可直接识别膜近端外侧抗原并干预配体结合。相比广泛表达的ICAM1和ICAM2，ICAM5在中枢神经系统神经元富集，具备更明确的组织选择性，适合作为神经免疫黏附轴的优先验证靶点。",
+    "mechanism": "阻断ICAM5胞外Ig样结构域与白细胞整合素LFA-1的黏附界面，降低T细胞或微胶质细胞对神经元突起的异常黏附。",
+    "selectedEpitope": "优先覆盖D1-D2 Ig样结构域顶端及LFA-1结合相关面，避开高度柔性糖基化环区。",
+    "diseaseDirection": "神经免疫黏附与白细胞数量表型",
+    "domain": "I型膜蛋白，含9个胞外Ig样C2结构域、单跨膜区及短胞内尾部。",
+    "evidence": "ICAM5神经免疫黏附轴结构与遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q9UMF0功能与结构域注释",
+      "RCSB PDB 3BN3晶体结构记录",
+      "整合素LFA-1介导ICAM家族黏附文献"
+    ],
+    "referenceEntries": "UniProt Q9UMF0；RCSB PDB 3BN3；Open Targets ICAM5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端D1-D2 Ig样结构域配体结合面",
+        "直接干预LFA-1相关黏附，结构可解释性较强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "D2-D3结构域连接面及邻近暴露环",
+        "可能产生空间位阻并限制多结构域构象摆动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远端D4-D5 Ig样结构域外侧面",
+        "远离核心配体界面，功能阻断不确定且需避免非阻断结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ICAM5存在多Ig结构域柔性与潜在糖基化位点，表位筛选应排除糖链遮蔽区，并通过交叉反应实验区分ICAM1/2同源界面。",
+    "structurePrepZh": "以3BN3抗原链A、B、C解析结构为模板，保留D1-D2核心折叠，补建缺失环区并标注N-糖基化位点后进行表面可及性评估。",
+    "structureRef": "RCSB PDB 3BN3，X-ray diffraction，2.099 Å",
+    "antibodies": [
+      "anti-ICAM5 clone 1A9",
+      "anti-ICAM5 clone 179B"
+    ],
+    "interfaceFocus": "D1-D2 Ig样结构域与LFA-1结合相关界面",
+    "designMode": "阻断型抗体设计",
+    "candidates": [
+      {
+        "target": "ITGAL",
+        "rationale": "ITGAL编码LFA-1的αL亚基，是ICAM家族黏附配体的直接结合组分；干预该节点可验证ICAM5-LFA-1黏附轴的功能依赖性。"
+      },
+      {
+        "target": "ITGB2",
+        "rationale": "ITGB2编码LFA-1的β2亚基，与ITGAL共同形成白细胞整合素受体；其活化状态决定ICAM介导的免疫细胞黏附强度。"
+      },
+      {
+        "target": "ICAM1",
+        "rationale": "ICAM1与ICAM5同属ICAM黏附分子并共享LFA-1结合通路；可作为同通路对照靶点评估组织选择性与黏附阻断差异。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

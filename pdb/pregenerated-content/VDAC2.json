@@ -1,0 +1,65 @@
+{
+  "gene": "VDAC2",
+  "generatedAt": "2026-08-03T17:47:32.052Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "VDAC2 是线粒体外膜β桶阴离子通道，参与代谢物通量、钙稳态及BAX/BAK依赖性线粒体凋亡调控，神经退行性疾病中线粒体功能障碍与细胞死亡通路使其具有明确疾病关联。该靶点并非常规细胞表面抗原，天然定位于线粒体外膜，抗原可及性主要依赖细胞内递送或离体结构设计，β桶外环可作为结构定义表位。相较于广泛分布且功能冗余较强的VDAC1，VDAC2对BAK抑制和线粒体凋亡门控具有更特异的机制价值，适合作为机制验证型优先靶点。",
+    "mechanism": "抗体结合VDAC2β桶胞质侧外环，阻断其与BAK或BAX构象转换复合物的接触，调节线粒体外膜通透化与细胞凋亡阈值。",
+    "selectedEpitope": "优先选择β桶N端调控螺旋邻近外环及BAK接触相关胞质侧环区。",
+    "diseaseDirection": "神经退行性疾病与线粒体凋亡",
+    "domain": "VDAC2含19股β桶跨膜孔道及位于孔腔内侧的N端α螺旋调控结构。",
+    "evidence": "VDAC2线粒体凋亡与神经退行性疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与关联评分",
+      "UniProt P45880蛋白功能与亚细胞定位注释",
+      "RCSB PDB 9EII冷冻电镜结构记录",
+      "线粒体外膜通透化与BCL2家族互作研究文献"
+    ],
+    "referenceEntries": "UniProt P45880；RCSB PDB 9EII；Open Targets VDAC2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端α螺旋邻近β桶内口与胞质侧环区",
+        "可能影响孔道门控及BAX/BAK相关构象耦联，适合功能阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "β桶外膜暴露环L5-L7邻近区域",
+        "结构可定义且利于Fab识别，可用于稳定构象或占位阻断",
+        "备选"
+      ],
+      [
+        "Site C",
+        "跨膜β股疏水带与脂质接触界面",
+        "高度依赖膜环境，抗体可及性低且易干扰折叠稳定性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "VDAC2为线粒体外膜蛋白，完整细胞给药可及性受限；设计宜定位于胞质侧环区，并结合细胞内递送、构象选择与膜模拟体系验证。",
+    "structurePrepZh": "以9EII中VDAC2抗原链建立单体模型，保留β桶与N端螺旋，去除非目标链并在膜模拟方向校准外环暴露面。",
+    "structureRef": "RCSB PDB 9EII，human VDAC2冷冻电镜结构，2.75 Å",
+    "antibodies": [
+      "VDAC2 D2E12 monoclonal antibody",
+      "VDAC2 EPR15035 monoclonal antibody"
+    ],
+    "interfaceFocus": "N端螺旋-β桶内口及胞质侧外环界面",
+    "designMode": "胞内靶向阻断",
+    "candidates": [
+      {
+        "target": "BAX",
+        "rationale": "BAX在线粒体外膜通透化中发生构象激活并与VDAC2相关膜环境发生功能耦联，是同一凋亡执行通路的关键效应分子。"
+      },
+      {
+        "target": "BAK1",
+        "rationale": "BAK1受VDAC2约束并在线粒体外膜寡聚化形成通透化孔，是VDAC2机制研究中最直接的同通路候选靶点。"
+      },
+      {
+        "target": "BCL2L1",
+        "rationale": "BCL-XL由BCL2L1编码，可抑制BAX/BAK介导的线粒体外膜通透化，与VDAC2相关凋亡阈值调控处于同一通路层级。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

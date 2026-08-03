@@ -1,0 +1,65 @@
+{
+  "gene": "LIG1",
+  "generatedAt": "2026-08-03T13:53:11.487Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "LIG1 是复制相关 DNA 单链断裂封口酶，催化 Okazaki 片段成熟并参与碱基切除修复，双等位功能缺陷可导致 DNA 复制压力、基因组不稳定及免疫缺陷表型。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌暴露面，作为常规治疗性抗体靶点的抗原可及性显著受限。其优先级低于同一 DNA 损伤修复通路中可药物化酶靶点，抗体设计更适合用于胞内递送型研究试剂、结构阻断探针或靶向降解构件，而非传统细胞表面阻断抗体。",
+    "mechanism": "阻断 LIG1 DNA 结合结构域与带切口双链 DNA 的结合，或干扰腺苷酸化催化核心对 5′-磷酸与 3′-羟基末端的封口反应。",
+    "selectedEpitope": "优先覆盖 DNA-binding domain 与 catalytic core 之间的 nicked-DNA 夹持界面，避开高度保守 ATP 结合深沟。",
+    "diseaseDirection": "DNA修复缺陷相关免疫缺陷",
+    "domain": "N端PCNA结合调控区，连接DNA-binding domain、adenylation domain与OB-fold催化模块。",
+    "evidence": "LIG1复制连接酶与免疫缺陷证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P18858 functional annotation",
+      "RCSB PDB 6P0C X-ray structure",
+      "OMIM and primary reports on LIG1 deficiency"
+    ],
+    "referenceEntries": "UniProt P18858；RCSB PDB 6P0C；Open Targets LIG1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DNA-binding domain与腺苷酸化结构域形成的切口DNA夹持面",
+        "可直接削弱底物定位并降低连接反应效率",
+        "优先"
+      ],
+      [
+        "Site B",
+        "OB-fold结构域邻近DNA末端识别沟槽",
+        "有利于干扰末端对准，但需控制与保守核酸结合面的交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端PCNA结合调控区附近柔性片段",
+        "可能影响复制叉募集，但结构可解析度与构象异质性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "LIG1为核内酶，天然抗原可及性不足；设计应限定为胞内递送抗体片段、intrabody或研究级阻断抗体，并重点评估与LIG3、LIG4保守催化面的交叉结合。",
+    "structurePrepZh": "以6P0C高分辨率晶体结构为核心模板，保留催化核心与DNA结合构象，补建缺失柔性环区并标注ATP、DNA及PCNA相关界面。",
+    "structureRef": "PDB 6P0C，human DNA ligase I X-ray structure，1.55 Å",
+    "antibodies": [
+      "anti-LIG1 clone 10H5",
+      "anti-LIG1 polyclonal antibody"
+    ],
+    "interfaceFocus": "nicked-DNA夹持面与腺苷酸化催化核心",
+    "designMode": "胞内阻断探针",
+    "candidates": [
+      {
+        "target": "PCNA",
+        "rationale": "PCNA通过与LIG1 N端PIP box相互作用将连接酶募集至复制叉，是Okazaki片段成熟与复制相关DNA修复的核心支架。"
+      },
+      {
+        "target": "FEN1",
+        "rationale": "FEN1切除Okazaki片段5′ flap后产生可由LIG1封口的切口底物，与LIG1处于同一复制成熟通路。"
+      },
+      {
+        "target": "POLD1",
+        "rationale": "POLD1作为DNA polymerase δ催化亚基参与后随链合成，其产物处理依赖FEN1与LIG1完成片段成熟。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

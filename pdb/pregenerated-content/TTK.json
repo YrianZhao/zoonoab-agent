@@ -1,0 +1,65 @@
+{
+  "gene": "TTK",
+  "generatedAt": "2026-08-03T17:33:29.760Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TTK/Mps1为丝氨酸/苏氨酸蛋白激酶，核心作用位点位于纺锤体组装检查点，通过磷酸化KNL1并促进BUB1、BUB3、BUBR1募集，维持染色体正确分离；其与神经退行性疾病的遗传关联提示细胞周期检查点、非整倍体应激与神经细胞稳态可能存在交叉。TTK主要为胞内激酶，天然抗原可及性不具备膜受体或分泌蛋白优势，因此更适合作为胞内递送抗体片段或结构生物学验证靶点。相较于同通路中高度结构化但功能冗余的检查点组分，TTK具有明确催化口袋、活化环构象和多套晶体结构支持，优先级主要来自结构可设计性而非常规细胞外抗体成药性。",
+    "mechanism": "以细胞内抗体片段结合TTK激酶结构域ATP结合裂隙或活化环附近界面，阻断TTK对KNL1 MELT重复基序的磷酸化及BUB1-BUB3检查点复合体募集。",
+    "selectedEpitope": "优先锁定激酶结构域N/C叶之间ATP结合裂隙及活化环邻近构象表位。",
+    "diseaseDirection": "神经退行性疾病与纺锤体检查点",
+    "domain": "TTK含N端调控区、四螺旋束样区域及C端丝氨酸/苏氨酸激酶结构域。",
+    "evidence": "TTK纺锤体检查点与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB P33981功能与结构域注释",
+      "RCSB PDB 4B94晶体结构记录",
+      "纺锤体组装检查点TTK-MELT-BUB复合体文献"
+    ],
+    "referenceEntries": "UniProt P33981；RCSB PDB 4B94；Open Targets TTK",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域ATP结合裂隙与铰链区邻近表面",
+        "可直接限制ATP定位和底物磷酸转移构象，适合构象锁定型胞内抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "活化环及C叶底物结合沟附近区域",
+        "有望干扰KNL1 MELT基序进入催化位点并降低检查点信号放大",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端非催化调控区预测暴露片段",
+        "结构完整性和疾病相关机制证据较弱，需结合构象数据与细胞定位验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TTK为胞内激酶，常规IgG难以接触天然靶点；应优先采用VHH、intrabody或递送型Fab，并规避高度保守ATP口袋导致的激酶家族交叉结合风险。",
+    "structurePrepZh": "以PDB 4B94链A-D为模板，保留激酶结构域构象，校正缺失环区、质子化状态和配体邻近残基后进行表面聚类与可成药表位评估。",
+    "structureRef": "PDB 4B94，human TTK kinase domain，X-ray 2.2 Å",
+    "antibodies": [
+      "无获批抗TTK治疗性抗体",
+      "抗Mps1研究级单克隆抗体"
+    ],
+    "interfaceFocus": "ATP铰链区、活化环与底物进入沟",
+    "designMode": "胞内VHH/Fab设计",
+    "candidates": [
+      {
+        "target": "BUB1",
+        "rationale": "BUB1位于TTK下游，依赖TTK磷酸化KNL1后的募集形成检查点信号平台；干预BUB1可削弱纺锤体检查点复合体装配。"
+      },
+      {
+        "target": "BUB1B",
+        "rationale": "BUB1B编码BUBR1，是有丝分裂检查点复合体核心成员，与CDC20抑制相关；其功能与TTK介导的检查点维持处于同一通路。"
+      },
+      {
+        "target": "KNTC1",
+        "rationale": "KNTC1编码ROD，为RZZ复合体组分，参与动粒检查点蛋白募集并连接TTK驱动的未附着动粒信号。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

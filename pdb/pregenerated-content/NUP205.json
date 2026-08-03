@@ -1,0 +1,65 @@
+{
+  "gene": "NUP205",
+  "generatedAt": "2026-08-03T14:55:11.243Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NUP205 是核孔复合体内环 scaffold nucleoporin，参与维持核质转运通道构架，病毒感染过程中核输入、核输出及宿主因子转运依赖核孔复合体完整性，因此与流感、HIV 感染等疾病方向存在通路关联。该蛋白主要位于核孔复合体胞内侧而非经典细胞表面抗原，抗原可及性显著弱于分泌蛋白或跨膜受体，适宜定位为细胞内机制验证或递送型抗体设计靶点。相比 NUP98、NUP153 等含 FG-repeat 的动态核孔蛋白，NUP205 作为稳定内环支架具有较明确结构约束和复合体界面信息，但成药优先级受细胞内可及性限制。",
+    "mechanism": "设计抗体阻断 NUP205 与 NUP93/NUP188 等内环核孔蛋白的装配界面，干扰核孔中央通道支架稳定性并影响病毒相关核质转运过程。",
+    "selectedEpitope": "优先覆盖 NUP205 α-solenoid 支架中与 NUP93 复合体邻近的内环装配界面，避免深埋核心螺旋束。",
+    "diseaseDirection": "病毒感染与核质转运异常",
+    "domain": "NUP205 为大型 α-solenoid 核孔支架蛋白，含连续 HEAT/α 螺旋重复并嵌入 NPC 内环。",
+    "evidence": "NUP205 核孔支架与感染相关证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q92621 functional annotation",
+      "RCSB PDB 7R5K electron microscopy structure",
+      "NPC inner-ring nucleoporin structural literature"
+    ],
+    "referenceEntries": "UniProt Q92621；RCSB PDB 7R5K；Open Targets NUP205",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "α-solenoid 外露装配面邻近 NUP93/NUP188 界面",
+        "可直接评估内环支架装配阻断，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "NUP205 外周可及螺旋重复凸面",
+        "利于获得结合抗体并用于结构定位或细胞内递送验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "内环深埋螺旋束核心区域",
+        "构象保守但复合体内可及性低，易产生非功能性结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NUP205 缺乏胞外暴露，常规治疗性抗体难以到达核孔内侧；建议采用细胞内递送、intrabody 或 Fab 结构探针路线，并严格验证核孔毒性。",
+    "structurePrepZh": "7R5K 为 12.0 Å 冷冻电镜复合体结构，应结合 AlphaFold/UniProt 边界补全局部模型，按内环邻近链定义可及界面。",
+    "structureRef": "RCSB PDB 7R5K，human nuclear pore complex EM map",
+    "antibodies": [
+      "anti-NUP205 research antibody",
+      "anti-NUP93 research antibody"
+    ],
+    "interfaceFocus": "NUP205-NUP93/NUP188 内环装配界面",
+    "designMode": "细胞内Fab/VHH",
+    "candidates": [
+      {
+        "target": "NUP93",
+        "rationale": "NUP93 是核孔内环 scaffold 关键组分，与 NUP205、NUP188 共同维持中央通道架构；其界面阻断可用于同一核质转运通路的机制比较。"
+      },
+      {
+        "target": "NUP188",
+        "rationale": "NUP188 与 NUP205 同属大分子内环 nucleoporin，参与 NPC 支架稳定与转运通道组织，是评估内环结构扰动效应的相邻靶点。"
+      },
+      {
+        "target": "NUP98",
+        "rationale": "NUP98 含 FG-repeat 并参与核质转运选择性屏障，病毒复制周期中宿主核转运依赖该屏障功能，适合作为同通路功能性对照靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

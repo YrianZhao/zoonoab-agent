@@ -1,0 +1,65 @@
+{
+  "gene": "VTA1",
+  "generatedAt": "2026-08-03T17:49:42.905Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "VTA1是ESCRT-III解聚与膜出芽过程的胞质调节因子，可与VPS4 ATPase复合体协同促进病毒出芽、内体分选和膜重塑，Open Targets中与HIV感染存在遗传关联信号。该蛋白主要定位于胞质和内体相关复合体，并非分泌蛋白或膜表面受体，因此天然抗原可及性不具备常规体内抗体优势，更适合细胞内递送抗体或机制研究型结合分子。相较于直接靶向病毒蛋白，VTA1作为宿主ESCRT辅助因子具有病毒逃逸压力较低的理论优势，但因广泛参与内体稳态，其优先级应低于胞外可及的病毒进入或免疫检查点靶点。",
+    "mechanism": "设计结合VTA1 MIT结构域的抗体片段，阻断其与ESCRT-III相关MIM基序或VPS4复合体调节界面的结合，从而干扰VPS4介导的ESCRT-III解聚与HIV出芽过程。",
+    "selectedEpitope": "优先覆盖N端MIT结构域三螺旋束的MIM结合沟槽，避免核心疏水折叠面。",
+    "diseaseDirection": "HIV感染宿主因子通路",
+    "domain": "VTA1含N端MIT结构域、中央柔性连接区及C端VSL结构域，参与VPS4调节与ESCRT-III装配。",
+    "evidence": "VTA1-ESCRT宿主因子与HIV出芽证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9NP79功能与定位注释",
+      "RCSB PDB 4TXR晶体结构记录",
+      "ESCRT-III/VPS4病毒出芽机制文献"
+    ],
+    "referenceEntries": "UniProt Q9NP79；RCSB PDB 4TXR；Open Targets VTA1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端MIT结构域MIM结合沟槽",
+        "可直接竞争ESCRT-III相关MIM基序结合，机制指向性最强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "MIT结构域外侧带电螺旋面",
+        "有利于获得构象稳定结合，可作为非竞争型构象锁定表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "VSL二聚化/疏水核心邻近区域",
+        "可能影响VTA1稳定性与VPS4调节，但存在折叠扰动和非特异风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "VTA1为胞内蛋白，常规抗体难以到达作用位点；建议采用VHH、intrabody或递送体系，并严格评估ESCRT稳态毒性。",
+    "structurePrepZh": "以4TXR高分辨率晶体结构为模板，保留抗原链A/B/C中完整MIT结构域，去除晶体接触伪界面后进行表面电荷与保守性映射。",
+    "structureRef": "RCSB PDB 4TXR，X射线晶体结构，1.0 Å",
+    "antibodies": [
+      "暂无获批抗VTA1治疗性抗体",
+      "抗VTA1研究级单克隆抗体"
+    ],
+    "interfaceFocus": "MIT结构域MIM结合沟槽与VPS4调节相关界面",
+    "designMode": "胞内VHH/intrabody",
+    "candidates": [
+      {
+        "target": "VPS4A",
+        "rationale": "VPS4A是ESCRT-III解聚所需AAA ATPase，直接驱动病毒出芽后期复合体回收，处于VTA1同一宿主ESCRT通路。"
+      },
+      {
+        "target": "CHMP4B",
+        "rationale": "CHMP4B是ESCRT-III核心亚基，参与膜颈收缩和HIV Gag募集后的出芽过程，是VTA1调节网络中的直接功能节点。"
+      },
+      {
+        "target": "TSG101",
+        "rationale": "TSG101为ESCRT-I组分，可识别HIV Gag p6 PTAP基序并启动宿主ESCRT招募，疾病通路相关性明确且机制位点清晰。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

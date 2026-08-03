@@ -1,0 +1,65 @@
+{
+  "gene": "UBA5",
+  "generatedAt": "2026-08-03T17:36:43.955Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "UBA5 是 UFM1 系统的 E1 激活酶，负责催化 UFM1 腺苷酸化并将其转移至自身催化半胱氨酸，随后递交给 UFC1；其双等位基因变异与发育性癫痫性脑病、隐性脊髓小脑性共济失调和神经退行性表型相关。该蛋白为胞质酶而非分泌蛋白或膜受体，天然抗原可及性弱，抗体策略更适合结构验证、细胞内递送或研究级抑制工具。相比更广泛的泛素化酶，UBA5 位于 UFMylation 级联起始步骤，通路特异性较高，适合作为罕见神经发育疾病机制研究的优先靶点。",
+    "mechanism": "阻断 UBA5 腺苷酸化结构域与 UFM1 C 端 Gly-Gly 的结合，或干扰 UBA5-UFC1 转硫酯递交界面，从而抑制 UFM1 激活与下游 UFMylation。",
+    "selectedEpitope": "优先覆盖 adenylation domain 的 UFM1 结合沟槽及 ATP 邻近环区，兼顾 C 端 UFC1 递交界面。",
+    "diseaseDirection": "神经发育癫痫与共济失调",
+    "domain": "UBA5 含 MoeB/ThiF 样 adenylation catalytic domain、ATP/镁离子结合区及参与 UFC1 递交的 C 端区域。",
+    "evidence": "UBA5-UFM1 级联与神经发育疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9GZZ9 functional annotation",
+      "RCSB PDB 5IAA X-ray structure",
+      "ClinVar/OMIM UBA5-related encephalopathy and ataxia records"
+    ],
+    "referenceEntries": "UniProt Q9GZZ9；RCSB PDB 5IAA；Open Targets UBA5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "adenylation domain 的 UFM1 C 端结合沟槽",
+        "可直接阻断 UFM1 腺苷酸化底物定位，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "UBA5 C 端 UFC1 递交相关界面",
+        "可干扰 UBA5-UFC1 转硫酯传递，适合功能阻断验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP 结合口袋邻近保守催化环",
+        "保守性高且可能影响酶核心稳定性，需避免非特异构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "UBA5 属胞内酶，常规抗体药物难以到达胞质靶点；建议定位于机制探针、细胞内抗体或递送型格式，并严格评估与其他 E1 样酶的交叉反应。",
+    "structurePrepZh": "以 5IAA 高分辨率晶体结构为模板，保留抗原链 A-D 的生物学装配信息，补全缺失侧链并标注 ATP/UFM1/UFC1 相关功能界面。",
+    "structureRef": "RCSB PDB 5IAA，human UBA5，X-ray 1.85 Å",
+    "antibodies": [
+      "研究级 anti-UBA5 antibody",
+      "研究级 anti-UFM1 antibody"
+    ],
+    "interfaceFocus": "UFM1 C 端结合沟槽与 UFC1 递交界面",
+    "designMode": "胞内酶阻断设计",
+    "candidates": [
+      {
+        "target": "UFM1",
+        "rationale": "UFM1 是 UBA5 直接激活的泛素样修饰蛋白，位于同一 UFMylation 起始反应中；靶向其 C 端 Gly-Gly 受体面可验证底物装载依赖机制。"
+      },
+      {
+        "target": "UFC1",
+        "rationale": "UFC1 是 UFM1 级联的 E2 酶，接受来自 UBA5 的硫酯化 UFM1；其与 UBA5 的递交界面适合作为同通路功能阻断靶点。"
+      },
+      {
+        "target": "UFL1",
+        "rationale": "UFL1 是 UFMylation E3 连接酶复合体核心成分，负责将 UFM1 转移至底物蛋白；与 UBA5 同处 UFM1 修饰通路并连接下游蛋白稳态表型。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

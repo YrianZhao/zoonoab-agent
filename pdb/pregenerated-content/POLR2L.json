@@ -1,0 +1,65 @@
+{
+  "gene": "POLR2L",
+  "generatedAt": "2026-08-03T15:26:45.976Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "POLR2L是RNA聚合酶I、II、III共享的小亚基，参与转录复合体核心装配与核内RNA合成，HIV感染关联主要体现为宿主转录机器对病毒基因表达和整合后前病毒转录的支持。该蛋白定位于细胞核内RNA聚合酶复合体，不具备胞外结构域、分泌蛋白或膜受体特征，天然抗原可及性不利于常规治疗性抗体。相较CCR5、CD4、TNF等同类感染或炎症通路可及靶点，POLR2L更适合作为结构生物学验证或胞内递送抗体研究靶点，治疗优先级较低。",
+    "mechanism": "设计抗体需通过胞内递送进入细胞核，结合POLR2L在RNA聚合酶核心中的装配界面，干扰其与相邻聚合酶亚基的稳定相互作用，从而削弱宿主转录复合体对HIV前病毒转录的支持。",
+    "selectedEpitope": "优先评估POLR2L在7AE1复合体中暴露的亚基装配外侧螺旋面，避开深埋核心接触面。",
+    "diseaseDirection": "HIV宿主转录依赖方向",
+    "domain": "POLR2L为小型RNA聚合酶共享亚基，主要由保守α螺旋束构成，嵌入多亚基聚合酶核心。",
+    "evidence": "POLR2L宿主转录复合体与HIV关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P62875功能与亚细胞定位注释",
+      "RCSB PDB 7AE1冷冻电镜复合体结构",
+      "HIV前病毒转录依赖宿主RNA polymerase II文献"
+    ],
+    "referenceEntries": "UniProt P62875；RCSB PDB 7AE1；Open Targets POLR2L",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "复合体外侧可及α螺旋面",
+        "保留抗体结合可及性，适合结构验证型Fab/VHH设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "POLR2L与邻近聚合酶小亚基接触边缘",
+        "可能干扰亚基装配稳定性，但需避免完全依赖深埋界面",
+        "备选"
+      ],
+      [
+        "Site C",
+        "RNA聚合酶核心深埋装配界面",
+        "抗原可及性差且可能引发广泛宿主转录毒性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为核内定位导致体内抗体不可及，并且干预共享聚合酶亚基可能造成广泛转录抑制；建议限定于胞内递送、结构探针或体外机制研究。",
+    "structurePrepZh": "以7AE1冷冻电镜模型提取POLR2L对应链及邻近接触亚基，补全缺失侧链并标注复合体暴露面、埋藏面积和保守残基。",
+    "structureRef": "RCSB PDB 7AE1，2.8 Å cryo-EM human RNA polymerase complex",
+    "antibodies": [
+      "抗POLR2L研究用抗体",
+      "抗RNA polymerase II复合体研究用抗体"
+    ],
+    "interfaceFocus": "POLR2L外侧螺旋面及亚基装配边缘",
+    "designMode": "胞内结构探针设计",
+    "candidates": [
+      {
+        "target": "POLR2A",
+        "rationale": "POLR2A编码RNA polymerase II最大亚基，是HIV整合后前病毒转录的直接宿主酶核心，疾病机制关联更直接但同样属于核内不可及靶点。"
+      },
+      {
+        "target": "CDK9",
+        "rationale": "CDK9作为P-TEFb催化亚基，与Cyclin T1共同促进RNA polymerase II CTD磷酸化和HIV Tat依赖转录延伸，是同一HIV转录轴中的关键调控因子。"
+      },
+      {
+        "target": "CCNT1",
+        "rationale": "CCNT1编码Cyclin T1，可与HIV Tat和TAR RNA协同招募P-TEFb至病毒转录复合体，直接参与前病毒转录延伸调控。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

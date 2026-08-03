@@ -1,0 +1,65 @@
+{
+  "gene": "BMF",
+  "generatedAt": "2026-08-03T10:49:52.736Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BMF 为 BH3-only BCL2 家族促凋亡蛋白，可通过 BH3 α螺旋结合 BCL2、BCL2L1 或 MCL1 的疏水沟，释放 BAX/BAK 介导线粒体外膜通透化；神经退行性疾病中细胞凋亡失衡与神经元丢失相关。BMF 主要定位于细胞内细胞骨架和线粒体相关凋亡调控复合体，缺乏天然胞外结构域或分泌特征，常规抗体抗原可及性较弱。相较 BCL2L1、MCL1 等抗凋亡膜相关效应节点，BMF 更适合作为机制验证或细胞内递送抗体设计对象，主靶点优先级应以结构明确的 BH3 相互作用界面为依据谨慎推进。",
+    "mechanism": "设计抗体结合 BMF BH3 α螺旋，阻断其与 BCL2/BCL2L1/MCL1 疏水结合沟相互作用，从而抑制 BAX/BAK 依赖性线粒体凋亡放大。",
+    "selectedEpitope": "优先覆盖 BH3 α螺旋疏水面及保守酸性位点，模拟其嵌入 BCL2 家族疏水沟的结合界面。",
+    "diseaseDirection": "神经退行性疾病凋亡调控",
+    "domain": "BMF 含 BH3-only 促凋亡核心区，缺乏跨膜段和胞外结构域，功能表位集中于 BH3 α螺旋。",
+    "evidence": "BMF-BCL2家族凋亡轴结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q96LC9 功能与亚细胞定位注释",
+      "RCSB PDB 8IQM X射线晶体结构",
+      "BCL2家族BH3结构互作与线粒体凋亡文献"
+    ],
+    "referenceEntries": "UniProt Q96LC9；RCSB PDB 8IQM；Open Targets BMF",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "BH3 α螺旋疏水结合面",
+        "直接阻断 BMF 与 BCL2/BCL2L1/MCL1 疏水沟结合，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "BH3 螺旋两端带电残基区域",
+        "可增强对 BH3 构象的选择性识别，并降低与其他 BH3-only 蛋白交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "非 BH3 柔性区或晶体接触邻近区域",
+        "结构稳定性和功能阻断贡献有限，需避免仅获得非功能性结合抗体",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BMF 为细胞内 BH3-only 蛋白，常规抗体难以进入靶细胞，需优先评估细胞内递送、intrabody 或降解偶联策略，并严格控制 BCL2家族交叉反应。",
+    "structurePrepZh": "以 PDB 8IQM 抗原链 A、B 为模板，保留 BH3 螺旋构象，去除非生物学晶体接触，标注疏水残基、保守酸性位点及柔性末端。",
+    "structureRef": "RCSB PDB 8IQM，X-ray diffraction，1.967 Å",
+    "antibodies": [
+      "抗BMF研究级单克隆抗体",
+      "BH3构象识别型研究抗体"
+    ],
+    "interfaceFocus": "BH3 α螺旋-BCL2家族疏水沟界面",
+    "designMode": "细胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "BCL2",
+        "rationale": "BCL2 是线粒体凋亡通路核心抗凋亡蛋白，可通过疏水沟结合 BMF BH3 区并抑制 BAX/BAK 激活，具备更明确的药理调控经验。"
+      },
+      {
+        "target": "BCL2L1",
+        "rationale": "BCL2L1 编码 BCL-xL，是 BMF BH3 片段的重要结合伙伴，在细胞存活和凋亡阈值控制中处于同一通路节点。"
+      },
+      {
+        "target": "MCL1",
+        "rationale": "MCL1 属抗凋亡 BCL2 家族成员，可与多种 BH3-only 蛋白互作并限制线粒体外膜通透化，是同一凋亡网络中的关键补偿靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

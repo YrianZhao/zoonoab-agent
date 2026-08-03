@@ -1,0 +1,65 @@
+{
+  "gene": "ITPR3",
+  "generatedAt": "2026-08-03T13:35:34.251Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ITPR3编码内质网膜上的IP3受体钙释放通道，参与GNAQ/PLCβ介导的IP3依赖性Ca2+释放；其遗传关联覆盖脱髓鞘型Charcot-Marie-Tooth病及免疫缺陷伴外胚层发育异常，提示钙稳态异常可影响神经髓鞘、免疫细胞活化与上皮发育。该蛋白主要定位于内质网膜，胞质侧具有大型配体结合与调控结构域，抗原天然可及性弱于细胞表面受体，适合用于细胞内递送抗体、结构探针或工程化胞内抗体策略。相较于PLC或G蛋白上游节点，ITPR3处于IP3信号向钙释放转化的执行端，结构分辨率较高且四聚体孔道构象明确，利于开展构象选择性分子设计。",
+    "mechanism": "通过结合IP3结合核心或胞质调控界面，阻断IP3诱导的ITPR3四聚体构象传递，降低内质网Ca2+向胞质释放。",
+    "selectedEpitope": "优先覆盖IP3结合核心与ARM1/β-trefoil连接区，干预配体结合后的构象耦联。",
+    "diseaseDirection": "IP3-Ca2+稳态相关神经免疫疾病",
+    "domain": "N端含IP3结合核心与抑制结构域，中部为胞质调控区，C端含六跨膜孔道及门控螺旋。",
+    "evidence": "ITPR3遗传关联与冷冻电镜结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q14573功能与亚细胞定位注释",
+      "RCSB PDB 8TKG冷冻电镜四聚体结构",
+      "IP3受体介导内质网钙释放文献证据"
+    ],
+    "referenceEntries": "UniProt Q14573；RCSB PDB 8TKG；Open Targets ITPR3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端IP3结合核心与ARM1/β-trefoil连接界面",
+        "直接影响IP3结合及闭合构象向孔道门控的传递",
+        "优先"
+      ],
+      [
+        "Site B",
+        "胞质调控区四聚体亚基间接触面",
+        "可稳定非活化构象并削弱协同性钙释放",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端跨膜孔道及门控螺旋邻近区",
+        "接近离子通透核心但膜内可及性低且构象风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ITPR3为内质网膜蛋白，常规抗体难以接触天然胞质结构域；设计应采用胞内抗体、递送型Fab/VHH或体外结构探针定位，并避免跨膜孔道非特异扰动。",
+    "structurePrepZh": "以8TKG四聚体冷冻电镜模型为模板，保留A-D链装配关系，补全缺失环区并标注IP3结合核心、胞质调控区及C端孔道构象。",
+    "structureRef": "RCSB PDB 8TKG，human ITPR3 cryo-EM，2.5 Å",
+    "antibodies": [
+      "commercial anti-ITPR3 antibody",
+      "validated anti-IP3R3 monoclonal antibody"
+    ],
+    "interfaceFocus": "IP3结合核心至四聚体门控传递界面",
+    "designMode": "胞内构象阻断",
+    "candidates": [
+      {
+        "target": "PLCB1",
+        "rationale": "PLCB1水解PIP2生成IP3，是Gq偶联受体信号驱动ITPR通道开放的上游酶节点；其异常可改变神经元和免疫细胞钙信号幅度。"
+      },
+      {
+        "target": "ITPR1",
+        "rationale": "ITPR1与ITPR3同属IP3受体家族，执行内质网Ca2+释放并与神经系统疾病存在明确遗传关联；可作为同通路钙释放节点的比较靶点。"
+      },
+      {
+        "target": "STIM1",
+        "rationale": "STIM1感知内质网Ca2+耗竭并启动储存操作性钙内流，位于ITPR介导钙释放后的补偿性钙通路中；适合用于评估钙稳态轴的替代干预。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

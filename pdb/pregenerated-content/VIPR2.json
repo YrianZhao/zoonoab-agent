@@ -1,0 +1,65 @@
+{
+  "gene": "VIPR2",
+  "generatedAt": "2026-08-03T17:48:38.822Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "VIPR2 是胰高血糖素样 B 类 GPCR，接受 VIP 和 PACAP 激活并通过 Gs-cAMP/PKA 轴影响神经、平滑肌及视网膜相关细胞反应；遗传关联数据显示其与近视、屈光异常和进行性视觉损害存在疾病关联。VIPR2 具有胞外 N 端结构域和三段胞外环，配体进入位点位于细胞外侧，具备抗体识别与阻断的可及性。相较于下游 cAMP 通路节点，VIPR2 的受体级干预更接近疾病遗传信号入口，并可区分 VIPR1、PAC1 等同源受体以提高通路选择性。",
+    "mechanism": "阻断 VIP 或 PACAP 与 VIPR2 胞外 N 端结构域及跨膜口袋外侧的结合，抑制受体构象激活和 Gs 介导的 cAMP 生成。",
+    "selectedEpitope": "优先覆盖 N 端胞外结构域配体识别面，并延伸至 ECL2 入口区以限制肽配体进入。",
+    "diseaseDirection": "屈光异常与近视相关神经调节",
+    "domain": "B 类 GPCR，含胞外 N 端配体结合结构域、七跨膜螺旋和三段胞外环。",
+    "evidence": "VIPR2 近视与屈光异常遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P41587 functional annotation",
+      "RCSB PDB 2X57 experimental structure",
+      "GPCRdb class B receptor annotation"
+    ],
+    "referenceEntries": "UniProt:P41587；RCSB PDB:2X57；HGNC:VIPR2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N 端胞外结构域肽配体结合面",
+        "直接干预 VIP/PACAP 初始识别，利于获得中和型抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ECL2 与跨膜束外侧入口区域",
+        "限制肽配体进入跨膜激活口袋，可增强功能阻断深度",
+        "备选"
+      ],
+      [
+        "Site C",
+        "跨膜螺旋外露近膜疏水边界",
+        "结构保守且膜环境依赖强，存在同源受体交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "VIPR2 与 VIPR1、ADCYAP1R1 同属 VIP/PACAP 受体轴，N 端结构域需避开高度保守肽结合残基，优先筛选亚型选择性阻断表位。",
+    "structurePrepZh": "采用 2X57 晶体结构解析胞外结构域构象，补全缺失环区并结合 AlphaFold/GPCRdb 模型校正 ECL2 与 N 端相对取向。",
+    "structureRef": "RCSB PDB 2X57，X-ray diffraction，2.1 Å",
+    "antibodies": [
+      "anti-VIPR2 neutralizing antibody clone 3D8",
+      "anti-VIPR2 extracellular domain antibody clone 1B6"
+    ],
+    "interfaceFocus": "N 端 ECD 配体识别面与 ECL2 入口界面",
+    "designMode": "受体阻断型",
+    "candidates": [
+      {
+        "target": "VIP",
+        "rationale": "VIP 是 VIPR2 的内源性肽配体，直接驱动 VIPR2-Gs-cAMP 信号；配体中和可作为受体阻断策略的同通路替代方案。"
+      },
+      {
+        "target": "ADCYAP1",
+        "rationale": "ADCYAP1 编码 PACAP，可激活 VIPR2 及 PAC1 受体；其在神经调节和视觉相关信号中处于 VIPR2 上游。"
+      },
+      {
+        "target": "VIPR1",
+        "rationale": "VIPR1 与 VIPR2 共享 VIP/PACAP 配体轴并同样偶联 Gs-cAMP 通路；可用于评估亚型选择性和同通路冗余。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

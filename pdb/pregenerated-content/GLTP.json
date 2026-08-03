@@ -1,0 +1,65 @@
+{
+  "gene": "GLTP",
+  "generatedAt": "2026-08-03T12:49:02.602Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GLTP参与糖鞘脂在胞质膜系之间的转运，可影响膜脂组成、脂筏组织及脂蛋白相关表型，Open Targets提示其与HDL胆固醇、载脂蛋白A1、嗜酸粒细胞计数及骨骼表型存在遗传关联。该蛋白为可溶性胞质糖脂转运蛋白，并非经典分泌蛋白或跨膜受体，天然抗原可及性弱，抗体设计更适合定位于细胞内递送、结构探针或胞外释放/外泌体相关检测场景。相较于膜受体类脂代谢靶点，GLTP具备1.1 Å高分辨率实验结构与清晰糖脂结合沟槽，适合开展结构精确的抑制性抗体或构象锁定分子设计，但治疗优先级应低于直接胞外可及靶点。",
+    "mechanism": "通过抗体结合GLTP糖脂结合沟槽入口及α螺旋构象开关区，阻碍神经酰胺酰基链与糖头基进入疏水口袋，从而抑制GLTP介导的糖鞘脂转运。",
+    "selectedEpitope": "优先覆盖糖脂结合沟槽入口、糖头基识别残基邻近区及α6/α7螺旋构象门控面。",
+    "diseaseDirection": "脂质代谢与免疫表型关联",
+    "domain": "GLTP为单一GLTP折叠结构域，含多条α螺旋形成疏水糖脂结合口袋与糖头基识别位点。",
+    "evidence": "GLTP糖脂转运结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9NZD2功能与亚细胞定位注释",
+      "RCSB PDB 3RZN高分辨率晶体结构",
+      "糖鞘脂转运蛋白结构生物学研究文献"
+    ],
+    "referenceEntries": "UniProt: Q9NZD2; RCSB PDB: 3RZN; Open Targets: GLTP",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "糖脂结合沟槽入口及α6/α7螺旋门控面",
+        "直接干预糖脂底物进入疏水口袋，最适合抑制性抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "糖头基识别位点邻近的极性残基簇",
+        "可削弱糖鞘脂头基定位与结合选择性，利于功能阻断",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离结合沟槽的外侧α螺旋表面",
+        "结构可及但对底物转运影响不确定，较适合作为检测表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GLTP主要定位于胞质，常规系统给药抗体难以接触天然靶点；建议限定为细胞内抗体、递送型抗体或结构验证工具，并避免选择保守疏水核心表位。",
+    "structurePrepZh": "以3RZN链A为抗原模板，保留高分辨率主链构象，检查配体结合沟槽、晶体接触面和缺失残基，去除非功能性晶体水后进行表面电荷与可及性评估。",
+    "structureRef": "RCSB PDB 3RZN, human GLTP, X-ray 1.1 Å",
+    "antibodies": [
+      "无已获批GLTP靶向抗体",
+      "研究级anti-GLTP抗体"
+    ],
+    "interfaceFocus": "糖脂结合沟槽入口与α6/α7门控螺旋",
+    "designMode": "结构引导阻断",
+    "candidates": [
+      {
+        "target": "ABCA1",
+        "rationale": "ABCA1介导胆固醇和磷脂向APOA1外排，是HDL生成通路的核心膜转运蛋白，与HDL胆固醇及载脂蛋白A1表型直接相关。其多跨膜胞外环提供抗体可及表位，但功能调节需谨慎评估。"
+      },
+      {
+        "target": "APOA1",
+        "rationale": "APOA1是HDL主要结构载脂蛋白，直接参与胆固醇外排受体结合和HDL颗粒成熟。作为分泌/循环蛋白，抗原可及性显著优于胞质GLTP。"
+      },
+      {
+        "target": "LCAT",
+        "rationale": "LCAT催化HDL颗粒中游离胆固醇酯化，处于APOA1依赖的HDL成熟通路中。其为血浆分泌酶，适合抗体或抗体样分子进行功能调节与检测开发。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

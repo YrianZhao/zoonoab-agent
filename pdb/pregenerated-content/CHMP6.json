@@ -1,0 +1,65 @@
+{
+  "gene": "CHMP6",
+  "generatedAt": "2026-08-03T11:23:04.161Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CHMP6 是 ESCRT-III 复合体组装相关蛋白，参与内体膜出芽、病毒颗粒释放及自噬-内溶酶体稳态，相关扰动可连接神经退行性疾病与病毒感染过程。该蛋白主要为胞质侧膜相关蛋白，缺乏稳定胞外结构域，因此作为常规循环抗体靶点的抗原可及性弱于膜受体或分泌因子。其优先级主要来自 ESCRT-III 病毒出芽节点的机制保守性和 3HTU 高分辨率结构支持；但相较 CXCR4、ACE2、TNFRSF 等可及靶点，应定位为细胞内抗体、递送型抗体或机制验证靶点。",
+    "mechanism": "设计抗体阻断 CHMP6 N端螺旋束与 CHMP4/ESCRT-III 聚合界面的结合，干扰 ESCRT-III 装配及膜颈切割相关复合体成熟。",
+    "selectedEpitope": "优先覆盖 3HTU 中 CHMP6 α螺旋束的 CHMP4 结合面及聚合接触界面。",
+    "diseaseDirection": "病毒出芽与神经退行性疾病",
+    "domain": "CHMP6 属 ESCRT-III 样蛋白，含 N端α螺旋核心与C端调控区，3HTU覆盖螺旋核心片段。",
+    "evidence": "CHMP6-ESCRT-III病毒出芽与内体稳态证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q96FZ7 功能注释",
+      "RCSB PDB 3HTU 晶体结构",
+      "ESCRT-III 介导病毒释放与内体分选文献"
+    ],
+    "referenceEntries": "UniProt Q96FZ7；RCSB PDB 3HTU；Open Targets CHMP6",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端α螺旋束CHMP4结合界面",
+        "可直接干扰ESCRT-III装配成核，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "3HTU多链晶体中的螺旋-螺旋聚合接触面",
+        "适合筛选阻断CHMP6寡聚或复合体稳定化的构象抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端调控区邻近暴露片段",
+        "可能影响自抑制释放，但结构覆盖和可及性证据不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CHMP6 为胞内膜相关蛋白，常规抗体难以到达作用位点；应优先采用细胞内表达抗体、递送型Fab/VHH或体外机制阻断验证，并规避高度保守疏水核心表位。",
+    "structurePrepZh": "以 3HTU A-H 链为结构模板，保留同源螺旋束装配信息，清理晶体接触冗余链，标注CHMP4结合面、寡聚接触面及保守疏水残基。",
+    "structureRef": "RCSB PDB 3HTU，X-ray diffraction，2.0 Å",
+    "antibodies": [
+      "暂无已批准CHMP6靶向治疗性抗体",
+      "ESCRT复合体研究级抗CHMP6抗体"
+    ],
+    "interfaceFocus": "CHMP6螺旋束-CHMP4装配界面",
+    "designMode": "胞内递送型阻断",
+    "candidates": [
+      {
+        "target": "CHMP4B",
+        "rationale": "CHMP4B 是 ESCRT-III 聚合骨架核心，直接参与膜颈收缩与病毒出芽复合体形成，位于 CHMP6 下游装配节点。"
+      },
+      {
+        "target": "TSG101",
+        "rationale": "TSG101 是 ESCRT-I 组分，可识别病毒 late domain 并招募 ESCRT 机器，是 HIV 等包膜病毒释放通路中的上游关键节点。"
+      },
+      {
+        "target": "PDCD6IP",
+        "rationale": "PDCD6IP/ALIX 连接病毒 Gag 蛋白与 ESCRT-III 组分，在 HIV 出芽和内体膜重塑中具有明确机制关联。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

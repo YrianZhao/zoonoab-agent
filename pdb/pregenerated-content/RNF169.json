@@ -1,0 +1,65 @@
+{
+  "gene": "RNF169",
+  "generatedAt": "2026-08-03T16:06:03.617Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RNF169是DNA双链断裂应答中的核内E3相关支架蛋白，通过MIU样泛素结合基序识别RNF168生成的K63连接泛素链，并竞争53BP1通路组分对损伤染色质的占位。该蛋白主要定位于细胞核染色质损伤位点，缺乏胞外结构域、分泌形式或膜受体特征，抗原天然可及性不支持常规治疗性抗体直接结合。相较RNF168、53BP1或BRCA1等同通路节点，RNF169更适合作为结构生物学和细胞内递送抗体研究靶点，优先级应限定于机制验证或胞内抗体模式。",
+    "mechanism": "胞内抗体阻断RNF169 MIU样基序与K63连接泛素化H2A染色质的结合，削弱其对53BP1装配的竞争。",
+    "selectedEpitope": "优先覆盖MIU样泛素结合基序及邻近LR motif，干扰泛素链识别界面。",
+    "diseaseDirection": "DNA损伤应答与基因组稳定性",
+    "domain": "含N端RING finger结构域、MIU样泛素结合区及LR motif，参与损伤染色质定位。",
+    "evidence": "RNF169-DNA损伤泛素信号结构与遗传关联证据",
+    "evidenceSources": [
+      "Open Targets Platform遗传关联与表型关联记录",
+      "UniProt Q8NCN4蛋白功能与亚细胞定位注释",
+      "RCSB PDB 5GG4晶体结构条目",
+      "DNA双链断裂RNF8-RNF168-RNF169-53BP1通路文献"
+    ],
+    "referenceEntries": "UniProt Q8NCN4；RCSB PDB 5GG4；Open Targets RNF169",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "MIU样泛素结合基序与K63泛素链接触面",
+        "直接阻断损伤染色质募集，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "LR motif邻近调节界面",
+        "可能削弱RNF169在泛素化染色质上的稳定占位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端RING finger锌结合折叠区域",
+        "结构保守且存在金属配位依赖，干预风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RNF169为核内蛋白，常规抗体难以进入细胞核；RING区域保守性较高，宜避免广泛交叉反应并采用胞内抗体或递送格式评估。",
+    "structurePrepZh": "以PDB 5GG4多链晶体结构为模板，校正链选择、缺失残基与晶体接触，保留泛素结合界面构象用于表位建模。",
+    "structureRef": "RCSB PDB 5GG4，X-ray diffraction，3.11 Å",
+    "antibodies": [
+      "commercial anti-RNF169 antibody",
+      "anti-RNF169 immunofluorescence antibody"
+    ],
+    "interfaceFocus": "MIU样基序-K63泛素链识别界面",
+    "designMode": "胞内抗体验证",
+    "candidates": [
+      {
+        "target": "RNF168",
+        "rationale": "RNF168在RNF8下游催化H2A/H2AX K13/K15泛素化，生成RNF169和53BP1通路识别的损伤染色质信号。其位于同一DNA损伤泛素级联上游，机制位置更接近信号生成端。"
+      },
+      {
+        "target": "TP53BP1",
+        "rationale": "53BP1通过识别泛素化H2A与甲基化组蛋白促进非同源末端连接修复，并与RNF169在损伤位点存在占位竞争关系。该节点可用于评估RNF169阻断后的修复通路偏移。"
+      },
+      {
+        "target": "BRCA1",
+        "rationale": "BRCA1参与同源重组修复，并与53BP1轴共同决定双链断裂修复路径选择。RNF169对53BP1募集的调节可间接影响BRCA1相关修复平衡。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

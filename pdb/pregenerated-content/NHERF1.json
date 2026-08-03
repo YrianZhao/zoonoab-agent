@@ -1,0 +1,65 @@
+{
+  "gene": "NHERF1",
+  "generatedAt": "2026-08-03T20:18:34.174Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NHERF1 是肾近端小管磷酸盐稳态通路中的 PDZ 支架蛋白，致病变异可削弱其与 NPT2A/SLC34A1、PTH1R 等膜蛋白复合体的组织化，关联低磷性肾结石/骨质疏松表型。该蛋白主要定位于胞内顶端膜支架复合体，并非经典可溶性或跨膜胞外抗原，抗原可及性不具备体内阻断抗体优势，但可作为结构验证、细胞内递送抗体或研究级结合分子的靶点。相较同通路膜转运体，NHERF1 的 PDZ1 结构域具有高分辨率实验结构和明确肽结合沟槽，更适合开展界面级结合体设计，但治疗优先级需低于可外部接近的受体或转运调控节点。",
+    "mechanism": "设计分子应占据 NHERF1 PDZ1 的羧基端肽结合沟槽，竞争性阻断其与 SLC34A1 或 PTH1R C 端 PDZ 配体序列结合。",
+    "selectedEpitope": "优先锁定 PDZ1 结构域 βB-βC 环与 αB 螺旋围成的 C 端肽结合槽。",
+    "diseaseDirection": "低磷性肾结石与骨代谢异常",
+    "domain": "NHERF1 含两个 N 端 PDZ 结构域和 C 端 ezrin 结合区，4N6X 覆盖 PDZ1 折叠。",
+    "evidence": "NHERF1-PDZ 支架复合体与磷酸盐稳态证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt O14745 功能与亚细胞定位注释",
+      "RCSB PDB 4N6X 高分辨率晶体结构",
+      "OMIM/ClinVar NHERF1 相关低磷表型与变异记录"
+    ],
+    "referenceEntries": "UniProt O14745；RCSB PDB 4N6X；Open Targets ENSG00000109062",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PDZ1 βB-βC 环/αB 螺旋肽结合槽",
+        "直接覆盖 SLC34A1/PTH1R C 端 PDZ 配体识别界面，可形成机制明确的竞争性阻断",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PDZ1 βD-βE 环邻近侧壁",
+        "可通过变构或空间位阻削弱配体进入，适合作为亲和力增强的扩展接触面",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PDZ1 保守疏水核心背面",
+        "结构保守且远离功能沟槽，结合后机制不确定，并可能干扰折叠稳定性评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NHERF1 为胞内支架蛋白，常规抗体体内可及性不足；需优先限定为细胞内递送抗体、研究试剂或结构探针，并控制 PDZ 家族交叉反应。",
+    "structurePrepZh": "以 4N6X 链 A 为 PDZ1 模板，保留高置信二级结构，补全缺失氢原子并评估晶体接触；肽结合槽需按配体结合态进行构象校验。",
+    "structureRef": "RCSB PDB 4N6X，X-ray diffraction，1.051 Å",
+    "antibodies": [
+      "anti-NHERF1/EZRIN-binding phosphoprotein 50 antibody",
+      "anti-EBP50/NHERF1 monoclonal antibody"
+    ],
+    "interfaceFocus": "PDZ1 羧基端配体识别槽及 βB-βC 环",
+    "designMode": "胞内靶点结合体设计",
+    "candidates": [
+      {
+        "target": "SLC34A1",
+        "rationale": "SLC34A1 编码近端小管钠-磷共转运体 NPT2A，是 NHERF1 支架复合体下游的直接磷酸盐转运效应节点。其功能缺陷与低磷、肾结石和骨矿化异常密切相关。"
+      },
+      {
+        "target": "PTH1R",
+        "rationale": "PTH1R 通过甲状旁腺激素信号调控近端小管磷酸盐转运，并可与 NHERF1 发生 PDZ 依赖性复合体组装。该节点位于同一肾磷酸盐稳态调控轴。"
+      },
+      {
+        "target": "FGFR1",
+        "rationale": "FGFR1 与 FGF23/Klotho 轴共同调节肾脏磷酸盐排泄，是低磷性疾病通路中的上游受体节点。相较胞内 NHERF1，受体胞外结构域具备更明确的抗体可及性。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

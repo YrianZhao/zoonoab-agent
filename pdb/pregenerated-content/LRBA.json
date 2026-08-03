@@ -1,0 +1,65 @@
+{
+  "gene": "LRBA",
+  "generatedAt": "2026-08-03T13:55:24.337Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "LRBA缺陷导致CTLA4囊泡转运与溶酶体降解平衡异常，降低调节性T细胞表面CTLA4水平并诱发联合免疫缺陷、自身免疫和淋巴增殖表型。LRBA为大型胞内锚定蛋白，整体抗原可及性弱，1T77对应的BEACH结构域可作为结构解析与工具抗体开发抗原，但不适合作为经典体内阻断型膜表面抗体靶点。相较同通路中CTLA4、CD80和CD86等胞外可及靶点，LRBA的优先级主要来自遗传因果证据和疾病特异性，而非治疗性抗体可及性优势，因此更适宜定位为诊断、机制研究或细胞内递送抗体设计对象。",
+    "mechanism": "候选抗体以识别LRBA BEACH结构域构象表位为主，用于检测或干预LRBA与囊泡分选相关复合物的空间组织，而非阻断胞外配体-受体结合。",
+    "selectedEpitope": "优先选择1T77 BEACH结构域保守折叠外露环区，避开疏水核心与晶体接触界面。",
+    "diseaseDirection": "LRBA缺陷相关免疫失衡",
+    "domain": "LRBA含N端WD40样区、PH样区、BEACH结构域及C端WD40重复；1T77覆盖BEACH核心结构域。",
+    "evidence": "LRBA缺陷免疫通路与BEACH结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P50851功能与结构域注释",
+      "RCSB PDB 1T77 X射线晶体结构",
+      "LRBA缺陷与CTLA4转运相关文献"
+    ],
+    "referenceEntries": "UniProt P50851；RCSB PDB 1T77；Open Targets LRBA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "BEACH结构域外露环区及邻近带电表面",
+        "利于获得构象特异性工具抗体，降低对折叠核心稳定性的扰动",
+        "优先"
+      ],
+      [
+        "Site B",
+        "BEACH结构域边缘α螺旋-环连接区",
+        "可用于区分完整折叠状态并支持免疫印迹以外的构象检测",
+        "备选"
+      ],
+      [
+        "Site C",
+        "多链晶体堆积接触面与疏水核心邻近区域",
+        "可能产生晶体构象偏倚或影响蛋白稳定性，不宜作为首选免疫表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "LRBA主要定位于胞内膜泡系统，常规治疗性抗体难以到达天然作用位点。设计宜聚焦重组结构域质量控制、细胞内递送适配或外周诊断检测用途。",
+    "structurePrepZh": "以1T77抗原链A-D评估晶体接触、缺失残基与寡聚状态，保留BEACH结构域稳定核心并标注可溶外露环区用于表位建模。",
+    "structureRef": "RCSB PDB 1T77，X-ray diffraction，2.4 Å",
+    "antibodies": [
+      "abatacept",
+      "belatacept"
+    ],
+    "interfaceFocus": "BEACH外露环区与晶体接触排除面",
+    "designMode": "胞内工具抗体设计",
+    "candidates": [
+      {
+        "target": "CTLA4",
+        "rationale": "CTLA4是LRBA缺陷通路中的关键免疫检查点分子，LRBA缺失会增强CTLA4降解并降低其细胞表面表达。其胞外IgV样结构域可被抗体或融合蛋白直接调节，抗原可及性优于LRBA。"
+      },
+      {
+        "target": "CD80",
+        "rationale": "CD80是CTLA4和CD28的共享配体，参与T细胞共刺激轴并位于LRBA缺陷导致的免疫失衡下游。其胞外Ig样结构域适合设计阻断CTLA4/CD28配体结合的抗体。"
+      },
+      {
+        "target": "CD86",
+        "rationale": "CD86与CD80共同提供CD28共刺激并受CTLA4竞争性抑制，是LRBA-CTLA4轴功能不足时的重要效应节点。膜表面表达和胞外结构域可及性使其具备抗体干预可行性。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

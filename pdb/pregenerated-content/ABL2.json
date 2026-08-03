@@ -1,0 +1,65 @@
+{
+  "gene": "ABL2",
+  "generatedAt": "2026-08-03T09:49:35.005Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ABL2为胞内非受体酪氨酸激酶，参与ABL家族介导的细胞骨架重塑、黏附迁移和DNA损伤应答，在肺癌、胰腺导管腺癌及乳腺导管腺癌等疾病中与侵袭和存活信号相关。该蛋白缺乏天然胞外结构域或分泌形式，完整蛋白并非传统抗体可及抗原，因此更适合发展细胞内递送抗体、intrabody或结构生物学筛选用结合分子。相较EGFR、MET等膜受体靶点，ABL2的优先级优势在于4EIH提供1.2 Å高分辨率激酶结构，可支持ATP口袋邻近变构表位和激酶构象选择性结合设计。",
+    "mechanism": "设计结合分子稳定ABL2激酶结构域非活化构象，遮挡ATP结合裂隙或干扰SH2-激酶界面耦联，从而抑制底物磷酸化。",
+    "selectedEpitope": "优先针对激酶结构域N-lobe/C-lobe之间ATP结合裂隙外缘及活化环邻近变构面。",
+    "diseaseDirection": "肿瘤侵袭迁移与ABL家族激酶通路",
+    "domain": "ABL2含SH3、SH2、酪氨酸激酶结构域及C端F-actin结合区；4EIH覆盖激酶结构域。",
+    "evidence": "ABL2肿瘤相关激酶结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联证据",
+      "UniProt P42684功能与结构域注释",
+      "RCSB PDB 4EIH晶体结构记录",
+      "ChEMBL/文献中ABL家族激酶抑制剂证据"
+    ],
+    "referenceEntries": "UniProt:P42684；RCSB PDB:4EIH；Open Targets:ABL2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域ATP结合裂隙外缘与hinge邻近区域",
+        "可直接限制核苷酸进入并支持构象选择性抑制",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N-lobe αC螺旋及活化环邻近变构表面",
+        "有利于稳定非活化构象并降低与ABL1保守口袋的竞争",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化环HRD基序和DFG基序核心区域",
+        "序列高度保守且功能核心埋藏，选择性和可成药构象风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ABL2为胞内激酶，常规全长抗体体内可及性不足；设计宜定位为细胞内递送Fab/VHH、intrabody或结构探针，并严格评估ABL1交叉反应。",
+    "structurePrepZh": "以4EIH链A为模板，保留激酶结构域坐标，清理结晶配体与水分子，补全缺失侧链并标注ATP口袋、αC螺旋和活化环构象。",
+    "structureRef": "RCSB PDB 4EIH，ABL2 kinase domain，X-ray 1.2 Å",
+    "antibodies": [
+      "anti-ABL2研究级抗体",
+      "anti-ABL pan研究级抗体"
+    ],
+    "interfaceFocus": "ATP裂隙外缘、hinge区、αC螺旋与活化环",
+    "designMode": "胞内结合分子设计",
+    "candidates": [
+      {
+        "target": "ABL1",
+        "rationale": "ABL1与ABL2同属ABL家族非受体酪氨酸激酶，共享SH3-SH2-kinase模块并参与DNA损伤、细胞迁移及白血病相关信号。其结构和药理学证据充分，可作为同通路选择性对照靶点。"
+      },
+      {
+        "target": "CRK",
+        "rationale": "CRK为ABL家族激酶磷酸化适配蛋白，连接ABL信号与细胞黏附、迁移和RAC/RAP相关下游效应。靶向该节点可用于评估ABL2驱动迁移通路的替代干预策略。"
+      },
+      {
+        "target": "CRKL",
+        "rationale": "CRKL是ABL激酶通路的重要底物和适配蛋白，在BCR-ABL及ABL家族信号中介导下游蛋白复合体组装。其磷酸化状态常用于反映ABL通路活性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "APEX1",
+  "generatedAt": "2026-08-03T10:30:03.934Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "APEX1是碱基切除修复通路的核心AP内切酶，切割脱嘌呤/脱嘧啶位点5′侧磷酸二酯键，并通过氧化还原调控影响多种转录因子活性，因而与氧化应激、线粒体DNA稳态及神经退行性疾病表型相关。该蛋白主要定位于细胞核和线粒体，缺乏经典胞外结构域，抗原可及性弱于膜受体或分泌蛋白，适合作为细胞内递送抗体、内体逃逸VHH或研究型抑制抗体对象。相较于XRCC1、POLB等BER组分，APEX1具备高分辨率实验结构、明确DNA结合沟槽和金属依赖催化位点，结构驱动表位设计优先级更高。",
+    "mechanism": "抗体片段占据APEX1 DNA结合沟槽或邻近催化口袋，阻断其识别AP位点DNA并抑制5′切割反应。",
+    "selectedEpitope": "优先覆盖DNA结合沟槽与H309、D210、E96邻近催化面，避免仅靶向柔性N端尾部。",
+    "diseaseDirection": "DNA损伤修复与神经退行性疾病",
+    "domain": "APEX1含N端调控区及C端Exo_endo_phos核酸酶结构域，催化核心结合AP位点DNA。",
+    "evidence": "APEX1碱基切除修复结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB P27695功能与定位注释",
+      "RCSB PDB 4QHE晶体结构",
+      "碱基切除修复通路与APEX1功能文献"
+    ],
+    "referenceEntries": "UniProtKB:P27695；RCSB PDB:4QHE；HGNC:587",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端核酸酶结构域DNA结合沟槽及催化口袋边缘",
+        "直接干预AP位点DNA识别与切割，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端氧化还原调控相关表面邻近Cys65区域",
+        "可探索阻断转录因子氧化还原调节功能",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端无序尾部及高柔性碱性片段",
+        "构象异质性高，结构表位稳定性与功能阻断确定性较低",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "APEX1为细胞内必需DNA修复酶，常规抗体组织可及性不足；设计应采用胞内递送或VHH格式，并控制广泛BER抑制导致的基因毒性风险。",
+    "structurePrepZh": "以4QHE链A为抗原模板，保留高分辨率催化核心，补全缺失侧链并标注DNA结合沟槽、金属依赖催化残基及柔性N端区域。",
+    "structureRef": "RCSB PDB 4QHE，X射线晶体结构，1.4 Å",
+    "antibodies": [
+      "抗APEX1研究型单克隆抗体",
+      "抗APE1/Ref-1胞内功能阻断抗体片段"
+    ],
+    "interfaceFocus": "DNA结合沟槽与催化残基邻近表面",
+    "designMode": "胞内阻断型VHH",
+    "candidates": [
+      {
+        "target": "OGG1",
+        "rationale": "OGG1在碱基切除修复中识别并切除8-氧鸟嘌呤，位于APEX1上游；与氧化DNA损伤及神经退行性疾病机制同属BER轴。"
+      },
+      {
+        "target": "XRCC1",
+        "rationale": "XRCC1作为BER支架蛋白招募POLB、LIG3等修复因子，连接APEX1切割后的单链断裂修复步骤，适合通路级组合评估。"
+      },
+      {
+        "target": "POLB",
+        "rationale": "POLB在APEX1切割后执行缺口填补和5′-dRP去除，是短片段BER的关键酶，具有明确的DNA修复疾病关联。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

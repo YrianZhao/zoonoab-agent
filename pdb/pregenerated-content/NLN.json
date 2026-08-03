@@ -1,0 +1,65 @@
+{
+  "gene": "NLN",
+  "generatedAt": "2026-08-03T14:44:06.985Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NLN编码神经降压素酶，是M3锌依赖金属肽酶，可裂解神经降压素、缓激肽及血管紧张素相关肽段，可能影响脑血管张力、炎症介质清除与缺血性卒中后的神经肽稳态。该蛋白主要定位于胞质、线粒体及细胞外囊泡相关组分，缺乏典型跨膜胞外结构域，因此抗体可及性弱于膜受体或分泌因子。其优先级依据主要来自高分辨率人源实验结构与卒中相关遗传关联；相较ACE、BDKRB2等可及性更强的同通路靶点，NLN更适合作为机制验证或细胞内递送型抗体设计对象。",
+    "mechanism": "通过抗体结合催化裂隙邻近区域，空间阻断神经降压素或缓激肽底物进入Zn2+依赖活性中心，抑制NLN介导的肽键水解。",
+    "selectedEpitope": "优先覆盖M3金属肽酶催化沟槽入口及HEXXH锌结合基序邻近外缘，避免直接破坏金属配位。",
+    "diseaseDirection": "缺血性卒中与脑血管肽稳态",
+    "domain": "NLN为M3家族锌金属内肽酶，含催化裂隙、HEXXH锌结合基序及底物结合沟槽。",
+    "evidence": "NLN卒中关联与M3肽酶结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联数据",
+      "UniProt Q9BYT8功能与亚细胞定位注释",
+      "RCSB PDB 8VJY人源NLN晶体结构",
+      "MEROPS M3金属肽酶家族注释"
+    ],
+    "referenceEntries": "UniProt Q9BYT8；RCSB PDB 8VJY；MEROPS M03.002",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化沟槽入口及底物通道外缘",
+        "可阻断神经肽底物进入活性中心，具备明确功能抑制逻辑",
+        "优先"
+      ],
+      [
+        "Site B",
+        "HEXXH锌结合基序邻近非配位表面",
+        "邻近催化核心，可能通过构象限制降低底物水解效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离催化裂隙的外侧螺旋束表面",
+        "结构可成药性较高但功能阻断不确定，需依赖构象或变构验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NLN缺乏经典胞外结构域，常规全抗体体内可及性受限。设计应优先评估细胞穿透、胞内递送或样本外泌体相关抗原场景，并避免干扰锌配位导致非特异构象失稳。",
+    "structurePrepZh": "以8VJY高分辨率晶体结构为模板，保留催化Zn2+及关键水分子，检查A-D链构象差异、缺失环区与晶体接触界面后再进行表位建模。",
+    "structureRef": "RCSB PDB 8VJY，X-ray diffraction，1.95 Å",
+    "antibodies": [
+      "无已获批NLN靶向抗体",
+      "无临床阶段NLN同类抗体"
+    ],
+    "interfaceFocus": "催化裂隙入口、底物结合沟槽、HEXXH邻近表面",
+    "designMode": "胞内酶抑制型",
+    "candidates": [
+      {
+        "target": "ACE",
+        "rationale": "ACE参与血管紧张素I向血管紧张素II转化并降解缓激肽，与NLN共享血管活性肽稳态和卒中相关血管张力调控轴；其胞外催化结构域可及性显著更强。"
+      },
+      {
+        "target": "BDKRB2",
+        "rationale": "BDKRB2为缓激肽B2受体，介导缓激肽诱导的血管舒张、通透性改变与炎症信号，是NLN底物网络下游的真实膜受体节点。"
+      },
+      {
+        "target": "NTSR1",
+        "rationale": "NTSR1为神经降压素受体，承接NLN底物神经降压素的信号输出，位于同一神经肽调控通路中；其多跨膜受体特征支持细胞表面抗体结合策略。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

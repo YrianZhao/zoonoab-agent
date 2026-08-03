@@ -1,0 +1,65 @@
+{
+  "gene": "CYP11A1",
+  "generatedAt": "2026-08-03T11:46:34.163Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CYP11A1催化胆固醇侧链裂解生成孕烯醇酮，是肾上腺和性腺类固醇生成通路的限速起始酶，遗传缺陷可导致先天性肾上腺功能不全和46,XY性发育异常。该蛋白定位于线粒体内膜基质侧，天然状态并非细胞表面抗原，抗体可及性弱于膜受体或分泌蛋白，因此更适合作为结构验证、细胞内递送或研究级抑制抗体设计对象。相较下游CYP11B1、CYP17A1等酶，CYP11A1位于甾体合成最上游，对全通路通量具有更高优先级，但治疗抗体开发需优先评估胞内递送可行性与内分泌系统性风险。",
+    "mechanism": "通过阻断CYP11A1与胆固醇在疏水底物通道及血红素邻近活性腔的结合，抑制胆固醇向孕烯醇酮转化。",
+    "selectedEpitope": "优先覆盖底物进入通道入口及F/G环邻近区域，避免直接破坏血红素结合核心。",
+    "diseaseDirection": "先天性肾上腺功能不全与甾体生成异常",
+    "domain": "线粒体P450单结构域酶，含N端线粒体靶向区、血红素结合核心和疏水底物通道。",
+    "evidence": "CYP11A1甾体生成与肾上腺疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P05108功能与亚细胞定位注释",
+      "RCSB PDB 3N9Y晶体结构数据",
+      "OMIM/Orphanet CYP11A1 deficiency临床表型记录"
+    ],
+    "referenceEntries": "UniProt:P05108; RCSB PDB:3N9Y; Gene:CYP11A1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "F/G环与底物通道入口邻近表面",
+        "可干扰胆固醇进入活性腔并保留结构稳定性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "I螺旋与血红素远端活性腔边缘",
+        "可能影响氧化反应几何构象和底物定位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "血红素结合Cys袋及高度保守P450核心",
+        "保守性高且构象敏感，易产生交叉反应或折叠干扰",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CYP11A1为线粒体内膜基质侧酶，常规抗体难以天然到达靶点；设计需限定为胞内递送、降解偶联或研究阻断用途，并严控全局甾体抑制风险。",
+    "structurePrepZh": "以3N9Y的A链为主要建模模板，保留血红素辅基和关键活性腔残基，去除晶体冗余链后评估底物通道开放构象。",
+    "structureRef": "RCSB PDB 3N9Y，human CYP11A1 X-ray 2.1 Å",
+    "antibodies": [
+      "anti-CYP11A1 clone 1A2",
+      "anti-CYP11A1 polyclonal antibody"
+    ],
+    "interfaceFocus": "F/G环、底物通道入口与血红素远端腔",
+    "designMode": "胞内酶阻断型",
+    "candidates": [
+      {
+        "target": "STAR",
+        "rationale": "STAR介导胆固醇向线粒体内膜转运，是CYP11A1上游底物供给步骤；其缺陷同样导致先天性类脂性肾上腺增生和甾体生成障碍。"
+      },
+      {
+        "target": "FDX1",
+        "rationale": "FDX1将电子从FDXR传递至线粒体P450酶，包括CYP11A1；干预该节点可影响胆固醇侧链裂解反应的电子供给。"
+      },
+      {
+        "target": "CYP17A1",
+        "rationale": "CYP17A1位于孕烯醇酮下游，催化17α-羟化和17,20裂解反应，是肾上腺和性腺甾体生成通路中的关键酶。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

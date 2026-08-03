@@ -1,0 +1,65 @@
+{
+  "gene": "APOBEC3A",
+  "generatedAt": "2026-08-03T10:31:10.186Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "APOBEC3A 是胞苷脱氨酶，可在单链 DNA 上产生 C-to-U 编辑并形成 APOBEC 突变特征，乳腺癌中该过程与基因组不稳定、肿瘤异质性及耐药演化相关。该蛋白主要为胞内/核内可溶性酶，天然抗原可及性不具备分泌蛋白或膜受体优势，因此更适合用于胞内递送抗体、降解偶联或研究级功能阻断策略。相比广泛作用于 DNA 修复网络的上游节点，APOBEC3A 直接对应可解析的催化口袋与底物结合沟槽，具备更清晰的结构干预优先级。",
+    "mechanism": "通过抗体片段占据 APOBEC3A 催化锌中心邻近的单链 DNA 结合沟槽，阻断底物胞苷进入活性位点并抑制 C-to-U 脱氨反应。",
+    "selectedEpitope": "优先靶向 CDA 催化结构域中 α2-α3 环及活性位点邻近 ssDNA 结合沟槽。",
+    "diseaseDirection": "乳腺癌基因组不稳定",
+    "domain": "APOBEC3A 含单一胞苷脱氨酶结构域，具 HxE-PCxxC 催化锌结合基序。",
+    "evidence": "APOBEC3A 结构与乳腺癌突变机制证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt P31941 功能与定位注释",
+      "RCSB PDB 8FIK X-ray 晶体结构",
+      "COSMIC APOBEC 突变特征研究"
+    ],
+    "referenceEntries": "UniProt:P31941；RCSB PDB:8FIK；Open Targets:APOBEC3A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "α2-α3 环与催化锌中心邻近 ssDNA 结合沟槽",
+        "直接阻断底物链定位与胞苷进入催化位点，机制最清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "α4-β2 周边正电性核酸结合表面",
+        "干扰单链 DNA 吸附与取向，可作为非竞争性阻断方案",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端 α6 区域及远端溶剂暴露表面",
+        "远离催化中心，功能阻断概率较低，适合结构示踪或递送验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "APOBEC3A 为胞内酶，常规全长 IgG 难以到达作用位点；应优先采用胞内表达 Fab/VHH、细胞穿透递送或降解偶联策略，并评估 APOBEC3 家族交叉反应。",
+    "structurePrepZh": "以 8FIK 高分辨率晶体结构为模板，保留催化锌离子并校正质子化状态；按抗原链 A/B/D/H 比对评估构象一致性，去除非关键晶体接触。",
+    "structureRef": "RCSB PDB 8FIK，X-ray diffraction，1.912 Å",
+    "antibodies": [
+      "抗 APOBEC3A 研究级单克隆抗体",
+      "抗 APOBEC3A/3B 交叉反应抗体"
+    ],
+    "interfaceFocus": "催化锌中心邻近 ssDNA 结合沟槽",
+    "designMode": "胞内酶阻断型",
+    "candidates": [
+      {
+        "target": "APOBEC3B",
+        "rationale": "APOBEC3B 与 APOBEC3A 同属 APOBEC 胞苷脱氨酶家族，参与乳腺癌 APOBEC 突变特征形成。其核内定位和持续表达特征使其成为同一突变生成轴上的重要并行靶点。"
+      },
+      {
+        "target": "UNG",
+        "rationale": "UNG 识别并切除尿嘧啶碱基，是 APOBEC 介导 C-to-U 编辑后碱基切除修复通路的关键节点。调节该节点可影响 APOBEC 损伤转化为突变或修复的结局。"
+      },
+      {
+        "target": "REV1",
+        "rationale": "REV1 参与跨损伤合成，可在 APOBEC 诱导的 DNA 损伤背景下促进突变固定。其与 APOBEC 突变负荷相关的复制压力应答处于同一基因组不稳定通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "ATAD2",
+  "generatedAt": "2026-08-03T10:38:52.402Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ATAD2为核内染色质调控因子，含AAA+ ATPase区和识别乙酰化赖氨酸的溴结构域，可通过读取乙酰化组蛋白并支持MYC、E2F等增殖转录程序参与肿瘤生长。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌特征，常规完整抗体的抗原可及性受限，更适合细胞内递送抗体片段或研究级表位占位策略。其优先级依据在于溴结构域具有高分辨率实验结构和明确乙酰赖氨酸结合口袋，相比同属BET等广谱表观遗传靶点，ATAD2在多种癌种中过表达且更偏肿瘤增殖依赖，利于开展结构约束的选择性分子设计。",
+    "mechanism": "抗体片段占位ATAD2溴结构域乙酰赖氨酸识别口袋，阻断其与乙酰化组蛋白H4尾部结合，削弱染色质招募和增殖基因转录复合体维持。",
+    "selectedEpitope": "优先覆盖溴结构域ZA/BC环围成的乙酰赖氨酸结合口袋及WPF样疏水沟槽边缘。",
+    "diseaseDirection": "表观遗传依赖性肿瘤增殖",
+    "domain": "ATAD2含N端AAA+ ATPase模块和C端溴结构域；4QSP解析其溴结构域晶体结构。",
+    "evidence": "ATAD2溴结构域肿瘤表观遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q6PL18蛋白功能与亚细胞定位注释",
+      "RCSB PDB 4QSP X射线晶体结构",
+      "文献报道ATAD2在乳腺癌、前列腺癌和肺癌中的过表达及预后关联"
+    ],
+    "referenceEntries": "UniProt Q6PL18；RCSB PDB 4QSP；Open Targets ATAD2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "溴结构域乙酰赖氨酸结合口袋及ZA/BC环",
+        "直接竞争乙酰化组蛋白尾部识别，机制最清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "溴结构域外侧αZ-αA螺旋邻近表面",
+        "可形成变构占位并提高ATAD2选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "AAA+ ATPase核苷酸结合沟槽",
+        "可能影响ATPase构象循环，但缺少4QSP结构覆盖且同源保守性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ATAD2为核内抗原，体内常规抗体可及性不足；设计应限定为细胞内抗体、递送型Fab/VHH或结构验证工具，并规避BRD家族保守乙酰赖氨酸口袋交叉反应。",
+    "structurePrepZh": "以4QSP链A为模板，保留溴结构域主链与关键口袋水分子，补全缺失侧链并进行质子化、环区构象检查和乙酰赖氨酸口袋网格定义。",
+    "structureRef": "RCSB PDB 4QSP，ATAD2 bromodomain，1.6 Å X-ray",
+    "antibodies": [
+      "Abcam anti-ATAD2 antibody EPR8919",
+      "Proteintech anti-ATAD2 antibody 23225-1-AP"
+    ],
+    "interfaceFocus": "ZA/BC环乙酰赖氨酸口袋与疏水沟槽",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "MYC",
+        "rationale": "MYC与ATAD2共同驱动肿瘤细胞增殖转录程序，ATAD2可作为MYC相关染色质共调控网络成员参与增殖基因表达维持。"
+      },
+      {
+        "target": "E2F1",
+        "rationale": "E2F1调控细胞周期基因转录，ATAD2在E2F驱动的增殖通路中作为染色质相关共调控因子，二者处于同一增殖转录轴。"
+      },
+      {
+        "target": "BRD4",
+        "rationale": "BRD4同属乙酰赖氨酸读取蛋白并参与增强子依赖性增殖基因表达，与ATAD2共享表观遗传转录激活场景，可作为同通路比较靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

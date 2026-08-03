@@ -1,0 +1,65 @@
+{
+  "gene": "MPC2",
+  "generatedAt": "2026-08-03T14:18:39.155Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MPC2是线粒体丙酮酸载体复合体的必需亚基，与MPC1共同介导丙酮酸跨线粒体内膜输入，直接连接糖酵解、三羧酸循环与脂质代谢稳态。其遗传缺陷可导致线粒体丙酮酸载体缺乏，Open Targets亦提示其与脂质谱和血清代谢表型存在关联。该蛋白定位于线粒体内膜且膜区可及性低，作为常规细胞外抗体靶点存在天然限制；但PDB 9MNZ提供实验结构基础，适合开展结构验证型结合分子设计。相较于同通路中缺少高分辨率复合体结构的节点，MPC2的优先级主要来自明确的复合体界面、疾病遗传学关联和可解析的跨膜构象。",
+    "mechanism": "设计分子优先识别MPC2跨膜螺旋束与MPC1装配界面，阻断MPC1-MPC2复合体稳定化并降低丙酮酸跨线粒体内膜转运。",
+    "selectedEpitope": "优先选择MPC2跨膜螺旋束外侧的MPC1-MPC2亚基界面邻近区域，避开深埋脂质接触面。",
+    "diseaseDirection": "线粒体丙酮酸转运与代谢病",
+    "domain": "MPC2为线粒体内膜多跨膜载体蛋白，主要由短环区和跨膜螺旋束构成并参与异源复合体装配。",
+    "evidence": "MPC2结构与线粒体丙酮酸转运证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt O95563功能与亚细胞定位注释",
+      "RCSB PDB 9MNZ冷冻电镜结构",
+      "MONDO线粒体丙酮酸载体缺乏疾病条目"
+    ],
+    "referenceEntries": "UniProt: O95563; RCSB PDB: 9MNZ; MONDO:0013877",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "MPC2跨膜螺旋束的MPC1邻近装配界面",
+        "可直接干预MPC1-MPC2复合体稳定性，机制可解释性较强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "基质侧短环区与跨膜螺旋入口邻近区域",
+        "可能影响底物通道构象转换，但需确认环区暴露度与构象稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "深埋于膜脂环境的疏水跨膜表面",
+        "抗体可及性低且易产生非特异性疏水结合，成药性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MPC2位于线粒体内膜，天然抗体难以进入细胞器并接触表位；建议限定为结构探针、胞内递送格式或体外功能验证，不宜直接按细胞外阻断抗体开发。",
+    "structurePrepZh": "以PDB 9MNZ冷冻电镜模型为模板，保留MPC1-MPC2复合体装配关系，补全缺失环区并在膜环境中评估表位暴露、脂质遮蔽和构象异质性。",
+    "structureRef": "RCSB PDB 9MNZ，human mitochondrial pyruvate carrier EM structure",
+    "antibodies": [
+      "无已批准MPC2靶向治疗性抗体",
+      "研究级抗MPC2抗体"
+    ],
+    "interfaceFocus": "MPC1-MPC2跨膜装配界面及通道入口",
+    "designMode": "胞内结构探针设计",
+    "candidates": [
+      {
+        "target": "MPC1",
+        "rationale": "MPC1是线粒体丙酮酸载体复合体的另一必需亚基，与MPC2共同形成丙酮酸转运功能单元，适合作为同一复合体内的互补验证靶点。"
+      },
+      {
+        "target": "PDHA1",
+        "rationale": "PDHA1编码丙酮酸脱氢酶E1α亚基，位于线粒体丙酮酸进入三羧酸循环后的直接代谢节点，可用于评估丙酮酸输入受限后的下游通量改变。"
+      },
+      {
+        "target": "PDHB",
+        "rationale": "PDHB编码丙酮酸脱氢酶E1β亚基，与PDHA1共同催化丙酮酸脱羧步骤，是MPC介导底物供应通路中的真实下游节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

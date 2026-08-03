@@ -1,0 +1,65 @@
+{
+  "gene": "MAGOH",
+  "generatedAt": "2026-08-03T14:00:55.944Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAGOH 是外显子连接复合体核心组分，与 RBM8A/Y14 形成稳定异二聚体并参与剪接后 mRNA 监测、无义介导降解和神经发育相关转录本稳态。Open Targets 显示其与神经退行性疾病存在遗传与功能层面的关联，但 MAGOH 为核内 RNA 结合复合体蛋白，缺乏胞外结构域、分泌形式或膜受体可及性，常规体内抗体药物可及性明显受限。因此其作为抗体设计对象更适合定位于结构生物学研究、细胞内递送抗体或降解偶联工具；相较膜受体或分泌性神经炎症靶点，治疗性优先级较低，但其高分辨率复合物结构支持界面阻断型研究抗体设计。",
+    "mechanism": "通过结合 MAGOH-RBM8A 异二聚体界面邻近区域，阻断 MAGOH 与 RBM8A/Y14 的稳定装配，从而干扰 EJC 核心复合体形成。",
+    "selectedEpitope": "优先锁定 MAGOH 与 RBM8A/Y14 接触面的外露α螺旋-β折叠边缘，避免RNA结合面。",
+    "diseaseDirection": "神经退行性疾病与RNA监测异常",
+    "domain": "MAGOH 为小型核内EJC核心蛋白，主要由β折叠核心和外露α螺旋组成，与RBM8A形成异二聚体。",
+    "evidence": "MAGOH-EJC结构与神经疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P61326 functional annotation",
+      "RCSB PDB 1P27 experimental structure",
+      "EJC core complex literature evidence"
+    ],
+    "referenceEntries": "UniProt P61326；RCSB PDB 1P27；Open Targets MAGOH",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "MAGOH-RBM8A异二聚体界面外露边缘",
+        "可用于阻断EJC核心装配并验证界面依赖功能",
+        "优先"
+      ],
+      [
+        "Site B",
+        "MAGOH β折叠核心远离RNA结合面的可及表面",
+        "利于获得构象识别抗体并降低复合体非特异干扰",
+        "备选"
+      ],
+      [
+        "Site C",
+        "MAGOH与EJC其他组分邻近的保守内凹区域",
+        "保守性高且空间遮挡风险较大，可能影响选择性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAGOH 为核内非分泌蛋白，体内抗体可及性不足；建议限定为细胞内递送、研究级Fab/VHH或降解工具开发，并重点评估EJC广泛功能干扰风险。",
+    "structurePrepZh": "以PDB 1P27为模板，保留MAGOH-RBM8A复合体构象，补全缺失侧链并标注链间接触残基；表位筛选需排除晶体接触伪界面。",
+    "structureRef": "PDB 1P27，2.0 Å X-ray EJC核心复合体结构",
+    "antibodies": [
+      "MAGOH研究级单克隆抗体",
+      "EJC复合体识别型研究抗体"
+    ],
+    "interfaceFocus": "MAGOH-RBM8A/Y14异二聚体接触界面",
+    "designMode": "细胞内界面阻断",
+    "candidates": [
+      {
+        "target": "RBM8A",
+        "rationale": "RBM8A/Y14 是 MAGOH 的直接异二聚体伙伴，共同构成EJC核心，靶向其界面可同样干扰核心复合体稳定性。"
+      },
+      {
+        "target": "EIF4A3",
+        "rationale": "EIF4A3 是EJC核心ATP依赖RNA解旋酶组分，负责锚定剪接后mRNA，处于同一mRNA监测与NMD通路。"
+      },
+      {
+        "target": "CASC3",
+        "rationale": "CASC3/MLN51 是EJC外周核心相关组分，参与EJC成熟和翻译后mRNA命运调控，可作为同通路功能验证靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

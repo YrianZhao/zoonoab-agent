@@ -1,0 +1,65 @@
+{
+  "gene": "TRIM65",
+  "generatedAt": "2026-08-03T17:30:17.687Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TRIM65为胞内E3泛素连接酶，参与RNA病毒识别后对MDA5/RIG-I样受体轴及下游IRF3、NF-κB炎症转录反应的调节；现有Open Targets关联以心血管表型、红细胞计数、铁代谢和体重等多因素性状为主，直接疾病因果强度有限。该蛋白缺乏分泌形式和跨膜胞外结构域，天然抗体可及性不具备常规优势，仅适合细胞内抗体、降解抗体或研究型结构探针。相比TNF、IL6R、PCSK9等同疾病方向中具备胞外可及性和临床验证的靶点，TRIM65作为治疗性抗体主靶点优先级较低，但其高分辨率结构可支持机制验证型分子设计。",
+    "mechanism": "以细胞内Fab/VHH结合TRIM65 SPRY/B30.2底物识别面，阻断其与MDA5 CARD相关复合体或泛素化底物的结合，降低K63型泛素链介导的抗病毒炎症放大。",
+    "selectedEpitope": "优先覆盖SPRY/B30.2结构域可变环与底物结合沟槽，避开核心折叠疏水面。",
+    "diseaseDirection": "炎症免疫与心血管表型关联",
+    "domain": "TRIM65含RING、B-box、卷曲螺旋及C端SPRY/B30.2结构域；7JL4解析其SPRY结构域。",
+    "evidence": "TRIM65结构与炎症免疫关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q6PJ69蛋白功能注释",
+      "RCSB PDB 7JL4晶体结构记录",
+      "TRIM65调控MDA5/RIG-I样受体抗病毒信号文献"
+    ],
+    "referenceEntries": "UniProt Q6PJ69；RCSB PDB 7JL4；Open Targets TRIM65",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SPRY/B30.2可变环底物识别沟槽",
+        "可能直接干预底物招募与泛素化复合体形成，适合功能阻断型细胞内抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SPRY结构域外周溶剂暴露β片层边缘",
+        "有利于获得高亲和结合分子，可作为结构探针或非阻断型结合臂",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SPRY核心β夹层保守疏水折叠面",
+        "易影响结构稳定性且可能产生非特异疏水界面，应避免作为主表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为靶点胞内定位导致常规抗体递送不可及，且疾病遗传关联强度偏低。设计应限定为细胞内VHH/Fab、递送偶联或研究型功能验证，不宜直接定义为常规体内阻断抗体。",
+    "structurePrepZh": "以7JL4中A、B、C链SPRY结构域为模板，保留高置信晶体链，校正缺失侧链与质子化状态，按生理界面评估可变环暴露度与晶体接触干扰。",
+    "structureRef": "RCSB PDB 7JL4，X-ray diffraction，1.92 Å",
+    "antibodies": [
+      "暂无获批TRIM65治疗性抗体",
+      "TRIM家族SPRY结构域研究型抗体/纳米抗体"
+    ],
+    "interfaceFocus": "SPRY可变环底物识别沟槽与泛素化底物接触面",
+    "designMode": "细胞内阻断型",
+    "candidates": [
+      {
+        "target": "IFIH1",
+        "rationale": "IFIH1编码MDA5，是TRIM65相关抗病毒RNA识别通路中的核心受体；其活化驱动MAVS依赖的IRF3与NF-κB信号。"
+      },
+      {
+        "target": "MAVS",
+        "rationale": "MAVS位于RIG-I样受体下游线粒体平台，连接MDA5/RIG-I与TBK1、IKK复合体；该节点与TRIM65调控的抗病毒炎症放大处于同一通路。"
+      },
+      {
+        "target": "TBK1",
+        "rationale": "TBK1介导IRF3磷酸化并促进I型干扰素转录，是RLR-MAVS轴下游关键激酶；适合与TRIM65机制研究进行通路级对照。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

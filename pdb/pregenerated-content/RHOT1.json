@@ -1,0 +1,65 @@
+{
+  "gene": "RHOT1",
+  "generatedAt": "2026-08-03T16:02:42.786Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RHOT1编码线粒体外膜Rho GTPase Miro1，参与线粒体沿微管运输、钙依赖性停靠及PINK1/Parkin介导的线粒体质量控制；其遗传关联主要集中于VLDL脂质测量和红细胞分布宽度等数量性状，疾病因果强度有限。该蛋白为线粒体外膜多跨膜蛋白，主要功能性GTPase与EF-hand结构域位于胞质侧，并非分泌蛋白或细胞表面受体，常规体内抗体可及性不具优势。相较PCSK9、APOB或ANGPTL3等血浆可及脂质通路靶点，RHOT1更适合作为细胞内机制研究或递送型抗体工程探索靶点，主靶点优先级应谨慎评估。",
+    "mechanism": "设计方向为阻断RHOT1胞质GTPase结构域与TRAK1/2运输适配蛋白的结合，削弱驱动蛋白募集及线粒体微管运输。",
+    "selectedEpitope": "优先覆盖N端GTPase结构域开关区及TRAK适配蛋白结合邻近界面。",
+    "diseaseDirection": "脂质代谢数量性状与线粒体稳态",
+    "domain": "RHOT1含N端GTPase结构域、EF-hand钙结合区、C端GTPase结构域及跨膜锚定区。",
+    "evidence": "RHOT1结构与脂质性状遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q8IXI2蛋白功能与定位注释",
+      "RCSB PDB 6D71晶体结构记录",
+      "线粒体Miro1-TRAK运输复合体相关文献"
+    ],
+    "referenceEntries": "UniProt Q8IXI2；RCSB PDB 6D71；Open Targets RHOT1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端GTPase开关I/II及TRAK结合邻近面",
+        "可直接干预运输适配蛋白募集，机制可验证性较高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "EF-hand钙结合结构域外露环区",
+        "可能影响钙依赖性构象转换及线粒体停靠调节",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端跨膜邻近胞质区",
+        "接近膜锚定区，构象受膜环境影响且抗体可及性较低",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RHOT1为胞内线粒体外膜靶点，常规抗体难以到达作用界面；建议限定为细胞内递送抗体、intrabody或结构生物学验证场景。",
+    "structurePrepZh": "以PDB 6D71链A/B为模板，保留解析GTPase核心区，补全缺失环区并标注核苷酸结合口袋与潜在TRAK结合面。",
+    "structureRef": "RCSB PDB 6D71，X-ray，1.72 Å，人源RHOT1结构",
+    "antibodies": [
+      "研究级抗RHOT1/Miro1抗体",
+      "抗Miro1胞内intrabody候选"
+    ],
+    "interfaceFocus": "GTPase开关区、核苷酸口袋邻近面与TRAK结合界面",
+    "designMode": "胞内递送抗体",
+    "candidates": [
+      {
+        "target": "TRAK1",
+        "rationale": "TRAK1是RHOT1/Miro1介导线粒体运输的直接适配蛋白，连接线粒体与驱动蛋白复合体，适合作为同一运输轴的机制对照靶点。"
+      },
+      {
+        "target": "TRAK2",
+        "rationale": "TRAK2与RHOT1共同调控线粒体在微管上的定位和运输，阻断其与Miro蛋白的互作可验证运输复合体依赖性。"
+      },
+      {
+        "target": "PINK1",
+        "rationale": "PINK1在线粒体损伤后促进Miro1磷酸化与Parkin依赖性清除，位于RHOT1相关线粒体质量控制通路上游。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

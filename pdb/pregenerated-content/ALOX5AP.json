@@ -1,0 +1,65 @@
+{
+  "gene": "ALOX5AP",
+  "generatedAt": "2026-08-03T10:24:28.332Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ALOX5AP/FLAP是白三烯生物合成通路的膜内支架蛋白，促进花生四烯酸递送至5-脂氧合酶并驱动LTB4与半胱氨酰白三烯生成，因而与哮喘、炎症性肠病及缺血性卒中炎症反应相关。该蛋白为核膜/内质网膜多跨膜蛋白，虽非典型大胞外抗原，但膜外短环与寡聚体界面可作为构象识别窗口。相较下游受体拮抗，靶向FLAP具有上游抑制多类白三烯产物的优先级优势，但抗体可及性需严格评估。",
+    "mechanism": "通过构象性结合FLAP膜外环及三聚体近端界面，干扰花生四烯酸进入FLAP结合腔并削弱其向ALOX5递送底物的能力。",
+    "selectedEpitope": "优先锁定FLAP三聚体外侧膜近端环区及跨膜螺旋束入口，避开深层疏水膜内口袋。",
+    "diseaseDirection": "白三烯介导炎症性疾病",
+    "domain": "ALOX5AP为四跨膜MAPEG家族蛋白，形成同源三聚体，含膜内花生四烯酸结合通道。",
+    "evidence": "FLAP结构与白三烯通路疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与药理关联",
+      "UniProt P20292蛋白功能与亚细胞定位注释",
+      "RCSB PDB 6VGC晶体结构解析",
+      "白三烯生物合成及FLAP抑制剂药理研究"
+    ],
+    "referenceEntries": "UniProt P20292；RCSB PDB 6VGC；Open Targets ALOX5AP",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "三聚体外侧膜近端短环与跨膜螺旋入口",
+        "最可能实现构象锁定并影响底物进入通道",
+        "优先"
+      ],
+      [
+        "Site B",
+        "相邻亚基跨膜螺旋束外侧界面",
+        "可稳定非活性寡聚体构象并削弱ALOX5功能耦联",
+        "备选"
+      ],
+      [
+        "Site C",
+        "膜内花生四烯酸/抑制剂结合腔周边",
+        "药理相关性高但抗体难以进入疏水膜内区域",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ALOX5AP胞外暴露面积有限，常规IgG或Fab空间可及性受膜环境限制；建议采用小型VHH或膜近端构象筛选，并以细胞膜原位结合验证优先。",
+    "structurePrepZh": "以PDB 6VGC六链晶体结构提取FLAP三聚体生物装配，保留跨膜螺旋束构象，结合膜法向重建并标注膜外环暴露面。",
+    "structureRef": "Ferguson et al., FLAP crystal structure, PDB 6VGC",
+    "antibodies": [
+      "无已获批抗ALOX5AP治疗性抗体",
+      "研究级抗FLAP/ALOX5AP抗体"
+    ],
+    "interfaceFocus": "膜外短环、三聚体界面及底物通道入口",
+    "designMode": "膜蛋白构象抗体",
+    "candidates": [
+      {
+        "target": "ALOX5",
+        "rationale": "ALOX5直接催化花生四烯酸生成5-HPETE和LTA4，是FLAP递送底物后的核心酶节点；与ALOX5AP共同定义白三烯合成上游瓶颈。"
+      },
+      {
+        "target": "LTA4H",
+        "rationale": "LTA4H将LTA4水解为LTB4，驱动中性粒细胞趋化和炎症放大；适合作为LTB4分支的下游验证靶点。"
+      },
+      {
+        "target": "LTC4S",
+        "rationale": "LTC4S催化LTA4与谷胱甘肽生成LTC4，启动半胱氨酰白三烯分支；与哮喘和黏膜炎症病理高度相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

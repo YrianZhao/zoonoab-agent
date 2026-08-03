@@ -1,0 +1,65 @@
+{
+  "gene": "PIN1",
+  "generatedAt": "2026-08-03T15:18:28.167Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PIN1为胞内肽基脯氨酰顺反异构酶，识别磷酸化Ser/Thr-Pro基序并改变底物构象，参与细胞周期、DNA损伤反应、炎症转录及神经退行性病变相关蛋白稳态。该靶点缺乏经典胞外结构域或分泌形式，完整抗体在常规给药条件下抗原可及性受限，较适合细胞内递送抗体、intrabody或降解偶联策略。其优先级主要来自底物节点广泛性和高分辨率结构可塑性；相较单一上游受体，PIN1可在磷酸化依赖构象开关层面同时影响多条疾病相关轴，但需将可及性风险列为核心设计约束。",
+    "mechanism": "阻断PIN1 WW结构域与磷酸化Ser/Thr-Pro底物基序结合，并干扰PPIase催化口袋对底物脯氨酰键的顺反异构化。",
+    "selectedEpitope": "优先覆盖WW结构域磷酸肽结合沟槽及其与PPIase结构域邻近界面。",
+    "diseaseDirection": "肿瘤、炎症与神经退行性疾病",
+    "domain": "N端WW结构域负责磷酸化底物识别，C端PPIase结构域包含催化口袋并介导脯氨酰键异构化。",
+    "evidence": "PIN1磷酸化底物构象调控证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q13526功能与结构域注释",
+      "RCSB PDB 1PIN晶体结构记录",
+      "PhosphoSitePlus磷酸化底物与修饰信息"
+    ],
+    "referenceEntries": "UniProt Q13526；RCSB PDB 1PIN；Open Targets PIN1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "WW结构域磷酸Ser/Thr-Pro结合沟槽",
+        "直接阻断PIN1对磷酸化底物的初始识别，机制明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PPIase结构域催化口袋邻近环区",
+        "干扰底物进入与催化构象稳定，可形成非竞争或别构抑制",
+        "备选"
+      ],
+      [
+        "Site C",
+        "WW-PPIase结构域连接界面",
+        "可能改变结构域相对取向，但存在构象异质性和物种保守性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PIN1为胞内抗原，常规抗体组织分布与细胞摄取不足；建议采用intrabody、细胞穿透递送或降解型抗体片段，并规避高度保守催化残基导致的选择性风险。",
+    "structurePrepZh": "以1PIN链A为模板，保留WW与PPIase双结构域坐标，校正缺失氢原子、质子化状态和催化口袋水网络，标注磷酸肽结合残基。",
+    "structureRef": "Ranganathan et al., Cell 1997；PDB 1PIN, 1.35 Å",
+    "antibodies": [
+      "抗PIN1研究级单克隆抗体",
+      "细胞内抗PIN1 intrabody候选格式"
+    ],
+    "interfaceFocus": "WW磷酸肽沟槽与PPIase催化入口",
+    "designMode": "胞内阻断型设计",
+    "candidates": [
+      {
+        "target": "CDK1",
+        "rationale": "CDK1产生多种Ser/Thr-Pro磷酸化底物位点，与PIN1识别模块处于同一磷酸化依赖细胞周期调控轴。抑制该节点可减少PIN1底物构象开关的上游输入。"
+      },
+      {
+        "target": "PLK1",
+        "rationale": "PLK1介导有丝分裂磷酸化事件，并与PIN1共同影响细胞周期进程和肿瘤增殖相关网络。其激酶活性位于同一磷酸化信号通路层级。"
+      },
+      {
+        "target": "TP53",
+        "rationale": "TP53为PIN1调控的磷酸化底物之一，DNA损伤后PIN1可影响p53构象与功能输出。该节点适合作为DNA损伤反应通路中的机制参照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

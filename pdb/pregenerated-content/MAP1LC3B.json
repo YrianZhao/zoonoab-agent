@@ -1,0 +1,65 @@
+{
+  "gene": "MAP1LC3B",
+  "generatedAt": "2026-08-03T14:02:04.274Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAP1LC3B 是自噬通路核心 ATG8 家族成员，LC3B-I 经脂质化形成 LC3B-II 后结合自噬体膜，并通过 LIR 基序识别 SQSTM1/p62、NBR1 等货物受体；该过程与病毒复制复合体重塑、炎症清除及神经退行性蛋白聚集处理相关。该蛋白主要位于胞质和自噬体膜胞质侧，并非经典分泌蛋白或细胞外膜受体，因此抗原可及性适合细胞内抗体、递送型 Fab/VHH 或成像探针策略。相比上游多功能激酶或泛素化节点，LC3B 直接标记自噬体膜并具有清晰 LIR 结合界面，结构解析度高，适合作为机制验证与构象选择性抗体设计优先靶点。",
+    "mechanism": "设计抗体阻断 LC3B 疏水 LIR docking site 与 SQSTM1、NBR1 或病毒蛋白 LIR 样基序结合，干预自噬货物募集与自噬体成熟过程。",
+    "selectedEpitope": "优先覆盖 ubiquitin-like 核心结构的 LDS 界面，即 α2 螺旋与 β2 区域形成的 LIR 结合沟槽。",
+    "diseaseDirection": "感染与神经退行性自噬调控",
+    "domain": "LC3B 含 N 端 α 螺旋区与 ATG8/ubiquitin-like β-grasp 核心，C 端 Gly120 为脂质化位点。",
+    "evidence": "MAP1LC3B 自噬-感染-神经退行性证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB Q9GZQ8 functional annotation",
+      "RCSB PDB 5D94 X-ray structure",
+      "Reactome autophagy pathway annotation"
+    ],
+    "referenceEntries": "UniProt Q9GZQ8；RCSB PDB 5D94；Reactome R-HSA-9613829",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "LDS 结合沟槽：α2 螺旋、β2 及邻近疏水口袋",
+        "直接阻断 LIR 基序依赖的货物受体或病毒蛋白结合，机制可解释性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N 端 α1/α2 螺旋外露面",
+        "可调节 LC3B 与调控因子接触并提供构象选择性识别窗口",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端 Gly120 周边脂质化尾部区域",
+        "邻近 ATG4 剪切与 PE 偶联位点，可能影响 LC3B 加工但易干扰广泛自噬稳态",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAP1LC3B 属细胞内自噬蛋白，常规体液抗体难以直接触达靶点；建议采用细胞内 VHH、递送型 Fab 或检测型抗体，并避免完全抑制基础自噬造成细胞毒性。",
+    "structurePrepZh": "以 5D94 晶体结构链 A/B 为模板，保留 ubiquitin-like 核心构象，检查晶体接触界面，标注 LDS 疏水口袋与 C 端脂质化相关残基。",
+    "structureRef": "RCSB PDB 5D94，X-ray diffraction，1.53 Å",
+    "antibodies": [
+      "Anti-LC3B antibody clone D11",
+      "Anti-LC3B antibody clone 4E12"
+    ],
+    "interfaceFocus": "LDS 疏水口袋与 LIR 基序结合界面",
+    "designMode": "细胞内阻断型",
+    "candidates": [
+      {
+        "target": "SQSTM1",
+        "rationale": "SQSTM1/p62 通过 LIR 基序结合 LC3B 并连接泛素化货物至自噬体，是选择性自噬货物募集的核心适配因子。"
+      },
+      {
+        "target": "ATG4B",
+        "rationale": "ATG4B 负责 LC3B 前体剪切及 LC3-PE 去脂质化，直接控制 LC3B 成熟与自噬体膜循环。"
+      },
+      {
+        "target": "ATG7",
+        "rationale": "ATG7 是 LC3B 脂质化级联中的 E1 样酶，驱动 LC3B 向 ATG3 转移并促进 LC3-II 形成。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

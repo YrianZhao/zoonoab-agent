@@ -1,0 +1,65 @@
+{
+  "gene": "CRABP2",
+  "generatedAt": "2026-08-03T11:37:19.770Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CRABP2是胞内视黄酸结合蛋白，负责结合全反式视黄酸并促进其向RAR核受体通路递送，影响神经分化、炎症细胞状态及上皮转录程序。其主要定位于胞质和细胞核，天然抗原可及性不具备膜受体或分泌蛋白优势，因此更适合作为细胞内功能研究、递送型抗体或降解偶联策略的探索靶点。相较RAR/RXR等核受体，CRABP2结构较小、配体结合口袋清晰且PDB 2G7B分辨率高，利于构建结构约束的结合分子；但作为常规治疗性抗体靶点优先级低于可直接胞外拦截的同通路受体或酶类靶点。",
+    "mechanism": "设计分子结合CRABP2β桶配体入口区，干扰全反式视黄酸进入疏水口袋或其向RAR复合体递送，从而削弱RAR介导转录激活。",
+    "selectedEpitope": "优先覆盖β桶开口区及α螺旋帽结构，邻近视黄酸结合腔入口。",
+    "diseaseDirection": "视黄酸信号与神经炎症方向",
+    "domain": "CRABP2为细胞内脂质结合蛋白家族成员，含β桶疏水配体结合腔及N端α螺旋帽。",
+    "evidence": "CRABP2视黄酸结合与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P29373功能与亚细胞定位注释",
+      "RCSB PDB 2G7B高分辨率晶体结构",
+      "视黄酸-RAR/RXR核受体信号通路文献"
+    ],
+    "referenceEntries": "UniProt P29373；RCSB PDB 2G7B；Open Targets CRABP2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "β桶开口与α螺旋帽邻接区",
+        "可阻断视黄酸进入配体结合腔并影响递送构象",
+        "优先"
+      ],
+      [
+        "Site B",
+        "β折叠外侧保守疏水腔背面",
+        "有助于形成稳定结合但对功能阻断依赖构象验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "配体腔深部高度疏水核心",
+        "空间狭窄且易受内源性视黄酸竞争，工程可开发性受限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CRABP2缺乏胞外暴露，常规抗体难以接触内源靶点；建议采用细胞内递送、VHH工程或PROTAB样降解平台，并严格评估CRABP1交叉反应。",
+    "structurePrepZh": "以2G7B链A为模板，保留高分辨率主链构象，检查配体口袋水分子与侧链质子化状态，去除非功能晶体接触后定义可设计表面。",
+    "structureRef": "RCSB PDB 2G7B，X-ray diffraction，1.18 Å",
+    "antibodies": [
+      "抗CRABP2研究用单克隆抗体",
+      "抗CRABP2免疫组化诊断抗体"
+    ],
+    "interfaceFocus": "β桶配体入口与α螺旋帽界面",
+    "designMode": "胞内靶点VHH设计",
+    "candidates": [
+      {
+        "target": "RARA",
+        "rationale": "RARA是全反式视黄酸结合后的核心核受体，直接驱动RARE依赖转录，处于CRABP2递送轴下游。其疾病相关性和药理学可验证性强。"
+      },
+      {
+        "target": "RXRA",
+        "rationale": "RXRA与RAR形成异二聚体，是视黄酸核受体转录复合体的必要组成部分。靶向该节点可影响同一RAR/RXR转录通路。"
+      },
+      {
+        "target": "ALDH1A2",
+        "rationale": "ALDH1A2催化视黄醛生成视黄酸，位于CRABP2介导递送之前的合成环节。该酶控制局部视黄酸供给并与发育及炎症状态相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

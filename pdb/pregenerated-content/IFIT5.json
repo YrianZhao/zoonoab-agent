@@ -1,0 +1,65 @@
+{
+  "gene": "IFIT5",
+  "generatedAt": "2026-08-03T19:55:50.815Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IFIT5为干扰素诱导的胞质RNA结合蛋白，主要识别5′-三磷酸RNA并参与先天抗病毒应答；现有疾病关联以肾小球肾炎及炎症相关表型为主，但遗传关联强度较低。该蛋白缺乏跨膜区和分泌信号肽，天然状态下抗体对胞质抗原的可及性受限，因此更适合用于胞内递送抗体片段、诊断结合试剂或细胞内功能干预模型。相较于IFNAR1、TLR3或IFIH1等同通路膜受体和传感器，IFIT5的抗体药物开发优先级较低，但其4HOR高分辨率结构提供了可用于结构引导结合分子设计的明确TPR沟槽。抗原可及性劣势应作为核心风险，优先定位为研究级或递送型抗体设计靶点。",
+    "mechanism": "设计抗体片段占据IFIT5 TPR超螺旋RNA结合沟槽，阻断其与5′-三磷酸RNA末端的结合，从而干预IFIT5介导的RNA识别复合物形成。",
+    "selectedEpitope": "优先靶向TPR超螺旋内侧5′-ppp RNA结合沟槽及相邻碱性残基簇。",
+    "diseaseDirection": "干扰素应答相关肾小球炎症",
+    "domain": "IFIT5由连续四肽重复TPR基序构成弯曲超螺旋，形成带正电的RNA结合沟槽。",
+    "evidence": "IFIT5结构与干扰素应答关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q13325蛋白功能注释",
+      "RCSB PDB 4HOR晶体结构",
+      "InterPro四肽重复TPR结构域注释"
+    ],
+    "referenceEntries": "UniProt Q13325；RCSB PDB 4HOR；Open Targets IFIT5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "TPR超螺旋内侧RNA结合沟槽",
+        "可直接竞争5′-三磷酸RNA结合，机制最清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端TPR重复形成的入口边缘",
+        "可通过空间位阻限制RNA进入结合沟槽",
+        "备选"
+      ],
+      [
+        "Site C",
+        "TPR外侧凸面非RNA结合区域",
+        "结合可及性较好但功能阻断相关性较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IFIT5为胞质非分泌蛋白，常规抗体体内可及性不足；应优先采用胞内递送Fab/VHH、细胞穿透融合或作为诊断捕获抗体开发。",
+    "structurePrepZh": "以4HOR晶体结构为模板，保留抗原链A或X中完整TPR折叠，去除结晶冗余链与非功能性溶剂分子，并评估RNA沟槽电荷分布。",
+    "structureRef": "PDB 4HOR，human IFIT5，X-ray 1.861 Å",
+    "antibodies": [
+      "研究用抗IFIT5单克隆抗体",
+      "研究用抗IFIT5多克隆抗体"
+    ],
+    "interfaceFocus": "TPR内侧沟槽与5′-ppp RNA结合界面",
+    "designMode": "胞内递送阻断",
+    "candidates": [
+      {
+        "target": "IFIT1",
+        "rationale": "IFIT1同属干扰素诱导TPR蛋白家族，可结合病毒5′-三磷酸或未甲基化帽结构RNA，处于相同抗病毒RNA识别通路。其RNA结合机制更充分表征，可作为同通路优先比较靶点。"
+      },
+      {
+        "target": "IFIH1",
+        "rationale": "IFIH1编码MDA5，是胞质双链RNA传感器，可通过MAVS诱导I型干扰素产生，与IFIT5同属抗病毒先天免疫轴。其疾病遗传学证据较强，适合作为上游通路候选靶点。"
+      },
+      {
+        "target": "IFNAR1",
+        "rationale": "IFNAR1为I型干扰素受体亚基，介导JAK-STAT信号并诱导IFIT5表达。其细胞表面可及性显著优于IFIT5，适合抗体药物方向的同通路替代靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

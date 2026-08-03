@@ -1,0 +1,65 @@
+{
+  "gene": "GSK3A",
+  "generatedAt": "2026-08-03T12:58:58.804Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GSK3A编码胞内丝氨酸/苏氨酸蛋白激酶，参与WNT/β-catenin、胰岛素及神经可塑性相关磷酸化网络，在双相障碍和重性抑郁障碍中与锂盐敏感的GSK3抑制机制存在遗传和药理学关联。该蛋白主要定位于胞质和核内，缺乏天然胞外结构域或分泌特征，因此常规体内阻断型抗体的抗原可及性显著受限，更适合用于结构生物学、细胞内抗体或降解偶联探索。相较同通路中具有细胞表面可及性的受体靶点，GSK3A的优势在于激酶结构清晰、疾病遗传证据较集中，并可与GSK3B进行亚型选择性比较设计。",
+    "mechanism": "设计分子应阻断GSK3A ATP结合裂隙或底物磷酸化沟槽，抑制其对β-catenin、CRMP2等底物的Ser/Thr磷酸化。",
+    "selectedEpitope": "优先覆盖N叶β折叠-铰链区与C叶催化裂隙边缘，规避高度保守ATP口袋核心残基。",
+    "diseaseDirection": "精神障碍与神经可塑性通路",
+    "domain": "GSK3A含N端延伸区、保守蛋白激酶N叶、铰链区、C叶催化域及活化环。",
+    "evidence": "GSK3A精神疾病遗传药理与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProtKB P49840功能与定位注释",
+      "RCSB PDB 7SXF晶体结构记录",
+      "锂盐抑制GSK3及WNT/β-catenin通路文献"
+    ],
+    "referenceEntries": "UniProt P49840；RCSB PDB 7SXF；Open Targets GSK3A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N叶-铰链区邻近ATP裂隙外缘",
+        "可干预核苷酸结合构象并保留亚型选择性优化空间",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C叶底物结合沟槽及活化环周边",
+        "有助于阻断底物肽进入催化中心并影响磷酸转移",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守ATP结合口袋核心",
+        "跨激酶家族保守性高，存在选择性和脱靶风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GSK3A为胞内激酶，常规抗体药物难以到达天然作用位点；建议限定为细胞内抗体、结构引导Fab/VHH或PROTAC抗体片段研究用途。",
+    "structurePrepZh": "以7SXF高分辨率晶体结构为模板，保留催化域链A/B，校正缺失环区、质子化状态和配体占位后进行界面建模。",
+    "structureRef": "RCSB PDB 7SXF，human GSK3A X-ray structure, 1.94 Å",
+    "antibodies": [
+      "抗GSK3A研究级单克隆抗体",
+      "抗GSK3A/GSK3B磷酸化状态检测抗体"
+    ],
+    "interfaceFocus": "ATP裂隙外缘与底物结合沟槽",
+    "designMode": "细胞内阻断型",
+    "candidates": [
+      {
+        "target": "GSK3B",
+        "rationale": "GSK3B与GSK3A共享锂盐敏感的GSK3信号轴，并在WNT/β-catenin和神经可塑性磷酸化调控中具有更充分的疾病研究基础。"
+      },
+      {
+        "target": "CTNNB1",
+        "rationale": "CTNNB1编码β-catenin，是GSK3复合体直接磷酸化并促使其降解的关键效应蛋白，可用于评估WNT通路下游响应。"
+      },
+      {
+        "target": "AXIN1",
+        "rationale": "AXIN1是β-catenin破坏复合体支架蛋白，组织GSK3、APC与CTNNB1相互作用，是同一WNT/GSK3通路中的真实调控节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

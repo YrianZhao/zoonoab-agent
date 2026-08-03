@@ -1,0 +1,65 @@
+{
+  "gene": "CHN2",
+  "generatedAt": "2026-08-03T11:23:04.840Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CHN2编码β2-chimaerin，是含SH2、C1和RacGAP结构域的胞内Rac GTPase activating protein，主要通过促进RAC1水解GTP限制Rac介导的细胞骨架与神经发育信号。Open Targets显示其与神经退行性疾病及脂质相关表型存在遗传关联，但CHN2并非分泌蛋白或膜受体，缺乏天然胞外可及抗原面，常规体内阻断抗体成药性受限。相较LRRK2、APP、TREM2等神经退行通路中抗原可及性或遗传证据更成熟的靶点，CHN2更适合作为结构生物学验证或胞内递送抗体探索靶点，优先级应低于可直接接触的膜蛋白和分泌因子。",
+    "mechanism": "设计分子应结合CHN2 RacGAP结构域的Rho-family GTPase识别面，干预CHN2与GTP结合态RAC1的复合物形成，从而改变RAC1-GTP水解效率。",
+    "selectedEpitope": "优先评估RacGAP结构域催化邻近的RAC1结合沟槽，避开深埋催化核心并保留构象判别能力。",
+    "diseaseDirection": "神经退行性疾病与Rac信号",
+    "domain": "CHN2含N端SH2结构域、C1二酰甘油/佛波酯结合结构域及C端RacGAP催化结构域。",
+    "evidence": "CHN2神经退行关联与RacGAP结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P52757蛋白功能与结构域注释",
+      "RCSB PDB 1XA6 X射线晶体结构",
+      "Reactome/GO中Rac GTPase调控注释"
+    ],
+    "referenceEntries": "UniProt P52757；RCSB PDB 1XA6；HGNC CHN2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RacGAP结构域RAC1结合沟槽及switch区接触面",
+        "可直接影响CHN2识别GTP态RAC1，具备明确机制读出",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C1结构域疏水配体结合口袋周边构象表面",
+        "可能调节脂质依赖的膜定位与CHN2活化状态",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SH2结构域磷酸酪氨酸结合沟槽",
+        "可影响上游磷酸化蛋白招募，但疾病机制外推不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CHN2为胞内蛋白，常规抗体难以在活细胞内到达靶点；1XA6分辨率为3.2 Å，界面侧链定位需谨慎，建议采用胞内递送格式并以RAC1-GTP水解实验验证。",
+    "structurePrepZh": "以1XA6链A为模板，补全缺失环区并检查GAP结构域构象；去除结晶非生物接触后，对RAC1结合面进行保守性与可成药表面评估。",
+    "structureRef": "RCSB PDB 1XA6，human β2-chimaerin晶体结构，3.2 Å",
+    "antibodies": [
+      "暂无已批准CHN2治疗性抗体",
+      "研究级抗CHN2检测抗体"
+    ],
+    "interfaceFocus": "RacGAP结构域RAC1 switch I/II接触界面",
+    "designMode": "胞内靶向探索",
+    "candidates": [
+      {
+        "target": "RAC1",
+        "rationale": "RAC1是CHN2的直接小GTP酶底物，参与肌动蛋白重塑、神经突起发育和细胞应激反应；调节RAC1活性可与CHN2-RacGAP机制形成同一路径验证。"
+      },
+      {
+        "target": "LRRK2",
+        "rationale": "LRRK2在神经退行性疾病中具有强遗传证据，并可影响Rac相关细胞骨架、囊泡运输和炎症过程；其疾病证据成熟度高于CHN2。"
+      },
+      {
+        "target": "PAK1",
+        "rationale": "PAK1为RAC1/CDC42下游效应激酶，连接Rac活性与肌动蛋白动态及神经元结构改变；适合作为CHN2-RAC1轴下游功能读出靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

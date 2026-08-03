@@ -1,0 +1,65 @@
+{
+  "gene": "PKMYT1",
+  "generatedAt": "2026-08-03T15:19:33.230Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PKMYT1 是膜相关丝氨酸/苏氨酸-酪氨酸蛋白激酶，主要通过磷酸化 CDK1 Thr14 与 Tyr15 抑制 G2/M 转换，在细胞周期检查点和复制压力应答中具有明确作用。Open Targets 显示其与乳腺癌及多类疾病存在遗传或功能关联，但其催化结构域位于胞内侧，天然抗原可及性不符合常规细胞外抗体阻断要求。相较于 WEE1、CHEK1 等同通路靶点，PKMYT1 在 CCNE1 扩增或 WEE1 依赖背景中具有合成致死研究价值，但更适合作为胞内降解抗体、递送型抗体或研究型结合分子而非传统裸抗体主靶点。",
+    "mechanism": "设计分子应结合 PKMYT1 激酶结构域 ATP 结合裂隙邻近区域，空间干扰 ATP 与底物 CDK1 的有效定位，降低 CDK1 Thr14/Tyr15 抑制性磷酸化。",
+    "selectedEpitope": "优先评估激酶 N-lobe/C-lobe 之间 ATP 口袋外缘及活化环邻近构象表位。",
+    "diseaseDirection": "细胞周期检查点与乳腺癌",
+    "domain": "PKMYT1 含 N 端膜相关区及胞质激酶结构域，5VCZ 覆盖催化核心构象。",
+    "evidence": "PKMYT1 细胞周期检查点与肿瘤依赖性证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt Q99640 功能与亚细胞定位注释",
+      "RCSB PDB 5VCZ X-ray 结构记录",
+      "细胞周期 G2/M 检查点与 CDK1 磷酸化文献"
+    ],
+    "referenceEntries": "UniProt Q99640；RCSB PDB 5VCZ；Open Targets PKMYT1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域 ATP 结合裂隙外缘与铰链区邻近表面",
+        "可影响 ATP 结合构象及催化核心闭合，适合胞内结合分子设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C-lobe 底物识别沟槽及 CDK1 定位相关表面",
+        "有望削弱 CDK1 底物进入与 Thr14/Tyr15 磷酸化效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端膜相关区预测暴露片段",
+        "结构覆盖不足且构象柔性较高，需结合全长膜定位模型验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PKMYT1 为膜相关但催化结构域位于胞内，常规抗体难以直接接触功能表位。建议限定为细胞内抗体、抗体递送或 PROTAC/降解偶联验证场景。",
+    "structurePrepZh": "以 5VCZ 链 A 为模板，保留激酶核心坐标，校正缺失环区、质子化状态与配体邻近残基，另行建模 N 端膜相关区。",
+    "structureRef": "RCSB PDB 5VCZ，X-ray diffraction，1.5 Å",
+    "antibodies": [
+      "无已获批 PKMYT1 治疗性抗体",
+      "研究级抗 PKMYT1 抗体"
+    ],
+    "interfaceFocus": "ATP 口袋外缘、铰链区、底物识别沟槽",
+    "designMode": "胞内阻断/降解型",
+    "candidates": [
+      {
+        "target": "WEE1",
+        "rationale": "WEE1 同样通过 CDK1 Tyr15 抑制性磷酸化维持 G2/M 检查点，是 PKMYT1 同轴细胞周期通路中的关键激酶。其药理学证据更成熟，可作为通路优先级参照。"
+      },
+      {
+        "target": "CDK1",
+        "rationale": "CDK1 是 PKMYT1 的直接底物，其 Thr14/Tyr15 磷酸化状态决定有丝分裂进入。围绕 CDK1 磷酸化调控可直接验证 PKMYT1 机制依赖性。"
+      },
+      {
+        "target": "CHEK1",
+        "rationale": "CHEK1 位于复制压力和 DNA 损伤检查点上游，可通过 CDC25 抑制间接维持 CDK1 磷酸化。其与 PKMYT1 共同构成肿瘤细胞 G2/M 检查点脆弱性网络。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "TMEM141",
+  "generatedAt": "2026-08-03T17:20:34.811Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TMEM141 为多跨膜小分子膜蛋白，现有 Open Targets 疾病关联信号较弱，主要覆盖克罗恩病、肝细胞癌及泛肿瘤表型，但尚缺乏其在炎症或肿瘤驱动通路中的明确配体、受体或信号节点证据。其抗原可及性受限于预测跨膜拓扑，仅潜在胞外短环可供抗体结合，完整构象表位开发难度高。相较 TNF、IL23A、IL12B、ITGA4 等同类炎症通路靶点，TMEM141 的遗传、药理与功能验证证据不足，优先级应定位为探索性低优先级膜蛋白靶点。",
+    "mechanism": "优先探索抗体结合预测胞外环以干扰 TMEM141 可能的膜邻近蛋白互作；不宜预设阻断已知配体受体轴。",
+    "selectedEpitope": "围绕预测胞外短环与跨膜螺旋连接区设计线性/构象表位，避开膜埋藏螺旋核心。",
+    "diseaseDirection": "炎症性肠病与肿瘤探索方向",
+    "domain": "TMEM141 为小型多跨膜蛋白，缺乏经典可溶性胞外结构域，PDB 2LOR 提供溶液 NMR 结构参考。",
+    "evidence": "TMEM141 疾病关联与膜蛋白可成药性证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q96I45 蛋白注释",
+      "RCSB PDB 2LOR 溶液 NMR 结构条目",
+      "Human Protein Atlas 组织与亚细胞定位信息"
+    ],
+    "referenceEntries": "UniProt Q96I45；RCSB PDB 2LOR；Open Targets TMEM141",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "预测胞外短环及跨膜螺旋连接区",
+        "最大化抗体可及性，适合探索性结合抗体验证",
+        "优先"
+      ],
+      [
+        "Site B",
+        "NMR 结构中非膜埋藏的亲水暴露片段",
+        "可用于肽免疫或短环稳定化抗原设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "跨膜螺旋疏水核心区域",
+        "天然膜环境中可及性低，易产生非功能性结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险来自胞外区过短、拓扑不确定及疾病机制证据弱。建议先进行膜拓扑验证、细胞表面结合筛选和功能互作组学确认。",
+    "structurePrepZh": "以 2LOR NMR 构象簇为初始参考，结合 UniProt 拓扑预测标注膜埋藏区，保留胞外可及片段用于抗原建模。",
+    "structureRef": "RCSB PDB 2LOR；solution NMR human TMEM141",
+    "antibodies": [
+      "暂无公开临床抗体",
+      "暂无已验证同类功能抗体"
+    ],
+    "interfaceFocus": "预测胞外环与膜近端亲水连接区",
+    "designMode": "探索性膜蛋白抗体",
+    "candidates": [
+      {
+        "target": "TNF",
+        "rationale": "TNF 是克罗恩病炎症级联中的核心细胞因子，抗 TNF 抗体通过中和 TNF 与 TNFR1/TNFR2 结合已获得充分临床验证。"
+      },
+      {
+        "target": "IL23A",
+        "rationale": "IL23A 参与 IL-23/Th17 轴，驱动肠道慢性炎症及 IL-17 相关免疫反应，是炎症性肠病中证据更强的胞外细胞因子靶点。"
+      },
+      {
+        "target": "IL12B",
+        "rationale": "IL12B 编码 IL-12/IL-23 共享 p40 亚基，阻断 p40 可同时抑制 IL-12R 与 IL-23R 介导的炎症信号。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

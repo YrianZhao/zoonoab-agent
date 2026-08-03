@@ -1,0 +1,65 @@
+{
+  "gene": "IL13RA1",
+  "generatedAt": "2026-08-03T13:25:31.834Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IL13RA1是IL-13受体复合物的配体结合亚基，与IL4R形成异源受体后介导IL-13诱导的JAK1/TYK2-STAT6信号，并参与2型炎症、气道重塑及代谢炎症相关表型。该蛋白为I型跨膜受体，胞外细胞因子受体同源区可直接暴露于细胞表面，具备抗体识别和阻断的抗原可及性。相较下游STAT6或JAK激酶，IL13RA1位于配体-受体识别近端，便于实现选择性阻断IL-13轴而降低广泛免疫信号抑制风险。",
+    "mechanism": "抗体结合IL13RA1胞外细胞因子结合界面，阻断IL-13与IL13RA1结合及其后续招募IL4R形成信号复合物，从而抑制STAT6磷酸化。",
+    "selectedEpitope": "优先覆盖4HWB中IL13RA1胞外D1-D2细胞因子受体同源区的IL-13接触面。",
+    "diseaseDirection": "2型炎症与代谢炎症相关疾病",
+    "domain": "IL13RA1含胞外细胞因子受体同源结构域、单跨膜螺旋及胞内短尾区。",
+    "evidence": "IL13RA1-IL13受体复合物结构与疾病遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P78552功能与结构域注释",
+      "RCSB PDB 4HWB晶体结构记录",
+      "IL-13/IL-4R/STAT6通路文献证据"
+    ],
+    "referenceEntries": "UniProt:P78552；RCSB PDB:4HWB；Open Targets:IL13RA1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "D1-D2细胞因子受体同源区的IL-13结合界面",
+        "直接竞争IL-13结合，预期阻断效率最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "D2近膜侧与受体复合物装配相关表面",
+        "可能干扰IL4R共受体招募并降低信号复合物形成",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离配体结合面的D1外侧糖基化邻近区域",
+        "结合可及但功能阻断不确定，需避免糖链遮挡",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IL13RA1与IL13RA2均可结合IL-13，设计需评估交叉反应性；近膜表位可能受膜面取向限制，应优先采用复合物结构指导的竞争性表位。",
+    "structurePrepZh": "以4HWB实验晶体结构为模板，保留IL13RA1胞外链并标注IL-13接触残基，补全缺失侧链、检查糖基化位点并优化质子化状态。",
+    "structureRef": "PDB 4HWB，IL-13与IL13RA1相关复合物X射线结构，2.61 Å",
+    "antibodies": [
+      "lebrikizumab",
+      "tralokinumab"
+    ],
+    "interfaceFocus": "IL-13结合面及IL4R共受体装配邻近区",
+    "designMode": "受体阻断型抗体设计",
+    "candidates": [
+      {
+        "target": "IL13",
+        "rationale": "IL13是IL13RA1的直接配体，阻断IL13可同时抑制其与IL13RA1/IL4R形成的STAT6信号复合物。该策略已有临床抗体机制验证。"
+      },
+      {
+        "target": "IL4R",
+        "rationale": "IL4R是IL13RA1介导IL-13信号所需的共受体，同时参与IL-4信号复合物形成。靶向IL4R可覆盖IL-4与IL-13共享的2型炎症通路。"
+      },
+      {
+        "target": "IL13RA2",
+        "rationale": "IL13RA2为IL-13高亲和力结合受体，可调节IL-13可用性并与组织重塑相关表型有关。其与IL13RA1同处IL-13轴，适合作为通路内比较靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

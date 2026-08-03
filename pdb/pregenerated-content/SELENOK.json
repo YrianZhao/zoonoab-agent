@@ -1,0 +1,65 @@
+{
+  "gene": "SELENOK",
+  "generatedAt": "2026-08-03T16:24:41.924Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SELENOK为内质网膜相关硒蛋白，参与免疫受体诱导的钙通量与棕榈酰化相关蛋白复合体功能，但Open Targets关联主要集中于行为测量、体成分和尿路结石等低强度表型，缺乏明确的单一疾病驱动轴。该蛋白主体位于胞质侧，已解析6DO3结构对应其短小胞质结构域，天然抗原可及性不具备典型胞外膜受体或分泌蛋白优势。与同通路中可药性更成熟的免疫检查点、细胞因子受体或整合素靶点相比，SELENOK作为抗体主靶点优先级偏低，更适合作为机制研究或胞内递送抗体探索对象。",
+    "mechanism": "设计目标为结合SELENOK胞质结构域并干扰其与DHHC6棕榈酰转移酶复合体及IP3R相关调控界面的接触，从而影响受体诱导钙释放过程。",
+    "selectedEpitope": "优先评估6DO3胞质小结构域中保守α螺旋及Sec邻近暴露面，避开膜近端疏水片段。",
+    "diseaseDirection": "免疫钙信号与代谢表型探索",
+    "domain": "I型内质网膜相关小硒蛋白，含N端跨膜区与C端胞质硒代半胱氨酸保守结构域。",
+    "evidence": "SELENOK结构与免疫钙信号证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q9Y6D0功能注释",
+      "RCSB PDB 6DO3晶体结构",
+      "SELENOK-DHHC6-IP3R钙通量相关文献"
+    ],
+    "referenceEntries": "UniProt Q9Y6D0；RCSB PDB 6DO3；Open Targets SELENOK",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端胞质结构域保守α螺旋外侧面",
+        "可能影响蛋白互作界面，结构解析度支持理性建模",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Sec邻近暴露环区与相邻浅沟槽",
+        "有助于探测功能相关保守位点，但需避免氧化敏感残基依赖",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端跨膜区及膜近端疏水界面",
+        "天然可及性差，构象依赖强，常规抗体结合风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SELENOK缺乏胞外可及抗原面，常规体内抗体难以接触内质网胞质侧表位；建议限定为细胞内递送抗体、纳米抗体或体外机制探针。",
+    "structurePrepZh": "以6DO3四条抗原链进行同源构象比对，保留解析良好的胞质结构域，标注Sec位点、膜近端残基与晶体接触面后再开展表位筛选。",
+    "structureRef": "PDB 6DO3，X-ray diffraction，2.165 Å",
+    "antibodies": [
+      "暂无获批SELENOK靶向治疗性抗体",
+      "暂无临床阶段SELENOK阻断抗体"
+    ],
+    "interfaceFocus": "DHHC6复合体结合面与Sec邻近胞质沟槽",
+    "designMode": "胞内VHH探索",
+    "candidates": [
+      {
+        "target": "ITPR1",
+        "rationale": "ITPR1编码IP3受体钙释放通道，是SELENOK相关内质网钙通量轴的下游功能节点。其通道复合体直接决定胞内钙释放幅度。"
+      },
+      {
+        "target": "DHHC6",
+        "rationale": "DHHC6编码ZDHHC6棕榈酰转移酶，与SELENOK形成内质网膜复合体并参与IP3R相关蛋白棕榈酰化调控。该节点更接近SELENOK的直接分子互作层。"
+      },
+      {
+        "target": "STIM1",
+        "rationale": "STIM1为内质网钙耗竭感受器，连接内质网钙储备变化与SOCE通路。其位于同一钙稳态网络，可作为免疫钙信号干预的替代节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

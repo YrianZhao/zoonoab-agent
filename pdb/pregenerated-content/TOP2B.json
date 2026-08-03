@@ -1,0 +1,65 @@
+{
+  "gene": "TOP2B",
+  "generatedAt": "2026-08-03T17:24:50.570Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TOP2B编码核内DNA拓扑异构酶IIβ，参与双链DNA瞬时切割、链段通过与再连接，在转录调控、染色质构象和DNA损伤应答中具有核心作用；其疾病关联覆盖肿瘤及发育异常表型。该蛋白主要定位于细胞核，缺乏天然胞外结构域或分泌特征，常规完整抗体的抗原可及性明显受限，更适合作为细胞内递送抗体片段或机制研究型抗体靶点。相较TOP2A，TOP2B在非增殖细胞和转录相关拓扑调控中更具特异性，可用于区分复制依赖型拓扑异构酶抑制与转录耦联DNA断裂机制，因此优先级建立在机制分辨率而非表面可及性优势之上。",
+    "mechanism": "抗体片段拟结合TOP2B ATPase门或DNA门界面，干扰N端ATP结合/二聚化或催化核心与DNA底物的定位，从而阻断DNA链段通过循环。",
+    "selectedEpitope": "优先瞄准N端ATPase结构域二聚化界面，避开催化酪氨酸活性中心附近高保守DNA结合沟。",
+    "diseaseDirection": "肿瘤DNA拓扑调控与转录应激",
+    "domain": "TOP2B含N端ATPase门、中央DNA切割/再连接核心、C端调控区，9BQ8覆盖高分辨率结构片段。",
+    "evidence": "TOP2B肿瘤关联与拓扑异构酶结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与药理关联",
+      "UniProt Q02880功能与亚细胞定位注释",
+      "RCSB PDB 9BQ8 X射线晶体结构",
+      "拓扑异构酶II催化循环与抗癌药物机制文献"
+    ],
+    "referenceEntries": "UniProt: Q02880; RCSB PDB: 9BQ8; Open Targets: TOP2B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端ATPase门二聚化界面",
+        "可干扰ATP驱动的N-gate闭合与链段捕获，机制可解释性较强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DNA门邻近的催化核心外缘",
+        "可能影响DNA底物定位与切割复合物构象，但需避免催化中心高保守残基",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端调控区或低复杂度区域",
+        "可能产生同工型选择性，但结构柔性高且功能表位验证难度较大",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TOP2B为核内酶，天然抗体难以进入细胞核；TOP2A同源性带来交叉反应风险。宜采用细胞内递送VHH或Fab，并优先筛查同工型选择性。",
+    "structurePrepZh": "以9BQ8链A为结构模板，补全缺失环区并校验配体、金属离子和结晶接触；对ATPase门与DNA门界面进行同源保守性标注。",
+    "structureRef": "RCSB PDB 9BQ8，X-ray diffraction，1.25 Å，Homo sapiens TOP2B",
+    "antibodies": [
+      "Anti-TOP2B clone 3F6",
+      "Anti-TOP2B clone EPR5377"
+    ],
+    "interfaceFocus": "ATPase门二聚化界面与DNA门外缘",
+    "designMode": "细胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "TOP2A",
+        "rationale": "TOP2A与TOP2B同属II型DNA拓扑异构酶，参与DNA断裂-重接与链段通过循环；在肿瘤增殖和拓扑异构酶抑制剂反应中具有直接通路相关性。"
+      },
+      {
+        "target": "PARP1",
+        "rationale": "PARP1参与DNA单链断裂感知和修复，并与拓扑异构酶抑制诱导的DNA损伤应答存在功能耦联；可作为肿瘤DNA损伤修复方向的联合候选靶点。"
+      },
+      {
+        "target": "TDP2",
+        "rationale": "TDP2可移除拓扑异构酶II介导的5'-磷酸酪氨酰DNA加合物，直接参与TOP2毒性复合物后的DNA修复过程。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

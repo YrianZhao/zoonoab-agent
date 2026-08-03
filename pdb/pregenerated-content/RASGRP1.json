@@ -1,0 +1,65 @@
+{
+  "gene": "RASGRP1",
+  "generatedAt": "2026-08-03T15:54:56.806Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RASGRP1 是T细胞和B细胞抗原受体通路中的Ras鸟嘌呤核苷酸交换因子，DAG依赖性膜募集后促进RAS由GDP结合态转为GTP结合态，连接TCR/BCR信号与RAS-MAPK活化，其功能缺陷与免疫缺陷64型存在明确遗传关联。该蛋白为胞内多结构域信号分子，抗原可及性不具备常规细胞外抗体阻断优势，更适合作为胞内递送抗体、内体逃逸抗体片段或研究型构象探针靶点。相较于下游MAPK节点，RASGRP1位于抗原受体近端且具有淋巴细胞偏倚表达，可在免疫缺陷和自身免疫相关通路中提供更高的机制分辨率。",
+    "mechanism": "设计抗体片段结合RASGRP1 C1结构域DAG结合沟槽或REM-CDC25催化模块界面，阻断膜募集及RAS-GDP底物定位，从而抑制RAS-GTP生成。",
+    "selectedEpitope": "优先覆盖C1结构域DAG结合疏水沟槽及相邻膜接触面，备选REM-CDC25模块的RAS结合界面。",
+    "diseaseDirection": "原发性免疫缺陷与自身免疫",
+    "domain": "RASGRP1含REM、CDC25 RasGEF催化结构域、EF-hand钙结合区、C1 DAG结合结构域及C端调控区。",
+    "evidence": "RASGRP1免疫受体信号与免疫缺陷证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt O95267 functional annotation",
+      "RCSB PDB 4L9U experimental structure",
+      "OMIM/ClinVar RASGRP1 immunodeficiency genetics"
+    ],
+    "referenceEntries": "UniProt O95267；RCSB PDB 4L9U；Open Targets RASGRP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C1结构域DAG结合沟槽及膜接触面",
+        "可直接干预DAG依赖性膜募集，降低TCR/BCR诱导的RAS活化",
+        "优先"
+      ],
+      [
+        "Site B",
+        "REM-CDC25 RasGEF催化模块的RAS底物结合界面",
+        "有望阻断RAS-GDP装载与核苷酸交换复合物形成",
+        "备选"
+      ],
+      [
+        "Site C",
+        "EF-hand钙结合区及其相邻柔性连接区",
+        "可能影响构象调控，但钙结合与蛋白稳定性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RASGRP1为胞内蛋白，常规全长抗体难以到达作用位点；建议采用VHH、细胞穿透递送或胞内表达格式，并规避高度保守GEF核心造成的交叉反应。",
+    "structurePrepZh": "以4L9U链A/B为实验结构模板，保留高分辨率结构域坐标，补建缺失环区并标注DAG结合沟槽、RAS结合面及柔性连接区。",
+    "structureRef": "RCSB PDB 4L9U，X-ray diffraction，1.6014 Å",
+    "antibodies": [
+      "暂无批准抗RASGRP1治疗性抗体",
+      "研究级抗RASGRP1单克隆抗体"
+    ],
+    "interfaceFocus": "C1-DAG沟槽与REM-CDC25/RAS结合界面",
+    "designMode": "胞内VHH阻断",
+    "candidates": [
+      {
+        "target": "LAT",
+        "rationale": "LAT是TCR近端信号支架蛋白，募集GRB2-SOS1和PLCγ1复合物并连接抗原受体刺激与RAS-MAPK通路，适合作为同通路上游调控候选。"
+      },
+      {
+        "target": "PLCG1",
+        "rationale": "PLCG1在TCR信号中水解PIP2生成DAG和IP3，DAG直接驱动RASGRP1 C1结构域膜募集，因此与RASGRP1处于同一DAG-RAS激活轴。"
+      },
+      {
+        "target": "SOS1",
+        "rationale": "SOS1是RAS的另一类鸟嘌呤核苷酸交换因子，通过GRB2复合物参与TCR/BCR诱导的RAS-MAPK活化，可作为RASGRP1并行GEF节点的对照候选。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

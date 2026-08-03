@@ -1,0 +1,65 @@
+{
+  "gene": "IRAK3",
+  "generatedAt": "2026-08-03T13:32:13.307Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IRAK3编码IRAK-M，是髓系细胞中IL-1R/TLR通路的负调控激酶样支架蛋白，可限制MyD88-IRAK4-IRAK1/2信号复合体向TRAF6传递炎症信号。其疾病关联主要集中于白细胞数量、代谢炎症相关表型及血清信号蛋白变化，符合先天免疫炎症调控轴特征。IRAK3为胞内蛋白，天然抗原可及性弱于分泌因子或膜受体，但已解析激酶样结构域为胞内阻断型抗体或递送型抗体设计提供了明确界面。相比直接抑制IRAK4等核心激酶，IRAK3更适合作为炎症负反馈节点研究靶点，具有较高通路特异性和机制分辨率。",
+    "mechanism": "设计分子应优先干预IRAK3激酶样结构域与IRAK4/IRAK1信号复合体的装配界面，改变MyD88依赖性TLR/IL-1R信号向TRAF6的传递效率。",
+    "selectedEpitope": "优先覆盖IRAK3激酶样结构域N叶-αC螺旋邻近调控面，评估其对IRAK复合体装配的影响。",
+    "diseaseDirection": "先天免疫炎症与白细胞表型",
+    "domain": "IRAK3含N端死亡结构域与C端假激酶样结构域，6ZIW覆盖激酶样折叠区域。",
+    "evidence": "IRAK3先天免疫负调控结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9Y616功能与结构域注释",
+      "RCSB PDB 6ZIW晶体结构",
+      "TLR/IL-1R-MyD88-IRAK通路文献"
+    ],
+    "referenceEntries": "UniProt: Q9Y616；RCSB PDB: 6ZIW；HGNC: IRAK3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶样结构域N叶与αC螺旋邻近界面",
+        "可能影响IRAK复合体构象组织与信号传递，适合作为功能阻断表位",
+        "优先"
+      ],
+      [
+        "Site B",
+        "激酶样结构域C叶暴露环区",
+        "结构可塑性较高，可用于构象选择性结合与稳定化设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP结合裂隙邻近保守激酶核心",
+        "保守性较高且存在脱靶风险，需避免广谱激酶交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IRAK3为胞内靶点，常规抗体难以直接到达作用位点；需采用胞内递送、细胞穿透或VHH工程策略，并严控与IRAK家族保守激酶样核心的交叉反应。",
+    "structurePrepZh": "以6ZIW链I为结构模板，补全缺失侧链与环区，标注N叶、αC螺旋、ATP裂隙及C叶暴露面后进行表位可及性评估。",
+    "structureRef": "RCSB PDB 6ZIW，human IRAK3 kinase-like domain，2.18 Å",
+    "antibodies": [
+      "抗IRAK3研究级单克隆抗体",
+      "抗IRAK-M研究级单克隆抗体"
+    ],
+    "interfaceFocus": "IRAK3激酶样结构域IRAK复合体装配面",
+    "designMode": "胞内递送型阻断",
+    "candidates": [
+      {
+        "target": "IRAK4",
+        "rationale": "IRAK4是MyD88依赖性TLR/IL-1R通路的近端激酶，直接磷酸化并组织IRAK1/2信号传递，是同通路中更强药理学验证的炎症靶点。"
+      },
+      {
+        "target": "MYD88",
+        "rationale": "MYD88连接TLR/IL-1R胞内TIR结构域与IRAK家族蛋白，决定近端信号复合体形成，适合作为上游装配节点候选靶点。"
+      },
+      {
+        "target": "IRAK1",
+        "rationale": "IRAK1位于IRAK4下游并参与TRAF6募集及NF-κB/MAPK激活，与IRAK3调控的同一MyD88依赖性炎症轴高度相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

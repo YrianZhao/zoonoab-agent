@@ -1,0 +1,65 @@
+{
+  "gene": "MAP3K8",
+  "generatedAt": "2026-08-03T14:03:10.791Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAP3K8/TPL2 是 TNF、IL-1R 与 TLR 受体刺激后连接 NF-κB 适配复合体与 MEK1/2-ERK1/2 级联的丝氨酸/苏氨酸激酶，在炎症性肠病、溃疡性结肠炎和克罗恩病中参与髓系细胞促炎因子放大。该蛋白为胞内激酶，天然抗原可及性弱，不适合常规细胞外阻断抗体，但其激酶结构域具备可解析构象界面，可用于胞内递送抗体片段或研究级构象锁定分子设计。相较上游 TNF、IL1R 或 TLR 靶点，MAP3K8 位于 ERK 炎症分支汇聚点，具有更直接限制 MAPK 输出的优先级，但开发路径需明确采用胞内抗体格式。",
+    "mechanism": "通过抗体片段结合 MAP3K8 激酶结构域 ATP 结合裂隙邻近构象面，限制活化环与催化裂隙重排，从而抑制 MAP3K8 对 MEK1/2 的磷酸化。",
+    "selectedEpitope": "优先选择激酶结构域 N-lobe/C-lobe 裂隙及活化环邻近构象表位，避开高度保守 ATP 深 pocket。",
+    "diseaseDirection": "炎症性肠病与MAPK炎症信号",
+    "domain": "MAP3K8 含 N 端调控区、中央丝氨酸/苏氨酸激酶结构域及 C 端调控尾区；4Y85 覆盖催化结构域。",
+    "evidence": "MAP3K8炎症性肠病通路与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt P41279 蛋白功能注释",
+      "RCSB PDB 4Y85 晶体结构",
+      "Reactome/KEGG MAPK 与先天免疫信号通路注释"
+    ],
+    "referenceEntries": "UniProt P41279；RCSB PDB 4Y85；HGNC MAP3K8",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域 N-lobe/C-lobe 催化裂隙边缘与活化环邻近面",
+        "有利于构象锁定并抑制 MEK1/2 底物磷酸化",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C-lobe 底物结合沟槽及 αF/αG 周边表面",
+        "可干扰 MAP3K8 与 MEK1/2 的底物识别界面",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP 结合口袋深部及保守铰链区",
+        "跨激酶保守性高，选择性与脱靶风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAP3K8 为胞内激酶，常规 IgG 难以接近天然靶点；建议采用 VHH、intrabody 或递送型 Fab，并重点评估激酶组保守表位导致的交叉反应。",
+    "structurePrepZh": "以 4Y85 链 A/B/C 为模板校验晶体构象，补全缺失环区，去除非目标小分子或缓冲组分，保留催化裂隙与活化环构象用于表位建模。",
+    "structureRef": "RCSB PDB 4Y85，MAP3K8 kinase domain，X-ray 2.33 Å",
+    "antibodies": [
+      "研究级 anti-TPL2/MAP3K8 antibody",
+      "研究级 phospho-TPL2 antibody"
+    ],
+    "interfaceFocus": "催化裂隙边缘、活化环与 MEK1/2 底物识别面",
+    "designMode": "胞内构象阻断",
+    "candidates": [
+      {
+        "target": "TNF",
+        "rationale": "TNF 是炎症性肠病中驱动 NF-κB 与 MAPK 激活的上游细胞因子，已有抗 TNF 抗体验证其临床可干预性。"
+      },
+      {
+        "target": "IL1B",
+        "rationale": "IL-1β 通过 IL1R1-MYD88 轴激活 TAK1、NF-κB 与 MAPK 分支，与 MAP3K8 所在炎症放大网络具有通路一致性。"
+      },
+      {
+        "target": "MAP2K1",
+        "rationale": "MAP2K1/MEK1 是 MAP3K8 下游直接底物之一，位于 ERK 激活级联核心节点，可作为同一 MAPK 炎症通路的替代干预点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

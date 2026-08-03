@@ -1,0 +1,65 @@
+{
+  "gene": "AKT3",
+  "generatedAt": "2026-08-03T10:22:14.741Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "AKT3 是 PI3K-AKT-mTOR 轴中的丝氨酸/苏氨酸激酶，在脑发育过度生长综合征中常因激活性变异增强下游 mTORC1 信号，并与乳腺癌等肿瘤中的细胞存活和代谢适应相关。该蛋白主要定位于胞质和细胞膜内侧，不具备天然胞外结构域或分泌蛋白特征，常规完整抗体的抗原可及性受限。相较 EGFR、ERBB2 等胞外受体型靶点，AKT3 的优先级更适合定位为胞内抗体、VHH 或降解偶联分子设计模型靶点，而非经典阻断型治疗抗体主靶点。",
+    "mechanism": "通过胞内 VHH 结合 AKT3 激酶结构域的 ATP 结合裂隙邻近构象面，干扰 PIP3 依赖膜募集后的 T308/S472 活化构象稳定，降低 FOXO、GSK3 与 mTORC1 轴磷酸化输出。",
+    "selectedEpitope": "优先锁定激酶结构域 N-lobe αC-helix 与 activation segment 邻近构象表位，避开 ATP 深槽核心保守位点。",
+    "diseaseDirection": "PI3K-AKT-mTOR 相关过度生长与肿瘤",
+    "domain": "AKT3 含 N 端 PH 结构域、中央蛋白激酶结构域及 C 端疏水调节基序。",
+    "evidence": "AKT3 疾病遗传与激酶结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9Y243 functional annotation",
+      "RCSB PDB 8ZXW experimental structure",
+      "ClinVar and literature reports on AKT3 activating variants"
+    ],
+    "referenceEntries": "UniProt Q9Y243；RCSB PDB 8ZXW；Open Targets AKT3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域 N-lobe αC-helix/activation segment 邻近面",
+        "可偏向识别活化构象并削弱底物磷酸化输出",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PH 结构域 PIP3 结合口袋周边基础残基面",
+        "可能阻断膜磷脂募集，但与 AKT1/AKT2 保守性较高",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP 结合裂隙铰链区",
+        "位点高度保守，交叉抑制同源激酶风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "AKT3 为胞内激酶，常规抗体难以进入胞质；ATP 口袋与 AKT1/AKT2 保守性高，应优先选择亚型差异表面并采用胞内递送或 VHH 格式。",
+    "structurePrepZh": "以 8ZXW 高分辨率晶体结构为模板，分离 AKT3 抗原链，补全缺失环区并标注 PH、激酶与调节基序边界后开展表面聚类分析。",
+    "structureRef": "RCSB PDB 8ZXW，X-ray diffraction，1.33 Å",
+    "antibodies": [
+      "AKT3 intracellular VHH candidate",
+      "pan-AKT research antibody clone C67E7"
+    ],
+    "interfaceFocus": "αC-helix、activation segment 与PH结构域磷脂结合面",
+    "designMode": "胞内VHH构象锁定",
+    "candidates": [
+      {
+        "target": "PIK3CA",
+        "rationale": "PIK3CA 编码 PI3K p110α，是 AKT3 上游 PIP3 生成节点，激活性变异可驱动 AKT 膜募集和 mTORC1 信号增强。"
+      },
+      {
+        "target": "MTOR",
+        "rationale": "MTOR 是 AKT3 下游核心效应节点，介导 mTORC1 依赖的蛋白合成、细胞生长与过度生长表型。"
+      },
+      {
+        "target": "PTEN",
+        "rationale": "PTEN 通过去磷酸化 PIP3 拮抗 PI3K-AKT 信号，其功能缺失可导致 AKT3 轴持续活化并促进过度生长和肿瘤发生。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

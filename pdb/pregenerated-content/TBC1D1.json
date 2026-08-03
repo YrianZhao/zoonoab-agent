@@ -1,0 +1,65 @@
+{
+  "gene": "TBC1D1",
+  "generatedAt": "2026-08-03T17:09:41.543Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TBC1D1为胞内Rab-GTPase活化蛋白，参与胰岛素与AMPK依赖的GLUT4囊泡转运，并与代谢表型、血液蛋白水平及多系统性状存在遗传关联。该蛋白主要定位于胞质，缺乏天然胞外结构域或分泌暴露形式，因此全身给药抗体的抗原可及性明显受限。相较于同通路中的INSR、SLC2A4或ADIPOQ等可及性更高靶点，TBC1D1更适合作为结构生物学和胞内功能阻断验证靶点，抗体设计优先级应限定于细胞内递送、胞内抗体或研究级工具抗体场景。",
+    "mechanism": "设计抗体阻断TBC1D1 TBC结构域与Rab-GTP底物界面的结合，干扰GTP水解促进作用，从而改变GLUT4囊泡转运调控。",
+    "selectedEpitope": "优先覆盖TBC结构域Rab结合沟槽邻近催化界面，避开保守疏水核心。",
+    "diseaseDirection": "代谢性状与胰岛素信号相关疾病",
+    "domain": "TBC1D1含PTB结构域和C端TBC Rab-GAP结构域，3QYE解析其TBC催化结构域。",
+    "evidence": "TBC1D1结构与代谢遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q86TI0功能与亚细胞定位注释",
+      "RCSB PDB 3QYE晶体结构记录",
+      "AMPK/胰岛素调控GLUT4转运研究文献"
+    ],
+    "referenceEntries": "UniProt: Q86TI0; RCSB PDB: 3QYE; Open Targets:TBC1D1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "TBC结构域Rab-GTP底物结合沟槽",
+        "可直接干扰TBC1D1与Rab底物复合体形成，适合功能阻断型胞内抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "TBC结构域催化精氨酸指状基序邻近环区",
+        "可能影响GAP催化构象，但需避免破坏整体折叠导致非特异失活",
+        "备选"
+      ],
+      [
+        "Site C",
+        "TBC结构域远端保守结构核心表面",
+        "抗原性可用于检测抗体，但对GLUT4转运调控机制干预价值有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TBC1D1为胞内蛋白，常规抗体药物难以到达作用位点；设计应限定为胞内递送、纳米抗体表达或工具抗体验证，并严格评估Rab-GAP家族交叉反应。",
+    "structurePrepZh": "以3QYE链A/B为模板，保留TBC结构域单体构象，补全缺失侧链并标注Rab结合沟槽、催化保守位点及晶体接触界面。",
+    "structureRef": "RCSB PDB 3QYE, X-ray diffraction, 2.2 Å",
+    "antibodies": [
+      "研究级抗TBC1D1单克隆抗体",
+      "研究级抗TBC1D1多克隆抗体"
+    ],
+    "interfaceFocus": "TBC结构域Rab底物结合沟槽与催化环区",
+    "designMode": "胞内抗体工具模式",
+    "candidates": [
+      {
+        "target": "SLC2A4",
+        "rationale": "SLC2A4编码GLUT4，是胰岛素响应性葡萄糖摄取的终端转运蛋白，与TBC1D1调控的囊泡转位过程处于同一代谢通路。其多跨膜构象提供膜蛋白抗原开发价值。"
+      },
+      {
+        "target": "INSR",
+        "rationale": "INSR位于胰岛素信号通路上游，可通过激活PI3K-AKT轴促进GLUT4转位并间接调控TBC1D1/TBC1D4磷酸化状态。其胞外受体结构域具备抗体干预可及性。"
+      },
+      {
+        "target": "TBC1D4",
+        "rationale": "TBC1D4与TBC1D1同属Rab-GAP调控节点，参与胰岛素刺激下GLUT4囊泡转运，并具有更明确的胰岛素敏感性调控证据。可作为同通路胞内机制对照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

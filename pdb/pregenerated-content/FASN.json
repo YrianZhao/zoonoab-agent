@@ -1,0 +1,65 @@
+{
+  "gene": "FASN",
+  "generatedAt": "2026-08-03T12:28:40.901Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FASN 是胞质多酶复合蛋白，催化乙酰辅酶A与丙二酰辅酶A经缩合、还原、脱水和再还原生成棕榈酸，在脂质合成重编程、病毒复制所需膜脂供应及肿瘤代谢适应中具有机制相关性。该靶点缺乏天然胞外结构域，传统循环抗体抗原可及性受限，更适合作为细胞内递送抗体片段、降解偶联抗体或研究型构象抗体设计对象。相比上游代谢调控因子，FASN 具有明确催化结构域、可解析底物结合腔和高分辨率人源结构，便于进行结构约束的功能阻断设计。",
+    "mechanism": "抗体片段优先阻断 β-酮酰合成酶结构域与酰基载体蛋白携带中间体的对接，干扰脂肪酸延长循环中的碳链缩合反应。",
+    "selectedEpitope": "优先选择 KS 结构域二聚化及 ACP 对接邻近界面，避开高度保守 NADPH 结合口袋。",
+    "diseaseDirection": "脂质代谢重编程与病毒感染",
+    "domain": "人源 FASN 含 KS、MAT、DH、ER、KR、ACP 与 TE 多催化结构域，形成同源二聚体。",
+    "evidence": "FASN 结构药理与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P49327 functional annotation",
+      "RCSB PDB 3TJM experimental structure",
+      "Reactome de novo fatty acid biosynthesis pathway"
+    ],
+    "referenceEntries": "UniProt P49327；RCSB PDB 3TJM；Reactome fatty acid biosynthesis",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "KS 结构域二聚化界面及 ACP 对接邻近面",
+        "可干扰酰基中间体转移与缩合反应，功能阻断价值较高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "TE 结构域棕榈酰释放通道外缘",
+        "可限制终产物水解释放，适合构象选择性抗体片段设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "KR/ER 结构域 NADPH 结合沟槽附近",
+        "催化保守性高且与辅因子结合位点重叠，交叉反应和功能毒性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FASN 为胞内代谢酶，常规抗体难以直接触达天然抗原；建议采用细胞内表达型 VHH、递送载体或抗体降解偶联策略，并严格评估脂质代谢毒性。",
+    "structurePrepZh": "以 3TJM 高分辨率晶体结构为模板，补全缺失环区并标注催化残基、二聚界面与 ACP 可及路径，保留同源二聚体构象用于表位评估。",
+    "structureRef": "RCSB PDB 3TJM；human fatty acid synthase crystal structure",
+    "antibodies": [
+      "Anti-FASN clone C20G5",
+      "Anti-FASN clone EP695Y"
+    ],
+    "interfaceFocus": "KS 二聚化面与 ACP 转运对接界面",
+    "designMode": "胞内VHH功能阻断",
+    "candidates": [
+      {
+        "target": "ACACA",
+        "rationale": "ACACA 催化乙酰辅酶A羧化生成丙二酰辅酶A，是 FASN 上游底物供给节点；抑制该节点可降低新生脂肪酸合成通量。"
+      },
+      {
+        "target": "SCD",
+        "rationale": "SCD 将 FASN 产物衍生的饱和脂肪酸转化为单不饱和脂肪酸，参与膜脂重塑与代谢适应；与 FASN 位于同一脂质合成依赖网络。"
+      },
+      {
+        "target": "SREBF1",
+        "rationale": "SREBF1 转录调控 FASN、ACACA 和 SCD 等脂质合成基因，是脂肪酸合成程序的上游调控因子；适合作为通路层级替代靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

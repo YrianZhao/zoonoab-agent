@@ -1,0 +1,65 @@
+{
+  "gene": "PFKM",
+  "generatedAt": "2026-08-03T15:13:27.256Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PFKM编码肌型磷酸果糖激酶，是糖酵解限速步骤中催化果糖-6-磷酸与ATP生成果糖-1,6-二磷酸的关键酶，其双等位基因缺陷可导致糖原贮积病VII型并伴随运动不耐受和溶血表型。该蛋白主要定位于胞质，不具备经典胞外结构域、分泌蛋白或膜受体特征，因此抗原天然可及性不支持常规体内阻断型抗体药物开发。相较于同通路中可药性更高的转运体或细胞表面调节节点，PFKM更适合作为结构生物学验证、胞内抗体或研究级构象探针优先靶点。",
+    "mechanism": "设计分子应结合PFKM催化结构域邻近的果糖-6-磷酸/ATP结合沟槽或亚基界面，干扰底物定位、构象闭合及四聚体催化构象稳定。",
+    "selectedEpitope": "优先覆盖催化结构域中ATP/果糖-6-磷酸结合沟槽邻近环区，避开高度保守且难成药的深埋活性位点。",
+    "diseaseDirection": "糖原贮积病VII型与糖酵解异常",
+    "domain": "PFKM为胞质糖酵解酶，含N端与C端磷酸果糖激酶样结构域，并以寡聚体形式形成催化构象。",
+    "evidence": "PFKM糖酵解限速酶与GSDVII证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P08237功能与亚细胞定位注释",
+      "RCSB PDB 4OMT晶体结构记录",
+      "OMIM糖原贮积病VII型PFKM条目"
+    ],
+    "referenceEntries": "UniProt P08237；RCSB PDB 4OMT；Open Targets PFKM",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域ATP/果糖-6-磷酸结合沟槽邻近环区",
+        "有利于阻断底物进入与催化构象闭合，适合功能抑制型胞内抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PFK样结构域间构象转换界面",
+        "可干扰别构转换和寡聚体催化状态稳定，适合构象选择性探针",
+        "备选"
+      ],
+      [
+        "Site C",
+        "四聚体亚基接触面核心区域",
+        "可能影响寡聚体装配，但界面保守且部分埋藏，需评估可及性与交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PFKM为胞内代谢酶，缺乏天然胞外抗原暴露，常规抗体体内递送与靶向可及性风险高；建议限定为胞内抗体、Fab结构探针或体外机制验证。",
+    "structurePrepZh": "4OMT为6.0 Å X射线结构，分辨率较低；建模需补全缺失环区，结合AlphaFold或同源高分辨率PFK结构优化界面构象。",
+    "structureRef": "RCSB PDB 4OMT；人PFKM X射线晶体结构",
+    "antibodies": [
+      "commercial anti-PFKM antibody",
+      "research-grade anti-phosphofructokinase antibody"
+    ],
+    "interfaceFocus": "催化沟槽、结构域闭合界面与四聚体接触面",
+    "designMode": "胞内抗体/结构探针",
+    "candidates": [
+      {
+        "target": "PFKL",
+        "rationale": "PFKL编码肝型磷酸果糖激酶，与PFKM共同催化糖酵解限速反应，可用于解析同工酶选择性与代谢补偿机制。"
+      },
+      {
+        "target": "PFKP",
+        "rationale": "PFKP编码血小板型磷酸果糖激酶，在多种高糖酵解细胞状态中参与果糖-6-磷酸通量控制，是同一限速步骤的真实同工酶靶点。"
+      },
+      {
+        "target": "PFKFB3",
+        "rationale": "PFKFB3调控果糖-2,6-二磷酸水平，从而增强PFK活性并驱动糖酵解通量，属于PFKM上游别构调节轴的关键节点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

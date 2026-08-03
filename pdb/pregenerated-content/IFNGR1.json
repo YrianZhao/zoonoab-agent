@@ -1,0 +1,65 @@
+{
+  "gene": "IFNGR1",
+  "generatedAt": "2026-08-03T13:23:23.932Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IFNGR1 是 IFN-γ 受体复合体的配体结合亚基，介导 IFNG 诱导的 JAK1/JAK2-STAT1 轴激活，直接决定巨噬细胞抗分枝杆菌反应、肉芽肿炎症及纤维化相关免疫激活强度。该靶点为 I 型跨膜受体，胞外区可直接作为抗体结合抗原，1FYH 已解析 IFN-γ 与 IFNGR1 胞外结构域复合物，为界面表位设计提供高分辨率依据。相较于下游 JAK-STAT 分子，IFNGR1 具有细胞外可及性和受体入口级调控优势，可在不直接抑制广泛激酶活性的条件下选择性调节 IFN-γ 信号输入。",
+    "mechanism": "抗体阻断 IFNG 与 IFNGR1 胞外配体结合界面的相互作用，抑制 IFNGR1/IFNGR2 受体复合体组装及后续 JAK1-JAK2 介导的 STAT1 磷酸化。",
+    "selectedEpitope": "优先覆盖 IFNGR1 胞外 D1-D2 模块中与 IFN-γ 接触的配体结合沟槽及受体二聚化邻近界面。",
+    "diseaseDirection": "IFN-γ通路炎症与感染免疫",
+    "domain": "IFNGR1 含胞外配体结合区、单跨膜区及胞内 JAK1 结合尾部；1FYH 覆盖胞外受体结构域。",
+    "evidence": "IFNGR1-IFNG轴结构与疾病遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt P15260 功能与结构域注释",
+      "RCSB PDB 1FYH 晶体结构记录",
+      "OMIM/ClinVar IFNGR1 缺陷与分枝杆菌易感性证据"
+    ],
+    "referenceEntries": "UniProt P15260；RCSB PDB 1FYH；Open Targets IFNGR1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "D1-D2 胞外配体结合界面",
+        "直接竞争 IFNG 结合，预期产生明确受体阻断效应",
+        "优先"
+      ],
+      [
+        "Site B",
+        "D2 结构域靠近受体复合体装配面",
+        "干扰 IFNGR1 构象稳定及 IFNGR2 招募，适合作为非完全竞争性阻断策略",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离 IFNG 接触面的胞外外侧环区",
+        "可能仅提供结合或内吞调节，功能阻断不确定且需避免交联激动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "需区分阻断型与潜在交联激动型抗体，避免受体聚集增强 STAT1 信号；表位应避开高度糖基化或柔性环段以降低亲和力损失。",
+    "structurePrepZh": "以 1FYH 中人源 IFNGR1 胞外链为模板，保留 IFNG 接触残基并校正缺失侧链、糖基化位点和链间界面后用于表位建模。",
+    "structureRef": "Walter et al., IFN-γ receptor complex, PDB 1FYH, 2.04 Å",
+    "antibodies": [
+      "GIR-208",
+      "MMHGR-1"
+    ],
+    "interfaceFocus": "IFNG-IFNGR1 配体结合沟槽与 D1-D2 接触面",
+    "designMode": "受体阻断型抗体",
+    "candidates": [
+      {
+        "target": "IFNG",
+        "rationale": "IFNG 是 IFNGR1 的直接配体，阻断 IFNG 可从上游抑制 IFNGR1/IFNGR2 复合体激活，适用于中和配体驱动的炎症信号。"
+      },
+      {
+        "target": "IFNGR2",
+        "rationale": "IFNGR2 是 IFN-γ 受体复合体的信号转导亚基，参与 JAK2 招募与 STAT1 激活，可作为受体复合体装配阻断的同通路候选靶点。"
+      },
+      {
+        "target": "JAK2",
+        "rationale": "JAK2 位于 IFNGR2 胞内侧并参与 IFN-γ 诱导的 STAT1 磷酸化，是 IFNGR1 下游信号传递的关键激酶节点；其不适合作为常规抗体靶点，但可作为通路药理学参照靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

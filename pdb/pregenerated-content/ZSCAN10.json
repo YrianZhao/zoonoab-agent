@@ -1,0 +1,65 @@
+{
+  "gene": "ZSCAN10",
+  "generatedAt": "2026-08-03T18:03:41.997Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ZSCAN10为含SCAN二聚化结构域与C2H2锌指结构域的核内转录因子，主要参与多能性与神经发育相关转录网络，Open Targets关联提示其与耳面神经发育综合征、全局发育迟缓和感音神经性听力损失存在遗传学关联。该蛋白定位于细胞核而非分泌蛋白或膜受体，缺乏天然胞外可及抗原表面，因此常规体内中和抗体开发可及性较弱，更适合作为结构驱动的胞内抗体、工程化递送抗体片段或机制验证工具靶点。相较同类核内转录因子，ZSCAN10具备2.0 Å实验晶体结构支持的SCAN结构域界面信息，可优先开展结构化表位设计，但临床可转化优先级低于可直接作用于细胞外配体或受体的神经发育通路靶点。",
+    "mechanism": "设计抗体片段结合ZSCAN10的SCAN结构域二聚化界面，阻断其同源或异源SCAN介导复合体形成，从而干预锌指结构域参与的靶DNA转录调控复合物装配。",
+    "selectedEpitope": "优先选择SCAN结构域A/C链二聚化界面，覆盖疏水核心邻近螺旋面并避开锌指DNA结合残基。",
+    "diseaseDirection": "神经发育异常与听觉表型",
+    "domain": "N端SCAN蛋白互作结构域及C端C2H2型锌指DNA结合区，9L0V覆盖结构化SCAN区域。",
+    "evidence": "ZSCAN10神经发育遗传关联与SCAN结构域证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q96SZ4蛋白功能与结构域注释",
+      "RCSB PDB 9L0V晶体结构记录",
+      "人类转录因子与神经发育遗传学文献"
+    ],
+    "referenceEntries": "UniProt Q96SZ4；RCSB PDB 9L0V；Open Targets ZSCAN10",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SCAN结构域A/C链二聚化界面螺旋面",
+        "直接干预SCAN介导蛋白复合体形成，机制判读清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SCAN结构域外侧溶剂暴露螺旋与环区",
+        "保留结构稳定性并提供结合表面，适合亲和力成熟",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C2H2锌指DNA结合区域邻近表面",
+        "可能影响DNA识别但锌配位与核酸结合风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ZSCAN10为核内抗原，天然抗体难以进入作用区室；需采用胞内表达抗体、细胞递送VHH或PROTAC衔接策略，并严格评估SCAN家族交叉反应。",
+    "structurePrepZh": "以9L0V晶体结构A、C链为模板，补全缺失侧链、校正质子化状态，保留二聚体生物装配并标注界面残基用于表位网格定义。",
+    "structureRef": "RCSB PDB 9L0V，X-ray diffraction，2.0 Å",
+    "antibodies": [
+      "暂无获批ZSCAN10靶向抗体",
+      "暂无临床阶段ZSCAN10同类抗体"
+    ],
+    "interfaceFocus": "SCAN二聚化界面与家族保守疏水核心",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "SOX2",
+        "rationale": "SOX2为神经发育和多能性转录网络核心因子，与ZSCAN10相关发育表型处于相近转录调控背景；其功能异常与神经发育缺陷和眼部发育异常相关。"
+      },
+      {
+        "target": "POU5F1",
+        "rationale": "POU5F1参与多能性维持并与ZSCAN10同属早期发育转录调控网络，可作为解析干细胞状态和发育转录程序的候选节点。"
+      },
+      {
+        "target": "NANOG",
+        "rationale": "NANOG与SOX2、POU5F1共同构成多能性核心调控轴，适合作为ZSCAN10相关转录网络的平行验证靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

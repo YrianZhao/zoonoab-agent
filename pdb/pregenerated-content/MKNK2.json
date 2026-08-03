@@ -1,0 +1,65 @@
+{
+  "gene": "MKNK2",
+  "generatedAt": "2026-08-03T14:15:47.177Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MKNK2为胞内MAPK相互作用丝氨酸/苏氨酸激酶，接受ERK1/2与p38 MAPK上游信号并磷酸化EIF4E Ser209，参与应激依赖性翻译调控、神经炎症和神经退行性疾病相关蛋白稳态改变。该靶点缺乏分泌区或跨膜胞外结构域，天然抗原可及性不适合常规细胞外阻断抗体，但其激酶结构域可作为结构引导型胞内Fab或VHH结合剂设计对象。相比MAPK通路中广泛必需的MAPK1、MAPK14等上游激酶，MKNK2位于翻译输出端，功能节点更聚焦，理论上可降低对全局MAPK信号的广泛干预风险。",
+    "mechanism": "设计胞内Fab/VHH结合MKNK2激酶N叶ATP口袋邻近区或C叶底物结合沟槽，阻断ATP定位或EIF4E底物进入催化位点，从而降低EIF4E Ser209磷酸化。",
+    "selectedEpitope": "优先覆盖激酶结构域N叶β折叠-αC螺旋与ATP结合裂隙边缘，兼顾EIF4E底物进入通道。",
+    "diseaseDirection": "神经退行性疾病与翻译调控",
+    "domain": "MKNK2主要含MAPKAPK样丝氨酸/苏氨酸激酶催化结构域，包含N叶ATP结合区、铰链区与C叶活化环。",
+    "evidence": "MKNK2-MAPK-EIF4E轴结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q9HBH9蛋白功能与结构域注释",
+      "RCSB PDB 2AC3 X射线晶体结构",
+      "MAPK-MNK-eIF4E翻译调控文献证据"
+    ],
+    "referenceEntries": "UniProt Q9HBH9；RCSB PDB 2AC3；Open Targets MKNK2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N叶β折叠-铰链区ATP结合裂隙边缘",
+        "可干扰ATP结合与催化构象稳定，结构分辨率支持精细建模",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C叶底物结合沟槽及活化环邻近区域",
+        "有机会阻断EIF4E进入催化位点并影响Ser209磷酸化",
+        "备选"
+      ],
+      [
+        "Site C",
+        "MAPK对接相关C端调控区域",
+        "可能影响ERK/p38对MKNK2的激活，但柔性与同源性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MKNK2为胞内激酶，常规抗体递送与天然可及性受限；ATP口袋保守性较高，应避免完全依赖铰链保守残基，优先利用周边非保守构象表面。",
+    "structurePrepZh": "以PDB 2AC3链A为模板，补全缺失侧链与氢原子，标注ATP结合裂隙、铰链区、活化环及可能的底物进入面后开展表位建模。",
+    "structureRef": "RCSB PDB 2AC3，human MKNK2 kinase domain，2.1 Å",
+    "antibodies": [
+      "抗MKNK2研究级抗体",
+      "抗磷酸化EIF4E Ser209检测抗体"
+    ],
+    "interfaceFocus": "ATP结合裂隙、铰链区与EIF4E底物进入沟槽",
+    "designMode": "胞内结合剂设计",
+    "candidates": [
+      {
+        "target": "EIF4E",
+        "rationale": "EIF4E是MKNK1/2的直接底物，Ser209磷酸化连接MAPK信号与帽依赖性翻译输出，处于同一MNK-EIF4E通路。"
+      },
+      {
+        "target": "MAPK1",
+        "rationale": "MAPK1/ERK2可作为MKNK2上游激活激酶，介导生长因子和应激信号向MNK-EIF4E轴传递。"
+      },
+      {
+        "target": "MAPK14",
+        "rationale": "MAPK14/p38α参与应激炎症信号对MNK激酶的激活，在神经炎症和细胞应激相关通路中与MKNK2功能相连。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

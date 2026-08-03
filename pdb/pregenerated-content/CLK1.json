@@ -1,0 +1,65 @@
+{
+  "gene": "CLK1",
+  "generatedAt": "2026-08-03T11:28:33.455Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CLK1为核内丝氨酸/苏氨酸-酪氨酸双特异性激酶，主要磷酸化SR剪接因子并影响可变剪接程序，在乳腺癌、三阴性乳腺癌及神经退行性疾病相关转录后调控异常中具有疾病关联信号。该蛋白缺乏经典分泌区段或跨膜胞外结构域，完整蛋白抗体的天然可及性受限，更适合作为细胞内靶点的结构生物学与递送型抗体片段设计对象。相较于同属CLK家族成员，CLK1具有高分辨率实验结构和明确ATP结合裂隙，可支持精确界面建模；但其抗体开发优先级低于具胞外可及性的膜受体或分泌靶点。",
+    "mechanism": "设计抗体片段结合CLK1激酶结构域ATP结合裂隙邻近区域，空间阻断ATP与铰链区结合及底物SR蛋白进入催化沟槽，从而抑制SR蛋白磷酸化。",
+    "selectedEpitope": "优先瞄准激酶结构域N叶β折叠-铰链区与αC螺旋邻近的ATP口袋外缘表位。",
+    "diseaseDirection": "肿瘤可变剪接与神经退行性疾病",
+    "domain": "CLK1含N端富含RS样区域及C端蛋白激酶结构域，6FT8覆盖催化结构域。",
+    "evidence": "CLK1剪接激酶结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P49759功能与结构域注释",
+      "RCSB PDB 6FT8晶体结构记录",
+      "文献报道CLK激酶调控SR蛋白磷酸化与可变剪接"
+    ],
+    "referenceEntries": "UniProt P49759；RCSB PDB 6FT8；Open Targets CLK1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域铰链区与ATP结合口袋外缘",
+        "可直接干扰ATP定位并影响催化活性，结构分辨率支持精细设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N叶αC螺旋及邻近β3-αC调控界面",
+        "可能稳定非活化构象并降低底物磷酸化效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化环与活化环附近保守激酶核心",
+        "家族保守性较高，存在CLK2/CLK4交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CLK1为细胞内核蛋白，常规抗体难以接触天然抗原；需采用细胞内递送、内体逃逸或VHH/intrabody策略，并重点评估CLK家族交叉反应。",
+    "structurePrepZh": "以6FT8链A为模板，保留激酶结构域主链，移除结晶配体与水分子后补氢、校正质子化状态，并标注ATP口袋与铰链残基。",
+    "structureRef": "RCSB PDB 6FT8，CLK1激酶结构域X射线结构，1.45 Å",
+    "antibodies": [
+      "暂无获批抗CLK1治疗性抗体",
+      "研究级抗CLK1单克隆抗体"
+    ],
+    "interfaceFocus": "ATP口袋外缘、铰链区与αC螺旋界面",
+    "designMode": "细胞内抑制型片段",
+    "candidates": [
+      {
+        "target": "CLK2",
+        "rationale": "CLK2同属CDC-like kinase家族，参与SR蛋白磷酸化与可变剪接调控，可作为同一剪接激酶轴的选择性比较靶点。"
+      },
+      {
+        "target": "CLK4",
+        "rationale": "CLK4与CLK1共享SR蛋白剪接因子底物网络，在肿瘤转录后调控异常中具有机制相关性，适合用于家族选择性风险评估。"
+      },
+      {
+        "target": "SRSF1",
+        "rationale": "SRSF1为CLK介导磷酸化的重要SR剪接因子，位于同一可变剪接调控通路下游，并与乳腺癌剪接程序改变相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

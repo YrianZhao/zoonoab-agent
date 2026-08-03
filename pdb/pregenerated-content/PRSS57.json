@@ -1,0 +1,65 @@
+{
+  "gene": "PRSS57",
+  "generatedAt": "2026-08-03T15:37:43.158Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PRSS57为胰蛋白酶样丝氨酸蛋白酶，但现有疾病证据主要来自蛋白丰度、血浆蛋白测量及血压相关性状，缺乏明确致病通路与底物轴。其可分泌或胞外定位特征使成熟蛋白酶结构域具备抗体可及性，4Q7Z高分辨率结构支持活性沟槽与外周环区建模。相较缺乏结构模板的低证据候选，PRSS57具有实验结构优势；但因Open Targets最高关联分值较低，应定位为探索性优先级而非强验证疾病靶点。",
+    "mechanism": "设计抗体覆盖催化三联体邻近的S1底物结合口袋及活性沟槽入口，阻断PRSS57与肽类底物进入酶切位点的空间配对。",
+    "selectedEpitope": "优先选择胰蛋白酶样丝氨酸蛋白酶结构域中S1口袋周缘与活性沟槽外缘环区。",
+    "diseaseDirection": "血浆蛋白丰度与心血管性状探索",
+    "domain": "PRSS57包含N端信号肽及C端胰蛋白酶样丝氨酸蛋白酶催化结构域，4Q7Z覆盖成熟酶核心。",
+    "evidence": "PRSS57结构可设计性与人群性状关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病-靶点关联",
+      "UniProt Q6UWY2蛋白注释",
+      "RCSB PDB 4Q7Z晶体结构",
+      "AlphaFold/蛋白结构域一致性评估"
+    ],
+    "referenceEntries": "UniProt Q6UWY2；RCSB PDB 4Q7Z；Open Targets PRSS57",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域S1底物口袋周缘及活性沟槽入口",
+        "直接限制底物肽进入催化中心，最适合功能阻断型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "胰蛋白酶样结构域外周可及环区",
+        "可获得较高表面暴露度，并通过构象约束间接影响底物结合",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化核心保守β桶骨架邻近区域",
+        "同源丝氨酸蛋白酶保守性较高，存在交叉反应与选择性不足风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PRSS57疾病因果证据较弱，且催化核心与同源丝氨酸蛋白酶存在保守性。设计应避开高度保守催化三联体骨架，强化外周环区特异性。",
+    "structurePrepZh": "以4Q7Z的A、B链为实验模板，保留成熟催化结构域，检查晶体接触、缺失环区及糖基化位点，并对活性沟槽进行质子化与表面可及性评估。",
+    "structureRef": "RCSB PDB 4Q7Z，X-ray diffraction，1.4 Å",
+    "antibodies": [
+      "无已批准PRSS57靶向抗体",
+      "无公开临床阶段PRSS57抗体"
+    ],
+    "interfaceFocus": "S1口袋、活性沟槽入口及外周特异环区",
+    "designMode": "探索性阻断抗体",
+    "candidates": [
+      {
+        "target": "FSTL3",
+        "rationale": "FSTL3 measurement为PRSS57关联性状中最高分条目，FSTL3作为分泌型糖蛋白具有良好抗原可及性，可作为同一血浆蛋白丰度性状轴的候选靶点。"
+      },
+      {
+        "target": "FST",
+        "rationale": "FST与FSTL3同属follistatin相关配体结合模块，参与调节activin等TGF-β家族配体可用性，适合作为相关蛋白测量表型的机制参照靶点。"
+      },
+      {
+        "target": "INHBA",
+        "rationale": "INHBA编码activin A亚基，是FST/FSTL3结合调控的真实配体节点；其分泌型配体特征支持抗体阻断配体-结合蛋白相互作用的设计评估。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

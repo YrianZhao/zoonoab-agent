@@ -1,0 +1,65 @@
+{
+  "gene": "RDX",
+  "generatedAt": "2026-08-03T15:58:16.522Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RDX编码radixin，是ERM家族膜-肌动蛋白连接蛋白，在耳蜗毛细胞静纤毛中参与连接质膜蛋白与F-actin骨架；功能缺陷可破坏静纤毛结构稳定性并导致常染色体隐性非综合征性听力损失。该蛋白主要为胞内皮质骨架适配蛋白，天然抗原可及性弱于典型膜受体或分泌蛋白，但N端FERM结构域具备清晰可解析的蛋白互作界面，适合用于机制性结合分子与细胞内递送抗体片段设计。相比同通路的多跨膜机械转导蛋白，RDX具有高分辨率实验结构与明确结构域边界，利于基于结构的表位约束与亲和力成熟。",
+    "mechanism": "设计抗体片段结合RDX FERM结构域，阻断其与膜蛋白胞质尾部及PIP2依赖膜界面的结合，削弱ERM介导的膜-肌动蛋白锚定。",
+    "selectedEpitope": "优先覆盖FERM F3亚结构域的膜蛋白尾部结合沟槽，并避开F1-F2保守折叠核心。",
+    "diseaseDirection": "遗传性听力损失与静纤毛骨架稳态",
+    "domain": "Radixin含N端FERM结构域、中央α螺旋区及C端ERM关联/F-actin结合区。",
+    "evidence": "RDX结构域与遗传性耳聋关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P35241功能与结构域注释",
+      "RCSB PDB 8XZ6实验晶体结构",
+      "OMIM及ClinVar遗传性听力损失变异记录"
+    ],
+    "referenceEntries": "UniProt P35241；RCSB PDB 8XZ6；Open Targets RDX",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "FERM F3亚结构域膜蛋白胞质尾结合沟槽",
+        "可直接干预radixin与膜锚定蛋白的互作，机制可验证性高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FERM F1-F2亚结构域间PIP2相关正电荷表面",
+        "可能影响膜定位与构象激活，但需控制对ERM家族保守界面的交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端ERM关联/F-actin结合区域",
+        "具备骨架结合调节价值，但柔性较高且结构依赖性较强",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RDX为胞内抗原，常规全长IgG难以到达作用位点；宜采用VHH、scFv或细胞递送格式，并评估EZR/MSN交叉结合风险。",
+    "structurePrepZh": "以8XZ6晶体结构链A至H进行同源链比对，保留FERM稳定构象，去除晶体接触伪界面并标注保守正电荷斑块。",
+    "structureRef": "RCSB PDB 8XZ6，X-ray diffraction，2.12 Å",
+    "antibodies": [
+      "anti-radixin clone 4G7",
+      "anti-radixin monoclonal antibody R3653"
+    ],
+    "interfaceFocus": "FERM F3尾肽沟槽与PIP2膜结合面",
+    "designMode": "胞内VHH阻断设计",
+    "candidates": [
+      {
+        "target": "EZR",
+        "rationale": "EZR同属ERM家族，介导质膜与F-actin连接，在感觉上皮细胞微绒毛及皮质骨架组织中与RDX共享膜-骨架耦联机制。"
+      },
+      {
+        "target": "MSN",
+        "rationale": "MSN为ERM家族成员，参与PIP2依赖的构象激活和膜蛋白胞质尾部连接，可作为膜-肌动蛋白锚定通路的并行候选靶点。"
+      },
+      {
+        "target": "PTPRQ",
+        "rationale": "PTPRQ定位于毛细胞静纤毛并调节肌动蛋白束与膜结构稳态，其遗传变异与非综合征性听力损失相关，处于同一静纤毛结构维护疾病轴。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

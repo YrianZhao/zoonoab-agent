@@ -1,0 +1,65 @@
+{
+  "gene": "PTK6",
+  "generatedAt": "2026-08-03T15:42:40.803Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PTK6为非受体型酪氨酸激酶，在非小细胞肺癌、甲状腺癌及结直肠腺癌中可通过磷酸化AKT1、CTNNB1、STAT3等底物增强增殖、迁移与存活信号。该蛋白主要定位于胞质或核内，缺乏天然胞外结构域，作为常规抗体药物的抗原可及性低于膜受体或分泌蛋白，需优先采用胞内递送抗体、intrabody或降解偶联策略。其优先级来自较明确的肿瘤依赖性和高分辨率激酶结构可用性，但相较ERBB家族等上游膜受体，成药模式风险较高，应定位为结构验证型设计靶点。",
+    "mechanism": "通过抗体片段占据PTK6激酶结构域ATP结合裂隙或底物结合沟槽，阻断其对AKT1、CTNNB1及STAT3等底物的酪氨酸磷酸化。",
+    "selectedEpitope": "优先靶向激酶结构域N-lobe与C-lobe之间ATP结合裂隙及活化环邻近构象表位。",
+    "diseaseDirection": "肿瘤增殖与侵袭信号抑制",
+    "domain": "PTK6含N端SH3结构域、中央SH2结构域及C端酪氨酸激酶结构域，6CZ4覆盖激酶催化核心。",
+    "evidence": "PTK6肿瘤激酶依赖性与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q13882功能与亚细胞定位注释",
+      "RCSB PDB 6CZ4高分辨率晶体结构",
+      "肿瘤细胞中PTK6底物磷酸化与迁移增殖研究"
+    ],
+    "referenceEntries": "UniProt Q13882；RCSB PDB 6CZ4；Open Targets PTK6",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域ATP结合裂隙与铰链区周边",
+        "可直接干预ATP结合和催化构象，适合抑制型胞内抗体片段设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "活化环及C-lobe底物结合沟槽邻近区域",
+        "有望削弱底物招募与磷酸转移效率，兼具构象选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SH2结构域磷酸酪氨酸结合口袋",
+        "可能影响自身调控和蛋白复合物装配，但6CZ4不覆盖该区域，结构外推风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PTK6为胞内非受体激酶，常规IgG难以接触天然抗原；应采用Fab/VHH胞内表达、细胞穿透递送或抗体降解平台，并严格评估激酶家族交叉反应。",
+    "structurePrepZh": "以6CZ4链A为模板，保留激酶结构域主链构象，补全缺失侧链并标注ATP口袋、铰链区、DFG基序与活化环用于表位约束。",
+    "structureRef": "RCSB PDB 6CZ4，X-ray diffraction，1.5 Å",
+    "antibodies": [
+      "PTK6 intrabody候选抗体片段",
+      "PTK6研究级单克隆抗体"
+    ],
+    "interfaceFocus": "ATP口袋铰链区、活化环与底物沟槽",
+    "designMode": "胞内抑制型抗体设计",
+    "candidates": [
+      {
+        "target": "ERBB2",
+        "rationale": "ERBB2可位于PTK6相关肿瘤生长信号上游，激活PI3K-AKT和MAPK通路；其胞外受体结构明确，抗体可及性和临床验证程度高。"
+      },
+      {
+        "target": "EGFR",
+        "rationale": "EGFR在非小细胞肺癌和结直肠癌中驱动RTK信号，并可与PTK6相关的AKT、STAT3输出通路汇合；其胞外配体结合域适合阻断型抗体设计。"
+      },
+      {
+        "target": "AKT1",
+        "rationale": "AKT1是PTK6可促进磷酸化和激活的关键信号节点，参与肿瘤细胞存活与增殖；但其胞内定位使抗体模式同样需要递送或intrabody策略。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

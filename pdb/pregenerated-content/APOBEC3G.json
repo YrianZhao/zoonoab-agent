@@ -1,0 +1,65 @@
+{
+  "gene": "APOBEC3G",
+  "generatedAt": "2026-08-03T18:06:18.180Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "APOBEC3G 是宿主抗 HIV 限制因子，可在病毒逆转录过程中诱导负链 cDNA 胞嘧啶脱氨并造成 G-to-A 超突变；HIV-1 Vif 通过结合 APOBEC3G 并招募 CUL5-ELOB/ELOC/RBX2 泛素连接酶复合体介导其降解，从而解除限制。该蛋白为胞质可溶性酶，天然抗原可及性不如膜受体，但可通过胞内递送抗体、细胞穿透型 VHH 或研究级阻断分子靶向 Vif 结合界面。相较直接靶向病毒包膜变异区，APOBEC3G 的宿主编码序列较稳定，且 Vif-APOBEC3G 轴在 HIV 复制适应性中具有明确优先级。",
+    "mechanism": "阻断 HIV-1 Vif 与 APOBEC3G N 端非催化结构域的结合，抑制 CUL5 泛素连接酶招募与蛋白酶体降解，维持 APOBEC3G 包装入病毒颗粒。",
+    "selectedEpitope": "优先覆盖 N 端结构域 Vif 结合相关界面，避开 C 端催化锌配位活性中心。",
+    "diseaseDirection": "HIV 感染宿主限制通路",
+    "domain": "APOBEC3G 含 N 端假催化结构域与 C 端催化脱氨结构域，3V4K 对应 C 端催化域晶体结构。",
+    "evidence": "APOBEC3G-Vif 轴抗 HIV 证据包",
+    "evidenceSources": [
+      "Open Targets Platform HIV infectious disease association",
+      "UniProt Q9HC16 functional annotation",
+      "RCSB PDB 3V4K X-ray crystal structure",
+      "HIV-1 Vif-mediated APOBEC3G ubiquitination literature"
+    ],
+    "referenceEntries": "UniProt Q9HC16；RCSB PDB 3V4K；Open Targets MONDO_0005109",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N 端非催化结构域 Vif 结合界面",
+        "直接阻断 Vif 识别与降解启动，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C 端催化域远离锌配位活性中心的外周环区",
+        "可用于稳定构象或构建检测抗体，降低催化干扰风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端 HXE-PCX2-4C 锌配位催化核心邻近区域",
+        "可能影响宿主脱氨酶活性并增加功能毒性，应限制采用",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "APOBEC3G 为胞内蛋白，常规抗体药物递送效率受限；设计应优先采用 VHH 或胞内抗体格式，并避免抑制 C 端脱氨活性。",
+    "structurePrepZh": "以 3V4K 的 A、B 链 C 端催化域为高分辨率模板，补充 N 端结构域模型并标注锌配位、二聚界面及 Vif 相关残基。",
+    "structureRef": "RCSB PDB 3V4K，1.38 Å X-ray APOBEC3G catalytic domain",
+    "antibodies": [
+      "anti-APOBEC3G monoclonal antibody clone 4F12",
+      "anti-APOBEC3G monoclonal antibody clone 6D3"
+    ],
+    "interfaceFocus": "APOBEC3G N 端 Vif 结合面与C端催化核心",
+    "designMode": "胞内阻断型VHH",
+    "candidates": [
+      {
+        "target": "VIF",
+        "rationale": "HIV-1 Vif 是 APOBEC3G 降解通路的直接病毒因子，靶向其 APOBEC3G 结合面可阻止宿主限制因子失活。"
+      },
+      {
+        "target": "CUL5",
+        "rationale": "CUL5 是 Vif 招募的 E3 泛素连接酶支架，参与 APOBEC3G 泛素化降解；其宿主基础功能广泛，适合作为机制参照靶点而非首选抗体靶点。"
+      },
+      {
+        "target": "ELOB",
+        "rationale": "ELOB 与 ELOC 共同构成 Vif-CBFβ-CUL5 复合体适配模块，影响 Vif 介导的 APOBEC3G 降解效率。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

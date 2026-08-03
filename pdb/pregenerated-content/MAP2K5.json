@@ -1,0 +1,65 @@
+{
+  "gene": "MAP2K5",
+  "generatedAt": "2026-08-03T14:02:01.292Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAP2K5为MEK5激酶，特异性磷酸化并激活MAPK7/ERK5，参与心血管应激、代谢表型与脂肪组织相关信号调控。其Open Targets关联以体脂率、血压、瘦体重和BMI等复杂性状为主，但蛋白主要位于胞内，天然抗原可及性不利于常规细胞外阻断抗体。相较膜受体或分泌因子，MAP2K5作为抗体主靶点优先级较低，更适合结构指导的胞内递送抗体片段或研究型构象捕获策略。",
+    "mechanism": "通过胞内递送抗体片段结合MAP2K5激酶结构域，干扰其与MAPK7底物对接或稳定非活化构象，降低MAPK7磷酸化。",
+    "selectedEpitope": "优先靶向激酶结构域C叶底物结合沟槽及MAPK7对接邻近界面。",
+    "diseaseDirection": "代谢性状与心血管风险",
+    "domain": "MAP2K5含N端PB1结构域、MAPK对接序列及C端Ser/Thr/Tyr激酶结构域。",
+    "evidence": "MAP2K5-ERK5代谢心血管关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q13163功能与结构域注释",
+      "RCSB PDB 2NPT晶体结构数据",
+      "文献报道MEK5-ERK5信号轴研究"
+    ],
+    "referenceEntries": "UniProt Q13163；RCSB PDB 2NPT；Open Targets MAP2K5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域C叶底物结合沟槽",
+        "可能阻断MAPK7底物定位并抑制磷酸转移",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端PB1结构域介导的支架蛋白结合面",
+        "可干扰MAP3K2/MAP3K3向MAP2K5的信号装配",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP结合裂隙及催化环邻近区域",
+        "保守性高且易产生广谱激酶交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAP2K5为胞内激酶，常规抗体难以到达作用位点；催化口袋保守性高，应避免ATP结合区，优先评估胞内递送格式与选择性界面。",
+    "structurePrepZh": "以2NPT高分辨率晶体结构为模板，保留抗原链A-D中构象完整链，补建缺失环区并标注ATP口袋、活化环和底物对接面。",
+    "structureRef": "RCSB PDB 2NPT，X-ray diffraction，1.75 Å",
+    "antibodies": [
+      "无获批抗MAP2K5治疗性抗体",
+      "研究级抗MAP2K5抗体"
+    ],
+    "interfaceFocus": "MAPK7底物对接面与激酶C叶沟槽",
+    "designMode": "胞内抗体片段",
+    "candidates": [
+      {
+        "target": "MAPK7",
+        "rationale": "MAPK7/ERK5是MAP2K5的直接下游底物，接受MAP2K5磷酸化后介导转录和心血管应激相关效应。其胞内定位同样限制常规抗体可及性。"
+      },
+      {
+        "target": "MAP3K2",
+        "rationale": "MAP3K2/MEKK2可在上游磷酸化并激活MAP2K5，属于MEK5-ERK5级联的真实组成部分。干预该节点可影响MAP2K5激活输入。"
+      },
+      {
+        "target": "MAP3K3",
+        "rationale": "MAP3K3/MEKK3同为MAP2K5上游激酶，参与ERK5通路激活及血管相关信号。其作为同通路候选靶点可用于上游信号阻断比较。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

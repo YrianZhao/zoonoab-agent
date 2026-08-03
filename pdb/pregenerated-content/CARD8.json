@@ -1,0 +1,65 @@
+{
+  "gene": "CARD8",
+  "generatedAt": "2026-08-03T11:01:00.284Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CARD8 是细胞内炎症小体传感器，N 端 FIIND 自切割后形成可招募 CASP1 的 CARD 结构域，参与 IL1B 和 IL18 成熟释放，并与炎症性肠病遗传易感性存在关联。该蛋白主要定位于胞质，缺乏分泌型或膜外结构域，天然抗原可及性不符合常规体内抗体阻断策略，但可用于胞内递送抗体、降解型分子或结构生物学验证。相较 NLRP3、IL1B 等可及性更高靶点，CARD8 的优先级依据在于其位于炎症小体上游传感层，可更特异解析 CARD8 依赖性焦亡轴，但开发风险高于胞外细胞因子靶点。",
+    "mechanism": "设计分子应阻断 CARD8-CARD 与 CASP1-CARD 的同型 CARD-CARD 相互作用，抑制 CASP1 聚集、自切割及下游 IL1B/IL18 成熟。",
+    "selectedEpitope": "优先覆盖 CARD 结构域六螺旋束的 CASP1 对接面，避开 FIIND 自切割核心区域。",
+    "diseaseDirection": "炎症性肠病与炎症小体通路",
+    "domain": "CARD8 含 N 端非结构化区、中部 FIIND 结构域及 C 端 CARD 结构域。",
+    "evidence": "CARD8 炎症小体与肠道炎症遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt Q9Y2G2 功能与结构域注释",
+      "RCSB PDB 4IKM X 射线晶体结构",
+      "炎症小体 CASP1-IL1B/IL18 轴文献"
+    ],
+    "referenceEntries": "UniProt Q9Y2G2；RCSB PDB 4IKM；Open Targets CARD8",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C 端 CARD 结构域 CASP1-CARD 对接界面",
+        "直接阻断 CARD-CARD 聚集并抑制炎症小体效应放大",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FIIND UPA 与 CARD 邻近连接区",
+        "可能干扰自切割后 C 端片段稳定性及 CARD 呈递构象",
+        "备选"
+      ],
+      [
+        "Site C",
+        "FIIND ZU5-UPA 自切割核心周边",
+        "结构功能敏感但保守性与构象依赖性较高，易影响蛋白折叠解释",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CARD8 为胞内蛋白，常规抗体体内可及性不足；建议限定为细胞内递送、intrabody 或结构验证场景，并评估与其他 CARD 蛋白交叉反应。",
+    "structurePrepZh": "以 PDB 4IKM 的 A、B 链为模板，清理晶体接触与非生物学界面，补全缺失环区并标注 FIIND-CARD 边界。",
+    "structureRef": "RCSB PDB 4IKM，X-ray diffraction，2.46 Å",
+    "antibodies": [
+      "抗 CARD8 研究级单克隆抗体",
+      "抗 CARD8 多克隆/重组抗体"
+    ],
+    "interfaceFocus": "CARD-CARD 聚集界面与 FIIND-CARD 连接区",
+    "designMode": "胞内抗体探索",
+    "candidates": [
+      {
+        "target": "CASP1",
+        "rationale": "CASP1 是 CARD8 炎症小体的直接效应蛋白，其 CARD 结构域与 CARD8-CARD 相互作用并驱动 IL1B/IL18 成熟。"
+      },
+      {
+        "target": "IL1B",
+        "rationale": "IL1B 是 CASP1 激活后的关键促炎细胞因子，位于 CARD8 炎症小体下游，且分泌后具备抗体可及性。"
+      },
+      {
+        "target": "IL18",
+        "rationale": "IL18 同样由 CASP1 裂解成熟并参与肠道黏膜炎症放大，属于同一炎症小体效应通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

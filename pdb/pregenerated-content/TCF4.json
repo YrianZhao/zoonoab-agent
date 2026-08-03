@@ -1,0 +1,65 @@
+{
+  "gene": "TCF4",
+  "generatedAt": "2026-08-03T17:10:39.460Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TCF4 编码的转录因子 4 是 Wnt/β-catenin 及神经发育转录网络中的关键 E-box 结合因子，其功能异常与 Pitt-Hopkins syndrome 等神经发育表型密切相关，亦在角膜内皮稳态相关疾病中显示明确遗传关联。该蛋白主要定位于细胞核，缺乏胞外结构域和膜外暴露界面，直接抗体可及性显著低于膜受体或分泌蛋白，因此更适合作为机制研究与递送型干预靶点而非经典中和靶点。相较同通路中上游配体或受体，TCF4 具有更强的疾病因果收敛性和更明确的转录复合体依赖性，适合围绕 DNA 结合区、二聚化界面及 β-catenin 协同界面开展抑制性抗体工程。",
+    "mechanism": "阻断 TCF4 的 bHLH 二聚化与 β-catenin/辅因子协同结合，削弱其对靶基因启动子 E-box 元件的转录激活。",
+    "selectedEpitope": "优先覆盖 bHLH-DNA 结合/二聚化界面及 β-catenin 协同结合邻域。",
+    "diseaseDirection": "神经发育与角膜内皮疾病",
+    "domain": "bHLH 结构域及邻近转录调控区为核心，缺乏胞外可及结构域。",
+    "evidence": "TCF4 疾病关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform",
+      "UniProt P15884",
+      "RCSB PDB 6OD3",
+      "ClinVar / OMIM"
+    ],
+    "referenceEntries": "UniProt P15884; RCSB PDB 6OD3; Open Targets TCF4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "bHLH 二聚化界面",
+        "优先阻断同源/异源二聚化并降低 DNA 结合能力",
+        "优先"
+      ],
+      [
+        "Site B",
+        "β-catenin 协同结合邻域",
+        "削弱转录共激活复合体组装，适合功能抑制验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端调控区邻近表位",
+        "可能影响构象稳定性，但特异性与可解释性较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "靶点位于细胞核内且缺乏膜外暴露，常规表位可及性低；同时转录因子高度保守，存在同家族交叉识别风险。设计应优先采用细胞内递送型抗体或胞内片段，并通过结构定向筛选提高界面特异性。",
+    "structurePrepZh": "建议基于 6OD3 完成链集重编号与缺失片段检查，重点标注 bHLH 核心螺旋和二聚化接触残基。若用于建模，需结合同源二聚体状态与 DNA 结合构象进行界面约束。",
+    "structureRef": "RCSB PDB 6OD3; X-ray diffraction, 1.494 Å",
+    "antibodies": [
+      "anti-TCF4 intracellular binder",
+      "anti-E-protein bHLH binder"
+    ],
+    "interfaceFocus": "bHLH 二聚化面与 DNA 结合槽",
+    "designMode": "结构导向抑制",
+    "candidates": [
+      {
+        "target": "TCF3",
+        "rationale": "同属 class I E-protein 转录因子，与 TCF4 在 bHLH 二聚化网络中具有真实功能耦联，可作为交叉选择性与家族特异性评估对象。其结构与结合界面有助于区分保守与疾病相关残基。"
+      },
+      {
+        "target": "TCF12",
+        "rationale": "TCF12 与 TCF4 共享 E-protein 家族属性，并参与相近的 bHLH 转录复合体装配，适合用于同通路相似界面的反向筛选。可用于验证抗体对二聚化界面的选择性。"
+      },
+      {
+        "target": "CTNNB1",
+        "rationale": "CTNNB1 是 Wnt 转录复合体的核心共激活因子，和 TCF4 共同驱动靶基因转录，构成同一疾病通路中的关键节点。用于比较干预效果时可区分上游共激活与下游 DNA 结合层面的抑制差异。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

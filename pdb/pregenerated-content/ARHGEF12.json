@@ -1,0 +1,65 @@
+{
+  "gene": "ARHGEF12",
+  "generatedAt": "2026-08-03T10:34:29.508Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ARHGEF12编码LARG，是RhoA特异性鸟嘌呤核苷酸交换因子，可通过RH-RGS结构域接受Gα12/Gα13信号并促进RhoA由GDP结合态转为GTP结合态，参与小梁网细胞收缩、细胞外基质重塑及房水外流阻力形成，与原发性开角型青光眼风险具有通路一致性。该蛋白主要为胞内支架与催化蛋白，缺乏典型分泌型抗原或膜外结构域，抗原可及性低于膜受体类靶点，抗体设计更适合结构生物学验证、胞内递送或研究级阻断策略。其优先级依据在于PDB 1TXD提供人源RH-RGS结构域实验结构，可直接围绕Gα13结合界面进行表位设计；但相较同通路上游膜受体或分泌因子，成药可及性风险较高，应定位为机制验证优先靶点。",
+    "mechanism": "抗体结合ARHGEF12 RH-RGS结构域的Gα13接触面，阻断活化Gα13与LARG结合，从而降低LARG介导的RhoA-GDP向RhoA-GTP交换。",
+    "selectedEpitope": "优先选择RH-RGS结构域Gα13结合沟槽及其相邻α螺旋界面，避免直接覆盖保守结构核心。",
+    "diseaseDirection": "青光眼与房水外流通路",
+    "domain": "PDB 1TXD覆盖人源ARHGEF12 N端RH-RGS结构域，为Gα12/13依赖信号输入模块。",
+    "evidence": "ARHGEF12-RhoA轴青光眼机制证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9NZN5功能与结构域注释",
+      "RCSB PDB 1TXD晶体结构记录",
+      "RhoA/ROCK介导小梁网收缩文献证据"
+    ],
+    "referenceEntries": "UniProt Q9NZN5；RCSB PDB 1TXD；Open Targets ARHGEF12",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RH-RGS结构域Gα13结合沟槽",
+        "可直接阻断Gα13-LARG复合物形成，机制指向明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RH-RGS外侧暴露α螺旋束",
+        "有利于稳定结合并产生空间位阻，降低对结构核心扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "RH-RGS保守折叠核心区域",
+        "可能影响蛋白稳定性且同源结构保守，选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ARHGEF12为胞内蛋白，常规抗体体内可及性不足；设计宜限定于Fab/VHH结构探针、胞内递送体系或细胞模型验证，并评估与ARHGEF11等同源RH-RGS结构域交叉反应。",
+    "structurePrepZh": "以1TXD链A为模板，补全缺失侧链并校正质子化状态；保留RH-RGS折叠单元，围绕Gα13结合面进行溶剂可及性和保守性映射。",
+    "structureRef": "Longenecker et al., RGS-like domain of human LARG, PDB 1TXD",
+    "antibodies": [
+      "抗ARHGEF12研究级单克隆抗体",
+      "抗LARG多克隆抗体"
+    ],
+    "interfaceFocus": "RH-RGS结构域Gα13接触界面",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "GNA13",
+        "rationale": "GNA13编码Gα13，是ARHGEF12 RH-RGS结构域的直接上游结合伙伴；阻断Gα13-LARG相互作用可抑制RhoA激活输入。"
+      },
+      {
+        "target": "RHOA",
+        "rationale": "RHOA位于ARHGEF12下游，是小梁网细胞收缩和肌动蛋白应力纤维形成的核心开关；其活化状态直接反映LARG通路输出。"
+      },
+      {
+        "target": "ROCK1",
+        "rationale": "ROCK1是RhoA-GTP下游效应激酶，参与肌球蛋白轻链磷酸化和细胞收缩；在房水外流阻力调控中具有明确药理学可验证性。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

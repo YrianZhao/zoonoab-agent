@@ -1,0 +1,65 @@
+{
+  "gene": "H1-3",
+  "generatedAt": "2026-08-03T19:26:36.387Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "H1-3编码连接组蛋白H1.3，主要位于细胞核内并参与染色质高阶结构压缩与转录可及性调控，其肿瘤关联更可能反映染色质状态改变而非经典胞外受体通路。该蛋白缺乏跨膜区、分泌信号肽和稳定胞外结构域，抗体在体内难以直接接触天然抗原，抗原可及性显著弱于膜受体或分泌因子。相较于EGFR、ERBB2或PD-L1等同类肿瘤治疗靶点，H1-3的Open Targets关联分数较低且缺少可验证的胞外阻断界面，因此仅适合作为研究型或细胞内递送抗体探索靶点，优先级较低。",
+    "mechanism": "采用细胞内递送抗体或纳米抗体识别H1.3球状结构域，干扰其与核小体连接DNA及核小体二价结合，从而改变局部染色质压缩状态。",
+    "selectedEpitope": "优先评估H1.3球状winged-helix结构域的DNA结合面，避开高度保守羧基端赖氨酸富集尾部。",
+    "diseaseDirection": "肿瘤染色质调控研究方向",
+    "domain": "H1.3含短N端尾部、中心球状winged-helix结构域及富赖氨酸C端尾部，天然定位于核小体连接DNA区域。",
+    "evidence": "H1-3染色质结合与肿瘤关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P16402功能与定位注释",
+      "RCSB PDB 7XX5实验结构记录",
+      "核小体连接组蛋白H1结构生物学文献"
+    ],
+    "referenceEntries": "UniProt:P16402；RCSB PDB:7XX5；HGNC:H1-3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "中心球状winged-helix结构域DNA结合面",
+        "可直接测试H1.3与核小体连接DNA结合的阻断效应",
+        "优先"
+      ],
+      [
+        "Site B",
+        "球状结构域远离DNA界面的外露螺旋区域",
+        "利于获得构象特异结合分子并降低直接DNA竞争风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端富赖氨酸无序尾部",
+        "序列高度带正电且与其他H1亚型同源性较高，易产生交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为核内抗原不可及、H1家族亚型同源性高及尾部无序导致表位不稳定。设计应优先采用亚型差异残基约束并配置细胞内递送验证体系。",
+    "structurePrepZh": "以PDB 7XX5为结构模板，保留球状结构域坐标并检查3.19 Å分辨率下侧链可靠性；无序尾部宜采用AlphaFold或片段建模作为低置信参考。",
+    "structureRef": "RCSB PDB 7XX5，X-ray diffraction，3.19 Å",
+    "antibodies": [
+      "抗Histone H1.3研究抗体",
+      "抗Histone H1家族研究抗体"
+    ],
+    "interfaceFocus": "球状结构域DNA结合面与亚型差异残基",
+    "designMode": "细胞内抗体探索",
+    "candidates": [
+      {
+        "target": "EGFR",
+        "rationale": "EGFR为乳腺癌、鳞状细胞癌和非小细胞肺癌中明确的膜受体驱动靶点，胞外配体结合域适合阻断EGF/TGFA介导的受体激活。"
+      },
+      {
+        "target": "ERBB2",
+        "rationale": "ERBB2在部分乳腺癌中扩增或过表达，抗体可结合胞外结构域IV或二聚化相关区域并抑制ERBB家族信号。"
+      },
+      {
+        "target": "CD274",
+        "rationale": "CD274编码PD-L1，参与肿瘤免疫逃逸；抗体阻断PD-L1与PD-1结合可恢复T细胞受体信号后的抗肿瘤效应。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

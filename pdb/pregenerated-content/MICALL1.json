@@ -1,0 +1,65 @@
+{
+  "gene": "MICALL1",
+  "generatedAt": "2026-08-03T14:14:13.342Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MICALL1为胞内Rab效应蛋白，参与内体回收、膜管形成及囊泡转运过程，其遗传关联主要集中于血小板计数、血小板体积分布及肥胖相关性状，提示其可能影响巨核细胞血小板生成或血小板颗粒运输表型。该蛋白缺乏跨膜区和分泌信号肽，天然抗原可及性不符合常规细胞外抗体药物靶点标准；可及性优势主要限于重组结构域抗原、细胞内抗体或研究级结合分子开发。相较于细胞表面血小板受体如ITGA2B、GP1BA或THPO-MPL轴成员，MICALL1的疾病关联强度中等且机制证据偏遗传关联，因此优先级更适合作为机制验证靶点而非直接治疗性抗体主靶点。",
+    "mechanism": "设计结合MICALL1 CH-LIM结构域的抗体片段，阻断其与Rab相关内体膜复合物及细胞骨架调节界面的结合，用于干预内体回收与膜管形成过程。",
+    "selectedEpitope": "优先覆盖2KSP所解析的CH-LIM结构域外露α螺旋与锌结合LIM邻近面，避免破坏核心折叠。",
+    "diseaseDirection": "血小板数量与体积性状",
+    "domain": "MICALL1含N端CH结构域、LIM锌指结构域及C端卷曲螺旋区，2KSP覆盖CH-LIM片段。",
+    "evidence": "MICALL1血小板性状遗传关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform遗传关联数据",
+      "UniProt Q8N3F8功能与结构域注释",
+      "RCSB PDB 2KSP溶液NMR结构",
+      "GWAS Catalog血小板计数与血小板体积性状记录"
+    ],
+    "referenceEntries": "UniProt Q8N3F8；RCSB PDB 2KSP；Open Targets MICALL1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CH-LIM连接区外露螺旋面",
+        "可能影响结构域取向和膜相关复合物装配，适合功能阻断筛选",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CH结构域凸面非保守环区",
+        "抗原性较好且较少干扰整体折叠，可用于高特异性结合分子设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "LIM锌指核心配位区域",
+        "结构保守且依赖锌配位，抗体结合可能诱导非特异性失稳",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MICALL1为胞内蛋白，常规全长IgG难以到达天然作用位点；设计宜限定为重组结构域验证、细胞内抗体、VHH或递送体系，并规避LIM锌配位核心。",
+    "structurePrepZh": "以2KSP NMR构象簇为模板，筛选代表性低能构象，补齐缺失侧链并保留锌离子几何约束；表位评估需考虑构象柔性。",
+    "structureRef": "RCSB PDB 2KSP，human MICALL1 CH-LIM solution NMR structure",
+    "antibodies": [
+      "无已获批MICALL1治疗性抗体",
+      "研究级抗MICALL1抗体"
+    ],
+    "interfaceFocus": "CH-LIM连接面及非保守外露螺旋",
+    "designMode": "胞内靶点验证型",
+    "candidates": [
+      {
+        "target": "ITGA2B",
+        "rationale": "ITGA2B编码血小板整合素αIIb，是血小板聚集与血栓形成通路的细胞表面核心受体，抗体可直接阻断αIIbβ3与纤维蛋白原结合。"
+      },
+      {
+        "target": "GP1BA",
+        "rationale": "GP1BA编码GPIbα，介导血小板与von Willebrand因子结合，处于血小板黏附通路上游且具有明确胞外抗原可及性。"
+      },
+      {
+        "target": "MPL",
+        "rationale": "MPL为血小板生成素受体，直接调控巨核细胞分化与血小板生成，较MICALL1具备更清晰的血小板数量调控机制。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

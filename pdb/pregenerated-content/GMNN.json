@@ -1,0 +1,65 @@
+{
+  "gene": "GMNN",
+  "generatedAt": "2026-08-03T12:50:03.272Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GMNN编码geminin，是细胞周期依赖性DNA复制许可抑制因子，通过结合CDT1阻止MCM2-7复合体重复装载，维持基因组复制一次性。其疾病关联主要集中于发育迟缓、小头畸形和Meier-Gorlin综合征等复制许可异常相关表型。GMNN为胞内核质蛋白，天然抗体可及性弱，作为常规细胞外阻断抗体靶点优先级低；其优势在于高分辨率结构和明确CDT1结合界面，适合作为细胞内递送抗体片段或结构生物学验证模型。相比ORC、MCM等大型复合体组分，GMNN结构更小、二聚化界面清晰，便于开展界面定向分子设计。",
+    "mechanism": "抗体片段结合GMNN coiled-coil区域，干扰GMNN同源二聚化或其与CDT1的结合界面，从而改变CDT1介导的复制许可调控。",
+    "selectedEpitope": "优先覆盖1T6F中GMNN coiled-coil二聚化核心及CDT1结合相关螺旋面。",
+    "diseaseDirection": "复制许可异常相关发育疾病",
+    "domain": "GMNN含N端降解调控区、中央coiled-coil二聚化区和CDT1结合相关螺旋区域。",
+    "evidence": "GMNN复制许可与发育疾病结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt O75496功能与亚细胞定位注释",
+      "RCSB PDB 1T6F晶体结构记录",
+      "DNA replication licensing文献证据"
+    ],
+    "referenceEntries": "UniProt O75496；RCSB PDB 1T6F；Open Targets GMNN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "中央coiled-coil二聚化界面",
+        "可直接扰动geminin二聚体稳定性并影响CDT1结合构象",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CDT1结合相关外露螺旋面",
+        "适合设计竞争性Fab或胞内VHH以阻断GMNN-CDT1复合物形成",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端降解调控与柔性区域",
+        "构象异质性高且在1T6F中结构覆盖有限，表位稳定性需验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GMNN为胞内核质蛋白，常规抗体难以到达作用位点；设计应限定为细胞内递送Fab、intrabody或VHH，并避免破坏非特异性coiled-coil蛋白互作。",
+    "structurePrepZh": "以1T6F双链晶体结构为模板，保留A、B链二聚体装配，补充缺失柔性端区注释，并对coiled-coil界面进行质子化和界面能量评估。",
+    "structureRef": "RCSB PDB 1T6F，X-ray diffraction，1.47 Å",
+    "antibodies": [
+      "无获批抗GMNN治疗性抗体",
+      "研究级抗GMNN检测抗体"
+    ],
+    "interfaceFocus": "coiled-coil二聚化面与CDT1结合螺旋面",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "CDT1",
+        "rationale": "CDT1是GMNN直接结合的复制许可因子，负责促进MCM2-7装载；靶向其GMNN结合或MCM招募界面可验证同一复制许可轴。"
+      },
+      {
+        "target": "ORC1",
+        "rationale": "ORC1属于复制起始识别复合体核心亚基，与Meier-Gorlin综合征和复制起始缺陷相关；其处于GMNN-CDT1-MCM许可通路上游。"
+      },
+      {
+        "target": "CDC6",
+        "rationale": "CDC6协同ORC和CDT1装载MCM2-7解旋酶，是复制许可复合体形成的关键因子；与GMNN功能失衡导致的复制起始异常处于同一通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

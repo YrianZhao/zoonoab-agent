@@ -1,0 +1,65 @@
+{
+  "gene": "MGAT2",
+  "generatedAt": "2026-08-03T14:13:03.947Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MGAT2是高尔基体N-糖链加工通路中的关键糖基转移酶，催化GlcNAc从UDP-GlcNAc转移至Manα1-6臂，缺陷可导致MGAT2-CDG及复杂型N-糖基化异常。该蛋白为II型膜蛋白，催化结构域位于高尔基体腔面，具备面向腔内抗体片段或细胞内递送抗体的结构可及性。相比下游糖苷酶或广谱糖转移酶，MGAT2直接决定复杂型N-糖链分支形成，疾病遗传证据集中且5VCM提供高分辨率结构基础，优先级较高。",
+    "mechanism": "抗体结合MGAT2腔面催化结构域，遮挡UDP-GlcNAc供体口袋或Manα1-6糖链受体沟槽，抑制β1,2-GlcNAc转移反应。",
+    "selectedEpitope": "优先锁定催化结构域中UDP-GlcNAc结合口袋邻近环区及受体糖链沟槽边缘。",
+    "diseaseDirection": "先天性糖基化障碍与N-糖链异常",
+    "domain": "II型膜蛋白，含短胞质尾、单跨膜区、茎区及高尔基体腔面糖基转移酶催化结构域。",
+    "evidence": "MGAT2-CDG与复杂型N-糖基化缺陷证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q10469功能与亚细胞定位注释",
+      "RCSB PDB 5VCM高分辨率晶体结构",
+      "OMIM与MONDO先天性糖基化障碍分类"
+    ],
+    "referenceEntries": "UniProt Q10469；RCSB PDB 5VCM；Open Targets ENSG00000168282",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域UDP-GlcNAc供体结合口袋周缘",
+        "可直接干扰供体底物定位并降低糖基转移效率",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Manα1-6受体糖链结合沟槽外侧环区",
+        "有望阻断受体糖链进入催化中心并维持较好选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化结构域远端保守折叠表面",
+        "可能影响构象稳定性，但存在跨糖基转移酶保守性导致脱靶风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MGAT2定位于高尔基体腔面，常规循环抗体难以天然到达靶位点；宜采用细胞内递送Fab/VHH或工程化胞内抗体，并避开保守催化核心以降低同源酶交叉反应。",
+    "structurePrepZh": "以5VCM链A/B为模板，保留催化结构域坐标，校正糖基转移酶活性位点附近缺失侧链，移除非功能性晶体接触后进行同源酶保守性映射。",
+    "structureRef": "RCSB PDB 5VCM，X-ray diffraction，1.599 Å",
+    "antibodies": [
+      "抗MGAT2研究级单克隆抗体",
+      "抗MGAT2多克隆抗体"
+    ],
+    "interfaceFocus": "供体口袋、受体糖链沟槽与催化环区",
+    "designMode": "胞内递送阻断型",
+    "candidates": [
+      {
+        "target": "MGAT1",
+        "rationale": "MGAT1在同一N-糖链加工通路中催化杂合型向复杂型N-糖链的早期GlcNAc转移，是MGAT2上游关键节点。其功能扰动同样可导致复杂型N-糖基化减少。"
+      },
+      {
+        "target": "MAN2A1",
+        "rationale": "MAN2A1负责高尔基体α-甘露糖苷修剪，为MGAT2底物形成提供前置糖链结构。该节点与MGAT2共同决定复杂型N-糖链成熟。"
+      },
+      {
+        "target": "B4GALT1",
+        "rationale": "B4GALT1位于MGAT2下游，催化N-糖链末端半乳糖基化，参与复杂型N-糖链延伸。其异常可加重糖链成熟缺陷表型。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

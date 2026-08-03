@@ -1,0 +1,65 @@
+{
+  "gene": "IL9",
+  "generatedAt": "2026-08-03T13:28:16.239Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IL9 是由 Th9、Th2、肥大细胞及先天淋巴细胞产生的四螺旋束细胞因子，可通过 IL9R 与共受体 IL2RG 形成受体复合物，激活 JAK1/JAK3-STAT5 轴并促进嗜酸粒细胞相关炎症、黏膜免疫及 B 细胞反应。该靶点为分泌型细胞因子，抗原整体位于胞外环境，具备优良的抗体可及性与中和抗体开发可行性。相较于下游 JAK/STAT 节点，IL9 的配体端阻断更具通路选择性，可避免广泛抑制共用 γ 链细胞因子网络，因此具备较高优先级。",
+    "mechanism": "中和抗体阻断 IL9 与 IL9Rα 结合，并抑制 IL9Rα-IL2RG 受体复合物装配，从而降低 JAK1/JAK3 介导的 STAT5 磷酸化信号。",
+    "selectedEpitope": "优先覆盖四螺旋束细胞因子中参与 IL9Rα 识别的 A/C 螺旋邻近受体结合面。",
+    "diseaseDirection": "嗜酸粒细胞炎症与自身免疫",
+    "domain": "IL9 为短链四螺旋束分泌型细胞因子，包含 A、B、C、D 螺旋及连接环区。",
+    "evidence": "IL9-IL9R轴炎症关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传与关联评分",
+      "UniProt P15248 人源 IL9 功能注释",
+      "RCSB PDB 7OX3 X射线晶体结构",
+      "细胞因子受体γ链家族与JAK-STAT文献证据"
+    ],
+    "referenceEntries": "UniProt:P15248; RCSB PDB:7OX3; Open Targets:IL9",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "A/C螺旋邻近IL9Rα结合面",
+        "直接竞争配体-受体识别，具备中和活性优先级",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C-D螺旋连接环及D螺旋外侧面",
+        "可能影响受体复合物装配并提供构象选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "B螺旋远端非受体核心面",
+        "可获得结合抗体但中和概率较低，需功能筛选验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IL9 分子量较小且表面曲率高，需避免表位过度依赖柔性环区；设计中应保留受体竞争测定与STAT5抑制验证。",
+    "structurePrepZh": "以7OX3实验结构为模板，分离抗原链A、B、C并评估晶体接触；补全缺失侧链、标注螺旋束受体结合面后用于表位建模。",
+    "structureRef": "RCSB PDB 7OX3, X-ray diffraction, 1.7 Å",
+    "antibodies": [
+      "MEDI-528",
+      "Enokizumab"
+    ],
+    "interfaceFocus": "IL9Rα识别面与γ链复合物装配邻近区",
+    "designMode": "分泌因子中和",
+    "candidates": [
+      {
+        "target": "IL9R",
+        "rationale": "IL9Rα 是 IL9 的特异性受体链，直接介导配体识别；靶向受体端可阻断 IL9 诱导的 JAK1/JAK3-STAT5 信号。"
+      },
+      {
+        "target": "IL2RG",
+        "rationale": "IL2RG 为 IL9R 复合物的共用γ链，参与受体复合物信号转导；该节点与多种γ链细胞因子共享，需强调选择性风险。"
+      },
+      {
+        "target": "JAK3",
+        "rationale": "JAK3 与 IL2RG 胞内段耦联，是 IL9R 复合物下游 STAT5 激活的关键激酶；适合作为同通路药理学参照靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

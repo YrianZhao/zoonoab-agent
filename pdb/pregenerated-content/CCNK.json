@@ -1,0 +1,65 @@
+{
+  "gene": "CCNK",
+  "generatedAt": "2026-08-03T18:20:33.876Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CCNK编码cyclin K，作为CDK12/CDK13复合体的调节性细胞周期蛋白，参与RNA polymerase II C端结构域磷酸化并维持长基因、DNA损伤应答基因及病毒转录相关基因表达。其疾病关联以HIV感染、神经发育异常和神经退行性疾病为主，提示转录延伸失衡可能参与相关病理过程。CCNK为细胞核内非分泌蛋白，天然抗原可及性不适合常规细胞外阻断抗体，但其cyclin box结构清晰、PDB 2I53分辨率高，适合作为结构引导的胞内抗体或研究型Fab/VHH设计靶点。相较无高分辨率结构或界面不明确的转录调控因子，CCNK具有可解析的CDK结合界面和可验证的复合体机制，因此在机制研究型抗体设计中优先级较高。",
+    "mechanism": "设计抗体结合CCNK cyclin box的CDK12/CDK13识别界面，空间阻断CCNK与CDK12或CDK13形成活性激酶复合体，从而降低RNAPII CTD Ser2磷酸化。",
+    "selectedEpitope": "优先覆盖cyclin box内CDK结合沟槽及α螺旋界面，避开疏水核心并保留构象特异性。",
+    "diseaseDirection": "HIV转录与神经发育疾病",
+    "domain": "CCNK含典型N端cyclin box fold，由多段α螺旋构成，介导CDK12/CDK13复合体装配。",
+    "evidence": "CCNK-CDK12/13转录延伸复合体证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt O75909功能与定位注释",
+      "RCSB PDB 2I53晶体结构",
+      "CDK12/13-RNAPII CTD磷酸化相关文献"
+    ],
+    "referenceEntries": "UniProt O75909；RCSB PDB 2I53；Open Targets CCNK",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "cyclin box CDK12/CDK13结合沟槽",
+        "直接干预CCNK-CDK复合体形成，机制验证价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "cyclin box外侧α螺旋暴露面",
+        "可获得构象识别抗体，适合检测或复合体状态捕获",
+        "备选"
+      ],
+      [
+        "Site C",
+        "靠近疏水核心的保守螺旋束区域",
+        "可能影响蛋白折叠稳定性，需避免诱导非特异聚集",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CCNK为核内蛋白，常规治疗性抗体递送受限；设计应定位为胞内抗体、VHH递送或机制研究工具，并严格评估CDK复合体选择性。",
+    "structurePrepZh": "以PDB 2I53链A为模板，补全缺失侧链并进行质子化状态检查；映射CDK结合界面、保守残基和溶剂暴露面积后开展表位筛选。",
+    "structureRef": "RCSB PDB 2I53，1.5 Å X射线晶体结构",
+    "antibodies": [
+      "研究级anti-Cyclin K抗体",
+      "anti-CCNK免疫检测抗体"
+    ],
+    "interfaceFocus": "cyclin box介导的CDK12/CDK13装配界面",
+    "designMode": "胞内阻断型",
+    "candidates": [
+      {
+        "target": "CDK12",
+        "rationale": "CDK12与CCNK形成转录延伸激酶复合体，直接磷酸化RNAPII CTD Ser2并调控DNA损伤应答基因表达。"
+      },
+      {
+        "target": "CDK13",
+        "rationale": "CDK13同样与CCNK组装为转录调控复合体，参与RNA加工和转录延伸，属于同一CCNK依赖轴。"
+      },
+      {
+        "target": "POLR2A",
+        "rationale": "POLR2A编码RNAPII最大亚基，其CTD是CCNK-CDK12/13复合体的重要底物，可作为通路下游功能读出靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

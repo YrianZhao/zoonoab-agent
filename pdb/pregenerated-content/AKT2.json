@@ -1,0 +1,65 @@
+{
+  "gene": "AKT2",
+  "generatedAt": "2026-08-03T10:22:16.113Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "AKT2 是 PI3K-AKT 通路中的丝氨酸/苏氨酸激酶，在胰岛素受体底物经 PI3K 生成 PIP3 后被募集至膜近端并经 PDK1 与 mTORC2 磷酸化激活，参与葡萄糖摄取、糖原合成及细胞存活调控。该靶点与低胰岛素性低血糖伴半侧肥大、2 型糖尿病及乳腺癌存在明确遗传和通路关联。AKT2 为胞内激酶，天然抗体可及性弱，因而更适合以细胞内抗体、递送型 Fab/VHH 或结构引导降解抗体片段作为研究型设计。相较 AKT1/AKT3，AKT2 在代谢表型和胰岛素敏感性疾病中的遗传指向性更强，可作为代谢-肿瘤交叉轴中的优先级靶点。",
+    "mechanism": "设计分子阻断 AKT2 PH 结构域与 PIP3 头基结合，抑制膜募集及 Thr309、Ser474 磷酸化激活，从而降低底物磷酸化。",
+    "selectedEpitope": "优先聚焦 PH 结构域磷酸肌醇结合口袋及其相邻 β1-β2 环区。",
+    "diseaseDirection": "代谢异常与PI3K-AKT肿瘤通路",
+    "domain": "AKT2 含 N 端 PH 结构域、中央 AGC 激酶催化结构域及 C 端调控疏水基序。",
+    "evidence": "AKT2 代谢疾病与PI3K通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P31751 functional annotation",
+      "RCSB PDB 1O6L experimental structure",
+      "PI3K-AKT insulin signaling literature"
+    ],
+    "referenceEntries": "UniProt P31751；RCSB PDB 1O6L；Open Targets AKT2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PH 结构域 PIP3 结合口袋",
+        "直接干预膜定位与激活起始步骤，机制可验证性较高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PH 结构域 β1-β2/β5-β6 环区",
+        "可通过构象稳定削弱磷酸肌醇识别，适合 VHH 构象锁定",
+        "备选"
+      ],
+      [
+        "Site C",
+        "激酶结构域 ATP 结合裂隙邻近区域",
+        "与保守激酶口袋高度重叠，AKT 亚型选择性与脱靶风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "AKT2 为胞内蛋白，常规抗体药物可及性受限；PH 结构域与 AKT1/AKT3 同源性高，应优先评估亚型选择性与细胞内递送可行性。",
+    "structurePrepZh": "以 1O6L 高分辨率晶体结构为模板，保留抗原链 A/C，补全缺失侧链并统一质子化状态，围绕 PH 结构域配体口袋构建表位网格。",
+    "structureRef": "RCSB PDB 1O6L，X-ray diffraction，1.6 Å",
+    "antibodies": [
+      "MK-2206",
+      "Capivasertib"
+    ],
+    "interfaceFocus": "PH 结构域磷酸肌醇结合界面",
+    "designMode": "胞内递送型片段",
+    "candidates": [
+      {
+        "target": "PIK3CA",
+        "rationale": "PIK3CA 编码 PI3K p110α 催化亚基，位于 AKT2 上游并生成 PIP3，是乳腺癌 PI3K-AKT 通路激活的核心驱动节点。"
+      },
+      {
+        "target": "PDK1",
+        "rationale": "PDK1 可识别膜募集后的 AKT2 并磷酸化 Thr309，是 AKT2 激酶激活所需的直接上游激酶。"
+      },
+      {
+        "target": "INSR",
+        "rationale": "INSR 介导胰岛素信号起始并通过 IRS-PI3K 轴驱动 AKT2 激活，与葡萄糖稳态和 2 型糖尿病机制直接相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

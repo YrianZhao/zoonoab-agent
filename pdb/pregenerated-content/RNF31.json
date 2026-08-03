@@ -1,0 +1,65 @@
+{
+  "gene": "RNF31",
+  "generatedAt": "2026-08-03T21:04:04.264Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RNF31/HOIP 是线性泛素链装配复合体 LUBAC 的催化核心，介导 NEMO、RIPK1 等底物的 Met1 线性泛素化，从而维持 NF-κB 激活、细胞死亡检查点与先天免疫稳态，其功能缺陷与免疫缺陷伴自炎症表型密切相关。RNF31 为胞内 E3 泛素连接酶，天然抗原可及性弱于膜受体或分泌蛋白，但其结构域可作为胞内递送抗体、降解抗体或机制研究型结合体的明确结构抗原。相较同通路中广泛多效的 NFKB1/RELA，RNF31 位于 LUBAC 催化节点，疾病遗传证据更直接，适合作为通路选择性干预与结构机制验证的优先靶点。",
+    "mechanism": "设计结合 HOIP RBR-LDD 催化构象界面的抗体，阻断 RING2-LDD 介导的泛素转移构象形成，抑制 Met1 线性泛素链延伸。",
+    "selectedEpitope": "优先锁定 RING2 与 LDD 邻接催化界面，避开保守锌指核心并覆盖 E2~Ub 受体泛素定位面。",
+    "diseaseDirection": "免疫缺陷与自炎症通路",
+    "domain": "RNF31 含 PUB、NZF、UBA、RBR E3 催化模块及 LDD 线性泛素链决定结构域。",
+    "evidence": "RNF31-LUBAC免疫炎症遗传与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联证据",
+      "UniProt Q96EP0 蛋白功能与结构域注释",
+      "RCSB PDB 6KC5 晶体结构记录",
+      "OMIM/ClinVar RNF31 免疫缺陷与自炎症变异证据"
+    ],
+    "referenceEntries": "UniProt Q96EP0；RCSB PDB 6KC5；Open Targets RNF31",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RING2-LDD 催化构象界面",
+        "可干预 HOIP 受体泛素定位与线性链延伸，机制特异性较高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "LDD 线性泛素链决定结构域外露螺旋面",
+        "有利于锁定 LDD 构象并降低对锌配位核心的扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "RING1/IBR 锌结合折叠核心附近",
+        "结构保守且锌配位敏感，存在非特异构象扰动与交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RNF31 属胞内靶点，常规抗体组织可及性受限；建议定位为胞内递送抗体、VHH 或研究级构象阻断分子，并严格规避锌指配位残基。",
+    "structurePrepZh": "以 PDB 6KC5 链 B 为抗原模板，保留 RBR-LDD 构象单元，补全缺失侧链，检查锌离子配位、晶体接触面与催化界面暴露性。",
+    "structureRef": "RCSB PDB 6KC5，X-ray diffraction，1.543 Å",
+    "antibodies": [
+      "抗-HOIP/RNF31研究级单克隆抗体",
+      "抗-LUBAC组分机制研究抗体"
+    ],
+    "interfaceFocus": "RING2-LDD与受体泛素定位界面",
+    "designMode": "胞内构象阻断",
+    "candidates": [
+      {
+        "target": "RBCK1",
+        "rationale": "RBCK1/HOIL-1L 是 LUBAC 组成亚基，遗传缺陷同样关联免疫缺陷、自炎症与多聚葡聚糖沉积表型，可作为同复合体调节节点。"
+      },
+      {
+        "target": "SHARPIN",
+        "rationale": "SHARPIN 稳定 LUBAC 复合体并参与 TNF 诱导 NF-κB 信号，缺失可导致炎症和细胞死亡失衡，适合作为复合体装配干预靶点。"
+      },
+      {
+        "target": "IKBKG",
+        "rationale": "IKBKG/NEMO 是 LUBAC 线性泛素化关键底物和 NF-κB 激活支架，处于 RNF31 下游同一免疫炎症通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

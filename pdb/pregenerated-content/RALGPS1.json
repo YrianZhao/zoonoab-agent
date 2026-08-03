@@ -1,0 +1,65 @@
+{
+  "gene": "RALGPS1",
+  "generatedAt": "2026-08-03T20:44:15.363Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RALGPS1 是含 CDC25 同源催化区、PH 区及 SH3 结合基序的胞内 Ral 鸟嘌呤核苷酸交换因子，主要促进 RalA/RalB 由 GDP 结合态转为 GTP 结合态，参与细胞骨架重塑、囊泡运输及下游效应器募集。其疾病关联信号以骨关节炎、精神分裂症及代谢表型为主，但现有证据多提示遗传关联或表达相关性，尚缺乏直接胞外病理驱动轴。由于 RALGPS1 缺少分泌区段、跨膜区段和稳定胞外结构域，常规体内阻断型抗体的抗原可及性显著弱于膜受体或可溶性细胞因子；因此更适合作为胞内结合分子、结构探针或降解偶联识别模块的探索靶点，优先级低于同通路中具有更明确配体-受体可及性的上游靶点。",
+    "mechanism": "设计分子应结合 RALGPS1 的 CDC25 催化沟槽或其邻近 Ral GTPase 接触面，阻断 RALGPS1 促进 RalA/RalB GDP-GTP 交换的蛋白互作界面。",
+    "selectedEpitope": "优先聚焦 CDC25 同源催化结构域中与 Ral GTPase switch 区接触的凹槽边缘及 α 螺旋界面。",
+    "diseaseDirection": "Ral GTPase 相关骨关节与神经表型",
+    "domain": "RALGPS1 含 N 端非结构调控区、中央 CDC25 同源 RalGEF 催化域、PH 区及 C 端 SH3 结合基序。",
+    "evidence": "RALGPS1-Ral GTPase 轴结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联数据",
+      "UniProtKB Q5JS13 蛋白结构域注释",
+      "RCSB PDB 3QXL X 射线晶体结构",
+      "RalGEF-RalA/RalB GDP-GTP 交换机制文献"
+    ],
+    "referenceEntries": "UniProt Q5JS13；RCSB PDB 3QXL；Open Targets RALGPS1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CDC25 同源催化域的 Ral GTPase 结合沟槽",
+        "直接干预 RalA/RalB 结合与核苷酸交换，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CDC25 域邻近变构螺旋束界面",
+        "可通过构象稳定降低催化区对 Ral 的交换活性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PH 域或 SH3 结合基序邻近调控区域",
+        "可能影响膜定位或支架蛋白结合，但结构与疾病转化证据较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RALGPS1 为胞内蛋白，常规抗体难以到达作用位点；建议限定为细胞内抗体、VHH、PROTAC 招募模块或体外机制探针，并严格验证细胞通透递送。",
+    "structurePrepZh": "以 PDB 3QXL 链 A/B 为模板，校正缺失环区与质子化状态，保留 CDC25 催化域核心构象，并映射 RalGEF 家族保守催化残基。",
+    "structureRef": "RCSB PDB 3QXL，X-ray diffraction，2.237 Å",
+    "antibodies": [
+      "无已获批抗 RALGPS1 治疗性抗体",
+      "抗 RALGPS1 研究级多克隆抗体"
+    ],
+    "interfaceFocus": "CDC25 催化沟槽与 RalA/RalB switch 区接触面",
+    "designMode": "胞内VHH/结构探针",
+    "candidates": [
+      {
+        "target": "RALA",
+        "rationale": "RALA 是 RALGPS1 催化激活的直接小 GTPase，下游连接囊泡运输、细胞骨架与效应器复合体形成，位于同一 RalGEF-Ral 信号轴。"
+      },
+      {
+        "target": "RALB",
+        "rationale": "RALB 与 RALGPS1 存在同类 GDP-GTP 交换关系，并参与 RalBP1、exocyst 复合体等效应器招募，可作为同通路功能验证靶点。"
+      },
+      {
+        "target": "RALGDS",
+        "rationale": "RALGDS 是 Ras/Ral 通路中的经典 Ral 鸟嘌呤核苷酸交换因子，与 RALGPS1 同属 Ral 激活模块，可用于比较不同 RalGEF 的通路优先级。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

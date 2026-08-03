@@ -1,0 +1,65 @@
+{
+  "gene": "STAT3",
+  "generatedAt": "2026-08-03T21:20:20.017Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "STAT3 是 IL-6、IL-10、IL-21、IL-23、IL-27 等细胞因子受体下游的核心转录因子，JAK 介导的 Tyr705 磷酸化促使其二聚化并进入细胞核，参与 Th17 分化、B 细胞成熟和先天免疫调节，遗传变异与常染色体显性高 IgE 综合征及自身免疫表型密切相关。该蛋白主要定位于胞质和细胞核，缺乏天然胞外结构域，抗原可及性弱于膜受体或分泌因子，因此抗体设计更适合作为结构验证、细胞内递送或降解平台的研究型方案。相较 IL6R、JAK1 等上游节点，STAT3 汇聚多条疾病相关细胞因子轴，通路中心性和遗传证据强，适合优先开展机制表位设计但需严格控制递送风险。",
+    "mechanism": "抗体片段结合 STAT3 SH2 结构域，阻断磷酸化 Tyr705 肽段识别及SH2介导的二聚化界面，抑制STAT3核转位和靶基因转录。",
+    "selectedEpitope": "优先靶向SH2结构域磷酸酪氨酸结合沟槽及二聚化界面，避开DNA结合域保守正电表面。",
+    "diseaseDirection": "原发免疫缺陷与自身免疫炎症",
+    "domain": "STAT3含N端结构域、卷曲螺旋域、DNA结合域、连接区、SH2结构域及C端转录激活区。",
+    "evidence": "STAT3免疫失衡遗传与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt P40763 功能与结构域注释",
+      "RCSB PDB 6NJS X射线晶体结构",
+      "OMIM/Orphanet 高IgE综合征遗传证据"
+    ],
+    "referenceEntries": "UniProt P40763；RCSB PDB 6NJS；Open Targets STAT3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SH2结构域pTyr705识别沟槽与二聚化界面",
+        "直接阻断STAT3磷酸化二聚体形成，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DNA结合域外侧可及环区",
+        "可能干扰DNA结合复合物稳定性，但需避免非特异核酸界面",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端转录激活区邻近柔性片段",
+        "构象异质性高且结构解析不足，成药性和表位稳定性有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "STAT3为胞内转录因子，常规抗体难以到达作用位点；建议采用Fab/VHH胞内递送、细胞穿透或降解偶联策略，并评估STAT家族交叉反应。",
+    "structurePrepZh": "以6NJS链A为结构模板，补全缺失柔性区并保留SH2邻近构象；进行质子化、晶体接触检查和STAT家族同源表面比对。",
+    "structureRef": "RCSB PDB 6NJS，human STAT3晶体结构，2.7 Å",
+    "antibodies": [
+      "anti-STAT3 clone 124H6",
+      "anti-phospho-STAT3 Tyr705 clone D3A7"
+    ],
+    "interfaceFocus": "SH2 pTyr结合沟槽及二聚化界面",
+    "designMode": "胞内靶点阻断型",
+    "candidates": [
+      {
+        "target": "IL6R",
+        "rationale": "IL6R介导IL-6经典及反式信号并上游激活JAK-STAT3轴，具有胞外受体结构域，抗体可及性优于STAT3。"
+      },
+      {
+        "target": "IL6ST",
+        "rationale": "IL6ST/gp130是IL-6家族细胞因子受体共受体，二聚化后驱动JAK1/JAK2依赖的STAT3磷酸化，适合阻断上游复合物形成。"
+      },
+      {
+        "target": "IL21R",
+        "rationale": "IL21R通过JAK1/JAK3激活STAT3并调控B细胞分化和免疫球蛋白反应，与高IgE和免疫失衡表型具有通路相关性。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

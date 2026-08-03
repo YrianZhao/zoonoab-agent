@@ -1,0 +1,65 @@
+{
+  "gene": "VRK3",
+  "generatedAt": "2026-08-03T17:49:40.759Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "VRK3 为假激酶样丝氨酸/苏氨酸激酶，主要位于细胞内，可通过与 MAPK 磷酸酶 DUSP3/VHR 形成复合物影响 ERK 磷酸化稳态，因而与神经炎症及中枢神经系统疾病关联具有机制基础。该蛋白缺乏分泌型或跨膜胞外结构域，天然抗原可及性不符合常规治疗性抗体阻断范式，更适合作为细胞内结构识别或研究级抗体靶点。相较于同通路中具有胞外配体或膜受体特征的靶点，VRK3 的优先级主要来自已有 2.0 Å 实验结构与明确蛋白互作界面，而非体内抗体可达性优势。",
+    "mechanism": "抗体设计以识别 VRK3 激酶样结构域为核心，优先阻断 VRK3 与 DUSP3/VHR 的复合物形成，从而改变 DUSP3 对 ERK1/2 去磷酸化调控。",
+    "selectedEpitope": "优先覆盖激酶样结构域 C-lobe 暴露面及推定 DUSP3 结合界面，避开保守疏水核心。",
+    "diseaseDirection": "神经退行性与中枢神经炎症",
+    "domain": "VRK3 含非典型激酶样催化结构域，PDB 2JII 覆盖双叶激酶折叠构象。",
+    "evidence": "VRK3-DUSP3-ERK 轴结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProtKB Q8IV63 蛋白功能与定位注释",
+      "RCSB PDB 2JII X 射线晶体结构",
+      "VRK3 与 DUSP3/VHR 调控 ERK 磷酸化相关文献"
+    ],
+    "referenceEntries": "UniProt Q8IV63；RCSB PDB 2JII；Open Targets VRK3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶样 C-lobe 暴露面及 DUSP3/VHR 结合相关界面",
+        "具备阻断蛋白-蛋白相互作用与结构分辨率支持的综合价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N-lobe αC-helix 邻近表面与浅沟槽区域",
+        "可用于构象识别或变构型结合，但功能阻断确定性较低",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP 结合裂隙样保守区域及疏水核心邻近面",
+        "保守性高且可能产生交叉识别风险，不宜作为首选抗体表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "VRK3 为细胞内假激酶样蛋白，体内抗体可及性为主要限制；建议定位于胞内递送、研究抗体或降解偶联探索，并严格评估激酶家族交叉反应。",
+    "structurePrepZh": "采用 PDB 2JII 的 A/B 链进行同源构象比对，补全缺失侧链，移除结晶冗余分子，标注保守激酶折叠与暴露互作面。",
+    "structureRef": "RCSB PDB 2JII，VRK3 晶体结构，2.0 Å",
+    "antibodies": [
+      "暂无获批 VRK3 治疗性抗体",
+      "研究级抗 VRK3 单克隆抗体"
+    ],
+    "interfaceFocus": "C-lobe 暴露面与 DUSP3/VHR 结合界面",
+    "designMode": "胞内结构识别",
+    "candidates": [
+      {
+        "target": "DUSP3",
+        "rationale": "DUSP3/VHR 是 VRK3 已报道互作磷酸酶，并直接参与 ERK 去磷酸化调控；其与 VRK3 处于同一 MAPK 磷酸化稳态轴。"
+      },
+      {
+        "target": "MAPK1",
+        "rationale": "MAPK1/ERK2 是 DUSP3 去磷酸化底物之一，处于 VRK3-DUSP3 下游效应节点；该节点与神经炎症和细胞应激反应相关。"
+      },
+      {
+        "target": "MAPK3",
+        "rationale": "MAPK3/ERK1 与 MAPK1 共同构成 ERK1/2 信号输出模块，是 VRK3-DUSP3 轴影响 MAPK 活性的同通路候选靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

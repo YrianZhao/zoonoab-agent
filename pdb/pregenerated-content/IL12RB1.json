@@ -1,0 +1,65 @@
+{
+  "gene": "IL12RB1",
+  "generatedAt": "2026-08-03T13:25:35.979Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IL12RB1是IL-12与IL-23受体复合体的共享受体亚基，参与IL12A/IL12B驱动的Th1分化及IL23A/IL12B驱动的Th17维持，其功能缺陷与分枝杆菌易感、沙门菌感染及免疫缺陷表型密切相关。该蛋白为I型跨膜受体，胞外区由多个细胞因子受体同源结构域组成，抗体可直接识别可及的膜外配体结合界面。相较仅作用IL12RB2或IL23R，IL12RB1位于IL-12与IL-23共享节点，可同时影响两条炎症轴，但需通过表位选择避免过度广谱免疫抑制。",
+    "mechanism": "阻断IL12B p40亚基与IL12RB1胞外细胞因子受体同源结构域结合，抑制IL-12Rβ1参与IL-12/IL-23受体复合体装配。",
+    "selectedEpitope": "优先覆盖D1-D2细胞因子受体同源模块的IL12B p40结合界面，保留跨膜近端非功能面。",
+    "diseaseDirection": "IL-12/IL-23轴免疫炎症与免疫缺陷",
+    "domain": "N端信号肽后为胞外D1-D5样细胞因子受体同源区，含WSXWS样基序，随后为跨膜段和胞内尾区。",
+    "evidence": "IL12RB1结构、遗传缺陷与IL-12/IL-23通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联与遗传证据",
+      "UniProt P42701功能与结构域注释",
+      "RCSB PDB 6WDP X射线晶体结构",
+      "OMIM与ClinVar中IL12RB1缺陷相关免疫缺陷记录"
+    ],
+    "referenceEntries": "UniProt:P42701；RCSB PDB:6WDP；Open Targets:IL12RB1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "D1-D2模块IL12B p40结合面",
+        "直接阻断IL-12/IL-23共享配体亚基招募，功能抑制明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "D2-D3结构域连接区邻近受体装配面",
+        "可能干扰受体复合体构象稳定，适合构建部分拮抗抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "D4-D5膜近端区域",
+        "远离主要配体结合界面，功能阻断不确定且可能受膜环境遮挡",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IL12RB1为IL-12与IL-23共享亚基，强阻断可能削弱抗分枝杆菌和抗沙门菌免疫；建议优先筛选可调节结合强度的非耗竭型拮抗抗体。",
+    "structurePrepZh": "以6WDP抗原链A为模板，补全缺失环区并保留二硫键约束；对胞外结构域进行糖基化位点标注后开展表面可及性与界面残基映射。",
+    "structureRef": "RCSB PDB 6WDP，IL-12受体β1胞外区晶体结构，2.01 Å",
+    "antibodies": [
+      "Ustekinumab",
+      "Briakinumab"
+    ],
+    "interfaceFocus": "IL12B p40与IL12RB1 D1-D2结合界面",
+    "designMode": "结构引导拮抗抗体设计",
+    "candidates": [
+      {
+        "target": "IL12B",
+        "rationale": "IL12B编码p40共享亚基，是IL-12与IL-23直接结合IL12RB1的配体组分；靶向该节点已有临床验证，可作为同轴通路对照靶点。"
+      },
+      {
+        "target": "IL23R",
+        "rationale": "IL23R与IL12RB1共同组成IL-23受体复合体，特异性影响IL-23/Th17轴，适合在避免IL-12轴抑制时作为优先候选。"
+      },
+      {
+        "target": "IL12RB2",
+        "rationale": "IL12RB2与IL12RB1共同组成IL-12受体复合体，介导STAT4激活和Th1分化，可用于解析IL-12特异性免疫调控策略。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

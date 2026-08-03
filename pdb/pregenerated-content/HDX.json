@@ -1,0 +1,65 @@
+{
+  "gene": "HDX",
+  "generatedAt": "2026-08-03T19:44:23.970Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HDX 为 highly divergent homeobox 蛋白，现有疾病关联主要来自神经退行性疾病、睡眠及神经认知表型的遗传统计信号，但其作为核内转录调控相关 homeobox 蛋白的具体致病通路尚缺乏可直接干预的配体-受体轴证据。HDX 不具备分泌蛋白或跨膜受体特征，抗原可及性明显弱于胞外膜蛋白靶点，常规完整抗体难以在未工程化递送条件下作用于核内表位。相较 NGF、TNFRSF1A 或 IL6R 等同属神经炎症/神经退行性疾病相关通路且具备胞外可及性的靶点，HDX 作为治疗性抗体主靶点优先级较低，更适合作为结构生物学验证或细胞内抗体研究对象。",
+    "mechanism": "以细胞内抗体或递送型 VHH 结合 HDX homeodomain，阻断其识别 DNA 大沟并干扰 HDX 与转录共调控复合物的结合。",
+    "selectedEpitope": "优先覆盖 homeodomain 第三螺旋 DNA 识别面，兼顾 N 端臂的小沟接触残基。",
+    "diseaseDirection": "神经退行性疾病遗传关联",
+    "domain": "HDX 含 highly divergent homeobox DNA 结合结构域，2DA4 展示其溶液 NMR 构象。",
+    "evidence": "HDX 神经表型遗传关联与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q7Z353 functional annotation",
+      "RCSB PDB 2DA4 solution NMR structure",
+      "Human Protein Atlas subcellular localization context"
+    ],
+    "referenceEntries": "UniProt Q7Z353；RCSB PDB 2DA4；Open Targets HDX",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "homeodomain 第三螺旋 DNA 大沟识别面",
+        "直接竞争 DNA 结合界面，最符合功能阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "homeodomain N 端臂及小沟接触区",
+        "可削弱 DNA 结合稳定性，并保留较小分子尺寸设计空间",
+        "备选"
+      ],
+      [
+        "Site C",
+        "homeodomain 疏水核心相邻保守面",
+        "可能影响折叠稳定性但易产生非特异构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HDX 为核内 DNA 结合蛋白，天然抗原可及性不足；完整 IgG 不宜作为首选形式，需采用细胞内表达、递送型 VHH 或降解偶联策略，并严格评估同源 homeodomain 交叉反应。",
+    "structurePrepZh": "以 2DA4 的 NMR ensemble 进行构象聚类，保留 homeodomain 稳定螺旋束；去除非结构化尾端后标注 DNA 识别面和保守残基。",
+    "structureRef": "RCSB PDB 2DA4，human HDX homeodomain solution NMR",
+    "antibodies": [
+      "无已获批 HDX 靶向抗体",
+      "无公开临床阶段 HDX 靶向抗体"
+    ],
+    "interfaceFocus": "homeodomain H3 识别螺旋与 N 端臂 DNA 接触面",
+    "designMode": "细胞内VHH验证",
+    "candidates": [
+      {
+        "target": "NGF",
+        "rationale": "NGF-TrkA/p75NTR 轴参与神经元存活、疼痛及神经退行性疾病相关神经营养信号，NGF 为分泌蛋白且抗体可直接中和配体。"
+      },
+      {
+        "target": "TNFRSF1A",
+        "rationale": "TNFR1 介导 TNF 诱导的 NF-κB、凋亡和坏死性凋亡信号，是神经炎症与神经退行性损伤中的可及膜受体靶点。"
+      },
+      {
+        "target": "IL6R",
+        "rationale": "IL6R 介导 IL-6 经典及 trans-signaling，驱动慢性炎症与中枢神经炎症放大，胞外受体结构域适合阻断性抗体设计。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

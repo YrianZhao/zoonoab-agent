@@ -1,0 +1,65 @@
+{
+  "gene": "IL7",
+  "generatedAt": "2026-08-03T13:27:47.713Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IL7是淋巴细胞发育与外周T细胞稳态的关键细胞因子，通过结合IL7Rα与IL2RG形成受体复合物并激活JAK1/JAK3-STAT5轴，直接影响淋巴细胞计数和白细胞组成相关表型。IL7为分泌型四螺旋束细胞因子，抗原整体位于胞外环境，天然具备抗体可及性和配体中和可行性。相较于直接靶向JAK-STAT下游激酶，IL7阻断可在配体-受体起始层面提高通路选择性，并降低广谱细胞因子信号抑制风险。",
+    "mechanism": "中和抗体阻断IL7与IL7Rα胞外D1-D2区域的结合，抑制IL7Rα/IL2RG受体复合物形成及后续JAK1/JAK3介导的STAT5磷酸化。",
+    "selectedEpitope": "优先覆盖IL7四螺旋束中与IL7Rα接触的helix A/helix C邻近界面，形成受体结合竞争型表位。",
+    "diseaseDirection": "淋巴细胞稳态与免疫炎症疾病",
+    "domain": "IL7为分泌型短链四螺旋束细胞因子，含A-D四条α螺旋及连接环区，受体结合面位于螺旋束外侧。",
+    "evidence": "IL7-IL7R免疫稳态通路抗体设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与表型关联",
+      "UniProt P13232蛋白功能与分泌定位注释",
+      "RCSB PDB 3DI2晶体结构解析数据",
+      "IL7/IL7R/JAK-STAT免疫生物学文献"
+    ],
+    "referenceEntries": "UniProt P13232；RCSB PDB 3DI2；Open Targets IL7",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "helix A/helix C受体接触面",
+        "直接竞争IL7Rα结合，具备明确中和机制",
+        "优先"
+      ],
+      [
+        "Site B",
+        "helix D及邻近CD环外露区域",
+        "可稳定覆盖细胞因子外侧表面，并辅助削弱受体复合物装配",
+        "备选"
+      ],
+      [
+        "Site C",
+        "核心螺旋束保守疏水内核邻近区域",
+        "可能影响蛋白折叠或产生低特异性构象依赖风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IL7体积较小且表面曲率高，需避免仅识别柔性环区导致亲和力不足；设计应聚焦受体接触面并评估与TSLP、IL2等四螺旋束细胞因子的交叉反应。",
+    "structurePrepZh": "以3DI2实验晶体结构为模板，保留完整IL7抗原链并校正缺失侧链；对多链晶体拷贝进行结构比对，选择构象一致且界面暴露充分的链用于表位建模。",
+    "structureRef": "RCSB PDB 3DI2，X-ray diffraction，2.7 Å",
+    "antibodies": [
+      "A7R34",
+      "M25"
+    ],
+    "interfaceFocus": "IL7Rα结合面与四螺旋束外侧沟槽",
+    "designMode": "配体中和型抗体",
+    "candidates": [
+      {
+        "target": "IL7R",
+        "rationale": "IL7Rα是IL7的专属高亲和受体链，阻断其D1-D2胞外区可直接抑制IL7驱动的JAK1/STAT5信号。其膜受体属性提供明确的胞外抗体结合窗口。"
+      },
+      {
+        "target": "IL2RG",
+        "rationale": "IL2RG是IL7受体复合物的共同γ链，参与复合物成熟及JAK3募集。靶向该节点可干预同一细胞因子受体轴，但需严格控制广谱γ链细胞因子通路抑制风险。"
+      },
+      {
+        "target": "JAK3",
+        "rationale": "JAK3位于IL7R/IL2RG复合物下游并负责STAT5信号传递，是IL7介导淋巴细胞发育信号的核心激酶节点。其优先价值在于通路内功能明确，但抗体可及性弱于胞外配体或受体。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

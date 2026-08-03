@@ -1,0 +1,65 @@
+{
+  "gene": "CBX8",
+  "generatedAt": "2026-08-03T11:03:13.534Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CBX8是PRC1相关染色质阅读蛋白，通过chromodomain识别H3K27me3并参与多梳复合体介导的基因沉默；其Open Targets关联以体成分、房颤、血细胞计数等遗传性状为主，提示疾病证据主要来自核内表观遗传调控而非经典细胞表面轴。CBX8定位于细胞核，缺乏胞外结构域、分泌信号肽或膜受体特征，天然抗原可及性不支持常规治疗性抗体阻断。相较同通路中具有明确核内功能但同样不可及的PRC1成员，CBX8可作为结构与机制研究靶点优先评估；若以体内药物递送为目标，其优先级低于具有细胞外可及性的疾病靶点。",
+    "mechanism": "抗体片段拟阻断CBX8 chromodomain芳香笼与H3K27me3肽段的结合，干扰PRC1在甲基化染色质上的募集。",
+    "selectedEpitope": "优先覆盖chromodomain甲基赖氨酸芳香笼及H3K27me3肽结合沟槽周缘。",
+    "diseaseDirection": "表观遗传调控与复杂性状",
+    "domain": "CBX8含N端chromodomain和C端Pc-box；5EQ0解析其chromodomain结构。",
+    "evidence": "CBX8-PRC1染色质识别结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt Q9HC52功能与定位注释",
+      "RCSB PDB 5EQ0晶体结构",
+      "PRC1/CBX chromodomain-H3K27me3文献证据"
+    ],
+    "referenceEntries": "UniProt Q9HC52；RCSB PDB 5EQ0；Open Targets CBX8",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "chromodomain芳香笼与H3K27me3结合沟槽",
+        "直接竞争甲基化组蛋白肽识别，机制最清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "chromodomain β折叠外侧与肽段N端接触边界",
+        "可稳定影响底物肽定位并降低结合亲和力",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离肽结合面的chromodomain保守疏水核心周缘",
+        "可能影响折叠稳定性但选择性与功能相关性不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CBX8为核内蛋白，抗体细胞进入与核递送构成主要风险；chromodomain在CBX家族中保守，需通过差异残基规避CBX2/4/6/7交叉反应。",
+    "structurePrepZh": "以5EQ0链A/B为模板，保留高分辨率chromodomain主链，补建缺失侧链并叠合H3K27me3复合物同源结构以定义竞争界面。",
+    "structureRef": "RCSB PDB 5EQ0，X-ray diffraction，1.18 Å",
+    "antibodies": [
+      "CBX8研究级抗体",
+      "抗CBX chromodomain研究抗体"
+    ],
+    "interfaceFocus": "H3K27me3芳香笼与肽结合沟槽",
+    "designMode": "胞内Fab/VHH研究阻断",
+    "candidates": [
+      {
+        "target": "EZH2",
+        "rationale": "EZH2为PRC2催化亚基，负责生成H3K27me3标记；其活性位于CBX8上游，直接决定CBX8介导的PRC1染色质募集。"
+      },
+      {
+        "target": "EED",
+        "rationale": "EED识别H3K27me3并变构激活PRC2，有助于维持H3K27三甲基化扩增；与CBX8处于同一H3K27me3-多梳沉默轴。"
+      },
+      {
+        "target": "RING1B",
+        "rationale": "RING1B由RNF2编码，是PRC1 E3连接酶核心组分，催化H2AK119ub；其作用位于CBX8染色质识别之后的PRC1效应环节。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

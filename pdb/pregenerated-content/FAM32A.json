@@ -1,0 +1,65 @@
+{
+  "gene": "FAM32A",
+  "generatedAt": "2026-08-03T12:27:00.318Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FAM32A又名 OTUB1，是去泛素化酶 OTUB1 的别名，主要通过非催化性结合 E2 泛素连接酶并限制 K48 连接泛素链延伸，参与 DNA 损伤应答、NF-κB 调控及蛋白稳态过程；现有遗传关联提示其与神经退行性疾病及血细胞性状存在中等强度关联。该蛋白为胞内可溶性去泛素化酶，不具备经典胞外结构域、分泌型抗原或膜受体特征，天然抗体可及性显著受限。相较于同通路中具有细胞表面可及性的免疫受体或分泌因子，FAM32A作为抗体主靶点优先级较低，更适合胞内递送抗体、降解偶联或机制验证型抗体设计。",
+    "mechanism": "设计重点为阻断 OTUB1 催化沟槽邻近的 E2 结合界面，干扰其与 UBE2N、UBE2D 或泛素链复合物形成，从而改变 K48/K63 泛素信号输出。",
+    "selectedEpitope": "优先定位于 OTU 结构域内 E2 结合面及近端泛素结合沟槽，避开高度保守催化核心。",
+    "diseaseDirection": "神经退行性疾病与蛋白稳态",
+    "domain": "FAM32A/OTUB1 含 N 端调控区与 C 端 OTU 去泛素化酶结构域，形成半胱氨酸蛋白酶样催化折叠。",
+    "evidence": "FAM32A/OTUB1 泛素信号与神经退行关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt Q9Y421 蛋白功能注释",
+      "RCSB PDB 8C6J 冷冻电镜结构",
+      "去泛素化酶 OTUB1 与 E2/泛素复合物结构研究"
+    ],
+    "referenceEntries": "UniProt: Q9Y421；RCSB PDB: 8C6J；Gene: FAM32A/OTUB1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "OTU 结构域 E2 酶结合界面",
+        "可直接干扰 OTUB1 与 UBE2N/UBE2D 复合物装配，具备机制阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "OTU 结构域泛素结合沟槽边缘",
+        "有利于影响底物泛素链识别，同时保留获得选择性抗体的空间",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化半胱氨酸邻近保守核心",
+        "功能相关性强但同源 DUB 交叉反应与构象扰动风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FAM32A为胞内可溶性抗原，常规治疗性抗体难以到达靶点；设计应优先采用胞内抗体、细胞穿透递送或研究级 Fab/VHH，并严格评估 OTU 家族交叉反应。",
+    "structurePrepZh": "以 8C6J 冷冻电镜模型为起点，补全缺失侧链与柔性片段，标注催化残基、E2 结合面及泛素结合沟槽后进行表位可及性评估。",
+    "structureRef": "RCSB PDB 8C6J，human OTUB1 相关冷冻电镜结构，2.8 Å",
+    "antibodies": [
+      "抗-OTUB1 研究级单克隆抗体",
+      "抗-FAM32A/OTUB1 研究级多克隆抗体"
+    ],
+    "interfaceFocus": "OTU 域 E2 结合面与泛素沟槽",
+    "designMode": "胞内机制抗体",
+    "candidates": [
+      {
+        "target": "UBE2N",
+        "rationale": "UBE2N 与 UBE2V1 形成 K63 泛素链合成复合物，是 OTUB1 非催化性抑制的重要 E2 伙伴，处于同一泛素信号调控轴。"
+      },
+      {
+        "target": "UBE2D3",
+        "rationale": "UBE2D 家族参与 K48 连接泛素化反应，OTUB1 可结合并抑制其泛素转移活性，适合作为同通路机制参照靶点。"
+      },
+      {
+        "target": "USP7",
+        "rationale": "USP7 是蛋白稳态、DNA 损伤应答和神经退行相关泛素网络中的关键去泛素化酶，可作为胞内泛素调控通路的替代干预节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

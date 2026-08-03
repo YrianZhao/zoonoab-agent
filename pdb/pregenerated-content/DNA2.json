@@ -1,0 +1,65 @@
+{
+  "gene": "DNA2",
+  "generatedAt": "2026-08-03T11:59:21.463Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DNA2 是线粒体与核基因组复制、Okazaki 片段加工及长片段碱基切除修复中的 helicase/nuclease，功能缺陷可导致线粒体 DNA 缺失综合征并与基因组不稳定相关肿瘤表型相关。该蛋白主要定位于线粒体和细胞核，不属于分泌蛋白或膜受体，天然抗原可及性较低，因此更适合用于机制研究、结构验证或细胞内递送抗体设计。相较 POLG、TWINKLE 等同通路复制因子，DNA2 同时具备核酸酶与解旋酶活性，PDB 5EAY 提供高分辨率实验结构，可优先支持结构域界面级别的抗体工程评估。",
+    "mechanism": "通过结合 DNA2 核酸酶结构域邻近的 DNA 结合沟槽，阻断底物 DNA 进入催化中心及其与解旋酶模块的构象耦联。",
+    "selectedEpitope": "优先选择核酸酶结构域 DNA 结合沟槽外缘，避开深部金属催化残基以降低非特异构象扰动。",
+    "diseaseDirection": "线粒体DNA维持缺陷与肿瘤基因组不稳定",
+    "domain": "DNA2 含 N 端调控区、RecB-like 核酸酶核心及 SF1B helicase/ATPase 相关结构域。",
+    "evidence": "DNA2 结构与线粒体基因组维护证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P51530 functional annotation",
+      "RCSB PDB 5EAY X-ray structure",
+      "OMIM mitochondrial DNA deletion syndrome literature"
+    ],
+    "referenceEntries": "UniProt P51530；RCSB PDB 5EAY；Open Targets DNA2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RecB-like 核酸酶结构域 DNA 结合沟槽外缘",
+        "可直接削弱底物 DNA 定位并保留结构选择性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "helicase/ATPase 结构域与核酸酶核心连接界面",
+        "可干扰解旋酶-核酸酶构象耦联，适合变构抑制设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "核酸酶催化中心邻近金属结合区域",
+        "功能相关性强但保守性高，存在交叉反应与构象破坏风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DNA2 为细胞内核酸代谢酶，常规抗体难以到达作用位点；建议限定为细胞内递送格式、降解偶联策略或结构验证抗体，并严格评估核酸结合交叉反应。",
+    "structurePrepZh": "以 5EAY 高分辨率晶体结构为模板，保留完整可解析链，移除晶体接触冗余后标注核酸酶沟槽、ATPase 模块及链间界面。",
+    "structureRef": "PDB 5EAY；human DNA2 nuclease/helicase crystal structure",
+    "antibodies": [
+      "无已获批 DNA2 靶向治疗性抗体",
+      "研究级 anti-DNA2 monoclonal antibody"
+    ],
+    "interfaceFocus": "核酸酶 DNA 结合沟槽与helicase耦联界面",
+    "designMode": "细胞内功能阻断",
+    "candidates": [
+      {
+        "target": "POLG",
+        "rationale": "POLG 编码线粒体 DNA 聚合酶，是线粒体 DNA 复制和修复核心因子，突变同样导致线粒体 DNA 缺失综合征。"
+      },
+      {
+        "target": "TWNK",
+        "rationale": "TWNK 编码线粒体复制解旋酶 Twinkle，与 DNA2 同处线粒体 DNA 复制维护网络，缺陷可造成多发性 mtDNA 缺失。"
+      },
+      {
+        "target": "RNASEH1",
+        "rationale": "RNASEH1 参与线粒体 DNA 复制引物处理和 R-loop 代谢，其功能缺陷与线粒体 DNA 复制障碍和缺失表型相关。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

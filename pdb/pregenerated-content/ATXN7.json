@@ -1,0 +1,65 @@
+{
+  "gene": "ATXN7",
+  "generatedAt": "2026-08-03T10:43:14.623Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ATXN7 是 SAGA 转录共激活复合体去泛素化模块的核心支架亚基，致病性 CAG/polyglutamine 扩增导致脊髓小脑性共济失调 7 中转录失衡、蛋白聚集及神经元毒性。该蛋白主要定位于细胞核内复合体，缺乏稳定胞外结构域或分泌暴露，因此常规外源抗体可及性弱，更适合作为结构机制研究或胞内抗体格式探索靶点。相较于同通路中可直接成药的胞外靶点，ATXN7 的优先级依据在于其遗传因果性明确、疾病特异性高，并可利用 9RDK 高分辨率冷冻电镜结构解析复合体界面。",
+    "mechanism": "设计抗体片段阻断 ATXN7 与 ATXN7L3/USP22 去泛素化模块界面，干预 SAGA 复合体对 H2Bub1 去泛素化的装配依赖性。",
+    "selectedEpitope": "优先瞄准 ATXN7 在 SAGA DUB 模块中的 ATXN7L3 接触螺旋束界面，避开无序 polyQ 区。",
+    "diseaseDirection": "脊髓小脑性共济失调7与神经退行性病变",
+    "domain": "ATXN7 含 N 端 polyQ 扩增区及参与 SAGA DUB 模块装配的保守结构区。",
+    "evidence": "ATXN7-SAGA去泛素化模块结构与SCA7遗传证据",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt O15265 functional annotation",
+      "RCSB PDB 9RDK cryo-EM structure",
+      "OMIM and ClinVar SCA7 CAG expansion evidence"
+    ],
+    "referenceEntries": "UniProt O15265；RCSB PDB 9RDK；MONDO:0016163",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SAGA DUB 模块中 ATXN7-ATXN7L3 接触界面",
+        "可直接干预去泛素化模块装配，机制验证价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ATXN7 与 USP22/ENY2 邻近复合体表面",
+        "适合评估复合体构象稳定性和变构抑制可能性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端 polyglutamine 扩增相关低复杂度区域",
+        "疾病相关性强但柔性高、聚集风险大且结构表位不稳定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ATXN7 为核内蛋白，常规抗体递送与抗原可及性受限；应优先采用胞内表达片段或结构验证用途，并严格评估复合体广泛转录功能干扰风险。",
+    "structurePrepZh": "以 9RDK 冷冻电镜模型提取 ATXN7 所在链及相邻 DUB 模块亚基，补全缺失环区并保留界面构象用于表位筛选。",
+    "structureRef": "RCSB PDB 9RDK；2.41 Å cryo-EM SAGA complex",
+    "antibodies": [
+      "anti-ATXN7 clone 1C1",
+      "anti-ATXN7 polyglutamine-region antibody"
+    ],
+    "interfaceFocus": "ATXN7-ATXN7L3/USP22 DUB模块装配界面",
+    "designMode": "胞内Fab/VHH探索",
+    "candidates": [
+      {
+        "target": "USP22",
+        "rationale": "USP22 是 SAGA 去泛素化模块的催化亚基，直接执行 H2Bub1 去泛素化；与 ATXN7 处于同一复合体功能轴，机制干预点更接近酶活中心。"
+      },
+      {
+        "target": "ATXN7L3",
+        "rationale": "ATXN7L3 是 USP22 去泛素化模块必需装配因子，与 ATXN7 形成稳定界面；靶向该界面可用于拆解 DUB 模块稳定性。"
+      },
+      {
+        "target": "ENY2",
+        "rationale": "ENY2 参与 SAGA DUB 模块组装并支持 USP22 催化活性；其与 ATXN7/ATXN7L3 同属 H2B 去泛素化调控通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

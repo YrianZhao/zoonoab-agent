@@ -1,0 +1,65 @@
+{
+  "gene": "DDB1",
+  "generatedAt": "2026-08-03T18:31:19.828Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DDB1是CUL4A/CUL4B-RBX1 E3泛素连接酶复合体的核心衔接蛋白，通过结合DDB2、DCAF底物受体并促进DNA损伤识别、核苷酸切除修复及蛋白降解，在血液肿瘤和骨髓增生异常相关通路中具有明确功能关联。DDB1主要定位于细胞核和细胞质，缺乏跨膜区或分泌特征，天然抗原可及性不利于常规体内阻断抗体，因此更适合结构研究、细胞内递送抗体或蛋白互作干预型分子设计。相较于CUL4、RBX1等同复合体组分，DDB1提供多个已解析β-propeller互作界面，便于围绕DDB2-DDB1或DDB1-DCAF界面建立高精度表位策略。",
+    "mechanism": "阻断DDB1 BPA-BPC口袋与DDB2或DCAF底物受体WD40结构域的结合，削弱CUL4-DDB1 E3复合体对DNA损伤底物的招募。",
+    "selectedEpitope": "优先覆盖DDB1 BPA-BPC交界的DDB2/DCAF结合口袋，避开CUL4结合所需BPA远端面。",
+    "diseaseDirection": "血液肿瘤与DNA损伤修复",
+    "domain": "DDB1由BPA、BPB、BPC三组β-propeller及C端螺旋结构域组成，形成多界面支架。",
+    "evidence": "DDB1-CUL4 E3连接酶与DNA修复证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与肿瘤关联评分",
+      "UniProt Q16531功能注释与亚细胞定位",
+      "RCSB PDB 3EI3晶体结构解析数据",
+      "核苷酸切除修复与CRL4-DDB2复合体文献"
+    ],
+    "referenceEntries": "UniProt Q16531；RCSB PDB 3EI3；Open Targets DDB1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "BPA-BPC交界的DDB2/DCAF结合口袋",
+        "直接干预底物受体招募，机制最清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "BPB与CUL4A/CUL4B结合邻近界面",
+        "可影响CRL4复合体装配，但系统性风险较高",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端螺旋束及非保守外露环区",
+        "适合结合型探针设计，功能阻断证据较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DDB1为细胞内必需支架蛋白，常规抗体体内可及性差且全局抑制CRL4可能产生广泛毒性；宜限定为细胞内递送或界面选择性设计。",
+    "structurePrepZh": "以3EI3实验晶体结构为模板，保留抗原链A/B并校正缺失环区、质子化状态和界面水分子，再标注BPA-BPC互作口袋。",
+    "structureRef": "RCSB PDB 3EI3，X-ray diffraction，2.3 Å",
+    "antibodies": [
+      "抗DDB1研究级单克隆抗体",
+      "抗DDB1胞内免疫检测抗体"
+    ],
+    "interfaceFocus": "BPA-BPC交界DDB2/DCAF受体结合槽",
+    "designMode": "细胞内界面阻断",
+    "candidates": [
+      {
+        "target": "DDB2",
+        "rationale": "DDB2与DDB1共同构成UV-DDB损伤识别复合体，直接识别紫外损伤DNA并招募CRL4泛素化 machinery，是同一核苷酸切除修复轴上的更具损伤识别特异性的靶点。"
+      },
+      {
+        "target": "CUL4A",
+        "rationale": "CUL4A是CRL4-DDB1 E3泛素连接酶的催化支架组分，负责连接RBX1并驱动底物泛素化；其扩增和表达异常与多种肿瘤进展相关。"
+      },
+      {
+        "target": "RBX1",
+        "rationale": "RBX1与CUL4A/CUL4B形成RING催化模块，招募E2泛素结合酶并完成泛素转移，属于DDB1所在CRL4复合体的下游催化节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

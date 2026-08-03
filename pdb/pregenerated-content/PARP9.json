@@ -1,0 +1,65 @@
+{
+  "gene": "PARP9",
+  "generatedAt": "2026-08-03T15:05:08.854Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PARP9 是干扰素诱导的细胞内 ADP-核糖转移酶家族成员，可与 DTX3L 形成复合体并参与 STAT1 相关抗病毒与炎症转录反应，其遗传关联数据主要指向 LDL、胆固醇酯、总胆固醇及 LDL 颗粒相关表型。该蛋白不属于分泌蛋白或膜受体，抗原天然可及性弱，但 PDB 9QYF 提供高分辨率实验结构，适合开展体外结构表位验证、细胞内抗体或降解型结合分子设计。相较于同通路中缺乏高质量结构模板的部分干扰素效应蛋白，PARP9 的宏结构域构象信息更完整，可优先支持结构驱动的结合界面设计。",
+    "mechanism": "设计抗体片段结合 PARP9 宏结构域配体结合沟槽，阻断其与 ADP-核糖化底物或 DTX3L 复合体相关界面的稳定相互作用。",
+    "selectedEpitope": "优先选择宏结构域 ADP-核糖结合口袋周缘及保守环区，避开高度埋藏核心。",
+    "diseaseDirection": "脂质表型与干扰素炎症轴",
+    "domain": "PARP9 含两个 N 端宏结构域和 C 端催化样 PARP 结构域，催化活性较弱。",
+    "evidence": "PARP9 脂质表型遗传关联与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 遗传关联与表型证据",
+      "UniProt Q8IXQ6 蛋白功能与结构域注释",
+      "RCSB PDB 9QYF X 射线晶体结构",
+      "InterPro/Pfam PARP9 宏结构域与PARP样结构域注释"
+    ],
+    "referenceEntries": "UniProt Q8IXQ6；RCSB PDB 9QYF；Open Targets PARP9",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "宏结构域 ADP-核糖结合沟槽周缘环区",
+        "可直接干预 ADP-核糖识别并利用 1.3 Å 结构精确建模",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DTX3L 复合体邻近暴露面",
+        "可能削弱 PARP9-DTX3L 复合体稳定性，适合功能筛选验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端 PARP样结构域保守折叠核心邻近区",
+        "保守性较高且潜在交叉反应风险增加，需严格同源性过滤",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PARP9 为细胞内蛋白，常规治疗性抗体难以天然进入胞内；建议定位为细胞内抗体、VHH、PROTAC适配结合臂或体外验证工具抗体。",
+    "structurePrepZh": "采用 PDB 9QYF 抗原链 A，保留高置信主链与侧链构象，补全缺失氢原子并评估晶体接触对候选表位的影响。",
+    "structureRef": "RCSB PDB 9QYF，X-ray diffraction，1.3 Å",
+    "antibodies": [
+      "暂无获批 PARP9 靶向治疗抗体",
+      "研究级 anti-PARP9 monoclonal antibody"
+    ],
+    "interfaceFocus": "宏结构域配体沟槽与DTX3L邻近界面",
+    "designMode": "胞内结合片段设计",
+    "candidates": [
+      {
+        "target": "DTX3L",
+        "rationale": "DTX3L 与 PARP9 形成复合体并参与干扰素诱导的抗病毒与炎症反应，是同一功能轴上的直接互作靶点。"
+      },
+      {
+        "target": "STAT1",
+        "rationale": "PARP9-DTX3L 轴与 STAT1 介导的干扰素转录程序相关，STAT1 可作为评估下游炎症转录效应的通路节点。"
+      },
+      {
+        "target": "PARP14",
+        "rationale": "PARP14 同属 ADP-核糖转移酶家族并参与免疫炎症信号调节，可作为同类宏结构域蛋白的选择性对照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

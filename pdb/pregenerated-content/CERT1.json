@@ -1,0 +1,65 @@
+{
+  "gene": "CERT1",
+  "generatedAt": "2026-08-03T11:17:34.584Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CERT1介导内质网至高尔基体的非囊泡神经酰胺转运，影响鞘磷脂合成与膜脂稳态；其遗传变异与常染色体显性智力障碍34型及脂质表型相关。该蛋白为胞质脂质转运蛋白，缺乏稳定胞外结构域或分泌暴露形式，天然抗原可及性不利于常规治疗性抗体。相较于EGFR、TNFRSF等膜受体类靶点，CERT1更适合作为机制验证或细胞内递送抗体研究靶点，优先级应低于同通路可及性更佳的膜相关酶或受体。",
+    "mechanism": "设计阻断CERT1 START结构域疏水腔与神经酰胺脂酰链结合，削弱内质网至高尔基体的神经酰胺转运。",
+    "selectedEpitope": "优先聚焦START结构域神经酰胺结合腔入口及Ω1环邻近界面。",
+    "diseaseDirection": "神经发育与脂质代谢异常",
+    "domain": "CERT1含PH结构域、FFAT基序、丝氨酸重复区与C端START神经酰胺结合结构域。",
+    "evidence": "CERT1神经酰胺转运与遗传疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9Y5P4功能与结构域注释",
+      "RCSB PDB 2E3N晶体结构记录",
+      "OMIM常染色体显性智力障碍34型关联资料"
+    ],
+    "referenceEntries": "UniProt Q9Y5P4；RCSB PDB 2E3N；HGNC CERT1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "START结构域神经酰胺结合腔入口",
+        "可直接干预脂质底物进入疏水腔，机制指向性明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "START结构域Ω1环与邻近α螺旋区域",
+        "可能影响腔口构象开合与神经酰胺装载过程",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PH结构域PI4P结合面",
+        "可能干预高尔基体定位，但2E3N不覆盖该结构域且细胞内可及性受限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CERT1为胞质蛋白，常规抗体难以到达作用位点；建议限定为体外结构验证、细胞内抗体或递送型格式，并避免宣称直接胞外阻断。",
+    "structurePrepZh": "以2E3N链A的高分辨率START结构域为模板，保留疏水腔关键残基构象，补充缺失柔性环并进行质子化与界面溶剂检查。",
+    "structureRef": "RCSB PDB 2E3N；CERT START结构域1.4 Å晶体结构",
+    "antibodies": [
+      "暂无获批CERT1靶向抗体",
+      "暂无公开临床阶段CERT1抗体"
+    ],
+    "interfaceFocus": "START腔口、Ω1环及神经酰胺装载通道",
+    "designMode": "胞内阻断验证",
+    "candidates": [
+      {
+        "target": "SGMS1",
+        "rationale": "SGMS1在高尔基体利用CERT1转运来的神经酰胺合成鞘磷脂，位于同一神经酰胺-鞘磷脂代谢轴。其膜相关酶定位使通路调控关系明确，但催化位点拓扑需审慎评估。"
+      },
+      {
+        "target": "PI4KB",
+        "rationale": "PI4KB生成高尔基体PI4P，PI4P与CERT1 PH结构域结合以促进CERT1高尔基体募集。干预该节点可影响CERT1依赖的神经酰胺转运定位过程。"
+      },
+      {
+        "target": "VAPA",
+        "rationale": "VAPA通过MSP结构域结合CERT1的FFAT基序，参与内质网膜接触位点锚定。该相互作用是CERT1介导内质网至高尔基体脂质转运的上游结构基础。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

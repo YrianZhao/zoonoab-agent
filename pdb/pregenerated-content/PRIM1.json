@@ -1,0 +1,65 @@
+{
+  "gene": "PRIM1",
+  "generatedAt": "2026-08-03T15:33:56.968Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PRIM1编码人DNA引物酶小亚基，是DNA聚合酶α-引物酶复合体的催化亚基，负责合成RNA引物以启动复制叉上的DNA合成；其功能异常与原始侏儒症、免疫缺陷-脂肪营养不良综合征及增殖性肿瘤的复制压力表型相关。PRIM1为核内复制酶成分，缺乏胞外结构域或分泌形式，天然抗原可及性不支持常规治疗性抗体直接结合。相较EGFR、CD19等膜受体或分化抗原，PRIM1更适合作为结构生物学与细胞内递送抗体研究靶点，优先级应定位于机制验证或胞内抗体策略，而非传统体内阻断抗体开发。",
+    "mechanism": "设计分子应结合PRIM1催化核心邻近区域，干扰其与PRIM2及DNA模板-核苷三磷酸底物的空间配位，从而抑制RNA引物合成起始。",
+    "selectedEpitope": "优先考察PRIM1催化结构域中靠近活性位点沟槽且不直接依赖金属离子配位的保守表面。",
+    "diseaseDirection": "复制压力相关遗传病与肿瘤",
+    "domain": "PRIM1为DNA引物酶小亚基，含TOPRIM样催化折叠和金属依赖核苷酸转移酶活性核心。",
+    "evidence": "PRIM1复制起始功能与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P49642功能与亚细胞定位注释",
+      "RCSB PDB 6RB4晶体结构记录",
+      "DNA聚合酶α-引物酶复合体结构与复制起始文献"
+    ],
+    "referenceEntries": "UniProt:P49642; RCSB PDB:6RB4; Open Targets:PRIM1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "TOPRIM样催化结构域活性沟槽邻近表面",
+        "有望影响DNA模板与底物定位，适合胞内抑制型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PRIM1-PRIM2复合体接触相关外周界面",
+        "可用于削弱引物酶复合体装配或稳定性，需结合复合体结构验证",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守金属离子配位残基周边",
+        "可能产生强功能效应，但保守性高且构象约束强，脱靶与可开发性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PRIM1为核内酶且非胞外抗原，常规Fab或VHH难以在体内到达靶点；应限定为胞内抗体、递送载体或体外机制工具，并避开金属结合必需残基。",
+    "structurePrepZh": "以6RB4链A为结构模板，保留催化核心构象并核查缺失环区、金属离子及晶体接触；表位评估需叠合PRIM1-PRIM2复合体模型。",
+    "structureRef": "RCSB PDB 6RB4，1.5 Å X射线晶体结构",
+    "antibodies": [
+      "无已获批PRIM1治疗性抗体",
+      "无临床阶段PRIM1阻断抗体"
+    ],
+    "interfaceFocus": "催化沟槽与PRIM2结合邻近界面",
+    "designMode": "胞内抑制型抗体",
+    "candidates": [
+      {
+        "target": "PRIM2",
+        "rationale": "PRIM2为DNA引物酶大亚基，与PRIM1共同形成引物酶复合体并参与RNA引物延伸，是同一复制起始模块中的直接功能伴侣。"
+      },
+      {
+        "target": "POLA1",
+        "rationale": "POLA1编码DNA聚合酶α催化亚基，在PRIM1/PRIM2合成RNA引物后执行DNA延伸，处于同一DNA聚合酶α-引物酶复制起始通路。"
+      },
+      {
+        "target": "POLA2",
+        "rationale": "POLA2为DNA聚合酶α辅助亚基，稳定聚合酶α-引物酶复合体并支持复制叉起始复合物功能，可作为同通路结构装配靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

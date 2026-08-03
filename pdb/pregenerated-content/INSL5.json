@@ -1,0 +1,65 @@
+{
+  "gene": "INSL5",
+  "generatedAt": "2026-08-03T13:30:01.504Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "INSL5为胰岛素/松弛素样肽家族成员，可作为RXFP4的内源性配体参与肠源性代谢、食欲调节及胃肠运动相关轴线，遗传与蛋白测量数据提示其与INSL5水平、尿微量白蛋白及多囊卵巢综合征等表型存在关联。该靶点为分泌型肽激素，成熟肽在细胞外环境中与GPCR受体结合，抗原可及性优于胞内代谢酶或转录因子。相较下游GPCR广泛组织表达带来的功能阻断风险，直接靶向配体可更精确调节INSL5-RXFP4轴，并便于通过中和或配体捕获策略建立机制验证优先级。",
+    "mechanism": "抗体结合成熟INSL5的受体识别面，阻断INSL5与RXFP4胞外N端及跨膜外环形成配体-受体复合物，从而抑制RXFP4介导的Gi信号激活。",
+    "selectedEpitope": "优先覆盖成熟INSL5 B链α螺旋受体结合面及A/B链邻近二硫键稳定界面。",
+    "diseaseDirection": "肠源性代谢与内分泌表型",
+    "domain": "INSL5为前体分泌肽，经加工形成A链与B链并由保守二硫键维持胰岛素样折叠。",
+    "evidence": "INSL5-RXFP4代谢内分泌轴证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9Y5Q6蛋白注释",
+      "RCSB PDB 7YJ4实验结构记录",
+      "文献报道的INSL5-RXFP4配体受体药理学研究"
+    ],
+    "referenceEntries": "UniProt: Q9Y5Q6；RCSB PDB: 7YJ4；Gene: INSL5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "成熟INSL5 B链α螺旋受体识别面",
+        "直接遮蔽RXFP4结合所需疏水与带电残基，适合中和抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "A链/B链二硫键邻近构象表面",
+        "利用胰岛素样折叠的构象稳定性提升选择性并限制配体构象转换",
+        "备选"
+      ],
+      [
+        "Site C",
+        "前肽加工区或柔性末端区域",
+        "加工状态与构象异质性较高，可能产生批次依赖性结合差异",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "INSL5成熟肽尺寸较小且与同家族肽存在折叠相似性，应规避保守二硫键核心的非特异交叉反应，重点验证对INSL3、RLN2及胰岛素样肽的选择性。",
+    "structurePrepZh": "以7YJ4实验结构提取INSL5相关抗原链，保留成熟A/B链二硫键约束，移除非目标复合物链后进行质子化、缺失侧链修复与构象聚类。",
+    "structureRef": "RCSB PDB 7YJ4；3.19 Å cryo-EM experimental structure",
+    "antibodies": [
+      "抗INSL5中和抗体研究型分子",
+      "抗RXFP4阻断抗体研究型分子"
+    ],
+    "interfaceFocus": "B链α螺旋与A/B链构象稳定界面",
+    "designMode": "分泌肽中和",
+    "candidates": [
+      {
+        "target": "RXFP4",
+        "rationale": "RXFP4是INSL5的同源受体，直接介导INSL5配体结合后的Gi偶联信号，是同一配体-受体轴中的核心膜受体靶点。"
+      },
+      {
+        "target": "RXFP3",
+        "rationale": "RXFP3与RXFP4同属relaxin family peptide receptor亚群，并与relaxin-3相关神经内分泌调节通路相邻，可作为受体选择性与通路偏向性比较靶点。"
+      },
+      {
+        "target": "RLN3",
+        "rationale": "RLN3是RXFP3/RXFP4受体亚群的相关肽配体，参与食欲、应激及神经内分泌调节，可用于评估INSL5-RXFP4轴相邻肽配体网络的功能冗余。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

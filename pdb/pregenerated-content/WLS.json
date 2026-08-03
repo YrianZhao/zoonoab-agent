@@ -1,0 +1,65 @@
+{
+  "gene": "WLS",
+  "generatedAt": "2026-08-03T17:52:55.936Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "WLS 是多跨膜 Wnt 配体转运蛋白，负责将棕榈油酰化 Wnt 从内质网递送至分泌途径，直接影响 Wnt/β-catenin 与非经典 Wnt 信号的组织剂量。WLS 变异与 Zaki syndrome 及骨密度相关表型关联，符合 Wnt 配体分泌障碍导致发育与骨稳态异常的机制。其结构包含可识别 Wnt 脂质基团的胞外腔及膜外暴露环区，较胞内信号蛋白更具抗体可及性。相较下游 CTNNB1、GSK3B 等胞内靶点，WLS 位于配体分泌上游且具膜受体样可及界面，优先级更适合抗体阻断或构象调节设计。",
+    "mechanism": "抗体结合 WLS 胞外 Wnt 结合腔或膜外环，阻断 Wnt 棕榈油酰基插入 WLS 疏水口袋并干扰 Wnt-WLS 装载复合物形成，从而降低 Wnt 配体分泌。",
+    "selectedEpitope": "优先靶向 7DRT 中 WLS 胞外 Wnt 结合腔入口及邻近膜外环，覆盖 Wnt 脂质插入口袋边缘。",
+    "diseaseDirection": "Wnt 分泌异常相关发育与骨稳态疾病",
+    "domain": "WLS 为多跨膜蛋白，含跨膜螺旋束、胞外 Wnt 结合腔、疏水脂质结合口袋及若干膜外环区。",
+    "evidence": "WLS-Wnt 分泌轴与骨发育表型证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q5T9L3 functional annotation",
+      "RCSB PDB 7DRT cryo-EM structure",
+      "Wnt secretion and WLS structural biology literature"
+    ],
+    "referenceEntries": "UniProt Q5T9L3；RCSB PDB 7DRT；Open Targets WLS",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "胞外 Wnt 结合腔入口及脂质口袋边缘",
+        "可直接干扰 Wnt 棕榈油酰基装载与复合物稳定性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "膜外环与跨膜螺旋束外侧连接区",
+        "可能通过构象锁定削弱 Wnt 结合或转运循环",
+        "备选"
+      ],
+      [
+        "Site C",
+        "深部跨膜疏水口袋内部",
+        "药理相关性高但抗体可及性受膜环境限制",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "WLS 为多跨膜蛋白，脂质口袋部分埋藏于膜内，需避免选择深部疏水界面；宜聚焦胞外腔入口和稳定外环构象表位。",
+    "structurePrepZh": "以 7DRT cryo-EM 结构为模板，保留抗原链 A、B、H 中 WLS 与 Wnt 复合界面，补全缺失外环并在膜模拟环境中评估表位暴露。",
+    "structureRef": "RCSB PDB 7DRT，human WLS-Wnt complex, EM 2.2 Å",
+    "antibodies": [
+      "anti-WLS blocking antibody",
+      "anti-Wnt secretion pathway antibody"
+    ],
+    "interfaceFocus": "Wnt 脂质基团结合腔入口与胞外环",
+    "designMode": "膜蛋白界面阻断",
+    "candidates": [
+      {
+        "target": "PORCN",
+        "rationale": "PORCN 催化 Wnt 配体棕榈油酰化，是 WLS 装载与分泌所必需的上游酶，处于同一 Wnt 分泌通路。"
+      },
+      {
+        "target": "WNT3A",
+        "rationale": "WNT3A 是经典 Wnt/β-catenin 通路配体，可与 WLS 形成分泌复合物，适合作为配体端阻断候选。"
+      },
+      {
+        "target": "FZD5",
+        "rationale": "FZD5 为 Wnt 配体细胞表面受体，参与 Wnt 信号接收，与 WLS 介导的配体供应共同决定通路活性。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "NECTIN3",
+  "generatedAt": "2026-08-03T14:39:38.331Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NECTIN3属于免疫球蛋白超家族黏附分子，参与细胞间黏附、上皮屏障组织和突触连接稳定，其遗传关联覆盖肾小球滤过率、胎盘滞留及炎症相关表型，但现有Open Targets最高关联强度有限，应定位为机制探索型靶点。该蛋白为I型膜受体，含胞外Ig样结构域，抗原位点位于细胞表面，具备抗体识别和阻断细胞黏附界面的可及性。相较胞内黏附适配蛋白，NECTIN3的胞外反式结合界面更适合通过抗体实现选择性干预，并可利用4FOM结构支持表位分层设计。",
+    "mechanism": "阻断NECTIN3胞外V样结构域与NECTIN1或NECTIN2的反式异嗜性结合，削弱nectin介导的细胞间黏附复合体形成。",
+    "selectedEpitope": "优先覆盖N端IgV样结构域反式结合面，避开靠近膜端IgC样结构域的柔性区。",
+    "diseaseDirection": "细胞黏附与屏障功能相关疾病",
+    "domain": "胞外区由1个N端IgV样结构域和2个IgC样结构域组成，后接单跨膜区和胞内尾部。",
+    "evidence": "NECTIN3结构与细胞黏附机制证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联数据",
+      "UniProt Q9NQS3蛋白结构域与亚细胞定位注释",
+      "RCSB PDB 4FOM X射线晶体结构",
+      "nectin家族异嗜性黏附与adherens junction文献"
+    ],
+    "referenceEntries": "UniProt: Q9NQS3; RCSB PDB: 4FOM; HGNC: NECTIN3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端IgV样结构域反式黏附界面",
+        "直接竞争NECTIN1/NECTIN2结合，具备功能阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "IgV-IgC1连接邻近外露面",
+        "可能产生空间位阻并稳定非结合构象",
+        "备选"
+      ],
+      [
+        "Site C",
+        "膜近端IgC2样结构域表面",
+        "功能阻断相关性较弱，且可能受膜近端可及性限制",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "4FOM分辨率为3.93 Å，侧链定位不宜过度解释；应以结构域级界面为主，结合NECTIN1/2结合实验验证阻断活性。",
+    "structurePrepZh": "采用4FOM中A-E链进行同源界面比对，补全缺失侧链并评估糖基化位点，优先保留IgV结构域构象用于对接。",
+    "structureRef": "RCSB PDB 4FOM, X-ray diffraction, 3.93 Å",
+    "antibodies": [
+      "anti-NECTIN3 blocking antibody clone N3.12.4",
+      "anti-NECTIN3 monoclonal antibody clone 103-A1"
+    ],
+    "interfaceFocus": "IgV样结构域异嗜性结合面",
+    "designMode": "阻断型黏附界面设计",
+    "candidates": [
+      {
+        "target": "NECTIN1",
+        "rationale": "NECTIN1与NECTIN3发生异嗜性反式结合，是同一nectin介导细胞间黏附网络中的关键配对分子。其胞外IgV样结构域同样适合抗体阻断设计。"
+      },
+      {
+        "target": "NECTIN2",
+        "rationale": "NECTIN2可与NECTIN3形成异嗜性黏附复合体，并参与上皮细胞连接和免疫相关细胞接触。其膜外结构域可作为同通路替代干预靶点。"
+      },
+      {
+        "target": "PVR",
+        "rationale": "PVR为nectin样黏附分子，参与细胞黏附和免疫突触相关配体网络，与NECTIN家族在黏附受体功能层面存在通路交汇。其胞外Ig样结构域具有抗体开发可及性。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

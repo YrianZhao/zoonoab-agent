@@ -1,0 +1,65 @@
+{
+  "gene": "POLR2B",
+  "generatedAt": "2026-08-03T15:26:12.679Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "POLR2B编码RNA聚合酶II第二大亚基，是Pol II催化核心的组成部分，参与病毒感染中宿主mRNA转录及HIV Tat介导的转录延伸复合体功能。其主要定位于细胞核内，天然状态下缺乏稳定胞外结构域或分泌形式，抗体抗原可及性明显受限。相较于胞外病毒进入因子或细胞表面免疫受体，POLR2B更适合作为结构机制与胞内递送抗体研究靶点，主靶点优先级应低于可直接结合的膜受体类靶点。",
+    "mechanism": "通过胞内抗体阻断POLR2B与RPB1及转录延伸复合体界面的装配，干扰Pol II催化中心稳定性与病毒依赖性宿主转录延伸。",
+    "selectedEpitope": "优先考察RPB2 fork/cleft邻近RPB1接触界面，避免催化金属中心与高度保守核酸结合沟槽。",
+    "diseaseDirection": "病毒感染相关宿主转录依赖",
+    "domain": "POLR2B为RPB2亚基，含protrusion、lobe、fork、external 1/2及wall等保守结构模块。",
+    "evidence": "POLR2B-Pol II结构与病毒转录依赖证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProtKB P30876功能与定位注释",
+      "RCSB PDB 9EHZ冷冻电镜结构",
+      "HIV Tat/P-TEFb依赖Pol II转录延伸文献"
+    ],
+    "referenceEntries": "UniProt P30876；RCSB PDB 9EHZ；Open Targets POLR2B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RPB2 fork与RPB1 cleft接触邻域",
+        "可干预Pol II核心装配与延伸构象稳定性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RPB2 protrusion/lobe外露表面",
+        "结构暴露度较高，适合构建胞内结合抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "核酸结合沟槽及催化中心邻近保守区",
+        "高度保守且功能必需，存在广泛转录毒性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "POLR2B为核内必需转录机器亚基，常规抗体难以到达抗原；设计应限定胞内递送场景，并避开催化中心以降低全局转录抑制风险。",
+    "structurePrepZh": "以PDB 9EHZ为模板提取POLR2B链并保留RPB1邻近界面，补全缺失侧链、标注核酸与金属离子邻域后进行表面可及性评估。",
+    "structureRef": "RCSB PDB 9EHZ，human Pol II复合物，EM 2.6 Å",
+    "antibodies": [
+      "anti-RPB2 clone 4H8",
+      "anti-POLR2B polyclonal antibody"
+    ],
+    "interfaceFocus": "RPB2-RPB1 cleft/fork装配界面",
+    "designMode": "胞内抗体探索",
+    "candidates": [
+      {
+        "target": "POLR2A",
+        "rationale": "POLR2A编码RPB1，为Pol II最大亚基并直接形成催化中心和CTD调控平台；HIV Tat依赖的转录延伸最终作用于RPB1 CTD磷酸化状态。"
+      },
+      {
+        "target": "CDK9",
+        "rationale": "CDK9是P-TEFb激酶核心，磷酸化Pol II CTD Ser2并促进HIV转录延伸；其处于同一病毒依赖宿主转录轴的上游调控节点。"
+      },
+      {
+        "target": "CCNT1",
+        "rationale": "CCNT1编码Cyclin T1，与CDK9组成P-TEFb并直接参与HIV Tat/TAR复合体招募；相较POLR2B更接近病毒特异性转录激活界面。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

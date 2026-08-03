@@ -1,0 +1,65 @@
+{
+  "gene": "SCRIB",
+  "generatedAt": "2026-08-03T16:22:27.333Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SCRIB 是平面细胞极性与顶-基底极性复合体的支架蛋白，参与神经管闭合过程中上皮细胞极性建立、细胞迁移与组织形态发生，其遗传扰动与 spina bifida 和 neural tube defect 存在遗传学关联。该蛋白主要为胞内支架蛋白，缺乏典型胞外结构域或分泌形式，抗原可及性弱于膜受体或分泌因子，因此更适合作为机制验证、胞内递送抗体或结构生物学结合探针靶点。相较于同通路中的 VANGL、CELSR 等多跨膜极性蛋白，SCRIB 的 PDZ 结构域具有高分辨率实验结构与明确肽段结合沟槽，可优先支持结构指导的界面阻断设计。",
+    "mechanism": "通过结合 SCRIB PDZ 结构域肽结合沟槽，阻断其与 C 端 PDZ-binding motif 蛋白的相互作用，干预极性复合体装配。",
+    "selectedEpitope": "优先覆盖 PDZ3 结构域 αB/βB 肽结合沟槽及羧基端配体锚定位点。",
+    "diseaseDirection": "神经管缺陷与平面细胞极性异常",
+    "domain": "SCRIB 含 N 端 LRR 区域及四个串联 PDZ 结构域；6MYE 对应高分辨率 PDZ 结构域。",
+    "evidence": "SCRIB-PCP轴神经管闭合证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt Q14160 功能与结构域注释",
+      "RCSB PDB 6MYE X-ray 晶体结构",
+      "平面细胞极性通路与神经管闭合文献"
+    ],
+    "referenceEntries": "UniProt Q14160；RCSB PDB 6MYE；Open Targets SCRIB",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PDZ3 αB/βB 肽结合沟槽",
+        "直接覆盖 PDZ 配体识别界面，适合阻断 C 端 PBM 结合",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PDZ3 βA-βB 环及羧酸盐结合口袋邻近区",
+        "可调节配体锚定姿态，利于获得变构或竞争性结合分子",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PDZ 结构域保守疏水核心外侧面",
+        "结构保守且可能影响折叠稳定性，选择性与功能可解释性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SCRIB 为胞内蛋白，常规体内抗体难以直接到达作用界面；建议定位为胞内递送抗体、VHH/intrabody 或体外机制探针，并严格评估 PDZ 家族交叉反应。",
+    "structurePrepZh": "以 6MYE 晶体结构链 A/B 为模板，补全缺失侧链、校正质子化状态，保留 PDZ 肽结合沟槽构象并去除晶体接触伪界面。",
+    "structureRef": "RCSB PDB 6MYE，X-ray diffraction，1.1 Å",
+    "antibodies": [
+      "Anti-SCRIB research antibody clone C-5",
+      "Anti-SCRIB research antibody clone E-11"
+    ],
+    "interfaceFocus": "PDZ3 配体结合沟槽与 PBM 锚定位点",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "VANGL2",
+        "rationale": "VANGL2 是核心平面细胞极性蛋白，遗传缺陷可导致神经管闭合异常；其与 SCRIB 共同参与上皮极性和组织形态发生调控。"
+      },
+      {
+        "target": "CELSR1",
+        "rationale": "CELSR1 为非典型钙黏蛋白样 PCP 受体，参与细胞间极性信息传递，并与神经管缺陷存在明确遗传关联。"
+      },
+      {
+        "target": "DVL2",
+        "rationale": "DVL2 是 Wnt/PCP 信号中的胞内枢纽蛋白，连接膜近端 PCP 复合体与下游细胞骨架重塑过程，适合作为同通路机制参照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

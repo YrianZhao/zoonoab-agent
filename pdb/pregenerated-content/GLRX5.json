@@ -1,0 +1,65 @@
+{
+  "gene": "GLRX5",
+  "generatedAt": "2026-08-03T12:48:59.425Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GLRX5 是线粒体基质谷氧还蛋白，参与铁硫簇装配并维持红系血红素合成所需的铁稳态；其功能缺陷可导致 ALAS2 相关血红素合成受限、线粒体铁沉积和环形铁粒幼细胞性贫血。该蛋白并非分泌蛋白或膜受体，天然抗原可及性较弱，抗体设计更适合作为结构生物学验证、细胞内递送抗体或研究级结合分子开发。相比 TFRC、HFE 等铁代谢膜靶点，GLRX5 与遗传性铁粒幼细胞性贫血的因果关系更直接，适合作为疾病机制解析的高优先级胞内靶点。",
+    "mechanism": "设计结合 GLRX5 谷氧还蛋白折叠核心的抗体片段，干预 GSH 结合沟槽及铁硫簇转运复合物接触面，以解析其对 ISCU 依赖铁硫簇成熟的贡献。",
+    "selectedEpitope": "优先覆盖 thioredoxin-like 折叠中 CGFS 活性基序邻近的 GSH 结合沟槽，避开深埋疏水核心。",
+    "diseaseDirection": "遗传性铁粒幼细胞性贫血与线粒体铁稳态",
+    "domain": "GLRX5 为线粒体基质 CGFS 型单结构域谷氧还蛋白，呈 thioredoxin-like α/β 折叠并含保守 Cys 活性位点。",
+    "evidence": "GLRX5 铁硫簇装配与铁粒幼细胞贫血证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt Q86SX6 功能与亚细胞定位注释",
+      "RCSB PDB 2WUL X 射线晶体结构",
+      "OMIM/Orphanet 铁粒幼细胞性贫血遗传证据"
+    ],
+    "referenceEntries": "UniProt Q86SX6；RCSB PDB 2WUL；Open Targets GLRX5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CGFS 活性基序邻近 GSH 结合沟槽",
+        "可直接报告谷胱甘肽依赖构象与功能界面占用",
+        "优先"
+      ],
+      [
+        "Site B",
+        "α2-β3 周边溶剂暴露环区",
+        "有利于获得构象选择性结合且降低活性位点完全遮蔽",
+        "备选"
+      ],
+      [
+        "Site C",
+        "晶体四聚体接触面相关区域",
+        "可能受晶体堆积影响，需排除非生理性界面依赖",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GLRX5 为线粒体胞内蛋白，常规抗体难以在完整细胞内直接触达；应优先采用 Fab/VHH 结构探针或细胞内递送格式，并验证与 GSH、ISCU 相关界面的竞争性。",
+    "structurePrepZh": "以 2WUL 抗原链 A-D 比对筛选稳定单体构象，去除晶体堆积伪界面并补全缺失侧链，保留 CGFS 基序与 GSH 沟槽用于表位映射。",
+    "structureRef": "RCSB PDB 2WUL，human GLRX5 X-ray structure，2.4 Å",
+    "antibodies": [
+      "研究级 anti-GLRX5 monoclonal antibody",
+      "研究级 anti-GLRX5 polyclonal antibody"
+    ],
+    "interfaceFocus": "CGFS 活性基序、GSH 沟槽与铁硫簇转运接触面",
+    "designMode": "胞内结构探针设计",
+    "candidates": [
+      {
+        "target": "HSPA9",
+        "rationale": "HSPA9 编码线粒体 Hsp70，参与 ISCU 支架蛋白上的铁硫簇成熟过程；其缺陷同样与常染色体隐性铁粒幼细胞性贫血相关。"
+      },
+      {
+        "target": "ISCU",
+        "rationale": "ISCU 是线粒体铁硫簇装配支架蛋白，位于 GLRX5 所属铁硫簇生物发生通路核心位置；其功能障碍可造成铁硫簇缺陷和线粒体铁代谢异常。"
+      },
+      {
+        "target": "ALAS2",
+        "rationale": "ALAS2 催化红系血红素生物合成限速步骤，GLRX5 缺陷通过铁硫簇不足影响铁调控网络并降低 ALAS2 相关血红素合成效率。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

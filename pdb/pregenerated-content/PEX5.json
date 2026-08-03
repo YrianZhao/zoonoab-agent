@@ -1,0 +1,65 @@
+{
+  "gene": "PEX5",
+  "generatedAt": "2026-08-03T15:12:54.368Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PEX5 是过氧化物酶体基质蛋白导入通路的核心可溶性受体，负责识别含 PTS1 信号的货物蛋白并经 PEX13/PEX14 对接复合体转运入过氧化物酶体，其功能缺陷直接导致 Zellweger 谱系和 PBD2A/2B 等过氧化物酶体生物发生障碍。PEX5 主要为胞质可溶性穿梭蛋白，含多个可重组表达的结构域，适合体外结构表位验证和功能阻断实验。相较 PEX1、PEX6 等大型 AAA ATPase，PEX5 的配体识别 TPR 区域已有高分辨率结构，抗体设计可围绕货物结合界面建立更明确的结构-功能关联。",
+    "mechanism": "抗体结合 PEX5 C 端 TPR 结构域，阻断 PTS1 三肽与 TPR 凹槽的识别，从而干预基质货物蛋白装载与过氧化物酶体导入。",
+    "selectedEpitope": "优先覆盖 C 端 TPR 重复形成的 PTS1 结合沟槽及相邻α螺旋边缘。",
+    "diseaseDirection": "过氧化物酶体生物发生障碍",
+    "domain": "PEX5 含 N 端 PEX14/PEX13 结合区与 C 端 TPR 重复货物识别结构域。",
+    "evidence": "PEX5-PTS1识别与Zellweger谱系证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P50542 functional annotation",
+      "RCSB PDB 1FCH X-ray structure",
+      "OMIM and Orphanet peroxisome biogenesis disorder records"
+    ],
+    "referenceEntries": "UniProt P50542；RCSB PDB 1FCH；MONDO_0008954",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端TPR重复的PTS1结合沟槽",
+        "直接竞争PTS1货物肽结合，功能阻断逻辑最清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "TPR螺旋外侧保守支撑面",
+        "可稳定识别折叠构象并产生变构干扰",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端PEX14/PEX13对接相关区域",
+        "可能影响受体停靠，但柔性较高且1FCH未覆盖完整界面",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PEX5 为胞内可溶性受体，常规治疗性抗体细胞进入效率受限；宜定位为机制研究、细胞递送抗体或体外功能阻断设计。",
+    "structurePrepZh": "以1FCH晶体结构提取TPR结构域，校验链A-D一致性，补全缺失侧链并保留PTS1肽结合凹槽用于表位映射。",
+    "structureRef": "RCSB PDB 1FCH，2.2 Å X-ray diffraction",
+    "antibodies": [
+      "抗PEX5研究用单克隆抗体",
+      "抗PEX5多克隆抗体"
+    ],
+    "interfaceFocus": "TPR凹槽-PTS1羧基端三肽界面",
+    "designMode": "胞内靶点功能阻断",
+    "candidates": [
+      {
+        "target": "PEX14",
+        "rationale": "PEX14 是 PEX5 受体停靠复合体的核心膜蛋白，参与 PEX5-货物复合物进入过氧化物酶体膜转运孔形成。其胞质暴露区域与 PEX5 直接相互作用，适合验证同一导入通路的阻断策略。"
+      },
+      {
+        "target": "PEX13",
+        "rationale": "PEX13 是过氧化物酶体膜对接复合体成员，与 PEX5 N 端区域协同介导货物导入。该靶点与 Zellweger 谱系相关，可作为 PEX5 对接轴的候选干预节点。"
+      },
+      {
+        "target": "PEX7",
+        "rationale": "PEX7 是 PTS2 货物导入受体，并与长亚型 PEX5 协同完成过氧化物酶体基质蛋白输入。其疾病关联包括 rhizomelic chondrodysplasia punctata，可用于扩展同一基质导入网络的抗体设计。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

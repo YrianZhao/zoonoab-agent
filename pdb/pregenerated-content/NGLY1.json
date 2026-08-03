@@ -1,0 +1,65 @@
+{
+  "gene": "NGLY1",
+  "generatedAt": "2026-08-03T20:18:31.839Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NGLY1编码胞质N-糖苷酶，在ER相关降解通路中去除错误折叠糖蛋白上的N-连接寡糖，功能缺失可导致先天性去糖基化障碍、运动异常、无泪症及肝功能异常等表型。该蛋白并非分泌蛋白或膜受体，天然抗原可及性不适合体内阻断型抗体，但其结构化催化域可用于体外构象识别抗体、细胞内递送抗体或研究级结合分子开发。相比ERAD通路中多蛋白复合体组分，NGLY1具有明确单基因疾病因果性、Open Targets关联强度较高且存在高分辨率实验结构，因此在机制验证型抗体设计中优先级较高。",
+    "mechanism": "设计抗体结合NGLY1催化核心邻近底物结合沟槽，阻断糖基化底物肽链进入催化位点并干扰NGLY1与错误折叠糖蛋白底物的酰胺键水解过程。",
+    "selectedEpitope": "优先覆盖2CCQ可解析PNGase样催化核心的底物结合沟槽外缘，避开深埋催化残基。",
+    "diseaseDirection": "先天性去糖基化障碍与神经退行性疾病",
+    "domain": "NGLY1含N端PUB结构域、中央PNGase催化结构域及C端PAW结构域，2CCQ对应催化核心区域。",
+    "evidence": "NGLY1遗传缺陷与ERAD去糖基化机制证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProtKB Q96IV0功能与结构域注释",
+      "RCSB PDB 2CCQ晶体结构记录",
+      "OMIM与Orphanet NGLY1缺陷疾病条目"
+    ],
+    "referenceEntries": "UniProt Q96IV0；RCSB PDB 2CCQ；Open Targets NGLY1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PNGase催化核心底物结合沟槽外缘",
+        "可阻断糖蛋白底物进入催化位点，机制可解释性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化结构域保守折叠表面远端",
+        "适合构象捕获与检测抗体开发，对酶活干预较弱",
+        "备选"
+      ],
+      [
+        "Site C",
+        "催化残基邻近深埋口袋",
+        "可能影响活性但抗体空间进入受限，存在构象扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NGLY1为胞质酶，常规体内抗体难以到达天然靶点；宜定位为结构探针、诊断检测试剂或需细胞内递送体系的功能抗体设计。",
+    "structurePrepZh": "以2CCQ链A为模板进行质子化、缺失侧链修复和表面暴露性评估，并映射催化核心与底物沟槽残基。",
+    "structureRef": "RCSB PDB 2CCQ，X-ray diffraction，1.6 Å",
+    "antibodies": [
+      "研究级抗NGLY1单克隆抗体",
+      "研究级抗NGLY1多克隆抗体"
+    ],
+    "interfaceFocus": "PNGase催化核心底物沟槽与活性位点外缘",
+    "designMode": "胞内酶构象抗体",
+    "candidates": [
+      {
+        "target": "VCP",
+        "rationale": "VCP/p97驱动ERAD底物从内质网逆向转运至胞质，并在NGLY1去糖基化前后参与错误折叠蛋白处理，属于同一蛋白质质量控制通路。"
+      },
+      {
+        "target": "RAD23B",
+        "rationale": "RAD23B参与泛素化ERAD底物递送至蛋白酶体，和NGLY1介导的胞质去糖基化共同衔接底物降解流程。"
+      },
+      {
+        "target": "DDI2",
+        "rationale": "DDI2与NGLY1缺陷相关的蛋白质稳态和NFE2L1加工轴相关，适合作为NGLY1疾病机制验证的同通路候选靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

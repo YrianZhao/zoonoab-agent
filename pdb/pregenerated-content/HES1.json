@@ -1,0 +1,65 @@
+{
+  "gene": "HES1",
+  "generatedAt": "2026-08-03T19:45:43.831Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HES1 是 Notch 通路诱导的 bHLH 转录抑制因子，可通过结合 N-box/E-box DNA 元件并招募 TLE 共抑制复合物调控神经发生、细胞分化与应激反应，疾病关联主要集中于神经退行性表型及肾功能相关表型。该蛋白定位于细胞核，缺乏天然胞外结构域或分泌形式，抗原可及性不适合常规体内阻断型抗体，但可作为细胞内抗体、结构生物学验证或递送型抗体片段设计对象。相较 NOTCH 受体或 DLL/JAG 配体等胞外靶点，HES1 的优先级优势在于其位于通路转录输出端，能够直接反映 Notch-HES 轴的功能状态；但成药性优先级低于膜受体类同通路靶点。",
+    "mechanism": "设计分子应阻断 HES1 bHLH 区域与 N-box/E-box DNA 的结合，或干扰 Orange 结构域介导的二聚化与共抑制复合物装配。",
+    "selectedEpitope": "优先覆盖 bHLH DNA 结合螺旋及二聚化界面，避免选择低复杂度 C 端尾部。",
+    "diseaseDirection": "Notch-HES轴神经退行性与肾功能表型",
+    "domain": "HES1 含 N 端 bHLH DNA 结合/二聚化结构域、Orange 结构域及 C 端 WRPW 共抑制基序。",
+    "evidence": "HES1-Notch转录输出与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q14469 functional annotation",
+      "RCSB PDB 2MH3 solution NMR structure",
+      "NOTCH-HES transcriptional regulation literature"
+    ],
+    "referenceEntries": "UniProt: Q14469; RCSB PDB: 2MH3; Gene: HES1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "bHLH DNA结合螺旋与碱性区",
+        "可直接阻断 HES1 对 N-box/E-box 顺式元件的识别",
+        "优先"
+      ],
+      [
+        "Site B",
+        "bHLH螺旋-环-螺旋二聚化界面",
+        "可削弱 HES1 同源或异源二聚体形成并降低 DNA 结合稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端WRPW共抑制基序附近",
+        "可能影响 TLE/Groucho 共抑制因子招募，但短线性基序构象暴露不稳定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HES1 为核内转录因子，常规抗体难以到达作用位点；建议限定为细胞内抗体、递送型 VHH 或机制验证工具，并评估 bHLH 家族交叉反应。",
+    "structurePrepZh": "PDB 2MH3 为溶液 NMR 结构，应提取代表性构象集合，补充缺失柔性区注释，并以 bHLH/Orange 结构域边界进行表位建模。",
+    "structureRef": "RCSB PDB 2MH3, human HES1 solution NMR structure",
+    "antibodies": [
+      "无获批HES1治疗性抗体",
+      "研究级抗HES1单克隆抗体"
+    ],
+    "interfaceFocus": "bHLH DNA结合面与二聚化界面",
+    "designMode": "细胞内抗体/VHH验证",
+    "candidates": [
+      {
+        "target": "NOTCH1",
+        "rationale": "NOTCH1 是上游膜受体，配体诱导裂解释放 NICD 后直接驱动 HES1 转录，具有明确胞外结构域和更高抗体可及性。"
+      },
+      {
+        "target": "DLL4",
+        "rationale": "DLL4 是 Notch 通路经典膜结合配体，可通过与 NOTCH1 受体相互作用诱导 HES1 表达，适合采用阻断配体-受体结合的抗体策略。"
+      },
+      {
+        "target": "JAG1",
+        "rationale": "JAG1 作为 Notch 配体参与细胞命运决定及组织稳态调控，其与 NOTCH 受体结合位点位于胞外区，具备同通路抗体干预可行性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

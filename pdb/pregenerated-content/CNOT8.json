@@ -1,0 +1,65 @@
+{
+  "gene": "CNOT8",
+  "generatedAt": "2026-08-03T18:27:16.565Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CNOT8是CCR4-NOT复合体的催化性死腺苷酸酶亚基，参与mRNA poly(A)尾缩短并影响红细胞生成相关转录后稳态；现有关联主要集中于红细胞指数、网织红细胞数量及绝经年龄等遗传性状，疾病效应分值较低且更偏向基因调控证据。该蛋白为细胞内复合体成分，缺乏天然胞外结构域或分泌形式，抗原可及性不符合常规体内治疗性抗体优先原则，但适合作为结构生物学、细胞内递送抗体或研究级结合体设计对象。相较于同通路中具备膜外抗原可及性的靶点，CNOT8优先级受限；其优势在于9E7U提供人源CCR4-NOT复合体实验结构，可支持针对核酸外切酶结构域和复合体界面的高精度表位设计。",
+    "mechanism": "设计结合体以占据CNOT8核酸外切酶催化沟槽或其与CNOT1支架亚基的装配界面，干预CCR4-NOT介导的mRNA去腺苷酸化复合体功能。",
+    "selectedEpitope": "优先覆盖CNOT8 DEDD型核酸外切酶结构域催化沟槽邻近环区，并避开金属离子结合核心残基。",
+    "diseaseDirection": "红细胞生成与转录后调控",
+    "domain": "CNOT8主要由DEDD家族3'-5'核酸外切酶样结构域构成，装配于CCR4-NOT复合体催化模块。",
+    "evidence": "CNOT8-CCR4-NOT复合体结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病-靶点关联数据",
+      "UniProt Q9UFF9功能与结构域注释",
+      "RCSB PDB 9E7U冷冻电镜结构",
+      "CCR4-NOT介导mRNA去腺苷酸化文献证据"
+    ],
+    "referenceEntries": "UniProt: Q9UFF9；RCSB PDB: 9E7U；Open Targets: CNOT8",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DEDD核酸外切酶结构域催化沟槽邻近环区",
+        "可空间阻碍poly(A) RNA底物进入并评估功能抑制窗口",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CNOT8-CNOT1装配界面外周暴露面",
+        "可干预催化亚基在CCR4-NOT复合体中的稳定定位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "金属离子结合核心与高度保守酸性催化残基周边",
+        "保守性高且潜在交叉反应风险较大，宜用于机制验证而非首选工程化",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CNOT8为细胞内抗原，体内抗体可及性和递送效率是主要风险；设计应优先限定为细胞内递送格式、研究级Fab/VHH或降解偶联验证体系。",
+    "structurePrepZh": "以9E7U中CNOT8抗原链A、B、C为模板，清理低置信度密度区、保留复合体界面邻近亚基用于遮挡分析，并统一人源序列编号。",
+    "structureRef": "RCSB PDB 9E7U，human CCR4-NOT complex，EM 3.5 Å",
+    "antibodies": [
+      "暂无获批CNOT8靶向抗体",
+      "研究级抗CNOT8抗体"
+    ],
+    "interfaceFocus": "催化沟槽、RNA底物入口与CNOT1装配界面",
+    "designMode": "胞内靶点研究型设计",
+    "candidates": [
+      {
+        "target": "CNOT6L",
+        "rationale": "CNOT6L是CCR4-NOT复合体中的CCR4型死腺苷酸酶，与CNOT8共同参与mRNA poly(A)尾缩短，处于同一转录后调控通路。"
+      },
+      {
+        "target": "CNOT7",
+        "rationale": "CNOT7与CNOT8同属CAF1/POP2型催化亚基，可在CCR4-NOT复合体中承担相关去腺苷酸化功能，适合作为同通路功能冗余比较靶点。"
+      },
+      {
+        "target": "CNOT1",
+        "rationale": "CNOT1是CCR4-NOT复合体核心支架亚基，组织CNOT7/8与CNOT6/6L催化模块装配，可作为调控复合体完整性的上游结构靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

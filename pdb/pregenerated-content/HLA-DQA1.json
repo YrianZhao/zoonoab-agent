@@ -1,0 +1,65 @@
+{
+  "gene": "HLA-DQA1",
+  "generatedAt": "2026-08-03T19:49:14.335Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HLA-DQA1编码MHC II类DQ异二聚体α链，与DQB1形成抗原肽呈递平台，参与CD4+ T细胞识别自身或外源肽，因而与1型糖尿病、类风湿关节炎及多种肿瘤免疫表型相关。该靶点为细胞表面膜受体复合体组成部分，α1/α2胞外结构域可被抗体直接识别，抗原可及性优于胞内免疫调控分子。相较下游细胞因子或泛MHC II标志物，HLA-DQA1可在DQ限制性抗原呈递节点实现更接近病因环节的干预，但需严格控制等位基因交叉反应与免疫抑制风险。",
+    "mechanism": "抗体设计可阻断HLA-DQA1/DQB1肽结合槽外缘与TCR-CD4复合识别界面的空间接触，降低DQ限制性抗原呈递诱导的CD4+ T细胞活化。",
+    "selectedEpitope": "优先覆盖α1结构域靠近肽结合槽α螺旋外侧及TCR接触边缘，避开β链核心肽锚定位点。",
+    "diseaseDirection": "自身免疫与肿瘤免疫呈递",
+    "domain": "HLA-DQA1含胞外α1肽结合结构域、α2免疫球蛋白样结构域、跨膜区及短胞质尾。",
+    "evidence": "HLA-DQA1疾病遗传关联与DQ呈递结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P01909 functional annotation",
+      "RCSB PDB 6U3M X-ray structure",
+      "GWAS Catalog HLA-DQ autoimmune association records"
+    ],
+    "referenceEntries": "UniProt P01909；RCSB PDB 6U3M；Ensembl ENSG00000196735",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "α1结构域肽结合槽外侧α螺旋/TCR接触边缘",
+        "可直接干预DQ-肽复合物与TCR识别，具备机制阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "α2免疫球蛋白样结构域侧向暴露面",
+        "有利于稳定结合并避免直接竞争肽装载，可用于非阻断型调节设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "α链与β链异二聚体界面及肽锚定位点邻近区域",
+        "可能影响DQ复合体折叠、肽装载或广泛MHC II功能，安全窗较窄",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HLA-DQ属于高度多态性抗原呈递分子，表位需评估DQA1等位基因差异、DQB1配对依赖性及广泛CD4+ T细胞抑制风险。",
+    "structurePrepZh": "以6U3M高分辨率晶体结构为模板，保留DQA1/DQB1异二聚体与结合肽，补全缺失侧链并标注α1槽缘、α2域及糖基化位点。",
+    "structureRef": "RCSB PDB 6U3M，X-ray diffraction，1.9 Å",
+    "antibodies": [
+      "L243",
+      "Tü39"
+    ],
+    "interfaceFocus": "α1肽结合槽α螺旋与TCR接触边缘",
+    "designMode": "阻断型Fab/VHH",
+    "candidates": [
+      {
+        "target": "HLA-DQB1",
+        "rationale": "HLA-DQB1与HLA-DQA1共同构成DQ抗原肽结合槽，是DQ限制性抗原呈递不可分割的β链组分。靶向β1结构域可补充调控同一MHC II-DQ呈递节点。"
+      },
+      {
+        "target": "CD4",
+        "rationale": "CD4作为辅助受体结合MHC II非多态区域并增强TCR信号转导，位于DQ-肽复合物诱导CD4+ T细胞活化的同一通路。阻断CD4-MHC II协同可降低抗原呈递信号强度。"
+      },
+      {
+        "target": "TCRB",
+        "rationale": "TCRβ链参与TCR对DQ-肽复合物的克隆型识别，是抗原特异性CD4+ T细胞应答的直接受体组成。该靶点适合用于特定病理克隆或工程化识别策略。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

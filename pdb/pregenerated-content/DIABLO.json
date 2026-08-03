@@ -1,0 +1,65 @@
+{
+  "gene": "DIABLO",
+  "generatedAt": "2026-08-03T11:57:09.437Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DIABLO/SMAC是线粒体膜间隙促凋亡蛋白，释放至胞质后通过N端AVPI基序结合XIAP、BIRC2和BIRC3的BIR结构域，解除caspase抑制并放大细胞凋亡。该靶点主要为胞内线粒体蛋白，天然抗原可及性弱，不具备常规分泌蛋白或膜受体的外部暴露优势；抗体策略更适合定位为胞内递送、研究级构象探针或诊断检测。相比同通路IAP家族靶点，DIABLO的晶体结构分辨率高且IAP结合四肽界面明确，但因疾病遗传关联以听力损失和数量性状为主、转化干预窗口较窄，优先级低于可药性更成熟的XIAP或BIRC2。",
+    "mechanism": "抗体设计可聚焦阻断DIABLO成熟N端AVPI基序与XIAP BIR3或BIRC2/3 BIR结构域的结合，抑制其拮抗IAP的促凋亡功能。",
+    "selectedEpitope": "优先评估成熟N端AVPI四肽及邻近IBM沟槽暴露面，兼顾二聚体界面外侧保守构象表位。",
+    "diseaseDirection": "凋亡调控与遗传性听力损失",
+    "domain": "DIABLO含N端线粒体靶向肽、成熟N端IAP-binding motif及C端α螺旋束二聚化核心。",
+    "evidence": "DIABLO结构与IAP结合凋亡证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联",
+      "UniProt Q9NR28功能注释",
+      "RCSB PDB 1TW6晶体结构",
+      "DIABLO/SMAC-IAP相互作用文献"
+    ],
+    "referenceEntries": "UniProt Q9NR28；RCSB PDB 1TW6；Open Targets DIABLO",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "成熟N端AVPI IAP-binding motif及邻近沟槽",
+        "直接覆盖XIAP/BIRC2/BIRC3 BIR结合决定簇，机制验证价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端α螺旋束二聚体外侧构象面",
+        "有利于获得识别天然二聚体的构象抗体，适合检测与结构稳定化",
+        "备选"
+      ],
+      [
+        "Site C",
+        "二聚化核心埋藏界面",
+        "界面可及性受二聚体装配限制，可能影响折叠稳定性与亲和成熟判读",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DIABLO为胞内线粒体来源蛋白，体内抗体可及性和功能阻断转化风险较高；建议优先限定为胞内递送模型、构象捕获或伴随诊断抗体。",
+    "structurePrepZh": "以1TW6四链晶体结构为模板，去除晶体接触冗余后保留成熟同源二聚体，标注N端AVPI区域并评估链间界面暴露度。",
+    "structureRef": "PDB 1TW6，X射线晶体结构，1.713 Å",
+    "antibodies": [
+      "anti-Smac/DIABLO clone 78-1-118",
+      "anti-Smac/DIABLO clone 2A9"
+    ],
+    "interfaceFocus": "N端AVPI与IAP BIR结构域结合界面",
+    "designMode": "胞内靶点构象抗体",
+    "candidates": [
+      {
+        "target": "XIAP",
+        "rationale": "XIAP通过BIR2/BIR3结构域直接抑制caspase-3、caspase-7和caspase-9，是DIABLO释放后拮抗的核心节点。其疾病通路位置更接近凋亡执行端。"
+      },
+      {
+        "target": "BIRC2",
+        "rationale": "BIRC2/cIAP1参与TNF受体复合体中的泛素化调控，并可被DIABLO的IAP-binding motif结合拮抗。该靶点与DIABLO同属IAP拮抗凋亡通路。"
+      },
+      {
+        "target": "BIRC3",
+        "rationale": "BIRC3/cIAP2与BIRC2功能相近，调节TNF/NF-κB与细胞死亡平衡，并可作为DIABLO结合的IAP家族成员。其通路相关性适合并行比较。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "SNAPC1",
+  "generatedAt": "2026-08-03T16:45:54.878Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SNAPC1是SNAPc核心亚基，参与U6和snRNA基因转录起始复合体装配，在神经退行性疾病相关转录失衡背景下具有明确的疾病通路位置。其作为核内转录因子组分，缺乏胞外结构域与膜可及性，常规抗体直达性较弱，因此更适合以结构引导的表位阻断策略评估复合体界面。相较于广泛表达且功能冗余更强的转录伴侣蛋白，SNAPC1在SNAPc装配中的核心支架属性使其更具机制优先级。",
+    "mechanism": "阻断SNAPC1与SNAPC2/SNAPC4界面，抑制SNAPc对snRNA启动子的结合与转录起始复合体组装。",
+    "selectedEpitope": "优先选择SNAPc核心界面表位，聚焦与SNAPC2/SNAPC4接触的螺旋-螺旋及表面疏水补丁。",
+    "diseaseDirection": "神经退行性疾病",
+    "domain": "SNAPc核心亚基，主要由保守螺旋束与复合体装配界面构成。",
+    "evidence": "SNAPC1 结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform",
+      "UniProt Q16533",
+      "RCSB PDB 7ZWD",
+      "Human Protein Atlas"
+    ],
+    "referenceEntries": "UniProt: Q16533; PDB: 7ZWD; Open Targets: SNAPC1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SNAPc核心界面，SNAPC2/SNAPC4接触面",
+        "最可能直接削弱复合体装配与DNA结合",
+        "优先"
+      ],
+      [
+        "Site B",
+        "保守螺旋束外侧表面",
+        "利于构建构象敏感抗体并降低非特异干扰",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离装配界面的暴露环区",
+        "适合做结合探针但功能抑制潜力较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "靶标位于细胞核内，抗体可及性受限，且复合体界面可能存在构象依赖性。建议优先采用结构定向筛选，并结合细胞内递送或替代格式评估功能抑制潜力。",
+    "structurePrepZh": "建议以7ZWD电子显微镜结构为主模板，补全缺失侧链并对SNAPC1界面区域进行局部能量最小化后开展表位建模。",
+    "structureRef": "RCSB PDB 7ZWD; EM 3.0 A",
+    "antibodies": [
+      "未见明确临床同类抗体",
+      "未见明确结构导向同类抗体"
+    ],
+    "interfaceFocus": "SNAPC1与SNAPC2/SNAPC4复合体装配界面",
+    "designMode": "structure-guided",
+    "candidates": [
+      {
+        "target": "SNAPC2",
+        "rationale": "SNAPC2与SNAPC1共同构成SNAPc核心骨架，是同一snRNA转录起始通路中的直接互作组分。围绕其界面开展联合表位分析，有助于定义可被抗体干预的装配热点。"
+      },
+      {
+        "target": "SNAPC4",
+        "rationale": "SNAPC4是SNAPc的重要支架亚基，与SNAPC1共同决定复合体稳定性和启动子识别。作为同通路邻近靶点，其界面信息可用于验证SNAPC1抗体的功能外推性。"
+      },
+      {
+        "target": "GTF3C1",
+        "rationale": "GTF3C1参与RNA聚合酶III转录因子网络，与SNAPc共同作用于snRNA相关转录调控。将其纳入候选对照有助于区分SNAPC1特异复合体抑制与一般转录抑制效应。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

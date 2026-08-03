@@ -1,0 +1,65 @@
+{
+  "gene": "SEPTIN5",
+  "generatedAt": "2026-08-03T16:26:15.493Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SEPTIN5为胞内GTP结合型细胞骨架蛋白，参与血小板颗粒分泌、胞质分裂及膜骨架重塑，Open Targets关联信号主要集中于血小板计数、血小板体积及骨密度等数量性状。该蛋白缺乏天然胞外结构域或分泌形式，抗体抗原可及性显著受限，更适合作为结构生物学和细胞内功能验证靶点，而非常规治疗性抗体直接阻断靶点。相比GP1BA、ITGA2B等血小板表面受体，SEPTIN5的优先级较低；若进入抗体设计，应定位于胞内递送抗体、研究级Fab或构象探针开发。",
+    "mechanism": "通过构象选择性抗体结合SEPTIN5的GTPase结构域，干扰其与相邻septin亚基的G界面装配，抑制septin异源寡聚体形成。",
+    "selectedEpitope": "优先覆盖GTPase结构域G界面邻近Switch I/II区域，评估对SEPTIN5-SEPTIN7装配面的阻断能力。",
+    "diseaseDirection": "血小板数量性状与骨密度关联",
+    "domain": "SEPTIN5含N端可变区、中心P-loop NTPase/GTPase结构域及C端卷曲螺旋区。",
+    "evidence": "SEPTIN5结构与血小板数量性状证据包",
+    "evidenceSources": [
+      "Open Targets Platform遗传关联与性状关联记录",
+      "UniProt Q99719功能与结构域注释",
+      "RCSB PDB 6WCU晶体结构条目",
+      "血小板septin细胞骨架与颗粒分泌相关文献"
+    ],
+    "referenceEntries": "UniProt: Q99719; RCSB PDB: 6WCU; HGNC: SEPTIN5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "GTPase结构域G界面及Switch I/II邻近区域",
+        "可能阻断SEPTIN5与septin复合体相邻亚基的装配界面",
+        "优先"
+      ],
+      [
+        "Site B",
+        "P-loop核苷酸结合口袋外围构象表面",
+        "可作为GTP结合状态敏感的构象识别表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端卷曲螺旋同源装配区域",
+        "存在保守性高及同源septin交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SEPTIN5为胞内蛋白，常规抗体难以在体内直接接触抗原；septin家族GTPase核心保守性较高，需规避SEPTIN2、SEPTIN7等同源交叉反应。",
+    "structurePrepZh": "以6WCU中A、B链为模板，保留GTPase核心结构并检查核苷酸、镁离子及晶体接触；补全柔性N端和C端缺失区时应避免将低置信环区作为主表位。",
+    "structureRef": "RCSB PDB 6WCU, X-ray diffraction, 1.8 Å",
+    "antibodies": [
+      "研究用anti-SEPTIN5 monoclonal antibody",
+      "研究用anti-SEPTIN5 polyclonal antibody"
+    ],
+    "interfaceFocus": "GTPase G界面与Switch I/II构象区",
+    "designMode": "胞内构象探针",
+    "candidates": [
+      {
+        "target": "GP1BA",
+        "rationale": "GP1BA编码血小板GPIb-IX-V复合体的胞外黏附受体亚基，直接参与von Willebrand factor结合和血小板黏附；其膜外结构域抗原可及性优于SEPTIN5。"
+      },
+      {
+        "target": "ITGA2B",
+        "rationale": "ITGA2B与ITGB3形成血小板αIIbβ3整合素，介导纤维蛋白原结合和血小板聚集；该受体为血小板数量与功能通路中的经典表面靶点。"
+      },
+      {
+        "target": "ITGB3",
+        "rationale": "ITGB3是αIIbβ3整合素β亚基，位于血小板膜表面并参与配体结合构象转换；其胞外结构域适合阻断型抗体或构象选择性抗体设计。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "DTX3L",
+  "generatedAt": "2026-08-03T18:46:01.954Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DTX3L为胞内Deltex家族E3泛素连接酶，与PARP9形成复合体并参与ADP-核糖基化依赖的泛素化调控；其Open Targets关联主要集中于LDL胆固醇、总胆固醇、胆固醇酯及apoB等血脂表型，提示可能与脂质稳态相关遗传网络存在统计关联。该蛋白缺乏跨膜段和分泌信号肽，天然抗原可及性不具备常规治疗性抗体优势，抗体设计更适合作为结构探针、细胞内递送抗体或降解平台识别模块。相较LDLR、PCSK9、APOB等经典脂质通路靶点，DTX3L的优先级主要来自高分辨率结构可用性与E3酶复合体机制研究价值，而非直接胞外阻断可及性。",
+    "mechanism": "设计抗体可结合DTX3L WWE结构域，阻断其识别PARP9介导的ADP-核糖基化或相关ADP-核糖聚合物，从而干预DTX3L-PARP9复合体的底物募集。",
+    "selectedEpitope": "优先覆盖WWE结构域ADP-核糖识别沟槽及保守芳香残基邻近界面。",
+    "diseaseDirection": "血脂性状与脂质稳态研究",
+    "domain": "DTX3L含N端WWE结构域、Deltex同源区及C端RING型E3泛素连接酶结构域。",
+    "evidence": "DTX3L结构与血脂性状遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q8TDB6 functional annotation",
+      "RCSB PDB 3PG6 X-ray structure",
+      "PARP9-DTX3L ubiquitin ligase complex literature"
+    ],
+    "referenceEntries": "UniProt Q8TDB6；RCSB PDB 3PG6；Open Targets DTX3L",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "WWE结构域ADP-核糖识别沟槽",
+        "可直接竞争ADP-核糖化配体或PARP9相关识别事件，适合机制阻断型抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "WWE结构域外侧保守β折叠-环区",
+        "有利于获得构象选择性结合并稳定晶体结构构象，适合作为结构探针",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端RING E3催化区假定界面",
+        "可能影响E2结合或泛素转移，但PDB 3PG6未覆盖该区域，需额外结构建模验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DTX3L为胞内蛋白，常规IgG难以到达天然作用位点；应优先定位为细胞内抗体、递送抗体或研究级Fab，并避免将其描述为经典胞外治疗靶点。",
+    "structurePrepZh": "以3PG6中A-D链WWE结构域为模板，保留高置信构象单元，检查晶体接触、缺失残基与配体结合沟槽，必要时补充AlphaFold全长模型映射。",
+    "structureRef": "RCSB PDB 3PG6，X-ray diffraction，1.7 Å",
+    "antibodies": [
+      "无获批DTX3L治疗性抗体",
+      "研究级anti-DTX3L抗体"
+    ],
+    "interfaceFocus": "WWE结构域ADP-核糖识别沟槽",
+    "designMode": "胞内机制探针设计",
+    "candidates": [
+      {
+        "target": "PARP9",
+        "rationale": "PARP9与DTX3L形成复合体并提供ADP-核糖化相关识别平台，是同一泛素化调控轴中的直接功能伙伴。"
+      },
+      {
+        "target": "LDLR",
+        "rationale": "LDLR是LDL颗粒清除通路核心受体，与LDL胆固醇和apoB相关表型具有明确因果联系，适合作为脂质稳态方向的可及性对照靶点。"
+      },
+      {
+        "target": "PCSK9",
+        "rationale": "PCSK9通过结合LDLR表皮生长因子样重复A结构域促进LDLR降解，是LDL胆固醇调控通路中已验证的分泌型抗体靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

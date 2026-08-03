@@ -1,0 +1,65 @@
+{
+  "gene": "MGRN1",
+  "generatedAt": "2026-08-03T14:14:13.007Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MGRN1为胞质型RING E3泛素连接酶，参与泛素化稳态、内体-溶酶体运输及蛋白质量控制，其遗传与功能证据指向神经退行性疾病相关的蛋白稳态失衡。该靶点主要定位于胞质和膜相关胞内区室，缺乏天然胞外结构域，因此常规外源性抗体抗原可及性不占优势，更适合作为细胞内抗体、VHH或递送型抗体设计对象。相比分泌因子或膜受体类靶点，MGRN1的优先级来自其位于泛素化网络的酶学节点，可通过干预RING结构域介导的E2结合与底物泛素转移实现更直接的机制验证。",
+    "mechanism": "通过结合MGRN1 RING结构域的E2结合界面，阻断其与UBE2D/UBE2E类E2酶形成催化复合物，降低底物泛素转移活性。",
+    "selectedEpitope": "优先覆盖RING锌指结构域E2结合面及邻近催化构象稳定区，避免锌配位核心残基破坏性结合。",
+    "diseaseDirection": "神经退行性疾病与蛋白稳态",
+    "domain": "MGRN1含N端可变区、C3HC4型RING锌指E3连接酶结构域及底物识别相关低复杂度区。",
+    "evidence": "MGRN1泛素化网络与神经退行性疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与关联评分",
+      "UniProt O60291蛋白功能与亚细胞定位注释",
+      "RCSB PDB 9QRU冷冻电镜结构记录",
+      "泛素-蛋白酶体及内体-溶酶体蛋白稳态文献"
+    ],
+    "referenceEntries": "UniProt O60291；RCSB PDB 9QRU；Open Targets MGRN1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "RING结构域E2酶结合界面",
+        "可直接阻断MGRN1与UBE2D/UBE2E类E2酶配对，具备明确功能抑制读出",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RING邻近构象支撑表面",
+        "可通过变构方式削弱催化复合物稳定性，并保留锌指核心完整性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "RING锌配位核心区域",
+        "可能导致非特异性构象塌陷或金属配位扰动，需避免作为主要结合热点",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MGRN1为胞内E3连接酶，常规抗体难以进入作用区室；设计宜采用VHH、细胞内抗体或递送偶联方案，并严控RING锌指核心非特异性扰动。",
+    "structurePrepZh": "以PDB 9QRU冷冻电镜模型为模板，保留抗原链A-D中RING相关构象，检查锌配位、缺失环区与多聚界面后再进行表位建模。",
+    "structureRef": "RCSB PDB 9QRU，human MGRN1 cryo-EM structure，3.03 Å",
+    "antibodies": [
+      "尚无获批MGRN1靶向治疗性抗体",
+      "研究级抗MGRN1检测抗体"
+    ],
+    "interfaceFocus": "RING结构域E2酶结合面与邻近变构支撑区",
+    "designMode": "胞内VHH抑制",
+    "candidates": [
+      {
+        "target": "UBE2D1",
+        "rationale": "UBE2D家族E2酶与多种RING型E3连接酶形成泛素转移复合物，是MGRN1催化轴的近端酶学节点。靶向该节点可用于验证E2-E3配对依赖性。"
+      },
+      {
+        "target": "UBE2D2",
+        "rationale": "UBE2D2参与RING E3介导的底物泛素化反应，与MGRN1同属泛素-蛋白稳态通路。其功能冗余性需在MGRN1抑制策略中作为补偿风险评估对象。"
+      },
+      {
+        "target": "TSG101",
+        "rationale": "TSG101为ESCRT-I组分，参与内体货物分选与溶酶体运输；MGRN1相关的内体-溶酶体稳态异常可与该通路发生功能交叉。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

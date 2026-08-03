@@ -1,0 +1,65 @@
+{
+  "gene": "RNASEL",
+  "generatedAt": "2026-08-03T21:01:54.369Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RNASEL 是 2-5A/RNase L 抗病毒与先天免疫通路的核心效应核酸内切酶，受 OAS 生成的 2',5'-寡腺苷酸激活后降解病毒及宿主 RNA，并与前列腺癌遗传易感和炎症相关疾病存在遗传关联。该蛋白主要定位于胞质，缺乏天然胞外结构域或分泌特征，因此常规体内阻断抗体可及性受限，更适合作为结构引导的细胞内抗体、VHH 或研究级功能调节抗体靶点。相比上游 OAS 家族成员，RNASEL 位于通路效应末端，直接决定 RNA 裂解输出与下游炎症放大，具备更清晰的功能读出和机制验证优先级。",
+    "mechanism": "通过结合 RNASEL 激酶同源结构域/ANK 调控界面，干预 2-5A 诱导的构象激活与二聚化，从而抑制其核糖核酸内切酶活化。",
+    "selectedEpitope": "优先覆盖 1WDY 所示激酶同源结构域 ATP/配体结合沟槽邻近调控面，避开催化必需 RNase 结构核心。",
+    "diseaseDirection": "前列腺癌易感与先天免疫炎症",
+    "domain": "RNASEL 含 N 端 ankyrin repeats、中央 pseudokinase 域及 C 端 RNase 催化域；1WDY 对应中央激酶同源结构域。",
+    "evidence": "RNASEL 遗传易感与2-5A通路结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB Q05823 functional annotation",
+      "RCSB PDB 1WDY X-ray structure",
+      "OAS-RNASEL antiviral innate immunity literature"
+    ],
+    "referenceEntries": "UniProt Q05823；RCSB PDB 1WDY；Open Targets RNASEL",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "pseudokinase 域配体结合沟槽及邻近调控环",
+        "可干预 2-5A 依赖构象稳定与激活耦联，适合功能阻断设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "pseudokinase 域外侧保守螺旋-片层支架面",
+        "有利于获得高亲和结构探针，但直接功能阻断概率较低",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端 RNase 催化域活性中心邻近区域",
+        "可能直接影响 RNA 裂解，但结构可用性与选择性风险需严格评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RNASEL 为胞质酶，体内抗体递送和抗原可及性为主要风险；设计宜限定为细胞内 VHH、递送型抗体片段或体外结构功能验证工具。",
+    "structurePrepZh": "以 1WDY A 链为模板保留中央 pseudokinase 域，补充缺失环区并映射全长 RNASEL 域边界，需避免将单域晶体界面误判为天然二聚界面。",
+    "structureRef": "RCSB PDB 1WDY，1.8 Å X-ray human RNASEL domain",
+    "antibodies": [
+      "RNase L monoclonal antibody clone 2E11",
+      "RNase L monoclonal antibody clone 4H3"
+    ],
+    "interfaceFocus": "pseudokinase 域配体沟槽与激活构象调控面",
+    "designMode": "胞内VHH功能调节",
+    "candidates": [
+      {
+        "target": "OAS1",
+        "rationale": "OAS1 识别双链 RNA 后合成 2-5A，是 RNASEL 激活的直接上游酶；阻断 OAS1 可降低 RNASEL 通路输入。"
+      },
+      {
+        "target": "OAS2",
+        "rationale": "OAS2 同属 2-5A 合成酶家族，参与病毒 RNA 感知后的 RNASEL 激活，可作为同通路上游调节靶点。"
+      },
+      {
+        "target": "OAS3",
+        "rationale": "OAS3 对长双链 RNA 具有重要感知作用，并驱动 2-5A/RNASEL 轴活化，适合用于比较上游信号阻断策略。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

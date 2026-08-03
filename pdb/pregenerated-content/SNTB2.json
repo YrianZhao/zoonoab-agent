@@ -1,0 +1,65 @@
+{
+  "gene": "SNTB2",
+  "generatedAt": "2026-08-03T21:15:09.353Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SNTB2 编码β2-syntrophin，是肌营养不良蛋白相关蛋白复合体的胞内支架成分，可通过 PDZ 结构域组织膜下信号蛋白与离子通道定位，其遗传关联信号主要集中于神经退行性疾病、阿尔茨海默病、帕金森病及血压表型。该蛋白不具有分泌形式或跨膜胞外结构域，天然抗原可及性显著弱于膜受体或分泌因子，作为常规治疗性阻断抗体靶点存在可及性限制。优先级应低于同通路中具有胞外可及性的神经炎症或血管调控靶点，但其已解析 PDZ 结构域结构可支持机制研究型胞内抗体、纳米抗体或递送型抗体片段设计。",
+    "mechanism": "设计目标为占据 SNTB2 PDZ 配体结合沟槽，阻断其与含C端PDZ结合基序蛋白的相互作用，从而干预膜下信号复合体装配。",
+    "selectedEpitope": "优先覆盖 PDZ 结构域αB螺旋-βB链形成的羧基端肽结合沟槽。",
+    "diseaseDirection": "神经退行性疾病机制研究",
+    "domain": "SNTB2 含两个 PH 结构域、一个 PDZ 结构域及C端 syntrophin 特征区。",
+    "evidence": "SNTB2神经退行性关联与PDZ结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt Q13425 蛋白功能与结构域注释",
+      "RCSB PDB 2VRF X射线晶体结构",
+      "Dystrophin-associated protein complex 文献证据"
+    ],
+    "referenceEntries": "UniProt Q13425；RCSB PDB 2VRF；Open Targets SNTB2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PDZ羧基端肽结合沟槽",
+        "可直接竞争PDZ配体识别，适合机制阻断型片段设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PDZ结构域αB螺旋外侧面",
+        "可通过空间位阻影响配体沟槽构象，保留较高结构可塑性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PH结构域预测膜脂结合面",
+        "可能影响膜下定位，但结构异构体与细胞内可及性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SNTB2为胞内支架蛋白，常规抗体难以进入细胞质；应采用VHH、细胞内抗体或递送体系，并避免破坏PH结构域介导的非特异膜定位功能。",
+    "structurePrepZh": "以2VRF的PDZ结构域晶体坐标为模板，保留链A-D中分辨率较优构象，补全缺失侧链并评估配体沟槽保守水网络。",
+    "structureRef": "RCSB PDB 2VRF，X-ray diffraction，2.0 Å",
+    "antibodies": [
+      "暂无获批SNTB2靶向抗体",
+      "暂无临床阶段SNTB2靶向抗体"
+    ],
+    "interfaceFocus": "PDZ配体结合沟槽与αB-βB界面",
+    "designMode": "胞内VHH阻断",
+    "candidates": [
+      {
+        "target": "DMD",
+        "rationale": "DMD编码肌营养不良蛋白，是肌营养不良蛋白相关蛋白复合体核心支架，与syntrophin复合体装配处于同一膜下结构通路。其疾病机制证据更强，但同样主要为胞内结构蛋白。"
+      },
+      {
+        "target": "SNTA1",
+        "rationale": "SNTA1与SNTB2同属syntrophin家族，均通过PDZ结构域组织膜下信号复合体。其与心肌离子通道定位及电生理表型关联明确，可作为同家族机制对照靶点。"
+      },
+      {
+        "target": "DAG1",
+        "rationale": "DAG1编码dystroglycan，是肌营养不良蛋白相关复合体连接细胞外基质与细胞骨架的关键组分。其α-dystroglycan胞外区域具有较高抗原可及性，较SNTB2更适合传统抗体干预。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "PDE6C",
+  "generatedAt": "2026-08-03T20:29:37.607Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PDE6C编码视锥细胞cGMP磷酸二酯酶α′催化亚基，参与光转导中cGMP水解，遗传缺陷可导致视锥细胞cGMP稳态破坏并关联全色盲、锥杆营养不良和视网膜营养不良。该蛋白主要为光感受器外节胞内可溶/膜相关酶，并非典型胞外抗原，常规系统性抗体可及性受限；但眼内递送、细胞内抗体片段或研究级构象探针可利用其明确催化结构域。相较广泛表达的循环系统相关靶点，PDE6C具有视锥细胞谱系特异性和人源高分辨率结构依据，适合以遗传性视网膜疾病机制验证为优先设计方向。",
+    "mechanism": "设计抗体片段结合PDE6C催化口袋邻近调控界面，阻断cGMP进入金属离子依赖性催化中心或稳定非活化构象，从而改变视锥光转导cGMP水解效率。",
+    "selectedEpitope": "优先覆盖催化结构域中M-loop/H-loop邻近cGMP结合沟槽，避开高度保守金属配位残基。",
+    "diseaseDirection": "遗传性视锥细胞视网膜病变",
+    "domain": "PDE6C含N端GAF-A/GAF-B调控结构域与C端PDEase催化结构域，5E8F解析催化域构象。",
+    "evidence": "PDE6C视锥光转导与遗传性视网膜病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P51160功能与变异注释",
+      "RCSB PDB 5E8F晶体结构记录",
+      "OMIM与ClinVar视网膜营养不良变异证据"
+    ],
+    "referenceEntries": "UniProt P51160；RCSB PDB 5E8F；Open Targets PDE6C",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化结构域M-loop/H-loop邻近cGMP结合沟槽",
+        "可直接影响底物进入与催化构象稳定性，适合功能阻断型片段设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化域外周可溶暴露螺旋与插入环",
+        "利于获得构象选择性结合物，可作为结构探针或递送载体结合位点",
+        "备选"
+      ],
+      [
+        "Site C",
+        "金属离子配位核心及高度保守催化残基周围",
+        "跨PDE家族保守性高，存在选择性不足与酶活不可控抑制风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PDE6C为胞内光转导酶，常规抗体药物组织与细胞内可及性不足；建议限定眼内递送、VHH/内抗体格式，并严格评估PDE6A/PDE6B交叉反应。",
+    "structurePrepZh": "以5E8F人源PDE6C晶体结构为模板，保留催化域二级结构与关键金属/配体环境，补建缺失环区并进行质子化和构象集合优化。",
+    "structureRef": "RCSB PDB 5E8F，X-ray diffraction，2.1 Å",
+    "antibodies": [
+      "anti-PDE6C monoclonal antibody",
+      "anti-PDE6C polyclonal antibody"
+    ],
+    "interfaceFocus": "催化口袋入口、M-loop/H-loop及保守性边界",
+    "designMode": "胞内酶构象调控",
+    "candidates": [
+      {
+        "target": "CNGA3",
+        "rationale": "CNGA3编码视锥cGMP门控通道α亚基，位于PDE6C下游并响应cGMP浓度变化；其突变同样导致全色盲，是同一视锥光转导通路的关键膜蛋白靶点。"
+      },
+      {
+        "target": "GNAT2",
+        "rationale": "GNAT2编码视锥转ducin α亚基，受光激活后驱动PDE6复合体活化；其遗传缺陷与全色盲相关，适合作为PDE6C上游信号节点对照。"
+      },
+      {
+        "target": "PDE6H",
+        "rationale": "PDE6H编码视锥PDE6抑制γ亚基，直接调节PDE6C催化活性；其与PDE6C处于同一cGMP水解复合体，具有明确机制连贯性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

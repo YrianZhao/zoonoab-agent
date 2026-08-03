@@ -1,0 +1,65 @@
+{
+  "gene": "S100A10",
+  "generatedAt": "2026-08-03T16:18:12.247Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "S100A10是膜相关纤溶与炎症迁移轴中的关键适配蛋白，可与ANXA2形成异四聚体并在细胞表面促进纤溶酶原与组织型纤溶酶原激活物富集，从而增强纤溶酶生成、基质降解和细胞侵袭。其经典结构为缺乏钙结合活性的S100二聚体，虽无信号肽和跨膜区，但可经ANXA2伴侣稳定并暴露于多种细胞表面微域，具备抗体识别可及性。相较单纯靶向胞内S100家族成员，S100A10的ANXA2依赖性表面展示和明确的纤溶酶原结合功能提供更直接的功能阻断窗口，但Open Targets疾病关联强度中等，应优先定位于机制验证型抗体设计。",
+    "mechanism": "阻断S100A10 C端赖氨酸依赖的纤溶酶原结合，并干扰S100A10与ANXA2稳定复合物在细胞表面的纤溶酶生成平台。",
+    "selectedEpitope": "优先覆盖S100A10二聚体外侧C端赖氨酸邻近沟槽，兼顾ANXA2结合面的非破坏性空间遮蔽。",
+    "diseaseDirection": "纤溶-基质降解相关炎症与肿瘤侵袭",
+    "domain": "S100A10含两个EF-hand样结构域并形成同源二聚体，EF-hand II保持构象性但不结合钙。",
+    "evidence": "S100A10-ANXA2纤溶酶原激活轴证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P60903功能与亚细胞定位注释",
+      "RCSB PDB 4HRG晶体结构记录",
+      "PubMed关于S100A10-ANXA2介导纤溶酶生成研究"
+    ],
+    "referenceEntries": "UniProt:P60903；RCSB PDB:4HRG；Open Targets:S100A10",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "二聚体C端赖氨酸邻近纤溶酶原结合区",
+        "直接削弱纤溶酶原募集和细胞表面纤溶酶生成",
+        "优先"
+      ],
+      [
+        "Site B",
+        "EF-hand II外侧螺旋束及二聚体边缘沟槽",
+        "提供构象性表位并可能稳定阻断配体靠近",
+        "备选"
+      ],
+      [
+        "Site C",
+        "S100A10-ANXA2核心结合界面",
+        "可能破坏复合物稳定性，但存在影响细胞内伴侣功能风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "S100A10主要为胞质蛋白并依赖ANXA2呈递于细胞表面，需验证疾病细胞表面抗原密度；避免完全破坏广泛ANXA2复合物稳态。",
+    "structurePrepZh": "以4HRG实验晶体结构为模板，保留S100A10二聚体生物组装，补建柔性C端并评估表面赖氨酸暴露与ANXA2界面可及性。",
+    "structureRef": "RCSB PDB 4HRG，X-ray diffraction，2.0001 Å",
+    "antibodies": [
+      "Anti-S100A10 clone D5F2",
+      "Anti-S100A10 clone EPR3317"
+    ],
+    "interfaceFocus": "C端赖氨酸纤溶酶原结合沟槽",
+    "designMode": "功能阻断型Fab/VHH",
+    "candidates": [
+      {
+        "target": "ANXA2",
+        "rationale": "ANXA2与S100A10形成细胞表面异四聚体并稳定S100A10，是同一纤溶酶原激活平台的核心伴侣靶点。"
+      },
+      {
+        "target": "PLG",
+        "rationale": "PLG编码纤溶酶原，是S100A10-ANXA2平台募集并转化为纤溶酶的直接底物，适合作为同通路功能验证参照。"
+      },
+      {
+        "target": "PLAT",
+        "rationale": "PLAT编码组织型纤溶酶原激活物，可与细胞表面纤溶酶原共同被富集并促进纤溶酶生成，处于同一纤溶激活轴。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

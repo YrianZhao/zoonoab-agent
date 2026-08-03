@@ -1,0 +1,65 @@
+{
+  "gene": "ZMYND11",
+  "generatedAt": "2026-08-03T18:00:53.452Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ZMYND11 是核内表观遗传读取蛋白，其 PHD-BROMO-PWWP 组合结构域识别组蛋白 H3.3K36me3 并参与转录延伸调控，致病性变异与常染色体显性智力障碍 30 及神经发育异常相关。该蛋白主要定位于细胞核，缺乏胞外结构域、分泌形式或膜受体拓扑，因此作为常规治疗性抗体抗原的可及性明显受限。相较于同通路中同样核内但结构域功能更分散的转录调控因子，ZMYND11 具有明确的组蛋白标记读取界面和高分辨率实验结构，适合作为机制验证型胞内抗体或结构辅助结合分子设计对象，但临床抗体优先级低于胞外可及靶点。",
+    "mechanism": "设计分子拟阻断 ZMYND11 PWWP 结构域芳香笼与 H3.3K36me3 肽段的甲基赖氨酸识别，并干扰其染色质募集。",
+    "selectedEpitope": "优先锁定 PWWP 结构域 H3.3K36me3 结合沟槽及芳香笼邻近环区。",
+    "diseaseDirection": "神经发育障碍与智力障碍",
+    "domain": "含 N 端 PHD、bromodomain 与 PWWP 串联染色质读取模块，PWWP 负责 H3K36me3 识别。",
+    "evidence": "ZMYND11 神经发育疾病与染色质读取证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q15326 蛋白功能与定位注释",
+      "RCSB PDB 8XU6 高分辨率晶体结构",
+      "ClinVar/OMIM 神经发育障碍变异证据"
+    ],
+    "referenceEntries": "UniProt Q15326；RCSB PDB 8XU6；Open Targets ZMYND11",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PWWP 结构域 H3K36me3 结合沟槽与芳香笼周边",
+        "直接竞争甲基化组蛋白尾结合，机制可解释性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PHD-bromodomain 与 PWWP 之间的结构域相对取向界面",
+        "可能限制多结构域染色质读取构象，适合构象锁定策略",
+        "备选"
+      ],
+      [
+        "Site C",
+        "PHD 或 bromodomain 保守折叠核心外露面",
+        "远离主要疾病相关读取界面，且保守表面存在非特异结合风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ZMYND11 为核内抗原，常规抗体难以到达作用位点；需采用胞内抗体、VHH 递送或细胞内表达格式，并避免干扰高度保守锌指折叠核心。",
+    "structurePrepZh": "以 8XU6 链 A 为模板，保留 PHD-BROMO-PWWP 模块，校验锌离子配位、缺失环区与晶体接触，按人源序列 Q15326 完成编号映射。",
+    "structureRef": "RCSB PDB 8XU6，X-ray diffraction，1.628 Å",
+    "antibodies": [
+      "暂无批准的 ZMYND11 靶向治疗性抗体",
+      "可参考胞内 VHH/内抗体染色质读取蛋白阻断策略"
+    ],
+    "interfaceFocus": "PWWP 芳香笼与 H3.3K36me3 肽结合沟槽",
+    "designMode": "胞内VHH机制验证",
+    "candidates": [
+      {
+        "target": "KMT2D",
+        "rationale": "KMT2D 编码组蛋白 H3K4 甲基转移酶，致病变异与神经发育障碍相关；其功能与染色质状态及转录调控网络相连。"
+      },
+      {
+        "target": "CHD8",
+        "rationale": "CHD8 是染色质重塑因子，参与神经发育基因转录调控，并与智力障碍和自闭症谱系障碍有明确遗传关联。"
+      },
+      {
+        "target": "SETD2",
+        "rationale": "SETD2 是主要 H3K36 甲基转移酶，生成 ZMYND11 可读取的 H3K36me3 标记，处于同一染色质标记调控轴。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "TCN1",
+  "generatedAt": "2026-08-03T17:11:06.018Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TCN1 编码的 haptocorrin 负责结合并转运维生素 B12，在 B12 相关代谢稳态中处于上游捕获环节；其异常可与维生素 B 缺乏、维生素 B12 缺乏及巨幼细胞性贫血等表型形成一致的疾病关联链。该蛋白为分泌型糖蛋白，优先暴露于血液及体液环境，抗原可及性优于多数仅在细胞内定位的疾病相关因子，适合抗体直接识别。相比同通路中以细胞表型读出为主的检测靶点，TCN1更接近配体结合起点，便于围绕 B12 结合界面建立高特异性阻断或检测型抗体策略。",
+    "mechanism": "抗体占据 TCN1 的维生素 B12 结合口袋，阻断其与钴胺素的高亲和结合。",
+    "selectedEpitope": "优先覆盖钴胺素结合裂隙及邻近外露环区，避开核心折叠以保留表位稳定性。",
+    "diseaseDirection": "维生素B12缺乏/贫血",
+    "domain": "分泌型糖蛋白主体折叠区，含钴胺素结合相关凹槽与外露环面。",
+    "evidence": "TCN1-B12结合与缺乏相关证据包",
+    "evidenceSources": [
+      "Open Targets Platform",
+      "UniProt: P20061",
+      "RCSB PDB: 4KKI",
+      "Human Protein Atlas"
+    ],
+    "referenceEntries": "UniProt P20061；RCSB 4KKI；Open Targets TCN1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "钴胺素结合口袋边缘",
+        "直接干预配体占位，最适合阻断结合",
+        "优先"
+      ],
+      [
+        "Site B",
+        "邻近外露环与柔性连接区",
+        "兼顾可及性与特异性，利于工程化",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离结合核的高暴露糖基化表面",
+        "可能影响构象识别，但阻断效力有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "风险主要来自糖基化异质性与血浆中高丰度天然配体竞争，表位应优先避开高度糖基化遮蔽区，并通过结构导向筛选确认不受 B12 占位干扰。",
+    "structurePrepZh": "以 4KKI 为模板完成缺失环补模、糖基化位点标注与口袋电荷分析；必要时结合溶液条件下的配体占位状态进行构象分层。",
+    "structureRef": "PDB 4KKI；X-ray 2.35 Å",
+    "antibodies": [
+      "haptocorrin 识别抗体",
+      "transcobalamin相关检测抗体"
+    ],
+    "interfaceFocus": "钴胺素结合裂隙及其入口环",
+    "designMode": "structure-guided",
+    "candidates": [
+      {
+        "target": "TCN2",
+        "rationale": "TCN2 与 TCN1 同属钴胺素转运体系，直接参与维生素 B12 的体内递送。作为同疾病通路中的真实靶点，可用于区分“捕获”与“递送”两个层面的抗体设计比较。"
+      },
+      {
+        "target": "CUBN",
+        "rationale": "CUBN 介导内因子-B12 复合物的回收摄取，是维生素 B12 吸收轴的关键膜受体。其与 TCN1 同处 B12 缺乏相关通路，适合作为转运环节对照靶点。"
+      },
+      {
+        "target": "GIF",
+        "rationale": "GIF 编码内因子，决定回肠对维生素 B12 的吸收效率，与 TCN1 共同构成钴胺素稳态网络。该靶点可作为上游配体保护与吸收轴的真实关联候选。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

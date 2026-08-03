@@ -1,0 +1,65 @@
+{
+  "gene": "MPC1L",
+  "generatedAt": "2026-08-03T14:18:33.897Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MPC1L 为线粒体丙酮酸载体家族成员，疾病关联证据仅提示其与胃癌存在低强度统计关联，尚缺乏明确的驱动性肿瘤通路证据。该蛋白定位于线粒体内膜，主要跨膜区面向线粒体膜环境而非细胞外空间，抗原可及性不利于常规体内抗体结合。相较 HER2、CLDN18.2 或 PD-L1 等胃癌膜表面靶点，MPC1L 的抗体开发优先级较低，更适合作为结构生物学验证或胞内递送型抗体探索靶点。",
+    "mechanism": "候选抗体需通过胞内递送后结合 MPC1L 跨膜螺旋界面，干扰其与 MPC 复合体相关亚基的装配及丙酮酸转运构象转换。",
+    "selectedEpitope": "优先评估 9GIV 中跨膜螺旋束的亚基接触界面，避免选择完全埋入脂质双层的疏水核心。",
+    "diseaseDirection": "胃癌代谢重编程探索方向",
+    "domain": "MPC1L 为小型线粒体内膜多跨膜蛋白，结构以跨膜螺旋束为主，缺乏经典胞外结构域。",
+    "evidence": "MPC1L 胃癌关联与线粒体转运结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 胃癌关联记录",
+      "UniProt P0DKB6 蛋白定位与注释",
+      "RCSB PDB 9GIV 冷冻电镜结构",
+      "线粒体丙酮酸载体复合体功能研究文献"
+    ],
+    "referenceEntries": "UniProt: P0DKB6; RCSB PDB: 9GIV; Open Targets: MPC1L",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "跨膜螺旋束亚基接触面",
+        "可能干扰 MPC 复合体装配或构象转换，适合胞内抗体或递送型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "线粒体基质侧短环区",
+        "相对疏水核心更可建模，可能影响转运通道入口构象",
+        "备选"
+      ],
+      [
+        "Site C",
+        "脂质双层内疏水跨膜核心",
+        "高度疏水且可及性差，抗体结合与表达筛选风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为线粒体内膜定位导致体内抗体不可及，且疾病关联强度较低。建议限定为胞内递送、纳米抗体或机制验证场景。",
+    "structurePrepZh": "以 9GIV 冷冻电镜模型为模板，保留抗原链 A、B、C，补全缺失侧链并在膜模拟环境中评估跨膜界面可及性。",
+    "structureRef": "RCSB PDB 9GIV, cryo-EM structure at 3.65 Å",
+    "antibodies": [
+      "暂无临床验证的 MPC1L 靶向抗体",
+      "暂无获批同类线粒体内膜 MPC 抗体"
+    ],
+    "interfaceFocus": "跨膜螺旋束亚基接触界面",
+    "designMode": "胞内递送型抗体",
+    "candidates": [
+      {
+        "target": "ERBB2",
+        "rationale": "ERBB2 是胃癌中已验证的受体酪氨酸激酶驱动靶点，膜外结构域可直接被抗体识别，并有明确临床抗体药物证据。"
+      },
+      {
+        "target": "CLDN18",
+        "rationale": "CLDN18.2 在胃癌上皮来源肿瘤中具有细胞表面可及性，抗体可结合紧密连接蛋白胞外环并介导肿瘤细胞清除。"
+      },
+      {
+        "target": "CD274",
+        "rationale": "CD274 编码 PD-L1，在胃癌免疫逃逸通路中通过结合 PD-1 抑制 T 细胞功能，抗体阻断轴线具有成熟机制基础。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

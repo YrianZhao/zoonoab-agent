@@ -1,0 +1,65 @@
+{
+  "gene": "CASTOR1",
+  "generatedAt": "2026-08-03T11:02:08.207Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CASTOR1 是胞质精氨酸传感器，参与 GATOR2-mTORC1 氨基酸感知轴；其与疾病的 Open Targets 关联主要来自转氨酶、血细胞计数及结节病等遗传关联信号，尚缺乏直接细胞外致病配体轴证据。CASTOR1 定位于细胞质并非分泌蛋白或膜受体，天然抗原可及性不适合常规体内阻断型抗体，但可用于细胞内递送抗体、结构探针或诊断试剂开发。相较 mTOR、RRAGA/RRAGC 或溶酶体膜锚定复合物靶点，CASTOR1 具备高分辨率实验结构与明确精氨酸结合口袋，优先价值在于机制验证和胞内调控工具抗体，而非外周可及治疗性抗体。",
+    "mechanism": "设计抗体结合 CASTOR1 ACT-like 精氨酸结合域邻近界面，稳定其抑制型构象或阻断 CASTOR1 与 GATOR2 复合物的结合，从而降低氨基酸依赖性 mTORC1 激活。",
+    "selectedEpitope": "优先覆盖 ACT-like domain 二聚体沟槽及精氨酸结合口袋邻近构象表面，避免完全遮蔽深埋配体位点。",
+    "diseaseDirection": "mTORC1氨基酸感知与免疫代谢",
+    "domain": "CASTOR1 含串联 ACT-like 结构域，形成精氨酸结合口袋并介导同源二聚及 GATOR2 结合调控。",
+    "evidence": "CASTOR1-mTORC1精氨酸感知结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 遗传疾病关联",
+      "UniProt Q8WTX7 蛋白定位与功能注释",
+      "RCSB PDB 5I2C X射线晶体结构",
+      "mTORC1 氨基酸感知通路文献"
+    ],
+    "referenceEntries": "UniProt Q8WTX7；RCSB PDB 5I2C；Open Targets CASTOR1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ACT-like 结构域二聚体沟槽及 GATOR2 结合相关外露面",
+        "可干预 CASTOR1-GATOR2 复合物装配并保留构象选择性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "精氨酸结合口袋入口周边环区",
+        "可稳定配体结合相关构象，用于传感状态识别抗体设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ACT-like 核心折叠疏水内侧或二聚体埋藏界面",
+        "可及性低且易影响折叠稳定性，需避免高疏水补丁依赖",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CASTOR1 为胞质蛋白，常规抗体难以在体内到达作用位点；建议限定为细胞内递送格式、结构生物学探针或体外检测抗体，并评估同源 ACT-like 蛋白交叉反应。",
+    "structurePrepZh": "以 PDB 5I2C 的 A-D 链为模板，保留生物学二聚体状态，检查精氨酸结合口袋、晶体接触与缺失环区后再进行表位暴露度计算。",
+    "structureRef": "PDB 5I2C，human CASTOR1 crystal structure，1.801 Å",
+    "antibodies": [
+      "无已获批 CASTOR1 治疗性抗体",
+      "研究级抗 CASTOR1 抗体"
+    ],
+    "interfaceFocus": "ACT-like二聚沟槽与GATOR2结合相关表面",
+    "designMode": "胞内工具抗体设计",
+    "candidates": [
+      {
+        "target": "MIOS",
+        "rationale": "MIOS 是 GATOR2 复合物核心组分，位于 CASTOR1 上游结合调控轴内；靶向该节点可解析 CASTOR1-GATOR2 对 mTORC1 激活的贡献。"
+      },
+      {
+        "target": "RRAGA",
+        "rationale": "RRAGA 是 Rag GTPase 复合物成员，直接将氨基酸感知信号传递至溶酶体 mTORC1 招募过程；其功能位置更接近 mTORC1 激活执行端。"
+      },
+      {
+        "target": "LAMTOR1",
+        "rationale": "LAMTOR1 是 Ragulator 复合物的溶酶体膜锚定组分，参与 Rag GTPase 定位和 mTORC1 氨基酸响应；其膜相关特征相较 CASTOR1 具有更明确的空间组织功能。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "KLRC2",
+  "generatedAt": "2026-08-03T20:02:25.036Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KLRC2编码NKG2C，是NK细胞和部分CD8 T细胞表面的激活型C型凝集素样受体，与CD94成异源二聚体识别HLA-E呈递肽后，通过DAP12/KARAP的ITAM信号促进细胞毒活化与细胞因子释放。其为Ⅱ型跨膜膜受体，胞外C型凝集素样结构域直接暴露于免疫突触界面，具备抗体结合和阻断受体-配体复合物形成的可及性优势。相较于广泛表达的下游激酶或细胞因子，KLRC2更限定于NKG2C阳性细胞亚群，可实现对HLA-E依赖性NK细胞激活轴的上游、受体特异性干预。",
+    "mechanism": "抗体阻断NKG2C/CD94异源二聚体与HLA-E-肽复合物的结合，削弱DAP12 ITAM磷酸化及后续NK细胞激活信号。",
+    "selectedEpitope": "优先覆盖NKG2C胞外C型凝集素样结构域的HLA-E接触面及CD94邻近异源二聚体界面。",
+    "diseaseDirection": "NK细胞免疫调控与血液性状",
+    "domain": "Ⅱ型跨膜受体，含短胞质尾、跨膜区及胞外C型凝集素样结构域，功能性配体结合依赖CD94异源二聚化。",
+    "evidence": "KLRC2-NKG2C免疫受体结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联与性状评分",
+      "UniProt P26717蛋白功能与结构域注释",
+      "RCSB PDB 2L35溶液NMR结构数据",
+      "NKG2C/CD94识别HLA-E-肽复合物的免疫受体文献"
+    ],
+    "referenceEntries": "UniProt P26717；RCSB PDB 2L35；Open Targets KLRC2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C型凝集素样结构域HLA-E结合面",
+        "直接阻断NKG2C/CD94与HLA-E-肽复合物相互作用，机制清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "NKG2C与CD94邻近二聚化界面外缘",
+        "可改变受体复合物构象并降低配体结合稳定性，需保留选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C型凝集素样结构域远端非配体面",
+        "可能仅产生结合标记或细胞清除效应，功能阻断不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "需避免与KLRC1/NKG2A等同源受体的保守表面交叉反应；优先选择KLRC2特异残基簇并验证对CD94复合体装配的影响。",
+    "structurePrepZh": "以PDB 2L35的NKG2C胞外结构为模板，补全缺失侧链并构建CD94/HLA-E复合物同源定位，用于界面残基映射和表位聚类。",
+    "structureRef": "RCSB PDB 2L35，human NKG2C extracellular domain NMR structure",
+    "antibodies": [
+      "Anti-NKG2C clone 134591",
+      "Anti-NKG2C clone 1D11"
+    ],
+    "interfaceFocus": "NKG2C-HLA-E接触面及CD94邻近界面",
+    "designMode": "阻断型免疫受体抗体",
+    "candidates": [
+      {
+        "target": "KLRD1",
+        "rationale": "KLRD1编码CD94，是NKG2C形成HLA-E识别复合体的必需伴侣链。靶向CD94可干预同一NKG2/CD94-HLA-E免疫识别轴。"
+      },
+      {
+        "target": "HLA-E",
+        "rationale": "HLA-E是NKG2C/CD94的直接配体，呈递信号肽并驱动受体复合物结合。其位于同一免疫检查点样配体-受体轴，可作为配体侧阻断靶点。"
+      },
+      {
+        "target": "TYROBP",
+        "rationale": "TYROBP编码DAP12，是NKG2C跨膜赖氨酸介导偶联的ITAM适配蛋白。其位于KLRC2下游近端信号节点，连接受体识别与NK细胞活化。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

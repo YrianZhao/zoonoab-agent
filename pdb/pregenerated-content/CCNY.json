@@ -1,0 +1,65 @@
+{
+  "gene": "CCNY",
+  "generatedAt": "2026-08-03T18:20:32.766Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CCNY 编码 cyclin Y，是细胞周期蛋白家族成员，主要通过结合并激活膜相关 CDK14/CDK16 参与 Wnt/β-catenin 信号与细胞周期相关调控；Open Targets 显示其与神经退行性疾病等表型存在遗传与组学关联，但疾病因果强度中等。CCNY 为胞内或膜近端细胞周期调控蛋白，缺乏典型分泌型抗原或稳定胞外结构域，常规外源抗体可及性不具优势。相较于 Wnt 通路中的 FZD、LRP5/6 或 RSPO 等胞外靶点，CCNY 更适合作为机制研究或胞内递送抗体探索靶点，优先级应低于具有明确胞外阻断界面的同通路靶点。",
+    "mechanism": "通过识别 cyclin box 区域并干扰 CCNY 与 CDK14/CDK16 的结合，降低 CDK 激酶复合物对 LRP6 Ser1490 等位点的磷酸化促进作用。",
+    "selectedEpitope": "优先评估 cyclin box fold 上 CDK14/CDK16 结合界面邻近螺旋束表位。",
+    "diseaseDirection": "Wnt相关神经退行性疾病机制",
+    "domain": "CCNY 含保守 cyclin N/C box 折叠，形成多螺旋束并介导 CDK14/CDK16 结合。",
+    "evidence": "CCNY-CDK14轴与Wnt信号结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q8ND76 functional annotation",
+      "RCSB PDB 9R2I electron microscopy structure",
+      "Published studies on CCNY-CDK14 regulation of LRP6 phosphorylation"
+    ],
+    "referenceEntries": "UniProt Q8ND76；RCSB PDB 9R2I；Open Targets CCNY",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "cyclin box 的 CDK14/CDK16 结合界面邻近螺旋束",
+        "可直接干扰 CCNY-CDK 复合物形成，机制指向性最强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "cyclin N box 与 cyclin C box 交界区域",
+        "可能影响构象稳定性与激酶复合物装配，适合作为变构表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离 CDK 结合面的外露环区",
+        "结合风险较低但功能阻断概率有限，需依赖细胞内递送验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CCNY 缺乏天然胞外可及表位，常规抗体药物成药性受限；建议限定为胞内递送抗体、intrabody 或结构机制探针设计。",
+    "structurePrepZh": "以 PDB 9R2I 多链电镜模型为模板，保留抗原链 A-D，校正低分辨率侧链构象并映射 cyclin box 与 CDK 结合面。",
+    "structureRef": "RCSB PDB 9R2I，human CCNY EM structure，3.3 Å",
+    "antibodies": [
+      "暂无获批抗 CCNY 治疗性抗体",
+      "研究级抗 CCNY 单克隆抗体"
+    ],
+    "interfaceFocus": "CCNY cyclin box-CDK14/CDK16 结合界面",
+    "designMode": "胞内阻断型抗体设计",
+    "candidates": [
+      {
+        "target": "CDK14",
+        "rationale": "CDK14 与 CCNY 形成功能性激酶复合物，并促进 LRP6 磷酸化和 Wnt/β-catenin 信号增强，是同一轴上的直接酶学节点。"
+      },
+      {
+        "target": "LRP6",
+        "rationale": "LRP6 是 Wnt 共受体，其胞外结构域可被抗体识别，且其胞内磷酸化受 CCNY-CDK14 轴调控，具备更高抗原可及性。"
+      },
+      {
+        "target": "FZD7",
+        "rationale": "FZD7 属于 Wnt 受体家族，通过胞外 cysteine-rich domain 结合 Wnt 配体，是 Wnt/β-catenin 通路中更适合抗体阻断的膜受体靶点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

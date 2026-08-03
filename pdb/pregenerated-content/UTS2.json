@@ -1,0 +1,65 @@
+{
+  "gene": "UTS2",
+  "generatedAt": "2026-08-03T17:46:25.343Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "UTS2编码尿皮质素II前体，经加工产生环状神经肽urotensin II，可激活UTS2R并驱动Gq/11介导的PLCβ-IP3/Ca2+信号、血管平滑肌收缩、内皮反应及神经内分泌调节。成熟肽为分泌性胞外配体，天然暴露于循环和局部组织间隙，适合采用配体中和型抗体阻断其受体结合。相较直接靶向七跨膜UTS2R，UTS2肽抗原构象更集中、胞外可及性更明确，但Open Targets疾病遗传关联强度偏低，宜作为机制验证优先而非遗传强驱动靶点。",
+    "mechanism": "中和抗体结合成熟urotensin II环状核心与C端药效团，阻断其与UTS2R正构结合位点接触，从而抑制Gq/PLCβ/Ca2+信号启动。",
+    "selectedEpitope": "优先覆盖成熟肽Cys5-Cys10二硫键环及C端Trp-Lys-Tyr药效团界面。",
+    "diseaseDirection": "血管收缩与神经内分泌调节",
+    "domain": "UTS2为分泌型前体肽，C端加工产生11残基成熟环状肽，含保守二硫键约束核心。",
+    "evidence": "UTS2-UTS2R轴结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt O95399功能与序列注释",
+      "RCSB PDB 6HVB溶液NMR结构",
+      "IUPHAR/BPS Guide to Pharmacology配体-受体注释"
+    ],
+    "referenceEntries": "UniProt: O95399; RCSB PDB: 6HVB; UTS2/UTS2R",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "成熟UTS2二硫键环与C端Trp-Lys-Tyr区域",
+        "直接覆盖UTS2R识别药效团，最适合中和型Fab或VHH设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "二硫键环外侧N端邻近残基",
+        "可增强结合面积并提高选择性，但单独阻断受体结合的效力有限",
+        "备选"
+      ],
+      [
+        "Site C",
+        "前体肽加工区或非成熟肽片段",
+        "可能影响前体识别而非成熟配体中和，体内药理相关性需谨慎验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "成熟UTS2肽分子量小且构象受二硫键约束，免疫原性与可成药表面积有限；设计应避免交叉识别urotensin-related peptide并保留高亲和力构象锁定能力。",
+    "structurePrepZh": "以6HVB溶液NMR模型集提取抗原链A，保留成熟肽二硫键约束；对多构象模型进行聚类，选择代表性构象开展表位暴露与对接评估。",
+    "structureRef": "PDB 6HVB, human urotensin II, solution NMR",
+    "antibodies": [
+      "抗urotensin II中和抗体",
+      "UTS2R拮抗抗体样分子"
+    ],
+    "interfaceFocus": "Cys5-Cys10环状核心及C端Trp-Lys-Tyr药效团",
+    "designMode": "分泌肽中和设计",
+    "candidates": [
+      {
+        "target": "UTS2R",
+        "rationale": "UTS2R是urotensin II的同源七跨膜受体，直接介导Gq/11-PLCβ-Ca2+信号和血管收缩反应，可作为受体阻断策略的同通路候选靶点。"
+      },
+      {
+        "target": "GNAQ",
+        "rationale": "GNAQ参与UTS2R激活后的Gq信号转导，连接受体活化与PLCβ刺激，是该轴下游信号强度评估的重要节点。"
+      },
+      {
+        "target": "PLCB1",
+        "rationale": "PLCB1位于Gq下游，催化PIP2生成IP3和DAG并触发胞内钙信号，适合作为UTS2R通路药效读出相关候选节点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "H2BC26",
+  "generatedAt": "2026-08-03T19:30:59.793Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "H2BC26编码复制依赖性组蛋白H2B，主要以核小体组分参与染色质包装，并可通过细胞死亡后释放的胞外组蛋白促进炎症、凝血和先天免疫损伤。该靶点本身并非典型跨膜受体，抗原可及性主要依赖感染、肿瘤坏死或NETosis背景下的胞外核小体/游离组蛋白暴露。相较于胞内染色质调控靶点，胞外组蛋白H2B具备抗体中和窗口；但因同源组蛋白高度保守且核内丰度高，优先级应定位为胞外损伤相关分子模式阻断靶点，而非肿瘤细胞内靶向抗原。",
+    "mechanism": "抗体结合胞外H2B核小体外露碱性界面，阻断其与阴离子细胞膜、肝素样糖胺聚糖及TLR介导炎症识别的相互作用。",
+    "selectedEpitope": "优先覆盖H2B组蛋白折叠α1-L1-α2外露面，避开核小体DNA深埋接触面。",
+    "diseaseDirection": "感染炎症与肿瘤坏死相关DAMP",
+    "domain": "H2B含N端碱性尾部及histone-fold三螺旋结构，参与H2A-H2B二聚体形成并装配核小体。",
+    "evidence": "H2BC26胞外组蛋白炎症损伤证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q8N257蛋白功能注释",
+      "RCSB PDB 6BIZ晶体结构",
+      "胞外组蛋白介导炎症与组织损伤文献"
+    ],
+    "referenceEntries": "UniProt Q8N257；RCSB PDB 6BIZ；Open Targets H2BC26",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "histone-fold α1-L1-α2外露碱性面",
+        "有利于中和胞外H2B与阴离子膜/糖胺聚糖结合",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端碱性尾部近核小体外露区",
+        "可能增强对游离H2B和核小体H2B的捕获，但同源保守性高",
+        "备选"
+      ],
+      [
+        "Site C",
+        "H2A-H2B二聚体核心疏水界面",
+        "结构埋藏且可能干扰核小体内部保守界面，成药性与选择性受限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "H2B家族序列高度保守，需评估与其他H2B同种型及核小体的交叉反应；建议以胞外中和活性、低细胞核进入性和低自身免疫风险为筛选约束。",
+    "structurePrepZh": "以6BIZ中A、B、C链解析抗原构象，保留核小体环境评估表面暴露度，并对N端尾部缺失或柔性区进行同源建模标注。",
+    "structureRef": "RCSB PDB 6BIZ，X-ray diffraction，2.1 Å",
+    "antibodies": [
+      "BWA3",
+      "抗组蛋白H2B中和抗体"
+    ],
+    "interfaceFocus": "H2B外露碱性面与DNA/阴离子配体邻近区",
+    "designMode": "胞外DAMP中和",
+    "candidates": [
+      {
+        "target": "HMGB1",
+        "rationale": "HMGB1是感染和组织坏死后释放的经典DAMP，可通过RAGE和TLR4放大炎症反应，与胞外组蛋白同属无菌炎症损伤轴。"
+      },
+      {
+        "target": "TLR4",
+        "rationale": "TLR4参与识别多种内源性损伤相关分子并驱动NF-κB炎症转录，是胞外组蛋白炎症效应的重要下游受体节点。"
+      },
+      {
+        "target": "MPO",
+        "rationale": "MPO是中性粒细胞NETs的重要颗粒蛋白，NETosis可伴随组蛋白外露并参与感染炎症和血栓炎症过程。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

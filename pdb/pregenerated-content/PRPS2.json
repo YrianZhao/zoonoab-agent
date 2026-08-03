@@ -1,0 +1,65 @@
+{
+  "gene": "PRPS2",
+  "generatedAt": "2026-08-03T15:37:11.788Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PRPS2催化核糖-5-磷酸与ATP生成PRPP，是嘌呤、嘧啶和NAD补救合成的上游限速节点，可能通过核苷酸供给影响淋巴细胞增殖及肿瘤代谢适应。该蛋白为胞质代谢酶，缺乏天然胞外结构域或分泌特征，常规外源性抗体抗原可及性较弱，更适合作为结构生物学约束下的细胞内递送抗体或降解耦联设计对象。相较于单一补救酶，PRPS2位于PRPP生成入口并受MYC相关代谢重编程影响，具备上游通量控制优势，但抗体开发优先级低于可及性更好的膜受体靶点。",
+    "mechanism": "通过结合PRPS2催化沟槽邻近ATP/核糖-5-磷酸结合界面，阻碍底物定位与六聚体构象转换，降低PRPP生成通量。",
+    "selectedEpitope": "优先覆盖Rossmann样催化核心的ATP结合环及相邻六聚体界面，避免完全埋藏底物口袋。",
+    "diseaseDirection": "核苷酸代谢与淋巴增殖疾病",
+    "domain": "PRPS2为胞质同源六聚体酶，含N端催化核心、ATP结合位点、核糖-5-磷酸结合区及变构调节界面。",
+    "evidence": "PRPS2核苷酸合成通量与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB P11908功能与亚细胞定位注释",
+      "RCSB PDB 8YPY X射线晶体结构",
+      "文献报道MYC依赖性PRPS2翻译调控与嘌呤合成"
+    ],
+    "referenceEntries": "UniProt:P11908；RCSB PDB:8YPY；Open Targets:PRPS2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "ATP结合环与催化沟槽边缘",
+        "可直接干扰ATP定位及磷酸转移构象，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "六聚体亚基间变构界面",
+        "可能限制活性构象装配并降低PRPP合成通量",
+        "备选"
+      ],
+      [
+        "Site C",
+        "深部核糖-5-磷酸结合口袋",
+        "口袋埋藏且抗体进入受限，需小型VHH或胞内递送验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PRPS2为胞质酶，抗体天然进入细胞能力不足；设计应限定为胞内抗体、递送型VHH或降解平台，并严控PRPS1交叉反应。",
+    "structurePrepZh": "以8YPY六聚体晶体结构为模板，补全缺失侧链与质子化状态，保留催化相关配体环境并评估亚基界面可及性。",
+    "structureRef": "RCSB PDB 8YPY，human PRPS2 X-ray structure, 2.74 Å",
+    "antibodies": [
+      "暂无获批PRPS2治疗性抗体",
+      "暂无临床阶段PRPS2同类抗体"
+    ],
+    "interfaceFocus": "ATP结合环、催化沟槽边缘及六聚体变构界面",
+    "designMode": "胞内递送VHH设计",
+    "candidates": [
+      {
+        "target": "PRPS1",
+        "rationale": "PRPS1与PRPS2共同催化PRPP生成，处于同一核苷酸生物合成入口；可作为同工酶选择性与补偿机制评估靶点。"
+      },
+      {
+        "target": "PPAT",
+        "rationale": "PPAT利用PRPP启动从头嘌呤合成第一步，位于PRPS2下游；阻断该节点可进一步限制嘌呤核苷酸供给。"
+      },
+      {
+        "target": "UMPS",
+        "rationale": "UMPS在嘧啶从头合成中利用PRPP生成OMP，连接PRPS2产物与嘧啶核苷酸生成；适合评估PRPP依赖通路脆弱性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

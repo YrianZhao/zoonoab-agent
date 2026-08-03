@@ -1,0 +1,65 @@
+{
+  "gene": "HLA-F",
+  "generatedAt": "2026-08-03T13:13:23.045Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HLA-F 是非经典 MHC-I 分子，可作为开放构象重链或肽结合复合物参与 NK 细胞受体识别，并影响母胎免疫耐受、病毒感染免疫调节及肿瘤免疫逃逸。其α1/α2肽结合平台与α3胞外结构域位于细胞表面，抗原可及性优于胞内抗原加工组分，适合抗体介导的界面阻断或构象选择性识别。相比 TAP、B2M 等通路组分，HLA-F 更接近效应细胞接触界面，且非经典表达模式降低了广泛 MHC-I 阻断的系统性风险，因而具有较高优先级。",
+    "mechanism": "构象选择性抗体阻断 HLA-F 开放构象重链与 KIR3DS1 或 KIR3DL2 的结合，限制 NK 细胞受体介导的免疫调节信号。",
+    "selectedEpitope": "优先覆盖α1/α2平台外侧及开放构象受体接触面，避开β2微球蛋白结合核心。",
+    "diseaseDirection": "感染与肿瘤免疫调节",
+    "domain": "HLA-F 含信号肽、α1/α2肽结合平台、α3 Ig样结构域、跨膜区和胞质尾。",
+    "evidence": "HLA-F结构与免疫受体互作证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P30511 HLA-F annotation",
+      "RCSB PDB 5IUE X-ray structure",
+      "literature on HLA-F interaction with KIR3DS1 and KIR3DL2"
+    ],
+    "referenceEntries": "UniProt P30511；RCSB PDB 5IUE；Open Targets HLA-F",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "α1/α2平台开放构象受体接触面",
+        "直接干预 KIR3DS1/KIR3DL2 识别，适合功能阻断抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "α3结构域近 CD8/MHC-I 保守界面外缘",
+        "可提高膜近端结合稳定性，但需避免广泛交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "β2微球蛋白邻近装配界面",
+        "可能影响分子稳定性并增加对经典 MHC-I 的非特异风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HLA-F 与其他 HLA-I 分子结构同源性高，α3和β2M邻近区域存在交叉识别风险；宜采用开放构象特异筛选并进行 HLA-A/B/C/E/G 反筛。",
+    "structurePrepZh": "以 5IUE X射线结构为模板，保留HLA-F重链与β2微球蛋白装配关系，补全缺失环区并标注糖基化位点和膜近端方向。",
+    "structureRef": "RCSB PDB 5IUE，X-ray diffraction，2.62 Å",
+    "antibodies": [
+      "3D11",
+      "4A11"
+    ],
+    "interfaceFocus": "α1/α2平台与KIR受体接触界面",
+    "designMode": "构象选择性阻断",
+    "candidates": [
+      {
+        "target": "KIR3DS1",
+        "rationale": "KIR3DS1 可识别开放构象 HLA-F，并参与 NK 细胞活化相关调节；作为受体端靶点可用于同一 HLA-F-KIR 轴的互补干预。"
+      },
+      {
+        "target": "KIR3DL2",
+        "rationale": "KIR3DL2 与 HLA-F 开放构象存在结合关系，属于同一 NK 细胞受体识别通路；阻断该受体可改变 HLA-F 介导的抑制性免疫信号。"
+      },
+      {
+        "target": "B2M",
+        "rationale": "B2M 是 HLA-I 复合物稳定装配的必需组成部分，与 HLA-F 抗原呈递构象形成相关；其通路位置适合用于机制验证，但系统性风险高于 HLA-F。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

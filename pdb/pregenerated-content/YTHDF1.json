@@ -1,0 +1,65 @@
+{
+  "gene": "YTHDF1",
+  "generatedAt": "2026-08-03T17:56:06.266Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "YTHDF1 是细胞内 m6A 修饰 RNA 读取蛋白，通过 YTH 结构域识别 N6-甲基腺苷并促进特定转录本翻译，在肿瘤免疫逃逸、应激修复与炎症相关转录后调控中具有文献支持。该蛋白缺乏分泌信号肽、跨膜区和稳定胞外结构域，天然抗原可及性不符合常规阻断型抗体药物靶点特征。相较于 CD274、PDCD1、IL6R 等同属炎症/免疫调控疾病网络且具备胞外可及性的靶点，YTHDF1 更适合作为细胞内机制研究或递送型抗体片段探索靶点，主靶点优先级应审慎定位。",
+    "mechanism": "递送型胞内抗体片段可结合 YTH 结构域 m6A 结合口袋，竞争性阻断 YTHDF1 与 m6A 修饰 RNA 的芳香笼识别作用。",
+    "selectedEpitope": "优先覆盖 YTH 结构域 m6A 芳香笼及邻近 RNA 结合沟槽，避免仅选择非功能性远端表面。",
+    "diseaseDirection": "m6A转录后调控与肿瘤免疫",
+    "domain": "YTHDF1 含 N 端低复杂度区与 C 端 YTH RNA 结合结构域，4RCJ 解析其 YTH 核心结构。",
+    "evidence": "YTHDF1-m6A识别结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9BYJ9 functional annotation",
+      "RCSB PDB 4RCJ X-ray structure",
+      "m6A reader biology and tumor immunity literature"
+    ],
+    "referenceEntries": "UniProt Q9BYJ9；RCSB PDB 4RCJ；Open Targets YTHDF1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "YTH结构域m6A芳香笼与RNA结合沟槽",
+        "直接干预m6A修饰RNA识别，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "YTH结构域外侧保守α螺旋/β折叠支撑面",
+        "可用于构象稳定或变构干预，但阻断效应需实验确认",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端低复杂度区预测柔性片段",
+        "结构异质性高且4RCJ未充分覆盖，成药表位确定性较低",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "YTHDF1 为胞内RNA结合蛋白，常规抗体难以到达作用位点；建议仅采用细胞递送Fab/VHH或研究级内抗体策略，并重点评估脱靶RNA结合蛋白交叉反应。",
+    "structurePrepZh": "以4RCJ链A/B为YTH结构域模板，保留高分辨率核心折叠，校验m6A结合口袋残基构象，并补充缺失N端区域的低置信度标注。",
+    "structureRef": "RCSB PDB 4RCJ，1.6 Å X-ray YTH domain structure",
+    "antibodies": [
+      "无已批准YTHDF1治疗性抗体",
+      "研究级抗YTHDF1抗体"
+    ],
+    "interfaceFocus": "YTH结构域m6A芳香笼及RNA结合沟槽",
+    "designMode": "胞内递送型抗体片段",
+    "candidates": [
+      {
+        "target": "YTHDF2",
+        "rationale": "YTHDF2 同属 m6A reader 蛋白，识别 m6A 修饰转录本并促进RNA降解，可作为同一m6A转录后调控轴的机制对照靶点。"
+      },
+      {
+        "target": "YTHDF3",
+        "rationale": "YTHDF3 与 YTHDF1/YTHDF2 协同参与 m6A 修饰RNA命运调控，适合用于评估YTH家族功能冗余与选择性风险。"
+      },
+      {
+        "target": "METTL3",
+        "rationale": "METTL3 是 m6A 甲基转移酶复合体催化核心，位于YTHDF1上游并决定m6A底物生成，是同一RNA修饰通路中的关键节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

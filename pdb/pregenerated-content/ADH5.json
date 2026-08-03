@@ -1,0 +1,65 @@
+{
+  "gene": "ADH5",
+  "generatedAt": "2026-08-03T10:08:53.102Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ADH5编码谷胱甘肽依赖性甲醛脱氢酶，主要参与S-羟甲基谷胱甘肽氧化与甲醛解毒，并与ALDH2共同维持醛类代谢稳态；ADH5功能缺陷与ALDH2变异可导致AMED综合征相关的内源性醛清除障碍。该蛋白为胞质可溶性酶，缺乏天然胞外结构域或分泌特征，体内抗体可及性弱，更适合作为结构验证、细胞内递送抗体或研究级抑制抗体靶点。其优先级低于膜受体或分泌型醛代谢调控因子，但2FZW提供高分辨率二聚体结构，利于围绕催化沟槽和辅因子结合区开展精确表位设计。",
+    "mechanism": "抗体通过结合ADH5催化沟槽邻近区域，空间阻断S-羟甲基谷胱甘肽底物进入，并干扰NAD结合构象稳定化，从而抑制甲醛氧化反应。",
+    "selectedEpitope": "优先瞄准Rossmann样NAD结合域与催化锌邻近底物通道交界面。",
+    "diseaseDirection": "醛代谢障碍与AMED综合征",
+    "domain": "ADH5为锌依赖性醇脱氢酶二聚体，含N端催化锌结合域及C端Rossmann样NAD结合域。",
+    "evidence": "ADH5醛解毒结构与遗传疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P11766功能与亚细胞定位注释",
+      "RCSB PDB 2FZW晶体结构记录",
+      "OMIM/ClinVar关于ADH5-ALDH2相关AMED综合征资料"
+    ],
+    "referenceEntries": "UniProt P11766；RCSB PDB 2FZW；Open Targets ADH5",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "NAD结合Rossmann折叠与底物通道入口交界面",
+        "可同时限制辅因子构象稳定化与底物进入，最具功能阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "催化锌结合域周边可及环区",
+        "接近催化中心，适合构建变构抑制或底物通道遮挡型抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "A/B链二聚体界面",
+        "可能影响二聚体稳定性，但界面埋藏度较高且同源酶保守性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ADH5为胞内酶，常规抗体体内可及性不足；催化锌与NAD结合区保守性较高，需规避ADH家族交叉反应并考虑细胞内递送策略。",
+    "structurePrepZh": "以2FZW A/B链二聚体为模板，保留催化锌与NAD相关配体信息，校正缺失侧链、质子化状态及二聚体界面后进行表位映射。",
+    "structureRef": "RCSB PDB 2FZW，1.84 Å X射线晶体结构",
+    "antibodies": [
+      "研究级anti-ADH5 monoclonal antibody",
+      "研究级anti-GSNOR/ADH5 antibody"
+    ],
+    "interfaceFocus": "催化锌邻近底物通道及NAD结合沟槽",
+    "designMode": "胞内酶抑制抗体",
+    "candidates": [
+      {
+        "target": "ALDH2",
+        "rationale": "ALDH2与ADH5共同参与醛类清除，双基因缺陷与AMED综合征机制直接相关；其醛脱氢酶活性决定乙醛及其他反应性醛的氧化能力。"
+      },
+      {
+        "target": "GSR",
+        "rationale": "GSR维持还原型谷胱甘肽再生，支撑ADH5依赖的S-羟甲基谷胱甘肽代谢循环；调控该节点可影响细胞醛解毒容量。"
+      },
+      {
+        "target": "AKR1A1",
+        "rationale": "AKR1A1参与醛类底物还原代谢，与ADH5所在的内源性醛稳态网络相关；可作为醛毒性缓冲通路中的替代调控靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

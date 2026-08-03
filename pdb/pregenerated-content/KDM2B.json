@@ -1,0 +1,65 @@
+{
+  "gene": "KDM2B",
+  "generatedAt": "2026-08-03T13:41:00.882Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "KDM2B为核内F-box/JmjC组蛋白去甲基化酶，主要通过识别CpG岛并参与PRC1.1复合体募集，调控H3K36me2及多梳介导的转录沉默；其与血小板表型及高血压等关联多来自遗传统计证据，疾病机制尚不等同于可直接抗体阻断的胞外病理轴。KDM2B缺乏分泌形式、跨膜区或稳定胞外结构域，抗原可及性不符合常规治疗性抗体靶点标准。相较同通路中可被小分子或蛋白降解策略干预的表观遗传酶，KDM2B作为抗体主靶点优先级较低，更适合作为结构生物学或细胞内递送抗体探索对象。",
+    "mechanism": "设计目标限定为细胞内递送抗体阻断CXXC锌指结构域与未甲基化CpG DNA结合，削弱KDM2B介导的PRC1.1靶向募集。",
+    "selectedEpitope": "优先覆盖CXXC结构域DNA结合面及锌配位邻近环区，避免破坏核心折叠。",
+    "diseaseDirection": "表观遗传调控与心血管遗传关联",
+    "domain": "KDM2B含JmjC催化域、CXXC锌指、PHD指、F-box及LRR蛋白互作区。",
+    "evidence": "KDM2B结构域功能与遗传疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q8NHM5蛋白功能注释",
+      "RCSB PDB 4O64晶体结构",
+      "PRC1.1复合体与CpG岛识别文献"
+    ],
+    "referenceEntries": "UniProt: Q8NHM5；RCSB PDB: 4O64；Open Targets: KDM2B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CXXC结构域CpG DNA结合界面",
+        "直接干预KDM2B对未甲基化CpG岛的识别与染色质定位",
+        "优先"
+      ],
+      [
+        "Site B",
+        "JmjC催化域底物进入沟槽邻近区域",
+        "可能影响H3K36me2底物肽定位，但需规避金属依赖核心构象扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "F-box/LRR复合体互作区域",
+        "可能干扰PRC1.1相关蛋白装配，但结构柔性与复合体依赖性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "KDM2B为核内蛋白，常规Fab或VHH难以达到作用位点；建议仅在细胞内递送、内体逃逸或胞内抗体平台中评估。",
+    "structurePrepZh": "以PDB 4O64链A/B/C为模板，保留锌配位残基与DNA结合相关侧链，补建缺失环区并进行质子化状态校正。",
+    "structureRef": "RCSB PDB 4O64，X-ray diffraction，2.13 Å",
+    "antibodies": [
+      "无已批准KDM2B治疗性抗体",
+      "研究级抗KDM2B检测抗体"
+    ],
+    "interfaceFocus": "CXXC-DNA结合面与JmjC底物沟槽",
+    "designMode": "胞内递送抗体探索",
+    "candidates": [
+      {
+        "target": "PCGF1",
+        "rationale": "PCGF1是PRC1.1核心组分，与KDM2B所在复合体共同参与CpG岛相关多梳沉默，处于同一染色质调控通路。"
+      },
+      {
+        "target": "BCOR",
+        "rationale": "BCOR为KDM2B-PRC1.1复合体相关辅因子，参与多梳复合体稳定和靶基因转录抑制，适合作为同通路机制参照靶点。"
+      },
+      {
+        "target": "RING1B",
+        "rationale": "RING1B由RNF2编码，是PRC1复合体的E3泛素连接酶核心，负责H2AK119ub沉积并连接KDM2B募集后的下游沉默效应。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

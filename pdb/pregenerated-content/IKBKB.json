@@ -1,0 +1,65 @@
+{
+  "gene": "IKBKB",
+  "generatedAt": "2026-08-03T19:57:07.777Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "IKBKB编码IKKβ，是经典NF-κB通路中IKK复合体的催化亚基，负责磷酸化NFKBIA/IκBα并促使其降解，从而释放RELA-NFKB1进入细胞核。其遗传缺陷与联合免疫缺陷和严重联合免疫缺陷相关，提示该节点对免疫激活阈值具有因果性。IKKβ为胞内激酶，天然抗体可及性弱，但其激酶结构域晶体结构解析充分，适合作为细胞内递送抗体、intrabody或结构引导结合分子开发对象。相较下游转录因子，IKBKB处于信号汇聚节点且具备明确ATP结合口袋和激活环构象标志，优先级来自更清晰的结构药理学可设计性。",
+    "mechanism": "结合IKKβ激酶结构域ATP结合裂缝或激活环邻近界面，阻断ATP定位及NFKBIA底物磷酸化，抑制IκBα降解与NF-κB核转位。",
+    "selectedEpitope": "优先锁定激酶结构域N-lobe/C-lobe夹缝及激活环邻近构象表位。",
+    "diseaseDirection": "NF-κB相关免疫缺陷与炎症",
+    "domain": "IKKβ含N端丝氨酸/苏氨酸激酶结构域、泛素样结构域和C端支架二聚化结构域。",
+    "evidence": "IKKβ-NF-κB免疫缺陷结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt O14920 functional annotation",
+      "RCSB PDB 3BRV X-ray structure",
+      "NF-κB canonical pathway literature"
+    ],
+    "referenceEntries": "UniProt O14920；RCSB PDB 3BRV；Open Targets IKBKB",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域ATP结合裂缝与铰链区",
+        "直接干预ATP占位和催化构象，适合构象锁定型抑制设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "激活环及NFKBIA底物进入邻近表面",
+        "限制Ser177/Ser181相关活化构象并削弱底物磷酸化效率",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端支架二聚化结构域推定复合体界面",
+        "可能影响IKK复合体装配，但3BRV覆盖与可及性需额外验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "IKBKB为胞内激酶，常规抗体难以到达作用位点；设计应限定为细胞内递送Fab/VHH或intrabody，并规避ATP口袋高同源性导致的交叉反应。",
+    "structurePrepZh": "以3BRV高分辨率晶体结构为模板，保留抗原链A-D用于构象比较，清理结晶配体与水分子后评估激酶域柔性环缺失和寡聚状态。",
+    "structureRef": "RCSB PDB 3BRV；IKKβ激酶结构域X-ray 2.2 Å",
+    "antibodies": [
+      "anti-IKKβ clone D30C6",
+      "anti-IKKβ clone 10AG2"
+    ],
+    "interfaceFocus": "ATP铰链区、催化裂缝与激活环邻近表面",
+    "designMode": "胞内构象阻断",
+    "candidates": [
+      {
+        "target": "CHUK",
+        "rationale": "CHUK编码IKKα，是IKK复合体相关催化亚基，与IKBKB共同参与NF-κB信号调控；可作为同通路结构选择性与功能冗余评估靶点。"
+      },
+      {
+        "target": "NFKBIA",
+        "rationale": "NFKBIA编码IκBα，是IKKβ直接磷酸化底物；稳定其未磷酸化状态可在同一经典NF-κB轴上抑制RELA-NFKB1释放。"
+      },
+      {
+        "target": "RELA",
+        "rationale": "RELA为经典NF-κB转录复合体核心亚基，位于IKBKB下游；靶向其二聚化或DNA结合功能可用于下游信号阻断策略比较。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

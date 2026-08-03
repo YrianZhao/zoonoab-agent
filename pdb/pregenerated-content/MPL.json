@@ -1,0 +1,65 @@
+{
+  "gene": "MPL",
+  "generatedAt": "2026-08-03T14:18:35.971Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MPL编码血小板生成素受体，是TPO介导巨核细胞分化、血小板生成及造血干细胞维持的核心受体；其功能缺失与先天性无巨核细胞性血小板减少症相关，功能获得性改变则可驱动血小板增多表型。MPL为I型跨膜细胞因子受体，胞外同源结构域可直接暴露于血液和骨髓微环境，具备明确抗体可及性。相较下游JAK2或STAT5等胞内节点，MPL更适合通过抗体在配体结合或受体装配层面实现选择性干预，靶点优先级更高。",
+    "mechanism": "通过结合MPL胞外细胞因子受体同源结构域，阻断TPO与MPL的配体结合界面或限制受体二聚化构象，抑制JAK2招募与STAT5磷酸化信号。",
+    "selectedEpitope": "优先覆盖MPL D1-D2细胞因子受体同源区的TPO结合界面，兼顾受体二聚化相关膜远端构象表面。",
+    "diseaseDirection": "巨核细胞生成与血小板数量异常",
+    "domain": "MPL胞外区由两个细胞因子受体同源模块组成，含D1-D4纤连蛋白III样结构域及保守WSXWS基序。",
+    "evidence": "MPL-TPO轴血小板生成疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P40238功能与结构域注释",
+      "RCSB PDB 8G04冷冻电镜结构",
+      "OMIM/ClinVar MPL相关血小板疾病变异"
+    ],
+    "referenceEntries": "UniProt:P40238；RCSB PDB:8G04；HGNC:MPL",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "D1-D2细胞因子受体同源区TPO结合面",
+        "直接阻断TPO-MPL识别，具备明确拮抗机制",
+        "优先"
+      ],
+      [
+        "Site B",
+        "D3-D4膜近端受体装配界面",
+        "限制配体诱导的受体二聚化与JAK2激活构象",
+        "备选"
+      ],
+      [
+        "Site C",
+        "WSXWS基序邻近保守折叠区域",
+        "可能影响受体折叠稳定性和正常运输，需避免强干扰",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MPL为造血稳态关键受体，完全拮抗可能导致血小板减少；表位设计宜优先选择疾病相关过度激活构象或部分阻断模式，并评估TPO生理信号保留窗口。",
+    "structurePrepZh": "以8G04实验冷冻电镜结构为模板，保留抗原链A、B、C中胞外可解析区域，补全缺失环区并校正糖基化位点后进行表位可及性评估。",
+    "structureRef": "RCSB PDB 8G04，human MPL extracellular complex，EM 3.4 Å",
+    "antibodies": [
+      "VB22B scFv",
+      "MA01G4G344"
+    ],
+    "interfaceFocus": "TPO结合面与MPL胞外二聚化界面",
+    "designMode": "受体拮抗型抗体设计",
+    "candidates": [
+      {
+        "target": "THPO",
+        "rationale": "THPO编码血小板生成素，是MPL的天然配体；中和THPO可在同一轴线上降低MPL受体激活，适用于血小板生成过度相关场景。"
+      },
+      {
+        "target": "JAK2",
+        "rationale": "JAK2与MPL胞内区偶联并介导配体诱导的下游磷酸化信号，是MPL通路中驱动STAT激活的关键激酶节点。"
+      },
+      {
+        "target": "STAT5B",
+        "rationale": "STAT5B位于MPL-JAK2下游，参与巨核细胞分化和血小板生成相关转录程序，可作为通路药效读出与替代干预节点。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

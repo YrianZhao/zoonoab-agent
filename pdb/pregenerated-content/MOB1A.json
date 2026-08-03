@@ -1,0 +1,65 @@
+{
+  "gene": "MOB1A",
+  "generatedAt": "2026-08-03T14:17:30.330Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MOB1A是Hippo通路核心激酶辅因子，可结合并激活LATS1/2，促进YAP/TAZ磷酸化与细胞增殖抑制。该蛋白主要定位于细胞质、细胞核及中心体，并非分泌蛋白或跨膜受体，天然抗原可及性不具备治疗性抗体优势，更适合作为结构生物学或细胞内递送抗体研究对象。相较EGFR、PD-L1或TGFBR2等胞外可及靶点，MOB1A疾病关联分数较低且Open Targets关联多为测量性表型，优先级应限定为机制验证型靶点而非首选临床抗体靶点。",
+    "mechanism": "候选抗体应结合MOB1A的NDR/LATS结合面，阻断MOB1A与LATS1/2相互作用，从而削弱LATS激酶激活及YAP/TAZ磷酸化事件。",
+    "selectedEpitope": "优先覆盖MOB1A球状核心中NDR/LATS结合沟槽及磷酸化调控邻近面。",
+    "diseaseDirection": "Hippo-YAP/TAZ肿瘤通路研究",
+    "domain": "MOB1A为约216 aa的MOB激酶激活蛋白，含保守MOB核心折叠及NDR/LATS结合界面。",
+    "evidence": "MOB1A-Hippo通路结构与疾病关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联与遗传证据",
+      "UniProt Q9H8S9功能注释与亚细胞定位",
+      "RCSB PDB 4J1V晶体结构条目",
+      "Hippo通路中MOB1-LATS-YAP/TAZ机制文献"
+    ],
+    "referenceEntries": "UniProt Q9H8S9；RCSB PDB 4J1V；Open Targets MOB1A",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "MOB核心折叠的NDR/LATS结合沟槽",
+        "可直接干预MOB1A-LATS1/2复合物形成，机制指向性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "Thr12/Thr35磷酸化调控邻近表面",
+        "可能影响MOB1A构象激活及LATS募集效率，适合机制型调节设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离激酶结合面的保守疏水核心外侧区域",
+        "可能仅产生结合信号而缺乏功能阻断，且保守性带来选择性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MOB1A为细胞内蛋白，常规抗体难以到达天然作用位点；建议采用胞内递送Fab/VHH或纳米抗体表达体系，并严格评估MOB1B交叉反应。",
+    "structurePrepZh": "以4J1V高分辨率晶体结构为模板，保留抗原链A/C/E/G/F/H中完整MOB核心，校正缺失环区、质子化状态及多聚体界面。",
+    "structureRef": "RCSB PDB 4J1V，X-ray diffraction，1.95 Å",
+    "antibodies": [
+      "研究级anti-MOB1A抗体",
+      "研究级anti-MOB1/2磷酸化抗体"
+    ],
+    "interfaceFocus": "NDR/LATS结合沟槽与Thr12/Thr35调控面",
+    "designMode": "胞内机制阻断",
+    "candidates": [
+      {
+        "target": "LATS1",
+        "rationale": "LATS1是Hippo通路核心激酶，接受MOB1A辅助激活后磷酸化YAP/TAZ；其激酶调控界面与MOB1A处于同一功能轴。"
+      },
+      {
+        "target": "LATS2",
+        "rationale": "LATS2与MOB1A形成功能性激酶复合物并抑制YAP/TAZ核转录活性，是MOB1A同通路的直接作用节点。"
+      },
+      {
+        "target": "YAP1",
+        "rationale": "YAP1是LATS1/2下游转录共激活因子，其磷酸化、胞质滞留和降解状态直接反映MOB1A-Hippo轴输出。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

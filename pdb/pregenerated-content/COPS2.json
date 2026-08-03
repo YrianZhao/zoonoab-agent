@@ -1,0 +1,65 @@
+{
+  "gene": "COPS2",
+  "generatedAt": "2026-08-03T11:34:00.292Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "COPS2是COP9 signalosome核心亚基，参与去NEDD8化调控cullin-RING E3连接酶活性，从而影响蛋白稳态、细胞周期与应激相关降解过程，Open Targets提示其与神经退行性疾病存在中等强度关联。该蛋白为细胞内多亚基复合体成分，天然抗原可及性弱，作为常规阻断型抗体靶点优先级受限；其结构抗原性更适合细胞内递送抗体片段或研究级结合分子。相较于TNF、IL6R等可及性更高的疾病相关膜蛋白或分泌因子，COPS2优先级主要来自复合体结构解析度和蛋白稳态通路定位，而非临床可成药性。",
+    "mechanism": "设计分子应结合COPS2 PCI结构域邻近亚基装配界面，干预其与COPS1/COPS3在COP9 signalosome中的稳定组装，从而影响CRL去NEDD8化调控。",
+    "selectedEpitope": "优先聚焦PCI结构域的外露螺旋束及亚基装配边缘，避开深埋核心界面。",
+    "diseaseDirection": "神经退行性疾病蛋白稳态方向",
+    "domain": "COPS2含N端柔性区与C端PCI结构域，PCI螺旋束介导COP9 signalosome支架装配。",
+    "evidence": "COPS2-COP9信号体结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P61201功能与亚细胞定位注释",
+      "RCSB PDB 6A73晶体结构记录",
+      "COP9 signalosome去NEDD8化与CRL调控文献"
+    ],
+    "referenceEntries": "UniProt P61201；RCSB PDB 6A73；Open Targets COPS2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "PCI结构域外露螺旋束侧面",
+        "可形成构象依赖结合，较少破坏全局折叠，适合高亲和力识别",
+        "优先"
+      ],
+      [
+        "Site B",
+        "COPS2与相邻CSN亚基装配边缘",
+        "具备干预复合体稳定性的机制价值，但需控制交叉影响",
+        "备选"
+      ],
+      [
+        "Site C",
+        "复合体深埋PCI核心界面",
+        "结构可及性低且可能依赖复合体解离状态，开发风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "COPS2为胞内复合体亚基，常规抗体难以到达作用位点；建议定位为细胞内抗体、递送型VHH或结构探针，并严控复合体广泛扰动风险。",
+    "structurePrepZh": "以PDB 6A73链A、B为模板，补全缺失侧链与质子化状态，保留COP9复合体邻近亚基用于界面判定后再截取抗原。",
+    "structureRef": "RCSB PDB 6A73，X-ray diffraction，2.447 Å",
+    "antibodies": [
+      "暂无获批COPS2治疗性抗体",
+      "研究级抗COPS2抗体"
+    ],
+    "interfaceFocus": "PCI螺旋束外露面及CSN装配边缘",
+    "designMode": "胞内VHH/结构探针",
+    "candidates": [
+      {
+        "target": "COPS5",
+        "rationale": "COPS5/JAB1是COP9 signalosome的催化亚基，直接执行cullin去NEDD8化，处于与COPS2相同的CRL调控通路核心。其机制优先级高于支架亚基，但同样面临胞内可及性限制。"
+      },
+      {
+        "target": "COPS3",
+        "rationale": "COPS3是COP9 signalosome PCI亚复合体成员，与COPS2共同参与复合体支架装配。靶向其装配界面可用于解析CSN稳定性与蛋白稳态失衡的关系。"
+      },
+      {
+        "target": "COPS1",
+        "rationale": "COPS1是COP9 signalosome PCI结构域亚基，参与形成复合体骨架并支持去NEDD8化功能。其与COPS2处于同一CSN-CRL轴，可作为同通路结构干预候选。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

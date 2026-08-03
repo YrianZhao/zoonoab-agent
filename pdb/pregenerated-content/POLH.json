@@ -1,0 +1,65 @@
+{
+  "gene": "POLH",
+  "generatedAt": "2026-08-03T15:25:35.911Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "POLH 编码 DNA polymerase eta，是跨损伤合成通路中负责旁路紫外线诱导环丁烷嘧啶二聚体的 Y 家族 DNA 聚合酶，功能缺陷直接导致 xeroderma pigmentosum variant 的复制后修复障碍。该蛋白定位于细胞核并主要与 DNA、PCNA 及泛素化复制叉复合物相互作用，缺乏天然胞外结构域或分泌特征，因此抗体可及性较弱，更适合作为结构生物学验证或胞内递送抗体探索靶点。相较于同通路中更大的 NER 组分，POLH 的疾病因果性明确、PDB 结构分辨率高且催化核心-DNA 复合物信息充分，可优先用于精确界面阻断与功能表位建模。",
+    "mechanism": "设计分子阻断 POLH 催化核心与损伤 DNA 模板-引物的结合，或干扰 PIP-box 介导的 PCNA 招募，从而抑制跨损伤合成复合物装配。",
+    "selectedEpitope": "优先覆盖 palm/fingers/thumb 催化核心邻近 DNA 结合沟槽，避开高度保守金属催化残基。",
+    "diseaseDirection": "XP-V 与紫外线 DNA 损伤修复",
+    "domain": "POLH 含 N 端 Y 家族聚合酶催化核心及 little finger/PAD 结构域，C 端含泛素结合区和 PCNA 相互作用基序。",
+    "evidence": "POLH-XP-V 跨损伤合成结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9Y253 functional annotation",
+      "RCSB PDB 4ECQ X-ray structure",
+      "ClinVar/OMIM xeroderma pigmentosum variant evidence"
+    ],
+    "referenceEntries": "UniProt Q9Y253；RCSB PDB 4ECQ；OMIM XP-V/POLH",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化核心 palm-fingers 与模板DNA结合沟槽边缘",
+        "可直接影响损伤模板定位与核苷酸掺入几何构型",
+        "优先"
+      ],
+      [
+        "Site B",
+        "little finger/PAD 结构域与DNA大沟接触面",
+        "有利于扰动POLH对损伤DNA的低保真旁路识别",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端PCNA相互作用PIP-box邻域",
+        "可干扰复制叉招募，但4ECQ未完整呈现该柔性区",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "POLH 为核内酶，无胞外天然暴露面，常规治疗性抗体成药性受限。建议限定为胞内递送抗体、intrabody 或结构功能验证设计。",
+    "structurePrepZh": "以4ECQ高分辨率晶体结构为模板，保留POLH催化核心与DNA/核苷酸配体，补齐缺失柔性环并标注催化金属结合位点。",
+    "structureRef": "RCSB PDB 4ECQ，human POLH-DNA complex，1.5 Å",
+    "antibodies": [
+      "抗POLH研究级单克隆抗体",
+      "抗DNA polymerase eta研究级抗体"
+    ],
+    "interfaceFocus": "DNA结合沟槽与PAD-DNA接触界面",
+    "designMode": "胞内阻断验证",
+    "candidates": [
+      {
+        "target": "PCNA",
+        "rationale": "PCNA 是复制叉滑动夹，单泛素化后招募 POLH 参与跨损伤合成；阻断 POLH-PCNA 结合可影响同一 DNA 损伤耐受通路。"
+      },
+      {
+        "target": "RAD18",
+        "rationale": "RAD18 与 RAD6 复合物介导 PCNA 单泛素化，是紫外线损伤后 POLH 招募的上游调控节点。"
+      },
+      {
+        "target": "UBC13",
+        "rationale": "UBC13 参与 PCNA 多泛素化及损伤后模板转换分支，与 POLH 所在 DNA 损伤耐受网络共享复制叉应答背景。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

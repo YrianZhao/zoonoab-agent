@@ -1,0 +1,65 @@
+{
+  "gene": "ALAS2",
+  "generatedAt": "2026-08-03T10:23:24.661Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ALAS2 是红系特异性线粒体 5-氨基乙酰丙酸合酶，催化甘氨酸与琥珀酰辅酶A缩合生成 5-氨基乙酰丙酸，是血红素生物合成的限速步骤；其功能缺陷与 X 连锁铁粒幼细胞性贫血相关，功能增强与 X 连锁红细胞生成性原卟啉症相关。该蛋白定位于线粒体基质，缺乏天然胞外结构域或分泌暴露特征，抗体可及性不具备常规细胞外阻断优势。相较 FECH、HMBS 等同通路酶，ALAS2 具有红系选择性、疾病遗传证据集中且高分辨率结构可用的优先级优势，但更适合作为结构生物学验证靶点而非体内常规抗体药物靶点。",
+    "mechanism": "抗体设计应以体外构象识别为主，优先阻断 ALAS2 同源二聚体界面或遮蔽 PLP 依赖性催化口袋入口，干扰甘氨酸与琥珀酰辅酶A进入活性中心。",
+    "selectedEpitope": "优先选择 5QR1 二聚体界面邻近的催化结构域外露螺旋-环区，避免直接深埋 PLP 活性位点。",
+    "diseaseDirection": "红系血红素合成障碍",
+    "domain": "ALAS2 为 PLP 依赖性氨基转移酶样催化酶，含 N 端线粒体靶向区及成熟酶二聚化催化核心。",
+    "evidence": "ALAS2 红系血红素合成遗传与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association score",
+      "UniProtKB P22557 functional annotation",
+      "RCSB PDB 5QR1 X-ray crystallographic structure",
+      "OMIM and ClinVar ALAS2 variant-disease records"
+    ],
+    "referenceEntries": "UniProt P22557；RCSB PDB 5QR1；Open Targets ENSG00000158578",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "二聚体界面邻近催化核心外露螺旋-环区",
+        "可能影响功能性二聚体稳定性并保持抗体可接近性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PLP 结合口袋入口周边可溶剂暴露环区",
+        "可用于构象锁定或底物进入通道干扰",
+        "备选"
+      ],
+      [
+        "Site C",
+        "线粒体成熟酶内部保守催化残基周围区域",
+        "高度保守且深埋，抗体结合可及性与选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ALAS2 为线粒体基质酶，体内抗体递送与抗原可及性构成主要风险；设计应限定为细胞内递送、体外诊断或结构验证场景。",
+    "structurePrepZh": "以 5QR1 A/B 链二聚体为模板，保留 PLP 辅因子与界面构象，补全缺失侧链并评估成熟酶表面溶剂暴露性。",
+    "structureRef": "RCSB PDB 5QR1，human ALAS2 X-ray structure, 1.44 Å",
+    "antibodies": [
+      "无获批靶向 ALAS2 治疗性抗体",
+      "研究级 anti-ALAS2 抗体"
+    ],
+    "interfaceFocus": "A/B 链二聚体界面与 PLP 口袋入口",
+    "designMode": "胞内酶构象抗体",
+    "candidates": [
+      {
+        "target": "FECH",
+        "rationale": "FECH 催化血红素生物合成末步，将二价铁插入原卟啉 IX；其功能缺陷与红细胞生成性原卟啉症直接相关。"
+      },
+      {
+        "target": "HMBS",
+        "rationale": "HMBS 位于卟啉合成通路上游，催化胆色素原聚合生成羟甲基胆素；遗传缺陷导致急性间歇性卟啉症。"
+      },
+      {
+        "target": "SLC25A38",
+        "rationale": "SLC25A38 为红系线粒体膜转运相关蛋白，与 ALAS2 所需底物供给和先天性铁粒幼细胞性贫血通路相关。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

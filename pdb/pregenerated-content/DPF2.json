@@ -1,0 +1,65 @@
+{
+  "gene": "DPF2",
+  "generatedAt": "2026-08-03T18:39:14.228Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DPF2 是 BAF/SWI-SNF 染色质重塑复合体相关的核内读写模块，双 PHD 指结构可识别组蛋白 H3 乙酰化和甲基化状态，BAF 复合体异常与 Coffin-Siris 综合征及神经发育表型具有明确遗传关联。该蛋白主要定位于细胞核，不具备经典胞外结构域、分泌蛋白或膜受体可及性，因此作为常规体内抗体阻断靶点的抗原可及性较弱，更适合结构生物学驱动的胞内结合体或研究级抗体设计。相比同通路中 ARID1B、SMARCA4 等大型多结构域亚基，DPF2 的双 PHD 指结构域已有高分辨率实验结构，界面定义清晰，适合作为表位验证和构象选择性结合分子开发的优先结构模型。",
+    "mechanism": "设计结合体占据 DPF2 双 PHD 指组蛋白尾结合沟槽，阻断其与乙酰化 H3 尾肽的识别相互作用，干预 BAF 复合体的染色质定位。",
+    "selectedEpitope": "优先靶向双 PHD 指间形成的组蛋白 H3 尾肽结合沟槽及芳香笼邻近界面。",
+    "diseaseDirection": "BAF复合体相关神经发育疾病",
+    "domain": "DPF2 含 C2H2 型双 PHD finger 模块，负责识别特定修饰组蛋白 H3 尾部。",
+    "evidence": "DPF2-BAF染色质识别结构与疾病遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q92785 蛋白功能与定位注释",
+      "RCSB PDB 5VDC 高分辨率晶体结构",
+      "SWI/SNF BAF 复合体神经发育疾病文献"
+    ],
+    "referenceEntries": "UniProt: Q92785; RCSB PDB: 5VDC; Open Targets: DPF2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "双 PHD 指组蛋白 H3 尾肽结合沟槽",
+        "直接竞争组蛋白尾识别，机制清晰且结构可解析",
+        "优先"
+      ],
+      [
+        "Site B",
+        "PHD1-PHD2 相对取向界面",
+        "可能稳定非结合构象并削弱染色质识别",
+        "备选"
+      ],
+      [
+        "Site C",
+        "锌配位 Cys/His 折叠核心邻近区域",
+        "靠近结构稳定核心，结合可能扰动折叠并带来非特异风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DPF2 为核内染色质因子，缺乏天然胞外可及性；应优先限定为胞内递送抗体、VHH、intrabody 或体外机制验证用途，避免宣称常规循环抗体可直接阻断。",
+    "structurePrepZh": "以 PDB 5VDC 链 A 为模板，保留双 PHD 指锌配位几何，补全缺失侧链并检查组蛋白尾肽结合沟槽电荷与构象状态。",
+    "structureRef": "RCSB PDB 5VDC，X-ray diffraction，1.6 Å",
+    "antibodies": [
+      "anti-DPF2 monoclonal antibody",
+      "anti-BAF45d/DPF2 antibody"
+    ],
+    "interfaceFocus": "双PHD指H3尾肽结合沟槽",
+    "designMode": "胞内结构阻断",
+    "candidates": [
+      {
+        "target": "ARID1B",
+        "rationale": "ARID1B 是 BAF 复合体核心亚基，致病变异与 Coffin-Siris 综合征高度相关。其遗传证据强，但蛋白体积大且核内可及性同样受限。"
+      },
+      {
+        "target": "SMARCA4",
+        "rationale": "SMARCA4 编码 BAF 复合体 ATPase 催化亚基，直接驱动核小体重塑并与神经发育综合征相关。该靶点适合与 DPF2 共同评估染色质重塑轴的功能依赖性。"
+      },
+      {
+        "target": "SMARCB1",
+        "rationale": "SMARCB1 是 SWI/SNF 复合体关键稳定亚基，参与 BAF 复合体装配及染色质调控。其疾病关联明确，可作为同通路遗传与功能验证参照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

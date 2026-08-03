@@ -1,0 +1,65 @@
+{
+  "gene": "CYREN",
+  "generatedAt": "2026-08-03T11:48:12.891Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CYREN为细胞周期依赖性非同源末端连接抑制因子，可结合Ku70/Ku80-DNA端复合体并限制经典NHEJ，使S/G2期DNA双链断裂修复偏向同源重组。Open Targets关联主要集中于血液细胞计数、血小板体积及肝酶测量等遗传性表型，提示其更适合作为DNA损伤修复轴的机制研究靶点，而非直接抗体药物靶点。该蛋白定位于细胞内且缺乏分泌型或跨膜胞外结构域，抗原天然可及性弱；相较膜受体或分泌因子，优先级仅限于结构抗体、细胞内递送抗体或研究级结合分子开发。",
+    "mechanism": "设计分子应阻断CYREN C端Ku结合区与Ku70/Ku80异源二聚体在DNA断端附近的相互作用，从而解除其对经典NHEJ装配的抑制。",
+    "selectedEpitope": "优先覆盖CYREN晶体结构中C端Ku结合螺旋及邻近保守疏水面，避免仅选择柔性N端区域。",
+    "diseaseDirection": "DNA损伤修复与血液遗传表型",
+    "domain": "CYREN为小型细胞内蛋白，含N端低复杂度区及C端Ku70/Ku80结合功能区，PDB 6TYU覆盖结构化核心片段。",
+    "evidence": "CYREN介导细胞周期依赖性NHEJ调控证据包",
+    "evidenceSources": [
+      "Open Targets Platform 遗传关联与表型证据",
+      "UniProt Q9BWK5 蛋白功能与亚细胞定位注释",
+      "RCSB PDB 6TYU X射线晶体结构记录",
+      "DNA双链断裂修复与Ku复合体相互作用文献"
+    ],
+    "referenceEntries": "UniProt: Q9BWK5; RCSB PDB: 6TYU; Gene: CYREN",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端Ku70/Ku80结合螺旋及相邻疏水界面",
+        "直接干预CYREN与Ku复合体结合，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "结构化核心片段外露带电表面",
+        "利于获得高亲和结构识别抗体，可用于检测或构象稳定",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端低复杂度或柔性延伸区",
+        "可能免疫原性较高但构象不稳定，功能阻断价值有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为靶点细胞内定位导致体内抗体可及性不足，且功能界面可能较小。建议限定为结构抗体、胞内抗体或递送平台适配设计。",
+    "structurePrepZh": "以6TYU高分辨率晶体结构为模板，保留抗原链A/B结构化片段，检查缺失残基、晶体接触面及C端功能界面暴露状态。",
+    "structureRef": "RCSB PDB 6TYU, X-ray diffraction, 1.47 Å",
+    "antibodies": [
+      "暂无获批同靶点治疗性抗体",
+      "研究级抗CYREN抗体"
+    ],
+    "interfaceFocus": "C端Ku结合螺旋与保守疏水沟槽",
+    "designMode": "胞内结构抗体",
+    "candidates": [
+      {
+        "target": "XRCC6",
+        "rationale": "XRCC6编码Ku70，是Ku70/Ku80-DNA端识别复合体核心组分，处于CYREN调控的经典NHEJ装配节点。其与CYREN存在直接功能关联。"
+      },
+      {
+        "target": "XRCC5",
+        "rationale": "XRCC5编码Ku80，与Ku70形成异源二聚体并招募DNA-PKcs，是CYREN限制NHEJ活性的同一路径靶点。"
+      },
+      {
+        "target": "PRKDC",
+        "rationale": "PRKDC编码DNA-PKcs，在Ku复合体识别DNA断端后被招募并驱动NHEJ信号装配，位于CYREN调控轴下游。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

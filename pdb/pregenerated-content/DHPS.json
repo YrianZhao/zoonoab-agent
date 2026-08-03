@@ -1,0 +1,65 @@
+{
+  "gene": "DHPS",
+  "generatedAt": "2026-08-03T11:56:02.029Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DHPS催化eIF5A赖氨酸残基的脱氧羟腐胺化，是eIF5A活化与蛋白翻译延伸稳态的关键限速酶，遗传变异与发育迟缓、癫痫和智力障碍表型相关。该蛋白为胞质同源四聚体酶，并非天然分泌蛋白或膜受体，抗体抗原可及性明显弱于胞外靶点，更适合作为细胞内机制验证或递送型抗体设计对象。相较EIF5A等下游底物，DHPS具有明确催化口袋、高分辨率晶体结构和疾病遗传证据，优先级主要来自结构可设计性与通路限速地位，而非传统治疗性抗体可及性。",
+    "mechanism": "抗体需经胞内递送后结合DHPS二聚体界面或NAD/亚精胺结合沟槽，阻断DHPS与EIF5A前体赖氨酸底物的催化构象装配。",
+    "selectedEpitope": "优先覆盖DHPS同源二聚体活性沟槽邻近的EIF5A底物进入面，避免仅识别远端四聚体外表面。",
+    "diseaseDirection": "神经发育障碍与癫痫",
+    "domain": "DHPS为NAD依赖性转移酶样折叠，形成同源四聚体；活性位点位于二聚体界面并结合亚精胺底物。",
+    "evidence": "DHPS-eIF5A脱氧羟腐胺化通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProtKB P49366功能注释",
+      "RCSB PDB 6XXJ高分辨率晶体结构",
+      "OMIM与ClinVar神经发育表型记录"
+    ],
+    "referenceEntries": "UniProtKB P49366；RCSB PDB 6XXJ；Open Targets DHPS",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "二聚体界面活性沟槽及EIF5A底物进入面",
+        "直接干扰底物定位与催化构象闭合，机制验证价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "NAD/亚精胺结合口袋邻近环区",
+        "可能影响辅因子与多胺底物协同结合，适合构象锁定设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "四聚体远端外表面非催化暴露区",
+        "结合可行但难以产生明确功能阻断，需避免仅获得示踪型抗体",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DHPS为胞内酶，常规IgG难以进入细胞质；需采用胞内递送、内体逃逸或细胞内抗体格式，并严格评估翻译稳态抑制相关毒性。",
+    "structurePrepZh": "以6XXJ链A/B构建生物学二聚体，保留活性口袋构象信息，校正质子化状态并标注NAD、亚精胺及界面残基。",
+    "structureRef": "RCSB PDB 6XXJ，X射线晶体结构，1.41 Å",
+    "antibodies": [
+      "暂无获批DHPS治疗性抗体",
+      "研究级抗DHPS抗体"
+    ],
+    "interfaceFocus": "二聚体活性沟槽与EIF5A底物进入面",
+    "designMode": "胞内递送型Fab/VHH",
+    "candidates": [
+      {
+        "target": "EIF5A",
+        "rationale": "EIF5A是DHPS直接修饰底物，脱氧羟腐胺化后参与翻译延伸与神经发育相关蛋白稳态；其与DHPS处于同一hypusination通路。"
+      },
+      {
+        "target": "DOHH",
+        "rationale": "DOHH催化脱氧羟腐胺化EIF5A的后续羟基化步骤，是DHPS下游的同一eIF5A活化通路核心酶。"
+      },
+      {
+        "target": "EIF5A2",
+        "rationale": "EIF5A2为EIF5A同源底物蛋白，同样依赖DHPS/DOHH介导的hypusination获得功能，可作为通路补偿与组织特异性风险评估靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

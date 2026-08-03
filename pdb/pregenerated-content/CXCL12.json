@@ -1,0 +1,65 @@
+{
+  "gene": "CXCL12",
+  "generatedAt": "2026-08-03T11:45:00.790Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CXCL12 是造血与白细胞归巢轴中的关键趋化因子，通过结合 CXCR4 和 ACKR3 调控单核细胞、粒细胞及造血祖细胞迁移，符合血细胞数量性状的遗传和通路关联。其为分泌型小分子趋化因子，N 端与受体口袋及 N-loop/β片层表面均可被抗体直接识别，抗原可及性优于胞内信号节点。相较下游 JAK/PI3K 等广泛信号分子，CXCL12 位于配体入口层级，阻断策略更具通路选择性并可同时限制 CXCR4 与 ACKR3 介导的趋化输入。",
+    "mechanism": "中和抗体阻断 CXCL12 N 端及 N-loop 与 CXCR4 胞外区/跨膜结合口袋的协同识别，并抑制其与 ACKR3 的配体结合。",
+    "selectedEpitope": "优先覆盖 N 端受体激活段及 N-loop/β1 受体结合面，避免完全依赖柔性 C 端。",
+    "diseaseDirection": "血细胞数量与白细胞趋化调控",
+    "domain": "成熟 CXCL12 由典型 CXC 趋化因子折叠构成，含 N-loop、三股β片层与C端α螺旋。",
+    "evidence": "CXCL12-CXCR4/ACKR3 造血趋化轴证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P48061 functional annotation",
+      "RCSB PDB 3GV3 X-ray structure",
+      "CXCL12-CXCR4 chemokine receptor literature"
+    ],
+    "referenceEntries": "UniProt:P48061; RCSB PDB:3GV3; Gene:CXCL12",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N 端残基与 N-loop 受体识别面",
+        "直接干预 CXCR4/ACKR3 配体结合与受体激活，具有最高中和价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "β1-β3 片层外露趋化因子核心表面",
+        "可稳定结合折叠核心并通过空间位阻削弱受体接触",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端 α 螺旋及二聚相关表面",
+        "可能影响构象稳定或糖胺聚糖结合，但与主要受体激活界面距离较远",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CXCL12 体积较小且 N 端参与受体激活，抗体结合需避免仅识别高柔性末端导致亲和力不足；建议采用核心锚定加 N-loop 覆盖的组合表位。",
+    "structurePrepZh": "以 3GV3 链 A 为实验结构模板，保留成熟趋化因子核心，检查 N 端构象、二硫键完整性及晶体接触后进行表面可及性标注。",
+    "structureRef": "RCSB PDB 3GV3, X-ray diffraction, 1.6 Å",
+    "antibodies": [
+      "Olaptesed pegol",
+      "NOX-A12"
+    ],
+    "interfaceFocus": "N 端受体激活段与 N-loop 结合面",
+    "designMode": "中和型配体阻断",
+    "candidates": [
+      {
+        "target": "CXCR4",
+        "rationale": "CXCR4 是 CXCL12 的主要趋化受体，直接介导白细胞归巢、造血祖细胞保留及迁移信号，是同一 CXCL12-CXCR4 轴的受体端干预靶点。"
+      },
+      {
+        "target": "ACKR3",
+        "rationale": "ACKR3 又称 CXCR7，可结合并清除 CXCL12，同时调节配体梯度和β-arrestin相关信号，适合作为同一趋化因子轴的调控候选。"
+      },
+      {
+        "target": "CXCL11",
+        "rationale": "CXCL11 可作为 ACKR3 配体并参与趋化因子受体网络，与 CXCL12-ACKR3 共同影响免疫细胞迁移环境，具有同通路比较价值。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

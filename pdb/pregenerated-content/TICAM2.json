@@ -1,0 +1,65 @@
+{
+  "gene": "TICAM2",
+  "generatedAt": "2026-08-03T17:17:19.140Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TICAM2/TRAM是TLR4与TLR2内吞体信号轴中的TIR结构域适配蛋白，参与招募TICAM1/TRIF并驱动IRF3、NF-κB相关炎症转录，在脓毒症、感染和动脉粥样硬化炎症放大中具有机制相关性。该蛋白主要为胞内膜相关适配分子，并非典型分泌蛋白或跨膜受体，天然抗原可及性弱，因此抗体策略更适合作为结构验证、胞内递送或研究级阻断工具。相较TLR4、CD14等细胞表面同通路靶点，TICAM2位于适配体复合物节点，可更选择性干预TRIF依赖分支，但成药优先级低于胞外可及靶点。",
+    "mechanism": "通过结合TICAM2 TIR结构域BB-loop及TICAM1接触面，阻断TICAM2与TICAM1/TRIF的TIR-TIR相互作用，抑制TLR4内吞体TRIF依赖信号传递。",
+    "selectedEpitope": "优先覆盖TIR结构域BB-loop邻近的TICAM1结合界面，避开保守疏水核心以降低构象破坏风险。",
+    "diseaseDirection": "感染炎症与脓毒症免疫调控",
+    "domain": "TICAM2含N端膜定位区及C端TIR适配结构域，PDB 9DKI覆盖TIR结构域链A。",
+    "evidence": "TICAM2介导TLR4-TRIF炎症信号证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q86XR7功能与结构域注释",
+      "RCSB PDB 9DKI晶体结构记录",
+      "TLR4-TRAM-TRIF通路文献证据"
+    ],
+    "referenceEntries": "UniProt Q86XR7；RCSB PDB 9DKI；Reactome TLR4 cascade",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "TIR结构域BB-loop及邻近TICAM1对接面",
+        "直接干预TIR-TIR适配体装配，机制可解释性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "TIR结构域DD-loop/EE-loop外露面",
+        "可能通过空间位阻削弱适配复合物稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "TIR结构域保守疏水核心邻近区域",
+        "易影响整体折叠并带来非特异构象风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TICAM2为胞内膜相关适配蛋白，常规抗体难以到达天然作用位点；建议定位于结构探针、细胞内递送格式或体外复合物阻断验证。",
+    "structurePrepZh": "以PDB 9DKI链A为模板，保留TIR结构域构象，检查3.0 Å分辨率下loop缺失、晶体接触和界面残基可置信度。",
+    "structureRef": "RCSB PDB 9DKI，X-ray diffraction，3.0 Å",
+    "antibodies": [
+      "抗TICAM2研究级单克隆抗体",
+      "抗TRAM/TICAM2多克隆抗体"
+    ],
+    "interfaceFocus": "TIR结构域BB-loop介导的TRIF结合界面",
+    "designMode": "胞内适配体界面阻断",
+    "candidates": [
+      {
+        "target": "TLR4",
+        "rationale": "TLR4是LPS识别受体并位于TICAM2上游，抗体可直接阻断TLR4-MD2-LPS复合物形成，抗原可及性显著优于胞内适配蛋白。"
+      },
+      {
+        "target": "CD14",
+        "rationale": "CD14参与LPS递送至TLR4-MD2并促进炎症启动，与脓毒症和感染性炎症处于同一通路，膜型与可溶型抗原均具备抗体干预可行性。"
+      },
+      {
+        "target": "LY96",
+        "rationale": "LY96/MD-2是TLR4脂多糖结合共受体，阻断LY96与LPS或TLR4复合物相互作用可抑制同一TLR4炎症轴。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

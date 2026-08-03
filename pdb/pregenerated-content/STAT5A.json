@@ -1,0 +1,65 @@
+{
+  "gene": "STAT5A",
+  "generatedAt": "2026-08-03T16:58:28.337Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "STAT5A是JAK-STAT轴中的关键转录因子，参与多种肿瘤及髓系疾病相关的增殖、存活与分化程序，其异常激活与白血病及广泛癌症表型具有明确关联。该蛋白虽主要位于胞质和细胞核内，但PDB 7UBT已提供可解析的结构基础，适合围绕SH2介导的磷酸化识别界面开展抗体模拟干预。相较于上游受体或JAK激酶，STAT5A更接近病理转录输出端，具备更直接的通路收敛优势，并可与STAT5B、JAK2等同通路靶点形成优先级分层设计。",
+    "mechanism": "阻断STAT5A SH2结构域对受体磷酸化位点的识别，并抑制其二聚化后核转位与DNA结合。",
+    "selectedEpitope": "优先覆盖SH2 pTyr结合口袋及其邻近二聚化界面，避免仅靶向保守DNA结合面。",
+    "diseaseDirection": "肿瘤/白血病通路",
+    "domain": "N端寡聚化区、coiled-coil区、DNA结合区、SH2区及C端转录激活区",
+    "evidence": "STAT5A抗体设计证据包",
+    "evidenceSources": [
+      "UniProt:P42229",
+      "RCSB PDB:7UBT",
+      "Open Targets Platform",
+      "Reactome: JAK-STAT signaling"
+    ],
+    "referenceEntries": "UniProt P42229; RCSB 7UBT; Reactome STAT5 signaling",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SH2结构域pTyr结合口袋及周边环区",
+        "直接阻断上游磷酸化配体识别，抑制STAT5A激活",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SH2介导的二聚化接触面",
+        "干扰受体激活后STAT5A同源二聚体形成",
+        "备选"
+      ],
+      [
+        "Site C",
+        "DNA结合区表面保守片段",
+        "可影响转录复合体装配，但与STAT家族同源性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险来自STAT5B及其他STAT家族成员的高度同源性，尤其是SH2与DNA结合相关表面。设计上应优先选择PDB 7UBT中暴露且差异化较高的局部环区，并通过负筛选降低交叉反应。",
+    "structurePrepZh": "以7UBT为骨架补全缺失侧链与氢原子，统一按STAT5A链A进行编号映射；结合磷酸化依赖构象进行口袋重建，并评估SH2邻域柔性环的可达性。",
+    "structureRef": "RCSB PDB 7UBT, X-ray diffraction, 2.352 Å",
+    "antibodies": [
+      "STAT5A/STAT5相关研究性单抗",
+      "STAT5 SH2抑制性抗体样分子"
+    ],
+    "interfaceFocus": "SH2 pTyr识别槽与邻近二聚化界面",
+    "designMode": "结构导向阻断",
+    "candidates": [
+      {
+        "target": "STAT5B",
+        "rationale": "STAT5B与STAT5A同属JAK-STAT输出端，在肿瘤和免疫相关疾病中共享下游转录程序，可作为同通路并行验证靶点。其与STAT5A的功能冗余决定了联合或替代设计价值。"
+      },
+      {
+        "target": "JAK2",
+        "rationale": "JAK2位于STAT5A上游，直接介导其酪氨酸磷酸化并触发SH2依赖二聚化，是经典同通路靶点。该靶点更适合作为机制对照和联用比较基准。"
+      },
+      {
+        "target": "FLT3",
+        "rationale": "FLT3突变驱动的急性髓系白血病常通过JAK/STAT程序增强STAT5信号输出，属于与STAT5A同疾病轴的真实上游驱动因子。其可用于建立通路级联验证体系。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

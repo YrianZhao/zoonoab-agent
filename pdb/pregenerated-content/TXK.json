@@ -1,0 +1,65 @@
+{
+  "gene": "TXK",
+  "generatedAt": "2026-08-03T17:35:35.787Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "TXK 属于 Tec 家族非受体酪氨酸激酶，主要参与 T 细胞受体与细胞因子信号后续的 Th1 转录程序，在斑秃等自身免疫性毛囊炎症中可影响 IFN-γ 相关免疫轴。该蛋白为胞内激酶，天然抗原可及性低，不具备膜受体或分泌蛋白的常规抗体成药优势，因此更适合作为机制研究或胞内递送抗体设计对象。相较于 JAK1、JAK3、IFNG 或 IL2RA 等同通路且外部可及性更强的靶点，TXK 的优先级主要来自 T 细胞亚群选择性与结构域可解析性，而非传统抗体阻断可及性。",
+    "mechanism": "通过胞内递送抗体结合 TXK SH3 结构域的配体结合沟槽，干扰其与富脯氨酸序列介导的组装相互作用，削弱 TCR 下游 Th1 相关信号复合体形成。",
+    "selectedEpitope": "优先覆盖 SH3 结构域 RT loop、n-Src loop 与保守芳香疏水沟槽，限制 PxxP 配体结合。",
+    "diseaseDirection": "自身免疫性斑秃与T细胞炎症",
+    "domain": "2DM0 对应人 TXK SH3 结构域溶液 NMR 结构；全长蛋白还含 PH、Tec homology、SH2 与激酶结构域。",
+    "evidence": "TXK-T细胞自身免疫通路抗体设计证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProtKB P42681 functional annotation",
+      "RCSB PDB 2DM0 solution NMR structure",
+      "Tec family kinase and Th1/TCR signaling literature"
+    ],
+    "referenceEntries": "UniProtKB:P42681；RCSB PDB:2DM0；Open Targets:TXK",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SH3 结构域 RT loop/n-Src loop 围成的 PxxP 配体结合沟槽",
+        "直接干扰 SH3 介导的蛋白组装界面，机制指向性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SH3 结构域 β-barrel 外侧非保守暴露面",
+        "可提高 TXK 相对 Tec 家族同源 SH3 的选择性，适合亲和力成熟",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SH3 结构域保守芳香核心邻近区域",
+        "可能影响折叠稳定性并增加与 ITK、BTK 等 SH3 结构域交叉反应风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "TXK 为胞内非受体激酶，常规抗体难以到达作用位点；SH3 保守沟槽存在 Tec 家族交叉反应风险，需引入细胞递送策略并开展同源结构域反筛。",
+    "structurePrepZh": "以 2DM0 NMR 模型集评估 SH3 构象异质性，保留代表性低能构象，标注 RT loop、n-Src loop 与芳香疏水沟槽后进行表位聚类。",
+    "structureRef": "RCSB PDB 2DM0；human TXK SH3 domain solution NMR",
+    "antibodies": [
+      "无已批准TXK靶向治疗性抗体",
+      "研究级抗TXK抗体"
+    ],
+    "interfaceFocus": "SH3-PxxP配体结合沟槽及相邻选择性外侧面",
+    "designMode": "胞内递送抗体",
+    "candidates": [
+      {
+        "target": "IFNG",
+        "rationale": "IFNG 是 Th1 免疫轴的核心效应细胞因子，与斑秃毛囊免疫炎症密切相关；分泌蛋白可及性高，适合中和抗体设计。"
+      },
+      {
+        "target": "IL2RA",
+        "rationale": "IL2RA 标记并调控活化 T 细胞与调节性 T 细胞反应，位于自身免疫性 T 细胞扩增通路中；其胞外受体结构域具有明确抗体结合可及性。"
+      },
+      {
+        "target": "JAK3",
+        "rationale": "JAK3 参与多种 γc 细胞因子受体下游信号，与 T 细胞活化和自身免疫炎症相关；作为胞内激酶可与 TXK 形成通路层面的机制对照。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

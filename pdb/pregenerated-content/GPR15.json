@@ -1,0 +1,65 @@
+{
+  "gene": "GPR15",
+  "generatedAt": "2026-08-03T12:54:29.921Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GPR15 是七跨膜 GPCR，参与结肠黏膜相关 T 细胞归巢，GPR15L 与其结合后可促进 GPR15 阳性调节性 T 细胞向结肠上皮迁移，与 colitis 和肠道炎症微环境相关。其 N 端、三段胞外环及配体进入口袋外侧面向细胞外空间，具备膜受体抗原可及性。相较于广泛表达的炎症因子靶点，GPR15 具有组织归巢选择性和受体构象可解析优势，适合开展阻断型抗体设计。",
+    "mechanism": "抗体阻断 GPR15 胞外入口区与内源性配体 GPR15L 的结合，抑制受体构象激活及下游 G 蛋白偶联信号，降低 GPR15 阳性 T 细胞结肠归巢。",
+    "selectedEpitope": "优先覆盖 N 端与 ECL2 共同形成的配体入口边缘，兼顾 ECL3 稳定接触以增强阻断效应。",
+    "diseaseDirection": "炎症性肠病与结肠炎免疫归巢",
+    "domain": "典型 A 类 GPCR 七跨膜螺旋结构，含胞外 N 端、ECL1-ECL3 与细胞外配体入口区。",
+    "evidence": "GPR15 结构与肠道炎症归巢证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联数据",
+      "UniProt P49685 功能与拓扑注释",
+      "RCSB PDB 8ZQE 冷冻电镜结构",
+      "GPR15L-GPR15 结肠 T 细胞归巢研究文献"
+    ],
+    "referenceEntries": "UniProtKB P49685；RCSB PDB 8ZQE；Open Targets GPR15",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N 端与 ECL2 配体入口复合表面",
+        "直接干预 GPR15L 结合与受体激活，适合阻断型抗体优先设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ECL3 及 TM6/TM7 外侧构象边缘",
+        "可稳定锁定非活化构象并辅助降低配体诱导构象转换",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ECL1 及 TM2/TM3 外侧浅表区域",
+        "可及性较好但功能阻断证据相对有限，需结合突变扫描验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GPCR 胞外环柔性较高，单独识别 ECL 可能产生构象依赖性风险。建议采用结构约束免疫原与细胞结合筛选并行，排除非特异膜蛋白交叉反应。",
+    "structurePrepZh": "以 8ZQE 冷冻电镜模型为模板，保留受体胞外区与关键构象水分子，去除非目标复合组分后补全缺失侧链并进行膜环境约束优化。",
+    "structureRef": "RCSB PDB 8ZQE，human GPR15 cryo-EM structure，2.9 Å",
+    "antibodies": [
+      "anti-GPR15 monoclonal antibody clone 367902",
+      "anti-GPR15 monoclonal antibody clone SA302A10"
+    ],
+    "interfaceFocus": "N 端-ECL2 配体入口与 ECL3 构象锁定面",
+    "designMode": "GPCR阻断型抗体",
+    "candidates": [
+      {
+        "target": "GPR15LG",
+        "rationale": "GPR15LG 编码 GPR15L，是 GPR15 的内源性配体，直接位于同一受体-配体轴。靶向配体可作为阻断 GPR15 介导结肠归巢的替代策略。"
+      },
+      {
+        "target": "CCR9",
+        "rationale": "CCR9 通过 CCL25 介导肠道 T 细胞归巢，与 GPR15 同属黏膜免疫细胞迁移通路。其肠道选择性使其适合作为并行比较的趋化受体靶点。"
+      },
+      {
+        "target": "MADCAM1",
+        "rationale": "MADCAM1 与整合素 α4β7 相互作用，驱动淋巴细胞向肠道黏膜归巢。该黏附轴与 GPR15 归巢轴共同参与肠道炎症细胞定位。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "DISP1",
+  "generatedAt": "2026-08-03T11:58:13.350Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DISP1 是 Sonic Hedgehog 分泌与长程形态发生信号建立所必需的多跨膜转运蛋白，其功能缺陷可降低 SHH 从产生细胞释放并导致前脑中线模式化异常，与全前脑畸形谱系具有明确机制关联。该靶点在质膜具有大型胞外结构域与多跨膜胞外环，可为抗体识别提供细胞外可及抗原面。相比下游 GLI 转录因子或胞内 PTCH1 调控节点，DISP1 处于 SHH 配体外排步骤，抗体干预更适合解析配体释放界面并具备膜外靶向可操作性。",
+    "mechanism": "通过结合 DISP1 胞外 SHH 装载/释放相关界面，阻断胆固醇修饰 SHH 与 DISP1 胞外腔面的相互作用，降低 SHH 从产生细胞释放。",
+    "selectedEpitope": "优先覆盖 7E2G 中胞外结构域 ECD 的 SHH 结合腔入口及相邻胞外环界面。",
+    "diseaseDirection": "SHH 通路相关全前脑畸形",
+    "domain": "DISP1 含固醇感知结构域样跨膜核心、RND 转运蛋白样多跨膜束及大型胞外结构域。",
+    "evidence": "DISP1-SHH 形态发生信号与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt Q96F81 蛋白功能注释",
+      "RCSB PDB 7E2G 冷冻电镜结构",
+      "Hedgehog 配体释放与 DISP1 功能文献"
+    ],
+    "referenceEntries": "UniProt Q96F81；RCSB PDB 7E2G；Open Targets DISP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "胞外结构域 ECD 的 SHH 结合腔入口",
+        "直接干预胆固醇化 SHH 装载与释放，机制指向性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "靠近跨膜核心的胞外环与 ECD 连接界面",
+        "可能影响 DISP1 构象转换及配体外排通道开放",
+        "备选"
+      ],
+      [
+        "Site C",
+        "跨膜束外侧低保守胞外环区域",
+        "可及性较高但功能耦合证据较弱，需避免仅获得非阻断性结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DISP1 为多跨膜蛋白，胞外环柔性和糖基化可能影响表位暴露；设计宜避开膜近端遮挡区，并优先验证对 SHH 释放的功能阻断。",
+    "structurePrepZh": "以 7E2G 抗原链 D 为模板，保留胞外结构域与跨膜上方胞外环，补全缺失环区并标注膜平面、糖基化位点及低置信柔性片段。",
+    "structureRef": "RCSB PDB 7E2G，human DISP1 冷冻电镜结构，3.61 Å",
+    "antibodies": [
+      "anti-DISP1 functional antibody",
+      "anti-DISP1 extracellular domain antibody"
+    ],
+    "interfaceFocus": "ECD 配体结合腔入口及胞外环耦合界面",
+    "designMode": "膜蛋白阻断抗体设计",
+    "candidates": [
+      {
+        "target": "SHH",
+        "rationale": "SHH 是 DISP1 介导释放的核心配体，参与前脑中线模式化；靶向 SHH 可直接调节同一 Hedgehog 形态发生轴。"
+      },
+      {
+        "target": "PTCH1",
+        "rationale": "PTCH1 是 SHH 的受体并解除对 SMO 的抑制，是同一通路中细胞外可及的膜受体节点，具有明确遗传疾病关联。"
+      },
+      {
+        "target": "SMO",
+        "rationale": "SMO 位于 PTCH1 下游并驱动 GLI 转录反应，是 Hedgehog 信号转导核心膜蛋白，可作为通路功能验证和替代干预节点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

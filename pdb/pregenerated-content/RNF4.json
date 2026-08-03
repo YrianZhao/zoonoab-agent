@@ -1,0 +1,65 @@
+{
+  "gene": "RNF4",
+  "generatedAt": "2026-08-03T21:04:03.466Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RNF4为SUMO靶向E3泛素连接酶，识别多聚SUMO化底物并促进其泛素化降解，参与DNA损伤应答、转录因子稳定性及蛋白质稳态调控，相关遗传证据与神经退行性疾病和血液系统表型存在关联。RNF4为细胞内核蛋白，天然抗体抗原可及性弱，需将设计定位于结构验证、胞内递送抗体或研究级构象阻断工具。相比同通路中广泛核心酶类，RNF4具有SIM介导底物识别与RING二聚化催化界面两个可分离功能模块，便于机制性表位设计，但治疗抗体优先级低于胞外或分泌型靶点。",
+    "mechanism": "阻断RNF4 SIM区与多聚SUMO2/3链的结合，或干扰RING结构域二聚化及E2泛素结合界面，抑制SUMO化底物的泛素转移。",
+    "selectedEpitope": "优先覆盖N端SIM簇的SUMO链结合沟槽；备选RING二聚化界面，避免完全遮蔽锌配位核心。",
+    "diseaseDirection": "蛋白稳态与神经退行性疾病",
+    "domain": "RNF4含N端SUMO-interacting motifs与C端C3HC4型RING锌指结构域，2XEU解析RING二聚体。",
+    "evidence": "RNF4-SUMO靶向泛素化结构与疾病遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P78317功能与结构域注释",
+      "RCSB PDB 2XEU晶体结构记录",
+      "RNF4 STUbL介导SUMO化底物泛素化文献"
+    ],
+    "referenceEntries": "UniProt:P78317；RCSB PDB:2XEU；Open Targets:RNF4",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端SIM簇SUMO2/3链结合区域",
+        "可直接阻断RNF4对多聚SUMO化底物的识别，机制选择性较高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端RING结构域二聚化界面",
+        "可削弱E3连接酶活性所需二聚体构象，适合构象抑制型分子设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "RING锌配位Cys/His邻近区域",
+        "可能影响折叠稳定性并产生非特异构象破坏，需谨慎规避",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RNF4为胞内核蛋白，常规抗体难以到达作用位点；RING锌指界面保守性高，需控制交叉反应并优先采用胞内递送或研究级Fab/VHH策略。",
+    "structurePrepZh": "以2XEU的A、B链RING二聚体为模板，补充未解析N端SIM区的预测模型，并保留锌离子配位约束用于界面评估。",
+    "structureRef": "RCSB PDB 2XEU；人RNF4 RING结构，1.5 Å X射线晶体学",
+    "antibodies": [
+      "研究级anti-RNF4抗体",
+      "研究级anti-SUMO2/3抗体"
+    ],
+    "interfaceFocus": "SIM-SUMO链结合面与RING二聚化/E2结合界面",
+    "designMode": "胞内构象阻断",
+    "candidates": [
+      {
+        "target": "SUMO2",
+        "rationale": "SUMO2形成多聚SUMO链并作为RNF4识别底物的关键修饰信号，处于同一SUMO靶向泛素化通路。阻断SUMO2链表位可干预RNF4底物招募。"
+      },
+      {
+        "target": "SUMO3",
+        "rationale": "SUMO3与SUMO2共同参与应激诱导的多聚SUMO化修饰，是RNF4 SIM簇识别的直接配体。其链连接表位适合作为RNF4轴的替代干预点。"
+      },
+      {
+        "target": "UBE2I",
+        "rationale": "UBE2I编码UBC9，是SUMO缀合反应的核心E2酶，位于RNF4介导底物识别之前的同一SUMO化通路。调节UBE2I可改变RNF4可识别的SUMO化底物负荷。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

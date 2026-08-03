@@ -1,0 +1,65 @@
+{
+  "gene": "POLR2C",
+  "generatedAt": "2026-08-03T15:26:15.169Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "POLR2C编码RNA聚合酶II核心亚基RPB3，参与POLR2J/RPB11异二聚体形成并稳定转录酶复合体，在HIV感染中是宿主RNA聚合酶II介导病毒转录延伸的组成部分。该蛋白主要定位于细胞核内转录复合体，缺乏天然胞外结构域或分泌形式，抗体抗原可及性显著受限，需定位为胞内递送抗体或结构机制研究靶点。相比病毒包膜蛋白或细胞表面入侵因子，POLR2C的优先级优势在于宿主依赖性强、结构保守且具有高分辨率复合物结构，但治疗性常规抗体开发优先级低于可及性更佳的膜受体靶点。",
+    "mechanism": "通过胞内抗体阻断POLR2C与POLR2J形成RPB3-RPB11亚复合体界面，削弱RNA聚合酶II装配稳定性并抑制HIV前病毒转录延伸。",
+    "selectedEpitope": "优先覆盖POLR2C N端α螺旋束中RPB11结合界面，避开高度保守催化核心邻近区域。",
+    "diseaseDirection": "HIV宿主转录依赖通路",
+    "domain": "POLR2C为RNA聚合酶II RPB3亚基，含N端装配螺旋束与C端保守α/β结构域。",
+    "evidence": "POLR2C-RNA聚合酶II宿主转录依赖证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P19387功能与亚细胞定位注释",
+      "RCSB PDB 9EHZ冷冻电镜复合物结构",
+      "HIV-1 Tat/P-TEFb依赖RNA聚合酶II转录文献"
+    ],
+    "referenceEntries": "UniProt P19387；RCSB PDB 9EHZ；Open Targets POLR2C",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端RPB3-RPB11异二聚体结合界面",
+        "可直接干预POLR2C-POLR2J装配并影响Pol II复合体稳定性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C端外露α/β结构域非催化表面",
+        "适合获得结构识别抗体并降低对核心核酸结合区的扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "靠近Pol II核心通道的保守复合体内埋界面",
+        "表位可及性低且可能引发广泛宿主转录毒性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "POLR2C为核内必需转录亚基，常规抗体难以进入细胞核；阻断核心装配界面存在全局转录抑制风险，宜采用可控胞内递送与选择性弱化设计。",
+    "structurePrepZh": "以PDB 9EHZ冷冻电镜模型提取POLR2C链并保留邻近POLR2J界面，补全缺失侧链、校正质子化状态后进行界面能量评估。",
+    "structureRef": "RCSB PDB 9EHZ，human RNA polymerase II complex，2.6 Å EM",
+    "antibodies": [
+      "anti-POLR2C research antibody",
+      "anti-RPB3 monoclonal antibody"
+    ],
+    "interfaceFocus": "POLR2C-POLR2J装配界面",
+    "designMode": "胞内抗体探索",
+    "candidates": [
+      {
+        "target": "POLR2A",
+        "rationale": "POLR2A编码RNA聚合酶II最大亚基RPB1，含CTD重复序列，是HIV Tat/P-TEFb促进转录延伸的直接功能平台。其位于同一宿主转录依赖通路，但同样存在核内可及性与必需基因毒性限制。"
+      },
+      {
+        "target": "CDK9",
+        "rationale": "CDK9为P-TEFb催化亚基，磷酸化RNA聚合酶II CTD Ser2并促进HIV转录延伸。该靶点与POLR2C处于同一病毒转录轴，药理证据更充分但抗体可及性仍受胞内定位限制。"
+      },
+      {
+        "target": "CCNT1",
+        "rationale": "CCNT1编码Cyclin T1，是P-TEFb调节亚基并与HIV Tat及TAR RNA协同招募转录延伸复合体。其疾病通路相关性明确，可作为阻断Tat依赖转录复合体形成的候选节点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "BOC",
+  "generatedAt": "2026-08-03T10:51:01.104Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BOC 是 Hedgehog 通路相关的细胞表面共受体，参与 Sonic hedgehog 与 PTCH1 受体复合体的配体呈递和发育信号放大，遗传关联提示其与体格发育、肺功能指标及结直肠良性增生表型相关。该蛋白具有多个胞外 Ig-like 与 fibronectin type III 结构域，膜近端单跨膜定位使抗体可直接识别其胞外抗原区。相较于直接靶向 SMO 或 GLI 等下游胞内信号节点，BOC 具备更好的抗原可及性，并可在受体配体界面层面实现较高选择性的通路干预。",
+    "mechanism": "阻断 BOC 胞外 FNIII 区域与 Sonic hedgehog 配体及 PTCH1 受体复合体的协同作用，削弱 Hedgehog 配体呈递和下游 SMO 解除抑制。",
+    "selectedEpitope": "优先覆盖 FNIII3 结构域的 Shh 结合沟槽及其邻近受体协同界面，避免跨膜近端柔性区。",
+    "diseaseDirection": "Hedgehog相关发育与结直肠增生",
+    "domain": "BOC 含四个 N 端 Ig-like C2 结构域、三个 FNIII 结构域、单跨膜段及胞内尾部。",
+    "evidence": "BOC-Hedgehog通路结构与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q9BWV1 functional annotation",
+      "RCSB PDB 3N1M X-ray structure",
+      "Hedgehog receptor co-receptor literature"
+    ],
+    "referenceEntries": "UniProt Q9BWV1；RCSB PDB 3N1M；Open Targets BOC",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "FNIII3 配体结合沟槽",
+        "直接干预 BOC 与 Sonic hedgehog 的结合，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FNIII2-FNIII3 结构域连接面",
+        "可能影响配体呈递构象及受体复合体装配",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Ig-like 远端结构域外表面",
+        "可获得结合抗体，但与 Hedgehog 功能界面关联较弱",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BOC 与 CDO、GAS1 在 Hedgehog 配体识别中存在功能重叠，应控制交叉反应并优先选择人 BOC 特异性 FNIII3 界面表位。",
+    "structurePrepZh": "以 3N1M 抗原链 B、C 为模板，保留 FNIII 结构域核心，修复缺失侧链并评估二聚接触与晶体堆积界面。",
+    "structureRef": "RCSB PDB 3N1M，X-ray diffraction，1.69 Å",
+    "antibodies": [
+      "anti-BOC monoclonal antibody clone 10C2",
+      "anti-BOC monoclonal antibody clone 5F4"
+    ],
+    "interfaceFocus": "FNIII3-Shh结合沟槽与FNIII2连接面",
+    "designMode": "界面阻断型抗体",
+    "candidates": [
+      {
+        "target": "PTCH1",
+        "rationale": "PTCH1 是 Hedgehog 配体受体并抑制 SMO 活性，位于 BOC 介导配体呈递的同一受体复合体层级。靶向其胞外环区可直接影响 Shh 结合和受体激活。"
+      },
+      {
+        "target": "CDON",
+        "rationale": "CDON 是与 BOC 同源的 Hedgehog 共受体，具有 Ig-like 与 FNIII 胞外结构域，并参与 Shh 依赖性发育信号增强。其通路位置与 BOC 高度接近，适合作为并行靶点。"
+      },
+      {
+        "target": "GAS1",
+        "rationale": "GAS1 是 GPI 锚定的 Hedgehog 共受体，可与 Shh 和 PTCH1 协同形成配体识别平台。其胞外可及性较好，适合用于比较性抗体阻断策略。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

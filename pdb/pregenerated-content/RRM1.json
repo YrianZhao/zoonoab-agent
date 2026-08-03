@@ -1,0 +1,65 @@
+{
+  "gene": "RRM1",
+  "generatedAt": "2026-08-03T16:14:54.213Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RRM1是核糖核苷酸还原酶大亚基，参与将核糖核苷二磷酸还原为脱氧核糖核苷二磷酸，是DNA合成与修复所需dNTP供给的核心限速组分，在非小细胞肺癌、胰腺癌、卵巢癌及白血病中与复制压力、增殖表型和化疗反应相关。该蛋白主要定位于胞质，缺乏稳定胞外结构域或分泌形式，天然抗体可及性弱，因此更适合作为细胞内递送抗体、降解抗体或研究型结合分子靶点。其优先级来自明确的酶学结构、临床药理背景和高质量晶体结构支持；相较一般复制相关蛋白，RRM1具有可定义的催化口袋、变构位点及RRM2装配界面，但治疗性常规胞外抗体开发优先级应低于膜受体或分泌因子。",
+    "mechanism": "设计分子应阻断RRM1与RRM2形成活性核糖核苷酸还原酶复合体，或稳定RRM1非活性构象，从而降低dNDP向dNDP还原产物的通量并限制dNTP供应。",
+    "selectedEpitope": "优先评估RRM1 C端RRM2结合沟槽及α/β催化核心邻近界面，避免单纯靶向深埋催化口袋。",
+    "diseaseDirection": "肿瘤DNA合成与复制压力",
+    "domain": "RRM1含N端ATP锥形变构结构域、α/β催化核心及C端RRM2结合相关区域。",
+    "evidence": "RRM1肿瘤复制代谢与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与药理关联",
+      "UniProtKB P23921蛋白功能与定位注释",
+      "RCSB PDB 6L3R人源RRM1晶体结构",
+      "核糖核苷酸还原酶肿瘤药理学文献"
+    ],
+    "referenceEntries": "UniProt P23921；RCSB PDB 6L3R；Open Targets RRM1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端RRM2结合沟槽及二聚装配邻近面",
+        "可干扰RRM1-RRM2复合体形成，具备明确功能阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ATP锥形变构结构域表面沟槽",
+        "可能稳定非活性变构状态，适合构象选择型结合分子设计",
+        "备选"
+      ],
+      [
+        "Site C",
+        "α/β催化核心深部底物结合口袋",
+        "口袋埋藏且更适合小分子抑制剂，抗体可达性和构象容忍度有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RRM1为胞内酶，常规IgG难以到达作用位点；应采用细胞内递送、VHH融合或降解抗体策略，并严格评估细胞周期毒性。",
+    "structurePrepZh": "以6L3R链A、E为抗原模板，保留生物学相关寡聚状态，补全缺失环区并标注ATP锥形域、催化核心及RRM2结合界面。",
+    "structureRef": "RCSB PDB 6L3R，X射线晶体结构，2.0 Å",
+    "antibodies": [
+      "暂无获批RRM1治疗性抗体",
+      "抗RRM1研究级单克隆抗体"
+    ],
+    "interfaceFocus": "RRM1-RRM2装配界面与变构构象面",
+    "designMode": "胞内阻断/降解",
+    "candidates": [
+      {
+        "target": "RRM2",
+        "rationale": "RRM2是核糖核苷酸还原酶小亚基，向RRM1催化中心提供自由基，是同一dNTP合成通路中最直接的复合体伙伴。阻断RRM1-RRM2装配可直接削弱酶活。"
+      },
+      {
+        "target": "RRM2B",
+        "rationale": "RRM2B编码p53诱导型小亚基，参与DNA损伤应答和线粒体DNA维护，与RRM1共同构成核糖核苷酸还原酶功能轴。其调控背景有助于区分增殖依赖与损伤修复依赖的靶向窗口。"
+      },
+      {
+        "target": "TYMS",
+        "rationale": "TYMS催化dTMP合成，是胸苷酸和dNTP稳态网络中的关键酶，与RRM1共同支撑DNA复制底物供应。在肿瘤复制代谢方向中可作为联合或替代靶点评估。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

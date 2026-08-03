@@ -1,0 +1,65 @@
+{
+  "gene": "GAPDHS",
+  "generatedAt": "2026-08-03T12:42:23.189Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "GAPDHS 是精子发生相关的糖酵解酶，主要定位于精子纤维鞘并参与精子运动所需 ATP 生成；现有 Open Targets 关联以血压、血小板计数和脂质测量等数量性状为主，疾病因果强度较低。该蛋白并非分泌蛋白或经典膜受体，天然构象的抗原可及性低于胞外配体、受体和血浆蛋白。其优先级主要来自高分辨率人源晶体结构与同工酶特异性序列特征，适合作为结构验证型或生殖生物学方向靶点，但作为体内治疗性抗体主靶点优先级弱于可及性更高的 APOB、PCSK9、ANGPTL3 等脂质通路靶点。",
+    "mechanism": "抗体设计宜限定于研究或体外干预场景，通过结合 NAD+/底物结合裂隙邻近环区，空间阻断甘油醛-3-磷酸与催化半胱氨酸进入活性位点。",
+    "selectedEpitope": "优先覆盖 Rossmann NAD+ 结合域与催化域交界处的底物入口环及二聚体邻近面。",
+    "diseaseDirection": "生殖代谢与心血管数量性状",
+    "domain": "GAPDHS 含 N 端 Rossmann NAD+ 结合域、C 端催化结构域及四聚体装配界面。",
+    "evidence": "GAPDHS 结构与数量性状关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt reviewed entry O14556",
+      "RCSB PDB 3H9E X-ray structure",
+      "Human Protein Atlas tissue expression evidence"
+    ],
+    "referenceEntries": "UniProt O14556；RCSB PDB 3H9E；Open Targets GAPDHS",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "NAD+ 结合域与催化域交界的底物入口环",
+        "可直接干扰底物进入催化 Cys 位点，机制可验证性较强",
+        "优先"
+      ],
+      [
+        "Site B",
+        "四聚体二聚化界面邻近外露螺旋与环区",
+        "可能影响寡聚体稳定性并降低酶活，需避免广泛同工酶交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Rossmann 折叠核心 NAD+ 结合沟槽深部",
+        "功能相关但沟槽狭窄且多与保守辅因子结合残基重叠",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "GAPDHS 为胞内精子特异性酶，体内抗体可及性不足；设计应优先用于体外功能阻断、成像或递送偶联场景，并严格评估与 GAPDH 同工酶交叉反应。",
+    "structurePrepZh": "以 3H9E 的 O、P 链为抗原模板，保留 NAD+ 或底物类似物定位信息用于界面定义，补全缺失侧链并进行同源同工酶保守性过滤。",
+    "structureRef": "RCSB PDB 3H9E，1.72 Å X-ray human GAPDHS structure",
+    "antibodies": [
+      "无获批治疗性抗 GAPDHS 抗体",
+      "研究级 anti-GAPDHS 抗体"
+    ],
+    "interfaceFocus": "底物入口环、NAD+ 沟槽边缘与二聚化界面",
+    "designMode": "结构约束型Fab/VHH",
+    "candidates": [
+      {
+        "target": "GAPDH",
+        "rationale": "GAPDH 与 GAPDHS 同属甘油醛-3-磷酸脱氢酶反应节点，可作为糖酵解同工酶选择性与交叉反应评估的关键参照靶点。"
+      },
+      {
+        "target": "PGK1",
+        "rationale": "PGK1 位于 GAPDH/GAPDHS 反应下游，催化 1,3-二磷酸甘油酸向 3-磷酸甘油酸转化并生成 ATP，适合作为同一糖酵解能量通路候选节点。"
+      },
+      {
+        "target": "ALDOA",
+        "rationale": "ALDOA 位于糖酵解上游，生成甘油醛-3-磷酸并为 GAPDHS 底物供给提供通量来源，可用于构建糖酵解通路内替代靶点评估。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

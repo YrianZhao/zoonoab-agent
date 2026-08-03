@@ -1,0 +1,65 @@
+{
+  "gene": "RNF123",
+  "generatedAt": "2026-08-03T16:06:03.555Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RNF123为胞内E3泛素连接酶，其遗传关联主要集中于HbA1c、网织红细胞和血小板相关表型，提示其可能通过蛋白稳态与造血细胞状态影响血液学数量性状。该蛋白缺乏经典分泌区段或跨膜胞外结构域，天然抗原可及性低，不适合作为常规治疗性外源阻断抗体的优先靶点。相较于同通路中具有细胞表面可及性的造血受体或配体，RNF123更适合定位为结构验证、胞内递送抗体或研究级结合分子靶点，优先级应低于EPOR、MPL等膜受体靶点。",
+    "mechanism": "设计抗体应以胞内递送形式阻断RNF123 RING结构域与E2泛素结合酶的接触，从而干扰底物泛素转移复合物形成。",
+    "selectedEpitope": "优先覆盖RING锌指结构域的E2结合面，避开Zn2+配位核心残基以降低构象破坏风险。",
+    "diseaseDirection": "血液学数量性状与糖代谢表型",
+    "domain": "RNF123含N端蛋白相互作用区、中央低复杂度区及C端C3HC4型RING锌指E3连接酶结构域。",
+    "evidence": "RNF123遗传关联与RING结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q5XPI4蛋白功能与结构域注释",
+      "RCSB PDB 2MA6溶液NMR结构记录",
+      "Pfam/InterPro RING-type zinc finger结构域注释"
+    ],
+    "referenceEntries": "UniProt Q5XPI4；RCSB PDB 2MA6；Open Targets RNF123",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "C端RING锌指E2酶结合界面",
+        "可直接干预E3-E2泛素转移复合物形成，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "RING结构域外周非Zn2+配位螺旋/环区",
+        "有利于获得构象识别抗体并降低金属配位扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Zn2+配位半胱氨酸/组氨酸核心区域",
+        "可能导致结构域折叠破坏或非特异构象失稳",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RNF123为胞内蛋白，常规抗体难以到达作用位点；RING结构域依赖Zn2+配位，表位设计需避开金属配位核心并采用胞内递送或intrabody策略。",
+    "structurePrepZh": "以PDB 2MA6的NMR构象集为模板，保留Zn2+配位几何，进行构象聚类后选择代表性模型用于界面映射。",
+    "structureRef": "RCSB PDB 2MA6，human RNF123 RING domain，SOLUTION NMR",
+    "antibodies": [
+      "无RNF123临床批准抗体",
+      "研究级抗RNF123多克隆抗体"
+    ],
+    "interfaceFocus": "RING结构域E2结合面与Zn2+配位邻近环区",
+    "designMode": "胞内递送抗体设计",
+    "candidates": [
+      {
+        "target": "EPOR",
+        "rationale": "EPOR是红细胞生成通路的细胞表面受体，直接介导EPO依赖的JAK2激活，与网织红细胞和红系数量性状具有明确通路关联。其胞外配体结合域具备优于RNF123的抗体可及性。"
+      },
+      {
+        "target": "MPL",
+        "rationale": "MPL编码血小板生成素受体，参与造血干祖细胞维持与巨核细胞分化，和血小板相关表型处于同一造血调控网络。其膜受体胞外区适合阻断或激动型抗体设计。"
+      },
+      {
+        "target": "JAK2",
+        "rationale": "JAK2位于EPOR与MPL下游，驱动STAT信号转导并影响红系及巨核细胞生成。该靶点虽为胞内激酶，但与RNF123关联表型所在造血通路具有清晰机制连接。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

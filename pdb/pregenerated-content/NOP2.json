@@ -1,0 +1,65 @@
+{
+  "gene": "NOP2",
+  "generatedAt": "2026-08-03T20:19:50.732Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NOP2 是核仁定位的 RNA 甲基转移酶样蛋白，参与核糖体 RNA 成熟和核糖体生物发生，其异常表达与肿瘤增殖、肝细胞癌及肾细胞癌等增殖性疾病存在关联。该蛋白主要位于核仁和核内，不具备经典分泌蛋白或细胞膜受体特征，因此完整抗体直接结合活细胞天然抗原的可及性较低。相较 EGFR、VEGFA 等胞外肿瘤靶点，NOP2 更适合作为细胞内功能验证、结构引导结合分子或抗体片段工具靶点，优先级应低于具有明确胞外可及性的同通路靶点。",
+    "mechanism": "设计结合 NOP2 甲基转移酶核心结构域的胞内抗体片段，空间阻断其与 rRNA 底物或核仁核糖体装配复合物的结合界面。",
+    "selectedEpitope": "优先聚焦 SAM 依赖甲基转移酶折叠邻近的 rRNA 底物结合沟槽，避免深埋催化口袋。",
+    "diseaseDirection": "肿瘤增殖与核糖体生物发生",
+    "domain": "NOP2 含保守 RNA 甲基转移酶核心区，包含 SAM 结合相关催化基序及核仁定位相关区域。",
+    "evidence": "NOP2 肿瘤关联与结构可设计性证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProtKB P46087 蛋白功能与定位注释",
+      "RCSB PDB 8FKV 冷冻电镜结构",
+      "核糖体生物发生与癌症增殖通路文献"
+    ],
+    "referenceEntries": "UniProt P46087；RCSB PDB 8FKV；Open Targets NOP2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "甲基转移酶核心区的 rRNA 底物结合沟槽外缘",
+        "有望干扰 NOP2 与 RNA 底物识别，同时保留抗体片段可达性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SAM 结合口袋邻近的保守催化基序周边",
+        "可用于构建功能阻断型结合分子，但需避免仅识别深埋小分子口袋",
+        "备选"
+      ],
+      [
+        "Site C",
+        "核仁定位相关低复杂度区域或柔性延伸段",
+        "可能具有免疫原性，但结构稳定性和功能阻断相关性不足",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NOP2 为核仁内细胞内蛋白，传统抗体药物难以进入天然作用空间；建议限定为胞内抗体、Fab/VHH 结构探针或降解平台结合臂，并验证核内递送效率。",
+    "structurePrepZh": "以 8FKV 冷冻电镜模型为结构基础，提取 NOP2 对应链后补全缺失环区，校验 SAM 结合基序、RNA 接触残基及核仁复合物界面。",
+    "structureRef": "RCSB PDB 8FKV，2.47 Å electron microscopy",
+    "antibodies": [
+      "无获批 NOP2 靶向治疗性抗体",
+      "研究级 anti-NOP2 抗体"
+    ],
+    "interfaceFocus": "rRNA 结合沟槽与 SAM 催化邻近界面",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "RPL5",
+        "rationale": "RPL5 参与核糖体大亚基装配，并与核糖体生物发生压力和肿瘤抑制轴相关，可作为同一核糖体生成异常通路的功能参照靶点。"
+      },
+      {
+        "target": "RPL11",
+        "rationale": "RPL11 在核糖体应激中连接核仁功能障碍与 MDM2-TP53 轴，适合用于评估 NOP2 相关核糖体生物发生扰动的下游效应。"
+      },
+      {
+        "target": "MDM2",
+        "rationale": "MDM2 是核糖体应激影响 TP53 稳定性的关键调控因子，与 RPL5/RPL11 介导的肿瘤抑制机制处于同一疾病相关通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

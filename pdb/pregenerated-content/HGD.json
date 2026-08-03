@@ -1,0 +1,65 @@
+{
+  "gene": "HGD",
+  "generatedAt": "2026-08-03T19:46:36.844Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HGD编码尿黑酸1,2-双加氧酶，是酪氨酸和苯丙氨酸分解通路中将尿黑酸转化为马来酰乙酰乙酸的细胞内代谢酶，功能缺陷直接导致尿黑酸蓄积并引发黑尿病。该蛋白为胞质六聚体酶，缺乏分泌信号肽、跨膜区和稳定胞外结构域，常规抗体药物的体内抗原可及性明显受限。其优先级主要来自单基因疾病因果性、PDB 1EYB高分辨率结构和明确活性位点，而非优于膜受体或分泌型同类靶点的可成药性；更适合作为结构生物学验证、细胞内递送抗体或诊断结合试剂靶点。",
+    "mechanism": "抗体需识别HGD亚基表面并干扰六聚体装配或遮蔽Fe2+依赖活性位点入口，从而影响尿黑酸与催化中心的结合。",
+    "selectedEpitope": "优先评估1EYB中活性位点入口邻近环区及亚基-亚基界面，避免深埋Fe2+配位残基。",
+    "diseaseDirection": "黑尿病与酪氨酸分解异常",
+    "domain": "HGD为胞质金属依赖双加氧酶，形成同源六聚体，含Fe2+结合催化口袋和亚基装配界面。",
+    "evidence": "HGD-黑尿病遗传因果与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q93099功能与亚细胞定位注释",
+      "RCSB PDB 1EYB晶体结构",
+      "OMIM黑尿病与HGD致病变异记录"
+    ],
+    "referenceEntries": "UniProt Q93099；RCSB PDB 1EYB；Open Targets HGD",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化口袋入口邻近可及环区",
+        "可能阻断尿黑酸进入Fe2+依赖催化中心，适合功能抑制型结合设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "六聚体亚基-亚基装配界面外缘",
+        "可用于干扰寡聚体稳定性或构建构象选择性抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Fe2+配位残基深部催化核心",
+        "结构保守且空间埋藏，抗体可及性差，易影响金属结合解释",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HGD为胞质酶，系统给药抗体难以触达天然抗原；应优先限定为细胞内抗体、递送平台或体外检测场景，并避免将其定位为常规胞外阻断靶点。",
+    "structurePrepZh": "以PDB 1EYB链A为模板，补全缺失侧链、保留Fe2+及关键催化残基注释，按生物学六聚体评估界面可及性。",
+    "structureRef": "Titus et al., Nat Struct Biol, human HGD structure, PDB 1EYB",
+    "antibodies": [
+      "无已批准HGD治疗性抗体",
+      "研究级抗HGD检测抗体"
+    ],
+    "interfaceFocus": "活性位点入口环区与六聚体装配界面",
+    "designMode": "胞内抗体/诊断试剂",
+    "candidates": [
+      {
+        "target": "HPD",
+        "rationale": "HPD位于酪氨酸分解通路上游，将4-羟基苯丙酮酸转化为尿黑酸；抑制HPD可降低HGD缺陷背景下尿黑酸生成，是黑尿病通路中已有药理学验证的干预节点。"
+      },
+      {
+        "target": "TAT",
+        "rationale": "TAT催化酪氨酸转氨生成4-羟基苯丙酮酸，处于尿黑酸生成上游；其通路位置支持代谢通量调节研究，但同样为胞内酶，抗体可及性受限。"
+      },
+      {
+        "target": "FAH",
+        "rationale": "FAH为酪氨酸分解通路下游酶，催化延胡索酰乙酰乙酸水解；与HGD同属该代谢轴，可用于评估下游代谢阻断与毒性风险。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

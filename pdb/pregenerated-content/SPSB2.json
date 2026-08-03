@@ -1,0 +1,65 @@
+{
+  "gene": "SPSB2",
+  "generatedAt": "2026-08-03T16:53:35.604Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SPSB2是Cullin5-RBX2型E3泛素连接酶适配蛋白，SPR Y结构域识别诱导型一氧化氮合酶NOS2的DINNN肽段并促进其泛素化降解，可能影响神经炎症与肿瘤炎症微环境中的NO稳态。该蛋白主要为胞内适配因子，不具备典型分泌蛋白或膜受体的天然抗原可及性，抗体策略更适合采用细胞内递送抗体或结构机制验证场景。相较于直接靶向NOS2催化活性，SPSB2的SPR Y肽结合沟槽提供高分辨率结构锚点，可实现对底物招募界面的选择性干预，但整体优先级受限于胞内可及性。",
+    "mechanism": "抗体结合SPSB2 SPRY结构域的NOS2肽结合沟槽，阻断SPSB2识别NOS2 DINNN基序，从而抑制NOS2被Cullin5复合体招募并泛素化降解。",
+    "selectedEpitope": "优先覆盖SPRY结构域中NOS2 DINNN肽结合沟槽及邻近β夹层边缘残基。",
+    "diseaseDirection": "神经炎症与肿瘤炎症调控",
+    "domain": "N端SPRY/B30.2底物识别结构域连接C端SOCS box，后者招募Elongin B/C-Cullin5复合体。",
+    "evidence": "SPSB2-NOS2底物识别结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "RCSB PDB 6JWM X射线晶体结构",
+      "UniProt Q99619功能与结构域注释",
+      "SPSB2介导NOS2泛素化降解相关文献"
+    ],
+    "referenceEntries": "UniProt Q99619；RCSB PDB 6JWM；Open Targets SPSB2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SPRY结构域NOS2 DINNN肽结合沟槽",
+        "直接阻断底物识别，机制验证价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SPRY结构域β夹层外侧邻近底物沟槽区域",
+        "可通过空间位阻削弱NOS2肽段装载",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端SOCS box与Elongin C结合相关区域",
+        "可能干扰E3复合体装配，但保守性与胞内功能风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SPSB2为胞内E3适配蛋白，常规抗体组织暴露不足；设计宜限定为细胞内递送、VHH或研究级阻断分子，并评估SPSB1/4交叉反应。",
+    "structurePrepZh": "以6JWM高分辨率晶体结构为模板，保留SPRY结构域与配体肽相互作用信息，补全缺失侧链并标注底物沟槽极性残基。",
+    "structureRef": "RCSB PDB 6JWM，X-ray diffraction，1.23 Å",
+    "antibodies": [
+      "SPSB2研究级多克隆抗体",
+      "SPSB2研究级单克隆抗体"
+    ],
+    "interfaceFocus": "SPRY结构域NOS2 DINNN肽结合沟槽",
+    "designMode": "胞内界面阻断",
+    "candidates": [
+      {
+        "target": "NOS2",
+        "rationale": "NOS2是SPSB2识别并促降解的直接底物，位于同一NO生成与炎症调控轴；直接调节NOS2可影响炎症性NO输出。"
+      },
+      {
+        "target": "SPSB1",
+        "rationale": "SPSB1同属SPSB家族并可识别NOS2相似DINNN基序，适合作为选择性与功能冗余评估靶点。"
+      },
+      {
+        "target": "CUL5",
+        "rationale": "CUL5是SPSB2-SOCS box招募的E3泛素连接酶骨架蛋白，参与NOS2泛素化复合体装配，属于同一底物降解通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

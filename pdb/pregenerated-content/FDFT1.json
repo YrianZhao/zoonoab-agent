@@ -1,0 +1,65 @@
+{
+  "gene": "FDFT1",
+  "generatedAt": "2026-08-03T12:31:27.656Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FDFT1编码角鲨烯合酶，催化两分子法呢基焦磷酸缩合生成角鲨烯，是胆固醇生物合成中承接异戊二烯代谢并进入甾醇分支的关键限速节点。Open Targets关联以角鲨烯合酶缺陷、VLDL胆固醇及甘油三酯相关表型为主，符合其在脂质稳态中的机制位置。该蛋白为内质网膜相关酶，主要催化结构域面向胞质，抗原可及性不具备典型细胞外抗体靶点优势，因此更适合细胞内递送抗体片段或结构生物学验证场景。相比HMGCR等上游靶点，FDFT1位于甾醇分支入口，理论上可降低胆固醇合成而相对保留非甾醇异戊二烯产物，具有通路选择性优先级。",
+    "mechanism": "以内源化抗体片段占据FDFT1疏水催化腔，阻断法呢基焦磷酸底物结合及二聚化依赖的角鲨烯生成反应。",
+    "selectedEpitope": "优先覆盖3VJ8催化腔入口及NADPH/底物结合沟槽邻近螺旋束界面。",
+    "diseaseDirection": "脂质代谢异常与甾醇合成",
+    "domain": "FDFT1为内质网膜相关角鲨烯合酶，核心为α螺旋催化结构域，C端含膜锚定区。",
+    "evidence": "FDFT1脂质稳态与角鲨烯合成证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P37268功能与亚细胞定位注释",
+      "RCSB PDB 3VJ8高分辨率晶体结构",
+      "胆固醇生物合成通路与角鲨烯合酶药理研究"
+    ],
+    "referenceEntries": "UniProt P37268；RCSB PDB 3VJ8；Open Targets FDFT1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化腔入口及底物结合沟槽",
+        "直接干扰法呢基焦磷酸进入与缩合反应，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "二聚体接触面邻近螺旋束",
+        "可能削弱活性构象稳定性，适合作为别构抑制表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端膜锚定区邻近片段",
+        "靠近膜界面且构象可及性受限，抗体结合风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FDFT1缺乏天然胞外结构域，常规循环抗体难以直接结合内质网胞质侧酶体；建议限定为细胞内抗体、递送型VHH或工具抗体设计。",
+    "structurePrepZh": "以3VJ8链A为结构模板，保留催化结构域坐标并补充缺失环区；C端膜锚定段需结合AlphaFold或膜环境模型评估。",
+    "structureRef": "PDB 3VJ8，X-ray diffraction，1.52 Å，Homo sapiens FDFT1",
+    "antibodies": [
+      "FDFT1研究级单克隆抗体",
+      "抗角鲨烯合酶工具抗体"
+    ],
+    "interfaceFocus": "催化腔入口、底物结合沟槽与二聚化螺旋界面",
+    "designMode": "细胞内酶抑制抗体",
+    "candidates": [
+      {
+        "target": "HMGCR",
+        "rationale": "HMGCR催化HMG-CoA还原为甲羟戊酸，是胆固醇生物合成上游限速酶，与血脂表型和临床降脂干预直接相关。"
+      },
+      {
+        "target": "SQLE",
+        "rationale": "SQLE催化角鲨烯环氧化，位于FDFT1下游同一甾醇合成分支，可作为调节胆固醇合成的相邻酶靶点。"
+      },
+      {
+        "target": "LSS",
+        "rationale": "LSS将2,3-氧化角鲨烯环化为羊毛甾醇，处于FDFT1下游甾醇骨架形成步骤，适合用于同通路靶点比较。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

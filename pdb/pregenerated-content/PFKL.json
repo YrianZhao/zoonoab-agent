@@ -1,0 +1,65 @@
+{
+  "gene": "PFKL",
+  "generatedAt": "2026-08-03T20:32:18.424Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PFKL编码肝型磷酸果糖激酶，是糖酵解限速步骤中催化果糖-6-磷酸与ATP生成果糖-1,6-二磷酸的核心酶，Open Targets关联主要集中于HbA1c、丙酮酸及血液学代谢表型。该蛋白为胞质四聚体酶，缺乏分泌区段或跨膜胞外结构域，因此完整抗体的体内抗原可及性弱，主要适合作为胞内机制研究、递送型抗体或结构稳定化工具靶点。相比HK1、ALDOA等同通路酶，PFKL位于PFK限速节点且具明确四聚体冷冻电镜结构，可用于变构界面和催化口袋邻域的高分辨率结合设计，但治疗抗体优先级低于胞外代谢受体类靶点。",
+    "mechanism": "设计结合PFKL催化结构域或亚基界面的胞内抗体，阻断ATP/果糖-6-磷酸结合构象转换或干扰PFKL四聚体稳定性，降低果糖-1,6-二磷酸生成。",
+    "selectedEpitope": "优先锁定N端催化结构域的ATP/果糖-6-磷酸口袋邻域及亚基二聚界面外露环区。",
+    "diseaseDirection": "糖酵解代谢与血液代谢表型",
+    "domain": "PFKL为胞质同源四聚体酶，含N端催化半结构域和C端调节半结构域，形成底物与变构配体结合位点。",
+    "evidence": "PFKL糖酵解限速节点与代谢表型证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P17858功能与亚细胞定位注释",
+      "RCSB PDB 8W2H冷冻电镜四聚体结构",
+      "KEGG/Reactome糖酵解通路注释"
+    ],
+    "referenceEntries": "UniProt P17858；RCSB PDB 8W2H；Reactome glycolysis",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端催化半结构域ATP/果糖-6-磷酸结合口袋邻近外露环",
+        "可直接影响底物结合与催化闭合构象，适合功能阻断型胞内抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "A-B或C-D亚基二聚化界面周边可及表面",
+        "可干扰四聚体装配或稳定性，用于构象锁定与酶活调制",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端调节半结构域变构配体结合邻域",
+        "可能影响ATP、ADP、柠檬酸或果糖-2,6-二磷酸介导的调节，需避免非特异构象效应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PFKL为胞内代谢酶，常规抗体难以直接接触天然抗原；应限定为胞内抗体、递送抗体或结构探针，并严格评估与PFKM、PFKP同源保守位点的交叉反应。",
+    "structurePrepZh": "以8W2H四聚体为模板保留A-D链装配，校验催化口袋、变构口袋及亚基界面；补全缺失环区并去除非目标小分子后进行表面可及性分析。",
+    "structureRef": "RCSB PDB 8W2H，human PFKL cryo-EM structure, 2.6 Å",
+    "antibodies": [
+      "PFKL intracellular research antibody",
+      "anti-PFKL diagnostic antibody clone panels"
+    ],
+    "interfaceFocus": "催化口袋邻域与四聚体亚基界面",
+    "designMode": "胞内功能阻断",
+    "candidates": [
+      {
+        "target": "PFKM",
+        "rationale": "PFKM为PFK-1肌型同工酶，与PFKL共同催化糖酵解限速反应；在肌肉和神经代谢表型中具有同通路补偿意义。"
+      },
+      {
+        "target": "PFKP",
+        "rationale": "PFKP为血小板型PFK-1同工酶，参与同一果糖-6-磷酸至果糖-1,6-二磷酸步骤；适合作为PFK同工酶选择性比较靶点。"
+      },
+      {
+        "target": "ALDOA",
+        "rationale": "ALDOA位于PFKL下游，裂解果糖-1,6-二磷酸生成甘油醛-3-磷酸和二羟丙酮磷酸；可用于评估糖酵解通量下游节点干预。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "HLA-DMA",
+  "generatedAt": "2026-08-03T19:48:22.244Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HLA-DMA编码HLA-DM异二聚体的α链，参与MHC II抗原加工通路，通过催化CLIP从HLA-DR/DP/DQ结合槽释放并促进高亲和力肽装载，影响CD4 T细胞抗原呈递。其主要结构域位于内体/溶酶体腔面，属于可被胞内递送抗体片段或工程化结合蛋白识别的腔面抗原区域。相较于广泛多态性的经典HLA-II分子，HLA-DM多态性较低且功能节点更集中，更适合作为调节抗原呈递质量控制的优先探索靶点。",
+    "mechanism": "阻断HLA-DM与HLA-DR肽结合槽邻近区域的接触，抑制CLIP释放和抗原肽编辑，降低特定CD4 T细胞表位呈递效率。",
+    "selectedEpitope": "优先覆盖HLA-DMA α1/α2腔面结构域中参与HLA-DR接触的侧向界面。",
+    "diseaseDirection": "自身免疫与肿瘤抗原呈递",
+    "domain": "I型膜蛋白α链，含腔面α1/α2样结构域、跨膜螺旋及短胞质尾。",
+    "evidence": "HLA-DM介导MHC II肽编辑证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProtKB P28067功能与定位注释",
+      "RCSB PDB 2BC4晶体结构记录",
+      "MHC class II antigen processing literature"
+    ],
+    "referenceEntries": "UniProt P28067；RCSB PDB 2BC4；HGNC HLA-DMA",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "α1/α2腔面HLA-DR接触侧向界面",
+        "直接干预HLA-DM介导的CLIP释放与肽编辑",
+        "优先"
+      ],
+      [
+        "Site B",
+        "α2结构域远端暴露环区",
+        "有利于获得结合探针并降低对异二聚体装配的破坏",
+        "备选"
+      ],
+      [
+        "Site C",
+        "靠近HLA-DMB配对界面的α链核心区域",
+        "可能影响HLA-DM稳定性但存在异二聚体折叠干扰风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HLA-DM主要定位于内体腔面，常规循环抗体组织可达性有限；设计宜定位为胞内递送Fab/VHH或细胞工程验证工具，并规避HLA-DMB装配核心界面。",
+    "structurePrepZh": "以2BC4实验晶体结构为模板，保留HLA-DMA/HLA-DMB异二聚体装配状态，校正缺失环区、糖基化位点与质子化状态后进行界面建模。",
+    "structureRef": "RCSB PDB 2BC4，X-ray diffraction，2.27 Å",
+    "antibodies": [
+      "Map.DM1",
+      "MaP.DM2"
+    ],
+    "interfaceFocus": "HLA-DMA腔面α1/α2与HLA-DR接触界面",
+    "designMode": "界面阻断型",
+    "candidates": [
+      {
+        "target": "HLA-DMB",
+        "rationale": "HLA-DMB与HLA-DMA共同组成HLA-DM异二聚体，是同一MHC II肽编辑复合体的必需β链，可作为协同界面或替代阻断靶点。"
+      },
+      {
+        "target": "HLA-DRA",
+        "rationale": "HLA-DRA构成经典MHC II HLA-DR分子的α链，是HLA-DM进行CLIP释放和肽交换编辑的直接底物复合体组成部分。"
+      },
+      {
+        "target": "CD74",
+        "rationale": "CD74编码不变链，其CLIP片段占据MHC II结合槽并由HLA-DM促进释放，处于同一抗原加工与呈递通路上游。"
+      }
+    ],
+    "preferredFormat": "both"
+  }
+}

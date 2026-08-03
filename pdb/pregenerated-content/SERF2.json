@@ -1,0 +1,65 @@
+{
+  "gene": "SERF2",
+  "generatedAt": "2026-08-03T16:26:50.039Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SERF2 为小型胞内 EDRK 富集蛋白，现有 Open Targets 关联主要来自血细胞比例、脂质表型及血液学性状，关联强度较低且缺乏明确的致病受体-配体轴。该蛋白不具有经典信号肽、跨膜区或稳定胞外结构域，抗原在完整细胞和体液环境中的可及性不支持常规治疗性抗体开发。相较于同类血液免疫表型相关靶点中的分泌因子或膜受体，SERF2 更适合作为结构生物学和细胞内功能研究抗原，治疗性抗体优先级较低。",
+    "mechanism": "抗体可用于结合 SERF2 EDRK 富集螺旋表面并干扰其潜在蛋白互作，但缺乏已验证的胞外配体或受体相互作用可供阻断。",
+    "selectedEpitope": "优先评估 NMR 结构中 EDRK 富集的暴露带电表面，避免仅依赖柔性末端线性表位。",
+    "diseaseDirection": "血液免疫表型与脂质性状研究",
+    "domain": "SERF2 为约59 aa 小型碱性/酸性残基富集蛋白，无跨膜区、无分泌信号肽，PDB 9DT0 提供溶液 NMR 构象。",
+    "evidence": "SERF2 结构与血液表型遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform genetic association evidence",
+      "UniProtKB P84101 functional annotation",
+      "RCSB PDB 9DT0 solution NMR structure",
+      "AlphaFold/InterPro domain and topology annotation"
+    ],
+    "referenceEntries": "UniProt P84101；RCSB PDB 9DT0；Open Targets SERF2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "EDRK 富集核心暴露带电面",
+        "适合获得结构识别型研究抗体，用于免疫检测或互作扰动验证",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N 端柔性带电片段",
+        "序列可及性较高，适合线性表位抗体开发，但构象特异性有限",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端短柔性尾部",
+        "可能产生非构象依赖结合，且同源短肽交叉反应风险需评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "主要风险为胞内定位导致治疗性抗体难以到达抗原，且疾病关联分数偏低。设计宜定位于研究级结合抗体，并开展同源序列交叉反应筛查。",
+    "structurePrepZh": "以 PDB 9DT0 的 NMR ensemble 为基础，比较多构象中稳定暴露残基，标注柔性末端并结合 AlphaFold 模型评估表面连续性。",
+    "structureRef": "RCSB PDB 9DT0，human SERF2 solution NMR structure",
+    "antibodies": [
+      "无已批准 SERF2 靶向抗体",
+      "商业化抗 SERF2 研究抗体"
+    ],
+    "interfaceFocus": "EDRK 富集带电表面及柔性末端边界",
+    "designMode": "研究抗体发现",
+    "candidates": [
+      {
+        "target": "CSF3R",
+        "rationale": "CSF3R 是粒细胞生成和白细胞组成调控中的细胞表面受体，较 SERF2 具有明确膜外结构域和抗体可及性。其通路与中性粒细胞及白细胞比例表型直接相关。"
+      },
+      {
+        "target": "IL5RA",
+        "rationale": "IL5RA 是嗜酸性粒细胞分化和存活通路中的膜受体，直接对应 eosinophil count 表型。阻断 IL5 与 IL5RA 相互作用具有明确抗体药理学基础。"
+      },
+      {
+        "target": "CSF1R",
+        "rationale": "CSF1R 介导单核/巨噬细胞谱系分化和存活信号，与 monocyte percentage of leukocytes 表型具有通路相关性。其胞外免疫球蛋白样结构域适合抗体阻断设计。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

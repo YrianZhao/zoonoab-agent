@@ -1,0 +1,65 @@
+{
+  "gene": "PRKCQ",
+  "generatedAt": "2026-08-03T15:35:05.262Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "PRKCQ编码PKCθ，是T细胞受体与CD28共刺激后募集至免疫突触的丝氨酸/苏氨酸激酶，参与CARMA1-BCL10-MALT1复合体、NF-κB、AP-1及NFAT信号放大，与哮喘、特应性皮炎及嗜酸粒细胞相关炎症表型具有明确免疫通路关联。该蛋白主要为胞内激酶，天然抗原可及性弱，不适合作为常规细胞表面阻断抗体靶点；若用于抗体工程，应优先限定为胞内递送抗体、intrabody或结构辅助型Fab。相较广泛表达的近缘PKC同工酶，PKCθ在T细胞活化轴中具有更集中的功能分工和遗传疾病关联，但抗体成药优先级低于可直接结合胞外配体或膜受体的同通路靶点。",
+    "mechanism": "通过胞内递送抗体占据PKCθ激酶结构域ATP结合裂隙或底物识别面，阻断其对CARD11及下游信号支架的磷酸化放大作用。",
+    "selectedEpitope": "优先针对激酶结构域N-lobe/C-lobe之间ATP结合裂隙邻近构象表位，避开高度保守催化核心残基。",
+    "diseaseDirection": "T细胞炎症与过敏免疫疾病",
+    "domain": "PRKCQ含C2-like调节区、C1A/C1B二酰甘油结合区及C端丝氨酸/苏氨酸激酶结构域。",
+    "evidence": "PRKCQ免疫炎症通路与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q04759功能与结构域注释",
+      "RCSB PDB 1XJD晶体结构记录",
+      "TCR/CD28-PKCθ-CBM-NF-κB通路文献"
+    ],
+    "referenceEntries": "UniProt Q04759；RCSB PDB 1XJD；Open Targets PRKCQ",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域ATP结合裂隙周边N-lobe/C-lobe构象面",
+        "可直接干预催化构象与底物磷酸化，但需严格评估PKC同工酶交叉反应",
+        "优先"
+      ],
+      [
+        "Site B",
+        "激酶结构域C-lobe底物结合沟槽邻近区域",
+        "有机会削弱CARD11等底物识别，保留ATP位点外选择性设计空间",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C1A/C1B二酰甘油结合调节区",
+        "可能影响膜定位，但结构柔性和细胞内可及性带来较高开发不确定性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "PRKCQ为胞内激酶，常规抗体难以进入细胞；催化结构域保守性高，应采用构象选择性筛选并验证PRKCA、PRKCB、PRKCD等同工酶脱靶风险。",
+    "structurePrepZh": "以1XJD链A为激酶结构域模板，补全缺失环区并检查配体、磷酸化位点和晶体接触；表位建模需保留ATP裂隙构象约束。",
+    "structureRef": "RCSB PDB 1XJD，human PKCθ kinase domain，2.0 Å X-ray",
+    "antibodies": [
+      "anti-PKC theta antibody clone 27",
+      "anti-PKC theta antibody clone EPR1487"
+    ],
+    "interfaceFocus": "ATP结合裂隙、C-lobe底物沟槽与激活环邻近面",
+    "designMode": "胞内抗体/结构Fab",
+    "candidates": [
+      {
+        "target": "CD28",
+        "rationale": "CD28共刺激促进PKCθ募集至免疫突触，是T细胞炎症放大的上游膜受体；其胞外结构域具备抗体可及性。"
+      },
+      {
+        "target": "CARD11",
+        "rationale": "CARD11是PKCθ磷酸化后连接TCR信号与CBM复合体形成的关键支架蛋白，位于同一NF-κB激活通路。"
+      },
+      {
+        "target": "TNFRSF4",
+        "rationale": "OX40/TNFRSF4在活化T细胞中增强共刺激和炎症性T细胞存活，与PKCθ相关T细胞免疫放大轴具有通路协同性。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

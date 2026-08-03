@@ -1,0 +1,65 @@
+{
+  "gene": "ALG9",
+  "generatedAt": "2026-08-03T10:24:31.946Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ALG9编码内质网膜α-1,2-甘露糖基转移酶，参与N-糖基化脂质连接寡糖Glc3Man9GlcNAc2-PP-Dol的组装，功能缺陷可导致ALG9-CDG，并与多囊肾相关表型有关。该蛋白为多跨膜内质网酶，抗原天然可及性低于分泌蛋白或质膜受体，抗体设计更适合依托已解析复合物结构进行构象识别、结构稳定或研究级胞内递送策略。相比同通路其他ALG酶，ALG9具有明确遗传疾病关联、较高Open Targets评分及2.89 Å冷冻电镜结构支持，因此适合作为机制验证型优先靶点。",
+    "mechanism": "抗体拟识别ALG9腔面环区及催化邻近构象表面，干预供体甘露糖基转移所需的底物结合或构象稳定相互作用。",
+    "selectedEpitope": "优先覆盖腔面催化入口邻近环区及跨膜螺旋外侧构象界面，避免深埋膜内疏水面。",
+    "diseaseDirection": "先天性糖基化障碍与多囊肾病",
+    "domain": "ALG9为内质网多跨膜α-1,2-甘露糖基转移酶，含膜内催化核心及腔面连接环。",
+    "evidence": "ALG9糖基化缺陷疾病与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9H6U8功能与亚细胞定位注释",
+      "RCSB PDB 9S6S冷冻电镜结构",
+      "OMIM与MONDO先天性糖基化障碍条目"
+    ],
+    "referenceEntries": "UniProt Q9H6U8；RCSB PDB 9S6S；MONDO_0012117",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "腔面催化入口邻近环区",
+        "可能影响脂质连接寡糖底物进入及催化构象稳定，适合功能阻断或构象探针设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "跨膜螺旋外侧的构象暴露界面",
+        "可用于稳定特定构象并提高结构识别特异性，适合作为结构生物学抗体表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "膜内疏水螺旋束深部区域",
+        "天然抗体可及性差且易产生非特异疏水结合，需避免作为主要免疫表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ALG9位于内质网膜，细胞外可及性不足，常规治疗性抗体递送受限。建议定位为结构稳定、胞内递送或机制研究抗体，并严格排除跨膜疏水表位。",
+    "structurePrepZh": "以PDB 9S6S为模板保留抗原链A、B并检查H/L链抗体接触界面；补全缺失环区、定义膜平面、去除非界面冗余组分后进行表位评估。",
+    "structureRef": "RCSB PDB 9S6S，electron microscopy，2.89 Å",
+    "antibodies": [
+      "PDB 9S6S结构中Fab重链H/轻链L",
+      "结构辅助抗ALG9 Fab"
+    ],
+    "interfaceFocus": "腔面环区、催化入口与跨膜构象界面",
+    "designMode": "结构引导Fab设计",
+    "candidates": [
+      {
+        "target": "ALG3",
+        "rationale": "ALG3同属内质网N-糖基化脂质连接寡糖甘露糖基转移步骤，缺陷可导致先天性糖基化障碍I型。与ALG9处于同一寡糖装配通路，适合并行机制比较。"
+      },
+      {
+        "target": "ALG12",
+        "rationale": "ALG12催化Man7GlcNAc2-PP-Dol向Man8GlcNAc2-PP-Dol的甘露糖添加，功能缺陷引起ALG12-CDG。其作用步骤紧邻ALG9下游，具有同通路疾病相关性。"
+      },
+      {
+        "target": "DOLK",
+        "rationale": "DOLK参与多萜醇磷酸供体生成，是N-糖基化前体合成所必需的内质网膜酶。其缺陷同样导致先天性糖基化障碍，可作为通路层级的候选靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

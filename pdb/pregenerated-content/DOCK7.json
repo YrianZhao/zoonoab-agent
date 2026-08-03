@@ -1,0 +1,65 @@
+{
+  "gene": "DOCK7",
+  "generatedAt": "2026-08-03T18:38:41.714Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "DOCK7是胞内鸟嘌呤核苷酸交换因子，参与Rac/Cdc42小GTP酶活化、神经元极性建立与轴突发育，其双等位基因变异与发育性及癫痫性脑病存在明确遗传关联。现有6AJL结构解析的是DOCK7 DHR2催化结构域，抗原位点位于胞内，天然完整抗体难以直接进入活细胞环境。相较于胞外受体或分泌因子靶点，DOCK7作为常规治疗性抗体主靶点优先级较低，但其结构明确、疾病遗传证据较强，适合作为胞内功能阻断型Fab/VHH或递送偶联抗体的结构验证靶点。",
+    "mechanism": "通过结合DOCK7 DHR2催化结构域的Rac/Cdc42结合沟槽，阻断其促进GDP释放与GTP装载的GEF反应。",
+    "selectedEpitope": "优先覆盖DHR2结构域中小GTP酶结合沟槽及催化界面，避免远离催化核心的非功能表面。",
+    "diseaseDirection": "神经发育性癫痫脑病",
+    "domain": "DOCK7含DHR1脂质结合域与DHR2 GEF催化域，6AJL覆盖DHR2胞内催化结构。",
+    "evidence": "DOCK7遗传性癫痫脑病与DHR2结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q96N67功能与变异注释",
+      "RCSB PDB 6AJL晶体结构记录",
+      "OMIM与ClinVar中DOCK7相关遗传病变异"
+    ],
+    "referenceEntries": "UniProt Q96N67；RCSB PDB 6AJL；Open Targets DOCK7",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "DHR2催化结构域Rac/Cdc42结合沟槽",
+        "直接干预小GTP酶结合与核苷酸交换反应，功能阻断价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "DHR2相邻构象稳定螺旋束区域",
+        "可通过构象锁定降低GEF催化效率，适合作为变构型表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "DHR2远端溶剂暴露非催化表面",
+        "结合可及但功能相关性较弱，存在产生非阻断抗体的风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "DOCK7为胞内蛋白，常规抗体体内可及性受限；建议限定为细胞内递送Fab/VHH、降解偶联或机制研究抗体，并严格验证Rac/Cdc42交换抑制。",
+    "structurePrepZh": "以6AJL多链晶体结构为模板，保留DHR2催化域主链，检查缺失环区、晶体接触与质子化状态后进行界面建模。",
+    "structureRef": "RCSB PDB 6AJL，X-ray diffraction，3.23 Å",
+    "antibodies": [
+      "无已批准DOCK7治疗性抗体",
+      "研究级抗DOCK7抗体"
+    ],
+    "interfaceFocus": "DHR2-Rac/Cdc42结合沟槽与催化核心",
+    "designMode": "胞内阻断型",
+    "candidates": [
+      {
+        "target": "CDC42",
+        "rationale": "CDC42是DOCK7下游小GTP酶效应节点，参与神经元极性与细胞骨架重塑；其调控轴与DOCK7介导的GEF反应处于同一功能通路。"
+      },
+      {
+        "target": "RAC1",
+        "rationale": "RAC1可作为DOCK家族GEF调控的小GTP酶，影响肌动蛋白动力学、神经突起形成与突触发育，是DOCK7相关细胞骨架通路中的关键节点。"
+      },
+      {
+        "target": "LRRK2",
+        "rationale": "LRRK2在神经元囊泡运输与细胞骨架调控中可影响Rac/Cdc42相关过程，并与神经系统疾病通路存在交叉，适合作为同类胞内通路风险对照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

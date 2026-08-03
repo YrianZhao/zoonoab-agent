@@ -1,0 +1,65 @@
+{
+  "gene": "H2AC1",
+  "generatedAt": "2026-08-03T19:27:04.443Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "H2AC1编码复制依赖型组蛋白H2A，主要通过核小体装配、染色质压缩及DNA损伤反应影响病毒感染后的宿主转录程序与先天免疫基因可及性。该蛋白为核内染色质结构蛋白，天然状态下缺乏稳定胞外结构域或分泌形式，抗体抗原可及性明显弱于膜受体与分泌因子。其疾病关联以感染性疾病和登革热为主，但作为抗体主靶点的优先级低于病毒进入受体、补体因子或细胞因子轴；若开展抗体设计，更适合作为细胞内递送抗体或研究级染色质识别工具。",
+    "mechanism": "设计抗体识别H2A组蛋白折叠域暴露表面，阻断H2A-H2B二聚体与核小体DNA接触或干扰核小体重塑复合体结合。",
+    "selectedEpitope": "优先评估H2A histone-fold α2-α3螺旋外露面，避开H2A-H2B二聚化核心界面。",
+    "diseaseDirection": "病毒感染与宿主染色质调控",
+    "domain": "H2AC1含N端可修饰尾部和保守histone-fold结构域，参与H2A-H2B二聚体及核小体八聚体形成。",
+    "evidence": "H2AC1感染疾病关联与核小体结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传与功能关联",
+      "UniProt Q96QV6蛋白功能与亚细胞定位注释",
+      "RCSB PDB 5GT0 X射线核小体结构",
+      "Reactome染色质组织与DNA损伤反应通路"
+    ],
+    "referenceEntries": "UniProt Q96QV6；RCSB PDB 5GT0；Open Targets H2AC1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "histone-fold α2-α3螺旋外露面",
+        "可能影响核小体重塑因子或染色质结合蛋白识别，且较少破坏二聚体核心",
+        "优先"
+      ],
+      [
+        "Site B",
+        "N端尾部Lys富集修饰区",
+        "可用于区分乙酰化或泛素化状态相关构象，适合研究级修饰特异抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "H2A-H2B二聚化界面",
+        "高度保守且埋藏于核小体核心，易影响组蛋白基本装配并带来广泛核毒性",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "H2AC1为核内高度保守组蛋白，胞外可及性不足且同源H2A亚型交叉反应风险高；设计应限定于细胞内递送或修饰特异识别场景。",
+    "structurePrepZh": "以5GT0核小体结构提取H2A链，保留H2A-H2B及DNA邻近关系，标注尾部缺失、晶体接触与高度保守残基后再进行表位评估。",
+    "structureRef": "RCSB PDB 5GT0，X-ray diffraction，2.82 Å核小体结构",
+    "antibodies": [
+      "抗Histone H2A抗体",
+      "抗ubiquityl-Histone H2A Lys119抗体"
+    ],
+    "interfaceFocus": "H2A α2-α3外露面与N端尾部修饰区",
+    "designMode": "细胞内抗体/研究抗体",
+    "candidates": [
+      {
+        "target": "H2BC1",
+        "rationale": "H2BC1编码H2B组蛋白，与H2AC1形成H2A-H2B二聚体并共同参与核小体装配，可作为同一染色质组织轴上的配对靶点。"
+      },
+      {
+        "target": "CHD4",
+        "rationale": "CHD4为NuRD染色质重塑复合体ATPase亚基，参与核小体定位与转录抑制，在病毒感染后的宿主染色质重编程中具有通路相关性。"
+      },
+      {
+        "target": "RNF2",
+        "rationale": "RNF2是PRC1复合体催化亚基，介导H2A Lys119单泛素化并调控染色质沉默，与H2A修饰状态处于同一表观遗传调控通路。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

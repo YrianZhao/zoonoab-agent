@@ -1,0 +1,65 @@
+{
+  "gene": "NCK2",
+  "generatedAt": "2026-08-03T14:35:17.416Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "NCK2编码含SH2/SH3结构域的胞内衔接蛋白，参与受体酪氨酸激酶与肌动蛋白重塑、突触结构和血小板信号复合体连接，其遗传关联集中于阿尔茨海默病及血小板相关表型。该蛋白缺乏跨膜区和分泌信号肽，天然抗原可及性不具备常规治疗性抗体优势，更适合作为细胞内研究抗体、递送型抗体或降解平台识别模块。相较于上游可溶性配体或膜受体，NCK2的优先级依据在于其作为多通路汇聚衔接节点，可直接解析SH2介导的磷酸化蛋白招募事件，但成药性优先级低于胞外靶点。",
+    "mechanism": "抗体设计宜阻断NCK2 SH2结构域与磷酸酪氨酸基序结合，或干扰SH3结构域对脯氨酸富集配体的招募，从而削弱下游WASL/N-WASP相关肌动蛋白装配复合体形成。",
+    "selectedEpitope": "优先锁定SH2结构域磷酸肽结合沟槽周缘，兼顾β片层-α螺旋界面构象稳定性。",
+    "diseaseDirection": "神经退行性疾病与血小板表型",
+    "domain": "NCK2由3个N端SH3结构域和1个C端SH2结构域组成，无胞外结构域或跨膜区。",
+    "evidence": "NCK2遗传关联与SH2/SH3结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProtKB O43639蛋白结构域注释",
+      "RCSB PDB 2CIA X射线晶体结构",
+      "文献报道NCK家族参与RTK-肌动蛋白重塑连接"
+    ],
+    "referenceEntries": "UniProtKB: O43639; RCSB PDB: 2CIA; HGNC: NCK2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SH2结构域磷酸酪氨酸结合沟槽及邻近BG环",
+        "直接干预磷酸化受体或衔接蛋白招募，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "第一或第二SH3结构域RT-loop与n-Src loop配体结合面",
+        "可阻断脯氨酸富集配体结合，适合研究型功能抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "SH3/SH3连接区或远离配体沟槽的构象表面",
+        "可能仅产生结合信号而缺乏功能阻断效应，需谨慎验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "NCK2为胞内衔接蛋白，常规抗体难以到达天然作用位点；SH2/SH3结构域在NCK1中高度保守，需通过差异残基规避交叉反应。",
+    "structurePrepZh": "以2CIA高分辨率晶体结构为模板，保留抗原链A与L中可解析结构域，补全缺失环区并标注SH2/SH3配体结合沟槽。",
+    "structureRef": "RCSB PDB 2CIA，X-ray diffraction，1.45 Å",
+    "antibodies": [
+      "NCK2研究级单克隆抗体",
+      "NCK1/2交叉反应研究抗体"
+    ],
+    "interfaceFocus": "SH2磷酸肽沟槽与SH3脯氨酸配体结合面",
+    "designMode": "胞内功能阻断",
+    "candidates": [
+      {
+        "target": "NCK1",
+        "rationale": "NCK1与NCK2同属NCK衔接蛋白家族，具有相同SH3-SH2模块架构，并共同连接受体酪氨酸激酶信号与WASL介导的肌动蛋白重塑。"
+      },
+      {
+        "target": "WASL",
+        "rationale": "WASL/N-WASP是NCK复合体下游肌动蛋白成核调控因子，可通过Arp2/3复合体驱动细胞骨架重排，与NCK2处于同一信号轴。"
+      },
+      {
+        "target": "EGFR",
+        "rationale": "EGFR磷酸化后可通过衔接蛋白网络招募SH2/SH3模块蛋白并触发细胞骨架和迁移相关信号，属于NCK2上游受体酪氨酸激酶节点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

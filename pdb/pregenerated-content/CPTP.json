@@ -1,0 +1,65 @@
+{
+  "gene": "CPTP",
+  "generatedAt": "2026-08-03T11:37:16.508Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CPTP介导神经酰胺-1-磷酸在膜间转运，影响花生四烯酸释放、前列腺素生成及炎症相关脂质信号，肿瘤关联证据目前较弱但具有可检验的代谢调控价值。CPTP为胞质脂质转运蛋白，缺乏天然胞外结构域或分泌形式，抗原可及性明显弱于膜受体与分泌因子，因此更适合细胞内递送抗体片段或结构生物学验证。相比EGFR、IL6或VEGFA等同类疾病网络靶点，CPTP优先级主要来自高分辨率晶体结构和明确脂质结合腔，可支持机制型表位设计，但转化优先级应审慎评估。",
+    "mechanism": "以胞内抗体片段占据CPTP START样疏水腔入口，阻断神经酰胺-1-磷酸头基与结合口袋相互作用并抑制膜间脂质转运。",
+    "selectedEpitope": "优先锁定START样脂质结合腔入口及C1P头基识别环，避免完全埋藏疏水腔深部。",
+    "diseaseDirection": "炎症脂质信号与肿瘤代谢",
+    "domain": "CPTP含单一START样折叠结构域，形成可容纳神经酰胺酰基链的疏水脂质结合腔。",
+    "evidence": "CPTP结构解析与脂质转运功能证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q5TA50功能与亚细胞定位注释",
+      "RCSB PDB 4K84晶体结构记录",
+      "CPTP介导C1P转运及炎症脂质信号研究文献"
+    ],
+    "referenceEntries": "UniProt Q5TA50；RCSB PDB 4K84；Open Targets CPTP",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "START样结构域脂质结合腔入口及C1P头基结合区域",
+        "可直接干预C1P装载与释放，机制闭合度最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "疏水腔邻近α螺旋束外侧可及面",
+        "可能通过构象稳定降低脂质转运效率，适合作为变构阻断方案",
+        "备选"
+      ],
+      [
+        "Site C",
+        "结构域核心β折叠与深部疏水腔内壁",
+        "区域埋藏且保守疏水残基密集，抗体可及性与开发性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CPTP为胞质蛋白，常规体内抗体难以到达靶点；应优先采用VHH、intrabody或递送偶联策略，并严格评估脂质结合腔保守性导致的脱靶风险。",
+    "structurePrepZh": "以4K84链A/B为模板，保留高置信主链坐标，检查晶体接触界面、缺失环区及配体状态，并对脂质结合腔入口进行质子化与水网络整理。",
+    "structureRef": "RCSB PDB 4K84，X-ray，1.897 Å，人源CPTP结构",
+    "antibodies": [
+      "无已获批CPTP靶向抗体",
+      "无临床阶段CPTP同类抗体"
+    ],
+    "interfaceFocus": "C1P头基识别位点与疏水腔入口环区",
+    "designMode": "胞内VHH阻断",
+    "candidates": [
+      {
+        "target": "PLA2G4A",
+        "rationale": "PLA2G4A编码胞质磷脂酶A2α，是C1P促进花生四烯酸释放的关键效应分子；抑制该节点可下游削弱前列腺素合成。"
+      },
+      {
+        "target": "PTGS2",
+        "rationale": "PTGS2编码COX-2，位于花生四烯酸向促炎前列腺素转化的核心步骤；与CPTP相关脂质信号在炎症和肿瘤微环境中功能相连。"
+      },
+      {
+        "target": "CERK",
+        "rationale": "CERK催化神经酰胺生成神经酰胺-1-磷酸，是CPTP转运底物的上游来源；靶向该酶可减少C1P依赖性炎症脂质信号输入。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

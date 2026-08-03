@@ -1,0 +1,65 @@
+{
+  "gene": "CDC34",
+  "generatedAt": "2026-08-03T11:12:05.195Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CDC34是SCF类Cullin-RING E3泛素连接酶复合体的E2酶，负责将泛素转移至磷酸化底物，参与细胞周期调控蛋白的蛋白酶体降解；现有疾病关联主要集中于血液定量性状与免疫相关蛋白测量，疾病因果强度有限。CDC34为胞内泛素结合酶，缺乏天然胞外结构域或分泌形式，常规抗体难以在完整细胞中直接接触其功能界面。相较EGFR、TNFRSF成员或分泌细胞因子等同类可药化抗体靶点，CDC34作为抗体主靶点的优先级较低，更适合作为结构生物学验证或细胞内递送抗体研究对象。",
+    "mechanism": "通过抗体片段占据CDC34催化核心邻近的E2-RING结合面，阻断其与RBX1 RING结构域对接及泛素转移构象形成。",
+    "selectedEpitope": "优先锁定UBC催化结构域α1/β1邻近RING结合面，避开Cys93活性位点深部裂隙。",
+    "diseaseDirection": "泛素-蛋白酶体与血液性状",
+    "domain": "CDC34含N端UBC催化结构域、活性Cys93及酸性C端延伸区，3RZ3覆盖催化核心构象。",
+    "evidence": "CDC34结构与SCF泛素转移机制证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt P49427功能与结构域注释",
+      "RCSB PDB 3RZ3晶体结构记录",
+      "SCF-CDC34-RBX1泛素转移机制文献"
+    ],
+    "referenceEntries": "UniProt P49427；RCSB PDB 3RZ3；Open Targets CDC34",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "UBC结构域α1/β1邻近E2-RING结合面",
+        "可直接干扰CDC34与RBX1 RING对接，具备机制阻断价值",
+        "优先"
+      ],
+      [
+        "Site B",
+        "UBC结构域背侧α2/α3表面",
+        "利于获得构象稳定结合分子，可用于结构探针或递送后占位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Cys93活性位点及泛素硫酯形成邻域",
+        "区域保守且裂隙较浅，易产生E2家族交叉反应与功能毒性风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CDC34定位于胞内且E2催化核心高度保守，常规抗体可及性不足；设计宜采用Fab/VHH细胞内递送或降解偶联策略，并强化UBE2家族选择性筛选。",
+    "structurePrepZh": "以3RZ3抗原链A-D为模板进行同源链比对，保留UBC核心二级结构，校正缺失侧链并标注Cys93、RING结合面及保守E2界面。",
+    "structureRef": "RCSB PDB 3RZ3，X-ray diffraction，2.3 Å",
+    "antibodies": [
+      "暂无获批抗CDC34治疗性抗体",
+      "研究级抗CDC34单克隆抗体"
+    ],
+    "interfaceFocus": "UBC核心E2-RING对接面与活性位点邻域",
+    "designMode": "胞内抗体片段设计",
+    "candidates": [
+      {
+        "target": "RBX1",
+        "rationale": "RBX1是SCF复合体的RING亚基，直接招募CDC34并促进泛素从E2向底物转移，处于同一Cullin-RING泛素化轴。"
+      },
+      {
+        "target": "CUL1",
+        "rationale": "CUL1构成SCF复合体支架，连接SKP1-F-box底物识别模块与RBX1-CDC34催化模块，是CDC34功能依赖的核心通路节点。"
+      },
+      {
+        "target": "SKP1",
+        "rationale": "SKP1连接CUL1与F-box蛋白并决定SCF底物识别装配，干预该节点可间接影响CDC34介导的底物泛素化。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "FGD3",
+  "generatedAt": "2026-08-03T12:31:57.322Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FGD3 是含 FYVE、Dbl homology RhoGEF 与 PH 结构域的胞内信号调节蛋白，主要通过调节 CDC42/Rho 家族小 GTPase 活性影响细胞骨架重塑、囊泡运输及造血细胞形态相关过程。Open Targets 关联主要集中于血小板体积分布、白细胞数量、单核细胞计数及过敏反应表型，提示其更适合作为血液细胞性状与免疫细胞功能机制研究靶点。FGD3 缺乏分泌型或稳定胞外结构域，完整蛋白抗体药物可及性较弱；但其 FYVE 结构域具备明确折叠与磷脂结合界面，可支持胞内抗体、纳米抗体或研究级构象探针设计。相较无结构信息的同类 RhoGEF，FGD3 具有可用 NMR 结构条目，优先适用于结构约束型表位验证而非常规体内阻断抗体开发。",
+    "mechanism": "构建结合 FYVE 结构域膜识别面的抗体片段，阻断其与磷脂酰肌醇-3-磷酸富集内膜的结合，从而干扰 FGD3 的膜定位与下游 CDC42 相关 GEF 活化过程。",
+    "selectedEpitope": "优先覆盖 FYVE 结构域锌指折叠中的 PI3P 结合环及相邻碱性膜接触面。",
+    "diseaseDirection": "血液细胞性状与免疫反应",
+    "domain": "FGD3 含 N 端 PH、Dbl homology RhoGEF、第二 PH、FYVE 及 C 端结构区；2COC 对应 FYVE 结构域。",
+    "evidence": "FGD3 血液细胞性状与 FYVE 结构域证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q5JSP0 functional annotation",
+      "RCSB PDB 2COC solution NMR structure",
+      "Gene Ontology annotations for Rho guanyl-nucleotide exchange activity"
+    ],
+    "referenceEntries": "UniProt Q5JSP0；RCSB PDB 2COC；Open Targets FGD3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "FYVE 结构域 PI3P 结合环与碱性膜接触面",
+        "直接干预内膜磷脂识别与亚细胞定位，机制可验证性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "FYVE 结构域锌配位折叠外侧稳定表面",
+        "适合构象识别与胞内示踪，降低对核心金属配位的扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "FYVE 结构域锌配位 Cys/His 核心邻近区域",
+        "可能破坏结构域折叠并产生非特异失活，应避免作为主阻断表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FGD3 为胞内蛋白，常规循环抗体难以到达作用位点。设计宜限定为胞内抗体、VHH 或研究级探针，并避免靶向锌配位核心导致非特异构象崩解。",
+    "structurePrepZh": "以 PDB 2COC 的 NMR 构象集合为基础，筛选代表性低能模型，保留 Zn2+ 配位几何并标注 PI3P 结合相关环区后开展表位建模。",
+    "structureRef": "RCSB PDB 2COC；human FGD3 FYVE domain NMR structure",
+    "antibodies": [
+      "research anti-FGD3 antibody",
+      "anti-FYVE domain research antibody"
+    ],
+    "interfaceFocus": "FYVE-PI3P 结合环与碱性膜接触面",
+    "designMode": "胞内VHH构象阻断",
+    "candidates": [
+      {
+        "target": "CDC42",
+        "rationale": "CDC42 是 FGD3 相关 RhoGEF 轴的下游小 GTPase，参与细胞骨架重塑、细胞形态及免疫细胞迁移过程，适合作为同一 GEF-GTPase 通路的功能读出靶点。"
+      },
+      {
+        "target": "FGD2",
+        "rationale": "FGD2 属于同一家族的 RhoGEF，含 DH-PH-FYVE 结构模块并在造血及免疫细胞中具有相关表达背景，可作为血液免疫细胞信号轴的旁系比较靶点。"
+      },
+      {
+        "target": "PIK3C3",
+        "rationale": "PIK3C3/VPS34 产生 PI3P，是 FYVE 结构域膜募集的关键脂质来源；其改变可影响 FYVE 蛋白内体定位，与 FGD3 的膜识别步骤处于同一磷脂依赖通路。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

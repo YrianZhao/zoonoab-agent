@@ -1,0 +1,65 @@
+{
+  "gene": "HLA-C",
+  "generatedAt": "2026-08-03T19:48:22.684Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HLA-C是经典MHC-I分子，负责呈递内源性肽并与TCR及KIR受体共同塑造CD8+T细胞和NK细胞免疫反应，其等位基因与银屑病、病毒感染免疫控制及淋巴细胞数量性状存在遗传关联。HLA-C重链α1/α2结构域与β2微球蛋白形成稳定的细胞表面肽呈递复合物，抗原可及性优于胞内抗原加工组分。相较TAP1、PSMB8等胞内通路靶点，HLA-C位于膜外且具有高分辨率晶体结构支持，适合进行等位型选择性抗体设计，但需严格规避广泛MHC-I交叉反应。",
+    "mechanism": "通过结合HLA-C肽结合沟周缘或KIR接触面，阻断HLA-C与KIR2DL/2DS受体或特定TCR的相互作用，调节NK细胞抑制信号及抗原特异性T细胞识别。",
+    "selectedEpitope": "优先定位α1/α2平台中KIR接触相关螺旋外侧，避开肽槽核心与β2微球蛋白界面。",
+    "diseaseDirection": "免疫炎症与病毒感染免疫",
+    "domain": "HLA-C含胞外α1、α2、α3结构域，α1/α2构成肽结合平台，α3连接β2微球蛋白并邻近膜区。",
+    "evidence": "HLA-C免疫遗传关联与结构表位证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt P10321蛋白功能与结构域注释",
+      "RCSB PDB 6JTO晶体结构",
+      "GWAS Catalog银屑病及免疫性状关联研究"
+    ],
+    "referenceEntries": "UniProt:P10321；RCSB PDB:6JTO；HGNC:HLA-C",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "α1/α2平台KIR接触螺旋外侧",
+        "有利于调节HLA-C与KIR2DL/2DS受体结合并保留等位型选择空间",
+        "优先"
+      ],
+      [
+        "Site B",
+        "α3结构域CD8结合邻近面",
+        "可影响CD8共受体参与的MHC-I识别，但需评估T细胞广泛抑制风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "肽结合沟中央及β2微球蛋白界面",
+        "可能破坏复合物稳定性或产生广泛MHC-I交叉反应，开发窗口较窄",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HLA-C多态性强且与HLA-A/B结构同源，需在α1/α2变异残基上建立等位型选择性，并通过HLA-I面板排除广谱结合。",
+    "structurePrepZh": "以6JTO晶体结构为模板，保留HLA-C重链、β2微球蛋白及呈递肽，补全缺失侧链并标注多态残基、KIR/TCR潜在接触面。",
+    "structureRef": "RCSB PDB 6JTO，X-ray diffraction，1.7 Å",
+    "antibodies": [
+      "W6/32",
+      "L31"
+    ],
+    "interfaceFocus": "α1/α2螺旋KIR接触面与等位型变异残基",
+    "designMode": "等位型选择性阻断",
+    "candidates": [
+      {
+        "target": "B2M",
+        "rationale": "B2M与HLA-C重链共同构成MHC-I细胞表面复合物，是抗原呈递稳定性必需组分；其靶向风险较高，但可作为复合物装配与表达验证参照。"
+      },
+      {
+        "target": "KIR2DL1",
+        "rationale": "KIR2DL1识别携带C2表位的HLA-C并向NK细胞传递抑制信号，是HLA-C免疫调节轴中的直接受体靶点。"
+      },
+      {
+        "target": "KIR2DL2",
+        "rationale": "KIR2DL2主要识别HLA-C C1相关配体并调节NK细胞活化阈值，适合与HLA-C阻断策略进行通路内互补评估。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "RIOK1",
+  "generatedAt": "2026-08-03T21:00:04.085Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "RIOK1 是非典型蛋白激酶样 ATPase，参与 40S 核糖体小亚基成熟并影响核糖体生物发生压力轴；其在结直肠癌、胶质瘤及神经退行性疾病中的遗传关联提示其可能反映增殖与蛋白稳态异常。该蛋白主要定位于细胞质与核内，缺乏经典分泌信号肽、跨膜区或稳定胞外结构域，抗原可及性不符合常规体内阻断抗体靶点标准。相较 EGFR、VEGFA、IL6R 等同疾病领域可及性更高的靶点，RIOK1 更适合作为结构生物学与细胞内递送抗体研究对象，主靶点优先级应限定于胞内抗体或研究级干预场景。",
+    "mechanism": "设计目标为结合 RIOK1 激酶样结构域 ATP 结合裂隙邻近区域，干扰 ATP/Mg2+ 配位与底物蛋白接触，从而抑制 40S 前体成熟相关构象转换。",
+    "selectedEpitope": "优先覆盖激酶样结构域 P-loop、铰链区及催化裂隙边缘，避开高度保守 ATP 深口袋。",
+    "diseaseDirection": "肿瘤核糖体生物发生与神经退行性关联",
+    "domain": "RIOK1 含 N 端调控区与 C 端非典型 Rio 激酶样结构域，PDB 6V0N 覆盖催化核心。",
+    "evidence": "RIOK1 结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q9BRS2 蛋白功能与亚细胞定位注释",
+      "RCSB PDB 6V0N X 射线晶体结构",
+      "核糖体小亚基成熟与 RIO 激酶功能文献"
+    ],
+    "referenceEntries": "UniProt Q9BRS2；RCSB PDB 6V0N；Open Targets RIOK1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Rio 激酶样结构域 P-loop/ATP 裂隙入口",
+        "可干扰核苷酸结合与催化构象稳定，适合胞内阻断型抗体设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "铰链区与底物结合面邻近外露螺旋",
+        "可能阻断底物或成熟因子接触，同时降低直接竞争 ATP 的保守性风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C 端催化核心保守金属离子配位邻域",
+        "功能相关性强但保守性高，易产生交叉反应与构象扰动风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "RIOK1 为细胞内蛋白，常规 Fab 或 VHH 难以在体内直接到达靶点；应优先评估胞内递送、intrabody 表达及与 RIOK2/RIOK3 的选择性。",
+    "structurePrepZh": "以 6V0N A、B、C 链比对确定稳定催化核心，补建缺失环区并保留 ATP/Mg2+ 相关位点用于裂隙边界定义。",
+    "structureRef": "RCSB PDB 6V0N，2.11 Å X-ray human RIOK1",
+    "antibodies": [
+      "无获批 RIOK1 靶向治疗性抗体",
+      "研究级抗 RIOK1 检测抗体"
+    ],
+    "interfaceFocus": "P-loop、铰链区、ATP 裂隙入口与底物接触面",
+    "designMode": "胞内抗体/结构阻断",
+    "candidates": [
+      {
+        "target": "RIOK2",
+        "rationale": "RIOK2 同属 RIO 激酶家族，参与 40S 前核糖体成熟并与核糖体生物发生通路相关；可作为同通路选择性与功能补偿评估靶点。"
+      },
+      {
+        "target": "RIOK3",
+        "rationale": "RIOK3 为 RIO 激酶家族成员，具非典型激酶结构域并参与细胞应激和免疫信号调节；适合用于家族交叉反应风险与通路分层分析。"
+      },
+      {
+        "target": "NOB1",
+        "rationale": "NOB1 是 40S 小亚基成熟所需核酸内切酶，处于 RIOK1 相关核糖体小亚基成熟网络中；其功能节点可用于验证核糖体生物发生干预方向。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

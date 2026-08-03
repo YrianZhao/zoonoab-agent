@@ -1,0 +1,65 @@
+{
+  "gene": "CECR2",
+  "generatedAt": "2026-08-03T11:15:26.332Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CECR2为核内组蛋白乙酰赖氨酸识别蛋白，主要通过其溴结构域识别乙酰化组蛋白并参与染色质重塑复合体功能，现有遗传关联更集中于血液细胞计数、单核细胞比例及炎症相关表型，而非已确立的胞外致病配体轴。该蛋白缺乏分泌信号肽、跨膜区和天然胞外结构域，完整抗原在细胞外不可及，常规治疗性抗体成药性显著受限。其结构优势在于8RU1提供了高分辨率溴结构域构象，可支持结构生物学验证和胞内递送抗体片段探索；但相较于同炎症通路中的IL17RA、IL17A等膜受体或分泌因子，CECR2作为主抗体靶点优先级偏研究型。",
+    "mechanism": "以胞内递送Fab或VHH阻断CECR2溴结构域乙酰赖氨酸结合口袋与乙酰化组蛋白尾部的识别，干预CECR2依赖的染色质定位。",
+    "selectedEpitope": "优先覆盖溴结构域ZA loop/BC loop围成的乙酰赖氨酸识别口袋及其邻近疏水沟槽。",
+    "diseaseDirection": "炎症免疫表型与血液细胞计数",
+    "domain": "CECR2含N端DTT结构域、中央溴结构域及C端AT-hook样DNA结合区，8RU1解析溴结构域。",
+    "evidence": "CECR2溴结构域结构与免疫表型遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q9BXF3蛋白结构域注释",
+      "RCSB PDB 8RU1晶体结构",
+      "ChIP及染色质重塑相关文献证据"
+    ],
+    "referenceEntries": "UniProt: Q9BXF3; RCSB PDB: 8RU1; Open Targets: CECR2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "溴结构域ZA loop/BC loop乙酰赖氨酸口袋",
+        "直接竞争乙酰化组蛋白尾部结合，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "溴结构域αZ-αA外侧沟槽及WPF shelf邻近面",
+        "可通过变构方式削弱口袋构象稳定性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "溴结构域远端αC螺旋暴露面",
+        "远离配体识别核心，功能阻断不确定",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CECR2为核内蛋白，天然抗体难以到达作用位点；应优先采用细胞穿透或递送型VHH/Fab，并避免干扰高度保守溴结构域骨架导致脱靶。",
+    "structurePrepZh": "以8RU1抗原链A-D进行构象比对，保留溴结构域完整二级结构，去除晶体接触伪界面后标注乙酰赖氨酸口袋。",
+    "structureRef": "RCSB PDB 8RU1, X-ray diffraction, 1.66 Å",
+    "antibodies": [
+      "暂无获批CECR2抗体药物",
+      "研究级抗CECR2抗体"
+    ],
+    "interfaceFocus": "ZA loop、BC loop与乙酰赖氨酸结合口袋",
+    "designMode": "胞内表位阻断",
+    "candidates": [
+      {
+        "target": "IL17RA",
+        "rationale": "IL17RA为IL-17A/IL-17F受体复合体核心膜受体，与炎症表型及IL17RA测量关联处于同一免疫炎症轴；其胞外结构域可直接被抗体阻断，成药性优于核内CECR2。"
+      },
+      {
+        "target": "IL17A",
+        "rationale": "IL17A为分泌型炎症细胞因子，可与IL17RA/IL17RC复合体结合并驱动下游NF-κB、MAPK和炎症趋化因子表达；抗体可直接中和配体。"
+      },
+      {
+        "target": "IL17F",
+        "rationale": "IL17F与IL17A同属IL-17细胞因子轴，可形成同源或异源二聚体并激活IL17RA/IL17RC受体复合体；适合作为同通路分泌型候选抗原。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

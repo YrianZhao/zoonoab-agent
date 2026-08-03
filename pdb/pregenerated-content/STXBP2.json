@@ -1,0 +1,65 @@
+{
+  "gene": "STXBP2",
+  "generatedAt": "2026-08-03T17:01:49.455Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "STXBP2 参与 syntaxin 11 依赖的膜融合与细胞毒性颗粒外排，其功能缺陷与家族性噬血细胞性淋巴组织细胞增多症及相关炎症表型直接相关，疾病关联具有明确的通路因果性。该蛋白主要定位于胞内分泌颗粒与胞质侧复合体，虽抗原可及性弱于膜受体，但其在致病复合体中的核心支架作用使功能阻断具有高机制特异性。相较于同通路中更下游的效应分子，围绕 STXBP2 的设计更能直接干预颗粒融合起始步骤，优先级高且利于获得机制清晰的功能验证。",
+    "mechanism": "阻断 STXBP2 与 syntaxin 11 的结合，削弱 SNARE 复合体装配并抑制细胞毒性颗粒膜融合。",
+    "selectedEpitope": "优先覆盖 syntaxin 11 结合界面及 SM domain 关键保守残基，避免破坏整体折叠。",
+    "diseaseDirection": "噬血细胞综合征/自炎症",
+    "domain": "以 SM domain 为主，围绕 syntaxin 11 结合表面与构象耦联区。",
+    "evidence": "STXBP2 致病通路与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform: STXBP2-disease associations",
+      "UniProt: Q15833 (STXBP2)",
+      "RCSB PDB: 4CCA",
+      "文献：STXBP2/MUNC18-2 与 syntaxin 11 介导的颗粒外排研究"
+    ],
+    "referenceEntries": "UniProt Q15833；RCSB PDB 4CCA；STXBP2/MUNC18-2",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "SM domain 的 syntaxin 11 结合沟槽",
+        "直接阻断致病复合体装配，功能抑制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "SM domain 外侧保守表面环区",
+        "有机会扰动复合体构象切换，但需规避折叠扰动",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离核心结合面的表面暴露区",
+        "特异性可能较好，但对功能抑制贡献有限",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "STXBP2 为胞内蛋白，常规全长抗体可及性受限，需优先考虑胞内递送或细胞内结合策略。表位设计应避免覆盖全局折叠核心与高度保守的结构稳定区，以降低失活与非特异风险。",
+    "structurePrepZh": "以 4CCA 为主模板进行结构清理，补全缺失残基并标定 syntaxin 11 结合面；结合同源序列比对评估人源保守位点与潜在可变表位。",
+    "structureRef": "RCSB 4CCA；Munc18-2 结构文献",
+    "antibodies": [
+      "anti-STXBP2 research antibodies",
+      "Munc18-2 functional blocking antibodies"
+    ],
+    "interfaceFocus": "syntaxin 11 结合界面与 SM domain 中央沟槽",
+    "designMode": "structure-guided",
+    "candidates": [
+      {
+        "target": "STX11",
+        "rationale": "STX11 是 STXBP2 所依赖的核心伴侣膜蛋白，二者直接形成调控颗粒融合的功能复合体。围绕 STX11 可从同一细胞毒性颗粒外排通路验证界面阻断效应。"
+      },
+      {
+        "target": "RAB27A",
+        "rationale": "RAB27A 参与细胞毒性颗粒向膜近端转运，并与 STXBP2 介导的终末融合步骤同属同一致病轴。其作为上游协同因子，可用于评估通路层面的联动抑制。"
+      },
+      {
+        "target": "LYST",
+        "rationale": "LYST 与溶酶体/颗粒稳态及噬血细胞综合征相关，虽不与 STXBP2 直接成复合体，但同处颗粒分泌失衡疾病网络。适合作为同病理轴的扩展对照靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

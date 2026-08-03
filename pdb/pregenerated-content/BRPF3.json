@@ -1,0 +1,65 @@
+{
+  "gene": "BRPF3",
+  "generatedAt": "2026-08-03T10:53:15.611Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "BRPF3 是 MOZ/MORF 组蛋白乙酰转移酶复合体的支架亚基，参与 KAT6A/KAT6B 介导的染色质乙酰化与造血、神经发育相关转录程序，Open Targets 数据提示其与血红蛋白测量、红细胞计数及神经退行性疾病存在遗传关联。该蛋白为核内染色质调控因子，缺乏经典胞外结构域或分泌特征，天然抗体抗原可及性弱，因此更适合定位为结构验证、细胞内递送抗体或研究级结合分子靶点。相比广泛表达且酶活性直接可药的 KAT6A/KAT6B，BRPF3 的优先级优势在于其多结构域支架界面可用于解析复合体装配选择性，但治疗性抗体开发优先级低于可胞外干预靶点。",
+    "mechanism": "设计抗体样结合分子阻断 BRPF3 溴结构域乙酰化赖氨酸识别口袋与乙酰化组蛋白尾部结合，干扰 MOZ/MORF 复合体在染色质位点的稳定募集。",
+    "selectedEpitope": "优先覆盖 bromodomain 乙酰赖氨酸结合沟槽及 ZA/BC loop 边缘，避免仅选择非功能性晶体接触面。",
+    "diseaseDirection": "造血表型与神经退行性疾病遗传关联",
+    "domain": "BRPF3 含 PZP、bromodomain、PWWP 等染色质读取结构域；3PFS 对应人源 bromodomain 高分辨率结构。",
+    "evidence": "BRPF3 染色质读取结构域与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProt Q9ULD4 蛋白功能注释",
+      "RCSB PDB 3PFS X-ray bromodomain 结构",
+      "MOZ/MORF HAT 复合体与 BRPF 家族文献"
+    ],
+    "referenceEntries": "UniProt Q9ULD4；RCSB PDB 3PFS；Open Targets BRPF3",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "bromodomain 乙酰赖氨酸结合口袋与 ZA/BC loop",
+        "可直接竞争乙酰化组蛋白尾部识别，功能阻断价值最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "bromodomain 外侧保守螺旋束与口袋邻近面",
+        "有利于构建高亲和结合并产生变构性口袋遮挡",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离乙酰赖氨酸口袋的晶体堆积接触面",
+        "功能相关性有限且可能偏向结构背景结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "BRPF3 为核内蛋白，常规抗体难以进入细胞核；设计应限定为细胞内递送、intrabody 或结构探针场景，并严格评估 BRPF1/BRPF2 交叉反应。",
+    "structurePrepZh": "以 3PFS A/B 链 bromodomain 为模板，去除结晶缓冲小分子与非目标水分子，保留口袋关键残基并评估链间晶体接触对表位暴露的影响。",
+    "structureRef": "RCSB PDB 3PFS，BRPF3 bromodomain，1.9 Å X-ray",
+    "antibodies": [
+      "研究级抗-BRPF3抗体",
+      "研究级抗-BRPF家族bromodomain抗体"
+    ],
+    "interfaceFocus": "乙酰赖氨酸口袋、ZA loop、BC loop",
+    "designMode": "胞内结构域阻断",
+    "candidates": [
+      {
+        "target": "KAT6A",
+        "rationale": "KAT6A 是 MOZ/MORF 组蛋白乙酰转移酶复合体的催化亚基，与 BRPF3 协同调控染色质乙酰化和造血发育转录程序。其酶活性位点较 BRPF3 更具药理干预直接性。"
+      },
+      {
+        "target": "KAT6B",
+        "rationale": "KAT6B 与 BRPF3 参与同类 HAT 复合体装配，关联神经发育和染色质调控表型。该靶点可作为复合体功能轴上的平行验证对象。"
+      },
+      {
+        "target": "BRPF1",
+        "rationale": "BRPF1 是 BRPF 家族支架蛋白，连接 KAT6A/KAT6B 复合体与乙酰化染色质识别过程。与 BRPF3 结构域组成相近，适合作为选择性与家族交叉反应评估参照。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

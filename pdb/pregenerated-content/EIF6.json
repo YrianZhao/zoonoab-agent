@@ -1,0 +1,65 @@
+{
+  "gene": "EIF6",
+  "generatedAt": "2026-08-03T12:16:01.631Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "EIF6 是核糖体生物发生因子，结合 60S 亚基并阻止 40S 过早装配，影响红系细胞翻译容量与网织红细胞、红细胞计数相关表型。该蛋白主要位于细胞核、胞质及核糖体颗粒相关复合物中，缺乏经典分泌蛋白或膜受体型胞外结构域，抗体抗原可及性不具备常规体内阻断优势，更适合作为结构验证或胞内递送抗体研究对象。其优先级低于 EPO、EPOR、TFRC 等红系造血通路中具有胞外可及性的靶点；若进入抗体设计，应以机制探针和结构表位解析为主要定位。",
+    "mechanism": "抗体需通过胞内递送后结合 EIF6 β-propeller 表面，干扰其与 60S 核糖体亚基界面的接触，从而影响 60S-40S 亚基装配许可。",
+    "selectedEpitope": "优先聚焦 β-propeller 结构中与 60S 亚基接触的外周环区界面。",
+    "diseaseDirection": "红系细胞计数与核糖体生物发生",
+    "domain": "EIF6 由保守 WD-repeat 样 β-propeller 折叠构成，形成核糖体结合表面。",
+    "evidence": "EIF6 红系表型与核糖体装配证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt P56537 功能与亚细胞定位注释",
+      "RCSB PDB 8A3D 冷冻电镜结构",
+      "PubMed 核糖体生物发生与红系成熟文献"
+    ],
+    "referenceEntries": "UniProt P56537；RCSB PDB 8A3D；Open Targets EIF6",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "β-propeller 外周环区的 60S 接触面",
+        "可直接评估阻断 EIF6-60S 相互作用的结构机制",
+        "优先"
+      ],
+      [
+        "Site B",
+        "β-propeller 顶面保守浅沟区域",
+        "适合获得高亲和结合分子并用于复合物稳定或检测",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守核心折叠与疏水内部邻近区域",
+        "可能影响蛋白稳定性且表位可及性有限，需避免非特异构象扰动",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "EIF6 为胞内核糖体生物发生因子，常规抗体难以在体内到达作用位点；设计应标注递送依赖性，并优先采用细胞内抗体或结构探针验证。",
+    "structurePrepZh": "以 PDB 8A3D 实验结构为模板，保留 EIF6 单体构象，去除非目标复合物链后标注 60S 接触残基并进行环区可及性评估。",
+    "structureRef": "RCSB PDB 8A3D，1.67 Å cryo-EM human EIF6 complex",
+    "antibodies": [
+      "无已批准 EIF6 靶向治疗抗体",
+      "研究级抗 EIF6 单克隆抗体"
+    ],
+    "interfaceFocus": "EIF6-60S 核糖体亚基结合界面",
+    "designMode": "胞内机制探针设计",
+    "candidates": [
+      {
+        "target": "EPOR",
+        "rationale": "EPOR 是红细胞生成素信号的膜受体，直接驱动红系祖细胞存活与分化，胞外配体结合域具备明确抗体可及性。"
+      },
+      {
+        "target": "EPO",
+        "rationale": "EPO 是红系生成通路的分泌型细胞因子，与 EPOR 结合触发 JAK2-STAT5 信号，适合采用中和或激动型抗体策略。"
+      },
+      {
+        "target": "TFRC",
+        "rationale": "TFRC 介导转铁蛋白依赖性铁摄取，对红系细胞血红蛋白合成和成熟具有关键作用，膜外受体结构利于抗体结合。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

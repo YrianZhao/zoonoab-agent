@@ -1,0 +1,65 @@
+{
+  "gene": "SATB1",
+  "generatedAt": "2026-08-03T16:20:51.592Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SATB1 是核内染色质组织因子和转录调控蛋白，通过结合 AT-rich matrix attachment region 并招募染色质重塑复合体，参与神经发育、颅面发育及造血相关基因表达程序，其人类遗传证据与发育迟缓伴面容及牙齿异常、血小板表型和嗜酸粒细胞计数相关。该蛋白主要定位于细胞核，不具备天然胞外结构域、分泌蛋白或膜受体可及性，因此不适合作为常规体内阻断型抗体靶点。相比细胞表面受体或分泌因子，SATB1 的优先级主要限于结构生物学、细胞内递送抗体或研究级干预场景；若以治疗性抗体开发为目标，优先级低于同通路中具备胞外可及性的造血因子受体或细胞因子靶点。",
+    "mechanism": "通过细胞内抗体结合 SATB1 CUT/homeodomain DNA 结合界面，阻断其与 AT-rich MAR DNA 的序列识别及染色质锚定相互作用。",
+    "selectedEpitope": "优先覆盖 3NZL 所示 homeodomain 的 DNA 识别螺旋与相邻碱性沟槽界面，干预 DNA 主沟结合。",
+    "diseaseDirection": "神经发育异常与造血表型",
+    "domain": "SATB1 含 N 端二聚化/PDZ-like 区、两个 CUT 结构域及 C 端 homeodomain；3NZL 解析其 DNA 结合相关结构域片段。",
+    "evidence": "SATB1 遗传关联与DNA结合结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联数据",
+      "UniProtKB Q01826 功能与亚细胞定位注释",
+      "RCSB PDB 3NZL X-ray 晶体结构",
+      "ClinVar/人类遗传变异与神经发育表型证据"
+    ],
+    "referenceEntries": "UniProt Q01826；RCSB PDB 3NZL；Open Targets SATB1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "homeodomain DNA 识别螺旋及主沟接触面",
+        "直接阻断 SATB1 对 AT-rich DNA 元件的识别，机制最明确",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CUT2-homeodomain 连接区及相邻碱性表面",
+        "可能削弱结构域协同定位和 DNA 结合稳定性，适合作为功能调节表位",
+        "备选"
+      ],
+      [
+        "Site C",
+        "远离 DNA 接触面的 homeodomain 外侧螺旋表面",
+        "结构可成药性较高但功能阻断不确定，需依赖细胞内功能筛选验证",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SATB1 为核内蛋白，常规抗体难以进入细胞核；设计应标注为细胞内抗体、递送型 Fab/VHH 或研究级工具抗体，并避免宣称直接体内可及性。",
+    "structurePrepZh": "以 3NZL 链 A 为模板，保留解析区域并检查缺失残基、晶体接触和 DNA 结合面电荷分布；必要时结合 AlphaFold 全长模型定位 CUT 与 homeodomain 相对关系。",
+    "structureRef": "RCSB PDB 3NZL，X-ray diffraction，1.199 Å",
+    "antibodies": [
+      "Abcam anti-SATB1 antibody",
+      "Cell Signaling Technology SATB1 antibody"
+    ],
+    "interfaceFocus": "homeodomain 识别螺旋-DNA主沟界面",
+    "designMode": "细胞内递送抗体",
+    "candidates": [
+      {
+        "target": "SATB2",
+        "rationale": "SATB2 与 SATB1 同属特殊 AT-rich DNA 结合蛋白家族，参与颅面、牙齿和神经发育转录调控；其遗传变异与发育迟缓及颅面异常高度相关。"
+      },
+      {
+        "target": "RUNX1",
+        "rationale": "RUNX1 是造血分化和巨核细胞/血小板生成通路中的核心转录因子，与 SATB1 关联的血小板计数和体积表型处于相近造血调控网络。"
+      },
+      {
+        "target": "GATA1",
+        "rationale": "GATA1 调控红系和巨核细胞分化，并直接影响血小板生成相关基因表达；可作为血小板表型方向的同通路转录调控候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

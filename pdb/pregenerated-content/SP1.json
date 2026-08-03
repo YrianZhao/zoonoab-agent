@@ -1,0 +1,65 @@
+{
+  "gene": "SP1",
+  "generatedAt": "2026-08-03T16:49:44.081Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SP1 是锌指转录因子，参与多种神经退行性疾病相关基因的启动子 GC-box 结合与转录调控，但其主要定位于细胞核，不具备常规抗体药物可直接接触的胞外结构域。1SP1 结构覆盖 C2H2 锌指 DNA 结合域，可用于研究型结合分子设计而非标准体内阻断抗体开发。相较 TNF、IL6、EGFR 等同疾病炎症或应激通路中的胞外靶点，SP1 的抗原可及性明显不足，因此优先级应定位为机制验证或细胞内递送抗体探索靶点。",
+    "mechanism": "设计结合 SP1 C2H2 锌指 DNA 结合域的分子，阻断其与 GC-rich 启动子元件相互作用，抑制下游炎症、应激和神经退行性相关基因转录。",
+    "selectedEpitope": "优先覆盖第二、第三 C2H2 锌指的 DNA 主沟识别面及相邻连接区，避免破坏锌配位核心。",
+    "diseaseDirection": "神经退行性疾病与炎症转录调控",
+    "domain": "SP1 含 N 端转录激活区与 C 端三联 C2H2 锌指 DNA 结合域；1SP1 覆盖锌指区。",
+    "evidence": "SP1 转录调控与神经炎症疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt P08047 functional annotation",
+      "RCSB PDB 1SP1 solution NMR structure",
+      "Gene Ontology DNA-binding transcription factor activity"
+    ],
+    "referenceEntries": "UniProt:P08047; RCSB PDB:1SP1; Open Targets:SP1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "第二至第三 C2H2 锌指 DNA 识别螺旋",
+        "直接竞争 GC-box DNA 结合，机制指向性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "第一至第二锌指间连接区及邻近表面",
+        "可影响锌指排列与 DNA 结合几何构象",
+        "备选"
+      ],
+      [
+        "Site C",
+        "Cys2-His2 锌配位核心周边",
+        "存在结构稳定性与金属配位干扰风险，需避免强侵入性结合",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SP1 为核内转录因子，常规抗体难以到达作用位点；设计应限定于体外机制验证、细胞内递送平台或 intrabody 场景，并避免锌配位破坏。",
+    "structurePrepZh": "以 1SP1 NMR 构象集合为模板，保留锌离子配位约束，评估各模型中 DNA 识别螺旋暴露度并进行表面电荷校正。",
+    "structureRef": "RCSB PDB 1SP1, solution NMR zinc finger domain",
+    "antibodies": [
+      "无临床获批 SP1 靶向治疗性抗体",
+      "SP1 研究级检测抗体"
+    ],
+    "interfaceFocus": "C2H2 锌指 DNA 主沟识别界面",
+    "designMode": "细胞内抗体探索",
+    "candidates": [
+      {
+        "target": "RELA",
+        "rationale": "RELA 是 NF-κB 复合体核心亚基，与 SP1 在炎症和应激基因启动子上存在协同转录调控关系，参与神经炎症相关通路。"
+      },
+      {
+        "target": "NFKB1",
+        "rationale": "NFKB1 编码 p50 亚基，可与 RELA 形成经典 NF-κB 转录复合体，并与 SP1 共同调控多种炎症因子启动子活性。"
+      },
+      {
+        "target": "IL6",
+        "rationale": "IL6 是 SP1 与 NF-κB 共同调控的炎症效应因子，属于可分泌蛋白，抗体可及性和转化优先级高于核内 SP1。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

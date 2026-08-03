@@ -1,0 +1,65 @@
+{
+  "gene": "EDAR",
+  "generatedAt": "2026-08-03T18:56:03.357Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "EDAR 是外胚层发育中 EDA-A1–EDAR–EDARADD–NF-κB 轴的核心膜受体，功能缺陷可导致少汗性外胚层发育不良、少牙及毛发/指甲异常。其配体结合区位于胞外 TNFR 样半胱氨酸富集结构域，适合抗体直接识别并调节受体-配体相互作用。相较下游 EDARADD、TRAF6 或 NFKB1 等胞内节点，EDAR 具有更明确的抗原可及性和更直接的疾病遗传因果证据，因而具备优先开发价值。",
+    "mechanism": "通过抗体占据 EDAR 胞外 CRD 配体结合界面，阻断 EDA-A1 与 EDAR 结合及受体聚集，抑制 EDARADD 招募与下游 NF-κB 激活。",
+    "selectedEpitope": "优先锁定胞外 TNFR 样 CRD2-CRD3 的 EDA-A1 结合面及受体三聚体邻近界面。",
+    "diseaseDirection": "外胚层发育不良与少牙",
+    "domain": "EDAR 为 I 型跨膜 TNFR 超家族受体，胞外区含多个半胱氨酸富集结构域，胞内区含死亡结构域。",
+    "evidence": "EDAR 外胚层发育疾病遗传与结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病关联评分",
+      "UniProt Q9UNE0 功能与结构域注释",
+      "RCSB PDB 7X9G 晶体结构记录",
+      "OMIM/ClinVar EDAR 变异与外胚层发育不良证据"
+    ],
+    "referenceEntries": "UniProt Q9UNE0；RCSB PDB 7X9G；Open Targets EDAR",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "胞外 CRD2-CRD3 的 EDA-A1 结合界面",
+        "直接阻断配体-受体结合，机制明确且与疾病轴高度一致",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CRD1-CRD2 外侧暴露面",
+        "可用于构建非竞争性调节抗体，降低完全阻断发育信号的风险",
+        "备选"
+      ],
+      [
+        "Site C",
+        "受体三聚体邻近或晶体接触界面",
+        "可能影响受体聚集，但需区分真实生物界面与晶体堆积",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "EDAR 信号参与正常外胚层器官发育，过度阻断可能带来组织发育与附属器功能风险；表位设计应避免非特异性稳定受体聚集。",
+    "structurePrepZh": "以 7X9G 抗原链 A、B、C 建模，保留胞外 CRD 二硫键，校验糖基化与晶体接触，优先提取生物学相关三聚体界面。",
+    "structureRef": "RCSB PDB 7X9G，X-ray diffraction，2.8 Å",
+    "antibodies": [
+      "mAbEDAR1",
+      "mAbEDAR2"
+    ],
+    "interfaceFocus": "EDA-A1 结合面与 CRD2-CRD3 三聚体邻近界面",
+    "designMode": "阻断型抗体设计",
+    "candidates": [
+      {
+        "target": "EDA",
+        "rationale": "EDA 编码 EDAR 的关键配体 EDA-A1，其致病变异同样导致少汗性外胚层发育不良；靶向 EDA 可从配体端调节同一受体轴。"
+      },
+      {
+        "target": "EDARADD",
+        "rationale": "EDARADD 是 EDAR 胞内死亡结构域衔接蛋白，负责向 TRAF6/TAK1/NF-κB 传递信号；虽为胞内蛋白，但可作为通路验证与替代靶点评估节点。"
+      },
+      {
+        "target": "WNT10A",
+        "rationale": "WNT10A 与牙齿和外胚层附属器发育密切相关，并与 EDAR 轴共同参与外胚层器官形态发生网络，可用于同疾病方向的联合机制评估。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

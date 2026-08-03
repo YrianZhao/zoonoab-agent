@@ -1,0 +1,65 @@
+{
+  "gene": "SCTR",
+  "generatedAt": "2026-08-03T16:22:28.996Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SCTR编码分泌素受体，属于B类GPCR，主要介导分泌素诱导的腺苷酸环化酶激活、cAMP升高及胰腺外分泌、胆碱酸氢盐分泌和胃肠激素稳态调控；其遗传与功能证据与2型糖尿病、HbA1c相关表型及胃泌素相关神经内分泌肿瘤存在关联。SCTR为七跨膜膜受体，具有胞外N端结构域和胞外环，抗原可及性优于胞内信号蛋白，可直接支持构象选择性抗体设计。相较ADCY、PKA等下游广泛表达效应分子，SCTR位于配体识别入口，具备更明确的通路上游干预价值和较高受体选择性优先级。",
+    "mechanism": "抗体结合SCTR胞外N端及ECL区域，阻断分泌素与受体正构结合口袋及胞外前庭的相互作用，抑制Gs偶联和cAMP生成。",
+    "selectedEpitope": "优先覆盖N端胞外结构域与TM1/TM7胞外前庭交界，兼顾ECL2构象约束位点。",
+    "diseaseDirection": "代谢-胃肠内分泌疾病",
+    "domain": "B类GPCR，含胞外N端配体结合结构域、七跨膜螺旋束及三段胞外环。",
+    "evidence": "SCTR分泌素-Gs-cAMP轴结构与疾病证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P47872功能与亚细胞定位注释",
+      "RCSB PDB 6WZG冷冻电镜结构",
+      "GPCRdb与B类GPCR结构域注释"
+    ],
+    "referenceEntries": "UniProt:P47872；RCSB PDB:6WZG；Open Targets:SCTR",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端胞外结构域-配体N端识别面",
+        "直接干预分泌素初始锚定并提高SCTR选择性",
+        "优先"
+      ],
+      [
+        "Site B",
+        "ECL2与TM1/TM7胞外前庭",
+        "限制受体活化构象并阻断肽配体深入结合",
+        "备选"
+      ],
+      [
+        "Site C",
+        "TM5/TM6胞外侧近Gs活化相关构象区",
+        "可能影响激活态稳定性，但跨膜邻近区域可及性和构象依赖性较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "B类GPCR胞外前庭与VIPR1、VIPR2、GLP1R等同家族受体存在局部结构相似性，应避开保守跨膜核心，强化N端ECD差异位点选择。",
+    "structurePrepZh": "以6WZG实验冷冻电镜结构为模板，保留SCTR受体链并去除Gs蛋白、纳米抗体或辅助融合构件，补全缺失胞外环后进行糖基化与膜环境标注。",
+    "structureRef": "RCSB PDB 6WZG，human SCTR-Gs复合物，EM 2.3 Å",
+    "antibodies": [
+      "anti-SCTR monoclonal antibody clone 3C9",
+      "anti-SCTR monoclonal antibody clone 10A8"
+    ],
+    "interfaceFocus": "分泌素结合胞外前庭与N端ECD界面",
+    "designMode": "阻断型构象抗体",
+    "candidates": [
+      {
+        "target": "SCT",
+        "rationale": "SCT编码分泌素，是SCTR的内源性肽配体；中和SCT可在同一分泌素-SCTR-cAMP轴上游降低受体激活。"
+      },
+      {
+        "target": "GNAS",
+        "rationale": "GNAS编码Gsα亚基，承接受体活化后的腺苷酸环化酶耦联信号；其遗传与代谢内分泌表型相关，但胞内定位限制抗体可及性。"
+      },
+      {
+        "target": "ADCY5",
+        "rationale": "ADCY5参与Gs介导的cAMP生成，并与血糖调控和2型糖尿病遗传风险相关；该节点适合作为通路验证参照而非优先抗体靶点。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

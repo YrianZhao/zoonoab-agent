@@ -1,0 +1,65 @@
+{
+  "gene": "CENPT",
+  "generatedAt": "2026-08-03T18:25:55.963Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CENPT是着丝粒CCAN复合体成员，参与CENP-A核小体识别并通过CENP-T/W/S/X轴招募外动粒NDC80复合体，维持染色体分离精度；其功能异常可导致有丝分裂错误、染色体不稳定和发育表型，Open Targets显示其与神经退行性疾病及小头、身材矮小相关表型存在遗传关联。CENP-T为核内染色质结合蛋白，并非典型胞外抗体可及抗原，完整IgG体内阻断开发可及性受限；但其结构化复合体界面适合体外结构抗体、细胞内抗体或降解模块识别设计。相比同通路中更广泛必需且高度保守的核心组蛋白样靶点，CENPT具有明确的NDC80招募节点和可解析复合体结构，优先适合作为机制验证与结构探针型抗体设计对象。",
+    "mechanism": "抗体结合CENP-T外动粒招募界面，阻断CENP-T N端磷酸化区域与NDC80复合体Spc24/Spc25模块的相互作用，削弱微管-动粒连接装配。",
+    "selectedEpitope": "优先覆盖CENP-T N端NDC80结合片段及CENP-T/W/S/X复合体暴露界面，避免深埋DNA结合面。",
+    "diseaseDirection": "染色体分离异常与发育神经疾病",
+    "domain": "CENP-T含N端外动粒招募区及C端组蛋白折叠结构域，与CENP-W/S/X形成核小体样复合体。",
+    "evidence": "CENP-T着丝粒复合体结构与疾病遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病遗传关联",
+      "UniProt Q96BT3蛋白功能注释",
+      "RCSB PDB 28OP电子显微镜结构",
+      "CCAN-NDC80动粒装配文献证据"
+    ],
+    "referenceEntries": "UniProt Q96BT3；RCSB PDB 28OP；Open Targets CENPT",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "CENP-T N端NDC80招募界面",
+        "直接干预CENP-T与Spc24/Spc25相互作用，机制读出清晰",
+        "优先"
+      ],
+      [
+        "Site B",
+        "CENP-T/W/S/X组蛋白折叠复合体外露面",
+        "可稳定识别CCAN亚复合体构象，适合结构捕获与定位分析",
+        "备选"
+      ],
+      [
+        "Site C",
+        "C端DNA结合及CENP-A核小体邻近面",
+        "可能影响染色质结合但高度保守且埋藏程度较高，脱靶与可及性风险较大",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CENPT为核内着丝粒蛋白，常规胞外抗体药物可及性不足；建议定位为结构抗体、细胞内抗体或递送型功能干预分子，并避开高度保守DNA结合面。",
+    "structurePrepZh": "以PDB 28OP为复合体模板，保留CENP-T相关链及邻近CCAN组分，校验EM局部分辨率、缺失N端片段和磷酸化位点后开展界面建模。",
+    "structureRef": "RCSB PDB 28OP，human kinetochore CCAN EM structure",
+    "antibodies": [
+      "抗CENP-T研究级抗体",
+      "抗CENP-A研究级抗体"
+    ],
+    "interfaceFocus": "CENP-T N端NDC80招募界面与CENP-T/W接触面",
+    "designMode": "结构探针型抗体设计",
+    "candidates": [
+      {
+        "target": "CENPA",
+        "rationale": "CENP-A是着丝粒特异性组蛋白H3变体，决定CCAN装配位点并与CENP-C、CENP-N等因子共同建立动粒平台。其疾病关联与染色体分离异常同属着丝粒功能通路。"
+      },
+      {
+        "target": "CENPC",
+        "rationale": "CENP-C连接CENP-A核小体与外动粒组装，参与MIS12复合体招募，是CCAN向微管结合模块传递结构信息的核心节点。"
+      },
+      {
+        "target": "NDC80",
+        "rationale": "NDC80复合体直接介导动粒-微管连接，受CENP-T通路招募并决定染色体双向附着稳定性，适合作为同一动粒装配轴的功能候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

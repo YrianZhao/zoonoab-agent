@@ -1,0 +1,65 @@
+{
+  "gene": "ADAM33",
+  "generatedAt": "2026-08-03T10:05:00.781Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "ADAM33与哮喘、FEV/FVC比值及气道重塑表型存在遗传和功能关联，其金属蛋白酶活性可影响气道间质细胞周围基质重塑及生长因子释放。ADAM33为I型跨膜ADAM家族蛋白，催化结构域、去整合素样区及富半胱氨酸区位于胞外，具备抗体直接识别和阻断的可及性。相较于广谱炎症因子靶点，ADAM33更偏向气道结构重塑轴，具有与IL-4/IL-13炎症轴互补的干预优先级。",
+    "mechanism": "抗体阻断ADAM33金属蛋白酶催化沟槽及底物结合外侧面，抑制其对细胞外基质相关底物和膜近端底物的蛋白水解加工，从而限制气道壁重塑信号。",
+    "selectedEpitope": "优先覆盖金属蛋白酶结构域活性位点邻近底物结合沟槽，避开锌配位核心以降低非特异风险。",
+    "diseaseDirection": "哮喘与气道重塑",
+    "domain": "胞外区含金属蛋白酶结构域、去整合素样结构域、富半胱氨酸区及EGF样区，随后接跨膜和胞内尾部。",
+    "evidence": "ADAM33哮喘遗传关联与催化结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q9BZ11功能与结构域注释",
+      "RCSB PDB 1R55晶体结构记录",
+      "哮喘气道重塑与ADAM33遗传关联文献"
+    ],
+    "referenceEntries": "UniProt: Q9BZ11; RCSB PDB: 1R55; Open Targets: ADAM33",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "金属蛋白酶结构域底物结合沟槽外缘",
+        "可直接限制底物进入催化面，适合构建功能阻断抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "金属蛋白酶结构域远端暴露环区",
+        "有利于获得高亲和结合并保留构象选择性，可作为变构阻断位点",
+        "备选"
+      ],
+      [
+        "Site C",
+        "锌结合催化核心邻近残基",
+        "可能干扰金属配位或引发ADAM家族交叉反应，需严格选择性评估",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "ADAM金属蛋白酶结构域同源性较高，需规避保守锌结合基序和催化核心，优先筛选ADAM33特异暴露环区并验证ADAM10、ADAM17交叉反应。",
+    "structurePrepZh": "以1R55高分辨率晶体结构为模板，保留抗原链A/B中构象完整的金属蛋白酶结构域，补全缺失侧链并标注锌结合与底物沟槽。",
+    "structureRef": "PDB 1R55, X-ray diffraction, 1.58 Å, human ADAM33 catalytic domain",
+    "antibodies": [
+      "MEDI528",
+      "Dupilumab"
+    ],
+    "interfaceFocus": "催化沟槽外缘及ADAM33特异暴露环",
+    "designMode": "阻断型抗体设计",
+    "candidates": [
+      {
+        "target": "IL13",
+        "rationale": "IL-13驱动杯状细胞化生、黏液分泌和气道高反应性，是哮喘重塑与2型炎症通路中的核心细胞因子。与ADAM33结构重塑轴具有疾病机制互补性。"
+      },
+      {
+        "target": "IL4R",
+        "rationale": "IL4Rα介导IL-4和IL-13受体复合物信号，激活STAT6依赖的2型气道炎症反应。该节点已有临床验证，适合作为同疾病通路参照靶点。"
+      },
+      {
+        "target": "TSLP",
+        "rationale": "TSLP由气道上皮释放并激活树突状细胞和2型免疫反应，位于哮喘炎症级联上游。其阻断可降低多种下游炎症介质，对气道重塑背景具有联合评估价值。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "FGF13",
+  "generatedAt": "2026-08-03T12:32:33.142Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "FGF13 属于胞内 FGF homologous factor 家族，主要通过与电压门控钠通道 Nav1.1/SCN1A 等通道胞内 C 端及微管相关网络相互作用，影响神经元兴奋性，遗传证据与发育性癫痫性脑病、智力障碍和房颤相关。其已解析晶体结构可支持界面级分子设计，但天然蛋白缺乏分泌信号肽和跨膜区，抗原可及性低于经典分泌型 FGF 或膜受体。相较 SCN1A 等大型多跨膜离子通道，FGF13 可提供更稳定的可溶结构抗原用于细胞内递送抗体或研究级阻断分子开发，因此优先级适合定位为机制验证型靶点。",
+    "mechanism": "设计结合 FGF13 FHF 核心结构的抗体片段，阻断其与 Nav 通道胞内 C 端调控区结合，从而削弱 FGF13 对钠通道门控和神经元兴奋性的调节。",
+    "selectedEpitope": "优先覆盖 FHF 核心 β-trefoil 样折叠中预测的 Nav 通道 C 端结合沟槽及相邻保守环区。",
+    "diseaseDirection": "发育性癫痫性脑病与神经发育障碍",
+    "domain": "FGF13 为胞内 FHF 蛋白，含保守 FGF 样 β-trefoil 核心结构，无信号肽和跨膜结构域。",
+    "evidence": "FGF13 神经兴奋性与癫痫遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform disease association",
+      "UniProt Q92913 functional annotation",
+      "RCSB PDB 3HBW X-ray structure",
+      "OMIM and ClinVar neurodevelopmental variant evidence"
+    ],
+    "referenceEntries": "UniProt Q92913；RCSB PDB 3HBW；Open Targets FGF13",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "FHF 核心结构中 Nav 通道 C 端结合沟槽及邻近环区",
+        "直接干预 FGF13-钠通道调控复合物形成，机制相关性最高",
+        "优先"
+      ],
+      [
+        "Site B",
+        "β-trefoil 折叠外侧保守表面与可溶暴露螺旋区",
+        "利于获得高亲和结合分子，可用于结构捕获和细胞内定位研究",
+        "备选"
+      ],
+      [
+        "Site C",
+        "FGF 样核心疏水折叠内部及晶体二聚接触面",
+        "可能影响蛋白稳定性或反映晶体堆积，需避免仅识别非生理界面",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "FGF13 为胞内抗原，常规外源抗体难以进入神经元或心肌细胞；应优先采用 VHH、intrabody 或递送偶联策略，并验证对 Nav 通道复合物的选择性影响。",
+    "structurePrepZh": "以 3HBW 的 A/B 链为模板进行同源链比对、缺失环建模和质子化处理，剔除晶体接触假阳性界面后开展表位可及性评估。",
+    "structureRef": "RCSB PDB 3HBW，FGF13 X-ray structure，1.9 Å",
+    "antibodies": [
+      "研究用 anti-FGF13 monoclonal antibody",
+      "研究用 anti-FHF2/FGF13 antibody"
+    ],
+    "interfaceFocus": "FHF 核心表面 Nav 通道 C 端结合沟槽",
+    "designMode": "胞内阻断型抗体片段",
+    "candidates": [
+      {
+        "target": "SCN1A",
+        "rationale": "SCN1A 编码 Nav1.1，是发育性癫痫性脑病和 Dravet 综合征的核心离子通道基因；FGF13 可通过调节 Nav 通道门控影响同一神经兴奋性通路。"
+      },
+      {
+        "target": "SCN2A",
+        "rationale": "SCN2A 编码 Nav1.2，与早发癫痫和神经发育障碍密切相关；其通道功能异常与 FGF13 所参与的钠通道调控网络处于同一病理轴。"
+      },
+      {
+        "target": "SCN8A",
+        "rationale": "SCN8A 编码 Nav1.6，致病变异可导致发育性癫痫性脑病；作为神经元动作电位传播关键通道，可作为 FGF13 相关兴奋性调控通路的候选靶点。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

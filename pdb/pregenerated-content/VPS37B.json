@@ -1,0 +1,65 @@
+{
+  "gene": "VPS37B",
+  "generatedAt": "2026-08-03T17:49:43.205Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "VPS37B是ESCRT-I复合体亚基，参与HIV-1 Gag p6区PTAP基序依赖的宿主ESCRT募集，并促进病毒颗粒出芽与膜颈切断。该蛋白主要定位于胞质ESCRT装配界面，并非天然胞外抗原，因此常规治疗性抗体的抗原可及性受限，但可作为细胞内机制研究抗体、递送型抗体或结构验证抗体靶点。相较于TSG101等核心ESCRT节点，VPS37B具有更明确的ESCRT-I亚基界面选择性，可用于解析病毒出芽过程中亚基特异性装配贡献，设计优先级应限定于机制阻断与诊断研究场景。",
+    "mechanism": "抗体结合VPS37B ESCRT-I核心装配界面，阻碍其与TSG101/VPS28/MVB12复合体稳定化，从而削弱HIV-1 Gag p6-TSG101介导的ESCRT募集。",
+    "selectedEpitope": "优先覆盖VPS37B Modr/ESCRT-I核心折叠中与TSG101-VPS28邻近的亚基装配面。",
+    "diseaseDirection": "HIV感染与病毒出芽通路",
+    "domain": "VPS37B含N端UBAP1-MVB12-VPS37样Modr区域，参与ESCRT-I异四聚体核心装配。",
+    "evidence": "VPS37B-ESCRT-I介导HIV出芽证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt Q9H9H4功能与定位注释",
+      "RCSB PDB 6VME晶体结构数据",
+      "ESCRT-I与HIV-1 Gag PTAP依赖出芽文献"
+    ],
+    "referenceEntries": "UniProt Q9H9H4；RCSB PDB 6VME；Open Targets VPS37B",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "Modr核心折叠的ESCRT-I亚基装配界面",
+        "可能干扰VPS37B参与ESCRT-I复合体稳定化，适合机制阻断验证",
+        "优先"
+      ],
+      [
+        "Site B",
+        "VPS37B暴露螺旋束外侧非保守表面",
+        "有利于获得亚基选择性结合体，降低对同源VPS37亚基的交叉反应",
+        "备选"
+      ],
+      [
+        "Site C",
+        "高度保守疏水核心与埋藏界面",
+        "结构可及性低且易影响蛋白折叠，作为免疫原表位风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "VPS37B为胞内ESCRT-I亚基，体内抗体可及性不足；应优先用于胞内递送、细胞裂解液检测或结构机制研究，并规避保守疏水核心。",
+    "structurePrepZh": "以6VME晶体结构为模板，校验VPS37B链归属、缺失环区与复合体接触面，补建缺失残基后进行界面溶剂可及性评估。",
+    "structureRef": "RCSB PDB 6VME，X-ray，2.19 Å，ESCRT-I相关结构",
+    "antibodies": [
+      "研究级anti-VPS37B抗体",
+      "研究级anti-TSG101抗体"
+    ],
+    "interfaceFocus": "VPS37B-TSG101/VPS28邻近装配界面",
+    "designMode": "胞内机制抗体",
+    "candidates": [
+      {
+        "target": "TSG101",
+        "rationale": "TSG101的UEV结构域直接识别HIV-1 Gag p6 PTAP基序，是病毒出芽中ESCRT-I募集的关键宿主因子。其机制证据和通路位置均强于多数ESCRT辅助亚基。"
+      },
+      {
+        "target": "VPS28",
+        "rationale": "VPS28连接ESCRT-I与下游ESCRT-II/ESCRT-III装配过程，参与多泡体形成和病毒出芽后续复合体传递。靶向该节点可评估ESCRT级联连接界面的阻断效应。"
+      },
+      {
+        "target": "CHMP4B",
+        "rationale": "CHMP4B是ESCRT-III聚合与膜颈收缩的核心亚基，位于HIV颗粒释放的晚期膜切断步骤。其与VPS4介导的复合体重塑共同决定出芽完成效率。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "gene": "MAP3K11",
+  "generatedAt": "2026-08-03T14:03:11.035Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "MAP3K11编码MLK3，是JNK/p38应激激酶级联的上游MAP3K，可磷酸化MKK4/MKK7并促进神经炎症、轴突应激和神经元凋亡相关信号。Open Targets显示其与神经退行性疾病、帕金森病、阿尔茨海默病及多发性硬化存在遗传和功能关联。该蛋白主要为胞内丝氨酸/苏氨酸激酶，天然抗原可及性弱，因此抗体策略优先定位于结构研究、细胞内递送抗体或降解适配分子，而非经典膜外阻断抗体。相较下游MAPK，MAP3K11处于应激通路上游节点，理论上可在较早层级抑制MKK4/MKK7-JNK轴，但成药优先级受胞内定位限制。",
+    "mechanism": "通过结合MAP3K11激酶结构域ATP结合裂隙或活化环邻近表面，阻断其催化构象形成，从而降低MKK4/MKK7磷酸化与JNK通路激活。",
+    "selectedEpitope": "优先选择激酶结构域N叶β折叠-αC螺旋邻近界面，避开高度保守ATP铰链核心。",
+    "diseaseDirection": "神经退行性疾病应激激酶轴",
+    "domain": "MAP3K11含SH3结构域、激酶结构域、亮氨酸拉链及CRIB样GTPase结合区。",
+    "evidence": "MAP3K11-MLK3神经应激通路证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q16584功能与结构域注释",
+      "RCSB PDB 5K26晶体结构记录",
+      "MAPK/JNK通路神经退行性疾病文献"
+    ],
+    "referenceEntries": "UniProt Q16584；RCSB PDB 5K26；ChEMBL MLK3条目",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "激酶结构域N叶αC螺旋及活化构象调节面",
+        "有利于干预催化活性构象与底物磷酸化效率",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C叶底物结合沟槽邻近区域",
+        "可能削弱MKK4/MKK7识别但需保持亚型选择性",
+        "备选"
+      ],
+      [
+        "Site C",
+        "ATP铰链结合区及保守催化裂隙",
+        "保守性高，易产生MAP3K家族交叉反应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "MAP3K11为胞内激酶，常规抗体难以到达天然作用位点；建议采用细胞内递送Fab/VHH、PROTAC适配或结构验证抗体，并严格评估MAP3K家族交叉结合。",
+    "structurePrepZh": "以PDB 5K26链A/B激酶结构域为模板，补全缺失侧链，确认配体、磷酸化状态与活化环构象后进行表面聚类和保守性过滤。",
+    "structureRef": "RCSB PDB 5K26，X-ray diffraction，1.2 Å",
+    "antibodies": [
+      "抗MLK3研究级单克隆抗体",
+      "抗磷酸化MLK3研究级抗体"
+    ],
+    "interfaceFocus": "αC螺旋、活化环与底物结合沟槽",
+    "designMode": "胞内靶向抗体设计",
+    "candidates": [
+      {
+        "target": "MAP2K4",
+        "rationale": "MAP2K4是MAP3K11下游MKK节点，可接受MLK3磷酸化并激活JNK/p38相关应激信号，处于同一神经应激MAPK通路。"
+      },
+      {
+        "target": "MAP2K7",
+        "rationale": "MAP2K7是JNK通路特异性MKK，直接连接MAP3K11上游信号与JNK激活，适合作为同轴通路备选调控节点。"
+      },
+      {
+        "target": "MAPK8",
+        "rationale": "MAPK8编码JNK1，是MKK4/MKK7下游效应激酶，参与神经元应激、炎症转录反应和凋亡相关信号输出。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

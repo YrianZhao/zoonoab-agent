@@ -1,0 +1,65 @@
+{
+  "gene": "HECW1",
+  "generatedAt": "2026-08-03T13:10:03.453Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "HECW1为含C2、WW与HECT结构域的细胞内E3泛素连接酶，主要通过识别底物蛋白并催化泛素转移影响蛋白稳态；现有Open Targets关联以身高、血清蛋白水平及脂质测量等复杂性状为主，疾病因果链条尚不如经典膜受体明确。该蛋白缺乏分泌信号肽和跨膜胞外结构域，天然抗原可及性不适合常规细胞外阻断抗体。其优先级仅适用于结构域机制研究、细胞内抗体或降解调控工具开发，相比同通路可分泌或膜受体靶点的成药可及性较弱。",
+    "mechanism": "设计抗体以结合HECW1的WW结构域配体识别沟槽，阻断其与含PPxY基序底物的相互作用，从而干预后续HECT结构域介导的泛素转移。",
+    "selectedEpitope": "优先覆盖3L4H所示WW结构域PPxY肽结合沟槽及相邻β折叠表面。",
+    "diseaseDirection": "蛋白稳态与复杂性状遗传关联",
+    "domain": "HECW1含N端C2结构域、多个WW结构域及C端HECT型E3泛素连接酶催化结构域。",
+    "evidence": "HECW1结构域识别与遗传关联证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病与性状关联数据",
+      "UniProt Q76N89蛋白结构域注释",
+      "RCSB PDB 3L4H晶体结构记录",
+      "HECT型E3连接酶与WW结构域底物识别文献"
+    ],
+    "referenceEntries": "UniProt Q76N89；RCSB PDB 3L4H；Open Targets HECW1",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "WW结构域PPxY配体结合沟槽",
+        "可直接竞争含PPxY基序底物结合，适合机制阻断型分子设计",
+        "优先"
+      ],
+      [
+        "Site B",
+        "WW结构域β折叠外侧保守支撑面",
+        "有利于提高结合稳定性并形成邻近沟槽的变构干预",
+        "备选"
+      ],
+      [
+        "Site C",
+        "HECT催化结构域N叶与C叶动态界面",
+        "可能影响泛素转硫酯中间体形成，但构象柔性与选择性风险较高",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "HECW1为细胞内蛋白，常规抗体难以到达作用位点；WW结构域家族同源性较高，需严格排除与NEDD4家族及其他WW结构域蛋白的交叉反应。",
+    "structurePrepZh": "以3L4H链A为结构模板，补全缺失侧链、确认WW结构域边界，保留配体结合沟槽关键芳香族与疏水残基用于表位约束。",
+    "structureRef": "RCSB PDB 3L4H，X-ray diffraction，1.8 Å",
+    "antibodies": [
+      "细胞内抗HECW1研究抗体",
+      "抗WW结构域工具抗体"
+    ],
+    "interfaceFocus": "WW结构域PPxY基序识别沟槽",
+    "designMode": "细胞内阻断抗体",
+    "candidates": [
+      {
+        "target": "NEDD4",
+        "rationale": "NEDD4同属HECT型E3泛素连接酶，依赖WW结构域识别PPxY底物，适合作为同类底物识别轴的对照靶点。"
+      },
+      {
+        "target": "NEDD4L",
+        "rationale": "NEDD4L通过WW结构域结合底物并调控膜蛋白与离子通道泛素化，结构域机制与HECW1具有可比性。"
+      },
+      {
+        "target": "ITCH",
+        "rationale": "ITCH为含WW结构域的HECT型E3连接酶，参与蛋白稳态和免疫相关底物泛素化，可用于评估WW-PPxY识别选择性。"
+      }
+    ],
+    "preferredFormat": "VHH"
+  }
+}

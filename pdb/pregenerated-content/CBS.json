@@ -1,0 +1,65 @@
+{
+  "gene": "CBS",
+  "generatedAt": "2026-08-03T18:15:46.776Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CBS 是同型半胱氨酸经转硫途径进入半胱硫醚生成反应的关键 PLP 依赖酶，致病性功能缺失可导致经典同型半胱氨酸尿症、高同型半胱氨酸血症及血栓相关表型。该蛋白主要定位于细胞质，缺乏天然胞外结构域或分泌特征，因此抗体药物直接中和的抗原可及性明显弱于膜受体或循环蛋白。其优先级更多来自遗传因果性、PDB 高分辨率结构和明确代谢节点；相较 MTHFR、MTR 等同通路酶，CBS 的疾病关联强度与结构解析质量更适合开展机制展示型抗体设计，但需定位为胞内递送或研究级构象抗体方向。",
+    "mechanism": "构象抗体可结合 CBS 催化核心入口或调控结构域，阻碍 L-丝氨酸与同型半胱氨酸在 PLP 活性位点邻近区的有效装配。",
+    "selectedEpitope": "优先选择催化核心外侧、靠近 PLP 活性位点入口且不直接覆盖血红素口袋的构象表位。",
+    "diseaseDirection": "同型半胱氨酸代谢遗传病",
+    "domain": "CBS 含 N 端血红素结合区、中央 PLP 依赖催化核心及 C 端 CBS 调控结构域。",
+    "evidence": "CBS 遗传因果性与高分辨率结构证据包",
+    "evidenceSources": [
+      "Open Targets Platform 疾病遗传关联",
+      "UniProtKB P35520 功能与变异注释",
+      "RCSB PDB 4UUU 晶体结构记录",
+      "OMIM 同型半胱氨酸尿症 CBS 条目"
+    ],
+    "referenceEntries": "UniProt P35520；RCSB PDB 4UUU；OMIM CBS",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "催化核心外侧底物通道邻近面",
+        "可影响底物进入与 PLP 邻近构象装配，适合机制型抑制抗体",
+        "优先"
+      ],
+      [
+        "Site B",
+        "C 端 CBS 调控结构域二聚化相关界面",
+        "可能改变自抑制构象与寡聚体稳定性，适合构象选择性抗体",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N 端血红素结合区周边表面",
+        "邻近氧化还原敏感调控区域，但干扰血红素结合可能带来非预期构象效应",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "CBS 为胞内代谢酶，常规抗体体内可及性受限；设计应优先用于细胞内递送、结构探针或诊断捕获，并避免直接破坏 PLP 与血红素辅基稳定性。",
+    "structurePrepZh": "以 4UUU 的 A、B 链为二聚体模板，保留 PLP 与血红素辅基信息，补全缺失侧链并标注底物通道、调控结构域及寡聚界面。",
+    "structureRef": "RCSB PDB 4UUU，人 CBS X 射线晶体结构 1.71 Å",
+    "antibodies": [
+      "anti-CBS antibody clone 3E1",
+      "anti-CBS antibody clone EPR13036"
+    ],
+    "interfaceFocus": "PLP 活性位点入口与 C 端调控域界面",
+    "designMode": "胞内构象抗体",
+    "candidates": [
+      {
+        "target": "MTHFR",
+        "rationale": "MTHFR 参与叶酸循环中 5,10-亚甲基四氢叶酸向 5-甲基四氢叶酸的还原，为同型半胱氨酸再甲基化提供甲基供体。其遗传变异与高同型半胱氨酸血症存在明确关联。"
+      },
+      {
+        "target": "MTR",
+        "rationale": "MTR 催化同型半胱氨酸向甲硫氨酸的再甲基化反应，与 CBS 所在转硫分支共同决定同型半胱氨酸稳态。该节点适合用于同一代谢网络的机制对照。"
+      },
+      {
+        "target": "MTRR",
+        "rationale": "MTRR 维持甲硫氨酸合成酶的钴胺素辅因子还原状态，间接控制同型半胱氨酸再甲基化通量。其功能缺陷可导致同型半胱氨酸升高及相关代谢病表型。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

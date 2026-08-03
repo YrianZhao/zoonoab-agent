@@ -1,0 +1,65 @@
+{
+  "gene": "SNCAIP",
+  "generatedAt": "2026-08-03T16:46:40.611Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "SNCAIP编码synphilin-1，主要作为细胞内支架蛋白与α-synuclein相互作用，并参与蛋白聚集、泛素化包涵体形成及神经退行性病理相关过程。该蛋白缺乏经典分泌信号肽、跨膜区和稳定胞外结构域，抗原可及性不符合常规治疗性抗体优先条件；PDB 2KES仅覆盖其N端结构片段，适合机制研究而非直接胞外阻断。相较于同一α-synuclein蛋白稳态通路中的SNCA、LRRK2或GBA1，SNCAIP的疾病遗传关联较弱且Top关联多为表型测量或非特异疾病，因此仅宜作为低优先级探索性靶点。",
+    "mechanism": "候选抗体策略限于细胞内递送或研究级结合剂，靶向SNCAIP结构片段以干扰其与SNCA相关复合物形成及包涵体募集。",
+    "selectedEpitope": "优先评估PDB 2KES所示N端α螺旋束外露面，避开疏水核心并保留构象依赖识别。",
+    "diseaseDirection": "神经退行性蛋白稳态异常",
+    "domain": "SNCAIP为胞质蛋白，含N端结构化片段及多段蛋白互作区域，无胞外或跨膜结构域。",
+    "evidence": "SNCAIP结构与α-synuclein互作证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联数据",
+      "UniProt Q9Y6H5蛋白注释",
+      "RCSB PDB 2KES溶液NMR结构",
+      "α-synuclein聚集与synphilin-1互作研究文献"
+    ],
+    "referenceEntries": "UniProt Q9Y6H5；RCSB PDB 2KES；Open Targets SNCAIP",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "N端α螺旋束外露带电面",
+        "有利于构象识别并降低疏水非特异结合风险",
+        "优先"
+      ],
+      [
+        "Site B",
+        "2KES结构片段的螺旋-环连接区",
+        "可能提供线性与构象混合表位，适合研究级抗体筛选",
+        "备选"
+      ],
+      [
+        "Site C",
+        "N端螺旋束疏水核心邻近面",
+        "易影响折叠稳定性且存在非特异疏水结合风险",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "SNCAIP为细胞内抗原，常规抗体难以到达作用位点；建议限定为研究抗体、细胞内抗体或递送平台验证，并严格评估交叉反应。",
+    "structurePrepZh": "采用2KES溶液NMR模型集合进行构象聚类，保留代表性低能构象，补充无序区注释并仅对稳定N端片段开展表位建模。",
+    "structureRef": "RCSB PDB 2KES，human SNCAIP N端片段NMR结构",
+    "antibodies": [
+      "抗synphilin-1研究抗体",
+      "抗SNCAIP多克隆抗体"
+    ],
+    "interfaceFocus": "N端螺旋束外露面与蛋白互作邻近区",
+    "designMode": "探索性研究抗体",
+    "candidates": [
+      {
+        "target": "SNCA",
+        "rationale": "SNCA编码α-synuclein，是SNCAIP互作伙伴并直接参与路易小体形成及帕金森病相关蛋白聚集通路。其胞外释放和细胞间传播环节更适合抗体阻断策略。"
+      },
+      {
+        "target": "LRRK2",
+        "rationale": "LRRK2位于帕金森病相关蛋白稳态和内溶酶体功能通路中，遗传证据强于SNCAIP。该靶点虽主要为胞内激酶，但作为同通路优先级参照具有明确疾病机制基础。"
+      },
+      {
+        "target": "GBA1",
+        "rationale": "GBA1影响溶酶体葡糖脑苷脂代谢并调节α-synuclein清除，位于同一蛋白稳态病理网络。其遗传关联和机制可解释性均高于SNCAIP。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}

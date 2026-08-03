@@ -1,0 +1,65 @@
+{
+  "gene": "CDH1",
+  "generatedAt": "2026-08-03T11:12:05.009Z",
+  "modelUsed": "gpt-5.5",
+  "promptVersion": "v1.0",
+  "content": {
+    "selectionReason": "CDH1编码E-cadherin，是上皮细胞黏附连接的核心钙依赖性黏附分子，其功能缺失可削弱细胞间黏附并促进弥漫型胃癌及小叶性乳腺癌相关的侵袭表型。CDH1为单次跨膜膜受体样黏附蛋白，五个胞外cadherin重复结构域暴露于细胞表面，具备明确的抗体结合可及性。相较于下游WNT或EMT转录调控因子，CDH1胞外结构域可直接药物化，并可利用高分辨率晶体结构限定表位边界，因而具有更高的抗体设计优先级。",
+    "mechanism": "通过结合E-cadherin胞外EC1黏附界面，调节同型E-cadherin反式结合及黏附连接稳定性，影响β-catenin膜定位与上皮完整性。",
+    "selectedEpitope": "优先评估EC1 N端strand-swap反式黏附界面，避开Ca2+结合位点以降低构象扰动风险。",
+    "diseaseDirection": "遗传性弥漫型胃癌与上皮肿瘤",
+    "domain": "E-cadherin含信号肽、五个胞外cadherin重复EC1-EC5、跨膜区及胞内β-catenin结合尾部。",
+    "evidence": "CDH1胞外黏附结构与肿瘤遗传证据包",
+    "evidenceSources": [
+      "Open Targets Platform疾病关联评分",
+      "UniProt P12830功能与结构域注释",
+      "RCSB PDB 2OMZ晶体结构记录",
+      "ClinVar与OMIM中CDH1致病变异证据"
+    ],
+    "referenceEntries": "UniProt P12830；RCSB PDB 2OMZ；Open Targets ENSG00000039068",
+    "epitopeRowsZh": [
+      [
+        "Site A",
+        "EC1 N端strand-swap黏附界面",
+        "直接覆盖同型反式结合核心，可用于调节E-cadherin黏附状态",
+        "优先"
+      ],
+      [
+        "Site B",
+        "EC1-EC2连接区邻近Ca2+稳定界面",
+        "可影响胞外结构域取向并提供构象选择性，但需保留钙依赖折叠",
+        "备选"
+      ],
+      [
+        "Site C",
+        "EC2远端侧面非黏附表面",
+        "抗原可及但功能调节效应可能有限，适合作为结合型对照表位",
+        "谨慎"
+      ]
+    ],
+    "riskSummaryZh": "EC1黏附界面与Ca2+稳定网络相邻，抗体设计需避免广泛破坏钙依赖折叠；建议筛选构象选择性克隆并评估细胞黏附功能。",
+    "structurePrepZh": "以2OMZ抗原链A/B为模板，补全缺失侧链、保留关键Ca2+配位信息，按EC1-EC2边界定义可成药表面并标注晶体接触。",
+    "structureRef": "PDB 2OMZ；human E-cadherin EC1-EC2 X-ray structure, 1.6 Å",
+    "antibodies": [
+      "DECMA-1",
+      "HECD-1"
+    ],
+    "interfaceFocus": "EC1 strand-swap反式黏附界面",
+    "designMode": "结构引导阻断型",
+    "candidates": [
+      {
+        "target": "CTNNB1",
+        "rationale": "β-catenin直接结合E-cadherin胞内尾部，是黏附连接与WNT信号交汇节点；CDH1功能缺失可改变其膜定位与转录活性。"
+      },
+      {
+        "target": "CTNNA1",
+        "rationale": "αE-catenin连接E-cadherin-β-catenin复合体与肌动蛋白骨架，参与同一黏附连接稳定通路，且与弥漫型胃癌易感相关。"
+      },
+      {
+        "target": "CDH2",
+        "rationale": "N-cadherin参与EMT过程中cadherin switching，与E-cadherin丢失后的侵袭和迁移表型处于同一上皮间质转化轴。"
+      }
+    ],
+    "preferredFormat": "Fab"
+  }
+}
