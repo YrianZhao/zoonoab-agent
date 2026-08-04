@@ -143,6 +143,337 @@ const APP_BUILD_VERSION = readAppBuildVersion();
 const LOCAL_STRUCTURE_CATALOG = loadLocalStructureCatalog(__dirname);
 const FALLBACK_STRUCTURE_SUPPORT_TARGETS = 'PD-L1/CD274、PD-1/PDCD1、CTLA-4、HER2/ERBB2、EGFR/ERBB1、VEGF-A/VEGFA、TNF、IL-17A、IL-23、IL-33、TSLP、RSV F、SARS-CoV-2 RBD、Influenza HA、Influenza NA、Influenza M2、PF4/CXCL4、Adenovirus hexon、PRRSV GP4、PRRSV NSP10、HSV gD、PCV2 capsid、PEDV spike、CSFV NS5B、Feline panleukopenia VP2、Connexin-26、PCSK9、ANGPTL3、GIPR、DAT/SLC6A3、CD20、CD19、CD3、C5、IL-6R、IL-4Rα、CD25、CD33/SIGLEC3、CD38、TIGIT、CD47、LAG-3、TROP-2、BCMA、IgE、CGRP receptor、IL-1β、BAFF/TNFSF13B、FcRn/FCGRT、NGF、Integrin α4β7/ITGA4-ITGB7、GPC2/Glypican-2，以及犬源 NGF';
 const STRUCTURE_SUPPORT_TARGETS_FOR_PROMPT = buildStructureSupportPromptList(LOCAL_STRUCTURE_CATALOG, FALLBACK_STRUCTURE_SUPPORT_TARGETS);
+
+// ─── Expanded Target Index (Tier 2) ─────────────────────────
+let expandedTargetIndex = null;
+let expandedTargetGeneMap = null;     // Map<UPPERCASE_GENE, indexEntry>
+let expandedTargetAliasMap = null;    // Map<UPPERCASE_ALIAS, gene>
+let expandedTargetUniprotMap = null;  // Map<UPPERCASE_UNIPROT, gene>
+let expandedTargetProteinMap = null;  // Map<lowercase_protein_substring, gene> (only for short names)
+let expandedTargetPdbIdMap = null;    // Map<UPPERCASE_PDBID, gene>
+
+function loadExpandedTargetIndex() {
+  const indexPath = path.join(__dirname, 'pdb', 'expanded-target-index.json');
+  try {
+    const raw = fs.readFileSync(indexPath, 'utf8');
+    expandedTargetIndex = JSON.parse(raw);
+    const targets = expandedTargetIndex.targets || {};
+    expandedTargetGeneMap = new Map();
+    expandedTargetAliasMap = new Map();
+    expandedTargetUniprotMap = new Map();
+    expandedTargetProteinMap = new Map();
+    expandedTargetPdbIdMap = new Map();
+    for (const [gene, entry] of Object.entries(targets)) {
+      const upperGene = gene.toUpperCase();
+      expandedTargetGeneMap.set(upperGene, entry);
+      // aliases
+      for (const alias of (entry.aliases || [])) {
+        const upperAlias = String(alias).toUpperCase().trim();
+        if (upperAlias && !expandedTargetAliasMap.has(upperAlias)) {
+          expandedTargetAliasMap.set(upperAlias, upperGene);
+        }
+      }
+      // uniprot
+      if (entry.uniprot) {
+        const upperUni = String(entry.uniprot).toUpperCase().trim();
+        if (upperUni) expandedTargetUniprotMap.set(upperUni, upperGene);
+      }
+      // pdbId
+      if (entry.pdbId) {
+        const upperPdb = String(entry.pdbId).toUpperCase().trim();
+        if (upperPdb) expandedTargetPdbIdMap.set(upperPdb, upperGene);
+      }
+      // proteinName (only index if reasonably short, <= 50 chars)
+      const protName = String(entry.proteinName || '').trim();
+      if (protName && protName.length <= 50) {
+        expandedTargetProteinMap.set(protName.toLowerCase(), upperGene);
+      }
+    }
+    console.log(`[expanded-index] Loaded ${expandedTargetGeneMap.size} targets, ${expandedTargetAliasMap.size} aliases, ${expandedTargetUniprotMap.size} uniprots`);
+  } catch (err) {
+    console.warn('[expanded-index] Failed to load, Tier 2 disabled:', err && err.message ? err.message : err);
+    expandedTargetIndex = null;
+    expandedTargetGeneMap = null;
+    expandedTargetAliasMap = null;
+    expandedTargetUniprotMap = null;
+    expandedTargetProteinMap = null;
+    expandedTargetPdbIdMap = null;
+  }
+}
+loadExpandedTargetIndex();
+
+// ─── Pre-generated Content Cache ──────────────────────────
+const preGeneratedContentCache = new Map();
+const PREGEN_CONTENT_DIR = path.join(__dirname, 'pdb', 'pregenerated-content');
+
+function loadPreGeneratedContent(gene) {
+  const key = String(gene || '').toUpperCase().trim();
+  if (!key) return null;
+  if (preGeneratedContentCache.has(key)) return preGeneratedContentCache.get(key);
+  const filePath = path.join(PREGEN_CONTENT_DIR, key + '.json');
+  try {
+    const raw = fs.readFileSync(filePath, 'utf8');
+    const data = JSON.parse(raw);
+    preGeneratedContentCache.set(key, data);
+    return data;
+  } catch {
+    preGeneratedContentCache.set(key, null);
+    return null;
+  }
+}
+
+function buildDynamicProfile(gene, indexEntry, preGenContent, preferredFormat) {
+  const content = preGenContent && preGenContent.content ? preGenContent.content : {};
+  const format = preferredFormat === 'VHH' ? 'VHH' : 'Fab';
+  const poses = (indexEntry && Array.isArray(indexEntry.poses)) ? indexEntry.poses : [];
+  const formatPoses = poses.filter(p => p.format === format);
+  const antibodyChains = formatPoses.length > 0 ? formatPoses[0].antibodyChains : (poses.length > 0 ? poses[0].antibodyChains : ['B', 'C']);
+  const antigenChains = (indexEntry && Array.isArray(indexEntry.antigenChains)) ? indexEntry.antigenChains : ['A'];
+  return {
+    routeId: 'expanded_' + gene,
+    targetDisplay: gene,
+    disease: content.diseaseDirection || (indexEntry && indexEntry.topDiseases && indexEntry.topDiseases.length ? indexEntry.topDiseases[0] : '综合抗体设计'),
+    mechanism: content.mechanism || gene + ' 通路调控设计',
+    selectionReason: content.selectionReason || gene + ' 是该疾病通路中的关键分子，具有胞外可及结构域，适合抗体设计。',
+    selectedEpitope: content.selectedEpitope || '表面可及性较高的保守功能区域',
+    diseaseDirection: content.diseaseDirection || '',
+    domain: content.domain || (gene + ' 目标抗原可及结构区域'),
+    evidence: content.evidence || (gene + ' 靶点证据包'),
+    evidenceSources: content.evidenceSources || [],
+    referenceEntries: content.referenceEntries || '',
+    epitopeRowsZh: content.epitopeRowsZh || [],
+    riskSummaryZh: content.riskSummaryZh || '',
+    structurePrepZh: content.structurePrepZh || '',
+    structureRef: content.structureRef || ('RCSB ' + (indexEntry && indexEntry.pdbId ? indexEntry.pdbId : '') + ' ' + gene + ' 抗原'),
+    structuralBasis: 'RCSB ' + (indexEntry && indexEntry.pdbId ? indexEntry.pdbId : '') + ' ' + gene + ' 抗原',
+    antibodies: content.antibodies || ['同类抗原结合抗体设计经验'],
+    interfaceFocus: content.interfaceFocus || '',
+    candidates: content.candidates || [],
+    preferredFormat: content.preferredFormat || format,
+    structure: 'RCSB ' + (indexEntry && indexEntry.pdbId ? indexEntry.pdbId : '') + ' ' + (indexEntry && indexEntry.proteinName ? indexEntry.proteinName : gene) + ' 复合体',
+    scaffold: format === 'VHH' ? 'VHH 纳米抗体骨架' : 'Fab 片段抗体骨架',
+    antigenChains: antigenChains,
+    antibodyChains: antibodyChains,
+    routeLabel: gene,
+    partnerDisplay: '',
+    genericProfile: false,
+    expandedProfile: true,
+    gene: gene,
+    uniprot: indexEntry && indexEntry.uniprot ? indexEntry.uniprot : '',
+    proteinName: indexEntry && indexEntry.proteinName ? indexEntry.proteinName : '',
+    pdbId: indexEntry && indexEntry.pdbId ? indexEntry.pdbId : '',
+    fabCount: indexEntry ? indexEntry.fabCount || 0 : 0,
+    vhhCount: indexEntry ? indexEntry.vhhCount || 0 : 0,
+    complexDir: indexEntry && indexEntry.complexDir ? indexEntry.complexDir : gene,
+    poses: poses,
+    expandedIndexEntry: indexEntry
+  };
+}
+
+function buildDynamic3DPreset(profile) {
+  const gene = profile.gene || profile.targetDisplay || '';
+  const format = (profile.preferredFormat === 'VHH') ? 'VHH' : 'Fab';
+  const indexEntry = profile.expandedIndexEntry || {};
+  const poses = (indexEntry.poses || []).filter(p => p.format === format);
+  const files = poses.map(p => 'expanded/' + gene + '/' + p.fileName);
+  return {
+    aliasPrefix: gene + '-' + format,
+    title: gene + ' ' + format + ' 设计候选构象',
+    structureFamily: (indexEntry.proteinName || gene) + ' · ' + format + ' 候选',
+    visualSummary: '展示 ' + format + ' 贴合 ' + gene + ' 表面的设计候选构象',
+    structuralBasis: 'RCSB ' + (indexEntry.pdbId || '') + ' ' + gene + ' 复合体',
+    antigenChains: indexEntry.antigenChains || ['A'],
+    antibodyChains: poses.length > 0 ? poses[0].antibodyChains : (format === 'VHH' ? ['B'] : ['B', 'C']),
+    antigenColor: '#F59E0B',
+    antibodyColor: '#0EA5E9',
+    order: [...Array(files.length).keys()],
+    ipTmBias: 0,
+    files: files,
+    dynamicPreset: true,
+    expandedPreset: true
+  };
+}
+
+function matchTier1(gene) {
+  const normalized = String(gene || '').toUpperCase().replace(/[\s\-_]/g, '');
+  // 检查 DEMO_ROUTE_RULES
+  for (const rule of DEMO_ROUTE_RULES) {
+    const ruleTarget = String(rule.target || '').toUpperCase().replace(/[\s\-_]/g, '');
+    if (ruleTarget === normalized) return { routeId: rule.id, route: rule };
+    // 检查 keywords
+    for (const kw of (rule.keywords || [])) {
+      if (String(kw).toUpperCase().replace(/[\s\-_]/g, '') === normalized) return { routeId: rule.id, route: rule };
+    }
+  }
+  // 检查 buildRouteProfile 中的已知别名
+  const canonical = canonicalPreparedTargetAlias(gene);
+  if (canonical) {
+    for (const rule of DEMO_ROUTE_RULES) {
+      const ruleTarget = String(rule.target || '').toUpperCase().replace(/[\s\-_]/g, '');
+      const canonNorm = String(canonical).toUpperCase().replace(/[\s\-_]/g, '');
+      if (ruleTarget === canonNorm) return { routeId: rule.id, route: rule };
+    }
+  }
+  return null;
+}
+
+function matchTier2(gene) {
+  if (!expandedTargetGeneMap) return null;
+  const normalized = String(gene || '').toUpperCase().trim();
+  // 1. 精确 gene 匹配
+  let entry = expandedTargetGeneMap.get(normalized);
+  if (entry) return { entry, gene: normalized, confidence: 1.0 };
+  // 去特殊字符重试
+  const stripped = normalized.replace(/[\s\-_]/g, '');
+  entry = expandedTargetGeneMap.get(stripped);
+  if (entry) return { entry, gene: stripped, confidence: 0.98 };
+  // 2. 别名匹配
+  const aliasGene = expandedTargetAliasMap.get(normalized) || expandedTargetAliasMap.get(stripped);
+  if (aliasGene) {
+    entry = expandedTargetGeneMap.get(aliasGene);
+    if (entry) return { entry, gene: aliasGene, confidence: 0.95 };
+  }
+  // 3. UniProt 匹配
+  const uniprotGene = expandedTargetUniprotMap.get(normalized) || expandedTargetUniprotMap.get(stripped);
+  if (uniprotGene) {
+    entry = expandedTargetGeneMap.get(uniprotGene);
+    if (entry) return { entry, gene: uniprotGene, confidence: 0.95 };
+  }
+  // 4. PDB ID 匹配
+  const pdbIdGene = expandedTargetPdbIdMap.get(normalized) || expandedTargetPdbIdMap.get(stripped);
+  if (pdbIdGene) {
+    entry = expandedTargetGeneMap.get(pdbIdGene);
+    if (entry) return { entry, gene: pdbIdGene, confidence: 0.75 };
+  }
+  // 5. 蛋白名模糊匹配（子串）
+  const lowerGene = String(gene || '').toLowerCase().trim();
+  if (lowerGene.length >= 3) {
+    for (const [protName, geneKey] of expandedTargetProteinMap) {
+      if (protName.includes(lowerGene) || lowerGene.includes(protName)) {
+        entry = expandedTargetGeneMap.get(geneKey);
+        if (entry) return { entry, gene: geneKey, confidence: 0.80 };
+      }
+    }
+  }
+  return null;
+}
+
+function matchTargetsLocally(modelTargets) {
+  const results = [];
+  for (const t of modelTargets) {
+    const gene = String(t.gene || '').trim();
+    if (!gene) { results.push({ ...t, tier: 'none', match: null }); continue; }
+    // 1. 先查 Tier 1
+    const tier1 = matchTier1(gene);
+    if (tier1) { results.push({ ...t, tier: 'tier1', match: tier1, confidence: 1.0 }); continue; }
+    // 2. 再查 Tier 2
+    const tier2 = matchTier2(gene);
+    if (tier2) { results.push({ ...t, tier: 'tier2', match: tier2, confidence: tier2.confidence }); continue; }
+    // 3. 无匹配
+    results.push({ ...t, tier: 'none', match: null });
+  }
+  return results;
+}
+
+function buildTargetSelectionList(matchedTargets, modelIntent) {
+  const localMatches = matchedTargets.filter(t => t.tier === 'tier1' || t.tier === 'tier2');
+  const nonLocal = matchedTargets.filter(t => t.tier === 'none');
+  const MAX_OPTIONS = 4;
+  let selectionList = [];
+
+  if (localMatches.length >= MAX_OPTIONS) {
+    selectionList = localMatches.slice(0, MAX_OPTIONS);
+  } else if (localMatches.length > 0) {
+    selectionList = localMatches.concat(nonLocal.slice(0, MAX_OPTIONS - localMatches.length));
+  } else {
+    selectionList = nonLocal.slice(0, MAX_OPTIONS);
+  }
+
+  return selectionList.map(t => {
+    const gene = t.gene || '';
+    let desc = t.reason || '';
+    let title = gene;
+
+    if (t.tier === 'tier2' && t.match && t.match.entry) {
+      const preGen = loadPreGeneratedContent(gene);
+      if (preGen && preGen.content) {
+        desc = preGen.content.selectionReason || preGen.content.mechanism || desc;
+        desc = String(desc).slice(0, 120);
+      }
+      if (t.match.entry.proteinName) title = gene + ' · ' + String(t.match.entry.proteinName).slice(0, 30);
+    } else if (t.tier === 'tier1' && t.match && t.match.route) {
+      title = t.match.route.target || gene;
+    }
+
+    return {
+      gene,
+      title,
+      desc: desc || '该靶点具备可用于抗体候选设计的抗原可及表面。',
+      tier: t.tier,
+      hasLocal: t.tier === 'tier1' || t.tier === 'tier2',
+      reason: t.reason || '',
+      match: t.match
+    };
+  });
+}
+
+function buildModelIntentFromSelection(pendingSelection, targetIdx) {
+  const selected = pendingSelection.selectionList[targetIdx];
+  if (!selected) return null;
+  const gene = selected.gene;
+  const originalIntent = pendingSelection.modelIntent;
+  const format = originalIntent.preferredFormat === 'VHH' ? 'VHH' : 'Fab';
+
+  const baseIntent = {
+    intent: 'design',
+    action: 'design',
+    target: gene,
+    targetGene: gene,
+    disease: originalIntent.disease || '',
+    abType: format,
+    count: 10,
+    confidence: originalIntent.confidence || 0.9,
+    shouldStartWorkflow: true,
+    preferredFormat: format,
+    candidateTargets: (originalIntent.targets || []).map(t => ({
+      target: t.gene,
+      gene: t.gene,
+      rationale: t.reason || ''
+    })),
+    summary: '',
+    background: '',
+    reason: selected.reason || '',
+    selectionReason: '',
+    mechanism: '',
+    organismName: '',
+    organismTaxId: null,
+    strain: '',
+    isoform: '',
+    blockTarget: null,
+    designLabel: '',
+    targetType: '',
+    assumptions: [],
+    needsClarification: false,
+    clarifyingQuestion: '',
+    workflowBlueprint: null,
+    workflowFields: null
+  };
+
+  if (selected.tier === 'tier2' && selected.match && selected.match.entry) {
+    const preGen = loadPreGeneratedContent(gene);
+    const content = preGen && preGen.content ? preGen.content : {};
+    baseIntent.mechanism = content.mechanism || '';
+    baseIntent.selectionReason = content.selectionReason || selected.desc || '';
+    baseIntent.reason = content.selectionReason || selected.reason || '';
+    baseIntent.disease = content.diseaseDirection || baseIntent.disease;
+  } else if (selected.tier === 'none') {
+    baseIntent.reason = selected.reason || gene + ' 具备可用于抗体候选设计的抗原可及表面。';
+    baseIntent.selectionReason = baseIntent.reason;
+  }
+
+  return baseIntent;
+}
+
 const PDB_CACHE_TTL_MS = Math.max(60_000, Number(process.env.PDB_CACHE_TTL_MS || 6 * 60 * 60 * 1000) || 6 * 60 * 60 * 1000);
 const PDB_BROWSER_CACHE_MAX_AGE = Math.max(60, Math.floor(PDB_CACHE_TTL_MS / 1000));
 const PDB_CACHE_MAX_ENTRIES = Math.max(8, Number(process.env.PDB_CACHE_MAX_ENTRIES || 32) || 32);
@@ -10307,8 +10638,15 @@ function orderPDBFilesForPreset(preset, availableFiles) {
 }
 
 function localPDBFileExists(filename) {
-  if (!filename || filename.includes('..') || !/^[A-Za-z0-9][A-Za-z0-9_.-]*\.pdb$/.test(filename)) return false;
-  return Boolean(localPDBPath(filename));
+  if (!filename) return false;
+  const safe = String(filename);
+  if (safe.includes('..')) return false;
+  // 支持 expanded/ 路径
+  if (safe.startsWith('expanded/')) {
+    return Boolean(localPDBPath(safe));
+  }
+  if (!/^[A-Za-z0-9][A-Za-z0-9_.-]*\.pdb$/.test(safe)) return false;
+  return Boolean(localPDBPath(safe));
 }
 
 function routeStructureTitle(profile, preset, abFormat) {
@@ -11430,9 +11768,17 @@ function msgs(lang) {
 // ─── Sessions ──────────────────────────────────────────────
 const sessions = new Map();
 const asrSessions = new Map();
+const pendingTargetSelections = new Map();
 setInterval(() => {
   for (const [sid, sess] of sessions) {
     if (sess.ws.readyState !== 1) sessions.delete(sid);
+  }
+  // Clean up expired pending target selections (TTL: 5 minutes)
+  const now = Date.now();
+  for (const [selectionId, pending] of pendingTargetSelections) {
+    if (pending && pending.createdAt && now - pending.createdAt > 300_000) {
+      pendingTargetSelections.delete(selectionId);
+    }
   }
 }, 60_000);
 
@@ -11458,6 +11804,14 @@ function localPDBCandidatePaths(filename) {
       if (!rel.startsWith('..') && !path.isAbsolute(rel) && fs.existsSync(fp) && !candidates.includes(fp)) {
         candidates.push(fp);
       }
+    }
+  }
+  // 支持 expanded/GENE/FILE.pdb 格式
+  const expandedMatch = String(filename || '').match(/^expanded\/([A-Za-z0-9][A-Za-z0-9_.-]*)\/([A-Za-z0-9][A-Za-z0-9_.-]*\.pdb)$/i);
+  if (expandedMatch) {
+    const expandedPath = path.join(LOCAL_PDB_DIR, 'expanded', expandedMatch[1], expandedMatch[2]);
+    if (fs.existsSync(expandedPath) && !candidates.includes(expandedPath)) {
+      candidates.push(expandedPath);
     }
   }
   return candidates;
@@ -11506,12 +11860,30 @@ function resolveLocalPDBAlias(filename) {
 }
 
 function localPDBPath(filename) {
-  if (!filename || filename.includes('..') || !/^[A-Za-z0-9][A-Za-z0-9_.-]*\.pdb$/.test(filename)) return '';
-  return localPDBCandidatePaths(filename)[0] || '';
+  if (!filename) return '';
+  const safe = String(filename);
+  if (safe.includes('..')) return '';
+  // 支持 expanded/GENE/FILE.pdb 格式
+  const expandedMatch = safe.match(/^expanded\/([A-Za-z0-9][A-Za-z0-9_.-]*)\/([A-Za-z0-9][A-Za-z0-9_.-]*\.pdb)$/i);
+  if (expandedMatch) {
+    const expandedPath = path.join(LOCAL_PDB_DIR, 'expanded', expandedMatch[1], expandedMatch[2]);
+    return fs.existsSync(expandedPath) ? expandedPath : '';
+  }
+  // 原有逻辑：顶层 pdb/ 目录
+  if (!/^[A-Za-z0-9][A-Za-z0-9_.-]*\.pdb$/.test(safe)) return '';
+  return localPDBCandidatePaths(safe)[0] || '';
 }
 
 function localPDBPublicUrl(filename) {
-  return '/api/pdb/local/' + encodeURIComponent(filename);
+  const safe = String(filename || '');
+  // expanded/GENE/FILE.pdb → /api/pdb/local/expanded/GENE/FILE.pdb
+  if (safe.startsWith('expanded/')) {
+    const parts = safe.split('/');
+    if (parts.length === 3) {
+      return '/api/pdb/local/expanded/' + encodeURIComponent(parts[1]) + '/' + encodeURIComponent(parts[2]);
+    }
+  }
+  return '/api/pdb/local/' + encodeURIComponent(safe);
 }
 
 function localPDBViewerUrl(filename, name, chains) {
@@ -11694,6 +12066,51 @@ app.get('/api/structure-catalog', (req, res) => {
     ok: true,
     catalog: toClientStructureCatalog(LOCAL_STRUCTURE_CATALOG)
   });
+});
+
+app.get('/api/pdb/local/expanded/:gene/:filename', async (req, res) => {
+  const gene = String(req.params.gene || '').trim();
+  const filename = String(req.params.filename || '').trim();
+  // 安全检查
+  if (!gene || !filename || gene.includes('..') || filename.includes('..') ||
+      !/^[A-Za-z0-9][A-Za-z0-9_.-]*$/.test(gene) ||
+      !/^[A-Za-z0-9][A-Za-z0-9_.-]*\.pdb$/.test(filename)) {
+    return res.status(400).json({ error: 'Invalid path' });
+  }
+  const expandedPath = path.join(LOCAL_PDB_DIR, 'expanded', gene, filename);
+  // 防止目录穿越
+  const rel = path.relative(path.join(LOCAL_PDB_DIR, 'expanded'), expandedPath);
+  if (rel.startsWith('..') || path.isAbsolute(rel)) {
+    return res.status(400).json({ error: 'Invalid path' });
+  }
+  if (!fs.existsSync(expandedPath)) return res.status(404).json({ error: 'Not found' });
+  let stat;
+  try { stat = fs.statSync(expandedPath); } catch { return res.status(404).json({ error: 'Not found' }); }
+  const requestedChains = normalizeViewerPDBChains(req.query.chains);
+  const chainKey = requestedChains.join('');
+  const etag = `"pdb-exp-${stat.size.toString(16)}-${Math.floor(stat.mtimeMs).toString(16)}-${chainKey || 'all'}"`;
+  res.setHeader('Content-Type', 'chemical/x-pdb; charset=utf-8');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Content-Disposition', 'inline; filename="' + filename + '"');
+  res.setHeader('Cache-Control', 'public, max-age=86400, stale-while-revalidate=604800');
+  res.setHeader('ETag', etag);
+  res.setHeader('Last-Modified', stat.mtime.toUTCString());
+  if (req.headers['if-none-match'] === etag) return res.status(304).end();
+  if (requestedChains.length) {
+    try {
+      const pdbText = await fs.promises.readFile(expandedPath, 'utf8');
+      return res.send(projectPDBTextToChains(pdbText, requestedChains));
+    } catch (err) {
+      console.error('[PDB] expanded projection error:', err && err.message ? err.message : err);
+      return res.status(500).json({ error: 'PDB read failed' });
+    }
+  }
+  const stream = fs.createReadStream(expandedPath);
+  stream.on('error', (err) => {
+    console.error('[PDB] expanded stream error:', err && err.message ? err.message : err);
+    if (!res.headersSent) { res.status(500).json({ error: 'PDB read failed' }); } else { res.destroy(err); }
+  });
+  stream.pipe(res);
 });
 
 app.get('/api/pdb/local/:filename', async (req, res) => {
@@ -13443,23 +13860,21 @@ function structureSearchPromptGuidance() {
 
 function buildWorkflowIntentPrompt() {
   return [
-    '你是 ZoonoAb 学术分子设计任务解析引擎。这一次返回就是唯一的业务判断，必须同时完成意图识别、主靶点判断与最终回答入口判断。',
-    '只输出一行 JSON；不要 Markdown、代码块或额外解释。不要输出 workflow、profile、tool_call、tool_result、epitopeRows、referenceEntries。',
-    '唯一权威字段是 action，只能取 design、answer、clarify 三者之一。',
-    'JSON 键固定：{"action":"design|answer|clarify","answer":"短答或空","question":"澄清问题或空","summary":"任务摘要或空","background":"背景说明或空","disease":"疾病/方向或空","target":"明确靶点或空","gene":"基因名或空","targetType":"protein|receptor|cytokine|viral_surface_protein|bacterial_antigen|other 或空","organism":"物种或病原体或空","mechanism":"作用机制或空","antibodyType":"Fab|VHH|mAb|scFv|IgG或空","count":数字或null,"blockTarget":"阻断对象或空","selectionReason":"选择该靶点的理由或空","candidates":[{"target":"候选靶点","gene":"基因名或空","rationale":"候选理由"}],"assumptions":["必要假设"],"confidence":0到1}',
-    'design：用户明确要设计、生成、筛选、开发抗体/单抗/Fab/VHH/scFv/binder/候选分子时使用。只要请求里存在疾病、病原体、通路、抗原方向，就必须直接选择一个明确靶点，不得因为候选不止一个就转 clarify。',
-    'answer：普通问答、能力介绍、非分子设计问题，或小分子/半抗原边界问题。answer 最多 2 句。',
-    'clarify：只有在主语缺失到无法判断设计对象时才允许，例如“设计一个抗体”这类完全没有疾病、病原体、通路或靶点线索的输入。',
-    '小分子/半抗原边界：如果用户要求直接针对小分子、半抗原或化合物本身生成特异性抗体，返回 action=answer，并说明当前展示聚焦大分子抗原、蛋白靶点、受体、细胞因子和病原体表面抗原；不要把小分子硬转成蛋白靶点。',
-    '口语、简称和不完整说法也要尽量归一化为正式靶点；药物名可按已知适应症和作用靶点反推适合抗体设计的真实大分子靶点。',
-    '流感口语靶点：H1-H18 亚型中和抗体必须按完整格式 Influenza A(Hx) hemagglutinin (HA) 输出 target，例如用户说 H7 则 target 必须为 Influenza A(H7) hemagglutinin (HA)，不得简写为 Influenza HA；明确说 NA/神经氨酸酶才选 Influenza NA。',
-    'selectionReason 要求：至少 3 句话，直接陈述靶点的疾病关联机制、抗原可及性优势、与同类候选靶点相比的优先级依据，禁止使用"用户提出""用户指定"等任务执行口吻。',
-    'candidates 要求：提供 3-5 个候选靶点，每个候选必须包含 target 和 rationale（至少 1 句话说明该候选的适应症关联、机制或可及性特点）。',
-    'summary、background、assumptions 尽量简短，把输出空间留给 selectionReason 和 candidates。',
-    '示例约束：先天性耳聋的抗体设计必须给出明确靶点，例如 OTOF；结核杆菌治疗性抗体设计必须给出明确病原体抗原，例如 Ag85 complex，而不是反问用户先指定蛋白。',
-    '常见疾病快速参考：肿瘤免疫治疗->PD-L1/block PD-1；过敏性哮喘->IL-33/block ST2；乳腺癌->HER2；自身免疫炎症->TNF；胰腺癌->MUC1 或 Mesothelin；胃癌->Claudin 18.2；肾盂癌/尿路上皮癌->Nectin-4；肾癌->CAIX；宫颈癌->Tissue Factor；ADHD->DAT；流感H7->Influenza A(H7) hemagglutinin (HA)。',
-    '本地结构支撑靶点清单（优先从此清单中选择主靶点，可展示真实抗原-抗体复合物结构）：' + STRUCTURE_SUPPORT_TARGETS_FOR_PROMPT + '。',
-    '当多个候选靶点在生物学上同样合理时，必须优先选择上述清单中存在的靶点作为 target，以便展示真实抗原结构；但不得选择与用户疾病方向明显不相关的靶点。'
+    '你是 ZoonoAb 学术分子设计任务解析引擎。',
+    '只输出一行 JSON；不要 Markdown、代码块或额外解释。',
+    'JSON 键固定：{"action":"design|answer|clarify","disease":"...","targets":[{"gene":"ERBB2","reason":"一句话推荐理由"}],"preferredFormat":"Fab|VHH|both","confidence":0到1}',
+    'action: design=设计抗体; answer=普通问答; clarify=信息不足需澄清。',
+    '  含电脑/手机/网络/服务器等非生物场景时返回 answer。',
+    'targets: 返回 5-10 个与疾病最相关的抗体设计靶点，按优先级排序。',
+    '  每个靶点只需 gene(基因符号) 和 reason(一句话推荐理由)。',
+    '  不需要返回完整选择理由，完整文案由本地系统自动匹配。',
+    '  如果用户直接指定了靶点（如"设计 CD40 抗体"），targets 只包含该靶点。',
+    'preferredFormat: 根据疾病和靶点特性建议抗体格式。',
+    '  膜受体/大分子优先 Fab；小分子因子/穿透血脑屏障优先 VHH。',
+    '  如果用户明确指定了抗体格式（如"纳米抗体""单域抗体"），preferredFormat 必须为 VHH。',
+    '流感口语靶点：H1-H18 亚型按完整格式输出，如用户说 H7 则 gene 为 "Influenza A(H7) hemagglutinin (HA)"。',
+    '常见疾病快速参考：肿瘤免疫治疗->PD-L1; 过敏性哮喘->IL-33; 乳腺癌->ERBB2; 自身免疫炎症->TNF; 胃癌->CLDN18.2; ADHD->SLC6A3。',
+    'disease: 用户提到的疾病或方向，如无则为空字符串。'
   ].join('\n');
 }
 
@@ -13742,7 +14157,15 @@ function normalizeWorkflowIntentResult(data) {
   const source = data && typeof data === 'object' ? data : {};
   const rawAction = String(source.action || '').trim().toLowerCase();
   const rawIntent = String(source.i || source.intent || '').trim().toLowerCase();
-  const inferredDesign = Boolean(source.selectedTarget || source.selected_target || source.target || source.t || source.inputType || source.input_type);
+  // v2.0: parse targets array [{gene, reason}]
+  const rawTargets = Array.isArray(source.targets) ? source.targets : [];
+  const parsedTargets = rawTargets
+    .map(t => ({
+      gene: normalizeResolverTarget(t && (t.gene || t.target || t.name) || ''),
+      reason: String(t && (t.reason || t.rationale || '') || '').trim().slice(0, 200)
+    }))
+    .filter(t => t.gene);
+  const inferredDesign = Boolean(source.selectedTarget || source.selected_target || source.target || source.t || source.inputType || source.input_type || parsedTargets.length > 0);
   const hasWorkflowBlueprint = Boolean(source.workflow || source.profile || source.workflowProfile);
   const shouldForceWorkflow = rawAction === 'design' || inferredDesign || hasWorkflowBlueprint;
   const intent = rawAction || rawIntent || (shouldForceWorkflow ? 'design' : '');
@@ -13756,11 +14179,11 @@ function normalizeWorkflowIntentResult(data) {
       : (shouldForceWorkflow ? 'design' : '')));
   if (!normalizedIntent) return null;
   const count = Number(source.n || source.count || 0);
-  const abType = normalizeResolverTarget(source.a || source.ab || source.antibodyType || source.antibody_type || '');
+  const abType = normalizeResolverTarget(source.a || source.ab || source.antibodyType || source.antibody_type || (source.preferredFormat === 'VHH' ? 'VHH' : source.preferredFormat === 'Fab' ? 'Fab' : ''));
   const blockTarget = canonicalPreparedTargetName(source.block || source.blockTarget || source.partner || '', '', abType);
   const candidateTargets = normalizeCandidateTargets(source.cands || source.candidates || source.candidateTargets, blockTarget, abType);
-  const target = canonicalPreparedTargetName(source.t || source.target || source.selectedTarget || '', blockTarget, abType);
-  const gene = normalizeResolverTarget(source.g || source.gene || source.selectedGene || '');
+  const target = canonicalPreparedTargetName(source.t || source.target || source.selectedTarget || (parsedTargets.length > 0 ? parsedTargets[0].gene : ''), blockTarget, abType);
+  const gene = normalizeResolverTarget(source.g || source.gene || source.selectedGene || (parsedTargets.length > 0 ? parsedTargets[0].gene : ''));
   const rawOrganismTaxId = Number(source.organismTaxId || source.taxId || source.organism_tax_id || 0);
   const answer = sanitizeAssistantText(source.answer || source.reply || '');
   const result = {
@@ -13770,6 +14193,9 @@ function normalizeWorkflowIntentResult(data) {
     count: Number.isFinite(count) && count > 0 ? Math.min(Math.round(count), 200) : null,
     target,
     targetGene: gene,
+    // v2.0: targets array for local matching
+    targets: parsedTargets,
+    preferredFormat: normalizeResolverTarget(source.preferredFormat || source.preferred_format || ''),
     organismName: normalizeResolverTarget(source.organismName || source.organism || source.organism_name),
     organismTaxId: Number.isSafeInteger(rawOrganismTaxId) && rawOrganismTaxId > 0 ? rawOrganismTaxId : null,
     strain: normalizeResolverTarget(source.strain || source.virusStrain || source.virus_strain),
@@ -13795,7 +14221,7 @@ function normalizeWorkflowIntentResult(data) {
     workflowBlueprint: source.workflow || source.profile || source.workflowProfile || null,
     workflowFields: normalizeCompactWorkflowFields(source.wf || source.workflowFields || source.display)
   };
-  if (result.action === 'design' && !result.target) return null;
+  if (result.action === 'design' && !result.target && !(result.targets && result.targets.length > 0)) return null;
   if (result.action === 'answer' && !result.answer) return null;
   if (result.action === 'clarify' && !result.clarifyingQuestion) return null;
   result.workflowProfile = buildWorkflowProfileFromModelIntent(result) || buildCompactWorkflowProfileFromModelIntent(result);
@@ -13838,7 +14264,7 @@ async function resolveWorkflowIntentWithModel(input, voiceSessionId) {
           { role: 'user', content: text.slice(0, 1000) }
         ],
         temperature: 0,
-        maxTokens: 1600,
+        maxTokens: 780,
         json: true,
         reasoningEffort: 'none'
       }, {
@@ -15647,6 +16073,31 @@ function getWorkflowHandlers() {
   };
 }
 
+async function runTargetSelection(ws, input, selectionId, selectionList, modelIntent) {
+  const send = data => { if (ws.readyState === 1) ws.send(JSON.stringify(data)); };
+  const sess = findSessionBySocket(ws);
+  const delay = (ms) => workflowDelay(ws, sess, ms);
+  const disease = modelIntent.disease || '';
+  const introText = disease
+    ? `针对「${disease}」，已为您匹配以下可选靶点：`
+    : '已为您匹配以下可选靶点：';
+  send({ type: 'agent_msg', text: introText, pacing: 'target-review' });
+  await delay(400);
+  send({
+    type: 'target_selection',
+    data: {
+      selectionId,
+      targets: selectionList.map(t => ({
+        gene: t.gene,
+        title: t.title,
+        desc: t.desc,
+        tier: t.tier,
+        hasLocal: t.hasLocal
+      }))
+    }
+  });
+}
+
 async function resolveUserMessageRunner(msg, cleanText, scopedWs = null) {
   if (msg && msg.voiceChatOnly) {
     return {
@@ -15733,6 +16184,31 @@ async function resolveUserMessageRunner(msg, cleanText, scopedWs = null) {
     modelIntent
   };
   if (modelIntent.intent === 'design') {
+    // v2.0: If multiple targets returned by model, show target selection UI
+    if (modelIntent.targets && modelIntent.targets.length > 1) {
+      await stopResearchTrace(scopedWs, researchTraceRuntime, 'completed');
+      const matchedTargets = matchTargetsLocally(modelIntent.targets);
+      const selectionList = buildTargetSelectionList(matchedTargets, modelIntent);
+      const selectionId = 'sel_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8);
+      pendingTargetSelections.set(selectionId, {
+        selectionId,
+        modelIntent,
+        matchedTargets,
+        selectionList,
+        input: cleanText,
+        voiceSessionId,
+        createdAt: Date.now()
+      });
+      return {
+        ...routing,
+        detectedIntent: 'design',
+        intent: 'design',
+        localWorkflowAllowed: true,
+        demoRoute: null,
+        runner: (socket, text) => runTargetSelection(socket, text, selectionId, selectionList, modelIntent)
+      };
+    }
+    // Single target or no targets array: direct workflow
     if (scopedWs) researchTraceRuntime = startResearchTraceRuntime(scopedWs, cleanText, buildFallbackDisplayTrace());
     return {
       ...routing,
@@ -16595,6 +17071,26 @@ wss.on('connection', ws => {
           ws.send(JSON.stringify({ type: 'asr_error', message: err && err.message ? err.message : '语音识别失败' }));
         }
       }
+      return;
+    }
+
+    if (msg.type === 'select_target') {
+      const pending = pendingTargetSelections.get(msg.selectionId);
+      if (!pending) {
+        if (ws.readyState === 1) ws.send(JSON.stringify({ type: 'error', text: '靶点选择已过期，请重新提交设计请求。' }));
+        return;
+      }
+      pendingTargetSelections.delete(msg.selectionId);
+      const targetIdx = Number(msg.targetIdx);
+      const selectedModelIntent = buildModelIntentFromSelection(pending, targetIdx);
+      if (!selectedModelIntent) {
+        if (ws.readyState === 1) ws.send(JSON.stringify({ type: 'error', text: '靶点选择无效。' }));
+        return;
+      }
+      runSocketTask(ws, sid, { text: pending.input, clientRunId: msg.clientRunId, voice: false }, async (cleanText, scopedWs) => {
+        const researchTraceRuntime = startResearchTraceRuntime(scopedWs, cleanText, buildFallbackDisplayTrace());
+        return (socket, text) => runResolvedDiseaseDesign(socket, text, pending.voiceSessionId, selectedModelIntent, researchTraceRuntime);
+      });
       return;
     }
 
