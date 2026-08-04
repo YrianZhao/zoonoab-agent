@@ -12459,6 +12459,77 @@ app.get('/api/pdb/local-models', (req, res) => {
   }
 });
 
+app.get('/api/pdb/scaffolds', (req, res) => {
+  try {
+    const scaffoldDir = path.join(LOCAL_PDB_DIR, 'scaffolds');
+    if (!fs.existsSync(scaffoldDir)) {
+      return res.json({ ok: true, count: 0, scaffolds: [] });
+    }
+    const files = fs.readdirSync(scaffoldDir)
+      .filter(f => /\.pdb$/i.test(f))
+      .sort();
+    const scaffolds = files.map(filename => {
+      const filePath = path.join(scaffoldDir, filename);
+      let stat;
+      try { stat = fs.statSync(filePath); } catch { stat = null; }
+      // Read REMARK headers for metadata
+      const remarks = {};
+      try {
+        const text = fs.readFileSync(filePath, 'utf8');
+        const lines = text.split(/\r?\n/).slice(0, 60);
+        for (const line of lines) {
+          const m = line.match(/^REMARK\s+(\d+)\s+(.*)/);
+          if (!m) continue;
+          const num = m[1];
+          const rest = m[2].trim();
+          if (num === '900') remarks.scaffold = rest;
+          if (num === '901') remarks.source = rest;
+          if (num === '902') remarks.description = rest;
+          if (num === '903') remarks.atoms = rest;
+        }
+        // Extract unique chain IDs from ATOM records
+        const chains = new Set();
+        for (const line of text.split(/\r?\n/)) {
+          if (line.startsWith('ATOM  ') || line.startsWith('HETATM')) {
+            const padded = line.padEnd(80, ' ');
+            const ch = padded[21] || ' ';
+            if (ch !== ' ') chains.add(ch);
+          }
+        }
+        remarks.chains = [...chains].sort();
+        remarks.atomCount = (text.match(/^ATOM  /gm) || []).length;
+      } catch {}
+      // Parse format from filename
+      const isVHH = /SCAFFOLD-VHH/i.test(filename);
+      const format = isVHH ? 'VHH' : 'Fab';
+      // Extract scaffold name from filename
+      const nameMatch = filename.match(/^SCAFFOLD-(?:Fab|VHH)-(.+?)\.pdb$/i);
+      const scaffoldName = nameMatch ? nameMatch[1] : filename.replace(/\.pdb$/i, '');
+      return {
+        filename,
+        name: scaffoldName,
+        format,
+        chains: remarks.chains || [],
+        atomCount: remarks.atomCount || 0,
+        source: remarks.source || '',
+        description: remarks.description || '',
+        scaffold: remarks.scaffold || '',
+        url: '/api/pdb/local/scaffolds/' + encodeURIComponent(filename),
+        sizeBytes: stat ? stat.size : 0,
+        updatedAt: stat ? stat.mtime.toISOString() : null
+      };
+    });
+    res.json({
+      ok: true,
+      count: scaffolds.length,
+      scaffolds
+    });
+  } catch (err) {
+    console.error('[PDB] scaffold library error:', err && err.message ? err.message : err);
+    res.status(500).json({ ok: false, error: 'Scaffold library unavailable' });
+  }
+});
+
 app.get('/api/structure-catalog', (req, res) => {
   res.json({
     ok: true,

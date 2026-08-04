@@ -5767,6 +5767,10 @@
                         <div class="kb-tree-item" data-project="common" onclick="kbSelectProject(this,'common')">
                             <span>📚</span> 公共资料库 <span class="kb-tree-count">2</span>
                         </div>
+                        <button class="kb-history-entry" id="kbScaffoldEntry" type="button" onclick="openScaffoldLibrary()">
+                            <span class="kb-history-entry-main"><i data-lucide="box" style="width:13px;height:13px;"></i> 抗体骨架库</span>
+                            <span class="kb-history-count" id="kbScaffoldCount">32</span>
+                        </button>
                         <button class="kb-history-entry" id="kbLocalPDBEntry" type="button" onclick="openLocalPDBLibrary()">
                             <span class="kb-history-entry-main"><i data-lucide="box" style="width:13px;height:13px;"></i> 常见分子模型结构</span>
                             <span class="kb-history-count" id="kbLocalPDBCount">--</span>
@@ -6676,7 +6680,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '69498326';
+    const APP_BUILD_VERSION = '69498327';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
     const SILICONFLOW_CHAT_FALLBACK_MODELS = ['Qwen/Qwen3-32B', 'Qwen/Qwen3-14B', 'Qwen/Qwen3-8B', 'deepseek-ai/DeepSeek-V3'];
@@ -7274,6 +7278,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     let kbLocalPDBLoaded = false;
     let kbLocalPDBLoading = false;
     let kbLocalPDBError = '';
+    let kbScaffoldModels = [];
+    let kbScaffoldLoaded = false;
+    let kbScaffoldLoading = false;
+    let kbScaffoldError = '';
     let publicStructureSearchSetting = {
         enabled: false,
         available: true,
@@ -7597,6 +7605,11 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             renderLocalPDBLibrary();
             return;
         }
+        if (kbCurrentProject === 'scaffolds') {
+            setKBHistoryMode(false);
+            renderScaffoldLibrary();
+            return;
+        }
         setKBHistoryMode(false);
         const grid = document.getElementById('kbDocsGrid');
         if (!grid) return;
@@ -7777,6 +7790,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         kbCurrentProject = 'local-pdb';
         document.querySelectorAll('.kb-tree-item').forEach(b => b.classList.remove('active'));
         setKBHistoryMode(false);
+        const scaffoldEntryEl = document.getElementById('kbScaffoldEntry');
+        if (scaffoldEntryEl) scaffoldEntryEl.classList.remove('active');
         const entry = document.getElementById('kbLocalPDBEntry');
         if (entry) entry.classList.add('active');
         renderLocalPDBLibrary();
@@ -7827,6 +7842,182 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         refreshLucideIcons({ nodes: [titleEl] });
     }
 
+    // ── Antibody Scaffold Library ──────────────────────────────────
+    function updateScaffoldCount() {
+        const countEl = document.getElementById('kbScaffoldCount');
+        if (countEl) countEl.textContent = kbScaffoldLoaded ? kbScaffoldModels.length : (kbScaffoldLoading ? '...' : '32');
+    }
+
+    async function loadScaffoldModels() {
+        if (kbScaffoldLoading) return;
+        kbScaffoldLoading = true;
+        kbScaffoldError = '';
+        updateScaffoldCount();
+        try {
+            const resp = await fetch('/api/pdb/scaffolds');
+            if (!resp.ok) throw new Error('HTTP ' + resp.status);
+            const data = await resp.json();
+            kbScaffoldModels = Array.isArray(data.scaffolds) ? data.scaffolds : [];
+            kbScaffoldLoaded = true;
+        } catch (err) {
+            kbScaffoldError = '暂时无法读取抗体骨架库。';
+            kbScaffoldModels = [];
+        } finally {
+            kbScaffoldLoading = false;
+            updateScaffoldCount();
+            if (kbCurrentProject === 'scaffolds') renderScaffoldLibrary();
+        }
+    }
+
+    function buildScaffoldFrameUrl(scaffold) {
+        const chains = Array.isArray(scaffold.chains) && scaffold.chains.length ? scaffold.chains : ['A'];
+        const pdbUrl = '/api/pdb/local/scaffolds/' + encodeURIComponent(scaffold.filename) + '?chains=' + encodeURIComponent(chains.join(','));
+        let url = '/viewer-full.html?pdb=' + encodeURIComponent(pdbUrl);
+        url += '&chainA=' + encodeURIComponent('#FB7185');
+        url += '&antibodyChains=' + encodeURIComponent(chains.join(','));
+        url += '&antibodyLabel=' + encodeURIComponent(scaffold.format === 'VHH' ? 'VHH 纳米抗体' : 'Fab 抗体');
+        url += '&poseSeed=' + encodeURIComponent(stableViewerPoseSeed(scaffold.filename));
+        url += '&modelOrigin=local';
+        url += '&autoSpin=1';
+        url += '&title=' + encodeURIComponent(scaffold.name + ' (' + scaffold.format + ')');
+        return url;
+    }
+
+    function formatScaffoldSize(bytes) {
+        if (!bytes) return '--';
+        if (bytes < 1024) return bytes + ' B';
+        if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+        return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+    }
+
+    function formatScaffoldDate(value) {
+        const date = new Date(value || 0);
+        if (Number.isNaN(date.getTime())) return '--';
+        return date.toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' });
+    }
+
+    function renderScaffoldLibrary() {
+        const grid = document.getElementById('kbDocsGrid');
+        if (!grid) return;
+        if (!kbScaffoldLoaded && !kbScaffoldLoading) loadScaffoldModels();
+        updateScaffoldCount();
+        const q = kbSearchQuery.toLowerCase();
+        const models = kbScaffoldModels.filter(s => {
+            if (kbCurrentType !== 'all' && kbCurrentType !== 'pdb') return false;
+            const haystack = [
+                s.name || '', s.filename || '', s.format || '',
+                s.source || '', s.description || '', s.scaffold || '',
+                Array.isArray(s.chains) ? s.chains.join(',') : ''
+            ].join(' ').toLowerCase();
+            return !q || haystack.includes(q);
+        });
+        const fabCount = kbScaffoldModels.filter(s => s.format === 'Fab').length;
+        const vhhCount = kbScaffoldModels.filter(s => s.format === 'VHH').length;
+        renderKBStats(models.length, '个骨架', [['Fab', fabCount + ' 个'], ['VHH', vhhCount + ' 个']]);
+        if (kbScaffoldLoading && !kbScaffoldLoaded) {
+            grid.innerHTML = '<div class="kb-empty"><div class="kb-empty-icon">🧬</div><div style="font-size:15px;font-weight:600;color:var(--text-secondary);margin-bottom:6px;">正在读取抗体骨架库</div><div style="font-size:13px;">请稍候，骨架结构会自动加载。</div></div>';
+            return;
+        }
+        if (kbScaffoldError) {
+            grid.innerHTML = '<div class="kb-empty"><div class="kb-empty-icon">⚠️</div><div style="font-size:15px;font-weight:600;color:var(--text-secondary);margin-bottom:6px;">读取失败</div><div style="font-size:13px;">' + escHtml(kbScaffoldError) + '</div></div>';
+            return;
+        }
+        if (!models.length) {
+            grid.innerHTML = '<div class="kb-empty"><div class="kb-empty-icon">🔍</div><div style="font-size:15px;font-weight:600;color:var(--text-secondary);margin-bottom:6px;">未找到匹配骨架</div><div style="font-size:13px;">尝试调整搜索词或切回全部筛选。</div></div>';
+            return;
+        }
+        grid.innerHTML = models.map(s => {
+            const sourceText = s.source || '实验结构';
+            const descText = s.description || '真实实验抗体骨架，用于展示姿态生成';
+            const chainsHtml = (s.chains && s.chains.length)
+                ? '<span class="kb-local-pdb-chain ab">Ab ' + escHtml(s.chains.join(',')) + '</span>'
+                : '<span class="kb-local-pdb-chain">链集合待确认</span>';
+            return `
+            <div class="kb-card kb-local-pdb-card">
+                <div class="kb-card-header">
+                    <div class="kb-card-icon type-pdb">${s.format === 'VHH' ? '🟣' : '🔵'}</div>
+                    <div class="kb-card-body">
+                        <div class="kb-card-name">${escHtml(s.name)} <span style="font-size:11px;color:var(--text-muted);font-weight:400;">(${escHtml(s.format)})</span></div>
+                        <div class="kb-card-meta">${escHtml(sourceText)} · ${escHtml(formatScaffoldSize(s.sizeBytes))} · ${escHtml(formatScaffoldDate(s.updatedAt))}</div>
+                        <div class="kb-card-summary">${escHtml(descText)}</div>
+                    </div>
+                </div>
+                <div class="kb-local-pdb-metrics">
+                    <div class="kb-local-pdb-metric"><span>格式 / 原子数</span><strong>${escHtml(s.format)} · ${s.atomCount || '--'}</strong></div>
+                    <div class="kb-local-pdb-metric"><span>来源</span><strong>${escHtml(sourceText)}</strong></div>
+                </div>
+                <div class="kb-local-pdb-chains">${chainsHtml}</div>
+                <div class="kb-card-tags">
+                    <span class="kb-card-tag">${escHtml(s.format)}</span>
+                    <span class="kb-card-tag">骨架库</span>
+                    <span class="kb-card-tag">实验结构</span>
+                </div>
+                <div class="kb-card-footer" onclick="event.stopPropagation()">
+                    <button class="kb-card-action primary" onclick="openScaffoldModel('${escJsString(s.filename || '')}')">
+                        <i data-lucide="box" style="width:12px;height:12px;"></i> 查看结构
+                    </button>
+                </div>
+            </div>
+        `; }).join('');
+        refreshLucideIcons();
+    }
+
+    function openScaffoldModel(filename) {
+        const scaffold = kbScaffoldModels.find(item => item && item.filename === filename);
+        if (!scaffold) {
+            showToast('未找到骨架结构', 'error');
+            return;
+        }
+        const overlay = document.getElementById('molModalOverlay');
+        const titleEl = document.getElementById('molModalTitle');
+        const bodyEl = document.getElementById('molModalBody');
+        if (!overlay || !bodyEl) return;
+        const displayTitle = scaffold.name + ' (' + scaffold.format + ')';
+        const subtitleParts = [
+            scaffold.format === 'VHH' ? 'VHH 纳米抗体' : 'Fab 抗体',
+            scaffold.source || '',
+            scaffold.filename || '',
+            scaffold.chains && scaffold.chains.length ? 'Ab ' + scaffold.chains.join(',') : '',
+            scaffold.atomCount ? scaffold.atomCount + ' atoms' : ''
+        ].filter(Boolean);
+        modalPdbId = scaffold.filename;
+        if (titleEl) {
+            titleEl.innerHTML = '<div class="mol-modal-title-copy"><div class="mol-modal-title-main"><i data-lucide="box" style="width:18px;height:18px;color:#6B5BFF;"></i><span>' + escHtml(displayTitle) + '</span></div>' +
+                (subtitleParts.length ? '<div class="mol-modal-subtitle">' + escHtml(subtitleParts.join(' · ')) + '</div>' : '') + '</div>';
+        }
+        restorePromotedModalIframe();
+        bodyEl.innerHTML = '';
+        modalIframe = document.createElement('iframe');
+        modalIframeUrl = buildScaffoldFrameUrl(scaffold);
+        modalIframe.src = modalIframeUrl;
+        modalIframe.style.cssText = 'width:100%;height:100%;border:none;display:block;';
+        bodyEl.appendChild(modalIframe);
+        clearTimeout(molCloseTimer);
+        molCloseTimer = null;
+        overlay.style.display = 'flex';
+        overlay.style.visibility = 'visible';
+        overlay.setAttribute('aria-hidden', 'false');
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                overlay.classList.add('open');
+            });
+        });
+        molModalOpen = true;
+        document.body.style.overflow = 'hidden';
+        refreshLucideIcons({ nodes: [titleEl] });
+    }
+
+    function openScaffoldLibrary() {
+        const kbSection = document.getElementById('kbSection');
+        if (kbSection && kbSection.style.display === 'none') switchView('kb');
+        kbCurrentProject = 'scaffolds';
+        document.querySelectorAll('.kb-tree-item').forEach(b => b.classList.remove('active'));
+        setKBHistoryMode(false);
+        const entry = document.getElementById('kbScaffoldEntry');
+        if (entry) entry.classList.add('active');
+        renderScaffoldLibrary();
+    }
+
     function kbSelectProject(el, project) {
         kbCurrentProject = project;
         if (project === 'history') {
@@ -7837,6 +8028,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         document.querySelectorAll('.kb-tree-item').forEach(b => b.classList.remove('active'));
         const localEntry = document.getElementById('kbLocalPDBEntry');
         if (localEntry) localEntry.classList.remove('active');
+        const scaffoldEntry = document.getElementById('kbScaffoldEntry');
+        if (scaffoldEntry) scaffoldEntry.classList.remove('active');
         el.classList.add('active');
         kbRender();
     }
