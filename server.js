@@ -11342,22 +11342,10 @@ function preferredLocalPDBs(profile, count) {
   if (prepared.length) return prepared;
   const exactAssets = routeExactLocalAssetPDBs(profile, count);
   if (exactAssets.length) return exactAssets;
-  // Format fallback: if VHH was requested but no VHH structures found for this
-  // target, retry with Fab format. Showing the correct target with Fab is far
-  // better than falling back to an unrelated target (e.g. IL-33) with VHH.
-  if (antibodyFormatForProfile(profile) === 'VHH') {
-    const fabProfile = { ...profile, scaffold: 'Fab 片段抗体骨架' };
-    const fabPrepared = routeLocalPDBs(fabProfile, count);
-    if (fabPrepared.length) {
-      fabPrepared.forEach(b => { b.formatFallback = 'VHH→Fab'; });
-      return fabPrepared;
-    }
-    const fabExactAssets = routeExactLocalAssetPDBs(fabProfile, count);
-    if (fabExactAssets.length) {
-      fabExactAssets.forEach(b => { b.formatFallback = 'VHH→Fab'; });
-      return fabExactAssets;
-    }
-  }
+  // VHH fallback: when user requests VHH but no local VHH structures exist,
+  // do NOT fall back to Fab. Return empty so buildRepresentativeFallbackBinders
+  // uses the VHH default scaffold library to ensure VHH models are displayed.
+  // For Fab requests, also return empty to use Fab fallback scaffolds.
   return [];
 }
 
@@ -14385,9 +14373,8 @@ function buildWorkflowIntentPrompt() {
     '  系统会自动匹配基因符号、CD 编号、常用名和别名，无需担心命名格式。',
     '  不需要返回完整选择理由，完整文案由本地系统自动匹配。',
     '  如果用户直接指定了靶点（如"设计 CD40 抗体"），targets 只包含该靶点。',
-    'preferredFormat: 根据疾病和靶点特性建议抗体格式。',
-    '  膜受体/大分子优先 Fab；小分子因子/穿透血脑屏障优先 VHH。',
-    '  如果用户明确指定了抗体格式（如"纳米抗体""单域抗体"），preferredFormat 必须为 VHH。',
+    'preferredFormat: 固定返回 "Fab"，不要判断抗体格式。',
+    '  抗体格式由本地系统根据用户原文自动检测，大模型不需要决定。',
     '流感口语靶点：H1-H18 亚型按完整格式输出，如用户说 H7 则 gene 为 "Influenza A(H7) hemagglutinin (HA)"。',
     '常见疾病快速参考：肿瘤免疫治疗->PD-L1; 过敏性哮喘->IL-33; 乳腺癌->HER2; 自身免疫炎症->TNF; 胃癌->CLDN18.2; ADHD->SLC6A3; 多发性骨髓瘤->BCMA; 银屑病->IL-17A; 结直肠癌->EGFR; 淋巴瘤->CD20。',
     'disease: 用户提到的疾病或方向，如无则为空字符串。'
@@ -14802,6 +14789,16 @@ async function resolveWorkflowIntentWithModel(input, voiceSessionId) {
         responsePreview: content.slice(0, 500)
       });
       return { error: 'invalid_model_response', intent: 'assistant_chat', modelProvider: result.provider || primaryProvider.provider || '', modelName: result.model || primaryProvider.model || '' };
+    }
+    // Local VHH detection: override preferredFormat/abType based on user input keywords
+    // The LLM is instructed to always return "Fab"; VHH is detected locally only when
+    // the user explicitly mentions nanobody/VHH/单域抗体.
+    if (/(?:纳米抗体|单域抗体|nanobody|vhhs?\b)/i.test(text)) {
+      normalized.preferredFormat = 'VHH';
+      normalized.abType = 'VHH';
+    } else {
+      normalized.preferredFormat = 'Fab';
+      normalized.abType = 'Fab';
     }
     normalized.modelProvider = result.provider || primaryProvider.provider || '';
     normalized.modelName = result.model || primaryProvider.model || '';
@@ -16356,8 +16353,8 @@ async function runWorkflow(ws, input, forcedRoute, researchTraceRuntime = null) 
     // Format fallback disclosure: VHH was requested but only Fab structures exist
     if (allLocalPDBs[0] && allLocalPDBs[0].formatFallback) {
       send({ type: 'log', text: '[StructureAgent] ' + (isZh
-        ? '当前靶点暂无 VHH 纳米抗体实验结构，已回退至同靶点 Fab 抗体复合物结构进行展示。'
-        : 'No VHH experimental structure available for this target; fell back to Fab complex structure for the same target.') });
+        ? '当前靶点暂无匹配的实验结构，已使用代表性抗体骨架进行展示。'
+        : 'No matching experimental structure available for this target; using representative antibody scaffold for display.') });
     }
   }
   if (!allLocalPDBs.length) {
@@ -16381,7 +16378,7 @@ async function runWorkflow(ws, input, forcedRoute, researchTraceRuntime = null) 
       antigen: Array.isArray(allLocalPDBs[0].antigenChains) ? allLocalPDBs[0].antigenChains : [],
       antibody: Array.isArray(allLocalPDBs[0].antibodyChains) ? allLocalPDBs[0].antibodyChains : []
     };
-    const displayAbType = (allLocalPDBs[0] && allLocalPDBs[0].formatFallback) ? 'Fab' : abType;
+    const displayAbType = abType;
     const galleryLabel = firstPoseKind === 'display_pose'
       ? allLocalPDBs.length + ' 个 ' + profile.targetDisplay + ' ' + displayAbType + ' 候选展示姿态'
       : (firstPoseKind === 'representative_interface'
