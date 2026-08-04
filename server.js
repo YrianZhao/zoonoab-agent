@@ -10647,10 +10647,15 @@ function influenzaHaSubtype3DPreset(profile) {
 
 function readLocalPDBRemarks(filename) {
   const safeName = String(filename || '').trim();
-  if (!safeName || !/^[A-Za-z0-9][A-Za-z0-9_.-]*\.pdb$/.test(safeName)) return {};
+  if (!safeName) return {};
+  // 支持 scaffolds/FILE.pdb 和 expanded/GENE/FILE.pdb 路径
+  const isScaffoldPath = /^scaffolds\//.test(safeName);
+  const isExpandedPath = /^expanded\//.test(safeName);
+  if (!isScaffoldPath && !isExpandedPath && !/^[A-Za-z0-9][A-Za-z0-9_.-]*\.pdb$/.test(safeName)) return {};
   if (localPDBRemarkCache.has(safeName)) return localPDBRemarkCache.get(safeName);
   const result = {};
-  const candidates = [path.join(LOCAL_PDB_DIR, safeName), path.join(PROJECT_ROOT, safeName)];
+  const resolved = localPDBPath(safeName);
+  const candidates = resolved ? [resolved] : [path.join(LOCAL_PDB_DIR, safeName), path.join(PROJECT_ROOT, safeName)];
   const filePath = candidates.find(item => fs.existsSync(item));
   if (filePath) {
     try {
@@ -11455,43 +11460,109 @@ async function waitForWorkflowStructure(job, profile) {
   }
 }
 
+// Diverse real antibody scaffold library — each entry is a real experimental
+// Fab or VHH structure from a different RCSB complex, ensuring that different
+// targets receive different antibody backbones instead of the same scaffold.
 const FALLBACK_SCAFFOLDS = {
   Fab: [
-    { id: 'PDL1-Fab-display-scaffold', file: 'PDL1-Fab-01.pdb', chains: ['B', 'C'], format: 'Fab' },
-    { id: 'PDL1-Fab-display-scaffold', file: 'PDL1-Fab-02.pdb', chains: ['B', 'C'], format: 'Fab' },
-    { id: 'PDL1-Fab-display-scaffold', file: 'PDL1-Fab-03.pdb', chains: ['B', 'C'], format: 'Fab' },
-    { id: 'PDL1-Fab-display-scaffold', file: 'PDL1-Fab-04.pdb', chains: ['B', 'C'], format: 'Fab' },
-    { id: 'PDL1-Fab-display-scaffold', file: 'PDL1-Fab-05.pdb', chains: ['B', 'C'], format: 'Fab' },
-    { id: 'PDL1-Fab-display-scaffold', file: 'PDL1-Fab-06.pdb', chains: ['B', 'C'], format: 'Fab' },
-    { id: 'PDL1-Fab-display-scaffold', file: 'PDL1-Fab-07.pdb', chains: ['B', 'C'], format: 'Fab' },
-    { id: 'PDL1-Fab-display-scaffold', file: 'PDL1-Fab-08.pdb', chains: ['B', 'C'], format: 'Fab' },
-    { id: 'PDL1-Fab-display-scaffold', file: 'PDL1-Fab-09.pdb', chains: ['B', 'C'], format: 'Fab' },
-    { id: 'PDL1-Fab-display-scaffold', file: 'PDL1-Fab-10.pdb', chains: ['B', 'C'], format: 'Fab' }
+    { id: 'atezolizumab-Fab-5X8L', file: 'PDL1-Fab-01.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB 5X8L atezolizumab' },
+    { id: 'trastuzumab-Fab-1N8Z', file: 'HER2-Fab-01.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB 1N8Z trastuzumab' },
+    { id: 'cetuximab-Fab-1YY9', file: 'EGFR-Fab-01.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB 1YY9 cetuximab' },
+    { id: 'daratumumab-Fab-7DUO', file: 'CD38-Fab-01.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB 7DUO daratumumab' },
+    { id: 'B43-Fab-6AL5', file: 'CD19-Fab-01.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB 6AL5 B43' },
+    { id: 'ipilimumab-Fab-6RP8', file: 'CTLA4-Fab-08.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB 6RP8 ipilimumab' },
+    { id: 'IL17A-Fab-2VXS', file: 'IL17A-Fab-08.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB 2VXS IL-17A neutralizing Fab' },
+    { id: 'OKT3-Fab-1SY6', file: 'CD3-Fab-01.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB 1SY6 OKT3' },
+    { id: 'CR6261-Fab-3GBM', file: 'FluHA-Fab-01.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB 3GBM CR6261' },
+    { id: 'canakinumab-Fab-5BVP', file: 'IL1B-Fab-08.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB 5BVP canakinumab' },
+    { id: 'tezepelumab-Fab-5J13', file: 'TSLP-Fab-01.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB 5J13 tezepelumab' },
+    { id: 'VEGFA-Fab-1BJ1', file: 'VEGFA-Fab-01.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB 1BJ1 VEGF-A neutralizing Fab' }
   ],
   VHH: [
-    { id: 'IL33-VHH-display-scaffold', file: 'IL33-VHH-01.pdb', chains: ['B'], format: 'VHH' },
-    { id: 'IL33-VHH-display-scaffold', file: 'IL33-VHH-02.pdb', chains: ['B'], format: 'VHH' },
-    { id: 'IL33-VHH-display-scaffold', file: 'IL33-VHH-03.pdb', chains: ['B'], format: 'VHH' },
-    { id: 'IL33-VHH-display-scaffold', file: 'IL33-VHH-04.pdb', chains: ['B'], format: 'VHH' },
-    { id: 'IL33-VHH-display-scaffold', file: 'IL33-VHH-05.pdb', chains: ['B'], format: 'VHH' },
-    { id: 'IL33-VHH-display-scaffold', file: 'IL33-VHH-06.pdb', chains: ['B'], format: 'VHH' },
-    { id: 'IL33-VHH-display-scaffold', file: 'IL33-VHH-07.pdb', chains: ['B'], format: 'VHH' },
-    { id: 'IL33-VHH-display-scaffold', file: 'IL33-VHH-08.pdb', chains: ['B'], format: 'VHH' },
-    { id: 'IL33-VHH-display-scaffold', file: 'IL33-VHH-09.pdb', chains: ['B'], format: 'VHH' },
-    { id: 'IL33-VHH-display-scaffold', file: 'IL33-VHH-10.pdb', chains: ['B'], format: 'VHH' },
-    { id: 'IL33-VHH-display-scaffold', file: 'IL33-VHH-11.pdb', chains: ['B'], format: 'VHH' },
-    { id: 'IL33-VHH-display-scaffold', file: 'IL33-VHH-12.pdb', chains: ['B'], format: 'VHH' },
-    { id: 'IL33-VHH-display-scaffold', file: 'IL33-VHH-13.pdb', chains: ['B'], format: 'VHH' },
-    { id: 'IL33-VHH-display-scaffold', file: 'IL33-VHH-14.pdb', chains: ['B'], format: 'VHH' },
-    { id: 'IL33-VHH-display-scaffold', file: 'IL33-VHH-15.pdb', chains: ['B'], format: 'VHH' }
+    { id: 'IL33-VHH-4KC3', file: 'IL33-VHH-01.pdb', chains: ['B'], format: 'VHH', source: 'RCSB 4KC3 IL-33/ST2 VHH scaffold' },
+    { id: 'HER2-VHH-scaffold', file: 'HER2-VHH-01.pdb', chains: ['B'], format: 'VHH', source: 'HER2 VHH display scaffold' },
+    { id: 'EGFR-VHH-scaffold', file: 'EGFR-VHH-01.pdb', chains: ['B'], format: 'VHH', source: 'EGFR VHH display scaffold' },
+    { id: 'PCSK9-VHH-scaffold', file: 'PCSK9-VHH-01.pdb', chains: ['B'], format: 'VHH', source: 'PCSK9 VHH display scaffold' },
+    { id: 'BCMA-VHH-scaffold', file: 'BCMA-VHH-01.pdb', chains: ['B'], format: 'VHH', source: 'BCMA VHH display scaffold' },
+    { id: 'CD47-VHH-scaffold', file: 'CD47-VHH-01.pdb', chains: ['B'], format: 'VHH', source: 'CD47 VHH display scaffold' },
+    { id: 'CD20-VHH-scaffold', file: 'CD20-VHH-01.pdb', chains: ['B'], format: 'VHH', source: 'CD20 VHH display scaffold' },
+    { id: 'CTLA4-VHH-scaffold', file: 'CTLA4-VHH-01.pdb', chains: ['B'], format: 'VHH', source: 'CTLA4 VHH display scaffold' }
   ]
 };
 
 const _fallbackScaffoldOffset = { Fab: 0, VHH: 0 };
 
-function displayPoseScaffold(antibodyFormat) {
+function _scaffoldHashIndex(key, count) {
+  const crypto = require('crypto');
+  const hash = crypto.createHash('sha256').update(String(key || '')).digest();
+  return hash.readUInt32BE(0) % count;
+}
+
+function displayPoseScaffold(antibodyFormat, targetKey) {
   const format = antibodyFormat === 'VHH' ? 'VHH' : 'Fab';
   const pool = FALLBACK_SCAFFOLDS[format] || FALLBACK_SCAFFOLDS.Fab;
+  // Use deterministic hash-based selection when a target key is provided,
+  // ensuring the same target always gets the same scaffold while different
+  // targets receive diverse scaffolds. Fall back to rotation for legacy calls.
+  if (targetKey) {
+    const baseIdx = _scaffoldHashIndex(targetKey, pool.length);
+    return { ...pool[baseIdx] };
+  }
+  const idx = _fallbackScaffoldOffset[format] % pool.length;
+  _fallbackScaffoldOffset[format] = (_fallbackScaffoldOffset[format] + 1) % pool.length;
+  return { ...pool[idx] };
+}
+
+// Pure antibody scaffold pool for display pose generation.
+// Each entry is a standalone antibody structure (no antigen) extracted from a
+// different experimental RCSB complex, ensuring maximal backbone diversity when
+// generating display poses for resolved antigen structures.
+const DISPLAY_POSE_SCAFFOLDS = {
+  Fab: [
+    { id: 'scaffold-fab-trastuzumab', file: 'scaffolds/SCAFFOLD-Fab-trastuzumab.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB 1N8Z trastuzumab' },
+    { id: 'scaffold-fab-cetuximab', file: 'scaffolds/SCAFFOLD-Fab-cetuximab.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB 1YY9 cetuximab' },
+    { id: 'scaffold-fab-daratumumab', file: 'scaffolds/SCAFFOLD-Fab-daratumumab.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB 7DUO daratumumab' },
+    { id: 'scaffold-fab-nivolumab', file: 'scaffolds/SCAFFOLD-Fab-nivolumab.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB 5WT9 nivolumab' },
+    { id: 'scaffold-fab-ipilimumab', file: 'scaffolds/SCAFFOLD-Fab-ipilimumab.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB 6RP8 ipilimumab' },
+    { id: 'scaffold-fab-bevacizumab', file: 'scaffolds/SCAFFOLD-Fab-bevacizumab.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB 1BJ1 bevacizumab' },
+    { id: 'scaffold-fab-certolizumab', file: 'scaffolds/SCAFFOLD-Fab-certolizumab.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB certolizumab' },
+    { id: 'scaffold-fab-b7h6', file: 'scaffolds/SCAFFOLD-Fab-b7h6.pdb', chains: ['A', 'B'], format: 'Fab', source: 'RCSB B7-H6 Fab' },
+    { id: 'scaffold-fab-cd19', file: 'scaffolds/SCAFFOLD-Fab-cd19.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB 6AL5 B43 anti-CD19' },
+    { id: 'scaffold-fab-cd47', file: 'scaffolds/SCAFFOLD-Fab-cd47.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB anti-CD47 Fab' },
+    { id: 'scaffold-fab-il6r', file: 'scaffolds/SCAFFOLD-Fab-il6r.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB anti-IL-6R Fab' },
+    { id: 'scaffold-fab-il13', file: 'scaffolds/SCAFFOLD-Fab-il13.pdb', chains: ['H', 'L'], format: 'Fab', source: 'RCSB anti-IL-13 Fab' },
+    { id: 'scaffold-fab-her3', file: 'scaffolds/SCAFFOLD-Fab-her3.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB anti-HER3 Fab' },
+    { id: 'scaffold-fab-rsvf', file: 'scaffolds/SCAFFOLD-Fab-rsvf.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB anti-RSV F Fab' },
+    { id: 'scaffold-fab-tigit', file: 'scaffolds/SCAFFOLD-Fab-tigit.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB anti-TIGIT Fab' },
+    { id: 'scaffold-fab-gipr', file: 'scaffolds/SCAFFOLD-Fab-gipr.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB anti-GIPR Fab' },
+    { id: 'scaffold-fab-gprc5d', file: 'scaffolds/SCAFFOLD-Fab-gprc5d.pdb', chains: ['C', 'D'], format: 'Fab', source: 'RCSB anti-GPRC5D Fab' },
+    { id: 'scaffold-fab-cgrpr', file: 'scaffolds/SCAFFOLD-Fab-cgrpr.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB anti-CGRPR Fab' },
+    { id: 'scaffold-fab-fcrn', file: 'scaffolds/SCAFFOLD-Fab-fcrn.pdb', chains: ['H', 'L'], format: 'Fab', source: 'RCSB anti-FcRn Fab' },
+    { id: 'scaffold-fab-bcma', file: 'scaffolds/SCAFFOLD-Fab-bcma.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB anti-BCMA Fab' },
+    { id: 'scaffold-fab-fluha', file: 'scaffolds/SCAFFOLD-Fab-fluha.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB 3GBM CR6261 anti-influenza HA' },
+    { id: 'scaffold-fab-tozorakimab', file: 'scaffolds/SCAFFOLD-Fab-tozorakimab.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB tozorakimab Fab' }
+  ],
+  VHH: [
+    { id: 'scaffold-vhh-il33', file: 'scaffolds/SCAFFOLD-VHH-IL33.pdb', chains: ['B'], format: 'VHH', source: 'RCSB 4KC3 IL-33/ST2 VHH' },
+    { id: 'scaffold-vhh-tslp', file: 'scaffolds/SCAFFOLD-VHH-TSLP.pdb', chains: ['B'], format: 'VHH', source: 'TSLP VHH scaffold' },
+    { id: 'scaffold-vhh-nb7d12', file: 'scaffolds/SCAFFOLD-VHH-nb-7d12.pdb', chains: ['A'], format: 'VHH', source: 'RCSB 7XL1 anti-EGFR 7D12' },
+    { id: 'scaffold-vhh-cabbcii', file: 'scaffolds/SCAFFOLD-VHH-cab-bcii.pdb', chains: ['A'], format: 'VHH', source: 'RCSB 1QD0 cAb-BCII10' },
+    { id: 'scaffold-vhh-cablys3', file: 'scaffolds/SCAFFOLD-VHH-cab-lys3.pdb', chains: ['A'], format: 'VHH', source: 'RCSB cAb-Lys3' },
+    { id: 'scaffold-vhh-cabrn05', file: 'scaffolds/SCAFFOLD-VHH-cab-rn05.pdb', chains: ['B'], format: 'VHH', source: 'RCSB cAb-RN05' },
+    { id: 'scaffold-vhh-clec4f', file: 'scaffolds/SCAFFOLD-VHH-clec4f.pdb', chains: ['A'], format: 'VHH', source: 'RCSB anti-CLEC4F VHH' },
+    { id: 'scaffold-vhh-mu551', file: 'scaffolds/SCAFFOLD-VHH-mu551.pdb', chains: ['B'], format: 'VHH', source: 'RCSB 5F1O MU551 anti-CD38' },
+    { id: 'scaffold-vhh-nbtnf3', file: 'scaffolds/SCAFFOLD-VHH-nb-tnf3.pdb', chains: ['D'], format: 'VHH', source: 'RCSB anti-TNF VHH' },
+    { id: 'scaffold-vhh-nb80', file: 'scaffolds/SCAFFOLD-VHH-nb80.pdb', chains: ['B'], format: 'VHH', source: 'RCSB Nb80' }
+  ]
+};
+
+function displayPoseScaffoldForResolved(antibodyFormat, targetKey) {
+  const format = antibodyFormat === 'VHH' ? 'VHH' : 'Fab';
+  const pool = DISPLAY_POSE_SCAFFOLDS[format] || DISPLAY_POSE_SCAFFOLDS.Fab;
+  if (targetKey) {
+    const baseIdx = _scaffoldHashIndex(targetKey, pool.length);
+    return { ...pool[baseIdx] };
+  }
   const idx = _fallbackScaffoldOffset[format] % pool.length;
   _fallbackScaffoldOffset[format] = (_fallbackScaffoldOffset[format] + 1) % pool.length;
   return { ...pool[idx] };
@@ -11500,7 +11571,8 @@ function displayPoseScaffold(antibodyFormat) {
 function representativeFallbackStructure(profile, preselectedScaffold) {
   const target = (profile && profile.targetDisplay) || '当前靶点';
   const antibodyFormat = antibodyFormatForProfile(profile) === 'VHH' ? 'VHH' : 'Fab';
-  const scaffold = preselectedScaffold || displayPoseScaffold(antibodyFormat);
+  const targetKey = (profile && (profile.routeId || profile.targetDisplay)) || target;
+  const scaffold = preselectedScaffold || displayPoseScaffold(antibodyFormat, targetKey);
   const remarks = readLocalPDBRemarks(scaffold.file);
   const actualAntigen = remarks.target || remarks.antigenLabel || (antibodyFormat === 'VHH' ? 'IL-33' : 'PD-L1');
   const antigenChains = Array.isArray(remarks.antigen) && remarks.antigen.length ? remarks.antigen : ['A'];
@@ -11574,7 +11646,8 @@ function representativeFallbackStructure(profile, preselectedScaffold) {
 
 function buildRepresentativeFallbackBinders(profile) {
   const antibodyFormat = antibodyFormatForProfile(profile) === 'VHH' ? 'VHH' : 'Fab';
-  const scaffold = displayPoseScaffold(antibodyFormat);
+  const targetKey = (profile && (profile.routeId || profile.targetDisplay)) || '';
+  const scaffold = displayPoseScaffold(antibodyFormat, targetKey);
   const structure = representativeFallbackStructure(profile, scaffold);
   const binder = structureBinderMeta(profile, 0, structure);
   binder.file = scaffold.file;
@@ -11728,7 +11801,8 @@ async function buildResolvedStructureBinders(profile, count, resolvedStructure, 
     console.warn('[StructureResolver] experimental complex geometry rejected; generating a display pose:', validation);
   }
 
-  const scaffold = displayPoseScaffold(antibodyFormat);
+  const scaffoldTargetKey = [structure.targetIdentity && structure.targetIdentity.uniprotAccession, profile && profile.routeId, profile && profile.targetDisplay].filter(Boolean).join('|');
+  const scaffold = displayPoseScaffoldForResolved(antibodyFormat, scaffoldTargetKey);
   const scaffoldPath = localPDBPath(scaffold.file);
   if (!scaffoldPath) return [];
   const scaffoldPdbText = fs.readFileSync(scaffoldPath, 'utf8');
@@ -12180,6 +12254,12 @@ function localPDBPath(filename) {
     const expandedPath = path.join(LOCAL_PDB_DIR, 'expanded', expandedMatch[1], expandedMatch[2]);
     return fs.existsSync(expandedPath) ? expandedPath : '';
   }
+  // 支持 scaffolds/FILE.pdb 格式
+  const scaffoldMatch = safe.match(/^scaffolds\/([A-Za-z0-9][A-Za-z0-9_.-]*\.pdb)$/i);
+  if (scaffoldMatch) {
+    const scaffoldPath = path.join(LOCAL_PDB_DIR, 'scaffolds', scaffoldMatch[1]);
+    return fs.existsSync(scaffoldPath) ? scaffoldPath : '';
+  }
   // 原有逻辑：顶层 pdb/ 目录
   if (!/^[A-Za-z0-9][A-Za-z0-9_.-]*\.pdb$/.test(safe)) return '';
   return localPDBCandidatePaths(safe)[0] || '';
@@ -12192,6 +12272,13 @@ function localPDBPublicUrl(filename) {
     const parts = safe.split('/');
     if (parts.length === 3) {
       return '/api/pdb/local/expanded/' + encodeURIComponent(parts[1]) + '/' + encodeURIComponent(parts[2]);
+    }
+  }
+  // scaffolds/FILE.pdb → /api/pdb/local/scaffolds/FILE.pdb
+  if (safe.startsWith('scaffolds/')) {
+    const parts = safe.split('/');
+    if (parts.length === 2) {
+      return '/api/pdb/local/scaffolds/' + encodeURIComponent(parts[1]);
     }
   }
   return '/api/pdb/local/' + encodeURIComponent(safe);
@@ -12420,6 +12507,50 @@ app.get('/api/pdb/local/expanded/:gene/:filename', async (req, res) => {
   stream.on('error', (err) => {
     console.error('[PDB] expanded stream error:', err && err.message ? err.message : err);
     if (!res.headersSent) { res.status(500).json({ error: 'PDB read failed' }); } else { res.destroy(err); }
+  });
+  stream.pipe(res);
+});
+
+app.get('/api/pdb/local/scaffolds/:filename', async (req, res) => {
+  const filename = String(req.params.filename || '');
+  if (!filename || filename.includes('..') || !/^[A-Za-z0-9][A-Za-z0-9_.-]*\.pdb$/.test(filename)) {
+    return res.status(400).json({ error: 'Invalid filename' });
+  }
+  const fp = localPDBPath('scaffolds/' + filename);
+  if (!fp || !fs.existsSync(fp)) return res.status(404).json({ error: 'Not found' });
+  let stat;
+  try {
+    stat = fs.statSync(fp);
+  } catch {
+    return res.status(404).json({ error: 'Not found' });
+  }
+  const requestedChains = normalizeViewerPDBChains(req.query.chains);
+  const chainKey = requestedChains.join('');
+  const etag = `"pdb-scaffold-${stat.size.toString(16)}-${Math.floor(stat.mtimeMs).toString(16)}-${chainKey || 'all'}"`;
+  res.setHeader('Content-Type', 'chemical/x-pdb; charset=utf-8');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Content-Disposition', 'inline; filename="' + filename + '"');
+  res.setHeader('Cache-Control', 'public, max-age=86400, stale-while-revalidate=604800');
+  res.setHeader('ETag', etag);
+  res.setHeader('Last-Modified', stat.mtime.toUTCString());
+  if (req.headers['if-none-match'] === etag) return res.status(304).end();
+  if (requestedChains.length) {
+    try {
+      const pdbText = await fs.promises.readFile(fp, 'utf8');
+      return res.send(projectPDBTextToChains(pdbText, requestedChains));
+    } catch (err) {
+      console.error('[PDB] scaffold projection error:', err && err.message ? err.message : err);
+      return res.status(500).json({ error: 'PDB read failed' });
+    }
+  }
+  const stream = fs.createReadStream(fp);
+  stream.on('error', (err) => {
+    console.error('[PDB] scaffold stream error:', err && err.message ? err.message : err);
+    if (!res.headersSent) {
+      res.status(500).json({ error: 'PDB read failed' });
+    } else {
+      res.destroy(err);
+    }
   });
   stream.pipe(res);
 });

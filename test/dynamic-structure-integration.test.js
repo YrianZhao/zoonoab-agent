@@ -451,7 +451,7 @@ test('resolved antigens are identity-gated before deterministic Fab or VHH displ
   assert.match(builder, /geometry\.minDistance/);
   assert.match(builder, /geometry\.contactPairs/);
   assert.match(builder, /geometry\.hardClashes/);
-  assert.match(builder, /const scaffold = displayPoseScaffold\(antibodyFormat\)/);
+  assert.match(builder, /displayPoseScaffoldForResolved\(antibodyFormat,/);
   assert.match(builder, /generateDisplayPose\(\{/);
   assert.match(builder, /antigenPdbText,/);
   assert.match(builder, /scaffoldPdbText,/);
