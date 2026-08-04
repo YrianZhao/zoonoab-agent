@@ -23,10 +23,10 @@ const path = require('path');
 
 // ─── 配置 ───────────────────────────────────────────
 const CONFIG = {
-  batchSize: parseInt(process.env.PREGEN_BATCH_SIZE || '10', 10),
-  batchInterval: parseInt(process.env.PREGEN_BATCH_INTERVAL || '2000', 10),
+  batchSize: parseInt(process.env.PREGEN_BATCH_SIZE || '20', 10),
+  batchInterval: parseInt(process.env.PREGEN_BATCH_INTERVAL || '1000', 10),
   maxRetries: parseInt(process.env.PREGEN_MAX_RETRIES || '3', 10),
-  timeout: parseInt(process.env.PREGEN_TIMEOUT || '90000', 10),
+  timeout: parseInt(process.env.PREGEN_TIMEOUT || '60000', 10),
   model: process.env.PREGEN_MODEL || 'gpt-5.4',
 };
 
@@ -81,7 +81,7 @@ ${oldReason ? '旧版选择理由（供参考，不要照抄）：' + oldReason.
 请生成该靶点的 selectionReason（400-500字，6个维度）。`;
 }
 
-// ─── API 调用（streaming）─────────────────────────
+// ─── API 调用（非流式）────────────────────────────
 async function callModel(apiConfig, gene, oldContent) {
   const messages = [
     { role: 'system', content: SYSTEM_PROMPT },
@@ -93,7 +93,7 @@ async function callModel(apiConfig, gene, oldContent) {
     messages,
     temperature: 0.3,
     max_tokens: 1500,
-    stream: true,
+    stream: false,
     response_format: { type: 'json_object' }
   };
 
@@ -117,28 +117,13 @@ async function callModel(apiConfig, gene, oldContent) {
       throw new Error(`HTTP ${resp.status}: ${raw.slice(0, 200)}`);
     }
 
-    let fullText = '';
-    const reader = resp.body.getReader();
-    const decoder = new TextDecoder();
-    while (true) {
-      const { done, value } = await reader.read();
-      if (done) break;
-      const chunk = decoder.decode(value, { stream: true });
-      for (const line of chunk.split('\n')) {
-        if (!line.startsWith('data: ')) continue;
-        const data = line.slice(6).trim();
-        if (data === '[DONE]') continue;
-        try {
-          const parsed = JSON.parse(data);
-          const delta = parsed.choices && parsed.choices[0] && parsed.choices[0].delta
-            ? (parsed.choices[0].delta.content || '') : '';
-          fullText += delta;
-        } catch {}
-      }
-    }
+    const data = await resp.json();
+    const text = data.choices && data.choices[0] && data.choices[0].message
+      ? (data.choices[0].message.content || '')
+      : '';
 
-    if (!fullText) throw new Error('empty_response');
-    return fullText;
+    if (!text) throw new Error('empty_response');
+    return text;
   } catch (err) {
     clearTimeout(timer);
     throw err;
