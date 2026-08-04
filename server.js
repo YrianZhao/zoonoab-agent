@@ -12466,10 +12466,20 @@ function projectPDBTextToChains(pdbText, requestedChains) {
   const chains = Array.isArray(requestedChains) ? requestedChains : normalizeViewerPDBChains(requestedChains);
   if (!chains.length) return String(pdbText || '');
   const allowed = new Set(chains);
+  // Extract chain ID from ATOM/HETATM/ANISOU/TER lines.
+  // Standard PDB: chain ID at column 22 (0-indexed: line[21]).
+  // Some batch-generated expanded files use column 21 (0-indexed: line[20]).
+  function getChainId(line) {
+    var c22 = line[21];
+    if (c22 && c22 !== ' ') return c22;
+    var c21 = line[20];
+    if (c21 && c21 !== ' ') return c21;
+    return ' ';
+  }
   const lines = String(pdbText || '').split(/\r?\n/);
   const projected = lines.filter(line => {
-    if (/^(?:ATOM  |HETATM|ANISOU)/.test(line)) return allowed.has(line[21] || ' ');
-    if (/^TER\s/.test(line)) return allowed.has(line[21] || ' ');
+    if (/^(?:ATOM  |HETATM|ANISOU)/.test(line)) return allowed.has(getChainId(line));
+    if (/^TER\s/.test(line)) return allowed.has(getChainId(line));
     if (/^CONECT/.test(line)) return false;
     return true;
   });
