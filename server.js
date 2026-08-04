@@ -362,19 +362,29 @@ function buildDynamic3DPreset(profile) {
   const gene = profile.gene || profile.targetDisplay || '';
   let format = (profile.preferredFormat === 'VHH') ? 'VHH' : 'Fab';
   const indexEntry = profile.expandedIndexEntry || {};
-  let poses = (indexEntry.poses || []).filter(p => p.format === format);
+  // Filter poses by requested format AND require non-empty antibodyChains
+  // (antigen-only poses should never be used as display candidates)
+  let poses = (indexEntry.poses || []).filter(p => p.format === format && Array.isArray(p.antibodyChains) && p.antibodyChains.length > 0);
   // Fallback: if no poses for requested format, try the other format
   if (poses.length === 0) {
     const altFormat = format === 'Fab' ? 'VHH' : 'Fab';
-    const altPoses = (indexEntry.poses || []).filter(p => p.format === altFormat);
+    const altPoses = (indexEntry.poses || []).filter(p => p.format === altFormat && Array.isArray(p.antibodyChains) && p.antibodyChains.length > 0);
     if (altPoses.length > 0) {
       format = altFormat;
       poses = altPoses;
     }
   }
+  // Sync the effective format back to profile so downstream naming matches
+  // the actual PDB files being used (fixes VHH-requested but Fab-shown naming)
+  if (profile) {
+    profile.preferredFormat = format;
+    profile.scaffold = format === 'VHH' ? 'VHH 纳米抗体骨架' : 'Fab 片段抗体骨架';
+  }
   // Root targets use root PDB files (no expanded/ prefix); expanded targets use expanded/GENE/FILE
   const isRootTarget = Boolean(profile.rootTarget || (indexEntry && indexEntry.rootTarget));
   const files = poses.map(p => isRootTarget ? p.fileName : 'expanded/' + gene + '/' + p.fileName);
+  // Store per-pose antibodyChains so routeLocalPDBs can use file-specific chains
+  const poseChains = poses.map(p => p.antibodyChains);
   return {
     aliasPrefix: gene + '-' + format,
     title: gene + ' ' + format + ' 设计候选构象',
@@ -383,6 +393,7 @@ function buildDynamic3DPreset(profile) {
     structuralBasis: 'RCSB ' + (indexEntry.pdbId || '') + ' ' + gene + ' 复合体',
     antigenChains: indexEntry.antigenChains || ['A'],
     antibodyChains: poses.length > 0 ? poses[0].antibodyChains : (format === 'VHH' ? ['B'] : ['B', 'C']),
+    poseChains: poseChains,
     antigenColor: '#F59E0B',
     antibodyColor: '#0EA5E9',
     order: [...Array(files.length).keys()],
@@ -11177,11 +11188,18 @@ function routeLocalPDBs(profile, count) {
   if (profile && profile.expandedProfile && profile.expandedIndexEntry) {
     const dynamicPreset = buildDynamic3DPreset(profile);
     if (dynamicPreset && Array.isArray(dynamicPreset.files) && dynamicPreset.files.length) {
-      const exactPresetFiles = dynamicPreset.files.filter(file => localPDBFileExists(file));
-      if (!exactPresetFiles.length) return [];
+      // Build (file, chains) pairs from the preset's files and poseChains
+      const poseChains = Array.isArray(dynamicPreset.poseChains) ? dynamicPreset.poseChains : [];
+      const fileChainPairs = dynamicPreset.files
+        .map((file, i) => ({ file, antibodyChains: poseChains[i] || dynamicPreset.antibodyChains }))
+        .filter(pair => localPDBFileExists(pair.file));
+      if (!fileChainPairs.length) return [];
       const targetCount = Math.max(1, Number(count) || 10);
-      const files = Array.from({ length: targetCount }, (_, idx) => exactPresetFiles[idx % exactPresetFiles.length]);
-      return files.map((file, idx) => buildRoute3DMeta(profile, idx, file, extractIpTmFromFile(file), dynamicPreset));
+      const pairs = Array.from({ length: targetCount }, (_, idx) => fileChainPairs[idx % fileChainPairs.length]);
+      return pairs.map((pair, idx) => {
+        const filePreset = { ...dynamicPreset, antibodyChains: pair.antibodyChains };
+        return buildRoute3DMeta(profile, idx, pair.file, extractIpTmFromFile(pair.file), filePreset);
+      });
     }
   }
   const preset = getRoute3DPreset(profile);
