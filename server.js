@@ -10660,6 +10660,19 @@ function influenzaHaSubtype3DPreset(profile) {
   };
 }
 
+function isGenericPdbTargetPlaceholder(value) {
+  const v = String(value || '').trim();
+  if (!v) return false;
+  const lower = v.toLowerCase();
+  return /^(?:viral\s+antigen\s+reference\s+structure|reference\s+structure|antigen\s+reference|target\s+antigen|generic\s+antigen|antigen\s+structure|reference\s+antigen|display\s+structure)$/i.test(v)
+    || /\b(?:reference\s+structure|placeholder|generic)\b/i.test(v);
+}
+
+function isValidAntibodyFormatValue(value) {
+  const v = String(value || '').trim().toUpperCase();
+  return /^(FAB|VHH|SCFV|IGG|MAB|NANOBODY|BINDER)$/.test(v);
+}
+
 function readLocalPDBRemarks(filename) {
   const safeName = String(filename || '').trim();
   if (!safeName) return {};
@@ -10684,9 +10697,13 @@ function readLocalPDBRemarks(filename) {
         const match = text.match(new RegExp('REMARK\\s+' + remarkNo + '\\s+[^:\\r\\n]+:[ \\t]*(.*)'));
         return match ? match[1].split(',').map(item => item.trim()).filter(Boolean) : [];
       };
-      result.target = remarkValue(901, 'TARGET') || remarkValue(921, 'DISPLAY LABEL') || remarkValue(924, 'ANTIGEN');
+      const remark901Target = remarkValue(901, 'TARGET');
+      result.target = (remark901Target && !isGenericPdbTargetPlaceholder(remark901Target) ? remark901Target : '')
+        || remarkValue(921, 'DISPLAY LABEL')
+        || remarkValue(924, 'ANTIGEN');
       if (result.target) result.targetSource = 'pdb-remark';
-      result.format = remarkValue(902, 'FORMAT');
+      const remark902Format = remarkValue(902, 'FORMAT');
+      result.format = (remark902Format && isValidAntibodyFormatValue(remark902Format) ? remark902Format : '');
       if (result.format) result.formatSource = 'pdb-remark';
       result.structuralBasis = remarkValue(903, 'STRUCTURAL BASIS') || remarkValue(920, 'SOURCE PDB');
       result.virusGroup = remarkValue(922, 'VIRUS GROUP');
