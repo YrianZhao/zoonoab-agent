@@ -151,6 +151,7 @@ let expandedTargetAliasMap = null;    // Map<UPPERCASE_ALIAS, gene>
 let expandedTargetUniprotMap = null;  // Map<UPPERCASE_UNIPROT, gene>
 let expandedTargetProteinMap = null;  // Map<lowercase_protein_substring, gene> (only for short names)
 let expandedTargetPdbIdMap = null;    // Map<UPPERCASE_PDBID, gene>
+let rootTargetIndex = null;           // Root PDB target index (Tier 1.5)
 
 function loadExpandedTargetIndex() {
   const indexPath = path.join(__dirname, 'pdb', 'expanded-target-index.json');
@@ -201,6 +202,91 @@ function loadExpandedTargetIndex() {
   }
 }
 loadExpandedTargetIndex();
+
+// ─── Root PDB Target Index (Tier 1.5) ──────────────────────
+function loadRootTargetIndex() {
+  const indexPath = path.join(__dirname, 'pdb', 'root-target-index.json');
+  try {
+    const raw = fs.readFileSync(indexPath, 'utf8');
+    rootTargetIndex = JSON.parse(raw);
+    const targets = rootTargetIndex.targets || {};
+    let merged = 0;
+    for (const [gene, entry] of Object.entries(targets)) {
+      const upperGene = gene.toUpperCase();
+      if (!expandedTargetGeneMap) continue;
+      if (!expandedTargetGeneMap.has(upperGene)) {
+        expandedTargetGeneMap.set(upperGene, entry);
+        merged++;
+      } else {
+        // Merge PDB files into existing entry
+        const existing = expandedTargetGeneMap.get(upperGene);
+        if (entry.poses && entry.poses.length > 0) {
+          if (!existing.poses) existing.poses = [];
+          if (!existing.pdbFiles) existing.pdbFiles = [];
+          for (const pose of entry.poses) {
+            if (!existing.poses.some(p => p.fileName === pose.fileName)) {
+              existing.poses.push(pose);
+              existing.pdbFiles.push(pose.fileName);
+            }
+          }
+          existing.rootTarget = true;
+          merged++;
+        }
+      }
+    }
+    console.log(`[root-index] Loaded ${Object.keys(targets).length} root targets, merged ${merged} into gene map`);
+  } catch (err) {
+    console.warn('[root-index] Failed to load, root targets disabled:', err && err.message ? err.message : err);
+    rootTargetIndex = null;
+  }
+}
+
+// ─── Target Aliases ─────────────────────────────────────────
+function loadTargetAliases() {
+  const aliasPath = path.join(__dirname, 'pdb', 'target-aliases.json');
+  try {
+    const raw = fs.readFileSync(aliasPath, 'utf8');
+    const aliases = JSON.parse(raw);
+    let added = 0;
+    for (const [alias, gene] of Object.entries(aliases)) {
+      const upperAlias = String(alias).toUpperCase().trim();
+      const upperGene = String(gene).toUpperCase().trim();
+      if (upperAlias && upperGene && expandedTargetAliasMap && !expandedTargetAliasMap.has(upperAlias)) {
+        expandedTargetAliasMap.set(upperAlias, upperGene);
+        added++;
+      }
+    }
+    console.log(`[aliases] Loaded ${added} target aliases (total: ${expandedTargetAliasMap ? expandedTargetAliasMap.size : 0})`);
+  } catch (err) {
+    console.warn('[aliases] Failed to load:', err && err.message ? err.message : err);
+  }
+}
+
+// ─── Filter Missing Target Directories ──────────────────────
+function filterMissingTargetDirs() {
+  if (!expandedTargetGeneMap) return;
+  const expandedDir = path.join(__dirname, 'pdb', 'expanded');
+  let removed = 0;
+  for (const [gene, entry] of expandedTargetGeneMap) {
+    // Skip root targets (they don't use expanded/ subdirectories)
+    if (entry.rootTarget) continue;
+    // Only filter expanded index targets (have complexDir field)
+    if (!entry.complexDir && !entry.poses) continue;
+    const complexDir = entry.complexDir || gene;
+    const targetDir = path.join(expandedDir, complexDir);
+    if (!fs.existsSync(targetDir) || !fs.statSync(targetDir).isDirectory()) {
+      expandedTargetGeneMap.delete(gene);
+      removed++;
+    }
+  }
+  if (removed > 0) {
+    console.log(`[filter] Removed ${removed} targets with missing PDB directories, ${expandedTargetGeneMap.size} remaining`);
+  }
+}
+
+loadRootTargetIndex();
+loadTargetAliases();
+filterMissingTargetDirs();
 
 // ─── Pre-generated Content Cache ──────────────────────────
 const preGeneratedContentCache = new Map();
@@ -258,6 +344,7 @@ function buildDynamicProfile(gene, indexEntry, preGenContent, preferredFormat) {
     partnerDisplay: '',
     genericProfile: false,
     expandedProfile: true,
+    rootTarget: Boolean(indexEntry && indexEntry.rootTarget),
     gene: gene,
     uniprot: indexEntry && indexEntry.uniprot ? indexEntry.uniprot : '',
     proteinName: indexEntry && indexEntry.proteinName ? indexEntry.proteinName : '',
@@ -275,7 +362,9 @@ function buildDynamic3DPreset(profile) {
   const format = (profile.preferredFormat === 'VHH') ? 'VHH' : 'Fab';
   const indexEntry = profile.expandedIndexEntry || {};
   const poses = (indexEntry.poses || []).filter(p => p.format === format);
-  const files = poses.map(p => 'expanded/' + gene + '/' + p.fileName);
+  // Root targets use root PDB files (no expanded/ prefix); expanded targets use expanded/GENE/FILE
+  const isRootTarget = Boolean(profile.rootTarget || (indexEntry && indexEntry.rootTarget));
+  const files = poses.map(p => isRootTarget ? p.fileName : 'expanded/' + gene + '/' + p.fileName);
   return {
     aliasPrefix: gene + '-' + format,
     title: gene + ' ' + format + ' 设计候选构象',
@@ -466,6 +555,10 @@ function buildModelIntentFromSelection(pendingSelection, targetIdx) {
     baseIntent.selectionReason = content.selectionReason || selected.desc || '';
     baseIntent.reason = content.selectionReason || selected.reason || '';
     baseIntent.disease = content.diseaseDirection || baseIntent.disease;
+    // Build workflowProfile from dynamic profile so runWorkflow uses it directly
+    baseIntent.workflowProfile = buildDynamicProfile(gene, selected.match.entry, preGen, format);
+  } else if (selected.tier === 'tier1' && selected.match && selected.match.route) {
+    // Tier 1: let buildRouteProfile handle it, no workflowProfile needed
   } else if (selected.tier === 'none') {
     baseIntent.reason = selected.reason || gene + ' 具备可用于抗体候选设计的抗原可及表面。';
     baseIntent.selectionReason = baseIntent.reason;
@@ -10905,6 +10998,17 @@ function buildRoute3DMeta(profile, idx, file, ipTm, preset) {
 }
 
 function routeLocalPDBs(profile, count) {
+  // v2.0: Expanded library targets use dynamic 3D preset
+  if (profile && profile.expandedProfile && profile.expandedIndexEntry) {
+    const dynamicPreset = buildDynamic3DPreset(profile);
+    if (dynamicPreset && Array.isArray(dynamicPreset.files) && dynamicPreset.files.length) {
+      const exactPresetFiles = dynamicPreset.files.filter(file => localPDBFileExists(file));
+      if (!exactPresetFiles.length) return [];
+      const targetCount = Math.max(1, Number(count) || 10);
+      const files = Array.from({ length: targetCount }, (_, idx) => exactPresetFiles[idx % exactPresetFiles.length]);
+      return files.map((file, idx) => buildRoute3DMeta(profile, idx, file, extractIpTmFromFile(file), dynamicPreset));
+    }
+  }
   const preset = getRoute3DPreset(profile);
   if (!preset) return [];
   const staticPresetFiles = filesForRoute3DPreset(profile, preset);
@@ -13866,14 +13970,17 @@ function buildWorkflowIntentPrompt() {
     'action: design=设计抗体; answer=普通问答; clarify=信息不足需澄清。',
     '  含电脑/手机/网络/服务器等非生物场景时返回 answer。',
     'targets: 返回 5-10 个与疾病最相关的抗体设计靶点，按优先级排序。',
-    '  每个靶点只需 gene(基因符号) 和 reason(一句话推荐理由)。',
+    '  每个靶点只需 gene(基因符号或常用名) 和 reason(一句话推荐理由)。',
+    '  gene 字段使用最通用的名称：膜受体用 CD 编号或常用名（如 PD-L1、HER2、CD20、EGFR），',
+    '  细胞因子用标准名（如 TNF、IL-6、IL-33、IL-17A），酶用基因符号（如 PCSK9、BACE1）。',
+    '  系统会自动匹配基因符号、CD 编号、常用名和别名，无需担心命名格式。',
     '  不需要返回完整选择理由，完整文案由本地系统自动匹配。',
     '  如果用户直接指定了靶点（如"设计 CD40 抗体"），targets 只包含该靶点。',
     'preferredFormat: 根据疾病和靶点特性建议抗体格式。',
     '  膜受体/大分子优先 Fab；小分子因子/穿透血脑屏障优先 VHH。',
     '  如果用户明确指定了抗体格式（如"纳米抗体""单域抗体"），preferredFormat 必须为 VHH。',
     '流感口语靶点：H1-H18 亚型按完整格式输出，如用户说 H7 则 gene 为 "Influenza A(H7) hemagglutinin (HA)"。',
-    '常见疾病快速参考：肿瘤免疫治疗->PD-L1; 过敏性哮喘->IL-33; 乳腺癌->ERBB2; 自身免疫炎症->TNF; 胃癌->CLDN18.2; ADHD->SLC6A3。',
+    '常见疾病快速参考：肿瘤免疫治疗->PD-L1; 过敏性哮喘->IL-33; 乳腺癌->HER2; 自身免疫炎症->TNF; 胃癌->CLDN18.2; ADHD->SLC6A3; 多发性骨髓瘤->BCMA; 银屑病->IL-17A; 结直肠癌->EGFR; 淋巴瘤->CD20。',
     'disease: 用户提到的疾病或方向，如无则为空字符串。'
   ].join('\n');
 }
