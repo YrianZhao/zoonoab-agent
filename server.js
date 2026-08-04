@@ -359,9 +359,18 @@ function buildDynamicProfile(gene, indexEntry, preGenContent, preferredFormat) {
 
 function buildDynamic3DPreset(profile) {
   const gene = profile.gene || profile.targetDisplay || '';
-  const format = (profile.preferredFormat === 'VHH') ? 'VHH' : 'Fab';
+  let format = (profile.preferredFormat === 'VHH') ? 'VHH' : 'Fab';
   const indexEntry = profile.expandedIndexEntry || {};
-  const poses = (indexEntry.poses || []).filter(p => p.format === format);
+  let poses = (indexEntry.poses || []).filter(p => p.format === format);
+  // Fallback: if no poses for requested format, try the other format
+  if (poses.length === 0) {
+    const altFormat = format === 'Fab' ? 'VHH' : 'Fab';
+    const altPoses = (indexEntry.poses || []).filter(p => p.format === altFormat);
+    if (altPoses.length > 0) {
+      format = altFormat;
+      poses = altPoses;
+    }
+  }
   // Root targets use root PDB files (no expanded/ prefix); expanded targets use expanded/GENE/FILE
   const isRootTarget = Boolean(profile.rootTarget || (indexEntry && indexEntry.rootTarget));
   const files = poses.map(p => isRootTarget ? p.fileName : 'expanded/' + gene + '/' + p.fileName);
@@ -434,11 +443,13 @@ function matchTier2(gene) {
     entry = expandedTargetGeneMap.get(pdbIdGene);
     if (entry) return { entry, gene: pdbIdGene, confidence: 0.75 };
   }
-  // 5. 蛋白名模糊匹配（子串）
+  // 5. 蛋白名模糊匹配（词边界匹配，避免短名误匹配）
   const lowerGene = String(gene || '').toLowerCase().trim();
-  if (lowerGene.length >= 3) {
+  if (lowerGene.length >= 4) {
+    // 要求词边界匹配：蛋白名中包含以空格/标点分隔的完整词
+    const geneWordRegex = new RegExp('\\b' + lowerGene.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'i');
     for (const [protName, geneKey] of expandedTargetProteinMap) {
-      if (protName.includes(lowerGene) || lowerGene.includes(protName)) {
+      if (geneWordRegex.test(protName)) {
         entry = expandedTargetGeneMap.get(geneKey);
         if (entry) return { entry, gene: geneKey, confidence: 0.80 };
       }
