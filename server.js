@@ -395,21 +395,30 @@ function buildDynamic3DPreset(profile) {
 
 function matchTier1(gene) {
   const normalized = String(gene || '').toUpperCase().replace(/[\s\-_]/g, '');
+  // 收集所有路由的 target 规范名集合，用于排除关键词误匹配
+  const allRuleTargets = new Set();
+  for (const rule of DEMO_ROUTE_RULES) {
+    const ruleTarget = String(rule.target || '').toUpperCase().replace(/[\s\-_]/g, '');
+    if (ruleTarget) allRuleTargets.add(ruleTarget);
+  }
   // 检查 DEMO_ROUTE_RULES
   for (const rule of DEMO_ROUTE_RULES) {
     const ruleTarget = String(rule.target || '').toUpperCase().replace(/[\s\-_]/g, '');
     if (ruleTarget === normalized) return { routeId: rule.id, route: rule };
-    // 检查 keywords
-    for (const kw of (rule.keywords || [])) {
-      if (String(kw).toUpperCase().replace(/[\s\-_]/g, '') === normalized) return { routeId: rule.id, route: rule };
+    // 检查 keywords：但排除基因名本身是其他独立路由 target 的情况
+    // 例如 ACE2 是独立路由的 target，不应通过 SARS-CoV-2 RBD 路由的 keywords['ace2'] 误匹配
+    if (!allRuleTargets.has(normalized)) {
+      for (const kw of (rule.keywords || [])) {
+        if (String(kw).toUpperCase().replace(/[\s\-_]/g, '') === normalized) return { routeId: rule.id, route: rule };
+      }
     }
   }
   // 检查 buildRouteProfile 中的已知别名
   const canonical = canonicalPreparedTargetAlias(gene);
   if (canonical) {
+    const canonNorm = String(canonical).toUpperCase().replace(/[\s\-_]/g, '');
     for (const rule of DEMO_ROUTE_RULES) {
       const ruleTarget = String(rule.target || '').toUpperCase().replace(/[\s\-_]/g, '');
-      const canonNorm = String(canonical).toUpperCase().replace(/[\s\-_]/g, '');
       if (ruleTarget === canonNorm) return { routeId: rule.id, route: rule };
     }
   }
@@ -491,7 +500,7 @@ function buildTargetSelectionList(matchedTargets, modelIntent) {
   }
 
   return selectionList.map(t => {
-    const gene = t.gene || '';
+    let gene = t.gene || '';
     let desc = t.reason || '';
     let title = gene;
 
@@ -503,7 +512,12 @@ function buildTargetSelectionList(matchedTargets, modelIntent) {
       }
       if (t.match.entry.proteinName) title = gene + ' · ' + String(t.match.entry.proteinName).slice(0, 30);
     } else if (t.tier === 'tier1' && t.match && t.match.route) {
-      title = t.match.route.target || gene;
+      // tier1 匹配时，gene 同步为路由规范名，确保卡片显示与后端使用的靶点一致
+      const routeTarget = t.match.route.target;
+      if (routeTarget) {
+        gene = routeTarget;
+        title = routeTarget;
+      }
     }
 
     return {
@@ -521,7 +535,11 @@ function buildTargetSelectionList(matchedTargets, modelIntent) {
 function buildModelIntentFromSelection(pendingSelection, targetIdx) {
   const selected = pendingSelection.selectionList[targetIdx];
   if (!selected) return null;
-  const gene = selected.gene;
+  // 优先使用路由规范名作为 target，确保与卡片显示一致
+  let gene = selected.gene;
+  if (selected.tier === 'tier1' && selected.match && selected.match.route && selected.match.route.target) {
+    gene = selected.match.route.target;
+  }
   const originalIntent = pendingSelection.modelIntent;
   const format = originalIntent.preferredFormat === 'VHH' ? 'VHH' : 'Fab';
 
