@@ -23,7 +23,7 @@ const path = require('path');
 
 // ─── 配置 ───────────────────────────────────────────
 const CONFIG = {
-  batchSize: parseInt(process.env.PREGEN_BATCH_SIZE || '20', 10),
+  batchSize: parseInt(process.env.PREGEN_BATCH_SIZE || '40', 10),
   batchInterval: parseInt(process.env.PREGEN_BATCH_INTERVAL || '1000', 10),
   maxRetries: parseInt(process.env.PREGEN_MAX_RETRIES || '3', 10),
   timeout: parseInt(process.env.PREGEN_TIMEOUT || '60000', 10),
@@ -153,14 +153,22 @@ function validateSelectionReason(text) {
 function loadAllTargets() {
   const files = fs.readdirSync(CONTENT_DIR).filter(f => f.endsWith('.json') && f !== '_index.json');
   const targets = [];
+  let skipped = 0;
   for (const file of files) {
     try {
       const raw = JSON.parse(fs.readFileSync(path.join(CONTENT_DIR, file), 'utf8'));
       if (raw.gene && raw.content) {
+        // 跳过已升级到 v2.0 的文件
+        if (raw.promptVersion === 'v2.0' && raw.content.selectionReason
+            && raw.content.selectionReason.length >= 300) {
+          skipped++;
+          continue;
+        }
         targets.push({ gene: raw.gene, file, oldContent: raw.content });
       }
     } catch {}
   }
+  if (skipped > 0) console.log(`跳过已升级文件: ${skipped} 个`);
   return targets;
 }
 

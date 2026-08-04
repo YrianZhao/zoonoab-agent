@@ -23,7 +23,7 @@ const path = require('path');
 
 // ─── 配置 ───────────────────────────────────────────
 const CONFIG = {
-  batchSize: parseInt(process.env.PREGEN_BATCH_SIZE || '100', 10),
+  batchSize: parseInt(process.env.PREGEN_BATCH_SIZE || '20', 10),
   batchInterval: parseInt(process.env.PREGEN_BATCH_INTERVAL || '2000', 10),
   maxRetries: parseInt(process.env.PREGEN_MAX_RETRIES || '3', 10),
   timeout: parseInt(process.env.PREGEN_TIMEOUT || '120000', 10),
