@@ -12462,24 +12462,54 @@ function normalizeViewerPDBChains(value) {
     .slice(0, 32);
 }
 
+// Normalize non-standard 77-char ATOM/HETATM lines to standard 78-char PDB format.
+// Commit e169337 batch-rewrote many PDB files, shifting atom name / chain ID / element
+// columns left by 1 position (77 chars instead of 78). 3Dmol reads chain ID from
+// line[21] (column 22) — in 77-char files that position is a space, causing all
+// atoms to be assigned chain ' ' and style selectors {chain:'A'} to match nothing.
+//
+// The 77-char format is identical to standard 78-char PDB except one space was removed
+// at position 15 (the altLoc column), shifting everything left by 1.  The fix is to
+// insert a space back at position 15 and right-justify the element symbol at the end.
+function normalizePDBAtomLine(line) {
+  if (!line) return line;
+  if (!/^(?:ATOM  |HETATM)/.test(line)) return line;
+  if (line.length === 78) return line; // already standard
+  if (line.length !== 77) return line; // unexpected length, leave as-is
+  // Insert a space at position 15 (altLoc column) to restore standard 78-char width.
+  // This shifts chain ID from position 20 back to position 21 where 3Dmol expects it.
+  var fixed = line.substring(0, 15) + ' ' + line.substring(15);
+  // After insertion the element char (originally at pos 75) is now at pos 76, and the
+  // original trailing space (pos 76) is at pos 77.  Standard PDB right-justifies the
+  // element at columns 77-78 (pos 76-77): " N" not "N ".  Swap when pos 77 is blank.
+  if (fixed.length === 78 && fixed.charAt(77) === ' ' && fixed.charAt(76) !== ' ') {
+    fixed = fixed.substring(0, 76) + ' ' + fixed.charAt(76);
+  }
+  return fixed;
+}
+
+function normalizePDBText(pdbText) {
+  const text = String(pdbText || '');
+  if (!text) return text;
+  // Quick check: if no 77-char ATOM lines, skip normalization
+  if (!/\nATOM.{74}\n/.test('\n' + text + '\n') && !/\nHETATM.{71}\n/.test('\n' + text + '\n')) {
+    // Double-check first ATOM line
+    const firstAtom = text.split('\n').find(l => /^(?:ATOM  |HETATM)/.test(l));
+    if (!firstAtom || firstAtom.length !== 77) return text;
+  }
+  return text.split(/\r?\n/).map(line => normalizePDBAtomLine(line)).join('\n');
+}
+
 function projectPDBTextToChains(pdbText, requestedChains) {
   const chains = Array.isArray(requestedChains) ? requestedChains : normalizeViewerPDBChains(requestedChains);
-  if (!chains.length) return String(pdbText || '');
+  if (!chains.length) return normalizePDBText(String(pdbText || ''));
+  // Normalize first so chain ID is at standard column 22 (line[21])
+  const normalized = normalizePDBText(String(pdbText || ''));
   const allowed = new Set(chains);
-  // Extract chain ID from ATOM/HETATM/ANISOU/TER lines.
-  // Standard PDB: chain ID at column 22 (0-indexed: line[21]).
-  // Some batch-generated expanded files use column 21 (0-indexed: line[20]).
-  function getChainId(line) {
-    var c22 = line[21];
-    if (c22 && c22 !== ' ') return c22;
-    var c21 = line[20];
-    if (c21 && c21 !== ' ') return c21;
-    return ' ';
-  }
-  const lines = String(pdbText || '').split(/\r?\n/);
+  const lines = normalized.split(/\r?\n/);
   const projected = lines.filter(line => {
-    if (/^(?:ATOM  |HETATM|ANISOU)/.test(line)) return allowed.has(getChainId(line));
-    if (/^TER\s/.test(line)) return allowed.has(getChainId(line));
+    if (/^(?:ATOM  |HETATM|ANISOU)/.test(line)) return allowed.has(line[21] || ' ');
+    if (/^TER\s/.test(line)) return allowed.has(line[21] || ' ');
     if (/^CONECT/.test(line)) return false;
     return true;
   });
@@ -12606,21 +12636,13 @@ app.get('/api/pdb/local/expanded/:gene/:filename', async (req, res) => {
   res.setHeader('ETag', etag);
   res.setHeader('Last-Modified', stat.mtime.toUTCString());
   if (req.headers['if-none-match'] === etag) return res.status(304).end();
-  if (requestedChains.length) {
-    try {
-      const pdbText = await fs.promises.readFile(expandedPath, 'utf8');
-      return res.send(projectPDBTextToChains(pdbText, requestedChains));
-    } catch (err) {
-      console.error('[PDB] expanded projection error:', err && err.message ? err.message : err);
-      return res.status(500).json({ error: 'PDB read failed' });
-    }
+  try {
+    const pdbText = await fs.promises.readFile(expandedPath, 'utf8');
+    return res.send(projectPDBTextToChains(pdbText, requestedChains));
+  } catch (err) {
+    console.error('[PDB] expanded read error:', err && err.message ? err.message : err);
+    return res.status(500).json({ error: 'PDB read failed' });
   }
-  const stream = fs.createReadStream(expandedPath);
-  stream.on('error', (err) => {
-    console.error('[PDB] expanded stream error:', err && err.message ? err.message : err);
-    if (!res.headersSent) { res.status(500).json({ error: 'PDB read failed' }); } else { res.destroy(err); }
-  });
-  stream.pipe(res);
 });
 
 app.get('/api/pdb/local/scaffolds/:filename', async (req, res) => {
@@ -12646,25 +12668,13 @@ app.get('/api/pdb/local/scaffolds/:filename', async (req, res) => {
   res.setHeader('ETag', etag);
   res.setHeader('Last-Modified', stat.mtime.toUTCString());
   if (req.headers['if-none-match'] === etag) return res.status(304).end();
-  if (requestedChains.length) {
-    try {
-      const pdbText = await fs.promises.readFile(fp, 'utf8');
-      return res.send(projectPDBTextToChains(pdbText, requestedChains));
-    } catch (err) {
-      console.error('[PDB] scaffold projection error:', err && err.message ? err.message : err);
-      return res.status(500).json({ error: 'PDB read failed' });
-    }
+  try {
+    const pdbText = await fs.promises.readFile(fp, 'utf8');
+    return res.send(projectPDBTextToChains(pdbText, requestedChains));
+  } catch (err) {
+    console.error('[PDB] scaffold read error:', err && err.message ? err.message : err);
+    return res.status(500).json({ error: 'PDB read failed' });
   }
-  const stream = fs.createReadStream(fp);
-  stream.on('error', (err) => {
-    console.error('[PDB] scaffold stream error:', err && err.message ? err.message : err);
-    if (!res.headersSent) {
-      res.status(500).json({ error: 'PDB read failed' });
-    } else {
-      res.destroy(err);
-    }
-  });
-  stream.pipe(res);
 });
 
 app.get('/api/pdb/local/:filename', async (req, res) => {
@@ -12690,25 +12700,13 @@ app.get('/api/pdb/local/:filename', async (req, res) => {
   res.setHeader('ETag', etag);
   res.setHeader('Last-Modified', stat.mtime.toUTCString());
   if (req.headers['if-none-match'] === etag) return res.status(304).end();
-  if (requestedChains.length) {
-    try {
-      const pdbText = await fs.promises.readFile(fp, 'utf8');
-      return res.send(projectPDBTextToChains(pdbText, requestedChains));
-    } catch (err) {
-      console.error('[PDB] local projection error:', err && err.message ? err.message : err);
-      return res.status(500).json({ error: 'PDB read failed' });
-    }
+  try {
+    const pdbText = await fs.promises.readFile(fp, 'utf8');
+    return res.send(projectPDBTextToChains(pdbText, requestedChains));
+  } catch (err) {
+    console.error('[PDB] local read error:', err && err.message ? err.message : err);
+    return res.status(500).json({ error: 'PDB read failed' });
   }
-  const stream = fs.createReadStream(fp);
-  stream.on('error', (err) => {
-    console.error('[PDB] local stream error:', err && err.message ? err.message : err);
-    if (!res.headersSent) {
-      res.status(500).json({ error: 'PDB read failed' });
-    } else {
-      res.destroy(err);
-    }
-  });
-  stream.pipe(res);
 });
 
 app.get('/api/structures/:cacheKey', async (req, res) => {
