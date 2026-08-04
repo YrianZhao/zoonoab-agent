@@ -23,12 +23,12 @@ const path = require('path');
 
 // ─── 配置 ───────────────────────────────────────────
 const CONFIG = {
-  batchSize: parseInt(process.env.PREGEN_BATCH_SIZE || '50', 10),
+  batchSize: parseInt(process.env.PREGEN_BATCH_SIZE || '100', 10),
   batchInterval: parseInt(process.env.PREGEN_BATCH_INTERVAL || '2000', 10),
   maxRetries: parseInt(process.env.PREGEN_MAX_RETRIES || '3', 10),
-  timeout: parseInt(process.env.PREGEN_TIMEOUT || '30000', 10),
-  model: process.env.PREGEN_MODEL || 'gpt-5.5',
-  promptVersion: 'v1.0'
+  timeout: parseInt(process.env.PREGEN_TIMEOUT || '120000', 10),
+  model: process.env.PREGEN_MODEL || 'gpt-5.4',
+  promptVersion: 'v2.0'
 };
 
 // ─── API 配置 ──────────────────────────────────────
@@ -65,7 +65,13 @@ const SYSTEM_PROMPT = `你是 ZoonoAb 学术分子设计引擎的靶点文案生
 要求：
 1. 所有内容必须以正式、严谨的学术分子设计口吻撰写，禁止口语化或任务执行口吻
 2. 禁止出现"用户指定""根据请求""用户希望"等任务执行类表述
-3. selectionReason 必须包含：疾病关联机制（靶点在疾病通路中的角色）、抗原可及性优势（胞外结构域/分泌蛋白/膜受体特征）、优先级依据（相比同类靶点的优势）
+3. selectionReason 须 400-500 字，包含 6 个维度，每个维度 1-2 句话：
+   ①疾病通路定位：靶点所在信号通路、在疾病中的病理角色、临床证据等级（是否有获批药物或进入临床试验）
+   ②抗原结构基础：结构域架构、已知晶体结构分辨率、构象状态、糖基化或翻译后修饰对抗原性的影响
+   ③表位可及性分析：胞外区拓扑特征、表面静电分布、已知表位簇位置、空间位障评估
+   ④机制可解释性：具体阻断或激活的分子界面、下游信号级联通路、功能阻断的量效关系
+   ⑤同类靶点对比：与同一疾病通路中 2-3 个替代靶点在亲和力、选择性、逃逸风险方面的具体对比
+   ⑥转化潜力：序列保守性跨物种比较、免疫原性风险、已知抗体药 precedent、可制造性评估
 4. 所有生物学描述必须准确，不得编造不存在的通路、受体或疾病关联
 5. 机制描述要具体（如"阻断 XX 与 YY 的相互作用"而非泛泛的"调控信号通路"）
 6. 表位策略要结合靶点结构域信息（如"Domain II 二聚化界面"而非"表面可及区域"）
@@ -74,7 +80,7 @@ const SYSTEM_PROMPT = `你是 ZoonoAb 学术分子设计引擎的靶点文案生
 
 JSON 键固定：
 {
-  "selectionReason": "至少3句话的靶点选择理由（80-200字）",
+  "selectionReason": "靶点选择学术依据，须按6个维度分段撰写（400-500字）：①疾病通路定位②抗原结构基础③表位可及性分析④机制可解释性⑤同类靶点对比⑥转化潜力",
   "mechanism": "作用机制描述（30-80字）",
   "selectedEpitope": "推荐表位策略（20-60字）",
   "diseaseDirection": "疾病方向标签（10-30字）",
@@ -126,7 +132,8 @@ RCSB PDB ID：${target.pdbId || '未知'}
 - 分辨率：${target.resolution || '未知'}
 
 请基于以上信息，生成该靶点作为抗体设计主靶点的完整工作流文案。
-要求 selectionReason 至少 3 句话，机制描述具体到分子相互作用层面，
+要求 selectionReason 按 6 个维度分段撰写，总篇幅 400-500 字，
+机制描述具体到分子相互作用层面，
 表位策略结合结构域信息，候选靶点来自同一疾病通路。`;
 }
 
@@ -199,70 +206,29 @@ function mergeData(manifestTargets, csvTargets) {
   });
 }
 
-// ─── API 调用 ──────────────────────────────────────
-function buildResponsesPayload(apiConfig, messages, maxTokens) {
-  const input = messages.map(m => ({
-    role: m.role,
-    content: [{ type: 'input_text', text: m.content }]
-  }));
-  return {
-    model: apiConfig.model,
-    input,
-    stream: false,
-    max_output_tokens: maxTokens || 2000,
-    temperature: 0.3,
-    reasoning: { effort: apiConfig.reasoningEffort || 'none' }
-  };
-}
-
-function buildChatCompletionsPayload(apiConfig, messages, maxTokens) {
-  return {
-    model: apiConfig.model,
-    messages,
-    temperature: 0.3,
-    max_tokens: maxTokens || 2000,
-    stream: false,
-    response_format: { type: 'json_object' }
-  };
-}
-
-function extractResponsesText(data) {
-  if (!data) return '';
-  if (typeof data.output_text === 'string') return data.output_text;
-  if (data.response && typeof data.response.output_text === 'string') return data.response.output_text;
-  if (Array.isArray(data.output)) {
-    for (const item of data.output) {
-      if (item.type === 'message' && Array.isArray(item.content)) {
-        for (const c of item.content) {
-          if (typeof c.text === 'string') return c.text;
-        }
-      }
-    }
-  }
-  return '';
-}
-
-function extractChatText(data) {
-  if (!data || !data.choices || !data.choices[0]) return '';
-  const msg = data.choices[0].message;
-  return msg ? (msg.content || '') : '';
-}
-
+// ─── API 调用（streaming chat/completions）─────────
 async function callModel(apiConfig, target) {
   const messages = [
     { role: 'system', content: SYSTEM_PROMPT },
     { role: 'user', content: buildUserPrompt(target) }
   ];
-  const isResponses = apiConfig.wireApi === 'responses';
-  const body = isResponses
-    ? buildResponsesPayload(apiConfig, messages, 2000)
-    : buildChatCompletionsPayload(apiConfig, messages, 2000);
+
+  // 使用 chat/completions + streaming，避免 su8 上游 30s 超时
+  const chatUrl = apiConfig.url.replace(/\/responses$/, '/chat/completions');
+  const body = {
+    model: apiConfig.model,
+    messages,
+    temperature: 0.3,
+    max_tokens: 4000,
+    stream: true,
+    response_format: { type: 'json_object' }
+  };
 
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), CONFIG.timeout);
 
   try {
-    const resp = await fetch(apiConfig.url, {
+    const resp = await fetch(chatUrl, {
       method: 'POST',
       headers: {
         'Authorization': 'Bearer ' + apiConfig.key,
@@ -272,14 +238,35 @@ async function callModel(apiConfig, target) {
       signal: controller.signal
     });
     clearTimeout(timer);
-    const raw = await resp.text();
+
     if (!resp.ok) {
+      const raw = await resp.text();
       throw new Error(`HTTP ${resp.status}: ${raw.slice(0, 200)}`);
     }
-    const data = JSON.parse(raw);
-    const text = isResponses ? extractResponsesText(data) : extractChatText(data);
-    if (!text) throw new Error('empty_response');
-    return text;
+
+    // 流式读取
+    let fullText = '';
+    const reader = resp.body.getReader();
+    const decoder = new TextDecoder();
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      const chunk = decoder.decode(value, { stream: true });
+      for (const line of chunk.split('\n')) {
+        if (!line.startsWith('data: ')) continue;
+        const data = line.slice(6).trim();
+        if (data === '[DONE]') continue;
+        try {
+          const parsed = JSON.parse(data);
+          const delta = parsed.choices && parsed.choices[0] && parsed.choices[0].delta
+            ? (parsed.choices[0].delta.content || '') : '';
+          fullText += delta;
+        } catch {}
+      }
+    }
+
+    if (!fullText) throw new Error('empty_response');
+    return fullText;
   } catch (err) {
     clearTimeout(timer);
     throw err;
@@ -301,11 +288,11 @@ function validateContent(content, target) {
   for (const field of REQUIRED_FIELDS) {
     if (!(field in content)) return { valid: false, reason: `missing_field:${field}` };
   }
-  if (typeof content.selectionReason !== 'string' || content.selectionReason.length < 60) {
+  if (typeof content.selectionReason !== 'string' || content.selectionReason.length < 300) {
     return { valid: false, reason: 'selectionReason_too_short' };
   }
   const sentenceCount = (content.selectionReason.match(/[。.！!]/g) || []).length;
-  if (sentenceCount < 3) return { valid: false, reason: 'selectionReason_too_few_sentences' };
+  if (sentenceCount < 6) return { valid: false, reason: 'selectionReason_too_few_sentences' };
   if (typeof content.mechanism !== 'string' || content.mechanism.length < 10) {
     return { valid: false, reason: 'mechanism_too_short' };
   }
@@ -334,10 +321,16 @@ function extractJsonFromText(text) {
   const start = cleaned.indexOf('{');
   const end = cleaned.lastIndexOf('}');
   if (start === -1 || end === -1 || end <= start) return null;
+  let jsonStr = cleaned.slice(start, end + 1);
   try {
-    return JSON.parse(cleaned.slice(start, end + 1));
+    return JSON.parse(jsonStr);
   } catch {
-    return null;
+    // 尝试修复尾随逗号
+    try {
+      return JSON.parse(jsonStr.replace(/,(\s*[}\]])/g, '$1'));
+    } catch {
+      return null;
+    }
   }
 }
 

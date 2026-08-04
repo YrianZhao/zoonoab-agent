@@ -15432,9 +15432,9 @@ function sanitizeSelectionReasonForDisplay(reason, target, disease) {
   const targetName = target || '当前靶点';
   const subject = disease || '当前疾病方向';
   if (!raw || VISIBLE_PREPARED_MODEL_LEAK_PATTERN.test(raw) || VISIBLE_TARGET_RESOLVER_LEAK_PATTERN.test(raw)) {
-    return sanitizeVisibleTargetReason('', targetName, subject).slice(0, 800);
+    return sanitizeVisibleTargetReason('', targetName, subject).slice(0, 1200);
   }
-  return sanitizeVisibleTargetReason(raw, targetName, subject).slice(0, 800);
+  return sanitizeVisibleTargetReason(raw, targetName, subject).slice(0, 1200);
 }
 
 function sanitizedTargetSelectionReason(resolution, route) {
