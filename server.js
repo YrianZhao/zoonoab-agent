@@ -4820,7 +4820,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'ARSA target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 1AUK ARSA 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 1AUK ARSA antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '内分泌方向设计',
       routeId: 'display_pose_arsa_1'
     },
@@ -4845,7 +4845,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'APOA1 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 1AV1 APOA1 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 1AV1 APOA1 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '其他方向设计',
       routeId: 'display_pose_apoa1_2'
     },
@@ -4920,7 +4920,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'DMD target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 1DXX DMD 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 1DXX DMD antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '肾脏/结缔组织方向设计',
       routeId: 'display_pose_dmd_5'
     },
@@ -4970,7 +4970,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'EPOR target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 1ERN EPOR 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 1ERN EPOR antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '凝血/血液方向设计',
       routeId: 'display_pose_epor_7'
     },
@@ -4995,7 +4995,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'TTR target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 1F41 TTR 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 1F41 TTR antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '其他方向设计',
       routeId: 'display_pose_ttr_8'
     },
@@ -5020,7 +5020,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'IL12B target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 1F45 IL12B 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 1F45 IL12B antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '免疫炎症方向设计',
       routeId: 'display_pose_il12b_9'
     },
@@ -5045,7 +5045,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'IFNG target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 1FG9 IFNG 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 1FG9 IFNG antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '免疫炎症方向设计',
       routeId: 'display_pose_ifng_10'
     },
@@ -5095,7 +5095,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'CRP target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 1GNH CRP 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 1GNH CRP antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '免疫炎症方向设计',
       routeId: 'display_pose_crp_12'
     },
@@ -5145,7 +5145,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'IL4R target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 1IAR IL4R 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 1IAR IL4R antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '其他方向设计',
       routeId: 'display_pose_il4r_14'
     },
@@ -5170,7 +5170,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'TNNI3 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 1J1E TNNI3 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 1J1E TNNI3 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '神经/心血管方向设计',
       routeId: 'display_pose_tnni3_15'
     },
@@ -5195,7 +5195,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'PAH target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 1J8T PAH 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 1J8T PAH antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '其他方向设计',
       routeId: 'display_pose_pah_16'
     },
@@ -5220,7 +5220,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'IMPDH1 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 1JCN IMPDH1 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 1JCN IMPDH1 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '其他方向设计',
       routeId: 'display_pose_impdh1_17'
     },
@@ -5270,7 +5270,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'ERBB3 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 1M6B ERBB3 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 1M6B ERBB3 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '肿瘤方向设计',
       routeId: 'display_pose_erbb3_19'
     },
@@ -5295,7 +5295,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'IL6R target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 1N26 IL6R 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 1N26 IL6R antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '免疫炎症方向设计',
       routeId: 'display_pose_il6r_20'
     },
@@ -5345,7 +5345,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'CXCL10 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 1O7Y CXCL10 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 1O7Y CXCL10 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '免疫炎症方向设计',
       routeId: 'display_pose_cxcl10_22'
     },
@@ -5370,7 +5370,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'NR1H4 / FXR target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 1OSH NR1H4 / FXR 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 1OSH NR1H4 / FXR antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '内分泌方向设计',
       routeId: 'display_pose_nr1h4___fxr_23'
     },
@@ -5420,7 +5420,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'HLA-DRB1 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 1PYW HLA-DRB1 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 1PYW HLA-DRB1 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '肿瘤方向设计',
       routeId: 'display_pose_hla_drb1_25'
     },
@@ -5470,7 +5470,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'ACE2 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 1R42 ACE2 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 1R42 ACE2 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '肾脏/结缔组织方向设计',
       routeId: 'display_pose_ace2_27'
     },
@@ -5495,7 +5495,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'KIT target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 1T45 KIT 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 1T45 KIT antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '肿瘤方向设计',
       routeId: 'display_pose_kit_28'
     },
@@ -5545,7 +5545,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'RARB target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 1XAP RARB 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 1XAP RARB antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '内分泌方向设计',
       routeId: 'display_pose_rarb_30'
     },
@@ -5570,7 +5570,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'TNFRSF17 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 1XU2 TNFRSF17 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 1XU2 TNFRSF17 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '免疫炎症方向设计',
       routeId: 'display_pose_tnfrsf17_31'
     },
@@ -5595,7 +5595,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'HPRT1 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 1Z7G HPRT1 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 1Z7G HPRT1 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '代谢方向设计',
       routeId: 'display_pose_hprt1_32'
     },
@@ -5645,7 +5645,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'ALDH2 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 1ZUM ALDH2 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 1ZUM ALDH2 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '代谢方向设计',
       routeId: 'display_pose_aldh2_34'
     },
@@ -5670,7 +5670,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'KITLG target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 2E9W KITLG 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 2E9W KITLG antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '肿瘤方向设计',
       routeId: 'display_pose_kitlg_35'
     },
@@ -5720,7 +5720,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'BRAF target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 2FB8 BRAF 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 2FB8 BRAF antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '肿瘤方向设计',
       routeId: 'display_pose_braf_37'
     },
@@ -5745,7 +5745,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'F10 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 2GD4 F10 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 2GD4 F10 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '凝血/血液方向设计',
       routeId: 'display_pose_f10_38'
     },
@@ -5820,7 +5820,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'ADK target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 2I6A ADK 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 2I6A ADK antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '代谢方向设计',
       routeId: 'display_pose_adk_41'
     },
@@ -5945,7 +5945,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'SERPING1 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 2OAY SERPING1 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 2OAY SERPING1 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '凝血/血液方向设计',
       routeId: 'display_pose_serping1_46'
     },
@@ -5970,7 +5970,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'MMP8 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 2OY4 MMP8 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 2OY4 MMP8 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '消化/骨骼方向设计',
       routeId: 'display_pose_mmp8_47'
     },
@@ -5995,7 +5995,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'SERPINA1 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 2QUG SERPINA1 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 2QUG SERPINA1 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '凝血/血液方向设计',
       routeId: 'display_pose_serpina1_48'
     },
@@ -6045,7 +6045,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'PRSS1 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 2RA3 PRSS1 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 2RA3 PRSS1 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '消化/骨骼方向设计',
       routeId: 'display_pose_prss1_50'
     },
@@ -6070,7 +6070,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'REN target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 2REN REN 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 2REN REN antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '肾脏/结缔组织方向设计',
       routeId: 'display_pose_ren_51'
     },
@@ -6095,7 +6095,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'VDR target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 3A78 VDR 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 3A78 VDR antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '内分泌方向设计',
       routeId: 'display_pose_vdr_52'
     },
@@ -6120,7 +6120,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'PTK2B target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 3CC6 PTK2B 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 3CC6 PTK2B antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '肿瘤方向设计',
       routeId: 'display_pose_ptk2b_53'
     },
@@ -6170,7 +6170,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'JAK1 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 3EYG JAK1 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 3EYG JAK1 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '信号通路方向设计',
       routeId: 'display_pose_jak1_55'
     },
@@ -6195,7 +6195,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'BMPR2 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 3G2F BMPR2 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 3G2F BMPR2 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '信号通路方向设计',
       routeId: 'display_pose_bmpr2_56'
     },
@@ -6220,7 +6220,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'DST target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 3GJO DST 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 3GJO DST antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '肾脏/结缔组织方向设计',
       routeId: 'display_pose_dst_57'
     },
@@ -6245,7 +6245,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'THRB target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 3GWS THRB 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 3GWS THRB antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '内分泌方向设计',
       routeId: 'display_pose_thrb_58'
     },
@@ -6270,7 +6270,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'CHEK2 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 3I6U CHEK2 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 3I6U CHEK2 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '肿瘤方向设计',
       routeId: 'display_pose_chek2_59'
     },
@@ -6295,7 +6295,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'ADA2 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 3LGG ADA2 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 3LGG ADA2 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '代谢方向设计',
       routeId: 'display_pose_ada2_60'
     },
@@ -6320,7 +6320,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'ADRB2 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 3NY9 ADRB2 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 3NY9 ADRB2 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '神经/心血管方向设计',
       routeId: 'display_pose_adrb2_61'
     },
@@ -6345,7 +6345,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'RAF1 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 3OMV RAF1 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 3OMV RAF1 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '肿瘤方向设计',
       routeId: 'display_pose_raf1_62'
     },
@@ -6370,7 +6370,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'CTLA4 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 3OSK CTLA4 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 3OSK CTLA4 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '其他方向设计',
       routeId: 'display_pose_ctla4_63'
     },
@@ -6395,7 +6395,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'NF1 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 3P7Z NF1 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 3P7Z NF1 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '肿瘤方向设计',
       routeId: 'display_pose_nf1_64'
     },
@@ -6420,7 +6420,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'RB1 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 3POM RB1 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 3POM RB1 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '肿瘤方向设计',
       routeId: 'display_pose_rb1_65'
     },
@@ -6445,7 +6445,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'CALR target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 3POW CALR 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 3POW CALR antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '免疫炎症方向设计',
       routeId: 'display_pose_calr_66'
     },
@@ -6520,7 +6520,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'MMP1 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 3SHI MMP1 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 3SHI MMP1 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '消化/骨骼方向设计',
       routeId: 'display_pose_mmp1_69'
     },
@@ -6545,7 +6545,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'IL21 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 3TGX IL21 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 3TGX IL21 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '免疫炎症方向设计',
       routeId: 'display_pose_il21_70'
     },
@@ -6570,7 +6570,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'PKP2 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 3TT9 PKP2 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 3TT9 PKP2 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '神经/心血管方向设计',
       routeId: 'display_pose_pkp2_71'
     },
@@ -6595,7 +6595,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'F2 / thrombin target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 3U69 F2 / thrombin 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 3U69 F2 / thrombin antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '凝血/血液方向设计',
       routeId: 'display_pose_f2___thrombin_72'
     },
@@ -6620,7 +6620,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'MEN1 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 3U84 MEN1 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 3U84 MEN1 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '肿瘤方向设计',
       routeId: 'display_pose_men1_73'
     },
@@ -6645,7 +6645,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'CHRM2 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 3UON CHRM2 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 3UON CHRM2 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '神经/心血管方向设计',
       routeId: 'display_pose_chrm2_74'
     },
@@ -6670,7 +6670,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'FLCN target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 3V42 FLCN 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 3V42 FLCN antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '肿瘤方向设计',
       routeId: 'display_pose_flcn_75'
     },
@@ -6695,7 +6695,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'IL18 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 3WO2 IL18 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 3WO2 IL18 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '免疫炎症方向设计',
       routeId: 'display_pose_il18_76'
     },
@@ -6720,7 +6720,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'GABRB3 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 4COF GABRB3 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 4COF GABRB3 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '神经/心血管方向设计',
       routeId: 'display_pose_gabrb3_77'
     },
@@ -6745,7 +6745,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'FTO target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 4CXW FTO 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 4CXW FTO antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '代谢方向设计',
       routeId: 'display_pose_fto_78'
     },
@@ -6770,7 +6770,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'FGFR1 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 4F64 FGFR1 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 4F64 FGFR1 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '肿瘤方向设计',
       routeId: 'display_pose_fgfr1_79'
     },
@@ -6795,7 +6795,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'TOP2A target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 4FM9 TOP2A 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 4FM9 TOP2A antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '肿瘤方向设计',
       routeId: 'display_pose_top2a_80'
     },
@@ -6820,7 +6820,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'MMP13 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 4FU4 MMP13 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 4FU4 MMP13 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '消化/骨骼方向设计',
       routeId: 'display_pose_mmp13_81'
     },
@@ -6845,7 +6845,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'HBB target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 4HHB HBB 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 4HHB HBB antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '凝血/血液方向设计',
       routeId: 'display_pose_hbb_82'
     },
@@ -6895,7 +6895,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'OAS1 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 4IG8 OAS1 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 4IG8 OAS1 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '免疫炎症方向设计',
       routeId: 'display_pose_oas1_84'
     },
@@ -6920,7 +6920,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'GRIK1 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 4MF3 GRIK1 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 4MF3 GRIK1 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '神经/心血管方向设计',
       routeId: 'display_pose_grik1_85'
     },
@@ -6970,7 +6970,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'KRAS target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 4OBE KRAS 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 4OBE KRAS antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '肿瘤方向设计',
       routeId: 'display_pose_kras_87'
     },
@@ -6995,7 +6995,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'NR3C1 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 4P6X NR3C1 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 4P6X NR3C1 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '神经/心血管方向设计',
       routeId: 'display_pose_nr3c1_88'
     },
@@ -7020,7 +7020,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'STAG2 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 4PK7 STAG2 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 4PK7 STAG2 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '肿瘤方向设计',
       routeId: 'display_pose_stag2_89'
     },
@@ -7045,7 +7045,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'AXL target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 4RA0 AXL 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 4RA0 AXL antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '肿瘤方向设计',
       routeId: 'display_pose_axl_90'
     },
@@ -7070,7 +7070,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'RET target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 4UX8 RET 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 4UX8 RET antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '肿瘤方向设计',
       routeId: 'display_pose_ret_91'
     },
@@ -7095,7 +7095,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'MYOC target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 4WXQ MYOC 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 4WXQ MYOC antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '肾脏/结缔组织方向设计',
       routeId: 'display_pose_myoc_92'
     },
@@ -7120,7 +7120,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'AGTR1 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 4YAY AGTR1 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 4YAY AGTR1 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '肾脏/结缔组织方向设计',
       routeId: 'display_pose_agtr1_93'
     },
@@ -7145,7 +7145,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'ODC1 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 4ZGY ODC1 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 4ZGY ODC1 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '代谢方向设计',
       routeId: 'display_pose_odc1_94'
     },
@@ -7195,7 +7195,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'IDH1 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 5DE1 IDH1 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 5DE1 IDH1 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '肿瘤方向设计',
       routeId: 'display_pose_idh1_96'
     },
@@ -7220,7 +7220,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'SERPING1 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 5DU3 SERPING1 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 5DU3 SERPING1 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '凝血/血液方向设计',
       routeId: 'display_pose_serping1_97'
     },
@@ -7245,7 +7245,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'PTGS2 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 5F19 PTGS2 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 5F19 PTGS2 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '内分泌方向设计',
       routeId: 'display_pose_ptgs2_98'
     },
@@ -7270,7 +7270,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'SLC6A4 / SERT target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 5I75 SLC6A4 / SERT 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 5I75 SLC6A4 / SERT antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '神经/心血管方向设计',
       routeId: 'display_pose_slc6a4___sert_99'
     },
@@ -7295,7 +7295,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'GAA target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 5KZW GAA 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 5KZW GAA antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '代谢方向设计',
       routeId: 'display_pose_gaa_100'
     },
@@ -7320,7 +7320,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'NTRK2 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 5MO9 NTRK2 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 5MO9 NTRK2 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '肿瘤方向设计',
       routeId: 'display_pose_ntrk2_101'
     },
@@ -7370,7 +7370,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'COL4A1 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 5NAY COL4A1 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 5NAY COL4A1 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '肾脏/结缔组织方向设计',
       routeId: 'display_pose_col4a1_103'
     },
@@ -7395,7 +7395,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'DRD4 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 5WIU DRD4 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 5WIU DRD4 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '神经/心血管方向设计',
       routeId: 'display_pose_drd4_104'
     },
@@ -7420,7 +7420,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'CNR1 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 5XRA CNR1 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 5XRA CNR1 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '神经/心血管方向设计',
       routeId: 'display_pose_cnr1_105'
     },
@@ -7445,7 +7445,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'ATP4A target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 5YLU ATP4A 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 5YLU ATP4A antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '消化/骨骼方向设计',
       routeId: 'display_pose_atp4a_106'
     },
@@ -7470,7 +7470,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'DICER1 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 5ZAL DICER1 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 5ZAL DICER1 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '肿瘤方向设计',
       routeId: 'display_pose_dicer1_107'
     },
@@ -7495,7 +7495,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'PLAT target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 5ZLZ PLAT 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 5ZLZ PLAT antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '信号通路方向设计',
       routeId: 'display_pose_plat_108'
     },
@@ -7520,7 +7520,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'HTR2A target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 6A93 HTR2A 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 6A93 HTR2A antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '神经/心血管方向设计',
       routeId: 'display_pose_htr2a_109'
     },
@@ -7545,7 +7545,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'GNAS target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 6AU6 GNAS 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 6AU6 GNAS antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '其他方向设计',
       routeId: 'display_pose_gnas_110'
     },
@@ -7570,7 +7570,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'DRD2 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 6CM4 DRD2 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 6CM4 DRD2 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '神经/心血管方向设计',
       routeId: 'display_pose_drd2_111'
     },
@@ -7595,7 +7595,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'NTRK1 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 6D20 NTRK1 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 6D20 NTRK1 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '肿瘤方向设计',
       routeId: 'display_pose_ntrk1_112'
     },
@@ -7620,7 +7620,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'COL3A1 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 6FZV COL3A1 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 6FZV COL3A1 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '肾脏/结缔组织方向设计',
       routeId: 'display_pose_col3a1_113'
     },
@@ -7645,7 +7645,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'SUCLG1 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 6G4Q SUCLG1 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 6G4Q SUCLG1 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '代谢方向设计',
       routeId: 'display_pose_suclg1_114'
     },
@@ -7670,7 +7670,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'PSPH target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 6HYJ PSPH 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 6HYJ PSPH antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '代谢方向设计',
       routeId: 'display_pose_psph_115'
     },
@@ -7695,7 +7695,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'GUCY1A1 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 6JT0 GUCY1A1 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 6JT0 GUCY1A1 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '消化/骨骼方向设计',
       routeId: 'display_pose_gucy1a1_116'
     },
@@ -7745,7 +7745,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'ATM target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 6K9L ATM 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 6K9L ATM antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '肿瘤方向设计',
       routeId: 'display_pose_atm_118'
     },
@@ -7770,7 +7770,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'CACNA1G target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 6KZO CACNA1G 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 6KZO CACNA1G antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '神经/心血管方向设计',
       routeId: 'display_pose_cacna1g_119'
     },
@@ -7795,7 +7795,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'PROC target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 6M3B PROC 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 6M3B PROC antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '凝血/血液方向设计',
       routeId: 'display_pose_proc_120'
     },
@@ -7820,7 +7820,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'CFTR target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 6MSM CFTR 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 6MSM CFTR antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '消化/骨骼方向设计',
       routeId: 'display_pose_cftr_121'
     },
@@ -7845,7 +7845,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'KLKB1 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 6O1S KLKB1 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 6O1S KLKB1 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '凝血/血液方向设计',
       routeId: 'display_pose_klkb1_122'
     },
@@ -7870,7 +7870,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'MYH7 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 6PFP MYH7 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 6PFP MYH7 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '神经/心血管方向设计',
       routeId: 'display_pose_myh7_123'
     },
@@ -7895,7 +7895,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'ABCB4 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 6S7P ABCB4 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 6S7P ABCB4 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '消化/骨骼方向设计',
       routeId: 'display_pose_abcb4_124'
     },
@@ -7920,7 +7920,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'TG target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 6SCJ TG 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 6SCJ TG antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '内分泌方向设计',
       routeId: 'display_pose_tg_125'
     },
@@ -7970,7 +7970,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'JAK2 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 6VGL JAK2 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 6VGL JAK2 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '信号通路方向设计',
       routeId: 'display_pose_jak2_127'
     },
@@ -7995,7 +7995,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'GABRB2 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 6X3U GABRB2 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 6X3U GABRB2 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '神经/心血管方向设计',
       routeId: 'display_pose_gabrb2_128'
     },
@@ -8045,7 +8045,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'TLR7 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 7CYN TLR7 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 7CYN TLR7 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '免疫炎症方向设计',
       routeId: 'display_pose_tlr7_130'
     },
@@ -8070,7 +8070,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'SCN1A target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 7DTD SCN1A 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 7DTD SCN1A antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '神经/心血管方向设计',
       routeId: 'display_pose_scn1a_131'
     },
@@ -8095,7 +8095,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'LHCGR target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 7FIJ LHCGR 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 7FIJ LHCGR antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '内分泌方向设计',
       routeId: 'display_pose_lhcgr_132'
     },
@@ -8120,7 +8120,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'PDE3A target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 7L28 PDE3A 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 7L28 PDE3A antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '神经/心血管方向设计',
       routeId: 'display_pose_pde3a_133'
     },
@@ -8145,7 +8145,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'ALK target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 7MZY ALK 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 7MZY ALK antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '肿瘤方向设计',
       routeId: 'display_pose_alk_134'
     },
@@ -8170,7 +8170,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'SPINK1 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 7QE8 SPINK1 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 7QE8 SPINK1 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '消化/骨骼方向设计',
       routeId: 'display_pose_spink1_135'
     },
@@ -8195,7 +8195,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'MMP7 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 7WXX MMP7 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 7WXX MMP7 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '消化/骨骼方向设计',
       routeId: 'display_pose_mmp7_136'
     },
@@ -8270,7 +8270,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'GREM1 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 8B7H GREM1 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 8B7H GREM1 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '消化/骨骼方向设计',
       routeId: 'display_pose_grem1_139'
     },
@@ -8295,7 +8295,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'OPRM1 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 8F7Q OPRM1 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 8F7Q OPRM1 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '神经/心血管方向设计',
       routeId: 'display_pose_oprm1_140'
     },
@@ -8320,7 +8320,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'GUCY2C target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 8FX4 GUCY2C 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 8FX4 GUCY2C antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '消化/骨骼方向设计',
       routeId: 'display_pose_gucy2c_141'
     },
@@ -8395,7 +8395,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'CTNNB1 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 8Y0G CTNNB1 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 8Y0G CTNNB1 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '肿瘤方向设计',
       routeId: 'display_pose_ctnnb1_144'
     },
@@ -8420,7 +8420,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'SCNN1B target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 9BLR SCNN1B 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 9BLR SCNN1B antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '神经/心血管方向设计',
       routeId: 'display_pose_scnn1b_145'
     },
@@ -8445,7 +8445,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'BEST1 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 9EGT BEST1 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 9EGT BEST1 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '肾脏/结缔组织方向设计',
       routeId: 'display_pose_best1_146'
     },
@@ -8470,7 +8470,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'SLC6A3 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 9EO4 SLC6A3 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 9EO4 SLC6A3 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '神经/心血管方向设计',
       routeId: 'display_pose_slc6a3_147'
     },
@@ -8495,7 +8495,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'CHRNA1 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 9GU3 CHRNA1 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 9GU3 CHRNA1 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '神经/心血管方向设计',
       routeId: 'display_pose_chrna1_148'
     },
@@ -8545,7 +8545,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'SCN5A target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 9P24 SCN5A 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 9P24 SCN5A antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '神经/心血管方向设计',
       routeId: 'display_pose_scn5a_150'
     },
@@ -8570,7 +8570,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'NKX2-1 target carries immunogenicity risk; cross-reactivity needs attention.',
       structurePrepZh: '基于 RCSB 9U18 NKX2-1 抗原结构，使用代表性 Fab 支架展示。',
       structurePrepEn: 'Based on RCSB 9U18 NKX2-1 antigen structure with representative Fab scaffold.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '发育/转录因子方向设计',
       routeId: 'display_pose_nkx2_1_151'
     },
@@ -8603,7 +8603,7 @@ function buildRouteProfile(target, blockTarget, abType) {
       riskSummaryEn: 'TMV is a plant virus with no human infectivity; antibody design is primarily for detection and research display.',
       structurePrepZh: '加载 RCSB 6R7M TMV 衣壳蛋白结构与 Fab 展示姿态参考。',
       structurePrepEn: 'Loading RCSB 6R7M TMV capsid protein structure with Fab display pose reference.',
-      scaffold: 'Fab 片段抗体骨架',
+      scaffold: abType === 'Fab' ? 'Fab 片段抗体骨架' : abType + ' 抗体骨架',
       designMode: '植物病毒抗体设计'
     }
   };
