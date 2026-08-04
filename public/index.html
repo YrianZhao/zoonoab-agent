@@ -6639,7 +6639,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '69498318';
+    const APP_BUILD_VERSION = '69498319';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
     const SILICONFLOW_CHAT_FALLBACK_MODELS = ['Qwen/Qwen3-32B', 'Qwen/Qwen3-14B', 'Qwen/Qwen3-8B', 'deepseek-ai/DeepSeek-V3'];
@@ -8438,16 +8438,11 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
     function renderTargetSelectionCards(targets, selectionId) {
         const cards = targets.map((t, idx) => {
-            const hasLocal = t.tier === 'tier1' || t.tier === 'tier2';
-            const badgeClass = hasLocal ? 'local' : 'default';
-            const badgeText = hasLocal ? '本地模型' : '默认模型';
-            const cardClass = hasLocal ? '' : 'no-local';
             const desc = t.desc || t.reason || '';
             const title = t.title || t.gene || t.target || '';
-            return '<button class="target-option-card ' + cardClass + '" onclick="selectTargetOption(\'' + qdEscAttr(selectionId) + '\', ' + idx + ')" data-idx="' + idx + '">' +
+            return '<button class="target-option-card" onclick="selectTargetOption(\'' + qdEscAttr(selectionId) + '\', ' + idx + ')" data-idx="' + idx + '">' +
                 '<span class="target-option-top">' +
                     '<span class="target-option-title">' + qdEscHtml(title) + '</span>' +
-                    '<span class="target-option-badge ' + badgeClass + '">' + badgeText + '</span>' +
                 '</span>' +
                 '<span class="target-option-desc">' + qdEscHtml(desc) + '</span>' +
             '</button>';
