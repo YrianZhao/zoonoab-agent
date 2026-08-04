@@ -3940,6 +3940,27 @@
         .qd-option-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
         .qd-option-title { font-size: 14px; line-height: 1.35; color: var(--text-primary); font-weight: 750; }
         .qd-option-desc { font-size: 12px; line-height: 1.45; color: var(--text-secondary); }
+        /* 靶点选择选项卡 - 复用 qd-option-card 风格 */
+        .target-selection-container { margin: 12px 0; }
+        .target-selection-title { font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 10px; }
+        .target-selection-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+        .target-option-card {
+            border: 1.5px solid var(--border); border-radius: 8px; background: var(--bg-card);
+            padding: 12px 13px; text-align: left; cursor: pointer; font-family: inherit;
+            transition: var(--transition); min-height: 86px; display: flex; flex-direction: column; gap: 8px;
+        }
+        .target-option-card:hover { border-color: var(--brand-light); background: #F7FBFF; transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+        .target-option-card.selected { border-color: var(--brand); background: var(--brand-lighter); box-shadow: 0 0 0 3px rgba(0,123,255,0.08); }
+        .target-option-card.no-local { border-color: var(--border); opacity: 0.85; }
+        .target-option-card.no-local:hover { opacity: 1; }
+        .target-option-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+        .target-option-title { font-size: 14px; line-height: 1.35; color: var(--text-primary); font-weight: 750; }
+        .target-option-desc { font-size: 12px; line-height: 1.45; color: var(--text-secondary); }
+        .target-option-badge { font-size: 10px; padding: 4px 6px; border-radius: 999px; font-weight: 750; }
+        .target-option-badge.local { background: rgba(16,185,129,0.1); color: #059669; }
+        .target-option-badge.default { background: rgba(245,158,11,0.1); color: #D97706; }
+        .target-selection-hint { font-size: 12px; color: var(--text-secondary); margin-top: 8px; }
+        @media (max-width: 768px) { .target-selection-grid { grid-template-columns: 1fr; } }
         .qd-tag {
             font-size: 10px; line-height: 1; padding: 4px 6px; border-radius: 999px;
             background: rgba(0,123,255,0.1); color: var(--brand-dark); font-weight: 750; white-space: nowrap;
@@ -6618,7 +6639,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '69498316';
+    const APP_BUILD_VERSION = '69498317';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
     const SILICONFLOW_CHAT_FALLBACK_MODELS = ['Qwen/Qwen3-32B', 'Qwen/Qwen3-14B', 'Qwen/Qwen3-8B', 'deepseek-ai/DeepSeek-V3'];
@@ -8414,6 +8435,48 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 <span class="qd-option-desc">${qdEscHtml(opt.desc)}</span>
             </button>
         `).join('') + `</div>`;
+    }
+    function renderTargetSelectionCards(targets, selectionId) {
+        const cards = targets.map((t, idx) => {
+            const hasLocal = t.tier === 'tier1' || t.tier === 'tier2';
+            const badgeClass = hasLocal ? 'local' : 'default';
+            const badgeText = hasLocal ? '本地模型' : '默认模型';
+            const cardClass = hasLocal ? '' : 'no-local';
+            const desc = t.desc || t.reason || '';
+            const title = t.title || t.gene || t.target || '';
+            return '<button class="target-option-card ' + cardClass + '" onclick="selectTargetOption(\'' + qdEscAttr(selectionId) + '\', ' + idx + ')" data-idx="' + idx + '">' +
+                '<span class="target-option-top">' +
+                    '<span class="target-option-title">' + qdEscHtml(title) + '</span>' +
+                    '<span class="target-option-badge ' + badgeClass + '">' + badgeText + '</span>' +
+                '</span>' +
+                '<span class="target-option-desc">' + qdEscHtml(desc) + '</span>' +
+            '</button>';
+        }).join('');
+        return '<div class="target-selection-container" data-selection-id="' + qdEscAttr(selectionId) + '">' +
+            '<div class="target-selection-title">请选择靶点：</div>' +
+            '<div class="target-selection-grid">' + cards + '</div>' +
+            '<div class="target-selection-hint">点击上方靶点卡片开始分子设计</div>' +
+        '</div>';
+    }
+    function selectTargetOption(selectionId, targetIdx) {
+        // 仅作用于当前选项卡容器，避免多次靶点选择互相干扰
+        const container = document.querySelector('.target-selection-container[data-selection-id="' + qdEscAttr(selectionId) + '"]');
+        const scopeRoot = container || document;
+        const cards = scopeRoot.querySelectorAll('.target-option-card');
+        cards.forEach(card => {
+            card.classList.remove('selected');
+            card.style.pointerEvents = 'none';
+        });
+        if (cards[targetIdx]) cards[targetIdx].classList.add('selected');
+
+        // 发送选择给后端
+        if (ws && ws.readyState === 1) {
+            ws.send(JSON.stringify({
+                type: 'select_target',
+                selectionId: selectionId,
+                targetIdx: targetIdx
+            }));
+        }
     }
     function qdRenderHeader() {
         const meta = document.getElementById('qdProgressMeta');
@@ -10556,6 +10619,36 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                     resolve();
                 }));
                 break;
+
+            case 'target_selection': {
+                // 靶点选择选项卡：后端本地匹配后下发候选靶点，由用户在聊天流中选择
+                const data = msg.data || {};
+                const targets = Array.isArray(data.targets) ? data.targets : [];
+                const selectionId = data.selectionId || '';
+                if (!targets.length) break;
+
+                recordHistoryEvent('target_selection', { data: { targets, selectionId } });
+                stopAssistantThinking();
+                enqueueOp(() => new Promise(resolve => {
+                    hideTyping();
+                    const autoScroll = captureAutoScrollState();
+                    const div = document.createElement('div');
+                    div.className = 'chat-message';
+                    div.style.cssText = 'width:100%;display:block;min-width:0;';
+                    div.innerHTML = `
+                        <div class="message-header">
+                            <div class="message-avatar agent">Z</div>
+                            <span class="message-author">ZoonoAb</span>
+                            <span class="message-time">${timeNow()}</span>
+                        </div>
+                        <div class="message-content" style="display:block;width:100%;min-height:1.65em;">${renderTargetSelectionCards(targets, selectionId)}</div>`;
+                    getStream().appendChild(div);
+                    refreshLucideIcons({ nodes: [div] });
+                    scrollBottom(autoScroll);
+                    resolve();
+                }));
+                break;
+            }
 
             case 'done':
                 if (isStaleRunMessage(msg)) break;
