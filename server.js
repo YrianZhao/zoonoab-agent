@@ -98,6 +98,7 @@ const DIAGNOSTIC_LOG_FILE = process.env.DIAGNOSTIC_LOG_FILE || resolveDefaultDia
 const DIAGNOSTIC_LOG_MAX_LINES = Math.max(100, Number(process.env.DIAGNOSTIC_LOG_MAX_LINES || 1000) || 1000);
 const DIAGNOSTIC_SLOW_REQUEST_MS = Math.max(500, Number(process.env.DIAGNOSTIC_SLOW_REQUEST_MS || 5000) || 5000);
 const HISTORY_STORE_FILE = resolveProjectPath(process.env.HISTORY_STORE_FILE || resolveDefaultHistoryStoreFile());
+const MISSING_TARGETS_FILE = resolveProjectPath(process.env.MISSING_TARGETS_FILE || resolveDefaultMissingTargetsFile());
 const HISTORY_MAX_RECORDS = Math.max(50, Number(process.env.HISTORY_MAX_RECORDS || 5000) || 5000);
 const HISTORY_TEXT_MAX = Math.max(20_000, Number(process.env.HISTORY_TEXT_MAX || 200_000) || 200_000);
 const HISTORY_JSON_TEXT_MAX = Math.max(8_000, Number(process.env.HISTORY_JSON_TEXT_MAX || 80_000) || 80_000);
@@ -725,6 +726,20 @@ function resolveDefaultQuestionTestSetFile() {
     return path.join(persistentDir, 'user-question-test-set.json');
   } catch (err) {
     console.warn('[QuestionSet] Persistent question-set directory unavailable, falling back to project runtime:', err && err.message ? err.message : err);
+    return projectRuntimeFile;
+  }
+}
+
+function resolveDefaultMissingTargetsFile() {
+  const projectRuntimeFile = path.join(__dirname, '.runtime', 'missing-targets.json');
+  if (process.platform !== 'linux' && !IS_RENDER_RUNTIME) return projectRuntimeFile;
+  const persistentDir = path.join(RENDER_DATA_DIR || '/var/data', 'zoonoab');
+  try {
+    fs.mkdirSync(persistentDir, { recursive: true, mode: 0o700 });
+    fs.accessSync(persistentDir, fs.constants.W_OK);
+    return path.join(persistentDir, 'missing-targets.json');
+  } catch (err) {
+    console.warn('[MissingTargets] Persistent directory unavailable, falling back to project runtime:', err && err.message ? err.message : err);
     return projectRuntimeFile;
   }
 }
@@ -1445,6 +1460,73 @@ function appendQuestionTestSet(question) {
   return writeQuestionTestSet(questions);
 }
 
+/* ── Missing targets recording ── */
+const MISSING_TARGETS_MAX = Math.max(50, Number(process.env.MISSING_TARGETS_MAX || 5000) || 5000);
+
+function readMissingTargetsStore() {
+  try {
+    if (!fs.existsSync(MISSING_TARGETS_FILE)) return [];
+    const parsed = JSON.parse(fs.readFileSync(MISSING_TARGETS_FILE, 'utf8') || '[]');
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (err) {
+    console.error('[MissingTargets] Failed to read store:', err && err.message ? err.message : err);
+    return [];
+  }
+}
+
+function writeMissingTargetsStore(records) {
+  const normalized = Array.isArray(records) ? records : [];
+  if (normalized.length > MISSING_TARGETS_MAX) normalized.length = MISSING_TARGETS_MAX;
+  fs.mkdirSync(path.dirname(MISSING_TARGETS_FILE), { recursive: true, mode: 0o700 });
+  const tempFile = MISSING_TARGETS_FILE + '.' + process.pid + '.' + Date.now() + '.tmp';
+  fs.writeFileSync(tempFile, JSON.stringify(normalized, null, 2), { mode: 0o600 });
+  fs.renameSync(tempFile, MISSING_TARGETS_FILE);
+  try { fs.chmodSync(MISSING_TARGETS_FILE, 0o600); } catch {}
+  return normalized;
+}
+
+function recordMissingTargets(question, matchedTargets) {
+  try {
+    const missingTargets = (matchedTargets || [])
+      .filter(t => t.tier === 'none')
+      .map(t => ({
+        gene: String(t.gene || '').trim(),
+        reason: String(t.reason || '').slice(0, 200)
+      }))
+      .filter(t => t.gene);
+    if (!missingTargets.length) return;
+    const records = readMissingTargetsStore();
+    records.unshift({
+      id: 'mt_' + Date.now() + '_' + crypto.randomBytes(4).toString('hex'),
+      question: String(question || '').slice(0, 500),
+      missingTargets,
+      timestamp: Date.now()
+    });
+    writeMissingTargetsStore(records);
+  } catch (err) {
+    console.error('[MissingTargets] Failed to record:', err && err.message ? err.message : err);
+  }
+}
+
+function missingTargetsSummary() {
+  const records = readMissingTargetsStore();
+  const freqMap = {};
+  for (const r of records) {
+    for (const t of (r.missingTargets || [])) {
+      const key = t.gene;
+      if (!freqMap[key]) freqMap[key] = { gene: key, count: 0, reasons: [], lastSeen: 0 };
+      freqMap[key].count++;
+      if (t.reason && freqMap[key].reasons.length < 3 && !freqMap[key].reasons.includes(t.reason)) {
+        freqMap[key].reasons.push(t.reason);
+      }
+      if (r.timestamp > freqMap[key].lastSeen) freqMap[key].lastSeen = r.timestamp;
+    }
+  }
+  const summary = Object.values(freqMap).sort((a, b) => b.count - a.count);
+  return { totalRecords: records.length, uniqueMissingTargets: summary.length, summary };
+}
+
+
 function audioFilenameForType(contentType) {
   const baseType = String(contentType || '').split(';')[0].trim().toLowerCase();
   if (baseType === 'audio/mp4') return 'voice.mp4';
@@ -2061,6 +2143,7 @@ function sanitizeAppSettings(raw) {
   const source = raw && typeof raw === 'object' && !Array.isArray(raw) ? raw : {};
   return {
     publicStructureSearchEnabled: source.publicStructureSearchEnabled === true,
+    testModeEnabled: source.testModeEnabled === true,
     updatedAt: Number(source.updatedAt || 0) || Date.now()
   };
 }
@@ -2114,6 +2197,14 @@ function publicStructureSearchSettings() {
     enabled: STRUCTURE_RESOLVER_ENABLED && settings.publicStructureSearchEnabled === true,
     available: STRUCTURE_RESOLVER_ENABLED,
     sources: ['UniProt', 'RCSB PDB', 'AlphaFold DB'],
+    updatedAt: settings.updatedAt
+  };
+}
+
+function testModeSettings() {
+  const settings = loadAppSettings();
+  return {
+    enabled: settings.testModeEnabled === true,
     updatedAt: settings.updatedAt
   };
 }
@@ -2703,6 +2794,56 @@ app.put('/api/settings/public-structure-search', (req, res) => {
       error: 'structure_search_setting_save_failed',
       message: '公共结构检索设置保存失败。'
     });
+  }
+});
+
+app.get('/api/settings/test-mode', (_, res) => {
+  res.json(testModeSettings());
+});
+
+app.put('/api/settings/test-mode', (req, res) => {
+  const body = req.body && typeof req.body === 'object' && !Array.isArray(req.body) ? req.body : {};
+  if (typeof body.enabled !== 'boolean') {
+    return res.status(400).json({
+      error: 'invalid_test_mode_setting',
+      message: '测试模式设置必须是布尔值。'
+    });
+  }
+  try {
+    const current = loadAppSettings();
+    saveAppSettings({
+      publicStructureSearchEnabled: current.publicStructureSearchEnabled,
+      testModeEnabled: body.enabled,
+      updatedAt: Date.now()
+    });
+    return res.json(testModeSettings());
+  } catch (err) {
+    console.error('[Settings] Failed to persist test mode setting:', err && err.message ? err.message : err);
+    return res.status(500).json({
+      error: 'test_mode_setting_save_failed',
+      message: '测试模式设置保存失败。'
+    });
+  }
+});
+
+app.get('/api/missing-targets', (_, res) => {
+  try {
+    const records = readMissingTargetsStore();
+    const summary = missingTargetsSummary();
+    res.json({ records, ...summary });
+  } catch (err) {
+    console.error('[MissingTargets] API error:', err && err.message ? err.message : err);
+    res.status(500).json({ error: 'missing_targets_read_failed', message: '缺失靶点记录读取失败。' });
+  }
+});
+
+app.delete('/api/missing-targets', (_, res) => {
+  try {
+    writeMissingTargetsStore([]);
+    res.json({ success: true, totalRecords: 0, uniqueMissingTargets: 0, summary: [] });
+  } catch (err) {
+    console.error('[MissingTargets] API delete error:', err && err.message ? err.message : err);
+    res.status(500).json({ error: 'missing_targets_clear_failed', message: '缺失靶点记录清空失败。' });
   }
 });
 
@@ -11296,17 +11437,52 @@ async function waitForWorkflowStructure(job, profile) {
   }
 }
 
+const FALLBACK_SCAFFOLDS = {
+  Fab: [
+    { id: 'PDL1-Fab-display-scaffold', file: 'PDL1-Fab-01.pdb', chains: ['B', 'C'], format: 'Fab' },
+    { id: 'PDL1-Fab-display-scaffold', file: 'PDL1-Fab-02.pdb', chains: ['B', 'C'], format: 'Fab' },
+    { id: 'PDL1-Fab-display-scaffold', file: 'PDL1-Fab-03.pdb', chains: ['B', 'C'], format: 'Fab' },
+    { id: 'PDL1-Fab-display-scaffold', file: 'PDL1-Fab-04.pdb', chains: ['B', 'C'], format: 'Fab' },
+    { id: 'PDL1-Fab-display-scaffold', file: 'PDL1-Fab-05.pdb', chains: ['B', 'C'], format: 'Fab' },
+    { id: 'PDL1-Fab-display-scaffold', file: 'PDL1-Fab-06.pdb', chains: ['B', 'C'], format: 'Fab' },
+    { id: 'PDL1-Fab-display-scaffold', file: 'PDL1-Fab-07.pdb', chains: ['B', 'C'], format: 'Fab' },
+    { id: 'PDL1-Fab-display-scaffold', file: 'PDL1-Fab-08.pdb', chains: ['B', 'C'], format: 'Fab' },
+    { id: 'PDL1-Fab-display-scaffold', file: 'PDL1-Fab-09.pdb', chains: ['B', 'C'], format: 'Fab' },
+    { id: 'PDL1-Fab-display-scaffold', file: 'PDL1-Fab-10.pdb', chains: ['B', 'C'], format: 'Fab' }
+  ],
+  VHH: [
+    { id: 'IL33-VHH-display-scaffold', file: 'IL33-VHH-01.pdb', chains: ['B'], format: 'VHH' },
+    { id: 'IL33-VHH-display-scaffold', file: 'IL33-VHH-02.pdb', chains: ['B'], format: 'VHH' },
+    { id: 'IL33-VHH-display-scaffold', file: 'IL33-VHH-03.pdb', chains: ['B'], format: 'VHH' },
+    { id: 'IL33-VHH-display-scaffold', file: 'IL33-VHH-04.pdb', chains: ['B'], format: 'VHH' },
+    { id: 'IL33-VHH-display-scaffold', file: 'IL33-VHH-05.pdb', chains: ['B'], format: 'VHH' },
+    { id: 'IL33-VHH-display-scaffold', file: 'IL33-VHH-06.pdb', chains: ['B'], format: 'VHH' },
+    { id: 'IL33-VHH-display-scaffold', file: 'IL33-VHH-07.pdb', chains: ['B'], format: 'VHH' },
+    { id: 'IL33-VHH-display-scaffold', file: 'IL33-VHH-08.pdb', chains: ['B'], format: 'VHH' },
+    { id: 'IL33-VHH-display-scaffold', file: 'IL33-VHH-09.pdb', chains: ['B'], format: 'VHH' },
+    { id: 'IL33-VHH-display-scaffold', file: 'IL33-VHH-10.pdb', chains: ['B'], format: 'VHH' },
+    { id: 'IL33-VHH-display-scaffold', file: 'IL33-VHH-11.pdb', chains: ['B'], format: 'VHH' },
+    { id: 'IL33-VHH-display-scaffold', file: 'IL33-VHH-12.pdb', chains: ['B'], format: 'VHH' },
+    { id: 'IL33-VHH-display-scaffold', file: 'IL33-VHH-13.pdb', chains: ['B'], format: 'VHH' },
+    { id: 'IL33-VHH-display-scaffold', file: 'IL33-VHH-14.pdb', chains: ['B'], format: 'VHH' },
+    { id: 'IL33-VHH-display-scaffold', file: 'IL33-VHH-15.pdb', chains: ['B'], format: 'VHH' }
+  ]
+};
+
+const _fallbackScaffoldOffset = { Fab: 0, VHH: 0 };
+
 function displayPoseScaffold(antibodyFormat) {
-  if (antibodyFormat === 'VHH') {
-    return { id: 'IL33-VHH-display-scaffold', file: 'IL33-VHH-01.pdb', chains: ['B'], format: 'VHH' };
-  }
-  return { id: 'PDL1-Fab-display-scaffold', file: 'PDL1-Fab-01.pdb', chains: ['B', 'C'], format: 'Fab' };
+  const format = antibodyFormat === 'VHH' ? 'VHH' : 'Fab';
+  const pool = FALLBACK_SCAFFOLDS[format] || FALLBACK_SCAFFOLDS.Fab;
+  const idx = _fallbackScaffoldOffset[format] % pool.length;
+  _fallbackScaffoldOffset[format] = (_fallbackScaffoldOffset[format] + 1) % pool.length;
+  return { ...pool[idx] };
 }
 
-function representativeFallbackStructure(profile) {
+function representativeFallbackStructure(profile, preselectedScaffold) {
   const target = (profile && profile.targetDisplay) || '当前靶点';
   const antibodyFormat = antibodyFormatForProfile(profile) === 'VHH' ? 'VHH' : 'Fab';
-  const scaffold = displayPoseScaffold(antibodyFormat);
+  const scaffold = preselectedScaffold || displayPoseScaffold(antibodyFormat);
   const remarks = readLocalPDBRemarks(scaffold.file);
   const actualAntigen = remarks.target || remarks.antigenLabel || (antibodyFormat === 'VHH' ? 'IL-33' : 'PD-L1');
   const antigenChains = Array.isArray(remarks.antigen) && remarks.antigen.length ? remarks.antigen : ['A'];
@@ -11379,9 +11555,11 @@ function representativeFallbackStructure(profile) {
 }
 
 function buildRepresentativeFallbackBinders(profile) {
-  const structure = representativeFallbackStructure(profile);
+  const antibodyFormat = antibodyFormatForProfile(profile) === 'VHH' ? 'VHH' : 'Fab';
+  const scaffold = displayPoseScaffold(antibodyFormat);
+  const structure = representativeFallbackStructure(profile, scaffold);
   const binder = structureBinderMeta(profile, 0, structure);
-  binder.file = displayPoseScaffold(antibodyFormatForProfile(profile) === 'VHH' ? 'VHH' : 'Fab').file;
+  binder.file = scaffold.file;
   binder.fallback = true;
   return [binder];
 }
@@ -16306,6 +16484,7 @@ async function resolveUserMessageRunner(msg, cleanText, scopedWs = null) {
     if (modelIntent.targets && modelIntent.targets.length > 1) {
       await stopResearchTrace(scopedWs, researchTraceRuntime, 'completed');
       const matchedTargets = matchTargetsLocally(modelIntent.targets);
+      recordMissingTargets(cleanText, matchedTargets);
       const selectionList = buildTargetSelectionList(matchedTargets, modelIntent);
       const selectionId = 'sel_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8);
       pendingTargetSelections.set(selectionId, {

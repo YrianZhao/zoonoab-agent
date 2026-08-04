@@ -5781,10 +5781,24 @@
                             <span class="kb-history-entry-main"><i data-lucide="history" style="width:13px;height:13px;"></i> 历史记录</span>
                             <span class="kb-history-count" id="kbHistoryCount">0</span>
                         </button>
+                        <button class="kb-history-entry" id="kbMissingTargetsEntry" type="button" onclick="openMissingTargetsPanel()">
+                            <span class="kb-history-entry-main"><i data-lucide="alert-triangle" style="width:13px;height:13px;"></i> 缺失靶点记录</span>
+                            <span class="kb-history-count" id="kbMissingTargetsCount">0</span>
+                        </button>
                         <button class="kb-voice-api-entry" type="button" onclick="toggleVoiceSettings(true)">
                             <span><i data-lucide="mic-2" style="width:12px;height:12px;"></i> 语音 API 设置</span>
                             <i data-lucide="chevron-right" style="width:12px;height:12px;"></i>
                         </button>
+                        <div class="kb-structure-search-entry">
+                            <div class="kb-structure-search-copy">
+                                <i data-lucide="flask-conical"></i>
+                                <span class="kb-structure-search-text">
+                                    <span class="kb-structure-search-title">测试模式</span>
+                                    <span class="kb-structure-search-status" id="testModeStatus">已关闭</span>
+                                </span>
+                            </div>
+                            <button class="kb-setting-switch" id="testModeToggle" type="button" role="switch" aria-checked="false" aria-label="开启测试模式" title="开启后在靶点卡片上显示本地/默认标签" onclick="toggleTestMode()"></button>
+                        </div>
                     </div>
                     <div class="kb-tree-footer">
                         <button class="kb-upload-btn" onclick="openKBUpload()">
@@ -5844,6 +5858,25 @@
                             </div>
                             <div class="kb-history-detail" id="kbHistoryDetail">
                                 <div class="kb-history-empty">选择左侧记录查看完整输出。</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="kb-history-panel" id="kbMissingTargetsPanel">
+                        <div class="kb-history-layout">
+                            <div class="kb-history-list-pane">
+                                <div class="kb-history-list-head">
+                                    <div>
+                                        <div class="kb-history-title"><i data-lucide="alert-triangle" style="width:16px;height:16px;color:var(--brand);"></i> 缺失靶点记录</div>
+                                        <div class="kb-history-sub">记录用户提问中本地模型库尚未覆盖的靶点，方便后续补充。</div>
+                                    </div>
+                                    <button class="kb-history-clear" type="button" onclick="clearMissingTargets()">清除</button>
+                                </div>
+                                <div class="kb-history-list" id="kbMissingTargetsList">
+                                    <div class="kb-history-empty">暂无缺失靶点记录。</div>
+                                </div>
+                            </div>
+                            <div class="kb-history-detail" id="kbMissingTargetsDetail">
+                                <div class="kb-history-empty">选择左侧记录查看详情。</div>
                             </div>
                         </div>
                     </div>
@@ -6639,7 +6672,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '69498321';
+    const APP_BUILD_VERSION = '69498322';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
     const SILICONFLOW_CHAT_FALLBACK_MODELS = ['Qwen/Qwen3-32B', 'Qwen/Qwen3-14B', 'Qwen/Qwen3-8B', 'deepseek-ai/DeepSeek-V3'];
@@ -7178,7 +7211,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (initialGroup) initialGroup.style.display = isChat ? '' : 'none';
         batchesSection.style.display = view === 'batches' ? 'block' : 'none';
         if (teamSection) { teamSection.style.display = view === 'team' ? 'block' : 'none'; if (view === 'team') { const activeCh = document.querySelector('.team-channel-item.active'); teamSelectChannel(activeCh, teamActiveChannel); } }
-        if (kbSection) { kbSection.style.display = view === 'kb' ? 'flex' : 'none'; if (view === 'kb') { document.body.classList.add('kb-open'); kbRender(); loadPublicStructureSearchSetting(); } else { document.body.classList.remove('kb-open'); } }
+        if (kbSection) { kbSection.style.display = view === 'kb' ? 'flex' : 'none'; if (view === 'kb') { document.body.classList.add('kb-open'); kbRender(); loadPublicStructureSearchSetting(); loadTestModeSetting(); } else { document.body.classList.remove('kb-open'); } }
         if (view !== 'kb') toggleVoiceSettings(false);
 
         if (window.innerWidth <= 768) {
@@ -7333,10 +7366,226 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         renderPublicStructureSearchSetting();
     }
 
+    /* ── Test Mode Toggle ── */
+    let testModeSetting = {
+        enabled: false,
+        loaded: false,
+        loading: false
+    };
+
+    function renderTestModeSetting() {
+        const toggle = document.getElementById('testModeToggle');
+        const status = document.getElementById('testModeStatus');
+        if (!toggle || !status) return;
+        const enabled = testModeSetting.enabled === true;
+        toggle.classList.toggle('enabled', enabled);
+        toggle.setAttribute('aria-checked', enabled ? 'true' : 'false');
+        toggle.setAttribute('aria-label', enabled ? '关闭测试模式' : '开启测试模式');
+        toggle.disabled = testModeSetting.loading;
+        if (testModeSetting.loading) {
+            status.textContent = '正在保存设置...';
+        } else if (enabled) {
+            status.textContent = '显示本地模型状态';
+        } else {
+            status.textContent = '已关闭';
+        }
+    }
+
+    async function loadTestModeSetting() {
+        if (testModeSetting.loading) return;
+        try {
+            const resp = await fetch('/api/settings/test-mode');
+            const data = await resp.json().catch(() => ({}));
+            if (!resp.ok) throw new Error(data.message || '设置读取失败');
+            testModeSetting = {
+                enabled: data.enabled === true,
+                loaded: true,
+                loading: false
+            };
+        } catch (err) {
+            testModeSetting = {
+                ...testModeSetting,
+                enabled: false,
+                loaded: true,
+                loading: false
+            };
+            console.warn('[TestMode] Setting load failed:', err);
+        }
+        renderTestModeSetting();
+    }
+
+    async function toggleTestMode() {
+        if (testModeSetting.loading) return;
+        const previousEnabled = testModeSetting.enabled === true;
+        testModeSetting.loading = true;
+        renderTestModeSetting();
+        try {
+            const resp = await fetch('/api/settings/test-mode', {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ enabled: !previousEnabled })
+            });
+            const data = await resp.json().catch(() => ({}));
+            if (!resp.ok) throw new Error(data.message || '设置保存失败');
+            testModeSetting = {
+                enabled: data.enabled === true,
+                loaded: true,
+                loading: false
+            };
+            showToast(data.enabled ? '测试模式已开启' : '测试模式已关闭', 'success');
+        } catch (err) {
+            testModeSetting = {
+                ...testModeSetting,
+                enabled: previousEnabled,
+                loading: false
+            };
+            showToast(err && err.message ? err.message : '测试模式设置保存失败', 'error');
+        }
+        renderTestModeSetting();
+    }
+
+    function isTestModeEnabled() {
+        return testModeSetting.enabled === true;
+    }
+
+    /* ── Missing Targets Panel ── */
+    let missingTargetsData = { records: [], totalRecords: 0, uniqueMissingTargets: 0, summary: [] };
+    let missingTargetsLoaded = false;
+    let missingTargetsLoading = false;
+    let activeMissingTargetIdx = -1;
+
+    async function loadMissingTargets() {
+        if (missingTargetsLoading) return;
+        missingTargetsLoading = true;
+        try {
+            const resp = await fetch('/api/missing-targets');
+            const data = await resp.json().catch(() => ({}));
+            if (!resp.ok) throw new Error(data.message || '记录读取失败');
+            missingTargetsData = {
+                records: Array.isArray(data.records) ? data.records : [],
+                totalRecords: data.totalRecords || 0,
+                uniqueMissingTargets: data.uniqueMissingTargets || 0,
+                summary: Array.isArray(data.summary) ? data.summary : []
+            };
+            missingTargetsLoaded = true;
+        } catch (err) {
+            console.warn('[MissingTargets] Load failed:', err);
+            missingTargetsData = { records: [], totalRecords: 0, uniqueMissingTargets: 0, summary: [] };
+            missingTargetsLoaded = true;
+        }
+        missingTargetsLoading = false;
+        const countEl = document.getElementById('kbMissingTargetsCount');
+        if (countEl) countEl.textContent = missingTargetsData.totalRecords;
+        renderMissingTargetsPanel();
+    }
+
+    function renderMissingTargetsPanel() {
+        const list = document.getElementById('kbMissingTargetsList');
+        const detail = document.getElementById('kbMissingTargetsDetail');
+        const countEl = document.getElementById('kbMissingTargetsCount');
+        if (!list || !detail) return;
+        const records = missingTargetsData.records || [];
+        if (countEl) countEl.textContent = String(missingTargetsData.totalRecords || records.length);
+        if (!records.length) {
+            const emptyText = missingTargetsLoading && !missingTargetsLoaded ? '正在读取记录…' : '暂无缺失靶点记录。用户提问中本地模型库未覆盖的靶点会自动记录在这里。';
+            list.innerHTML = '<div class="kb-history-empty">' + emptyText + '</div>';
+            detail.innerHTML = '<div class="kb-history-empty">暂无记录。</div>';
+            return;
+        }
+        list.innerHTML = records.map((r, idx) => {
+            const time = new Date(r.timestamp || 0).toLocaleString('zh-CN');
+            const targets = (r.missingTargets || []).map(t => escHtml(t.gene)).join('、');
+            const isActive = idx === activeMissingTargetIdx;
+            return '<div class="kb-history-list-item' + (isActive ? ' active' : '') + '" onclick="selectMissingTarget(' + idx + ')">' +
+                '<div class="kb-history-list-item-title">' + escHtml(targets || '未知靶点') + '</div>' +
+                '<div class="kb-history-list-item-meta">' + escHtml(time) + ' · ' + (r.missingTargets || []).length + ' 个缺失</div>' +
+                '<div class="kb-history-list-item-preview">' + escHtml((r.question || '').slice(0, 60)) + '</div>' +
+            '</div>';
+        }).join('');
+
+        if (activeMissingTargetIdx >= 0 && activeMissingTargetIdx < records.length) {
+            const r = records[activeMissingTargetIdx];
+            const time = new Date(r.timestamp || 0).toLocaleString('zh-CN');
+            const targetsHtml = (r.missingTargets || []).map(t => {
+                return '<div style="padding:8px 12px;border:1px solid var(--border);border-radius:8px;margin-bottom:6px;">' +
+                    '<div style="font-weight:700;font-size:13px;color:var(--text-primary);">' + escHtml(t.gene) + '</div>' +
+                    (t.reason ? '<div style="font-size:12px;color:var(--text-secondary);margin-top:4px;">' + escHtml(t.reason) + '</div>' : '') +
+                '</div>';
+            }).join('');
+            detail.innerHTML =
+                '<div style="padding:16px 20px;">' +
+                    '<div style="font-size:11px;color:var(--text-tertiary);margin-bottom:8px;">' + escHtml(time) + '</div>' +
+                    '<div style="font-size:14px;font-weight:700;color:var(--text-primary);margin-bottom:12px;">用户提问</div>' +
+                    '<div style="font-size:13px;color:var(--text-secondary);line-height:1.6;padding:12px;background:var(--bg-secondary);border-radius:8px;margin-bottom:16px;">' + escHtml(r.question || '') + '</div>' +
+                    '<div style="font-size:14px;font-weight:700;color:var(--text-primary);margin-bottom:8px;">缺失靶点（' + (r.missingTargets || []).length + ' 个）</div>' +
+                    targetsHtml +
+                '</div>';
+        } else {
+            detail.innerHTML = '<div class="kb-history-empty">选择左侧记录查看详情。</div>';
+        }
+    }
+
+    function selectMissingTarget(idx) {
+        activeMissingTargetIdx = idx;
+        renderMissingTargetsPanel();
+    }
+
+    function openMissingTargetsPanel() {
+        const kbSection = document.getElementById('kbSection');
+        if (kbSection && kbSection.style.display === 'none') switchView('kb');
+        kbCurrentProject = 'missing-targets';
+        document.querySelectorAll('.kb-tree-item').forEach(b => b.classList.remove('active'));
+        setKBMissingTargetsMode(true);
+        if (!missingTargetsLoaded) {
+            loadMissingTargets();
+        } else {
+            renderMissingTargetsPanel();
+        }
+        refreshLucideIcons({ nodes: [document.getElementById('kbMissingTargetsPanel'), document.getElementById('kbMissingTargetsEntry')].filter(Boolean) });
+    }
+
+    function setKBMissingTargetsMode(active) {
+        const mtPanel = document.getElementById('kbMissingTargetsPanel');
+        const histPanel = document.getElementById('kbHistoryPanel');
+        const docsArea = document.querySelector('#kbSection .kb-docs-area');
+        const topbar = document.querySelector('#kbSection .kb-main-topbar');
+        const stats = document.querySelector('#kbSection .kb-main-stats');
+        const entry = document.getElementById('kbMissingTargetsEntry');
+        const histEntry = document.getElementById('kbHistoryEntry');
+        if (mtPanel) mtPanel.style.display = active ? 'flex' : 'none';
+        if (histPanel && active) histPanel.style.display = 'none';
+        if (docsArea) docsArea.style.display = active ? 'none' : 'block';
+        if (topbar) topbar.style.display = active ? 'none' : 'flex';
+        if (stats) stats.style.display = active ? 'none' : 'flex';
+        if (entry) entry.classList.toggle('active', active);
+        if (histEntry) histEntry.classList.remove('active');
+    }
+
+    async function clearMissingTargets() {
+        if (!confirm('确定清空所有缺失靶点记录吗？此操作不可撤销。')) return;
+        try {
+            const resp = await fetch('/api/missing-targets', { method: 'DELETE' });
+            if (!resp.ok) throw new Error('清空失败');
+            missingTargetsData = { records: [], totalRecords: 0, uniqueMissingTargets: 0, summary: [] };
+            missingTargetsLoaded = true;
+            activeMissingTargetIdx = -1;
+            renderMissingTargetsPanel();
+            showToast('缺失靶点记录已清空', 'success');
+        } catch (err) {
+            showToast(err && err.message ? err.message : '清空失败', 'error');
+        }
+    }
+
     function kbRender() {
         if (kbCurrentProject === 'history') {
             setKBHistoryMode(true);
             renderHistoryPanel(activeHistorySelectedId);
+            return;
+        }
+        if (kbCurrentProject === 'missing-targets') {
+            setKBMissingTargetsMode(true);
+            if (!missingTargetsLoaded) loadMissingTargets();
+            else renderMissingTargetsPanel();
             return;
         }
         if (kbCurrentProject === 'local-pdb') {
@@ -8437,12 +8686,19 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         `).join('') + `</div>`;
     }
     function renderTargetSelectionCards(targets, selectionId) {
+        const testMode = isTestModeEnabled();
         const cards = targets.map((t, idx) => {
             const desc = t.desc || t.reason || '';
             const title = t.title || t.gene || t.target || '';
-            return '<button class="target-option-card" onclick="selectTargetOption(\'' + qdEscAttr(selectionId) + '\', ' + idx + ')" data-idx="' + idx + '">' +
+            const hasLocal = t.hasLocal === true;
+            const noLocalClass = testMode && !hasLocal ? ' no-local' : '';
+            const badge = testMode
+                ? '<span class="target-option-badge ' + (hasLocal ? 'local' : 'default') + '">' + (hasLocal ? '本地' : '默认') + '</span>'
+                : '';
+            return '<button class="target-option-card' + noLocalClass + '" onclick="selectTargetOption(\'' + qdEscAttr(selectionId) + '\', ' + idx + ')" data-idx="' + idx + '">' +
                 '<span class="target-option-top">' +
                     '<span class="target-option-title">' + qdEscHtml(title) + '</span>' +
+                    badge +
                 '</span>' +
                 '<span class="target-option-desc">' + qdEscHtml(desc) + '</span>' +
             '</button>';
@@ -9842,17 +10098,21 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
     function setKBHistoryMode(active) {
         const panel = document.getElementById('kbHistoryPanel');
+        const mtPanel = document.getElementById('kbMissingTargetsPanel');
         const docsArea = document.querySelector('#kbSection .kb-docs-area');
         const topbar = document.querySelector('#kbSection .kb-main-topbar');
         const stats = document.querySelector('#kbSection .kb-main-stats');
         const entry = document.getElementById('kbHistoryEntry');
         const localEntry = document.getElementById('kbLocalPDBEntry');
+        const mtEntry = document.getElementById('kbMissingTargetsEntry');
         if (panel) panel.style.display = active ? 'flex' : 'none';
+        if (mtPanel && active) mtPanel.style.display = 'none';
         if (docsArea) docsArea.style.display = active ? 'none' : 'block';
         if (topbar) topbar.style.display = active ? 'none' : 'flex';
         if (stats) stats.style.display = active ? 'none' : 'flex';
         if (entry) entry.classList.toggle('active', active);
         if (localEntry) localEntry.classList.toggle('active', kbCurrentProject === 'local-pdb');
+        if (mtEntry) mtEntry.classList.remove('active');
     }
 
     function openHistoryPanel(recordId) {
