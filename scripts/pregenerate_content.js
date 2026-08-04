@@ -472,22 +472,25 @@ async function main() {
       process.exit(0);
     }
     // 从 manifest 加载这些靶点的完整信息
-    const manifestPath = opts.manifest || path.join(__dirname, '..', '..', 'target_expansion_isolated', 'complexes', 'manifest.json');
-    const csvPath = opts.csv || path.join(__dirname, '..', '..', 'target_expansion_isolated', 'generated', 'full_human_targets', 'target_expansion_full.csv');
-    const allTargets = mergeData(loadManifest(manifestPath), loadCsv(csvPath));
+    const manifestPath = opts.manifest || path.join(__dirname, '..', 'pdb', 'expanded', 'manifest.json');
+    const csvPath = opts.csv || '';
+    const csvTargets = csvPath ? loadCsv(csvPath) : [];
+    const allTargets = mergeData(loadManifest(manifestPath), csvTargets);
     targets = allTargets.filter(t => failedGenes.includes(t.gene));
     console.log(`重试模式: ${targets.length} 个失败靶点`);
   } else if (newOnly) {
-    const manifestPath = opts.manifest || path.join(__dirname, '..', '..', 'target_expansion_isolated', 'complexes', 'manifest.json');
-    const csvPath = opts.csv || path.join(__dirname, '..', '..', 'target_expansion_isolated', 'generated', 'full_human_targets', 'target_expansion_full.csv');
-    const allTargets = mergeData(loadManifest(manifestPath), loadCsv(csvPath));
+    const manifestPath = opts.manifest || path.join(__dirname, '..', 'pdb', 'expanded', 'manifest.json');
+    const csvPath = opts.csv || '';
+    const csvTargets = csvPath ? loadCsv(csvPath) : [];
+    const allTargets = mergeData(loadManifest(manifestPath), csvTargets);
     const index = loadIndex(outputDir);
     targets = allTargets.filter(t => !index.targets[t.gene] || index.targets[t.gene].status !== 'success');
     console.log(`增量模式: ${targets.length} 个新靶点`);
   } else {
-    const manifestPath = opts.manifest || path.join(__dirname, '..', '..', 'target_expansion_isolated', 'complexes', 'manifest.json');
-    const csvPath = opts.csv || path.join(__dirname, '..', '..', 'target_expansion_isolated', 'generated', 'full_human_targets', 'target_expansion_full.csv');
-    targets = mergeData(loadManifest(manifestPath), loadCsv(csvPath));
+    const manifestPath = opts.manifest || path.join(__dirname, '..', 'pdb', 'expanded', 'manifest.json');
+    const csvPath = opts.csv || '';
+    const csvTargets = csvPath ? loadCsv(csvPath) : [];
+    targets = mergeData(loadManifest(manifestPath), csvTargets);
     console.log(`全量模式: ${targets.length} 个靶点`);
   }
   console.log('');
