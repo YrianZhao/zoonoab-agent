@@ -360,18 +360,21 @@ function buildDynamicProfile(gene, indexEntry, preGenContent, preferredFormat) {
 
 function buildDynamic3DPreset(profile) {
   const gene = profile.gene || profile.targetDisplay || '';
-  let format = (profile.preferredFormat === 'VHH') ? 'VHH' : 'Fab';
+  const requestedFormat = (profile.preferredFormat === 'VHH') ? 'VHH' : 'Fab';
+  let format = requestedFormat;
   const indexEntry = profile.expandedIndexEntry || {};
   // Filter poses by requested format AND require non-empty antibodyChains
   // (antigen-only poses should never be used as display candidates)
   let poses = (indexEntry.poses || []).filter(p => p.format === format && Array.isArray(p.antibodyChains) && p.antibodyChains.length > 0);
   // Fallback: if no poses for requested format, try the other format
+  let formatFallback = false;
   if (poses.length === 0) {
     const altFormat = format === 'Fab' ? 'VHH' : 'Fab';
     const altPoses = (indexEntry.poses || []).filter(p => p.format === altFormat && Array.isArray(p.antibodyChains) && p.antibodyChains.length > 0);
     if (altPoses.length > 0) {
       format = altFormat;
       poses = altPoses;
+      formatFallback = (format !== requestedFormat);
     }
   }
   // Sync the effective format back to profile so downstream naming matches
@@ -400,7 +403,8 @@ function buildDynamic3DPreset(profile) {
     ipTmBias: 0,
     files: files,
     dynamicPreset: true,
-    expandedPreset: true
+    expandedPreset: true,
+    formatFallback: formatFallback
   };
 }
 
@@ -11198,7 +11202,9 @@ function routeLocalPDBs(profile, count) {
       const pairs = Array.from({ length: targetCount }, (_, idx) => fileChainPairs[idx % fileChainPairs.length]);
       return pairs.map((pair, idx) => {
         const filePreset = { ...dynamicPreset, antibodyChains: pair.antibodyChains };
-        return buildRoute3DMeta(profile, idx, pair.file, extractIpTmFromFile(pair.file), filePreset);
+        const binder = buildRoute3DMeta(profile, idx, pair.file, extractIpTmFromFile(pair.file), filePreset);
+        if (dynamicPreset.formatFallback) binder.formatFallback = true;
+        return binder;
       });
     }
   }
@@ -11325,6 +11331,19 @@ function buildLocalLibraryAssetMeta(profile, idx, entry) {
   binder.structureUrl = structure.coordinates.structureUrl;
   binder.targetDisplay = structure.targetIdentity.canonicalName || binder.targetDisplay;
   binder.antibodyFormat = String(entry && entry.antibodyFormat || '').trim() || binder.antibodyFormat;
+  // Sync candidateLabel and name to match the actual antibody format from the catalog entry
+  // (fixes VHH-requested but Fab-shown naming when local catalog only has Fab structures)
+  if (binder.antibodyFormat && binder.candidateLabel) {
+    const target = (profile && profile.targetDisplay) || '';
+    const idxLabel = binder.candidateLabel.replace(/.*-/, '');
+    binder.candidateLabel = target + '-' + binder.antibodyFormat + '-' + idxLabel;
+    binder.name = target + ' ' + binder.antibodyFormat + ' binder-' + idxLabel + (binder.ipTm != null ? ' (ipTM=' + Number(binder.ipTm).toFixed(4) + ')' : '');
+    // Also sync the profile scaffold so downstream displayAbType matches
+    if (profile && profile.scaffold) {
+      profile.scaffold = binder.antibodyFormat === 'VHH' ? 'VHH 纳米抗体骨架' : 'Fab 片段抗体骨架';
+      profile.preferredFormat = binder.antibodyFormat;
+    }
+  }
   binder.structureTitle = structure.display.structureTitle;
   binder.structureFamily = [
     structure.source.experimentalMethod || '',
@@ -11350,9 +11369,15 @@ function buildLocalLibraryAssetMeta(profile, idx, entry) {
 function routeExactLocalAssetPDBs(profile, count) {
   const assets = preferredLocalLibraryAssetEntries(profile);
   if (!assets.length) return [];
+  const requestedFormat = String(antibodyFormatForProfile(profile) || '').trim().toUpperCase();
   const targetCount = Math.max(1, Number(count) || 10);
-  return Array.from({ length: targetCount }, (_, idx) => buildLocalLibraryAssetMeta(profile, idx, assets[idx % assets.length]))
-    .filter(Boolean);
+  return Array.from({ length: targetCount }, (_, idx) => {
+    const binder = buildLocalLibraryAssetMeta(profile, idx, assets[idx % assets.length]);
+    if (binder && binder.antibodyFormat && requestedFormat && binder.antibodyFormat.toUpperCase() !== requestedFormat) {
+      binder.formatFallback = true;
+    }
+    return binder;
+  }).filter(Boolean);
 }
 
 function preferredLocalPDBs(profile, count) {
@@ -16396,7 +16421,7 @@ async function runWorkflow(ws, input, forcedRoute, researchTraceRuntime = null) 
       antigen: Array.isArray(allLocalPDBs[0].antigenChains) ? allLocalPDBs[0].antigenChains : [],
       antibody: Array.isArray(allLocalPDBs[0].antibodyChains) ? allLocalPDBs[0].antibodyChains : []
     };
-    const displayAbType = abType;
+    const displayAbType = antibodyFormatForProfile(profile);
     const galleryLabel = firstPoseKind === 'display_pose'
       ? allLocalPDBs.length + ' 个 ' + profile.targetDisplay + ' ' + displayAbType + ' 候选展示姿态'
       : (firstPoseKind === 'representative_interface'
