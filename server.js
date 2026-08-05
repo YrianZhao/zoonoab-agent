@@ -8614,7 +8614,8 @@ function buildRouteProfile(target, blockTarget, abType) {
     // Check expanded index before falling back to generic profile
     const tier2 = matchTier2(key);
     if (tier2 && tier2.entry) {
-      profile = buildExpandedTargetProfile(key, tier2.entry, abType || 'Fab');
+      const preGenContent = loadPreGeneratedContent(tier2.gene || key);
+      profile = buildDynamicProfile(tier2.gene || key, tier2.entry, preGenContent, abType || 'Fab');
     } else {
       profile = buildGenericTargetProfile(target, blockTarget, abType);
     }
@@ -11052,8 +11053,11 @@ function preparedStructureContract(profile, preset, file, chainInfo, staticPrese
   const displayPose = targetVerified && Boolean(preset && preset.interfaceDetail === false);
   const representativeInterface = targetVerified && Boolean(preset && preset.displayMode === 'representative_interface');
   const representative = !targetVerified;
-  const antigenChains = singleAntigenChain(chainInfo && Array.isArray(chainInfo.antigen) ? chainInfo.antigen : []);
   const antibodyChains = chainInfo && Array.isArray(chainInfo.antibody) ? chainInfo.antibody : [];
+  const antigenChains = nearestAntigenChain(
+    chainInfo && Array.isArray(chainInfo.antigen) ? chainInfo.antigen : [],
+    antibodyChains, file
+  );
   const structureUrl = staticPreset ? localPDBPublicUrl(file) : '';
   return {
     schemaVersion: 1,
@@ -11192,7 +11196,7 @@ function buildRoute3DMeta(profile, idx, file, ipTm, preset) {
       : (preset && preset.visualSummary ? preset.visualSummary : (profile && profile.structurePrepZh) || ''),
     structuralBasis: preset && preset.structuralBasis ? preset.structuralBasis : ((profile && profile.structuralBasis) || (target + ' 抗原-抗体结合构象展示')),
     interfaceDetail: !(preset && preset.interfaceDetail === false),
-    antigenChains: singleAntigenChain(chainInfo.antigen),
+    antigenChains: nearestAntigenChain(chainInfo.antigen, chainInfo.antibody, filename),
     antibodyChains: chainInfo.antibody,
     sourceAntigenChains: chainInfo.sourceAntigen,
     sourceAntibodyChains: chainInfo.sourceAntibody,
@@ -11524,6 +11528,59 @@ function singleAntigenChain(chains) {
   return [chains[0]];
 }
 
+// Smart antigen chain selection: when multiple antigen chains exist, pick the one
+// nearest to the antibody so the viewer shows the actual binding interface.
+function nearestAntigenChain(antigenChains, antibodyChains, pdbFile) {
+  if (!Array.isArray(antigenChains) || !antigenChains.length) return [];
+  if (antigenChains.length === 1) return [antigenChains[0]];
+  if (!Array.isArray(antibodyChains) || !antibodyChains.length || !pdbFile) {
+    return [antigenChains[0]];
+  }
+  try {
+    const fp = localPDBPath(pdbFile) || path.join(LOCAL_PDB_DIR, pdbFile);
+    if (!fp || !fs.existsSync(fp)) return [antigenChains[0]];
+    const text = fs.readFileSync(fp, 'utf8');
+    const lines = text.split(/\r?\n/);
+    const centroids = {};
+    const counts = {};
+    for (const raw of lines) {
+      const line = normalizePDBAtomLine(raw);
+      if (!/^(ATOM  |HETATM)/.test(line)) continue;
+      const c = (line[21] || ' ').trim();
+      if (!c) continue;
+      const x = parseFloat(line.substring(30, 38).trim());
+      const y = parseFloat(line.substring(38, 46).trim());
+      const z = parseFloat(line.substring(46, 54).trim());
+      if (isNaN(x)) continue;
+      if (!centroids[c]) { centroids[c] = { x: 0, y: 0, z: 0 }; counts[c] = 0; }
+      centroids[c].x += x; centroids[c].y += y; centroids[c].z += z; counts[c]++;
+    }
+    // Compute antibody centroid
+    let abCx = 0, abCy = 0, abCz = 0, abN = 0;
+    for (const ab of antibodyChains) {
+      if (centroids[ab]) {
+        abCx += centroids[ab].x; abCy += centroids[ab].y; abCz += centroids[ab].z; abN++;
+      }
+    }
+    if (!abN) return [antigenChains[0]];
+    abCx /= abN; abCy /= abN; abCz /= abN;
+    // Find nearest antigen chain
+    let bestChain = antigenChains[0];
+    let bestDist = Infinity;
+    for (const ag of antigenChains) {
+      if (!centroids[ag]) continue;
+      const cx = centroids[ag].x / counts[ag];
+      const cy = centroids[ag].y / counts[ag];
+      const cz = centroids[ag].z / counts[ag];
+      const d = Math.sqrt((cx - abCx) ** 2 + (cy - abCy) ** 2 + (cz - abCz) ** 2);
+      if (d < bestDist) { bestDist = d; bestChain = ag; }
+    }
+    return [bestChain];
+  } catch {
+    return [antigenChains[0]];
+  }
+}
+
 // Diverse real antibody scaffold library — each entry is a real experimental
 // Fab or VHH structure from a different RCSB complex, ensuring that different
 // targets receive different antibody backbones instead of the same scaffold.
@@ -11639,13 +11696,12 @@ function representativeFallbackStructure(profile, preselectedScaffold) {
   const scaffold = preselectedScaffold || displayPoseScaffold(antibodyFormat, targetKey);
   const remarks = readLocalPDBRemarks(scaffold.file);
   const actualAntigen = remarks.target || remarks.antigenLabel || (antibodyFormat === 'VHH' ? 'IL-33' : 'PD-L1');
-  const antigenChains = singleAntigenChain(
-    Array.isArray(remarks.antigen) && remarks.antigen.length ? remarks.antigen : ['A']
-  );
+  const rawAgChains = Array.isArray(remarks.antigen) && remarks.antigen.length ? remarks.antigen : ['A'];
   const antibodyChains = singleAntibodyChainSet(
     Array.isArray(remarks.antibody) && remarks.antibody.length ? remarks.antibody : scaffold.chains,
     antibodyFormat
   );
+  const antigenChains = nearestAntigenChain(rawAgChains, antibodyChains, scaffold.file);
   const basis = remarks.structuralBasis || scaffold.id;
   const accessionMatch = String(basis).match(/RCSB\s+([0-9][A-Za-z0-9]{3})/i);
   return {
@@ -11777,7 +11833,11 @@ function structureBinderMeta(profile, idx, structure) {
     visualSummary: display.visualSummary || '',
     structuralBasis: display.structuralBasis || '',
     interfaceDetail: pose.kind === 'experimental_complex' || pose.kind === 'representative_interface',
-    antigenChains: singleAntigenChain(Array.isArray(coordinates.antigenChains) ? coordinates.antigenChains : []),
+    antigenChains: nearestAntigenChain(
+      Array.isArray(coordinates.antigenChains) ? coordinates.antigenChains : [],
+      Array.isArray(coordinates.antibodyChains) ? coordinates.antibodyChains : [],
+      coordinates.structureUrl ? path.basename(coordinates.structureUrl.replace(/^\/api\/pdb\/local\//, '')) : ''
+    ),
     antibodyChains: Array.isArray(coordinates.antibodyChains) ? coordinates.antibodyChains : [],
     sourceAntigenChains: Array.isArray(coordinates.sourceAntigenChains) ? coordinates.sourceAntigenChains : [],
     sourceAntibodyChains: Array.isArray(coordinates.sourceAntibodyChains) ? coordinates.sourceAntibodyChains : [],
@@ -12351,12 +12411,13 @@ function localPDBPublicUrl(filename) {
 }
 
 function localPDBViewerUrl(filename, name, chains) {
-  const antigenChains = chains && Array.isArray(chains.antigen)
-    ? singleAntigenChain([...new Set(chains.antigen.map(chain => String(chain || '').trim()).filter(Boolean))])
+  const rawAgChains = chains && Array.isArray(chains.antigen)
+    ? [...new Set(chains.antigen.map(chain => String(chain || '').trim()).filter(Boolean))]
     : [];
   const antibodyChains = chains && Array.isArray(chains.antibody)
     ? [...new Set(chains.antibody.map(chain => String(chain || '').trim()).filter(Boolean))]
     : [];
+  const antigenChains = nearestAntigenChain(rawAgChains, antibodyChains, filename);
   const visibleChains = [...new Set([...antigenChains, ...antibodyChains])];
   const pdbUrl = visibleChains.length
     ? (localPDBPublicUrl(filename) + '?chains=' + encodeURIComponent(visibleChains.join(',')))
