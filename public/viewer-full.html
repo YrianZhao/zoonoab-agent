@@ -75,6 +75,8 @@ body.compact-viewer .vwrap{height:100%;flex-basis:100%}
     var STRUCTURE_LABEL = STRUCTURE_LABELS.indexOf(requestedStructureLabel) >= 0 ? requestedStructureLabel : '坐标已载入';
     var COMPACT_MODE = params.get('compact') === '1';
     var POSE_SEED = parseInt(params.get('poseSeed') || '0', 10) || 0;
+    var SHOW_FULL_STRUCTURE = params.get('allChains') === '1' || params.get('allChains') === 'true';
+    var HAS_ROLE_CHAIN_PARAMS = params.has('antigenChains') || params.has('antibodyChains');
     document.body.classList.toggle('compact-viewer', COMPACT_MODE);
 
     // ════ Colors ════
@@ -96,6 +98,10 @@ body.compact-viewer .vwrap{height:100%;flex-basis:100%}
     function renderRoleLegend() {
         var el = document.getElementById('roleLegend');
         if (!el) return;
+        if (SHOW_FULL_STRUCTURE && !HAS_ROLE_CHAIN_PARAMS) {
+            el.innerHTML = '';
+            return;
+        }
         var html =
             '<span class="vf-role-item"><span class="vf-role-swatch" style="background:' + escHtmlText(AG_COLOR) + '"></span><strong>抗原</strong></span>';
         if (AB_CHAINS.length) {
@@ -140,6 +146,7 @@ body.compact-viewer .vwrap{height:100%;flex-basis:100%}
         return chains.length === 1 ? {chain: chains[0]} : {or: chains.map(function(ch){ return {chain: ch}; })};
     }
     function visibleSelector() {
+        if (SHOW_FULL_STRUCTURE) return {};
         return selectorForChains(VISIBLE_CHAINS.length ? VISIBLE_CHAINS : AG_CHAINS.concat(AB_CHAINS));
     }
     function antibodySelector() {
@@ -194,14 +201,14 @@ body.compact-viewer .vwrap{height:100%;flex-basis:100%}
             if (!glv) return;
 
             if (currentStyle === 'surface') {
-                glv.setStyle({not: visibleSelector()}, {});
+                if (!SHOW_FULL_STRUCTURE) glv.setStyle({not: visibleSelector()}, {});
                 // Surface mode: set underlying atom colors (surface picks up atom colors)
                 glv.setStyle(selectorForChains(AG_CHAINS), {color: AG_COLOR});
                 if (AB_CHAINS.length) glv.setStyle(antibodySelector(), {color: AB_COLOR});
                 return;
             }
 
-            glv.setStyle({not: visibleSelector()}, {});
+            if (!SHOW_FULL_STRUCTURE) glv.setStyle({not: visibleSelector()}, {});
             // For non-surface styles: embed color INSIDE each style's spec
             // This is CRITICAL — 3Dmol ignores top-level "color" for cartoon/stick etc.
             applyByStyle(selectorForChains(AG_CHAINS), AG_COLOR);
@@ -212,12 +219,12 @@ body.compact-viewer .vwrap{height:100%;flex-basis:100%}
         'chain': function() {
             if (!glv) return;
             if (currentStyle === 'surface') {
-                glv.setStyle({not: visibleSelector()}, {});
+                if (!SHOW_FULL_STRUCTURE) glv.setStyle({not: visibleSelector()}, {});
                 glv.setStyle(selectorForChains(AG_CHAINS), {color: AG_COLOR});
                 if (AB_CHAINS.length) glv.setStyle(antibodySelector(), {color: AB_COLOR});
                 return;
             }
-            glv.setStyle({not: visibleSelector()}, {});
+            if (!SHOW_FULL_STRUCTURE) glv.setStyle({not: visibleSelector()}, {});
             applyByStyle(selectorForChains(AG_CHAINS), AG_COLOR);
             if (AB_CHAINS.length) applyByStyle(antibodySelector(), AB_COLOR);
         },
@@ -241,6 +248,14 @@ body.compact-viewer .vwrap{height:100%;flex-basis:100%}
     };
 
     // ════ Helpers ════
+    function normalizeColor(c) {
+        c = String(c || 'ab-ag').toLowerCase();
+        return COLORS[c] ? c : 'ab-ag';
+    }
+
+    currentStyle = normalizeStyle(params.get('style') || currentStyle);
+    currentColor = normalizeColor(params.get('color') || currentColor);
+
     function _getBaseSpec(styleName) {
         switch(styleName){
             case 'cartoon': return {cartoon:{}};
@@ -410,7 +425,7 @@ body.compact-viewer .vwrap{height:100%;flex-basis:100%}
 
         // Step 2: Hide internal skeleton (surface covers everything)
         glv.setStyle(visibleSelector(), {line:{linewidth:0.5, opacity:0.03}});
-        glv.setStyle({not: visibleSelector()}, {});
+        if (!SHOW_FULL_STRUCTURE) glv.setStyle({not: visibleSelector()}, {});
 
         var stype = null;
         try { stype = $3Dmol.SurfaceType.MS; } catch(e) {}
@@ -460,11 +475,11 @@ body.compact-viewer .vwrap{height:100%;flex-basis:100%}
         glv.removeAllSurfaces();
         applyByStyle(selectorForChains(AG_CHAINS), AG_COLOR);
         if (!AB_CHAINS.length) {
-            glv.setStyle({not: visibleSelector()}, {});
+            if (!SHOW_FULL_STRUCTURE) glv.setStyle({not: visibleSelector()}, {});
             return;
         }
         applyByStyle(antibodySelector(), AB_COLOR);
-        glv.setStyle({not: visibleSelector()}, {});
+        if (!SHOW_FULL_STRUCTURE) glv.setStyle({not: visibleSelector()}, {});
 
         var agSelector = selectorForChains(AG_CHAINS);
         var abSelector = antibodySelector();

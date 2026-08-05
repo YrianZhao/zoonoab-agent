@@ -12305,6 +12305,10 @@ setInterval(() => {
 // ─── Local PDB ─────────────────────────────────────────────
 const LOCAL_PDB_DIR = path.join(__dirname, 'pdb');
 const PROJECT_ROOT = __dirname;
+const PDB_REVIEW_ROOT = path.resolve(
+  PROJECT_ROOT,
+  process.env.PDB_REVIEW_ROOT || path.join('.runtime', 'reports', 'pdb-small-batch-review', 'before-after')
+);
 
 function localPDBCatalogLocalPath(filename) {
   const entry = localStructureCatalogEntryForFile(filename);
@@ -12640,6 +12644,177 @@ function projectPDBTextToChains(pdbText, requestedChains) {
   const hasCoordinates = projected.some(line => /^(?:ATOM  |HETATM)/.test(line));
   return hasCoordinates ? projected.join('\n') : normalized;
 }
+
+function normalizeReviewSampleId(value) {
+  const sampleId = String(value || '').trim();
+  if (!sampleId || sampleId.includes('..') || sampleId.includes('/') || sampleId.includes('\\')) return '';
+  if (!/^[A-Za-z0-9][A-Za-z0-9_.-]{0,80}$/.test(sampleId)) return '';
+  return sampleId;
+}
+
+function normalizeReviewKind(value) {
+  const kind = String(value || '').trim().toLowerCase().replace(/\.pdb$/i, '');
+  return kind === 'before' || kind === 'after' ? kind : '';
+}
+
+function reviewPDBPath(sampleIdInput, kindInput) {
+  const sampleId = normalizeReviewSampleId(sampleIdInput);
+  const kind = normalizeReviewKind(kindInput);
+  if (!sampleId || !kind) return '';
+  const root = path.resolve(PDB_REVIEW_ROOT);
+  const filePath = path.resolve(root, sampleId, kind + '.pdb');
+  const rel = path.relative(root, filePath);
+  if (rel.startsWith('..') || path.isAbsolute(rel)) return '';
+  return filePath;
+}
+
+function parseReviewIndexCsv() {
+  const indexPath = path.join(PDB_REVIEW_ROOT, 'index.csv');
+  const byId = new Map();
+  if (!fs.existsSync(indexPath)) return byId;
+  try {
+    const text = fs.readFileSync(indexPath, 'utf8');
+    const lines = text.split(/\r?\n/).filter(Boolean);
+    const headers = parseReviewCsvLine(lines.shift() || '');
+    const idIdx = headers.indexOf('id');
+    if (idIdx < 0) return byId;
+    for (const line of lines) {
+      const values = parseReviewCsvLine(line);
+      const id = normalizeReviewSampleId(values[idIdx]);
+      if (!id) continue;
+      const row = {};
+      headers.forEach((header, index) => { row[header] = values[index] || ''; });
+      byId.set(id, row);
+    }
+  } catch (err) {
+    console.warn('[PDB] review index read warning:', err && err.message ? err.message : err);
+  }
+  return byId;
+}
+
+function parseReviewCsvLine(line) {
+  const values = [];
+  let current = '';
+  let quoted = false;
+  const text = String(line || '');
+  for (let index = 0; index < text.length; index += 1) {
+    const ch = text[index];
+    if (quoted) {
+      if (ch === '"' && text[index + 1] === '"') {
+        current += '"';
+        index += 1;
+      } else if (ch === '"') {
+        quoted = false;
+      } else {
+        current += ch;
+      }
+    } else if (ch === ',') {
+      values.push(current);
+      current = '';
+    } else if (ch === '"') {
+      quoted = true;
+    } else {
+      current += ch;
+    }
+  }
+  values.push(current);
+  return values;
+}
+
+function buildReviewViewerUrl(sampleId, kind, originalFile) {
+  const pdbUrl = '/api/pdb/review/' + encodeURIComponent(sampleId) + '/' + kind + '.pdb';
+  const params = new URLSearchParams({
+    pdb: pdbUrl,
+    title: sampleId + ' · ' + kind + (originalFile ? ' · ' + originalFile : ''),
+    modelOrigin: 'local',
+    structureLabel: '坐标已载入',
+    allChains: '1',
+    style: 'cartoon',
+    color: 'atom',
+    interfaceDetail: '0'
+  });
+  return '/viewer-full.html?' + params.toString();
+}
+
+function listReviewPDBPairs() {
+  if (!fs.existsSync(PDB_REVIEW_ROOT)) return [];
+  const indexById = parseReviewIndexCsv();
+  return fs.readdirSync(PDB_REVIEW_ROOT, { withFileTypes: true })
+    .filter(entry => entry.isDirectory())
+    .map(entry => normalizeReviewSampleId(entry.name))
+    .filter(Boolean)
+    .filter(sampleId => fs.existsSync(reviewPDBPath(sampleId, 'before')) && fs.existsSync(reviewPDBPath(sampleId, 'after')))
+    .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
+    .map(sampleId => {
+      const indexRow = indexById.get(sampleId) || {};
+      const beforePath = reviewPDBPath(sampleId, 'before');
+      const afterPath = reviewPDBPath(sampleId, 'after');
+      let beforeStat = null;
+      let afterStat = null;
+      try { beforeStat = fs.statSync(beforePath); } catch {}
+      try { afterStat = fs.statSync(afterPath); } catch {}
+      const originalFile = String(indexRow.originalFile || '').trim();
+      const beforeUrl = '/api/pdb/review/' + encodeURIComponent(sampleId) + '/before.pdb';
+      const afterUrl = '/api/pdb/review/' + encodeURIComponent(sampleId) + '/after.pdb';
+      return {
+        id: sampleId,
+        originalFile,
+        method: String(indexRow.method || '').trim(),
+        beforeUrl,
+        afterUrl,
+        beforeViewerUrl: buildReviewViewerUrl(sampleId, 'before', originalFile),
+        afterViewerUrl: buildReviewViewerUrl(sampleId, 'after', originalFile),
+        beforeSizeBytes: beforeStat ? beforeStat.size : 0,
+        afterSizeBytes: afterStat ? afterStat.size : 0,
+        updatedAt: afterStat ? afterStat.mtime.toISOString() : null
+      };
+    });
+}
+
+app.get('/api/pdb/review-pairs', (req, res) => {
+  try {
+    const pairs = listReviewPDBPairs();
+    res.json({
+      ok: true,
+      count: pairs.length,
+      pairs
+    });
+  } catch (err) {
+    console.error('[PDB] review pair list error:', err && err.message ? err.message : err);
+    res.status(500).json({ ok: false, error: 'PDB review list unavailable' });
+  }
+});
+
+app.get('/api/pdb/review/:sampleId/:kind', async (req, res) => {
+  const sampleId = normalizeReviewSampleId(req.params.sampleId);
+  const kind = normalizeReviewKind(req.params.kind);
+  if (!sampleId || !kind) return res.status(400).json({ error: 'Invalid review path' });
+  const fp = reviewPDBPath(sampleId, kind);
+  if (!fp || !fs.existsSync(fp)) return res.status(404).json({ error: 'Not found' });
+  let stat;
+  try {
+    stat = fs.statSync(fp);
+  } catch {
+    return res.status(404).json({ error: 'Not found' });
+  }
+  const requestedChains = normalizeViewerPDBChains(req.query.chains);
+  const chainKey = requestedChains.join('');
+  const etag = `"pdb-review-${sampleId}-${kind}-${stat.size.toString(16)}-${Math.floor(stat.mtimeMs).toString(16)}-${chainKey || 'all'}"`;
+  res.setHeader('Content-Type', 'chemical/x-pdb; charset=utf-8');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Content-Disposition', 'inline; filename="' + sampleId + '-' + kind + '.pdb"');
+  res.setHeader('Cache-Control', 'no-store');
+  res.setHeader('ETag', etag);
+  res.setHeader('Last-Modified', stat.mtime.toUTCString());
+  if (req.headers['if-none-match'] === etag) return res.status(304).end();
+  try {
+    const pdbText = await fs.promises.readFile(fp, 'utf8');
+    return res.send(projectPDBTextToChains(pdbText, requestedChains));
+  } catch (err) {
+    console.error('[PDB] review read error:', err && err.message ? err.message : err);
+    return res.status(500).json({ error: 'PDB read failed' });
+  }
+});
 
 app.get('/api/pdb/local-models', (req, res) => {
   try {

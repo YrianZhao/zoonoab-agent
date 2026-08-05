@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="pdb-review-viewer-mode" content="allChains=1">
+  <title>PDB 修复复核</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; background: #f6f7f9; color: #172033; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    body { display: flex; flex-direction: column; }
+    .topbar { height: 58px; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 0 18px; border-bottom: 1px solid #d9dee8; background: #ffffff; }
+    .brand { min-width: 0; }
+    .brand h1 { margin: 0; font-size: 18px; line-height: 1.25; font-weight: 760; letter-spacing: 0; color: #111827; }
+    .brand p { margin: 3px 0 0; font-size: 12px; line-height: 1.3; color: #667085; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .actions { display: flex; align-items: center; gap: 8px; flex: 0 0 auto; }
+    button, select { font: inherit; }
+    .btn { height: 34px; display: inline-flex; align-items: center; justify-content: center; gap: 7px; border: 1px solid #c9d2df; background: #ffffff; color: #243244; border-radius: 7px; padding: 0 12px; font-size: 13px; font-weight: 680; cursor: pointer; }
+    .btn:hover { border-color: #0f766e; color: #0f766e; background: #eefbf8; }
+    .layout { flex: 1; min-height: 0; display: grid; grid-template-columns: 292px minmax(0, 1fr); }
+    .sidebar { min-height: calc(100vh - 58px); border-right: 1px solid #d9dee8; background: #ffffff; display: flex; flex-direction: column; }
+    .side-head { padding: 14px 14px 10px; border-bottom: 1px solid #edf0f5; }
+    .side-title { margin: 0; font-size: 13px; font-weight: 760; color: #344054; }
+    .side-meta { margin: 4px 0 0; font-size: 12px; color: #667085; }
+    .sample-list { padding: 8px; overflow: auto; display: flex; flex-direction: column; gap: 6px; }
+    .sample-btn { width: 100%; min-height: 54px; border: 1px solid transparent; border-radius: 7px; background: transparent; padding: 8px 9px; text-align: left; cursor: pointer; color: #344054; }
+    .sample-btn:hover { background: #f1f6fb; border-color: #dbe5ef; }
+    .sample-btn.active { background: #e8f5f1; border-color: #8dd6c3; color: #0f513f; }
+    .sample-id { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 13px; font-weight: 760; line-height: 1.25; }
+    .sample-file { margin-top: 4px; font-size: 11px; line-height: 1.3; color: #667085; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .main { min-width: 0; min-height: calc(100vh - 58px); display: flex; flex-direction: column; }
+    .compare-head { min-height: 52px; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 14px; border-bottom: 1px solid #d9dee8; background: #fdfefe; }
+    .current-title { min-width: 0; }
+    .current-title strong { display: block; font-size: 14px; line-height: 1.25; color: #172033; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .current-title span { display: block; margin-top: 3px; font-size: 12px; color: #667085; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .viewer-grid { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1px; background: #cfd8e3; }
+    .viewer-pane { min-width: 0; min-height: 0; display: flex; flex-direction: column; background: #0d1117; }
+    .pane-head { height: 38px; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 0 12px; background: #111827; color: #e5e7eb; border-bottom: 1px solid rgba(255,255,255,0.12); }
+    .pane-head span { font-size: 13px; font-weight: 760; }
+    .pane-head a { color: #5eead4; text-decoration: none; font-size: 12px; font-weight: 700; }
+    .pane-head a:hover { text-decoration: underline; }
+    iframe { width: 100%; height: 100%; border: 0; display: block; background: #0d1117; }
+    .empty { margin: auto; width: min(560px, calc(100% - 32px)); padding: 22px; border: 1px solid #d9dee8; border-radius: 8px; background: #ffffff; color: #475467; text-align: center; font-size: 14px; line-height: 1.6; }
+    .error { color: #b42318; }
+    @media (max-width: 960px) {
+      .layout { grid-template-columns: 1fr; }
+      .sidebar { min-height: auto; max-height: 230px; border-right: 0; border-bottom: 1px solid #d9dee8; }
+      .sample-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); }
+      .main { min-height: calc(100vh - 288px); }
+    }
+    @media (max-width: 720px) {
+      .topbar { height: auto; align-items: flex-start; flex-direction: column; padding: 12px; }
+      .actions { width: 100%; justify-content: stretch; }
+      .actions .btn { flex: 1; }
+      .viewer-grid { grid-template-columns: 1fr; grid-template-rows: minmax(360px, 1fr) minmax(360px, 1fr); }
+      .compare-head { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <h1>PDB 修复复核</h1>
+      <p id="subtitle">Before / After</p>
+    </div>
+    <div class="actions">
+      <button class="btn" id="refreshBtn" type="button">刷新</button>
+      <button class="btn" id="openBeforeBtn" type="button">Before</button>
+      <button class="btn" id="openAfterBtn" type="button">After</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="side-head">
+        <p class="side-title">样本</p>
+        <p class="side-meta" id="sampleCount">加载中</p>
+      </div>
+      <div class="sample-list" id="sampleList"></div>
+    </aside>
+
+    <main class="main">
+      <div class="compare-head">
+        <div class="current-title">
+          <strong id="currentId">未选择</strong>
+          <span id="currentFile"></span>
+        </div>
+      </div>
+      <div class="viewer-grid" id="viewerGrid">
+        <section class="viewer-pane">
+          <div class="pane-head"><span>Before</span><a id="beforeLink" href="#" target="_blank" rel="noopener">新窗口</a></div>
+          <iframe id="beforeFrame" title="Before PDB viewer"></iframe>
+        </section>
+        <section class="viewer-pane">
+          <div class="pane-head"><span>After</span><a id="afterLink" href="#" target="_blank" rel="noopener">新窗口</a></div>
+          <iframe id="afterFrame" title="After PDB viewer"></iframe>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    (function() {
+      var pairs = [];
+      var selectedId = '';
+      var sampleList = document.getElementById('sampleList');
+      var sampleCount = document.getElementById('sampleCount');
+      var subtitle = document.getElementById('subtitle');
+      var currentId = document.getElementById('currentId');
+      var currentFile = document.getElementById('currentFile');
+      var beforeFrame = document.getElementById('beforeFrame');
+      var afterFrame = document.getElementById('afterFrame');
+      var beforeLink = document.getElementById('beforeLink');
+      var afterLink = document.getElementById('afterLink');
+      var openBeforeBtn = document.getElementById('openBeforeBtn');
+      var openAfterBtn = document.getElementById('openAfterBtn');
+
+      function esc(value) {
+        return String(value == null ? '' : value)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      function setStatus(text, isError) {
+        sampleCount.textContent = text;
+        sampleCount.classList.toggle('error', !!isError);
+      }
+
+      function forceAllChainViewer(url) {
+        var parsed = new URL(url, window.location.origin);
+        parsed.searchParams.set('allChains', '1');
+        parsed.searchParams.set('style', 'cartoon');
+        parsed.searchParams.set('color', 'atom');
+        parsed.searchParams.set('interfaceDetail', '0');
+        return parsed.pathname + '?' + parsed.searchParams.toString();
+      }
+
+      function renderList() {
+        sampleList.innerHTML = pairs.map(function(pair) {
+          var active = pair.id === selectedId ? ' active' : '';
+          var file = pair.originalFile || pair.id;
+          return '<button class="sample-btn' + active + '" type="button" data-id="' + esc(pair.id) + '">' +
+            '<span class="sample-id"><span>' + esc(pair.id) + '</span></span>' +
+            '<span class="sample-file">' + esc(file) + '</span>' +
+          '</button>';
+        }).join('');
+      }
+
+      function selectPair(id) {
+        var pair = pairs.find(function(item) { return item.id === id; }) || pairs[0];
+        if (!pair) {
+          selectedId = '';
+          currentId.textContent = '无样本';
+          currentFile.textContent = '';
+          beforeFrame.removeAttribute('src');
+          afterFrame.removeAttribute('src');
+          return;
+        }
+        selectedId = pair.id;
+        var beforeViewer = forceAllChainViewer(pair.beforeViewerUrl || ('/viewer-full.html?pdb=' + encodeURIComponent(pair.beforeUrl)));
+        var afterViewer = forceAllChainViewer(pair.afterViewerUrl || ('/viewer-full.html?pdb=' + encodeURIComponent(pair.afterUrl)));
+        currentId.textContent = pair.id;
+        currentFile.textContent = pair.originalFile || '';
+        subtitle.textContent = pair.method || 'Before / After';
+        beforeFrame.src = beforeViewer;
+        afterFrame.src = afterViewer;
+        beforeLink.href = beforeViewer;
+        afterLink.href = afterViewer;
+        history.replaceState(null, '', '?id=' + encodeURIComponent(pair.id));
+        renderList();
+      }
+
+      async function loadPairs() {
+        setStatus('加载中', false);
+        sampleList.innerHTML = '';
+        try {
+          var res = await fetch('/api/pdb/review-pairs', { cache: 'no-store' });
+          if (!res.ok) throw new Error(String(res.status));
+          var data = await res.json();
+          pairs = Array.isArray(data.pairs) ? data.pairs : [];
+          setStatus(String(pairs.length) + ' 个样本', false);
+          renderList();
+          var requested = new URLSearchParams(location.search).get('id') || '';
+          selectPair(requested || selectedId);
+        } catch (err) {
+          pairs = [];
+          setStatus('加载失败', true);
+          sampleList.innerHTML = '<div class="empty">复核清单不可用</div>';
+          currentId.textContent = '加载失败';
+          currentFile.textContent = String(err && err.message || err || '');
+        }
+      }
+
+      sampleList.addEventListener('click', function(evt) {
+        var btn = evt.target.closest('.sample-btn');
+        if (btn) selectPair(btn.dataset.id);
+      });
+      document.getElementById('refreshBtn').addEventListener('click', loadPairs);
+      openBeforeBtn.addEventListener('click', function() {
+        if (beforeLink.href) window.open(beforeLink.href, '_blank', 'noopener');
+      });
+      openAfterBtn.addEventListener('click', function() {
+        if (afterLink.href) window.open(afterLink.href, '_blank', 'noopener');
+      });
+      loadPairs();
+    })();
+  </script>
+</body>
+</html>
