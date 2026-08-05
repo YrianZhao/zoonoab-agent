@@ -14452,19 +14452,19 @@ function buildWorkflowIntentPrompt() {
 function buildFallbackDisplayTrace() {
   return {
     opening: [
-      { agent: 'TargetAgent', text: '正在拆解用户需求中的疾病方向、分子类型与作用目标', delayMs: 820 },
-      { agent: 'EvidenceAgent', text: '正在建立候选靶点的关联性、可及性与机制评估维度', delayMs: 900 },
-      { agent: 'EpitopeAgent', text: '正在整理后续表位判断与结构准备所需的输入条件', delayMs: 780 }
+      { agent: 'TargetAgent', text: 'Deconstructing disease direction, molecular format, and functional goals from the user request', delayMs: 820 },
+      { agent: 'EvidenceAgent', text: 'Establishing relevance, accessibility, and mechanistic evaluation dimensions for candidate targets', delayMs: 900 },
+      { agent: 'EpitopeAgent', text: 'Consolidating input conditions for downstream epitope assessment and structure preparation', delayMs: 780 }
     ],
     afterTarget: [
-      { agent: 'EvidenceAgent', text: '围绕 {{target}} 归并 {{disease}} 相关的靶点线索', delayMs: 900 },
-      { agent: 'LiteratureAgent', text: '正在比较 {{target}} 的抗原可及性与候选开发背景', delayMs: 980 },
-      { agent: 'TargetAgent', text: '正在围绕 {{target}} 确认 {{mechanism}} 与优先表位策略的一致性', delayMs: 860 }
+      { agent: 'EvidenceAgent', text: 'Consolidating {{disease}}-related target evidence around {{target}}', delayMs: 900 },
+      { agent: 'LiteratureAgent', text: 'Comparing antigen accessibility and development background for {{target}}', delayMs: 980 },
+      { agent: 'TargetAgent', text: 'Confirming consistency between {{mechanism}} and the preferred epitope strategy for {{target}}', delayMs: 860 }
     ],
     structure: [
-      { agent: 'StructureAgent', text: '正在准备 {{target}} 的抗原结构与 {{antibodyType}} 结合约束', delayMs: 920 },
-      { agent: 'EpitopeAgent', text: '正在检查 {{target}} 的抗原链形态与表面可及区域', delayMs: 850 },
-      { agent: 'StructureAgent', text: '正在为 {{target}} 的三维结果整理结构元信息与候选姿态', delayMs: 820 }
+      { agent: 'StructureAgent', text: 'Preparing antigen structure and {{antibodyType}} binding constraints for {{target}}', delayMs: 920 },
+      { agent: 'EpitopeAgent', text: 'Inspecting antigen chain topology and surface-accessible regions of {{target}}', delayMs: 850 },
+      { agent: 'StructureAgent', text: 'Compiling structural metadata and candidate poses for the 3D result of {{target}}', delayMs: 820 }
     ]
   };
 }
@@ -14484,10 +14484,10 @@ function interpolateDisplayTraceText(text, context) {
     return Array.from(clean).slice(0, maxLength).join('') || fallback;
   };
   const values = {
-    target: displayValue(context && context.target, '目标靶点', 64),
-    disease: displayValue(context && context.disease, '当前疾病方向', 72),
-    mechanism: displayValue(context && context.mechanism, '当前作用机制', 96),
-    antibodyType: displayValue(context && context.antibodyType, '抗体候选', 32)
+    target: displayValue(context && context.target, 'the target', 64),
+    disease: displayValue(context && context.disease, 'the current disease direction', 72),
+    mechanism: displayValue(context && context.mechanism, 'the current mechanism of action', 96),
+    antibodyType: displayValue(context && context.antibodyType, 'the antibody candidate', 32)
   };
   return String(text || '').replace(/\{\{\s*(target|disease|mechanism|antibodyType)\s*\}\}/g, (_, key) => values[key]);
 }
@@ -14551,7 +14551,7 @@ function startResearchTraceRuntime(ws, input, trace = null) {
   runtime.openingPromise = (async () => {
     const initial = [{
       agent: 'TargetAgent',
-      text: '正在理解本轮分子设计目标与结果要求',
+      text: 'Understanding the molecular design objectives and outcome requirements for this round',
       delayMs: DISPLAY_TRACE_STEP_MIN_MS
     }];
     await playResearchTraceSteps(ws, runtime, 'opening-initial', initial, null);
@@ -15560,7 +15560,7 @@ async function runDemoRoutedWorkflow(ws, input, route, researchTraceRuntime = nu
   const sess = findSessionBySocket(ws);
   const delay = (ms) => workflowDelay(ws, sess, ms);
   markWorkflowStage(sess, '设计意图确认');
-  completeResearchTrace(ws, researchTraceRuntime, 'completed', '靶点评审已完成');
+  completeResearchTrace(ws, researchTraceRuntime, 'completed', 'Target assessment completed');
   if (route && route.targetResolution) {
     send({ type: 'agent_msg', text: targetResolutionIntro(route), pacing: 'target-review' });
     await delay(700);

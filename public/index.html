@@ -6680,7 +6680,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '69498380';
+    const APP_BUILD_VERSION = '69498382';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
     const SILICONFLOW_CHAT_FALLBACK_MODELS = ['Qwen/Qwen3-32B', 'Qwen/Qwen3-14B', 'Qwen/Qwen3-8B', 'deepseek-ai/DeepSeek-V3'];
@@ -7134,6 +7134,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     const TYPEWRITER_MS_PER_CHAR = 16;
     const TYPEWRITER_SENTENCE_PAUSE_MS = 96;
     const TYPEWRITER_CLAUSE_PAUSE_MS = 48;
+    const TYPEWRITER_TARGET_REVIEW_MS_PER_CHAR = 38;
+    const TYPEWRITER_TARGET_REVIEW_MAX_MS = 18000;
 
     // Typewriter effect for agent messages
     function typewriterEffect(markdown, contentEl, autoScroll = captureAutoScrollState(), runId = currentClientRunId, options) {
@@ -7146,7 +7148,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             const rawText = String(markdown || '');
             const totalLen = rawText.length;
 
-            const targetMs = Math.min(TYPEWRITER_TARGET_MAX_MS, Math.max(TYPEWRITER_TARGET_MIN_MS, totalLen * TYPEWRITER_MS_PER_CHAR));
+            const isTargetReview = options.pacing === 'target-review';
+            const msPerChar = isTargetReview ? TYPEWRITER_TARGET_REVIEW_MS_PER_CHAR : TYPEWRITER_MS_PER_CHAR;
+            const maxTargetMs = isTargetReview ? TYPEWRITER_TARGET_REVIEW_MAX_MS : TYPEWRITER_TARGET_MAX_MS;
+            const targetMs = Math.min(maxTargetMs, Math.max(TYPEWRITER_TARGET_MIN_MS, totalLen * msPerChar));
             const charsPerTick = Math.max(1, Math.ceil(totalLen / (targetMs / TYPEWRITER_TICK_MS)));
             let pos = 0;
             contentEl.classList.add('is-streaming');
@@ -8906,25 +8911,42 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             '<div class="target-selection-hint">点击上方靶点卡片开始分子设计</div>' +
         '</div>';
     }
+    let targetSelectThinkingTimer = null;
     function selectTargetOption(selectionId, targetIdx) {
         // 仅作用于当前选项卡容器，避免多次靶点选择互相干扰
         const container = document.querySelector('.target-selection-container[data-selection-id="' + qdEscAttr(selectionId) + '"]');
         const scopeRoot = container || document;
         const cards = scopeRoot.querySelectorAll('.target-option-card');
-        cards.forEach(card => {
+        let selectedTitle = '';
+        cards.forEach((card, i) => {
             card.classList.remove('selected');
             card.style.pointerEvents = 'none';
+            if (i === targetIdx) {
+                card.classList.add('selected');
+                const titleEl = card.querySelector('.target-option-title');
+                if (titleEl) selectedTitle = (titleEl.textContent || '').trim();
+            }
         });
-        if (cards[targetIdx]) cards[targetIdx].classList.add('selected');
 
-        // 发送选择给后端
-        if (ws && ws.readyState === 1) {
-            ws.send(JSON.stringify({
-                type: 'select_target',
-                selectionId: selectionId,
-                targetIdx: targetIdx
-            }));
-        }
+        // 点击后先展示“思考”反馈，延迟约 3 秒再提交，让分子设计呈现分析过程
+        if (targetSelectThinkingTimer) { clearTimeout(targetSelectThinkingTimer); targetSelectThinkingTimer = null; }
+        const hintEl = scopeRoot.querySelector('.target-selection-hint');
+        if (hintEl) hintEl.textContent = '正在分析所选靶点，开始分子设计…';
+        startAssistantThinking({ topic: selectedTitle || 'selected target', local: true });
+        showTyping();
+        const fastForward = (typeof isWorkflowHardFastForward === 'function' && isWorkflowHardFastForward());
+        const waitMs = fastForward ? 500 : 3000;
+        targetSelectThinkingTimer = setTimeout(() => {
+            targetSelectThinkingTimer = null;
+            // 延迟结束后发送选择给后端；后端会接管思考动画并继续推送工作流
+            if (ws && ws.readyState === 1) {
+                ws.send(JSON.stringify({
+                    type: 'select_target',
+                    selectionId: selectionId,
+                    targetIdx: targetIdx
+                }));
+            }
+        }, waitMs);
     }
     function qdRenderHeader() {
         const meta = document.getElementById('qdProgressMeta');
@@ -10379,7 +10401,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             : '';
         const outputsHtml = outputEvents.length ? outputEvents.map(event => {
             const cls = event.type;
-            const labelMap = { assistant:'模型回复', log:'进度', tool_call:'工具调用', tool_result:'工具结果', tasks:'任务列表', subagents:'Agent 状态', plan:'计划', workflow_result:'流程结果', research_trace:'分析轨迹', research_trace_complete:'分析轨迹完成' };
+            const labelMap = { assistant:'模型回复', log:'进度', tool_call:'工具调用', tool_result:'工具结果', tasks:'任务列表', subagents:'Agent 状态', plan:'计划', workflow_result:'流程结果', research_trace:'Analysis Trace', research_trace_complete:'Analysis Trace Complete' };
             let body = '';
             if (event.type === 'assistant') body = historyTextHtml(event.text, true);
             else if (event.type === 'tool_call') body = `<strong>${escHtml(event.tool || '工具')}</strong>${event.toolId ? ` · ${escHtml(event.toolId)}` : ''}<br>${historyTextHtml(historyValuePreview(event.params), false)}`;
@@ -15804,16 +15826,16 @@ ${fallbackTableRows(profile.rows)}
 
     function researchTracePhaseLabel(phase) {
         const labels = {
-            opening: '需求解析',
-            'opening-initial': '需求解析',
-            target: '靶点研判',
-            afterTarget: '靶点研判',
-            after_target: '靶点研判',
-            evidence: '信息归并',
-            structure: '结构准备'
+            opening: 'Requirements Analysis',
+            'opening-initial': 'Requirements Analysis',
+            target: 'Target Assessment',
+            afterTarget: 'Target Assessment',
+            after_target: 'Target Assessment',
+            evidence: 'Evidence Consolidation',
+            structure: 'Structure Preparation'
         };
         const key = String(phase || '').trim();
-        return labels[key] || key || '综合分析';
+        return labels[key] || key || 'Comprehensive Analysis';
     }
 
     function researchTracePhaseIcon(phase) {
@@ -15832,10 +15854,10 @@ ${fallbackTableRows(profile.rows)}
     }
 
     function researchTraceStatusCopy(status) {
-        if (status === 'completed') return '已完成';
-        if (status === 'cancelled') return '已取消';
-        if (status === 'error') return '已中断';
-        return '分析中';
+        if (status === 'completed') return 'Completed';
+        if (status === 'cancelled') return 'Cancelled';
+        if (status === 'error') return 'Interrupted';
+        return 'Analyzing';
     }
 
     function renderResearchTracePanelSummary(state) {
@@ -15843,11 +15865,11 @@ ${fallbackTableRows(profile.rows)}
         const completed = steps.filter(step => step.status === 'completed').length;
         const total = Math.max(Number(state.total) || 0, steps.length);
         let summary = total
-            ? `已完成 ${completed}/${total} 个分析步骤`
-            : '正在梳理需求与关键信息';
-        if (state.status === 'completed') summary = state.statusDetail || (total ? `${total} 个分析步骤已完成` : '靶点评审已完成');
-        if (state.status === 'cancelled') summary = state.statusDetail || '本次分析已取消';
-        if (state.status === 'error') summary = state.statusDetail || '本次分析已中断';
+            ? `Completed ${completed}/${total} analysis steps`
+            : 'Processing requirements and key information';
+        if (state.status === 'completed') summary = state.statusDetail || (total ? `${total} analysis steps completed` : 'Target assessment completed');
+        if (state.status === 'cancelled') summary = state.statusDetail || 'Analysis cancelled';
+        if (state.status === 'error') summary = state.statusDetail || 'Analysis interrupted';
         state.el.dataset.status = state.status;
         const statusEl = state.el.querySelector('.research-trace-status');
         const summaryEl = state.el.querySelector('.research-trace-summary');
@@ -15866,22 +15888,22 @@ ${fallbackTableRows(profile.rows)}
         panel.className = 'research-trace-panel';
         panel.dataset.clientRunId = runKey;
         panel.dataset.status = 'active';
-        panel.setAttribute('aria-label', '分析进展');
+        panel.setAttribute('aria-label', 'Analysis Progress');
         panel.innerHTML = `
             <div class="research-trace-header">
                 <span class="research-trace-header-icon" aria-hidden="true"><i data-lucide="search-check" style="width:15px;height:15px;"></i></span>
                 <span class="research-trace-heading">
-                    <span class="research-trace-title">${escHtml('分析进展')}</span>
-                    <span class="research-trace-summary">${escHtml('正在梳理需求与关键信息')}</span>
+                    <span class="research-trace-title">${escHtml('Analysis Progress')}</span>
+                    <span class="research-trace-summary">${escHtml('Processing requirements and key information')}</span>
                 </span>
-                <span class="research-trace-status">${escHtml('分析中')}</span>
+                <span class="research-trace-status">${escHtml('Analyzing')}</span>
             </div>
             <div class="research-trace-body" role="list" aria-live="polite">
-                <div class="research-trace-empty">${escHtml('正在准备分析步骤...')}</div>
+                <div class="research-trace-empty">${escHtml('Preparing analysis steps...')}</div>
             </div>
             <div class="research-trace-waiting" aria-live="polite">
                 <span class="research-trace-spark" aria-hidden="true"><i data-lucide="sparkles" style="width:17px;height:17px;"></i></span>
-                <span class="research-trace-waiting-copy"><span class="research-trace-waiting-label">${escHtml('正在准备下一项分析')}</span><span class="research-trace-shimmer"></span></span>
+                <span class="research-trace-waiting-copy"><span class="research-trace-waiting-label">${escHtml('Preparing the next analysis step')}</span><span class="research-trace-shimmer"></span></span>
             </div>`;
 
         const state = {
@@ -15922,14 +15944,21 @@ ${fallbackTableRows(profile.rows)}
             <span class="research-trace-step-icon" aria-hidden="true"><i data-lucide="${researchTracePhaseIcon(step.phase)}" style="width:15px;height:15px;"></i></span>
             <span class="research-trace-step-copy">
                 <span class="research-trace-step-meta">${escHtml(metaText)}</span>
-                <span class="research-trace-step-text">${escHtml(step.text)}</span>
+                <span class="research-trace-step-text"></span>
             </span>
             <span class="research-trace-step-state" title="${escHtml(researchTraceStatusCopy(step.status))}" aria-label="${escHtml(researchTraceStatusCopy(step.status))}">
                 <i data-lucide="${stateIcon.name}" class="${stateIcon.className}" style="width:14px;height:14px;"></i>
             </span>`;
         if (created) row.classList.add('is-entering');
         refreshLucideIcons({ nodes: [row] });
-        if (!created) return Promise.resolve();
+        const textEl = row.querySelector('.research-trace-step-text');
+        if (!textEl) return Promise.resolve();
+
+        if (!created) {
+            textEl.textContent = step.text;
+            return Promise.resolve();
+        }
+
         return new Promise(resolve => {
             let settled = false;
             const finish = () => {
@@ -15938,8 +15967,38 @@ ${fallbackTableRows(profile.rows)}
                 row.classList.remove('is-entering');
                 resolve();
             };
-            row.addEventListener('animationend', finish, { once: true });
-            waitForWorkflowPresentation(780, 140, 24).then(finish);
+
+            if (isWorkflowHardFastForward() || !step.text) {
+                textEl.textContent = step.text;
+                finish();
+                return;
+            }
+
+            const rawText = String(step.text);
+            const chars = Array.from(rawText);
+            const totalLen = chars.length;
+            const RT_TICK_MS = 24;
+            const RT_MS_PER_CHAR = 7;
+            const RT_MIN_MS = 350;
+            const RT_MAX_MS = 600;
+            const targetMs = Math.min(RT_MAX_MS, Math.max(RT_MIN_MS, totalLen * RT_MS_PER_CHAR));
+            const charsPerTick = Math.max(1, Math.ceil(totalLen / (targetMs / RT_TICK_MS)));
+            let pos = 0;
+
+            function streamTick() {
+                if (settled) return;
+                if (pos < totalLen) {
+                    pos = Math.min(pos + charsPerTick, totalLen);
+                    textEl.innerHTML = escHtml(chars.slice(0, pos).join('')) + '<span class="typing-cursor"></span>';
+                    setTimeout(streamTick, RT_TICK_MS);
+                } else {
+                    textEl.textContent = rawText;
+                    finish();
+                }
+            }
+
+            setTimeout(streamTick, 80);
+            waitForWorkflowPresentation(RT_MAX_MS + 300, 200, 30).then(finish);
         });
     }
 
@@ -15959,7 +16018,7 @@ ${fallbackTableRows(profile.rows)}
             id: stepId,
             phase,
             agent: msg.agent || prior.agent || '',
-            text: String(msg.text || prior.text || '正在整理当前分析信息'),
+            text: String(msg.text || prior.text || 'Processing current analysis information'),
             status
         };
         state.steps.set(stepId, step);

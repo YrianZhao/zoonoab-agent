@@ -77,8 +77,8 @@ test('research trace history deduplicates step updates and preserves terminal st
   assert.match(recordTraceComplete, /recordHistoryEvent\('research_trace_complete'/);
   assert.match(structuredEvent, /event\.type\s*===\s*'research_trace'/);
   assert.match(structuredEvent, /event\.type\s*===\s*'research_trace_complete'/);
-  assert.match(renderHistoryDetail, /research_trace:'\u5206\u6790\u8f68\u8ff9'/);
-  assert.match(renderHistoryDetail, /research_trace_complete:'\u5206\u6790\u8f68\u8ff9\u5b8c\u6210'/);
+  assert.match(renderHistoryDetail, /research_trace:'Analysis Trace'/);
+  assert.match(renderHistoryDetail, /research_trace_complete:'Analysis Trace Complete'/);
 });
 
 test('workflow history keeps full transcript text instead of summary-sized snippets', () => {
