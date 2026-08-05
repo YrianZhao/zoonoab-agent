@@ -8607,9 +8607,18 @@ function buildRouteProfile(target, blockTarget, abType) {
       designMode: '植物病毒抗体设计'
     }
   };
-  const profile = profiles[key]
-    ? { ...profiles[key] }
-    : buildGenericTargetProfile(target, blockTarget, abType);
+  let profile;
+  if (profiles[key]) {
+    profile = { ...profiles[key] };
+  } else {
+    // Check expanded index before falling back to generic profile
+    const tier2 = matchTier2(key);
+    if (tier2 && tier2.entry) {
+      profile = buildExpandedTargetProfile(key, tier2.entry, abType || 'Fab');
+    } else {
+      profile = buildGenericTargetProfile(target, blockTarget, abType);
+    }
+  }
   if (influenzaHaSubtypeDisplay) {
     return applyInfluenzaHaSubtypeDisplay(profile, influenzaHaSubtypeDisplay);
   }
