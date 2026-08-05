@@ -11541,8 +11541,8 @@ function nearestAntigenChain(antigenChains, antibodyChains, pdbFile) {
     if (!fp || !fs.existsSync(fp)) return [antigenChains[0]];
     const text = fs.readFileSync(fp, 'utf8');
     const lines = text.split(/\r?\n/);
-    const centroids = {};
-    const counts = {};
+    // Collect CA atoms per chain for all-atom minimum distance calculation
+    const chainAtoms = {};
     for (const raw of lines) {
       const line = normalizePDBAtomLine(raw);
       if (!/^(ATOM  |HETATM)/.test(line)) continue;
@@ -11552,28 +11552,33 @@ function nearestAntigenChain(antigenChains, antibodyChains, pdbFile) {
       const y = parseFloat(line.substring(38, 46).trim());
       const z = parseFloat(line.substring(46, 54).trim());
       if (isNaN(x)) continue;
-      if (!centroids[c]) { centroids[c] = { x: 0, y: 0, z: 0 }; counts[c] = 0; }
-      centroids[c].x += x; centroids[c].y += y; centroids[c].z += z; counts[c]++;
+      if (!chainAtoms[c]) chainAtoms[c] = [];
+      chainAtoms[c].push({ x, y, z });
     }
-    // Compute antibody centroid
-    let abCx = 0, abCy = 0, abCz = 0, abN = 0;
+    // Collect antibody atoms (all chains combined)
+    const abAtoms = [];
     for (const ab of antibodyChains) {
-      if (centroids[ab]) {
-        abCx += centroids[ab].x; abCy += centroids[ab].y; abCz += centroids[ab].z; abN++;
-      }
+      if (chainAtoms[ab]) abAtoms.push(...chainAtoms[ab]);
     }
-    if (!abN) return [antigenChains[0]];
-    abCx /= abN; abCy /= abN; abCz /= abN;
-    // Find nearest antigen chain
+    if (!abAtoms.length) return [antigenChains[0]];
+    // Find antigen chain with minimum all-atom distance to antibody
     let bestChain = antigenChains[0];
     let bestDist = Infinity;
     for (const ag of antigenChains) {
-      if (!centroids[ag]) continue;
-      const cx = centroids[ag].x / counts[ag];
-      const cy = centroids[ag].y / counts[ag];
-      const cz = centroids[ag].z / counts[ag];
-      const d = Math.sqrt((cx - abCx) ** 2 + (cy - abCy) ** 2 + (cz - abCz) ** 2);
-      if (d < bestDist) { bestDist = d; bestChain = ag; }
+      if (!chainAtoms[ag]) continue;
+      let minDist = Infinity;
+      for (const a of chainAtoms[ag]) {
+        for (const b of abAtoms) {
+          const d = (a.x - b.x) ** 2 + (a.y - b.y) ** 2 + (a.z - b.z) ** 2;
+          if (d < minDist) {
+            minDist = d;
+            if (minDist < 4) break; // early exit: close enough
+          }
+        }
+        if (minDist < 4) break;
+      }
+      const realDist = Math.sqrt(minDist);
+      if (realDist < bestDist) { bestDist = realDist; bestChain = ag; }
     }
     return [bestChain];
   } catch {
@@ -12527,14 +12532,16 @@ function buildLocalPDBLibraryModel(filename) {
   );
   const displayMeta = buildLocalPDBDisplayMetadata(filename, remarks);
   const name = String(filename || '').replace(/\.pdb$/i, '');
+  // Use full antigen chain list from PDB REMARK (not catalog-capped) for nearest-chain selection
+  const rawRemarksAg = Array.isArray(remarks.antigen) && remarks.antigen.length ? remarks.antigen : chainInfo.antigen;
   return {
     filename,
     name,
     url: localPDBPublicUrl(filename),
-    viewerUrl: localPDBViewerUrl(filename, name, chainInfo),
+    viewerUrl: localPDBViewerUrl(filename, name, { ...chainInfo, antigen: rawRemarksAg }),
     sizeBytes: stat ? stat.size : 0,
     updatedAt: stat ? stat.mtime.toISOString() : null,
-    antigenChains: singleAntigenChain(chainInfo.antigen),
+    antigenChains: nearestAntigenChain(rawRemarksAg, chainInfo.antibody, filename),
     antibodyChains: chainInfo.antibody,
     sourceAntigenChains: chainInfo.sourceAntigen,
     sourceAntibodyChains: chainInfo.sourceAntibody,
