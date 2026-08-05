@@ -15407,6 +15407,13 @@ function buildResolvedTargetRoute(input, baseRoute, resolution, parsed) {
   const resolvedBlockTarget = targetText === 'PD-L1' && /肿瘤|癌|免疫治疗|PD-1|PD-L1|checkpoint/i.test(contextText)
     ? 'PD-1'
     : (baseRoute && baseRoute.blockTarget) || (parsed && parsed.blockTarget) || null;
+  // 先尝试从 pregenerated-content 读取 selectionReason
+  const preGenContent = loadPreGeneratedContent(target);
+  const preGenReason = preGenContent && preGenContent.content && preGenContent.content.selectionReason
+    && preGenContent.content.selectionReason.length >= 300
+      ? preGenContent.content.selectionReason
+      : '';
+
   return {
     id: 'resolved_target_' + uuidv4().slice(0, 8),
     disease: safeResolution && safeResolution.disease || extractDiseaseIndication(input) || '疾病方向',
@@ -15420,7 +15427,7 @@ function buildResolvedTargetRoute(input, baseRoute, resolution, parsed) {
     resolvedByModel: true,
     targetResolution: safeResolution,
     workflowProfile: baseRoute && baseRoute.workflowProfile ? baseRoute.workflowProfile : null,
-    selectionReason: sanitizedTargetSelectionReason(safeResolution, {
+    selectionReason: preGenReason || sanitizedTargetSelectionReason(safeResolution, {
       disease: safeResolution && safeResolution.disease || extractDiseaseIndication(input) || '疾病方向',
       target
     }),
@@ -15483,21 +15490,10 @@ function sanitizedTargetSelectionReason(resolution, route) {
 function targetResolutionIntro(route) {
   const r = route && route.targetResolution ? route.targetResolution : null;
   if (!r) return '';
-  // 先看 route.selectionReason，再查 pregenerated-content，最后 fallback
-  let selectionReason = '';
-  if (route && route.selectionReason && route.selectionReason.length >= 100) {
-    selectionReason = String(route.selectionReason).trim();
-  } else {
-    const targetName = String(r.selectedTarget || (route && route.targetDisplay) || '').trim();
-    const preGen = targetName ? loadPreGeneratedContent(targetName) : null;
-    if (preGen && preGen.content && preGen.content.selectionReason
-        && preGen.content.selectionReason.length >= 300) {
-      selectionReason = preGen.content.selectionReason;
-    }
-  }
-  if (!selectionReason) {
-    selectionReason = String(sanitizedTargetSelectionReason(r, route)).trim();
-  }
+  // route.selectionReason 现在在 buildResolvedTargetRoute 时已优先读 pregenerated-content
+  const selectionReason = String(
+    (route && route.selectionReason) || sanitizedTargetSelectionReason(r, route)
+  ).trim();
   const candidates = Array.isArray(r.candidates) && r.candidates.length
     ? '\n\n候选靶点评估：\n' + r.candidates.slice(0, 8).map((item, idx) => {
       const gene = item.gene ? ' / ' + item.gene : '';
