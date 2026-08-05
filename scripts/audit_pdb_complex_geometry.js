@@ -3,6 +3,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const zlib = require('zlib');
 
 const {
   analyzeComplexText,
@@ -38,6 +39,7 @@ function usage() {
     '  --plan-fixes                      Include dry-run rigid antibody translation plans.',
     '  --apply-fixes                     Write planned fixes. Implies --plan-fixes and creates backups.',
     '  --backup-dir <dir>                Backup directory for --apply-fixes.',
+    '  --compress-backups                Store fix backups as gzip files to save disk space.',
     '  --no-catalog                      Do not use project catalog/index metadata.',
     '  --no-progress                     Suppress progress and remaining-time output.',
     '  --fail-on-problems                Exit non-zero if problem files remain.',
@@ -61,6 +63,7 @@ function parseArgs(argv) {
     planFixes: false,
     applyFixes: false,
     backupDir: null,
+    compressBackups: false,
     useCatalog: true,
     progress: true,
     failOnProblems: false,
@@ -95,6 +98,8 @@ function parseArgs(argv) {
       options.planFixes = true;
     } else if (arg === '--backup-dir') {
       options.backupDir = next();
+    } else if (arg === '--compress-backups') {
+      options.compressBackups = true;
     } else if (arg === '--no-catalog') {
       options.useCatalog = false;
     } else if (arg === '--no-progress') {
@@ -426,11 +431,15 @@ function writeMarkdown(filePath, report) {
   fs.writeFileSync(filePath, lines.join('\n') + '\n');
 }
 
-function backupAndWrite(filePath, fixedText, scanRoot, backupDir) {
+function backupAndWrite(filePath, originalText, fixedText, scanRoot, options) {
   const rel = normalizeRel(path.relative(scanRoot, filePath));
-  const backupPath = path.join(backupDir, rel);
+  const backupPath = path.join(options.backupDir, rel + (options.compressBackups ? '.gz' : ''));
   ensureParent(backupPath);
-  fs.copyFileSync(filePath, backupPath);
+  if (options.compressBackups) {
+    fs.writeFileSync(backupPath, zlib.gzipSync(Buffer.from(originalText, 'utf8')));
+  } else {
+    fs.copyFileSync(filePath, backupPath);
+  }
   fs.writeFileSync(filePath, fixedText);
   return backupPath;
 }
@@ -461,7 +470,7 @@ function analyzeFile(filePath, scanRoot, metadataByKey, options) {
       : plan;
     if (options.applyFixes && plan.ok) {
       const fixedText = applyAntibodyTranslation(text, analysis, plan);
-      const backupPath = backupAndWrite(filePath, fixedText, scanRoot, options.backupDir);
+      const backupPath = backupAndWrite(filePath, text, fixedText, scanRoot, options);
       const after = analyzeComplexText(fixedText, {
         ...(metadata || {}),
         file: reportRel,
@@ -568,6 +577,7 @@ function main() {
     mode: {
       planFixes: options.planFixes,
       applyFixes: options.applyFixes,
+      compressBackups: options.compressBackups,
       backupDir: options.applyFixes ? normalizeRel(path.relative(ROOT, options.backupDir)) : null
     },
     thresholds: options.thresholds,

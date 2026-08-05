@@ -191,3 +191,35 @@ test('audit CLI writes report and dry-run fix plans without changing files', t =
   assert.equal(report.problems[0].status, 'TOO_FAR');
   assert.equal(report.problems[0].fixPlan.ok, true);
 });
+
+test('audit CLI can write compressed backups when applying fixes', t => {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zoonoab-pdb-apply-'));
+  t.after(() => fs.rmSync(tempDir, { recursive: true, force: true }));
+  const farPath = path.join(tempDir, 'synthetic-far.pdb');
+  fs.writeFileSync(farPath, pdbText({ antibodyOffset: 90 }));
+
+  const outPath = path.join(tempDir, 'audit.json');
+  const backupDir = path.join(tempDir, 'backups');
+  const result = childProcess.spawnSync(process.execPath, [
+    path.resolve(__dirname, '..', 'scripts', 'audit_pdb_complex_geometry.js'),
+    '--scan-root', tempDir,
+    '--out', outPath,
+    '--csv', path.join(tempDir, 'audit.csv'),
+    '--apply-fixes',
+    '--compress-backups',
+    '--backup-dir', backupDir,
+    '--no-progress',
+    '--threshold-min-contact-pairs', '1',
+    '--threshold-min-near-pairs', '1'
+  ], {
+    cwd: path.resolve(__dirname, '..'),
+    encoding: 'utf8'
+  });
+
+  assert.equal(result.status, 0, result.stderr || result.stdout);
+  const report = JSON.parse(fs.readFileSync(outPath, 'utf8'));
+  assert.equal(report.summary.appliedFixes, 1);
+  assert.equal(report.problems[0].backup.endsWith('.gz'), true);
+  assert.ok(fs.existsSync(path.join(path.resolve(__dirname, '..'), report.problems[0].backup)));
+  assert.equal(fs.existsSync(path.join(backupDir, 'synthetic-far.pdb')), false);
+});
