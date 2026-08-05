@@ -12578,12 +12578,25 @@ function normalizeViewerPDBChains(value) {
 // The 77-char format is identical to standard 78-char PDB except one space was removed
 // at position 15 (the altLoc column), shifting everything left by 1.  The fix is to
 // insert a space back at position 15 and right-justify the element symbol at the end.
+//
+// IMPORTANT: Some 77-char files (e.g. expanded/ library) already have the chain ID at
+// the correct position 21 — their missing character is elsewhere (different atom-name
+// field width). For those files, inserting a space at position 15 would shift the
+// chain to position 22, breaking it. We detect this by checking if position 21 already
+// holds a valid chain character.
 function normalizePDBAtomLine(line) {
   if (!line) return line;
   if (!/^(?:ATOM  |HETATM)/.test(line)) return line;
   if (line.length === 78) return line; // already standard
   if (line.length !== 77) return line; // unexpected length, leave as-is
-  // Insert a space at position 15 (altLoc column) to restore standard 78-char width.
+  // If the chain ID is already at position 21 (correct), do NOT insert a space at
+  // position 15 — that would shift it to position 22 and break chain detection.
+  // Just pad to 78 chars for length consistency.
+  if (line.length === 77 && /[A-Za-z0-9]/.test(line.charAt(21))) {
+    return line + ' ';
+  }
+  // Otherwise: the chain ID is at position 20 (shifted left by 1). Insert a space at
+  // position 15 (altLoc column) to restore standard 78-char width.
   // This shifts chain ID from position 20 back to position 21 where 3Dmol expects it.
   var fixed = line.substring(0, 15) + ' ' + line.substring(15);
   // After insertion the element char (originally at pos 75) is now at pos 76, and the
