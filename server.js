@@ -15888,9 +15888,14 @@ async function runWorkflow(ws, input, forcedRoute, researchTraceRuntime = null) 
     // The reason shown before the workflow is the single source of truth for every later view.
     profile.selectionReason = forcedRoute.selectionReason;
   } else if (!profile.selectionReason) {
-    profile.selectionReason = forcedRoute && forcedRoute.selectionReason
-      ? forcedRoute.selectionReason
-      : sanitizeSelectionReasonForDisplay('', profile.targetDisplay, profile.disease);
+    // 先尝试从 pregenerated-content 读取 Tier 1 靶点的 selectionReason
+    const tier1PreGen = loadPreGeneratedContent(profile.targetDisplay);
+    if (tier1PreGen && tier1PreGen.content && tier1PreGen.content.selectionReason
+        && tier1PreGen.content.selectionReason.length >= 300) {
+      profile.selectionReason = tier1PreGen.content.selectionReason;
+    } else {
+      profile.selectionReason = sanitizeSelectionReasonForDisplay('', profile.targetDisplay, profile.disease);
+    }
   }
   applyCanineNgfProfile(profile);
   if (!profile.selectedEpitope) profile.selectedEpitope = profile.targetDisplay + ' 表面优先可及区域';
