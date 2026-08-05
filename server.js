@@ -11560,9 +11560,13 @@ function nearestAntigenChain(antigenChains, antibodyChains, pdbFile) {
     for (const ab of antibodyChains) {
       if (chainAtoms[ab]) abAtoms.push(...chainAtoms[ab]);
     }
-    if (!abAtoms.length) return [antigenChains[0]];
+    // Prefer antigen chains that actually exist in this file, so the chain
+    // projection downstream never strips all atoms.
+    const existingAntigenChains = antigenChains.filter(ag => chainAtoms[ag]);
+    const fallbackChain = existingAntigenChains.length ? existingAntigenChains[0] : antigenChains[0];
+    if (!abAtoms.length) return [fallbackChain];
     // Find antigen chain with minimum all-atom distance to antibody
-    let bestChain = antigenChains[0];
+    let bestChain = fallbackChain;
     let bestDist = Infinity;
     for (const ag of antigenChains) {
       if (!chainAtoms[ag]) continue;
@@ -12616,7 +12620,12 @@ function projectPDBTextToChains(pdbText, requestedChains) {
     if (/^CONECT/.test(line)) return false;
     return true;
   });
-  return projected.join('\n');
+  // Safety net: if chain projection removed ALL coordinate records (requested
+  // chains don't exist in this file), fall back to the full normalized structure.
+  // Otherwise the 3D viewer receives a header-only payload and crashes ("Structure
+  // load failed"). Showing the full structure is always better than showing nothing.
+  const hasCoordinates = projected.some(line => /^(?:ATOM  |HETATM)/.test(line));
+  return hasCoordinates ? projected.join('\n') : normalized;
 }
 
 app.get('/api/pdb/local-models', (req, res) => {
@@ -12795,11 +12804,15 @@ app.get('/api/pdb/local/:filename', async (req, res) => {
   }
   const requestedChains = normalizeViewerPDBChains(req.query.chains);
   const chainKey = requestedChains.join('');
-  const etag = `"pdb-${stat.size.toString(16)}-${Math.floor(stat.mtimeMs).toString(16)}-${chainKey || 'all'}"`;
+  // ETag prefix "pdbv2" invalidates browser caches when the chain-projection
+  // logic changes (e.g. the empty-projection safety-net fix). Without this,
+  // browsers reuse a stale cached payload whose ETag was derived only from the
+  // on-disk file stats, keeping broken responses alive after a server update.
+  const etag = `"pdbv2-${stat.size.toString(16)}-${Math.floor(stat.mtimeMs).toString(16)}-${chainKey || 'all'}"`;
   res.setHeader('Content-Type', 'chemical/x-pdb; charset=utf-8');
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Content-Disposition', 'inline; filename="' + filename + '"');
-  res.setHeader('Cache-Control', 'public, max-age=86400, stale-while-revalidate=604800');
+  res.setHeader('Cache-Control', 'public, max-age=300, stale-while-revalidate=86400');
   res.setHeader('ETag', etag);
   res.setHeader('Last-Modified', stat.mtime.toUTCString());
   if (req.headers['if-none-match'] === etag) return res.status(304).end();

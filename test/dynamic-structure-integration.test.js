@@ -320,8 +320,8 @@ test('local PDB responses are compressed, cacheable, and conditionally reusable'
 
   assert.equal(response.status, 200);
   assert.equal(response.headers.get('content-encoding'), 'gzip');
-  assert.match(response.headers.get('cache-control') || '', /max-age=86400/);
-  assert.match(response.headers.get('cache-control') || '', /stale-while-revalidate=604800/);
+  assert.match(response.headers.get('cache-control') || '', /max-age=300/);
+  assert.match(response.headers.get('cache-control') || '', /stale-while-revalidate=86400/);
   assert.match(response.headers.get('content-type') || '', /chemical\/x-pdb/);
   assert.match(response.headers.get('content-disposition') || '', /^inline;/);
   const etag = response.headers.get('etag');

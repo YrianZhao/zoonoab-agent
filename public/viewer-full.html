@@ -326,14 +326,24 @@ body.compact-viewer .vwrap{height:100%;flex-basis:100%}
         }).then(function(txt){
             fetchFinished = performance.now();
             console.log('[VF] got '+txt.length+' chars');
-            if(!/\b(ATOM|HETATM)\b/.test(txt)) throw new Error('invalid PDB payload');
+            // Validate actual coordinate records (lines starting with ATOM/HETATM),
+            // NOT just the word appearing in REMARK comments — a header-only payload
+            // with no atoms makes 3Dmol crash on render.
+            if(!/^(?:ATOM  |HETATM)/m.test(txt)) throw new Error('invalid PDB payload');
             glv.addModel(txt,'pdb');
 
             // Remove water molecules (resname HOH/WAT) and杂原子 for cleaner view
             try { glv.remove({or:[{resn:'HOH'},{resn:'WAT'}]}); } catch(e){}
 
-            apply();
-            applyViewerPose();
+            try {
+                apply();
+                applyViewerPose();
+            } catch(renderErr) {
+                // 3Dmol can throw on degenerate/empty models — surface the error
+                // instead of leaving the viewer silently broken.
+                console.error('[VF] render err:', renderErr);
+                throw renderErr;
+            }
             setTimeout(center,200);setTimeout(center,700);
             if(ldEl){ldEl.style.display='none';}
             _loaded=true;
