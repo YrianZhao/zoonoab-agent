@@ -11043,7 +11043,7 @@ function preparedStructureContract(profile, preset, file, chainInfo, staticPrese
   const displayPose = targetVerified && Boolean(preset && preset.interfaceDetail === false);
   const representativeInterface = targetVerified && Boolean(preset && preset.displayMode === 'representative_interface');
   const representative = !targetVerified;
-  const antigenChains = chainInfo && Array.isArray(chainInfo.antigen) ? chainInfo.antigen : [];
+  const antigenChains = singleAntigenChain(chainInfo && Array.isArray(chainInfo.antigen) ? chainInfo.antigen : []);
   const antibodyChains = chainInfo && Array.isArray(chainInfo.antibody) ? chainInfo.antibody : [];
   const structureUrl = staticPreset ? localPDBPublicUrl(file) : '';
   return {
@@ -11183,7 +11183,7 @@ function buildRoute3DMeta(profile, idx, file, ipTm, preset) {
       : (preset && preset.visualSummary ? preset.visualSummary : (profile && profile.structurePrepZh) || ''),
     structuralBasis: preset && preset.structuralBasis ? preset.structuralBasis : ((profile && profile.structuralBasis) || (target + ' 抗原-抗体结合构象展示')),
     interfaceDetail: !(preset && preset.interfaceDetail === false),
-    antigenChains: chainInfo.antigen,
+    antigenChains: singleAntigenChain(chainInfo.antigen),
     antibodyChains: chainInfo.antibody,
     sourceAntigenChains: chainInfo.sourceAntigen,
     sourceAntibodyChains: chainInfo.sourceAntibody,
@@ -11508,6 +11508,13 @@ async function waitForWorkflowStructure(job, profile) {
   }
 }
 
+// Enforce strict 1-antigen ↔ 1-antibody display rule across ALL routes.
+// Returns only the first antigen chain so the viewer never shows multiple antigens.
+function singleAntigenChain(chains) {
+  if (!Array.isArray(chains) || !chains.length) return [];
+  return [chains[0]];
+}
+
 // Diverse real antibody scaffold library — each entry is a real experimental
 // Fab or VHH structure from a different RCSB complex, ensuring that different
 // targets receive different antibody backbones instead of the same scaffold.
@@ -11519,12 +11526,12 @@ const FALLBACK_SCAFFOLDS = {
     { id: 'daratumumab-Fab-7DUO', file: 'CD38-Fab-01.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB 7DUO daratumumab' },
     { id: 'B43-Fab-6AL5', file: 'CD19-Fab-01.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB 6AL5 B43' },
     { id: 'ipilimumab-Fab-6RP8', file: 'CTLA4-Fab-08.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB 6RP8 ipilimumab' },
-    { id: 'IL17A-Fab-2VXS', file: 'IL17A-Fab-08.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB 2VXS IL-17A neutralizing Fab' },
+    { id: 'BCMA-Fab-9MQO', file: 'BCMA-Fab-01.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB 9MQO BCMA / CA10V2 Fab' },
     { id: 'OKT3-Fab-1SY6', file: 'CD3-Fab-01.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB 1SY6 OKT3' },
-    { id: 'CR6261-Fab-3GBM', file: 'FluHA-Fab-01.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB 3GBM CR6261' },
+    { id: 'CD47-Fab-8ZCA', file: 'CD47-Fab-01.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB 8ZCA CD47 / hu1C8 Fab' },
     { id: 'canakinumab-Fab-5BVP', file: 'IL1B-Fab-08.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB 5BVP canakinumab' },
     { id: 'tezepelumab-Fab-5J13', file: 'TSLP-Fab-01.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB 5J13 tezepelumab' },
-    { id: 'VEGFA-Fab-1BJ1', file: 'VEGFA-Fab-01.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB 1BJ1 VEGF-A neutralizing Fab' }
+    { id: 'TIGIT-Fab-8VTD', file: 'TIGIT-Fab-01.pdb', chains: ['B', 'C'], format: 'Fab', source: 'RCSB 8VTD TIGIT / vibostolimab Fab' }
   ],
   VHH: [
     { id: 'IL33-VHH-4KC3', file: 'IL33-VHH-01.pdb', chains: ['B'], format: 'VHH', source: 'RCSB 4KC3 IL-33/ST2 VHH scaffold' },
@@ -11623,7 +11630,9 @@ function representativeFallbackStructure(profile, preselectedScaffold) {
   const scaffold = preselectedScaffold || displayPoseScaffold(antibodyFormat, targetKey);
   const remarks = readLocalPDBRemarks(scaffold.file);
   const actualAntigen = remarks.target || remarks.antigenLabel || (antibodyFormat === 'VHH' ? 'IL-33' : 'PD-L1');
-  const antigenChains = Array.isArray(remarks.antigen) && remarks.antigen.length ? remarks.antigen : ['A'];
+  const antigenChains = singleAntigenChain(
+    Array.isArray(remarks.antigen) && remarks.antigen.length ? remarks.antigen : ['A']
+  );
   const antibodyChains = singleAntibodyChainSet(
     Array.isArray(remarks.antibody) && remarks.antibody.length ? remarks.antibody : scaffold.chains,
     antibodyFormat
@@ -11759,7 +11768,7 @@ function structureBinderMeta(profile, idx, structure) {
     visualSummary: display.visualSummary || '',
     structuralBasis: display.structuralBasis || '',
     interfaceDetail: pose.kind === 'experimental_complex' || pose.kind === 'representative_interface',
-    antigenChains: Array.isArray(coordinates.antigenChains) ? coordinates.antigenChains : [],
+    antigenChains: singleAntigenChain(Array.isArray(coordinates.antigenChains) ? coordinates.antigenChains : []),
     antibodyChains: Array.isArray(coordinates.antibodyChains) ? coordinates.antibodyChains : [],
     sourceAntigenChains: Array.isArray(coordinates.sourceAntigenChains) ? coordinates.sourceAntigenChains : [],
     sourceAntibodyChains: Array.isArray(coordinates.sourceAntibodyChains) ? coordinates.sourceAntibodyChains : [],
@@ -12334,7 +12343,7 @@ function localPDBPublicUrl(filename) {
 
 function localPDBViewerUrl(filename, name, chains) {
   const antigenChains = chains && Array.isArray(chains.antigen)
-    ? [...new Set(chains.antigen.map(chain => String(chain || '').trim()).filter(Boolean))]
+    ? singleAntigenChain([...new Set(chains.antigen.map(chain => String(chain || '').trim()).filter(Boolean))])
     : [];
   const antibodyChains = chains && Array.isArray(chains.antibody)
     ? [...new Set(chains.antibody.map(chain => String(chain || '').trim()).filter(Boolean))]
@@ -12455,7 +12464,7 @@ function buildLocalPDBLibraryModel(filename) {
     viewerUrl: localPDBViewerUrl(filename, name, chainInfo),
     sizeBytes: stat ? stat.size : 0,
     updatedAt: stat ? stat.mtime.toISOString() : null,
-    antigenChains: chainInfo.antigen,
+    antigenChains: singleAntigenChain(chainInfo.antigen),
     antibodyChains: chainInfo.antibody,
     sourceAntigenChains: chainInfo.sourceAntigen,
     sourceAntibodyChains: chainInfo.sourceAntibody,
@@ -14452,19 +14461,19 @@ function buildWorkflowIntentPrompt() {
 function buildFallbackDisplayTrace() {
   return {
     opening: [
-      { agent: 'TargetAgent', text: 'Deconstructing disease direction, molecular format, and functional goals from the user request', delayMs: 820 },
-      { agent: 'EvidenceAgent', text: 'Establishing relevance, accessibility, and mechanistic evaluation dimensions for candidate targets', delayMs: 900 },
-      { agent: 'EpitopeAgent', text: 'Consolidating input conditions for downstream epitope assessment and structure preparation', delayMs: 780 }
+      { agent: 'TargetAgent', text: '正在拆解用户需求中的疾病方向、分子类型与作用目标', delayMs: 820 },
+      { agent: 'EvidenceAgent', text: '正在建立候选靶点的关联性、可及性与机制评估维度', delayMs: 900 },
+      { agent: 'EpitopeAgent', text: '正在整理后续表位判断与结构准备所需的输入条件', delayMs: 780 }
     ],
     afterTarget: [
-      { agent: 'EvidenceAgent', text: 'Consolidating {{disease}}-related target evidence around {{target}}', delayMs: 900 },
-      { agent: 'LiteratureAgent', text: 'Comparing antigen accessibility and development background for {{target}}', delayMs: 980 },
-      { agent: 'TargetAgent', text: 'Confirming consistency between {{mechanism}} and the preferred epitope strategy for {{target}}', delayMs: 860 }
+      { agent: 'EvidenceAgent', text: '围绕 {{target}} 归并 {{disease}} 相关的靶点线索', delayMs: 900 },
+      { agent: 'LiteratureAgent', text: '正在比较 {{target}} 的抗原可及性与候选开发背景', delayMs: 980 },
+      { agent: 'TargetAgent', text: '正在围绕 {{target}} 确认 {{mechanism}} 与优先表位策略的一致性', delayMs: 860 }
     ],
     structure: [
-      { agent: 'StructureAgent', text: 'Preparing antigen structure and {{antibodyType}} binding constraints for {{target}}', delayMs: 920 },
-      { agent: 'EpitopeAgent', text: 'Inspecting antigen chain topology and surface-accessible regions of {{target}}', delayMs: 850 },
-      { agent: 'StructureAgent', text: 'Compiling structural metadata and candidate poses for the 3D result of {{target}}', delayMs: 820 }
+      { agent: 'StructureAgent', text: '正在准备 {{target}} 的抗原结构与 {{antibodyType}} 结合约束', delayMs: 920 },
+      { agent: 'EpitopeAgent', text: '正在检查 {{target}} 的抗原链形态与表面可及区域', delayMs: 850 },
+      { agent: 'StructureAgent', text: '正在为 {{target}} 的三维结果整理结构元信息与候选姿态', delayMs: 820 }
     ]
   };
 }
@@ -14484,10 +14493,10 @@ function interpolateDisplayTraceText(text, context) {
     return Array.from(clean).slice(0, maxLength).join('') || fallback;
   };
   const values = {
-    target: displayValue(context && context.target, 'the target', 64),
-    disease: displayValue(context && context.disease, 'the current disease direction', 72),
-    mechanism: displayValue(context && context.mechanism, 'the current mechanism of action', 96),
-    antibodyType: displayValue(context && context.antibodyType, 'the antibody candidate', 32)
+    target: displayValue(context && context.target, '目标靶点', 64),
+    disease: displayValue(context && context.disease, '当前疾病方向', 72),
+    mechanism: displayValue(context && context.mechanism, '当前作用机制', 96),
+    antibodyType: displayValue(context && context.antibodyType, '抗体候选', 32)
   };
   return String(text || '').replace(/\{\{\s*(target|disease|mechanism|antibodyType)\s*\}\}/g, (_, key) => values[key]);
 }
@@ -14551,7 +14560,7 @@ function startResearchTraceRuntime(ws, input, trace = null) {
   runtime.openingPromise = (async () => {
     const initial = [{
       agent: 'TargetAgent',
-      text: 'Understanding the molecular design objectives and outcome requirements for this round',
+      text: '正在理解本轮分子设计目标与结果要求',
       delayMs: DISPLAY_TRACE_STEP_MIN_MS
     }];
     await playResearchTraceSteps(ws, runtime, 'opening-initial', initial, null);
@@ -15560,7 +15569,7 @@ async function runDemoRoutedWorkflow(ws, input, route, researchTraceRuntime = nu
   const sess = findSessionBySocket(ws);
   const delay = (ms) => workflowDelay(ws, sess, ms);
   markWorkflowStage(sess, '设计意图确认');
-  completeResearchTrace(ws, researchTraceRuntime, 'completed', 'Target assessment completed');
+  completeResearchTrace(ws, researchTraceRuntime, 'completed', '靶点评审已完成');
   if (route && route.targetResolution) {
     send({ type: 'agent_msg', text: targetResolutionIntro(route), pacing: 'target-review' });
     await delay(700);
@@ -16456,7 +16465,7 @@ async function runWorkflow(ws, input, forcedRoute, researchTraceRuntime = null) 
     const firstPoseKind = firstStructure.pose && firstStructure.pose.kind || '';
     const route3DColors = allLocalPDBs[0].visualColors || routeVisualColors(routePreset);
     const routeChains = {
-      antigen: Array.isArray(allLocalPDBs[0].antigenChains) ? allLocalPDBs[0].antigenChains : [],
+      antigen: singleAntigenChain(Array.isArray(allLocalPDBs[0].antigenChains) ? allLocalPDBs[0].antigenChains : []),
       antibody: Array.isArray(allLocalPDBs[0].antibodyChains) ? allLocalPDBs[0].antibodyChains : []
     };
     const displayAbType = antibodyFormatForProfile(profile);

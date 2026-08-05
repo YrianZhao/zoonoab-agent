@@ -314,10 +314,7 @@
         "structureFamily": "B 细胞表面抗原 · Fab 候选",
         "visualSummary": "保留 CD20 双链跨膜区外露构象，并展示 rituximab Fab 的真实结合姿态。",
         "structuralBasis": "RCSB 6VJA CD20 / rituximab Fab complex",
-        "antigenChains": [
-          "A",
-          "D"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "B",
           "C"
@@ -480,10 +477,7 @@
         "structureFamily": "补体通路蛋白 · 抗体候选",
         "visualSummary": "保留 complement C5 多结构域形状，并展示 eculizumab 可变区抗体复合体界面。",
         "structuralBasis": "RCSB 5I5K complement C5 / eculizumab variable-domain antibody complex",
-        "antigenChains": [
-          "A",
-          "D"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "B",
           "C"
@@ -868,10 +862,7 @@
         "structureFamily": "实体瘤表面抗原 · Fab 候选",
         "visualSummary": "保留 TROP-2 二聚体形状，并展示 sacituzumab Fab 的真实结合姿态。",
         "structuralBasis": "RCSB 9PI9 TROP-2 dimer / sacituzumab Fab complex",
-        "antigenChains": [
-          "A",
-          "D"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "B",
           "C"
@@ -996,10 +987,7 @@
         "structureFamily": "免疫球蛋白 E Fc · Fab 候选",
         "visualSummary": "保留 IgE-Fc 双链形状，并展示 anti-IgE Fab 的真实结合姿态。",
         "structuralBasis": "RCSB 5G64 IgE-Fc / anti-IgE Fab complex",
-        "antigenChains": [
-          "A",
-          "D"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "B",
           "C"
@@ -1043,10 +1031,7 @@
         "structureFamily": "CGRP 受体胞外复合物 · Fab 候选",
         "visualSummary": "展示 erenumab Fab 识别 CGRP receptor/RAMP1 胞外复合物的真实结合界面。",
         "structuralBasis": "RCSB 6UMG CGRP receptor ECD / erenumab Fab complex",
-        "antigenChains": [
-          "A",
-          "D"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "B",
           "C"
@@ -1206,10 +1191,7 @@
         "structureFamily": "血管生成因子 · Fab 中和候选",
         "visualSummary": "强调 Fab 对 VEGFR 结合面邻近可及表面的稳定覆盖。",
         "structuralBasis": "RCSB 1BJ1 VEGF-A / 中和 Fab 复合体",
-        "antigenChains": [
-          "A",
-          "D"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "B",
           "C"
@@ -1266,11 +1248,7 @@
         "structureFamily": "TNF 炎症因子 · Fab 中和候选",
         "visualSummary": "展示完整 TNF-alpha 三聚体上 Fab 对受体结合邻近表面的稳定覆盖。",
         "structuralBasis": "RCSB 5WUX TNF alpha trimer / certolizumab Fab complex",
-        "antigenChains": [
-          "A",
-          "D",
-          "E"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "B",
           "C"
@@ -1326,10 +1304,7 @@
         "structureFamily": "IL-17A 炎症因子 · Fab 候选",
         "visualSummary": "保留 IL-17A 二聚体构象，并展示 Fab 对炎症轴关键可及面的双侧覆盖。",
         "structuralBasis": "RCSB 2VXS IL-17A dimer / neutralizing Fab complex",
-        "antigenChains": [
-          "A",
-          "D"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "B",
           "C"
@@ -1386,10 +1361,7 @@
         "structureFamily": "IL-23 炎症轴 · Fab 候选",
         "visualSummary": "展示 Fab 聚焦 IL-23 特异亚基可及面的稳定结合构象。",
         "structuralBasis": "RCSB 3D85 IL-23 / neutralizing Fab 复合体",
-        "antigenChains": [
-          "A",
-          "D"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "B",
           "C"
@@ -1446,11 +1418,7 @@
         "structureFamily": "病毒融合蛋白 · 中和 Fab 候选",
         "visualSummary": "呈现 Fab 锁定 RSV F 融合前关键构象表面。",
         "structuralBasis": "RCSB 5W23 RSV F prefusion trimer / 5C4 Fab 复合体",
-        "antigenChains": [
-          "A",
-          "D",
-          "E"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "B",
           "C"
@@ -1568,10 +1536,7 @@
         "structureFamily": "流感表面抗原 · 广谱中和 Fab 候选",
         "visualSummary": "从真实 HA 三聚体 biological assembly 中提取一个 HA1/HA2 原聚体与一个 CR6261 Fab 的实验结合界面。",
         "structuralBasis": "RCSB 3GBM influenza HA trimer biological assembly / representative HA protomer-CR6261 Fab interface",
-        "antigenChains": [
-          "A",
-          "D"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "B",
           "C"
@@ -1686,10 +1651,7 @@
         "structureFamily": "血脂调控靶点 · Fab 阻断候选",
         "visualSummary": "展示 Fab 围绕 PCSK9/LDLR 接触面形成稳定结合。",
         "structuralBasis": "RCSB 3SQO PCSK9 / J16 Fab 复合体",
-        "antigenChains": [
-          "A",
-          "D"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "B",
           "C"
@@ -1745,11 +1707,7 @@
         "structureFamily": "脂质代谢调控靶点 · 心血管 Fab 候选",
         "visualSummary": "呈现真实 ANGPTL3 功能结构域与 Fab 候选参考构象。",
         "structuralBasis": "RCSB 6EUA ANGPTL3 真实靶点结构 + Fab 候选参考姿态",
-        "antigenChains": [
-          "A",
-          "D",
-          "E"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "B",
           "C"
@@ -1866,11 +1824,7 @@
         "structureFamily": "脂质代谢调控靶点 · 代谢 Fab 候选",
         "visualSummary": "突出真实 ANGPTL3 脂质代谢相关结构域与 Fab 候选参考构象。",
         "structuralBasis": "RCSB 6EUA ANGPTL3 真实靶点结构 + Fab 候选参考姿态",
-        "antigenChains": [
-          "A",
-          "D",
-          "E"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "B",
           "C"
@@ -2210,12 +2164,7 @@
         "structureFamily": "AQP4 tetramer · Fab 界面参考",
         "visualSummary": "展示 human AQP4 tetramer 与 rAB 58 Fab 的真实实验界面，并明确该结构用作 NMOSD 相关自身抗原界面参考。",
         "structuralBasis": "RCSB 8V91 human AQP4 tetramer / rAB 58 Fab complex",
-        "antigenChains": [
-          "A",
-          "B",
-          "C",
-          "D"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "J",
           "I"
@@ -2306,12 +2255,7 @@
         "structureFamily": "血小板因子 4 · Fab 候选",
         "visualSummary": "展示 PF4 抗原表面与本地 Fab 骨架的稳定覆盖关系。",
         "structuralBasis": "RCSB 1F9Q platelet factor 4 reference structure + local Fab display scaffold",
-        "antigenChains": [
-          "A",
-          "D",
-          "E",
-          "F"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "B",
           "C"
@@ -2355,11 +2299,7 @@
         "structureFamily": "腺病毒六邻体主衣壳蛋白 · Fab 候选",
         "visualSummary": "展示 human adenovirus hexon 表面与本地 Fab 骨架的广谱抗体展示关系。",
         "structuralBasis": "RCSB 10DP human adenovirus hexon reference structure + local Fab display scaffold",
-        "antigenChains": [
-          "A",
-          "D",
-          "E"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "B",
           "C"
@@ -2403,10 +2343,7 @@
         "structureFamily": "流感病毒 Matrix protein 2 · Fab 候选",
         "visualSummary": "展示 Influenza A M2 ectodomain 与本地 Fab 骨架的抗原覆盖关系。",
         "structuralBasis": "RCSB 4N8C influenza A M2 ectodomain / antibody complex",
-        "antigenChains": [
-          "X",
-          "Y"
-        ],
+        "antigenChains": ["X"],
         "antibodyChains": [
           "B",
           "C"
@@ -2541,10 +2478,7 @@
         "structureFamily": "HSV-1 glycoprotein D · Fab 候选",
         "visualSummary": "展示 HSV-1 gD 二聚体表面与本地 Fab 骨架的受体结合面覆盖关系。",
         "structuralBasis": "RCSB 2C36 HSV-1 glycoprotein D reference structure + local Fab display scaffold",
-        "antigenChains": [
-          "A",
-          "D"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "B",
           "C"
@@ -2635,11 +2569,7 @@
         "structureFamily": "猪流行性腹泻病毒 Spike glycoprotein · Fab 候选",
         "visualSummary": "展示 PEDV spike 三聚体表面与本地 Fab 骨架的中和覆盖关系。",
         "structuralBasis": "RCSB 6VV5 PEDV spike glycoprotein reference structure + local Fab display scaffold",
-        "antigenChains": [
-          "A",
-          "D",
-          "E"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "B",
           "C"
@@ -2774,14 +2704,7 @@
         "structureFamily": "缝隙连接蛋白 β-2 / Connexin-26 · Fab 候选",
         "visualSummary": "展示 Connexin-26 通道表面与本地 Fab 骨架的可及区域覆盖关系。",
         "structuralBasis": "RCSB 2ZW3 connexin-26 reference structure + local Fab display scaffold",
-        "antigenChains": [
-          "A",
-          "D",
-          "E",
-          "F",
-          "G",
-          "H"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "B",
           "C"
@@ -2819,11 +2742,7 @@
         "structureFamily": "小细胞肺癌 · Fab 候选",
         "visualSummary": "展示 Fab 贴合 DLL3 表面的代表性展示构象。",
         "structuralBasis": "RCSB 6H9Y DLL3 + nivolumab Fab display scaffold",
-        "antigenChains": [
-          "A",
-          "B",
-          "C"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "H",
           "L"
@@ -2862,16 +2781,7 @@
         "structureFamily": "卵巢癌 · Fab 候选",
         "visualSummary": "展示 Fab 贴合 FOLR1 表面的代表性展示构象。",
         "structuralBasis": "RCSB 4LRH FOLR1 + tozorakimab Fab display scaffold",
-        "antigenChains": [
-          "A",
-          "B",
-          "C",
-          "D",
-          "E",
-          "F",
-          "G",
-          "H"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "L",
           "I"
@@ -2909,10 +2819,7 @@
         "structureFamily": "CLL/乳腺癌 · Fab 候选",
         "visualSummary": "展示 Fab 贴合 ROR1 表面的代表性展示构象。",
         "structuralBasis": "RCSB 6A5F ROR1 + daratumumab Fab display scaffold",
-        "antigenChains": [
-          "A",
-          "B"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "H",
           "C"
@@ -3031,64 +2938,7 @@
         "structureFamily": "肾细胞癌 · Fab 候选",
         "visualSummary": "展示 Fab 贴合 CD70 表面的代表性展示构象。",
         "structuralBasis": "RCSB 4F77 CD70 + ipilimumab Fab display scaffold",
-        "antigenChains": [
-          "I",
-          "J",
-          "K",
-          "L",
-          "M",
-          "N",
-          "O",
-          "P",
-          "A",
-          "B",
-          "C",
-          "D",
-          "E",
-          "F",
-          "G",
-          "H",
-          "Q",
-          "R",
-          "S",
-          "T",
-          "U",
-          "V",
-          "W",
-          "X",
-          "Y",
-          "Z",
-          "a",
-          "b",
-          "c",
-          "d",
-          "e",
-          "f",
-          "g",
-          "h",
-          "i",
-          "j",
-          "k",
-          "l",
-          "m",
-          "n",
-          "o",
-          "p",
-          "q",
-          "r",
-          "s",
-          "t",
-          "u",
-          "v",
-          "1",
-          "2",
-          "3",
-          "4",
-          "w",
-          "x",
-          "y",
-          "z"
-        ],
+        "antigenChains": ["I"],
         "antibodyChains": [
           "0",
           "5"
@@ -3126,10 +2976,7 @@
         "structureFamily": "结直肠癌 · Fab 候选",
         "visualSummary": "展示 Fab 贴合 PTK7 表面的代表性展示构象。",
         "structuralBasis": "RCSB 6AY3 PTK7 + ipilimumab Fab display scaffold",
-        "antigenChains": [
-          "A",
-          "B"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "H",
           "C"
@@ -3168,26 +3015,7 @@
         "structureFamily": "前列腺癌 · Fab 候选",
         "visualSummary": "展示 Fab 贴合 PSMA 表面的代表性展示构象。",
         "structuralBasis": "RCSB 2X6G PSMA + cetuximab Fab display scaffold",
-        "antigenChains": [
-          "A",
-          "B",
-          "C",
-          "D",
-          "E",
-          "F",
-          "G",
-          "H",
-          "I",
-          "J",
-          "K",
-          "L",
-          "M",
-          "N",
-          "O",
-          "P",
-          "Q",
-          "R"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "S",
           "T"
@@ -3225,14 +3053,7 @@
         "structureFamily": "B细胞淋巴瘤 · Fab 候选",
         "visualSummary": "展示 Fab 贴合 CD74 表面的代表性展示构象。",
         "structuralBasis": "RCSB 2WRH CD74 + trastuzumab Fab display scaffold",
-        "antigenChains": [
-          "H",
-          "I",
-          "J",
-          "K",
-          "L",
-          "M"
-        ],
+        "antigenChains": ["H"],
         "antibodyChains": [
           "B",
           "C"
@@ -3270,10 +3091,7 @@
         "structureFamily": "T细胞耗竭 · Fab 候选",
         "visualSummary": "展示 Fab 贴合 TIM-3 表面的代表性展示构象。",
         "structuralBasis": "RCSB 5F71 TIM-3 + trastuzumab Fab display scaffold",
-        "antigenChains": [
-          "A",
-          "B"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "H",
           "C"
@@ -3311,12 +3129,7 @@
         "structureFamily": "T细胞激活 · Fab 候选",
         "visualSummary": "展示 Fab 贴合 GITR 表面的代表性展示构象。",
         "structuralBasis": "RCSB 5WHD GITR + nivolumab Fab display scaffold",
-        "antigenChains": [
-          "A",
-          "B",
-          "C",
-          "D"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "H",
           "L"
@@ -3354,10 +3167,7 @@
         "structureFamily": "T细胞共刺激 · VHH 候选",
         "visualSummary": "展示 VHH 贴合 OX40 表面的代表性展示构象。",
         "structuralBasis": "RCSB 5I8J OX40 + IL33-VHH display scaffold",
-        "antigenChains": [
-          "A",
-          "B"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "V"
         ],
@@ -3394,10 +3204,7 @@
         "structureFamily": "T细胞共刺激 · Fab 候选",
         "visualSummary": "展示 Fab 贴合 4-1BB 表面的代表性展示构象。",
         "structuralBasis": "RCSB 4ZGP 4-1BB + daratumumab Fab display scaffold",
-        "antigenChains": [
-          "A",
-          "B"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "H",
           "C"
@@ -3475,16 +3282,7 @@
         "structureFamily": "T细胞共刺激 · Fab 候选",
         "visualSummary": "展示 Fab 贴合 CD27 表面的代表性展示构象。",
         "structuralBasis": "RCSB 5NLE CD27 + certolizumab Fab display scaffold",
-        "antigenChains": [
-          "A",
-          "B",
-          "C",
-          "D",
-          "E",
-          "F",
-          "G",
-          "H"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "L",
           "I"
@@ -3641,10 +3439,7 @@
         "structureFamily": "乳腺/前列腺癌 · Fab 候选",
         "visualSummary": "展示 Fab 贴合 PRLR 表面的代表性展示构象。",
         "structuralBasis": "RCSB 3D48 PRLR + certolizumab Fab display scaffold",
-        "antigenChains": [
-          "P",
-          "R"
-        ],
+        "antigenChains": ["P"],
         "antibodyChains": [
           "B",
           "C"
@@ -3682,12 +3477,7 @@
         "structureFamily": "NET/GIST · Fab 候选",
         "visualSummary": "展示 Fab 贴合 SSTR2 表面的代表性展示构象。",
         "structuralBasis": "RCSB 6WB4 SSTR2 + daratumumab Fab display scaffold",
-        "antigenChains": [
-          "A",
-          "B",
-          "C",
-          "D"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "H",
           "L"
@@ -3805,12 +3595,7 @@
         "structureFamily": "银屑病 · Fab 候选",
         "visualSummary": "展示 Fab 贴合 IL-17RA 表面的代表性展示构象。",
         "structuralBasis": "RCSB 6I1K IL-17RA + bevacizumab Fab display scaffold",
-        "antigenChains": [
-          "A",
-          "B",
-          "C",
-          "D"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "H",
           "L"
@@ -3969,11 +3754,7 @@
         "structureFamily": "2型糖尿病 · Fab 候选",
         "visualSummary": "展示 Fab 贴合 GLP-1R 表面的代表性展示构象。",
         "structuralBasis": "RCSB 5NX2 GLP-1R + certolizumab Fab display scaffold",
-        "antigenChains": [
-          "A",
-          "B",
-          "C"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "H",
           "L"
@@ -4051,12 +3832,7 @@
         "structureFamily": "肝细胞癌 · Fab 候选",
         "visualSummary": "展示 Fab 贴合 LGR5 表面的代表性展示构象。",
         "structuralBasis": "RCSB 4BSF LGR5 + daratumumab Fab display scaffold",
-        "antigenChains": [
-          "A",
-          "B",
-          "C",
-          "D"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "H",
           "L"
@@ -4094,12 +3870,7 @@
         "structureFamily": "阿尔茨海默病 · Fab 候选",
         "visualSummary": "展示 Fab 贴合 BACE1 表面的代表性展示构象。",
         "structuralBasis": "RCSB 1FKN BACE1 + daratumumab Fab display scaffold",
-        "antigenChains": [
-          "A",
-          "B",
-          "C",
-          "D"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "H",
           "L"
@@ -4138,12 +3909,7 @@
         "structureFamily": "肥胖症 · Fab 候选",
         "visualSummary": "展示 Fab 贴合 Leptin receptor 表面的代表性展示构象。",
         "structuralBasis": "RCSB 6V76 Leptin receptor + certolizumab Fab display scaffold",
-        "antigenChains": [
-          "C",
-          "A",
-          "B",
-          "D"
-        ],
+        "antigenChains": ["C"],
         "antibodyChains": [
           "H",
           "L"
@@ -4181,12 +3947,7 @@
         "structureFamily": "登革热 · Fab 候选",
         "visualSummary": "展示 Fab 贴合 Dengue E 表面的代表性展示构象。",
         "structuralBasis": "RCSB 1OAN Dengue E + daratumumab Fab display scaffold",
-        "antigenChains": [
-          "A",
-          "B",
-          "C",
-          "D"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "H",
           "L"
@@ -4224,10 +3985,7 @@
         "structureFamily": "寨卡 · Fab 候选",
         "visualSummary": "展示 Fab 贴合 Zika NS1 表面的代表性展示构象。",
         "structuralBasis": "RCSB 5GS6 Zika NS1 + cetuximab Fab display scaffold",
-        "antigenChains": [
-          "A",
-          "B"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "H",
           "C"
@@ -4265,14 +4023,7 @@
         "structureFamily": "狂犬病 · Fab 候选",
         "visualSummary": "展示 Fab 贴合 Rabies G 表面的代表性展示构象。",
         "structuralBasis": "RCSB 6W8J Rabies G + certolizumab Fab display scaffold",
-        "antigenChains": [
-          "A",
-          "B",
-          "C",
-          "D",
-          "E",
-          "F"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "H",
           "L"
@@ -4310,10 +4061,7 @@
         "structureFamily": "CMV感染 · Fab 候选",
         "visualSummary": "展示 Fab 贴合 CMV gB 表面的代表性展示构象。",
         "structuralBasis": "RCSB 5ZB3 CMV gB + bevacizumab Fab display scaffold",
-        "antigenChains": [
-          "A",
-          "B"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "H",
           "C"
@@ -4944,10 +4692,7 @@
         "structureFamily": "浆细胞肿瘤表面受体 · GPRC5D Fab 候选",
         "visualSummary": "展示 dimeric human GPRC5D 与 talquetamab Fab 的真实实验复合物，可用于多发性骨髓瘤方向的表面受体展示。",
         "structuralBasis": "RCSB 9IMA GPRC5D dimer / talquetamab Fab complex",
-        "antigenChains": [
-          "A",
-          "B"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "C",
           "D"
@@ -5031,11 +4776,7 @@
         "structureFamily": "前列腺癌相关膜蛋白 · STEAP1 Fab 候选",
         "visualSummary": "展示 trimeric human STEAP1 与三组 Fab120.545 的真实实验复合物，保留完整三聚体抗原形态，可支撑前列腺癌方向的表面抗原展示。",
         "structuralBasis": "RCSB 6Y9B trimeric human STEAP1 / Fab120.545 complex",
-        "antigenChains": [
-          "A",
-          "B",
-          "C"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "H",
           "L",
@@ -5130,10 +4871,7 @@
         "structureFamily": "2 型炎症细胞因子 · IL-5 Fab 候选",
         "visualSummary": "展示 dimeric human IL-5 与两组 depemokimab Fab 的真实实验复合物，可支撑嗜酸性哮喘与嗜酸性炎症方向的细胞因子展示。",
         "structuralBasis": "RCSB 9GVN depemokimab Fab / IL-5 dimer complex",
-        "antigenChains": [
-          "A",
-          "B"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "C",
           "D",
@@ -5221,10 +4959,7 @@
         "structureFamily": "髓系白血病相关表面受体 · CD123 Fab 候选",
         "visualSummary": "展示 human CD123/IL3RA D2-D3 ectodomain 与 CSL362 Fab 的真实实验复合物，可支撑 AML 与髓系肿瘤方向的表面受体展示。",
         "structuralBasis": "RCSB 4JZJ human CD123 D2-D3 ectodomain / CSL362 Fab complex",
-        "antigenChains": [
-          "C",
-          "D"
-        ],
+        "antigenChains": ["C"],
         "antibodyChains": [
           "A",
           "B",
@@ -5271,11 +5006,7 @@
         "structureFamily": "自身免疫 B 细胞生存配体 · BAFF Fab 候选",
         "visualSummary": "展示 trimeric human BAFF 与一组 belimumab Fab 的真实实验复合物，可支撑系统性红斑狼疮与 B 细胞异常活化方向的配体展示。",
         "structuralBasis": "RCSB 6FXN human BAFF trimer / belimumab Fab complex",
-        "antigenChains": [
-          "A",
-          "B",
-          "C"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "D",
           "E",
@@ -5326,10 +5057,7 @@
         "structureFamily": "IgG 转运受体复合物 · FcRn Fab 候选",
         "visualSummary": "展示 human FcRn alpha-chain / beta-2-microglobulin heterodimer 与 nipocalimab Fab 的真实实验复合物，可支撑重症肌无力与 IgG 介导自身免疫方向的 FcRn 阻断展示。",
         "structuralBasis": "RCSB 9MI6 human FcRn / beta-2-microglobulin / nipocalimab Fab complex",
-        "antigenChains": [
-          "A",
-          "B"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "H",
           "L"
@@ -5413,10 +5141,7 @@
         "structureFamily": "髓系白血病相关 Siglec 受体 · CD33 Fab 候选",
         "visualSummary": "展示 duplicated human CD33 ectodomain 与两组 Fab-10C8 的真实实验复合物，可支撑 AML 与相关髓系肿瘤方向的表面受体展示。",
         "structuralBasis": "RCSB 9VL2 human CD33 / Fab-10C8 complex",
-        "antigenChains": [
-          "A",
-          "D"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "B",
           "C",
@@ -5512,10 +5237,7 @@
         "structureFamily": "肠道炎症相关整合素受体 · α4β7 Fab 候选",
         "visualSummary": "展示 human integrin α4β7 headpiece 与 ACT-1 Fab 的真实实验复合物，可支撑炎症性肠病与溃疡性结肠炎方向的肠道归巢整合素展示。",
         "structuralBasis": "RCSB 3V4P human integrin α4β7 headpiece / ACT-1 Fab complex",
-        "antigenChains": [
-          "A",
-          "B"
-        ],
+        "antigenChains": ["A"],
         "antibodyChains": [
           "H",
           "L"
@@ -5599,10 +5321,7 @@
         "structureFamily": "代谢与体成分调控配体 · Myostatin Fab 候选",
         "visualSummary": "展示 dimeric human Myostatin/GDF8 与两组 humanized RK35 Fab 的真实实验复合物，可支撑肥胖、体成分调控与肌肉保持方向的配体展示。",
         "structuralBasis": "RCSB 5F3H human myostatin/GDF8 dimer in complex with humanized RK35 Fab",
-        "antigenChains": [
-          "I",
-          "J"
-        ],
+        "antigenChains": ["I"],
         "antibodyChains": [
           "A",
           "B",
@@ -11284,14 +11003,7 @@
       ],
       "resolutionAngstrom": 3.87,
       "note": "H1 NC99 HA trimer with Fab; keeps the HA trimer for display.",
-      "antigenChains": [
-        "A",
-        "C",
-        "G",
-        "B",
-        "D",
-        "I"
-      ]
+      "antigenChains": ["A"]
     },
     {
       "sourceCatalog": "virus-library-manifest.json",
@@ -11312,14 +11024,7 @@
       ],
       "resolutionAngstrom": 2.85,
       "note": "H2 CAN05 HA trimer with Fab.",
-      "antigenChains": [
-        "A",
-        "C",
-        "D",
-        "B",
-        "E",
-        "F"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "J",
         "K",
@@ -11348,14 +11053,7 @@
       ],
       "resolutionAngstrom": 3.83,
       "note": "H3 Singapore 2016 HA trimer with Fab.",
-      "antigenChains": [
-        "A",
-        "B",
-        "D",
-        "C",
-        "E",
-        "F"
-      ]
+      "antigenChains": ["A"]
     },
     {
       "sourceCatalog": "virus-library-manifest.json",
@@ -11376,11 +11074,7 @@
       ],
       "resolutionAngstrom": 2.001,
       "note": "A/duck/Czech/1956 H4N6 HA.",
-      "antigenChains": [
-        "A",
-        "B",
-        "C"
-      ]
+      "antigenChains": ["A"]
     },
     {
       "sourceCatalog": "virus-library-manifest.json",
@@ -11401,16 +11095,7 @@
       ],
       "resolutionAngstrom": 2.604,
       "note": "Avian H5 HA with human receptor analog.",
-      "antigenChains": [
-        "A",
-        "C",
-        "E",
-        "G",
-        "B",
-        "D",
-        "F",
-        "H"
-      ]
+      "antigenChains": ["A"]
     },
     {
       "sourceCatalog": "virus-library-manifest.json",
@@ -11431,14 +11116,7 @@
       ],
       "resolutionAngstrom": 2.5,
       "note": "A/chicken/New York/14677-13/1998 H6 HA.",
-      "antigenChains": [
-        "A",
-        "B",
-        "C",
-        "D",
-        "E",
-        "F"
-      ]
+      "antigenChains": ["A"]
     },
     {
       "sourceCatalog": "virus-library-manifest.json",
@@ -11459,11 +11137,7 @@
       ],
       "resolutionAngstrom": 3.62,
       "note": "A/Shanghai/2013 H7N9 HA with neutralizing antibody.",
-      "antigenChains": [
-        "C",
-        "D",
-        "E"
-      ],
+      "antigenChains": ["C"],
       "antibodyChains": [
         "A",
         "B",
@@ -11492,14 +11166,7 @@
       ],
       "resolutionAngstrom": 2.248,
       "note": "A/turkey/Ontario/6118/1968 H8N4 HA.",
-      "antigenChains": [
-        "A",
-        "C",
-        "E",
-        "B",
-        "D",
-        "F"
-      ]
+      "antigenChains": ["A"]
     },
     {
       "sourceCatalog": "virus-library-manifest.json",
@@ -11540,14 +11207,7 @@
       ],
       "resolutionAngstrom": 2.3,
       "note": "A/mallard/Sweden/51/2002 H10 HA.",
-      "antigenChains": [
-        "A",
-        "C",
-        "E",
-        "B",
-        "D",
-        "F"
-      ]
+      "antigenChains": ["A"]
     },
     {
       "sourceCatalog": "virus-library-manifest.json",
@@ -11568,14 +11228,7 @@
       ],
       "resolutionAngstrom": 2.8,
       "note": "A/duck/Memphis/546/1974 H11N9 HA.",
-      "antigenChains": [
-        "A",
-        "C",
-        "E",
-        "B",
-        "D",
-        "F"
-      ]
+      "antigenChains": ["A"]
     },
     {
       "sourceCatalog": "virus-library-manifest.json",
@@ -11596,12 +11249,7 @@
       ],
       "resolutionAngstrom": 2.7,
       "note": "H12 hemagglutinin.",
-      "antigenChains": [
-        "A",
-        "C",
-        "B",
-        "D"
-      ]
+      "antigenChains": ["A"]
     },
     {
       "sourceCatalog": "virus-library-manifest.json",
@@ -11622,14 +11270,7 @@
       ],
       "resolutionAngstrom": 2.502,
       "note": "Avian H13N6 HA.",
-      "antigenChains": [
-        "A",
-        "C",
-        "E",
-        "B",
-        "D",
-        "F"
-      ]
+      "antigenChains": ["A"]
     },
     {
       "sourceCatalog": "virus-library-manifest.json",
@@ -11650,20 +11291,7 @@
       ],
       "resolutionAngstrom": 3.004,
       "note": "A/mallard/Gurjev/263/1982 H14N5 HA.",
-      "antigenChains": [
-        "A",
-        "C",
-        "E",
-        "G",
-        "I",
-        "K",
-        "B",
-        "D",
-        "F",
-        "H",
-        "J",
-        "L"
-      ]
+      "antigenChains": ["A"]
     },
     {
       "sourceCatalog": "virus-library-manifest.json",
@@ -11684,14 +11312,7 @@
       ],
       "resolutionAngstrom": 2.5,
       "note": "A/wedge-tailed shearwater/Western Australia/2576/1979 H15N9 HA.",
-      "antigenChains": [
-        "A",
-        "C",
-        "E",
-        "B",
-        "D",
-        "F"
-      ]
+      "antigenChains": ["A"]
     },
     {
       "sourceCatalog": "virus-library-manifest.json",
@@ -11710,11 +11331,7 @@
       ],
       "resolutionAngstrom": 3.1,
       "note": "Locked Wuhan prefusion Spike ectodomain.",
-      "antigenChains": [
-        "A",
-        "B",
-        "C"
-      ]
+      "antigenChains": ["A"]
     },
     {
       "sourceCatalog": "virus-library-manifest.json",
@@ -11733,11 +11350,7 @@
       ],
       "resolutionAngstrom": 2.7,
       "note": "D614G Spike trimer.",
-      "antigenChains": [
-        "A",
-        "B",
-        "C"
-      ]
+      "antigenChains": ["A"]
     },
     {
       "sourceCatalog": "virus-library-manifest.json",
@@ -11756,11 +11369,7 @@
       ],
       "resolutionAngstrom": 3.19,
       "note": "B.1.1.7 Spike trimer, 1-RBD-up.",
-      "antigenChains": [
-        "A",
-        "B",
-        "C"
-      ]
+      "antigenChains": ["A"]
     },
     {
       "sourceCatalog": "virus-library-manifest.json",
@@ -11779,11 +11388,7 @@
       ],
       "resolutionAngstrom": 3.32,
       "note": "B.1.351 Spike trimer, 1-RBD-up.",
-      "antigenChains": [
-        "A",
-        "B",
-        "C"
-      ]
+      "antigenChains": ["A"]
     },
     {
       "sourceCatalog": "virus-library-manifest.json",
@@ -11802,11 +11407,7 @@
       ],
       "resolutionAngstrom": 3.3,
       "note": "P.1 Spike trimer, 1-RBD-up.",
-      "antigenChains": [
-        "A",
-        "B",
-        "C"
-      ]
+      "antigenChains": ["A"]
     },
     {
       "sourceCatalog": "virus-library-manifest.json",
@@ -11825,11 +11426,7 @@
       ],
       "resolutionAngstrom": 3.24,
       "note": "B.1.617.2 Spike trimer, 3-RBD-down.",
-      "antigenChains": [
-        "A",
-        "B",
-        "C"
-      ]
+      "antigenChains": ["A"]
     },
     {
       "sourceCatalog": "virus-library-manifest.json",
@@ -11848,11 +11445,7 @@
       ],
       "resolutionAngstrom": 3.2,
       "note": "BA.1.1.529 Spike trimer with Fab; display coloring uses flattened assembly protein chains A/B/C for Spike and D/E/F/G/H/I for Fab.",
-      "antigenChains": [
-        "A",
-        "B",
-        "C"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "D",
         "E",
@@ -11879,11 +11472,7 @@
       ],
       "resolutionAngstrom": 3.31,
       "note": "BA.2 Spike trimer, 3-RBD-down.",
-      "antigenChains": [
-        "A",
-        "B",
-        "C"
-      ]
+      "antigenChains": ["A"]
     },
     {
       "sourceCatalog": "virus-library-manifest.json",
@@ -11902,11 +11491,7 @@
       ],
       "resolutionAngstrom": 3.35534,
       "note": "Native SARS-CoV-1 Spike, open conformation.",
-      "antigenChains": [
-        "A",
-        "B",
-        "C"
-      ]
+      "antigenChains": ["A"]
     },
     {
       "sourceCatalog": "virus-library-manifest.json",
@@ -11943,12 +11528,7 @@
       ],
       "resolutionAngstrom": 3.18,
       "note": "Nipah G oligomeric assembly with neutralizing antibody; preferred over monomeric head-only structures for display.",
-      "antigenChains": [
-        "A",
-        "B",
-        "C",
-        "D"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "E",
         "G",
@@ -11973,14 +11553,7 @@
       ],
       "resolutionAngstrom": 3.2,
       "note": "Prefusion-stabilized Nipah F, dimer of trimers.",
-      "antigenChains": [
-        "A",
-        "B",
-        "C",
-        "D",
-        "E",
-        "F"
-      ]
+      "antigenChains": ["A"]
     },
     {
       "sourceCatalog": "virus-library-manifest.json",
@@ -11999,11 +11572,7 @@
       ],
       "resolutionAngstrom": 3.05,
       "note": "Zaire Ebola envelope glycoprotein GP.",
-      "antigenChains": [
-        "A",
-        "B",
-        "D"
-      ]
+      "antigenChains": ["A"]
     },
     {
       "sourceCatalog": "virus-library-manifest.json",
@@ -12074,11 +11643,7 @@
       ],
       "resolutionAngstrom": 3.4,
       "note": "RSV F prefusion trimer with 5C4 Fab.",
-      "antigenChains": [
-        "A",
-        "B",
-        "C"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "D",
         "E",
@@ -12105,14 +11670,7 @@
       ],
       "resolutionAngstrom": 2.821,
       "note": "Postfusion F entry containing RSV A and RSV B chains.",
-      "antigenChains": [
-        "A",
-        "B",
-        "C",
-        "D",
-        "E",
-        "F"
-      ]
+      "antigenChains": ["A"]
     },
     {
       "sourceCatalog": "virus-library-manifest.json",
@@ -12157,14 +11715,7 @@
       ],
       "resolutionAngstrom": 4.1,
       "note": "Glycan-base ConC Env trimer.",
-      "antigenChains": [
-        "A",
-        "B",
-        "D",
-        "C",
-        "E",
-        "G"
-      ]
+      "antigenChains": ["A"]
     },
     {
       "sourceCatalog": "virus-library-manifest.json",
@@ -12183,11 +11734,7 @@
       ],
       "resolutionAngstrom": 3.8,
       "note": "ZM233 NFL TD CC3+ Env trimer with Fab.",
-      "antigenChains": [
-        "A",
-        "D",
-        "E"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "B",
         "C"
@@ -12210,11 +11757,7 @@
       ],
       "resolutionAngstrom": 3.86,
       "note": "Disulfide-stabilized Norovirus GI.1 VLP shell region.",
-      "antigenChains": [
-        "A",
-        "B",
-        "C"
-      ]
+      "antigenChains": ["A"]
     },
     {
       "sourceCatalog": "virus-library-manifest.json",
@@ -12254,10 +11797,7 @@
       ],
       "resolutionAngstrom": 1.56,
       "note": "GII.4 CHDC2094 protruding domain.",
-      "antigenChains": [
-        "A",
-        "B"
-      ]
+      "antigenChains": ["A"]
     },
     {
       "sourceCatalog": "virus-library-manifest.json",
@@ -12276,10 +11816,7 @@
       ],
       "resolutionAngstrom": 1.59,
       "note": "GII.17 Kawasaki308 protruding domain.",
-      "antigenChains": [
-        "A",
-        "B"
-      ]
+      "antigenChains": ["A"]
     },
     {
       "sourceCatalog": "virus-library-manifest.json",
@@ -12362,10 +11899,7 @@
       ],
       "resolutionAngstrom": 1.653,
       "note": "Human parainfluenza virus type 3 HN.",
-      "antigenChains": [
-        "A",
-        "B"
-      ]
+      "antigenChains": ["A"]
     },
     {
       "sourceCatalog": "virus-library-manifest.json",
@@ -12384,11 +11918,7 @@
       ],
       "resolutionAngstrom": 3.62,
       "note": "HPIV3 prefusion F trimer with Fab.",
-      "antigenChains": [
-        "A",
-        "D",
-        "E"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "B",
         "C"
@@ -12485,12 +12015,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 1AV1.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B",
-        "C",
-        "D"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "L"
@@ -12584,12 +12109,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 1DXX.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B",
-        "C",
-        "D"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "L"
@@ -12652,10 +12172,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 1ERN.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "C"
@@ -12686,10 +12203,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 1F41.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "C"
@@ -12755,13 +12269,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 1FG9.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B",
-        "C",
-        "D",
-        "E"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "L"
@@ -12826,18 +12334,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 1GNH.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B",
-        "C",
-        "D",
-        "E",
-        "F",
-        "G",
-        "H",
-        "I",
-        "J"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "L",
         "K"
@@ -12900,10 +12397,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 1IAR.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "C"
@@ -12934,12 +12428,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 1IVO.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B",
-        "C",
-        "D"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "L"
@@ -12969,10 +12458,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 1J1E.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "D"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "B",
         "C"
@@ -13038,10 +12524,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 1JCN.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "C"
@@ -13072,10 +12555,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 1KLC.pdb + IL33-VHH-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "V"
       ]
@@ -13105,10 +12585,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 1M6B.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "C"
@@ -13209,12 +12686,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 1O7Y.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B",
-        "C",
-        "D"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "L"
@@ -13321,10 +12793,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 1PYW.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "C"
@@ -13393,13 +12862,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 1R42.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B",
-        "C",
-        "D",
-        "E"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "L"
@@ -13463,11 +12926,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 1TNF.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B",
-        "C"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "L"
@@ -13530,10 +12989,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 1WIP.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "C"
@@ -13606,14 +13062,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 1XU2.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B",
-        "D",
-        "R",
-        "S",
-        "T"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "C"
@@ -13645,12 +13094,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 1Z7G.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B",
-        "C",
-        "D"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "L"
@@ -13686,10 +13130,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 1Z92.pdb + IL33-VHH-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "V"
       ]
@@ -13722,20 +13163,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 1ZUM.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B",
-        "C",
-        "D",
-        "E",
-        "F",
-        "G",
-        "H",
-        "I",
-        "J",
-        "K",
-        "L"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "M",
         "N"
@@ -13771,12 +13199,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 2E9W.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B",
-        "C",
-        "D"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "L"
@@ -13843,10 +13266,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 2FB8.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "C"
@@ -13910,12 +13330,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 2GD4.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "L",
-        "A",
-        "H",
-        "B"
-      ],
+      "antigenChains": ["L"],
       "antibodyChains": [
         "C",
         "D"
@@ -14014,12 +13429,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 2I6A.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B",
-        "C",
-        "D"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "L"
@@ -14224,10 +13634,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 2OY4.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "F"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "B",
         "C"
@@ -14262,10 +13669,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 2QTW.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "C"
@@ -14364,10 +13768,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 2RA3.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "C"
@@ -14610,10 +14011,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 3G2F.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "C"
@@ -14647,16 +14045,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 3GJO.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B",
-        "C",
-        "D",
-        "E",
-        "F",
-        "G",
-        "H"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "L",
         "I"
@@ -14721,10 +14110,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 3I6U.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "C"
@@ -14756,10 +14142,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 3LGG.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "C"
@@ -14826,10 +14209,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 3OMV.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "C"
@@ -14862,10 +14242,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 3OSK.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "C"
@@ -14898,10 +14275,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 3P7Z.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "C"
@@ -14933,10 +14307,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 3POM.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "C"
@@ -15009,10 +14380,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 3RK2.pdb + IL33-VHH-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "E"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "B"
       ]
@@ -15047,10 +14415,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 3RKQ.pdb + IL33-VHH-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "V"
       ]
@@ -15081,11 +14446,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 3SHI.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "G",
-        "M"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "B",
         "C"
@@ -15119,24 +14480,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 3TGX.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "C",
-        "E",
-        "G",
-        "I",
-        "K",
-        "M",
-        "O",
-        "B",
-        "D",
-        "F",
-        "H",
-        "J",
-        "L",
-        "N",
-        "P"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "Q",
         "R"
@@ -15202,10 +14546,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 3U69.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "L",
-        "H"
-      ],
+      "antigenChains": ["L"],
       "antibodyChains": [
         "B",
         "C"
@@ -15235,10 +14576,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 3U84.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "C"
@@ -15303,10 +14641,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 3V42.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "C"
@@ -15343,12 +14678,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 3WO2.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B",
-        "C",
-        "D"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "L"
@@ -15382,13 +14712,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 4COF.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B",
-        "C",
-        "D",
-        "E"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "L"
@@ -15456,10 +14780,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 4F64.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "C"
@@ -15526,12 +14847,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 4FU4.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B",
-        "C",
-        "D"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "L"
@@ -15561,12 +14877,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 4HHB.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "C",
-        "B",
-        "D"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "L"
@@ -15599,10 +14910,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 4HR9.pdb + IL33-VHH-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "V"
       ]
@@ -15671,10 +14979,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 4MF3.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "C"
@@ -15757,10 +15062,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 4OBE.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "C"
@@ -15794,14 +15096,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 4P6X.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "C",
-        "E",
-        "G",
-        "I",
-        "K"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "B",
         "H"
@@ -15874,12 +15169,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 4RA0.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B",
-        "C",
-        "D"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "L"
@@ -15916,10 +15206,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 4UX8.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "C"
@@ -15950,10 +15237,7 @@
       "structuralBasis": "Local exact complex retained from antigen-only sweep source 4WV1.pdb",
       "context": "Exact local public complex promoted from antigen-only sweep for workflow routing.",
       "note": "Experimental local complex preserved and geometry-audited.",
-      "antigenChains": [
-        "F",
-        "C"
-      ],
+      "antigenChains": ["F"],
       "antibodyChains": [
         "B",
         "E",
@@ -16126,10 +15410,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 5DE1.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "C"
@@ -16163,10 +15444,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 5DU3.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "C"
@@ -16200,10 +15478,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 5F19.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "C"
@@ -16275,10 +15550,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 5J11.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "C"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "B",
         "H"
@@ -16411,14 +15683,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 5NAY.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B",
-        "C",
-        "D",
-        "E",
-        "F"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "L"
@@ -16596,10 +15861,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 5ZLZ.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "I",
-        "E"
-      ],
+      "antigenChains": ["I"],
       "antibodyChains": [
         "B",
         "C"
@@ -16630,10 +15892,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 6A93.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "C"
@@ -16769,11 +16028,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 6FZV.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B",
-        "C"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "L"
@@ -16844,10 +16099,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 6HYJ.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "C"
@@ -16958,10 +16210,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 6K9L.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "C"
@@ -17069,10 +16318,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 6MSM.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "C"
@@ -17139,12 +16385,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 6PFP.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B",
-        "C",
-        "D"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "L"
@@ -17211,10 +16452,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 6SCJ.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "C"
@@ -17284,12 +16522,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 6VGL.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "D",
-        "B",
-        "C",
-        "A"
-      ],
+      "antigenChains": ["D"],
       "antibodyChains": [
         "H",
         "L"
@@ -17325,10 +16558,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 6X3U.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "C"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "B",
         "H"
@@ -17400,10 +16630,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 7CYN.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "C"
@@ -17438,10 +16665,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 7DTD.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "B",
-        "A"
-      ],
+      "antigenChains": ["B"],
       "antibodyChains": [
         "H",
         "C"
@@ -17509,12 +16733,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 7L28.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B",
-        "C",
-        "D"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "L"
@@ -17546,10 +16765,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 7MZY.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "C"
@@ -17579,12 +16795,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 7QE8.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B",
-        "C",
-        "D"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "L"
@@ -17768,10 +16979,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 8F7Q.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "R",
-        "M"
-      ],
+      "antigenChains": ["R"],
       "antibodyChains": [
         "B",
         "C"
@@ -17804,11 +17012,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 8FX4.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B",
-        "D"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "C"
@@ -17957,10 +17161,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 9BLR.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "C"
@@ -17992,13 +17193,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 9EGT.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "B",
-        "C",
-        "D",
-        "E"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "L"
@@ -18066,10 +17261,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 9GU3.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "L"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "B",
         "C"
@@ -18176,12 +17368,7 @@
       "structuralBasis": "Local antigen structure from antigen-only sweep source 9U18.pdb + PDL1-Fab-01.pdb display scaffold",
       "context": "Exact local antigen with deterministic Fab/VHH display pose for workflow routing.",
       "note": "Representative display pose generated from a real local antigen and a real local Fab/VHH scaffold.",
-      "antigenChains": [
-        "A",
-        "D",
-        "C",
-        "F"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "B",
         "H"
@@ -18752,10 +17939,7 @@
       "status": "asset_only",
       "context": "Graves disease / thyroid eye disease IGF1R 本地受体参考",
       "note": "Exact human IGF1R receptor structure without antibody partner. Keep out of routeable routing until a verified IGF1R antibody or VHH complex is curated.",
-      "antigenChains": [
-        "A",
-        "B"
-      ]
+      "antigenChains": ["A"]
     },
     {
       "sourceCatalog": "endocrine-library-manifest.json",
@@ -18877,10 +18061,7 @@
       "status": "asset_only",
       "context": "肥胖 / 体成分调控 Myostatin 本地 Fab 复合物参考",
       "note": "Exact human myostatin/GDF8 dimer with repeated humanized RK35 Fab complexes. Keep as a local obesity and body-composition structural asset until an explicit prepared myostatin route is added.",
-      "antigenChains": [
-        "I",
-        "J"
-      ],
+      "antigenChains": ["I"],
       "antibodyChains": [
         "A",
         "B",
@@ -18935,10 +18116,7 @@
       "status": "asset_only",
       "context": "肥胖 / 体成分调控 ActRIIB 本地 Fv 复合物参考",
       "note": "Exact human ActRIIB/ACVR2B extracellular ligand-binding domain in complex with bimagrumab Fv. Keep as a local obesity and muscle-regulation structural asset until an explicit prepared ActRII route is added.",
-      "antigenChains": [
-        "C",
-        "D"
-      ],
+      "antigenChains": ["C"],
       "antibodyChains": [
         "A",
         "B",
@@ -19363,10 +18541,7 @@
       "status": "asset_only",
       "context": "骨关节炎 / 慢性疼痛 TrkA-NGF 作用界面本地结构参考",
       "note": "Exact human TrkA coordinates retained from the human NGF complex. Keep viewer wording explicit that this is a receptor-ligand reference rather than an antibody complex.",
-      "antigenChains": [
-        "A",
-        "B"
-      ],
+      "antigenChains": ["A"],
       "sourceAntigenChains": [
         "A",
         "B"
@@ -19400,10 +18575,7 @@
       "status": "asset_only",
       "context": "Parkinson disease / synucleinopathy LRRK2 本地激酶参考",
       "note": "Exact full-length human LRRK2 dimer without antibody partner. Keep out of routeable routing until a verified LRRK2 antibody or VHH complex is curated.",
-      "antigenChains": [
-        "A",
-        "B"
-      ]
+      "antigenChains": ["A"]
     },
     {
       "sourceCatalog": "neuro-library-manifest.json",
@@ -19435,10 +18607,7 @@
       "status": "asset_only",
       "context": "Parkinson disease / lysosomal-risk GBA 本地酶结构参考",
       "note": "Exact human glucocerebrosidase structure without antibody partner. Keep out of routeable routing until a verified GBA antibody or VHH complex is curated.",
-      "antigenChains": [
-        "A",
-        "B"
-      ]
+      "antigenChains": ["A"]
     },
     {
       "sourceCatalog": "solid-tumor-library-manifest.json",
@@ -19500,10 +18669,7 @@
       "status": "asset_only",
       "context": "卵巢癌 / 子宫内膜癌 FOLR1 本地抗原参考",
       "note": "Alternate experimental crystal form for exact human FOLR1 without an antibody partner.",
-      "antigenChains": [
-        "A",
-        "B"
-      ]
+      "antigenChains": ["A"]
     },
     {
       "sourceCatalog": "solid-tumor-library-manifest.json",
@@ -19533,10 +18699,7 @@
       "status": "asset_only",
       "context": "卵巢癌 / 子宫内膜癌 FOLR1 本地抗原参考",
       "note": "Alternate experimental crystal form for exact human FOLR1 without an antibody partner.",
-      "antigenChains": [
-        "A",
-        "B"
-      ]
+      "antigenChains": ["A"]
     },
     {
       "sourceCatalog": "solid-tumor-library-manifest.json",
@@ -19653,10 +18816,7 @@
       "status": "asset_only",
       "context": "胰腺癌 / 结直肠癌 CEACAM6 本地抗原参考",
       "note": "Exact human CEACAM6 N-domain without antibody partner. Keep out of routeable routing until a verified CEACAM6 antibody complex is curated.",
-      "antigenChains": [
-        "A",
-        "B"
-      ]
+      "antigenChains": ["A"]
     },
     {
       "sourceCatalog": "solid-tumor-library-manifest.json",
@@ -19688,10 +18848,7 @@
       "status": "asset_only",
       "context": "前列腺癌 PSMA 本地纳米抗体复合物参考",
       "note": "Exact human PSMA nanobody complex. Keep out of prompt-eligible Fab routing unless the project adopts an explicit nanobody route policy.",
-      "antigenChains": [
-        "A",
-        "E"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "Q"
@@ -19735,10 +18892,7 @@
       "status": "asset_only",
       "context": "前列腺癌 PSMA 本地纳米抗体复合物参考",
       "note": "Exact human PSMA nanobody 8 complex. Keep out of prompt-eligible Fab routing unless the project adopts an explicit nanobody route policy.",
-      "antigenChains": [
-        "A",
-        "E"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "Q"
@@ -19782,10 +18936,7 @@
       "status": "asset_only",
       "context": "前列腺癌 PSMA 本地纳米抗体复合物参考",
       "note": "Exact human PSMA nanobody 37 complex converted from the official RCSB mmCIF distribution into a verified local PDB asset. Keep out of prompt-eligible Fab routing unless the project adopts an explicit nanobody route policy.",
-      "antigenChains": [
-        "A",
-        "E"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "P"
@@ -19829,10 +18980,7 @@
       "status": "asset_only",
       "context": "前列腺癌 PSMA 本地纳米抗体复合物参考",
       "note": "Exact human PSMA dimer with Nanobody 7 and Nanobody 8 bound simultaneously. Keep out of prompt-eligible Fab routing unless the project adopts an explicit nanobody route policy.",
-      "antigenChains": [
-        "A",
-        "E"
-      ],
+      "antigenChains": ["A"],
       "antibodyChains": [
         "H",
         "Q",
@@ -19961,12 +19109,7 @@
       "status": "asset_only",
       "context": "肾癌 / 缺氧相关实体瘤 CAIX 本地抗原参考",
       "note": "Exact human CAIX experimental antigen structure without antibody partner. Use as a local antigen reference rather than a prompt-eligible Fab route.",
-      "antigenChains": [
-        "A",
-        "B",
-        "C",
-        "D"
-      ]
+      "antigenChains": ["A"]
     },
     {
       "sourceCatalog": "solid-tumor-library-manifest.json",
@@ -19998,10 +19141,7 @@
       "status": "asset_only",
       "context": "结直肠癌 / 胃肠道上皮肿瘤 EpCAM 本地 scFv 复合物参考",
       "note": "Exact human EpCAM complex with scFv chains rather than a Fab route. Keep out of prompt-eligible Fab routing unless the project adopts an explicit scFv route policy.",
-      "antigenChains": [
-        "C",
-        "D"
-      ],
+      "antigenChains": ["C"],
       "antibodyChains": [
         "A",
         "B"
@@ -20267,11 +19407,7 @@
       "status": "asset_only",
       "context": "淋巴瘤 / 肾癌 CD70 本地受体复合物参考",
       "note": "Exact human CD70 coordinates retained from the human CD27:CD70 co-stimulatory complex. Keep viewer wording explicit that this is a target-receptor reference rather than an antibody complex.",
-      "antigenChains": [
-        "A",
-        "B",
-        "C"
-      ]
+      "antigenChains": ["A"]
     },
     {
       "sourceCatalog": "bone-library-manifest.json",
@@ -20332,10 +19468,7 @@
       "status": "asset_only",
       "context": "骨质疏松 SOST-LRP6 作用界面本地结构参考",
       "note": "Exact human SOST coordinates retained from the human LRP6 complex. Keep out of prompt-eligible routing until a verified antibody-bound SOST structure is curated.",
-      "antigenChains": [
-        "C",
-        "D"
-      ]
+      "antigenChains": ["C"]
     },
     {
       "sourceCatalog": "bone-library-manifest.json",

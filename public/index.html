@@ -6680,7 +6680,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '69498382';
+    const APP_BUILD_VERSION = '69498381';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
     const SILICONFLOW_CHAT_FALLBACK_MODELS = ['Qwen/Qwen3-32B', 'Qwen/Qwen3-14B', 'Qwen/Qwen3-8B', 'deepseek-ai/DeepSeek-V3'];
@@ -7134,8 +7134,6 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     const TYPEWRITER_MS_PER_CHAR = 16;
     const TYPEWRITER_SENTENCE_PAUSE_MS = 96;
     const TYPEWRITER_CLAUSE_PAUSE_MS = 48;
-    const TYPEWRITER_TARGET_REVIEW_MS_PER_CHAR = 38;
-    const TYPEWRITER_TARGET_REVIEW_MAX_MS = 18000;
 
     // Typewriter effect for agent messages
     function typewriterEffect(markdown, contentEl, autoScroll = captureAutoScrollState(), runId = currentClientRunId, options) {
@@ -7148,10 +7146,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             const rawText = String(markdown || '');
             const totalLen = rawText.length;
 
-            const isTargetReview = options.pacing === 'target-review';
-            const msPerChar = isTargetReview ? TYPEWRITER_TARGET_REVIEW_MS_PER_CHAR : TYPEWRITER_MS_PER_CHAR;
-            const maxTargetMs = isTargetReview ? TYPEWRITER_TARGET_REVIEW_MAX_MS : TYPEWRITER_TARGET_MAX_MS;
-            const targetMs = Math.min(maxTargetMs, Math.max(TYPEWRITER_TARGET_MIN_MS, totalLen * msPerChar));
+            const targetMs = Math.min(TYPEWRITER_TARGET_MAX_MS, Math.max(TYPEWRITER_TARGET_MIN_MS, totalLen * TYPEWRITER_MS_PER_CHAR));
             const charsPerTick = Math.max(1, Math.ceil(totalLen / (targetMs / TYPEWRITER_TICK_MS)));
             let pos = 0;
             contentEl.classList.add('is-streaming');
@@ -7694,7 +7689,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     function localPDBChainsHtml(model) {
-        const antigenChains = Array.isArray(model.antigenChains) && model.antigenChains.length ? model.antigenChains : [];
+        const antigenChains = (Array.isArray(model.antigenChains) && model.antigenChains.length ? model.antigenChains : []).slice(0, 1);
         const antibodyChains = Array.isArray(model.antibodyChains) && model.antibodyChains.length ? model.antibodyChains : [];
         const items = [];
         if (antigenChains.length) items.push('<span class="kb-local-pdb-chain ag">Ag ' + escHtml(antigenChains.join(',')) + '</span>');
@@ -7706,7 +7701,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     function buildLocalPDBModelFrameUrl(model) {
         model = model || {};
         const filename = String(model.filename || '').replace(/\.pdb$/i, '') + '.pdb';
-        const antigenChains = Array.isArray(model.antigenChains) && model.antigenChains.length ? model.antigenChains : ['A'];
+        const antigenChains = (Array.isArray(model.antigenChains) && model.antigenChains.length ? model.antigenChains : ['A']).slice(0, 1);
         const antibodyChains = Array.isArray(model.antibodyChains) ? model.antibodyChains : [];
         const pdbUrl = '/api/pdb/local/' + encodeURIComponent(filename) + '?chains=' + encodeURIComponent([...new Set([...antigenChains, ...antibodyChains])].join(','));
         let url = '/viewer-full.html?pdb=' + encodeURIComponent(pdbUrl);
@@ -8911,42 +8906,25 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             '<div class="target-selection-hint">点击上方靶点卡片开始分子设计</div>' +
         '</div>';
     }
-    let targetSelectThinkingTimer = null;
     function selectTargetOption(selectionId, targetIdx) {
         // 仅作用于当前选项卡容器，避免多次靶点选择互相干扰
         const container = document.querySelector('.target-selection-container[data-selection-id="' + qdEscAttr(selectionId) + '"]');
         const scopeRoot = container || document;
         const cards = scopeRoot.querySelectorAll('.target-option-card');
-        let selectedTitle = '';
-        cards.forEach((card, i) => {
+        cards.forEach(card => {
             card.classList.remove('selected');
             card.style.pointerEvents = 'none';
-            if (i === targetIdx) {
-                card.classList.add('selected');
-                const titleEl = card.querySelector('.target-option-title');
-                if (titleEl) selectedTitle = (titleEl.textContent || '').trim();
-            }
         });
+        if (cards[targetIdx]) cards[targetIdx].classList.add('selected');
 
-        // 点击后先展示“思考”反馈，延迟约 3 秒再提交，让分子设计呈现分析过程
-        if (targetSelectThinkingTimer) { clearTimeout(targetSelectThinkingTimer); targetSelectThinkingTimer = null; }
-        const hintEl = scopeRoot.querySelector('.target-selection-hint');
-        if (hintEl) hintEl.textContent = '正在分析所选靶点，开始分子设计…';
-        startAssistantThinking({ topic: selectedTitle || 'selected target', local: true });
-        showTyping();
-        const fastForward = (typeof isWorkflowHardFastForward === 'function' && isWorkflowHardFastForward());
-        const waitMs = fastForward ? 500 : 3000;
-        targetSelectThinkingTimer = setTimeout(() => {
-            targetSelectThinkingTimer = null;
-            // 延迟结束后发送选择给后端；后端会接管思考动画并继续推送工作流
-            if (ws && ws.readyState === 1) {
-                ws.send(JSON.stringify({
-                    type: 'select_target',
-                    selectionId: selectionId,
-                    targetIdx: targetIdx
-                }));
-            }
-        }, waitMs);
+        // 发送选择给后端
+        if (ws && ws.readyState === 1) {
+            ws.send(JSON.stringify({
+                type: 'select_target',
+                selectionId: selectionId,
+                targetIdx: targetIdx
+            }));
+        }
     }
     function qdRenderHeader() {
         const meta = document.getElementById('qdProgressMeta');
@@ -10401,7 +10379,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             : '';
         const outputsHtml = outputEvents.length ? outputEvents.map(event => {
             const cls = event.type;
-            const labelMap = { assistant:'模型回复', log:'进度', tool_call:'工具调用', tool_result:'工具结果', tasks:'任务列表', subagents:'Agent 状态', plan:'计划', workflow_result:'流程结果', research_trace:'Analysis Trace', research_trace_complete:'Analysis Trace Complete' };
+            const labelMap = { assistant:'模型回复', log:'进度', tool_call:'工具调用', tool_result:'工具结果', tasks:'任务列表', subagents:'Agent 状态', plan:'计划', workflow_result:'流程结果', research_trace:'分析轨迹', research_trace_complete:'分析轨迹完成' };
             let body = '';
             if (event.type === 'assistant') body = historyTextHtml(event.text, true);
             else if (event.type === 'tool_call') body = `<strong>${escHtml(event.tool || '工具')}</strong>${event.toolId ? ` · ${escHtml(event.toolId)}` : ''}<br>${historyTextHtml(historyValuePreview(event.params), false)}`;
@@ -10533,7 +10511,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const meta = model || {};
         const pdbId = meta.id || (section && section.primaryPDB) || '';
         const colors = getBinderVisualColors(meta);
-        const antigenChains = Array.isArray(meta.antigenChains) && meta.antigenChains.length ? meta.antigenChains : ['A'];
+        const antigenChains = (Array.isArray(meta.antigenChains) && meta.antigenChains.length ? meta.antigenChains : ['A']).slice(0, 1);
         const antibodyChains = Array.isArray(meta.antibodyChains) ? meta.antibodyChains : [];
         const legend = getRoleLegend(meta);
         const seedSource = [
@@ -15826,16 +15804,16 @@ ${fallbackTableRows(profile.rows)}
 
     function researchTracePhaseLabel(phase) {
         const labels = {
-            opening: 'Requirements Analysis',
-            'opening-initial': 'Requirements Analysis',
-            target: 'Target Assessment',
-            afterTarget: 'Target Assessment',
-            after_target: 'Target Assessment',
-            evidence: 'Evidence Consolidation',
-            structure: 'Structure Preparation'
+            opening: '需求解析',
+            'opening-initial': '需求解析',
+            target: '靶点研判',
+            afterTarget: '靶点研判',
+            after_target: '靶点研判',
+            evidence: '信息归并',
+            structure: '结构准备'
         };
         const key = String(phase || '').trim();
-        return labels[key] || key || 'Comprehensive Analysis';
+        return labels[key] || key || '综合分析';
     }
 
     function researchTracePhaseIcon(phase) {
@@ -15854,10 +15832,10 @@ ${fallbackTableRows(profile.rows)}
     }
 
     function researchTraceStatusCopy(status) {
-        if (status === 'completed') return 'Completed';
-        if (status === 'cancelled') return 'Cancelled';
-        if (status === 'error') return 'Interrupted';
-        return 'Analyzing';
+        if (status === 'completed') return '已完成';
+        if (status === 'cancelled') return '已取消';
+        if (status === 'error') return '已中断';
+        return '分析中';
     }
 
     function renderResearchTracePanelSummary(state) {
@@ -15865,11 +15843,11 @@ ${fallbackTableRows(profile.rows)}
         const completed = steps.filter(step => step.status === 'completed').length;
         const total = Math.max(Number(state.total) || 0, steps.length);
         let summary = total
-            ? `Completed ${completed}/${total} analysis steps`
-            : 'Processing requirements and key information';
-        if (state.status === 'completed') summary = state.statusDetail || (total ? `${total} analysis steps completed` : 'Target assessment completed');
-        if (state.status === 'cancelled') summary = state.statusDetail || 'Analysis cancelled';
-        if (state.status === 'error') summary = state.statusDetail || 'Analysis interrupted';
+            ? `已完成 ${completed}/${total} 个分析步骤`
+            : '正在梳理需求与关键信息';
+        if (state.status === 'completed') summary = state.statusDetail || (total ? `${total} 个分析步骤已完成` : '靶点评审已完成');
+        if (state.status === 'cancelled') summary = state.statusDetail || '本次分析已取消';
+        if (state.status === 'error') summary = state.statusDetail || '本次分析已中断';
         state.el.dataset.status = state.status;
         const statusEl = state.el.querySelector('.research-trace-status');
         const summaryEl = state.el.querySelector('.research-trace-summary');
@@ -15888,22 +15866,22 @@ ${fallbackTableRows(profile.rows)}
         panel.className = 'research-trace-panel';
         panel.dataset.clientRunId = runKey;
         panel.dataset.status = 'active';
-        panel.setAttribute('aria-label', 'Analysis Progress');
+        panel.setAttribute('aria-label', '分析进展');
         panel.innerHTML = `
             <div class="research-trace-header">
                 <span class="research-trace-header-icon" aria-hidden="true"><i data-lucide="search-check" style="width:15px;height:15px;"></i></span>
                 <span class="research-trace-heading">
-                    <span class="research-trace-title">${escHtml('Analysis Progress')}</span>
-                    <span class="research-trace-summary">${escHtml('Processing requirements and key information')}</span>
+                    <span class="research-trace-title">${escHtml('分析进展')}</span>
+                    <span class="research-trace-summary">${escHtml('正在梳理需求与关键信息')}</span>
                 </span>
-                <span class="research-trace-status">${escHtml('Analyzing')}</span>
+                <span class="research-trace-status">${escHtml('分析中')}</span>
             </div>
             <div class="research-trace-body" role="list" aria-live="polite">
-                <div class="research-trace-empty">${escHtml('Preparing analysis steps...')}</div>
+                <div class="research-trace-empty">${escHtml('正在准备分析步骤...')}</div>
             </div>
             <div class="research-trace-waiting" aria-live="polite">
                 <span class="research-trace-spark" aria-hidden="true"><i data-lucide="sparkles" style="width:17px;height:17px;"></i></span>
-                <span class="research-trace-waiting-copy"><span class="research-trace-waiting-label">${escHtml('Preparing the next analysis step')}</span><span class="research-trace-shimmer"></span></span>
+                <span class="research-trace-waiting-copy"><span class="research-trace-waiting-label">${escHtml('正在准备下一项分析')}</span><span class="research-trace-shimmer"></span></span>
             </div>`;
 
         const state = {
@@ -15944,21 +15922,14 @@ ${fallbackTableRows(profile.rows)}
             <span class="research-trace-step-icon" aria-hidden="true"><i data-lucide="${researchTracePhaseIcon(step.phase)}" style="width:15px;height:15px;"></i></span>
             <span class="research-trace-step-copy">
                 <span class="research-trace-step-meta">${escHtml(metaText)}</span>
-                <span class="research-trace-step-text"></span>
+                <span class="research-trace-step-text">${escHtml(step.text)}</span>
             </span>
             <span class="research-trace-step-state" title="${escHtml(researchTraceStatusCopy(step.status))}" aria-label="${escHtml(researchTraceStatusCopy(step.status))}">
                 <i data-lucide="${stateIcon.name}" class="${stateIcon.className}" style="width:14px;height:14px;"></i>
             </span>`;
         if (created) row.classList.add('is-entering');
         refreshLucideIcons({ nodes: [row] });
-        const textEl = row.querySelector('.research-trace-step-text');
-        if (!textEl) return Promise.resolve();
-
-        if (!created) {
-            textEl.textContent = step.text;
-            return Promise.resolve();
-        }
-
+        if (!created) return Promise.resolve();
         return new Promise(resolve => {
             let settled = false;
             const finish = () => {
@@ -15967,38 +15938,8 @@ ${fallbackTableRows(profile.rows)}
                 row.classList.remove('is-entering');
                 resolve();
             };
-
-            if (isWorkflowHardFastForward() || !step.text) {
-                textEl.textContent = step.text;
-                finish();
-                return;
-            }
-
-            const rawText = String(step.text);
-            const chars = Array.from(rawText);
-            const totalLen = chars.length;
-            const RT_TICK_MS = 24;
-            const RT_MS_PER_CHAR = 7;
-            const RT_MIN_MS = 350;
-            const RT_MAX_MS = 600;
-            const targetMs = Math.min(RT_MAX_MS, Math.max(RT_MIN_MS, totalLen * RT_MS_PER_CHAR));
-            const charsPerTick = Math.max(1, Math.ceil(totalLen / (targetMs / RT_TICK_MS)));
-            let pos = 0;
-
-            function streamTick() {
-                if (settled) return;
-                if (pos < totalLen) {
-                    pos = Math.min(pos + charsPerTick, totalLen);
-                    textEl.innerHTML = escHtml(chars.slice(0, pos).join('')) + '<span class="typing-cursor"></span>';
-                    setTimeout(streamTick, RT_TICK_MS);
-                } else {
-                    textEl.textContent = rawText;
-                    finish();
-                }
-            }
-
-            setTimeout(streamTick, 80);
-            waitForWorkflowPresentation(RT_MAX_MS + 300, 200, 30).then(finish);
+            row.addEventListener('animationend', finish, { once: true });
+            waitForWorkflowPresentation(780, 140, 24).then(finish);
         });
     }
 
@@ -16018,7 +15959,7 @@ ${fallbackTableRows(profile.rows)}
             id: stepId,
             phase,
             agent: msg.agent || prior.agent || '',
-            text: String(msg.text || prior.text || 'Processing current analysis information'),
+            text: String(msg.text || prior.text || '正在整理当前分析信息'),
             status
         };
         state.steps.set(stepId, step);
@@ -17150,10 +17091,10 @@ ${fallbackTableRows(profile.rows)}
         tumor_immunotherapy: { aliasPrefix: 'PDL1-Fab', structureTitle: 'PD-L1 Fab 免疫检查点阻断构象', structureFamily: '免疫检查点 IgV 结构域 · Fab 候选', visualSummary: '突出 Fab 对 PD-1/PD-L1 接触面的空间覆盖。', structuralBasis: 'RCSB 5X8L PD-L1 / atezolizumab Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#60A5FA', antibody: '#F472B6' }, order: [0,2,5,1,4,7,3,6,8,9,10,11] },
         checkpoint_pd1: { aliasPrefix: 'PD1-Fab', structureTitle: 'PD-1 Fab 免疫检查点结合构象', structureFamily: '免疫检查点受体 IgV 结构域 · Fab 候选', visualSummary: '展示 nivolumab Fab 识别 PD-1 胞外结构域的真实复合物界面。', structuralBasis: 'RCSB 5WT9 PD-1 / nivolumab Fab complex', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#38BDF8', antibody: '#F472B6' } },
         checkpoint_ctla4: { aliasPrefix: 'CTLA4-Fab', structureTitle: 'CTLA-4 Fab 免疫检查点结合构象', structureFamily: '免疫检查点受体 · Fab 候选', visualSummary: '展示 ipilimumab Fab 贴合 CTLA-4 胞外结构域的真实抗原-抗体复合物。', structuralBasis: 'RCSB 6RP8 CTLA-4 / ipilimumab Fab complex', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#22C55E', antibody: '#A855F7' } },
-        heme_cd20: { aliasPrefix: 'CD20-Fab', structureTitle: 'CD20 Fab B 细胞表面抗原结合构象', structureFamily: 'B 细胞表面抗原 · Fab 候选', visualSummary: '保留 CD20 双链跨膜区外露构象，并展示 rituximab Fab 的真实结合姿态。', structuralBasis: 'RCSB 6VJA CD20 / rituximab Fab complex', antigenChains: ['A','D'], antibodyChains: ['B','C'], visualColors: { antigen: '#2563EB', antibody: '#F97316' } },
+        heme_cd20: { aliasPrefix: 'CD20-Fab', structureTitle: 'CD20 Fab B 细胞表面抗原结合构象', structureFamily: 'B 细胞表面抗原 · Fab 候选', visualSummary: '保留 CD20 双链跨膜区外露构象，并展示 rituximab Fab 的真实结合姿态。', structuralBasis: 'RCSB 6VJA CD20 / rituximab Fab complex', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#2563EB', antibody: '#F97316' } },
         heme_cd19: { aliasPrefix: 'CD19-Fab', structureTitle: 'CD19 Fab B 细胞抗原结合构象', structureFamily: 'B 细胞表面抗原 · Fab 候选', visualSummary: '展示 B43 Fab 与 CD19 胞外结构域的真实结合界面。', structuralBasis: 'RCSB 6AL5 CD19 / B43 Fab complex', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#0EA5E9', antibody: '#F59E0B' } },
         immune_cd3: { aliasPrefix: 'CD3-Fab', structureTitle: 'CD3 Fab T 细胞受体复合体结合构象', structureFamily: 'T 细胞 CD3 复合体 · Fab 候选', visualSummary: '展示 OKT3 Fab 识别 CD3 gamma-epsilon 胞外结构域的真实复合物界面。', structuralBasis: 'RCSB 1SY6 CD3 gamma-epsilon / OKT3 Fab complex', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#14B8A6', antibody: '#F43F5E' } },
-        complement_c5: { aliasPrefix: 'C5-Fab', structureTitle: 'Complement C5 抗体结合构象', structureFamily: '补体通路蛋白 · 抗体候选', visualSummary: '保留 complement C5 多结构域形状，并展示 eculizumab 可变区抗体复合体界面。', structuralBasis: 'RCSB 5I5K complement C5 / eculizumab variable-domain antibody complex', antigenChains: ['A','D'], antibodyChains: ['B','C'], visualColors: { antigen: '#16A34A', antibody: '#6366F1' } },
+        complement_c5: { aliasPrefix: 'C5-Fab', structureTitle: 'Complement C5 抗体结合构象', structureFamily: '补体通路蛋白 · 抗体候选', visualSummary: '保留 complement C5 多结构域形状，并展示 eculizumab 可变区抗体复合体界面。', structuralBasis: 'RCSB 5I5K complement C5 / eculizumab variable-domain antibody complex', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#16A34A', antibody: '#6366F1' } },
         inflammation_il6r: { aliasPrefix: 'IL6R-Fab', structureTitle: 'IL-6R Fab 炎症受体阻断构象', structureFamily: '炎症细胞因子受体 · Fab 候选', visualSummary: '展示 tocilizumab Fab 识别 IL-6R alpha 胞外结构域的真实结合界面。', structuralBasis: 'RCSB 8J6F IL-6R alpha / tocilizumab Fab complex', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#DC2626', antibody: '#38BDF8' } },
         allergic_il4ra: { aliasPrefix: 'IL4RA-Fab', structureTitle: 'IL-4Rα Fab 过敏炎症受体结合构象', structureFamily: '过敏炎症受体 · Fab 候选', visualSummary: '展示 dupilumab Fab 识别 IL-4 receptor alpha 的真实复合物界面。', structuralBasis: 'RCSB 6WGL IL-4 receptor alpha / dupilumab Fab complex', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#F97316', antibody: '#0EA5E9' } },
         immune_cd25: { aliasPrefix: 'CD25-Fab', structureTitle: 'CD25 Fab IL-2Rα 结合构象', structureFamily: '免疫调节受体 · Fab 候选', visualSummary: '展示 daclizumab Fab 与 IL-2RA(CD25) 胞外结构域的真实复合物界面。', structuralBasis: 'RCSB 3NFP IL-2RA(CD25) / daclizumab Fab complex', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#8B5CF6', antibody: '#34D399' } },
@@ -17161,30 +17102,30 @@ ${fallbackTableRows(profile.rows)}
         checkpoint_tigit: { aliasPrefix: 'TIGIT-Fab', structureTitle: 'TIGIT Fab 免疫检查点结合构象', structureFamily: '免疫检查点受体 · Fab 候选', visualSummary: '展示 vibostolimab Fab 与 TIGIT 胞外 Ig 结构域的真实结合界面。', structuralBasis: 'RCSB 8VTD TIGIT / vibostolimab Fab complex', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#0F766E', antibody: '#FB7185' } },
         checkpoint_cd47: { aliasPrefix: 'CD47-Fab', structureTitle: 'CD47 Fab 先天免疫检查点结合构象', structureFamily: '细胞表面免疫调节抗原 · Fab 候选', visualSummary: '展示 hu1C8 Fab 识别 CD47 胞外结构域的真实复合物界面。', structuralBasis: 'RCSB 8ZCA CD47 / hu1C8 Fab complex', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#059669', antibody: '#F59E0B' } },
         checkpoint_lag3: { aliasPrefix: 'LAG3-Fab', structureTitle: 'LAG-3 Fab 免疫检查点结合构象', structureFamily: '免疫检查点受体 · Fab 候选', visualSummary: '展示 favezelimab Fab 与 LAG-3 胞外结构域的真实抗原-抗体界面。', structuralBasis: 'RCSB 8SO3 LAG-3 / favezelimab Fab complex', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#0891B2', antibody: '#A855F7' } },
-        solid_tumor_trop2: { aliasPrefix: 'TROP2-Fab', structureTitle: 'TROP-2 Fab 肿瘤表面抗原结合构象', structureFamily: '实体瘤表面抗原 · Fab 候选', visualSummary: '保留 TROP-2 二聚体形状，并展示 sacituzumab Fab 的真实结合姿态。', structuralBasis: 'RCSB 9PI9 TROP-2 dimer / sacituzumab Fab complex', antigenChains: ['A','D'], antibodyChains: ['B','C'], visualColors: { antigen: '#EC4899', antibody: '#38BDF8' } },
+        solid_tumor_trop2: { aliasPrefix: 'TROP2-Fab', structureTitle: 'TROP-2 Fab 肿瘤表面抗原结合构象', structureFamily: '实体瘤表面抗原 · Fab 候选', visualSummary: '保留 TROP-2 二聚体形状，并展示 sacituzumab Fab 的真实结合姿态。', structuralBasis: 'RCSB 9PI9 TROP-2 dimer / sacituzumab Fab complex', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#EC4899', antibody: '#38BDF8' } },
         solid_tumor_tissue_factor: { aliasPrefix: 'F3-Fab', structureTitle: 'Tissue Factor Fab 肿瘤相关外露结构域结合构象', structureFamily: '实体瘤相关凝血通路表面抗原 · Tissue Factor Fab 候选', visualSummary: '展示 human Tissue Factor 外露结构域与 anti-Tissue Factor HATR-5 Fab 的真实实验结合界面，适合宫颈癌等 Tissue Factor 高表达实体瘤方向展示。', structuralBasis: 'RCSB 1UJ3 human Tissue Factor extracellular domain / HATR-5 Fab complex', antigenChains: ['C'], antibodyChains: ['A','B'], visualColors: { antigen: '#F97316', antibody: '#2563EB' } },
         heme_bcma: { aliasPrefix: 'BCMA-Fab', structureTitle: 'BCMA Fab 浆细胞靶点结合构象', structureFamily: 'B 细胞成熟抗原 · Fab 候选', visualSummary: '展示 CA10V2 Fab 识别 BCMA 胞外 N 端结构域的真实复合物界面。', structuralBasis: 'RCSB 9MQO BCMA / CA10V2 Fab complex', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#2563EB', antibody: '#F97316' } },
-        allergic_ige: { aliasPrefix: 'IgE-Fab', structureTitle: 'IgE-Fc Fab 过敏通路结合构象', structureFamily: '免疫球蛋白 E Fc · Fab 候选', visualSummary: '保留 IgE-Fc 双链形状，并展示 anti-IgE Fab 的真实结合姿态。', structuralBasis: 'RCSB 5G64 IgE-Fc / anti-IgE Fab complex', antigenChains: ['A','D'], antibodyChains: ['B','C'], visualColors: { antigen: '#F59E0B', antibody: '#0EA5E9' } },
-        migraine_cgrpr: { aliasPrefix: 'CGRPR-Fab', structureTitle: 'CGRP receptor Fab 偏头痛靶点结合构象', structureFamily: 'CGRP 受体胞外复合物 · Fab 候选', visualSummary: '展示 erenumab Fab 识别 CGRP receptor/RAMP1 胞外复合物的真实结合界面。', structuralBasis: 'RCSB 6UMG CGRP receptor ECD / erenumab Fab complex', antigenChains: ['A','D'], antibodyChains: ['B','C'], visualColors: { antigen: '#0F766E', antibody: '#F472B6' } },
+        allergic_ige: { aliasPrefix: 'IgE-Fab', structureTitle: 'IgE-Fc Fab 过敏通路结合构象', structureFamily: '免疫球蛋白 E Fc · Fab 候选', visualSummary: '保留 IgE-Fc 双链形状，并展示 anti-IgE Fab 的真实结合姿态。', structuralBasis: 'RCSB 5G64 IgE-Fc / anti-IgE Fab complex', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#F59E0B', antibody: '#0EA5E9' } },
+        migraine_cgrpr: { aliasPrefix: 'CGRPR-Fab', structureTitle: 'CGRP receptor Fab 偏头痛靶点结合构象', structureFamily: 'CGRP 受体胞外复合物 · Fab 候选', visualSummary: '展示 erenumab Fab 识别 CGRP receptor/RAMP1 胞外复合物的真实结合界面。', structuralBasis: 'RCSB 6UMG CGRP receptor ECD / erenumab Fab complex', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#0F766E', antibody: '#F472B6' } },
         breast_cancer: { aliasPrefix: 'HER2-Fab', structureTitle: 'HER2 Fab 胞外结构域结合构象', structureFamily: 'HER2 胞外结构域 · 肿瘤靶点 Fab', visualSummary: '呈现 Fab 贴合 HER2 胞外可及表面并形成稳定 CDR 接触。', structuralBasis: 'RCSB 1N8Z HER2 胞外结构域 / trastuzumab Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#EC4899', antibody: '#38BDF8' }, order: [2,5,8,1,4,7,0,3,6,9,10,11] },
         solid_tumor_egfr: { aliasPrefix: 'EGFR-Fab', structureTitle: 'EGFR Fab 配体邻近表面结合构象', structureFamily: 'EGFR 胞外受体结构域 · Fab 候选', visualSummary: '展示 Fab 识别 EGFR 配体结合邻近区域的构象布局。', structuralBasis: 'RCSB 1YY9 EGFR 胞外结构域 / cetuximab Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#8B5CF6', antibody: '#34D399' }, order: [3,6,9,0,2,5,8,1,4,7,10,11] },
-        angiogenesis_oncology: { aliasPrefix: 'VEGFA-Fab', structureTitle: 'VEGF-A Fab 血管生成信号中和构象', structureFamily: '血管生成因子 · Fab 中和候选', visualSummary: '强调 Fab 对 VEGFR 结合面邻近可及表面的稳定覆盖。', structuralBasis: 'RCSB 1BJ1 VEGF-A / 中和 Fab 复合体', antigenChains: ['A','D'], antibodyChains: ['B','C'], visualColors: { antigen: '#22C55E', antibody: '#A855F7' }, order: [4,7,10,1,3,6,9,0,2,5,8,11] },
-        autoimmune_inflammation: { aliasPrefix: 'TNF-Fab', structureTitle: 'TNF Fab 炎症因子中和构象', structureFamily: 'TNF 炎症因子 · Fab 中和候选', visualSummary: '展示完整 TNF-alpha 三聚体上 Fab 对受体结合邻近表面的稳定覆盖。', structuralBasis: 'RCSB 5WUX TNF alpha trimer / certolizumab Fab complex', antigenChains: ['A','D','E'], antibodyChains: ['B','C'], visualColors: { antigen: '#EF4444', antibody: '#2DD4BF' }, order: [5,8,0,2,4,7,10,1,3,6,9,11] },
-        autoimmune_il17: { aliasPrefix: 'IL17A-Fab', structureTitle: 'IL-17A Fab 炎症轴中和构象', structureFamily: 'IL-17A 炎症因子 · Fab 候选', visualSummary: '保留 IL-17A 二聚体构象，并展示 Fab 对炎症轴关键可及面的双侧覆盖。', structuralBasis: 'RCSB 2VXS IL-17A dimer / neutralizing Fab complex', antigenChains: ['A','D'], antibodyChains: ['B','C'], visualColors: { antigen: '#F43F5E', antibody: '#06B6D4' }, order: [6,9,1,3,5,8,0,2,4,7,10,11] },
-        autoimmune_il23: { aliasPrefix: 'IL23-Fab', structureTitle: 'IL-23 Fab Th17 炎症轴中和构象', structureFamily: 'IL-23 炎症轴 · Fab 候选', visualSummary: '展示 Fab 聚焦 IL-23 特异亚基可及面的稳定结合构象。', structuralBasis: 'RCSB 3D85 IL-23 / neutralizing Fab 复合体', antigenChains: ['A','D'], antibodyChains: ['B','C'], visualColors: { antigen: '#D946EF', antibody: '#22D3EE' }, order: [7,10,2,4,6,9,1,3,5,8,0,11] },
-        infectious_rsv: { aliasPrefix: 'RSVF-Fab', structureTitle: 'RSV F Fab 病毒融合阻断构象', structureFamily: '病毒融合蛋白 · 中和 Fab 候选', visualSummary: '呈现 Fab 锁定 RSV F 融合前关键构象表面。', structuralBasis: 'RCSB 5W23 RSV F prefusion trimer / 5C4 Fab 复合体', antigenChains: ['A','D','E'], antibodyChains: ['B','C'], visualColors: { antigen: '#0EA5E9', antibody: '#F97316' }, order: [8,0,3,6,9,1,4,7,10,2,5,11] },
+        angiogenesis_oncology: { aliasPrefix: 'VEGFA-Fab', structureTitle: 'VEGF-A Fab 血管生成信号中和构象', structureFamily: '血管生成因子 · Fab 中和候选', visualSummary: '强调 Fab 对 VEGFR 结合面邻近可及表面的稳定覆盖。', structuralBasis: 'RCSB 1BJ1 VEGF-A / 中和 Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#22C55E', antibody: '#A855F7' }, order: [4,7,10,1,3,6,9,0,2,5,8,11] },
+        autoimmune_inflammation: { aliasPrefix: 'TNF-Fab', structureTitle: 'TNF Fab 炎症因子中和构象', structureFamily: 'TNF 炎症因子 · Fab 中和候选', visualSummary: '展示完整 TNF-alpha 三聚体上 Fab 对受体结合邻近表面的稳定覆盖。', structuralBasis: 'RCSB 5WUX TNF alpha trimer / certolizumab Fab complex', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#EF4444', antibody: '#2DD4BF' }, order: [5,8,0,2,4,7,10,1,3,6,9,11] },
+        autoimmune_il17: { aliasPrefix: 'IL17A-Fab', structureTitle: 'IL-17A Fab 炎症轴中和构象', structureFamily: 'IL-17A 炎症因子 · Fab 候选', visualSummary: '保留 IL-17A 二聚体构象，并展示 Fab 对炎症轴关键可及面的双侧覆盖。', structuralBasis: 'RCSB 2VXS IL-17A dimer / neutralizing Fab complex', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#F43F5E', antibody: '#06B6D4' }, order: [6,9,1,3,5,8,0,2,4,7,10,11] },
+        autoimmune_il23: { aliasPrefix: 'IL23-Fab', structureTitle: 'IL-23 Fab Th17 炎症轴中和构象', structureFamily: 'IL-23 炎症轴 · Fab 候选', visualSummary: '展示 Fab 聚焦 IL-23 特异亚基可及面的稳定结合构象。', structuralBasis: 'RCSB 3D85 IL-23 / neutralizing Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#D946EF', antibody: '#22D3EE' }, order: [7,10,2,4,6,9,1,3,5,8,0,11] },
+        infectious_rsv: { aliasPrefix: 'RSVF-Fab', structureTitle: 'RSV F Fab 病毒融合阻断构象', structureFamily: '病毒融合蛋白 · 中和 Fab 候选', visualSummary: '呈现 Fab 锁定 RSV F 融合前关键构象表面。', structuralBasis: 'RCSB 5W23 RSV F prefusion trimer / 5C4 Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#0EA5E9', antibody: '#F97316' }, order: [8,0,3,6,9,1,4,7,10,2,5,11] },
         infectious_covid: { aliasPrefix: 'SC2RBD-Fab', structureTitle: 'SARS-CoV-2 RBD Fab 受体结合阻断构象', structureFamily: '病毒受体结合结构域 · 中和 Fab 候选', visualSummary: '展示 Fab 覆盖 RBD/ACE2 结合邻近可及面。', structuralBasis: 'RCSB 6XDG SARS-CoV-2 RBD / REGN10933 Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#0284C7', antibody: '#F59E0B' }, order: [9,1,4,7,10,2,5,8,0,3,6,11] },
-        infectious_flu: { aliasPrefix: 'FluHA-Fab', structureTitle: 'Influenza HA Fab 保守中和表位构象', structureFamily: '流感表面抗原 · 代表性实验结合界面', visualSummary: '从真实 HA 三聚体 biological assembly 中提取一个 HA1/HA2 原聚体与一个 CR6261 Fab 的实验结合界面。', structuralBasis: 'RCSB 3GBM influenza HA trimer biological assembly / representative HA protomer-CR6261 Fab interface', antigenChains: ['A','D'], sourceAntigenChains: ['A','D','E','F','G','H'], antibodyChains: ['B','C'], sourceAntibodyChains: ['B','C'], displayMode: 'representative_interface', visualColors: { antigen: '#0891B2', antibody: '#FB7185' }, order: [10,2,5,8,0,3,6,9,1,4,7,11] },
+        infectious_flu: { aliasPrefix: 'FluHA-Fab', structureTitle: 'Influenza HA Fab 保守中和表位构象', structureFamily: '流感表面抗原 · 代表性实验结合界面', visualSummary: '从真实 HA 三聚体 biological assembly 中提取一个 HA1/HA2 原聚体与一个 CR6261 Fab 的实验结合界面。', structuralBasis: 'RCSB 3GBM influenza HA trimer biological assembly / representative HA protomer-CR6261 Fab interface', antigenChains: ['A'], sourceAntigenChains: ['A','D','E','F','G','H'], antibodyChains: ['B','C'], sourceAntibodyChains: ['B','C'], displayMode: 'representative_interface', visualColors: { antigen: '#0891B2', antibody: '#FB7185' }, order: [10,2,5,8,0,3,6,9,1,4,7,11] },
         infectious_flu_na: { aliasPrefix: 'FluNA-Fab', structureTitle: 'Influenza NA Fab 神经氨酸酶结合构象', structureFamily: '流感神经氨酸酶 · 中和 Fab 候选', visualSummary: '展示 NC41 Fab 识别 influenza N9 neuraminidase 的真实抗原-抗体复合物界面。', structuralBasis: 'RCSB 1NCD influenza N9 neuraminidase / NC41 Fab complex', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#06B6D4', antibody: '#F97316' } },
-        cardio_pcsk9: { aliasPrefix: 'PCSK9-Fab', structureTitle: 'PCSK9 Fab LDLR 结合界面阻断构象', structureFamily: '血脂调控靶点 · Fab 阻断候选', visualSummary: '展示 Fab 围绕 PCSK9/LDLR 接触面形成稳定结合。', structuralBasis: 'RCSB 3SQO PCSK9 / J16 Fab 复合体', antigenChains: ['A','D'], antibodyChains: ['B','C'], visualColors: { antigen: '#2563EB', antibody: '#84CC16' }, order: [1,5,9,0,4,8,2,6,10,3,7,11] },
-        cardio_angptl3: { aliasPrefix: 'ANGPTL3-CV-Fab', structureTitle: 'ANGPTL3 Fab 血脂调控中和构象', structureFamily: '脂质代谢调控靶点 · 心血管 Fab 候选', visualSummary: '呈现真实 ANGPTL3 功能结构域与 Fab 候选参考构象。', structuralBasis: 'RCSB 6EUA ANGPTL3 真实靶点结构 + Fab 候选参考姿态', interfaceDetail: false, antigenChains: ['A','D','E'], antibodyChains: ['B','C'], visualColors: { antigen: '#16A34A', antibody: '#818CF8' }, order: [2,6,10,1,5,9,0,4,8,3,7,11] },
+        cardio_pcsk9: { aliasPrefix: 'PCSK9-Fab', structureTitle: 'PCSK9 Fab LDLR 结合界面阻断构象', structureFamily: '血脂调控靶点 · Fab 阻断候选', visualSummary: '展示 Fab 围绕 PCSK9/LDLR 接触面形成稳定结合。', structuralBasis: 'RCSB 3SQO PCSK9 / J16 Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#2563EB', antibody: '#84CC16' }, order: [1,5,9,0,4,8,2,6,10,3,7,11] },
+        cardio_angptl3: { aliasPrefix: 'ANGPTL3-CV-Fab', structureTitle: 'ANGPTL3 Fab 血脂调控中和构象', structureFamily: '脂质代谢调控靶点 · 心血管 Fab 候选', visualSummary: '呈现真实 ANGPTL3 功能结构域与 Fab 候选参考构象。', structuralBasis: 'RCSB 6EUA ANGPTL3 真实靶点结构 + Fab 候选参考姿态', interfaceDetail: false, antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#16A34A', antibody: '#818CF8' }, order: [2,6,10,1,5,9,0,4,8,3,7,11] },
         cardio_il1b: { aliasPrefix: 'IL1B-Fab', structureTitle: 'IL-1β Fab 炎症风险中和构象', structureFamily: 'IL-1 家族炎症因子 · Fab 候选', visualSummary: '展示 Fab 覆盖 IL-1R 结合邻近面的候选构象。', structuralBasis: 'RCSB 5BVP IL-1 beta / canakinumab Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#DC2626', antibody: '#38BDF8' }, order: [3,7,0,2,6,10,1,5,9,4,8,11] },
-        metabolic_angptl3: { aliasPrefix: 'ANGPTL3-Met-Fab', structureTitle: 'ANGPTL3 Fab 脂质代谢调控构象', structureFamily: '脂质代谢调控靶点 · 代谢 Fab 候选', visualSummary: '突出真实 ANGPTL3 脂质代谢相关结构域与 Fab 候选参考构象。', structuralBasis: 'RCSB 6EUA ANGPTL3 真实靶点结构 + Fab 候选参考姿态', interfaceDetail: false, antigenChains: ['A','D','E'], antibodyChains: ['B','C'], visualColors: { antigen: '#65A30D', antibody: '#7C3AED' }, order: [4,8,1,3,7,0,2,6,10,5,9,11] },
+        metabolic_angptl3: { aliasPrefix: 'ANGPTL3-Met-Fab', structureTitle: 'ANGPTL3 Fab 脂质代谢调控构象', structureFamily: '脂质代谢调控靶点 · 代谢 Fab 候选', visualSummary: '突出真实 ANGPTL3 脂质代谢相关结构域与 Fab 候选参考构象。', structuralBasis: 'RCSB 6EUA ANGPTL3 真实靶点结构 + Fab 候选参考姿态', interfaceDetail: false, antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#65A30D', antibody: '#7C3AED' }, order: [4,8,1,3,7,0,2,6,10,5,9,11] },
         metabolic_gipr: { aliasPrefix: 'GIPR-Fab', structureTitle: 'GIPR Fab 胞外受体结合构象', structureFamily: '代谢受体胞外结构域 · Fab 候选', visualSummary: '展示 GIPG013 Fab 识别 GIPR 胞外结构域的真实复合物界面。', structuralBasis: 'RCSB 4HJ0 human GIPR ECD / GIPG013 Fab 复合体', antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#0F766E', antibody: '#F472B6' }, order: [5,9,2,4,8,1,3,7,0,6,10,11] },
         neuro_adhd_dat: { aliasPrefix: 'DAT-Fab', structureTitle: 'DAT Fab 多巴胺再摄取调控展示构象', structureFamily: '多巴胺转运蛋白 · Fab 展示候选', visualSummary: '保留人源 DAT 的真实外向开放形态，并以 Fab 展示胞外 vestibule 邻近可及表面。', structuralBasis: 'RCSB 9EO4 human dopamine transporter outward-open structure + representative Fab display scaffold', interfaceDetail: false, antigenChains: ['B'], antibodyChains: ['H','L'], visualColors: { antigen: '#22C55E', antibody: '#2563EB' } },
         endocrine_graves_tshr: { aliasPrefix: 'TSHR-Fab', structureTitle: 'TSHR Fab Graves disease 相关受体结合构象', structureFamily: '甲状腺刺激素受体 ectodomain · Fab 候选', visualSummary: '展示 human TSHR 与 CS-17 Fab 的真实实验界面，并将结构解读限制在公开坐标覆盖的受体构象范围内。', structuralBasis: 'RCSB 7T9M human thyrotropin receptor / CS-17 Fab complex', antigenChains: ['R'], antibodyChains: ['H','L'], visualColors: { antigen: '#0F766E', antibody: '#F59E0B' } },
         neuro_parkinson_snca: { aliasPrefix: 'SNCA-Fab', structureTitle: 'alpha-synuclein Fab 帕金森病相关表位结合构象', structureFamily: '突触核蛋白 peptide epitope · Fab 候选', visualSummary: '展示 alpha-synuclein 已解析表位肽与 MJF14-6-4-2 Fab 的真实实验界面，并明确该结构只代表局部病理表位范围。', structuralBasis: 'RCSB 8OG0 alpha-synuclein epitope peptide / MJF14-6-4-2 Fab complex', antigenChains: ['P'], antibodyChains: ['H','L'], visualColors: { antigen: '#8B5CF6', antibody: '#22D3EE' } },
-        neuro_nmosd_aqp4: { aliasPrefix: 'AQP4-Fab', structureTitle: 'AQP4 Fab NMOSD 相关自身抗原界面构象', structureFamily: 'AQP4 tetramer · Fab 界面参考', visualSummary: '展示 human AQP4 tetramer 与 rAB 58 Fab 的真实实验界面，并明确该结构用作 NMOSD 相关自身抗原界面参考。', structuralBasis: 'RCSB 8V91 human AQP4 tetramer / rAB 58 Fab complex', antigenChains: ['A','B','C','D'], antibodyChains: ['J','I'], visualColors: { antigen: '#2563EB', antibody: '#F97316' } },
+        neuro_nmosd_aqp4: { aliasPrefix: 'AQP4-Fab', structureTitle: 'AQP4 Fab NMOSD 相关自身抗原界面构象', structureFamily: 'AQP4 tetramer · Fab 界面参考', visualSummary: '展示 human AQP4 tetramer 与 rAB 58 Fab 的真实实验界面，并明确该结构用作 NMOSD 相关自身抗原界面参考。', structuralBasis: 'RCSB 8V91 human AQP4 tetramer / rAB 58 Fab complex', antigenChains: ['A'], antibodyChains: ['J','I'], visualColors: { antigen: '#2563EB', antibody: '#F97316' } },
         veterinary_canine_ngf: { aliasPrefix: 'CANINE-NGF-Fab', structureTitle: '犬源 NGF Fab 疼痛信号中和展示构象', structureFamily: '犬源神经营养因子 · Fab 中和候选', visualSummary: '呈现犬源成熟 NGF 分子表面及 Fab 候选的空间覆盖关系。', structuralBasis: 'AlphaFold DB A0A8I3PYI3 犬源成熟 NGF + RCSB 4EDW tanezumab Fab 展示支架', interfaceDetail: false, antigenChains: ['A'], antibodyChains: ['H','L'], visualColors: { antigen: '#22C55E', antibody: '#2563EB' } },
         plant_virus_tmv: { aliasPrefix: 'TMV-CP-Fab', structureTitle: 'TMV 衣壳蛋白 Fab 候选结构', structureFamily: '植物病毒衣壳蛋白 · Fab 候选', visualSummary: '展示 Fab 对烟草花叶病毒衣壳蛋白表面的空间覆盖。', structuralBasis: 'RCSB 6R7M TMV coat protein + representative Fab display scaffold, 非真实共晶结构', interfaceDetail: false, antigenChains: ['A'], antibodyChains: ['B','C'], visualColors: { antigen: '#22C55E', antibody: '#F97316' } }
     };
@@ -17619,7 +17560,7 @@ ${fallbackTableRows(profile.rows)}
     function getRoleLegend(meta) {
         meta = meta || {};
         const colors = getBinderVisualColors(meta);
-        const antigenChains = Array.isArray(meta.antigenChains) && meta.antigenChains.length ? meta.antigenChains : ['A'];
+        const antigenChains = (Array.isArray(meta.antigenChains) && meta.antigenChains.length ? meta.antigenChains : ['A']).slice(0, 1);
         const antibodyChains = Array.isArray(meta.antibodyChains) ? meta.antibodyChains : [];
         const targetLabel = meta.targetDisplay || meta.routeLabel || 'Target antigen';
         const antibodyFormat = meta.antibodyFormat || (/VHH/i.test(String(meta.structureFamily || meta.candidateLabel || '')) ? 'VHH' : 'Fab');
@@ -17667,7 +17608,7 @@ ${fallbackTableRows(profile.rows)}
         const options = arguments[4] || {};
         const meta = getBinderMetaById(pdbId) || {};
         const colors = getBinderVisualColors(meta);
-        const antigenChains = Array.isArray(meta.antigenChains) && meta.antigenChains.length ? meta.antigenChains : ['A'];
+        const antigenChains = (Array.isArray(meta.antigenChains) && meta.antigenChains.length ? meta.antigenChains : ['A']).slice(0, 1);
         const antibodyChains = Array.isArray(meta.antibodyChains) ? meta.antibodyChains : [];
         const idx = Number.isFinite(candidateIndex) ? candidateIndex : binderDataList.findIndex(item => item && item.id === pdbId);
         const seedSource = [
@@ -17870,7 +17811,7 @@ ${fallbackTableRows(profile.rows)}
 	                    visualSummary: display.visualSummary || meta.visualSummary || '',
 	                    structuralBasis: display.structuralBasis || meta.structuralBasis || '',
 	                    interfaceDetail: meta.interfaceDetail !== false,
-	                    antigenChains: Array.isArray(coordinates.antigenChains) && coordinates.antigenChains.length ? coordinates.antigenChains : (Array.isArray(meta.antigenChains) && meta.antigenChains.length ? meta.antigenChains : ['A']),
+	                    antigenChains: (Array.isArray(coordinates.antigenChains) && coordinates.antigenChains.length ? coordinates.antigenChains : (Array.isArray(meta.antigenChains) && meta.antigenChains.length ? meta.antigenChains : ['A'])).slice(0, 1),
                     antibodyChains: Object.prototype.hasOwnProperty.call(coordinates, 'antibodyChains')
                         ? (Array.isArray(coordinates.antibodyChains) ? coordinates.antibodyChains : [])
                         : (Array.isArray(meta.antibodyChains) ? meta.antibodyChains : []),
