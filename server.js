@@ -15483,9 +15483,21 @@ function sanitizedTargetSelectionReason(resolution, route) {
 function targetResolutionIntro(route) {
   const r = route && route.targetResolution ? route.targetResolution : null;
   if (!r) return '';
-  const selectionReason = String(
-    (route && route.selectionReason) || sanitizedTargetSelectionReason(r, route)
-  ).trim();
+  // 先看 route.selectionReason，再查 pregenerated-content，最后 fallback
+  let selectionReason = '';
+  if (route && route.selectionReason && route.selectionReason.length >= 100) {
+    selectionReason = String(route.selectionReason).trim();
+  } else {
+    const targetName = String(r.selectedTarget || (route && route.targetDisplay) || '').trim();
+    const preGen = targetName ? loadPreGeneratedContent(targetName) : null;
+    if (preGen && preGen.content && preGen.content.selectionReason
+        && preGen.content.selectionReason.length >= 300) {
+      selectionReason = preGen.content.selectionReason;
+    }
+  }
+  if (!selectionReason) {
+    selectionReason = String(sanitizedTargetSelectionReason(r, route)).trim();
+  }
   const candidates = Array.isArray(r.candidates) && r.candidates.length
     ? '\n\n候选靶点评估：\n' + r.candidates.slice(0, 8).map((item, idx) => {
       const gene = item.gene ? ' / ' + item.gene : '';
