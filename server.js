@@ -11196,7 +11196,7 @@ function buildRoute3DMeta(profile, idx, file, ipTm, preset) {
       : (preset && preset.visualSummary ? preset.visualSummary : (profile && profile.structurePrepZh) || ''),
     structuralBasis: preset && preset.structuralBasis ? preset.structuralBasis : ((profile && profile.structuralBasis) || (target + ' 抗原-抗体结合构象展示')),
     interfaceDetail: !(preset && preset.interfaceDetail === false),
-    antigenChains: nearestAntigenChain(chainInfo.antigen, chainInfo.antibody, filename),
+    antigenChains: nearestAntigenChain(chainInfo.antigen, chainInfo.antibody, file),
     antibodyChains: chainInfo.antibody,
     sourceAntigenChains: chainInfo.sourceAntigen,
     sourceAntibodyChains: chainInfo.sourceAntibody,
