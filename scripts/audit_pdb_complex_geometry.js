@@ -39,7 +39,7 @@ function usage() {
     '  --apply-fixes                     Write planned fixes. Implies --plan-fixes and creates backups.',
     '  --backup-dir <dir>                Backup directory for --apply-fixes.',
     '  --no-catalog                      Do not use project catalog/index metadata.',
-    '  --no-progress                     Suppress progress output.',
+    '  --no-progress                     Suppress progress and remaining-time output.',
     '  --fail-on-problems                Exit non-zero if problem files remain.',
     '  --threshold-min-contact-pairs <n> Override contact-pair threshold.',
     '  --threshold-min-near-pairs <n>    Override near-pair threshold.',
@@ -134,6 +134,36 @@ function parseArgs(argv) {
 
 function timestampForPath() {
   return new Date().toISOString().replace(/[-:]/g, '').replace(/\..+$/, '').replace('T', '-');
+}
+
+function formatDurationMs(durationMs) {
+  if (!Number.isFinite(durationMs) || durationMs < 0) return 'calculating';
+  const totalSeconds = Math.max(0, Math.round(durationMs / 1000));
+  const seconds = totalSeconds % 60;
+  const totalMinutes = Math.floor(totalSeconds / 60);
+  const minutes = totalMinutes % 60;
+  const hours = Math.floor(totalMinutes / 60);
+  const secondsText = String(seconds).padStart(2, '0') + 's';
+  const minutesText = String(minutes).padStart(2, '0') + 'm';
+  if (hours > 0) return hours + 'h ' + minutesText + ' ' + secondsText;
+  return minutes + 'm ' + secondsText;
+}
+
+function renderProgressLine(input) {
+  const processed = Math.max(0, Number(input && input.processed) || 0);
+  const total = Math.max(0, Number(input && input.total) || 0);
+  const problemCount = Math.max(0, Number(input && input.problemCount) || 0);
+  const startedAtMs = Number(input && input.startedAtMs);
+  const nowMs = Number(input && input.nowMs);
+  const elapsedMs = Number.isFinite(startedAtMs) && Number.isFinite(nowMs) ? Math.max(0, nowMs - startedAtMs) : NaN;
+  const remainingMs = processed > 0 && total > processed && Number.isFinite(elapsedMs)
+    ? elapsedMs / processed * (total - processed)
+    : (total > processed ? NaN : 0);
+  const percent = total > 0 ? (processed / total * 100).toFixed(1) : '100.0';
+  return 'Scanned ' + processed + '/' + total + ' (' + percent + '%)' +
+    ', elapsed: ' + formatDurationMs(elapsedMs) +
+    ', remaining: ' + formatDurationMs(remainingMs) +
+    ', problems: ' + problemCount;
 }
 
 function ensureParent(filePath) {
@@ -480,6 +510,7 @@ function main() {
   if (options.applyFixes) fs.mkdirSync(options.backupDir, { recursive: true });
 
   const startedAt = new Date().toISOString();
+  const startedAtMs = Date.now();
   const rows = [];
   const problems = [];
   const stats = {
@@ -514,8 +545,13 @@ function main() {
     }
 
     if (options.progress && (index + 1) % 1000 === 0) {
-      const percent = ((index + 1) / matchingFiles.length * 100).toFixed(1);
-      process.stdout.write('\rScanned ' + (index + 1) + '/' + matchingFiles.length + ' (' + percent + '%), problems: ' + problems.length);
+      process.stdout.write('\r' + renderProgressLine({
+        processed: index + 1,
+        total: matchingFiles.length,
+        problemCount: problems.length,
+        startedAtMs,
+        nowMs: Date.now()
+      }));
     }
   }
   if (options.progress && matchingFiles.length >= 1000) console.log('');
@@ -577,5 +613,7 @@ module.exports = {
   loadProjectMetadata,
   metadataForFile,
   focusMatches,
+  formatDurationMs,
+  renderProgressLine,
   analyzeFile
 };

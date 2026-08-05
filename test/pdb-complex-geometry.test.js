@@ -12,6 +12,10 @@ const {
   createAntibodyTranslationPlan,
   applyAntibodyTranslation
 } = require('../lib/pdb-complex-geometry');
+const {
+  formatDurationMs,
+  renderProgressLine
+} = require('../scripts/audit_pdb_complex_geometry');
 
 function atomLine(serial, atom, residue, chain, resSeq, x, y, z, element = 'C') {
   return 'ATOM  ' +
@@ -130,6 +134,24 @@ test('translation planning refuses to change already acceptable geometry', () =>
   const plan = createAntibodyTranslationPlan(analysis, { targetMinDistance: 2.4 });
   assert.equal(plan.ok, false);
   assert.equal(plan.reason, 'not_fixable_status');
+});
+
+test('progress line estimates remaining scan time', () => {
+  assert.equal(formatDurationMs(15 * 60 * 1000), '15m 00s');
+  assert.equal(formatDurationMs((2 * 60 * 60 + 3 * 60 + 4) * 1000), '2h 03m 04s');
+
+  const line = renderProgressLine({
+    processed: 2500,
+    total: 10000,
+    problemCount: 12,
+    startedAtMs: 1_000_000,
+    nowMs: 1_300_000
+  });
+
+  assert.match(line, /Scanned 2500\/10000 \(25\.0%\)/);
+  assert.match(line, /elapsed: 5m 00s/);
+  assert.match(line, /remaining: 15m 00s/);
+  assert.match(line, /problems: 12/);
 });
 
 test('audit CLI writes report and dry-run fix plans without changing files', t => {
