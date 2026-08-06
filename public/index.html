@@ -5119,6 +5119,48 @@
         .kb-local-pdb-chain { padding: 2px 7px; border-radius: var(--radius-full); border: 1px solid var(--border); background: white; color: var(--text-secondary); font-size: 10px; font-weight: 700; }
         .kb-local-pdb-chain.ag { border-color: rgba(8,145,178,0.24); background: rgba(8,145,178,0.08); color: #0E7490; }
         .kb-local-pdb-chain.ab { border-color: rgba(251,113,133,0.26); background: rgba(251,113,133,0.08); color: #BE123C; }
+        /* PDB 浏览列表（分页检索全部本地结构） */
+        .pdb-browse { display: flex; flex-direction: column; gap: 10px; }
+        .pdb-browse-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; padding: 10px 12px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); }
+        .pdb-browse-filter { display: inline-flex; align-items: center; gap: 6px; }
+        .pdb-browse-label { font-size: 11px; font-weight: 700; color: var(--text-muted); white-space: nowrap; }
+        .pdb-browse-select { padding: 4px 8px; border: 1px solid var(--border); border-radius: var(--radius-md); background: white; font-size: 12px; color: var(--text-primary); cursor: pointer; }
+        .pdb-browse-select:focus { outline: none; border-color: var(--brand-light); }
+        .pdb-browse-refresh { margin-left: auto; display: inline-flex; align-items: center; gap: 5px; padding: 5px 11px; border: 1px solid var(--border); background: white; border-radius: var(--radius-md); font-size: 12px; font-weight: 600; color: var(--text-secondary); cursor: pointer; transition: var(--transition); }
+        .pdb-browse-refresh:hover { border-color: var(--brand-light); color: var(--brand); background: var(--brand-lighter); }
+        .pdb-browse-info { font-size: 12px; color: var(--text-muted); padding: 0 2px; }
+        .pdb-browse-list { display: flex; flex-direction: column; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; background: var(--bg-card); }
+        .pdb-row { display: grid; grid-template-columns: 48px minmax(0, 1fr) 150px 70px 78px; align-items: center; gap: 10px; padding: 8px 12px; border-bottom: 1px solid var(--border-light); transition: background 0.12s; }
+        .pdb-row:last-child { border-bottom: none; }
+        .pdb-row:hover { background: var(--bg-page); }
+        .pdb-row-idx { font-size: 11px; font-weight: 700; color: var(--text-muted); text-align: right; font-variant-numeric: tabular-nums; }
+        .pdb-row-main { min-width: 0; }
+        .pdb-row-name { font-size: 13px; font-weight: 600; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .pdb-row-path { font-size: 10px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 1px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+        .pdb-row-tags { display: flex; gap: 4px; flex-wrap: wrap; }
+        .pdb-row-tag { padding: 1px 6px; border-radius: var(--radius-full); font-size: 10px; font-weight: 700; border: 1px solid var(--border); background: white; color: var(--text-secondary); white-space: nowrap; }
+        .pdb-row-tag.fmt { border-color: rgba(251,113,133,0.26); background: rgba(251,113,133,0.08); color: #BE123C; }
+        .pdb-row-tag.gene { border-color: rgba(8,145,178,0.24); background: rgba(8,145,178,0.08); color: #0E7490; }
+        .pdb-row-tag.dir { border-color: var(--border); background: var(--bg-page); color: var(--text-muted); }
+        .pdb-row-meta { font-size: 11px; color: var(--text-secondary); text-align: right; font-variant-numeric: tabular-nums; }
+        .pdb-row-action { display: flex; justify-content: flex-end; }
+        .pdb-row-btn { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border: 1px solid var(--brand); background: var(--brand); color: white; border-radius: var(--radius-md); font-size: 12px; font-weight: 600; cursor: pointer; transition: var(--transition); white-space: nowrap; }
+        .pdb-row-btn:hover { background: var(--brand-dark); border-color: var(--brand-dark); }
+        .pdb-pager { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; padding: 10px 4px; }
+        .pdb-pager-pages { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+        .pdb-page-btn { min-width: 30px; height: 30px; padding: 0 8px; border: 1px solid var(--border); background: white; color: var(--text-secondary); border-radius: var(--radius-md); font-size: 12px; font-weight: 600; cursor: pointer; transition: var(--transition); }
+        .pdb-page-btn:hover:not(.disabled):not(.active) { border-color: var(--brand-light); color: var(--brand); background: var(--brand-lighter); }
+        .pdb-page-btn.active { background: var(--brand); color: white; border-color: var(--brand); cursor: default; }
+        .pdb-page-btn.disabled { opacity: 0.4; cursor: not-allowed; }
+        .pdb-page-ellipsis { padding: 0 4px; color: var(--text-muted); font-size: 12px; }
+        .pdb-pager-jump { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-muted); }
+        .pdb-pager-input { width: 64px; padding: 4px 8px; border: 1px solid var(--border); border-radius: var(--radius-md); font-size: 12px; text-align: center; }
+        .pdb-pager-input:focus { outline: none; border-color: var(--brand-light); }
+        @media (max-width: 720px) {
+            .pdb-row { grid-template-columns: 32px minmax(0, 1fr) 70px; }
+            .pdb-row-tags, .pdb-row-meta { display: none; }
+            .pdb-browse-refresh { margin-left: 0; }
+        }
         .kb-card-footer { display: flex; gap: 6px; padding-top: 8px; border-top: 1px solid var(--border); }
         .kb-card-action { display: flex; align-items: center; gap: 4px; padding: 5px 10px; border: 1px solid var(--border); background: transparent; border-radius: var(--radius-md); font-size: 12px; color: var(--text-secondary); cursor: pointer; transition: var(--transition); }
         .kb-card-action:hover { border-color: var(--brand-light); color: var(--brand); background: var(--brand-lighter); }
@@ -5772,7 +5814,7 @@
                             <span class="kb-history-count" id="kbScaffoldCount">32</span>
                         </button>
                         <button class="kb-history-entry" id="kbLocalPDBEntry" type="button" onclick="openLocalPDBLibrary()">
-                            <span class="kb-history-entry-main"><i data-lucide="box" style="width:13px;height:13px;"></i> 常见分子模型结构</span>
+                            <span class="kb-history-entry-main"><i data-lucide="box" style="width:13px;height:13px;"></i> 本地结构库</span>
                             <span class="kb-history-count" id="kbLocalPDBCount">--</span>
                         </button>
                         <div class="kb-structure-search-entry">
@@ -6680,7 +6722,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '69498403';
+    const APP_BUILD_VERSION = '69498404';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
     const SILICONFLOW_CHAT_FALLBACK_MODELS = ['Qwen/Qwen3-32B', 'Qwen/Qwen3-14B', 'Qwen/Qwen3-8B', 'deepseek-ai/DeepSeek-V3'];
@@ -7278,6 +7320,20 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     let kbLocalPDBLoaded = false;
     let kbLocalPDBLoading = false;
     let kbLocalPDBError = '';
+    // PDB 浏览（分页检索全部本地结构）
+    let kbPDBBrowseModels = [];
+    let kbPDBBrowsePage = 1;
+    let kbPDBBrowsePageSize = 50;
+    let kbPDBBrowseTotal = 0;
+    let kbPDBBrowseTotalPages = 1;
+    let kbPDBBrowseTotalAll = 0;
+    let kbPDBBrowseDir = 'all';
+    let kbPDBBrowseSort = 'name';
+    let kbPDBBrowseLoading = false;
+    let kbPDBBrowseError = '';
+    let kbPDBBrowseLastQuery = '__init__';
+    let kbPDBBrowseSearchTimer = null;
+    let kbPDBBrowseOpenIdx = -1;
     let kbScaffoldModels = [];
     let kbScaffoldLoaded = false;
     let kbScaffoldLoading = false;
@@ -7664,28 +7720,95 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
 
     function updateLocalPDBCount() {
         const countEl = document.getElementById('kbLocalPDBCount');
-        if (countEl) countEl.textContent = kbLocalPDBLoaded ? kbLocalPDBModels.length : (kbLocalPDBLoading ? '...' : '--');
+        if (countEl) countEl.textContent = kbPDBBrowseTotalAll ? (kbPDBBrowseTotalAll + '') : (kbPDBBrowseLoading ? '...' : '--');
     }
 
     async function loadLocalPDBModels() {
-        if (kbLocalPDBLoading) return;
-        kbLocalPDBLoading = true;
-        kbLocalPDBError = '';
+        await loadPDBBrowsePage();
+    }
+
+    async function loadPDBBrowsePage() {
+        if (kbPDBBrowseLoading) return;
+        kbPDBBrowseLoading = true;
+        kbPDBBrowseError = '';
         updateLocalPDBCount();
+        const grid = document.getElementById('kbDocsGrid');
+        if (grid && !kbPDBBrowseModels.length) {
+            grid.innerHTML = '<div class="kb-empty"><div class="kb-empty-icon">🔬</div><div style="font-size:15px;font-weight:600;color:var(--text-secondary);margin-bottom:6px;">正在扫描本地结构库</div><div style="font-size:13px;">首次加载需要遍历全部 PDB 文件，请稍候。</div></div>';
+        }
         try {
-            const resp = await fetch('/api/pdb/local-models');
+            const params = new URLSearchParams({
+                page: String(kbPDBBrowsePage),
+                pageSize: String(kbPDBBrowsePageSize),
+                dir: kbPDBBrowseDir,
+                sort: kbPDBBrowseSort
+            });
+            if (kbSearchQuery) params.set('q', kbSearchQuery);
+            const resp = await fetch('/api/pdb/local-models/browse?' + params.toString());
             if (!resp.ok) throw new Error('HTTP ' + resp.status);
             const data = await resp.json();
-            kbLocalPDBModels = Array.isArray(data.models) ? data.models : [];
+            kbPDBBrowseModels = Array.isArray(data.models) ? data.models : [];
+            kbPDBBrowseTotal = data.total || 0;
+            kbPDBBrowseTotalPages = data.totalPages || 1;
+            kbPDBBrowseTotalAll = data.totalAll || 0;
+            if (kbPDBBrowsePage > kbPDBBrowseTotalPages) kbPDBBrowsePage = kbPDBBrowseTotalPages || 1;
             kbLocalPDBLoaded = true;
         } catch (err) {
-            kbLocalPDBError = '暂时无法读取常见分子模型结构。';
-            kbLocalPDBModels = [];
+            kbPDBBrowseError = '暂时无法读取本地结构库。';
+            kbPDBBrowseModels = [];
         } finally {
-            kbLocalPDBLoading = false;
+            kbPDBBrowseLoading = false;
             updateLocalPDBCount();
             if (kbCurrentProject === 'local-pdb') renderLocalPDBLibrary();
         }
+    }
+
+    function pdbBrowseDirLabel(dir) {
+        const map = {
+            'all': '全部目录',
+            'root': '顶层结构',
+            'expanded': '扩展基因库',
+            'antigen-display-pose': '抗原展示构象',
+            'antigen-only-sweep': '抗原单体扫描',
+            'pregenerated-content': '预生成内容'
+        };
+        return map[dir] || dir;
+    }
+
+    function pdbBrowseSearch(val) {
+        if (kbPDBBrowseSearchTimer) clearTimeout(kbPDBBrowseSearchTimer);
+        kbPDBBrowseSearchTimer = setTimeout(() => {
+            kbSearchQuery = val;
+            kbPDBBrowsePage = 1;
+            kbPDBBrowseLastQuery = val;
+            loadPDBBrowsePage();
+        }, 280);
+    }
+
+    function pdbBrowseSetDir(dir) {
+        kbPDBBrowseDir = dir;
+        kbPDBBrowsePage = 1;
+        loadPDBBrowsePage();
+    }
+
+    function pdbBrowseSetSort(sort) {
+        kbPDBBrowseSort = sort;
+        loadPDBBrowsePage();
+    }
+
+    function pdbBrowseGoToPage(page) {
+        const p = Math.max(1, Math.min(kbPDBBrowseTotalPages, parseInt(page, 10) || 1));
+        if (p === kbPDBBrowsePage) return;
+        kbPDBBrowsePage = p;
+        loadPDBBrowsePage();
+    }
+
+    function pdbBrowseSetPageSize(size) {
+        const newSize = Math.min(200, Math.max(10, parseInt(size, 10) || 50));
+        if (newSize === kbPDBBrowsePageSize) return;
+        kbPDBBrowsePageSize = newSize;
+        kbPDBBrowsePage = 1;
+        loadPDBBrowsePage();
     }
 
     function localPDBChainsHtml(model) {
@@ -7701,16 +7824,19 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     function buildLocalPDBModelFrameUrl(model) {
         model = model || {};
         const filename = String(model.filename || '').replace(/\.pdb$/i, '') + '.pdb';
-        const antigenChains = (Array.isArray(model.antigenChains) && model.antigenChains.length ? model.antigenChains : ['A']).slice(0, 1);
+        // 浏览模型携带后端返回的 url（已正确处理 expanded/ scaffolds/ 前缀）
+        const antigenChains = (Array.isArray(model.antigenChains) && model.antigenChains.length ? model.antigenChains : []).slice(0, 1);
         const antibodyChains = Array.isArray(model.antibodyChains) ? model.antibodyChains : [];
-        const pdbUrl = '/api/pdb/local/' + encodeURIComponent(filename) + '?chains=' + encodeURIComponent([...new Set([...antigenChains, ...antibodyChains])].join(','));
+        const visibleChains = [...new Set([...antigenChains, ...antibodyChains])];
+        const basePdbUrl = model.url || ('/api/pdb/local/' + encodeURIComponent(filename));
+        const pdbUrl = visibleChains.length ? (basePdbUrl + '?chains=' + encodeURIComponent(visibleChains.join(','))) : basePdbUrl;
         let url = '/viewer-full.html?pdb=' + encodeURIComponent(pdbUrl);
         url += '&chainA=' + encodeURIComponent('#0891B2');
         url += '&chainB=' + encodeURIComponent('#FB7185');
-        url += '&antigenChains=' + encodeURIComponent(antigenChains.join(','));
-        url += '&antibodyChains=' + encodeURIComponent(antibodyChains.join(','));
-        url += '&antigenLabel=' + encodeURIComponent('抗原');
-        url += '&antibodyLabel=' + encodeURIComponent('抗体');
+        if (antigenChains.length) url += '&antigenChains=' + encodeURIComponent(antigenChains.join(','));
+        if (antibodyChains.length) url += '&antibodyChains=' + encodeURIComponent(antibodyChains.join(','));
+        if (antigenChains.length) url += '&antigenLabel=' + encodeURIComponent('抗原');
+        if (antibodyChains.length) url += '&antibodyLabel=' + encodeURIComponent('抗体');
         url += '&poseSeed=' + encodeURIComponent(String(stableViewerPoseSeed(filename)));
         url += '&modelOrigin=local';
         url += '&autoSpin=1';
@@ -7721,67 +7847,170 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     function renderLocalPDBLibrary() {
         const grid = document.getElementById('kbDocsGrid');
         if (!grid) return;
-        if (!kbLocalPDBLoaded && !kbLocalPDBLoading) loadLocalPDBModels();
+        if (!kbLocalPDBLoaded && !kbPDBBrowseLoading) loadPDBBrowsePage();
         updateLocalPDBCount();
-        const q = kbSearchQuery.toLowerCase();
-        const models = kbLocalPDBModels.filter(model => {
-            if (kbCurrentType !== 'all' && kbCurrentType !== 'pdb') return false;
-            const haystack = [
-                model.name || '',
-                model.filename || '',
-                model.targetDisplay || '',
-                model.structureKind || '',
-                model.structureBrief || '',
-                model.structureFamily || '',
-                Array.isArray(model.antigenChains) ? model.antigenChains.join(',') : '',
-                Array.isArray(model.antibodyChains) ? model.antibodyChains.join(',') : ''
-            ].join(' ').toLowerCase();
-            return !q || haystack.includes(q);
-        });
-        renderKBStats(models.length, '个结构', [['本地结构', kbLocalPDBModels.length + ' 个'], ['展示信息', '靶点 / 抗原抗体']]);
-        if (kbLocalPDBLoading && !kbLocalPDBLoaded) {
-            grid.innerHTML = '<div class="kb-empty"><div class="kb-empty-icon">🔬</div><div style="font-size:15px;font-weight:600;color:var(--text-secondary);margin-bottom:6px;">正在读取常见分子模型结构</div><div style="font-size:13px;">请稍候，结构库会自动加载。</div></div>';
+
+        const totalAllLabel = kbPDBBrowseTotalAll ? (kbPDBBrowseTotalAll.toLocaleString('en-US')) : '--';
+        const shownLabel = (kbPDBBrowseTotal || 0).toLocaleString('en-US');
+        renderKBStats(shownLabel, '个结构', [
+            ['本地全部', totalAllLabel + ' 个'],
+            ['当前筛选', shownLabel + ' 个'],
+            ['目录', pdbBrowseDirLabel(kbPDBBrowseDir)]
+        ]);
+
+        if (kbPDBBrowseLoading && !kbPDBBrowseModels.length) {
+            grid.innerHTML = '<div class="kb-empty"><div class="kb-empty-icon">🔬</div><div style="font-size:15px;font-weight:600;color:var(--text-secondary);margin-bottom:6px;">正在扫描本地结构库</div><div style="font-size:13px;">首次加载需要遍历全部 PDB 文件，请稍候。</div></div>';
             return;
         }
-        if (kbLocalPDBError) {
-            grid.innerHTML = '<div class="kb-empty"><div class="kb-empty-icon">⚠️</div><div style="font-size:15px;font-weight:600;color:var(--text-secondary);margin-bottom:6px;">读取失败</div><div style="font-size:13px;">' + escHtml(kbLocalPDBError) + '</div></div>';
+        if (kbPDBBrowseError) {
+            grid.innerHTML = '<div class="kb-empty"><div class="kb-empty-icon">⚠️</div><div style="font-size:15px;font-weight:600;color:var(--text-secondary);margin-bottom:6px;">读取失败</div><div style="font-size:13px;">' + escHtml(kbPDBBrowseError) + '</div></div>';
             return;
         }
-        if (!models.length) {
-            grid.innerHTML = '<div class="kb-empty"><div class="kb-empty-icon">🔍</div><div style="font-size:15px;font-weight:600;color:var(--text-secondary);margin-bottom:6px;">未找到匹配结构</div><div style="font-size:13px;">尝试调整搜索词或切回 PDB/全部筛选。</div></div>';
+        if (!kbPDBBrowseModels.length) {
+            grid.innerHTML = '<div class="kb-empty"><div class="kb-empty-icon">🔍</div><div style="font-size:15px;font-weight:600;color:var(--text-secondary);margin-bottom:6px;">未找到匹配结构</div><div style="font-size:13px;">尝试调整搜索词或目录筛选。</div></div>';
             return;
         }
-        grid.innerHTML = models.map(model => {
-            const targetType = [model.targetDisplay || '靶点待确认', model.structureKind || '抗原-抗体结构'].filter(Boolean).join(' · ');
-            const brief = model.structureBrief || targetType || '常见 PDB 结构预设，可直接打开 3D viewer 检查抗原、抗体链集合与显示构象。';
+
+        // 顶部工具条：目录筛选 + 排序 + 每页数量 + 刷新
+        const dirOptions = ['all', 'root', 'expanded', 'antigen-display-pose', 'antigen-only-sweep', 'pregenerated-content'];
+        const startIdx = (kbPDBBrowsePage - 1) * kbPDBBrowsePageSize + 1;
+        const endIdx = Math.min(kbPDBBrowseTotal, startIdx + kbPDBBrowseModels.length - 1);
+
+        const rowsHtml = kbPDBBrowseModels.map((model, i) => {
+            const idx = startIdx + i;
+            const tags = [];
+            if (model.format) tags.push('<span class="pdb-row-tag fmt">' + escHtml(model.format) + '</span>');
+            if (model.gene) tags.push('<span class="pdb-row-tag gene">' + escHtml(model.gene) + '</span>');
+            tags.push('<span class="pdb-row-tag dir">' + escHtml(pdbBrowseDirLabel(model.dir)) + '</span>');
             return `
-            <div class="kb-card kb-local-pdb-card">
-                <div class="kb-card-header">
-                    <div class="kb-card-icon type-pdb">🔬</div>
-                    <div class="kb-card-body">
-                        <div class="kb-card-name">${escHtml(model.name || model.filename || '本地结构')}</div>
-                        <div class="kb-card-meta">${escHtml(model.filename || '')}</div>
-                        <div class="kb-card-summary">${escHtml(brief)}</div>
-                    </div>
+            <div class="pdb-row" data-key="${escAttr(model.key)}">
+                <div class="pdb-row-idx">${idx}</div>
+                <div class="pdb-row-main">
+                    <div class="pdb-row-name" title="${escAttr(model.filename)}">${escHtml(model.name)}</div>
+                    <div class="pdb-row-path">${escHtml(model.filename)}</div>
                 </div>
-                <div class="kb-local-pdb-metrics">
-                    <div class="kb-local-pdb-metric"><span>靶点 / 类型</span><strong>${escHtml(targetType)}</strong></div>
-                    <div class="kb-local-pdb-metric"><span>更新时间</span><strong>${escHtml(formatLocalPDBTime(model.updatedAt))}</strong></div>
+                <div class="pdb-row-tags">${tags.join('')}</div>
+                <div class="pdb-row-meta">
+                    <span>${escHtml(model.sizeLabel || '--')}</span>
                 </div>
-                <div class="kb-local-pdb-chains">${localPDBChainsHtml(model)}</div>
-                <div class="kb-card-tags">
-                    <span class="kb-card-tag">PDB</span>
-                    <span class="kb-card-tag">常见结构</span>
-                    ${model.antibodyFormat ? `<span class="kb-card-tag">${escHtml(model.antibodyFormat)}</span>` : ''}
-                </div>
-                <div class="kb-card-footer" onclick="event.stopPropagation()">
-                    <button class="kb-card-action primary" onclick="openLocalPDBModel('${escJsString(model.filename || '')}')">
-                        <i data-lucide="box" style="width:12px;height:12px;"></i> 查看结构
+                <div class="pdb-row-action">
+                    <button class="pdb-row-btn" onclick="openLocalPDBModel(${i})">
+                        <i data-lucide="box" style="width:12px;height:12px;"></i> 查看
                     </button>
                 </div>
+            </div>`;
+        }).join('');
+
+        grid.innerHTML = `
+            <div class="pdb-browse">
+                <div class="pdb-browse-toolbar">
+                    <div class="pdb-browse-filter">
+                        <span class="pdb-browse-label">目录</span>
+                        <select class="pdb-browse-select" onchange="pdbBrowseSetDir(this.value)">
+                            ${dirOptions.map(d => '<option value="' + escAttr(d) + '"' + (d === kbPDBBrowseDir ? ' selected' : '') + '>' + escHtml(pdbBrowseDirLabel(d)) + '</option>').join('')}
+                        </select>
+                    </div>
+                    <div class="pdb-browse-filter">
+                        <span class="pdb-browse-label">排序</span>
+                        <select class="pdb-browse-select" onchange="pdbBrowseSetSort(this.value)">
+                            <option value="name"${kbPDBBrowseSort === 'name' ? ' selected' : ''}>文件名</option>
+                            <option value="date"${kbPDBBrowseSort === 'date' ? ' selected' : ''}>更新时间</option>
+                            <option value="size"${kbPDBBrowseSort === 'size' ? ' selected' : ''}>文件大小</option>
+                        </select>
+                    </div>
+                    <div class="pdb-browse-filter">
+                        <span class="pdb-browse-label">每页</span>
+                        <select class="pdb-browse-select" onchange="pdbBrowseSetPageSize(this.value)">
+                            ${[50, 100, 200].map(n => '<option value="' + n + '"' + (n === kbPDBBrowsePageSize ? ' selected' : '') + '>' + n + '</option>').join('')}
+                        </select>
+                    </div>
+                    <button class="pdb-browse-refresh" onclick="loadPDBBrowseRefresh()" title="重新扫描目录">
+                        <i data-lucide="refresh-cw" style="width:12px;height:12px;"></i> 重新扫描
+                    </button>
+                </div>
+                <div class="pdb-browse-info">
+                    第 ${startIdx}-${endIdx} 条，共 ${shownLabel} 条结果（本地全部 ${totalAllLabel} 个结构）
+                </div>
+                <div class="pdb-browse-list">${rowsHtml}</div>
+                ${renderPDBBrowsePager()}
             </div>
-        `; }).join('');
+        `;
         refreshLucideIcons();
+    }
+
+    function renderPDBBrowsePager() {
+        const page = kbPDBBrowsePage;
+        const total = kbPDBBrowseTotalPages;
+        if (total <= 1) return '<div class="pdb-pager"></div>';
+
+        // 生成页码窗口
+        const pageItems = [];
+        const window = 2;
+        const addPage = (p, label, opts) => {
+            pageItems.push({ p, label: label || String(p), ...opts });
+        };
+        addPage(page - 1, '‹', { disabled: page <= 1, aria: '上一页' });
+        const ranges = new Set([1, total, page]);
+        for (let d = 1; d <= window; d++) { ranges.add(page - d); ranges.add(page + d); }
+        const sorted = [...ranges].filter(p => p >= 1 && p <= total).sort((a, b) => a - b);
+        let prev = 0;
+        for (const p of sorted) {
+            if (p - prev > 1) pageItems.push({ ellipsis: true });
+            if (p !== prev) addPage(p);
+            prev = p;
+        }
+        addPage(page + 1, '›', { disabled: page >= total, aria: '下一页' });
+
+        const html = pageItems.map(item => {
+            if (item.ellipsis) return '<span class="pdb-page-ellipsis">…</span>';
+            const cls = ['pdb-page-btn'];
+            if (item.p === page) cls.push('active');
+            if (item.disabled) cls.push('disabled');
+            const onclick = item.disabled ? '' : ('onclick="pdbBrowseGoToPage(' + item.p + ')"');
+            return '<button class="' + cls.join(' ') + '" ' + onclick + (item.aria ? ('aria-label="' + escAttr(item.aria) + '"') : '') + '>' + escHtml(item.label) + '</button>';
+        }).join('');
+
+        return `
+            <div class="pdb-pager">
+                <div class="pdb-pager-pages">${html}</div>
+                <div class="pdb-pager-jump">
+                    <span>跳至</span>
+                    <input type="number" class="pdb-pager-input" min="1" max="${total}" value="${page}" onkeydown="if(event.key==='Enter'){pdbBrowseGoToPage(this.value);}" />
+                    <span>/ ${total} 页</span>
+                </div>
+            </div>
+        `;
+    }
+
+    async function loadPDBBrowseRefresh() {
+        kbPDBBrowsePage = 1;
+        kbPDBBrowseLoading = true;
+        updateLocalPDBCount();
+        const grid = document.getElementById('kbDocsGrid');
+        if (grid) grid.innerHTML = '<div class="kb-empty"><div class="kb-empty-icon">🔬</div><div style="font-size:15px;font-weight:600;color:var(--text-secondary);margin-bottom:6px;">正在重新扫描本地结构库</div><div style="font-size:13px;">请稍候。</div></div>';
+        try {
+            const params = new URLSearchParams({
+                page: String(kbPDBBrowsePage),
+                pageSize: String(kbPDBBrowsePageSize),
+                dir: kbPDBBrowseDir,
+                sort: kbPDBBrowseSort,
+                refresh: '1'
+            });
+            if (kbSearchQuery) params.set('q', kbSearchQuery);
+            const resp = await fetch('/api/pdb/local-models/browse?' + params.toString());
+            const data = await resp.json();
+            kbPDBBrowseModels = Array.isArray(data.models) ? data.models : [];
+            kbPDBBrowseTotal = data.total || 0;
+            kbPDBBrowseTotalPages = data.totalPages || 1;
+            kbPDBBrowseTotalAll = data.totalAll || 0;
+            kbLocalPDBLoaded = true;
+        } catch (err) {
+            kbPDBBrowseError = '重新扫描失败。';
+        } finally {
+            kbPDBBrowseLoading = false;
+            updateLocalPDBCount();
+            if (kbCurrentProject === 'local-pdb') renderLocalPDBLibrary();
+        }
     }
 
     function openLocalPDBLibrary() {
@@ -7797,8 +8026,15 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         renderLocalPDBLibrary();
     }
 
-    function openLocalPDBModel(filename) {
-        const model = kbLocalPDBModels.find(item => item && item.filename === filename);
+    function openLocalPDBModel(identifier) {
+        // 支持索引（浏览列表）或文件名/key（兼容旧调用）
+        let model = null;
+        if (typeof identifier === 'number' && identifier >= 0 && identifier < kbPDBBrowseModels.length) {
+            model = kbPDBBrowseModels[identifier];
+        } else if (typeof identifier === 'string') {
+            model = kbPDBBrowseModels.find(item => item && (item.key === identifier || item.filename === identifier));
+            if (!model) model = kbLocalPDBModels.find(item => item && item.filename === identifier);
+        }
         if (!model) {
             showToast('未找到本地结构', 'error');
             return;
@@ -7809,7 +8045,8 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (!overlay || !bodyEl) return;
         const displayTitle = model.name || model.filename || '常见分子模型结构';
         const subtitleParts = [
-            model.targetDisplay || '',
+            model.target || model.targetDisplay || '',
+            model.format || model.antibodyFormat || '',
             model.structureKind || '',
             model.filename || '',
             Array.isArray(model.antigenChains) && model.antigenChains.length ? 'Ag ' + model.antigenChains.join(',') : '',
@@ -8050,6 +8287,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         if (kbCurrentProject === 'history') {
             kbCurrentProject = 'all';
             setKBHistoryMode(false);
+        }
+        if (kbCurrentProject === 'local-pdb') {
+            pdbBrowseSearch(val);
+            return;
         }
         kbRender();
     }
@@ -18685,6 +18926,15 @@ ${fallbackTableRows(profile.rows)}
         const d = document.createElement('div');
         d.textContent = s;
         return d.innerHTML;
+    }
+
+    function escAttr(s) {
+        return String(s == null ? '' : s)
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
     }
 
     function renderMarkdown(md) {

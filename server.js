@@ -12366,6 +12366,212 @@ function listLocalPDBFiles() {
   return files;
 }
 
+// ─── Local PDB library browser (recursive, cached, paginated) ───
+// 扫描整个 pdb/ 目录（含 expanded/ 等子目录），支持分页检索全部本地结构。
+const PDB_BROWSE_SCAN_DIRS = ['', 'expanded', 'antigen-display-pose', 'antigen-only-sweep', 'pregenerated-content'];
+let pdbBrowseCache = null; // { entries, totalBytes, scannedAt, pdbDirMtimeMs }
+
+function classifyPDBBrowseDir(relDir) {
+  const top = String(relDir || '').split('/')[0];
+  if (!top) return 'root';
+  if (top === 'expanded') return 'expanded';
+  if (top === 'scaffolds') return 'scaffolds';
+  if (top === 'antigen-display-pose') return 'antigen-display-pose';
+  if (top === 'antigen-only-sweep') return 'antigen-only-sweep';
+  if (top === 'pregenerated-content') return 'pregenerated-content';
+  return top;
+}
+
+// 为浏览模型生成可直接访问的 PDB URL：
+// - expanded/GENE/FILE.pdb → /api/pdb/local/expanded/GENE/FILE.pdb（已有专门路由）
+// - 其他子目录 → /api/pdb/local-path/<逐段>（通用子目录路由）
+// - 顶层 → /api/pdb/local/FILE.pdb
+function browseModelUrl(rel) {
+  const safe = String(rel || '');
+  if (!safe.includes('/')) return '/api/pdb/local/' + encodeURIComponent(safe);
+  if (safe.startsWith('expanded/')) return localPDBPublicUrl(safe);
+  return '/api/pdb/local-path/' + safe.split('/').map(encodeURIComponent).join('/');
+}
+
+function parsePDBBrowseFilename(filename) {
+  const safe = String(filename || '').replace(/\.pdb$/i, '');
+  const m = safe.match(/^(.+?)-(Fab|VHH|scFv|Fv|Nb|VHHB|VHHb|IgG)-?(\d*)$/i);
+  if (m) {
+    const fmt = String(m[2] || '').toUpperCase();
+    return { target: m[1], format: fmt === 'NB' ? 'VHH' : fmt, index: m[3] || '' };
+  }
+  return { target: safe, format: '', index: '' };
+}
+
+function scanAllLocalPDBFiles(force) {
+  const now = Date.now();
+  let pdbDirMtimeMs = 0;
+  try {
+    pdbDirMtimeMs = fs.statSync(LOCAL_PDB_DIR).mtimeMs;
+  } catch {}
+  if (!force && pdbBrowseCache && (now - pdbBrowseCache.scannedAt) < 5 * 60 * 1000 && pdbBrowseCache.pdbDirMtimeMs === pdbDirMtimeMs) {
+    return pdbBrowseCache;
+  }
+  const entries = [];
+  let totalBytes = 0;
+
+  // 顶层 pdb/*.pdb
+  if (fs.existsSync(LOCAL_PDB_DIR)) {
+    for (const name of fs.readdirSync(LOCAL_PDB_DIR)) {
+      if (!/\.pdb$/i.test(name)) continue;
+      const fp = path.join(LOCAL_PDB_DIR, name);
+      let st;
+      try { st = fs.statSync(fp); } catch { continue; }
+      if (!st.isFile()) continue;
+      totalBytes += st.size;
+      entries.push({
+        key: name,
+        filename: name,
+        name: name.replace(/\.pdb$/i, ''),
+        dir: 'root',
+        gene: '',
+        sizeBytes: st.size,
+        mtimeMs: st.mtimeMs,
+        url: '/api/pdb/local/' + encodeURIComponent(name)
+      });
+    }
+  }
+
+  // 子目录递归（expanded/ 下基因目录 + 其他扁平子目录）
+  for (const sub of PDB_BROWSE_SCAN_DIRS) {
+    if (!sub) continue;
+    const subDir = path.join(LOCAL_PDB_DIR, sub);
+    if (!fs.existsSync(subDir)) continue;
+    let dirStat;
+    try { dirStat = fs.statSync(subDir); } catch { continue; }
+    if (!dirStat.isDirectory()) continue;
+    const stack = [subDir];
+    while (stack.length) {
+      const current = stack.pop();
+      let names;
+      try { names = fs.readdirSync(current); } catch { continue; }
+      for (const name of names) {
+        const child = path.join(current, name);
+        let st;
+        try { st = fs.statSync(child); } catch { continue; }
+        if (st.isDirectory()) {
+          stack.push(child);
+          continue;
+        }
+        if (!/\.pdb$/i.test(name)) continue;
+        const rel = path.relative(LOCAL_PDB_DIR, child).split(path.sep).join('/');
+        const dirClass = classifyPDBBrowseDir(rel);
+        // 跳过 scaffolds（骨架库有独立入口，且文件名规则不同）
+        if (dirClass === 'scaffolds') continue;
+        const parts = rel.split('/');
+        const gene = (dirClass === 'expanded' && parts.length >= 2) ? parts[parts.length - 2] : '';
+        totalBytes += st.size;
+        entries.push({
+          key: rel,
+          filename: rel,
+          name: name.replace(/\.pdb$/i, ''),
+          dir: dirClass,
+          gene,
+          sizeBytes: st.size,
+          mtimeMs: st.mtimeMs,
+          url: browseModelUrl(rel)
+        });
+      }
+    }
+  }
+
+  // 排序：按目录分组 → target → format → index，保持稳定可翻页
+  entries.sort((a, b) => {
+    const dirOrder = { root: 0, expanded: 1, 'antigen-display-pose': 2, 'antigen-only-sweep': 3, 'pregenerated-content': 4 };
+    const da = dirOrder[a.dir] != null ? dirOrder[a.dir] : 9;
+    const db = dirOrder[b.dir] != null ? dirOrder[b.dir] : 9;
+    if (da !== db) return da - db;
+    if (a.gene && b.gene && a.gene !== b.gene) return a.gene.localeCompare(b.gene);
+    return a.name.localeCompare(b.name, undefined, { numeric: true });
+  });
+
+  pdbBrowseCache = { entries, totalBytes, scannedAt: now, pdbDirMtimeMs, count: entries.length };
+  return pdbBrowseCache;
+}
+
+function browseLocalPDBLibrary(options) {
+  const opts = options || {};
+  const page = Math.max(1, parseInt(opts.page, 10) || 1);
+  const pageSize = Math.min(200, Math.max(10, parseInt(opts.pageSize, 10) || 50));
+  const q = String(opts.q || '').trim().toLowerCase();
+  const dir = String(opts.dir || '').trim();
+  const sort = String(opts.sort || 'name');
+  const cache = scanAllLocalPDBFiles(opts.force === true);
+
+  let filtered = cache.entries;
+  if (dir && dir !== 'all') {
+    filtered = filtered.filter(e => e.dir === dir);
+  }
+  if (q) {
+    const normQ = q.replace(/[-_\s./]/g, '');
+    filtered = filtered.filter(e => {
+      const fields = [e.name, e.filename, e.gene, e.dir];
+      // 精确子串匹配（保留连字符）
+      if (fields.some(f => f && String(f).toLowerCase().includes(q))) return true;
+      // 归一化匹配（去连字符/分隔符，PD-L1 ↔ PDL1）
+      if (normQ && fields.some(f => f && String(f).toLowerCase().replace(/[-_\s./]/g, '').includes(normQ))) return true;
+      const parsed = parsePDBBrowseFilename(e.name);
+      if (parsed.target && parsed.target.toLowerCase().includes(q)) return true;
+      if (parsed.format && parsed.format.toLowerCase() === q) return true;
+      return false;
+    });
+  }
+
+  // 排序（复制后排序，避免污染缓存）
+  const sorted = filtered.slice();
+  if (sort === 'size') {
+    sorted.sort((a, b) => b.sizeBytes - a.sizeBytes);
+  } else if (sort === 'date') {
+    sorted.sort((a, b) => b.mtimeMs - a.mtimeMs);
+  } else {
+    sorted.sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }));
+  }
+
+  const total = sorted.length;
+  const totalPages = Math.max(1, Math.ceil(total / pageSize));
+  const safePage = Math.min(page, totalPages);
+  const start = (safePage - 1) * pageSize;
+  const pageEntries = sorted.slice(start, start + pageSize).map(e => {
+    const parsed = parsePDBBrowseFilename(e.name);
+    return {
+      key: e.key,
+      filename: e.filename,
+      name: e.name,
+      dir: e.dir,
+      gene: e.gene,
+      target: parsed.target,
+      format: parsed.format,
+      sizeBytes: e.sizeBytes,
+      sizeLabel: formatPDBBrowseSize(e.sizeBytes),
+      updatedAt: new Date(e.mtimeMs).toISOString(),
+      url: e.url
+    };
+  });
+
+  return {
+    total,
+    page: safePage,
+    pageSize,
+    totalPages,
+    totalAll: cache.count,
+    totalBytes: cache.totalBytes,
+    scannedAt: cache.scannedAt,
+    models: pageEntries
+  };
+}
+
+function formatPDBBrowseSize(bytes) {
+  const n = Number(bytes) || 0;
+  if (n < 1024) return n + ' B';
+  if (n < 1024 * 1024) return (n / 1024).toFixed(1) + ' KB';
+  return (n / (1024 * 1024)).toFixed(2) + ' MB';
+}
+
 function resolveLocalPDBAlias(filename) {
   const requested = String(filename || '');
   if (localPDBFileExists(requested)) return requested;
@@ -12830,6 +13036,24 @@ app.get('/api/pdb/local-models', (req, res) => {
   }
 });
 
+// 分页检索全部本地 PDB 结构（含 expanded/ 等子目录）
+app.get('/api/pdb/local-models/browse', (req, res) => {
+  try {
+    const result = browseLocalPDBLibrary({
+      page: req.query.page,
+      pageSize: req.query.pageSize,
+      q: req.query.q,
+      dir: req.query.dir,
+      sort: req.query.sort,
+      force: req.query.refresh === '1'
+    });
+    res.json({ ok: true, ...result });
+  } catch (err) {
+    console.error('[PDB] local model browse error:', err && err.message ? err.message : err);
+    res.status(500).json({ ok: false, error: 'Local PDB browse unavailable' });
+  }
+});
+
 app.get('/api/pdb/scaffolds', (req, res) => {
   try {
     const scaffoldDir = path.join(LOCAL_PDB_DIR, 'scaffolds');
@@ -12941,6 +13165,56 @@ app.get('/api/pdb/local/expanded/:gene/:filename', async (req, res) => {
     return res.send(projectPDBTextToChains(pdbText, requestedChains));
   } catch (err) {
     console.error('[PDB] expanded read error:', err && err.message ? err.message : err);
+    return res.status(500).json({ error: 'PDB read failed' });
+  }
+});
+
+// 通用子目录 PDB 访问（antigen-only-sweep/、antigen-display-pose/、pregenerated-content/ 等）
+// 路径形如 /api/pdb/local-path/<subdir>/<...>/<file>.pdb，逐段校验防穿越。
+app.get('/api/pdb/local-path/*', async (req, res) => {
+  const rawRel = String(req.params[0] || '');
+  let segments;
+  try {
+    segments = rawRel.split('/').map(s => decodeURIComponent(s));
+  } catch {
+    return res.status(400).json({ error: 'Invalid path encoding' });
+  }
+  if (!segments.length) return res.status(400).json({ error: 'Invalid path' });
+  // 每段防穿越 + 合法字符；最后一段必须是 .pdb
+  const segRe = /^[A-Za-z0-9][A-Za-z0-9_.-]*$/;
+  for (let i = 0; i < segments.length; i += 1) {
+    const seg = segments[i];
+    if (!seg || seg === '.' || seg === '..' || !segRe.test(seg)) {
+      return res.status(400).json({ error: 'Invalid path segment' });
+    }
+  }
+  if (!/\.pdb$/i.test(segments[segments.length - 1])) {
+    return res.status(400).json({ error: 'Not a PDB file' });
+  }
+  const fp = path.join(LOCAL_PDB_DIR, ...segments);
+  const rel = path.relative(LOCAL_PDB_DIR, fp);
+  if (rel.startsWith('..') || path.isAbsolute(rel)) {
+    return res.status(400).json({ error: 'Invalid path' });
+  }
+  if (!fs.existsSync(fp)) return res.status(404).json({ error: 'Not found' });
+  let stat;
+  try { stat = fs.statSync(fp); } catch { return res.status(404).json({ error: 'Not found' }); }
+  if (!stat.isFile()) return res.status(404).json({ error: 'Not found' });
+  const requestedChains = normalizeViewerPDBChains(req.query.chains);
+  const chainKey = requestedChains.join('');
+  const etag = `"pdb-path-${stat.size.toString(16)}-${Math.floor(stat.mtimeMs).toString(16)}-${chainKey || 'all'}"`;
+  res.setHeader('Content-Type', 'chemical/x-pdb; charset=utf-8');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Content-Disposition', 'inline; filename="' + segments[segments.length - 1] + '"');
+  res.setHeader('Cache-Control', 'public, max-age=86400, stale-while-revalidate=604800');
+  res.setHeader('ETag', etag);
+  res.setHeader('Last-Modified', stat.mtime.toUTCString());
+  if (req.headers['if-none-match'] === etag) return res.status(304).end();
+  try {
+    const pdbText = await fs.promises.readFile(fp, 'utf8');
+    return res.send(projectPDBTextToChains(pdbText, requestedChains));
+  } catch (err) {
+    console.error('[PDB] local-path read error:', err && err.message ? err.message : err);
     return res.status(500).json({ error: 'PDB read failed' });
   }
 });
