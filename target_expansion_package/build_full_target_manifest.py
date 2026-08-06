@@ -458,17 +458,19 @@ def main() -> int:
     ).collect()
 
     assoc_columns = set(association_scan.collect_schema().names())
-    if not {"targetId", "diseaseId", "score"}.issubset(assoc_columns):
+    # Open Targets renamed `score` to `associationScore` in recent releases; support both.
+    score_col = "associationScore" if "associationScore" in assoc_columns else "score"
+    if not {"targetId", "diseaseId", score_col}.issubset(assoc_columns):
         raise RuntimeError(
             "Open Targets association_overall_direct schema must include "
-            "targetId, diseaseId and score"
+            "targetId, diseaseId and a score column (associationScore or score)"
         )
 
     pairs = (
         association_scan.select(
             pl.col("targetId").alias("target_id"),
             pl.col("diseaseId").alias("disease_id"),
-            pl.col("score").cast(pl.Float64).alias("association_score"),
+            pl.col(score_col).cast(pl.Float64).alias("association_score"),
         )
         .filter(pl.col("association_score") > args.min_score)
         .join(target_meta_df.lazy(), on="target_id", how="inner")
