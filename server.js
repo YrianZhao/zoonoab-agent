@@ -2022,7 +2022,7 @@ function normalizeChatEndpoint(rawUrl, wireApi = 'chat_completions') {
 }
 
 function isCompositeChatConfig(chat) {
-  return Boolean(chat && typeof chat === 'object' && (chat.primary || chat.fallback || chat.mode));
+  return Boolean(chat && typeof chat === 'object' && (chat.primary || chat.fallback || chat.extra || chat.mode));
 }
 
 function sanitizeChatProviderConfig(providerConfig, options = {}) {
@@ -2071,14 +2071,19 @@ function sanitizePersistedChatConfig(chat) {
       provider: 'siliconflow',
       defaultWireApi: 'chat_completions'
     });
-    if (!primary && !fallback) return null;
+    const extra = sanitizeChatProviderConfig(chat.extra, {
+      provider: 'siliconflow',
+      defaultWireApi: 'chat_completions'
+    });
+    if (!primary && !fallback && !extra) return null;
     const chatMode = normalizeChatMode(chat.mode || chat.activeProviderMode || chat.providerMode);
     return {
       mode: chatMode,
       provider: 'auto',
       ...(sharedReasoningEffort ? { reasoningEffort: sharedReasoningEffort } : {}),
       ...(primary ? { primary } : {}),
-      ...(fallback ? { fallback } : {})
+      ...(fallback ? { fallback } : {}),
+      ...(extra ? { extra } : {})
     };
   }
   return sanitizeChatProviderConfig(chat, { defaultWireApi: 'chat_completions' });
@@ -2304,7 +2309,7 @@ function chatInputSectionHasFields(section) {
 
 function chatInputUsesCompositeShape(body) {
   return Boolean(body && typeof body === 'object' && (
-    body.primary || body.fallback || body.mode || body.activeProviderMode || body.providerMode
+    body.primary || body.fallback || body.extra || body.mode || body.activeProviderMode || body.providerMode
       || body.reasoningEffort || body.reasoning_effort
       || hasOwnConfigProperty(body, 'reasoningEffort', 'reasoning_effort')
   ));
@@ -2414,9 +2419,18 @@ function resolveChatInputConfig(chatBody, persistedConfig = loadPersistedVoiceCo
       label: '备用模型'
     });
     if (fallbackResolved.error) return { error: fallbackResolved.error };
+    const persistedExtra = persistedChat && persistedChat.extra ? persistedChat.extra : null;
+    const extraResolved = resolveChatProviderInputConfig(body.extra, persistedExtra, {
+      preserveExisting: options.preserveExisting,
+      provider: 'siliconflow',
+      defaultWireApi: 'chat_completions',
+      label: '第三路模型'
+    });
+    if (extraResolved.error) return { error: extraResolved.error };
     const primary = primaryResolved.provider;
     const fallback = fallbackResolved.provider;
-    if (!primary && !fallback) {
+    const extra = extraResolved.provider;
+    if (!primary && !fallback && !extra) {
       if (!options.required) {
         return { chat: options.preserveExisting ? cloneApiConfigSection(persistedChat) : null, hasAnyField: false };
       }
@@ -2428,7 +2442,8 @@ function resolveChatInputConfig(chatBody, persistedConfig = loadPersistedVoiceCo
         provider: 'auto',
         ...(sharedReasoningEffort ? { reasoningEffort: sharedReasoningEffort } : {}),
         ...(primary ? { primary } : {}),
-        ...(fallback ? { fallback } : {})
+        ...(fallback ? { fallback } : {}),
+        ...(extra ? { extra } : {})
       },
       hasAnyField: true
     };
@@ -2477,7 +2492,9 @@ function resolveChatModelListInputConfig(chatBody, persistedConfig = loadPersist
   const persistedChat = persistedConfig && persistedConfig.chat ? persistedConfig.chat : null;
   const providerRole = String(body.providerRole || body.role || '').trim().toLowerCase();
   const persistedProvider = isCompositeChatConfig(persistedChat)
-    ? (providerRole === 'fallback' ? persistedChat.fallback : persistedChat.primary || persistedChat.fallback)
+    ? (providerRole === 'fallback'
+        ? persistedChat.fallback
+        : (providerRole === 'extra' ? persistedChat.extra : (persistedChat.primary || persistedChat.fallback)))
     : persistedChat;
   const apiKey = String(body.apiKey || body.key || '').trim();
   const baseRaw = String(body.baseUrl || body.url || '').trim();
@@ -2624,24 +2641,28 @@ async function buildChatProviderHealth(chat, options = {}) {
   const mode = isCompositeChatConfig(chat) ? normalizeChatMode(chat.mode) : (chatProviderIsReady(chat) ? 'single' : '');
   const primary = isCompositeChatConfig(chat) ? chat.primary : chat;
   const fallback = isCompositeChatConfig(chat) ? chat.fallback : null;
-  const [primaryHealth, fallbackHealth] = await Promise.all([
+  const extra = isCompositeChatConfig(chat) ? chat.extra : null;
+  const [primaryHealth, fallbackHealth, extraHealth] = await Promise.all([
     primary ? checkChatProviderHealth(primary, options) : Promise.resolve(chatProviderHealthPublic(null)),
-    fallback ? checkChatProviderHealth(fallback, options) : Promise.resolve(chatProviderHealthPublic(null))
+    fallback ? checkChatProviderHealth(fallback, options) : Promise.resolve(chatProviderHealthPublic(null)),
+    extra ? checkChatProviderHealth(extra, options) : Promise.resolve(chatProviderHealthPublic(null))
   ]);
+  const okCount = [primaryHealth.ok, fallbackHealth.ok, extraHealth.ok].filter(Boolean).length;
   const activeProvider = mode === 'fallback'
     ? (fallbackHealth.ok ? 'fallback' : '')
     : (mode === 'primary'
       ? (primaryHealth.ok ? 'primary' : '')
       : (mode === 'race'
-        ? (primaryHealth.ok && fallbackHealth.ok ? 'race' : (primaryHealth.ok ? 'primary' : (fallbackHealth.ok ? 'fallback' : '')))
-        : (primaryHealth.ok ? 'primary' : (fallbackHealth.ok ? 'fallback' : ''))));
+        ? (okCount >= 2 ? 'race' : (primaryHealth.ok ? 'primary' : (fallbackHealth.ok ? 'fallback' : (extraHealth.ok ? 'extra' : ''))))
+        : (primaryHealth.ok ? 'primary' : (fallbackHealth.ok ? 'fallback' : (extraHealth.ok ? 'extra' : '')))));
   return {
-    ok: Boolean(primaryHealth.ok || fallbackHealth.ok),
+    ok: Boolean(primaryHealth.ok || fallbackHealth.ok || extraHealth.ok),
     mode,
     activeProvider,
     providers: {
       primary: primaryHealth,
-      fallback: fallbackHealth
+      fallback: fallbackHealth,
+      extra: extraHealth
     },
     checkedAt: Date.now()
   };
@@ -14675,9 +14696,12 @@ function chatActiveProviderName(chat) {
   if (mode === 'race') {
     const pReady = chatProviderIsReady(chat.primary);
     const fReady = chatProviderIsReady(chat.fallback);
-    if (pReady && fReady) return 'race';
+    const eReady = chatProviderIsReady(chat.extra);
+    const readyCount = [pReady, fReady, eReady].filter(Boolean).length;
+    if (readyCount >= 2) return 'race';
     if (pReady) return 'primary';
     if (fReady) return 'fallback';
+    if (eReady) return 'extra';
     return '';
   }
   if (mode === 'primary') return chatProviderIsReady(chat.primary) ? 'primary' : '';
