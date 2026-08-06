@@ -5713,7 +5713,11 @@
                                             <span>备用模型</span>
                                             <strong id="fallbackChatStatusBadge">待检测</strong>
                                         </div>
-                                        <div class="chat-provider-status-note" id="chatProviderHealthMessage">打开界面后自动检测连接，默认同时调用主备模型取最快返回。</div>
+                                        <div class="chat-provider-status-row">
+                                            <span>第三路模型</span>
+                                            <strong id="extraChatStatusBadge">待检测</strong>
+                                        </div>
+                                        <div class="chat-provider-status-note" id="chatProviderHealthMessage">打开界面后自动检测连接，赛马模式默认同时调用全部已配置模型取最快返回。</div>
                                     </div>
                                     <div class="chat-provider-block">
                                         <div class="chat-provider-head">
@@ -6729,7 +6733,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '69498405';
+    const APP_BUILD_VERSION = '69498406';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
     const SILICONFLOW_CHAT_FALLBACK_MODELS = ['Qwen/Qwen3-32B', 'Qwen/Qwen3-14B', 'Qwen/Qwen3-8B', 'deepseek-ai/DeepSeek-V3'];
@@ -13090,6 +13094,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             const chat = cfg.chat || {};
             const primary = cfg.chat?.primary || {};
             const fallback = cfg.chat?.fallback || (chat.mode === 'single' || (!cfg.chat?.primary && chat.baseUrl) ? chat : {});
+            const extra = cfg.chat?.extra || {};
             if (chatModeSelect) chatModeSelect.value = ['auto', 'primary', 'fallback', 'race'].includes(chat.mode) ? chat.mode : 'race';
             if (primaryBaseInput) primaryBaseInput.value = primary.baseUrl || 'https://jp.su8.codes/v1/responses';
             if (primaryWireInput) primaryWireInput.value = primary.wireApi || 'responses';
@@ -13203,7 +13208,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     }
 
     function setVoiceSettingsButtonsBusy(busy, activeId) {
-        ['voiceAsrTestBtn', 'voiceChatTestBtn', 'voiceChatHealthBtn', 'primaryChatModelsBtn', 'fallbackChatModelsBtn', 'voiceSettingsSaveBtn'].forEach(id => {
+        ['voiceAsrTestBtn', 'voiceChatTestBtn', 'voiceChatHealthBtn', 'primaryChatModelsBtn', 'fallbackChatModelsBtn', 'extraChatModelsBtn', 'voiceSettingsSaveBtn'].forEach(id => {
             const btn = document.getElementById(id);
             if (!btn) return;
             btn.disabled = busy;
@@ -13630,6 +13635,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         chatProviderHealthState = data || null;
         const primaryBadge = document.getElementById('primaryChatStatusBadge');
         const fallbackBadge = document.getElementById('fallbackChatStatusBadge');
+        const extraBadge = document.getElementById('extraChatStatusBadge');
         const message = document.getElementById('chatProviderHealthMessage');
         const applyBadge = (el, health) => {
             if (!el) return;
@@ -13648,6 +13654,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         };
         applyBadge(primaryBadge, data?.providers?.primary);
         applyBadge(fallbackBadge, data?.providers?.fallback);
+        applyBadge(extraBadge, data?.providers?.extra);
         const activeProvider = data?.activeProvider === 'primary'
             ? 'primary'
             : (data?.activeProvider === 'fallback' ? 'fallback' : 'unavailable');
@@ -13658,11 +13665,14 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                 : (data?.providers?.primary?.message || data?.providers?.fallback?.message || '聊天模型连接待恢复'));
         setChatConnectionIndicator(activeProvider, indicatorMessage);
         if (message) {
-            const active = data?.activeProvider === 'primary' ? '当前使用主模型'
-                : (data?.activeProvider === 'fallback' ? '当前使用备用模型' : '暂无可用聊天模型');
+            const active = data?.activeProvider === 'race' ? '赛马模式（同时调用全部已配置模型）'
+                : (data?.activeProvider === 'primary' ? '当前使用主模型'
+                    : (data?.activeProvider === 'fallback' ? '当前使用备用模型'
+                        : (data?.activeProvider === 'extra' ? '当前使用第三路模型' : '暂无可用聊天模型')));
             const primaryMsg = data?.providers?.primary?.message || '主模型未检测';
             const fallbackMsg = data?.providers?.fallback?.message || '备用模型未检测';
-            message.textContent = `${active} · 主模型：${primaryMsg} · 备用模型：${fallbackMsg}`;
+            const extraMsg = data?.providers?.extra?.message || '第三路模型未检测';
+            message.textContent = `${active} · 主模型：${primaryMsg} · 备用模型：${fallbackMsg} · 第三路：${extraMsg}`;
         }
         const popover = document.getElementById('chatProviderPopover');
         if (popover && popover.classList.contains('open')) renderChatProviderPopover(chatProviderHealthState);
@@ -13699,7 +13709,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         } catch (err) {
             const msg = err && err.message ? err.message : '聊天模型检测失败';
             setChatConnectionIndicator('unavailable', msg);
-            renderChatProviderHealth({ providers: { primary: { checkedAt: Date.now(), ok: false, message: msg }, fallback: { checkedAt: Date.now(), ok: false, message: msg } } });
+            renderChatProviderHealth({ providers: { primary: { checkedAt: Date.now(), ok: false, message: msg }, fallback: { checkedAt: Date.now(), ok: false, message: msg }, extra: { checkedAt: Date.now(), ok: false, message: msg } } });
             if (note) note.textContent = msg;
             return null;
         } finally {
@@ -13798,6 +13808,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         const voiceKeyInput = document.getElementById('voiceApiKeyInput');
         const primaryChatKeyInput = document.getElementById('primaryChatApiKeyInput');
         const fallbackChatKeyInput = document.getElementById('fallbackChatApiKeyInput');
+        const extraChatKeyInput = document.getElementById('extraChatApiKeyInput');
         const note = document.getElementById('voiceSettingsNote');
         const {
             voicePreset,
@@ -13813,7 +13824,10 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
             primaryChatWireApi,
             fallbackChatBaseUrl,
             fallbackChatApiKey,
-            fallbackChatModel
+            fallbackChatModel,
+            extraChatBaseUrl,
+            extraChatApiKey,
+            extraChatModel
         } = collectVoiceSettings();
         const usingLocalVoice = voicePreset === 'local';
         const wantsPrimary = chatMode !== 'fallback';

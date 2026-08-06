@@ -14690,7 +14690,9 @@ function chatActiveProviderName(chat) {
 function chatConfigPublic(chat) {
   if (isCompositeChatConfig(chat)) {
     const activeProvider = chatActiveProviderName(chat);
-    const active = (activeProvider === 'primary' || activeProvider === 'race') ? chat.primary : (activeProvider === 'fallback' ? chat.fallback : null);
+    const active = (activeProvider === 'primary' || activeProvider === 'race') ? chat.primary
+      : (activeProvider === 'fallback' ? chat.fallback
+        : (activeProvider === 'extra' ? chat.extra : null));
     return {
       mode: normalizeChatMode(chat.mode),
       provider: activeProvider === 'race' ? 'race' : (active ? active.provider : 'auto'),
@@ -14702,7 +14704,8 @@ function chatConfigPublic(chat) {
       hasApiKey: Boolean(active && active.key),
       ready: Boolean(active),
       primary: chatProviderPublic(chat.primary),
-      fallback: chatProviderPublic(chat.fallback)
+      fallback: chatProviderPublic(chat.fallback),
+      extra: chatProviderPublic(chat.extra)
     };
   }
   const publicProvider = chatProviderPublic(chat);
@@ -14719,9 +14722,10 @@ function getChatProviderCandidatesFromConfig(chat) {
   const mode = normalizeChatMode(chat.mode);
   const primary = chatProviderIsReady(chat.primary) ? chat.primary : null;
   const fallback = chatProviderIsReady(chat.fallback) ? chat.fallback : null;
+  const extra = chatProviderIsReady(chat.extra) ? chat.extra : null;
   if (mode === 'primary') return primary ? [primary] : [];
   if (mode === 'fallback') return fallback ? [fallback] : [];
-  return [primary, fallback].filter(Boolean);
+  return [primary, fallback, extra].filter(Boolean);
 }
 
 function getAssistantChatProviderCandidates(voiceSessionId) {
