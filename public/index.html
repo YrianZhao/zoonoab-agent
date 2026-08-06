@@ -5119,45 +5119,52 @@
         .kb-local-pdb-chain { padding: 2px 7px; border-radius: var(--radius-full); border: 1px solid var(--border); background: white; color: var(--text-secondary); font-size: 10px; font-weight: 700; }
         .kb-local-pdb-chain.ag { border-color: rgba(8,145,178,0.24); background: rgba(8,145,178,0.08); color: #0E7490; }
         .kb-local-pdb-chain.ab { border-color: rgba(251,113,133,0.26); background: rgba(251,113,133,0.08); color: #BE123C; }
-        /* PDB 浏览列表（分页检索全部本地结构） */
-        .pdb-browse { display: flex; flex-direction: column; gap: 10px; }
-        .pdb-browse-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; padding: 10px 12px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); }
+        /* PDB 浏览列表（分页检索全部本地结构，占满工作区） */
+        .pdb-browse { grid-column: 1 / -1; width: 100%; display: flex; flex-direction: column; gap: 12px; }
+        .pdb-browse-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding: 12px 16px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: 0 1px 2px rgba(15,23,42,0.03); }
         .pdb-browse-filter { display: inline-flex; align-items: center; gap: 6px; }
         .pdb-browse-label { font-size: 11px; font-weight: 700; color: var(--text-muted); white-space: nowrap; }
-        .pdb-browse-select { padding: 4px 8px; border: 1px solid var(--border); border-radius: var(--radius-md); background: white; font-size: 12px; color: var(--text-primary); cursor: pointer; }
-        .pdb-browse-select:focus { outline: none; border-color: var(--brand-light); }
-        .pdb-browse-refresh { margin-left: auto; display: inline-flex; align-items: center; gap: 5px; padding: 5px 11px; border: 1px solid var(--border); background: white; border-radius: var(--radius-md); font-size: 12px; font-weight: 600; color: var(--text-secondary); cursor: pointer; transition: var(--transition); }
+        .pdb-browse-select { padding: 5px 10px; border: 1px solid var(--border); border-radius: var(--radius-md); background: white; font-size: 12px; color: var(--text-primary); cursor: pointer; transition: var(--transition); }
+        .pdb-browse-select:hover { border-color: var(--brand-light); }
+        .pdb-browse-select:focus { outline: none; border-color: var(--brand-light); box-shadow: 0 0 0 3px rgba(0,123,255,0.08); }
+        .pdb-browse-refresh { margin-left: auto; display: inline-flex; align-items: center; gap: 5px; padding: 6px 12px; border: 1px solid var(--border); background: white; border-radius: var(--radius-md); font-size: 12px; font-weight: 600; color: var(--text-secondary); cursor: pointer; transition: var(--transition); }
         .pdb-browse-refresh:hover { border-color: var(--brand-light); color: var(--brand); background: var(--brand-lighter); }
-        .pdb-browse-info { font-size: 12px; color: var(--text-muted); padding: 0 2px; }
-        .pdb-browse-list { display: flex; flex-direction: column; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; background: var(--bg-card); }
-        .pdb-row { display: grid; grid-template-columns: 48px minmax(0, 1fr) 150px 70px 78px; align-items: center; gap: 10px; padding: 8px 12px; border-bottom: 1px solid var(--border-light); transition: background 0.12s; }
+        .pdb-browse-info { font-size: 12px; color: var(--text-muted); padding: 0 4px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .pdb-browse-info strong { color: var(--text-primary); font-weight: 700; }
+        .pdb-table-wrap { border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; background: var(--bg-card); box-shadow: 0 1px 3px rgba(15,23,42,0.04); }
+        .pdb-table-head { display: grid; grid-template-columns: 60px minmax(0, 1fr) 210px 96px 104px; gap: 14px; padding: 11px 18px; background: #F8FAFC; border-bottom: 1px solid var(--border); font-size: 10.5px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+        .pdb-table-head > span:nth-child(1) { text-align: right; }
+        .pdb-table-head > span:nth-child(4) { text-align: right; }
+        .pdb-browse-list { display: flex; flex-direction: column; }
+        .pdb-row { display: grid; grid-template-columns: 60px minmax(0, 1fr) 210px 96px 104px; align-items: center; gap: 14px; padding: 11px 18px; border-bottom: 1px solid var(--border-light); transition: background 0.12s, box-shadow 0.12s; cursor: default; }
         .pdb-row:last-child { border-bottom: none; }
-        .pdb-row:hover { background: var(--bg-page); }
-        .pdb-row-idx { font-size: 11px; font-weight: 700; color: var(--text-muted); text-align: right; font-variant-numeric: tabular-nums; }
+        .pdb-row:hover { background: rgba(0,123,255,0.035); box-shadow: inset 3px 0 0 var(--brand); }
+        .pdb-row-idx { font-size: 12px; font-weight: 700; color: var(--text-muted); text-align: right; font-variant-numeric: tabular-nums; }
         .pdb-row-main { min-width: 0; }
-        .pdb-row-name { font-size: 13px; font-weight: 600; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .pdb-row-path { font-size: 10px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 1px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
-        .pdb-row-tags { display: flex; gap: 4px; flex-wrap: wrap; }
-        .pdb-row-tag { padding: 1px 6px; border-radius: var(--radius-full); font-size: 10px; font-weight: 700; border: 1px solid var(--border); background: white; color: var(--text-secondary); white-space: nowrap; }
-        .pdb-row-tag.fmt { border-color: rgba(251,113,133,0.26); background: rgba(251,113,133,0.08); color: #BE123C; }
-        .pdb-row-tag.gene { border-color: rgba(8,145,178,0.24); background: rgba(8,145,178,0.08); color: #0E7490; }
+        .pdb-row-name { font-size: 13.5px; font-weight: 600; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; letter-spacing: -0.01em; }
+        .pdb-row-path { font-size: 10.5px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+        .pdb-row-tags { display: flex; gap: 5px; flex-wrap: wrap; align-items: center; }
+        .pdb-row-tag { padding: 2px 8px; border-radius: var(--radius-full); font-size: 10px; font-weight: 700; border: 1px solid var(--border); background: white; color: var(--text-secondary); white-space: nowrap; line-height: 1.5; }
+        .pdb-row-tag.fmt { border-color: rgba(251,113,133,0.3); background: rgba(251,113,133,0.08); color: #BE123C; }
+        .pdb-row-tag.gene { border-color: rgba(8,145,178,0.3); background: rgba(8,145,178,0.08); color: #0E7490; }
         .pdb-row-tag.dir { border-color: var(--border); background: var(--bg-page); color: var(--text-muted); }
-        .pdb-row-meta { font-size: 11px; color: var(--text-secondary); text-align: right; font-variant-numeric: tabular-nums; }
+        .pdb-row-meta { font-size: 12px; color: var(--text-secondary); text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
         .pdb-row-action { display: flex; justify-content: flex-end; }
-        .pdb-row-btn { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border: 1px solid var(--brand); background: var(--brand); color: white; border-radius: var(--radius-md); font-size: 12px; font-weight: 600; cursor: pointer; transition: var(--transition); white-space: nowrap; }
-        .pdb-row-btn:hover { background: var(--brand-dark); border-color: var(--brand-dark); }
-        .pdb-pager { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; padding: 10px 4px; }
-        .pdb-pager-pages { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
-        .pdb-page-btn { min-width: 30px; height: 30px; padding: 0 8px; border: 1px solid var(--border); background: white; color: var(--text-secondary); border-radius: var(--radius-md); font-size: 12px; font-weight: 600; cursor: pointer; transition: var(--transition); }
+        .pdb-row-btn { display: inline-flex; align-items: center; gap: 5px; padding: 6px 13px; border: 1px solid var(--brand); background: var(--brand); color: white; border-radius: var(--radius-md); font-size: 12px; font-weight: 600; cursor: pointer; transition: var(--transition); white-space: nowrap; box-shadow: 0 1px 2px rgba(0,123,255,0.2); }
+        .pdb-row-btn:hover { background: var(--brand-dark); border-color: var(--brand-dark); transform: translateY(-1px); box-shadow: 0 2px 6px rgba(0,123,255,0.28); }
+        .pdb-pager { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding: 12px 6px 4px; }
+        .pdb-pager-pages { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+        .pdb-page-btn { min-width: 34px; height: 34px; padding: 0 10px; border: 1px solid var(--border); background: white; color: var(--text-secondary); border-radius: var(--radius-md); font-size: 12.5px; font-weight: 600; cursor: pointer; transition: var(--transition); }
         .pdb-page-btn:hover:not(.disabled):not(.active) { border-color: var(--brand-light); color: var(--brand); background: var(--brand-lighter); }
-        .pdb-page-btn.active { background: var(--brand); color: white; border-color: var(--brand); cursor: default; }
+        .pdb-page-btn.active { background: var(--brand); color: white; border-color: var(--brand); cursor: default; box-shadow: 0 1px 3px rgba(0,123,255,0.3); }
         .pdb-page-btn.disabled { opacity: 0.4; cursor: not-allowed; }
-        .pdb-page-ellipsis { padding: 0 4px; color: var(--text-muted); font-size: 12px; }
-        .pdb-pager-jump { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-muted); }
-        .pdb-pager-input { width: 64px; padding: 4px 8px; border: 1px solid var(--border); border-radius: var(--radius-md); font-size: 12px; text-align: center; }
-        .pdb-pager-input:focus { outline: none; border-color: var(--brand-light); }
-        @media (max-width: 720px) {
-            .pdb-row { grid-template-columns: 32px minmax(0, 1fr) 70px; }
+        .pdb-page-ellipsis { padding: 0 4px; color: var(--text-muted); font-size: 13px; }
+        .pdb-pager-jump { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; color: var(--text-muted); }
+        .pdb-pager-input { width: 68px; padding: 5px 8px; border: 1px solid var(--border); border-radius: var(--radius-md); font-size: 12px; text-align: center; font-variant-numeric: tabular-nums; }
+        .pdb-pager-input:focus { outline: none; border-color: var(--brand-light); box-shadow: 0 0 0 3px rgba(0,123,255,0.08); }
+        @media (max-width: 860px) {
+            .pdb-table-head, .pdb-row { grid-template-columns: 40px minmax(0, 1fr) 80px; gap: 10px; padding: 9px 12px; }
+            .pdb-table-head > span:nth-child(3), .pdb-table-head > span:nth-child(4) { display: none; }
             .pdb-row-tags, .pdb-row-meta { display: none; }
             .pdb-browse-refresh { margin-left: 0; }
         }
@@ -6722,7 +6729,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-    const APP_BUILD_VERSION = '69498404';
+    const APP_BUILD_VERSION = '69498405';
     const CLIENT_DIAGNOSTIC_MAX_EVENTS = 40;
     const clientDiagnosticKeys = new Set();
     const SILICONFLOW_CHAT_FALLBACK_MODELS = ['Qwen/Qwen3-32B', 'Qwen/Qwen3-14B', 'Qwen/Qwen3-8B', 'deepseek-ai/DeepSeek-V3'];
@@ -7644,7 +7651,19 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         }
     }
 
+    function syncKBPDBBrowseTopbar() {
+        // 结构库模式下隐藏顶部无关的类型筛选/全局排序，让搜索框占满
+        const isPDB = kbCurrentProject === 'local-pdb';
+        const typeFilters = document.querySelector('#kbSection .kb-type-filters');
+        const sortSelect = document.querySelector('#kbSection .kb-sort-select');
+        const searchWrap = document.querySelector('#kbSection .kb-search-wrap');
+        if (typeFilters) typeFilters.style.display = isPDB ? 'none' : 'flex';
+        if (sortSelect) sortSelect.style.display = isPDB ? 'none' : 'block';
+        if (searchWrap) searchWrap.style.maxWidth = isPDB ? '560px' : '340px';
+    }
+
     function kbRender() {
+        syncKBPDBBrowseTopbar();
         if (kbCurrentProject === 'history') {
             setKBHistoryMode(true);
             renderHistoryPanel(activeHistorySelectedId);
@@ -7929,9 +7948,22 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
                     </button>
                 </div>
                 <div class="pdb-browse-info">
-                    第 ${startIdx}-${endIdx} 条，共 ${shownLabel} 条结果（本地全部 ${totalAllLabel} 个结构）
+                    <span>显示第 <strong>${startIdx}-${endIdx}</strong> 条 / 共 <strong>${shownLabel}</strong> 条结果</span>
+                    <span style="width:1px;height:12px;background:var(--border);display:inline-block;"></span>
+                    <span>本地全部 <strong>${totalAllLabel}</strong> 个结构</span>
+                    <span style="width:1px;height:12px;background:var(--border);display:inline-block;"></span>
+                    <span>当前目录：<strong>${escHtml(pdbBrowseDirLabel(kbPDBBrowseDir))}</strong></span>
                 </div>
-                <div class="pdb-browse-list">${rowsHtml}</div>
+                <div class="pdb-table-wrap">
+                    <div class="pdb-table-head">
+                        <span>#</span>
+                        <span>结构名称 / 路径</span>
+                        <span>标签</span>
+                        <span>大小</span>
+                        <span>操作</span>
+                    </div>
+                    <div class="pdb-browse-list">${rowsHtml}</div>
+                </div>
                 ${renderPDBBrowsePager()}
             </div>
         `;
@@ -8019,6 +8051,7 @@ EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAY
         kbCurrentProject = 'local-pdb';
         document.querySelectorAll('.kb-tree-item').forEach(b => b.classList.remove('active'));
         setKBHistoryMode(false);
+        syncKBPDBBrowseTopbar();
         const scaffoldEntryEl = document.getElementById('kbScaffoldEntry');
         if (scaffoldEntryEl) scaffoldEntryEl.classList.remove('active');
         const entry = document.getElementById('kbLocalPDBEntry');
