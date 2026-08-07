@@ -16,15 +16,30 @@ from pathlib import Path
 
 
 def _shorten_chain_names(st):
-    """Remap multi-char chain names to single-char (PDB format limit)."""
+    """Remap multi-char chain names to single-char (PDB format limit).
+
+    PDB column 22 accepts any printable ASCII except space. We try a broad
+    pool first; if it runs out (>62 chains), the extra multi-char chains
+    keep their first character (may collide — flagged by caller).
+    """
+    import string
     used = {chain.name for model in st for chain in model if len(chain.name) == 1}
-    pool = [c for c in
-            "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz_"
-            if c not in used]
+    # Broad pool: letters, digits, then common safe punctuation
+    pool = [c for c in (
+        string.ascii_uppercase + string.digits + string.ascii_lowercase
+        + "!#$%&'*+,-./:;<=>?@[\\]^_`{|}~"
+    ) if c not in used]
+    remapped = []
     for model in st:
         for chain in model:
             if len(chain.name) > 1:
-                chain.name = pool.pop(0) if pool else chain.name[0]
+                old = chain.name
+                if pool:
+                    chain.name = pool.pop(0)
+                else:
+                    chain.name = chain.name[0]
+                remapped.append((old, chain.name))
+    return remapped
 
 
 def convert_one(task):
